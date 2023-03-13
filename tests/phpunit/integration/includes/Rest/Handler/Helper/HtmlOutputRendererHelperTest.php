@@ -40,6 +40,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Rule\InvocationOrder;
 use Status;
 use User;
+use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\PageBundle;
@@ -317,7 +318,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 
 		$helper = $this->newHelper();
 		$helper->init( $page, self::PARAM_DEFAULTS, $this->newUser() );
-		$helper->setVariantConversionLanguage( 'en-x-piglatin' );
+		$helper->setVariantConversionLanguage( new Bcp47CodeValue( 'en-x-piglatin' ) );
 
 		$htmlResult = $helper->getHtml()->getRawText();
 		$this->assertStringContainsString( self::MOCK_HTML_VARIANT, $htmlResult );
@@ -840,7 +841,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$helper->setPageLanguage( 'ar' );
 
 		// check nominal content language
-		$this->assertSame( 'ar', $helper->getHtmlOutputContentLanguage() );
+		$this->assertSame( 'ar', $helper->getHtmlOutputContentLanguage()->toBcp47Code() );
 
 		// check content language in HTML
 		$output = $helper->getHtml();
@@ -960,7 +961,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$helper->init( $page, self::PARAM_DEFAULTS, $this->newUser() );
 
 		if ( $targetLanguage ) {
-			$helper->setVariantConversionLanguage( $targetLanguage );
+			$helper->setVariantConversionLanguage( new Bcp47CodeValue( $targetLanguage ) );
 			$expectedCalls['addHeader'] = [ [ 'Vary', 'Accept-Language' ] ];
 
 			if ( $setContentLanguageHeader ) {

@@ -19,13 +19,12 @@
 
 namespace MediaWiki\Parser\Parsoid\Config;
 
-use Language;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleHandler;
 use MediaWiki\Title\Title;
 use ParserOptions;
+use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Parsoid\Config\PageConfig as IPageConfig;
 use Wikimedia\Parsoid\Config\PageContent as IPageContent;
 
@@ -51,34 +50,34 @@ class PageConfig extends IPageConfig {
 	/** @var ?RevisionRecord */
 	private $revision;
 
-	/** @var string|null */
-	private $pagelanguage;
+	/** @var Bcp47Code|null */
+	private $pageLanguage;
 
-	/** @var string|null */
-	private $pagelanguageDir;
+	/** @var string */
+	private $pageLanguageDir;
 
 	/**
 	 * @param ParserOptions $parserOptions
 	 * @param SlotRoleHandler $slotRoleHandler
 	 * @param Title $title Title being parsed
 	 * @param ?RevisionRecord $revision
-	 * @param ?string $pagelanguage
-	 * @param ?string $pagelanguageDir
+	 * @param Bcp47Code $pageLanguage
+	 * @param string $pageLanguageDir
 	 */
 	public function __construct(
 		ParserOptions $parserOptions,
 		SlotRoleHandler $slotRoleHandler,
 		Title $title,
-		?RevisionRecord $revision = null,
-		?string $pagelanguage = null,
-		?string $pagelanguageDir = null
+		?RevisionRecord $revision,
+		Bcp47Code $pageLanguage,
+		string $pageLanguageDir
 	) {
 		$this->parserOptions = $parserOptions;
 		$this->slotRoleHandler = $slotRoleHandler;
 		$this->title = $title;
 		$this->revision = $revision;
-		$this->pagelanguage = $pagelanguage;
-		$this->pagelanguageDir = $pagelanguageDir;
+		$this->pageLanguage = $pageLanguage;
+		$this->pageLanguageDir = $pageLanguageDir;
 	}
 
 	/**
@@ -126,27 +125,13 @@ class PageConfig extends IPageConfig {
 	}
 
 	/** @inheritDoc */
-	public function getPageLanguage(): string {
-		return $this->pagelanguage ??
-			$this->title->getPageLanguage()->getCode();
-	}
-
-	/**
-	 * Helper function: get the Language object corresponding to
-	 * PageConfig::getPageLanguage()
-	 * @return Language
-	 */
-	private function getPageLanguageObject(): Language {
-		return $this->pagelanguage ?
-			MediaWikiServices::getInstance()->getLanguageFactory()
-				->getLanguage( $this->pagelanguage ) :
-			$this->title->getPageLanguage();
+	public function getPageLanguageBcp47(): Bcp47Code {
+		return $this->pageLanguage;
 	}
 
 	/** @inheritDoc */
 	public function getPageLanguageDir(): string {
-		return $this->pagelanguageDir ??
-			$this->getPageLanguageObject()->getDir();
+		return $this->pageLanguageDir;
 	}
 
 	/**

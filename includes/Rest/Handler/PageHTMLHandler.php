@@ -74,7 +74,9 @@ class PageHTMLHandler extends SimpleHandler {
 				$request = $this->getRequest();
 				$acceptLanguage = $request->getHeaderLine( 'Accept-Language' ) ?: null;
 				if ( $acceptLanguage ) {
-					$this->htmlHelper->setVariantConversionLanguage( $acceptLanguage );
+					$this->htmlHelper->setVariantConversionLanguage(
+						$acceptLanguage
+					);
 				}
 			}
 		}

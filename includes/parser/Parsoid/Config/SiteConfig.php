@@ -49,6 +49,7 @@ use ParserOutput;
 use PrefixingStatsdDataFactoryProxy;
 use Psr\Log\LoggerInterface;
 use UnexpectedValueException;
+use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Parsoid\Config\SiteConfig as ISiteConfig;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
@@ -508,8 +509,8 @@ class SiteConfig extends ISiteConfig {
 		return $this->contLang->linkTrail();
 	}
 
-	public function lang(): string {
-		return $this->config->get( MainConfigNames::LanguageCode );
+	public function langBcp47(): Bcp47Code {
+		return $this->contLang;
 	}
 
 	public function mainpage(): string {
@@ -543,16 +544,19 @@ class SiteConfig extends ISiteConfig {
 		return $this->contLang->isRTL();
 	}
 
-	/** @inheritDoc */
-	public function langConverterEnabled( string $lang ): bool {
+	/**
+	 * @param Bcp47Code $lang
+	 * @return bool
+	 */
+	public function langConverterEnabledBcp47( Bcp47Code $lang ): bool {
 		if ( $this->languageConverterFactory->isConversionDisabled() ) {
-			return false;
-		}
-		if ( !in_array( $lang, LanguageConverter::$languagesWithVariants, true ) ) {
 			return false;
 		}
 		try {
 			$langObject = $this->languageFactory->getLanguage( $lang );
+			if ( !in_array( $langObject->getCode(), LanguageConverter::$languagesWithVariants, true ) ) {
+				return false;
+			}
 			$converter = $this->languageConverterFactory->getLanguageConverter( $langObject );
 			return $converter->hasVariants();
 		} catch ( MWException $ex ) {
@@ -573,12 +577,18 @@ class SiteConfig extends ISiteConfig {
 		return $this->config->get( MainConfigNames::Server );
 	}
 
-	/** @inheritDoc */
-	public function exportMetadataToHead(
+	/**
+	 * @inheritDoc
+	 * @param Document $document
+	 * @param ContentMetadataCollector $metadata
+	 * @param string $defaultTitle
+	 * @param Bcp47Code $lang
+	 */
+	public function exportMetadataToHeadBcp47(
 		Document $document,
 		ContentMetadataCollector $metadata,
 		string $defaultTitle,
-		string $lang
+		Bcp47Code $lang
 	): void {
 		'@phan-var ParserOutput $metadata'; // @var ParserOutput $metadata
 		// Look for a displaytitle.
@@ -600,6 +610,14 @@ class SiteConfig extends ISiteConfig {
 		return $this->config->get( MainConfigNames::LocalTZoffset );
 	}
 
+	/**
+	 * Language variant information
+	 * @return array<string,array> Keys are MediaWiki-internal variant codes (e.g. "zh-cn"),
+	 * values are arrays with two fields:
+	 *   - base: (string) Base language code (e.g. "zh") (MediaWiki-internal)
+	 *   - fallbacks: (string[]) Fallback variants (MediaWiki-internal codes)
+	 * @deprecated Use ::variantsFor() (T320662)
+	 */
 	public function variants(): array {
 		if ( $this->variants !== null ) {
 			return $this->variants;
@@ -632,6 +650,31 @@ class SiteConfig extends ISiteConfig {
 			}
 		}
 		return $this->variants;
+	}
+
+	/**
+	 * Language variant information for the given language (or null if
+	 * unknown).
+	 * @param Bcp47Code $code The language for which you want variant information
+	 * @return ?array{base:Bcp47Code,fallbacks:Bcp47Code[]} an array with
+	 * two fields:
+	 *   - base: (Bcp47Code) Base BCP-47 language code (e.g. "zh")
+	 *   - fallbacks: (Bcp47Code[]) Fallback variants, as BCP-47 codes
+	 */
+	public function variantsFor( Bcp47Code $code ): ?array {
+		$variants = $this->variants();
+		$lang = $this->languageFactory->getLanguage( $code );
+		$tuple = $variants[$lang->getCode()] ?? null;
+		if ( $tuple === null ) {
+			return null;
+		}
+		return [
+			'base' => $this->languageFactory->getLanguage( $tuple['base'] ),
+			'fallbacks' => array_map(
+				[ $this->languageFactory, 'getLanguage' ],
+				$tuple['fallbacks']
+			),
+		];
 	}
 
 	public function widthOption(): int {

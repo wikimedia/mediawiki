@@ -22,6 +22,7 @@ namespace MediaWiki\Rest\Handler;
 use Composer\Semver\Semver;
 use ExtensionRegistry;
 use InvalidArgumentException;
+use LanguageCode;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
 use MediaWiki\Linker\LinkTarget;
@@ -46,6 +47,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 use MobileContext;
 use RequestContext;
+use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Http\HttpAcceptParser;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\Parsoid\Config\DataAccess;
@@ -213,6 +215,12 @@ abstract class ParsoidHandler extends Handler {
 		$opts = array_merge( $body, array_intersect_key( $request->getPathParams(),
 			[ 'from' => true, 'format' => true ] ) );
 		'@phan-var array<string,array|bool|string> $opts'; // @var array<string,array|bool|string> $opts
+		$contentLanguage = $request->getHeaderLine( 'Content-Language' ) ?: null;
+		if ( $contentLanguage ) {
+			$contentLanguage = LanguageCode::normalizeNonstandardCodeAndWarn(
+				$contentLanguage
+			);
+		}
 		$attribs = [
 			'titleMissing' => empty( $request->getPathParams()['title'] ),
 			'pageName' => $request->getPathParam( 'title' ) ?? '',
@@ -226,7 +234,7 @@ abstract class ParsoidHandler extends Handler {
 				?? $request->getQueryParams()['offsetType']
 				// Lint requests should return UCS2 offsets by default
 				?? ( $opts['format'] === ParsoidFormatHelper::FORMAT_LINT ? 'ucs2' : 'byte' ),
-			'pagelanguage' => $request->getHeaderLine( 'Content-Language' ) ?: null,
+			'pagelanguage' => $contentLanguage,
 		];
 
 		// For use in getHtmlOutputRendererHelper
@@ -249,6 +257,13 @@ abstract class ParsoidHandler extends Handler {
 			}
 		}
 
+		$acceptLanguage = $request->getHeaderLine( 'Accept-Language' ) ?: null;
+		if ( $acceptLanguage ) {
+			$acceptLanguage = LanguageCode::normalizeNonstandardCodeAndWarn(
+				$acceptLanguage
+			);
+		}
+
 		$attribs['envOptions'] = [
 			// We use `prefix` but ought to use `domain` (T206764)
 			'prefix' => $attribs['iwp'],
@@ -260,11 +275,42 @@ abstract class ParsoidHandler extends Handler {
 			'cookie' => $request->getHeaderLine( 'Cookie' ),
 			'reqId' => $request->getHeaderLine( 'X-Request-Id' ),
 			'userAgent' => $request->getHeaderLine( 'User-Agent' ),
-			'htmlVariantLanguage' => $request->getHeaderLine( 'Accept-Language' ) ?: null,
+			'htmlVariantLanguage' => $acceptLanguage,
 			// Semver::satisfies checks below expect a valid outputContentVersion value.
 			// Better to set it here instead of adding the default value at every check.
 			'outputContentVersion' => Parsoid::defaultHTMLVersion(),
 		];
+
+		# Convert language codes in $opts['updates']['variant'] if present
+		$sourceVariant = $opts['updates']['variant']['source'] ?? null;
+		if ( $sourceVariant ) {
+			$sourceVariant = LanguageCode::normalizeNonstandardCodeAndWarn(
+				$sourceVariant
+			);
+			$opts['updates']['variant']['source'] = $sourceVariant;
+		}
+		$targetVariant = $opts['updates']['variant']['target'] ?? null;
+		if ( $targetVariant ) {
+			$targetVariant = LanguageCode::normalizeNonstandardCodeAndWarn(
+				$targetVariant
+			);
+			$opts['updates']['variant']['target'] = $targetVariant;
+		}
+		if ( isset( $opts['wikitext']['headers']['content-language'] ) ) {
+			$contentLanguage = $opts['wikitext']['headers']['content-language'];
+			$contentLanguage = LanguageCode::normalizeNonstandardCodeAndWarn(
+				$contentLanguage
+			);
+			$opts['wikitext']['headers']['content-language'] = $contentLanguage;
+		}
+		if ( isset( $opts['original']['wikitext']['headers']['content-language'] ) ) {
+			$contentLanguage = $opts['original']['wikitext']['headers']['content-language'];
+			$contentLanguage = LanguageCode::normalizeNonstandardCodeAndWarn(
+				$contentLanguage
+			);
+			$opts['original']['wikitext']['headers']['content-language'] = $contentLanguage;
+		}
+
 		$attribs['opts'] = $opts;
 
 		// TODO: Remove assertDomainIsCorrect() once we no longer need to support the {domain}
@@ -456,12 +502,12 @@ abstract class ParsoidHandler extends Handler {
 	 * @param ?int $revision The revision to be transformed
 	 * @param ?string $wikitextOverride
 	 *   Custom wikitext to use instead of the real content of the page.
-	 * @param ?string $pagelanguageOverride
+	 * @param ?Bcp47Code $pagelanguageOverride
 	 * @return PageConfig
 	 */
 	protected function createPageConfig(
 		string $title, ?int $revision, ?string $wikitextOverride = null,
-		?string $pagelanguageOverride = null
+		?Bcp47Code $pagelanguageOverride = null
 	): PageConfig {
 		$title = $title ? Title::newFromText( $title ) : Title::newMainPage();
 		if ( !$title ) {
@@ -1166,6 +1212,7 @@ abstract class ParsoidHandler extends Handler {
 			$revision['contentmodel'] ?? null
 		);
 
+		// XXX: DI should inject HtmlTransformFactory
 		$languageVariantConverter = MediaWikiServices::getInstance()
 			->getHtmlTransformFactory()
 			->getLanguageVariantConverter( $pageIdentity );

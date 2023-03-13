@@ -18,6 +18,9 @@
  * @file
  */
 
+use Wikimedia\Bcp47Code\Bcp47Code;
+use Wikimedia\Bcp47Code\Bcp47CodeValue;
+
 /**
  * Methods for dealing with language codes.
  *
@@ -144,7 +147,10 @@ class LanguageCode {
 	 * @since 1.32
 	 */
 	public static function getNonstandardLanguageCodeMapping() {
-		$result = [];
+		static $result = [];
+		if ( $result ) {
+			return $result;
+		}
 		foreach ( self::DEPRECATED_LANGUAGE_CODE_MAPPING as $code => $ignore ) {
 			$result[$code] = self::bcp47( $code );
 		}
@@ -253,6 +259,30 @@ class LanguageCode {
 		// case-insensitivity in the lookup.
 		$code = strtolower( $code );
 		return $invertedLookup[$code] ?? $code;
+	}
+
+	/**
+	 * We want to eventually require valid BCP-47 codes on HTTP and HTML
+	 * APIs (where the standards require it).  This will "prefer" to
+	 * interpret the given $code as BCP-47, but if a mediawiki internal
+	 * code is provided, it will map it to the proper BCP-47 code.  We
+	 * don't emit a logged warning on this path yet, but we intend to
+	 * in the future.
+	 * @param string $code A "language code" provided from an HTTP or HTML
+	 *   API, presumed to be BCP-47
+	 * @return Bcp47Code An "actual" BCP-47 code
+	 * @internal
+	 */
+	public static function normalizeNonstandardCodeAndWarn( string $code ): Bcp47Code {
+		$compatMap = self::getNonstandardLanguageCodeMapping();
+		if ( isset( $compatMap[strtolower( $code )] ) ) {
+			// Backward compatibility, since clients may have been
+			// sending us non-standards-compliant
+			// "mediawiki internal language codes"; eventually we'll
+			// emit a logged warning here.
+			$code = $compatMap[strtolower( $code )];
+		}
+		return new Bcp47CodeValue( $code );
 	}
 
 	/**

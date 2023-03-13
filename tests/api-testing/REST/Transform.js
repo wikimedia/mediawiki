@@ -967,141 +967,142 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		describe( 'Variant conversion', function () {
-			// NOTE: Continue to accept sr-el for a while, to remain compatible with older versions of the parsoid lib.
-			const expectedCodeSerbianLatin = /sr-el|sr-Latn/;
+		// Continue to accept sr-el for a while in headers, to remain compatible
+		// with apps which might still be sending the old codes
+		[ 'sr-Latn', 'sr-el' ].forEach( function ( srLatn ) {
+			describe( 'Variant conversion ' + srLatn, function () {
+				it( 'should perform variant conversion for transform given pagelanguage in HTTP header (html)', function ( done ) {
+					client.req
+						.post( endpointPrefix + '/transform/wikitext/to/html/' )
+						.set( 'Accept-Language', srLatn )
+						.set( 'Content-Language', 'sr' )
+						.send( {
+							wikitext: 'абвг abcd x'
+						} )
+						.expect( 'Content-Language', 'sr-Latn' )
+						.expect( 'Vary', /\bAccept-Language\b/i )
+						.expect( validHtmlResponse( ( doc ) => {
+							doc.body.textContent.should.equal( 'abvg abcd x' );
+						} ) )
+						.end( done );
+				} );
 
-			it( 'should perform variant conversion for transform given pagelanguage in HTTP header (html)', function ( done ) {
-				client.req
-					.post( endpointPrefix + '/transform/wikitext/to/html/' )
-					.set( 'Accept-Language', 'sr-el' )
-					.set( 'Content-Language', 'sr' )
-					.send( {
-						wikitext: 'абвг abcd x'
-					} )
-					.expect( 'Content-Language', expectedCodeSerbianLatin )
-					.expect( 'Vary', /\bAccept-Language\b/i )
-					.expect( validHtmlResponse( ( doc ) => {
-						doc.body.textContent.should.equal( 'abvg abcd x' );
-					} ) )
-					.end( done );
+				it( 'should perform variant conversion for transform given pagelanguage in HTTP header (pagebundle)', function ( done ) {
+					if ( skipForNow ) {
+						return this.skip();
+					} // page bundle not supported
+					client.req
+						.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
+						.set( 'Accept-Language', srLatn )
+						.set( 'Content-Language', 'sr' )
+						.send( {
+							wikitext: 'абвг abcd x'
+						} )
+						.expect( validPageBundleResponse( ( doc ) => {
+							doc.body.textContent.should.equal( 'abvg abcd x' );
+						} ) )
+						.expect( ( res ) => {
+							const headers = res.body.html.headers;
+							headers.should.have.property( 'content-language' );
+							headers.should.have.property( 'vary' );
+							headers[ 'content-language' ].should.equal( 'sr-Latn' );
+							headers.vary.should.match( /\bAccept-Language\b/i );
+						} )
+						.end( done );
+				} );
+
+				it( 'should perform variant conversion for transform given pagelanguage in JSON header (html)', function ( done ) {
+					client.req
+						.post( endpointPrefix + '/transform/wikitext/to/html/' )
+						.set( 'Accept-Language', srLatn )
+						.send( {
+							wikitext: {
+								headers: {
+									'content-language': 'sr'
+								},
+								body: 'абвг abcd x'
+							}
+						} )
+						.expect( 'Content-Language', 'sr-Latn' )
+						.expect( 'Vary', /\bAccept-Language\b/i )
+						.expect( validHtmlResponse( ( doc ) => {
+							doc.body.textContent.should.equal( 'abvg abcd x' );
+						} ) )
+						.end( done );
+				} );
+
+				it( 'should perform variant conversion for transform given pagelanguage in JSON header (pagebundle)', function ( done ) {
+					if ( skipForNow ) {
+						return this.skip();
+					} // page bundle not supported
+					client.req
+						.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
+						.set( 'Accept-Language', srLatn )
+						.send( {
+							wikitext: {
+								headers: {
+									'content-language': 'sr'
+								},
+								body: 'абвг abcd'
+							}
+						} )
+						.expect( validPageBundleResponse( ( doc ) => {
+							doc.body.textContent.should.equal( 'abvg abcd' );
+						} ) )
+						.expect( ( res ) => {
+							const headers = res.body.html.headers;
+							headers.should.have.property( 'content-language' );
+							headers.should.have.property( 'vary' );
+							headers[ 'content-language' ].should.equal( 'sr-Latn' );
+							headers.vary.should.match( /\bAccept-Language\b/i );
+						} )
+						.end( done );
+				} );
+
+				it( 'should perform variant conversion for transform given pagelanguage from oldid (html)', function ( done ) {
+					client.req
+						.post( endpointPrefix + '/transform/wikitext/to/html/' )
+						.set( 'Accept-Language', srLatn )
+						.set( 'Content-Language', 'sr' )
+						.send( {
+							original: { revid: 104 },
+							wikitext: {
+								body: 'абвг abcd x'
+							}
+						} )
+						.expect( 'Content-Language', 'sr-Latn' )
+						.expect( 'Vary', /\bAccept-Language\b/i )
+						.expect( validHtmlResponse( ( doc ) => {
+							doc.body.textContent.should.equal( 'abvg abcd x' );
+						} ) )
+						.end( done );
+				} );
+
+				it( 'should perform variant conversion for transform given pagelanguage from oldid (pagebundle)', function ( done ) {
+					if ( skipForNow ) {
+						return this.skip();
+					} // page bundle not supported
+					client.req
+						.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
+						.set( 'Accept-Language', srLatn )
+						.send( {
+							original: { revid: 104 },
+							wikitext: 'абвг abcd'
+						} )
+						.expect( validPageBundleResponse( ( doc ) => {
+							doc.body.textContent.should.equal( 'abvg abcd' );
+						} ) )
+						.expect( ( res ) => {
+							const headers = res.body.html.headers;
+							headers.should.have.property( 'content-language' );
+							headers.should.have.property( 'vary' );
+							headers[ 'content-language' ].should.equal( 'sr-Latn' );
+							headers.vary.should.match( /\bAccept-Language\b/i );
+						} )
+						.end( done );
+				} );
+
 			} );
-
-			it( 'should perform variant conversion for transform given pagelanguage in HTTP header (pagebundle)', function ( done ) {
-				if ( skipForNow ) {
-					return this.skip();
-				} // page bundle not supported
-				client.req
-					.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
-					.set( 'Accept-Language', 'sr-el' )
-					.set( 'Content-Language', 'sr' )
-					.send( {
-						wikitext: 'абвг abcd x'
-					} )
-					.expect( validPageBundleResponse( ( doc ) => {
-						doc.body.textContent.should.equal( 'abvg abcd x' );
-					} ) )
-					.expect( ( res ) => {
-						const headers = res.body.html.headers;
-						headers.should.have.property( 'content-language' );
-						headers.should.have.property( 'vary' );
-						headers[ 'content-language' ].should.equal( expectedCodeSerbianLatin );
-						headers.vary.should.match( /\bAccept-Language\b/i );
-					} )
-					.end( done );
-			} );
-
-			it( 'should perform variant conversion for transform given pagelanguage in JSON header (html)', function ( done ) {
-				client.req
-					.post( endpointPrefix + '/transform/wikitext/to/html/' )
-					.set( 'Accept-Language', 'sr-el' )
-					.send( {
-						wikitext: {
-							headers: {
-								'content-language': 'sr'
-							},
-							body: 'абвг abcd x'
-						}
-					} )
-					.expect( 'Content-Language', expectedCodeSerbianLatin )
-					.expect( 'Vary', /\bAccept-Language\b/i )
-					.expect( validHtmlResponse( ( doc ) => {
-						doc.body.textContent.should.equal( 'abvg abcd x' );
-					} ) )
-					.end( done );
-			} );
-
-			it( 'should perform variant conversion for transform given pagelanguage in JSON header (pagebundle)', function ( done ) {
-				if ( skipForNow ) {
-					return this.skip();
-				} // page bundle not supported
-				client.req
-					.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
-					.set( 'Accept-Language', 'sr-el' )
-					.send( {
-						wikitext: {
-							headers: {
-								'content-language': 'sr'
-							},
-							body: 'абвг abcd'
-						}
-					} )
-					.expect( validPageBundleResponse( ( doc ) => {
-						doc.body.textContent.should.equal( 'abvg abcd' );
-					} ) )
-					.expect( ( res ) => {
-						const headers = res.body.html.headers;
-						headers.should.have.property( 'content-language' );
-						headers.should.have.property( 'vary' );
-						headers[ 'content-language' ].should.match( expectedCodeSerbianLatin );
-						headers.vary.should.match( /\bAccept-Language\b/i );
-					} )
-					.end( done );
-			} );
-
-			it( 'should perform variant conversion for transform given pagelanguage from oldid (html)', function ( done ) {
-				client.req
-					.post( endpointPrefix + '/transform/wikitext/to/html/' )
-					.set( 'Accept-Language', 'sr-el' )
-					.set( 'Content-Language', 'sr' )
-					.send( {
-						original: { revid: 104 },
-						wikitext: {
-							body: 'абвг abcd x'
-						}
-					} )
-					.expect( 'Content-Language', expectedCodeSerbianLatin )
-					.expect( 'Vary', /\bAccept-Language\b/i )
-					.expect( validHtmlResponse( ( doc ) => {
-						doc.body.textContent.should.equal( 'abvg abcd x' );
-					} ) )
-					.end( done );
-			} );
-
-			it( 'should perform variant conversion for transform given pagelanguage from oldid (pagebundle)', function ( done ) {
-				if ( skipForNow ) {
-					return this.skip();
-				} // page bundle not supported
-				client.req
-					.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
-					.set( 'Accept-Language', 'sr-el' )
-					.send( {
-						original: { revid: 104 },
-						wikitext: 'абвг abcd'
-					} )
-					.expect( validPageBundleResponse( ( doc ) => {
-						doc.body.textContent.should.equal( 'abvg abcd' );
-					} ) )
-					.expect( ( res ) => {
-						const headers = res.body.html.headers;
-						headers.should.have.property( 'content-language' );
-						headers.should.have.property( 'vary' );
-						headers[ 'content-language' ].should.match( expectedCodeSerbianLatin );
-						headers.vary.should.match( /\bAccept-Language\b/i );
-					} )
-					.end( done );
-			} );
-
 		} );
 
 	} ); // end wt2html

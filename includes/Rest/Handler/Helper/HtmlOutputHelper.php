@@ -22,6 +22,7 @@ namespace MediaWiki\Rest\Handler\Helper;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseInterface;
 use ParserOutput;
+use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Parsoid\Core\ClientError;
 
 /**
@@ -77,12 +78,12 @@ interface HtmlOutputHelper {
 	/**
 	 * Set the language to be used for variant conversion.
 	 *
-	 * @param string $targetLanguageCode
-	 * @param null|string $sourceLanguageCode
+	 * @param Bcp47Code|string $targetLanguage
+	 * @param Bcp47Code|string|null $sourceLanguage
 	 */
 	public function setVariantConversionLanguage(
-		string $targetLanguageCode,
-		?string $sourceLanguageCode = null
+		$targetLanguage,
+		$sourceLanguage = null
 	): void;
 
 	/**

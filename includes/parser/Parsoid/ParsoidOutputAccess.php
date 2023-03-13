@@ -453,13 +453,12 @@ class ParsoidOutputAccess {
 		}
 
 		$languageOverride = $parserOpts->getTargetLanguage();
-		$langCode = $languageOverride ? $languageOverride->getCode() : null;
 		$pageConfig = $this->parsoidPageConfigFactory->create(
 			$page,
 			null,
 			$revision,
 			null,
-			$langCode,
+			$languageOverride,
 			$this->options->get( MainConfigNames::ParsoidSettings )
 		);
 

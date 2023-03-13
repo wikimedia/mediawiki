@@ -1419,8 +1419,11 @@ return [
 	},
 
 	'ParsoidPageConfigFactory' => static function ( MediaWikiServices $services ): MWPageConfigFactory {
-		return new MWPageConfigFactory( $services->getRevisionStore(),
-			$services->getSlotRoleRegistry() );
+		return new MWPageConfigFactory(
+			$services->getRevisionStore(),
+			$services->getSlotRoleRegistry(),
+			$services->getLanguageFactory()
+		);
 	},
 
 	'ParsoidSiteConfig' => static function ( MediaWikiServices $services ): SiteConfig {
