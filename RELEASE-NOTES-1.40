@@ -111,6 +111,8 @@ For notes on 1.39.x and older releases, see HISTORY.
 * (T321412) Added new 'PageUndeleteComplete' hook which provides more thorough
   information about a page post restoration than the 'PageUndelete' hook passes.
   This provides similar functionality to the 'PageDeleteComplete' hook.
+* Added new method ManualLogEntry::setForceBotFlag to allow forcing bot flag
+  for log entries which are inserted to the recent changes.
 * …
 
 === External library changes in 1.40 ===
