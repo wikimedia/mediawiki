@@ -958,8 +958,7 @@ class ParserTestRunner {
 		// If any requirements are not met, mark all tests from the file as skipped
 		if ( !(
 			$isLegacy ||
-			isset( $fileOptions['parsoid-compatible'] ) ||
-			( $runnerOpts['parsoid'] ?? false )
+			isset( $fileOptions['parsoid-compatible'] )
 		) ) {
 			// Running files in Parsoid integrated mode is opt-in for now.
 			return 'not compatible with Parsoid integrated mode';
@@ -1127,7 +1126,7 @@ class ParserTestRunner {
 		}
 
 		if ( $this->options['updateKnownFailures'] ) {
-			$this->updateKnownFailures( $testFileInfo );
+			$this->updateKnownFailures( $filename, $testFileInfo );
 		}
 
 		// Clean up
@@ -1138,9 +1137,10 @@ class ParserTestRunner {
 
 	/**
 	 * Update known failures JSON file for the parser tests file
+	 * @param string $filename The parser test file
 	 * @param TestFileReader $testFileInfo
 	 */
-	public function updateKnownFailures( TestFileReader $testFileInfo ): void {
+	public function updateKnownFailures( string $filename, TestFileReader $testFileInfo ) {
 		$testKnownFailures = [];
 		foreach ( $testFileInfo->testCases as $t ) {
 			if ( $t->knownFailures && $t->testName ) {
@@ -1168,9 +1168,19 @@ class ParserTestRunner {
 			$old = "{}";
 		}
 
-		if ( $testFileInfo->knownFailuresPath && $old !== $contents ) {
-			$this->recorder->warning( "Updating known failures file: {$testFileInfo->knownFailuresPath}" );
-			file_put_contents( $testFileInfo->knownFailuresPath, $contents );
+		if ( $old !== $contents ) {
+			if ( $testFileInfo->knownFailuresPath ) {
+				$this->recorder->warning( "Updating known failures file: {$testFileInfo->knownFailuresPath}" );
+				file_put_contents( $testFileInfo->knownFailuresPath, $contents );
+			} else {
+				// To be safe, we don't try to write a file that doesn't
+				// (yet) exist.  Create an empty file if you need to, and
+				// then we'll happily update it for you.
+				throw new MWException(
+					"Known failures file for $filename does not exist, " .
+					"and so won't be updated."
+				);
+			}
 		}
 	}
 
