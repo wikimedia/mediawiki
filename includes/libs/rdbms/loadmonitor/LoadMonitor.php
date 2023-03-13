@@ -62,10 +62,11 @@ class LoadMonitor implements ILoadMonitor {
 	private $serverStatesKeyLocked = false;
 
 	/** @var int cache key version */
-	private const VERSION = 1;
-	/** @var int Maximum effective logical TTL for server state cache */
-	private const POLL_PERIOD_MS = 500;
-	/** @var int How long to cache server states including time past logical expiration */
+	private const VERSION = 2;
+
+	/** Server cache target time-till-refresh for DB server state info */
+	private const STATE_TARGET_TTL = 1.0;
+	/** Server cache physical TTL for DB server state info */
 	private const STATE_PRESERVE_TTL = 60;
 	/** @var int Max interval within which a server state refresh should happen */
 	private const TIME_TILL_REFRESH = 1;
@@ -124,17 +125,22 @@ class LoadMonitor implements ILoadMonitor {
 	 * @throws DBAccessError
 	 */
 	protected function getServerStates( array $serverIndexes ) {
+		$now = $this->getCurrentTime();
 		// Represent the cluster by the name of the primary DB
 		$cluster = $this->lb->getServerName( $this->lb->getWriterIndex() );
-
-		// Randomize logical TTLs to reduce stampedes
-		$ageStaleSec = mt_rand( 1, self::POLL_PERIOD_MS ) / 1e3;
-		$minAsOfTime = $this->getCurrentTime() - $ageStaleSec;
 
 		// (a) Check the local server cache
 		$srvCacheKey = $this->getStatesCacheKey( $this->srvCache, $serverIndexes );
 		$value = $this->srvCache->get( $srvCacheKey );
-		if ( $value && $value['timestamp'] > $minAsOfTime ) {
+		if (
+			$value &&
+			!$this->isStateRefreshDue(
+				$value['timestamp'],
+				$value['genTime'],
+				self::STATE_TARGET_TTL,
+				$now
+			)
+		) {
 			$this->logger->debug( __METHOD__ . ": used fresh '$cluster' cluster status" );
 
 			return $value; // cache hit
@@ -198,12 +204,33 @@ class LoadMonitor implements ILoadMonitor {
 	}
 
 	/**
+	 * @param float $priorAsOf
+	 * @param float $priorGenDelay
+	 * @param float $referenceTTL
+	 * @param float $now
+	 * @return bool
+	 */
+	protected function isStateRefreshDue( $priorAsOf, $priorGenDelay, $referenceTTL, $now ) {
+		$age = max( $now - $priorAsOf, 0.0 );
+		// Ratio of the nominal TTL that has elapsed (r)
+		$ttrRatio = $age / $referenceTTL;
+		// Ratio of the nominal TTL that elapses during regeneration (g)
+		$genRatio = $priorGenDelay / $referenceTTL;
+		// Use p(r,g) as the monotonically increasing "chance of refresh" function,
+		// having p(0,g)=0. Normally, g~=0, in which case p(1,g)~=1. If g >> 0, then
+		// the value might not refresh until a small amount after the nominal expiry.
+		$chance = exp( -128 * $genRatio ) * ( $ttrRatio ** 4 );
+		return ( mt_rand( 1, 1000000000 ) <= 1000000000 * $chance );
+	}
+
+	/**
 	 * @param array $serverIndexes
 	 * @param array|false $priorStates
 	 * @return array
 	 * @throws DBAccessError
 	 */
 	protected function computeServerStates( array $serverIndexes, $priorStates ) {
+		$startTime = $this->getCurrentTime();
 		// Check if there is just a primary DB (no replication involved)
 		if ( $this->lb->getServerCount() <= 1 ) {
 			return $this->getPlaceholderServerStates( $serverIndexes );
@@ -292,10 +319,13 @@ class LoadMonitor implements ILoadMonitor {
 			$conn->close( __METHOD__ );
 		}
 
+		$endTime = $this->getCurrentTime();
+
 		return [
 			'lagTimes' => $lagTimes,
 			'weightScales' => $weightScales,
-			'timestamp' => $this->getCurrentTime()
+			'timestamp' => $endTime,
+			'genTime' => max( $endTime - $startTime, 0.0 )
 		];
 	}
 
@@ -307,7 +337,8 @@ class LoadMonitor implements ILoadMonitor {
 		return [
 			'lagTimes' => array_fill_keys( $serverIndexes, 0 ),
 			'weightScales' => array_fill_keys( $serverIndexes, 1.0 ),
-			'timestamp' => $this->getCurrentTime()
+			'timestamp' => $this->getCurrentTime(),
+			'genTime' => 0.0
 		];
 	}
 
