@@ -4,6 +4,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Tests\Parser\ParserCacheSerializationTestCases;
 use MediaWiki\Title\Title;
+use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\Parsoid\Core\TOCData;
 use Wikimedia\TestingAccessWrapper;
@@ -189,6 +190,28 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		$properties = $po->getPageProperties();
 		$this->assertSame( null, $po->getPageProperty( 'foo' ) );
 		$this->assertArrayNotHasKey( 'foo', $properties );
+	}
+
+	/**
+	 * @covers ParserOutput::setLanguage
+	 * @covers ParserOutput::getLanguage
+	 */
+	public function testLanguage() {
+		$po = new ParserOutput();
+
+		$langFr = new Bcp47CodeValue( 'fr' );
+		$langCrhCyrl = new Bcp47CodeValue( 'crh-cyrl' );
+
+		// Fallback to null
+		$this->assertSame( null, $po->getLanguage() );
+
+		// Simple case
+		$po->setLanguage( $langFr );
+		$this->assertSame( $langFr->toBcp47Code(), $po->getLanguage()->toBcp47Code() );
+
+		// Language with a variant
+		$po->setLanguage( $langCrhCyrl );
+		$this->assertSame( $langCrhCyrl->toBcp47Code(), $po->getLanguage()->toBcp47Code() );
 	}
 
 	/**
@@ -555,6 +578,18 @@ EOF
 		$b = new ParserOutput();
 		$b->setIndexPolicy( 'noindex' );
 		yield 'right noindex wins' => [ $a, $b, [ 'getIndexPolicy' => 'noindex' ] ];
+
+		$crhCyrl = new Bcp47CodeValue( 'crh-cyrl' );
+
+		$a = new ParserOutput();
+		$a->setLanguage( $crhCyrl );
+		$b = new ParserOutput();
+		yield 'only left language' => [ $a, $b, [ 'getLanguage' => $crhCyrl ] ];
+
+		$a = new ParserOutput();
+		$b = new ParserOutput();
+		$b->setLanguage( $crhCyrl );
+		yield 'only right language' => [ $a, $b, [ 'getLanguage' => $crhCyrl ] ];
 
 		// head items and friends ------------
 		$a = new ParserOutput();
