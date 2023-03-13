@@ -26,6 +26,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
+use Wikimedia\Bcp47Code\Bcp47Code;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -66,12 +67,15 @@ class CompareLanguageConverterOutput extends Maintenance {
 		if ( !$languageNameUtils->isValidBuiltInCode( $targetVariantCode ) ) {
 			$this->fatalError( "$targetVariantCode is not a supported variant" );
 		}
+		$targetVariant = $mwInstance->getLanguageFactory()->getLanguage(
+			$targetVariantCode
+		);
 
 		$user = User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] );
 		$baseLanguage = $pageTitle->getPageLanguage();
 
-		$parserOutput = $this->getParserOutput( $pageTitle, $baseLanguage, $targetVariantCode );
-		$parsoidOutput = $this->getParsoidOutput( $pageTitle, $targetVariantCode, $user );
+		$parserOutput = $this->getParserOutput( $pageTitle, $baseLanguage, $targetVariant );
+		$parsoidOutput = $this->getParsoidOutput( $pageTitle, $targetVariant, $user );
 		$converterUsed = $this->getConverterUsed( $parsoidOutput );
 
 		$this->compareOutput( $parserOutput, $parsoidOutput, $converterUsed );
@@ -105,12 +109,12 @@ class CompareLanguageConverterOutput extends Maintenance {
 	private function getParserOutput(
 		Title $pageTitle,
 		Language $baseLanguage,
-		string $targetVariantCode
+		Language $targetVariant
 	): ParserOutput {
 		// We update the default language variant because we want Parser to
 		// perform variant conversion to it.
 		global $wgDefaultLanguageVariant;
-		$wgDefaultLanguageVariant = $targetVariantCode;
+		$wgDefaultLanguageVariant = $targetVariant->getCode();
 
 		$mwInstance = MediaWikiServices::getInstance();
 
@@ -130,17 +134,17 @@ class CompareLanguageConverterOutput extends Maintenance {
 
 	private function getParsoidOutput(
 		Title $pageTitle,
-		string $targetVariantCode,
+		Bcp47Code $targetVariant,
 		User $user
 	): ParserOutput {
-		$htmlOutputRendereHelper = $this->newHtmlOutputRendererHelper();
-		$htmlOutputRendereHelper->init( $pageTitle, [
+		$htmlOutputRendererHelper = $this->newHtmlOutputRendererHelper();
+		$htmlOutputRendererHelper->init( $pageTitle, [
 			'stash' => false,
 			'flavor' => 'view',
 		], $user );
-		$htmlOutputRendereHelper->setVariantConversionLanguage( $targetVariantCode );
+		$htmlOutputRendererHelper->setVariantConversionLanguage( $targetVariant );
 
-		return $htmlOutputRendereHelper->getHtml();
+		return $htmlOutputRendererHelper->getHtml();
 	}
 
 	private function getWords( string $output ): array {

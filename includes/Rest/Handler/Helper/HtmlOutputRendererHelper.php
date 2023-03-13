@@ -23,6 +23,7 @@ use Content;
 use HttpError;
 use IBufferingStatsdDataFactory;
 use Language;
+use LanguageCode;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
 use MediaWiki\Content\IContentHandlerFactory;
@@ -49,6 +50,8 @@ use ParserOutput;
 use Status;
 use User;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Bcp47Code\Bcp47Code;
+use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Parsoid\Core\PageBundle;
@@ -117,11 +120,11 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	/** @var LanguageFactory */
 	private $languageFactory;
 
-	/** @var string|null */
-	private $sourceLanguageCode = null;
+	/** @var ?Bcp47Code */
+	private $sourceLanguage = null;
 
-	/** @var string|null */
-	private $targetLanguageCode = null;
+	/** @var ?Bcp47Code */
+	private $targetLanguage = null;
 
 	/**
 	 * Flags to be passed as $options to ParsoidOutputAccess::getParserOutput,
@@ -329,13 +332,13 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	}
 
 	/**
-	 * @param Language|string $pageLanguage
+	 * @param Bcp47Code|string $pageLanguage the page language, as a Bcp47Code
+	 *   or a BCP-47 string.
 	 */
 	public function setPageLanguage( $pageLanguage ): void {
 		if ( is_string( $pageLanguage ) ) {
-			$pageLanguage = $this->languageFactory->getLanguage( $pageLanguage );
+			$pageLanguage = new Bcp47CodeValue( $pageLanguage );
 		}
-
 		$this->pageLanguage = $pageLanguage;
 	}
 
@@ -348,14 +351,14 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 * @param array $parameters
 	 * @param User $user
 	 * @param RevisionRecord|int|null $revision
-	 * @param Language|null $pageLanguage
+	 * @param ?Bcp47Code $pageLanguage
 	 */
 	public function init(
 		PageIdentity $page,
 		array $parameters,
 		User $user,
 		$revision = null,
-		?Language $pageLanguage = null
+		?Bcp47Code $pageLanguage = null
 	) {
 		$this->page = $page;
 		$this->user = $user;
@@ -380,11 +383,21 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 * @inheritDoc
 	 */
 	public function setVariantConversionLanguage(
-		string $targetLanguageCode,
-		?string $sourceLanguageCode = null
+		$targetLanguage,
+		$sourceLanguage = null
 	): void {
-		$this->targetLanguageCode = $targetLanguageCode;
-		$this->sourceLanguageCode = $sourceLanguageCode;
+		if ( is_string( $targetLanguage ) ) {
+			$targetLanguage = LanguageCode::normalizeNonstandardCodeAndWarn(
+				$targetLanguage
+			);
+		}
+		if ( is_string( $sourceLanguage ) ) {
+			$sourceLanguage = LanguageCode::normalizeNonstandardCodeAndWarn(
+				$sourceLanguage
+			);
+		}
+		$this->targetLanguage = $targetLanguage;
+		$this->sourceLanguage = $sourceLanguage;
 	}
 
 	/**
@@ -442,12 +455,12 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 
 		// Check if variant conversion has to be performed
 		// NOTE: Variant conversion is performed on the fly, and kept outside the stash.
-		if ( $this->targetLanguageCode ) {
+		if ( $this->targetLanguage ) {
 			$languageVariantConverter = $this->htmlTransformFactory->getLanguageVariantConverter( $this->page );
 			$parserOutput = $languageVariantConverter->convertParserOutputVariant(
 				$parserOutput,
-				$this->targetLanguageCode,
-				$this->sourceLanguageCode
+				$this->targetLanguage,
+				$this->sourceLanguage
 			);
 		}
 
@@ -469,8 +482,8 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			$eTag = "$renderID/{$this->flavor}";
 		}
 
-		if ( $this->targetLanguageCode ) {
-			$eTag .= "+lang:{$this->targetLanguageCode}";
+		if ( $this->targetLanguage ) {
+			$eTag .= "+lang:{$this->targetLanguage->toBcp47Code()}";
 		}
 
 		return "\"{$eTag}\"";
@@ -556,9 +569,9 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	/**
 	 * The content language of the HTML output after parsing.
 	 *
-	 * @return string
+	 * @return Bcp47Code The language, as a BCP-47 code
 	 */
-	public function getHtmlOutputContentLanguage(): string {
+	public function getHtmlOutputContentLanguage(): Bcp47Code {
 		$pageBundleData = $this->getHtml()->getExtensionData(
 			PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY
 		);
@@ -570,7 +583,10 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			throw new LogicException( 'Failed to find content language in page bundle data' );
 		}
 
-		return $pageBundleData['headers']['content-language'];
+		$contentLanguage = LanguageCode::normalizeNonstandardCodeAndWarn(
+			$pageBundleData['headers']['content-language']
+		);
+		return $contentLanguage;
 	}
 
 	/**
@@ -579,13 +595,13 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	public function putHeaders( ResponseInterface $response, bool $forHtml = true ): void {
 		if ( $forHtml ) {
 			// For HTML we want to set the Content-Language. For JSON, we probably don't.
-			$response->setHeader( 'Content-Language', $this->getHtmlOutputContentLanguage() );
+			$response->setHeader( 'Content-Language', $this->getHtmlOutputContentLanguage()->toBcp47Code() );
 
 			$pb = $this->getPageBundle();
 			ParsoidFormatHelper::setContentType( $response, ParsoidFormatHelper::FORMAT_HTML, $pb->version );
 		}
 
-		if ( $this->targetLanguageCode ) {
+		if ( $this->targetLanguage ) {
 			$response->addHeader( 'Vary', 'Accept-Language' );
 		}
 
@@ -614,12 +630,12 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 
 		// Check if variant conversion has to be performed
 		// NOTE: Variant conversion is performed on the fly, and kept outside the stash.
-		if ( $this->targetLanguageCode ) {
+		if ( $this->targetLanguage ) {
 			$languageVariantConverter = $this->htmlTransformFactory->getLanguageVariantConverter( $this->page );
 			$pb = $languageVariantConverter->convertPageBundleVariant(
 				$pb,
-				$this->targetLanguageCode,
-				$this->sourceLanguageCode
+				$this->targetLanguage,
+				$this->sourceLanguage
 			);
 		}
 

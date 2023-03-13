@@ -107,8 +107,8 @@ class HtmlMessageOutputHelper implements HtmlOutputHelper {
 	 * @inheritDoc
 	 */
 	public function setVariantConversionLanguage(
-		string $targetLanguageCode,
-		?string $sourceLanguageCode = null
+		$targetLanguage,
+		$sourceLanguage = null
 	): void {
 		// TODO: Set language in the response headers.
 	}

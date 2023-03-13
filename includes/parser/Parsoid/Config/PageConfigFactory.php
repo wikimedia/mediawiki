@@ -19,6 +19,7 @@
 
 namespace MediaWiki\Parser\Parsoid\Config;
 
+use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionAccessException;
@@ -29,6 +30,7 @@ use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use ParserOptions;
+use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Parsoid\Config\Api\PageConfig as ApiPageConfig;
 use WikitextContent;
 
@@ -46,16 +48,22 @@ class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
 	/** @var SlotRoleRegistry */
 	private $slotRoleRegistry;
 
+	/** @var LanguageFactory */
+	private $languageFactory;
+
 	/**
 	 * @param RevisionStore $revisionStore
 	 * @param SlotRoleRegistry $slotRoleRegistry
+	 * @param LanguageFactory $languageFactory
 	 */
 	public function __construct(
 		RevisionStore $revisionStore,
-		SlotRoleRegistry $slotRoleRegistry
+		SlotRoleRegistry $slotRoleRegistry,
+		LanguageFactory $languageFactory
 	) {
 		$this->revisionStore = $revisionStore;
 		$this->slotRoleRegistry = $slotRoleRegistry;
+		$this->languageFactory = $languageFactory;
 	}
 
 	/**
@@ -71,7 +79,7 @@ class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
 	 * @param ?UserIdentity $user User who is doing rendering (for parsing options).
 	 * @param int|RevisionRecord|null $revision Revision id or a revision record
 	 * @param ?string $unused
-	 * @param ?string $pagelanguageOverride
+	 * @param ?Bcp47Code $pageLanguageOverride
 	 * @param ?array $parsoidSettings Used to enable the debug API if requested
 	 * @return \Wikimedia\Parsoid\Config\PageConfig
 	 */
@@ -80,7 +88,7 @@ class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
 		?UserIdentity $user = null,
 		$revision = null,
 		?string $unused = null, /* Added to mollify CI with cross-repo uses */
-		?string $pagelanguageOverride = null,
+		?Bcp47Code $pageLanguageOverride = null,
 		?array $parsoidSettings = null
 	): \Wikimedia\Parsoid\Config\PageConfig {
 		$title = Title::castFromPageIdentity( $pageId );
@@ -98,7 +106,7 @@ class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
 				return ApiPageConfig::fromSettings( $parsoidSettings, [
 					"title" => $title->getPrefixedText(),
 					"pageContent" => $wtContent,
-					"pageLanguage" => $pagelanguageOverride,
+					"pageLanguage" => $pageLanguageOverride, # ?Bcp47Code
 					"revid" => $revision->getId(),
 					"loadData" => true,
 				] );
@@ -183,12 +191,18 @@ class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
 		$parserOptions->setOption( 'enableLimitReport', false );
 
 		$slotRoleHandler = $this->slotRoleRegistry->getRoleHandler( SlotRecord::MAIN );
+		if ( $pageLanguageOverride ) {
+			$pageLanguage = $this->languageFactory->getLanguage( $pageLanguageOverride );
+		} else {
+			$pageLanguage = $title->getPageLanguage();
+		}
 		return new PageConfig(
 			$parserOptions,
 			$slotRoleHandler,
 			$title,
 			$revisionRecord,
-			$pagelanguageOverride
+			$pageLanguage,
+			$pageLanguage->getDir()
 		);
 	}
 

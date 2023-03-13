@@ -15,6 +15,7 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\PageBundle;
@@ -41,7 +42,7 @@ class HtmlToContentTransform {
 	/** @var ?int */
 	private $oldid = null;
 
-	/** @var ?string */
+	/** @var ?Bcp47Code */
 	private $contentLanguage = null;
 
 	/** @var ?Content */
@@ -172,9 +173,9 @@ class HtmlToContentTransform {
 	}
 
 	/**
-	 * @param string $lang
+	 * @param Bcp47Code $lang
 	 */
-	public function setContentLanguage( string $lang ): void {
+	public function setContentLanguage( Bcp47Code $lang ): void {
 		if ( $this->pageConfig ) {
 			throw new LogicException( 'Cannot set content language after using the PageConfig' );
 		}
