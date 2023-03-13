@@ -3,6 +3,7 @@
 namespace MediaWiki\RenameUser;
 
 use JobQueueGroup;
+use JobSpecification;
 use ManualLogEntry;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
@@ -308,7 +309,7 @@ class RenameuserSQL {
 				$jobParams['count']++;
 				# Once a job has $wgUpdateRowsPerJob rows, add it to the queue
 				if ( $jobParams['count'] >= $this->updateRowsPerJob ) {
-					$jobs[] = new RenameUserJob( $oldTitle, $jobParams );
+					$jobs[] = new JobSpecification( 'renameUser', $jobParams, [], $oldTitle );
 					$jobParams['minTimestamp'] = '0';
 					$jobParams['maxTimestamp'] = '0';
 					$jobParams['count'] = 0;
@@ -316,7 +317,7 @@ class RenameuserSQL {
 			}
 			# If there are any job rows left, add it to the queue as one job
 			if ( $jobParams['count'] > 0 ) {
-				$jobs[] = new RenameUserJob( $oldTitle, $jobParams );
+				$jobs[] = new JobSpecification( 'renameUser', $jobParams, [], $oldTitle );
 			}
 		}
 
@@ -331,10 +332,6 @@ class RenameuserSQL {
 			'6::edits' => $contribs
 		] );
 		$logid = $logEntry->insert();
-		// Include the log_id in the jobs as a DB commit marker
-		foreach ( $jobs as $job ) {
-			$job->params['logId'] = $logid;
-		}
 
 		// Insert any jobs as needed. If this fails, then an exception will be thrown and the
 		// DB transaction will be rolled back. If it succeeds but the DB commit fails, then the

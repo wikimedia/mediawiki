@@ -22,6 +22,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\MovePageFactory;
 use MediaWiki\RenameUser\RenameuserSQL;
 use MediaWiki\User\UserFactory;
 
@@ -29,29 +30,59 @@ class RenameUser extends Maintenance {
 	/** @var UserFactory */
 	private $userFactory;
 
+	/** @var CentralIdLookup|null */
+	private $centralLookup;
+
+	/** @var MovePageFactory */
+	private $movePageFactory;
+
 	public function __construct() {
 		parent::__construct();
 
-		$this->addDescription( 'Rename an user' );
-		$this->addOption( 'oldname', 'Current username of the to-be-renamed user', true, true );
-		$this->addOption( 'newname', 'New username of the to-be-renamed user', true, true );
+		$this->addDescription( 'Rename a user' );
+		$this->addArg( 'old-name', 'Current username of the to-be-renamed user' );
+		$this->addArg( 'new-name', 'New username of the to-be-renamed user' );
 		$this->addOption( 'performer', 'Performer of the rename action', false, true );
 		$this->addOption( 'reason', 'Reason of the rename', false, true );
+		$this->addOption( 'force-global-detach',
+			'Rename the local user even if it is attached to a global account' );
+		$this->addOption( 'suppress-redirect', 'Don\'t create redirects when moving pages' );
+		$this->addOption( 'skip-page-moves', 'Don\'t move associated user pages' );
 	}
 
 	private function initServices() {
 		$services = MediaWikiServices::getInstance();
 		$this->userFactory = $services->getUserFactory();
+		$this->centralLookup = $services->getCentralIdLookupFactory()->getNonLocalLookup();
+		$this->movePageFactory = $services->getMovePageFactory();
 	}
 
 	public function execute() {
 		$this->initServices();
-		$user = $this->userFactory->newFromName( $this->getOption( 'oldname' ) );
-		if ( $user->getId() === 0 ) {
+
+		$oldName = $this->getArg( 'old-name' );
+		$newName = $this->getArg( 'new-name' );
+
+		$oldUser = $this->userFactory->newFromName( $oldName );
+		if ( !$oldUser ) {
+			$this->fatalError( 'The specified old username is invalid' );
+		}
+
+		if ( !$oldUser->isRegistered() ) {
 			$this->fatalError( 'The user does not exist' );
 		}
 
-		if ( $this->userFactory->newFromName( $this->getOption( 'newname' ) )->getId() > 0 ) {
+		if ( !$this->getOption( 'force-global-detach' )
+			&& $this->centralLookup
+			&& $this->centralLookup->isAttached( $oldUser )
+		) {
+			$this->fatalError( 'The user is globally attached. Use CentralAuth to rename this account.' );
+		}
+
+		$newUser = $this->userFactory->newFromName( $newName, UserFactory::RIGOR_CREATABLE );
+		if ( !$newUser ) {
+			$this->fatalError( 'The specified new username is invalid' );
+		} elseif ( $newUser->isRegistered() ) {
 			$this->fatalError( 'New username must be free' );
 		}
 
@@ -61,27 +92,62 @@ class RenameUser extends Maintenance {
 			$performer = $this->userFactory->newFromName( $this->getOption( 'performer' ) );
 		}
 
-		if ( !( $performer instanceof User ) || $performer->getId() === 0 ) {
+		if ( !( $performer instanceof User ) || !$performer->isRegistered() ) {
 			$this->fatalError( 'Performer does not exist.' );
 		}
 
-		'@phan-var User $performer';
-		$renameJob = new RenameuserSQL(
-			$user->getName(),
-			$this->getOption( 'newname' ),
-			$user->getId(),
+		$renamer = new RenameuserSQL(
+			$oldUser->getName(),
+			$newUser->getName(),
+			$oldUser->getId(),
 			$performer,
 			[
 				'reason' => $this->getOption( 'reason' )
 			]
 		);
 
-		if ( !$renameJob->rename() ) {
+		if ( !$renamer->rename() ) {
 			$this->fatalError( 'Renaming failed.' );
 		} else {
-			$oldname = $this->getOption( 'oldname' );
-			$newname = $this->getOption( 'newname' );
-			$this->output( "$oldname was successfully renamed to $newname.\n" );
+			$this->output( "{$oldUser->getName()} was successfully renamed to {$newUser->getName()}.\n" );
+		}
+
+		if ( !$this->getOption( 'skip-page-moves' ) ) {
+			$movePage = $this->movePageFactory->newMovePage(
+				$oldUser->getUserPage(),
+				$newUser->getUserPage(),
+			);
+			$movePage->setMaximumMovedPages( -1 );
+			$logMessage = wfMessage(
+				'renameuser-move-log', $oldUser->getName(), $newUser->getName()
+			)->inContentLanguage()->text();
+			$createRedirect = !$this->getOption( 'suppress-redirect' );
+
+			$numRenames = 0;
+			if ( $oldUser->getUserPage()->exists() ) {
+				$status = $movePage->move( $performer, $logMessage, $createRedirect );
+				if ( $status->isGood() ) {
+					$numRenames++;
+				} else {
+					$this->output( "Failed to rename user page: " .
+						$status->getWikiText( false, false, 'en' ) .
+						"\n" );
+				}
+			}
+
+			$batchStatus = $movePage->moveSubpages( $performer, $logMessage, $createRedirect );
+			foreach ( $batchStatus->getValue() as $titleText => $status ) {
+				if ( $status->isGood() ) {
+					$numRenames++;
+				} else {
+					$this->output( "Failed to rename user subpage \"$titleText\": " .
+						$status->getWikiText( false, false, 'en' ) . "\n" );
+				}
+			}
+
+			if ( $numRenames > 0 ) {
+				$this->output( "$numRenames user page(s) renamed\n" );
+			}
 		}
 	}
 }

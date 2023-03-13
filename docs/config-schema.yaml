@@ -6872,7 +6872,7 @@ config-schema:
             'null': NullJob
             userEditCountInit: UserEditCountInitJob
             parsoidCachePrewarm: { class: ParsoidCachePrewarmJob, services: [ParsoidOutputAccess, PageStore, RevisionLookup], needsPage: false }
-            renameUser: RenameUserJob
+            renameUser: { class: RenameUserJob, services: [MainConfig, DBLoadBalancerFactory] }
         type: object
         description: |-
             Maps jobs to their handlers; extensions
