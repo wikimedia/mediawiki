@@ -536,6 +536,7 @@ $wgAutoloadLocalClasses = [
 	'GIFMetadataExtractor' => __DIR__ . '/includes/media/GIFMetadataExtractor.php',
 	'GanConverter' => __DIR__ . '/includes/language/converters/GanConverter.php',
 	'GenderCache' => __DIR__ . '/includes/cache/GenderCache.php',
+	'GenerateAutoload' => __DIR__ . '/maintenance/generateAutoload.php',
 	'GenerateCollationData' => __DIR__ . '/maintenance/language/generateCollationData.php',
 	'GenerateConfigSchema' => __DIR__ . '/maintenance/generateConfigSchema.php',
 	'GenerateJsonI18n' => __DIR__ . '/maintenance/generateJsonI18n.php',
