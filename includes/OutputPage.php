@@ -3516,18 +3516,20 @@ class OutputPage extends ContextSource {
 		// Legacy non-ResourceLoader scripts
 		$chunks[] = $this->mScripts;
 
-		$vars = $this->getJSVars( self::JS_VAR_LATE );
-		if ( $this->limitReportJSData ) {
-			$vars['wgPageParseReport'] = $this->limitReportJSData;
-		}
-
+		// Keep hostname and backend time as the first variables for quick view-source access.
+		// This other variables will form a very long inline blob.
+		$vars = [];
 		if ( $this->getConfig()->get( MainConfigNames::ShowHostnames ) ) {
 			$vars['wgHostname'] = wfHostname();
 		}
-
 		$elapsed = $this->getRequest()->getElapsedTime();
 		// seconds to milliseconds
 		$vars['wgBackendResponseTime'] = round( $elapsed * 1000 );
+
+		$vars += $this->getJSVars( self::JS_VAR_LATE );
+		if ( $this->limitReportJSData ) {
+			$vars['wgPageParseReport'] = $this->limitReportJSData;
+		}
 
 		$rlContext = $this->getRlClientContext();
 		$chunks[] = ResourceLoader::makeInlineScript(
