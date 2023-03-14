@@ -125,7 +125,7 @@
 
 		// Otherwise, fetch protection status of all templates.
 		$parent.addClass( 'mw-preview-loading-elements-loading' );
-		api.get( {
+		api.post( {
 			action: 'query',
 			format: 'json',
 			titles: templates.map( function ( template ) { return template.title; } ).join( '|' ),
@@ -148,7 +148,7 @@
 
 			// Add all templates to the list, in the order they're returned by the API.
 			Object.keys( templatesInfo ).forEach( function ( t ) {
-				$list.append( getTemplateListItem( templatesInfo[ t ] ) );
+				addItemToTemplateList( $list, templatesInfo[ t ] );
 			} );
 		} ).always( function () {
 			$parent.removeClass( 'mw-preview-loading-elements-loading' );
@@ -156,13 +156,14 @@
 	}
 
 	/**
-	 * Get a list item with relevant links for the given template.
+	 * Create list item with relevant links for the given template, and add it to the $list.
 	 *
 	 * @private
-	 * @param {Object} template
-	 * @return {jQuery}
+	 * @param {jQuery} $list The `<ul>` to add the item to.
+	 * @param {Object} template Template info with which to construct the `<li>`.
+	 * @return {void}
 	 */
-	function getTemplateListItem( template ) {
+	function addItemToTemplateList( $list, template ) {
 		var canEdit = template.actions.edit !== undefined;
 		var title = mw.Title.newFromText( template.title );
 		var linkClasses = template.linkclasses || [];
@@ -183,27 +184,27 @@
 			.attr( 'href', title.getUrl( { action: 'edit' } ) )
 			.append( mw.msg( canEdit ? 'editlink' : 'viewsourcelink' ) );
 		var wordSep = mw.message( 'word-separator' ).escaped();
-		return $( '<li>' ).append(
-			$link,
-			wordSep,
-			parenthesesWrap( $editLink[ 0 ].outerHTML ),
-			wordSep,
-			getRestrictionsText( template.protection || [] )
-		);
+		getRestrictionsText( template.protection || [] ).then( function ( restrictionsList ) {
+			// restrictionsList is a comma-separated parentheses-wrapped localized list of restriction level names.
+			var editLinkParens = parenthesesWrap( $editLink[ 0 ].outerHTML );
+			var $li = $( '<li>' ).append( $link, wordSep, editLinkParens, wordSep, restrictionsList );
+			$list.append( $li );
+		} );
 	}
 
 	/**
-	 * Get messages about the restriction levels for a template.
+	 * Get a localized string listing the restriction levels for a template.
 	 *
 	 * This should match the logic from TemplatesOnThisPageFormatter::getRestrictionsText().
 	 *
+	 * @private
 	 * @param {Array} restrictions Set of protection info objects from the inprop=protection API.
-	 * @return {string}
+	 * @return {jQuery.Promise}
 	 */
 	function getRestrictionsText( restrictions ) {
 		var msg = '';
 		if ( !restrictions ) {
-			return msg;
+			return $.Deferred().resolve( msg );
 		}
 
 		// Record other restriction levels, in case it's protected for others.
@@ -221,20 +222,28 @@
 			}
 		} );
 
-		// If the edit restriction isn't one of the backwards-compatible ones, use restriction-level-* messages.
-		if ( msg === '' ) {
-			var msgs = [];
-			restrictionLevels.forEach( function ( level ) {
+		// If sysop or autoconfirmed, use that.
+		if ( msg !== '' ) {
+			return $.Deferred().resolve( msg );
+		}
+
+		// Otherwise, if the edit restriction isn't one of the backwards-compatible ones,
+		// use the (possibly custom) restriction-level-* messages.
+		var msgs = [];
+		restrictionLevels.forEach( function ( level ) {
+			msgs.push( 'restriction-level-' + level );
+		} );
+		// Custom restriction levels don't have their messages loaded, so we have to do that.
+		return api.loadMessagesIfMissing( msgs ).then( function () {
+			var localizedMessages = msgs.map( function ( m ) {
 				// Messages that can be used here include:
 				// * restriction-level-sysop
 				// * restriction-level-autoconfirmed
-				msgs.push( mw.msg( 'restriction-level-' + level ) );
+				return mw.message( m ).parse();
 			} );
-			// There's no commaList in JS, so just a comma (doesn't handle the last item).
-			msg = parenthesesWrap( msgs.join( mw.msg( 'comma-separator' ) ) );
-		}
-
-		return msg;
+			// There's no commaList in JS, so just join with commas (doesn't handle the last item).
+			return parenthesesWrap( localizedMessages.join( mw.msg( 'comma-separator' ) ) );
+		} );
 	}
 
 	/**
