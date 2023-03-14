@@ -120,27 +120,31 @@ For notes on 1.39.x and older releases, see HISTORY.
 ==== New external libraries ====
 * Added codex-design-tokens at v0.6.2.
 * Added wikimedia/bcp-47-code at v1.0.0.
+* …
 
 ===== New development-only external libraries =====
+* Added wikimedia/langconv at v0.4.2.
 * …
 
 ==== Changed external libraries ====
 * Updated OOUI from v0.44.3 to v0.46.3.
 * Updated codex, codex-search, and codex-icons from v0.2.2 to v0.6.2.
 * Updated cssjanus/cssjanus from 2.1.0 to 2.1.1.
+* Updated guzzlehttp/guzzle 7.4.5 to 7.5.0.
 * Updated justinrainbow/json-schema from 5.2.11 to 5.2.12.
-* Updated symfony/yaml from 5.4.10 to 5.4.17.
-* Updated symfony/polyfill-php80 from 1.26.0 to 1.27.0.
 * Updated pear/mail from 1.4.1 to 1.5.0.
 * Updated pear/net_smtp from 0.10.0 to 0.10.1.
 * Updated psr/container from 1.1.1 to 1.1.2.
-* Updated guzzlehttp/guzzle 7.4.5 to 7.5.0.
+* Updated symfony/polyfill-php80 from 1.26.0 to 1.27.0.
+* Updated symfony/yaml from 5.4.10 to 5.4.17.
 * Updated wikimedia/less.php from 3.1.0 to 3.2.1.
 * Updated wikimedia/object-factory from 4.0.0 to 5.0.1.
-* Updated wikimedia/shellbox from 3.0.0 to 4.0.0.
-* Updated wikimedia/xmp-reader from 0.8.4 to 0.9.1.
+* Updated wikimedia/parsoid from 0.16.0 to 0.17.0.
 * Updated wikimedia/remex-html from 3.0.2 to 3.0.3.
+* Updated wikimedia/shellbox from 3.0.0 to 4.0.0.
 * Updated wikimedia/timestamp from 4.0.0 to 4.1.0.
+* Updated wikimedia/xmp-reader from 0.8.4 to 0.9.1.
+* …
 
 ===== Changed development-only external libraries =====
 * Updated QUnit from 2.18.2 to 2.19.4.

@@ -2,6 +2,8 @@
 
 namespace MediaWiki\User\TempUser;
 
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
+
 /**
  * Helper for TempUserConfig representing string patterns with "$1" indicating
  * variable substitution.
@@ -54,6 +56,36 @@ class Pattern {
 	public function generate( $mappedSerial ) {
 		$this->init();
 		return $this->prefix . $mappedSerial . $this->suffix;
+	}
+
+	/**
+	 * Convert the pattern to an SQL like clause
+	 *
+	 * @param ISQLPlatform $db
+	 * @return string
+	 */
+	public function buildLike( ISQLPlatform $db ) {
+		$this->init();
+		return $db->buildLike(
+			$this->prefix,
+			$db->anyString(),
+			$this->suffix
+		);
+	}
+
+	/**
+	 * Extract the part of the string matching $1, or null if there is no match
+	 *
+	 * @param string $name
+	 * @return ?string
+	 */
+	public function extract( string $name ) {
+		if ( $this->isMatch( $name ) ) {
+			return substr( $name,
+				strlen( $this->prefix ),
+				strlen( $name ) - strlen( $this->prefix ) - strlen( $this->suffix ) );
+		}
+		return null;
 	}
 
 	/**
