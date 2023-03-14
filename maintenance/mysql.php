@@ -178,7 +178,7 @@ class MysqlMaintenance extends Maintenance {
 			$args[] = "--port={$port}";
 		}
 
-		$args = array_merge( $args, $this->mArgs );
+		$args = array_merge( $args, $this->getArgs() );
 
 		// Ignore SIGINT if possible, otherwise the wrapper terminates when the user presses
 		// ctrl-C to kill a query.
