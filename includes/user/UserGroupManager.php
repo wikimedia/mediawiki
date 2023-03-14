@@ -290,7 +290,7 @@ class UserGroupManager implements IDBAccessObject {
 			!$this->canUseCachedValues( $user, self::CACHE_IMPLICIT, $queryFlags )
 		) {
 			$groups = [ '*' ];
-			if ( $this->tempUserConfig->isReservedName( $user->getName() ) ) {
+			if ( $this->tempUserConfig->isTempName( $user->getName() ) ) {
 				$groups[] = 'user';
 			} elseif ( $user->isRegistered() ) {
 				$groups[] = 'user';

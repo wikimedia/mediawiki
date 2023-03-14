@@ -7464,6 +7464,10 @@ class MainConfigSchema {
 	 *   - matchPattern: (string) The pattern used when determining whether a
 	 *     username is a temporary user. This affects the rights of the user
 	 *     and also prevents explicit creation of users with matching names.
+	 *     This is ignored if "enabled" is false.
+	 *   - reservedPattern: (string) A pattern used to determine whether a
+	 *     username should be denied for explicit creation, in addition to
+	 *     matchPattern. This is used even if "enabled" is false.
 	 *   - serialProvider: (array) Configuration for generation of unique integer
 	 *     indexes which are used to make temporary usernames.
 	 *       - type: (string) May be "local" to allocate indexes using the local
@@ -7499,6 +7503,7 @@ class MainConfigSchema {
 			'actions' => [ 'type' => 'list', 'default' => [ 'edit' ] ],
 			'genPattern' => [ 'type' => 'string', 'default' => '*Unregistered $1' ],
 			'matchPattern' => [ 'type' => 'string', 'default' => '*$1' ],
+			'reservedPattern' => [ 'type' => 'string|null', 'default' => null ],
 			'serialProvider' => [ 'type' => 'object', 'default' => [ 'type' => 'local' ] ],
 			'serialMapping' => [ 'type' => 'object', 'default' => [ 'type' => 'plain-numeric' ] ]
 		],

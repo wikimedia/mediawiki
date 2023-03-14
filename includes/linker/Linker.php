@@ -1145,7 +1145,7 @@ class Linker {
 		} else {
 			$services = MediaWikiServices::getInstance();
 			if (
-				$services->getTempUserConfig()->isReservedName( $userName )
+				$services->getTempUserConfig()->isTempName( $userName )
 			) {
 				$classes .= ' mw-tempuserlink';
 				$page = SpecialPage::getTitleFor( 'Contributions', $userName );

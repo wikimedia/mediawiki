@@ -74,7 +74,7 @@ class RealTempUserConfigTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $tuc->isAutoCreateAction( $action ) );
 	}
 
-	public static function provideIsReservedName() {
+	public static function provideIsTempName() {
 		$defaults = [
 			'enabled' => true
 		] + self::DEFAULTS;
@@ -100,15 +100,15 @@ class RealTempUserConfigTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideIsReservedName
+	 * @dataProvider provideIsTempName
 	 * @param array $config
 	 * @param string $name
 	 * @param bool $expected
 	 */
-	public function testIsReservedName( $config, $name, $expected ) {
+	public function testIsTempName( $config, $name, $expected ) {
 		$this->overrideConfigValue( MainConfigNames::AutoCreateTempUser, $config );
 		$tuc = $this->getServiceContainer()->getTempUserConfig();
-		$this->assertSame( $expected, $tuc->isReservedName( $name ) );
+		$this->assertSame( $expected, $tuc->isTempName( $name ) );
 	}
 
 	private function getTempUserConfig() {
@@ -124,5 +124,42 @@ class RealTempUserConfigTest extends \MediaWikiIntegrationTestCase {
 			'*Unregistered *',
 			$this->getTempUserConfig()->getPlaceholderName()
 		);
+	}
+
+	public static function provideIsReservedName() {
+		return [
+			'no matchPattern when disabled' => [
+				'config' => self::DEFAULTS,
+				'name' => '*Unregistered 39',
+				'expected' => false,
+			],
+			'matchPattern match' => [
+				'config' => [ 'enabled' => true ] + self::DEFAULTS,
+				'name' => '*Unregistered 39',
+				'expected' => true,
+			],
+			'genPattern match' => [
+				'config' => [ 'enabled' => true, 'matchPattern' => null ] + self::DEFAULTS,
+				'name' => '*Unregistered 39',
+				'expected' => true,
+			],
+			'reservedPattern match with enabled=false' => [
+				'config' => [ 'reservedPattern' => '*$1' ] + self::DEFAULTS,
+				'name' => '*Foo*',
+				'expected' => true
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider provideIsReservedName
+	 * @param array $config
+	 * @param string $name
+	 * @param bool $expected
+	 */
+	public function testIsReservedName( $config, $name, $expected ) {
+		$this->overrideConfigValue( MainConfigNames::AutoCreateTempUser, $config );
+		$tuc = $this->getServiceContainer()->getTempUserConfig();
+		$this->assertSame( $expected, $tuc->isReservedName( $name ) );
 	}
 }
