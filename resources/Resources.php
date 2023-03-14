@@ -2041,7 +2041,7 @@ return [
 			'mediawiki.widgets.SelectWithInputWidget',
 			'mediawiki.widgets.NamespacesMultiselectWidget',
 			'mediawiki.widgets.TitlesMultiselectWidget',
-			'mediawiki.widgets.UserInputWidget',
+			'mediawiki.widgets.UsersMultiselectWidget',
 			'mediawiki.util',
 			'mediawiki.htmlform',
 			'moment',
