@@ -122,6 +122,7 @@ For notes on 1.39.x and older releases, see HISTORY.
 * Added wikimedia/bcp-47-code at v1.0.0.
 
 ===== New development-only external libraries =====
+* Added wikimedia/langconv at v0.4.2.
 * …
 
 ==== Changed external libraries ====
