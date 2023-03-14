@@ -54,6 +54,7 @@ if ( !$maintClass || !class_exists( $maintClass ) ) {
 define( 'MEDIAWIKI', true );
 
 $IP = wfDetectInstallPath();
+require_once "$IP/includes/AutoLoader.php";
 
 $runner = new MaintenanceRunner();
 $runner->initForClass( $maintClass, $GLOBALS['argv'] );
