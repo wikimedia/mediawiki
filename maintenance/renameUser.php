@@ -24,6 +24,7 @@ require_once __DIR__ . '/Maintenance.php';
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\RenameUser\RenameuserSQL;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;
 
 class RenameUser extends Maintenance {
@@ -112,43 +113,59 @@ class RenameUser extends Maintenance {
 			$this->output( "{$oldUser->getName()} was successfully renamed to {$newUser->getName()}.\n" );
 		}
 
+		$numRenames = 0;
 		if ( !$this->getOption( 'skip-page-moves' ) ) {
-			$movePage = $this->movePageFactory->newMovePage(
+			$numRenames += $this->movePageAndSubpages(
+				$performer,
 				$oldUser->getUserPage(),
 				$newUser->getUserPage(),
+				'user'
 			);
-			$movePage->setMaximumMovedPages( -1 );
-			$logMessage = wfMessage(
-				'renameuser-move-log', $oldUser->getName(), $newUser->getName()
-			)->inContentLanguage()->text();
-			$createRedirect = !$this->getOption( 'suppress-redirect' );
+			$numRenames += $this->movePageAndSubpages(
+				$performer,
+				$oldUser->getTalkPage(),
+				$newUser->getTalkPage(),
+				'user talk',
+			);
+		}
+		if ( $numRenames > 0 ) {
+			$this->output( "$numRenames user page(s) renamed\n" );
+		}
+	}
 
-			$numRenames = 0;
-			if ( $oldUser->getUserPage()->exists() ) {
-				$status = $movePage->move( $performer, $logMessage, $createRedirect );
-				if ( $status->isGood() ) {
-					$numRenames++;
-				} else {
-					$this->output( "Failed to rename user page: " .
-						$status->getWikiText( false, false, 'en' ) .
-						"\n" );
-				}
-			}
+	private function movePageAndSubpages( User $performer, Title $oldTitle, Title $newTitle, $kind ) {
+		$movePage = $this->movePageFactory->newMovePage(
+			$oldTitle,
+			$newTitle,
+		);
+		$movePage->setMaximumMovedPages( -1 );
+		$logMessage = wfMessage(
+			'renameuser-move-log', $oldTitle->getText(), $newTitle->getText()
+		)->inContentLanguage()->text();
+		$createRedirect = !$this->getOption( 'suppress-redirect' );
 
-			$batchStatus = $movePage->moveSubpages( $performer, $logMessage, $createRedirect );
-			foreach ( $batchStatus->getValue() as $titleText => $status ) {
-				if ( $status->isGood() ) {
-					$numRenames++;
-				} else {
-					$this->output( "Failed to rename user subpage \"$titleText\": " .
-						$status->getWikiText( false, false, 'en' ) . "\n" );
-				}
-			}
-
-			if ( $numRenames > 0 ) {
-				$this->output( "$numRenames user page(s) renamed\n" );
+		$numRenames = 0;
+		if ( $oldTitle->exists() ) {
+			$status = $movePage->move( $performer, $logMessage, $createRedirect );
+			if ( $status->isGood() ) {
+				$numRenames++;
+			} else {
+				$this->output( "Failed to rename $kind page: " .
+					$status->getWikiText( false, false, 'en' ) .
+					"\n" );
 			}
 		}
+
+		$batchStatus = $movePage->moveSubpages( $performer, $logMessage, $createRedirect );
+		foreach ( $batchStatus->getValue() as $titleText => $status ) {
+			if ( $status->isGood() ) {
+				$numRenames++;
+			} else {
+				$this->output( "Failed to rename $kind subpage \"$titleText\": " .
+					$status->getWikiText( false, false, 'en' ) . "\n" );
+			}
+		}
+		return $numRenames;
 	}
 }
 

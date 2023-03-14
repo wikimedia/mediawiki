@@ -157,14 +157,20 @@ class RenameUsersMatchingPattern extends Maintenance {
 			return true;
 		}
 
-		$oldTitle = $this->titleFactory->makeTitleSafe( NS_USER, $oldName );
+		$this->movePageAndSubpages( NS_USER, 'User', $oldName, $newName );
+		$this->movePageAndSubpages( NS_USER_TALK, 'User talk', $oldName, $newName );
+		return true;
+	}
+
+	private function movePageAndSubpages( $ns, $nsName, $oldName, $newName ) {
+		$oldTitle = $this->titleFactory->makeTitleSafe( $ns, $oldName );
 		if ( !$oldTitle ) {
-			$this->output( "[[User:$oldName]] is an invalid title, can't move it.\n" );
+			$this->output( "[[$nsName:$oldName]] is an invalid title, can't move it.\n" );
 			return true;
 		}
-		$newTitle = $this->titleFactory->makeTitleSafe( NS_USER, $newName );
+		$newTitle = $this->titleFactory->makeTitleSafe( $ns, $newName );
 		if ( !$newTitle ) {
-			$this->output( "[[User:$newName]] is an invalid title, can't move to it.\n" );
+			$this->output( "[[$nsName:$newName]] is an invalid title, can't move to it.\n" );
 			return true;
 		}
 
@@ -177,7 +183,7 @@ class RenameUsersMatchingPattern extends Maintenance {
 
 		if ( $this->dryRun ) {
 			if ( $oldTitle->exists() ) {
-				$this->output( "Would move [[User:$oldName]] to [[User:$newName]].\n" );
+				$this->output( "Would move [[$nsName:$oldName]] to [[$nsName:$newName]].\n" );
 			}
 		} else {
 			if ( $oldTitle->exists() ) {
