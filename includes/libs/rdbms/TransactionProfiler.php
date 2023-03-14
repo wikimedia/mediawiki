@@ -533,6 +533,7 @@ class TransactionProfiler implements LoggerAwareInterface, StatsdAwareInterface 
 		$this->logger->warning(
 			$message,
 			[
+				'db_log_category' => 'performance',
 				'measure' => $event,
 				'maxSeconds' => $max,
 				'by' => $by,

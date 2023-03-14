@@ -180,7 +180,9 @@ class SkinComponentLink implements SkinComponent {
 			$this->applyLinkTitleAttribs( $item, true, $attrs );
 			$class = $attrs['class'] ?? [];
 			if ( isset( $options['link-class'] ) ) {
-				$class = $this->addClassToClassList( $class, $options['link-class'] );
+				$class = SkinComponentUtils::addClassToClassList(
+					$class, $options['link-class']
+				);
 			}
 			$attrs['class'] = is_array( $class ) ? implode( ' ', $class ) : $class;
 			foreach ( $attrs as $key => $value ) {
@@ -203,24 +205,6 @@ class SkinComponentLink implements SkinComponent {
 			'array-attributes' => count( $linkHtmlAttributes ) > 0 ? $linkHtmlAttributes : null,
 			'text' => trim( $text )
 		];
-	}
-
-	/**
-	 * Adds a class to the existing class value, supporting it as a string
-	 * or array.
-	 *
-	 * @param string|array $class to update.
-	 * @param string $newClass to add.
-	 * @return string|array classes.
-	 */
-	private function addClassToClassList( $class, string $newClass ) {
-		if ( is_array( $class ) ) {
-			$class[] = $newClass;
-		} else {
-			$class .= ' ' . $newClass;
-			$class = trim( $class );
-		}
-		return $class;
 	}
 
 	/**
