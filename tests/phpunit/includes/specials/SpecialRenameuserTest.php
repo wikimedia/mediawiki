@@ -41,8 +41,10 @@ class SpecialRenameuserTest extends SpecialPageTestBase {
 		$oldName = $oldUser->getName();
 		$newName = $oldName . ' new';
 		$oldPage = $oldUser->getUserPage();
+		$oldTalkPage = $oldUser->getTalkPage();
 		$this->editPage( $oldPage, 'user page' );
 		$this->editPage( $oldPage->getSubpage( 'subpage' ), 'subpage' );
+		$this->editPage( $oldTalkPage, 'user talk page' );
 
 		$formData = [
 			'token' => $performer->getEditToken(),
@@ -75,6 +77,11 @@ class SpecialRenameuserTest extends SpecialPageTestBase {
 			$movePages,
 			$titleFactory->makeTitle( NS_USER, "$newName/subpage" )->exists(),
 			'new user subpage exists'
+		);
+		$this->assertSame(
+			$movePages,
+			$titleFactory->makeTitle( NS_USER_TALK, "$newName" )->exists(),
+			'new user talk page exists'
 		);
 
 		$oldPage->resetArticleID( false );

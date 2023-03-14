@@ -397,7 +397,36 @@ class SpecialRenameuser extends SpecialPage {
 		);
 	}
 
+	/**
+	 * Move the specified user page, its associated talk page, and any subpages
+	 *
+	 * @param Title $oldTitle
+	 * @param Title $newTitle
+	 * @param bool $suppressRedirect
+	 * @return void
+	 */
 	private function movePages( Title $oldTitle, Title $newTitle, $suppressRedirect ) {
+		$output = $this->movePageAndSubpages( $oldTitle, $newTitle, $suppressRedirect );
+		$oldTalkTitle = $oldTitle->getTalkPageIfDefined();
+		$newTalkTitle = $newTitle->getTalkPageIfDefined();
+		if ( $oldTalkTitle && $newTalkTitle ) { // always true
+			$output .= $this->movePageAndSubpages( $oldTalkTitle, $newTalkTitle, $suppressRedirect );
+		}
+
+		if ( $output !== '' ) {
+			$this->getOutput()->addHTML( Html::rawElement( 'ul', [], $output ) );
+		}
+	}
+
+	/**
+	 * Move a specified page and its subpages
+	 *
+	 * @param Title $oldTitle
+	 * @param Title $newTitle
+	 * @param bool $suppressRedirect
+	 * @return string
+	 */
+	private function movePageAndSubpages( Title $oldTitle, Title $newTitle, $suppressRedirect ) {
 		$performer = $this->getUser();
 		$logReason = $this->msg(
 			'renameuser-move-log', $oldTitle->getText(), $newTitle->getText()
@@ -418,10 +447,7 @@ class SpecialRenameuser extends SpecialPage {
 				substr( $oldSubpageTitle->getText(), $oldLength + 1 ) );
 			$output .= $this->getMoveStatusHtml( $status, $oldSubpageTitle, $newSubpageTitle );
 		}
-
-		if ( $output !== '' ) {
-			$this->getOutput()->addHTML( Html::rawElement( 'ul', [], $output ) );
-		}
+		return $output;
 	}
 
 	private function getMoveStatusHtml( Status $status, Title $oldTitle, Title $newTitle ) {
