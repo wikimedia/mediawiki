@@ -29,6 +29,7 @@ use HTMLForm;
 use IContextSource;
 use MediaWiki\Mail\EmailUser;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
@@ -64,23 +65,29 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	/** @var EmailUser */
 	private EmailUser $emailUser;
 
+	/** @var UserFactory */
+	private UserFactory $userFactory;
+
 	/**
 	 * @param UserNameUtils $userNameUtils
 	 * @param UserNamePrefixSearch $userNamePrefixSearch
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param EmailUser $emailUser
+	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
 		UserNameUtils $userNameUtils,
 		UserNamePrefixSearch $userNamePrefixSearch,
 		UserOptionsLookup $userOptionsLookup,
-		EmailUser $emailUser
+		EmailUser $emailUser,
+		UserFactory $userFactory
 	) {
 		parent::__construct( 'Emailuser' );
 		$this->userNameUtils = $userNameUtils;
 		$this->userNamePrefixSearch = $userNamePrefixSearch;
 		$this->userOptionsLookup = $userOptionsLookup;
 		$this->emailUser = $emailUser;
+		$this->userFactory = $userFactory;
 	}
 
 	public function doesWrites() {
@@ -207,12 +214,17 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * @return User|string User object on success or a string on error
 	 */
 	public static function getTarget( $target, User $sender ) {
-		$status = MediaWikiServices::getInstance()->getEmailUser()->getTarget( (string)$target, $sender );
+		$targetObject = MediaWikiServices::getInstance()->getUserFactory()->newFromName( $target );
+		if ( !$targetObject instanceof User ) {
+			return 'notarget';
+		}
+
+		$status = MediaWikiServices::getInstance()->getEmailUser()->validateTarget( $targetObject, $sender );
 		if ( !$status->isGood() ) {
 			$msg = $status->getErrors()[0]['message'];
 			$ret = $msg === 'emailnotarget' ? 'notarget' : preg_replace( '/text$/', '', $msg );
 		} else {
-			$ret = $status->getValue();
+			$ret = $targetObject;
 		}
 		return $ret;
 	}
@@ -347,12 +359,16 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * @return Status|false
 	 */
 	public function onFormSubmit( array $data ) {
+		$target = $this->userFactory->newFromName( $data['Target'] );
+		if ( !$target instanceof User ) {
+			return Status::newFatal( 'emailnotarget' );
+		}
 		$res = $this->emailUser->submit(
-			$data['Target'],
+			$target,
 			$data['Subject'],
 			$data['Text'],
 			$data['CCMe'],
-			$this->getUser(),
+			$this->getAuthority(),
 			$this
 		);
 		if ( $res->hasMessage( 'hookaborted' ) ) {
@@ -375,15 +391,20 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * @return Status|false
 	 */
 	public static function submit( array $data, IContextSource $context ) {
+		$target = MediaWikiServices::getInstance()->getUserFactory()->newFromName( (string)$data['Target'] );
+		if ( !$target instanceof User ) {
+			return Status::newFatal( 'emailnotarget' );
+		}
+
 		$emailUser = MediaWikiServices::getInstance()->getEmailUser();
 		try {
 			$emailUser->overrideOptionsFromConfig( $context->getConfig() );
 			$ret = $emailUser->submit(
-				(string)$data['Target'],
+				$target,
 				(string)$data['Subject'],
 				(string)$data['Text'],
 				(bool)$data['CCMe'],
-				$context->getUser(),
+				$context->getAuthority(),
 				$context
 			);
 			if ( $ret->hasMessage( 'hookaborted' ) ) {

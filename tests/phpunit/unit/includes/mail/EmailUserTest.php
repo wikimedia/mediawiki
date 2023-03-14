@@ -9,6 +9,7 @@ use MediaWiki\Language\RawMessage;
 use MediaWiki\Mail\EmailUser;
 use MediaWiki\Mail\IEmailer;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserOptionsLookup;
@@ -55,19 +56,6 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	private function getValidTargetUserFactory( string $targetName ): UserFactory {
-		$validTarget = $this->createMock( User::class );
-		$validTarget->method( 'getId' )->willReturn( 1 );
-		$validTarget->method( 'isEmailConfirmed' )->willReturn( true );
-		$validTarget->method( 'canReceiveEmail' )->willReturn( true );
-		$validTargetUserFactory = $this->createMock( UserFactory::class );
-		$validTargetUserFactory->expects( $this->atLeastOnce() )
-			->method( 'newFromName' )
-			->with( $targetName )
-			->willReturn( $validTarget );
-		return $validTargetUserFactory;
-	}
-
 	/**
 	 * Returns a valid MessageLocalizer mock. We don't care about MessageLocalizer at all, but since the return value
 	 * of ::msg() is not typehinted, we're forced to specify a mocked Message to return so that chained method calls
@@ -81,62 +69,6 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @param mixed $target
-	 * @param User $sender
-	 * @param StatusValue|null $expected StatusValue object to compare for errors, or null to indicate that we're
-	 * expecting a good StatusValue with a User object as value.
-	 * @param UserFactory|null $userFactory
-	 * @covers ::getTarget
-	 * @dataProvider provideGetTarget
-	 */
-	public function testGetTarget( $target, User $sender, ?StatusValue $expected, UserFactory $userFactory = null ) {
-		$emailUser = $this->getEmailUser( null, null, $userFactory );
-		$actualStatus = $emailUser->getTarget( $target, $sender );
-		if ( $expected === null ) {
-			$this->assertStatusGood( $actualStatus );
-			$this->assertInstanceOf( User::class, $actualStatus->getValue() );
-		} else {
-			$this->assertEquals( $expected, $actualStatus );
-		}
-	}
-
-	public function provideGetTarget(): Generator {
-		$targetName = 'John Doe';
-		$noopSender = $this->createMock( User::class );
-
-		$invalidUsername = '123<>|[]';
-		$invalidUsernameUserFactory = $this->createMock( UserFactory::class );
-		$invalidUsernameUserFactory->expects( $this->atLeastOnce() )
-			->method( 'newFromName' )
-			->with( $invalidUsername )
-			->willReturn( null );
-		yield 'Invalid username' => [
-			$invalidUsername,
-			$noopSender,
-			StatusValue::newFatal( 'emailnotarget' ),
-			$invalidUsernameUserFactory
-		];
-
-		$noEmailTarget = $this->createMock( User::class );
-		$noEmailTarget->method( 'getId' )->willReturn( 1 );
-		$noEmailTarget->method( 'isEmailConfirmed' )->willReturn( false );
-		$noEmailTargetUserFactory = $this->createMock( UserFactory::class );
-		$noEmailTargetUserFactory->expects( $this->atLeastOnce() )
-			->method( 'newFromName' )
-			->with( $targetName )
-			->willReturn( $noEmailTarget );
-		yield 'Invalid target' => [
-			$targetName,
-			$noopSender,
-			StatusValue::newFatal( 'noemailtext' ),
-			$noEmailTargetUserFactory
-		];
-
-		$validTargetUserFactory = $this->getValidTargetUserFactory( $targetName );
-		yield 'Valid target' => [ $targetName, $noopSender, null, $validTargetUserFactory ];
-	}
-
-	/**
 	 * @covers ::validateTarget
 	 * @dataProvider provideValidateTarget
 	 */
@@ -147,16 +79,15 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 		UserOptionsLookup $userOptionsLookup = null,
 		CentralIdLookup $centralIdLookup = null
 	) {
-		$emailUser = $this->getEmailUser( $userOptionsLookup, $centralIdLookup );
+		$userFactory = $this->createMock( UserFactory::class );
+		$userFactory->method( 'newFromAuthority' )->willReturn( $sender );
+		$emailUser = $this->getEmailUser( $userOptionsLookup, $centralIdLookup, $userFactory );
 		$this->assertEquals( $expected, $emailUser->validateTarget( $target, $sender ) );
 	}
 
 	public function provideValidateTarget(): Generator {
 		$noopUserMock = $this->createMock( User::class );
-		$validTarget = $this->createMock( User::class );
-		$validTarget->method( 'getId' )->willReturn( 1 );
-		$validTarget->method( 'isEmailConfirmed' )->willReturn( true );
-		$validTarget->method( 'canReceiveEmail' )->willReturn( true );
+		$validTarget = $this->getValidTarget();
 
 		$anonTarget = $this->createMock( User::class );
 		$anonTarget->expects( $this->atLeastOnce() )->method( 'getId' )->willReturn( 0 );
@@ -223,14 +154,16 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 	 * @dataProvider providePermissionsError
 	 */
 	public function testGetPermissionsError(
-		User $user,
+		User $performerUser,
 		StatusValue $expected,
 		PermissionManager $permissionManager = null,
 		array $configOverrides = [],
 		array $hooks = []
 	) {
-		$emailUser = $this->getEmailUser( null, null, null, $permissionManager, $configOverrides, $hooks );
-		$this->assertEquals( $expected, $emailUser->getPermissionsError( $user, 'some-token' ) );
+		$userFactory = $this->createMock( UserFactory::class );
+		$userFactory->method( 'newFromAuthority' )->willReturn( $performerUser );
+		$emailUser = $this->getEmailUser( null, null, $userFactory, $permissionManager, $configOverrides, $hooks );
+		$this->assertEquals( $expected, $emailUser->getPermissionsError( $performerUser, 'some-token' ) );
 	}
 
 	public function providePermissionsError(): Generator {
@@ -336,16 +269,15 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideSubmit
 	 */
 	public function testSubmit(
-		string $targetName,
-		User $sender,
+		User $target,
+		Authority $sender,
 		$expected,
-		UserFactory $userFactory = null,
 		array $hooks = [],
 		IEmailer $emailer = null
 	) {
-		$emailUser = $this->getEmailUser( null, null, $userFactory, null, [], $hooks, $emailer );
+		$emailUser = $this->getEmailUser( null, null, null, null, [], $hooks, $emailer );
 		$res = $emailUser->submit(
-			$targetName,
+			$target,
 			'subject',
 			'text',
 			false,
@@ -360,11 +292,12 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 	}
 
 	public function provideSubmit(): Generator {
-		$validSender = $this->createMock( User::class );
-		$validTarget = 'John Doe';
-		$validTargetUserFactory = $this->getValidTargetUserFactory( $validTarget );
+		$validSender = $this->createMock( Authority::class );
+		$validTarget = $this->getValidTarget();
 
-		yield 'Invalid target' => [ '', $validSender, StatusValue::newFatal( 'emailnotarget' ) ];
+		$invalidTarget = $this->createMock( User::class );
+		$invalidTarget->method( 'getId' )->willReturn( 0 );
+		yield 'Invalid target' => [ $invalidTarget, $validSender, StatusValue::newFatal( 'emailnotarget' ) ];
 
 		$hookStatusError = StatusValue::newFatal( 'some-hook-error' );
 		$emailUserHookUsingStatusHooks = [
@@ -377,7 +310,6 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 			$validTarget,
 			$validSender,
 			$hookStatusError,
-			$validTargetUserFactory,
 			$emailUserHookUsingStatusHooks
 		];
 
@@ -391,7 +323,6 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 			$validTarget,
 			$validSender,
 			StatusValue::newFatal( 'hookaborted' ),
-			$validTargetUserFactory,
 			$emailUserHookUsingBooleanFalseHooks
 		];
 
@@ -405,7 +336,6 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 			$validTarget,
 			$validSender,
 			StatusValue::newGood(),
-			$validTargetUserFactory,
 			$emailUserHookUsingBooleanTrueHooks
 		];
 
@@ -420,7 +350,6 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 			$validTarget,
 			$validSender,
 			StatusValue::newFatal( $hookError ),
-			$validTargetUserFactory,
 			$emailUserHookUsingArrayHooks
 		];
 
@@ -435,7 +364,6 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 			$validTarget,
 			$validSender,
 			StatusValue::newFatal( $hookErrorMsg ),
-			$validTargetUserFactory,
 			$emailUserHookUsingMessageHooks
 		];
 
@@ -446,7 +374,6 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 			$validTarget,
 			$validSender,
 			$emailerErrorStatus,
-			$validTargetUserFactory,
 			[],
 			$errorEmailer
 		];
@@ -458,7 +385,6 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 			$validTarget,
 			$validSender,
 			$emailerSuccessStatus,
-			$validTargetUserFactory,
 			[],
 			$successEmailer
 		];
@@ -468,27 +394,31 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 	 * @covers ::submit
 	 */
 	public function testSubmit__rateLimited() {
-		$sender = $this->createMock( User::class );
-		$sender->method( 'pingLimiter' )->with( 'sendemail' )->willReturn( true );
-		$validTarget = $this->createMock( User::class );
-		$validTarget->method( 'getId' )->willReturn( 1 );
-		$validTarget->method( 'isEmailConfirmed' )->willReturn( true );
-		$validTarget->method( 'canReceiveEmail' )->willReturn( true );
-		$validUserFactory = $this->createMock( UserFactory::class );
-		$validUserFactory->method( 'newFromName' )->willReturn( $validTarget );
+		$senderUser = $this->createMock( User::class );
+		$senderUser->method( 'pingLimiter' )->with( 'sendemail' )->willReturn( true );
+		$senderUserFactory = $this->createMock( UserFactory::class );
+		$senderUserFactory->method( 'newFromAuthority' )->willReturn( $senderUser );
 
 		$this->expectException( RuntimeException::class );
 		$this->expectExceptionMessage( 'You are throttled' );
-		$res = $this->getEmailUser( null, null, $validUserFactory )->submit(
-			'Some target',
+		$res = $this->getEmailUser( null, null, $senderUserFactory )->submit(
+			$this->getValidTarget(),
 			'subject',
 			'text',
 			false,
-			$sender,
+			$senderUser,
 			$this->getMockMessageLocalizer()
 		);
 		// This assertion should not be reached if the test passes, but it can be helpful to determine why
 		// the test is failing.
 		$this->assertStatusGood( $res );
+	}
+
+	private function getValidTarget(): User {
+		$validTarget = $this->createMock( User::class );
+		$validTarget->method( 'getId' )->willReturn( 1 );
+		$validTarget->method( 'isEmailConfirmed' )->willReturn( true );
+		$validTarget->method( 'canReceiveEmail' )->willReturn( true );
+		return $validTarget;
 	}
 }

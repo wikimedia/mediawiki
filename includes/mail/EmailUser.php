@@ -30,6 +30,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\MultiUsernameFilter;
 use MediaWiki\User\UserFactory;
@@ -112,30 +113,11 @@ class EmailUser {
 	/**
 	 * Validate target User
 	 *
-	 * @param string $target Target user name
-	 * @param User $sender User sending the email
-	 * @return StatusValue With errors, or with a User object as value on success.
-	 */
-	public function getTarget( string $target, User $sender ): StatusValue {
-		$nu = $this->userFactory->newFromName( $target );
-		if ( !$nu instanceof User ) {
-			return StatusValue::newFatal( 'emailnotarget' );
-		}
-		$status = $this->validateTarget( $nu, $sender );
-		if ( !$status->isGood() ) {
-			return $status;
-		}
-		return StatusValue::newGood( $nu );
-	}
-
-	/**
-	 * Validate target User
-	 *
 	 * @param User $target Target user
-	 * @param User $sender User sending the email
+	 * @param Authority $sender User sending the email
 	 * @return StatusValue
 	 */
-	public function validateTarget( User $target, User $sender ): StatusValue {
+	public function validateTarget( User $target, Authority $sender ): StatusValue {
 		if ( !$target->getId() ) {
 			return StatusValue::newFatal( 'emailnotarget' );
 		}
@@ -148,6 +130,7 @@ class EmailUser {
 			return StatusValue::newFatal( 'nowikiemailtext' );
 		}
 
+		$sender = $this->userFactory->newFromAuthority( $sender );
 		if ( !$this->userOptionsLookup->getOption( $target, 'email-allow-new-users' ) && $sender->isNewbie() ) {
 			return StatusValue::newFatal( 'nowikiemailtext' );
 		}
@@ -192,18 +175,20 @@ class EmailUser {
 	/**
 	 * Check whether a user is allowed to send email
 	 *
-	 * @param User $user
+	 * @param Authority $performer
 	 * @param string $editToken
 	 * @return StatusValue For BC, the StatusValue's value can be set to a string representing a message key to use
 	 * with ErrorPageError.
 	 */
-	public function getPermissionsError( User $user, string $editToken ): StatusValue {
+	public function getPermissionsError( Authority $performer, string $editToken ): StatusValue {
 		if (
 			!$this->options->get( MainConfigNames::EnableEmail ) ||
 			!$this->options->get( MainConfigNames::EnableUserEmail )
 		) {
 			return StatusValue::newFatal( 'usermaildisabled' );
 		}
+
+		$user = $this->userFactory->newFromAuthority( $performer );
 
 		// Run this before checking 'sendemail' permission
 		// to show appropriate message to anons (T160309)
@@ -246,27 +231,27 @@ class EmailUser {
 	 * getPermissionsError(). It is probably also a good
 	 * idea to check the edit token and ping limiter in advance.
 	 *
-	 * @param string $targetName
+	 * @param User $target
 	 * @param string $subject
 	 * @param string $text
 	 * @param bool $CCMe
-	 * @param User $sender
+	 * @param Authority $sender
 	 * @param MessageLocalizer $messageLocalizer
 	 * @return StatusValue
 	 */
 	public function submit(
-		string $targetName,
+		User $target,
 		string $subject,
 		string $text,
 		bool $CCMe,
-		User $sender,
+		Authority $sender,
 		MessageLocalizer $messageLocalizer
 	): StatusValue {
-		$targetStatus = $this->getTarget( $targetName, $sender );
+		$sender = $this->userFactory->newFromAuthority( $sender );
+		$targetStatus = $this->validateTarget( $target, $sender );
 		if ( !$targetStatus->isGood() ) {
 			return $targetStatus;
 		}
-		$target = $targetStatus->getValue();
 
 		$toAddress = MailAddress::newFromUser( $target );
 		$fromAddress = MailAddress::newFromUser( $sender );
