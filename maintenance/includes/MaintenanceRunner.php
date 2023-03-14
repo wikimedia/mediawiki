@@ -317,6 +317,50 @@ class MaintenanceRunner {
 		return $scriptClass;
 	}
 
+	/**
+	 * Preload the script file, so any defines in file level code are executed.
+	 * This way, scripts can control what Setup.php does.
+	 *
+	 * @internal
+	 * @param string $script
+	 *
+	 * @return string
+	 */
+	protected function preloadScriptFile( string $script ): string {
+		[ $extName, $scriptName ] = $this->splitScript( $script );
+
+		if ( $extName !== null ) {
+			// Preloading is not supported. findScriptClass() will try to find the script later.
+			return $script;
+		}
+
+		$scriptFile = $this->expandScriptFile( $scriptName, null );
+
+		$scriptClass = null;
+		if ( file_exists( $scriptFile ) ) {
+			$scriptClass = $this->loadScriptFile( $scriptFile );
+		}
+
+		if ( !$scriptClass ) {
+			$scriptClass = $this->expandScriptClass( $scriptName, null );
+		}
+
+		// NOTE: class_exists will trigger auto-loading, so file-level code in the script file will run.
+		if ( class_exists( $scriptClass ) ) {
+			// Return the script class name we found, so we don't try to load the file again!
+			return $scriptClass;
+		}
+
+		// Preloading failed. Let findScriptClass() try to find the script later.
+		return $script;
+	}
+
+	/**
+	 * @internal
+	 * @param string $script
+	 *
+	 * @return string
+	 */
 	protected function findScriptClass( string $script ): string {
 		[ $extName, $scriptName ] = $this->splitScript( $script );
 
@@ -487,6 +531,12 @@ class MaintenanceRunner {
 			// See https://www.mediawiki.org/wiki/Manual:Wiki_family
 			$_SERVER['SERVER_NAME'] = $this->parameters->getOption( 'server' );
 		}
+
+		// Try to load the script file before running Setup.php if possible.
+		// This allows the script file to define constants that change the behavior
+		// of Setup.php.
+		// Note that this will only work reliably for core scripts.
+		$this->script = $this->preloadScriptFile( $this->script );
 
 		if ( !is_readable( $settingsFile ) ) {
 			// NOTE: Some maintenance scripts can (and need to) run without LocalSettings.

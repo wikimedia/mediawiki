@@ -23,8 +23,8 @@ if ( !MaintenanceRunner::shouldExecute() ) {
 // Define the MediaWiki entrypoint
 define( 'MEDIAWIKI', true );
 
-// This environment variable is ensured present by Maintenance.php.
-$IP = getenv( 'MW_INSTALL_PATH' );
+$IP = wfDetectInstallPath();
+require_once "$IP/includes/AutoLoader.php";
 
 // phpcs:disable: MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix
 $runner = new MaintenanceRunner();
