@@ -243,7 +243,7 @@
 	"config-memcache-badport": "L'adreso di logika pordi por ''Memcached'' mustas esar inter $1 e $2.",
 	"config-extensions": "Tipo di arkivi",
 	"config-extensions-help": "La sufixo di arkivi informita adsupre deskovresis en vua <code>./extensions</code> directory.\n\nLi povas demandar plusa ajusti, tamen vu povas kapabligar li nun.",
-	"config-skins": "Temi (\"skins\")",
+	"config-skins": "Aspekti (''skins'')",
 	"config-skins-help": "Le ''skins'' mencionita adsupre detektesis en vua <code>./skins</code> adresaro. Vu mustas permisar adminime 1, e selektar la ''default''.",
 	"config-skins-use-as-default": "Uzez ca temo kom 'default'",
 	"config-skins-missing": "Nula ''skins'' trovesis; MediaWiki uzus ''skin''-i alternativa, til ke vu instalos kelka, adequata.",

@@ -5,7 +5,8 @@
 			"Robin Owain",
 			"Thaf",
 			"Xxglennxx",
-			"Afalau"
+			"Afalau",
+			"JonesT143"
 		]
 	},
 	"exif-imagewidth": "Lled",
@@ -324,7 +325,7 @@
 	"exif-ycbcrpositioning-2": "Cyd-leoledig",
 	"exif-dc-contributor": "Cyfranwyr",
 	"exif-dc-coverage": "Cwmpas y cyfrwng o ran lle neu amser",
-	"exif-dc-date": "Dyddiad",
+	"exif-dc-date": "Dyddiad(au)",
 	"exif-dc-publisher": "Cyhoeddwr",
 	"exif-dc-relation": "Cyfryngau cysylltiedig",
 	"exif-dc-rights": "Hawliau",
@@ -345,7 +346,7 @@
 	"exif-iimcategory-pol": "Gwleidyddiaeth",
 	"exif-iimcategory-rel": "Crefydd a chred",
 	"exif-iimcategory-sci": "Gwyddoniaeth a thechnoleg",
-	"exif-iimcategory-soi": "Cymdeithas",
+	"exif-iimcategory-soi": "Materion cymdeithasol",
 	"exif-iimcategory-spo": "Chwaraeon",
 	"exif-iimcategory-war": "Rhyfel, gwrthdaro ac aflonyddwch",
 	"exif-iimcategory-wea": "Tywydd",

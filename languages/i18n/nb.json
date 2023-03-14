@@ -4025,7 +4025,7 @@
 	"pagedata-bad-title": "Ugyldig tittel: $1.",
 	"unregistered-user-config": "For å ivareta sikkerhet kan ikke JavaScript-, CSS- og JSON-undersider lastes for uregistrerte brukere.",
 	"passwordpolicies": "Passordregler",
-	"passwordpolicies-summary": "Det finnes en liste over gode passordregler for brukergrupper definert i denne wikien.",
+	"passwordpolicies-summary": "Dette er en liste over gjeldende passordkrav for brukergruppene som er definert for denne wikien.",
 	"passwordpolicies-group": "Gruppe",
 	"passwordpolicies-policies": "Regler",
 	"passwordpolicies-policy-minimalpasswordlength": "Passordet må være på minst $1 {{PLURAL:$1|tegn}}.",

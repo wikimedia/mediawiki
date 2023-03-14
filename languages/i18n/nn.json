@@ -33,7 +33,8 @@
 			"Vlad5250",
 			"לערי ריינהארט",
 			"아라",
-			"1233qwer1234qwer4"
+			"1233qwer1234qwer4",
+			"Harald Khan"
 		]
 	},
 	"tog-underline": "Strek under lenkjer:",
@@ -361,6 +362,7 @@
 	"querypage-no-updates": "Oppdatering av denne sida er slått av, og data her vil ikkje verte fornya.",
 	"querypage-updates-periodical": "Oppdateringar for denne sida vert køyrde periodisk.",
 	"viewsource": "Sjå kjelda",
+	"skin-action-viewsource": "Sjå kjelda",
 	"viewsource-title": "Sjå kjelda til $1",
 	"actionthrottled": "Handlinga vart stoppa",
 	"actionthrottledtext": "For å hindre spamming kan du ikkje utføre denne handlinga for mange gonger på kort tid. Ver venleg og prøv igjen litt seinare.",

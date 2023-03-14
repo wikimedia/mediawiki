@@ -50,7 +50,10 @@
 			"Whovian Biologist",
 			"YoViajo",
 			"McDutchie",
-			"JDíaz32"
+			"JDíaz32",
+			"MarcoAurelio",
+			"Pierpao",
+			"Superzerocool"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentación]]\n* [[mw:Special:MyLanguage/API:Etiquette|Normas de uso y etiqueta]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de correo]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Anuncios API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Errores y peticiones]\n</div>\n<strong>Estado:</strong> La API de MediaWiki es una interfaz madura y estable que se mejora y prueba activamente. Aunque tratamos de evitarlo, es posible que ocasionalmente debamos hacer cambios importantes. Suscríbete a la [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ lista de correo mediawiki-api-announce] para recibir avisos de actualizaciones.\n\n<strong>Solicitudes erróneas:</strong> Cuando se envían solicitudes erróneas a la API, se enviará un encabezado HTTP con la clave «MediaWiki-API-Error» y, luego, el valor del encabezado y el código de error devuelto se establecerán en el mismo valor. Para obtener más información, consulta [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errores y advertencias]].\n\n<p class=\"mw-apisandbox-link\"><strong>Pruebas:</strong> Para facilitar la comprobación de las solicitudes de API, consulta [[Special:ApiSandbox]].</p>",
@@ -1479,7 +1482,7 @@
 	"apierror-appendnotsupported": "No se puede añadir a las páginas que utilizan el modelo de contenido $1.",
 	"apierror-articleexists": "El artículo que intentaste crear ya estaba creado.",
 	"apierror-assertbotfailed": "La aserción de que el usuario tiene el derecho <code>bot</code> falló.",
-	"apierror-assertnameduserfailed": "La aserción de que el usuario es «$1» falló.",
+	"apierror-assertnameduserfailed": "Ya no estás mas conectado como \"$1\", por lo que no se pudo completar la acción.",
 	"apierror-assertuserfailed": "La aserción de que el usuario está conectado falló.",
 	"apierror-autoblocked": "Tu dirección IP ha sido bloqueada automáticamente porque fue utilizada por un usuario bloqueado.",
 	"apierror-badconfig-resulttoosmall": "El valor de <code>$wgAPIMaxResultSize</code> en esta wiki es demasiado pequeño como para contener información básica de resultados.",
