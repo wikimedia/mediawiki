@@ -1288,7 +1288,7 @@ abstract class UploadBase {
 	 * potentially harmful. The present implementation will produce false
 	 * positives in some situations.
 	 *
-	 * @param string $file Pathname to the temporary upload file
+	 * @param string|null $file Pathname to the temporary upload file
 	 * @param string $mime The MIME type of the file
 	 * @param string|null $extension The extension of the file
 	 * @return bool True if the file contains something looking like embedded scripts
@@ -1297,7 +1297,7 @@ abstract class UploadBase {
 		# ugly hack: for text files, always look at the entire file.
 		# For binary field, just check the first K.
 
-		if ( str_starts_with( $mime, 'text/' ) ) {
+		if ( str_starts_with( $mime ?? '', 'text/' ) ) {
 			$chunk = file_get_contents( $file );
 		} else {
 			$fp = fopen( $file, 'rb' );
@@ -1339,7 +1339,7 @@ abstract class UploadBase {
 
 		// Some browsers will interpret obscure xml encodings as UTF-8, while
 		// PHP/expat will interpret the given encoding in the xml declaration (T49304)
-		if ( $extension === 'svg' || str_starts_with( $mime, 'image/svg' ) ) {
+		if ( $extension === 'svg' || str_starts_with( $mime ?? '', 'image/svg' ) ) {
 			if ( self::checkXMLEncodingMissmatch( $file ) ) {
 				return true;
 			}
