@@ -1,7 +1,11 @@
 /*!
- * Javascript for action=delete at domready
+ * JavaScript for action=delete
  */
 ( function () {
+	if ( mw.config.get( 'wgAction' ) !== 'delete' ) {
+		return;
+	}
+
 	$( function () {
 		var colonSeparator = mw.msg( 'colon-separator' ),
 			reasonList = OO.ui.infuse( $( '#wpDeleteReasonList' ).closest( '.oo-ui-widget' ) ),
