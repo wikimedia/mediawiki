@@ -27,7 +27,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Navigation\PrevNextNavigationRenderer;
+use MediaWiki\Navigation\PagerNavigationBuilder;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\Title;
@@ -1131,10 +1131,24 @@ class SpecialPage implements MessageLocalizer {
 		$atend = false,
 		$subpage = false
 	) {
-		$title = $this->getPageTitle( $subpage );
-		$prevNext = new PrevNextNavigationRenderer( $this );
+		$navBuilder = new PagerNavigationBuilder( $this );
+		$navBuilder
+			->setPage( $this->getPageTitle( $subpage ) )
+			->setLinkQuery( [ 'limit' => $limit, 'offset' => $offset ] + $query )
+			->setLimitLinkQueryParam( 'limit' )
+			->setCurrentLimit( $limit )
+			->setPrevTooltipMsg( 'prevn-title' )
+			->setNextTooltipMsg( 'nextn-title' )
+			->setLimitTooltipMsg( 'shown-title' );
 
-		return $prevNext->buildPrevNextNavigation( $title, $offset, $limit, $query, $atend );
+		if ( $offset > 0 ) {
+			$navBuilder->setPrevLinkQuery( [ 'offset' => (string)max( $offset - $limit, 0 ) ] );
+		}
+		if ( !$atend ) {
+			$navBuilder->setNextLinkQuery( [ 'offset' => (string)( $offset + $limit ) ] );
+		}
+
+		return $navBuilder->getHtml();
 	}
 
 	/**
