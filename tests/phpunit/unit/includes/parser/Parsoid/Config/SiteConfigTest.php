@@ -132,18 +132,6 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 			'interwikiMagic',
 			true
 		];
-		// This is a setting from Cite extension
-		yield 'responsiveReferences, absent' => [
-			[],
-			'responsiveReferences',
-			[ 'enabled' => false, 'threshold' => 10 ]
-		];
-		// This is a setting from Cite extension
-		yield 'responsiveReferences, true' => [
-			[ 'CiteResponsiveReferences' => true ],
-			'responsiveReferences',
-			[ 'enabled' => true, 'threshold' => 10 ]
-		];
 		yield 'script' => [
 			[ MainConfigNames::Script => 'blabla' ],
 			'script',
@@ -202,7 +190,6 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::galleryOptions
 	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::allowedExternalImagePrefixes
 	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::interwikiMagic
-	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::responsiveReferences
 	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::script
 	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::scriptpath
 	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::server
@@ -837,5 +824,19 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 		$config = TestingAccessWrapper::newFromObject( $config );
 		$this->assertSame( [ 'Page1', 'Alias1', 'Alias2' ], $config->getSpecialPageAliases( 'Page1' ) );
 		$this->assertSame( [ 'Page2' ], $config->getSpecialPageAliases( 'Page2' ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::getMWConfigValue
+	 */
+	public function testGetMWConfigValue() {
+		$config = $this->createSiteConfig( [
+			'CiteResponsiveReferences' => true,
+			'CiteResponsiveReferencesThreshold' => 10,
+		], [], [] );
+		$config = TestingAccessWrapper::newFromObject( $config );
+		$this->assertSame( true, $config->getMWConfigValue( 'CiteResponsiveReferences' ) );
+		$this->assertSame( 10, $config->getMWConfigValue( 'CiteResponsiveReferencesThreshold' ) );
+		$this->assertSame( null, $config->getMWConfigValue( 'CiteUnknownConfig' ) );
 	}
 }
