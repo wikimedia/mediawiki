@@ -67,7 +67,7 @@ MediaWiki supports over 350 languages. Many localisations are updated regularly.
 Below only new and removed languages are listed, as well as changes to languages
 because of Phabricator reports.
 
-* …
+* (T332118) Namespace translations for Angika (anp) were added
 
 === Breaking changes in 1.41 ===
 * …
