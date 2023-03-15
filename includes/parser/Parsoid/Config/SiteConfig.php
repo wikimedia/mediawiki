@@ -527,19 +527,6 @@ class SiteConfig extends ISiteConfig {
 		return $this->mwConfig->has( $key ) ? $this->mwConfig->get( $key ) : null;
 	}
 
-	/**
-	 * This will be removed without deprecation once we transition over
-	 * Parsoid's Cite code to use getMWConfigValue method above.
-	 * @inheritDoc
-	 */
-	public function responsiveReferences(): array {
-		return [
-			'enabled' => $this->mwConfig->has( 'CiteResponsiveReferences' ) ?
-				$this->mwConfig->get( 'CiteResponsiveReferences' ) : false,
-			'threshold' => 10,
-		];
-	}
-
 	public function rtl(): bool {
 		return $this->contLang->isRTL();
 	}
