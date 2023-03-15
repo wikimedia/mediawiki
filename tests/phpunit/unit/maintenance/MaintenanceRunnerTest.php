@@ -72,12 +72,16 @@ class MaintenanceRunnerTest extends TestCase {
 
 	private function newRunner(): MaintenanceRunner {
 		return new class () extends MaintenanceRunner {
+			public function getScriptClass(): string {
+				return parent::getScriptClass();
+			}
+
 			public function findScriptClass( string $script ): string {
 				return parent::findScriptClass( $script );
 			}
 
-			public function preloadScriptFile( string $script ): string {
-				return parent::preloadScriptFile( $script );
+			public function preloadScriptFile( string $script ): void {
+				parent::preloadScriptFile( $script );
 			}
 
 			protected function fatalError( $msg, $exitCode = 1 ) {
@@ -132,7 +136,8 @@ class MaintenanceRunnerTest extends TestCase {
 	public function testPreloadScriptFile( $script, $expected ) {
 		$runner = $this->newRunner();
 
-		$class = $runner->preloadScriptFile( $script );
+		$runner->preloadScriptFile( $script );
+		$class = $runner->getScriptClass();
 
 		if ( str_starts_with( $class, '\\' ) ) {
 			$class = substr( $class, 1 );
