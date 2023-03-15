@@ -162,7 +162,7 @@ class DataAccess extends IDataAccess {
 
 		// Parser::makeImage() always sets this
 		$hp['targetlang'] = LanguageCode::bcp47ToInternal(
-			$pageConfig->getPageLanguageBcp47()->toBcp47Code()
+			$pageConfig->getPageLanguageBcp47()
 		);
 
 		return $hp;

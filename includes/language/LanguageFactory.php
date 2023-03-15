@@ -143,7 +143,7 @@ class LanguageFactory {
 		if ( $code instanceof Bcp47Code ) {
 			// Any compatibility remapping of valid BCP-47 codes would be done
 			// inside ::bcp47ToInternal, not here.
-			$code = LanguageCode::bcp47ToInternal( $code->toBcp47Code() );
+			$code = LanguageCode::bcp47ToInternal( $code );
 		} else {
 			// Perform various deprecated and compatibility mappings of
 			// internal codes.
@@ -252,7 +252,7 @@ class LanguageFactory {
 		if ( $code instanceof Language ) {
 			$code = $code->getCode();
 		} elseif ( $code instanceof Bcp47Code ) {
-			$code = LanguageCode::bcp47ToInternal( $code->toBcp47Code() );
+			$code = LanguageCode::bcp47ToInternal( $code );
 		}
 		// $code is now a mediawiki internal code string.
 		// We deliberately use array_key_exists() instead of isset() because we cache null.
