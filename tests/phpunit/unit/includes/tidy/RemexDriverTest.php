@@ -293,11 +293,6 @@ class RemexDriverTest extends MediaWikiUnitTestCase {
 			'<mw:editsection page="foo" section="bar">foo</mw:editsection>',
 		],
 		[
-			'<editsection> should survive tidy',
-			'<editsection page="foo" section="bar">foo</editsection>',
-			'<editsection page="foo" section="bar">foo</editsection>',
-		],
-		[
 			'TOC_PLACEHOLDER should survive tidy',
 			'<meta property="mw:PageProp/toc" />',
 			'<meta property="mw:PageProp/toc" />',
