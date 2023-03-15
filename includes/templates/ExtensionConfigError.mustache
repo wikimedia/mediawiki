@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="UTF-8" />
+		<title>MediaWiki {{version}} - Configuration error</title>
+		<style>
+			body {
+				color: #000;
+				background-color: #fff;
+				font-family: sans-serif;
+				margin: 4em;
+			}
+			h1 {
+				font-size: 175%;
+			}
+		</style>
+	</head>
+	<body>
+		<img src="{{mwLogo}}" alt="MediaWiki" title="The MediaWiki logo" />
+
+		<h1>{{extName}} configuration error</h1>
+		<div>
+			<p>MediaWiki is unable to load the {{type}} <em>{{extName}}</em>. Please check that the {{type}}'s name is correct and all of its files are properly installed.</p>
+		<p>Details:<br> Error reading <code>{{path}}</code>. {{error}}.</p>
+		<pre>{{trace}}</pre>
+		</div>
+	</body>
+</html>

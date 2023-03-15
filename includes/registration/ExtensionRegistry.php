@@ -202,7 +202,7 @@ class ExtensionRegistry {
 			// @codeCoverageIgnoreStart
 			if ( $mtime === false ) {
 				$err = error_get_last();
-				throw new Exception( "Unable to open file $path: {$err['message']}" );
+				throw new MissingExtensionException( $path, $err['message'] );
 				// @codeCoverageIgnoreEnd
 			}
 		}
