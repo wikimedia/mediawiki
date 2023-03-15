@@ -2097,6 +2097,7 @@ $wgAutoloadLocalClasses = [
 	'MigrateRevisionCommentTemp' => __DIR__ . '/maintenance/migrateRevisionCommentTemp.php',
 	'MigrateUserGroup' => __DIR__ . '/maintenance/migrateUserGroup.php',
 	'MimeAnalyzer' => __DIR__ . '/includes/libs/mime/MimeAnalyzer.php',
+	'MissingExtensionException' => __DIR__ . '/includes/registration/MissingExtensionException.php',
 	'MostimagesPage' => __DIR__ . '/includes/specials/SpecialMostimages.php',
 	'MoveBatch' => __DIR__ . '/maintenance/moveBatch.php',
 	'MoveFileOp' => __DIR__ . '/includes/libs/filebackend/fileop/MoveFileOp.php',
