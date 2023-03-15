@@ -23,11 +23,19 @@ use Throwable;
 class MaintenanceRunner {
 
 	/**
-	 * Identifies the script to execute in a way that setup() understands.
+	 * Identifies the script to execute. This may be a class name, the relative or absolute
+	 * path of a script file, a plain name with or without an extension prefix, etc.
 	 *
 	 * @var ?string
 	 */
 	private $script = null;
+
+	/**
+	 * The class name of the script to execute.
+	 *
+	 * @var ?string
+	 */
+	private $scriptClass = null;
 
 	/** @var string[]|null */
 	private $scriptArgv = null;
@@ -170,6 +178,7 @@ class MaintenanceRunner {
 	public function initForClass( string $scriptClass, $argv ) {
 		$this->runFromWrapper = false;
 		$this->script = $scriptClass;
+		$this->scriptClass = $scriptClass;
 		$this->parameters->setName( $argv[0] );
 		$this->parameters->loadWithArgv( $argv );
 		$this->initInternal( $scriptClass, array_slice( $argv, 1 ) );
@@ -323,15 +332,18 @@ class MaintenanceRunner {
 	 *
 	 * @internal
 	 * @param string $script
-	 *
-	 * @return string
 	 */
-	protected function preloadScriptFile( string $script ): string {
+	protected function preloadScriptFile( string $script ): void {
+		if ( $this->scriptClass !== null && class_exists( $this->scriptClass ) ) {
+			// We know the script class, and file-level code was executed because class_exists triggers auto-loading.
+			return;
+		}
+
 		[ $extName, $scriptName ] = $this->splitScript( $script );
 
 		if ( $extName !== null ) {
 			// Preloading is not supported. findScriptClass() will try to find the script later.
-			return $script;
+			return;
 		}
 
 		$scriptFile = $this->expandScriptFile( $scriptName, null );
@@ -347,12 +359,27 @@ class MaintenanceRunner {
 
 		// NOTE: class_exists will trigger auto-loading, so file-level code in the script file will run.
 		if ( class_exists( $scriptClass ) ) {
-			// Return the script class name we found, so we don't try to load the file again!
-			return $scriptClass;
+			// Set the script class name we found, so we don't try to load the file again!
+			$this->scriptClass = $scriptClass;
 		}
 
 		// Preloading failed. Let findScriptClass() try to find the script later.
-		return $script;
+	}
+
+	protected function getScriptClass(): string {
+		if ( $this->scriptClass === null ) {
+			if ( $this->runFromWrapper ) {
+				$this->scriptClass = $this->findScriptClass( $this->script );
+			} else {
+				$this->scriptClass = $this->script;
+			}
+		}
+
+		if ( !class_exists( $this->scriptClass ) ) {
+			$this->fatalError( "Script class {$this->scriptClass} not found.\n" );
+		}
+
+		return $this->scriptClass;
 	}
 
 	/**
@@ -399,14 +426,7 @@ class MaintenanceRunner {
 	 */
 	public function setup( SettingsBuilder $settings ) {
 		// NOTE: this has to happen after the autoloader has been initialized.
-		if ( $this->runFromWrapper ) {
-			$scriptClass = $this->findScriptClass( $this->script );
-		} else {
-			$scriptClass = $this->script;
-			if ( !class_exists( $scriptClass ) ) {
-				$this->fatalError( "Class {$this->script} does not exist.\n" );
-			}
-		}
+		$scriptClass = $this->getScriptClass();
 
 		$cls = new ReflectionClass( $scriptClass );
 		if ( !$cls->isSubclassOf( Maintenance::class ) ) {
@@ -536,7 +556,9 @@ class MaintenanceRunner {
 		// This allows the script file to define constants that change the behavior
 		// of Setup.php.
 		// Note that this will only work reliably for core scripts.
-		$this->script = $this->preloadScriptFile( $this->script );
+		if ( $this->runFromWrapper ) {
+			$this->preloadScriptFile( $this->script );
+		}
 
 		if ( !is_readable( $settingsFile ) ) {
 			// NOTE: Some maintenance scripts can (and need to) run without LocalSettings.
