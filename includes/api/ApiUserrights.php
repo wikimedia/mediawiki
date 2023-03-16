@@ -3,7 +3,7 @@
 /**
  * API userrights module
  *
- * Copyright © 2009 Roan Kattouw "<Firstname>.<Lastname>@gmail.com"
+ * Copyright © 2009 Roan Kattouw <roan.kattouw@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
