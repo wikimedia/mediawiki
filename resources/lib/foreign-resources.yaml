@@ -119,6 +119,7 @@ codex:
     package/dist/codex.style-rtl.css:
     package/dist/codex.style-legacy.css:
     package/dist/codex.style-legacy-rtl.css:
+    package/dist/mixins/*: mixins
     package/LICENSE:
     package/README.md:
 
@@ -144,6 +145,7 @@ codex-icons:
   integrity: sha384-nseTLGTeFeKWB7jhqxo7yWyikvV7wZa1VSgYgtga9Langj+zvlmBXmKKi6f0CRiU
   dest:
     package/dist/codex-icons.json:
+    package/dist/codex-icon-paths.less:
     package/LICENSE:
     package/README.md:
 
