@@ -84,10 +84,10 @@ class UrlUtils {
 		}
 
 		if ( $this->server !== null ) {
-			if ( $this->canonicalServer === null ) {
+			if ( $this->canonicalServer === null || $this->canonicalServer === false ) {
 				$this->canonicalServer = $this->expand( $this->server, PROTO_HTTP );
 			}
-			if ( $this->internalServer === null ) {
+			if ( $this->internalServer === null || $this->internalServer === false ) {
 				$this->internalServer = $this->server;
 			}
 		}
@@ -201,6 +201,16 @@ class UrlUtils {
 			return null;
 		}
 		return substr( $url, 0, -1 );
+	}
+
+	/**
+	 * Get the canonical server, i.e. the canonical protocol and host part of
+	 * the wiki's URL.
+	 * @return string
+	 */
+	public function getCanonicalServer(): string {
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable -- throw if unconfigured
+		return $this->canonicalServer;
 	}
 
 	/**
