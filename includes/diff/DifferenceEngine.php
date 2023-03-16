@@ -1814,7 +1814,14 @@ class DifferenceEngine extends ContextSource {
 		$header = Html::openElement( 'table', [
 			'class' => [
 				'diff',
+				// The following classes are used here:
+				// * diff-contentalign-left
+				// * diff-contentalign-right
 				'diff-contentalign-' . $this->getDiffLang()->alignStart(),
+				// The following classes are used here:
+				// * diff-editfont-monospace
+				// * diff-editfont-sans-serif
+				// * diff-editfont-serif
 				'diff-editfont-' . $this->userOptionsLookup->getOption(
 					$this->getUser(),
 					'editfont'
