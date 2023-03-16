@@ -1537,7 +1537,7 @@
 	"rcfilters-filter-minor-label": "Шағын өңдемелер",
 	"rcfilters-filter-minor-description": "Авторы шағын деп белгілеген өңдемелер.",
 	"rcfilters-filter-major-label": "Шағын емес өңдемелер",
-	"rcfilters-filter-major-description": "Шағын деп белгіленбеген өңдемелер.",
+	"rcfilters-filter-major-description": "\"Kishi\" dep belgilenbegen ózgerisler.",
 	"rcfilters-filtergroup-watchlist": "Бақылау тізіміндегі беттер",
 	"rcfilters-filter-watchlist-watched-label": "Бақыланатын",
 	"rcfilters-filter-watchlist-watched-description": "Бақылау тізіміңіздегі беттерге жасалған өңдемелер.",

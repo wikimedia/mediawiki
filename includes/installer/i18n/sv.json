@@ -57,6 +57,7 @@
 	"config-env-good": "Miljön har kontrollerats.\nDu kan installera MediaWiki.",
 	"config-env-bad": "Miljön har kontrollerats.\nDu kan inte installera MediaWiki.",
 	"config-env-php": "PHP $1 är installerat.",
+	"config-env-icu": "ICU $1 är installerad (stödjer Unicode $2).",
 	"config-no-db": "Kunde inte hitta en lämplig databasdrivrutin! Du måste installera en databasdrivrutin för PHP.\nFöljande databas{{PLURAL:$2|typ |typer}} stöds: $1.\n\nOm du själv kompilerat din PHP, konfigurera den med en databasklient aktiverad genom att t.ex. använda <code>./configure --with-mysqli</code>.\nOm du installerade PHP från ett Debian- eller Ubuntupaket måste du även installera, t.ex. <code>php-mysql</code>-paketet.",
 	"config-outdated-sqlite": "<strong>Varning:</strong> Du har SQLite $2, vilket är lägre än minimikravet version $1. SQLite kommer inte att vara tillgänglig.",
 	"config-no-fts3": "'''Varning:''' SQLite kompileras utan [//sqlite.org/fts3.html FTS3-modulen], sökfunktioner kommer att vara otillgängliga på denna backend.",
