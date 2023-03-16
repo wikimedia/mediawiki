@@ -336,7 +336,7 @@ $wgHooks = new FauxGlobalHookArray(
 // These require calling global functions.
 // Also here are other settings that further depend on these two.
 if ( $wgCanonicalServer === false ) {
-	$wgCanonicalServer = wfExpandUrl( $wgServer, PROTO_HTTP );
+	$wgCanonicalServer = MediaWikiServices::getInstance()->getUrlUtils()->getCanonicalServer();
 }
 $wgVirtualRestConfig['global']['domain'] = $wgCanonicalServer;
 
