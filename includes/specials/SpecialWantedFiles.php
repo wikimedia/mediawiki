@@ -34,7 +34,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
  *
  * @ingroup SpecialPage
  */
-class WantedFilesPage extends WantedQueryPage {
+class SpecialWantedFiles extends WantedQueryPage {
 
 	/** @var RepoGroup */
 	private $repoGroup;
@@ -171,3 +171,9 @@ class WantedFilesPage extends WantedQueryPage {
 		return 'maintenance';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.40
+ */
+class_alias( SpecialWantedFiles::class, 'WantedFilesPage' );

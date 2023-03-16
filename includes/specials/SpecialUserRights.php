@@ -40,7 +40,7 @@ use MediaWiki\WikiMap\WikiMap;
  *
  * @ingroup SpecialPage
  */
-class UserrightsPage extends SpecialPage {
+class SpecialUserRights extends SpecialPage {
 	/**
 	 * The target of the local right-adjuster's interest.  Can be gotten from
 	 * either a GET parameter or a subpage-style parameter, so have a member
@@ -1125,3 +1125,9 @@ class UserrightsPage extends SpecialPage {
 		return 'users';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.40
+ */
+class_alias( SpecialUserRights::class, 'UserrightsPage' );

@@ -982,7 +982,7 @@ class MovePage {
 		/**
 		 * T163966
 		 * Increment user_editcount during page moves
-		 * Moved from SpecialMovepage.php per T195550
+		 * Moved from SpecialMovePage.php per T195550
 		 */
 		$this->userEditTracker->incrementUserEditCount( $user );
 

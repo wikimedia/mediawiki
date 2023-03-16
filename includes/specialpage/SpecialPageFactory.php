@@ -243,7 +243,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Wantedfiles' => [
-			'class' => \WantedFilesPage::class,
+			'class' => \SpecialWantedFiles::class,
 			'services' => [
 				'RepoGroup',
 				'DBLoadBalancer',
@@ -251,7 +251,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Wantedpages' => [
-			'class' => \WantedPagesPage::class,
+			'class' => \SpecialWantedPages::class,
 			'services' => [
 				'DBLoadBalancer',
 				'LinkBatchFactory',
@@ -499,7 +499,7 @@ class SpecialPageFactory {
 			'class' => \SpecialListBots::class,
 		],
 		'Userrights' => [
-			'class' => \UserrightsPage::class,
+			'class' => \SpecialUserRights::class,
 			'services' => [
 				'UserGroupManagerFactory',
 				'UserNameUtils',
@@ -742,7 +742,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Mostimages' => [
-			'class' => \MostimagesPage::class,
+			'class' => \SpecialMostImages::class,
 			'services' => [
 				'DBLoadBalancer',
 				'LanguageConverterFactory',
@@ -923,7 +923,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Movepage' => [
-			'class' => \MovePageForm::class,
+			'class' => \SpecialMovePage::class,
 			'services' => [
 				'MovePageFactory',
 				'PermissionManager',
