@@ -57,7 +57,7 @@
 			padding-left: 0.4em;
 
 			// Pseudo `:before` element of the label after the radio now looks like a radio
-			&:before {
+			&::before {
 				content: '';
 				background-color: #fff;
 				box-sizing: border-box;
@@ -70,7 +70,7 @@
 			}
 
 			// Needed for `:focus` state's inner white circle
-			&:after {
+			&::after {
 				content: ' ';
 				position: absolute;
 				top: 2px; // `px` unit due to pixel rounding error when using `@size-input-binary / 4`
@@ -83,50 +83,50 @@
 		}
 
 		// Apply a dot on the pseudo `:before` element when the input is checked
-		&:checked + label:before {
+		&:checked + label::before {
 			border-width: @border-width-radio--checked;
 		}
 
 		&:enabled {
 			cursor: pointer;
 
-			& + label:before {
+			& + label::before {
 				cursor: pointer;
 				transition: background-color 100ms, color 100ms, border-color 100ms;
 			}
 
-			&:hover + label:before {
+			&:hover + label::before {
 				// FIXME: Replace with WikimediaUI Base `@border-color*` var when available.
 				border-color: @color-primary;
 			}
 
-			&:active + label:before {
+			&:active + label::before {
 				// FIXME: Replace with WikimediaUI Base `@background-color*` var when available.
 				background-color: @color-primary--active;
 				border-color: @border-color-input-binary--active;
 			}
 
 			&:checked {
-				& + label:before {
+				& + label::before {
 					border-color: @border-color-input-binary--checked;
 				}
 
-				&:focus + label:after {
+				&:focus + label::after {
 					border-color: #fff;
 				}
 
-				&:hover + label:before {
+				&:hover + label::before {
 					// FIXME: Replace with WikimediaUI Base `@border-color*` var when available.
 					border-color: @color-primary--hover;
 				}
 
 				&:active {
-					& + label:before {
+					& + label::before {
 						border-color: @border-color-input-binary--active;
 						box-shadow: @box-shadow-input-binary--active;
 					}
 
-					& + label:after {
+					& + label::after {
 						border-color: @border-color-input-binary--active;
 					}
 				}
@@ -134,12 +134,12 @@
 		}
 
 		&:disabled {
-			& + label:before {
+			& + label::before {
 				background-color: @colorGray12;
 				border-color: @colorGray12;
 			}
 
-			&:checked + label:before {
+			&:checked + label::before {
 				background-color: #fff;
 			}
 		}

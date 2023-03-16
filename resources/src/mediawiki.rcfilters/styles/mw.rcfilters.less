@@ -116,8 +116,8 @@
 		white-space: nowrap;
 
 		& .mw-rcfilters-spinner-bounce,
-		&:before,
-		&:after {
+		&::before,
+		&::after {
 			content: '';
 			background-color: @color-primary;
 			display: block;
@@ -128,12 +128,12 @@
 			animation: rcfiltersBouncedelay 1600ms ease-in-out -160ms infinite both;
 		}
 
-		&:before {
+		&::before {
 			margin-right: 4px;
 			animation-delay: -330ms;
 		}
 
-		&:after {
+		&::after {
 			margin-left: 4px;
 			animation-delay: 0s;
 		}

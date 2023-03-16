@@ -162,7 +162,7 @@
 // `display: flow-root;` altogether.
 // Support: Firefox 3.5+, Safari 4+, Chrome, Opera 15+, IE 8+
 .mixin-clearfix( @collapse: true ) {
-	&:after {
+	&::after {
 		clear: both;
 
 		// Margin collapsing as feature. Apply it.
@@ -173,8 +173,8 @@
 	}
 	// Margin collapsing as bug. Prevent it.
 	& when not ( @collapse ) {
-		&:before,
-		&:after {
+		&::before,
+		&::after {
 			content: '';
 			display: table;
 		}

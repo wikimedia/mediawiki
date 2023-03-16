@@ -57,7 +57,7 @@
 			display: inline-block;
 		}
 
-		&:before {
+		&::before {
 			content: '';
 			display: block;
 			position: absolute;
@@ -65,23 +65,23 @@
 			.mw-rcfilters-circle( 10px, 10px, ~'-5px 0.5em 0 0' );
 		}
 
-		&[ data-color='c1' ]:before {
+		&[ data-color='c1' ]::before {
 			.mw-rcfilters-circle-color( @highlight-c1 );
 		}
 
-		&[ data-color='c2' ]:before {
+		&[ data-color='c2' ]::before {
 			.mw-rcfilters-circle-color( @highlight-c2 );
 		}
 
-		&[ data-color='c3' ]:before {
+		&[ data-color='c3' ]::before {
 			.mw-rcfilters-circle-color( @highlight-c3 );
 		}
 
-		&[ data-color='c4' ]:before {
+		&[ data-color='c4' ]::before {
 			.mw-rcfilters-circle-color( @highlight-c4 );
 		}
 
-		&[ data-color='c5' ]:before {
+		&[ data-color='c5' ]::before {
 			.mw-rcfilters-circle-color( @highlight-c5 );
 		}
 	}

@@ -9,7 +9,7 @@
 	// replaced elements (such as IMG in HTML). This will be defined in more detail in a future
 	// specification. See https://www.w3.org/TR/CSS2/generate.html#before-after-content
 	& when( @logo-enabled = 1 ) {
-		&:before {
+		&::before {
 			content: @logo-wordmark-url;
 			display: block;
 			height: ~'@{logo-wordmark-height}px';

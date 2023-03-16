@@ -25,8 +25,8 @@
 @exclude: ~'.mw-made-collapsible';
 
 .client-js {
-	ol.mw-collapsible:before,
-	ul.mw-collapsible:before,
+	ol.mw-collapsible::before,
+	ul.mw-collapsible::before,
 	.mw-collapsible-toggle-li {
 		/*
 		 * Rather than inherit any margins from the general li selector - make sure this is explicit
@@ -38,8 +38,8 @@
 	}
 
 	// Reset when mw-collapsible-toggle-li is rendered
-	ol.mw-made-collapsible:before,
-	ul.mw-made-collapsible:before {
+	ol.mw-made-collapsible::before,
+	ul.mw-made-collapsible::before {
 		display: none;
 	}
 
@@ -60,8 +60,8 @@
 	}
 
 	// Any element with id beginning `mw-customcollapsible` will have special treatment
-	.mw-collapsible[ id^='mw-customcollapsible' ] th:before,
-	.mw-collapsible[ id^='mw-customcollapsible' ]:before {
+	.mw-collapsible[ id^='mw-customcollapsible' ] th::before,
+	.mw-collapsible[ id^='mw-customcollapsible' ]::before {
 		content: none !important; // stylelint-disable-line declaration-no-important
 	}
 
