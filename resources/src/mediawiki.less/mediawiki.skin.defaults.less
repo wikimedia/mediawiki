@@ -1,6 +1,7 @@
 // This file is the central place where we declare
 // which variables are part of the "mediawiki.skin.variables.less"
 // API that core and extensions can use in their style modules.
+// This includes all of the Codex design tokens, as well as some additional variables.
 //
 // The initial values are intended merely as fallback to allow
 // forward and backward compatibility to allow new variables
@@ -19,47 +20,17 @@
 //
 // Create a file called resources/mediawiki.less/mediawiki.skin.variables.less, which starts with:
 //    @import 'mediawiki.skin.default.less';
+// then import the Codex theme for this skin, e.g.:
+//    @import '../../../../resources/lib/codex-design-tokens/theme-wikimedia-ui.less';
 // followed by any overrides for these variables, e.g.:
 //    @width-breakpoint-desktop: 1234px;
 
-// == Breakpoints ==
-// Minimum available screen width at which a device can be considered a mobile device.
-//
-// Many older feature phones have screens smaller than this value.
-@width-breakpoint-mobile: 320px;
+// Skin variables that are not Codex tokens:
 
-// Minimum available screen width at which a device can be considered a tablet.
-//
-// The number is currently based on the device width of a Samsung Galaxy S5 mini and
-// is low enough to cover iPad (768px).
-@width-breakpoint-tablet: 720px;
-@max-width-breakpoint-tablet: calc( 720px - 1px );
-
-// Minimum available screen width at which a device can be considered a desktop.
-@width-breakpoint-desktop: 1000px;
-
-// Wider desktop breakpoint
-// @since 1.37
-@width-breakpoint-desktop-wide: 1200px;
-
-// == Size properties beyond Box Model ==
-// These are the center point for skin sizing.
-// Note that these are recommended to be set in relative units like `em` in order to let users
-// override with own browser font size preference.
-// Font size
-@font-size-base: 1em;
-
-// Line Heights
-@line-height-base: 1.6;
-@line-height-heading: 1.3;
 // Form input labels for buttons, dropdowns, but also text input values.
 // Note that there are binary inputs in skins like Vector, that receive a different treatment
 // with name `*-input-binary`.
-@line-height-label: 1.5;
-
-// == Colors ==
-// Background Colors
-@background-color-base: #fff;
+@line-height-label: 1.6;
 
 // Colors
 @color-link: #0645ad;
@@ -67,49 +38,281 @@
 @color-link--active: #faa700;
 // Link colors for new or missing articles, also known as “Red links”.
 // https://www.wikidata.org/wiki/Q13417974#sitelinks-wikipedia
-@color-link-new: #d33;
-@color-link-new--visited: #a55858;
+@color-link-new: @color-link-red;
+@color-link-new--visited: @color-link-red--visited;
 @color-link-external: #36b;
 @color-link-external--visited: #636; // See T5112.
 @color-link-external--active: #b63;
 
-// Opacities
+// Transitions
+@transition-ease-medium: @transition-duration-medium;
+
+// ----- Neutral values for Codex tokens: -----
+// We don't import any of the existing Codex themes here. Instead, we provide neutral, unbranded
+// values for every Codex token. Skins can override these individually, or they can override them
+// en masse by importing a Codex theme. In the future, these values should be migrated into
+// Codex as its base theme, once Codex has a proper theming system that allows for this (T296689).
+
+@font-size-base: 1em;
+@font-size-x-small: 0.75em;
+@font-size-small: 0.875em;
+@font-size-medium: 1em;
+@font-size-large: 1.125em;
+@font-size-x-large: 1.25em;
+@font-size-xx-large: 1.5em;
+@font-size-xxx-large: 1.75em;
+@accent-color-base: #0645ad;
+@background-color-base: #fff;
+@background-color-interactive: #eee;
+@background-color-interactive-subtle: #f9f9f9;
+@background-color-disabled: #ccc;
+@background-color-disabled-subtle: #eee;
+@background-color-progressive: #0645ad;
+@background-color-progressive--hover: #447ff5;
+@background-color-progressive--active: #2a4b8d;
+@background-color-progressive--focus: #0645ad;
+@background-color-progressive-subtle: #eaf3ff;
+@background-color-destructive: #d03;
+@background-color-destructive--hover: #ff4242;
+@background-color-destructive--active: #b32424;
+@background-color-destructive--focus: #d03;
+@background-color-destructive-subtle: #fee7e6;
+@background-color-error-subtle: #fee7e6;
+@background-color-warning-subtle: #fef6e7;
+@background-color-success-subtle: #d5fdf4;
+@background-color-notice-subtle: #eee;
+@background-color-backdrop-light: rgba( 255, 255, 255, 0.65 );
+@background-color-backdrop-dark: rgba( 0, 0, 0, 0.65 );
+@background-color-transparent: rgba( 255, 255, 255, 0 );
+@background-color-button-quiet--hover: rgba( 0, 24, 73, 0.027 );
+@background-color-button-quiet--active: rgba( 0, 24, 73, 0.082 );
+@background-color-input-binary--checked: #0645ad;
+@color-base: #222;
+@color-base--hover: #444;
+@color-emphasized: #000;
+@color-subtle: #555;
+@color-placeholder: #767676;
+@color-disabled: #767676;
+@color-inverted: #fff;
+@color-progressive: #0645ad;
+@color-progressive--hover: #447ff5;
+@color-progressive--active: #2a4b8d;
+@color-progressive--focus: #0645ad;
+@color-destructive: #d03;
+@color-destructive--hover: #ff4242;
+@color-destructive--active: #b32424;
+@color-destructive--focus: #d03;
+@color-visited: #6b4ba1;
+@color-error: #d03;
+@color-warning: #edab00;
+@color-success: #14866d;
+@color-notice: #222;
+@color-link-red: #d03;
+@color-link-red--hover: #ff4242;
+@color-link-red--active: #b32424;
+@color-link-red--focus: #d03;
+@color-link-red--visited: #a55858;
 @opacity-base: 1;
 @opacity-medium: 0.67;
 @opacity-low: 0.33;
 @opacity-transparent: 0;
-// Legacy opacity for icon states in CSS-only component and non-Codex products.
-@opacity-icon-base: 1;
-// Legacy opacity for icon states in CSS-only component and non-Codex products.
-@opacity-icon-base--hover: 0.8; // = `#333` on `background-color: #fff`.
-// Legacy opacity for icon states in CSS-only component and non-Codex products.
+@opacity-icon-base: 0.87;
+@opacity-icon-base--hover: 0.74;
 @opacity-icon-base--selected: 1;
-// Legacy opacity for icon states in CSS-only component and in non-Codex products.
-@opacity-icon-base--disabled: 0.55; // = `#737373` on `background-color: #fff`, still within WCAG level AA.
-// Legacy opacity for icon states in CSS-only component and non-Codex products.
-@opacity-icon-subtle: 0.67; // = `#555` on `background-color: `#fff`.
-
-// Deprecated since v1.40, use `@opacity-icon-subtle` instead.
-@opacity-icon-accessory: @opacity-icon-subtle;
-// Deprecated since v1.40, use `@opacity-icon-base--disabled` instead.
-@opacity-base--disabled: @opacity-icon-base--disabled;
-
-// == Box Model properties ==
-// Border Styles
-@border-style-base: solid;
-// Border Widths
+@opacity-icon-base--disabled: 0.51;
+@opacity-icon-placeholder: 0.51;
+@opacity-icon-subtle: 0.67;
+@background-position-base: center;
+@z-index-base: 0;
+@z-index-overlay: 101;
+@box-sizing-base: border-box;
+@min-size-base: 32px;
+@min-size-icon-x-small: 12px;
+@min-size-icon-small: 16px;
+@min-size-icon-medium: 20px;
+@min-size-search-figure: 40px;
+@min-size-toggle-switch-grip: 20px;
+@size-0: 0;
+@size-6: 0.0625em;
+@size-12: 0.125em;
+@size-25: 0.25em;
+@size-50: 0.5em;
+@size-75: 0.75em;
+@size-100: 1em;
+@size-125: 1.25em;
+@size-150: 1.5em;
+@size-200: 2em;
+@size-250: 2.5em;
+@size-275: 2.75em;
+@size-300: 3em;
+@size-400: 4em;
+@size-800: 8em;
+@size-1600: 16em;
+@size-2400: 24em;
+@size-2800: 28em;
+@size-3200: 32em;
+@size-5600: 56em;
+@size-absolute-1: 1px;
+@size-absolute-9999: 9999px;
+@size-third: 33.33%;
+@size-half: 50%;
+@size-full: 100%;
+@size-double: 200%;
+@size-viewport-width-full: 100vw;
+@size-viewport-height-full: 100vh;
+@size-icon-x-small: 0.75em;
+@size-icon-small: 1em;
+@size-icon-medium: 1.25em;
+@size-search-figure: 2.5em;
+@min-width-medium: 256px;
+@min-width-breakpoint-mobile: 320px;
+@min-width-breakpoint-tablet: 640px;
+@min-width-breakpoint-desktop: 1120px;
+@min-width-breakpoint-desktop-wide: 1680px;
+@min-width-toggle-switch: 48px;
+@max-width-base: none;
+@max-width-breakpoint-mobile: @min-width-breakpoint-tablet - 1px;
+@max-width-breakpoint-tablet: 719px;
+@max-width-breakpoint-desktop: @min-width-breakpoint-desktop-wide - 1px;
+@max-width-button: 28em;
+@position-offset-border-width-base: -1px;
+@position-offset-input-radio--focus: -0.25em;
+@spacing-0: 0;
+@spacing-12: 2px;
+@spacing-25: 4px;
+@spacing-30: 5px;
+@spacing-35: 6px;
+@spacing-50: 8px;
+@spacing-75: 12px;
+@spacing-100: 16px;
+@spacing-125: 20px;
+@spacing-150: 24px;
+@spacing-200: 32px;
+@spacing-250: 40px;
+@spacing-300: 48px;
+@spacing-400: 64px;
+@spacing-half: 50%;
+@spacing-full: 100%;
+@spacing-horizontal-input-text-two-end-icons: calc( @spacing-50 * 2 + @size-icon-small + @border-width-base );
+@spacing-start-typeahead-search-figure: 12px;
+@spacing-start-typeahead-search-icon: 22px;
+@spacing-typeahead-search-focus-addition: 24px;
 @border-width-base: 1px;
-// Border Radius
+@border-width-thick: 2px;
+@border-style-base: solid;
+@border-style-dashed: dashed;
+@border-color-base: #aaa;
+@border-color-interactive: #767676;
+@border-color-subtle: #ccc;
+@border-color-disabled: #ccc;
+@border-color-inverted: #fff;
+@border-color-progressive: #0645ad;
+@border-color-progressive--hover: #447ff5;
+@border-color-progressive--active: #2a4b8d;
+@border-color-progressive--focus: #0645ad;
+@border-color-destructive: #d03;
+@border-color-destructive--hover: #ff4242;
+@border-color-destructive--active: #b32424;
+@border-color-destructive--focus: #d03;
+@border-color-error: #d03;
+@border-color-warning: #edab00;
+@border-color-success: #14866d;
+@border-color-notice: #aaa;
+@border-color-transparent: transparent;
+@border-color-divider: #aaa;
+@border-color-input--hover: #767676;
+@border-color-input-binary: #767676;
+@border-color-input-binary--hover: #447ff5;
+@border-color-input-binary--active: #2a4b8d;
+@border-color-input-binary--focus: #0645ad;
+@border-color-input-binary--checked: #0645ad;
 @border-radius-base: 0;
+@border-radius-sharp: 0;
+@border-radius-pill: 9999px;
 @border-radius-circle: 50%;
-
-// == Typography ==
-@font-family-sans: sans-serif;
-
-// == Animation & Transition ==
-// Transitions
-@transition-base: @transition-duration-base; // `ease` is the initial value
-@transition-ease-medium: @transition-duration-medium;
-// Transitions > Durations
+@box-shadow-drop-small: 0 1px 1px rgba( 0, 0, 0, 0.2 );
+@box-shadow-drop-medium: 0 2px 2px 0 rgba( 0, 0, 0, 0.2 );
+@box-shadow-drop-xx-large: 0 20px 48px 0 rgba( 0, 0, 0, 0.2 );
+@box-shadow-inset-small: inset 0 0 0 1px;
+@box-shadow-inset-medium: inset 0 0 0 2px;
+@box-shadow-inset-medium-vertical: inset 0 -2px 0 0;
+@box-shadow-outset-small: 0 0 0 1px;
+@box-shadow-outset-small-top: 0 -1px 0 0;
+@box-shadow-outset-small-start: -1px 0 0 0;
+@box-shadow-color-base: #000;
+@box-shadow-color-progressive--active: #2a4b8d;
+@box-shadow-color-progressive--focus: #0645ad;
+@box-shadow-color-progressive-selected: #0645ad;
+@box-shadow-color-progressive-selected--hover: #447ff5;
+@box-shadow-color-progressive-selected--active: #2a4b8d;
+@box-shadow-color-destructive--focus: #d03;
+@box-shadow-color-inverted: #fff;
+@box-shadow-color-transparent: transparent;
+@outline-base--focus: 1px solid transparent;
+@font-family-base: sans-serif;
+@font-family-system-sans: 'Arial', sans-serif;
+@font-family-sans--fallback: sans-serif;
+@font-family-serif: 'Linux Libertine', 'Georgia', 'Times', 'Source Serif Pro', serif;
+@font-family-serif--fallback: serif;
+@font-family-monospace: 'Courier New', monospace;
+@font-family-monospace--fallback: monospace, monospace;
+@font-family-heading-main: 'Linux Libertine', 'Georgia', 'Times', 'Source Serif Pro', serif;
+@font-weight-hairline: 100;
+@font-weight-light: 300;
+@font-weight-normal: 400;
+@font-weight-semi-bold: 600;
+@font-weight-bold: 700;
+@line-height-xxx-small: 1.25;
+@line-height-xx-small: 1.375;
+@line-height-small: 1.6;
+@line-height-medium: 1.6;
+@text-decoration-none: none;
+@text-decoration-line-through: line-through;
+@text-decoration-underline: underline;
+@text-overflow-clip: clip;
+@text-overflow-ellipsis: ellipsis;
+@tab-size-base: 4;
 @transition-duration-base: 100ms;
 @transition-duration-medium: 250ms;
+@transition-timing-function-system: ease;
+@transition-timing-function-user: ease-out;
+@transition-property-base: background-color, color, border-color, box-shadow;
+@transition-property-fade: opacity;
+@transition-property-icon: color;
+@transition-property-toggle-switch-grip: background-color, border-color, left;
+@animation-delay-none: 0ms;
+@animation-delay-medium: -150ms;
+@animation-delay-slow: -333ms;
+@animation-duration-medium: 1500ms;
+@animation-duration-slow: 2000ms;
+@animation-timing-function-base: linear;
+@animation-timing-function-bouncing: ease-in-out;
+@animation-iteration-count-base: infinite;
+@cursor-base: default;
+@cursor-base--disabled: default;
+@cursor-base--hover: pointer;
+@cursor-grab: grab;
+@cursor-grabbing: grabbing;
+@cursor-help: help;
+@cursor-move: move;
+@cursor-not-allowed: not-allowed;
+@cursor-resize-nesw: nesw-resize;
+@cursor-resize-nwse: nwse-resize;
+@cursor-text: text;
+@cursor-zoom-in: zoom-in;
+@cursor-zoom-out: zoom-out;
+@unit-absolute: px;
+@unit-relative: em;
+@background-size-search-figure: cover;
+
+// Neutral values for deprecated Codex tokens
+@background-color-primary--hover: rgba( 51, 102, 204, 0.1 );
+@color-base--subtle: #767676;
+@width-breakpoint-mobile: 320px;
+@width-breakpoint-tablet: 720px;
+@width-breakpoint-desktop: 1000px;
+@width-breakpoint-desktop-wide: 1200px;
+@width-breakpoint-desktop-extrawide: 2000px;
+@font-family-sans: @font-family-sans--fallback;
+@line-height-x-small: 1.42;
+@line-height-heading: 1.3;
