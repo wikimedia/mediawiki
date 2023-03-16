@@ -923,7 +923,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Movepage' => [
-			'class' => \SpecialMovePage::class,
+			'class' => \MediaWiki\Specials\SpecialMovePage::class,
 			'services' => [
 				'MovePageFactory',
 				'PermissionManager',
