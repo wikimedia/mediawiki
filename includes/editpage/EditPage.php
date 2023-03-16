@@ -3717,7 +3717,7 @@ class EditPage implements IEditObject {
 		$namespace = $title->getNamespace();
 		$intro = '';
 		$user = $ctx->getUser();
-		$isIntroPlaintext = true;
+		$isMsgSameWhenParsed = true;
 
 		if ( $title->isUserConfigPage() ) {
 			if ( $title->isSubpageOf( $user->getUserPage() ) ) {
@@ -3735,7 +3735,7 @@ class EditPage implements IEditObject {
 					$ctx->msg( $warning )->parse()
 				);
 
-				$isIntroPlaintext = $this->isMsgSameWhenParsed( $ctx, $warning );
+				$isMsgSameWhenParsed = $this->isMsgSameWhenParsed( $ctx, $warning );
 			}
 		}
 
@@ -3760,7 +3760,7 @@ class EditPage implements IEditObject {
 						[ 'class' => 'mw-translateinterface' ],
 						$ctx->msg( 'translateinterface' )->parse()
 					);
-					$isIntroPlaintext = $isIntroPlaintext &&
+					$isMsgSameWhenParsed = $isMsgSameWhenParsed &&
 						$this->isMsgSameWhenParsed( $ctx, 'translateinterface' );
 				}
 			}
@@ -3772,14 +3772,14 @@ class EditPage implements IEditObject {
 				[ 'class' => 'mw-userconfigdangerous' ],
 				$ctx->msg( 'userjsdangerous' )->parse()
 			);
-			$isIntroPlaintext = $isIntroPlaintext &&
+			$isMsgSameWhenParsed = $isMsgSameWhenParsed &&
 				$this->isMsgSameWhenParsed( $ctx, 'userjsdangerous' );
 		}
 
 		// If the message is plaintext, (which is the default for a MediaWiki
 		// install) wrap it. If not, then local wiki customizations should be
 		// respected.
-		if ( $isIntroPlaintext && !empty( $intro ) ) {
+		if ( $isMsgSameWhenParsed && !empty( $intro ) ) {
 			// While semantically this is a warning, given the impact of editing
 			// these pages,
 			// it's best to deter users who don't understand what they are doing by
