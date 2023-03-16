@@ -742,7 +742,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Mostimages' => [
-			'class' => \SpecialMostImages::class,
+			'class' => \MediaWiki\Specials\SpecialMostImages::class,
 			'services' => [
 				'DBLoadBalancer',
 				'LanguageConverterFactory',
