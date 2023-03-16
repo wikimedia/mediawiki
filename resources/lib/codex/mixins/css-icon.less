@@ -1,4 +1,3 @@
-@import ( reference ) '@wikimedia/codex-design-tokens/theme-wikimedia-ui.less';
 @import ( reference ) '@wikimedia/codex-icons/dist/codex-icon-paths.less';
 
 //
@@ -33,9 +32,10 @@
 	.get-calculated-min-size-icon( @param-size-icon );
 	background-position: @param-background-position;
 	background-repeat: no-repeat;
-	// Set background size to the relative @size-icon or to @min-size-icon, whichever is larger.
-	// This ensures that the icon will never appear smaller than @min-size-icon.
-	background-size: calc( max( @param-size-icon, @calculated-min-size-icon ) );
+	// Set background size to the relative @param-size-icon or to @calculated-min-size-icon, whichever is larger.
+	// This ensures that the icon will never appear smaller than @calculated-min-size-icon.
+	// Escape the max() call to prevent older Less versions from trying to do the max() calculation at compile time.
+	background-size: calc( ~'max( @{param-size-icon}, @{calculated-min-size-icon} )' );
 }
 
 //
@@ -45,7 +45,7 @@
 //
 // @param {string} size-icon: The size of the icon (base, small, x-small, or indicator)
 //
-.cdx-mixin-css-icon-size ( @param-size-icon: @size-icon-medium ) {
+.cdx-mixin-css-icon-size( @param-size-icon: @size-icon-medium ) {
 	.get-calculated-min-size-icon( @param-size-icon );
 	// Set the default icon size.
 	min-width: @calculated-min-size-icon;
@@ -81,7 +81,8 @@
 	// TODO: remove in favor of a token.
 	@color-black: #000000;
 	// TODO: update variable name to match new token once it exists.
-	@escaped-color-black: escape( @color-black );
+	// Older versions of Less don't support using escape() on colors, so use %A instead
+	@escaped-color-black: %( '%A', @color-black );
 	@background-image-url: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="@{escaped-color-black}">@{param-icon}</svg>';
 
 	@supports not ( mask-image: none ) {
@@ -141,7 +142,8 @@
 	@has-lang-variants: extract( @param-icon, 5 );
 
 	// Escape the hash in the hex code before we use it in the background-image rule.
-	@escaped-hex-code: escape( @param-fill-color );
+	// Older versions of Less don't support using escape() on colors, so use %A instead
+	@escaped-hex-code: %( '%A', @param-fill-color );
 
 	// Add default image.
 	& when not ( @param-is-button-icon ) {
