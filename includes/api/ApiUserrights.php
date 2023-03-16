@@ -25,6 +25,7 @@
 
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Specials\SpecialUserRights;
 use MediaWiki\User\UserGroupManager;
 use Wikimedia\ParamValidator\ParamValidator;
 
