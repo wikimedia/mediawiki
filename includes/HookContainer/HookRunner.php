@@ -4,6 +4,7 @@ namespace MediaWiki\HookContainer;
 
 use Article;
 use Config;
+use DifferenceEngine;
 use File;
 use IContextSource;
 use JsonContent;
@@ -84,6 +85,7 @@ class HookRunner implements
 	\MediaWiki\Diff\Hook\AbortDiffCacheHook,
 	\MediaWiki\Diff\Hook\ArticleContentOnDiffHook,
 	\MediaWiki\Diff\Hook\DifferenceEngineAfterLoadNewTextHook,
+	\MediaWiki\Diff\Hook\DifferenceEngineBeforeDiffTableHook,
 	\MediaWiki\Diff\Hook\DifferenceEngineLoadTextAfterNewContentIsLoadedHook,
 	\MediaWiki\Diff\Hook\DifferenceEngineMarkPatrolledLinkHook,
 	\MediaWiki\Diff\Hook\DifferenceEngineMarkPatrolledRCIDHook,
@@ -1322,6 +1324,13 @@ class HookRunner implements
 		return $this->container->run(
 			'DifferenceEngineAfterLoadNewText',
 			[ $differenceEngine ]
+		);
+	}
+
+	public function onDifferenceEngineBeforeDiffTable( DifferenceEngine $differenceEngine, array &$parts ) {
+		return $this->container->run(
+			'DifferenceEngineBeforeDiffTable',
+			[ $differenceEngine, &$parts ]
 		);
 	}
 

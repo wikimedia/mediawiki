@@ -1036,6 +1036,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Diff\\Hook\\ArticleContentOnDiffHook' => __DIR__ . '/includes/diff/Hook/ArticleContentOnDiffHook.php',
 	'MediaWiki\\Diff\\Hook\\DiffToolsHook' => __DIR__ . '/includes/diff/Hook/DiffToolsHook.php',
 	'MediaWiki\\Diff\\Hook\\DifferenceEngineAfterLoadNewTextHook' => __DIR__ . '/includes/diff/Hook/DifferenceEngineAfterLoadNewTextHook.php',
+	'MediaWiki\\Diff\\Hook\\DifferenceEngineBeforeDiffTableHook' => __DIR__ . '/includes/diff/Hook/DifferenceEngineBeforeDiffTableHook.php',
 	'MediaWiki\\Diff\\Hook\\DifferenceEngineLoadTextAfterNewContentIsLoadedHook' => __DIR__ . '/includes/diff/Hook/DifferenceEngineLoadTextAfterNewContentIsLoadedHook.php',
 	'MediaWiki\\Diff\\Hook\\DifferenceEngineMarkPatrolledLinkHook' => __DIR__ . '/includes/diff/Hook/DifferenceEngineMarkPatrolledLinkHook.php',
 	'MediaWiki\\Diff\\Hook\\DifferenceEngineMarkPatrolledRCIDHook' => __DIR__ . '/includes/diff/Hook/DifferenceEngineMarkPatrolledRCIDHook.php',
