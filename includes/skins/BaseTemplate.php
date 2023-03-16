@@ -174,41 +174,6 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	/**
-	 * @deprecated since 1.35 (emits deprecation warnings since 1.37), use Skin::getAfterPortlet directly
-	 * @param string $name
-	 */
-	protected function renderAfterPortlet( $name ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		echo $this->getAfterPortlet( $name );
-	}
-
-	/**
-	 * Allows extensions to hook into known portlets and add stuff to them
-	 *
-	 * @deprecated since 1.35 (emits deprecation warnings since 1.37), use Skin::getAfterPortlet directly
-	 *
-	 * @param string $name
-	 *
-	 * @return string html
-	 * @since 1.29
-	 */
-	protected function getAfterPortlet( $name ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$html = '';
-		$content = $this->getSkin()->getAfterPortlet( $name );
-
-		if ( $content !== '' ) {
-			$html = Html::rawElement(
-				'div',
-				[ 'class' => [ 'after-portlet', 'after-portlet-' . $name ] ],
-				$content
-			);
-		}
-
-		return $html;
-	}
-
-	/**
 	 * Wrapper for Skin method.
 	 *
 	 * @param string $key of link
