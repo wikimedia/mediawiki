@@ -30,7 +30,6 @@
 // `line-height` has to be relative/in `em` to enable user override in browser settings.
 @line-height-widget-base: unit( 18 / @ooui-font-size-browser / @ooui-font-size-base, @ooui-unit ); // equals `18px` at base `font-size: 14px;
 
-@transition-ease-medium: @transition-duration-medium; // `ease` is the initial value
 @transition-duration-medium: 250ms;
 
 .oo-ui-inline-spacing( @spacing, @cancelled-spacing: 0 ) {
@@ -81,7 +80,8 @@
 	&.oo-ui-widget-enabled {
 		.mw-widget-dateInputWidget-handle {
 			box-shadow: @box-shadow-widget; // necessary for smooth transition
-			transition: border-color @transition-ease-medium, box-shadow @transition-ease-medium;
+			transition-property: border-color, box-shadow;
+			transition-duration: @transition-duration-medium;
 
 			&:hover {
 				border-color: @border-color-input--hover;
