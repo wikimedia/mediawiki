@@ -24,6 +24,9 @@
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
+namespace MediaWiki\Specials;
+
+use ImageQueryPage;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**

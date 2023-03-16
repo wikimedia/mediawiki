@@ -742,7 +742,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Mostimages' => [
-			'class' => \SpecialMostImages::class,
+			'class' => \MediaWiki\Specials\SpecialMostImages::class,
 			'services' => [
 				'DBLoadBalancer',
 				'LanguageConverterFactory',
@@ -923,7 +923,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Movepage' => [
-			'class' => \SpecialMovePage::class,
+			'class' => \MediaWiki\Specials\SpecialMovePage::class,
 			'services' => [
 				'MovePageFactory',
 				'PermissionManager',
