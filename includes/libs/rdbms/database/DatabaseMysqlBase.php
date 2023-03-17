@@ -194,7 +194,7 @@ abstract class DatabaseMysqlBase extends Database {
 
 		if ( $database !== $this->getDBname() ) {
 			$sql = 'USE ' . $this->addIdentifierQuotes( $database );
-			$qs = $this->executeQuery( $sql, __METHOD__, self::QUERY_IGNORE_DBO_TRX, $sql );
+			$qs = $this->executeQuery( $sql, __METHOD__, self::QUERY_CHANGE_TRX, $sql );
 			if ( $qs->res === false ) {
 				$this->reportQueryError( $qs->message, $qs->code, $sql, __METHOD__ );
 				return false; // unreachable
