@@ -158,4 +158,11 @@ class ApiUnblockTest extends ApiTestCase {
 
 		$this->doUnblock( [ 'user' => $this->blocker ] );
 	}
+
+	public function testWatched() {
+		$userPage = Title::makeTitle( NS_USER, $this->blockee->getName() );
+		$this->doUnblock( [ 'watchuser' => true ] );
+		$this->assertTrue( $this->getServiceContainer()->getWatchlistManager()
+			->isWatched( $this->blocker, $userPage ) );
+	}
 }

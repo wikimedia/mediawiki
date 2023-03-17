@@ -1530,6 +1530,8 @@
 	"apihelp-unblock-param-userid": "Specify <kbd>$1user=#<var>ID</var></kbd> instead.",
 	"apihelp-unblock-param-reason": "Reason for unblock.",
 	"apihelp-unblock-param-tags": "Change tags to apply to the entry in the block log.",
+	"apihelp-unblock-param-watchuser": "Watch the user's or IP address's user and talk pages.",
+	"apihelp-unblock-param-watchlistexpiry": "Watchlist expiry timestamp. Omit this parameter entirely to leave the current expiry unchanged.",
 	"apihelp-unblock-example-id": "Unblock block ID #<kbd>105</kbd>.",
 	"apihelp-unblock-example-user": "Unblock user <kbd>Bob</kbd> with reason <kbd>Sorry Bob</kbd>.",
 
