@@ -22,6 +22,7 @@ namespace MediaWiki\ResourceLoader;
 
 use Composer\Spdx\SpdxLicenses;
 use Exception;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use PharData;
 use RecursiveDirectoryIterator;
@@ -100,14 +101,15 @@ class ForeignResourceManager {
 		$this->verbosePrinter = $verbosePrinter ?? static function ( $_ ) {
 		};
 
-		// Use a temporary directory under the destination directory instead
-		// of wfTempDir() because PHP's rename() does not work across file
-		// systems, and the user's /tmp and $IP may be on different filesystems.
-		$this->tmpParentDir = "{$this->libDir}/.foreign/tmp";
-
 		// Support XDG_CACHE_HOME to speed up CI by avoiding repeated downloads.
-		$cacheHome = getenv( 'XDG_CACHE_HOME' ) ? realpath( getenv( 'XDG_CACHE_HOME' ) ) : false;
-		$this->cacheDir = $cacheHome ? "$cacheHome/mw-foreign" : "{$this->libDir}/.foreign/cache";
+		$conf = MediaWikiServices::getInstance()->getMainConfig();
+		if ( ( $cacheHome = getenv( 'XDG_CACHE_HOME' ) ) !== false ) {
+			$this->cacheDir = realpath( $cacheHome ) . '/mw-foreign';
+		} elseif ( ( $cacheConf = $conf->get( MainConfigNames::CacheDirectory ) ) !== false ) {
+			$this->cacheDir = "$cacheConf/ForeignResourceManager";
+		} else {
+			$this->cacheDir = "{$this->libDir}/.foreign/cache";
+		}
 	}
 
 	/**
@@ -123,6 +125,7 @@ class ForeignResourceManager {
 			return false;
 		}
 		$this->action = $action;
+		$this->setupTempDir( $action );
 
 		$this->registry = Yaml::parseFile( $this->registryFile );
 		if ( $module === 'all' ) {
@@ -196,6 +199,22 @@ class ForeignResourceManager {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Choose the temp parent directory
+	 *
+	 * @param string $action
+	 */
+	private function setupTempDir( $action ) {
+		if ( $action === 'verify' ) {
+			$this->tmpParentDir = wfTempDir() . '/ForeignResourceManager';
+		} else {
+			// Use a temporary directory under the destination directory instead
+			// of wfTempDir() because PHP's rename() does not work across file
+			// systems, and the user's /tmp and $IP may be on different filesystems.
+			$this->tmpParentDir = "{$this->libDir}/.foreign/tmp";
+		}
 	}
 
 	/**
