@@ -251,7 +251,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Wantedpages' => [
-			'class' => \SpecialWantedPages::class,
+			'class' => \MediaWiki\Specials\SpecialWantedPages::class,
 			'services' => [
 				'DBLoadBalancer',
 				'LinkBatchFactory',

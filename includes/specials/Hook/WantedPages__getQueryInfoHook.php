@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use SpecialWantedPages;
+use MediaWiki\Specials\SpecialWantedPages;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 /**

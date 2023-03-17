@@ -21,8 +21,11 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\MainConfigNames;
+use WantedQueryPage;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
