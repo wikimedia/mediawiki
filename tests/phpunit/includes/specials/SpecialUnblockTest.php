@@ -21,7 +21,7 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 			$services->getBlockUtils(),
 			$services->getUserNameUtils(),
 			$services->getUserNamePrefixSearch(),
-			$services->getSpecialPageFactory()
+			$services->getWatchlistManager()
 		);
 	}
 
@@ -150,5 +150,30 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 		[ $html, ] = $this->executeSpecialPage( '', $request, 'qqx', $performer );
 
 		$this->assertStringContainsString( 'ipbnounblockself', $html );
+	}
+
+	/**
+	 * @covers ::execute()
+	 */
+	public function testWatched() {
+		$performer = $this->getTestSysop()->getUser();
+
+		$target = '1.2.3.4';
+		$block = new DatabaseBlock( [
+			'by' => $performer,
+			'address' => $target,
+		] );
+		$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
+
+		$request = new FauxRequest( [
+			'wpTarget' => $target,
+			'wpReason' => '',
+			'wpWatch' => '1',
+		], true );
+		$this->executeSpecialPage( '', $request, 'qqx', $performer );
+
+		$userPage = Title::makeTitle( NS_USER, $target );
+		$this->assertTrue( $this->getServiceContainer()->getWatchlistManager()
+			->isWatched( $performer, $userPage ) );
 	}
 }
