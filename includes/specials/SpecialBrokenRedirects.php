@@ -21,9 +21,13 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Title\Title;
+use QueryPage;
+use Skin;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -116,7 +120,7 @@ class SpecialBrokenRedirects extends QueryPage {
 
 	/**
 	 * @param Skin $skin
-	 * @param stdClass $result Result row
+	 * @param \stdClass $result Result row
 	 * @return string
 	 */
 	public function formatResult( $skin, $result ) {
@@ -212,3 +216,8 @@ class SpecialBrokenRedirects extends QueryPage {
 		return 'maintenance';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialBrokenRedirects::class, 'SpecialBrokenRedirects' );

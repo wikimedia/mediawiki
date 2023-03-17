@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use SpecialBlock;
+use MediaWiki\Specials\SpecialBlock;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

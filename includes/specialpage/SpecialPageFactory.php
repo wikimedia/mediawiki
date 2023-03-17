@@ -41,6 +41,12 @@ use MediaWiki\Specials\SpecialAncientPages;
 use MediaWiki\Specials\SpecialApiHelp;
 use MediaWiki\Specials\SpecialApiSandbox;
 use MediaWiki\Specials\SpecialAutoblockList;
+use MediaWiki\Specials\SpecialBlankpage;
+use MediaWiki\Specials\SpecialBlock;
+use MediaWiki\Specials\SpecialBlockList;
+use MediaWiki\Specials\SpecialBookSources;
+use MediaWiki\Specials\SpecialBotPasswords;
+use MediaWiki\Specials\SpecialBrokenRedirects;
 use MediaWiki\Specials\SpecialMostImages;
 use MediaWiki\Specials\SpecialMovePage;
 use MediaWiki\Specials\SpecialUserRights;
@@ -85,7 +91,7 @@ class SpecialPageFactory {
 	private const CORE_LIST = [
 		// Maintenance Reports
 		'BrokenRedirects' => [
-			'class' => \SpecialBrokenRedirects::class,
+			'class' => SpecialBrokenRedirects::class,
 			'services' => [
 				'ContentHandlerFactory',
 				'DBLoadBalancer',
@@ -377,7 +383,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Block' => [
-			'class' => \SpecialBlock::class,
+			'class' => SpecialBlock::class,
 			'services' => [
 				'BlockUtils',
 				'BlockPermissionCheckerFactory',
@@ -400,7 +406,7 @@ class SpecialPageFactory {
 			]
 		],
 		'BlockList' => [
-			'class' => \SpecialBlockList::class,
+			'class' => SpecialBlockList::class,
 			'services' => [
 				'LinkBatchFactory',
 				'BlockRestrictionStore',
@@ -427,7 +433,7 @@ class SpecialPageFactory {
 			'class' => \SpecialChangePassword::class,
 		],
 		'BotPasswords' => [
-			'class' => \SpecialBotPasswords::class,
+			'class' => SpecialBotPasswords::class,
 			'services' => [
 				'PasswordFactory',
 				'AuthManager',
@@ -891,7 +897,7 @@ class SpecialPageFactory {
 
 		// Other
 		'Booksources' => [
-			'class' => \SpecialBookSources::class,
+			'class' => SpecialBookSources::class,
 			'services' => [
 				'RevisionLookup',
 			]
@@ -905,7 +911,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Blankpage' => [
-			'class' => \SpecialBlankpage::class,
+			'class' => SpecialBlankpage::class,
 		],
 		'DeletePage' => [
 			'class' => \SpecialDeletePage::class,

@@ -21,6 +21,10 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use UnlistedSpecialPage;
+
 /**
  * Special page designed for basic benchmarking of
  * MediaWiki since it doesn't really do much.
@@ -37,3 +41,8 @@ class SpecialBlankpage extends UnlistedSpecialPage {
 		$this->getOutput()->addWikiMsg( 'intentionallyblankpage' );
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialBlankpage::class, 'SpecialBlankpage' );

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Specials\SpecialBookSources;
+
 class SpecialBooksourcesTest extends SpecialPageTestBase {
 	public static function provideISBNs() {
 		return [
