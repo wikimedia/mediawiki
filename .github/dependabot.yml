@@ -1,1 +1,45 @@
-
+version: 2
+updates:
+  - package-ecosystem: gitsubmodule
+    directory: "/"
+    labels: []
+    schedule:
+      interval: daily
+      time: "00:00"
+    open-pull-requests-limit: 750
+    target-branch: REL1_39
+    ignore:
+      - dependency-name: "extensions/AbuseFilter"
+      - dependency-name: "extensions/CategoryTree"
+      - dependency-name: "extensions/Cite"
+      - dependency-name: "extensions/CiteThisPage"
+      - dependency-name: "extensions/CodeEditor"
+      - dependency-name: "extensions/ConfirmEdit"
+      - dependency-name: "extensions/Gadgets"
+      - dependency-name: "extensions/ImageMap"
+      - dependency-name: "extensions/InputBox"
+      - dependency-name: "extensions/Interwiki"
+      - dependency-name: "extensions/Math"
+      - dependency-name: "extensions/MultimediaViewer"
+      - dependency-name: "extensions/Nuke"
+      - dependency-name: "extensions/OATHAuth"
+      - dependency-name: "extensions/PageImages"
+      - dependency-name: "extensions/ParserFunctions"
+      - dependency-name: "extensions/PdfHandler"
+      - dependency-name: "extensions/Poem"
+      - dependency-name: "extensions/Renameuser"
+      - dependency-name: "extensions/ReplaceText"
+      - dependency-name: "extensions/Scribunto"
+      - dependency-name: "extensions/SecureLinkFixer"
+      - dependency-name: "extensions/SpamBlacklist"
+      - dependency-name: "extensions/SyntaxHighlight_GeSHi"
+      - dependency-name: "extensions/TemplateData"
+      - dependency-name: "extensions/TextExtracts"
+      - dependency-name: "extensions/TitleBlacklist"
+      - dependency-name: "extensions/VisualEditor"
+      - dependency-name: "extensions/WikiEditor"
+      - dependency-name: "skins/MinervaNeue"
+      - dependency-name: "skins/MonoBook"
+      - dependency-name: "skins/Timeless"
+      - dependency-name: "skins/Vector"
+      - dependency-name: "vendor"
