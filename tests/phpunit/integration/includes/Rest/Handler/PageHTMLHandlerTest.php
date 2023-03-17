@@ -203,6 +203,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		string $expectedContentLanguage,
 		string $expectedVaryHeader
 	) {
+		$this->overrideConfigValue( 'UsePigLatinVariant', true );
 		$page = $this->getExistingTestPage( 'HtmlVariantConversion' );
 		$this->assertTrue(
 			$this->editPage( $page, '<p>test language conversion</p>' )->isGood(),
