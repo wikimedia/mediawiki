@@ -63,7 +63,7 @@ div.apihelp-linktrail {
 	line-height: 1.5em;
 }
 
-.apihelp-parameters dt:after {
+.apihelp-parameters dt::after {
 	content: ':\A0';
 }
 
@@ -84,11 +84,11 @@ div.apihelp-linktrail {
 	text-align: center;
 }
 
-.api-main-links ul:before {
+.api-main-links ul::before {
 	content: '[';
 }
 
-.api-main-links ul:after {
+.api-main-links ul::after {
 	content: ']';
 }
 

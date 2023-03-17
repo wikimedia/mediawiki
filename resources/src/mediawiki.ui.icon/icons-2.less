@@ -109,7 +109,7 @@
 		border: 0;
 	}
 
-	&:before {
+	&::before {
 		.mixin-background-square( @icon-size-md );
 	}
 
@@ -180,7 +180,7 @@
 	flex-basis: @icon-size-sm;
 	line-height: @icon-size-sm;
 
-	&:before {
+	&::before {
 		.mixin-background-square( @icon-size-sm );
 	}
 }
@@ -197,7 +197,7 @@
 	margin-right: -@icon-padding-sm;
 }
 
-.mw-ui-icon-small.mw-ui-icon-before:before {
+.mw-ui-icon-small.mw-ui-icon-before::before {
 	min-width: @icon-size-sm;
 	min-height: @icon-size-sm;
 	margin-right: @icon-padding-sm;
@@ -207,7 +207,7 @@
 	width: auto;
 	max-width: 100%;
 
-	&:before {
+	&::before {
 		// sizing
 		display: inline-block;
 		/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
@@ -246,7 +246,7 @@
 			text-decoration: none;
 		}
 
-		&:before {
+		&::before {
 			width: auto;
 			display: inline-block;
 			// Don't use `@icon-padding-md` as we are adjacent to text.
