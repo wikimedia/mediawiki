@@ -21,9 +21,15 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use ErrorPageError;
+use LoginSignupSpecialPage;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Title\Title;
+use Status;
+use StatusValue;
 
 /**
  * Implements Special:CreateAccount
@@ -179,3 +185,8 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 		] );
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialCreateAccount::class, 'SpecialCreateAccount' );

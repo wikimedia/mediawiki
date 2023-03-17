@@ -23,11 +23,16 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use DifferenceEngine;
+use HTMLForm;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
+use SpecialPage;
 
 /**
  * Implements Special:ComparePages
@@ -183,3 +188,8 @@ class SpecialComparePages extends SpecialPage {
 		return 'pagetools';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialComparePages::class, 'SpecialComparePages' );

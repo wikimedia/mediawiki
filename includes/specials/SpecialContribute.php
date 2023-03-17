@@ -1,5 +1,8 @@
 <?php
 
+namespace MediaWiki\Specials;
+
+use IncludableSpecialPage;
 use MediaWiki\Html\TemplateParser;
 use MediaWiki\Specials\Contribute\ContributeFactory;
 
@@ -98,3 +101,8 @@ class SpecialContribute extends IncludableSpecialPage {
 		);
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialContribute::class, 'SpecialContribute' );

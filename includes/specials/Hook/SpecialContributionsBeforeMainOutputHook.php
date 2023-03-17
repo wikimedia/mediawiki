@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use SpecialContributions;
+use MediaWiki\Specials\SpecialContributions;
 use User;
 
 /**

@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Permissions\UltimateAuthority;
+use MediaWiki\Specials\SpecialContribute;
 
 /**
  * @author MAbualruz

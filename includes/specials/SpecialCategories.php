@@ -21,8 +21,12 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use CategoryPager;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\Html;
+use SpecialPage;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -81,3 +85,8 @@ class SpecialCategories extends SpecialPage {
 		return 'pages';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialCategories::class, 'SpecialCategories' );
