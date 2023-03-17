@@ -1,15 +1,16 @@
+@import 'mediawiki.skin.variables.less';
+
 .mw-message-box {
-	color: #000;
+	background-color: @background-color-notice-subtle;
+	color: @color-emphasized;
 	box-sizing: border-box;
 	margin-bottom: 16px;
-	border: 1px solid;
+	border: @border-width-base @border-style-base @border-color-base;
 	padding: 12px 24px;
 	word-wrap: break-word;
 	/* Standard property is `overflow-wrap` */
 	overflow-wrap: break-word;
 	overflow: hidden;
-	background-color: #eaecf0;
-	border-color: #a2a9b1;
 
 	/* Ensure box inner spacing is not all over the place no matter what element is only child. */
 	> :only-child {
@@ -32,16 +33,16 @@
 }
 
 .mw-message-box-error {
-	background-color: #fee7e6;
-	border-color: #d33;
+	background-color: @background-color-error-subtle;
+	border-color: @border-color-error;
 }
 
 .mw-message-box-warning {
-	background-color: #fef6e7;
-	border-color: #fc3;
+	background-color: @background-color-warning-subtle;
+	border-color: @border-color-warning;
 }
 
 .mw-message-box-success {
-	background-color: #d5fdf4;
-	border-color: #14866d;
+	background-color: @background-color-success-subtle;
+	border-color: @border-color-success;
 }

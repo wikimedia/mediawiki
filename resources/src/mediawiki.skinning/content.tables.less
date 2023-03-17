@@ -2,18 +2,21 @@
  * wikitable class for skinning normal tables.
  * Keep in sync with content.tables-print.less.
  */
+
+@import 'mediawiki.skin.variables.less';
+
 .wikitable {
 	background-color: #f8f9fa;
-	color: #202122;
+	color: @color-base;
 	margin: 1em 0;
-	border: 1px solid #a2a9b1;
+	border: @border-width-base @border-style-base @border-color-base;
 	border-collapse: collapse;
 
 	> tr > th,
 	> tr > td,
 	> * > tr > th,
 	> * > tr > td {
-		border: 1px solid #a2a9b1;
+		border: @border-width-base @border-style-base @border-color-base;
 		padding: 0.2em 0.4em;
 	}
 

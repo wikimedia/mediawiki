@@ -1,3 +1,5 @@
+@import 'mediawiki.skin.variables.less';
+
 /* stylelint-disable selector-class-pattern */
 
 #catlinks {
@@ -9,10 +11,10 @@
 }
 
 .catlinks {
-	border: 1px solid #a2a9b1;
 	background-color: #f8f9fa;
-	padding: 5px;
 	margin-top: 1em;
+	border: @border-width-base @border-style-base @border-color-base;
+	padding: 5px;
 	clear: both;
 
 	ul {
@@ -25,13 +27,13 @@
 	li {
 		display: inline-block;
 		line-height: 1.25em;
-		border-left: 1px solid #a2a9b1;
 		margin: 0.125em 0;
+		border-left: @border-width-base @border-style-base @border-color-base;
 		padding: 0 0.5em;
 
 		&:first-child {
-			padding-left: 0.25em;
 			border-left: 0;
+			padding-left: 0.25em;
 		}
 
 		/* (T7346) make category redirects italic */
