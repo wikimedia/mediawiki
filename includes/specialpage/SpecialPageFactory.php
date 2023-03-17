@@ -33,6 +33,11 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Specials\SpecialMostImages;
+use MediaWiki\Specials\SpecialMovePage;
+use MediaWiki\Specials\SpecialUserRights;
+use MediaWiki\Specials\SpecialWantedFiles;
+use MediaWiki\Specials\SpecialWantedPages;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use Profiler;
@@ -243,7 +248,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Wantedfiles' => [
-			'class' => \MediaWiki\Specials\SpecialWantedFiles::class,
+			'class' => SpecialWantedFiles::class,
 			'services' => [
 				'RepoGroup',
 				'DBLoadBalancer',
@@ -251,7 +256,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Wantedpages' => [
-			'class' => \MediaWiki\Specials\SpecialWantedPages::class,
+			'class' => SpecialWantedPages::class,
 			'services' => [
 				'DBLoadBalancer',
 				'LinkBatchFactory',
@@ -499,7 +504,7 @@ class SpecialPageFactory {
 			'class' => \SpecialListBots::class,
 		],
 		'Userrights' => [
-			'class' => \MediaWiki\Specials\SpecialUserRights::class,
+			'class' => SpecialUserRights::class,
 			'services' => [
 				'UserGroupManagerFactory',
 				'UserNameUtils',
@@ -742,7 +747,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Mostimages' => [
-			'class' => \MediaWiki\Specials\SpecialMostImages::class,
+			'class' => SpecialMostImages::class,
 			'services' => [
 				'DBLoadBalancer',
 				'LanguageConverterFactory',
@@ -923,7 +928,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Movepage' => [
-			'class' => \MediaWiki\Specials\SpecialMovePage::class,
+			'class' => SpecialMovePage::class,
 			'services' => [
 				'MovePageFactory',
 				'PermissionManager',
