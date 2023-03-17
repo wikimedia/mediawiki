@@ -33,6 +33,13 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Specials\SpecialActiveUsers;
+use MediaWiki\Specials\SpecialAllMessages;
+use MediaWiki\Specials\SpecialAllPages;
+use MediaWiki\Specials\SpecialAncientPages;
+use MediaWiki\Specials\SpecialApiHelp;
+use MediaWiki\Specials\SpecialApiSandbox;
+use MediaWiki\Specials\SpecialAutoblockList;
 use MediaWiki\Specials\SpecialMostImages;
 use MediaWiki\Specials\SpecialMovePage;
 use MediaWiki\Specials\SpecialUserRights;
@@ -111,7 +118,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Ancientpages' => [
-			'class' => \SpecialAncientPages::class,
+			'class' => SpecialAncientPages::class,
 			'services' => [
 				'NamespaceInfo',
 				'DBLoadBalancer',
@@ -273,7 +280,7 @@ class SpecialPageFactory {
 
 		// List of pages
 		'Allpages' => [
-			'class' => \SpecialAllPages::class,
+			'class' => SpecialAllPages::class,
 			'services' => [
 				'DBLoadBalancer',
 				'SearchEngineFactory',
@@ -360,7 +367,7 @@ class SpecialPageFactory {
 
 		// Users and rights
 		'Activeusers' => [
-			'class' => \SpecialActiveUsers::class,
+			'class' => SpecialActiveUsers::class,
 			'services' => [
 				'LinkBatchFactory',
 				'DBLoadBalancer',
@@ -404,7 +411,7 @@ class SpecialPageFactory {
 			],
 		],
 		'AutoblockList' => [
-			'class' => \SpecialAutoblockList::class,
+			'class' => SpecialAutoblockList::class,
 			'services' => [
 				'LinkBatchFactory',
 				'BlockRestrictionStore',
@@ -667,7 +674,7 @@ class SpecialPageFactory {
 
 		// Data and tools
 		'ApiSandbox' => [
-			'class' => \SpecialApiSandbox::class,
+			'class' => SpecialApiSandbox::class,
 		],
 		'Statistics' => [
 			'class' => \SpecialStatistics::class,
@@ -676,7 +683,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Allmessages' => [
-			'class' => \SpecialAllMessages::class,
+			'class' => SpecialAllMessages::class,
 			'services' => [
 				'LanguageFactory',
 				'LanguageNameUtils',
@@ -891,7 +898,7 @@ class SpecialPageFactory {
 
 		// Unlisted / redirects
 		'ApiHelp' => [
-			'class' => \SpecialApiHelp::class,
+			'class' => SpecialApiHelp::class,
 			'services' => [
 				'UrlUtils',
 			]

@@ -21,9 +21,16 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use HtmlArmor;
+use ILanguageConverter;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Title\Title;
+use NamespaceInfo;
+use QueryPage;
+use Skin;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -109,7 +116,7 @@ class SpecialAncientPages extends QueryPage {
 
 	/**
 	 * @param Skin $skin
-	 * @param stdClass $result Result row
+	 * @param \stdClass $result Result row
 	 * @return string
 	 */
 	public function formatResult( $skin, $result ) {
@@ -129,3 +136,8 @@ class SpecialAncientPages extends QueryPage {
 		return 'maintenance';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialAncientPages::class, 'SpecialAncientPages' );
