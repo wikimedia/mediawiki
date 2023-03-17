@@ -1439,6 +1439,8 @@
 	"apihelp-unblock-param-userid": "{{doc-apihelp-param|unblock|userid}}",
 	"apihelp-unblock-param-reason": "{{doc-apihelp-param|unblock|reason}}",
 	"apihelp-unblock-param-tags": "{{doc-apihelp-param|unblock|tags}}",
+	"apihelp-unblock-param-watchuser": "{{doc-apihelp-param|unblock|watchuser}}",
+	"apihelp-unblock-param-watchlistexpiry": "{{doc-apihelp-param|unblock|watchlistexpiry}}",
 	"apihelp-unblock-example-id": "{{doc-apihelp-example|unblock}}",
 	"apihelp-unblock-example-user": "{{doc-apihelp-example|unblock}}",
 	"apihelp-undelete-summary": "{{doc-apihelp-summary|undelete}}",

@@ -306,6 +306,9 @@ class ApiMain extends ApiBase {
 				'BlockPermissionCheckerFactory',
 				'UnblockUserFactory',
 				'UserIdentityLookup',
+				'WatchedItemStore',
+				'WatchlistManager',
+				'UserOptionsLookup',
 			]
 		],
 		'move' => [
