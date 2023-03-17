@@ -29,3 +29,4 @@ $wgVisualEditorAvailableNamespaces = [
 
 $wgVisualEditorEnableWikitext = true;
 $wgVisualEditorShowBetaWelcome = false;
+$GLOBALS['wgVisualEditorAllowExternalLinkPaste'] = true;
