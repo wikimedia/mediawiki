@@ -204,11 +204,12 @@ class DummyLinker {
 		);
 	}
 
-	public function userLink( $userId, $userName, $altUserName = false ) {
+	public function userLink( $userId, $userName, $altUserName = false, $attributes = [] ) {
 		return Linker::userLink(
 			$userId,
 			$userName,
-			$altUserName
+			$altUserName,
+			$attributes
 		);
 	}
 
