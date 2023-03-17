@@ -2571,7 +2571,7 @@
 	"anoncontribs": "Kontribuoj",
 	"contribute": "Kontribuu",
 	"contribsub2": "De {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "Por {{GENDER:$3|$1}}",
+	"contributions-subtitle": "Por {{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "Uzanto-konto \"$1\" ne estas registrita.",
 	"negative-namespace-not-supported": "Nomspaco kun negativa valoro ne esats subtenata.",
 	"nocontribs": "Trovis neniajn redaktojn laŭ tiu kriterio.",

@@ -2535,7 +2535,7 @@
 	"anoncontribs": "მიშნაღელი თიეფი",
 	"contribute": "ავტორი",
 	"contribsub2": "მახვარებუ {{GENDER:$3|$1}} მიშნაღელი თია ($2)",
-	"contributions-subtitle": "{{GENDER:$3|$1}}-შო",
+	"contributions-subtitle": "{{GENDER:$2|$1}}-შო",
 	"contributions-userdoesnotexist": "მახვარებუშ ანგარიში „$1“ ვა რე რეგისტრირაფილი.",
 	"nocontribs": "გორუაშ ბორჯის მეწურაფილი პარამეტრეფიშ ომანგე აკა თირუაქ ვეგორჷ",
 	"uctop": "მიმალი",

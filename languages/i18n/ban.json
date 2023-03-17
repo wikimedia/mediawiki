@@ -2568,7 +2568,7 @@
 	"anoncontribs": "Pituut",
 	"contribute": "Pituut",
 	"contribsub2": "Antuk {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "Antuk {{GENDER:$3|$1}}",
+	"contributions-subtitle": "Antuk {{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "Akun sang anganggé \"$1\" nénten kadaptar.",
 	"negative-namespace-not-supported": "Genaharan antuk aji negatip tan kadukung.",
 	"nocontribs": "Nénten wénten uwahan sané patut sareng cihna punika.",

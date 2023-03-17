@@ -2630,7 +2630,7 @@
 	"anoncontribs": "Kontribusi",
 	"contribute": "Berkontribusi",
 	"contribsub2": "Untuk {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "Untuk {{GENDER:$3|$1}}",
+	"contributions-subtitle": "Untuk {{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "Pengguna \"$1\" tidak terdaftar.",
 	"negative-namespace-not-supported": "Ruangnama dengan nilai negatif tidak didukung.",
 	"nocontribs": "Tidak ada perubahan yang sesuai dengan kriteria tersebut.",

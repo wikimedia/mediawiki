@@ -2538,7 +2538,7 @@
 	"mycontris": "Sumbangan",
 	"anoncontribs": "Sumbangan",
 	"contribsub2": "Untuk {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "Untuk {{GENDER:$3|$1}}",
+	"contributions-subtitle": "Untuk {{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "Akaun pengguna \"$1\" tidak berdaftar.",
 	"negative-namespace-not-supported": "Ruang nama dengan nilai negatif tidak disokong.",
 	"nocontribs": "Tiada sebarang perubahan yang sepadan dengan kriteria-kriteria ini.",

@@ -2542,7 +2542,7 @@
 	"anoncontribs": "Contributiones",
 	"contribute": "Contribuer",
 	"contribsub2": "Pro {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "Pro {{GENDER:$3|$1}}",
+	"contributions-subtitle": "Pro {{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "Le conto de usator \"$1\" non es registrate.",
 	"negative-namespace-not-supported": "Le spatios de nomines con valores negative non es supportate.",
 	"nocontribs": "Nulle modification correspondente a iste criterios ha essite trovate.",

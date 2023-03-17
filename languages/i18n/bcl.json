@@ -2117,7 +2117,7 @@
 	"mycontris": "Mga ambag",
 	"anoncontribs": "Mga inambag",
 	"contribsub2": "Ni {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "Para ki {{GENDER:$3|$1}}",
+	"contributions-subtitle": "Para ki {{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "Paragamit na panindog \"$1\" bako tabing rehistrado.",
 	"nocontribs": "Mayong nahiling na pagbabagong maitatampad sa criteria.",
 	"uctop": "presente",

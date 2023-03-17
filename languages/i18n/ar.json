@@ -2639,7 +2639,7 @@
 	"anoncontribs": "مساهمات",
 	"contribute": "ساهم",
 	"contribsub2": "ل{{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "لـ{{GENDER:$3|$1}}",
+	"contributions-subtitle": "لـ{{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "حساب المستخدم \"$1\" غير مسجل.",
 	"negative-namespace-not-supported": "النطاقات ذات القيم السالبة غير مدعومة.",
 	"nocontribs": "لم يتم العثور على تغييرات تطابق هذه المحددات.",

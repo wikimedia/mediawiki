@@ -2397,7 +2397,7 @@
 	"mycontris": "Mookkaukset",
 	"anoncontribs": "Mookkaukset",
 	"contribsub2": "Käyttäjän {{GENDER:$3|$1}} mookkaukset ($2)",
-	"contributions-subtitle": "Käyttäjän {{GENDER:$3|$1}} mookkaukset",
+	"contributions-subtitle": "Käyttäjän {{GENDER:$2|$1}} mookkaukset",
 	"contributions-userdoesnotexist": "Käyttäjätunnusta ”$1” ei ole rekisteröity.",
 	"negative-namespace-not-supported": "Nekatiivisia arvoja sisältäviä nimiavaruuksia ei tueta.",
 	"nocontribs": "Näihin ehtoihin sopivia mookkauksia ei löytynyt.",

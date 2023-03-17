@@ -2319,7 +2319,7 @@
 	"mycontris": "Kontributiounen",
 	"anoncontribs": "Kontributiounen",
 	"contribsub2": "Fir {{GENDER:$3|den $1|d'$1|de Benotzer $1}} ($2)",
-	"contributions-subtitle": "Fir {{GENDER:$3|$1}}",
+	"contributions-subtitle": "Fir {{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "De Benotzerkont \"$1\" ass net registréiert.",
 	"nocontribs": "Et goufe keng Ännerunge fonnt, déi dëse Krittären entspriechen.",
 	"uctop": "aktuell",

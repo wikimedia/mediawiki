@@ -2536,7 +2536,7 @@
 	"anoncontribs": "Doprinos",
 	"contribute": "Doprinesite",
 	"contribsub2": "Za {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "Za {{GENDER:$3|$1}}",
+	"contributions-subtitle": "Za {{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "Korisnički račun \"$1\" nije registrovan.",
 	"negative-namespace-not-supported": "Nisu podržani imenski prostori s negativnim vrijednostima.",
 	"nocontribs": "Nisu nađene promjene koje zadovoljavaju ove uslove.",
