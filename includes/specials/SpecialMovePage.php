@@ -21,6 +21,14 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use DeferredUpdates;
+use DoubleRedirectJob;
+use ErrorPageError;
+use File;
+use LogEventsList;
+use LogPage;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Content\IContentHandlerFactory;
@@ -34,7 +42,25 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArray;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
+use MediaWiki\Widget\ComplexTitleInputWidget;
+use NamespaceInfo;
+use OOUI\ButtonInputWidget;
+use OOUI\CheckboxInputWidget;
+use OOUI\DropdownInputWidget;
+use OOUI\FieldLayout;
+use OOUI\FieldsetLayout;
+use OOUI\FormLayout;
+use OOUI\HtmlSnippet;
+use OOUI\PanelLayout;
+use OOUI\TextInputWidget;
+use PermissionsError;
+use RepoGroup;
+use SearchEngineFactory;
+use StringUtils;
+use ThrottledError;
+use UnlistedSpecialPage;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Xml;
 
 /**
  * A special page that allows users to change page titles
@@ -432,8 +458,8 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		$out->enableOOUI();
 		$fields = [];
 
-		$fields[] = new OOUI\FieldLayout(
-			new MediaWiki\Widget\ComplexTitleInputWidget( [
+		$fields[] = new FieldLayout(
+			new ComplexTitleInputWidget( [
 				'id' => 'wpNewTitle',
 				'namespace' => [
 					'id' => 'wpNewTitleNs',
@@ -462,8 +488,8 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		);
 		$options = Xml::listDropDownOptionsOoui( $options );
 
-		$fields[] = new OOUI\FieldLayout(
-			new OOUI\DropdownInputWidget( [
+		$fields[] = new FieldLayout(
+			new DropdownInputWidget( [
 				'name' => 'wpReasonList',
 				'inputId' => 'wpReasonList',
 				'infusable' => true,
@@ -479,8 +505,8 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
 		// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
 		// Unicode codepoints.
-		$fields[] = new OOUI\FieldLayout(
-			new OOUI\TextInputWidget( [
+		$fields[] = new FieldLayout(
+			new TextInputWidget( [
 				'name' => 'wpReason',
 				'id' => 'wpReason',
 				'maxLength' => CommentStore::COMMENT_CHARACTER_LIMIT,
@@ -494,8 +520,8 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		);
 
 		if ( $considerTalk ) {
-			$fields[] = new OOUI\FieldLayout(
-				new OOUI\CheckboxInputWidget( [
+			$fields[] = new FieldLayout(
+				new CheckboxInputWidget( [
 					'name' => 'wpMovetalk',
 					'id' => 'wpMovetalk',
 					'value' => '1',
@@ -503,7 +529,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 				] ),
 				[
 					'label' => $this->msg( 'movetalk' )->text(),
-					'help' => new OOUI\HtmlSnippet( $this->msg( 'movepagetalktext' )->parseAsBlock() ),
+					'help' => new HtmlSnippet( $this->msg( 'movepagetalktext' )->parseAsBlock() ),
 					'helpInline' => true,
 					'align' => 'inline',
 					'id' => 'wpMovetalk-field',
@@ -519,8 +545,8 @@ class SpecialMovePage extends UnlistedSpecialPage {
 				$isChecked = false;
 				$isDisabled = true;
 			}
-			$fields[] = new OOUI\FieldLayout(
-				new OOUI\CheckboxInputWidget( [
+			$fields[] = new FieldLayout(
+				new CheckboxInputWidget( [
 					'name' => 'wpLeaveRedirect',
 					'id' => 'wpLeaveRedirect',
 					'value' => '1',
@@ -535,8 +561,8 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		}
 
 		if ( $hasRedirects ) {
-			$fields[] = new OOUI\FieldLayout(
-				new OOUI\CheckboxInputWidget( [
+			$fields[] = new FieldLayout(
+				new CheckboxInputWidget( [
 					'name' => 'wpFixRedirects',
 					'id' => 'wpFixRedirects',
 					'value' => '1',
@@ -551,15 +577,15 @@ class SpecialMovePage extends UnlistedSpecialPage {
 
 		if ( $canMoveSubpage ) {
 			$maximumMovedPages = $this->getConfig()->get( MainConfigNames::MaximumMovedPages );
-			$fields[] = new OOUI\FieldLayout(
-				new OOUI\CheckboxInputWidget( [
+			$fields[] = new FieldLayout(
+				new CheckboxInputWidget( [
 					'name' => 'wpMovesubpages',
 					'id' => 'wpMovesubpages',
 					'value' => '1',
 					'selected' => $this->moveSubpages,
 				] ),
 				[
-					'label' => new OOUI\HtmlSnippet(
+					'label' => new HtmlSnippet(
 						$this->msg(
 							( $this->oldTitle->hasSubpages()
 								? 'move-subpages'
@@ -575,8 +601,8 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		if ( $user->isRegistered() ) {
 			$watchChecked = ( $this->watch || $this->userOptionsLookup->getBoolOption( $user, 'watchmoves' )
 				|| $this->watchlistManager->isWatched( $user, $this->oldTitle ) );
-			$fields[] = new OOUI\FieldLayout(
-				new OOUI\CheckboxInputWidget( [
+			$fields[] = new FieldLayout(
+				new CheckboxInputWidget( [
 					'name' => 'wpWatch',
 					'id' => 'watch', # ew
 					'value' => '1',
@@ -595,8 +621,8 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		}
 
 		if ( $deleteAndMove ) {
-			$fields[] = new OOUI\FieldLayout(
-				new OOUI\CheckboxInputWidget( [
+			$fields[] = new FieldLayout(
+				new CheckboxInputWidget( [
 					'name' => 'wpDeleteAndMove',
 					'id' => 'wpDeleteAndMove',
 					'value' => '1',
@@ -608,8 +634,8 @@ class SpecialMovePage extends UnlistedSpecialPage {
 			);
 		}
 
-		$fields[] = new OOUI\FieldLayout(
-			new OOUI\ButtonInputWidget( [
+		$fields[] = new FieldLayout(
+			new ButtonInputWidget( [
 				'name' => 'wpMove',
 				'value' => $this->msg( 'movepagebtn' )->text(),
 				'label' => $this->msg( 'movepagebtn' )->text(),
@@ -621,20 +647,20 @@ class SpecialMovePage extends UnlistedSpecialPage {
 			]
 		);
 
-		$fieldset = new OOUI\FieldsetLayout( [
+		$fieldset = new FieldsetLayout( [
 			'label' => $this->msg( 'move-page-legend' )->text(),
 			'id' => 'mw-movepage-table',
 			'items' => $fields,
 		] );
 
-		$form = new OOUI\FormLayout( [
+		$form = new FormLayout( [
 			'method' => 'post',
 			'action' => $this->getPageTitle()->getLocalURL( 'action=submit' ),
 			'id' => 'movepage',
 		] );
 		$form->appendContent(
 			$fieldset,
-			new OOUI\HtmlSnippet(
+			new HtmlSnippet(
 				$hiddenFields .
 				Html::hidden( 'wpOldTitle', $this->oldTitle->getPrefixedText() ) .
 				Html::hidden( 'wpEditToken', $user->getEditToken() )
@@ -642,7 +668,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		);
 
 		$out->addHTML(
-			new OOUI\PanelLayout( [
+			new PanelLayout( [
 				'classes' => [ 'movepage-wrapper' ],
 				'expanded' => false,
 				'padded' => true,

@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Hook;
 
+use MediaWiki\Specials\SpecialMovePage;
 use MediaWiki\Title\Title;
-use SpecialMovePage;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
