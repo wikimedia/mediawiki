@@ -9,7 +9,7 @@
 	background-color: #fdf1d1;
 }
 
-.mw-destfile-warning:after {
+.mw-destfile-warning::after {
 	content: '';
 	clear: both;
 	display: block;

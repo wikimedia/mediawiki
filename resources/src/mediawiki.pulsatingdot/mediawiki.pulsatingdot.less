@@ -1,6 +1,6 @@
 .mw-pulsating-dot {
-	&:before,
-	&:after {
+	&::before,
+	&::after {
 		content: '';
 		display: block;
 		position: absolute;
@@ -8,7 +8,7 @@
 		background-color: #36c;
 	}
 
-	&:before {
+	&::before {
 		width: 36px;
 		height: 36px;
 		top: -18px;
@@ -18,7 +18,7 @@
 		animation-iteration-count: infinite;
 	}
 
-	&:after {
+	&::after {
 		width: 12px;
 		height: 12px;
 		top: -6px;

@@ -113,11 +113,11 @@ table.toc {
 	font-size: 94%;
 }
 
-.toctogglespan:before {
+.toctogglespan::before {
 	content: ' [';
 }
 
-.toctogglespan:after {
+.toctogglespan::after {
 	content: ']';
 }
 
@@ -140,11 +140,11 @@ table.toc {
 }
 
 /* Change the text of the button based on the state of the checkbox. */
-.toctogglecheckbox:checked + .toctitle .toctogglelabel:after {
+.toctogglecheckbox:checked + .toctitle .toctogglelabel::after {
 	content: '@{msg-showtoc}';
 }
 
-.toctogglecheckbox:not( :checked ) + .toctitle .toctogglelabel:after {
+.toctogglecheckbox:not( :checked ) + .toctitle .toctogglelabel::after {
 	content: '@{msg-hidetoc}';
 }
 

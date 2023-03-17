@@ -13,11 +13,11 @@
 	user-select: none;
 }
 
-.mw-collapsible-toggle-default:before {
+.mw-collapsible-toggle-default::before {
 	content: '[';
 }
 
-.mw-collapsible-toggle-default:after {
+.mw-collapsible-toggle-default::after {
 	content: ']';
 }
 

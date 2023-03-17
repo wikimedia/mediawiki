@@ -2,7 +2,7 @@
 .firstHeading {
 	// Bring back the wordmark to the viewport (see logo.less for how it's rendered outside the viewport).
 	& when( @logo-enabled = 1 ) {
-		&:before {
+		&::before {
 			left: auto;
 			position: relative;
 		}

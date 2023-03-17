@@ -9,7 +9,7 @@
 
 /* Content dividers */
 /* @todo FIXME: Hard coded ". .". Is there a message for this? Should there be? */
-.mw-changeslist-separator:empty:before {
+.mw-changeslist-separator:empty::before {
 	content: '. .';
 }
 
@@ -48,16 +48,16 @@
  * # Special:Contributions
  * Never use semicolon on this page. Always use “. .” as separators.
  */
-.mw-changeslist-separator--semicolon:before {
+.mw-changeslist-separator--semicolon::before {
 	content: '@{msg-semicolon-separator}';
 }
 
 .mw-rollback-link {
-	&:before {
+	&::before {
 		content: '@{msg-brackets-start}';
 	}
 
-	&:after {
+	&::after {
 		content: '@{msg-brackets-end}';
 	}
 }
@@ -68,11 +68,11 @@
 /* Needed by pages calling ChangeTags::formatSummaryRow (T212613) */
 .mw-tag-markers,
 .mw-uctop {
-	&:before {
+	&::before {
 		content: '@{msg-parentheses-start}';
 	}
 
-	&:after {
+	&::after {
 		content: '@{msg-parentheses-end}';
 	}
 }
@@ -80,23 +80,23 @@
 .mw-changeslist-links {
 	display: inline-block;
 
-	> span:not( :first-child ):before {
+	> span:not( :first-child )::before {
 		content: '@{msg-pipe-separator}';
 	}
 
 	// In pages like history, do not add additional brackets where not needed
-	.mw-rollback-link:before,
-	.mw-rollback-link:after {
+	.mw-rollback-link::before,
+	.mw-rollback-link::after {
 		content: '';
 	}
 }
 
 .mw-tag-marker {
-	&:after {
+	&::after {
 		content: '@{msg-comma-separator}';
 	}
 
-	&:last-child:after {
+	&:last-child::after {
 		content: '';
 	}
 }
