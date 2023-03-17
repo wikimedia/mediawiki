@@ -23,7 +23,7 @@ $namespaceNames = [
 	NS_TEMPLATE_TALK    => 'Tɛmpileti_tɔgum',
 	NS_HELP             => 'Suŋerɛ',
 	NS_HELP_TALK        => 'Suŋerɛ_tɔgum',
-	NS_CATEGORY         => 'Buuri_buuri ',
+	NS_CATEGORY         => 'Buuri_buuri',
 	NS_CATEGORY_TALK    => 'Buuri_buuri_tɔgum',
 ];
 
