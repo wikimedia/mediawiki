@@ -45,3 +45,9 @@ $GLOBALS['wgExtensionFunctions'][] = function() {
 	}
 	unset( $GLOBALS['wgLogRestrictions'][''] );
 };
+
+// Exclude these system users from user store
+$GLOBALS['mwsgCommonWebAPIsComponentUserStoreExcludeUsers'][] = 'BSMaintenance';
+$GLOBALS['mwsgCommonWebAPIsComponentUserStoreExcludeUsers'][] = 'DynamicPageList3 extension';
+$GLOBALS['mwsgCommonWebAPIsComponentUserStoreExcludeUsers'][] = 'Maintenance script';
+$GLOBALS['mwsgCommonWebAPIsComponentUserStoreExcludeUsers'][] = 'BlueSpice default';
