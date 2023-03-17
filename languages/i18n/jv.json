@@ -2129,7 +2129,7 @@
 	"mycontris": "Pasumbang",
 	"anoncontribs": "Pasumbang",
 	"contribsub2": "Kanggo {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "Marang {{GENDER:$3|$1}}",
+	"contributions-subtitle": "Marang {{GENDER:$2|$1}}",
 	"nocontribs": "Owah-owahan kang cocog karo wewaton mangkono ora tinemu.",
 	"uctop": "saiki",
 	"month": "Saka wulan (lan sadurungé):",

@@ -2424,7 +2424,7 @@
 	"mycontris": "contribûti",
 	"anoncontribs": "contribûti",
 	"contribsub2": "Pe {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "Pe {{GENDER:$3|$1}}",
+	"contributions-subtitle": "Pe {{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "L'utença \"$1\" a no l'è registrâ.",
 	"negative-namespace-not-supported": "I namespace con di valoî negativi no son supportæ.",
 	"nocontribs": "Càngi che sodisfan i critêi de riçèrca no són stæti atrovæ.",

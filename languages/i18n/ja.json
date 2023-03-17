@@ -2684,7 +2684,7 @@
 	"anoncontribs": "投稿記録",
 	"contribute": "投稿",
 	"contribsub2": "利用者: {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "{{GENDER:$3|$1}}",
+	"contributions-subtitle": "{{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "利用者アカウント「$1」は登録されていません。",
 	"negative-namespace-not-supported": "負の値で指定される名前空間はサポートされていません。",
 	"nocontribs": "これらの条件に一致する変更は見つかりませんでした。",

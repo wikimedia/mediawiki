@@ -1554,7 +1554,7 @@
 	"mycontris": "Hissam",
 	"anoncontribs": "Qoʻshilgan hissa",
 	"contribsub2": "{{GENDER:$3|$1}} ($2) amalga oshirgan tahrirlar",
-	"contributions-subtitle": "{{GENDER:$3|$1}}",
+	"contributions-subtitle": "{{GENDER:$2|$1}}",
 	"nocontribs": "Belgilangan shartlarga muvofiq oʻzgarishlar topilmadi.",
 	"uctop": "joriy",
 	"month": "Oydan (va avvalroq)",

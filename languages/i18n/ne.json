@@ -2194,7 +2194,7 @@
 	"anoncontribs": "मेरो योगदानहरू",
 	"contribute": "योगदान गर्नुहोस्",
 	"contribsub2": " {{GENDER:$3|$1}} ($2)को लागि",
-	"contributions-subtitle": "{{GENDER:$3|$1}}को लागी",
+	"contributions-subtitle": "{{GENDER:$2|$1}}को लागी",
 	"contributions-userdoesnotexist": "प्रयोगकर्ता \"$1\" दर्ता गरिएको छैन् ।",
 	"nocontribs": "यस मापदण्ड अनुसार परिवर्त पाइएन।",
 	"uctop": "वर्तमान",

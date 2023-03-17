@@ -2090,7 +2090,7 @@
 	"anoncontribs": "Къинхьегам",
 	"contribute": "Къинхьегам",
 	"contribsub2": "{{GENDER:$3|$1}} ($2) къинхьегам",
-	"contributions-subtitle": "{{GENDER:$3|$1}}",
+	"contributions-subtitle": "{{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "«$1» иштта аккаунт йац.",
 	"nocontribs": "Дехарца хийцамаш цакарий.",
 	"uctop": "карара",

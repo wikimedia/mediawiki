@@ -2602,7 +2602,7 @@
 	"anoncontribs": "Συνεισφορές",
 	"contribute": "Συνεισφέρετε",
 	"contribsub2": "Για {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "Για {{GENDER:$3|τον|την}} $1",
+	"contributions-subtitle": "Για {{GENDER:$2|τον|την}} $1",
 	"contributions-userdoesnotexist": "Ο λογαριασμός χρήστη «$1» δεν είναι εγγεγραμμένος.",
 	"negative-namespace-not-supported": "Δεν υποστηρίζονται ονοματοχώροι με αρνητικές τιμές.",
 	"nocontribs": "Δεν βρέθηκαν αλλαγές με αυτά τα κριτήρια.",

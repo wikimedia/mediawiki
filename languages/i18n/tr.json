@@ -2665,7 +2665,7 @@
 	"anoncontribs": "Katkılar",
 	"contribute": "Katkıda bulun",
 	"contribsub2": "{{GENDER:$3|$1}} ($2) için",
-	"contributions-subtitle": "{{GENDER:$3|$1}} için",
+	"contributions-subtitle": "{{GENDER:$2|$1}} için",
 	"contributions-userdoesnotexist": "\"$1\" kullanıcı hesabı kayıtlı değil.",
 	"negative-namespace-not-supported": "Negatif değerleri olan isim alanları desteklenmez.",
 	"nocontribs": "Bu kriterlere uyan değişiklik bulunamadı",

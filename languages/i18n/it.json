@@ -2676,7 +2676,7 @@
 	"anoncontribs": "contributi",
 	"contribute": "Contribuisci",
 	"contribsub2": "Per {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "Per {{GENDER:$3|$1}}",
+	"contributions-subtitle": "Per {{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "L'utenza \"$1\" non è registrata.",
 	"negative-namespace-not-supported": "I namespace con valori negativi non sono supportati.",
 	"nocontribs": "Non sono state trovate modifiche che soddisfino i criteri di ricerca.",

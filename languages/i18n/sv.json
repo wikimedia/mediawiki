@@ -2621,7 +2621,7 @@
 	"anoncontribs": "Bidrag",
 	"contribute": "Bidra",
 	"contribsub2": "För {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "För {{GENDER:$3|$1}}",
+	"contributions-subtitle": "För {{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "Användarkontot \"$1\" är inte registrerat.",
 	"negative-namespace-not-supported": "Namnrymder med negativa värden stöds inte.",
 	"nocontribs": "Inga ändringar som motsvarar dessa kriterier hittades.",

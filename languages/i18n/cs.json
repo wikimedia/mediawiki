@@ -2589,7 +2589,7 @@
 	"anoncontribs": "Příspěvky",
 	"contribute": "Přispět",
 	"contribsub2": "{{GENDER:$3|uživatele|uživatelky}} $1 ($2)",
-	"contributions-subtitle": "{{GENDER:$3|uživatele|uživatelky}} $1",
+	"contributions-subtitle": "{{GENDER:$2|uživatele|uživatelky}} $1",
 	"contributions-userdoesnotexist": "Uživatelský účet „$1“ není zaregistrován.",
 	"negative-namespace-not-supported": "Jmenné prostory se zápornými hodnotami nejsou podporovány.",
 	"nocontribs": "Nenalezeny žádné změny vyhovující kritériím.",

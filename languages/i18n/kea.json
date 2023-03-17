@@ -514,7 +514,7 @@
 	"contributions-title": "Kontributus di $1",
 	"mycontris": "Kontributus",
 	"anoncontribs": "Kontributus",
-	"contributions-subtitle": "Di {{GENDER:$3|$1}}",
+	"contributions-subtitle": "Di {{GENDER:$2|$1}}",
 	"uctop": "atual",
 	"sp-contributions-blocklog": "rejistu di blokeius",
 	"sp-contributions-uploads": "karegamentus",

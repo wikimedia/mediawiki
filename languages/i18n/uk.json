@@ -2631,7 +2631,7 @@
 	"anoncontribs": "Внесок",
 	"contribute": "Зробити внесок",
 	"contribsub2": "Для {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "Для {{GENDER:$3|$1}}",
+	"contributions-subtitle": "Для {{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "Обліковий запис користувача «$1» не зареєстровано.",
 	"negative-namespace-not-supported": "Не підтримуються простори назв із від'ємними значеннями.",
 	"nocontribs": "Редагувань, що відповідають заданим умовам, не знайдено.",

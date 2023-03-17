@@ -2613,7 +2613,7 @@
 	"anoncontribs": "기여",
 	"contribute": "기여",
 	"contribsub2": "{{GENDER:$3|$1}}($2)의 기여",
-	"contributions-subtitle": "{{GENDER:$3|$1}}의 기여",
+	"contributions-subtitle": "{{GENDER:$2|$1}}의 기여",
 	"contributions-userdoesnotexist": "\"$1\" 사용자 계정은 등록되어 있지 않습니다.",
 	"negative-namespace-not-supported": "음수값의 이름공간은 지원되지 않습니다.",
 	"nocontribs": "지정한 조건과 일치하는 바뀜을 찾을 수 없습니다.",

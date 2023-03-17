@@ -2517,7 +2517,7 @@
 	"mycontris": "ส่วนร่วม",
 	"anoncontribs": "ส่วนร่วม",
 	"contribsub2": "สำหรับ {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "สำหรับ {{GENDER:$3|$1}}",
+	"contributions-subtitle": "สำหรับ {{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "บัญชีผู้ใช้ \"$1\" ยังไม่ได้ลงทะเบียน",
 	"negative-namespace-not-supported": "ไม่รองรับเนมสเปซที่มีค่าเป็นลบ",
 	"nocontribs": "ไม่พบการเปลี่ยนแปลงตรงกับเงื่อนไขเหล่านี้",

@@ -2309,7 +2309,7 @@
 	"mycontris": "شراکتیں",
 	"anoncontribs": "شراکتیں",
 	"contribsub2": "{{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "برائے {{GENDER:$3|$1}}",
+	"contributions-subtitle": "برائے {{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "«$1» کے نام سے صارف کھاتہ مندرج نہیں ہے۔",
 	"nocontribs": "اس معیار کے مطابق کوئی ترمیم دستیاب نہیں ہوئی۔",
 	"uctop": "موجودہ نسخہ",

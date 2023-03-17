@@ -1333,7 +1333,7 @@
 	"mycontris": "Contributiones",
 	"anoncontribs": "Contributiones",
 	"contribsub2": "De {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "Por {{GENDER:$3|$1}}",
+	"contributions-subtitle": "Por {{GENDER:$2|$1}}",
 	"nocontribs": "Null changes corespondent ti-ci criteries esset trovat.",
 	"uctop": "actual",
 	"month": "De mensu (e anterioris):",

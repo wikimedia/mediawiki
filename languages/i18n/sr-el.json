@@ -2542,7 +2542,7 @@
 	"anoncontribs": "Doprinosi",
 	"contribute": "Doprinosi",
 	"contribsub2": "Za {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "Za {{GENDER:$3|$1}}",
+	"contributions-subtitle": "Za {{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "Korisnički nalog „$1” nije otvoren.",
 	"negative-namespace-not-supported": "Imenski prostori s negativnim vrednostima nisu podržani.",
 	"nocontribs": "Nisu pronađene izmene koje ispunjavaju navedene kriterijume.",
