@@ -50,6 +50,13 @@ interface ImportSource {
 	public function readChunk();
 
 	/**
+	 * Check if the source is seekable and a call to self::seek is valid
+	 *
+	 * @return bool
+	 */
+	public function isSeekable();
+
+	/**
 	 * Seek the input to the given offset.
 	 *
 	 * @param int $offset
