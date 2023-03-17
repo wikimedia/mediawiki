@@ -24,9 +24,13 @@
  * @author Soxred93 <soxred93@gmail.com>
  */
 
+namespace MediaWiki\Specials;
+
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Title\Title;
+use RepoGroup;
+use WantedQueryPage;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**

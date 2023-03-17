@@ -243,7 +243,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Wantedfiles' => [
-			'class' => \SpecialWantedFiles::class,
+			'class' => \MediaWiki\Specials\SpecialWantedFiles::class,
 			'services' => [
 				'RepoGroup',
 				'DBLoadBalancer',
