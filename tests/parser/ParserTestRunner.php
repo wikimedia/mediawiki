@@ -366,6 +366,8 @@ class ParserTestRunner {
 
 		$teardown[] = $this->markSetupDone( 'staticSetup' );
 
+		$mwServices = MediaWikiServices::getInstance();
+
 		// Some settings which influence HTML output
 		$setup['wgSitename'] = 'MediaWiki';
 		$setup['wgMetaNamespace'] = "TestWiki";
@@ -385,12 +387,16 @@ class ParserTestRunner {
 		$setup['wgNoFollowDomainExceptions'] = [ 'no-nofollow.org' ];
 		$setup['wgExternalLinkTarget'] = false;
 		$setup['wgLocaltimezone'] = 'UTC';
+
+		// Variant settings
 		$setup['wgDisableLangConversion'] = false;
 		$setup['wgDisableTitleConversion'] = false;
 		$setup['wgUsePigLatinVariant'] = false;
-		$reset = static function () {
-			// Reset to follow changes to $wgDisable*Conversion
-			MediaWikiServices::getInstance()->resetServiceForTesting( 'LanguageConverterFactory' );
+		$reset = static function () use ( $mwServices ) {
+			$mwServices->resetServiceForTesting( 'LanguageConverterFactory' );
+			$mwServices->resetServiceForTesting( 'LanguageFactory' );
+			$mwServices->resetServiceForTesting( 'LanguageNameUtils' );
+			$mwServices->resetServiceForTesting( 'LocalisationCache' );
 		};
 		$setup[] = $reset;
 		$teardown[] = $reset;
@@ -2148,6 +2154,7 @@ class ParserTestRunner {
 		$teardown[] = $this->markSetupDone( 'perTestSetup' );
 
 		$opts = $test->options;
+		$mwServices = MediaWikiServices::getInstance();
 
 		// Find out values for some special options.
 		$langCode =
@@ -2167,7 +2174,7 @@ class ParserTestRunner {
 			'wgLanguageCode' => $langCode,
 			'wgRawHtml' => self::getOptionValue( 'wgRawHtml', $opts, false ),
 			'wgNamespacesWithSubpages' => array_fill_keys(
-				MediaWikiServices::getInstance()->getNamespaceInfo()->getValidNamespaces(),
+				$mwServices->getNamespaceInfo()->getValidNamespaces(),
 				isset( $opts['subpage'] )
 			),
 			'wgMaxTocLevel' => $maxtoclevel,
@@ -2182,6 +2189,19 @@ class ParserTestRunner {
 			// Test with legacy encoding by default until HTML5 is very stable and default
 			'wgFragmentMode' => [ 'legacy' ],
 		];
+
+		if ( $variant !== false || isset( $test->config['wgUsePigLatinVariant'] ) ) {
+			// If !!config touches $wgUsePigLatinVariant, these need to be reset
+			$setup['wgDefaultLanguageVariant'] = $variant;
+			$reset = static function () use ( $mwServices ) {
+				$mwServices->resetServiceForTesting( 'LanguageConverterFactory' );
+				$mwServices->resetServiceForTesting( 'LanguageFactory' );
+				$mwServices->resetServiceForTesting( 'LanguageNameUtils' );
+				$mwServices->resetServiceForTesting( 'LocalisationCache' );
+			};
+			$setup[] = $reset;
+			$teardown[] = $reset;
+		}
 
 		if ( isset( $opts['externallinktarget'] ) ) {
 			$setup['wgExternalLinkTarget'] = self::getOptionValue( 'externallinktarget', $opts, '' );
@@ -2203,29 +2223,23 @@ class ParserTestRunner {
 
 		// Set content language. This invalidates the magic word cache and title services
 		// In addition the ParserFactory needs to be recreated as well.
-		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $langCode );
-		$setup[] = static function () use ( $lang ) {
-			MediaWikiServices::getInstance()->disableService( 'ContentLanguage' );
-			MediaWikiServices::getInstance()->redefineService(
+		$lang = $mwServices->getLanguageFactory()->getLanguage( $langCode );
+		$setup[] = static function () use ( $mwServices, $lang ) {
+			$mwServices->disableService( 'ContentLanguage' );
+			$mwServices->redefineService(
 				'ContentLanguage',
 				static function () use ( $lang ) {
 					return $lang;
 				}
 			);
 		};
-		$teardown[] = static function () {
-			MediaWikiServices::getInstance()->resetServiceForTesting( 'ContentLanguage' );
+		$teardown[] = static function () use ( $mwServices ) {
+			$mwServices->resetServiceForTesting( 'ContentLanguage' );
 		};
-		$reset = function () {
-			$mwServices = MediaWikiServices::getInstance();
+		$reset = function () use ( $mwServices ) {
 			$mwServices->resetServiceForTesting( 'MagicWordFactory' );
 			$this->resetTitleServices();
 			$mwServices->resetServiceForTesting( 'ParserFactory' );
-			// If !!config touches $wgUsePigLatinVariant or the local wiki
-			// defaults to $wgUsePigLatinVariant=true, these need to be reset
-			$mwServices->resetServiceForTesting( 'LanguageConverterFactory' );
-			$mwServices->resetServiceForTesting( 'LanguageFactory' );
-			$mwServices->resetServiceForTesting( 'LanguageNameUtils' );
 			// The SiteConfig depends on the content language as well
 			// as the config vars in SiteConfig::CONSTRUCTOR_OPTIONS,
 			// so reset it as well.
@@ -2241,7 +2255,7 @@ class ParserTestRunner {
 		$setup[] = $reset;
 		$teardown[] = $reset;
 
-		$userOptionsManager = MediaWikiServices::getInstance()->getUserOptionsManager();
+		$userOptionsManager = $mwServices->getUserOptionsManager();
 		// Make a user object with the same language
 		$user = new User;
 		$userOptionsManager->setOption( $user, 'language', $variant ?: $langCode );
@@ -2254,14 +2268,14 @@ class ParserTestRunner {
 		$context->setUser( $user );
 		// And the skin!
 		$oldSkin = $context->getSkin();
-		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
+		$skinFactory = $mwServices->getSkinFactory();
 		$context->setSkin( $skinFactory->makeSkin( $skin ) );
 		$context->setOutput( new OutputPage( $context ) );
 		$setup['wgOut'] = $context->getOutput();
-		$teardown[] = static function () use ( $context, $lang, $oldSkin ) {
+		$teardown[] = static function () use ( $mwServices, $context, $lang, $oldSkin ) {
 			// Clear language conversion tables
 			$wrapper = TestingAccessWrapper::newFromObject(
-				MediaWikiServices::getInstance()->getLanguageConverterFactory()
+				$mwServices->getLanguageConverterFactory()
 					->getLanguageConverter( $lang )
 			);
 			@$wrapper->reloadTables();
