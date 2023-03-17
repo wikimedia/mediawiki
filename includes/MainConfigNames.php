@@ -2050,6 +2050,12 @@ class MainConfigNames {
 	public const EnableCanonicalServerLink = 'EnableCanonicalServerLink';
 
 	/**
+	 * Name constant for the InterwikiLogoOverride setting, for use with Config::get()
+	 * @see MainConfigSchema::InterwikiLogoOverride
+	 */
+	public const InterwikiLogoOverride = 'InterwikiLogoOverride';
+
+	/**
 	 * Name constant for the ResourceModules setting, for use with Config::get()
 	 * @see MainConfigSchema::ResourceModules
 	 */

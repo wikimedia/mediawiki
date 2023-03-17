@@ -3318,6 +3318,22 @@ config-schema:
             server which should be used, i.e. $wgServer or $wgCanonicalServer. Since
             detection of the current server is unreliable, the link is sent
             unconditionally.
+    InterwikiLogoOverride:
+        default: []
+        type: array
+        items:
+            type: string
+        description: |-
+            List of interwiki logos overrides.
+            This is used by the sister project sidebar. This list accept a key equal to the
+            interwiki ID (as defined in the interwiki links), and accept a Codex icon name
+            (https://doc.wikimedia.org/codex/latest/icons/all-icons.html) or a base URL for
+            the given interwiki.
+            Example :
+            $wgInterwikiLogoOverride = [
+                'c' => 'logoWikimediaCommons',
+                'wikit' => 'https://mySpecialWiki.com'
+            ];
     ResourceModules:
         default: {  }
         type: object

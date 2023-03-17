@@ -667,6 +667,8 @@ return [
 			'Send404Code' => true,
 			'ShowRollbackEditCount' => 10,
 			'EnableCanonicalServerLink' => false,
+			'InterwikiLogoOverride' => [
+			],
 			'ResourceModules' => [
 			],
 			'ResourceModuleSkinStyles' => [
@@ -2668,6 +2670,7 @@ return [
 			'SkipSkins' => 'object',
 			'FragmentMode' => 'array',
 			'FooterIcons' => 'object',
+			'InterwikiLogoOverride' => 'array',
 			'ResourceModules' => 'object',
 			'ResourceModuleSkinStyles' => 'object',
 			'ResourceLoaderSources' => 'object',
@@ -3182,6 +3185,11 @@ return [
 			'deprecated' => 'since 1.33',
 		],
 		'RawHtmlMessages' => [
+			'items' => [
+				'type' => 'string',
+			],
+		],
+		'InterwikiLogoOverride' => [
 			'items' => [
 				'type' => 'string',
 			],

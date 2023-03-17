@@ -2035,6 +2035,12 @@ $wgShowRollbackEditCount = null;
 $wgEnableCanonicalServerLink = null;
 
 /**
+ * Config variable stub for the InterwikiLogoOverride setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::InterwikiLogoOverride
+ */
+$wgInterwikiLogoOverride = null;
+
+/**
  * Config variable stub for the ResourceModules setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ResourceModules
  */

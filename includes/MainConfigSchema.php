@@ -5321,6 +5321,25 @@ class MainConfigSchema {
 		'default' => false,
 	];
 
+	/**
+	 * List of interwiki logos overrides.
+	 * This is used by the sister project sidebar. This list accept a key equal to the
+	 * interwiki ID (as defined in the interwiki links), and accept a Codex icon name
+	 * (https://doc.wikimedia.org/codex/latest/icons/all-icons.html) or a base URL for
+	 * the given interwiki.
+	 *
+	 * Example :
+	 * $wgInterwikiLogoOverride = [
+	 *     'c' => 'logoWikimediaCommons',
+	 *     'wikit' => 'https://mySpecialWiki.com'
+	 * ];
+	 */
+	public const InterwikiLogoOverride = [
+		'default' => [],
+		'type' => 'list',
+		'items' => [ 'type' => 'string', ],
+	];
+
 	// endregion -- End of output format settings
 
 	/***************************************************************************/
