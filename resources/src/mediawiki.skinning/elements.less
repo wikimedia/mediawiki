@@ -1,11 +1,11 @@
 /**
- * MediaWiki style sheet for general styles on basic content elements
+ * MediaWiki style sheet for general styles on basic content elements.
  * IMPORTANT: All rules in this file should only apply to __tag__ selectors (T255717).
  * Styling of non-tag selectors is permitted for backwards compatibility, in only two cases:
  * 1) There is an equivalent tag with the same name in HTML4 (e.g. `.small and <small>)
  * 2) A class matches a tag name and is prefixed with `mw-` e.g. `code` and `.mw-code`
  *
- * Styles for basic elements: links, lists, etc...
+ * Styles for basic elements: links, headings, lists, ….
  *
  * This style sheet is used by the Monobook and Vector skins.
  */
@@ -53,8 +53,10 @@ img {
 }
 
 hr {
-	height: 1px;
-	background-color: #a2a9b1;
+	// Use `@border-width-base` instead of `1px` to match the default border width.
+	height: @border-width-base;
+	// Use `@border-color-base` as the element represents a border.
+	background-color: @border-color-base;
 	border: 0;
 	margin: 0.2em 0;
 }
@@ -76,7 +78,7 @@ h6 {
 h1,
 h2 {
 	margin-bottom: 0.6em;
-	border-bottom: 1px solid #a2a9b1;
+	border-bottom: @border-width-base @border-style-base @border-color-base;
 }
 
 h3,
@@ -208,11 +210,11 @@ form {
 
 textarea {
 	display: block;
-	box-sizing: border-box;
+	box-sizing: @box-sizing-base;
 	width: 100%;
 	/* Support: Firefox */
 	/* Border rule required to override system appearance on Linux. T13641. */
-	border: 1px solid #c8ccd1;
+	border: @border-width-base @border-style-base @border-color-base;
 	padding: 0.1em;
 }
 
