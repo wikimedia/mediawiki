@@ -152,6 +152,9 @@ class MessageCache implements LoggerAwareInterface {
 	/** @var HookRunner */
 	private $hookRunner;
 
+	/** @var (string|callable)[]|null */
+	private $messageKeyOverrides;
+
 	/**
 	 * Normalize message key input
 	 *
@@ -223,6 +226,7 @@ class MessageCache implements LoggerAwareInterface {
 		$this->disable = !$options->get( MainConfigNames::UseDatabaseMessages );
 		$this->maxEntrySize = $options->get( MainConfigNames::MaxMsgCacheEntrySize );
 		$this->adaptive = $options->get( MainConfigNames::AdaptiveMessageCache );
+		$this->messageKeyOverrides = [];
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
@@ -1030,14 +1034,34 @@ class MessageCache implements LoggerAwareInterface {
 			return false;
 		}
 
+		$language = wfGetLangObj( $langcode );
+
 		// Normalise title-case input (with some inlining)
 		$lckey = self::normalizeKey( $key );
+
+		// Initialize the overrides here to prevent calling the hook too early.
+		if ( $this->messageKeyOverrides === null ) {
+			$this->messageKeyOverrides = [];
+			$this->hookRunner->onMessageCacheFetchOverrides( $this->messageKeyOverrides );
+		}
+
+		if ( isset( $this->messageKeyOverrides[$lckey] ) ) {
+			$override = $this->messageKeyOverrides[$lckey];
+
+			// Strings are deliberately interpreted as message keys,
+			// to prevent ambiguity between message keys and functions.
+			if ( is_string( $override ) ) {
+				$lckey = $override;
+			} else {
+				$lckey = $override( $lckey, $this, $language, $useDB );
+			}
+		}
 
 		$this->hookRunner->onMessageCache__get( $lckey );
 
 		// Loop through each language in the fallback list until we find something useful
 		$message = $this->getMessageFromFallbackChain(
-			wfGetLangObj( $langcode ),
+			$language,
 			$lckey,
 			!$this->disable && $useDB
 		);

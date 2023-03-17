@@ -55,6 +55,7 @@ class HookRunner implements
 	\MediaWiki\Cache\Hook\HtmlCacheUpdaterAppendUrlsHook,
 	\MediaWiki\Cache\Hook\HtmlCacheUpdaterVaryUrlsHook,
 	\MediaWiki\Cache\Hook\HTMLFileCache__useFileCacheHook,
+	\MediaWiki\Cache\Hook\MessageCacheFetchOverridesHook,
 	\MediaWiki\Cache\Hook\MessageCacheReplaceHook,
 	\MediaWiki\Cache\Hook\MessageCache__getHook,
 	\MediaWiki\Cache\Hook\MessagesPreLoadHook,
@@ -2499,6 +2500,14 @@ class HookRunner implements
 			'MediaWikiServices',
 			[ $services ],
 			[ 'noServices' => true ]
+		);
+	}
+
+	public function onMessageCacheFetchOverrides( array &$messages ): void {
+		$this->container->run(
+			'MessageCacheFetchOverrides',
+			[ &$messages ],
+			[ 'abortable' => false ]
 		);
 	}
 
