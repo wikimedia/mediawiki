@@ -4,7 +4,7 @@ updates:
     directory: "/"
     labels: []
     schedule:
-      interval: daily
+      interval: monthly
       time: "00:00"
     open-pull-requests-limit: 750
     target-branch: REL1_39
