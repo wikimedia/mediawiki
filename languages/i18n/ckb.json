@@ -2035,7 +2035,7 @@
 	"mycontris": "بەشدارییەکان",
 	"anoncontribs": "بەشدارییەکان",
 	"contribsub2": "بۆ {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "بۆ {{GENDER:$3|$1}}",
+	"contributions-subtitle": "بۆ {{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "ھەژماری بەکارھێنەریی «$1» تۆمار نەکراوە.",
 	"nocontribs": "هیچ گۆڕانکاریەکی هاوتای ئەم پێوەرانە نودۆزرایەوە",
 	"uctop": "ھەنووکە",

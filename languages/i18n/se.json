@@ -1213,7 +1213,7 @@
 	"mycontris": "Rievdadusat",
 	"anoncontribs": "Rievdadusat",
 	"contribsub2": "Geavaheaddji {{GENDER:$3|$1}} ($2) rievdadusat",
-	"contributions-subtitle": "Geavaheaddji {{GENDER:$3|$1}} rievdadusat",
+	"contributions-subtitle": "Geavaheaddji {{GENDER:$2|$1}} rievdadusat",
 	"uctop": "ođđaseamos",
 	"month": "Mánotbadji",
 	"year": "Jahki",

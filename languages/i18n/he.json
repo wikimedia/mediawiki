@@ -2584,7 +2584,7 @@
 	"anoncontribs": "תרומות",
 	"contribute": "תרומה",
 	"contribsub2": "עבור {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "עבור {{GENDER:$3|$1}}",
+	"contributions-subtitle": "עבור {{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "חשבון המשתמש \"$1\" אינו רשום.",
 	"negative-namespace-not-supported": "אין תמיכה במרחבי שם בעלי ערך שלילי.",
 	"nocontribs": "לא נמצאו שינויים המתאימים לקריטריונים אלו.",

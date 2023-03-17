@@ -2571,7 +2571,7 @@
 	"anoncontribs": "Contribucións",
 	"contribute": "Contribuír",
 	"contribsub2": "De {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "Para {{GENDER:$3|$1}}",
+	"contributions-subtitle": "Para {{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "A conta de usuario \"$1\" non está rexistrada.",
 	"negative-namespace-not-supported": "Non están soportados os espazos de nomes con valore negativos.",
 	"nocontribs": "Non se atoparon cambios que coincidan con eses criterios.",

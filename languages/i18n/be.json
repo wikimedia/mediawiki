@@ -2574,7 +2574,7 @@
 	"anoncontribs": "Уклад",
 	"contribute": "Унесці ўклад",
 	"contribsub2": "Для $1 ($2)",
-	"contributions-subtitle": "Для {{GENDER:$3|$1}}",
+	"contributions-subtitle": "Для {{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "Уліковы запіс удзельніка \"$1\" не зарэгістраваны.",
 	"negative-namespace-not-supported": "Прасторы назваў з адмоўнымі значэннямі не падтрымліваюцца.",
 	"nocontribs": "Не знойдзена змен, адпаведных зададзеным параметрам.",

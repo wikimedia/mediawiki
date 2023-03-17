@@ -2300,7 +2300,7 @@
 	"anoncontribs": "Cyfraniadau",
 	"contribute": "Cyfrannu",
 	"contribsub2": "Gan {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "Ar gyfer {{GENDER:$3|$1}}",
+	"contributions-subtitle": "Ar gyfer {{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "Nid oes cyfrif o'r enw \"$1\" wedi ei gofrestru yma.",
 	"nocontribs": "Heb ddod o hyd i newidiadau gyda'r meini prawf hyn.",
 	"uctop": "presennol",

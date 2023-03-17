@@ -2543,7 +2543,7 @@
 	"anoncontribs": "Приноси",
 	"contribute": "Добавете своя принос",
 	"contribsub2": "За {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "За {{GENDER:$3|$1}}",
+	"contributions-subtitle": "За {{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "Няма регистрирана потребителска сметка за „$1“.",
 	"negative-namespace-not-supported": "Именни пространства с негативни стойности не се поддържат.",
 	"nocontribs": "Не са намерени промени, отговарящи на критерия.",

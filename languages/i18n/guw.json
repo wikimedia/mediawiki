@@ -2295,7 +2295,7 @@
 	"anoncontribs": "Nuyidogọ lẹ",
 	"contribute": "Yidogọna",
 	"contribsub2": "Na {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "Ná {{GENDER:$3|$1}}",
+	"contributions-subtitle": "Ná {{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "Adà zinzantọ \"$1\" tọn ma ko yin kinkandai.",
 	"nocontribs": "Diọdo de ma tin he do ehe nkọ.",
 	"uctop": "alọnu",

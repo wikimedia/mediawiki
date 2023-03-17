@@ -2381,7 +2381,7 @@
 	"mycontris": "Doprinosi",
 	"anoncontribs": "Doprinosi",
 	"contribsub2": "Za {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "Za {{GENDER:$3|$1}}",
+	"contributions-subtitle": "Za {{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "Korisnički račun \"$1\" nije registriran.",
 	"negative-namespace-not-supported": "Imenski prostori s negativnim vrijednostima nisu podržani.",
 	"nocontribs": "Nema izmjena koje odgovaraju navedenim kriterijima.",

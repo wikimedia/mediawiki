@@ -2049,7 +2049,7 @@
 	"mycontris": "বৰঙণিসমূহ",
 	"anoncontribs": "বৰঙণি",
 	"contribsub2": "{{GENDER:$3|$1}} ($2)ৰ কাৰণে",
-	"contributions-subtitle": "{{GENDER:$3|$1}}ৰ বাবে",
+	"contributions-subtitle": "{{GENDER:$2|$1}}ৰ বাবে",
 	"nocontribs": "এই গুণসমূহৰ লগত মিল থকা কোনো সালসলনি পোৱা নগ’ল ।",
 	"uctop": "বৰ্তমান",
 	"month": "এই মাহৰ পৰা (আৰু আগৰ):",

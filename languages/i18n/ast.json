@@ -2430,7 +2430,7 @@
 	"mycontris": "Collaboraciones",
 	"anoncontribs": "Contribuciones",
 	"contribsub2": "Pa {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "Pa {{GENDER:$3|$1}}",
+	"contributions-subtitle": "Pa {{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "La cuenta d'usuariu «$1» nun ta rexistrada.",
 	"negative-namespace-not-supported": "Nun se permiten los espacios de nomes con valores negativos.",
 	"nocontribs": "Nun s'atoparon cambeos que coincidan con esi criteriu.",

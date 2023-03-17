@@ -1719,7 +1719,7 @@
 	"mycontris": "ڀاڱيداريون",
 	"anoncontribs": "ڀاڱيداريون",
 	"contribsub2": "{{GENDER:$3|$1}} ($2) لاءِ",
-	"contributions-subtitle": "{{GENDER:$3|$1}} لاءِ",
+	"contributions-subtitle": "{{GENDER:$2|$1}} لاءِ",
 	"contributions-userdoesnotexist": "واپرائيندڙ کاتو \"$1\" درج ٿيل نہ آهي.",
 	"nocontribs": "هن معيار سان ملندڙ ڪي بہ تبديليون نہ لڌيون ويون.",
 	"uctop": "هاڻوڪو",

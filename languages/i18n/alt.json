@@ -2183,7 +2183,7 @@
 	"mycontris": "Кошконы",
 	"anoncontribs": "Кошконы",
 	"contribsub2": "Кошконы {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "{{GENDER:$3|$1}}",
+	"contributions-subtitle": "{{GENDER:$2|$1}}",
 	"nocontribs": "Ээжилери келижип турган солынтылар табылбады.",
 	"uctop": "тургуза",
 	"month": "Айдаҥ ала (оноҥ озо база):",

@@ -2405,7 +2405,7 @@
 	"mycontris": "Ma degasadennoù",
 	"anoncontribs": "Ma degasadennoù",
 	"contribsub2": "Evit {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "Evit {{GENDER:$3|$1}}",
+	"contributions-subtitle": "Evit {{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "N'eo ket enrollet ar gont implijer \"$1\".",
 	"nocontribs": "N'eus bet kavet kemm ebet o klotañ gant an dezverkoù-se.",
 	"uctop": "red",

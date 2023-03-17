@@ -2639,7 +2639,7 @@
 	"anoncontribs": "Bijdragen",
 	"contribute": "Bijdragen",
 	"contribsub2": "Voor {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "Voor {{GENDER:$3|$1}}",
+	"contributions-subtitle": "Voor {{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "Gebruikersaccount \"$1\" bestaat niet.",
 	"negative-namespace-not-supported": "Naamruimten met negatieve waarden worden niet ondersteund.",
 	"nocontribs": "Geen wijzigingen gevonden die aan de gestelde criteria voldoen.",
