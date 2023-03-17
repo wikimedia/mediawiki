@@ -22,6 +22,7 @@
 
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Specials\SpecialUserRights;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserNameUtils;

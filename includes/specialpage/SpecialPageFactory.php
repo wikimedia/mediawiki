@@ -499,7 +499,7 @@ class SpecialPageFactory {
 			'class' => \SpecialListBots::class,
 		],
 		'Userrights' => [
-			'class' => \SpecialUserRights::class,
+			'class' => \MediaWiki\Specials\SpecialUserRights::class,
 			'services' => [
 				'UserGroupManagerFactory',
 				'UserNameUtils',

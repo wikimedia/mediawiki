@@ -21,6 +21,11 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use LogEventsList;
+use LogPage;
+use ManualLogEntry;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
@@ -34,6 +39,16 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\WikiMap\WikiMap;
+use OutputPage;
+use PermissionsError;
+use SpecialPage;
+use Status;
+use User;
+use UserBlockedError;
+use UserGroupMembership;
+use UserRightsProxy;
+use Xml;
+use XmlSelect;
 
 /**
  * Special page to allow managing user group membership
