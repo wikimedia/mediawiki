@@ -35,7 +35,7 @@ $namespaceNames = [
 	NS_TEMPLATE         => 'Úlgi',
 	NS_TEMPLATE_TALK    => 'Úlgi_talqılawı',
 	NS_HELP             => 'Járdem',
-	NS_HELP_TALK        => 'Járdem talqılawı',
+	NS_HELP_TALK        => 'Járdem_talqılawı',
 	NS_CATEGORY         => 'Kategoriya',
 	NS_CATEGORY_TALK    => 'Kategoriya_talqılawı',
 ];
