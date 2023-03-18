@@ -21,8 +21,14 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use ApiHelp;
+use ApiMain;
+use ApiUsageException;
 use MediaWiki\Html\Html;
 use MediaWiki\Utils\UrlUtils;
+use UnlistedSpecialPage;
 
 /**
  * Special page to redirect to API help pages, for situations where linking to
@@ -107,3 +113,8 @@ class SpecialApiHelp extends UnlistedSpecialPage {
 		return true;
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialApiHelp::class, 'SpecialApiHelp' );
