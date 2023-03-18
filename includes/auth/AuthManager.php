@@ -508,7 +508,7 @@ class AuthManager implements LoggerAwareInterface {
 				$req->returnToUrl = $state['returnToUrl'];
 			}
 
-			// Step 1: Choose an primary authentication provider, and call it until it succeeds.
+			// Step 1: Choose a primary authentication provider, and call it until it succeeds.
 
 			if ( $state['primary'] === null ) {
 				// We haven't picked a PrimaryAuthenticationProvider yet

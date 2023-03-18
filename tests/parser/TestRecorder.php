@@ -25,7 +25,7 @@ use Wikimedia\Parsoid\ParserTests\TestMode as ParserTestMode;
 /**
  * Interface to record parser test results.
  *
- * The TestRecorder is an class hierarchy to record the result of
+ * The TestRecorder is a class hierarchy to record the result of
  * MediaWiki parser tests. One should call start() before running the
  * full parser tests and end() once all the tests have been finished.
  * After each test, you should use record() to keep track of your tests

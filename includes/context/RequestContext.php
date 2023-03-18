@@ -596,7 +596,7 @@ class RequestContext implements IContextSource, MutableContext {
 	}
 
 	/**
-	 * Import an client IP address, HTTP headers, user ID, and session ID
+	 * Import a client IP address, HTTP headers, user ID, and session ID
 	 *
 	 * This sets the current session, $wgUser, and $wgRequest from $params.
 	 * Once the return value falls out of scope, the old context is restored.

@@ -173,7 +173,7 @@ function clamp( value, prop, allowEmpty ) {
 		return (allowEmpty || !prop.def) ? null : prop.def;
 	}
 
-	// ~~ is an short way of doing floor for positive numbers
+	// ~~ is a short way of doing floor for positive numbers
 	value = type.floor ? ~~value : parseFloat( value );
 
 	// IE will pass in empty strings as value for alpha,

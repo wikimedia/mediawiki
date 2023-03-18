@@ -392,7 +392,7 @@ class DataAccess extends IDataAccess {
 		$wikitext = $parser->getStripState()->unstripBoth( $wikitext );
 
 		// XXX: Ideally we will eventually have the legacy parser use our
-		// ContentMetadataCollector instead of having an new ParserOutput
+		// ContentMetadataCollector instead of having a new ParserOutput
 		// created (implicitly in ::prepareParser()/Parser::resetOutput() )
 		// which we then have to manually merge.
 		$out = $parser->getOutput();

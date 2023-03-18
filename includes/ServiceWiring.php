@@ -1,6 +1,6 @@
 <?php
 /**
- * Service implemenations for %MediaWiki core.
+ * Service implementations for %MediaWiki core.
  *
  * This file returns the array loaded by the MediaWikiServices class
  * for use through `MediaWiki\MediaWikiServices::getInstance()`

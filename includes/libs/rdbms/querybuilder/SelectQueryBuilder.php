@@ -425,7 +425,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	}
 
 	/**
-	 * Add a HAVING clause. May be either an string containing a HAVING clause
+	 * Add a HAVING clause. May be either a string containing a HAVING clause
 	 * or an array of conditions building the HAVING clause. If an array is
 	 * given, the conditions constructed from each element are combined with
 	 * AND.

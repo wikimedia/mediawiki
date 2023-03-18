@@ -3626,7 +3626,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	}
 
 	/**
-	 * Get the default (plain) message contents for an page that overrides an
+	 * Get the default (plain) message contents for a page that overrides an
 	 * interface message key.
 	 *
 	 * Primary use cases:

@@ -157,7 +157,7 @@ class DeferredUpdates {
 	 * Note that it is rarely the case that this method should be called outside of a few
 	 * select entry points. For simplicity, that kind of recursion is discouraged. Recursion
 	 * cannot happen if an explicit transaction round is active, which limits usage to updates
-	 * with TRX_ROUND_ABSENT that do not leave open an transactions round of their own during
+	 * with TRX_ROUND_ABSENT that do not leave open any transactions round of their own during
 	 * the call to this method.
 	 *
 	 * In the less-common case of this being called within an in-progress DeferrableUpdate,

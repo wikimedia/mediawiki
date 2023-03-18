@@ -171,7 +171,7 @@ Legacy support is also possible in very old browsers by including a shim for ES5
 <script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"></script>
 ```
 
-With these polyfills, `IntersectionObserver` has been tested an known to work in the following browsers:
+With these polyfills, `IntersectionObserver` has been tested and known to work in the following browsers:
 
 <table>
   <tr>

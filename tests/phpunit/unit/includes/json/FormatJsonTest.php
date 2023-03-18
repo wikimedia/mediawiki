@@ -109,7 +109,7 @@ class FormatJsonTest extends MediaWikiUnitTestCase {
 		$this->assertNotEquals(
 			'\ud840\udc00',
 			strtolower( FormatJson::encode( "\u{20000}" ) ),
-			'Test encoding an broken json_encode character (U+20000)'
+			'Test encoding of broken json_encode character (U+20000)'
 		);
 	}
 

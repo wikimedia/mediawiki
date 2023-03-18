@@ -1663,7 +1663,7 @@ class WANObjectCache implements
 		}
 
 		$isKeyTombstoned = ( $curState[self::RES_TOMB_AS_OF] !== null );
-		// Use the interim key as an temporary alternative if the key is tombstoned
+		// Use the interim key as a temporary alternative if the key is tombstoned
 		if ( $isKeyTombstoned ) {
 			$volState = $this->getInterimValue( $key, $minAsOf, $startTime, $touchedCb );
 			$volValue = $volState[self::RES_VALUE];
