@@ -21,12 +21,17 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use ActiveUsersPager;
+use HTMLForm;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentityLookup;
+use SpecialPage;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -221,3 +226,8 @@ class SpecialActiveUsers extends SpecialPage {
 		return 'users';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialActiveUsers::class, 'SpecialActiveUsers' );

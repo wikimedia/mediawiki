@@ -21,10 +21,16 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use AllMessagesTablePager;
+use HTMLForm;
+use LocalisationCache;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
+use SpecialPage;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -166,3 +172,8 @@ class SpecialAllMessages extends SpecialPage {
 		return 'wiki';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialAllMessages::class, 'SpecialAllMessages' );

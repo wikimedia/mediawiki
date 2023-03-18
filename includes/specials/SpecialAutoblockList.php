@@ -21,6 +21,10 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use BlockListPager;
+use HTMLForm;
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockUtils;
@@ -28,6 +32,7 @@ use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Html\Html;
+use SpecialPage;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -223,3 +228,8 @@ class SpecialAutoblockList extends SpecialPage {
 		return 'users';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialAutoblockList::class, 'SpecialAutoblockList' );

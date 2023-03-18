@@ -21,12 +21,18 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use HTMLForm;
+use IncludableSpecialPage;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Title\Title;
+use SearchEngineFactory;
+use TitleValue;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -408,3 +414,8 @@ class SpecialAllPages extends IncludableSpecialPage {
 		return 'pages';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialAllPages::class, 'SpecialAllPages' );
