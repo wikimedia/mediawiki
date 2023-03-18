@@ -1990,19 +1990,15 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				null,
 				null,
 				__METHOD__,
-				function ( $cmd ) {
-					return $this->mungeSchemaUpdateQuery( $cmd );
-				}
+				self::$useTemporaryTables
+					? static function ( $cmd ) {
+						return preg_replace( '/\bCREATE\s+TABLE\b/i', 'CREATE TEMPORARY TABLE', $cmd );
+					}
+					: null
 			);
 		}
 
 		$db->_schemaOverrides = $overrides;
-	}
-
-	private function mungeSchemaUpdateQuery( $cmd ) {
-		return self::$useTemporaryTables
-			? preg_replace( '/\bCREATE\s+TABLE\b/i', 'CREATE TEMPORARY TABLE', $cmd )
-			: $cmd;
 	}
 
 	/**
@@ -2151,49 +2147,50 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 	}
 
-	private static function unprefixTable( &$tableName, $ind, $prefix ) {
-		$tableName = substr( $tableName, strlen( $prefix ) );
-	}
-
-	private static function isNotUnittest( $table ) {
-		return strpos( $table, self::DB_PREFIX ) !== 0 &&
-			strpos( $table, ParserTestRunner::DB_PREFIX ) !== 0;
-	}
-
 	/**
 	 * @since 1.18
-	 *
 	 * @param IMaintainableDatabase $db
-	 *
 	 * @return array
 	 */
 	public static function listTables( IMaintainableDatabase $db ) {
 		$prefix = $db->tablePrefix();
 		$tables = $db->listTables( $prefix, __METHOD__ );
 
-		if ( $db->getType() === 'mysql' ) {
-			static $viewListCache = null;
-			if ( $viewListCache === null ) {
-				$viewListCache = $db->listViews( null, __METHOD__ );
-			}
+		static $viewListCache = null;
+		if ( $viewListCache === null ) {
+			$viewListCache = $db->getType() === 'mysql'
+				? $db->listViews( null, __METHOD__ )
+				: [];
+		}
+
+		$ret = [];
+		foreach ( $tables as $table ) {
 			// T45571: cannot clone VIEWs under MySQL
-			$tables = array_diff( $tables, $viewListCache );
+			if ( in_array( $table, $viewListCache ) ) {
+				continue;
+			}
+
+			// Unprefix
+			$table = substr( $table, strlen( $prefix ) );
+
+			// Don't duplicate test tables from the previous fataled run
+			if ( str_starts_with( $table, self::DB_PREFIX ) ||
+				str_starts_with( $table, ParserTestRunner::DB_PREFIX )
+			) {
+				continue;
+			}
+
+			// searchindex tables don't need to be duped/dropped separately
+			if ( $db->getType() == 'sqlite' &&
+				in_array( $table, [ 'searchindex_content', 'searchindex_segdir', 'searchindex_segments' ] )
+			) {
+				continue;
+			}
+
+			$ret[] = $table;
 		}
-		array_walk( $tables, [ __CLASS__, 'unprefixTable' ], $prefix );
 
-		// Don't duplicate test tables from the previous fataled run
-		$tables = array_filter( $tables, [ __CLASS__, 'isNotUnittest' ] );
-
-		if ( $db->getType() == 'sqlite' ) {
-			$tables = array_flip( $tables );
-			// these are subtables of searchindex and don't need to be duped/dropped separately
-			unset( $tables['searchindex_content'] );
-			unset( $tables['searchindex_segdir'] );
-			unset( $tables['searchindex_segments'] );
-			$tables = array_flip( $tables );
-		}
-
-		return $tables;
+		return $ret;
 	}
 
 	/**
