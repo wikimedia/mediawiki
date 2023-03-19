@@ -184,7 +184,7 @@ class WANObjectCache implements
 	public const HOLDOFF_TTL = self::MAX_COMMIT_DELAY + self::MAX_READ_LAG + 1;
 
 	/** Consider regeneration if the key will expire within this many seconds */
-	private const LOW_TTL = 30;
+	private const LOW_TTL = 60;
 	/** Max TTL, in seconds, to store keys when a data source has high replication lag */
 	public const TTL_LAGGED = 30;
 
@@ -878,7 +878,7 @@ class WANObjectCache implements
 				// Case B2: slow generation made transaction duration long
 				$mitigated = 'snapshot lag (high generation time)';
 				// Probably systemic; use a low TTL to avoid stampedes/uncacheability
-				$mitigationTTL = self::LOW_TTL;
+				$mitigationTTL = self::TTL_LAGGED;
 			}
 		} elseif ( $dataReplicaLag === false || $dataReplicaLag > self::MAX_READ_LAG ) {
 			// Case C: low/medium snapshot lag with high replication lag
@@ -897,7 +897,7 @@ class WANObjectCache implements
 				// Case D2: slow generation made read lag too high
 				$mitigated = 'read lag (high generation time)';
 				// Probably systemic; use a low TTL to avoid stampedes/uncacheability
-				$mitigationTTL = self::LOW_TTL;
+				$mitigationTTL = self::TTL_LAGGED;
 			}
 		} else {
 			// Case E: new value generated with recent data
@@ -1483,7 +1483,7 @@ class WANObjectCache implements
 	 *      refresh become more likely over time, becoming certain once the grace period is
 	 *      reached. This can reduce traffic spikes when millions of keys are compared to the
 	 *      same  "check" key and touchCheckKey() or resetCheckKey() is called on that "check" key.
-	 *      This option is not  useful for avoiding traffic spikes in the case of the key simply
+	 *      This option is not useful for avoiding traffic spikes in the case of the key simply
 	 *      expiring on account of its TTL (use "lowTTL" instead).
 	 *      Default: WANObjectCache::GRACE_TTL_NONE.
 	 *   - lockTSE: If the value is stale and the "time since expiry" (TSE) is less than the given
@@ -2881,7 +2881,7 @@ class WANObjectCache implements
 	 * of cache access traffic without the need for configuration or expensive state.
 	 *
 	 * @param float $curTTL Approximate TTL left on the key
-	 * @param float $logicalTTL Full logical TTL assigned to the key
+	 * @param float $logicalTTL Full logical TTL assigned to the key; 0 for "infinite"
 	 * @param float $lowTTL Consider a refresh when $curTTL is less than this; the "low" threshold
 	 * @return bool
 	 */
@@ -2889,16 +2889,21 @@ class WANObjectCache implements
 		if ( $lowTTL <= 0 ) {
 			return false;
 		}
-
 		// T264787: avoid having keys start off with a high chance of being refreshed;
 		// the point where refreshing becomes possible cannot precede the key lifetime.
 		$effectiveLowTTL = min( $lowTTL, $logicalTTL ?: INF );
 
-		if ( $curTTL >= $effectiveLowTTL || $curTTL <= 0 ) {
+		// How long the value was in the "low TTL" phase
+		$timeOld = $effectiveLowTTL - $curTTL;
+		if ( $timeOld <= 0 || $timeOld >= $effectiveLowTTL ) {
 			return false;
 		}
 
-		$chance = ( 1 - $curTTL / $effectiveLowTTL );
+		// Ratio of the low TTL phase that has elapsed (r)
+		$ttrRatio = $timeOld / $effectiveLowTTL;
+		// Use p(r) as the monotonically increasing "chance of refresh" function,
+		// having p(0)=0 and p(1)=1. The value expires at the nominal expiry.
+		$chance = $ttrRatio ** 4;
 
 		return ( mt_rand( 1, 1000000000 ) <= 1000000000 * $chance );
 	}
