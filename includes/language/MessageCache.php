@@ -226,7 +226,6 @@ class MessageCache implements LoggerAwareInterface {
 		$this->disable = !$options->get( MainConfigNames::UseDatabaseMessages );
 		$this->maxEntrySize = $options->get( MainConfigNames::MaxMsgCacheEntrySize );
 		$this->adaptive = $options->get( MainConfigNames::AdaptiveMessageCache );
-		$this->messageKeyOverrides = [];
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
