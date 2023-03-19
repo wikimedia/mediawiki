@@ -9,4 +9,4 @@
  * @author Aca
  */
 
-$fallback = 'sh, sh-latn';
+$fallback = 'sr-cyrl, sr-ec, sh, sh-latn';
