@@ -460,7 +460,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		if ( $this->mIsAllowed ) {
 			$suppressAllowed = $this->permissionManager
 				->userHasRight( $this->getUser(), 'suppressrevision' );
-			$out->addModules( [ 'mediawiki.special.revisionDelete' ] );
+			$out->addModules( [ 'mediawiki.misc-authed-ooui' ] );
 			$out->addModuleStyles( [ 'mediawiki.special',
 				'mediawiki.interface.helpers.styles' ] );
 

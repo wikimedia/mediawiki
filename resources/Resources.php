@@ -2063,18 +2063,20 @@ return [
 			'special.movePage.js',
 			'special.mute.js',
 			'special.pageLanguage.js',
+			'special.revisionDelete.js',
 			'special.undelete.js',
 		],
 		'dependencies' => [
 			'mediawiki.api', // special.changecredentials.js
 			'mediawiki.htmlform.ooui', // special.changecredentials.js
-			'mediawiki.widgets.visibleLengthLimit', // special.movePage.js, special.undelete.js, action.delete.js
+			// used by special.movePage.js, special.undelete.js, action.delete.js, special.revisionDelete.js
+			'mediawiki.widgets.visibleLengthLimit',
 			'mediawiki.widgets', // special.movePage.js, special.undelete.js, special.import.js
 			'oojs-ui-core', // special.pageLanguage.js
 		],
 		'messages' => [
 			// @todo Load this message in content language
-			'colon-separator', // action.delete.js
+			'colon-separator', // action.delete.js, special.revisionDelete.js
 		],
 	],
 	// This bundles various small (under 2 KB?) JavaScript files that:
@@ -2228,17 +2230,6 @@ return [
 	],
 	'mediawiki.special.preferences.styles.ooui' => [
 		'styles' => 'resources/src/mediawiki.special.preferences.styles.ooui.less',
-	],
-	'mediawiki.special.revisionDelete' => [
-		'scripts' => 'resources/src/mediawiki.special.revisionDelete.js',
-		'messages' => [
-			// @todo Load this message in content language
-			'colon-separator',
-		],
-		'dependencies' => [
-			'mediawiki.widgets.visibleLengthLimit',
-			'oojs-ui-core',
-		],
 	],
 	'mediawiki.special.search' => [
 		'scripts' => 'resources/src/mediawiki.special.search/search.js',

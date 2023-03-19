@@ -2,6 +2,10 @@
  * JavaScript for Special:RevisionDelete
  */
 ( function () {
+	if ( mw.config.get( 'wgCanonicalSpecialPageName' ) !== 'Revisiondelete' ) {
+		return;
+	}
+
 	var colonSeparator = mw.msg( 'colon-separator' ),
 		wpRevDeleteReasonList = OO.ui.infuse( $( '#wpRevDeleteReasonList' ) ),
 		wpReason = OO.ui.infuse( $( '#wpReason' ) ),
