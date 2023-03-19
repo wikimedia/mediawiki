@@ -130,26 +130,26 @@ class CoreParserFunctions {
 			'interlanguagelink',
 		];
 		foreach ( $noHashFunctions as $func ) {
-			$parser->setFunctionHook( $func, [ __CLASS__, $func ], Parser::SFH_NO_HASH );
+			$parser->setFunctionHook( $func, [ self::class, $func ], Parser::SFH_NO_HASH );
 		}
 
-		$parser->setFunctionHook( 'int', [ __CLASS__, 'intFunction' ], Parser::SFH_NO_HASH );
-		$parser->setFunctionHook( 'special', [ __CLASS__, 'special' ] );
-		$parser->setFunctionHook( 'speciale', [ __CLASS__, 'speciale' ] );
-		$parser->setFunctionHook( 'tag', [ __CLASS__, 'tagObj' ], Parser::SFH_OBJECT_ARGS );
-		$parser->setFunctionHook( 'formatdate', [ __CLASS__, 'formatDate' ] );
+		$parser->setFunctionHook( 'int', [ self::class, 'intFunction' ], Parser::SFH_NO_HASH );
+		$parser->setFunctionHook( 'special', [ self::class, 'special' ] );
+		$parser->setFunctionHook( 'speciale', [ self::class, 'speciale' ] );
+		$parser->setFunctionHook( 'tag', [ self::class, 'tagObj' ], Parser::SFH_OBJECT_ARGS );
+		$parser->setFunctionHook( 'formatdate', [ self::class, 'formatDate' ] );
 
 		if ( $allowDisplayTitle ) {
 			$parser->setFunctionHook(
 				'displaytitle',
-				[ __CLASS__, 'displaytitle' ],
+				[ self::class, 'displaytitle' ],
 				Parser::SFH_NO_HASH
 			);
 		}
 		if ( $allowSlowParserFunctions ) {
 			$parser->setFunctionHook(
 				'pagesinnamespace',
-				[ __CLASS__, 'pagesinnamespace' ],
+				[ self::class, 'pagesinnamespace' ],
 				Parser::SFH_NO_HASH
 			);
 		}

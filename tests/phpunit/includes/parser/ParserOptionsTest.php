@@ -267,7 +267,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 				'canonical!wgRenderHashAppend!onPageRenderingHash',
 				[],
 				[ MainConfigNames::RenderHashAppend => '!wgRenderHashAppend' ],
-				__CLASS__ . '::onPageRenderingHash',
+				[ self::class, 'onPageRenderingHash' ],
 			],
 		];
 	}

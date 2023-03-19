@@ -32,7 +32,7 @@ class HeaderCallback {
 		class_exists( WebRequest::class );
 		class_exists( Telemetry::class );
 
-		header_register_callback( [ __CLASS__, 'callback' ] );
+		header_register_callback( [ self::class, 'callback' ] );
 	}
 
 	/**

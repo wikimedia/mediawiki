@@ -78,10 +78,10 @@ class HTTPFileStreamer {
 		$this->path = $path;
 
 		$this->obResetFunc = $params['obResetFunc'] ??
-			[ __CLASS__, 'resetOutputBuffers' ];
+			[ self::class, 'resetOutputBuffers' ];
 
 		$this->streamMimeFunc = $params['streamMimeFunc'] ??
-			[ __CLASS__, 'contentTypeFromPath' ];
+			[ self::class, 'contentTypeFromPath' ];
 
 		$this->headerFunc = $params['headerFunc'] ?? 'header';
 	}

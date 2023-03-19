@@ -238,7 +238,7 @@ class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 	public function testRunCallbacks() {
 		$manifest = [
 			'name' => 'CallbackTest',
-			'callback' => [ __CLASS__, 'callbackForTest' ],
+			'callback' => [ self::class, 'callbackForTest' ],
 		];
 
 		$file = $this->makeManifestFile( $manifest );

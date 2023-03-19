@@ -130,7 +130,7 @@ class LCStoreStaticArray implements LCStore {
 				return unserialize( $data );
 			case 'a':
 				// Support: MediaWiki 1.34 and earlier (older file format)
-				return array_map( [ __CLASS__, 'decode' ], $data );
+				return array_map( [ self::class, 'decode' ], $data );
 			default:
 				throw new RuntimeException(
 					'Unable to decode ' . var_export( $encoded, true ) );

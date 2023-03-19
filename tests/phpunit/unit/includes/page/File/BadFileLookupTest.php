@@ -77,7 +77,7 @@ WIKITEXT;
 	protected function setUp(): void {
 		parent::setUp();
 		$this->hookContainer = $this->createHookContainer( [
-			'BadImage' => __CLASS__ . '::badImageHook'
+			'BadImage' => [ self::class, 'badImageHook' ]
 		] );
 	}
 

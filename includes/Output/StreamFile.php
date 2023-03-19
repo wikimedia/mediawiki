@@ -65,8 +65,8 @@ class StreamFile {
 			$fname,
 			[
 				'obResetFunc' => 'wfResetOutputBuffers',
-				'streamMimeFunc' => [ __CLASS__, 'contentTypeFromPath' ],
-				'headerFunc' => [ __CLASS__, 'setHeader' ],
+				'streamMimeFunc' => [ self::class, 'contentTypeFromPath' ],
+				'headerFunc' => [ self::class, 'setHeader' ],
 			]
 		);
 

@@ -472,7 +472,7 @@ class ImageModule extends Module {
 			$files[] = $image->getPath( $context );
 		}
 		$files = array_values( array_unique( $files ) );
-		return array_map( [ __CLASS__, 'safeFileHash' ], $files );
+		return array_map( [ self::class, 'safeFileHash' ], $files );
 	}
 
 	/**

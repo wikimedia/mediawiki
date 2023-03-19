@@ -60,7 +60,7 @@ class TempFSFile extends FSFile {
 		if ( self::$pathsCollect === null ) {
 			// @codeCoverageIgnoreStart
 			self::$pathsCollect = [];
-			register_shutdown_function( [ __CLASS__, 'purgeAllOnShutdown' ] );
+			register_shutdown_function( [ self::class, 'purgeAllOnShutdown' ] );
 			// @codeCoverageIgnoreEnd
 		}
 	}

@@ -34,11 +34,11 @@ class ParserTestParserHook {
 	/** Set up extension tags and parser functions for parser tests. */
 	public static function setup( Parser $parser ): bool {
 		// Install a magic word.
-		$parser->setHook( 'tag', [ __CLASS__, 'dumpHook' ] );
-		$parser->setHook( 'tåg', [ __CLASS__, 'dumpHook' ] );
-		$parser->setHook( 'statictag', [ __CLASS__, 'staticTagHook' ] );
-		$parser->setHook( 'asidetag', [ __CLASS__, 'asideTagHook' ] );
-		$parser->setHook( 'pwraptest', [ __CLASS__, 'pWrapTestHook' ] );
+		$parser->setHook( 'tag', [ self::class, 'dumpHook' ] );
+		$parser->setHook( 'tåg', [ self::class, 'dumpHook' ] );
+		$parser->setHook( 'statictag', [ self::class, 'staticTagHook' ] );
+		$parser->setHook( 'asidetag', [ self::class, 'asideTagHook' ] );
+		$parser->setHook( 'pwraptest', [ self::class, 'pWrapTestHook' ] );
 		foreach ( [ 'div', 'span' ] as $tag ) {
 			// spantag, divtag
 			$parser->setHook( $tag . 'tag', static function ( $in, $argv, $parser ) use ( $tag ) {

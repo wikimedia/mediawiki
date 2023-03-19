@@ -80,9 +80,9 @@ class ParserOptions {
 	 * @var callable[]
 	 */
 	private static $initialLazyOptions = [
-		'dateformat' => [ __CLASS__, 'initDateFormat' ],
-		'speculativeRevId' => [ __CLASS__, 'initSpeculativeRevId' ],
-		'speculativePageId' => [ __CLASS__, 'initSpeculativePageId' ],
+		'dateformat' => [ self::class, 'initDateFormat' ],
+		'speculativeRevId' => [ self::class, 'initSpeculativeRevId' ],
+		'speculativePageId' => [ self::class, 'initSpeculativePageId' ],
 	];
 
 	/**

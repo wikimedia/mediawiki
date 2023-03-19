@@ -1567,8 +1567,8 @@ abstract class UploadBase {
 			[ $this, 'checkSvgScriptCallback' ],
 			true,
 			[
-				'processing_instruction_handler' => [ __CLASS__, 'checkSvgPICallback' ],
-				'external_dtd_handler' => [ __CLASS__, 'checkSvgExternalDTD' ],
+				'processing_instruction_handler' => [ self::class, 'checkSvgPICallback' ],
+				'external_dtd_handler' => [ self::class, 'checkSvgExternalDTD' ],
 			]
 		);
 		if ( $check->wellFormed !== true ) {

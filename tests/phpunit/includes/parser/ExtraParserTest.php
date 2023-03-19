@@ -40,7 +40,7 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 
 		// FIXME: This test should pass without setting global content language
 		$this->options = ParserOptions::newFromUserAndLang( new User, $contLang );
-		$this->options->setTemplateCallback( [ __CLASS__, 'statelessFetchTemplate' ] );
+		$this->options->setTemplateCallback( [ self::class, 'statelessFetchTemplate' ] );
 
 		$this->parser = $services->getParserFactory()->create();
 	}

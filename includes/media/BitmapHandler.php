@@ -433,7 +433,7 @@ class BitmapHandler extends TransformationalImageHandler {
 		$typemap = [
 			'image/gif' => [ 'imagecreatefromgif', 'palette', false, 'imagegif' ],
 			'image/jpeg' => [ 'imagecreatefromjpeg', 'truecolor', true,
-				[ __CLASS__, 'imageJpegWrapper' ] ],
+				[ self::class, 'imageJpegWrapper' ] ],
 			'image/png' => [ 'imagecreatefrompng', 'bits', false, 'imagepng' ],
 			'image/vnd.wap.wbmp' => [ 'imagecreatefromwbmp', 'palette', false, 'imagewbmp' ],
 			'image/xbm' => [ 'imagecreatefromxbm', 'palette', false, 'imagexbm' ],

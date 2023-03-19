@@ -104,7 +104,7 @@ class PoolCounterRedis extends PoolCounter {
 
 		if ( self::$active === null ) {
 			self::$active = [];
-			register_shutdown_function( [ __CLASS__, 'releaseAll' ] );
+			register_shutdown_function( [ self::class, 'releaseAll' ] );
 		}
 	}
 

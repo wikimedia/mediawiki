@@ -60,7 +60,7 @@ class RemoteIcuCollation extends Collation {
 		}
 		$blob = $this->rpcClient->call(
 			'icu-collation',
-			self::class . '::' . 'doGetSortKeys',
+			[ self::class, 'doGetSortKeys' ],
 			[
 				$this->locale,
 				self::encode( array_values( $strings ) )

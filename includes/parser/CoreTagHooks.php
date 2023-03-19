@@ -55,13 +55,13 @@ class CoreTagHooks {
 	public static function register( Parser $parser, ServiceOptions $options ) {
 		$options->assertRequiredOptions( self::REGISTER_OPTIONS );
 		$rawHtml = $options->get( MainConfigNames::RawHtml );
-		$parser->setHook( 'pre', [ __CLASS__, 'pre' ] );
-		$parser->setHook( 'nowiki', [ __CLASS__, 'nowiki' ] );
-		$parser->setHook( 'gallery', [ __CLASS__, 'gallery' ] );
-		$parser->setHook( 'indicator', [ __CLASS__, 'indicator' ] );
-		$parser->setHook( 'langconvert', [ __CLASS__, 'langconvert' ] );
+		$parser->setHook( 'pre', [ self::class, 'pre' ] );
+		$parser->setHook( 'nowiki', [ self::class, 'nowiki' ] );
+		$parser->setHook( 'gallery', [ self::class, 'gallery' ] );
+		$parser->setHook( 'indicator', [ self::class, 'indicator' ] );
+		$parser->setHook( 'langconvert', [ self::class, 'langconvert' ] );
 		if ( $rawHtml ) {
-			$parser->setHook( 'html', [ __CLASS__, 'html' ] );
+			$parser->setHook( 'html', [ self::class, 'html' ] );
 		}
 	}
 

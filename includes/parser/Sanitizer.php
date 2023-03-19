@@ -664,7 +664,7 @@ class Sanitizer {
 				)/xu";
 		}
 		$value = preg_replace_callback( $decodeRegex,
-			[ __CLASS__, 'cssDecodeCallback' ], $value );
+			[ self::class, 'cssDecodeCallback' ], $value );
 
 		// Let the value through if it's nothing but a single comment, to
 		// allow other functions which may reject it to pass some error

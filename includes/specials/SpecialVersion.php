@@ -1467,7 +1467,7 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		return $this->getLanguage()
-			->listToText( array_map( [ __CLASS__, 'arrayToString' ], $list ) );
+			->listToText( array_map( [ self::class, 'arrayToString' ], $list ) );
 	}
 
 	/**
