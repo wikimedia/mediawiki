@@ -3729,23 +3729,26 @@ class EditPage implements IEditObject {
 					? 'usercssispublic'
 					: ( $isUserJsonConfig ? 'userjsonispublic' : 'userjsispublic' );
 
-				$intro .= Html::rawElement(
+				$warningText = $ctx->msg( $warning )->parse();
+				$intro .= $warningText ? Html::rawElement(
 					'div',
 					[ 'class' => 'mw-userconfigpublic' ],
-					$ctx->msg( $warning )->parse()
-				);
+					$warningText
+				) : '';
 
 				$isMsgSameWhenParsed = $this->isMsgSameWhenParsed( $ctx, $warning );
 			}
 		}
 
 		if ( $namespace === NS_MEDIAWIKI ) {
+			$interfaceMsg = $ctx->msg( 'editinginterface' );
+			$interfaceMsgText = $interfaceMsg->parse();
 			# Show a warning if editing an interface message
-			$intro .= Html::rawElement(
+			$intro .= $interfaceMsgText ? Html::rawElement(
 				'div',
 				[ 'class' => 'mw-editinginterface' ],
-				$ctx->msg( 'editinginterface' )->parse()
-			);
+				$interfaceMsgText
+			) : '';
 			# If this is a default message (but not css, json, or js),
 			# show a hint that it is translatable on translatewiki.net
 			if (
@@ -3755,11 +3758,12 @@ class EditPage implements IEditObject {
 			) {
 				$defaultMessageText = $title->getDefaultMessageText();
 				if ( $defaultMessageText !== false ) {
-					$intro .= Html::rawElement(
+					$translateInterfaceText = $ctx->msg( 'translateinterface' )->parse();
+					$intro .= $translateInterfaceText ? Html::rawElement(
 						'div',
 						[ 'class' => 'mw-translateinterface' ],
-						$ctx->msg( 'translateinterface' )->parse()
-					);
+						$translateInterfaceText
+					) : '';
 					$isMsgSameWhenParsed = $isMsgSameWhenParsed &&
 						$this->isMsgSameWhenParsed( $ctx, 'translateinterface' );
 				}
@@ -3767,11 +3771,12 @@ class EditPage implements IEditObject {
 		}
 
 		if ( $isUserJsConfig ) {
-			$intro .= Html::rawElement(
+			$userConfigDangerousMsg = $ctx->msg( 'userjsdangerous' )->parse();
+			$intro .= $userConfigDangerousMsg ? Html::rawElement(
 				'div',
 				[ 'class' => 'mw-userconfigdangerous' ],
-				$ctx->msg( 'userjsdangerous' )->parse()
-			);
+				$userConfigDangerousMsg
+			) : '';
 			$isMsgSameWhenParsed = $isMsgSameWhenParsed &&
 				$this->isMsgSameWhenParsed( $ctx, 'userjsdangerous' );
 		}
