@@ -1435,6 +1435,8 @@
 	"apihelp-unblock-param-userid": "יש לציין <kbd>$1user=#<var>ID</var></kbd> במקום.",
 	"apihelp-unblock-param-reason": "סיבה להסרת חסימה.",
 	"apihelp-unblock-param-tags": "תגי שינוי שיחולו על הרשומה ביומן החסימה.",
+	"apihelp-unblock-param-watchuser": "לעקוב אחרי דף המשתמש ודף השיחה של המשתמש או של כתובת ה־IP.",
+	"apihelp-unblock-param-watchlistexpiry": "חותם־זמן לתפוגת רשימת המעקב. יש להשמיט את הפרמטר הזה לגמרי כדי להותיר את התפוגה הנוכחית ללא שינוי.",
 	"apihelp-unblock-example-id": "לשחרר את החסימה עם מזהה #<kbd>105</kbd>.",
 	"apihelp-unblock-example-user": "לשחרר את החסימה של המשתמש <kbd>Bob</kbd> עם הסיבה <kbd>Sorry Bob</kbd>.",
 	"apihelp-undelete-summary": "שחזור גרסאות של דף מחוק.",

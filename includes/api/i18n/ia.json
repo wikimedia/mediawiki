@@ -1418,6 +1418,8 @@
 	"apihelp-unblock-param-userid": "Specifica <kbd>$1user=#<var>ID</var></kbd> in su loco.",
 	"apihelp-unblock-param-reason": "Motivo pro le disblocage.",
 	"apihelp-unblock-param-tags": "Etiquettas de modification a applicar al entrata in le registro de blocadas.",
+	"apihelp-unblock-param-watchuser": "Observar le paginas de usator e discussion del usator o del adresse IP.",
+	"apihelp-unblock-param-watchlistexpiry": "Data e hora de expiration del observatorio. Omitte totalmente iste parametro pro lassar le expiration actual intacte.",
 	"apihelp-unblock-example-id": "Levar le blocada con ID #<kbd>105</kbd>.",
 	"apihelp-unblock-example-user": "Disblocar le usator <kbd>Bob</kbd> con motivo <kbd>Sorry Bob</kbd>.",
 	"apihelp-undelete-summary": "Restaurar versiones de un pagina delite.",

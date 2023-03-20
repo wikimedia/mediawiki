@@ -4131,7 +4131,7 @@
 	"renameusererrorexists": "{{GENDER:$1|Brukeren}} «<nowiki>$1</nowiki>» finnes allerede.",
 	"renameusererrorinvalid": "Brukernavnet «<nowiki>$1</nowiki>» er ugyldig.",
 	"renameuser-error-request": "Det var et problem med å motta forespørselen.\nGå tilbake og prøv igjen.",
-	"renameuser-error-same-user": "Du kan ikke gi en bruker samme navn som han/hun allerede har.",
+	"renameuser-error-same-user": "Du kan ikke gi en bruker samme navn som vedkommende allerede har.",
 	"renameusersuccess": "{{GENDER:$2|Brukeren}} «<nowiki>$1</nowiki>» har blitt omdøpt til «<nowiki>$2</nowiki>».",
 	"renameuser-page-exists": "Siden $1 finnes allerede, og kunne ikke erstattes automatisk.",
 	"renameuser-page-moved": "Siden $1 har blitt flyttet til $2.",
