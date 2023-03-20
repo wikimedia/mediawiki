@@ -29,6 +29,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Watchlist\WatchlistManager;
+use Wikimedia\IPUtils;
 
 /**
  * A special page for unblocking users
@@ -128,6 +129,52 @@ class SpecialUnblock extends SpecialPage {
 			->setSubmitTextMsg( 'ipusubmit' )
 			->addPreHtml( $this->msg( 'unblockiptext' )->parseAsBlock() );
 
+		$userPage = $this->getTargetUserTitle( $this->target );
+		if ( $userPage ) {
+			// Get relevant extracts from the block and suppression logs, if possible
+			$logExtract = '';
+			LogEventsList::showLogExtract(
+				$logExtract,
+				'block',
+				$userPage,
+				'',
+				[
+					'lim' => 10,
+					'msgKey' => [
+						'unblocklog-showlog',
+						$userPage->getText(),
+					],
+					'showIfEmpty' => false
+				]
+			);
+			if ( $logExtract !== '' ) {
+				$form->addPostHtml( $logExtract );
+			}
+
+			// Add suppression block entries if allowed
+			if ( $this->getAuthority()->isAllowed( 'suppressionlog' ) ) {
+				$logExtract = '';
+				LogEventsList::showLogExtract(
+					$logExtract,
+					'suppress',
+					$userPage,
+					'',
+					[
+						'lim' => 10,
+						'conds' => [ 'log_action' => [ 'block', 'reblock', 'unblock' ] ],
+						'msgKey' => [
+							'unblocklog-showsuppresslog',
+							$userPage->getText(),
+						],
+						'showIfEmpty' => false
+					]
+				);
+				if ( $logExtract !== '' ) {
+					$form->addPostHtml( $logExtract );
+				}
+			}
+		}
+
 		if ( $form->show() ) {
 			switch ( $this->type ) {
 				case DatabaseBlock::TYPE_IP:
@@ -177,6 +224,24 @@ class SpecialUnblock extends SpecialPage {
 			}
 		}
 		return $targetAndType;
+	}
+
+	/**
+	 * Get a user page target for things like logs.
+	 * This handles account and IP range targets.
+	 * @param UserIdentity|string|null $target
+	 * @return Title|null
+	 */
+	private function getTargetUserTitle( $target ): ?Title {
+		if ( $target instanceof UserIdentity ) {
+			return Title::makeTitle( NS_USER, $target->getName() );
+		}
+
+		if ( is_string( $target ) && IPUtils::isIPAddress( $target ) ) {
+			return Title::makeTitle( NS_USER, $target );
+		}
+
+		return null;
 	}
 
 	protected function getFields() {
