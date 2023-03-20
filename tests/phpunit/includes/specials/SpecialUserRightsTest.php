@@ -20,7 +20,8 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 			$services->getUserNameUtils(),
 			$services->getUserNamePrefixSearch(),
 			$services->getUserFactory(),
-			$services->getActorStoreFactory()
+			$services->getActorStoreFactory(),
+			$services->getWatchlistManager()
 		);
 	}
 
