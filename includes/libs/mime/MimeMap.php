@@ -136,6 +136,7 @@ class MimeMap {
 		'application/zip' =>
 			[ 'zip', 'jar', 'xpi', 'sxc', 'stc', 'sxd', 'std', 'sxi', 'sti', 'sxm', 'stm', 'sxw', 'stw' ],
 		'application/x-rar' => [ 'rar' ],
+		'font/sfnt' => [ 'ttf' ],
 		'application/font-sfnt' => [ 'ttf' ],
 		'application/font-woff' => [ 'woff' ],
 		'application/font-woff2' => [ 'woff2' ],
