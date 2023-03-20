@@ -14,6 +14,6 @@ $GLOBALS['bsgTagCloudTypeCategoryExclude'] = [
 	'BPMN SequenceFlow',
 	'BPMN StartEvent',
 	'BPMN SubProcess',
-	'BPMN TextAnnotation',	
+	'BPMN TextAnnotation',
 	'Imported vocabulary'
 ];
