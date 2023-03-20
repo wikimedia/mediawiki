@@ -394,6 +394,9 @@ class ApiMain extends ApiBase {
 			'class' => ApiUserrights::class,
 			'services' => [
 				'UserGroupManager',
+				'WatchedItemStore',
+				'WatchlistManager',
+				'UserOptionsLookup',
 			]
 		],
 		'options' => [

@@ -335,4 +335,12 @@ class ApiUserrightsTest extends ApiTestCase {
 			],
 		];
 	}
+
+	public function testWatched() {
+		$user = $this->getMutableTestUser()->getUser();
+		$userPage = Title::makeTitle( NS_USER, $user->getName() );
+		$this->doSuccessfulRightsChange( 'sysop', [ 'watchuser' => true ], $user );
+		$this->assertTrue( $this->getServiceContainer()->getWatchlistManager()
+			->isWatched( $this->getTestSysop()->getUser(), $userPage ) );
+	}
 }

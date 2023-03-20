@@ -23,17 +23,24 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Specials\SpecialUserRights;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 
 /**
  * @ingroup API
  */
 class ApiUserrights extends ApiBase {
+
+	use ApiWatchlistTrait;
 
 	/** @var UserIdentity|null */
 	private $mUser = null;
@@ -41,18 +48,35 @@ class ApiUserrights extends ApiBase {
 	/** @var UserGroupManager */
 	private $userGroupManager;
 
+	/** @var WatchedItemStoreInterface */
+	private $watchedItemStore;
+
 	/**
 	 * @param ApiMain $mainModule
 	 * @param string $moduleName
 	 * @param UserGroupManager $userGroupManager
+	 * @param WatchedItemStoreInterface $watchedItemStore
+	 * @param WatchlistManager $watchlistManager
+	 * @param UserOptionsLookup $userOptionsLookup
 	 */
 	public function __construct(
 		ApiMain $mainModule,
 		$moduleName,
-		UserGroupManager $userGroupManager
+		UserGroupManager $userGroupManager,
+		WatchedItemStoreInterface $watchedItemStore,
+		WatchlistManager $watchlistManager,
+		UserOptionsLookup $userOptionsLookup
 	) {
 		parent::__construct( $mainModule, $moduleName );
 		$this->userGroupManager = $userGroupManager;
+		$this->watchedItemStore = $watchedItemStore;
+
+		// Variables needed in ApiWatchlistTrait trait
+		$this->watchlistExpiryEnabled = $this->getConfig()->get( MainConfigNames::WatchlistExpiry );
+		$this->watchlistMaxDuration =
+			$this->getConfig()->get( MainConfigNames::WatchlistExpiryMaxDuration );
+		$this->watchlistManager = $watchlistManager;
+		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
 	public function execute() {
@@ -125,6 +149,24 @@ class ApiUserrights extends ApiBase {
 			$params['reason'], (array)$tags, $groupExpiries
 		);
 
+		$watchlistExpiry = $this->getExpiryFromParams( $params );
+		$watchuser = $params['watchuser'];
+		$userPage = Title::makeTitle( NS_USER, $user->getName() );
+		if ( $watchuser && $user->getWikiId() === UserIdentity::LOCAL ) {
+			$this->setWatch( 'watch', $userPage, $this->getUser(), null, $watchlistExpiry );
+		} else {
+			$watchuser = false;
+			$watchlistExpiry = null;
+		}
+		$r['watchuser'] = $watchuser;
+		if ( $watchlistExpiry !== null ) {
+			$r['watchlistexpiry'] = $this->getWatchlistExpiry(
+				$this->watchedItemStore,
+				$userPage,
+				$this->getUser()
+			);
+		}
+
 		$result = $this->getResult();
 		ApiResult::setIndexedTagName( $r['added'], 'group' );
 		ApiResult::setIndexedTagName( $r['removed'], 'group' );
@@ -171,7 +213,7 @@ class ApiUserrights extends ApiBase {
 			sort( $allGroups );
 		}
 
-		return [
+		$params = [
 			'user' => [
 				ParamValidator::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'id' ],
@@ -204,7 +246,23 @@ class ApiUserrights extends ApiBase {
 				ParamValidator::PARAM_TYPE => 'tags',
 				ParamValidator::PARAM_ISMULTI => true
 			],
+			'watchuser' => false,
 		];
+
+		// Params appear in the docs in the order they are defined,
+		// which is why this is here and not at the bottom.
+		// @todo Find better way to support insertion at arbitrary position
+		if ( $this->watchlistExpiryEnabled ) {
+			$params += [
+				'watchlistexpiry' => [
+					ParamValidator::PARAM_TYPE => 'expiry',
+					ExpiryDef::PARAM_MAX => $this->watchlistMaxDuration,
+					ExpiryDef::PARAM_USE_MAX => true,
+				]
+			];
+		}
+
+		return $params;
 	}
 
 	public function needsToken() {

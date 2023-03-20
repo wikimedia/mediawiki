@@ -1634,6 +1634,8 @@
 	"apihelp-userrights-param-remove": "Remove the user from these groups.",
 	"apihelp-userrights-param-reason": "Reason for the change.",
 	"apihelp-userrights-param-tags": "Change tags to apply to the entry in the user rights log.",
+	"apihelp-userrights-param-watchuser": "Watch the user's user and talk pages.",
+	"apihelp-userrights-param-watchlistexpiry": "Watchlist expiry timestamp. Omit this parameter entirely to leave the current expiry unchanged.",
 	"apihelp-userrights-example-user": "Add user <kbd>FooBot</kbd> to group <kbd>bot</kbd>, and remove from groups <kbd>sysop</kbd> and <kbd>bureaucrat</kbd>.",
 	"apihelp-userrights-example-userid": "Add the user with ID <kbd>123</kbd> to group <kbd>bot</kbd>, and remove from groups <kbd>sysop</kbd> and <kbd>bureaucrat</kbd>.",
 	"apihelp-userrights-example-expiry": "Add user <kbd>SometimeSysop</kbd> to group <kbd>sysop</kbd> for 1 month.",
