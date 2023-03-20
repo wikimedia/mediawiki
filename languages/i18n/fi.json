@@ -3869,6 +3869,7 @@
 	"json-error-utf8": "Huonosti muotoiltuja UTF-8 merkkejä; mahdollisesti koodattu virheellisesti",
 	"json-error-utf16": "Huonosti muotoiltuja UTF-8 merkkejä; mahdollisesti koodattu virheellisesti",
 	"headline-anchor-title": "Linkitä tähän osioon",
+	"special-tab-contribute-short": "Osallistu",
 	"special-tab-contributions-short": "Näytä muokkaukset",
 	"special-characters-group-latin": "Latina",
 	"special-characters-group-latinextended": "Laajennettu latina",

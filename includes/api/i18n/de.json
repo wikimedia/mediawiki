@@ -1107,6 +1107,8 @@
 	"apihelp-unblock-param-user": "Benutzer, der freigegeben werden soll. Kann nicht zusammen mit <var>$1id</var> verwendet werden.",
 	"apihelp-unblock-param-reason": "Grund für die Freigabe.",
 	"apihelp-unblock-param-tags": "Auf den Benutzersperr-Logbuch-Eintrag anzuwendende Änderungsmarkierungen.",
+	"apihelp-unblock-param-watchuser": "Benutzer- und Diskussionsseiten des Benutzers oder der IP-Adresse beobachten.",
+	"apihelp-unblock-param-watchlistexpiry": "Ablaufzeitstempel der Beobachtungsliste. Lasse diesen Parameter vollständig weg, um den aktuellen Ablauf unverändert zu lassen.",
 	"apihelp-unblock-example-id": "Sperrkennung #<kbd>105</kbd> freigeben.",
 	"apihelp-unblock-example-user": "Benutzer <kbd>Bob</kbd> mit der Begründung <kbd>Sorry Bob</kbd> entsperren.",
 	"apihelp-undelete-param-title": "Titel der wiederherzustellenden Seite.",
