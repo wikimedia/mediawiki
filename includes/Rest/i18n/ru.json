@@ -15,6 +15,7 @@
 	"rest-nonexistent-revision": "Запрошенная редакция ($1) не существует",
 	"rest-nonexistent-user": "Указанный пользователь ($1) не существует",
 	"rest-invalid-user": "Указанное имя участника ($1) некорректно",
+	"rest-unsupported-content-type": "Неподдерживаемый Content-Type: $1",
 	"rest-permission-denied-anon": "Не доступно анонимному участнику",
 	"rest-permission-denied-title": "Участник не обладает правами чтения заголовка ($1)",
 	"rest-permission-denied-revision": "Участник не имеет доступа к запрошенной версии ($1).",

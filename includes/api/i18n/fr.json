@@ -1456,6 +1456,8 @@
 	"apihelp-unblock-param-userid": "Spécifier plutôt <kbd>$1user=#<var>ID</var></kbd>.",
 	"apihelp-unblock-param-reason": "Motif de déblocage.",
 	"apihelp-unblock-param-tags": "Modifier les balises à appliquer à l’entrée dans le journal de blocage.",
+	"apihelp-unblock-param-watchuser": "Suivre les pages utilisateur et de discussion de l’utilisateur ou de l’adresse IP.",
+	"apihelp-unblock-param-watchlistexpiry": "Délai d’expiration de la liste de suivi. Omettez complètement ce paramètre pour laisser inchangé le délai actuel d’expiration.",
 	"apihelp-unblock-example-id": "Lever le blocage d’ID #<kbd>105</kbd>.",
 	"apihelp-unblock-example-user": "Débloquer l’utilisateur <kbd>Bob</kbd> avec le motif <kbd>Désolé Bob</kbd>.",
 	"apihelp-undelete-summary": "Restaurer des versions d’une page supprimée.",
