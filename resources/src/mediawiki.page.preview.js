@@ -125,31 +125,59 @@
 
 		// Otherwise, fetch protection status of all templates.
 		$parent.addClass( 'mw-preview-loading-elements-loading' );
-		api.post( {
-			action: 'query',
-			format: 'json',
-			titles: templates.map( function ( template ) { return template.title; } ).join( '|' ),
-			prop: 'info',
-			// @todo Do we need inlinkcontext here?
-			inprop: 'linkclasses|protection',
-			intestactions: 'edit'
-		} ).done( function ( response ) {
-			// Empty the list in preparation for either adding new items or not needing to.
-			$list.empty();
 
-			var templatesInfo = ( response.query && response.query.pages ) || {};
+		// Batch titles because API is limited to 50 at a time.
+		var batchSize = 50;
+		var requests = [];
+		for ( var batch = 0; batch < templates.length; batch += batchSize ) {
+			// Build a pipe-separated list of template names for this batch.
+			var titles = templates
+				.slice( batch, batch + batchSize )
+				.map( function ( template ) { return template.title; } )
+				.join( '|' );
+			requests.push( api.post( {
+				action: 'query',
+				format: 'json',
+				formatversion: 2,
+				titles: titles,
+				prop: 'info',
+				// @todo Do we need inlinkcontext here?
+				inprop: 'linkclasses|protection',
+				intestactions: 'edit'
+			} ) );
+		}
+		$.when.apply( null, requests ).done( function () {
+			var templatesAllInfo = [];
+			// For the first batch, empty the list in preparation for either adding new items or not needing to.
+			// @todo Don't empty the list till the new list items are ready to be inserted.
+			$list.empty();
+			for ( var r = 0; r < arguments.length; r++ ) {
+				// Response is either the whole argument, or the 0th element of it.
+				var response = arguments[ r ][ 0 ] || arguments[ r ];
+				var templatesInfo = ( response.query && response.query.pages ) || [];
+				templatesInfo.forEach( function ( ti ) {
+					templatesAllInfo.push( {
+						title: mw.Title.newFromText( ti.title ),
+						apiData: ti
+					} );
+				} );
+			}
+			// Sort alphabetically.
+			templatesAllInfo.sort( function ( t1, t2 ) {
+				// Compare titles with the same rules of Title::compare() in PHP.
+				return t1.title.getNamespaceId() !== t2.title.getNamespaceId() ?
+					t1.title.getNamespaceId() > t2.title.getNamespaceId() :
+					t1.title.getMain().localeCompare( t2.title.getMain() );
+			} );
+
+			// Add all templates to the list, and update the list header.
+			templatesAllInfo.forEach( function ( t ) {
+				addItemToTemplateList( $list, t );
+			} );
 			// The following messages can be used here:
 			// * templatesusedpreview
 			// * templatesusedsection
-			$explanation.msg( explanationMsg, templatesInfo.length );
-			if ( templatesInfo.length === 0 ) {
-				return;
-			}
-
-			// Add all templates to the list, in the order they're returned by the API.
-			Object.keys( templatesInfo ).forEach( function ( t ) {
-				addItemToTemplateList( $list, templatesInfo[ t ] );
-			} );
+			$explanation.msg( explanationMsg, templatesAllInfo.length );
 		} ).always( function () {
 			$parent.removeClass( 'mw-preview-loading-elements-loading' );
 		} );
@@ -164,10 +192,9 @@
 	 * @return {void}
 	 */
 	function addItemToTemplateList( $list, template ) {
-		var canEdit = template.actions.edit !== undefined;
-		var title = mw.Title.newFromText( template.title );
-		var linkClasses = template.linkclasses || [];
-		if ( template.missing !== undefined ) {
+		var canEdit = template.apiData.actions.edit !== undefined;
+		var linkClasses = template.apiData.linkclasses || [];
+		if ( template.apiData.missing !== undefined ) {
 			linkClasses.push( 'new' );
 		}
 		var $baseLink = $( '<a>' )
@@ -178,13 +205,13 @@
 			// * any added by the GetLinkColours hook
 			.addClass( linkClasses );
 		var $link = $baseLink.clone()
-			.attr( 'href', title.getUrl() )
-			.text( title.getPrefixedText() );
+			.attr( 'href', template.title.getUrl() )
+			.text( template.title.getPrefixedText() );
 		var $editLink = $baseLink.clone()
-			.attr( 'href', title.getUrl( { action: 'edit' } ) )
+			.attr( 'href', template.title.getUrl( { action: 'edit' } ) )
 			.append( mw.msg( canEdit ? 'editlink' : 'viewsourcelink' ) );
 		var wordSep = mw.message( 'word-separator' ).escaped();
-		getRestrictionsText( template.protection || [] ).then( function ( restrictionsList ) {
+		getRestrictionsText( template.apiData.protection || [] ).then( function ( restrictionsList ) {
 			// restrictionsList is a comma-separated parentheses-wrapped localized list of restriction level names.
 			var editLinkParens = parenthesesWrap( $editLink[ 0 ].outerHTML );
 			var $li = $( '<li>' ).append( $link, wordSep, editLinkParens, wordSep, restrictionsList );
