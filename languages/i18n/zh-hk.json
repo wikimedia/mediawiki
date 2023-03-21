@@ -185,6 +185,7 @@
 	"publishpage-start": "發佈頁面…",
 	"publishchanges-start": "發佈變更…",
 	"missingsummary": "<strong>提醒：</strong>您未填寫編輯摘要。\n若您再點選「$1」一次，將略過摘要直接發布您的編輯。",
+	"autoblockedtext": "您的IP位址因曾被一位由$1封鎖的用戶使用而被自動封鎖。\n封鎖原因：\n\n:<em>$2</em>。\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}} \n\n若您已在[[Special:Preferences|偏好設定]]中設定了一個有效的電子郵件地址，且尚未被封鎖郵件功能，則您可透過「{{int:emailuser}}」的功能來聯絡相關管理員。\n\n{{int:blockedtext-block-ip|$3}}，此次封鎖的ID為 #$5。\n{{int:blockedtext-include-details-queries}}",
 	"userpage-userdoesnotexist": "用戶賬號「$1」沒有在此wiki上註冊。請在建立或編輯本頁前檢查。",
 	"userpage-userdoesnotexist-view": "用戶賬號「$1」尚未在此wiki上註冊。",
 	"blocked-notice-logextract": "此用戶目前已封鎖，以下是最近的封鎖紀錄：",
