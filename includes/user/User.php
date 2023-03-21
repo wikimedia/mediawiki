@@ -2610,7 +2610,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		} );
 
 		$this->mTouched = $newTouched;
-		MediaWikiServices::getInstance()->getUserOptionsManager()->saveOptionsInternal( $this, $dbw );
+		if ( $this->isNamed() ) {
+			MediaWikiServices::getInstance()->getUserOptionsManager()->saveOptionsInternal( $this, $dbw );
+		}
 
 		$this->getHookRunner()->onUserSaveSettings( $this );
 		$this->clearSharedCache( 'changed' );
@@ -2811,7 +2813,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		// Clear instance cache other than user table data and actor, which is already accurate
 		$this->clearInstanceCache();
 
-		MediaWikiServices::getInstance()->getUserOptionsManager()->saveOptions( $this );
+		if ( $this->isNamed() ) {
+			MediaWikiServices::getInstance()->getUserOptionsManager()->saveOptions( $this );
+		}
 		return Status::newGood();
 	}
 
