@@ -246,6 +246,36 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 			[ 'ttf' ], $this->mimeAnalyzer->getExtensionsFromMimeType( 'application/font-sfnt' ) );
 	}
 
+	public function testGetMimeTypesFromWoffExtension() {
+		$this->assertContains(
+			'font/woff', $this->mimeAnalyzer->getMimeTypesFromExtension( 'woff' ) );
+		$this->assertContains(
+			'application/font-woff', $this->mimeAnalyzer->getMimeTypesFromExtension( 'woff' ) );
+		$this->assertContains(
+			'font/woff2', $this->mimeAnalyzer->getMimeTypesFromExtension( 'woff2' ) );
+		$this->assertContains(
+			'application/font-woff2', $this->mimeAnalyzer->getMimeTypesFromExtension( 'woff2' ) );
+	}
+
+	public function testGetExtensionsFromWoffMimeType() {
+		$this->assertSame(
+			[ 'woff' ],
+			$this->mimeAnalyzer->getExtensionsFromMimeType( 'font/woff' )
+		);
+		$this->assertSame(
+			[ 'woff' ],
+			$this->mimeAnalyzer->getExtensionsFromMimeType( 'application/font-woff' )
+		);
+		$this->assertSame(
+			[ 'woff2' ],
+			$this->mimeAnalyzer->getExtensionsFromMimeType( 'font/woff2' )
+		);
+		$this->assertSame(
+			[ 'woff2' ],
+			$this->mimeAnalyzer->getExtensionsFromMimeType( 'application/font-woff2' )
+		);
+	}
+
 	public function testGetMimeTypeFromExtensionOrNull() {
 		$this->assertSame( 'video/webm', $this->mimeAnalyzer->getMimeTypeFromExtensionOrNull( 'webm' ) );
 		$this->assertNull( $this->mimeAnalyzer->getMimeTypeFromExtensionOrNull( 'no_such_extension' ) );
