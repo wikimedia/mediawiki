@@ -739,7 +739,7 @@
 	"mergelog": "Ձուլման գրանցամատյան",
 	"revertmerge": "Անջատել",
 	"history-title": "$1 փոփոխումների պատմություն",
-	"difference-title": "$1: խմբագրումների տարբերություն",
+	"difference-title": "«$1»–ի խմբագրումների տարբերություն",
 	"difference-title-multipage": "$1 և $2: Խմբագրումների տարբերություն",
 	"difference-multipage": "(Էջերի տարերություն)",
 	"lineno": "Տող  $1.",
