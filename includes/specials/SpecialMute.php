@@ -23,6 +23,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Preferences\MultiUsernameFilter;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
+use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsManager;
 
 /**
@@ -50,20 +51,26 @@ class SpecialMute extends FormSpecialPage {
 	/** @var UserIdentityLookup */
 	private $userIdentityLookup;
 
+	/** @var UserNameUtils */
+	private $userNameUtils;
+
 	/**
 	 * @param CentralIdLookup $centralIdLookup
 	 * @param UserOptionsManager $userOptionsManager
 	 * @param UserIdentityLookup $userIdentityLookup
+	 * @param UserNameUtils $userNameUtils
 	 */
 	public function __construct(
 		CentralIdLookup $centralIdLookup,
 		UserOptionsManager $userOptionsManager,
-		UserIdentityLookup $userIdentityLookup
+		UserIdentityLookup $userIdentityLookup,
+		UserNameUtils $userNameUtils
 	) {
 		parent::__construct( self::PAGE_NAME, '', false );
 		$this->centralIdLookup = $centralIdLookup;
 		$this->userOptionsManager = $userOptionsManager;
 		$this->userIdentityLookup = $userIdentityLookup;
+		$this->userNameUtils = $userNameUtils;
 	}
 
 	/**
@@ -76,7 +83,7 @@ class SpecialMute extends FormSpecialPage {
 			'https://meta.wikimedia.org/wiki/Community_health_initiative/User_Mute_features',
 			true
 		);
-		$this->requireLogin( 'specialmute-login-required' );
+		$this->requireNamedUser( 'specialmute-login-required' );
 		$this->loadTarget( $par );
 
 		parent::execute( $par );
@@ -232,7 +239,7 @@ class SpecialMute extends FormSpecialPage {
 		if ( $username !== null ) {
 			$target = $this->userIdentityLookup->getUserIdentityByName( $username );
 		}
-		if ( !$target || !$target->isRegistered() ) {
+		if ( !$target || !$target->isRegistered() || $this->userNameUtils->isTemp( $target->getName() ) ) {
 			throw new ErrorPageError( 'specialmute', 'specialmute-error-invalid-user' );
 		} else {
 			$this->target = $target;
