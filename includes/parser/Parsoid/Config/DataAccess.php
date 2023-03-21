@@ -21,6 +21,7 @@ namespace MediaWiki\Parser\Parsoid\Config;
 
 use ContentHandler;
 use File;
+use LanguageCode;
 use MediaTransformError;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ServiceOptions;
@@ -160,7 +161,9 @@ class DataAccess extends IDataAccess {
 		}
 
 		// Parser::makeImage() always sets this
-		$hp['targetlang'] = $pageConfig->getPageLanguage();
+		$hp['targetlang'] = LanguageCode::bcp47ToInternal(
+			$pageConfig->getPageLanguageBcp47()->toBcp47Code()
+		);
 
 		return $hp;
 	}

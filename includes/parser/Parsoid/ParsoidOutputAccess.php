@@ -287,7 +287,7 @@ class ParsoidOutputAccess {
 			'pageBundle' => true,
 			'prefix' => $this->parsoidWikiId,
 			'pageName' => $pageConfig->getTitle(),
-			'htmlVariantLanguage' => $pageConfig->getPageLanguage(),
+			'htmlVariantLanguage' => $pageConfig->getPageLanguageBcp47(),
 			'outputContentVersion' => Parsoid::defaultHTMLVersion(),
 		];
 
