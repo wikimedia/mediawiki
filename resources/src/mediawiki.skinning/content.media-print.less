@@ -6,9 +6,9 @@ figure[ typeof~='mw:File/Frame' ] {
 	border-bottom: 0;  // No border to figcaption
 	background-color: @background-color-thumbinner-print;
 
-	> a:first-child,
-	> span:first-child {
-		> *:first-child:not( .mw-broken-media ) {
+	> :not( figcaption ) {
+		> *:first-child:not( .mw-broken-media ),
+		.mw-file-element:not( .mw-broken-media ) {
 			border: @border-thumbimage-print;
 		}
 	}
@@ -22,11 +22,9 @@ figure[ typeof~='mw:File/Frame' ] {
 	}
 }
 
-.mw-image-border {
-	> a:first-child,
-	> span:first-child {
-		> *:first-child:not( .mw-broken-media ) {
-			border: @border-thumbborder-print;
-		}
+.mw-image-border > :not( figcaption ) {
+	> *:first-child:not( .mw-broken-media ),
+	.mw-file-element:not( .mw-broken-media ) {
+		border: @border-thumbborder-print;
 	}
 }

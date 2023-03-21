@@ -6,9 +6,9 @@ figure[ typeof~='mw:File/Frame' ] {
 	border-bottom: 0;  // No border to figcaption
 	background-color: @background-color-thumbinner-screen;
 
-	> a:first-child,
-	> span:first-child {
-		> *:first-child:not( .mw-broken-media ) {
+	> :not( figcaption ) {
+		> *:first-child:not( .mw-broken-media ),
+		.mw-file-element:not( .mw-broken-media ) {
 			border: @border-thumbimage-screen;
 			background: @background-color-thumbimage-screen;
 		}
@@ -26,12 +26,10 @@ figure[ typeof~='mw:File/Frame' ] {
 	}
 }
 
-.mw-image-border {
-	> a:first-child,
-	> span:first-child {
-		> *:first-child:not( .mw-broken-media ) {
-			border: @border-thumbborder-screen;
-		}
+.mw-image-border > :not( figcaption ) {
+	> *:first-child:not( .mw-broken-media ),
+	.mw-file-element:not( .mw-broken-media ) {
+		border: @border-thumbborder-screen;
 	}
 }
 
@@ -57,30 +55,30 @@ figure[ typeof~='mw:File/Thumb' ]:not( [ typeof~='mw:Error' ] ) {
 		}
 	}
 
-	> a {
+	> .mw-file-description {
 		display: block;
 		position: relative;
-	}
 
-	> a.mw-file-description::after {
-		content: '';
-		width: 15px;
-		height: 11px;
-		position: absolute;
-		bottom: -11px;
+		&::after {
+			content: '';
+			width: 15px;
+			height: 11px;
+			position: absolute;
+			bottom: -11px;
 
-		.mw-content-ltr & {
-			/* @noflip */
-			right: 6px;
-			/* @noflip */
-			background-image: @background-image-magnify-ltr;
-		}
+			.mw-content-ltr & {
+				/* @noflip */
+				right: 6px;
+				/* @noflip */
+				background-image: @background-image-magnify-ltr;
+			}
 
-		.mw-content-rtl & {
-			/* @noflip */
-			left: 6px;
-			/* @noflip */
-			background-image: @background-image-magnify-rtl;
+			.mw-content-rtl & {
+				/* @noflip */
+				left: 6px;
+				/* @noflip */
+				background-image: @background-image-magnify-rtl;
+			}
 		}
 	}
 }

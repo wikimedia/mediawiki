@@ -164,6 +164,9 @@ class TraditionalImageGallery extends ImageGalleryBase {
 						$params['alt'] = $alt;
 					}
 					$params['title'] = $imageOptions['title'];
+					if ( !$enableLegacyMediaDOM ) {
+						$params['img-class'] = 'mw-file-element';
+					}
 					$imageParameters = Linker::getImageLinkMTOParams(
 						$imageOptions, $descQuery, $this->mParser
 					) + $params;

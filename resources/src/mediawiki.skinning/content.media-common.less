@@ -129,16 +129,16 @@ figure[ typeof~='mw:File/Frame' ] {
 		float: none;
 	}
 
-	> a:first-child,
-	> span:first-child {
-		> *:first-child {
+	> :not( figcaption ) {
+		> *:first-child,
+		.mw-file-element {
 			margin: 3px;
 		}
 
 		/**
 		 * Broken media get a span instead.
 		 */
-		> span.mw-broken-media {
+		.mw-broken-media {
 			display: inline-block;
 			line-height: 1.6em;
 			/* The extra horizontal margin here is to make up for the lack of a border */
@@ -205,9 +205,9 @@ figure[ typeof~='mw:File/Thumb' ] > figcaption:empty {
 /**
  * Inline media items
  */
-span:first-child,
-a:first-child {
-	> *:first-child {
+:not( figcaption ) {
+	> *:first-child,
+	.mw-file-element {
 		.mw-valign-middle > & {
 			vertical-align: middle;
 		}
