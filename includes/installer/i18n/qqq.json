@@ -96,6 +96,8 @@
 	"config-using-server": "Used as a part of environment check result. Parameters:\n* $1 - default server name",
 	"config-using-uri": "Used as a part of environment check result. Parameters:\n* $1 - server name\n* $2 - script path",
 	"config-uploads-not-safe": "Used as a part of environment check result. Parameters:\n* $1 - name of directory for images: <code>$IP/images/</code>",
+	"config-uploads-security-headers": "Used as a part of environment check result. Parameters:\n* $1 - an http response header that the server should return.",
+	"config-uploads-security-requesterror": "Used as a part of environment check result, when the server does not respond correctly. Parameters:\n* $1 - an http response header that the server should return.",
 	"config-no-cli-uploads-check": "CLI = [[w:Command-line interface|command-line interface]] (i.e. the installer runs as a command-line script, not using HTML interface via an internet browser)",
 	"config-using-32bit": "Warning message shown when installing on a 32-bit system.",
 	"config-db-type": "Field label in the MediaWiki installer followed by possible database types.",
