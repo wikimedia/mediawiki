@@ -96,6 +96,9 @@ class ParserTestsMaintenance extends Maintenance {
 		$this->addOption( 'knownFailures',
 			'Compare against known failures (default: true). If false, ignores knownFailures.json file',
 			false, true );
+		$this->addOption( 'update-tests',
+			'Update parserTests.txt with results from wt2html fails.  Note that editTests.php exists ' .
+				'for finer grained editing of tests.' );
 	}
 
 	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
@@ -240,6 +243,7 @@ class ParserTestsMaintenance extends Maintenance {
 			'updateKnownFailures' => $this->hasOption( 'updateKnownFailures' ),
 			'traceFlags' => $traceFlags,
 			'dumpFlags' => $dumpFlags,
+			'update-tests' => $this->hasOption( 'update-tests' ),
 		] );
 
 		$ok = $tester->runTestsFromFiles( $files );
