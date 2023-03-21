@@ -4418,16 +4418,7 @@ class Parser {
 			$enoughToc = false;
 		}
 
-		if ( $enoughToc ) {
-			// Record the fact that the TOC should be shown. T294950
-			// (We shouldn't be looking at ::getTOCHTML() for this because
-			// eventually that will be replaced (T293513) and
-			// $tocData will contain sections even if there aren't
-			// $enoughToc to show.)
-			$this->mOutput->setOutputFlag( ParserOutputFlags::SHOW_TOC );
-		}
-
-		if ( $isMain && !$suppressToc && $this->mShowToc ) {
+		if ( $isMain && !$suppressToc ) {
 			// We generally output the section information via the API
 			// even if there isn't "enough" of a ToC to merit showing
 			// it -- but the "suppress TOC" parser option is set when
@@ -4435,10 +4426,26 @@ class Parser {
 			// (ie, JavaScript content that might have spurious === or
 			// <h2>: T307691) so we will *not* set section information
 			// in that case.
-			// The TOCData will also be null/unset if __NOTOC__ is
-			// used on the page (and not overridden by __TOC__ or
-			// __FORCETOC__).
 			$this->mOutput->setTOCData( $tocData );
+
+			// T294950: Record a suggestion that the TOC should be shown.
+			// We shouldn't be looking at ::getTOCHTML() for this because
+			// that was replaced (T293513); and $tocData will contain sections
+			// even if there aren't $enoughToc to show (T332243).
+			// Skins are free to ignore this suggestion and implement their
+			// own criteria for showing/suppressing TOC (T318186).
+			if ( $enoughToc ) {
+				$this->mOutput->setOutputFlag( ParserOutputFlags::SHOW_TOC );
+			}
+
+			// If __NOTOC__ is used on the page (and not overridden by
+			// __TOC__ or __FORCETOC__) set the NO_TOC flag to tell
+			// the skin that although the section information is
+			// valid, it should perhaps not be presented as a Table Of
+			// Contents.
+			if ( !$this->mShowToc ) {
+				$this->mOutput->setOutputFlag( ParserOutputFlags::NO_TOC );
+			}
 		}
 
 		# split up and insert constructed headlines

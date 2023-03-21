@@ -881,7 +881,7 @@ __NOTOC__
 {{sections}}
 ==Section 4==
 !! metadata
-flags=
+flags=no-toc
 !! html/php
 <h2><span class="mw-headline" id="Section_0">Section 0</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Section 0">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h3><span class="mw-headline" id="Section_1">Section 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Template:Sections&amp;action=edit&amp;section=T-1" title="Edit section: Section 1">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
@@ -934,7 +934,7 @@ showflags
 !! wikitext
 __NOTOC__
 !! metadata
-flags=
+flags=no-toc
 !! html/php
 !! html/parsoid
 <meta property="mw:PageProp/notoc"/>
@@ -1005,7 +1005,7 @@ showflags
 __NOTOC__
 == One ==
 !! metadata
-flags=
+flags=no-toc
 !! html/php
 <h2><span class="mw-headline" id="One">One</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: One">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 !! html/parsoid
@@ -1102,7 +1102,7 @@ __NOTOC__
 == Three ==
 === Four ===
 !! metadata
-flags=
+flags=no-toc
 !! html/php
 <h2><span class="mw-headline" id="One">One</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: One">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h3><span class="mw-headline" id="Two">Two</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Two">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
