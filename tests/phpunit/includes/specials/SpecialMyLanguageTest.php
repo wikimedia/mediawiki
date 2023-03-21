@@ -16,12 +16,13 @@ class SpecialMyLanguageTest extends MediaWikiIntegrationTestCase {
 			'Page/Another/zh',
 			'Page/Foreign',
 			'Page/Foreign/en',
+			'Page/Foreign/zh',
 			'Page/Redirect',
 		];
 		// In the real-world, they are in respective languages,
 		// but we don't need to set all of them for tests.
 		$pageLang = [
-			'Page/Foreign' => 'sq',
+			'Page/Foreign' => 'zh',
 		];
 		$pageContent = [
 			'Page/Redirect' => '#REDIRECT [[Page/Another#Section]]',
@@ -102,6 +103,7 @@ class SpecialMyLanguageTest extends MediaWikiIntegrationTestCase {
 			[ null, 'Special:Blankpage', 'en', 'ar' ],
 			[ null, 'Media:Fail', 'en', 'ar' ],
 			[ 'Page/Foreign/en', 'Page/Foreign', 'en', 'en' ],
+			[ 'Page/Foreign', 'Page/Foreign', 'en', 'zh-hk' ],
 			[ 'Page/Another/ar#Section', 'Page/Redirect', 'en', 'ar' ],
 		];
 	}
