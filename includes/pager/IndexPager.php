@@ -23,8 +23,6 @@ use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Navigation\PagerNavigationBuilder;
-use MediaWiki\Navigation\PrevNextNavigationRenderer;
-use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -620,10 +618,6 @@ abstract class IndexPager extends ContextSource implements Pager {
 	/**
 	 * Make a self-link
 	 *
-	 * To support the deprecated overrides, any override of this method is used by the builder
-	 * (see getNavigationBuilder()) to make the links. This is deprecated and will be removed.
-	 * You should override getNavigationBuilder() instead to return a customized builder.
-	 *
 	 * @stable to call (since 1.39)
 	 *
 	 * @param string $text Text displayed on the link
@@ -823,16 +817,6 @@ abstract class IndexPager extends ContextSource implements Pager {
 			->setFirstLinkQuery( $pagingQueries['first'] ?: null )
 			->setLastLinkQuery( $pagingQueries['last'] ?: null );
 
-		// Use overridden makeLink() for the navigation, if it was overridden. Otherwise use the
-		// builder's implementation.
-		if ( MWDebug::detectDeprecatedOverride( $this, __CLASS__, 'makeLink', '1.39' ) ) {
-			// Overriding makeLink() is deprecated since 1.39
-			$navBuilder->setMakeLinkCallback( function ( ...$args ) {
-				// @phan-suppress-next-line PhanParamTooFewUnpack
-				return $this->makeLink( ...$args );
-			} );
-		}
-
 		return $navBuilder;
 	}
 
@@ -848,55 +832,6 @@ abstract class IndexPager extends ContextSource implements Pager {
 		}
 		// Hide navigation by default if there is nothing to page
 		return !( $this->mIsFirst && $this->mIsLast );
-	}
-
-	/**
-	 * Get paging links. If a link is disabled, the item from $disabledTexts
-	 * will be used. If there is no such item, the unlinked text from
-	 * $linkTexts will be used. Both $linkTexts and $disabledTexts are arrays
-	 * of HTML.
-	 *
-	 * @deprecated since 1.39 Use PagerNavigationBuilder instead
-	 * @param array $linkTexts
-	 * @param array $disabledTexts
-	 * @return string[] HTML
-	 */
-	protected function getPagingLinks( $linkTexts, $disabledTexts = [] ) {
-		wfDeprecated( __METHOD__, '1.39' );
-		$queries = $this->getPagingQueries();
-		$links = [];
-
-		foreach ( $queries as $type => $query ) {
-			$linkText = $linkTexts[$type];
-			if ( !$query && isset( $disabledTexts[$type] ) ) {
-				$linkText = $disabledTexts[$type];
-			}
-			$links[$type] = $this->makeLink(
-				$linkText,
-				$query ?: null,
-				$type
-			);
-		}
-
-		return $links;
-	}
-
-	/**
-	 * @deprecated since 1.39 Use PagerNavigationBuilder instead
-	 * @return string[] HTML
-	 */
-	protected function getLimitLinks() {
-		wfDeprecated( __METHOD__, '1.39' );
-		$links = [];
-		$offset = $this->getOffsetQuery();
-		foreach ( $this->mLimitsShown as $limit ) {
-			$links[] = $this->makeLink(
-				$this->getLanguage()->formatNum( $limit ),
-				[ 'offset' => $offset, 'limit' => $limit ],
-				'num'
-			);
-		}
-		return $links;
 	}
 
 	/**
@@ -1009,30 +944,6 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 */
 	protected function getDefaultDirections() {
 		return self::DIR_ASCENDING;
-	}
-
-	/**
-	 * Generate (prev x| next x) (20|50|100...) type links for paging
-	 *
-	 * @deprecated since 1.39 Use PagerNavigationBuilder instead
-	 * @param Title $title
-	 * @param int $offset
-	 * @param int $limit
-	 * @param array $query Optional URL query parameter string
-	 * @param bool $atend Optional param for specified if this is the last page
-	 * @return string
-	 */
-	protected function buildPrevNextNavigation(
-		Title $title,
-		$offset,
-		$limit,
-		array $query = [],
-		$atend = false
-	) {
-		wfDeprecated( __METHOD__, '1.39' );
-		$prevNext = new PrevNextNavigationRenderer( $this );
-
-		return $prevNext->buildPrevNextNavigation( $title, $offset, $limit, $query, $atend );
 	}
 
 	/**
