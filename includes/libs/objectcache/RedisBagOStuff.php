@@ -387,15 +387,32 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 
 		$ttl = $this->getExpirationAsTTL( $exptime );
 		try {
-			static $script =
+			static $scriptWithTTL =
 			/** @lang Lua */
 <<<LUA
+			local rTTL,rStep,rInit = unpack(ARGV)
 			if redis.call( 'exists', KEYS[1] ) == 1 then
-				return redis.call( 'incrBy', KEYS[1], ARGV[2] )
+				return redis.call( 'incrBy', KEYS[1], rStep )
 			end
-			return redis.call( 'setex', KEYS[1], ARGV[1], ARGV[3] )
+			redis.call( 'set', KEYS[1], rInit, 'ex', rTTL )
+			return rInit
 LUA;
-			$result = $conn->eval( $script, [ $key, $ttl, $step, $init ], 1 );
+			static $scriptWithoutTTL =
+			/** @lang Lua */
+<<<LUA
+			local rStep,rInit = unpack(ARGV)
+			if redis.call( 'exists', KEYS[1] ) == 1 then
+				return redis.call( 'incrBy', KEYS[1], rStep )
+			end
+			redis.call( 'set', KEYS[1], rInit )
+			return rInit
+LUA;
+			$result = ( $ttl > 0 )
+				? $conn->eval( $scriptWithTTL, [ $key, $ttl, $step, $init ], 1 )
+				: $conn->eval( $scriptWithoutTTL, [ $key, $step, $init ], 1 );
+			if ( $this->isInteger( $result ) ) {
+				$result = (int)$result;
+			}
 		} catch ( RedisException $e ) {
 			$result = false;
 			$this->handleException( $conn, $e );
