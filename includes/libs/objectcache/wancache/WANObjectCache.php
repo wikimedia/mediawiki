@@ -241,8 +241,6 @@ class WANObjectCache implements
 
 	/** Consider value generation somewhat high if it takes this many seconds or more */
 	private const GENERATION_HIGH_SEC = 0.2;
-	/** Consider value generation slow if it takes this many seconds or more */
-	private const GENERATION_SLOW_SEC = 3.0;
 
 	/** Key to the tombstone entry timestamp */
 	private const PURGE_TIME = 0;
@@ -294,8 +292,7 @@ class WANObjectCache implements
 	private const /** @noinspection PhpUnusedPrivateFieldInspection */ FLD_FLAGS = 4;
 	/** Key to collection cache version number; stored in blobs */
 	private const FLD_VALUE_VERSION = 5;
-	/** Key to how long it took to generate the value; stored in blobs */
-	private const FLD_GENERATION_TIME = 6;
+	private const /** @noinspection PhpUnusedPrivateFieldInspection */ FLD_GENERATION_TIME = 6;
 
 	/** Single character component for value keys */
 	private const TYPE_VALUE = 'v';
@@ -2939,9 +2936,6 @@ class WANObjectCache implements
 		];
 		if ( $version !== null ) {
 			$wrapped[self::FLD_VALUE_VERSION] = $version;
-		}
-		if ( $walltime >= self::GENERATION_SLOW_SEC ) {
-			$wrapped[self::FLD_GENERATION_TIME] = $walltime;
 		}
 
 		return $wrapped;
