@@ -3,6 +3,7 @@
 		"authors": [
 			"Abuluntu",
 			"Danmichaelo",
+			"EdoAug",
 			"Event",
 			"Jeblad",
 			"Jon Harald Søby",
@@ -233,7 +234,7 @@
 	"config-instantcommons": "Aktiver Instant Commons",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons Instant Commons] er en funksjon som gjør det mulig for wikier å bruke bilder, lyder og andre media funnet på nettstedet [https://commons.wikimedia.org/ Wikimedia Commons].\nFor å gjøre dette krever MediaWiki tilgang til internett.\n\nFor mer informasjon om denne funksjonen, inklusive instruksjoner om hvordan man setter opp dette for andre wikier enn Wikimedia Commons, konsulter [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos manualen].",
 	"config-cc-error": "Lisensvelgeren for Creative Commons ga ikke noe resultat.\nLegg inn lisensnavnet manuelt.",
-	"config-cc-again": "Velg igjen...",
+	"config-cc-again": "Velg igjen ...",
 	"config-cc-not-chosen": "Velg hvilken Creative Commons-lisens du ønsker og klikk «proceed».",
 	"config-advanced-settings": "Avansert konfigurasjon",
 	"config-cache-options": "Innstillinger for objekt-mellomlagring:",

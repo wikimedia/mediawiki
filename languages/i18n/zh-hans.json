@@ -2896,7 +2896,7 @@
 	"autoblocker": "因为您与“[[User:$1|$1]]”共享一个IP地址而被自动封禁。\n$1被封禁的理由是“$2”",
 	"blocklogpage": "封禁日志",
 	"blocklog-showlog": "该{{GENDER:$1|用户}}曾被封禁。\n下面提供封禁日志以供参考：",
-	"blocklog-showsuppresslog": "该用户曾被封禁并隐藏。下面提供监督日志以供参考：",
+	"blocklog-showsuppresslog": "该{{GENDER:$1|用户}}曾被封禁并隐藏。下面提供监督日志以供参考：",
 	"blocklogtext": "这是用户封禁和解封操作的日志。\n自动封禁IP地址没有列出。\n请见[[Special:BlockList|封禁列表]]查看目前正在进行的阻止和封禁的列表。",
 	"block-log-flags-anononly": "仅限匿名用户",
 	"block-log-flags-nocreate": "账号创建停用",
