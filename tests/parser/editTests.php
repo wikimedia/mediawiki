@@ -5,10 +5,9 @@ use MediaWiki\Tests\AnsiTermColorer;
 use Wikimedia\Parsoid\ParserTests\Test as ParserTest;
 use Wikimedia\Parsoid\ParserTests\TestFileReader;
 use Wikimedia\Parsoid\ParserTests\TestMode as ParserTestMode;
+use Wikimedia\ScopedCallback;
 
 require_once __DIR__ . '/../../maintenance/Maintenance.php';
-
-define( 'MW_PARSER_TEST', true );
 
 /**
  * Interactive parser test runner and test file editor
@@ -41,7 +40,12 @@ class ParserEditTests extends Maintenance {
 	}
 
 	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
+		// Some methods which are discouraged for normal code throw exceptions unless
+		// we declare this is just a test.
+		define( 'MW_PARSER_TEST', true );
+
 		parent::finalSetup( $settingsBuilder );
+		ExtensionRegistry::getInstance()->setLoadTestClassesAndNamespaces( true );
 		self::requireTestsAutoloader();
 		TestSetup::applyInitialConfig();
 	}
@@ -111,9 +115,10 @@ class ParserEditTests extends Maintenance {
 	}
 
 	protected function runTests() {
-		$teardown = $this->runner->staticSetup();
-		$teardown = $this->runner->setupDatabase( $teardown );
-		$teardown = $this->runner->setupUploads( $teardown );
+		$teardownGuard = null;
+		$teardownGuard = $this->runner->setupDatabase( $teardownGuard );
+		$teardownGuard = $this->runner->staticSetup( $teardownGuard );
+		$teardownGuard = $this->runner->setupUploads( $teardownGuard );
 
 		print "Running tests...\n";
 		$this->results = [];
@@ -137,6 +142,8 @@ class ParserEditTests extends Maintenance {
 			}
 		}
 		print "\n";
+
+		ScopedCallback::consume( $teardownGuard );
 	}
 
 	protected function showProgress() {
