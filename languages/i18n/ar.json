@@ -2673,6 +2673,7 @@
 	"whatlinkshere-page": "الصفحة:",
 	"linkshere": "الصفحات التالية تصل إلى <strong>$2</strong>:",
 	"nolinkshere": "لا توجد صفحات تصل إلى <strong>$2</strong>.",
+	"nolinkshere-filter": "لا توجد صفحات مرتبطة ب<strong>$2</strong> مع إعدادات البحث الحالية.",
 	"nolinkshere-ns": "لا توجد صفحات تصل إلى <strong>$2</strong> في النطاق المختار.",
 	"isredirect": "صفحة تحويل",
 	"istemplate": "مضمن",

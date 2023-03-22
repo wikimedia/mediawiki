@@ -2812,6 +2812,8 @@
 	"blocklogpage": "Benutzersperr-Logbuch",
 	"blocklog-showlog": "{{GENDER:$1|Dieser Benutzer|Diese Benutzerin}} wurde schon früher gesperrt. Es folgt der Eintrag aus dem Benutzersperr-Logbuch:",
 	"blocklog-showsuppresslog": "{{GENDER:$1|Dieser Benutzer|Diese Benutzerin}} wurde schon früher gesperrt und versteckt.\nEs folgt der Eintrag aus dem Unterdrückungs-Logbuch:",
+	"unblocklog-showlog": "Das Benutzersperrlogbuch für {{GENDER:$1|diesen Benutzer|diese Benutzerin}} wird unten als Referenz dargestellt:",
+	"unblocklog-showsuppresslog": "Das Unterdrückungslogbuch für {{GENDER:$1|diesen Benutzer|diese Benutzerin}} wird unten als Referenz dargestellt:",
 	"blocklogtext": "Dies ist das Logbuch über Sperrungen und Entsperrungen von Benutzern und IP-Adressen.\nAutomatisch gesperrte IP-Adressen werden nicht erfasst.\nSiehe die [[Special:BlockList|Liste der gesperrten IP-Adressen und Benutzernamen]] für alle aktiven Sperren.",
 	"block-log-flags-anononly": "nur Anonyme",
 	"block-log-flags-nocreate": "Erstellung von Benutzerkonten gesperrt",
