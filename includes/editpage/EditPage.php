@@ -3701,8 +3701,8 @@ class EditPage implements IEditObject {
 	 * @param string $key
 	 * @return bool
 	 */
-	private function isMsgSameWhenParsed( IContextSource $ctx, string $key ): bool {
-		return $ctx->msg( $key )->parse() === $ctx->msg( $key )->text();
+	private function doesMessageContainDiv( IContextSource $ctx, string $key ): bool {
+		return strpos( strtolower( $ctx->msg( $key )->parse() ), '<div' ) !== false;
 	}
 
 	/**
@@ -3717,7 +3717,7 @@ class EditPage implements IEditObject {
 		$namespace = $title->getNamespace();
 		$intro = '';
 		$user = $ctx->getUser();
-		$isMsgSameWhenParsed = true;
+		$doesMessageContainDiv = false;
 
 		if ( $title->isUserConfigPage() ) {
 			if ( $title->isSubpageOf( $user->getUserPage() ) ) {
@@ -3736,7 +3736,7 @@ class EditPage implements IEditObject {
 					$warningText
 				) : '';
 
-				$isMsgSameWhenParsed = $this->isMsgSameWhenParsed( $ctx, $warning );
+				$doesMessageContainDiv = $this->doesMessageContainDiv( $ctx, $warning );
 			}
 		}
 
@@ -3764,8 +3764,8 @@ class EditPage implements IEditObject {
 						[ 'class' => 'mw-translateinterface' ],
 						$translateInterfaceText
 					) : '';
-					$isMsgSameWhenParsed = $isMsgSameWhenParsed &&
-						$this->isMsgSameWhenParsed( $ctx, 'translateinterface' );
+					$doesMessageContainDiv = $doesMessageContainDiv ||
+						$this->doesMessageContainDiv( $ctx, 'translateinterface' );
 				}
 			}
 		}
@@ -3777,14 +3777,14 @@ class EditPage implements IEditObject {
 				[ 'class' => 'mw-userconfigdangerous' ],
 				$userConfigDangerousMsg
 			) : '';
-			$isMsgSameWhenParsed = $isMsgSameWhenParsed &&
-				$this->isMsgSameWhenParsed( $ctx, 'userjsdangerous' );
+			$doesMessageContainDiv = $doesMessageContainDiv ||
+				$this->doesMessageContainDiv( $ctx, 'userjsdangerous' );
 		}
 
 		// If the message is plaintext, (which is the default for a MediaWiki
 		// install) wrap it. If not, then local wiki customizations should be
 		// respected.
-		if ( $isMsgSameWhenParsed && !empty( $intro ) ) {
+		if ( !$doesMessageContainDiv && !empty( $intro ) ) {
 			// While semantically this is a warning, given the impact of editing
 			// these pages,
 			// it's best to deter users who don't understand what they are doing by
