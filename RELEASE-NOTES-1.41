@@ -50,6 +50,7 @@ For notes on 1.40.x and older releases, see HISTORY.
 ==== Changed external libraries ====
 * Updated codex, codex-search, codex-design-tokens and codex-icons
   from v0.6.2 to v0.8.0.
+* Updated wikimedia/minify from v2.3.0 to v2.4.0.
 * …
 
 ===== Changed development-only external libraries =====
