@@ -94,6 +94,10 @@ class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
 		$title = Title::castFromPageIdentity( $pageId );
 		'@phan-var Title $title';
 
+		if ( $unused !== null ) {
+			wfDeprecated( __METHOD__ . ' with non-null 4th arg', '1.40' );
+		}
+
 		if ( !empty( $parsoidSettings['debugApi'] ) ) {
 			if ( $revision === null ) {
 				throw new \InvalidArgumentException(
