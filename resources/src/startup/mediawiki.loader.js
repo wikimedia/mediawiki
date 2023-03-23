@@ -64,7 +64,7 @@
 	 *
 	 * @private
 	 * @param {string} str String to hash
-	 * @return {string} hash as an five-character base 36 string
+	 * @return {string} hash as a five-character base 36 string
 	 */
 	function fnv132( str ) {
 		var hash = 0x811C9DC5;

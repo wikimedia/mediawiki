@@ -320,7 +320,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 *   - GROUP BY: May be either an SQL fragment string naming a field or
 	 *     expression to group by, or an array of such SQL fragments.
 	 *
-	 *   - HAVING: May be either an string containing a HAVING clause or an array of
+	 *   - HAVING: May be either a string containing a HAVING clause or an array of
 	 *     conditions building the HAVING clause. If an array is given, the conditions
 	 *     constructed from each element are combined with AND.
 	 *

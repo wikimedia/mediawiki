@@ -567,7 +567,7 @@ function wfExtractThumbRequestInfo( $thumbRel ) {
 	// Check if this is a thumbnail of an original in the local file repo
 	if ( preg_match( "!^((archive/)?$hashDirReg([^/]*)/([^/]*))$!", $thumbRel, $m ) ) {
 		[ /*all*/, $rel, $archOrTemp, $filename, $thumbname ] = $m;
-	// Check if this is a thumbnail of an temp file in the local file repo
+	// Check if this is a thumbnail of a temp file in the local file repo
 	} elseif ( preg_match( "!^(temp/)($hashDirReg([^/]*)/([^/]*))$!", $thumbRel, $m ) ) {
 		[ /*all*/, $archOrTemp, $rel, $filename, $thumbname ] = $m;
 	} else {

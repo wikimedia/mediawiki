@@ -722,7 +722,7 @@ EOT
 	}
 
 	/**
-	 * Creates an thumbnail of specified size and returns an HTML link to it
+	 * Creates a thumbnail of specified size and returns an HTML link to it
 	 * @param array $params Scaler parameters
 	 * @param int $width
 	 * @param int $height

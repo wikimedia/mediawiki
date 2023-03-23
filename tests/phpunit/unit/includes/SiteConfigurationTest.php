@@ -179,7 +179,7 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 		$this->assertEquals(
 			'wiki',
 			$this->mConf->get( 'SimpleKey', 'wiki', 'wiki' ),
-			'get(): simple setting on an suffix'
+			'get(): simple setting on a suffix'
 		);
 		$this->assertEquals(
 			'wiki',
@@ -212,12 +212,12 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 		$this->assertEquals(
 			'wiki',
 			$this->mConf->get( 'Fallback', 'wiki', 'wiki' ),
-			'get(): fallback setting on an suffix'
+			'get(): fallback setting on a suffix'
 		);
 		$this->assertEquals(
 			'wiki',
 			$this->mConf->get( 'Fallback', 'wiki', 'wiki', [], [ 'tag' ] ),
-			'get(): fallback setting on an suffix (with wiki tag)'
+			'get(): fallback setting on a suffix (with wiki tag)'
 		);
 		$this->assertEquals(
 			'wiki',
@@ -266,12 +266,12 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 		$this->assertEquals(
 			[ 'wiki' => 'wiki' ] + $common,
 			$this->mConf->get( 'MergeIt', 'wiki', 'wiki' ),
-			'get(): merging setting on an suffix'
+			'get(): merging setting on a suffix'
 		);
 		$this->assertEquals(
 			[ 'wiki' => 'wiki' ] + $commonTag,
 			$this->mConf->get( 'MergeIt', 'wiki', 'wiki', [], [ 'tag' ] ),
-			'get(): merging setting on an suffix (with tag)'
+			'get(): merging setting on a suffix (with tag)'
 		);
 		$this->assertEquals(
 			$common,
@@ -332,7 +332,7 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 		$this->assertEquals(
 			' wiki wiki',
 			$this->mConf->get( 'WithParams', 'wiki', 'wiki' ),
-			'get(): parameter replacement on an suffix'
+			'get(): parameter replacement on a suffix'
 		);
 		$this->assertEquals(
 			'es wiki eswiki',

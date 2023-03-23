@@ -83,7 +83,7 @@ class Mcc extends Maintenance {
 			// process command
 			switch ( $command ) {
 				case 'help':
-					// show an help message
+					// show a help message
 					print $this->mccGetHelp( array_shift( $args ) );
 					break;
 

@@ -8,7 +8,7 @@ use MediaWiki\MediaWikiServices;
  * This is intended for the MediaWiki language class tests under
  * tests/phpunit/includes/languages.
  *
- * Before each tests, a new language object is build which you
+ * Before each tests, a new language object is built which you
  * can retrieve in your test using the $this->getLang() method:
  *
  * @par Using the crafted language object:
@@ -62,7 +62,7 @@ abstract class LanguageClassesTestCase extends MediaWikiIntegrationTestCase {
 			$lang = 'en';
 			wfDebug(
 				__METHOD__ . ' could not extract a language name '
-					. 'out of ' . static::class . " failling back to 'en'"
+					. 'out of ' . static::class . ", falling back to 'en'"
 			);
 		}
 		$this->languageObject = MediaWikiServices::getInstance()->getLanguageFactory()
@@ -70,7 +70,7 @@ abstract class LanguageClassesTestCase extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Delete the internal language object so each test start
+	 * Delete the internal language object so each test starts
 	 * out with a fresh language instance.
 	 */
 	protected function tearDown(): void {

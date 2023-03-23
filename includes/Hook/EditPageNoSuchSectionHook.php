@@ -13,7 +13,7 @@ use MediaWiki\EditPage\EditPage;
  */
 interface EditPageNoSuchSectionHook {
 	/**
-	 * This hook is called when a section edit request is given for an non-existent section.
+	 * This hook is called when a section edit request is given for a non-existent section.
 	 *
 	 * @since 1.35
 	 *

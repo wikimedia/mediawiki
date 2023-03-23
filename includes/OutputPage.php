@@ -2924,7 +2924,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Prepare this object to display an error page; disable caching and
 	 * indexing, clear the current text and redirect, set the page's title
-	 * and optionally an custom HTML title (content of the "<title>" tag).
+	 * and optionally a custom HTML title (content of the "<title>" tag).
 	 *
 	 * @param string|Message $pageTitle Will be passed directly to setPageTitle()
 	 * @param string|Message|false $htmlTitle Will be passed directly to setHTMLTitle();
