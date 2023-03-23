@@ -1900,6 +1900,7 @@ abstract class Skin extends ContextSource {
 		if ( $navUrls['whatlinkshere'] ?? null ) {
 			$toolbox['whatlinkshere'] = $navUrls['whatlinkshere'];
 			$toolbox['whatlinkshere']['id'] = 't-whatlinkshere';
+			$toolbox['whatlinkshere']['icon'] = 'articleRedirect';
 		}
 		if ( $navUrls['recentchangeslinked'] ?? null ) {
 			$toolbox['recentchangeslinked'] = $navUrls['recentchangeslinked'];
