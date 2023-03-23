@@ -52,6 +52,7 @@ class WikiTextStructure {
 	private $auxiliaryElementSelectors = [
 		// Thumbnail captions aren't really part of the text proper
 		'.thumbcaption',
+		'figcaption',
 		// Neither are tables
 		'table',
 		// Common style for "See also:".
