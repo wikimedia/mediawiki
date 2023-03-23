@@ -2833,7 +2833,7 @@
 	"autoblocker": "Bloccato automaticamente perché l'indirizzo IP è condiviso con l'utente \"[[User:$1|$1]]\".\nIl blocco dell'utente $1 è stato imposto per il seguente motivo: \"$2\".",
 	"blocklogpage": "Blocchi",
 	"blocklog-showlog": "{{GENDER:$1|Questo|Questa}} utente è {{GENDER:$1|stato bloccato|stata bloccata}} in precedenza. Il registro dei blocchi è riportato di seguito per informazione:",
-	"blocklog-showsuppresslog": "Questo utente è stato bloccato e nascosto in precedenza. Il registro delle rimozioni è riportato di seguito per informazione:",
+	"blocklog-showsuppresslog": "{{GENDER:$1|Questo utente è stato bloccato e nascosto|Questa utente è stata bloccata e nascosta}} in precedenza. Il registro delle soppressioni è riportato di seguito per informazione:",
 	"blocklogtext": "Di seguito sono elencate le azioni di blocco e sblocco utenti.\nGli indirizzi IP bloccati automaticamente non sono elencati.\nConsultare l'[[Special:BlockList|elenco dei blocchi]] per l'elenco dei bandi o blocchi attualmente operativi.",
 	"block-log-flags-anononly": "solo utenti anonimi",
 	"block-log-flags-nocreate": "registrazione bloccata",

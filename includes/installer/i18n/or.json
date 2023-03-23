@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Chinmayee Mishra",
 			"Jnanaranjan Sahu",
 			"Psubhashish"
 		]
@@ -28,6 +29,8 @@
 	"config-page-existingwiki": "ଏବେକାର ଉଇକି",
 	"config-restart": "ହଁ, ଏହାକୁ ପୁନରାରମ୍ଭ କରନ୍ତୁ",
 	"config-env-php": "PHP $1 ଇନଷ୍ଟଲ ହେଲା ।",
+	"config-uploads-security-headers": "<strong>ଚେତାବନୀ:</strong> ଏକ ସଂଯୋଗ ତ୍ରୁଟି ହେତୁ, ଆପଣଙ୍କର ଅପଲୋଡ୍ ଡିରେକ୍ଟୋରୀରେ ଥିବା ପ୍ରତିଛବିଗୁଡିକ ଯାଞ୍ଚ କରିବା ସମ୍ଭବ ନୁହେଁ, ବ୍ରାଉଜରକୁ ସମ୍ଭାବ୍ୟ ଅସୁରକ୍ଷିତ ଫାଇଲରୁ ରକ୍ଷା କରିବା ପାଇଁ HTTP ହେଡର୍ <code>$1</code> ସହିତ ଜବାବ ଦିଅନ୍ତୁ! N! ଏହା [https: // www। mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security] ଅପଲୋଡ୍ ସକ୍ଷମ କରିବା ପୂର୍ବରୁ ଆପଣଙ୍କର ୱେବ୍ ସର୍ଭରରେ ଉପଯୁକ୍ତ ପ୍ରତିକ୍ରିୟା ହେଡର୍ ବିନ୍ୟାସ କରନ୍ତୁ |",
+	"config-uploads-security-requesterror": "<strong>ଚେତାବନୀ:</strong> ଏକ ସଂଯୋଗ ତ୍ରୁଟି ହେତୁ, ଆପଣଙ୍କର ଅପଲୋଡ୍ ଡିରେକ୍ଟୋରୀରେ ଥିବା ପ୍ରତିଛବିଗୁଡିକ ଯାଞ୍ଚ କରିବା ସମ୍ଭବ ନୁହେଁ, ବ୍ରାଉଜରକୁ ସମ୍ଭାବ୍ୟ ଅସୁରକ୍ଷିତ ଫାଇଲରୁ ରକ୍ଷା କରିବା ପାଇଁ HTTP ହେଡର୍ <code>$1</code> ସହିତ ଜବାବ ଦିଅନ୍ତୁ! N! ଏହା [https: // www। mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security] ଅପଲୋଡ୍ ସକ୍ଷମ କରିବା ପୂର୍ବରୁ ଆପଣଙ୍କର ୱେବ୍ ସର୍ଭରରେ ଉପଯୁକ୍ତ ପ୍ରତିକ୍ରିୟା ହେଡର୍ ବିନ୍ୟାସ କରନ୍ତୁ |",
 	"config-db-type": "ଡାଟାବେସ ପ୍ରକାର:",
 	"config-db-host": "ଡାଟାବେସ ହୋଷ୍ଟ:",
 	"config-db-name": "ଡାଟାବେସ ନାମ:",
