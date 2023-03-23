@@ -491,7 +491,7 @@
 	} );
 
 	QUnit.test( '.implement( only messages )', function ( assert ) {
-		assert.assertFalse( mw.messages.exists( 'T31107' ), 'Verify that the test message doesn\'t exist yet' );
+		assert.false( mw.messages.exists( 'T31107' ), 'Verify that the test message doesn\'t exist yet' );
 
 		mw.loader.implement( 'test.implement.msgs', [], {}, { T31107: 'loaded' } );
 
