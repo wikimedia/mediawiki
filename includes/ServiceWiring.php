@@ -1355,8 +1355,7 @@ return [
 
 	'ParserOutputAccess' => static function ( MediaWikiServices $services ): ParserOutputAccess {
 		return new ParserOutputAccess(
-			$services->getParserCache(),
-			$services->getParserCacheFactory()->getRevisionOutputCache( 'rcache' ),
+			$services->getParserCacheFactory(),
 			$services->getRevisionLookup(),
 			$services->getRevisionRenderer(),
 			$services->getStatsdDataFactory(),
