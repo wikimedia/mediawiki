@@ -35,31 +35,58 @@ class CheckComposerLockUpToDate extends Maintenance {
 		$lock = new ComposerLock( $lockLocation );
 		$json = new ComposerJson( $jsonLocation );
 
+		$requiredButOld = [];
+		$requiredButMissing = [];
+
 		// Check all the dependencies to see if any are old
-		$found = false;
 		$installed = $lock->getInstalledDependencies();
 		foreach ( $json->getRequiredDependencies() as $name => $version ) {
-			if ( isset( $installed[$name] ) ) {
-				if ( !Semver::satisfies( $installed[$name]['version'], $version ) ) {
-					$this->output(
-						"$name: {$installed[$name]['version']} installed, $version required.\n"
-					);
-					$found = true;
-				}
-			} else {
-				$this->output( "$name: not installed, $version required.\n" );
-				$found = true;
+			// Not installed at all.
+			if ( !isset( $installed[$name] ) ) {
+				$requiredButMissing[] = [
+					'name' => $name,
+					'wantedVersion' => $version
+				];
+				continue;
 			}
+
+			// Installed; need to check it's the right version
+			if ( !SemVer::satisfies( $installed[$name]['version'], $version ) ) {
+				$requiredButOld[] = [
+					'name' => $name,
+					'wantedVersion' => $version,
+					'suppliedVersion' => $installed[$name]['version']
+				];
+			}
+
+			// We're happy; loop to the next dependency.
 		}
-		if ( $found ) {
-			$this->fatalError(
-				'Error: your composer.lock file is not up to date. ' .
-					'Run "composer update --no-dev" to install newer dependencies'
-			);
-		} else {
-			// We couldn't find any out-of-date dependencies, so assume everything is ok!
+
+		if ( !( count( $requiredButOld ) || count( $requiredButMissing ) ) ) {
+			// We couldn't find any out-of-date or missing dependencies, so assume everything is ok!
 			$this->output( "Your composer.lock file is up to date with current dependencies!\n" );
+			return;
 		}
+
+		foreach ( $requiredButOld as [
+			"name" => $name,
+			"suppliedVersion" => $suppliedVersion,
+			"wantedVersion" => $wantedVersion
+		] ) {
+			$this->output( "$name: $suppliedVersion installed, $wantedVersion required.\n" );
+		}
+
+		foreach ( $requiredButMissing as [
+			"name" => $name,
+			"wantedVersion" => $wantedVersion
+		] ) {
+			$this->output( "$name: not installed, $wantedVersion required.\n" );
+		}
+
+		$this->fatalError(
+			'Error: your composer.lock file is not up to date. ' .
+				'Run "composer update --no-dev" to install newer dependencies'
+		);
 	}
 }
 
