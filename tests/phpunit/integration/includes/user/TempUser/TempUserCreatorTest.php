@@ -48,7 +48,7 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 		);
 		$tuc = $this->getServiceContainer()->getTempUserCreator();
 		$this->assertTrue( $tuc->isAutoCreateAction( 'edit' ) );
-		$this->assertTrue( $tuc->isReservedName( '*Unregistered 1' ) );
+		$this->assertTrue( $tuc->isTempName( '*Unregistered 1' ) );
 		$status = $tuc->create();
 		$this->assertSame( '*Unregistered 1', $status->getUser()->getName() );
 		$status = $tuc->create();
