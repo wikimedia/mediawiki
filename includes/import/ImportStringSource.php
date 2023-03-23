@@ -64,6 +64,13 @@ class ImportStringSource implements ImportSource {
 	}
 
 	/**
+	 * @return bool
+	 */
+	public function isSeekable() {
+		return true;
+	}
+
+	/**
 	 * @param int $offset
 	 * @return int
 	 */
