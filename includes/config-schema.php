@@ -1127,6 +1127,7 @@ return [
 				],
 				'genPattern' => '*Unregistered $1',
 				'matchPattern' => '*$1',
+				'reservedPattern' => null,
 				'serialProvider' => [
 					'type' => 'local',
 				],

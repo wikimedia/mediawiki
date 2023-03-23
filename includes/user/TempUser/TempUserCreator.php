@@ -150,6 +150,10 @@ class TempUserCreator implements TempUserConfig {
 		return $this->config->isAutoCreateAction( $action );
 	}
 
+	public function isTempName( string $name ) {
+		return $this->config->isTempName( $name );
+	}
+
 	public function isReservedName( string $name ) {
 		return $this->config->isReservedName( $name );
 	}

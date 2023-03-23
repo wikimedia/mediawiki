@@ -246,7 +246,7 @@ class UserNameUtils implements UserRigorOptions {
 			return false;
 		}
 
-		if ( $this->isTemp( $name ) ) {
+		if ( $this->isTempReserved( $name ) ) {
 			$this->logger->debug(
 				__METHOD__ . ": '$name' uncreatable due to TempUserConfig"
 			);
@@ -372,13 +372,27 @@ class UserNameUtils implements UserRigorOptions {
 	}
 
 	/**
-	 * Is the user name reserved for temporary auto-created users?
+	 * Does the username indicate a temporary user?
 	 *
 	 * @since 1.39
 	 * @param string $name
 	 * @return bool
 	 */
 	public function isTemp( string $name ) {
+		return $this->tempUserConfig->isTempName( $name );
+	}
+
+	/**
+	 * Is the username uncreatable due to it being reserved by the temp username
+	 * system? Note that unlike isTemp(), this does not imply that a user having
+	 * this name is an actual temp account. This should only be used to deny
+	 * account creation.
+	 *
+	 * @since 1.41
+	 * @param string $name
+	 * @return bool
+	 */
+	public function isTempReserved( string $name ) {
 		return $this->tempUserConfig->isReservedName( $name );
 	}
 

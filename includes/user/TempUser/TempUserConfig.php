@@ -34,6 +34,16 @@ interface TempUserConfig {
 	 * @param string $name
 	 * @return bool
 	 */
+	public function isTempName( string $name );
+
+	/**
+	 * Does the name match a configured pattern which indicates that it
+	 * conflicts with temporary user names? Should manual user creation
+	 * be denied?
+	 *
+	 * @param string $name
+	 * @return mixed
+	 */
 	public function isReservedName( string $name );
 
 	/**
