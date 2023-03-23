@@ -893,7 +893,11 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		} else {
 			$namespace = MediaWikiServices::getInstance()->getContentLanguage()->getNsText( $ns );
 		}
-		$name = $namespace == '' ? $title : "$namespace:$title";
+		if ( $namespace === false ) {
+			// See T165149. Awkward, but better than erroneously linking to the main namespace.
+			$namespace = self::makeName( NS_SPECIAL, "Badtitle/NS$ns", '', '', $canonicalNamespace );
+		}
+		$name = $namespace === '' ? $title : "$namespace:$title";
 		if ( strval( $interwiki ) != '' ) {
 			$name = "$interwiki:$name";
 		}
@@ -938,7 +942,9 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		}
 
 		try {
-			$text = $this->getFullText();
+			// Optimization: Avoid Title::getFullText because that involves GenderCache
+			// and (unbatched) database queries. For validation, canonical namespace suffices.
+			$text = self::makeName( $this->mNamespace, $this->mDbkeyform, $this->mFragment, $this->mInterwiki, true );
 			$titleCodec = MediaWikiServices::getInstance()->getTitleParser();
 
 			'@phan-var MediaWikiTitleCodec $titleCodec';

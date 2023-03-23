@@ -641,6 +641,29 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $title->getFullText() );
 	}
 
+	public function provideMakeName() {
+		yield 'main namespace' => [ 'Foo', NS_MAIN, 'Foo' ];
+		yield 'user namespace' => [ 'User:Foo', NS_USER, 'Foo' ];
+		yield 'fragment' => [ 'Foo#Section', NS_MAIN, 'Foo', 'Section' ];
+		yield 'only fragment' => [ '#Section', NS_MAIN, '', 'Section' ];
+		yield 'interwiki' => [ 'acme:Foo', NS_MAIN, 'Foo', '', 'acme' ];
+		yield 'bad namespace' => [ 'Special:Badtitle/NS-1234:Foo', -1234, 'Foo' ];
+		yield 'lower case' => [ 'User:foo', NS_USER, 'foo' ];
+		yield 'empty' => [ '', NS_MAIN, '' ];
+		yield 'bad character' => [ 'Foo|Bar', NS_MAIN, 'Foo|Bar' ];
+		yield 'bad interwiki' => [ 'qwerty:Foo', NS_MAIN, 'Foo', '', 'qwerty' ];
+	}
+
+	/**
+	 * @dataProvider provideMakeName
+	 * @covers Title::makeName
+	 */
+	public function testMakeName( $expected, $ns, $text, $fragment = '', $interwiki = '' ) {
+		$titleName = Title::makeName( $ns, $text, $fragment, $interwiki );
+
+		$this->assertSame( $expected, $titleName );
+	}
+
 	public function provideMakeTitleSafe() {
 		yield 'main namespace' => [ 'Foo', NS_MAIN, 'Foo' ];
 		yield 'user namespace' => [ 'User:Foo', NS_USER, 'Foo' ];
