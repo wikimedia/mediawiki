@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"1233qwer1234qwer4",
 			"Amire80",
 			"Angpradesh",
 			"Macofe",
@@ -169,7 +170,7 @@
 	"viewcontribs": "योगदान देखौ",
 	"skin-view-view": "पढ़ौ",
 	"skin-view-foreign": "$1 प देखौ",
-	"edit": "संपादन",
+	"edit": "संपादन करौ",
 	"skin-view-edit": "संपादन करौ",
 	"edit-local": "स्थानीय विवरण सम्पादित करौ",
 	"create": "बनाबौ",
@@ -692,7 +693,7 @@
 	"randompage": "कोय्यो पन्ना",
 	"statistics": "आँकड़ा",
 	"double-redirect-fixer": "पुनर्प्रेषण मिस्त्री",
-	"nbytes": "{{PLURAL:$1|बाइट|बाइट}}",
+	"nbytes": "$1 {{PLURAL:$1|बाइट|बाइट}}",
 	"nmembers": "$1 {{PLURAL:$1|सदस्य|सदस्य सिनी}}",
 	"prefixindex": "इ उपसर्ग वाल सब्भे पन्ना",
 	"listusers": "सदस्यसूची",
