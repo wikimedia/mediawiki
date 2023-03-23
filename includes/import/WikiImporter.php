@@ -1362,6 +1362,9 @@ class WikiImporter {
 	 * Check the syntax of the given xml
 	 */
 	private function syntaxCheckXML() {
+		if ( !UploadSourceAdapter::isSeekableSource( $this->sourceAdapterId ) ) {
+			return;
+		}
 		AtEase::suppressWarnings();
 		$oldDisable = libxml_disable_entity_loader( false );
 		try {
