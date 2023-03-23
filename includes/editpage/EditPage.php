@@ -3739,6 +3739,10 @@ class EditPage implements IEditObject {
 				$doesMessageContainDiv = $this->doesMessageContainDiv( $ctx, $warning );
 			}
 		}
+		$codeMsg = $ctx->msg( 'editpage-code-message' );
+		$codeMessageText = $codeMsg->isDisabled() ? '' : $codeMsg->parseAsBlock();
+		$isJavaScript = $title->hasContentModel( CONTENT_MODEL_JAVASCRIPT );
+		$isCSS = $title->hasContentModel( CONTENT_MODEL_CSS );
 
 		if ( $namespace === NS_MEDIAWIKI ) {
 			$interfaceMsg = $ctx->msg( 'editinginterface' );
@@ -3752,9 +3756,9 @@ class EditPage implements IEditObject {
 			# If this is a default message (but not css, json, or js),
 			# show a hint that it is translatable on translatewiki.net
 			if (
-				!$title->hasContentModel( CONTENT_MODEL_CSS )
+				!$isCSS
 				&& !$title->hasContentModel( CONTENT_MODEL_JSON )
-				&& !$title->hasContentModel( CONTENT_MODEL_JAVASCRIPT )
+				&& !$isJavaScript
 			) {
 				$defaultMessageText = $title->getDefaultMessageText();
 				if ( $defaultMessageText !== false ) {
@@ -3779,6 +3783,11 @@ class EditPage implements IEditObject {
 			) : '';
 			$doesMessageContainDiv = $doesMessageContainDiv ||
 				$this->doesMessageContainDiv( $ctx, 'userjsdangerous' );
+		}
+
+		// If the wiki page contains JavaScript or CSS link add message specific to code.
+		if ( $isJavaScript || $isCSS ) {
+			$intro .= $codeMessageText;
 		}
 
 		// If the message is plaintext, (which is the default for a MediaWiki
