@@ -230,7 +230,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 	 * Core logic of determining the offset timestamp such that we can get all items with
 	 * a timestamp up to the specified parameters. Given parameters for a day up to which to get
 	 * items, this function finds the timestamp of the day just after the end of the range for use
-	 * in an database strict inequality filter.
+	 * in a database strict inequality filter.
 	 *
 	 * This is separate from getDateCond so we can use this logic in other places, such as in
 	 * RangeChronologicalPager, where this function is used to convert year/month/day filter options

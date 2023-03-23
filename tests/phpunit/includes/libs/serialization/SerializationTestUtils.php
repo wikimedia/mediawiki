@@ -125,7 +125,7 @@ class SerializationTestUtils {
 	}
 
 	/**
-	 * Get an test instance of $class for test case named $testCaseName.
+	 * Get a test instance of $class for test case named $testCaseName.
 	 * @param string $testCaseName
 	 * @return object
 	 */

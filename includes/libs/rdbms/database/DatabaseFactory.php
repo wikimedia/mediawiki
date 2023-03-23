@@ -160,7 +160,7 @@ class DatabaseFactory {
 		// an array can be used, keyed by extension name. In case of an array, the
 		// optional 'driver' parameter can be used to force a specific driver. Otherwise,
 		// we auto-detect the first available driver. For types without built-in support,
-		// an class named "Database<Type>" us used, eg. DatabaseFoo for type 'foo'.
+		// a class named "Database<Type>" is used, eg. DatabaseFoo for type 'foo'.
 		static $builtinTypes = [
 			'mysql' => [ 'mysqli' => DatabaseMysqli::class ],
 			'sqlite' => DatabaseSqlite::class,

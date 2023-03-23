@@ -957,7 +957,7 @@ Controller.prototype.updateNumericPreference = function ( prefName, newValue ) {
 
 /**
  * Synchronize the URL with the current state of the filters
- * without adding an history entry.
+ * without adding a history entry.
  */
 Controller.prototype.replaceUrl = function () {
 	this.uriProcessor.updateURL();

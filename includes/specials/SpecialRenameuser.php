@@ -230,7 +230,7 @@ class SpecialRenameuser extends SpecialPage {
 			return;
 		}
 
-		// If this user is renaming his/herself, make sure that MovePage::move()
+		// If this user is renaming themself, make sure that MovePage::move()
 		// doesn't make a bunch of null move edits under the old name!
 		if ( $performer->getId() === $uid ) {
 			$performer->setName( $newTitle->getText() );

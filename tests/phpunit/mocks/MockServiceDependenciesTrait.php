@@ -14,7 +14,7 @@ use ReflectionParameter;
 trait MockServiceDependenciesTrait {
 
 	/**
-	 * Construct an new instance of $serviceClass with all constructor arguments
+	 * Construct a new instance of $serviceClass with all constructor arguments
 	 * mocked. $parameterOverrides allows to provide some constructor argument.
 	 *
 	 * @param string $serviceClass

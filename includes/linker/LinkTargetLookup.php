@@ -43,7 +43,7 @@ interface LinkTargetLookup {
 	public function newLinkTargetFromRow( stdClass $row ): LinkTarget;
 
 	/**
-	 * Find an link target by $id.
+	 * Find a link target by $id.
 	 *
 	 * @param int $linkTargetId
 	 * @return LinkTarget|null Returns null if no link target with this $linkTargetId exists in the database.

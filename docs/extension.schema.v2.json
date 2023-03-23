@@ -1362,7 +1362,7 @@
 						"properties": {
 							"class": {
 								"type": "string",
-								"description": "The fully-qualified class name of a class implemeting Wikimedia\\Parsoid\\Ext\\ExtensionModule. This should be omitted if a factory is specified."
+								"description": "The fully-qualified class name of a class implementing Wikimedia\\Parsoid\\Ext\\ExtensionModule. This should be omitted if a factory is specified."
 							}
 						},
 						"required": [ "class" ]

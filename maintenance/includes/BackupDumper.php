@@ -377,7 +377,7 @@ abstract class BackupDumper extends Maintenance {
 
 	/**
 	 * Initialise starting time and maximum revision count.
-	 * We'll make ETA calculations based an progress, assuming relatively
+	 * We'll make ETA calculations based on progress, assuming relatively
 	 * constant per-revision rate.
 	 * @param int $history WikiExporter::CURRENT or WikiExporter::FULL
 	 */
