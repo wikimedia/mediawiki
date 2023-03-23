@@ -9,6 +9,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Profiler\ProfilingContext;
 use MediaWiki\Rest\BasicAccess\BasicAuthorizerInterface;
 use MediaWiki\Rest\PathTemplateMatcher\PathMatcher;
 use MediaWiki\Rest\Reporter\ErrorReporter;
@@ -493,6 +494,7 @@ class Router {
 	 * @return ResponseInterface
 	 */
 	private function executeHandler( $handler ): ResponseInterface {
+		ProfilingContext::singleton()->init( MW_ENTRY_POINT, $handler->getPath() );
 		// Check for basic authorization, to avoid leaking data from private wikis
 		$authResult = $this->basicAuth->authorize( $handler->getRequest(), $handler );
 		if ( $authResult ) {

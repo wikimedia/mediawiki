@@ -26,6 +26,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Profiler\ProfilingContext;
 use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\Request\WebResponse;
 use MediaWiki\Title\Title;
@@ -526,9 +527,11 @@ class MediaWiki {
 		$t = microtime( true );
 		$actionName = $this->getAction();
 		$services = MediaWikiServices::getInstance();
-		$action = $services->getActionFactory()->getAction( $actionName, $article, $this->context );
 
+		$action = $services->getActionFactory()->getAction( $actionName, $article, $this->context );
 		if ( $action instanceof Action ) {
+			ProfilingContext::singleton()->init( MW_ENTRY_POINT, $actionName );
+
 			// Check read permissions
 			if ( $action->needsReadRights() && !$user->isAllowed( 'read' ) ) {
 				throw new PermissionsError( 'read' );
