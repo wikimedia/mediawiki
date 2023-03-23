@@ -185,6 +185,7 @@ JAVASCRIPT
 $headHtml
 $introHtml
 <div id="qunit"></div>
+<div id="qunit-fixture"></div>
 $script
 HTML;
 	}
