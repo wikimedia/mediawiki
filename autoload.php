@@ -1652,6 +1652,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Preferences\\SignatureValidatorFactory' => __DIR__ . '/includes/preferences/SignatureValidatorFactory.php',
 	'MediaWiki\\Preferences\\TimezoneFilter' => __DIR__ . '/includes/preferences/TimezoneFilter.php',
 	'MediaWiki\\ProcOpenError' => __DIR__ . '/includes/exception/ProcOpenError.php',
+	'MediaWiki\\Profiler\\ProfilingContext' => __DIR__ . '/includes/profiler/ProfilingContext.php',
 	'MediaWiki\\RenameUser\\Hook\\RenameUserAbortHook' => __DIR__ . '/includes/RenameUser/Hook/RenameUserAbortHook.php',
 	'MediaWiki\\RenameUser\\Hook\\RenameUserCompleteHook' => __DIR__ . '/includes/RenameUser/Hook/RenameUserCompleteHook.php',
 	'MediaWiki\\RenameUser\\Hook\\RenameUserPreRenameHook' => __DIR__ . '/includes/RenameUser/Hook/RenameUserPreRenameHook.php',

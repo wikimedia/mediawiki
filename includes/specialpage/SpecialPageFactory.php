@@ -33,6 +33,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Profiler\ProfilingContext;
 use MediaWiki\Specials\SpecialActiveUsers;
 use MediaWiki\Specials\SpecialAllMessages;
 use MediaWiki\Specials\SpecialAllPages;
@@ -1446,6 +1447,7 @@ class SpecialPageFactory {
 		}
 
 		if ( !$including ) {
+			ProfilingContext::singleton()->init( MW_ENTRY_POINT, $page->getName() );
 			// Narrow DB query expectations for this HTTP request
 			$trxLimits = $context->getConfig()->get( MainConfigNames::TrxProfilerLimits );
 			$trxProfiler = Profiler::instance()->getTransactionProfiler();

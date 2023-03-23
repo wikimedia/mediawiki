@@ -28,6 +28,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
+use MediaWiki\Profiler\ProfilingContext;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequestUpload;
 use MediaWiki\Rest\HeaderParser\Origin;
@@ -1886,6 +1887,7 @@ class ApiMain extends ApiBase {
 		$this->mModule = $module;
 
 		if ( !$this->mInternalMode ) {
+			ProfilingContext::singleton()->init( MW_ENTRY_POINT, $module->getModuleName() );
 			$this->setRequestExpectations( $module );
 		}
 

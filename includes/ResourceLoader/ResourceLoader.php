@@ -37,6 +37,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Profiler\ProfilingContext;
 use MediaWiki\Request\HeaderCallback;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserOptionsLookup;
@@ -750,6 +751,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		ob_start();
 
 		$responseTime = $this->measureResponseTime();
+		ProfilingContext::singleton()->init( MW_ENTRY_POINT, 'respond' );
 
 		// Find out which modules are missing and instantiate the others
 		$modules = [];
