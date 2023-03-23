@@ -4539,7 +4539,6 @@ class EditPage implements IEditObject {
 		$spamText = $this->context->msg( 'spamprotectiontext' )->parseAsBlock();
 		if ( $match ) {
 			$spamText .= $this->context->msg( 'spamprotectionmatch' )
-				// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 				->params( wfEscapeWikiText( $match ) )
 				->parseAsBlock();
 		}

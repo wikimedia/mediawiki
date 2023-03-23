@@ -467,6 +467,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				sort( $userTempMembers );
 				$userGroups = array_merge( $userTempGroups, $userGroups );
 				$userMembers = array_merge( $userTempMembers, $userMembers );
+				// @phan-suppress-next-line SecurityCheck-XSS T183174
 				return $context->msg( 'prefs-memberingroups-type' )
 					->rawParams( $lang->commaList( $userGroups ), $lang->commaList( $userMembers ) )
 					->escaped();

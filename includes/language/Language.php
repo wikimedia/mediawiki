@@ -3422,6 +3422,7 @@ class Language implements Bcp47Code {
 	 * The last two strings are chained with an "and".
 	 *
 	 * @param string[] $list
+	 * @param-taint $list tainted
 	 * @return string
 	 */
 	public function listToText( array $list ) {
@@ -3447,6 +3448,7 @@ class Language implements Bcp47Code {
 	 * Take a list of strings and build a locale-friendly comma-separated
 	 * list, using the local comma-separator message.
 	 * @param string[] $list Array of strings to put in a comma list
+	 * @param-taint $list tainted
 	 * @return string
 	 */
 	public function commaList( array $list ) {
@@ -3460,6 +3462,7 @@ class Language implements Bcp47Code {
 	 * Take a list of strings and build a locale-friendly semicolon-separated
 	 * list, using the local semicolon-separator message.
 	 * @param string[] $list Array of strings to put in a semicolon list
+	 * @param-taint $list tainted
 	 * @return string
 	 */
 	public function semicolonList( array $list ) {
@@ -3472,6 +3475,7 @@ class Language implements Bcp47Code {
 	/**
 	 * Same as commaList, but separate it with the pipe instead.
 	 * @param string[] $list Array of strings to put in a pipe list
+	 * @param-taint $list tainted
 	 * @return string
 	 */
 	public function pipeList( array $list ) {
