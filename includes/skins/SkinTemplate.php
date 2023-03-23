@@ -1253,6 +1253,7 @@ class SkinTemplate extends Skin {
 							'text' => $this->getSkinNavOverrideableLabel(
 								'action-move'
 							),
+							'icon' => 'move',
 							'href' => $moveTitle->getLocalURL()
 						];
 					}
@@ -1271,6 +1272,7 @@ class SkinTemplate extends Skin {
 								'text' => $this->getSkinNavOverrideableLabel(
 									"action-$msgKey", $n
 								),
+								'icon' => 'trash',
 								'href' => $undelTitle->getLocalURL()
 							];
 						}
@@ -1285,12 +1287,14 @@ class SkinTemplate extends Skin {
 						$performer->getUser()
 					) !== [ '' ]
 				) {
-					$mode = $restrictionStore->isProtected( $title ) ? 'unprotect' : 'protect';
+					$isProtected = $restrictionStore->isProtected( $title );
+					$mode = $isProtected ? 'unprotect' : 'protect';
 					$content_navigation['actions'][$mode] = [
 						'class' => ( $onPage && $action == $mode ) ? 'selected' : false,
 						'text' => $this->getSkinNavOverrideableLabel(
 							"action-$mode"
 						),
+						'icon' => $isProtected ? 'unLock' : 'lock',
 						'href' => $title->getLocalURL( "action=$mode" )
 					];
 				}
