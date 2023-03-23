@@ -28,6 +28,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Utils\UrlUtils;
 use Symfony\Component\Yaml\Yaml;
@@ -1071,11 +1072,10 @@ class SpecialVersion extends SpecialPage {
 	 * @return string Wikitext
 	 */
 	private function getHooks() {
-		if ( $this->getConfig()->get( MainConfigNames::SpecialVersionShowHooks ) &&
-			$this->getConfig()->get( MainConfigNames::Hooks )
-		) {
-			$myHooks = $this->getConfig()->get( MainConfigNames::Hooks );
-			ksort( $myHooks );
+		if ( $this->getConfig()->get( MainConfigNames::SpecialVersionShowHooks ) ) {
+			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+			$hookNames = $hookContainer->getHookNames();
+			sort( $hookNames );
 
 			$ret = [];
 			$ret[] = '== {{int:version-hooks}} ==';
@@ -1085,7 +1085,11 @@ class SpecialVersion extends SpecialPage {
 			$ret[] = Html::element( 'th', [], $this->msg( 'version-hook-subscribedby' )->text() );
 			$ret[] = Html::closeElement( 'tr' );
 
-			foreach ( $myHooks as $hook => $hooks ) {
+			foreach ( $hookNames as $hook ) {
+				$hooks = $hookContainer->getLegacyHandlers( $hook );
+				if ( !$hooks ) {
+					continue;
+				}
 				$ret[] = Html::openElement( 'tr' );
 				$ret[] = Html::element( 'td', [], $hook );
 				$ret[] = Html::element( 'td', [], $this->listToText( $hooks ) );
