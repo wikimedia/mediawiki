@@ -4,7 +4,7 @@ use MediaWiki\Maintenance\MaintenanceParameters;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers MaintenanceParametersFilter
+ * @covers \MediaWiki\Maintenance\MaintenanceParameters
  */
 class MaintenanceParametersTest extends TestCase {
 
