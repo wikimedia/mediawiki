@@ -43,7 +43,7 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 		return [ $res[0]['query']['languageinfo'], $res[0]['continue'] ?? null ];
 	}
 
-	public function provideTestAllPropsForSingleLanguage() {
+	public static function provideTestAllPropsForSingleLanguage() {
 		yield [
 			'sr',
 			[

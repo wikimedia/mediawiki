@@ -36,7 +36,7 @@ class OriginTest extends MediaWikiUnitTestCase {
 			->getSingleOrigin();
 	}
 
-	public function provideOriginParse() {
+	public static function provideOriginParse() {
 		yield 'Single origin' =>
 			[ 'https://en.wikipedia.org', [ 'https://en.wikipedia.org' ], false ];
 		yield 'Multiple origins' =>
@@ -52,7 +52,7 @@ class OriginTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $isMulti, $header->isMultiOrigin() );
 	}
 
-	public function provideMatch() {
+	public static function provideMatch() {
 		yield 'null origin' => [ 'null', [ 'null' ], [], false ];
 		yield 'empty allow list' => [ 'https://en.wikipedia.org', [], [], false ];
 		yield 'empty exclude list' => [ 'https://en.wikipedia.org', [ 'en.wikipedia.org' ], [], true ];

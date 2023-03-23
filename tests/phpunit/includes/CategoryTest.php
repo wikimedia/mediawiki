@@ -50,7 +50,7 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $category->getName() );
 	}
 
-	public function provideInitializeVariants() {
+	public static function provideInitializeVariants() {
 		return [
 			// Existing title
 			[ 'newFromName', 'Example', 'getID', 1 ],

@@ -40,7 +40,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideExistingKeysAndNewValues() {
+	public static function provideExistingKeysAndNewValues() {
 		$providedArray = [];
 		foreach ( array_keys( self::$startGlobals ) as $key ) {
 			$providedArray[] = [ $key, 'newValue' ];

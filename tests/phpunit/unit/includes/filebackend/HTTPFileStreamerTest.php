@@ -14,7 +14,7 @@ class HTTPFileStreamerTest extends TestCase {
 		$this->assertSame( $expectedOpt, $actualOpt );
 	}
 
-	public function providePreprocessHeaders() {
+	public static function providePreprocessHeaders() {
 		return [
 			[
 				[ 'Vary' => 'cookie', 'Cache-Control' => 'private' ],

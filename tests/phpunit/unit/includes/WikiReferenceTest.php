@@ -7,7 +7,7 @@ use MediaWiki\WikiMap\WikiReference;
  */
 class WikiReferenceTest extends MediaWikiUnitTestCase {
 
-	public function provideGetDisplayName() {
+	public static function provideGetDisplayName() {
 		return [
 			'http' => [ 'foo.bar', 'http://foo.bar' ],
 			'https' => [ 'foo.bar', 'http://foo.bar' ],
@@ -30,7 +30,7 @@ class WikiReferenceTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( 'https://acme.com', $reference->getCanonicalServer() );
 	}
 
-	public function provideGetCanonicalUrl() {
+	public static function provideGetCanonicalUrl() {
 		return [
 			'no fragment' => [
 				'https://acme.com/wiki/Foo',
@@ -102,7 +102,7 @@ class WikiReferenceTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( $expected, $reference->getUrl( $page, $fragmentId ) );
 	}
 
-	public function provideGetFullUrl() {
+	public static function provideGetFullUrl() {
 		return [
 			'no fragment' => [
 				'//acme.com/wiki/Foo',

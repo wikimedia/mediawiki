@@ -1356,7 +1356,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function provideGetWatchedItemsForUserOptions() {
+	public static function provideGetWatchedItemsForUserOptions() {
 		return [
 			[
 				[ 'namespaceIds' => [ 0, 1 ], ],
@@ -1444,7 +1444,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		$this->assertSame( [], $items );
 	}
 
-	public function provideGetWatchedItemsForUser_fromUntilStartFromOptions() {
+	public static function provideGetWatchedItemsForUser_fromUntilStartFromOptions() {
 		return [
 			[
 				[

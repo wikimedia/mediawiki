@@ -36,7 +36,7 @@ class CommandTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( $expectedOutput, $result->getStdout() );
 	}
 
-	public function provideExecute() {
+	public static function provideExecute() {
 		return [
 			'success status' => [ 'success_status.php', [], 0, '' ],
 			'failure status' => [ 'failure_status.php', [], 1, '' ],

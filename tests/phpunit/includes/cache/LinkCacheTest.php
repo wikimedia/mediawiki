@@ -25,14 +25,14 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function providePageAndLink() {
+	public static function providePageAndLink() {
 		return [
 			[ new PageReferenceValue( NS_USER, __METHOD__, PageReference::LOCAL ) ],
 			[ new TitleValue( NS_USER, __METHOD__ ) ]
 		];
 	}
 
-	public function providePageAndLinkAndArray() {
+	public static function providePageAndLinkAndArray() {
 		return [
 			[ new PageReferenceValue( NS_USER, __METHOD__, PageReference::LOCAL ) ],
 			[ new TitleValue( NS_USER, __METHOD__ ) ],
@@ -363,7 +363,7 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 0, $linkCache->getGoodLinkID( 'Xyzzy' ) );
 	}
 
-	public function provideInvalidPageParams() {
+	public static function provideInvalidPageParams() {
 		return [
 			'empty' => [ NS_MAIN, '' ],
 			'bad chars' => [ NS_MAIN, '_|_' ],

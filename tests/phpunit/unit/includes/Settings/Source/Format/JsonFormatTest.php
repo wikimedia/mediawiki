@@ -26,7 +26,7 @@ class JsonFormatTest extends TestCase {
 		$format->decode( '{ bad }' );
 	}
 
-	public function provideSupportsFileExtension() {
+	public static function provideSupportsFileExtension() {
 		yield 'Supported' => [ 'json', true ];
 		yield 'Supported, uppercase' => [ 'JSON', true ];
 		yield 'Unsupported' => [ 'txt', false ];

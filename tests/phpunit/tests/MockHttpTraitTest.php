@@ -95,7 +95,7 @@ class MockHttpTraitTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'Hello World', $client->getContent() );
 	}
 
-	public function provideMultiRequestData() {
+	public static function provideMultiRequestData() {
 		yield [
 			[
 				'a' => [ 'url' => 'http://a.example.com', ],
@@ -256,7 +256,7 @@ class MockHttpTraitTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideGuzzleClientData() {
+	public static function provideGuzzleClientData() {
 		yield [
 			'Hello Wörld',
 			new GuzzleHttp\Psr7\Response( 200, [], 'Hello Wörld' ),

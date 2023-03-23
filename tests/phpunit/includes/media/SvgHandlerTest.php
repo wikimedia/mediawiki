@@ -51,7 +51,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 		self::assertEquals( $expectedMatch, $match );
 	}
 
-	public function provideGetMatchedLanguage() {
+	public static function provideGetMatchedLanguage() {
 		return [
 			'no match' => [
 				'userPreferredLanguage' => 'en',
@@ -134,7 +134,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 		self::assertEquals( $expected, $handler->makeParamString( $params ), $message );
 	}
 
-	public function provideMakeParamString() {
+	public static function provideMakeParamString() {
 		return [
 			[
 				[],
@@ -239,7 +239,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 		self::assertEquals( $paramsExpected, $params, $message );
 	}
 
-	public function provideNormaliseParamsInternal() {
+	public static function provideNormaliseParamsInternal() {
 		return [
 			[
 				'No need to change anything',
@@ -300,7 +300,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 		self::assertEquals( $expected, $handler->isEnabled() );
 	}
 
-	public function provideIsEnabled() {
+	public static function provideIsEnabled() {
 		return [
 			[ 'ImageMagick', true ],
 			[ 'sodipodi', true ],
@@ -326,7 +326,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 		self::assertEquals( $expected, $handler->getAvailableLanguages( $file ) );
 	}
 
-	public function provideAvailableLanguages() {
+	public static function provideAvailableLanguages() {
 		return [
 			[ [], [] ],
 			[ [ 'translations' => [] ], [] ],
@@ -369,7 +369,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 		self::assertEquals( $expected, $handler->getLanguageFromParams( $params ), $message );
 	}
 
-	public function provideGetLanguageFromParams() {
+	public static function provideGetLanguageFromParams() {
 		return [
 			[ [], 'en', 'Default no language to en' ],
 			[ [ 'preserve' => 'this' ], 'en', 'Default no language to en 2' ],
@@ -403,7 +403,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 		}
 	}
 
-	public function provideParseParamString() {
+	public static function provideParseParamString() {
 		return [
 			[ '100px', [ 'width' => '100', 'lang' => 'en' ], 'Only width' ],
 			[ 'langde-100px', [ 'width' => '100', 'lang' => 'de' ], 'German language and width' ],

@@ -19,7 +19,7 @@ use Wikimedia\Assert\PreconditionException;
 class MutableRevisionRecordTest extends MediaWikiIntegrationTestCase {
 	use MockTitleTrait;
 
-	public function provideConstructor() {
+	public static function provideConstructor() {
 		$title = Title::makeTitle( NS_MAIN, 'Dummy' );
 		$title->resetArticleID( 17 );
 		yield 'local wiki, with title' => [ $title, PageIdentity::LOCAL ];

@@ -65,7 +65,7 @@ class PageReferenceValueTest extends MediaWikiUnitTestCase {
 		new PageReferenceValue( $namespace, $dbKey, $wikiId );
 	}
 
-	public function provideToString() {
+	public static function provideToString() {
 		yield [
 			new PageReferenceValue( 0, 'Foo', PageReference::LOCAL ),
 			'[0:Foo]'
@@ -90,7 +90,7 @@ class PageReferenceValueTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function provideIsSamePageAs() {
+	public static function provideIsSamePageAs() {
 		yield [
 			new PageReferenceValue( 0, 'Foo', PageReference::LOCAL ),
 			new PageReferenceValue( 0, 'Foo', PageReference::LOCAL ),

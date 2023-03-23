@@ -9,7 +9,7 @@ use Wikimedia\Http\HttpAcceptParser;
  */
 class HttpAcceptParserTest extends \PHPUnit\Framework\TestCase {
 
-	public function provideParseWeights() {
+	public static function provideParseWeights() {
 		return [
 			[ // #0
 				'',
@@ -52,7 +52,7 @@ class HttpAcceptParserTest extends \PHPUnit\Framework\TestCase {
 		$this->assertEquals( $expected, $actual ); // shouldn't be sensitive to order
 	}
 
-	public function provideParseAccept() {
+	public static function provideParseAccept() {
 		return [
 			[
 				// Sort by decending q

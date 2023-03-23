@@ -59,7 +59,7 @@ class DatabaseBlockStoreFactoryTest extends MediaWikiUnitTestCase {
 		$this->assertInstanceOf( DatabaseBlockStore::class, $databaseBlockStore );
 	}
 
-	public function provideDomains() {
+	public static function provideDomains() {
 		yield 'local wiki' => [ WikiAwareEntity::LOCAL ];
 		yield 'foreign wiki' => [ 'meta' ];
 	}

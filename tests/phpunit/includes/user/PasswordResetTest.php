@@ -58,7 +58,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $isAllowed, $passwordReset->isAllowed( $user )->isGood() );
 	}
 
-	public function provideIsAllowed() {
+	public static function provideIsAllowed() {
 		return [
 			'no routes' => [
 				'passwordResetRoutes' => [],

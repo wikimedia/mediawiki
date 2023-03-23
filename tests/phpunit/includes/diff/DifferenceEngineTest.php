@@ -145,7 +145,7 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $revs[2], $diffEngine->getNewid(), 'diff get new id' );
 	}
 
-	public function provideLocaliseTitleTooltipsTestData() {
+	public static function provideLocaliseTitleTooltipsTestData() {
 		return [
 			'moved paragraph left shoud get new location title' => [
 				'<a class="mw-diff-movedpara-left">⚫</a>',
@@ -361,7 +361,7 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( $expectedResult, $html );
 	}
 
-	public function provideMarkPatrolledLink() {
+	public static function provideMarkPatrolledLink() {
 		yield 'PatrollingEnabledUserAllowed' => [
 			'sysop',
 			new HashConfig( [ 'UseRCPatrol' => true, 'LanguageCode' => 'qxx' ] ),
@@ -487,7 +487,7 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideRevisionHeader() {
+	public static function provideRevisionHeader() {
 		return [
 			[ 'none', 'view' ],
 			[ 'none', 'edit' ],

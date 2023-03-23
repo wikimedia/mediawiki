@@ -9,7 +9,7 @@ use MediaWiki\Title\Title;
 class ExternalUserNamesTest extends MediaWikiIntegrationTestCase {
 	use DummyServicesTrait;
 
-	public function provideGetUserLinkTitle() {
+	public static function provideGetUserLinkTitle() {
 		return [
 			[
 				'Valid user name from known import source',
@@ -77,7 +77,7 @@ class ExternalUserNamesTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideApplyPrefix() {
+	public static function provideApplyPrefix() {
 		return [
 			[ 'User1', 'prefix', 'prefix>User1' ],
 			[ 'User1', 'prefix:>', 'prefix>User1' ],
@@ -118,7 +118,7 @@ class ExternalUserNamesTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $testName2, $externalUserNames->applyPrefix( $testName2 ) );
 	}
 
-	public function provideAddPrefix() {
+	public static function provideAddPrefix() {
 		return [
 			[ 'User1', 'prefix', 'prefix>User1' ],
 			[ 'User2', 'prefix2', 'prefix2>User2' ],
@@ -139,7 +139,7 @@ class ExternalUserNamesTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideIsExternal() {
+	public static function provideIsExternal() {
 		return [
 			[ 'User1', false ],
 			[ '>User1', true ],
@@ -159,7 +159,7 @@ class ExternalUserNamesTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideGetLocal() {
+	public static function provideGetLocal() {
 		return [
 			[ 'User1', 'User1' ],
 			[ '>User2', 'User2' ],

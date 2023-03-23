@@ -144,7 +144,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 		$obj->$method( $page, ...$extraArgs );
 	}
 
-	public function provideNonLocalPage() {
+	public static function provideNonLocalPage() {
 		// We programmatically get all public methods whose first parameter is a PageIdentity. This
 		// way we'll make sure to include any new methods that are added in the future.
 		$ret = [];
@@ -235,7 +235,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $obj->getAllRestrictions( $page ) );
 	}
 
-	public function provideGetAllRestrictions(): array {
+	public static function provideGetAllRestrictions(): array {
 		return [
 			'Special page' => [
 				[],
@@ -304,7 +304,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $obj->getRestrictionExpiry( $page, $action ) );
 	}
 
-	public function provideGetRestrictionExpiry(): array {
+	public static function provideGetRestrictionExpiry(): array {
 		return [
 			'Special page' => [
 				null,
@@ -429,7 +429,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $obj->getCreateProtection( $page ) );
 	}
 
-	public function provideGetCreateProtection(): array {
+	public static function provideGetCreateProtection(): array {
 		$ret = [
 			'Special page' => [ null, self::newImproperPageIdentity( NS_SPECIAL, 'X' ), null ],
 			'Media page' => [ null, self::newImproperPageIdentity( NS_MEDIA, 'X' ), null ],
@@ -485,7 +485,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 		$obj->deleteCreateProtection( $page );
 	}
 
-	public function provideDeleteCreateProtection(): array {
+	public static function provideDeleteCreateProtection(): array {
 		return [
 			// Most of these don't actually make sense, but test current behavior regardless.
 			'Special page' => [ self::newImproperPageIdentity( NS_SPECIAL, 'X' ) ],
@@ -510,7 +510,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $obj->isSemiProtected( $page, 'edit' ) );
 	}
 
-	public function provideIsSemiProtected(): array {
+	public static function provideIsSemiProtected(): array {
 		return [
 			'Special page' => [ false, null,
 				[ 'page' => self::newImproperPageIdentity( NS_SPECIAL, 'X' ) ] ],
@@ -594,7 +594,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $obj->isProtected( $page, $action ) );
 	}
 
-	public function provideIsProtected(): array {
+	public static function provideIsProtected(): array {
 		return [
 			'Special page' => [ true, null,
 				[ 'page' => self::newImproperPageIdentity( NS_SPECIAL, 'X' ) ] ],
@@ -895,7 +895,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $obj->areRestrictionsLoaded( $page ) );
 	}
 
-	public function provideAreRestrictionsLoaded(): array {
+	public static function provideAreRestrictionsLoaded(): array {
 		return [
 			'Special page' => [ false, self::newImproperPageIdentity( NS_SPECIAL, 'X' ) ],
 			'Media page' => [ false, self::newImproperPageIdentity( NS_MEDIA, 'X' ) ],
@@ -926,7 +926,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $obj->areRestrictionsCascading( $page ) );
 	}
 
-	public function provideAreRestrictionsCascading(): array {
+	public static function provideAreRestrictionsCascading(): array {
 		return [
 			'Special page' => [ false, self::newImproperPageIdentity( NS_SPECIAL, 'X' ), null ],
 			'Media page' => [ false, self::newImproperPageIdentity( NS_MEDIA, 'X' ), null ],

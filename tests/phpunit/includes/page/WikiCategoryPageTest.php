@@ -23,7 +23,7 @@ class WikiCategoryPageTest extends MediaWikiLangTestCase {
 		$this->assertFalse( $categoryPage->isHidden() );
 	}
 
-	public function provideCategoryContent() {
+	public static function provideCategoryContent() {
 		return [
 			[ true ],
 			[ false ],

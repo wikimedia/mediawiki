@@ -297,7 +297,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	public function provideCasesForFormatComment() {
+	public static function provideCasesForFormatComment() {
 		$wikiId = 'enwiki'; // $wgConf has a fake entry for this
 		return [
 			// Linker::formatComment

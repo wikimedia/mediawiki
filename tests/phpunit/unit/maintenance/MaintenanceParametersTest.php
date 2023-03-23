@@ -132,7 +132,7 @@ class MaintenanceParametersTest extends TestCase {
 		$this->assertTrue( $params->supportsOption( 'test' ) );
 	}
 
-	public function provideArgv() {
+	public static function provideArgv() {
 		yield 'nothing' => [
 			[], [], []
 		];
@@ -241,7 +241,7 @@ class MaintenanceParametersTest extends TestCase {
 		$this->assertSame( [ 'b', 'c', 'd' ], $params->getArgs( 'bar' ) );
 	}
 
-	public function provideAddArgFailure() {
+	public static function provideAddArgFailure() {
 		yield 'Already defined' => [
 			[ 'foo', 'testin 1' ],
 			[ 'foo', 'testin 2' ],
@@ -285,7 +285,7 @@ class MaintenanceParametersTest extends TestCase {
 		$this->assertSame( 'V', $params->getArg( 0 ) );
 	}
 
-	public function provideBadArgv() {
+	public static function provideBadArgv() {
 		yield 'nothing' => [
 			[],
 			[
@@ -392,7 +392,7 @@ class MaintenanceParametersTest extends TestCase {
 		);
 	}
 
-	public function provideArgHelp() {
+	public static function provideArgHelp() {
 		yield [
 			[ 'foo', 'Foo arg' ],
 			'<foo>',

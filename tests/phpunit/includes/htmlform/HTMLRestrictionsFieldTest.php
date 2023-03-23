@@ -64,7 +64,7 @@ class HTMLRestrictionsFieldTest extends PHPUnit\Framework\TestCase {
 		$form->getHTML( $status );
 	}
 
-	public function provideValidate() {
+	public static function provideValidate() {
 		return [
 			// submitted text, value of 'IPAddresses' key or false for validation error
 			[ null, [ '0.0.0.0/0', '::/0' ] ],

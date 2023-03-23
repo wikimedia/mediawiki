@@ -37,7 +37,7 @@ class SpecialShortPagesTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expectedNS, $queryInfo[ 'conds' ][ 'page_namespace' ] );
 	}
 
-	public function provideGetQueryInfoRespectsContentNs() {
+	public static function provideGetQueryInfoRespectsContentNs() {
 		return [
 			[ [ NS_MAIN, NS_FILE ], [], [ NS_MAIN, NS_FILE ] ],
 			[ [ NS_MAIN, NS_TALK ], [ NS_FILE ], [ NS_MAIN, NS_TALK ] ],

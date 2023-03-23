@@ -381,7 +381,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	public function provideTestEditFilterMergedContentHookConstraint() {
+	public static function provideTestEditFilterMergedContentHookConstraint() {
 		yield 'Hook returns false, status is good, no value set' => [
 			false, null, false, EditPage::AS_HOOK_ERROR_EXPECTED, 'AS_HOOK_ERROR_EXPECTED'
 		];
@@ -425,7 +425,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	public function provideTestEditRightConstraint() {
+	public static function provideTestEditRightConstraint() {
 		yield 'Anonymous user' => [ true, EditPage::AS_READ_ONLY_PAGE_ANON ];
 		yield 'Registered user' => [ false, EditPage::AS_READ_ONLY_PAGE_LOGGED ];
 	}
@@ -463,7 +463,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	public function provideTestImageRedirectConstraint() {
+	public static function provideTestImageRedirectConstraint() {
 		yield 'Anonymous user' => [ true, EditPage::AS_IMAGE_REDIRECT_ANON ];
 		yield 'Registered user' => [ false, EditPage::AS_IMAGE_REDIRECT_LOGGED ];
 	}

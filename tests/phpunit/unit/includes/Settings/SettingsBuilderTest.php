@@ -165,7 +165,7 @@ class SettingsBuilderTest extends TestCase {
 		$setting->apply();
 	}
 
-	public function provideConfigDefaults() {
+	public static function provideConfigDefaults() {
 		yield 'sets a value from a single settings file' => [
 			'settingsBatches' => [
 				[ 'config' => [ 'MySetting' => 'MyValue', ], ],
@@ -456,7 +456,7 @@ class SettingsBuilderTest extends TestCase {
 		$this->assertSame( [ 'x' ], $config->get( 'X' ) );
 	}
 
-	public function provideValidate() {
+	public static function provideValidate() {
 		yield 'all good' => [
 			'settings' => [
 				'config-schema' => [ 'foo' => [ 'type' => 'string', ], ],

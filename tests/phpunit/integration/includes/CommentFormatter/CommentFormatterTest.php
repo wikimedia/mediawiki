@@ -218,7 +218,7 @@ class CommentFormatterTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideFormatRevision() {
+	public static function provideFormatRevision() {
 		$normal = ' <span class="comment">(' .
 			'comment=hello, selfLinkTarget=Page, !samePage, enableSectionLinks' .
 			')</span>';

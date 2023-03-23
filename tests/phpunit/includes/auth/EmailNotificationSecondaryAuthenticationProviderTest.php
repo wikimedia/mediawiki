@@ -69,7 +69,7 @@ class EmailNotificationSecondaryAuthenticationProviderTest extends \MediaWikiInt
 		$this->assertSame( $expected, $provider->getAuthenticationRequests( $action, [] ) );
 	}
 
-	public function provideGetAuthenticationRequests() {
+	public static function provideGetAuthenticationRequests() {
 		return [
 			[ AuthManager::ACTION_LOGIN, [] ],
 			[ AuthManager::ACTION_CREATE, [] ],

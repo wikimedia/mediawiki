@@ -21,7 +21,7 @@ class ValidatorTest extends \MediaWikiUnitTestCase {
 	use DummyServicesTrait;
 	use MockAuthorityTrait;
 
-	public function provideValidateBody() {
+	public static function provideValidateBody() {
 		$bodyData = [
 			'kittens' => 'cute',
 			'number' => 5,

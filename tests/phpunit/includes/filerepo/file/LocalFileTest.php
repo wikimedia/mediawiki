@@ -509,7 +509,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( 'TEST CONTENT', $file->getDescriptionText() );
 	}
 
-	public function provideLoadFromDBAndCache() {
+	public static function provideLoadFromDBAndCache() {
 		return [
 			'legacy' => [
 				'a:6:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:16;s:9:"colorType";s:10:"truecolour";s:8:"metadata";a:2:{s:8:"DateTime";s:19:"2019:07:30 13:52:32";s:15:"_MW_PNG_VERSION";i:1;}}',
@@ -687,7 +687,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayEquals( $expectedProps, $actualProps, false, true );
 	}
 
-	public function provideLegacyMetadataRoundTrip() {
+	public static function provideLegacyMetadataRoundTrip() {
 		return [
 			[ '0' ],
 			[ '-1' ],
@@ -714,7 +714,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $meta, $file->getMetadata() );
 	}
 
-	public function provideRecordUpload3() {
+	public static function provideRecordUpload3() {
 		$files = [
 			'test.jpg' => [
 				'width' => 20,
@@ -885,7 +885,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusGood( $status );
 	}
 
-	public function provideReserializeMetadata() {
+	public static function provideReserializeMetadata() {
 		return [
 			[
 				'',

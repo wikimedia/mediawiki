@@ -16,7 +16,7 @@ use WikitextContent;
  */
 class RevisionSlotsUpdateTest extends MediaWikiIntegrationTestCase {
 
-	public function provideNewFromRevisionSlots() {
+	public static function provideNewFromRevisionSlots() {
 		$slotA = SlotRecord::newUnsaved( 'A', new WikitextContent( 'A' ) );
 		$slotB = SlotRecord::newUnsaved( 'B', new WikitextContent( 'B' ) );
 		$slotC = SlotRecord::newUnsaved( 'C', new WikitextContent( 'C' ) );
@@ -57,7 +57,7 @@ class RevisionSlotsUpdateTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideNewFromContent() {
+	public static function provideNewFromContent() {
 		$slotA = SlotRecord::newUnsaved( 'A', new WikitextContent( 'A' ) );
 		$slotB = SlotRecord::newUnsaved( 'B', new WikitextContent( 'B' ) );
 		$slotC = SlotRecord::newUnsaved( 'C', new WikitextContent( 'C' ) );
@@ -198,7 +198,7 @@ class RevisionSlotsUpdateTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [ 'foo' ], $slots->getRemovedRoles() );
 	}
 
-	public function provideHasSameUpdates() {
+	public static function provideHasSameUpdates() {
 		$fooX = SlotRecord::newUnsaved( 'x', new WikitextContent( 'Foo' ) );
 		$barZ = SlotRecord::newUnsaved( 'z', new WikitextContent( 'Bar' ) );
 

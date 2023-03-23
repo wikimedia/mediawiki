@@ -59,7 +59,7 @@ class HtmlCacheUpdaterIntegrationTest extends MediaWikiIntegrationTestCase {
 		return $group;
 	}
 
-	public function providePurgeTitleUrls() {
+	public static function providePurgeTitleUrls() {
 		yield [ [], [] ];
 
 		yield [

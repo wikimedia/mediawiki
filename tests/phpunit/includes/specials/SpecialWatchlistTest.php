@@ -138,7 +138,7 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 		);
 	}
 
-	public function provideFetchOptionsFromRequest() {
+	public static function provideFetchOptionsFromRequest() {
 		return [
 			'ignores casing' => [
 				'expectedValuesDefaults' => 'wikiDefaults',

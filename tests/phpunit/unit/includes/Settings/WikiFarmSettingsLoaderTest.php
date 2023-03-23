@@ -62,7 +62,7 @@ class WikiFarmSettingsLoaderTest extends TestCase {
 		return $mock;
 	}
 
-	public function provideWikiFarmSettings() {
+	public static function provideWikiFarmSettings() {
 		yield [
 			[
 				'WikiFarmSettingsDirectory' => __DIR__ . '/fixtures/sites',

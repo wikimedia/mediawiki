@@ -21,7 +21,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 		} );
 	}
 
-	public function provideHandlerSpecs() {
+	public static function provideHandlerSpecs() {
 		return [
 			'typical list' => [
 				[
@@ -119,7 +119,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 		}
 	}
 
-	public function provideHandlerSpecsWithMWException(): array {
+	public static function provideHandlerSpecsWithMWException(): array {
 		return [
 			'MWException expected' => [
 				[
@@ -325,7 +325,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 		$this->assertFalse( $factory->isDefinedModel( 'not exist name' ) );
 	}
 
-	public function provideValidDummySpecList() {
+	public static function provideValidDummySpecList() {
 		return [
 			'1-0-3' => [
 				'mock name 1',

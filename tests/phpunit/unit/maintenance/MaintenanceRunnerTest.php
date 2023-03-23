@@ -27,7 +27,7 @@ class MaintenanceRunnerTest extends TestCase {
 		chdir( $this->oldWorkDir );
 	}
 
-	public function provideFindScriptClass() {
+	public static function provideFindScriptClass() {
 		// NOTE: We must use a different class for each test case,
 		//       otherwise we may trigger a "cannot re-declare class" error.
 
@@ -116,7 +116,7 @@ class MaintenanceRunnerTest extends TestCase {
 		$this->assertSame( $expected, $class );
 	}
 
-	public function providePreloadScriptFile() {
+	public static function providePreloadScriptFile() {
 		// NOTE: We must use a different class for each test case,
 		//       otherwise we may trigger a "cannot re-declare class" error.
 

@@ -40,7 +40,7 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		$this->setUserLang( $langObj );
 	}
 
-	public function provideElement() {
+	public static function provideElement() {
 		// $expect, $element, $attribs, $contents
 		yield 'Opening element with no attributes' => [ '<element>', 'element', null, null ];
 		yield 'Terminated empty element' => [ '<element />', 'element', null, '' ];
@@ -98,7 +98,7 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( '</element>', Xml::closeElement( 'element' ), 'closeElement() shortcut' );
 	}
 
-	public function provideMonthSelector() {
+	public static function provideMonthSelector() {
 		# providers are run before services are set up
 		$lang = new class() {
 			public function getMonthName( $i ) {
@@ -430,7 +430,7 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideFieldset() {
+	public static function provideFieldset() {
 		// $expect, [ $arg1, $arg2, ... ]
 		yield 'Opening tag' => [ "<fieldset>\n", [] ];
 		yield 'Opening tag (false means no legend)' => [ "<fieldset>\n", [ false ] ];

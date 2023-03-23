@@ -22,7 +22,7 @@ class FormOptionsTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function provideTypeDetection() {
+	public static function provideTypeDetection() {
 		yield [ FormOptions::BOOL, true ];
 		yield [ FormOptions::BOOL, false ];
 		yield [ FormOptions::INT, 0 ];

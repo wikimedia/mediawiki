@@ -326,7 +326,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expect, $result );
 	}
 
-	public function provideGetWhere() {
+	public static function provideGetWhere() {
 		$genericUser = new UserIdentityValue( 1, 'User1' );
 		$complicatedUsers = [
 			new UserIdentityValue( 1, 'User1' ),

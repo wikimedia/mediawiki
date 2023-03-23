@@ -16,7 +16,7 @@ class MergeStrategyTest extends TestCase {
 		MergeStrategy::newFromName( 'unknown' )->merge( [], [] );
 	}
 
-	public function provideMergeStrategies() {
+	public static function provideMergeStrategies() {
 		yield 'array_merge_recursive' => [
 			'strategy' => MergeStrategy::ARRAY_MERGE_RECURSIVE,
 			'newArray' => [ 'a' => [ 'b' => [ 'd' ] ] ],

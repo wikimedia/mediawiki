@@ -166,7 +166,7 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $skin->isResponsive() );
 	}
 
-	public function provideSkinResponsiveOptions() {
+	public static function provideSkinResponsiveOptions() {
 		yield 'responsive not set' => [
 			[ 'name' => 'test', 'userPreference' => true ],
 			false
@@ -192,7 +192,7 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers Skin::makeLink
 	 */
-	public function provideMakeLink() {
+	public static function provideMakeLink() {
 		return [
 			'Empty href with link class' => [
 				[
@@ -318,7 +318,7 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideGetPersonalToolsForMakeListItem() {
+	public static function provideGetPersonalToolsForMakeListItem() {
 		return [
 			[
 				[
@@ -426,7 +426,7 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $relevantUser, $skin->getRelevantUser() );
 	}
 
-	public function provideGetRelevantUser_load_from_title() {
+	public static function provideGetRelevantUser_load_from_title() {
 		yield 'Not user namespace' => [
 			'relevantPage' => PageReferenceValue::localReference( NS_MAIN, '123.123.123.123' ),
 			'expectedUser' => null

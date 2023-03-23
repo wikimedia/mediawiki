@@ -1607,7 +1607,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		$this->assertEquals( $expected, $formattedNum );
 	}
 
-	public function provideFormatNum() {
+	public static function provideFormatNum() {
 		return [
 			[ true, 'en', 100, false, '100' ],
 			[ true, 'en', 101, true, '101' ],
@@ -1985,7 +1985,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		$this->assertArraySubmapSame( $expected, $namespaces );
 	}
 
-	public function provideGetNamespaces() {
+	public static function provideGetNamespaces() {
 		$enNamespaces = [
 			NS_MEDIA            => 'Media',
 			NS_SPECIAL          => 'Special',

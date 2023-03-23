@@ -53,7 +53,7 @@ class ApiParamValidatorTest extends ApiTestCase {
 		$this->assertEquals( $expect, $validator->normalizeSettings( $settings ) );
 	}
 
-	public function provideNormalizeSettings(): array {
+	public static function provideNormalizeSettings(): array {
 		return [
 			'Basic test' => [
 				[],
@@ -538,7 +538,7 @@ class ApiParamValidatorTest extends ApiTestCase {
 		}
 	}
 
-	public function provideGetValue(): array {
+	public static function provideGetValue(): array {
 		return [
 			'Basic test' => [
 				'1234',
@@ -624,7 +624,7 @@ class ApiParamValidatorTest extends ApiTestCase {
 		}
 	}
 
-	public function provideValidateValue(): array {
+	public static function provideValidateValue(): array {
 		return [
 			'Basic test' => [
 				1234,

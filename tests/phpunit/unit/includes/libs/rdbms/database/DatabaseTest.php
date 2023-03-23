@@ -118,7 +118,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		);
 	}
 
-	public function provideTableNamesWithIndexClauseOrJOIN() {
+	public static function provideTableNamesWithIndexClauseOrJOIN() {
 		return [
 			'one-element array' => [
 				[ 'table' ], [], 'table '
@@ -576,7 +576,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( $origTrx, $db->getFlag( DBO_TRX ) );
 	}
 
-	public function provideImmutableDBOFlags() {
+	public static function provideImmutableDBOFlags() {
 		return [
 			[ Database::DBO_IGNORE ],
 			[ Database::DBO_DEFAULT ],

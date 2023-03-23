@@ -398,7 +398,7 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( $excepted, $parsed );
 	}
 
-	public function provideParseCondState() {
+	public static function provideParseCondState() {
 		yield 'Normal' => [
 			null,
 			[ '===', 'normal', '1' ],

@@ -192,7 +192,7 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 		$this->assertEquals( $expect, $validator->checkSettings( 'dummy', $settings, [] ) );
 	}
 
-	public function provideCheckSettings(): array {
+	public static function provideCheckSettings(): array {
 		$normalKeys = [
 			ParamValidator::PARAM_TYPE, ParamValidator::PARAM_DEFAULT, ParamValidator::PARAM_REQUIRED,
 			ParamValidator::PARAM_ISMULTI, ParamValidator::PARAM_SENSITIVE, ParamValidator::PARAM_DEPRECATED,

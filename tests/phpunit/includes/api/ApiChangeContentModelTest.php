@@ -170,7 +170,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 		);
 	}
 
-	public function provideTestEditFilterMergedContent() {
+	public static function provideTestEditFilterMergedContent() {
 		return [
 			[ 'DannyS712 objects to this change!', 'DannyS712 objects to this change!' ],
 			[ false, 'hookaborted' ]

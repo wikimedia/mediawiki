@@ -100,7 +100,7 @@ class JpegTest extends MediaWikiMediaTestCase {
 		);
 	}
 
-	public function provideSwappingICCProfile() {
+	public static function provideSwappingICCProfile() {
 		return [
 			// File with sRGB should end up with TinyRGB
 			[

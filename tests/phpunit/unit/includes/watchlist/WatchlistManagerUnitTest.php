@@ -521,7 +521,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		$this->assertTrue( $manager->isWatchable( $target ) );
 	}
 
-	public function provideNotIsWatchable() {
+	public static function provideNotIsWatchable() {
 		yield [ new PageReferenceValue( NS_SPECIAL, 'Contributions', PageReference::LOCAL ) ];
 		yield [ Title::makeTitle( NS_MAIN, '', 'References' ) ];
 		yield [ Title::makeTitle( NS_MAIN, 'Foo', '', 'acme' ) ];

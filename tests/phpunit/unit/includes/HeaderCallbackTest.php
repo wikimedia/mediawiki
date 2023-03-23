@@ -15,7 +15,7 @@ class HeaderCallbackTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expectedSanitized, HeaderCallback::sanitizeSetCookie( $raw ) );
 	}
 
-	public function provideSanitizeSetCookie() {
+	public static function provideSanitizeSetCookie() {
 		return [
 			[
 				[

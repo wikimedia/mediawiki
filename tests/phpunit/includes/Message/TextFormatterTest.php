@@ -79,7 +79,7 @@ class TextFormatterTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'test a, 100 bps $2', $result );
 	}
 
-	public function provideTestFormatMessage() {
+	public static function provideTestFormatMessage() {
 		yield [ ( new MessageValue( 'test' ) )
 			->params( new MessageValue( 'test2', [ 'a', 'b' ] ) )
 			->commaListParams( [

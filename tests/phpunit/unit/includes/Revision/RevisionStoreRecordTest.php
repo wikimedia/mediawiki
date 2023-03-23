@@ -53,7 +53,7 @@ class RevisionStoreRecordTest extends MediaWikiUnitTestCase {
 		return new RevisionStoreRecord( $title, $user, $comment, (object)$row, $slots, $wikiId );
 	}
 
-	public function provideIsCurrent() {
+	public static function provideIsCurrent() {
 		yield [
 			[
 				'rev_id' => 11,

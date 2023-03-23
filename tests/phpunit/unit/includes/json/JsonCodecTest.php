@@ -23,7 +23,7 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 		return new JsonCodec();
 	}
 
-	public function provideSimpleTypes() {
+	public static function provideSimpleTypes() {
 		yield 'Integer' => [ 1, json_encode( 1 ) ];
 		yield 'Boolean' => [ true, json_encode( true ) ];
 		yield 'Null' => [ null, json_encode( null ) ];
@@ -34,7 +34,7 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 		yield 'Object' => [ (array)$object, json_encode( $object ) ];
 	}
 
-	public function provideInvalidJsonData() {
+	public static function provideInvalidJsonData() {
 		yield 'Bad string' => [ 'bad string' ];
 		yield 'No unserialization metadata' => [ [ 'test' => 'test' ] ];
 		yield 'Unserialization metadata, but class not exist' => [ [
@@ -152,7 +152,7 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 		$this->assertArrayEquals( $array, $unserialized );
 	}
 
-	public function provideValidateSerializable() {
+	public static function provideValidateSerializable() {
 		$classInstance = new class() {
 		};
 		$serializableClass = new class() implements JsonSerializable {
@@ -218,7 +218,7 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( $value, $newValue );
 	}
 
-	public function provideSerializeThrowsOnFailure() {
+	public static function provideSerializeThrowsOnFailure() {
 		$classInstance = new class() {
 		};
 		yield 'non-serializable class' => [ $classInstance ];
@@ -237,7 +237,7 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 		$this->getCodec()->serialize( $value );
 	}
 
-	public function provideSerializeSuccess() {
+	public static function provideSerializeSuccess() {
 		$serializableInstance = new class() implements JsonSerializable {
 			public function jsonSerialize(): array {
 				return [ 'c' => 'd' ];

@@ -212,7 +212,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideRewriteQueryWithSuggestion() {
+	public static function provideRewriteQueryWithSuggestion() {
 		return [
 			[
 				'With suggestion and no rewritten query shows did you mean',
@@ -309,7 +309,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideLimitPreference() {
+	public static function provideLimitPreference() {
 		return [
 			[ 20, 20 ],
 			[ 101, null ],

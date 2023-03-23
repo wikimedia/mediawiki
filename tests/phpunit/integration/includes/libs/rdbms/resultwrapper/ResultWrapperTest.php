@@ -131,7 +131,7 @@ class ResultWrapperTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( true ); // no error
 	}
 
-	public function provideSeekOutOfBounds() {
+	public static function provideSeekOutOfBounds() {
 		return [ [ 0, 1 ], [ 1, 1 ], [ 1, 2 ], [ 1, -1 ] ];
 	}
 

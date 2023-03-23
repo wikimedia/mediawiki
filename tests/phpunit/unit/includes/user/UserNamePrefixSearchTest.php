@@ -104,7 +104,7 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $result, $res );
 	}
 
-	public function provideTestSearch() {
+	public static function provideTestSearch() {
 		// [ $audienceType, $prefix, $limit, $offset, $result ]
 		return [
 			'public' => [

@@ -67,7 +67,7 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 		] );
 	}
 
-	public function provideFormatComment() {
+	public static function provideFormatComment() {
 		$wikiId = 'enwiki'; // $wgConf has a fake entry for this
 		return [
 			// MediaWiki\CommentFormatter\CommentFormatter::format

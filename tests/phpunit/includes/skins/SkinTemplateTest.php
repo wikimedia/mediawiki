@@ -68,7 +68,7 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 		return $mock;
 	}
 
-	public function provideGetDefaultModules() {
+	public static function provideGetDefaultModules() {
 		return [
 			[
 				false,
@@ -93,7 +93,7 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	public function provideGetFooterIcons() {
+	public static function provideGetFooterIcons() {
 		return [
 			// Test case 1
 			[
@@ -213,7 +213,7 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideContentNavigation(): array {
+	public static function provideContentNavigation(): array {
 		return [
 			'No userpage set' => [
 				'contentNavigation' => [

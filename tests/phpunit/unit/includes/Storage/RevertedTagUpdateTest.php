@@ -171,7 +171,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 		};
 	}
 
-	public function provideRevertedTagUpdateDisabled() {
+	public static function provideRevertedTagUpdateDisabled() {
 		yield 'mw-reverted tag is disabled' => [ [], 15 ];
 		yield '$wgRevertedTagMaxDepth is 0' => [ [ 'mw-reverted' ], 0 ];
 	}
@@ -197,7 +197,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 		$update->doUpdate();
 	}
 
-	public function provideInvalidEditResults() {
+	public static function provideInvalidEditResults() {
 		yield 'edit is not a revert' => [
 			new EditResult(
 				false,
@@ -335,7 +335,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 		], $logger->getBuffer() );
 	}
 
-	public function providePageIdMismatch() {
+	public static function providePageIdMismatch() {
 		yield 'mismatch between reverted revisions' => [
 			10,
 			22,

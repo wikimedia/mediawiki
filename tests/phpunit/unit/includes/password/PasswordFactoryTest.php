@@ -64,7 +64,7 @@ class PasswordFactoryTest extends MediaWikiUnitTestCase {
 		$this->assertInstanceOf( MWSaltedPassword::class, $pw );
 	}
 
-	public function provideNewFromCiphertextErrors() {
+	public static function provideNewFromCiphertextErrors() {
 		return [ [ 'blah' ], [ ':blah:' ] ];
 	}
 

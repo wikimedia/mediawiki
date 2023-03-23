@@ -52,7 +52,7 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 		$this->assertSame( '', $output->getPageProperty( 'forcetoc' ) );
 	}
 
-	public function provideParserOutputFromPageBundle() {
+	public static function provideParserOutputFromPageBundle() {
 		yield 'should convert PageBundle containing data-parsoid and data-mw' => [
 			new PageBundle(
 				'html content',

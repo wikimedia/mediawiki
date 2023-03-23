@@ -171,7 +171,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		}
 	}
 
-	public function provideNewFromTargetRangeBlocks() {
+	public static function provideNewFromTargetRangeBlocks() {
 		return [
 			'Blocks to IPv4 ranges' => [
 				[ '0.0.0.0/20', '0.0.0.0/30', '0.0.0.0/25' ],

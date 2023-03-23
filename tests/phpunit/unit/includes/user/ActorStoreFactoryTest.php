@@ -22,7 +22,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
  */
 class ActorStoreFactoryTest extends MediaWikiUnitTestCase {
 
-	public function provideGetActorStore() {
+	public static function provideGetActorStore() {
 		yield 'local, no shared' => [
 			false, // $domain,
 			[

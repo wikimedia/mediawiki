@@ -167,7 +167,7 @@ class TitleValueTest extends \MediaWikiUnitTestCase {
 		$this->assertEquals( $fragment, $fragmentTitle->getFragment() );
 	}
 
-	public function provideNewFromPage() {
+	public static function provideNewFromPage() {
 		yield [ new PageReferenceValue( NS_USER, 'Test', PageIdentity::LOCAL ) ];
 		yield [ new PageReferenceValue( NS_USER, 'Test', 'acme' ) ];
 	}
@@ -189,7 +189,7 @@ class TitleValueTest extends \MediaWikiUnitTestCase {
 		$this->assertFalse( $title->hasFragment() );
 	}
 
-	public function provideCastPageToLinkTarget() {
+	public static function provideCastPageToLinkTarget() {
 		yield [ new PageReferenceValue( NS_USER, 'Test', PageIdentity::LOCAL ) ];
 		yield [ new PageReferenceValue( NS_USER, 'Test', 'acme' ) ];
 	}
@@ -236,7 +236,7 @@ class TitleValueTest extends \MediaWikiUnitTestCase {
 		$this->assertEquals( $text, $title->getText() );
 	}
 
-	public function provideTestToString() {
+	public static function provideTestToString() {
 		yield [
 			new TitleValue( 0, 'Foo' ),
 			'0:Foo'
@@ -265,7 +265,7 @@ class TitleValueTest extends \MediaWikiUnitTestCase {
 		);
 	}
 
-	public function provideIsSameLinkAs() {
+	public static function provideIsSameLinkAs() {
 		yield [
 			new TitleValue( 0, 'Foo' ),
 			new TitleValue( 0, 'Foo' ),

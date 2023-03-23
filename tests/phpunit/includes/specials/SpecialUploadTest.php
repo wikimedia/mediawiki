@@ -13,7 +13,7 @@ class SpecialUploadTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected, $result );
 	}
 
-	public function provideGetInitialPageText() {
+	public static function provideGetInitialPageText() {
 		return [
 			[
 				'expect' => "== Summary ==\nthis is a test\n",

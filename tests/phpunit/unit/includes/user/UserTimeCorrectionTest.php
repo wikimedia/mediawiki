@@ -24,7 +24,7 @@ class UserTimeCorrectionTest extends MediaWikiUnitTestCase {
 		self::assertEquals( $isValid, $value->isValid() );
 	}
 
-	public function provideTimeCorrectionExamples() {
+	public static function provideTimeCorrectionExamples() {
 		return [
 			[ '', 'System|0', false ],
 			[ 'bogus', 'System|0', false ],
@@ -80,7 +80,7 @@ class UserTimeCorrectionTest extends MediaWikiUnitTestCase {
 		self::assertEquals( $isValid, $value->isValid() );
 	}
 
-	public function provideServerTZoffsetExamples() {
+	public static function provideServerTZoffsetExamples() {
 		return [
 			[ 120, '', 'System|120', false ],
 			[ 120, 'bogus', 'System|120', false ],
@@ -108,7 +108,7 @@ class UserTimeCorrectionTest extends MediaWikiUnitTestCase {
 		self::assertEquals( $isValid, $value->isValid() );
 	}
 
-	public function provideDSTVariations() {
+	public static function provideDSTVariations() {
 		// Amsterdam observes DST. Johannesburg does not
 		return [
 			[ new DateTime( '2020-12-01' ), 'ZoneInfo|60|Europe/Amsterdam', 'ZoneInfo|60|Europe/Amsterdam', true ],
@@ -142,7 +142,7 @@ class UserTimeCorrectionTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, UserTimeCorrection::formatTimezoneOffset( $offset ) );
 	}
 
-	public function provideTimezoneOffsets(): array {
+	public static function provideTimezoneOffsets(): array {
 		return [
 			'00:00' => [ 0, '+00:00' ],
 			'Positive' => [ 120, '+02:00' ],

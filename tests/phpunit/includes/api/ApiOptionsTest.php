@@ -346,7 +346,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $result, $response, $message );
 	}
 
-	public function provideOptionManupulation() {
+	public static function provideOptionManupulation() {
 		return [
 			[
 				[ 'change' => 'userjs-option=1' ],

@@ -68,7 +68,7 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function provideSetConfig() {
+	public static function provideSetConfig() {
 		yield 'PageConfigFactory should not be used if PageConfig is set' => [ false ];
 
 		yield 'PageConfigFactory should be used if PageConfig is not set' => [ true ];
@@ -117,7 +117,7 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 		$languageVariantConverter->convertPageBundleVariant( $pageBundleMock, $targetLanguage, $sourceLanguage );
 	}
 
-	public function provideSourceLanguage() {
+	public static function provideSourceLanguage() {
 		yield 'content-language in PageBundle' => [
 			'sr-el', // PageBundle content-language
 			null,    // Title PageLanguage
@@ -194,7 +194,7 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 		$languageVariantConverter->convertPageBundleVariant( $pageBundleMock, $targetLanguage );
 	}
 
-	public function provideSiteConfiguration() {
+	public static function provideSiteConfiguration() {
 		$isLanguageConversionEnabled = false;
 		$shouldParsoidBeUsed = false;
 		$shouldPageConfigFactoryBeUsed = false;

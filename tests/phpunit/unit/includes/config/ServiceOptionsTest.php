@@ -28,7 +28,7 @@ class ServiceOptionsTest extends MediaWikiUnitTestCase {
 		$this->assertTrue( true );
 	}
 
-	public function provideConstructor() {
+	public static function provideConstructor() {
 		$testObj = (object)[];
 		return [
 			'No keys' => [ [], [], [ 'a' => 'aval' ] ],

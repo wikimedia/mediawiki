@@ -180,7 +180,7 @@ class RevisionSlotsTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( [ SlotRecord::MAIN => $mainSlot ], $slots->getOriginalSlots() );
 	}
 
-	public function provideComputeSize() {
+	public static function provideComputeSize() {
 		yield [ 1, [ 'A' ] ];
 		yield [ 2, [ 'AA' ] ];
 		yield [ 4, [ 'AA', 'X', 'H' ] ];
@@ -200,7 +200,7 @@ class RevisionSlotsTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $slots->computeSize() );
 	}
 
-	public function provideComputeSha1() {
+	public static function provideComputeSha1() {
 		yield [ 'ctqm7794fr2dp1taki8a88ovwnvmnmj', [ 'A' ] ];
 		yield [ 'eyq8wiwlcofnaiy4eid97gyfy60uw51', [ 'AA' ] ];
 		yield [ 'lavctqfpxartyjr31f853drgfl4kj1g', [ 'AA', 'X', 'H' ] ];

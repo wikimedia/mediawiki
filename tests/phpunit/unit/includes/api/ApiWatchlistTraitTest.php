@@ -45,7 +45,7 @@ class ApiWatchlistTraitTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( $expect, $watch );
 	}
 
-	public function provideWatchlistValue() {
+	public static function provideWatchlistValue() {
 		return [
 			'watch option on unwatched page' => [ 'watch', null, false, false, true ],
 			'watch option on watched page' => [ 'watch', null, false, true, true ],

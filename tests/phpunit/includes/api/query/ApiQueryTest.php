@@ -114,7 +114,7 @@ class ApiQueryTest extends ApiTestCase {
 			'ApiUsageException thrown by titlePartToKey' );
 	}
 
-	public function provideTestTitlePartToKey() {
+	public static function provideTestTitlePartToKey() {
 		return [
 			[ 'a  b  c', NS_MAIN, 'A_b_c', false ],
 			[ 'x', NS_MAIN, 'X', false ],

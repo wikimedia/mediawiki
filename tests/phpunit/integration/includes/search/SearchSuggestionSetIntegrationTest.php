@@ -23,7 +23,7 @@ use MediaWiki\Title\Title;
 
 class SearchSuggestionSetIntegrationTest extends MediaWikiIntegrationTestCase {
 	/** @return iterable */
-	public function provideTitles(): iterable {
+	public static function provideTitles(): iterable {
 		yield 'Array of 1 Title with NS:0' => [ [ Title::makeTitle( 0, 'Title' ) ], 1 ];
 
 		yield 'Array of 2 Titles with NS:0' => [

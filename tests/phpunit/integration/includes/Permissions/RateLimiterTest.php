@@ -258,7 +258,7 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideIsExempt() {
+	public static function provideIsExempt() {
 		$user = new UserIdentityValue( 123, 'Foo' );
 
 		yield 'IP not excluded'

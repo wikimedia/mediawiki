@@ -20,7 +20,7 @@ config-schema: []
   MySetting: []
 INVALID_YAML;
 
-	public function provideParser() {
+	public static function provideParser() {
 		yield 'php-yaml' => [ 'parser' => YamlFormat::PARSER_PHP_YAML ];
 		yield 'symfony' => [ 'parser' => YamlFormat::PARSER_SYMFONY ];
 	}
@@ -79,7 +79,7 @@ INVALID_YAML;
 		$format->decode( '{ bar: !php/const PHP_INT_SIZE }' );
 	}
 
-	public function provideSupportsFileExtension() {
+	public static function provideSupportsFileExtension() {
 		yield 'Supported' => [ 'yaml', true ];
 		yield 'Supported, uppercase' => [ 'YAML', true ];
 		yield 'Supported, short' => [ 'yml', true ];

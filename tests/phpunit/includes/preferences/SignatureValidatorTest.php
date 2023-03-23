@@ -60,7 +60,7 @@ class SignatureValidatorTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $pstSig );
 	}
 
-	public function provideApplyPreSaveTransform() {
+	public static function provideApplyPreSaveTransform() {
 		return [
 			'Pipe trick' =>
 				[ '[[test|]]', '[[test|test]]' ],
@@ -82,7 +82,7 @@ class SignatureValidatorTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $isValid );
 	}
 
-	public function provideCheckUserLinks() {
+	public static function provideCheckUserLinks() {
 		return [
 			'Perfect' =>
 				[ '[[User:SignatureValidatorTest|Signature]] ([[User talk:SignatureValidatorTest|talk]])', true ],
@@ -110,7 +110,7 @@ class SignatureValidatorTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $isValid );
 	}
 
-	public function provideCheckLineBreaks() {
+	public static function provideCheckLineBreaks() {
 		return [
 			'Perfect' =>
 				[ '[[User:SignatureValidatorTest|Signature]] ([[User talk:SignatureValidatorTest|talk]])', true ],

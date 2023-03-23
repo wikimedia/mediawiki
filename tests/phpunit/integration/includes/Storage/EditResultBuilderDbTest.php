@@ -162,7 +162,7 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 		return $revision;
 	}
 
-	public function provideManualReverts(): array {
+	public static function provideManualReverts(): array {
 		return [
 			'reverting a single edit' => [
 				self::CONTENT_A,
@@ -273,7 +273,7 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideNotManualReverts(): array {
+	public static function provideNotManualReverts(): array {
 		return [
 			'edit not changing anything' => [
 				self::CONTENT_B,

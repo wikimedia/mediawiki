@@ -31,7 +31,7 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 		$this->factory = $this->getServiceContainer()->getLinkRendererFactory();
 	}
 
-	public function provideMergeAttribs() {
+	public static function provideMergeAttribs() {
 		yield [ new TitleValue( NS_SPECIAL, 'BlankPage' ) ];
 		yield [ new PageReferenceValue( NS_SPECIAL, 'BlankPage', PageReference::LOCAL ) ];
 	}
@@ -58,7 +58,7 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	public function provideMakeKnownLink() {
+	public static function provideMakeKnownLink() {
 		yield [ new TitleValue( NS_MAIN, 'Foobar' ) ];
 		yield [ new PageReferenceValue( NS_MAIN, 'Foobar', PageReference::LOCAL ) ];
 	}
@@ -91,7 +91,7 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	public function provideMakeBrokenLink() {
+	public static function provideMakeBrokenLink() {
 		yield [
 			new TitleValue( NS_MAIN, 'Foobar' ),
 			new TitleValue( NS_SPECIAL, 'Foobar' )
@@ -140,7 +140,7 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 		}
 	}
 
-	public function provideMakeLink() {
+	public static function provideMakeLink() {
 		yield [
 			new TitleValue( NS_SPECIAL, 'Foobar' ),
 			new TitleValue( NS_SPECIAL, 'BlankPage' )
@@ -186,7 +186,7 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	public function provideGetLinkClasses() {
+	public static function provideGetLinkClasses() {
 		yield [
 			new TitleValue( NS_MAIN, 'FooBar' ),
 			new TitleValue( NS_MAIN, 'Redirect' ),

@@ -79,7 +79,7 @@ class TagsDefTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expectConds, $conditions );
 	}
 
-	public function provideValidate() {
+	public static function provideValidate() {
 		$settings = [
 			ParamValidator::PARAM_TYPE => 'tags',
 			ParamValidator::PARAM_ISMULTI => true,

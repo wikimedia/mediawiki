@@ -157,7 +157,7 @@ class PageStoreRecordTest extends MediaWikiUnitTestCase {
 		$pageRecord->getLatest( 'xyzzy' );
 	}
 
-	public function provideToString() {
+	public static function provideToString() {
 		$row = [
 			'page_id' => 7,
 			'page_namespace' => NS_MAIN,
@@ -189,7 +189,7 @@ class PageStoreRecordTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function provideIsSamePageAs() {
+	public static function provideIsSamePageAs() {
 		$row = [
 			'page_id' => 7,
 			'page_namespace' => NS_MAIN,

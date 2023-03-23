@@ -25,7 +25,7 @@ class HTMLTitleTextFieldTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideInterwiki() {
+	public static function provideInterwiki() {
 		return [
 			'local title' => [ [ 'interwiki' => false ], 'SomeTitle', true ],
 			'interwiki title, default' => [ [], 'unittest_foo:SomeTitle', 'htmlform-title-interwiki' ],

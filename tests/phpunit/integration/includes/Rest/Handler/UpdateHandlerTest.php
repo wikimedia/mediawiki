@@ -102,7 +102,7 @@ class UpdateHandlerTest extends \MediaWikiLangTestCase {
 		return $handler;
 	}
 
-	public function provideExecute() {
+	public static function provideExecute() {
 		yield "create with token" => [
 			[ // Request data received by UpdateHandler
 				'method' => 'PUT',
@@ -443,7 +443,7 @@ class UpdateHandlerTest extends \MediaWikiLangTestCase {
 		}
 	}
 
-	public function provideBodyValidation() {
+	public static function provideBodyValidation() {
 		yield "missing source field" => [
 			[ // Request data received by UpdateHandler
 				'method' => 'PUT',
@@ -493,7 +493,7 @@ class UpdateHandlerTest extends \MediaWikiLangTestCase {
 		$this->assertEquals( $expectedMessage, $exception->getMessageValue() );
 	}
 
-	public function provideHeaderValidation() {
+	public static function provideHeaderValidation() {
 		yield "bad content type" => [
 			[ // Request data received by UpdateHandler
 				'method' => 'PUT',
@@ -528,7 +528,7 @@ class UpdateHandlerTest extends \MediaWikiLangTestCase {
 	/**
 	 * FIXME: Can't access MW services in a dataProvider.
 	 */
-	public function provideErrorMapping() {
+	public static function provideErrorMapping() {
 		yield "missingtitle" => [
 			new ApiUsageException( null, Status::newFatal( 'apierror-missingtitle' ) ),
 			new LocalizedHttpException( new MessageValue( 'apierror-missingtitle' ), 404 ),

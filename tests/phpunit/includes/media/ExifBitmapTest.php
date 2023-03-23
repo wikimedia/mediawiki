@@ -22,7 +22,7 @@ class ExifBitmapTest extends MediaWikiMediaTestCase {
 		$this->handler = new ExifBitmapHandler;
 	}
 
-	public function provideIsFileMetadataValid() {
+	public static function provideIsFileMetadataValid() {
 		return [
 			'old broken' => [
 				ExifBitmapHandler::OLD_BROKEN_FILE,

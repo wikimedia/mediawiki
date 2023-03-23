@@ -96,7 +96,7 @@ class LanguageFactoryTest extends MediaWikiUnitTestCase {
 	// These are codes which should *not* be used internally: they can
 	// be given as inputs to LanguageFactory::getLanguage() (for backward
 	// compatibility) but should never be returned from Language::getCode()
-	public function provideDeprecatedCodes() {
+	public static function provideDeprecatedCodes() {
 		return [
 			[ 'als', 'gsw' ],
 			[ 'bat-smg', 'sgs' ],
@@ -109,7 +109,7 @@ class LanguageFactoryTest extends MediaWikiUnitTestCase {
 		];
 	}
 
-	public function provideCodes() {
+	public static function provideCodes() {
 		return [
 			# Basic codes
 			[ 'en', 'en' ],

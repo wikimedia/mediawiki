@@ -7,7 +7,7 @@ use MediaWiki\Title\Title;
 
 class JsonContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 
-	public function provideDataAndParserText() {
+	public static function provideDataAndParserText() {
 		return [
 			[
 				[],
