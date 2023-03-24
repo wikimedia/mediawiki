@@ -298,7 +298,7 @@ class DummyAction extends Action {
 	}
 
 	public function canExecute( User $user ) {
-		return $this->checkCanExecute( $user );
+		$this->checkCanExecute( $user );
 	}
 }
 

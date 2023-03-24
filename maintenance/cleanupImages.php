@@ -57,7 +57,8 @@ class CleanupImages extends TableCleanup {
 			// Ye olde empty rows. Just kill them.
 			$this->killRow( $source );
 
-			return $this->progress( 1 );
+			$this->progress( 1 );
+			return;
 		}
 
 		$cleaned = $source;
@@ -82,11 +83,13 @@ class CleanupImages extends TableCleanup {
 			$this->output( "page $source ($cleaned) is illegal.\n" );
 			$safe = $this->buildSafeTitle( $cleaned );
 			if ( $safe === false ) {
-				return $this->progress( 0 );
+				$this->progress( 0 );
+				return;
 			}
 			$this->pokeFile( $source, $safe );
 
-			return $this->progress( 1 );
+			$this->progress( 1 );
+			return;
 		}
 
 		if ( $title->getDBkey() !== $source ) {
@@ -94,10 +97,11 @@ class CleanupImages extends TableCleanup {
 			$this->output( "page $source ($munged) doesn't match self.\n" );
 			$this->pokeFile( $source, $munged );
 
-			return $this->progress( 1 );
+			$this->progress( 1 );
+			return;
 		}
 
-		return $this->progress( 0 );
+		$this->progress( 0 );
 	}
 
 	/**

@@ -107,7 +107,6 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 			'Zero integer' => [ 0 ],
 			'Zero float' => [ 0.0 ],
 			'Negative integer' => [ -7 ],
-			'Negative float' => [ -7.0 ],
 		];
 	}
 

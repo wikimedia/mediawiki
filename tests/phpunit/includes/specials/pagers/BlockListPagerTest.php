@@ -127,7 +127,6 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 			'ipb_user' => 0,
 			'ipb_address' => '127.0.0.1',
 			'ipb_by_text' => 'Admin',
-			'ipb_create_account' => 1,
 			'ipb_auto' => 0,
 			'ipb_anon_only' => 0,
 			'ipb_create_account' => 1,

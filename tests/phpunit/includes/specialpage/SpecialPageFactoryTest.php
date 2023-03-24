@@ -218,7 +218,7 @@ class SpecialPageFactoryTest extends MediaWikiIntegrationTestCase {
 	) {
 		// Make sure order doesn't matter by reversing the list
 		$aliasesList = array_reverse( $aliasesList );
-		return $this->testConflictResolution(
+		$this->testConflictResolution(
 			$test, $aliasesList, $alias, $expectedName, $expectedAlias, $expectWarnings
 		);
 	}

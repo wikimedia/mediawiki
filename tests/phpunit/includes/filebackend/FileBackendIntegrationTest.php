@@ -2130,7 +2130,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		$iter = $this->backend->getFileList( [ 'dir' => "$base/unittest-cont1/not/exists" ] );
 		$this->assertNotNull( $iter );
-		foreach ( $iter as $iter ) {
+		foreach ( $iter as $item ) {
 			// no errors
 		}
 	}

@@ -630,6 +630,6 @@ abstract class AbstractContent implements Content {
 	) {
 		wfDeprecated( __METHOD__, '1.38' );
 		$cpoParams = new ContentParseParams( $title, $revId, $options, $generateHtml );
-		return $this->getContentHandler()->fillParserOutputInternal( $this, $cpoParams, $output );
+		$this->getContentHandler()->fillParserOutputInternal( $this, $cpoParams, $output );
 	}
 }

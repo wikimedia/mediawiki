@@ -79,7 +79,7 @@ class FloatDefTest extends TypeDefTestCase {
 				DataMessageValue::new( 'paramvalidator-notfinite', [], 'badfloat' ),
 				'test', 'foo', []
 			) ],
-			'Bogus value' => [ '123f4', new ValidationException(
+			'Bogus value 2' => [ '123f4', new ValidationException(
 				DataMessageValue::new( 'paramvalidator-notfinite', [], 'badfloat' ),
 				'test', '123f4', []
 			) ],

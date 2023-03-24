@@ -84,7 +84,8 @@ class CleanupCaps extends TableCleanup {
 		if ( $upper == $lower ) {
 			$this->output( "\"$display\" already uppercase.\n" );
 
-			return $this->progress( 0 );
+			$this->progress( 0 );
+			return;
 		}
 
 		$target = Title::makeTitle( $row->page_namespace, $upper );
@@ -105,12 +106,13 @@ class CleanupCaps extends TableCleanup {
 				$talk = $target->getTalkPage();
 				$row->page_namespace = $talk->getNamespace();
 				if ( $talk->exists() ) {
-					return $this->processRowToUppercase( $row );
+					$this->processRowToUppercase( $row );
+					return;
 				}
 			}
 		}
 
-		return $this->progress( 0 );
+		$this->progress( 0 );
 	}
 
 	protected function processRowToLowercase( $row ) {
@@ -121,7 +123,8 @@ class CleanupCaps extends TableCleanup {
 		if ( $upper == $lower ) {
 			$this->output( "\"$display\" already lowercase.\n" );
 
-			return $this->progress( 0 );
+			$this->progress( 0 );
+			return;
 		}
 
 		$target = Title::makeTitle( $row->page_namespace, $lower );
@@ -129,7 +132,8 @@ class CleanupCaps extends TableCleanup {
 			$targetDisplay = $target->getPrefixedText();
 			$this->output( "\"$display\" skipped; \"$targetDisplay\" already exists\n" );
 
-			return $this->progress( 0 );
+			$this->progress( 0 );
+			return;
 		}
 
 		$ok = $this->movePage( $current, $target, 'Converting page titles to lowercase', true );
@@ -139,12 +143,13 @@ class CleanupCaps extends TableCleanup {
 				$talk = $target->getTalkPage();
 				$row->page_namespace = $talk->getNamespace();
 				if ( $talk->exists() ) {
-					return $this->processRowToLowercase( $row );
+					$this->processRowToLowercase( $row );
+					return;
 				}
 			}
 		}
 
-		return $this->progress( 0 );
+		$this->progress( 0 );
 	}
 
 	/**

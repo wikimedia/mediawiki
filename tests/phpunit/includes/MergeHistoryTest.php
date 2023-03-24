@@ -183,7 +183,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValues( [
 			MainConfigNames::ExtraNamespaces => [
 				2030 => 'NoRedirect',
-				2030 => 'NoRedirect_talk'
+				2031 => 'NoRedirect_talk'
 			],
 
 			MainConfigNames::NamespaceContentModels => [

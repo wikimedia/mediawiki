@@ -108,7 +108,7 @@ class DumpRenderer extends Maintenance {
 			$this->prefix,
 			$this->count,
 			$sanitized );
-		$this->output( sprintf( "%s\n", $filename, $display ) );
+		$this->output( sprintf( "%s\t%s\n", $filename, $display ) );
 
 		$user = new User();
 		$options = ParserOptions::newFromUser( $user );

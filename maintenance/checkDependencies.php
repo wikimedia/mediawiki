@@ -128,12 +128,13 @@ class CheckDependencies extends Maintenance {
 			} elseif ( $e->missingExtensions || $e->missingSkins ) {
 				// There's an extension missing in the dependency tree,
 				// so add those to the dependency list and try again
-				return $this->loadThing(
+				$this->loadThing(
 					$dependencies,
 					$name,
 					array_merge( $extensions, $e->missingExtensions ),
 					array_merge( $skins, $e->missingSkins )
 				);
+				return;
 			} else {
 				// missing-phpExtension
 				// missing-ability
