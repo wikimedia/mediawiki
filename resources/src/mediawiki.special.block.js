@@ -90,7 +90,7 @@
 		}
 
 		function updateWatchOption() {
-			var blocktarget = blockTargetWidget.getValue().trim(),
+			var blocktarget = blockTargetWidget.getValue().toString().trim(),
 				isEmpty = blocktarget === '',
 				isIp = mw.util.isIPAddress( blocktarget, true ),
 				isIpRange = isIp && blocktarget.match( /\/\d+$/ ),
