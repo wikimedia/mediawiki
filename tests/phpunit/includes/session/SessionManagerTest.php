@@ -1569,7 +1569,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$manager->logPotentialSessionLeakage( $session );
 	}
 
-	public function provideLogPotentialSessionLeakage() {
+	public static function provideLogPotentialSessionLeakage() {
 		$now = 1234567;
 		$valid = $now - 100;
 		$expired = $now - 1000;

@@ -92,7 +92,7 @@ class CommentBatchTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function provideUseBlock() {
+	public static function provideUseBlock() {
 		return [
 			[
 				null,
@@ -120,7 +120,7 @@ class CommentBatchTest extends MediaWikiUnitTestCase {
 		$this->assertSame( [ $expected ], $this->calls );
 	}
 
-	public function provideUseParentheses() {
+	public static function provideUseParentheses() {
 		return [
 			[
 				null,
@@ -148,7 +148,7 @@ class CommentBatchTest extends MediaWikiUnitTestCase {
 		$this->assertSame( [ $expected ], $this->calls );
 	}
 
-	public function provideSelfLinkTarget() {
+	public static function provideSelfLinkTarget() {
 		return [
 			[
 				null,
@@ -172,7 +172,7 @@ class CommentBatchTest extends MediaWikiUnitTestCase {
 		$this->assertSame( [ $expected ], $this->calls );
 	}
 
-	public function provideEnableSectionLinks() {
+	public static function provideEnableSectionLinks() {
 		return [
 			[
 				null,
@@ -200,7 +200,7 @@ class CommentBatchTest extends MediaWikiUnitTestCase {
 		$this->assertSame( [ $expected ], $this->calls );
 	}
 
-	public function provideDisableSectionLinks() {
+	public static function provideDisableSectionLinks() {
 		return [
 			[
 				null,
@@ -224,7 +224,7 @@ class CommentBatchTest extends MediaWikiUnitTestCase {
 		$this->assertSame( [ $expected ], $this->calls );
 	}
 
-	public function provideSamePage() {
+	public static function provideSamePage() {
 		return [
 			[
 				null,
@@ -252,7 +252,7 @@ class CommentBatchTest extends MediaWikiUnitTestCase {
 		$this->assertSame( [ $expected ], $this->calls );
 	}
 
-	public function provideWikiId() {
+	public static function provideWikiId() {
 		return [
 			[
 				null,

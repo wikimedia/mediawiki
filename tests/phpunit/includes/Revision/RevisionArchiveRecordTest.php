@@ -25,7 +25,7 @@ use Wikimedia\Assert\PreconditionException;
  */
 class RevisionArchiveRecordTest extends MediaWikiIntegrationTestCase {
 
-	public function provideConstructor() {
+	public static function provideConstructor() {
 		$user = new UserIdentityValue( 11, 'Tester' );
 		$comment = CommentStoreComment::newUnsavedComment( 'Hello World' );
 
@@ -185,7 +185,7 @@ class RevisionArchiveRecordTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideConstructorFailure() {
+	public static function provideConstructorFailure() {
 		$title = Title::makeTitle( NS_MAIN, 'Dummy' );
 		$title->resetArticleID( 17 );
 

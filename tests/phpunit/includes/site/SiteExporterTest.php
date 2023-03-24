@@ -88,7 +88,7 @@ class SiteExporterTest extends MediaWikiIntegrationTestCase {
 		return $store;
 	}
 
-	public function provideRoundTrip() {
+	public static function provideRoundTrip() {
 		$foo = Site::newForType( Site::TYPE_UNKNOWN );
 		$foo->setGlobalId( 'Foo' );
 

@@ -232,7 +232,7 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 		return $mockBlock;
 	}
 
-	public function provideTestBlockAppliesToRight() {
+	public static function provideTestBlockAppliesToRight() {
 		return [
 			'Block does not apply if no original blocks apply' => [
 				[ false, false ],

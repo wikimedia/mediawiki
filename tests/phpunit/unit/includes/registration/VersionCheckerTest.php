@@ -335,7 +335,7 @@ class VersionCheckerTest extends MediaWikiUnitTestCase {
 		] );
 	}
 
-	public function provideInvalidDependency() {
+	public static function provideInvalidDependency() {
 		return [
 			[
 				[
@@ -448,7 +448,7 @@ class VersionCheckerTest extends MediaWikiUnitTestCase {
 		] );
 	}
 
-	public function provideInvalidAbilityType() {
+	public static function provideInvalidAbilityType() {
 		return [
 			[ null ],
 			[ 1 ],

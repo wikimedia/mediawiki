@@ -564,7 +564,7 @@ class StatusTest extends MediaWikiLangTestCase {
 		$this->assertSame( $expectedContext, $actualContext );
 	}
 
-	public function provideGetPsr3MessageAndContext() {
+	public static function provideGetPsr3MessageAndContext() {
 		return [
 			// parameters to Status::error() calls as array of arrays; expected message; expected context
 			'no errors' => [
@@ -854,7 +854,7 @@ class StatusTest extends MediaWikiLangTestCase {
 		$status->getWikiText( 'wrap-short', 'wrap-long' );
 	}
 
-	public function provideDuplicates() {
+	public static function provideDuplicates() {
 		yield [ [ 'foo', 1, 2 ], [ 'foo', 1, 2 ] ];
 		$message = new Message( 'foo', [ 1, 2 ] );
 		yield [ $message, $message ];

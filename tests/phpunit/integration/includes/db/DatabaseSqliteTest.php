@@ -334,7 +334,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expectedSql, $sqlDump );
 	}
 
-	public function provideNativeInserts() {
+	public static function provideNativeInserts() {
 		return [
 			[
 				'3.8.0',
@@ -373,7 +373,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expectedSql, $sqlDump );
 	}
 
-	public function provideNativeReplaces() {
+	public static function provideNativeReplaces() {
 		return [
 			[
 				'3.8.0',

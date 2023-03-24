@@ -35,7 +35,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 		$this->user_comment = '<User comment about action>';
 	}
 
-	public function provideAttribs() {
+	public static function provideAttribs() {
 		$attribs = [
 			'rc_timestamp' => wfTimestamp( TS_MW ),
 			'rc_namespace' => NS_USER,
@@ -336,7 +336,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $this->title->isSamePageAs( $rc->getTitle() ) );
 	}
 
-	public function provideParseParams() {
+	public static function provideParseParams() {
 		// $expected, $raw
 		yield 'extracting an array' => [
 			[
@@ -371,7 +371,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @return array
 	 */
-	public function provideIsInRCLifespan() {
+	public static function provideIsInRCLifespan() {
 		return [
 			[ 6000, -3000, 0, true ],
 			[ 3000, -6000, 0, false ],
@@ -393,7 +393,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected, RecentChange::isInRCLifespan( $timestamp, $tolerance ) );
 	}
 
-	public function provideRCTypes() {
+	public static function provideRCTypes() {
 		return [
 			[ RC_EDIT, 'edit' ],
 			[ RC_NEW, 'new' ],
@@ -419,7 +419,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $rcType, RecentChange::parseToRCType( $type ) );
 	}
 
-	public function provideCategoryContent() {
+	public static function provideCategoryContent() {
 		return [
 			[ true ],
 			[ false ],

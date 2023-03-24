@@ -1115,7 +1115,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $oldWikitext, $content->serialize() );
 	}
 
-	public function provideHandlesParsoidError() {
+	public static function provideHandlesParsoidError() {
 		yield 'ClientError' => [
 			new ClientError( 'TEST_TEST' ),
 			new LocalizedHttpException(

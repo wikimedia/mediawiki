@@ -33,7 +33,7 @@ class XhprofDataTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( $expect, XhprofData::splitKey( $key ) );
 	}
 
-	public function provideSplitKey() {
+	public static function provideSplitKey() {
 		return [
 			[ 'main()', [ null, 'main()' ] ],
 			[ 'foo==>bar', [ 'foo', 'bar' ] ],

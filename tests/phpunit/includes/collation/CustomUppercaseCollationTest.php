@@ -34,7 +34,7 @@ class CustomUppercaseCollationTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( strcmp( $sortkey1, $sortkey2 ) < 0, $msg );
 	}
 
-	public function providerOrder() {
+	public static function providerOrder() {
 		return [
 			[ 'X', 'Z', 'Maintain order of unrearranged' ],
 			[ 'D', 'C', 'Actually resorts' ],
@@ -55,7 +55,7 @@ class CustomUppercaseCollationTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $this->collation->getFirstLetter( $string ), $first );
 	}
 
-	public function provideGetFirstLetter() {
+	public static function provideGetFirstLetter() {
 		return [
 			[ 'Do', 'D' ],
 			[ 'do', 'D' ],

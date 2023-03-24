@@ -50,7 +50,7 @@ class FiltersTest extends \MediaWikiUnitTestCase {
 		self::assertEquals( $expected, $result );
 	}
 
-	public function provideTimezoneFilter() {
+	public static function provideTimezoneFilter() {
 		return [
 			[ 'ZoneInfo', 'Offset|0' ],
 			[ 'ZoneInfo|bogus', 'Offset|0' ],
@@ -73,7 +73,7 @@ class FiltersTest extends \MediaWikiUnitTestCase {
 		self::assertSame( $expected, $result );
 	}
 
-	public function provideMultiUsernameFilterFrom() {
+	public static function provideMultiUsernameFilterFrom() {
 		return [
 			[ '', null ],
 			[ "\n\n\n", null ],
@@ -98,7 +98,7 @@ class FiltersTest extends \MediaWikiUnitTestCase {
 		self::assertSame( $expected, $result );
 	}
 
-	public function provideMultiUsernameFilterFor() {
+	public static function provideMultiUsernameFilterFor() {
 		return [
 			[ '', '' ],
 			[ "\n", '' ],

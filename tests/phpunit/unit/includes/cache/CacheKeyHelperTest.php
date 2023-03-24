@@ -11,7 +11,7 @@ use MediaWiki\Title\Title;
  */
 class CacheKeyHelperTest extends MediaWikiUnitTestCase {
 
-	public function provideKeyForPage() {
+	public static function provideKeyForPage() {
 		// NOTE: code changes that break these test cases
 		//       will result in incompatible cache keys when deployed!
 

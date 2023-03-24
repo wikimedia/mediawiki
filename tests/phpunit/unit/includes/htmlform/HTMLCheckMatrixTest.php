@@ -54,7 +54,7 @@ class HTMLCheckMatrixTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $this->validate( $field, $submitted ) );
 	}
 
-	public function provideValidate() {
+	public static function provideValidate() {
 		// $expected, $submitted
 		yield [ false, null ];
 		yield [ false, true ];

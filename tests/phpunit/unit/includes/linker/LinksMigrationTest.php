@@ -9,7 +9,7 @@ use MediaWiki\MainConfigNames;
  */
 class LinksMigrationTest extends MediaWikiUnitTestCase {
 
-	public function provideReadNew() {
+	public static function provideReadNew() {
 		yield [ SCHEMA_COMPAT_READ_NEW ];
 		yield [ SCHEMA_COMPAT_NEW ];
 	}
@@ -38,7 +38,7 @@ class LinksMigrationTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function provideReadOld() {
+	public static function provideReadOld() {
 		yield [ SCHEMA_COMPAT_READ_OLD ];
 	}
 

@@ -84,7 +84,7 @@ class PNGHandlerTest extends MediaWikiMediaTestCase {
 		$this->assertEquals( $expected, $actual );
 	}
 
-	public function provideIsMetadataValid() {
+	public static function provideIsMetadataValid() {
 		return [
 			[ '0', PNGHandler::METADATA_GOOD ],
 			[ '', PNGHandler::METADATA_BAD ],
@@ -187,7 +187,7 @@ class PNGHandlerTest extends MediaWikiMediaTestCase {
 		$this->assertEqualsWithDelta( $expectedLength, $actualLength, 0.00001 );
 	}
 
-	public function provideGetLength() {
+	public static function provideGetLength() {
 		return [
 			[ 'Animated_PNG_example_bouncing_beach_ball.png', 1.5 ],
 			[ 'Png-native-test.png', 0.0 ],

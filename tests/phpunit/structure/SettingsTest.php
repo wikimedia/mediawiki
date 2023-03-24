@@ -27,7 +27,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @return array
 	 */
-	private function getSchemaData(): array {
+	private static function getSchemaData(): array {
 		$source = new ReflectionSchemaSource( MainConfigSchema::class, true );
 		$settings = $source->load();
 		return $settings;
@@ -97,7 +97,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( [], $deprecations );
 	}
 
-	public function provideConfigGeneration() {
+	public static function provideConfigGeneration() {
 		yield 'includes/config-schema.php' => [
 			'option' => '--schema',
 			'expectedFile' => MW_INSTALL_PATH . '/includes/config-schema.php',
@@ -143,7 +143,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideDefaultSettingsConsistency() {
+	public static function provideDefaultSettingsConsistency() {
 		yield 'YAML' => [ new FileSource( MW_INSTALL_PATH . '/docs/config-schema.yaml' ) ];
 		yield 'PHP' => [ new PhpSettingsSource( MW_INSTALL_PATH . '/includes/config-schema.php' ) ];
 	}
@@ -192,7 +192,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [], $missingKeys, 'Keys missing from DefaultSettings.php' );
 	}
 
-	public function provideArraysHaveMergeStrategy() {
+	public static function provideArraysHaveMergeStrategy() {
 		[ 'config-schema' => $allSchemas ] = self::getSchemaData();
 
 		foreach ( $allSchemas as $name => $schema ) {
@@ -310,7 +310,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideConfigStructureHandling() {
+	public static function provideConfigStructureHandling() {
 		yield 'NamespacesWithSubpages' => [
 			MainConfigNames::NamespacesWithSubpages,
 			[ 0 => true, 1 => false,
@@ -398,7 +398,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $config->get( $key ) );
 	}
 
-	public function provideConfigStructurePartialReplacement() {
+	public static function provideConfigStructurePartialReplacement() {
 		yield 'ObjectCaches' => [
 			'ObjectCaches',
 			[ // the spec for each cache should be replaced entirely
@@ -590,7 +590,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 		$defaults = iterator_to_array( MainConfigSchema::listDefaultValues() );
 		$prefixed = iterator_to_array( MainConfigSchema::listDefaultValues( 'wg' ) );
 
-		$schema = $this->getSchemaData();
+		$schema = self::getSchemaData();
 		foreach ( $schema['config-schema'] as $name => $sch ) {
 			$this->assertArrayHasKey( $name, $defaults );
 			$this->assertArrayHasKey( "wg$name", $prefixed );

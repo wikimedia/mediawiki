@@ -12,7 +12,7 @@ use MediaWiki\Rest\RequestInterface;
  * @covers \MediaWiki\Rest\BasicAccess\CompoundAuthorizer
  */
 class CompoundAuthorizerTest extends \MediaWikiUnitTestCase {
-	public function provideAuthorize() {
+	public static function provideAuthorize() {
 		yield 'No authorizers' => [
 			[], null, null
 		];

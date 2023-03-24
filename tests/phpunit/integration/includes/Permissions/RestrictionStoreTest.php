@@ -158,7 +158,7 @@ class RestrictionStoreTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideLoadRestrictions(): array {
+	public static function provideLoadRestrictions(): array {
 		return [
 			'Regular page with restrictions' => [
 				Title::makeTitle( NS_MAIN, 'RestrictionStoreTest_1' ),

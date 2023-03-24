@@ -9,7 +9,7 @@ use Wikimedia\Http\HttpAcceptNegotiator;
  */
 class HttpAcceptNegotiatorTest extends \PHPUnit\Framework\TestCase {
 
-	public function provideGetFirstSupportedValue() {
+	public static function provideGetFirstSupportedValue() {
 		return [
 			[ // #0: empty
 				[], // supported
@@ -66,7 +66,7 @@ class HttpAcceptNegotiatorTest extends \PHPUnit\Framework\TestCase {
 		$this->assertEquals( $expected, $actual );
 	}
 
-	public function provideGetBestSupportedKey() {
+	public static function provideGetBestSupportedKey() {
 		return [
 			[ // #0: empty
 				[], // supported

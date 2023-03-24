@@ -6,7 +6,7 @@ namespace Wikimedia\DebugInfo;
  * @covers \Wikimedia\DebugInfo\Placeholder
  */
 class PlaceholderTest extends \PHPUnit\Framework\TestCase {
-	public function provideConstruct() {
+	public static function provideConstruct() {
 		return [
 			[
 				new \stdClass,

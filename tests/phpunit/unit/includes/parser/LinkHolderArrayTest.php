@@ -193,7 +193,7 @@ class LinkHolderArrayTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function provideReplaceText() {
+	public static function provideReplaceText() {
 		yield [
 			'<!--LINK\'" 101:9--> <!-- <!-- <!--IWLINK\'" 9-->',
 			'<!--LINK\'" 101:9--> <!-- <!-- <!--IWLINK\'" 9-->',
@@ -264,7 +264,7 @@ class LinkHolderArrayTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $extended, $text );
 	}
 
-	public function provideReplace_external() {
+	public static function provideReplace_external() {
 		yield [
 			'dummy text',
 			'dummy text',

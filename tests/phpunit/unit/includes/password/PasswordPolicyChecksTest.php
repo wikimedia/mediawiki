@@ -160,7 +160,7 @@ class PasswordPolicyChecksTest extends MediaWikiUnitTestCase {
 		}
 	}
 
-	public function provideCheckPasswordCannotMatchDefaults() {
+	public static function provideCheckPasswordCannotMatchDefaults() {
 		return [
 			'Unique username and password' => [ false, true, 'Unique username', 'AUniquePassword' ],
 			'Invalid combination' => [ true, true, 'Useruser1', 'Passpass1' ],
@@ -184,7 +184,7 @@ class PasswordPolicyChecksTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $status->isGood() );
 	}
 
-	public function provideCommonList() {
+	public static function provideCommonList() {
 		return [
 			[ false, 'testpass' ],
 			[ false, 'password' ],

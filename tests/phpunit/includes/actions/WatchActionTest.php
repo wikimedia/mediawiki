@@ -280,7 +280,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$watchAction->onSuccess();
 	}
 
-	public function provideOnSuccessDifferentMessages() {
+	public static function provideOnSuccessDifferentMessages() {
 		return [
 			[
 				'wgWatchlistExpiry' => false,

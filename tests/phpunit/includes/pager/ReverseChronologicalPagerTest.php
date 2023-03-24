@@ -27,7 +27,7 @@ class ReverseChronologicalPagerTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Data provider in description => [ [ param1, ... ], expected output ] format
 	 */
-	public function provideGetDateCond() {
+	public static function provideGetDateCond() {
 		yield 'Test year and month' => [
 			[ 2006, 6 ], '20060701000000'
 		];

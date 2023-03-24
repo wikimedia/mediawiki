@@ -117,7 +117,7 @@ class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringNotContainsString( 'NOPE', $text );
 	}
 
-	public function provideMagicWords() {
+	public static function provideMagicWords() {
 		yield 'PAGEID' => [
 			'Test {{PAGEID}} Test',
 			static function ( RevisionRecord $rev ) {

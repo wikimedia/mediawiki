@@ -622,7 +622,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertNull( $this->user->getBlock() );
 	}
 
-	public function provideIsPingLimitable() {
+	public static function provideIsPingLimitable() {
 		yield 'Not ip excluded' => [ [], null, true ];
 		yield 'Ip excluded' => [ [ '1.2.3.4' ], null, false ];
 		yield 'Ip subnet excluded' => [ [ '1.2.3.0/8' ], null, false ];
@@ -655,7 +655,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $user->isPingLimitable() );
 	}
 
-	public function provideExperienceLevel() {
+	public static function provideExperienceLevel() {
 		return [
 			[ 2, 2, 'newcomer' ],
 			[ 12, 3, 'newcomer' ],

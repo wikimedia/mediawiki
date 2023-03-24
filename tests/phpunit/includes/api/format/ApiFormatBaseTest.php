@@ -267,7 +267,7 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 		);
 	}
 
-	public function provideApiFrameOptions() {
+	public static function provideApiFrameOptions() {
 		yield 'Override ApiFrameOptions to DENY' => [ 'DENY', 'DENY' ];
 		yield 'Override ApiFrameOptions to SAMEORIGIN' => [ 'SAMEORIGIN', 'SAMEORIGIN' ];
 		yield 'Override ApiFrameOptions to false' => [ false, null ];

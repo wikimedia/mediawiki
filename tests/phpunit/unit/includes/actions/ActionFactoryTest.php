@@ -201,7 +201,7 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function provideGetActionName() {
+	public static function provideGetActionName() {
 		yield 'Disabled action' => [
 			'disabled',
 			true,

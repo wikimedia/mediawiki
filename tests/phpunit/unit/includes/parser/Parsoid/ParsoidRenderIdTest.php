@@ -40,7 +40,7 @@ class ParsoidRenderIdTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $renderId->getKey(), $actual->getKey() );
 	}
 
-	public function provideETags() {
+	public static function provideETags() {
 		yield [ '"1/abc/stash"', new ParsoidRenderID( 1, 'abc' ) ];
 		yield [ '"1/abc"', new ParsoidRenderID( 1, 'abc' ) ];
 		yield [ '"1/abc/stash/stash"', new ParsoidRenderID( 1, 'abc' ) ];
@@ -59,7 +59,7 @@ class ParsoidRenderIdTest extends MediaWikiUnitTestCase {
 		$this->assertNull( ParsoidRenderID::newFromETag( $eTag ) );
 	}
 
-	public function provideBadETags() {
+	public static function provideBadETags() {
 		yield [ '' ];
 		yield [ '0' ];
 		yield [ '""' ];

@@ -67,7 +67,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, $this->lc->getPreferredVariant() );
 	}
 
-	public function provideGetPreferredVariant() {
+	public static function provideGetPreferredVariant() {
 		yield 'normal (tg-latn)' => [ 'tg-latn', 'tg-latn' ];
 		yield 'deprecated (bat-smg)' => [ 'bat-smg', 'sgs' ];
 		yield 'BCP47 (en-simple)' => [ 'en-simple', 'simple' ];
@@ -85,7 +85,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, $this->lc->getPreferredVariant() );
 	}
 
-	public function provideGetPreferredVariantHeaders() {
+	public static function provideGetPreferredVariantHeaders() {
 		yield 'normal (tg-latn)' => [ 'tg-latn', 'tg-latn' ];
 		yield 'BCP47 (en-simple)' => [ 'en-simple', 'simple' ];
 		yield 'with weight #1' => [ 'tg;q=1', 'tg' ];
@@ -117,7 +117,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, $this->lc->getPreferredVariant() );
 	}
 
-	public function provideGetPreferredVariantUserOption() {
+	public static function provideGetPreferredVariantUserOption() {
 		yield 'normal (tg-latn)' => [ 'tg-latn', 'tg-latn', false ];
 		yield 'deprecated (bat-smg)' => [ 'bat-smg', 'sgs', false ];
 		yield 'BCP47 (en-simple)' => [ 'en-simple', 'simple', false ];
@@ -159,7 +159,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, $this->lc->getPreferredVariant() );
 	}
 
-	public function provideGetPreferredVariantDefaultLanguageVariant() {
+	public static function provideGetPreferredVariantDefaultLanguageVariant() {
 		yield 'normal (tg-latn)' => [ 'tg-latn', 'tg-latn' ];
 		yield 'deprecated (bat-smg)' => [ 'bat-smg', 'sgs' ];
 		yield 'BCP47 (en-simple)' => [ 'en-simple', 'simple' ];
@@ -214,7 +214,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$this->assertSame( $expected, $actual );
 	}
 
-	public function provideTitlesToConvert(): array {
+	public static function provideTitlesToConvert(): array {
 		return [
 			'Title FromText default' => [
 				Title::makeTitle( NS_MAIN, 'Dummy_title' ),

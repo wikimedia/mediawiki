@@ -35,7 +35,7 @@ class BagOStuffStatsStoreTest extends TestCase {
 		return new BagOStuffStatsStore( $this->cache );
 	}
 
-	public function provideMakeKey() {
+	public static function provideMakeKey() {
 		yield [ [ 'prefix' ], [ 'internals' ], new LocalEntityKey( [ 'key' ] ), 'local:prefix:internals:key' ];
 		yield [ [ 'prefix' ], [ 'internals' ], new GlobalEntityKey( [ 'key' ] ), 'global:prefix:internals:key' ];
 		yield [ [ 'p', 'q' ], [ 'i', 'j' ], new GlobalEntityKey( [ 'k', 'h' ] ), 'global:p:q:i:j:k:h' ];

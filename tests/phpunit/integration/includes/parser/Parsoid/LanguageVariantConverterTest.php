@@ -21,7 +21,7 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValue( 'UsePigLatinVariant', true );
 	}
 
-	public function provideConvertPageBundleVariant() {
+	public static function provideConvertPageBundleVariant() {
 		yield 'No source or base, rely on page language (en)' => [
 			new PageBundle(
 				'<p>test language conversion</p>',

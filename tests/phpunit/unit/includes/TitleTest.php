@@ -92,7 +92,7 @@ class TitleTest extends MediaWikiUnitTestCase {
 		}
 	}
 
-	public function provideConvertByteClassToUnicodeClass() {
+	public static function provideConvertByteClassToUnicodeClass() {
 		return [
 			[
 				' %!"$&\'()*,\\-.\\/0-9:;=?@A-Z\\\\^_`a-z~\\x80-\\xFF+',
@@ -230,7 +230,7 @@ class TitleTest extends MediaWikiUnitTestCase {
 		}
 	}
 
-	public function provideDataForTestSetAndGetFragment() {
+	public static function provideDataForTestSetAndGetFragment() {
 		return [
 			[ '#fragment', 'fragment' ],
 			[ '#fragment_frag', 'fragment frag' ],
@@ -251,7 +251,7 @@ class TitleTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $title->getFragment() );
 	}
 
-	public function provideTitleWithOrWithoutFragments() {
+	public static function provideTitleWithOrWithoutFragments() {
 		return [
 			[ Title::makeTitle( NS_MAIN, 'Title', 'fragment' ), true ],
 			[ Title::makeTitle( NS_MAIN, 'Title' ), false ],
@@ -267,7 +267,7 @@ class TitleTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $title->hasFragment() );
 	}
 
-	public function provideCompare() {
+	public static function provideCompare() {
 		yield 'Title == Title' => [
 			Title::makeTitle( NS_MAIN, 'Aa' ),
 			Title::makeTitle( NS_MAIN, 'Aa' ),
@@ -360,7 +360,7 @@ class TitleTest extends MediaWikiUnitTestCase {
 		}
 	}
 
-	public function provideCastFromPageReference() {
+	public static function provideCastFromPageReference() {
 		yield [ new PageReferenceValue( NS_MAIN, 'Test', PageReference::LOCAL ) ];
 	}
 
@@ -382,7 +382,7 @@ class TitleTest extends MediaWikiUnitTestCase {
 		}
 	}
 
-	public function provideCreateFragmentTitle() {
+	public static function provideCreateFragmentTitle() {
 		return [
 			[ NS_MAIN, 'Test', 'foo' ],
 			[ NS_TALK, 'Test', 'foo', '' ],
@@ -405,7 +405,7 @@ class TitleTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( $fragment, $fragmentTitle->getFragment() );
 	}
 
-	public function provideEquals() {
+	public static function provideEquals() {
 		yield '(makeTitle) same text' => [
 			Title::makeTitle( NS_MAIN, 'Main Page' ),
 			Title::makeTitle( NS_MAIN, 'Main Page' ),
@@ -496,7 +496,7 @@ class TitleTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function provideIsSameLinkAs() {
+	public static function provideIsSameLinkAs() {
 		yield 'same text' => [
 			Title::makeTitle( 0, 'Foo' ),
 			new TitleValue( 0, 'Foo' ),

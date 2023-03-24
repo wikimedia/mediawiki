@@ -37,7 +37,7 @@ use MediaWikiIntegrationTestCase;
  */
 class TextboxBuilderTest extends MediaWikiIntegrationTestCase {
 
-	public function provideGetTextboxProtectionCSSClasses() {
+	public static function provideGetTextboxProtectionCSSClasses() {
 		return [
 			[
 				[ '' ],

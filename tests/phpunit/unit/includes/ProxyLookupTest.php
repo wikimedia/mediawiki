@@ -43,7 +43,7 @@ class ProxyLookupTest extends MediaWikiUnitTestCase {
 		$this->assertInstanceOf( ProxyLookup::class, $proxyLookup, 'No errors' );
 	}
 
-	public function provideIsConfiguredProxy() {
+	public static function provideIsConfiguredProxy() {
 		// $ip, $expected
 		yield 'Listed ip #1' => [ '1.1.1.1', true ];
 		yield 'Listed ip #2' => [ '2.2.2.2', true ];
@@ -78,7 +78,7 @@ class ProxyLookupTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $proxyLookup->isConfiguredProxy( $ip ) );
 	}
 
-	public function provideIsTrustedProxy() {
+	public static function provideIsTrustedProxy() {
 		// $ip, $expectedForHookCall, $hookResult
 		yield 'Listed, hook return true' => [ '1.1.1.1', true, true ];
 		yield 'Listed, hook return false' => [ '1.1.1.1', true, false ];

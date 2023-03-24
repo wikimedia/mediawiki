@@ -34,7 +34,7 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideSanitizeLangCode() {
+	public static function provideSanitizeLangCode() {
 		global $wgLanguageCode;
 
 		yield 'Null' => [ null, $wgLanguageCode ];

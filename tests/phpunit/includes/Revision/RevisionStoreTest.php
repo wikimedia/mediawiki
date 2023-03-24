@@ -298,7 +298,7 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 		$store->getTitle( 1, 2, RevisionStore::READ_NORMAL );
 	}
 
-	public function provideIsRevisionRow() {
+	public static function provideIsRevisionRow() {
 		yield 'invalid row type' => [
 			'row' => new class() {
 			},
@@ -350,7 +350,7 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 		$revStore->failOnNull( null, 'value' );
 	}
 
-	public function provideFailOnEmpty() {
+	public static function provideFailOnEmpty() {
 		yield 'null' => [ null ];
 		yield 'zero' => [ 0 ];
 		yield 'empty string' => [ '' ];
@@ -374,7 +374,7 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 123, $revStore->failOnEmpty( 123, 'value' ) );
 	}
 
-	public function provideCheckContent() {
+	public static function provideCheckContent() {
 		yield 'unsupported format' => [
 			false,
 			false,

@@ -74,7 +74,7 @@ class RevisionListTest extends MediaWikiIntegrationTestCase {
 		$revisionList->doQuery( $db );
 	}
 
-	public function provideTestDoQuery() {
+	public static function provideTestDoQuery() {
 		return [
 			'no filter' => [ false ],
 			'with filter' => [ [ 1, 2, 91 ] ],

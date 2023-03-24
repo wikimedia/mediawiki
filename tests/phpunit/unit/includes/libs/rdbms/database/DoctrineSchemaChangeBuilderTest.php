@@ -27,7 +27,7 @@ class DoctrineSchemaChangeBuilderTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $actual );
 	}
 
-	public function provideTestGetResultAllTables() {
+	public static function provideTestGetResultAllTables() {
 		yield 'MySQL schema tables' => [
 			new MySQLPlatform,
 			'/data/db/mysql/patch-drop-ct_tag.sql'

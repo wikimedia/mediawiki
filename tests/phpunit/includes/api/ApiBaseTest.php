@@ -48,7 +48,7 @@ class ApiBaseTest extends ApiTestCase {
 		$this->assertSame( $expected, $result );
 	}
 
-	public function provideStubMethods() {
+	public static function provideStubMethods() {
 		return [
 			[ null, 'getModuleManager' ],
 			[ null, 'getCustomPrinter' ],
@@ -1333,7 +1333,7 @@ class ApiBaseTest extends ApiTestCase {
 		$this->assertSame( $expectedMessages, $messageKeys );
 	}
 
-	public function provideGetFinalParamDescription() {
+	public static function provideGetFinalParamDescription() {
 		return [
 			'default message' => [
 				'settings' => [],

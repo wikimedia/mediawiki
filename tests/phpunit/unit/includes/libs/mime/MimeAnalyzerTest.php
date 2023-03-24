@@ -46,7 +46,7 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( $expectedMime, $actualMime );
 	}
 
-	public function providerImproveTypeFromExtension() {
+	public static function providerImproveTypeFromExtension() {
 		return [
 			[ 'gif', 'image/gif', 'image/gif' ],
 			[ 'gif', 'unknown/unknown', 'unknown/unknown' ],
@@ -73,7 +73,7 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 		];
 	}
 
-	public function provideGetMediaType() {
+	public static function provideGetMediaType() {
 		// Make sure encoder=ffmpeg2theora don't trigger MEDIATYPE_VIDEO (T65584)
 		yield 'Recognize ogg' => [ 'say-test.ogg', 'application/ogg', MEDIATYPE_AUDIO ];
 
@@ -95,7 +95,7 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 		);
 	}
 
-	public function provideDoGuessMimeType() {
+	public static function provideDoGuessMimeType() {
 		// Make sure MP3 with id3 tag is recognized
 		yield 'Recognize mp3 with id3' => [ 'say-test-with-id3.mp3', 'mp3', 'audio/mpeg' ];
 
@@ -157,7 +157,7 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 		);
 	}
 
-	public function providePngZipConfusion() {
+	public static function providePngZipConfusion() {
 		return [
 			[
 				'An invalid ZIP file due to the signature being too close to the ' .

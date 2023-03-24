@@ -29,7 +29,7 @@ class ParserObserverIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertCount( $count, $logger->getBuffer() );
 	}
 
-	public function provideDuplicateParse() {
+	public static function provideDuplicateParse() {
 		yield [ true, 1 ];
 		yield [ false, 0 ];
 	}

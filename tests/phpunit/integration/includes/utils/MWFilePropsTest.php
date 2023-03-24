@@ -4,7 +4,7 @@
  * @covers MWFileProps
  */
 class MWFilePropsTest extends MediaWikiIntegrationTestCase {
-	public function provideGetPropsFromPath() {
+	public static function provideGetPropsFromPath() {
 		return [
 			'nonexistent.png' => [ 'nonexistent.png', [
 				'fileExists' => false,

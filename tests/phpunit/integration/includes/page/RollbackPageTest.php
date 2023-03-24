@@ -307,7 +307,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( '0', $rc->getAttribute( 'rc_bot' ) );
 	}
 
-	public function provideRollbackPatrolAndBot() {
+	public static function provideRollbackPatrolAndBot() {
 		yield 'mark as bot' => [ true ];
 		yield 'do not mark as bot' => [ false ];
 	}

@@ -65,7 +65,7 @@ class XmlTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function provideEncodeJsVar() {
+	public static function provideEncodeJsVar() {
 		// $expected, $input
 		yield 'boolean' => [ 'true', true ];
 		yield 'null' => [ 'null', null ];

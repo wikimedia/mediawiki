@@ -147,7 +147,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 		return new ContributionsSegment( $revisions, $tags, null, null, $deltas, $flags );
 	}
 
-	public function provideValidQueryParameters() {
+	public static function provideValidQueryParameters() {
 		yield [ [] ];
 		yield [ [ 'limit' => self::DEFAULT_LIMIT ] ];
 		yield [ [ 'tag' => 'test', 'limit' => 7 ] ];
@@ -254,7 +254,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 		$this->assertArrayHasKey( 'contributions', $data );
 	}
 
-	public function provideThatResponseConformsToSchema() {
+	public static function provideThatResponseConformsToSchema() {
 		$basePath = 'https://wiki.example.com/rest/me/contributions';
 		yield [ 0,
 			[],

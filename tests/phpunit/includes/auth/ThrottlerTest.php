@@ -70,7 +70,7 @@ class ThrottlerTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( $normalized, $throttlerPriv->conditions );
 	}
 
-	public function provideNormalizeThrottleConditions() {
+	public static function provideNormalizeThrottleConditions() {
 		return [
 			[
 				[],

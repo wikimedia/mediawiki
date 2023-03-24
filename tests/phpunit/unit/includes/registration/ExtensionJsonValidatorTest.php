@@ -44,7 +44,7 @@ class ExtensionJsonValidatorTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function provideValidate() {
+	public static function provideValidate() {
 		return [
 			[
 				'notjson.txt',

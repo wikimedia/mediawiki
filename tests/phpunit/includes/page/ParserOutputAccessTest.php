@@ -651,7 +651,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		return $pcFactory;
 	}
 
-	public function providePoolWorkDirty() {
+	public static function providePoolWorkDirty() {
 		yield [ Status::newGood( PoolCounter::QUEUE_FULL ), false, 'view-pool-overload' ];
 		yield [ Status::newGood( PoolCounter::TIMEOUT ), false, 'view-pool-overload' ];
 		yield [ Status::newGood( PoolCounter::TIMEOUT ), true, 'view-pool-contention' ];

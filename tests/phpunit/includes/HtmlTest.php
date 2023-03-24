@@ -126,7 +126,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $isXmlMimeType, Html::isXmlMimeType( $mimetype ) );
 	}
 
-	public function provideExpandAttributes() {
+	public static function provideExpandAttributes() {
 		// $expect, $attributes
 		yield 'keep keys with an empty string' => [
 			' foo=""',
@@ -186,7 +186,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expect, Html::expandAttributes( $attribs ) );
 	}
 
-	public function provideExpandAttributesEmpty() {
+	public static function provideExpandAttributesEmpty() {
 		// $attributes
 		yield 'skip keys with null value' => [ [ 'foo' => null ] ];
 		yield 'skip keys with false value' => [ [ 'foo' => false ] ];
@@ -200,7 +200,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( '', Html::expandAttributes( $attribs ) );
 	}
 
-	public function provideExpandAttributesClass() {
+	public static function provideExpandAttributesClass() {
 		// $expect, $classes
 		// string values
 		yield 'Normalization should strip redundant spaces' => [

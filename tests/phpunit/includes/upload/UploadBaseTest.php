@@ -591,7 +591,7 @@ class UploadBaseTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $evil, UploadBase::checkXMLEncodingMissmatch( $filename ) );
 	}
 
-	public function provideCheckXMLEncodingMissmatch() {
+	public static function provideCheckXMLEncodingMissmatch() {
 		return [
 			[ '<?xml version="1.0" encoding="utf-7"?><svg></svg>', true ],
 			[ '<?xml version="1.0" encoding="utf-8"?><svg></svg>', false ],

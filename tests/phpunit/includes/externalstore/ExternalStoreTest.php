@@ -17,7 +17,7 @@ class ExternalStoreTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideFetchFromURLWithStore() {
+	public static function provideFetchFromURLWithStore() {
 		yield [ 'Hello', 'ForTesting://cluster1/200', 'Allow FOO://cluster1/200' ];
 		yield [ 'Hello', 'ForTesting://cluster1/300/0', 'Allow FOO://cluster1/300/0' ];
 

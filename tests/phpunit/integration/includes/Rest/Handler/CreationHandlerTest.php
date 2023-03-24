@@ -76,7 +76,7 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 		return $handler;
 	}
 
-	public function provideExecute() {
+	public static function provideExecute() {
 		// NOTE: Prefix hard coded in a fake for Router::getRouteUrl() in HandlerTestTrait
 		$baseUrl = 'https://wiki.example.com/rest/v1/page/';
 
@@ -332,7 +332,7 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideBodyValidation() {
+	public static function provideBodyValidation() {
 		yield "missing source field" => [
 			[ // Request data received by CreationHandler
 				'method' => 'POST',
@@ -397,7 +397,7 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expectedMessage, $exception->getMessageValue() );
 	}
 
-	public function provideHeaderValidation() {
+	public static function provideHeaderValidation() {
 		yield "bad content type" => [
 			[ // Request data received by CreationHandler
 				'method' => 'POST',
@@ -431,7 +431,7 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 	/*
 	 * FIXME: Status::newFatal invokes MediaWikiServices, which is not allowed in a dataProvider.
 	 */
-	public function provideErrorMapping() {
+	public static function provideErrorMapping() {
 		yield "missingtitle" => [
 			new ApiUsageException( null, Status::newFatal( 'apierror-missingtitle' ) ),
 			new LocalizedHttpException( new MessageValue( 'apierror-missingtitle' ), 404 ),

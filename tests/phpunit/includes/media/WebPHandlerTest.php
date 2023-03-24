@@ -29,7 +29,7 @@ class WebPHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expectedResult, WebPHandler::extractMetadata( $this->tempFileName ) );
 	}
 
-	public function provideTestExtractMetaData() {
+	public static function provideTestExtractMetaData() {
 		return [
 			// Files from https://developers.google.com/speed/webp/gallery2
 			[ "\x52\x49\x46\x46\x90\x68\x01\x00\x57\x45\x42\x50\x56\x50\x38\x4C\x83\x68\x01\x00\x2F\x8F\x01\x4B\x10\x8D\x38\x6C\xDB\x46\x92\xE0\xE0\x82\x7B\x6C",
@@ -87,7 +87,7 @@ class WebPHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expectedResult, WebPHandler::extractMetadata( $filename ) );
 	}
 
-	public function provideTestWithFileExtractMetaData() {
+	public static function provideTestWithFileExtractMetaData() {
 		return [
 			[ __DIR__ . '/../../data/media/2_webp_ll.webp',
 				[
@@ -116,7 +116,7 @@ class WebPHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expectedResult, $handler->getSizeAndMetadata( null, $path ) );
 	}
 
-	public function provideTestGetSizeAndMetadata() {
+	public static function provideTestGetSizeAndMetadata() {
 		return [
 			// Public domain files from https://developers.google.com/speed/webp/gallery2
 			[
@@ -188,7 +188,7 @@ class WebPHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( 'image/webp', $mime->guessMimeType( $path, false ) );
 	}
 
-	public function provideTestGetMimeType() {
+	public static function provideTestGetMimeType() {
 		return [
 				// Public domain files from https://developers.google.com/speed/webp/gallery2
 				[ __DIR__ . '/../../data/media/2_webp_a.webp' ],

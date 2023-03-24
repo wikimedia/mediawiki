@@ -29,7 +29,7 @@ class SpecialPageDataTest extends SpecialPageTestBase {
 		return $page;
 	}
 
-	public function provideExecute() {
+	public static function provideExecute() {
 		$cases = [];
 
 		$cases['Empty request'] = [ '', [], [], '!!', 200 ];

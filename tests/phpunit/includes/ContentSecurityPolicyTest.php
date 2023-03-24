@@ -89,7 +89,7 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $actual, $ua );
 	}
 
-	public function providerFalsePositiveBrowser() {
+	public static function providerFalsePositiveBrowser() {
 		return [
 			[
 				'Mozilla/5.0 (X11; Linux i686; rv:41.0) Gecko/20100101 Firefox/41.0',
@@ -163,7 +163,7 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expectedReport, $actualReport, "report: " . $policyJson );
 	}
 
-	public function providerMakeCSPDirectives() {
+	public static function providerMakeCSPDirectives() {
 		return [
 			[ false, '', '' ],
 			[
@@ -335,7 +335,7 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $actual, $url );
 	}
 
-	public function providerPrepareUrlForCSP() {
+	public static function providerPrepareUrlForCSP() {
 		global $wgServer;
 		return [
 			[ $wgServer, false ],
@@ -379,7 +379,7 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $res );
 	}
 
-	public function providerCSPIsEnabled() {
+	public static function providerCSPIsEnabled() {
 		return [
 			[ true, true, true ],
 			[ false, true, true ],

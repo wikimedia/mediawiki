@@ -28,7 +28,7 @@ class LanguageConverterConversionTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideConversionData() {
+	public static function provideConversionData() {
 		$jsonFile = file_get_contents( __DIR__ . '/../../../data/languageConverter/conversionData.json' );
 		$converterDataArr = json_decode( $jsonFile, true );
 

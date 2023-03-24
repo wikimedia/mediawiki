@@ -14,7 +14,7 @@ class FeedUtilsTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, FeedUtils::applyDiffStyle( $html ) );
 	}
 
-	public function provideElements() {
+	public static function provideElements() {
 		return [
 			[
 				'<td class="diff">Test</td>',

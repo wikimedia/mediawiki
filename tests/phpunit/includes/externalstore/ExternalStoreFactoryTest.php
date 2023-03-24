@@ -21,7 +21,7 @@ class ExternalStoreFactoryTest extends MediaWikiIntegrationTestCase {
 		$factory->getStore( 'foo' );
 	}
 
-	public function provideStoreNames() {
+	public static function provideStoreNames() {
 		yield 'Same case as construction' => [ 'ForTesting' ];
 		yield 'All lower case' => [ 'fortesting' ];
 		yield 'All upper case' => [ 'FORTESTING' ];

@@ -18,7 +18,7 @@ class FileTest extends MediaWikiMediaTestCase {
 		$this->assertEquals( $expected, $file->canAnimateThumbIfAppropriate() );
 	}
 
-	public function providerCanAnimate() {
+	public static function providerCanAnimate() {
 		return [
 			[ 'nonanimated.gif', true ],
 			[ 'jpeg-comment-utf.jpg', true ],
@@ -410,7 +410,7 @@ class FileTest extends MediaWikiMediaTestCase {
 		$this->assertEquals( $expected, $actual );
 	}
 
-	public function providerGetDisplayWidthHeight() {
+	public static function providerGetDisplayWidthHeight() {
 		return [
 			[
 				[ 1024.0, 768.0, 600.0, 600.0 ],
@@ -439,7 +439,7 @@ class FileTest extends MediaWikiMediaTestCase {
 		];
 	}
 
-	public function provideNormalizeTitle() {
+	public static function provideNormalizeTitle() {
 		yield [ 'some name.jpg', 'Some_name.jpg' ];
 		yield [ new TitleValue( NS_FILE, 'Some_name.jpg' ), 'Some_name.jpg' ];
 		yield [ new TitleValue( NS_MEDIA, 'Some_name.jpg' ), 'Some_name.jpg' ];
@@ -457,7 +457,7 @@ class FileTest extends MediaWikiMediaTestCase {
 		$this->assertSame( $expected, $actual->getDBkey() );
 	}
 
-	public function provideNormalizeTitleFails() {
+	public static function provideNormalizeTitleFails() {
 		yield [ '' ];
 		yield [ '#' ];
 		yield [ new TitleValue( NS_USER, 'Some_name.jpg' ) ];

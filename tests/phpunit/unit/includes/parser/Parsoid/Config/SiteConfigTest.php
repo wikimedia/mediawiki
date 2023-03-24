@@ -108,7 +108,7 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function provideConfigParameterPassed(): iterable {
+	public static function provideConfigParameterPassed(): iterable {
 		yield 'galleryOptions' => [
 			[ MainConfigNames::GalleryOptions => [ 'blabla' ] ],
 			'galleryOptions',
@@ -214,7 +214,7 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expectedValue, $config->$method() );
 	}
 
-	public function provideParsoidSettingPassed() {
+	public static function provideParsoidSettingPassed() {
 		yield 'nativeGalleryEnabled' => [
 			[ 'nativeGalleryEnabled' => true ],
 			'nativeGalleryEnabled',
@@ -239,7 +239,7 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expectedValue, $config->$method() );
 	}
 
-	public function provideServiceMethodProxied() {
+	public static function provideServiceMethodProxied() {
 		yield 'canonicalNamespaceId' => [
 			NamespaceInfo::class, 'getCanonicalIndex', [ 'blabla_arg' ], 42, 'canonicalNamespaceId', 42
 		];
@@ -344,7 +344,7 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expectedValue, $config->$method( ...$arguments ) );
 	}
 
-	public function provideArticlePath_exception() {
+	public static function provideArticlePath_exception() {
 		yield 'No $1' => [ '/test/test' ];
 		yield 'Wrong path' => [ 'test\\test/$1' ];
 	}

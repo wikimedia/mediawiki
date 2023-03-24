@@ -103,7 +103,7 @@ class StripStateTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $text );
 	}
 
-	public function provideGetLimitReport() {
+	public static function provideGetLimitReport() {
 		for ( $i = 1; $i < 4; $i++ ) {
 			yield [ $i ];
 		}

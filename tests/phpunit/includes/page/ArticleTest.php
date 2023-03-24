@@ -108,7 +108,7 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( $expectedResult, $article->showPatrolFooter() );
 	}
 
-	public function provideShowPatrolFooter() {
+	public static function provideShowPatrolFooter() {
 		yield 'UserAllowedRevExist' => [
 			'sysop',
 			Title::makeTitle( NS_MAIN, 'Page1' ),

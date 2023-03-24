@@ -61,7 +61,7 @@ class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideNewFromId() {
+	public static function provideNewFromId() {
 		$newTables = [
 			'tables' => [
 				'logging',
@@ -126,7 +126,7 @@ class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	public function provideGetPerformerIdentity() {
+	public static function provideGetPerformerIdentity() {
 		yield 'registered actor' => [
 			'actor_row_fields' => [
 				'user_id' => 42,

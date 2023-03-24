@@ -132,7 +132,7 @@ class PingbackTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function provideMakePing() {
+	public static function provideMakePing() {
 		yield 'No prior ping' => [ false ];
 		yield 'Prior ping from over a month ago' => [
 			ConvertibleTimestamp::convert( TS_UNIX, '20110301080000' )

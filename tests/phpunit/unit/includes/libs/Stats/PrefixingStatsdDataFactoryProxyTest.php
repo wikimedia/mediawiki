@@ -8,7 +8,7 @@ use PHPUnit\Framework\MockObject\MockObject;
  */
 class PrefixingStatsdDataFactoryProxyTest extends PHPUnit\Framework\TestCase {
 
-	public function provideMethodNames() {
+	public static function provideMethodNames() {
 		return [
 			[ 'timing' ],
 			[ 'gauge' ],

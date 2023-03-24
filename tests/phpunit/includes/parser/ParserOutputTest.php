@@ -492,7 +492,7 @@ EOF
 		$po->getText();
 	}
 
-	public function provideGetText_absoluteURLs() {
+	public static function provideGetText_absoluteURLs() {
 		yield 'empty' => [
 			'text' => '',
 			'expectedText' => '',
@@ -538,7 +538,7 @@ EOF
 		$po->getRawText();
 	}
 
-	public function provideMergeHtmlMetaDataFrom() {
+	public static function provideMergeHtmlMetaDataFrom() {
 		// title text ------------
 		$a = new ParserOutput();
 		$a->setTitleText( 'X' );
@@ -803,7 +803,7 @@ EOF
 		$this->assertSame( $expected, $a->getLinks() );
 	}
 
-	public function provideMergeTrackingMetaDataFrom() {
+	public static function provideMergeTrackingMetaDataFrom() {
 		// links ------------
 		$a = new ParserOutput();
 		$a->addLink( Title::makeTitle( NS_MAIN, 'Kittens' ), 6 );

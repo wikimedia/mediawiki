@@ -204,7 +204,7 @@ class FormatJsonTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function provideStripComments() {
+	public static function provideStripComments() {
 		return [
 			[ '{"a":"b"}', '{"a":"b"}' ],
 			[ "{\"a\":\"b\"}\n", "{\"a\":\"b\"}\n" ],
@@ -240,7 +240,7 @@ class FormatJsonTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expect, FormatJson::stripComments( $json ) );
 	}
 
-	public function provideParseStripComments() {
+	public static function provideParseStripComments() {
 		return [
 			[ '/* blah */true', true ],
 			[ "// blah \ntrue", true ],
@@ -315,7 +315,7 @@ class FormatJsonTest extends MediaWikiUnitTestCase {
 		return $cases;
 	}
 
-	public function provideEmptyJsonKeyStrings() {
+	public static function provideEmptyJsonKeyStrings() {
 		return [
 			[
 				'{"":"foo"}',

@@ -373,7 +373,7 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @return array
 	 */
-	public function provideIsWriteQuery(): array {
+	public static function provideIsWriteQuery(): array {
 		return [
 			[ 'SELECT foo', false ],
 			[ '  SELECT foo FROM bar', false ],

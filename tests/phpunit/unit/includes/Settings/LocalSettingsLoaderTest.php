@@ -28,7 +28,7 @@ class LocalSettingsLoaderTest extends TestCase {
 		);
 	}
 
-	public function provideLoadingFromFile() {
+	public static function provideLoadingFromFile() {
 		$expected = [
 			'SiteName' => 'TestSite',
 			'HttpsPort' => 443,

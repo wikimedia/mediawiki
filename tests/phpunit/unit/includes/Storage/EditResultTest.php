@@ -11,7 +11,7 @@ use MediaWikiUnitTestCase;
  */
 class EditResultTest extends MediaWikiUnitTestCase {
 
-	public function provideIsRevertEditResults() {
+	public static function provideIsRevertEditResults() {
 		return [
 			'a new page' => [
 				new EditResult(
@@ -63,7 +63,7 @@ class EditResultTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $isRevert, $er->isRevert(), 'isRevert()' );
 	}
 
-	public function provideGetRevertMethodEditResults() {
+	public static function provideGetRevertMethodEditResults() {
 		return [
 			'an undo' => [
 				new EditResult(
@@ -138,7 +138,7 @@ class EditResultTest extends MediaWikiUnitTestCase {
 		$this->assertArrayEquals( $tags, $er->getRevertTags(), 'getRevertTags()' );
 	}
 
-	public function provideGetUndidRevIdEditResults() {
+	public static function provideGetUndidRevIdEditResults() {
 		return [
 			// an undo, should return the oldest undid revision ID
 			'an undo' => [
@@ -194,7 +194,7 @@ class EditResultTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $undidRevId, $er->getUndidRevId(), 'getUndidRevId()' );
 	}
 
-	public function provideSerialization() {
+	public static function provideSerialization() {
 		yield 'page creation' => [
 			new EditResult(
 				true,

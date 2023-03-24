@@ -450,7 +450,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 *
 	 * @return array
 	 */
-	public function provideProcessFormUserTalkEditFlag() {
+	public static function provideProcessFormUserTalkEditFlag() {
 		return [
 			'Always allowed if user talk namespace not blocked' => [
 				[
@@ -540,7 +540,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertEquals( $expected, $error );
 	}
 
-	public function provideProcessFormErrors() {
+	public static function provideProcessFormErrors() {
 		return [
 			'Invalid expiry' => [
 				[
@@ -658,7 +658,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertEquals( $expected, $error );
 	}
 
-	public function provideProcessFormErrorsReblock() {
+	public static function provideProcessFormErrorsReblock() {
 		return [
 			'Reblock user with Confirm false' => [
 				[
@@ -728,7 +728,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertEquals( $expected, $error );
 	}
 
-	public function provideProcessFormErrorsHideUser() {
+	public static function provideProcessFormErrorsHideUser() {
 		return [
 			'HideUser with wrong permissions' => [
 				[],
@@ -847,7 +847,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		);
 	}
 
-	public function provideCheckUnblockSelf() {
+	public static function provideCheckUnblockSelf() {
 		// 'blockedUser', 'blockPerformer', 'adjustPerformer', 'adjustTarget'
 		return [
 			[ 'u1', 'u2', 'u3', 'u4', 1, true, 'Unrelated users' ],
@@ -873,7 +873,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertSame( $expectedTarget, $target );
 	}
 
-	public function provideGetTargetAndType() {
+	public static function provideGetTargetAndType() {
 		$invalidTarget = '';
 		return [
 			'Choose \'wpTarget\' parameter first' => [

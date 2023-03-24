@@ -101,7 +101,7 @@ class PageIdentityValueTest extends MediaWikiUnitTestCase {
 		$this->assertNull( PageIdentityValue::tryNew( $pageId, $namespace, $dbKey, $wikiId ) );
 	}
 
-	public function provideToString() {
+	public static function provideToString() {
 		yield [
 			new PageIdentityValue( 5, 0, 'Foo', PageIdentity::LOCAL ),
 			'[0:Foo]'
@@ -126,7 +126,7 @@ class PageIdentityValueTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function provideIsSamePageAs() {
+	public static function provideIsSamePageAs() {
 		yield [
 			new PageIdentityValue( 1, 0, 'Foo', PageIdentity::LOCAL ),
 			new PageIdentityValue( 1, 0, 'Foo', PageIdentity::LOCAL ),

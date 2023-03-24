@@ -13,7 +13,7 @@ class SanitizerUnitTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, Sanitizer::decodeCharReferences( $input ) );
 	}
 
-	public function provideDecodeCharReferences() {
+	public static function provideDecodeCharReferences() {
 		return [
 			'decode named entities' => [
 				"\u{00E9}cole",
@@ -246,7 +246,7 @@ class SanitizerUnitTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, Sanitizer::stripAllTags( $input ) );
 	}
 
-	public function provideStripAllTags() {
+	public static function provideStripAllTags() {
 		return [
 			[ '<p>Foo</p>', 'Foo' ],
 			[ '<p id="one">Foo</p><p id="two">Bar</p>', 'Foo Bar' ],

@@ -497,7 +497,7 @@ class FileModuleTest extends ResourceLoaderTestCase {
 		$this->assertStringEqualsFile( $basePath . '/styles.css', $styles['all'] );
 	}
 
-	public function provideGetVersionHash() {
+	public static function provideGetVersionHash() {
 		$a = [];
 		$b = [
 			'lessVars' => [ 'key' => 'value' ],
@@ -600,7 +600,7 @@ class FileModuleTest extends ResourceLoaderTestCase {
 		);
 	}
 
-	public function provideGetScriptPackageFiles() {
+	public static function provideGetScriptPackageFiles() {
 		$basePath = __DIR__ . '/../../data/resourceloader';
 		$basePathB = __DIR__ . '/../../data/resourceloader-b';
 		$base = [ 'localBasePath' => $basePath ];

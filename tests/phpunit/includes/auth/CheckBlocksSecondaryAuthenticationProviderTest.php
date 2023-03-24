@@ -169,7 +169,7 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$this->assertEquals( $expectedResponseStatus, $response->status );
 	}
 
-	public function provideBeginSecondaryAuthentication() {
+	public static function provideBeginSecondaryAuthentication() {
 		// Only fail authentication when $wgBlockDisablesLogin is set, the block is not partial,
 		// and not an IP block. Global blocks could in theory go either way, but GlobalBlocking
 		// extension blocks are always IP blocks so we mock them as such.
@@ -210,7 +210,7 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$this->assertSame( $expectedStatus, $status->isGood() );
 	}
 
-	public function provideTestUserForCreation() {
+	public static function provideTestUserForCreation() {
 		// Tests for normal signup: only prevent if the user is blocked, the block is specifically
 		// targeted to the username, not partial, and the block prevents account creation.
 		$signupTests = [

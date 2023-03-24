@@ -910,7 +910,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provider_quickOperations() {
+	public static function provider_quickOperations() {
 		$base = self::baseStorePath();
 		$files = [
 			"$base/unittest-cont1/e/fileA.a",

@@ -67,7 +67,7 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiUnitTestCase {
 		$this->modifyQueryHelper( $groupDefinition, $input );
 	}
 
-	public function provideModifyQuery() {
+	public static function provideModifyQuery() {
 		$mixedFilters = [
 			[
 				'name' => 'foo',
@@ -133,7 +133,7 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function provideNoOpModifyQuery() {
+	public static function provideNoOpModifyQuery() {
 		$noFilters = [];
 
 		$normalFilters = [

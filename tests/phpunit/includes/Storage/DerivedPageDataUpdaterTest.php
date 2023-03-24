@@ -995,7 +995,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		self::assertFalse( $updater->isCountable() );
 	}
 
-	public function provideIsCountable() {
+	public static function provideIsCountable() {
 		yield 'deleted revision' => [
 			'$articleCountMethod' => 'any',
 			'$wikitextContent' => 'Test',
@@ -1207,7 +1207,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotFalse( $pcache->get( $page, $updater->getCanonicalParserOptions() ) );
 	}
 
-	public function provideEnqueueRevertedTagUpdateJob() {
+	public static function provideEnqueueRevertedTagUpdateJob() {
 		return [
 			'approved' => [ true, 1 ],
 			'not approved' => [ false, 0 ]

@@ -24,7 +24,7 @@ class SqlitePlatformTest extends PHPUnit\Framework\TestCase {
 		);
 	}
 
-	public function provideBuildSubstring() {
+	public static function provideBuildSubstring() {
 		yield [ 'someField', 1, 2, 'SUBSTR(someField,1,2)' ];
 		yield [ 'someField', 1, null, 'SUBSTR(someField,1)' ];
 	}
@@ -37,7 +37,7 @@ class SqlitePlatformTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( $expected, $output );
 	}
 
-	public function provideBuildSubstring_invalidParams() {
+	public static function provideBuildSubstring_invalidParams() {
 		yield [ -1, 1 ];
 		yield [ 1, -1 ];
 		yield [ 1, 'foo' ];

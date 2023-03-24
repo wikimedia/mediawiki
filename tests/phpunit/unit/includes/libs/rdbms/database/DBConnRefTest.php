@@ -204,7 +204,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 		$ref->$method( ...$args );
 	}
 
-	public function provideRoleExceptions() {
+	public static function provideRoleExceptions() {
 		return [
 			[ 'insert', [ 'table', [ 'a' => 1 ] ] ],
 			[ 'update', [ 'table', [ 'a' => 1 ], [ 'a' => 2 ] ] ],

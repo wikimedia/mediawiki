@@ -9,7 +9,7 @@ use MockTitleTrait;
 class ContributionsSegmentTest extends \MediaWikiUnitTestCase {
 	use MockTitleTrait;
 
-	public function provideFlags() {
+	public static function provideFlags() {
 		yield [
 			[]
 		];

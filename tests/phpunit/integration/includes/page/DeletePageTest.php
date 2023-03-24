@@ -326,7 +326,7 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		ScopedCallback::consume( $teardownScope );
 	}
 
-	public function provideDeleteUnsafe(): iterable {
+	public static function provideDeleteUnsafe(): iterable {
 		// Note that we're using immediate deletion as default
 		yield 'standard deletion' => [ false, [], true, 'delete' ];
 		yield 'suppression' => [ true, [], true, 'delete' ];

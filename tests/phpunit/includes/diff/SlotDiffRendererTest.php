@@ -30,7 +30,7 @@ class SlotDiffRendererTest extends \MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideNormalizeContents() {
+	public static function provideNormalizeContents() {
 		return [
 			'both null' => [ null, null, null, null, null, InvalidArgumentException::class ],
 			'left null' => [

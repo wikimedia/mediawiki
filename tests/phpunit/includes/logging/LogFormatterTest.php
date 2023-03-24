@@ -367,7 +367,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		}
 	}
 
-	public function provideLogElement() {
+	public static function provideLogElement() {
 		return [
 			[ 'none', 'view' ],
 			[ 'deleted', 'none' ],
