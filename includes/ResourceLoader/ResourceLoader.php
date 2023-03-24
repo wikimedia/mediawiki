@@ -1218,9 +1218,8 @@ MESSAGE;
 			}
 		} elseif ( $states ) {
 			$this->errors[] = 'Problematic modules: '
-				// Don't issue a server-side warning for client errors. (T331641)
-				// Modules with invalid encoded names can't be registered, but can be requested
-				// by forming a bad URL.
+				// Silently ignore invalid UTF-8 injected via 'modules' query
+				// Don't issue server-side warnings for client errors. (T331641)
 				// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 				. @$context->encodeJson( $states );
 		}
@@ -1388,11 +1387,7 @@ MESSAGE;
 	}
 
 	/**
-	 * Returns a JS call to mw.loader.state, which sets the state of modules
-	 * to a given value:
-	 *
-	 *    - ResourceLoader::makeLoaderStateScript( $context, [ $name => $state, ... ] ):
-	 *         Set the state of modules with the given names to the given states
+	 * Format a JS call to mw.loader.state()
 	 *
 	 * @internal For use by StartUpModule
 	 * @param Context $context
@@ -1403,7 +1398,10 @@ MESSAGE;
 		Context $context, array $states
 	) {
 		return 'mw.loader.state('
-			. $context->encodeJson( $states )
+			// Silently ignore invalid UTF-8 injected via 'modules' query
+			// Don't issue server-side warnings for client errors. (T331641)
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			. @$context->encodeJson( $states )
 			. ');';
 	}
 
