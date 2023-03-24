@@ -1314,6 +1314,7 @@ abstract class Skin extends ContextSource {
 			$revid = $out->getRevisionId();
 			if ( $revid ) {
 				$nav_urls['permalink'] = [
+					'icon' => 'link',
 					'text' => $this->msg( 'permalink' )->text(),
 					'href' => $title->getLocalURL( "oldid=$revid" )
 				];
@@ -1326,6 +1327,7 @@ abstract class Skin extends ContextSource {
 			];
 
 			$nav_urls['info'] = [
+				'icon' => 'infoFilled',
 				'text' => $this->msg( 'pageinfo-toolboxlink' )->text(),
 				'href' => $title->getLocalURL( "action=info" )
 			];
