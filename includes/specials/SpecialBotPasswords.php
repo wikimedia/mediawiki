@@ -430,7 +430,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 	}
 
 	protected function getGroupName() {
-		return 'users';
+		return 'login';
 	}
 
 	protected function getDisplayFormat() {

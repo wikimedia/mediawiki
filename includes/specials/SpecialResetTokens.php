@@ -155,7 +155,7 @@ class SpecialResetTokens extends FormSpecialPage {
 	}
 
 	protected function getGroupName() {
-		return 'users';
+		return 'login';
 	}
 
 	public function isListed() {

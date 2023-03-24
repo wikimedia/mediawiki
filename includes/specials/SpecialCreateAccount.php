@@ -168,7 +168,7 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 	}
 
 	protected function getGroupName() {
-		return 'login';
+		return 'users';
 	}
 
 	protected function logAuthResult( $success, $status = null ) {
