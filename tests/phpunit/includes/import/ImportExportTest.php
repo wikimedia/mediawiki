@@ -197,7 +197,7 @@ class ImportExportTest extends MediaWikiLangTestCase {
 		return $vars;
 	}
 
-	public function provideImportExport() {
+	public static function provideImportExport() {
 		foreach ( XmlDumpWriter::$supportedSchemas as $schemaVersion ) {
 			yield [ 'Basic', $schemaVersion ];
 			yield [ 'Dupes', $schemaVersion ];

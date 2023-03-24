@@ -56,7 +56,7 @@ class RollbackActionTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideRollbackParamFail() {
+	public static function provideRollbackParamFail() {
 		yield 'No from parameter' => [
 			'requestParams' => [],
 		];

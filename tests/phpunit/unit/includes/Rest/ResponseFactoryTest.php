@@ -53,7 +53,7 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 2, $response->getBody()->getSize() );
 	}
 
-	public function provideUseException() {
+	public static function provideUseException() {
 		return [ [ false ], [ true ] ];
 	}
 

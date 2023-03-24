@@ -17,7 +17,7 @@ use Wikimedia\Parsoid\Parsoid;
 class TransformHandlerTest extends MediaWikiIntegrationTestCase {
 	use HandlerTestTrait;
 
-	public function provideRequest() {
+	public static function provideRequest() {
 		$profileVersion = Parsoid::AVAILABLE_VERSIONS[0];
 		$htmlProfileUri = 'https://www.mediawiki.org/wiki/Specs/HTML/' . $profileVersion;
 		$htmlContentType = "text/html; charset=utf-8; profile=\"$htmlProfileUri\"";

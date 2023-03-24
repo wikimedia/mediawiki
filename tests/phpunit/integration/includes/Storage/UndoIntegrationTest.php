@@ -191,7 +191,7 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @return array[]
 	 */
-	public function provideUndos() {
+	public static function provideUndos() {
 		return [
 			'undoing a single revision' => [
 				[ '1', '2' ],
@@ -252,7 +252,7 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @return array[]
 	 */
-	public function provideIncompleteUndos() {
+	public static function provideIncompleteUndos() {
 		return [
 			'undoing a revision without undoafter param' => [
 				[ '1', '2' ],

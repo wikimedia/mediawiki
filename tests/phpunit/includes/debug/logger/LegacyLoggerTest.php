@@ -35,7 +35,7 @@ class LegacyLoggerTest extends MediaWikiIntegrationTestCase {
 			$expect, LegacyLogger::interpolate( $message, $context ) );
 	}
 
-	public function provideInterpolate() {
+	public static function provideInterpolate() {
 		$e = new \Exception( 'boom!' );
 		$d = new \DateTime();
 		$err = new \Error( 'Test error' );

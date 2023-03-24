@@ -24,7 +24,7 @@ class ReadOnlyModeTest extends MediaWikiUnitTestCase {
 		parent::tearDown();
 	}
 
-	public function provider() {
+	public static function provider() {
 		$rawTests = [
 			'None of anything' => [
 				'confMessage' => null,

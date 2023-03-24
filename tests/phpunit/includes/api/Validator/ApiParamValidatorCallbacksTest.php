@@ -74,7 +74,7 @@ class ApiParamValidatorCallbacksTest extends ApiUploadTestCase {
 		$this->assertSame( [ 'test' ], TestingAccessWrapper::newFromObject( $main )->getParamsUsed() );
 	}
 
-	public function provideGetValue() {
+	public static function provideGetValue() {
 		$obj = (object)[];
 		return [
 			'Basic test' => [ 'foo', 'bar', 'foo', false ],
@@ -209,7 +209,7 @@ class ApiParamValidatorCallbacksTest extends ApiUploadTestCase {
 		);
 	}
 
-	public function provideRecordCondition(): \Generator {
+	public static function provideRecordCondition(): \Generator {
 		yield 'Deprecated param' => [
 			DataMessageValue::new(
 				'paramvalidator-param-deprecated', [],

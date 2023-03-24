@@ -59,7 +59,7 @@ class SiteImporterTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideImportFromXML() {
+	public static function provideImportFromXML() {
 		$foo = Site::newForType( Site::TYPE_UNKNOWN );
 		$foo->setGlobalId( 'Foo' );
 

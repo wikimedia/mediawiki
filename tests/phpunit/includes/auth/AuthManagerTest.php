@@ -756,7 +756,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideSetDefaultUserOptions() {
+	public static function provideSetDefaultUserOptions() {
 		return [
 			[ 'zh', false, 'zh', 'zh' ],
 			[ 'zh', true, 'de', 'zh' ],

@@ -61,7 +61,7 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideUserHasNewMessages() {
+	public static function provideUserHasNewMessages() {
 		yield 'Registered user' => [ UserIdentityValue::newRegistered( 123, 'MyName' ) ];
 		yield 'Anonymous user' => [ UserIdentityValue::newAnonymous( '1.2.3.4' ) ];
 	}

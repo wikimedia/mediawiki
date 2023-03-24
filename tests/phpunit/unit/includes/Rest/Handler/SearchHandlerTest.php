@@ -333,7 +333,7 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 		$this->executeHandler( $handler, $request );
 	}
 
-	public function provideExecute_limit_error() {
+	public static function provideExecute_limit_error() {
 		yield [ 0, 'paramvalidator-outofrange-minmax' ];
 		yield [ 123, 'paramvalidator-outofrange-minmax' ];
 		yield [ 'xyz', 'paramvalidator-badinteger' ];

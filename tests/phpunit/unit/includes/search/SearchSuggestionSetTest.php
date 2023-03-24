@@ -108,7 +108,7 @@ class SearchSuggestionSetTest extends \MediaWikiUnitTestCase {
 	}
 
 	/** @return iterable */
-	public function provideNoTitles(): iterable {
+	public static function provideNoTitles(): iterable {
 		yield 'Empty Array' => [ [] ];
 	}
 

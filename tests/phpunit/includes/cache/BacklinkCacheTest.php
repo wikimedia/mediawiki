@@ -31,7 +31,7 @@ class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideCasesForHasLink() {
+	public static function provideCasesForHasLink() {
 		return [
 			[ true, 'BacklinkCacheTest_1', 'pagelinks' ],
 			[ false, 'BacklinkCacheTest_2', 'pagelinks' ],
@@ -49,7 +49,7 @@ class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected, $backlinkCache->hasLinks( $table ), $msg );
 	}
 
-	public function provideCasesForGetNumLinks() {
+	public static function provideCasesForGetNumLinks() {
 		return [
 			[ 4, 'BacklinkCacheTest_1', 'pagelinks' ],
 			[ 1, 'BacklinkCacheTest_1', 'pagelinks', 1 ],
@@ -68,7 +68,7 @@ class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $numLinks, $backlinkCache->getNumLinks( $table, $max ) );
 	}
 
-	public function provideCasesForGetLinks() {
+	public static function provideCasesForGetLinks() {
 		return [
 			[
 				[ 'BacklinkCacheTest_2', 'BacklinkCacheTest_3', 'BacklinkCacheTest_4', 'BacklinkCacheTest_5' ],

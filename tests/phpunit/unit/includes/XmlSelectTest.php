@@ -72,7 +72,7 @@ class XmlSelectTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( $expected, $select->getHTML() );
 	}
 
-	public function provideAddOption() {
+	public static function provideAddOption() {
 		yield 'true' => [ true, '<select><option value="1">foo</option></select>' ];
 		yield 'false' => [ false, '<select><option value="foo">foo</option></select>' ];
 		yield 'zero' => [ 0, '<select><option value="0">foo</option></select>' ];

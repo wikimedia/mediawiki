@@ -206,7 +206,7 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayEquals( $attribs, array_keys( $actual ) );
 	}
 
-	public function provideAttributesAllowed() {
+	public static function provideAttributesAllowed() {
 		/** [ <element>, [ <good attribute 1>, <good attribute 2>, ...] ] */
 		return [
 			[ 'math', [ 'class', 'style', 'id', 'title' ] ],
@@ -241,7 +241,7 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 		self::assertEquals( $expected, $escaped );
 	}
 
-	public function provideEscapeIdForStuff() {
+	public static function provideEscapeIdForStuff() {
 		// Test inputs and outputs
 		$text = 'foo тест_#%!\'()[]:<>&&amp;&amp;amp;%F0';
 		$legacyEncoded = 'foo_.D1.82.D0.B5.D1.81.D1.82_.23.25.21.27.28.29.5B.5D:.3C.3E' .

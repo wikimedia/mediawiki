@@ -51,7 +51,7 @@ class HandlerTest extends \MediaWikiUnitTestCase {
 		$this->assertInstanceOf( Router::class, $handler->getRouter() );
 	}
 
-	public function provideGetRouteUrl() {
+	public static function provideGetRouteUrl() {
 		yield 'empty' => [
 			'/test',
 			[],
@@ -135,7 +135,7 @@ class HandlerTest extends \MediaWikiUnitTestCase {
 		$this->assertInstanceOf( ConditionalHeaderUtil::class, $handler->getConditionalHeaderUtil() );
 	}
 
-	public function provideCheckPreconditions() {
+	public static function provideCheckPreconditions() {
 		yield 'no status' => [ null ];
 		yield 'a status' => [ 444 ];
 	}
@@ -177,7 +177,7 @@ class HandlerTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( 'foo', $response->getHeaderLine( 'Testing' ) );
 	}
 
-	public function provideValidate() {
+	public static function provideValidate() {
 		yield 'empty' => [ [], new RequestData(), [] ];
 
 		yield 'parameter' => [
@@ -397,7 +397,7 @@ class HandlerTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( '', $response->getHeaderLine( 'Last-Modified' ) );
 	}
 
-	public function provideCacheControl() {
+	public static function provideCacheControl() {
 		yield 'nothing' => [
 			'GET',
 			[],

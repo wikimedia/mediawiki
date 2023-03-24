@@ -66,7 +66,7 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 		$this->assertNull( $result );
 	}
 
-	public function provideAuthorizeAllowOrigin() {
+	public static function provideAuthorizeAllowOrigin() {
 		$origin = 'https://example.com';
 
 		return [
@@ -207,7 +207,7 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( [ 'https://example.com' ], $result->getHeader( 'Access-Control-Allow-Origin' ) );
 	}
 
-	public function provideModifyResponseAllowTrustedOriginCookieAuth() {
+	public static function provideModifyResponseAllowTrustedOriginCookieAuth() {
 		return [
 			'OPTIONS request' => [
 				'OPTIONS',
@@ -261,7 +261,7 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( [ '*' ], $result->getHeader( 'Access-Control-Allow-Origin' ) );
 	}
 
-	public function provideModifyResponseDisallowUntrustedOriginCookieAuth() {
+	public static function provideModifyResponseDisallowUntrustedOriginCookieAuth() {
 		return [
 			'Missing Origin' => [
 				'',

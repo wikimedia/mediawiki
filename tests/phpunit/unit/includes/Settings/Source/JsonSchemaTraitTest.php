@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 class JsonSchemaTraitTest extends TestCase {
 	use JsonSchemaTrait;
 
-	public function providePhpDocToJson() {
+	public static function providePhpDocToJson() {
 		yield 'int' => [ 'int', 'integer' ];
 		yield 'nullable int' => [ '?int', [ 'integer', 'null' ] ];
 		yield 'array input' => [ [ 'list', 'number' ], [ 'array', 'number' ] ];
@@ -38,7 +38,7 @@ class JsonSchemaTraitTest extends TestCase {
 		$this->assertSame( $json, $actual );
 	}
 
-	public function provideNormalizeJsonSchema() {
+	public static function provideNormalizeJsonSchema() {
 		yield 'nullable int' => [
 			[ 'type' => '?int' ],
 			[ 'type' => [ 'integer', 'null' ] ]
@@ -115,7 +115,7 @@ class JsonSchemaTraitTest extends TestCase {
 		$this->assertSame( $expected, $actual );
 	}
 
-	public function provideJsonToPhpDoc() {
+	public static function provideJsonToPhpDoc() {
 		yield 'integer' => [ 'integer', 'int' ];
 		yield 'double' => [ 'double', 'float' ]; // For good measure.
 		yield 'integer or null' => [ [ 'integer', 'null' ], '?int' ];
@@ -139,7 +139,7 @@ class JsonSchemaTraitTest extends TestCase {
 		$this->assertSame( $phpDoc, $actual );
 	}
 
-	public function provideJsonToPhpDoc_invalidArgument() {
+	public static function provideJsonToPhpDoc_invalidArgument() {
 		yield 'null' => [ null ];
 		yield 'list with null' => [ [ 'int', null ] ];
 	}
@@ -158,7 +158,7 @@ class JsonSchemaTraitTest extends TestCase {
 		self::phpDocToJson( null );
 	}
 
-	public function provideGetDefaultFromJsonSchema() {
+	public static function provideGetDefaultFromJsonSchema() {
 		yield 'empty' => [ [], null ];
 
 		yield 'no default, no properties' => [

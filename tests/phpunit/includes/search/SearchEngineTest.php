@@ -245,7 +245,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			"Title power search" );
 	}
 
-	public function provideCompletionSearchMustRespectCapitalLinkOverrides() {
+	public static function provideCompletionSearchMustRespectCapitalLinkOverrides() {
 		return [
 			'Searching for "smithee" finds Smithee on NS_MAIN' => [
 				'smithee',
@@ -426,7 +426,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		$this->assertFalse( $results->hasMoreResults() );
 	}
 
-	public function provideDataForParseNamespacePrefix() {
+	public static function provideDataForParseNamespacePrefix() {
 		return [
 			'noop' => [
 				[

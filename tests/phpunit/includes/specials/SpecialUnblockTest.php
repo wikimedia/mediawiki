@@ -49,7 +49,7 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 		}
 	}
 
-	public function provideGetFields() {
+	public static function provideGetFields() {
 		return [
 			'No target specified' => [
 				'',
@@ -101,7 +101,7 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 		$this->assertStringContainsString( $expected, $html );
 	}
 
-	public function provideProcessUnblockErrors() {
+	public static function provideProcessUnblockErrors() {
 		return [
 			'Target is not blocked' => [
 				[

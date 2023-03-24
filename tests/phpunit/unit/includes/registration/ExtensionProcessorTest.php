@@ -446,7 +446,7 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 		];
 	}
 
-	public function provideLegacyHooks() {
+	public static function provideLegacyHooks() {
 		$merge = [ ExtensionRegistry::MERGE_STRATEGY => 'array_merge_recursive' ];
 		// Format:
 		// Current $wgHooks

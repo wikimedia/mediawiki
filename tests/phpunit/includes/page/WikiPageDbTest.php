@@ -136,7 +136,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		serialize( $page );
 	}
 
-	public function provideTitlesThatCannotExist() {
+	public static function provideTitlesThatCannotExist() {
 		yield 'Special' => [ NS_SPECIAL, 'Recentchanges' ]; // existing special page
 		yield 'Invalid character' => [ NS_MAIN, '#' ]; // bad character
 	}
@@ -408,7 +408,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 4, $n, 'pagelinks should contain four links from the page' );
 	}
 
-	public function provideNonPageTitle() {
+	public static function provideNonPageTitle() {
 		yield 'bad case and char' => [ Title::makeTitle( NS_MAIN, 'lower case and bad # char' ) ];
 		yield 'empty' => [ Title::makeTitle( NS_MAIN, '' ) ];
 		yield 'special' => [ Title::makeTitle( NS_SPECIAL, 'Dummy' ) ];
@@ -773,7 +773,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->assertFalse( $page->exists() );
 	}
 
-	public function provideHasViewableContent() {
+	public static function provideHasViewableContent() {
 		return [
 			[ 'WikiPageTest_testHasViewableContent', false, true ],
 			[ 'MediaWiki:WikiPageTest_testHasViewableContent', false ],
@@ -798,7 +798,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		}
 	}
 
-	public function provideGetRedirectTarget() {
+	public static function provideGetRedirectTarget() {
 		return [
 			[ 'WikiPageTest_testGetRedirectTarget_1', CONTENT_MODEL_WIKITEXT, "hello world", null ],
 			[
@@ -861,7 +861,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $target !== null, $page->isRedirect() );
 	}
 
-	public function provideIsCountable() {
+	public static function provideIsCountable() {
 		return [
 
 			// any
@@ -1026,7 +1026,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $expected->matches( $parserOptions ) );
 	}
 
-	public function provideMakeParserOptions() {
+	public static function provideMakeParserOptions() {
 		// Default canonical parser options for a normal wikitext page
 		yield [
 			NS_MAIN, 'Main Page', CONTENT_MODEL_WIKITEXT, 'canonical',
@@ -1088,7 +1088,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		];
 	}
 
-	public function provideGetParserOutput() {
+	public static function provideGetParserOutput() {
 		return [
 			[
 				CONTENT_MODEL_WIKITEXT,
@@ -1247,7 +1247,7 @@ more stuff
 		$this->assertEquals( $expected, $c ? trim( $c->getText() ) : null );
 	}
 
-	public function provideGetAutoDeleteReason() {
+	public static function provideGetAutoDeleteReason() {
 		return [
 			[
 				[],
@@ -1356,7 +1356,7 @@ more stuff
 			"expected \$hasHistory to be " . var_export( $expectedHistory, true ) );
 	}
 
-	public function providePreSaveTransform() {
+	public static function providePreSaveTransform() {
 		return [
 			[ 'hello this is ~~~',
 				"hello this is [[Special:Contributions/127.0.0.1|127.0.0.1]]",
@@ -1456,7 +1456,7 @@ more stuff
 		$this->assertSame( 1, Category::newFromName( 'C' )->getMemberCount() );
 	}
 
-	public function provideUpdateRedirectOn() {
+	public static function provideUpdateRedirectOn() {
 		yield [ '#REDIRECT [[Foo]]', true, null, true, true, [] ];
 		yield [ '#REDIRECT [[Foo]]', true, 'Foo', true, true, [ [ NS_MAIN, 'Foo' ] ] ];
 		yield [ 'SomeText', false, null, false, true, [] ];
@@ -1680,7 +1680,7 @@ more stuff
 		$assertions( $page, $this );
 	}
 
-	public function provideTestNewFromId_returnsNullOnBadPageId() {
+	public static function provideTestNewFromId_returnsNullOnBadPageId() {
 		yield [ 0 ];
 		yield [ -11 ];
 	}
@@ -1848,7 +1848,7 @@ more stuff
 		);
 	}
 
-	public function provideTestDoUpdateRestrictions_setBasicRestrictions() {
+	public static function provideTestDoUpdateRestrictions_setBasicRestrictions() {
 		// Note: Once the current dates passes the date in these tests they will fail.
 		yield 'move something' => [
 			true,

@@ -13,7 +13,7 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class JsonBodyValidatorTest extends \MediaWikiUnitTestCase {
 
-	public function provideValidateBody() {
+	public static function provideValidateBody() {
 		yield 'empty object' => [
 			[],
 			new RequestData( [
@@ -80,7 +80,7 @@ class JsonBodyValidatorTest extends \MediaWikiUnitTestCase {
 		$this->assertArrayEquals( $expected, $actual, false, true );
 	}
 
-	public function provideValidateBody_failure() {
+	public static function provideValidateBody_failure() {
 		yield 'empty body' => [
 			[],
 			new RequestData( [

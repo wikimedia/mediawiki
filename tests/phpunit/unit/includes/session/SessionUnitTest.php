@@ -61,7 +61,7 @@ class SessionUnitTest extends MediaWikiUnitTestCase {
 		$session = null;
 	}
 
-	public function provideMethods() {
+	public static function provideMethods() {
 		return [
 			[ 'getId', [], false ],
 			[ 'getSessionId', [], false ],

@@ -378,7 +378,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$this->assertContainsHtml( 'Dummy output', $status );
 	}
 
-	public function provideCacheThresholdData() {
+	public static function provideCacheThresholdData() {
 		return [
 			yield "fast parse" => [ 1, 2 ], // high threshold, no caching
 			yield "slow parse" => [ 0, 1 ], // low threshold, caching
@@ -466,7 +466,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $access->getParsoidRenderID( $output1 ) );
 	}
 
-	public function provideSupportsContentModels() {
+	public static function provideSupportsContentModels() {
 		yield [ CONTENT_MODEL_WIKITEXT, true ];
 		yield [ CONTENT_MODEL_JSON, true ];
 		yield [ CONTENT_MODEL_JAVASCRIPT, false ];

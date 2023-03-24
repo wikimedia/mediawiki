@@ -33,7 +33,7 @@ class LanguageFactoryIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $parent, $lang ? $lang->getCode() : null );
 	}
 
-	public function provideCodes() {
+	public static function provideCodes() {
 		return [
 			# Basic codes
 			[ 'de', 'de' ],

@@ -8,7 +8,7 @@ use MediaWiki\Message\MessageFormatterFactory;
 class MessageFormatterFactoryTest extends MediaWikiUnitTestCase {
 	use MediaWikiCoversValidator;
 
-	public function provideGetTextFormatter() {
+	public static function provideGetTextFormatter() {
 		yield [ 'en', null ];
 		yield [ 'en', Message::FORMAT_TEXT ];
 		yield [ 'ru', Message::FORMAT_PLAIN ];

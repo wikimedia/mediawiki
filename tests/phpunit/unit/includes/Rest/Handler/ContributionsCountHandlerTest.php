@@ -32,7 +32,7 @@ class ContributionsCountHandlerTest extends \MediaWikiUnitTestCase {
 		);
 	}
 
-	public function provideTestThatParametersAreHandledCorrectly() {
+	public static function provideTestThatParametersAreHandledCorrectly() {
 		yield [ new RequestData( [] ), 'me' ];
 		yield [ new RequestData(
 			[ 'queryParams' => [ 'tag' => 'test' ] ]
@@ -86,7 +86,7 @@ class ContributionsCountHandlerTest extends \MediaWikiUnitTestCase {
 			$this->mockAnonUltimateAuthority() );
 	}
 
-	public function provideThatResponseConformsToSchema() {
+	public static function provideThatResponseConformsToSchema() {
 		yield [ 0, [ 'count' => 0 ], [], 'me' ];
 		yield [ 3, [ 'count' => 3 ], [], 'me' ];
 		yield [ 0, [ 'count' => 0 ], [ 'pathParams' => [ 'user' => 'someName' ] ], 'user' ];

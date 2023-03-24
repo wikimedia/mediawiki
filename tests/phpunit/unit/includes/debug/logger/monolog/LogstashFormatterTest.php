@@ -22,7 +22,7 @@ class LogstashFormatterTest extends \MediaWikiUnitTestCase {
 		}
 	}
 
-	public function provideV1() {
+	public static function provideV1() {
 		return [
 			[
 				[ 'extra' => [ 'foo' => 1 ], 'context' => [ 'bar' => 2 ] ],

@@ -41,7 +41,7 @@ class TokenAwareHandlerTraitTest extends MediaWikiUnitTestCase {
 		}
 	}
 
-	public function provideValidateToken() {
+	public static function provideValidateToken() {
 		$secret = 'foo';
 		$anotherSecret = 'bar';
 		$token = strval( new Token( $secret, '' ) );

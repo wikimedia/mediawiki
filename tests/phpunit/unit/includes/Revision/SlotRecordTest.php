@@ -104,7 +104,7 @@ class SlotRecordTest extends MediaWikiUnitTestCase {
 		$this->assertFalse( $record->isDerived() );
 	}
 
-	public function provideInvalidConstruction() {
+	public static function provideInvalidConstruction() {
 		yield 'empty row' => [ (object)[], new DummyContentForTesting( 'A' ) ];
 		yield 'null content' => [ (object)[], null ];
 	}
@@ -160,7 +160,7 @@ class SlotRecordTest extends MediaWikiUnitTestCase {
 		$record->getOrigin();
 	}
 
-	public function provideHashStability() {
+	public static function provideHashStability() {
 		yield [ '', 'phoiac9h4m842xq45sp7s6u21eteeq1' ];
 		yield [ 'Lorem ipsum', 'hcr5u40uxr81d3nx89nvwzclfz6r9c5' ];
 	}

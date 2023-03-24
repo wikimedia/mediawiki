@@ -36,7 +36,7 @@ class DeprecationHelperTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideGet() {
+	public static function provideGet() {
 		return [
 			[ 'protectedDeprecated', null,
 				'Use of TestDeprecatedClass::$protectedDeprecated was deprecated in MediaWiki 1.23. ' .
@@ -130,7 +130,7 @@ class DeprecationHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertPropertySame( $expectedValue, $this->testClass, $propName );
 	}
 
-	public function provideSet() {
+	public static function provideSet() {
 		return [
 			[ 'protectedDeprecated', null,
 				'Use of TestDeprecatedClass::$protectedDeprecated was deprecated in MediaWiki 1.23. ' .
@@ -241,7 +241,7 @@ class DeprecationHelperTest extends MediaWikiIntegrationTestCase {
 		wfDeprecated( __METHOD__, $version );
 	}
 
-	public function provideBadMWVersion() {
+	public static function provideBadMWVersion() {
 		return [
 			[ 1, Exception::class ],
 			[ 1.33, Exception::class ],

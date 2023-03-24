@@ -310,7 +310,7 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideBadSegmentMarker() {
+	public static function provideBadSegmentMarker() {
 		yield [ '' ];
 		yield [ '|' ];
 		yield [ '0' ];

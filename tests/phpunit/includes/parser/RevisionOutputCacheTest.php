@@ -282,7 +282,7 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideCorruptData() {
+	public static function provideCorruptData() {
 		yield 'JSON serialization, bad data' => [ 'bla bla' ];
 		yield 'JSON serialization, no _class_' => [ '{"test":"test"}' ];
 		yield 'JSON serialization, non-existing _class_' => [ '{"_class_":"NonExistentBogusClass"}' ];

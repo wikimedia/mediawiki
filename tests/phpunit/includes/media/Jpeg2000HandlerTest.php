@@ -28,7 +28,7 @@ class Jpeg2000HandlerTest extends MediaWikiIntegrationTestCase {
 			new TrivialMediaHandlerState, $path ) );
 	}
 
-	public function provideTestGetSizeAndMetadata() {
+	public static function provideTestGetSizeAndMetadata() {
 		return [
 			[ __DIR__ . '/../../data/media/jpeg2000-lossless.jp2', [
 				'width' => 100,

@@ -197,7 +197,7 @@ class RevisionQueryInfoTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	public function provideSlotsQueryInfo() {
+	public static function provideSlotsQueryInfo() {
 		yield 'no options' => [
 			[],
 			[],

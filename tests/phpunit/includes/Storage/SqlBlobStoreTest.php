@@ -209,7 +209,7 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 			gzinflate( $row->old_text ), "Direct check" );
 	}
 
-	public function provideBlobs() {
+	public static function provideBlobs() {
 		yield [ '' ];
 		yield [ 'someText' ];
 		yield [ "söme\ntäxt" ];
@@ -435,7 +435,7 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $blob, $store->getBlob( $address ) );
 	}
 
-	public function provideGetTextIdFromAddress() {
+	public static function provideGetTextIdFromAddress() {
 		yield [ 'tt:17', 17 ];
 		yield [ 'xy:17', null ];
 		yield [ 'xy:xyzzy', null ];
@@ -449,7 +449,7 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $textId, $store->getTextIdFromAddress( $address ) );
 	}
 
-	public function provideGetTextIdFromAddressInvalidArgumentException() {
+	public static function provideGetTextIdFromAddressInvalidArgumentException() {
 		yield [ 'tt:xy' ];
 		yield [ 'tt:0' ];
 		yield [ 'tt:' ];
@@ -470,7 +470,7 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'tt:17', SqlBlobStore::makeAddressFromTextId( 17 ) );
 	}
 
-	public function providerSplitBlobAddress() {
+	public static function providerSplitBlobAddress() {
 		yield [ 'tt:123', 'tt', '123', [] ];
 		yield [ 'bad:foo?x=y', 'bad', 'foo', [ 'x' => 'y' ] ];
 		yield [ 'http://test.com/foo/bar?a=b', 'http', 'test.com/foo/bar', [ 'a' => 'b' ] ];
@@ -483,7 +483,7 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'tt:17', SqlBlobStore::makeAddressFromTextId( 17 ) );
 	}
 
-	public function provideExpandBlob() {
+	public static function provideExpandBlob() {
 		yield 'Generic test' => [
 			'This is a goat of revision text.',
 			'old_flags' => '',
@@ -503,7 +503,7 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideExpandBlobWithZlibExtension() {
+	public static function provideExpandBlobWithZlibExtension() {
 		yield 'Generic gzip test' => [
 			'This is a small goat of revision text.',
 			'old_flags' => 'gzip',
@@ -524,7 +524,7 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideExpandBlobWithZlibExtension_badData() {
+	public static function provideExpandBlobWithZlibExtension_badData() {
 		yield 'Generic gzip test' => [
 			'old_flags' => 'gzip',
 			'old_text' => 'DEAD BEEF',
@@ -544,7 +544,7 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideExpandBlobWithLegacyEncoding() {
+	public static function provideExpandBlobWithLegacyEncoding() {
 		yield 'Utf8Native' => [
 			"Wiki est l'\xc3\xa9cole superieur !",
 			'iso-8859-1',
@@ -573,7 +573,7 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideExpandBlobWithGzipAndLegacyEncoding() {
+	public static function provideExpandBlobWithGzipAndLegacyEncoding() {
 		/**
 		 * WARNING!
 		 * Do not set the external flag!
@@ -608,7 +608,7 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideTestGetRevisionText_returnsDecompressedTextFieldWhenNotExternal() {
+	public static function provideTestGetRevisionText_returnsDecompressedTextFieldWhenNotExternal() {
 		yield 'Just text' => [
 			'old_flags' => '',
 			'old_text' => 'SomeText',
@@ -635,7 +635,7 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $blobStore->expandBlob( $raw, $flags ) );
 	}
 
-	public function provideTestGetRevisionText_external_returnsFalseWhenNotEnoughUrlParts() {
+	public static function provideTestGetRevisionText_external_returnsFalseWhenNotEnoughUrlParts() {
 		yield 'Just some text' => [ 'someNonUrlText' ];
 		yield 'No second URL part' => [ 'someProtocol://' ];
 	}

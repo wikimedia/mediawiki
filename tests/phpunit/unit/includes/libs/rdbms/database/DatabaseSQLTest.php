@@ -1385,7 +1385,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->query( "DROP TEMPORARY TABLE IF EXISTS `tmp_table_4`, `tmp_table_5`", __METHOD__ );
 	}
 
-	public function provideBuildSubstring() {
+	public static function provideBuildSubstring() {
 		yield [ 'someField', 1, 2, 'SUBSTRING(someField FROM 1 FOR 2)' ];
 		yield [ 'someField', 1, null, 'SUBSTRING(someField FROM 1)' ];
 	}
@@ -1398,7 +1398,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( $expected, $output );
 	}
 
-	public function provideBuildSubstring_invalidParams() {
+	public static function provideBuildSubstring_invalidParams() {
 		yield [ -1, 1 ];
 		yield [ 1, -1 ];
 		yield [ 1, 'foo' ];

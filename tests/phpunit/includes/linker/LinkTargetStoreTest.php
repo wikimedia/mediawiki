@@ -12,7 +12,7 @@ class LinkTargetStoreTest extends MediaWikiIntegrationTestCase {
 		$this->tablesUsed[] = 'linktarget';
 	}
 
-	public function provideLinkTargets() {
+	public static function provideLinkTargets() {
 		yield [ new TitleValue( NS_SPECIAL, 'BlankPage' ) ];
 		yield [ new TitleValue( NS_MAIN, 'Foobar' ) ];
 		yield [ new TitleValue( NS_USER, 'Someuser' ) ];

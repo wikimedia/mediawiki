@@ -13,7 +13,7 @@ use MediaWikiUnitTestCase;
  */
 class JsonContentTest extends MediaWikiUnitTestCase {
 
-	public function provideValidConstruction() {
+	public static function provideValidConstruction() {
 		return [
 			[ 'foo', false, null ],
 			[ '[]', true, [] ],
@@ -35,7 +35,7 @@ class JsonContentTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( $expected, $obj->getData()->getValue() );
 	}
 
-	public function provideDataToEncode() {
+	public static function provideDataToEncode() {
 		return [
 			[
 				// Round-trip empty array

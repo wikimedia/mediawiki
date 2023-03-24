@@ -50,7 +50,7 @@ class ImagePage404Test extends MediaWikiMediaTestCase {
 		$this->assertCount( $expectedNumberThumbs, $actual );
 	}
 
-	public function providerGetThumbSizes() {
+	public static function providerGetThumbSizes() {
 		return [
 			[ 'animated.gif', 6 ],
 			[ 'Toll_Texas_1.svg', 6 ],

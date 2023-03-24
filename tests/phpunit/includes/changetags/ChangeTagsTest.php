@@ -83,7 +83,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideModifyDisplayQuery() {
+	public static function provideModifyDisplayQuery() {
 		// HACK if we call $dbr->buildGroupConcatField() now, it will return the wrong table names
 		// We have to have the test runner call it instead
 		$baseConcats = [ ',', [ 'change_tag', 'change_tag_def' ], 'ctd_name' ];
@@ -627,7 +627,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideTags() {
+	public static function provideTags() {
 		$tags = [ 'tag 1', 'tag 2', 'tag 3' ];
 		$rcId = 123;
 		$revId = 456;
@@ -722,7 +722,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideFormatSummaryRow() {
+	public static function provideFormatSummaryRow() {
 		yield 'nothing' => [ '', [ '', [] ] ];
 		yield 'valid tag' => [
 			'tag1',

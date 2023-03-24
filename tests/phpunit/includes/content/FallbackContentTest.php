@@ -154,7 +154,7 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $empty, $content->isEmpty() );
 	}
 
-	public function provideEquals() {
+	public static function provideEquals() {
 		return [
 			[ new FallbackContent( "hallo", 'horky' ), null, false ],
 			[ new FallbackContent( "hallo", 'horky' ), new FallbackContent( "hallo", 'horky' ), true ],

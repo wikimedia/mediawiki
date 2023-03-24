@@ -24,7 +24,7 @@ class ShellTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, Shell::escape( ...$args ) );
 	}
 
-	public function provideEscape() {
+	public static function provideEscape() {
 		return [
 			'simple' => [ [ 'true' ], "'true'" ],
 			'with args' => [ [ 'convert', '-font', 'font name' ], "'convert' '-font' 'font name'" ],
@@ -73,7 +73,7 @@ class ShellTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [], $command->getDisallowedPaths() );
 	}
 
-	public function provideMakeScriptCommand() {
+	public static function provideMakeScriptCommand() {
 		global $wgPhpCli;
 
 		return [

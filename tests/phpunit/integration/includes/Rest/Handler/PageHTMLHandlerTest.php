@@ -235,7 +235,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( $acceptLanguage, $response->getHeaderLine( 'ETag' ) );
 	}
 
-	public function provideExecuteWithVariant() {
+	public static function provideExecuteWithVariant() {
 		yield 'with_html request should contain accept language but not content language' => [
 			'with_html',
 			static function ( StreamInterface $response ) {
@@ -316,7 +316,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			$response->getHeaderLine( 'Last-Modified' ) );
 	}
 
-	public function provideHandlesParsoidError() {
+	public static function provideHandlesParsoidError() {
 		yield 'ClientError' => [
 			new ClientError( 'TEST_TEST' ),
 			new LocalizedHttpException(

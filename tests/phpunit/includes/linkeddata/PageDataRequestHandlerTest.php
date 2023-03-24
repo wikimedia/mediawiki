@@ -258,7 +258,7 @@ class PageDataRequestHandlerTest extends \MediaWikiLangTestCase {
 		$this->assertSame( '*', $response->getHeader( 'Access-Control-Allow-Origin' ) );
 	}
 
-	public function provideHttpContentNegotiation() {
+	public static function provideHttpContentNegotiation() {
 		$helsinki = Title::makeTitle( NS_MAIN, 'Helsinki' );
 		return [
 			'Accept Header of HTML' => [

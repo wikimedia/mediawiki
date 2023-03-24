@@ -389,7 +389,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		return true;
 	}
 
-	public function provideGetModelForID() {
+	public static function provideGetModelForID() {
 		return [
 			[ CONTENT_MODEL_WIKITEXT, WikitextContentHandler::class ],
 			[ CONTENT_MODEL_JAVASCRIPT, JavaScriptContentHandler::class ],
@@ -611,7 +611,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $customSlotDiffRenderer2, $slotDiffRenderer );
 	}
 
-	public function providerGetPageViewLanguage() {
+	public static function providerGetPageViewLanguage() {
 		yield [ NS_FILE, 'sr', 'sr-ec', 'sr-ec' ];
 		yield [ NS_FILE, 'sr', 'sr', 'sr' ];
 		yield [ NS_MEDIAWIKI, 'sr-ec', 'sr', 'sr-ec' ];
@@ -638,7 +638,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected, $pageViewLanguage->getCode() );
 	}
 
-	public function provideValidateSave() {
+	public static function provideValidateSave() {
 		yield 'wikitext' => [
 			new WikitextContent( 'hello world' ),
 			true

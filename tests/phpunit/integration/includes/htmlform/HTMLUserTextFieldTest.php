@@ -21,7 +21,7 @@ class HTMLUserTextFieldTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideInputs() {
+	public static function provideInputs() {
 		return [
 			'valid username' => [
 				[],

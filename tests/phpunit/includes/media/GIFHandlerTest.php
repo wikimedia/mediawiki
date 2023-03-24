@@ -79,7 +79,7 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 		$this->assertEquals( $expected, $actual );
 	}
 
-	public function provideIsFileMetadataValid() {
+	public static function provideIsFileMetadataValid() {
 		return [
 			[ '0', GIFHandler::METADATA_GOOD ],
 			[ '', GIFHandler::METADATA_BAD ],
@@ -202,7 +202,7 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 		$this->assertEqualsWithDelta( $expectedLength, $actualLength, 0.00001 );
 	}
 
-	public function provideGetLength() {
+	public static function provideGetLength() {
 		return [
 			[ 'animated.gif', 2.4 ],
 			[ 'animated-xmp.gif', 2.4 ],

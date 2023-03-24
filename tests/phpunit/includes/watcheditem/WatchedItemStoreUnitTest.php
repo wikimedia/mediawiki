@@ -454,7 +454,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected, $store->countWatchersMultiple( $titleValues ) );
 	}
 
-	public function provideIntWithDbUnsafeVersion() {
+	public static function provideIntWithDbUnsafeVersion() {
 		return [
 			[ 50 ],
 			[ "50; DROP TABLE watchlist;\n--" ],
@@ -1717,7 +1717,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideDbTypes() {
+	public static function provideDbTypes() {
 		return [
 			[ false, DB_REPLICA ],
 			[ true, DB_PRIMARY ],

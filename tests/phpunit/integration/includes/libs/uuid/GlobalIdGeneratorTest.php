@@ -183,7 +183,7 @@ class GlobalIdGeneratorTest extends PHPUnit\Framework\TestCase {
 		}
 	}
 
-	public function provideGetTimestampFromUUIDv1() {
+	public static function provideGetTimestampFromUUIDv1() {
 		yield [ '65d143b0-3c7a-11ea-b77f-2e728ce88125', '20200121181818' ];
 	}
 
@@ -201,7 +201,7 @@ class GlobalIdGeneratorTest extends PHPUnit\Framework\TestCase {
 		);
 	}
 
-	public function provideGetTimestampFromUUIDv1InvalidUUIDv1() {
+	public static function provideGetTimestampFromUUIDv1InvalidUUIDv1() {
 		yield [ 'this_is_an_invalid_uuid_v1' ];
 		yield [ 'e5bb7f6b-0f28-4867-a93c-1b33b5c63adf' ]; // This is a UUIDv4
 	}

@@ -19,7 +19,7 @@ class StartUpModuleTest extends ResourceLoaderTestCase {
 		] );
 	}
 
-	public function provideGetModuleRegistrations() {
+	public static function provideGetModuleRegistrations() {
 		return [
 			[ [
 				'msg' => 'Empty registry',

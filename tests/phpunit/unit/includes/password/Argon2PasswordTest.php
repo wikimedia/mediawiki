@@ -76,7 +76,7 @@ class Argon2PasswordTest extends PasswordTestCase {
 		$this->assertSame( $updateExpected, $password->needsUpdate() );
 	}
 
-	public function provideNeedsUpdate() {
+	public static function provideNeedsUpdate() {
 		return [
 			[ false, ':argon2:$argon2i$v=19$m=1024,t=2,p=2$bFJ4TzM5RWh2T0VmeFhDTA$AHFUFZRh69aZYBqyxn6tpujpEcf2JP8wgRCPU3nw3W4' ],
 			[ false, ':argon2:$argon2i$v=19$m=1024,t=2,p=2$<whatever>' ],

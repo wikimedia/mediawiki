@@ -429,7 +429,7 @@ class ProtectLogFormatterTest extends LogFormatterTestCase {
 		$this->doTestLogFormatter( $row, $extra );
 	}
 
-	public function provideGetActionLinks() {
+	public static function provideGetActionLinks() {
 		yield [
 			[ 'protect' ],
 			true

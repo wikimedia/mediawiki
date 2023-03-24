@@ -191,7 +191,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	public function provideSpecialsAndNSPermissions() {
+	public static function provideSpecialsAndNSPermissions() {
 		yield [
 			'namespace' => NS_SPECIAL,
 			'user permissions' => [],
@@ -314,7 +314,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	public function provideActionPermissions() {
+	public static function provideActionPermissions() {
 		// title overrides can include "protectedPermission" to override
 		// $title->mTitleProtection['permission'], and "interwiki" to override
 		// $title->mInterwiki, for the few cases those are needed
@@ -1178,7 +1178,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		return $revision;
 	}
 
-	public function provideGetRestrictionLevels() {
+	public static function provideGetRestrictionLevels() {
 		return [
 			'No namespace restriction' => [ [ '', 'autoconfirmed', 'sysop' ], NS_TALK ],
 			'Restricted to autoconfirmed' => [ [ '', 'sysop' ], NS_MAIN ],
@@ -1347,7 +1347,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		}
 	}
 
-	public function provideWhitelistRead() {
+	public static function provideWhitelistRead() {
 		yield 'no match' => [ [ 'Bar', 'Baz' ], 'Foo', false ];
 		yield 'match' => [ [ 'Bar', 'Foo', 'Baz' ], 'Foo', true ];
 		yield 'text form' => [ [ 'Foo bar' ], 'Foo_bar', true ];

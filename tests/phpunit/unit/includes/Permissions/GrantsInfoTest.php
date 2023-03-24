@@ -78,7 +78,7 @@ class GrantsInfoTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $rights, $this->grantsInfo->getGrantRights( $grants ) );
 	}
 
-	public function provideGetGrantRights() {
+	public static function provideGetGrantRights() {
 		return [
 			'anon' => [ 'hidden1', [ 'read' ] ],
 			'newbie' => [ [ 'hidden1', 'hidden2', 'hidden3' ], [ 'read', 'autoconfirmed' ] ],
@@ -96,7 +96,7 @@ class GrantsInfoTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $valid, $this->grantsInfo->grantsAreValid( $grants ) );
 	}
 
-	public function provideGrantsAreValid() {
+	public static function provideGrantsAreValid() {
 		return [
 			[ [ 'hidden1', 'hidden2' ], true ],
 			[ [ 'hidden1', 'hidden3' ], false ],
@@ -113,7 +113,7 @@ class GrantsInfoTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expect, $this->grantsInfo->getGrantGroups( $grants ) );
 	}
 
-	public function provideGetGrantGroups() {
+	public static function provideGetGrantGroups() {
 		return [
 			[ null, [
 				'hidden' => [ 'hidden1', 'hidden2' ],

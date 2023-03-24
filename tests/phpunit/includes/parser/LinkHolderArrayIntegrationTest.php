@@ -30,7 +30,7 @@ class LinkHolderArrayIntegrationTest extends MediaWikiLangTestCase {
 		$this->assertSame( $expected, $linkHolderArray->isBig() );
 	}
 
-	public function provideIsBig() {
+	public static function provideIsBig() {
 		yield [ 0, 0, false ];
 		yield [ 0, 1, false ];
 		yield [ 1, 0, true ];
@@ -100,7 +100,7 @@ class LinkHolderArrayIntegrationTest extends MediaWikiLangTestCase {
 		}
 	}
 
-	public function provideMakeHolder_withNsText() {
+	public static function provideMakeHolder_withNsText() {
 		yield [
 			false,
 			'<!--LINK\'" 1234:9-->2 trail',

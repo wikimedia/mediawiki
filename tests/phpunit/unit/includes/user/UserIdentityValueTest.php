@@ -63,7 +63,7 @@ class UserIdentityValueTest extends MediaWikiUnitTestCase {
 	/**
 	 * @return Generator
 	 */
-	public function provideWikiIds() {
+	public static function provideWikiIds() {
 		yield [ UserIdentityValue::LOCAL ];
 		yield [ 'Foreign Wiki' ];
 	}

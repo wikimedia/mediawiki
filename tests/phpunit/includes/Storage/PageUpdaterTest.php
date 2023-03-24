@@ -649,7 +649,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideSetRcPatrolStatus( $patrolled ) {
+	public static function provideSetRcPatrolStatus( $patrolled ) {
 		yield [ RecentChange::PRC_UNPATROLLED ];
 		yield [ RecentChange::PRC_AUTOPATROLLED ];
 	}
@@ -892,7 +892,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( '', $comment->text, 'comment text' );
 	}
 
-	public function provideSetUsePageCreationLog() {
+	public static function provideSetUsePageCreationLog() {
 		yield [ true, [ [ 'create', 'create' ] ] ];
 		yield [ false, [] ];
 	}
@@ -921,7 +921,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideMagicWords() {
+	public static function provideMagicWords() {
 		yield 'PAGEID' => [
 			'Test {{PAGEID}} Test',
 			static function ( RevisionRecord $rev ) {

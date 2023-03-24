@@ -281,7 +281,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		return [ $page, $rev ];
 	}
 
-	public function provideRevisionReferences() {
+	public static function provideRevisionReferences() {
 		return [
 			'current' => [ null, [ 'html' => self::HTML, 'timestamp' => self::TIMESTAMP ] ],
 			'old' => [ 'first', [ 'html' => self::HTML_OLD, 'timestamp' => self::TIMESTAMP_OLD ] ],
@@ -597,7 +597,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideETagSuffix() {
+	public static function provideETagSuffix() {
 		yield 'stash + html' =>
 		[ [ 'stash' => true ], 'html', '/stash/html' ];
 
@@ -640,7 +640,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringEndsWith( $suffix, $etag );
 	}
 
-	public function provideHandlesParsoidError() {
+	public static function provideHandlesParsoidError() {
 		yield 'ClientError' => [
 			new ClientError( 'TEST_TEST' ),
 			new LocalizedHttpException(
@@ -973,7 +973,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$helper->putHeaders( $responseInterface, $setContentLanguageHeader );
 	}
 
-	public function providePutHeaders() {
+	public static function providePutHeaders() {
 		yield 'no target variant language' => [ null, true ];
 		yield 'target language is set but setContentLanguageHeader is false' => [ 'en-x-piglatin', false ];
 		yield 'target language and setContentLanguageHeader flag is true' =>
@@ -992,7 +992,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		return $responseInterface;
 	}
 
-	public function provideFlavorsForBadModelOutput() {
+	public static function provideFlavorsForBadModelOutput() {
 		yield 'view' => [ 'view' ];
 		yield 'edit' => [ 'edit' ];
 		yield 'fragment' => [ 'fragment' ];

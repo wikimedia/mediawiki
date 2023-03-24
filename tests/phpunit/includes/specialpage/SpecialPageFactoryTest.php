@@ -144,7 +144,7 @@ class SpecialPageFactoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( NS_SPECIAL, $title->getNamespace() );
 	}
 
-	public function provideExecutePath() {
+	public static function provideExecutePath() {
 		yield [ 'BlankPage', 'intentionallyblankpage' ];
 
 		$path = new PageReferenceValue( NS_SPECIAL, 'BlankPage', PageReferenceValue::LOCAL );
@@ -223,7 +223,7 @@ class SpecialPageFactoryTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideTestConflictResolution() {
+	public static function provideTestConflictResolution() {
 		return [
 			[
 				'Canonical name wins',

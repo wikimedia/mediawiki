@@ -312,7 +312,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->assertSame( $expectedSummary, $savedSummary, 'Correct summary saved (existing page)' );
 	}
 
-	public function provideEditNewSectionSummarySectiontitle() {
+	public static function provideEditNewSectionSummarySectiontitle() {
 		$sectiontitleCases = [
 			'unset' => null,
 			'empty' => '',

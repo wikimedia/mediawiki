@@ -191,7 +191,7 @@ class ConfigSchemaAggregatorTest extends TestCase {
 		$aggregator->addMergeStrategies( [ 'foo' => 'array_plus', ] );
 	}
 
-	public function provideGetMergeStrategiesFor() {
+	public static function provideGetMergeStrategiesFor() {
 		yield 'no schema' => [ null, null ];
 		yield 'no strategy' => [ [ 'default' => '' ], null ];
 		yield 'with strategy' => [ [ 'mergeStrategy' => 'array_merge' ], 'array_merge' ];
@@ -240,7 +240,7 @@ class ConfigSchemaAggregatorTest extends TestCase {
 		);
 	}
 
-	public function provideValidate() {
+	public static function provideValidate() {
 		yield 'invalid config' => [
 			'config-schema' => [ 'foo' => [ 'type' => 'string', ], ],
 			'config' => [ 'foo' => 1 ],

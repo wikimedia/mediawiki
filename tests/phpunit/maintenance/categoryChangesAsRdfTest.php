@@ -21,7 +21,7 @@ class CategoryChangesAsRdfTest extends MediaWikiLangTestCase {
 		] );
 	}
 
-	public function provideCategoryData() {
+	public static function provideCategoryData() {
 		return [
 			'delete category' => [
 				__DIR__ . "/../data/categoriesrdf/delete.sparql",

@@ -19,7 +19,7 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 		ChangeTags::defineTag( 'tag1' );
 	}
 
-	public function provideTestCases() {
+	public static function provideTestCases() {
 		yield [ [] ];
 		yield [ [ "tag1" ] ];
 	}

@@ -92,7 +92,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expectedContent, $result, "Message fallback failed." );
 	}
 
-	public function provideMessagesForFallback() {
+	public static function provideMessagesForFallback() {
 		return [
 			[ 'FallbackLanguageTest-Full', 'ab', 'ab' ],
 			[ 'FallbackLanguageTest-Partial', 'ab', 'ru' ],
@@ -176,7 +176,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, $actual );
 	}
 
-	public function provideNormalizeKey() {
+	public static function provideNormalizeKey() {
 		return [
 			[ 'Foo', 'foo' ],
 			[ 'foo', 'foo' ],
@@ -275,7 +275,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		$this->assertSame( $expected, $messageCache->isMainCacheable( $message, $code ) );
 	}
 
-	public function provideIsMainCacheable() {
+	public static function provideIsMainCacheable() {
 		$cases = [
 			// $message                $expected
 			[ 'allpages',              true ],

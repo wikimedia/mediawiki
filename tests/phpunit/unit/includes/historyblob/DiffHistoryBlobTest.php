@@ -16,7 +16,7 @@ class DiffHistoryBlobTest extends MediaWikiUnitTestCase {
 			"Hash of " . addcslashes( $input, "\0..\37!@\@\177..\377" ) );
 	}
 
-	public function provideXdiffAdler32() {
+	public static function provideXdiffAdler32() {
 		return [
 			[ '', 'Empty string' ],
 			[ "\0", 'Null' ],

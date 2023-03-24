@@ -40,7 +40,7 @@ class WikiAwareEntityTraitTest extends MediaWikiUnitTestCase {
 		return $entity;
 	}
 
-	public function provideMatchingWikis() {
+	public static function provideMatchingWikis() {
 		yield 'acme' => [
 			'entityWiki' => 'acmewiki',
 			'assertWiki' => 'acmewiki',
@@ -51,7 +51,7 @@ class WikiAwareEntityTraitTest extends MediaWikiUnitTestCase {
 		];
 	}
 
-	public function provideMismatchingWikis() {
+	public static function provideMismatchingWikis() {
 		yield 'acme-noacme' => [
 			'entityWiki' => 'acmewiki',
 			'assertWiki' => 'noacmewiki',
@@ -100,7 +100,7 @@ class WikiAwareEntityTraitTest extends MediaWikiUnitTestCase {
 			->deprecateInvalidCrossWiki( $assertWiki, '1.99' );
 	}
 
-	public function provideAssertWikiIdParamInvalid() {
+	public static function provideAssertWikiIdParamInvalid() {
 		yield 'true' => [ true ];
 		yield 'null' => [ null ];
 		yield 'int' => [ 1 ];

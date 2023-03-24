@@ -44,7 +44,7 @@ class ApiQueryBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expect, $data );
 	}
 
-	public function provideAddBlockInfoToQuery() {
+	public static function provideAddBlockInfoToQuery() {
 		$queryInfo = DatabaseBlock::getQueryInfo();
 
 		$db = wfGetDB( DB_REPLICA );

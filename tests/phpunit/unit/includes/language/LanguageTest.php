@@ -54,7 +54,7 @@ class LanguageTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $bcp47code, $lang->toBcp47Code() );
 	}
 
-	public function provideCodes() {
+	public static function provideCodes() {
 		return LanguageCodeTest::provideLanguageCodes();
 	}
 
@@ -94,7 +94,7 @@ class LanguageTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $lang->ucwords( $input ) );
 	}
 
-	public function provideUcwords() {
+	public static function provideUcwords() {
 		return [
 			'Empty string' => [ '', '' ],
 			'Non-alpha only' => [ '3212-353', '3212-353' ],
@@ -115,7 +115,7 @@ class LanguageTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $lang->ucwordbreaks( $input ) );
 	}
 
-	public function provideUcwordbreaks() {
+	public static function provideUcwordbreaks() {
 		return [
 			'Empty string' => [ '', '' ],
 			'Non-alpha only' => [ '3212-353', '3212-353' ],
@@ -138,7 +138,7 @@ class LanguageTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $lang->firstChar( $input ) );
 	}
 
-	public function provideFirstChar() {
+	public static function provideFirstChar() {
 		return [
 			'Empty string' => [ '', '' ],
 			'Single Latin' => [ 'T', 'T' ],

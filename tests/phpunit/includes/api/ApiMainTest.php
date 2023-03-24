@@ -1208,7 +1208,7 @@ class ApiMainTest extends ApiTestCase {
 		$this->assertSame( $expectedCacheControl, $req->response()->getHeader( 'Cache-Control' ), 'Cache-Control' );
 	}
 
-	public function provideCacheHeaders(): Generator {
+	public static function provideCacheHeaders(): Generator {
 		yield 'Private' => [ 'private', null, 'private, must-revalidate, max-age=0' ];
 		yield 'Public' => [
 			'public',

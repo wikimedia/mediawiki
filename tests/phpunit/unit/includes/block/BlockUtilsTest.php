@@ -63,7 +63,7 @@ class BlockUtilsTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function provideTestParseBlockTargetUserIdentity() {
+	public static function provideTestParseBlockTargetUserIdentity() {
 		return [
 			'Valid IP #1' => [ '1.2.3.4', AbstractBlock::TYPE_IP ],
 			'Invalid IP #1' => [ 'DannyS712', AbstractBlock::TYPE_USER ],

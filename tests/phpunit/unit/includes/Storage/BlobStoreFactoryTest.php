@@ -36,7 +36,7 @@ class BlobStoreFactoryTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function provideDbDomains() {
+	public static function provideDbDomains() {
 		yield [ false ];
 		yield [ 'someWiki' ];
 	}

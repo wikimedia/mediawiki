@@ -6,7 +6,7 @@
  */
 class SanitizerValidateEmailTest extends MediaWikiIntegrationTestCase {
 
-	public function provideValidEmails() {
+	public static function provideValidEmails() {
 		yield 'normal #1' => [ 'user@example.com' ];
 		yield 'normal #2' => [ 'user@example.museum' ];
 		yield 'with uppercase #1' => [ 'USER@example.com' ];
@@ -37,7 +37,7 @@ class SanitizerValidateEmailTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( Sanitizer::validateEmail( $addr ) );
 	}
 
-	public function provideInvalidEmails() {
+	public static function provideInvalidEmails() {
 		yield 'whitespace before #1' => [ " user@host.com" ];
 		yield 'whitespace before #2' => [ "\tuser@host.com" ];
 		yield 'whitespace after #1' => [ "user@host.com " ];

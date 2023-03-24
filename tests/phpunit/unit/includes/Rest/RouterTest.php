@@ -209,7 +209,7 @@ class RouterTest extends \MediaWikiUnitTestCase {
 		];
 	}
 
-	public function provideGetRouteUrl() {
+	public static function provideGetRouteUrl() {
 		yield 'empty' => [ '', '', [], [] ];
 		yield 'simple route' => [ '/foo/bar', '/foo/bar' ];
 		yield 'simple route with query' =>

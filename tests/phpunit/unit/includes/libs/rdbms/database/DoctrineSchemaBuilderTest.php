@@ -34,7 +34,7 @@ class DoctrineSchemaBuilderTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $actual );
 	}
 
-	public function provideTestGetResultAllTables() {
+	public static function provideTestGetResultAllTables() {
 		yield 'MySQL schema tables' => [
 			new MWMySQLPlatform,
 			'/data/db/mysql/tables.sql',

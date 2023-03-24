@@ -131,7 +131,7 @@ class ApiQueryRevisionsTest extends ApiTestCase {
 		);
 	}
 
-	public function provideSectionNewTestCases() {
+	public static function provideSectionNewTestCases() {
 		yield 'page with existing section' => [
 			"==A section==\ntext",
 			''
