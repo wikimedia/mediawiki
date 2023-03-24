@@ -623,8 +623,6 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideInsertRoundTrip() {
-		$db = wfGetDB( DB_REPLICA ); // for timestamps
-
 		$msgComment = new Message( 'parentheses', [ 'message comment' ] );
 		$textCommentMsg = new RawMessage( '$1', [ Message::plaintextParam( '{{text}} comment' ) ] );
 		$nestedMsgComment = new Message( [ 'parentheses', 'rawmessage' ], [ new Message( 'mainpage' ) ] );

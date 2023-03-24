@@ -673,10 +673,6 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$expect->createRequest->username = 'Foo';
 		$this->assertEquals( $expect, $provider->beginPrimaryAccountCreation( $user, $user, $reqs ) );
 
-		// We have to cheat a bit to avoid having to add a new user to
-		// the database to test the actual setting of the password works right
-		$dbw = wfGetDB( DB_PRIMARY );
-
 		$user = \User::newFromName( 'UTSysop' );
 		$req->username = $user->getName();
 		$req->password = 'NewPassword';

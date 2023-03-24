@@ -192,7 +192,6 @@ class SkinComponentListItem implements SkinComponent {
 		if ( isset( $item['itemtitle'] ) ) {
 			$attrs['title'] = $item['itemtitle'];
 		}
-		$tag = $this->options['tag'] ?? 'li';
 		// Making sure we always have strings as class values
 		$classes = is_array( $attrs['class'] ) ?
 			implode( ' ', $attrs['class'] ) :

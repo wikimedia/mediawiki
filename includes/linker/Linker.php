@@ -467,7 +467,6 @@ class Linker {
 
 		if ( !$thumb ) {
 			$rdfaType = 'mw:Error ' . $rdfaType;
-			$label = '';
 			if ( $enableLegacyMediaDOM ) {
 				$label = $frameParams['title'];
 			} else {

@@ -439,7 +439,6 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 	public function testGetEmptySession() {
 		$manager = $this->getManager();
 		$pmanager = TestingAccessWrapper::newFromObject( $manager );
-		$request = new \MediaWiki\Request\FauxRequest();
 
 		$providerBuilder = $this->getMockBuilder( \DummySessionProvider::class )
 			->onlyMethods( [ 'provideSessionInfo', 'newSessionInfo', '__toString' ] );

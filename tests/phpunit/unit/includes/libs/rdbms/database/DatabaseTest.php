@@ -612,7 +612,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( $ud->getId(), $this->db->getDomainID() );
 
 		$oldDomain = $this->db->getDomainID();
-		$oldDbName = $this->db->getDBname();
 		$oldSchema = $this->db->dbSchema();
 		$oldPrefix = $this->db->tablePrefix();
 		$this->assertIsString( $oldDomain, 'DB domain is string' );

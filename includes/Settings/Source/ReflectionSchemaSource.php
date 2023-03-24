@@ -129,7 +129,7 @@ class ReflectionSchemaSource implements SettingsSource {
 	}
 
 	private function normalizeComment( string $doc ) {
-		$doc = preg_replace( '/^\s*\/\*+\s*|\s*\*+\/\s*$/s', '', $doc );
+		$doc = preg_replace( '/^\s*\/\*+\s*|\s*\*+\/\s*$/', '', $doc );
 		$doc = preg_replace( '/^\s*\**$/m', " ", $doc );
 		$doc = preg_replace( '/^\s*\**[ \t]?/m', '', $doc );
 		return $doc;

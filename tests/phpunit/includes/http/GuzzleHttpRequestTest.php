@@ -189,7 +189,6 @@ class GuzzleHttpRequestTest extends MediaWikiIntegrationTestCase {
 		$history = Middleware::history( $container );
 		$stack = HandlerStack::create( new MockHandler( [ new Response() ] ) );
 		$stack->push( $history );
-		$boundary = 'boundary';
 		$client = new GuzzleHttpRequest( $this->exampleUrl, [
 				'method' => 'POST',
 				'handler' => $stack,

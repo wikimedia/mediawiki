@@ -98,7 +98,7 @@ class WikiTextStructure {
 			$heading = preg_replace( '/<\/?span>/', '', $heading );
 			// Normalize [] so the following regexp would work.
 			$heading = preg_replace( [ '/&#91;/', '/&#93;/' ], [ '[', ']' ], $heading );
-			$heading = preg_replace( '/<sup>\s*\[\s*\d+\s*\]\s*<\/sup>/is', '', $heading );
+			$heading = preg_replace( '/<sup>\s*\[\s*\d+\s*\]\s*<\/sup>/i', '', $heading );
 
 			// Strip tags from the heading or else we'll display them (escaped) in search results
 			$heading = trim( Sanitizer::stripAllTags( $heading ) );

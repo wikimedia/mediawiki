@@ -1374,21 +1374,21 @@ abstract class UploadBase {
 		$chunk = Sanitizer::decodeCharReferences( $chunk );
 
 		# look for script-types
-		if ( preg_match( '!type\s*=\s*[\'"]?\s*(?:\w*/)?(?:ecma|java)!sim', $chunk ) ) {
+		if ( preg_match( '!type\s*=\s*[\'"]?\s*(?:\w*/)?(?:ecma|java)!im', $chunk ) ) {
 			wfDebug( __METHOD__ . ": found script types" );
 
 			return true;
 		}
 
 		# look for html-style script-urls
-		if ( preg_match( '!(?:href|src|data)\s*=\s*[\'"]?\s*(?:ecma|java)script:!sim', $chunk ) ) {
+		if ( preg_match( '!(?:href|src|data)\s*=\s*[\'"]?\s*(?:ecma|java)script:!im', $chunk ) ) {
 			wfDebug( __METHOD__ . ": found html-style script urls" );
 
 			return true;
 		}
 
 		# look for css-style script-urls
-		if ( preg_match( '!url\s*\(\s*[\'"]?\s*(?:ecma|java)script:!sim', $chunk ) ) {
+		if ( preg_match( '!url\s*\(\s*[\'"]?\s*(?:ecma|java)script:!im', $chunk ) ) {
 			wfDebug( __METHOD__ . ": found css-style script urls" );
 
 			return true;
@@ -1420,7 +1420,7 @@ abstract class UploadBase {
 
 				return true;
 			}
-		} elseif ( preg_match( "!<\?xml\b!si", $contents ) ) {
+		} elseif ( preg_match( "!<\?xml\b!i", $contents ) ) {
 			// Start of XML declaration without an end in the first $wgSVGMetadataCutoff
 			// bytes. There shouldn't be a legitimate reason for this to happen.
 			wfDebug( __METHOD__ . ": Unmatched XML declaration start" );
@@ -1448,7 +1448,7 @@ abstract class UploadBase {
 
 					return true;
 				}
-			} elseif ( $str != '' && preg_match( "!<\?xml\b!si", $str ) ) {
+			} elseif ( $str != '' && preg_match( "!<\?xml\b!i", $str ) ) {
 				// Start of XML declaration without an end in the first $wgSVGMetadataCutoff
 				// bytes. There shouldn't be a legitimate reason for this to happen.
 				wfDebug( __METHOD__ . ": Unmatched XML declaration start" );
@@ -1729,7 +1729,7 @@ abstract class UploadBase {
 			# use set to add a remote / data / script target to an element
 			if ( $strippedElement === 'set'
 				&& $stripped === 'to'
-				&& preg_match( '!(http|https|data|script):!sim', $value )
+				&& preg_match( '!(http|https|data|script):!im', $value )
 			) {
 				wfDebug( __METHOD__ . ": Found svg setting attribute to '$value' in uploaded file." );
 
@@ -1737,7 +1737,7 @@ abstract class UploadBase {
 			}
 
 			# use handler attribute with remote / data / script
-			if ( $stripped === 'handler' && preg_match( '!(http|https|data|script):!sim', $value ) ) {
+			if ( $stripped === 'handler' && preg_match( '!(http|https|data|script):!im', $value ) ) {
 				wfDebug( __METHOD__ . ": Found svg setting handler with remote/data/script "
 					. "'$attrib'='$value' in uploaded file." );
 
@@ -1768,7 +1768,7 @@ abstract class UploadBase {
 			# Only allow url( "#foo" ). Do not allow url( http://example.com )
 			if ( $strippedElement === 'image'
 				&& $stripped === 'filter'
-				&& preg_match( '!url\s*\(\s*["\']?[^#]!sim', $value )
+				&& preg_match( '!url\s*\(\s*["\']?[^#]!im', $value )
 			) {
 				wfDebug( __METHOD__ . ": Found image filter with url: "
 					. "\"<$strippedElement $stripped='$value'...\" in uploaded file." );

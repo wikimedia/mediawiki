@@ -198,7 +198,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$targetToken = $userFactory->newFromUserIdentity( $block->getTargetUserIdentity() )->getToken();
 
 		$store = $this->getStore( $options );
-		$result = $store->insertBlock( $block );
+		$store->insertBlock( $block );
 
 		$this->assertSame(
 			$expectTokenEqual,

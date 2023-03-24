@@ -125,7 +125,7 @@ class SearchUpdate implements DeferrableUpdate {
 		# Strip HTML markup
 		$text = preg_replace( "/<\\/?\\s*[A-Za-z][^>]*?>/",
 			' ', $contLang->lc( " " . $text . " " ) );
-		$text = preg_replace( "/(^|\\n)==\\s*([^\\n]+)\\s*==(\\s)/sD",
+		$text = preg_replace( "/(^|\\n)==\\s*([^\\n]+)\\s*==(\\s)/",
 			"\\1\\2 \\2 \\2\\3", $text ); # Emphasize headings
 
 		# Strip external URLs

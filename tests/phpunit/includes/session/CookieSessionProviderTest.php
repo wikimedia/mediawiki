@@ -471,7 +471,6 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$backend->setRememberUser( true );
 		$backend->setForceHTTPS( true );
 		$request = new \MediaWiki\Request\FauxRequest();
-		$time = time();
 		$provider->persistSession( $backend, $request );
 		$this->assertSame( $sessionId, $request->response()->getCookie( 'MySessionName' ) );
 		$this->assertSame( (string)$user->getId(), $request->response()->getCookie( 'xUserID' ) );

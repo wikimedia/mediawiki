@@ -103,7 +103,6 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 		// Setting up of the dump
 		$nameStub = $this->setUpStub( 'AllStubs', $wgXmlDumpSchemaVersion );
 		$nameFull = $this->getNewTempFile();
-		$expFile = $this->getDumpTemplatePath( 'AllText', $wgXmlDumpSchemaVersion );
 
 		$dumper = new TextPassDumper( [ "--stub=file:" . $nameStub,
 			"--output=file:" . $nameFull ] );

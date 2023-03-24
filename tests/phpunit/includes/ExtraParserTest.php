@@ -121,7 +121,6 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 	 * @covers Parser::cleanSig
 	 */
 	public function testCleanSig() {
-		$title = Title::newFromText( __FUNCTION__ );
 		$outputText = $this->parser->cleanSig( "{{Foo}} ~~~~" );
 
 		$this->assertEquals( "{{SUBST:Foo}} ", $outputText );

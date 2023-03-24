@@ -288,7 +288,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		] );
 		$this->assertEquals(
 			AuthenticationResponse::newPass(),
-			$res = $provider->continueLinkAttempt( $user, 'state', [ $req ] )
+			$provider->continueLinkAttempt( $user, 'state', [ $req ] )
 		);
 		$this->assertSame( [ false, false, false ], $done );
 

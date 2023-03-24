@@ -275,8 +275,6 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	protected function doDeleteMulti( array $keys, $flags = 0 ) {
-		$result = true;
-
 		[ $keysByServer, $connByServer, $result ] = $this->getConnectionsForKeys( $keys );
 		foreach ( $keysByServer as $server => $batchKeys ) {
 			$conn = $connByServer[$server];

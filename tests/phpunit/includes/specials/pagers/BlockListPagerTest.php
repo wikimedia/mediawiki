@@ -289,7 +289,6 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertObjectNotHasAttribute( 'ipb_restrictions', $row );
 
-		$pageName = 'Victor Frankenstein';
 		$page = $this->getExistingTestPage( 'Victor Frankenstein' );
 		$title = $page->getTitle();
 

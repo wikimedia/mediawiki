@@ -139,7 +139,6 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( '{"IPAddresses":["127.0.0.0/8"]}', $bp->getRestrictions()->toJson() );
 		$this->assertSame( [ 'test' ], $bp->getGrants() );
 
-		$user = $this->testUser->getUser();
 		$bp = BotPassword::newUnsaved( [
 			'centralId' => 45,
 			'appId' => 'DoesNotExist'

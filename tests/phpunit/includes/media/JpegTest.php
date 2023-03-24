@@ -86,7 +86,6 @@ class JpegTest extends MediaWikiMediaTestCase {
 
 		copy( $sourceFilepath, $filepath );
 
-		$file = $this->dataFile( $sourceFilename, 'image/jpeg' );
 		$this->handler->swapICCProfile(
 			$filepath,
 			[ 'sRGB', '-' ],

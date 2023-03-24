@@ -39,8 +39,6 @@ class ApiParseTest extends ApiTestCase {
 	protected static $revIds = [];
 
 	public function addDBDataOnce() {
-		$title = Title::newFromText( __CLASS__ );
-
 		$status = $this->editPage( __CLASS__, 'Test for revdel' );
 		self::$pageId = $status->getNewRevision()->getPageId();
 		self::$revIds['revdel'] = $status->getNewRevision()->getId();
@@ -110,7 +108,7 @@ class ApiParseTest extends ApiTestCase {
 			$this->assertSame( $expectedEnd, substr( $html, -strlen( $expectedEnd ) ) );
 
 			$unexpectedEnd = '#<!-- \nNewPP limit report|' .
-				'<!--\nTransclusion expansion time report#s';
+				'<!--\nTransclusion expansion time report#';
 			$this->assertDoesNotMatchRegularExpression( $unexpectedEnd, $html );
 
 			$html = substr( $html, 0, strlen( $html ) - strlen( $expectedEnd ) );

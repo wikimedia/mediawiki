@@ -50,7 +50,7 @@ class LanguageCu extends Language {
 		# join and array_slice instead mb_substr
 		$ar = [];
 		preg_match_all( '/./us', $word, $ar );
-		if ( !preg_match( "/[a-zA-Z_]/us", $word ) ) {
+		if ( !preg_match( "/[a-zA-Z_]/u", $word ) ) {
 			switch ( $case ) {
 				case 'genitive': # родительный падеж
 					if ( ( implode( '', array_slice( $ar[0], -4 ) ) == 'вики' )

@@ -63,7 +63,7 @@ class ParsoidTestFileSuite extends TestSuite {
 			}
 			$testModes = $t->computeTestModes( $validTestModes );
 			$t->testAllModes( $testModes, $runner->getOptions(),
-				// $options is being ignored but it is identical to $runnerOpts
+				// $options is being ignored but it is identical to $runner->getOptions()
 				function ( ParserTest $test, string $modeStr, array $options ) use (
 					$t, $suite, $fileName, $skipMessage
 				) {
@@ -72,7 +72,6 @@ class ParsoidTestFileSuite extends TestSuite {
 						// Ensure that updates to knownFailures in $test are reflected in $t
 						$test->knownFailures = &$t->knownFailures;
 						$runner = $this->ptRunner;
-						$runnerOpts = $runner->getOptions();
 						$mode = new ParserTestMode( $modeStr, $test->changetree );
 						$pit = new ParserIntegrationTest( $runner, $fileName, $test, $mode, $skipMessage );
 						$suite->addTest( $pit, [ 'Database', 'Parser', 'ParserTests' ] );
