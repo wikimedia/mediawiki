@@ -289,7 +289,7 @@ class BlockRestrictionStore {
 	 */
 	public function deleteByParentBlockId( $parentBlockId ) {
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY, [], $this->wikiId );
-		return $dbw->deleteJoin(
+		$dbw->deleteJoin(
 			'ipblocks_restrictions',
 			'ipblocks',
 			'ir_ipb_id',
@@ -297,6 +297,7 @@ class BlockRestrictionStore {
 			[ 'ipb_parent_block_id' => $parentBlockId ],
 			__METHOD__
 		);
+		return true;
 	}
 
 	/**

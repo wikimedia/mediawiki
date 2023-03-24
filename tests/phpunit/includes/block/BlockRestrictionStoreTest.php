@@ -469,9 +469,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 		$this->assertCount( 1, $restrictions );
 
 		// Remove all of the restrictions on the autoblock (but leave the block unchanged).
-		$result = $this->blockRestrictionStore->deleteByParentBlockId( $block->getId() );
-		// NOTE: commented out until https://gerrit.wikimedia.org/r/c/mediawiki/core/+/469324 is merged
-		//$this->assertTrue( $result );
+		$this->blockRestrictionStore->deleteByParentBlockId( $block->getId() );
 
 		// Ensure that the restrictions on the block have not changed.
 		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
