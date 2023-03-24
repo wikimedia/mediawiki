@@ -214,36 +214,6 @@
 	var addons = {
 
 		/**
-		 * Assert strictly boolean true
-		 *
-		 * @param {Mixed} actual
-		 * @param {string} [message]
-		 */
-		assertTrue: function ( actual, message ) {
-			this.pushResult( {
-				result: actual === true,
-				actual: actual,
-				expected: true,
-				message: message
-			} );
-		},
-
-		/**
-		 * Assert strictly boolean false
-		 *
-		 * @param {Mixed} actual
-		 * @param {string} [message]
-		 */
-		assertFalse: function ( actual, message ) {
-			this.pushResult( {
-				result: actual === false,
-				actual: actual,
-				expected: false,
-				message: message
-			} );
-		},
-
-		/**
 		 * Assert numerical value less than X
 		 *
 		 * @param {Mixed} actual
