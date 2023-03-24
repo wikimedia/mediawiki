@@ -1603,3 +1603,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-PageProperties
 	branch = master
 	ignore = dirty
+[submodule "extensions/NearbyPages"]
+	path = extensions/NearbyPages
+	url = https://github.com/wikimedia/mediawiki-extensions-NearbyPages
+	branch = REL1_39
+	ignore = dirty
