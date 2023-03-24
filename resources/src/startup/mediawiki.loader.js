@@ -6,39 +6,11 @@
  */
 /* global $VARS, $CODE, mw */
 
-/* eslint-disable es-x/no-set, es-x/no-promise-prototype-finally, es-x/no-regexp-prototype-flags */
-
 ( function () {
 	'use strict';
 
-	var StringSet,
-		store,
+	var store,
 		hasOwn = Object.hasOwnProperty;
-
-	function defineFallbacks() {
-		// <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set>
-		/**
-		 * @private
-		 * @class StringSet
-		 */
-		StringSet = window.Set || function () {
-			var set = Object.create( null );
-			return {
-				add: function ( value ) {
-					set[ value ] = true;
-				},
-				has: function ( value ) {
-					return value in set;
-				}
-			};
-		};
-	}
-
-	defineFallbacks();
-
-	// In test mode, this generates `mw.redefineFallbacksForTest = defineFallbacks;`.
-	// Otherwise, it produces nothing. See also ResourceLoader\StartUpModule::getScript().
-	$CODE.maybeRedefineFallbacksForTest();
 
 	/**
 	 * Client for ResourceLoader server end point.
@@ -83,38 +55,6 @@
 		}
 		return hash;
 	}
-
-	// Check whether the browser supports ES6.
-	// We are feature detecting Promises and Arrow Functions with default params
-	// (which are good indicators of overall support). An additional test for
-	// regex behavior filters out Android 4.4.4 and Edge 18 or lower.
-	// This check doesn't quite guarantee full ES6 support: Safari 11-13 don't
-	// support non-BMP characters in identifiers, but support all other ES6
-	// features we care about. To guard against accidentally breaking these
-	// Safari versions with code they can't parse, we have an eslint rule
-	// prohibiting non-BMP characters from being used in identifiers.
-	var isES6Supported =
-		// Check for Promise support (filters out most non-ES6 browsers)
-		typeof Promise === 'function' &&
-		// eslint-disable-next-line dot-notation, no-undef
-		Promise.prototype[ 'finally' ] &&
-
-		// Check for RegExp.prototype.flags (filters out Android 4.4.4 and Edge <= 18)
-		/./g.flags === 'g' &&
-
-		// Test for arrow functions and default arguments, a good proxy for a
-		// wide range of ES6 support. Borrowed from Benjamin De Cock's snippet here:
-		// https://gist.github.com/bendc/d7f3dbc83d0f65ca0433caf90378cd95
-		// This will exclude Safari and Mobile Safari prior to version 10.
-		( function () {
-			try {
-				// eslint-disable-next-line no-new, no-new-func
-				new Function( '(a = 0) => a' );
-				return true;
-			} catch ( e ) {
-				return false;
-			}
-		}() );
 
 	/**
 	 * Fired via mw.track on various resource loading errors.
@@ -538,7 +478,7 @@
 	 *  dependencies, such that later modules depend on earlier modules. The array
 	 *  contains the module names. If the array contains already some module names,
 	 *  this function appends its result to the pre-existing array.
-	 * @param {StringSet} [unresolved] Used to detect loops in the dependency graph.
+	 * @param {Set} [unresolved] Used to detect loops in the dependency graph.
 	 * @throws {Error} If an unknown module or a circular dependency is encountered
 	 */
 	function sortDependencies( module, resolved, unresolved ) {
@@ -559,7 +499,7 @@
 
 		// Create unresolved if not passed in
 		if ( !unresolved ) {
-			unresolved = new StringSet();
+			unresolved = new Set();
 		}
 
 		// Track down dependencies
@@ -618,15 +558,14 @@
 				//
 				// Most likely due to a cached reference after the module was
 				// removed, otherwise made redundant, or omitted from the registry
-				// by the ResourceLoader "target" system or "requiresES6" flag.
+				// by the ResourceLoader "target" system.
 				//
-				// These errors can be common, e.g. queuing an ES6-only module
-				// unconditionally from the server-side is OK and should fail gracefully
-				// in ES5 browsers.
+				// These errors can be common, e.g. queuing an unavailable module
+				// unconditionally from the server-side is OK and should fail gracefully.
 				mw.log.warn( 'Skipped unavailable module ' + modules[ i ] );
+
 				// Do not track this error as an exception when the module:
 				// - Is valid, but gracefully filtered out by target system.
-				// - Is valid, but gracefully filtered out by requiresES6 flag.
 				// - Was recently valid, but is still referenced in stale cache.
 				//
 				// Basically the only reason to track this as exception is when the error
@@ -1329,23 +1268,6 @@
 			throw new Error( 'module already registered: ' + module );
 		}
 
-		version = String( version || '' );
-
-		// requiresES6 is encoded as a ! at the end of version
-		if ( version.slice( -1 ) === '!' ) {
-			if ( !$CODE.test( isES6Supported ) ) {
-				// Exclude ES6-only modules from the registry in ES5 browsers.
-				//
-				// These must:
-				// - be gracefully skipped if a top-level page module, in resolveStubbornly().
-				// - fail hard when otherwise used or depended on, in sortDependencies().
-				// - be detectable in the public API, per T299677.
-				return;
-			}
-			// Remove the ! at the end to get the real version
-			version = version.slice( 0, -1 );
-		}
-
 		registry[ module ] = {
 			// Exposed to execute() for mw.loader.implement() closures.
 			// Import happens via require().
@@ -1354,7 +1276,7 @@
 			},
 			// module.export objects for each package file inside this module
 			packageExports: {},
-			version: version,
+			version: String( version || '' ),
 			dependencies: dependencies || [],
 			group: typeof group === 'undefined' ? null : group,
 			source: typeof source === 'string' ? source : 'local',
@@ -1411,7 +1333,7 @@
 				storedImplementations = [],
 				storedNames = [],
 				requestNames = [],
-				batch = new StringSet();
+				batch = new Set();
 
 			// Iterate the list of requested modules, and do one of three things:
 			// - 1) Nothing (if already loaded or being loaded).
@@ -1508,7 +1430,6 @@
 		 *  a list of arguments compatible with this method
 		 * @param {string|number} [version] Module version hash (falls backs to empty string)
 		 *  Can also be a number (timestamp) for compatibility with MediaWiki 1.25 and earlier.
-		 *  A version string that ends with '!' signifies that the module requires ES6 support.
 		 * @param {string[]} [dependencies] Array of module names on which this module depends.
 		 * @param {string} [group=null] Group which the module is in
 		 * @param {string} [source='local'] Name of the source

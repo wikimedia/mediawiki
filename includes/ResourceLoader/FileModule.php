@@ -135,9 +135,6 @@ class FileModule extends Module {
 	/** @var bool Whether CSSJanus flipping should be skipped for this module */
 	protected $noflip = false;
 
-	/** @var bool Whether this module requires the client to support ES6 */
-	protected $es6 = false;
-
 	/**
 	 * @var bool Whether getStyleURLsForDebug should return raw file paths,
 	 * or return load.php urls
@@ -236,7 +233,6 @@ class FileModule extends Module {
 				// Single booleans
 				case 'debugRaw':
 				case 'noflip':
-				case 'es6':
 					$this->{$member} = (bool)$option;
 					break;
 			}
@@ -492,7 +488,7 @@ class FileModule extends Module {
 	}
 
 	public function requiresES6() {
-		return $this->es6;
+		return true;
 	}
 
 	/**

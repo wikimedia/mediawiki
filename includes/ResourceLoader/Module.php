@@ -521,12 +521,12 @@ abstract class Module implements LoggerAwareInterface {
 	 * If the client does not support ES6, attempting to load a module that requires ES6 will
 	 * result in an error.
 	 *
-	 * @stable to override
+	 * @deprecated since 1.41, ignored by ResourceLoader
 	 * @since 1.36
 	 * @return bool
 	 */
 	public function requiresES6() {
-		return false;
+		return true;
 	}
 
 	/**

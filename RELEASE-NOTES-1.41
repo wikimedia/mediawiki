@@ -14,6 +14,9 @@ See the file UPGRADE for more detailed per-version upgrade instructions from the
 oldest supported upgrading version, MediaWiki 1.35.
 
 Some specific notes for MediaWiki 1.41 upgrades are below:
+* (T178356) MediaWiki now requires browsers to support ES6 for them to receive
+  JavaScript, up from ES5. In practice, this primarily means that users of
+  Internet Explorer 11 (EOL in 2022) will no longer get JavaScript tools.
 * …
 
 For notes on 1.40.x and older releases, see HISTORY.

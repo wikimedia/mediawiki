@@ -10,52 +10,38 @@
  * See <https://www.mediawiki.org/wiki/Compatibility#Browsers>
  *
  * Capabilities required for modern run-time:
- * - ECMAScript 5
+ * - ECMAScript 2015 (a.k.a. ES6)
  * - DOM Level 4 (including Selectors API)
  * - HTML5 (including Web Storage API)
  *
  * Browsers we support in our modern run-time (Grade A):
- * - Chrome 13+
- * - IE 11+
- * - Firefox 4+
- * - Safari 5+
- * - Opera 15+
- * - Mobile Safari 6.0+ (iOS 6+)
- * - Android 4.1+
+ * - Chrome 21+
+ * - Edge 79+
+ * - Opera 38+
+ * - Firefox 54+
+ * - Safari 11.1+
+ * - Mobile Safari 11.2+ (iOS 11+)
+ * - Android 5.0+
  *
  * Browsers we support in our no-JavaScript, basic run-time (Grade C):
  * - Chrome 1+
+ * - Opera 15+
  * - IE 8+
  * - Firefox 3+
  * - Safari 3+
- * - Opera 15+
  * - Mobile Safari 5.0+ (iOS 4+)
  * - Android 2.0+
- * - WebOS < 1.5
- * - PlayStation
- * - Symbian-based browsers
- * - NetFront-based browser
- * - Opera Mini
- * - Nokia's Ovi Browser
- * - MeeGo's browser
- * - Google Glass
- * - UC Mini (speed mode on)
+ * - Opera Mini (Extreme mode)
+ * - UC Mini (Speed mode)
  *
  * Other browsers that pass the check are considered unknown (Grade X).
  *
  * @private
- * @param {string} ua User agent string
  * @return {boolean} User agent is compatible with MediaWiki JS
  */
-function isCompatible( ua ) {
+function isCompatible() {
 	return !!(
-		// https://caniuse.com/#feat=es5
-		// https://caniuse.com/#feat=use-strict
-		( function () {
-			'use strict';
-			return !this && Function.prototype.bind;
-		}() ) &&
-
+		// First, check DOM4 and HTML5 features for faster-fail
 		// https://caniuse.com/#feat=queryselector
 		'querySelector' in document &&
 
@@ -64,58 +50,38 @@ function isCompatible( ua ) {
 		// https://blog.whatwg.org/this-week-in-html-5-episode-30
 		'localStorage' in window &&
 
-		// Force certain browsers into Basic mode, even if they pass the check.
+		// Now, check whether the browser supports ES6.
 		//
-		// Some of the below are "remote browsers", where the webpage is actually
-		// rendered remotely in a capable browser (cloud service) by the vendor,
-		// with the client app receiving a graphical representation through a
-		// format that is not HTML/CSS. These get a better user experience if
-		// we turn JavaScript off, to avoid triggering JavaScript calls, which
-		// either don't work or require a roundtrip to the server with added
-		// latency. Note that remote browsers are sometimes referred to as
-		// "proxy browsers", but that term is also conflated with browsers
-		// that accelerate or compress web pages through a "proxy", where
-		// client-side JS would generally be okay.
+		// ES6 Promise, this rejects most unsupporting browsers.
+		// https://caniuse.com/promises
 		//
-		// Remember:
+		// ES6 Promise.finally, this rejects Safari 10 and iOS 10.
+		// https://caniuse.com/promise-finally
+		// eslint-disable-next-line es-x/no-promise, es-x/no-promise-prototype-finally, dot-notation
+		typeof Promise === 'function' && Promise.prototype[ 'finally' ] &&
+		// ES6 Arrow Functions (with default params), this ensures genuine syntax
+		// support in the engine, not just API coverage.
+		// https://caniuse.com/arrow-functions
 		//
-		// - Add new entries on top, and document why and since when.
-		// - Please extend the regex instead of adding new ones, for performance.
-		// - Add a test case to startup.test.js.
-		//
-		// Forced into Basic mode:
-		//
-		// - MSIE 10: Bugs (since 2018, T187869).
-		//   Low traffic. Reduce support cost by no longer having to workaround
-		//   bugs in its JavaScript APIs.
-		//
-		// - UC Mini "Speed Mode": Improve UX, save data (since 2016, T147369).
-		//   Does not have an obvious user agent, other than ending with an
-		//   incomplete `Gecko/` token.
-		//
-		// - Google Web Light: Bugs, save data (since 2016, T152602).
-		//   Proxy breaks most JavaScript.
-		//
-		// - MeeGo: Bugs (since 2015, T97546).
-		//
-		// - Opera Mini: Improve UX, save data. (since 2013, T49572).
-		//   It is a remote browser.
-		//
-		// - Ovi Browser: Improve UX, save data (since 2013, T57600).
-		//   It is a remote browser. UA contains "S40OviBrowser".
-		//
-		// - Google Glass: Improve UX (since 2013, T58008).
-		//   Run modern browser engine, but limited UI is better served when
-		//   content is expand by default, requiring little interaction.
-		//
-		// - NetFront: Unsupported by jQuery (since 2013, commit c46fc74).
-		// - PlayStation: Unsupported by jQuery (since 2013, commit c46fc74).
-		//
-		!ua.match( /MSIE 10|NetFront|Opera Mini|S40OviBrowser|MeeGo|Android.+Glass|^Mozilla\/5\.0 .+ Gecko\/$|googleweblight|PLAYSTATION|PlayStation/ )
+		// Based on Benjamin De Cock's snippet here:
+		// https://gist.github.com/bendc/d7f3dbc83d0f65ca0433caf90378cd95
+		( function () {
+			try {
+				// eslint-disable-next-line no-new, no-new-func
+				new Function( '(a = 0) => a' );
+				return true;
+			} catch ( e ) {
+				return false;
+			}
+		}() ) &&
+		// ES6 RegExp.prototype.flags, this rejects Android 4.4.4 and MSEdge <= 18,
+		// which was the last Edge Legacy version (MSEdgeHTML-based).
+		// eslint-disable-next-line es-x/no-regexp-prototype-flags
+		/./g.flags === 'g'
 	);
 }
 
-if ( !isCompatible( navigator.userAgent ) ) {
+if ( !isCompatible() ) {
 	// Handle basic supported browsers (Grade C).
 	// Undo speculative modern (Grade A) root CSS class `<html class="client-js">`.
 	// See ResourceLoaderClientHtml::getDocumentAttributes().

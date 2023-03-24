@@ -112,7 +112,6 @@ class ResourceLoaderTestModule extends Module {
 	protected $script = '';
 	protected $styles = '';
 	protected $skipFunction = null;
-	protected $es6 = false;
 	protected $isRaw = false;
 	protected $isKnownEmpty = false;
 	protected $type = Module::LOAD_GENERAL;
@@ -169,7 +168,7 @@ class ResourceLoaderTestModule extends Module {
 	}
 
 	public function requiresES6() {
-		return $this->es6;
+		return true;
 	}
 
 	public function isRaw() {
