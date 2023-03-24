@@ -19,11 +19,6 @@
 		value: 'true'
 	} );
 
-	// Create initial fixture element
-	var fixture = document.createElement( 'div' );
-	fixture.id = 'qunit-fixture';
-	document.body.appendChild( fixture );
-
 	// Integrate SinonJS with QUnit
 	//
 	// - Add a Sinon sandbox to the test context that is automatically

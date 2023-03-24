@@ -30,29 +30,9 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Tests\AnsiTermColorer;
 use MediaWiki\Tests\DummyTermColorer;
+use Wikimedia\Parsoid\Utils\ScriptUtils;
 
 class ParserTestsMaintenance extends Maintenance {
-	/**
-	 * Copied over from the Parsoid repo: (tools/ScriptUtils.php)
-	 *
-	 * Parse a boolean option returned by our opts processor.
-	 * The strings 'false' and 'no' are also treated as false values.
-	 * This allows `--debug=no` and `--debug=false` to mean the same as
-	 * `--no-debug`.
-	 *
-	 * @param bool|string $val
-	 *   a boolean, or a string naming a boolean value.
-	 * @return bool
-	 */
-	private function booleanOption( $val ): bool {
-		if ( !$val ) {
-			return false;
-		}
-		if ( is_string( $val ) && preg_match( '/^(no|false)$/D', $val ) ) {
-			return false;
-		}
-		return true;
-	}
 
 	public function __construct() {
 		parent::__construct();
@@ -110,6 +90,8 @@ class ParserTestsMaintenance extends Maintenance {
 			'Changes to apply to Parsoid HTML to generate new HTML to be serialized (use with selser)',
 			false, true );
 		$this->addOption( 'parsoid', 'Run Parsoid tests' );
+		$this->addOption( 'trace', 'Use --trace=help for supported options (Parsoid only)', false, true );
+		$this->addOption( 'dump', 'Use --dump=help for supported options (Parsoid only)', false, true );
 		$this->addOption( 'updateKnownFailures', 'Update knownFailures.json with failing tests' );
 		$this->addOption( 'knownFailures',
 			'Compare against known failures (default: true). If false, ignores knownFailures.json file',
@@ -191,6 +173,19 @@ class ParserTestsMaintenance extends Maintenance {
 			]
 		) );
 
+		$traceFlags = array_fill_keys( explode( ',', $this->getOption( 'trace', '' ) ), true );
+		$dumpFlags = array_fill_keys( explode( ',', $this->getOption( 'dump', '' ) ), true );
+		if ( $traceFlags['help'] ?? false ) {
+			print "-------------- PARSOID ONLY --------------\n";
+			print ScriptUtils::traceUsageHelp();
+			exit( 1 );
+		}
+		if ( $dumpFlags['help'] ?? false ) {
+			print "-------------- PARSOID ONLY --------------\n";
+			print ScriptUtils::dumpUsageHelp();
+			exit( 1 );
+		}
+
 		$recorderLB = false;
 		if ( $record || $compare ) {
 			// Make an untracked DB_PRIMARY connection (wiki's table prefix, not parsertest_)
@@ -216,7 +211,7 @@ class ParserTestsMaintenance extends Maintenance {
 
 		$selserOpt = $this->getOption( 'selser', false ); /* can also be 'noauto' */
 		if ( $selserOpt !== 'noauto' ) {
-			$selserOpt = $this->booleanOption( $selserOpt );
+			$selserOpt = ScriptUtils::booleanOption( $selserOpt );
 		}
 		$tester = new ParserTestRunner( $recorder, [
 			'norm' => $norm,
@@ -241,8 +236,10 @@ class ParserTestsMaintenance extends Maintenance {
 			'numchanges' => $this->getOption( 'numchanges', 20 ),
 			'selser' => $selserOpt,
 			'changetree' => json_decode( $this->getOption( 'changetree', '' ), true ),
-			'knownFailures' => $this->booleanOption( $this->getOption( 'knownFailures', true ) ),
-			'updateKnownFailures' => $this->hasOption( 'updateKnownFailures' )
+			'knownFailures' => ScriptUtils::booleanOption( $this->getOption( 'knownFailures', true ) ),
+			'updateKnownFailures' => $this->hasOption( 'updateKnownFailures' ),
+			'traceFlags' => $traceFlags,
+			'dumpFlags' => $dumpFlags,
 		] );
 
 		$ok = $tester->runTestsFromFiles( $files );
