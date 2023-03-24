@@ -269,6 +269,7 @@ $wgAutoloadClasses += [
 	'Pbkdf2PasswordTestCase' => "$testDir/phpunit/unit/includes/password/Pbkdf2PasswordTestCase.php",
 
 	# tests/phpunit/integration/includes
+	'MediaWiki\Tests\ExtensionJsonTestBase' => "$testDir/phpunit/integration/includes/ExtensionJsonTestBase.php",
 	'MediaWiki\Tests\ExtensionServicesTestBase' => "$testDir/phpunit/integration/includes/ExtensionServicesTestBase.php",
 
 	# tests/phpunit/integration/includes/user
