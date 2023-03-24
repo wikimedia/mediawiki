@@ -202,6 +202,7 @@ class ParserTestRunner {
 	 *      If false, use MockFileBackend
 	 *      Else name of the file backend to use
 	 *  - disable-save-parse (bool) if true, disable parse on article insertion
+	 *  - update-tests (bool) Update parserTests.txt with results from wt2html fails.
 	 *
 	 * NOTE: At this time, Parsoid-specific test options are only handled
 	 * in PHPUnit mode. A future patch will likely tweak some of this and
@@ -222,6 +223,7 @@ class ParserTestRunner {
 			'knownFailures' => true,
 			'updateKnownFailures' => false,
 			'changetree' => null,
+			'update-tests' => false,
 			// Options can also match those in ParserTestModes::TEST_MODES
 			// but we don't need to initialize those here; they will be
 			// accessed via $this->requestedTestModes instead.
@@ -947,6 +949,10 @@ class ParserTestRunner {
 			$ok = $ok && $result->isSuccess();
 		}
 
+		if ( $this->options['update-tests'] ) {
+			$this->updateTests( $filename, $testFileInfo, true );
+		}
+
 		// Clean up
 		ScopedCallback::consume( $teardown );
 
@@ -1143,6 +1149,10 @@ class ParserTestRunner {
 			$this->updateKnownFailures( $filename, $testFileInfo );
 		}
 
+		if ( $this->options['update-tests'] ) {
+			$this->updateTests( $filename, $testFileInfo, false );
+		}
+
 		// Clean up
 		ScopedCallback::consume( $teardown );
 
@@ -1196,6 +1206,37 @@ class ParserTestRunner {
 				);
 			}
 		}
+	}
+
+	/**
+	 * @param string $filename The parser test file
+	 * @param TestFileReader $testFileInfo
+	 * @param bool $isLegacy
+	 */
+	public function updateTests(
+		string $filename, TestFileReader $testFileInfo, bool $isLegacy
+	) {
+		$fileContent = file_get_contents( $filename );
+		foreach ( $testFileInfo->testCases as $t ) {
+			$testName = $t->testName;
+			$fail = $t->knownFailures[$isLegacy ? 'legacy' : 'wt2html'] ?? null;
+			$html = $isLegacy ? $t->legacyHtml : $t->parsoidHtml;
+			if ( $testName !== null && $fail !== null && $html !== null ) {
+				$exp = '/(!!\s*test\s*' .
+					preg_quote( $testName, '/' ) .
+					'(?:(?!!!\s*end)[\s\S])*' .
+					')(' . preg_quote( $html, '/' ) .
+					')/m';
+				$fileContent = preg_replace_callback(
+					$exp,
+					static function ( array $matches ) use ( $fail ) {
+						return $matches[1] . $fail;
+					},
+					$fileContent
+				);
+			}
+		}
+		file_put_contents( $filename, $fileContent );
 	}
 
 	/**
@@ -1426,6 +1467,7 @@ class ParserTestRunner {
 
 		ScopedCallback::consume( $teardownGuard );
 
+		$rawOut = $out;
 		$expected = $test->legacyHtml ?? '';
 		if ( count( $this->normalizationFunctions ) ) {
 			$expected = ParserTestResultNormalizer::normalize(
@@ -1437,6 +1479,11 @@ class ParserTestRunner {
 		if ( $testResult->isSuccess() && $metadataExpected !== null ) {
 			$testResult = new ParserTestResult( $test, $mode, $metadataExpected, $metadataActual ?? '' );
 		}
+
+		if ( $this->options['update-tests'] && !$testResult->isSuccess() ) {
+			$test->knownFailures["$mode"] = $rawOut;
+		}
+
 		return $testResult;
 	}
 
@@ -1603,6 +1650,10 @@ class ParserTestRunner {
 				}
 				$test->knownFailures["$mode"] = $rawActual;
 			}
+		}
+
+		if ( $this->options['update-tests'] && !$passed ) {
+			$test->knownFailures["$mode"] = $rawActual;
 		}
 
 		if ( $unexpectedPass ) {
