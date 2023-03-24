@@ -1078,6 +1078,37 @@ END
 	}
 
 	/**
+	 * Silently ignore invalid UTF-8 injected into random query parameters.
+	 *
+	 * @see https://phabricator.wikimedia.org/T331641
+	 */
+	public function testRespondInvalidMissingModule() {
+		$rl = $this->getMockBuilder( EmptyResourceLoader::class )
+			->onlyMethods( [
+				'measureResponseTime',
+				'tryRespondNotModified',
+				'sendResponseHeaders',
+			] )
+			->getMock();
+
+		// Cover the JS-response which formats via mw.loader.state()
+		$context = $this->getResourceLoaderContext(
+			[ 'modules' => "foo|bar\x80\xf0bara|quux", 'only' => null ],
+			$rl
+		);
+		$this->expectOutputRegex( '/mw\.loader\.state.*"foo": "missing"/s' );
+		$rl->respond( $context );
+
+		// Cover the CSS-response which formats via a block comment
+		$context = $this->getResourceLoaderContext(
+			[ 'modules' => "foo|bar\x80\xf0bara|quux", 'only' => 'styles' ],
+			$rl
+		);
+		$this->expectOutputRegex( '/Problematic modules.*"foo": "missing"/s' );
+		$rl->respond( $context );
+	}
+
+	/**
 	 * Refuse requests for private modules.
 	 */
 	public function testRespondErrorPrivate() {
