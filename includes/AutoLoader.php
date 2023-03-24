@@ -88,8 +88,9 @@ class AutoLoader {
 
 	/**
 	 * @var string[] Namespace (ends with \) => Path (ends with /)
+	 * @internal Will become private in 1.40.
 	 */
-	private static $psr4Namespaces = self::CORE_NAMESPACES;
+	public static $psr4Namespaces = self::CORE_NAMESPACES;
 
 	/**
 	 * @var string[] Class => File
