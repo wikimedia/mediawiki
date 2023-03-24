@@ -40,6 +40,7 @@ abstract class ExtensionServicesTestBase extends MediaWikiIntegrationTestCase {
 	/**
 	 * @var string The prefix of the services in the service wiring.
 	 * Usually something like 'ExtensionName.'.
+	 * @see ExtensionJsonTestBase::$serviceNamePrefix
 	 */
 	protected string $serviceNamePrefix;
 
