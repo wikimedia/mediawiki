@@ -4402,4 +4402,10 @@ class MainConfigNames {
 	 */
 	public const SpecialContributeSkinsEnabled = 'SpecialContributeSkinsEnabled';
 
+	/**
+	 * Name constant for the ShowDiffToggleSwitch setting, for use with Config::get()
+	 * @see MainConfigSchema::ShowDiffToggleSwitch
+	 */
+	public const ShowDiffToggleSwitch = 'ShowDiffToggleSwitch';
+
 }

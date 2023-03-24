@@ -21,11 +21,15 @@
  * @ingroup DifferenceEngine
  */
 
-use MediaWiki\HookContainer\HookContainer;
+ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
+use MediaWiki\Title\Title;
+use OOUI\ButtonGroupWidget;
+use OOUI\ButtonWidget;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Diff\Diff;
 use Wikimedia\Diff\TableDiffFormatter;
@@ -55,6 +59,8 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	public const ENGINE_EXTERNAL = 'external';
 
 	public const INLINE_LEGEND_KEY = '10_mw-diff-inline-legend';
+
+	public const INLINE_SWITCHER_KEY = '60_mw-diff-inline-switch';
 
 	/** @var IBufferingStatsdDataFactory|null */
 	private $statsdDataFactory;
@@ -172,21 +178,56 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	/**
 	 * @inheritDoc
 	 */
-	public function getTablePrefix( IContextSource $context ): string {
+	public function getTablePrefix( IContextSource $context, Title $newTitle ): string {
 		$legend = null;
-		// wikidiff2 inline type gets a legend to explain the highlighting colours.
-		if ( $this->engine === self::ENGINE_WIKIDIFF2_INLINE ) {
-			$ins = Html::element(
-				'span', [ 'class' => 'mw-diff-inline-legend-ins' ], $context->msg( 'diff-inline-tooltip-ins' )->plain()
-			);
-			$del = Html::element(
-				'span', [ 'class' => 'mw-diff-inline-legend-del' ], $context->msg( 'diff-inline-tooltip-del' )->plain()
-			);
-			$legend = Html::rawElement( 'div', [ 'class' => 'mw-diff-inline-legend' ], "$ins $del" );
+		$inlineSwitcher = null;
+
+		$showDiffToggleSwitch = $context->getConfig()->get( MainConfigNames::ShowDiffToggleSwitch );
+
+		if ( $showDiffToggleSwitch ) {
+			// wikidiff2 inline type gets a legend to explain the highlighting colours and show an inline toggle
+			if ( $this->engine === self::ENGINE_WIKIDIFF2 ||
+				$this->engine === self::ENGINE_WIKIDIFF2_INLINE ) {
+				$ins = Html::element( 'span',
+					[ 'class' => 'mw-diff-inline-legend-ins' ],
+					$context->msg( 'diff-inline-tooltip-ins' )->plain()
+				);
+				$del = Html::element( 'span',
+					[ 'class' => 'mw-diff-inline-legend-del' ],
+					$context->msg( 'diff-inline-tooltip-del' )->plain()
+				);
+				$hideDiffClass = $this->engine === self::ENGINE_WIKIDIFF2 ? 'mw-diff-element-hidden' : '';
+				$legend = Html::rawElement( 'div',
+					[ 'class' => 'mw-diff-inline-legend ' . $hideDiffClass ], "$ins $del"
+				);
+
+				$values = $context->getRequest()->getValues();
+				$isInlineDiffType = isset( $values['diff-type'] ) && $values['diff-type'] === 'inline';
+				unset( $values[ 'diff-type' ] );
+				unset( $values[ 'title' ] );
+				$inlineSwitcher = Html::rawElement( 'div',
+					[ 'class' => 'mw-diffPage-inlineToggle-container' ],
+					// Will be replaced by a ButtonSelectWidget in JS
+					new ButtonGroupWidget( [
+						'items' => [
+							new ButtonWidget( [
+								'active' => $isInlineDiffType,
+								'label' => $context->msg( 'diff-inline-format-label' )->plain(),
+								'href' => $newTitle->getLocalURL( $values ) . '&diff-type=inline'
+							] ),
+							new ButtonWidget( [
+								'active' => !$isInlineDiffType,
+								'label' => $context->msg( 'diff-table-format-label' )->plain(),
+								'href' => $newTitle->getLocalURL( $values )
+							] )
+						]
+					] )
+				);
+			}
 		}
 		// Allow extensions to add other parts to this area (or modify the legend).
 		// An empty placeholder for the legend is added when it's not in use and other items have been added.
-		$parts = [ self::INLINE_LEGEND_KEY => $legend ];
+		$parts = [ self::INLINE_LEGEND_KEY => $legend, self::INLINE_SWITCHER_KEY => $inlineSwitcher ];
 
 		$this->hookRunner->onTextSlotDiffRendererTablePrefix( $this, $context, $parts );
 		if ( count( $parts ) > 1 && $parts[self::INLINE_LEGEND_KEY] === null ) {

@@ -929,9 +929,14 @@ class DifferenceEngine extends ContextSource {
 				$notice .= Html::warningBox( $msg->parse() );
 			}
 
+			// Check if wikidiff2 engine is installed
+			if ( $this->getEngine() === 'wikidiff2' ) {
+				$out->enableOOUI();
+			}
+
 			// Add table prefixes.
 			foreach ( $this->getSlotDiffRenderers() as $slotDiffRenderer ) {
-				$out->addHTML( $slotDiffRenderer->getTablePrefix( $this->getContext() ) );
+				$out->addHTML( $slotDiffRenderer->getTablePrefix( $this->getContext(), $this->mNewPage ) );
 			}
 
 			$this->showDiff( $oldHeader, $newHeader, $notice );

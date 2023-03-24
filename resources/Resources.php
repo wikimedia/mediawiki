@@ -755,11 +755,20 @@ return [
 	'mediawiki.diff' => [
 		'scripts' => [
 			'resources/src/mediawiki.diff/diff.js',
+			'resources/src/mediawiki.diff/mw.widgets.InlineToggleField.js',
+			'resources/src/mediawiki.diff/inlineFormatToggle.js',
 		],
+		'dependencies' => [
+			'oojs-ui'
+		],
+		'messages' => [
+			'diff-inline-format-label',
+		]
 	],
 	'mediawiki.diff.styles' => [
 		'styles' => [
 			'resources/src/mediawiki.diff.styles/diff.less',
+			'resources/src/mediawiki.diff.styles/mw.widgets.InlineToggleField.less',
 			'resources/src/mediawiki.diff.styles/print.css' => [
 				'media' => 'print'
 			],

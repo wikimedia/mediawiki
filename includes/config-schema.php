@@ -2448,6 +2448,7 @@ return [
 			],
 			'SpecialContributeSkinsEnabled' => [
 			],
+			'ShowDiffToggleSwitch' => false,
 		],
 		'type' => [
 			'ConfigRegistry' => 'object',
@@ -2909,6 +2910,7 @@ return [
 			'FeaturePolicyReportOnly' => 'array',
 			'SkinsPreferred' => 'array',
 			'SpecialContributeSkinsEnabled' => 'array',
+			'ShowDiffToggleSwitch' => 'boolean',
 		],
 		'mergeStrategy' => [
 			'TiffThumbnailType' => 'replace',
