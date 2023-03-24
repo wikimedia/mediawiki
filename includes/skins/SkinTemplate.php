@@ -1238,6 +1238,7 @@ class SkinTemplate extends Skin {
 
 					if ( $this->getAuthority()->probablyCan( 'delete', $title ) ) {
 						$content_navigation['actions']['delete'] = [
+							'icon' => 'trash',
 							'class' => ( $onPage && $action == 'delete' ) ? 'selected' : false,
 							'text' => $this->getSkinNavOverrideableLabel(
 								'action-delete'
