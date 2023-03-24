@@ -131,7 +131,7 @@ class PageArchive {
 	/**
 	 * @param IDatabase $dbr
 	 * @param string|array $condition
-	 * @return bool|IResultWrapper
+	 * @return IResultWrapper
 	 */
 	protected static function listPages( $dbr, $condition ) {
 		return $dbr->select(
@@ -156,7 +156,7 @@ class PageArchive {
 	 * various archive table fields.
 	 *
 	 * @deprecated since 1.38 Use ArchivedRevisionLookup::listRevisions
-	 * @return IResultWrapper|bool
+	 * @return IResultWrapper
 	 */
 	public function listRevisions() {
 		$lookup = MediaWikiServices::getInstance()->getArchivedRevisionLookup();

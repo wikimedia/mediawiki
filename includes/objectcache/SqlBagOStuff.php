@@ -1654,8 +1654,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 */
 	private function getConnectionFromServerInfo( $shardIndex, array $server ) {
 		if ( !isset( $this->conns[$shardIndex] ) ) {
-			/** @var IMaintainableDatabase Auto-commit connection to the server */
 			$dbFactory = MediaWikiServices::getInstance()->getDatabaseFactory();
+			/** @var IMaintainableDatabase $conn Auto-commit connection to the server */
 			$conn = $dbFactory->create(
 				$server['type'],
 				array_merge(

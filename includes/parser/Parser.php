@@ -4166,7 +4166,7 @@ class Parser {
 	 * @param string $text
 	 * @param string $origText Original, untouched wikitext
 	 * @param bool $isMain
-	 * @return mixed|string
+	 * @return string
 	 */
 	private function finalizeHeadings( $text, $origText, $isMain = true ) {
 		# Inhibit editsection links if requested in the page
@@ -5603,7 +5603,7 @@ class Parser {
 	/**
 	 * @param string $caption
 	 * @param LinkHolderArray|false $holders
-	 * @return mixed|string
+	 * @return string
 	 */
 	private function stripAltText( $caption, $holders ) {
 		# Strip bad stuff out of the title (tooltip).  We can't just use

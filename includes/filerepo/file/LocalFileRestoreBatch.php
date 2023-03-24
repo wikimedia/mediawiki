@@ -86,7 +86,7 @@ class LocalFileRestoreBatch {
 	 * @return Status
 	 */
 	public function execute() {
-		/** @var Language */
+		/** @var Language $wgLang */
 		global $wgLang;
 
 		$repo = $this->file->getRepo();

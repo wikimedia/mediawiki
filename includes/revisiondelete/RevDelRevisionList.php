@@ -28,6 +28,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactory;
 
 /**
@@ -110,7 +111,7 @@ class RevDelRevisionList extends RevDelList {
 
 	/**
 	 * @param IDatabase $db
-	 * @return mixed
+	 * @return IResultWrapper
 	 */
 	public function doQuery( $db ) {
 		$ids = array_map( 'intval', $this->ids );

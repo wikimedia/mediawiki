@@ -23,6 +23,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionStore;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactory;
 
 /**
@@ -73,7 +74,7 @@ class RevDelArchiveList extends RevDelRevisionList {
 
 	/**
 	 * @param IDatabase $db
-	 * @return mixed
+	 * @return IResultWrapper
 	 */
 	public function doQuery( $db ) {
 		$timestamps = [];

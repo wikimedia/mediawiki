@@ -149,8 +149,9 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 	}
 
 	/**
-	 * @inheritDoc
 	 * @stable to override
+	 * @param array $params
+	 * @return \MediaWiki\Widget\SelectWithInputWidget
 	 */
 	public function getInputWidget( $params ) {
 		return new MediaWiki\Widget\SelectWithInputWidget( $params );

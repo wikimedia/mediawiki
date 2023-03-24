@@ -33,6 +33,7 @@ class NullRepo extends FileRepo {
 	}
 
 	protected function assertWritableRepo() {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new MWException( static::class . ': write operations are not supported.' );
 	}
 }

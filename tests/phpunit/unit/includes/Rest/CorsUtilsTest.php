@@ -170,7 +170,7 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideModifyResponseAllowTrustedOriginCookieAuth
 	 * @param string $requestMethod
-	 * @param string $isRegistered
+	 * @param bool $isRegistered
 	 */
 	public function testModifyResponseAllowTrustedOriginCookieAuth( string $requestMethod, bool $isRegistered ) {
 		$cors = new CorsUtils(

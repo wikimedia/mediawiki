@@ -472,7 +472,7 @@ class SearchHighlighter {
 	/**
 	 * Basic wikitext removal
 	 * @param string $text
-	 * @return mixed
+	 * @return string
 	 */
 	private function removeWiki( $text ) {
 		$text = preg_replace( "/\\{\\{([^|]+?)\\}\\}/", "", $text );

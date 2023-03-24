@@ -95,10 +95,6 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 		return [];
 	}
 
-	/**
-	 * @param string $html
-	 * @return string
-	 */
 	public function wrapForm( $html ) {
 		$html = Xml::tags( 'div', [ 'id' => 'preferences' ], $html );
 
@@ -195,7 +191,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 
 	/**
 	 * Create the preferences form for a mobile layout.
-	 * @return string
+	 * @return OOUI\StackLayout
 	 */
 	private function createMobilePreferencesForm() {
 		$prefPanels = [];
@@ -307,7 +303,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 
 	/**
 	 * Create the preferences form for a desktop layout.
-	 * @return string
+	 * @return OOUI\PanelLayout
 	 */
 	private function createDesktopPreferencesForm() {
 		$tabPanels = [];

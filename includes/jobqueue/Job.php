@@ -192,9 +192,8 @@ abstract class Job implements RunnableJob {
 	 * @since 1.22
 	 */
 	public function getReleaseTimestamp() {
-		return isset( $this->params['jobReleaseTimestamp'] )
-			? wfTimestampOrNull( TS_UNIX, $this->params['jobReleaseTimestamp'] )
-			: null;
+		$time = wfTimestampOrNull( TS_UNIX, $this->params['jobReleaseTimestamp'] ?? null );
+		return $time ? (int)$time : null;
 	}
 
 	/**
@@ -202,9 +201,8 @@ abstract class Job implements RunnableJob {
 	 * @since 1.26
 	 */
 	public function getQueuedTimestamp() {
-		return isset( $this->metadata['timestamp'] )
-			? wfTimestampOrNull( TS_UNIX, $this->metadata['timestamp'] )
-			: null;
+		$time = wfTimestampOrNull( TS_UNIX, $this->metadata['timestamp'] ?? null );
+		return $time ? (int)$time : null;
 	}
 
 	/**

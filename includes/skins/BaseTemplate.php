@@ -225,7 +225,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * of footer icons instead of a key/value array of footerlinks arrays broken
 	 * up into categories.
 	 * @param string|null $option
-	 * @return array|mixed
+	 * @return array
 	 */
 	protected function getFooterLinks( $option = null ) {
 		$footerlinks = $this->get( 'footerlinks' );

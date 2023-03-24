@@ -268,7 +268,7 @@ class ApiLoginTest extends ApiTestCase {
 	}
 
 	/**
-	 * @return [ $username, $password ] suitable for passing to an API request for successful login
+	 * @return array [ $username, $password ] suitable for passing to an API request for successful login
 	 */
 	private function setUpForBotPassword() {
 		global $wgSessionProviders;

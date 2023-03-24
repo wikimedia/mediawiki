@@ -43,7 +43,7 @@ class SkinComponentCopyright implements SkinComponent {
 	/**
 	 * Get the copyright.
 	 *
-	 * @inheritDoc
+	 * @return string
 	 */
 	public function getCopyrightHTML(): string {
 		$out = $this->skinContext->getOutput();

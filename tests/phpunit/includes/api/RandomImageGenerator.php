@@ -160,7 +160,7 @@ class RandomImageGenerator {
 	 * against a random background color. (This data is used in the
 	 * writeImage* methods).
 	 *
-	 * @return mixed
+	 * @return array
 	 */
 	public function getImageSpec() {
 		$spec = [];
