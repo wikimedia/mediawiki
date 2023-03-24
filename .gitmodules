@@ -1568,11 +1568,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-IPInfo
 	branch = REL1_39
 	ignore = dirty
-[submodule "extensions/PageProperties"]
-	path = extensions/PageProperties
-	url = https://github.com/wikimedia/mediawiki-extensions-PageProperties
-	branch = REL1_39
-	ignore = dirty
 [submodule "extensions/WikibaseEdtf"]
 	path = extensions/WikibaseEdtf
 	url = https://github.com/ProfessionalWiki/WikibaseEdtf
@@ -1602,4 +1597,9 @@
 	path = skins/Splash
 	url = https://github.com/wikimedia/mediawiki-skins-Splash
 	branch = REL1_39
+	ignore = dirty
+[submodule "extensions/PageProperties"]
+	path = extensions/PageProperties
+	url = https://github.com/wikimedia/mediawiki-extensions-PageProperties
+	branch = master
 	ignore = dirty
