@@ -3804,7 +3804,7 @@ class Language implements Bcp47Code {
 				$forms = $grammarTransformations[$forms];
 			}
 
-			foreach ( array_values( $forms ) as $rule ) {
+			foreach ( $forms as $rule ) {
 				$form = $rule[0];
 
 				if ( $form === '@metadata' ) {

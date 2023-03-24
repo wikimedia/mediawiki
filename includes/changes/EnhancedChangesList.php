@@ -227,7 +227,7 @@ class EnhancedChangesList extends ChangesList {
 				$formattedCount = $this->msg( 'ntimes' )->numParams( $count )->escaped();
 				$text .= ' ' . $this->msg( 'parentheses' )->rawParams( $formattedCount )->escaped();
 			}
-			array_push( $users, $text );
+			$users[] = $text;
 		}
 
 		# Article link

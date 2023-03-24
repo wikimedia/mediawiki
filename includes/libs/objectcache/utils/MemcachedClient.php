@@ -1145,7 +1145,7 @@ class MemcachedClient implements StorageAwareness {
 			$val = $this->serialize( $val );
 			$flags |= self::SERIALIZED;
 			if ( $this->_debug ) {
-				$this->_debugprint( sprintf( "client: serializing data as it is not scalar" ) );
+				$this->_debugprint( "client: serializing data as it is not scalar" );
 			}
 		}
 

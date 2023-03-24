@@ -188,7 +188,7 @@ class RebuildLocalisationCache extends Maintenance {
 
 					$numRebuilt = $this->doRebuild( $codes, $lc, $force );
 					// Report the number of rebuilt langs to the parent.
-					$msg = strval( $numRebuilt ) . "\n";
+					$msg = "$numRebuilt\n";
 					socket_write( $socketpair[1], $msg, strlen( $msg ) );
 					// Child exits.
 					return;

@@ -176,6 +176,6 @@ class MediaFileHandler extends SimpleHandler {
 	 */
 	protected function hasRepresentation() {
 		$file = $this->getFile();
-		return $file ? $file->exists() : false;
+		return $file && $file->exists();
 	}
 }

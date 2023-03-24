@@ -216,7 +216,7 @@ class RequestContext implements IContextSource, MutableContext {
 		// Only pages with legitimate titles can have WikiPages.
 		// That usually means pages in non-virtual namespaces.
 		$title = $this->getTitle();
-		return $title ? $title->canExist() : false;
+		return $title && $title->canExist();
 	}
 
 	/**

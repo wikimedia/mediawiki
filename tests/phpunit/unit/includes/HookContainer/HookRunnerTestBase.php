@@ -53,7 +53,7 @@ abstract class HookRunnerTestBase extends MediaWikiUnitTestCase {
 		foreach ( $hookInterfaces as $interface ) {
 			$this->assertCount( 1, $interface->getMethods(),
 				'Hook interface should have one method' );
-			array_push( $hookMethods, $interface->getMethods()[0]->getName() );
+			$hookMethods[] = $interface->getMethods()[0]->getName();
 		}
 		$this->assertArrayEquals( $hookMethods, array_unique( $hookMethods ) );
 	}

@@ -785,7 +785,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 					'label-message' => 'tog-requireemail',
 					'help-message' => 'prefs-help-requireemail',
 					'section' => 'personal/email',
-					'disabled' => $user->getEmail() ? false : true,
+					'disabled' => !$user->getEmail(),
 				];
 			}
 

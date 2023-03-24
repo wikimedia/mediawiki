@@ -457,7 +457,7 @@ class UploadStash {
 		// finish the read before starting writes.
 		$keys = [];
 		foreach ( $res as $row ) {
-			array_push( $keys, $row->us_key );
+			$keys[] = $row->us_key;
 		}
 
 		return $keys;

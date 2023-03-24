@@ -1454,10 +1454,10 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @return bool
 	 */
 	public function isSubpage() {
-		return MediaWikiServices::getInstance()->getNamespaceInfo()->
-			hasSubpages( $this->mNamespace )
-			? str_contains( $this->getText(), '/' )
-			: false;
+		return MediaWikiServices::getInstance()
+				->getNamespaceInfo()
+				->hasSubpages( $this->mNamespace )
+			&& str_contains( $this->getText(), '/' );
 	}
 
 	/**

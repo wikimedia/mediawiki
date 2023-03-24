@@ -47,7 +47,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 
 	/**
 	 * @param int $numRevisions
-	 * @param string[] $tags
+	 * @param array $tags
 	 * @param array $deltas
 	 * @param array $flags
 	 *

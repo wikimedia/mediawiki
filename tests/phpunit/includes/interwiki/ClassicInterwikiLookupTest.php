@@ -106,8 +106,8 @@ class ClassicInterwikiLookupTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param string $thisSite
-	 * @param string[] $local
-	 * @param string[] $global
+	 * @param string[][] $local
+	 * @param string[][] $global
 	 *
 	 * @return string[]
 	 */

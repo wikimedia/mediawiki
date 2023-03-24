@@ -78,7 +78,7 @@ abstract class Profiler {
 
 		// Avoid global func wfIsCLI() during setup
 		$isCLI = ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
-		$inSample = $params['sampling'] === 1 ? true : ( mt_rand( 0, $params['sampling'] - 1 ) === 0 );
+		$inSample = $params['sampling'] === 1 || mt_rand( 0, $params['sampling'] - 1 ) === 0;
 		if (
 			!$inSample ||
 			// On CLI, profiling is disabled by default, and can be explicitly enabled
