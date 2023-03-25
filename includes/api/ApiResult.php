@@ -283,7 +283,7 @@ class ApiResult implements ApiSerializable {
 			if ( $flags & self::ADD_ON_TOP ) {
 				array_unshift( $arr, $value );
 			} else {
-				array_push( $arr, $value );
+				$arr[] = $value;
 			}
 			return;
 		}

@@ -43,14 +43,14 @@ class BasicSearchResultSetWidget {
 		ISearchResultSet $titleResultSet = null,
 		ISearchResultSet $textResultSet = null
 	) {
-		$hasTitle = $titleResultSet ? $titleResultSet->numRows() > 0 : false;
-		$hasText = $textResultSet ? $textResultSet->numRows() > 0 : false;
-		$hasSecondary = $textResultSet
-			? $textResultSet->hasInterwikiResults( ISearchResultSet::SECONDARY_RESULTS )
-			: false;
-		$hasSecondaryInline = $textResultSet
-			? $textResultSet->hasInterwikiResults( ISearchResultSet::INLINE_RESULTS )
-			: false;
+		$hasTitle = $titleResultSet && $titleResultSet->numRows() > 0;
+		$hasText = $textResultSet && $textResultSet->numRows() > 0;
+		$hasSecondary =
+			$textResultSet &&
+			$textResultSet->hasInterwikiResults( ISearchResultSet::SECONDARY_RESULTS );
+		$hasSecondaryInline =
+			$textResultSet &&
+			$textResultSet->hasInterwikiResults( ISearchResultSet::INLINE_RESULTS );
 
 		if ( !$hasTitle && !$hasText && !$hasSecondary && !$hasSecondaryInline ) {
 			return '';

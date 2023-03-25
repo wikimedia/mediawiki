@@ -68,7 +68,7 @@ class CleanupUploadStash extends Maintenance {
 			// finish the read before starting writes.
 			$keys = [];
 			foreach ( $res as $row ) {
-				array_push( $keys, $row->us_key );
+				$keys[] = $row->us_key;
 			}
 
 			$this->output( 'Removing ' . count( $keys ) . " file(s)...\n" );

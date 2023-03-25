@@ -174,7 +174,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
 		$entry = $this->makeValueOrSegmentList( $key, $value, $exptime, $flags, $ok );
 		// Only when all segments (if any) are stored should the main key be changed
-		return $ok ? $this->doSet( $key, $entry, $exptime, $flags ) : false;
+		return $ok && $this->doSet( $key, $entry, $exptime, $flags );
 	}
 
 	/**
@@ -236,7 +236,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
 		$entry = $this->makeValueOrSegmentList( $key, $value, $exptime, $flags, $ok );
 		// Only when all segments (if any) are stored should the main key be changed
-		return $ok ? $this->doAdd( $key, $entry, $exptime, $flags ) : false;
+		return $ok && $this->doAdd( $key, $entry, $exptime, $flags );
 	}
 
 	/**
@@ -358,7 +358,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 
 		$entry = $this->makeValueOrSegmentList( $key, $value, $exptime, $flags, $ok );
 		// Only when all segments (if any) are stored should the main key be changed
-		return $ok ? $this->doCas( $casToken, $key, $entry, $exptime, $flags ) : false;
+		return $ok && $this->doCas( $casToken, $key, $entry, $exptime, $flags );
 	}
 
 	/**

@@ -1498,7 +1498,6 @@ function wfRecursiveRemoveDir( $dir ) {
 				}
 			}
 		}
-		reset( $objects );
 		rmdir( $dir );
 	}
 }

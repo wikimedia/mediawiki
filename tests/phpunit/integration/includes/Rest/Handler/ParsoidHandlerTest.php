@@ -2033,7 +2033,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @param array $attribs
 	 * @param string|null $text
-	 * @param string[] $expectedData
+	 * @param array $expectedData
 	 * @param string[] $unexpectedHtml
 	 * @param string[] $expectedHeaders
 	 */

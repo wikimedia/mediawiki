@@ -56,7 +56,7 @@ class UserGroupMembership {
 		$this->userId = $userId;
 		$this->group = $group;
 		$this->expiry = $expiry ?: null;
-		$this->expired = $expiry ? wfTimestampNow() > $expiry : false;
+		$this->expired = $expiry && wfTimestampNow() > $expiry;
 	}
 
 	/**

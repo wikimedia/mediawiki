@@ -2478,7 +2478,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 */
 	public function isExpensiveToThumbnail() {
 		$handler = $this->getHandler();
-		return $handler ? $handler->isExpensiveToThumbnail( $this ) : false;
+		return $handler && $handler->isExpensiveToThumbnail( $this );
 	}
 
 	/**

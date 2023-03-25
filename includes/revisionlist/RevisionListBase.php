@@ -153,7 +153,7 @@ abstract class RevisionListBase extends ContextSource implements Iterator {
 	}
 
 	public function valid(): bool {
-		return $this->res ? $this->res->valid() : false;
+		return $this->res && $this->res->valid();
 	}
 
 	/**
