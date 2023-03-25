@@ -37,10 +37,10 @@ namespace MediaWiki\HookContainer {
 			$hookContainer = $this->getServiceContainer()->getHookContainer();
 
 			// Some handlers for FooHook have been previously set
-			$reset = $hookContainer->register( 'FooHook', static function () {
+			$hookContainer->register( 'FooHook', static function () {
 				return true;
 			} );
-			$reset1 = $hookContainer->register( 'FooHook', static function () {
+			$hookContainer->register( 'FooHook', static function () {
 				return true;
 			} );
 			$handlersBeforeScopedRegister = $hookContainer->getLegacyHandlers( 'FooHook' );

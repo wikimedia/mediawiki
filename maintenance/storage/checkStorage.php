@@ -217,7 +217,7 @@ class CheckStorage {
 				}
 				foreach ( $externalConcatBlobs as $cluster => $xBlobIds ) {
 					$blobIds = array_keys( $xBlobIds );
-					$extDb =& $this->dbStore->getReplica( $cluster );
+					$extDb = $this->dbStore->getReplica( $cluster );
 					$blobsTable = $this->dbStore->getTable( $extDb );
 					$res = $extDb->select( $blobsTable,
 						[ 'blob_id' ],
@@ -418,7 +418,7 @@ class CheckStorage {
 
 		foreach ( $externalConcatBlobs as $cluster => $oldIds ) {
 			$blobIds = array_keys( $oldIds );
-			$extDb =& $this->dbStore->getReplica( $cluster );
+			$extDb = $this->dbStore->getReplica( $cluster );
 			$blobsTable = $this->dbStore->getTable( $extDb );
 			$headerLength = strlen( self::CONCAT_HEADER );
 			$res = $extDb->select( $blobsTable,

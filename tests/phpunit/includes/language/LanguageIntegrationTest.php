@@ -1785,7 +1785,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 				'Cat_toots' => NS_FILE_TALK,
 				// inherited from x-foo
 				'Dog' => NS_USER,
-				'Dog' => NS_USER_TALK,
+				'Dog_woofs' => NS_USER_TALK,
 				// add from site configuration
 				'Mouse' => NS_SPECIAL,
 			],

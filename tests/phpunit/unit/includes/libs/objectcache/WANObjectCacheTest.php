@@ -1591,6 +1591,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 	/**
 	 */
 	public function testCheckKeyInitHoldoff() {
+		/** @var WANObjectCache $cache */
 		[ $cache ] = $this->newWanCache();
 
 		for ( $i = 0; $i < 500; ++$i ) {

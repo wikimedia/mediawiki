@@ -70,7 +70,7 @@ class SearchPostgres extends SearchDatabase {
 		wfDebug( "parseQuery received: $term" );
 
 		// No backslashes allowed
-		$term = preg_replace( '/\\\/', '', $term );
+		$term = preg_replace( '/\\\\/', '', $term );
 
 		// Collapse parens into nearby words:
 		$term = preg_replace( '/\s*\(\s*/', ' (', $term );
