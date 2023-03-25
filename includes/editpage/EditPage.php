@@ -564,6 +564,7 @@ class EditPage implements IEditObject {
 		$this->linkBatchFactory = $services->getLinkBatchFactory();
 		$this->restrictionStore = $services->getRestrictionStore();
 		$this->commentStore = $services->getCommentStore();
+		$this->blockErrorFormatter = $services->getBlockErrorFormatter();
 
 		$this->deprecatePublicProperty( 'mArticle', '1.30', __CLASS__ );
 		$this->deprecatePublicProperty( 'mTitle', '1.30', __CLASS__ );
@@ -695,6 +696,10 @@ class EditPage implements IEditObject {
 			}
 		}
 
+		// Check permissions after possibly creating a placeholder temp user.
+		// This allows anonymous users to edit via a temporary account, if the site is
+		// configured to (1) disallow anonymous editing and (2) autocreate temporary
+		// accounts on edit.
 		$this->maybeActivateTempUserCreate( !$this->firsttime );
 
 		$permErrors = $this->getEditPermissionErrors(
@@ -973,13 +978,39 @@ class EditPage implements IEditObject {
 		if ( $this->preview || $this->diff ) {
 			$ignoredErrors = [ 'blockedtext', 'autoblockedtext', 'systemblockedtext' ];
 		}
-		return $this->permManager->getPermissionErrors(
+		$permErrors = $this->permManager->getPermissionErrors(
 			'edit',
 			$user,
 			$this->mTitle,
 			$rigor,
 			$ignoredErrors
 		);
+
+		// Check if the user is blocked from editing.
+		// This check must be done on the context user, in order to trigger
+		// checks for blocks against IP address, XFF, etc, until T221067
+		if ( !$user->getBlock() ) {
+			$contextUser = $this->context->getUser();
+			if (
+				$user->getName() !== $contextUser->getName() &&
+				$this->permManager->isBlockedFrom(
+					$contextUser,
+					$this->mTitle,
+					$rigor !== PermissionManager::RIGOR_SECURE
+				)
+			) {
+				$message = $this->blockErrorFormatter->getMessage(
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable User must have a block
+					$contextUser->getBlock(),
+					$contextUser,
+					$this->context->getLanguage(),
+					$this->context->getRequest()->getIP()
+				);
+				$permErrors[] = array_merge( [ $message->getKey() ], $message->getParams() );
+			}
+		}
+
+		return $permErrors;
 	}
 
 	/**
