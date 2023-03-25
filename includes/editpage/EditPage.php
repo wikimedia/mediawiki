@@ -1636,9 +1636,9 @@ class EditPage implements IEditObject {
 										)->inContentLanguage()->text();
 									}
 								} else {
-									$undoIsAnon = $undorev->getUser() ?
-										!$undorev->getUser()->isRegistered() :
-										true;
+									$undoIsAnon =
+										!$undorev->getUser() ||
+										!$undorev->getUser()->isRegistered();
 									$undoMessage = ( $undoIsAnon && $disableAnonTalk ) ?
 										'undo-summary-anon' :
 										'undo-summary';

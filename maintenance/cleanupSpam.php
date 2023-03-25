@@ -116,8 +116,8 @@ class CleanupSpam extends Maintenance {
 					->where( $conds )
 					->caller( __METHOD__ )
 					->fetchResultSet();
-				$count = $res->numRows();
-				$this->output( "Found $count articles containing $spec\n" );
+				$count += $res->numRows();
+				$this->output( "Found $count articles containing $spec so far...\n" );
 				foreach ( $res as $row ) {
 					$this->cleanupArticle(
 						$row->el_from,

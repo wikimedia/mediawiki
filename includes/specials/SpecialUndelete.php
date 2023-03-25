@@ -238,7 +238,7 @@ class SpecialUndelete extends SpecialPage {
 			foreach ( $request->getValues() as $key => $val ) {
 				$matches = [];
 				if ( preg_match( '/^ts(\d{14})$/', $key, $matches ) ) {
-					array_push( $timestamps, $matches[1] );
+					$timestamps[] = $matches[1];
 				}
 
 				if ( preg_match( '/^fileid(\d+)$/', $key, $matches ) ) {

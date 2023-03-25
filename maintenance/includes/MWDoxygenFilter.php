@@ -71,11 +71,11 @@ class MWDoxygenFilter {
 					// wrongly interpreted as a Doxygen "\command".
 					$content = addcslashes( $content, '\\' );
 					// Look for instances of "@var SomeType".
-					if ( preg_match( '#@var\s+\S+#s', $content ) ) {
+					if ( preg_match( '#@var\s+\S+#', $content ) ) {
 						$buffer = [ 'raw' => $content, 'desc' => null, 'type' => null, 'name' => null ];
 						$buffer['desc'] = preg_replace_callback(
 							// Strip "@var SomeType" part, but remember the type and optional name
-							'#@var\s+(\S+)(\s+)?(\S+)?#s',
+							'#@var\s+(\S+)(\s+)?(\S+)?#',
 							static function ( $matches ) use ( &$buffer ) {
 								$buffer['type'] = $matches[1];
 								$buffer['name'] = $matches[3] ?? null;

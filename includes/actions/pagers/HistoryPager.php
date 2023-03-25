@@ -383,7 +383,6 @@ class HistoryPager extends ReverseChronologicalPager {
 		$classes = [];
 
 		$del = '';
-		$user = $this->getUser();
 		$canRevDelete = $this->getAuthority()->isAllowed( 'deleterevision' );
 		// Show checkboxes for each revision, to allow for revision deletion and
 		// change tags

@@ -114,7 +114,7 @@ class ApiStashEditTest extends ApiTestCase {
 	 * Return a key that can be passed to the cache to obtain a stashed edit object.
 	 *
 	 * @param string $title Title of page
-	 * @param string Content $text Content of edit
+	 * @param string $text Content of edit
 	 * @param User|null $user User who made edit
 	 * @return string
 	 */

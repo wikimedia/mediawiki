@@ -1209,7 +1209,7 @@ SQL;
 		);
 		$row = $res->fetchObject();
 
-		return $row ? ( strtolower( $row->default_transaction_read_only ) === 'on' ) : false;
+		return $row && strtolower( $row->default_transaction_read_only ) === 'on';
 	}
 
 	public static function getAttributes() {

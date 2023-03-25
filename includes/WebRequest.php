@@ -1348,8 +1348,7 @@ class WebRequest {
 	 */
 	public static function canonicalizeIPv6LoopbackAddress( $ip ) {
 		// Code moved from IPUtils library. See T248237#6614927
-		$m = [];
-		if ( preg_match( '/^0*' . IPUtils::RE_IPV6_GAP . '1$/', $ip, $m ) ) {
+		if ( preg_match( '/^0*' . IPUtils::RE_IPV6_GAP . '1$/', $ip ) ) {
 			return '127.0.0.1';
 		}
 		return $ip;

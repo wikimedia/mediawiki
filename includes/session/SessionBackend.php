@@ -301,7 +301,7 @@ final class SessionBackend {
 			$this->store->delete( $this->store->makeKey( 'MWSession', $oldId ) );
 		}
 
-		return $this->id;
+		return (string)$this->id;
 	}
 
 	/**

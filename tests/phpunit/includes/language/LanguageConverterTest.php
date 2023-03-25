@@ -184,10 +184,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	 * @covers LanguageConverter::autoConvert
 	 */
 	public function testAutoConvertT124404() {
-		$testString = '';
-		for ( $i = 0; $i < 1000; $i++ ) {
-			$testString .= 'xxx xxx xxx';
-		}
+		$testString = str_repeat( 'xxx xxx xxx', 1000 );
 		$testString .= "\n<big id='в'></big>";
 		$this->setIniSetting( 'pcre.backtrack_limit', 200 );
 		$result = $this->lc->autoConvert( $testString, 'tg-latn' );

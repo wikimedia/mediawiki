@@ -657,7 +657,7 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 				'DefaultUserOptions' => [
 					'rcdays' => 0,
 					'watchlistdays' => 0,
-					'timecorrection' => 'System|' . (string)( -7 * 60 ),
+					'timecorrection' => 'System|' . ( -7 * 60 ),
 				],
 				'DBerrorLogTZ' => 'America/Phoenix',
 			],

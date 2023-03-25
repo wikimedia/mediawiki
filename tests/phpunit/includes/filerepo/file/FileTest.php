@@ -185,7 +185,7 @@ class FileTest extends MediaWikiMediaTestCase {
 		$reflection_property->setValue( $fileMock, $handlerMock );
 
 		if ( $data['tmpBucketedThumbCache'] !== null ) {
-			foreach ( $data['tmpBucketedThumbCache'] as $bucket => &$tmpBucketed ) {
+			foreach ( $data['tmpBucketedThumbCache'] as &$tmpBucketed ) {
 				$tmpBucketed = str_replace( '/tmp', $tempDir, $tmpBucketed );
 			}
 			$reflection_property = $reflection->getProperty( 'tmpBucketedThumbCache' );

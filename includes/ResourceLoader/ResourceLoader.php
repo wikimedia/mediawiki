@@ -1406,7 +1406,7 @@ MESSAGE;
 	}
 
 	private static function isEmptyObject( stdClass $obj ) {
-		foreach ( $obj as $key => $value ) {
+		foreach ( $obj as $value ) {
 			return false;
 		}
 		return true;

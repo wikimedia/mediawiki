@@ -1047,7 +1047,7 @@ EOF;
 	 * @return bool True if $text appears to be written in $variant
 	 */
 	public function guessVariant( $text, $variant ) {
-		$hasBalinese = preg_match( "/[\x{1B00}-\x{1B7F}]/u", $text, $dummy );
+		$hasBalinese = preg_match( "/[\x{1B00}-\x{1B7F}]/u", $text );
 		return ( $variant == 'ban-bali' ) == $hasBalinese;
 	}
 

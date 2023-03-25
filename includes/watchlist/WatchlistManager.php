@@ -250,8 +250,8 @@ class WatchlistManager {
 			return false;
 		}
 
-		$cacheKey = 'u' . (string)$user->getId() . '-' .
-			(string)$title->getNamespace() . ':' . $title->getDBkey();
+		$cacheKey = 'u' . $user->getId() . '-' .
+			$title->getNamespace() . ':' . $title->getDBkey();
 
 		// avoid isset here, as it'll return false for null entries
 		if ( array_key_exists( $cacheKey, $this->notificationTimestampCache ) ) {

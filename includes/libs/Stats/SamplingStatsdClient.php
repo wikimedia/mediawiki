@@ -150,9 +150,12 @@ class SamplingStatsdClient extends StatsdClient {
 	}
 
 	/**
-	 * @inheritDoc
+	 * Ideally this would override parent::throwException(), but that is private,
+	 * not protected.
+	 *
+	 * @param Exception $exception
 	 */
-	protected function throwException( Exception $exception ) {
+	private function throwException( Exception $exception ) {
 		if ( !$this->getFailSilently() ) {
 			throw $exception;
 		}

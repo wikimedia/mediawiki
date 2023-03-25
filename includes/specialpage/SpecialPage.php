@@ -377,7 +377,7 @@ class SpecialPage implements MessageLocalizer {
 	 *
 	 * @stable to override
 	 * @since 1.19
-	 * @return void|never
+	 * @return void
 	 * @throws PermissionsError
 	 */
 	public function checkPermissions() {
@@ -390,7 +390,7 @@ class SpecialPage implements MessageLocalizer {
 	 * If the wiki is currently in readonly mode, throws a ReadOnlyError
 	 *
 	 * @since 1.19
-	 * @return void|never
+	 * @return void
 	 * @throws ReadOnlyError
 	 */
 	public function checkReadOnly() {

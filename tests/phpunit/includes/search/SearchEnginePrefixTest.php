@@ -393,7 +393,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 	}
 
 	private function mockSearchWithResults( $titleStrings, $limit = 3 ) {
-		$search = $stub = $this->getMockBuilder( SearchEngine::class )
+		$search = $this->getMockBuilder( SearchEngine::class )
 			->onlyMethods( [ 'completionSearchBackend' ] )->getMock();
 
 		$return = SearchSuggestionSet::fromStrings( $titleStrings );

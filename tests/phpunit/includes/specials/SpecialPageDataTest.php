@@ -73,7 +73,7 @@ class SpecialPageDataTest extends SpecialPageTestBase {
 			[ 'Location' => '!Helsinki&action=raw!' ]
 		];
 
-		$cases['Nothing specified'] = [
+		$cases['Nothing specified 2'] = [
 			'/Helsinki',
 			[],
 			[],

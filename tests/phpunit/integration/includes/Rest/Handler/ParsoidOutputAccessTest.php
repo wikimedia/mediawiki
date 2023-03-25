@@ -136,8 +136,8 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$html = preg_replace( '/<!--.*?-->/s', '', $value );
-		$html = trim( preg_replace( '/[\r\n]{2,}/s', "\n", $html ) );
-		$html = trim( preg_replace( '/\s{2,}/s', ' ', $html ) );
+		$html = trim( preg_replace( '/[\r\n]{2,}/', "\n", $html ) );
+		$html = trim( preg_replace( '/\s{2,}/', ' ', $html ) );
 		return $html;
 	}
 

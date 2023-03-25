@@ -29,7 +29,7 @@ class CompoundAuthorizer implements BasicAuthorizerInterface {
 	 * @return CompoundAuthorizer
 	 */
 	public function addAuthorizer( BasicAuthorizerInterface $authorizer ): CompoundAuthorizer {
-		array_push( $this->authorizers, $authorizer );
+		$this->authorizers[] = $authorizer;
 		return $this;
 	}
 

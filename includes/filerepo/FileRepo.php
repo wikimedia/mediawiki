@@ -980,8 +980,8 @@ class FileRepo {
 				'op' => $op,
 				'src' => $src, // storage path (copy) or local file path (store)
 				'dst' => $dstPath,
-				'overwrite' => ( $flags & self::OVERWRITE ) ? true : false,
-				'overwriteSame' => ( $flags & self::OVERWRITE_SAME ) ? true : false,
+				'overwrite' => (bool)( $flags & self::OVERWRITE ),
+				'overwriteSame' => (bool)( $flags & self::OVERWRITE_SAME ),
 			];
 		}
 
@@ -1959,7 +1959,6 @@ class FileRepo {
 	 * Throw an exception if this repo is read-only by design.
 	 * This does not and should not check getReadOnlyReason().
 	 *
-	 * @return void|never
 	 * @throws MWException
 	 */
 	protected function assertWritableRepo() {

@@ -23,7 +23,7 @@ class UpdateQueryBuilderTest extends PHPUnit\Framework\TestCase {
 		$this->uqb->caller( $fname )->execute();
 		$actual = $this->db->getLastSqls();
 		$actual = preg_replace( '/ +/', ' ', $actual );
-		$actual = preg_replace( '/ +$/', '', $actual );
+		$actual = rtrim( $actual, " " );
 		$this->assertEquals( $expected, $actual );
 	}
 

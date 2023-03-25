@@ -69,7 +69,7 @@ class HTMLTextAreaField extends HTMLFormField {
 			] + $this->getTooltipAndAccessKey();
 
 		if ( $this->mClass !== '' ) {
-			array_push( $classes, $this->mClass );
+			$classes[] = $this->mClass;
 		}
 		if ( $this->mUseEditFont ) {
 			$userOptionsLookup = MediaWikiServices::getInstance()
@@ -78,13 +78,9 @@ class HTMLTextAreaField extends HTMLFormField {
 			// * mw-editfont-monospace
 			// * mw-editfont-sans-serif
 			// * mw-editfont-serif
-			array_push(
-				$classes,
-				'mw-editfont-' . $userOptionsLookup->getOption(
-					$this->mParent->getUser(),
-					'editfont'
-				)
-			);
+			$classes[] =
+				'mw-editfont-' .
+				$userOptionsLookup->getOption( $this->mParent->getUser(), 'editfont' );
 			$this->mParent->getOutput()->addModuleStyles( 'mediawiki.editfont.styles' );
 		}
 		if ( $this->mPlaceholder !== '' ) {
@@ -120,7 +116,7 @@ class HTMLTextAreaField extends HTMLFormField {
 		$attribs = $this->getTooltipAndAccessKeyOOUI();
 
 		if ( $this->mClass !== '' ) {
-			array_push( $classes, $this->mClass );
+			$classes[] = $this->mClass;
 		}
 		if ( $this->mUseEditFont ) {
 			$userOptionsLookup = MediaWikiServices::getInstance()
@@ -129,13 +125,9 @@ class HTMLTextAreaField extends HTMLFormField {
 			// * mw-editfont-monospace
 			// * mw-editfont-sans-serif
 			// * mw-editfont-serif
-			array_push(
-				$classes,
-				'mw-editfont-' . $userOptionsLookup->getOption(
-					$this->mParent->getUser(),
-					'editfont'
-				)
-			);
+			$classes[] =
+				'mw-editfont-' .
+				$userOptionsLookup->getOption( $this->mParent->getUser(), 'editfont' );
 			$this->mParent->getOutput()->addModuleStyles( 'mediawiki.editfont.styles' );
 		}
 		if ( $this->mPlaceholder !== '' ) {

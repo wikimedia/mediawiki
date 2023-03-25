@@ -20,7 +20,6 @@ class ImportFailureTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @param ImportSource $source
-	 *
 	 * @return WikiImporter
 	 */
 	private function getImporter( ImportSource $source ) {
@@ -47,7 +46,7 @@ class ImportFailureTest extends MediaWikiLangTestCase {
 	/**
 	 * @param string $testName
 	 *
-	 * @return string[]
+	 * @return string
 	 */
 	private function getFileToImport( string $testName ) {
 		return __DIR__ . "/../../data/import/$testName.xml";

@@ -383,7 +383,7 @@ class SpecialVersion extends SpecialPage {
 	 * @param string $flags If set to 'nodb', the language-specific parantheses are not used.
 	 * @param Language|string|null $lang Language in which to render the version; ignored if
 	 *   $flags is set to 'nodb'.
-	 * @return mixed
+	 * @return string
 	 */
 	public static function getVersion( $flags = '', $lang = null ) {
 		global $IP;
@@ -412,7 +412,7 @@ class SpecialVersion extends SpecialPage {
 	 * the Git SHA1 of head if available.
 	 * The fallback is just MW_VERSION.
 	 *
-	 * @return mixed
+	 * @return string
 	 */
 	public static function getVersionLinked() {
 		$gitVersion = self::getVersionLinkedGit();

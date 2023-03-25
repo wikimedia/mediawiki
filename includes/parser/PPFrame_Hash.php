@@ -523,7 +523,7 @@ class PPFrame_Hash implements PPFrame {
 
 	/**
 	 * @param string|false $level
-	 * @return array|false|string
+	 * @return false|string
 	 */
 	public function getPDBK( $level = false ) {
 		if ( $level === false ) {

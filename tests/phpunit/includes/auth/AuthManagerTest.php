@@ -1144,7 +1144,6 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 					AuthManagerLoginAuthenticateAuditHook::class, $this->never() );
 			}
 
-			$ex = null;
 			try {
 				if ( !$i ) {
 					$ret = $this->manager->beginAuthentication( [ $req ], 'http://localhost/' );
@@ -2259,7 +2258,6 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 				$this->hook( 'LocalUserCreated', LocalUserCreatedHook::class, $this->never() );
 			}
 
-			$ex = null;
 			try {
 				if ( $first ) {
 					$userReq = new UsernameAuthenticationRequest;
@@ -3096,7 +3094,6 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 				->willReturn( $good );
 		}
 
-		$primaries = [];
 		foreach ( [
 			PrimaryAuthenticationProvider::TYPE_NONE,
 			PrimaryAuthenticationProvider::TYPE_CREATE,
@@ -3275,8 +3272,6 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			}
 			return $ret;
 		};
-
-		$good = StatusValue::newGood();
 
 		$primary1 = $this->createMock( AbstractPrimaryAuthenticationProvider::class );
 		$primary1->method( 'getUniqueId' )
@@ -3706,7 +3701,6 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		}
 
 		$first = true;
-		$created = false;
 		$expectLog = [];
 		foreach ( $managerResponses as $i => $response ) {
 			if ( $response instanceof AuthenticationResponse &&
@@ -3715,7 +3709,6 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 				$expectLog[] = [ LogLevel::INFO, 'Account linked to {user} by primary' ];
 			}
 
-			$ex = null;
 			try {
 				if ( $first ) {
 					$ret = $this->manager->beginAccountLink( $user, [ $req ], 'http://localhost/' );

@@ -488,7 +488,7 @@ class DatabaseSqlite extends Database {
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
 
-		return $res->numRows() ? true : false;
+		return (bool)$res->numRows();
 	}
 
 	/**

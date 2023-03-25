@@ -129,7 +129,7 @@ class ApiDeleteTest extends ApiTestCase {
 		// test deletion without permission
 		try {
 			$user = new User();
-			$apiResult = $this->doApiRequest( [
+			$this->doApiRequest( [
 				'action' => 'delete',
 				'title' => $name,
 				'token' => $user->getEditToken(),

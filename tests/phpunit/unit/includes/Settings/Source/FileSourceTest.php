@@ -18,7 +18,6 @@ class FileSourceTest extends TestCase {
 
 	public function testLoad() {
 		$source = new FileSource( __DIR__ . '/fixtures/settings.json' );
-		$settings = $source->load();
 
 		$this->assertSame(
 			[ 'config' => [ 'MySetting' => 'BlaBla' ] ],
@@ -28,7 +27,6 @@ class FileSourceTest extends TestCase {
 
 	public function testLoadFormat() {
 		$source = new FileSource( __DIR__ . '/fixtures/settings.json', new JsonFormat() );
-		$settings = $source->load();
 
 		$this->assertSame(
 			[ 'config' => [ 'MySetting' => 'BlaBla' ] ],

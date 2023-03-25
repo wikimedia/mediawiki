@@ -620,10 +620,10 @@ class SkinTemplate extends Skin {
 	 */
 	private function getCategoryPortletsData( array $links ): array {
 		$categories = [];
-		foreach ( $links as $group => $links ) {
+		foreach ( $links as $group => $groupLinks ) {
 			$allLinks = [];
 			$groupName = 'category-' . $group;
-			foreach ( $links as $i => $link ) {
+			foreach ( $groupLinks as $i => $link ) {
 				$allLinks[$groupName . '-' . $i] = [
 					'html' => $link,
 				];
@@ -1459,7 +1459,7 @@ class SkinTemplate extends Skin {
 			} else {
 				$text = $special->getShortDescription( $relatedTitle->getSubpageText() );
 			}
-			$specialAssociatedNavigationLinks['special-specialAssociatedNavigationLinks-link-' . strval( $i ) ] = [
+			$specialAssociatedNavigationLinks['special-specialAssociatedNavigationLinks-link-' . $i ] = [
 				'text' => $text,
 				'href' => $relatedTitle->getLocalURL(),
 				'class' => $relatedTitle->equals( $title ) ? 'selected' : '',

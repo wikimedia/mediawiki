@@ -58,7 +58,7 @@ require_once __DIR__ . '/../includes/PHPVersionCheck.php';
 wfEntryPointCheck( 'text' );
 
 /**
- * @var string|false
+ * @var string|false $maintClass
  * @phan-var class-string|false
  */
 $maintClass = false;

@@ -419,7 +419,7 @@ abstract class DatabaseMysqlBase extends Database {
 		$res = $this->query( "SELECT @@GLOBAL.read_only AS Value", __METHOD__, $flags );
 		$row = $res->fetchObject();
 
-		return $row ? (bool)$row->Value : false;
+		return $row && (bool)$row->Value;
 	}
 
 	/**
@@ -719,7 +719,7 @@ abstract class DatabaseMysqlBase extends Database {
 
 		$allViews = [];
 		foreach ( $res as $row ) {
-			array_push( $allViews, $row->$propertyName );
+			$allViews[] = $row->$propertyName;
 		}
 
 		if ( $prefix === null || $prefix === '' ) {
@@ -730,7 +730,7 @@ abstract class DatabaseMysqlBase extends Database {
 		foreach ( $allViews as $viewName ) {
 			// Does the name of this VIEW start with the table-prefix?
 			if ( strpos( $viewName, $prefix ) === 0 ) {
-				array_push( $filteredViews, $viewName );
+				$filteredViews[] = $viewName;
 			}
 		}
 

@@ -482,7 +482,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 			$dbkey = substr( $dbkey, 0, strlen( $dbkey ) - strlen( $fragment ) );
 			# remove whitespace again: prevents "Foo_bar_#"
 			# becoming "Foo_bar_"
-			$dbkey = preg_replace( '/_*$/', '', $dbkey );
+			$dbkey = rtrim( $dbkey, "_" );
 		}
 
 		# Reject illegal characters.

@@ -235,7 +235,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 
 	/**
 	 * @param array $row Row from the interwiki table, possibly via memcached
-	 * @return Interwiki|false False if row is missing a `iw_url` value
+	 * @return Interwiki
 	 */
 	private function makeFromRow( array $row ) {
 		$url = $row['iw_url'];

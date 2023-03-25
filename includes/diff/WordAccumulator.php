@@ -70,10 +70,10 @@ class WordAccumulator {
 	private function flushLine( $new_tag ) {
 		$this->flushGroup( $new_tag );
 		if ( $this->line != '' ) {
-			array_push( $this->lines, $this->line );
+			$this->lines[] = $this->line;
 		} else {
 			# make empty lines visible by inserting an NBSP
-			array_push( $this->lines, "\u{00A0}" );
+			$this->lines[] = "\u{00A0}";
 		}
 		$this->line = '';
 	}

@@ -156,7 +156,7 @@ class ThrottlePreAuthenticationProviderTest extends MediaWikiIntegrationTestCase
 			'attempt #2'
 		);
 		$this->assertEquals(
-			$succeed ? true : false,
+			(bool)$succeed,
 			$provider->testForAccountCreation( $user, $creator, [] )->isOK(),
 			'attempt #3'
 		);

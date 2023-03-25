@@ -120,15 +120,12 @@ class SpecialMute extends FormSpecialPage {
 	 * @return bool
 	 */
 	public function onSubmit( array $data, HTMLForm $form = null ) {
-		$hookData = [];
 		foreach ( $data as $userOption => $value ) {
-			$hookData[$userOption]['before'] = $this->isTargetMuted( $userOption );
 			if ( $value ) {
 				$this->muteTarget( $userOption );
 			} else {
 				$this->unmuteTarget( $userOption );
 			}
-			$hookData[$userOption]['after'] = (bool)$value;
 		}
 
 		return true;

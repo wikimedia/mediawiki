@@ -936,8 +936,9 @@ class PermissionManager {
 			return $errors;
 		}
 
-		$isSubPage = $this->nsInfo->hasSubpages( $title->getNamespace() ) ?
-			strpos( $title->getText(), '/' ) !== false : false;
+		$isSubPage =
+			$this->nsInfo->hasSubpages( $title->getNamespace() ) &&
+			strpos( $title->getText(), '/' ) !== false;
 
 		if ( $action == 'create' ) {
 			if (

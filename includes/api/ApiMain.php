@@ -1315,7 +1315,7 @@ class ApiMain extends ApiBase {
 			// None of the rest have any messages for non-error types
 		} else {
 			// TODO: Avoid embedding arbitrary class names in the error code.
-			$class = preg_replace( '#^Wikimedia\\\Rdbms\\\#', '', get_class( $e ) );
+			$class = preg_replace( '#^Wikimedia\\\\Rdbms\\\\#', '', get_class( $e ) );
 			$code = 'internal_api_error_' . $class;
 			$data = [ 'errorclass' => get_class( $e ) ];
 			if ( MWExceptionRenderer::shouldShowExceptionDetails() ) {

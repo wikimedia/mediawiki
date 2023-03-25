@@ -68,7 +68,7 @@ class UserEditTracker {
 		}
 
 		$userId = $user->getId();
-		$cacheKey = 'u' . (string)$userId;
+		$cacheKey = 'u' . $userId;
 
 		if ( isset( $this->userEditCountCache[ $cacheKey ] ) ) {
 			return $this->userEditCountCache[ $cacheKey ];
@@ -204,7 +204,7 @@ class UserEditTracker {
 		}
 
 		$userId = $user->getId();
-		$cacheKey = 'u' . (string)$userId;
+		$cacheKey = 'u' . $userId;
 
 		unset( $this->userEditCountCache[ $cacheKey ] );
 	}
@@ -221,7 +221,7 @@ class UserEditTracker {
 		}
 
 		$userId = $user->getId();
-		$cacheKey = 'u' . (string)$userId;
+		$cacheKey = 'u' . $userId;
 
 		$this->userEditCountCache[ $cacheKey ] = $editCount;
 	}

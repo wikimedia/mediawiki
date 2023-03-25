@@ -1384,11 +1384,11 @@ class Parser {
 				$attributes = Sanitizer::fixTagAttributes( $attributes, 'table' );
 
 				$outLine = str_repeat( '<dl><dd>', $indent_level ) . "<table{$attributes}>";
-				array_push( $td_history, false );
-				array_push( $last_tag_history, '' );
-				array_push( $tr_history, false );
-				array_push( $tr_attributes, '' );
-				array_push( $has_opened_tr, false );
+				$td_history[] = false;
+				$last_tag_history[] = '';
+				$tr_history[] = false;
+				$tr_attributes[] = '';
+				$has_opened_tr[] = false;
 			} elseif ( count( $td_history ) == 0 ) {
 				# Don't do any of the following
 				$out .= $outLine . "\n";
@@ -1423,12 +1423,12 @@ class Parser {
 				$attributes = $this->mStripState->unstripBoth( $line );
 				$attributes = Sanitizer::fixTagAttributes( $attributes, 'tr' );
 				array_pop( $tr_attributes );
-				array_push( $tr_attributes, $attributes );
+				$tr_attributes[] = $attributes;
 
 				$line = '';
 				$last_tag = array_pop( $last_tag_history );
 				array_pop( $has_opened_tr );
-				array_push( $has_opened_tr, true );
+				$has_opened_tr[] = true;
 
 				if ( array_pop( $tr_history ) ) {
 					$line = '</tr>';
@@ -1439,9 +1439,9 @@ class Parser {
 				}
 
 				$outLine = $line;
-				array_push( $tr_history, false );
-				array_push( $td_history, false );
-				array_push( $last_tag_history, '' );
+				$tr_history[] = false;
+				$td_history[] = false;
+				$last_tag_history[] = '';
 			} elseif ( $first_character === '|'
 				|| $first_character === '!'
 				|| $first_two === '|+'
@@ -1474,10 +1474,10 @@ class Parser {
 						if ( !array_pop( $tr_history ) ) {
 							$previous = "<tr{$tr_after}>\n";
 						}
-						array_push( $tr_history, true );
-						array_push( $tr_attributes, '' );
+						$tr_history[] = true;
+						$tr_attributes[] = '';
 						array_pop( $has_opened_tr );
-						array_push( $has_opened_tr, true );
+						$has_opened_tr[] = true;
 					}
 
 					$last_tag = array_pop( $last_tag_history );
@@ -1496,7 +1496,7 @@ class Parser {
 						$last_tag = '';
 					}
 
-					array_push( $last_tag_history, $last_tag );
+					$last_tag_history[] = $last_tag;
 
 					# A cell could contain both parameters and data
 					$cell_data = explode( '|', $cell, 2 );
@@ -1517,7 +1517,7 @@ class Parser {
 					}
 
 					$outLine .= $cell;
-					array_push( $td_history, true );
+					$td_history[] = true;
 				}
 			}
 			$out .= $outLine . "\n";
@@ -4166,7 +4166,7 @@ class Parser {
 	 * @param string $text
 	 * @param string $origText Original, untouched wikitext
 	 * @param bool $isMain
-	 * @return mixed|string
+	 * @return string
 	 */
 	private function finalizeHeadings( $text, $origText, $isMain = true ) {
 		# Inhibit editsection links if requested in the page
@@ -5545,7 +5545,7 @@ class Parser {
 		if ( $value === '' ) {
 			$type = 'no-link';
 		} elseif ( preg_match( "/^((?i)$prots)/", $value ) ) {
-			if ( preg_match( "/^((?i)$prots)$addr$chars*$/u", $value, $m ) ) {
+			if ( preg_match( "/^((?i)$prots)$addr$chars*$/u", $value ) ) {
 				$this->mOutput->addExternalLink( $value );
 				$type = 'link-url';
 				$target = $value;
@@ -5603,7 +5603,7 @@ class Parser {
 	/**
 	 * @param string $caption
 	 * @param LinkHolderArray|false $holders
-	 * @return mixed|string
+	 * @return string
 	 */
 	private function stripAltText( $caption, $holders ) {
 		# Strip bad stuff out of the title (tooltip).  We can't just use

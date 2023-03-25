@@ -25,7 +25,7 @@ class SelectQueryBuilderTest extends PHPUnit\Framework\TestCase {
 	private function assertSQL( $expected ) {
 		$actual = $this->sqb->getSQL();
 		$actual = preg_replace( '/ +/', ' ', $actual );
-		$actual = preg_replace( '/ +$/', '', $actual );
+		$actual = rtrim( $actual, " " );
 		$this->assertEquals( $expected, $actual );
 	}
 

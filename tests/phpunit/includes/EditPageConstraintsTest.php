@@ -136,7 +136,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		$ep->setContextTitle( $title );
 		$ep->importFormData( $req );
 
-		$bot = isset( $edit['bot'] ) ? (bool)$edit['bot'] : false;
+		$bot = !empty( $edit['bot'] );
 
 		// this is where the edit happens!
 		// Note: don't want to use EditPage::attemptSave, because it messes with $wgOut

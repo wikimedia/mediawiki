@@ -1406,7 +1406,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 		// We don't reset the categories, for some reason, only the links
 		$expectedNormalCats = array_merge( [ 'Initial page' ], $expectedNormal );
-		$expectedCats = array_merge( $expectedHidden, $expectedNormalCats );
 
 		$this->doCategoryAsserts( $op, $expectedNormalCats, $expectedHidden );
 		$this->doCategoryLinkAsserts( $op, $expectedNormal, $expectedHidden );

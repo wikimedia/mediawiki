@@ -97,7 +97,7 @@ class SpecialPageAction extends FormlessAction {
 	public function doesWrites() {
 		$special = $this->getSpecialPage();
 
-		return $special ? $special->doesWrites() : false;
+		return $special && $special->doesWrites();
 	}
 
 	/**
