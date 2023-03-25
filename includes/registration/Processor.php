@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Processors read associated arrays and register
- * whatever is required
+ * Generic processor that reads associated arrays and registers whatever is required.
  *
+ * @ingroup ExtensionRegistry
  * @since 1.25
  */
 interface Processor {

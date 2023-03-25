@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,18 +15,19 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @author Legoktm
- * @author Florian Schmidt
+ * @file
  */
 
 use Composer\Semver\Constraint\Constraint;
 use Composer\Semver\VersionParser;
 
 /**
- * Provides functions to check a set of extensions with dependencies against
- * a set of loaded extensions and given version information.
+ * Check whether extensions and their dependencies meet certain version requirements.
  *
  * @since 1.29
+ * @ingroup ExtensionRegistry
+ * @author Legoktm
+ * @author Florian Schmidt
  */
 class VersionChecker {
 	/**

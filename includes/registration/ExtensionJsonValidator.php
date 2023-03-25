@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,10 +30,10 @@ use Seld\JsonLint\ParsingException;
  * validateRegistrationFile.php, and the PHPUnit structure test suite
  * (ExtensionJsonValidationTest).
  *
- * The files are normally read by the ExtensionRegistry
- * and ExtensionProcessor classes.
+ * The files are normally read by the ExtensionRegistry and ExtensionProcessor classes.
  *
  * @since 1.29
+ * @ingroup ExtensionRegistry
  */
 class ExtensionJsonValidator {
 

@@ -1,16 +1,18 @@
 <?php
+use MediaWiki\Html\TemplateParser;
+
 /**
- * Exception for if we cannot mtime the extension (or skin)
+ * Thrown when ExtensionRegistry cannot open the extension.json or skin.json file.
  *
  * We handle this case specially, because it is one of the more
  * common errors a new MW sysadmin is likely to encounter and we
  * want their initial experience to be good. wfLoadExtension()
  * generally happens before MWExceptionRenderer gets installed
  * so we cannot use that.
+ *
+ * @ingroup ExtensionRegistry
+ * @internal
  */
-
-use MediaWiki\Html\TemplateParser;
-
 class MissingExtensionException extends Exception {
 	/** @var bool */
 	private $isSkin;

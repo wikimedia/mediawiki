@@ -7,10 +7,17 @@ use MediaWiki\ShellDisabledError;
 use Wikimedia\ScopedCallback;
 
 /**
- * The Registry loads JSON files, and uses a Processor
- * to extract information from them. It also registers
- * classes with the autoloader.
+ * @defgroup ExtensionRegistry ExtensionRegistry
  *
+ * For higher level documentation, see <https://www.mediawiki.org/wiki/Manual:Extension_registration/Architecture>.
+ */
+
+/**
+ * Load JSON files, and uses a Processor to extract information.
+ *
+ * This also adds the extension's classes to the AutoLoader.
+ *
+ * @ingroup ExtensionRegistry
  * @since 1.25
  */
 class ExtensionRegistry {
