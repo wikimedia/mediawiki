@@ -892,7 +892,6 @@ class ApiEditPageTest extends ApiTestCase {
 		// to insert new revision rows at once and the first one to succeed
 		// gets rolled back.
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
-		$titleObj = Title::newFromText( $name );
 
 		$revId1 = $this->editPage( $name, '1' )->getNewRevision()->getId();
 		$revId2 = $this->editPage( $name, '2' )->getNewRevision()->getId();

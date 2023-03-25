@@ -5545,7 +5545,7 @@ class Parser {
 		if ( $value === '' ) {
 			$type = 'no-link';
 		} elseif ( preg_match( "/^((?i)$prots)/", $value ) ) {
-			if ( preg_match( "/^((?i)$prots)$addr$chars*$/u", $value, $m ) ) {
+			if ( preg_match( "/^((?i)$prots)$addr$chars*$/u", $value ) ) {
 				$this->mOutput->addExternalLink( $value );
 				$type = 'link-url';
 				$target = $value;

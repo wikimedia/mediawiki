@@ -353,7 +353,6 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 			}
 
 			if ( $val['name'] === 'viscount' ) {
-				$viscountFound = true;
 				$this->assertSame( [ 'perambulate' ], $val['rights'] );
 				$this->assertSame( $userAllGroups, $val['add'] );
 			} elseif ( $val['name'] === 'bot' ) {

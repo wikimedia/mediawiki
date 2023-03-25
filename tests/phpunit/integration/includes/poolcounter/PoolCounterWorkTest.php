@@ -222,8 +222,6 @@ class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::execute
 	 */
 	public function testDoWorkRaiseException() {
-		$workerResults = 'SomeStringForResult';
-
 		$worker = $this->configureFixture(
 			[ 'doWork' => $this->throwException( new MWException() ) ],
 			[

@@ -175,7 +175,6 @@ abstract class GenericArrayObjectTest extends PHPUnit\Framework\TestCase {
 	 * @param callable $function
 	 */
 	protected function checkTypeChecks( $function ) {
-		$excption = null;
 		$list = $this->getNew();
 
 		$elementClass = $list->getObjectType();

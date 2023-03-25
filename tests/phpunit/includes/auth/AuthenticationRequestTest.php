@@ -207,7 +207,7 @@ class AuthenticationRequestTest extends \MediaWikiIntegrationTestCase {
 
 		$fields = AuthenticationRequest::mergeFieldInfo( [ $req1 ] );
 		$expect = $req1->getFieldInfo();
-		foreach ( $expect as $name => &$options ) {
+		foreach ( $expect as &$options ) {
 			$options['optional'] = !empty( $options['optional'] );
 			$options['sensitive'] = !empty( $options['sensitive'] );
 		}
@@ -253,7 +253,7 @@ class AuthenticationRequestTest extends \MediaWikiIntegrationTestCase {
 
 		$fields = AuthenticationRequest::mergeFieldInfo( [ $req1, $req2 ] );
 		$expect = $req1->getFieldInfo() + $req2->getFieldInfo();
-		foreach ( $expect as $name => &$options ) {
+		foreach ( $expect as &$options ) {
 			$options['sensitive'] = !empty( $options['sensitive'] );
 		}
 		$expect['string1']['optional'] = false;

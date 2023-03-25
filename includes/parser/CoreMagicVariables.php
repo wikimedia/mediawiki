@@ -54,7 +54,6 @@ class CoreMagicVariables {
 		LoggerInterface $logger
 	): ?string {
 		$pageLang = $parser->getTargetLanguage();
-		$title = $parser->getTitle();
 
 		switch ( $id ) {
 			case '!':

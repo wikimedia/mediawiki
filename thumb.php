@@ -430,7 +430,7 @@ function wfProxyThumbnailRequest( $img, $thumbName ) {
 	}
 
 	// Send request to proxied service
-	$status = $req->execute();
+	$req->execute();
 
 	\MediaWiki\Request\HeaderCallback::warnIfHeadersSent();
 

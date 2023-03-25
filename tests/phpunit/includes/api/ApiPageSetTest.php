@@ -96,8 +96,6 @@ class ApiPageSetTest extends ApiTestCase {
 	}
 
 	public function testRedirectMergePolicyRedirectLoop() {
-		$loopA = Title::makeTitle( NS_MAIN, 'UTPageRedirectOne' );
-		$loopB = Title::makeTitle( NS_MAIN, 'UTPageRedirectTwo' );
 		$this->editPage( 'UTPageRedirectOne', '#REDIRECT [[UTPageRedirectTwo]]' );
 		$this->editPage( 'UTPageRedirectTwo', '#REDIRECT [[UTPageRedirectOne]]' );
 		[ $target, $pageSet ] = $this->createPageSetWithRedirect(

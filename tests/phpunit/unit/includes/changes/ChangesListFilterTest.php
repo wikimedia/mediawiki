@@ -30,7 +30,7 @@ class ChangesListFilterTest extends MediaWikiUnitTestCase {
 		$this->expectExceptionMessage(
 			"Filter names may not contain '_'.  Use the naming convention: 'lowercase'"
 		);
-		$filter = new MockChangesListFilter(
+		new MockChangesListFilter(
 			[
 				'group' => $this->group,
 				'name' => 'some_name',

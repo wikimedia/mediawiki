@@ -254,7 +254,7 @@ class ApiBlockTest extends ApiTestCase {
 
 	public function testBlockWithRestrictionsPage() {
 		$title = 'Foo';
-		$page = $this->getExistingTestPage( $title );
+		$this->getExistingTestPage( $title );
 
 		$this->doBlock( [
 			'partial' => true,

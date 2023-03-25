@@ -530,7 +530,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		);
 
 		$m = $this->getMigration( $stage );
-		$result = $m->getWhere( $this->db, 'am1_user', 'Foo' );
+		$m->getWhere( $this->db, 'am1_user', 'Foo' );
 	}
 
 	/**

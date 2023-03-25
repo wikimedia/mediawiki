@@ -678,7 +678,7 @@ class DumpAsserter {
 	 */
 	public function stripTestTags( $text ) {
 		$text = preg_replace( '@<!--.*?-->@s', '', $text );
-		$text = preg_replace( '@</?test:[^>]+>@s', '', $text );
+		$text = preg_replace( '@</?test:[^>]+>@', '', $text );
 		return $text;
 	}
 

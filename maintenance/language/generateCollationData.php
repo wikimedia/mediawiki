@@ -46,6 +46,8 @@ class GenerateCollationData extends Maintenance {
 
 	public $debugOutFile;
 
+	private $groups;
+
 	public function __construct() {
 		parent::__construct();
 		$this->addOption( 'data-dir', 'A directory on the local filesystem ' .

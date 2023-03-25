@@ -30,8 +30,6 @@ class AbstractPrimaryAuthenticationProviderTest extends \MediaWikiIntegrationTes
 		} catch ( \BadMethodCallException $ex ) {
 		}
 
-		$req = $this->getMockForAbstractClass( AuthenticationRequest::class );
-
 		$this->assertTrue( $provider->providerAllowsPropertyChange( 'foo' ) );
 		$this->assertEquals(
 			\StatusValue::newGood(),

@@ -939,12 +939,12 @@ END
 			'startup response undisrupted (T152266)'
 		);
 		$this->assertMatchesRegularExpression(
-			'/register\([^)]+"ferry",\s*""/s',
+			'/register\([^)]+"ferry",\s*""/',
 			$response,
 			'startup response registers broken module'
 		);
 		$this->assertMatchesRegularExpression(
-			'/state\([^)]+"ferry":\s*"error"/s',
+			'/state\([^)]+"ferry":\s*"error"/',
 			$response,
 			'startup response sets state to error'
 		);
