@@ -9,7 +9,6 @@ class SearchResultThumbnailProviderTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * List of titles to create.
-	 * @param array
 	 */
 	protected const TITLES = [
 		'file' => [
@@ -32,7 +31,6 @@ class SearchResultThumbnailProviderTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Map of page id to thumbnail page id, both of which are expected to be present in self::TITLES.
 	 * This map will be used to build a mock response for the SearchResultProvideThumbnail hook.
-	 * @param array
 	 */
 	protected const HOOK_PROVIDED_THUMBNAILS_BY_ID = [
 		self::TITLES['article_with_thumb']['id'] => self::TITLES['file']['id'],

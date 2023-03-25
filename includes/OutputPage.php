@@ -1566,7 +1566,7 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * @param array $categories
-	 * @return bool|IResultWrapper
+	 * @return IResultWrapper
 	 */
 	protected function addCategoryLinksToLBAndGetResult( array $categories ) {
 		# Add the links to a LinkBatch

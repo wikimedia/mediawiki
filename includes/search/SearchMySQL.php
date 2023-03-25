@@ -391,7 +391,7 @@ class SearchMySQL extends SearchDatabase {
 	 * Converts some characters for MySQL's indexing to grok it correctly,
 	 * and pads short words to overcome limitations.
 	 * @param string $string
-	 * @return mixed|string
+	 * @return string
 	 */
 	public function normalizeText( $string ) {
 		$out = parent::normalizeText( $string );

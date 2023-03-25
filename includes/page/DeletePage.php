@@ -765,7 +765,7 @@ class DeletePage {
 		$rowsInsert = [];
 		$revids = [];
 
-		/** @var int[] Revision IDs of edits that were made by IPs */
+		/** @var int[] $ipRevIds Revision IDs of edits that were made by IPs */
 		$ipRevIds = [];
 
 		$done = true;

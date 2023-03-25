@@ -627,10 +627,8 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 		throw new MWException( 'enumFiles is not supported by ' . static::class );
 	}
 
-	/**
-	 * @throws MWException
-	 */
 	protected function assertWritableRepo() {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new MWException( static::class . ': write operations are not supported.' );
 	}
 }

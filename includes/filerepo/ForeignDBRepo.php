@@ -115,6 +115,7 @@ class ForeignDBRepo extends LocalRepo {
 	}
 
 	protected function assertWritableRepo() {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new MWException( static::class . ': write operations are not supported.' );
 	}
 

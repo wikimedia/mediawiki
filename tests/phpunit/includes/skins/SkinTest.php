@@ -373,8 +373,8 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 	 * @covers Skin::getPersonalToolsForMakeListItem
 	 * @dataProvider provideGetPersonalToolsForMakeListItem
 	 * @param array $urls
-	 * @param array $applyClassesToListItems
-	 * @param string $expected
+	 * @param bool $applyClassesToListItems
+	 * @param array $expected
 	 */
 	public function testGetPersonalToolsForMakeListItem( array $urls, bool $applyClassesToListItems, array $expected ) {
 		$skin = new class extends Skin {

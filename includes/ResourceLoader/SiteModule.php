@@ -31,8 +31,6 @@ use MediaWiki\MainConfigNames;
  * @internal
  */
 class SiteModule extends WikiModule {
-	/** @var string[] What client platforms the module targets (e.g. desktop, mobile) */
-
 	/**
 	 * Get list of pages used by this module
 	 *

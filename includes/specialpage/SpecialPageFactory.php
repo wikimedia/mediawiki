@@ -1506,7 +1506,7 @@ class SpecialPageFactory {
 	 * @param PageReference $page
 	 * @param IContextSource $context
 	 * @param LinkRenderer|null $linkRenderer (since 1.28)
-	 * @return string HTML fragment
+	 * @return bool|Title
 	 */
 	public function capturePath(
 		PageReference $page, IContextSource $context, LinkRenderer $linkRenderer = null

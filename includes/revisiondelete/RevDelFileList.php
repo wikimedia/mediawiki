@@ -21,6 +21,7 @@
 
 use MediaWiki\Page\PageIdentity;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactory;
 
 /**
@@ -82,7 +83,7 @@ class RevDelFileList extends RevDelList {
 
 	/**
 	 * @param IDatabase $db
-	 * @return mixed
+	 * @return IResultWrapper
 	 */
 	public function doQuery( $db ) {
 		$archiveNames = [];

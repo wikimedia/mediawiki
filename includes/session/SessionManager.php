@@ -473,7 +473,7 @@ class SessionManager implements SessionManagerInterface {
 			$this->sessionProviders = [];
 			$objectFactory = MediaWikiServices::getInstance()->getObjectFactory();
 			foreach ( $this->config->get( MainConfigNames::SessionProviders ) as $spec ) {
-				/** @var SessionProvider */
+				/** @var SessionProvider $provider */
 				$provider = $objectFactory->createObject( $spec );
 				$provider->init(
 					$this->logger,

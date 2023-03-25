@@ -445,7 +445,7 @@ if ( MW_ENTRY_POINT === 'index' ) {
 }
 
 /**
- * @var MediaWiki\Session\SessionId|null The persistent session ID (if any) loaded at startup
+ * @var MediaWiki\Session\SessionId|null $wgInitialSessionId The persistent session ID (if any) loaded at startup
  */
 $wgInitialSessionId = null;
 if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {

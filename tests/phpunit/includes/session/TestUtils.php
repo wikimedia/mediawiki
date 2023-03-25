@@ -14,7 +14,7 @@ class TestUtils {
 	/**
 	 * Override the singleton for unit testing
 	 * @param SessionManager|null $manager
-	 * @return \\Wikimedia\ScopedCallback|null
+	 * @return \Wikimedia\ScopedCallback|null
 	 */
 	public static function setSessionManagerSingleton( SessionManager $manager = null ) {
 		session_write_close();

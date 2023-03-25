@@ -278,7 +278,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @param Title $title Title object of the image that is added to the gallery
 	 * @param string $html Additional HTML text to be shown. The name and size
 	 *   of the image are always shown.
-	 * @param string $alt Alt text for the image
+	 * @param string|null $alt Alt text for the image, or null to omit
 	 * @param string $link Override image link (optional)
 	 * @param array $handlerOpts Array of options for image handler (aka page number)
 	 * @param int $loading Sets loading attribute of the underlying <img> (optional)

@@ -119,7 +119,7 @@ class WikiMap {
 	 *
 	 * @todo We can give more info than just the wiki id!
 	 * @param string $wikiID Wiki'd id (generally database name)
-	 * @return string|int Wiki's name or $wiki_id if the wiki was not found
+	 * @return string Wiki's name or $wiki_id if the wiki was not found
 	 */
 	public static function getWikiName( $wikiID ) {
 		$wiki = self::getWiki( $wikiID );

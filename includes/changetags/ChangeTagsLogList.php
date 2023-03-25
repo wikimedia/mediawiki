@@ -21,6 +21,7 @@
 
 use MediaWiki\Permissions\Authority;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Stores a list of taggable log entries.
@@ -33,7 +34,7 @@ class ChangeTagsLogList extends ChangeTagsList {
 
 	/**
 	 * @param IDatabase $db
-	 * @return mixed
+	 * @return IResultWrapper
 	 */
 	public function doQuery( $db ) {
 		$ids = array_map( 'intval', $this->ids );
