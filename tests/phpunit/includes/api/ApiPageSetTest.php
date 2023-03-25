@@ -139,6 +139,65 @@ class ApiPageSetTest extends ApiTestCase {
 		);
 	}
 
+	public static function provideConversionWithRedirects() {
+		return [
+			'convert, redirect, convert' => [
+				[
+					[ '維基百科1', '#REDIRECT [[维基百科2]]' ],
+					[ '維基百科2', '' ],
+				],
+				[ 'titles' => '维基百科1', 'converttitles' => 1, 'redirects' => 1 ],
+				[ [ 'from' => '维基百科1', 'to' => '維基百科1' ], [ 'from' => '维基百科2', 'to' => '維基百科2' ] ],
+				[ [ 'from' => '維基百科1', 'to' => '维基百科2' ] ],
+			],
+
+			'redirect, convert, redirect' => [
+				[
+					[ '維基百科3', '#REDIRECT [[维基百科4]]' ],
+					[ '維基百科4', '#REDIRECT [[維基百科5]]' ],
+				],
+				[ 'titles' => '維基百科3', 'converttitles' => 1, 'redirects' => 1 ],
+				[ [ 'from' => '维基百科4', 'to' => '維基百科4' ] ],
+				[ [ 'from' => '維基百科3', 'to' => '维基百科4' ], [ 'from' => '維基百科4', 'to' => '維基百科5' ] ],
+			],
+
+			'hans redirects to hant with converttitles' => [
+				[
+					[ '维基百科6', '#REDIRECT [[維基百科6]]' ],
+				],
+				[ 'titles' => '维基百科6', 'converttitles' => 1, 'redirects' => 1 ],
+				[ [ 'from' => '維基百科6', 'to' => '维基百科6' ] ],
+				[ [ 'from' => '维基百科6', 'to' => '維基百科6' ] ],
+			],
+
+			'hans redirects to hant without converttitles' => [
+				[
+					[ '维基百科6', '#REDIRECT [[維基百科6]]' ],
+				],
+				[ 'titles' => '维基百科6', 'redirects' => 1 ],
+				[],
+				[ [ 'from' => '维基百科6', 'to' => '維基百科6' ] ],
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideConversionWithRedirects
+	 */
+	public function testHandleConversionWithRedirects( $pages, $params, $expectConversion, $exceptRedirects ) {
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'zh' );
+
+		foreach ( $pages as $page ) {
+			$this->editPage( $page[0], $page[1] );
+		}
+
+		$pageSet = $this->newApiPageSet( $params );
+		$pageSet->execute();
+
+		$this->assertSame( $expectConversion, $pageSet->getConvertedTitlesAsResult() );
+		$this->assertSame( $exceptRedirects, $pageSet->getRedirectTitlesAsResult() );
+	}
+
 	public function testSpecialRedirects() {
 		$id1 = $this->editPage( 'UTApiPageSet', 'UTApiPageSet in the default language' )
 			->value['revision-record']->getPageId();
