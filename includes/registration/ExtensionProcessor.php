@@ -4,9 +4,9 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\ResourceLoader\FilePath;
 
 /**
- * Utility class for loading extension manifests and aggregating
- * their contents.
+ * Load extension manifests and aggregate their contents.
  *
+ * @ingroup ExtensionRegistry
  * @newable since 1.39
  */
 class ExtensionProcessor implements Processor {

@@ -1,7 +1,5 @@
 <?php
 /**
- * Copyright (C) 2018 Kunal Mehta <legoktm@debian.org>
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -16,11 +14,14 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *
+ * @file
  */
 
 /**
  * @newable
  * @since 1.31
+ * @ingroup ExtensionRegistry
+ * @author Kunal Mehta <legoktm@debian.org>
  */
 class ExtensionDependencyError extends Exception {
 
