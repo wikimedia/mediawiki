@@ -1550,16 +1550,8 @@ class ParserTestRunner {
 		if ( isset( $opts['showflags'] ) ) {
 			$actualFlags = [];
 			foreach ( ParserOutputFlags::cases() as $name ) {
-				switch ( $name ) {
-				case 'no-toc-conversion':
-					if ( !$output->getOutputFlag( $name ) ) {
-						$actualFlags[] = "!$name";
-					}
-					break;
-				default:
-					if ( $output->getOutputFlag( $name ) ) {
-						$actualFlags[] = $name;
-					}
+				if ( $output->getOutputFlag( $name ) ) {
+					$actualFlags[] = $name;
 				}
 			}
 			sort( $actualFlags );
