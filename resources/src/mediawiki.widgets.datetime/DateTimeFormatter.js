@@ -409,9 +409,7 @@
 			}
 		}
 
-		// eslint-disable-next-line es-x/no-string-prototype-normalize
 		if ( v.normalize ) {
-			// eslint-disable-next-line es-x/no-string-prototype-normalize
 			v = v.normalize();
 		}
 		re = new RegExp( '^\\s*' + mw.util.escapeRegExp( v ), 'i' );

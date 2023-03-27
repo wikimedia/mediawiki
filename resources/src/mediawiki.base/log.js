@@ -1,7 +1,7 @@
 // This file extends the mw.log skeleton defined in startup/mediawiki.js.
 // Code that is not needed by mw.loader is placed here.
 
-/* eslint-disable no-console, es-x/no-set */
+/* eslint-disable no-console */
 
 /**
  * @class mw
@@ -22,7 +22,6 @@ function stackSet() {
 
 	return function isFirst() {
 		if ( !stacks ) {
-			/* global Set */
 			stacks = new Set();
 		}
 		var stack = new Error().stack;
