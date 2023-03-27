@@ -85,6 +85,7 @@ class ParserOptions {
 		'thumbsize' => true,
 		'printable' => true,
 		'userlang' => true,
+		'useParsoid' => true,
 	];
 
 	/**
@@ -667,6 +668,27 @@ class ParserOptions {
 	}
 
 	/**
+	 * Parsoid-format HTML output, or legacy wikitext parser HTML?
+	 * @see T300191
+	 * @unstable
+	 * @since 1.41
+	 * @return bool
+	 */
+	public function getUseParsoid(): bool {
+		return $this->getOption( 'useParsoid' );
+	}
+
+	/**
+	 * Request Parsoid-format HTML output.
+	 * @see T300191
+	 * @unstable
+	 * @since 1.41
+	 */
+	public function setUseParsoid() {
+		$this->setOption( 'useParsoid', true );
+	}
+
+	/**
 	 * Date format index
 	 * @return string
 	 */
@@ -1180,6 +1202,7 @@ class ParserOptions {
 				'speculativeRevId' => null,
 				'speculativePageIdCallback' => null,
 				'speculativePageId' => null,
+				'useParsoid' => false,
 			];
 
 			self::$cacheVaryingOptionsHash = self::$initialCacheVaryingOptionsHash;

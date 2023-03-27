@@ -977,6 +977,9 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 		try {
 			$this->setService( 'DBLoadBalancer', $localLoadBalancerMock );
+			// There may be other code which indirectly uses the RevisionStore
+			// service; make sure it picks up the external store as well.
+			$this->setService( 'RevisionStore', $store );
 			$callback( $store );
 		} finally {
 			// Restore the original load balancer to make test teardown work

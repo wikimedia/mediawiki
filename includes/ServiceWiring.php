@@ -128,6 +128,7 @@ use MediaWiki\Parser\Parsoid\Config\PageConfigFactory as MWPageConfigFactory;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig as MWSiteConfig;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
+use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\Permissions\GroupPermissionsLookup;
@@ -1423,6 +1424,16 @@ return [
 			$services->getRevisionStore(),
 			$services->getSlotRoleRegistry(),
 			$services->getLanguageFactory()
+		);
+	},
+
+	'ParsoidParserFactory' => static function ( MediaWikiServices $services ): ParsoidParserFactory {
+		return new ParsoidParserFactory(
+			$services->getParsoidSiteConfig(),
+			$services->getParsoidDataAccess(),
+			$services->getParsoidPageConfigFactory(),
+			$services->getLanguageConverterFactory(),
+			$services->getParserFactory()
 		);
 	},
 

@@ -11,6 +11,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \Article::view()
+ * @group Database
  */
 class ArticleViewTest extends MediaWikiIntegrationTestCase {
 
@@ -224,7 +225,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 
 		/** @var MockObject|WikiPage $page */
 		$page = $this->getMockBuilder( WikiPage::class )
-			->onlyMethods( [ 'getRevisionRecord', 'getLatest' ] )
+			->onlyMethods( [ 'getRevisionRecord', 'getLatest', 'getContentHandler' ] )
 			->setConstructorArgs( [ $title ] )
 			->getMock();
 
@@ -232,6 +233,8 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 			->willReturn( $rev );
 		$page->method( 'getLatest' )
 			->willReturn( $rev->getId() );
+		$page->method( 'getContentHandler' )
+			->willReturn( $mockHandler );
 
 		$article = Article::newFromWikiPage( $page, RequestContext::getMain() );
 		$article->getContext()->getOutput()->setTitle( $page->getTitle() );
@@ -693,6 +696,48 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 			$services->getHookContainer(),
 			$services->getHtmlCacheUpdater(),
 			$services->getRevisionStore()
+		);
+	}
+
+	/**
+	 * Test the "useParsoid" parser option and the ArticleParserOptions
+	 * hook.
+	 */
+	public function testUseParsoid() {
+		// Create an appropriate test page.
+		$title = Title::makeTitle( NS_MAIN, 'UseParsoidTest' );
+		$article = new Article( $title );
+		$page = $this->getExistingTestPage( $title );
+		$page->doUserEditContent(
+			ContentHandler::makeContent(
+				'[[Foo]]',
+				$title,
+				// Force this page to be wikitext
+				CONTENT_MODEL_WIKITEXT
+			),
+			static::getTestSysop()->getUser(),
+			'UTPageSummary',
+			EDIT_SUPPRESS_RC
+		);
+		$article->view();
+		$html = $this->getHtml( $article->getContext()->getOutput() );
+		// Confirm that this is NOT parsoid-generated HTML
+		$this->assertStringNotContainsString(
+			'rel="mw:WikiLink"',
+			$html
+		);
+
+		// Now enable Parsoid via the ArticleParserOptions hook
+		$article = new Article( $title );
+		$this->setTemporaryHook( 'ArticleParserOptions', static function ( $article, $popts ) {
+			$popts->setUseParsoid();
+		} );
+		$article->view();
+		$html = $this->getHtml( $article->getContext()->getOutput() );
+		// Look for a marker that this is Parsoid-generated HTML
+		$this->assertStringContainsString(
+			'rel="mw:WikiLink"',
+			$html
 		);
 	}
 }

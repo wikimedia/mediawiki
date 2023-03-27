@@ -601,6 +601,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 						'GlobalIdGenerator',
 						'LanguageNameUtils',
 						'MagicWordFactory',
+						'ParsoidParserFactory',
 					],
 				],
 				'testing' => DummyContentHandlerForTesting::class,

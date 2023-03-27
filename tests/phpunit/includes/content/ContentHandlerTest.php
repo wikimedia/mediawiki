@@ -6,6 +6,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\MagicWordFactory;
+use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use Wikimedia\TestingAccessWrapper;
@@ -39,6 +40,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 						'GlobalIdGenerator',
 						'LanguageNameUtils',
 						'MagicWordFactory',
+						'ParsoidParserFactory',
 					],
 				],
 				CONTENT_MODEL_JAVASCRIPT => JavaScriptContentHandler::class,
@@ -507,7 +509,8 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( ParserFactory::class ),
 			$this->createMock( GlobalIdGenerator::class ),
 			$this->createMock( LanguageNameUtils::class ),
-			$this->createMock( MagicWordFactory::class )
+			$this->createMock( MagicWordFactory::class ),
+			$this->createMock( ParsoidParserFactory::class )
 		);
 		$slotDiffRenderer = $contentHandler->getSlotDiffRenderer( RequestContext::getMain() );
 		$this->assertInstanceOf( TextSlotDiffRenderer::class, $slotDiffRenderer );

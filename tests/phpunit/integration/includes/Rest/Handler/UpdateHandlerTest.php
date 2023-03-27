@@ -7,6 +7,7 @@ use FormatJson;
 use HashConfig;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Parser\MagicWordFactory;
+use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Rest\Handler\UpdateHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
@@ -47,7 +48,8 @@ class UpdateHandlerTest extends \MediaWikiLangTestCase {
 			$this->createMock( ParserFactory::class ),
 			$this->createMock( GlobalIdGenerator::class ),
 			$this->createMock( LanguageNameUtils::class ),
-			$this->createMock( MagicWordFactory::class )
+			$this->createMock( MagicWordFactory::class ),
+			$this->createMock( ParsoidParserFactory::class )
 		);
 
 		// Only wikitext is defined, returns specific handler instance

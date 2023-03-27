@@ -506,7 +506,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 		/** @var ParserOutput $parserOutput */
 		$parserOutput = $status->getValue();
-		$this->assertStringContainsString( __METHOD__, $parserOutput->getText() );
+		$this->assertStringContainsString( __METHOD__, $parserOutput->getRawText() );
 		$this->assertNotEmpty( $parserOutput->getExtensionData( 'parsoid-render-id' ) );
 		$this->assertNotEmpty( $parserOutput->getCacheRevisionId() );
 		$this->assertNotEmpty( $parserOutput->getCacheTime() );
@@ -540,7 +540,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 		/** @var ParserOutput $parserOutput */
 		$parserOutput = $status->getValue();
-		$this->assertStringContainsString( __METHOD__, $parserOutput->getText() );
+		$this->assertStringContainsString( __METHOD__, $parserOutput->getRawText() );
 		$this->assertNotEmpty( $parserOutput->getExtensionData( 'parsoid-render-id' ) );
 		$this->assertNotEmpty( $parserOutput->getCacheRevisionId() );
 		$this->assertNotEmpty( $parserOutput->getCacheTime() );
@@ -564,7 +564,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 		/** @var ParserOutput $parserOutput */
 		$parserOutput = $status->getValue();
-		$this->assertStringContainsString( __METHOD__, $parserOutput->getText() );
+		$this->assertStringContainsString( __METHOD__, $parserOutput->getRawText() );
 		$this->assertNotEmpty( $parserOutput->getExtensionData( 'parsoid-render-id' ) );
 		$this->assertNotEmpty( $parserOutput->getCacheRevisionId() );
 		$this->assertNotEmpty( $parserOutput->getCacheTime() );
@@ -596,7 +596,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 		/** @var ParserOutput $parserOutput */
 		$parserOutput = $status->getValue();
-		$this->assertStringContainsString( __METHOD__, $parserOutput->getText() );
+		$this->assertStringContainsString( __METHOD__, $parserOutput->getRawText() );
 		$this->assertNotEmpty( $parserOutput->getExtensionData( 'parsoid-render-id' ) );
 		// The revision ID is set to 0, so that's what is in the cache.
 		$this->assertSame( 0, $parserOutput->getCacheRevisionId() );
@@ -659,7 +659,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $status->isOK() );
 
 		// assert dummy content in parsoid output HTML
-		$html = $status->getValue()->getText();
+		$html = $status->getValue()->getRawText();
 		$this->assertStringContainsString( 'UTContent', $html );
 
 		if ( $parserOptions->getTargetLanguage() !== null ) {

@@ -51,8 +51,8 @@ class ParsoidCachePrewarmJobTest extends MediaWikiIntegrationTestCase {
 		);
 
 		// Ensure we have the parsoid output in parser cache as an HTML document
-		$this->assertStringContainsString( '<html', $parsoidOutput->getText() );
-		$this->assertStringContainsString( self::NON_JOB_QUEUE_EDIT, $parsoidOutput->getText() );
+		$this->assertStringContainsString( '<html', $parsoidOutput->getRawText() );
+		$this->assertStringContainsString( self::NON_JOB_QUEUE_EDIT, $parsoidOutput->getRawText() );
 
 		$rev2 = $this->editPage( $page, self::JOB_QUEUE_EDIT )->getNewRevision();
 		$parsoidPrewarmJob = new ParsoidCachePrewarmJob(
@@ -81,8 +81,8 @@ class ParsoidCachePrewarmJobTest extends MediaWikiIntegrationTestCase {
 		);
 
 		// Ensure we have the parsoid output in parser cache as an HTML document
-		$this->assertStringContainsString( '<html', $parsoidOutput->getText() );
-		$this->assertStringContainsString( self::JOB_QUEUE_EDIT, $parsoidOutput->getText() );
+		$this->assertStringContainsString( '<html', $parsoidOutput->getRawText() );
+		$this->assertStringContainsString( self::JOB_QUEUE_EDIT, $parsoidOutput->getRawText() );
 
 		// Check that the causeAction was looped through as the render reason
 		$this->assertStringContainsString(

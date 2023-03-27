@@ -331,7 +331,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 		$this->setTemporaryHook( 'ParserOptionsRegister', null );
 		$this->assertSame( [
 			'dateformat', 'printable',
-			'thumbsize', 'userlang'
+			'thumbsize', 'useParsoid', 'userlang',
 		], ParserOptions::allCacheVaryingOptions() );
 
 		ParserOptions::clearStaticCache();
@@ -349,7 +349,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 		} );
 		$this->assertSame( [
 			'dateformat', 'foo', 'printable',
-			'thumbsize', 'userlang'
+			'thumbsize', 'useParsoid', 'userlang',
 		], ParserOptions::allCacheVaryingOptions() );
 	}
 
