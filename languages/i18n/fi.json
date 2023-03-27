@@ -1131,6 +1131,7 @@
 	"prefs-back-title": "Takaisin asetuksiin",
 	"prefs-description-rendering": "Muuta ulkoasu-, koko- ja lukuasetuksia.",
 	"prefs-description-rc": "Mukauta tuoreiden muutosten syötettä.",
+	"prefs-description-watchlist": "Hallitse ja personoi listaa tarkkailemistasi sivuista.",
 	"prefs-description-searchoptions": "Valitse, miten automaattinen täydennys ja tulokset toimivat.",
 	"prefs-description-misc": "Mukauta sisällysluetteloa.",
 	"prefs-help-recentchangescount": "Maksimiluku 1000",

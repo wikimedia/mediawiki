@@ -264,7 +264,7 @@
 	"sort-ascending": "مرتب سازی وا صعودی",
 	"sort-initial": "مݖرةتةب کەردةن ئةڤةلی‌ية",
 	"nstab-main": "بٱرگٱ",
-	"nstab-user": "\n{{جاٛنسیٱت:$1|بٱرگاٛی کٛاربٱر}}",
+	"nstab-user": "{{GENDER:$1|بٱرگاٛی کٛاربٱر}}",
 	"nstab-media": "بلگه مدیا",
 	"nstab-special": "بألگە یل ڤیجە",
 	"nstab-project": "بلگه پرۉجه",

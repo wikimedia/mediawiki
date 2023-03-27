@@ -500,7 +500,7 @@
 	"missingcommenttext": "Inserta unu cummentu.",
 	"summary-preview": "Antiprima ogetu:",
 	"blockedtitle": "S'impitadore est istadu bloccadu",
-	"blockedtext": "<strong>Su nùmene impitadore o indiritzu IP tuo est istadu blocadu.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nPodes impreare sa funtzionalidade \"{{int:emailuser}}\" si b'at un'indiritzu de posta eletrònica vàlidu in sas [[Special:Preferences|preferèntzias]] tuas e non t'ant blocadu s'impreu suo.\n{{int:blockedtext-block-ip|$3}}, e s'identificadore de blocu est #$5.\n{{int:blockedtext-include-details-queries}}",
+	"blockedtext": "<strong>Su nùmene impitadore o indiritzu IP tuo est istadu blocadu.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nPodes impreare sa funtzionalidade \"{{int:emailuser}}\" si b'at un'indiritzu de posta eletrònica vàlidu in sas [[Special:Preferences|preferèntzias]] tuas e non t'ant blocadu s'impreu suo.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"blockednoreason": "perunu motivu inditadu",
 	"whitelistedittext": "Pro cambiare is pàginas $1.",
 	"nosuchsectiontitle": "Impossìbile agatare sa setzione",
@@ -1611,7 +1611,7 @@
 	"blockedtext-expiration-time": "Iscadèntzia de su blocu: $1",
 	"blockedtext-intended-blockee": "Destinatàriu de su blocu: $1",
 	"blockedtext-contact-blocker-admin": "Podes cuntatare a $1 o a un'àteru [[{{MediaWiki:Grouppage-sysop}}|amministradore]] pro discutire de su blocu.",
-	"blockedtext-block-ip": "S'indiritzu IP atuale tuo est $1",
+	"blockedtext-block-ip": "S'indiritzu IP atuale tuo est $1.",
 	"blockedtext-include-details-queries": "Pro praghere include totu sos detàllios inoghe in subra in cale si siat dimanda de acrarimentu chi as a fàghere.",
 	"renameusernew": "Nou nùmene impitadore:"
 }
