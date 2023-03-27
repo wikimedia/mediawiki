@@ -385,32 +385,22 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 
 		$ttl = $this->getExpirationAsTTL( $exptime );
 		try {
-			static $scriptWithTTL =
+			static $script =
 			/** @lang Lua */
 <<<LUA
-			local rTTL,rStep,rInit = unpack(ARGV)
-			if redis.call( 'exists', KEYS[1] ) == 1 then
-				return redis.call( 'incrBy', KEYS[1], rStep )
+			local key = KEYS[1]
+			local ttl, step, init = unpack( ARGV )
+			if redis.call( 'exists', key ) == 1 then
+				return redis.call( 'incrBy', key, step )
 			end
-			redis.call( 'set', KEYS[1], rInit, 'ex', rTTL )
-			return rInit
-LUA;
-			static $scriptWithoutTTL =
-			/** @lang Lua */
-<<<LUA
-			local rStep,rInit = unpack(ARGV)
-			if redis.call( 'exists', KEYS[1] ) == 1 then
-				return redis.call( 'incrBy', KEYS[1], rStep )
+			if 1 * ttl ~= 0 then
+				redis.call( 'setex', key, ttl, init )
+			else
+				redis.call( 'set', key, init )
 			end
-			redis.call( 'set', KEYS[1], rInit )
-			return rInit
+			return 1 * init
 LUA;
-			$result = ( $ttl > 0 )
-				? $conn->eval( $scriptWithTTL, [ $key, $ttl, $step, $init ], 1 )
-				: $conn->eval( $scriptWithoutTTL, [ $key, $step, $init ], 1 );
-			if ( $this->isInteger( $result ) ) {
-				$result = (int)$result;
-			}
+			$result = $conn->luaEval( $script, [ $key, $ttl, $step, $init ], 1 );
 		} catch ( RedisException $e ) {
 			$result = false;
 			$this->handleException( $conn, $e );
