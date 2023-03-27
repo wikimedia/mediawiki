@@ -116,6 +116,15 @@
 		blockTargetWidget = infuseIfExists( $( '#mw-bi-target' ) );
 
 		if ( blockTargetWidget ) {
+			// If widget is prefilled with an IP address, make it editable at first
+			if ( mw.util.isIPAddress( mw.config.get( 'wgRelevantUserName' ) ) ) {
+				blockTargetWidget.removeItems( blockTargetWidget.getItems() );
+				blockTargetWidget.input
+					.setValue( mw.config.get( 'wgRelevantUserName' ) )
+					.focus();
+				blockTargetWidget.menu.toggle( false );
+			}
+
 			userChangedCreateAccount = mw.config.get( 'wgCreateAccountDirty' );
 			updatingBlockOptions = false;
 
