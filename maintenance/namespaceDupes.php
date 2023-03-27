@@ -491,9 +491,9 @@ class NamespaceDupes extends Maintenance {
 			$batchConds = [
 				$dbw->buildComparison( '>', [
 					// @phan-suppress-next-line PhanPossiblyUndeclaredVariable rows contains at least one item
-					$titleField => $dbw->addQuotes( $row->$titleField ),
+					$titleField => $row->$titleField,
 					// @phan-suppress-next-line PhanPossiblyUndeclaredVariable rows contains at least one item
-					$fromField => $dbw->addQuotes( $row->$fromField ),
+					$fromField => $row->$fromField,
 				] )
 			];
 
