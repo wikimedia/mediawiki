@@ -619,7 +619,7 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 		$ctx = $this->createMock( Context::class );
 		$module = new SkinModule(
 			[
-				// The ordering should be controlled by ResourceLoaderSkinModule
+				// The ordering should be controlled by SkinModule
 				// `normalize` will be outputted before `elements` despite the ordering
 				'features' => $features,
 				'styles' => $styles,

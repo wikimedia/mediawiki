@@ -158,7 +158,7 @@ class FileModule extends Module {
 	protected $vueComponentParser = null;
 
 	/**
-	 * Constructs a new module from an options array.
+	 * Construct a new module from an options array.
 	 *
 	 * @param array $options See $wgResourceModules for the available options.
 	 * @param string|null $localBasePath Base path to prepend to all local paths in $options.
@@ -321,7 +321,7 @@ class FileModule extends Module {
 	}
 
 	/**
-	 * Gets all scripts for a given context concatenated together.
+	 * Get all scripts for a given context concatenated together.
 	 *
 	 * @param Context $context Context in which to generate script
 	 * @return string|array JavaScript code for $context, or package files data structure
@@ -694,6 +694,7 @@ class FileModule extends Module {
 
 	/**
 	 * Infer the file type from a package file path.
+	 *
 	 * @param string $path
 	 * @return string 'script', 'script-vue', or 'data'
 	 */
@@ -708,7 +709,7 @@ class FileModule extends Module {
 	}
 
 	/**
-	 * Collates styles file paths by 'media' option (or 'all' if 'media' is not set)
+	 * Collate style file paths by 'media' option (or 'all' if 'media' is not set)
 	 *
 	 * @param array $list List of file paths in any combination of index/path
 	 *     or path/options pairs
@@ -853,7 +854,7 @@ class FileModule extends Module {
 	}
 
 	/**
-	 * Gets a list of file paths for all skin styles in the module used by
+	 * Get a list of file paths for all skin styles in the module used by
 	 * the skin.
 	 *
 	 * @param string $skinName The name of the skin
@@ -866,7 +867,7 @@ class FileModule extends Module {
 	}
 
 	/**
-	 * Gets a list of file paths for all skin style files in the module,
+	 * Get a list of file paths for all skin style files in the module,
 	 * for all available skins.
 	 *
 	 * @return array A list of file paths collated by media type
@@ -889,7 +890,7 @@ class FileModule extends Module {
 	}
 
 	/**
-	 * Returns all style files and all skin style files used by this module.
+	 * Get all style files and all skin style files used by this module.
 	 *
 	 * @return array
 	 */
@@ -1299,10 +1300,10 @@ class FileModule extends Module {
 	}
 
 	/**
-	 * Resolve the package files definition and generates the content of each package file.
+	 * Resolve the package files definition and generate the content of each package file.
 	 *
 	 * @param Context $context
-	 * @return array|null Package files data structure, see ResourceLoaderModule::getScript()
+	 * @return array|null Package files data structure, see Module::getScript()
 	 */
 	public function getPackageFiles( Context $context ) {
 		if ( $this->packageFiles === null ) {
@@ -1318,8 +1319,8 @@ class FileModule extends Module {
 		foreach ( $expandedPackageFiles['files'] as $fileName => &$fileInfo ) {
 			// Turn any 'filePath' or 'callback' key into actual 'content',
 			// and remove the key after that. The callback could return a
-			// ResourceLoaderFilePath object; if that happens, fall through
-			// to the 'filePath' handling.
+			// FilePath object; if that happens, fall through to the 'filePath'
+			// handling.
 			if ( isset( $fileInfo['callback'] ) ) {
 				$callbackResult = ( $fileInfo['callback'] )(
 					$context,
@@ -1391,7 +1392,7 @@ class FileModule extends Module {
 	}
 
 	/**
-	 * Takes an input string and removes the UTF-8 BOM character if present
+	 * Take an input string and remove the UTF-8 BOM character if present
 	 *
 	 * We need to remove these after reading a file, because we concatenate our files and
 	 * the BOM character is not valid in the middle of a string.

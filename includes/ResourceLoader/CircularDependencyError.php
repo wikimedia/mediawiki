@@ -24,7 +24,7 @@ use Exception;
 
 /**
  * @ingroup ResourceLoader
- * @internal For use by ResourceLoaderStartUpModule only
+ * @internal For use by StartUpModule only
  */
 class CircularDependencyError extends Exception {
 }

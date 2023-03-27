@@ -155,7 +155,7 @@ class ImageModuleTest extends ResourceLoaderTestCase {
 	}
 
 	/**
-	 * Test reading files from elsewhere than localBasePath using ResourceLoaderFilePath.
+	 * Test reading files from elsewhere than localBasePath using FilePath.
 	 *
 	 * This mimics modules modified by skins using 'ResourceModuleSkinStyles' and 'OOUIThemePaths'
 	 * skin attributes.
