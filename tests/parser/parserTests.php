@@ -31,6 +31,8 @@ use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Tests\AnsiTermColorer;
 use MediaWiki\Tests\DummyTermColorer;
 
+define( 'MW_AUTOLOAD_TEST_CLASSES', true );
+
 class ParserTestsMaintenance extends Maintenance {
 	/**
 	 * Copied over from the Parsoid repo: (tools/ScriptUtils.php)
@@ -122,8 +124,6 @@ class ParserTestsMaintenance extends Maintenance {
 		define( 'MW_PARSER_TEST', true );
 
 		parent::finalSetup( $settingsBuilder );
-		ExtensionRegistry::getInstance()->setLoadTestClassesAndNamespaces( true );
-		self::requireTestsAutoloader();
 		TestSetup::applyInitialConfig();
 	}
 

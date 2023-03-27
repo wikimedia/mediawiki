@@ -1379,6 +1379,8 @@ abstract class Maintenance {
 	/**
 	 * Call this to set up the autoloader to allow classes to be used from the
 	 * tests directory.
+	 *
+	 * @deprecated since 1.41. Set the MW_AUTOLOAD_TEST_CLASSES in file scope instead.
 	 */
 	public static function requireTestsAutoloader() {
 		require_once __DIR__ . '/../../tests/common/TestsAutoLoader.php';

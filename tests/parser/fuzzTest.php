@@ -7,6 +7,8 @@ use Wikimedia\ScopedCallback;
 
 require_once __DIR__ . '/../../maintenance/Maintenance.php';
 
+define( 'MW_AUTOLOAD_TEST_CLASSES', true );
+
 class ParserFuzzTest extends Maintenance {
 	/** @var ParserTestRunner */
 	private $parserTest;
@@ -31,7 +33,6 @@ class ParserFuzzTest extends Maintenance {
 		// Make RequestContext::resetMain() happy
 		define( 'MW_PARSER_TEST', 1 );
 
-		self::requireTestsAutoloader();
 		TestSetup::applyInitialConfig();
 	}
 

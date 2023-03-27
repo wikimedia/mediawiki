@@ -8,6 +8,7 @@ use Wikimedia\Parsoid\ParserTests\TestMode as ParserTestMode;
 
 require_once __DIR__ . '/../../maintenance/Maintenance.php';
 
+define( 'MW_AUTOLOAD_TEST_CLASSES', true );
 define( 'MW_PARSER_TEST', true );
 
 /**
@@ -42,7 +43,6 @@ class ParserEditTests extends Maintenance {
 
 	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
 		parent::finalSetup( $settingsBuilder );
-		self::requireTestsAutoloader();
 		TestSetup::applyInitialConfig();
 	}
 
