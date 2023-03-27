@@ -33,6 +33,7 @@ use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ActorMigration;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 /**
  * A query action to enumerate revisions of a given page, or show top revisions
@@ -258,7 +259,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 						__METHOD__
 					),
 				], $db::UNION_DISTINCT );
-				$res = $db->query( $sql, __METHOD__ );
+				$res = $db->query( $sql, __METHOD__, ISQLPlatform::QUERY_CHANGE_NONE );
 				foreach ( $res as $row ) {
 					if ( (int)$row->id === (int)$params['startid'] ) {
 						$params['start'] = $row->ts;
