@@ -364,6 +364,18 @@ abstract class Maintenance {
 	}
 
 	/**
+	 * Get arguments.
+	 * @since 1.40
+	 *
+	 * @param int|string $offset The index (from zero) of the first argument, or
+	 *                   the name declared for the argument by addArg().
+	 * @return string[]
+	 */
+	protected function getArgs( $offset = 0 ) {
+		return $this->parameters->getArgs( $offset );
+	}
+
+	/**
 	 * Programmatically set the value of the given option.
 	 * Useful for setting up child scripts, see runChild().
 	 *
@@ -629,6 +641,16 @@ abstract class Maintenance {
 		}
 
 		return $this->config;
+	}
+
+	/**
+	 * Returns the main service container.
+	 *
+	 * @since 1.40
+	 * @return MediaWikiServices
+	 */
+	public function getServiceContainer() {
+		return MediaWikiServices::getInstance();
 	}
 
 	/**
