@@ -2795,6 +2795,8 @@
 	"blocklogpage": "Rejestr blokad",
 	"blocklog-showlog": "{{GENDER:$1|Ten użytkownik był|Ta użytkowniczka była}} już wcześniej {{GENDER:$1|blokowany|blokowana}}.\nPoniżej znajduje się rejestr blokad:",
 	"blocklog-showsuppresslog": "{{GENDER:$1|Ten użytkownik był|Ta użytkowniczka była}} już wcześniej {{GENDER:$1|blokowany oraz ukrywany|blokowana oraz ukrywana}}. Poniżej znajduje się rejestr ukrywania:",
+	"unblocklog-showlog": "Rejestr blokad {{GENDER:$1|tego użytkownika|tej użytkowniczki}} jest pokazany poniżej:",
+	"unblocklog-showsuppresslog": "Rejestr ukrywania {{GENDER:$1|tego użytkownika|tej użytkowniczki}} jest pokazany poniżej:",
 	"blocklogtext": "Poniżej znajduje się lista blokad założonych i zdjętych z poszczególnych adresów IP.\nNa liście nie znajdą się adresy IP, które zablokowano w sposób automatyczny.\nBy przejrzeć listę obecnie aktywnych blokad, przejdź na stronę [[Special:BlockList|zablokowanych adresów i użytkowników]].",
 	"block-log-flags-anononly": "tylko anonimowi",
 	"block-log-flags-nocreate": "blokada tworzenia konta",

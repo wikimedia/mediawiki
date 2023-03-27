@@ -464,7 +464,7 @@
 	"missingcommentheader": "<strong>Rapèl:</strong> Ou pa bay yon sijè pou kòmantè sa a.\nSi w klike sou \" $1 \" ankò,  modifikasyon w yo ap pibliye san sijè.",
 	"summary-preview": "Previzyalizasyon rezime :",
 	"blockedtitle": "Itilizatè a bloke",
-	"blockedtext": "<strong>Kont itilizatè ou an oubyen adrès IP ou an bloke.</strong>\n\nBlokaj an fèt pa $1.\nRezon li bay se : <em>$2</em>.\n\n* Komansman blokaj an : $8\n* Dat pou blokaj an fini : $6\n* Kont bloke a : $7.\n\nOu mèt kontakte $1 oubyen yon lòt [[{{MediaWiki:Grouppage-sysop}}|administratè]] pou diskite blokaj la.\nOu kapab itilize fonksyon « {{int:emailuser}} » si ou mete yon adrès imèl nan paj [[Special:Preferences|preferans ou an]] epi ou pa anpeche w itilize li.\nAdrès IP ou an kounye a se $3 e idantifyan blokaj ou an se #$5. Mete souple referans adrès sa a nan demann ou yo.",
+	"blockedtext": "<strong>Kont itilizatè ou an oubyen adrès IP ou an bloke.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nOu kapab itilize fonksyon « {{int:emailuser}} » si ou mete yon adrès imèl nan paj [[Special:Preferences|preferans ou an]] epi ou pa anpeche w itilize li.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"autoblockedtext": "Adrès IP ou an bloke otomatikman paske li te itilize pa yon lòt itilizatè ki te bloke pa $1.\n\nRezon ki te bay se :\n\n:<em>$2</em>\n\n* Komansman blokaj an : $8\n* Ekspirasyon : $6\n* Moun ki te bloke a : $7\n\nOu mèt kontakte $1 oubyen yonn nan [[{{MediaWiki:Grouppage-sysop}}|administratè yo]] pou diskite sityasyon blokaj sa.\n\nSi toutfwa ou te bay yon bon adrès imèl nan ([[Special:Preferences|preferans]]) ou yo e si fonksyonalite sa a pa t bloke\n\nAdrès IP ou pou kounye a se $3. Idantifyan pou blokaj la se $5. Ou dwe mete enfòmasyon sa yo nan chak demand ou gen pou fè.",
 	"blockednoreason": "Li pa bay pyès rezon pou aksyon sa",
 	"whitelistedittext": "Ou dwe $1 pou ou kapab genyen dwa pou modifye paj sa.",
@@ -1218,5 +1218,13 @@
 	"skin-action-protect": "Pwoteje",
 	"skin-action-undelete": "Retabli",
 	"skin-action-delete": "Efase",
-	"skin-action-move": "Chanje non"
+	"skin-action-move": "Chanje non",
+	"blockedtext-made-by": "Blòk la fèt pa $1.",
+	"blockedtext-reason-comment": "Rezon yo bay la se <em>$1</em>",
+	"blockedtext-start-time": "Kòmansman blòk : $1",
+	"blockedtext-expiration-time": "Ekspirasyon blòk : $1",
+	"blockedtext-intended-blockee": "Kont la ki te sipoze bloke : $1",
+	"blockedtext-contact-blocker-admin": "Ou mèt kontakte $1 oubyen yon lòt [[{{MediaWiki:Grouppage-sysop}}|administratè]] pou diskite blokaj la.",
+	"blockedtext-block-ip": "Adrès IP ou an kounye a se $1.",
+	"blockedtext-include-details-queries": "Tanpri mete tout detay ki anwo yo nan nenpòt demand ou fè."
 }

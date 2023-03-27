@@ -2336,7 +2336,7 @@
 	"addedwatchindefinitelytext-talk": "Stran »[[:$1]]« in pripadajoča stran sta bili trajno dodani na vaš [[Special:Watchlist|spisek nadzorov]].",
 	"removewatch": "Odstrani s spiska nadzorov",
 	"removedwatchtext": "Stran »[[:$1]]« in pripadajoča pogovorna stran sta odstranjeni z vašega [[Special:Watchlist|spiska nadzorov]].",
-	"removedwatchtext-talk": "Stran »[[:$1]]« in pripadajočo stran sta bili odstranjeni z vašega [[Special:Watchlist|spiska nadzorov]].",
+	"removedwatchtext-talk": "Stran »[[:$1]]« in pripadajoča stran sta bili odstranjeni z vašega [[Special:Watchlist|spiska nadzorov]].",
 	"removedwatchtext-short": "Stran »$1« je bila odstranjena z vašega spiska nadzorov.",
 	"watch": "Opazuj",
 	"watchthispage": "Opazuj stran",
