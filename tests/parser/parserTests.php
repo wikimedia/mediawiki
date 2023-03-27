@@ -32,6 +32,8 @@ use MediaWiki\Tests\AnsiTermColorer;
 use MediaWiki\Tests\DummyTermColorer;
 use Wikimedia\Parsoid\Utils\ScriptUtils;
 
+define( 'MW_AUTOLOAD_TEST_CLASSES', true );
+
 class ParserTestsMaintenance extends Maintenance {
 
 	public function __construct() {
@@ -107,8 +109,6 @@ class ParserTestsMaintenance extends Maintenance {
 		define( 'MW_PARSER_TEST', true );
 
 		parent::finalSetup( $settingsBuilder );
-		ExtensionRegistry::getInstance()->setLoadTestClassesAndNamespaces( true );
-		self::requireTestsAutoloader();
 		TestSetup::applyInitialConfig();
 	}
 
