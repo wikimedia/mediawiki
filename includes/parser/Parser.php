@@ -1708,10 +1708,6 @@ class Parser {
 			$text = $converter->convert( $text );
 			// TOC will be converted below.
 		}
-		// Indicate that the ToC doesn't need additional language conversion
-		// (backward-compatibility; previous versions did conversion in
-		// ParserOutput::getText())
-		$this->mOutput->setOutputFlag( ParserOutputFlags::NO_TOC_CONVERSION );
 		// Convert the TOC.   This is done *after* the main text
 		// so that all the editor-defined conversion rules (by convention
 		// defined at the start of the article) are applied to the TOC

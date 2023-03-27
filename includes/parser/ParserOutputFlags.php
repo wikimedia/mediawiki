@@ -99,11 +99,6 @@ class ParserOutputFlags {
 	public const SHOW_TOC = 'show-toc';
 
 	/**
-	 * @var string Used to suppress language conversion in ToC contents.
-	 */
-	public const NO_TOC_CONVERSION = 'no-toc-conversion';
-
-	/**
 	 * @var string
 	 */
 	public const VARY_REVISION = 'vary-revision';
@@ -160,7 +155,6 @@ class ParserOutputFlags {
 	public static function cases(): array {
 		return [
 			self::NO_GALLERY,
-			self::NO_TOC_CONVERSION,
 			self::ENABLE_OOUI,
 			self::INDEX_POLICY,
 			self::NO_INDEX_POLICY,

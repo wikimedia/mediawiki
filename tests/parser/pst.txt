@@ -565,7 +565,7 @@ showflags
 !! wikitext
 ~~~~
 !! metadata
-flags=!no-toc-conversion, user-signature
+flags=user-signature
 !! html/php
 [[Special:Contributions/127.0.0.1|127.0.0.1]] 00:02, 1 January 1970 (UTC)
 !! end
