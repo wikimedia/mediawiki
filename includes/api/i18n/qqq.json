@@ -396,6 +396,7 @@
 	"apihelp-parse-paramvalue-prop-parsewarnings": "See also → MediaWiki:Apihelp-parse-paramvalue-prop-parsewarningshtml\n{{doc-apihelp-paramvalue|parse|prop|parsewarnings}}",
 	"apihelp-parse-paramvalue-prop-parsewarningshtml": "{{doc-apihelp-paramvalue|parse|prop|parsewarningshtml}}",
 	"apihelp-parse-param-wrapoutputclass": "{{doc-apihelp-param|parse|wrapoutputclass}}",
+	"apihelp-parse-param-parsoid": "{{doc-apihelp-param|parse|parsoid}}",
 	"apihelp-parse-param-pst": "{{doc-apihelp-param|parse|pst}}",
 	"apihelp-parse-param-onlypst": "{{doc-apihelp-param|parse|onlypst}}",
 	"apihelp-parse-param-effectivelanglinks": "{{doc-apihelp-param|parse|effectivelanglinks}}",
