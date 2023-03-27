@@ -395,6 +395,7 @@ return [
 						2 => 'GlobalIdGenerator',
 						3 => 'LanguageNameUtils',
 						4 => 'MagicWordFactory',
+						5 => 'ParsoidParserFactory',
 					],
 				],
 				'javascript' => 'JavaScriptContentHandler',

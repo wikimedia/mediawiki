@@ -1984,7 +1984,7 @@ config-schema:
              - 1.40: Added
     ContentHandlers:
         default:
-            wikitext: { class: WikitextContentHandler, services: [TitleFactory, ParserFactory, GlobalIdGenerator, LanguageNameUtils, MagicWordFactory] }
+            wikitext: { class: WikitextContentHandler, services: [TitleFactory, ParserFactory, GlobalIdGenerator, LanguageNameUtils, MagicWordFactory, ParsoidParserFactory] }
             javascript: JavaScriptContentHandler
             json: JsonContentHandler
             css: CssContentHandler

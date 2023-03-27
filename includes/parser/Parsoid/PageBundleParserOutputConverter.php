@@ -83,4 +83,7 @@ final class PageBundleParserOutputConverter {
 		);
 	}
 
+	public static function hasPageBundle( ParserOutput $parserOutput ) {
+		return $parserOutput->getExtensionData( self::PARSOID_PAGE_BUNDLE_KEY ) !== null;
+	}
 }

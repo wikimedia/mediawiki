@@ -3269,6 +3269,7 @@ class MainConfigSchema {
 						'GlobalIdGenerator',
 						'LanguageNameUtils',
 						'MagicWordFactory',
+						'ParsoidParserFactory',
 					],
 				],
 				// dumb version, no syntax highlighting

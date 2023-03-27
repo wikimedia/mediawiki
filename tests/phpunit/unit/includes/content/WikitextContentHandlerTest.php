@@ -2,15 +2,22 @@
 
 namespace MediaWiki\Tests\Unit;
 
+use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Parser\MagicWordFactory;
+use MediaWiki\Parser\Parsoid\ParsoidParser;
+use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRenderingProvider;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWikiUnitTestCase;
 use MWException;
+use Parser;
 use ParserFactory;
+use ParserOptions;
+use ParserOutput;
+use ReflectionClass;
 use Wikimedia\UUID\GlobalIdGenerator;
 use WikitextContent;
 use WikitextContentHandler;
@@ -23,14 +30,15 @@ use WikitextContentHandler;
  */
 class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 
-	private function newWikitextContentHandler(): WikitextContentHandler {
+	private function newWikitextContentHandler( $overrides = [] ): WikitextContentHandler {
 		return new WikitextContentHandler(
 			CONTENT_MODEL_WIKITEXT,
-			$this->createMock( TitleFactory::class ),
-			$this->createMock( ParserFactory::class ),
-			$this->createMock( GlobalIdGenerator::class ),
-			$this->createMock( LanguageNameUtils::class ),
-			$this->createMock( MagicWordFactory::class )
+			$overrides[TitleFactory::class] ?? $this->createMock( TitleFactory::class ),
+			$overrides[ParserFactory::class] ?? $this->createMock( ParserFactory::class ),
+			$overrides[GlobalIdGenerator::class] ?? $this->createMock( GlobalIdGenerator::class ),
+			$overrides[LanguageNameUtils::class] ?? $this->createMock( LanguageNameUtils::class ),
+			$overrides[MagicWordFactory::class] ?? $this->createMock( MagicWordFactory::class ),
+			$overrides[ParsoidParserFactory::class] ?? $this->createMock( ParsoidParserFactory::class )
 		);
 	}
 
@@ -128,4 +136,79 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( [], $updates );
 	}
 
+	/**
+	 * @covers ::fillParserOutput
+	 * @dataProvider provideFillParserOutput
+	 */
+	public function testFillParserOutput( $useParsoid = true ) {
+		$parserOptions = $this->createMock( ParserOptions::class );
+		$parserOptions
+			->method( 'getUseParsoid' )
+			->willReturn( $useParsoid );
+
+		// This is the core of the test: if the useParsoid option is NOT
+		// present, we expect ParserFactory->getInstance()->parse()
+		// to be called exactly once, otherwise never.
+		$parser = $this->createMock( Parser::class );
+		$parser
+			->expects( $useParsoid ? $this->never() : $this->once() )
+			->method( 'parse' );
+		$parserFactory = $this->createMock( ParserFactory::class );
+		$parserFactory
+			->expects( $useParsoid ? $this->never() : $this->once() )
+			->method( 'getInstance' )
+			->willReturn( $parser );
+
+		// If the useParsoid option is present, we expect
+		// ParsoidParserFactory()->create()->parse() to be called
+		// exactly once, otherwise never.
+		$parsoidParser = $this->createMock( ParsoidParser::class );
+		$parsoidParser
+			->expects( $useParsoid ? $this->once() : $this->never() )
+			->method( 'parse' );
+		$parsoidParserFactory = $this->createMock( ParsoidParserFactory::class );
+		$parsoidParserFactory
+			->expects( $useParsoid ? $this->once() : $this->never() )
+			->method( 'create' )
+			->willReturn( $parsoidParser );
+
+		// Set up the rest of the mocks
+		$content = $this->createMock( WikitextContent::class );
+		$content
+			->method( 'getRedirectTargetAndText' )
+			->willReturn( [ false, '* Hello, world!' ] );
+		$content
+			->method( 'getPreSaveTransformFlags' )
+			->willReturn( [] );
+
+		$title = $this->createMock( Title::class );
+		$titleFactory = $this->createMock( TitleFactory::class );
+		$titleFactory
+			->method( 'castFromPageReference' )
+			->willReturn( $title );
+
+		$cpoParams = new ContentParseParams( $title, 42, $parserOptions );
+
+		$parserOutput = $this->createMock( ParserOutput::class );
+
+		// The method we'd like to test, fillParserOutput, is protected;
+		// make it public
+		$class = new ReflectionClass( WikitextContentHandler::class );
+		$method = $class->getMethod( 'fillParserOutput' );
+		$method->setAccessible( true );
+
+		$handler = $this->newWikitextContentHandler( [
+			TitleFactory::class => $titleFactory,
+			ParserFactory::class => $parserFactory,
+			ParsoidParserFactory::class => $parsoidParserFactory,
+		] );
+
+		// Okay, invoke fillParserOutput() and verify that the assertions
+		// above about the parse() invocations are correct.
+		$method->invokeArgs( $handler, [ $content, $cpoParams, &$parserOutput ] );
+	}
+
+	public function provideFillParserOutput() {
+		return [ [ false ], [ true ] ];
+	}
 }

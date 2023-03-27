@@ -114,9 +114,7 @@ class PageHTMLHandler extends SimpleHandler {
 		}
 
 		$parserOutput = $this->htmlHelper->getHtml();
-
-		// Do not de-duplicate styles, Parsoid already does it in a slightly different way (T300325)
-		$parserOutputHtml = $parserOutput->getText( [ 'deduplicateStyles' => false ] );
+		$parserOutputHtml = $parserOutput->getRawText();
 
 		$outputMode = $this->getOutputMode();
 		switch ( $outputMode ) {

@@ -583,6 +583,35 @@ class ApiParseTest extends ApiTestCase {
 		);
 	}
 
+	/** @dataProvider providerTestParsoid */
+	public function testParsoid( $parsoid, $existing, $expected ) {
+		# For simplicity, ensure that [[Foo]] isn't a redlink.
+		$this->editPage( "Foo", __FUNCTION__ );
+		$res = $this->doApiRequest( [
+			# check that we're using the contents of 'text' not the contents of
+			# [[<title>]] by using pre-existing title __CLASS__ sometimes
+			'title' => $existing ? __CLASS__ : 'Bar',
+			'action' => 'parse',
+			'text' => "[[Foo]]",
+			'contentmodel' => 'wikitext',
+			'parsoid' => $parsoid ?: null,
+			'disablelimitreport' => true,
+		] );
+
+		$this->assertParsedToRegexp( $expected, $res );
+	}
+
+	public function providerTestParsoid() {
+		// Legacy parses, with and without pre-existing content.
+		$expected = '!^<p><a href="[^"]*" title="Foo">Foo</a>\n</p>$!';
+		yield [ false, false, $expected ];
+		yield [ false, true, $expected ];
+		// Parsoid parses, with and without pre-existing content.
+		$expected = '!^<section[^>]*><p[^>]*><a rel="mw:WikiLink" href="./Foo" title="Foo"[^>]*>Foo</a></p></section>!';
+		yield [ true, false, $expected ];
+		yield [ true, true, $expected ];
+	}
+
 	public function testHeadHtml() {
 		$res = $this->doApiRequest( [
 			'action' => 'parse',

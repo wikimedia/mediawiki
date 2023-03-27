@@ -754,6 +754,9 @@ class ApiParse extends ApiBase {
 		if ( $params['wrapoutputclass'] !== '' ) {
 			$popts->setWrapOutputClass( $params['wrapoutputclass'] );
 		}
+		if ( $params['parsoid'] ) {
+			$popts->setUseParsoid();
+		}
 
 		$reset = null;
 		$suppressCache = false;
@@ -1071,6 +1074,7 @@ class ApiParse extends ApiBase {
 				],
 			],
 			'wrapoutputclass' => 'mw-parser-output',
+			'parsoid' => false, // since 1.41
 			'pst' => false,
 			'onlypst' => false,
 			'effectivelanglinks' => [
