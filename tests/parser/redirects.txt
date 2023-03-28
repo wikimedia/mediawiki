@@ -265,3 +265,19 @@ Redirect containing double quotes and spaces
 !! html/parsoid
 <link rel="mw:PageProp/redirect" href="./Cool_%22Gator%22" data-parsoid='{"src":"#REDIRECT ","a":{"href":"./Cool_%22Gator%22"},"sa":{"href":"Cool \"Gator\""}}'/>
 !! end
+
+!! test
+Broken redirect shouldn't crash parsoid (T332242)
+!! wikitext
+<!-- Not a valid redirect nor a valid parser function -->
+{{#REDIRECT [[]]}}
+!! html/php
+<p>{{#REDIRECT [[]]}}
+</p>
+!! html/parsoid+integrated
+<!-- Not a valid redirect nor a valid parser function -->
+<p><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#REDIRECT [[]]","function":"REDIRECT [[]]"},"params":{},"i":0}}]}'>{{#REDIRECT [[]]}}</span></p>
+!! html/parsoid+standalone
+<!-- Not a valid redirect nor a valid parser function -->
+<p><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#REDIRECT [[]]","function":"REDIRECT [[]]"},"params":{},"i":0}}]}'>Parser function implementation for pf_REDIRECT [[]] missing in Parsoid.</span></p>
+!! end
