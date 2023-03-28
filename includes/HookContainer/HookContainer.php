@@ -436,6 +436,7 @@ class HookContainer implements SalvageableService {
 	 * @return callable[]
 	 */
 	public function getHandlerCallbacks( string $hook ): array {
+		wfDeprecated( __METHOD__, '1.41' );
 		$handlers = $this->getHandlers( $hook );
 
 		$callbacks = [];

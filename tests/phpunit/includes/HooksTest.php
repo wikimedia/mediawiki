@@ -62,7 +62,8 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 		$hookContainer = $this->getServiceContainer()->getHookContainer();
 
 		$this->filterDeprecated( '/\$wgHooks/' );
-		$this->hideDeprecated( 'Hooks::getHandlers' );
+		$this->filterDeprecated( '/Hooks::getHandlers was deprecated/' );
+		$this->filterDeprecated( '/HookContainer::getHandlerCallbacks was deprecated/' );
 
 		$this->assertSame(
 			[],
@@ -106,13 +107,14 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testRegistration() {
 		$this->hideDeprecated( 'Hooks::isRegistered' );
-		$this->hideDeprecated( 'Hooks::getHandlers' );
 		$this->hideDeprecated( 'Hooks::run' );
 		global $wgHooks;
 		$hookContainer = $this->getServiceContainer()->getHookContainer();
 
 		$this->expectDeprecationAndContinue( '/\$wgHooks .* deprecated/' );
 		$this->expectDeprecationAndContinue( '/Use of Hooks::register was deprecated/' );
+		$this->expectDeprecationAndContinue( '/Hooks::getHandlers was deprecated/' );
+		$this->expectDeprecationAndContinue( '/HookContainer::getHandlerCallbacks was deprecated/' );
 
 		$a = new HookTestDummyHookHandlerClass();
 		$b = new HookTestDummyHookHandlerClass();

@@ -239,13 +239,13 @@ namespace MediaWiki\HookContainer {
 			} );
 
 			// handlers registered in 2 different ways
-			$this->assertCount( 2, $hookContainer->getHandlerCallbacks( 'MWTestHook' ) );
+			$this->assertCount( 2, $hookContainer->getHandlerDescriptions( 'MWTestHook' ) );
 			$hookContainer->run( 'MWTestHook' );
 			$this->assertEquals( 2, $numCalls );
 
 			// Remove one of the handlers that increments $called
 			ScopedCallback::consume( $reset );
-			$this->assertCount( 1, $hookContainer->getHandlerCallbacks( 'MWTestHook' ) );
+			$this->assertCount( 1, $hookContainer->getHandlerDescriptions( 'MWTestHook' ) );
 
 			$numCalls = 0;
 			$hookContainer->run( 'MWTestHook' );
@@ -280,6 +280,7 @@ namespace MediaWiki\HookContainer {
 				'getHandlerDescriptions()'
 			);
 
+			$this->expectDeprecationAndContinue( '/getHandlerCallbacks/' );
 			$callbacks = $hookContainer->getHandlerCallbacks( $hook );
 			$this->assertCount(
 				$expectedCallbacks,
@@ -447,6 +448,8 @@ namespace MediaWiki\HookContainer {
 		public function testRegisterAndRunCallback( $handler, $expectedCount = 2 ) {
 			$hookContainer = $this->newHookContainer( [], [] );
 			$hookContainer->register( 'Increment', $handler );
+
+			$this->expectDeprecationAndContinue( '/getHandlerCallbacks/' );
 
 			$count = 1;
 			foreach ( $hookContainer->getHandlerCallbacks( 'Increment' ) as $callback ) {
@@ -722,6 +725,8 @@ namespace MediaWiki\HookContainer {
 			// Ask for a few hooks that have no handlers.
 			// Negative caching inside HookHandler should not cause them to be returned from getHookNames
 			$container->isRegistered( 'X' );
+
+			$this->expectDeprecationAndContinue( '/getHandlerCallbacks/' );
 			$container->getHandlerCallbacks( 'Y' );
 
 			$this->assertArrayEquals( [ 'A', 'B', 'C' ], $container->getHookNames() );
@@ -920,11 +925,12 @@ namespace MediaWiki\HookContainer {
 			$this->assertTrue( $hookContainer->isRegistered( 'XyzHook' ) );
 			$this->assertTrue( $hookContainer->isRegistered( 'FooActionComplete' ) );
 
-			$this->assertSame( [], $hookContainer->getHandlerCallbacks( 'Increment' ) );
-			$this->assertSame( [], $hookContainer->getHandlerCallbacks( 'Increment' ) );
-			$this->assertNotEmpty( $hookContainer->getHandlerCallbacks( 'AbcHook' ) );
-			$this->assertNotEmpty( $hookContainer->getHandlerCallbacks( 'FooActionComplete' ) );
-			$this->assertNotEmpty( $hookContainer->getHandlerCallbacks( 'XyzHook' ) );
+			// NOTE: getHandlerDescriptions() will still return the handlers provided to the constructor.
+			//       The clear() method only affects handlers introduced by calling register().
+			$this->assertCount( 2, $hookContainer->getHandlerDescriptions( 'Increment' ) );
+			$this->assertNotEmpty( $hookContainer->getHandlerDescriptions( 'AbcHook' ) );
+			$this->assertNotEmpty( $hookContainer->getHandlerDescriptions( 'FooActionComplete' ) );
+			$this->assertNotEmpty( $hookContainer->getHandlerDescriptions( 'XyzHook' ) );
 
 			// No more increment!
 			$hookContainer->run( 'Increment', [ &$count ] );

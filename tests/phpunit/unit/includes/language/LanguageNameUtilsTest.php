@@ -41,6 +41,10 @@ class LanguageNameUtilsTest extends MediaWikiUnitTestCase {
 		$this->hookContainer->register( $hookName, $handler );
 	}
 
+	protected function clearLanguageHook( string $hookName ): void {
+		$this->hookContainer->clear( $hookName );
+	}
+
 	private function isSupportedLanguage( $code ) {
 		return $this->newObj()->isSupportedLanguage( $code );
 	}
