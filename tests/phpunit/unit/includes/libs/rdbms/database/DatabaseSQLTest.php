@@ -434,6 +434,16 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 				"SELECT COUNT(*) AS rowcount FROM " .
 				"(SELECT 1 FROM table WHERE (0) AND (column IS NOT NULL)  ) tmp_count"
 			],
+			[
+				[
+					'tables' => 'table',
+					'field' => [ 'column' ],
+					'conds' => 1,
+					'options' => 'DISTINCT',
+				],
+				"SELECT COUNT(*) AS rowcount FROM " .
+				"(SELECT DISTINCT column FROM table WHERE (1) AND (column IS NOT NULL)  ) tmp_count"
+			],
 		];
 	}
 

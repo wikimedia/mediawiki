@@ -1672,12 +1672,21 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( is_string( $column ) && !in_array( $column, [ '*', '1' ] ) ) {
 			$conds[] = "$column IS NOT NULL";
 		}
+		if ( in_array( 'DISTINCT', (array)$options ) ) {
+			if ( $column === null ) {
+				throw new DBUnexpectedError( $this,
+					'$var cannot be empty when the DISTINCT option is given' );
+			}
+			$innerVar = $column;
+		} else {
+			$innerVar = '1';
+		}
 
 		$res = $this->select(
 			[
 				'tmp_count' => $this->platform->buildSelectSubquery(
 					$tables,
-					'1',
+					$innerVar,
 					$conds,
 					$fname,
 					$options,

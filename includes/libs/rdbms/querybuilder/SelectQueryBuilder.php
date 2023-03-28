@@ -706,8 +706,6 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * uses a subquery to discard the actual results on the server side, and
 	 * is useful when counting rows with a limit.
 	 *
-	 * The DISTINCT option will not work and should not be used. (T333065)
-	 *
 	 * To count rows without a limit, it's more efficient to use a normal
 	 * COUNT() expression, for example:
 	 *
