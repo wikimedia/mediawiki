@@ -44,7 +44,7 @@
 				promise;
 
 			// Logged-out users can't have user options; we can't depend on mw.user, that'd be circular
-			if ( mw.config.get( 'wgUserName' ) === null ) {
+			if ( mw.config.get( 'wgUserName' ) === null || mw.config.get( 'wgUserIsTemp' ) ) {
 				return $.Deferred().reject( 'notloggedin' ).promise();
 			}
 
