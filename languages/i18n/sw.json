@@ -30,7 +30,8 @@
 			"Wangombe",
 			"Yasen igra",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Magotech"
 		]
 	},
 	"tog-underline": "Wekea mstari viungo:",
@@ -46,6 +47,7 @@
 	"tog-watchdefault": "Ongeza kurasa zote nilizohariri katika maangalizi yangu",
 	"tog-watchmoves": "Ongeza kurasa zote nilizohamisha katika maangalizi yangu",
 	"tog-watchdeletion": "Ongeza kurasa zote nilizofuta katika maangalizi yangu",
+	"tog-watchuploads": "Ongeza faili mpya ninazopakia kwenye orodha yangu ya kutazama",
 	"tog-watchrollback": "Ongeza kurasa nilizo fanyua kwa orodha yangu ya kutazama",
 	"tog-minordefault": "Weka alama zote za mabadiliko madogo kama matumizi mbadala",
 	"tog-previewontop": "Onyesha mandhari kabla ya sanduku la kuhariria",
@@ -63,6 +65,7 @@
 	"tog-watchlisthidebots": "Ficha uhariri wa vikaragosi kwenye orodha ya maangalizi",
 	"tog-watchlisthideminor": "Ficha mabadliko madogo kwenye maangalizi",
 	"tog-watchlisthideliu": "Ficha mabadiliko yaliyofanywa na watumiaji kwenye maangalilizi",
+	"tog-watchlistreloadautomatically": "Pakia upya orodha ya kutazama kiotomatiki kila kichujio kinapobadilishwa (Javascript inahitajika)",
 	"tog-watchlisthideanons": "Ficha mabadiliko yaliyofanywa na watumiaji wasiojisajili kwenye maangalilizi",
 	"tog-watchlisthidepatrolled": "Ficha maharirio yaliyodoliwa katika maangalizi",
 	"tog-watchlisthidecategorization": "Ficha jamii za kurasa",
@@ -270,7 +273,7 @@
 	"confirmable-confirm": "Wewe ni {{GENDER:$1|you}} kwa uhakika?",
 	"confirmable-yes": "Ndio",
 	"confirmable-no": "Habana",
-	"thisisdeleted": "Tazama au rudisha $1?",
+	"thisisdeleted": "Angalia au urejeshe $1?",
 	"viewdeleted": "Tazama $1?",
 	"restorelink": "{{PLURAL:$1|sahihisho lililofutwa moja|masahihisho yaliyofutwa $1}}",
 	"feed-invalid": "Umekosea kuingiza maelezo ya aina ya tawanyiko.",
@@ -362,7 +365,7 @@
 	"mypreferencesprotected": "Huna ruhusa kuhariri mapendekezo yako.",
 	"ns-specialprotected": "Kurasa maalumu haziwezi kuhaririwa.",
 	"titleprotected": "Jina hili limekingwa lisiumbwe na [[User:$1|$1]].\nSababu zilizotolewa ni <em>$2</em>.",
-	"filereadonlyerror": "Haiwezi kurekebisha faili \"$1\" kwa sababu faili \"$2\" iko katika hali ya kusoma tu.\n\nMsimamizi aliyeifunga  hakutoa sababu yoyote: \"$3\".",
+	"filereadonlyerror": "Haiwezi kurekebisha faili \" $1 \" kwa sababu hazina ya faili \"$2\" iko katika hali ya kusoma tu.\n\nMsimamizi wa mfumo aliyeifunga alitoa maelezo haya: \"$3\".",
 	"invalidtitle": "Jina batili",
 	"invalidtitle-knownnamespace": "Kichwa ni batili na eneo la jina \"$2\" na maandishi \"$3\"",
 	"invalidtitle-unknownnamespace": "Kichwa ni batili na haijulikani eneo la jina $1 na maandishi \"$2\"",

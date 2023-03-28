@@ -5,7 +5,8 @@
 			"Gildo Máquina",
 			"Jacinto Jeque",
 			"Tomas Armando Moz",
-			"Ofa1975"
+			"Ofa1975",
+			"Gito da Ana"
 		]
 	},
 	"underline-always": "Kweekwe",
@@ -161,6 +162,7 @@
 	"red-link-title": "$1 (nipuro noohikhala ethu)",
 	"nstab-main": "Nipuru",
 	"nstab-user": "{{GENDER:$1|Nipuro ya namarumeela}}",
+	"nstab-media": "Nikukhu na mitiya",
 	"nstab-special": "Nipuro saana",
 	"nstab-project": "Opuro wa muteko",
 	"nstab-image": "Eyooniheryo",

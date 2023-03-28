@@ -229,7 +229,7 @@
 	"config-logo-sidebar-help": "Nekatere preobleke za MediaWiki vključujejo kot del stranske letvice logotip z višino 160&nbsp;px. Če je ta neopredeljena, je enaka kot pri zgoraj določeni ikoni. Morda boste želeli imeti namensko grafiko, ki združuje besedni znak in ikono.",
 	"config-instantcommons": "Omogoči Instant Commons",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons Instant Commons] je možnost, ki vikijem omogoča uporabo slik, zvokov in drugih predstavnosti, ki jih najdete v [https://commons.wikimedia.org/ Wikimedijini zbirki].\nMediaWiki za to potrebuje dostop do interneta.\n\nZa več informacij o tej možnosti, vključno z navodili, kako jo nastaviti za vikije, ki niso Wikimedijina zbirka, glejte [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos priročnik].",
-	"config-cc-error": "Izbiralnik dovoljenja Creative Commons ni vrnil nobenih zadetkov.\nVnesite ime dovoljenja ročno.",
+	"config-cc-error": "Izbirnik licence Creative Commons ni vrnil nobenih zadetkov.\nVnesite ime licence ročno.",
 	"config-cc-again": "Izberite znova ...",
 	"config-cc-not-chosen": "Izberite licenco Creative Commons, ki jo želite uporabiti, in kliknite »proceed«.",
 	"config-advanced-settings": "Napredna konfiguracija",
