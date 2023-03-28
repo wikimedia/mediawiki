@@ -121,8 +121,24 @@
 @opacity-icon-placeholder: 0.51;
 @opacity-icon-subtle: 0.67;
 @background-position-base: center;
+@z-index-bottom: -100; // Use descriptive `z-index` tokens for layout purposes.
 @z-index-base: 0;
-@z-index-overlay: 101;
+@z-index-above-content: 1;
+@z-index-toolbar: 2;
+@z-index-dropdown: 50;
+@z-index-sticky: 100;
+@z-index-fixed: 200;
+@z-index-off-canvas-backdrop: 300;
+@z-index-off-canvas: 350;
+@z-index-overlay-backdrop: 400;
+@z-index-overlay: 450;
+@z-index-tooltip: 800;
+@z-index-toast-notification: 900;
+@z-index-top: 9999;
+@z-index-stacking-0: 0; // Use stacking-specific z-index tokens inside components to layer individual elements.
+@z-index-stacking-1: 1;
+@z-index-stacking-2: 2;
+@z-index-stacking-3: 3;
 @box-sizing-base: border-box;
 @min-size-base: 32px;
 @min-size-icon-x-small: 12px;

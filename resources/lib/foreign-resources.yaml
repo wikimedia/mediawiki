@@ -110,8 +110,8 @@ codex:
   homepage: https://doc.wikimedia.org/codex/
   version: 0.7.0
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-0.7.0.tgz
-  integrity: sha512-SEm9HkuAdfoTrC/tNcftiZU3ljSthYZRdgdFRENSsrgZjVtTeZ5Zr0MPxbTRaEBoeyOk8v1IY3VbgcSAgBdslQ==
+  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-0.8.0.tgz
+  integrity: sha512-0M94ZJmmHRUm5sM355KW+TmapMzsk03QydIlSoIeDeOR/yt7ipSuReazwE9qe/hrR62gcOuoV8R9FjMe/JEsPA==
   dest:
     package/dist/codex.mjs:
     package/dist/codex.umd.js:
@@ -128,8 +128,8 @@ codex-design-tokens:
   homepage: https://doc.wikimedia.org/codex/
   version: 0.7.0
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-0.7.0.tgz
-  integrity: sha384-UT57RyS1PUcRMQGVtTUT62AuSdOudLmkyA34a02PAH37lO86HF9EzXDnjOe+CDLL
+  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-0.8.0.tgz
+  integrity: sha384-L9AJR36OH39Lcg9nuzWMc+gec2/sGewE60DOd9QJYX2gVEY77XiH5OSEjxXieZuN
   dest:
     package/dist/theme-wikimedia-ui.less:
     package/dist/theme-wikimedia-ui-legacy.less:
@@ -141,8 +141,8 @@ codex-icons:
   homepage: https://doc.wikimedia.org/codex/
   version: 0.7.0
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-0.7.0.tgz
-  integrity: sha384-nseTLGTeFeKWB7jhqxo7yWyikvV7wZa1VSgYgtga9Langj+zvlmBXmKKi6f0CRiU
+  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-0.8.0.tgz
+  integrity: sha384-C57y+RrL82OyGNp658/XbXy3LgqJx0+3Cta+SsI7E69I5B2sis1NZhx2l4JotzEw
   dest:
     package/dist/codex-icons.json:
     package/dist/codex-icon-paths.less:
@@ -154,8 +154,8 @@ codex-search:
   homepage: https://doc.wikimedia.org/codex/
   version: 0.7.0
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-search/-/codex-search-0.7.0.tgz
-  integrity: sha384-kKK7PBRXDkPtmwiAgNLzd2bn5EL7tPouTZra8pZN0SLyiFfeSLYHwMWOv3ex4J4W
+  src: https://registry.npmjs.org/@wikimedia/codex-search/-/codex-search-0.8.0.tgz
+  integrity: sha384-/S//Tw4/fNC6T62mAK5wJLCBzpGglkFGPvt2P1W9pUcHq1Mnk01ClqDIKUe30F8U
   dest:
     package/dist/codex-search.mjs:
     package/dist/codex-search.umd.js:
