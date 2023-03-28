@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
@@ -17,9 +18,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 		$this->overrideConfigValue( MainConfigNames::RenderHashAppend, '' );
 		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, false );
 
-		// This is crazy, but registering false, null, or other falsey values
-		// as a hook callback "works".
-		$this->setTemporaryHook( 'PageRenderingHash', null );
+		$this->setTemporaryHook( 'PageRenderingHash', HookContainer::NOOP );
 	}
 
 	protected function tearDown(): void {
@@ -139,7 +138,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 		$usedOptions, $expect, $options, $globals = [], $hookFunc = null
 	) {
 		$this->overrideConfigValues( $globals );
-		$this->setTemporaryHook( 'PageRenderingHash', $hookFunc );
+		$this->setTemporaryHook( 'PageRenderingHash', $hookFunc ?: HookContainer::NOOP );
 
 		$popt = ParserOptions::newFromAnon();
 		foreach ( $options as $name => $value ) {
@@ -175,7 +174,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 				'canonical!wgRenderHashAppend!onPageRenderingHash',
 				[],
 				[ MainConfigNames::RenderHashAppend => '!wgRenderHashAppend' ],
-				[ __CLASS__ . '::onPageRenderingHash' ],
+				__CLASS__ . '::onPageRenderingHash',
 			],
 		];
 	}
@@ -328,7 +327,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 	}
 
 	public function testAllCacheVaryingOptions() {
-		$this->setTemporaryHook( 'ParserOptionsRegister', null );
+		$this->setTemporaryHook( 'ParserOptionsRegister', HookContainer::NOOP );
 		$this->assertSame( [
 			'dateformat', 'printable',
 			'thumbsize', 'useParsoid', 'userlang',

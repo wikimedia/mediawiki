@@ -96,7 +96,7 @@ class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
 		// LocalisationUpdate extension does. See T70781.
 
 		$lc = $this->getMockLocalisationCache( [
-			'LocalisationCacheRecacheFallback' => [
+			'LocalisationCacheRecacheFallback' =>
 				static function (
 					LocalisationCache $lc,
 					$code,
@@ -108,7 +108,6 @@ class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
 						$cache['messages']['present-en'] = 'ru-override';
 					}
 				}
-			]
 		] );
 		$lc->recache( 'ba' );
 		$this->assertEquals(

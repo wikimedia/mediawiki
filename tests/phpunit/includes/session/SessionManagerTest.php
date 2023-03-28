@@ -1492,7 +1492,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			'userInfo' => $userInfo
 		] );
 		$manager->setHookContainer( $this->createHookContainer( [
-			'SessionCheckInfo' => [ function ( &$reason, $i, $r, $m, $d ) use (
+			'SessionCheckInfo' => function ( &$reason, $i, $r, $m, $d ) use (
 				$info, $metadata, $data, $request, &$called
 			) {
 				$this->assertSame( $info->getId(), $i->getId() );
@@ -1503,7 +1503,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 				$this->assertEquals( $data, $d );
 				$called = true;
 				return false;
-			} ]
+			}
 		] ) );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertTrue( $called );

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\HookContainer\HookContainer;
 use Wikimedia\ScopedCallback;
 
 class HooksTest extends MediaWikiIntegrationTestCase {
@@ -20,38 +21,20 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 				'changed-nonstatic',
 				'changed-nonstatic'
 			],
-			[ 'Object and no method', [ $obj ], 'changed-onevent', 'original' ],
-			[
-				'Object and method with data',
-				[ $obj, 'someNonStaticWithData', 'data' ],
-				'data',
-				'original'
-			],
+			[ 'Object and no method', $obj, 'changed-onevent', 'original' ],
 			[ 'Object and static method', [ $obj, 'someStatic' ], 'changed-static', 'original' ],
 			[
 				'Class::method static call',
-				[ 'HookTestDummyHookHandlerClass::someStatic' ],
+				'HookTestDummyHookHandlerClass::someStatic',
 				'changed-static',
 				'original'
 			],
-			[
-				'Class::method static call as array',
-				[ [ 'HookTestDummyHookHandlerClass::someStatic' ] ],
-				'changed-static',
-				'original'
-			],
-			[ 'Global function', [ 'wfNothingFunction' ], 'changed-func', 'original' ],
-			[ 'Global function with data', [ 'wfNothingFunctionData', 'data' ], 'data', 'original' ],
-			[ 'Closure', [ static function ( &$foo, $bar ) {
+			[ 'Global function', 'wfNothingFunction', 'changed-func', 'original' ],
+			[ 'Closure', static function ( &$foo, $bar ) {
 				$foo = 'changed-closure';
 
 				return true;
-			} ], 'changed-closure', 'original' ],
-			[ 'Closure with data', [ static function ( $data, &$foo, $bar ) {
-				$foo = $data;
-
-				return true;
-			}, 'data' ], 'data', 'original' ]
+			}, 'changed-closure', 'original' ],
 		];
 	}
 
@@ -215,10 +198,10 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers Hooks::run
 	 */
-	public function testCallHook_FalseHook() {
+	public function testCallHook_NoopHook() {
 		$this->hideDeprecated( 'Hooks::run' );
 		$hookContainer = $this->getServiceContainer()->getHookContainer();
-		$hookContainer->register( self::MOCK_HOOK_NAME, false );
+		$hookContainer->register( self::MOCK_HOOK_NAME, HookContainer::NOOP );
 		$hookContainer->register( self::MOCK_HOOK_NAME, static function ( &$foo ) {
 			$foo = 'test';
 

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use Wikimedia\TestingAccessWrapper;
@@ -17,7 +18,7 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 		$this->tablesUsed = [ 'watchlist' ];
 		$this->setTemporaryHook(
 			'ChangesListSpecialPageQuery',
-			null
+			HookContainer::NOOP
 		);
 
 		$this->overrideConfigValues( [
