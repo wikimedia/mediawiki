@@ -22,7 +22,7 @@ then pass it into the `components` option of your Vue component:
 ```
 <template>
 	<div>
-		<cdx-button action="progressive" type="primary">
+		<cdx-button action="progressive" weight="primary">
 			Click me!
 		</cdx-button>
 	</div>

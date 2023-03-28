@@ -1,4 +1,4 @@
-@import ( reference ) '@wikimedia/codex-icons/dist/codex-icon-paths.less';
+@import ( reference ) '@wikimedia/codex-icons/codex-icon-paths.less';
 
 //
 // To create a CSS-only icon you can do one of the following:
@@ -87,7 +87,7 @@
 
 	@supports not ( mask-image: none ) {
 		// Support Firefox v39-52: Fallback for @color-base icons.
-		background-image: url( @{background-image-url} );
+		background-image: url( @background-image-url );
 		// Set icon color close to @color-base.
 		opacity: @opacity-icon-base;
 
@@ -106,7 +106,7 @@
 		@supports ( mask-image: none ) {
 			background-image: none;
 			/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-			mask-image: url( @{background-image-url} );
+			mask-image: url( @background-image-url );
 			transition-property: background-color;
 			transition-duration: @transition-duration-base;
 		}

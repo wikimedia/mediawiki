@@ -1,6 +1,6 @@
 
 // Do not edit directly
-// Generated on Tue, 14 Mar 2023 22:33:06 GMT
+// Generated on Tue, 28 Mar 2023 20:41:55 GMT
 
 @font-size-base: 16px;
 @font-size-x-small: 0.75em; // `x` stands for extra. In this case extra small.
@@ -72,14 +72,31 @@
 @opacity-icon-placeholder: 0.51;
 @opacity-icon-subtle: 0.67;
 @background-position-base: center;
+@background-size-search-figure: cover; // Use in TypeaheadSearch and Thumbnail components for the thumb container.
+@z-index-bottom: -100; // Use descriptive `z-index` tokens for layout purposes.
 @z-index-base: 0;
-@z-index-overlay: 101;
+@z-index-above-content: 1;
+@z-index-toolbar: 2;
+@z-index-dropdown: 50;
+@z-index-sticky: 100;
+@z-index-fixed: 200;
+@z-index-off-canvas-backdrop: 300;
+@z-index-off-canvas: 350;
+@z-index-overlay-backdrop: 400;
+@z-index-overlay: 450;
+@z-index-tooltip: 800;
+@z-index-toast-notification: 900;
+@z-index-top: 9999;
+@z-index-stacking-0: 0; // Use stacking-specific z-index tokens inside components to layer individual elements.
+@z-index-stacking-1: 1;
+@z-index-stacking-2: 2;
+@z-index-stacking-3: 3;
 @box-sizing-base: border-box;
 @min-size-base: 32px; // TODO: Deprecate key and change to `min-size-component`?
+@min-size-search-figure: 40px; // Alias for use in TypeaheadSearch and Thumbnail components for the same purpose and for better code readability.
 @min-size-icon-x-small: 12px;
 @min-size-icon-small: 16px;
 @min-size-icon-medium: 20px;
-@min-size-search-figure: 40px; // Alias for use in TypeaheadSearch and Thumbnail components for the same purpose and for better code readability.
 @min-size-toggle-switch-grip: 20px;
 @size-0: 0;
 @size-6: 0.0625em;
@@ -109,10 +126,10 @@
 @size-double: 200%;
 @size-viewport-width-full: 100vw;
 @size-viewport-height-full: 100vh;
+@size-search-figure: 2.5em; // Alias for use in TypeaheadSearch and Thumbnail components for the same purpose and for better code readability.
 @size-icon-x-small: 0.75em;
 @size-icon-small: 1em;
 @size-icon-medium: 1.25em;
-@size-search-figure: 2.5em; // Alias for use in TypeaheadSearch and Thumbnail components for the same purpose and for better code readability.
 @min-width-medium: 256px;
 @min-width-breakpoint-mobile: 320px; // A mobile device's minimum available screen width. Many older feature phones have screens smaller than this value.
 @min-width-breakpoint-tablet: 640px; // A tablet device's minimum available screen width. Note: the size chosen is eager to be re-evaluated with Web team and Product Analytics.
@@ -252,7 +269,6 @@
 @cursor-zoom-out: zoom-out;
 @unit-absolute: px;
 @unit-relative: em;
-@background-size-search-figure: cover; // Use in TypeaheadSearch and Thumbnail components for the thumb container.
 
 // DEPRECATED TOKENS
 // Warning: the following token name is deprecated (No replacement for this token. Only used in non-Codex products and design decision is to need to rely on background for this state.)
@@ -273,5 +289,3 @@
 @font-family-sans: 'Helvetica Neue', 'Helvetica', 'Liberation Sans', 'Arial', sans-serif;
 // Warning: the following token name is deprecated (Legacy line-height. Use `line-height-small` instead.)
 @line-height-x-small: 1.4285714;
-// Warning: the following token name is deprecated (Legacy `line-height` for headings in non-Codex products. Use `line-height-xx-small` instead.)
-@line-height-heading: 1.3;

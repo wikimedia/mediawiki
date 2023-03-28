@@ -35,7 +35,7 @@ var pe = (e, t, n) => new Promise((u, l) => {
   }, i = (o) => o.done ? u(o.value) : Promise.resolve(o.value).then(s, a);
   i((n = n.apply(e, t)).next());
 });
-import { ref as y, onMounted as J, defineComponent as L, computed as p, openBlock as h, createElementBlock as m, normalizeClass as x, toDisplayString as k, createCommentVNode as w, resolveComponent as E, createVNode as W, Transition as Ne, withCtx as Q, normalizeStyle as te, createElementVNode as C, createTextVNode as Z, withModifiers as Ae, renderSlot as V, createBlock as M, resolveDynamicComponent as Oe, Fragment as ye, getCurrentInstance as qe, onUnmounted as De, watch as Y, toRef as ee, nextTick as ie, withDirectives as ke, mergeProps as G, renderList as He, vShow as Qe, Comment as Ue, warn as ze, withKeys as be, vModelDynamic as Pe, toRefs as je } from "vue";
+import { ref as y, onMounted as J, defineComponent as L, computed as p, openBlock as h, createElementBlock as g, normalizeClass as x, toDisplayString as k, createCommentVNode as w, resolveComponent as E, createVNode as W, Transition as Ne, withCtx as Q, normalizeStyle as te, createElementVNode as C, createTextVNode as Z, withModifiers as Ae, renderSlot as V, createBlock as M, resolveDynamicComponent as Oe, Fragment as ye, getCurrentInstance as qe, onUnmounted as De, watch as Y, toRef as ee, nextTick as ie, withDirectives as ke, mergeProps as G, renderList as He, vShow as Qe, Comment as Ue, warn as ze, withKeys as be, vModelDynamic as Pe, toRefs as je } from "vue";
 const We = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', Ge = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0zm5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', Je = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', Xe = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8z"/>', Ye = We, Ze = Ge, et = Je, tt = Xe;
 function nt(e, t, n) {
   if (typeof e == "string" || "path" in e)
@@ -81,7 +81,7 @@ function lt(e) {
 function U(e) {
   return (t) => typeof t == "string" && e.indexOf(t) !== -1;
 }
-const ge = "cdx", ot = [
+const me = "cdx", ot = [
   "default",
   "progressive",
   "destructive"
@@ -99,7 +99,17 @@ const ge = "cdx", ot = [
   "medium"
 ], rt = [
   "text",
-  "search"
+  "search",
+  "number",
+  "email",
+  "month",
+  "password",
+  "tel",
+  "url",
+  "week",
+  "date",
+  "datetime-local",
+  "time"
 ], Fe = [
   "default",
   "error"
@@ -152,25 +162,25 @@ const K = (e, t) => {
   for (const [u, l] of t)
     n[u] = l;
   return n;
-}, pt = ["aria-hidden"], gt = { key: 0 }, mt = ["innerHTML"], vt = ["d"];
+}, pt = ["aria-hidden"], mt = { key: 0 }, gt = ["innerHTML"], vt = ["d"];
 function yt(e, t, n, u, l, s) {
-  return h(), m("span", {
+  return h(), g("span", {
     ref: "rootElement",
     class: x(["cdx-icon", e.rootClasses]),
     onClick: t[0] || (t[0] = (...a) => e.onClick && e.onClick(...a))
   }, [
-    (h(), m("svg", {
+    (h(), g("svg", {
       xmlns: "http://www.w3.org/2000/svg",
       width: "20",
       height: "20",
       viewBox: "0 0 20 20",
       "aria-hidden": e.iconLabel ? void 0 : !0
     }, [
-      e.iconLabel ? (h(), m("title", gt, k(e.iconLabel), 1)) : w("", !0),
-      e.iconSvg ? (h(), m("g", {
+      e.iconLabel ? (h(), g("title", mt, k(e.iconLabel), 1)) : w("", !0),
+      e.iconSvg ? (h(), g("g", {
         key: 1,
         innerHTML: e.iconSvg
-      }, null, 8, mt)) : (h(), m("path", {
+      }, null, 8, gt)) : (h(), g("path", {
         key: 2,
         d: e.iconPath
       }, null, 8, vt))
@@ -214,8 +224,8 @@ const Ct = { class: "cdx-thumbnail" }, At = {
 };
 function Bt(e, t, n, u, l, s) {
   const a = E("cdx-icon");
-  return h(), m("span", Ct, [
-    e.thumbnailLoaded ? w("", !0) : (h(), m("span", At, [
+  return h(), g("span", Ct, [
+    e.thumbnailLoaded ? w("", !0) : (h(), g("span", At, [
       W(a, {
         icon: e.placeholderIcon,
         class: "cdx-thumbnail__placeholder__icon"
@@ -223,7 +233,7 @@ function Bt(e, t, n, u, l, s) {
     ])),
     W(Ne, { name: "cdx-thumbnail__image" }, {
       default: Q(() => [
-        e.thumbnailLoaded ? (h(), m("span", {
+        e.thumbnailLoaded ? (h(), g("span", {
           key: 0,
           style: te(e.thumbnailStyle),
           class: "cdx-thumbnail__image"
@@ -268,7 +278,7 @@ const wt = L({
 });
 const Dt = { class: "cdx-search-result-title" }, kt = { class: "cdx-search-result-title__match" };
 function Et(e, t, n, u, l, s) {
-  return h(), m("span", Dt, [
+  return h(), g("span", Dt, [
     C("bdi", null, [
       Z(k(e.titleChunks[0]), 1),
       C("span", kt, k(e.titleChunks[1]), 1),
@@ -391,7 +401,7 @@ const Ft = /* @__PURE__ */ K(wt, [["render", Et]]), Mt = L({
 const xt = ["id", "aria-disabled", "aria-selected"], Tt = { class: "cdx-menu-item__text" }, Vt = ["lang"], Lt = ["lang"], Kt = ["lang"], Rt = ["lang"];
 function Nt(e, t, n, u, l, s) {
   const a = E("cdx-thumbnail"), i = E("cdx-icon"), o = E("cdx-search-result-title");
-  return h(), m("li", {
+  return h(), g("li", {
     id: e.id,
     role: "option",
     class: x(["cdx-menu-item", e.rootClasses]),
@@ -425,21 +435,21 @@ function Nt(e, t, n, u, l, s) {
                 title: e.title,
                 "search-query": e.searchQuery,
                 lang: (r = e.language) == null ? void 0 : r.label
-              }, null, 8, ["title", "search-query", "lang"])) : (h(), m("span", {
+              }, null, 8, ["title", "search-query", "lang"])) : (h(), g("span", {
                 key: 1,
                 class: "cdx-menu-item__text__label",
                 lang: (c = e.language) == null ? void 0 : c.label
               }, [
                 C("bdi", null, k(e.title), 1)
               ], 8, Vt)),
-              e.match ? (h(), m(ye, { key: 2 }, [
+              e.match ? (h(), g(ye, { key: 2 }, [
                 Z(k(" ") + " "),
                 e.highlightQuery ? (h(), M(o, {
                   key: 0,
                   title: e.match,
                   "search-query": e.searchQuery,
                   lang: (A = e.language) == null ? void 0 : A.match
-                }, null, 8, ["title", "search-query", "lang"])) : (h(), m("span", {
+                }, null, 8, ["title", "search-query", "lang"])) : (h(), g("span", {
                   key: 1,
                   class: "cdx-menu-item__text__match",
                   lang: (b = e.language) == null ? void 0 : b.match
@@ -447,7 +457,7 @@ function Nt(e, t, n, u, l, s) {
                   C("bdi", null, k(e.match), 1)
                 ], 8, Lt))
               ], 64)) : w("", !0),
-              e.supportingText ? (h(), m(ye, { key: 3 }, [
+              e.supportingText ? (h(), g(ye, { key: 3 }, [
                 Z(k(" ") + " "),
                 C("span", {
                   class: "cdx-menu-item__text__supporting-text",
@@ -456,7 +466,7 @@ function Nt(e, t, n, u, l, s) {
                   C("bdi", null, k(e.supportingText), 1)
                 ], 8, Kt)
               ], 64)) : w("", !0),
-              e.description ? (h(), m("span", {
+              e.description ? (h(), g("span", {
                 key: 4,
                 class: "cdx-menu-item__text__description",
                 lang: (D = e.language) == null ? void 0 : D.description
@@ -498,7 +508,7 @@ const Ht = ["aria-disabled"], Qt = /* @__PURE__ */ C("div", { class: "cdx-progre
   Qt
 ];
 function zt(e, t, n, u, l, s) {
-  return h(), m("div", {
+  return h(), g("div", {
     class: x(["cdx-progress-bar", e.rootClasses]),
     role: "progressbar",
     "aria-disabled": e.disabled,
@@ -507,10 +517,10 @@ function zt(e, t, n, u, l, s) {
   }, Ut, 10, Ht);
 }
 const Pt = /* @__PURE__ */ K(qt, [["render", zt]]);
-let me = 0;
+let ge = 0;
 function Me(e) {
   const t = qe(), n = (t == null ? void 0 : t.props.id) || (t == null ? void 0 : t.attrs.id);
-  return e ? `${ge}-${e}-${me++}` : n ? `${ge}-${n}-${me++}` : `${ge}-${me++}`;
+  return e ? `${me}-${e}-${ge++}` : n ? `${me}-${n}-${ge++}` : `${me}-${ge++}`;
 }
 function jt(e, t) {
   const n = y(!1);
@@ -618,7 +628,7 @@ const Wt = L({
     "delegateKeyNavigation"
   ],
   setup(e, { emit: t, slots: n, attrs: u }) {
-    const l = p(() => (e.footer && e.menuItems ? [...e.menuItems, e.footer] : e.menuItems).map((g) => we(Ie({}, g), {
+    const l = p(() => (e.footer && e.menuItems ? [...e.menuItems, e.footer] : e.menuItems).map((m) => we(Ie({}, m), {
       id: Me("menu-item")
     }))), s = p(() => n["no-results"] ? e.showNoResultsSlot !== null ? e.showNoResultsSlot : l.value.length === 0 : !1), a = y(null), i = y(!1), o = y(null);
     function r() {
@@ -626,21 +636,21 @@ const Wt = L({
         (d) => d.value === e.selected
       );
     }
-    function c(d, g) {
+    function c(d, m) {
       var v;
-      if (!(g && g.disabled))
+      if (!(m && m.disabled))
         switch (d) {
           case "selected":
-            t("update:selected", (v = g == null ? void 0 : g.value) != null ? v : null), t("update:expanded", !1), o.value = null;
+            t("update:selected", (v = m == null ? void 0 : m.value) != null ? v : null), t("update:expanded", !1), o.value = null;
             break;
           case "highlighted":
-            a.value = g || null, i.value = !1;
+            a.value = m || null, i.value = !1;
             break;
           case "highlightedViaKeyboard":
-            a.value = g || null, i.value = !0;
+            a.value = m || null, i.value = !0;
             break;
           case "active":
-            o.value = g || null;
+            o.value = m || null;
             break;
         }
     }
@@ -655,27 +665,27 @@ const Wt = L({
     }
     function $(d) {
       var _;
-      const g = (X) => {
+      const m = (X) => {
         for (let H = X - 1; H >= 0; H--)
           if (!l.value[H].disabled)
             return l.value[H];
       };
       d = d || l.value.length;
-      const v = (_ = g(d)) != null ? _ : g(l.value.length);
+      const v = (_ = m(d)) != null ? _ : m(l.value.length);
       b(v);
     }
     function D(d) {
-      const g = (_) => l.value.find((X, H) => !X.disabled && H > _);
+      const m = (_) => l.value.find((X, H) => !X.disabled && H > _);
       d = d != null ? d : -1;
-      const v = g(d) || g(-1);
+      const v = m(d) || m(-1);
       b(v);
     }
-    function T(d, g = !0) {
+    function T(d, m = !0) {
       function v() {
         t("update:expanded", !0), c("highlighted", r());
       }
       function _() {
-        g && (d.preventDefault(), d.stopPropagation());
+        m && (d.preventDefault(), d.stopPropagation());
       }
       switch (d.key) {
         case "Enter":
@@ -707,9 +717,9 @@ const Wt = L({
     Y(F, (d) => {
       d && t("load-more");
     });
-    function de(d, g) {
+    function de(d, m) {
       if (d) {
-        S[g] = d.$el;
+        S[m] = d.$el;
         const v = e.visibleItemLimit;
         if (!v || e.menuItems.length < v)
           return;
@@ -717,7 +727,7 @@ const Wt = L({
           v,
           Math.max(2, Math.floor(0.2 * e.menuItems.length))
         );
-        g === e.menuItems.length - _ && (ue.value = d.$el);
+        m === e.menuItems.length - _ && (ue.value = d.$el);
       }
     }
     function O() {
@@ -735,26 +745,26 @@ const Wt = L({
         q.value = null;
         return;
       }
-      const d = S[0], g = S[e.visibleItemLimit];
+      const d = S[0], m = S[e.visibleItemLimit];
       if (q.value = ce(
         d,
-        g
+        m
       ), e.footer) {
         const v = S[S.length - 1];
         z.value = v.scrollHeight;
       }
     }
-    function ce(d, g) {
+    function ce(d, m) {
       const v = d.getBoundingClientRect().top;
-      return g.getBoundingClientRect().top - v + 2;
+      return m.getBoundingClientRect().top - v + 2;
     }
     J(() => {
       document.addEventListener("mouseup", B);
     }), De(() => {
       document.removeEventListener("mouseup", B);
     }), Y(ee(e, "expanded"), (d) => pe(this, null, function* () {
-      const g = r();
-      !d && a.value && g === void 0 && c("highlighted"), d && g !== void 0 && c("highlighted", g), d && (yield ie(), ae(), yield ie(), O());
+      const m = r();
+      !d && a.value && m === void 0 && c("highlighted"), d && m !== void 0 && c("highlighted", m), d && (yield ie(), ae(), yield ie(), O());
     })), Y(ee(e, "menuItems"), (d) => pe(this, null, function* () {
       d.length < S.length && (S.length = d.length), e.expanded && (yield ie(), ae(), yield ie(), O());
     }), { deep: !0 });
@@ -809,7 +819,7 @@ const Gt = {
 };
 function Xt(e, t, n, u, l, s) {
   const a = E("cdx-menu-item"), i = E("cdx-progress-bar");
-  return ke((h(), m("div", {
+  return ke((h(), g("div", {
     class: x(["cdx-menu", e.rootClasses]),
     style: te(e.rootStyle)
   }, [
@@ -819,13 +829,13 @@ function Xt(e, t, n, u, l, s) {
       "aria-multiselectable": "false",
       style: e.listBoxStyle
     }, e.otherAttrs), [
-      e.showPending && e.computedMenuItems.length === 0 && e.$slots.pending ? (h(), m("li", Gt, [
+      e.showPending && e.computedMenuItems.length === 0 && e.$slots.pending ? (h(), g("li", Gt, [
         V(e.$slots, "pending")
       ])) : w("", !0),
-      e.computedShowNoResultsSlot ? (h(), m("li", Jt, [
+      e.computedShowNoResultsSlot ? (h(), g("li", Jt, [
         V(e.$slots, "no-results")
       ])) : w("", !0),
-      (h(!0), m(ye, null, He(e.computedMenuItems, (o, r) => {
+      (h(!0), g(ye, null, He(e.computedMenuItems, (o, r) => {
         var c, A;
         return h(), M(a, G({
           key: o.value,
@@ -931,7 +941,7 @@ const nn = (e, t) => {
 });
 const an = ["type"];
 function ln(e, t, n, u, l, s) {
-  return h(), m("button", {
+  return h(), g("button", {
     class: x(["cdx-button", e.rootClasses]),
     type: e.computedType,
     onClick: t[0] || (t[0] = (...a) => e.onClick && e.onClick(...a)),
@@ -1043,7 +1053,7 @@ const sn = U(rt), rn = U(Fe), dn = L({
 const cn = ["type", "disabled"];
 function hn(e, t, n, u, l, s) {
   const a = E("cdx-icon");
-  return h(), m("div", {
+  return h(), g("div", {
     class: x(["cdx-text-input", e.rootClasses]),
     style: te(e.rootStyle)
   }, [
@@ -1082,7 +1092,7 @@ function hn(e, t, n, u, l, s) {
     }, null, 8, ["icon", "onClick"])) : w("", !0)
   ], 6);
 }
-const fn = /* @__PURE__ */ K(dn, [["render", hn]]), pn = U(Fe), gn = L({
+const fn = /* @__PURE__ */ K(dn, [["render", hn]]), pn = U(Fe), mn = L({
   name: "CdxSearchInput",
   components: {
     CdxButton: on,
@@ -1133,14 +1143,14 @@ const fn = /* @__PURE__ */ K(dn, [["render", hn]]), pn = U(Fe), gn = L({
     }
   }
 });
-const mn = { class: "cdx-search-input__input-wrapper" };
+const gn = { class: "cdx-search-input__input-wrapper" };
 function vn(e, t, n, u, l, s) {
   const a = E("cdx-text-input"), i = E("cdx-button");
-  return h(), m("div", {
+  return h(), g("div", {
     class: x(["cdx-search-input", e.rootClasses]),
     style: te(e.rootStyle)
   }, [
-    C("div", mn, [
+    C("div", gn, [
       W(a, G({
         ref: "textInput",
         modelValue: e.wrappedModel,
@@ -1166,7 +1176,7 @@ function vn(e, t, n, u, l, s) {
     }, 8, ["onClick"])) : w("", !0)
   ], 6);
 }
-const yn = /* @__PURE__ */ K(gn, [["render", vn]]), bn = L({
+const yn = /* @__PURE__ */ K(mn, [["render", vn]]), bn = L({
   name: "CdxTypeaheadSearch",
   components: {
     CdxIcon: ne,
@@ -1282,7 +1292,7 @@ const yn = /* @__PURE__ */ K(gn, [["render", vn]]), bn = L({
     function d() {
       $.value = !0, (T.value || b.value) && (c.value = !0);
     }
-    function g() {
+    function m() {
       $.value = !1, c.value = !1;
     }
     function v(f) {
@@ -1370,7 +1380,7 @@ const yn = /* @__PURE__ */ K(gn, [["render", vn]]), bn = L({
       onUpdateInputValue: le,
       onUpdateMenuSelection: fe,
       onFocus: d,
-      onBlur: g,
+      onBlur: m,
       onSearchResultClick: v,
       onSearchResultKeyboardNavigation: X,
       onSearchFooterClick: H,
@@ -1389,7 +1399,7 @@ const yn = /* @__PURE__ */ K(gn, [["render", vn]]), bn = L({
 const Cn = ["id", "action"], An = { class: "cdx-typeahead-search__menu-message__text" }, Bn = { class: "cdx-typeahead-search__menu-message__text" }, _n = ["href", "onClickCapture"], $n = { class: "cdx-typeahead-search__search-footer__text" }, Sn = { class: "cdx-typeahead-search__search-footer__query" };
 function In(e, t, n, u, l, s) {
   const a = E("cdx-icon"), i = E("cdx-menu"), o = E("cdx-search-input");
-  return h(), m("div", {
+  return h(), g("div", {
     class: x(["cdx-typeahead-search", e.rootClasses]),
     style: te(e.rootStyle)
   }, [
@@ -1457,7 +1467,7 @@ function In(e, t, n, u, l, s) {
               ], 2)
             ]),
             default: Q(({ menuItem: r, active: c }) => [
-              r.value === e.MenuFooterValue ? (h(), m("a", {
+              r.value === e.MenuFooterValue ? (h(), g("a", {
                 key: 0,
                 class: x(["cdx-typeahead-search__search-footer", {
                   "cdx-typeahead-search__search-footer__active": c
