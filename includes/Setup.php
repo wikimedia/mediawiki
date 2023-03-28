@@ -255,6 +255,10 @@ $wgSettings->apply();
 // callbacks in the config schema.
 require __DIR__ . '/SetupDynamicConfig.php';
 
+if ( defined( 'MW_AUTOLOAD_TEST_CLASSES' ) ) {
+	require_once __DIR__ . '/../tests/common/TestsAutoLoader.php';
+}
+
 if ( $wgBaseDirectory !== MW_INSTALL_PATH ) {
 	throw new FatalError(
 		'$wgBaseDirectory must not be modified in settings files! ' .
@@ -270,6 +274,10 @@ if ( $wgRequestTimeLimit && !$wgCommandLineMode ) {
 /**
  * Load queued extensions
  */
+if ( defined( 'MW_AUTOLOAD_TEST_CLASSES' ) ) {
+	ExtensionRegistry::getInstance()->setLoadTestClassesAndNamespaces( true );
+}
+
 ExtensionRegistry::getInstance()->setSettingsBuilder( $wgSettings );
 ExtensionRegistry::getInstance()->loadFromQueue();
 // Don't let any other extensions load

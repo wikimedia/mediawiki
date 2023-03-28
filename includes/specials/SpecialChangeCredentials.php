@@ -31,7 +31,7 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 	}
 
 	protected function getGroupName() {
-		return 'users';
+		return 'login';
 	}
 
 	public function isListed() {

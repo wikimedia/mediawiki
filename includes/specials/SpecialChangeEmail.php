@@ -209,6 +209,6 @@ class SpecialChangeEmail extends FormSpecialPage {
 	}
 
 	protected function getGroupName() {
-		return 'users';
+		return 'login';
 	}
 }

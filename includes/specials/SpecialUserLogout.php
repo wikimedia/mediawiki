@@ -41,7 +41,7 @@ class SpecialUserLogout extends FormSpecialPage {
 	}
 
 	public function isListed() {
-		return false;
+		return $this->getAuthManager()->canAuthenticateNow();
 	}
 
 	protected function getGroupName() {

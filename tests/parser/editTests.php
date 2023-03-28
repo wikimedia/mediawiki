@@ -9,6 +9,8 @@ use Wikimedia\ScopedCallback;
 
 require_once __DIR__ . '/../../maintenance/Maintenance.php';
 
+define( 'MW_AUTOLOAD_TEST_CLASSES', true );
+
 /**
  * Interactive parser test runner and test file editor
  */
@@ -45,8 +47,6 @@ class ParserEditTests extends Maintenance {
 		define( 'MW_PARSER_TEST', true );
 
 		parent::finalSetup( $settingsBuilder );
-		ExtensionRegistry::getInstance()->setLoadTestClassesAndNamespaces( true );
-		self::requireTestsAutoloader();
 		TestSetup::applyInitialConfig();
 	}
 
