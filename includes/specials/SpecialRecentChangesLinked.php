@@ -275,14 +275,14 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			return false; // should never happen
 		}
 		if ( count( $subsql ) == 1 && $dbr->unionSupportsOrderAndLimit() ) {
-			$sql = $subsql[0]
+			return $subsql[0]
 				->setMaxExecutionTime( $this->getConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries ) )
-				->getSQL();
+				->caller( __METHOD__ )->fetchResultSet();
 		} else {
 			$sqls = array_map( static function ( $queryBuilder ) {
 				return $queryBuilder->getSQL();
 			}, $subsql );
-			$queryBuilder = $dbr->newSelectQueryBuilder()
+			return $dbr->newSelectQueryBuilder()
 				->select( '*' )
 				->from(
 					new Subquery( $dbr->unionQueries( $sqls, $dbr::UNION_DISTINCT ) ),
@@ -290,10 +290,9 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 				)
 				->orderBy( 'rc_timestamp', SelectQueryBuilder::SORT_DESC )
 				->setMaxExecutionTime( $this->getConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries ) )
-				->limit( $limit );
-			$sql = $queryBuilder->getSQL();
+				->limit( $limit )
+				->caller( __METHOD__ )->fetchResultSet();
 		}
-		return $dbr->query( $sql, __METHOD__ );
 	}
 
 	public function setTopText( FormOptions $opts ) {
