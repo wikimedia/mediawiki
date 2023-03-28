@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Amire80",
+			"Base",
 			"Cekli829",
 			"DannyS712",
 			"Fitoschido",
@@ -759,7 +760,7 @@
 	"rev-deleted-unhide-diff": "Bu wersiýa tapawudynyň bir wersiýasy '''öçürilipdir'''.\n[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Öçürme gündeliginde] jikme-jiklikleri bolmagy mümkin.\nŞonda-da administrator hökmünde isleseňiz [$1 bu wersiýa tapawudyny görüp bilersiňiz].",
 	"rev-suppressed-unhide-diff": "Bu wersiýa tapawudynyň wersiýalarynyň biri '''bökdelipdir'''.\n[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Bökdeme gündeliginde] jikme-jiklikleri bolmagy mümkin.\nŞonda-da administrator hökmünde isleseňiz [$1 bu wersiýa tapawudyny görüp bilersiňiz].",
 	"rev-deleted-diff-view": "Bu aratapawudyň wersiýalarynyň biri '''öçürilipdir'''.\nAdministrator hökmünde bu aratapawudy görüp bilersiňiz; [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} öçürme gündeliginde] jikme-jiklikler bar bolmagy mümkin.",
-	"rev-suppressed-diff-view": "Bu aratapawudyň wersiýalarynyň biri '''bökdelipdir'''.\nAdministrator hökmünde bu aratapawudy görüp bilersiňiz; [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} bökdeme gündeliginde] jikme-jiklikler bar bolmagy mümkin.",
+	"rev-suppressed-diff-view": "Bu aratapawudyň wersiýalarynyň biri '''bökdelipdir'''.\nAdministrator hökmünde bu aratapawudy görüp bilersiňiz; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} bökdeme gündeliginde] jikme-jiklikler bar bolmagy mümkin.",
 	"rev-delundel": "görkez/gizle",
 	"rev-showdeleted": "görkez",
 	"revisiondelete": "Wersiýalary öçür/yzyna dikelt",

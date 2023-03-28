@@ -1020,7 +1020,7 @@
 	"rev-deleted-unhide-diff": "Одна из версий страницы была <strong>удалена</strong>.\nПодробности приведены в [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журнале удалений].\nПри желании вы можете [$1 просмотреть разницу версий].",
 	"rev-suppressed-unhide-diff": "Одна из версий этого сравнения версий была <strong>скрыта</strong>.\nПодробности приведены в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журнале сокрытий].\nПри желании вы можете [$1 просмотреть эту разницу версий].",
 	"rev-deleted-diff-view": "Одна из версий этого сравнения версий была <strong>удалена</strong>.\nВы можете просмотреть это сравнение. Подробности приведены в [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журнале удалений].",
-	"rev-suppressed-diff-view": "Одна из версий этого сравнения версий была <strong>скрыта</strong>.\nВы можете просмотреть это сравнение. Подробности приведены в [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журнале сокрытий].",
+	"rev-suppressed-diff-view": "Одна из версий этого сравнения версий была <strong>скрыта</strong>.\nВы можете просмотреть это сравнение. Подробности приведены в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журнале сокрытий].",
 	"rev-delundel": "показать/скрыть",
 	"rev-showdeleted": "показать",
 	"revisiondelete": "Удалить/восстановить версии страницы",

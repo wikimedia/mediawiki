@@ -82,6 +82,7 @@
 	"apihelp-opensearch-param-search": "Iskalni niz.",
 	"apihelp-opensearch-param-format": "Oblika izhoda.",
 	"apihelp-parse-paramvalue-prop-categories": "Poda kategorije v razčlenjenem vikibesedilu.",
+	"apihelp-parse-param-parsoid": "Ustvari HTML, ki ustreza [[mw:Specs/HTML|specifikaciji MediaWiki DOM]] z uporabo [[mw:Parsoid|Parsoida]].",
 	"apihelp-parse-param-preview": "Razčleni v načinu predogleda.",
 	"apihelp-parse-param-sectionpreview": "Razčleni v načinu predogleda razdelka (omogoča tudi način predogleda).",
 	"apihelp-parse-param-disabletoc": "Izpustitev kazala vsebine v izhodu.",
