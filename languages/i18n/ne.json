@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Bada Kaji",
+			"Base",
 			"Bhawani Gautam",
 			"Bhawani Gautam Rhk",
 			"CAPTAIN MEDUSA",
@@ -817,7 +818,7 @@
 	"rev-deleted-unhide-diff": "यस पृष्ठका पुनरावलोकनहरू मध्ये एउटा भिन्नता <strong>मेटाइएकोछ</strong>।\nयसको पूर्ण विवरण [{{fullurl:{{#Special:Log}}/delete|पृष्ठ={{FULLPAGENAMEE}}}}को मेटाइएको लगमा पाउन सकिन्छ]।\nयदि चाहनु भयो भने प्रवन्धकको हैसियतले [यो भिन्नता $1] हेर्न सक्नुहुन्छ।",
 	"rev-suppressed-unhide-diff": "यस पृष्ठको पुनरावलोकनहरू मध्ये एउटा भिन्नता <strong>थिचिएको छ</strong>।\nयसको पूर्ण विवरण [{{fullurl:{{#Special:Log}}/suppress|पृष्ठ={{FULLPAGENAMEE}}}}को थिचिएको लगमा पाउन सकिन्छ]।\nयदि चाहनु भयो भने प्रबन्धकको हैसियतमा [यो भिन्नता $1] हेर्न सक्नुहुन्छ।",
 	"rev-deleted-diff-view": "यस भिन्नताका संशोधनहरू मध्येको एउटा चाहिं <strong>मेटियो।<strong> \nतपाईंले यस भिन्नतालाई हेर्न सक्नुहुन्छ; सबै विवरण  [{{fullurl:{{#Special:Log}}/delete|पृष्ठ={{FULLPAGENAMEE}}}} मेटाइएको लग]मा पाउन सकिनेछ।",
-	"rev-suppressed-diff-view": "यस भिन्नताका संशोधनहरू मध्येको एउटा चाहिं  <strong>दबाइयो।<strong> \nतपाईंले यस भिन्नतालाई हेर्न सक्नुहुन्छ; सबै विवरण  [{{fullurl:{{#Special:Log}}/delete|पृष्ठ={{FULLPAGENAMEE}}}} दबाइएको लग]मा पाउन सकिनेछ।",
+	"rev-suppressed-diff-view": "यस भिन्नताका संशोधनहरू मध्येको एउटा चाहिं  <strong>दबाइयो।<strong> \nतपाईंले यस भिन्नतालाई हेर्न सक्नुहुन्छ; सबै विवरण  [{{fullurl:{{#Special:Log}}/suppress|पृष्ठ={{FULLPAGENAMEE}}}} दबाइएको लग]मा पाउन सकिनेछ।",
 	"rev-delundel": "दृश्यता परिवर्तन गर्नुहोस्",
 	"rev-showdeleted": "देखाउनुहोस्",
 	"revisiondelete": "मेटाउने/मेटाएको रद्दगर्ने  पुनरावलोकनहरू",
