@@ -234,6 +234,18 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( [], $this->mimeAnalyzer->getMimeTypesFromExtension( 'no_such_extension' ) );
 	}
 
+	public function testGetMimeTypesFromTTFExtension() {
+		$this->assertContains(
+			'font/sfnt', $this->mimeAnalyzer->getMimeTypesFromExtension( 'ttf' ) );
+	}
+
+	public function testGetExtensionsFromSfntMimeType() {
+		$this->assertSame(
+			[ 'ttf' ], $this->mimeAnalyzer->getExtensionsFromMimeType( 'font/sfnt' ) );
+		$this->assertSame(
+			[ 'ttf' ], $this->mimeAnalyzer->getExtensionsFromMimeType( 'application/font-sfnt' ) );
+	}
+
 	public function testGetMimeTypeFromExtensionOrNull() {
 		$this->assertSame( 'video/webm', $this->mimeAnalyzer->getMimeTypeFromExtensionOrNull( 'webm' ) );
 		$this->assertNull( $this->mimeAnalyzer->getMimeTypeFromExtensionOrNull( 'no_such_extension' ) );
