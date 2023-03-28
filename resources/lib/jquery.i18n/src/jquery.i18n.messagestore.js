@@ -74,7 +74,7 @@
 			}
 
 			if ( locale ) {
-				// source is a key-value pair of messages for given locale
+				// source is an key-value pair of messages for given locale
 				messageStore.set( locale, source );
 
 				return $.Deferred().resolve();
