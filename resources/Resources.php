@@ -209,10 +209,6 @@ return [
 			'mediawiki.util',
 		],
 	],
-	'jquery.hoverIntent' => [
-		'deprecated' => 'Will be removed soon, see T311194',
-		'scripts' => 'resources/lib/jquery.hoverIntent/jquery.hoverIntent.js',
-	],
 	'jquery.i18n' => [
 		'scripts' => [
 			'resources/lib/jquery.i18n/src/jquery.i18n.js',

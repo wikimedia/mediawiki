@@ -53,6 +53,7 @@ For notes on 1.40.x and older releases, see HISTORY.
 * …
 
 ==== Removed external libraries ====
+* The `jquery.hoverIntent` module was removed.
 * …
 
 === Bug fixes in 1.41 ===
