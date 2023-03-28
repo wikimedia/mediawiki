@@ -1178,6 +1178,8 @@ abstract class Skin extends ContextSource {
 			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 
 			$userLang = $this->getLanguage();
+			$userLangDir = $userLang->getDir();
+			$langFactory = MediaWikiServices::getInstance()->getLanguageFactory();
 			$languageLinks = [];
 			$langNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
 
@@ -1243,6 +1245,7 @@ abstract class Skin extends ContextSource {
 				}
 
 				$ilInterwikiCodeBCP47 = LanguageCode::bcp47( $ilInterwikiCode );
+				$languageDir = $langFactory->getLanguage( $ilInterwikiCodeBCP47 )->getDir();
 				$languageLink = [
 					'href' => $languageLinkTitle->getFullURL(),
 					'text' => $ilLangName,
@@ -1252,6 +1255,9 @@ abstract class Skin extends ContextSource {
 					'lang' => $ilInterwikiCodeBCP47,
 					'hreflang' => $ilInterwikiCodeBCP47,
 				];
+				if ( $userLangDir !== $languageDir ) {
+					$languageLink['dir'] = $languageDir;
+				}
 				$hookContainer->run( 'SkinTemplateGetLanguageLink',
 					[ &$languageLink, $languageLinkTitle, $this->getTitle(), $this->getOutput() ],
 					[] );
