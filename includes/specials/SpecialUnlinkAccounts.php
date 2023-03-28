@@ -29,7 +29,7 @@ class SpecialUnlinkAccounts extends AuthManagerSpecialPage {
 	 * @return string
 	 */
 	protected function getGroupName() {
-		return 'users';
+		return 'login';
 	}
 
 	public function isListed() {
