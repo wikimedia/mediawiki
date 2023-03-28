@@ -108,7 +108,7 @@ CLDRPluralRuleParser:
 codex:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
-  version: 0.7.0
+  version: 0.8.0
   type: tar
   src: https://registry.npmjs.org/@wikimedia/codex/-/codex-0.7.0.tgz
   integrity: sha512-SEm9HkuAdfoTrC/tNcftiZU3ljSthYZRdgdFRENSsrgZjVtTeZ5Zr0MPxbTRaEBoeyOk8v1IY3VbgcSAgBdslQ==
@@ -126,7 +126,7 @@ codex:
 codex-design-tokens:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
-  version: 0.7.0
+  version: 0.8.0
   type: tar
   src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-0.7.0.tgz
   integrity: sha384-UT57RyS1PUcRMQGVtTUT62AuSdOudLmkyA34a02PAH37lO86HF9EzXDnjOe+CDLL
@@ -139,7 +139,7 @@ codex-design-tokens:
 codex-icons:
   license: MIT
   homepage: https://doc.wikimedia.org/codex/
-  version: 0.7.0
+  version: 0.8.0
   type: tar
   src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-0.7.0.tgz
   integrity: sha384-nseTLGTeFeKWB7jhqxo7yWyikvV7wZa1VSgYgtga9Langj+zvlmBXmKKi6f0CRiU
@@ -152,7 +152,7 @@ codex-icons:
 codex-search:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
-  version: 0.7.0
+  version: 0.8.0
   type: tar
   src: https://registry.npmjs.org/@wikimedia/codex-search/-/codex-search-0.7.0.tgz
   integrity: sha384-kKK7PBRXDkPtmwiAgNLzd2bn5EL7tPouTZra8pZN0SLyiFfeSLYHwMWOv3ex4J4W
