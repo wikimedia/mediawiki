@@ -4146,6 +4146,7 @@ wgParserEnableLegacyMediaDOM=false
 <figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x"/></a><figcaption>Left</figcaption></figure>
 !! end
 
+## From T214648: This just shows that dom diff'ing happens in galleries and edits aren't lost
 !! test
 Exercise selser on native galleries
 !! options
@@ -4162,6 +4163,52 @@ File:Foobar.jpg|alt=123|123
 !! wikitext/edited
 <gallery>
 File:Foobar.jpg|alt=123|456
+</gallery>
+!! end
+
+## Invalid lines get dropped otherwise
+!! test
+Selser preserves spacing in gallery when only caption is edited
+!! options
+parsoid= {
+  "modes": ["selser"],
+  "changes": [
+    ["li.gallerycaption", "contents", "text", "456"]
+  ]
+}
+!! wikitext
+<gallery caption="123">
+File:Foobar.jpg
+
+File:Foobar.jpg
+</gallery>
+!! wikitext/edited
+<gallery caption="456">
+File:Foobar.jpg
+
+File:Foobar.jpg
+</gallery>
+!! end
+
+## Makes use of T214601, the "thumb" format won't roundtrip without selser
+!! test
+Selser preserves unedited gallery lines
+!! options
+parsoid= {
+  "modes": ["selser"],
+  "changes": [
+    ["li:first-child div.gallerytext", "contents", "text", "456"]
+  ]
+}
+!! wikitext
+<gallery>
+File:Foobar.jpg|123
+File:Foobar.jpg|thumb|haha
+</gallery>
+!! wikitext/edited
+<gallery>
+File:Foobar.jpg|alt=123|456
+File:Foobar.jpg|thumb|haha
 </gallery>
 !! end
 
