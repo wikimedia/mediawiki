@@ -208,6 +208,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 	public function testNoOptionname() {
 		$this->mUserMock->method( 'isRegistered' )->willReturn( true );
+		$this->mUserMock->method( 'isNamed' )->willReturn( true );
 
 		try {
 			$request = $this->getSampleRequest( [ 'optionvalue' => '1' ] );
@@ -222,7 +223,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 	public function testNoChanges() {
 		$this->mUserMock->method( 'isRegistered' )->willReturn( true );
-
+		$this->mUserMock->method( 'isNamed' )->willReturn( true );
 		$this->userOptionsManagerMock->expects( $this->never() )
 			->method( 'resetOptions' );
 
@@ -243,59 +244,99 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$this->fail( "ApiUsageException was not thrown" );
 	}
 
-	public function testReset() {
-		$this->mUserMock->method( 'isRegistered' )->willReturn( true );
+	public function userScenarios() {
+		return [
+			[ true, true, false ],
+			[ true, false, true ],
+		];
+	}
 
-		$this->userOptionsManagerMock->expects( $this->once() )
-			->method( 'resetOptions' );
+	/**
+	 * @dataProvider userScenarios
+	 */
+	public function testReset( $isRegistered, $isNamed, $expectException ) {
+		$this->mUserMock->method( 'isRegistered' )->willReturn( $isRegistered );
+		$this->mUserMock->method( 'isNamed' )->willReturn( $isNamed );
 
-		$this->userOptionsManagerMock->expects( $this->never() )
-			->method( 'setOption' );
-
-		$this->mUserMock->expects( $this->once() )
-			->method( 'saveSettings' );
-
+		if ( $expectException ) {
+			$this->userOptionsManagerMock->expects( $this->never() )->method( 'resetOptions' );
+			$this->userOptionsManagerMock->expects( $this->never() )->method( 'setOption' );
+			$this->mUserMock->expects( $this->never() )->method( 'saveSettings' );
+		} else {
+			$this->userOptionsManagerMock->expects( $this->once() )->method( 'resetOptions' );
+			$this->userOptionsManagerMock->expects( $this->never() )->method( 'setOption' );
+			$this->mUserMock->expects( $this->once() )->method( 'saveSettings' );
+		}
 		$request = $this->getSampleRequest( [ 'reset' => '' ] );
-
-		$response = $this->executeQuery( $request );
-
-		$this->assertEquals( self::$Success, $response );
+		try {
+			$response = $this->executeQuery( $request );
+			if ( $expectException ) {
+				$this->fail( 'Expected a "notloggedin" error.' );
+			} else {
+				$this->assertEquals( self::$Success, $response );
+			}
+		} catch ( ApiUsageException $e ) {
+			if ( !$expectException ) {
+				$this->fail( 'Unexpected "notloggedin" error.' );
+			} else {
+				$this->assertEquals( 'apierror-mustbeloggedin', $e->getStatusValue()->getErrorsByType( 'error' )[0][ 'message' ]->getKey() );
+			}
+		}
 	}
 
-	public function testResetKinds() {
-		$this->mUserMock->method( 'isRegistered' )->willReturn( true );
-
-		$this->userOptionsManagerMock->expects( $this->once() )
-			->method( 'resetOptions' );
-
-		$this->userOptionsManagerMock->expects( $this->never() )
-			->method( 'setOption' );
-
-		$this->mUserMock->expects( $this->once() )
-			->method( 'saveSettings' );
-
+	/**
+	 * @dataProvider userScenarios
+	 */
+	public function testResetKinds( $isRegistered, $isNamed, $expectException ) {
+		$this->mUserMock->method( 'isRegistered' )->willReturn( $isRegistered );
+		$this->mUserMock->method( 'isNamed' )->willReturn( $isNamed );
+		if ( $expectException ) {
+			$this->mUserMock->expects( $this->never() )->method( 'saveSettings' );
+			$this->userOptionsManagerMock->expects( $this->never() )->method( 'resetOptions' );
+			$this->userOptionsManagerMock->expects( $this->never() )->method( 'setOption' );
+		} else {
+			$this->userOptionsManagerMock->expects( $this->once() )->method( 'resetOptions' );
+			$this->userOptionsManagerMock->expects( $this->never() )->method( 'setOption' );
+			$this->mUserMock->expects( $this->once() )->method( 'saveSettings' );
+		}
 		$request = $this->getSampleRequest( [ 'reset' => '', 'resetkinds' => 'registered' ] );
-
-		$response = $this->executeQuery( $request );
-
-		$this->assertEquals( self::$Success, $response );
+		try {
+			$response = $this->executeQuery( $request );
+			if ( $expectException ) {
+				$this->fail( "Expected an ApiUsageException" );
+			} else {
+				$this->assertEquals( self::$Success, $response );
+			}
+		} catch ( ApiUsageException $e ) {
+			if ( !$expectException ) {
+				throw $e;
+			}
+			$this->assertNotNull( $e->getMessageObject() );
+			$this->assertEquals( 'apierror-mustbeloggedin', $e->getMessageObject()->getKey() );
+		}
 	}
 
-	public function testResetChangeOption() {
-		$this->mUserMock->method( 'isRegistered' )->willReturn( true );
+	/**
+	 * @dataProvider userScenarios
+	 */
+	public function testResetChangeOption( $isRegistered, $isNamed, $expectException ) {
+		$this->mUserMock->method( 'isRegistered' )->willReturn( $isRegistered );
+		$this->mUserMock->method( 'isNamed' )->willReturn( $isNamed );
 
-		$this->userOptionsManagerMock->expects( $this->once() )
-			->method( 'resetOptions' );
-
-		$this->userOptionsManagerMock->expects( $this->exactly( 2 ) )
-			->method( 'setOption' )
-			->withConsecutive(
-				[ $this->mUserMock, 'willBeHappy', 'Happy' ],
-				[ $this->mUserMock, 'name', 'value' ]
-			);
-
-		$this->mUserMock->expects( $this->once() )
-			->method( 'saveSettings' );
+		if ( $expectException ) {
+			$this->userOptionsManagerMock->expects( $this->never() )->method( 'resetOptions' );
+			$this->userOptionsManagerMock->expects( $this->never() )->method( 'setOption' );
+			$this->mUserMock->expects( $this->never() )->method( 'saveSettings' );
+		} else {
+			$this->userOptionsManagerMock->expects( $this->once() )->method( 'resetOptions' );
+			$this->userOptionsManagerMock->expects( $this->exactly( 2 ) )
+				->method( 'setOption' )
+				->withConsecutive(
+					[ $this->mUserMock, 'willBeHappy', 'Happy' ],
+					[ $this->mUserMock, 'name', 'value' ]
+				);
+			$this->mUserMock->expects( $this->once() )->method( 'saveSettings' );
+		}
 
 		$args = [
 			'reset' => '',
@@ -304,9 +345,21 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			'optionvalue' => 'value'
 		];
 
-		$response = $this->executeQuery( $this->getSampleRequest( $args ) );
+		try {
+			$response = $this->executeQuery( $this->getSampleRequest( $args ) );
 
-		$this->assertEquals( self::$Success, $response );
+			if ( $expectException ) {
+				$this->fail( "Expected an ApiUsageException" );
+			} else {
+				$this->assertEquals( self::$Success, $response );
+			}
+		} catch ( ApiUsageException $e ) {
+			if ( !$expectException ) {
+				throw $e;
+			}
+			$this->assertNotNull( $e->getMessageObject() );
+			$this->assertEquals( 'apierror-mustbeloggedin', $e->getMessageObject()->getKey() );
+		}
 	}
 
 	/**
@@ -316,10 +369,9 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$message = ''
 	) {
 		$this->mUserMock->method( 'isRegistered' )->willReturn( true );
-
+		$this->mUserMock->method( 'isNamed' )->willReturn( true );
 		$this->userOptionsManagerMock->expects( $this->never() )
 			->method( 'resetOptions' );
-
 		$args = [];
 		foreach ( $setOptions as $setOption ) {
 			$args[] = array_merge( [ $this->mUserMock ], $setOption );
