@@ -3,7 +3,11 @@
 use MediaWiki\ResourceLoader\ForeignResourceManager;
 
 /**
- * @group Standalone
+ * Verify MediaWiki core's foreign-resources.yaml.
+ *
+ * This test is under integration/ instead of structure/ because the latter
+ * also runs in CI for skin and extension repos (T203694).
+ *
  * @coversNothing
  */
 class ForeignResourceStructureTest extends \PHPUnit\Framework\TestCase {
