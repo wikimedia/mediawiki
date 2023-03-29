@@ -21,7 +21,7 @@
 		},
 
 		/**
-		 * Asynchronously save the values of user options using the API.
+		 * Asynchronously save the values of user options using the [Options API](https://www.mediawiki.org/wiki/API:Options).
 		 *
 		 * If a value of `null` is provided, the given option will be reset to the default value.
 		 *
