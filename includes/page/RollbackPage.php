@@ -499,13 +499,16 @@ class RollbackPage {
 					__METHOD__
 				);
 			}
-		} else { // if ( $this->bot )
-			$dbw->update(
-				'recentchanges',
-				[ 'rc_bot' => 1 ],
-				[ 'rc_id' => $all ],
-				__METHOD__
-			);
+		} else {
+			// Edit is from a bot
+			if ( $all ) {
+				$dbw->update(
+					'recentchanges',
+					[ 'rc_bot' => 1 ],
+					[ 'rc_id' => $all ],
+					__METHOD__
+				);
+			}
 		}
 	}
 
