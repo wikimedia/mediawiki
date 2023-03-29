@@ -35,6 +35,7 @@ use IContextSource;
 use LogEventsList;
 use LogPage;
 use ManualLogEntry;
+use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentStore\CommentStore;
@@ -521,6 +522,9 @@ class EditPage implements IEditObject {
 
 	/** @var CommentStore */
 	private $commentStore;
+
+	/** @var BlockErrorFormatter */
+	private $blockErrorFormatter;
 
 	/**
 	 * @stable to call
