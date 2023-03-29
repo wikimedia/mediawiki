@@ -224,7 +224,11 @@ class ForeignResourceManager {
 	 * @return string
 	 */
 	private function cacheKey( $src, $integrity, $moduleName ) {
-		$key = $moduleName . '_' . hash( 'fnv132', $integrity ) . '_' . basename( $src );
+		$key = $moduleName
+			. '_' . hash( 'fnv132', $integrity )
+			. '_' . hash( 'fnv132', $src )
+			// Append readable filename to aid cache inspection and debugging
+			. '_' . basename( $src );
 		$key = preg_replace( '/[.\/+?=_-]+/', '_', $key );
 		return rtrim( $key, '_' );
 	}
