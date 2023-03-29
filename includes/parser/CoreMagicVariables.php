@@ -54,7 +54,9 @@ class CoreMagicVariables {
 		'Y' => 'first day of January next year midnight',
 		'M' => 'first day of next month midnight',
 		'D' => 'next day midnight',
-		// Note that this does not zero out minutes/seconds
+		// Note that this relative datetime specifier does not zero out
+		// minutes/seconds, but we will do so manually in
+		// ::applyUnitTimestampDeadline() when given the unit 'H'
 		'H' => 'next hour'
 	];
 	/** Seconds of clock skew fudge factor for time-interval deadline TTLs */
