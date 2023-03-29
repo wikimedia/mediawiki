@@ -1392,6 +1392,7 @@
 	"rollbacklinkcount": "$1 {{PLURAL:$1|redaktorlawdı}} artqa qaytarıw",
 	"rollbacklinkcount-morethan": "$1 danadan aslam {{PLURAL:$1|redaktorlawdı|redaktorlawdı}} artqa qaytarıw",
 	"rollbackfailed": "Artqa qaytarıw sátsiz juwmaqlandı",
+	"cantrollback": "Redaktorlaw artqa qaytarılmadı.\nEń sońǵı úles qosıwshı sıpatında tek ǵana usı bettiń avtorı qaldı.",
 	"alreadyrolled": "[[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|talqılawı]]) paydalanıwshınıń [[:$1]] betine kirgizgen sońǵı ózgerisi artqa qaytarılmadı. \nBasqa birew onı álleqashan artqa qaytarǵan yamasa bul betti redaktorlaǵan.\n\nEń sońǵı redaktorlawdı [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|talqılawı]]) atlı paydalanıwshı ámelge asırǵan.",
 	"editcomment": "Ózgertiw ushın kórsetilgen juwmaq: <em>$1</em>.",
 	"revertpage": "[[{{#special:Contributions}}/$2|$2]] ([[{{ns:user_talk}}:$2|talqılaw]]) redaktorlawın biykarlap, betti [[{{ns:user}}:$1|$1]] tárepinen sońǵı redaktorlanǵan nusqasına qaytardı.",
