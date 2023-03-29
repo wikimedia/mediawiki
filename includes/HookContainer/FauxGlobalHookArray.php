@@ -31,6 +31,10 @@ class FauxGlobalHookArray implements \ArrayAccess {
 	 */
 	#[\ReturnTypeWillChange]
 	public function offsetExists( $key ) {
+		wfDeprecatedMsg(
+			'Accessing $wgHooks directly is deprecated, use HookContainer::isRegistered() instead.',
+			'1.40'
+		);
 		return $this->hookContainer->isRegistered( $key );
 	}
 
@@ -39,6 +43,12 @@ class FauxGlobalHookArray implements \ArrayAccess {
 	 */
 	#[\ReturnTypeWillChange]
 	public function offsetGet( $key ) {
+		wfDeprecatedMsg(
+			'Accessing $wgHooks directly is deprecated, use HookContainer::getHandlers() ' .
+				'or HookContainer::register() instead.',
+			'1.40'
+		);
+
 		return new FauxHookHandlerArray( $this->hookContainer, $key );
 	}
 
@@ -54,6 +64,12 @@ class FauxGlobalHookArray implements \ArrayAccess {
 			throw new InvalidArgumentException( '$value must be an array' );
 		}
 
+		wfDeprecatedMsg(
+			'Manipulating $wgHooks is deprecated, use HookContainer::clear() and ' .
+				'HookContainer::register() instead.',
+			'1.40'
+		);
+
 		$this->hookContainer->clear( $key );
 
 		foreach ( $value as $handler ) {
@@ -66,6 +82,7 @@ class FauxGlobalHookArray implements \ArrayAccess {
 	 */
 	#[\ReturnTypeWillChange]
 	public function offsetUnset( $key ) {
+		wfDeprecatedMsg( 'Manipulating $wgHooks is deprecated, use HookContainer::clear() instead.', '1.40' );
 		if ( $this->hookContainer->isRegistered( $key ) ) {
 			$this->hookContainer->clear( $key );
 		}
