@@ -10,7 +10,8 @@
 			"Nghtwlkr",
 			"Seb35",
 			"SuperPotato",
-			"아라"
+			"아라",
+			"EdoAug"
 		]
 	},
 	"config-desc": "Installasjonsprogrammet for MediaWiki",
@@ -180,7 +181,7 @@
 	"config-admin-error-bademail": "Du har skrevet inn en ugyldig e-postadresse.",
 	"config-subscribe": "Abonner på [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ e-postlisten for utgivelsesannonseringer].",
 	"config-subscribe-help": "Dette er en lav-volums e-postliste brukt til utgivelsesannonseringer, herunder viktige sikkerhetsannonseringer.\nDu bør abonnere på den og oppdatere MediaWikiinstallasjonen din når nye versjoner kommer ut.",
-	"config-subscribe-noemail": "Du prøvde å abonnere på epost-meldinger om nye versjoner uten å oppgi en epost-adresse. Vær vennlig å oppgi en epost-adresse om du ønsker dette abonnementet.",
+	"config-subscribe-noemail": "Du prøvde å abonnere på e-postmeldinger om nye versjoner uten å oppgi en e-postadresse. Vær vennlig å oppgi en e-postadresse om du ønsker dette abonnementet.",
 	"config-pingback": "Del data om denne installasjonen med MediaWiki-utviklerne.[https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement Personvern].",
 	"config-pingback-help": "Om du velger denne vil MediaWiki periodisk pinge https://www.mediawiki.org med grunnleggende data om denne MediaWiki-instansen. Disse dataene inkluderer for eksempel systemtypen, PHP-versjonen og hvilket databasebakstykke som er valgt. Wikimedia Foundation deler disse dataene med MediaWiki-utviklerne for å bestemme framtidige utviklingstiltak. Følgende data vil bli sendt for ditt system:\n<pre>$1</pre>\n\nDu kan lese mer om personvernet i forbindelse med denne funksjonen på https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement.\n\nGenerell informasjon om funksjonen finnes på https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgPingback.\n\nEn oversikt over innsendte data finnes på https://pingback.wmflabs.org/",
 	"config-almost-done": "Du er nesten ferdig!\nDu kan velge å hoppe over de siste konfigurasjonstrinnene og installere wikien med en gang.",
@@ -235,7 +236,7 @@
 	"config-instantcommons": "Aktiver Instant Commons",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons Instant Commons] er en funksjon som gjør det mulig for wikier å bruke bilder, lyder og andre media funnet på nettstedet [https://commons.wikimedia.org/ Wikimedia Commons].\nFor å gjøre dette krever MediaWiki tilgang til internett.\n\nFor mer informasjon om denne funksjonen, inklusive instruksjoner om hvordan man setter opp dette for andre wikier enn Wikimedia Commons, konsulter [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos manualen].",
 	"config-cc-error": "Lisensvelgeren for Creative Commons ga ikke noe resultat.\nLegg inn lisensnavnet manuelt.",
-	"config-cc-again": "Velg igjen...",
+	"config-cc-again": "Velg igjen ...",
 	"config-cc-not-chosen": "Velg hvilken Creative Commons-lisens du ønsker og klikk «proceed».",
 	"config-advanced-settings": "Avansert konfigurasjon",
 	"config-cache-options": "Innstillinger for objekt-mellomlagring:",

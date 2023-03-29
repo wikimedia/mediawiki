@@ -9,7 +9,8 @@
 			"Reder",
 			"Shirayuki",
 			"Vlad5250",
-			"아라"
+			"아라",
+			"Base"
 		]
 	},
 	"tog-underline": "Tîra 'na rîga sòta i colegamèint.",
@@ -665,7 +666,7 @@
 	"rev-deleted-unhide-diff": "Óna dal revisiòun de sté cunfrûnt l'é stêda <strong> scanşlêda </strong>. Consultêr al [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} log dal scanşladûri] per i particulêr.\nS' l' é necesâri a j aministradōr a gh'é incòra permés [$1 ed guardêr cla versiòun ché].",
 	"rev-suppressed-unhide-diff": "Óna dal revisiòun de sté cunfrûnt ed versiòun l'é stêda <strong> scanşlêda </strong>. \nA pré èsregh di particulêr int al {{#Special:Log}}/delete|page={{PAGENAMEE}}}} log dal scanşladûri]. \nSét vō cme aministradōr ét pō incòra [$1 guardêr sté cunfrûnt ed versiòun].",
 	"rev-deleted-diff-view": "Óna dal revisiòun de sté cunfrûnt ed versiòun l'é stêda <strong> scanşlêda </strong>. \nCme aministradōr ét pō guardêr sté cunfrûnt ed versiòun; a prén èsregh di particulêr int al {{#Special:Log}}/delete|page={{PAGENAMEE}}}} log dal scanşladûri].",
-	"rev-suppressed-diff-view": "Óna dal revisiòun de sté cunfrûnt ed versiòun l'é stêda <strong> spustêda </strong>. \nCme aministradōr ét pō guardêr sté cunfrûnt ed versiòun; a prén èsregh di particulêr int al {{#Special:Log}}/delete|page={{PAGENAMEE}}}} log dal scanşladûri].",
+	"rev-suppressed-diff-view": "Óna dal revisiòun de sté cunfrûnt ed versiòun l'é stêda <strong> spustêda </strong>. \nCme aministradōr ét pō guardêr sté cunfrûnt ed versiòun; a prén èsregh di particulêr int al {{#Special:Log}}/suppress|page={{PAGENAMEE}}}} log dal scanşladûri].",
 	"rev-delundel": "Guêrda/nascònd",
 	"rev-showdeleted": "fà vèder",
 	"revisiondelete": "Scanşèla o tōrna a mèter versiòun",
@@ -1515,7 +1516,6 @@
 	"mw-widgets-abandonedit": "Ét sicûr ed vrèir lasêr còl che t'é mudifichê sèinsa préma salvêr?",
 	"mw-widgets-mediasearch-input-placeholder": "Sērca file multimediêl",
 	"mw-widgets-mediasearch-noresults": "Mìa catê nisùn risultê.",
-	"view-view-foreign": "Guardêr in séma $1",
 	"view-create-local": "Zûnta spiegasiòun lochêla",
 	"view-edit-local": "Mudéfica la spiegasiòun lochêla",
 	"skin-action-protect": "Prutēz",

@@ -68,7 +68,7 @@
 	"hidden-category-category": "Amí gbúgbe kímaja",
 	"category-subcat-count": "{{PLURAL:$2|Gbúgbe kí dé yí ní amé é gbúgbe omoné ofawn.\n|Gbúgbe yí ní amenwu kí choyí {{PLURAL:$1|gbúgbe omoné|$1 gbúgbe omoné}}, gwéfu $2 chakadú.}}",
 	"category-article-count": "{{PLURAL:$2|Ogbá ki joí kaíta défu ugbúgbe yí.|Amenwu ki joí {{PLURAL:$1|ogbá chí|$1 ami ogbá chí}} é  fu ugbúgbe yí, kwáfu $2 chakadu.}}",
-	"category-file-count": "{{PLURAL:$2|amenwu kí defú ugbúgbe yí ché áyí fáílú káità má joí.|amenwu ki joí{{PLURAL:$1|fáílú chí|$1 amí fáílú chí}} á fù ugbúgbe yí, kwefú $2 chakadú.}}",
+	"category-file-count": "{{PLURAL:$2|Amenwu kí defú ugbúgbe yí ché áyí fáílú káità má joí.|Amenwu ki joí {{PLURAL:$1|fáílú|$1 amí fáílú}} chí á fù ugbúgbe yí, kwefú $2 chakadú.}}",
 	"broken-file-category": "Amí ogbá kí amí ujuwe fáílú ché gbofò",
 	"about": "Tódú",
 	"article": "Ogbá kí ná óla wáwá",

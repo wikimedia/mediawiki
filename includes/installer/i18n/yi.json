@@ -3,7 +3,8 @@
 		"authors": [
 			"Har-wradim",
 			"פוילישער",
-			"පසිඳු කාවින්ද"
+			"පසිඳු කාවින්ද",
+			"Pacha Tchernof"
 		]
 	},
 	"config-desc": "דער אינסטאלירער פאר מעדיעוויקי",
@@ -18,7 +19,7 @@
 	"config-wiki-language-help": "קלויבט אויס די שפראך מיט וואס בעיקר מען וועט שרײַבן די וויקי.",
 	"config-back": "→ צוריק",
 	"config-continue": "פֿארזעצן ←",
-	"config-page-language": "שפראַך",
+	"config-page-language": "שפּראַך",
 	"config-page-welcome": "ברוכים הבאים צו מעדיעוויקי!",
 	"config-page-dbconnect": "פארבינדן צו דאטנבאזע",
 	"config-page-upgrade": "ראנג־העכערונג פון פארהאנע אינסטאלאציע",

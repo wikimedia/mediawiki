@@ -504,7 +504,7 @@
 	"apihelp-query+allimages-param-maxsize": "En çok bu bayt içeren görüntülerle sınırlandırın.",
 	"apihelp-query+allimages-param-sha1": "Görüntü SHA1 karması. $1sha1base36 değerini geçersiz kılar.",
 	"apihelp-query+allimages-param-sha1base36": "Baz 36'daki SHA1 görüntüsünün karması (MediaWiki'de kullanılır).",
-	"apihelp-query+allimages-param-user": "Yalnızca bu kullanıcı tarafından yüklenen dosyaları döndür. Yalnızca $1sort=timetamp ile kullanılabilir. $1filterbots ile birlikte kullanılamaz.",
+	"apihelp-query+allimages-param-user": "Yalnızca, son sürümü bu kullanıcı tarafından yüklenen dosyaları döndür. Yalnızca $1sort=timetamp ile kullanılabilir. $1filterbots ile birlikte kullanılamaz.",
 	"apihelp-query+allimages-param-filterbots": "Botlar tarafından yüklenen dosyalar nasıl filtrelenir. Yalnızca $1sort=timetamp ile kullanılabilir. $1user ile birlikte kullanılamaz.",
 	"apihelp-query+allimages-param-mime": "Aranacak MIME türleri, ör. <kbd>image/jpeg</kbd>.",
 	"apihelp-query+allimages-param-limit": "Toplamda kaç resim döndürülecek.",

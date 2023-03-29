@@ -174,7 +174,10 @@
 			"MirandaBlack",
 			"UniCollab",
 			"Артём 13327",
-			"Max34"
+			"Max34",
+			"Anonim.one",
+			"DR",
+			"Run Li"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -1008,7 +1011,7 @@
 	"rev-deleted-unhide-diff": "Одна из версий страницы была <strong>удалена</strong>.\nПодробности приведены в [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журнале удалений].\nПри желании вы можете [$1 просмотреть разницу версий].",
 	"rev-suppressed-unhide-diff": "Одна из версий этого сравнения версий была <strong>скрыта</strong>.\nПодробности приведены в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журнале сокрытий].\nПри желании вы можете [$1 просмотреть эту разницу версий].",
 	"rev-deleted-diff-view": "Одна из версий этого сравнения версий была <strong>удалена</strong>.\nВы можете просмотреть это сравнение. Подробности приведены в [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журнале удалений].",
-	"rev-suppressed-diff-view": "Одна из версий этого сравнения версий была <strong>скрыта</strong>.\nВы можете просмотреть это сравнение. Подробности приведены в [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журнале сокрытий].",
+	"rev-suppressed-diff-view": "Одна из версий этого сравнения версий была <strong>скрыта</strong>.\nВы можете просмотреть это сравнение. Подробности приведены в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журнале сокрытий].",
 	"rev-delundel": "показать/скрыть",
 	"rev-showdeleted": "показать",
 	"revisiondelete": "Удалить/восстановить версии страницы",
@@ -2465,7 +2468,7 @@
 	"wlshowtime": "Период времени для отображения:",
 	"wlshowhideminor": "малые правки",
 	"wlshowhidebots": "ботов",
-	"wlshowhideliu": "зарегистрированных участников",
+	"wlshowhideliu": "теркәлгән кулланучыларны",
 	"wlshowhideanons": "анонимных участников",
 	"wlshowhidepatr": "проверенные правки",
 	"wlshowhidemine": "мои правки",
