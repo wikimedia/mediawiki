@@ -997,7 +997,7 @@
 	"prefs-rendering": "स्वरूप",
 	"prefs-searchmisc": "साधारण",
 	"searchprefs": "अभिरुचिहरू खोज्नुहोस्",
-	"saveprefs": "संग्रह गर्नुहोस्",
+	"saveprefs": "सङ्ग्रह गर्नुहोस्",
 	"restoreprefs": "सबै पूर्वनिर्धारित सेटिङहरू पुनर्स्थापित गर्नुहोस्",
 	"prefs-editing": "सम्पादन",
 	"searchresultshead": "खोज्नुहोस्",
@@ -1872,6 +1872,7 @@
 	"logeventslist-submit": "देखाउनुहोस्",
 	"logeventslist-more-filters": "थप अभिलेखहरू देखाउनुहोस्:",
 	"logeventslist-tag-log": "चिनो अभिलेखहरू",
+	"logeventslist-newusers-log": "प्रयोगकर्ताले बनाएको पृष्ठहरूको अभिलेखहरू",
 	"all-logs-page": "सबै सार्वजनिक अभिलेखहरू",
 	"alllogstext": "{{SITENAME}}को सबै उपलब्ध लगहरूको प्रविष्टिहरूको मिल्दो जुल्दो प्रदर्शन। \nतपाईं अझै विस्तारको लागि लगको प्रकार, प्रयोगकर्ता नाम (अक्षर संवेदनशील), वा प्रभावित पृष्ठ (अक्षर संवेदनशील) छान्न सक्नुहुन्छ।",
 	"logempty": "अभिलेखमा केही पनि छैन।",
@@ -3386,6 +3387,7 @@
 	"log-action-filter-block-block": "निषेध गर्नुहोस्",
 	"log-action-filter-block-reblock": "निषेध परिमार्जन",
 	"log-action-filter-block-unblock": "निषेध खारेज गर्नुहोस्",
+	"log-action-filter-newusers-create": "अज्ञात प्रयोगकर्ता द्वारा सिर्जना",
 	"log-action-filter-rights-autopromote": "स्वचालित परिवर्तन",
 	"log-action-filter-upload-upload": "नयाँ उर्ध्वभरण",
 	"log-action-filter-upload-overwrite": "पुन: उर्ध्वभरण गर्नुहोस्",
@@ -3453,5 +3455,6 @@
 	"renameuser-page-moved": "$1 पृष्ठलाई $2मा सारियो।",
 	"renameuser-page-unmoved": "$1 पृष्ठलाई $2 मा सार्न सकिएन ।",
 	"log-name-renameuser": "प्रयोगकर्ता पुन: नामकरण अभिलेख",
+	"logentry-renameuser-renameuser-legacier": "$1ले प्रयोगकर्ता $4लाई प्रयोगकर्ता {{GENDER:$7|$5}}मा {{GENDER:$2|पुन: नामाकरण}} गर्नुभयो",
 	"renameuser-move-log": "{{GENDER:$2|प्रयोगकर्ता}} \"$1\"लाई \"$2\"मा पुन: नामाकरण गर्दा पृष्ठ स्वचालित रूपमा सारियो"
 }
