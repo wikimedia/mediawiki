@@ -71,12 +71,14 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 		$this->disallowHttpAccess();
 	}
 
-	private function getExtensionJson(): array {
+	final protected function getExtensionJson(): array {
 		static $extensionJson = null;
 		if ( $extensionJson === null ) {
 			$extensionJson = json_decode(
 				file_get_contents( $this->extensionJsonPath ),
-				true
+				true,
+				512,
+				JSON_THROW_ON_ERROR
 			);
 		}
 		return $extensionJson;
