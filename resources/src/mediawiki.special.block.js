@@ -61,7 +61,7 @@
 				hideUserWidget.setDisabled( isNonEmptyIp || !isIndefinite || !isSitewide );
 			}
 
-			updateWatchOption();
+			updateWatchOption( blocktarget );
 
 			pageRestrictionsWidget.setDisabled( isSitewide );
 			namespaceRestrictionsWidget.setDisabled( isSitewide );
@@ -89,9 +89,8 @@
 			}
 		}
 
-		function updateWatchOption() {
-			var blocktarget = blockTargetWidget.getValue().toString().trim(),
-				isEmpty = blocktarget === '',
+		function updateWatchOption( blocktarget ) {
+			var isEmpty = blocktarget === '',
 				isIp = mw.util.isIPAddress( blocktarget, true ),
 				isIpRange = isIp && blocktarget.match( /\/\d+$/ ),
 				isAutoBlock = blocktarget.match( /^#\d+$/ );
@@ -103,10 +102,18 @@
 
 		watchUserWidget = infuseIfExists( $( '#mw-input-wpWatch' ) );
 		if ( mw.config.get( 'wgCanonicalSpecialPageName' ) === 'Unblock' ) {
-			blockTargetWidget = infuseIfExists( $( '#mw-input-wpTarget' ) );
+			var $wpTarget = $( '#mw-input-wpTarget' );
+			if ( $wpTarget.attr( 'type' ) === 'hidden' ) {
+				// target is not changeable, determine watch state once
+				updateWatchOption( $wpTarget.val() );
+				return;
+			}
+			blockTargetWidget = infuseIfExists( $wpTarget );
 			if ( blockTargetWidget ) {
-				blockTargetWidget.on( 'change', updateWatchOption );
-				updateWatchOption();
+				blockTargetWidget.on( 'change', function () {
+					updateWatchOption( blockTargetWidget.getValue().toString().trim() );
+				} );
+				updateWatchOption( blockTargetWidget.getValue().toString().trim() );
 			}
 			return;
 		}
