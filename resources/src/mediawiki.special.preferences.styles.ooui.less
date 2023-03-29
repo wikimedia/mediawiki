@@ -202,6 +202,14 @@
 			display: none;
 		}
 	}
+
+	.mw-mobile-prefs-sections.oo-ui-buttonGroupWidget {
+		display: none;
+	}
+
+	.mw-prefs-title {
+		font-size: 1.22em;
+	}
 }
 
 /* JavaScript enabled */
@@ -227,7 +235,7 @@
 	}
 
 	// Hide mobile sections since they will be displayed in windows
-	#mw-prefs-container.mw-mobile-preferences-container {
+	#mw-prefs-container.mw-mobile-prefs-container {
 		.mw-prefs-content-page {
 			display: none;
 		}
@@ -293,29 +301,27 @@ with params ?useskin=vector&useformat=mobile
 	position: relative;
 }
 
-.mw-mobile-prefsection {
-	padding-top: 0.3125em;
-	border-bottom: 0.0625em solid @colorGray12;
-
-	// Style section headers as buttons when JS is enabled
-	.client-js & {
-		cursor: pointer;
-
-		&:hover {
-			background-color: @colorGray15;
-		}
-	}
-
-	&:last-child {
-		border-bottom: none; // stylelint-disable-line declaration-property-value-disallowed-list
-	}
+.mw-mobile-prefs-sections.oo-ui-buttonGroupWidget {
+	display: block;
 }
 
-.oo-ui-iconWidget.mw-prefs-icon {
-	color: @colorGray2;
-	margin: 0.5em 0.5em 0 0.5em;
-	width: 1.25em;
-	height: 1.25em;
+.mw-mobile-prefsection.oo-ui-buttonElement {
+	display: block;
+	margin-left: 0 !important; /* stylelint-disable-line declaration-no-important */
+	border-bottom: 0.0625em solid @colorGray12;
+
+	&:last-child {
+		border-bottom: 0;
+	}
+
+	.oo-ui-buttonElement-button {
+		display: block;
+	}
+
+	.oo-ui-iconElement-icon {
+		font-size: 0.875em;
+		height: 3em;
+	}
 }
 
 .mw-prefs-title {
@@ -329,7 +335,6 @@ with params ?useskin=vector&useformat=mobile
 	font-weight: normal;
 	font-size: 0.875em;
 	line-height: 1.25em;
-	padding: 0 2.7em;
 	color: @colorGray7;
 	margin-top: 0 !important; /* stylelint-disable-line declaration-no-important */
 }
@@ -423,14 +428,4 @@ with params ?useskin=vector&useformat=mobile
 
 .mw-prefs-header-title {
 	display: inline-flex;
-}
-
-// stylelint-disable-next-line selector-class-pattern
-.content p {
-	margin: 0 0 0.75em 0 !important; // stylelint-disable-line declaration-no-important
-}
-
-// stylelint-disable-next-line selector-class-pattern
-.content h5 {
-	padding-bottom: 0.25em !important; // stylelint-disable-line declaration-no-important
 }
