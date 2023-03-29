@@ -215,15 +215,15 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 	}
 
 	public static function provideParsoidSettingPassed() {
-		yield 'nativeGalleryEnabled' => [
-			[ 'nativeGalleryEnabled' => true ],
-			'nativeGalleryEnabled',
+		yield 'linting' => [
+			[ 'linting' => true ],
+			'linting',
 			true
 		];
 	}
 
 	/**
-	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::nativeGalleryEnabled()
+	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::linting()
 	 * @dataProvider provideParsoidSettingPassed
 	 * @param array $settings
 	 * @param string $method
