@@ -40,19 +40,17 @@ class Hooks {
 	/**
 	 * Attach an event handler to a given hook in both legacy and non-legacy hook systems
 	 *
+	 * @see HookContainer::register()
+	 *
 	 * @param string $name Name of hook
-	 * @param callable $callback Callback function to attach
-	 * @deprecated since 1.35. use HookContainer::register() instead
+	 * @param mixed $handler Hooks handler to attay
+	 * @deprecated since 1.35. use HookContainer::register() instead, emitting warnings since 1.40
 	 * @since 1.18
 	 */
-	public static function register( $name, $callback ) {
-		if ( !defined( 'MW_SERVICE_BOOTSTRAP_COMPLETE' ) ) {
-			wfDeprecatedMsg( 'Registering handler for ' . $name .
-				' before MediaWiki bootstrap complete was deprecated in MediaWiki 1.35',
-				'1.35' );
-		}
+	public static function register( $name, $handler ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		$hookContainer->register( $name, $callback );
+		$hookContainer->register( $name, $handler );
 	}
 
 	/**
