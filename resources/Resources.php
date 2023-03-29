@@ -27,7 +27,6 @@ use MediaWiki\ResourceLoader\CodexModule;
 use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\FilePath;
 use MediaWiki\ResourceLoader\ForeignApiModule;
-use MediaWiki\ResourceLoader\LanguageDataModule;
 use MediaWiki\ResourceLoader\LessVarFileModule;
 use MediaWiki\ResourceLoader\Module;
 use MediaWiki\ResourceLoader\MwUrlModule;
@@ -1393,12 +1392,23 @@ return [
 	/* MediaWiki Language */
 
 	'mediawiki.language' => [
-		'class' => LanguageDataModule::class,
 		'scripts' => [
 			'resources/src/mediawiki.language/mediawiki.language.init.js',
 			'resources/src/mediawiki.language/mediawiki.language.js',
 			'resources/src/mediawiki.language/mediawiki.language.numbers.js',
 			'resources/src/mediawiki.language/mediawiki.language.fallback.js',
+			[
+				'name' => 'mediawiki.language.config.js',
+				'callback' => static function ( Context $context, Config $config ) {
+					$langCode = $context->getLanguage();
+					$language = MediaWikiServices::getInstance()->getLanguageFactory()
+						->getLanguage( $langCode );
+					return 'mw.language.setData('
+					. $context->encodeJson( $langCode ) . ','
+					. $context->encodeJson( $language->getJsData() )
+					. ');';
+				}
+			],
 		],
 		'languageScripts' => [
 			'bs' => 'resources/src/mediawiki.language/languages/bs.js',

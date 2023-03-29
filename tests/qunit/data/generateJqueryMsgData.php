@@ -7,7 +7,8 @@
  * mapping expected inputs to outputs, which is used then run by QUnit.
  */
 
-use MediaWiki\ResourceLoader\LanguageDataModule;
+use MediaWiki\Languages\LanguageFactory;
+use MediaWiki\MediaWikiServices;
 
 require __DIR__ . '/../../../maintenance/Maintenance.php';
 
@@ -32,6 +33,9 @@ class GenerateJqueryMsgData extends Maintenance {
 
 	private static $testLangs = [ 'en', 'fr', 'ar', 'jp', 'zh', 'nl', 'ml', 'hi' ];
 
+	/** @var LanguageFactory */
+	private $languageFactory;
+
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Create a specification for message parsing ini JSON format' );
@@ -39,6 +43,7 @@ class GenerateJqueryMsgData extends Maintenance {
 	}
 
 	public function execute() {
+		$this->languageFactory = MediaWikiServices::getInstance()->getLanguageFactory();
 		$data = $this->getData();
 		$this->writeJsonFile( $data, __DIR__ . '/mediawiki.jqueryMsg.data.json' );
 	}
@@ -48,7 +53,8 @@ class GenerateJqueryMsgData extends Maintenance {
 		$tests = [];
 		$jsData = [];
 		foreach ( self::$testLangs as $languageCode ) {
-			$jsData[$languageCode] = LanguageDataModule::getData( $languageCode );
+			$language = $this->languageFactory->getLanguage( $languageCode );
+			$jsData[$languageCode] = $language->getJsData();
 			foreach ( self::$keyToTestArgs as $key => $testArgs ) {
 				foreach ( $testArgs as $args ) {
 					// Get the raw message, without any transformations.

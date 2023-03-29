@@ -96,6 +96,21 @@ class FilePath {
 	public function getPath(): string {
 		return $this->path;
 	}
+
+	/**
+	 * Set the base path if it has not already been set.
+	 *
+	 * @param string $localBasePath
+	 * @param string $remoteBasePath
+	 */
+	public function initBasePaths( string $localBasePath, string $remoteBasePath ) {
+		if ( $this->localBasePath === null ) {
+			$this->localBasePath = $localBasePath;
+		}
+		if ( $this->remoteBasePath === null ) {
+			$this->remoteBasePath = $remoteBasePath;
+		}
+	}
 }
 
 /** @deprecated since 1.39 */

@@ -4878,4 +4878,23 @@ class Language implements Bcp47Code {
 	protected function getHookRunner() {
 		return $this->hookRunner;
 	}
+
+	/**
+	 * @internal Only for use by the mediawiki.language ResourceLoader module and
+	 * generateJqueryMsgData.php
+	 * @return array
+	 */
+	public function getJsData() {
+		return [
+			'digitTransformTable' => $this->digitTransformTable(),
+			'separatorTransformTable' => $this->separatorTransformTable(),
+			'minimumGroupingDigits' => $this->minimumGroupingDigits(),
+			'grammarForms' => $this->getGrammarForms(),
+			'grammarTransformations' => $this->getGrammarTransformations(),
+			'pluralRules' => $this->getPluralRules(),
+			'digitGroupingPattern' => $this->digitGroupingPattern(),
+			'fallbackLanguages' => $this->getFallbackLanguages(),
+			'bcp47Map' => LanguageCode::getNonstandardLanguageCodeMapping(),
+		];
+	}
 }

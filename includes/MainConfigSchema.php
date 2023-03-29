@@ -5459,7 +5459,7 @@ class MainConfigSchema {
 	 *
 	 *   Default: `[]`
 	 *
-	 * - scripts `{string[]|string}`:
+	 * - scripts `{string[]|string|array[]}`:
 	 *   Scripts to always include in the module.
 	 *   %File path or list of file paths, relative to `localBasePath`.
 	 *
@@ -5475,15 +5475,19 @@ class MainConfigSchema {
 	 *   [Coding
 	 *     conventions/JavaScript](https://www.mediawiki.org/wiki/Manual:Coding_conventions/JavaScript#Exporting).
 	 *
+	 *   Since MW 1.41, an element of `scripts` may be an array in the same format as
+	 *   packageFiles, giving a callback to call for content generation.
+	 *
 	 *   Default: `[]`
 	 *
 	 *   Extended options, concatenated in this order:
 	 *
-	 *   - languageScripts `{string[]|string}`: Scripts to include in specific language contexts.
-	 *     Array is keyed by language code with file path or list of file path.
-	 *   - skinScripts `{string[]|string}`: Scripts to include in specific skin contexts.
+	 *   - languageScripts `{string[]|string|array[]}`: Scripts to include in specific
+	 *     language contexts. Array is keyed by language code with file path or list of
+	 *     file path.
+	 *   - skinScripts `{string[]|string|array[]}`: Scripts to include in specific skin contexts.
 	 *     Array keyed is by skin name with file path or list of file paths.
-	 *   - debugScripts `{string[]|string}`: Scripts to include in debug contexts.
+	 *   - debugScripts `{string[]|string|array[]}`: Scripts to include in debug contexts.
 	 *     %File path or list of file paths.
 	 *
 	 * - messages `{string[]}`

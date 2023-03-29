@@ -282,10 +282,15 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 				}
 			}
 
-			foreach ( $files as $file ) {
-				$relativePath = ( $file instanceof RL\FilePath ? $file->getPath() : $file );
+			foreach ( $files as $key => $file ) {
+				$fileInfo = $moduleProxy->expandFileInfo( $data['context'], $file, "files[$key]" );
+				if ( !isset( $fileInfo['filePath'] ) ) {
+					continue;
+				}
+				$relativePath = $fileInfo['filePath']->getPath();
+				$localPath = $fileInfo['filePath']->getLocalPath();
 				$this->assertFileExists(
-					$moduleProxy->getLocalPath( $file ),
+					$localPath,
 					"File '$relativePath' referenced by '$moduleName' must exist."
 				);
 			}
