@@ -31,6 +31,7 @@ use HashBagOStuff;
 use Hooks;
 use HttpStatus;
 use InvalidArgumentException;
+use Less_Environment;
 use Less_Parser;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\HookContainer\HookContainer;
@@ -1836,9 +1837,41 @@ MESSAGE;
 
 		$parser = new Less_Parser;
 		$parser->ModifyVars( $vars );
-		// SetImportDirs expects an array like [ 'path1' => '', 'path2' => '' ]
-		$parser->SetImportDirs( array_fill_keys( $importDirs, '' ) );
 		$parser->SetOption( 'relativeUrls', false );
+
+		// SetImportDirs expects an array like [ 'path1' => '', 'path2' => '' ]
+		$formattedImportDirs = array_fill_keys( $importDirs, '' );
+		// Add a callback to the import dirs array for path remapping
+		$formattedImportDirs[] = static function ( $path ) {
+			global $IP;
+			$importMap = [
+				'@wikimedia/codex-icons/' => "$IP/resources/lib/codex-icons/",
+				'mediawiki.skin.codex-design-tokens/' => "$IP/resources/lib/codex-design-tokens/",
+			];
+			foreach ( $importMap as $importPath => $substPath ) {
+				if ( strpos( $path, $importPath ) === 0 ) {
+					$restOfPath = substr( $path, strlen( $importPath ) );
+					$filePath = $substPath . $restOfPath;
+
+					$resolvedPath = null;
+					if ( file_exists( $filePath ) ) {
+						$resolvedPath = $filePath;
+					} elseif ( file_exists( "$filePath.less" ) ) {
+						$resolvedPath = "$filePath.less";
+					}
+					if ( $resolvedPath !== null ) {
+						return [
+							Less_Environment::normalizePath( $resolvedPath ),
+							Less_Environment::normalizePath( dirname( $path ) )
+						];
+					} else {
+						break;
+					}
+				}
+			}
+			return [ null, null ];
+		};
+		$parser->SetImportDirs( $formattedImportDirs );
 
 		return $parser;
 	}
