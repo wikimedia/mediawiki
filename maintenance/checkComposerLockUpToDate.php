@@ -73,14 +73,14 @@ class CheckComposerLockUpToDate extends Maintenance {
 			"suppliedVersion" => $suppliedVersion,
 			"wantedVersion" => $wantedVersion
 		] ) {
-			$this->output( "$name: $suppliedVersion installed, $wantedVersion required.\n" );
+			$this->error( "$name: $suppliedVersion installed, $wantedVersion required.\n" );
 		}
 
 		foreach ( $requiredButMissing as [
 			"name" => $name,
 			"wantedVersion" => $wantedVersion
 		] ) {
-			$this->output( "$name: not installed, $wantedVersion required.\n" );
+			$this->error( "$name: not installed, $wantedVersion required.\n" );
 		}
 
 		$this->fatalError(
