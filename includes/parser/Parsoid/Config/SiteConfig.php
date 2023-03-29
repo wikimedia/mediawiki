@@ -268,7 +268,7 @@ class SiteConfig extends ISiteConfig {
 	}
 
 	public function nativeGalleryEnabled(): bool {
-		return $this->parsoidSettings['nativeGalleryEnabled'] ?? false;
+		return $this->parsoidSettings['nativeGalleryEnabled'] ?? true;
 	}
 
 	public function galleryOptions(): array {
