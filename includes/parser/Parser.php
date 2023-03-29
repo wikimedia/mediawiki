@@ -3065,10 +3065,6 @@ class Parser {
 					);
 				}
 				$text = $this->expandMagicVariable( $id, $frame );
-				if ( $this->magicWordFactory->getCacheTTL( $id ) > -1 ) {
-					$this->mOutput->updateCacheExpiry(
-						$this->magicWordFactory->getCacheTTL( $id ) );
-				}
 				$found = true;
 			}
 		}

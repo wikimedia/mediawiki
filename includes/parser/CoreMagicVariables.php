@@ -31,6 +31,38 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @ingroup Parser
  */
 class CoreMagicVariables {
+	/** Map of (word ID => cache TTL hint) */
+	private const CACHE_TTL_BY_ID = [
+		'currenttime' => 3600,
+		'localtime' => 3600,
+		'numberofarticles' => 3600,
+		'numberoffiles' => 3600,
+		'numberofedits' => 3600,
+		'numberofusers' => 3600,
+		'numberofactiveusers' => 3600,
+		'numberofpages' => 3600,
+		'currentversion' => 86400,
+		'currenttimestamp' => 3600,
+		'localtimestamp' => 3600,
+		'pagesinnamespace' => 3600,
+		'numberofadmins' => 3600,
+		'numberingroup' => 3600,
+	];
+
+	/** Map of (time unit => relative datetime specifier) */
+	private const DEADLINE_DATE_SPEC_BY_UNIT = [
+		'Y' => 'first day of January next year midnight',
+		'M' => 'first day of next month midnight',
+		'D' => 'next day midnight',
+		// Note that this does not zero out minutes/seconds
+		'H' => 'next hour'
+	];
+	/** Seconds of clock skew fudge factor for time-interval deadline TTLs */
+	private const DEADLINE_TTL_CLOCK_FUDGE = 1;
+	/** Max seconds to "randomly" add to time-interval deadline TTLs to avoid stampedes */
+	private const DEADLINE_TTL_STAGGER_MAX = 15;
+	/** Minimum time-interval deadline TTL */
+	private const MIN_DEADLINE_TTL = 15;
 
 	/**
 	 * Expand the magic variable given by $index.
@@ -55,39 +87,79 @@ class CoreMagicVariables {
 	): ?string {
 		$pageLang = $parser->getTargetLanguage();
 
+		$cacheTTL = self::CACHE_TTL_BY_ID[$id] ?? -1;
+		if ( $cacheTTL > -1 ) {
+			$parser->getOutput()->updateCacheExpiry( $cacheTTL );
+		}
+
 		switch ( $id ) {
 			case '!':
 				return '|';
 			case '=':
 				return '=';
 			case 'currentmonth':
+				self::applyUnitTimestampDeadline( $parser, $ts, 'M' );
+
 				return $pageLang->formatNumNoSeparators( $ts->format( 'm' ) );
 			case 'currentmonth1':
+				self::applyUnitTimestampDeadline( $parser, $ts, 'M' );
+
 				return $pageLang->formatNumNoSeparators( $ts->format( 'n' ) );
 			case 'currentmonthname':
+				self::applyUnitTimestampDeadline( $parser, $ts, 'M' );
+
 				return $pageLang->getMonthName( (int)$ts->format( 'n' ) );
 			case 'currentmonthnamegen':
+				self::applyUnitTimestampDeadline( $parser, $ts, 'M' );
+
 				return $pageLang->getMonthNameGen( (int)$ts->format( 'n' ) );
 			case 'currentmonthabbrev':
+				self::applyUnitTimestampDeadline( $parser, $ts, 'M' );
+
 				return $pageLang->getMonthAbbreviation( (int)$ts->format( 'n' ) );
 			case 'currentday':
+				self::applyUnitTimestampDeadline( $parser, $ts, 'D' );
+
 				return $pageLang->formatNumNoSeparators( $ts->format( 'j' ) );
 			case 'currentday2':
+				self::applyUnitTimestampDeadline( $parser, $ts, 'D' );
+
 				return $pageLang->formatNumNoSeparators( $ts->format( 'd' ) );
 			case 'localmonth':
-				return $pageLang->formatNumNoSeparators( self::makeTsLocal( $svcOptions, $ts )->format( 'm' ) );
+				$localTs = self::makeTsLocal( $svcOptions, $ts );
+				self::applyUnitTimestampDeadline( $parser, $localTs, 'M' );
+
+				return $pageLang->formatNumNoSeparators( $localTs->format( 'm' ) );
 			case 'localmonth1':
-				return $pageLang->formatNumNoSeparators( self::makeTsLocal( $svcOptions, $ts )->format( 'n' ) );
+				$localTs = self::makeTsLocal( $svcOptions, $ts );
+				self::applyUnitTimestampDeadline( $parser, $localTs, 'M' );
+
+				return $pageLang->formatNumNoSeparators( $localTs->format( 'n' ) );
 			case 'localmonthname':
-				return $pageLang->getMonthName( (int)self::makeTsLocal( $svcOptions, $ts )->format( 'n' ) );
+				$localTs = self::makeTsLocal( $svcOptions, $ts );
+				self::applyUnitTimestampDeadline( $parser, $localTs, 'M' );
+
+				return $pageLang->getMonthName( (int)$localTs->format( 'n' ) );
 			case 'localmonthnamegen':
-				return $pageLang->getMonthNameGen( (int)self::makeTsLocal( $svcOptions, $ts )->format( 'n' ) );
+				$localTs = self::makeTsLocal( $svcOptions, $ts );
+				self::applyUnitTimestampDeadline( $parser, $localTs, 'M' );
+
+				return $pageLang->getMonthNameGen( (int)$localTs->format( 'n' ) );
 			case 'localmonthabbrev':
-				return $pageLang->getMonthAbbreviation( (int)self::makeTsLocal( $svcOptions, $ts )->format( 'n' ) );
+				$localTs = self::makeTsLocal( $svcOptions, $ts );
+				self::applyUnitTimestampDeadline( $parser, $localTs, 'M' );
+
+				return $pageLang->getMonthAbbreviation( (int)$localTs->format( 'n' ) );
 			case 'localday':
-				return $pageLang->formatNumNoSeparators( self::makeTsLocal( $svcOptions, $ts )->format( 'j' ) );
+				$localTs = self::makeTsLocal( $svcOptions, $ts );
+				self::applyUnitTimestampDeadline( $parser, $localTs, 'D' );
+
+				return $pageLang->formatNumNoSeparators( $localTs->format( 'j' ) );
 			case 'localday2':
-				return $pageLang->formatNumNoSeparators( self::makeTsLocal( $svcOptions, $ts )->format( 'd' ) );
+				$localTs = self::makeTsLocal( $svcOptions, $ts );
+				self::applyUnitTimestampDeadline( $parser, $localTs, 'D' );
+
+				return $pageLang->formatNumNoSeparators( $localTs->format( 'd' ) );
 			case 'pagename':
 			case 'pagenamee':
 			case 'fullpagename':
@@ -132,39 +204,62 @@ class CoreMagicVariables {
 			case 'revisionsize':
 				return (string)$parser->getRevisionSize();
 			case 'currentdayname':
+				self::applyUnitTimestampDeadline( $parser, $ts, 'D' );
+
 				return $pageLang->getWeekdayName( (int)$ts->format( 'w' ) + 1 );
 			case 'currentyear':
+				self::applyUnitTimestampDeadline( $parser, $ts, 'Y' );
+
 				return $pageLang->formatNumNoSeparators( $ts->format( 'Y' ) );
 			case 'currenttime':
 				return $pageLang->time( $ts->getTimestamp( TS_MW ), false, false );
 			case 'currenthour':
+				self::applyUnitTimestampDeadline( $parser, $ts, 'H' );
+
 				return $pageLang->formatNumNoSeparators( $ts->format( 'H' ) );
 			case 'currentweek':
+				self::applyUnitTimestampDeadline( $parser, $ts, 'D' );
 				// @bug T6594 PHP5 has it zero padded, PHP4 does not, cast to
 				// int to remove the padding
 				return $pageLang->formatNum( (int)$ts->format( 'W' ) );
 			case 'currentdow':
+				self::applyUnitTimestampDeadline( $parser, $ts, 'D' );
+
 				return $pageLang->formatNum( $ts->format( 'w' ) );
 			case 'localdayname':
-				return $pageLang->getWeekdayName(
-					(int)self::makeTsLocal( $svcOptions, $ts )->format( 'w' ) + 1
-				);
+				$localTs = self::makeTsLocal( $svcOptions, $ts );
+				self::applyUnitTimestampDeadline( $parser, $localTs, 'D' );
+
+				return $pageLang->getWeekdayName( (int)$localTs->format( 'w' ) + 1 );
 			case 'localyear':
-				return $pageLang->formatNumNoSeparators( self::makeTsLocal( $svcOptions, $ts )->format( 'Y' ) );
+				$localTs = self::makeTsLocal( $svcOptions, $ts );
+				self::applyUnitTimestampDeadline( $parser, $localTs, 'Y' );
+
+				return $pageLang->formatNumNoSeparators( $localTs->format( 'Y' ) );
 			case 'localtime':
+				$localTs = self::makeTsLocal( $svcOptions, $ts );
+
 				return $pageLang->time(
-					self::makeTsLocal( $svcOptions, $ts )->format( 'YmdHis' ),
+					$localTs->format( 'YmdHis' ),
 					false,
 					false
 				);
 			case 'localhour':
-				return $pageLang->formatNumNoSeparators( self::makeTsLocal( $svcOptions, $ts )->format( 'H' ) );
+				$localTs = self::makeTsLocal( $svcOptions, $ts );
+				self::applyUnitTimestampDeadline( $parser, $localTs, 'H' );
+
+				return $pageLang->formatNumNoSeparators( $localTs->format( 'H' ) );
 			case 'localweek':
+				$localTs = self::makeTsLocal( $svcOptions, $ts );
+				self::applyUnitTimestampDeadline( $parser, $localTs, 'D' );
 				// @bug T6594 PHP5 has it zero padded, PHP4 does not, cast to
 				// int to remove the padding
-				return $pageLang->formatNum( (int)self::makeTsLocal( $svcOptions, $ts )->format( 'W' ) );
+				return $pageLang->formatNum( (int)$localTs->format( 'W' ) );
 			case 'localdow':
-				return $pageLang->formatNum( self::makeTsLocal( $svcOptions, $ts )->format( 'w' ) );
+				$localTs = self::makeTsLocal( $svcOptions, $ts );
+				self::applyUnitTimestampDeadline( $parser, $localTs, 'D' );
+
+				return $pageLang->formatNum( $localTs->format( 'w' ) );
 			case 'numberofarticles':
 			case 'numberoffiles':
 			case 'numberofusers':
@@ -177,7 +272,9 @@ class CoreMagicVariables {
 			case 'currenttimestamp':
 				return $ts->getTimestamp( TS_MW );
 			case 'localtimestamp':
-				return self::makeTsLocal( $svcOptions, $ts )->format( 'YmdHis' );
+				$localTs = self::makeTsLocal( $svcOptions, $ts );
+
+				return $localTs->format( 'YmdHis' );
 			case 'currentversion':
 				return SpecialVersion::getVersion();
 			case 'articlepath':
@@ -215,5 +312,37 @@ class CoreMagicVariables {
 		$localtimezone = $svcOptions->get( MainConfigNames::Localtimezone );
 		$ts->setTimezone( $localtimezone );
 		return $ts;
+	}
+
+	/**
+	 * Adjust the cache expiry to account for a dynamic timestamp displayed in output
+	 *
+	 * @param Parser $parser
+	 * @param ConvertibleTimestamp $ts Current timestamp with the display timezone
+	 * @param string $unit The unit the timestamp is expressed in; one of ("D", "H", "I")
+	 */
+	private static function applyUnitTimestampDeadline(
+		Parser $parser,
+		ConvertibleTimestamp $ts,
+		string $unit
+	) {
+		$tsUnix = (int)$ts->getTimestamp( TS_UNIX );
+
+		$date = new DateTime( "@$tsUnix" );
+		$date->setTimezone( $ts->getTimezone() );
+		$date->modify( self::DEADLINE_DATE_SPEC_BY_UNIT[$unit] );
+		if ( $unit === 'H' ) {
+			// Zero out the minutes/seconds
+			$date->setTime( intval( $date->format( 'H' ), 10 ), 0, 0 );
+		} else {
+			$date->setTime( 0, 0, 0 );
+		}
+		$deadlineUnix = (int)$date->format( 'U' );
+
+		$ttl = max( $deadlineUnix - $tsUnix, self::MIN_DEADLINE_TTL );
+		$ttl += self::DEADLINE_TTL_CLOCK_FUDGE;
+		$ttl += ( $deadlineUnix % self::DEADLINE_TTL_STAGGER_MAX );
+
+		$parser->getOutput()->updateCacheExpiry( $ttl );
 	}
 }
