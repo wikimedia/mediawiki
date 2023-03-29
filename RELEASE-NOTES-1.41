@@ -71,6 +71,7 @@ Below only new and removed languages are listed, as well as changes to languages
 because of Phabricator reports.
 
 * (T332113) Added language support for Northern Hindko (hno).
+* (T333425) Added language support for Iraqi (Mesopotamian) Arabic (acm).
 * (T332118) Namespace translations for Angika (anp) were added
 
 === Breaking changes in 1.41 ===
