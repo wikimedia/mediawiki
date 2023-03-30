@@ -1849,7 +1849,7 @@ MESSAGE;
 				'mediawiki.skin.codex-design-tokens/' => "$IP/resources/lib/codex-design-tokens/",
 			];
 			foreach ( $importMap as $importPath => $substPath ) {
-				if ( strpos( $path, $importPath ) === 0 ) {
+				if ( str_starts_with( $path, $importPath ) ) {
 					$restOfPath = substr( $path, strlen( $importPath ) );
 					$filePath = $substPath . $restOfPath;
 
