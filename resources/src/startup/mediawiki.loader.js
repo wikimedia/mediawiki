@@ -96,8 +96,8 @@
 	var isES6Supported =
 		// Check for Promise support (filters out most non-ES6 browsers)
 		typeof Promise === 'function' &&
-		// eslint-disable-next-line no-undef
-		Promise.prototype.finally &&
+		// eslint-disable-next-line dot-notation, no-undef
+		Promise.prototype[ 'finally' ] &&
 
 		// Check for RegExp.prototype.flags (filters out Android 4.4.4 and Edge <= 18)
 		/./g.flags === 'g' &&

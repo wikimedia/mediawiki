@@ -1,10 +1,23 @@
 {
 	"root": true,
 	"extends": [
-		"wikimedia/client",
+		"wikimedia/client-es5",
 		"wikimedia/jsduck"
 	],
+	"parserOptions": {
+		"ecmaVersion": 3
+	},
 	"rules": {
 		"max-len": 0
-	}
+	},
+	"overrides": [
+		{
+			"files": [
+				"startup.js"
+			],
+			"parserOptions": {
+				"ecmaVersion": 3
+			}
+		}
+	]
 }
