@@ -17,6 +17,31 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.35.9 ===
 * Localisation updates.
+* (T324895) MWCallbackStream: Add explicit $stream property.
+* Remove /images .htaccess rules that are no longer relevent.
+* Disable php in .htaccess of images directory as a hardening measure.
+* (T322583) Include missing message parameter in message.
+* Fix phan error when Excimer is enabled.
+* (T274966) tests: Make pass on php8.0.
+* (T323373) Parser: Fix extractSections() behavior for PHP >= 8.0.
+* (T326021) Add matrix: to $wgUrlProtocols.
+* api/en.json: api-help-datatype-expiry add missing 'may'.
+* (T225218) Wait until the recent changes are updated.
+* (T328222) Pass empty string to strlen() if schema is null for
+  PostgresDatabase.
+* (T317329) OutputPage: Fix undefined ['host'] in ImagePreconnect code.
+* (T289926) SpecialRevisionDelete: Set default of '' for wpReason.
+* (T155582, T328503) Fix XML dumps for content types with non-string
+  getNativeData().
+* (T295958, T278847) MediaWiki-Docker: Switch PHP images to PHP7.4.
+* (T314099) revisiondelete: Replace dynamic property Status::$itemStatuses.
+* (T329198) ParamValidator: Improve paramvalidator-help-multi-max message.
+* (T292348) WikiImporter: do not fail if upload entry in dump lacks 'text'
+  tag.
+* (T329484) API: Fix query+allimages user parameter description.
+* (T330529) SpecialEditTags: Set default of '' for wpReason.
+* (T330526) htmlform: Handle null from HTMLFormField::getDefault in
+  multiselects.
 
 == MediaWiki 1.35.9 ==
 
