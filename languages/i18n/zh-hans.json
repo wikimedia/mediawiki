@@ -3630,7 +3630,7 @@
 	"specialpages-note-restricted": "* 普通特殊页面。\n* <span class=\"mw-specialpagerestricted\">受限特殊页面。</span>",
 	"specialpages-group-maintenance": "维护报告",
 	"specialpages-group-other": "其它特殊页面",
-	"specialpages-group-login": "登录/创建账号",
+	"specialpages-group-login": "账号管理",
 	"specialpages-group-changes": "最近更改与日志",
 	"specialpages-group-media": "媒体文件报告与上传",
 	"specialpages-group-users": "用户与权限",

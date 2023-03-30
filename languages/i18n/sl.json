@@ -37,7 +37,7 @@
 	"tog-watchmoves": "Na spisek nadzorov dodaj strani in datoteke, ki jih preimenujem",
 	"tog-watchdeletion": "Na spisek nadzorov dodaj strani in datoteke, ki jih izbrišem",
 	"tog-watchuploads": "Na spisek nadzorov dodaj nove datoteke, ki jih naložim",
-	"tog-watchrollback": "Na spisek nadzorov dodaj strani, pri katerih sem {{GENDER:|izvedel|izvedla|izvedel/la}} vrnitev",
+	"tog-watchrollback": "Na spisek nadzorov dodaj strani, pri katerih sem {{GENDER:|izvedel|izvedla|izvedel_la}} vrnitev",
 	"tog-minordefault": "Vsa urejanja označi kot manjša",
 	"tog-previewontop": "Prikaži predogled pred urejevalnim poljem",
 	"tog-previewonfirst": "Prikaži predogled ob začetku urejanja",
