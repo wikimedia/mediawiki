@@ -26,7 +26,7 @@
  * Browsers we support in our no-JavaScript, basic run-time (Grade C):
  * - Chrome 1+
  * - Opera 15+
- * - IE 8+
+ * - IE 11+
  * - Firefox 3+
  * - Safari 3+
  * - Mobile Safari 5.0+ (iOS 4+)
