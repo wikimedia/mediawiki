@@ -84,38 +84,34 @@ class SpecialNewpages extends IncludableSpecialPage {
 	protected function parseParams( $par ) {
 		$bits = preg_split( '/\s*,\s*/', trim( $par ) );
 		foreach ( $bits as $bit ) {
+			$m = [];
 			if ( $bit === 'shownav' ) {
 				$this->showNavigation = true;
-			}
-			if ( $bit === 'hideliu' ) {
+			} elseif ( $bit === 'hideliu' ) {
 				$this->opts->setValue( 'hideliu', true );
-			}
-			if ( $bit === 'hidepatrolled' ) {
+			} elseif ( $bit === 'hidepatrolled' ) {
 				$this->opts->setValue( 'hidepatrolled', true );
-			}
-			if ( $bit === 'hidebots' ) {
+			} elseif ( $bit === 'hidebots' ) {
 				$this->opts->setValue( 'hidebots', true );
-			}
-			if ( $bit === 'showredirs' ) {
+			} elseif ( $bit === 'showredirs' ) {
 				$this->opts->setValue( 'hideredirs', false );
-			}
-			if ( is_numeric( $bit ) ) {
+			} elseif ( is_numeric( $bit ) ) {
 				$this->opts->setValue( 'limit', intval( $bit ) );
-			}
-
-			$m = [];
-			if ( preg_match( '/^limit=(\d+)$/', $bit, $m ) ) {
+			} elseif ( preg_match( '/^limit=(\d+)$/', $bit, $m ) ) {
 				$this->opts->setValue( 'limit', intval( $m[1] ) );
-			}
-			// PG offsets not just digits!
-			if ( preg_match( '/^offset=([^=]+)$/', $bit, $m ) ) {
+			} elseif ( preg_match( '/^offset=([^=]+)$/', $bit, $m ) ) {
+				// PG offsets not just digits!
 				$this->opts->setValue( 'offset', intval( $m[1] ) );
-			}
-			if ( preg_match( '/^username=(.*)$/', $bit, $m ) ) {
+			} elseif ( preg_match( '/^username=(.*)$/', $bit, $m ) ) {
 				$this->opts->setValue( 'username', $m[1] );
-			}
-			if ( preg_match( '/^namespace=(.*)$/', $bit, $m ) ) {
+			} elseif ( preg_match( '/^namespace=(.*)$/', $bit, $m ) ) {
 				$ns = $this->getLanguage()->getNsIndex( $m[1] );
+				if ( $ns !== false ) {
+					$this->opts->setValue( 'namespace', $ns );
+				}
+			} else {
+				// T62424 try to interpret unrecognized parameters as a namespace
+				$ns = $this->getLanguage()->getNsIndex( $bit );
 				if ( $ns !== false ) {
 					$this->opts->setValue( 'namespace', $ns );
 				}
