@@ -6,7 +6,7 @@ PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 
 == MediaWiki 1.39.3 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.39 branch.
 
 === Changes since MediaWiki 1.39.2 ===
 * Localisation updates.
@@ -23,6 +23,8 @@ THIS IS NOT A RELEASE YET
 * (T318103) mediawiki.storage: Disable async GC during integration test.
 * (T332461, T332397) TempFSFile: Keep the WeakMap alive.
 * (T332902) page: fix InvalidArgumentException in SQLPlatform::makeList.
+* (T285159, CVE-2023-PENDING) SECURITY: Do not apply autoblocks to untrusted
+  XFF headers.
 
 == MediaWiki 1.39.2 ==
 
