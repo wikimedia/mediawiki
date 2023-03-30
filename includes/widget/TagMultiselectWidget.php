@@ -52,7 +52,7 @@ class TagMultiselectWidget extends \OOUI\Widget {
 		$textarea = new MultilineTextInputWidget( array_merge( [
 			'name' => $this->inputName,
 			'value' => implode( "\n", $this->selectedArray ),
-			'rows' => 10,
+			'rows' => min( $this->tagLimit, 10 ) ?? 10,
 			'classes' => [
 				'mw-widgets-tagMultiselectWidget-multilineTextInputWidget'
 			],
