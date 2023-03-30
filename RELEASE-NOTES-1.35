@@ -13,7 +13,7 @@ PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 
 == MediaWiki 1.35.10 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.35 branch.
 
 === Changes since MediaWiki 1.35.9 ===
 * Localisation updates.
@@ -42,6 +42,8 @@ THIS IS NOT A RELEASE YET
 * (T330529) SpecialEditTags: Set default of '' for wpReason.
 * (T330526) htmlform: Handle null from HTMLFormField::getDefault in
   multiselects.
+* (T285159, CVE-2023-PENDING) SECURITY: Do not apply autoblocks to untrusted
+  XFF headers.
 
 == MediaWiki 1.35.9 ==
 
