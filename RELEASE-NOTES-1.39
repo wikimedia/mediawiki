@@ -10,6 +10,19 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.39.2 ===
 * Localisation updates.
+* (T225218) LinksUpdate: Use DB key for category links table.
+* GlobalFunctions: Remove check for MEDIAWIKI constant.
+* (T329484) API: Fix query+allimages user parameter description.
+* (T330529) SpecialEditTags: Set default of '' for wpReason.
+* (T330382) postgres: Make the upgrade ignore dropping indexes that
+  might not exist.
+* (T330526) htmlform: Handle null from HTMLFormField::getDefault in
+  multiselects.
+* (T291753) rdbms: escape backslashes in makeConnectionString for PostgreSQL.
+* (T325529) Fix total breakage of wgCanonicalServer fallback.
+* (T318103) mediawiki.storage: Disable async GC during integration test.
+* (T332461, T332397) TempFSFile: Keep the WeakMap alive.
+* (T332902) page: fix InvalidArgumentException in SQLPlatform::makeList.
 
 == MediaWiki 1.39.2 ==
 
