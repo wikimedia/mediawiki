@@ -128,7 +128,7 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 				}
 				if ( $moduleTargets === [ 'test' ] ) {
 					// Target filter does not apply under tests, which may include
-					// both module-only and desktop-only dependencies.
+					// both mobile-only and desktop-only dependencies.
 					continue;
 				}
 				$targets = $dep->getTargets();
