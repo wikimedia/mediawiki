@@ -117,14 +117,6 @@ return [
 	],
 	'es6-polyfills' => [
 		'deprecated' => 'No longer needed, MediaWiki requires ES6 now, see T178356',
-		'scripts' => [
-			'resources/lib/promise-polyfill/promise-polyfill.js',
-			'resources/src/es6-polyfills/array-find-polyfill.js',
-			'resources/src/es6-polyfills/array-findIndex-polyfill.js',
-			'resources/src/es6-polyfills/array-from-polyfill.js',
-			'resources/src/es6-polyfills/array-includes-polyfill.js',
-		],
-		'skipFunction' => 'resources/src/skip-es6-polyfills.js',
 	],
 	'web2017-polyfills' => [
 		'scripts' => [
