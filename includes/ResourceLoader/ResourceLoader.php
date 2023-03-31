@@ -751,6 +751,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		// See https://bugs.php.net/bug.php?id=36514
 		ob_start();
 
+		$this->errors = [];
 		$responseTime = $this->measureResponseTime();
 		ProfilingContext::singleton()->init( MW_ENTRY_POINT, 'respond' );
 
@@ -849,7 +850,6 @@ class ResourceLoader implements LoggerAwareInterface {
 			$response = $errorResponse . $response;
 		}
 
-		$this->errors = [];
 		// @phan-suppress-next-line SecurityCheck-XSS
 		echo $response;
 	}
@@ -2082,6 +2082,14 @@ MESSAGE;
 		Hooks::runner()->onResourceLoaderGetConfigVars( $vars, $skin, $conf );
 
 		return $vars;
+	}
+
+	/**
+	 * @internal For testing
+	 * @return array
+	 */
+	public function getErrors() {
+		return $this->errors;
 	}
 }
 
