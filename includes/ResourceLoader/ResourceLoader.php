@@ -1131,7 +1131,7 @@ MESSAGE;
 								$implementKey,
 								$scripts,
 								[],
-								[],
+								null,
 								[]
 							);
 						}
@@ -1162,7 +1162,7 @@ MESSAGE;
 							$implementKey,
 							$scripts,
 							$content['styles'] ?? [],
-							isset( $content['messagesBlob'] ) ? new XmlJsCode( $content['messagesBlob'] ) : [],
+							isset( $content['messagesBlob'] ) ? new XmlJsCode( $content['messagesBlob'] ) : null,
 							$content['templates'] ?? []
 						);
 						break;
@@ -1262,17 +1262,20 @@ MESSAGE;
 	/**
 	 * Return JS code that calls mw.loader.implement with given module properties.
 	 *
-	 * @param string $name Module name or implement key (format "`[name]@[version]`")
-	 * @param XmlJsCode|array|string $scripts Code as XmlJsCode (to be wrapped in a closure),
-	 *  list of URLs to JavaScript files, string of JavaScript for eval, or array with
-	 *  'files' and 'main' properties (see ResourceLoaderModule::getScript())
-	 * @param mixed $styles Array of CSS strings keyed by media type, or an array of lists of URLs
-	 *   to CSS files keyed by media type
-	 * @param mixed $messages List of messages associated with this module. May either be an
-	 *   associative array mapping message key to value, or a JSON-encoded message blob containing
-	 *   the same data, wrapped in an XmlJsCode object.
-	 * @param array $templates Keys are name of templates and values are the source of
-	 *   the template.
+	 * @param string $name Module name used as implement key (format "`[name]@[version]`")
+	 * @param XmlJsCode|array|string|string[] $scripts
+	 *  - XmlJsCode: Concatenated scripts to be wrapped in a closure
+	 *  - array: Package files array containing XmlJsCode for individual JS files,
+	 *    as produced by Module::getScript().
+	 *  - string: Script contents to eval in global scope (for site/user scripts).
+	 *  - string[]: List of URLs (for debug mode).
+	 * @param array<string,string|array<string,string[]>> $styles
+	 *   Under optional key "css", there is a concatenated CSS string.
+	 *   Under optional key "url", there is an array by media type withs URLs to stylesheets (for debug mode).
+	 *   These come from Module::getStyles(), formatted by Module:buildContent().
+	 * @param XmlJsCode|null $messages An already JSON-encoded map from message keys to values,
+	 *   wrapped in an XmlJsCode object.
+	 * @param array<string,string> $templates Map from template name to template source.
 	 * @return string JavaScript code
 	 */
 	private static function makeLoaderImplementScript(
@@ -1316,7 +1319,7 @@ MESSAGE;
 			$name,
 			$scripts,
 			(object)$styles,
-			(object)$messages,
+			$messages ?? (object)[],
 			(object)$templates
 		];
 		self::trimArray( $module );
