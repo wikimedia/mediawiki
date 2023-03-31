@@ -1,7 +1,7 @@
 {
 	"root": true,
 	"extends": [
-		"wikimedia/client",
+		"wikimedia/client-es6",
 		"wikimedia/jquery",
 		"wikimedia/mediawiki",
 		"wikimedia/jsduck"
@@ -12,6 +12,7 @@
 	},
 	"rules": {
 		"max-len": "off",
+		"no-var": "off",
 		"no-jquery/no-global-selector": "off"
 	}
 }

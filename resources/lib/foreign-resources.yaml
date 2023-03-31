@@ -411,20 +411,6 @@ pako:
       src: https://raw.githubusercontent.com/nodeca/pako/2.0.4/LICENSE
       integrity: sha384-9tg5LwdfxM6Fpdp6Sep9VI0qXS7Eg5gQRPvNrfV3DKIkVVL3EwSK2atu+zRoEwJg
 
-promise-polyfill:
-  license: MIT
-  homepage: https://github.com/taylorhakes/promise-polyfill
-  version: 8.1.3-65ed35b292
-  type: multi-file
-  files:
-    promise-polyfill.js:
-      # 65ed35b292 (Apr 18, 2020) between 8.1.3 (Jun 16, 2019) and 8.2.0 (Nov 3, 2020)
-      src: https://raw.githubusercontent.com/taylorhakes/promise-polyfill/65ed35b2927e97b262538054e5951d63893db05f/dist/polyfill.js
-      integrity: sha384-nQUslfDX7uz5YSWudfV8dG5d8whQpNMrLcbJPLjvq+McUl2VK7v0UOVnbfs/FrMl
-    LICENSE:
-      src: https://raw.githubusercontent.com/taylorhakes/promise-polyfill/65ed35b2927e97b262538054e5951d63893db05f/LICENSE
-      integrity: sha384-IiroT08PAyKPUM4VsNJI7G1o3SM1y+YBBj1lwdJURXYnjtx1OzYKJTNEWs2pE684
-
 qunitjs:
   license: MIT
   homepage: https://qunitjs.com

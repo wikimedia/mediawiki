@@ -1,4 +1,4 @@
-/* global moment, Uint8Array */
+/* global moment */
 ( function () {
 
 	/**
@@ -410,7 +410,6 @@
 					fileStr = fileReader.result;
 				} else {
 					// Array buffer; convert to binary string for the library.
-					// eslint-disable-next-line es-x/no-typed-arrays
 					arr = new Uint8Array( fileReader.result );
 					fileStr = '';
 					for ( i = 0; i < arr.byteLength; i++ ) {
