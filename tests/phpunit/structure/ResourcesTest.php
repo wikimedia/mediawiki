@@ -103,8 +103,6 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 	 * Example:
 	 * - A depends on B. A has targets: mobile, desktop. B has targets: desktop. Therefore the
 	 *   dependency is sometimes unregistered: it's impossible to load module A on mobile.
-	 * - A depends on B. B has requiresES6=true but A does not. In some browsers, B will be
-	 *   unregistered at startup and thus impossible to satisfy as dependency.
 	 */
 	public function testUnsatisfiableDependencies() {
 		$data = self::getAllModules();
@@ -115,10 +113,6 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 		foreach ( $data['modules'] as $moduleName => $module ) {
 			$depNames = $module->getDependencies( $data['context'] );
 			$moduleTargets = $module->getTargets();
-
-			// Detect incompatible ES6 requirements (T316324)
-			$requiresES6 = $module->requiresES6();
-			$incompatibleDepNames = [];
 
 			foreach ( $depNames as $depName ) {
 				$dep = $data['modules'][$depName] ?? null;
@@ -139,13 +133,7 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 								. "because its dependency '$depName' does not have it\n";
 					}
 				}
-				if ( !$requiresES6 && $dep->requiresES6() ) {
-					$incompatibleDepNames[] = $depName;
-				}
 			}
-			$this->assertEquals( [], $incompatibleDepNames,
-				"The module '$moduleName' must not depend on modules with requiresES6=true"
-			);
 		}
 		$this->assertEquals( [], $incompatibleTargetNames, $targetsErrMsg );
 	}
