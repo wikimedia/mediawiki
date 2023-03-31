@@ -415,11 +415,6 @@ class ParserTestRunner {
 		// see https://gerrit.wikimedia.org/r/111390
 		$setup['wgExtraInterlanguageLinkPrefixes'] = [ 'mul' ];
 
-		// Parsoid settings for testing
-		$setup['wgParsoidSettings'] = [
-			'nativeGalleryEnabled' => true,
-		];
-
 		// All FileRepo changes should be done here by injecting services,
 		// there should be no need to change global variables.
 		MediaWikiServices::getInstance()->disableService( 'RepoGroup' );
