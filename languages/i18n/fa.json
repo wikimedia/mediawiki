@@ -92,7 +92,8 @@
 			"محک",
 			"아라",
 			"Mskf1383",
-			"Af420"
+			"Af420",
+			"0PAWN0"
 		]
 	},
 	"tog-underline": "خط کشیدن زیر پیوندها:",
@@ -1498,6 +1499,7 @@
 	"action-override-export-depth": "برون‌بری صفحه‌ها شامل صفحه‌های پیوند شده تا عمق ۵",
 	"action-suppressredirect": "انتقال صفحه بدون ایجاد تغییرمسیر از نام قبلی",
 	"nchanges": "$1 تغییر",
+	"ntimes": "$1 بار",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|از آخرین بازدید}}",
 	"enhancedrc-history": "تاریخچه",
 	"recentchanges": "تغییرات اخیر",

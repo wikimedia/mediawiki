@@ -69,7 +69,9 @@
 			"Απεργός",
 			"Περίεργος",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Aitolos",
+			"P.a.a"
 		]
 	},
 	"tog-underline": "Υπογράμμιση συνδέσμων:",
@@ -1138,7 +1140,7 @@
 	"prefs-namespaces": "Περιοχές ονομάτων",
 	"default": "προεπιλογή",
 	"prefs-files": "Αρχεία",
-	"prefs-custom-css": "Προκαθορισμένη CSS",
+	"prefs-custom-css": "Προσαρμοσμένο CSS",
 	"prefs-custom-json": "Εξατομικευμένο JSON",
 	"prefs-custom-js": "Προσαρμοσμένη JavaScript",
 	"prefs-common-config": "Κοινά CSS/JSON/JavaScript για όλα τα θέματα εμφάνισης:",

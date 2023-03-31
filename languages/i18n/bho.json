@@ -1811,6 +1811,7 @@
 	"revdelete-content-hid": "छिपावल सामग्री",
 	"revdelete-restricted": "प्रबंधक पर प्रतिबंध लागू",
 	"revdelete-unrestricted": "प्रबंधक पर से प्रतिबंध समाप्त",
+	"logentry-merge-merge": "$1 द्वारा $3 के ($5 तक ले के रिवीजन) $4 में {{GENDER:$2|विलय कइल गइल}}",
 	"logentry-move-move": "$1 पन्ना $3 के $4 पर {{GENDER:$2|स्थानांतरण कइलें}}",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|द्वारा}} बिना अनुप्रेषण छोड़ले $3 पन्ना के $4 पर स्थानांतरण कइल गइल",
 	"logentry-move-move_redir": "$1 पन्ना $3 के $4 पर अनुप्रेषण के ऊपर स्थानांतरण {{GENDER:$2|कइलें|कइली}}",

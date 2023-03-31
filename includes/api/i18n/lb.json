@@ -4,7 +4,8 @@
 			"Les Meloures",
 			"Macofe",
 			"Robby",
-			"Soued031"
+			"Soued031",
+			"Volvox"
 		]
 	},
 	"apihelp-main-param-assertuser": "Iwwerpréifen ob den aktuelle Benotzer de Benotzer mat deem Numm ass.",
@@ -44,7 +45,7 @@
 	"apihelp-feedcontributions-param-year": "Vum Joer (a virdrun).",
 	"apihelp-feedcontributions-param-month": "Vum Mount (a virdrun).",
 	"apihelp-feedcontributions-param-deletedonly": "Nëmme geläscht Kontributioune weisen.",
-	"apihelp-feedcontributions-param-toponly": "Nëmmen Ännerunge weisen déi déi lescht Versioun sinn.",
+	"apihelp-feedcontributions-param-toponly": "Nëmmen Ännerunge weisen, déi déi lescht Versioun sinn.",
 	"apihelp-feedcontributions-param-hideminor": "Kleng Ännerunge verstoppen.",
 	"apihelp-feedrecentchanges-param-days": "Deeg, op déi d'Resultater limitéiert gi sollen",
 	"apihelp-feedrecentchanges-param-hideminor": "Kleng Ännerunge verstoppen.",
@@ -107,7 +108,7 @@
 	"apihelp-query+deletedrevs-summary": "Geläscht Versiounen oplëschten.",
 	"apihelp-query+deletedrevs-param-unique": "Nëmmen eng Versioun fir all Säit weisen.",
 	"apihelp-query+embeddedin-param-filterredir": "Wéi Viruleedungen gefiltert gi sollen.",
-	"apihelp-query+exturlusage-example-simple": "Säiten. déi op <kbd>https://www.mediawiki.org</kbd> linken, weisen.",
+	"apihelp-query+exturlusage-example-simple": "Säite weisen, déi op <kbd>https://www.mediawiki.org</kbd> linken.",
 	"apihelp-query+filearchive-paramvalue-prop-dimensions": "Alias fir Gréisst.",
 	"apihelp-query+filearchive-example-simple": "Eng Lëscht vun alle geläschte Fichiere weisen",
 	"apihelp-query+fileusage-paramvalue-prop-title": "Titel vun all Säit.",

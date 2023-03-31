@@ -669,7 +669,7 @@
 	"searchrelated": "متعلقہ",
 	"searchall": "یکے",
 	"showingresults": "ہیٹھاں #<strong>$2</strong> کنوں {{PLURAL:$1|<strong>1</strong> تائیں نتیجہ ݙکھایا ڳیا ہے|<strong>$1</strong> تائیں نتیجے ݙکھائے ڳئے ہن}}۔",
-	"showingresultsinrange": "پیٹھاں #<strong>$2</strong> کنوں #<strong>$3</strong> تائیں {{PLURAL:$1|<strong>1</strong> نتیجہ|<strong>$1</strong> نتیجے}} درج {{PLURAL:$1|ہے|ہن}}۔",
+	"showingresultsinrange": "ہیٹھاں #<strong>$2</strong> کنوں #<strong>$3</strong> تائیں {{PLURAL:$1|<strong>1</strong> نتیجہ|<strong>$1</strong> نتیجے}} درج {{PLURAL:$1|ہے|ہن}}۔",
 	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong> وچوں <strong>$1</strong> نتیجہ|<strong>$3</strong> وچوں <strong>$1 کنوں $2</strong> نتائج}}",
 	"search-nonefound": "سوال دے نال رلدے ملدے چھاݨے کائنی۔",
 	"search-nonefound-thiswiki": "ایں سائٹ وچ سوال نال رلدے ملدے کوئی نتیجے کائنی۔",

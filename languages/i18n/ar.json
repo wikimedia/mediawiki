@@ -100,7 +100,10 @@
 			"Dr-Taher",
 			"FShbib",
 			"Helmoony",
-			"Mhab Zdan1"
+			"Mhab Zdan1",
+			"Hamdisaif",
+			"AA800",
+			"Karim185.3"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -1534,7 +1537,7 @@
 	"recentchanges-label-plusminus": "حجم الصفحة تغير بهذا العدد من البايتات",
 	"recentchanges-legend-heading": "<strong>شرح:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (طالع كذلك [[Special:NewPages|قائمة الصفحات الجديدة]])",
-	"recentchanges-legend-watchlistexpiry": "صفحة مراقبة بشكل مؤقت",
+	"recentchanges-legend-watchlistexpiry": "صفحة مراقبة مؤقتاً",
 	"recentchanges-submit": "أظهر",
 	"rcfilters-tag-remove": "أزل '$1'",
 	"rcfilters-legend-heading": "<strong>قائمة الاختصارات:</strong>",
@@ -1959,7 +1962,7 @@
 	"listfiles-userdoesnotexist": "حساب المستخدم \"$1\" غير مسجل.",
 	"imgfile": "ملف",
 	"listfiles": "قائمة الملفات",
-	"listfiles_subpage": "المرفوعات بواسطة $1",
+	"listfiles_subpage": "مرفوعات $1",
 	"listfiles_thumb": "تصغير",
 	"listfiles_date": "تاريخ",
 	"listfiles_name": "الاسم",
@@ -2892,7 +2895,7 @@
 	"imagetypemismatch": "امتداد الملف الجديد لا يطابق نوعه",
 	"imageinvalidfilename": "اسم الملف الهدف غير صحيح",
 	"fix-double-redirects": "حدث أي تحويلات تشير إلى العنوان الأصلي",
-	"move-leave-redirect": "اترك تحويلة خلفك",
+	"move-leave-redirect": "اترك تحويلة",
 	"protectedpagemovewarning": "<strong>تحذير:</strong> هذه الصفحة قد تم حمايتها، فقط المستخدمون الذين يمتلكون امتيازات الإدارة يمكنهم نقلها.\nآخر مدخلة سجل موفرة بالأسفل كمرجع:",
 	"semiprotectedpagemovewarning": "<strong>ملاحظة:</strong> هذه الصفحة تمت حمايتها ليتمكن المستخدمون المؤكون تلقائيا وحدهم من نقلها،\nآخر مدخلة سجل موفرة بالأسفل كمرجع:",
 	"move-over-sharedrepo": "[[:$1]] موجود في مستودع مشترك. نقل الملف إلى هذا العنوان سوف يلغي الملف المشترك.",

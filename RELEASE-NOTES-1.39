@@ -4,12 +4,34 @@ PHP 8.0 workboard: https://phabricator.wikimedia.org/tag/php_8.0_support/
 PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
 PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 
-== MediaWiki 1.39.3 ==
+== MediaWiki 1.39.4 ==
 
 THIS IS NOT A RELEASE YET
 
+=== Changes since MediaWiki 1.39.3 ===
+* Localisation updates.
+
+== MediaWiki 1.39.3 ==
+
+This is a security and maintenance release of the MediaWiki 1.39 branch.
+
 === Changes since MediaWiki 1.39.2 ===
 * Localisation updates.
+* (T225218) LinksUpdate: Use DB key for category links table.
+* GlobalFunctions: Remove check for MEDIAWIKI constant.
+* (T329484) API: Fix query+allimages user parameter description.
+* (T330529) SpecialEditTags: Set default of '' for wpReason.
+* (T330382) postgres: Make the upgrade ignore dropping indexes that
+  might not exist.
+* (T330526) htmlform: Handle null from HTMLFormField::getDefault in
+  multiselects.
+* (T291753) rdbms: escape backslashes in makeConnectionString for PostgreSQL.
+* (T325529) Fix total breakage of wgCanonicalServer fallback.
+* (T318103) mediawiki.storage: Disable async GC during integration test.
+* (T332461, T332397) TempFSFile: Keep the WeakMap alive.
+* (T332902) page: fix InvalidArgumentException in SQLPlatform::makeList.
+* (T285159, CVE-2023-PENDING) SECURITY: Do not apply autoblocks to untrusted
+  XFF headers.
 
 == MediaWiki 1.39.2 ==
 
