@@ -21,8 +21,21 @@
  * @ingroup Upload
  */
 
+use Wikimedia\NormalizedException\INormalizedException;
+use Wikimedia\NormalizedException\NormalizedExceptionTrait;
+
 /**
  * @newable
  */
-class UploadChunkFileException extends MWException {
+class UploadChunkFileException extends MWException implements INormalizedException {
+	use NormalizedExceptionTrait;
+
+	public function __construct( $message, array $context = [] ) {
+		$this->normalizedMessage = $message;
+		$this->messageContext = $context;
+
+		parent::__construct(
+			$this->getMessageFromNormalizedMessage( $this->normalizedMessage, $this->messageContext )
+		);
+	}
 }
