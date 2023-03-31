@@ -267,10 +267,6 @@ class SiteConfig extends ISiteConfig {
 		return $prefixedMetrics;
 	}
 
-	public function nativeGalleryEnabled(): bool {
-		return $this->parsoidSettings['nativeGalleryEnabled'] ?? true;
-	}
-
 	public function galleryOptions(): array {
 		return $this->config->get( MainConfigNames::GalleryOptions );
 	}
