@@ -245,7 +245,6 @@ class StartUpModule extends Module {
 			$registryData[$name] = [
 				'version' => $versionHash,
 				'dependencies' => $module->getDependencies( $context ),
-				'es6' => $module->requiresES6(),
 				'group' => $this->getGroupId( $module->getGroup() ),
 				'source' => $module->getSource(),
 				'skip' => $skipFunction,
@@ -263,10 +262,7 @@ class StartUpModule extends Module {
 			// Call mw.loader.register(name, version, dependencies, group, source, skip)
 			$registrations[] = [
 				$name,
-				// HACK: signify ES6 with a ! added at the end of the version
-				// This avoids having to add another register() parameter, and generating
-				// a bunch of nulls for ES6-only modules
-				$data['version'] . ( $data['es6'] ? '!' : '' ),
+				$data['version'],
 				$data['dependencies'],
 				$data['group'],
 				// Swap default (local) for null
@@ -391,14 +387,6 @@ class StartUpModule extends Module {
 			'$VARS.storeVary' => $context->encodeJson( $this->getStoreVary( $context ) ),
 			'$VARS.groupUser' => $context->encodeJson( $this->getGroupId( self::GROUP_USER ) ),
 			'$VARS.groupPrivate' => $context->encodeJson( $this->getGroupId( self::GROUP_PRIVATE ) ),
-			// Only expose private mw.loader.isES6ForTest in test mode.
-			'$CODE.test( isES6Supported )' => $conf->get( MainConfigNames::EnableJavaScriptTest ) ?
-				'(mw.loader.isES6ForTest !== undefined ? mw.loader.isES6ForTest : isES6Supported)' :
-				'isES6Supported',
-			// Only expose private mw.redefineFallbacksForTest in test mode.
-			'$CODE.maybeRedefineFallbacksForTest();' => $conf->get( MainConfigNames::EnableJavaScriptTest ) ?
-				'mw.redefineFallbacksForTest = defineFallbacks;' :
-				'',
 		];
 		$profilerStubs = [
 			'$CODE.profileExecuteStart();' => 'mw.loader.profiler.onExecuteStart( module );',

@@ -502,7 +502,7 @@ mw.loader.addSource({
 mw.loader.register([
     [
         "test.es6",
-        "!"
+        ""
     ]
 ]);',
 			] ],
@@ -677,7 +677,7 @@ mw.loader.register([
     ],
     [
         "test.es6",
-        "!"
+        ""
     ]
 ]);'
 			] ],

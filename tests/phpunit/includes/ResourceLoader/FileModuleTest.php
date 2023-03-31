@@ -951,9 +951,9 @@ class FileModuleTest extends ResourceLoaderTestCase {
 
 	public function testRequiresES6() {
 		$module = new FileModule();
-		$this->assertFalse( $module->requiresES6(), 'requiresES6 defaults to false' );
+		$this->assertTrue( $module->requiresES6(), 'requiresES6 defaults to true' );
 		$module = new FileModule( [ 'es6' => false ] );
-		$this->assertFalse( $module->requiresES6(), 'requiresES6 is false when set to false' );
+		$this->assertTrue( $module->requiresES6(), 'requiresES6 is true even when set to false' );
 		$module = new FileModule( [ 'es6' => true ] );
 		$this->assertTrue( $module->requiresES6(), 'requiresES6 is true when set to true' );
 	}

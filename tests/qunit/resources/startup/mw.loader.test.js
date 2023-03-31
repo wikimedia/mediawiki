@@ -1,5 +1,3 @@
-/* eslint-disable es-x/no-set */
-
 ( function () {
 	QUnit.module( 'mw.loader', QUnit.newMwEnvironment( {
 		beforeEach: function ( assert ) {
@@ -26,11 +24,6 @@
 		},
 		afterEach: function () {
 			mw.loader.maxQueryLength = 2000;
-			// Teardown for StringSet shim test
-			if ( this.nativeSet ) {
-				window.Set = this.nativeSet;
-				mw.redefineFallbacksForTest();
-			}
 			if ( this.resetStore ) {
 				mw.loader.store.enabled = null;
 				mw.loader.store.items = {};
@@ -38,7 +31,6 @@
 			}
 			// Remove any remaining temporary static state
 			// exposed for mocking and stubbing.
-			delete mw.loader.isES6ForTest;
 			delete mw.loader.testCallback;
 			delete mw.loader.testFail;
 			delete mw.getScriptExampleScriptLoaded;
@@ -145,8 +137,8 @@
 		} );
 	} );
 
-	// Covers mw.loader#sortDependencies (with native Set if available)
-	QUnit.test( '.using() - Error: Circular dependency [StringSet default]', function ( assert ) {
+	// Covers mw.loader#sortDependencies (with native Set)
+	QUnit.test( '.using() - Error: Circular dependency [Set]', function ( assert ) {
 		var done = assert.async();
 
 		mw.loader.register( [
@@ -155,36 +147,6 @@
 			[ 'test.set.circleC', '0', [ 'test.set.circleA' ] ]
 		] );
 		mw.loader.using( 'test.set.circleC' ).then(
-			function () {
-				assert.true( false, 'Unexpected resolution, expected error.' );
-			},
-			function ( e ) {
-				assert.true( /Circular/.test( String( e ) ), 'Detect circular dependency' );
-			}
-		)
-			.always( done );
-	} );
-
-	// @covers mw.loader#sortDependencies (with fallback shim)
-	QUnit.test( '.using() - Error: Circular dependency [StringSet shim]', function ( assert ) {
-		var done = assert.async();
-
-		if ( !window.Set ) {
-			assert.expect( 0 );
-			done();
-			return;
-		}
-
-		this.nativeSet = window.Set;
-		window.Set = undefined;
-		mw.redefineFallbacksForTest();
-
-		mw.loader.register( [
-			[ 'test.shim.circleA', '0', [ 'test.shim.circleB' ] ],
-			[ 'test.shim.circleB', '0', [ 'test.shim.circleC' ] ],
-			[ 'test.shim.circleC', '0', [ 'test.shim.circleA' ] ]
-		] );
-		mw.loader.using( 'test.shim.circleC' ).then(
 			function () {
 				assert.true( false, 'Unexpected resolution, expected error.' );
 			},
@@ -583,18 +545,11 @@
 		}, /already registered/, 'duplicate ID from addSource(Object)' );
 	} );
 
-	QUnit.test( '.register() - ES6 support', function ( assert ) {
-		// Implied: isES6Supported correctly evaluates to true in a modern browsers
+	QUnit.test( '.register() - ES6 support always true', function ( assert ) {
 		mw.loader.register( 'test1.regular', 'aaa' );
 		mw.loader.register( 'test1.es6only', 'bbb!' );
 		assert.strictEqual( mw.loader.getState( 'test1.regular' ), 'registered' );
 		assert.strictEqual( mw.loader.getState( 'test1.es6only' ), 'registered' );
-
-		mw.loader.isES6ForTest = false;
-		mw.loader.register( 'test2.regular', 'aaa' );
-		mw.loader.register( 'test2.es6only', 'bbb!' );
-		assert.strictEqual( mw.loader.getState( 'test2.regular' ), 'registered' );
-		assert.strictEqual( mw.loader.getState( 'test2.es6only' ), null );
 	} );
 
 	// This is a regression test because in the past we called getCombinedVersion()

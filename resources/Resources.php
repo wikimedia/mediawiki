@@ -116,6 +116,7 @@ return [
 		],
 	],
 	'es6-polyfills' => [
+		'deprecated' => 'No longer needed, MediaWiki requires ES6 now, see T178356',
 		'scripts' => [
 			'resources/lib/promise-polyfill/promise-polyfill.js',
 			'resources/src/es6-polyfills/array-find-polyfill.js',
@@ -129,15 +130,14 @@ return [
 		'scripts' => [
 			'resources/lib/intersection-observer/intersection-observer.js',
 			'resources/lib/fetch-polyfill/fetch.umd.js',
-			// The URL polyfill depends on the following in addition to the ES5 baseline
+			// The URL polyfill depends on the following in addition to the ES6 baseline
 			// https://github.com/Financial-Times/polyfill-library/blob/v3.110.1/polyfills/URL/config.toml#L10
-			// - ES6 Array.from (via es6-polyfills)
 			// - ES6 Symbol.iterator (no fill needed, used conditionally)
 			'resources/lib/url/URL.js',
 			'resources/lib/url/URL-toJSON.js',
 		],
 		'skipFunction' => 'resources/src/skip-web2017-polyfills.js',
-		'dependencies' => [ 'es6-polyfills' ]
+		'dependencies' => []
 	],
 	'mediawiki.base' => [
 		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.base",
@@ -570,7 +570,6 @@ return [
 			],
 
 		],
-		'es6' => true,
 	],
 
 	// Alias for 'vue', for backwards compatibility
@@ -581,7 +580,6 @@ return [
 		'dependencies' => [
 			'vue'
 		],
-		'es6' => true,
 	],
 
 	'vuex' => [
@@ -611,7 +609,6 @@ return [
 		'dependencies' => [
 			'vue',
 		],
-		'es6' => true,
 	],
 
 	'wvui' => [
@@ -627,7 +624,6 @@ return [
 			'vue',
 			'@vue/composition-api',
 		],
-		'es6' => true,
 	],
 
 	'wvui-search' => [
@@ -642,7 +638,6 @@ return [
 		'dependencies' => [
 			'vue'
 		],
-		'es6' => true,
 	],
 
 	'@wikimedia/codex' => [
@@ -667,7 +662,6 @@ return [
 		'dependencies' => [
 			'vue'
 		],
-		'es6' => true
 	],
 
 	'@wikimedia/codex-search' => [
@@ -692,7 +686,6 @@ return [
 		'dependencies' => [
 			'vue'
 		],
-		'es6' => true
 	],
 
 	/* MediaWiki */
