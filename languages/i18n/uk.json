@@ -3818,7 +3818,7 @@
 	"revdelete-content-hid": "вміст приховано",
 	"revdelete-summary-hid": "опис редагування приховано",
 	"revdelete-uname-hid": "ім'я користувача приховано",
-	"revdelete-content-unhid": "зміст приховано",
+	"revdelete-content-unhid": "зміст відкрито",
 	"revdelete-summary-unhid": "опис редагування відкрито",
 	"revdelete-uname-unhid": "ім'я користувача відкрито",
 	"revdelete-restricted": "застосовані обмеження для адміністраторів",

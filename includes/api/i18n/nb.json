@@ -383,6 +383,7 @@
 	"apihelp-parse-paramvalue-prop-parsewarnings": "Gir advarsler som oppsto under tolkingen av innholdet (som wikitekst).",
 	"apihelp-parse-paramvalue-prop-parsewarningshtml": "Gir advarsler som oppsto under tolkningen av innholdet (som HTML).",
 	"apihelp-parse-param-wrapoutputclass": "CSS-klasse som skal brukes til å omringe tolkingsresultatet.",
+	"apihelp-parse-param-parsoid": "Generer HTML som samsvarer med [[mw:Specs/HTML|MediaWikis DOM-spesifikasjoner]] med [[mw:Parsoid|Parsoid]].",
 	"apihelp-parse-param-pst": "Gjør en førlagringstransformasjon på inndataene før de tolkes. Kun gyldig når den brukes med tekst.",
 	"apihelp-parse-param-onlypst": "Gjør en førlagringstransformasjon (PST) på inndataene, men ikke tolk dem. Returnerer den samme wikiteksten etter at PST har blitt brukt. Kun gyldig når det brukes med <var>$1text</var>.",
 	"apihelp-parse-param-effectivelanglinks": "Inkluder språklenker gitt av utvidelser (for bruk med <kbd>$1prop=langlinks</kbd>).",
