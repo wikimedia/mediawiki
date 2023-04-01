@@ -505,7 +505,7 @@
 	"apihelp-query+allimages-param-maxsize": "להגביל לתמונות עם מספר כזה לכל היותר של בתים.",
 	"apihelp-query+allimages-param-sha1": "גיבוב SHA1 של תמונה. דריסת $1sha1base36.",
 	"apihelp-query+allimages-param-sha1base36": "גיבוב SHA1 של התמונה בבסיס 36 (הבסיס בו נעשה שימוש במדיה־ויקי).",
-	"apihelp-query+allimages-param-user": "להחזיר רק קבצים שהועלו על־ידי המשתמש הזה. יכול לשמש רק עם $1sort=timestamp. לא יכול לשמש יחד עם $1filterbots.",
+	"apihelp-query+allimages-param-user": "להחזיר רק קבצים שהגרסה האחרונה שלהם הועלתה על־ידי המשתמש הזה. יכול לשמש רק עם $1sort=timestamp. לא יכול לשמש יחד עם $1filterbots.",
 	"apihelp-query+allimages-param-filterbots": "איך לסנן קבצים שמעלים בוטים. יכול לשמש רק עם $1sort=timestamp. לא יכול לשמש יחד עם $1user.",
 	"apihelp-query+allimages-param-mime": "אילו סוגי MIME לחפש, למשל <kbd>image/jpeg</kbd>.",
 	"apihelp-query+allimages-param-limit": "כמה תמונות להחזיר בסך הכול.",

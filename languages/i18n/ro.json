@@ -49,7 +49,8 @@
 			"Wintereu",
 			"XXN",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Matěj Suchánek"
 		]
 	},
 	"tog-underline": "Sublinierea legăturilor:",
@@ -520,7 +521,7 @@
 	"mailerror": "Eroare la trimitere e-mail: $1",
 	"acct_creation_throttle_hit": "De la această adresă IP, vizitatorii sitului au creat {{PLURAL:$1|1 cont|$1 conturi|$1 de conturi}} de utilizator în ultimele $2, acest număr de noi conturi fiind maximul admis în această perioadă de timp.\nPrin urmare, vizitatorii care folosesc același IP nu mai pot crea alte conturi pentru moment.",
 	"emailauthenticated": "Adresa de e-mail a fost autentificată pe $2, la $3.",
-	"emailnotauthenticated": "Adresa dumneavoastră de e-mail nu este autentificată încă. Nici un e-mail nu va fi trimis pentru nici una din întrebuințările următoare.",
+	"emailnotauthenticated": "Adresa dumneavoastră de e-mail nu este autentificată încă. Niciun e-mail nu va fi trimis pentru niciuna din întrebuințările următoare.",
 	"noemailprefs": "Nu a fost specificată o adresă email, următoarele nu vor funcționa.",
 	"emailconfirmlink": "Confirmați adresa dvs. de email",
 	"invalidemailaddress": "Adresa de email nu a putut fi acceptată pentru că pare a avea un format invalid. Vă rugăm să reintroduceți o adresă bine formatată sau să goliți acel câmp.",

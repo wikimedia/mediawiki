@@ -85,7 +85,8 @@
 			"ZeiP",
 			"לערי ריינהארט",
 			"아라",
-			"Valtlai"
+			"Valtlai",
+			"Lliehu"
 		]
 	},
 	"tog-underline": "Linkkien alleviivaus:",
@@ -1843,7 +1844,7 @@
 	"backend-fail-alreadyexists": "Tiedosto $1 on jo olemassa.",
 	"backend-fail-store": "Tiedostoa $1 ei voitu tallentaa polkuun $2.",
 	"backend-fail-copy": "Tiedostoa ei voitu kopioida kohteesta $1 kohteeseen $2.",
-	"backend-fail-move": "Tiedostoa ei voitu siirtää kohteesta $1 kohteeseen $2.",
+	"backend-fail-move": "Tiedostoa \"$1\" ei voitu siirtää kohteeseen \"$2\".",
 	"backend-fail-opentemp": "Väliaikaista tiedostoa ei voitu avata.",
 	"backend-fail-writetemp": "Väliaikaiseen tiedostoon ei voitu kirjoittaa.",
 	"backend-fail-closetemp": "Väliaikaista tiedostoa ei voitu sulkea.",
@@ -2554,7 +2555,7 @@
 	"undeleterevision-duplicate-revid": "{{PLURAL:$1|Yhtä versiota|$1 versiota}} ei voitu palauttaa, koska {{PLURAL:$1|sen|niiden}} <code>rev_id</code> oli jo käytössä.",
 	"undelete-nodiff": "Aikaisempaa versiota ei löytynyt.",
 	"undeletebtn": "Palauta",
-	"undeletelink": "näytä tai palauta",
+	"undeletelink": "näytä/palauta",
 	"undeleteviewlink": "näytä",
 	"undelete-undeletetalk": "Palauta sivuun liittyvän keskustelusivun kaikki versiot",
 	"undeleteinvert": "Käänteinen valinta",

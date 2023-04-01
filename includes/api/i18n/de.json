@@ -483,7 +483,7 @@
 	"apihelp-query+allimages-param-maxsize": "Beschränkt auf Bilder mit höchstens dieser Anzahl an Bytes.",
 	"apihelp-query+allimages-param-sha1": "SHA1-Hash des Bildes. Überschreibt $1sha1base36.",
 	"apihelp-query+allimages-param-sha1base36": "SHA1-Hash des Bildes (Basis 36; verwendet in MediaWiki).",
-	"apihelp-query+allimages-param-user": "Gibt nur Dateien zurück, die von diesem Nutzer hochgeladen wurden. Darf nur mit $1sort=Zeitstempel verwendet werden. Darf nicht mit zusammen mit $1filterbots verwendet werden.",
+	"apihelp-query+allimages-param-user": "Gibt nur Dateien zurück, bei denen die letzte Version von diesem Benutzer hochgeladen wurde. Darf nur mit $1sort=Zeitstempel verwendet werden. Darf nicht zusammen mit $1filterbots verwendet werden.",
 	"apihelp-query+allimages-param-filterbots": "Wie Dateien, die von Bots hochgeladen wurden, gefiltert werden sollen. Darf nur mit $1sort=Zeitstempel verwendet werden. Darf nicht zusammen mit $1user verwendet werden.",
 	"apihelp-query+allimages-param-mime": "Nach welchem MIME-Typ gesucht werden soll, z. B. <kbd>image/jpeg</kbd>.",
 	"apihelp-query+allimages-param-limit": "Wie viele Gesamtbilder zurückgegeben werden sollen.",

@@ -647,6 +647,7 @@
 	"searchprofile-advanced": "Убгъуа(уэ)",
 	"searchprofile-articles-tooltip": "Лъыхъуэн $1-м",
 	"search-result-size": "$1 ({{PLURAL:$2|псалъэ $2|псалъэхэр $2|псалъэхэр $2}})",
+	"search-result-category-size": "{{PLURAL:$1|вхождение|вхождения|вхождений}} ($2 {{PLURAL:$2|подкатегория|подкатегории|подкатегорий}}, $3 {{PLURAL:$3|файл|файла|файлов}})",
 	"search-redirect": "‎(къызыхэкӀыр $1)",
 	"search-section": "‎(Ӏыхьэ \"$1\")",
 	"search-file-match": "(файлым илъхэм тохуэ)",

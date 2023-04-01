@@ -17,7 +17,7 @@ use MediaWiki\Widget\TagMultiselectWidget;
  */
 class HTMLTagMultiselectField extends HTMLTextField {
 	public function loadDataFromRequest( $request ) {
-		$value = $request->getText( $this->mName, $this->getDefault() );
+		$value = $request->getText( $this->mName, $this->getDefault() ?? '' );
 
 		$tagsArray = explode( "\n", $value );
 		// Remove empty lines

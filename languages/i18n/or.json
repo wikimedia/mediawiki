@@ -19,7 +19,8 @@
 			"Susant purohit",
 			"Vlad5250",
 			"ଶିତିକଣ୍ଠ ଦାଶ",
-			"아라"
+			"아라",
+			"Chinmayee Mishra"
 		]
 	},
 	"tog-underline": "ଲିଙ୍କତଳେ ଗାର ଟାଣିବା:",
@@ -654,7 +655,7 @@
 	"postedit-confirmation-created": "ଏହି ପୃଷ୍ଠାଟି ତିଆରି କରାଗଲା ।",
 	"postedit-confirmation-restored": "ଏହି ପୃଷ୍ଠାଟି ପୁନସ୍ଥାପନ କରାଗଲା ।",
 	"postedit-confirmation-saved": "ଆପଣଙ୍କ ବଦଳ ସାଇତା ଗଲା ।",
-	"edit-already-exists": "ନୂଆ ପୃଷ୍ଠାଟିଏ ତିଆରି କରିପାରିଲୁଁ ନାହିଁ ।\nଏହା ଆଗରୁ ଅଛି ।",
+	"edit-already-exists": "ନୂଆ ପୃଷ୍ଠାଟିଏ ତିଆରି କରିହେଉନାହିଁ ।\nଏହା ଆଗରୁ ଅଛି ।",
 	"defaultmessagetext": "ଡିଫଲ୍ଟ ମେସେଜ ଲେଖାଗୁଡିକ",
 	"content-failed-to-parse": "$1 ପ୍ରକାର ପାଇଁ $2 ଲେଖାକୁ ବର୍ଣ୍ଣନା କରିପାରିଲା ନାହିଁ: $3",
 	"invalid-content-data": "ଅବୈଧ ଆଧାର ତଥ୍ୟ",
@@ -1590,7 +1591,7 @@
 	"allpages": "ସବୁ ପୃଷ୍ଠା",
 	"nextpage": "ପର ପୃଷ୍ଠା ($1)",
 	"prevpage": "ଆଗ ପୃଷ୍ଠା ($1)",
-	"allpagesfrom": "ଏହି ନାଆଁରେ ଆରମ୍ଭ ହେଉଥିବା ପୃଷ୍ଠାଗୁଡ଼ିକୁ ଦେଖାଇବେ:",
+	"allpagesfrom": "ଏହି ନାମରେ ଆରମ୍ଭ ପୃଷ୍ଠାସବୁ ଦେଖାନ୍ତୁ:",
 	"allpagesto": "ଏହି ନାଆଁରେ ଶେଷ ହେଉଥିବା ପୃଷ୍ଠାଗୁଡ଼ିକୁ ଦେଖାଇବେ:",
 	"allarticles": "ସବୁ ପୃଷ୍ଠା",
 	"allinnamespace": "ସବୁ ପୃଷ୍ଠା ($1 ନେମସ୍ପେସ)",
@@ -1698,7 +1699,7 @@
 	"watchthispage": "ଏହି ପୃଷ୍ଠାଟିକୁ ଦେଖିବେ",
 	"unwatch": "ଦେଖନାହିଁ",
 	"unwatchthispage": "ଦେଖନ୍ତୁ ନାହିଁ",
-	"notanarticle": "ବିଷୟବସ୍ତୁର ପୃଷ୍ଠାଟିଏ ନୁହେଁ",
+	"notanarticle": "ଏହା ଏକ ବିଷୟବସ୍ତୁ ପୃଷ୍ଠା ନୁହେଁ",
 	"notvisiblerev": "ଜଣେ ଅଲଗା ବ୍ୟବହାରକାରୀଙ୍କ ଦେଇ କରାଯାଇଥିବା ସେଶ ସଂସ୍କରଣଟି ଲିଭାଇଦିଆଗଲା ।",
 	"watchlist-details": "ଆପଣଙ୍କ ଦେଖଣା ତାଲିକାରେ {{PLURAL:$1|$1ଟି ପୃଷ୍ଠ}} ଅଛି (ତା' ସହ ଆଲୋଚନା ପୃଷ୍ଠା ମଧ୍ୟ ଅଛି) ।",
 	"wlheader-enotif": "ଇମେଲ ସୂଚନା ସଚଳ କରାଗଲା ।",
