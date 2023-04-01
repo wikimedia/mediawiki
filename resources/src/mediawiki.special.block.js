@@ -42,7 +42,7 @@
 		}
 
 		function updateBlockOptions() {
-			var blocktarget = blockTargetWidget.getValue().toString().trim(),
+			var blocktarget = blockTargetWidget.getValue().trim(),
 				isEmpty = blocktarget === '',
 				isIp = mw.util.isIPAddress( blocktarget, true ),
 				isNonEmptyIp = isIp && !isEmpty,
@@ -111,9 +111,9 @@
 			blockTargetWidget = infuseIfExists( $wpTarget );
 			if ( blockTargetWidget ) {
 				blockTargetWidget.on( 'change', function () {
-					updateWatchOption( blockTargetWidget.getValue().toString().trim() );
+					updateWatchOption( blockTargetWidget.getValue().trim() );
 				} );
-				updateWatchOption( blockTargetWidget.getValue().toString().trim() );
+				updateWatchOption( blockTargetWidget.getValue().trim() );
 			}
 			return;
 		}
@@ -123,15 +123,6 @@
 		blockTargetWidget = infuseIfExists( $( '#mw-bi-target' ) );
 
 		if ( blockTargetWidget ) {
-			// If widget is prefilled with an IP address, make it editable at first
-			if ( mw.util.isIPAddress( mw.config.get( 'wgRelevantUserName' ) ) ) {
-				blockTargetWidget.removeItems( blockTargetWidget.getItems() );
-				blockTargetWidget.input
-					.setValue( mw.config.get( 'wgRelevantUserName' ) )
-					.focus();
-				blockTargetWidget.menu.toggle( false );
-			}
-
 			userChangedCreateAccount = mw.config.get( 'wgCreateAccountDirty' );
 			updatingBlockOptions = false;
 

@@ -2029,7 +2029,7 @@ return [
 			'mediawiki.widgets.SelectWithInputWidget',
 			'mediawiki.widgets.NamespacesMultiselectWidget',
 			'mediawiki.widgets.TitlesMultiselectWidget',
-			'mediawiki.widgets.UsersMultiselectWidget',
+			'mediawiki.widgets.UserInputWidget',
 			'mediawiki.util',
 			'mediawiki.htmlform',
 			'moment',
