@@ -15,14 +15,34 @@ use ReflectionParameter;
  * @package MediaWiki\Tests\HookContainer
  */
 abstract class HookRunnerTestBase extends MediaWikiUnitTestCase {
-
 	/**
 	 * @return Generator|array
 	 */
-	abstract public function provideHookRunners();
+	 // abstract public static function provideHookRunners();
 
 	/**
-	 * @dataProvider provideHookRunners
+	 * Temporary override to make provideHookRunners static.
+	 * See T332865.
+	 *
+	 * @return Generator|array
+	 */
+	final public static function provideHookRunnersStatically() {
+		$reflectionMethod = new ReflectionMethod( static::class, 'provideHookRunners' );
+		if ( $reflectionMethod->isStatic() ) {
+			return $reflectionMethod->invoke( null );
+		}
+
+		trigger_error(
+			'overriding provideHookRunners as an instance method is deprecated. (' .
+			$reflectionMethod->getFileName() . ':' . $reflectionMethod->getEndLine() . ')',
+			E_USER_DEPRECATED
+		);
+
+		return $reflectionMethod->invoke( new static() );
+	}
+
+	/**
+	 * @dataProvider provideHookRunnersStatically
 	 */
 	public function testAllMethodsInheritedFromInterface( string $hookRunnerClass ) {
 		$hookRunnerReflectionClass = new ReflectionClass( $hookRunnerClass );
@@ -44,7 +64,7 @@ abstract class HookRunnerTestBase extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @dataProvider provideHookRunners
+	 * @dataProvider provideHookRunnersStatically
 	 */
 	public function testHookInterfacesHaveUniqueMethods( string $hookRunnerClass ) {
 		$hookRunnerReflectionClass = new ReflectionClass( $hookRunnerClass );

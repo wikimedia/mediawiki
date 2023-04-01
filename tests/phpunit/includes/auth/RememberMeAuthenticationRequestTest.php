@@ -60,7 +60,7 @@ class RememberMeAuthenticationRequestTest extends AuthenticationRequestTestCase 
 		return $req;
 	}
 
-	public function provideLoadFromSubmission() {
+	public static function provideLoadFromSubmission() {
 		return [
 			'Empty request' => [
 				[ 30 * 24 * 3600 ],

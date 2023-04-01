@@ -12,7 +12,7 @@ class CreationReasonAuthenticationRequestTest extends AuthenticationRequestTestC
 		return new CreationReasonAuthenticationRequest();
 	}
 
-	public function provideLoadFromSubmission() {
+	public static function provideLoadFromSubmission() {
 		return [
 			'Empty request' => [
 				[],

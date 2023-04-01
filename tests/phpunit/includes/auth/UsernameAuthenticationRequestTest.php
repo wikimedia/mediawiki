@@ -12,7 +12,7 @@ class UsernameAuthenticationRequestTest extends AuthenticationRequestTestCase {
 		return new UsernameAuthenticationRequest();
 	}
 
-	public function provideLoadFromSubmission() {
+	public static function provideLoadFromSubmission() {
 		return [
 			'Empty request' => [
 				[],

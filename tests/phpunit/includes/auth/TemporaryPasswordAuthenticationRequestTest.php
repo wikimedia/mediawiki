@@ -61,7 +61,7 @@ class TemporaryPasswordAuthenticationRequestTest extends AuthenticationRequestTe
 		$this->assertNull( $ret->password );
 	}
 
-	public function provideLoadFromSubmission() {
+	public static function provideLoadFromSubmission() {
 		return [
 			'Empty request' => [
 				[ AuthManager::ACTION_REMOVE ],

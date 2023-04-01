@@ -68,7 +68,7 @@ class PasswordDomainAuthenticationRequestTest extends AuthenticationRequestTestC
 		);
 	}
 
-	public function provideLoadFromSubmission() {
+	public static function provideLoadFromSubmission() {
 		$domainList = [ 'domainList' => [ 'd1', 'd2' ] ];
 		return [
 			'Empty request, login' => [

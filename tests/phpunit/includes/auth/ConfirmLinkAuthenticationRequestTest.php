@@ -11,7 +11,7 @@ use InvalidArgumentException;
 class ConfirmLinkAuthenticationRequestTest extends AuthenticationRequestTestCase {
 
 	protected function getInstance( array $args = [] ) {
-		return new ConfirmLinkAuthenticationRequest( $this->getLinkRequests() );
+		return new ConfirmLinkAuthenticationRequest( self::getLinkRequests() );
 	}
 
 	public function testConstructorException() {
@@ -24,15 +24,26 @@ class ConfirmLinkAuthenticationRequestTest extends AuthenticationRequestTestCase
 	 * Get requests for testing
 	 * @return AuthenticationRequest[]
 	 */
-	private function getLinkRequests() {
+	private static function getLinkRequests() {
 		$reqs = [];
 
-		$mb = $this->getMockBuilder( AuthenticationRequest::class )
-			->onlyMethods( [ 'getUniqueId' ] );
 		for ( $i = 1; $i <= 3; $i++ ) {
-			$req = $mb->getMockForAbstractClass();
-			$req->method( 'getUniqueId' )
-				->willReturn( "Request$i" );
+			$req = new class( "Request$i" ) extends AuthenticationRequest {
+				private $uniqueId;
+
+				public function __construct( $uniqueId ) {
+					$this->uniqueId = $uniqueId;
+				}
+
+				public function getFieldInfo() {
+					return [];
+				}
+
+				public function getUniqueId() {
+					return $this->uniqueId;
+				}
+			};
+
 			$reqs[$req->getUniqueId()] = $req;
 		}
 
@@ -40,7 +51,7 @@ class ConfirmLinkAuthenticationRequestTest extends AuthenticationRequestTestCase
 	}
 
 	public function provideLoadFromSubmission() {
-		$reqs = $this->getLinkRequests();
+		$reqs = self::getLinkRequests();
 
 		return [
 			'Empty request' => [
@@ -57,7 +68,7 @@ class ConfirmLinkAuthenticationRequestTest extends AuthenticationRequestTestCase
 	}
 
 	public function testGetUniqueId() {
-		$req = new ConfirmLinkAuthenticationRequest( $this->getLinkRequests() );
+		$req = new ConfirmLinkAuthenticationRequest( self::getLinkRequests() );
 		$this->assertSame(
 			get_class( $req ) . ':Request1|Request2|Request3',
 			$req->getUniqueId()

@@ -18,7 +18,7 @@ class CreatedAccountAuthenticationRequestTest extends AuthenticationRequestTestC
 		$this->assertSame( 'Test', $ret->username );
 	}
 
-	public function provideLoadFromSubmission() {
+	public static function provideLoadFromSubmission() {
 		return [
 			'Empty request' => [
 				[],

@@ -14,7 +14,7 @@ class CreateFromLoginAuthenticationRequestTest extends AuthenticationRequestTest
 		);
 	}
 
-	public function provideLoadFromSubmission() {
+	public static function provideLoadFromSubmission() {
 		return [
 			'Empty request' => [
 				[],

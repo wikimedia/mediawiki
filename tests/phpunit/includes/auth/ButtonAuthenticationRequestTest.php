@@ -19,7 +19,7 @@ class ButtonAuthenticationRequestTest extends AuthenticationRequestTestCase {
 		];
 	}
 
-	public function provideLoadFromSubmission() {
+	public static function provideLoadFromSubmission() {
 		return [
 			'Empty request' => [
 				[ 'name' => 'foo', 'label' => 'bar', 'help' => 'baz' ],
