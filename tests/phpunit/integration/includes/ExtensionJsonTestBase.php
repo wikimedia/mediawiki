@@ -166,7 +166,7 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideSpecialPageNames(): iterable {
-		foreach ( $this->getExtensionJson()['SpecialPages'] as $specialPageName => $specification ) {
+		foreach ( $this->getExtensionJson()['SpecialPages'] ?? [] as $specialPageName => $specification ) {
 			yield [ $specialPageName ];
 		}
 	}
