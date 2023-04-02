@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Specials\SpecialBlankpage;
+
 /**
  * @license GPL-2.0-or-later
  * @author Addshore

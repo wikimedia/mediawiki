@@ -21,11 +21,25 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use BotPassword;
+use CentralIdLookup;
+use ErrorPageError;
+use FormSpecialPage;
+use HTMLForm;
+use HTMLRestrictionsField;
+use InvalidPassword;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
+use PasswordError;
+use PasswordFactory;
+use Psr\Log\LoggerInterface;
+use Status;
+use User;
 
 /**
  * Let users manage bot passwords
@@ -46,7 +60,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 	/** @var string|null New password set, for communication between onSubmit() and onSuccess() */
 	private $password = null;
 
-	/** @var Psr\Log\LoggerInterface */
+	/** @var LoggerInterface */
 	private $logger;
 
 	/** @var PasswordFactory */
@@ -437,3 +451,8 @@ class SpecialBotPasswords extends FormSpecialPage {
 		return 'ooui';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialBotPasswords::class, 'SpecialBotPasswords' );

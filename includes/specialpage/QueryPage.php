@@ -26,6 +26,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Specials\SpecialAncientPages;
+use MediaWiki\Specials\SpecialBrokenRedirects;
 use MediaWiki\Specials\SpecialMostImages;
 use MediaWiki\Specials\SpecialWantedFiles;
 use MediaWiki\Specials\SpecialWantedPages;

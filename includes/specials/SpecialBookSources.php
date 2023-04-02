@@ -21,10 +21,16 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use HTMLForm;
 use MediaWiki\Html\Html;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
+use SpecialPage;
+use TextContent;
+use UnexpectedValueException;
 
 /**
  * Special page outputs information on sourcing a book with a particular ISBN
@@ -223,3 +229,8 @@ class SpecialBookSources extends SpecialPage {
 		return 'wiki';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialBookSources::class, 'SpecialBookSources' );

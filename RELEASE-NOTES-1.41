@@ -103,6 +103,12 @@ because of Phabricator reports.
   - SpecialApiHelp
   - SpecialApiSandbox
   - SpecialAutoblockList
+  - SpecialBlankpage
+  - SpecialBlock
+  - SpecialBlockList
+  - SpecialBookSources
+  - SpecialBotPasswords
+  - SpecialBrokenRedirects
 * …
 
 === Other changes in 1.41 ===

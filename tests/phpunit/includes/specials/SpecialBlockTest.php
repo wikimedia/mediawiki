@@ -7,6 +7,7 @@ use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Specials\SpecialBlock;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\TestingAccessWrapper;
 
@@ -811,7 +812,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$expectedResult,
 		$reason
 	) {
-		$this->hideDeprecated( 'SpecialBlock::checkUnblockSelf' );
+		$this->hideDeprecated( 'MediaWiki\Specials\SpecialBlock::checkUnblockSelf' );
 
 		$this->overrideConfigValue( MainConfigNames::BlockDisablesLogin, false );
 		$this->setGroupPermissions( 'sysop', 'unblockself', true );
