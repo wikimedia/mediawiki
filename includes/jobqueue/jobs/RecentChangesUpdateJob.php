@@ -245,6 +245,10 @@ class RecentChangesUpdateJob extends Job {
 			__METHOD__
 		);
 
+		if ( !MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::MiserMode ) ) {
+			SiteStatsUpdate::cacheUpdate( $dbw );
+		}
+
 		$dbw->unlock( $lockKey, __METHOD__ );
 	}
 }

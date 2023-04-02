@@ -10,6 +10,7 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.39.3 ===
 * Localisation updates.
+* (T333776) {{ACTIVEUSERS}} wasn't being updated without updateSpecialPages.php
 
 == MediaWiki 1.39.3 ==
 
