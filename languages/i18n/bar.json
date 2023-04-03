@@ -200,7 +200,7 @@
 	"toolbox": "Werkzeig",
 	"cactions": "Mearer",
 	"tool-link-userrights": "{{GENDER:$1|Nutzagruppm}} éndern",
-	"tool-link-userrights-readonly": "{{GENDER:$1|Nutzagruppem}} åhschaun",
+	"tool-link-userrights-readonly": "{{GENDER:$1|Nutzergruppen}} áhschaun",
 	"tool-link-emailuser": "E-Mail ån an {{GENDER:$1|Nutzer|Nutzerrin}} sénden",
 	"imagepage": "Daateiseiten åzoang",
 	"mediawikipage": "Inhoitsseiten åzoang",
