@@ -4261,7 +4261,7 @@
 	"passwordpolicies-policy-maximalpasswordlength": "密码长度必须少于$1个{{PLURAL:$1|字符}}",
 	"passwordpolicies-policy-passwordnotincommonlist": "密码不能在100000个最常用的密码列表中。",
 	"passwordpolicies-policyflag-forcechange": "必须在登录时更改",
-	"passwordpolicies-policyflag-suggestchangeonlogin": "建议在登录时更改",
+	"passwordpolicies-policyflag-suggestchangeonlogin": "在登录时建议更改",
 	"mycustomjsredirectprotected": "您无权编辑此JavaScript页面，因为它是重定向，并且不指向您的用户空间。",
 	"deflate-invaliddeflate": "提供的内容未被适当缩小",
 	"unprotected-js": "基于安全原因，JavaScript不能在未保护页面中加载。请在“MediaWiki:”命名空间或者用户子页面中添加JavaScript。",
