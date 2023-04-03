@@ -265,7 +265,7 @@ class SkinModule extends LessVarFileModule {
 	 *   after an upgrade until you enable them or implement them by other means.
 	 *
 	 * - lessMessages: Interface message keys to export as LESS variables.
-	 *   See also ResourceLoaderLessVarFileModule.
+	 *   See also LessVarFileModule.
 	 *
 	 * @param string|null $localBasePath
 	 * @param string|null $remoteBasePath
@@ -327,14 +327,14 @@ class SkinModule extends LessVarFileModule {
 		if ( isset( $features[ 'content' ] ) ) {
 			$features[ 'content-media' ] = $features[ 'content' ];
 			unset( $features[ 'content' ] );
-			$messages .= '[1.37] The use of the `content` feature with ResourceLoaderSkinModule'
+			$messages .= '[1.37] The use of the `content` feature with SkinModule'
 				. ' is deprecated. Use `content-media` instead. ';
 		}
 
 		// The `content-thumbnails` feature is mapped to `content-media`.
 		if ( isset( $features[ 'content-thumbnails' ] ) ) {
 			$features[ 'content-media' ] = $features[ 'content-thumbnails' ];
-			$messages .= '[1.37] The use of the `content-thumbnails` feature with ResourceLoaderSkinModule'
+			$messages .= '[1.37] The use of the `content-thumbnails` feature with SkinModule'
 				. ' is deprecated. Use `content-media` instead. ';
 			unset( $features[ 'content-thumbnails' ] );
 		}
@@ -349,7 +349,7 @@ class SkinModule extends LessVarFileModule {
 
 		// The legacy feature no longer exists (T89981) but to avoid fatals in skins is retained.
 		if ( isset( $features['legacy'] ) && $features['legacy'] ) {
-			$messages .= '[1.37] The use of the `legacy` feature with ResourceLoaderSkinModule is deprecated'
+			$messages .= '[1.37] The use of the `legacy` feature with SkinModule is deprecated'
 				. '(T89981) and is a NOOP since 1.39 (T304325). This should be urgently omited to retain compatibility '
 				. 'with future MediaWiki versions';
 		}

@@ -12,9 +12,9 @@ use Psr\Log\LoggerInterface;
 abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 	// Version hash for a blank file module.
 	// Result of ResourceLoader::makeHash(), ResourceLoaderTestModule
-	// and ResourceLoaderFileModule::getDefinitionSummary().
+	// and FileModule::getDefinitionSummary().
 	public const BLANK_VERSION = '9p30q';
-	// Result of ResoureLoader::makeVersionQuery() for a blank file module.
+	// Result of ResourceLoader::makeVersionQuery() for a blank file module.
 	// In other words, result of ResourceLoader::makeHash( BLANK_VERSION );
 	public const BLANK_COMBI = 'rbml8';
 
@@ -69,17 +69,17 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 
 	public static function getSettings() {
 		return [
-			// For ResourceLoaderModule
+			// For Module
 			MainConfigNames::ResourceLoaderValidateJS => false,
 
-			// For ResourceLoaderSkinModule
+			// For SkinModule
 			MainConfigNames::Logos => false,
 			MainConfigNames::Logo => '/logo.png',
 			MainConfigNames::BaseDirectory => MW_INSTALL_PATH,
 			MainConfigNames::ResourceBasePath => '/w',
 			MainConfigNames::ParserEnableLegacyMediaDOM => true,
 
-			// For  ResourceLoader::getSiteConfigSettings and ResourceLoaderStartUpModule
+			// For  ResourceLoader::getSiteConfigSettings and StartUpModule
 			MainConfigNames::Server => 'https://example.org',
 			MainConfigNames::ScriptPath => '/w',
 			MainConfigNames::Script => '/w/index.php',
@@ -189,7 +189,7 @@ class ResourceLoaderTestModule extends Module {
 }
 
 /**
- * A more constrained and testable variant of ResourceLoaderFileModule.
+ * A more constrained and testable variant of FileModule.
  *
  * - Implements getLessVars() support.
  * - Disables database persistance of discovered file dependencies.

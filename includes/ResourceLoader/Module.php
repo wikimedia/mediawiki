@@ -175,8 +175,7 @@ abstract class Module implements LoggerAwareInterface {
 	 * Get this module's origin. This is set when the module is registered
 	 * with ResourceLoader::register()
 	 *
-	 * @return int ResourceLoaderModule class constant, the subclass default
-	 *     if not set manually
+	 * @return int Module class constant, the subclass default if not set manually
 	 */
 	public function getOrigin() {
 		return $this->origin;
@@ -297,7 +296,7 @@ abstract class Module implements LoggerAwareInterface {
 	/**
 	 * Get a HookRunner for running core hooks.
 	 *
-	 * @internal For use only within core ResourceLoaderModule subclasses. Hook interfaces may be removed
+	 * @internal For use only within core Module subclasses. Hook interfaces may be removed
 	 *   without notice.
 	 * @return HookRunner
 	 */

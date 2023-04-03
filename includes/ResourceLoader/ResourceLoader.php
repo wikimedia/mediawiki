@@ -127,7 +127,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	/** @var bool */
 	private $useFileCache;
 
-	/** @var Module[] Map of (module name => ResourceLoaderModule) */
+	/** @var Module[] Map of (module name => Module) */
 	private $modules = [];
 	/** @var array[] Map of (module name => associative info array) */
 	private $moduleInfos = [];
@@ -900,7 +900,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			$maxage = $this->maxageUnversioned;
 		} else {
 			// When a version is set, use a long expiry because changes
-			// will naturally miss the cache by using a differente URL.
+			// will naturally miss the cache by using a different URL.
 			$maxage = $this->maxageVersioned;
 		}
 		if ( $context->getImageObj() ) {

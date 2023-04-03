@@ -479,7 +479,7 @@ class WikiModule extends Module {
 
 		// Optimisation: For user modules, don't needlessly load if there are no non-empty pages
 		// This is worthwhile because unlike most modules, user modules require their own
-		// separate embedded request (managed by ResourceLoaderClientHtml).
+		// separate embedded request (managed by ClientHtml).
 		$revisions = $this->getTitleInfo( $context );
 		if ( $this->getGroup() === self::GROUP_USER ) {
 			foreach ( $revisions as $revision ) {
