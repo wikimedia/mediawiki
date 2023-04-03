@@ -21,8 +21,12 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
+use NamespaceInfo;
+use PageQueryPage;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -113,3 +117,8 @@ class SpecialDeadendPages extends PageQueryPage {
 		return 'maintenance';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialDeadendPages::class, 'SpecialDeadendPages' );

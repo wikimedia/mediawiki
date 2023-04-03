@@ -57,6 +57,11 @@ use MediaWiki\Specials\SpecialConfirmEmail;
 use MediaWiki\Specials\SpecialContribute;
 use MediaWiki\Specials\SpecialContributions;
 use MediaWiki\Specials\SpecialCreateAccount;
+use MediaWiki\Specials\SpecialDeadendPages;
+use MediaWiki\Specials\SpecialDeletedContributions;
+use MediaWiki\Specials\SpecialDeletePage;
+use MediaWiki\Specials\SpecialDiff;
+use MediaWiki\Specials\SpecialDoubleRedirects;
 use MediaWiki\Specials\SpecialMostImages;
 use MediaWiki\Specials\SpecialMovePage;
 use MediaWiki\Specials\SpecialUserRights;
@@ -109,7 +114,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Deadendpages' => [
-			'class' => \SpecialDeadendPages::class,
+			'class' => SpecialDeadendPages::class,
 			'services' => [
 				'NamespaceInfo',
 				'DBLoadBalancerFactory',
@@ -118,7 +123,7 @@ class SpecialPageFactory {
 			]
 		],
 		'DoubleRedirects' => [
-			'class' => \SpecialDoubleRedirects::class,
+			'class' => SpecialDoubleRedirects::class,
 			'services' => [
 				'ContentHandlerFactory',
 				'LinkBatchFactory',
@@ -459,7 +464,7 @@ class SpecialPageFactory {
 			]
 		],
 		'DeletedContributions' => [
-			'class' => \SpecialDeletedContributions::class,
+			'class' => SpecialDeletedContributions::class,
 			'services' => [
 				'PermissionManager',
 				'DBLoadBalancerFactory',
@@ -924,13 +929,13 @@ class SpecialPageFactory {
 			'class' => SpecialBlankpage::class,
 		],
 		'DeletePage' => [
-			'class' => \SpecialDeletePage::class,
+			'class' => SpecialDeletePage::class,
 			'services' => [
 				'SearchEngineFactory',
 			]
 		],
 		'Diff' => [
-			'class' => \SpecialDiff::class,
+			'class' => SpecialDiff::class,
 		],
 		'EditPage' => [
 			'class' => \SpecialEditPage::class,
