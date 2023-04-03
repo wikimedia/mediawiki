@@ -7,8 +7,8 @@
 For information about the MediaWiki database layout, such as a description of the tables and their contents, please see:
 
 * [The manual](https://www.mediawiki.org/wiki/Manual:Database_layout)
-* [Abstract schema of MediaWiki core](https://phabricator.wikimedia.org/diffusion/MW/browse/master/maintenance/tables.json)
-* [MySQL schema (automatically generated)](https://phabricator.wikimedia.org/diffusion/MW/browse/master/maintenance/tables-generated.sql)
+* [Abstract schema of MediaWiki core](https://gerrit.wikimedia.org/g/mediawiki/core/+/refs/heads/master/maintenance/tables.json)
+* [MySQL schema (automatically generated)](https://gerrit.wikimedia.org/g/mediawiki/core/+/refs/heads/master/maintenance/tables-generated.sql)
 
 
 ## API
