@@ -68,7 +68,7 @@ class GetLagTimes extends Maintenance {
 
 					if ( $this->hasOption( 'report' ) ) {
 						$group = ( $type === 'external' ) ? 'external' : $cluster;
-						$stats->gauge( "loadbalancer.lag.$group.$host", intval( $lag * 1e3 ) );
+						$stats->gauge( "loadbalancer.lag.$group.$host", (int)( $lag * 1e3 ) );
 					}
 				}
 			}
