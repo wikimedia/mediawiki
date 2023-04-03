@@ -67,8 +67,8 @@ class CommandLineInc extends Maintenance {
 	public function execute() {
 		global $args, $options;
 
-		$args = $this->mArgs;
-		$options = $this->mOptions;
+		$args = $this->parameters->getArgs();
+		$options = $this->parameters->getOptions();
 	}
 }
 

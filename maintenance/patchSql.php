@@ -47,11 +47,11 @@ class PatchSql extends Maintenance {
 		$dbw = $this->getDB( DB_PRIMARY );
 		$updater = DatabaseUpdater::newForDB( $dbw, true, $this );
 
-		foreach ( $this->mArgs as $arg ) {
+		foreach ( $this->getArgs() as $name ) {
 			$files = [
-				$arg,
-				$updater->patchPath( $dbw, $arg ),
-				$updater->patchPath( $dbw, "patch-$arg.sql" ),
+				$name,
+				$updater->patchPath( $dbw, $name ),
+				$updater->patchPath( $dbw, "patch-$name.sql" ),
 			];
 			foreach ( $files as $file ) {
 				if ( file_exists( $file ) ) {
@@ -60,7 +60,7 @@ class PatchSql extends Maintenance {
 					continue 2;
 				}
 			}
-			$this->error( "Could not find $arg\n" );
+			$this->error( "Could not find $name\n" );
 		}
 		$this->output( "done.\n" );
 	}

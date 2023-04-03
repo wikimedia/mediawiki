@@ -39,10 +39,10 @@ class DeleteOldRevisions extends Maintenance {
 
 	public function execute() {
 		$this->output( "Delete old revisions\n\n" );
-		$this->doDelete( $this->hasOption( 'delete' ), $this->mArgs );
+		$this->doDelete( $this->hasOption( 'delete' ), $this->getArgs() );
 	}
 
-	private function doDelete( $delete = false, $args = [] ) {
+	private function doDelete( $delete = false, $pageIds = [] ) {
 		# Data should come off the master, wrapped in a transaction
 		$dbw = $this->getDB( DB_PRIMARY );
 		$this->beginTransaction( $dbw, __METHOD__ );
@@ -51,10 +51,10 @@ class DeleteOldRevisions extends Maintenance {
 		$revConds = [];
 
 		# If a list of page_ids was provided, limit results to that set of page_ids
-		if ( count( $args ) > 0 ) {
-			$pageConds['page_id'] = $args;
-			$revConds['rev_page'] = $args;
-			$this->output( "Limiting to page IDs " . implode( ',', $args ) . "\n" );
+		if ( count( $pageIds ) > 0 ) {
+			$pageConds['page_id'] = $pageIds;
+			$revConds['rev_page'] = $pageIds;
+			$this->output( "Limiting to page IDs " . implode( ',', $pageIds ) . "\n" );
 		}
 
 		# Get "active" revisions from the page table

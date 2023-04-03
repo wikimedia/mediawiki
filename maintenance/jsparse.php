@@ -36,14 +36,11 @@ class JSParseHelper extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Runs parsing/syntax checks on JavaScript files' );
-		$this->addArg( 'file(s)', 'JavaScript file to test', false );
+		$this->addArg( 'file(s)', 'JavaScript file to test', true );
 	}
 
 	public function execute() {
-		if ( !$this->hasArg( 0 ) ) {
-			$this->maybeHelp( true );
-		}
-		$files = $this->mArgs;
+		$files = $this->getArgs();
 
 		$parser = new JSParser();
 		foreach ( $files as $filename ) {
