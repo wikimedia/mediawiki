@@ -373,11 +373,11 @@ class FileModuleTest extends ResourceLoaderTestCase {
 	}
 
 	/**
-	 * Test reading files from elsewhere than localBasePath using ResourceLoaderFilePath.
+	 * Test reading files from elsewhere than localBasePath using FilePath.
 	 *
-	 * The use of ResourceLoaderFilePath objects resembles the way that ResourceLoader::getModule()
-	 * injects additional files when 'ResourceModuleSkinStyles' or 'OOUIThemePaths' skin attributes
-	 * apply to a given module.
+	 * The use of FilePath objects resembles the way that ResourceLoader::getModule()
+	 * injects additional files when 'ResourceModuleSkinStyles' or 'OOUIThemePaths'
+	 * skin attributes apply to a given module.
 	 */
 	public function testResourceLoaderFilePath() {
 		$basePath = __DIR__ . '/../../data/blahblah';
