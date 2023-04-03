@@ -40,7 +40,7 @@ describe( 'Search', () => {
 			assert.nestedPropertyVal( returnPage, 'thumbnail', null );
 			assert.nestedPropertyVal( returnPage, 'description', null );
 			assert.nestedPropertyVal( returnPage, 'matched_title', null );
-			assert.include( returnPage.excerpt, `<span class='searchmatch'>${searchTerm}</span>` );
+			assert.include( returnPage.excerpt, `<span class="searchmatch">${searchTerm}</span>` );
 
 			// full-text search should not have cache-control
 			if ( headers[ 'cache-control' ] ) {
