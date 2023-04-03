@@ -16,46 +16,14 @@
 @colorGray15: #f8f9fa; // lightest
 
 // Colors
-@color-base: @colorGray2;
-@color-base--hover: @colorGray4;
-@color-base--active: @colorGray1;
-@color-base--emphasized: @colorGray1;
-@color-base--inverted: #fff;
-@color-base--subtle: @colorGray7;
-@color-base--disabled: @colorGray7;
-// Accent50 Foundation Blue; for contextual use of a continuing action
-@color-primary: #36c;
-@color-primary--hover: #447ff5;
-@color-primary--active: #2a4b8d;
-@color-primary--focus: @color-primary;
-// Red50; for contextual use of a negative action of high severity
-@color-destructive: #d33;
-@color-destructive--hover: #ff4242;
-@color-destructive--active: #b32424;
-@color-destructive--focus: @color-destructive;
 @background-color-quiet--hover: rgba( 0, 24, 73, 7/255 ); // = `@wmui-color-base90` on white.
 @background-color-quiet--active: rgba( 0, 36, 73, 21/255 ); // = `@wmui-color-base80` on white.
 @background-color-primary--hover: fade( #347bff, 20% );
 @background-color-destructive--hover: fade( #d11d13, 20% );
 
-// Other UI colors
-@color-placeholder: @colorGray7;
-
 // Messages
-// Messages: Error
-@background-color-error: #fee7e6;
-// Use only for inlined messages, boxed messages require `@color-base--emphasized` for
-// minimum contrast ratio.
-@color-error: #d33;
-@border-color-error: @color-error;
 // Messages: Warning
-@background-color-warning: #fef6e7;
 @color-warning: @color-base--emphasized;
-@border-color-warning: #fc3;
-// Messages: Success
-@background-color-success: #d5fdf4;
-@color-success: #14866d;
-@border-color-success: @color-success;
 
 // UI colors
 @background-color-input-binary--active: @color-primary--active;
@@ -94,7 +62,62 @@
 /**
  * Deprecated variables
  */
-// Deprecated in MW v1.35.0
+// = Deprecated in MW v1.41.0
+// == All following variables carry same key and value, are replaced by Codex design tokens via
+// 'mediawiki.skin.variables.less'. They remain here for 1 version in order to get skins prepared
+// for the new skin variable architecture.
+
+// Colors
+@color-base: @colorGray2;
+@color-base--hover: @colorGray4;
+// Red50; for contextual use of a negative action of high severity
+@color-destructive: #d33;
+@color-destructive--hover: #ff4242;
+@color-destructive--active: #b32424;
+@color-destructive--focus: @color-destructive;
+
+// Other UI colors
+@color-placeholder: @colorGray7;
+
+// Messages
+// Messages: Error
+// Use only for inlined messages, boxed messages require `@color-base--emphasized` for
+// minimum contrast ratio.
+@color-error: #d33;
+@border-color-error: @color-error;
+// Messages: Warning
+@color-warning: @color-base--emphasized;
+@border-color-warning: #fc3;
+// Messages: Success
+@color-success: #14866d;
+@border-color-success: @color-success;
+
+// == All following variables carry same value, but a different key,
+// and are replaced by Codex design tokens via 'mediawiki.skin.variables.less'.
+
+// Colors
+@color-base--active: @colorGray1; // To be replaced by `@color-emphasized`.
+@color-base--emphasized: @colorGray1; // To be replaced by `@color-emphasized`.
+@color-base--inverted: #fff; // To be replaced by `@color-inverted`.
+@color-base--subtle: @colorGray7;
+@color-base--disabled: @colorGray7; // To be replaced by `@color-disabled`.
+// Accent50 Foundation Blue; for contextual use of a continuing action.
+@color-primary: #36c; // To be replaced by `@color-progressive`.
+@color-primary--hover: #447ff5; // To be replaced by `@color-progressive--hover`.
+@color-primary--active: #2a4b8d; // To be replaced by `@color-progressive--active`.
+@color-primary--focus: @color-primary; // To be replaced by `@color-progressive--focus`.
+// Messages
+// Messages: Error
+@background-color-error: #fee7e6; // To be replaced by `@background-color-error-subtle`.
+// Messages: Warning
+@background-color-warning: #fef6e7; // To be replaced by `@background-color-warning-subtle`.
+// Messages: Success
+@background-color-success: #d5fdf4; // To be replaced by `@background-color-success-subtle`.
+
+// Border colors
+@border-color-base: #a2a9b1;
+
+// = Deprecated in MW v1.35.0
 @colorProgressive: @color-primary;
 @colorProgressiveHighlight: @color-primary--hover;
 @colorProgressiveActive: @color-primary--active;
