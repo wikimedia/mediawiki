@@ -68,7 +68,7 @@ h3,
 h4,
 h5,
 h6 {
-	color: #000;
+	color: @color-emphasized;
 	margin: 0;
 	padding-top: 0.5em;
 	padding-bottom: 0.17em;
@@ -167,12 +167,12 @@ pre,
 code,
 .mw-code {
 	background-color: #f8f9fa;
-	color: #000;
-	border: 1px solid #eaecf0;
+	color: @color-emphasized;
+	border: @border-width-base @border-style-base #eaecf0;
 }
 
 code {
-	border-radius: 2px;
+	border-radius: @border-radius-base;
 	padding: 1px 4px;
 }
 
@@ -194,7 +194,7 @@ table {
 
 /* Forms */
 fieldset {
-	border: 1px solid #2a4b8d;
+	border: @border-width-base @border-style-base #2a4b8d;
 	margin: 1em 0 1em 0;
 	padding: 0 1em 1em;
 }

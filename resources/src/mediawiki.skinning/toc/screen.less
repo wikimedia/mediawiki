@@ -7,13 +7,15 @@
  * Styles for @media print are inside print.css.
  */
 
+@import 'mediawiki.skin.variables.less';
+
 /* stylelint-disable selector-class-pattern */
 
 /* Table of Contents */
 .toc,
 .toccolours {
-	border: 1px solid #a2a9b1;
 	background-color: #f8f9fa;
+	border: @border-width-base @border-style-base @border-color-base;
 	padding: 5px;
 	font-size: 95%;
 }
@@ -77,7 +79,7 @@ table.toc {
 
 /* Space between the columns for tocnumber and toctext */
 .tocnumber {
-	color: #202122;
+	color: @color-base;
 	padding-left: 0;
 	padding-right: 0.5em;
 
@@ -123,8 +125,8 @@ table.toc {
 
 /* Make the label look like a link. */
 .toctogglelabel {
+	color: @color-progressive;
 	cursor: pointer;
-	color: #0645ad;
 }
 
 .toctogglelabel:hover {
