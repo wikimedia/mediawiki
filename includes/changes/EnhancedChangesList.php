@@ -424,7 +424,7 @@ class EnhancedChangesList extends ChangesList {
 			}
 		}
 
-		if ( $rcObj->mAttribs['rc_type'] == RC_LOG ) {
+		if ( $type == RC_LOG ) {
 			$data['logEntry'] = $this->insertLogEntry( $rcObj );
 		} elseif ( $this->isCategorizationWithoutRevision( $rcObj ) ) {
 			$data['comment'] = $this->insertComment( $rcObj );
@@ -433,10 +433,12 @@ class EnhancedChangesList extends ChangesList {
 			$data['userLink'] = $rcObj->userlink;
 			$data['userTalkLink'] = $rcObj->usertalklink;
 			$data['comment'] = $this->insertComment( $rcObj );
+			if ( $type == RC_CATEGORIZE ) {
+				$data['historyLink'] = $this->getDiffHistLinks( $rcObj, false );
+			}
+			# Rollback, thanks etc...
+			$data['rollback'] = $this->getRollback( $rcObj );
 		}
-
-		# Rollback, thanks etc...
-		$data['rollback'] = $this->getRollback( $rcObj );
 
 		# Tags
 		$data['tags'] = $this->getTags( $rcObj, $classes );
