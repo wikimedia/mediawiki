@@ -27,7 +27,8 @@
 			"VIGNERON",
 			"Y-M D",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Base"
 		]
 	},
 	"tog-underline": "Liammoù islinennet",
@@ -817,7 +818,7 @@
 	"rev-deleted-unhide-diff": "'''Diverket''' ez eus bet unan eus kemmoù an diforc'h-mañ.\nTitouroù zo da gaout war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket].\nGallout a rit c'hoazh [$1 sellet ouzh an diforc'h-mañ] mar fell deoc'h kenderc'hel.",
 	"rev-suppressed-unhide-diff": "'''Diverket''' ez eus bet unan eus adweladennoù an diforc'h-mañ.\nTitouroù ouzhpenn zo war [{{lurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket].\nGallout a rit c'hoazh [$1 sellet ouzh an diforc'h-se] mar fell deoc'h kenderc'hel.",
 	"rev-deleted-diff-view": "'''Diverket''' ez eus bet unan eus stummoù an diforc'h-mañ.\nGallout a rit gwelet an diforc'h-mañ ; titouroù zo war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket]",
-	"rev-suppressed-diff-view": "'''Diverket''' ez eus bet unan eus stummoù an diforc'h-mañ.\nGallout a ri gwelet an diforc'h-mañ ; titouroù zo war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket]",
+	"rev-suppressed-diff-view": "'''Diverket''' ez eus bet unan eus stummoù an diforc'h-mañ.\nGallout a ri gwelet an diforc'h-mañ ; titouroù zo war [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket]",
 	"rev-delundel": "diskouez/kuzhat",
 	"rev-showdeleted": "diskouez",
 	"revisiondelete": "Diverkañ/diziverkañ stummoù",

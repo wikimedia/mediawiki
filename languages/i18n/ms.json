@@ -33,7 +33,9 @@
 			"Zamwan",
 			"Zulfadli51",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Base",
+			"Hakimi97"
 		]
 	},
 	"tog-underline": "Garis bawah pautan:",
@@ -866,7 +868,7 @@
 	"rev-deleted-unhide-diff": "Salah satu semakan perbezaan ini telah '''dihapuskan'''.\nButiran lanjut boleh didapati dalam [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].\nAnda masih boleh [$1 melihat semakan ini] jika anda ingin teruskan.",
 	"rev-suppressed-unhide-diff": "Salah satu semakan perbezaan ini telah '''diselindungkan'''.\nButiran lanjut boleh didapati dalam [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penyelindungan].\nAnda masih boleh [$1 melihat perbezaan ini] jika anda ingin teruskan.",
 	"rev-deleted-diff-view": "Salah satu semakan perbezaan ini telah <strong>dihapuskan</strong>.\nAnda boleh melihat perbezaan ini; butiran boleh didapati di dalam [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
-	"rev-suppressed-diff-view": "Salah satu semakan perbezaan ini telah '''dipendam'''.\nAnda boleh melihat perbezaan ini; butiran boleh didapati di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penyelindungan].",
+	"rev-suppressed-diff-view": "Salah satu semakan perbezaan ini telah '''dipendam'''.\nAnda boleh melihat perbezaan ini; butiran boleh didapati di [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penyelindungan].",
 	"rev-delundel": "tunjukkan/sorokkan",
 	"rev-showdeleted": "tunjukkan",
 	"revisiondelete": "Hapus/nyahhapus semakan",

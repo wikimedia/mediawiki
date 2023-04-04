@@ -40,7 +40,8 @@
 			"हिमाल सुबेदी",
 			"아라",
 			"CAPTAIN MEDUSA",
-			"NehalDaveND"
+			"NehalDaveND",
+			"Base"
 		]
 	},
 	"tog-underline": "रेखाङ्कित सूत्र:",
@@ -814,7 +815,7 @@
 	"rev-deleted-unhide-diff": "यस पृष्ठका पुनरावलोकनहरू मध्ये एउटा भिन्नता <strong>मेटाइएकोछ</strong>।\nयसको पूर्ण विवरण [{{fullurl:{{#Special:Log}}/delete|पृष्ठ={{FULLPAGENAMEE}}}}को मेटाइएको लगमा पाउन सकिन्छ]।\nयदि चाहनु भयो भने प्रवन्धकको हैसियतले [यो भिन्नता $1] हेर्न सक्नुहुन्छ।",
 	"rev-suppressed-unhide-diff": "यस पृष्ठको पुनरावलोकनहरू मध्ये एउटा भिन्नता <strong>थिचिएको छ</strong>।\nयसको पूर्ण विवरण [{{fullurl:{{#Special:Log}}/suppress|पृष्ठ={{FULLPAGENAMEE}}}}को थिचिएको लगमा पाउन सकिन्छ]।\nयदि चाहनु भयो भने प्रबन्धकको हैसियतमा [यो भिन्नता $1] हेर्न सक्नुहुन्छ।",
 	"rev-deleted-diff-view": "यस भिन्नताका संशोधनहरू मध्येको एउटा चाहिं <strong>मेटियो।<strong> \nतपाईंले यस भिन्नतालाई हेर्न सक्नुहुन्छ; सबै विवरण  [{{fullurl:{{#Special:Log}}/delete|पृष्ठ={{FULLPAGENAMEE}}}} मेटाइएको लग]मा पाउन सकिनेछ।",
-	"rev-suppressed-diff-view": "यस भिन्नताका संशोधनहरू मध्येको एउटा चाहिं  <strong>दबाइयो।<strong> \nतपाईंले यस भिन्नतालाई हेर्न सक्नुहुन्छ; सबै विवरण  [{{fullurl:{{#Special:Log}}/delete|पृष्ठ={{FULLPAGENAMEE}}}} दबाइएको लग]मा पाउन सकिनेछ।",
+	"rev-suppressed-diff-view": "यस भिन्नताका संशोधनहरू मध्येको एउटा चाहिं  <strong>दबाइयो।<strong> \nतपाईंले यस भिन्नतालाई हेर्न सक्नुहुन्छ; सबै विवरण  [{{fullurl:{{#Special:Log}}/suppress|पृष्ठ={{FULLPAGENAMEE}}}} दबाइएको लग]मा पाउन सकिनेछ।",
 	"rev-delundel": "दृश्यता परिवर्तन गर्नुहोस्",
 	"rev-showdeleted": "देखाउनुहोस्",
 	"revisiondelete": "मेटाउने/मेटाएको रद्दगर्ने  पुनरावलोकनहरू",
@@ -993,7 +994,7 @@
 	"prefs-email": "इमेल विकल्पहरू",
 	"prefs-rendering": "स्वरूप",
 	"prefs-searchmisc": "साधारण",
-	"saveprefs": "संग्रह गर्नुहोस्",
+	"saveprefs": "सङ्ग्रह गर्नुहोस्",
 	"restoreprefs": "सबै पूर्वनिर्धारित सेटिङहरू पुनर्स्थापित गर्नुहोस्",
 	"prefs-editing": "सम्पादन",
 	"searchresultshead": "खोज्नुहोस्",
@@ -1859,6 +1860,7 @@
 	"logeventslist-submit": "देखाउनुहोस्",
 	"logeventslist-more-filters": "थप अभिलेखहरू देखाउनुहोस्:",
 	"logeventslist-tag-log": "चिनो अभिलेखहरू",
+	"logeventslist-newusers-log": "प्रयोगकर्ताले बनाएको पृष्ठहरूको अभिलेखहरू",
 	"all-logs-page": "सबै सार्वजनिक अभिलेखहरू",
 	"alllogstext": "{{SITENAME}}को सबै उपलब्ध लगहरूको प्रविष्टिहरूको मिल्दो जुल्दो प्रदर्शन। \nतपाईं अझै विस्तारको लागि लगको प्रकार, प्रयोगकर्ता नाम (अक्षर संवेदनशील), वा प्रभावित पृष्ठ (अक्षर संवेदनशील) छान्न सक्नुहुन्छ।",
 	"logempty": "अभिलेखमा केही पनि छैन।",
@@ -3372,6 +3374,7 @@
 	"log-action-filter-block-block": "निषेध गर्नुहोस्",
 	"log-action-filter-block-reblock": "निषेध परिमार्जन",
 	"log-action-filter-block-unblock": "निषेध खारेज गर्नुहोस्",
+	"log-action-filter-newusers-create": "अज्ञात प्रयोगकर्ता द्वारा सिर्जना",
 	"log-action-filter-rights-autopromote": "स्वचालित परिवर्तन",
 	"log-action-filter-upload-upload": "नयाँ उर्ध्वभरण",
 	"log-action-filter-upload-overwrite": "पुन: उर्ध्वभरण गर्नुहोस्",
