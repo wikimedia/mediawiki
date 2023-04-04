@@ -109,6 +109,8 @@ because of Phabricator reports.
   - SpecialBookSources
   - SpecialBotPasswords
   - SpecialBrokenRedirects
+* Various mediawiki.ui variables have been deprecated in favor of
+  'minerva.skin.variables.less' Codex design tokens featuring replacements.
 * …
 
 === Other changes in 1.41 ===
