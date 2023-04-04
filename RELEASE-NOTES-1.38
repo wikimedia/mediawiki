@@ -44,7 +44,7 @@ This is a security and maintenance release of the MediaWiki 1.38 branch.
 * (T330529) SpecialEditTags: Set default of '' for wpReason.
 * (T330526) htmlform: Handle null from HTMLFormField::getDefault in
   multiselects.
-* (T285159, CVE-2023-PENDING) SECURITY: Do not apply autoblocks to untrusted
+* (T285159, CVE-2023-29141) SECURITY: Do not apply autoblocks to untrusted
   XFF headers.
 
 == MediaWiki 1.38.5 ==
