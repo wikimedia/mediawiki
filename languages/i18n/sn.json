@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Hakka",
 			"Masiziva"
 		]
@@ -244,7 +245,7 @@
 	"action-createaccount": "sika akaundi inoi yemushandisi",
 	"enhancedrc-history": "nhoroondo",
 	"recentchanges": "Zvabva kushandukwa",
-	"recentchanges-legend-heading": "<strong>huzvinambiri:</strong>",
+	"recentchanges-legend-heading": "<strong>Huzvinambiri:</strong>",
 	"rcnotefrom": "Pazasi {{PLURAL:$5|paneshanduko|panezvishanduko}} kubvira <strong>$3, $4</strong> (kusvika ku<strong>$1</strong> akarakidzwa).",
 	"rclistfrom": "Rakidza zvichinjirudzo kubva $2, $3",
 	"rcshowhideminor": "$1 chinjirudzo ridoko",
@@ -362,7 +363,7 @@
 	"tooltip-ca-move": "Chichinura kupeji iri",
 	"tooltip-p-logo": "Peji Rekutanga",
 	"pageinfo-toolboxlink": "Horokodzwa yezanhi",
-	"previousdiff": "← chichinjurudzwa chekare",
+	"previousdiff": "← Chichinjurudzwa chekare",
 	"nextdiff": "Chichinjirudzwa chitsva →",
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|zanhi|mazanhi}}",
 	"show-big-image": "Fayera repachivambo",

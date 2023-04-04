@@ -1112,7 +1112,7 @@
 	"viewinguserrights": "तपाईं {{GENDER:$1|प्रयोगकर्ता}} <strong>[[User:$1|$1]]</strong>काे $2 अधिकारहरू हेर्दै हुनुहुन्छ",
 	"userrights-editusergroup": "{{GENDER:$1|प्रयोगकर्ता}}को अधिकारहरू सम्पादन गर्नुहोस्",
 	"userrights-viewusergroup": "{{GENDER:$1|प्रयोगकर्ता}}को अधिकारहरू",
-	"saveusergroups": "{{GENDER:$1|प्रयोगकर्ता}} समूहहरू सङ्ग्रह गर्नुहोस्",
+	"saveusergroups": "{{GENDER:$1|प्रयोगकर्ता}} अधिकारहरू प्रकाशित गर्नुहोस्",
 	"userrights-groupsmember": "अधिकारहरू:",
 	"userrights-groupsmember-auto": "अन्य अधिकारहरू:",
 	"userrights-groupsmember-type": "$1",
