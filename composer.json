@@ -44,6 +44,7 @@
 		"pear/net_smtp": "1.10.0",
 		"php": ">=7.4.3",
 		"psr/container": "1.1.1",
+		"psr/http-message": "1.0.1",
 		"psr/log": "1.1.4",
 		"ralouphie/getallheaders": "3.0.3",
 		"symfony/polyfill-php80": "1.26.0",
