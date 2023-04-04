@@ -2,6 +2,28 @@ Change notes from older releases. For current info, see RELEASE-NOTES-1.41.
 
 = MediaWiki 1.39 =
 
+== MediaWiki 1.39.3 ==
+
+This is a security and maintenance release of the MediaWiki 1.39 branch.
+
+=== Changes since MediaWiki 1.39.2 ===
+* Localisation updates.
+* (T328477) LinksUpdate: Use DB key for category links table.
+* GlobalFunctions: Remove check for MEDIAWIKI constant.
+* (T329484) API: Fix query+allimages user parameter description.
+* (T330529) SpecialEditTags: Set default of '' for wpReason.
+* (T330382) postgres: Make the upgrade ignore dropping indexes that
+  might not exist.
+* (T330526) htmlform: Handle null from HTMLFormField::getDefault in
+  multiselects.
+* (T291753) rdbms: escape backslashes in makeConnectionString for PostgreSQL.
+* (T325529) Fix total breakage of wgCanonicalServer fallback.
+* (T318103) mediawiki.storage: Disable async GC during integration test.
+* (T332461, T332397) TempFSFile: Keep the WeakMap alive.
+* (T332902) page: fix InvalidArgumentException in SQLPlatform::makeList.
+* (T285159, CVE-2023-29141) SECURITY: Do not apply autoblocks to untrusted
+  XFF headers.
+
 == MediaWiki 1.39.2 ==
 
 This is a maintenance release of the MediaWiki 1.39 branch.
@@ -760,6 +782,42 @@ going to run a public MediaWiki, so you can be notified of security fixes.
 There's usually someone online in #mediawiki on irc.libera.chat.
 
 = MediaWiki 1.38 =
+
+== MediaWiki 1.38.6 ==
+
+This is a security and maintenance release of the MediaWiki 1.38 branch.
+
+=== Changes since MediaWiki 1.38.5 ===
+* Localisation updates.
+* (T325872) ChangeTags: Remove table name from condition.
+* (T324895) MWCallbackStream: Add explicit $stream property.
+* (T297031, T326039) PostgresUpdater: Move setDefault ahead of
+  changeNullableField.
+* Remove /images .htaccess rules that are no longer relevent.
+* Disable php in .htaccess of images directory as a hardening measure.
+* (T322583) Include missing message parameter in message.
+* Fix phan error when Excimer is enabled.
+* (T323373) Parser: Fix extractSections() behavior for PHP >= 8.0
+* (T326021) Add matrix: to $wgUrlProtocols.
+* (T326377) rdbms: Use DBConnRef in SelectQueryBuilder.
+* api/en.json: api-help-datatype-expiry add missing 'may'.
+* (T328222) Pass empty string to strlen() if schema is null for
+  PostgresDatabase.
+* (T317329) OutputPage: Fix undefined ['host'] in ImagePreconnect code.
+* (T289926) SpecialRevisionDelete: Set default of '' for wpReason.
+* (T155582, T328503) Fix XML dumps for content types with non-string
+  getNativeData().
+* (T314099) revisiondelete: Replace dynamic property Status::$itemStatuses.
+* (T329198) ParamValidator: Improve paramvalidator-help-multi-max message.
+* (T292348) WikiImporter: do not fail if upload entry in dump lacks 'text'
+  tag.
+* (T295637) Add no to fallback chain of nb and nn.
+* (T329484) API: Fix query+allimages user parameter description.
+* (T330529) SpecialEditTags: Set default of '' for wpReason.
+* (T330526) htmlform: Handle null from HTMLFormField::getDefault in
+  multiselects.
+* (T285159, CVE-2023-29141) SECURITY: Do not apply autoblocks to untrusted
+  XFF headers.
 
 == MediaWiki 1.38.5 ==
 
@@ -3863,6 +3921,41 @@ going to run a public MediaWiki, so you can be notified of security fixes.
 There's usually someone online in #mediawiki on irc.libera.chat.
 
 = MediaWiki 1.35 =
+
+
+== MediaWiki 1.35.10 ==
+
+This is a security and maintenance release of the MediaWiki 1.35 branch.
+
+=== Changes since MediaWiki 1.35.9 ===
+* Localisation updates.
+* (T324895) MWCallbackStream: Add explicit $stream property.
+* Remove /images .htaccess rules that are no longer relevent.
+* Disable php in .htaccess of images directory as a hardening measure.
+* (T322583) Include missing message parameter in message.
+* Fix phan error when Excimer is enabled.
+* (T274966) tests: Make pass on php8.0.
+* (T323373) Parser: Fix extractSections() behavior for PHP >= 8.0.
+* (T326021) Add matrix: to $wgUrlProtocols.
+* api/en.json: api-help-datatype-expiry add missing 'may'.
+* (T225218) Wait until the recent changes are updated.
+* (T328222) Pass empty string to strlen() if schema is null for
+  PostgresDatabase.
+* (T317329) OutputPage: Fix undefined ['host'] in ImagePreconnect code.
+* (T289926) SpecialRevisionDelete: Set default of '' for wpReason.
+* (T155582, T328503) Fix XML dumps for content types with non-string
+  getNativeData().
+* (T295958, T278847) MediaWiki-Docker: Switch PHP images to PHP7.4.
+* (T314099) revisiondelete: Replace dynamic property Status::$itemStatuses.
+* (T329198) ParamValidator: Improve paramvalidator-help-multi-max message.
+* (T292348) WikiImporter: do not fail if upload entry in dump lacks 'text'
+  tag.
+* (T329484) API: Fix query+allimages user parameter description.
+* (T330529) SpecialEditTags: Set default of '' for wpReason.
+* (T330526) htmlform: Handle null from HTMLFormField::getDefault in
+  multiselects.
+* (T285159, CVE-2023-29141) SECURITY: Do not apply autoblocks to untrusted
+  XFF headers.
 
 == MediaWiki 1.35.9 ==
 
