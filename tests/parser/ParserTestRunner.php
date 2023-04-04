@@ -987,46 +987,46 @@ class ParserTestRunner {
 	}
 
 	public function getTestSkipMessage( ParserTest $test, ParserTestMode $mode ) {
-			if ( $test->wikitext === null ) {
-				// Note that /in theory/ we could have pure html2html tests
-				// with no wikitext section, but /in practice/ all tests
-				// include a wikitext section.
-				$test->error( "Test lacks wikitext section", $test->testName );
-			}
-			// Skip disabled / filtered tests
-			if ( isset( $test->options['disabled'] ) && !$this->runDisabled ) {
-				return "Test disabled";
-			}
-			$testFilter = [ 'regex' => $this->regex ];
-			if ( !$test->matchesFilter( $testFilter ) ) {
-				return "Test doesn't match filter";
-			}
-			// Skip parsoid-only tests if running in a legacy test mode
+		if ( $test->wikitext === null ) {
+			// Note that /in theory/ we could have pure html2html tests
+			// with no wikitext section, but /in practice/ all tests
+			// include a wikitext section.
+			$test->error( "Test lacks wikitext section", $test->testName );
+		}
+		// Skip disabled / filtered tests
+		if ( isset( $test->options['disabled'] ) && !$this->runDisabled ) {
+			return "Test disabled";
+		}
+		$testFilter = [ 'regex' => $this->regex ];
+		if ( !$test->matchesFilter( $testFilter ) ) {
+			return "Test doesn't match filter";
+		}
+		// Skip parsoid-only tests if running in a legacy test mode
+		if (
+			$test->legacyHtml === null &&
+			self::getLegacyMetadataSection( $test ) === null
+		) {
+			// A Parsoid-only test should have one of the following sections
 			if (
-				$test->legacyHtml === null &&
-				self::getLegacyMetadataSection( $test ) === null
+				isset( $test->sections['html/parsoid'] ) ||
+				isset( $test->sections['html/parsoid+integrated'] ) ||
+				isset( $test->sections['html/parsoid+standalone'] ) ||
+				isset( $test->sections['wikitext/edited'] ) ||
+				self::getParsoidMetadataSection( $test ) !== null
 			) {
-				// A Parsoid-only test should have one of the following sections
-				if (
-					isset( $test->sections['html/parsoid'] ) ||
-					isset( $test->sections['html/parsoid+integrated'] ) ||
-					isset( $test->sections['html/parsoid+standalone'] ) ||
-					isset( $test->sections['wikitext/edited'] ) ||
-					self::getParsoidMetadataSection( $test ) !== null
-				) {
-					if ( $mode->isLegacy() ) {
-						// Not an error, just skip this test if we're in
-						// legacy mode.
-						return "Parsoid-only test";
-					}
-				} else {
-					// This test lacks both a legacy html or metadata
-					// section and also any parsoid-specific html or
-					// metadata section or wikitext/edited section.
-					$test->error( "Test lacks html or metadata section", $test->testName );
+				if ( $mode->isLegacy() ) {
+					// Not an error, just skip this test if we're in
+					// legacy mode.
+					return "Parsoid-only test";
 				}
+			} else {
+				// This test lacks both a legacy html or metadata
+				// section and also any parsoid-specific html or
+				// metadata section or wikitext/edited section.
+				$test->error( "Test lacks html or metadata section", $test->testName );
 			}
-			return null;
+		}
+		return null;
 	}
 
 	public static function getLegacyMetadataSection( ParserTest $test ) {
