@@ -17,7 +17,7 @@ This is a security and maintenance release of the MediaWiki 1.39 branch.
 
 === Changes since MediaWiki 1.39.2 ===
 * Localisation updates.
-* (T225218) LinksUpdate: Use DB key for category links table.
+* (T328477) LinksUpdate: Use DB key for category links table.
 * GlobalFunctions: Remove check for MEDIAWIKI constant.
 * (T329484) API: Fix query+allimages user parameter description.
 * (T330529) SpecialEditTags: Set default of '' for wpReason.
