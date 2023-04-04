@@ -1006,6 +1006,11 @@ class ParserTestRunner {
 		}
 	}
 
+	private function filterOutTest( ParserTest $test ): bool {
+		$testFilter = [ 'regex' => $this->regex ];
+		return !$test->matchesFilter( $testFilter );
+	}
+
 	public function getTestSkipMessage( ParserTest $test, ParserTestMode $mode ) {
 		$opts = $test->options;
 
@@ -1024,8 +1029,7 @@ class ParserTestRunner {
 		if ( isset( $opts['disabled'] ) && !$this->runDisabled ) {
 			return "Test disabled";
 		}
-		$testFilter = [ 'regex' => $this->regex ];
-		if ( !$test->matchesFilter( $testFilter ) ) {
+		if ( $this->filterOutTest( $test ) ) {
 			return "Test doesn't match filter";
 		}
 		// Skip parsoid-only tests if running in a legacy test mode
@@ -1112,6 +1116,15 @@ class ParserTestRunner {
 		$ok = true;
 		$runner = $this;
 		foreach ( $testCases as $t ) {
+			if ( $this->filterOutTest( $t ) ) {
+				continue;
+			}
+
+			if ( $this->options['updateKnownFailures'] ) {
+				// Reset known failures to ensure we reset newly skipped tests
+				$t->knownFailures = [];
+			}
+
 			$t->testAllModes( $t->computeTestModes( $testModes ), $this->options,
 				function ( ParserTest $test, string $modeStr, array $options ) use ( $runner, $t, &$ok ) {
 					// $test could be a clone of $t
