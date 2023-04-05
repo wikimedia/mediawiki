@@ -73,7 +73,9 @@
 		var index, texts;
 		function buildIndex() {
 			index = {};
-			var $fields = tabs.contentPanel.$element.find( '[class^=mw-htmlform-field-]:not( #mw-prefsection-betafeatures .mw-htmlform-field-HTMLInfoField )' );
+			var $fields = tabs.contentPanel.$element.find(
+				'[class^=mw-htmlform-field-]:not( #mw-prefsection-betafeatures .mw-htmlform-field-HTMLInfoField ):not( .mw-prefs-search-noindex )'
+			);
 			$fields.each( function () {
 				var $field = $( this );
 				var $wrapper = $field.parents( '.mw-prefs-fieldset-wrapper' );
@@ -112,6 +114,7 @@
 					}
 				} );
 			} );
+			mw.hook( 'prefs.search.buildIndex' ).fire( index );
 			texts = Object.keys( index );
 		}
 
