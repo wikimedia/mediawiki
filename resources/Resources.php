@@ -1541,7 +1541,6 @@ return [
 			'mediawiki.page.gallery.styles',
 			'mediawiki.util'
 		],
-		'targets' => [ 'desktop' ],
 	],
 	'mediawiki.page.gallery.styles' => [
 		'styles' => [
