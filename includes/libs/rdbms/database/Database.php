@@ -3170,7 +3170,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		} else {
 			$locked = false;
 			$this->logger->info(
-				__METHOD__ . " failed to acquire lock '{lockname}'",
+				__METHOD__ . ": failed to acquire lock '{lockname}'",
 				[
 					'lockname' => $lockName,
 					'db_log_category' => 'locking'
@@ -3199,14 +3199,22 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @inheritDoc
 	 */
 	public function unlock( $lockName, $method ) {
-		$released = $this->doUnlock( $lockName, $method );
-		if ( $released ) {
-			unset( $this->sessionNamedLocks[$lockName] );
-		} else {
+		if ( !isset( $this->sessionNamedLocks[$lockName] ) ) {
+			$released = false;
 			$this->logger->warning(
-				__METHOD__ . " failed to release lock '$lockName'\n",
+				__METHOD__ . ": trying to release unheld lock '$lockName'\n",
 				[ 'db_log_category' => 'locking' ]
 			);
+		} else {
+			$released = $this->doUnlock( $lockName, $method );
+			if ( $released ) {
+				unset( $this->sessionNamedLocks[$lockName] );
+			} else {
+				$this->logger->warning(
+					__METHOD__ . ": failed to release lock '$lockName'\n",
+					[ 'db_log_category' => 'locking' ]
+				);
+			}
 		}
 
 		return $released;

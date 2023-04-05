@@ -174,6 +174,7 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		}
 
 		$this->conn->rollback( __METHOD__ );
+		$this->conn->unlock( 'x', __METHOD__ );
 	}
 
 	/**
