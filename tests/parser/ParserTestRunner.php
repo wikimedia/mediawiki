@@ -987,6 +987,13 @@ class ParserTestRunner {
 	}
 
 	public function getTestSkipMessage( ParserTest $test, ParserTestMode $mode ) {
+		$opts = $test->options;
+
+		// Skip deprecated preprocessor tests
+		if ( isset( $opts['preprocessor'] ) && $opts['preprocessor'] !== 'Preprocessor_Hash' ) {
+			wfDeprecated( 'preprocessor=Preprocessor_DOM', '1.36' );
+			return "Unsupported preprocessor type";
+		}
 		if ( $test->wikitext === null ) {
 			// Note that /in theory/ we could have pure html2html tests
 			// with no wikitext section, but /in practice/ all tests
@@ -994,7 +1001,7 @@ class ParserTestRunner {
 			$test->error( "Test lacks wikitext section", $test->testName );
 		}
 		// Skip disabled / filtered tests
-		if ( isset( $test->options['disabled'] ) && !$this->runDisabled ) {
+		if ( isset( $opts['disabled'] ) && !$this->runDisabled ) {
 			return "Test disabled";
 		}
 		$testFilter = [ 'regex' => $this->regex ];
@@ -1389,11 +1396,6 @@ class ParserTestRunner {
 	public function runLegacyTest( ParserTest $test, ParserTestMode $mode ) {
 		$desc = ( $test->comment ?? '' ) . $test->testName;
 		wfDebug( __METHOD__ . ": running $desc" );
-		$opts = $test->options;
-		if ( isset( $opts['preprocessor'] ) && $opts['preprocessor'] !== 'Preprocessor_Hash' ) {
-			wfDeprecated( 'preprocessor=Preprocessor_DOM', '1.36' );
-			return false; // Skip test.
-		}
 		$teardownGuard = $this->perTestSetup( $test );
 		[ $title, $options, $revId ] = $this->setupParserOptions(
 			$test,
@@ -1402,6 +1404,7 @@ class ParserTestRunner {
 			}
 		);
 
+		$opts = $test->options;
 		$local = isset( $opts['local'] );
 		$parser = $this->getParser();
 
@@ -2089,11 +2092,6 @@ class ParserTestRunner {
 	public function runParsoidTest( ParserTest $test, ParserTestMode $mode ) {
 		wfDebug( __METHOD__ . ": running {$test->testName} [$mode]" );
 		$opts = $test->options;
-
-		// Skip deprecated preprocessor tests
-		if ( isset( $opts['preprocessor'] ) && $opts['preprocessor'] !== 'Preprocessor_Hash' ) {
-			return false;
-		}
 
 		// Skip tests targetting features Parsoid doesn't (yet) support
 		// @todo T270312
