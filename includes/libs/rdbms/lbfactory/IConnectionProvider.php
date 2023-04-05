@@ -26,7 +26,6 @@ namespace Wikimedia\Rdbms;
  * No methods should be added unless absolutely needed.
  *
  * @see ILBFactory
- * @internal
  * @since 1.40
  * @ingroup Database
  */
