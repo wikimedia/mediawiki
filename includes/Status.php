@@ -297,6 +297,11 @@ class Status extends StatusValue {
 
 			$text = null;
 			if ( in_array( get_class( $message ), [ Message::class, ApiMessage::class ], true ) ) {
+				// Fall back to getWikiText for rawmessage, which is just a placeholder for non-translated text.
+				// Turning the entire message into a context parameter wouldn't be useful.
+				if ( $message->getKey() === 'rawmessage' ) {
+					return [ $this->getWikiText( false, false, 'en' ), [] ];
+				}
 				// $1,$2... will be left as-is when no parameters are provided.
 				$text = $this->msgInLang( $message->getKey(), 'en' )->plain();
 			} elseif ( in_array( get_class( $message ), [ RawMessage::class, ApiRawMessage::class ], true ) ) {

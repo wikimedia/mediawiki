@@ -555,6 +555,12 @@ class StatusTest extends MediaWikiLangTestCase {
 		string $expectedMessage,
 		array $expectedContext
 	) {
+		// set up a rawmessage_2 message, which is just like rawmessage but doesn't trigger
+		// the special-casing in Status::getPsr3MessageAndContext
+		$this->setTemporaryHook( 'MessageCacheFetchOverrides', static function ( &$overrides ) {
+			$overrides['rawmessage_2'] = 'rawmessage';
+		}, false );
+
 		$status = new Status();
 		foreach ( $errors as $error ) {
 			$status->error( ...$error );
@@ -572,19 +578,25 @@ class StatusTest extends MediaWikiLangTestCase {
 				"Internal error: Status::getWikiText called for a good result, this is incorrect\n",
 				[],
 			],
+			// make sure that the rawmessage_2 hack works as the following tests rely on it
+			'rawmessage_2' => [
+				[ [ 'rawmessage_2', 'foo' ] ],
+				'{parameter1}',
+				[ 'parameter1' => 'foo' ],
+			],
 			'two errors' => [
-				[ [ 'rawmessage', 'foo' ], [ 'rawmessage', 'bar' ] ],
+				[ [ 'rawmessage_2', 'foo' ], [ 'rawmessage_2', 'bar' ] ],
 				"* foo\n* bar\n",
 				[],
 			],
 			'unknown subclass' => [
 				// phpcs:ignore Squiz.WhiteSpace.ScopeClosingBrace.ContentBefore
-				[ [ new class( 'rawmessage', [ 'foo' ] ) extends Message {} ] ],
+				[ [ new class( 'rawmessage_2', [ 'foo' ] ) extends Message {} ] ],
 				'foo',
 				[],
 			],
 			'non-scalar parameter' => [
-				[ [ new Message( 'rawmessage', [ new Message( 'rawmessage', [ 'foo' ] ) ] ) ] ],
+				[ [ new Message( 'rawmessage_2', [ new Message( 'rawmessage_2', [ 'foo' ] ) ] ) ] ],
 				'foo',
 				[],
 			],
@@ -604,6 +616,11 @@ class StatusTest extends MediaWikiLangTestCase {
 				[ 'parameter1' => 1000000 ],
 			],
 			'rawmessage' => [
+				[ [ 'rawmessage', 'foo' ] ],
+				'foo',
+				[],
+			],
+			'RawMessage' => [
 				[ [ new RawMessage( 'foo $1 baz', [ 'bar' ] ) ] ],
 				'foo {parameter1} baz',
 				[ 'parameter1' => 'bar' ],
