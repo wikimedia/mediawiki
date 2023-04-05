@@ -302,7 +302,7 @@ class LoadMonitor implements ILoadMonitor {
 					[ 'db_server' => $host ]
 				);
 			} else {
-				$this->statsd->timing( "loadbalancer.lag.$cluster.$statHost", $lag * 1000 );
+				$this->statsd->gauge( "loadbalancer.lag.$cluster.$statHost", (int)( $lag * 1e3 ) );
 				if ( $lag > $this->lagWarnThreshold ) {
 					$this->logger->warning(
 						"Server {db_server} has {lag} seconds of lag (>= {maxlag})",
