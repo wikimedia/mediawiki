@@ -3233,10 +3233,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		$unlocker = new ScopedCallback( function () use ( $lockKey, $fname ) {
+			// Note that the callback can be reached due to an exception making the calling
+			// function end early. If the transaction/session is in an error state, avoid log
+			// spam and confusing replacement of an original DBError with one about unlock().
+			// Unlock query will fail anyway; avoid possibly triggering errors in rollback()
+			if (
+				$this->transactionManager->sessionStatus() <= TransactionManager::STATUS_SESS_ERROR ||
+				$this->transactionManager->trxStatus() <= TransactionManager::STATUS_TRX_ERROR
+			) {
+				return;
+			}
 			if ( $this->trxLevel() ) {
-				// There is a good chance an exception was thrown, causing any early return
-				// from the caller. Let any error handler get a chance to issue rollback().
-				// If there isn't one, let the error bubble up and trigger server-side rollback.
 				$this->onTransactionResolution(
 					function () use ( $lockKey, $fname ) {
 						$this->unlock( $lockKey, $fname );
