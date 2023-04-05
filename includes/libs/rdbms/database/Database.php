@@ -3170,7 +3170,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		} else {
 			$locked = false;
 			$this->logger->info(
-				__METHOD__ . " failed to acquire lock '{lockname}'",
+				__METHOD__ . ": failed to acquire lock '{lockname}'",
 				[
 					'lockname' => $lockName,
 					'db_log_category' => 'locking'
@@ -3199,14 +3199,22 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @inheritDoc
 	 */
 	public function unlock( $lockName, $method ) {
-		$released = $this->doUnlock( $lockName, $method );
-		if ( $released ) {
-			unset( $this->sessionNamedLocks[$lockName] );
-		} else {
+		if ( !isset( $this->sessionNamedLocks[$lockName] ) ) {
+			$released = false;
 			$this->logger->warning(
-				__METHOD__ . " failed to release lock '$lockName'\n",
+				__METHOD__ . ": trying to release unheld lock '$lockName'\n",
 				[ 'db_log_category' => 'locking' ]
 			);
+		} else {
+			$released = $this->doUnlock( $lockName, $method );
+			if ( $released ) {
+				unset( $this->sessionNamedLocks[$lockName] );
+			} else {
+				$this->logger->warning(
+					__METHOD__ . ": failed to release lock '$lockName'\n",
+					[ 'db_log_category' => 'locking' ]
+				);
+			}
 		}
 
 		return $released;
@@ -3233,10 +3241,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		$unlocker = new ScopedCallback( function () use ( $lockKey, $fname ) {
+			// Note that the callback can be reached due to an exception making the calling
+			// function end early. If the transaction/session is in an error state, avoid log
+			// spam and confusing replacement of an original DBError with one about unlock().
+			// Unlock query will fail anyway; avoid possibly triggering errors in rollback()
+			if (
+				$this->transactionManager->sessionStatus() <= TransactionManager::STATUS_SESS_ERROR ||
+				$this->transactionManager->trxStatus() <= TransactionManager::STATUS_TRX_ERROR
+			) {
+				return;
+			}
 			if ( $this->trxLevel() ) {
-				// There is a good chance an exception was thrown, causing any early return
-				// from the caller. Let any error handler get a chance to issue rollback().
-				// If there isn't one, let the error bubble up and trigger server-side rollback.
 				$this->onTransactionResolution(
 					function () use ( $lockKey, $fname ) {
 						$this->unlock( $lockKey, $fname );

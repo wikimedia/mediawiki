@@ -151,6 +151,33 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers \Wikimedia\Rdbms\Database::getScopedLockAndFlush()
+	 */
+	public function testConnectionLossScopedLock() {
+		$row = $this->conn->query( 'SELECT connection_id() AS id', __METHOD__ )->fetchObject();
+		$encId = intval( $row->id );
+
+		try {
+			( function () use ( $encId ) {
+				$unlocker = $this->conn->getScopedLockAndFlush( 'x', 'fn', 1 );
+
+				$adminConn = $this->newConnection();
+				$adminConn->query( "KILL $encId" );
+
+				$this->conn->query( "SELECT 1" );
+			} )();
+			$this->fail( "Expected DBQueryDisconnectedError" );
+		} catch ( DBQueryDisconnectedError $e ) {
+			// This should report the explicit query that failed,
+			// instead of the (later) implicit query from the $unlocker deref.
+			$this->assertStringContainsString( "SELECT 1", $e->getMessage() );
+		}
+
+		$this->conn->rollback( __METHOD__ );
+		$this->conn->unlock( 'x', __METHOD__ );
+	}
+
+	/**
 	 * @covers \Wikimedia\Rdbms\Database::queryMulti()
 	 * @covers \Wikimedia\Rdbms\Database::rollback()
 	 * @covers \Wikimedia\Rdbms\Database::flushSession()
