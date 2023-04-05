@@ -494,13 +494,69 @@ because of Phabricator reports.
   deprecation warnings.
 * Overriding the method IndexPager::makeLink(), deprecated in 1.39, now emits
   deprecation warnings.
-* The following class names were renamed & namespaced under MediaWiki\Specials,
-  and the old class names are now deprecated:
+* The following class names were namespaced (and, for the special pages,
+  also renamed), and the old class names are now deprecated:
   - MostimagesPage -> MediaWiki\Specials\SpecialMostImages
   - MovePageForm -> MediaWiki\Specials\SpecialMovePage
   - UserrightsPage -> MediaWiki\Specials\SpecialUserRights
   - WantedFilesPage -> MediaWiki\Specials\SpecialWantedFiles
   - WantedPagesPage -> MediaWiki\Specials\SpecialWantedPages
+  - DerivativeRequest -> MediaWiki\Request\DerivativeRequest
+  - FauxRequest -> MediaWiki\Request\FauxRequest
+  - FauxRequestUpload -> MediaWiki\Request\FauxRequestUpload
+  - PathRouter -> MediaWiki\Request\PathRouter
+  - WebRequestUpload -> MediaWiki\Request\WebRequestUpload
+  - HeaderCallback -> MediaWiki\Request\HeaderCallback
+  - FauxResponse -> MediaWiki\Request\FauxResponse
+  - WebResponse -> MediaWiki\Request\WebResponse
+  - ForeignResourceManager ->
+    MediaWiki\ResourceLoader\ForeignResourceManager
+  - DummyLinker -> MediaWiki\Linker\DummyLinker
+  - Linker -> MediaWiki\Linker\Linker
+  - PageProps -> MediaWiki\Page\PageProps
+  - MagicWord -> MediaWiki\Parser\MagicWord
+  - MagicWordArray -> MediaWiki\Parser\MagicWordArray
+  - MagicWordFactory -> MediaWiki\Parser\MagicWordFactory
+  - RawMessage -> MediaWiki\Language\RawMessage
+  - ActorMigration -> MediaWiki\User\ActorMigration
+  - ActorMigrationBase -> MediaWiki\User\ActorMigrationBase
+  - CategoriesRdf -> MediaWiki\Category\CategoriesRdf
+  - Category -> MediaWiki\Category\Category
+  - CategoryViewer -> MediaWiki\Category\CategoryViewer
+  - TrackingCategories -> MediaWiki\Category\TrackingCategories
+  - EditPage -> MediaWiki\EditPage\EditPage
+  - TemplatesOnThisPageFormatter ->
+    MediaWiki\EditPage\TemplatesOnThisPageFormatter
+  - ContentSecurityPolicy -> MediaWiki\Request\ContentSecurityPolicy
+  - FormOptions -> MediaWiki\Html\FormOptions
+  - Html -> MediaWiki\Html\Html
+  - HtmlHelper -> MediaWiki\Html\HtmlHelper
+  - TemplateParser -> MediaWiki\Html\TemplateParser
+  - FormOptions -> MediaWiki\Html\FormOptions
+  - WikiMap -> MediaWiki\WikiMap\WikiMap
+  - WikiReference -> MediaWiki\WikiMap\WikiReference
+  - MediaWiki\BadFileLookup -> MediaWiki\Page\File\BadFileLookup
+  - FileDeleteForm -> Mediawiki\Page\File\FileDeleteForm
+  - MergeHistory -> Mediawiki\Page\MergeHistory
+  - MovePage -> Mediawiki\Page\MovePage
+  - ProtectionForm -> MediaWiki\Page\ProtectionForm
+  - LinkFilter -> MediaWiki\ExternalLinks\LinkFilter
+  - TitleArray -> MediaWiki\Title\TitleArray
+  - TitleArrayFromResult -> MediaWiki\Title\TitleArrayFromResult
+  - TitleFactory -> MediaWiki\Title\TitleFactory
+  - Title -> MediaWiki\Title\Title
+  - ForkController -> MediaWiki\Maintenance\ForkController
+  - OrderedStreamingForkController ->
+    MediaWiki\Maintenance\OrderedStreamingForkController
+  - AtomFeed -> MediaWiki\Feed\AtomFeed
+  - ChannelFeed -> MediaWiki\Feed\ChannelFeed
+  - FeedItem -> MediaWiki\Feed\FeedItem
+  - FeedUtils -> MediaWiki\Feed\FeedUtils
+  - RSSFeed -> MediaWiki\Feed\RSSFeed
+  - DeprecatedGlobal -> MediaWiki\StubObject\DeprecatedGlobal
+  - StubGlobalUser -> MediaWiki\StubObject\StubGlobalUser
+  - StubObject -> MediaWiki\StubObject\StubObject
+  - StubUserLang -> MediaWiki\StubObject\StubUserLang
 * …
 
 === Other changes in 1.40 ===
