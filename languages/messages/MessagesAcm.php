@@ -5,6 +5,8 @@
  * @ingroup Languages
  */
 
+$fallback = 'ar';
+
 $rtl = true;
 
 $datePreferences = [
