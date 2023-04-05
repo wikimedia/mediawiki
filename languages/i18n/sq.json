@@ -2383,7 +2383,7 @@
 	"movereason": "Arsyeja:",
 	"revertmove": "ktheje",
 	"delete_and_move_text": "Faqja e destinimit \"[[:$1]]\" ekziston. Dëshironi ta grisni për të mundësuar zhvendosjen?",
-	"delete_and_move_confirm": "Po, fshi këtë faqe",
+	"delete_and_move_confirm": "Po, gris këtë faqe",
 	"delete_and_move_reason": "U gris për të liruar vendin për përcjellim të \"[[$1]]\"",
 	"selfmove": "Titulli është po ai;\ns’mund të kalohet një faqe te vetvetja.",
 	"immobile-source-namespace": "Nuk mund të lëvizet faqja tek \"$1\"",

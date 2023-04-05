@@ -489,7 +489,7 @@
 	"apihelp-query+allimages-param-maxsize": "O restitoìsce e inmàgine con a-o màscimo sto nùmero de byte chi.",
 	"apihelp-query+allimages-param-sha1": "Hash SHA1 de l'inmàgine. O soviascrîve $1sha1base36.",
 	"apihelp-query+allimages-param-sha1base36": "Hash SHA1 de l'inmàgine inta bâze 36 (dêuviâ inte MediaWiki).",
-	"apihelp-query+allimages-param-user": "O restitoìsce sôlo i file careghæ da st'uténte chi. O peu êse dêuviòu sôlo con $1sort=timestamp. O no peu êse dêuviòu insémme a $1filterbots.",
+	"apihelp-query+allimages-param-user": "O restitoìsce sôlo i file di quæ l'ùrtima versción a l'é stæta caregâ da st'uténte chi. O peu êse dêuviòu sôlo con $1sort=timestamp. O no peu êse dêuviòu insémme a $1filterbots.",
 	"apihelp-query+allimages-param-filterbots": "Cómme filtrâ i file careghæ da-i bot. O peu êse dêuviòu sôlo con $1sort=timestamp. O no peu êse dêuviòu insémme a $1user.",
 	"apihelp-query+allimages-param-mime": "Quæ tîpo de MIME çercâ, prezénpio <kbd>image/jpeg</kbd>.",
 	"apihelp-query+allimages-param-limit": "Quànte inmàgine restitoî in totâle.",

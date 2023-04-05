@@ -5,7 +5,8 @@
 			"Chase me ladies, I'm the Cavalry",
 			"Macofe",
 			"Reedy",
-			"Samwilson"
+			"Samwilson",
+			"Dreamy Jazz"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentation]]\n* [[mw:Special:MyLanguage/API:Etiquette|Etiquette & usage guidelines]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ list]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API Announcements]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bugs & requests]\n</div>\n<strong>Status:</strong> The MediaWiki API is a mature and stable interface that is actively supported and improved. While we try to avoid it, we may occasionally need to make breaking changes; subscribe to [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ the mediawiki-api-announce mailing list] for notice of updates.\n\n<strong>Erroneous requests:</strong> When erroneous requests are sent to the API, an HTTP header will be sent with the key \"MediaWiki-API-Error\" and then both the value of the header and the error code sent back will be set to the same value. For more information see [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]].\n\n<p class=\"mw-apisandbox-link\"><strong>Testing:</strong> For ease of testing API requests, see [[Special:ApiSandbox]].</p>",
@@ -31,5 +32,9 @@
 	"apihelp-php-summary": "Output data in serialised PHP format.",
 	"apihelp-phpfm-summary": "Output data in serialised PHP format (pretty-print in HTML).",
 	"api-help-license": "Licence: [[$1|$2]]",
-	"api-help-license-unknown": "Licence: <span class=\"apihelp-unknown\">unknown</span>"
+	"api-help-license-unknown": "Licence: <span class=\"apihelp-unknown\">unknown</span>",
+	"apierror-unknownformat": "Unrecognised format \"$1\".",
+	"apierror-unrecognizedparams": "Unrecognised {{PLURAL:$2|parameter|parameters}}: $1.",
+	"apierror-unrecognizedvalue": "Unrecognised value for parameter <var>$1</var>: $2.",
+	"apiwarn-unrecognizedvalues": "Unrecognised {{PLURAL:$3|value|values}} for parameter <var>$1</var>: $2."
 }
