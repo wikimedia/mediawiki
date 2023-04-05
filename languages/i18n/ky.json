@@ -1317,7 +1317,7 @@
 	"feedback-subject": "Тема:",
 	"feedback-submit": "Жөнөтүү",
 	"searchsuggest-search": "{{SITENAME}} издөө",
-	"searchsuggest-containing": "кармагандар...",
+	"searchsuggest-containing": "Ушул сөздөрдү камтыган баракчаларды издөө",
 	"api-error-badtoken": "Ички ката: анык эмес токен.",
 	"api-error-unknown-warning": "Белгисиз эскертүү: \"$1\".",
 	"api-error-unknownerror": "Белгисиз ката: «$1».",
