@@ -2087,6 +2087,7 @@ $wgAutoloadLocalClasses = [
 	'MergeHistory' => __DIR__ . '/includes/page/MergeHistory.php',
 	'MergeHistoryPager' => __DIR__ . '/includes/specials/pagers/MergeHistoryPager.php',
 	'MergeLogFormatter' => __DIR__ . '/includes/logging/MergeLogFormatter.php',
+	'MergeMessageFileList' => __DIR__ . '/maintenance/mergeMessageFileList.php',
 	'MergeableUpdate' => __DIR__ . '/includes/deferred/MergeableUpdate.php',
 	'Message' => __DIR__ . '/includes/language/Message.php',
 	'MessageBlobStore' => __DIR__ . '/includes/ResourceLoader/MessageBlobStore.php',
