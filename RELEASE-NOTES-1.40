@@ -16,7 +16,14 @@ oldest supported upgrading version, MediaWiki 1.35.
 Some specific notes for MediaWiki 1.40 upgrades are below:
 * Maintenance scripts should now be executed using maintenance/run.php, e.g.
   maintenance/run.php update not maintenance/update.php as before.
-* …
+* Four extensions have now been bundled with MediaWiki:
+  * The Echo extension, which provides a system of user notifications.
+  * The Linter extension, which warns about use of deprecated wikitext.
+  * The LoginNotify extension, which warns users about failed attempted logins.
+  * The Thanks extension, which lets users thank editors for edits.
+* The Renameuser extension has been moved to MediaWiki core. It is now possible
+  to rename users without installing an extension. The extension had already
+  been bundled with MediaWiki since 1.18.
 
 For notes on 1.39.x and older releases, see HISTORY.
 
@@ -31,21 +38,32 @@ For notes on 1.39.x and older releases, see HISTORY.
   than "sha512" or "sha256" (the current and prior defaults).
 * You should configure your webserver to return the http header
   'X-Content-Type-Options: nosniff' for the /images directory. This will
-  instruct browsers to not apply content sniffing when accessng the files.
+  instruct browsers to not apply content sniffing when accessing the files.
   MediaWiki before 1.40 shipped with a content sniffer which disallowed
   potentially dangerous files at upload time, but this protection has now been
   removed in favor of this 'X-Content-Type-Options: nosniff' header and the
   installer will return a warning when it is not in place.
-* …
+* Support for MW_USE_LEGACY_DEFAULT_SETTINGS has been removed, setting this
+  constant will not have any effect. Use of MW_USE_LEGACY_DEFAULT_SETTINGS
+  had been deprecated since 1.39.
 
 ==== New configuration ====
-* $wgThumbnailNamespaces - Defines what namespaces thumbnails will be displayed
-  for in Special:Search. This is the list of namespaces for which thumbnails
-  (or a placeholder in the absence of a thumbnail) will be shown.
-* …
+* $wgThumbnailNamespaces - This setting lets you define the namespaces for which
+  image thumbnails (or a placeholder in the absence of a thumbnail) will be
+  displayed on Special:Search.
+* $wgResourceLoaderClientPreferences – This experimental flag lets you enable
+  client-side preferences for logged-out users.
+* $wgExternalLinksSchemaMigrationStage – This temporary flag lets you control
+  the migration stage for the new schema for the external links database table.
+  Ignore it unless you have a large wiki farm with complex migration needs.
+* $wgCommentTempTableSchemaMigrationStage – This temporary flag lets you control
+  the migration stage for the temporary comment database table, from revision.
+  Ignore it unless you have a large wiki farm with complex migration needs.
+* $wgSpecialContributeSkinsEnabled – This setting lets you list skins on which
+  Special:Contribute is hidden, for example if they won't work for the feature.
 
 ==== Changed configuration ====
-* wgPasswordPolicies – This setting, which controls what makes for a valid
+* $wgPasswordPolicies – This setting, which controls what makes for a valid
   password for wiki accounts, has been adjusted to raise the minimal password
   length from 1 to 8 characters. The initial limit of 1 has been in place since
   MediaWiki 1.26. If you wish to allow shorter passwords, you can over-ride it
@@ -53,87 +71,80 @@ For notes on 1.39.x and older releases, see HISTORY.
 * (T254045) New accounts can no longer use an equals sign (=) in their
   usernames because of issues it causes in wikitext syntax. This can be
   adjusted by changing the value of $wgInvalidUsernameCharacters.
-* (T314318) The alternative modern HTML structure for media described at
+* (T314318) $wgParserEnableLegacyMediaDOM – This setting has been changed, so
+  the alternative modern HTML structure for media is now the default. You can
+  disable it for now by over-riding this back to `true` in LocalSettings, but
+  this configuration will be removed in future versions of MediaWiki. For more
+  details, see the documentation at:
   https://www.mediawiki.org/wiki/Parsoid/Parser_Unification/Media_structure/FAQ
-  now becomes the default.  It can still be disabled with
-  wgParserEnableLegacyMediaDOM set to `true` but that configuration will be
-  removed in future versions of MediaWiki, so it's best to begin migration.
-* …
+* $wgWatchlistExpiryMaxDuration – This setting, which controls the maximum
+  allowed duration for users to set their temporary watchlist entries for expiry
+  if that feature is enabled, has been increased from 6 months to 1 year.
 
 ==== Removed configuration ====
-* $wgShellboxUrl that was deprecated in 1.37 has now been removed,
-  set $wgShellboxUrls instead.
-* $wgMainWANCache and $wgWANObjectCaches have been removed. To inject
-  WANObjectCache parameters, use $wgWANObjectCache instead. These variables
-  were introduced for multi-DC wiki farms to add a separate memcached
-  proxy for cross-DC relaying of purges. The configuration was never used
-  because WANObjectCache works based on route prefixes, that can be
-  transparently handled by the main memcached proxy.
-* $wgParserTestFiles which was deprecated in 1.30 has now been removed;
+* $wgShellboxUrl – This setting, deprecated in 1.37, has now been removed; use
+  $wgShellboxUrls instead.
+* $wgMainWANCache and $wgWANObjectCaches – These never-used settings have been
+  removed. To inject WANObjectCache parameters, use $wgWANObjectCache instead.
+  These variables were introduced for multi-DC wiki farms to add a separate
+  memcached proxy for cross-DC relaying of purges but never used because
+  WANObjectCache works based on route prefixes, which can be transparently
+  handled by the main memcached proxy.
+* $wgParserTestFiles – This setting, deprecated in 1.30, has now been removed;
   extensions can place their parser test files in `tests/parser` instead.
-* (T231412) $wgAutoloadAttemptLowercase, which was deprecated in 1.35,
-  no longer has any effect.
-* (T309787) $wgVerifyMimeTypeIE was removed.
-* Support for MW_USE_LEGACY_DEFAULT_SETTINGS has been removed, setting this
-  constant will not have any effect. Use of MW_USE_LEGACY_DEFAULT_SETTINGS
-  had been deprecated since 1.39.
-* …
+* (T231412) $wgAutoloadAttemptLowercase – This setting, deprecated in 1.35, no
+  longer has any effect. If you run into difficulties, fix the names of miscased
+  local files.
+* (T309787) $wgVerifyMimeTypeIE – This setting, to provide extra security checks
+  for very old versions of Internet Explorer clients, was removed. These user
+  agents aren't used in practice, and haven't been served JavaScript content for
+  years.
 
 === New user-facing features in 1.40 ===
-* Ability to show thumbnails (provided via onSearchResultProvideThumbnail
-  hook) for more than NS_FILE titles in Special:Search results.
-* New preference ('search-thumbnail-extra-namespaces') to allow users to
+* Special:Search can now show thumbnails for results for titles outside NS_FILE.
+  This is controlled via the new onSearchResultProvideThumbnail hook.
+* A new preference ('search-thumbnail-extra-namespaces') to allow users to
   control whether to show more thumbnails (per $wgThumbnailNamespaces)
 * (T324910) On pages using multi-content revisions, the raw content of a
   specific slot can be retrieved using the action=raw&slot=<role-name> query
   parameters.
-* The Renameuser extension has been moved to MediaWiki core. It is now possible
-  to rename users without installing an extension.
 * (T313804) The preferences page now provides a search bar to find preferences,
   regardless of the tab on which they appear.
-* …
 
 === New developer features in 1.40 ===
-* The ApiSandbox will now by default request responses in the latest API format,
-  rather than the original format. Users can set `formatversion` to a different
-  value if needed.
+* The MediaWiki-Docker development environment is now configured to
+  run on PHP 8.1 by default, up from PHP 7.4 now that that's EOL.
+* Vue development mode is enabled by default in DevelopmentSettings.php
 * (T277618) The @noVarDump annotation from the DebugInfoTrait tool can now be
   added to references to stop them from being expanded when their object is
   passed to var_dump(), to make its use for debugging more feasible.
-* Added 'GetBlockErrorMessageKey' hook, allow extensions'
-  block error messages to be received and displayed by BlockErrorFormatter.
-* Added an optional RevisionRecord param to:
-  - ContentHandler::getParserOutputForIndexing
-  - ContentHandler::getDataForSearchIndex
-  - the SearchDataForIndex hook is deprecated in favor of SearchDataForIndex2
-* Vue development mode is enabled by default in DevelopmentSettings.php
-* The Linker::specialLink() method can now link to a Special page's with a sub-
-  page or action parameter set, e.g. [[Special:Contributions/JohnDoe]].
-* The MediaWiki-Docker development environment is now configured to
-  run on PHP 8.1 by default, up from PHP 7.4 now that that's EOL.
-* The PHPUnit entrypoints (tests/phpunit/phpunit.php and vendor/bin/phpunit)
-  check if composer dependencies are up-to-date, using
-  CheckComposerLockUpToDate. To disable this check, use
-  MW_SKIP_EXTERNAL_DEPENDENCIES=1 environment flag when running PHPUnit.
-* Added 'SpecialCreateAccountBenefits' hook, to customize the signup page
-  content about the benefits of registering an account.
-* (T321412) Added new 'PageUndeleteComplete' hook which provides more thorough
+* The ApiSandbox will now by default request responses in the latest API format,
+  rather than the original format. Users can set `formatversion` to a different
+  value if needed.
+* A new hook, GetBlockErrorMessageKey, allows extensions' block error messages
+  to be received and displayed by BlockErrorFormatter.
+* A new hook, SpecialCreateAccountBenefits, lets extensions and local code set
+  custom content on the signup page about the benefits of using an account.
+* (T321412) A new 'PageUndeleteComplete' hook has been added for more thorough
   information about a page post restoration than the 'PageUndelete' hook passes.
   This provides similar functionality to the 'PageDeleteComplete' hook.
-* Added new method ManualLogEntry::setForceBotFlag to allow forcing bot flag
-  for log entries which are inserted to the recent changes.
-* …
+* The Linker::specialLink() method can now link to a Special page's with a sub-
+  page or action parameter set, e.g. [[Special:Contributions/JohnDoe]].
+* The PHPUnit entrypoints (tests/phpunit/phpunit.php and vendor/bin/phpunit)
+  now check if composer dependencies are up-to-date, like update.php, using
+  CheckComposerLockUpToDate. To disable this check, use
+  MW_SKIP_EXTERNAL_DEPENDENCIES=1 environment flag when running PHPUnit.
+* ManualLogEntry::setForceBotFlag() has been added to allow the forcing of the
+  bot flag for log entries which are inserted to the recent changes.
 
 === External library changes in 1.40 ===
 
 ==== New external libraries ====
 * Added codex-design-tokens at v0.6.2.
 * Added wikimedia/bcp-47-code at v1.0.0.
-* …
 
 ===== New development-only external libraries =====
 * Added wikimedia/langconv at v0.4.2.
-* …
 
 ==== Changed external libraries ====
 * Updated OOUI from v0.44.3 to v0.46.3.
@@ -153,7 +164,6 @@ For notes on 1.39.x and older releases, see HISTORY.
 * Updated wikimedia/shellbox from 3.0.0 to 4.0.0.
 * Updated wikimedia/timestamp from 4.0.0 to 4.1.0.
 * Updated wikimedia/xmp-reader from 0.8.4 to 0.9.1.
-* …
 
 ===== Changed development-only external libraries =====
 * Updated QUnit from 2.18.2 to 2.19.4.
@@ -172,27 +182,18 @@ For notes on 1.39.x and older releases, see HISTORY.
 * Updated phpunit/phpunit from 8.5.28 to 9.5.28.
 * Updated stylelint-config-wikimedia from 0.13.0 to 0.13.1.
 * Updated wikimedia/alea from 0.9.3 to 1.0.0.
-* …
 
 ==== Removed external libraries ====
 * jquery.throttle-debounce, deprecated since MediaWiki 1.33.
-* …
-
-=== Bug fixes in 1.40 ===
-* …
 
 === Action API changes in 1.40 ===
 * New `cancreateaccount` parameter on action=query&meta=userinfo that allows
   you to check if the user can create an account. Some of the errors that have
   previously been returned by action=query&list=users&usprop=cancreate are now
   returned here.
-* …
-
-=== Action API internal changes in 1.40 ===
-* …
 
 === Languages updated in 1.40 ===
-MediaWiki supports over 350 languages. Many localisations are updated regularly.
+MediaWiki supports over 400 languages. Many localisations are updated regularly.
 Below only new and removed languages are listed, as well as changes to languages
 because of Phabricator reports.
 
@@ -217,7 +218,7 @@ because of Phabricator reports.
   without deprecation.
 * Changes to skins:
   - The internal protected method Skin::getFooterLinks() was removed.
-    It had no known usages. Different than SkinTemplate::getFooterLinks.
+    It had no known usages. Different from SkinTemplate::getFooterLinks.
   - The internal public method Skin::getSiteFooterLinks() was removed.
     It had no known usages.
 * The 'oojs-router' module has been removed without deprecation in favour
@@ -274,7 +275,7 @@ because of Phabricator reports.
   longer supported, it was deprecated since 1.32. Use CommentStore::insert()
   instead.
 * Return values in the parameter $pageLang of the PageContentLanguage hook with
-  other types than a Language object, deprecated since 1.33, hard deprecated
+  other types than a Language object, deprecated since 1.33 & emitting warnings
   since 1.38, now throws an exception.
 * FormatMetadata::flattenArrayContentLang(), deprecated since 1.36, has been
   removed.
@@ -357,7 +358,6 @@ because of Phabricator reports.
   removed.
 * BagOStuff::decr(), deprecated since 1.28, has been removed.
 * BagOStuff::incr(), deprecated since 1.28, has been removed.
-* …
 
 === Deprecations in 1.40 ===
 * Changes to skins:
@@ -557,7 +557,9 @@ because of Phabricator reports.
   - StubGlobalUser -> MediaWiki\StubObject\StubGlobalUser
   - StubObject -> MediaWiki\StubObject\StubObject
   - StubUserLang -> MediaWiki\StubObject\StubUserLang
-* …
+* ContentHandler::getParserOutputForIndexing() and ::getDataForSearchIndex()
+  now take an optional RevisionRecord parameter.
+* The SearchDataForIndex hook is deprecated in favor of SearchDataForIndex2
 
 === Other changes in 1.40 ===
 * Calling RecentChange::doMarkPatrolled() with $auto = true has no effect and
@@ -579,7 +581,6 @@ because of Phabricator reports.
   and 'showflags' options have slight differences in their output.  These
   options are not much used outside core, but third parties may need to
   update parser tests.
-* …
 
 == Compatibility ==
 
