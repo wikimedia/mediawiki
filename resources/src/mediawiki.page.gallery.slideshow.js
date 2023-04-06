@@ -456,7 +456,12 @@
 
 	// Bootstrap all slideshow galleries
 	mw.hook( 'wikipage.content' ).add( function ( $content ) {
-		$content.find( '.mw-gallery-slideshow' ).each( function () {
+		$content.find( '.mw-gallery-slideshow' ).filter( function () {
+			// This gallery slideshow feature depends on img tags being present in the DOM.
+			// This might not be true - for example in MobileFrontend - where images are lazy loaded.
+			// The filter statement can be removed when T194887 is resolved.
+			return $( this ).find( 'img' ).length > 0;
+		} ).each( function () {
 			// eslint-disable-next-line no-new
 			new mw.GallerySlideshow( this );
 		} );
