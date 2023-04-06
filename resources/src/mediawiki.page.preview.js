@@ -130,11 +130,10 @@
 		var batchSize = 50;
 		var requests = [];
 		for ( var batch = 0; batch < templates.length; batch += batchSize ) {
-			// Build a pipe-separated list of template names for this batch.
+			// Build a list of template names for this batch.
 			var titles = templates
 				.slice( batch, batch + batchSize )
-				.map( function ( template ) { return template.title; } )
-				.join( '|' );
+				.map( function ( template ) { return template.title; } );
 			requests.push( api.post( {
 				action: 'query',
 				format: 'json',
