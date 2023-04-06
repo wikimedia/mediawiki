@@ -5,7 +5,7 @@
 	}],
 	"require": {
 		"bluespice/visualeditorconnector": "dev-master",
-		"mediawiki/content-droplets": "dev-main",
+		"mediawiki/content-droplets": "dev-master",
 		"hallowelt/filter-special-pages": "dev-master",
 		"mediawiki/invite-signup": "dev-master",
 		"mediawiki/arrays": "dev-master",
