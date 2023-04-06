@@ -1172,7 +1172,7 @@
 	"api-format-prettyprint-status": "Diese Antwort wird mit dem HTTP-Status $1 $2 zurückgegeben.",
 	"api-pageset-param-titles": "Eine Liste der Titel, an denen gearbeitet werden soll.",
 	"api-pageset-param-pageids": "Eine Liste der Seitenkennungen, an denen gearbeitet werden soll.",
-	"api-pageset-param-revids": "Eine Liste der Versionskennungen, an denen gearbeitet werden soll.",
+	"api-pageset-param-revids": "Eine Liste der zu bearbeitenden Versions-IDs. Beachte, dass fast alle Abfragemodule Versions-IDs in die entsprechende Seiten-ID konvertieren und stattdessen mit der neuesten Version arbeiten. Nur <kbd>prop=revisions</kbd> verwendet exakte Versionen für seine Antwort.",
 	"api-help-title": "MediaWiki-API-Hilfe",
 	"api-help-lead": "Dies ist eine automatisch generierte MediaWiki-API-Dokumentationsseite.\n\nDokumentation und Beispiele: https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page",
 	"api-help-main-header": "Hauptmodul",
