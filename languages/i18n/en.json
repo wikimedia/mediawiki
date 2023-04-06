@@ -3632,6 +3632,7 @@
 	"watchlistedit-normal-legend": "Remove titles from watchlist",
 	"watchlistedit-normal-explain": "Titles on your watchlist are shown below.\nTo remove a title, check the box next to it, and click \"{{int:Watchlistedit-normal-submit}}\".\nYou can also [[Special:EditWatchlist/raw|edit the raw list]].",
 	"watchlistedit-normal-submit": "Remove titles",
+	"watchlistedit-normal-check-all": "Check all",
 	"watchlistedit-normal-done": "{{PLURAL:$1|A single title was|$1 titles were}} removed from your watchlist:",
 	"watchlistedit-raw-title": "Edit raw watchlist",
 	"watchlistedit-raw-legend": "Edit raw watchlist",
