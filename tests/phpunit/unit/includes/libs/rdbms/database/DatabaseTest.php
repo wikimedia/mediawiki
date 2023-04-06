@@ -811,6 +811,36 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 		$db->rollback( __METHOD__, IDatabase::FLUSHING_ALL_PEERS );
 		$this->assertTrue( true, "No exception on ROLLBACK" );
+
+		$db->flushSession( __METHOD__, IDatabase::FLUSHING_ALL_PEERS );
+		$this->assertTrue( true, "No exception on session flush" );
+
+		$db->query( "SELECT 1", __METHOD__ );
+		$this->assertTrue( true, "No exception on next query" );
+	}
+
+	public function testCriticalSectionErrorWithTrxRollback() {
+		$hits = 0;
+		$db = TestingAccessWrapper::newFromObject( $this->db );
+		$db->begin( __METHOD__, IDatabase::TRANSACTION_INTERNAL );
+		$db->onTransactionResolution( static function () use ( &$hits ) {
+			++$hits;
+		} );
+
+		try {
+			$this->corruptDbState( $db );
+		} catch ( RuntimeException $e ) {
+			$this->assertEquals( "Unexpected error", $e->getMessage() );
+		}
+
+		$db->rollback( __METHOD__, IDatabase::FLUSHING_ALL_PEERS );
+		$this->assertTrue( true, "No exception on ROLLBACK" );
+
+		$db->flushSession( __METHOD__, IDatabase::FLUSHING_ALL_PEERS );
+		$this->assertTrue( true, "No exception on session flush" );
+
+		$db->query( "SELECT 1", __METHOD__ );
+		$this->assertTrue( true, "No exception on next query" );
 	}
 
 	private function corruptDbState( $db ) {
