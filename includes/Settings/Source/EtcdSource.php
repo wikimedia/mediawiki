@@ -240,7 +240,7 @@ class EtcdSource implements CacheableSource {
 		$settings = [];
 
 		try {
-			$resp = $this->format->decode( $response->getBody() );
+			$resp = $this->format->decode( $response->getBody()->getContents() );
 
 			if (
 				!isset( $resp['node'] ) || !is_array( $resp['node'] )
