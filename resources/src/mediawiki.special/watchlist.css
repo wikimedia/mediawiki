@@ -13,3 +13,9 @@ span.mw-changeslist-line-prefix {
 .mw-changeslist-line-prefix {
 	width: 1.25em;
 }
+
+/* The "check all" checkbox for each namespace on Special:EditWatchlist
+   does not function without JavaScript. */
+.client-nojs .mw-watchlistedit-checkall {
+	display: none;
+}
