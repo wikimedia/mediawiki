@@ -143,6 +143,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			'mediawiki.interface.helpers.styles',
 			'mediawiki.special'
 		] );
+		$out->addModules( [ 'mediawiki.special.watchlist' ] );
 
 		$mode = self::getMode( $this->getRequest(), $mode, self::EDIT_NORMAL );
 		$this->currentMode = $mode;
@@ -657,8 +658,11 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$removed = [];
 
 		foreach ( $data as $titles ) {
-			$this->unwatchTitles( $titles );
-			$removed = array_merge( $removed, $titles );
+			// ignore the 'check all' checkbox, which is a boolean value
+			if ( is_array( $titles ) ) {
+				$this->unwatchTitles( $titles );
+				$removed = array_merge( $removed, $titles );
+			}
 		}
 
 		if ( count( $removed ) > 0 ) {
@@ -700,7 +704,16 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 			// checkTitle can filter some options out, avoid empty sections
 			if ( count( $options ) > 0 ) {
+				// add a checkbox to select all entries in namespace
+				$fields['CheckAllNs' . $namespace] = [
+					'cssclass' => 'mw-watchlistedit-checkall',
+					'type' => 'check',
+					'section' => "ns$namespace",
+					'label' => $this->msg( 'watchlistedit-normal-check-all' )->text()
+				];
+
 				$fields['TitlesNs' . $namespace] = [
+					'cssclass' => 'mw-watchlistedit-check' . $namespace,
 					'class' => EditWatchlistCheckboxSeriesField::class,
 					'options' => $options,
 					'section' => "ns$namespace",
