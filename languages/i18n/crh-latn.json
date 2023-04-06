@@ -574,7 +574,7 @@
 	"revdelete-hide-comment": "Qısqa tarifni kösterme",
 	"revdelete-hide-user": "Deñiştirmeni yapqannıñ qullanıcı adı/IP-si",
 	"revdelete-hide-restricted": "Malümatnı adiy qullanıcılardan kibi idarecilerden de gizle",
-	"revdelete-radio-same": "(deñiştirmeñiz)",
+	"revdelete-radio-same": "Deñiştirmeñiz",
 	"revdelete-radio-set": "Gizlenilgen",
 	"revdelete-radio-unset": "Körsetilgen",
 	"revdelete-log": "Sebep:",

@@ -806,6 +806,7 @@
 	"lineno": "МогӀа $1:",
 	"compareselectedversions": "Хаьржина версешка хьажар",
 	"showhideselectedversions": "Гайта/къайлайаха хаьржина версеш",
+	"showhideselectedfileversions": "Хаьржинчу файлан версеш гуш хилар хийца",
 	"editundo": "цаоьшу",
 	"diff-empty": "(башхалла йац)",
 	"diff-multi-sameuser": "(ца {{PLURAL:$1|гайтина йуккъера цхьа верси|гайтина йуккъера цхьа версеш}} оьцу декъашхочун)",
