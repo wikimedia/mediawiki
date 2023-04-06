@@ -633,11 +633,18 @@ return [
 	],
 
 	'@wikimedia/codex' => [
-		'class' => CodexModule::class,
 		'packageFiles' => [
 			'resources/src/codex/codex.js',
 			'resources/lib/codex/codex.umd.js',
 		],
+		'dependencies' => [
+			'vue',
+			'codex-styles'
+		]
+	],
+
+	'codex-styles' => [
+		'class' => CodexModule::class,
 		'themeStyles' => [
 			// Special syntax supported by CodexModule
 			'wikimedia-ui' => [
@@ -650,18 +657,22 @@ return [
 			]
 		],
 		// Do not flip styles in RTL contexts, because we're already providing RTL-specific styles
-		'noflip' => true,
-		'dependencies' => [
-			'vue'
-		],
+		'noflip' => true
 	],
 
 	'@wikimedia/codex-search' => [
-		'class' => CodexModule::class,
 		'packageFiles' => [
 			'resources/src/codex-search/codex-search.js',
 			'resources/lib/codex-search/codex-search.umd.js',
 		],
+		'dependencies' => [
+			'vue',
+			'codex-search-styles'
+		]
+	],
+
+	'codex-search-styles' => [
+		'class' => CodexModule::class,
 		'themeStyles' => [
 			// Special syntax supported by CodexModule
 			'wikimedia-ui' => [
@@ -674,10 +685,7 @@ return [
 			]
 		],
 		// Do not flip styles in RTL contexts, because we're already providing RTL-specific styles
-		'noflip' => true,
-		'dependencies' => [
-			'vue'
-		],
+		'noflip' => true
 	],
 
 	/* MediaWiki */

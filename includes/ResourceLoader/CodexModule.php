@@ -48,7 +48,7 @@ class CodexModule extends FileModule {
 	}
 
 	public function getStyleFiles( Context $context ) {
-		if ( !$this->themeStylesAdded ) {
+		if ( $this->themeStyles && !$this->themeStylesAdded ) {
 			// Add theme styles
 			$themeMap = static::$builtinSkinThemeMap +
 				ExtensionRegistry::getInstance()->getAttribute( 'SkinCodexThemes' );
