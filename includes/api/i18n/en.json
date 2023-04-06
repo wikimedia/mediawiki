@@ -1642,7 +1642,7 @@
 
 	"api-pageset-param-titles": "A list of titles to work on.",
 	"api-pageset-param-pageids": "A list of page IDs to work on.",
-	"api-pageset-param-revids": "A list of revision IDs to work on.",
+	"api-pageset-param-revids": "A list of revision IDs to work on. Note that almost all query modules will convert revision IDs to the corresponding page ID and work on the latest revision instead. Only <kbd>prop=revisions</kbd> uses exact revisions for its response.",
 	"api-pageset-param-generator": "Get the list of pages to work on by executing the specified query module.\n\n<strong>Note:</strong> Generator parameter names must be prefixed with a \"g\", see examples.",
 	"api-pageset-param-redirects-generator": "Automatically resolve redirects in <var>$1titles</var>, <var>$1pageids</var>, and <var>$1revids</var>, and in pages returned by <var>$1generator</var>.",
 	"api-pageset-param-redirects-nogenerator": "Automatically resolve redirects in <var>$1titles</var>, <var>$1pageids</var>, and <var>$1revids</var>.",
