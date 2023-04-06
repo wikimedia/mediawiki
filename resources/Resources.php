@@ -2321,6 +2321,7 @@ return [
 		'scripts' => [
 			'resources/src/mediawiki.special.watchlist/watchlist.js',
 			'resources/src/mediawiki.special.watchlist/visitedstatus.js',
+			'resources/src/mediawiki.special.watchlist/editwatchlist.js'
 		],
 		'messages' => [
 			'addedwatchtext',
@@ -2333,6 +2334,7 @@ return [
 			'tooltip-ca-unwatch-expiring-hours',
 			'watchlist-unwatch',
 			'watchlist-unwatch-undo',
+			'watchlistedit-normal-check-all'
 		],
 		'dependencies' => [
 			'mediawiki.api',
