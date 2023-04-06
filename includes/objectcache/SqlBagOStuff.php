@@ -533,8 +533,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 		foreach ( $shardIndexesAffected as $shardIndex ) {
 			try {
-				$db = $this->getConnection( $shardIndex );
-				$this->occasionallyGarbageCollect( $db );
+				$this->occasionallyGarbageCollect( $shardIndex );
 			} catch ( DBError $e ) {
 				$this->handleDBError( $e, $shardIndex );
 			}
@@ -1310,10 +1309,10 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	/**
-	 * @param IDatabase $db
+	 * @param int $shardIndex
 	 * @throws DBError
 	 */
-	private function occasionallyGarbageCollect( IDatabase $db ) {
+	private function occasionallyGarbageCollect( $shardIndex ) {
 		if (
 			// Random purging is enabled
 			$this->purgePeriod &&
@@ -1322,7 +1321,11 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			// Avoid repeating the delete within a few seconds
 			( $this->getCurrentTime() - $this->lastGarbageCollect ) > self::GC_DELAY_SEC
 		) {
-			$garbageCollector = function () use ( $db ) {
+			// set right away, avoid queuing duplicate async callbacks
+			$this->lastGarbageCollect = $this->getCurrentTime();
+
+			$garbageCollector = function () use ( $shardIndex ) {
+				$db = $this->getConnection( $shardIndex );
 				/** @noinspection PhpUnusedLocalVariableInspection */
 				$silenceScope = $this->silenceTransactionProfiler();
 				$this->deleteServerObjectsExpiringBefore(
@@ -1330,10 +1333,10 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 					(int)$this->getCurrentTime(),
 					$this->purgeLimit
 				);
-				$this->lastGarbageCollect = time();
+				$this->lastGarbageCollect = $this->getCurrentTime();
 			};
+
 			if ( $this->asyncHandler ) {
-				$this->lastGarbageCollect = $this->getCurrentTime(); // avoid duplicate enqueues
 				( $this->asyncHandler )( $garbageCollector );
 			} else {
 				$garbageCollector();
@@ -1369,6 +1372,14 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		foreach ( $shardIndexes as $numServersDone => $shardIndex ) {
 			try {
 				$db = $this->getConnection( $shardIndex );
+
+				// Avoid deadlock (T330377)
+				$lockKey = "SqlBagOStuff-purge-shard:$shardIndex";
+				if ( !$db->lock( $lockKey, __METHOD__, 0 ) ) {
+					$this->logger->info( "SqlBagOStuff purge for shard $shardIndex already locked, skip" );
+					continue;
+				}
+
 				$this->deleteServerObjectsExpiringBefore(
 					$db,
 					$timestamp,
@@ -1376,6 +1387,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 					$keysDeletedCount,
 					[ 'fn' => $progress, 'serversDone' => $numServersDone, 'serversTotal' => $numServers ]
 				);
+				$db->unlock( $lockKey, __METHOD__ );
 			} catch ( DBError $e ) {
 				$this->handleDBError( $e, $shardIndex );
 				$ok = false;
@@ -1459,8 +1471,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 					$db->delete(
 						$this->getTableNameByShard( $tableIndex ),
 						[
+							'keyname' => $keys,
 							'exptime < ' . $db->addQuotes( $db->timestamp( $cutoffUnix ) ),
-							'keyname' => $keys
 						],
 						__METHOD__
 					);
