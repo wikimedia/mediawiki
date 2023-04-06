@@ -15,7 +15,8 @@
 			"Urhixidur",
 			"Ерней",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"TayfunEt."
 		]
 	},
 	"tog-underline": "Sıltamalarnıñ astına sızu:",
@@ -177,6 +178,7 @@
 	"talk": "Bäxäs",
 	"views": "Qarawlar",
 	"toolbox": "Qorallar",
+	"cactions": "Başqalar",
 	"imagepage": "Fayl biten qaraw",
 	"mediawikipage": "Xäbär biten qaraw",
 	"templatepage": "Ürnäk biten qaraw",
@@ -293,6 +295,7 @@
 	"perfcachedts": "Bu mäğlümatlar keştan alınğan, ul soñğı tapqır $1 yañartıldı. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
 	"querypage-no-updates": "Xäzer bu bitne yañartıp bulmıy. Monda kürsätelgän mäğlümatlar qabul itelmäyäçäk.",
 	"viewsource": "Qaraw",
+	"skin-action-viewsource": "Çığanağın qaraw",
 	"viewsource-title": "$1 çığanağın qaraw",
 	"actionthrottled": "Tizlek kimetelgän",
 	"actionthrottledtext": "Spamğa qarşı köräş öçen az waqıt eçendä bu ğämälne yış qullanu tıyılğan. Zinhar, soñaraq qabatlağız.",

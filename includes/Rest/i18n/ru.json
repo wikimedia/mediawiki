@@ -15,6 +15,7 @@
 	"rest-nonexistent-revision": "Запрошенная редакция ($1) не существует",
 	"rest-nonexistent-user": "Указанный пользователь ($1) не существует",
 	"rest-invalid-user": "Указанное имя участника ($1) некорректно",
+	"rest-unsupported-content-type": "Неподдерживаемый Content-Type: $1",
 	"rest-permission-denied-anon": "Не доступно анонимному участнику",
 	"rest-permission-denied-title": "Участник не обладает правами чтения заголовка ($1)",
 	"rest-permission-denied-revision": "Участник не имеет доступа к запрошенной версии ($1).",
@@ -45,5 +46,7 @@
 	"rest-cannot-load-file": "Файл для заголовка «$1» не может быть загружен.",
 	"rest-cross-origin-anon-write": "Анонимные запросы на запись из разных источников запрещены.",
 	"rest-requires-safe-against-csrf": "Для этой конечной точки требуется поставщик сеансов, безопасный для CSRF.",
-	"rest-badtoken": "Предоставленный CSRF-токен недействителен."
+	"rest-badtoken": "Предоставленный CSRF-токен недействителен.",
+	"rest-badtoken-missing": "Параметр <var>token</var> является обязательным, если только не используется метод аутентификации, безопасный для CSRF.",
+	"rest-badtoken-nosession": "Ошибка CSRF — нет сеанса."
 }

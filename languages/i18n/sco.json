@@ -36,7 +36,8 @@
 			"Vlad5250",
 			"sco.wikipedia.org editors",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"C1614"
 		]
 	},
 	"tog-underline": "Unnerline airtins:",
@@ -211,6 +212,7 @@
 	"talk": "Tauk",
 	"views": "Views",
 	"toolbox": "Tuilkist",
+	"cactions": "Mair",
 	"tool-link-userrights": "Chynge {{GENDER:$1|uiser}} groups",
 	"tool-link-userrights-readonly": "View {{GENDER:$1|uiser}} groups",
 	"tool-link-emailuser": "Email this {{GENDER:$1|uiser}}",

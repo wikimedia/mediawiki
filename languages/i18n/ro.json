@@ -1069,6 +1069,8 @@
 	"prefs-email": "Opțiuni e-mail",
 	"prefs-rendering": "Aspect",
 	"prefs-searchmisc": "General",
+	"searchprefs": "Căutare în preferințe",
+	"searchprefs-noresults": "Niciun rezultat",
 	"saveprefs": "Salvează",
 	"restoreprefs": "Restaurează toate setările implicite (în toate secțiunile)",
 	"prefs-editing": "Modificare",

@@ -1218,5 +1218,12 @@
 	"skin-action-protect": "Pwoteje",
 	"skin-action-undelete": "Retabli",
 	"skin-action-delete": "Efase",
-	"skin-action-move": "Chanje non"
+	"skin-action-move": "Chanje non",
+	"blockedtext-made-by": "Blòk la fèt pa $1.",
+	"blockedtext-reason-comment": "Rezon yo bay la se <em>$1</em>",
+	"blockedtext-start-time": "Kòmansman blòk : $1",
+	"blockedtext-expiration-time": "Ekspirasyon blòk : $1",
+	"blockedtext-intended-blockee": "Kont la ki te sipoze bloke : $1",
+	"blockedtext-contact-blocker-admin": "Ou mèt kontakte $1 oubyen yon lòt [[{{MediaWiki:Grouppage-sysop}}|administratè]] pou diskite blokaj la.",
+	"blockedtext-include-details-queries": "Tanpri mete tout detay ki anwo yo nan nenpòt demand ou fè."
 }

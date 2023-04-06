@@ -23,7 +23,8 @@
 			"Sumbukompor",
 			"Vlad5250",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Base"
 		]
 	},
 	"tog-underline": "Garis ngisori pranala:",
@@ -43,7 +44,7 @@
 	"tog-watchrollback": "Wuwuh kaca kang dakpulihaké menyang pawawanganku",
 	"tog-minordefault": "Tengeri kabèh besutan minangka besutan cilik sacara baku",
 	"tog-previewontop": "Deleng pratuduh sadurungé mbesut kothak",
-	"tog-previewonfirst": "Delelng pratuduh nalika mbesut pisanan",
+	"tog-previewonfirst": "Deleng pratuduh nalika miwiti mbesut",
 	"tog-enotifwatchlistpages": "Kirimi aku layang-èl yèn ana kaca utawa berkas ing pawawanganku kang ingowahan",
 	"tog-enotifusertalkpages": "Kirimi aku layang-èl yèn kaca parembuganku ana kang ngowahi",
 	"tog-enotifminoredits": "Uga kirimi aku layang-èl yèn ana besutan cilik ing kaca lan berkas",
@@ -746,7 +747,7 @@
 	"rev-deleted-unhide-diff": "Salah siji révisi saka prabédan iki wis '''dibusak'''.\nRerincèn bisa tinemu ing [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log pambusakan].\nPanjenengan uga isih bisa [$1 ndeleng prabédan iki] yèn panjenengan gelem.",
 	"rev-suppressed-unhide-diff": "Salah siji révisi saka prabédan iki wis '''dibrèdèl'''.\nRerincèn bisa tinemu ing [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log pambrèdèlan].\nPanjenengan uga isih bisa [$1 ndeleng prabédan iki] yèn panjenengan gelem.",
 	"rev-deleted-diff-view": "Salah siji révisi saka prabédan iki wis '''dibusak'''.\nPanjenengan isih bisa ndeleng prabédan iki; rerincèn bisa tinemu ing [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log pambusakan].",
-	"rev-suppressed-diff-view": "Salah siji révisi saka prabédan iki wis '''dibrèdèl'''.\nPanjenengan isih bisa ndeleng prabédan iki; rerincèn bisa tinemu ing [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log pambrèdèlan].",
+	"rev-suppressed-diff-view": "Salah siji révisi saka prabédan iki wis '''dibrèdèl'''.\nPanjenengan isih bisa ndeleng prabédan iki; rerincèn bisa tinemu ing [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log pambrèdèlan].",
 	"rev-delundel": "owah pakatonan",
 	"rev-showdeleted": "tuduhaké",
 	"revisiondelete": "Busak/wurung busak révisi",

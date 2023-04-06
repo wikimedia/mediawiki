@@ -5,7 +5,8 @@
 			"Chase me ladies, I'm the Cavalry",
 			"Macofe",
 			"Reedy",
-			"Samwilson"
+			"Samwilson",
+			"Dreamy Jazz"
 		]
 	},
 	"apihelp-block-param-watchuser": "Watch the user and talk pages of the user or IP address.",
@@ -30,5 +31,9 @@
 	"apihelp-php-summary": "Output data in serialised PHP format.",
 	"apihelp-phpfm-summary": "Output data in serialised PHP format (pretty-print in HTML).",
 	"api-help-license": "Licence: [[$1|$2]]",
-	"api-help-license-unknown": "Licence: <span class=\"apihelp-unknown\">unknown</span>"
+	"api-help-license-unknown": "Licence: <span class=\"apihelp-unknown\">unknown</span>",
+	"apierror-unknownformat": "Unrecognised format \"$1\".",
+	"apierror-unrecognizedparams": "Unrecognised {{PLURAL:$2|parameter|parameters}}: $1.",
+	"apierror-unrecognizedvalue": "Unrecognised value for parameter <var>$1</var>: $2.",
+	"apiwarn-unrecognizedvalues": "Unrecognised {{PLURAL:$3|value|values}} for parameter <var>$1</var>: $2."
 }

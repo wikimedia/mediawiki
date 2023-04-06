@@ -4199,7 +4199,7 @@
 	"log-name-renameuser": "Дневник на преименувања на корисници",
 	"log-description-renameuser": "Ово е дневник на преименувања на корисници",
 	"logentry-renameuser-renameuser": "$1 го {{GENDER:$2|преименуваше}} корисникот $4 ({{PLURAL:$6|$6 уредување|$6 уредувања}}) во {{GENDER:$7|$5}}",
-	"logentry-renameuser-renameuser-legacier": "$1 го преименуваше корисникот $4 во {{GENDER:$7|$5}}",
+	"logentry-renameuser-renameuser-legacier": "$1 го {{GENDER:$2|преименуваше}} корисникот $4 во {{GENDER:$7|$5}}",
 	"renameuser-move-log": "Автоматски преместена страница при преименување на {{GENDER:$2|корисникот}} „[[User:$1|$1]]“ во „[[User:$2|$2]]“",
 	"action-renameuser": "преименување на корисници",
 	"right-renameuser": "Преименување на корисници",

@@ -29,7 +29,8 @@
 			"Vlad5250",
 			"రహ్మానుద్దీన్",
 			"రాకేశ్వర",
-			"아라"
+			"아라",
+			"Base"
 		]
 	},
 	"tog-underline": "परिसन्धेः अधो रेखाङ्कनम्:",
@@ -713,7 +714,7 @@
 	"rev-deleted-unhide-diff": "भवान्/भवती संस्करणस्य भेदं द्रष्टुं न शक्नोति । कारणम् एतस्य किमपि संस्करणं <strong>अपाकृतमस्ति</strong> ।\n\nयदि इच्छति, तर्हि अत्रापि [$1 view this revision] द्रष्टुं शक्नोति ।",
 	"rev-suppressed-unhide-diff": "भवान्/भवती संस्करणस्य भेदं द्रष्टुं न शक्नोति । कारणम् एतस्य किमपि संस्करणं <strong>निषिद्धमस्ति</strong> ।\nविस्तृतं ज्ञानम् अत्र प्राप्स्यति... [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log]. \n\nयदि इच्छति, तर्हि अत्रापि [$1 view this revision] द्रष्टुं शक्नोति ।",
 	"rev-deleted-diff-view": "भवान्/भवती संस्करणस्य भेदं द्रष्टुं न शक्नोति । कारणम् एतस्य किमपि संस्करणं <strong>निषिद्धमस्ति</strong> ।\nविस्तृतं ज्ञानम् अत्र प्राप्स्यति... [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
-	"rev-suppressed-diff-view": "भवान्/भवती संस्करणस्य भेदं द्रष्टुं न शक्नोति । कारणम् एतस्य किमपि संस्करणं <strong>निषिद्धमस्ति</strong> ।\nविस्तृतं ज्ञानम् अत्र प्राप्स्यति... [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
+	"rev-suppressed-diff-view": "भवान्/भवती संस्करणस्य भेदं द्रष्टुं न शक्नोति । कारणम् एतस्य किमपि संस्करणं <strong>निषिद्धमस्ति</strong> ।\nविस्तृतं ज्ञानम् अत्र प्राप्स्यति... [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].",
 	"rev-delundel": "दृश्यताम्/गोप्यताम्",
 	"rev-showdeleted": "दर्श्यताम्",
 	"revisiondelete": "संस्करणानि निष्कासयतु/पुनस्स्थापयतु",

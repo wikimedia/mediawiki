@@ -4343,7 +4343,7 @@
 	"log-name-renameuser": "利用者名変更記録",
 	"log-description-renameuser": "これは、利用者名変更の記録です。",
 	"logentry-renameuser-renameuser": "$1 が $4 ({{PLURAL:$6|$6 編集}}) の利用者名を {{GENDER:$7|$5}} に{{GENDER:$2|変更しました}}",
-	"logentry-renameuser-renameuser-legacier": "$1 が $4 の利用者名を {{GENDER:$7|$5}} に変更しました",
+	"logentry-renameuser-renameuser-legacier": "$1 が $4 の利用者名を {{GENDER:$7|$5}} に{{GENDER:$2|変更しました}}",
 	"renameuser-move-log": "ページを自動的に移動しました ({{GENDER:$2|利用者}}名変更のため:「[[User:$1|$1]]」から「[[User:$2|$2]]」)",
 	"action-renameuser": "利用者名の変更",
 	"right-renameuser": "利用者名を変更",

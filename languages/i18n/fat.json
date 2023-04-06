@@ -631,5 +631,12 @@
 	"nstab-mainpage": "Kratafa tsitsir",
 	"skin-view-edit-local": "Sesa hɛn nkyerɛkyerɛmu dze no mu",
 	"skin-action-delete": "Pepa fi hɔ",
-	"skin-action-move": "Twe kɔ"
+	"skin-action-move": "Twe kɔ",
+	"blockedtext-made-by": "$1 na ɔyɛɛ w'akwansiw no.",
+	"blockedtext-reason-comment": "Siantsir a ɔmae nye <em>$1</em>",
+	"blockedtext-start-time": "Akwansiw no ahyɛse: $1",
+	"blockedtext-expiration-time": "Akwansiw no ntwamu: $1",
+	"blockedtext-intended-blockee": "Dwumadzinyi a akwansiwdze yi kɔ ma no: $1",
+	"blockedtext-contact-blocker-admin": "Ibotum ahwehwɛ $1 anaa [[{{MediaWiki:Grouppage-sysop}}|hwɛdofo]] fofor na enye edzi akwansiw no ho nkɔmbɔ.",
+	"blockedtext-include-details-queries": "Yɛserɛ, fa nkyerɛkyerɛmu a ɔwɔ sor ha nyinara ka nhwehwɛmu biara a ebɛyɛ ho."
 }

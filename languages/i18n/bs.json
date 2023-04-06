@@ -32,7 +32,8 @@
 			"Vlad5250",
 			"Сербијана",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Base"
 		]
 	},
 	"tog-underline": "Podvlačenje linkova:",
@@ -837,7 +838,7 @@
 	"rev-deleted-unhide-diff": "Jedna od izmjena u ovom pregledu razlika je <strong>izbrisana</strong>.\nDetalje možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zapisniku brisanja].\nIpak možete [$1 vidjeti ovaj pregled razlika] ako želite nastaviti.",
 	"rev-suppressed-unhide-diff": "Jedna od izmjena u ovom pregledu razlika je <strong>sakrivena</strong>.\nDetalje možete pronaći u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zapisniku sakrivanja].\nIpak možete [$1 vidjeti ovaj pregled razlika] ako želite nastaviti.",
 	"rev-deleted-diff-view": "Jedna od izmjena u ovom pregledu razlika je <strong>izbrisana</strong>.\nMožete pogledati razliku izmjena; detalje možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zapisniku brisanja].",
-	"rev-suppressed-diff-view": "Jedna od izmjena u ovom pregledu razlika je <strong>sakrivena</strong>.\nMožete pogledati razliku izmjena; detalje možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zapisniku sakrivanja].",
+	"rev-suppressed-diff-view": "Jedna od izmjena u ovom pregledu razlika je <strong>sakrivena</strong>.\nMožete pogledati razliku izmjena; detalje možete pronaći u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zapisniku sakrivanja].",
 	"rev-delundel": "promijeni vidljivost",
 	"rev-showdeleted": "prikaži",
 	"revisiondelete": "Brisanje/vraćanje izmjena",
