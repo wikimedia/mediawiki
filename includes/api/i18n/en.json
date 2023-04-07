@@ -118,6 +118,7 @@
 	"apihelp-compare-paramvalue-prop-comment": "The comment on the 'from' and 'to' revisions. If the comment has been revision deleted, a <samp>fromcommenthidden</samp> or <samp>tocommenthidden</samp> property will be returned.",
 	"apihelp-compare-paramvalue-prop-parsedcomment": "The parsed comment on the 'from' and 'to' revisions. If the comment has been revision deleted, a <samp>fromcommenthidden</samp> or <samp>tocommenthidden</samp> property will be returned.",
 	"apihelp-compare-paramvalue-prop-size": "The size of the 'from' and 'to' revisions.",
+	"apihelp-compare-param-difftype": "Return the comparison formatted as inline HTML.",
 	"apihelp-compare-param-slots": "Return individual diffs for these slots, rather than one combined diff for all slots.",
 	"apihelp-compare-example-1": "Create a diff between revision 1 and 2.",
 
