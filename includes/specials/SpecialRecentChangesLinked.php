@@ -83,6 +83,8 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 	}
 
 	/**
+	 * FIXME: Port useful changes from SpecialRecentChanges
+	 *
 	 * @inheritDoc
 	 */
 	protected function doMainQuery( $tables, $select, $conds, $query_options,
@@ -139,11 +141,12 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			$conds,
 			$join_conds,
 			$query_options,
-			$tagFilter
+			$tagFilter,
+			$opts['inverttags']
 		);
 
 		if ( $dbr->unionSupportsOrderAndLimit() ) {
-			if ( count( $tagFilter ) > 1 ) {
+			if ( in_array( 'DISTINCT', $query_options ) ) {
 				// ChangeTags::modifyDisplayQuery() will have added DISTINCT.
 				// To prevent this from causing query performance problems, we need to add
 				// a GROUP BY, and add rc_id to the ORDER BY.
