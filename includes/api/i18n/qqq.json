@@ -129,6 +129,7 @@
 	"apihelp-compare-paramvalue-prop-comment": "{{doc-apihelp-paramvalue|compare|prop|comment}}",
 	"apihelp-compare-paramvalue-prop-parsedcomment": "{{doc-apihelp-paramvalue|compare|prop|parsedcomment}}",
 	"apihelp-compare-paramvalue-prop-size": "{{doc-apihelp-paramvalue|compare|prop|size}}",
+	"apihelp-compare-param-difftype": "{{doc-apihelp-param|compare|difftype}}",
 	"apihelp-compare-param-slots": "{{doc-apihelp-param|compare|slots}}",
 	"apihelp-compare-example-1": "{{doc-apihelp-example|compare}}",
 	"apihelp-createaccount-summary": "{{doc-apihelp-summary|createaccount}}",
