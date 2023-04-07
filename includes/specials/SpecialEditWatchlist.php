@@ -713,7 +713,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				];
 
 				$fields['TitlesNs' . $namespace] = [
-					'cssclass' => 'mw-watchlistedit-check' . $namespace,
+					'cssclass' => 'mw-watchlistedit-check',
 					'class' => EditWatchlistCheckboxSeriesField::class,
 					'options' => $options,
 					'section' => "ns$namespace",
