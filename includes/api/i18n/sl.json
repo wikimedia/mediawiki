@@ -252,6 +252,7 @@
 	"apihelp-watch-example-unwatch": "Odopazuj stran <kbd>Main Page</kbd>.",
 	"apihelp-watch-example-generator": "Opazujte prvih nekaj strani v glavnem imenskem prostoru.",
 	"api-pageset-param-titles": "Seznam naslovov za delo",
+	"api-pageset-param-revids": "Seznam ID-jev redakcij za obdelavo. Upoštevajte, da bodo skoraj vsi moduli poizvedb pretvorili ID-je redakcij v ustrezne ID-je strani in namesto tega uporabili zadnjo redakcijo. Za svoj odgovor uporablja natančne redakcije samo <kbd>prop=revisions</kbd>.",
 	"api-help-flag-deprecated": "Ta modul je opuščen.",
 	"api-help-flag-readrights": "Ta modul zahteva pravice branja.",
 	"api-help-flag-mustbeposted": "Ta modul sprejema samo zahtevke POST.",
