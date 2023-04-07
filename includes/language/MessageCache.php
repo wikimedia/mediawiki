@@ -1033,7 +1033,7 @@ class MessageCache implements LoggerAwareInterface {
 			return false;
 		}
 
-		$language = wfGetLangObj( $langcode );
+		$language = $this->getLanguageObject( $langcode );
 
 		// Normalise title-case input (with some inlining)
 		$lckey = self::normalizeKey( $key );
@@ -1099,6 +1099,53 @@ class MessageCache implements LoggerAwareInterface {
 		}
 
 		return $message;
+	}
+
+	/**
+	 * Return a Language object from $langcode
+	 *
+	 * @param Language|string|bool $langcode Either:
+	 *                  - a Language object
+	 *                  - code of the language to get the message for, if it is
+	 *                    a valid code create a language for that language, if
+	 *                    it is a string but not a valid code then make a basic
+	 *                    language object
+	 *                  - a boolean: if it's false then use the global object for
+	 *                    the current user's language (as a fallback for the old parameter
+	 *                    functionality), or if it is true then use global object
+	 *                    for the wiki's content language.
+	 * @return Language|StubUserLang
+	 */
+	private function getLanguageObject( $langcode ) {
+		# Identify which language to get or create a language object for.
+		# Using is_object here due to Stub objects.
+		if ( is_object( $langcode ) ) {
+			# Great, we already have the object (hopefully)!
+			return $langcode;
+		}
+
+		if ( $langcode === true || $langcode === $this->contLangCode ) {
+			# $langcode is the language code of the wikis content language object.
+			# or it is a boolean and value is true
+			return $this->contLang;
+		}
+
+		global $wgLang;
+		if ( $langcode === false || $langcode === $wgLang->getCode() ) {
+			# $langcode is the language code of user language object.
+			# or it was a boolean and value is false
+			return $wgLang;
+		}
+
+		$validCodes = array_keys( $this->languageNameUtils->getLanguageNames() );
+		if ( in_array( $langcode, $validCodes ) ) {
+			# $langcode corresponds to a valid language.
+			return $this->langFactory->getLanguage( $langcode );
+		}
+
+		# $langcode is a string, but not a valid language code; use content language.
+		$this->logger->debug( 'Invalid language code passed to' . __METHOD__ . ', falling back to content language.' );
+		return $this->contLang;
 	}
 
 	/**

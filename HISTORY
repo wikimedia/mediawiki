@@ -879,7 +879,7 @@ This is a security and maintenance release of the MediaWiki 1.38 branch.
 * (T312301) SpecialDiff: Don't pass null to trim().
 * Hooks: Use more meaningful name for SkinAfterPortlet hook parameter.
 * (T289926) Ensure we don't pass null to mb_strlen.
-* (T312305, T311572, T311571, T311578) HtmlForm: Null coalescence in trim()
+* (T312305, T311572, T311571, T311578) HTMLForm: Null coalescence in trim()
   calls.
 * (T289926) site: Consistently return null from Site::getDomain().
 * (T307304, T289879) filebackend,jobqueue: Add signature for
@@ -1793,7 +1793,7 @@ This is a security and maintenance release of the MediaWiki 1.37 branch.
 * (T312301) SpecialDiff: Don't pass null to trim().
 * Hooks: Use more meaningful name for SkinAfterPortlet hook parameter.
 * (T289926) Ensure we don't pass null to mb_strlen.
-* (T312305, T311572, T311571, T311578) HtmlForm: Null coalescence in trim()
+* (T312305, T311572, T311571, T311578) HTMLForm: Null coalescence in trim()
   calls.
 * (T289926) site: Consistently return null from Site::getDomain().
 * (T307304, T289879) filebackend,jobqueue: Add signature for
@@ -3999,7 +3999,7 @@ This is a security and maintenance release of the MediaWiki 1.35 branch.
 * (T312301) SpecialDiff: Don't pass null to trim().
 * Hooks: Use more meaningful name for SkinAfterPortlet hook parameter.
 * (T289926) Ensure we don't pass null to mb_strlen.
-* (T312305, T311572, T311571, T311578) HtmlForm: Null coalescence in trim()
+* (T312305, T311572, T311571, T311578) HTMLForm: Null coalescence in trim()
   calls.
 * (T289926) site: Consistently return null from Site::getDomain().
 * (T307304, T289879) filebackend,jobqueue: Add signature for

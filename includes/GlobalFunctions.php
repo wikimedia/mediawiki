@@ -822,6 +822,7 @@ function wfLogWarning( $msg, $callerOffset = 1, $level = E_USER_WARNING ) {
 /**
  * Return a Language object from $langcode
  *
+ * @deprecated since 1.41, use MediaWiki\Languages\LanguageFactory::getLanguage instead.
  * @param Language|string|bool $langcode Either:
  *                  - a Language object
  *                  - code of the language to get the message for, if it is
@@ -835,6 +836,7 @@ function wfLogWarning( $msg, $callerOffset = 1, $level = E_USER_WARNING ) {
  * @return Language|StubUserLang
  */
 function wfGetLangObj( $langcode = false ) {
+	wfDeprecated( __FUNCTION__, '1.41' );
 	# Identify which language to get or create a language object for.
 	# Using is_object here due to Stub objects.
 	if ( is_object( $langcode ) ) {

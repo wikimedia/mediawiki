@@ -112,6 +112,8 @@ because of Phabricator reports.
   - SpecialBrokenRedirects
 * Various mediawiki.ui variables have been deprecated in favor of
   'minerva.skin.variables.less' Codex design tokens featuring replacements.
+* The global function wfGetLangObj is deprecated and emits deprecation
+  warnings. Use MediaWiki\Languages\LanguageFactory::getLanguage instead.
 * …
 
 === Other changes in 1.41 ===
