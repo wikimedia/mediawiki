@@ -15,7 +15,11 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->mimeAnalyzer = new MimeAnalyzer( [
+		$this->mimeAnalyzer = $this->createMimeAnalyzer();
+	}
+
+	private function createMimeAnalyzer() {
+		return new MimeAnalyzer( [
 			'infoFile' => MimeAnalyzer::USE_INTERNAL,
 			'typeFile' => MimeAnalyzer::USE_INTERNAL,
 			'xmlTypes' => [
@@ -296,5 +300,18 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 	public function testGetExtensionFromMimeTypeOrNull() {
 		$this->assertSame( 'sgml', $this->mimeAnalyzer->getExtensionFromMimeTypeOrNull( 'text/sgml' ) );
 		$this->assertNull( $this->mimeAnalyzer->getExtensionFromMimeTypeOrNull( 'fake/mime' ) );
+	}
+
+	/**
+	 * @covers MimeAnalyzer::getMediaTypes
+	 */
+	public function testGetMediaTypes() {
+		$mimeAnalyzer = $this->createMimeAnalyzer();
+		$mediaTypes = $mimeAnalyzer->getMediaTypes();
+
+		$this->assertIsArray( $mediaTypes );
+		$this->assertNotEmpty( $mediaTypes );
+
+		$this->assertContains( 'BITMAP', $mediaTypes );
 	}
 }
