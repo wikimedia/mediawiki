@@ -646,7 +646,7 @@
 	"apihelp-format-param-wrappedhtml": "Restituisce l'HTML ben formattato e i moduli ResourceLoader associati come un oggetto JSON.",
 	"api-pageset-param-titles": "Un elenco di titoli su cui lavorare.",
 	"api-pageset-param-pageids": "Un elenco di ID pagina su cui lavorare.",
-	"api-pageset-param-revids": "Un elenco di ID versioni su cui lavorare.",
+	"api-pageset-param-revids": "Un elenco di ID versioni su cui lavorare. Tieni presente che quasi tutti i moduli per le interrogazioni convertiranno gli ID versione nell'ID pagina corrispondente e lavoreranno quindi sull'ultima versione. Solo <kbd>prop=revisions</kbd> usa le versioni esatte per la sua risposta.",
 	"api-pageset-param-redirects-generator": "Risolvi automaticamente redirect in <var>$1titles</var>, <var>$1pageids</var>, e <var>$1revids</var>, e nelle pagine restituite da <var>$1generator</var>.",
 	"api-pageset-param-redirects-nogenerator": "Risolve automaticamente i reindirizzamenti in <var>$1titles</var>, <var>$1pageids</var>, e <var>$1revids</var>.",
 	"api-pageset-param-converttitles": "Converte i titoli in altre varianti, se necessario. Funziona solo se la lingua del contenuto del wiki supporta la conversione in varianti. Le lingue che supportano la conversione in varianti includono $1",

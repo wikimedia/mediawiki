@@ -1558,7 +1558,7 @@
 	"api-login-fail-sameorigin": "Impossible de se connecter quand la politique de même origine n’est pas appliquée.",
 	"api-pageset-param-titles": "Une liste des titres sur lesquels travailler.",
 	"api-pageset-param-pageids": "Une liste des IDs de pages sur lesquelles travailler.",
-	"api-pageset-param-revids": "Une liste des IDs de révisions sur lesquelles travailler.",
+	"api-pageset-param-revids": "Une liste d’identifiants de révision sur lesquels travailler. Noter bien que presque tous les modules de requête convertiront les identifiants de révision en identifiant de la page correspondante et travailleront plutôt sur la dernière révision. Seul <kbd>prop=revisions</kbd> utilise les révisions exactes pour sa réponse.",
 	"api-pageset-param-generator": "Obtenir la liste des pages sur lesquelles travailler en exécutant le module de requête spécifié.\n\n<strong>NOTE :<strong> les noms de paramètre du générateur doivent être préfixés avec un « g », voir les exemples.",
 	"api-pageset-param-redirects-generator": "Résoudre automatiquement les redirections dans <var>$1titles</var>, <var>$1pageids</var> et <var>$1revids</var>, et dans les pages renvoyées par <var>$1generator</var>.",
 	"api-pageset-param-redirects-nogenerator": "Résoudre automatiquement les redirections dans <var>$1titles</var>, <var>$1pageids</var> et <var>$1revids</var>.",

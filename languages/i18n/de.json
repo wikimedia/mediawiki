@@ -3379,6 +3379,7 @@
 	"watchlistedit-normal-legend": "Einträge von der Beobachtungsliste entfernen",
 	"watchlistedit-normal-explain": "Dies sind die Einträge deiner Beobachtungsliste. Um Einträge zu entfernen, markiere die Kästchen neben den Einträgen und klicke am Ende der Seite auf „{{int:Watchlistedit-normal-submit}}“. Du kannst deine Beobachtungsliste auch im [[Special:EditWatchlist/raw|Listenformat bearbeiten]].",
 	"watchlistedit-normal-submit": "Einträge entfernen",
+	"watchlistedit-normal-check-all": "Alle abfragen",
 	"watchlistedit-normal-done": "{{PLURAL:$1|Ein Eintrag wurde|$1 Einträge wurden}} von deiner Beobachtungsliste entfernt:",
 	"watchlistedit-raw-title": "Beobachtungsliste im Listenformat bearbeiten",
 	"watchlistedit-raw-legend": "Beobachtungsliste im Listenformat bearbeiten",

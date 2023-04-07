@@ -1557,7 +1557,7 @@
 	"api-login-fail-sameorigin": "当同源协议未应用时不能登录。",
 	"api-pageset-param-titles": "要查询的标题列表。",
 	"api-pageset-param-pageids": "要查询的页面ID列表",
-	"api-pageset-param-revids": "要查询的修订版本ID列表",
+	"api-pageset-param-revids": "要查询的修订版本ID列表。请注意，几乎所有的查询模块都会将修订版本ID转换为对应的页面ID，并且查询最新的修订版本。只有<kbd>prop=revisions</kbd>会使用精确的修订版本进行响应。",
 	"api-pageset-param-generator": "通过执行指定查询模块获得页面列表以工作。\n\n<strong>注意：</strong>发生器参数名称必须以“g”开头，参见例子。",
 	"api-pageset-param-redirects-generator": "自动解决在<var>$1titles</var>、<var>$1pageids</var>和<var>$1revids</var>，以及在由<var>$1generator</var>返回的页面中的重定向。",
 	"api-pageset-param-redirects-nogenerator": "自动解决<var>$1titles</var>、<var>$1pageids</var>和<var>$1revids</var>中的重定向。",

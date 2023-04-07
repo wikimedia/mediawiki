@@ -4274,7 +4274,7 @@
 	"blockedtext-expiration-longest-block": "Закінчення найдовшого блокування: $1",
 	"blockedtext-intended-blockee": "Ціль блокування: $1",
 	"blockedtext-contact-blocker-admin": "Ви можете надіслати листа користувачеві $1 або будь-якому іншому [[{{MediaWiki:Grouppage-sysop}}|адміністратору]], щоб обговорити блокування.",
-	"blockedtext-block-ip": "Ваша поточна IP-адреса — $1",
+	"blockedtext-block-ip": "Ваша поточна IP-адреса — $1.",
 	"blockedtext-block-id": "Ідентифікатор блокування #$1.",
 	"blockedtext-include-details-queries": "Будь ласка, додайте всі вказані подробиці до будь-яких запитів, які Ви будете робити.",
 	"renameuser": "Перейменувати користувача",

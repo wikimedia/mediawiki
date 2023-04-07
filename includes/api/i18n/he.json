@@ -1538,7 +1538,7 @@
 	"api-login-fail-sameorigin": "לא ניתן להיכנס לחשבון כאשר מדיניות מקור זהה אינה חלה.",
 	"api-pageset-param-titles": "רשימת כותרות.",
 	"api-pageset-param-pageids": "רשימת מזהי דף לעבוד עליהם.",
-	"api-pageset-param-revids": "רשימת מזהי גרסה לעבוד עליהם.",
+	"api-pageset-param-revids": "רשימת מזהי גרסה לעבוד עליהם. נא לשים לב לכך שכמעט כל מודולי ה־query ימירו מזהי גרסאות למזהה הדף המתאים ויעבדו במקום זאת על הגרסה האחרונה. רק <kbd>prop=revisions</kbd> משתמש בגרסאות מדויקות לתגובה.",
 	"api-pageset-param-generator": "קבלת רשימת דפים לעבוד עליהם על־ידי הרצת יחידת ה־query שצוינה.\n\n<strong>לתשומת לבך:</strong> לשמות בפרמטר generator צריכה להיות התחילית \"g\", ר' דוגמאות.",
 	"api-pageset-param-redirects-generator": "פתרון אוטומטי של הפניות ב־<var>$1titles</var>, ב־<var>$1pageids</var>, וב־<var>$1revids</var>, ובדפים שמחזיר <var>$1generator</var>.",
 	"api-pageset-param-redirects-nogenerator": "פתרון אוטומטי של הפניות ב־<var>$1titles</var>, ב־<var>$1pageids</var> וב־<var>$1pageids</var>.",
