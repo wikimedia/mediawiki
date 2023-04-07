@@ -26,7 +26,7 @@ namespace MediaWiki\Specials;
 use ErrorPageError;
 use FormSpecialPage;
 use HtmlArmor;
-use HtmlForm;
+use HTMLForm;
 use IContextSource;
 use Language;
 use LogEventsList;

@@ -1,5 +1,5 @@
 /**
- * A helper class to add validation to non-OOUI HtmlForm fields.
+ * A helper class to add validation to non-OOUI HTMLForm fields.
  *
  * @private
  * @class HtmlformChecker
