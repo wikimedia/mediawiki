@@ -15,7 +15,11 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->mimeAnalyzer = new MimeAnalyzer( [
+		$this->mimeAnalyzer = $this->createMimeAnalyzer();
+	}
+
+	private function createMimeAnalyzer() {
+		return new MimeAnalyzer( [
 			'infoFile' => MimeAnalyzer::USE_INTERNAL,
 			'typeFile' => MimeAnalyzer::USE_INTERNAL,
 			'xmlTypes' => [
@@ -36,6 +40,7 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * @covers MimeAnalyzer::improveTypeFromExtension
 	 * @dataProvider providerImproveTypeFromExtension
 	 * @param string $ext File extension (no leading dot)
 	 * @param string $oldMime Initially detected MIME
@@ -82,9 +87,12 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 
 		// Make sure mp3 files are detected as audio type
 		yield 'Recognize mp3' => [ 'say-test-with-id3.mp3', null, MEDIATYPE_AUDIO ];
+
+		yield 'Unknown Extension' => [ 'unknown_extension', null, MEDIATYPE_UNKNOWN ];
 	}
 
 	/**
+	 * @covers MimeAnalyzer::getMediaType
 	 * @dataProvider provideGetMediaType
 	 */
 	public function testGetMediaType( $file, $mime, $expectType ) {
@@ -117,6 +125,7 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * @covers MimeAnalyzer::doGuessMimeType
 	 * @dataProvider provideDoGuessMimeType
 	 */
 	public function testDoGuessMimeType( $file, $ext, $expectType ) {
@@ -145,6 +154,7 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * @covers MimeAnalyzer::detectZipTypeFromFile
 	 * @dataProvider provideDetectZipTypeFromFile
 	 * @param string $fileName
 	 * @param string $expected
@@ -192,7 +202,10 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 		];
 	}
 
-	/** @dataProvider providePngZipConfusion */
+	/**
+	 * @covers MimeAnalyzer::doGuessMimeType
+	 * @dataProvider providePngZipConfusion
+	 */
 	public function testPngZipConfusion( $description, $fileName, $expectedType ) {
 		$file = __DIR__ . '/../../../../data/media/' . $fileName;
 		$actualType = $this->doGuessMimeType( [ $file, 'png' ] );
@@ -269,6 +282,9 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( $expectedOutput, $actualOutput );
 	}
 
+	/**
+	 * @covers MimeAnalyzer::getMimeTypeFromExtensionOrNull
+	 */
 	public function testGetMimeTypeFromExtensionOrNull() {
 		$this->assertSame( 'video/webm', $this->mimeAnalyzer->getMimeTypeFromExtensionOrNull( 'webm' ) );
 		$this->assertNull( $this->mimeAnalyzer->getMimeTypeFromExtensionOrNull( 'no_such_extension' ) );
@@ -278,8 +294,24 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( [], $this->mimeAnalyzer->getExtensionsFromMimeType( 'fake/mime' ) );
 	}
 
+	/**
+	 * @covers MimeAnalyzer::getExtensionFromMimeTypeOrNull
+	 */
 	public function testGetExtensionFromMimeTypeOrNull() {
 		$this->assertSame( 'sgml', $this->mimeAnalyzer->getExtensionFromMimeTypeOrNull( 'text/sgml' ) );
 		$this->assertNull( $this->mimeAnalyzer->getExtensionFromMimeTypeOrNull( 'fake/mime' ) );
+	}
+
+	/**
+	 * @covers MimeAnalyzer::getMediaTypes
+	 */
+	public function testGetMediaTypes() {
+		$mimeAnalyzer = $this->createMimeAnalyzer();
+		$mediaTypes = $mimeAnalyzer->getMediaTypes();
+
+		$this->assertIsArray( $mediaTypes );
+		$this->assertNotEmpty( $mediaTypes );
+
+		$this->assertContains( 'BITMAP', $mediaTypes );
 	}
 }
