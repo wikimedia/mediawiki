@@ -35,26 +35,16 @@ use MediaWiki\Title\Title;
  */
 class LinkHolderArray {
 	/** @var array<int,array<int,array>> Indexed by numeric namespace and link ids, {@see Parser::nextLinkID} */
-	public $internals = [];
+	private $internals = [];
 	/** @var array<int,array> Indexed by numeric link id */
-	public $interwikis = [];
+	private $interwikis = [];
 	/** @var int */
-	public $size = 0;
-
-	/**
-	 * @var Parser
-	 */
-	public $parent;
-
-	/**
-	 * Current language converter
-	 * @var ILanguageConverter
-	 */
+	private $size = 0;
+	/** @var Parser */
+	private $parent;
+	/** @var ILanguageConverter */
 	private $languageConverter;
-
-	/**
-	 * @var HookRunner
-	 */
+	/** @var HookRunner */
 	private $hookRunner;
 
 	/**
