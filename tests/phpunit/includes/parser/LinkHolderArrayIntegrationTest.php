@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers LinkHolderArray
@@ -25,6 +26,8 @@ class LinkHolderArrayIntegrationTest extends MediaWikiLangTestCase {
 			$this->createMock( ILanguageConverter::class ),
 			$this->createHookContainer()
 		);
+		/** @var LinkHolderArray $linkHolderArray */
+		$linkHolderArray = TestingAccessWrapper::newFromObject( $linkHolderArray );
 		$linkHolderArray->size = $size;
 
 		$this->assertSame( $expected, $linkHolderArray->isBig() );
@@ -53,6 +56,8 @@ class LinkHolderArrayIntegrationTest extends MediaWikiLangTestCase {
 			$this->createMock( ILanguageConverter::class ),
 			$this->createHookContainer()
 		);
+		/** @var LinkHolderArray $link */
+		$link = TestingAccessWrapper::newFromObject( $link );
 		$parser = $this->createMock( Parser::class );
 		$parser->method( 'nextLinkID' )->willReturn( 9 );
 		$link->parent = $parser;
