@@ -2113,7 +2113,7 @@ class OutputPage extends ContextSource {
 		if ( !$parserOutput->isCacheable() ) {
 			$this->disableClientCache();
 		}
-		$this->mHeadItems = array_merge( $this->mHeadItems, $parserOutput->getHeadItems() );
+		$this->addHeadItems( $parserOutput->getHeadItems() );
 		$this->addModules( $parserOutput->getModules() );
 		$this->addModuleStyles( $parserOutput->getModuleStyles() );
 		$this->addJsConfigVars( $parserOutput->getJsConfigVars() );
