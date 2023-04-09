@@ -1670,6 +1670,8 @@ class DifferenceEngine extends ContextSource {
 			1000
 		);
 		if ( $nEdits > 0 && $nEdits <= 1000 ) {
+			// Use an invalid username to get the wiki's default gender (as fallback)
+			$newRevUserForGender = '[HIDDEN]';
 			$limit = 100; // use diff-multi-manyusers if too many users
 			try {
 				$users = $this->revisionStore->getAuthorsBetween(
@@ -1683,6 +1685,11 @@ class DifferenceEngine extends ContextSource {
 
 				$newRevUser = $newRevRecord->getUser( RevisionRecord::RAW );
 				$newRevUserText = $newRevUser ? $newRevUser->getName() : '';
+				$newRevUserSafe = $newRevRecord->getUser(
+					RevisionRecord::FOR_THIS_USER,
+					$this->getAuthority()
+				);
+				$newRevUserForGender = $newRevUserSafe ? $newRevUserSafe->getName() : '[HIDDEN]';
 				if ( $numUsers == 1 && $users[0]->getName() == $newRevUserText ) {
 					$numUsers = 0; // special case to say "by the same user" instead of "by one other user"
 				}
@@ -1690,7 +1697,7 @@ class DifferenceEngine extends ContextSource {
 				$numUsers = 0;
 			}
 
-			return self::intermediateEditsMsg( $nEdits, $numUsers, $limit );
+			return self::intermediateEditsMsg( $nEdits, $numUsers, $limit, $newRevUserForGender );
 		}
 
 		return '';
@@ -1702,12 +1709,17 @@ class DifferenceEngine extends ContextSource {
 	 * @param int $numEdits
 	 * @param int $numUsers
 	 * @param int $limit
+	 * @param string $lastUser
 	 *
 	 * @return string
 	 */
-	public static function intermediateEditsMsg( $numEdits, $numUsers, $limit ) {
+	public static function intermediateEditsMsg( $numEdits, $numUsers, $limit, $lastUser = '[HIDDEN]' ) {
 		if ( $numUsers === 0 ) {
 			$msg = 'diff-multi-sameuser';
+			return wfMessage( $msg )
+				->numParams( $numEdits, $numUsers )
+				->params( $lastUser )
+				->parse();
 		} elseif ( $numUsers > $limit ) {
 			$msg = 'diff-multi-manyusers';
 			$numUsers = $limit;
