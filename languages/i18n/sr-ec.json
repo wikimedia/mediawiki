@@ -3326,6 +3326,7 @@
 	"watchlistedit-normal-legend": "Уклањање наслова са списка надгледања",
 	"watchlistedit-normal-explain": "Наслови на списку надгледања приказани су испод.\nДа бисте уклонили наслов, означите поље за потврду поред њега и кликните на дугме „{{int:Watchlistedit-normal-submit}}”.\nМожете и да [[Special:EditWatchlist/raw|уредите необрађени списак]].",
 	"watchlistedit-normal-submit": "Уклони наслове",
+	"watchlistedit-normal-check-all": "Означи све",
 	"watchlistedit-normal-done": "{{PLURAL:$1|1=Једна страница је уклоњена|$1 странице су уклоњене|$1 страница је уклоњено}} с вашег списка надгледања:",
 	"watchlistedit-raw-title": "Уређивање необрађеног списка надгледања",
 	"watchlistedit-raw-legend": "Уређивање необрађеног списка надгледања",

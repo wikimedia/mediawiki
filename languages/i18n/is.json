@@ -266,7 +266,6 @@
 	"versionrequired": "Þarfnast úgáfu $1 af MediaWiki",
 	"versionrequiredtext": "Útgáfa $1 af MediaWiki er þörf til að geta skoðað þessa síðu.\nSjá [[Special:Version|útgáfusíðuna]].",
 	"ok": "Í lagi",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"backlinksubtitle": "← $1",
 	"retrievedfrom": "Sótt frá „$1“",
 	"youhavenewmessages": "Þú hefur fengið $1 ($2).",

@@ -240,7 +240,6 @@
 	"versionrequired": "Feum air tionndadh $1 de MhediaWiki",
 	"versionrequiredtext": "Tha feum air tionndadh $1 de MhediaWiki mus faicear an duilleag seo.\nSeall air [[Special:Version|duilleag an tionndaidh]].",
 	"ok": "Ceart ma-thà",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "Air a tharraing à \"$1\"",
 	"youhavenewmessages": "Tha $1 agad ($2).",
 	"youhavenewmessagesfromusers": "Tha $1 o $3 {{PLURAL:$3|chleachdaiche|chleachdaiche|cleachdaichean|cleachdaiche}} agad ($2).",

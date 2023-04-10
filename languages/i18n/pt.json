@@ -323,7 +323,6 @@
 	"versionrequired": "É necessária a versão $1 do MediaWiki",
 	"versionrequiredtext": "É necessária a versão $1 do MediaWiki para usar esta página.\nConsulte a página da [[Special:Version|versão do sistema]].",
 	"ok": "OK",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "Obtida de \"$1\"",
 	"youhavenewmessages": "{{PLURAL:$3|Tem}} $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Tem}} $1 de {{PLURAL:$3|outro utilizador|$3 utilizadores}} ($2).",

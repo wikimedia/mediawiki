@@ -313,7 +313,6 @@
 	"versionrequired": "Kræver version $1 af MediaWiki",
 	"versionrequiredtext": "Version $1 af MediaWiki er nødvendig for at bruge denne side. Se [[Special:Version|Versionssiden]]",
 	"ok": "OK",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "Hentet fra \"$1\"",
 	"youhavenewmessages": "{{PLURAL:$3|Du har}} $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Du har}} $1 fra {{PLURAL:$3|en anden bruger|$3 brugere}} ($2).",

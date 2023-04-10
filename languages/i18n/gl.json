@@ -267,7 +267,6 @@
 	"versionrequired": "Necesítase a versión $1 de MediaWiki",
 	"versionrequiredtext": "Necesítase a versión $1 de MediaWiki para utilizar esta páxina. Ve [[Special:Version|a páxina da versión]].",
 	"ok": "Aceptar",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "Traído desde «$1»",
 	"youhavenewmessages": "{{PLURAL:$3|Tes}} $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Tes}} $1 {{PLURAL:$3|doutro usuario|doutros $3 usuarios}} ($2).",

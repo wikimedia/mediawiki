@@ -249,7 +249,6 @@
 	"versionrequired": "Butuh MediaWiki vèrsi $1",
 	"versionrequiredtext": "MediaWiki vèrsi $1 dibutuhaké kanggo nggunakaké kaca iki. Mangga mirsani [[Special:Version|kaca iki]]",
 	"ok": "Oké",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "Dijupuk saka \"$1\"",
 	"youhavenewmessages": "{{PLURAL:$3|Kowé duwé}} $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Kowé duwé}} $1 saka {{PLURAL:$3|naraguna liya|$3 naraguna}} ($2).",

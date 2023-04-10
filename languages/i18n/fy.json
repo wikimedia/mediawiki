@@ -249,7 +249,6 @@
 	"versionrequired": "Ferzje $1 fan MediaWiki is eask",
 	"versionrequiredtext": "Ferzje $1 fan MediaWiki is eask om dizze side te brûken. Mear ynfo is beskikber op 'e side [[Special:Version|softwareferzje]].",
 	"ok": "OK",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "Opfrege fan \"$1\"",
 	"youhavenewmessages": "{{PLURAL:$3|Jo hawwe}} $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Jo hawwe}} $1 fan {{PLURAL:$3|in oare meidogger|$3 meidoggers}} ($2).",

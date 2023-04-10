@@ -241,7 +241,6 @@
 	"versionrequired": "Parlu MediaWiki mudil $1",
 	"versionrequiredtext": "MediaWiki mudil $1 diparluakan hagan mamuruk laman ngini.\nJanaki [[Special:Version|Laman mudil]]",
 	"ok": "OK",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"backlinksubtitle": "← $1",
 	"retrievedfrom": "Dijumput matan \"$1\"",
 	"youhavenewmessages": "Pian baisi $1 ($2)",

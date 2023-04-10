@@ -178,7 +178,6 @@
 	"versionrequired": "MediaWiki-versio $1 lij pääkklaž",
 	"versionrequiredtext": "Jõs haaʹlääk tän seeid ââʹnned, MediaWiki-versio âlgg leeʹd versio $1. Ǩiõčč [[Special:Version|versio]].",
 	"ok": "OK",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "Occum addrõõzzâst \"$1\"",
 	"youhavenewmessages": "{{PLURAL:$3|Tuʹst}} $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Tuʹst}} $1 {{PLURAL:$3|nuuʼbb õõʹnnʼjest|$3 õõʹnnʼjest}} ($2).",

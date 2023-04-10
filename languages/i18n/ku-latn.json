@@ -256,7 +256,6 @@
 	"versionrequired": "Versiyona $1 a MediaWiki pêwîst e",
 	"versionrequiredtext": "Versiyona $1 a MediaWiki ji bo bikaranîna vê rûpelê pêwîst e. Li [[Special:Version|rûpela versiyonê]] binêre.",
 	"ok": "Baş e",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"backlinksubtitle": "← $1",
 	"retrievedfrom": "Ji \"$1\" hatiye standin.",
 	"youhavenewmessages": "$1 yên te hene ($2).",

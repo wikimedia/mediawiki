@@ -3393,6 +3393,7 @@
 	"watchlistedit-normal-legend": "Odstrani strani iz spiska nadzorov",
 	"watchlistedit-normal-explain": "Tu so prikazane strani na vašem spisku nadzorov.\nZa odstranitev strani označite kvadratek poleg nje in kliknite »{{int:Watchlistedit-normal-submit}}«.\nUrejate lahko tudi [[Special:EditWatchlist/raw|neobdelani spisek]].",
 	"watchlistedit-normal-submit": "Odstrani strani",
+	"watchlistedit-normal-check-all": "Izberi vse",
 	"watchlistedit-normal-done": "Z vašega spiska nadzorov {{PLURAL:$1|je bila odstranjena $1 stran|sta bili odstranjeni $1 strani|so bile odstranjene $1 strani|je bilo odstranjenih $1 strani}}:",
 	"watchlistedit-raw-title": "Urejanje golega spiska nadzorov",
 	"watchlistedit-raw-legend": "Uredi gol spisek nadzorov",

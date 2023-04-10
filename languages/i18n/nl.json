@@ -3357,6 +3357,7 @@
 	"watchlistedit-normal-legend": "Pagina’s van uw volglijst verwijderen",
 	"watchlistedit-normal-explain": "Hieronder worden de pagina’s op uw volglijst weergegeven.\nKlik op het selectievakje ernaast en daarna op \"{{int:Watchlistedit-normal-submit}}\" om een pagina te verwijderen.\nU kunt ook de [[Special:EditWatchlist/raw|ruwe lijst bewerken]].",
 	"watchlistedit-normal-submit": "Pagina's verwijderen",
+	"watchlistedit-normal-check-all": "Alles selecteren",
 	"watchlistedit-normal-done": "Er {{PLURAL:$1|is één pagina|zijn $1 pagina’s}} verwijderd van uw volglijst:",
 	"watchlistedit-raw-title": "Ruwe volglijst bewerken",
 	"watchlistedit-raw-legend": "Ruwe volglijst bewerken",

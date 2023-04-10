@@ -304,7 +304,6 @@
 	"versionrequired": "Απαιτείται η έκδοση $1 του MediaWiki.",
 	"versionrequiredtext": "Για να χρησιμοποιήσετε αυτή τη σελίδα απαιτείται η έκδοση $1 του MediaWiki. Βλ. [[Special:Version|σελίδα έκδοσης]]",
 	"ok": "Εντάξει",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "Ανακτήθηκε από «$1»",
 	"youhavenewmessages": "Έχετε $1 ($2).",
 	"youhavenewmessagesfromusers": "Έχετε $1 από {{PLURAL:$3|έναν άλλο χρήστη|$3 χρήστες}} ($2).",

@@ -246,7 +246,6 @@
 	"versionrequired": "$1 versiyasidagi MediaWiki talab etiladi",
 	"versionrequiredtext": "Bu sahifada ishlash uchun MediaWikining $1-versiyasi talab etiladi.\n[[Special:Version|Dasturiy taʼminot haqida axborot]]ni koʻring.",
 	"ok": "OK",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": " \"$1\" dan olindi",
 	"youhavenewmessages": "{{PLURAL:$3|Sizga}} $1 keldi ($2).",
 	"youhavenewmessagesfromusers": "Siz {{PLURAL:$3|boshqa foydalanuvchidan|$3 ta foydalanuvchidan}} $1 oldingiz ($2).",

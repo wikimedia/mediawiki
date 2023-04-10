@@ -231,7 +231,6 @@
 	"versionrequired": "نۏسخٱ $1 د مدیاڤیکی هاستنیئٱ",
 	"versionrequiredtext": "نوسقٱ $1 مدیاڤیکی سی ڤ کار گرتن د اؽ بٱلگٱ هاسنیٱ.\nساٛل ڤ بٱکؽت [[Special:نوسقٱ|نوسقٱ بٱلگٱ]].",
 	"ok": "خۊئٱ",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "د نۊ زنٱ بیٱ د\"$1\"",
 	"youhavenewmessages": "{{PLURAL:$3|شما دارؽت}} $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|شما}} $1 د {{PLURAL:$3|کاریار هنی|$3 کاریارؽا}}دارؽت($2).",

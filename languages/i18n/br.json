@@ -256,7 +256,6 @@
 	"versionrequired": "Rekis eo Stumm $1 MediaWiki",
 	"versionrequiredtext": "Rekis eo stumm $1 MediaWiki evit implijout ar bajenn-mañ. Sellit ouzh [[Special:Version]]",
 	"ok": "Mat eo",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "Adtapet diwar « $1 »",
 	"youhavenewmessages": "$1 zo ganeoc'h ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Bez' hoc'h eus}} $1 a-berzh {{PLURAL:$3|un implijer all|$3 implijer}} ($2).",

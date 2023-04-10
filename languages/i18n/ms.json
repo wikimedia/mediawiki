@@ -268,7 +268,6 @@
 	"versionrequired": "MediaWiki versi $1 diperlukan",
 	"versionrequiredtext": "MediaWiki versi $1 diperlukan untuk menggunakan laman ini. Sila lihat [[Special:Version|laman versi]].",
 	"ok": "OK",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "Diambil daripada \"$1\"",
 	"youhavenewmessages": "Anda mempunyai $1 ($2).",
 	"youhavenewmessagesfromusers": "Anda menerima $1 daripada {{PLURAL:$3|seorang|$3 orang}} pengguna lain ($2).",

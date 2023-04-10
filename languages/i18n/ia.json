@@ -3259,6 +3259,7 @@
 	"watchlistedit-normal-legend": "Remover titulos del observatorio",
 	"watchlistedit-normal-explain": "Le titulos in tu observatorio es monstrate hic infra.\nPro eliminar un titulo, marca le quadrato correspondente, e clicca \"{{int:Watchlistedit-normal-submit}}\".\nTu pote etiam [[Special:EditWatchlist/raw|modificar le lista in forma crude]].",
 	"watchlistedit-normal-submit": "Remover titulos",
+	"watchlistedit-normal-check-all": "Marcar totes",
 	"watchlistedit-normal-done": "{{PLURAL:$1|1 titulo|$1 titulos}} ha essite removite de tu observatorio:",
 	"watchlistedit-raw-title": "Modification del observatorio in forma crude",
 	"watchlistedit-raw-legend": "Modification del observatorio in forma de un lista simple de titulos",

@@ -219,7 +219,6 @@
 	"versionrequired": "Txxṣṣa $1 n MediaWiki",
 	"versionrequiredtext": "Ixxṣṣa w-ayyaw $1 n MediaWiki bac at tskrert tasna yad.\nẒr [[Special:Version|ayyaw tasna]].",
 	"ok": "Waxxa",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "Yurrid zɣ \"$1\"",
 	"youhavenewmessages": "{{PLURAL:$3|{{GENDER:$3|Dark|Darm}}}} $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Illa dark}} $1 zɣ {{PLURAL:$3|yan umssmrs yaḍn|$3 imssmrsn}} ($2).",

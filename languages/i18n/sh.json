@@ -260,7 +260,6 @@
 	"versionrequired": "Potrebna je verzija $1 MediaWikija",
 	"versionrequiredtext": "Potrebna je verzija $1 MediaWikija da bi se koristila ova stranica. Pogledaj [[Special:Version|verziju]].",
 	"ok": "U redu",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "Izvor: $1",
 	"youhavenewmessages": "{{PLURAL:$3|Imate}} $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Imate}} $1 od {{PLURAL:$3|drugog korisnika|$3 korisnika}} ($2).",

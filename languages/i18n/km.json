@@ -246,7 +246,6 @@
 	"versionrequired": "តម្រូវអោយមាន​កំណែ $1 នៃមេឌាវិគី",
 	"versionrequiredtext": "តម្រូវអោយមានកំណែ $1 នៃមេឌាវិគី ដើម្បីអាចប្រើប្រាស់ទំព័រនេះ។\n\nសូមមើល [[Special:Version|ទំព័រកំណែ]]។",
 	"ok": "យល់ព្រម",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "បានពី \"$1\"",
 	"youhavenewmessages": "អ្នកមាន $1 ($2)។",
 	"youhavenewmessagesfromusers": "អ្នកមាន $1 ទទួលបានពី {{PLURAL:$3|អ្នកប្រើប្រាស់ម្នាក់|អុ្នកប្រើប្រាស់ចំនួន $3 នាក់}} ($2)។",

@@ -265,7 +265,6 @@
 	"versionrequired": "Kailangan ng bersyon $1 ng MediaWiki",
 	"versionrequiredtext": "Kailangan ng bersyon $1 ng MediaWiki para magamit ang pahinang ito.\nTingnan ang [[Special:Version|pahina ng bersyon]].",
 	"ok": "Sige",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "Kinuha sa \"$1\"",
 	"youhavenewmessages": "{{PLURAL:$3|Meron kang}} $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Meron kang}} $1 mula sa {{PLURAL:$3|isang tagagamit|$3 (na) tagagamit}} ($2).",

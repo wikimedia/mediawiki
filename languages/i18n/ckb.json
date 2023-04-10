@@ -258,7 +258,6 @@
 	"versionrequired": "وەشانی $1ی‌ میدیاویکی پێویستە",
 	"versionrequiredtext": "پێویستیت بە وەشانی $1ی ویکیمیدیا ھەیە بۆ بەکاربردنی ئەم پەڕەیە.\nتەماشای [[Special:Version|پەڕەی وەشان]] بکە.",
 	"ok": "باشه‌",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"backlinksubtitle": "→ $1",
 	"retrievedfrom": "وەرگیراو لە «$1»",
 	"youhavenewmessages": "$1ت ھەیە ($2).",

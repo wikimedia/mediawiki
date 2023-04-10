@@ -226,7 +226,6 @@
 	"versionrequired": "MediaWikist taarbâš versio $1",
 	"versionrequiredtext": "MediaWikist taarbâš versio $1 taan siijđo kevttimân. Keejâ [[Special:Version|versio]].",
 	"ok": "OK",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "Viežžum saajeest \"$1\"",
 	"youhavenewmessages": "{{PLURAL:$3|Tunjin láá}} $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Tust lii|Tust láá}} $1 {{PLURAL:$3|nube kevttest|$3 kevttest}} ($2).",
