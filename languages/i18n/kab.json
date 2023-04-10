@@ -26,7 +26,8 @@
 			"YouvaDjouadi",
 			"YubaWissin",
 			"아라",
-			"Bilalbill"
+			"Bilalbill",
+			"Base"
 		]
 	},
 	"tog-underline": "Aderrer n yiseɣwan:",
@@ -753,7 +754,7 @@
 	"rev-deleted-unhide-diff": "Yiwen lqem n tameẓla agi '''yetwesfeḍ'''.\nTilɣa llant deg [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} uɣmis n usfeḍ].\nTzemreḍ meqqar [$1 ad ẓṛeḍ tameẓla agi] ma tebɣiḍ",
 	"rev-suppressed-unhide-diff": "Yiwen lqem n tameẓla agi '''yetwekkes'''.\nTilɣa llant deg [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} uɣmis n umḥu].\nTzemreḍ meqqar [$1 ad ẓṛeḍ tameẓla agi] ma tebɣiḍ",
 	"rev-deleted-diff-view": "Yiwen lqem n \"diff\" agi '''yetwekkes'''.\nTzemreḍ att ẓṛeḍ ; tilɣa llant deg [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} uɣmis n umḥu].",
-	"rev-suppressed-diff-view": "Yiwen lqem n \"diff\" agi '''yetwesfeḍ'''.\nTzemreḍ att ẓṛeḍ ; tilɣa llant deg [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} uɣmis n usfeḍ].",
+	"rev-suppressed-diff-view": "Yiwen lqem n \"diff\" agi '''yetwesfeḍ'''.\nTzemreḍ att ẓṛeḍ ; tilɣa llant deg [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} uɣmis n usfeḍ].",
 	"rev-delundel": "ssken/ffer",
 	"rev-showdeleted": "Ssken",
 	"revisiondelete": "Mḥu/kkes amḥay tisiwal",

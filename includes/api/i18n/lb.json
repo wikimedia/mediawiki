@@ -107,7 +107,7 @@
 	"apihelp-query+deletedrevs-summary": "Geläscht Versiounen oplëschten.",
 	"apihelp-query+deletedrevs-param-unique": "Nëmmen eng Versioun fir all Säit weisen.",
 	"apihelp-query+embeddedin-param-filterredir": "Wéi Viruleedungen gefiltert gi sollen.",
-	"apihelp-query+exturlusage-example-simple": "Säiten. déi op <kbd>https://www.mediawiki.org</kbd> linken, weisen.",
+	"apihelp-query+exturlusage-example-simple": "Säite weisen, déi op <kbd>https://www.mediawiki.org</kbd> linken.",
 	"apihelp-query+filearchive-paramvalue-prop-dimensions": "Alias fir Gréisst.",
 	"apihelp-query+filearchive-example-simple": "Eng Lëscht vun alle geläschte Fichiere weisen",
 	"apihelp-query+fileusage-paramvalue-prop-title": "Titel vun all Säit.",

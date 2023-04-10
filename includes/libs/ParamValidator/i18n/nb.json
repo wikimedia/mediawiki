@@ -39,7 +39,7 @@
 	"paramvalidator-help-default-empty": "Stardard: (tom)",
 	"paramvalidator-help-deprecated": "Denne parameteren er foreldet.",
 	"paramvalidator-help-multi-separate": "Skill verdier fra hverandre med «|», eller begynn lista med U+001F og skill verdiene fra hverandre med U+001F.",
-	"paramvalidator-help-multi-max": "Maksimalt antall verdier er {{PLURAL:$1|$1}} ({{PLURAL:$2|$2}} for klienter som tillater høyere grenser).",
+	"paramvalidator-help-multi-max": "Maksimalt antall verdier er {{PLURAL:$1|$1}} ({{PLURAL:$2|$2}} for klienter som er tillatt høyere grenser).",
 	"paramvalidator-help-multi-max-simple": "Maksimalt antall verdier er {{PLURAL:$1|$1}}.",
 	"paramvalidator-help-multi-all": "For å angi alle verdier, bruk <kbd>$1</kbd>.",
 	"paramvalidator-help-required": "Denne parameteren er påkrevd.",

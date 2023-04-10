@@ -17,7 +17,8 @@
 			"Vlad5250",
 			"아라",
 			"Amire80",
-			"Kai theos en ho logos"
+			"Kai theos en ho logos",
+			"Base"
 		]
 	},
 	"tog-underline": "Kuritan sa idalom ang mga tabid:",
@@ -623,7 +624,7 @@
 	"rev-deleted-unhide-diff": "Ang isa sa mga pagbag-o sa sini nga diff '''ginpanas'''.\nMakita ang mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sang pagpanas].\nMakita mo man ini sa gihapon [$1 lantawon ang ini nga diff] kon luyag mo pa magpadayon.",
 	"rev-suppressed-unhide-diff": "Ang isa sang mga pagbag-o sang sini nga diff '''ginpahugotan'''.\nMakita ang mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sang pagpahugot].\nMakita mo man ini sa gihapon [$1 lantawon ang ini nga diff] kon luyag mo pa magpadayon.",
 	"rev-deleted-diff-view": "Ang isa sa mga pagbag-o sa sini nga diff '''ginpanas'''.\nMakita mo ini nga diff; makita ang mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sang pagpanas].",
-	"rev-suppressed-diff-view": "Ang isa sa mga pagbag-o sa sini nga diff '''ginpahugotan'''.\nMakita mo ini nga diff; makita ang mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sang pagpahugot].",
+	"rev-suppressed-diff-view": "Ang isa sa mga pagbag-o sa sini nga diff '''ginpahugotan'''.\nMakita mo ini nga diff; makita ang mga detalye sa [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log sang pagpahugot].",
 	"rev-delundel": "ilisan ang makita",
 	"rev-showdeleted": "ipakita",
 	"revisiondelete": "Panason/indi pagpanason ang mga pagbag-o",

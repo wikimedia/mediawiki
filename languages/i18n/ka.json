@@ -36,7 +36,8 @@
 			"아라",
 			"McDutchie",
 			"Გიო ოქრო",
-			"Იო ოქრო"
+			"Იო ოქრო",
+			"ჯეო"
 		]
 	},
 	"tog-underline": "ბმულების ხაზგასმა:",
@@ -681,6 +682,7 @@
 	"token_suffix_mismatch": "'''თქვენი შესწორება გაუქმდა რადგანაც პროგრამა არასწორედ აღიქვამს პუნქტუაციის ნიშნებს რედაქტირების ფანჯარაში. შესწრება გაუქმდა სტატიის არ გაფუჭების მიზნით. შესაძლოა ეს გამოწვეულია გაფუჭებული ვებ პროქსის გამოყენებით.'''",
 	"edit_form_incomplete": "'''რედაქტირებების ნაწილმა სერვერამდე ვერ მიაღწია; გთხოვთ, შეამოწმეთ თქვენი რედაქტირებების სრულყოფილება და სცადეთ განმეორებით.'''",
 	"editing": "რედაქტირება: $1",
+	"edit-textarea-aria-label": "ვიკიტექსტის წყაროს რედაქტორი",
 	"creating": "იქმნება: „$1“",
 	"editingsection": "რედაქტირება - $1 (სექცია)",
 	"editingcomment": "რედაქტირება: $1 (ახალი სექცია)",
@@ -697,7 +699,7 @@
 	"longpageerror": "'''შეცდომა: თქვენს მიერ აკრეფილი ტექსტის ზომა {{PLURAL:$1|$1 კილობაიტია}}, რაც აღემატება, დადგენილ {{PLURAL:$2|$2 კილობაიტიან}} ზღვარს. გვერდის შენახვა შეუძლებელია.'''",
 	"readonlywarning": "<strong>გაფრთხილება: მონაცემთა ბაზა დახურულია პერიოდული შემოწმებისთვის, შესაბამისად თქვენ ვერ შეძლებთ რედაქტირებას ამ მომენტში.</strong>\nსასურველია ტექსტის ასლი შეინახოთ ტექსტურ რედაქტორში და მოგვიანებით შემოიტანოთ.\n\nსისტემურმა ადმინისტრატორმა შემდეგი კომენტარი დატოვა: $1",
 	"protectedpagewarning": "'''ყურადღება:  ეს გვერდი დაბლოკილია და მისი რედაქტირება შეუძლიათ მხოლოდ მომხმარებლებს ადმინისტრატორის უფლებებით'''\nიხილეთ დაცვის ჟურნალის ჩანაწერი",
-	"semiprotectedpagewarning": "'''ყურადღება:''' ეს გვერდი დაბლოკილია და მისი რედაქტირება მხოლოდ რეგისტრირებულ მომხმარებლებს შეუძლიათ.\nიხილეთ ჟურნალი დამატებითი ინფორმაციისთვის:",
+	"semiprotectedpagewarning": "<strong>შენიშვნა:</strong> ეს გვერდი დაცულია ისე, რომ მხოლოდ ავტომატურად დადასტურებულ მომხმარებლებს შეუძლიათ მისი რედაქტირება.\n ჟურნალის უახლესი ჩანაწერი მოცემულია ქვემოთ მითითებისთვის:",
 	"cascadeprotectedwarning": "<strong>გაფრთხილება:</strong> ეს გვერდი დაცულია ისე, რომ მისი რედაქტირება მხოლოდ [[Special:ListGroupRights|შესაბამისი უფლებების მქონე მომხმარებლებს]] შეუძლიათ, რადგან იგი ეკუთვნის შემდეგ კასკადურად დაცვის {{PLURAL:$1|გვერდს|გვერდებს}}:",
 	"titleprotectedwarning": "'''ყურადღება! გვერდი ამ სათაურით დაცულია, მისი რედაქტირება შეუძლიათ მხოლოდ [[Special:ListGroupRights|სპეციალური უფლებების]] მქონე მომხმარებლებს.'''\nიხილეთ ჟურნალი დამატებითი ინფორმაციისთვის:",
 	"templatesused": "ამ გვერდზე გამოყენებული {{PLURAL:$1|თარგი|თარგები}}:",
@@ -712,6 +714,7 @@
 	"nocreate-loggedin": "თქვენ არ გაქვთ ახალი გვერდების შექმნის უფლება.",
 	"sectioneditnotsupported-title": "სექციის რედაქტირება ვერ ხერხდება",
 	"sectioneditnotsupported-text": "სექციის რედაქტირება გათიშულია ამ გვერდისთვის",
+	"modeleditnotsupported-title": "რედაქტირება არ არის მხარდაჭერილი",
 	"permissionserrors": "ნებართვის შეცდომა",
 	"permissionserrorstext": "თქვენ არ გაქვთ ამის გაკეთების უფლება, შემდეგი {{PLURAL:$1|მიზეზის|მიზეზების}} გამო:",
 	"permissionserrorstext-withaction": "თქვენ არ გაქვთ ამ მოქმედების - „$2“ განხორციელების ნებართვა შემდეგი {{PLURAL:$1|მიზეზის|მიზეზების}} გამო:",
@@ -1366,6 +1369,7 @@
 	"rcfilters-clear-all-filters": "ყველა ფილტრის გაწმენდა",
 	"rcfilters-show-new-changes": "$1-დან დაწყებული ახალი ცვლილებების ნახვა",
 	"rcfilters-search-placeholder": "ცვლილებების გაფილტვრა (გამოიყენეთ მენიუ ან მოძებნეთ ფილტრის სახელი)",
+	"rcfilters-search-placeholder-mobile": "ფილტრები",
 	"rcfilters-invalid-filter": "არასწორი ფილტრი",
 	"rcfilters-empty-filter": "აქტიური ფილტრები არ არის. აისახება ყველა წვლილი.",
 	"rcfilters-filterlist-title": "ფილტრები",
@@ -1401,6 +1405,7 @@
 	"rcfilters-filter-humans-description": "რედაქტორების მიერ შესრულებული რედაქტირებები.",
 	"rcfilters-filtergroup-reviewstatus": "შემოწმების სტატუსი",
 	"rcfilters-filter-reviewstatus-unpatrolled-label": "გაუპატრულირებული",
+	"rcfilters-filter-reviewstatus-auto-label": "ავტოპატრულები",
 	"rcfilters-filtergroup-significance": "მნიშვნელობა",
 	"rcfilters-filter-minor-label": "მცირე რედაქტირებები",
 	"rcfilters-filter-minor-description": "რედაქტირებები, რომლებიც ავტორმა მონიშნა როგორც მცირე.",
@@ -1456,6 +1461,7 @@
 	"rcfilters-watchlist-preference-help": "აუქმებს 2017 წლის ინტერფეისისა და ყველა ხელსაწყოს რედიზაინს დამატებულს მაშინ და შემდგომ.",
 	"rcfilters-filter-showlinkedfrom-label": "ცვლილებების ჩვენება დაკავშირებულ გვერდებზე",
 	"rcfilters-filter-showlinkedto-option-label": "<strong>არჩეულზე, დაკავშირებული</strong> გვერდები",
+	"rcfilters-target-page-placeholder": "შეიყვანეთ გვერდის სახელი (ან კატეგორია)",
 	"rcfilters-allcontents-label": "მთელი სახელთა სივრცე",
 	"rcfilters-alldiscussions-label": "ყველა განხილვა",
 	"rcnotefrom": "ქვემოთ {{PLURAL:$5|ნაჩვენებია ცვლილება|ნაჩვენებია ცვლილებები}} <strong>$3, $4</strong>-დან (ნაჩვენებია არაუმეტეს <strong>$1</strong>).",
@@ -1959,6 +1965,7 @@
 	"apisandbox-dynamic-error-exists": "პარამეტრი \"$1\" სახელით უკვე არსებობს.",
 	"apisandbox-deprecated-parameters": "შემცირებული პარამეტრები",
 	"apisandbox-fetch-token": "ტოკენის ავტომატური შევსება",
+	"apisandbox-add-multi": "დამატება",
 	"apisandbox-submit-invalid-fields-title": "ზოგიერთი ველი არ აკმაყოფილებს კრიტერიუმებს",
 	"apisandbox-submit-invalid-fields-message": "გთხოვთ, შეასწორეთ მონიშნული ველები და თავიდან სცადეთ.",
 	"apisandbox-results": "შედეგები",
@@ -3130,6 +3137,7 @@
 	"version-poweredby-credits": "ეს ვიკი მუშაობს '''[https://www.mediawiki.org/ MediaWiki]'''-ს ძრავზე, copyright © 2001-$1 $2.",
 	"version-poweredby-others": "სხვები",
 	"version-poweredby-translators": "translatewiki.net-ის მთარგმნელები",
+	"version-poweredby-various": "სხვადასხვა ავტორები",
 	"version-credits-summary": "გვინდა მადლობა გადავუხადოთ შემდეგ მომხმარებლებს მათი წვლილისათვის [[Special:Version|მედიავიკის]] განვითარებაში.",
 	"version-license-info": "MediaWiki არის თავისუფალი პროგრამული უზრუნველყოფა; შეგიძლიათ მისი გავრცელება ან/და მოდიფიცირება GNU General Public License ლიცენზიის პირობების შესაბამისად. როგორც გამოქვეყნებულია თავისუფალი პროგრამული უზრუნველყოფის ფონდის მიერ; ან ლიცენზიის მეორე ვერსიაში, ან (თქვენი აზრით) უფრო ახალში.\n\nMediaWiki ვრცელდება იმ იმედით, რომ ის სასარგებლო იქნება, მაგრამ გარანტიის გარეშე; კომერციული ღირებულების ნაგულისხმევი გარანტიის გარეშეც კი ან რაიმე მიზნისთვის სარგებლის მისაღებად. მეტი დეტალური ინფორმაციისთვის, იხილეთ GNU General Public License.\n\nამ პროგრამასთან ერთად თქვენ უნდა მიგეღოთ [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public License ლიცენზიის ასლი]; თუ არ მიგიღიათ, მისწერეთ თავისუფალი პროგრამული უზრუნველყოფის ფონდს, Free Software Foundation, Inc., ფრანკლინის ქუჩა 51, მეხუთე სართული, ბოსტონი, MA 02110-1301, აშშ, ან [//www.gnu.org/licenses/old-licenses/gpl-2.0.html წაიკითხეთ იგი ინტერნეტში].",
 	"version-software": "დაინსტალირებული პროგრამული უზრუნველყოფა",
@@ -3722,5 +3730,6 @@
 	"passwordpolicies": "პაროლების პოლიტიკა",
 	"userlogout-continue": "გინდა გახვიდე?",
 	"paramvalidator-help-type-user-subtype-name": "მომხმარებლის სახელი",
-	"paramvalidator-help-type-user-subtype-ip": "IP"
+	"paramvalidator-help-type-user-subtype-ip": "IP",
+	"paramvalidator-help-type-user-subtype-id": "მომხმარებლის ID (მაგ. \"#12345\")"
 }

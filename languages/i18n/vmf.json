@@ -8,7 +8,8 @@
 			"Silvicola",
 			"Zombie45764",
 			"아라",
-			"Amire80"
+			"Amire80",
+			"Mucalexx"
 		]
 	},
 	"tog-underline": "Linggs undârschdrajchn:",
@@ -309,7 +310,7 @@
 	"searchprofile-everything-tooltip": "Gsamdn Inhald durchsoung (aa Disgussionsseidn)",
 	"searchprofile-advanced-tooltip": "Soung in weidere Namensraim",
 	"search-result-size": "$1 ({{PLURAL:$2|1 wôrd|$2 wärdâr}})",
-	"search-result-category-size": "{{PLURAL:$1|1 Seidn|$1 Seidn}} ({{PLURAL:$2|1 Untergadegorii|$2 Untergadegoriin}}, {{PLURAL:$3|1 Dadei|$3 Dadein}})",
+	"search-result-category-size": "{{PLURAL:$1|1 Seiten|$1 Seiten}} ({{PLURAL:$2|1 Unterkategorie|$2 Unterkategorien}}, {{PLURAL:$3|1 Datei|$3 Datein}})",
 	"search-redirect": "(Wajdalajdung fon „$1“ häa)",
 	"search-section": "(Abschnid $1)",
 	"search-suggest": "Hasd ajchndlich gmaand „$1“?",
@@ -446,7 +447,7 @@
 	"ncategories": "$1 {{PLURAL:$1|GhadegoriiGhadegoriin}}",
 	"nmembers": "{{PLURAL:$1|1 âjdrôôch|$1 âjdrääch}}",
 	"prefixindex": "Ale sajdn mid brääfigs",
-	"usercreated": "{{GENDER:$3|Ersschdelld}} am $1 um $2 Uhr",
+	"usercreated": "{{GENDER:$3|Erstëd}} am $1 um $2 Uer",
 	"newpages": "Naje sajdn",
 	"move": "Umdaafn",
 	"movethispage": "Sajdn umdaafn",
@@ -522,7 +523,7 @@
 	"contributions": "{{GENDER:$1|Beidrääch}}",
 	"contributions-title": "Bajdrääch fo „$1“",
 	"mycontris": "Bajdreech",
-	"contribsub2": "Von {{GENDER:$3|$1}} ($2)",
+	"contribsub2": "Voh {{GENDER:$3|$1}} ($2)",
 	"uctop": "agduell",
 	"month": "bis moonad:",
 	"year": "bis dsum jôôr:",

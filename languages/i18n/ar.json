@@ -103,7 +103,8 @@
 			"Mhab Zdan1",
 			"Hamdisaif",
 			"AA800",
-			"Karim185.3"
+			"Karim185.3",
+			"MRidhaAJ"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -1951,7 +1952,7 @@
 	"listfiles-userdoesnotexist": "حساب المستخدم \"$1\" غير مسجل.",
 	"imgfile": "ملف",
 	"listfiles": "قائمة الملفات",
-	"listfiles_subpage": "المرفوعات بواسطة $1",
+	"listfiles_subpage": "مرفوعات $1",
 	"listfiles_thumb": "تصغير",
 	"listfiles_date": "تاريخ",
 	"listfiles_name": "الاسم",
