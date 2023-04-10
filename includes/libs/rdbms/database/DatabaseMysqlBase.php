@@ -737,18 +737,6 @@ abstract class DatabaseMysqlBase extends Database {
 		return $filteredViews;
 	}
 
-	/**
-	 * Differentiates between a TABLE and a VIEW.
-	 *
-	 * @param string $name Name of the TABLE/VIEW to test
-	 * @param string|null $prefix
-	 * @return bool
-	 * @since 1.22
-	 */
-	public function isView( $name, $prefix = null ) {
-		return in_array( $name, $this->listViews( $prefix, __METHOD__ ) );
-	}
-
 	public function selectSQLText(
 		$table,
 		$vars,

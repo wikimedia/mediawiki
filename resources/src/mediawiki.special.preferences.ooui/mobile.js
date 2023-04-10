@@ -66,7 +66,10 @@
 			{ action: 'cancel', label: mw.msg( 'prefs-back-title' ), flags: [ 'safe', 'close' ] }
 		];
 		PrefDialog.prototype.initialize = function () {
-			insertToggles( sectionBody.querySelectorAll( 'span.oo-ui-checkboxInputWidget' ) );
+			// T334260 Mobile format breaks global preferences;
+			if ( mw.config.get( 'wgCanonicalSpecialPageName' ) === 'Preferences' ) {
+				insertToggles( sectionBody.querySelectorAll( 'span.oo-ui-checkboxInputWidget' ) );
+			}
 			this.name = sectionId;
 			PrefDialog.super.prototype.initialize.call( this );
 			this.$body.append( sectionBody );
