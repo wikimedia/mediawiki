@@ -244,7 +244,6 @@
 	"versionrequired": "Kinahanglan an Bersion $1 han MediaWiki",
 	"versionrequiredtext": "Kinahanglan an Bersyon $1 han MediaWiki ha paggamit hini nga pakli.  Kitaa an [[Special:Version|bersyon nga pakli]].",
 	"ok": "OK",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "Ginkuha tikang ha \"$1\"",
 	"youhavenewmessages": "Mayda ka $1 ($2).",
 	"youhavenewmessagesfromusers": "May-ada ka $1 tikang ha {{PLURAL:$3|iba nga gumaramit|$3 mga gumaramit}} ($2).",

@@ -3394,6 +3394,7 @@
 	"watchlistedit-normal-legend": "從監視清單中移除標題",
 	"watchlistedit-normal-explain": "下方顯示在您監視清單中的標題。要移除標題，請勾選該標題旁的核選方塊並點選「{{int:Watchlistedit-normal-submit}}」。您也可[[Special:EditWatchlist/raw|編輯原始監視清單]]。",
 	"watchlistedit-normal-submit": "移除標題",
+	"watchlistedit-normal-check-all": "選取所有",
 	"watchlistedit-normal-done": "已於您的監視清單中移除 {{PLURAL:$1|$1}} 個標題：",
 	"watchlistedit-raw-title": "編輯原始監視清單",
 	"watchlistedit-raw-legend": "編輯原始監視清單",

@@ -238,7 +238,6 @@
 	"versionrequired": "\nMitaky version $1-n'i MediaWiki",
 	"versionrequiredtext": "Mitaky version $1-n'i MediaWiki ny fampiasana ity pejy ity. Jereo [[Special:Version]].",
 	"ok": "Eka",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "Hita tao amin'ny \"$1\"",
 	"youhavenewmessages": "Manana $1 ($2).",
 	"youhavenewmessagesfromusers": "Manana $1 avy amin'ny mpikambana {{PLURAL:$3|hafa|$3}} ($2).",

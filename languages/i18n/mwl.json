@@ -213,7 +213,6 @@
 	"badaccess": "Erro de premisson",
 	"versionrequired": "Ye percisa la beson $1 de l MediaWiki",
 	"ok": "OK",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "Sacado an \"$1\"",
 	"youhavenewmessages": "{{PLURAL:$3|Tu tenes}} $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Ten}} $1 de {{PLURAL:$3|outro outelizador|$3 outelizadores}} ($2).",

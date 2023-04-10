@@ -280,7 +280,6 @@
 	"versionrequired": "Este necesară versiunea $1 a MediaWiki",
 	"versionrequiredtext": "Versiunea $1 a MediaWiki este necesară pentru a folosi această pagină. Vedeți [[Special:Version|versiunea actuală]].",
 	"ok": "OK",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "Adus de la „$1”",
 	"youhavenewmessages": "{{PLURAL:$3|Aveți}} $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Aveți}} $1 de la {{PLURAL:$3|un alt utilizator|$3 utilizatori|$3 de utilizatori}} ($2).",

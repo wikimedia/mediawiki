@@ -248,7 +248,6 @@
 	"versionrequired": "MediaWiki نىڭ $1 نەشرى زۆرۈر",
 	"versionrequiredtext": "$1 نەشرىدىكى MediaWiki بولغاندىلا ئاندىن بۇ بەتنى ئىشلىتەلەيدۇ.\n\n[[Special:Version|نەشر بېتى]] نى كۆرۈڭ.",
 	"ok": "ماقۇل",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"backlinksubtitle": "→ $1",
 	"retrievedfrom": "\"$1\" دىن ئېرىشكەن",
 	"youhavenewmessages": "سىزدە $1 ($2) بار.",

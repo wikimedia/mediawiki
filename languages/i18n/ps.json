@@ -242,7 +242,6 @@
 	"versionrequired": "د ميډياويکي $1 بڼې ته اړتيا ده",
 	"versionrequiredtext": "د دې مخ په ليدلو کې د مېډياويکي $1 بڼې ته اړتيا ده. \n[[Special:Version|د بڼې مخ وگورۍ]].",
 	"ok": "ښه",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"backlinksubtitle": "→ $1",
 	"retrievedfrom": "\"$1\" نه اخيستل شوی",
 	"youhavenewmessages": "تاسې $1 لری  ($2).",

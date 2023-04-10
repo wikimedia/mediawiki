@@ -3460,6 +3460,7 @@
 	"watchlistedit-normal-legend": "Удаление записей из списка наблюдения",
 	"watchlistedit-normal-explain": "Ниже перечислены страницы, находящиеся в вашем списке наблюдения.\nДля удаления записей отметьте соответствующие позиции и нажмите кнопку «{{int:Watchlistedit-normal-submit}}».\nВы также можете [[Special:EditWatchlist/raw|править список как текст]].",
 	"watchlistedit-normal-submit": "Удалить записи",
+	"watchlistedit-normal-check-all": "Отметить все",
 	"watchlistedit-normal-done": "Из вашего списка наблюдения {{PLURAL:$1|была удалена|были удалены|было удалено}} $1 {{PLURAL:$1|запись|записи|записей}}:",
 	"watchlistedit-raw-title": "Редактирование списка наблюдения как текста",
 	"watchlistedit-raw-legend": "Редактирование списка наблюдения",

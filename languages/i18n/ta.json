@@ -288,7 +288,6 @@
 	"versionrequired": "மீடியாவிக்கியின் $1 பதிப்பு தேவை",
 	"versionrequiredtext": "இப்பக்கத்தைப் பயன்படுத்த மீடியாவிக்கியின் $1 பதிப்பு தேவை. [[Special:Version|பதிப்புப் பக்கத்தைப்]] பார்க்க.",
 	"ok": "சரி",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"backlinksubtitle": "← $1",
 	"retrievedfrom": "\"$1\" இருந்து மீள்விக்கப்பட்டது",
 	"youhavenewmessages": "உங்களுக்குப் $1 உள்ளன ($2).",

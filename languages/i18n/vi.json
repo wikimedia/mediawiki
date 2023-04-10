@@ -3817,7 +3817,7 @@
 	"rightslogentry-temporary-group": "$1 (tạm thời cho đến $2)",
 	"feedback-cancel": "Hủy bỏ",
 	"feedback-close": "Xong",
-	"feedback-external-bug-report-button": "Tạo một công việc kỹ thuật",
+	"feedback-external-bug-report-button": "Tạo báo cáo",
 	"feedback-dialog-title": "Gửi phản hồi",
 	"feedback-dialog-intro": "Bạn có thể gửi phản hồi dễ dàng qua biểu mẫu bên dưới. Thông tin phản hồi của bạn sẽ được bổ sung vào trang “$1” cùng với tên người dùng của bạn.",
 	"feedback-error1": "Hủy bỏ",

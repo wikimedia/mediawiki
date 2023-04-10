@@ -230,7 +230,6 @@
 	"versionrequired": "Ye precisa a versión $1 de MediaWiki",
 	"versionrequiredtext": "Ye precisa a versión $1 de MediaWiki ta fer servir ista pachina. Ta más información, consulte [[Special:Version]]",
 	"ok": "D'alcuerdo",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "Obteniu de \"$1\"",
 	"youhavenewmessages": "Tiene $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Tiens}} $1 {{PLURAL:$3|d'atro usuario|de $3 usuarios}} ($2).",

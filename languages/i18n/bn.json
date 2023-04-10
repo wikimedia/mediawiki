@@ -295,7 +295,6 @@
 	"versionrequired": "মিডিয়াউইকির $1 নং সংস্করণ প্রয়োজন",
 	"versionrequiredtext": "এই পাতাটি ব্যবহার করার জন্য মিডিয়াউইকির $1 নং সংস্করণ প্রয়োজন। [[Special:Version|সংস্করণ পাতা]] দেখুন।",
 	"ok": "ঠিক আছে",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"backlinksubtitle": "← $1",
 	"retrievedfrom": "'$1' থেকে আনীত",
 	"youhavenewmessages": "{{PLURAL:$3|আপনি}} $1 পেয়েছেন ($2)।",

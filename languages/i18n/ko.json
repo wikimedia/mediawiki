@@ -1124,6 +1124,8 @@
 	"prefs-email": "이메일 옵션",
 	"prefs-rendering": "보이기",
 	"prefs-searchmisc": "일반",
+	"searchprefs": "환경 설정 검색",
+	"searchprefs-noresults": "결과 없음",
 	"saveprefs": "저장",
 	"restoreprefs": "모두 기본 설정으로 복구",
 	"prefs-editing": "편집",

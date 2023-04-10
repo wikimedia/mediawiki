@@ -250,7 +250,6 @@
 	"versionrequired": "MediaWiki-ни $1 версиясы керекди",
 	"versionrequiredtext": "Бу бетде ишлер ючюн MediaWiki-ни $1 версиясы керекди.  [[Special:Version|Хайырладырылгъан программаны версияларыны юсюнден информациягъа]] къара.",
 	"ok": "ОК",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"backlinksubtitle": "←$1",
 	"retrievedfrom": "Чыкъгъаны — «$1»",
 	"youhavenewmessages": "Сизге $1 келдиле ($2).",

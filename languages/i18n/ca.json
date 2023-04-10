@@ -309,7 +309,6 @@
 	"versionrequired": "Cal la versió $1 del MediaWiki",
 	"versionrequiredtext": "Cal la versió $1 del MediaWiki per a utilitzar aquesta pàgina. Vegeu [[Special:Version]].",
 	"ok": "D’acord",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "Obtingut de «$1»",
 	"youhavenewmessages": "{{PLURAL:$3|Tens}} $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Tens}} $1 {{PLURAL:$3|d'un altre usuari|de $3 usuaris}} ($2).",

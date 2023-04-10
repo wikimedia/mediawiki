@@ -1520,7 +1520,7 @@
 	"api-login-fail-sameorigin": "Non pote aperir session quando le politica del mesme origine non es applicate.",
 	"api-pageset-param-titles": "Un lista de titulos sur le quales travaliar.",
 	"api-pageset-param-pageids": "Un lista de identificatores de pagina sur le quales travaliar.",
-	"api-pageset-param-revids": "Un lista de identificatores de version sur le quales travaliar.",
+	"api-pageset-param-revids": "Un lista de identificatores de version sur le quales travaliar. Nota que quasi tote le modulos de consulta converte identificatores de version al identificator de pagina correspondente e tractara le ultime version del pagina. Solmente <kbd>prop=revisions</kbd> usa versiones exacte pro su responsa.",
 	"api-pageset-param-generator": "Obtener le lista de paginas sur le quales travaliar, executante le modulo de consulta specificate.\n\n<strong>Nota:</strong> Le nomines de parametro de generator debe haber un prefixo \"g\", vide exemplos.",
 	"api-pageset-param-redirects-generator": "Resolver automaticamente le redirectiones in <var>$1titles</var>, <var>$1pageids</var> e <var>$1revids</var>, e in paginas restituite per <var>$1generator</var>.",
 	"api-pageset-param-redirects-nogenerator": "Resolver automaticamente le redirectiones in <var>$1titles</var>, <var>$1pageids</var> e <var>$1revids</var>.",

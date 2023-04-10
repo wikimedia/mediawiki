@@ -193,7 +193,6 @@
 	"versionrequired": "MediaWiki $1 versjuvdna l dárbahuvvum",
 	"versionrequiredtext": "MediaWiki $1 dárrbahuvvu jus dån galga dáv bielev adnet.\nVuojne [[Special:Version|versjuvdnabielev]].",
 	"ok": "Miededav",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "\"$1\" rájest vädtjam",
 	"youhavenewmessages": "{{PLURAL:$3|Duvne lä}} $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Lä duvne}} $1 {{PLURAL:$3|mubbe adnejist|$3 adnejijst}} ($2).",

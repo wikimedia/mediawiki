@@ -1167,7 +1167,7 @@
 	"linterror-html5-misnesting": "Няслушная ўкладванне (цяпер зламаная)",
 	"linterror-misc-tidy-replacement-issues": "Разнастайныя памылкі разметкі",
 	"linterror-misnested-tag": "Няслушна ўкладзены тэг, які варта ўкласці правільна",
-	"linterror-missing-end-tag": "Адсутнічае завяршальны тэг",
+	"linterror-missing-end-tag": "Бракуе завяршальнага тэга",
 	"linterror-multi-colon-escape": "Мноства мадыфікацыйных двукроп’яў",
 	"linterror-multiline-html-table-in-list": "Шматрадковая табліца HTML5 унутры спісу",
 	"linterror-multiple-unclosed-formatting-tags": "Мноства незавершаных тэгаў фарматавання на старонцы",

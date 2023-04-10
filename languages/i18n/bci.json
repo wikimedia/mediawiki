@@ -226,7 +226,6 @@
 	"versionrequired": "Ô fata kè amoun lé MediaWiki i version $1",
 	"versionrequiredtext": "Ô fata kè amoun lé MediaWiki i version $1 klouaa ka nan amoun a fa floua boué nga.\nNian [[Special:Version|version floua boué]].",
 	"ok": "Kpli sou",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"backlinksubtitle": "← $1",
 	"retrievedfrom": "Bé yili \"$1\" i noun",
 	"youhavenewmessages": "{{PLURAL:$3|Amoun lé}} $1 ($2).",

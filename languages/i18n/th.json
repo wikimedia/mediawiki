@@ -275,7 +275,6 @@
 	"versionrequired": "ต้องการมีเดียวิกิรุ่น $1",
 	"versionrequiredtext": "การใช้หน้านี้ต้องการมีเดียวิกิรุ่น $1  ดู[[Special:Version|หน้ารุ่น]]",
 	"ok": "ตกลง",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "เข้าถึงจาก \"$1\"",
 	"youhavenewmessages": "คุณมี$1 ($2)",
 	"youhavenewmessagesfromusers": "คุณมี $1จาก{{PLURAL:$3|ผู้ใช้คนอื่น|ผู้ใช้ $3 คน}} ($2)",
