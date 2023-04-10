@@ -3,7 +3,6 @@
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * PHPUnit tests for MemoizedCallable class.
  * @covers MemoizedCallable
  */
 class MemoizedCallableTest extends PHPUnit\Framework\TestCase {
@@ -46,9 +45,6 @@ class MemoizedCallableTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( 'ok', $memoized->invoke() );
 	}
 
-	/**
-	 * @covers MemoizedCallable::invoke
-	 */
 	public function testInvokeVariadic() {
 		$memoized = new MemoizedCallable( 'sprintf' );
 		$this->assertEquals(
@@ -57,9 +53,6 @@ class MemoizedCallableTest extends PHPUnit\Framework\TestCase {
 		);
 	}
 
-	/**
-	 * @covers MemoizedCallable::call
-	 */
 	public function testShortcutMethod() {
 		$this->assertEquals(
 			'this is correct',

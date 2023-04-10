@@ -7,6 +7,7 @@ use MediaWiki\WikiMap\WikiMap;
  * @group JobQueue
  * @group medium
  * @group Database
+ * @covers JobQueue
  */
 class JobQueueTest extends MediaWikiIntegrationTestCase {
 	protected $key;
@@ -68,7 +69,6 @@ class JobQueueTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provider_queueLists
-	 * @covers JobQueue::getWiki
 	 */
 	public function testGetWiki( $queue, $recycles, $desc ) {
 		$this->hideDeprecated( 'JobQueue::getWiki' );
@@ -85,7 +85,6 @@ class JobQueueTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provider_queueLists
-	 * @covers JobQueue::getType
 	 */
 	public function testGetType( $queue, $recycles, $desc ) {
 		$queue = $this->$queue;
@@ -97,7 +96,6 @@ class JobQueueTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provider_queueLists
-	 * @covers JobQueue
 	 */
 	public function testBasicOperations( $queue, $recycles, $desc ) {
 		$queue = $this->$queue;
@@ -166,7 +164,6 @@ class JobQueueTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provider_queueLists
-	 * @covers JobQueue
 	 */
 	public function testBasicDeduplication( $queue, $recycles, $desc ) {
 		$queue = $this->$queue;
@@ -222,7 +219,6 @@ class JobQueueTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provider_queueLists
-	 * @covers JobQueue
 	 */
 	public function testDeduplicationWhileClaimed( $queue, $recycles, $desc ) {
 		$queue = $this->$queue;
@@ -245,7 +241,6 @@ class JobQueueTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provider_queueLists
-	 * @covers JobQueue
 	 */
 	public function testRootDeduplication( $queue, $recycles, $desc ) {
 		$queue = $this->$queue;
@@ -303,7 +298,6 @@ class JobQueueTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provider_fifoQueueLists
-	 * @covers JobQueue
 	 */
 	public function testJobOrder( $queue, $recycles, $desc ) {
 		$queue = $this->$queue;
@@ -336,9 +330,6 @@ class JobQueueTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 0, $queue->getAcquiredCount(), "No jobs active ($desc)" );
 	}
 
-	/**
-	 * @covers JobQueue
-	 */
 	public function testQueueAggregateTable() {
 		$this->hideDeprecated( 'JobQueue::getWiki' );
 

@@ -20,13 +20,12 @@
 
 /**
  * @copyright © 2014 Wikimedia Foundation and contributors
- * @since 1.25
+ * @covers XhprofData
  */
 class XhprofDataTest extends PHPUnit\Framework\TestCase {
 	use MediaWikiCoversValidator;
 
 	/**
-	 * @covers XhprofData::splitKey
 	 * @dataProvider provideSplitKey
 	 */
 	public function testSplitKey( $key, $expect ) {
@@ -44,9 +43,6 @@ class XhprofDataTest extends PHPUnit\Framework\TestCase {
 		];
 	}
 
-	/**
-	 * @covers XhprofData::pruneData
-	 */
 	public function testInclude() {
 		$xhprofData = $this->getXhprofDataFixture( [
 			'include' => [ 'main()' ],
@@ -63,8 +59,6 @@ class XhprofDataTest extends PHPUnit\Framework\TestCase {
 	 * Xhprof::getInclusiveMetrics(). This acts as a guard against unexpected
 	 * structural changes to the returned data in lieu of using a more heavy
 	 * weight typed response object.
-	 *
-	 * @covers XhprofData::getInclusiveMetrics
 	 */
 	public function testInclusiveMetricsStructure() {
 		$metricStruct = [
@@ -105,8 +99,6 @@ class XhprofDataTest extends PHPUnit\Framework\TestCase {
 	 * Xhprof::getCompleteMetrics(). This acts as a guard against unexpected
 	 * structural changes to the returned data in lieu of using a more heavy
 	 * weight typed response object.
-	 *
-	 * @covers XhprofData::getCompleteMetrics
 	 */
 	public function testCompleteMetricsStructure() {
 		$metricStruct = [
@@ -148,10 +140,6 @@ class XhprofDataTest extends PHPUnit\Framework\TestCase {
 		}
 	}
 
-	/**
-	 * @covers XhprofData::getCallers
-	 * @covers XhprofData::getCallees
-	 */
 	public function testEdges() {
 		$xhprofData = $this->getXhprofDataFixture();
 		$this->assertSame( [], $xhprofData->getCallers( 'main()' ) );
@@ -164,9 +152,6 @@ class XhprofDataTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( [], $xhprofData->getCallees( 'strlen' ) );
 	}
 
-	/**
-	 * @covers XhprofData::getCriticalPath
-	 */
 	public function testCriticalPath() {
 		$xhprofData = $this->getXhprofDataFixture();
 		$path = $xhprofData->getCriticalPath();

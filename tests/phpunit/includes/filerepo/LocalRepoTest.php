@@ -5,8 +5,9 @@ use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 
 /**
- * @coversDefaultClass LocalRepo
  * @group Database
+ * @covers FileRepo
+ * @covers LocalRepo
  */
 class LocalRepoTest extends MediaWikiIntegrationTestCase {
 	/**
@@ -24,7 +25,6 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 	 * @param array $extraInfo To pass to constructor
 	 * @param bool $expected
 	 * @dataProvider provideHasSha1Storage
-	 * @covers ::__construct
 	 */
 	public function testHasSha1Storage( array $extraInfo, $expected ) {
 		$this->assertSame( $expected, $this->newRepo( $extraInfo )->hasSha1Storage() );
@@ -42,7 +42,6 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 	 * @param string $prefix 'img' or 'oi'
 	 * @param string $expectedClass 'LocalFile' or 'OldLocalFile'
 	 * @dataProvider provideNewFileFromRow
-	 * @covers ::newFileFromRow
 	 */
 	public function testNewFileFromRow( $prefix, $expectedClass ) {
 		$this->editPage( 'File:Test_file', 'Some description' );
@@ -78,10 +77,6 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @covers ::__construct
-	 * @covers ::newFileFromRow
-	 */
 	public function testNewFileFromRow_invalid() {
 		$this->expectException( MWException::class );
 		$this->expectExceptionMessage( 'LocalRepo::newFileFromRow: invalid row' );
@@ -99,10 +94,6 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 		$file = $this->newRepo()->newFileFromRow( $row );
 	}
 
-	/**
-	 * @covers ::__construct
-	 * @covers ::newFromArchiveName
-	 */
 	public function testNewFromArchiveName() {
 		$this->editPage( 'File:Test_file', 'Some description' );
 
@@ -118,10 +109,6 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 
 	// TODO cleanupDeletedBatch, deletedFileHasKey, hiddenFileHasKey
 
-	/**
-	 * @covers ::__construct
-	 * @covers ::cleanupDeletedBatch
-	 */
 	public function testCleanupDeletedBatch_sha1Storage() {
 		$this->assertEquals( Status::newGood(),
 			$this->newRepo( [ 'storageLayout' => 'sha1' ] )->cleanupDeletedBatch( [] ) );
@@ -131,7 +118,6 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 	 * @param string $input
 	 * @param string $expected
 	 * @dataProvider provideGetHashFromKey
-	 * @covers ::getHashFromKey
 	 */
 	public function testGetHashFromKey( $input, $expected ) {
 		$this->assertSame( $expected, LocalRepo::getHashFromKey( $input ) );
@@ -152,21 +138,12 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @covers ::__construct
-	 * @covers ::checkRedirect
-	 */
 	public function testCheckRedirect_nonRedirect() {
 		$this->editPage( 'File:Not a redirect', 'Not a redirect' );
 		$this->assertFalse(
 			$this->newRepo()->checkRedirect( Title::makeTitle( NS_FILE, 'Not a redirect' ) ) );
 	}
 
-	/**
-	 * @covers ::__construct
-	 * @covers ::checkRedirect
-	 * @covers ::getSharedCacheKey
-	 */
 	public function testCheckRedirect_redirect() {
 		$this->editPage( 'File:Redirect', '#REDIRECT [[File:Target]]' );
 
@@ -178,11 +155,6 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( 'File:Target', $target->getPrefixedText() );
 	}
 
-	/**
-	 * @covers ::__construct
-	 * @covers ::checkRedirect
-	 * @covers ::getSharedCacheKey
-	 */
 	public function testCheckRedirectSharedEmptyCache() {
 		$dbDomain = WikiMap::getCurrentWikiDbDomain()->getId();
 		$mockBag = $this->getMockBuilder( EmptyBagOStuff::class )
@@ -209,20 +181,12 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 			$repo->checkRedirect( Title::makeTitle( NS_FILE, 'Redirect' ) )->getPrefixedText() );
 	}
 
-	/**
-	 * @covers ::__construct
-	 * @covers ::checkRedirect
-	 */
 	public function testCheckRedirect_invalidFile() {
 		$this->expectException( MWException::class );
 		$this->expectExceptionMessage( '`Notafile` is not a valid file title.' );
 		$this->newRepo()->checkRedirect( Title::makeTitle( NS_MAIN, 'Notafile' ) );
 	}
 
-	/**
-	 * @covers ::__construct
-	 * @covers ::findBySha1
-	 */
 	public function testFindBySha1() {
 		$this->markTestIncomplete( "Haven't figured out how to upload files yet" );
 
@@ -237,12 +201,6 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	/**
-	 * @covers ::__construct
-	 * @covers ::getSharedCacheKey
-	 * @covers ::checkRedirect
-	 * @covers ::invalidateImageRedirect
-	 */
 	public function testInvalidateImageRedirect() {
 		global $wgTestMe;
 		$wgTestMe = true;
@@ -269,9 +227,6 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( false, $repo->checkRedirect( $title ) );
 	}
 
-	/**
-	 * @covers ::getInfo
-	 */
 	public function testGetInfo() {
 		$this->overrideConfigValues( [
 			MainConfigNames::Server => '//example.org',
@@ -297,25 +252,16 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 	// XXX The following getInfo tests are really testing FileRepo, not LocalRepo, but we want to
 	// make sure they're true for LocalRepo too. How should we do this? A trait?
 
-	/**
-	 * @covers ::getInfo
-	 */
 	public function testGetInfo_name() {
 		$this->assertSame( 'some-name',
 			$this->newRepo( [ 'name' => 'some-name' ] )->getInfo()['name'] );
 	}
 
-	/**
-	 * @covers ::getInfo
-	 */
 	public function testGetInfo_displayName() {
 		$this->assertSame( wfMessage( 'shared-repo' )->text(),
 			$this->newRepo( [ 'name' => 'not-local' ] )->getInfo()['displayname'] );
 	}
 
-	/**
-	 * @covers ::getInfo
-	 */
 	public function testGetInfo_displayNameCustomMsg() {
 		$this->editPage( 'MediaWiki:Shared-repo-name-not-local', 'Name to display please' );
 		// Allow the message to take effect
@@ -325,17 +271,11 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 			$this->newRepo( [ 'name' => 'not-local' ] )->getInfo()['displayname'] );
 	}
 
-	/**
-	 * @covers ::getInfo
-	 */
 	public function testGetInfo_rootUrl() {
 		$this->assertSame( 'https://my.url',
 			$this->newRepo( [ 'url' => 'https://my.url' ] )->getInfo()['rootUrl'] );
 	}
 
-	/**
-	 * @covers ::getInfo
-	 */
 	public function testGetInfo_rootUrlCustomized() {
 		$this->assertSame(
 			'https://my.url/some/sub/dir',
@@ -346,9 +286,6 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers ::getInfo
-	 */
 	public function testGetInfo_local() {
 		$this->assertFalse( $this->newRepo( [ 'name' => 'not-local' ] )->getInfo()['local'] );
 	}
@@ -356,7 +293,6 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @param string $setting
 	 * @dataProvider provideGetInfo_optionalSettings
-	 * @covers ::getInfo
 	 */
 	public function testGetInfo_optionalSettings( $setting ) {
 		$this->assertSame( 'dummy test value',
@@ -378,14 +314,6 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideSkipWriteOperationIfSha1
-	 * @covers ::store
-	 * @covers ::storeBatch
-	 * @covers ::cleanupBatch
-	 * @covers ::publish
-	 * @covers ::publishBatch
-	 * @covers ::delete
-	 * @covers ::deleteBatch
-	 * @covers ::skipWriteOperationIfSha1
 	 */
 	public function testSkipWriteOperationIfSha1( $method, ...$args ) {
 		$repo = $this->newRepo( [ 'storageLayout' => 'sha1' ] );

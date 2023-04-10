@@ -3,9 +3,7 @@
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 
 /**
- * @coversDefaultClass \MediaWiki\FileBackend\FSFile\TempFSFileFactory
- * @covers ::__construct
- * @covers ::newTempFSFile
+ * @covers \MediaWiki\FileBackend\FSFile\TempFSFileFactory
  */
 class TempFSFileTest extends MediaWikiUnitTestCase {
 	use TempFSFileTestTrait;
