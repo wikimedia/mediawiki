@@ -58,6 +58,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 	 */
 	private function exportJS() {
 		$out = $this->getOutput();
+		$req = $this->getContext()->getRequest();
 		$rl = $out->getResourceLoader();
 
 		// Allow framing (disabling wgBreakFrames). Otherwise, mediawiki.page.ready
@@ -67,7 +68,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 		$query = [
 			'lang' => 'qqx',
 			'skin' => 'fallback',
-			'debug' => (string)ResourceLoader::inDebugMode(),
+			'debug' => $req->getRawVal( 'debug' ),
 			'target' => 'test',
 		];
 		$embedContext = new RL\Context( $rl, new FauxRequest( $query ) );
@@ -75,7 +76,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 		$startupContext = new RL\Context( $rl, new FauxRequest( $query ) );
 
 		$modules = $rl->getTestSuiteModuleNames();
-		$component = $this->getContext()->getRequest()->getVal( 'component' );
+		$component = $req->getRawVal( 'component' );
 		if ( $component ) {
 			$module = 'test.' . $component;
 			if ( !in_array( 'test.' . $component, $modules ) ) {
