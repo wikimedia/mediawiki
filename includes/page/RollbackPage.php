@@ -364,7 +364,7 @@ class RollbackPage {
 		$summary = $this->getSummary( $currentRevision, $targetRevision );
 
 		// Actually store the rollback
-		$rev = $updater->saveRevision(
+		$rev = $updater->addTags( $this->tags )->saveRevision(
 			CommentStoreComment::newUnsavedComment( $summary ),
 			$flags
 		);
