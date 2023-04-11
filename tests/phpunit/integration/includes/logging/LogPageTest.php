@@ -93,4 +93,13 @@ class LogPageTest extends \MediaWikiIntegrationTestCase {
 		$this->assertTrue( $title->equals( $savedLogEntry->getTarget() ) );
 		$this->assertTrue( $user->equals( $savedLogEntry->getPerformerIdentity() ) );
 	}
+
+	/**
+	 * @covers ::actionText
+	 */
+	public function testUnknownAction() {
+		$title = $this->makeMockTitle( 'Test Title' );
+		$text = LogPage::actionText( 'unknown', 'action', $title, null, [ 'discarded' ] );
+		$this->assertSame( 'performed unknown action &quot;unknown/action&quot; on [[Test Title]]', $text );
+	}
 }

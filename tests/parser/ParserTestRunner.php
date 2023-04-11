@@ -864,11 +864,59 @@ class ParserTestRunner {
 
 			foreach ( $filenames as $filename ) {
 				$this->recorder->startSuite( $filename );
-				if ( $this->options['parsoid'] ) {
-					$ok = $this->runParsoidTests( $filename ) && $ok;
-				} else {
-					$ok = $this->runLegacyTests( $filename ) && $ok;
+
+				$testFileInfo = TestFileReader::read( $filename,
+					static function ( $msg ) {
+						wfDeprecatedMsg( $msg, '1.35', false, false );
+					}
+				);
+
+				// For Parsoid, intersect requested modes with test modes enabled in the file
+				$inParsoidMode = $this->options['parsoid'];
+				$parsoidTestModes = [];
+				if ( $inParsoidMode ) {
+					$parsoidTestModes = $this->computeValidTestModes(
+						$this->getRequestedTestModes(), $testFileInfo->fileOptions );
+
+					// If any requirements are not met, mark all tests from the file as skipped
+					if ( !$parsoidTestModes ) {
+						$this->recorder->endSuite( $filename );
+						continue;
+					}
 				}
+
+				// If any requirements are not met, mark all tests from the file as skipped
+				$skipMessage = $this->getFileSkipMessage( !$inParsoidMode, $testFileInfo->fileOptions, $filename );
+				if ( $skipMessage !== null ) {
+					$mode = new ParserTestMode( $this->options['parsoid'] ? $parsoidTestModes[0] : 'legacy' );
+					foreach ( $testFileInfo->testCases as $test ) {
+						$this->recorder->startTest( $test, $mode );
+						$this->recorder->skipped( $test, $mode, $skipMessage );
+					}
+					$this->recorder->endSuite( $filename );
+					continue;
+				}
+
+				$this->checkSetupDone( 'staticSetup' );
+				$teardown = $this->addArticles( $testFileInfo->articles );
+
+				// Run tests
+				if ( $inParsoidMode ) {
+					$ok = $this->runParsoidTests( $testFileInfo->testCases, $parsoidTestModes ) && $ok;
+					if ( $this->options['updateKnownFailures'] ) {
+						$this->updateKnownFailures( $filename, $testFileInfo );
+					}
+				} else {
+					$ok = $this->runLegacyTests( $testFileInfo->testCases ) && $ok;
+				}
+
+				if ( $this->options['update-tests'] ) {
+					$this->updateTests( $filename, $testFileInfo, !$inParsoidMode );
+				}
+
+				// Clean up
+				ScopedCallback::consume( $teardown );
+
 				$this->recorder->endSuite( $filename );
 			}
 
@@ -911,45 +959,17 @@ class ParserTestRunner {
 	 * Run the legacy parser tests from a single file. staticSetup() and
 	 * setupDatabase() must have been called already.
 	 *
-	 * @param string $filename Test file name
+	 * @param array $testCases Test cases to run
 	 * @return bool True if passed all tests, false if any tests failed.
 	 */
-	public function runLegacyTests( string $filename ): bool {
-		$mode = new ParserTestMode( 'legacy' );
-		$testFileInfo = TestFileReader::read( $filename,
-			static function ( $msg ) {
-				wfDeprecatedMsg( $msg, '1.35', false, false );
-			}
-		);
-
-		$this->checkSetupDone( 'staticSetup' );
-
-		// If any requirements are not met, mark all tests from the file as skipped
-		$skipMessage = $this->getFileSkipMessage( true, $testFileInfo->fileOptions, $filename );
-		if ( $skipMessage !== null ) {
-			foreach ( $testFileInfo->testCases as $test ) {
-				$this->recorder->startTest( $test, $mode );
-				$this->recorder->skipped( $test, $mode, $skipMessage );
-			}
-			return true;
-		}
-
-		// Add articles
-		$teardown = $this->addArticles( $testFileInfo->articles );
-
+	public function runLegacyTests( array $testCases ): bool {
 		// Run tests
 		$ok = true;
-		foreach ( $testFileInfo->testCases as $test ) {
+		$mode = new ParserTestMode( 'legacy' );
+		foreach ( $testCases as $test ) {
 			$result = $this->runTest( $test, $mode );
 			$ok = $ok && $result->isSuccess();
 		}
-
-		if ( $this->options['update-tests'] ) {
-			$this->updateTests( $filename, $testFileInfo, true );
-		}
-
-		// Clean up
-		ScopedCallback::consume( $teardown );
 
 		return $ok;
 	}
@@ -986,6 +1006,11 @@ class ParserTestRunner {
 		}
 	}
 
+	private function filterOutTest( ParserTest $test ): bool {
+		$testFilter = [ 'regex' => $this->regex ];
+		return !$test->matchesFilter( $testFilter );
+	}
+
 	public function getTestSkipMessage( ParserTest $test, ParserTestMode $mode ) {
 		$opts = $test->options;
 
@@ -1004,8 +1029,7 @@ class ParserTestRunner {
 		if ( isset( $opts['disabled'] ) && !$this->runDisabled ) {
 			return "Test disabled";
 		}
-		$testFilter = [ 'regex' => $this->regex ];
-		if ( !$test->matchesFilter( $testFilter ) ) {
+		if ( $this->filterOutTest( $test ) ) {
 			return "Test doesn't match filter";
 		}
 		// Skip parsoid-only tests if running in a legacy test mode
@@ -1083,43 +1107,24 @@ class ParserTestRunner {
 	 * Run the tests from a single file. staticSetup() and setupDatabase()
 	 * must have been called already.
 	 *
-	 * @param string $filename Test file name
+	 * @param array $testCases Test cases to run
+	 * @param array $testModes What Parsoid modes to run these these in?
 	 * @return bool True if passed all tests, false if any tests failed.
 	 */
-	public function runParsoidTests( string $filename ): bool {
-		$testFileInfo = TestFileReader::read( $filename,
-			static function ( $msg ) {
-				wfDeprecatedMsg( $msg, '1.35', false, false );
-			}
-		);
-
-		// Intersect requested modes with test modes enabled in the file
-		$testModes = $this->computeValidTestModes(
-			$this->getRequestedTestModes(), $testFileInfo->fileOptions );
-
-		$this->checkSetupDone( 'staticSetup' );
-
-		// If any requirements are not met, mark all tests from the file as skipped
-		if ( !$testModes ) {
-			return true;
-		}
-		$skipMode = new ParserTestMode( $testModes[0] );
-		$skipMessage = $this->getFileSkipMessage( false, $testFileInfo->fileOptions, $filename );
-		if ( $skipMessage !== null ) {
-			foreach ( $testFileInfo->testCases as $test ) {
-				$this->recorder->startTest( $test, $skipMode );
-				$this->recorder->skipped( $test, $skipMode, $skipMessage );
-			}
-			return true;
-		}
-
-		// Add articles
-		$teardown = $this->addArticles( $testFileInfo->articles );
-
+	public function runParsoidTests( array $testCases, array $testModes ): bool {
 		// Run tests
 		$ok = true;
 		$runner = $this;
-		foreach ( $testFileInfo->testCases as $t ) {
+		foreach ( $testCases as $t ) {
+			if ( $this->filterOutTest( $t ) ) {
+				continue;
+			}
+
+			if ( $this->options['updateKnownFailures'] ) {
+				// Reset known failures to ensure we reset newly skipped tests
+				$t->knownFailures = [];
+			}
+
 			$t->testAllModes( $t->computeTestModes( $testModes ), $this->options,
 				function ( ParserTest $test, string $modeStr, array $options ) use ( $runner, $t, &$ok ) {
 					// $test could be a clone of $t
@@ -1146,17 +1151,6 @@ class ParserTestRunner {
 				}
 			);
 		}
-
-		if ( $this->options['updateKnownFailures'] ) {
-			$this->updateKnownFailures( $filename, $testFileInfo );
-		}
-
-		if ( $this->options['update-tests'] ) {
-			$this->updateTests( $filename, $testFileInfo, false );
-		}
-
-		// Clean up
-		ScopedCallback::consume( $teardown );
 
 		return $ok;
 	}
