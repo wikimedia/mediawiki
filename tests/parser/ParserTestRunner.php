@@ -837,6 +837,16 @@ class ParserTestRunner {
 		}
 	}
 
+	private function skipAllTestsInFile(
+		string $filename, TestFileReader $testFileInfo, ParserTestMode $mode, string $skipMessage
+	): void {
+		foreach ( $testFileInfo->testCases as $test ) {
+			$this->recorder->startTest( $test, $mode );
+			$this->recorder->skipped( $test, $mode, $skipMessage );
+		}
+		$this->recorder->endSuite( $filename );
+	}
+
 	/**
 	 * Run a series of tests listed in the given text files.
 	 * Each test consists of a brief description, wikitext input,
@@ -861,6 +871,9 @@ class ParserTestRunner {
 		$this->recorder->start();
 		try {
 			$ok = true;
+			$inParsoidMode = $this->options['parsoid'];
+			$legacyMode = $inParsoidMode ? null : new ParserTestMode( 'legacy' );
+			$skipMode = $inParsoidMode ? new ParserTestMode( 'parsoid' ) : $legacyMode;
 
 			foreach ( $filenames as $filename ) {
 				$this->recorder->startSuite( $filename );
@@ -871,43 +884,50 @@ class ParserTestRunner {
 					}
 				);
 
-				// For Parsoid, intersect requested modes with test modes enabled in the file
-				$inParsoidMode = $this->options['parsoid'];
-				$parsoidTestModes = [];
-				if ( $inParsoidMode ) {
-					$parsoidTestModes = $this->computeValidTestModes(
-						$this->getRequestedTestModes(), $testFileInfo->fileOptions );
-
-					// If any requirements are not met, mark all tests from the file as skipped
-					if ( !$parsoidTestModes ) {
-						$this->recorder->endSuite( $filename );
-						continue;
-					}
-				}
-
-				// If any requirements are not met, mark all tests from the file as skipped
 				$skipMessage = $this->getFileSkipMessage( !$inParsoidMode, $testFileInfo->fileOptions, $filename );
 				if ( $skipMessage !== null ) {
-					$mode = new ParserTestMode( $this->options['parsoid'] ? $parsoidTestModes[0] : 'legacy' );
-					foreach ( $testFileInfo->testCases as $test ) {
-						$this->recorder->startTest( $test, $mode );
-						$this->recorder->skipped( $test, $mode, $skipMessage );
-					}
-					$this->recorder->endSuite( $filename );
+					$this->skipAllTestsInFile( $filename, $testFileInfo, $skipMode, $skipMessage );
 					continue;
+				}
+
+				$parsoidTestModeStrs = [];
+				if ( $inParsoidMode ) { // Intersect requested modes with test modes enabled in the file
+					$parsoidTestModeStrs = $this->computeValidTestModes(
+						$this->getRequestedTestModes(), $testFileInfo->fileOptions );
+
+					if ( !$parsoidTestModeStrs ) {
+						$skipMessage = 'No compatible Parsoid modes found for the file';
+						$this->skipAllTestsInFile( $filename, $testFileInfo, $skipMode, $skipMessage );
+						continue;
+					}
 				}
 
 				$this->checkSetupDone( 'staticSetup' );
 				$teardown = $this->addArticles( $testFileInfo->articles );
 
 				// Run tests
-				if ( $inParsoidMode ) {
-					$ok = $this->runParsoidTests( $testFileInfo->testCases, $parsoidTestModes ) && $ok;
-					if ( $this->options['updateKnownFailures'] ) {
-						$this->updateKnownFailures( $filename, $testFileInfo );
+				foreach ( $testFileInfo->testCases as $test ) {
+					$skipMessage = $this->getTestSkipMessage( $test, !$inParsoidMode );
+					if ( $skipMessage ) {
+						$this->recorder->startTest( $test, $skipMode );
+						$this->recorder->skipped( $test, $skipMode, $skipMessage );
+						continue;
 					}
-				} else {
-					$ok = $this->runLegacyTests( $testFileInfo->testCases ) && $ok;
+
+					if ( $inParsoidMode ) {
+						// calls runTestInternal for each mode
+						$passed = $this->runTestInParsoidModes( $test, $parsoidTestModeStrs );
+					} else {
+						'@phan-var ParserTestMode $legacyMode'; // assert that this is not null
+						$passed = $this->runTestInternal( $test, $legacyMode )->isSuccess();
+					}
+
+					$ok = $ok && $passed;
+				}
+
+				// Update tests / known-failures
+				if ( $inParsoidMode && $this->options['updateKnownFailures'] ) {
+					$this->updateKnownFailures( $filename, $testFileInfo );
 				}
 
 				if ( $this->options['update-tests'] ) {
@@ -956,25 +976,6 @@ class ParserTestRunner {
 	}
 
 	/**
-	 * Run the legacy parser tests from a single file. staticSetup() and
-	 * setupDatabase() must have been called already.
-	 *
-	 * @param array $testCases Test cases to run
-	 * @return bool True if passed all tests, false if any tests failed.
-	 */
-	public function runLegacyTests( array $testCases ): bool {
-		// Run tests
-		$ok = true;
-		$mode = new ParserTestMode( 'legacy' );
-		foreach ( $testCases as $test ) {
-			$result = $this->runTest( $test, $mode );
-			$ok = $ok && $result->isSuccess();
-		}
-
-		return $ok;
-	}
-
-	/**
 	 * @param bool $isLegacy
 	 * @param array $fileOptions
 	 * @param string $filename
@@ -1006,12 +1007,7 @@ class ParserTestRunner {
 		}
 	}
 
-	private function filterOutTest( ParserTest $test ): bool {
-		$testFilter = [ 'regex' => $this->regex ];
-		return !$test->matchesFilter( $testFilter );
-	}
-
-	public function getTestSkipMessage( ParserTest $test, ParserTestMode $mode ) {
+	public function getTestSkipMessage( ParserTest $test, bool $isLegacy ): ?string {
 		$opts = $test->options;
 
 		// Skip deprecated preprocessor tests
@@ -1029,7 +1025,7 @@ class ParserTestRunner {
 		if ( isset( $opts['disabled'] ) && !$this->runDisabled ) {
 			return "Test disabled";
 		}
-		if ( $this->filterOutTest( $test ) ) {
+		if ( !$test->matchesFilter( [ 'regex' => $this->regex ] ) ) {
 			return "Test doesn't match filter";
 		}
 		// Skip parsoid-only tests if running in a legacy test mode
@@ -1045,7 +1041,7 @@ class ParserTestRunner {
 				isset( $test->sections['wikitext/edited'] ) ||
 				self::getParsoidMetadataSection( $test ) !== null
 			) {
-				if ( $mode->isLegacy() ) {
+				if ( $isLegacy ) {
 					// Not an error, just skip this test if we're in
 					// legacy mode.
 					return "Parsoid-only test";
@@ -1107,50 +1103,33 @@ class ParserTestRunner {
 	 * Run the tests from a single file. staticSetup() and setupDatabase()
 	 * must have been called already.
 	 *
-	 * @param array $testCases Test cases to run
-	 * @param array $testModes What Parsoid modes to run these these in?
-	 * @return bool True if passed all tests, false if any tests failed.
+	 * @param ParserTest $t
+	 * @param string[] $testModeStrs What Parsoid modes to run these these in?
+	 * @return bool True if passed all modes, false if any mode failed.
 	 */
-	public function runParsoidTests( array $testCases, array $testModes ): bool {
-		// Run tests
+	private function runTestInParsoidModes( ParserTest $t, array $testModeStrs ): bool {
+		if ( $this->options['updateKnownFailures'] ) {
+			// Reset known failures to ensure we reset newly skipped tests
+			$t->knownFailures = [];
+		}
+
 		$ok = true;
 		$runner = $this;
-		foreach ( $testCases as $t ) {
-			if ( $this->filterOutTest( $t ) ) {
-				continue;
-			}
-
-			if ( $this->options['updateKnownFailures'] ) {
-				// Reset known failures to ensure we reset newly skipped tests
-				$t->knownFailures = [];
-			}
-
-			$t->testAllModes( $t->computeTestModes( $testModes ), $this->options,
-				function ( ParserTest $test, string $modeStr, array $options ) use ( $runner, $t, &$ok ) {
-					// $test could be a clone of $t
-					// Ensure that updates to knownFailures in $test are reflected in $t
-					$test->knownFailures = &$t->knownFailures;
-					$mode = new ParserTestMode( $modeStr, $test->changetree );
-					if ( $modeStr === 'selser' && $test->changetree === null ) {
-						// This is an auto-edit test with either a CLI changetree
-						// or a change tree that should be generated
-						$mode = new ParserTestMode( 'selser-auto', json_decode( $runner->options['changetree'] ) );
-						$result = $this->runTest( $test, $mode );
-
-						// FIXME: Test.php in Parsoid doesn't know which tests are being
-						// skipped for what reason. For now, prevent crashers on skipped tests
-						// by matching expectations of Test.php::isDuplicateChangeTree(..)
-						if ( $result->expected === 'SKIP' ) {
-							// Make sure change tree is not null for skipped selser tests
-							$test->changetree = [];
-						}
-					} else {
-						$result = $this->runTest( $test, $mode );
-					}
-					$ok = $ok && $result->isSuccess();
+		$t->testAllModes( $t->computeTestModes( $testModeStrs ), $this->options,
+			function ( ParserTest $test, string $modeStr, array $options ) use ( $runner, $t, &$ok ) {
+				// $test could be a clone of $t
+				// Ensure that updates to knownFailures in $test are reflected in $t
+				$test->knownFailures = &$t->knownFailures;
+				$mode = new ParserTestMode( $modeStr, $test->changetree );
+				if ( $modeStr === 'selser' && $test->changetree === null ) {
+					// This is an auto-edit test with either a CLI changetree
+					// or a change tree that should be generated
+					$mode = new ParserTestMode( 'selser-auto', json_decode( $runner->options['changetree'] ) );
 				}
-			);
-		}
+				$result = $this->runTestInternal( $test, $mode );
+				$ok = $ok && $result->isSuccess();
+			}
+		);
 
 		return $ok;
 	}
@@ -1356,21 +1335,36 @@ class ParserTestRunner {
 	 * @param ParserTestMode $mode The test mode
 	 * @return ParserTestResult The test results.
 	 */
-	public function runTest( ParserTest $test, ParserTestMode $mode ): ParserTestResult {
-		if ( $this->getTestSkipMessage( $test, $mode ) ) {
-			return new ParserTestResult( $test, $mode, 'SKIP', 'SKIP' );
-		}
+	private function runTestInternal( ParserTest $test, ParserTestMode $mode ): ParserTestResult {
 		$this->recorder->startTest( $test, $mode );
-		$result = $mode->isLegacy() ?
-				$this->runLegacyTest( $test, $mode ) :
-				$this->runParsoidTest( $test, $mode );
-		if ( $result === false ) {
-			$this->recorder->skipped( $test, $mode, 'SKIP' );
-			return new ParserTestResult( $test, $mode, 'SKIP', 'SKIP' );
+		if ( $mode->isLegacy() ) {
+			$result = $this->runLegacyTest( $test, $mode );
 		} else {
-			$this->recorder->record( $result );
-			return $result;
+			// Parsoid might skip a test for unsupported features
+			$result = $this->runParsoidTest( $test, $mode );
+			if ( $result === false ) {
+				$this->recorder->skipped( $test, $mode, 'SKIP' );
+				return new ParserTestResult( $test, $mode, 'SKIP', 'SKIP' );
+			}
 		}
+		$this->recorder->record( $result );
+		return $result;
+	}
+
+	/**
+	 * Run a given wikitext input through either the legacy wiki parser
+	 * or Parsoid, depending on the given test mode, and compare the
+	 * output against the expected results.
+	 *
+	 * @param ParserTest $test The test parameters
+	 * @param ParserTestMode $mode The test mode
+	 * @return ParserTestResult The test results.
+	 */
+	public function runTest( ParserTest $test, ParserTestMode $mode ): ParserTestResult {
+		if ( $this->getTestSkipMessage( $test, $mode->isLegacy() ) ) {
+			return new ParserTestResult( $test, $mode, 'SKIP', 'SKIP' );
+		}
+		return $this->runTestInternal( $test, $mode );
 	}
 
 	/**
@@ -1960,12 +1954,7 @@ class ParserTestRunner {
 			$mode = new ParserTestMode( 'selser', $test->changetree );
 		}
 		[ $out, $expected ] = $this->runSelserEditTest( $parsoid, $pageConfig, $test, $mode, $doc );
-		return new ParserTestResult(
-			$test,
-			$mode,
-			$expected,
-			$out
-		);
+		return new ParserTestResult( $test, $mode, $expected, $out );
 	}
 
 	/**
