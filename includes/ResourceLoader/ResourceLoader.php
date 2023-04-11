@@ -43,7 +43,6 @@ use MediaWiki\Request\HeaderCallback;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\WikiMap\WikiMap;
-use MWException;
 use MWExceptionHandler;
 use MWExceptionRenderer;
 use Net_URL2;
@@ -1824,7 +1823,6 @@ MESSAGE;
 	 *  for compilation. Since 1.32, this method no longer automatically includes
 	 *  global LESS vars from ResourceLoader::getLessVars (T191937).
 	 * @param array $importDirs Additional directories to look in for @import (since 1.36)
-	 * @throws MWException
 	 * @return Less_Parser
 	 */
 	public function getLessCompiler( array $vars = [], array $importDirs = [] ) {
@@ -1833,7 +1831,7 @@ MESSAGE;
 		// is missing (at least for now; see T49564). If this is the case, throw an
 		// exception (caught by the installer) to prevent a fatal error later on.
 		if ( !class_exists( Less_Parser::class ) ) {
-			throw new MWException( 'MediaWiki requires the less.php parser' );
+			throw new RuntimeException( 'MediaWiki requires the less.php parser' );
 		}
 
 		$importDirs[] = "$IP/resources/src/mediawiki.less";
@@ -1851,7 +1849,7 @@ MESSAGE;
 				'@wikimedia/codex-icons/' => "$IP/resources/lib/codex-icons/",
 				'mediawiki.skin.codex-design-tokens/' => "$IP/resources/lib/codex-design-tokens/",
 				'@wikimedia/codex-design-tokens/' => /** @return never */ static function ( $unused_path ) {
-					throw new MWException(
+					throw new RuntimeException(
 						'Importing from @wikimedia/codex-design-tokens is not supported. ' .
 						"To use the Codex tokens, use `@import 'mediawiki.skin.variables.less';` instead."
 					);
