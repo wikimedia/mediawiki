@@ -3729,18 +3729,6 @@ class EditPage implements IEditObject {
 	}
 
 	/**
-	 * Compares parsed and text only version of a message to see
-	 * whether they return the same result.
-	 *
-	 * @param IContextSource $ctx
-	 * @param string $key
-	 * @return bool
-	 */
-	private function doesMessageContainDiv( IContextSource $ctx, string $key ): bool {
-		return strpos( strtolower( $ctx->msg( $key )->parse() ), '<div' ) !== false;
-	}
-
-	/**
 	 * Adds introduction to code editing.
 	 *
 	 * @param Title $title
@@ -3752,7 +3740,6 @@ class EditPage implements IEditObject {
 		$namespace = $title->getNamespace();
 		$intro = '';
 		$user = $ctx->getUser();
-		$doesMessageContainDiv = false;
 
 		if ( $title->isUserConfigPage() ) {
 			if ( $title->isSubpageOf( $user->getUserPage() ) ) {
@@ -3770,8 +3757,6 @@ class EditPage implements IEditObject {
 					[ 'class' => 'mw-userconfigpublic' ],
 					$warningText
 				) : '';
-
-				$doesMessageContainDiv = $this->doesMessageContainDiv( $ctx, $warning );
 			}
 		}
 		$codeMsg = $ctx->msg( 'editpage-code-message' );
@@ -3803,8 +3788,6 @@ class EditPage implements IEditObject {
 						[ 'class' => 'mw-translateinterface' ],
 						$translateInterfaceText
 					) : '';
-					$doesMessageContainDiv = $doesMessageContainDiv ||
-						$this->doesMessageContainDiv( $ctx, 'translateinterface' );
 				}
 			}
 		}
@@ -3816,8 +3799,6 @@ class EditPage implements IEditObject {
 				[ 'class' => 'mw-userconfigdangerous' ],
 				$userConfigDangerousMsg
 			) : '';
-			$doesMessageContainDiv = $doesMessageContainDiv ||
-				$this->doesMessageContainDiv( $ctx, 'userjsdangerous' );
 		}
 
 		// If the wiki page contains JavaScript or CSS link add message specific to code.
@@ -3828,7 +3809,7 @@ class EditPage implements IEditObject {
 		// If the message is plaintext, (which is the default for a MediaWiki
 		// install) wrap it. If not, then local wiki customizations should be
 		// respected.
-		if ( !$doesMessageContainDiv && !empty( $intro ) ) {
+		if ( !empty( $intro ) ) {
 			// While semantically this is a warning, given the impact of editing
 			// these pages,
 			// it's best to deter users who don't understand what they are doing by
