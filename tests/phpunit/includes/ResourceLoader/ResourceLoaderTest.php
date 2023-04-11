@@ -14,7 +14,6 @@ use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\ResourceLoader\SkinModule;
 use MediaWiki\ResourceLoader\StartUpModule;
 use MediaWiki\User\StaticUserOptionsLookup;
-use MWException;
 use NullStatsdDataFactory;
 use ResourceLoaderTestCase;
 use ResourceLoaderTestModule;
@@ -232,7 +231,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 				'input' => "$basePath/import-codex-tokens-npm.less",
 				'expected' => null,
 				'exception' => [
-					'class' => MWException::class,
+					'class' => Exception::class,
 					'message' => 'Importing from @wikimedia/codex-design-tokens is not supported. ' .
 						"To use the Codex tokens, use `@import 'mediawiki.skin.variables.less';` instead."
 				]
