@@ -74,7 +74,6 @@
 	"filenotfound": "Could not find file ‘$1’.",
 	"unexpected": "Unexpected value: ‘$1’=‘$2’.",
 	"cannotdelete": "The page or file ‘$1’ could not be deleted.\nIt may have already been deleted by someone else.",
-	"title-invalid-talk-namespace": "The requested page title refers to a talk page that cannot exist.",
 	"botpasswords-no-central-id": "To use bot passwords, you must be logged in to a centralised account.",
 	"botpasswords-label-resetpassword": "Reset password",
 	"search-invalid-sort-order": "Sort order of $1 is unrecognised, default sorting will be applied. Valid sort orders are: $2",
