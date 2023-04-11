@@ -2237,7 +2237,7 @@ abstract class Skin extends ContextSource {
 	 *
 	 * @return array HTML attributes
 	 */
-	private function getUserLanguageAttributes() {
+	final protected function getUserLanguageAttributes() {
 		$userLang = $this->getLanguage();
 		$userLangCode = $userLang->getHtmlCode();
 		$userLangDir = $userLang->getDir();
