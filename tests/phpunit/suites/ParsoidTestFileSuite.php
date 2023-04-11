@@ -46,9 +46,6 @@ class ParsoidTestFileSuite extends TestSuite {
 		if ( $skipMessage !== null ) {
 			return;
 		}
-		// Dummy mode, for the purpose of satisfying the signature of getTestSkipMessage
-		// Only used for an isLegacy check, which should always be false for this file
-		$skipMode = new ParserTestMode( 'not-legacy' );
 
 		// This is expected to be set at this point. $skipMessage above will have
 		// skipped the file if not.
@@ -57,7 +54,7 @@ class ParsoidTestFileSuite extends TestSuite {
 
 		$suite = $this;
 		foreach ( $this->ptFileInfo->testCases as $t ) {
-			$skipMessage = $this->ptRunner->getTestSkipMessage( $t, $skipMode );
+			$skipMessage = $this->ptRunner->getTestSkipMessage( $t, false );
 			if ( $skipMessage ) {
 				continue;
 			}
