@@ -560,6 +560,8 @@ because of Phabricator reports.
 * ContentHandler::getParserOutputForIndexing() and ::getDataForSearchIndex()
   now take an optional RevisionRecord parameter.
 * The SearchDataForIndex hook is deprecated in favor of SearchDataForIndex2
+* IDatabase::lastQuery and IReadableDatabase::lastQuery are deprecated without
+  without replacement.
 
 === Other changes in 1.40 ===
 * Calling RecentChange::doMarkPatrolled() with $auto = true has no effect and

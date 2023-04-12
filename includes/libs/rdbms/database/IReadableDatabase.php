@@ -59,6 +59,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	/**
 	 * Get the last query that sent on account of IDatabase::query()
 	 *
+	 * @deprecated since 1.40 without replacement
 	 * @return string SQL text or empty string if there was no such query
 	 */
 	public function lastQuery();
