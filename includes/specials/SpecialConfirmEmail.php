@@ -166,7 +166,11 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 		);
 
 		if ( !is_object( $user ) ) {
-			$this->getOutput()->addWikiMsg( 'confirmemail_invalid' );
+			if ( User::isWellFormedConfirmationToken( $code ) ) {
+				$this->getOutput()->addWikiMsg( 'confirmemail_invalid' );
+			} else {
+				$this->getOutput()->addWikiMsg( 'confirmemail_invalid_format' );
+			}
 
 			return;
 		}

@@ -3091,6 +3091,16 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
+	 * Check if the given email confirmation token is well-formed (to detect mangling by
+	 * email clients). This does not check whether the token is valid.
+	 * @param string $token
+	 * @return bool
+	 */
+	public static function isWellFormedConfirmationToken( string $token ): bool {
+		return preg_match( '/^[a-f0-9]{32}$/', $token );
+	}
+
+	/**
 	 * Return a URL the user can use to confirm their email address.
 	 * @param string $token Accepts the email confirmation token
 	 * @return string New token URL
