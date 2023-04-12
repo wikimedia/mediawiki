@@ -3795,7 +3795,7 @@
 	"feedback-bugornote": "Nếu bạn đã sẵn sàng để miêu tả các chi tiết của một vấn đề kỹ thuật, xin vui lòng [$1 báo lỗi].\nNếu không thì bạn có thể điền biểu mẫu đơn giản ở dưới. Lời ghi của bạn sẽ được đăng lên trang “[$3 $2]”, cùng với tên người dùng của bạn.",
 	"feedback-cancel": "Hủy bỏ",
 	"feedback-close": "Xong",
-	"feedback-external-bug-report-button": "Tạo một công việc kỹ thuật",
+	"feedback-external-bug-report-button": "Tạo báo cáo",
 	"feedback-dialog-title": "Gửi phản hồi",
 	"feedback-dialog-intro": "Bạn có thể gửi phản hồi dễ dàng qua biểu mẫu bên dưới. Thông tin phản hồi của bạn sẽ được bổ sung vào trang “$1” cùng với tên người dùng của bạn.",
 	"feedback-error1": "Hủy bỏ",
