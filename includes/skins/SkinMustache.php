@@ -82,7 +82,7 @@ class SkinMustache extends SkinTemplate {
 			[
 				'class' => 'printfooter',
 				'data-nosnippet' => ''
-			],
+			] + $this->getUserLanguageAttributes(),
 			$this->printSource()
 		);
 		$bodyContent = $out->getHTML() . "\n" . $printSource;
