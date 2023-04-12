@@ -10,8 +10,8 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Rest\Handler\MediaTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\Title;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\LoadBalancer;
 
 /**
  * @covers MovePage
@@ -30,8 +30,8 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 	 * @return MovePage
 	 */
 	private function newMovePageWithMocks( $old, $new, array $params = [] ): MovePage {
-		$mockLB = $this->createNoOpMock( LoadBalancer::class, [ 'getConnectionRef' ] );
-		$mockLB->method( 'getConnectionRef' )
+		$mockProvider = $this->createNoOpMock( IConnectionProvider::class, [ 'getPrimaryDatabase' ] );
+		$mockProvider->method( 'getPrimaryDatabase' )
 			->willReturn( $params['db'] ?? $this->createNoOpMock( IDatabase::class ) );
 
 		return new MovePage(
@@ -45,7 +45,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 					'MaximumMovedPages' => 100,
 				]
 			),
-			$mockLB,
+			$mockProvider,
 			$this->getDummyNamespaceInfo(),
 			$this->createMock( WatchedItemStore::class ),
 			$this->makeMockRepoGroup(
