@@ -107,10 +107,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/** @var float UNIX timestamp of the last server response */
 	private $lastPing = 0.0;
-	/** @var string Whole or simplified SQL from the last query */
-	private $lastQuery = '';
-	/** @var float Seconds elapsed during execution of the last query */
-	private $lastQueryDuration = 0.0;
 	/** @var float|false UNIX timestamp of last write query */
 	private $lastWriteTime = false;
 	/** @var string|false */
@@ -454,11 +450,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		} else {
 			throw new InvalidArgumentException( "Got non-string key" );
 		}
-	}
-
-	public function lastQuery() {
-		wfDeprecated( __METHOD__, '1.40' );
-		return $this->lastQuery;
 	}
 
 	public function lastDoneWrites() {
@@ -1064,7 +1055,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$ps = $this->profiler ? ( $this->profiler )( $generalizedSql->stringify() ) : null;
 		$startTime = microtime( true );
 
-		$this->lastQuery = $summarySql;
 		$this->affectedRowCount = null;
 		if ( $hasPermWrite ) {
 			$this->lastWriteTime = $startTime;
@@ -1108,7 +1098,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					$fname
 				);
 			}
-			$this->lastQueryDuration = $queryRuntime;
 		}
 
 		$this->transactionManager->recordQueryCompletion(
