@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers FileContentsHasherTest
+ * @covers FileContentsHasher
  */
 class FileContentsHasherTest extends PHPUnit\Framework\TestCase {
 
@@ -14,8 +14,6 @@ class FileContentsHasherTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers FileContentsHasher::getFileContentsHash
-	 * @covers FileContentsHasher::getFileContentsHashInternal
 	 * @dataProvider provideSingleFile
 	 */
 	public function testSingleFileHash( $fileName, $contents ) {
@@ -34,8 +32,6 @@ class FileContentsHasherTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers FileContentsHasher::getFileContentsHash
-	 * @covers FileContentsHasher::getFileContentsHashInternal
 	 * @dataProvider provideMultipleFiles
 	 */
 	public function testMultipleFileHash( $files ) {

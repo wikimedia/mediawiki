@@ -35,7 +35,6 @@ class SwiftFileBackendTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers SwiftFileBackend::extractMutableContentHeaders
 	 * @dataProvider provider_testExtractPostableContentHeaders
 	 */
 	public function testExtractPostableContentHeaders( $raw, $sanitized ) {
@@ -135,7 +134,6 @@ class SwiftFileBackendTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers SwiftFileBackend::extractMetadataHeaders
 	 * @dataProvider provider_testGetMetadataHeaders
 	 */
 	public function testGetMetadataHeaders( $raw, $sanitized ) {
@@ -163,7 +161,6 @@ class SwiftFileBackendTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers SwiftFileBackend::getMetadataFromHeaders
 	 * @dataProvider provider_testGetMetadata
 	 */
 	public function testGetMetadata( $raw, $sanitized ) {
