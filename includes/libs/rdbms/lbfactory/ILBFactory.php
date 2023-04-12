@@ -62,7 +62,6 @@ interface ILBFactory extends IConnectionProvider {
 	 *  - cpStash: BagOStuff instance for ChronologyProtector store [optional]
 	 *    See [ChronologyProtector requirements](@ref ChronologyProtector-storage-requirements).
 	 *  - wanCache: WANObjectCache instance [optional]
-	 *  - databaseFactory: DatabaseFactory instance [optional]
 	 *  - cliMode: Whether the execution context is a CLI script. [optional]
 	 *  - profiler: Callback that takes a profile section name and returns a ScopedCallback
 	 *     that ends the profile section in its destructor [optional]

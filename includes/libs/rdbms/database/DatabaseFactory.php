@@ -23,6 +23,7 @@ use HashBagOStuff;
 use InvalidArgumentException;
 use Psr\Log\NullLogger;
 use Throwable;
+use Wikimedia\RequestTimeout\CriticalSectionProvider;
 
 /**
  * Constructs Database objects
@@ -31,6 +32,29 @@ use Throwable;
  * @ingroup Database
  */
 class DatabaseFactory {
+	/** @var string Agent name for query profiling */
+	private $agent;
+	/** @var callable Deprecation logger */
+	private $deprecationLogger;
+	/**
+	 * @var callable|null An optional callback that returns a ScopedCallback instance,
+	 * meant to profile the actual query execution in {@see Database::doQuery}
+	 */
+	private $profiler;
+	/** @var CriticalSectionProvider|null */
+	private $csProvider;
+	/** @var bool Whether this PHP instance is for a CLI script */
+	private $cliMode;
+
+	public function __construct( array $params = [] ) {
+		$this->agent = $params['agent'] ?? '';
+		$this->deprecationLogger = $params['deprecationLogger'] ?? static function ( $msg ) {
+			trigger_error( $msg, E_USER_DEPRECATED );
+		};
+		$this->csProvider = $params['criticalSectionProvider'] ?? null;
+		$this->profiler = $params['profiler'] ?? null;
+		$this->cliMode = $params['cliMode'] ?? ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
+	}
 
 	/**
 	 * Construct a Database subclass instance given a database type and parameters
@@ -95,28 +119,31 @@ class DatabaseFactory {
 				'dbname' => null,
 				'schema' => null,
 				'tablePrefix' => '',
-				'flags' => 0,
 				'variables' => [],
 				'lbInfo' => [],
-				'cliMode' => ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' ),
-				'agent' => '',
 				'serverName' => null,
 				'topologyRole' => null,
 				// Objects and callbacks
 				'srvCache' => $params['srvCache'] ?? new HashBagOStuff(),
-				'profiler' => $params['profiler'] ?? null,
 				'trxProfiler' => $params['trxProfiler'] ?? new TransactionProfiler(),
 				'logger' => $params['logger'] ?? new NullLogger(),
 				'errorLogger' => $params['errorLogger'] ?? static function ( Throwable $e ) {
 					trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
 				},
-				'deprecationLogger' => $params['deprecationLogger'] ?? static function ( $msg ) {
-					trigger_error( $msg, E_USER_DEPRECATED );
-				}
+			];
+
+			$overrides = [
+				// Participate in transaction rounds if $server does not specify otherwise
+				'flags' => $this->initConnFlags( $params['flags'] ?? 0 ),
+				'cliMode' => $this->cliMode,
+				'agent' => $this->agent,
+				'profiler' => $this->profiler,
+				'deprecationLogger' => $this->deprecationLogger,
+				'criticalSectionProvider' => $this->csProvider,
 			];
 
 			/** @var Database $conn */
-			$conn = new $class( $params );
+			$conn = new $class( array_merge( $params, $overrides ) );
 			if ( $connect === Database::NEW_CONNECTED ) {
 				$conn->initConnection();
 			}
@@ -200,5 +227,30 @@ class DatabaseFactory {
 		}
 
 		return $class;
+	}
+
+	/**
+	 * @see IDatabase::DBO_DEFAULT
+	 * @param int $flags Bit field of IDatabase::DBO_* constants from configuration
+	 * @return int Bit field of IDatabase::DBO_* constants to use with Database::factory()
+	 */
+	private function initConnFlags( $flags ) {
+		if ( self::fieldHasBit( $flags, IDatabase::DBO_DEFAULT ) ) {
+			if ( $this->cliMode ) {
+				$flags &= ~IDatabase::DBO_TRX;
+			} else {
+				$flags |= IDatabase::DBO_TRX;
+			}
+		}
+		return $flags;
+	}
+
+	/**
+	 * @param int $flags A bitfield of flags
+	 * @param int $bit Bit flag constant
+	 * @return bool Whether the bit field has the specified bit flag set
+	 */
+	private function fieldHasBit( int $flags, int $bit ) {
+		return ( ( $flags & $bit ) === $bit );
 	}
 }

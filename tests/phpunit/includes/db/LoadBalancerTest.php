@@ -17,11 +17,9 @@
  *
  * @file
  */
-use PHPUnit\Framework\Constraint\StringContains;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DBConnRef;
-use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\DBReadOnlyRoleError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -342,21 +340,6 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 			'loadMonitor' => [ 'class' => LoadMonitorNull::class ],
 			'clusterName' => 'main-test-cluster'
 		] );
-	}
-
-	private function assertWriteForbidden( Database $db ) {
-		try {
-			$db->delete( 'some_table', [ 'id' => 57634126 ], __METHOD__ );
-			$this->fail( 'Write operation should have failed!' );
-		} catch ( DBError $ex ) {
-			// check that the exception message contains "Write operation"
-			$constraint = new StringContains( 'Write operation' );
-
-			if ( !$constraint->evaluate( $ex->getMessage(), '', true ) ) {
-				// re-throw original error, to preserve stack trace
-				throw $ex;
-			}
-		}
 	}
 
 	private function assertWriteAllowed( IMaintainableDatabase $db ) {
