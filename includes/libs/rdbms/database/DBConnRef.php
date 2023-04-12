@@ -199,10 +199,6 @@ class DBConnRef implements IMaintainableDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function lastQuery() {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function lastDoneWrites() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}

@@ -63,14 +63,6 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	public function dbSchema( $schema = null );
 
 	/**
-	 * Get the last query that sent on account of IDatabase::query()
-	 *
-	 * @deprecated since 1.40 without replacement
-	 * @return string SQL text or empty string if there was no such query
-	 */
-	public function lastQuery();
-
-	/**
 	 * @return bool Whether a connection to the database open
 	 */
 	public function isOpen();
