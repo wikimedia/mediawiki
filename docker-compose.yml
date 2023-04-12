@@ -16,6 +16,7 @@ services:
     environment:
       COMPOSER_CACHE_DIR: '/var/www/html/w/cache/composer'
       MW_SERVER: 'http://localhost:${MW_DOCKER_PORT:-8080}'
+      MW_DOCKER_PORT: "${MW_DOCKER_PORT:-8080}"
       MW_SCRIPT_PATH: '/w'
       MW_DBPATH: '/var/www/html/w/cache/sqlite'
       MW_DBTYPE: 'sqlite'
@@ -39,6 +40,7 @@ services:
       - '.env'
     environment:
       MW_LOG_DIR: /var/www/html/w/cache
+      MW_DOCKER_PORT: "${MW_DOCKER_PORT:-8080}"
 
   mediawiki-jobrunner:
     image: docker-registry.wikimedia.org/dev/buster-php81-jobrunner:1.0.0
