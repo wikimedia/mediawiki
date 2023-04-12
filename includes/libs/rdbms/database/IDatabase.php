@@ -75,11 +75,6 @@ interface IDatabase extends IReadableDatabase {
 	/** Flag to return the lock acquisition timestamp (null if not acquired) */
 	public const LOCK_TIMESTAMP = 1;
 
-	/** @var bool Parameter to unionQueries() for UNION ALL */
-	public const UNION_ALL = true;
-	/** @var bool Parameter to unionQueries() for UNION DISTINCT */
-	public const UNION_DISTINCT = false;
-
 	/** @var string Field for getLBInfo()/setLBInfo() */
 	public const LB_TRX_ROUND_ID = 'trxRoundId';
 	/** @var string Field for getLBInfo()/setLBInfo() */

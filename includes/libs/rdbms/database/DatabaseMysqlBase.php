@@ -606,15 +606,6 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	/**
-	 * Determines if the last failure was due to a lock timeout
-	 *
-	 * @return bool
-	 */
-	public function wasLockTimeout() {
-		return $this->lastErrno() == 1205;
-	}
-
-	/**
 	 * Determines if the last failure was due to the database being read-only.
 	 *
 	 * @return bool

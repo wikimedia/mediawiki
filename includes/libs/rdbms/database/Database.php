@@ -457,6 +457,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function lastQuery() {
+		wfDeprecated( __METHOD__, '1.40' );
 		return $this->lastQuery;
 	}
 
@@ -1560,6 +1561,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
+	 * Get a UnionQueryBuilder bound to this connection. This is overridden by
+	 * DBConnRef.
+	 *
+	 * @return UnionQueryBuilder
+	 */
+	public function newUnionQueryBuilder(): UnionQueryBuilder {
+		return new UnionQueryBuilder( $this );
+	}
+
+	/**
 	 * Get an UpdateQueryBuilder bound to this connection. This is overridden by
 	 * DBConnRef.
 	 *
@@ -2194,32 +2205,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @inheritDoc
 	 * @stable to override
 	 */
-	public function wasLockTimeout() {
-		return false;
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function wasConnectionLoss() {
-		return $this->isConnectionError( $this->lastErrno() );
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function wasReadOnlyError() {
 		return false;
-	}
-
-	public function wasErrorReissuable() {
-		return (
-			$this->wasDeadlock() ||
-			$this->wasLockTimeout() ||
-			$this->wasConnectionLoss()
-		);
 	}
 
 	/**

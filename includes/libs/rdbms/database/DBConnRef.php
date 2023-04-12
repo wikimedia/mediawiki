@@ -320,6 +320,11 @@ class DBConnRef implements IMaintainableDatabase {
 		return new SelectQueryBuilder( $this );
 	}
 
+	public function newUnionQueryBuilder(): UnionQueryBuilder {
+		// Use $this not $this->conn so that the domain is preserved (T326377)
+		return new UnionQueryBuilder( $this );
+	}
+
 	public function newUpdateQueryBuilder(): UpdateQueryBuilder {
 		// Use $this not $this->conn so that the domain is preserved (T326377)
 		return new UpdateQueryBuilder( $this );
@@ -601,19 +606,7 @@ class DBConnRef implements IMaintainableDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function wasLockTimeout() {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	public function wasConnectionLoss() {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function wasReadOnlyError() {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	public function wasErrorReissuable() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
