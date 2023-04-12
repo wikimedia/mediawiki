@@ -2194,32 +2194,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @inheritDoc
 	 * @stable to override
 	 */
-	public function wasLockTimeout() {
-		return false;
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function wasConnectionLoss() {
-		return $this->isConnectionError( $this->lastErrno() );
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function wasReadOnlyError() {
 		return false;
-	}
-
-	public function wasErrorReissuable() {
-		return (
-			$this->wasDeadlock() ||
-			$this->wasLockTimeout() ||
-			$this->wasConnectionLoss()
-		);
 	}
 
 	/**
