@@ -457,6 +457,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function lastQuery() {
+		wfDeprecated( __METHOD__, '1.40' );
 		return $this->lastQuery;
 	}
 
