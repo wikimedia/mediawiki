@@ -525,7 +525,7 @@
 	"htmlform-submit": "Kɛya",
 	"htmlform-no": "Dabi",
 	"htmlform-yes": "Yoo",
-	"logentry-delete-restore": "$1 {{YOO ALOO NUU:$2|akɛba ekoŋŋ}} baafa $3 ($4)",
+	"logentry-delete-restore": "$1 {{GENDER:$2|akɛba ekoŋŋ}} baafa $3 ($4)",
 	"revdelete-content-hid": "akɛ mlinii etee",
 	"feedback-submit": "Kɛya",
 	"feedback-thanks-title": "Oyiwaladɔŋŋ!",
