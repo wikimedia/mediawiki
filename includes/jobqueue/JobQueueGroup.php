@@ -1,7 +1,5 @@
 <?php
 /**
- * Job queue base code.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -25,7 +23,7 @@ use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
- * Class to handle enqueueing of background jobs
+ * Handle enqueueing of background jobs.
  *
  * @ingroup JobQueue
  * @since 1.21
@@ -285,11 +283,13 @@ class JobQueueGroup {
 	 * Register the "root job" of a given job into the queue for de-duplication.
 	 * This should only be called right *after* all the new jobs have been inserted.
 	 *
+	 * @deprecated since 1.40
 	 * @param RunnableJob $job
 	 * @return bool
 	 */
 	public function deduplicateRootJob( RunnableJob $job ) {
-		return $this->get( $job->getType() )->deduplicateRootJob( $job );
+		wfDeprecated( __METHOD__, '1.40' );
+		return true;
 	}
 
 	/**
