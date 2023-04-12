@@ -33,7 +33,6 @@ use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ActorMigration;
 use Wikimedia\ParamValidator\ParamValidator;
-use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 /**
  * A query action to enumerate revisions of a given page, or show top revisions
@@ -245,21 +244,20 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			}
 			if ( $revids ) {
 				$db = $this->getDB();
-				$sql = $db->unionQueries( [
-					$db->selectSQLText(
-						'revision',
-						[ 'id' => 'rev_id', 'ts' => 'rev_timestamp' ],
-						[ 'rev_id' => $revids ],
-						__METHOD__
-					),
-					$db->selectSQLText(
-						'archive',
-						[ 'id' => 'ar_rev_id', 'ts' => 'ar_timestamp' ],
-						[ 'ar_rev_id' => $revids ],
-						__METHOD__
-					),
-				], $db::UNION_DISTINCT );
-				$res = $db->query( $sql, __METHOD__, ISQLPlatform::QUERY_CHANGE_NONE );
+				$uqb = $db->newUnionQueryBuilder();
+				$uqb->add(
+					$db->newSelectQueryBuilder()
+					   ->select( [ 'id' => 'rev_id', 'ts' => 'rev_timestamp' ] )
+					   ->from( 'revision' )
+					   ->where( [ 'rev_id' => $revids ] )
+				);
+				$uqb->add(
+					$db->newSelectQueryBuilder()
+					   ->select( [ 'id' => 'ar_rev_id', 'ts' => 'ar_timestamp' ] )
+					   ->from( 'archive' )
+					   ->where( [ 'ar_rev_id' => $revids ] )
+				);
+				$res = $uqb->caller( __METHOD__ )->fetchResultSet();
 				foreach ( $res as $row ) {
 					if ( (int)$row->id === (int)$params['startid'] ) {
 						$params['start'] = $row->ts;

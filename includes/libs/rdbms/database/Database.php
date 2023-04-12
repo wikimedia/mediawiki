@@ -1560,6 +1560,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
+	 * Get a UnionQueryBuilder bound to this connection. This is overridden by
+	 * DBConnRef.
+	 *
+	 * @return UnionQueryBuilder
+	 */
+	public function newUnionQueryBuilder(): UnionQueryBuilder {
+		return new UnionQueryBuilder( $this );
+	}
+
+	/**
 	 * Get an UpdateQueryBuilder bound to this connection. This is overridden by
 	 * DBConnRef.
 	 *

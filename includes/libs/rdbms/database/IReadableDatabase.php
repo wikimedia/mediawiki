@@ -31,6 +31,12 @@ use Wikimedia\Rdbms\Platform\ISQLPlatform;
  * @ingroup Database
  */
 interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
+
+	/** @var bool Parameter to unionQueries() for UNION ALL */
+	public const UNION_ALL = true;
+	/** @var bool Parameter to unionQueries() for UNION DISTINCT */
+	public const UNION_DISTINCT = false;
+
 	/**
 	 * Get a human-readable string describing the current software version
 	 *
@@ -140,6 +146,19 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * @return SelectQueryBuilder
 	 */
 	public function newSelectQueryBuilder(): SelectQueryBuilder;
+
+	/**
+	 * Create an empty UnionQueryBuilder which can be used to run queries
+	 * against this connection.
+	 *
+	 * @note A new query builder must be created per query. Query builders
+	 *   should not be reused since this uses a fluent interface and the state of
+	 *   the builder changes during the query which may cause unexpected results.
+	 *
+	 * @since 1.41
+	 * @return UnionQueryBuilder
+	 */
+	public function newUnionQueryBuilder(): UnionQueryBuilder;
 
 	/**
 	 * A SELECT wrapper which returns a single field from a single result row

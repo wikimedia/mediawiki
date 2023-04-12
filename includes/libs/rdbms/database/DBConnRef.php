@@ -320,6 +320,11 @@ class DBConnRef implements IMaintainableDatabase {
 		return new SelectQueryBuilder( $this );
 	}
 
+	public function newUnionQueryBuilder(): UnionQueryBuilder {
+		// Use $this not $this->conn so that the domain is preserved (T326377)
+		return new UnionQueryBuilder( $this );
+	}
+
 	public function newUpdateQueryBuilder(): UpdateQueryBuilder {
 		// Use $this not $this->conn so that the domain is preserved (T326377)
 		return new UpdateQueryBuilder( $this );
