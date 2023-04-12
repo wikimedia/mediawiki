@@ -300,7 +300,7 @@ class PageCommandFactory implements
 			$from,
 			$to,
 			new ServiceOptions( MovePage::CONSTRUCTOR_OPTIONS, $this->config ),
-			$this->lbFactory->getMainLB(),
+			$this->lbFactory,
 			$this->namespaceInfo,
 			$this->watchedItemStore,
 			$this->repoGroup,

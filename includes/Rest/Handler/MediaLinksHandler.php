@@ -11,7 +11,7 @@ use MediaWiki\Rest\SimpleHandler;
 use RepoGroup;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
-use Wikimedia\Rdbms\ILBFactory;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Handler class for Core REST API endpoints that perform operations on revisions
@@ -22,8 +22,8 @@ class MediaLinksHandler extends SimpleHandler {
 	/** int The maximum number of media links to return */
 	private const MAX_NUM_LINKS = 100;
 
-	/** @var ILBFactory */
-	private $lbFactory;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var RepoGroup */
 	private $repoGroup;
@@ -37,16 +37,16 @@ class MediaLinksHandler extends SimpleHandler {
 	private $page = false;
 
 	/**
-	 * @param ILBFactory $lbFactory
+	 * @param IConnectionProvider $dbProvider
 	 * @param RepoGroup $repoGroup
 	 * @param PageLookup $pageLookup
 	 */
 	public function __construct(
-		ILBFactory $lbFactory,
+		IConnectionProvider $dbProvider,
 		RepoGroup $repoGroup,
 		PageLookup $pageLookup
 	) {
-		$this->lbFactory = $lbFactory;
+		$this->dbProvider = $dbProvider;
 		$this->repoGroup = $repoGroup;
 		$this->pageLookup = $pageLookup;
 	}
@@ -103,7 +103,7 @@ class MediaLinksHandler extends SimpleHandler {
 	 * @return array the results
 	 */
 	private function getDbResults( int $pageId ) {
-		return $this->lbFactory->getReplicaDatabase()->newSelectQueryBuilder()
+		return $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
 			->select( 'il_to' )
 			->from( 'imagelinks' )
 			->where( [ 'il_from' => $pageId ] )

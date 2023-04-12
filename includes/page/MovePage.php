@@ -52,8 +52,8 @@ use RequestContext;
 use Status;
 use StringUtils;
 use WatchedItemStoreInterface;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
 use WikiPage;
 use WikitextContent;
 
@@ -81,9 +81,9 @@ class MovePage {
 	protected $options;
 
 	/**
-	 * @var ILoadBalancer
+	 * @var IConnectionProvider
 	 */
-	protected $loadBalancer;
+	protected $dbProvider;
 
 	/**
 	 * @var NamespaceInfo
@@ -162,7 +162,7 @@ class MovePage {
 	 * @param Title $oldTitle
 	 * @param Title $newTitle
 	 * @param ServiceOptions $options
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param NamespaceInfo $nsInfo
 	 * @param WatchedItemStoreInterface $watchedItems
 	 * @param RepoGroup $repoGroup
@@ -182,7 +182,7 @@ class MovePage {
 		Title $oldTitle,
 		Title $newTitle,
 		ServiceOptions $options,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		NamespaceInfo $nsInfo,
 		WatchedItemStoreInterface $watchedItems,
 		RepoGroup $repoGroup,
@@ -202,7 +202,7 @@ class MovePage {
 		$this->newTitle = $newTitle;
 
 		$this->options = $options;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->nsInfo = $nsInfo;
 		$this->watchedItems = $watchedItems;
 		$this->repoGroup = $repoGroup;
@@ -691,7 +691,7 @@ class MovePage {
 			return $status;
 		}
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
+		$dbw = $this->dbProvider->getPrimaryDatabase();
 		$dbw->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 
 		$this->hookRunner->onTitleMoveStarting( $this->oldTitle, $this->newTitle, $userObj );
@@ -938,7 +938,7 @@ class MovePage {
 			$comment .= wfMessage( 'colon-separator' )->inContentLanguage()->text() . $reason;
 		}
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
+		$dbw = $this->dbProvider->getPrimaryDatabase();
 
 		$oldpage = $this->wikiPageFactory->newFromTitle( $this->oldTitle );
 		$oldcountable = $oldpage->isCountable();
