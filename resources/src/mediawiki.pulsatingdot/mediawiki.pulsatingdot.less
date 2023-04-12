@@ -1,11 +1,13 @@
+@import 'mediawiki.skin.variables.less';
+
 .mw-pulsating-dot {
 	&::before,
 	&::after {
 		content: '';
 		display: block;
 		position: absolute;
-		border-radius: 50%;
-		background-color: #36c;
+		border-radius: @border-radius-circle;
+		background-color: @background-color-progressive;
 	}
 
 	&::before {

@@ -1,3 +1,4 @@
+@import 'mediawiki.skin.variables.less';
 @import 'mediawiki.mixins.less';
 
 .mw-ui-container {
@@ -52,7 +53,7 @@
  * Needs to be more specific than Vector's `.mw-body-content h3`.
  */
 .mw-body-content .mw-number-text h3 {
-	color: #202122;
+	color: @color-base;
 	margin: 0;
 	padding: 0;
 	font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
@@ -66,7 +67,7 @@
 .mw-number-text {
 	display: block;
 	font-size: 1.2em;
-	color: #54595d;
+	color: @color-subtle;
 	margin-top: 1em;
 	/* 80px wide icon plus "margin" */
 	padding: 0 0 0 95px;

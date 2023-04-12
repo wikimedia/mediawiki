@@ -2285,7 +2285,7 @@ return [
 	],
 	'mediawiki.special.userlogin.common.styles' => [
 		'skinStyles' => [
-			'default' => 'resources/src/mediawiki.special.userlogin.common.styles/userlogin.css',
+			'default' => 'resources/src/mediawiki.special.userlogin.common.styles/userlogin.less',
 		],
 	],
 	'mediawiki.special.userlogin.login.styles' => [
