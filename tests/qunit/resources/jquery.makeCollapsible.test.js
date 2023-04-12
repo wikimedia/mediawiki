@@ -374,7 +374,7 @@
 			assert.strictEqual( $content.css( 'display' ), 'none', 'after collapsing: content is hidden' );
 		} );
 
-		$clone.find( '.mw-collapsible-toggle a' ).trigger( 'click' );
+		$clone.find( '.mw-collapsible-toggle' ).trigger( 'click' );
 	} );
 
 	QUnit.test( 'reveal hash fragment', function ( assert ) {
@@ -416,7 +416,7 @@
 			assert.true( $collapsible1.find( '> .mw-collapsible-toggle' ).hasClass( 'mw-collapsible-toggle-collapsed' ) );
 			// eslint-disable-next-line no-jquery/no-class-state
 			assert.false( $collapsible2.find( '> .mw-collapsible-toggle' ).hasClass( 'mw-collapsible-toggle-collapsed' ) );
-		} ).find( '> .mw-collapsible-toggle a' ).trigger( 'click' );
+		} ).find( '> .mw-collapsible-toggle' ).trigger( 'click' );
 	} );
 
 	QUnit.test( 'placeholder element for toggle', function ( assert ) {

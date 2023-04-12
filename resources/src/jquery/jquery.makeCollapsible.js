@@ -257,15 +257,11 @@
 
 			// Default toggle link. Only build it when needed to avoid jQuery memory leaks (event data).
 			var buildDefaultToggleLink = function () {
-				return $( '<a>' )
+				return $( '<span>' )
 					.addClass( 'mw-collapsible-text' )
 					.text( collapseText )
-					.wrap( '<span class="mw-collapsible-toggle mw-collapsible-toggle-default"></span>' )
-					.parent()
-					.attr( {
-						role: 'button',
-						tabindex: 0
-					} );
+					.wrap( '<button type="button" class="mw-collapsible-toggle mw-collapsible-toggle-default"></button>' )
+					.parent();
 			};
 
 			// Check if this element has a custom position for the toggle link
