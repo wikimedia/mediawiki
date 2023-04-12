@@ -32,7 +32,6 @@ use RuntimeException;
 use Throwable;
 use UnexpectedValueException;
 use WANObjectCache;
-use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -42,8 +41,6 @@ use Wikimedia\ScopedCallback;
 class LoadBalancer implements ILoadBalancerForOwner {
 	/** @var ILoadMonitor */
 	private $loadMonitor;
-	/** @var CriticalSectionProvider|null */
-	private $csProvider;
 	/** @var callable|null Callback to run before the first connection attempt */
 	private $chronologyCallback;
 	/** @var BagOStuff */
@@ -52,11 +49,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	private $wanCache;
 	/** @var DatabaseFactory */
 	private $databaseFactory;
-	/**
-	 * @var callable|null An optional callback that returns a ScopedCallback instance,
-	 * meant to profile the actual query execution in {@see Database::doQuery}
-	 */
-	private $profiler;
+
 	/** @var TransactionProfiler */
 	private $trxProfiler;
 	/** @var StatsdDataFactoryInterface */
@@ -65,9 +58,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	private $logger;
 	/** @var callable Exception logger */
 	private $errorLogger;
-	/** @var callable Deprecation logger */
-	private $deprecationLogger;
-
 	/** @var DatabaseDomain Local DB domain ID and default for new connections */
 	private $localDomain;
 
@@ -84,11 +74,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	private $loadMonitorConfig;
 	/** @var string|null Default query group to use with getConnection() */
 	private $defaultGroup;
-
-	/** @var bool Whether this PHP instance is for a CLI script */
-	private $cliMode;
-	/** @var string Agent name for query profiling */
-	private $agent;
 
 	/** @var array[] $aliases Map of (table => (dbname, schema, prefix) map) */
 	private $tableAliases = [];
@@ -209,24 +194,15 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 		$this->srvCache = $params['srvCache'] ?? new EmptyBagOStuff();
 		$this->wanCache = $params['wanCache'] ?? WANObjectCache::newEmpty();
-		$this->databaseFactory = $params['databaseFactory'] ?? new DatabaseFactory();
+		$this->databaseFactory = new DatabaseFactory( $params );
 		$this->errorLogger = $params['errorLogger'] ?? static function ( Throwable $e ) {
 				trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
-		};
-		$this->deprecationLogger = $params['deprecationLogger'] ?? static function ( $msg ) {
-				trigger_error( $msg, E_USER_DEPRECATED );
 		};
 		$this->logger = $params['logger'] ?? new NullLogger();
 
 		$this->clusterName = $params['clusterName'] ?? null;
-		$this->profiler = $params['profiler'] ?? null;
 		$this->trxProfiler = $params['trxProfiler'] ?? new TransactionProfiler();
 		$this->statsd = $params['statsdDataFactory'] ?? new NullStatsdDataFactory();
-
-		$this->csProvider = $params['criticalSectionProvider'] ?? null;
-
-		$this->cliMode = $params['cliMode'] ?? ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
-		$this->agent = $params['agent'] ?? '';
 
 		if ( isset( $params['chronologyCallback'] ) ) {
 			$this->chronologyCallback = $params['chronologyCallback'];
@@ -1108,18 +1084,11 @@ class LoadBalancer implements ILoadBalancerForOwner {
 				'schema' => $domain->getSchema(),
 				// Use the table prefix specified in $domain
 				'tablePrefix' => $domain->getTablePrefix(),
-				// Participate in transaction rounds if $server does not specify otherwise
-				'flags' => $this->initConnFlags( $server['flags'] ?? IDatabase::DBO_DEFAULT ),
-				// Inject the PHP execution mode and the agent string
-				'cliMode' => $this->cliMode,
-				'agent' => $this->agent,
 				'srvCache' => $this->srvCache,
 				'logger' => $this->logger,
 				'errorLogger' => $this->errorLogger,
-				'deprecationLogger' => $this->deprecationLogger,
-				'profiler' => $this->profiler,
 				'trxProfiler' => $this->trxProfiler,
-				'criticalSectionProvider' => $this->csProvider
+				'flags' => $server['flags'] ?? IDatabase::DBO_DEFAULT,
 			] ),
 			Database::NEW_UNCONNECTED
 		);
@@ -1195,23 +1164,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		return ( $i === ServerInfo::WRITER_INDEX )
 			? IDatabase::ROLE_STREAMING_MASTER
 			: IDatabase::ROLE_STREAMING_REPLICA;
-	}
-
-	/**
-	 * @see IDatabase::DBO_DEFAULT
-	 * @param int $flags Bit field of IDatabase::DBO_* constants from configuration
-	 * @return int Bit field of IDatabase::DBO_* constants to use with Database::factory()
-	 */
-	private function initConnFlags( $flags ) {
-		if ( self::fieldHasBit( $flags, IDatabase::DBO_DEFAULT ) ) {
-			if ( $this->cliMode ) {
-				$flags &= ~IDatabase::DBO_TRX;
-			} else {
-				$flags |= IDatabase::DBO_TRX;
-			}
-		}
-
-		return $flags;
 	}
 
 	/**

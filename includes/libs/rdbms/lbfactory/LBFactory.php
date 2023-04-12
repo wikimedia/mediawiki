@@ -65,8 +65,6 @@ abstract class LBFactory implements ILBFactory {
 	protected $srvCache;
 	/** @var WANObjectCache */
 	protected $wanCache;
-	/** @var DatabaseFactory */
-	protected $databaseFactory;
 	/** @var DatabaseDomain Local domain */
 	protected $localDomain;
 
@@ -152,8 +150,6 @@ abstract class LBFactory implements ILBFactory {
 		$this->cpStash = $conf['cpStash'] ?? new EmptyBagOStuff();
 		$this->srvCache = $conf['srvCache'] ?? new EmptyBagOStuff();
 		$this->wanCache = $conf['wanCache'] ?? WANObjectCache::newEmpty();
-
-		$this->databaseFactory = $conf['databaseFactory'] ?? new DatabaseFactory();
 
 		$this->logger = $conf['logger'] ?? new NullLogger();
 		$this->errorLogger = $conf['errorLogger'] ?? static function ( Throwable $e ) {
@@ -708,7 +704,6 @@ abstract class LBFactory implements ILBFactory {
 			'readOnlyReason' => $this->readOnlyReason,
 			'srvCache' => $this->srvCache,
 			'wanCache' => $this->wanCache,
-			'databaseFactory' => $this->databaseFactory,
 			'profiler' => $this->profiler,
 			'trxProfiler' => $this->trxProfiler,
 			'logger' => $this->logger,

@@ -625,8 +625,7 @@ return [
 			$srvCache,
 			$wanCache,
 			$services->getCriticalSectionProvider(),
-			$services->getStatsdDataFactory(),
-			$services->getDatabaseFactory()
+			$services->getStatsdDataFactory()
 		);
 	},
 
