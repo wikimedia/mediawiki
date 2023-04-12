@@ -387,10 +387,12 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	 * Returns true if the MIME type is known to represent an image format
 	 * supported by the PHP GD library.
 	 *
+	 * @deprecated since 1.40
 	 * @param string $mime
 	 * @return bool
 	 */
 	public function isPHPImageType( string $mime ): bool {
+		wfDeprecated( __METHOD__, '1.40' );
 		// As defined by imagegetsize and image_type_to_mime
 		static $types = [
 			'image/gif', 'image/jpeg', 'image/png',
