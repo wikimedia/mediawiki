@@ -108,8 +108,8 @@
 			) {
 				// Don't fire if a link was clicked (for premade togglers)
 				return;
-			} else if ( e.type === 'keypress' && e.which !== 13 && e.which !== 32 ) {
-				// Only handle keypresses on the "Enter" or "Space" keys
+			} else if ( e.type === 'keydown' && e.which !== 13 && e.which !== 32 ) {
+				// Only handle the "Enter" or "Space" keys
 				return;
 			} else {
 				e.preventDefault();
@@ -244,7 +244,7 @@
 			var collapseText = options.collapseText || $collapsible.attr( 'data-collapsetext' ) || mw.msg( 'collapsible-collapse' );
 			var expandText = options.expandText || $collapsible.attr( 'data-expandtext' ) || mw.msg( 'collapsible-expand' );
 
-			// Default click/keypress handler and toggle link to use when none is present
+			// Default click/keydown handler and toggle link to use when none is present
 			var actionHandler = function ( e, opts ) {
 				var defaultOpts = {
 					toggleClasses: true,
@@ -369,7 +369,7 @@
 			}
 
 			// Attach event handlers to togglelink
-			$toggle.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler )
+			$toggle.on( 'click.mw-collapsible keydown.mw-collapsible', actionHandler )
 				.attr( 'aria-expanded', 'true' )
 				.prop( 'tabIndex', 0 );
 
