@@ -606,19 +606,7 @@ class DBConnRef implements IMaintainableDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function wasLockTimeout() {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	public function wasConnectionLoss() {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function wasReadOnlyError() {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	public function wasErrorReissuable() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 

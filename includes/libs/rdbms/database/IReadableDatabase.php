@@ -541,40 +541,11 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	public function wasDeadlock();
 
 	/**
-	 * Determines if the last failure was due to a lock timeout
-	 *
-	 * Note that during a lock wait timeout, the prior transaction will have been lost
-	 *
-	 * @return bool
-	 */
-	public function wasLockTimeout();
-
-	/**
-	 * Determines if the last query error was due to a dropped connection
-	 *
-	 * Note that during a connection loss, the prior transaction will have been lost
-	 *
-	 * @return bool
-	 * @since 1.31
-	 */
-	public function wasConnectionLoss();
-
-	/**
 	 * Determines if the last failure was due to the database being read-only
 	 *
 	 * @return bool
 	 */
 	public function wasReadOnlyError();
-
-	/**
-	 * Determines if the last query error was due to something outside of the query itself
-	 *
-	 * Note that the transaction may have been lost, discarding prior writes and results
-	 *
-	 * @return bool
-	 * @deprecated Since 1.40
-	 */
-	public function wasErrorReissuable();
 
 	/**
 	 * Wait for the replica server to catch up to a given primary server position
