@@ -3509,6 +3509,7 @@
 	"confirmemail_oncreate": "A confirmation code was sent to your email address.\nThis code is not required to log in, but you will need to provide it before enabling any email-based features in the wiki.",
 	"confirmemail_sendfailed": "{{SITENAME}} could not send your confirmation mail.\nPlease check your email address for invalid characters.\n\nMailer returned: $1",
 	"confirmemail_invalid": "Invalid confirmation code.\nThe code may have expired.",
+	"confirmemail_invalid_format": "Invalid confirmation code.\nCheck your email, the confirmation link might have been truncated by your email client.",
 	"confirmemail_needlogin": "Please $1 to confirm your email address.",
 	"confirmemail_success": "Your email address has been confirmed.\nYou may now [[Special:UserLogin|log in]] and enjoy the wiki.",
 	"confirmemail_loggedin": "Your email address has now been confirmed.",
