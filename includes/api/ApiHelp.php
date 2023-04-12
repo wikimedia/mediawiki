@@ -186,7 +186,8 @@ class ApiHelp extends ApiBase {
 		$haveModules = [];
 		$html = self::getHelpInternal( $context, $modules, $options, $haveModules );
 		if ( !empty( $options['toc'] ) && $haveModules ) {
-			$out->addHTML( Linker::generateTOC( TOCData::fromLegacy( $haveModules ), $context->getLanguage() ) );
+			$tocData = TOCData::fromLegacy( array_values( $haveModules ) );
+			$out->addHTML( Linker::generateTOC( $tocData, $context->getLanguage() ) );
 		}
 		$out->addHTML( $html );
 
