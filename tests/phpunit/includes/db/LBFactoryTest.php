@@ -1,7 +1,5 @@
 <?php
 /**
- * Holds tests for LBFactory abstract MediaWiki class.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -39,9 +37,15 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Database
+ * @covers \Wikimedia\Rdbms\ChronologyProtector
+ * @covers \Wikimedia\Rdbms\DatabaseMysqlBase
+ * @covers \Wikimedia\Rdbms\DatabasePostgres
+ * @covers \Wikimedia\Rdbms\DatabaseSqlite
  * @covers \Wikimedia\Rdbms\LBFactory
- * @covers \Wikimedia\Rdbms\LBFactorySimple
+ * @covers \Wikimedia\Rdbms\LBFactory
  * @covers \Wikimedia\Rdbms\LBFactoryMulti
+ * @covers \Wikimedia\Rdbms\LBFactorySimple
+ * @covers \Wikimedia\Rdbms\LoadBalancer
  */
 class LBFactoryTest extends MediaWikiIntegrationTestCase {
 
@@ -60,10 +64,6 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\LBFactory::getLocalDomainID()
-	 * @covers \Wikimedia\Rdbms\LBFactory::resolveDomainID()
-	 */
 	public function testLBFactorySimpleServer() {
 		$servers = [ $this->getPrimaryServerConfig() ];
 		$factory = new LBFactorySimple( [ 'servers' => $servers ] );
@@ -394,10 +394,6 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		] );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnection
-	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::doSelectDomain
-	 */
 	public function testNiceDomains() {
 		global $wgDBname;
 
@@ -477,10 +473,6 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$factory->destroy();
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnection
-	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::doSelectDomain
-	 */
 	public function testTrickyDomain() {
 		global $wgDBname;
 
@@ -547,10 +539,6 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$factory->destroy();
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnection
-	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::doSelectDomain
-	 */
 	public function testInvalidSelectDB() {
 		if ( wfGetDB( DB_PRIMARY )->databasesAreIndependent() ) {
 			$this->markTestSkipped( "Not applicable per databasesAreIndependent()" );
@@ -571,10 +559,6 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$db->selectDomain( 'garbagedb' );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::doSelectDomain
-	 * @covers \Wikimedia\Rdbms\DatabasePostgres::doSelectDomain
-	 */
 	public function testInvalidSelectDBIndependent() {
 		$dbname = 'unittest-domain'; // explodes if DB is selected
 		$factory = $this->newLBFactoryMulti(
@@ -596,10 +580,6 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $lb->getConnectionInternal( DB_PRIMARY, [], $lb::DOMAIN_ANY ) );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::doSelectDomain
-	 * @covers \Wikimedia\Rdbms\DatabasePostgres::doSelectDomain
-	 */
 	public function testInvalidSelectDBIndependent2() {
 		$dbname = 'unittest-domain'; // explodes if DB is selected
 		$factory = $this->newLBFactoryMulti(
@@ -621,11 +601,6 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$db->selectDomain( 'garbage-db' );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnection
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::redefineLocalDomain
-	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::doSelectDomain
-	 */
 	public function testRedefineLocalDomain() {
 		global $wgDBname;
 
@@ -677,10 +652,6 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\LBFactory::makeCookieValueFromCPIndex()
-	 * @covers \Wikimedia\Rdbms\LBFactory::getCPInfoFromCookieValue()
-	 */
 	public function testCPPosIndexCookieValues() {
 		$time = 1526522031;
 		$agentId = md5( 'Ramsey\'s Loyal Presa Canario' );
@@ -746,10 +717,6 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\LBFactory::setDomainAliases()
-	 * @covers \Wikimedia\Rdbms\LBFactory::resolveDomainID()
-	 */
 	public function testSetDomainAliases() {
 		$lb = $this->newLBFactoryMulti();
 		$origDomain = $lb->getLocalDomainID();
@@ -766,10 +733,6 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( "realdb-realprefix_", $lb->resolveDomainID( "alias-db-prefix_" ) );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\ChronologyProtector
-	 * @covers \Wikimedia\Rdbms\LBFactory
-	 */
 	public function testGetChronologyProtectorTouched() {
 		$store = new HashBagOStuff;
 		$lbFactory = $this->newLBFactoryMulti( [

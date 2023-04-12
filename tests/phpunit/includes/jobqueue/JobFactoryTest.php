@@ -5,13 +5,12 @@ use MediaWiki\Title\Title;
 
 /**
  * @author Addshore
+ * @covers MediaWiki\JobQueue\JobFactory
  */
 class JobFactoryTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideTestNewJob
-	 *
-	 * @covers MediaWiki\JobQueue\JobFactory::newJob
 	 */
 	public function testNewJob( $handler, $expectedClass ) {
 		$specs = [
