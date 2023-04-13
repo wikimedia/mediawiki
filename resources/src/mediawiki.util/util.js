@@ -1,8 +1,7 @@
 'use strict';
 
-var util,
-	config = require( './config.json' ),
-	portletLinkOptions = require( './portletLinkOptions.json' );
+var config = require( './config.json' );
+var portletLinkOptions = require( './portletLinkOptions.json' );
 
 require( './jquery.accessKeyLabel.js' );
 
@@ -69,7 +68,7 @@ function repeatString( str, count ) {
  * @class mw.util
  * @singleton
  */
-util = {
+var util = {
 
 	/**
 	 * Encode the string like PHP's rawurlencode
@@ -1073,9 +1072,7 @@ mw.log.deprecate( mw.RegExp, 'escape', util.escapeRegExp, 'Use mw.util.escapeReg
 if ( window.QUnit ) {
 	// Not allowed outside unit tests
 	util.setOptionsForTest = function ( opts ) {
-		var oldConfig = config;
-		config = $.extend( {}, config, opts );
-		return oldConfig;
+		config = !opts ? require( './config.json' ) : $.extend( {}, config, opts );
 	};
 	util.init = init;
 } else {
