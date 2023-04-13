@@ -3273,6 +3273,7 @@
 	"confirmemail_oncreate": "Na vaš e-poštni naslov je bilo poslano potrditveno geslo.\nTo geslo ni potrebno za vpis, vendar ga boste morali vnesti, da omogočite katero koli od možnosti e-pošte v tem vikiju.",
 	"confirmemail_sendfailed": "Potrditvenega sporočila ni bilo mogoče poslati.\nProsimo, preverite, če niste naslova vnesli napačno.\n\nPosrednik e-pošte je vrnil: $1",
 	"confirmemail_invalid": "Neveljavna potrditvena koda.\nKoda je morda pretekla.",
+	"confirmemail_invalid_format": "Neveljavna potrditvena koda.\nPreverite svoje e-poštno sporočilo – potrditveno povezavo je morda odrezal vaš odjemalec e-pošte.",
 	"confirmemail_needlogin": "Za potrditev svojega e-poštnega naslova se morate $1.",
 	"confirmemail_success": "Vaš e-poštni naslov je potrjen. Zdaj se lahko prijavite in uporabljate wiki.",
 	"confirmemail_loggedin": "Svoj elektronski naslov ste uspešno potrdili.",
@@ -4267,5 +4268,6 @@
 	"renameuser-move-log": "Samodejno prestavljanje strani pri preimenovanju {{GENDER:$1|uporabnika|uporabnice}} »[[User:$1|$1]]« v »[[User:$2|$2]]«",
 	"action-renameuser": "preimenovanje uporabnikov",
 	"right-renameuser": "Preimenovanje uporabnikov",
-	"renameuser-renamed-notice": "Ta uporabnik je bil preimenovan.\nSpodaj je za sklicevanje naveden dnevniški zapis preimenovanja."
+	"renameuser-renamed-notice": "Ta uporabnik je bil preimenovan.\nSpodaj je za sklicevanje naveden dnevniški zapis preimenovanja.",
+	"log-unknown-action": "izvedba neznanega dejanja »$2« dne [[$1]]"
 }

@@ -3301,6 +3301,7 @@
 	"confirmemail_oncreate": "Ein Bestätigungs-Code wurde an deine E-Mail-Adresse gesandt. Dieser Code wird für die Anmeldung nicht benötigt, jedoch wird er zur Aktivierung der E-Mail-Funktionen innerhalb des Wikis gebraucht.",
 	"confirmemail_sendfailed": "{{SITENAME}} konnte die Bestätigungs-E-Mail nicht an dich versenden.\nBitte prüfe die E-Mail-Adresse auf ungültige Zeichen.\n\nRückmeldung des Mailservers: $1",
 	"confirmemail_invalid": "Ungültiger Bestätigungscode. Möglicherweise ist der Bestätigungszeitraum verstrichen. Versuche bitte, die Bestätigung zu wiederholen.",
+	"confirmemail_invalid_format": "Ungültiger Bestätigungscode.\nÜberprüfe deine E-Mail; der Bestätigungslink wurde möglicherweise von deinem E-Mail-Programm abgeschnitten.",
 	"confirmemail_needlogin": "Du musst dich $1, um deine E-Mail-Adresse zu bestätigen.",
 	"confirmemail_success": "Deine E-Mail-Adresse wurde erfolgreich bestätigt. Du kannst dich jetzt [[Special:UserLogin|anmelden]].",
 	"confirmemail_loggedin": "Deine E-Mail-Adresse wurde erfolgreich bestätigt.",
