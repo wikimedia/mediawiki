@@ -120,7 +120,8 @@ class MWEval extends Maintenance {
 				readline_write_history( $__historyFile );
 			}
 			try {
-				// @phan-suppress-next-line SecurityCheck-RCE
+				// @phan-suppress-next-next-line SecurityCheck-RCE
+				// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.eval
 				$__val = eval( $__line . ";" );
 			} catch ( Exception $__e ) {
 				fwrite( STDERR, "Caught exception " . get_class( $__e ) .

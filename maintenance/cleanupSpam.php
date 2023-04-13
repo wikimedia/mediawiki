@@ -93,6 +93,7 @@ class CleanupSpam extends Maintenance {
 							"$IP/maintenance/cleanupSpam.php",
 							[ '--wiki', $wikiId, $spec ]
 						);
+						// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.passthru
 						passthru( "$cmd | sed 's/^/$wikiId:  /'" );
 					}
 				}

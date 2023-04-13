@@ -173,6 +173,7 @@ class TemplateParser {
 			$compiledTemplate = $this->compile( $templateName );
 		}
 
+		// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.eval
 		$renderer = eval( $compiledTemplate['phpCode'] );
 		if ( !is_callable( $renderer ) ) {
 			throw new RuntimeException( "Compiled template `{$templateName}` is not callable" );

@@ -30,6 +30,7 @@ class BenchmarkEval extends Benchmarker {
 	public function execute() {
 		if ( $this->hasOption( 'setup' ) ) {
 			$setupCode = $this->getOption( 'setup' ) . ';';
+			// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.eval
 			eval( $setupCode );
 		}
 
@@ -50,6 +51,7 @@ class BenchmarkEval extends Benchmarker {
 			$code = "for ( \$__i = 0; \$__i < $inner; \$__i++ ) { $code }";
 		}
 		$code = "function wfBenchmarkEvalBody () { $code }";
+		// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.eval
 		eval( $code );
 		$this->bench( [ 'eval' => [ 'function' => 'wfBenchmarkEvalBody' ] ] );
 	}

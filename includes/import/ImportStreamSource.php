@@ -91,6 +91,7 @@ class ImportStreamSource implements ImportSource {
 	 * @return Status
 	 */
 	public static function newFromUpload( $fieldname = "xmlimport" ) {
+		// phpcs:ignore MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals
 		$upload =& $_FILES[$fieldname];
 
 		if ( $upload === null || !$upload['name'] ) {

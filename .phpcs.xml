@@ -13,12 +13,8 @@
 		<exclude name="MediaWiki.Commenting.PropertyDocumentation.WrongStyle" />
 		<exclude name="MediaWiki.ControlStructures.AssignmentInControlStructures.AssignmentInControlStructures" />
 		<exclude name="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName" />
-		<exclude name="MediaWiki.Usage.DbrQueryUsage.DbrQueryFound" />
 		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle" />
 		<exclude name="MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage" />
-		<exclude name="MediaWiki.Usage.ForbiddenFunctions.eval" />
-		<exclude name="MediaWiki.Usage.ForbiddenFunctions.passthru" />
-		<exclude name="MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
 		<exclude name="PSR2.Classes.PropertyDeclaration.Multiple" />
 	</rule>
@@ -29,9 +25,7 @@
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix">
 		<exclude-pattern>*/maintenance/doMaintenance\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/mergeMessageFileList\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/CommandLineInc\.php</exclude-pattern>
-		<exclude-pattern>*/tests/phpunit/MediaWikiIntegrationTestCase\.php</exclude-pattern>
 	</rule>
 	<rule ref="Generic.Files.LineLength">
 		<exclude-pattern>*/languages/messages/*</exclude-pattern>
@@ -77,7 +71,6 @@
 		<exclude-pattern>*/maintenance/language/digit2html\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/language/langmemusage\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/mctest\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/mergeMessageFileList\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/mwdocgen\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/rebuildall\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/rebuildmessages\.php</exclude-pattern>

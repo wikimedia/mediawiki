@@ -471,6 +471,7 @@ class CheckStorage {
 		// Run mwdumper
 		echo "Filtering XML dump...\n";
 		$exitStatus = 0;
+		// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.passthru
 		passthru( 'mwdumper ' .
 			Shell::escape(
 				"--output=file:$filteredXmlFileName",

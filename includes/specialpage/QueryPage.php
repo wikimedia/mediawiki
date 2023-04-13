@@ -556,6 +556,7 @@ abstract class QueryPage extends SpecialPage {
 			$sql = $this->getSQL();
 			$sql .= ' ORDER BY ' . implode( ', ', $order );
 			$sql = $dbr->limitResult( $sql, $limit, $offset );
+			// phpcs:ignore MediaWiki.Usage.DbrQueryUsage.DbrQueryFound
 			$res = $dbr->query( $sql, $fname );
 		}
 
