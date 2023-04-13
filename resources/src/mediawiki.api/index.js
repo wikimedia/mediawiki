@@ -104,14 +104,15 @@
 	// Pre-populate with fake ajax promises to avoid HTTP requests for tokens that
 	// we already have on the page from the embedded user.options module (T36733).
 	promises[ defaultOptions.ajax.url ] = {};
-	// eslint-disable-next-line no-jquery/no-each-util
-	$.each( mw.user.tokens.get(), function ( key, value ) {
+	var tokens = mw.user.tokens.get();
+	for ( var tokenKey in tokens ) {
+		var value = tokens[ tokenKey ];
 		// This requires #getToken to use the same key as mw.user.tokens.
 		// Format: token-type + "Token" (eg. csrfToken, patrolToken, watchToken).
-		promises[ defaultOptions.ajax.url ][ key ] = $.Deferred()
+		promises[ defaultOptions.ajax.url ][ tokenKey ] = $.Deferred()
 			.resolve( value )
 			.promise( { abort: function () {} } );
-	} );
+	}
 
 	mw.Api.prototype = {
 		/**

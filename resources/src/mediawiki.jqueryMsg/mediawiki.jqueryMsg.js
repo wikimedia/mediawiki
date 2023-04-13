@@ -912,13 +912,13 @@ mw.jqueryMsg.Parser.prototype = {
  * @private
  * @class
  * @param {Object} language
- * @param {Object} magic
+ * @param {Object} [magic]
  */
 mw.jqueryMsg.HtmlEmitter = function ( language, magic ) {
 	var jmsg = this;
 	this.language = language;
-	// eslint-disable-next-line no-jquery/no-each-util
-	$.each( magic, function ( key, val ) {
+	Object.keys( magic || {} ).forEach( function ( key ) {
+		var val = magic[ key ];
 		jmsg[ key.toLowerCase() ] = function () {
 			return val;
 		};
@@ -1025,8 +1025,9 @@ mw.jqueryMsg.HtmlEmitter.prototype = {
 	 */
 	concat: function ( nodes ) {
 		var $span = $( '<span>' ).addClass( 'mediaWiki_htmlEmitter' );
-		// eslint-disable-next-line no-jquery/no-each-util
-		$.each( nodes, function ( i, node ) {
+		// Use Array.from since mixed parameter.
+		// eslint-disable-next-line compat/compat
+		Array.from( nodes ).forEach( function ( node ) {
 			// Let jQuery append nodes, arrays of nodes and jQuery objects
 			// other things (strings, numbers, ..) are appended as text nodes (not as HTML strings)
 			appendWithoutParsing( $span, node );

@@ -86,8 +86,8 @@ Controller.prototype.initialize = function ( filterStructure, namespaceStructure
 		subset: []
 	};
 	items = [ nsAllContents, nsAllDiscussions ];
-	// eslint-disable-next-line no-jquery/no-each-util
-	$.each( namespaceStructure, function ( namespaceID, label ) {
+	for ( var namespaceID in namespaceStructure ) {
+		var label = namespaceStructure[ namespaceID ];
 		// Build and clean up the individual namespace items definition
 		var isTalk = mw.Title.isTalkNamespace( namespaceID ),
 			nsFilter = {
@@ -101,7 +101,7 @@ Controller.prototype.initialize = function ( filterStructure, namespaceStructure
 			};
 		items.push( nsFilter );
 		( isTalk ? nsAllDiscussions : nsAllContents ).subset.push( { filter: namespaceID } );
-	} );
+	}
 
 	views.namespaces = {
 		title: mw.msg( 'namespaces' ),
@@ -246,8 +246,8 @@ Controller.prototype.initialize = function ( filterStructure, namespaceStructure
 	// Before we do anything, we need to see if we require additional items in the
 	// groups that have 'AllowArbitrary'. For the moment, those are only single_option
 	// groups; if we ever expand it, this might need further generalization:
-	// eslint-disable-next-line no-jquery/no-each-util
-	$.each( views, function ( viewName, viewData ) {
+	for ( var viewName in views ) {
+		var viewData = views[ viewName ];
 		viewData.groups.forEach( function ( groupData ) {
 			var extraValues = [];
 			if ( groupData.allowArbitrary ) {
@@ -262,7 +262,7 @@ Controller.prototype.initialize = function ( filterStructure, namespaceStructure
 				controller.addNumberValuesToGroup( groupData, extraValues );
 			}
 		} );
-	} );
+	}
 
 	// Initialize the model
 	this.filtersModel.initializeFilters( filterStructure, views );

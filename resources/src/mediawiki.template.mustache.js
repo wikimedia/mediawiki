@@ -21,10 +21,10 @@
 				render: function ( data, partialTemplates ) {
 					var partials = {};
 					if ( partialTemplates ) {
-						// eslint-disable-next-line no-jquery/no-each-util
-						$.each( partialTemplates, function ( name, template ) {
+						for ( var name in partialTemplates ) {
+							var template = partialTemplates[ name ];
 							partials[ name ] = template.getSource();
-						} );
+						}
 					}
 					return $( $.parseHTML( Mustache.render( src, data, partials ) ) );
 				}
