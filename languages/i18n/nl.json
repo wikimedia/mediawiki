@@ -4178,5 +4178,6 @@
 	"renameuser-move-log": "Automatisch hernoemd bij het hernoemen van {{GENDER:$2|gebruiker}} \"[[User:$1|$1]]\" naar \"[[User:$2|$2]]\"",
 	"action-renameuser": "gebruikers te hernoemen",
 	"right-renameuser": "Gebruikers hernoemen",
-	"renameuser-renamed-notice": "Deze gebruiker is hernoemd.\nRelevante regels uit het logboek gebruikersnaamwijzigingen worden hieronder ter referentie weergegeven."
+	"renameuser-renamed-notice": "Deze gebruiker is hernoemd.\nRelevante regels uit het logboek gebruikersnaamwijzigingen worden hieronder ter referentie weergegeven.",
+	"log-unknown-action": "heeft onbekende handeling \"$2\" op [[$1]] uitgevoerd"
 }

@@ -4200,5 +4200,6 @@
 	"renameuser-move-log": "Pagina spostata automaticamente durante la rinomina {{GENDER:$2|dell'utente}} \"[[User:$1|$1]]\" a \"[[User:$2|$2]]\"",
 	"action-renameuser": "rinominare gli utenti",
 	"right-renameuser": "Rinomina gli utenti",
-	"renameuser-renamed-notice": "Questo utente è stato rinominato.\nIl registro delle rinomine è riportato di seguito per informazione."
+	"renameuser-renamed-notice": "Questo utente è stato rinominato.\nIl registro delle rinomine è riportato di seguito per informazione.",
+	"log-unknown-action": "ha eseguito l'azione sconosciuta \"$2\" su [[$1]]"
 }

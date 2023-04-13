@@ -4233,5 +4233,6 @@
 	"renameuser-move-log": "\"[[User:$1|$1]]\" {{GENDER:$2|kullanıcısı}} \"[[User:$2|$2]]\" olarak yeniden adlandırılırken sayfa otomatik olarak taşındı",
 	"action-renameuser": "kullanıcıları yeniden adlandır",
 	"right-renameuser": "Kullanıcıları yeniden adlandır",
-	"renameuser-renamed-notice": "Bu kullanıcının adı değiştirildi.\nReferans için ad değiştirme günlüğü aşağıda sağlanmıştır."
+	"renameuser-renamed-notice": "Bu kullanıcının adı değiştirildi.\nReferans için ad değiştirme günlüğü aşağıda sağlanmıştır.",
+	"log-unknown-action": "[[$1]] sayfasında bilinmeyen \"$2\" eylemini yaptı"
 }

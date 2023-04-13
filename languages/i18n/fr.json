@@ -3448,6 +3448,7 @@
 	"confirmemail_oncreate": "Un code de confirmation a été envoyé à votre adresse de courriel.\nCe code n’est pas requis pour vous identifier sur ce wiki, mais vous devrez le fournir pour activer toute fonction de messagerie.",
 	"confirmemail_sendfailed": "{{SITENAME}} n’a pas pu vous envoyer le courriel de confirmation.\nVeuillez vérifiez que votre adresse de courriel ne comprend aucun caractère incorrect.\n\nLe programme d’envoi de courriel a retourné l’indication suivante : $1",
 	"confirmemail_invalid": "Code de confirmation incorrect.\nCelui-ci a peut-être expiré.",
+	"confirmemail_invalid_format": "Code de confirmation non valide.\nVérifiez votre courriel, le lien de confirmation a peut-être été tronqué par votre client de messagerie.",
 	"confirmemail_needlogin": "Veuillez vous $1 pour confirmer votre adresse de courriel.",
 	"confirmemail_success": "Votre adresse de courriel a été confirmée.\nVous pouvez maintenant vous [[Special:UserLogin|{{MediaWiki:Loginreqlink/fr}}]] et profiter du wiki.",
 	"confirmemail_loggedin": "Votre adresse de courriel est maintenant confirmée.",
@@ -4442,5 +4443,6 @@
 	"renameuser-move-log": "Page déplacée automatiquement lorsque l’utilisat{{GENDER:$2|eur|rice}} « [[User:$1|$1]] » est devenu{{GENDER:$2||e}} « [[User:$2|$2]] »",
 	"action-renameuser": "renommer les utilisateurs",
 	"right-renameuser": "Renommer les utilisateurs",
-	"renameuser-renamed-notice": "Cet utilisateur a été renommé.\nLe journal des renommages est fourni ci-dessous à titre de référence."
+	"renameuser-renamed-notice": "Cet utilisateur a été renommé.\nLe journal des renommages est fourni ci-dessous à titre de référence.",
+	"log-unknown-action": "action inconnue « $2 » effectuée sur [[$1]]"
 }
