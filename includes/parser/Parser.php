@@ -5487,7 +5487,10 @@ class Parser {
 			# Use the "caption" for the tooltip text
 			$params['frame']['title'] = $this->stripAltText( $caption, $holders );
 		}
-		$params['handler']['targetlang'] = $this->getTargetLanguage()->getCode();
+		# T310453: Use page view language for language variants.
+		$params['handler']['targetlang'] = strtolower(
+			$this->getTitle()->getPageViewLanguage()->getHtmlCode()
+		);
 
 		// hook signature compat again, $link may have changed
 		$title = Title::castFromLinkTarget( $link );

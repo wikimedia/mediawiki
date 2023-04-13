@@ -160,7 +160,9 @@ class DataAccess extends IDataAccess {
 			// for thumbnails.
 		}
 
-		// Parser::makeImage() always sets this
+		# Parser::makeImage() always sets this
+		# T310453: Use page view language for language variants.
+		# TODO: Use page view language instead of page source code language
 		$hp['targetlang'] = LanguageCode::bcp47ToInternal(
 			$pageConfig->getPageLanguageBcp47()->toBcp47Code()
 		);
