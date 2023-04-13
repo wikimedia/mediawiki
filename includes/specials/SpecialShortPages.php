@@ -135,6 +135,7 @@ class SpecialShortPages extends QueryPage {
 				$options,
 				$join_conds
 			);
+			// phpcs:ignore MediaWiki.Usage.DbrQueryUsage.DbrQueryFound
 			$res = $dbr->query( $sql, $fname );
 		}
 
