@@ -1489,7 +1489,7 @@ class DifferenceEngine extends ContextSource {
 	 * Process DiffEngine config and get a sensible, usable engine
 	 *
 	 * @return string 'wikidiff2', 'php', or path to an executable
-	 * @internal For use by this class and TextSlotDiffRenderer only.
+	 * @internal For use by this class and within Core only.
 	 */
 	public static function getEngine() {
 		$diffEngine = MediaWikiServices::getInstance()->getMainConfig()
