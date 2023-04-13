@@ -18,6 +18,8 @@
 
 		// Based on IPTest.php > testisIPv6
 		IPV6_CASES = [
+			[ false, false, 'Boolean false is not an IP' ],
+			[ false, true, 'Boolean true is not an IP' ],
 			[ false, ':fc:100::', 'IPv6 starting with lone ":"' ],
 			[ false, 'fc:100:::', 'IPv6 ending with a ":::"' ],
 			[ false, 'fc:300', 'IPv6 with only 2 words' ],
