@@ -18,6 +18,8 @@
 
 		// Based on IPTest.php > testisIPv6
 		IPV6_CASES = [
+			[ false, false, 'Boolean false is not an IP' ],
+			[ false, true, 'Boolean true is not an IP' ],
 			[ false, ':fc:100::', 'IPv6 starting with lone ":"' ],
 			[ false, 'fc:100:::', 'IPv6 ending with a ":::"' ],
 			[ false, 'fc:300', 'IPv6 with only 2 words' ],
@@ -77,14 +79,14 @@
 	QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		beforeEach: function () {
 			$.fn.updateTooltipAccessKeys.setTestMode( true );
-			this.origConfig = mw.util.setOptionsForTest( {
+			mw.util.setOptionsForTest( {
 				FragmentMode: [ 'legacy', 'html5' ],
 				LoadScript: '/w/load.php'
 			} );
 		},
 		afterEach: function () {
 			$.fn.updateTooltipAccessKeys.setTestMode( false );
-			mw.util.setOptionsForTest( this.origConfig );
+			mw.util.setOptionsForTest();
 		},
 		messages: {
 			// Used by accessKeyLabel in test for addPortletLink
@@ -473,177 +475,129 @@
 		} );
 	} );
 
-	QUnit.module( 'parseImageUrl', function ( hooks ) {
-		hooks.beforeEach( function () {
-			this.oldConfig = mw.util.setOptionsForTest( {} );
-		} );
-		hooks.afterEach( function () {
-			mw.util.setOptionsForTest( this.oldConfig );
-		} );
+	QUnit.test.each( 'parseImageUrl', {
+		'Hashed thumb with shortened path': {
+			url: '//upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Princess_Alexandra_of_Denmark_%28later_Queen_Alexandra%2C_wife_of_Edward_VII%29_with_her_two_eldest_sons%2C_Prince_Albert_Victor_%28Eddy%29_and_George_Frederick_Ernest_Albert_%28later_George_V%29.jpg/939px-thumbnail.jpg',
+			name: 'Princess Alexandra of Denmark (later Queen Alexandra, wife of Edward VII) with her two eldest sons, Prince Albert Victor (Eddy) and George Frederick Ernest Albert (later George V).jpg',
+			width: 939,
+			resizedUrl: '//upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Princess_Alexandra_of_Denmark_%28later_Queen_Alexandra%2C_wife_of_Edward_VII%29_with_her_two_eldest_sons%2C_Prince_Albert_Victor_%28Eddy%29_and_George_Frederick_Ernest_Albert_%28later_George_V%29.jpg/1000px-thumbnail.jpg'
+		},
+		'Hashed thumb with sha1-ed path': {
+			url: '//upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Princess_Alexandra_of_Denmark_%28later_Queen_Alexandra%2C_wife_of_Edward_VII%29_with_her_two_eldest_sons%2C_Prince_Albert_Victor_%28Eddy%29_and_George_Frederick_Ernest_Albert_%28later_George_V%29.jpg/939px-ki708pr1r6g2dl5lbhvwdqxenhait13.jpg',
+			name: 'Princess Alexandra of Denmark (later Queen Alexandra, wife of Edward VII) with her two eldest sons, Prince Albert Victor (Eddy) and George Frederick Ernest Albert (later George V).jpg',
+			width: 939,
+			resizedUrl: '//upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Princess_Alexandra_of_Denmark_%28later_Queen_Alexandra%2C_wife_of_Edward_VII%29_with_her_two_eldest_sons%2C_Prince_Albert_Victor_%28Eddy%29_and_George_Frederick_Ernest_Albert_%28later_George_V%29.jpg/1000px-ki708pr1r6g2dl5lbhvwdqxenhait13.jpg'
+		},
+		'Normal hashed directory thumbnail': {
+			url: '/wiki/images/thumb/9/91/Anticlockwise_heliotrope%27s.jpg/99px-Anticlockwise_heliotrope%27s.jpg',
+			name: 'Anticlockwise heliotrope\'s.jpg',
+			width: 99,
+			resizedUrl: '/wiki/images/thumb/9/91/Anticlockwise_heliotrope%27s.jpg/1000px-Anticlockwise_heliotrope%27s.jpg'
+		},
+		'Normal hashed directory thumbnail with complex thumbnail parameters': {
+			url: '/wiki/images/thumb/8/80/Wikipedia-logo-v2.svg/langde-150px-Wikipedia-logo-v2.svg.png',
+			name: 'Wikipedia-logo-v2.svg',
+			width: 150,
+			resizedUrl: '/wiki/images/thumb/8/80/Wikipedia-logo-v2.svg/langde-1000px-Wikipedia-logo-v2.svg.png'
+		},
+		'Width-like filename component': {
+			url: '/wiki/images/thumb/1/10/Little_Bobby_Tables-100px-file.jpg/qlow-100px-Little_Bobby_Tables-100px-file.jpg',
+			name: 'Little Bobby Tables-100px-file.jpg',
+			width: 100,
+			resizedUrl: '/wiki/images/thumb/1/10/Little_Bobby_Tables-100px-file.jpg/qlow-1000px-Little_Bobby_Tables-100px-file.jpg'
+		},
+		'Width-like filename component in non-ASCII filename': {
+			url: '/wiki/images/thumb/1/10/Little_Bobby%22%3B_Tables-100px-file.jpg/qlow-100px-Little_Bobby%22%3B_Tables-100px-file.jpg',
+			name: 'Little Bobby"; Tables-100px-file.jpg',
+			width: 100,
+			resizedUrl: '/wiki/images/thumb/1/10/Little_Bobby%22%3B_Tables-100px-file.jpg/qlow-1000px-Little_Bobby%22%3B_Tables-100px-file.jpg'
+		},
 
-		[
-			{
-				url: '//upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Princess_Alexandra_of_Denmark_%28later_Queen_Alexandra%2C_wife_of_Edward_VII%29_with_her_two_eldest_sons%2C_Prince_Albert_Victor_%28Eddy%29_and_George_Frederick_Ernest_Albert_%28later_George_V%29.jpg/939px-thumbnail.jpg',
-				typeOfUrl: 'Hashed thumb with shortened path',
-				name: 'Princess Alexandra of Denmark (later Queen Alexandra, wife of Edward VII) with her two eldest sons, Prince Albert Victor (Eddy) and George Frederick Ernest Albert (later George V).jpg',
-				width: 939,
-				resizedUrl: '//upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Princess_Alexandra_of_Denmark_%28later_Queen_Alexandra%2C_wife_of_Edward_VII%29_with_her_two_eldest_sons%2C_Prince_Albert_Victor_%28Eddy%29_and_George_Frederick_Ernest_Albert_%28later_George_V%29.jpg/1000px-thumbnail.jpg'
-			},
+		'Commons thumbnail': {
+			url: '//upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png',
+			name: 'Wikipedia-logo-v2.svg',
+			width: 150,
+			resizedUrl: '//upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/1000px-Wikipedia-logo-v2.svg.png'
+		},
+		'Full image': {
+			url: '/wiki/images/9/91/Anticlockwise_heliotrope%27s.jpg',
+			name: 'Anticlockwise heliotrope\'s.jpg',
+			width: null
+		},
+		'thumb.php-based thumbnail': {
+			url: 'http://localhost/thumb.php?f=Stuffless_Figaro%27s.jpg&width=180',
+			name: 'Stuffless Figaro\'s.jpg',
+			width: 180,
+			resizedUrl: 'http://localhost/thumb.php?f=Stuffless_Figaro%27s.jpg&width=1000'
+		},
+		'thumb.php-based thumbnail with px width': {
+			url: 'http://localhost/thumb.php?f=Stuffless_Figaro%27s.jpg&width=180px',
+			name: 'Stuffless Figaro\'s.jpg',
+			width: 180,
+			resizedUrl: 'http://localhost/thumb.php?f=Stuffless_Figaro%27s.jpg&width=1000'
+		},
+		'thumb.php-based BC thumbnail': {
+			url: 'http://localhost/thumb.php?f=Stuffless_Figaro%27s.jpg&w=180',
+			name: 'Stuffless Figaro\'s.jpg',
+			width: 180,
+			resizedUrl: 'http://localhost/thumb.php?f=Stuffless_Figaro%27s.jpg&width=1000'
+		},
+		'Commons unhashed thumbnail': {
+			url: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png',
+			name: 'Wikipedia-logo-v2.svg',
+			width: 150,
+			resizedUrl: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/1000px-Wikipedia-logo-v2.svg.png'
+		},
+		'Commons unhashed thumbnail with complex thumbnail parameters': {
+			url: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/langde-150px-Wikipedia-logo-v2.svg.png',
+			name: 'Wikipedia-logo-v2.svg',
+			width: 150,
+			resizedUrl: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/langde-1000px-Wikipedia-logo-v2.svg.png'
+		},
+		'Unhashed local file': {
+			url: '/wiki/images/Anticlockwise_heliotrope%27s.jpg',
+			name: 'Anticlockwise heliotrope\'s.jpg',
+			width: null
+		},
+		'Empty string': {
+			url: ''
+		},
+		'String with only alphabet characters': {
+			url: 'foo'
+		},
+		'Not a file path': {
+			url: 'foobar.foobar'
+		},
+		'Space characters': {
+			url: '/a/a0/blah blah blah'
+		}
+	}, function ( assert, thisCase ) {
+		mw.util.setOptionsForTest( { GenerateThumbnailOnParse: false } );
+		var data = mw.util.parseImageUrl( thisCase.url );
+		if ( !thisCase.name ) {
+			assert.strictEqual( data, null, 'return null' );
+			return;
+		}
 
-			{
-				url: '//upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Princess_Alexandra_of_Denmark_%28later_Queen_Alexandra%2C_wife_of_Edward_VII%29_with_her_two_eldest_sons%2C_Prince_Albert_Victor_%28Eddy%29_and_George_Frederick_Ernest_Albert_%28later_George_V%29.jpg/939px-ki708pr1r6g2dl5lbhvwdqxenhait13.jpg',
-				typeOfUrl: 'Hashed thumb with sha1-ed path',
-				name: 'Princess Alexandra of Denmark (later Queen Alexandra, wife of Edward VII) with her two eldest sons, Prince Albert Victor (Eddy) and George Frederick Ernest Albert (later George V).jpg',
-				width: 939,
-				resizedUrl: '//upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Princess_Alexandra_of_Denmark_%28later_Queen_Alexandra%2C_wife_of_Edward_VII%29_with_her_two_eldest_sons%2C_Prince_Albert_Victor_%28Eddy%29_and_George_Frederick_Ernest_Albert_%28later_George_V%29.jpg/1000px-ki708pr1r6g2dl5lbhvwdqxenhait13.jpg'
-			},
+		assert.strictEqual( typeof data, 'object', 'return object' );
+		assert.strictEqual( data.name, thisCase.name, 'file name' );
+		assert.strictEqual( data.width, thisCase.width, 'width' );
+		if ( thisCase.resizedUrl ) {
+			assert.strictEqual( typeof data.resizeUrl, 'function', 'resizeUrl type' );
+			assert.strictEqual( data.resizeUrl( 1000 ), thisCase.resizedUrl, 'resizeUrl return' );
+		} else {
+			assert.strictEqual( data.resizeUrl, null, 'resizeUrl is not set' );
+		}
+	} );
 
-			{
-				url: '/wiki/images/thumb/9/91/Anticlockwise_heliotrope%27s.jpg/99px-Anticlockwise_heliotrope%27s.jpg',
-				typeOfUrl: 'Normal hashed directory thumbnail',
-				name: 'Anticlockwise heliotrope\'s.jpg',
-				width: 99,
-				resizedUrl: '/wiki/images/thumb/9/91/Anticlockwise_heliotrope%27s.jpg/1000px-Anticlockwise_heliotrope%27s.jpg'
-			},
+	QUnit.test( 'parseImageUrl [no dynamic thumbnail generation]', function ( assert ) {
+		mw.util.setOptionsForTest( { GenerateThumbnailOnParse: true } );
+		this.sandbox.stub( mw.config.values, 'wgScript', '/w' );
 
-			{
-				url: '/wiki/images/thumb/8/80/Wikipedia-logo-v2.svg/langde-150px-Wikipedia-logo-v2.svg.png',
-				typeOfUrl: 'Normal hashed directory thumbnail with complex thumbnail parameters',
-				name: 'Wikipedia-logo-v2.svg',
-				width: 150,
-				resizedUrl: '/wiki/images/thumb/8/80/Wikipedia-logo-v2.svg/langde-1000px-Wikipedia-logo-v2.svg.png'
-			},
+		var resizeUrl = mw.util.parseImageUrl( '//upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Princess_Alexandra_of_Denmark_%28later_Queen_Alexandra%2C_wife_of_Edward_VII%29_with_her_two_eldest_sons%2C_Prince_Albert_Victor_%28Eddy%29_and_George_Frederick_Ernest_Albert_%28later_George_V%29.jpg/939px-thumbnail.jpg' ).resizeUrl;
 
-			{
-				url: '/wiki/images/thumb/1/10/Little_Bobby_Tables-100px-file.jpg/qlow-100px-Little_Bobby_Tables-100px-file.jpg',
-				typeOfUrl: 'Width-like filename component',
-				name: 'Little Bobby Tables-100px-file.jpg',
-				width: 100,
-				resizedUrl: '/wiki/images/thumb/1/10/Little_Bobby_Tables-100px-file.jpg/qlow-1000px-Little_Bobby_Tables-100px-file.jpg'
-			},
-
-			{
-				url: '/wiki/images/thumb/1/10/Little_Bobby%22%3B_Tables-100px-file.jpg/qlow-100px-Little_Bobby%22%3B_Tables-100px-file.jpg',
-				typeOfUrl: 'Width-like filename component in non-ASCII filename',
-				name: 'Little Bobby"; Tables-100px-file.jpg',
-				width: 100,
-				resizedUrl: '/wiki/images/thumb/1/10/Little_Bobby%22%3B_Tables-100px-file.jpg/qlow-1000px-Little_Bobby%22%3B_Tables-100px-file.jpg'
-			},
-
-			{
-				url: '//upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png',
-				typeOfUrl: 'Commons thumbnail',
-				name: 'Wikipedia-logo-v2.svg',
-				width: 150,
-				resizedUrl: '//upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/1000px-Wikipedia-logo-v2.svg.png'
-			},
-
-			{
-				url: '/wiki/images/9/91/Anticlockwise_heliotrope%27s.jpg',
-				typeOfUrl: 'Full image',
-				name: 'Anticlockwise heliotrope\'s.jpg',
-				width: null,
-				resizedUrl: null
-			},
-
-			{
-				url: 'http://localhost/thumb.php?f=Stuffless_Figaro%27s.jpg&width=180',
-				typeOfUrl: 'thumb.php-based thumbnail',
-				name: 'Stuffless Figaro\'s.jpg',
-				width: 180,
-				resizedUrl: 'http://localhost/thumb.php?f=Stuffless_Figaro%27s.jpg&width=1000'
-			},
-
-			{
-				url: 'http://localhost/thumb.php?f=Stuffless_Figaro%27s.jpg&width=180px',
-				typeOfUrl: 'thumb.php-based thumbnail with px width',
-				name: 'Stuffless Figaro\'s.jpg',
-				width: 180,
-				resizedUrl: 'http://localhost/thumb.php?f=Stuffless_Figaro%27s.jpg&width=1000'
-			},
-
-			{
-				url: 'http://localhost/thumb.php?f=Stuffless_Figaro%27s.jpg&w=180',
-				typeOfUrl: 'thumb.php-based BC thumbnail',
-				name: 'Stuffless Figaro\'s.jpg',
-				width: 180,
-				resizedUrl: 'http://localhost/thumb.php?f=Stuffless_Figaro%27s.jpg&width=1000'
-			},
-
-			{
-				url: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png',
-				typeOfUrl: 'Commons unhashed thumbnail',
-				name: 'Wikipedia-logo-v2.svg',
-				width: 150,
-				resizedUrl: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/1000px-Wikipedia-logo-v2.svg.png'
-			},
-
-			{
-				url: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/langde-150px-Wikipedia-logo-v2.svg.png',
-				typeOfUrl: 'Commons unhashed thumbnail with complex thumbnail parameters',
-				name: 'Wikipedia-logo-v2.svg',
-				width: 150,
-				resizedUrl: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/langde-1000px-Wikipedia-logo-v2.svg.png'
-			},
-
-			{
-				url: '/wiki/images/Anticlockwise_heliotrope%27s.jpg',
-				typeOfUrl: 'Unhashed local file',
-				name: 'Anticlockwise heliotrope\'s.jpg',
-				width: null,
-				resizedUrl: null
-			},
-
-			{
-				url: '',
-				typeOfUrl: 'Empty string'
-			},
-
-			{
-				url: 'foo',
-				typeOfUrl: 'String with only alphabet characters'
-			},
-
-			{
-				url: 'foobar.foobar',
-				typeOfUrl: 'Not a file path'
-			},
-
-			{
-				url: '/a/a0/blah blah blah',
-				typeOfUrl: 'Space characters'
-			}
-		].forEach( function ( thisCase ) {
-			QUnit.test( 'parseImageUrl: ' + thisCase.typeOfUrl, function ( assert ) {
-				var data;
-
-				mw.util.setOptionsForTest( { GenerateThumbnailOnParse: false } );
-				data = mw.util.parseImageUrl( thisCase.url );
-				if ( thisCase.name !== undefined ) {
-					assert.notStrictEqual( data, null, 'Parses successfully' );
-					assert.strictEqual( data.name, thisCase.name, 'File name is correct' );
-					assert.strictEqual( data.width, thisCase.width, 'Width is correct' );
-					if ( thisCase.resizedUrl ) {
-						assert.strictEqual( typeof data.resizeUrl, 'function', 'resizeUrl is set' );
-						assert.strictEqual( data.resizeUrl( 1000 ), thisCase.resizedUrl, 'Resized URL is correct' );
-					} else {
-						assert.strictEqual( data.resizeUrl, null, 'resizeUrl is not set' );
-					}
-				} else {
-					assert.strictEqual( data, null, thisCase.typeOfUrl + ', should not produce an mw.Title object' );
-				}
-			} );
-		} );
-
-		QUnit.test( 'parseImageUrl: Without dynamic thumbnail generation', function ( assert ) {
-			var resizeUrl;
-
-			mw.util.setOptionsForTest( { GenerateThumbnailOnParse: true } );
-			this.sandbox.stub( mw.config.values, 'wgScript', '/w' );
-			resizeUrl = mw.util.parseImageUrl( '//upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Princess_Alexandra_of_Denmark_%28later_Queen_Alexandra%2C_wife_of_Edward_VII%29_with_her_two_eldest_sons%2C_Prince_Albert_Victor_%28Eddy%29_and_George_Frederick_Ernest_Albert_%28later_George_V%29.jpg/939px-thumbnail.jpg' ).resizeUrl;
-			assert.strictEqual( typeof resizeUrl, 'function', 'resizeUrl is set' );
-			assert.strictEqual( resizeUrl( 500 ), '/w?title=Special:Redirect/file/Princess_Alexandra_of_Denmark_(later_Queen_Alexandra,_wife_of_Edward_VII)_with_her_two_eldest_sons,_Prince_Albert_Victor_(Eddy)_and_George_Frederick_Ernest_Albert_(later_George_V).jpg&width=500', 'Resized URL is correct' );
-		} );
+		assert.strictEqual( typeof resizeUrl, 'function', 'resizeUrl is set' );
+		assert.strictEqual( resizeUrl( 500 ), '/w?title=Special:Redirect/file/Princess_Alexandra_of_Denmark_(later_Queen_Alexandra,_wife_of_Edward_VII)_with_her_two_eldest_sons,_Prince_Albert_Victor_(Eddy)_and_George_Frederick_Ernest_Albert_(later_George_V).jpg&width=500', 'Resized URL is correct' );
 	} );
 
 	QUnit.test( 'escapeRegExp', function ( assert ) {
