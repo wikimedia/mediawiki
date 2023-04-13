@@ -1622,10 +1622,27 @@ SVG thumbnails with language de
 wgParserEnableLegacyMediaDOM=false
 !! wikitext
 [[File:Foobar.svg|lang=de|thumb|caption]]
+
+<gallery>
+File:Foobar.svg|lang=de|caption
+</gallery>
 !! html/php
 <figure class="mw-default-size" typeof="mw:File/Thumb"><a href="/index.php?title=File:Foobar.svg&amp;lang=de" class="mw-file-description"><img src="http://example.com/images/thumb/f/ff/Foobar.svg/langde-180px-Foobar.svg.png" decoding="async" width="180" height="135" class="mw-file-element" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/langde-270px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/langde-360px-Foobar.svg.png 2x" /></a><figcaption>caption</figcaption></figure>
+<ul class="gallery mw-gallery-traditional">
+		<li class="gallerybox" style="width: 155px">
+			<div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="/index.php?title=File:Foobar.svg&amp;lang=de" class="mw-file-description" title="caption"><img alt="caption" src="http://example.com/images/thumb/f/ff/Foobar.svg/langde-120px-Foobar.svg.png" decoding="async" width="120" height="90" class="mw-file-element" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/langde-180px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/langde-240px-Foobar.svg.png 2x" /></a></span></div>
+			<div class="gallerytext">
+<p>caption
+</p>
+			</div>
+		</li>
+</ul>
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Foobar.svg?lang=de" class="mw-file-description"><img resource="./File:Foobar.svg" src="http://example.com/images/thumb/f/ff/Foobar.svg/langde-180px-Foobar.svg.png" decoding="async" lang="de" data-file-width="240" data-file-height="180" data-file-type="drawing" height="135" width="180" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/langde-270px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/langde-360px-Foobar.svg.png 2x" /></a><figcaption>caption</figcaption></figure>
+
+<ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="./File:Foobar.svg?lang=de" class="mw-file-description" title="caption"><img alt="caption" resource="./File:Foobar.svg" src="http://example.com/images/thumb/f/ff/Foobar.svg/langde-120px-Foobar.svg.png" decoding="async" lang="de" data-file-width="240" data-file-height="180" data-file-type="drawing" height="90" width="120" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/langde-180px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/langde-240px-Foobar.svg.png 2x"/></a></span></div><div class="gallerytext">caption</div></li>
+</ul>
 !! end
 
 !! test
@@ -1649,11 +1666,33 @@ language=ru
 wgParserEnableLegacyMediaDOM=false
 !! wikitext
 [[Файл:Foobar.svg]] [[Файл:Foobar.svg|lang=en]]
+
+<gallery>
+Файл:Foobar.svg
+Файл:Foobar.svg|lang=en
+</gallery>
 !! html/php
 <p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/%D0%A4%D0%B0%D0%B9%D0%BB:Foobar.svg" class="mw-file-description"><img src="http://example.com/images/thumb/f/ff/Foobar.svg/langru-240px-Foobar.svg.png" decoding="async" width="240" height="180" class="mw-file-element" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/langru-360px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/langru-480px-Foobar.svg.png 2x" /></a></span> <span class="mw-default-size" typeof="mw:File"><a href="/index.php?title=%D0%A4%D0%B0%D0%B9%D0%BB:Foobar.svg&amp;lang=en" class="mw-file-description"><img src="http://example.com/images/thumb/f/ff/Foobar.svg/240px-Foobar.svg.png" decoding="async" width="240" height="180" class="mw-file-element" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/360px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/480px-Foobar.svg.png 2x" /></a></span>
 </p>
+<ul class="gallery mw-gallery-traditional">
+		<li class="gallerybox" style="width: 155px">
+			<div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="/wiki/%D0%A4%D0%B0%D0%B9%D0%BB:Foobar.svg" class="mw-file-description"><img src="http://example.com/images/thumb/f/ff/Foobar.svg/langru-120px-Foobar.svg.png" decoding="async" width="120" height="90" class="mw-file-element" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/langru-180px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/langru-240px-Foobar.svg.png 2x" /></a></span></div>
+			<div class="gallerytext">
+			</div>
+		</li>
+		<li class="gallerybox" style="width: 155px">
+			<div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="/index.php?title=%D0%A4%D0%B0%D0%B9%D0%BB:Foobar.svg&amp;lang=en" class="mw-file-description"><img src="http://example.com/images/thumb/f/ff/Foobar.svg/120px-Foobar.svg.png" decoding="async" width="120" height="90" class="mw-file-element" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/180px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/240px-Foobar.svg.png 2x" /></a></span></div>
+			<div class="gallerytext">
+			</div>
+		</li>
+</ul>
 !! html/parsoid
 <p><span class="mw-default-size" typeof="mw:File"><a href="./Файл:Foobar.svg" class="mw-file-description"><img resource="./Файл:Foobar.svg" src="http://example.com/images/thumb/f/ff/Foobar.svg/langru-240px-Foobar.svg.png" decoding="async" data-file-width="240" data-file-height="180" data-file-type="drawing" height="180" width="240" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/langru-360px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/langru-480px-Foobar.svg.png 2x"/></a></span> <span class="mw-default-size" typeof="mw:File"><a href="./Файл:Foobar.svg?lang=en" class="mw-file-description"><img resource="./Файл:Foobar.svg" src="http://example.com/images/thumb/f/ff/Foobar.svg/240px-Foobar.svg.png" decoding="async" lang="en" data-file-width="240" data-file-height="180" data-file-type="drawing" height="180" width="240" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/360px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/480px-Foobar.svg.png 2x"/></a></span></p>
+
+<ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="./Файл:Foobar.svg" class="mw-file-description"><img resource="./Файл:Foobar.svg" src="http://example.com/images/thumb/f/ff/Foobar.svg/langru-120px-Foobar.svg.png" decoding="async" data-file-width="240" data-file-height="180" data-file-type="drawing" height="90" width="120" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/langru-180px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/langru-240px-Foobar.svg.png 2x"/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="./Файл:Foobar.svg?lang=en" class="mw-file-description"><img resource="./Файл:Foobar.svg" src="http://example.com/images/thumb/f/ff/Foobar.svg/120px-Foobar.svg.png" decoding="async" lang="en" data-file-width="240" data-file-height="180" data-file-type="drawing" height="90" width="120" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/180px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/240px-Foobar.svg.png 2x"/></a></span></div><div class="gallerytext"></div></li>
+</ul>
 !! end
 
 !! test
@@ -1665,11 +1704,33 @@ language=de
 wgParserEnableLegacyMediaDOM=false
 !! wikitext
 [[Datei:Foobar.svg]] [[Datei:Foobar.svg|sprache=ru]]
+
+<gallery>
+Datei:Foobar.svg
+Datei:Foobar.svg|sprache=ru
+</gallery>
 !! html/php
 <p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/Datei:Foobar.svg" class="mw-file-description"><img src="http://example.com/images/thumb/f/ff/Foobar.svg/240px-Foobar.svg.png" decoding="async" width="240" height="180" class="mw-file-element" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/360px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/480px-Foobar.svg.png 2x" /></a></span> <span class="mw-default-size" typeof="mw:File"><a href="/index.php?title=Datei:Foobar.svg&amp;lang=ru" class="mw-file-description"><img src="http://example.com/images/thumb/f/ff/Foobar.svg/langru-240px-Foobar.svg.png" decoding="async" width="240" height="180" class="mw-file-element" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/langru-360px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/langru-480px-Foobar.svg.png 2x" /></a></span>
 </p>
+<ul class="gallery mw-gallery-traditional">
+		<li class="gallerybox" style="width: 155px">
+			<div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="/wiki/Datei:Foobar.svg" class="mw-file-description"><img src="http://example.com/images/thumb/f/ff/Foobar.svg/120px-Foobar.svg.png" decoding="async" width="120" height="90" class="mw-file-element" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/180px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/240px-Foobar.svg.png 2x" /></a></span></div>
+			<div class="gallerytext">
+			</div>
+		</li>
+		<li class="gallerybox" style="width: 155px">
+			<div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="/index.php?title=Datei:Foobar.svg&amp;lang=ru" class="mw-file-description"><img src="http://example.com/images/thumb/f/ff/Foobar.svg/langru-120px-Foobar.svg.png" decoding="async" width="120" height="90" class="mw-file-element" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/langru-180px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/langru-240px-Foobar.svg.png 2x" /></a></span></div>
+			<div class="gallerytext">
+			</div>
+		</li>
+</ul>
 !! html/parsoid
 <p><span class="mw-default-size" typeof="mw:File"><a href="./Datei:Foobar.svg" class="mw-file-description"><img resource="./Datei:Foobar.svg" src="http://example.com/images/thumb/f/ff/Foobar.svg/240px-Foobar.svg.png" decoding="async" data-file-width="240" data-file-height="180" data-file-type="drawing" height="180" width="240" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/360px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/480px-Foobar.svg.png 2x"/></a></span> <span class="mw-default-size" typeof="mw:File"><a href="./Datei:Foobar.svg?lang=ru" class="mw-file-description"><img resource="./Datei:Foobar.svg" src="http://example.com/images/thumb/f/ff/Foobar.svg/langru-240px-Foobar.svg.png" decoding="async" lang="ru" data-file-width="240" data-file-height="180" data-file-type="drawing" height="180" width="240" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/langru-360px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/langru-480px-Foobar.svg.png 2x"/></a></span></p>
+
+<ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="./Datei:Foobar.svg" class="mw-file-description"><img resource="./Datei:Foobar.svg" src="http://example.com/images/thumb/f/ff/Foobar.svg/120px-Foobar.svg.png" decoding="async" data-file-width="240" data-file-height="180" data-file-type="drawing" height="90" width="120" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/180px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/240px-Foobar.svg.png 2x"/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="./Datei:Foobar.svg?lang=ru" class="mw-file-description"><img resource="./Datei:Foobar.svg" src="http://example.com/images/thumb/f/ff/Foobar.svg/langru-120px-Foobar.svg.png" decoding="async" lang="ru" data-file-width="240" data-file-height="180" data-file-type="drawing" height="90" width="120" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/langru-180px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/langru-240px-Foobar.svg.png 2x"/></a></span></div><div class="gallerytext"></div></li>
+</ul>
 !! end
 
 !! test
