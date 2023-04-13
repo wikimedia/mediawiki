@@ -239,7 +239,7 @@ return [
 			'mediawiki.util',
 		],
 		'scripts' => 'resources/src/jquery/jquery.makeCollapsible.js',
-		'styles' => 'resources/src/jquery/jquery.makeCollapsible.css',
+		'styles' => 'resources/src/jquery/jquery.makeCollapsible.less',
 		'messages' => [ 'collapsible-expand', 'collapsible-collapse' ],
 	],
 	'jquery.spinner' => [

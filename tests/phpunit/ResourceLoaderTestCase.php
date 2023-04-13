@@ -231,8 +231,4 @@ class EmptyResourceLoader extends ResourceLoader {
 	public function __construct( Config $config = null, LoggerInterface $logger = null ) {
 		parent::__construct( $config ?: ResourceLoaderTestCase::getMinimalConfig(), $logger );
 	}
-
-	public function getErrors() {
-		return $this->errors;
-	}
 }
