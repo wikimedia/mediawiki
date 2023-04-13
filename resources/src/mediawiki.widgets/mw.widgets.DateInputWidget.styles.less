@@ -11,26 +11,12 @@
 @ooui-font-size-base: 0.875 / 1em; // equals `14px` at browser default of `16px`
 @ooui-unit: em;
 
-@background-color-base: #fff;
-
-@color-base--emphasized: #000;
-
-@border-base: 1px solid #a2a9b1;
-@border-color-base--focus: #36c;
-@border-color-input--hover: #72777d;
-// @border-radius-base is set in mediawiki.skin.variables.less
-
 @padding-input-text: @padding-vertical-base @padding-horizontal-input-text;
 @padding-horizontal-input-text: 8px;
 @padding-vertical-base: 6px;
 
-@box-shadow-widget: inset 0 0 0 1px transparent;
-@box-shadow-widget--focus: inset 0 0 0 1px #36c;
-
 // `line-height` has to be relative/in `em` to enable user override in browser settings.
 @line-height-widget-base: unit( 18 / @ooui-font-size-browser / @ooui-font-size-base, @ooui-unit ); // equals `18px` at base `font-size: 14px;
-
-@transition-duration-medium: 250ms;
 
 .oo-ui-inline-spacing( @spacing, @cancelled-spacing: 0 ) {
 	margin-right: @spacing;
@@ -68,7 +54,7 @@
 	// Ensure `.mw-widget-dateInputWidget-handle` similar appearance to OOUI's `.oo-ui-textInputWidget`
 	&-handle {
 		background-color: @background-color-base;
-		color: @color-base--emphasized;
+		color: @color-emphasized;
 		box-sizing: border-box;
 		width: 100%;
 		border: @border-base;
@@ -79,7 +65,8 @@
 
 	&.oo-ui-widget-enabled {
 		.mw-widget-dateInputWidget-handle {
-			box-shadow: @box-shadow-widget; // necessary for smooth transition
+			// `transparent` necessary for smooth transition
+			box-shadow: @box-shadow-inset-small @box-shadow-color-transparent;
 			transition-property: border-color, box-shadow;
 			transition-duration: @transition-duration-medium;
 
@@ -88,9 +75,9 @@
 			}
 
 			&:focus {
-				outline: 0;
-				border-color: @border-color-base--focus;
-				box-shadow: @box-shadow-widget--focus;
+				outline: @outline-base--focus;
+				border-color: @border-color-progressive--focus;
+				box-shadow: @box-shadow-inset-small @box-shadow-color-progressive--focus;
 			}
 
 			& > .oo-ui-labelElement-label {

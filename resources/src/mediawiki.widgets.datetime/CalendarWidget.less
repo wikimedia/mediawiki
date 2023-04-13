@@ -1,6 +1,7 @@
-/* stylelint-disable no-duplicate-selectors */
+@import 'mediawiki.skin.variables.less';
 @import 'mediawiki.widgets.datetime.definitions';
 
+/* stylelint-disable no-duplicate-selectors */
 .mw-widgets-datetime-calendarWidget {
 	background-color: @background-color-base;
 	display: inline-block;
@@ -8,13 +9,13 @@
 	border: @border-base;
 	border-radius: @border-radius-base;
 	padding: 0.5em;
-	box-shadow: @box-shadow-dialog;
+	box-shadow: @box-shadow-drop-medium;
 	vertical-align: middle;
 
 	&:focus {
-		border-color: @color-progressive;
-		outline: 0;
-		box-shadow: @box-shadow-base--focus, @box-shadow-dialog;
+		border-color: @border-color-progressive--focus;
+		outline: @outline-base--focus;
+		box-shadow: @box-shadow-inset-small @box-shadow-color-progressive--focus, @box-shadow-drop-medium;
 	}
 
 	&.mw-widgets-datetime-calendarWidget-dependent {
@@ -65,31 +66,32 @@
 			.oo-ui-buttonElement-button {
 				width: 100%;
 				border: 1px solid rgba( 255, 255, 255, 0 );
-				transition: background-color @transition-base, color @transition-base, border-color @transition-base;
+				transition-property: @transition-property-base;
+				transition-duration: @transition-duration-base;
 			}
 
 			&.mw-widgets-datetime-calendarWidget-extra .oo-ui-buttonElement-button {
 				.oo-ui-labelElement-label {
-					color: @color-base--subtle;
+					color: @color-subtle;
 				}
 
 				&:hover .oo-ui-labelElement-label {
-					color: @color-base--inverted;
+					color: @color-inverted;
 				}
 			}
 
 			&.mw-widgets-datetime-calendarWidget-selected .oo-ui-buttonElement-button {
-				background-color: #2a4b8d;
+				background-color: @background-color-progressive--active;
 
 				.oo-ui-labelElement-label {
-					color: @color-base--inverted;
+					color: @color-inverted;
 				}
 			}
 
 			&.oo-ui-widget-enabled .oo-ui-buttonElement-button:hover {
-				background-color: @color-progressive;
-				color: @color-base--inverted;
-				border-color: @color-progressive;
+				background-color: #36c;
+				color: @color-inverted;
+				border-color: #36c;
 			}
 		}
 	}

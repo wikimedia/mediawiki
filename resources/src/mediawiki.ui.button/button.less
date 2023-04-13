@@ -1,6 +1,6 @@
+@import 'mediawiki.skin.variables.less';
 @import 'mediawiki.mixins.less';
 @import 'mediawiki.ui/mixins.buttons.less';
-@import 'mediawiki.ui/variables.less';
 
 /* stylelint-disable selector-class-pattern */
 
@@ -22,7 +22,8 @@
 //   <button class="mw-ui-button" disabled>.mw-ui-button</button>
 // </div>
 .mw-ui-button {
-	background-color: @colorGray15;
+	background-color: @background-color-interactive-subtle;
+	border-color: @border-color-base;
 	color: @color-base;
 	.mw-ui-button();
 	.mw-ui-button-states();
@@ -32,23 +33,27 @@
 	&:hover {
 		background-color: @background-color-base;
 		color: @color-base--hover;
-		border-color: @colorGray10;
 	}
 
 	input[ type='checkbox' ]:focus + &,
 	&:focus {
 		// Make sure that `color` isn't inheriting from user-agent styles
 		color: @color-base;
-		border-color: @border-color-base--focus;
-		box-shadow: @box-shadow-primary--focus;
-		outline-width: 0;
+		border-color: @border-color-progressive--focus;
+		box-shadow: @box-shadow-inset-small @box-shadow-color-progressive--focus;
+		// Set the standard focus `outline` transparent. A `border` and `box-shadow` visual
+		// focus is added above for common rendering.
+		// In Windows high contrast mode the transparent outline becomes visible.
+		// As vendor stylesheets set the outline on `:focus`, we need to follow here too and
+		// can't rely on the next selector to override it.
+		outline: @outline-base--focus;
 	}
 
 	input[ type='checkbox' ]:active + &,
 	&:active {
-		background-color: @colorGray12;
-		color: @color-base--active;
-		border-color: @colorGray7;
+		background-color: @background-color-interactive;
+		color: @color-emphasized;
+		border-color: @border-color-interactive;
 		box-shadow: none;
 	}
 
@@ -105,7 +110,7 @@
 		// Quiet buttons all start gray, and reveal
 		// progressive/destructive color on hover and active.
 		color: @color-base;
-		border-color: transparent;
+		border-color: @border-color-transparent;
 		font-weight: bold;
 
 		&:not( .mw-ui-icon-element ) {
@@ -115,32 +120,31 @@
 		// If a sibling element is a checklist, the state should also apply to the button.
 		input[ type='checkbox' ]:hover + &,
 		&:hover {
-			background-color: @background-color-quiet--hover;
+			background-color: @background-color-button-quiet--hover;
 			color: @color-base;
-			border-color: transparent;
 		}
 
 		input[ type='checkbox' ]:focus + &,
 		&:focus {
 			color: @color-base;
-			border-color: @border-color-base--focus;
-			box-shadow: @box-shadow-primary--focus;
+			border-color: @border-color-progressive--focus;
+			box-shadow: @box-shadow-inset-small @box-shadow-color-progressive--focus;
 		}
 
 		input[ type='checkbox' ]:active + &,
 		&:active {
-			background-color: @background-color-quiet--active;
-			color: @color-base--active;
-			border-color: @colorGray7;
+			background-color: @background-color-button-quiet--active;
+			color: @color-emphasized;
+			border-color: @border-color-interactive;
 			box-shadow: none;
 		}
 
 		&:disabled,
 		&:disabled:hover,
 		&:disabled:active {
-			background-color: transparent;
-			color: @color-base--disabled;
-			border-color: transparent;
+			background-color: @background-color-transparent;
+			color: @color-disabled;
+			border-color: @border-color-transparent;
 		}
 	}
 
@@ -156,31 +160,37 @@
 	//   <button class="mw-ui-button mw-ui-progressive" disabled>.mw-ui-progressive</button>
 	// </div>
 	&.mw-ui-progressive {
-		.mw-ui-button-colors-primary( @color-primary, @color-primary--hover, @color-primary--active );
+		.mw-ui-button-colors-primary( @color-progressive, @color-progressive--hover, @color-progressive--active );
 
 		&.mw-ui-quiet {
-			color: @color-primary;
-			background-color: transparent;
-			border-color: transparent;
+			background-color: @background-color-transparent;
+			color: @color-progressive;
+			border-color: @border-color-transparent;
 
 			input[ type='checkbox' ]:hover + &,
 			&:hover {
-				background-color: @background-color-primary--hover;
-				border-color: transparent;
-				color: @color-primary--hover;
+				// TODO: Should be a token.
+				// This came out of `background-color-primary` by mediawiki.ui.
+				// Value was `fade( #347bff, 20% )`, which results in `rgba( 52, 123, 255, 0.2 )`.
+				// WikimediaUI Base was featuring
+				// `@background-color-primary--hover: rgba( 41, 98, 204, 0.1 )` in contrast.
+				// Let's keep this static for the time being and revisit with a new Codex token.
+				background-color: rgba( 52, 123, 255, 0.2 );
+				color: @color-progressive--hover;
+				border-color: @border-color-transparent;
 			}
 
 			input[ type='checkbox' ]:focus + &,
 			&:focus {
-				color: @color-primary--focus;
-				border-color: @color-primary--focus;
+				color: @color-progressive--focus;
+				border-color: @color-progressive--focus;
 			}
 
 			input[ type='checkbox' ]:active + &,
 			&:active {
-				color: @color-base--inverted;
-				background-color: @color-primary--active;
-				border-color: @color-primary--active;
+				color: @color-inverted;
+				background-color: @color-progressive--active;
+				border-color: @color-progressive--active;
 			}
 		}
 	}
@@ -202,13 +212,13 @@
 
 		&.mw-ui-quiet {
 			color: @color-destructive;
-			background-color: transparent;
-			border-color: transparent;
+			background-color: @background-color-transparent;
+			border-color: @border-color-transparent;
 
 			input[ type='checkbox' ]:hover + &,
 			&:hover {
 				background-color: @background-color-destructive--hover;
-				border-color: transparent;
+				border-color: @border-color-transparent;
 				color: @color-destructive--hover;
 			}
 
@@ -220,7 +230,7 @@
 
 			input[ type='checkbox' ]:active + &,
 			&:active {
-				color: @color-base--inverted;
+				color: @color-inverted;
 				background-color: @color-destructive--active;
 				border-color: @color-destructive--active;
 			}
@@ -312,6 +322,6 @@ a.mw-ui-button {
 	}
 
 	& .is-on .button {
-		cursor: default;
+		cursor: @cursor-base;
 	}
 }
