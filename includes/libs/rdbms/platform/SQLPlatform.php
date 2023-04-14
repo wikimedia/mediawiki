@@ -188,6 +188,11 @@ class SQLPlatform implements ISQLPlatform {
 
 		$sql = '';
 		foreach ( array_reverse( $conds ) as $field => $value ) {
+			if ( is_int( $field ) ) {
+				throw new InvalidArgumentException(
+					'Non-associative array passed to buildComparison() (typo?)'
+				);
+			}
 			$encValue = $this->quoter->addQuotes( $value );
 			if ( $sql === '' ) {
 				$sql = "$field $op $encValue";
