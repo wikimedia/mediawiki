@@ -76,34 +76,29 @@ class ActivityUpdateJob extends Job {
 		// that the user is "caught up" on edits already. When the field
 		// is non-NULL, make sure not to set it back in time or set it to
 		// NULL when newer revisions were in fact added to the page.
-		$casTimeCond = 'wl_notificationtimestamp < ' . $dbw->addQuotes( $dbw->timestamp( $casTimestamp ) );
+		$casTimeCond = $dbw->buildComparison(
+			'<',
+			[ 'wl_notificationtimestamp' => $dbw->timestamp( $casTimestamp ) ]
+		);
 
 		// select primary key first instead of directly update to avoid deadlocks per T204561
-		$wlId = $dbw->selectField(
-			'watchlist',
-			'wl_id',
-			[
+		$wlId = $dbw->newSelectQueryBuilder()
+			->select( 'wl_id' )
+			->from( 'watchlist' )
+			->where( [
 				'wl_user' => $this->params['userid'],
 				'wl_namespace' => $this->title->getNamespace(),
 				'wl_title' => $this->title->getDBkey(),
 				$casTimeCond
-			],
-			__METHOD__
-		);
+			] )->caller( __METHOD__ )->fetchField();
 
 		if ( !$wlId ) {
 			return;
 		}
-
-		$dbw->update(
-			'watchlist',
-			[ 'wl_notificationtimestamp' => $dbw->timestampOrNull( $this->params['notifTime'] )	],
-			[
-				'wl_id' => (int)$wlId,
-				// For paranoia, enforce the CAS time condition here too
-				$casTimeCond
-			],
-			__METHOD__
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'watchlist' )
+			->set( [ 'wl_notificationtimestamp' => $dbw->timestampOrNull( $this->params['notifTime'] ) ] )
+			->where( [ 'wl_id' => (int)$wlId, $casTimeCond ] )
+			->caller( __METHOD__ )->execute();
 	}
 }
