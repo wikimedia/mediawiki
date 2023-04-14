@@ -486,6 +486,10 @@ abstract class DatabaseMysqlBase extends Database {
 			$sqlAssignments[] = "net_read_timeout=$encTimeout";
 			$sqlAssignments[] = "net_write_timeout=$encTimeout";
 		}
+		if ( isset( $options['groupConcatMaxLen'] ) ) {
+			$maxLength = (int)$options['groupConcatMaxLen'];
+			$sqlAssignments[] = "group_concat_max_len=$maxLength";
+		}
 
 		if ( $sqlAssignments ) {
 			$this->query(
