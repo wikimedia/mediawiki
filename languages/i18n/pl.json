@@ -3285,6 +3285,7 @@
 	"confirmemail_oncreate": "Link z kodem potwierdzenia został wysłany na Twój adres e‐mail.\nKod ten nie jest wymagany do zalogowania się, jednak będziesz musiał go aktywować otwierając, otrzymany link, w przeglądarce przed włączeniem niektórych opcji e‐mail na wiki.",
 	"confirmemail_sendfailed": "Nie udało się wysłać potwierdzającej wiadomości e‐mail.\nSprawdź poprawność adresu pod kątem literówki.\n\nSystem pocztowy zwrócił komunikat: $1",
 	"confirmemail_invalid": "Błędny kod potwierdzenia.\nKod może być przedawniony.",
+	"confirmemail_invalid_format": "Kod potwierdzający jest niepoprawny.\nSprawdź wiadomość e-mail, link potwierdzający mógł zostać skrócony przez aplikację poczty e-mail.",
 	"confirmemail_needlogin": "Musisz $1 aby potwierdzić adres email.",
 	"confirmemail_success": "Adres e‐mail został potwierdzony.\nMożesz [[Special:UserLogin|zalogować się]] i korzystać z szerszego wachlarza funkcji wiki.",
 	"confirmemail_loggedin": "Twój adres email został zweryfikowany.",
@@ -4206,5 +4207,6 @@
 	"renameuser-move-log": "Automatyczne przeniesienie strony {{GENDER:$2|użytkownika|użytkowniczki}} po zmianie nazwy konta z „[[User:$1|$1]]” na „[[User:$2|$2]]”",
 	"action-renameuser": "zmieniania nazw użytkowników",
 	"right-renameuser": "Zmiana nazw kont użytkowników",
-	"renameuser-renamed-notice": "Nazwa tego konta została zmieniona.\nRejestr zmian nazw kont użytkowników znajduje się poniżej."
+	"renameuser-renamed-notice": "Nazwa tego konta została zmieniona.\nRejestr zmian nazw kont użytkowników znajduje się poniżej.",
+	"log-unknown-action": "wykonał(a) nieznaną akcję „$2” na [[$1]]"
 }

@@ -3310,6 +3310,7 @@
 	"confirmemail_oncreate": "Bir doğrulama kodu e-posta adresinize gönderildi.\nGiriş yapmak için bu kod gerekli değildir, ancak bu vikideki herhangi bir e-posta tabanlı özelliği devreye sokmak için bunu sağlamak zorundasınız.",
 	"confirmemail_sendfailed": "{{SITENAME}} onay postası gönderemedi.\nLütfen e-posta adresinizde geçersiz karakterler olup olmadığını kontrol edin.\n\nMailler geri döndü: $1",
 	"confirmemail_invalid": "Geçersiz onay kodu.\nKodun süresi dolmuş olabilir.",
+	"confirmemail_invalid_format": "Geçersiz doğrulama kodu.\nE-postanızı kontrol edin, doğrulama bağlantısı e-posta istemciniz tarafından kırpılmış olabilir.",
 	"confirmemail_needlogin": "E-posta adresinizi onaylamak için önce $1ın.",
 	"confirmemail_success": "E-posta adresiniz doğrulandı.\n[[Special:UserLogin|Oturum açıp]] vikinin keyfini çıkarabilirsiniz.",
 	"confirmemail_loggedin": "E-posta adresiniz onaylandı.",
