@@ -32,6 +32,7 @@
 	"apihelp-changecontentmodel-example": "Spremeni vsebinski model glavne strani na <code>text</code>",
 	"apihelp-checktoken-param-maxtokenage": "Največja dovoljena starost žetona, v sekundah.",
 	"apihelp-compare-param-fromsection": "Uporaba samo določenega razdelka izbrane vsebine »from«.",
+	"apihelp-compare-param-difftype": "Vrnitev primerjave v obliki znotrajvrstičnega HTML-ja.",
 	"apihelp-delete-summary": "Izbriše stran.",
 	"apihelp-delete-param-title": "Naslov strani za izbris. Ni ga mogoče uporabiti skupaj z <var>$1pageid</var>.",
 	"apihelp-delete-param-pageid": "ID strani za izbris. Ni ga mogoče uporabiti skupaj s <var>$1title</var>.",

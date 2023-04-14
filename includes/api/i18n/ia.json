@@ -108,6 +108,7 @@
 	"apihelp-compare-paramvalue-prop-comment": "Le commento sur le versiones 'from' e 'to'. Si le commento ha essite delite del versiones, un proprietate <samp>fromcommenthidden</samp> o <samp>tocommenthidden</samp> essera restituite.",
 	"apihelp-compare-paramvalue-prop-parsedcomment": "Le commento post analyse syntactic sur le versiones 'from' e 'to'. Si le commento ha essite delite del versiones, un proprietate <samp>fromcommenthidden</samp> o <samp>tocommenthidden</samp> essera restituite.",
 	"apihelp-compare-paramvalue-prop-size": "Le dimension del versiones 'from' e 'to'.",
+	"apihelp-compare-param-difftype": "Restituer le comparation formatate como HTML integrate.",
 	"apihelp-compare-param-slots": "Restituer diffs individual pro iste segmentos in loco de un diff combinate pro tote le segmentos.",
 	"apihelp-compare-example-1": "Crear un diff inter version 1 e 2.",
 	"apihelp-createaccount-summary": "Crear un nove conto de usator.",

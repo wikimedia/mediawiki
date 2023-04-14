@@ -3322,6 +3322,7 @@
 	"confirmemail_oncreate": "Un codice di conferma è stato spedito all'indirizzo\ndi posta elettronica indicato. Il codice non è necessario per accedere al sito,\nma è necessario fornirlo per poter abilitare tutte le funzioni del sito che fanno\nuso della posta elettronica.",
 	"confirmemail_sendfailed": "{{SITENAME}} non può inviare il messaggio e-mail di conferma. Verificare che il proprio indirizzo e-mail non contenga caratteri non validi.\n\nMessaggio di errore del mailer: $1",
 	"confirmemail_invalid": "Codice di conferma non valido. Il codice potrebbe essere scaduto.",
+	"confirmemail_invalid_format": "Codice di conferma non valido.\nControlla la tua email, il link di conferma potrebbe essere stato troncato dal tuo client di posta.",
 	"confirmemail_needlogin": "È necessario $1 per confermare il proprio indirizzo email.",
 	"confirmemail_success": "L'indirizzo e-mail è confermato. Ora è possibile [[Special:UserLogin|eseguire l'accesso]] e fare pieno uso del sito.",
 	"confirmemail_loggedin": "L'indirizzo email è stato confermato.",

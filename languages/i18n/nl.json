@@ -3284,6 +3284,7 @@
 	"confirmemail_oncreate": "Er is een bevestigingscode naar uw e-mailadres verzonden.\nDeze code is niet nodig om u aan te melden, maar u dient deze wel te bevestigen voordat u de e-mailmogelijkheden van deze wiki kunt gebruiken.",
 	"confirmemail_sendfailed": "{{SITENAME}} kon uw bevestigingscode niet verzenden.\nControleer uw e-mailadres op ongeldige tekens.\n\nHet e-mailprogramma meldde: $1",
 	"confirmemail_invalid": "Ongeldige bevestigingscode.\nMogelijk is de code verlopen.",
+	"confirmemail_invalid_format": "Ongeldige bevestigingscode.\nControleer uw bevestigingse-mail, de bevestigingkoppeling is mogelijk afgeknipt door uw e-mailclient.",
 	"confirmemail_needlogin": "U moet $1 om uw e-mailadres te bevestigen.",
 	"confirmemail_success": "Uw e-mailadres is bevestigd.\nU kunt zich nu [[Special:UserLogin|aanmelden]] en de wiki gebruiken.",
 	"confirmemail_loggedin": "Uw e-mailadres is nu bevestigd.",

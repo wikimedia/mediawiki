@@ -3187,6 +3187,7 @@
 	"confirmemail_oncreate": "Un codice de confirmation ha essite inviate a tu adresse de e-mail.\nIste codice non es necessari pro aperir un session, ma es requirite pro activar omne functiones a base de e-mail in le wiki.",
 	"confirmemail_sendfailed": "{{SITENAME}} non poteva inviar te le message de confirmation.\nPer favor verifica que tu adresse de e-mail non ha characteres invalide.\n\nLe servitor de e-mail retornava: $1",
 	"confirmemail_invalid": "Codice de confirmation invalide.\nEs possibile que le codice ha expirate.",
+	"confirmemail_invalid_format": "Codice de confirmation non valide.\nVerifica tu e-mail. Es possibile que le ligamine de confirmation ha essite truncate per tu programma de e-mail.",
 	"confirmemail_needlogin": "Tu debe $1 pro confirmar tu adresse de e-mail.",
 	"confirmemail_success": "Tu adresse de e-mail ha essite confirmate.\nTu pote ora aperir un session e fruer te del wiki.",
 	"confirmemail_loggedin": "Tu adresse de e-mail ha ora essite confirmate.",
@@ -4068,5 +4069,6 @@
 	"renameuser-move-log": "Le pagina ha essite automaticamente renominate con le renomination del {{GENDER:$2|usator}} \"[[User:$1|$1]]\" a \"[[User:$2|$2]]\"",
 	"action-renameuser": "renominar usatores",
 	"right-renameuser": "Renominar usatores",
-	"renameuser-renamed-notice": "Iste usator ha essite renominate.\nLe registro de renominationes es providite ci infra pro referentia."
+	"renameuser-renamed-notice": "Iste usator ha essite renominate.\nLe registro de renominationes es providite ci infra pro referentia.",
+	"log-unknown-action": "ha exequite le action incognite \"$2\" sur [[$1]]"
 }
