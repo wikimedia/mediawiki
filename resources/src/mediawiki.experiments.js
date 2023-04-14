@@ -85,7 +85,7 @@
 				max,
 				acc = 0;
 
-			if ( !experiment.enabled || $.isEmptyObject( experiment.buckets ) ) {
+			if ( !experiment.enabled || !Object.keys( experiment.buckets ).length ) {
 				return CONTROL_BUCKET;
 			}
 
