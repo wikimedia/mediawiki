@@ -10,14 +10,15 @@
 			expires: DEFAULT_DURATION,
 			secure: false
 		},
-		setDefaults = require( 'mediawiki.cookie' ).setDefaults,
+		mwCookie = require( 'mediawiki.cookie' ),
+		setDefaults = mwCookie.setDefaults,
 		expiryDate = new Date();
 
 	expiryDate.setTime( NOW + ( DEFAULT_DURATION * 1000 ) );
 
 	QUnit.module( 'mediawiki.cookie', {
 		beforeEach: function () {
-			jqcookie = sinon.stub( $, 'cookie' ).returns( null );
+			jqcookie = sinon.stub( mwCookie.jar, 'cookie' ).returns( null );
 			this.clock = sinon.useFakeTimers( NOW );
 			this.savedDefaults = setDefaults( defaults );
 		},

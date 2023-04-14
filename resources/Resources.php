@@ -1203,7 +1203,8 @@ return [
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.cookie",
 		'packageFiles' => [
 			'index.js',
-			'jquery.cookie.js',
+			'jar.js',
+			'jquery.js',
 			[ 'name' => 'config.json', 'config' => [
 				'prefix' => MainConfigNames::CookiePrefix,
 				'domain' => MainConfigNames::CookieDomain,

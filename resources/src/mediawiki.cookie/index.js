@@ -9,10 +9,11 @@ var config = require( './config.json' ),
 		secure: false,
 		sameSite: '',
 		sameSiteLegacy: config.sameSiteLegacy
-	};
+	},
+	jar = require( './jar.js' );
 
 // define jQuery Cookie methods
-require( './jquery.cookie.js' );
+require( './jquery.js' );
 
 /**
  * Manage cookies in a way that is syntactically and functionally similar
@@ -72,15 +73,16 @@ mw.cookie = {
 			options = { expires: options };
 		}
 		// Apply defaults
-		options = $.extend( {}, defaults, options );
+		// eslint-disable-next-line compat/compat
+		options = Object.assign( {}, defaults, options );
 
-		// Don't pass invalid option to $.cookie
+		// Don't pass invalid option to jar.cookie
 		prefix = options.prefix;
 		delete options.prefix;
 
 		if ( !options.expires ) {
 			// Session cookie (null or zero)
-			// Normalize to absent (undefined) for $.cookie.
+			// Normalize to absent (undefined) for jar.cookie.
 			delete options.expires;
 		} else if ( typeof options.expires === 'number' ) {
 			// Lifetime in seconds
@@ -96,12 +98,12 @@ mw.cookie = {
 			value = String( value );
 		}
 
-		$.cookie( prefix + key, value, options );
+		jar.cookie( prefix + key, value, options );
 		if ( sameSiteLegacy && options.sameSite && options.sameSite.toLowerCase() === 'none' ) {
-			// Make testing easy by not changing the object passed to the first $.cookie call
-			options = $.extend( {}, options );
+			// Make testing easy by not changing the object passed to the first jar.cookie call
+			options = Object.assign( {}, options );
 			delete options.sameSite;
-			$.cookie( prefix + 'ss0-' + key, value, options );
+			jar.cookie( prefix + 'ss0-' + key, value, options );
 		}
 	},
 
@@ -127,7 +129,7 @@ mw.cookie = {
 			defaultValue = null;
 		}
 
-		result = $.cookie( prefix + key );
+		result = jar.cookie( prefix + key );
 
 		return result !== null ? result : defaultValue;
 	},
@@ -158,6 +160,7 @@ mw.cookie = {
 
 if ( window.QUnit ) {
 	module.exports = {
+		jar: jar,
 		setDefaults: function ( value ) {
 			var prev = defaults;
 			defaults = value;

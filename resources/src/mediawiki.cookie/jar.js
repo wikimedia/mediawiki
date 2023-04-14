@@ -1,16 +1,16 @@
 /*!
- * jQuery Cookie Plugin v1.3.1
- * https://github.com/carhartl/jquery-cookie
+ * Cookie Plugin
+ * Based on https://github.com/carhartl/jquery-cookie
  *
  * Copyright 2013 Klaus Hartl
  * Released under the MIT license
  *
  * Now forked by MediaWiki.
  */
-(function ($, document) {
+(function (document) {
 
 	var pluses = /\+/g;
-	var config;
+	var config, cookie;
 
 	function raw(s) {
 		return s;
@@ -38,11 +38,11 @@
 		return config.json ? JSON.parse(value) : value;
 	}
 
-	config = $.cookie = function (key, value, options) {
+	config = cookie = function (key, value, options) {
 
 		// write
 		if (value !== undefined) {
-			options = $.extend({}, config.defaults, options);
+			options = Object.assign({}, config.defaults, options);
 
 			if (value === null) {
 				options.expires = -1;
@@ -90,12 +90,16 @@
 
 	config.defaults = {};
 
-	$.removeCookie = function (key, options) {
-		if ($.cookie(key) !== null) {
-			$.cookie(key, null, options);
+	function removeCookie(key, options) {
+		if (cookie(key) !== null) {
+			cookie(key, null, options);
 			return true;
 		}
 		return false;
-	};
+	}
 
-}(jQuery, document));
+	module.exports = {
+		cookie: cookie,
+		removeCookie: removeCookie
+	};
+}(document));
