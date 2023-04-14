@@ -128,8 +128,8 @@ class RecentChangesUpdateJob extends Job {
 		// Pull in the full window of active users in this update
 		$window = $activeUserDays * 86400;
 
-		$dbw = wfGetDB( DB_PRIMARY );
 		$factory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$dbw = $factory->getPrimaryDatabase();
 		$ticket = $factory->getEmptyTransactionTicket( __METHOD__ );
 
 		$lockKey = $dbw->getDomainID() . '-activeusers';
@@ -144,11 +144,11 @@ class RecentChangesUpdateJob extends Job {
 
 		$nowUnix = time();
 		// Get the last-updated timestamp for the cache
-		$cTime = $dbw->selectField( 'querycache_info',
-			'qci_timestamp',
-			[ 'qci_type' => 'activeusers' ],
-			__METHOD__
-		);
+		$cTime = $dbw->newSelectQueryBuilder()
+			->select( 'qci_timestamp' )
+			->from( 'querycache_info' )
+			->where( [ 'qci_type' => 'activeusers' ] )
+			->caller( __METHOD__ )->fetchField();
 		$cTimeUnix = $cTime ? (int)wfTimestamp( TS_UNIX, $cTime ) : 1;
 
 		// Pick the date range to fetch from. This is normally from the last
@@ -158,28 +158,21 @@ class RecentChangesUpdateJob extends Job {
 		$eTimestamp = min( $sTimestamp + $window, $nowUnix );
 
 		// Get all the users active since the last update
-		$res = $dbw->select(
-			[ 'recentchanges', 'actor' ],
-			[
-				'actor_name',
-				'lastedittime' => 'MAX(rc_timestamp)'
-			],
-			[
+		$res = $dbw->newSelectQueryBuilder()
+			->select( [ 'actor_name', 'lastedittime' => 'MAX(rc_timestamp)' ] )
+			->from( 'recentchanges' )
+			->join( 'actor', null, 'actor_id=rc_actor' )
+			->where( [
 				'actor_user IS NOT NULL', // actual accounts
 				'rc_type != ' . $dbw->addQuotes( RC_EXTERNAL ), // no wikidata
 				'rc_log_type IS NULL OR rc_log_type != ' . $dbw->addQuotes( 'newusers' ),
-				'rc_timestamp >= ' . $dbw->addQuotes( $dbw->timestamp( $sTimestamp ) ),
-				'rc_timestamp <= ' . $dbw->addQuotes( $dbw->timestamp( $eTimestamp ) )
-			],
-			__METHOD__,
-			[
-				'GROUP BY' => 'actor_name',
-				'ORDER BY' => 'NULL' // avoid filesort
-			],
-			[
-				'actor' => [ 'JOIN', 'actor_id=rc_actor' ]
-			]
-		);
+				$dbw->buildComparison( '>=', [ 'rc_timestamp' => $dbw->timestamp( $sTimestamp ) ] ),
+				$dbw->buildComparison( '<=', [ 'rc_timestamp' => $dbw->timestamp( $eTimestamp ) ] ),
+			] )
+			->groupBy( 'actor_name' )
+			->orderBy( 'NULL' ) // avoid filesort
+			->caller( __METHOD__ )->fetchResultSet();
+
 		$names = [];
 		foreach ( $res as $row ) {
 			$names[$row->actor_name] = $row->lastedittime;
@@ -187,16 +180,16 @@ class RecentChangesUpdateJob extends Job {
 
 		// Find which of the recently active users are already accounted for
 		if ( count( $names ) ) {
-			$res = $dbw->select( 'querycachetwo',
-				[ 'user_name' => 'qcc_title' ],
-				[
+			$res = $dbw->newSelectQueryBuilder()
+				->select( [ 'user_name' => 'qcc_title' ] )
+				->from( 'querycachetwo' )
+				->where( [
 					'qcc_type' => 'activeusers',
 					'qcc_namespace' => NS_USER,
 					'qcc_title' => array_map( 'strval', array_keys( $names ) ),
-					'qcc_value >= ' . $dbw->addQuotes( $nowUnix - $days * 86400 ), // TS_UNIX
-				],
-				__METHOD__
-			);
+					$dbw->buildComparison( '>=', [ 'qcc_value' => $nowUnix - $days * 86400 ] ),
+				] )
+				->caller( __METHOD__ )->fetchResultSet();
 			// Note: In order for this to be actually consistent, we would need
 			// to update these rows with the new lastedittime.
 			foreach ( $res as $row ) {

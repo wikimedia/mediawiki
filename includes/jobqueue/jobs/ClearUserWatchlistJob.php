@@ -66,19 +66,13 @@ class ClearUserWatchlistJob extends Job implements GenericParameterJob {
 		// Clear any stale REPEATABLE-READ snapshot
 		$dbr->flushSnapshot( __METHOD__ );
 
-		$watchlistIds = $dbr->selectFieldValues(
-			'watchlist',
-			'wl_id',
-			[
-				'wl_user' => $userId,
-				'wl_id <= ' . $maxWatchlistId
-			],
-			__METHOD__,
-			[
-				'LIMIT' => $batchSize,
-			]
-		);
-
+		$watchlistIds = $dbr->newSelectQueryBuilder()
+			->select( 'wl_id' )
+			->from( 'watchlist' )
+			->where( [ 'wl_user' => $userId ] )
+			->andWhere( $dbr->buildComparison( '<=', [ 'wl_id' => $maxWatchlistId ] ) )
+			->limit( $batchSize )
+			->caller( __METHOD__ )->fetchFieldValues();
 		if ( count( $watchlistIds ) == 0 ) {
 			return true;
 		}

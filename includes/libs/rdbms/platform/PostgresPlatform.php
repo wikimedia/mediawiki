@@ -107,7 +107,10 @@ class PostgresPlatform extends SQLPlatform {
 				}
 			}
 
-			if ( isset( $options['ORDER BY'] ) && $options['ORDER BY'] == 'NULL' ) {
+			if (
+				isset( $options['ORDER BY'] ) &&
+				( $options['ORDER BY'] == 'NULL' || $options['ORDER BY'] == [ 'NULL' ] )
+			) {
 				unset( $options['ORDER BY'] );
 			}
 		}
