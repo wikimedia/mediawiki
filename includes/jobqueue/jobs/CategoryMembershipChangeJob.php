@@ -26,6 +26,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * Job to add recent change entries mentioning category membership changes
@@ -124,25 +125,20 @@ class CategoryMembershipChangeJob extends Job {
 
 		// Get the newest page revision that has a SRC_CATEGORIZE row.
 		// Assume that category changes before it were already handled.
-		$row = $dbr->selectRow(
-			'revision',
-			[ 'rev_timestamp', 'rev_id' ],
-			[
-				'rev_page' => $page->getId(),
-				'rev_timestamp >= ' . $dbr->addQuotes( $dbr->timestamp( $cutoffUnix ) ),
-				'EXISTS (' . $dbr->selectSQLText(
-					'recentchanges',
-					'1',
-					[
-						'rc_this_oldid = rev_id',
-						'rc_source' => RecentChange::SRC_CATEGORIZE,
-					],
-					__METHOD__
-				) . ')'
-			],
-			__METHOD__,
-			[ 'ORDER BY' => [ 'rev_timestamp DESC', 'rev_id DESC' ] ]
-		);
+		$subQuery = $dbr->newSelectQueryBuilder()
+			->select( '1' )
+			->from( 'recentchanges' )
+			->where( 'rc_this_oldid = rev_id' )
+			->andWhere( [ 'rc_source' => RecentChange::SRC_CATEGORIZE ] );
+		$row = $dbr->newSelectQueryBuilder()
+			->select( [ 'rev_timestamp', 'rev_id' ] )
+			->from( 'revision' )
+			->where( [ 'rev_page' => $page->getId() ] )
+			->andWhere( $dbr->buildComparison( '>=', [ 'rev_timestamp' => $dbr->timestamp( $cutoffUnix ) ] ) )
+			->andWhere( 'EXISTS (' . $subQuery->caller( __METHOD__ )->getSQL() . ')' )
+			->orderBy( [ 'rev_timestamp', 'rev_id' ], SelectQueryBuilder::SORT_DESC )
+			->caller( __METHOD__ )->fetchRow();
+
 		// Only consider revisions newer than any such revision
 		if ( $row ) {
 			$cutoffUnix = wfTimestamp( TS_UNIX, $row->rev_timestamp );
