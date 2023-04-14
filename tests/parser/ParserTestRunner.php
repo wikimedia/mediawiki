@@ -158,6 +158,9 @@ class ParserTestRunner {
 	 */
 	public const DB_PREFIX = 'parsertest_';
 
+	/** @var string */
+	private const FILTER_MSG = "Test doesn't match filter";
+
 	/**
 	 * Compute the set of valid test runner modes
 	 *
@@ -908,9 +911,11 @@ class ParserTestRunner {
 				// Run tests
 				foreach ( $testFileInfo->testCases as $test ) {
 					$skipMessage = $this->getTestSkipMessage( $test, !$inParsoidMode );
-					if ( $skipMessage ) {
-						$this->recorder->startTest( $test, $skipMode );
-						$this->recorder->skipped( $test, $skipMode, $skipMessage );
+					if ( $skipMessage !== null ) {
+						if ( $skipMessage !== self::FILTER_MSG ) {
+							$this->recorder->startTest( $test, $skipMode );
+							$this->recorder->skipped( $test, $skipMode, $skipMessage );
+						}
 						continue;
 					}
 
@@ -1010,6 +1015,10 @@ class ParserTestRunner {
 	public function getTestSkipMessage( ParserTest $test, bool $isLegacy ): ?string {
 		$opts = $test->options;
 
+		if ( !$test->matchesFilter( [ 'regex' => $this->regex ] ) ) {
+			return self::FILTER_MSG;
+		}
+
 		// Skip deprecated preprocessor tests
 		if ( isset( $opts['preprocessor'] ) && $opts['preprocessor'] !== 'Preprocessor_Hash' ) {
 			wfDeprecated( 'preprocessor=Preprocessor_DOM', '1.36' );
@@ -1025,9 +1034,7 @@ class ParserTestRunner {
 		if ( isset( $opts['disabled'] ) && !$this->runDisabled ) {
 			return "Test disabled";
 		}
-		if ( !$test->matchesFilter( [ 'regex' => $this->regex ] ) ) {
-			return "Test doesn't match filter";
-		}
+
 		// Skip parsoid-only tests if running in a legacy test mode
 		if (
 			$test->legacyHtml === null &&
@@ -1361,7 +1368,12 @@ class ParserTestRunner {
 	 * @return ParserTestResult The test results.
 	 */
 	public function runTest( ParserTest $test, ParserTestMode $mode ): ParserTestResult {
-		if ( $this->getTestSkipMessage( $test, $mode->isLegacy() ) ) {
+		$skipMessage = $this->getTestSkipMessage( $test, $mode->isLegacy() );
+		if ( $skipMessage !== null ) {
+			if ( $skipMessage !== self::FILTER_MSG ) {
+				$this->recorder->startTest( $test, $mode );
+				$this->recorder->skipped( $test, $mode, $skipMessage );
+			}
 			return new ParserTestResult( $test, $mode, 'SKIP', 'SKIP' );
 		}
 		return $this->runTestInternal( $test, $mode );
