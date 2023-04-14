@@ -3,7 +3,7 @@
  */
 ( function () {
 
-	$.extend( mw.Api.prototype, {
+	Object.assign( mw.Api.prototype, {
 
 		/**
 		 * Post to API with csrf token. If we have no token, get one and try to post.

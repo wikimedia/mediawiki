@@ -3,7 +3,7 @@
  */
 ( function () {
 
-	$.extend( mw.Api.prototype, {
+	Object.assign( mw.Api.prototype, {
 		/**
 		 * Determine if a category exists.
 		 *

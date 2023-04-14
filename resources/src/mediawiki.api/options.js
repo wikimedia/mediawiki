@@ -5,7 +5,7 @@
 
 	var saveOptionsRequests = {};
 
-	$.extend( mw.Api.prototype, {
+	Object.assign( mw.Api.prototype, {
 
 		/**
 		 * Asynchronously save the value of a single user option using the API. See #saveOptions.

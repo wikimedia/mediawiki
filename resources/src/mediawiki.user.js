@@ -19,7 +19,7 @@
 	}
 
 	// mw.user with the properties options and tokens gets defined in mediawiki.base.js.
-	$.extend( mw.user, {
+	Object.assign( mw.user, {
 
 		/**
 		 * Generate a random user session ID.

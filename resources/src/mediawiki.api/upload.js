@@ -31,7 +31,7 @@
 		return obj[ Object.keys( obj )[ 0 ] ];
 	}
 
-	$.extend( mw.Api.prototype, {
+	Object.assign( mw.Api.prototype, {
 		/**
 		 * Upload a file to MediaWiki.
 		 *
