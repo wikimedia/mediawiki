@@ -397,7 +397,7 @@
 					// once it is resolved. Otherwise, if $wgWatchlistExpiry set, the loading of
 					// OOUI could cause a race condition and the link is updated before the popup
 					// actually is shown. See T263135
-					notifyPromise.then( function () {
+					notifyPromise.always( function () {
 
 						// Update all watchstars associated with this title
 						watchstarsByTitle[ normalizedTitle ].forEach( function ( w ) {
