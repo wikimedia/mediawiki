@@ -2455,6 +2455,12 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			if ( $this->mCacheRevisionId !== null ) {
 				$metadata->setCacheRevisionId( $this->mCacheRevisionId );
 			}
+			// T293514: We should use the first *modified* title text, but
+			// we don't have the original to check.
+			$otherTitle = $metadata->getTitleText();
+			if ( $otherTitle === null || $otherTitle === '' ) {
+				$metadata->setTitleText( $this->getTitleText() );
+			}
 		}
 	}
 
