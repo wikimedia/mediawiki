@@ -745,7 +745,7 @@
 			function ( e, modules ) {
 				// When the server sets state of 'testMissing' to 'missing'
 				// it should bubble up and trigger the error callback of the job for 'testUsesNestedMissing'.
-				assert.true( modules.indexOf( 'testMissing' ) !== -1, 'Triggered by testMissing.' );
+				assert.true( modules.includes( 'testMissing' ), 'Triggered by testMissing.' );
 
 				verifyModuleStates();
 			}
@@ -765,7 +765,7 @@
 		// Simulate network failure
 		var appendSuper = document.head.appendChild;
 		var appendStub = this.sandbox.stub( document.head, 'appendChild', function ( node ) {
-			if ( node.nodeName === 'SCRIPT' && node.src.indexOf( 'testNetfailBadDump' ) !== -1 ) {
+			if ( node.nodeName === 'SCRIPT' && node.src.includes( 'testNetfailBadDump' ) ) {
 				Promise.resolve().then( node.onerror );
 				appendStub.restore();
 				return;
@@ -787,7 +787,7 @@
 				}, 'module state' );
 
 				assert.strictEqual( e.message, 'Failed dependency: testNetfailBadDump', 'error message' );
-				assert.true( modules.indexOf( 'testNetfailBadDump' ) !== -1, 'attribute failure' );
+				assert.true( modules.includes( 'testNetfailBadDump' ), 'attribute failure' );
 			}
 		);
 	} );

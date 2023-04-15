@@ -6,7 +6,6 @@ QUnit.module( 'mediawiki.deflate', function () {
 	}
 
 	var longData = new TextDecoder( 'utf-8' ).decode(
-		// eslint-disable-next-line no-undef
 		Uint32Array.from(
 			{ length: 5 * 1024 * 1024 },
 			getPseudoRandom

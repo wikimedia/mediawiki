@@ -240,9 +240,9 @@
 			foo: 'quux',
 			pif: 'paf'
 		} );
-		assert.true( uri.toString().indexOf( 'foo=quux' ) !== -1, 'extend query arguments' );
-		assert.false( uri.toString().indexOf( 'foo=bar' ) !== -1, 'extend query arguments' );
-		assert.true( uri.toString().indexOf( 'pif=paf' ) !== -1, 'extend query arguments' );
+		assert.true( uri.toString().includes( 'foo=quux' ), 'extend query arguments' );
+		assert.false( uri.toString().includes( 'foo=bar' ), 'extend query arguments' );
+		assert.true( uri.toString().includes( 'pif=paf' ), 'extend query arguments' );
 	} );
 
 	QUnit.test( '.getQueryString()', function ( assert ) {
@@ -357,8 +357,8 @@
 
 		// Verify parts and total length instead of entire string because order
 		// of iteration can vary.
-		assert.true( uri.toString().indexOf( 'm=bar' ) !== -1, 'toString preserves other values' );
-		assert.true( uri.toString().indexOf( 'n=x&n=y&n=z' ) !== -1, 'toString parameter includes all values of an array query parameter' );
+		assert.true( uri.toString().includes( 'm=bar' ), 'toString preserves other values' );
+		assert.true( uri.toString().includes( 'n=x&n=y&n=z' ), 'toString parameter includes all values of an array query parameter' );
 		assert.strictEqual( uri.toString().length, 'http://www.example.com/dir/?m=bar&n=x&n=y&n=z'.length, 'toString matches expected string' );
 
 		uri = new mw.Uri( 'http://www.example.com/dir/?m=foo&m=bar&n=1', {
@@ -370,8 +370,8 @@
 
 		// Verify parts and total length instead of entire string because order
 		// of iteration can vary.
-		assert.true( uri.toString().indexOf( 'm=foo&m=bar' ) !== -1, 'toString preserves other values' );
-		assert.true( uri.toString().indexOf( 'n=x&n=y&n=z' ) !== -1, 'toString parameter includes all values of an array query parameter' );
+		assert.true( uri.toString().includes( 'm=foo&m=bar' ), 'toString preserves other values' );
+		assert.true( uri.toString().includes( 'n=x&n=y&n=z' ), 'toString parameter includes all values of an array query parameter' );
 		assert.strictEqual( uri.toString().length, 'http://www.example.com/dir/?m=foo&m=bar&n=x&n=y&n=z'.length, 'toString matches expected string' );
 
 		// Remove query values
@@ -454,15 +454,15 @@
 		assert.strictEqual( uri.getHostPort(), 'www.example.com:81', 'hostport equal to host:port' );
 
 		queryString = uri.getQueryString();
-		assert.true( queryString.indexOf( 'q1=0' ) !== -1, 'query param with numbers' );
-		assert.true( queryString.indexOf( 'test1' ) !== -1, 'query param with null value is included' );
-		assert.false( queryString.indexOf( 'test1=' ) !== -1, 'query param with null value does not generate equals sign' );
-		assert.true( queryString.indexOf( 'test2=value+%28escaped%29' ) !== -1, 'query param is url escaped' );
+		assert.true( queryString.includes( 'q1=0' ), 'query param with numbers' );
+		assert.true( queryString.includes( 'test1' ), 'query param with null value is included' );
+		assert.false( queryString.includes( 'test1=' ), 'query param with null value does not generate equals sign' );
+		assert.true( queryString.includes( 'test2=value+%28escaped%29' ), 'query param is url escaped' );
 
 		relativePath = uri.getRelativePath();
-		assert.true( relativePath.indexOf( uri.path ) >= 0, 'path in relative path' );
-		assert.true( relativePath.indexOf( uri.getQueryString() ) >= 0, 'query string in relative path' );
-		assert.true( relativePath.indexOf( mw.Uri.encode( uri.fragment ) ) >= 0, 'escaped fragment in relative path' );
+		assert.true( relativePath.includes( uri.path ), 'path in relative path' );
+		assert.true( relativePath.includes( uri.getQueryString() ), 'query string in relative path' );
+		assert.true( relativePath.includes( mw.Uri.encode( uri.fragment ) ), 'escaped fragment in relative path' );
 	} );
 
 	QUnit.test( 'Parse a uri with an @ symbol in the path and query', function ( assert ) {

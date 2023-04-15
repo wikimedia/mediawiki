@@ -736,7 +736,7 @@
 			}
 		];
 
-		if ( mw.config.get( 'wgIllegalFileChars', '' ).indexOf( ':' ) > -1 ) {
+		if ( mw.config.get( 'wgIllegalFileChars', '' ).includes( ':' ) ) {
 			// ":" is automatically replaced with "-". Only test this if it is present
 			// in wgIllegalFileChars. Bug: T196480
 			cases.push( {
