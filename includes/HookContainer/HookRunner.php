@@ -181,7 +181,7 @@ class HookRunner implements
 	\MediaWiki\Hook\FileUploadHook,
 	\MediaWiki\Hook\FormatAutocommentsHook,
 	\MediaWiki\Hook\GalleryGetModesHook,
-	\MediaWiki\Hook\GetBlockErrorMessageKey,
+	\MediaWiki\Hook\GetBlockErrorMessageKeyHook,
 	\MediaWiki\Hook\GetCacheVaryCookiesHook,
 	\MediaWiki\Hook\GetCanonicalURLHook,
 	\MediaWiki\Hook\GetDefaultSortkeyHook,
