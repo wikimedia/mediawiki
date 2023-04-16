@@ -11,7 +11,7 @@ use MediaWiki\Block\Block;
  * @stable to implement
  * @ingroup Hooks
  */
-interface GetBlockErrorMessageKey {
+interface GetBlockErrorMessageKeyHook {
 	/**
 	 * This hook is called in BlockErrorFormatter to allow
 	 * extensions to override the message that will be displayed
@@ -25,3 +25,9 @@ interface GetBlockErrorMessageKey {
 	 */
 	public function onGetBlockErrorMessageKey( Block $block, string &$key );
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.40
+ */
+class_alias( GetBlockErrorMessageKeyHook::class, 'MediaWiki\Hook\GetBlockErrorMessageKey' );
