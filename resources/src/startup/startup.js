@@ -14,27 +14,14 @@
  * - DOM Level 4 (including Selectors API)
  * - HTML5 (including Web Storage API)
  *
- * Browsers we support in our modern run-time (Grade A):
- * - Chrome 21+
+ * Browsers known to pass these checks get served our modern run-time (Grade A or Grade X):
+ * - Chrome 63+
  * - Edge 79+
- * - Opera 38+
- * - Firefox 54+
+ * - Opera 50+
+ * - Firefox 58+
  * - Safari 11.1+
  * - Mobile Safari 11.2+ (iOS 11+)
  * - Android 5.0+
- *
- * Browsers we support in our no-JavaScript, basic run-time (Grade C):
- * - Chrome 1+
- * - Opera 15+
- * - IE 11+
- * - Firefox 3+
- * - Safari 3+
- * - Mobile Safari 5.0+ (iOS 4+)
- * - Android 2.0+
- * - Opera Mini (Extreme mode)
- * - UC Mini (Speed mode)
- *
- * Other browsers that pass the check are considered unknown (Grade X).
  *
  * @private
  * @return {boolean} User agent is compatible with MediaWiki JS
@@ -55,8 +42,10 @@ function isCompatible() {
 		// ES6 Promise, this rejects most unsupporting browsers.
 		// https://caniuse.com/promises
 		//
-		// ES6 Promise.finally, this rejects Safari 10 and iOS 10.
+		// ES6 Promise.finally
 		// https://caniuse.com/promise-finally
+		// Chrome 63+, Edge 18+, Opera 50+, Safari 11.1+, Firefox 58+, iOS 11+
+		//
 		// eslint-disable-next-line es-x/no-promise, es-x/no-promise-prototype-finally, dot-notation
 		typeof Promise === 'function' && Promise.prototype[ 'finally' ] &&
 		// ES6 Arrow Functions (with default params), this ensures genuine syntax
@@ -74,8 +63,10 @@ function isCompatible() {
 				return false;
 			}
 		}() ) &&
-		// ES6 RegExp.prototype.flags, this rejects Android 4.4.4 and MSEdge <= 18,
-		// which was the last Edge Legacy version (MSEdgeHTML-based).
+		// ES6 RegExp.prototype.flags
+		// https://caniuse.com/mdn-javascript_builtins_regexp_flags
+		// Edge 79+ (Chromium-based, rejects MSEdgeHTML-based Edge <= 18)
+		//
 		// eslint-disable-next-line es-x/no-regexp-prototype-flags
 		/./g.flags === 'g'
 	);
