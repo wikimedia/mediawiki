@@ -18,7 +18,6 @@
 :lang( my ),
 :lang( mai ),
 :lang( mnw ),
-:lang( ne ),
 :lang( new ),
 :lang( or ),
 :lang( pa ),
@@ -44,6 +43,8 @@
 
 // Increase `line-height` for Thai top vowel + top tone combination on `h2`,
 // for example on `ตั้`. See T285972.
-h2:lang( th ) {
+// Increase for Nepalese on `h2`, for example on `ि`. See T333938.
+h2:lang( th ),
+h2:lang( ne ) {
 	line-height: 1.6;
 }
