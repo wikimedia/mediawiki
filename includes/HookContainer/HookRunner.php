@@ -293,7 +293,7 @@ class HookRunner implements
 	\MediaWiki\Hook\ParserLimitReportPrepareHook,
 	\MediaWiki\Hook\ParserLogLinterDataHook,
 	\MediaWiki\Hook\ParserMakeImageParamsHook,
-	\MediaWiki\Hook\ParserModifyImageHTML,
+	\MediaWiki\Hook\ParserModifyImageHTMLHook,
 	\MediaWiki\Hook\ParserOptionsRegisterHook,
 	\MediaWiki\Hook\ParserOutputPostCacheTransformHook,
 	\MediaWiki\Hook\ParserPreSaveTransformCompleteHook,

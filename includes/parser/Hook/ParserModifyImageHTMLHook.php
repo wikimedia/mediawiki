@@ -12,7 +12,7 @@ use Parser;
  * @stable to implement
  * @ingroup Hooks
  */
-interface ParserModifyImageHTML {
+interface ParserModifyImageHTMLHook {
 	/**
 	 * This hook is called for each image added to parser output, with its
 	 * associated HTML as returned from Linker::makeImageLink().
@@ -28,3 +28,9 @@ interface ParserModifyImageHTML {
 	public function onParserModifyImageHTML( Parser $parser, File $file,
 		array $params, string &$html ): void;
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( ParserModifyImageHTMLHook::class, 'MediaWiki\Hook\ParserModifyImageHTML' );
