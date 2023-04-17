@@ -1770,16 +1770,23 @@ class Linker {
 	 * @since 1.16.3. $lang added in 1.17. Parameters changed in 1.40.
 	 * @param ?TOCData $tocData Return value of ParserOutput::getSections()
 	 * @param Language|null $lang Language for the toc title, defaults to user language
-	 * @param array $options FIXME: Document
+	 * @param array $options
+	 *   - 'maxtoclevel' Max TOC level to generate
 	 * @return string HTML fragment
 	 */
 	public static function generateTOC( ?TOCData $tocData, Language $lang = null, array $options = [] ): string {
 		$toc = '';
 		$lastLevel = 0;
 		$maxTocLevel = $options['maxtoclevel'] ?? null;
+		if ( $maxTocLevel === null ) {
+			// Use wiki-configured default
+			$services = MediaWikiServices::getInstance();
+			$config = $services->getMainConfig();
+			$maxTocLevel = $config->get( MainConfigNames::MaxTocLevel );
+		}
 		foreach ( ( $tocData ? $tocData->getSections() : [] ) as $section ) {
 			$tocLevel = $section->tocLevel;
-			if ( $maxTocLevel !== null && $tocLevel < $maxTocLevel ) {
+			if ( $tocLevel < $maxTocLevel ) {
 				if ( $tocLevel > $lastLevel ) {
 					$toc .= self::tocIndent();
 				} elseif ( $tocLevel < $lastLevel ) {

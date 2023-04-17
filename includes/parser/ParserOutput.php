@@ -489,7 +489,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				if ( count( $this->getSections() ) === 0 ) {
 					$toc = '';
 				} else {
-					$services = MediaWikiServices::getInstance();
 					$userLang = $options['userLang'];
 					$skin = $options['skin'];
 					if ( ( !$userLang ) && $skin ) {
@@ -500,14 +499,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 					if ( !$userLang ) {
 						$userLang = RequestContext::getMain()->getLanguage();
 					}
-					$config = $services->getMainConfig();
-					$maxTocLevel = $config->get( MainConfigNames::MaxTocLevel );
-					$toc = Linker::generateTOC(
-						$this->getTOCData(), $userLang, [
-							"maxtoclevel" => $maxTocLevel,
-						] );
+					$toc = Linker::generateTOC( $this->getTOCData(), $userLang );
 
 					// XXX Use DI to inject this once ::getText() is moved out of ParserOutput.
+					$services = MediaWikiServices::getInstance();
 					$toc = $services->getTidy()->tidy( $toc, [ Sanitizer::class, 'armorFrenchSpaces' ] );
 				}
 				$this->mTOCHTML = $toc;
