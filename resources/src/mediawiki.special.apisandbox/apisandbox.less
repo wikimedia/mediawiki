@@ -1,4 +1,4 @@
-@import 'mediawiki.ui/variables.less';
+@import 'mediawiki.skin.variables.less';
 @import 'mediawiki.mixins.less';
 
 .mw-apisandbox-toolbar {
@@ -130,7 +130,7 @@
 .apihelp-deprecated,
 .apihelp-internal {
 	font-weight: bold;
-	color: #d33;
+	color: @color-error;
 }
 /* stylelint-enable selector-class-pattern */
 
@@ -140,6 +140,6 @@
 
 .oo-ui-menuOptionWidget .mw-apisandbox-flag {
 	line-height: 1.42857143em;
-	color: @color-base--subtle;
+	color: @color-subtle;
 	float: right;
 }

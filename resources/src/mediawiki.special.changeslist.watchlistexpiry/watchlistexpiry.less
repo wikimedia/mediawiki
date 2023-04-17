@@ -1,10 +1,12 @@
+@import 'mediawiki.skin.variables.less';
+
 /* Make the clock icon smaller than it is by default, and grey it out. */
 .mw-changesList-watchlistExpiry.oo-ui-iconElement-icon {
 	min-height: 13px;
 	height: 13px;
 	position: relative;
-	top: -1px;
-	opacity: 0.51; /* To match @opacity-base--disabled */
+	top: -@position-offset-border-width-base;
+	opacity: @opacity-icon-base--disabled;
 }
 
 .mw-watchlistexpiry-msg {

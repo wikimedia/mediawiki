@@ -1,7 +1,7 @@
 /* stylelint-disable selector-class-pattern */
 
-@import 'mediawiki.mixins';
 @import 'mediawiki.skin.variables.less';
+@import 'mediawiki.mixins.less';
 
 /**
  * Helper classes used across special pages and actions
@@ -124,7 +124,7 @@
 	// @background-color-interactive
 	background-color: #eaecf0;
 	padding: 2px 8px 2px 8px;
-	border-radius: 2px;
+	border-radius: @border-radius-base;
 }
 
 /* Comment portions of RC entries, also used by MediaWiki\CommentFormatter\CommentFormatter::formatBlock */

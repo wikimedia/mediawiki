@@ -1,7 +1,7 @@
 /*!
  * Styles for Special:Contribute page.
  */
-@import 'mediawiki.ui/variables.less';
+@import 'mediawiki.skin.variables.less';
 
 .mw-special-Contribute {
 	.mw-contribute-wrapper {
@@ -17,7 +17,7 @@
 	}
 
 	.mw-contribute-tabs-content {
-		background-color: @colorGray15;
+		background-color: #f8f9fa;
 	}
 
 	.mw-contribute-content-area {
@@ -28,11 +28,11 @@
 	}
 
 	.mw-contribute-card {
-		text-decoration: none;
-		border: 1px solid @colorGray12;
-		border-radius: 2px;
+		background-color: @background-color-base;
+		border: @border-subtle;
+		border-radius: @border-radius-base;
 		box-shadow: 0 1px 2px 0 rgba( 0, 0, 0, 0.1 );
-		background-color: #fff;
+		text-decoration: none;
 
 		&:hover {
 			text-decoration: none;
@@ -44,8 +44,8 @@
 	}
 
 	.mw-contribute-card-content {
+		color: @color-base;
 		padding: 12px;
-		color: @colorGray2;
 	}
 
 	.mw-contribute-card-title {
@@ -62,7 +62,7 @@
 	}
 
 	.mw-contribute-card-action {
-		color: @color-primary;
+		color: @color-progressive;
 		padding-left: 28px;
 		padding-top: 4px;
 		font-size: @font-size-base * 0.875;

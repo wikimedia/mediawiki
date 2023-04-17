@@ -3,13 +3,15 @@
  * These were previously available through legacy.less and are still imported there.
  * After legacy.less has been removed, this file can be merged into TablePager.less.
  */
+@import 'mediawiki.skin.variables.less';
+
 .mw-datatable {
-	border: 1px solid #a2a9b1;
+	border: @border-base;
 	border-collapse: collapse;
 
 	td,
 	th {
-		border: 1px solid #a2a9b1;
+		border: @border-base;
 		padding: 0.2em 0.4em;
 	}
 
