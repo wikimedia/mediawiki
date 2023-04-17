@@ -706,8 +706,13 @@ class InfoAction extends FormlessAction {
 
 		if ( $firstRev ) {
 			// Page creator
+			$firstRevUser = $firstRev->getUser( RevisionRecord::FOR_THIS_USER, $user );
+			// Check if the username is available – it may have been suppressed, in
+			// which case use the invalid user name '[HIDDEN]' to get the wiki's
+			// default user gender.
+			$firstRevUserName = $firstRevUser ? $firstRevUser->getName() : '[HIDDEN]';
 			$pageInfo['header-edits'][] = [
-				$this->msg( 'pageinfo-firstuser' ),
+				$this->msg( 'pageinfo-firstuser', $firstRevUserName ),
 				Linker::revUserTools( $firstRev )
 			];
 
@@ -725,8 +730,13 @@ class InfoAction extends FormlessAction {
 
 		if ( $lastRev ) {
 			// Latest editor
+			$lastRevUser = $lastRev->getUser( RevisionRecord::FOR_THIS_USER, $user );
+			// Check if the username is available – it may have been suppressed, in
+			// which case use the invalid user name '[HIDDEN]' to get the wiki's
+			// default user gender.
+			$lastRevUserName = $lastRevUser ? $lastRevUser->getName() : '[HIDDEN]';
 			$pageInfo['header-edits'][] = [
-				$this->msg( 'pageinfo-lastuser' ),
+				$this->msg( 'pageinfo-lastuser', $lastRevUserName ),
 				Linker::revUserTools( $lastRev )
 			];
 
