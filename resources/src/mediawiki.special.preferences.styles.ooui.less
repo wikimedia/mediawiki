@@ -1,13 +1,12 @@
 @import 'mediawiki.skin.variables.less';
 @import 'mediawiki.mixins.less';
-@import 'mediawiki.ui/variables';
 
 /* Uses standard message block colors, compare mediawiki.legacy/shared.css */
 .mw-email-not-authenticated .oo-ui-labelWidget,
 .mw-email-none .oo-ui-labelWidget {
 	color: #000;
-	border-width: 1px;
-	border-style: solid;
+	border-width: @border-width-base;
+	border-style: @border-style-base;
 	padding: 8px 12px;
 }
 
@@ -18,7 +17,7 @@
 
 .mw-email-none .oo-ui-labelWidget {
 	background-color: #eaecf0;
-	border-color: #a2a9b1;
+	border-color: @border-color-base;
 }
 
 /* Authenticated email field has its own class too. Unstyled by default */
@@ -40,10 +39,10 @@
 	.mw-htmlform-submit-buttons {
 		.position-sticky();
 		bottom: 0;
-		margin: -1px -1em -1em -1em;
+		margin: -@border-width-base -1em -1em -1em;
 		padding: 1em;
 		background-color: #fff;
-		border-top: 1px solid #c8ccd1;
+		border-top: @border-width-base @border-style-base @border-color-subtle;
 		// Add top box shadow on top only to emphasize content is scrollable underneath `sticky`.
 		box-shadow: 0 -4px 4px -4px rgba( 0, 0, 0, 0.25 );
 	}
@@ -117,7 +116,7 @@
 .mw-prefs-search-highlight {
 	background: #eaf3ff !important; /* stylelint-disable-line declaration-no-important */
 	outline: 3px solid #eaf3ff !important; /* stylelint-disable-line declaration-no-important */
-	border-radius: 2px !important; /* stylelint-disable-line declaration-no-important */
+	border-radius: @border-radius-base !important; /* stylelint-disable-line declaration-no-important */
 }
 
 .mw-prefs-noresults {
@@ -163,7 +162,7 @@
 .mw-prefs-tabs > .oo-ui-menuLayout-content > .oo-ui-indexLayout-stackLayout > .oo-ui-tabPanelLayout {
 	/* Decrease contrast of `border` slightly as padding/border combination is sufficient
 	 * accessibility wise and focus of content is more important here. */
-	border-color: #c8ccd1;
+	border-color: @border-color-subtle;
 }
 
 /* JavaScript disabled */
@@ -184,7 +183,7 @@
 			// <legend> is hard to style, so apply border to top of group
 			> .oo-ui-fieldsetLayout-group {
 				padding-top: 1.5em;
-				border-top: 1px solid #c8ccd1;
+				border-top: @border-width-base @border-style-base @border-color-subtle;
 			}
 
 			// Remove spacing between legend and underline
@@ -310,7 +309,7 @@ with params ?useskin=vector&useformat=mobile
 .mw-mobile-prefsection.oo-ui-buttonElement {
 	display: block;
 	margin-left: 0 !important; /* stylelint-disable-line declaration-no-important */
-	border-bottom: 0.0625em solid @colorGray12;
+	border-bottom: @border-width-base @border-style-base @border-color-subtle;
 
 	&:last-child {
 		border-bottom: 0;
@@ -330,14 +329,14 @@ with params ?useskin=vector&useformat=mobile
 	font-weight: normal;
 	font-size: 1em;
 	line-height: 1.25em;
-	color: @colorGray2;
+	color: @color-base;
 }
 
 .mw-prefs-description {
 	font-weight: normal;
 	font-size: 0.875em;
 	line-height: 1.25em;
-	color: @colorGray7;
+	color: #72777d;
 	margin-top: 0 !important; /* stylelint-disable-line declaration-no-important */
 	white-space: normal;
 }
@@ -366,7 +365,7 @@ with params ?useskin=vector&useformat=mobile
 	/* T317110: sub-section title  */
 	.mw-prefs-fieldset-wrapper {
 		.oo-ui-fieldsetLayout-header {
-			border-bottom: 1px #000 solid;
+			border-bottom: @border-width-base @border-style-base #000;
 			max-width: 100%;
 
 			.oo-ui-labelElement-label {
@@ -387,7 +386,7 @@ with params ?useskin=vector&useformat=mobile
 	[ class^='mw-htmlform-field' ] {
 		padding: 12px 0;
 		margin: 0;
-		border-bottom: 1px #eaecf0 solid;
+		border-bottom: @border-width-base @border-style-base #eaecf0;
 
 		&:last-child {
 			border-bottom: 0;
@@ -422,7 +421,7 @@ with params ?useskin=vector&useformat=mobile
 }
 
 .oo-ui-iconWidget.mw-prefs-header-icon {
-	color: @colorGray2;
+	color: @color-base;
 	cursor: pointer;
 	width: 1.25em;
 	height: 1.25em;

@@ -1,6 +1,6 @@
 /* Special:Search */
+@import 'mediawiki.skin.variables.less';
 @import 'mediawiki.mixins.less';
-@import 'mediawiki.ui/variables.less';
 
 /* stylelint-disable selector-class-pattern */
 #mw-content-text {
@@ -81,9 +81,9 @@
 		.searchResultImage-thumbnail-placeholder {
 			width: inherit;
 			height: inherit;
-			background-color: @colorGray15;
-			border: 1px solid @colorGray12;
-			fill: @colorGray7;
+			background-color: #f8f9fa;
+			border: @border-subtle;
+			fill: @color-placeholder;
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -97,7 +97,7 @@
 			/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 			object-fit: cover;
 			object-position: top;
-			border: 1px solid @colorGray12;
+			border: @border-subtle;
 		}
 	}
 
@@ -116,15 +116,15 @@
 }
 
 .mw-search-result-data {
-	color: @colorGray5;
+	color: @color-subtle;
 	font-size: 93%;
 }
 
 .mw-search-profile-tabs {
-	background-color: @colorGray15;
+	background-color: #f8f9fa;
 	margin-top: 1em;
-	border: 1px solid @colorGray12;
-	border-radius: 2px;
+	border: @border-subtle;
+	border-radius: @border-radius-base;
 }
 
 .search-types {
@@ -149,7 +149,7 @@
 	}
 
 	.current a {
-		color: @colorGray2;
+		color: @color-base;
 		cursor: default;
 
 		&:hover {
@@ -162,7 +162,7 @@
 	float: right;
 	padding: 0.5em;
 	padding-right: 0.75em;
-	color: @colorGray5;
+	color: @color-subtle;
 	font-size: 95%;
 }
 
@@ -178,10 +178,10 @@
 	/* Support: Firefox, needs `clear: both` on `fieldset` when zoom level > 100%, see T176499 */
 	clear: both;
 	padding: 0.5em 0.75em 0.75em 0.75em;
-	background-color: @colorGray15;
+	background-color: #f8f9fa;
 	margin: -1px 0 0;
-	border: 1px solid @colorGray12;
-	border-radius: 0 0 2px 2px;
+	border: @border-subtle;
+	border-radius: 0 0 @border-radius-base @border-radius-base;
 
 	legend {
 		display: none;
@@ -195,7 +195,8 @@
 
 	.divider {
 		clear: both;
-		border-bottom: 1px solid @colorGray14;
+		// TODO: Should be `@border-subtle`.
+		border-bottom: @border-width-base @border-style-base #eaecf0;
 		padding-top: 0.5em;
 		margin-bottom: 0.5em;
 	}
@@ -218,7 +219,7 @@
 #mw-search-interwiki {
 	float: right;
 	width: 18em;
-	border: 1px solid #a2a9b1;
+	border: @border-base;
 	margin-top: 2ex;
 }
 
@@ -242,13 +243,13 @@
 	font-size: 97%;
 	text-align: left;
 	padding: 0.15em 0.15em 0.2em 0.2em;
-	background-color: @colorGray14;
-	border-top: 1px solid @colorGray12;
+	background-color: #eaecf0;
+	border-top: @border-subtle;
 }
 
 .mw-search-interwiki-header {
 	font-size: 1.3125em;
-	border-bottom: 1px solid @border-color-base;
+	border-bottom: @border-base;
 }
 
 .searchdidyoumean {
