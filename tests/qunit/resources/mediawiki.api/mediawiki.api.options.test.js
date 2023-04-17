@@ -49,7 +49,7 @@
 				'action=options&format=json&formatversion=2&change=foo&token=%2B%5C',
 				// reset an option, not bundleable
 				'action=options&format=json&formatversion=2&optionname=foo%7Cbar%3Dquux&token=%2B%5C'
-			].indexOf( request.requestBody ) !== -1 ) {
+			].includes( request.requestBody ) ) {
 				assert.true( true, 'Repond to ' + request.requestBody );
 				request.respond( 200, { 'Content-Type': 'application/json' },
 					'{ "options": "success" }' );
@@ -111,7 +111,7 @@
 				'action=options&format=json&formatversion=2&change=foo&token=%2B%5C',
 				// reset an option, not bundleable
 				'action=options&format=json&formatversion=2&optionname=foo%7Cbar%3Dquux&token=%2B%5C'
-			].indexOf( request.requestBody ) !== -1 ) {
+			].includes( request.requestBody ) ) {
 				assert.true( true, 'Repond to ' + request.requestBody );
 				request.respond(
 					200,

@@ -1,7 +1,10 @@
 {
 	"root": true,
 	"extends": [
-		"../../resources/src/.eslintrc.json",
+		"wikimedia/client-common",
+		"wikimedia/language/es2020",
+		"wikimedia/jquery",
+		"wikimedia/mediawiki",
 		"wikimedia/qunit"
 	],
 	"globals": {
@@ -9,7 +12,10 @@
 	},
 	"rules": {
 		"compat/compat": [ "error", "last 2 chrome versions, last 2 firefox versions" ],
+		"max-len": "off",
+		"no-jquery/no-global-selector": "off",
 		"no-jquery/no-parse-html-literal": "off",
+		"no-var": "off",
 		"qunit/resolve-async": "off"
 	}
 }
