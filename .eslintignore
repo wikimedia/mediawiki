@@ -8,6 +8,7 @@
 
 # Build tooling
 /docs/coverage/
+/docs/html/
 /docs/js/
 /docs/latex/
 /vendor/
