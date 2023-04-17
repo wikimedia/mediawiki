@@ -726,7 +726,11 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		if ( count( $fields ) > 1 && $count > 30 ) {
 			$tocLength = 0;
 			$contLang = $this->getContentLanguage();
-			foreach ( $fields as $data ) {
+			foreach ( $fields as $key => $data ) {
+				// ignore the 'check all'  field
+				if ( str_starts_with( $key, 'CheckAllNs' ) ) {
+					continue;
+				}
 				# strip out the 'ns' prefix from the section name:
 				$ns = (int)substr( $data['section'], 2 );
 				$nsText = ( $ns === NS_MAIN )
