@@ -216,10 +216,7 @@ class SvgHandler extends ImageHandler {
 		// To prevent the proliferation of thumbnails in languages not present in SVGs, unless
 		// explicitly forced by user.
 		if ( isset( $params['targetlang'] ) && !$image->getMatchedLanguage( $params['targetlang'] ) ) {
-			$params['targetlang'] = strtolower( LanguageCode::bcp47( $params['targetlang'] ) );
-			if ( !$image->getMatchedLanguage( $params['targetlang'] ) ) {
-				unset( $params['targetlang'] );
-			}
+			unset( $params['targetlang'] );
 		}
 
 		return $params;
