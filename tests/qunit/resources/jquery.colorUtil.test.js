@@ -1,63 +1,58 @@
-( function () {
-	QUnit.module( 'jquery.colorUtil', QUnit.newMwEnvironment() );
+QUnit.module( 'jquery.colorUtil', () => {
 
-	QUnit.test( 'getRGB', function ( assert ) {
-		assert.strictEqual( $.colorUtil.getRGB(), undefined, 'No arguments' );
-		assert.strictEqual( $.colorUtil.getRGB( '' ), undefined, 'Empty string' );
-		assert.deepEqual( $.colorUtil.getRGB( [ 0, 100, 255 ] ), [ 0, 100, 255 ], 'Parse array of rgb values' );
-		assert.deepEqual( $.colorUtil.getRGB( 'rgb(0,100,255)' ), [ 0, 100, 255 ], 'Parse simple rgb string' );
-		assert.deepEqual( $.colorUtil.getRGB( 'rgb(0, 100, 255)' ), [ 0, 100, 255 ], 'Parse simple rgb string with spaces' );
-		assert.deepEqual( $.colorUtil.getRGB( 'rgb(0%,20%,40%)' ), [ 0, 51, 102 ], 'Parse rgb string with percentages' );
-		assert.deepEqual( $.colorUtil.getRGB( 'rgb(0%, 20%, 40%)' ), [ 0, 51, 102 ], 'Parse rgb string with percentages and spaces' );
-		assert.deepEqual( $.colorUtil.getRGB( '#f2ddee' ), [ 242, 221, 238 ], 'Hex string: 6 char lowercase' );
-		assert.deepEqual( $.colorUtil.getRGB( '#f2DDEE' ), [ 242, 221, 238 ], 'Hex string: 6 char uppercase' );
-		assert.deepEqual( $.colorUtil.getRGB( '#f2DdEe' ), [ 242, 221, 238 ], 'Hex string: 6 char mixed' );
-		assert.deepEqual( $.colorUtil.getRGB( '#eee' ), [ 238, 238, 238 ], 'Hex string: 3 char lowercase' );
-		assert.deepEqual( $.colorUtil.getRGB( '#EEE' ), [ 238, 238, 238 ], 'Hex string: 3 char uppercase' );
-		assert.deepEqual( $.colorUtil.getRGB( '#eEe' ), [ 238, 238, 238 ], 'Hex string: 3 char mixed' );
-		assert.deepEqual( $.colorUtil.getRGB( 'rgba(0, 0, 0, 0)' ), [ 255, 255, 255 ], 'Zero rgba for Safari 3; Transparent (whitespace)' );
-
-		// Perhaps this is a bug in colorUtil, but it is the current behavior so, let's keep
-		// track of it, so we will know in case it would ever change.
-		assert.strictEqual( $.colorUtil.getRGB( 'rgba(0,0,0,0)' ), undefined, 'Zero rgba without whitespace' );
-
-		assert.deepEqual( $.colorUtil.getRGB( 'lightGreen' ), [ 144, 238, 144 ], 'Color names (lightGreen)' );
-		assert.deepEqual( $.colorUtil.getRGB( 'transparent' ), [ 255, 255, 255 ], 'Color names (transparent)' );
-		assert.strictEqual( $.colorUtil.getRGB( 'mediaWiki' ), undefined, 'Inexisting color name' );
+	QUnit.test( 'getRGB [no arguments]', ( assert ) => {
+		assert.strictEqual( $.colorUtil.getRGB(), undefined );
 	} );
 
-	QUnit.test( 'rgbToHsl', function ( assert ) {
-		var hsl, ret;
+	QUnit.test.each( 'getRGB', {
+		'empty string': [ '', undefined ],
+		'array of rgb': [ [ 0, 100, 255 ], [ 0, 100, 255 ] ],
+		'rgb string': [ 'rgb(0,100,255)', [ 0, 100, 255 ] ],
+		'rgb spaces': [ 'rgb(0, 100, 255)', [ 0, 100, 255 ] ],
+		'rgb percent': [ 'rgb(0%,20%,40%)', [ 0, 51, 102 ] ],
+		'rgb percent spaces': [ 'rgb(0%, 20%, 40%)', [ 0, 51, 102 ] ],
+		'hex 6 lowercase': [ '#f2ddee', [ 242, 221, 238 ] ],
+		'hex 6 uppercase': [ '#f2DDEE', [ 242, 221, 238 ] ],
+		'hex 6 mixed': [ '#f2DdEe', [ 242, 221, 238 ] ],
+		'hex 3 lowercase': [ '#eee', [ 238, 238, 238 ] ],
+		'hex 3 uppercase': [ '#EEE', [ 238, 238, 238 ] ],
+		'hex 3 mixed': [ '#eEe', [ 238, 238, 238 ] ],
+		'rgba zeros': [ 'rgba(0, 0, 0, 0)', [ 255, 255, 255 ] ],
+		// Known limitation, not yet supported
+		'rgba zeros nospace': [ 'rgba(0,0,0,0)', undefined ],
+		'literal name lightGreen': [ 'lightGreen', [ 144, 238, 144 ] ],
+		'literal keyword transparent': [ 'transparent', [ 255, 255, 255 ] ],
+		'literal invalid': [ 'mediaWiki', undefined ]
+	}, ( assert, [ input, expected ] ) => {
+		assert.deepEqual( $.colorUtil.getRGB( input ), expected );
+	} );
 
-		// Cross-browser differences in decimals...
-		// Round to two decimals so they can be more reliably checked.
-		function dualDecimals( a ) {
-			return Math.round( a * 100 ) / 100;
-		}
+	function normalDecimal( a ) {
+		return Math.round( a * 100 ) / 100;
+	}
 
-		// Re-create the rgbToHsl return array items, limited to two decimals.
-		hsl = $.colorUtil.rgbToHsl( 144, 238, 144 );
-		ret = [ dualDecimals( hsl[ 0 ] ), dualDecimals( hsl[ 1 ] ), dualDecimals( hsl[ 2 ] ) ];
+	QUnit.test( 'rgbToHsl', ( assert ) => {
+		const hsl = $.colorUtil.rgbToHsl( 144, 238, 144 );
+		// Limit testing to two decimals to normalize cross-browser differences.
+		const ret = [ normalDecimal( hsl[ 0 ] ), normalDecimal( hsl[ 1 ] ), normalDecimal( hsl[ 2 ] ) ];
 
 		assert.deepEqual( ret, [ 0.33, 0.73, 0.75 ], 'rgb(144, 238, 144): hsl(0.33, 0.73, 0.75)' );
 	} );
 
-	QUnit.test( 'hslToRgb', function ( assert ) {
-		var rgb, ret;
-		rgb = $.colorUtil.hslToRgb( 0.3, 0.7, 0.8 );
-
-		// Re-create the hslToRgb return array items, rounded to whole numbers.
-		ret = [ Math.round( rgb[ 0 ] ), Math.round( rgb[ 1 ] ), Math.round( rgb[ 2 ] ) ];
+	QUnit.test( 'hslToRgb', ( assert ) => {
+		const rgb = $.colorUtil.hslToRgb( 0.3, 0.7, 0.8 );
+		// Limit to whole numbers to normalize cros-browser differences.
+		const ret = [ Math.round( rgb[ 0 ] ), Math.round( rgb[ 1 ] ), Math.round( rgb[ 2 ] ) ];
 
 		assert.deepEqual( ret, [ 183, 240, 168 ], 'hsl(0.3, 0.7, 0.8): rgb(183, 240, 168)' );
 	} );
 
-	QUnit.test( 'getColorBrightness', function ( assert ) {
-		var a, b;
-		a = $.colorUtil.getColorBrightness( 'red', +0.1 );
-		assert.strictEqual( a, 'rgb(255,50,50)', 'Start with named color "red", brighten 10%' );
+	QUnit.test( 'getColorBrightness', ( assert ) => {
+		let ret;
+		ret = $.colorUtil.getColorBrightness( 'red', +0.1 );
+		assert.strictEqual( ret, 'rgb(255,50,50)', 'Start with named color "red", brighten 10%' );
 
-		b = $.colorUtil.getColorBrightness( 'rgb(200,50,50)', -0.2 );
-		assert.strictEqual( b, 'rgb(118,29,29)', 'Start with rgb string "rgb(200,50,50)", darken 20%' );
+		ret = $.colorUtil.getColorBrightness( 'rgb(200,50,50)', -0.2 );
+		assert.strictEqual( ret, 'rgb(118,29,29)', 'Start with rgb string "rgb(200,50,50)", darken 20%' );
 	} );
-}() );
+} );
