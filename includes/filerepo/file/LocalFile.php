@@ -1303,7 +1303,12 @@ class LocalFile extends File {
 	/** getLastError inherited */
 
 	/**
-	 * Get all thumbnail names previously generated for this file
+	 * Get all thumbnail names previously generated for this file.
+	 *
+	 * This should be called during POST requests only (and other db-writing
+	 * contexts) as it may involve connections across multiple data centers
+	 * (e.g. both backends of a FileBackendMultiWrite setup).
+	 *
 	 * @stable to override
 	 * @param string|false $archiveName Name of an archive file, default false
 	 * @return array First element is the base dir, then files in that base dir.
@@ -1318,7 +1323,7 @@ class LocalFile extends File {
 		$backend = $this->repo->getBackend();
 		$files = [ $dir ];
 		try {
-			$iterator = $backend->getFileList( [ 'dir' => $dir ] );
+			$iterator = $backend->getFileList( [ 'dir' => $dir, 'forWrite' => true ] );
 			if ( $iterator !== null ) {
 				foreach ( $iterator as $file ) {
 					$files[] = $file;

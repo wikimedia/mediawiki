@@ -1318,6 +1318,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *   - dir        : storage directory
 	 *   - topOnly    : only return direct child files of the directory (since 1.20)
 	 *   - adviseStat : set to true if stat requests will be made on the files (since 1.22)
+	 *   - forWrite   : true if the list will inform a write operations (since 1.41)
 	 * @return Traversable|array|null File list enumerator or null (initial I/O error)
 	 */
 	abstract public function getFileList( array $params );
