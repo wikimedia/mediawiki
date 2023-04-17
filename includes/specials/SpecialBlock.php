@@ -254,8 +254,7 @@ class SpecialBlock extends FormSpecialPage {
 		$a = [];
 
 		$a['Target'] = [
-			'type' => 'usersmultiselect',
-			'max' => 1,
+			'type' => 'user',
 			'ipallowed' => true,
 			'iprange' => true,
 			'id' => 'mw-bi-target',
