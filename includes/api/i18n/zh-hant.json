@@ -1398,7 +1398,7 @@
 	"apihelp-setnotificationtimestamp-example-page": "重新設定用於 <kbd>Main page</kbd> 的通知狀態。",
 	"apihelp-setnotificationtimestamp-example-pagetimestamp": "設定 <kbd>Main page</kbd> 的通知時間戳記，讓所有自 2012 年 1 月起的編輯為未查看。",
 	"apihelp-setnotificationtimestamp-example-allpages": "重新設定在 <kbd>{{ns:user}}</kbd> 命名空間裡頁面的通知狀態。",
-	"apihelp-setpagelanguage-summary": "更改頁面的語言。",
+	"apihelp-setpagelanguage-summary": "變更頁面的語言。",
 	"apihelp-setpagelanguage-extended-description-disabled": "您不可以變更此wiki的頁面語言。\n\n請啟用<var>[[mw:Special:MyLanguage/Manual:$wgPageLanguageUseDB|$wgPageLanguageUseDB]]</var>來變更語言。",
 	"apihelp-setpagelanguage-param-title": "您所想要更改語言的頁面之標題。不能與 <var>$1pageid</var> 一起使用。",
 	"apihelp-setpagelanguage-param-pageid": "您所想要更改語言的頁面之頁面 ID。不能與 <var>$1title</var> 一起使用。",

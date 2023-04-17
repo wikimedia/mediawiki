@@ -665,7 +665,7 @@
 	"noemailcreate": "您需要提供一个有效的电子邮件地址",
 	"passwordsent": "用户\"$1\"的新密码已经寄往所登记的电子邮件地址。\n请在收到后再登录。",
 	"blocked-mailpassword": "您的IP地址被禁止编辑，为预防滥用，也不允许从该IP地址使用密码恢复功能。",
-	"eauthentsent": "一封确认信已经发送至您设定的邮件地址。\n在任何其他邮件发送至您的账户前，您将需要根据邮件中的指示，确认那个账户确实是您的。",
+	"eauthentsent": "一封确认邮件已经发送至您设置的邮件地址。\n在任何其他邮件发送至您的账户前，您将需要根据邮件中的指示，确认账户确实属于您。",
 	"throttled-mailpassword": "密码提醒已在最近{{PLURAL:$1|$1小时}}内发送。\n为了安全起见，在每{{PLURAL:$1|$1小时}}内只能发送一个密码提醒。",
 	"mailerror": "发送邮件错误：$1",
 	"acct_creation_throttle_hit": "使用您的IP地址访问本wiki的访客在过去$2中创建了{{PLURAL:$1|$1个账户}}，达到了这段时间所允许的最大值。\n因此，使用该IP地址的访客现在不能再创建账户。",
@@ -3400,6 +3400,7 @@
 	"confirmemail_oncreate": "一个确认代码已被发送到您的邮箱。\n登录时无需使用该代码，但若要启用在此wiki上的电子邮件相关功能，则必须先提交此代码。",
 	"confirmemail_sendfailed": "{{SITENAME}}不能发送确认邮件。\n请检查您的邮箱地址是否包含无效字符。\n\n邮件发送器的返回信息：$1",
 	"confirmemail_invalid": "无效的确认码。\n该确认码可能已经到期。",
+	"confirmemail_invalid_format": "确认代码无效。\n请检查您的邮件，有可能是您的邮箱客户端错误截断了确认链接。",
 	"confirmemail_needlogin": "请$1以确认您的电子邮件地址。",
 	"confirmemail_success": "您的邮箱已经被确认。\n您现在可以[[Special:UserLogin|登录]]并使用此wiki了。",
 	"confirmemail_loggedin": "您的电子邮件地址现在已经确认。",
@@ -4336,5 +4337,6 @@
 	"renameuser-move-log": "当重命名{{GENDER:$2|用户}}“[[User:$1|$1]]”为“[[User:$2|$2]]”时自动移动页面",
 	"action-renameuser": "重命名用户",
 	"right-renameuser": "重命名用户",
-	"renameuser-renamed-notice": "本用户已更名。下面提供更名日志以供参考。"
+	"renameuser-renamed-notice": "本用户已更名。下面提供更名日志以供参考。",
+	"log-unknown-action": "于[[$1]]执行了未知操作“$2”"
 }

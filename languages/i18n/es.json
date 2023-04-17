@@ -3419,6 +3419,7 @@
 	"confirmemail_oncreate": "Se ha enviado un código de confirmación a tu dirección de correo electrónico.\nEste código no es necesario para iniciar sesión, pero necesitarás proporcionarlo antes de activar cualquier función basada en correo electrónico en la wiki.",
 	"confirmemail_sendfailed": "No fue posible enviar el correo de confirmación. Por favor, comprueba la validez de la dirección de correo.\n\nEl servidor indicó el error: $1",
 	"confirmemail_invalid": "Código de confirmación incorrecto.\nEl código debe haber expirado.",
+	"confirmemail_invalid_format": "Código de confirmación no válido.\nRevisa tu correo electrónico, es posible que tu cliente de correo electrónico haya truncado el enlace de confirmación.",
 	"confirmemail_needlogin": "Necesitas $1 para confirmar tu dirección electrónica.",
 	"confirmemail_success": "Se ha confirmado tu dirección de correo electrónico.\nAhora puedes [[Special:UserLogin|acceder]] y disfrutar de la wiki.",
 	"confirmemail_loggedin": "Tu dirección de correo electrónico ha sido confirmada.",
@@ -3496,6 +3497,7 @@
 	"watchlistedit-normal-legend": "Borrar títulos de la lista de seguimiento",
 	"watchlistedit-normal-explain": "A continuación se listan las páginas en tu lista de seguimiento.\nPara quitar un título, marca la casilla junto a él, y pulsa «{{int:Watchlistedit-normal-submit}}».\nTambién puedes [[Special:EditWatchlist/raw|editar la lista en crudo]].",
 	"watchlistedit-normal-submit": "Borrar páginas",
+	"watchlistedit-normal-check-all": "Marcar todos",
 	"watchlistedit-normal-done": "{{PLURAL:$1|1 página ha sido borrada|$1 páginas han sido borradas}} de tu lista de seguimiento:",
 	"watchlistedit-raw-title": "Editar lista de seguimiento en crudo",
 	"watchlistedit-raw-legend": "Editar tu lista de seguimiento en modo texto",
@@ -4307,5 +4309,6 @@
 	"renameuser-move-log": "Página trasladada automáticamente al cambiar el nombre {{GENDER:$2|del usuario|de la usuaria}} de «[[User:$1|$1]]» a «[[User:$2|$2]]»",
 	"action-renameuser": "cambiar nombres de usuarios",
 	"right-renameuser": "Cambiar nombres de usuarios",
-	"renameuser-renamed-notice": "Se cambió el nombre de {{GENDER:$1|este usuario|esta usuaria}}.\nA continuación se muestra el registro de cambios de nombre de usuario como referencia."
+	"renameuser-renamed-notice": "Se cambió el nombre de {{GENDER:$1|este usuario|esta usuaria}}.\nA continuación se muestra el registro de cambios de nombre de usuario como referencia.",
+	"log-unknown-action": "realizó una acción desconocida «$2» en [[$1]]"
 }
