@@ -1,6 +1,6 @@
-@import 'mediawiki.ui/variables.less';
-@import 'mw.rcfilters.mixins.less';
+@import 'mediawiki.skin.variables.less';
 @import 'mw.rcfilters.variables.less';
+@import 'mw.rcfilters.mixins.less';
 
 @size-circle: 20 / @font-size-system-ui / @font-size-vector;
 @margin-circle: 5 / @font-size-system-ui / @font-size-vector;
@@ -10,15 +10,15 @@
 	// more specificity to override OOUI internals
 	&.oo-ui-flaggedElement-muted.oo-ui-tagItemWidget.oo-ui-widget-enabled {
 		// Muted state
-		background-color: @colorGray14;
-		border-color: @colorGray12;
+		background-color: @background-color-interactive;
+		border-color: @border-color-subtle;
 
 		.oo-ui-labelElement-label {
-			color: @color-base--subtle;
+			color: @color-subtle;
 		}
 
 		.oo-ui-buttonWidget {
-			opacity: @muted-opacity;
+			opacity: 0.5;
 		}
 	}
 
@@ -35,13 +35,13 @@
 	// The specificity is fixed in the patch: https://gerrit.wikimedia.org/r/#/c/349525/
 	// and will be available in the next OOUI release.
 	.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-outlined &-selected.oo-ui-tagItemWidget.oo-ui-widget-enabled {
-		background-color: @background-color-primary;
-		border-color: @border-color-base--focus;
+		background-color: @background-color-progressive-subtle;
+		border-color: @border-color-progressive--focus;
 	}
 
 	&-popup-content {
 		padding: 0.5em;
-		color: @colorGray5;
+		color: @color-subtle;
 	}
 
 	&.oo-ui-labelElement:not( .oo-ui-tagItemWidget-fixed ) .oo-ui-labelElement-label {

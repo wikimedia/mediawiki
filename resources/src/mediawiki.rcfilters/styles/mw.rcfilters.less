@@ -1,4 +1,4 @@
-@import 'mediawiki.ui/variables.less';
+@import 'mediawiki.skin.variables.less';
 @import 'mw.rcfilters.mixins.less';
 
 @rcfilters-spinner-size: 12px;
@@ -41,10 +41,11 @@
 		padding-left: 0.5em;
 
 		&:not( .mw-recentchanges-toplinks-collapsed ) {
-			margin-top: -1px; // Make up for `border` to prevent link movement
-			margin-left: -1px;
+			// Make up for `border` to prevent link movement
+			margin-top: @position-offset-border-width-base;
+			margin-left: @position-offset-border-width-base;
 			margin-bottom: 0.5em;
-			border: 1px solid @colorGray12; // Same as the legend
+			border: @border-subtle; // Same as the legend
 			padding: 0 0.5em 0.5em 0.5em;
 		}
 
@@ -119,12 +120,12 @@
 		&::before,
 		&::after {
 			content: '';
-			background-color: @color-primary;
+			background-color: @background-color-progressive;
 			display: block;
 			float: left;
 			width: @rcfilters-spinner-size;
 			height: @rcfilters-spinner-size;
-			border-radius: 100%;
+			border-radius: @border-radius-circle;
 			animation: rcfiltersBouncedelay 1600ms ease-in-out -160ms infinite both;
 		}
 

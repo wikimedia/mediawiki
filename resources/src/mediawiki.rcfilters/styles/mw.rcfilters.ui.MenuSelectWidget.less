@@ -1,6 +1,6 @@
-@import 'mediawiki.mixins.less';
-@import 'mediawiki.ui/variables.less';
+@import 'mediawiki.skin.variables.less';
 @import 'mw.rcfilters.variables.less';
+@import 'mediawiki.mixins.less';
 
 .mw-rcfilters-ui-menuSelectWidget {
 	z-index: auto;
@@ -11,7 +11,7 @@
 	}
 
 	&-noresults {
-		color: @colorGray5;
+		color: @color-subtle;
 		padding: 12 / @font-size-system-ui / @font-size-vector;
 	}
 
@@ -21,8 +21,8 @@
 	}
 
 	&-footer {
-		background-color: @colorGray15;
-		border-top: 1px solid @colorGray12;
+		background-color: #f8f9fa;
+		border-top: @border-subtle;
 		padding: 12 / @font-size-system-ui / @font-size-vector;
 
 		& + & {

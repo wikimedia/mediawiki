@@ -1,17 +1,17 @@
-@import 'mediawiki.mixins.less';
-@import 'mediawiki.ui/variables.less';
+@import 'mediawiki.skin.variables.less';
 @import 'mw.rcfilters.variables.less';
+@import 'mediawiki.mixins.less';
 
 .mw-rcfilters-ui-itemMenuOptionWidget {
 	padding: 0 0.5em;
 	box-sizing: border-box;
 
 	&:not( :last-child ):not( .mw-rcfilters-ui-itemMenuOptionWidget-identifier-talk ) {
-		border-bottom: 1px solid @colorGray14;
+		border-bottom: @border-width-base @border-style-base #eaecf0;
 	}
 
 	&-view-namespaces {
-		border-top: 4px solid @colorGray12;
+		border-top: 4px solid @border-color-subtle;
 	}
 
 	// Don't show border for first namespace & hide for every 'talk' option in second selector
@@ -21,7 +21,7 @@
 	}
 
 	&:hover {
-		background-color: @colorGray15;
+		background-color: @background-color-interactive-subtle;
 	}
 
 	.mw-rcfilters-ui-table {
@@ -30,18 +30,18 @@
 	}
 
 	&.oo-ui-optionWidget-selected {
-		background-color: @background-color-primary;
+		background-color: @background-color-progressive-subtle;
 	}
 
 	&-label {
 		&-title {
 			font-weight: bold;
 			font-size: 1.15em;
-			color: @colorGray2;
+			color: @color-base;
 		}
 
 		&-desc {
-			color: @colorGray5;
+			color: @color-subtle;
 			white-space: normal;
 		}
 	}
@@ -79,7 +79,7 @@
 	&-excludeLabel {
 		width: 5em;
 		padding-left: 1em;
-		color: @colorGray5;
+		color: @color-subtle;
 	}
 
 	&-highlightButton {

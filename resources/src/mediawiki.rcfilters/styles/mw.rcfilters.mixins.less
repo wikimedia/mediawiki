@@ -1,6 +1,6 @@
-@import 'mediawiki.mixins.less';
-@import 'mediawiki.ui/variables.less';
+@import 'mediawiki.skin.variables.less';
 @import 'mw.rcfilters.variables.less';
+@import 'mediawiki.mixins.less';
 
 /* stylelint-disable selector-class-pattern */
 
@@ -12,21 +12,21 @@
 	min-height: @min-size-diameter;
 	height: @size-diameter;
 	margin: @margin;
-	border-radius: 50%;
+	border-radius: @border-radius-circle;
 }
 
 // Circle color mixin
-.mw-rcfilters-circle-color( @color: @color-base--inverted, @border: false, @borderColor: @colorGray5, @emptyBackground: false ) {
-	& when ( @emptyBackground = false ) {
-		background-color: @color;
+.mw-rcfilters-circle-color( @param-background-color: @background-color-base, @param-border: false, @param-border-color: #54595d, @param-empty-background: false ) {
+	& when ( @param-empty-background = false ) {
+		background-color: @param-background-color;
 	}
 
-	& when ( @emptyBackground = true ) {
+	& when ( @param-empty-background = true ) {
 		background-color: @highlight-none;
 	}
 
-	& when ( @border = true ) {
-		border: 1px solid @borderColor;
+	& when ( @param-border = true ) {
+		border: @border-width-base @border-style-base @param-border-color;
 	}
 }
 
