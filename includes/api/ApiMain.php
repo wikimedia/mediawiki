@@ -151,6 +151,8 @@ class ApiMain extends ApiBase {
 				'ContentRenderer',
 				'ContentTransformer',
 				'CommentFormatter',
+				'TempUserCreator',
+				'UserFactory',
 			]
 		],
 		'stashedit' => [
@@ -161,6 +163,8 @@ class ApiMain extends ApiBase {
 				'RevisionLookup',
 				'StatsdDataFactory',
 				'WikiPageFactory',
+				'TempUserCreator',
+				'UserFactory',
 			]
 		],
 		'opensearch' => [
@@ -221,6 +225,8 @@ class ApiMain extends ApiBase {
 				'ContentHandlerFactory',
 				'ContentTransformer',
 				'CommentFormatter',
+				'TempUserCreator',
+				'UserFactory',
 			]
 		],
 		'checktoken' => [

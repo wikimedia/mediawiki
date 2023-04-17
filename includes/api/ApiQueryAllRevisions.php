@@ -31,6 +31,8 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ActorMigration;
+use MediaWiki\User\TempUser\TempUserCreator;
+use MediaWiki\User\UserFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -62,6 +64,8 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 	 * @param ContentRenderer $contentRenderer
 	 * @param ContentTransformer $contentTransformer
 	 * @param CommentFormatter $commentFormatter
+	 * @param TempUserCreator $tempUserCreator
+	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
 		ApiQuery $query,
@@ -74,7 +78,9 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 		NamespaceInfo $namespaceInfo,
 		ContentRenderer $contentRenderer,
 		ContentTransformer $contentTransformer,
-		CommentFormatter $commentFormatter
+		CommentFormatter $commentFormatter,
+		TempUserCreator $tempUserCreator,
+		UserFactory $userFactory
 	) {
 		parent::__construct(
 			$query,
@@ -86,7 +92,9 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 			$slotRoleRegistry,
 			$contentRenderer,
 			$contentTransformer,
-			$commentFormatter
+			$commentFormatter,
+			$tempUserCreator,
+			$userFactory
 		);
 		$this->revisionStore = $revisionStore;
 		$this->actorMigration = $actorMigration;

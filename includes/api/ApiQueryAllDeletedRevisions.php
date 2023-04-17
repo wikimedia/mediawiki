@@ -35,6 +35,8 @@ use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Title\Title;
+use MediaWiki\User\TempUser\TempUserCreator;
+use MediaWiki\User\UserFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -65,6 +67,8 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 	 * @param ContentRenderer $contentRenderer
 	 * @param ContentTransformer $contentTransformer
 	 * @param CommentFormatter $commentFormatter
+	 * @param TempUserCreator $tempUserCreator
+	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
 		ApiQuery $query,
@@ -77,7 +81,9 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 		NamespaceInfo $namespaceInfo,
 		ContentRenderer $contentRenderer,
 		ContentTransformer $contentTransformer,
-		CommentFormatter $commentFormatter
+		CommentFormatter $commentFormatter,
+		TempUserCreator $tempUserCreator,
+		UserFactory $userFactory
 	) {
 		parent::__construct(
 			$query,
@@ -89,7 +95,9 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 			$slotRoleRegistry,
 			$contentRenderer,
 			$contentTransformer,
-			$commentFormatter
+			$commentFormatter,
+			$tempUserCreator,
+			$userFactory
 		);
 		$this->revisionStore = $revisionStore;
 		$this->changeTagDefStore = $changeTagDefStore;

@@ -72,6 +72,8 @@ class ApiQuery extends ApiBase {
 				'ContentRenderer',
 				'ContentTransformer',
 				'CommentFormatter',
+				'TempUserCreator',
+				'UserFactory',
 			]
 		],
 		'duplicatefiles' => [
@@ -166,6 +168,8 @@ class ApiQuery extends ApiBase {
 				'ContentRenderer',
 				'ContentTransformer',
 				'CommentFormatter',
+				'TempUserCreator',
+				'UserFactory',
 			]
 		],
 		'stashimageinfo' => [
@@ -213,6 +217,8 @@ class ApiQuery extends ApiBase {
 				'ContentRenderer',
 				'ContentTransformer',
 				'CommentFormatter',
+				'TempUserCreator',
+				'UserFactory',
 			]
 		],
 		'allfileusages' => [
@@ -269,6 +275,8 @@ class ApiQuery extends ApiBase {
 				'ContentRenderer',
 				'ContentTransformer',
 				'CommentFormatter',
+				'TempUserCreator',
+				'UserFactory',
 			]
 		],
 		'mystashedfiles' => [
