@@ -193,7 +193,7 @@
 	function addItemToTemplateList( $list, template ) {
 		var canEdit = template.apiData.actions.edit !== undefined;
 		var linkClasses = template.apiData.linkclasses || [];
-		if ( template.apiData.missing !== undefined ) {
+		if ( template.apiData.missing !== undefined && template.apiData.known === undefined ) {
 			linkClasses.push( 'new' );
 		}
 		var $baseLink = $( '<a>' )
