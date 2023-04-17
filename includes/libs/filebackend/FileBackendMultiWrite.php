@@ -34,6 +34,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * Only use this class when transitioning from one storage system to another.
  *
  * Read operations are only done on the 'master' backend for consistency.
+ * Except on getting list of thumbnails for write operations.
  * Write operations are performed on all backends, starting with the master.
  * This makes a best-effort to have transactional semantics, but since requests
  * may sometimes fail, the use of "autoResync" or background scripts to fix
@@ -754,9 +755,30 @@ class FileBackendMultiWrite extends FileBackend {
 	}
 
 	public function getFileList( array $params ) {
-		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+		if ( isset( $params['forWrite'] ) && $params['forWrite'] ) {
+			return $this->getFileListForWrite( $params );
+		}
 
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 		return $this->backends[$this->masterIndex]->getFileList( $realParams );
+	}
+
+	private function getFileListForWrite( $params ) {
+		$files = [];
+		// Get the list of thumbnails from all backends to allow
+		// deleting all of them. Otherwise, old thumbnails existing on
+		// one backend only won't get updated in reupload (T331138).
+		foreach ( $this->backends as $backend ) {
+			$realParams = $this->substOpPaths( $params, $backend );
+			$iterator = $backend->getFileList( $realParams );
+			if ( $iterator !== null ) {
+				foreach ( $iterator as $file ) {
+					$files[] = $file;
+				}
+			}
+		}
+
+		return array_unique( $files );
 	}
 
 	public function getFeatures() {
