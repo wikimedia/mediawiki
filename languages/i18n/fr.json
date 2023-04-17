@@ -626,7 +626,7 @@
 	"createaccountmail-help": "Peut être utilisé pour créer un compte pour une autre personne sans connaître le mot de passe.",
 	"createacct-realname": "Nom réel (facultatif)",
 	"createacct-reason": "Motif (journalisé publiquement)",
-	"createacct-reason-ph": "Pourquoi créez-vous un autre compte",
+	"createacct-reason-ph": "Pourquoi créez-vous un autre compte ?",
 	"createacct-reason-help": "Message affiché dans le journal de création de compte",
 	"createacct-reason-confirm": "Le motif que vous avez fourni est une adresse courriel. Si ceci est volontaire, veuillez cliquer de nouveau sur « Créer un compte ».",
 	"createacct-submit": "Créez votre compte",

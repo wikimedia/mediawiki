@@ -81,6 +81,7 @@
 			"Shinjiman",
 			"Shirayuki",
 			"Shizhao",
+			"Sidishandsome",
 			"Simon Shek",
 			"Skjackey tse",
 			"Stang",
@@ -4202,5 +4203,6 @@
 	"renameuser-move-log": "重新命名{{GENDER:$2|使用者}}「[[User:$1|$1]]」為「[[User:$2|$2]]」時已自動移動頁面",
 	"action-renameuser": "重新命名使用者",
 	"right-renameuser": "重新命名使用者",
-	"renameuser-renamed-notice": "本使用者已重新命名。\n下列為重新命名日誌以提供參考。"
+	"renameuser-renamed-notice": "本使用者已重新命名。\n下列為重新命名日誌以提供參考。",
+	"log-unknown-action": "於[[$1]]上執行未知操作“$2”"
 }

@@ -3361,6 +3361,7 @@
 	"watchlistedit-normal-legend": "Poista sivuja tarkkailulistalta",
 	"watchlistedit-normal-explain": "Tarkkailulistasi sivut on lueteltu alla. Voit poistaa sivuja valitsemalla niitä vastaavat valintaruudut ja napsauttamalla ”{{int:Watchlistedit-normal-submit}}”. Voit myös muokata listaa [[Special:EditWatchlist/raw|tekstimuodossa]].",
 	"watchlistedit-normal-submit": "Poista kohteet",
+	"watchlistedit-normal-check-all": "Merkitse kaikki",
 	"watchlistedit-normal-done": "{{PLURAL:$1|Yksi sivu|$1 sivua}} poistettiin tarkkailulistaltasi:",
 	"watchlistedit-raw-title": "Tarkkailulistan muokkaus raakamuodossa",
 	"watchlistedit-raw-legend": "Muokkaa tarkkailulistaa raakamuodossa",

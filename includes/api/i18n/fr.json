@@ -146,6 +146,7 @@
 	"apihelp-compare-paramvalue-prop-comment": "Le commentaire des versions « from » et « to ». Si le commentaire a été supprimé d’une version, une propriété <samp>fromcommenthidden</samp> sera retournée.",
 	"apihelp-compare-paramvalue-prop-parsedcomment": "Le commentaire analysé des versions « from » et « to ». Si le commentaire a été supprimé d’une version, une propriété <samp>fromcommenthidden</samp> ou <samp>tocommenthidden</samp> sera retournée.",
 	"apihelp-compare-paramvalue-prop-size": "La taille des révisions « from » et « to ».",
+	"apihelp-compare-param-difftype": "Renvoyer la comparaison au format HTML en ligne.",
 	"apihelp-compare-param-slots": "Retourne les diffs individuels pour ces ''slots'', plutôt qu’un diff combiné pour tous les ''slots''.",
 	"apihelp-compare-example-1": "Créer une différence entre les révisions 1 et 2.",
 	"apihelp-createaccount-summary": "Créer un nouveau compte d’utilisateur.",
