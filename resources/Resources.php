@@ -603,6 +603,36 @@ return [
 		],
 	],
 
+	'pinia' => [
+		'packageFiles' => [
+			[
+				'name' => 'resources/lib/pinia/pinia.js',
+				'callback' => static function ( Context $context, Config $config ) {
+					$baseDir = $config->get( MainConfigNames::BaseDirectory );
+					// Use the development version if development mode is enabled, or if we're in debug mode
+					$file = $config->get( MainConfigNames::VueDevelopmentMode ) || $context->getDebug() ?
+						'resources/lib/pinia/pinia.iife.js' :
+						'resources/lib/pinia/pinia.iife.prod.js';
+					// The file shipped by Pinia does var Pinia = ...;, but doesn't export it
+					// Add module.exports = Pinia; programmatically. We also import VueDemi
+					// by actually loading the vue instance.
+					return "var VueDemi=require('vue');" .
+						file_get_contents( "$baseDir/$file" ) .
+						';module.exports=Pinia;';
+				},
+				'versionCallback' => static function ( Context $context, Config $config ) {
+					$file = $config->get( MainConfigNames::VueDevelopmentMode ) || $context->getDebug() ?
+						'resources/lib/pinia/pinia.iife.js' :
+						'resources/lib/pinia/pinia.iife.prod.js';
+					return new FilePath( $file );
+				}
+			]
+		],
+		'dependencies' => [
+			'vue'
+		]
+	],
+
 	'wvui' => [
 		'deprecated' => 'Deprecated in 1.39. Use `@wikimedia/codex` instead.',
 		'packageFiles' => [
