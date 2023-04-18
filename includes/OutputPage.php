@@ -3215,6 +3215,56 @@ class OutputPage extends ContextSource {
 		$this->addReturnTo( $linkTarget, wfCgiToArray( $returntoquery ) );
 	}
 
+	/**
+	 * Output a standard "wait for takeover" warning
+	 *
+	 * This is useful for extensions which are hooking an action and
+	 * suppressing its normal output so it can be taken over with JS.
+	 *
+	 * showPendingTakeover( 'url', 'pagetextmsg' );
+	 * showPendingTakeover( 'url', 'pagetextmsg', [ 'param1', 'param2' ] );
+	 * showPendingTakeover( 'url', $messageObject );
+	 *
+	 * @param string $fallbackUrl URL to redirect to if the user doesn't have JavaScript
+	 *  or ResourceLoader available; this should ideally be to a page that provides similar
+	 *  functionality without requiring JavaScript
+	 * @param string|Message $msg Message key (string) for page text, or a Message object
+	 * @param string|string[]|MessageSpecifier $params Message parameters; ignored if $msg
+	 *  is a Message object
+	 */
+	public function showPendingTakeover(
+		$fallbackUrl, $msg, $params = []
+	) {
+		if ( $msg instanceof Message ) {
+			if ( $params !== [] ) {
+				trigger_error( 'Argument ignored: $params. The message parameters argument '
+					. 'is discarded when the $msg argument is a Message object instead of '
+					. 'a string.', E_USER_NOTICE );
+			}
+			$this->addHTML( $msg->parseAsBlock() );
+		} else {
+			$this->addWikiMsgArray( $msg, $params );
+		}
+
+		// Redirect if the user has no JS (<noscript>)
+		$escapedUrl = htmlspecialchars( $fallbackUrl );
+		$this->addHeadItem(
+			'mw-noscript-fallback',
+			// https://html.spec.whatwg.org/#attr-meta-http-equiv-refresh
+			// means that if $fallbackUrl contains unencoded quotation marks
+			// then this will behave confusingly, but shouldn't break the page
+			"<noscript><meta http-equiv=\"refresh\" content=\"0; url=$escapedUrl\"></noscript>"
+		);
+		// Redirect if the user has no ResourceLoader
+		$this->addScript( Html::inlineScript(
+			"(window.NORLQ=window.NORLQ||[]).push(" .
+				"function(){" .
+					"location.href=" . json_encode( $fallbackUrl ) . ";" .
+				"}" .
+			");"
+		) );
+	}
+
 	private function getRlClientContext() {
 		if ( !$this->rlClientContext ) {
 			$query = ResourceLoader::makeLoaderQuery(
