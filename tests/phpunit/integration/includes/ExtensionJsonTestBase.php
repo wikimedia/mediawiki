@@ -189,7 +189,8 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 		} );
 
 		$this->assertSame( $sortedServices, $services,
-			'Services should be sorted: first all MediaWiki services, then all extension ones.' );
+			'Services should be sorted: first all MediaWiki services, ' .
+			"then all {$this->serviceNamePrefix}* ones." );
 	}
 
 	public function provideServicesLists(): iterable {
