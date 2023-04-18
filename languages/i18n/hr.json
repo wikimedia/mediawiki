@@ -2563,7 +2563,7 @@
 	"movereason": "Razlog:",
 	"moveotherreason": "Drugi ili dodatni razlozi:",
 	"movereasonotherlist": "Neki drugi razlog",
-	"movepage-reason-dropdown": "* Najčešći razlozi\n** Bolji imenski prostor\n** Naziv na stranom jeziku\n** Pravopisno pogrešan naziv\n** Uobičajen naziv\n** Usklađivanje s nazivima postojećih članaka\n** Zatipak",
+	"movepage-reason-dropdown": "* Najčešći razlozi\n** Uobičajen naziv\n** Bolji naziv, razlog: \n** Pravopisno pogrešan naziv\n** Naziv na stranom jeziku\n** Bolji imenski prostor\n** Usklađivanje s nazivima postojećih članaka\n** Zatipak",
 	"revertmove": "vrati",
 	"delete_and_move_text": "Odredišna stranica \"[[:$1]]\" već postoji. Želite li je obrisati da biste napravili mjesto za premještaj?",
 	"delete_redirect_and_move_text": "Odredišna stranica »[[:$1]]« već postoji kao preusmjeravanje.\nŽelite li je izbrisati kako biste stvorili mjesto za premještanje?",

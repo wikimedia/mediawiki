@@ -103,7 +103,7 @@
 	"tog-editondblclick": "Sunting halaman dengan klik ganda",
 	"tog-editsectiononrightclick": "Fungsikan penyuntingan bagian dengan mengeklik kanan pada judul bagian",
 	"tog-watchcreations": "Tambahkan halaman yang saya buat dan berkas yang saya unggah ke daftar pantauan",
-	"tog-watchdefault": "Tambahkan halaman yang saya sunting ke daftar pantauan",
+	"tog-watchdefault": "Tambahkan halaman dan berkas yang saya sunting ke daftar pantauan",
 	"tog-watchmoves": "Tambahkan halaman dan berkas yang saya pindahkan ke daftar pantauan",
 	"tog-watchdeletion": "Tambahkan halaman dan berkas yang saya hapus ke daftar pantauan",
 	"tog-watchuploads": "Tambahkan berkas baru yang saya unggah ke daftar pantauan",
@@ -3294,6 +3294,7 @@
 	"confirmemail_oncreate": "Suatu kode konfirmasi telah dikirimkan ke alamat surel Anda. Kode ini tidak dibutuhkan untuk masuk log, tapi dibutuhkan sebelum menggunakan semua fitur yang menggunakan surel di wiki ini.",
 	"confirmemail_sendfailed": "{{SITENAME}} tidak berhasil mengirimkan surat konfirmasi Anda.\nHarap cek kemungkinan karakter ilegal pada alamat surel.\n\nAplikasi pengiriman surel menginformasikan: $1",
 	"confirmemail_invalid": "Kode konfirmasi salah. Kode tersebut mungkin sudah kedaluwarsa.",
+	"confirmemail_invalid_format": "Kode konfirmasi tidak sah.\nPeriksa surel Anda, tautan konfirmasi mungkin dijegal oleh klien surel Anda.",
 	"confirmemail_needlogin": "Anda harus melakukan $1 untuk mengkonfirmasikan alamat surel Anda.",
 	"confirmemail_success": "Alamat surel Anda telah dikonfirmasi.\nSekarang Anda dapat [[Special:UserLogin|masuk log]] dan mulai menggunakan wiki.",
 	"confirmemail_loggedin": "Alamat surel Anda telah dikonfirmasi.",
@@ -4222,5 +4223,6 @@
 	"renameuser-move-log": "Memindahkan secara otomatis halaman ini ketika mengubah nama {{GENDER:$2|pengguna}} \"[[User:$1|$1]]\" menjadi \"[[User:$2|$2]]\"",
 	"action-renameuser": "ganti nama pengguna",
 	"right-renameuser": "Mengubah nama pengguna",
-	"renameuser-renamed-notice": "Penguna ini telah berganti nama.\nLog pergantian nama disediakan di bawah untuk referensi."
+	"renameuser-renamed-notice": "Penguna ini telah berganti nama.\nLog pergantian nama disediakan di bawah untuk referensi.",
+	"log-unknown-action": "melakukan tindakan aneh \"$2\" pada [[$1]]"
 }
