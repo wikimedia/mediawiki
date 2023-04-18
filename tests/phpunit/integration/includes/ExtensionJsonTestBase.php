@@ -62,6 +62,12 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 	 */
 	protected ?string $serviceNamePrefix = null;
 
+	/**
+	 * @var array[] Cache for extension.json, shared between all tests.
+	 * Maps {@link $extensionJsonPath} values to parsed extension.json contents.
+	 */
+	private static array $extensionJsonCache = [];
+
 	protected function setUp(): void {
 		parent::setUp();
 
@@ -72,16 +78,15 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 	}
 
 	final protected function getExtensionJson(): array {
-		static $extensionJson = null;
-		if ( $extensionJson === null ) {
-			$extensionJson = json_decode(
+		if ( !array_key_exists( $this->extensionJsonPath, self::$extensionJsonCache ) ) {
+			self::$extensionJsonCache[$this->extensionJsonPath] = json_decode(
 				file_get_contents( $this->extensionJsonPath ),
 				true,
 				512,
 				JSON_THROW_ON_ERROR
 			);
 		}
-		return $extensionJson;
+		return self::$extensionJsonCache[$this->extensionJsonPath];
 	}
 
 	/** @dataProvider provideHookHandlerNames */
@@ -184,7 +189,8 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 		} );
 
 		$this->assertSame( $sortedServices, $services,
-			'Services should be sorted: first all MediaWiki services, then all extension ones.' );
+			'Services should be sorted: first all MediaWiki services, ' .
+			"then all {$this->serviceNamePrefix}* ones." );
 	}
 
 	public function provideServicesLists(): iterable {
