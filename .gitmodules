@@ -1608,3 +1608,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-NearbyPages
 	branch = REL1_39
 	ignore = dirty
+[submodule "extensions/WebAuthn"]
+	path = extensions/WebAuthn
+	url = https://github.com/wikimedia/mediawiki-extensions-WebAuthn
+	branch = REL1_39
+	ignore = dirty
