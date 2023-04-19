@@ -319,6 +319,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * Add required values to a query's $tables, $fields, $joinConds, and $conds arrays to join to
 	 * the watchlist and watchlist_expiry tables where appropriate.
 	 *
+	 * SpecialRecentChangesLinked should also be updated accordingly when something changed here.
+	 *
 	 * @param IDatabase $dbr
 	 * @param string[] &$tables
 	 * @param string[] &$fields
