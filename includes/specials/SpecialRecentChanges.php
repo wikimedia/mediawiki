@@ -26,8 +26,8 @@ use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserOptionsLookup;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -45,8 +45,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	/** @var MessageCache */
 	private $messageCache;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
@@ -60,13 +60,13 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	/**
 	 * @param WatchedItemStoreInterface|null $watchedItemStore
 	 * @param MessageCache|null $messageCache
-	 * @param ILoadBalancer|null $loadBalancer
+	 * @param IConnectionProvider|null $dbProvider
 	 * @param UserOptionsLookup|null $userOptionsLookup
 	 */
 	public function __construct(
 		WatchedItemStoreInterface $watchedItemStore = null,
 		MessageCache $messageCache = null,
-		ILoadBalancer $loadBalancer = null,
+		IConnectionProvider $dbProvider = null,
 		UserOptionsLookup $userOptionsLookup = null
 	) {
 		parent::__construct( 'Recentchanges', '' );
@@ -74,7 +74,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$services = MediaWikiServices::getInstance();
 		$this->watchedItemStore = $watchedItemStore ?? $services->getWatchedItemStore();
 		$this->messageCache = $messageCache ?? $services->getMessageCache();
-		$this->loadBalancer = $loadBalancer ?? $services->getDBLoadBalancer();
+		$this->dbProvider = $dbProvider ?? $services->getDBLoadBalancerFactory();
 		$this->userOptionsLookup = $userOptionsLookup ?? $services->getUserOptionsLookup();
 
 		$this->watchlistFilterGroupDefinition = [
@@ -319,6 +319,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * Add required values to a query's $tables, $fields, $joinConds, and $conds arrays to join to
 	 * the watchlist and watchlist_expiry tables where appropriate.
 	 *
+	 * SpecialRecentChangesLinked should also be updated accordingly when something changed here.
+	 *
 	 * @param IDatabase $dbr
 	 * @param string[] &$tables
 	 * @param string[] &$fields
@@ -501,7 +503,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 	protected function getDB() {
 		if ( !$this->db ) {
-			$this->db = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+			$this->db = $this->dbProvider->getReplicaDatabase();
 		}
 		return $this->db;
 	}

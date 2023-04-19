@@ -28,7 +28,7 @@ use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * A special page that allows users to export pages in a XML file
@@ -38,8 +38,8 @@ use Wikimedia\Rdbms\ILoadBalancer;
 class SpecialExport extends SpecialPage {
 	protected $curonly, $doExport, $pageLinkDepth, $templates;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var WikiExporterFactory */
 	private $wikiExporterFactory;
@@ -51,19 +51,19 @@ class SpecialExport extends SpecialPage {
 	private $linksMigration;
 
 	/**
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param WikiExporterFactory $wikiExporterFactory
 	 * @param TitleFormatter $titleFormatter
 	 * @param LinksMigration $linksMigration
 	 */
 	public function __construct(
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		WikiExporterFactory $wikiExporterFactory,
 		TitleFormatter $titleFormatter,
 		LinksMigration $linksMigration
 	) {
 		parent::__construct( 'Export' );
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->wikiExporterFactory = $wikiExporterFactory;
 		$this->titleFormatter = $titleFormatter;
 		$this->linksMigration = $linksMigration;
@@ -416,7 +416,7 @@ class SpecialExport extends SpecialPage {
 		}
 
 		/* Ok, let's get to it... */
-		$db = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$db = $this->dbProvider->getReplicaDatabase();
 
 		$exporter = $this->wikiExporterFactory->getWikiExporter( $db, $history );
 		$exporter->list_authors = $list_authors;
@@ -455,7 +455,7 @@ class SpecialExport extends SpecialPage {
 
 		$name = $title->getDBkey();
 
-		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 		$res = $dbr->select(
 			[ 'page', 'categorylinks' ],
 			[ 'page_namespace', 'page_title' ],
@@ -480,7 +480,7 @@ class SpecialExport extends SpecialPage {
 	protected function getPagesFromNamespace( $nsindex ) {
 		$maxPages = $this->getConfig()->get( MainConfigNames::ExportPagelistLimit );
 
-		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 		$res = $dbr->select(
 			'page',
 			[ 'page_namespace', 'page_title' ],
@@ -588,7 +588,7 @@ class SpecialExport extends SpecialPage {
 	 * @return array
 	 */
 	protected function getLinks( $inputPages, $pageSet, $table, $fields, $join ) {
-		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 		$table[] = 'page';
 
 		foreach ( $inputPages as $page ) {

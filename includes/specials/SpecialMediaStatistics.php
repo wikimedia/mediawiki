@@ -24,8 +24,8 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\Html;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -57,12 +57,12 @@ class SpecialMediaStatistics extends QueryPage {
 
 	/**
 	 * @param MimeAnalyzer $mimeAnalyzer
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param LinkBatchFactory $linkBatchFactory
 	 */
 	public function __construct(
 		MimeAnalyzer $mimeAnalyzer,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		LinkBatchFactory $linkBatchFactory
 	) {
 		parent::__construct( 'MediaStatistics' );
@@ -71,7 +71,7 @@ class SpecialMediaStatistics extends QueryPage {
 		$this->limit = self::MAX_LIMIT;
 		$this->shownavigation = false;
 		$this->mimeAnalyzer = $mimeAnalyzer;
-		$this->setDBLoadBalancer( $loadBalancer );
+		$this->setDatabaseProvider( $dbProvider );
 		$this->setLinkBatchFactory( $linkBatchFactory );
 	}
 
@@ -94,7 +94,7 @@ class SpecialMediaStatistics extends QueryPage {
 	 * @return array
 	 */
 	public function getQueryInfo() {
-		$dbr = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$dbr = $this->getDatabaseProvider()->getReplicaDatabase();
 		$fakeTitle = $dbr->buildConcat( [
 			'img_media_type',
 			$dbr->addQuotes( ';' ),

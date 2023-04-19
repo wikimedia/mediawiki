@@ -21,7 +21,7 @@ class SpecialRecentchangesTest extends AbstractChangesListSpecialPageTestCase {
 		return new SpecialRecentChanges(
 			$this->getServiceContainer()->getWatchedItemStore(),
 			$this->getServiceContainer()->getMessageCache(),
-			$this->getServiceContainer()->getDBLoadBalancer(),
+			$this->getServiceContainer()->getDBLoadBalancerFactory(),
 			$this->getServiceContainer()->getUserOptionsLookup()
 		);
 	}
@@ -213,7 +213,7 @@ class SpecialRecentchangesTest extends AbstractChangesListSpecialPageTestCase {
 			$dense,
 			$this->getServiceContainer()->getWatchedItemStore(),
 			$this->getServiceContainer()->getMessageCache(),
-			$this->getServiceContainer()->getDBLoadBalancer(),
+			$this->getServiceContainer()->getDBLoadBalancerFactory(),
 			$this->getServiceContainer()->getUserOptionsLookup()
 		)  extends SpecialRecentChanges {
 			private $dense;
@@ -221,10 +221,10 @@ class SpecialRecentchangesTest extends AbstractChangesListSpecialPageTestCase {
 			public function __construct(
 				$dense,
 				WatchedItemStoreInterface $watchedItemStore = null,
-				MessageCache $messageCache = null, \Wikimedia\Rdbms\ILoadBalancer $loadBalancer = null,
+				MessageCache $messageCache = null, \Wikimedia\Rdbms\IConnectionProvider $dbProvider = null,
 				\MediaWiki\User\UserOptionsLookup $userOptionsLookup = null
 			) {
-				parent::__construct( $watchedItemStore, $messageCache, $loadBalancer,
+				parent::__construct( $watchedItemStore, $messageCache, $dbProvider,
 					$userOptionsLookup );
 				$this->dense = $dense;
 			}

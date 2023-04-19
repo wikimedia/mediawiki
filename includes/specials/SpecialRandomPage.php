@@ -24,7 +24,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Special page to direct the user to a random page
@@ -36,23 +36,23 @@ class SpecialRandomPage extends SpecialPage {
 	protected $isRedir = false; // should the result be a redirect?
 	protected $extra = []; // Extra SQL statements
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/**
-	 * @param ILoadBalancer|string|null $loadBalancer
+	 * @param IConnectionProvider|string|null $dbProvider
 	 * @param NamespaceInfo|null $nsInfo
 	 */
 	public function __construct(
-		$loadBalancer = null,
+		$dbProvider = null,
 		NamespaceInfo $nsInfo = null
 	) {
-		parent::__construct( is_string( $loadBalancer ) ? $loadBalancer : 'Randompage' );
+		parent::__construct( is_string( $dbProvider ) ? $dbProvider : 'Randompage' );
 		// This class is extended and therefor fallback to global state - T265308
 		$services = MediaWikiServices::getInstance();
-		$this->loadBalancer = $loadBalancer instanceof ILoadBalancer
-			? $loadBalancer
-			: $services->getDBLoadBalancer();
+		$this->dbProvider = $dbProvider instanceof IConnectionProvider
+			? $dbProvider
+			: $services->getDBLoadBalancerFactory();
 		$nsInfo ??= $services->getNamespaceInfo();
 		$this->namespaces = $nsInfo->getContentNamespaces();
 	}
@@ -178,7 +178,7 @@ class SpecialRandomPage extends SpecialPage {
 	}
 
 	private function selectRandomPageFromDB( $randstr, $fname = __METHOD__ ) {
-		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 
 		$query = $this->getQueryInfo( $randstr );
 		$res = $dbr->select(

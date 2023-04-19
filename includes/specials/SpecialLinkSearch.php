@@ -27,8 +27,8 @@ use MediaWiki\ExternalLinks\LinkFilter;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Utils\UrlUtils;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -55,17 +55,17 @@ class SpecialLinkSearch extends QueryPage {
 	}
 
 	/**
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param UrlUtils $urlUtils
 	 */
 	public function __construct(
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		LinkBatchFactory $linkBatchFactory,
 		UrlUtils $urlUtils
 	) {
 		parent::__construct( 'LinkSearch' );
-		$this->setDBLoadBalancer( $loadBalancer );
+		$this->setDatabaseProvider( $dbProvider );
 		$this->setLinkBatchFactory( $linkBatchFactory );
 		$this->urlUtils = $urlUtils;
 	}
@@ -175,7 +175,7 @@ class SpecialLinkSearch extends QueryPage {
 	}
 
 	public function getQueryInfo() {
-		$dbr = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$dbr = $this->getDatabaseProvider()->getReplicaDatabase();
 
 		$orderBy = [];
 		if ( $this->mQuery === '*' && $this->mProt !== '' ) {

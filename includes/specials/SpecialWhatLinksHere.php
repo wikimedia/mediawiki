@@ -28,8 +28,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Navigation\PagerNavigationBuilder;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
@@ -44,8 +44,8 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 	/** @var Title */
 	protected $target;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
@@ -68,7 +68,7 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 	protected $limits = [ 20, 50, 100, 250, 500 ];
 
 	/**
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param SearchEngineFactory $searchEngineFactory
@@ -77,7 +77,7 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 	 * @param LinksMigration $linksMigration
 	 */
 	public function __construct(
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		LinkBatchFactory $linkBatchFactory,
 		IContentHandlerFactory $contentHandlerFactory,
 		SearchEngineFactory $searchEngineFactory,
@@ -87,7 +87,7 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 	) {
 		parent::__construct( 'Whatlinkshere' );
 		$this->mIncludable = true;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->searchEngineFactory = $searchEngineFactory;
@@ -206,7 +206,7 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 		$level, $target, $limit, $offsetNamespace = 0, $offsetPageID = 0, $dir = 'next'
 	) {
 		$out = $this->getOutput();
-		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 
 		$hidelinks = $this->opts->getValue( 'hidelinks' );
 		$hideredirs = $this->opts->getValue( 'hideredirs' );

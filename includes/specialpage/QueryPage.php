@@ -31,6 +31,7 @@ use MediaWiki\Specials\SpecialMostImages;
 use MediaWiki\Specials\SpecialWantedFiles;
 use MediaWiki\Specials\SpecialWantedPages;
 use Wikimedia\Rdbms\DBError;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -75,6 +76,9 @@ abstract class QueryPage extends SpecialPage {
 
 	/** @var ILoadBalancer|null */
 	private $loadBalancer = null;
+
+	/** @var IConnectionProvider|null */
+	private $databaseProvider = null;
 
 	/** @var LinkBatchFactory|null */
 	private $linkBatchFactory = null;
@@ -934,5 +938,24 @@ abstract class QueryPage extends SpecialPage {
 			$this->loadBalancer = MediaWikiServices::getInstance()->getDBLoadBalancer();
 		}
 		return $this->loadBalancer;
+	}
+
+	/**
+	 * @since 1.41
+	 * @param IConnectionProvider $databaseProvider
+	 */
+	final protected function setDatabaseProvider( IConnectionProvider $databaseProvider ) {
+		$this->databaseProvider = $databaseProvider;
+	}
+
+	/**
+	 * @since 1.41
+	 * @return IConnectionProvider
+	 */
+	final protected function getDatabaseProvider(): IConnectionProvider {
+		if ( $this->databaseProvider === null ) {
+			$this->databaseProvider = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		}
+		return $this->databaseProvider;
 	}
 }

@@ -26,7 +26,7 @@
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Title\Title;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * A querypage to list the most wanted categories - implements Special:Wantedcategories
@@ -40,17 +40,17 @@ class SpecialWantedCategories extends WantedQueryPage {
 	private $languageConverter;
 
 	/**
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param LanguageConverterFactory $languageConverterFactory
 	 */
 	public function __construct(
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		LinkBatchFactory $linkBatchFactory,
 		LanguageConverterFactory $languageConverterFactory
 	) {
 		parent::__construct( 'Wantedcategories' );
-		$this->setDBLoadBalancer( $loadBalancer );
+		$this->setDatabaseProvider( $dbProvider );
 		$this->setLinkBatchFactory( $linkBatchFactory );
 		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() );
 	}

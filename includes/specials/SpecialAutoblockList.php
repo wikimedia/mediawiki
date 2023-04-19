@@ -33,7 +33,7 @@ use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Html\Html;
 use SpecialPage;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * A special page that lists autoblocks
@@ -49,8 +49,8 @@ class SpecialAutoblockList extends SpecialPage {
 	/** @var BlockRestrictionStore */
 	private $blockRestrictionStore;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var CommentStore */
 	private $commentStore;
@@ -67,7 +67,7 @@ class SpecialAutoblockList extends SpecialPage {
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param BlockRestrictionStore $blockRestrictionStore
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param CommentStore $commentStore
 	 * @param BlockUtils $blockUtils
 	 * @param BlockActionInfo $blockActionInfo
@@ -76,7 +76,7 @@ class SpecialAutoblockList extends SpecialPage {
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		BlockRestrictionStore $blockRestrictionStore,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		CommentStore $commentStore,
 		BlockUtils $blockUtils,
 		BlockActionInfo $blockActionInfo,
@@ -86,7 +86,7 @@ class SpecialAutoblockList extends SpecialPage {
 
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->blockRestrictionStore = $blockRestrictionStore;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->commentStore = $commentStore;
 		$this->blockUtils = $blockUtils;
 		$this->blockActionInfo = $blockActionInfo;
@@ -154,7 +154,7 @@ class SpecialAutoblockList extends SpecialPage {
 			$this->commentStore,
 			$this->linkBatchFactory,
 			$this->getLinkRenderer(),
-			$this->loadBalancer,
+			$this->dbProvider,
 			$this->rowCommentFormatter,
 			$this->getSpecialPageFactory(),
 			$conds

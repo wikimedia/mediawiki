@@ -17,7 +17,7 @@ class SpecialMIMESearchTest extends MediaWikiIntegrationTestCase {
 
 		$services = $this->getServiceContainer();
 		$this->page = new SpecialMIMESearch(
-			$services->getDBLoadBalancer(),
+			$services->getDBLoadBalancerFactory(),
 			$services->getLinkBatchFactory(),
 			$services->getLanguageConverterFactory()
 		);

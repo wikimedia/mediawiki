@@ -23,7 +23,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\Html;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * @ingroup SpecialPage
@@ -33,20 +33,20 @@ class SpecialCategories extends SpecialPage {
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
-		ILoadBalancer $loadBalancer
+		IConnectionProvider $dbProvider
 	) {
 		parent::__construct( 'Categories' );
 		$this->linkBatchFactory = $linkBatchFactory;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 	}
 
 	public function execute( $par ) {
@@ -61,7 +61,7 @@ class SpecialCategories extends SpecialPage {
 			$this->getContext(),
 			$this->linkBatchFactory,
 			$this->getLinkRenderer(),
-			$this->loadBalancer,
+			$this->dbProvider,
 			$from
 		);
 		$cap->doQuery();

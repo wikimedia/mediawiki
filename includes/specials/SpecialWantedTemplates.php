@@ -28,7 +28,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Linker\LinksMigration;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * A querypage to list the most wanted templates
@@ -41,17 +41,17 @@ class SpecialWantedTemplates extends WantedQueryPage {
 	private $linksMigration;
 
 	/**
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param LinksMigration $linksMigration
 	 */
 	public function __construct(
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		LinkBatchFactory $linkBatchFactory,
 		LinksMigration $linksMigration
 	) {
 		parent::__construct( 'Wantedtemplates' );
-		$this->setDBLoadBalancer( $loadBalancer );
+		$this->setDatabaseProvider( $dbProvider );
 		$this->setLinkBatchFactory( $linkBatchFactory );
 		$this->linksMigration = $linksMigration;
 	}

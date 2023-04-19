@@ -29,8 +29,8 @@ use MediaWiki\Html\Html;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Title\Title;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -48,17 +48,17 @@ class SpecialUnwatchedPages extends QueryPage {
 
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param LanguageConverterFactory $languageConverterFactory
 	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		LanguageConverterFactory $languageConverterFactory
 	) {
 		parent::__construct( 'Unwatchedpages', 'unwatchedpages' );
 		$this->linkBatchFactory = $linkBatchFactory;
-		$this->setDBLoadBalancer( $loadBalancer );
+		$this->setDatabaseProvider( $dbProvider );
 		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() );
 	}
 
@@ -91,7 +91,7 @@ class SpecialUnwatchedPages extends QueryPage {
 	}
 
 	public function getQueryInfo() {
-		$dbr = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$dbr = $this->getDatabaseProvider()->getReplicaDatabase();
 		return [
 			'tables' => [ 'page', 'watchlist' ],
 			'fields' => [

@@ -36,7 +36,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\IPUtils;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -85,7 +85,7 @@ class BlockListPager extends TablePager {
 	 * @param CommentStore $commentStore
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param LinkRenderer $linkRenderer
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param RowCommentFormatter $rowCommentFormatter
 	 * @param SpecialPageFactory $specialPageFactory
 	 * @param array $conds
@@ -98,13 +98,13 @@ class BlockListPager extends TablePager {
 		CommentStore $commentStore,
 		LinkBatchFactory $linkBatchFactory,
 		LinkRenderer $linkRenderer,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		RowCommentFormatter $rowCommentFormatter,
 		SpecialPageFactory $specialPageFactory,
 		$conds
 	) {
 		// Set database before parent constructor to avoid setting it there with wfGetDB
-		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$this->mDb = $dbProvider->getReplicaDatabase();
 		parent::__construct( $context, $linkRenderer );
 		$this->blockActionInfo = $blockActionInfo;
 		$this->blockRestrictionStore = $blockRestrictionStore;

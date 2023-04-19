@@ -26,7 +26,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserOptionsLookup;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Rdbms\Subquery;
 
@@ -39,8 +39,8 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 	/** @var bool|Title */
 	protected $rclTargetTitle;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var SearchEngineFactory */
 	private $searchEngineFactory;
@@ -48,25 +48,25 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 	/**
 	 * @param WatchedItemStoreInterface $watchedItemStore
 	 * @param MessageCache $messageCache
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param SearchEngineFactory $searchEngineFactory
 	 */
 	public function __construct(
 		WatchedItemStoreInterface $watchedItemStore,
 		MessageCache $messageCache,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		UserOptionsLookup $userOptionsLookup,
 		SearchEngineFactory $searchEngineFactory
 	) {
 		parent::__construct(
 			$watchedItemStore,
 			$messageCache,
-			$loadBalancer,
+			$dbProvider,
 			$userOptionsLookup
 		);
 		$this->mName = 'Recentchangeslinked';
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->searchEngineFactory = $searchEngineFactory;
 	}
 
@@ -83,6 +83,8 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 	}
 
 	/**
+	 * FIXME: Port useful changes from SpecialRecentChanges
+	 *
 	 * @inheritDoc
 	 */
 	protected function doMainQuery( $tables, $select, $conds, $query_options,
@@ -114,7 +116,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		 * merging the results, but the code we inherit from our parent class
 		 * expects only one result set so we use UNION instead.
 		 */
-		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 		$id = $title->getArticleID();
 		$ns = $title->getNamespace();
 		$dbkey = $title->getDBkey();
@@ -139,11 +141,12 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			$conds,
 			$join_conds,
 			$query_options,
-			$tagFilter
+			$tagFilter,
+			$opts['inverttags']
 		);
 
 		if ( $dbr->unionSupportsOrderAndLimit() ) {
-			if ( count( $tagFilter ) > 1 ) {
+			if ( in_array( 'DISTINCT', $query_options ) ) {
 				// ChangeTags::modifyDisplayQuery() will have added DISTINCT.
 				// To prevent this from causing query performance problems, we need to add
 				// a GROUP BY, and add rc_id to the ORDER BY.

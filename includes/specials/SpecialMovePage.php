@@ -59,7 +59,7 @@ use SearchEngineFactory;
 use StringUtils;
 use ThrottledError;
 use UnlistedSpecialPage;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Xml;
 
 /**
@@ -108,8 +108,8 @@ class SpecialMovePage extends UnlistedSpecialPage {
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
@@ -139,7 +139,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 	 * @param MovePageFactory $movePageFactory
 	 * @param PermissionManager $permManager
 	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param NamespaceInfo $nsInfo
 	 * @param LinkBatchFactory $linkBatchFactory
@@ -153,7 +153,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		MovePageFactory $movePageFactory,
 		PermissionManager $permManager,
 		UserOptionsLookup $userOptionsLookup,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		IContentHandlerFactory $contentHandlerFactory,
 		NamespaceInfo $nsInfo,
 		LinkBatchFactory $linkBatchFactory,
@@ -167,7 +167,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		$this->movePageFactory = $movePageFactory;
 		$this->permManager = $permManager;
 		$this->userOptionsLookup = $userOptionsLookup;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->nsInfo = $nsInfo;
 		$this->linkBatchFactory = $linkBatchFactory;
@@ -381,7 +381,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 			( $oldTalk->exists()
 				|| ( $oldTitleTalkSubpages && $canMoveSubpage ) );
 
-		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 		if ( $this->getConfig()->get( MainConfigNames::FixDoubleRedirects ) ) {
 			$hasRedirects = (bool)$dbr->selectField( 'redirect', '1',
 				[
@@ -857,7 +857,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		 */
 
 		// @todo FIXME: Use MovePage::moveSubpages() here
-		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 		if ( $this->moveSubpages && (
 			$this->nsInfo->hasSubpages( $nt->getNamespace() ) || (
 				$this->moveTalk

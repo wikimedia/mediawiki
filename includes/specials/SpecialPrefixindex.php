@@ -24,7 +24,7 @@
 use MediaWiki\Html\Html;
 use MediaWiki\Specials\SpecialAllPages;
 use MediaWiki\Title\Title;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Implements Special:Prefixindex
@@ -43,23 +43,23 @@ class SpecialPrefixindex extends SpecialAllPages {
 
 	// Inherit $maxPerPage
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var LinkCache */
 	private $linkCache;
 
 	/**
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param LinkCache $linkCache
 	 */
 	public function __construct(
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		LinkCache $linkCache
 	) {
-		parent::__construct( $loadBalancer );
+		parent::__construct( $dbProvider );
 		$this->mName = 'Prefixindex';
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->linkCache = $linkCache;
 	}
 
@@ -182,7 +182,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 
 			# ## @todo FIXME: Should complain if $fromNs != $namespace
 
-			$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+			$dbr = $this->dbProvider->getReplicaDatabase();
 
 			$conds = [
 				'page_namespace' => $namespace,

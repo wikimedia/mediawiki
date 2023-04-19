@@ -16,7 +16,7 @@ use MediaWiki\User\UserIdentity;
 use Message;
 use NamespaceInfo;
 use RequestContext;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * @since 1.35
@@ -35,8 +35,8 @@ class ContributionsLookup {
 	/** @var HookContainer */
 	private $hookContainer;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var ActorMigration */
 	private $actorMigration;
@@ -52,7 +52,7 @@ class ContributionsLookup {
 	 * @param LinkRendererFactory $linkRendererFactory
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param HookContainer $hookContainer
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param ActorMigration $actorMigration
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param CommentFormatter $commentFormatter
@@ -62,7 +62,7 @@ class ContributionsLookup {
 		LinkRendererFactory $linkRendererFactory,
 		LinkBatchFactory $linkBatchFactory,
 		HookContainer $hookContainer,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		ActorMigration $actorMigration,
 		NamespaceInfo $namespaceInfo,
 		CommentFormatter $commentFormatter
@@ -71,7 +71,7 @@ class ContributionsLookup {
 		$this->linkRendererFactory = $linkRendererFactory;
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->hookContainer = $hookContainer;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->actorMigration = $actorMigration;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->commentFormatter = $commentFormatter;
@@ -275,7 +275,7 @@ class ContributionsLookup {
 			$this->linkRendererFactory->create(),
 			$this->linkBatchFactory,
 			$this->hookContainer,
-			$this->loadBalancer,
+			$this->dbProvider,
 			$this->actorMigration,
 			$this->revisionStore,
 			$this->namespaceInfo,

@@ -29,7 +29,7 @@ use MediaWiki\Page\MergeHistoryFactory;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Title\Title;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Special page allowing users with the appropriate permissions to
@@ -80,8 +80,8 @@ class SpecialMergeHistory extends SpecialPage {
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var RevisionStore */
 	private $revisionStore;
@@ -92,21 +92,21 @@ class SpecialMergeHistory extends SpecialPage {
 	/**
 	 * @param MergeHistoryFactory $mergeHistoryFactory
 	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param RevisionStore $revisionStore
 	 * @param CommentFormatter $commentFormatter
 	 */
 	public function __construct(
 		MergeHistoryFactory $mergeHistoryFactory,
 		LinkBatchFactory $linkBatchFactory,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		RevisionStore $revisionStore,
 		CommentFormatter $commentFormatter
 	) {
 		parent::__construct( 'MergeHistory', 'mergehistory' );
 		$this->mergeHistoryFactory = $mergeHistoryFactory;
 		$this->linkBatchFactory = $linkBatchFactory;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->revisionStore = $revisionStore;
 		$this->commentFormatter = $commentFormatter;
 	}
@@ -237,7 +237,7 @@ class SpecialMergeHistory extends SpecialPage {
 		$revisions = new MergeHistoryPager(
 			$this,
 			$this->linkBatchFactory,
-			$this->loadBalancer,
+			$this->dbProvider,
 			$this->revisionStore,
 			[],
 			$this->mTargetObj,

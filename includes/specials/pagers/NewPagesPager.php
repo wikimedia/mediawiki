@@ -25,7 +25,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Title\Title;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * @ingroup Pager
@@ -59,7 +59,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 	 * @param GroupPermissionsLookup $groupPermissionsLookup
 	 * @param HookContainer $hookContainer
 	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param FormOptions $opts
 	 */
@@ -68,12 +68,12 @@ class NewPagesPager extends ReverseChronologicalPager {
 		GroupPermissionsLookup $groupPermissionsLookup,
 		HookContainer $hookContainer,
 		LinkBatchFactory $linkBatchFactory,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		NamespaceInfo $namespaceInfo,
 		FormOptions $opts
 	) {
 		// Set database before parent constructor to avoid setting it there with wfGetDB
-		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$this->mDb = $dbProvider->getReplicaDatabase();
 		parent::__construct( $form->getContext() );
 		$this->groupPermissionsLookup = $groupPermissionsLookup;
 		$this->hookRunner = new HookRunner( $hookContainer );

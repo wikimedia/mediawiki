@@ -37,7 +37,7 @@ use MediaWiki\User\ActorMigration;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserRigorOptions;
 use Wikimedia\ParamValidator\ParamValidator;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * @ingroup API
@@ -59,8 +59,8 @@ class ApiFeedContributions extends ApiBase {
 	/** @var HookContainer */
 	private $hookContainer;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
@@ -85,7 +85,7 @@ class ApiFeedContributions extends ApiBase {
 	 * @param LinkRenderer $linkRenderer
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param HookContainer $hookContainer
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param ActorMigration $actorMigration
 	 * @param UserFactory $userFactory
@@ -99,7 +99,7 @@ class ApiFeedContributions extends ApiBase {
 		LinkRenderer $linkRenderer,
 		LinkBatchFactory $linkBatchFactory,
 		HookContainer $hookContainer,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		NamespaceInfo $namespaceInfo,
 		ActorMigration $actorMigration,
 		UserFactory $userFactory,
@@ -111,7 +111,7 @@ class ApiFeedContributions extends ApiBase {
 		$this->linkRenderer = $linkRenderer;
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->hookContainer = $hookContainer;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->actorMigration = $actorMigration;
 		$this->userFactory = $userFactory;
@@ -187,7 +187,7 @@ class ApiFeedContributions extends ApiBase {
 			$this->linkRenderer,
 			$this->linkBatchFactory,
 			$this->hookContainer,
-			$this->loadBalancer,
+			$this->dbProvider,
 			$this->actorMigration,
 			$this->revisionStore,
 			$this->namespaceInfo,

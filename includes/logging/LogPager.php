@@ -29,7 +29,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ActorNormalization;
-use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * @ingroup Pager
@@ -91,7 +90,6 @@ class LogPager extends ReverseChronologicalPager {
 	 * @param string $action Specific action (subtype) requested
 	 * @param int $logId Log entry ID, to limit to a single log entry.
 	 * @param LinkBatchFactory|null $linkBatchFactory
-	 * @param ILoadBalancer|null $loadBalancer
 	 * @param ActorNormalization|null $actorNormalization
 	 * @param bool $tagInvert whether tags are filtered for (false) or out (true)
 	 */
@@ -99,7 +97,6 @@ class LogPager extends ReverseChronologicalPager {
 		$pattern = false, $conds = [], $year = false, $month = false, $day = false,
 		$tagFilter = '', $action = '', $logId = 0,
 		LinkBatchFactory $linkBatchFactory = null,
-		ILoadBalancer $loadBalancer = null,
 		ActorNormalization $actorNormalization = null,
 		$tagInvert = false
 	) {

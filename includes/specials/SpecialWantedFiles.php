@@ -31,7 +31,7 @@ use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Title\Title;
 use RepoGroup;
 use WantedQueryPage;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Querypage that lists the most wanted files
@@ -45,17 +45,17 @@ class SpecialWantedFiles extends WantedQueryPage {
 
 	/**
 	 * @param RepoGroup $repoGroup
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param LinkBatchFactory $linkBatchFactory
 	 */
 	public function __construct(
 		RepoGroup $repoGroup,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		LinkBatchFactory $linkBatchFactory
 	) {
 		parent::__construct( 'Wantedfiles' );
 		$this->repoGroup = $repoGroup;
-		$this->setDBLoadBalancer( $loadBalancer );
+		$this->setDatabaseProvider( $dbProvider );
 		$this->setLinkBatchFactory( $linkBatchFactory );
 	}
 

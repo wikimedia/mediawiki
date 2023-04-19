@@ -26,7 +26,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * A special page that list protected titles from creation
@@ -40,20 +40,20 @@ class SpecialProtectedtitles extends SpecialPage {
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
-		ILoadBalancer $loadBalancer
+		IConnectionProvider $dbProvider
 	) {
 		parent::__construct( 'Protectedtitles' );
 		$this->linkBatchFactory = $linkBatchFactory;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 	}
 
 	public function execute( $par ) {
@@ -71,7 +71,7 @@ class SpecialProtectedtitles extends SpecialPage {
 		$pager = new ProtectedTitlesPager(
 			$this,
 			$this->linkBatchFactory,
-			$this->loadBalancer,
+			$this->dbProvider,
 			[],
 			$type,
 			$level,

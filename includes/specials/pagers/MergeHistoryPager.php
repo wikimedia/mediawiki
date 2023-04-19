@@ -22,7 +22,7 @@
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionStore;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * @ingroup Pager
@@ -52,7 +52,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 	/**
 	 * @param SpecialMergeHistory $form
 	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param RevisionStore $revisionStore
 	 * @param array $conds
 	 * @param PageIdentity $source
@@ -61,7 +61,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 	public function __construct(
 		SpecialMergeHistory $form,
 		LinkBatchFactory $linkBatchFactory,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		RevisionStore $revisionStore,
 		$conds,
 		PageIdentity $source,
@@ -71,7 +71,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		$this->mConds = $conds;
 		$this->articleID = $source->getId();
 
-		$dbr = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$dbr = $dbProvider->getReplicaDatabase();
 		$maxtimestamp = $dbr->selectField(
 			'revision',
 			'MIN(rev_timestamp)',

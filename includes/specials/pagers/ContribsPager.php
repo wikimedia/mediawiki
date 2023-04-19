@@ -37,8 +37,8 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserRigorOptions;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\FakeResultWrapper;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -157,7 +157,7 @@ class ContribsPager extends RangeChronologicalPager {
 	 * @param LinkRenderer|null $linkRenderer
 	 * @param LinkBatchFactory|null $linkBatchFactory
 	 * @param HookContainer|null $hookContainer
-	 * @param ILoadBalancer|null $loadBalancer
+	 * @param IConnectionProvider|null $dbProvider
 	 * @param ActorMigration|null $actorMigration
 	 * @param RevisionStore|null $revisionStore
 	 * @param NamespaceInfo|null $namespaceInfo
@@ -170,7 +170,7 @@ class ContribsPager extends RangeChronologicalPager {
 		LinkRenderer $linkRenderer = null,
 		LinkBatchFactory $linkBatchFactory = null,
 		HookContainer $hookContainer = null,
-		ILoadBalancer $loadBalancer = null,
+		IConnectionProvider $dbProvider = null,
 		ActorMigration $actorMigration = null,
 		RevisionStore $revisionStore = null,
 		NamespaceInfo $namespaceInfo = null,
@@ -179,7 +179,7 @@ class ContribsPager extends RangeChronologicalPager {
 	) {
 		// Class is used directly in extensions - T266484
 		$services = MediaWikiServices::getInstance();
-		$loadBalancer ??= $services->getDBLoadBalancer();
+		$dbProvider ??= $services->getDBLoadBalancerFactory();
 
 		// Set ->target before calling parent::__construct() so
 		// parent can call $this->getIndexField() and get the right result. Set
@@ -218,7 +218,7 @@ class ContribsPager extends RangeChronologicalPager {
 		$this->hideMinor = !empty( $options['hideMinor'] );
 		$this->revisionsOnly = !empty( $options['revisionsOnly'] );
 
-		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$this->mDb = $dbProvider->getReplicaDatabase();
 		// Needed by call to getIndexField -> getTargetTable from parent constructor
 		$this->actorMigration = $actorMigration ?? $services->getActorMigration();
 		parent::__construct( $context, $linkRenderer ?? $services->getLinkRenderer() );

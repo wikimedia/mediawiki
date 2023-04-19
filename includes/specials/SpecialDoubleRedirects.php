@@ -23,8 +23,8 @@
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Title\Title;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -47,18 +47,18 @@ class SpecialDoubleRedirects extends QueryPage {
 	/**
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 */
 	public function __construct(
 		IContentHandlerFactory $contentHandlerFactory,
 		LinkBatchFactory $linkBatchFactory,
-		ILoadBalancer $loadBalancer
+		IConnectionProvider $dbProvider
 	) {
 		parent::__construct( 'DoubleRedirects' );
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->linkBatchFactory = $linkBatchFactory;
-		$this->setDBLoadBalancer( $loadBalancer );
-		$this->dbr = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$this->setDatabaseProvider( $dbProvider );
+		$this->dbr = $dbProvider->getReplicaDatabase();
 	}
 
 	public function isExpensive() {

@@ -28,8 +28,8 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Title\Title;
 use QueryPage;
 use Skin;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -45,17 +45,17 @@ class SpecialBrokenRedirects extends QueryPage {
 
 	/**
 	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param LinkBatchFactory $linkBatchFactory
 	 */
 	public function __construct(
 		IContentHandlerFactory $contentHandlerFactory,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		LinkBatchFactory $linkBatchFactory
 	) {
 		parent::__construct( 'BrokenRedirects' );
 		$this->contentHandlerFactory = $contentHandlerFactory;
-		$this->setDBLoadBalancer( $loadBalancer );
+		$this->setDatabaseProvider( $dbProvider );
 		$this->setLinkBatchFactory( $linkBatchFactory );
 	}
 
@@ -76,7 +76,7 @@ class SpecialBrokenRedirects extends QueryPage {
 	}
 
 	public function getQueryInfo() {
-		$dbr = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$dbr = $this->getDatabaseProvider()->getReplicaDatabase();
 
 		return [
 			'tables' => [

@@ -128,7 +128,7 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 		return new SpecialContributions(
 			$services->getLinkBatchFactory(),
 			$services->getPermissionManager(),
-			$services->getDBLoadBalancer(),
+			$services->getDBLoadBalancerFactory(),
 			$services->getActorMigration(),
 			$services->getRevisionStore(),
 			$services->getNamespaceInfo(),

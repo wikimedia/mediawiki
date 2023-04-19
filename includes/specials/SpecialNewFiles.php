@@ -26,7 +26,7 @@ use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Request\DerivativeRequest;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 class SpecialNewFiles extends IncludableSpecialPage {
 	/** @var FormOptions */
@@ -38,8 +38,8 @@ class SpecialNewFiles extends IncludableSpecialPage {
 	/** @var GroupPermissionsLookup */
 	private $groupPermissionsLookup;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
@@ -47,18 +47,18 @@ class SpecialNewFiles extends IncludableSpecialPage {
 	/**
 	 * @param MimeAnalyzer $mimeAnalyzer
 	 * @param GroupPermissionsLookup $groupPermissionsLookup
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param LinkBatchFactory $linkBatchFactory
 	 */
 	public function __construct(
 		MimeAnalyzer $mimeAnalyzer,
 		GroupPermissionsLookup $groupPermissionsLookup,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		LinkBatchFactory $linkBatchFactory
 	) {
 		parent::__construct( 'Newimages' );
 		$this->groupPermissionsLookup = $groupPermissionsLookup;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->mediaTypes = $mimeAnalyzer->getMediaTypes();
 		$this->linkBatchFactory = $linkBatchFactory;
 	}
@@ -137,7 +137,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 			$this->groupPermissionsLookup,
 			$this->linkBatchFactory,
 			$this->getLinkRenderer(),
-			$this->loadBalancer,
+			$this->dbProvider,
 			$opts
 		);
 
