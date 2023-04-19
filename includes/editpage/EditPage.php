@@ -1856,18 +1856,9 @@ class EditPage implements IEditObject {
 
 		$title = Title::newFromText( $preload );
 
-		// Use SpecialMyLanguage redirect so that nonexistent translated pages can
+		// (T299544) Use SpecialMyLanguage redirect so that nonexistent translated pages can
 		// fall back to the corresponding page in a suitable language
-		if ( $title && $title->isSpecialPage() ) {
-			$specialPageFactory = MediaWikiServices::getInstance()->getSpecialPageFactory();
-			[ $spName, $spParam ] = $specialPageFactory->resolveAlias( $title->getText() );
-			if ( $spName ) {
-				$specialPage = $specialPageFactory->getPage( $spName );
-				if ( $specialPage instanceof SpecialMyLanguage ) {
-					$title = $specialPage->findTitleForTransclusion( $spParam );
-				}
-			}
-		}
+		$title = $this->getTargetTitleIfSpecialMyLanguage( $title );
 
 		# Check for existence to avoid getting MediaWiki:Noarticletext
 		if ( !$this->isPageExistingAndViewable( $title, $this->getContext()->getAuthority() ) ) {
@@ -1916,6 +1907,27 @@ class EditPage implements IEditObject {
 			$parserOptions,
 			$params
 		);
+	}
+
+	/**
+	 * If the given Title is Special:MyLanguage/Foo, resolve the language chain for the
+	 * actual target title desired.
+	 *
+	 * @param ?Title $title
+	 * @return ?Title
+	 */
+	private function getTargetTitleIfSpecialMyLanguage( ?Title $title ): ?Title {
+		if ( $title && $title->isSpecialPage() ) {
+			$specialPageFactory = MediaWikiServices::getInstance()->getSpecialPageFactory();
+			[ $spName, $spParam ] = $specialPageFactory->resolveAlias( $title->getText() );
+			if ( $spName ) {
+				$specialPage = $specialPageFactory->getPage( $spName );
+				if ( $specialPage instanceof SpecialMyLanguage ) {
+					$title = $specialPage->findTitleForTransclusion( $spParam );
+				}
+			}
+		}
+		return $title;
 	}
 
 	/**
@@ -3142,6 +3154,11 @@ class EditPage implements IEditObject {
 	private function showCustomIntro(): bool {
 		if ( $this->editintro ) {
 			$title = Title::newFromText( $this->editintro );
+
+			// (T334855) Use SpecialMyLanguage redirect so that nonexistent translated pages can
+			// fall back to the corresponding page in a suitable language
+			$title = $this->getTargetTitleIfSpecialMyLanguage( $title );
+
 			if ( $this->isPageExistingAndViewable( $title, $this->context->getAuthority() ) ) {
 				// Added using template syntax, to take <noinclude>'s into account.
 				$this->context->getOutput()->addWikiTextAsContent(
