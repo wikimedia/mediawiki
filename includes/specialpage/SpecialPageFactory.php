@@ -695,7 +695,7 @@ class SpecialPageFactory {
 				'LanguageFactory',
 				'LanguageNameUtils',
 				'LocalisationCache',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 			]
 		],
 		'Version' => [

@@ -27,8 +27,8 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\FakeResultWrapper;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -78,7 +78,7 @@ class AllMessagesTablePager extends TablePager {
 	 * @param LanguageFactory $languageFactory
 	 * @param LanguageNameUtils $languageNameUtils
 	 * @param LinkRenderer $linkRenderer
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param LocalisationCache $localisationCache
 	 * @param FormOptions $opts
 	 */
@@ -88,12 +88,12 @@ class AllMessagesTablePager extends TablePager {
 		LanguageFactory $languageFactory,
 		LanguageNameUtils $languageNameUtils,
 		LinkRenderer $linkRenderer,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		LocalisationCache $localisationCache,
 		FormOptions $opts
 	) {
 		// Set database before parent constructor to avoid setting it there with wfGetDB
-		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$this->mDb = $dbProvider->getReplicaDatabase();
 		parent::__construct( $context, $linkRenderer );
 		$this->localisationCache = $localisationCache;
 
