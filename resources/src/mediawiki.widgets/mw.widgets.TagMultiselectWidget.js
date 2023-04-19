@@ -42,7 +42,7 @@
 		// Events
 		// When list of selected tags changes, update hidden input
 		this.connect( this, {
-			change: 'onMultiselectChange'
+			change: 'updateHiddenInput'
 		} );
 	};
 
@@ -65,16 +65,6 @@
 			// (it is not triggered when changing the value from JS code).
 			this.$hiddenInput.trigger( 'change' );
 		}
-	};
-
-	/**
-	 * React to the 'change' event.
-	 *
-	 * Updates the hidden input and clears the text from the text box.
-	 */
-	mw.widgets.TagMultiselectWidget.prototype.onMultiselectChange = function () {
-		this.updateHiddenInput();
-		this.input.setValue( '' );
 	};
 
 }() );

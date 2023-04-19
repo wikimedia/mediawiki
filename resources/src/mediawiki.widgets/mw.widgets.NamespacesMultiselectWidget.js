@@ -36,9 +36,6 @@
 		// Parent constructor
 		mw.widgets.NamespacesMultiselectWidget.parent.call( this, $.extend( true,
 			{
-				clearInputOnChoose: true,
-				inputPosition: 'inline',
-				allowEditTags: false,
 				menu: {
 					filterMode: 'substring'
 				}

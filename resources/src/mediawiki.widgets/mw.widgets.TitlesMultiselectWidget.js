@@ -22,8 +22,6 @@
 		// Parent constructor
 		mw.widgets.TitlesMultiselectWidget.parent.call( this, $.extend( true,
 			{
-				clearInputOnChoose: true,
-				inputPosition: 'inline',
 				allowEditTags: false
 			},
 			config
