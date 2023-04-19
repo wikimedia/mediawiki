@@ -31,7 +31,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\UserIdentityLookup;
 use Wikimedia\IPUtils;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Timestamp\TimestampException;
 
 /**
@@ -44,8 +44,8 @@ class SpecialLog extends SpecialPage {
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var ActorNormalization */
 	private $actorNormalization;
@@ -55,19 +55,19 @@ class SpecialLog extends SpecialPage {
 
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param ActorNormalization $actorNormalization
 	 * @param UserIdentityLookup $userIdentityLookup
 	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		ActorNormalization $actorNormalization,
 		UserIdentityLookup $userIdentityLookup
 	) {
 		parent::__construct( 'Log' );
 		$this->linkBatchFactory = $linkBatchFactory;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->actorNormalization = $actorNormalization;
 		$this->userIdentityLookup = $userIdentityLookup;
 	}
@@ -135,7 +135,7 @@ class SpecialLog extends SpecialPage {
 		# Handle type-specific inputs
 		$qc = [];
 		if ( $opts->getValue( 'type' ) == 'suppress' ) {
-			$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+			$dbr = $this->dbProvider->getReplicaDatabase();
 			$offenderName = $opts->getValue( 'offender' );
 			$offenderId = $this->actorNormalization->findActorIdByName( $offenderName, $dbr );
 			if ( $offenderId ) {
@@ -261,7 +261,6 @@ class SpecialLog extends SpecialPage {
 			$opts->getValue( 'subtype' ),
 			$opts->getValue( 'logid' ),
 			$this->linkBatchFactory,
-			$this->loadBalancer,
 			$this->actorNormalization,
 			$opts->getValue( 'tagInvert' )
 		);

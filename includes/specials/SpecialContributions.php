@@ -40,7 +40,7 @@ use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserRigorOptions;
 use Wikimedia\IPUtils;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Special:Contributions, show user contributions in a paged list
@@ -56,8 +56,8 @@ class SpecialContributions extends IncludableSpecialPage {
 	/** @var PermissionManager */
 	private $permissionManager;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var ActorMigration */
 	private $actorMigration;
@@ -89,7 +89,7 @@ class SpecialContributions extends IncludableSpecialPage {
 	/**
 	 * @param LinkBatchFactory|null $linkBatchFactory
 	 * @param PermissionManager|null $permissionManager
-	 * @param ILoadBalancer|null $loadBalancer
+	 * @param IConnectionProvider|null $dbProvider
 	 * @param ActorMigration|null $actorMigration
 	 * @param RevisionStore|null $revisionStore
 	 * @param NamespaceInfo|null $namespaceInfo
@@ -102,7 +102,7 @@ class SpecialContributions extends IncludableSpecialPage {
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory = null,
 		PermissionManager $permissionManager = null,
-		ILoadBalancer $loadBalancer = null,
+		IConnectionProvider $dbProvider = null,
 		ActorMigration $actorMigration = null,
 		RevisionStore $revisionStore = null,
 		NamespaceInfo $namespaceInfo = null,
@@ -117,7 +117,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		$services = MediaWikiServices::getInstance();
 		$this->linkBatchFactory = $linkBatchFactory ?? $services->getLinkBatchFactory();
 		$this->permissionManager = $permissionManager ?? $services->getPermissionManager();
-		$this->loadBalancer = $loadBalancer ?? $services->getDBLoadBalancer();
+		$this->dbProvider = $dbProvider ?? $services->getDBLoadBalancerFactory();
 		$this->actorMigration = $actorMigration ?? $services->getActorMigration();
 		$this->revisionStore = $revisionStore ?? $services->getRevisionStore();
 		$this->namespaceInfo = $namespaceInfo ?? $services->getNamespaceInfo();
@@ -325,7 +325,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			} else {
 				// @todo We just want a wiki ID here, not a "DB domain", but
 				// current status of MediaWiki conflates the two. See T235955.
-				$poolKey = $this->loadBalancer->getLocalDomainID() . ':SpecialContributions:';
+				$poolKey = $this->dbProvider->getReplicaDatabase()->getDomainID() . ':SpecialContributions:';
 				if ( $this->getUser()->isAnon() ) {
 					$poolKey .= 'a:' . $this->getUser()->getName();
 				} else {
@@ -907,7 +907,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				$this->getLinkRenderer(),
 				$this->linkBatchFactory,
 				$this->getHookContainer(),
-				$this->loadBalancer,
+				$this->dbProvider,
 				$this->actorMigration,
 				$this->revisionStore,
 				$this->namespaceInfo,

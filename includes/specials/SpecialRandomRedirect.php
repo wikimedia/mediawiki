@@ -22,7 +22,7 @@
  * @author Rob Church <robchur@gmail.com>, Ilmari Karonen
  */
 
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Special page to direct the user to a random redirect page (minus the second redirect)
@@ -32,14 +32,14 @@ use Wikimedia\Rdbms\ILoadBalancer;
 class SpecialRandomRedirect extends SpecialRandomPage {
 
 	/**
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param NamespaceInfo $nsInfo
 	 */
 	public function __construct(
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		NamespaceInfo $nsInfo
 	) {
-		parent::__construct( $loadBalancer, $nsInfo );
+		parent::__construct( $dbProvider, $nsInfo );
 		$this->mName = 'Randomredirect';
 		$this->isRedir = true;
 	}

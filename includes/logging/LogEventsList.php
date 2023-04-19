@@ -675,7 +675,6 @@ class LogEventsList extends ContextSource {
 			'',
 			0,
 			$services->getLinkBatchFactory(),
-			$services->getDBLoadBalancer(),
 			$services->getActorNormalization()
 		);
 		// @phan-suppress-next-line PhanImpossibleCondition

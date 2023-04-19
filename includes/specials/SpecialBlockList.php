@@ -35,8 +35,8 @@ use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Html\Html;
 use SpecialPage;
 use Wikimedia\IPUtils;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * A special page that lists existing blocks
@@ -56,8 +56,8 @@ class SpecialBlockList extends SpecialPage {
 	/** @var BlockRestrictionStore */
 	private $blockRestrictionStore;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var CommentStore */
 	private $commentStore;
@@ -74,7 +74,7 @@ class SpecialBlockList extends SpecialPage {
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		BlockRestrictionStore $blockRestrictionStore,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		CommentStore $commentStore,
 		BlockUtils $blockUtils,
 		BlockActionInfo $blockActionInfo,
@@ -84,7 +84,7 @@ class SpecialBlockList extends SpecialPage {
 
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->blockRestrictionStore = $blockRestrictionStore;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->commentStore = $commentStore;
 		$this->blockUtils = $blockUtils;
 		$this->blockActionInfo = $blockActionInfo;
@@ -260,7 +260,7 @@ class SpecialBlockList extends SpecialPage {
 			$this->commentStore,
 			$this->linkBatchFactory,
 			$this->getLinkRenderer(),
-			$this->loadBalancer,
+			$this->dbProvider,
 			$this->rowCommentFormatter,
 			$this->getSpecialPageFactory(),
 			$conds
@@ -324,7 +324,7 @@ class SpecialBlockList extends SpecialPage {
 	 * @return IDatabase
 	 */
 	protected function getDB() {
-		return $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		return $this->dbProvider->getReplicaDatabase();
 	}
 }
 

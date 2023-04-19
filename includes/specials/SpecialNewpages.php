@@ -38,7 +38,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserOptionsLookup;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * A special page that list newly created pages
@@ -67,8 +67,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 	/** @var GroupPermissionsLookup */
 	private $groupPermissionsLookup;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var RevisionLookup */
 	private $revisionLookup;
@@ -87,7 +87,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 * @param CommentStore $commentStore
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param GroupPermissionsLookup $groupPermissionsLookup
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param RevisionLookup $revisionLookup
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param UserOptionsLookup $userOptionsLookup
@@ -98,7 +98,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		CommentStore $commentStore,
 		IContentHandlerFactory $contentHandlerFactory,
 		GroupPermissionsLookup $groupPermissionsLookup,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		RevisionLookup $revisionLookup,
 		NamespaceInfo $namespaceInfo,
 		UserOptionsLookup $userOptionsLookup,
@@ -109,7 +109,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$this->commentStore = $commentStore;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->groupPermissionsLookup = $groupPermissionsLookup;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->revisionLookup = $revisionLookup;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->userOptionsLookup = $userOptionsLookup;
@@ -538,7 +538,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$this->groupPermissionsLookup,
 			$this->getHookContainer(),
 			$this->linkBatchFactory,
-			$this->loadBalancer,
+			$this->dbProvider,
 			$this->namespaceInfo,
 			$this->opts
 		);

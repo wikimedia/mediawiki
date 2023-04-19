@@ -94,7 +94,7 @@ class SpecialPageFactory {
 			'class' => SpecialBrokenRedirects::class,
 			'services' => [
 				'ContentHandlerFactory',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 			]
 		],
@@ -102,7 +102,7 @@ class SpecialPageFactory {
 			'class' => \SpecialDeadendPages::class,
 			'services' => [
 				'NamespaceInfo',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 				'LanguageConverterFactory',
 			]
@@ -112,7 +112,7 @@ class SpecialPageFactory {
 			'services' => [
 				'ContentHandlerFactory',
 				'LinkBatchFactory',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 			]
 		],
 		'Longpages' => [
@@ -120,7 +120,7 @@ class SpecialPageFactory {
 			'services' => [
 				// Same as for Shortpages
 				'NamespaceInfo',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 			]
 		],
@@ -128,7 +128,7 @@ class SpecialPageFactory {
 			'class' => SpecialAncientPages::class,
 			'services' => [
 				'NamespaceInfo',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 				'LanguageConverterFactory',
 			]
@@ -137,7 +137,7 @@ class SpecialPageFactory {
 			'class' => \SpecialLonelyPages::class,
 			'services' => [
 				'NamespaceInfo',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 				'LanguageConverterFactory',
 				'LinksMigration',
@@ -148,7 +148,7 @@ class SpecialPageFactory {
 			'services' => [
 				// Same as for Mostrevisions
 				'NamespaceInfo',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 				'LanguageConverterFactory',
 			]
@@ -157,7 +157,7 @@ class SpecialPageFactory {
 			'class' => \SpecialWithoutInterwiki::class,
 			'services' => [
 				'NamespaceInfo',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 				'LanguageConverterFactory',
 			]
@@ -166,7 +166,7 @@ class SpecialPageFactory {
 			'class' => \SpecialProtectedpages::class,
 			'services' => [
 				'LinkBatchFactory',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'CommentStore',
 				'UserCache',
 				'RowCommentFormatter',
@@ -177,7 +177,7 @@ class SpecialPageFactory {
 			'class' => \SpecialProtectedtitles::class,
 			'services' => [
 				'LinkBatchFactory',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 			]
 		],
 		'Shortpages' => [
@@ -185,7 +185,7 @@ class SpecialPageFactory {
 			'services' => [
 				// Same as for Longpages
 				'NamespaceInfo',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 			]
 		],
@@ -194,7 +194,7 @@ class SpecialPageFactory {
 			'services' => [
 				// Same as for SpecialUncategorizedPages and SpecialUncategorizedTemplates
 				'NamespaceInfo',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 				'LanguageConverterFactory',
 			]
@@ -202,7 +202,7 @@ class SpecialPageFactory {
 		'Uncategorizedimages' => [
 			'class' => \SpecialUncategorizedImages::class,
 			'services' => [
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 			]
 		],
 		'Uncategorizedpages' => [
@@ -210,7 +210,7 @@ class SpecialPageFactory {
 			'services' => [
 				// Same as for SpecialUncategorizedCategories and SpecialUncategorizedTemplates
 				'NamespaceInfo',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 				'LanguageConverterFactory',
 			]
@@ -220,7 +220,7 @@ class SpecialPageFactory {
 			'services' => [
 				// Same as for SpecialUncategorizedCategories and SpecialUncategorizedPages
 				'NamespaceInfo',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 				'LanguageConverterFactory',
 			]
@@ -228,20 +228,20 @@ class SpecialPageFactory {
 		'Unusedcategories' => [
 			'class' => \SpecialUnusedCategories::class,
 			'services' => [
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 			]
 		],
 		'Unusedimages' => [
 			'class' => \SpecialUnusedImages::class,
 			'services' => [
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 			]
 		],
 		'Unusedtemplates' => [
 			'class' => \SpecialUnusedTemplates::class,
 			'services' => [
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinksMigration',
 			]
 		],
@@ -249,14 +249,14 @@ class SpecialPageFactory {
 			'class' => \SpecialUnwatchedPages::class,
 			'services' => [
 				'LinkBatchFactory',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LanguageConverterFactory',
 			]
 		],
 		'Wantedcategories' => [
 			'class' => \SpecialWantedCategories::class,
 			'services' => [
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 				'LanguageConverterFactory',
 			]
@@ -265,21 +265,21 @@ class SpecialPageFactory {
 			'class' => SpecialWantedFiles::class,
 			'services' => [
 				'RepoGroup',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 			]
 		],
 		'Wantedpages' => [
 			'class' => SpecialWantedPages::class,
 			'services' => [
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 			]
 		],
 		'Wantedtemplates' => [
 			'class' => \SpecialWantedTemplates::class,
 			'services' => [
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 				'LinksMigration',
 			]
@@ -289,7 +289,7 @@ class SpecialPageFactory {
 		'Allpages' => [
 			'class' => SpecialAllPages::class,
 			'services' => [
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'SearchEngineFactory',
 				'PageStore',
 			]
@@ -297,7 +297,7 @@ class SpecialPageFactory {
 		'Prefixindex' => [
 			'class' => \SpecialPrefixindex::class,
 			'services' => [
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkCache',
 			]
 		],
@@ -305,14 +305,14 @@ class SpecialPageFactory {
 			'class' => \SpecialCategories::class,
 			'services' => [
 				'LinkBatchFactory',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 			]
 		],
 		'Listredirects' => [
 			'class' => \SpecialListRedirects::class,
 			'services' => [
 				'LinkBatchFactory',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'WikiPageFactory',
 				'RedirectLookup'
 			]
@@ -320,7 +320,7 @@ class SpecialPageFactory {
 		'PagesWithProp' => [
 			'class' => \SpecialPagesWithProp::class,
 			'services' => [
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 			]
 		],
 		'TrackingCategories' => [
@@ -377,7 +377,7 @@ class SpecialPageFactory {
 			'class' => SpecialActiveUsers::class,
 			'services' => [
 				'LinkBatchFactory',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'UserGroupManager',
 				'UserIdentityLookup',
 			]
@@ -410,7 +410,7 @@ class SpecialPageFactory {
 			'services' => [
 				'LinkBatchFactory',
 				'BlockRestrictionStore',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'CommentStore',
 				'BlockUtils',
 				'BlockActionInfo',
@@ -422,7 +422,7 @@ class SpecialPageFactory {
 			'services' => [
 				'LinkBatchFactory',
 				'BlockRestrictionStore',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'CommentStore',
 				'BlockUtils',
 				'BlockActionInfo',
@@ -452,7 +452,7 @@ class SpecialPageFactory {
 			'class' => \SpecialDeletedContributions::class,
 			'services' => [
 				'PermissionManager',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'RevisionFactory',
 				'NamespaceInfo',
 				'UserFactory',
@@ -477,7 +477,7 @@ class SpecialPageFactory {
 			'services' => [
 				'LinkBatchFactory',
 				'PermissionManager',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'ActorMigration',
 				'RevisionStore',
 				'NamespaceInfo',
@@ -507,7 +507,7 @@ class SpecialPageFactory {
 			'class' => \SpecialListUsers::class,
 			'services' => [
 				'LinkBatchFactory',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'UserGroupManager',
 				'UserIdentityLookup',
 			]
@@ -552,7 +552,7 @@ class SpecialPageFactory {
 			'services' => [
 				'MimeAnalyzer',
 				'GroupPermissionsLookup',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 			]
 		],
@@ -560,7 +560,7 @@ class SpecialPageFactory {
 			'class' => \SpecialLog::class,
 			'services' => [
 				'LinkBatchFactory',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'ActorNormalization',
 				'UserIdentityLookup',
 			]
@@ -570,7 +570,7 @@ class SpecialPageFactory {
 			'services' => [
 				'WatchedItemStore',
 				'WatchlistManager',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'UserOptionsLookup',
 			]
 		],
@@ -581,7 +581,7 @@ class SpecialPageFactory {
 				'CommentStore',
 				'ContentHandlerFactory',
 				'GroupPermissionsLookup',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'RevisionLookup',
 				'NamespaceInfo',
 				'UserOptionsLookup',
@@ -593,7 +593,7 @@ class SpecialPageFactory {
 			'services' => [
 				'WatchedItemStore',
 				'MessageCache',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'UserOptionsLookup',
 			]
 		],
@@ -602,7 +602,7 @@ class SpecialPageFactory {
 			'services' => [
 				'WatchedItemStore',
 				'MessageCache',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'UserOptionsLookup',
 				'SearchEngineFactory',
 			]
@@ -616,7 +616,7 @@ class SpecialPageFactory {
 			'class' => \SpecialListFiles::class,
 			'services' => [
 				'RepoGroup',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'CommentStore',
 				'UserNameUtils',
 				'UserNamePrefixSearch',
@@ -634,14 +634,14 @@ class SpecialPageFactory {
 			'class' => \SpecialMediaStatistics::class,
 			'services' => [
 				'MimeAnalyzer',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 			]
 		],
 		'MIMEsearch' => [
 			'class' => \SpecialMIMESearch::class,
 			'services' => [
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 				'LanguageConverterFactory',
 			]
@@ -674,7 +674,7 @@ class SpecialPageFactory {
 		'ListDuplicatedFiles' => [
 			'class' => \SpecialListDuplicatedFiles::class,
 			'services' => [
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 			]
 		],
@@ -716,7 +716,7 @@ class SpecialPageFactory {
 		'LinkSearch' => [
 			'class' => \SpecialLinkSearch::class,
 			'services' => [
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 				'UrlUtils',
 			]
@@ -724,27 +724,27 @@ class SpecialPageFactory {
 		'Randompage' => [
 			'class' => \SpecialRandomPage::class,
 			'services' => [
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'NamespaceInfo',
 			]
 		],
 		'RandomInCategory' => [
 			'class' => \SpecialRandomInCategory::class,
 			'services' => [
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 			]
 		],
 		'Randomredirect' => [
 			'class' => \SpecialRandomRedirect::class,
 			'services' => [
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'NamespaceInfo',
 			]
 		],
 		'Randomrootpage' => [
 			'class' => \SpecialRandomRootPage::class,
 			'services' => [
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'NamespaceInfo',
 			]
 		],
@@ -756,7 +756,7 @@ class SpecialPageFactory {
 		'Mostlinkedcategories' => [
 			'class' => \SpecialMostLinkedCategories::class,
 			'services' => [
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 				'LanguageConverterFactory',
 			]
@@ -764,7 +764,7 @@ class SpecialPageFactory {
 		'Mostimages' => [
 			'class' => SpecialMostImages::class,
 			'services' => [
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LanguageConverterFactory',
 			]
 		],
@@ -772,21 +772,21 @@ class SpecialPageFactory {
 			'class' => \SpecialMostInterwikis::class,
 			'services' => [
 				'NamespaceInfo',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 			]
 		],
 		'Mostlinked' => [
 			'class' => \SpecialMostLinked::class,
 			'services' => [
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 			]
 		],
 		'Mostlinkedtemplates' => [
 			'class' => \SpecialMostLinkedTemplates::class,
 			'services' => [
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 				'LinksMigration',
 			]
@@ -795,7 +795,7 @@ class SpecialPageFactory {
 			'class' => \SpecialMostCategories::class,
 			'services' => [
 				'NamespaceInfo',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 			]
 		],
@@ -804,7 +804,7 @@ class SpecialPageFactory {
 			'services' => [
 				// Same as for Fewestrevisions
 				'NamespaceInfo',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 				'LanguageConverterFactory',
 			]
@@ -821,7 +821,7 @@ class SpecialPageFactory {
 		'Export' => [
 			'class' => \SpecialExport::class,
 			'services' => [
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'WikiExporterFactory',
 				'TitleFormatter',
 				'LinksMigration',
@@ -844,7 +844,7 @@ class SpecialPageFactory {
 				'ChangeTagDefStore',
 				'LinkBatchFactory',
 				'RepoGroup',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'UserOptionsLookup',
 				'WikiPageFactory',
 				'SearchEngineFactory',
@@ -856,7 +856,7 @@ class SpecialPageFactory {
 		'Whatlinkshere' => [
 			'class' => \SpecialWhatLinksHere::class,
 			'services' => [
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 				'ContentHandlerFactory',
 				'SearchEngineFactory',
@@ -870,7 +870,7 @@ class SpecialPageFactory {
 			'services' => [
 				'MergeHistoryFactory',
 				'LinkBatchFactory',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'RevisionStore',
 				'CommentFormatter',
 			]
@@ -948,7 +948,7 @@ class SpecialPageFactory {
 				'MovePageFactory',
 				'PermissionManager',
 				'UserOptionsLookup',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'ContentHandlerFactory',
 				'NamespaceInfo',
 				'LinkBatchFactory',
@@ -1218,7 +1218,7 @@ class SpecialPageFactory {
 					'services' => [
 						'ContentHandlerFactory',
 						'LanguageNameUtils',
-						'DBLoadBalancer',
+						'DBLoadBalancerFactory',
 						'SearchEngineFactory',
 					]
 				];

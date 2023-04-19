@@ -26,7 +26,7 @@ use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\RestrictionStore;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * A special page that lists protected pages
@@ -40,8 +40,8 @@ class SpecialProtectedpages extends SpecialPage {
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var CommentStore */
 	private $commentStore;
@@ -57,7 +57,7 @@ class SpecialProtectedpages extends SpecialPage {
 
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param CommentStore $commentStore
 	 * @param UserCache $userCache
 	 * @param RowCommentFormatter $rowCommentFormatter
@@ -65,7 +65,7 @@ class SpecialProtectedpages extends SpecialPage {
 	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		CommentStore $commentStore,
 		UserCache $userCache,
 		RowCommentFormatter $rowCommentFormatter,
@@ -73,7 +73,7 @@ class SpecialProtectedpages extends SpecialPage {
 	) {
 		parent::__construct( 'Protectedpages' );
 		$this->linkBatchFactory = $linkBatchFactory;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->commentStore = $commentStore;
 		$this->userCache = $userCache;
 		$this->rowCommentFormatter = $rowCommentFormatter;
@@ -103,7 +103,7 @@ class SpecialProtectedpages extends SpecialPage {
 			$this->commentStore,
 			$this->linkBatchFactory,
 			$this->getLinkRenderer(),
-			$this->loadBalancer,
+			$this->dbProvider,
 			$this->rowCommentFormatter,
 			$this->userCache,
 			[],

@@ -24,7 +24,7 @@
 
 use MediaWiki\Html\Html;
 use MediaWiki\Title\Title;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Special:PagesWithProp to search the page_props table
@@ -59,11 +59,11 @@ class SpecialPagesWithProp extends QueryPage {
 	private $sortByValue = false;
 
 	/**
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 */
-	public function __construct( ILoadBalancer $loadBalancer ) {
+	public function __construct( IConnectionProvider $dbProvider ) {
 		parent::__construct( 'PagesWithProp' );
-		$this->setDBLoadBalancer( $loadBalancer );
+		$this->setDatabaseProvider( $dbProvider );
 	}
 
 	public function isCacheable() {
@@ -261,7 +261,7 @@ class SpecialPagesWithProp extends QueryPage {
 			$opts['OFFSET'] = $offset;
 		}
 
-		$dbr = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$dbr = $this->getDatabaseProvider()->getReplicaDatabase();
 		$res = $dbr->select(
 			'page_props',
 			'pp_propname',

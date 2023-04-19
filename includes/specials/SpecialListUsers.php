@@ -29,7 +29,7 @@ use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\Html;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentityLookup;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * @ingroup SpecialPage
@@ -39,8 +39,8 @@ class SpecialListUsers extends IncludableSpecialPage {
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var UserGroupManager */
 	private $userGroupManager;
@@ -50,19 +50,19 @@ class SpecialListUsers extends IncludableSpecialPage {
 
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param UserGroupManager $userGroupManager
 	 * @param UserIdentityLookup $userIdentityLookup
 	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		UserGroupManager $userGroupManager,
 		UserIdentityLookup $userIdentityLookup
 	) {
 		parent::__construct( 'Listusers' );
 		$this->linkBatchFactory = $linkBatchFactory;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->userGroupManager = $userGroupManager;
 		$this->userIdentityLookup = $userIdentityLookup;
 	}
@@ -78,7 +78,7 @@ class SpecialListUsers extends IncludableSpecialPage {
 			$this->getContext(),
 			$this->getHookContainer(),
 			$this->linkBatchFactory,
-			$this->loadBalancer,
+			$this->dbProvider,
 			$this->userGroupManager,
 			$this->userIdentityLookup,
 			$par,

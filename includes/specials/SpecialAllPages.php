@@ -33,7 +33,7 @@ use MediaWiki\Page\PageStore;
 use MediaWiki\Title\Title;
 use SearchEngineFactory;
 use TitleValue;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Implements Special:Allpages
@@ -57,8 +57,8 @@ class SpecialAllPages extends IncludableSpecialPage {
 	 */
 	protected $nsfromMsg = 'allpagesfrom';
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var SearchEngineFactory */
 	private $searchEngineFactory;
@@ -67,14 +67,14 @@ class SpecialAllPages extends IncludableSpecialPage {
 	private $pageStore;
 
 	public function __construct(
-		ILoadBalancer $loadBalancer = null,
+		IConnectionProvider $dbProvider = null,
 		SearchEngineFactory $searchEngineFactory = null,
 		PageStore $pageStore = null
 	) {
 		parent::__construct( 'Allpages' );
 		// This class is extended and therefore falls back to global state - T265309
 		$services = MediaWikiServices::getInstance();
-		$this->loadBalancer = $loadBalancer ?? $services->getDBLoadBalancer();
+		$this->dbProvider = $dbProvider ?? $services->getDBLoadBalancerFactory();
 		$this->searchEngineFactory = $searchEngineFactory ?? $services->getSearchEngineFactory();
 		$this->pageStore = $pageStore ?? $services->getPageStore();
 	}
@@ -224,7 +224,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 			[ $namespace, $fromKey, $from ] = $fromList;
 			[ , $toKey, $to ] = $toList;
 
-			$dbr = $this->loadBalancer->getConnection( ILoadBalancer::DB_REPLICA );
+			$dbr = $this->dbProvider->getReplicaDatabase();
 			$filterConds = [ 'page_namespace' => $namespace ];
 			if ( $hideredirects ) {
 				$filterConds['page_is_redirect'] = 0;

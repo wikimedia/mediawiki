@@ -27,7 +27,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserNameUtils;
 use Wikimedia\Rdbms\FakeResultWrapper;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -74,7 +74,7 @@ class ImageListPager extends TablePager {
 	 * @param IContextSource $context
 	 * @param CommentStore $commentStore
 	 * @param LinkRenderer $linkRenderer
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param RepoGroup $repoGroup
 	 * @param UserCache $userCache
 	 * @param UserNameUtils $userNameUtils
@@ -88,7 +88,7 @@ class ImageListPager extends TablePager {
 		IContextSource $context,
 		CommentStore $commentStore,
 		LinkRenderer $linkRenderer,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		RepoGroup $repoGroup,
 		UserCache $userCache,
 		UserNameUtils $userNameUtils,
@@ -127,7 +127,7 @@ class ImageListPager extends TablePager {
 			$this->mDefaultDirection = IndexPager::DIR_ASCENDING;
 		}
 		// Set database before parent constructor to avoid setting it there with wfGetDB
-		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$this->mDb = $dbProvider->getReplicaDatabase();
 
 		parent::__construct( $context, $linkRenderer );
 		$this->commentStore = $commentStore;

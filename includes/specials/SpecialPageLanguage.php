@@ -29,8 +29,8 @@ use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Title\Title;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Special page for changing the content language of a page
@@ -49,8 +49,8 @@ class SpecialPageLanguage extends FormSpecialPage {
 	/** @var LanguageNameUtils */
 	private $languageNameUtils;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var SearchEngineFactory */
 	private $searchEngineFactory;
@@ -58,19 +58,19 @@ class SpecialPageLanguage extends FormSpecialPage {
 	/**
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param LanguageNameUtils $languageNameUtils
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param SearchEngineFactory $searchEngineFactory
 	 */
 	public function __construct(
 		IContentHandlerFactory $contentHandlerFactory,
 		LanguageNameUtils $languageNameUtils,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		SearchEngineFactory $searchEngineFactory
 	) {
 		parent::__construct( 'PageLanguage', 'pagelang' );
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->languageNameUtils = $languageNameUtils;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->searchEngineFactory = $searchEngineFactory;
 	}
 
@@ -200,7 +200,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 			$newLanguage,
 			$data['reason'] ?? '',
 			[],
-			$this->loadBalancer->getConnectionRef( ILoadBalancer::DB_PRIMARY )
+			$this->dbProvider->getPrimaryDatabase()
 		);
 	}
 

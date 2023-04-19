@@ -29,7 +29,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * This class is used to get a list of active users. The ones with specials
@@ -65,7 +65,7 @@ class ActiveUsersPager extends UsersPager {
 	 * @param IContextSource $context
 	 * @param HookContainer $hookContainer
 	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param UserGroupManager $userGroupManager
 	 * @param UserIdentityLookup $userIdentityLookup
 	 * @param FormOptions $opts
@@ -74,7 +74,7 @@ class ActiveUsersPager extends UsersPager {
 		IContextSource $context,
 		HookContainer $hookContainer,
 		LinkBatchFactory $linkBatchFactory,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		UserGroupManager $userGroupManager,
 		UserIdentityLookup $userIdentityLookup,
 		FormOptions $opts
@@ -83,7 +83,7 @@ class ActiveUsersPager extends UsersPager {
 			$context,
 			$hookContainer,
 			$linkBatchFactory,
-			$loadBalancer,
+			$dbProvider,
 			$userGroupManager,
 			$userIdentityLookup,
 			null,

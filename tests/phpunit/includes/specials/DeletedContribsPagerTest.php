@@ -38,7 +38,7 @@ class DeletedContribsPagerTest extends MediaWikiIntegrationTestCase {
 		$services = $this->getServiceContainer();
 		$this->hookContainer = $services->getHookContainer();
 		$this->linkRenderer = $services->getLinkRenderer();
-		$this->loadBalancer = $services->getDBLoadBalancer();
+		$this->dbProvider = $services->getDBLoadBalancerFactory();
 		$this->revisionStore = $services->getRevisionStore();
 		$this->commentFormatter = $services->getCommentFormatter();
 		$this->linkBatchFactory = $services->getLinkBatchFactory();
@@ -50,7 +50,7 @@ class DeletedContribsPagerTest extends MediaWikiIntegrationTestCase {
 			RequestContext::getMain(),
 			$this->hookContainer,
 			$this->linkRenderer,
-			$this->loadBalancer,
+			$this->dbProvider,
 			$this->revisionStore,
 			$this->commentFormatter,
 			$this->linkBatchFactory,

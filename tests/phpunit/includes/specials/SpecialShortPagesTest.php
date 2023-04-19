@@ -27,7 +27,7 @@ class SpecialShortPagesTest extends MediaWikiIntegrationTestCase {
 		$services = $this->getServiceContainer();
 		$page = new SpecialShortPages(
 			$services->getNamespaceInfo(),
-			$services->getDBLoadBalancer(),
+			$services->getDBLoadBalancerFactory(),
 			$services->getLinkBatchFactory()
 		);
 		$queryInfo = $page->getQueryInfo();

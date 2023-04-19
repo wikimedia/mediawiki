@@ -26,7 +26,7 @@
 
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Title\Title;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * A special page that lists unused templates
@@ -39,15 +39,15 @@ class SpecialUnusedTemplates extends QueryPage {
 	private $linksMigration;
 
 	/**
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param LinksMigration $linksMigration
 	 */
 	public function __construct(
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		LinksMigration $linksMigration
 	) {
 		parent::__construct( 'Unusedtemplates' );
-		$this->setDBLoadBalancer( $loadBalancer );
+		$this->setDatabaseProvider( $dbProvider );
 		$this->linksMigration = $linksMigration;
 	}
 

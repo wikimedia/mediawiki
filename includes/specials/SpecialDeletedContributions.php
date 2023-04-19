@@ -33,7 +33,7 @@ use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserRigorOptions;
 use Wikimedia\IPUtils;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Implements Special:DeletedContributions to display archived revisions
@@ -46,8 +46,8 @@ class SpecialDeletedContributions extends SpecialPage {
 	/** @var PermissionManager */
 	private $permissionManager;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var RevisionFactory */
 	private $revisionFactory;
@@ -72,7 +72,7 @@ class SpecialDeletedContributions extends SpecialPage {
 
 	/**
 	 * @param PermissionManager $permissionManager
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param RevisionFactory $revisionFactory
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param UserFactory $userFactory
@@ -83,7 +83,7 @@ class SpecialDeletedContributions extends SpecialPage {
 	 */
 	public function __construct(
 		PermissionManager $permissionManager,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		RevisionFactory $revisionFactory,
 		NamespaceInfo $namespaceInfo,
 		UserFactory $userFactory,
@@ -94,7 +94,7 @@ class SpecialDeletedContributions extends SpecialPage {
 	) {
 		parent::__construct( 'DeletedContributions', 'deletedhistory' );
 		$this->permissionManager = $permissionManager;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->revisionFactory = $revisionFactory;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->userFactory = $userFactory;
@@ -170,7 +170,7 @@ class SpecialDeletedContributions extends SpecialPage {
 			$this->getContext(),
 			$this->getHookContainer(),
 			$this->getLinkRenderer(),
-			$this->loadBalancer,
+			$this->dbProvider,
 			$this->revisionFactory,
 			$this->commentFormatter,
 			$this->linkBatchFactory,

@@ -500,7 +500,7 @@ return [
 			$services->getLinkRendererFactory(),
 			$services->getLinkBatchFactory(),
 			$services->getHookContainer(),
-			$services->getDBLoadBalancer(),
+			$services->getDBLoadBalancerFactory(),
 			$services->getActorMigration(),
 			$services->getNamespaceInfo(),
 			$services->getCommentFormatter()

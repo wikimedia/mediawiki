@@ -23,7 +23,7 @@
  */
 
 use MediaWiki\Title\Title;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Special page to direct the user to a random page
@@ -61,15 +61,15 @@ class SpecialRandomInCategory extends FormSpecialPage {
 	/** @var int|null */
 	private $minTimestamp = null;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/**
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 */
-	public function __construct( ILoadBalancer $loadBalancer ) {
+	public function __construct( IConnectionProvider $dbProvider ) {
 		parent::__construct( 'RandomInCategory' );
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 	}
 
 	/**
@@ -228,7 +228,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 			]
 		];
 
-		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 		$minClTime = $this->getTimestampOffset( $rand );
 		if ( $minClTime ) {
 			$qi['conds'][] = 'cl_timestamp ' . $op . ' ' .
@@ -267,7 +267,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 	 * @return array|null The lowest and highest timestamp, or null if the category has no entries.
 	 */
 	protected function getMinAndMaxForCat() {
-		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 		$res = $dbr->selectRow(
 			'categorylinks',
 			[
@@ -294,7 +294,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 	 * @return stdClass|false Info for the title selected.
 	 */
 	private function selectRandomPageFromDB( $rand, $offset, $up, $fname = __METHOD__ ) {
-		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 
 		$query = $this->getQueryInfo( $rand, $offset, $up );
 		$res = $dbr->select(

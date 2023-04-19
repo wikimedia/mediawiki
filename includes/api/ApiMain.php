@@ -179,7 +179,7 @@ class ApiMain extends ApiBase {
 				'LinkRenderer',
 				'LinkBatchFactory',
 				'HookContainer',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'NamespaceInfo',
 				'ActorMigration',
 				'UserFactory',

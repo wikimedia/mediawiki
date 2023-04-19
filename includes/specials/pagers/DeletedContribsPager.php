@@ -30,7 +30,7 @@ use MediaWiki\Revision\RevisionFactory;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\FakeResultWrapper;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -77,7 +77,7 @@ class DeletedContribsPager extends ReverseChronologicalPager {
 	 * @param IContextSource $context
 	 * @param HookContainer $hookContainer
 	 * @param LinkRenderer $linkRenderer
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param RevisionFactory $revisionFactory
 	 * @param CommentFormatter $commentFormatter
 	 * @param LinkBatchFactory $linkBatchFactory
@@ -88,7 +88,7 @@ class DeletedContribsPager extends ReverseChronologicalPager {
 		IContextSource $context,
 		HookContainer $hookContainer,
 		LinkRenderer $linkRenderer,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		RevisionFactory $revisionFactory,
 		CommentFormatter $commentFormatter,
 		LinkBatchFactory $linkBatchFactory,

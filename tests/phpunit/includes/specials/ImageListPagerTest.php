@@ -19,7 +19,7 @@ class ImageListPagerTest extends MediaWikiIntegrationTestCase {
 			RequestContext::getMain(),
 			$services->getCommentStore(),
 			$services->getLinkRenderer(),
-			$services->getDBLoadBalancer(),
+			$services->getDBLoadBalancerFactory(),
 			$services->getRepoGroup(),
 			$services->getUserCache(),
 			$services->getUserNameUtils(),

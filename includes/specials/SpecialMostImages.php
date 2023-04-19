@@ -27,7 +27,7 @@
 namespace MediaWiki\Specials;
 
 use ImageQueryPage;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * A special page that lists most used images
@@ -37,11 +37,11 @@ use Wikimedia\Rdbms\ILoadBalancer;
 class SpecialMostImages extends ImageQueryPage {
 
 	/**
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 */
-	public function __construct( ILoadBalancer $loadBalancer ) {
+	public function __construct( IConnectionProvider $dbProvider ) {
 		parent::__construct( 'Mostimages' );
-		$this->setDBLoadBalancer( $loadBalancer );
+		$this->setDatabaseProvider( $dbProvider );
 	}
 
 	public function isExpensive() {

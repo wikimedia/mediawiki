@@ -21,7 +21,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Title\Title;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * @ingroup Pager
@@ -50,7 +50,7 @@ class ProtectedTitlesPager extends AlphabeticPager {
 	/**
 	 * @param SpecialProtectedtitles $form
 	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param array $conds
 	 * @param string|null $type
 	 * @param string|null $level
@@ -61,7 +61,7 @@ class ProtectedTitlesPager extends AlphabeticPager {
 	public function __construct(
 		SpecialProtectedtitles $form,
 		LinkBatchFactory $linkBatchFactory,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		$conds,
 		$type,
 		$level,
@@ -70,7 +70,7 @@ class ProtectedTitlesPager extends AlphabeticPager {
 		$size
 	) {
 		// Set database before parent constructor to avoid setting it there with wfGetDB
-		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$this->mDb = $dbProvider->getReplicaDatabase();
 		$this->mForm = $form;
 		$this->mConds = $conds;
 		$this->level = $level;

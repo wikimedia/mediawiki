@@ -1,6 +1,6 @@
 <?php
 
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Implements Special:Randomrootpage
@@ -29,16 +29,16 @@ use Wikimedia\Rdbms\ILoadBalancer;
 class SpecialRandomRootPage extends SpecialRandomPage {
 
 	/**
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param NamespaceInfo $nsInfo
 	 */
 	public function __construct(
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		NamespaceInfo $nsInfo
 	) {
-		parent::__construct( $loadBalancer, $nsInfo );
+		parent::__construct( $dbProvider, $nsInfo );
 		$this->mName = 'Randomrootpage';
-		$dbr = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$dbr = $dbProvider->getReplicaDatabase();
 		$this->extra[] = 'page_title NOT ' . $dbr->buildLike( $dbr->anyString(), '/', $dbr->anyString() );
 	}
 
