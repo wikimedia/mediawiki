@@ -190,10 +190,10 @@ class GroupPermissionsLookup {
 	 */
 	public function getGroupsWithPermission( string $permission ): array {
 		$allowedGroups = [];
-		$groups = array_merge(
+		$groups = array_unique( array_merge(
 			array_keys( $this->groupPermissions ),
 			array_keys( $this->groupInheritance )
-		);
+		) );
 		foreach ( $groups as $group ) {
 			if ( $this->groupHasPermission( $group, $permission ) ) {
 				$allowedGroups[] = $group;
