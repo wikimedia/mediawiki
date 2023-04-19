@@ -31,7 +31,7 @@ use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use SpecialPage;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Use this special page to get a list of the MediaWiki system messages.
@@ -47,8 +47,8 @@ class SpecialAllMessages extends SpecialPage {
 	/** @var LanguageNameUtils */
 	private $languageNameUtils;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var LocalisationCache */
 	private $localisationCache;
@@ -57,19 +57,19 @@ class SpecialAllMessages extends SpecialPage {
 	 * @param LanguageFactory $languageFactory
 	 * @param LanguageNameUtils $languageNameUtils
 	 * @param LocalisationCache $localisationCache
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 */
 	public function __construct(
 		LanguageFactory $languageFactory,
 		LanguageNameUtils $languageNameUtils,
 		LocalisationCache $localisationCache,
-		ILoadBalancer $loadBalancer
+		IConnectionProvider $dbProvider
 	) {
 		parent::__construct( 'Allmessages' );
 		$this->languageFactory = $languageFactory;
 		$this->languageNameUtils = $languageNameUtils;
 		$this->localisationCache = $localisationCache;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 	}
 
 	/**
@@ -108,7 +108,7 @@ class SpecialAllMessages extends SpecialPage {
 			$this->languageFactory,
 			$this->languageNameUtils,
 			$this->getLinkRenderer(),
-			$this->loadBalancer,
+			$this->dbProvider,
 			$this->localisationCache,
 			$opts
 		);
