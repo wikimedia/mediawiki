@@ -24,8 +24,6 @@
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\ProperPageIdentity;
@@ -89,45 +87,35 @@ class LinkBatch {
 	private $logger;
 
 	/**
+	 * @see \MediaWiki\Cache\LinkBatchFactory
+	 *
+	 * @internal
 	 * @param iterable<LinkTarget>|iterable<PageReference> $arr Initial items to be added to the batch
-	 * @param LinkCache|null $linkCache
-	 * @param TitleFormatter|null $titleFormatter
-	 * @param Language|null $contentLanguage
-	 * @param GenderCache|null $genderCache
-	 * @param ILoadBalancer|null $loadBalancer
-	 * @param LinksMigration|null $linksMigration
-	 * @param LoggerInterface|null $logger
-	 * @deprecated since 1.35 Use newLinkBatch of the LinkBatchFactory service instead, Hard-deprecated in 1.40
+	 * @param LinkCache $linkCache
+	 * @param TitleFormatter $titleFormatter
+	 * @param Language $contentLanguage
+	 * @param GenderCache $genderCache
+	 * @param ILoadBalancer $loadBalancer
+	 * @param LinksMigration $linksMigration
+	 * @param LoggerInterface $logger
 	 */
 	public function __construct(
-		iterable $arr = [],
-		?LinkCache $linkCache = null,
-		?TitleFormatter $titleFormatter = null,
-		?Language $contentLanguage = null,
-		?GenderCache $genderCache = null,
-		?ILoadBalancer $loadBalancer = null,
-		?LinksMigration $linksMigration = null,
-		?LoggerInterface $logger = null
+		iterable $arr,
+		LinkCache $linkCache,
+		TitleFormatter $titleFormatter,
+		Language $contentLanguage,
+		GenderCache $genderCache,
+		ILoadBalancer $loadBalancer,
+		LinksMigration $linksMigration,
+		LoggerInterface $logger
 	) {
-		if ( !$linkCache ) {
-			wfDeprecatedMsg(
-				__METHOD__ . ' without providing all services is deprecated',
-				'1.35'
-			);
-		}
-
-		$getServices = static function () {
-			// BC hack. Use a closure so this can be unit-tested.
-			return MediaWikiServices::getInstance();
-		};
-
-		$this->linkCache = $linkCache ?? $getServices()->getLinkCache();
-		$this->titleFormatter = $titleFormatter ?? $getServices()->getTitleFormatter();
-		$this->contentLanguage = $contentLanguage ?? $getServices()->getContentLanguage();
-		$this->genderCache = $genderCache ?? $getServices()->getGenderCache();
-		$this->loadBalancer = $loadBalancer ?? $getServices()->getDBLoadBalancer();
-		$this->linksMigration = $linksMigration ?? $getServices()->getLinksMigration();
-		$this->logger = $logger ?? LoggerFactory::getInstance( 'LinkBatch' );
+		$this->linkCache = $linkCache;
+		$this->titleFormatter = $titleFormatter;
+		$this->contentLanguage = $contentLanguage;
+		$this->genderCache = $genderCache;
+		$this->loadBalancer = $loadBalancer;
+		$this->linksMigration = $linksMigration;
+		$this->logger = $logger;
 
 		foreach ( $arr as $item ) {
 			$this->addObj( $item );
