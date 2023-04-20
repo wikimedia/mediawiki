@@ -4286,9 +4286,17 @@ class EditPage implements IEditObject {
 			$out->addHTML( $this->getSummaryPreview( false ) );
 		}
 
+		// When previewing, override the selected dropdown option to select whatever was posted
+		// (if it's a valid option) rather than the current value for watchlistExpiry.
+		// See also above in $this->importFormData().
+		$expiryFromRequest = null;
+		if ( $this->preview || $this->diff ) {
+			$expiryFromRequest = $this->getContext()->getRequest()->getText( 'wpWatchlistExpiry' );
+		}
+
 		$checkboxes = $this->getCheckboxesWidget(
 			$tabindex,
-			[ 'minor' => $this->minoredit, 'watch' => $this->watchthis ]
+			[ 'minor' => $this->minoredit, 'watch' => $this->watchthis, 'wpWatchlistExpiry' => $expiryFromRequest ]
 		);
 		$checkboxesHTML = new OOUI\HorizontalLayout( [ 'items' => array_values( $checkboxes ) ] );
 
@@ -4700,9 +4708,9 @@ class EditPage implements IEditObject {
 	}
 
 	/**
-	 * Return an array of checkbox definitions.
+	 * Return an array of field definitions. Despite the name, not only checkboxes are supported.
 	 *
-	 * Array keys correspond to the `<input>` 'name' attribute to use for each checkbox.
+	 * Array keys correspond to the `<input>` 'name' attribute to use for each field.
 	 *
 	 * Array values are associative arrays with the following keys:
 	 *  - 'label-message' (required): message for label text
@@ -4720,11 +4728,11 @@ class EditPage implements IEditObject {
 	 *    classes.
 	 *  - 'value-attr' (optional): name of the widget config option for the "current value" of the
 	 *    widget. Defaults to 'selected'; for some widget types it should be 'value'.
-	 * @param array $checked Array of checkbox name (matching the 'legacy-name') => bool,
-	 *   where bool indicates the checked status of the checkbox
+	 * @param array<string,mixed> $values Map of field names (matching the 'legacy-name') to current field values.
+	 *   For checkboxes, the value is a bool that indicates the checked status of the checkbox.
 	 * @return array[]
 	 */
-	public function getCheckboxesDefinition( $checked ) {
+	public function getCheckboxesDefinition( $values ) {
 		$checkboxes = [];
 
 		$user = $this->context->getUser();
@@ -4737,14 +4745,14 @@ class EditPage implements IEditObject {
 				'tooltip' => 'minoredit',
 				'label-id' => 'mw-editpage-minoredit',
 				'legacy-name' => 'minor',
-				'default' => $checked['minor'],
+				'default' => $values['minor'],
 			];
 		}
 
 		if ( $user->isNamed() ) {
 			$checkboxes = array_merge(
 				$checkboxes,
-				$this->getCheckboxesDefinitionForWatchlist( $checked['watch'] )
+				$this->getCheckboxesDefinitionForWatchlist( $values['watch'], $values['wpWatchlistExpiry'] ?? null )
 			);
 		}
 
@@ -4757,9 +4765,10 @@ class EditPage implements IEditObject {
 	 * Get the watchthis and watchlistExpiry form field definitions.
 	 *
 	 * @param bool $watch
+	 * @param string $watchexpiry
 	 * @return array[]
 	 */
-	private function getCheckboxesDefinitionForWatchlist( $watch ): array {
+	private function getCheckboxesDefinitionForWatchlist( $watch, $watchexpiry ): array {
 		$fieldDefs = [
 			'wpWatchthis' => [
 				'id' => 'wpWatchthis',
@@ -4774,12 +4783,8 @@ class EditPage implements IEditObject {
 		if ( $this->watchlistExpiryEnabled ) {
 			$watchedItem = $this->watchedItemStore->getWatchedItem( $this->getContext()->getUser(), $this->getTitle() );
 			$expiryOptions = WatchAction::getExpiryOptions( $this->getContext(), $watchedItem );
-			// When previewing, override the selected dropdown option to select whatever was posted
-			// (if it's a valid option) rather than the current value for watchlistExpiry.
-			// See also above in $this->importFormData().
-			$expiryFromRequest = $this->getContext()->getRequest()->getText( 'wpWatchlistExpiry' );
-			if ( ( $this->preview || $this->diff ) && in_array( $expiryFromRequest, $expiryOptions['options'] ) ) {
-				$expiryOptions['default'] = $expiryFromRequest;
+			if ( $watchexpiry && in_array( $watchexpiry, $expiryOptions['options'] ) ) {
+				$expiryOptions['default'] = $watchexpiry;
 			}
 			// Reformat the options to match what DropdownInputWidget wants.
 			$options = [];
@@ -4803,19 +4808,18 @@ class EditPage implements IEditObject {
 	}
 
 	/**
-	 * Returns an array of checkboxes for the edit form, including 'minor' and 'watch' checkboxes and
-	 * any other added by extensions.
+	 * Returns an array of fields for the edit form, including 'minor' and 'watch' checkboxes and
+	 * any other added by extensions. Despite the name, not only checkboxes are supported.
 	 *
 	 * @param int &$tabindex Current tabindex
-	 * @param array $checked Array of checkbox => bool, where bool indicates the checked
-	 *                 status of the checkbox
-	 *
+	 * @param array<string,mixed> $values Map of field names to current field values.
+	 *   For checkboxes, the value is a bool that indicates the checked status of the checkbox.
 	 * @return \OOUI\Element[] Associative array of string keys to \OOUI\Widget or \OOUI\Layout
 	 *  instances
 	 */
-	public function getCheckboxesWidget( &$tabindex, $checked ) {
+	public function getCheckboxesWidget( &$tabindex, $values ) {
 		$checkboxes = [];
-		$checkboxesDef = $this->getCheckboxesDefinition( $checked );
+		$checkboxesDef = $this->getCheckboxesDefinition( $values );
 
 		foreach ( $checkboxesDef as $name => $options ) {
 			$legacyName = $options['legacy-name'] ?? $name;
