@@ -1031,11 +1031,11 @@ hello
 			->setWatch( (bool)$existingExpiry, $user, $title, $existingExpiry );
 
 		// Send the request.
-		$req = new FauxRequest( [ 'wpWatchlistExpiry' => $postVal ], true );
+		$req = new FauxRequest( [], true );
 		$context->setRequest( $req );
 		$req->getSession()->setUser( $user );
 		$ep->importFormData( $req );
-		$def = $ep->getCheckboxesDefinition( [ 'watch' => true ] )['wpWatchlistExpiry'];
+		$def = $ep->getCheckboxesDefinition( [ 'watch' => true, 'wpWatchlistExpiry' => $postVal ] )['wpWatchlistExpiry'];
 
 		// Test selected and available options.
 		$this->assertSame( $selected, $def['default'] );
