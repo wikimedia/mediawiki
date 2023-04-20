@@ -15,7 +15,7 @@ use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
 use Wikimedia\Message\ScalarParam;
 use Wikimedia\ParamValidator\ParamValidator;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Class LanguageLinksHandler
@@ -26,8 +26,8 @@ use Wikimedia\Rdbms\ILoadBalancer;
 class LanguageLinksHandler extends SimpleHandler {
 	use PageRedirectHandlerTrait;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var LanguageNameUtils */
 	private $languageNameUtils;
@@ -47,20 +47,20 @@ class LanguageLinksHandler extends SimpleHandler {
 	private $page = false;
 
 	/**
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param LanguageNameUtils $languageNameUtils
 	 * @param TitleFormatter $titleFormatter
 	 * @param TitleParser $titleParser
 	 * @param PageLookup $pageLookup
 	 */
 	public function __construct(
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		LanguageNameUtils $languageNameUtils,
 		TitleFormatter $titleFormatter,
 		TitleParser $titleParser,
 		PageLookup $pageLookup
 	) {
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->languageNameUtils = $languageNameUtils;
 		$this->titleFormatter = $titleFormatter;
 		$this->titleParser = $titleParser;
@@ -122,7 +122,7 @@ class LanguageLinksHandler extends SimpleHandler {
 
 	private function fetchLinks( $pageId ) {
 		$result = [];
-		$res = $this->loadBalancer->getConnection( DB_REPLICA )->newSelectQueryBuilder()
+		$res = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
 			->select( [ 'll_title', 'll_lang' ] )
 			->from( 'langlinks' )
 			->where( [ 'll_from' => $pageId ] )

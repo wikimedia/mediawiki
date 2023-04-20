@@ -20,7 +20,7 @@ use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
 use Wikimedia\Message\ScalarParam;
 use Wikimedia\ParamValidator\ParamValidator;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -41,8 +41,8 @@ class PageHistoryHandler extends SimpleHandler {
 	/** @var GroupPermissionsLookup */
 	private $groupPermissionsLookup;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var PageLookup */
 	private $pageLookup;
@@ -61,7 +61,7 @@ class PageHistoryHandler extends SimpleHandler {
 	 * @param RevisionStore $revisionStore
 	 * @param NameTableStoreFactory $nameTableStoreFactory
 	 * @param GroupPermissionsLookup $groupPermissionsLookup
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param PageLookup $pageLookup
 	 * @param TitleFormatter $titleFormatter
 	 */
@@ -69,14 +69,14 @@ class PageHistoryHandler extends SimpleHandler {
 		RevisionStore $revisionStore,
 		NameTableStoreFactory $nameTableStoreFactory,
 		GroupPermissionsLookup $groupPermissionsLookup,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		PageLookup $pageLookup,
 		TitleFormatter $titleFormatter
 	) {
 		$this->revisionStore = $revisionStore;
 		$this->changeTagDefStore = $nameTableStoreFactory->getChangeTagDef();
 		$this->groupPermissionsLookup = $groupPermissionsLookup;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->pageLookup = $pageLookup;
 		$this->titleFormatter = $titleFormatter;
 	}
@@ -198,7 +198,7 @@ class PageHistoryHandler extends SimpleHandler {
 	 * @return IResultWrapper|bool the results, or false if no query was executed
 	 */
 	private function getDbResults( ExistingPageRecord $page, array $params, $relativeRevId, $ts, $tagIds ) {
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 		$revQuery = $this->revisionStore->getQueryInfo();
 		$cond = [
 			'rev_page' => $page->getId()

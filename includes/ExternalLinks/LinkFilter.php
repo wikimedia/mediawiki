@@ -217,6 +217,30 @@ class LinkFilter {
 		}
 	}
 
+	public static function reverseIndexe( $domainIndex ) {
+		$bits = wfParseUrl( $domainIndex );
+		if ( !$bits ) {
+			return '';
+		}
+
+		// Reverse the labels in the hostname, convert to lower case, unless it's an IP.
+		// For emails turn it into "domain.reversed@localpart"
+		if ( $bits['scheme'] == 'mailto' ) {
+			$mailparts = explode( '@', $bits['host'], 2 );
+			if ( count( $mailparts ) === 2 ) {
+				$domainpart = rtrim( self::indexifyHost( $mailparts[1] ), '.' );
+			} else {
+				// No @, assume it's a local part with no domain
+				$domainpart = '';
+			}
+			$bits['host'] = $mailparts[0] . '@' . $domainpart;
+		} else {
+			$bits['host'] = rtrim( self::indexifyHost( $bits['host'] ), '.' );
+		}
+
+		return $bits['scheme'] . $bits['delimiter'] . $bits['host'];
+	}
+
 	/**
 	 * Return query conditions which will match the specified string. There are
 	 * several kinds of filter entry:
@@ -246,6 +270,12 @@ class LinkFilter {
 	 *  el_index_60 field, check whether key 'el_index_60' is set.
 	 */
 	public static function getQueryConditions( $filterEntry, array $options = [] ) {
+		$migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::ExternalLinksSchemaMigrationStage
+		);
+		if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+			return self::getQueryConditionsOld( $filterEntry, $options );
+		}
 		$options += [
 			'protocol' => 'http://',
 			'oneWildcard' => false,
@@ -256,6 +286,52 @@ class LinkFilter {
 		$like = self::makeLikeArray( $filterEntry, $options['protocol'] );
 		if ( $like === false ) {
 			return $like;
+		}
+		[ $likeDomain, $likePath ] = $like;
+
+		// Get the constant prefix (i.e. everything up to the first wildcard)
+		$trimmedlikeDomain = self::keepOneWildcard( $likeDomain );
+		$trimmedlikePath = self::keepOneWildcard( $likePath );
+		if ( $trimmedlikeDomain[count( $trimmedlikeDomain ) - 1] instanceof LikeMatch ) {
+			array_pop( $trimmedlikeDomain );
+		}
+		if ( $trimmedlikePath[count( $trimmedlikePath ) - 1] instanceof LikeMatch ) {
+			array_pop( $trimmedlikePath );
+		}
+		$db = $options['db'] ?: wfGetDB( DB_REPLICA );
+		$index1 = implode( '', $trimmedlikeDomain );
+		$index2 = implode( '', $trimmedlikePath );
+
+		return [
+			"el_to_domain_index" . $db->buildLike( $index1, $db->anyString() ),
+			"el_to_path" . $db->buildLike( $index2, $db->anyString() ),
+		];
+	}
+
+	private static function getQueryConditionsOld( $filterEntry, array $options = [] ) {
+		$options += [
+			'protocol' => 'http://',
+			'oneWildcard' => false,
+			'db' => null,
+		];
+
+		// First, get the like array
+		$like = self::makeLikeArray( $filterEntry, $options['protocol'] );
+		if ( $like === false ) {
+			return $like;
+		}
+
+		$like = array_merge( $like[0], $like[1] );
+		// Fix very specific case of domain having a wild card and path being empty
+		// leading to LIKE com.example.%/%
+		if (
+			$like[count( $like ) - 1] instanceof LikeMatch &&
+			$like[count( $like ) - 3] instanceof LikeMatch &&
+			$like[count( $like ) - 2] == '/'
+		) {
+			array_pop( $like );
+			// @phan-suppress-next-line PhanPluginDuplicateAdjacentStatement This will be removed soon
+			array_pop( $like );
 		}
 
 		// Get the constant prefix (i.e. everything up to the first wildcard)
@@ -333,7 +409,8 @@ class LinkFilter {
 	 */
 	public static function makeLikeArray( $filterEntry, $protocol = 'http://' ) {
 		$db = wfGetDB( DB_REPLICA );
-		$like = [];
+		$likeDomain = [];
+		$likePath = [];
 
 		$target = $protocol . $filterEntry;
 		$bits = wfParseUrl( $target );
@@ -361,40 +438,36 @@ class LinkFilter {
 			}
 		}
 
-		$like[] = $bits['scheme'] . $bits['delimiter'] . $bits['host'];
+		$likeDomain[] = $bits['scheme'] . $bits['delimiter'] . $bits['host'];
 
 		if ( $subdomains ) {
-			$like[] = $db->anyString();
+			$likeDomain[] = $db->anyString();
 		}
 
 		if ( isset( $bits['port'] ) ) {
-			$like[] = ':' . $bits['port'];
+			$likeDomain[] = ':' . $bits['port'];
 		}
 		if ( isset( $bits['path'] ) ) {
-			$like[] = $bits['path'];
-		} elseif ( !$subdomains ) {
-			$like[] = '/';
+			$likePath[] = $bits['path'];
+		} else {
+			$likePath[] = '/';
 		}
 		if ( isset( $bits['query'] ) ) {
-			$like[] = '?' . $bits['query'];
+			$likePath[] = '?' . $bits['query'];
 		}
 		if ( isset( $bits['fragment'] ) ) {
-			$like[] = '#' . $bits['fragment'];
+			$likePath[] = '#' . $bits['fragment'];
 		}
+		$likePath[] = $db->anyString();
 
 		// Check for stray asterisks: asterisk only allowed at the start of the domain
-		foreach ( $like as $likepart ) {
+		foreach ( array_merge( $likeDomain, $likePath ) as $likepart ) {
 			if ( !( $likepart instanceof LikeMatch ) && strpos( $likepart, '*' ) !== false ) {
 				return false;
 			}
 		}
 
-		if ( !( $like[count( $like ) - 1] instanceof LikeMatch ) ) {
-			// Add wildcard at the end if there isn't one already
-			$like[] = $db->anyString();
-		}
-
-		return $like;
+		return [ $likeDomain, $likePath ];
 	}
 
 	/**
