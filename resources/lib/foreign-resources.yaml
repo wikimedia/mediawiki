@@ -462,6 +462,20 @@ vuex:
     package/dist/vuex.global.js:
     package/dist/vuex.global.prod.js:
 
+pinia:
+  license: MIT
+  homepage: https://pinia.vuejs.org/
+  version: 2.0.16
+  type: tar
+  src: https://registry.npmjs.org/pinia/-/pinia-2.0.16.tgz
+  integrity: sha512-9/LMVO+/epny1NBfC77vnps4g3JRezxhhoF1xLUk8mZkUIxVnwfEAIRiAX8mYBTD/KCwZqnDMqXc8w3eU0FQGg==
+
+  dest:
+    package/README.md:
+    package/LICENSE:
+    package/dist/pinia.iife.js:
+    package/dist/pinia.iife.prod.js:
+
 wvui:
   license: GPL-2.0+
   homepage: https://gerrit.wikimedia.org/r/plugins/gitiles/wvui
