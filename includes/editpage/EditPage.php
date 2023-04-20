@@ -1900,11 +1900,11 @@ class EditPage implements IEditObject {
 			$content = $converted;
 		}
 
-		$parserOptions = ParserOptions::newFromUser( $this->getUserForPreview() );
 		return MediaWikiServices::getInstance()->getContentTransformer()->preloadTransform(
 			$content,
 			$title,
-			$parserOptions,
+			// The preload transformations don't depend on the user anyway
+			ParserOptions::newFromAnon(),
 			$params
 		);
 	}
