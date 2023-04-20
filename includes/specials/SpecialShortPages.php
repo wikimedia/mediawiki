@@ -29,6 +29,7 @@ use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 /**
  * SpecialShortpages extends QueryPage. It is used to return the shortest
@@ -136,7 +137,7 @@ class SpecialShortPages extends QueryPage {
 				$join_conds
 			);
 			// phpcs:ignore MediaWiki.Usage.DbrQueryUsage.DbrQueryFound
-			$res = $dbr->query( $sql, $fname );
+			$res = $dbr->query( $sql, $fname, ISQLPlatform::QUERY_CHANGE_NONE );
 		}
 
 		return $res;
