@@ -763,7 +763,6 @@ class MediaWiki {
 				);
 				$options = [ 'prefix' => '' ];
 				$request->response()->setCookie( 'UseDC', 'master', $expires, $options );
-				$request->response()->setCookie( 'UseCDNCache', 'false', $expires, $options );
 			}
 
 			// Avoid letting a few seconds of replica DB lag cause a month of stale data.
