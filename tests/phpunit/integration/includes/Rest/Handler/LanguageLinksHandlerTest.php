@@ -57,7 +57,7 @@ class LanguageLinksHandlerTest extends \MediaWikiIntegrationTestCase {
 		$titleCodec = $this->getDummyMediaWikiTitleCodec();
 
 		return new LanguageLinksHandler(
-			$this->getServiceContainer()->getDBLoadBalancer(),
+			$this->getServiceContainer()->getDBLoadBalancerFactory(),
 			$languageNameUtils,
 			$titleCodec,
 			$titleCodec,

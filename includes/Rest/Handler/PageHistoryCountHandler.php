@@ -21,7 +21,7 @@ use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
 use Wikimedia\Message\ScalarParam;
 use Wikimedia\ParamValidator\ParamValidator;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Handler class for Core REST API endpoints that perform operations on revisions
@@ -56,8 +56,8 @@ class PageHistoryCountHandler extends SimpleHandler {
 	/** @var GroupPermissionsLookup */
 	private $groupPermissionsLookup;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var PageLookup */
 	private $pageLookup;
@@ -84,7 +84,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * @param RevisionStore $revisionStore
 	 * @param NameTableStoreFactory $nameTableStoreFactory
 	 * @param GroupPermissionsLookup $groupPermissionsLookup
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param WANObjectCache $cache
 	 * @param PageLookup $pageLookup
 	 * @param ActorMigration $actorMigration
@@ -94,7 +94,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 		RevisionStore $revisionStore,
 		NameTableStoreFactory $nameTableStoreFactory,
 		GroupPermissionsLookup $groupPermissionsLookup,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		WANObjectCache $cache,
 		PageLookup $pageLookup,
 		ActorMigration $actorMigration,
@@ -103,7 +103,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 		$this->revisionStore = $revisionStore;
 		$this->changeTagDefStore = $nameTableStoreFactory->getChangeTagDef();
 		$this->groupPermissionsLookup = $groupPermissionsLookup;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->cache = $cache;
 		$this->pageLookup = $pageLookup;
 		$this->actorMigration = $actorMigration;
@@ -364,7 +364,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * @return int|null
 	 */
 	private function loggingTableTime( $pageId ) {
-		$res = $this->loadBalancer->getConnection( DB_REPLICA )->newSelectQueryBuilder()
+		$res = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
 			->select( 'MAX(log_timestamp)' )
 			->from( 'logging' )
 			->where( [ 'log_page' => $pageId ] )
@@ -444,7 +444,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * @return int the count
 	 */
 	protected function getAnonCount( $pageId, RevisionRecord $fromRev = null ) {
-		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 		$queryBuilder = $dbr->newSelectQueryBuilder()
 			->select( '1' )
 			->from( 'revision' )
@@ -473,7 +473,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * @return int the count
 	 */
 	protected function getBotCount( $pageId, RevisionRecord $fromRev = null ) {
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 
 		$revQuery = $this->actorMigration->getJoin( 'rev_user' );
 
@@ -548,7 +548,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 			return 0;
 		}
 
-		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 		$queryBuilder = $dbr->newSelectQueryBuilder()
 			->select( '1' )
 			->from( 'revision' )
@@ -577,7 +577,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * @return int the count
 	 */
 	protected function getMinorCount( $pageId, RevisionRecord $fromRev = null ) {
-		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 		$queryBuilder = $dbr->newSelectQueryBuilder()
 			->select( '1' )
 			->from( 'revision' )

@@ -6,7 +6,7 @@
 			"RevisionStore",
 			"NameTableStoreFactory",
 			"GroupPermissionsLookup",
-			"DBLoadBalancer",
+			"DBLoadBalancerFactory",
 			"PageStore",
 			"TitleFormatter"
 		]
@@ -18,7 +18,7 @@
 			"RevisionStore",
 			"NameTableStoreFactory",
 			"GroupPermissionsLookup",
-			"DBLoadBalancer",
+			"DBLoadBalancerFactory",
 			"MainWANObjectCache",
 			"PageStore",
 			"ActorMigration",
@@ -99,7 +99,7 @@
 		"path": "/v1/page/{title}/links/language",
 		"class": "MediaWiki\\Rest\\Handler\\LanguageLinksHandler",
 		"services": [
-			"DBLoadBalancer",
+			"DBLoadBalancerFactory",
 			"LanguageNameUtils",
 			"TitleFormatter",
 			"TitleParser",
