@@ -213,7 +213,8 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 		$options += [ 'found' => true ];
 
 		$indexes = LinkFilter::makeIndexes( $url );
-		$likeArray = LinkFilter::makeLikeArray( $pattern, $protocol );
+		$likeArrays = LinkFilter::makeLikeArray( $pattern, $protocol );
+		$likeArray = array_merge( $likeArrays[0], $likeArrays[1] );
 
 		$this->assertTrue( $likeArray !== false,
 			"LinkFilter::makeLikeArray('$pattern', '$protocol') returned false on a valid pattern"
@@ -389,10 +390,109 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @dataProvider provideReverseIndexes()
+	 * @covers LinkFilter::reverseIndexe
+	 */
+	public function testReverseIndex( $url, $expected ) {
+		// Set global so file:// tests can work
+		$this->overrideConfigValue(
+			MainConfigNames::UrlProtocols, [
+			'http://',
+			'https://',
+			'mailto:',
+			'//',
+			'file://', # Non-default
+		] );
+
+		$index = LinkFilter::reverseIndexe( $url );
+		$this->assertEquals( $expected, $index, "LinkFilter::reverseIndexe(\"$url\")" );
+	}
+
+	public static function provideReverseIndexes() {
+		return [
+			// Testcase for T30627
+			[
+				'https://org.example./test.cgi?id=12345',
+				'https://example.org'
+			],
+			[
+				// mailtos are handled special
+				'mailto:wiki@org.wikimedia.',
+				'mailto:wiki@wikimedia.org'
+			],
+			[
+				// mailtos are handled special
+				'mailto:wiki',
+				'mailto:wiki@'
+			],
+
+			// file URL cases per T30627...
+			[
+				// three slashes: local filesystem path Unix-style
+				'file:///whatever/you/like.txt',
+				'file://'
+			],
+			[
+				// three slashes: local filesystem path Windows-style
+				'file:///c:/whatever/you/like.txt',
+				'file://'
+			],
+			[
+				// two slashes: UNC filesystem path Windows-style
+				'file://intranet/whatever/you/like.txt',
+				'file://intranet'
+			],
+			// Multiple-slash cases that can sorta work on Mozilla
+			// if you hack it just right are kinda pathological,
+			// and unreliable cross-platform or on IE which means they're
+			// unlikely to appear on intranets.
+			// Those will survive the algorithm but with results that
+			// are less consistent.
+
+			// protocol-relative URL cases per T31854...
+			[
+				'//org.example/test.cgi?id=12345',
+				'//example.org'
+			],
+
+			// IP addresses
+			[
+				'http://192.0.2.0/foo',
+				'http://V4.192.0.2.0'
+			],
+			[
+				'http://192.0.0002.0/foo',
+				'http://V4.192.0.2.0'
+			],
+			[
+				'http://[2001:db8::1]/foo',
+				'http://V6.2001.DB8.0.0.0.0.0.1'
+			],
+
+			// Explicit specification of the DNS root
+			[
+				'http://com.example./foo',
+				'http://example.com'
+			],
+			[
+				'http://192.0.2.0./foo',
+				'http://V4.192.0.2.0'
+			],
+
+			// Weird edge case
+			[
+				'http://com.example../foo',
+				'http://.example.com'
+			],
+		];
+	}
+
+	/**
 	 * @dataProvider provideGetQueryConditions
 	 * @covers LinkFilter::getQueryConditions
 	 */
 	public function testGetQueryConditions( $query, $options, $expected ) {
+		$this->overrideConfigValue( MainConfigNames::ExternalLinksSchemaMigrationStage, SCHEMA_COMPAT_OLD );
 		$conds = LinkFilter::getQueryConditions( $query, $options );
 		$this->assertEquals( $expected, $conds );
 	}
@@ -465,4 +565,81 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 		];
 	}
 
+	/**
+	 * @dataProvider provideGetQueryConditionsReadNew
+	 * @covers LinkFilter::getQueryConditions
+	 */
+	public function testGetQueryConditionsReadNew( $query, $options, $expected ) {
+		$this->overrideConfigValue( MainConfigNames::ExternalLinksSchemaMigrationStage, SCHEMA_COMPAT_NEW );
+		$conds = LinkFilter::getQueryConditions( $query, $options );
+		$this->assertEquals( $expected, $conds );
+	}
+
+	public static function provideGetQueryConditionsReadNew() {
+		return [
+			'Basic example' => [
+				'example.com',
+				[],
+				[
+					'el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' ',
+					'el_to_path LIKE \'/%\' ESCAPE \'`\' ',
+				],
+			],
+			'Basic example with path' => [
+				'example.com/foobar',
+				[],
+				[
+					'el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' ',
+					'el_to_path LIKE \'/foobar%\' ESCAPE \'`\' ',
+				],
+			],
+			'Wildcard domain' => [
+				'*.example.com',
+				[],
+				[
+					'el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' ',
+					'el_to_path LIKE \'/%\' ESCAPE \'`\' ',
+				],
+			],
+			'Wildcard domain with path' => [
+				'*.example.com/foobar',
+				[],
+				[
+					'el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' ',
+					'el_to_path LIKE \'/foobar%\' ESCAPE \'`\' ',
+				],
+			],
+			'Wildcard domain with path, oneWildcard=true' => [
+				'*.example.com/foobar',
+				[ 'oneWildcard' => true ],
+				[
+					'el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' ',
+					'el_to_path LIKE \'/foobar%\' ESCAPE \'`\' ',
+				],
+			],
+			'Constant prefix' => [
+				'example.com/blah/blah/blah/blah/blah/blah/blah/blah/blah/blah?foo=',
+				[],
+				[
+					'el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' ',
+					'el_to_path LIKE ' .
+					'\'/blah/blah/blah/blah/blah/blah/blah/blah/blah/blah?foo=%\' ' .
+					'ESCAPE \'`\' ',
+				],
+			],
+			'Bad protocol' => [
+				'test/',
+				[ 'protocol' => 'invalid://' ],
+				false
+			],
+			'Various options' => [
+				'example.com',
+				[ 'protocol' => 'https://' ],
+				[
+					"el_to_domain_index LIKE 'https://com.example.%' ESCAPE '`' ",
+					"el_to_path LIKE '/%' ESCAPE '`' ",
+				],
+			],
+		];
+	}
 }
