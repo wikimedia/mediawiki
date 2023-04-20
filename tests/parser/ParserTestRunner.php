@@ -1203,6 +1203,10 @@ class ParserTestRunner {
 			$testName = $t->testName;
 			$fail = $t->knownFailures[$isLegacy ? 'legacy' : 'wt2html'] ?? null;
 			$html = $isLegacy ? $t->legacyHtml : $t->parsoidHtml;
+			if ( $isLegacy && $fail === null ) {
+				$fail = $t->knownFailures['metadata'] ?? null;
+				$html = self::getLegacyMetadataSection( $t );
+			}
 			if ( $testName !== null && $fail !== null && $html !== null ) {
 				$exp = '/(!!\s*test\s*' .
 					preg_quote( $testName, '/' ) .
@@ -1474,12 +1478,17 @@ class ParserTestRunner {
 		}
 
 		$testResult = new ParserTestResult( $test, $mode, $expected, $out );
-		if ( $testResult->isSuccess() && $metadataExpected !== null ) {
-			$testResult = new ParserTestResult( $test, $mode, $metadataExpected, $metadataActual ?? '' );
-		}
 
 		if ( $this->options['update-tests'] && !$testResult->isSuccess() ) {
 			$test->knownFailures["$mode"] = $rawOut;
+		}
+
+		if ( $testResult->isSuccess() && $metadataExpected !== null ) {
+			$testResult = new ParserTestResult( $test, $mode, $metadataExpected, $metadataActual ?? '' );
+
+			if ( $this->options['update-tests'] && !$testResult->isSuccess() ) {
+				$test->knownFailures['metadata'] = $metadataActual;
+			}
 		}
 
 		return $testResult;
