@@ -2719,10 +2719,23 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$this->assertHasConnectionHandle();
 
+		if ( $this->csmError ) {
+			// Since the session state is corrupt, we cannot just rollback the transaction
+			// while preserving the non-transaction session state. The handle will remain
+			// marked as corrupt until flushSession() is called to reset the connection
+			// and deal with any remaining callbacks.
+			$this->logger->info(
+				"$fname: acknowledged client-side transaction loss on {db_server}",
+				$this->getLogContext()
+			);
+
+			return;
+		}
+
 		$cs = $this->commenceCriticalSection( __METHOD__ );
 		$sql = $this->platform->rollbackSqlText();
 		if ( $this->trxLevel() ) {
-			# Disconnects cause rollback anyway, so ignore those errors
+			// Disconnects cause rollback anyway, so ignore those errors
 			$this->query( $sql, $fname, self::QUERY_SILENCE_ERRORS | self::QUERY_CHANGE_TRX );
 		}
 		$this->transactionManager->onRollback( $this );
@@ -2744,14 +2757,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function flushSession( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
-		if ( $this->trxLevel() ) {
-			// Any existing transaction should have been rolled back already
-			throw new DBUnexpectedError(
-				$this,
-				"$fname: transaction still in progress (not yet rolled back)"
-			);
-		}
-
 		if (
 			$flush !== self::FLUSHING_INTERNAL &&
 			$flush !== self::FLUSHING_ALL_PEERS &&
@@ -2763,12 +2768,35 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			);
 		}
 
-		// If the session state was already lost due to either an unacknowledged session
-		// state loss error (e.g. dropped connection) or an explicit connection close call,
-		// then there is nothing to do here. Note that such cases, even temporary tables and
-		// server-side config variables are lost (the invocation of this method is assumed to
-		// imply that such losses are tolerable).
+		if ( $this->csmError ) {
+			// If a critical section error occurred, such as Excimer timeout exceptions raised
+			// before a query response was marshalled, destroy the connection handle and reset
+			// the session state tracking variables. The value of trxLevel() is irrelevant here,
+			// and, in fact, might be 1 due to rollback() deferring critical section recovery.
+			$this->logger->info(
+				"$fname: acknowledged client-side session loss on {db_server}",
+				$this->getLogContext()
+			);
+			$this->clearCriticalSectionError();
+			$this->replaceLostConnection( 2048, __METHOD__ );
+
+			return;
+		}
+
+		if ( $this->trxLevel() ) {
+			// Any existing transaction should have been rolled back already
+			throw new DBUnexpectedError(
+				$this,
+				"$fname: transaction still in progress (not yet rolled back)"
+			);
+		}
+
 		if ( $this->transactionManager->sessionStatus() <= TransactionManager::STATUS_SESS_ERROR ) {
+			// If the session state was already lost due to either an unacknowledged session
+			// state loss error (e.g. dropped connection) or an explicit connection close call,
+			// then there is nothing to do here. Note that in such cases, even temporary tables
+			// and server-side config variables are lost (invocation of this method is assumed
+			// to imply that such losses are tolerable).
 			$this->logger->info(
 				"$fname: acknowledged server-side session loss on {db_server}",
 				$this->getLogContext()
@@ -3440,6 +3468,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $trxError ) {
 			$this->transactionManager->setTransactionError( $trxError );
 		}
+	}
+
+	/**
+	 * Clear any current critical section and error information for recovery
+	 *
+	 * @since 1.41
+	 * @return void
+	 */
+	protected function clearCriticalSectionError() {
+		$this->csmError = null;
+		$this->csmFname = null;
 	}
 
 	public function __toString() {
