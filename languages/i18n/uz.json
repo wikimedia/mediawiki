@@ -522,7 +522,7 @@
 	"titleprotectedwarning": "<strong>Ogohlantirish: Bu sahifa himoyalangan boʻlib, uni yaratish uchun [[Special:ListGroupRights|muayyan huquqlar]] talab etiladi.</strong>\nQuyida himoyalash jurnalidagi oxirgi qayd keltirilgan:",
 	"templatesused": "Bu sahifada foydalanilgan {{PLURAL:$1|andoza|andozalar}}:",
 	"templatesusedpreview": "Bu sahifada foydalanilgan {{PLURAL:$1|andoza|andozalar}}:",
-	"templatesusedsection": "Ushbu bo'limda foydalanilgan {{PLURAL:$1|andoza|andozalar}}:",
+	"templatesusedsection": "Bu boʻlimda foydalanilgan {{PLURAL:$1|andoza|andozalar}}:",
 	"template-protected": "(himoyalangan)",
 	"template-semiprotected": "(yarim himoyalangan)",
 	"hiddencategories": "Ushbu sahifa {{PLURAL:$1|1 yashirin turkum|$1 yashirin turkumlar}}ga kiradi:",

@@ -3746,7 +3746,7 @@
 	"feedback-thanks-title": "Tack!",
 	"feedback-useragent": "Användaragent:",
 	"searchsuggest-search": "Sök på {{SITENAME}}",
-	"searchsuggest-containing": "Sökningar som innehåller",
+	"searchsuggest-containing": "Sök efter sidor som innehåller",
 	"search-match-redirect-label": "Gå till exakt matchning vid sökning",
 	"search-match-redirect-help": "Markera detta för att gå till en sida när sidtiteln matchar det du har sökt efter",
 	"search-thumbnail-extra-namespaces-label": "Visa miniatyrer i Special:Search på datorer",
