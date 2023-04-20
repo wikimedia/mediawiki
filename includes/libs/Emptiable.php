@@ -1,5 +1,5 @@
 <?php
-namespace MediaWiki;
+namespace MediaWiki\Libs;
 
 /**
  * An interface to check for emptiness of an object
@@ -13,3 +13,5 @@ interface Emptiable {
 	public function isEmpty();
 
 }
+
+class_alias( Emptiable::class, 'MediaWiki\\Emptiable' );
