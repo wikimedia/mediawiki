@@ -977,5 +977,12 @@
 	"pagelang-reason": "အ​ကြောင်း​ပြ​ချက်",
 	"pagelang-submit": "တင်သွင်းပါ",
 	"special-tab-contribute-short": "ပံ့ပိုးရေ",
-	"special-tab-contributions-short": "ထောက်ပံ့မှုတိကို ကြေ့ပါ"
+	"special-tab-contributions-short": "ထောက်ပံ့မှုတိကို ကြေ့ပါ",
+	"blockedtext-made-by": "ဘလောက်ကို $1နန့် ပြုလုပ်ခရေ။",
+	"blockedtext-reason-comment": "ပီးထားရေ အကြောင်းပြချက်မှာ <em>$1</em> ဖြစ်ရေ။",
+	"blockedtext-start-time": "ပိတ်ဆို့ခြင်းဧအစ- $1",
+	"blockedtext-expiration-time": "ဘလောက်ဧသက်တမ်းကုန်ဆုံးခြင်း- $1",
+	"blockedtext-intended-blockee": "ရည်ရွယ်ထားရေ blockee- $1",
+	"blockedtext-contact-blocker-admin": "ပိတ်ဆို့ခြင်းကို ဆွီးနွီးရန် မင်းစွာ $1 သို့မဟုတ် အခြား [[{{MediaWiki:Grouppage-sysop}}|စီမံခန့်ခွဲသူ]] ကို ဆက်သွယ်နိုင်ပါရေ။",
+	"blockedtext-include-details-queries": "မင်းမီးသမျှမေးခွန်းတိတွင် အထက်မှာပြထားရေ အသေးစိတ်အချက်တိ အားလုံးကို ထည့်သွင်းပါ။"
 }

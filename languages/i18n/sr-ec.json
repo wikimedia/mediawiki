@@ -4164,6 +4164,7 @@
 	"renameuser-page-exists": "Страница $1 већ постоји и не може се заменити.",
 	"renameuser-page-moved": "Страница $1 је премештена на $2.",
 	"renameuser-page-unmoved": "Страница $1 не може да се премести на $2.",
+	"renameuser-warning-currentblock": "Овај корисник је [$1 тренутно блокиран].",
 	"log-name-renameuser": "Дневник преименовања корисника",
 	"log-description-renameuser": "Испод је списак преименованих корисника.",
 	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|преименовао|преименовала}} је {{GENDER:$7|корисника|корисницу}} $4 (са {{PLURAL:$6|$6 изменом|$6 измене|$6 измена}}) у $5",

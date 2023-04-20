@@ -14,7 +14,8 @@
 			"Paxt",
 			"Seb35",
 			"Tchoř",
-			"아라"
+			"아라",
+			"AlesFiala2002"
 		]
 	},
 	"config-desc": "Instalační program pro MediaWiki",
@@ -61,6 +62,7 @@
 	"config-env-good": "Prostředí bylo zkontrolováno.\nMůžete nainstalovat MediaWiki.",
 	"config-env-bad": "Prostředí bylo zkontrolováno.\nMediaWiki nelze nainstalovat.",
 	"config-env-php": "Je nainstalováno PHP $1.",
+	"config-env-icu": "Je nainstalována ICU $1 (podporuje Unicode $2).",
 	"config-no-db": "Nepodařilo se nalézt vhodný databázový ovladač! Musíte nainstalovat databázový ovladač pro PHP.\n{{PLURAL:$2|Je podporován následující typ databáze|Jsou podporovány následující typy databází}}: $1.\n\nPokud jste si PHP přeložili sami, překonfigurujte ho se zapnutým databázovým klientem, například pomocí <code>./configure --with-mysqli</code>.\nPokud jste PHP nainstalovali z balíčku Debian či Ubuntu, potřebujete nainstalovat také modul <code>php-mysql</code>.",
 	"config-outdated-sqlite": "<strong>Upozornění:</strong> Máte SQLite $2, které je starší než minimálně vyžadovaná verze $1. SQLite nebude dostupné.",
 	"config-no-fts3": "<strong>Upozornění:</strong> SQLite bylo přeloženo bez [//sqlite.org/fts3.html modulu FTS3], funkce pro vyhledávání zde nebudou dostupné.",
@@ -313,10 +315,12 @@
 	"config-nofile": "Soubor „$1“ nelze nalézt. Byl smazán?",
 	"config-extension-link": "Věděli jste, že vaše wiki podporuje [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions rozšíření]?\n\nMůžete si prohlédnout [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category seznam rozšíření po kategoriích].",
 	"config-skins-screenshots": "$1 (snímky obrazovky: $2)",
+	"config-skins-screenshot": "$1 ($2)",
 	"config-extensions-requires": "$1 (vyžaduje $2)",
 	"config-screenshot": "snímek obrazovky",
 	"config-extension-not-found": "Nepodařilo se najít registrační soubor pro rozšíření „$1“",
 	"config-extension-dependency": "Při instalaci rozšíření „$1“ nastala chyba závislostí: $2",
+	"config-ext-skins-more-info": "více informací",
 	"mainpagetext": "<strong>MediaWiki byla úspěšně nainstalována.</strong>",
 	"mainpagedocfooter": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Uživatelská příručka] vám napoví, jak používat MediaWiki.\n\n== Začínáme ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Nastavení konfigurace]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Často kladené otázky o MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ E-mailová konference oznámení MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Překlad MediaWiki do vašeho jazyka]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Naučte se bojovat se spamem na vaší wiki]"
 }
