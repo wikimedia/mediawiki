@@ -4071,6 +4071,7 @@
 	"skin-action-undelete": "Meestere",
 	"skin-action-delete": "Bestere",
 	"skin-action-move": "Bıkırışe",
+	"blockedtext-block-ip": "Adresa IPyiya şımaya nıkayêne $1a.",
 	"renameuser": "Karberi newe ra name ke",
 	"renameuser-linkoncontribs": "{{GENDER:$1|karberi}} reyna name ke",
 	"renameuser-linkoncontribs-text": "Nê {{GENDER:$1|karberi}} reyna name kerê",
