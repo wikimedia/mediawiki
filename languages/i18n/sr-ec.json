@@ -3073,7 +3073,7 @@
 	"pageinfo-subpages-value": "$1 ($2 {{PLURAL:$2|преусмерење|преусмерења|преусмерења}}; $3 {{PLURAL:$3|непреусмерење|непреусмерења|непреусмерења}})",
 	"pageinfo-firstuser": "Творац странице",
 	"pageinfo-firsttime": "Датум прављења странице",
-	"pageinfo-lastuser": "Последњи уредник",
+	"pageinfo-lastuser": "Последњи {{GENDER:$1|уредник|уредница}}",
 	"pageinfo-lasttime": "Датум најновије измене",
 	"pageinfo-edits": "Укупан број измена",
 	"pageinfo-authors": "Број засебних аутора",
