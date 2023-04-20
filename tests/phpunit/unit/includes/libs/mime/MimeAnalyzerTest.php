@@ -296,4 +296,18 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 
 		$this->assertContains( 'BITMAP', $mediaTypes );
 	}
+
+	public function testGetMediaTypeForNullCase() {
+		$mimeAnalyzer = $this->createMimeAnalyzer();
+
+		// Test case when both $mime and $path are null
+		$this->assertEquals( MEDIATYPE_UNKNOWN, $mimeAnalyzer->getMediaType() );
+	}
+
+	public function testIsMatchingExtension() {
+		$analyzer = $this->createMimeAnalyzer();
+
+		// Passing an unknown MIME type
+		$this->assertNull( $analyzer->isMatchingExtension( 'application/x-custom', 'jpg' ) );
+	}
 }
