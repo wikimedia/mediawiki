@@ -1496,7 +1496,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		// show a preference for thumbnails from namespaces other than NS_FILE,
 		// only when there they're actually configured to be served
-		$thumbNamespaces = $this->config->get( 'ThumbnailNamespaces' );
+		$thumbNamespaces = $this->config->get( MainConfigNames::ThumbnailNamespaces );
 		$thumbNamespacesFormatted = array_combine(
 			$thumbNamespaces,
 			array_map(

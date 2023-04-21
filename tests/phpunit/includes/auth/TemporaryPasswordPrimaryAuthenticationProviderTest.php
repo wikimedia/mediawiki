@@ -2,9 +2,11 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserNameUtils;
+use PasswordFactory;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
@@ -162,7 +164,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		$dbw = wfGetDB( DB_PRIMARY );
 		$config = $this->getServiceContainer()->getMainConfig();
 		// A is unsalted MD5 (thus fast) ... we don't care about security here, this is test only
-		$passwordFactory = new \PasswordFactory( $config->get( 'PasswordConfig' ), 'A' );
+		$passwordFactory = new PasswordFactory( $config->get( MainConfigNames::PasswordConfig ), 'A' );
 
 		$pwhash = $passwordFactory->newFromPlaintext( 'password' )->toString();
 

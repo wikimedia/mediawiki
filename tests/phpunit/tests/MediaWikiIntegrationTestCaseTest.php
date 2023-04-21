@@ -125,13 +125,13 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotSame( $nsInfo2, $nsInfo3, 'Service instances should have been reset' );
 
 		$config = $this->getServiceContainer()->getMainConfig();
-		$this->assertSame( 'TestingSitenameOverride', $config->get( 'Sitename' ) );
+		$this->assertSame( 'TestingSitenameOverride', $config->get( MainConfigNames::Sitename ) );
 		$this->assertSame( 'TestDummyConfigOverride', $config->get( 'TestDummyConfig4556' ) );
 
 		$this->mediaWikiTearDown();
 
 		$config = $this->getServiceContainer()->getMainConfig();
-		$this->assertSame( $oldSitename, $config->get( 'Sitename' ), 'Config variable should have been restored' );
+		$this->assertSame( $oldSitename, $config->get( MainConfigNames::Sitename ), 'Config variable should have been restored' );
 		$this->assertFalse( $config->has( 'TestDummyConfig4556' ), 'Config variable should have been unset' );
 	}
 
