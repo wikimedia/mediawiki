@@ -194,10 +194,10 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			}
 		}
 
-		$this->config->set( 'AuthManagerConfig', $config );
-		$this->config->set( 'LanguageCode', 'en' );
-		$this->config->set( 'NewUserLog', false );
-		$this->config->set( 'RememberMe', RememberMeAuthenticationRequest::CHOOSE_REMEMBER );
+		$this->config->set( MainConfigNames::AuthManagerConfig, $config );
+		$this->config->set( MainConfigNames::LanguageCode, 'en' );
+		$this->config->set( MainConfigNames::NewUserLog, false );
+		$this->config->set( MainConfigNames::RememberMe, RememberMeAuthenticationRequest::CHOOSE_REMEMBER );
 	}
 
 	/**
@@ -272,7 +272,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$this->logger = new \TestLogger();
 		}
 
-		if ( $regen || !$this->config->has( 'AuthManagerConfig' ) ) {
+		if ( $regen || !$this->config->has( MainConfigNames::AuthManagerConfig ) ) {
 			$this->initializeConfig();
 		}
 		$this->manager = new AuthManager(
@@ -307,7 +307,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$this->config = new \HashConfig();
 			$this->initializeConfig();
 		}
-		$this->config->set( 'ObjectCacheSessionExpiry', 100 );
+		$this->config->set( MainConfigNames::ObjectCacheSessionExpiry, 100 );
 
 		$methods[] = '__toString';
 		$methods[] = 'describe';
@@ -325,7 +325,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$provider->method( 'canChangeUser' )
 				->willReturn( $canChangeUser );
 		}
-		$this->config->set( 'SessionProviders', [
+		$this->config->set( MainConfigNames::SessionProviders, [
 			[ 'factory' => static function () use ( $provider ) {
 				return $provider;
 			} ],
@@ -413,8 +413,8 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			} );
 		$this->initializeManager();
 
-		$this->config->set( 'ReauthenticateTime', [] );
-		$this->config->set( 'AllowSecuritySensitiveOperationIfCannotReauthenticate', [] );
+		$this->config->set( MainConfigNames::ReauthenticateTime, [] );
+		$this->config->set( MainConfigNames::AllowSecuritySensitiveOperationIfCannotReauthenticate, [] );
 		$provideUser = new \User;
 		$session = $provider->getManager()->getSessionForRequest( $this->request );
 		$this->assertSame( 0, $session->getUser()->getId() );
@@ -444,7 +444,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		}
 
 		if ( $mutableSession ) {
-			$this->config->set( 'ReauthenticateTime', [
+			$this->config->set( MainConfigNames::ReauthenticateTime, [
 				'test' => 100,
 				'test2' => -1,
 				'default' => 10,
@@ -492,7 +492,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 				AuthManager::SEC_OK, $this->manager->securitySensitiveOperationStatus( 'test' )
 			);
 		} else {
-			$this->config->set( 'AllowSecuritySensitiveOperationIfCannotReauthenticate', [
+			$this->config->set( MainConfigNames::AllowSecuritySensitiveOperationIfCannotReauthenticate, [
 				'test' => false,
 				'default' => true,
 			] );
@@ -710,7 +710,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->primaryauthMocks = [ $mock1, $mock2, $mock3 ];
 		$this->secondaryauthMocks = [];
 		$this->initializeConfig();
-		$config = $this->config->get( 'AuthManagerConfig' );
+		$config = $this->config->get( MainConfigNames::AuthManagerConfig );
 
 		$this->initializeManager( false );
 		$this->assertSame(
@@ -720,7 +720,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 
 		$config['primaryauth']['A']['sort'] = 100;
 		$config['primaryauth']['C']['sort'] = -1;
-		$this->config->set( 'AuthManagerConfig', $config );
+		$this->config->set( MainConfigNames::AuthManagerConfig, $config );
 		$this->initializeManager( false );
 		$this->assertSame(
 			[ 'C' => $mock3, 'B' => $mock2, 'A' => $mock1 ],
@@ -2505,7 +2505,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->initializeManager( true );
 		$this->logger->setCollect( true );
 
-		$this->config->set( 'NewUserLog', true );
+		$this->config->set( MainConfigNames::NewUserLog, true );
 
 		$dbw = wfGetDB( DB_PRIMARY );
 		$maxLogId = $dbw->selectField( 'logging', 'MAX(log_id)', [ 'log_type' => 'newusers' ] );
@@ -3016,7 +3016,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$dbw->selectField( 'logging', 'MAX(log_id)', [ 'log_type' => 'newusers' ] )
 		);
 
-		$this->config->set( 'NewUserLog', true );
+		$this->config->set( MainConfigNames::NewUserLog, true );
 		$session->clear();
 		$username = self::usernameForCreation();
 		$user = \User::newFromName( $username );
