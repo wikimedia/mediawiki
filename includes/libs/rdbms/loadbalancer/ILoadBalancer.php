@@ -111,10 +111,13 @@ namespace Wikimedia\Rdbms;
  * @ingroup Database
  */
 interface ILoadBalancer {
-	/** Request a replica DB connection */
+	/**
+	 * Request a replica DB connection. Can't be used as a binary flag with bitwise operators!
+	 */
 	public const DB_REPLICA = -1;
 	/**
-	 * Request a primary, write-enabled DB connection
+	 * Request a primary, write-enabled DB connection. Can't be used as a binary flag with bitwise
+	 * operators!
 	 * @since 1.36
 	 */
 	public const DB_PRIMARY = -2;
