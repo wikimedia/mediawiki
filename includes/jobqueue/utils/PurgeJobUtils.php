@@ -66,15 +66,12 @@ class PurgeJobUtils {
 				$ticket = $lbFactory->getEmptyTransactionTicket( $fname );
 				$idBatches = array_chunk( $ids, $batchSize );
 				foreach ( $idBatches as $idBatch ) {
-					$dbw->update(
-						'page',
-						[ 'page_touched' => $now ],
-						[
-							'page_id' => $idBatch,
-							'page_touched < ' . $dbw->addQuotes( $now ) // handle races
-						],
-						$fname
-					);
+					$dbw->newUpdateQueryBuilder()
+						->update( 'page' )
+						->set( [ 'page_touched' => $now ] )
+						->where( [ 'page_id' => $idBatch ] )
+						->andWhere( $dbw->buildComparison( '<', [ 'page_touched' => $now ] ) ) // handle races
+						->caller( $fname )->execute();
 					if ( count( $idBatches ) > 1 ) {
 						$lbFactory->commitAndWaitForReplication( $fname, $ticket );
 					}
