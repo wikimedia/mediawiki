@@ -666,16 +666,16 @@ class DatabaseBlock extends AbstractBlock {
 			$this->setExpiry( self::getAutoblockExpiry( $this->getTimestamp() ) );
 
 			$dbw = $this->getDBConnection( DB_PRIMARY );
-			$dbw->update( 'ipblocks',
-				[ /* SET */
-					'ipb_timestamp' => $dbw->timestamp( $this->getTimestamp() ),
-					'ipb_expiry' => $dbw->timestamp( $this->getExpiry() ),
-				],
-				[ /* WHERE */
-					'ipb_id' => $this->getId( $this->getWikiId() ),
-				],
-				__METHOD__
-			);
+			$dbw->newUpdateQueryBuilder()
+				->update( 'ipblocks' )
+				->set(
+					[
+					  'ipb_timestamp' => $dbw->timestamp( $this->getTimestamp() ),
+					  'ipb_expiry' => $dbw->timestamp( $this->getExpiry() ),
+					]
+				)
+				->where( [ 'ipb_id' => $this->getId( $this->getWikiId() ) ] )
+				->caller( __METHOD__ )->execute();
 		}
 	}
 
