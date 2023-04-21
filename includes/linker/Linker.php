@@ -622,7 +622,7 @@ class Linker {
 	 * @param File|false $file
 	 * @param array $frameParams
 	 * @param array $handlerParams
-	 * @param bool $time
+	 * @param bool $time If a file of a certain timestamp was requested
 	 * @param string $query
 	 * @param string[] $classes @since 1.36
 	 * @param Parser|null $parser @since 1.38
@@ -1012,8 +1012,8 @@ class Linker {
 	 * Usage example: Linker::specialLink( 'Recentchanges' )
 	 *
 	 * @since 1.16.3
-	 * @param string $name
-	 * @param string $key
+	 * @param string $name Special page name, can optionally include …/subpages and …?parameters
+	 * @param string $key Optional message key if different from $name
 	 * @return string
 	 */
 	public static function specialLink( $name, $key = '' ) {
@@ -1687,9 +1687,9 @@ class Linker {
 	 * parameter level defines if we are on an indentation level
 	 *
 	 * @since 1.16.3
-	 * @param string $linkAnchor
-	 * @param string $tocline
-	 * @param string $tocnumber
+	 * @param string $linkAnchor Identifier
+	 * @param string $tocline Properly escaped HTML
+	 * @param string $tocnumber Unescaped text
 	 * @param int $level
 	 * @param string|false $sectionIndex
 	 * @return string
