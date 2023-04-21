@@ -31,7 +31,7 @@ use MediaWiki\Title\TitleArray;
 use MWException;
 use ReadOnlyMode;
 use stdClass;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Category objects are immutable, strictly speaking. If you call methods that change the database,
@@ -66,15 +66,15 @@ class Category {
 	public const COUNT_ALL_MEMBERS = 0;
 	public const COUNT_CONTENT_PAGES = 1;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var ReadOnlyMode */
 	private $readOnlyMode;
 
 	private function __construct() {
 		$services = MediaWikiServices::getInstance();
-		$this->loadBalancer = $services->getDBLoadBalancer();
+		$this->dbProvider = $services->getDBLoadBalancerFactory();
 		$this->readOnlyMode = $services->getReadOnlyMode();
 	}
 
@@ -96,7 +96,7 @@ class Category {
 			return true;
 		}
 
-		$row = $this->loadBalancer->getConnectionRef( DB_REPLICA )->newSelectQueryBuilder()
+		$row = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
 			->select( [ 'cat_id', 'cat_title', 'cat_pages', 'cat_subcats', 'cat_files' ] )
 			->from( 'category' )
 			->where( $where )
@@ -323,7 +323,7 @@ class Category {
 	 * @return TitleArray TitleArray object for category members.
 	 */
 	public function getMembers( $limit = false, $offset = '' ) {
-		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 		$queryBuilder = $dbr->newSelectQueryBuilder();
 		$queryBuilder->select( [ 'page_id', 'page_namespace', 'page_title', 'page_len',
 				'page_is_redirect', 'page_latest' ] )
@@ -373,7 +373,7 @@ class Category {
 			return false;
 		}
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
+		$dbw = $this->dbProvider->getPrimaryDatabase();
 		# Avoid excess contention on the same category (T162121)
 		$name = __METHOD__ . ':' . md5( $this->mName );
 		$scopedLock = $dbw->getScopedLockAndFlush( $name, __METHOD__, 0 );
@@ -504,7 +504,7 @@ class Category {
 	 * @since 1.34
 	 */
 	public function refreshCountsIfSmall( $maxSize = self::ROW_COUNT_SMALL ) {
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
+		$dbw = $this->dbProvider->getPrimaryDatabase();
 		$dbw->startAtomic( __METHOD__ );
 
 		$typeOccurances = $dbw->newSelectQueryBuilder()
