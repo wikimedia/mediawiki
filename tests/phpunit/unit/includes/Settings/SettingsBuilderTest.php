@@ -5,6 +5,7 @@ namespace phpunit\unit\includes\Settings;
 use BagOStuff;
 use ExtensionRegistry;
 use InvalidArgumentException;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Settings\Cache\CacheableSource;
 use MediaWiki\Settings\Config\ArrayConfigBuilder;
@@ -373,7 +374,7 @@ class SettingsBuilderTest extends TestCase {
 		$setting->registerHookHandlers( [ $hookName => [ 'strtolower' ] ] );
 
 		$config = $setting->getConfig();
-		$this->assertArrayHasKey( $hookName, $config->get( 'Hooks' ) );
+		$this->assertArrayHasKey( $hookName, $config->get( MainConfigNames::Hooks ) );
 	}
 
 	public function testApplyPurgesState() {

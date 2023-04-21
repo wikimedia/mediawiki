@@ -534,15 +534,15 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 
 		$defaults = [
 			'expire' => (int)100,
-			'path' => $config->get( 'CookiePath' ),
-			'domain' => $config->get( 'CookieDomain' ),
+			'path' => $config->get( MainConfigNames::CookiePath ),
+			'domain' => $config->get( MainConfigNames::CookieDomain ),
 			'secure' => $secure || $forceHTTPS,
-			'httpOnly' => $config->get( 'CookieHttpOnly' ),
+			'httpOnly' => $config->get( MainConfigNames::CookieHttpOnly ),
 			'raw' => false,
 		];
 
-		$normalExpiry = $config->get( 'CookieExpiration' );
-		$extendedExpiry = $config->get( 'ExtendedLoginCookieExpiration' );
+		$normalExpiry = $config->get( MainConfigNames::CookieExpiration );
+		$extendedExpiry = $config->get( MainConfigNames::ExtendedLoginCookieExpiration );
 		$extendedExpiry = (int)( $extendedExpiry ?? 0 );
 		$expect = [
 			'MySessionName' => [

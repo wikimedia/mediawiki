@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\ResourceLoader;
 use Exception;
 use HashConfig;
 use LogicException;
+use MediaWiki\MainConfigNames;
 use MediaWiki\ResourceLoader\FileModule;
 use MediaWiki\ResourceLoader\FilePath;
 use MediaWiki\ResourceLoader\ResourceLoader;
@@ -720,8 +721,8 @@ class FileModuleTest extends ResourceLoaderTestCase {
 						'config.json' => [
 							'type' => 'data',
 							'content' => [
-								'Sitename' => $config->get( 'Sitename' ),
-								'server' => $config->get( 'ServerName' ),
+								'Sitename' => $config->get( MainConfigNames::Sitename ),
+								'server' => $config->get( MainConfigNames::ServerName ),
 							]
 						]
 					],

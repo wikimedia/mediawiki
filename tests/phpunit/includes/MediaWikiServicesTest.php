@@ -3,6 +3,7 @@
 use MediaWiki\Hook\MediaWikiServicesHook;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Services\DestructibleService;
 use Wikimedia\Services\SalvageableService;
@@ -37,7 +38,7 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 		$instance = new MediaWikiServices( $config );
 
 		// Load the default wiring from the specified files.
-		$wiringFiles = $config->get( 'ServiceWiringFiles' );
+		$wiringFiles = $config->get( MainConfigNames::ServiceWiringFiles );
 		$instance->loadWiringFiles( $wiringFiles );
 
 		return $instance;
