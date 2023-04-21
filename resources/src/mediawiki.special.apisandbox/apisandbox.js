@@ -79,8 +79,8 @@
 
 		dropdownWidget: {
 			getApiValue: function () {
-				var item = this.getMenu().findSelectedItem();
-				return item === null ? undefined : item.getData();
+				var selected = this.getMenu().findFirstSelectedItem();
+				return selected ? selected.getData() : undefined;
 			},
 			setApiValue: function ( v ) {
 				if ( v === undefined ) {
@@ -703,10 +703,10 @@
 		 */
 		onFormatDropdownChange: function () {
 			var menu = formatDropdown.getMenu(),
-				items = menu.getItems(),
-				selectedField = menu.findSelectedItem() ? menu.findSelectedItem().getData() : null;
+				selected = menu.findFirstSelectedItem(),
+				selectedField = selected ? selected.getData() : null;
 
-			items.forEach( function ( item ) {
+			menu.getItems().forEach( function ( item ) {
 				item.getData().toggle( item.getData() === selectedField );
 			} );
 		}
