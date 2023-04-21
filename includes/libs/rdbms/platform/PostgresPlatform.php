@@ -20,6 +20,7 @@
 namespace Wikimedia\Rdbms\Platform;
 
 use Wikimedia\Rdbms\DBLanguageError;
+use Wikimedia\Rdbms\Query;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -221,9 +222,9 @@ class PostgresPlatform extends SQLPlatform {
 		return parent::makeUpdateOptionsArray( $options );
 	}
 
-	public function isTransactableQuery( $sql ) {
+	public function isTransactableQuery( Query $sql ) {
 		return parent::isTransactableQuery( $sql ) &&
-			!preg_match( '/^SELECT\s+pg_(try_|)advisory_\w+\(/', $sql );
+			!preg_match( '/^SELECT\s+pg_(try_|)advisory_\w+\(/', $sql->getSQL() );
 	}
 
 	public function lockSQLText( $lockName, $timeout ) {

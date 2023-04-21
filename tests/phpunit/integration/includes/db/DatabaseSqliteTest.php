@@ -4,6 +4,7 @@ use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseSqlite;
+use Wikimedia\Rdbms\Query;
 use Wikimedia\Rdbms\ResultWrapper;
 use Wikimedia\Rdbms\TransactionProfiler;
 
@@ -66,6 +67,9 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 
 		$sqlDump = '';
 		$mock->method( 'query' )->willReturnCallback( static function ( $sql ) use ( &$sqlDump ) {
+			if ( $sql instanceof Query ) {
+				$sql = $sql->getSQL();
+			}
 			$sqlDump .= "$sql;";
 
 			return true;

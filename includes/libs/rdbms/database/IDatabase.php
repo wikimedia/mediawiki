@@ -251,7 +251,7 @@ interface IDatabase extends IReadableDatabase {
 	 * Callers should avoid the use of statements like BEGIN, COMMIT, and ROLLBACK.
 	 * Methods like startAtomic(), endAtomic(), and cancelAtomic() can be used instead.
 	 *
-	 * @param string $sql Single-statement SQL query
+	 * @param string|Query $sql Single-statement SQL query
 	 * @param string $fname Caller name; used for profiling/SHOW PROCESSLIST comments
 	 * @param int $flags Bit field of IDatabase::QUERY_* constants.
 	 * @return bool|IResultWrapper True for a successful write query, IResultWrapper object

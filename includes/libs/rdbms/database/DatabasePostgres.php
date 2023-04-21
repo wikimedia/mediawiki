@@ -1190,7 +1190,8 @@ SQL;
 
 		// https://www.postgresql.org/docs/9.1/functions-admin.html
 		$sql = "pg_advisory_unlock_all()";
-		$qs = $this->executeQuery( $sql, __METHOD__, $flags, $sql );
+		$query = new Query( $sql, $flags, 'UNLOCK' );
+		$qs = $this->executeQuery( $query, __METHOD__, $flags, $sql );
 		if ( $qs->res === false ) {
 			$this->reportQueryError( $qs->message, $qs->code, $sql, $fname, true );
 		}

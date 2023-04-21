@@ -20,6 +20,7 @@
 namespace Wikimedia\Rdbms\Platform;
 
 use Wikimedia\Rdbms\DBLanguageError;
+use Wikimedia\Rdbms\Query;
 
 /**
  * @since 1.39
@@ -101,9 +102,10 @@ class MySQLPlatform extends SQLPlatform {
 		return $sql;
 	}
 
-	public function isTransactableQuery( $sql ) {
+	public function isTransactableQuery( Query $sql ) {
 		return parent::isTransactableQuery( $sql ) &&
-			!preg_match( '/^SELECT\s+(GET|RELEASE|IS_FREE)_LOCK\(/', $sql );
+			// TODO: Use query verb
+			!preg_match( '/^SELECT\s+(GET|RELEASE|IS_FREE)_LOCK\(/', $sql->getSQL() );
 	}
 
 	public function buildExcludedValue( $column ) {
