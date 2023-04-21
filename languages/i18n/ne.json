@@ -3454,6 +3454,7 @@
 	"renameuser-page-moved": "$1 पृष्ठलाई $2मा सारियो।",
 	"renameuser-page-unmoved": "$1 पृष्ठलाई $2 मा सार्न सकिएन ।",
 	"log-name-renameuser": "प्रयोगकर्ता पुन: नामकरण अभिलेख",
+	"log-description-renameuser": "यो प्रयोगकर्ता नामहरूमा परिवर्तनहरूको अभिलेख हो।",
 	"logentry-renameuser-renameuser-legacier": "$1ले प्रयोगकर्ता $4लाई प्रयोगकर्ता {{GENDER:$7|$5}}मा {{GENDER:$2|पुन: नामाकरण}} गर्नुभयो",
 	"renameuser-move-log": "{{GENDER:$2|प्रयोगकर्ता}} \"$1\"लाई \"$2\"मा पुन: नामाकरण गर्दा पृष्ठ स्वचालित रूपमा सारियो"
 }
