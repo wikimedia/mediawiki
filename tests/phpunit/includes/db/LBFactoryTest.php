@@ -27,6 +27,7 @@ use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\LBFactoryMulti;
 use Wikimedia\Rdbms\LBFactorySimple;
@@ -644,7 +645,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$factory->destroy();
 	}
 
-	private function quoteTable( IDatabase $db, $table ) {
+	private function quoteTable( IReadableDatabase $db, $table ) {
 		if ( $db->getType() === 'sqlite' ) {
 			return $table;
 		} else {
