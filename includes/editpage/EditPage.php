@@ -1923,6 +1923,7 @@ class EditPage implements IEditObject {
 			if ( $spName ) {
 				$specialPage = $specialPageFactory->getPage( $spName );
 				if ( $specialPage instanceof SpecialMyLanguage ) {
+					$specialPage->setContext( $this->context );
 					$title = $specialPage->findTitleForTransclusion( $spParam );
 				}
 			}
