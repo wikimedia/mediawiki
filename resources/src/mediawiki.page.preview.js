@@ -441,10 +441,11 @@
 	 */
 	function parseDiffResponse( config, response ) {
 		var diff = response.compare.bodies;
+		var $table = config.$diffNode.find( 'table.diff' );
 
 		if ( diff.main ) {
-			config.$diffNode.find( 'table.diff tbody' ).html( diff.main );
-			mw.hook( 'wikipage.diff' ).fire( config.$diffNode.find( 'table.diff' ) );
+			$table.find( 'tbody' ).html( diff.main );
+			mw.hook( 'wikipage.diff' ).fire( $table );
 		} else {
 			// The diff is empty.
 			var $tableCell = $( '<td>' )
@@ -455,7 +456,7 @@
 						.addClass( 'mw-diff-empty' )
 						.text( mw.msg( 'diff-empty' ) )
 				);
-			config.$diffNode.find( 'table.diff tbody' )
+			$table.find( 'tbody' )
 				.empty()
 				.append(
 					$( '<tr>' ).append( $tableCell )
