@@ -1,0 +1,15 @@
+diff --git a/src/LingoParser.php b/src/LingoParser.php
+index 75271ed..589b0f9 100644
+--- a/src/LingoParser.php
++++ b/src/LingoParser.php
+@@ -177,6 +177,10 @@ class LingoParser {
+ 	 * @param Parser $parser
+ 	 */
+ 	private function realParse( $parser ) {
++		if ( $parser->getOutput() === null ) {
++			return;
++		}
++
+ 		// Parse text identical to options used in includes/api/ApiParse.php
+ 		$params = $this->mApiParams;
+ 		$text = $params === null ? $parser->getOutput()->getText() : $parser->getOutput()->getText( [
