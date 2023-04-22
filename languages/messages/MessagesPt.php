@@ -87,12 +87,18 @@ $namespaceNames = [
 ];
 
 $namespaceAliases = [
-	'Usuário'           => NS_USER,
-	'Usuário_Discussão' => NS_USER_TALK,
-	'Imagem'            => NS_FILE,
-	'Imagem_Discussão'  => NS_FILE_TALK,
-	'Arquivo'           => NS_FILE,
-	'Arquivo_Discussão' => NS_FILE_TALK,
+	'Usuário'                 => NS_USER,
+	'Usuário_Discussão'       => NS_USER_TALK,
+	'Usuária'                 => NS_USER, // T33986
+	'Usuária_Discussão'       => NS_USER_TALK, // T33986
+	'Usuário(a)'              => NS_USER, // T33986
+	'Usuário(a)_Discussão'    => NS_USER_TALK, // T33986
+	'Utilizador(a)'           => NS_USER, // T33986
+	'Utilizador(a)_Discussão' => NS_USER_TALK, // T33986
+	'Imagem'                  => NS_FILE,
+	'Imagem_Discussão'        => NS_FILE_TALK,
+	'Arquivo'                 => NS_FILE,
+	'Arquivo_Discussão'       => NS_FILE_TALK,
 ];
 
 $namespaceGenderAliases = [
