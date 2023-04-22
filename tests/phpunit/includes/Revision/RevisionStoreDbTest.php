@@ -23,6 +23,7 @@ use MediaWiki\Revision\RevisionSlots;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
@@ -2388,6 +2389,15 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			null,
 			[ 'slots' => [] ]
 		];
+		yield 'Ask for only-defined slots' => [
+			[ 'comment' ],
+			static function () {
+				$pageTitle = Title::newFromText( 'Test_New_Revision_From_Batch' );
+				return [ $pageTitle, $pageTitle ];
+			},
+			null,
+			[ 'slots' => [ 'unused' ] ]
+		];
 		yield 'No preload slots or content, multiple pages' => [
 			[ 'comment' ],
 			static function () {
@@ -2437,6 +2447,15 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$otherPageTitle = null,
 		array $options = []
 	) {
+		if ( isset( $options['slots'] ) && in_array( 'unused', $options['slots'] ) ) {
+			$this->getServiceContainer()->addServiceManipulator(
+				'SlotRoleRegistry',
+				static function ( SlotRoleRegistry $registry ) {
+					$registry->defineRoleWithModel( 'unused', CONTENT_MODEL_JSON );
+				}
+			);
+		}
+
 		$page1 = $this->getTestPage();
 		$text = __METHOD__ . 'b-ä';
 		$editStatus = $this->editPage( $page1->getTitle()->getPrefixedDBkey(), $text . '1' );
@@ -2499,6 +2518,15 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$otherPageTitle = null,
 		array $options = []
 	) {
+		if ( isset( $options['slots'] ) && in_array( 'unused', $options['slots'] ) ) {
+			$this->getServiceContainer()->addServiceManipulator(
+				'SlotRoleRegistry',
+				static function ( SlotRoleRegistry $registry ) {
+					$registry->defineRoleWithModel( 'unused', CONTENT_MODEL_JSON );
+				}
+			);
+		}
+
 		[ $title1, $pageIdentity ] = $getPageIdentity();
 		$text1 = __METHOD__ . '-bä';
 		$page1 = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title1 );
