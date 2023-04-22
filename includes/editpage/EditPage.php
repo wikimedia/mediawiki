@@ -946,6 +946,11 @@ class EditPage implements IEditObject {
 			return $this->savedTempUser;
 		} elseif ( $this->unsavedTempUser ) {
 			return $this->unsavedTempUser;
+		} elseif ( $this->firsttime && $this->placeholderTempUser ) {
+			// Mostly a GET request and no temp user was aquired,
+			// but needed for pst or content transform for preview,
+			// fallback to a placeholder for this situation (T330943)
+			return $this->placeholderTempUser;
 		} elseif ( $this->tempUserCreateActive ) {
 			throw new MWException(
 				"Can't use the request user for preview with IP masking enabled" );
