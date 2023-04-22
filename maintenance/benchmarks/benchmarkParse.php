@@ -184,7 +184,7 @@ class BenchmarkParse extends Maintenance {
 		bool &$skip,
 		?RevisionRecord &$revRecord
 	): bool {
-		$title = Title::castFromLinkTarget( $titleTarget );
+		$title = Title::newFromLinkTarget( $titleTarget );
 
 		$pdbk = $title->getPrefixedDBkey();
 		if ( !isset( $this->idCache[$pdbk] ) ) {

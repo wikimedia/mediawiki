@@ -4212,8 +4212,7 @@ class EditPage implements IEditObject {
 				'[[' . $localizer->msg( 'copyrightpage' )->inContentLanguage()->text() . ']]' ];
 		}
 		// Allow for site and per-namespace customization of contribution/copyright notice.
-		$title = Title::castFromPageReference( $page );
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable $title is not null because $page isn't
+		$title = Title::newFromPageReference( $page );
 		Hooks::runner()->onEditPageCopyrightWarning( $title, $copywarnMsg );
 		if ( !$copywarnMsg ) {
 			return '';

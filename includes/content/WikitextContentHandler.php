@@ -343,7 +343,7 @@ class WikitextContentHandler extends TextContentHandler {
 		ParserOutput &$parserOutput
 	) {
 		'@phan-var WikitextContent $content';
-		$title = $this->titleFactory->castFromPageReference( $cpoParams->getPage() );
+		$title = $this->titleFactory->newFromPageReference( $cpoParams->getPage() );
 		$parserOptions = $cpoParams->getParserOptions();
 		$revId = $cpoParams->getRevId();
 
@@ -354,7 +354,6 @@ class WikitextContentHandler extends TextContentHandler {
 			$parser = $this->parserFactory->getInstance();
 		}
 		$parserOutput = $parser
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 			->parse( $text, $title, $parserOptions, true, true, $revId );
 
 		// T330667: Record the fact that we used the value of

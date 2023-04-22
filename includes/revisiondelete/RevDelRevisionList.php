@@ -228,7 +228,7 @@ class RevDelRevisionList extends RevDelList {
 	}
 
 	public function doPreCommitUpdates() {
-		Title::castFromPageIdentity( $this->page )->invalidateCache();
+		Title::newFromPageIdentity( $this->page )->invalidateCache();
 		return Status::newGood();
 	}
 
@@ -239,8 +239,7 @@ class RevDelRevisionList extends RevDelList {
 		);
 		// Extensions that require referencing previous revisions may need this
 		$this->hookRunner->onArticleRevisionVisibilitySet(
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
-			Title::castFromPageIdentity( $this->page ),
+			Title::newFromPageIdentity( $this->page ),
 			$this->ids,
 			$visibilityChangeMap
 		);

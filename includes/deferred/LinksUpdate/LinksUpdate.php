@@ -94,8 +94,7 @@ class LinksUpdate extends DataUpdate {
 	public function __construct( PageIdentity $page, ParserOutput $parserOutput, $recursive = true ) {
 		parent::__construct();
 
-		// @phan-suppress-next-line PhanPossiblyNullTypeMismatchProperty castFrom does not return null here
-		$this->mTitle = Title::castFromPageIdentity( $page );
+		$this->mTitle = Title::newFromPageIdentity( $page );
 		$this->mParserOutput = $parserOutput;
 
 		$this->deprecatePublicProperty( 'mId', '1.38', __CLASS__ );
@@ -352,16 +351,14 @@ class LinksUpdate extends DataUpdate {
 	public static function queueRecursiveJobsForTable(
 		PageIdentity $page, $table, $action = 'LinksUpdate', $userName = 'unknown', ?BacklinkCache $backlinkCache = null
 	) {
-		$title = Title::castFromPageIdentity( $page );
+		$title = Title::newFromPageIdentity( $page );
 		if ( !$backlinkCache ) {
 			wfDeprecatedMsg( __METHOD__ . " needs a BacklinkCache object, null passed", '1.37' );
 			$backlinkCache = MediaWikiServices::getInstance()->getBacklinkCacheFactory()
-				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 				->getBacklinkCache( $title );
 		}
 		if ( $backlinkCache->hasLinks( $table ) ) {
 			$job = new RefreshLinksJob(
-				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 				$title,
 				[
 					'table' => $table,

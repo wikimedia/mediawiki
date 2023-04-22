@@ -74,9 +74,9 @@ class HtmlCacheUpdaterTest extends MediaWikiUnitTestCase {
 	 * @return MockObject|TitleFactory
 	 */
 	private function createTitleFactory() {
-		$factory = $this->createNoOpMock( TitleFactory::class, [ 'castFromPageReference' ] );
+		$factory = $this->createNoOpMock( TitleFactory::class, [ 'newFromPageReference' ] );
 
-		$factory->method( 'castFromPageReference' )->willReturnArgument( 0 );
+		$factory->method( 'newFromPageReference' )->willReturnArgument( 0 );
 
 		return $factory;
 	}

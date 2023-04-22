@@ -1726,18 +1726,18 @@ abstract class ContentHandler {
 		}
 
 		$services = MediaWikiServices::getInstance();
-		$title = $services->getTitleFactory()->castFromPageReference( $cpoParams->getPage() );
+		$title = $services->getTitleFactory()->newFromPageReference( $cpoParams->getPage() );
 		$parserOptions = $cpoParams->getParserOptions();
 
 		if ( $parserOptions->getIsPreview() ) {
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 			$scopedCallback = $parserOptions->setupFakeRevision( $title, $content, $parserOptions->getUserIdentity() );
 		}
 
 		$po = new ParserOutput();
 		$parserOptions->registerWatcher( [ $po, 'recordOption' ] );
 		if ( Hooks::runner()->onContentGetParserOutput(
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
+			// FIXME $cpoParams->getRevId() may be null here?
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 			$content, $title, $cpoParams->getRevId(), $parserOptions, $cpoParams->getGenerateHtml(), $po )
 		) {
 			// Save and restore the old value, just in case something is reusing
@@ -1759,7 +1759,6 @@ abstract class ContentHandler {
 			$parserOptions->setRedirectTarget( $oldRedir );
 		}
 
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 		Hooks::runner()->onContentAlterParserOutput( $content, $title, $po );
 		$parserOptions->registerWatcher( null );
 		if ( isset( $scopedCallback ) ) {
@@ -1856,10 +1855,9 @@ abstract class ContentHandler {
 	): Content {
 		$services = MediaWikiServices::getInstance();
 		$legacyUser = $services->getUserFactory()->newFromUserIdentity( $params->getUser() );
-		$legacyTitle = $services->getTitleFactory()->castFromPageReference( $params->getPage() );
+		$legacyTitle = $services->getTitleFactory()->newFromPageReference( $params->getPage() );
 
 		return $content->preSaveTransform(
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 			$legacyTitle,
 			$legacyUser,
 			$params->getParserOptions()
@@ -1879,9 +1877,8 @@ abstract class ContentHandler {
 		PreloadTransformParams $params
 	): Content {
 		$services = MediaWikiServices::getInstance();
-		$legacyTitle = $services->getTitleFactory()->castFromPageReference( $params->getPage() );
+		$legacyTitle = $services->getTitleFactory()->newFromPageReference( $params->getPage() );
 		return $content->preloadTransform(
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 			$legacyTitle,
 			$params->getParserOptions(),
 			$params->getParams()
@@ -1901,9 +1898,8 @@ abstract class ContentHandler {
 		ContentParseParams $cpoParams
 	) {
 		$services = MediaWikiServices::getInstance();
-		$legacyTitle = $services->getTitleFactory()->castFromPageReference( $cpoParams->getPage() );
+		$legacyTitle = $services->getTitleFactory()->newFromPageReference( $cpoParams->getPage() );
 		return $content->getParserOutput(
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 			$legacyTitle,
 			$cpoParams->getRevId(),
 			$cpoParams->getParserOptions(),

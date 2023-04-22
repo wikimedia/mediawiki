@@ -860,7 +860,7 @@ class Linker {
 			return "<!-- ERROR -->" . htmlspecialchars( $label );
 		}
 
-		$title = Title::castFromLinkTarget( $title );
+		$title = Title::newFromLinkTarget( $title );
 		$services = MediaWikiServices::getInstance();
 		$mainConfig = $services->getMainConfig();
 		$enableUploads = $mainConfig->get( MainConfigNames::EnableUploads );
@@ -928,7 +928,7 @@ class Linker {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
 		$uploadMissingFileUrl = $mainConfig->get( MainConfigNames::UploadMissingFileUrl );
 		$uploadNavigationUrl = $mainConfig->get( MainConfigNames::UploadNavigationUrl );
-		$q = 'wpDestFile=' . Title::castFromLinkTarget( $destFile )->getPartialURL();
+		$q = 'wpDestFile=' . Title::newFromLinkTarget( $destFile )->getPartialURL();
 		if ( $query != '' ) {
 			$q .= '&' . $query;
 		}
@@ -996,7 +996,7 @@ class Linker {
 		];
 
 		if ( !Hooks::runner()->onLinkerMakeMediaLinkFile(
-			Title::castFromLinkTarget( $title ), $file, $html, $attribs, $ret )
+			Title::newFromLinkTarget( $title ), $file, $html, $attribs, $ret )
 		) {
 			wfDebug( "Hook LinkerMakeMediaLinkFile changed the output of link "
 				. "with url {$url} and text {$html} to {$ret}" );

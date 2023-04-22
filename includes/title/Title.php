@@ -307,9 +307,9 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * unless $forceClone is "clone". If $forceClone is "clone" and the given LinkTarget
 	 * is already a Title instance, that instance is copied using the clone operator.
 	 *
+	 * @since 1.27
 	 * @param LinkTarget $linkTarget Assumed to be safe.
 	 * @param string $forceClone set to NEW_CLONE to ensure a fresh instance is returned.
-	 *
 	 * @return Title
 	 */
 	public static function newFromLinkTarget( LinkTarget $linkTarget, $forceClone = '' ) {
@@ -330,22 +330,35 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	}
 
 	/**
-	 * Same as newFromLinkTarget, but if passed null, returns null.
+	 * Same as newFromLinkTarget(), but if passed null, returns null.
 	 *
+	 * @since 1.34
 	 * @param LinkTarget|null $linkTarget Assumed to be safe (if not null).
-	 *
 	 * @return Title|null
 	 */
-	public static function castFromLinkTarget( $linkTarget ) {
-		return $linkTarget ? self::newFromLinkTarget( $linkTarget ) : null;
+	public static function castFromLinkTarget( ?LinkTarget $linkTarget ) {
+		if ( !$linkTarget ) {
+			return null;
+		}
+		return self::newFromLinkTarget( $linkTarget );
 	}
 
 	/**
 	 * Return a Title for a given PageIdentity. If $pageIdentity is a Title,
-	 * that Title is returned unchanged. If $pageIdentity is null, null
-	 * is returned.
-	 * @since 1.36
+	 * that Title is returned unchanged.
 	 *
+	 * @since 1.41
+	 * @param PageIdentity $pageIdentity
+	 * @return Title
+	 */
+	public static function newFromPageIdentity( PageIdentity $pageIdentity ): Title {
+		return self::newFromPageReference( $pageIdentity );
+	}
+
+	/**
+	 * Same as newFromPageIdentity(), but if passed null, returns null.
+	 *
+	 * @since 1.36
 	 * @param PageIdentity|null $pageIdentity
 	 * @return Title|null
 	 */
@@ -355,18 +368,13 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 
 	/**
 	 * Return a Title for a given Reference. If $pageReference is a Title,
-	 * that Title is returned unchanged. If $pageReference is null, null
-	 * is returned.
-	 * @since 1.37
+	 * that Title is returned unchanged.
 	 *
-	 * @param PageReference|null $pageReference
-	 * @return Title|null
+	 * @since 1.41
+	 * @param PageReference $pageReference
+	 * @return Title
 	 */
-	public static function castFromPageReference( ?PageReference $pageReference ): ?Title {
-		if ( !$pageReference ) {
-			return null;
-		}
-
+	public static function newFromPageReference( PageReference $pageReference ): Title {
 		if ( $pageReference instanceof Title ) {
 			return $pageReference;
 		}
@@ -378,6 +386,20 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			$title->mArticleID = $pageReference->getId();
 		}
 		return $title;
+	}
+
+	/**
+	 * Same as newFromPageReference(), but if passed null, returns null.
+	 *
+	 * @since 1.37
+	 * @param PageReference|null $pageReference
+	 * @return Title|null
+	 */
+	public static function castFromPageReference( ?PageReference $pageReference ): ?Title {
+		if ( !$pageReference ) {
+			return null;
+		}
+		return self::newFromPageReference( $pageReference );
 	}
 
 	/**

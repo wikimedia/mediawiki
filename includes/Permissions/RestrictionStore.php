@@ -313,8 +313,7 @@ class RestrictionStore {
 
 		if ( $this->hookContainer->isRegistered( 'TitleGetRestrictionTypes' ) ) {
 			$this->hookRunner->onTitleGetRestrictionTypes(
-				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
-				Title::castFromPageIdentity( $page ), $types );
+				Title::newFromPageIdentity( $page ), $types );
 		}
 
 		return $types;

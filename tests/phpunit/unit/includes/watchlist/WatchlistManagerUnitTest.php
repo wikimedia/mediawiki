@@ -36,7 +36,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		$wikiPageFactory = $this->createMock( WikiPageFactory::class );
 		$wikiPageFactory->method( 'newFromTitle' )->willReturnCallback(
 			function ( PageIdentity $pageIdentity ) {
-				$title = Title::castFromPageReference( $pageIdentity );
+				$title = Title::newFromPageReference( $pageIdentity );
 				$wikiPage = $this->createMock( WikiPage::class );
 				$wikiPage->method( 'getTitle' )->willReturn( $title );
 				return $wikiPage;

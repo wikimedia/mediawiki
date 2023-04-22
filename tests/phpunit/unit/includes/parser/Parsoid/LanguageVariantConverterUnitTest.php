@@ -432,7 +432,7 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 
 		$mock = $this->createMock( TitleFactory::class );
 		$mock->expects( $this->once() )
-			->method( 'castFromPageIdentity' )
+			->method( 'newFromPageIdentity' )
 			->willReturn( $titleMock )
 			->with( $pageIdentity );
 
