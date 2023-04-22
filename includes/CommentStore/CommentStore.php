@@ -21,7 +21,6 @@
 namespace MediaWiki\CommentStore;
 
 use Language;
-use MediaWiki\MediaWikiServices;
 
 /**
  * @defgroup CommentStore CommentStore
@@ -77,16 +76,6 @@ class CommentStore extends CommentStoreBase {
 		foreach ( $tempTableStageOverrides as $key => $stageOverride ) {
 			$this->tempTables[$key]['stage'] = $stageOverride;
 		}
-	}
-
-	/**
-	 * @since 1.31
-	 * @deprecated in 1.31 Use DI to inject a CommentStore instance into your class. Hard-deprecated since 1.40.
-	 * @return CommentStore
-	 */
-	public static function getStore() {
-		wfDeprecated( __METHOD__, '1.31' );
-		return MediaWikiServices::getInstance()->getCommentStore();
 	}
 }
 
