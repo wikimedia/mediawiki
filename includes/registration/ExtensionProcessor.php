@@ -40,6 +40,7 @@ class ExtensionProcessor implements Processor {
 		MainConfigNames::FilterLogTypes,
 		MainConfigNames::GrantPermissionGroups,
 		MainConfigNames::GrantPermissions,
+		MainConfigNames::GrantRiskGroups,
 		MainConfigNames::GroupPermissions,
 		MainConfigNames::GroupsAddToSelf,
 		MainConfigNames::GroupsRemoveFromSelf,

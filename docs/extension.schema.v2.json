@@ -949,6 +949,15 @@
 				}
 			}
 		},
+		"GrantRiskGroups": {
+			"type": "object",
+			"description": "Map of grants to their risk category",
+			"patternProperties": {
+				"^[a-z]+$": {
+					"type": "string"
+				}
+			}
+		},
 		"ImplicitGroups": {
 			"type": "array",
 			"description": "Implicit groups"

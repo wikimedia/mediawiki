@@ -32,6 +32,13 @@ class GrantsInfoTest extends MediaWikiUnitTestCase {
 				'normal' => 'normal-group',
 				'admin' => 'admin',
 			],
+			MainConfigNames::GrantRiskGroups => [
+				'hidden1' => 'low',
+				'hidden2' => 'low',
+				'normal' => 'low',
+				'normal2' => 'vandalism',
+				'admin' => 'security',
+			],
 		];
 
 		$this->grantsInfo = new GrantsInfo(
@@ -135,6 +142,22 @@ class GrantsInfoTest extends MediaWikiUnitTestCase {
 		$this->assertSame(
 			[ 'hidden1', 'hidden2' ],
 			$this->grantsInfo->getHiddenGrants()
+		);
+	}
+
+	/**
+	 * @covers ::getRiskGroupsByGrant
+	 */
+	public function testGetRiskGroupsByGrant() {
+		$this->assertSame(
+			[
+				'hidden1' => 'low',
+				'hidden2' => 'low',
+				'normal' => 'low',
+				'normal2' => 'vandalism',
+				'admin' => 'security',
+			],
+			$this->grantsInfo->getRiskGroupsByGrant()
 		);
 	}
 

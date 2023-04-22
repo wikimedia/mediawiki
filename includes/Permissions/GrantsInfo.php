@@ -32,11 +32,43 @@ use MediaWiki\MainConfigNames;
  */
 class GrantsInfo {
 	/**
+	 * Risk level classification for grants which aren't particularly risky. These grants might
+	 * be abused, e.g. for vandalism, but the effect is easy to undo and the efficiency of abusing
+	 * them isn't particularly different from registering new user accounts and using those for
+	 * abuse.
+	 * Note that risk levels depend on the use case; the default classification is meant for
+	 * "normal" (public, open registration) wikis. Classification for e.g. a private wiki holding
+	 * confidential information could be quite different.
+	 */
+	public const RISK_LOW = 'low';
+
+	/**
+	 * Risk level classification for grants which can be used for disruptive vandalism or other
+	 * kinds of abuse that couldn't be achieved just by registering new accounts, such as main
+	 * page vandalism, vandalism of popular templates, page merge vandalism, or blocks.
+	 */
+	public const RISK_VANDALISM = 'vandalism';
+
+	/**
+	 * Risk level classification for grants which can be used to cause damage that is hard or
+	 * impossible to undo, such as exfiltrating sensitive private data or creating security
+	 * vulnerabilities.
+	 */
+	public const RISK_SECURITY = 'security';
+
+	/**
+	 * Risk level classification for grants which are used for internal purposes and should not
+	 * be handed out.
+	 */
+	public const RISK_INTERNAL = 'internal';
+
+	/**
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::GrantPermissions,
 		MainConfigNames::GrantPermissionGroups,
+		MainConfigNames::GrantRiskGroups,
 	];
 
 	/** @var ServiceOptions */
@@ -136,5 +168,22 @@ class GrantsInfo {
 			}
 		}
 		return $grants;
+	}
+
+	/**
+	 * Returns a map of grant name => risk group. The risk groups are the GrantsInfo::RISK_*
+	 * constants, plus $default for grants where the risk level is not defined.
+	 * @param string $default Default risk group to assign to grants for which no risk group
+	 * is configured. $default does not have to be one of the RISK_* constants.
+	 * @return string[]
+	 * @since 1.42
+	 */
+	public function getRiskGroupsByGrant( string $default = 'unknown' ): array {
+		$res = [];
+		$grantRiskGroups = $this->options->get( MainConfigNames::GrantRiskGroups );
+		foreach ( $this->options->get( MainConfigNames::GrantPermissions ) as $grant => $_ ) {
+			$res[$grant] = $grantRiskGroups[$grant] ?? $default;
+		}
+		return $res;
 	}
 }
