@@ -1191,7 +1191,7 @@ class OutputPage extends ContextSource {
 	 * @param PageReference $t
 	 */
 	public function setTitle( PageReference $t ) {
-		$t = Title::castFromPageReference( $t );
+		$t = Title::newFromPageReference( $t );
 
 		// @phan-suppress-next-next-line PhanUndeclaredMethod
 		// @fixme Not all implementations of IContextSource have this method!

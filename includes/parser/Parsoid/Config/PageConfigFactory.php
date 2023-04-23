@@ -91,8 +91,7 @@ class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
 		?Bcp47Code $pageLanguageOverride = null,
 		?array $parsoidSettings = null
 	): \Wikimedia\Parsoid\Config\PageConfig {
-		$title = Title::castFromPageIdentity( $pageId );
-		'@phan-var Title $title';
+		$title = Title::newFromPageIdentity( $pageId );
 
 		if ( $unused !== null ) {
 			wfDeprecated( __METHOD__ . ' with non-null 4th arg', '1.40' );

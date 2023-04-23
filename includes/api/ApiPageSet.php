@@ -1383,9 +1383,9 @@ class ApiPageSet extends ApiBase {
 					continue; // There's nothing else we can do
 				}
 			} elseif ( $title instanceof LinkTarget ) {
-				$titleObj = $this->titleFactory->castFromLinkTarget( $title );
+				$titleObj = $this->titleFactory->newFromLinkTarget( $title );
 			} else {
-				$titleObj = $this->titleFactory->castFromPageReference( $title );
+				$titleObj = $this->titleFactory->newFromPageReference( $title );
 			}
 
 			$titleObjects[$index] = $titleObj;
@@ -1411,7 +1411,6 @@ class ApiPageSet extends ApiBase {
 					// ILanguageConverter::findVariantLink will modify titleText and
 					// titleObj into the canonical variant if possible
 					$titleText = $title !== false ? $title : $titleObj->getPrefixedText();
-					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 					$this->languageConverter->findVariantLink( $titleText, $titleObj );
 					$titleWasConverted = $unconvertedTitle !== $titleObj->getPrefixedText();
 				}
@@ -1447,7 +1446,6 @@ class ApiPageSet extends ApiBase {
 					}
 				} else {
 					// Regular page
-					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 					$linkBatch->addObj( $titleObj );
 				}
 			}

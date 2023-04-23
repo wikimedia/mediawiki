@@ -64,8 +64,7 @@ class WikiPageFactory {
 
 		// TODO: remove the need for casting to Title. We'll have to create a new hook to
 		//       replace the WikiPageFactory hook.
-		$title = Title::castFromPageIdentity( $pageIdentity );
-		'@phan-var Title $title';
+		$title = Title::newFromPageIdentity( $pageIdentity );
 
 		$page = null;
 		if ( !$this->wikiPageFactoryHookRunner->onWikiPageFactory( $title, $page ) ) {

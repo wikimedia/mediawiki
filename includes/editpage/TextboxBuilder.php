@@ -130,7 +130,7 @@ class TextboxBuilder {
 			$attribs['class'] = $class;
 		}
 
-		$title = Title::castFromPageIdentity( $page );
+		$title = Title::newFromPageIdentity( $page );
 		$pageLang = $title->getPageLanguage();
 		$attribs['lang'] = $pageLang->getHtmlCode();
 		$attribs['dir'] = $pageLang->getDir();

@@ -318,8 +318,7 @@ class BacklinkCache {
 				$knownTable = false;
 				$conds = null;
 				$this->hookRunner->onBacklinkCacheGetConditions( $table,
-					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
-					Title::castFromPageReference( $this->page ),
+					Title::newFromPageReference( $this->page ),
 					// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 					$conds
 				);

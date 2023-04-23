@@ -90,10 +90,9 @@ class MainSlotRoleHandler extends SlotRoleHandler {
 	 * @throws MWUnknownContentModelException
 	 */
 	public function isAllowedModel( $model, PageIdentity $page ) {
-		$title = $this->titleFactory->castFromPageIdentity( $page );
+		$title = $this->titleFactory->newFromPageIdentity( $page );
 		$handler = $this->contentHandlerFactory->getContentHandler( $model );
 
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 		return $handler->canBeUsedOn( $title );
 	}
 
@@ -112,11 +111,11 @@ class MainSlotRoleHandler extends SlotRoleHandler {
 
 		// Hook can determine default model
 		if ( $page instanceof PageIdentity ) {
-			$title = $this->titleFactory->castFromPageIdentity( $page );
+			$title = $this->titleFactory->newFromPageIdentity( $page );
 		} else {
-			$title = $this->titleFactory->castFromLinkTarget( $page );
+			$title = $this->titleFactory->newFromLinkTarget( $page );
 		}
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom notnull/Type mismatch on pass-by-ref args
+		// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 		if ( !$this->hookRunner->onContentHandlerDefaultModelFor( $title, $model ) && $model !== null ) {
 			return $model;
 		}

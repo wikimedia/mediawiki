@@ -255,7 +255,7 @@ class PagerNavigationBuilder {
 		?array $query, ?string $class, string $text, ?string $tooltip, ?string $rel = null
 	): string {
 		if ( $query !== null ) {
-			$title = Title::castFromPageReference( $this->page );
+			$title = Title::newFromPageReference( $this->page );
 			return Html::element(
 				'a',
 				[

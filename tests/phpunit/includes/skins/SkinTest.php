@@ -461,7 +461,7 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 			public function outputPage() {
 			}
 		};
-		$skin->setRelevantTitle( Title::castFromPageReference( $relevantPage ) );
+		$skin->setRelevantTitle( Title::newFromPageReference( $relevantPage ) );
 		$relevantUser = $skin->getRelevantUser();
 		if ( $expectedUser ) {
 			$this->assertTrue( $expectedUser->equals( $relevantUser ) );

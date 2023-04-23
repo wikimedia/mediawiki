@@ -164,7 +164,7 @@ class HtmlCacheUpdater {
 
 		foreach ( $pages as $page ) {
 			// TODO: We really only need to cast to PageIdentity. We could use a LinkBatch for that.
-			$title = $this->titleFactory->castFromPageReference( $page );
+			$title = $this->titleFactory->newFromPageReference( $page );
 
 			if ( $title->canExist() ) {
 				$pageIdentities[] = $title;
@@ -176,7 +176,6 @@ class HtmlCacheUpdater {
 		}
 
 		if ( $this->useFileCache ) {
-			// @phan-suppress-next-line PhanTypeMismatchArgument castFrom does not return null here
 			$update = HtmlFileCacheUpdate::newFromPages( $pageIdentities );
 			if ( $this->fieldHasFlag( $flags, self::PURGE_PRESEND ) ) {
 				DeferredUpdates::addUpdate( $update, DeferredUpdates::PRESEND );
@@ -190,7 +189,6 @@ class HtmlCacheUpdater {
 			$urls = [];
 			foreach ( $pageIdentities as $pi ) {
 				/** @var PageIdentity $pi */
-				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 				$urls = array_merge( $urls, $this->getUrls( $pi, $flags ) );
 			}
 			$this->purgeUrls( $urls, $flags );
@@ -205,7 +203,7 @@ class HtmlCacheUpdater {
 	 * @return string[] URLs
 	 */
 	public function getUrls( PageReference $page, int $flags = 0 ): array {
-		$title = $this->titleFactory->castFromPageReference( $page );
+		$title = $this->titleFactory->newFromPageReference( $page );
 
 		if ( !$title->canExist() ) {
 			return [];
@@ -238,7 +236,6 @@ class HtmlCacheUpdater {
 		// Extensions may add novel ways to access this content
 		$append = [];
 		$mode = $flags & self::PURGE_URLS_LINKSUPDATE_ONLY;
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 		$this->hookRunner->onHtmlCacheUpdaterAppendUrls( $title, $mode, $append );
 		$urls = array_merge( $urls, $append );
 
@@ -248,7 +245,6 @@ class HtmlCacheUpdater {
 		$urls = array_merge( $urls, $append );
 
 		// Legacy. TODO: Deprecate this
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 		$this->hookRunner->onTitleSquidURLs( $title, $urls );
 
 		return $urls;

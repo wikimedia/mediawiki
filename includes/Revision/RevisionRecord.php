@@ -374,8 +374,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	public function getPageAsLinkTarget() {
 		// TODO: Should be TitleValue::newFromPage( $this->mPage ),
 		// but Title is used too much still, so let's keep propagating it
-		// @phan-suppress-next-line PhanTypeMismatchReturnNullable castFrom does not return null here
-		return Title::castFromPageIdentity( $this->mPage );
+		return Title::newFromPageIdentity( $this->mPage );
 	}
 
 	/**

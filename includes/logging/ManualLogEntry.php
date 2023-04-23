@@ -166,8 +166,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	 */
 	public function setTarget( $target ) {
 		if ( $target instanceof PageReference ) {
-			// @phan-suppress-next-line PhanPossiblyNullTypeMismatchProperty castFrom does not return null here
-			$this->target = Title::castFromPageReference( $target );
+			$this->target = Title::newFromPageReference( $target );
 		} elseif ( $target instanceof LinkTarget ) {
 			$this->target = Title::newFromLinkTarget( $target );
 		} else {

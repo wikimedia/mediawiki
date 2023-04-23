@@ -350,8 +350,8 @@ class MergeHistory {
 			->caller( __METHOD__ )
 			->fetchRowCount();
 
-		$legacySource = $this->titleFactory->castFromPageIdentity( $this->source );
-		$legacyDest = $this->titleFactory->castFromPageIdentity( $this->dest );
+		$legacySource = $this->titleFactory->newFromPageIdentity( $this->source );
+		$legacyDest = $this->titleFactory->newFromPageIdentity( $this->dest );
 
 		// Update source page, histories and invalidate caches
 		if ( !$haveRevisions ) {
@@ -392,7 +392,6 @@ class MergeHistory {
 		$logId = $logEntry->insert();
 		$logEntry->publish( $logId );
 
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 		$this->hookRunner->onArticleMergeComplete( $legacySource, $legacyDest );
 
 		$this->dbw->endAtomic( __METHOD__ );
@@ -415,8 +414,8 @@ class MergeHistory {
 	 */
 	private function updateSourcePage( $status, $user, $reason ) {
 		$deleteSource = false;
-		$legacySourceTitle = $this->titleFactory->castFromPageIdentity( $this->source );
-		$legacyDestTitle = $this->titleFactory->castFromPageIdentity( $this->dest );
+		$legacySourceTitle = $this->titleFactory->newFromPageIdentity( $this->source );
+		$legacyDestTitle = $this->titleFactory->newFromPageIdentity( $this->dest );
 		$sourceModel = $legacySourceTitle->getContentModel();
 		$contentHandler = $this->contentHandlerFactory->getContentHandler( $sourceModel );
 
@@ -425,7 +424,6 @@ class MergeHistory {
 			$newContent = $contentHandler->makeEmptyContent();
 		} else {
 			$msg = wfMessage( 'mergehistory-redirect-text' )->inContentLanguage()->plain();
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 			$newContent = $contentHandler->makeRedirectContent( $legacyDestTitle, $msg );
 		}
 

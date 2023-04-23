@@ -46,7 +46,7 @@ class MainSlotRoleHandlerTest extends MediaWikiUnitTestCase {
 		$titleFactory->method( 'newFromLinkTarget' )
 			->with( $this->isInstanceOf( Title::class ) )
 			->willReturnArgument( 0 );
-		$titleFactory->method( 'castFromPageIdentity' )
+		$titleFactory->method( 'newFromPageIdentity' )
 			->with( $this->isInstanceOf( Title::class ) )
 			->willReturnArgument( 0 );
 

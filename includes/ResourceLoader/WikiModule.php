@@ -695,7 +695,7 @@ class WikiModule extends Module {
 		}
 
 		if ( !$purge ) {
-			$title = Title::castFromPageIdentity( $page );
+			$title = Title::newFromPageIdentity( $page );
 			$purge = ( $title->isSiteConfigPage() || $title->isUserConfigPage() );
 		}
 

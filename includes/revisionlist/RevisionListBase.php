@@ -56,8 +56,7 @@ abstract class RevisionListBase extends ContextSource implements Iterator {
 			'title',
 			'1.37',
 			function (): Title {
-				// @phan-suppress-next-line PhanTypeMismatchReturnNullable castFrom does not return null here
-				return Title::castFromPageIdentity( $this->page );
+				return Title::newFromPageIdentity( $this->page );
 			},
 			function ( PageIdentity $page ) {
 				$this->page = $page;
@@ -77,7 +76,7 @@ abstract class RevisionListBase extends ContextSource implements Iterator {
 	 * @return string
 	 */
 	public function getPageName(): string {
-		return Title::castFromPageIdentity( $this->page )->getPrefixedText();
+		return Title::newFromPageIdentity( $this->page )->getPrefixedText();
 	}
 
 	/**

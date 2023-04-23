@@ -535,7 +535,7 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 
 		if ( $expected ) {
 			$this->assertNotNull( $actual );
-			$expectedTitle = Title::castFromLinkTarget( $expected );
+			$expectedTitle = Title::newFromLinkTarget( $expected );
 			$this->assertSame( $expectedTitle->getPrefixedDBkey(), $actual->getPrefixedDBkey() );
 		} else {
 			$this->assertNull( $actual );

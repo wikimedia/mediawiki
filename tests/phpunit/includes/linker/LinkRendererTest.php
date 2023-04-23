@@ -210,20 +210,20 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 		$hookContainer = $services->getHookContainer();
 		$linkCache = $services->getLinkCache();
 		if ( $foobarTitle instanceof PageReference ) {
-			$cacheTitle = Title::castFromPageReference( $foobarTitle );
+			$cacheTitle = Title::newFromPageReference( $foobarTitle );
 		} else {
 			$cacheTitle = $foobarTitle;
 		}
 		$this->addGoodLinkObject( 1, $cacheTitle, 10, 0 );
 		if ( $redirectTitle instanceof PageReference ) {
-			$cacheTitle = Title::castFromPageReference( $redirectTitle );
+			$cacheTitle = Title::newFromPageReference( $redirectTitle );
 		} else {
 			$cacheTitle = $redirectTitle;
 		}
 		$this->addGoodLinkObject( 2, $cacheTitle, 10, 1 );
 
 		if ( $userTitle instanceof PageReference ) {
-			$cacheTitle = Title::castFromPageReference( $userTitle );
+			$cacheTitle = Title::newFromPageReference( $userTitle );
 		} else {
 			$cacheTitle = $userTitle;
 		}
