@@ -75,7 +75,7 @@ class ParserObserver {
 
 		$optionsHash = $options->optionsHash(
 			$output->getUsedOptions(),
-			Title::castFromPageReference( $page )
+			Title::newFromPageReference( $page )
 		);
 
 		$contentStr = $content->isValid() ? $content->serialize() : null;

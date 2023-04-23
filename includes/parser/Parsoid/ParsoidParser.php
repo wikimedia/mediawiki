@@ -83,9 +83,7 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 	): ParserOutput {
 		Assert::invariant( $linestart, '$linestart=false is not yet supported' );
 		Assert::invariant( $clearState, '$clearState=false is not yet supported' );
-		$title = Title::castFromPageReference( $page ) ??
-			// ::castFromPageReference() never actually returns null here
-			Title::makeTitle( NS_SPECIAL, 'Badtitle/Parser' );
+		$title = Title::newFromPageReference( $page );
 		$lang = $options->getTargetLanguage();
 		if ( $lang === null ) {
 			if ( $options->getInterfaceMessage() ) {

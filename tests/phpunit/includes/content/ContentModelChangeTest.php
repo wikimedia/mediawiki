@@ -280,7 +280,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 			PageIdentity $page,
 			PermissionStatus $status
 		) use ( $currentContentModel, $newContentModel ) {
-			$title = Title::castFromPageIdentity( $page );
+			$title = Title::newFromPageIdentity( $page );
 			if ( $permission === 'editcontentmodel' && $title->hasContentModel( $currentContentModel ) ) {
 				$status->fatal( 'no edit old content model' );
 				return false;

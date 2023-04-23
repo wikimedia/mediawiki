@@ -78,8 +78,7 @@ class LanguageVariantConverter {
 		$this->parsoidSettings = $parsoidSettings;
 		$this->siteConfig = $siteConfig;
 		$this->titleFactory = $titleFactory;
-		// @phan-suppress-next-line PhanPossiblyNullTypeMismatchProperty
-		$this->pageTitle = $this->titleFactory->castFromPageIdentity( $this->pageIdentity );
+		$this->pageTitle = $this->titleFactory->newFromPageIdentity( $this->pageIdentity );
 		$this->languageConverterFactory = $languageConverterFactory;
 		$this->languageFactory = $languageFactory;
 		$this->pageLanguageOverride = null;

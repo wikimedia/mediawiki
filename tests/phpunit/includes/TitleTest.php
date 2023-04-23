@@ -1967,7 +1967,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideRestrictionStoreForwarding() {
 		$pageIdentity = PageIdentityValue::localIdentity( 144, NS_MAIN, 'Sample' );
-		$title = Title::castFromPageIdentity( $pageIdentity );
+		$title = Title::newFromPageIdentity( $pageIdentity );
 		return [
 			[ 'getFilteredRestrictionTypes', [ true ], [ 'abc' ],
 				[ 'static' => true, 'expectedMethod' => 'listAllRestrictionTypes' ] ],

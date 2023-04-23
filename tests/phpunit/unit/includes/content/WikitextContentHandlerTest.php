@@ -184,7 +184,7 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 		$title = $this->createMock( Title::class );
 		$titleFactory = $this->createMock( TitleFactory::class );
 		$titleFactory
-			->method( 'castFromPageReference' )
+			->method( 'newFromPageReference' )
 			->willReturn( $title );
 
 		$cpoParams = new ContentParseParams( $title, 42, $parserOptions );

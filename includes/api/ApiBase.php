@@ -1597,15 +1597,13 @@ abstract class ApiBase extends ContextSource {
 		if ( !$pageIdentity instanceof PageIdentity ) {
 			wfDeprecatedMsg( __METHOD__ . ': passing LinkTarget as $pageIdentity parameter is deprecated',
 				'1.36' );
-			$pageIdentity = Title::castFromLinkTarget( $pageIdentity );
+			$pageIdentity = Title::newFromLinkTarget( $pageIdentity );
 		}
 		$status = new PermissionStatus();
 		foreach ( (array)$actions as $action ) {
 			if ( $this->isWriteMode() ) {
-				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 				$this->getAuthority()->authorizeWrite( $action, $pageIdentity, $status );
 			} else {
-				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 				$this->getAuthority()->authorizeRead( $action, $pageIdentity, $status );
 			}
 		}

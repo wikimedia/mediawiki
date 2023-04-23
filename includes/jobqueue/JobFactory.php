@@ -59,7 +59,7 @@ class JobFactory {
 		// TODO: revisit support for old method signature
 		if ( $params instanceof PageReference ) {
 			// Backwards compatibility for old signature ($command, $title, $params)
-			$title = Title::castFromPageReference( $params );
+			$title = Title::newFromPageReference( $params );
 			$params = func_num_args() >= 3 ? func_get_arg( 2 ) : [];
 		} elseif ( isset( $params['namespace'] ) && isset( $params['title'] ) ) {
 			// Handle job classes that take title as constructor parameter.

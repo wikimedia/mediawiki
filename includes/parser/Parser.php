@@ -3511,7 +3511,7 @@ class Parser {
 			$this->currentRevisionCache = new MapCacheLRU( 100 );
 		}
 		if ( !$this->currentRevisionCache->has( $cacheKey ) ) {
-			$title = Title::castFromLinkTarget( $link ); // hook signature compat
+			$title = Title::newFromLinkTarget( $link ); // hook signature compat
 			$revisionRecord =
 				// Defaults to Parser::statelessFetchRevisionRecord()
 				call_user_func(
@@ -3559,12 +3559,11 @@ class Parser {
 			// XXX: use RevisionStore::getPageForLink()!
 			//      ...but get the info for the current revision at the same time?
 			//      Should RevisionStore::getKnownCurrentRevision accept a LinkTarget?
-			$page = Title::castFromLinkTarget( $link );
+			$page = Title::newFromLinkTarget( $link );
 		}
 
 		$revRecord = MediaWikiServices::getInstance()
 			->getRevisionLookup()
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 			->getKnownCurrentRevision( $page );
 		return $revRecord;
 	}
@@ -3577,7 +3576,7 @@ class Parser {
 	 */
 	public function fetchTemplateAndTitle( LinkTarget $link ) {
 		// Use Title for compatibility with callbacks and return type
-		$title = Title::castFromLinkTarget( $link );
+		$title = Title::newFromLinkTarget( $link );
 
 		// Defaults to Parser::statelessFetchTemplate()
 		$templateCb = $this->mOptions->getTemplateCallback();
@@ -3772,7 +3771,7 @@ class Parser {
 			$this->mOutput->addImage( $link->getDBkey(), $time, $sha1 );
 		}
 
-		$title = Title::castFromLinkTarget( $link ); // for return type compat
+		$title = Title::newFromLinkTarget( $link ); // for return type compat
 		return [ $file, $title ];
 	}
 
@@ -3815,7 +3814,7 @@ class Parser {
 		}
 
 		// TODO: extract relevant functionality from Title
-		$title = Title::castFromLinkTarget( $link );
+		$title = Title::newFromLinkTarget( $link );
 
 		$url = $title->getFullURL( [ 'action' => $action ] );
 		if ( strlen( $url ) > 1024 ) {

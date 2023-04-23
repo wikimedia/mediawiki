@@ -181,12 +181,11 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$pageIdentity->assertWiki( PageIdentity::LOCAL );
 
 		// TODO: remove the need for casting to Title.
-		$title = Title::castFromPageIdentity( $pageIdentity );
+		$title = Title::newFromPageIdentity( $pageIdentity );
 		if ( !$title->canExist() ) {
 			throw new InvalidArgumentException( "WikiPage constructed on a Title that cannot exist as a page: $title" );
 		}
 
-		// @phan-suppress-next-line PhanPossiblyNullTypeMismatchProperty castFrom does not return null here
 		$this->mTitle = $title;
 	}
 
@@ -1109,7 +1108,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @return bool Success
 	 */
 	public function insertRedirectEntry( LinkTarget $rt, $oldLatest = null ) {
-		$rt = Title::castFromLinkTarget( $rt );
+		$rt = Title::newFromLinkTarget( $rt );
 		if ( !$rt->isValidRedirectTarget() ) {
 			// Don't put a bad redirect into the database (T278367)
 			return false;
@@ -1962,7 +1961,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	) {
 		$options = ParserOptions::newCanonical( $context );
 
-		$title = Title::castFromPageReference( $pageRef );
+		$title = Title::newFromPageReference( $pageRef );
 		if ( $title->isConversionTable() ) {
 			// @todo ConversionTable should become a separate content model, so
 			// we don't need special cases like this one, but see T313455.

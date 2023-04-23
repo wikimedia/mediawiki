@@ -67,6 +67,16 @@ class TitleFactory {
 	}
 
 	/**
+	 * @see Title::newFromPageIdentity
+	 * @since 1.41
+	 * @param PageIdentity $pageIdentity
+	 * @return Title
+	 */
+	public function newFromPageIdentity( PageIdentity $pageIdentity ): Title {
+		return Title::newFromPageIdentity( $pageIdentity );
+	}
+
+	/**
 	 * @see Title::castFromPageIdentity
 	 * @since 1.36
 	 * @param PageIdentity|null $pageIdentity
@@ -74,6 +84,16 @@ class TitleFactory {
 	 */
 	public function castFromPageIdentity( ?PageIdentity $pageIdentity ): ?Title {
 		return Title::castFromPageIdentity( $pageIdentity );
+	}
+
+	/**
+	 * @see Title::newFromPageReference
+	 * @since 1.41
+	 * @param PageReference $pageReference
+	 * @return Title
+	 */
+	public function newFromPageReference( PageReference $pageReference ): Title {
+		return Title::newFromPageReference( $pageReference );
 	}
 
 	/**

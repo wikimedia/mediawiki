@@ -473,8 +473,7 @@ class LinkRenderer {
 			return Title::newFromLinkTarget( $target );
 		}
 		// $target instanceof PageReference
-		// @phan-suppress-next-line PhanTypeMismatchReturnNullable castFrom does not return null here
-		return Title::castFromPageReference( $target );
+		return Title::newFromPageReference( $target );
 	}
 
 	/**
@@ -483,8 +482,7 @@ class LinkRenderer {
 	 */
 	private function castToLinkTarget( $target ): LinkTarget {
 		if ( $target instanceof PageReference ) {
-			// @phan-suppress-next-line PhanTypeMismatchReturnNullable castFrom does not return null here
-			return Title::castFromPageReference( $target );
+			return Title::newFromPageReference( $target );
 		}
 		// $target instanceof LinkTarget
 		return $target;
