@@ -1260,28 +1260,30 @@ class SpecialPageFactory {
 			// Check for $aliases being an array since Language::getSpecialPageAliases can return null
 			if ( is_array( $aliases ) ) {
 				foreach ( $aliases as $realName => $aliasList ) {
-					$aliasList = array_values( $aliasList );
-					foreach ( $aliasList as $i => $alias ) {
+					$first = true;
+					foreach ( $aliasList as $alias ) {
 						$caseFoldedAlias = $this->contLang->caseFold( $alias );
 
 						if ( isset( $this->aliases[$caseFoldedAlias] ) &&
 							$realName === $this->aliases[$caseFoldedAlias]
 						) {
+							$first = false;
 							// Ignore same-realName conflicts
 							continue;
 						}
 
 						if ( !isset( $keepAlias[$caseFoldedAlias] ) ) {
 							$this->aliases[$caseFoldedAlias] = $realName;
-							if ( !$i ) {
+							if ( $first ) {
 								$keepAlias[$caseFoldedAlias] = 'first';
 							}
-						} elseif ( !$i ) {
+						} elseif ( $first ) {
 							wfWarn( "First alias '$alias' for $realName conflicts with " .
 								"{$keepAlias[$caseFoldedAlias]} alias for " .
 								$this->aliases[$caseFoldedAlias]
 							);
 						}
+						$first = false;
 					}
 				}
 			}
