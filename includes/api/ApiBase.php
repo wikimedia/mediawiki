@@ -39,7 +39,6 @@ use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\ParamValidator\TypeDef\StringDef;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Timestamp\TimestampException;
 
 /**
@@ -655,11 +654,13 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Gets a default replica DB connection object
 	 * @stable to override
-	 * @return IDatabase
+	 * @return \Wikimedia\Rdbms\IReadableDatabase
 	 */
 	protected function getDB() {
 		if ( !isset( $this->mReplicaDB ) ) {
-			$this->mReplicaDB = wfGetDB( DB_REPLICA, 'api' );
+			$this->mReplicaDB = MediaWikiServices::getInstance()
+				->getDBLoadBalancerFactory()
+				->getReplicaDatabase( false, 'api' );
 		}
 
 		return $this->mReplicaDB;

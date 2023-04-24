@@ -23,7 +23,7 @@
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use Wikimedia\ParamValidator\ParamValidator;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * API module that facilitates changing the language of a page.
@@ -34,8 +34,8 @@ use Wikimedia\Rdbms\ILoadBalancer;
  */
 class ApiSetPageLanguage extends ApiBase {
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var LanguageNameUtils */
 	private $languageNameUtils;
@@ -43,17 +43,17 @@ class ApiSetPageLanguage extends ApiBase {
 	/**
 	 * @param ApiMain $mainModule
 	 * @param string $moduleName
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param LanguageNameUtils $languageNameUtils
 	 */
 	public function __construct(
 		ApiMain $mainModule,
 		$moduleName,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		LanguageNameUtils $languageNameUtils
 	) {
 		parent::__construct( $mainModule, $moduleName );
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->languageNameUtils = $languageNameUtils;
 	}
 
@@ -110,7 +110,7 @@ class ApiSetPageLanguage extends ApiBase {
 			$params['lang'],
 			$params['reason'] ?? '',
 			$params['tags'] ?: [],
-			$this->loadBalancer->getConnectionRef( ILoadBalancer::DB_PRIMARY )
+			$this->dbProvider->getPrimaryDatabase()
 		);
 
 		if ( !$status->isOK() ) {

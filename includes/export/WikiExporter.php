@@ -36,7 +36,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -75,7 +75,7 @@ class WikiExporter {
 	/** @var XmlDumpWriter */
 	private $writer;
 
-	/** @var IDatabase */
+	/** @var IReadableDatabase */
 	protected $db;
 
 	/** @var array|int */
@@ -106,7 +106,7 @@ class WikiExporter {
 	}
 
 	/**
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param CommentStore $commentStore
 	 * @param HookContainer $hookContainer
 	 * @param RevisionStore $revisionStore

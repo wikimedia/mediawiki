@@ -21,8 +21,8 @@
 
 use MediaWiki\Revision\RevisionStore;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * @ingroup API
@@ -41,17 +41,17 @@ class ApiTag extends ApiBase {
 	/**
 	 * @param ApiMain $main
 	 * @param string $action
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param RevisionStore $revisionStore
 	 */
 	public function __construct(
 		ApiMain $main,
 		$action,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		RevisionStore $revisionStore
 	) {
 		parent::__construct( $main, $action );
-		$this->dbr = $loadBalancer->getConnectionRef( DB_REPLICA );
+		$this->dbr = $dbProvider->getReplicaDatabase();
 		$this->revisionStore = $revisionStore;
 	}
 
