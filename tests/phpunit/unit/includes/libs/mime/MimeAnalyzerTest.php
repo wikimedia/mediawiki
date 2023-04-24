@@ -147,6 +147,8 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 				'gifar.gif',
 				'application/java',
 			],
+
+			// todo : Add test case for ZIP file with .zip extension
 		];
 	}
 
@@ -263,6 +265,7 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 		yield 'font/woff2 should output woff2 file extension' => [ 'font/woff2', [ 'woff2' ] ];
 		yield 'application/font-woff2 should output woff2 file extension' => [ 'application/font-woff2', [ 'woff2' ] ];
 		yield 'text/sgml should output sgml file extension' => [ 'text/sgml', [ 'sgml', 'sgm' ] ];
+		yield 'text/javascript should output js file extension' => [ 'text/javascript', [ 'js' ] ];
 	}
 
 	/**
