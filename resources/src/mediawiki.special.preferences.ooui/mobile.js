@@ -34,18 +34,20 @@
 	 * Hide each checkboxWidget
 	 */
 	function insertToggles( checkboxes ) {
-		Array.prototype.forEach.call( checkboxes, function ( checkboxWidget ) {
-			var checkboxInput = checkboxWidget.querySelector( 'input' );
+		Array.prototype.forEach.call( checkboxes, function ( checkboxElement ) {
+			var checkboxWidget = OO.ui.infuse( checkboxElement );
 			var toggleSwitchWidget = new OO.ui.ToggleSwitchWidget( {
-				value: checkboxInput.checked,
-				disabled: checkboxInput.disabled
+				value: checkboxWidget.selected,
+				disabled: checkboxWidget.disabled
+			} );
+			checkboxWidget.on( 'disable', function ( state ) {
+				toggleSwitchWidget.setDisabled( state );
 			} );
 			toggleSwitchWidget.on( 'change', function ( value ) {
-				toggleSwitchWidget.setValue( value );
-				checkboxInput.checked = value;
+				checkboxWidget.setSelected( value );
 			} );
-			checkboxWidget.insertAdjacentElement( 'afterend', toggleSwitchWidget.$element[ 0 ] );
-			checkboxWidget.classList.add( 'hidden' );
+			checkboxElement.insertAdjacentElement( 'afterend', toggleSwitchWidget.$element[ 0 ] );
+			checkboxElement.classList.add( 'hidden' );
 		} );
 	}
 	/*
