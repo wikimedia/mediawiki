@@ -1479,6 +1479,10 @@
 				}
 			}
 		},
+		"ForeignResourcesDir": {
+			"type": "string",
+			"description": "The directory holding the foreign-resources.yaml file, relative to the extension root. See https://www.mediawiki.org/wiki/Foreign_resources"
+		},
 		"attributes": {
 			"description": "Registration information for other extensions",
 			"type": "object",
