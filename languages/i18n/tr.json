@@ -1063,7 +1063,7 @@
 	"showhideselectedfileversions": "Seçili dosya sürümlerinin görünürlüğünü değiştir",
 	"editundo": "geri al",
 	"diff-empty": "(Fark yok)",
-	"diff-multi-sameuser": "(Aynı kullanıcının {{PLURAL:$1|aradaki bir diğer değişikliği|aradaki diğer $1 değişikliği}} gösterilmiyor)",
+	"diff-multi-sameuser": "(Aynı kullanıcının {{PLURAL:$1|aradaki bir diğer değişikliği|aradaki diğer {{GENDER:$3|$1 değişikliği}}}} gösterilmiyor)",
 	"diff-multi-otherusers": "({{PLURAL:$2|Bir diğer kullanıcıdan|$2 kullanıcıdan}} {{PLURAL:$1|bir ara revizyon|$1 ara revizyon}} gösterilmiyor)",
 	"diff-multi-manyusers": "($2 kullanıcıdan fazla tarafından yapılan {{PLURAL:$1|bir ara revizyon|$1 ara revizyon}} gösterilmiyor)",
 	"diff-paragraph-moved-tonew": "Paragraf taşındı. Yeni yere gitmek için tıklayın.",
