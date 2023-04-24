@@ -58,6 +58,21 @@ abstract class HookRunnerTestBase extends MediaWikiUnitTestCase {
 		$this->assertArrayEquals( $hookMethods, array_unique( $hookMethods ) );
 	}
 
+	/**
+	 * @dataProvider provideHookRunners
+	 */
+	public function testHookInterfacesNamingConvention( string $hookRunnerClass ) {
+		$hookRunnerReflectionClass = new ReflectionClass( $hookRunnerClass );
+
+		foreach ( $hookRunnerReflectionClass->getInterfaces() as $interface ) {
+			$name = $interface->getName();
+
+			$this->assertStringEndsWith( 'Hook', $name,
+				"Interface name '$name' must have the suffix 'Hook'." );
+
+		}
+	}
+
 	public function provideHookMethods() {
 		foreach ( $this->provideHookRunners() as $name => [ $hookRunnerClass ] ) {
 			$hookRunnerReflectionClass = new ReflectionClass( $hookRunnerClass );
