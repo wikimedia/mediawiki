@@ -622,7 +622,6 @@ $wgAutoloadLocalClasses = [
 	'HtmlArmor' => __DIR__ . '/includes/libs/HtmlArmor.php',
 	'HtmlCacheUpdater' => __DIR__ . '/includes/cache/HtmlCacheUpdater.php',
 	'HtmlFileCacheUpdate' => __DIR__ . '/includes/deferred/HtmlFileCacheUpdate.php',
-	'Http' => __DIR__ . '/includes/http/Http.php',
 	'HttpError' => __DIR__ . '/includes/exception/HttpError.php',
 	'HttpStatus' => __DIR__ . '/includes/libs/HttpStatus.php',
 	'IApiMessage' => __DIR__ . '/includes/api/IApiMessage.php',
