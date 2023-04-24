@@ -1087,6 +1087,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Emptiable' => __DIR__ . '/includes/libs/Emptiable.php',
 	'MediaWiki\\Export\\WikiExporterFactory' => __DIR__ . '/includes/export/WikiExporterFactory.php',
 	'MediaWiki\\ExtensionInfo' => __DIR__ . '/includes/ExtensionInfo.php',
+	'MediaWiki\\ExternalLinks\\ExternalLinksLookup' => __DIR__ . '/includes/ExternalLinks/ExternalLinksLookup.php',
 	'MediaWiki\\ExternalLinks\\LinkFilter' => __DIR__ . '/includes/ExternalLinks/LinkFilter.php',
 	'MediaWiki\\Feed\\AtomFeed' => __DIR__ . '/includes/Feed/AtomFeed.php',
 	'MediaWiki\\Feed\\ChannelFeed' => __DIR__ . '/includes/Feed/ChannelFeed.php',
