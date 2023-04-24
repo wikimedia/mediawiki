@@ -640,7 +640,7 @@
 	"compareselectedversions": "Cumpara versiones scioberadas",
 	"editundo": "annulla",
 	"diff-empty": "(Diferèntzia peruna)",
-	"diff-multi-sameuser": "({{PLURAL:$1|Una versione de intramesu|$1 versiones de intramesu}} de su matessi impitadore non sunt ammustradas)",
+	"diff-multi-sameuser": "({{PLURAL:$1|Una versione de intramesu|$1 versiones de intramesu}} de {{GENDER:$3|su matessi impitadore|sa matessi impitadora}} non sunt ammustradas)",
 	"diff-multi-otherusers": "({{PLURAL:$1|Una versione de intramesu|$1 versiones de intramesu}} de {{PLURAL:$2|un'àteru impitadore|$2 impitadores}} non sunt ammustradas)",
 	"searchresults": "Resurtados de sa chirca",
 	"searchresults-title": "Resurtados pro sa chirca de \"$1\"",
