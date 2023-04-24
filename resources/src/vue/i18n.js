@@ -23,13 +23,22 @@ module.exports = {
 		 * @param {...Mixed} parameters Values for $N replacements
 		 * @return {mw.Message}
 		 */
+		function $i18n( key, ...parameters ) {
+			// eslint-disable-next-line mediawiki/msg-doc
+			return mw.message( key, ...parameters );
+		}
 		// This should be app.config.globalProperties.$i18n = ... , but that doesn't work
 		// with Vue 2-style app construction. Change this to use globalProperties when we're
 		// ready to drop compatibility for Vue 2-style new Vue( ... )
-		app.prototype.$i18n = function ( key, ...parameters ) {
-			// eslint-disable-next-line mediawiki/msg-doc
-			return mw.message( key, ...parameters );
-		};
+		app.prototype.$i18n = $i18n;
+		// Calls to static method Vue.use cause Vue to argue about the wrong usage of .provide()
+		// before a Vue application instance is created. In those cases typeof app === 'function';
+		// This check can be drop when Vue 2 compatibility is abandoned.
+		if ( typeof app === 'object' ) {
+			// Facilitate the usage of $i18n in Vue 3 applications using setup() function
+			// from the composition API.
+			app.provide( 'i18n', $i18n );
+		}
 
 		function renderI18nHtml( el, binding ) {
 			/* eslint-disable mediawiki/msg-doc */
