@@ -3,18 +3,18 @@
 // Helper mixins used to create button styles. This file is importable
 // by all LESS files via `@import 'mediawiki.ui/mixins.buttons.less';`.
 
-/* stylelint-disable selector-class-pattern */
-@import 'mediawiki.ui/variables';
+@import 'mediawiki.skin.variables.less';
 
+/* stylelint-disable selector-class-pattern */
 // Default button mixin.
 .mw-ui-button() {
 	// Container layout
 	display: inline-block;
 	box-sizing: border-box;
 	margin: 0;
-	border: @border-base;
+	border-width: @border-width-base;
+	border-style: @border-style-base;
 	border-radius: @border-radius-base;
-	cursor: pointer;
 	// Ensure that buttons and inputs are nicely aligned when they have differing heights
 	vertical-align: middle;
 	// Inherit the font rather than apply user agent stylesheet (T72072)
@@ -38,9 +38,10 @@
 // Mixin for button interaction states.
 .mw-ui-button-states() {
 	&:not( :disabled ) {
+		border-color: @border-color-base;
 		// Add `transition`s exclusively on enabled buttons.
-		transition-property: background-color, color, border-color, box-shadow;
-		transition-duration: 100ms;
+		transition-property: @transition-property-base;
+		transition-duration: @transition-duration-base;
 
 		// Make sure that `color` isn't inheriting from user-agent styles
 		&:visited {
@@ -50,18 +51,24 @@
 		&:hover {
 			background-color: @background-color-base;
 			color: @color-base--hover;
-			border-color: @colorGray10;
+			cursor: @cursor-base--hover;
 		}
 
 		&:focus {
 			// Make sure that `color` isn't inheriting from user-agent styles
 			color: @color-base;
-			border-color: @border-color-base--focus;
-			box-shadow: @box-shadow-primary--focus;
-			outline-width: 0;
+			border-color: @border-color-progressive--focus;
+			box-shadow: @box-shadow-inset-small @box-shadow-color-progressive--focus;
+			// Set the standard focus `outline` transparent. A `border` and `box-shadow` visual
+			// focus is added above for common rendering.
+			// In Windows high contrast mode the transparent outline becomes visible.
+			// As vendor stylesheets set the outline on `:focus`, we need to follow here too and
+			// can't rely on the next selector to override it.
+			outline: @outline-base--focus;
 
 			// Remove the inner border and padding in Firefox.
 			&::-moz-focus-inner {
+				// As this is a reset, we're not using skin variables here.
 				border-color: transparent;
 				padding: 0;
 			}
@@ -69,18 +76,18 @@
 
 		&:active,
 		&.is-on {
-			background-color: @colorGray12;
-			color: @color-base--active;
-			border-color: @colorGray7;
+			background-color: @background-color-interactive;
+			color: @color-emphasized;
+			border-color: @border-color-interactive;
 			box-shadow: none;
 		}
 	}
 
 	&:disabled {
-		background-color: @colorGray12;
-		color: @color-base--inverted;
-		border-color: @colorGray12;
-		cursor: default;
+		background-color: @background-color-disabled;
+		color: @color-inverted;
+		border-color: @border-color-disabled;
+		cursor: @cursor-base--disabled;
 	}
 }
 
@@ -88,7 +95,7 @@
 .mw-ui-button-colors-primary( @bgColor, @highlightColor, @activeColor ) {
 	&:not( :disabled ) {
 		background-color: @bgColor;
-		color: #fff;
+		color: @color-inverted;
 		// border of the same color as background so that light background and
 		// dark background buttons are the same height and width
 		border-color: @bgColor;
@@ -99,7 +106,7 @@
 		}
 
 		&:focus {
-			box-shadow: inset 0 0 0 1px @bgColor, inset 0 0 0 2px #fff;
+			box-shadow: @box-shadow-inset-small @bgColor, @box-shadow-inset-medium @box-shadow-color-inverted;
 		}
 
 		&:active,
@@ -111,8 +118,8 @@
 	}
 
 	&:disabled {
-		background-color: @colorGray12;
-		color: #fff;
-		border-color: @colorGray12;
+		background-color: @background-color-disabled;
+		color: @color-inverted;
+		border-color: @border-color-disabled;
 	}
 }

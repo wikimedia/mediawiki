@@ -1,7 +1,7 @@
 // Inputs
 
+@import 'mediawiki.skin.variables.less';
 @import 'mediawiki.mixins.less';
-@import 'mediawiki.ui/variables.less';
 
 // Text inputs
 //
@@ -17,16 +17,15 @@
 // <input class="mw-ui-input" placeholder="Enter your name">
 // <textarea class="mw-ui-input">Text here</textarea>
 .mw-ui-input {
-	background-color: @background-color-base;
-	color: @color-base--emphasized;
 	box-sizing: border-box;
 	display: block;
 	width: 100%;
-	border: @border-base;
+	border-width: @border-width-base;
+	border-style: @border-style-base;
 	border-radius: @border-radius-base;
 	padding: 6px 8px;
-	// necessary for smooth transition
-	box-shadow: @box-shadow-base;
+	// `@box-shadow-color-transparent` necessary for smooth transition.
+	box-shadow: @box-shadow-inset-small @box-shadow-color-transparent;
 	font-family: inherit;
 	font-size: inherit;
 	line-height: 1.28571429em;
@@ -35,7 +34,7 @@
 	// Normalize & style placeholder text, see T139034
 	.mixin-placeholder( {
 		color: @color-placeholder;
-		opacity: 1;
+		opacity: @opacity-base;
 	} );
 
 	// Firefox: Remove red outline when `required` attribute set and invalid content.
@@ -45,24 +44,28 @@
 		box-shadow: none;
 	}
 
-	&:hover {
-		border-color: @colorGray7;
-	}
-
-	&:focus {
-		border-color: @border-color-base--focus;
-		box-shadow: @box-shadow-base--focus;
-		outline: 0;
-	}
-
-	// `:not()` is used exclusively for `transition`s as both are not supported by IE < 9.
 	&:not( :disabled ) {
-		transition: color 100ms, border-color 100ms, box-shadow 100ms;
+		background-color: @background-color-base;
+		color: @color-emphasized;
+		border-color: @border-color-base;
+		transition-property: @transition-property-base;
+		transition-duration: @transition-duration-medium;
+
+		&:hover {
+			border-color: @border-color-input--hover;
+		}
+
+		&:focus {
+			border-color: @border-color-progressive--focus;
+			box-shadow: @box-shadow-inset-small @box-shadow-color-progressive--focus;
+			outline: @outline-base--focus;
+		}
 	}
 
 	&:disabled {
-		border-color: @colorGray14;
-		color: @colorGray12;
+		background-color: @background-color-disabled-subtle;
+		color: @color-disabled;
+		border-color: @border-color-disabled;
 	}
 
 	// Normalize styling for `<input type="search">`
@@ -124,7 +127,7 @@ textarea.mw-ui-input {
 
 	// When two large inputs are together, we make them flush by hiding one of the borders
 	& + .mw-ui-input-large {
-		margin-top: -1px;
+		margin-top: -@position-offset-border-width-base;
 	}
 	// When focusing, make the input relative to raise it above any attached inputs to unhide its borders
 	&:focus {

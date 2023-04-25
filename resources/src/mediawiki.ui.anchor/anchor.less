@@ -1,5 +1,10 @@
+@import 'mediawiki.skin.variables.less';
 @import 'mediawiki.mixins.less';
-@import 'mediawiki.ui/variables.less';
+
+// Used in mixins to darken contextual colors by the same amount (eg. focus)
+@colorDarkenPercentage: 13.5%;
+// Used in mixins to lighten contextual colors by the same amount (eg. hover)
+@colorLightenPercentage: 13.5%;
 
 // Helpers
 .mixin-mw-ui-anchor-styles( @mainColor ) {
@@ -38,7 +43,7 @@ Markup:
 // Setup compound anchor selectors (such as .mw-ui-anchor.mw-ui-progressive)
 .mw-ui-anchor {
 	&.mw-ui-progressive {
-		.mixin-mw-ui-anchor-styles( @color-primary );
+		.mixin-mw-ui-anchor-styles( @color-progressive );
 	}
 
 	&.mw-ui-destructive {

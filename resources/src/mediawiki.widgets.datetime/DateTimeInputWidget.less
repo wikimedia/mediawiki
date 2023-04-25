@@ -31,12 +31,12 @@
 		border: @border-base;
 		border-radius: @border-radius-base;
 		padding: 0 @padding-horizontal-input-text;
-		box-shadow: inset 0 0 0 0 @color-progressive;
+		box-shadow: inset 0 0 0 0 @box-shadow-color-progressive--focus;
 		// Needed for proper behavior with `overflow: hidden`.
 		vertical-align: bottom;
 		overflow: hidden;
 		.oo-ui-unselectable();
-		transition: box-shadow @transition-base;
+		transition: box-shadow @transition-duration-base;
 
 		> .oo-ui-iconElement-icon,
 		> .oo-ui-indicatorElement-indicator {
@@ -95,12 +95,12 @@
 
 	&-editField {
 		.mw-widgets-datetime-dateTimeInputWidget-invalid {
-			border: 1px solid @border-color-erroneous;
-			box-shadow: @box-shadow-widget;
+			border: @border-width-base @border-style-base @border-color-error;
+			box-shadow: @box-shadow-inset-small @box-shadow-color-transparent;
 
 			&:focus {
-				border: 1px solid @border-color-erroneous;
-				box-shadow: @box-shadow-erroneous--focus;
+				border: @border-width-base @border-style-base @border-color-error;
+				box-shadow: @box-shadow-inset-small @color-error;
 			}
 		}
 	}
@@ -123,7 +123,7 @@
 
 	&-empty {
 		.mw-widgets-datetime-dateTimeInputWidget-handle {
-			color: @color-base--subtle;
+			color: @color-subtle;
 		}
 
 		.mw-widgets-datetime-dateTimeInputWidget-clearButton {
@@ -150,22 +150,22 @@
 		}
 
 		.mw-widgets-datetime-dateTimeInputWidget-editField:hover {
-			background-color: @background-color-base--hover;
+			background-color: @background-color-interactive;
 		}
 
 		.mw-widgets-datetime-dateTimeInputWidget-editField:focus {
-			outline: 0;
-			box-shadow: inset 0 0 0 1px @color-progressive, 0 0 0 1px @color-progressive;
+			outline: @outline-base--focus;
+			box-shadow: @box-shadow-inset-small @box-shadow-color-progressive--focus, @box-shadow-outset-small @box-shadow-color-progressive--focus;
 		}
 
 		&.oo-ui-flaggedElement-invalid {
 			.mw-widgets-datetime-dateTimeInputWidget-handle {
-				border-color: @border-color-erroneous;
-				box-shadow: @box-shadow-widget;
+				border-color: @border-color-error;
+				box-shadow: @box-shadow-inset-small @box-shadow-color-transparent;
 
 				&:focus {
-					border-color: @border-color-erroneous;
-					box-shadow: @box-shadow-erroneous--focus;
+					border-color: @border-color-error;
+					box-shadow: @box-shadow-inset-small @color-error;
 				}
 			}
 		}
@@ -173,17 +173,17 @@
 
 	&.oo-ui-widget-disabled {
 		.mw-widgets-datetime-dateTimeInputWidget-handle {
-			background-color: @background-color-base--disabled;
+			background-color: @background-color-disabled-subtle;
 			// Support: Safari
-			-webkit-text-fill-color: @color-base--disabled;
-			color: @color-base--disabled;
-			border-color: @border-color-base--disabled;
+			-webkit-text-fill-color: @color-disabled;
+			color: @color-disabled;
+			border-color: @border-color-disabled;
 			text-shadow: @text-shadow-base--disabled;
 		}
 
 		> .oo-ui-iconElement-icon,
 		> .oo-ui-indicatorElement-indicator {
-			opacity: @opacity-base--disabled;
+			opacity: @opacity-icon-base--disabled;
 		}
 	}
 }

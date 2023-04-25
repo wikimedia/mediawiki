@@ -1,5 +1,8 @@
+@import 'mediawiki.skin.variables.less';
 @import 'mediawiki.mixins.less';
-@import 'mediawiki.ui/variables.less';
+
+// Form input sizes, equal to OOUI at 14px base font-size
+@size-input-binary: 1.5625em;
 
 // Checkbox
 //
@@ -72,7 +75,8 @@
 			width: @size-input-binary;
 			height: @size-input-binary;
 			margin-top: -( @size-input-binary / 2 );
-			border: 1px solid @colorGray7;
+			border-width: @border-width-base;
+			border-style: @border-style-base;
 			border-radius: @border-radius-base;
 		}
 
@@ -90,25 +94,28 @@
 			}
 
 			& + label::before {
-				cursor: pointer;
-				transition: background-color 100ms, color 100ms, border-color 100ms, box-shadow 100ms;
+				border-color: @border-color-input-binary;
+				transition-property: @transition-property-base;
+				transition-duration: @transition-duration-base;
 			}
 
 			// `:focus` has to come first, otherwise a specificity race with `:hover:focus` etc is necessary
 			&:focus + label::before {
-				border-color: @border-color-base--focus;
-				box-shadow: @box-shadow-base--focus;
+				border-color: @border-color-input-binary--focus;
+				box-shadow: @box-shadow-inset-small @box-shadow-color-progressive--focus;
+				// In Windows high contrast mode the outline becomes visible.
+				outline: @outline-base--focus;
 			}
 
 			&:hover + label::before {
-				// FIXME: Replace with WikimediaUI Base `@border-color*` var when available.
-				border-color: @color-primary--hover;
+				border-color: @border-color-input-binary--hover;
+				cursor: @cursor-base--hover;
 			}
 
 			&:active + label::before {
-				background-color: @background-color-input-binary--active;
-				border-color: @border-color-input-binary--active;
-				box-shadow: @box-shadow-input-binary--active;
+				background-color: @background-color-progressive--active;
+				border-color: @border-color-progressive--active;
+				box-shadow: @box-shadow-inset-small @box-shadow-color-progressive--active;
 			}
 
 			&:checked {
@@ -120,26 +127,24 @@
 				&:focus + label::before {
 					background-color: @background-color-input-binary--checked;
 					border-color: @border-color-input-binary--checked;
-					box-shadow: @box-shadow-primary--focus;
 				}
 
 				&:hover + label::before {
-					// FIXME: Replace with WikimediaUI Base vars when available.
-					background-color: @color-primary--hover;
-					border-color: @color-primary--hover;
+					background-color: @background-color-progressive--hover;
+					border-color: @border-color-input-binary--hover;
 				}
 
 				&:active + label::before {
-					background-color: @background-color-input-binary--active;
-					border-color: @border-color-input-binary--active;
+					background-color: @background-color-progressive--active;
+					border-color: @border-color-progressive--active;
 				}
 			}
 		}
 
-		// disabled checkboxes have a gray background
+		// Disabled checkboxes have a gray background.
 		&:disabled + label::before {
-			background-color: @colorGray12;
-			border-color: @colorGray12;
+			background-color: @background-color-disabled;
+			border-color: @border-color-disabled;
 		}
 	}
 }
