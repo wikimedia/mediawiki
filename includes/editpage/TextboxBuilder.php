@@ -29,6 +29,7 @@ use Sanitizer;
 /**
  * Helps EditPage build textboxes
  *
+ * @newable
  * @since 1.31
  * @author Kunal Mehta <legoktm@debian.org>
  */
