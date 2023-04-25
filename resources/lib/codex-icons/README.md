@@ -38,7 +38,7 @@ backwards-compatible SVG file for older [SVG render libraries compliance](https:
 ### Build products
 The build process outputs the following files in the `dist/` directory:
 - `codex-icons.cjs.js`: All icons and utility functions, in CommonJS format
-- `codex-icons.es.js`: All icons and utility functions, in ES module format
+- `codex-icons.mjs`: All icons and utility functions, in ES module format
 - `codex-icons.json`: All icons, in JSON format
 - `index.d.ts` and other `.d.ts` files: TypeScript type definitions
 - `images/*.svg`: All icons as raw SVG files

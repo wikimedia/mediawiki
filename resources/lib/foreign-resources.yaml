@@ -108,10 +108,10 @@ CLDRPluralRuleParser:
 codex:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
-  version: 0.9.0
+  version: 0.9.1
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-0.9.0.tgz
-  integrity: sha512-gzv5nsk1eyvkMkEy/S5wXlYgpCSngoqEBNblSJusVk424/eU6gQEYI8oqnO8SYhS33mW6TtzKT2YUMIuAuB1vA==
+  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-0.9.1.tgz
+  integrity: sha512-T+D9bnhHPZDjsUD3Td7uKpVuS9IUpWONwvqZjG0WV1Spyslv6FgHM8XEmwZDUWlu3tQl6Z8tskaCc2HY1Rz5Ew==
   dest:
     package/dist/codex.mjs:
     package/dist/codex.umd.js:
@@ -126,10 +126,10 @@ codex:
 codex-design-tokens:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
-  version: 0.9.0
+  version: 0.9.1
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-0.9.0.tgz
-  integrity: sha384-ZK/N1fF/QbHzNmGUkexPAZ3yaigG/7StjqOVRTLHhQEHiuWwczCpWleLB5UhHrqR
+  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-0.9.1.tgz
+  integrity: sha384-zUasRBrIp94gSRcnPMcZrZxJJJZZSJg47dRWTDwShG/X4xLdA7QNyL4T1DYbOjAG
   dest:
     package/dist/theme-wikimedia-ui.less:
     package/dist/theme-wikimedia-ui-legacy.less:
@@ -139,10 +139,10 @@ codex-design-tokens:
 codex-icons:
   license: MIT
   homepage: https://doc.wikimedia.org/codex/
-  version: 0.9.0
+  version: 0.9.1
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-0.9.0.tgz
-  integrity: sha384-ZmDF2WSNFqYdRcks8q/0oW/ECia8KNM+plf7t7NVLaSyFRcdC0FDaJ+0rpONzs6F
+  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-0.9.1.tgz
+  integrity: sha384-mEpA1cn7/LQvd7+zWZJ0khPGLkExcrH2RPppT7jFlYqrH14FP9bip+QyAKfheM8g
   dest:
     package/dist/codex-icons.json:
     package/dist/codex-icon-paths.less:
@@ -152,10 +152,10 @@ codex-icons:
 codex-search:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
-  version: 0.9.0
+  version: 0.9.1
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-search/-/codex-search-0.9.0.tgz
-  integrity: sha384-j8MkIgaIeUZDjYtoj364C21+uqJuxp0WsMixqUuUo82fJAx+8crEgbIAJdxZPxdb
+  src: https://registry.npmjs.org/@wikimedia/codex-search/-/codex-search-0.9.1.tgz
+  integrity: sha384-OpDK5ojEhbJjpJGv6U1x2Z2YxLetdLwzv8Oum3hmaEomEUottnj5YNzOp5EERXCi
   dest:
     package/dist/codex-search.mjs:
     package/dist/codex-search.umd.js:
