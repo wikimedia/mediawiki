@@ -1012,7 +1012,7 @@
 	"mergehistory-go": "Pokaż możliwe do scalenia zmiany",
 	"mergehistory-submit": "Scal historię zmian",
 	"mergehistory-empty": "Brak historii zmian do scalenia.",
-	"mergehistory-done": "$4 {{PLURAL:$4|zmiana|zmiany|zmian}} w $1 {{PLURAL:$4|została scalona|zostały scalone|zostało scalonych}} z [[:$2]].\n$3.",
+	"mergehistory-done": "$4 {{PLURAL:$4|zmiana|zmiany|zmian}} w $1 {{PLURAL:$4|została scalona|zostały scalone|zostało scalonych}} z [[:$2]].\n$3",
 	"mergehistory-fail": "Scalenie historii zmian jest niemożliwe. Sprawdź ustawienia parametrów strony i czasu.",
 	"mergehistory-fail-bad-timestamp": "Znacznik czasu jest nieprawidłowy.",
 	"mergehistory-fail-invalid-source": "Strona źródłowa jest nieprawidłowa.",
