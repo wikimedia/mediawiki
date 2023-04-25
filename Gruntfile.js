@@ -110,7 +110,7 @@ module.exports = function ( grunt ) {
 						base: 'ChromeHeadless',
 						// Chrome requires --no-sandbox in Docker/CI.
 						// WMF CI images expose CHROMIUM_FLAGS which sets that.
-						flags: ( process.env.CHROMIUM_FLAGS || '' ).split( ' ' )
+						flags: process.env.CHROMIUM_FLAGS ? ( process.env.CHROMIUM_FLAGS || '' ).split( ' ' ) : []
 					}
 				},
 				proxies: karmaProxy,
