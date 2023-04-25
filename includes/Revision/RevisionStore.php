@@ -47,6 +47,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Storage\BadBlobException;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\BlobStore;
+use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\Storage\SqlBlobStore;
@@ -2160,17 +2161,23 @@ class RevisionStore
 		$slotQueryConds = [ $revIdField => $revIds ];
 
 		if ( isset( $options['slots'] ) && is_array( $options['slots'] ) ) {
-			if ( empty( $options['slots'] ) ) {
+			$slotIds = [];
+			foreach ( $options['slots'] as $slot ) {
+				try {
+					$slotIds[] = $this->slotRoleStore->getId( $slot );
+				} catch ( NameTableAccessException $exception ) {
+					// Do not fail when slot has no id (unused slot)
+					// This also means for this slot are never data in the database
+				}
+			}
+			if ( $slotIds === [] ) {
 				// Degenerate case: return no slots for each revision.
 				$result->setResult( true, array_fill_keys( $revIds, [] ) );
 				return $result;
 			}
 
 			$roleIdField = $slotQueryInfo['keys']['role_id'];
-			$slotQueryConds[$roleIdField] = array_map(
-				[ $this->slotRoleStore, 'getId' ],
-				$options['slots']
-			);
+			$slotQueryConds[$roleIdField] = $slotIds;
 		}
 
 		$db = $this->getDBConnectionRefForQueryFlags( $queryFlags );
