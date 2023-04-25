@@ -69,7 +69,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$provider = $this->getMockBuilder( LocalPasswordPrimaryAuthenticationProvider::class )
 			->onlyMethods( [ 'checkPasswordValidity' ] )
 			->setConstructorArgs( [
-				$mwServices->getDBLoadBalancer(),
+				$mwServices->getDBLoadBalancerFactory(),
 				[ 'loginOnly' => $loginOnly ]
 			] )
 			->getMock();
@@ -160,7 +160,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$this->config->set( 'InvalidPasswordReset', true );
 
 		$provider = new LocalPasswordPrimaryAuthenticationProvider(
-			$this->getServiceContainer()->getDBLoadBalancer()
+			$this->getServiceContainer()->getDBLoadBalancerFactory()
 		);
 		$this->initProvider( $provider, $this->config, null, $this->manager );
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );

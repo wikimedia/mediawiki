@@ -28,6 +28,12 @@ For notes on 1.40.x and older releases, see HISTORY.
 * …
 
 ==== Changed configuration ====
+* $wgAuthManagerAutoConfig – When using this setting to modify the
+  authentication system in MediaWiki, the classes
+  TemporaryPasswordPrimaryAuthenticationProvider,
+  LocalPasswordPrimaryAuthenticationProvider and
+  EmailNotificationSecondaryAuthenticationProvider now require
+  DBLoadBalancerFactory, not DBLoadBalancer, as a service.
 * …
 
 ==== Removed configuration ====

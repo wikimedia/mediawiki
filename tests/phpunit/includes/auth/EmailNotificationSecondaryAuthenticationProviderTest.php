@@ -23,7 +23,7 @@ class EmailNotificationSecondaryAuthenticationProviderTest extends \MediaWikiInt
 	private function getProvider( array $options = [] ): EmailNotificationSecondaryAuthenticationProvider {
 		$services = $this->getServiceContainer();
 		$provider = new EmailNotificationSecondaryAuthenticationProvider(
-			$options['loadBalancer'] ?? $services->getDBLoadBalancer(),
+			$options['dbProvider'] ?? $services->getDBLoadBalancerFactory(),
 			$options // make things easier for tests by using the same options
 		);
 		$this->initProvider(

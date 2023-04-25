@@ -28,7 +28,7 @@ use MediaWiki\User\UserRigorOptions;
 use SpecialPage;
 use User;
 use Wikimedia\IPUtils;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * A primary authentication provider that uses the temporary password field in
@@ -56,14 +56,14 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 	/** @var bool */
 	protected $allowRequiringEmail = null;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
 	/**
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param array $params
 	 *  - emailEnabled: (bool) must be true for the option to email passwords to be present
@@ -72,7 +72,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 	 *    be sent to the same user again
 	 */
 	public function __construct(
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		UserOptionsLookup $userOptionsLookup,
 		$params = []
 	) {
@@ -90,7 +90,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 		if ( isset( $params['allowRequiringEmailForResets'] ) ) {
 			$this->allowRequiringEmail = $params['allowRequiringEmailForResets'];
 		}
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
@@ -149,7 +149,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			return AuthenticationResponse::newAbstain();
 		}
 
-		$row = $this->loadBalancer->getConnection( DB_REPLICA )->newSelectQueryBuilder()
+		$row = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
 			->select( [ 'user_id', 'user_newpassword', 'user_newpass_time' ] )
 			->from( 'user' )
 			->where( [ 'user_name' => $username ] )
@@ -194,7 +194,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			return false;
 		}
 
-		$row = $this->loadBalancer->getConnection( DB_REPLICA )->newSelectQueryBuilder()
+		$row = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
 			->select( [ 'user_newpassword', 'user_newpass_time' ] )
 			->from( 'user' )
 			->where( [ 'user_name' => $username ] )
@@ -220,8 +220,9 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			return false;
 		}
 
-		[ $db, $options ] = \DBAccessObjectUtils::getDBOptions( $flags );
-		return (bool)$this->loadBalancer->getConnection( $db )->newSelectQueryBuilder()
+		[ $mode, $options ] = \DBAccessObjectUtils::getDBOptions( $flags );
+		$db = \DBAccessObjectUtils::getDBFromIndex( $this->dbProvider, $mode );
+		return (bool)$db->newSelectQueryBuilder()
 			->select( [ 'user_id' ] )
 			->from( 'user' )
 			->where( [ 'user_name' => $username ] )
@@ -247,7 +248,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			return \StatusValue::newGood( 'ignored' );
 		}
 
-		$row = $this->loadBalancer->getConnection( DB_PRIMARY )->newSelectQueryBuilder()
+		$row = $this->dbProvider->getPrimaryDatabase()->newSelectQueryBuilder()
 			->select( [ 'user_id', 'user_newpass_time' ] )
 			->from( 'user' )
 			->where( [ 'user_name' => $username ] )
@@ -303,7 +304,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			return;
 		}
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
+		$dbw = $this->dbProvider->getPrimaryDatabase();
 
 		$sendMail = false;
 		if ( $req->action !== AuthManager::ACTION_REMOVE &&
@@ -402,7 +403,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 
 		if ( $mailpassword ) {
 			// Send email after DB commit
-			$this->loadBalancer->getConnectionRef( DB_PRIMARY )->onTransactionCommitOrIdle(
+			$this->dbProvider->getPrimaryDatabase()->onTransactionCommitOrIdle(
 				function () use ( $user, $creator, $req ) {
 					$this->sendNewAccountEmail( $user, $creator, $req->password );
 				},
