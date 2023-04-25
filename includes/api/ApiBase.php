@@ -247,13 +247,13 @@ abstract class ApiBase extends ContextSource {
 	/** @var stdClass[][] Cache for self::filterIDs() */
 	private static $filterIDsCache = [];
 
-	/** @var array Map of web UI block messages to corresponding API messages and codes */
+	/** @var array Map of web UI block messages which magically gain machine-readable block info */
 	private static $blockMsgMap = [
-		'blockedtext' => [ 'apierror-blocked', 'blocked' ],
-		'blockedtext-partial' => [ 'apierror-blocked-partial', 'blocked' ],
-		'autoblockedtext' => [ 'apierror-autoblocked', 'autoblocked' ],
-		'systemblockedtext' => [ 'apierror-systemblocked', 'blocked' ],
-		'blockedtext-composite' => [ 'apierror-blocked', 'blocked' ],
+		'blockedtext' => true,
+		'blockedtext-partial' => true,
+		'autoblockedtext' => true,
+		'systemblockedtext' => true,
+		'blockedtext-composite' => true,
 	];
 
 	/** @var ApiMain */
@@ -1253,19 +1253,21 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function errorArrayToStatus( array $errors, User $user = null ) {
 		$user ??= $this->getUser();
+		$block = $user->getBlock();
 
 		$status = Status::newGood();
 		foreach ( $errors as $error ) {
 			if ( !is_array( $error ) ) {
 				$error = [ $error ];
 			}
-			if ( is_string( $error[0] ) && isset( self::$blockMsgMap[$error[0]] ) && $user->getBlock() ) {
-				[ $msg, $code ] = self::$blockMsgMap[$error[0]];
-				$status->fatal( ApiMessage::create( $msg, $code,
-					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Block is checked and not null
-					[ 'blockinfo' => $this->getBlockDetails( $user->getBlock() ) ]
+			if ( is_string( $error[0] ) && isset( self::$blockMsgMap[$error[0]] ) && $block ) {
+				$status->fatal( ApiMessage::create(
+					$error,
+					$this->getBlockCode( $block ),
+					[ 'blockinfo' => $this->getBlockDetails( $block ) ]
 				) );
 			} else {
+				// @phan-suppress-next-line PhanParamTooFewUnpack
 				$status->fatal( ...$error );
 			}
 		}
@@ -1288,9 +1290,15 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		if ( $block ) {
-			foreach ( self::$blockMsgMap as $msg => [ $apiMsg, $code ] ) {
-				if ( $status->hasMessage( $msg ) ) {
-					$status->replaceMessage( $msg, ApiMessage::create( $apiMsg, $code,
+			foreach ( $status->getErrors() as $error ) {
+				$msgKey = $error['message'] instanceof MessageSpecifier ?
+					$error['message']->getKey() :
+					$error['message'];
+
+				if ( isset( self::$blockMsgMap[$msgKey] ) ) {
+					$status->replaceMessage( $msgKey, ApiMessage::create(
+						$error,
+						$this->getBlockCode( $block ),
 						[ 'blockinfo' => $this->getBlockDetails( $block ) ]
 					) );
 				}
@@ -1487,26 +1495,20 @@ abstract class ApiBase extends ContextSource {
 	 * @return never
 	 */
 	public function dieBlocked( Block $block ) {
-		// Die using the appropriate message depending on block type
-		if ( $block->getType() == Block::TYPE_AUTO ) {
-			$this->dieWithError(
-				'apierror-autoblocked',
-				'autoblocked',
-				[ 'blockinfo' => $this->getBlockDetails( $block ) ]
-			);
-		} elseif ( !$block->isSitewide() ) {
-			$this->dieWithError(
-				'apierror-blocked-partial',
-				'blocked',
-				[ 'blockinfo' => $this->getBlockDetails( $block ) ]
-			);
-		} else {
-			$this->dieWithError(
-				'apierror-blocked',
-				'blocked',
-				[ 'blockinfo' => $this->getBlockDetails( $block ) ]
-			);
-		}
+		$blockErrorFormatter = MediaWikiServices::getInstance()->getBlockErrorFormatter();
+
+		$msg = $blockErrorFormatter->getMessage(
+			$block,
+			$this->getUser(),
+			$this->getLanguage(),
+			$this->getRequest()->getIP()
+		);
+
+		$this->dieWithError(
+			$msg,
+			$this->getBlockCode( $block ),
+			[ 'blockinfo' => $this->getBlockDetails( $block ) ]
+		);
 	}
 
 	/**

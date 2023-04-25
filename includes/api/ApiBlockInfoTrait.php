@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Block\Block;
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
 
 /**
@@ -83,6 +84,18 @@ trait ApiBlockInfoTrait {
 		}
 
 		return $vals;
+	}
+
+	/**
+	 * Get the API error code, to be used in ApiMessage::create or ApiBase::dieWithError
+	 * @param Block $block
+	 * @return string
+	 */
+	private function getBlockCode( Block $block ): string {
+		if ( $block instanceof DatabaseBlock && $block->getType() === Block::TYPE_AUTO ) {
+			return 'autoblocked';
+		}
+		return 'blocked';
 	}
 
 	// region   Methods required from ApiBase
