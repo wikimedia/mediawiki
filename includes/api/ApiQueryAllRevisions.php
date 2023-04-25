@@ -217,6 +217,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 
 		if ( $resultPageSet === null ) {
 			$this->executeGenderCacheFromResultWrapper( $res, __METHOD__ );
+			$revisions = $this->getRevisionRecords( $res );
 		}
 
 		$pageMap = []; // Maps rev_page to array index
@@ -249,7 +250,8 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 					$generated[] = $row->rev_id;
 				}
 			} else {
-				$revision = $this->revisionStore->newRevisionFromRow( $row, 0, Title::newFromRow( $row ) );
+				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable Set when used
+				$revision = $revisions[$row->rev_id];
 				$rev = $this->extractRevisionInfo( $revision, $row );
 
 				if ( !isset( $pageMap[$row->rev_page] ) ) {

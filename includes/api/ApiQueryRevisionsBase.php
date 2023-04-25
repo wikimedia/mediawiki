@@ -36,6 +36,7 @@ use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * A base class for functions common to producing a list of revisions.
@@ -295,6 +296,42 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			$ret |= ( $canSee ? 0 : self::CANNOT_VIEW );
 		}
 		return $ret;
+	}
+
+	/**
+	 * Create RevisionRecord objects with the RevisionStore
+	 * @param IResultWrapper $res
+	 * @param string|null $mode 'archive' or omit
+	 * @return RevisionRecord[]
+	 */
+	protected function getRevisionRecords( $res, $mode = null ) {
+		$result = $this->revisionStore->newRevisionsFromBatch( $res, [
+			'slots' => $this->needSlots ? ( $this->slotRoles ?? [ SlotRecord::MAIN ] ) : null,
+			'archive' => $mode === 'archive',
+			// RevisionStore::newRevisionsFromBatch also supports a 'content' option to prefetch the content of
+			// all revisions. This can be problematic for big list of revisions as the content does not fit into
+			// MainConfigNames::APIMaxResultSize and the module produce a continue parameter to get the next content
+			// with the next request, but internally all contents are already fetched, which could be huge blobs.
+			// Also this loads content of revdeleted content, which is not used later
+			// Also failures on loading blobs would make the whole batch invalid and needs extra checking
+			// how to handle that in the module
+			// 'content' => $this->fetchContent,
+		] );
+
+		if ( !$result->isOK() ) {
+			// RevisionStore can set some internalerror_info
+			ApiBase::dieDebug( __METHOD__, Status::wrap( $result )->getWikiText( false, false, 'en' ) );
+		}
+
+		// Assert that all ids are set
+		$revisions = $result->getValue();
+		$idField = $mode !== 'archive' ? 'rev_id' : 'ar_rev_id';
+		foreach ( $res as $row ) {
+			if ( !isset( $revisions[$row->$idField] ) ) {
+				ApiBase::dieDebug( __METHOD__, 'RevisionStore does not return record for ' . $row->$idField );
+			}
+		}
+		return $revisions;
 	}
 
 	/**
