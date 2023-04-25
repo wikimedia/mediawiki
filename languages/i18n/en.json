@@ -971,7 +971,7 @@
 	"mergehistory-go": "Show mergeable edits",
 	"mergehistory-submit": "Merge revisions",
 	"mergehistory-empty": "No revisions can be merged.",
-	"mergehistory-done": "$4 {{PLURAL:$4|revision|revisions}} of $1 {{PLURAL:$4|was|were}} merged into [[:$2]].\n$3.",
+	"mergehistory-done": "$4 {{PLURAL:$4|revision|revisions}} of $1 {{PLURAL:$4|was|were}} merged into [[:$2]].\n$3",
 	"mergehistory-fail": "Unable to perform history merge. Please recheck the page and time parameters.",
 	"mergehistory-fail-bad-timestamp": "Timestamp is invalid.",
 	"mergehistory-fail-invalid-source": "Source page is invalid.",
