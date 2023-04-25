@@ -1,6 +1,6 @@
-@import 'mediawiki.mixins.less';
-@import 'mediawiki.ui/variables.less';
+@import 'mediawiki.skin.variables.less';
 @import 'mw.rcfilters.variables.less';
+@import 'mediawiki.mixins.less';
 
 .mw-rcfilters-ui-filterTagMultiselectWidget {
 	max-width: none;
@@ -15,7 +15,7 @@
 
 	&.oo-ui-widget-enabled {
 		.oo-ui-tagMultiselectWidget-handle {
-			background-color: @colorGray15;
+			background-color: @background-color-interactive-subtle;
 			border: @border-base;
 			border-bottom: 0;
 			border-radius: @border-radius-base @border-radius-base 0 0;
@@ -64,7 +64,7 @@
 	}
 
 	.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled &-emphasize.oo-ui-tagMultiselectWidget-handle {
-		background-color: @background-color-primary;
+		background-color: @background-color-progressive-subtle;
 	}
 
 	&-hideshowButton.oo-ui-buttonElement > .oo-ui-buttonElement-button {
@@ -102,12 +102,12 @@
 		&-content {
 			&-title {
 				font-weight: bold;
-				color: @colorGray5;
+				color: @color-subtle;
 				white-space: nowrap;
 			}
 
 			&-savedQueryTitle {
-				color: @colorGray2;
+				color: @color-base;
 				padding-left: 1em;
 				font-weight: bold;
 				vertical-align: top;
@@ -154,7 +154,7 @@
 	}
 
 	&-emptyFilters {
-		color: @color-base--subtle;
+		color: @color-subtle;
 	}
 
 	&-cell-filters {

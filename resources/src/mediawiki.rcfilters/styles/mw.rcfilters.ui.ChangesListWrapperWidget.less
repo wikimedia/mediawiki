@@ -1,14 +1,14 @@
-@import 'mediawiki.ui/variables.less';
-@import 'mw.rcfilters.mixins.less';
+@import 'mediawiki.skin.variables.less';
 @import 'mw.rcfilters.variables.less';
+@import 'mw.rcfilters.mixins.less';
 
 @keyframes fadeBlue {
 	60% {
-		border-top-color: @color-primary;
+		border-top-color: @border-color-progressive;
 	}
 
 	100% {
-		border-top-color: @colorGray12;
+		border-top-color: @border-color-subtle;
 	}
 }
 
@@ -25,7 +25,7 @@
 
 	&-previousChangesIndicator {
 		margin: 10px 0;
-		border-top: 2px solid @colorGray12;
+		border-top: @border-width-thick @border-style-base @border-color-subtle;
 		animation: 1s ease fadeBlue;
 	}
 
@@ -44,7 +44,7 @@
 	// We want the expand button to appear outside the color
 	// to match the way the general highlight background appears
 	&-enhanced-grey td:not( :nth-child( -n+2 ) ) {
-		background-color: @light-gray;
+		background-color: @background-color-rcfilters-light-gray;
 	}
 
 	&-highlighted {
@@ -61,7 +61,7 @@
 		background-color: @background-color-base;
 		position: relative; // We want to keep the legend accessible when results are overlaid
 		z-index: 1; // Keep opacity-animated highlights from appearing on top of the legend
-		border: 1px solid @colorGray12;
+		border: @border-subtle;
 	}
 
 	.mw-changeslist-overlay {
@@ -159,7 +159,7 @@
 // a custom color rather than the computed tint
 // see https://phabricator.wikimedia.org/T161267
 .mw-rcfilters-highlight-color-c1.mw-rcfilters-highlight-color-c3 {
-	.highlight-results( @light-green );
+	.highlight-results( @background-color-rcfilters-light-green );
 }
 .highlight-color-mix( c1, c4 );
 .highlight-color-mix( c1, c5 );

@@ -1,6 +1,6 @@
-@import 'mediawiki.mixins.less';
-@import 'mediawiki.ui/variables.less';
+@import 'mediawiki.skin.variables.less';
 @import 'mw.rcfilters.variables.less';
+@import 'mediawiki.mixins.less';
 
 .mw-rcfilters-ui-filterMenuOptionWidget {
 	.mw-rcfilters-ui-filterMenuSectionOptionWidget ~ & {
@@ -14,19 +14,19 @@
 			// are also inverted, so if they are also selected, we
 			// should make sure the selected background is shown rather
 			// than the muted one
-			background-color: @colorGray15;
+			background-color: @background-color-interactive-subtle;
 		}
 
 		.mw-rcfilters-ui-itemMenuOptionWidget-label-title,
 		.mw-rcfilters-ui-itemMenuOptionWidget-label-desc {
-			color: @colorGray5;
+			color: @color-subtle;
 		}
 
 		&.oo-ui-optionWidget-highlighted {
 			// Copying over styles from OOUI, since it must
 			// override our 'muted' state
-			background-color: @colorGray14;
-			color: @colorGray1;
+			background-color: @background-color-interactive;
+			color: @color-emphasized;
 		}
 	}
 
