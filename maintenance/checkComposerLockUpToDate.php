@@ -62,7 +62,7 @@ class CheckComposerLockUpToDate extends Maintenance {
 			// We're happy; loop to the next dependency.
 		}
 
-		if ( !( count( $requiredButOld ) || count( $requiredButMissing ) ) ) {
+		if ( count( $requiredButOld ) === 0 && count( $requiredButMissing ) === 0 ) {
 			// We couldn't find any out-of-date or missing dependencies, so assume everything is ok!
 			$this->output( "Your composer.lock file is up to date with current dependencies!\n" );
 			return;
