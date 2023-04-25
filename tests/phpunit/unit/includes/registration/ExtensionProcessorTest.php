@@ -54,6 +54,7 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 			'AnAttribute' => [ 'omg' ],
 			'AutoloadClasses' => [ 'FooBar' => 'includes/FooBar.php' ],
 			'AutoloadNamespaces' => [ '\Foo\Bar\\' => 'includes/foo/bar/' ],
+			'ForeignResourcesDir' => 'lib',
 			'SpecialPages' => [ 'Foo' => 'SpecialFoo' ],
 			'callback' => 'FooBar::onRegistration',
 		], 1 );
@@ -67,6 +68,10 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 		$this->assertArrayHasKey( 'autoloaderPaths', $extracted );
 		$this->assertArrayHasKey( 'autoloaderClasses', $extracted );
 		$this->assertArrayHasKey( 'autoloaderNS', $extracted );
+		$this->assertSame(
+			[ 'FooBar' => dirname( $this->extensionPath ) . '/lib' ],
+			$attributes['ForeignResourcesDir']
+		);
 		$this->assertSame(
 			[ 'FooBar' => 'FooBar::onRegistration' ],
 			$extracted['callbacks']

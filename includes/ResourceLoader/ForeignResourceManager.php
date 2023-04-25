@@ -35,6 +35,7 @@ use Symfony\Component\Yaml\Yaml;
  *
  * @since 1.32
  * @ingroup ResourceLoader
+ * @see https://www.mediawiki.org/wiki/Foreign_resources
  */
 class ForeignResourceManager {
 	/** @var string */

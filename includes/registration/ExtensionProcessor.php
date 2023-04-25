@@ -138,6 +138,7 @@ class ExtensionProcessor implements Processor {
 		'AutoloadClasses',
 		'AutoloadNamespaces',
 		'ExtensionMessagesFiles',
+		'ForeignResourcesDir',
 		'Hooks',
 		'MessagePosterModule',
 		'MessagesDirs',
@@ -298,6 +299,8 @@ class ExtensionProcessor implements Processor {
 				$module['name'] = $name;
 			}
 		}
+
+		$this->extractForeignResourcesDir( $info, $name, $dir );
 
 		if ( $version >= 2 ) {
 			$this->extractAttributes( $path, $info );
@@ -770,6 +773,15 @@ class ExtensionProcessor implements Processor {
 		$this->credits[$name] = $credits;
 
 		return $name;
+	}
+
+	protected function extractForeignResourcesDir( array $info, string $name, string $dir ): void {
+		if ( array_key_exists( 'ForeignResourcesDir', $info ) ) {
+			if ( !is_string( $info['ForeignResourcesDir'] ) ) {
+				throw new Exception( "Incorrect ForeignResourcesDir type, must be a string (in $name)" );
+			}
+			$this->attributes['ForeignResourcesDir'][$name] = "{$dir}/{$info['ForeignResourcesDir']}";
+		}
 	}
 
 	/**

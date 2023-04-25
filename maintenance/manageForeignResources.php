@@ -31,6 +31,7 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  * @ingroup ResourceLoader
  * @since 1.32
+ * @see https://www.mediawiki.org/wiki/Manual:ManageForeignResources.php
  */
 class ManageForeignResources extends Maintenance {
 	public function __construct() {
@@ -40,7 +41,7 @@ Manage foreign resources registered with ResourceLoader.
 
 This helps developers with downloading, verifying, and updating local copies of
 upstream libraries registered as ResourceLoader modules. See
-resources/lib/foreign-resources.yaml.
+https://www.mediawiki.org/wiki/Foreign_resources
 
 Use the "update" action to download urls specified in foreign-resources.yaml,
 and unpack them to the resources directory. This will also verify them against
@@ -59,6 +60,10 @@ TEXT
 		);
 		$this->addArg( 'action', 'One of "update", "verify" or "make-sri"', true );
 		$this->addArg( 'module', 'Name of a single module (Default: all)', false );
+		$this->addOption( 'extension', 'Manage foreign resources for the given extension, instead of core',
+			false, true );
+		$this->addOption( 'skin', 'Manage foreign resources for the given skin, instead of core',
+			false, true );
 		$this->addOption( 'verbose', 'Be verbose', false, false, 'v' );
 	}
 
@@ -67,9 +72,18 @@ TEXT
 	 */
 	public function execute() {
 		global $IP;
+
+		$component = $this->getOption( 'extension' ) ?? $this->getOption( 'skin' ) ?? '#core';
+		$foreignResourcesDirs = ExtensionRegistry::getInstance()->getAttribute( 'ForeignResourcesDir' )
+			+ [ '#core' => "{$IP}/resources/lib" ];
+		if ( !array_key_exists( $component, $foreignResourcesDirs ) ) {
+			$this->fatalError( "Unknown component: $component\n" );
+		}
+		$foreignResourcesFile = "{$foreignResourcesDirs[$component]}/foreign-resources.yaml";
+
 		$frm = new ForeignResourceManager(
-			"{$IP}/resources/lib/foreign-resources.yaml",
-			"{$IP}/resources/lib",
+			$foreignResourcesFile,
+			dirname( $foreignResourcesFile ),
 			function ( $text ) {
 				$this->output( $text );
 			},
