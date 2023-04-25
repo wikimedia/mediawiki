@@ -452,7 +452,7 @@
 	"prevn-title": "Hnôhlâ $1 {{PLURAL:$1|thielâpa|thielâpazy}}",
 	"nextn-title": "Hmôpa $1 {{PLURAL: sâ $1|}}",
 	"shown-title": "Hmia hmia kha ta {{PLURAL:$1|hmôpa|hmôpazy}} palâ",
-	"viewprevnext": "($1 {{int:tawh}} $2) taih hmôpazy sâ ($3) chhi palâ",
+	"viewprevnext": "($1 {{int:pipe-separator}} $2) taih hmôpazy sâ ($3) chhi palâ",
 	"searchmenu-exists": "<strong>He wiki lia he \"[[:$1]]\" moh biepa hmia a y.</strong> {{PLURAL:$2|0=|A hropa tluana theilâpa chhao moh hra chhi teh.}}",
 	"searchmenu-new": "<strong>He wiki lia he \"[[:$1]]\" hmia tao teh!</strong> {{PLURAL:$2|0=|Na tluapa nata hmia chhao moh teh.|Na tluapazy chhao moh teh.}}",
 	"searchprofile-articles": "Athâtih hmiazy",
