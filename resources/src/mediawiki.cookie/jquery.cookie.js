@@ -5,11 +5,12 @@
  * Copyright 2013 Klaus Hartl
  * Released under the MIT license
  *
- * Patched for MediaWiki to handle SameSite flag.
+ * Now forked by MediaWiki.
  */
-(function ($, document, undefined) {
+(function ($, document) {
 
 	var pluses = /\+/g;
+	var config;
 
 	function raw(s) {
 		return s;
@@ -37,7 +38,7 @@
 		return config.json ? JSON.parse(value) : value;
 	}
 
-	var config = $.cookie = function (key, value, options) {
+	config = $.cookie = function (key, value, options) {
 
 		// write
 		if (value !== undefined) {
@@ -72,15 +73,15 @@
 		for (var i = 0, l = cookies.length; i < l; i++) {
 			var parts = cookies[i].split('=');
 			var name = decode(parts.shift());
-			var cookie = decode(parts.join('='));
+			var s = decode(parts.join('='));
 
 			if (key && key === name) {
-				result = fromJSON(cookie);
+				result = fromJSON(s);
 				break;
 			}
 
 			if (!key) {
-				result[name] = fromJSON(cookie);
+				result[name] = fromJSON(s);
 			}
 		}
 
@@ -97,4 +98,4 @@
 		return false;
 	};
 
-})(jQuery, document);
+}(jQuery, document));

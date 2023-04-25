@@ -11,6 +11,9 @@ var config = require( './config.json' ),
 		sameSiteLegacy: config.sameSiteLegacy
 	};
 
+// define jQuery Cookie methods
+require( './jquery.cookie.js' );
+
 /**
  * Manage cookies in a way that is syntactically and functionally similar
  * to the `WebRequest#getCookie` and `WebResponse#setcookie` methods in PHP.
