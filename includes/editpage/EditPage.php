@@ -122,6 +122,7 @@ use Wikimedia\Assert\Assert;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use WikiPage;
+use WikitextContent;
 use Xml;
 
 /**
@@ -1860,6 +1861,24 @@ class EditPage implements IEditObject {
 		}
 
 		$title = Title::newFromText( $preload );
+
+		if ( $title && $title->getNamespace() == NS_MEDIAWIKI ) {
+			// When the preload source is in NS_MEDIAWIKI, get the content via wfMessage, to
+			// enable preloading from i18n messages. The message framework can work with normal
+			// pages in NS_MEDIAWIKI, so this does not restrict preloading only to i18n messages.
+			$msg = wfMessage( $title->getText() );
+
+			if ( $msg->isDisabled() ) {
+				// Message is disabled and should not be used for preloading
+				return $handler->makeEmptyContent();
+			}
+
+			return new WikitextContent( $msg
+				->params( $params )
+				->inContentLanguage()
+				->text()
+			);
+		}
 
 		// (T299544) Use SpecialMyLanguage redirect so that nonexistent translated pages can
 		// fall back to the corresponding page in a suitable language
