@@ -2489,7 +2489,7 @@ image4    |300px| centre
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Error mw:File" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Image1.png"><span class="mw-broken-media" resource="./File:Image1.png" data-width="120" data-height="120">File:Image1.png</span></a></span></div><div class="gallerytext"></div></li>
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Error mw:File" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Image2.gif"><span class="mw-broken-media" resource="./File:Image2.gif" data-width="120" data-height="120">File:Image2.gif</span></a></span></div><div class="gallerytext"></div></li>
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Error mw:File" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Image3"><span class="mw-broken-media" resource="./File:Image3" data-width="120" data-height="120">File:Image3</span></a></span></div><div class="gallerytext"></div></li>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Error mw:File" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Image4"><span class="mw-broken-media" resource="./File:Image4" data-width="300">File:Image4</span></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Error mw:File" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Image4"><span class="mw-broken-media" resource="./File:Image4" data-width="120" data-height="120">File:Image4</span></a></span></div><div class="gallerytext"></div></li>
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Error mw:File" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Image5.svg"><span class="mw-broken-media" resource="./File:Image5.svg" data-width="120" data-height="120">http://///////</span></a></span></div><div class="gallerytext"> <a rel="mw:ExtLink" href="http://///////" class="external free">http://///////</a></div></li>
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Error mw:File" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/*_image6"><span class="mw-broken-media" resource="./File:*_image6" data-width="120" data-height="120">File:* image6</span></a></span></div><div class="gallerytext"></div></li>
 </ul>
@@ -4223,8 +4223,8 @@ File:Doesnotexist.jpg|thumb|456 - has an error noted in the rdfa
 </gallery>
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt3" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x"/></a></span></div><div class="gallerytext">123</div></li>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Error mw:File" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Doesnotexist.jpg"><span class="mw-broken-media" resource="./File:Doesnotexist.jpg" data-width="120" data-height="120">File:Doesnotexist.jpg</span></a></span></div><div class="gallerytext">456 - has an error noted in the rdfa</div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="./File:Foobar.jpg" class="mw-file-description" title="123"><img alt="123" resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x"/></a></span></div><div class="gallerytext">123</div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Error mw:File" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Doesnotexist.jpg"><span class="mw-broken-media" resource="./File:Doesnotexist.jpg" data-width="120" data-height="120">456 - has an error noted in the rdfa</span></a></span></div><div class="gallerytext">456 - has an error noted in the rdfa</div></li>
 </ul>
 !! end
 
@@ -4303,4 +4303,21 @@ Foobar.jpg
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"14","width":"120"},"sa":{"resource":"Foobar.jpg"}}'/></a></span></div><div class="gallerytext"></div></li>
 </ul>
+!! end
+
+!! test
+Lines added to a self-closed gallery should not be dropped
+!! options
+parsoid= {
+  "modes": ["wt2wt"],
+  "changes": [
+    ["ul", "append", "<li class=\"gallerybox\"><div class=\"thumb\"><span typeof=\"mw:File\"><a href=\"./File:Foobar.jpg\" class=\"mw-file-description\"><img resource=\"./File:Foobar.jpg\" src=\"http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg\" height=\"14\" width=\"120\"/></a></span></div><div class=\"gallerytext\"></div></li>"]
+  ]
+}
+!! wikitext
+<gallery caption="123" />
+!! wikitext/edited
+<gallery caption="123">
+File:Foobar.jpg
+</gallery>
 !! end
