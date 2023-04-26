@@ -1054,3 +1054,102 @@ Aoeu
 <a rel="nofollow" class="external free" href="http://example.org">http://example.org</a>
 </p>
 !! end
+
+!! test
+Magic Word: prioritize type info over data-parsoid
+!! options
+parsoid=html2wt
+!! html/parsoid
+<meta property="mw:PageProp/forcetoc" data-parsoid='{"magicSrc":"__NOTOC__"}'/>
+!! wikitext
+__FORCETOC__
+!! end
+
+!! test
+Magic Word: serialize on separate line (parsoid)
+!! options
+parsoid=wt2wt,html2wt
+!! wikitext
+foo
+__NOTOC__
+bar
+!! html/parsoid
+foo<meta property="mw:PageProp/notoc"/>bar
+!! end
+
+!! test
+Magic Word: case-insensitive (all-lowercase)
+!! wikitext
+foo
+__notoc__
+bar
+!! html/php
+<p>foo
+</p><p>bar
+</p>
+!! html/parsoid
+<p>foo
+<meta property="mw:PageProp/notoc" data-parsoid='{"src":"__notoc__","magicSrc":"__notoc__"}'/>
+bar</p>
+!! end
+
+# wt2wt,html2wt disabled because we always (unless selser) serialize
+# in a uniform case (all upper or all lower)
+!! test
+Magic Word: case-insensitive (mixed case)
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+foo
+__NOtOC__
+bar
+!! html/php
+<p>foo
+</p><p>bar
+</p>
+!! html/parsoid
+<p>foo
+<meta property="mw:PageProp/notoc" data-parsoid='{"src":"__NOtOC__","magicSrc":"__NOtOC__"}'/>
+bar</p>
+!! end
+
+!! test
+Magic Word: rt non-english wikis
+!! options
+parsoid=wt2wt
+language=de
+!! wikitext
+__NOEDITSECTION__
+!! html/parsoid
+<meta property="mw:PageProp/noeditsection" data-parsoid='{"magicSrc":"__NOEDITSECTION__"}'/>
+!! end
+
+## Note that there is no wikitext output for 'unknownproperty' ##
+## Unknown magic words are silently dropped ##
+
+!! test
+Magic words
+!! options
+parsoid=html2wt
+!! html/parsoid
+<meta property='mw:PageProp/toc' />
+<meta property='mw:PageProp/notoc' />
+<meta property='mw:PageProp/forcetoc' />
+<meta property='mw:PageProp/index' />
+<meta property='mw:PageProp/noindex' />
+<meta property='mw:PageProp/nogallery' />
+<meta property='mw:PageProp/noeditsection' />
+<meta property='mw:PageProp/notitleconvert' />
+<meta property='mw:PageProp/nocontentconvert' />
+<meta property='mw:PageProp/unknownproperty' />
+!! wikitext
+__TOC__
+__NOTOC__
+__FORCETOC__
+__INDEX__
+__NOINDEX__
+__NOGALLERY__
+__NOEDITSECTION__
+__NOTITLECONVERT__
+__NOCONTENTCONVERT__
+!! end
