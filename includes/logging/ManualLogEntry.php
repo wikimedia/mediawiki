@@ -32,7 +32,6 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
-use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -368,22 +367,13 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 		$formatter->setContext( $context );
 
 		$logpage = SpecialPage::getTitleFor( 'Log', $this->getType() );
-		$user = $this->getPerformerIdentity();
-		$ip = "";
-		if ( !$user->isRegistered() ) {
-			// "MediaWiki default" and friends may have
-			// no IP address in their name
-			if ( IPUtils::isIPAddress( $user->getName() ) ) {
-				$ip = $user->getName();
-			}
-		}
 
 		return RecentChange::newLogEntry(
 			$this->getTimestamp(),
 			$logpage,
-			$user,
+			$this->getPerformerIdentity(),
 			$formatter->getPlainActionText(),
-			$ip,
+			'',
 			$this->getType(),
 			$this->getSubtype(),
 			$this->getTarget(),
