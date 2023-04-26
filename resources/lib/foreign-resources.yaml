@@ -81,6 +81,8 @@
 #    To only extract some of the files or directories, use "dest" to specify
 #    files, directories, and/or glob patterns. You can use a site like https://unpkg.com/
 #    to easily inspect an npm package, like <https://unpkg.com/jquery-client@2.0.2/>.
+#    This field can also be used to extract files to a subdirectory (by default the files and
+#    directories listed in "dest" are extracted to the module directory root).
 #
 # For example:
 #
@@ -91,10 +93,11 @@
 #       dest:
 #         package/dist/x.js:
 #         package/dist/i18n:
-#         package/dist/style/*.css:
+#         package/dist/style/*.css: themes
 #
-# The would extract the "x.js" file, the "i18n" directory (recursive),
-# and any "*.css" files from the "style" directory.
+# This would extract the "x.js" file, the "i18n" directory (recursive),
+# and any "*.css" files from the "style" directory. They will end up in mymodule/x.js,
+# mymodule/i18n and mymodule/themes, respectively.
 #
 
 CLDRPluralRuleParser:
