@@ -38,16 +38,18 @@ use Wikimedia\IPUtils;
  */
 class DatabaseMysqli extends DatabaseMysqlBase {
 	protected function doSingleStatementQuery( string $sql ): QueryStatus {
+		$conn = $this->getBindingHandle();
+
 		// Hide packet warnings caused by things like dropped connections
 		AtEase::suppressWarnings();
-		$res = $this->getBindingHandle()->query( $sql );
+		$res = $conn->query( $sql );
 		AtEase::restoreWarnings();
 
 		return new QueryStatus(
 			$res instanceof mysqli_result ? new MysqliResultWrapper( $this, $res ) : $res,
-			$this->affectedRows(),
-			$this->lastError(),
-			$this->lastErrno()
+			$conn->affected_rows,
+			$conn->error,
+			$conn->errno
 		);
 	}
 
@@ -206,12 +208,6 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		} else {
 			return mysqli_connect_errno();
 		}
-	}
-
-	protected function fetchAffectedRowCount() {
-		$conn = $this->getBindingHandle();
-
-		return $conn->affected_rows;
 	}
 
 	/**

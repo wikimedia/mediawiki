@@ -206,10 +206,6 @@ class DatabaseTestHelper extends Database {
 		return false;
 	}
 
-	public function fetchAffectedRowCount() {
-		return -1;
-	}
-
 	public function getSoftwareLink() {
 		return 'test';
 	}

@@ -222,7 +222,7 @@ class DatabasePostgres extends Database {
 
 		return new QueryStatus(
 			is_bool( $res ) ? $res : new PostgresResultWrapper( $this, $conn, $res ),
-			$this->affectedRows(),
+			$pgRes ? pg_affected_rows( $pgRes ) : 0,
 			$this->lastError(),
 			$this->lastErrno()
 		);
@@ -323,14 +323,6 @@ class DatabasePostgres extends Database {
 		}
 
 		return '00000';
-	}
-
-	protected function fetchAffectedRowCount() {
-		if ( !$this->lastResultHandle ) {
-			return 0;
-		}
-
-		return pg_affected_rows( $this->lastResultHandle );
 	}
 
 	/**

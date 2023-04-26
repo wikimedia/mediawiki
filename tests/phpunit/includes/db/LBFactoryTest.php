@@ -51,10 +51,13 @@ use Wikimedia\TestingAccessWrapper;
 class LBFactoryTest extends MediaWikiIntegrationTestCase {
 
 	private function getPrimaryServerConfig() {
-		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
+		global $wgDBserver, $wgDBport, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype;
+		global $wgSQLiteDataDir;
+
 		return [
 			'serverName'  => 'db1',
 			'host'        => $wgDBserver,
+			'port'        => $wgDBport,
 			'dbname'      => $wgDBname,
 			'user'        => $wgDBuser,
 			'password'    => $wgDBpassword,
@@ -201,7 +204,8 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function newLBFactoryMultiLBs() {
-		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
+		global $wgDBserver, $wgDBport, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype;
+		global $wgSQLiteDataDir;
 
 		return new LBFactoryMulti( [
 			'sectionsByDB' => [
@@ -219,6 +223,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 				]
 			],
 			'serverTemplate' => [
+				'port' => $wgDBport,
 				'dbname' => $wgDBname,
 				'user' => $wgDBuser,
 				'password' => $wgDBpassword,

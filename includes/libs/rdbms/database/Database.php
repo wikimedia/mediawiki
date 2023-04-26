@@ -1039,7 +1039,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$ps = $this->profiler ? ( $this->profiler )( $generalizedSql->stringify() ) : null;
 		$startTime = microtime( true );
 
-		$this->affectedRowCount = null;
+		$this->affectedRowCount = 0;
 		if ( $hasPermWrite ) {
 			$this->lastWriteTime = $startTime;
 			$this->transactionManager->transactionWritingIn(
@@ -2877,13 +2877,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function affectedRows() {
-		return $this->affectedRowCount ?? $this->fetchAffectedRowCount();
+		return $this->affectedRowCount;
 	}
-
-	/**
-	 * @return int Number of retrieved rows according to the driver
-	 */
-	abstract protected function fetchAffectedRowCount();
 
 	public function ping() {
 		if ( $this->isOpen() ) {

@@ -46,9 +46,6 @@ class DatabaseSqlite extends Database {
 	/** @var string Transaction mode */
 	protected $trxMode;
 
-	/** @var int The number of rows affected as an integer */
-	protected $lastAffectedRowCount;
-
 	/** @var PDO|null */
 	protected $conn;
 
@@ -382,10 +379,7 @@ class DatabaseSqlite extends Database {
 	}
 
 	protected function doSingleStatementQuery( string $sql ): QueryStatus {
-		$conn = $this->getBindingHandle();
-
-		$res = $conn->query( $sql );
-		$this->lastAffectedRowCount = $res ? $res->rowCount() : 0;
+		$res = $this->getBindingHandle()->query( $sql );
 
 		return new QueryStatus(
 			$res instanceof PDOStatement ? new SqliteResultWrapper( $res ) : $res,
@@ -466,13 +460,6 @@ class DatabaseSqlite extends Database {
 		}
 
 		return 0;
-	}
-
-	/**
-	 * @return int
-	 */
-	protected function fetchAffectedRowCount() {
-		return $this->lastAffectedRowCount;
 	}
 
 	public function tableExists( $table, $fname = __METHOD__ ) {

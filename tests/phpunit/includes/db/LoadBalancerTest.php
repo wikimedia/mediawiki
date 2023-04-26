@@ -36,10 +36,12 @@ use Wikimedia\TestingAccessWrapper;
  */
 class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	private function makeServerConfig( $flags = DBO_DEFAULT ) {
-		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
+		global $wgDBserver, $wgDBport, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype;
+		global $wgSQLiteDataDir;
 
 		return [
 			'host' => $wgDBserver,
+			'port' => $wgDBport,
 			'serverName' => 'testhost',
 			'dbname' => $wgDBname,
 			'tablePrefix' => $this->dbPrefix(),
@@ -217,13 +219,15 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	private function newMultiServerLocalLoadBalancer(
 		$lbExtra = [], $srvExtra = [], $masterOnly = false
 	) {
-		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
+		global $wgDBserver, $wgDBport, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype;
+		global $wgSQLiteDataDir;
 
 		$servers = [
 			// Primary DB
 			0 => $srvExtra + [
 					'serverName' => 'db0',
 					'host' => $wgDBserver,
+					'port' => $wgDBport,
 					'dbname' => $wgDBname,
 					'tablePrefix' => $this->dbPrefix(),
 					'user' => $wgDBuser,
@@ -236,6 +240,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 			1 => $srvExtra + [
 					'serverName' => 'db1',
 					'host' => $wgDBserver,
+					'port' => $wgDBport,
 					'dbname' => $wgDBname,
 					'tablePrefix' => $this->dbPrefix(),
 					'user' => $wgDBuser,
@@ -247,6 +252,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 			2 => $srvExtra + [
 					'serverName' => 'db2',
 					'host' => $wgDBserver,
+					'port' => $wgDBport,
 					'dbname' => $wgDBname,
 					'tablePrefix' => $this->dbPrefix(),
 					'user' => $wgDBuser,
@@ -259,6 +265,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 			3 => $srvExtra + [
 					'serverName' => 'db3',
 					'host' => $wgDBserver,
+					'port' => $wgDBport,
 					'dbname' => $wgDBname,
 					'tablePrefix' => $this->dbPrefix(),
 					'user' => $wgDBuser,
@@ -275,6 +282,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 			4 => $srvExtra + [
 					'serverName' => 'db4',
 					'host' => $wgDBserver,
+					'port' => $wgDBport,
 					'dbname' => $wgDBname,
 					'tablePrefix' => $this->dbPrefix(),
 					'user' => $wgDBuser,
@@ -289,6 +297,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 			5 => $srvExtra + [
 					'serverName' => 'db5',
 					'host' => $wgDBserver,
+					'port' => $wgDBport,
 					'dbname' => $wgDBname,
 					'tablePrefix' => $this->dbPrefix(),
 					'user' => $wgDBuser,
@@ -304,6 +313,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 			6 => $srvExtra + [
 					'serverName' => 'db6',
 					'host' => $wgDBserver,
+					'port' => $wgDBport,
 					'dbname' => $wgDBname,
 					'tablePrefix' => $this->dbPrefix(),
 					'user' => $wgDBuser,
@@ -319,6 +329,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 			7 => $srvExtra + [
 					'serverName' => 'db7',
 					'host' => $wgDBserver,
+					'port' => $wgDBport,
 					'dbname' => $wgDBname,
 					'tablePrefix' => $this->dbPrefix(),
 					'user' => $wgDBuser,
