@@ -18,10 +18,15 @@
 	 * @private
 	 * @param {jQuery} $formNode
 	 * @param {Object} response
+	 * @param {boolean} isDiff Whether this is diff view, where summary node should be hidden
 	 */
-	function showEditSummary( $formNode, response ) {
+	function showEditSummary( $formNode, response, isDiff ) {
 		var $summaryPreview = $formNode.find( '.mw-summary-preview' ).empty();
 		var parse = response.parse;
+
+		if ( isDiff ) {
+			return;
+		}
 
 		if ( !parse || !parse.parsedsummary ) {
 			return;
@@ -467,10 +472,11 @@
 	 * @param {Object} response
 	 */
 	function parseDiffResponse( config, response ) {
-		var diff = response.compare.bodies;
 		var $table = config.$diffNode.find( 'table.diff' );
 
-		if ( diff.main ) {
+		if ( response && response[ 0 ].compare.bodies.main ) {
+			var diff = response[ 0 ].compare.bodies;
+
 			$table.find( 'tbody' ).html( diff.main );
 			mw.hook( 'wikipage.diff' ).fire( $table );
 		} else {
@@ -571,12 +577,36 @@
 		$loadingElements.addClass( [ 'mw-preview-loading-elements', 'mw-preview-loading-elements-loading' ] );
 
 		var parseRequest = getParseRequest( config, section ),
-			diffRequest;
+			diffRequest = null;
 
 		if ( config.showDiff ) {
 			config.$previewNode.hide();
 			// Hide the table of contents, in case it was previously shown after previewing.
 			mw.hook( 'wikipage.tableOfContents' ).fire( [] );
+
+			var contents = config.$textareaNode.textSelection( 'getContents' ),
+				sectionTitle = config.summary;
+
+			if ( section === 'new' ) {
+				// T293930: Hack to show live diff for new section creation.
+
+				// We concatenate the section heading with the edit box text and pass it to
+				// the diff API as the full input text. This is roughly what the server-side
+				// does when difference is requested for section edit.
+				// The heading is always prepended, we do not bother with editing old rev
+				// at this point (`?action=edit&oldid=xxx&section=new`) -- which will require
+				// mid-text insertion of the section -- because creation of new section is only
+				// possible on latest revision.
+
+				// The section heading text is unconditionally wrapped in <h2> heading and
+				// ends with double newlines, except when it's empty. This is for parity with the
+				// server-side rendering of the same case.
+				sectionTitle = sectionTitle === '' ? '' : '== ' + sectionTitle + ' ==\n\n';
+
+				// Prepend section heading to section text.
+				contents = sectionTitle + contents;
+
+			}
 
 			var diffPar = {
 				action: 'compare',
@@ -585,7 +615,7 @@
 				toslots: 'main',
 				// Remove trailing whitespace for consistency with EditPage diffs.
 				// TODO trimEnd() when we can use that.
-				'totext-main': config.$textareaNode.textSelection( 'getContents' ).replace( /\s+$/, '' ),
+				'totext-main': contents.replace( /\s+$/, '' ),
 				'tocontentmodel-main': mw.config.get( 'wgPageContentModel' ),
 				topst: true,
 				slots: 'main',
@@ -602,17 +632,21 @@
 				diffPar[ 'fromcontentmodel-main' ] = mw.config.get( 'wgPageContentModel' );
 				diffPar[ 'fromtext-main' ] = '';
 			}
-			diffRequest = api.post( diffPar );
+
+			if ( contents !== '' ) {
+				diffRequest = api.post( diffPar );
+			}
+
 		} else if ( config.$diffNode ) {
 			config.$diffNode.hide();
 		}
 
 		return $.when( parseRequest, diffRequest )
 			.done( function ( response, diffResponse ) {
-				showEditSummary( config.$formNode, response[ 0 ] );
+				showEditSummary( config.$formNode, response[ 0 ], config.showDiff );
 
 				if ( config.showDiff ) {
-					parseDiffResponse( config, diffResponse[ 0 ] );
+					parseDiffResponse( config, diffResponse );
 				} else {
 					parseResponse( config, response[ 0 ], section !== '' );
 				}
