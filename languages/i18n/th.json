@@ -3199,7 +3199,6 @@
 	"semicolon-separator": ";&#32;",
 	"comma-separator": ",&#32;",
 	"colon-separator": ":&#32;",
-	"pipe-separator": "&#32;|&#32;",
 	"word-separator": "&#32;",
 	"quotation-marks": "\"$1\"",
 	"formatnum-nan": "ไม่ใช่ตัวเลข",

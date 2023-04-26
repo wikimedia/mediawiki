@@ -3446,7 +3446,6 @@
 	"semicolon-separator": "；",
 	"comma-separator": "、​",
 	"colon-separator": "：​",
-	"pipe-separator": "&#32;|&#32;",
 	"word-separator": "",
 	"ellipsis": "…",
 	"parentheses": "（$1）",
