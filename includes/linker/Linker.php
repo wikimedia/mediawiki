@@ -493,6 +493,10 @@ class Linker {
 				if ( isset( $frameParams['border'] ) ) {
 					$params['img-class'] .= ( $params['img-class'] !== '' ? ' ' : '' ) . 'thumbborder';
 				}
+			} else {
+				$params += [
+					'img-class' => 'mw-file-element',
+				];
 			}
 			$params = self::getImageLinkMTOParams( $frameParams, $query, $parser ) + $params;
 			$s = $thumb->toHtml( $params );
@@ -768,6 +772,10 @@ class Linker {
 						? $frameParams['class'] . ' '
 						: '' ) . 'thumbimage'
 				];
+			} else {
+				$params += [
+					'img-class' => 'mw-file-element',
+				];
 			}
 			$params = self::getImageLinkMTOParams( $frameParams, $query, $parser ) + $params;
 			$s .= $thumb->toHtml( $params );
@@ -871,7 +879,7 @@ class Linker {
 		}
 
 		$html = Html::element( 'span', [
-			'class' => 'mw-broken-media',
+			'class' => 'mw-file-element mw-broken-media',
 			// These data attributes are used to dynamically size the span, see T273013
 			'data-width' => $handlerParams['width'] ?? null,
 			'data-height' => $handlerParams['height'] ?? null,
