@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\SiteStats\SiteStats;
+use MediaWiki\SiteStats\SiteStatsInit;
 use Wikimedia\TestingAccessWrapper;
 
 /**

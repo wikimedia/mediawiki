@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\SiteStats\SiteStats;
+
 /**
  * @group Database
  */

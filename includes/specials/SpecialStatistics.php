@@ -23,6 +23,7 @@
 
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
+use MediaWiki\SiteStats\SiteStats;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserGroupManager;
 

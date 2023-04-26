@@ -27,6 +27,7 @@ use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ResourceLoader\MessageBlobStore;
+use MediaWiki\SiteStats\SiteStatsInit;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 

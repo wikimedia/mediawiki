@@ -20,8 +20,12 @@
  * @file
  */
 
+namespace MediaWiki\SiteStats;
+
+use JobQueueError;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use stdClass;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -295,3 +299,5 @@ class SiteStats {
 		return MediaWikiServices::getInstance()->getDBLoadBalancer();
 	}
 }
+
+class_alias( SiteStats::class, 'SiteStats' );

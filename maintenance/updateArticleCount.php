@@ -23,6 +23,8 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
+use MediaWiki\SiteStats\SiteStatsInit;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
