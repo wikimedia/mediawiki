@@ -41,7 +41,8 @@
 			"วรากร อึ้งวิเชียร (Varakorn Ungvichian)",
 			"아라",
 			"Lookruk",
-			"Ekminarin"
+			"Ekminarin",
+			"Kaoavi"
 		]
 	},
 	"tog-underline": "การขีดเส้นใต้ลิงก์:",
@@ -3885,5 +3886,5 @@
 	"skin-action-protect": "ป้องกัน",
 	"skin-action-undelete": "ยกเลิกการลบ",
 	"skin-action-delete": "ลบ",
-	"skin-action-move": "เปลี่ยนชื่อ"
+	"skin-action-move": "ย้าย"
 }
