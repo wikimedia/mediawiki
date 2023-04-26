@@ -849,6 +849,41 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( 'lang="ar"', $html );
 	}
 
+	public function testGetParserOutputWithRedundantPageLanguage() {
+		$poa = $this->createMock( ParsoidOutputAccess::class );
+		$poa->expects( $this->once() )
+			->method( 'getParserOutput' )
+			->willReturnCallback( function (
+				PageIdentity $page,
+				ParserOptions $parserOpts,
+				$revision = null,
+				int $options = 0
+			) {
+				$usedOptions = [ 'targetLanguage' ];
+				self::assertNull( $parserOpts->getTargetLanguage(), 'No target language should be set in ParserOptions' );
+				self::assertTrue( $parserOpts->isSafeToCache( $usedOptions ) );
+
+				$html = $this->getMockHtml( $revision );
+				$pout = $this->makeParserOutput( $parserOpts, $html, $revision, $page );
+				return Status::newGood( $pout );
+			} );
+		$poa->method( 'getParsoidRenderID' )
+			->willReturnCallback( [ $this, 'getParsoidRenderID' ] );
+
+		$helper = $this->newHelper( null, $poa );
+
+		$page = $this->getExistingTestPage();
+
+		$helper->init( $page, [], $this->newUser() );
+
+		// Explicitly set the page language to the default.
+		$pageLanguage = $page->getTitle()->getPageLanguage();
+		$helper->setPageLanguage( $pageLanguage );
+
+		// Trigger parsing, so the assertions in the mock are executed.
+		$helper->getHtml();
+	}
+
 	public function provideInit() {
 		$page = PageIdentityValue::localIdentity( 7, NS_MAIN, 'Köfte' );
 		$user = $this->createNoOpMock( User::class );
