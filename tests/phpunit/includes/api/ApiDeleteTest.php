@@ -75,8 +75,7 @@ class ApiDeleteTest extends ApiTestCase {
 	}
 
 	public function testDeleteNonexistent() {
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( "The page you specified doesn't exist." );
+		$this->expectApiErrorCode( 'missingtitle' );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'delete',
@@ -113,13 +112,7 @@ class ApiDeleteTest extends ApiTestCase {
 	}
 
 	public function testDeletionWithoutPermission() {
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage(
-			// Two error messages are possible depending on the number of groups in the wiki with deletion rights:
-			// - The action you have requested is limited to users in the group:
-			// - The action you have requested is limited to users in one of the groups:
-			'The action you have requested is limited to users in'
-		);
+		$this->expectApiErrorCode( 'permissiondenied' );
 
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
@@ -172,10 +165,7 @@ class ApiDeleteTest extends ApiTestCase {
 	}
 
 	public function testDeleteWithoutTagPermission() {
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage(
-			'You do not have permission to apply change tags along with your changes.'
-		);
+		$this->expectApiErrorCode( 'tags-apply-no-permission' );
 
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
@@ -199,8 +189,7 @@ class ApiDeleteTest extends ApiTestCase {
 	}
 
 	public function testDeleteAbortedByHook() {
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( 'Deletion aborted by hook. It gave no explanation.' );
+		$this->expectApiErrorCode( 'delete-hook-aborted' );
 
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 

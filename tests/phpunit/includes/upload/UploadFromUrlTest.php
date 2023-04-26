@@ -162,7 +162,7 @@ class UploadFromUrlTest extends ApiTestCase {
 			] );
 		} catch ( ApiUsageException $e ) {
 			$exception = true;
-			$this->assertEquals( 'The "token" parameter must be set.', $e->getMessage() );
+			$this->assertApiErrorCode( 'missingparam', $e );
 		}
 		$this->assertTrue( $exception, "Got exception" );
 
@@ -174,8 +174,7 @@ class UploadFromUrlTest extends ApiTestCase {
 			], $data );
 		} catch ( ApiUsageException $e ) {
 			$exception = true;
-			$this->assertEquals( 'One of the parameters "filekey", "file" and "url" is required.',
-				$e->getMessage() );
+			$this->assertApiErrorCode( 'missingparam', $e );
 		}
 		$this->assertTrue( $exception, "Got exception" );
 
@@ -188,7 +187,7 @@ class UploadFromUrlTest extends ApiTestCase {
 			], $data );
 		} catch ( ApiUsageException $e ) {
 			$exception = true;
-			$this->assertEquals( 'The "filename" parameter must be set.', $e->getMessage() );
+			$this->assertApiErrorCode( 'nofilename', $e );
 		}
 		$this->assertTrue( $exception, "Got exception" );
 
@@ -202,12 +201,8 @@ class UploadFromUrlTest extends ApiTestCase {
 				'token' => $token,
 			], $data );
 		} catch ( ApiUsageException $e ) {
+			$this->assertApiErrorCode( 'permissiondenied', $e );
 			$exception = true;
-			// Two error messages are possible depending on the number of groups in the wiki with upload rights:
-			// - The action you have requested is limited to users in the group:
-			// - The action you have requested is limited to users in one of the groups:
-			$this->assertStringStartsWith( "The action you have requested is limited to users in",
-				$e->getMessage() );
 		}
 		$this->assertTrue( $exception, "Got exception" );
 	}

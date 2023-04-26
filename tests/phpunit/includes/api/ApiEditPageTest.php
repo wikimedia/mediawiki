@@ -201,7 +201,7 @@ class ApiEditPageTest extends ApiTestCase {
 			] );
 			$this->fail( "Should have raised an ApiUsageException" );
 		} catch ( ApiUsageException $e ) {
-			$this->assertTrue( self::apiExceptionHasCode( $e, 'nosuchsection' ) );
+			$this->assertApiErrorCode( 'nosuchsection', $e );
 		}
 	}
 
@@ -485,7 +485,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 			$this->fail( 'redirect-appendonly error expected' );
 		} catch ( ApiUsageException $ex ) {
-			$this->assertTrue( self::apiExceptionHasCode( $ex, 'redirect-appendonly' ) );
+			$this->assertApiErrorCode( 'redirect-appendonly', $ex );
 		}
 	}
 
@@ -531,7 +531,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 			$this->fail( 'edit conflict expected' );
 		} catch ( ApiUsageException $ex ) {
-			$this->assertTrue( self::apiExceptionHasCode( $ex, 'editconflict' ) );
+			$this->assertApiErrorCode( 'editconflict', $ex );
 		}
 	}
 
@@ -577,7 +577,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 			$this->fail( 'edit conflict expected' );
 		} catch ( ApiUsageException $ex ) {
-			$this->assertTrue( self::apiExceptionHasCode( $ex, 'editconflict' ) );
+			$this->assertApiErrorCode( 'editconflict', $ex );
 		}
 	}
 
@@ -706,11 +706,7 @@ class ApiEditPageTest extends ApiTestCase {
 	}
 
 	public function testCheckDirectApiEditingDisallowed_forNonTextContent() {
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage(
-			'Direct editing via API is not supported for content model ' .
-				'testing used by Dummy:ApiEditPageTest_nonTextPageEdit'
-		);
+		$this->expectApiErrorCode( 'no-direct-editing' );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
@@ -821,10 +817,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testUnsupportedContentFormat() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage(
-			'Unrecognized value for parameter "contentformat": nonexistent format.'
-		);
+		$this->expectApiErrorCode( 'badvalue' );
 
 		try {
 			$this->doApiRequestWithToken( [
@@ -841,11 +834,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testMismatchedContentFormat() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage(
-			'The requested format text/plain is not supported for content ' .
-				"model wikitext used by $name."
-		);
+		$this->expectApiErrorCode( 'badformat' );
 
 		try {
 			$this->doApiRequestWithToken( [
@@ -867,8 +856,7 @@ class ApiEditPageTest extends ApiTestCase {
 			->getId();
 		$revId++;
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( "There is no revision with ID $revId." );
+		$this->expectApiErrorCode( 'nosuchrevid' );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
@@ -903,8 +891,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$dbw->update( 'revision', [ 'rev_parent_id' => $revId1 ],
 			[ 'rev_id' => $revId3 ], __METHOD__ );
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( "There is no revision with ID $revId2." );
+		$this->expectApiErrorCode( 'nosuchrevid' );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
@@ -936,8 +923,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'comment' => 'Bye-bye',
 		] );
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( "There is no revision with ID $revId1." );
+		$this->expectApiErrorCode( 'nosuchrevid' );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
@@ -987,10 +973,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testUndoWithConflicts() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage(
-			'The edit could not be undone due to conflicting intermediate edits.'
-		);
+		$this->expectApiErrorCode( 'undofailure' );
 
 		$this->editPage( $name, '1' );
 
@@ -1039,8 +1022,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->editPage( "$name-2", 'Some text' );
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( "r$revId is not a revision of $name-2." );
+		$this->expectApiErrorCode( 'revwrongpage' );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
@@ -1058,8 +1040,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$revId2 = $this->editPage( "$name-2", 'Some text' )
 			->getNewRevision()->getId();
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( "r$revId1 is not a revision of $name-2." );
+		$this->expectApiErrorCode( 'revwrongpage' );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
@@ -1139,8 +1120,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testIncorrectMd5Text() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( 'The supplied MD5 hash was incorrect.' );
+		$this->expectApiErrorCode( 'badmd5' );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
@@ -1153,8 +1133,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testIncorrectMd5PrependText() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( 'The supplied MD5 hash was incorrect.' );
+		$this->expectApiErrorCode( 'badmd5' );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
@@ -1168,8 +1147,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testIncorrectMd5AppendText() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( 'The supplied MD5 hash was incorrect.' );
+		$this->expectApiErrorCode( 'badmd5' );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
@@ -1183,8 +1161,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testCreateOnly() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( 'The article you tried to create has been created already.' );
+		$this->expectApiErrorCode( 'articleexists' );
 
 		$this->editPage( $name, 'Some text' );
 		$this->assertTrue( Title::newFromText( $name )->exists() );
@@ -1208,8 +1185,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testNoCreate() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( "The page you specified doesn't exist." );
+		$this->expectApiErrorCode( 'missingtitle' );
 
 		$this->assertFalse( Title::newFromText( $name )->exists() );
 
@@ -1233,8 +1209,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testAppendWithNonTextContentHandler() {
 		$name = 'MediaWiki:' . ucfirst( __FUNCTION__ );
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( "Can't append to pages using content model testing-nontext." );
+		$this->expectApiErrorCode( 'appendnotsupported' );
 
 		$this->setTemporaryHook( 'ContentHandlerDefaultModelFor',
 			static function ( Title $title, &$model ) use ( $name ) {
@@ -1269,8 +1244,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testAppendInMediaWikiNamespaceWithSerializationError() {
 		$name = 'MediaWiki:' . ucfirst( __FUNCTION__ );
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( 'Content serialization failed: Could not unserialize content' );
+		$this->expectApiErrorCode( 'parseerror' );
 
 		$this->setTemporaryHook( 'ContentHandlerDefaultModelFor',
 			static function ( Title $title, &$model ) use ( $name ) {
@@ -1309,8 +1283,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testAppendNewSectionWithInvalidContentModel() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( 'Sections are not supported for content model text.' );
+		$this->expectApiErrorCode( 'sectionsnotsupported' );
 
 		$this->editPage( $name, 'Initial content' );
 
@@ -1433,8 +1406,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testAppendToNonexistentSection() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( 'There is no section 1.' );
+		$this->expectApiErrorCode( 'nosuchsection' );
 
 		$this->editPage( $name, 'Content' );
 
@@ -1456,8 +1428,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testEditMalformedSection() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( 'The "section" parameter must be a valid section ID or "new".' );
+		$this->expectApiErrorCode( 'invalidsection' );
 		$this->editPage( $name, 'Content' );
 
 		try {
@@ -1477,8 +1448,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 	public function testEditWithStartTimestamp() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( 'The page has been deleted since you fetched its timestamp.' );
+		$this->expectApiErrorCode( 'pagedeleted' );
 
 		$startTime = MWTimestamp::convert( TS_MW, time() - 1 );
 
@@ -1608,10 +1578,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testEditWithoutTagPermission() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage(
-			'You do not have permission to apply change tags along with your changes.'
-		);
+		$this->expectApiErrorCode( 'tags-apply-no-permission' );
 
 		$this->assertFalse( Title::newFromText( $name )->exists() );
 
@@ -1656,10 +1623,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testEditAbortedByEditPageHookWithNoResult() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage(
-			'The modification you tried to make was aborted by an extension.'
-		);
+		$this->expectApiErrorCode( 'hookaborted' );
 
 		$this->setTemporaryHook( 'EditFilterMergedContent',
 			static function () {
@@ -1702,7 +1666,7 @@ class ApiEditPageTest extends ApiTestCase {
 			] );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( ApiUsageException $ex ) {
-			$this->assertSame( 'You have been blocked from editing.', $ex->getMessage() );
+			$this->assertApiErrorCode( 'blocked', $ex );
 			$this->assertNotNull( DatabaseBlock::newFromTarget( '127.0.0.1' ), 'Autoblock spread' );
 		} finally {
 			$blockStore->deleteBlock( $block );
@@ -1713,8 +1677,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testEditWhileReadOnly() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( 'The wiki is currently in read-only mode.' );
+		$this->expectApiErrorCode( 'readonly' );
 
 		$svc = $this->getServiceContainer()->getReadOnlyMode();
 		$svc->setReason( "Read-only for testing" );
@@ -1733,8 +1696,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testCreateImageRedirectAnon() {
 		$name = 'File:' . ucfirst( __FUNCTION__ );
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( "Anonymous users can't create image redirects." );
+		$this->expectApiErrorCode( 'noimageredirect-anon' );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
@@ -1746,8 +1708,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testCreateImageRedirectLoggedIn() {
 		$name = 'File:' . ucfirst( __FUNCTION__ );
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( "You don't have permission to create image redirects." );
+		$this->expectApiErrorCode( 'noimageredirect' );
 
 		$this->overrideConfigValue(
 			MainConfigNames::RevokePermissions,
@@ -1764,10 +1725,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testTooBigEdit() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage(
-			'The content you supplied exceeds the article size limit of 1 kibibyte.'
-		);
+		$this->expectApiErrorCode( 'contenttoobig' );
 
 		$this->overrideConfigValue( MainConfigNames::MaxArticleSize, 1 );
 
@@ -1783,13 +1741,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testProhibitedAnonymousEdit() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage(
-			// Two error messages are possible depending on the number of groups in the wiki with edit rights:
-			// - The action you have requested is limited to users in the group:
-			// - The action you have requested is limited to users in one of the groups:
-			'The action you have requested is limited to users in'
-		);
+		$this->expectApiErrorCode( 'permissiondenied' );
 
 		$this->overrideConfigValue(
 			MainConfigNames::RevokePermissions,
@@ -1806,10 +1758,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testProhibitedChangeContentModel() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage(
-			"You don't have permission to change the content model of a page."
-		);
+		$this->expectApiErrorCode( 'cantchangecontentmodel' );
 
 		$this->overrideConfigValue(
 			MainConfigNames::RevokePermissions,
@@ -1864,7 +1813,7 @@ class ApiEditPageTest extends ApiTestCase {
 			] );
 			$this->fail( "Should have raised an ApiUsageException" );
 		} catch ( ApiUsageException $e ) {
-			$this->assertTrue( self::apiExceptionHasCode( $e, 'contentmodel-mismatch' ) );
+			$this->assertApiErrorCode( 'contentmodel-mismatch', $e );
 		}
 	}
 }

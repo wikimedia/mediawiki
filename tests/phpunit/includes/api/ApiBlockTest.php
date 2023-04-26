@@ -83,10 +83,7 @@ class ApiBlockTest extends ApiTestCase {
 	 * A blocked user can't block
 	 */
 	public function testBlockByBlockedUser() {
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage(
-			'You cannot block or unblock other users because you are yourself blocked.'
-		);
+		$this->expectApiErrorCode( 'ipbblocked' );
 
 		$blocked = $this->getMutableTestUser( [ 'sysop' ] )->getUser();
 		$block = new DatabaseBlock( [
@@ -102,18 +99,14 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	public function testBlockOfNonexistentUser() {
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage(
-			'There is no user by the name "Nonexistent". Check your spelling.'
-		);
+		$this->expectApiErrorCode( 'nosuchuser' );
 
 		$this->doBlock( [ 'user' => 'Nonexistent' ] );
 	}
 
 	public function testBlockOfNonexistentUserId() {
 		$id = 948206325;
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( "There is no user with ID $id." );
+		$this->expectApiErrorCode( 'nosuchuserid' );
 
 		$this->assertFalse( User::whoIs( $id ) );
 
@@ -140,10 +133,7 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	public function testBlockWithProhibitedTag() {
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage(
-			'You do not have permission to apply change tags along with your changes.'
-		);
+		$this->expectApiErrorCode( 'tags-apply-no-permission' );
 
 		ChangeTags::defineTag( 'custom tag' );
 
@@ -176,10 +166,7 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	public function testBlockWithProhibitedHide() {
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage(
-			"You are not allowed to execute the action you have requested."
-		);
+		$this->expectApiErrorCode( 'permissiondenied' );
 
 		$this->doBlock( [ 'hidename' => '' ] );
 	}
@@ -207,10 +194,7 @@ class ApiBlockTest extends ApiTestCase {
 			MainConfigNames::EnableUserEmail => true,
 		] );
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage(
-			"You don't have permission to block users from sending email through the wiki."
-		);
+		$this->expectApiErrorCode( 'cantblock-email' );
 
 		$this->overrideConfigValue(
 			MainConfigNames::RevokePermissions,
@@ -237,8 +221,7 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	public function testBlockWithInvalidExpiry() {
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( "Expiry time invalid." );
+		$this->expectApiErrorCode( 'invalidexpiry' );
 
 		$this->doBlock( [ 'expiry' => '' ] );
 	}
@@ -306,8 +289,7 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	public function testBlockingActionWithNoToken() {
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( 'The "token" parameter must be set' );
+		$this->expectApiErrorCode( 'missingparam' );
 		$this->doApiRequest(
 			[
 				'action' => 'block',
@@ -321,8 +303,7 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	public function testBlockWithLargeRange() {
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( 'Invalid value "127.0.0.1/64" for user parameter "user".' );
+		$this->expectApiErrorCode( 'baduser' );
 		$this->doApiRequestWithToken(
 			[
 				'action' => 'block',
@@ -335,9 +316,7 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	public function testBlockingTooManyPageRestrictions() {
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage(
-			"Too many values supplied for parameter \"pagerestrictions\". The limit is 10." );
+		$this->expectApiErrorCode( 'toomanyvalues' );
 		$this->doApiRequestWithToken(
 			[
 				'action' => 'block',
@@ -358,8 +337,7 @@ class ApiBlockTest extends ApiTestCase {
 
 	public function testVeryLargeRangeBlock() {
 		$this->mUser = User::newFromName( '128.0.0.0/1', false );
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( "Range blocks larger than /16 are not allowed." );
+		$this->expectApiErrorCode( 'ip_range_toolarge' );
 		$this->doBlock();
 	}
 

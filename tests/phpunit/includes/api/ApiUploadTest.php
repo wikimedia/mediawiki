@@ -40,16 +40,14 @@ class ApiUploadTest extends ApiUploadTestCase {
 	}
 
 	public function testUploadRequiresToken() {
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( 'The "token" parameter must be set' );
+		$this->expectApiErrorCode( 'missingparam' );
 		$this->doApiRequest( [
 			'action' => 'upload'
 		] );
 	}
 
 	public function testUploadMissingParams() {
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( 'One of the parameters "filekey", "file" and "url" is required' );
+		$this->expectApiErrorCode( 'missingparam' );
 		$this->doApiRequestWithToken( [
 			'action' => 'upload',
 		], null, self::$users['uploader']->getUser() );
@@ -87,8 +85,7 @@ class ApiUploadTest extends ApiUploadTestCase {
 
 		$this->fakeUploadFile( 'file', $fileName, $mimeType, $filePath );
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( 'The file you submitted was empty' );
+		$this->expectApiErrorCode( 'empty-file' );
 		$this->doApiRequestWithToken( [
 			'action' => 'upload',
 			'filename' => $fileName,
