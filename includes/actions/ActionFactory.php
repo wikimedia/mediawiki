@@ -225,7 +225,7 @@ class ActionFactory {
 
 	/**
 	 * @param string $actionName should already be in all lowercase
-	 * @return string|callable|false|Action|array|null The spec for the action, in any valid form,
+	 * @return class-string|callable|false|Action|array|null The spec for the action, in any valid form,
 	 *   based on $this->actionsConfig, or if not included there, CORE_ACTIONS, or null if the
 	 *   action does not exist.
 	 */
