@@ -1434,9 +1434,11 @@ class ApiBaseTest extends ApiTestCase {
 		$blockinfo = [ 'blockinfo' => $userInfoTrait->getBlockDetails( $block ) ];
 
 		$expect = Status::newGood();
-		$expect->fatal( ApiMessage::create( 'apierror-blocked', 'blocked', $blockinfo ) );
-		$expect->fatal( ApiMessage::create( 'apierror-autoblocked', 'autoblocked', $blockinfo ) );
-		$expect->fatal( ApiMessage::create( 'apierror-systemblocked', 'blocked', $blockinfo ) );
+		$expect->fatal( ApiMessage::create( 'blockedtext', 'blocked', $blockinfo ) );
+		// This would normally use the 'autoblocked' code, but the codes are computed from $blockinfo
+		// now rather than the message, and we're not faking it well enough
+		$expect->fatal( ApiMessage::create( 'autoblockedtext', 'blocked', $blockinfo ) );
+		$expect->fatal( ApiMessage::create( 'systemblockedtext', 'blocked', $blockinfo ) );
 		$expect->fatal( 'mainpage' );
 		$expect->fatal( $msg );
 		$expect->fatal( $msg, 'foobar' );
@@ -1494,9 +1496,11 @@ class ApiBaseTest extends ApiTestCase {
 		$blockinfo = [ 'blockinfo' => $userInfoTrait->getBlockDetails( $block ) ];
 
 		$expect = Status::newGood();
-		$expect->fatal( ApiMessage::create( 'apierror-blocked', 'blocked', $blockinfo ) );
-		$expect->fatal( ApiMessage::create( 'apierror-autoblocked', 'autoblocked', $blockinfo ) );
-		$expect->fatal( ApiMessage::create( 'apierror-systemblocked', 'blocked', $blockinfo ) );
+		$expect->fatal( ApiMessage::create( 'blockedtext', 'blocked', $blockinfo ) );
+		// This would normally use the 'autoblocked' code, but the codes are computed from $blockinfo
+		// now rather than the message, and we're not faking it well enough
+		$expect->fatal( ApiMessage::create( 'autoblockedtext', 'blocked', $blockinfo ) );
+		$expect->fatal( ApiMessage::create( 'systemblockedtext', 'blocked', $blockinfo ) );
 		$expect->fatal( 'mainpage' );
 		$expect->fatal( $msg );
 		$expect->fatal( $msg, 'foobar' );
