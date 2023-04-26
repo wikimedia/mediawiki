@@ -8,11 +8,6 @@ use Wikimedia\TestingAccessWrapper;
  */
 class MWHttpRequestTest extends PHPUnit\Framework\TestCase {
 
-	public function testFactory() {
-		MWDebug::filterDeprecationForTest( '/Use of MWHttpRequest::factory /' );
-		$this->assertInstanceOf( MWHttpRequest::class, MWHttpRequest::factory( 'http://example.test' ) );
-	}
-
 	/**
 	 * Feeds URI to test a long regular expression in MWHttpRequest::isValidURI
 	 */
