@@ -255,7 +255,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	 */
 	public function testDbReplLagInfo( $showHostnames, $includeAll ) {
 		if ( !$showHostnames && $includeAll ) {
-			$this->setExpectedApiException( 'apierror-siteinfo-includealldenied' );
+			$this->expectApiErrorCode( 'includeAllDenied' );
 		}
 
 		$mockLB = $this->createNoOpMock( LoadBalancer::class, [ 'getMaxLag', 'getLagTimes',

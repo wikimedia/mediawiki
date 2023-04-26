@@ -161,7 +161,7 @@ class ApiComparePagesTest extends ApiTestCase {
 				$this->doApiRequest( $params, null, false, $performer );
 				$this->fail( 'Expected exception not thrown' );
 			} catch ( ApiUsageException $ex ) {
-				$this->assertTrue( $this->apiExceptionHasCode( $ex, $exceptionCode ),
+				$this->assertApiErrorCode( $exceptionCode, $ex,
 					"Exception with code $exceptionCode" );
 			}
 		} else {

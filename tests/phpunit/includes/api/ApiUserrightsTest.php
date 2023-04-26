@@ -98,20 +98,19 @@ class ApiUserrightsTest extends ApiTestCase {
 	/**
 	 * Perform an API userrights request that's expected to fail.
 	 *
-	 * @param string $expectedException Expected exception text
+	 * @param string $expectedCode Expected API error code
 	 * @param array $params As for doSuccessfulRightsChange()
 	 * @param User|null $user As for doSuccessfulRightsChange().  If there's no
 	 *   user who will possibly be affected (such as if an invalid username is
 	 *   provided in $params), pass null.
 	 */
-	protected function doFailedRightsChange(
-		$expectedException, array $params = [], User $user = null
+	private function doFailedRightsChange(
+		$expectedCode, array $params = [], User $user = null
 	) {
 		$params['action'] = 'userrights';
 		$userGroupManager = $this->getServiceContainer()->getUserGroupManager();
 
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( $expectedException );
+		$this->expectApiErrorCode( $expectedCode );
 
 		if ( !$user ) {
 			// If 'user' or 'userid' is specified and $user was not specified,
@@ -169,7 +168,7 @@ class ApiUserrightsTest extends ApiTestCase {
 		$blockStore->insertBlock( $block );
 
 		try {
-			$this->doFailedRightsChange( 'You have been blocked from editing.' );
+			$this->doFailedRightsChange( 'blocked' );
 		} finally {
 			$blockStore->deleteBlock( $block );
 			$user->clearInstanceCache();
@@ -185,25 +184,25 @@ class ApiUserrightsTest extends ApiTestCase {
 
 	public function testTooFewExpiries() {
 		$this->doFailedRightsChange(
-			'2 expiry timestamps were provided where 3 were needed.',
+			'toofewexpiries',
 			[ 'add' => 'sysop|bureaucrat|bot', 'expiry' => 'infinity|tomorrow' ]
 		);
 	}
 
 	public function testTooManyExpiries() {
 		$this->doFailedRightsChange(
-			'3 expiry timestamps were provided where 2 were needed.',
+			'toofewexpiries',
 			[ 'add' => 'sysop|bureaucrat', 'expiry' => 'infinity|tomorrow|never' ]
 		);
 	}
 
 	public function testInvalidExpiry() {
-		$this->doFailedRightsChange( 'Invalid expiry time', [ 'expiry' => 'yummy lollipops!' ] );
+		$this->doFailedRightsChange( 'invalidexpiry', [ 'expiry' => 'yummy lollipops!' ] );
 	}
 
 	public function testMultipleInvalidExpiries() {
 		$this->doFailedRightsChange(
-			'Invalid expiry time "foo".',
+			'invalidexpiry',
 			[ 'add' => 'sysop|bureaucrat', 'expiry' => 'foo|bar' ]
 		);
 	}
@@ -238,14 +237,14 @@ class ApiUserrightsTest extends ApiTestCase {
 		$this->setGroupPermissions( 'user', 'applychangetags', false );
 
 		$this->doFailedRightsChange(
-			'You do not have permission to apply change tags along with your changes.',
+			'tags-apply-no-permission',
 			[ 'tags' => 'custom tag' ]
 		);
 	}
 
 	public function testNonexistentUser() {
 		$this->doFailedRightsChange(
-			'There is no user by the name "Nonexistent user". Check your spelling.',
+			'nosuchuser',
 			[ 'user' => 'Nonexistent user' ]
 		);
 	}

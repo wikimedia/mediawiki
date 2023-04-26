@@ -123,7 +123,7 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 	}
 
 	public function testPartiallyBlockedPage() {
-		$this->setExpectedApiException( 'apierror-blocked-partial' );
+		$this->expectApiErrorCode( 'blocked' );
 		$performer = $this->mockAnonAuthorityWithPermissions( [ 'writeapi', 'deleterevision' ] );
 
 		$block = new DatabaseBlock( [

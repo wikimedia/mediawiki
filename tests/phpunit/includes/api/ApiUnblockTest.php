@@ -84,7 +84,7 @@ class ApiUnblockTest extends ApiTestCase {
 	}
 
 	public function testUnblockNoPermission() {
-		$this->setExpectedApiException( 'apierror-permissiondenied-unblock' );
+		$this->expectApiErrorCode( 'permissiondenied' );
 
 		$this->setGroupPermissions( 'sysop', 'block', false );
 
@@ -92,7 +92,7 @@ class ApiUnblockTest extends ApiTestCase {
 	}
 
 	public function testUnblockWhenBlocked() {
-		$this->setExpectedApiException( 'ipbblocked' );
+		$this->expectApiErrorCode( 'ipbblocked' );
 
 		$block = new DatabaseBlock( [
 			'address' => $this->blocker->getName(),
@@ -134,7 +134,7 @@ class ApiUnblockTest extends ApiTestCase {
 	}
 
 	public function testUnblockWithProhibitedTag() {
-		$this->setExpectedApiException( 'tags-apply-no-permission' );
+		$this->expectApiErrorCode( 'tags-apply-no-permission' );
 
 		ChangeTags::defineTag( 'custom tag' );
 
@@ -148,13 +148,13 @@ class ApiUnblockTest extends ApiTestCase {
 	}
 
 	public function testUnblockByInvalidId() {
-		$this->setExpectedApiException( [ 'apierror-nosuchuserid', 1234567890 ] );
+		$this->expectApiErrorCode( 'nosuchuserid' );
 
 		$this->doUnblock( [ 'userid' => 1234567890 ] );
 	}
 
 	public function testUnblockNonexistentBlock() {
-		$this->setExpectedApiException( [ 'ipb_cant_unblock', $this->blocker->getName() ] );
+		$this->expectApiErrorCode( 'cantunblock' );
 
 		$this->doUnblock( [ 'user' => $this->blocker ] );
 	}

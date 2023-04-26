@@ -91,9 +91,7 @@ class ApiWatchTest extends ApiTestCase {
 	}
 
 	public function testWatchInvalidExpiry() {
-		$this->setExpectedApiException( [
-			'paramvalidator-badexpiry', 'expiry', 'invalid expiry',
-		] );
+		$this->expectApiErrorCode( 'badexpiry' );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'watch',
@@ -104,9 +102,7 @@ class ApiWatchTest extends ApiTestCase {
 	}
 
 	public function testWatchExpiryInPast() {
-		$this->setExpectedApiException( [
-			'paramvalidator-badexpiry-past', 'expiry', '20010101000000',
-		] );
+		$this->expectApiErrorCode( 'badexpiry-past' );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'watch',

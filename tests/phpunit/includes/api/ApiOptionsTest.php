@@ -14,7 +14,7 @@ use PHPUnit\Framework\MockObject\MockObject;
  *
  * @covers ApiOptions
  */
-class ApiOptionsTest extends MediaWikiLangTestCase {
+class ApiOptionsTest extends ApiTestCase {
 	use MockAuthorityTrait;
 
 	/** @var MockObject */
@@ -200,7 +200,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 			$this->executeQuery( $request );
 		} catch ( ApiUsageException $e ) {
-			$this->assertTrue( ApiTestCase::apiExceptionHasCode( $e, 'notloggedin' ) );
+			$this->assertApiErrorCode( 'notloggedin', $e );
 			return;
 		}
 		$this->fail( "ApiUsageException was not thrown" );
@@ -215,7 +215,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 			$this->executeQuery( $request );
 		} catch ( ApiUsageException $e ) {
-			$this->assertTrue( ApiTestCase::apiExceptionHasCode( $e, 'nooptionname' ) );
+			$this->assertApiErrorCode( 'nooptionname', $e );
 			return;
 		}
 		$this->fail( "ApiUsageException was not thrown" );
@@ -238,7 +238,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 			$this->executeQuery( $request );
 		} catch ( ApiUsageException $e ) {
-			$this->assertTrue( ApiTestCase::apiExceptionHasCode( $e, 'nochanges' ) );
+			$this->assertApiErrorCode( 'nochanges', $e );
 			return;
 		}
 		$this->fail( "ApiUsageException was not thrown" );
@@ -279,7 +279,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			if ( !$expectException ) {
 				$this->fail( 'Unexpected "notloggedin" error.' );
 			} else {
-				$this->assertEquals( 'apierror-mustbeloggedin', $e->getStatusValue()->getErrorsByType( 'error' )[0][ 'message' ]->getKey() );
+				$this->assertApiErrorCode( 'notloggedin', $e );
 			}
 		}
 	}
@@ -312,7 +312,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 				throw $e;
 			}
 			$this->assertNotNull( $e->getMessageObject() );
-			$this->assertEquals( 'apierror-mustbeloggedin', $e->getMessageObject()->getKey() );
+			$this->assertApiErrorCode( 'notloggedin', $e );
 		}
 	}
 
@@ -358,7 +358,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 				throw $e;
 			}
 			$this->assertNotNull( $e->getMessageObject() );
-			$this->assertEquals( 'apierror-mustbeloggedin', $e->getMessageObject()->getKey() );
+			$this->assertApiErrorCode( 'notloggedin', $e );
 		}
 	}
 

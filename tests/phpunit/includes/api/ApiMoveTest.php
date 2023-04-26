@@ -72,8 +72,7 @@ class ApiMoveTest extends ApiTestCase {
 	}
 
 	public function testFromWithFromid() {
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( 'The parameters "from" and "fromid" can not be used together.' );
+		$this->expectApiErrorCode( 'invalidparammix' );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'move',
@@ -164,8 +163,7 @@ class ApiMoveTest extends ApiTestCase {
 	}
 
 	public function testMoveNonexistent() {
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( "The page you specified doesn't exist." );
+		$this->expectApiErrorCode( 'missingtitle' );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'move',
@@ -175,8 +173,7 @@ class ApiMoveTest extends ApiTestCase {
 	}
 
 	public function testMoveNonexistentId() {
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( 'There is no page with ID 2147483647.' );
+		$this->expectApiErrorCode( 'nosuchpageid' );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'move',
@@ -186,8 +183,7 @@ class ApiMoveTest extends ApiTestCase {
 	}
 
 	public function testMoveToInvalidPageName() {
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( 'Bad title "[".' );
+		$this->expectApiErrorCode( 'invalidtitle' );
 
 		$name = ucfirst( __FUNCTION__ );
 		$id = $this->createPage( $name );
@@ -228,7 +224,7 @@ class ApiMoveTest extends ApiTestCase {
 			] );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( ApiUsageException $ex ) {
-			$this->assertSame( 'You have been blocked from editing.', $ex->getMessage() );
+			$this->assertApiErrorCode( 'blocked', $ex );
 			$this->assertNotNull( DatabaseBlock::newFromTarget( '127.0.0.1' ), 'Autoblock spread' );
 		} finally {
 			$blockStore->deleteBlock( $block );
@@ -240,10 +236,7 @@ class ApiMoveTest extends ApiTestCase {
 	// @todo File moving
 
 	public function testPingLimiter() {
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage(
-			"You've exceeded your rate limit. Please wait some time and try again."
-		);
+		$this->expectApiErrorCode( 'ratelimited' );
 
 		$name = ucfirst( __FUNCTION__ );
 
@@ -276,10 +269,7 @@ class ApiMoveTest extends ApiTestCase {
 	}
 
 	public function testTagsNoPermission() {
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage(
-			'You do not have permission to apply change tags along with your changes.'
-		);
+		$this->expectApiErrorCode( 'tags-apply-no-permission' );
 
 		$name = ucfirst( __FUNCTION__ );
 
@@ -304,8 +294,7 @@ class ApiMoveTest extends ApiTestCase {
 	}
 
 	public function testSelfMove() {
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( 'The title is the same; cannot move a page over itself.' );
+		$this->expectApiErrorCode( 'selfmove' );
 
 		$name = ucfirst( __FUNCTION__ );
 		$this->createPage( $name );
@@ -411,11 +400,6 @@ class ApiMoveTest extends ApiTestCase {
 	}
 
 	public function testMoveNoPermission() {
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage(
-			'You must be a registered user and [[Special:UserLogin|logged in]] to move a page.'
-		);
-
 		$name = ucfirst( __FUNCTION__ );
 
 		$id = $this->createPage( $name );
@@ -428,6 +412,10 @@ class ApiMoveTest extends ApiTestCase {
 				'from' => $name,
 				'to' => "$name 2",
 			], null, $user );
+		} catch ( ApiUsageException $ex ) {
+			// This one has two errors! So weird
+			$this->assertTrue( ApiTestCase::apiExceptionHasCode( $ex, 'cantmove-anon' ) );
+			$this->assertTrue( ApiTestCase::apiExceptionHasCode( $ex, 'cantmove' ) );
 		} finally {
 			$this->assertSame( $id, Title::newFromText( "$name" )->getArticleID() );
 			$this->assertFalse( Title::newFromText( "$name 2" )->exists(),

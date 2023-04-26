@@ -136,24 +136,19 @@ class ApiStashEditTest extends ApiTestCase {
 
 	public function testBot() {
 		// @todo This restriction seems arbitrary, is there any good reason to keep it?
-		$this->setExpectedApiException( 'apierror-botsnotsupported' );
+		$this->expectApiErrorCode( 'botsnotsupported' );
 
 		$this->doStash( [], $this->getTestUser( [ 'bot' ] )->getUser() );
 	}
 
 	public function testUnrecognizedFormat() {
-		$this->setExpectedApiException(
-			[ 'apierror-badformat-generic', 'application/json', 'wikitext' ] );
+		$this->expectApiErrorCode( 'badmodelformat' );
 
 		$this->doStash( [ 'contentformat' => 'application/json' ] );
 	}
 
 	public function testMissingTextAndStashedTextHash() {
-		$this->setExpectedApiException( [
-			'apierror-missingparam-one-of',
-			Message::listParam( [ '<var>stashedtexthash</var>', '<var>text</var>' ] ),
-			2
-		] );
+		$this->expectApiErrorCode( 'missingparam' );
 		$this->doStash( [ 'text' => null ] );
 	}
 
@@ -164,12 +159,12 @@ class ApiStashEditTest extends ApiTestCase {
 	}
 
 	public function testMalformedStashedTextHash() {
-		$this->setExpectedApiException( 'apierror-stashedit-missingtext' );
+		$this->expectApiErrorCode( 'missingtext' );
 		$this->doStash( [ 'stashedtexthash' => 'abc' ] );
 	}
 
 	public function testMissingStashedTextHash() {
-		$this->setExpectedApiException( 'apierror-stashedit-missingtext' );
+		$this->expectApiErrorCode( 'missingtext' );
 		$this->doStash( [ 'stashedtexthash' => str_repeat( '0', 40 ) ] );
 	}
 
@@ -183,7 +178,7 @@ class ApiStashEditTest extends ApiTestCase {
 	}
 
 	public function testNonexistentBaseRevId() {
-		$this->setExpectedApiException( [ 'apierror-nosuchrevid', pow( 2, 31 ) - 1 ] );
+		$this->expectApiErrorCode( 'nosuchrevid' );
 
 		$name = ucfirst( __FUNCTION__ );
 		$this->editPage( $name, '' );
@@ -194,7 +189,7 @@ class ApiStashEditTest extends ApiTestCase {
 		$name = ucfirst( __FUNCTION__ );
 		$revRecord = $this->editPage( $name, '' )->getNewRevision();
 
-		$this->setExpectedApiException( [ 'apierror-missingrev-pageid', $revRecord->getPageId() ] );
+		$this->expectApiErrorCode( 'missingrev' );
 
 		// Corrupt the database.  @todo Does the API really need to fail gracefully for this case?
 		$dbw = wfGetDB( DB_PRIMARY );
@@ -261,9 +256,7 @@ class ApiStashEditTest extends ApiTestCase {
 			$performer
 		);
 
-		$this->setExpectedApiException(
-			[ 'apierror-contentmodel-mismatch', 'wikitext', 'css' ]
-		);
+		$this->expectApiErrorCode( 'contentmodel-mismatch' );
 		$this->doStash( [ 'title' => $title->getPrefixedText(), 'baserevid' => $revRecord->getId() ] );
 	}
 
@@ -272,9 +265,7 @@ class ApiStashEditTest extends ApiTestCase {
 		$oldRevRecord = $this->editPage( $name, 'A' )->getNewRevision();
 		$this->editPage( $name, 'B' );
 
-		$this->setExpectedApiException(
-			[ 'apierror-missingcontent-pageid', $oldRevRecord->getPageId() ]
-		);
+		$this->expectApiErrorCode( 'missingrev' );
 
 		$this->revisionDelete( $oldRevRecord );
 
@@ -290,7 +281,7 @@ class ApiStashEditTest extends ApiTestCase {
 		$oldRevRecord = $this->editPage( $name, 'A' )->getNewRevision();
 		$this->editPage( $name, 'B' );
 
-		$this->setExpectedApiException( 'apierror-sectionreplacefailed' );
+		$this->expectApiErrorCode( 'replacefailed' );
 
 		$this->revisionDelete( $oldRevRecord );
 

@@ -49,7 +49,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 			'Check that title does not exist already'
 		);
 
-		$this->setExpectedApiException( 'apierror-changecontentmodel-missingtitle' );
+		$this->expectApiErrorCode( 'changecontentmodel-missingtitle' );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'changecontentmodel',
@@ -62,10 +62,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 	 * Test user needs `editcontentmodel` rights
 	 */
 	public function testRightsNeeded() {
-		$this->setExpectedApiException( [
-			'apierror-permissiondenied',
-			wfMessage( 'action-editcontentmodel' )
-		] );
+		$this->expectApiErrorCode( 'permissiondenied' );
 
 		$this->doApiRequestWithToken( [
 				'action' => 'changecontentmodel',
@@ -87,7 +84,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 			'`ExistingPage` should be wikitext'
 		);
 
-		$this->setExpectedApiException( 'apierror-nochanges' );
+		$this->expectApiErrorCode( 'nochanges' );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'changecontentmodel',
@@ -115,7 +112,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 			'`PageWithTextThatIsNotValidJSON` should be wikitext at first'
 		);
 
-		$this->setExpectedApiException( wfMessage( 'invalid-json-data', wfMessage( 'json-error-syntax' ) ) );
+		$this->expectApiErrorCode( 'invalid-json-data' );
 		$this->doApiRequestWithToken( [
 				'action' => 'changecontentmodel',
 				'summary' => __METHOD__,
@@ -196,11 +193,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 			}
 		);
 
-		$this->setExpectedApiException( [
-			'apierror-changecontentmodel-cannotbeused',
-			wfMessage( 'content-model-text' ),
-			'ExistingPage'
-		] );
+		$this->expectApiErrorCode( 'changecontentmodel-cannotbeused' );
 
 		$this->doApiRequestWithToken( [
 				'action' => 'changecontentmodel',
@@ -233,10 +226,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 			'Dummy:NoDirectEditing should start with the `testing` content model'
 		);
 
-		$this->setExpectedApiException( [
-			'apierror-changecontentmodel-nodirectediting',
-			ContentHandler::getLocalizedName( 'testing' )
-		] );
+		$this->expectApiErrorCode( 'changecontentmodel-nodirectediting' );
 
 		$this->doApiRequestWithToken( [
 				'action' => 'changecontentmodel',
@@ -251,7 +241,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 
 	public function testCannotApplyTags() {
 		ChangeTags::defineTag( 'api edit content model tag' );
-		$this->setExpectedApiException( 'tags-apply-no-permission' );
+		$this->expectApiErrorCode( 'tags-apply-no-permission' );
 
 		$this->doApiRequestWithToken( [
 				'action' => 'changecontentmodel',
