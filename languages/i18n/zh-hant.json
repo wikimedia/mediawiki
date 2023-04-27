@@ -1041,7 +1041,7 @@
 	"mergehistory-go": "顯示可以合併的編輯",
 	"mergehistory-submit": "合併修訂",
 	"mergehistory-empty": "沒有可以合併的修訂",
-	"mergehistory-done": "$1的$4個{{PLURAL:$4|修訂}}{{PLURAL:$4|已被}}合併到[[:$2]]。$3。",
+	"mergehistory-done": "$1的$4個{{PLURAL:$4|修訂}}{{PLURAL:$4|已被}}合併到[[:$2]]。\n$3",
 	"mergehistory-fail": "無法合併歷史，請重新檢查頁面及時間參數。",
 	"mergehistory-fail-bad-timestamp": "時間值無效。",
 	"mergehistory-fail-invalid-source": "來源頁面無效。",

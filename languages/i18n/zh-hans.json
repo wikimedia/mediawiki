@@ -1103,7 +1103,7 @@
 	"mergehistory-go": "显示可以合并的编辑",
 	"mergehistory-submit": "合并版本",
 	"mergehistory-empty": "没有可以合并的版本。",
-	"mergehistory-done": "$1的$4个{{PLURAL:$4|版本}}{{PLURAL:$4|已}}成功合并至[[:$2]]。\n$3。",
+	"mergehistory-done": "$1的$4个{{PLURAL:$4|版本}}{{PLURAL:$4|已}}成功合并至[[:$2]]。\n$3",
 	"mergehistory-fail": "无法进行历史合并。请重新检查该页面和时间参数。",
 	"mergehistory-fail-bad-timestamp": "时间戳无效。",
 	"mergehistory-fail-invalid-source": "来源页面无效。",

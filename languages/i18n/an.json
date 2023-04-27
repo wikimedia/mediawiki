@@ -1931,7 +1931,7 @@
 	"pageinfo-redirects-name": "Numero de reendreceras a ista pachina",
 	"pageinfo-firstuser": "Creyador d'a pachina",
 	"pageinfo-firsttime": "Calendata de creyación d'a pachina",
-	"pageinfo-lastuser": "Zaguer editor",
+	"pageinfo-lastuser": "{{GENDER:$1|Zaguer editor|Zaguera editora}}",
 	"pageinfo-lasttime": "Calendata d'a zaguera edición",
 	"pageinfo-edits": "Numero total d'edicions",
 	"pageinfo-authors": "Numero total d'autors diferents",

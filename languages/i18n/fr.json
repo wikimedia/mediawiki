@@ -2068,7 +2068,7 @@
 	"upload-curl-error6-text": "L’URL fournie ne peut pas être atteinte.\nVeuillez vérifier que l’URL est correcte et que le site est en ligne.",
 	"upload-curl-error28": "Dépassement du délai d’attente lors du téléversement",
 	"upload-curl-error28-text": "Le site a mis trop longtemps à répondre.\nVérifiez que le site est en ligne, attendez un peu et réessayez.\nVous pouvez aussi réessayer à une heure de moindre affluence.",
-	"license": "License :",
+	"license": "Licence :",
 	"license-header": "Conditions d’utilisation",
 	"nolicense": "Aucune licence sélectionnée",
 	"licenses-edit": "Modifier les options de licence",

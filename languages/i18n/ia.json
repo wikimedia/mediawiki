@@ -924,7 +924,7 @@
 	"mergehistory-go": "Revelar modificationes fusionabile",
 	"mergehistory-submit": "Fusionar versiones",
 	"mergehistory-empty": "Nulle versiones pote esser fusionate.",
-	"mergehistory-done": "$4 {{PLURAL:$4|version|versiones}} de $1 ha essite fusionate in [[:$2]].\n$3.",
+	"mergehistory-done": "$4 version{{PLURAL:$4||es}} de $1 ha essite fusionate in [[:$2]].\n$3",
 	"mergehistory-fail": "Impossibile fusionar le historia. Per favor reverifica le parametros del pagina e del tempore.",
 	"mergehistory-fail-bad-timestamp": "Data e hora non valide.",
 	"mergehistory-fail-invalid-source": "Pagina de origine non valide.",
