@@ -31,6 +31,7 @@ use Hooks;
 use HtmlArmor;
 use IContextSource;
 use Language;
+use MediaTransformError;
 use MediaTransformOutput;
 use MediaWiki\Html\Html;
 use MediaWiki\Html\HtmlHelper;
@@ -47,6 +48,7 @@ use SpecialPage;
 use TitleValue;
 use User;
 use WatchedItem;
+use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
 use Wikimedia\Parsoid\Core\TOCData;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -467,14 +469,20 @@ class Linker {
 			$thumb = false;
 		}
 
-		if ( !$thumb ) {
+		if ( !$thumb || ( !$enableLegacyMediaDOM && $thumb->isError() ) ) {
 			$rdfaType = 'mw:Error ' . $rdfaType;
 			$currentExists = $file && $file->exists();
 			if ( $enableLegacyMediaDOM ) {
 				$label = $frameParams['title'];
 			} else {
-				if ( $currentExists ) {
+				if ( $currentExists && !$thumb ) {
 					$label = wfMessage( 'thumbnail_error', '' )->text();
+				} elseif ( $thumb && $thumb->isError() ) {
+					Assert::invariant(
+						$thumb instanceof MediaTransformError,
+						'Unknown MediaTransformOutput: ' . get_class( $thumb )
+					);
+					$label = $thumb->toText();
 				} else {
 					$label = $frameParams['alt'] ?? '';
 				}
@@ -757,12 +765,20 @@ class Linker {
 				$title, $label, '', '', '', (bool)$time, $handlerParams, false
 			);
 			$zoomIcon = '';
-		} elseif ( !$thumb ) {
+		} elseif ( !$thumb || ( !$enableLegacyMediaDOM && $thumb->isError() ) ) {
 			$rdfaType = 'mw:Error ' . $rdfaType;
 			if ( $enableLegacyMediaDOM ) {
 				$s .= wfMessage( 'thumbnail_error', '' )->escaped();
 			} else {
-				$label = wfMessage( 'thumbnail_error', '' )->text();
+				if ( $thumb && $thumb->isError() ) {
+					Assert::invariant(
+						$thumb instanceof MediaTransformError,
+						'Unknown MediaTransformOutput: ' . get_class( $thumb )
+					);
+					$label = $thumb->toText();
+				} else {
+					$label = wfMessage( 'thumbnail_error', '' )->text();
+				}
 				$s .= self::makeBrokenImageLinkObj(
 					$title, $label, '', '', '', (bool)$time, $handlerParams, true
 				);
