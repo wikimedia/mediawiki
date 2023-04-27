@@ -2467,6 +2467,7 @@
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag}}]]: $2",
 	"tag-mw-new-redirect": "Paugahan hanyar",
 	"tag-mw-manual-revert": "Pambulikan manual",
+	"tag-mw-reverted": "Dibulikakan",
 	"tags-title": "Gantungan",
 	"tags-intro": "Tungkaran ngini mandaptar gantungan nang diciri-i parangkat lunak sabuah babakan, wan artinya.",
 	"tags-tag": "Gantungan ngaran",
