@@ -954,6 +954,7 @@
 	"apihelp-query+info-paramvalue-testactionsdetail-boolean": "Return a boolean value for each action.",
 	"apihelp-query+info-paramvalue-testactionsdetail-full": "Return messages describing why the action is disallowed, or an empty array if it is allowed.",
 	"apihelp-query+info-paramvalue-testactionsdetail-quick": "Like <kbd>full</kbd> but skipping expensive checks.",
+	"apihelp-query+info-param-testactionsautocreate": "Test whether performing <var>$1testactions</var> would automatically create a temporary account.",
 	"apihelp-query+info-example-simple": "Get information about the page <kbd>Main Page</kbd>.",
 	"apihelp-query+info-example-protection": "Get general and protection information about the page <kbd>Main Page</kbd>.",
 
@@ -1254,6 +1255,7 @@
 	"apihelp-query+siteinfo-paramvalue-prop-interwikimap": "Returns interwiki map (optionally filtered, optionally localised by using <var>$1inlanguagecode</var>).",
 	"apihelp-query+siteinfo-paramvalue-prop-dbrepllag": "Returns database server with the highest replication lag.",
 	"apihelp-query+siteinfo-paramvalue-prop-usergroups": "Returns user groups and the associated permissions.",
+	"apihelp-query+siteinfo-paramvalue-prop-autocreatetempuser": "Returns configuration for the automatic creation of temporary user accounts (also known as IP masking).",
 	"apihelp-query+siteinfo-paramvalue-prop-libraries": "Returns libraries installed on the wiki.",
 	"apihelp-query+siteinfo-paramvalue-prop-extensions": "Returns extensions installed on the wiki.",
 	"apihelp-query+siteinfo-paramvalue-prop-fileextensions": "Returns list of file extensions (file types) allowed to be uploaded.",

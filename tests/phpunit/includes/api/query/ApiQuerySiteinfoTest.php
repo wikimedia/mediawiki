@@ -365,6 +365,39 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		}
 	}
 
+	public function testAutoCreateTempUser() {
+		$config = $expected = [ 'enabled' => false ];
+		$this->overrideConfigValue( MainConfigNames::AutoCreateTempUser, $config );
+		$this->assertSame(
+			$expected,
+			$this->doQuery( 'autocreatetempuser' ),
+			'When disabled, no other properties are present'
+		);
+
+		$config = [
+			'enabled' => true,
+			'actions' => [ 'edit' ],
+			'genPattern' => 'Unregistered $1',
+			'reservedPattern' => null,
+			'serialProvider' => [ 'type' => 'local' ],
+			'serialMapping' => [ 'type' => 'plain-numeric' ],
+		];
+		$expected = [
+			'enabled' => true,
+			'actions' => [ 'edit' ],
+			'genPattern' => 'Unregistered $1',
+			'matchPattern' => 'Unregistered $1',
+			'serialProvider' => [ 'type' => 'local' ],
+			'serialMapping' => [ 'type' => 'plain-numeric' ],
+		];
+		$this->overrideConfigValue( MainConfigNames::AutoCreateTempUser, $config );
+		$this->assertSame(
+			$expected,
+			$this->doQuery( 'autocreatetempuser' ),
+			'When enabled, some properties are filled in or cleaned up'
+		);
+	}
+
 	public function testFileExtensions() {
 		// Add duplicate
 		$this->overrideConfigValue( MainConfigNames::FileExtensions, [ 'png', 'gif', 'jpg', 'png' ] );
