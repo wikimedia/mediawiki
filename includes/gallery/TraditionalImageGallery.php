@@ -127,10 +127,14 @@ class TraditionalImageGallery extends ImageGalleryBase {
 						$thumbhtml = htmlspecialchars( $img ? $img->getLastError() : $nt->getText() );
 					}
 				} else {
-					// FIXME: BadFile is known
-					$label = $alt ?? '';
+					$currentExists = $img && $img->exists();
+					if ( $currentExists && !$thumb ) {
+						$label = wfMessage( 'thumbnail_error', '' )->text();
+					} else {
+						$label = $alt ?? '';
+					}
 					$thumbhtml = Linker::makeBrokenImageLinkObj(
-						$nt, $label, '', '', '', false, $transformOptions
+						$nt, $label, '', '', '', false, $transformOptions, $currentExists
 					);
 					$thumbhtml = Html::rawElement( 'span', [ 'typeof' => $rdfaType ], $thumbhtml );
 				}
