@@ -18,8 +18,11 @@
  * @file
  */
 
+namespace MediaWiki\SiteStats;
+
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use SiteStatsUpdate;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -236,3 +239,5 @@ class SiteStatsInit {
 			->getConnectionRef( $index, $groups );
 	}
 }
+
+class_alias( SiteStatsInit::class, 'SiteStatsInit' );

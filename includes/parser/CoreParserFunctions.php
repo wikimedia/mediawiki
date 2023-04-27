@@ -29,6 +29,7 @@ use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\SiteStats\SiteStats;
 use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\Title\Title;
 use Wikimedia\RemexHtml\Tokenizer\Attributes;

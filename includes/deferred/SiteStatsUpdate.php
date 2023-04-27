@@ -19,6 +19,7 @@
  */
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\SiteStats\SiteStats;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
 
