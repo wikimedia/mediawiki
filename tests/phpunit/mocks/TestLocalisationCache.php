@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -51,14 +52,17 @@ class TestLocalisationCache extends LocalisationCache {
 	}
 
 	public function recache( $code ) {
+		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 		// Test run performance is killed if we have to regenerate l10n for every test
 		$cacheKey = sha1( json_encode( [
 			$code,
 			$this->selfAccess->options->get( MainConfigNames::ExtensionMessagesFiles ),
 			$this->selfAccess->options->get( MainConfigNames::MessagesDirs ),
 			// json_encode doesn't handle objects well
-			self::hashiblifyArray( Hooks::getHandlers( 'LocalisationCacheRecacheFallback' ) ),
-			self::hashiblifyArray( Hooks::getHandlers( 'LocalisationCacheRecache' ) ),
+			self::hashiblifyArray( $hookContainer->getLegacyHandlers( 'LocalisationCacheRecacheFallback' ) ),
+			self::hashiblifyArray( $hookContainer->getHandlers( 'LocalisationCacheRecacheFallback' ) ),
+			self::hashiblifyArray( $hookContainer->getLegacyHandlers( 'LocalisationCacheRecache' ) ),
+			self::hashiblifyArray( $hookContainer->getHandlers( 'LocalisationCacheRecache' ) ),
 		] ) );
 		if ( isset( self::$testingCache[$cacheKey] ) ) {
 			$this->data[$code] = self::$testingCache[$cacheKey];
