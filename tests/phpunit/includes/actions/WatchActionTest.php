@@ -51,17 +51,6 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @throws MWException
-	 */
-	protected function tearDown(): void {
-		$this->hideDeprecated( 'Hooks::clear' );
-		Hooks::clear( 'WatchArticle' );
-		Hooks::clear( 'UnwatchArticle' );
-
-		parent::tearDown();
-	}
-
 	private function getWatchAction( Article $article, IContextSource $context ) {
 		$mwServices = $this->getServiceContainer();
 		return new WatchAction(
