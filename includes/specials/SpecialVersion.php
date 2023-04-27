@@ -708,8 +708,13 @@ class SpecialVersion extends SpecialPage {
 	 */
 	private function getClientSideLibraries() {
 		global $IP;
-		$registryFile = "{$IP}/resources/lib/foreign-resources.yaml";
-		$modules = Yaml::parseFile( $registryFile );
+		$registryDirs = [ '' => "{$IP}/resources/lib" ]
+			+ ExtensionRegistry::getInstance()->getAttribute( 'ForeignResourcesDir' );
+
+		$modules = [];
+		foreach ( $registryDirs as $registryDir ) {
+			$modules = array_merge( $modules, Yaml::parseFile( "$registryDir/foreign-resources.yaml" ) );
+		}
 		ksort( $modules );
 
 		$this->addTocSection( 'version-libraries-client', 'mw-version-libraries-client' );
