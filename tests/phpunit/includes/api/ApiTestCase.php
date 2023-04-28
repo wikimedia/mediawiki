@@ -103,13 +103,13 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		}
 
 		// prepend parameters with prefix
-		foreach ( array_keys( $params ) as $key ) {
-			$newKeys[] = $paramPrefix . $key;
+		if ( $paramPrefix !== null && $paramPrefix !== '' ) {
+			$prefixedParams = [];
+			foreach ( $params as $key => $value ) {
+				$prefixedParams[$paramPrefix . $key] = $value;
+			}
+			$params = $prefixedParams;
 		}
-		$params = array_combine(
-			$newKeys,
-			array_values( $params )
-		);
 
 		$wgRequest = $this->buildFauxRequest( $params, $sessionObj );
 		RequestContext::getMain()->setRequest( $wgRequest );
