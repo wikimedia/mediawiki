@@ -298,6 +298,18 @@ interface IDatabase extends IReadableDatabase {
 	public function newUpdateQueryBuilder(): UpdateQueryBuilder;
 
 	/**
+	 * Get an DeleteQueryBuilder bound to this connection. This is overridden by
+	 * DBConnRef.
+	 *
+	 * @note A new query builder must be created per query. Query builders
+	 *   should not be reused since this uses a fluent interface and the state of
+	 *   the builder changes during the query which may cause unexpected results.
+	 *
+	 * @return DeleteQueryBuilder
+	 */
+	public function newDeleteQueryBuilder(): DeleteQueryBuilder;
+
+	/**
 	 * Lock all rows meeting the given conditions/options FOR UPDATE
 	 *
 	 * @param string|string[] $table Table name(s)

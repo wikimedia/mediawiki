@@ -2854,6 +2854,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\Database\\DatabaseFlags' => __DIR__ . '/includes/libs/rdbms/database/DatabaseFlags.php',
 	'Wikimedia\\Rdbms\\Database\\DbQuoter' => __DIR__ . '/includes/libs/rdbms/database/DbQuoter.php',
 	'Wikimedia\\Rdbms\\Database\\IDatabaseFlags' => __DIR__ . '/includes/libs/rdbms/database/IDatabaseFlags.php',
+	'Wikimedia\\Rdbms\\DeleteQueryBuilder' => __DIR__ . '/includes/libs/rdbms/querybuilder/DeleteQueryBuilder.php',
 	'Wikimedia\\Rdbms\\DoctrineAbstractSchemaTrait' => __DIR__ . '/includes/libs/rdbms/dbal/DoctrineAbstractSchemaTrait.php',
 	'Wikimedia\\Rdbms\\DoctrineSchemaBuilder' => __DIR__ . '/includes/libs/rdbms/dbal/DoctrineSchemaBuilder.php',
 	'Wikimedia\\Rdbms\\DoctrineSchemaBuilderFactory' => __DIR__ . '/includes/libs/rdbms/dbal/DoctrineSchemaBuilderFactory.php',
