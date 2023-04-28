@@ -20,10 +20,13 @@
 namespace Wikimedia\Rdbms;
 
 /**
- * Narrow interface providing primary/replica connections.
+ * Provide primary and replica IDatabase connections.
  *
- * This will be heavily used outside the rdmbs library and will become the main interface.
+ * This is a narrow interface intended as the main entrypoint to the Rdbms library.
  * No methods should be added unless absolutely needed.
+ *
+ * The main implementation is \Wikimedia\Rdbms\LBFactory.
+ * To obtain an instance, use \MediaWiki\MediaWikiServices::getDBLoadBalancerFactory().
  *
  * @see ILBFactory
  * @since 1.40

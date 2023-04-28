@@ -3,8 +3,13 @@
 namespace MediaWiki\DB;
 
 /**
- * A read-only mode service which does not depend on LoadBalancer.
- * To obtain an instance, use MediaWikiServices::getInstance()->getConfiguredReadOnlyMode().
+ * Determine whether a site is statically configured as read-only.
+ *
+ * Unlike ReadOnlyMode, this only checks site configuration.
+ * It does not confirm whether the primary database host actively accepts writes.
+ *
+ * To obtain an instance, use \MediaWiki\MediaWikiServices::getConfiguredReadOnlyMode().
+ * This service can be configured via $wgReadOnly and $wgReadOnlyFile.
  *
  * @since 1.29
  */
@@ -20,7 +25,7 @@ class ConfiguredReadOnlyMode {
 	 *   in $reasonFile instead.
 	 * @param string|null $reasonFile A file to look in for a reason, if $reason is null. If it
 	 *   exists and is non-empty, its contents are treated as the reason for read-only mode.
-	 *   Otherwise, the wiki is not read-only.
+	 *   Otherwise, the site is not read-only.
 	 */
 	public function __construct( $reason, ?string $reasonFile = null ) {
 		$this->reason = $reason;
@@ -28,7 +33,7 @@ class ConfiguredReadOnlyMode {
 	}
 
 	/**
-	 * Check whether the wiki is in read-only mode.
+	 * Check whether the site is in read-only mode.
 	 *
 	 * @return bool
 	 */
@@ -37,8 +42,6 @@ class ConfiguredReadOnlyMode {
 	}
 
 	/**
-	 * Get the value of $wgReadOnly or the contents of $wgReadOnlyFile.
-	 *
 	 * @return string|false String when in read-only mode; false otherwise
 	 */
 	public function getReason() {
