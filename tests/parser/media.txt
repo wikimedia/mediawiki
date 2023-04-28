@@ -196,7 +196,6 @@ wgParserEnableLegacyMediaDOM=false
 <figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" class="mw-file-element"/></a><figcaption>one <i>two</i> <span typeof="mw:Entity">|</span> three</figcaption></figure>
 !! end
 
-## FIXME: Legacy output doesn't match Parsoid
 !! test
 Bad images - basic functionality
 !! config
@@ -204,13 +203,12 @@ wgParserEnableLegacyMediaDOM=false
 !! wikitext
 [[File:Bad.jpg]]
 !! html/php
-<p><a href="/wiki/File:Bad.jpg" title="File:Bad.jpg">File:Bad.jpg</a>
+<p><span class="mw-default-size" typeof="mw:Error mw:File"><a href="/wiki/File:Bad.jpg" title="File:Bad.jpg"><span class="mw-file-element mw-broken-media" data-width="320">File:Bad.jpg</span></a></span>
 </p>
 !! html/parsoid
 <p><span class="mw-default-size" typeof="mw:Error mw:File" data-mw='{"errors":[{"key":"apierror-badfile","message":"This image is on the bad file list."}]}'><a href="./Special:FilePath/Bad.jpg"><span class="mw-file-element mw-broken-media" resource="./File:Bad.jpg">File:Bad.jpg</span></a></span></p>
 !! end
 
-## FIXME: Legacy output doesn't match Parsoid
 !! test
 Bad images - T18039: text after bad image disappears
 !! config
@@ -221,13 +219,23 @@ Foo bar
 Bar foo
 !! html/php
 <p>Foo bar
-<a href="/wiki/File:Bad.jpg" title="File:Bad.jpg">File:Bad.jpg</a>
+<span class="mw-default-size" typeof="mw:Error mw:File"><a href="/wiki/File:Bad.jpg" title="File:Bad.jpg"><span class="mw-file-element mw-broken-media" data-width="320">File:Bad.jpg</span></a></span>
 Bar foo
 </p>
 !! html/parsoid
 <p>Foo bar
 <span class="mw-default-size" typeof="mw:Error mw:File" data-mw='{"errors":[{"key":"apierror-badfile","message":"This image is on the bad file list."}]}'><a href="./Special:FilePath/Bad.jpg"><span class="mw-file-element mw-broken-media" resource="./File:Bad.jpg">File:Bad.jpg</span></a></span>
 Bar foo</p>
+!! end
+
+!! test
+Bad images - manualthumb
+!! config
+wgParserEnableLegacyMediaDOM=false
+!! wikitext
+[[File:Foobar.jpg|thumb=Bad.jpg|Uh oh]]
+!! html/php
+<figure typeof="mw:Error mw:File/Thumb"><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg"><span class="mw-file-element mw-broken-media" data-width="180">File:Foobar.jpg</span></a><figcaption>Uh oh</figcaption></figure>
 !! end
 
 !! test

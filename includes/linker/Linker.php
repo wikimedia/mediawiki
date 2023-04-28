@@ -472,7 +472,10 @@ class Linker {
 			$thumb = false;
 		}
 
-		if ( !$thumb || ( !$enableLegacyMediaDOM && $thumb->isError() ) ) {
+		$isBadFile = $file && $thumb &&
+			$parser->getBadFileLookup()->isBadFile( $title->getDBkey(), $parser->getTitle() );
+
+		if ( !$thumb || ( !$enableLegacyMediaDOM && $thumb->isError() ) || $isBadFile ) {
 			$rdfaType = 'mw:Error ' . $rdfaType;
 			$currentExists = $file && $file->exists();
 			if ( $enableLegacyMediaDOM ) {
@@ -680,6 +683,7 @@ class Linker {
 		$thumb = false;
 		$noscale = false;
 		$manualthumb = false;
+		$manual_title = '';
 		$rdfaType = 'mw:File/Thumb';
 
 		if ( !$exists ) {
@@ -765,6 +769,12 @@ class Linker {
 				. "<div class=\"thumbinner\" style=\"width:{$outerWidth}px;\">";
 		}
 
+		$isBadFile = $exists && $thumb && $parser &&
+			$parser->getBadFileLookup()->isBadFile(
+				$manualthumb ? $manual_title : $title->getDBkey(),
+				$parser->getTitle()
+			);
+
 		if ( !$exists ) {
 			$rdfaType = 'mw:Error ' . $rdfaType;
 			$label = '';
@@ -775,10 +785,16 @@ class Linker {
 				$title, $label, '', '', '', (bool)$time, $handlerParams, false
 			);
 			$zoomIcon = '';
-		} elseif ( !$thumb || ( !$enableLegacyMediaDOM && $thumb->isError() ) ) {
+		} elseif ( !$thumb || ( !$enableLegacyMediaDOM && $thumb->isError() ) || $isBadFile ) {
 			$rdfaType = 'mw:Error ' . $rdfaType;
 			if ( $enableLegacyMediaDOM ) {
-				$s .= wfMessage( 'thumbnail_error', '' )->escaped();
+				if ( !$thumb ) {
+					$s .= wfMessage( 'thumbnail_error', '' )->escaped();
+				} else {
+					$s .= self::makeBrokenImageLinkObj(
+						$title, '', '', '', '', (bool)$time, $handlerParams, true
+					);
+				}
 			} else {
 				if ( $thumb && $thumb->isError() ) {
 					Assert::invariant(
@@ -786,8 +802,10 @@ class Linker {
 						'Unknown MediaTransformOutput: ' . get_class( $thumb )
 					);
 					$label = $thumb->toText();
-				} else {
+				} elseif ( !$thumb ) {
 					$label = wfMessage( 'thumbnail_error', '' )->text();
+				} else {
+					$label = '';
 				}
 				$s .= self::makeBrokenImageLinkObj(
 					$title, $label, '', '', '', (bool)$time, $handlerParams, true
