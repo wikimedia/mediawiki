@@ -1344,7 +1344,7 @@ class FileModule extends Module {
 				$localPath = $this->getLocalPath( $fileInfo['filePath'] );
 				$content = $this->getFileContents( $localPath, 'package' );
 				if ( $fileInfo['type'] === 'data' ) {
-					$content = json_decode( $content );
+					$content = json_decode( $content, false, 512, JSON_THROW_ON_ERROR );
 				}
 				$fileInfo['content'] = $content;
 				unset( $fileInfo['filePath'] );
