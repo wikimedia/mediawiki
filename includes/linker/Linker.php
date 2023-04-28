@@ -691,8 +691,6 @@ class Linker {
 					if ( $manual_img ) {
 						$thumb = $manual_img->getUnscaledThumb( $handlerParams );
 						$manualthumb = true;
-					} else {
-						$exists = false;
 					}
 				}
 			} elseif ( isset( $frameParams['framed'] ) ) {
