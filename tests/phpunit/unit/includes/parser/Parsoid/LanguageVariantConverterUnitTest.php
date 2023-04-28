@@ -79,6 +79,7 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 		?string $pageBundleLanguageCode,
 		?string $titleLanguageCode,
 		?string $contentLanguageOverride,
+		?string $targetLanguageCode,
 		?string $sourceLanguageCode,
 		?string $expectedSourceCode
 	) {
@@ -89,7 +90,7 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 
 		// Set expected language codes
 		$titleLanguageCode ??= 'en';
-		$targetLanguageCode = 'en-us';
+		$targetLanguageCode ??= $titleLanguageCode;
 
 		$parsoidSettings = [];
 		// Create mocks
@@ -106,7 +107,7 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 			$pageBundleLanguageCode,
 			$contentLanguageOverride,
 			$titleLanguageCode,
-			$targetLanguageCode,
+			$targetLanguageCode, // expected target language
 			$expectedSourceCode,
 			$parsoidSettings
 		);
@@ -119,16 +120,18 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 
 	public static function provideSourceLanguage() {
 		yield 'content-language in PageBundle' => [
-			'sr-el', // PageBundle content-language
+			'sr',    // PageBundle content-language
 			null,    // Title PageLanguage
 			null,    // PageLanguage override
-			'sr-ec', // explicit source
-			'sr-ec'  // expected source
+			'sr-Cyrl', // target
+			'sr-Cyrl', // explicit source
+			'sr-Cyrl'  // expected source
 		];
 		yield 'content-language but no source language' => [
 			'en',    // PageBundle content-language
 			null,    // Title PageLanguage
 			null,    // PageLanguage override
+			'en',    // target
 			null,    // explicit source
 			null     // expected source
 		];
@@ -136,6 +139,7 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 			'en-ca', // PageBundle content-language
 			null,    // Title PageLanguage
 			null,    // PageLanguage override
+			'en',    // target
 			null,    // explicit source
 			'en-ca'  // expected source
 		];
@@ -143,6 +147,7 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 			null,    // PageBundle content-language
 			null,    // Title PageLanguage
 			null,    // PageLanguage override
+			'en',    // target
 			'en-ca', // explicit source
 			'en-ca'  // expected source
 		];
@@ -150,6 +155,7 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 			null,    // PageBundle content-language
 			null,    // Title PageLanguage
 			null,    // PageLanguage override
+			'en',    // target
 			'en',    // explicit source
 			null     // expected source
 		];
@@ -157,6 +163,7 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 			null,    // PageBundle content-language
 			null,    // PageBundle content-language
 			'en-ca', // PageLanguage override
+			'en',    // target
 			'en-ca', // explicit source
 			'en-ca'  // expected source
 		];
@@ -519,6 +526,10 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 			->willReturnCallback( static function ( $text, $code ) {
 				return $text;
 			} );
+		$languageConverter->method( 'hasVariant' )
+		   ->willReturnCallback( static function ( $code ) {
+			   return true;
+		   } );
 		$languageConverterFactoryMock->method( 'getLanguageConverter' )
 			->willReturn( $languageConverter );
 

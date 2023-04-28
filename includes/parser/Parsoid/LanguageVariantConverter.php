@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Parser\Parsoid;
 
+use LanguageCode;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Page\PageIdentity;
@@ -326,11 +327,18 @@ class LanguageVariantConverter {
 			$baseLanguage = $parentLang;
 		}
 
-		// If the source variant isn't actually a variant, trigger auto-detection
-		// FIXME: This should probably use LanguageConverter::validateVariant()
-		// as well, but we'd need a LanguageConverterFactory for that.
-		if ( $sourceLanguage && strcasecmp( $sourceLanguage->toBcp47Code(), $baseLanguage->toBcp47Code() ) === 0 ) {
-			$sourceLanguage = null;
+		if ( $sourceLanguage !== null ) {
+			$parentConverter = $this->languageConverterFactory->getLanguageConverter( $parentLang );
+			// If the source variant isn't actually a variant, trigger auto-detection
+			$sourceIsVariant = (
+				strcasecmp( $parentLang->toBcp47Code(), $sourceLanguage->toBcp47Code() ) !== 0 &&
+				$parentConverter->hasVariant(
+					LanguageCode::bcp47ToInternal( $sourceLanguage->toBcp47Code() )
+				)
+			);
+			if ( !$sourceIsVariant ) {
+				$sourceLanguage = null;
+			}
 		}
 
 		return [ $baseLanguage, $sourceLanguage ];
