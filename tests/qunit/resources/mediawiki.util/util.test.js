@@ -1,99 +1,23 @@
-( function () {
-	var util = require( 'mediawiki.util' ),
-		// Based on IPTest.php > testisIPv4
-		IPV4_CASES = [
-			[ false, false, 'Boolean false is not an IP' ],
-			[ false, true, 'Boolean true is not an IP' ],
-			[ false, '', 'Empty string is not an IP' ],
-			[ false, 'abc', '"abc" is not an IP' ],
-			[ false, ':', 'Colon is not an IP' ],
-			[ false, '124.24.52', 'IPv4 not enough quads' ],
-			[ false, '24.324.52.13', 'IPv4 out of range' ],
-			[ false, '.24.52.13', 'IPv4 starts with period' ],
+QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
+	messages: {
+		// Used by accessKeyLabel in test for addPortletLink
+		brackets: '[$1]',
+		'word-separator': ' '
+	}
+} ), ( hooks ) => {
+	const util = require( 'mediawiki.util' );
 
-			[ true, '124.24.52.13', '124.24.52.134 is a valid IP' ],
-			[ true, '1.24.52.13', '1.24.52.13 is a valid IP' ],
-			[ false, '74.24.52.13/20', 'IPv4 ranges are not recognized as valid IPs' ]
-		],
-
-		// Based on IPTest.php > testisIPv6
-		IPV6_CASES = [
-			[ false, false, 'Boolean false is not an IP' ],
-			[ false, true, 'Boolean true is not an IP' ],
-			[ false, ':fc:100::', 'IPv6 starting with lone ":"' ],
-			[ false, 'fc:100:::', 'IPv6 ending with a ":::"' ],
-			[ false, 'fc:300', 'IPv6 with only 2 words' ],
-			[ false, 'fc:100:300', 'IPv6 with only 3 words' ],
-
-			[ false, 'fc:100:a:d:1:e:ac:0::', 'IPv6 with 8 words ending with "::"' ],
-			[ false, 'fc:100:a:d:1:e:ac:0:1::', 'IPv6 with 9 words ending with "::"' ],
-
-			[ false, ':::' ],
-			[ false, '::0:', 'IPv6 ending in a lone ":"' ],
-
-			[ true, '::', 'IPv6 zero address' ],
-
-			[ false, '::fc:100:a:d:1:e:ac:0', 'IPv6 with "::" and 8 words' ],
-			[ false, '::fc:100:a:d:1:e:ac:0:1', 'IPv6 with 9 words' ],
-
-			[ false, ':fc::100', 'IPv6 starting with lone ":"' ],
-			[ false, 'fc::100:', 'IPv6 ending with lone ":"' ],
-			[ false, 'fc:::100', 'IPv6 with ":::" in the middle' ],
-
-			[ true, 'fc::100', 'IPv6 with "::" and 2 words' ],
-			[ true, 'fc::100:a', 'IPv6 with "::" and 3 words' ],
-			[ true, 'fc::100:a:d', 'IPv6 with "::" and 4 words' ],
-			[ true, 'fc::100:a:d:1', 'IPv6 with "::" and 5 words' ],
-			[ true, 'fc::100:a:d:1:e', 'IPv6 with "::" and 6 words' ],
-			[ true, 'fc::100:a:d:1:e:ac', 'IPv6 with "::" and 7 words' ],
-			[ true, '2001::df', 'IPv6 with "::" and 2 words' ],
-			[ true, '2001:5c0:1400:a::df', 'IPv6 with "::" and 5 words' ],
-			[ true, '2001:5c0:1400:a::df:2', 'IPv6 with "::" and 6 words' ],
-
-			[ false, 'fc::100:a:d:1:e:ac:0', 'IPv6 with "::" and 8 words' ],
-			[ false, 'fc::100:a:d:1:e:ac:0:1', 'IPv6 with 9 words' ]
-		];
-
-	Array.prototype.push.apply( IPV6_CASES,
-		[
-			'fc:100::',
-			'fc:100:a::',
-			'fc:100:a:d::',
-			'fc:100:a:d:1::',
-			'fc:100:a:d:1:e::',
-			'fc:100:a:d:1:e:ac::',
-			'::0',
-			'::fc',
-			'::fc:100',
-			'::fc:100:a',
-			'::fc:100:a:d',
-			'::fc:100:a:d:1',
-			'::fc:100:a:d:1:e',
-			'::fc:100:a:d:1:e:ac',
-			'fc:100:a:d:1:e:ac:0'
-		].map( function ( el ) {
-			return [ true, el, el + ' is a valid IP' ];
-		} )
-	);
-
-	QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
-		beforeEach: function () {
-			$.fn.updateTooltipAccessKeys.setTestMode( true );
-			mw.util.setOptionsForTest( {
-				FragmentMode: [ 'legacy', 'html5' ],
-				LoadScript: '/w/load.php'
-			} );
-		},
-		afterEach: function () {
-			$.fn.updateTooltipAccessKeys.setTestMode( false );
-			mw.util.setOptionsForTest();
-		},
-		messages: {
-			// Used by accessKeyLabel in test for addPortletLink
-			brackets: '[$1]',
-			'word-separator': ' '
-		}
-	} ) );
+	hooks.beforeEach( () => {
+		$.fn.updateTooltipAccessKeys.setTestMode( true );
+		mw.util.setOptionsForTest( {
+			FragmentMode: [ 'legacy', 'html5' ],
+			LoadScript: '/w/load.php'
+		} );
+	} );
+	hooks.afterEach( () => {
+		$.fn.updateTooltipAccessKeys.setTestMode( false );
+		mw.util.setOptionsForTest();
+	} );
 
 	QUnit.test( 'rawurlencode', function ( assert ) {
 		assert.strictEqual( util.rawurlencode( 'Test:A & B/Here' ), 'Test%3AA%20%26%20B%2FHere' );
@@ -453,26 +377,81 @@
 		assert.strictEqual( util.validateEmail( 'userfoo@ex-ample.org' ), true, 'Emails may contain a hyphen' );
 	} );
 
-	QUnit.test( 'isIPv6Address', function ( assert ) {
-		IPV6_CASES.forEach( function ( ipCase ) {
-			assert.strictEqual( util.isIPv6Address( ipCase[ 1 ] ), ipCase[ 0 ], ipCase[ 2 ] );
-		} );
+	// Based on mediawiki/libs/IPUtils: provideInvalidIPv4Addresses
+	QUnit.test.each( 'isIPv4Address invalid', [
+		false,
+		true,
+		'',
+		'abc',
+		':',
+		'124.24.52', // not enough quads
+		'24.324.52.13', // outside of the IPv4 range
+		'.24.52.13',
+		'74.24.52.13/20' // Known difference: mw.util requires individual IP, not IP-range
+	], ( assert, ip ) => {
+		assert.false( util.isIPv4Address( ip ), String( ip ) );
 	} );
 
-	QUnit.test( 'isIPv4Address', function ( assert ) {
-		IPV4_CASES.forEach( function ( ipCase ) {
-			assert.strictEqual( util.isIPv4Address( ipCase[ 1 ] ), ipCase[ 0 ], ipCase[ 2 ] );
-		} );
+	// Based on mediawiki/libs/IPUtils: provideValidIPv4Address
+	QUnit.test.each( 'isIPv4Address valid', [
+		'124.24.52.13',
+		'1.24.52.13'
+	], ( assert, ip ) => {
+		assert.true( util.isIPv4Address( ip ), ip );
 	} );
 
-	QUnit.test( 'isIPAddress', function ( assert ) {
-		IPV4_CASES.forEach( function ( ipCase ) {
-			assert.strictEqual( util.isIPv4Address( ipCase[ 1 ] ), ipCase[ 0 ], ipCase[ 2 ] );
-		} );
+	// Based on mediawiki/libs/IPUtils: testisIPv6
+	QUnit.test.each( 'isIPv6Address invalid', [
+		false,
+		true,
+		':fc:100::', // starting with lone ":"
+		'fc:100:::', // ending with a tripple ":::"
+		'fc:300', // 2 words
+		'fc:100:300', // 3 words
+		'fc:100:a:d:1:e:ac:0::', // 8 words ending with "::"
+		'fc:100:a:d:1:e:ac:0:1::', // 9 words ending with "::"
+		':::',
+		'::0:', // ending in a lone ":"
+		'::fc:100:a:d:1:e:ac:0', // 8 words starting with "::"
+		'::fc:100:a:d:1:e:ac:0:1', // 9 words
+		':fc::100', // starting with lone ":"
+		'fc::100:', // ending with lone ":"
+		'fc:::100', // tripple ":::" in the middle
+		'fc::100:a:d:1:e:ac:0', // 8 words containing double "::"
+		'fc::100:a:d:1:e:ac:0:1' // 9 words
+	], ( assert, ip ) => {
+		assert.false( util.isIPv6Address( ip ), String( ip ) );
+	} );
 
-		IPV6_CASES.forEach( function ( ipCase ) {
-			assert.strictEqual( util.isIPv6Address( ipCase[ 1 ] ), ipCase[ 0 ], ipCase[ 2 ] );
-		} );
+	// Based on mediawiki/libs/IPUtils: testisIPv6
+	QUnit.test.each( 'isIPv6Address valid', [
+		'::', // IPv6 zero address
+		'fc::100', // 2 words with double "::"
+		'fc::100:a', // 3 words with double "::"
+		'fc::100:a:d', // 4 words with double "::"
+		'fc::100:a:d:1', // 5 words with double "::"
+		'fc::100:a:d:1:e', // 6 words with double "::"
+		'fc::100:a:d:1:e:ac', // 7 words with double "::"
+		'2001::df',
+		'2001:5c0:1400:a::df',
+		'2001:5c0:1400:a::df:2',
+		'fc:100::',
+		'fc:100:a::',
+		'fc:100:a:d::',
+		'fc:100:a:d:1::',
+		'fc:100:a:d:1:e::',
+		'fc:100:a:d:1:e:ac::',
+		'::0',
+		'::fc',
+		'::fc:100',
+		'::fc:100:a',
+		'::fc:100:a:d',
+		'::fc:100:a:d:1',
+		'::fc:100:a:d:1:e',
+		'::fc:100:a:d:1:e:ac',
+		'fc:100:a:d:1:e:ac:0'
+	], ( assert, ip ) => {
+		assert.true( util.isIPv6Address( ip ), ip );
 	} );
 
 	QUnit.test.each( 'parseImageUrl', {
@@ -827,4 +806,4 @@
 			assert.strictEqual( util.isTemporaryUser( username[ 1 ] ), username[ 2 ], username[ 4 ] );
 		} );
 	} );
-}() );
+} );
