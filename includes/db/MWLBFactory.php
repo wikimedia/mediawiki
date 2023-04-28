@@ -23,6 +23,7 @@
 
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\DB\ConfiguredReadOnlyMode;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\ChronologyProtector;

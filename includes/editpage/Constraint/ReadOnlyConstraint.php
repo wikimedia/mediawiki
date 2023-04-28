@@ -20,7 +20,7 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
-use ReadOnlyMode;
+use MediaWiki\DB\ReadOnlyMode;
 use StatusValue;
 
 /**

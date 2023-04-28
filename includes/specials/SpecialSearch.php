@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\Html\Html;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Languages\LanguageConverterFactory;

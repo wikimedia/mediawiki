@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\DB;
+
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -56,3 +58,5 @@ class ReadOnlyMode {
 		$this->configuredReadOnly->setReason( $msg );
 	}
 }
+
+class_alias( ReadOnlyMode::class, 'ReadOnlyMode' );

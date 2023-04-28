@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Block;
 
-use ConfiguredReadOnlyMode;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockRestrictionStoreFactory;
 use MediaWiki\Block\DatabaseBlockStore;
@@ -10,6 +9,7 @@ use MediaWiki\Block\DatabaseBlockStoreFactory;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\DAO\WikiAwareEntity;
+use MediaWiki\DB\ConfiguredReadOnlyMode;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\UserFactory;

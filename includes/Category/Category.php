@@ -24,12 +24,12 @@
 namespace MediaWiki\Category;
 
 use DeferredUpdates;
+use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArray;
 use MWException;
-use ReadOnlyMode;
 use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 
