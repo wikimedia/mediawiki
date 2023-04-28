@@ -2679,25 +2679,23 @@ class Parser {
 				}
 
 				if ( $ns === NS_FILE ) {
-					if ( !$this->badFileLookup->isBadFile( $nt->getDBkey(), $this->getTitle() ) ) {
-						if ( $wasblank ) {
-							# if no parameters were passed, $text
-							# becomes something like "File:Foo.png",
-							# which we don't want to pass on to the
-							# image generator
-							$text = '';
-						} else {
-							# recursively parse links inside the image caption
-							# actually, this will parse them in any other parameters, too,
-							# but it might be hard to fix that, and it doesn't matter ATM
-							$text = $this->handleExternalLinks( $text );
-							$holders->merge( $this->handleInternalLinks2( $text ) );
-						}
-						# cloak any absolute URLs inside the image markup, so handleExternalLinks() won't touch them
-						$s .= $prefix . $this->armorLinks(
-							$this->makeImage( $nt, $text, $holders ) ) . $trail;
-						continue;
+					if ( $wasblank ) {
+						# if no parameters were passed, $text
+						# becomes something like "File:Foo.png",
+						# which we don't want to pass on to the
+						# image generator
+						$text = '';
+					} else {
+						# recursively parse links inside the image caption
+						# actually, this will parse them in any other parameters, too,
+						# but it might be hard to fix that, and it doesn't matter ATM
+						$text = $this->handleExternalLinks( $text );
+						$holders->merge( $this->handleInternalLinks2( $text ) );
 					}
+					# cloak any absolute URLs inside the image markup, so handleExternalLinks() won't touch them
+					$s .= $prefix . $this->armorLinks(
+						$this->makeImage( $nt, $text, $holders ) ) . $trail;
+					continue;
 				} elseif ( $ns === NS_CATEGORY ) {
 					/**
 					 * Strip the whitespace Category links produce, see T2087

@@ -3958,3 +3958,13 @@ wgParserEnableLegacyMediaDOM=true
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Error mw:File/Thumb" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Broken.jpg"><span class="mw-broken-media" resource="./File:Broken.jpg" data-width="180">File:Broken.jpg</span></a><figcaption>A caption for the media.</figcaption></figure>
 !! end
+
+!! test
+Bad images - manualthumb
+!! config
+wgParserEnableLegacyMediaDOM=true
+!! wikitext
+[[File:Foobar.jpg|thumb=Bad.jpg|Uh oh]]
+!! html/php
+<div class="thumb tright"><div class="thumbinner" style="width:322px;"><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg">File:Foobar.jpg</a>  <div class="thumbcaption">Uh oh</div></div></div>
+!! end
