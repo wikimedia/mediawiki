@@ -424,7 +424,10 @@ abstract class FileBackendStore extends FileBackend {
 			if ( !$fsFile ) { // chunk failed to download?
 				$fsFile = $this->getLocalReference( [ 'src' => $path ] );
 				if ( !$fsFile ) { // retry failed?
-					$status->fatal( 'backend-fail-read', $path );
+					$status->fatal(
+						$fsFile === self::$RES_ERROR ? 'backend-fail-read' : 'backend-fail-notexists',
+						$path
+					);
 
 					return $status;
 				}
@@ -840,10 +843,9 @@ abstract class FileBackendStore extends FileBackend {
 				$content = file_get_contents( $fsFile->getPath() );
 				AtEase::restoreWarnings();
 				$contents[$path] = is_string( $content ) ? $content : self::$RES_ERROR;
-			} elseif ( $fsFile === self::$RES_ABSENT ) {
-				$contents[$path] = self::$RES_ABSENT;
 			} else {
-				$contents[$path] = self::$RES_ERROR;
+				// self::$RES_ERROR or self::$RES_ABSENT
+				$contents[$path] = $fsFile;
 			}
 		}
 
@@ -973,7 +975,7 @@ abstract class FileBackendStore extends FileBackend {
 		foreach ( $params['srcs'] as $src ) {
 			$path = self::normalizeStoragePath( $src );
 			if ( $path === null ) {
-				$fsFiles[$src] = null; // invalid storage path
+				$fsFiles[$src] = self::$RES_ERROR; // invalid storage path
 			} elseif ( $this->expensiveCache->hasField( $path, 'localRef' ) ) {
 				$val = $this->expensiveCache->getField( $path, 'localRef' );
 				// If we want the latest data, check that this cached
@@ -994,7 +996,8 @@ abstract class FileBackendStore extends FileBackend {
 					[ 'object' => $fsFile, 'latest' => $latest ]
 				);
 			} else {
-				$fsFiles[$path] = null; // used for all failure cases
+				// self::$RES_ERROR or self::$RES_ABSENT
+				$fsFiles[$path] = $fsFile;
 			}
 		}
 
@@ -1016,14 +1019,8 @@ abstract class FileBackendStore extends FileBackend {
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 
 		$params = $this->setConcurrencyFlags( $params );
-		$tmpFiles = $this->doGetLocalCopyMulti( $params );
-		foreach ( $tmpFiles as $path => $tmpFile ) {
-			if ( !$tmpFile ) {
-				$tmpFiles[$path] = null; // used for all failure cases
-			}
-		}
 
-		return $tmpFiles;
+		return $this->doGetLocalCopyMulti( $params );
 	}
 
 	/**

@@ -1587,7 +1587,7 @@ class FileRepo {
 	 * Temporary files may be purged when the file object falls out of scope.
 	 *
 	 * @param string $virtualUrl
-	 * @return TempFSFile|null Returns null on failure
+	 * @return TempFSFile|null|false Returns false for missing file, null on failure
 	 */
 	public function getLocalCopy( $virtualUrl ) {
 		$path = $this->resolveToStoragePathIfVirtual( $virtualUrl );
@@ -1601,7 +1601,7 @@ class FileRepo {
 	 * Temporary files may be purged when the file object falls out of scope.
 	 *
 	 * @param string $virtualUrl
-	 * @return FSFile|null Returns null on failure.
+	 * @return FSFile|null|false Returns false for missing file, null on failure.
 	 */
 	public function getLocalReference( $virtualUrl ) {
 		$path = $this->resolveToStoragePathIfVirtual( $virtualUrl );

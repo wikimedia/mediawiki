@@ -1514,11 +1514,11 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		$tmpFile = $this->backend->getLocalCopy( [
 			'src' => "$base/unittest-cont1/not-there" ] );
-		$this->assertNull( $tmpFile, "Local copy of not existing file is null ($backendName)." );
+		$this->assertFalse( $tmpFile, "Local copy of not existing file is false ($backendName)." );
 
 		$tmpFile = $this->backend->getLocalReference( [
 			'src' => "$base/unittest-cont1/not-there" ] );
-		$this->assertNull( $tmpFile, "Local ref of not existing file is null ($backendName)." );
+		$this->assertFalse( $tmpFile, "Local ref of not existing file is false ($backendName)." );
 	}
 
 	/**
