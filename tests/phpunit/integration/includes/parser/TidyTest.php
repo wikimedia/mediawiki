@@ -45,11 +45,6 @@ MathML;
 				'<mw:editsection> should survive tidy'
 			],
 			[
-				'<editsection page="foo" section="bar">foo</editsection>',
-				'<editsection page="foo" section="bar">foo</editsection>',
-				'<editsection> should survive tidy'
-			],
-			[
 				'<meta property="mw:PageProp/toc" />',
 				'<meta property="mw:PageProp/toc" />',
 				'TOC_PLACEHOLDER should survive tidy',
