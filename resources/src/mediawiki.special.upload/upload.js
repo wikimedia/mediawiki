@@ -27,18 +27,24 @@
 		},
 
 		timeout: function () {
-			var $spinnerDestCheck, title;
+			var $spinnerDestCheck, title, requestTitle;
 			if ( this.nameToCheck.trim() === '' ) {
 				return;
 			}
 			$spinnerDestCheck = $.createSpinner().insertAfter( '#wpDestFile' );
 			title = mw.Title.newFromText( this.nameToCheck, NS_FILE );
+			// If title is null, user input is invalid, the API call will produce details about why,
+			// but it needs the namespace to produce errors related to files (when starts with interwiki)
+			if ( !title || title.getNamespaceId() !== NS_FILE ) {
+				requestTitle = mw.config.get( 'wgFormattedNamespaces' )[ NS_FILE ] + ':' + this.nameToCheck;
+			} else {
+				requestTitle = title.getPrefixedText();
+			}
 
 			( new mw.Api() ).get( {
 				formatversion: 2,
 				action: 'query',
-				// If title is empty, user input is invalid, the API call will produce details about why
-				titles: [ title ? title.getPrefixedText() : this.nameToCheck ],
+				titles: requestTitle,
 				prop: 'imageinfo',
 				iiprop: 'uploadwarning',
 				errorformat: 'html',
