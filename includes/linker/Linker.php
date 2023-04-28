@@ -447,14 +447,16 @@ class Linker {
 
 		$rdfaType = 'mw:File';
 
-		if ( $file && isset( $frameParams['frameless'] ) ) {
+		if ( isset( $frameParams['frameless'] ) ) {
 			$rdfaType .= '/Frameless';
-			$srcWidth = $file->getWidth( $page );
-			# For "frameless" option: do not present an image bigger than the
-			# source (for bitmap-style images). This is the same behavior as the
-			# "thumb" option does it already.
-			if ( $srcWidth && !$file->mustRender() && $handlerParams['width'] > $srcWidth ) {
-				$handlerParams['width'] = $srcWidth;
+			if ( $file ) {
+				$srcWidth = $file->getWidth( $page );
+				# For "frameless" option: do not present an image bigger than the
+				# source (for bitmap-style images). This is the same behavior as the
+				# "thumb" option does it already.
+				if ( $srcWidth && !$file->mustRender() && $handlerParams['width'] > $srcWidth ) {
+					$handlerParams['width'] = $srcWidth;
+				}
 			}
 		}
 
@@ -663,6 +665,10 @@ class Linker {
 		$rdfaType = 'mw:File/Thumb';
 
 		if ( !$exists ) {
+			// Same precedence as the $exists case
+			if ( !isset( $frameParams['manualthumb'] ) && isset( $frameParams['framed'] ) ) {
+				$rdfaType = 'mw:File/Frame';
+			}
 			$outerWidth = $handlerParams['width'] + 2;
 		} else {
 			if ( isset( $frameParams['manualthumb'] ) ) {
@@ -737,6 +743,7 @@ class Linker {
 		}
 
 		if ( !$exists ) {
+			$rdfaType = 'mw:Error ' . $rdfaType;
 			$label = '';
 			if ( !$enableLegacyMediaDOM ) {
 				$label = $frameParams['alt'] ?? '';
@@ -746,6 +753,7 @@ class Linker {
 			);
 			$zoomIcon = '';
 		} elseif ( !$thumb ) {
+			$rdfaType = 'mw:Error ' . $rdfaType;
 			if ( $enableLegacyMediaDOM ) {
 				$s .= wfMessage( 'thumbnail_error', '' )->escaped();
 			} else {
@@ -800,10 +808,6 @@ class Linker {
 		$s .= Html::rawElement(
 			'figcaption', [], $frameParams['caption'] ?? ''
 		);
-
-		if ( !$exists || !$thumb ) {
-			$rdfaType = 'mw:Error ' . $rdfaType;
-		}
 
 		$attribs = [
 			'class' => $classes,
