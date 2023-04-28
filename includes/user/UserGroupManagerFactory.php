@@ -20,8 +20,8 @@
 
 namespace MediaWiki\User;
 
-use ConfiguredReadOnlyMode;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\DB\ConfiguredReadOnlyMode;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\JobQueue\JobQueueGroupFactory;
 use MediaWiki\Permissions\GroupPermissionsLookup;

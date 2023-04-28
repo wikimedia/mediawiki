@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

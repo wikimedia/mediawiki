@@ -20,14 +20,14 @@
 
 namespace MediaWiki\Block;
 
-use ConfiguredReadOnlyMode;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\DB\ConfiguredReadOnlyMode;
+use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\UserFactory;
 use Psr\Log\LoggerInterface;
-use ReadOnlyMode;
 use Wikimedia\Rdbms\LBFactory;
 
 /**

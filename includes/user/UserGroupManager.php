@@ -20,7 +20,6 @@
 
 namespace MediaWiki\User;
 
-use ConfiguredReadOnlyMode;
 use DBAccessObjectUtils;
 use DeferredUpdates;
 use IDBAccessObject;
@@ -28,6 +27,8 @@ use InvalidArgumentException;
 use JobQueueGroup;
 use ManualLogEntry;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\DB\ConfiguredReadOnlyMode;
+use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
@@ -36,7 +37,6 @@ use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\WikiMap\WikiMap;
 use Psr\Log\LoggerInterface;
-use ReadOnlyMode;
 use Sanitizer;
 use User;
 use UserGroupExpiryJob;

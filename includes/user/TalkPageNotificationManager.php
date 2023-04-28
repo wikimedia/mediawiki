@@ -23,13 +23,13 @@ namespace MediaWiki\User;
 
 use DeferredUpdates;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MWTimestamp;
-use ReadOnlyMode;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**

@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\DB\ConfiguredReadOnlyMode;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\LBFactorySimple;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;

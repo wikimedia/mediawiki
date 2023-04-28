@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\EditPage\Constraint\IEditConstraint;
 use MediaWiki\EditPage\Constraint\ReadOnlyConstraint;
 

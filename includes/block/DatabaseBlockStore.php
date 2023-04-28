@@ -27,6 +27,7 @@ use DeferredUpdates;
 use InvalidArgumentException;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
@@ -34,7 +35,6 @@ use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\UserFactory;
 use MWException;
 use Psr\Log\LoggerInterface;
-use ReadOnlyMode;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 

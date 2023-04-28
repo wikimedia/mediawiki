@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\EditPage\EditPage;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\MainConfigNames;

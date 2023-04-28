@@ -22,7 +22,6 @@
 namespace MediaWiki\Tests\Unit;
 
 use CommentStore;
-use ConfiguredReadOnlyMode;
 use GenderCache;
 use Interwiki;
 use InvalidArgumentException;
@@ -31,6 +30,8 @@ use MalformedTitleException;
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\DB\ConfiguredReadOnlyMode;
+use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkTarget;
@@ -44,7 +45,6 @@ use NamespaceInfo;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Container\ContainerInterface;
 use Psr\Log\NullLogger;
-use ReadOnlyMode;
 use TitleFormatter;
 use TitleParser;
 use WatchedItem;

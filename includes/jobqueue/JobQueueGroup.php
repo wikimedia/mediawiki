@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\DB\ConfiguredReadOnlyMode;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\UUID\GlobalIdGenerator;

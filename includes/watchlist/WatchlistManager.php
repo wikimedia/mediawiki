@@ -22,6 +22,7 @@
 
 namespace MediaWiki\Watchlist;
 
+use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
@@ -35,7 +36,6 @@ use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use NamespaceInfo;
-use ReadOnlyMode;
 use Status;
 use StatusValue;
 use User;

@@ -73,6 +73,8 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\DAO\WikiAwareEntity;
+use MediaWiki\DB\ConfiguredReadOnlyMode;
+use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Edit\SimpleParsoidOutputStash;
 use MediaWiki\EditPage\Constraint\EditConstraintFactory;

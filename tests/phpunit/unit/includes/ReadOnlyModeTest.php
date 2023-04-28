@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\DB\ConfiguredReadOnlyMode;
+use MediaWiki\DB\ReadOnlyMode;
+
 /**
  * @covers ReadOnlyMode
  * @covers ConfiguredReadOnlyMode

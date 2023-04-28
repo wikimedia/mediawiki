@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\ExtensionInfo;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Languages\LanguageConverterFactory;

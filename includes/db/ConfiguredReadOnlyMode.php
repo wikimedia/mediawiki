@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\DB;
+
 /**
  * A read-only mode service which does not depend on LoadBalancer.
  * To obtain an instance, use MediaWikiServices::getInstance()->getConfiguredReadOnlyMode().
@@ -65,3 +67,5 @@ class ConfiguredReadOnlyMode {
 		$this->reason = $msg;
 	}
 }
+
+class_alias( ConfiguredReadOnlyMode::class, 'ConfiguredReadOnlyMode' );

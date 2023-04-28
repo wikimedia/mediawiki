@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\MainConfigNames;
 
 /**
