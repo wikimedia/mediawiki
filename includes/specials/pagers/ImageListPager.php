@@ -463,12 +463,16 @@ class ImageListPager extends TablePager {
 						$filePage,
 						$filePage->getText()
 					);
-					$download = Xml::element(
-						'a',
-						[ 'href' => $this->localRepo->newFile( $filePage )->getUrl() ],
-						$imgfile
-					);
-					$html .= ' ' . $this->msg( 'parentheses' )->rawParams( $download )->escaped();
+					$opt = [ 'time' => wfTimestamp( TS_MW, $this->mCurrentRow->img_timestamp ) ];
+					$file = $this->localRepo->findFile( $value, $opt );
+					if ( $file ) {
+						$download = Xml::element(
+							'a',
+							[ 'href' => $file->getUrl() ],
+							$imgfile
+						);
+						$html .= ' ' . $this->msg( 'parentheses' )->rawParams( $download )->escaped();
+					}
 
 					// Add delete links if allowed
 					// From https://github.com/Wikia/app/pull/3859
