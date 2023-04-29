@@ -708,12 +708,20 @@ class SpecialVersion extends SpecialPage {
 	 */
 	private function getClientSideLibraries() {
 		global $IP;
-		$registryDirs = [ '' => "{$IP}/resources/lib" ]
+		$registryDirs = [ 'MediaWiki' => "{$IP}/resources/lib" ]
 			+ ExtensionRegistry::getInstance()->getAttribute( 'ForeignResourcesDir' );
 
 		$modules = [];
-		foreach ( $registryDirs as $registryDir ) {
-			$modules = array_merge( $modules, Yaml::parseFile( "$registryDir/foreign-resources.yaml" ) );
+		foreach ( $registryDirs as $source => $registryDir ) {
+			$foreignResources = Yaml::parseFile( "$registryDir/foreign-resources.yaml" );
+			foreach ( $foreignResources as $name => $module ) {
+				$key = $name . $module['version'];
+				if ( isset( $modules[$key] ) ) {
+					$modules[$key]['source'][] = $source;
+					continue;
+				}
+				$modules[$key] = $module + [ 'name' => $name, 'source' => [ $source ] ];
+			}
 		}
 		ksort( $modules );
 
@@ -732,6 +740,7 @@ class SpecialVersion extends SpecialPage {
 			. Html::element( 'th', [], $this->msg( 'version-libraries-library' )->text() )
 			. Html::element( 'th', [], $this->msg( 'version-libraries-version' )->text() )
 			. Html::element( 'th', [], $this->msg( 'version-libraries-license' )->text() )
+			. Html::element( 'th', [], $this->msg( 'version-libraries-source' )->text() )
 			. Html::closeElement( 'tr' );
 
 		foreach ( $modules as $name => $info ) {
@@ -748,13 +757,14 @@ class SpecialVersion extends SpecialPage {
 					'td',
 					[],
 					Linker::makeExternalLink(
-						$info['homepage'], $name,
+						$info['homepage'], $info['name'],
 						true, '',
 						[ 'class' => 'mw-version-library-name' ]
 					)
 				)
 				. Html::element( 'td', [ 'dir' => 'auto' ], $info['version'] )
 				. Html::element( 'td', [ 'dir' => 'auto' ], $info['license'] )
+				. Html::element( 'td', [ 'dir' => 'auto' ], $this->listToText( $info['source'] ) )
 				. Html::closeElement( 'tr' );
 		}
 		$out .= Html::closeElement( 'table' );
