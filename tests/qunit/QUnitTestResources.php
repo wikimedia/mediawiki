@@ -63,7 +63,6 @@ return [
 			'tests/qunit/resources/mediawiki.jqueryMsg.test.js',
 			'tests/qunit/resources/mediawiki.messagePoster/factory.test.js',
 			'tests/qunit/resources/mediawiki.String.test.js',
-			'tests/qunit/resources/mediawiki.String/trimByteLength.test.js',
 			'tests/qunit/resources/mediawiki.storage.test.js',
 			'tests/qunit/resources/mediawiki.template.test.js',
 			'tests/qunit/resources/mediawiki.template.mustache.test.js',
