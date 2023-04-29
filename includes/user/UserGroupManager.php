@@ -909,11 +909,10 @@ class UserGroupManager implements IDBAccessObject {
 		$oldUgms = $this->getUserGroupMemberships( $user, self::READ_LATEST );
 		$oldFormerGroups = $this->getUserFormerGroups( $user, self::READ_LATEST );
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY, [], $this->dbDomain );
-		$dbw->delete(
-			'user_groups',
-			[ 'ug_user' => $user->getId(), 'ug_group' => $group ],
-			__METHOD__
-		);
+		$dbw->newDeleteQueryBuilder()
+			->delete( 'user_groups' )
+			->where( [ 'ug_user' => $user->getId(), 'ug_group' => $group ] )
+			->caller( __METHOD__ )->execute();
 
 		if ( !$dbw->affectedRows() ) {
 			return false;
@@ -998,11 +997,10 @@ class UserGroupManager implements IDBAccessObject {
 					);
 				}
 				// Delete the rows we're about to move
-				$dbw->delete(
-					'user_groups',
-					$dbw->makeList( $deleteCond, $dbw::LIST_OR ),
-					__METHOD__
-				);
+				$dbw->newDeleteQueryBuilder()
+					->delete( 'user_groups' )
+					->where( $dbw->makeList( $deleteCond, $dbw::LIST_OR ) )
+					->caller( __METHOD__ )->execute();
 				// Push the groups to user_former_groups
 				$dbw->insert(
 					'user_former_groups',
