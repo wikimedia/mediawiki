@@ -19,6 +19,8 @@
  */
 namespace Wikimedia\Rdbms\Platform;
 
+use Wikimedia\Rdbms\Query;
+
 /**
  * @since 1.38
  * @see ISQLPlatform
@@ -141,9 +143,9 @@ class SqlitePlatform extends SQLPlatform {
 		return "DROP TABLE " . $this->tableName( $table );
 	}
 
-	public function isTransactableQuery( $sql ) {
+	public function isTransactableQuery( Query $sql ) {
 		return parent::isTransactableQuery( $sql ) && !in_array(
-				$this->getQueryVerb( $sql ),
+				$sql->getVerb(),
 				[ 'ATTACH', 'PRAGMA' ],
 				true
 			);

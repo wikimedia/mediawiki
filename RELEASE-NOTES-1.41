@@ -108,6 +108,9 @@ because of Phabricator reports.
 * MagicWordFactory::getCacheTime() is deprecated and returns -1.
 * IDatabase::lastQuery and IReadableDatabase::lastQuery, deprecated in 1.40,
   is now removed.
+* Protected method Database::executeQuery now only takes Query object as
+  argument instead of raw SQL string.
+* Protected method Database::getTempTableWrites() is now private.
 * …
 
 === Deprecations in 1.41 ===

@@ -29,6 +29,8 @@ use Wikimedia\Rdbms\Database\DbQuoter;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DBLanguageError;
 use Wikimedia\Rdbms\LikeMatch;
+use Wikimedia\Rdbms\Query;
+use Wikimedia\Rdbms\QueryBuilderFromRawSql;
 use Wikimedia\Rdbms\Subquery;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -1686,12 +1688,7 @@ class SQLPlatform implements ISQLPlatform {
 	 * @return string|null
 	 */
 	public function getQueryVerb( $sql ) {
-		// Distinguish ROLLBACK from ROLLBACK TO SAVEPOINT
-		return preg_match(
-			'/^\s*(rollback\s+to\s+savepoint|[a-z]+)/i',
-			$sql,
-			$m
-		) ? strtoupper( $m[1] ) : null;
+		return QueryBuilderFromRawSql::buildQuery( $sql, 0 )->getVerb();
 	}
 
 	/**
@@ -1705,12 +1702,11 @@ class SQLPlatform implements ISQLPlatform {
 	 * before the current query (in DBO_TRX mode, on by default).
 	 *
 	 * @stable to override
-	 * @param string $sql
 	 * @return bool
 	 */
-	public function isTransactableQuery( $sql ) {
+	public function isTransactableQuery( Query $sql ) {
 		return !in_array(
-			$this->getQueryVerb( $sql ),
+			$sql->getVerb(),
 			[
 				'BEGIN',
 				'ROLLBACK',
@@ -1743,61 +1739,10 @@ class SQLPlatform implements ISQLPlatform {
 	 * @param string $sql SQL query
 	 * @param int $flags Query flags to query()
 	 * @return bool
+	 * @deprecated since 1.41
 	 */
 	public function isWriteQuery( $sql, $flags ) {
-		// Check if a SQL wrapper method already flagged the query as a write
-		if (
-			$this->fieldHasBit( $flags, self::QUERY_CHANGE_ROWS ) ||
-			$this->fieldHasBit( $flags, self::QUERY_CHANGE_SCHEMA )
-		) {
-			return true;
-		}
-		// Check if a SQL wrapper method already flagged the query as a non-write
-		if (
-			$this->fieldHasBit( $flags, self::QUERY_CHANGE_NONE ) ||
-			$this->fieldHasBit( $flags, self::QUERY_CHANGE_TRX ) ||
-			$this->fieldHasBit( $flags, self::QUERY_CHANGE_LOCKS )
-		) {
-			return false;
-		}
-
-		$this->logger->warning( __METHOD__ . ' fallback to regex', [
-			'exception' => new RuntimeException(),
-			'db_log_category' => 'sql',
-		] );
-
-		// Treat SELECT queries without FOR UPDATE queries as non-writes. This matches
-		// how MySQL enforces read_only (FOR SHARE and LOCK IN SHADE MODE are allowed).
-		// Handle (SELECT ...) UNION (SELECT ...) queries in a similar fashion.
-		if ( preg_match( '/^\s*\(?SELECT\b/i', $sql ) ) {
-			return (bool)preg_match( '/\bFOR\s+UPDATE\)?\s*$/i', $sql );
-		}
-		// BEGIN and COMMIT queries are considered non-write queries here.
-		// Database backends and drivers (MySQL, MariaDB, php-mysqli) generally
-		// treat these as write queries, in that their results have "affected rows"
-		// as meta data as from writes, instead of "num rows" as from reads.
-		// But, we treat them as non-write queries because when reading data (from
-		// either replica or primary DB) we use transactions to enable repeatable-read
-		// snapshots, which ensures we get consistent results from the same snapshot
-		// for all queries within a request. Use cases:
-		// - Treating these as writes would trigger ChronologyProtector (see method doc).
-		// - We use this method to reject writes to replicas, but we need to allow
-		//   use of transactions on replicas for read snapshots. This is fine given
-		//   that transactions by themselves don't make changes, only actual writes
-		//   within the transaction matter, which we still detect.
-		return !preg_match(
-			'/^\s*(BEGIN|ROLLBACK|COMMIT|SAVEPOINT|RELEASE|SET|SHOW|EXPLAIN|USE)\b/i',
-			$sql
-		);
-	}
-
-	/**
-	 * @param int $flags A bitfield of flags
-	 * @param int $bit Bit flag constant
-	 * @return bool Whether the bit field has the specified bit flag set
-	 */
-	final protected function fieldHasBit( int $flags, int $bit ) {
-		return ( ( $flags & $bit ) === $bit );
+		return QueryBuilderFromRawSql::buildQuery( $sql, $flags )->isWriteQuery();
 	}
 
 	public function buildExcludedValue( $column ) {
