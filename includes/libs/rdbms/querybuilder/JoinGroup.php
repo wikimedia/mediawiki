@@ -3,8 +3,9 @@
 namespace Wikimedia\Rdbms;
 
 /**
- * An object representing a parenthesized group of tables and their join
- * types and conditions.
+ * Parenthesized group of table names and their join types and conditions.
+ *
+ * @internal
  */
 class JoinGroup extends JoinGroupBase {
 	/** @var string */

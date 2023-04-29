@@ -3,8 +3,9 @@
 namespace Wikimedia\Rdbms;
 
 /**
- * A class for code shared between SelectQueryBuilder and JoinGroup.
- * Represents tables and join conditions.
+ * Shared code between SelectQueryBuilder and JoinGroup to represent tables and join conditions.
+ *
+ * @internal
  */
 abstract class JoinGroupBase {
 	/** @var array */

@@ -6,13 +6,15 @@ use InvalidArgumentException;
 use UnexpectedValueException;
 
 /**
- * A query builder for UPDATE queries with a fluent interface.
+ * Build UPDATE queries with a fluent interface.
  *
- * Any particular query builder object should only be used for a single database query,
- * and not be reused afterwards. However, to run multiple similar queries,
- * you can create a “template” query builder to set up most of the query,
- * and then clone the object (and potentially modify the clone) for each individual query.
+ * Each query builder object must be used for a single database query only,
+ * and not be reused afterwards. To run multiple similar queries, you can
+ * create a query builder to set up most of your query, which you can use
+ * as a "template" to clone. You can then modify the cloned object for
+ * each individual query.
  *
+ * @since 1.41
  * @stable to extend
  * @ingroup Database
  */
@@ -277,6 +279,7 @@ class UpdateQueryBuilder {
 
 	/**
 	 * Enable the IGNORE option.
+	 *
 	 * Skip update of rows that would cause unique key conflicts.
 	 * IDatabase::affectedRows() can be used to determine how many rows were updated.
 	 *
