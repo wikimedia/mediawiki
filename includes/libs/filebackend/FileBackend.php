@@ -1147,7 +1147,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @param array $params Parameters include:
 	 *   - src    : source storage path
 	 *   - latest : use the latest available data
-	 * @return FSFile|null Local file copy or null (missing file or I/O error)
+	 * @return FSFile|null|false Local file copy or false (missing) or null (error)
 	 */
 	final public function getLocalReference( array $params ) {
 		$fsFiles = $this->getLocalReferenceMulti( [ 'srcs' => [ $params['src'] ] ] + $params );
@@ -1169,7 +1169,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *   - srcs        : list of source storage paths
 	 *   - latest      : use the latest available data
 	 *   - parallelize : try to do operations in parallel when possible
-	 * @return array Map of (path name => FSFile or null on failure)
+	 * @return array Map of (path name => FSFile or false (missing) or null (error))
 	 * @since 1.20
 	 */
 	abstract public function getLocalReferenceMulti( array $params );
@@ -1184,7 +1184,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @param array $params Parameters include:
 	 *   - src    : source storage path
 	 *   - latest : use the latest available data
-	 * @return TempFSFile|null Temporary local file copy or null (missing file or I/O error)
+	 * @return TempFSFile|null|false Temporary local file copy or false (missing) or null (error)
 	 */
 	final public function getLocalCopy( array $params ) {
 		$tmpFiles = $this->getLocalCopyMulti( [ 'srcs' => [ $params['src'] ] ] + $params );
@@ -1204,7 +1204,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *   - srcs        : list of source storage paths
 	 *   - latest      : use the latest available data
 	 *   - parallelize : try to do operations in parallel when possible
-	 * @return array Map of (path name => TempFSFile or null on failure)
+	 * @return array Map of (path name => TempFSFile or false (missing) or null (error))
 	 * @since 1.20
 	 */
 	abstract public function getLocalCopyMulti( array $params );
