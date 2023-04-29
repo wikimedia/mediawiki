@@ -337,11 +337,8 @@ abstract class DatabaseMysqlBase extends Database {
 			$sql = "SHOW TABLES LIKE '$encLike'";
 		}
 
-		$res = $this->query(
-			$sql,
-			$fname,
-			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
-		);
+		$query = new Query( $sql, self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE, 'SHOW', $table );
+		$res = $this->query( $query, $fname );
 
 		return $res->numRows() > 0;
 	}
@@ -352,11 +349,13 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return MySQLField|false
 	 */
 	public function fieldInfo( $table, $field ) {
-		$res = $this->query(
+		$query = new Query(
 			"SELECT * FROM " . $this->tableName( $table ) . " LIMIT 1",
-			__METHOD__,
-			self::QUERY_SILENCE_ERRORS | self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+			self::QUERY_SILENCE_ERRORS | self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,
+			'SELECT',
+			$table
 		);
+		$res = $this->query( $query, __METHOD__ );
 		if ( !$res ) {
 			return false;
 		}
@@ -377,12 +376,13 @@ abstract class DatabaseMysqlBase extends Database {
 	public function indexInfo( $table, $index, $fname = __METHOD__ ) {
 		# https://dev.mysql.com/doc/mysql/en/SHOW_INDEX.html
 		$index = $this->indexName( $index );
-
-		$res = $this->query(
+		$query = new Query(
 			'SHOW INDEX FROM ' . $this->tableName( $table ),
-			$fname,
-			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,
+			'SHOW',
+			$table
 		);
+		$res = $this->query( $query, $fname );
 
 		if ( !$res ) {
 			return null;
@@ -418,7 +418,8 @@ abstract class DatabaseMysqlBase extends Database {
 	public function serverIsReadOnly() {
 		// Avoid SHOW to avoid internal temporary tables
 		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
-		$res = $this->query( "SELECT @@GLOBAL.read_only AS Value", __METHOD__, $flags );
+		$query = new Query( "SELECT @@GLOBAL.read_only AS Value", $flags, 'SELECT' );
+		$res = $this->query( $query, __METHOD__ );
 		$row = $res->fetchObject();
 
 		return $row && (bool)$row->Value;
@@ -494,11 +495,12 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 
 		if ( $sqlAssignments ) {
-			$this->query(
+			$query = new Query(
 				'SET ' . implode( ', ', $sqlAssignments ),
-				__METHOD__,
-				self::QUERY_CHANGE_TRX | self::QUERY_CHANGE_NONE
+				self::QUERY_CHANGE_TRX | self::QUERY_CHANGE_NONE,
+				'SET'
 			);
+			$this->query( $query, __METHOD__ );
 		}
 	}
 
@@ -517,33 +519,24 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	public function doLockIsFree( string $lockName, string $method ) {
-		$res = $this->query(
-			$this->platform->lockIsFreeSQLText( $lockName ),
-			$method,
-			self::QUERY_CHANGE_LOCKS
-		);
+		$query = new Query( $this->platform->lockIsFreeSQLText( $lockName ), self::QUERY_CHANGE_LOCKS, 'SELECT' );
+		$res = $this->query( $query, $method );
 		$row = $res->fetchObject();
 
 		return ( $row->unlocked == 1 );
 	}
 
 	public function doLock( string $lockName, string $method, int $timeout ) {
-		$res = $this->query(
-			$this->platform->lockSQLText( $lockName, $timeout ),
-			$method,
-			self::QUERY_CHANGE_LOCKS
-		);
+		$query = new Query( $this->platform->lockSQLText( $lockName, $timeout ), self::QUERY_CHANGE_LOCKS, 'SELECT' );
+		$res = $this->query( $query, $method );
 		$row = $res->fetchObject();
 
 		return ( $row->acquired !== null ) ? (float)$row->acquired : null;
 	}
 
 	public function doUnlock( string $lockName, string $method ) {
-		$res = $this->query(
-			$this->platform->unlockSQLText( $lockName ),
-			$method,
-			self::QUERY_CHANGE_LOCKS
-		);
+		$query = new Query( $this->platform->unlockSQLText( $lockName ), self::QUERY_CHANGE_LOCKS, 'SELECT' );
+		$res = $this->query( $query, $method );
 		$row = $res->fetchObject();
 
 		return ( $row->released == 1 );
@@ -590,8 +583,8 @@ abstract class DatabaseMysqlBase extends Database {
 			"INSERT INTO $encTable " .
 			"($sqlColumns) VALUES $sqlTuples " .
 			"ON DUPLICATE KEY UPDATE $sqlColumnAssignments";
-
-		$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
+		$query = new Query( $sql, self::QUERY_CHANGE_ROWS, 'INSERT', $table );
+		$this->query( $query, $fname );
 	}
 
 	protected function doReplace( $table, array $identityKey, array $rows, $fname ) {
@@ -599,8 +592,8 @@ abstract class DatabaseMysqlBase extends Database {
 		[ $sqlColumns, $sqlTuples ] = $this->platform->makeInsertLists( $rows );
 
 		$sql = "REPLACE INTO $encTable ($sqlColumns) VALUES $sqlTuples";
-
-		$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
+		$query = new Query( $sql, self::QUERY_CHANGE_ROWS, 'REPLACE', $table );
+		$this->query( $query, $fname );
 	}
 
 	/**
@@ -657,14 +650,16 @@ abstract class DatabaseMysqlBase extends Database {
 		$oldName, $newName, $temporary = false, $fname = __METHOD__
 	) {
 		$tmp = $temporary ? 'TEMPORARY ' : '';
-		$newName = $this->addIdentifierQuotes( $newName );
-		$oldName = $this->addIdentifierQuotes( $oldName );
+		$newNameQuoted = $this->addIdentifierQuotes( $newName );
+		$oldNameQuoted = $this->addIdentifierQuotes( $oldName );
 
-		return $this->query(
-			"CREATE $tmp TABLE $newName (LIKE $oldName)",
-			$fname,
-			self::QUERY_PSEUDO_PERMANENT | self::QUERY_CHANGE_SCHEMA
+		$query = new Query(
+			"CREATE $tmp TABLE $newNameQuoted (LIKE $oldNameQuoted)",
+			self::QUERY_PSEUDO_PERMANENT | self::QUERY_CHANGE_SCHEMA,
+			'CREATE',
+			[ $oldName, $newName ]
 		);
+		return $this->query( $query, $fname );
 	}
 
 	/**
@@ -675,11 +670,8 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return array
 	 */
 	public function listTables( $prefix = null, $fname = __METHOD__ ) {
-		$result = $this->query(
-			"SHOW TABLES",
-			$fname,
-			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
-		);
+		$query = new Query( "SHOW TABLES", self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE, 'SHOW' );
+		$result = $this->query( $query, $fname );
 
 		$endArray = [];
 
@@ -707,13 +699,13 @@ abstract class DatabaseMysqlBase extends Database {
 	public function listViews( $prefix = null, $fname = __METHOD__ ) {
 		// The name of the column containing the name of the VIEW
 		$propertyName = 'Tables_in_' . $this->getDBname();
-
-		// Query for the VIEWS
-		$res = $this->query(
+		$query = new Query(
 			'SHOW FULL TABLES WHERE TABLE_TYPE = "VIEW"',
-			$fname,
-			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,
+			'SHOW'
 		);
+		// Query for the VIEWS
+		$res = $this->query( $query, $fname );
 
 		$allViews = [];
 		foreach ( $res as $row ) {
