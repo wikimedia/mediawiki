@@ -30,30 +30,36 @@
 	var config = require( './config.json' );
 
 	function showTempUserPopup() {
+		var title = mw.message( 'postedit-temp-created-label' ).text();
+		var $content = mw.message(
+			'postedit-temp-created',
+			mw.util.getUrl( 'Special:CreateAccount' )
+		).parseDom();
+
 		var $usernameLink = $( '.mw-userpage-tmp' );
-		if ( !$usernameLink.length ) {
-			return;
+		if ( $usernameLink.length ) {
+			// If supported by the skin, display a popup anchored to the username
+			var popup = new OO.ui.PopupWidget( {
+				padded: true,
+				head: true,
+				label: title,
+				$content: $content,
+				$floatableContainer: $usernameLink,
+				classes: [ 'postedit-tempuserpopup' ],
+				// Work around T307062
+				position: 'below',
+				autoFlip: false
+			} );
+			$( document.body ).append( popup.$element );
+			popup.toggle( true );
+		} else {
+			// Otherwise display a mw.notify message
+			mw.notify( $content, {
+				title: title,
+				classes: [ 'postedit-tempuserpopup' ],
+				autoHide: false
+			} );
 		}
-		var popup = new OO.ui.PopupWidget( {
-			padded: true,
-			head: true,
-			label: mw.message( 'postedit-temp-created-label' ).plain(),
-			$content: $( '<div>' ).html(
-				mw.message(
-					'postedit-temp-created',
-					mw.util.getUrl( 'Special:CreateAccount' )
-				).parse()
-			),
-			$floatableContainer: $usernameLink,
-			// Work around T307062
-			position: 'below',
-			autoFlip: false
-		} );
-		// Set the z-index to be on top of the other post-save popup
-		// (This works in Vector 2022 but is broken in old Vector)
-		popup.$element.css( 'z-index', '4' );
-		$( document.body ).append( popup.$element );
-		popup.toggle( true );
 	}
 
 	function showConfirmation( data ) {
