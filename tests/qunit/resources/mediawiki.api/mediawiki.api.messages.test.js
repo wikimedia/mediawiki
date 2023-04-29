@@ -1,13 +1,12 @@
-( function () {
-	QUnit.module( 'mediawiki.api.messages', QUnit.newMwEnvironment( {
-		beforeEach: function () {
-			this.server = this.sandbox.useFakeServer();
-			this.server.respondImmediately = true;
-		}
-	} ) );
+QUnit.module( 'mediawiki.api.messages', ( hooks ) => {
+	let server;
+	hooks.beforeEach( function () {
+		server = this.sandbox.useFakeServer();
+		server.respondImmediately = true;
+	} );
 
-	QUnit.test( '.getMessages()', function ( assert ) {
-		this.server.respondWith( /ammessages=foo%7Cbaz/, [
+	QUnit.test( '.getMessages()', async ( assert ) => {
+		server.respondWith( /ammessages=foo%7Cbaz/, [
 			200,
 			{ 'Content-Type': 'application/json' },
 			'{ "query": { "allmessages": [' +
@@ -16,36 +15,34 @@
 				'] } }'
 		] );
 
-		return new mw.Api().getMessages( [ 'foo', 'baz' ] ).then( function ( messages ) {
-			assert.deepEqual(
-				messages,
-				{
-					foo: 'Foo bar',
-					baz: 'Baz Quux'
-				}
-			);
-		} );
+		assert.deepEqual(
+			await new mw.Api().getMessages( [ 'foo', 'baz' ] ),
+			{
+				foo: 'Foo bar',
+				baz: 'Baz Quux'
+			}
+		);
 	} );
 
 	// Make sure we properly handle a string and don't try to slice it in the handling for
 	// multiple messages. The alphabet has 26 letters, so twice that is 52, if we don't
 	// switch the string to an array of one the slice() call would remove the last two letters
-	var longStringKey = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz';
+	const LONG_KEY = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz';
 
-	QUnit.test( '.getMessages() with a long string', function ( assert ) {
-		var requestRegex = new RegExp( 'ammessages=' + longStringKey );
-		this.server.respondWith( requestRegex, [
+	QUnit.test( '.getMessages() with a long string', async ( assert ) => {
+		server.respondWith( new RegExp( 'ammessages=' + LONG_KEY ), [
 			200,
 			{ 'Content-Type': 'application/json' },
 			'{ "query": { "allmessages": [' +
-				'{ "name": "' + longStringKey + '", "content": "SomeRandomValue" }' +
+				'{ "name": "' + LONG_KEY + '", "content": "SomeRandomValue" }' +
 				'] } }'
 		] );
 
-		return new mw.Api().getMessages( longStringKey ).then( function ( messages ) {
-			var expected = {};
-			expected[ longStringKey ] = 'SomeRandomValue';
-			assert.deepEqual( messages, expected );
-		} );
+		assert.deepEqual(
+			await new mw.Api().getMessages( LONG_KEY ),
+			{
+				[ LONG_KEY ]: 'SomeRandomValue'
+			}
+		);
 	} );
-}() );
+} );

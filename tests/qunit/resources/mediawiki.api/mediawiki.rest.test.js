@@ -1,16 +1,15 @@
-( function () {
-	QUnit.module( 'mediawiki.rest', QUnit.newMwEnvironment( {
-		beforeEach: function () {
-			this.server = this.sandbox.useFakeServer();
-			this.server.respondImmediately = true;
-		}
-	} ) );
+QUnit.module( 'mediawiki.rest', ( hooks ) => {
+	let server;
+	hooks.beforeEach( function () {
+		server = this.sandbox.useFakeServer();
+		server.respondImmediately = true;
+	} );
 
-	QUnit.test( 'get()', async function ( assert ) {
-		var api = new mw.Rest();
+	QUnit.test( 'get()', async ( assert ) => {
+		const api = new mw.Rest();
 
-		var headers;
-		this.server.respondWith( 'GET',
+		let headers;
+		server.respondWith( 'GET',
 			/rest.php\/test\/rest\/path\?queryParam=%2Fslash-will-be-encoded%3F$/,
 			function ( request ) {
 				headers = request.requestHeaders;
@@ -18,7 +17,7 @@
 			}
 		);
 
-		var data = await api.get(
+		const data = await api.get(
 			'/test/rest/path',
 			{ queryParam: '/slash-will-be-encoded?' },
 			{ MyHeader: 'MyHeaderValue' }
@@ -30,27 +29,27 @@
 		assert.deepEqual( data, {}, 'succeeds without errors' );
 	} );
 
-	QUnit.test( 'get() respects ajaxOptions url', async function ( assert ) {
-		var api = new mw.Rest( {
+	QUnit.test( 'get() respects ajaxOptions url', async ( assert ) => {
+		const api = new mw.Rest( {
 			ajax: {
 				url: '/test.php'
 			}
 		} );
 
-		this.server.respondWith( 'GET',
+		server.respondWith( 'GET',
 			/test.php\/test\/rest\/path$/,
 			[ 200, { 'Content-Type': 'application/json' }, '{}' ]
 		);
 
-		var data = await api.get( '/test/rest/path' );
+		const data = await api.get( '/test/rest/path' );
 		assert.deepEqual( data, {}, 'succeeds without errors' );
 	} );
 
-	QUnit.test( 'post()', async function ( assert ) {
-		var api = new mw.Rest();
+	QUnit.test( 'post()', async ( assert ) => {
+		const api = new mw.Rest();
 
-		var headers, body;
-		this.server.respondWith( 'POST',
+		let headers, body;
+		server.respondWith( 'POST',
 			/rest.php\/test\/bla\/bla\/bla$/,
 			function ( request ) {
 				headers = request.requestHeaders;
@@ -59,7 +58,7 @@
 			}
 		);
 
-		var data = await api.post( '/test/bla/bla/bla', {
+		const data = await api.post( '/test/bla/bla/bla', {
 			param: 'value'
 		}, {
 			authorization: 'my_token'
@@ -73,11 +72,11 @@
 		assert.deepEqual( data, {}, 'succeeds without errors' );
 	} );
 
-	QUnit.test( 'put()', async function ( assert ) {
-		var api = new mw.Rest();
+	QUnit.test( 'put()', async ( assert ) => {
+		const api = new mw.Rest();
 
-		var headers, body;
-		this.server.respondWith( 'PUT',
+		let headers, body;
+		server.respondWith( 'PUT',
 			/rest.php\/test\/bla\/bla\/bla$/,
 			function ( request ) {
 				headers = request.requestHeaders;
@@ -86,7 +85,7 @@
 			}
 		);
 
-		var data = await api.put( '/test/bla/bla/bla', {
+		const data = await api.put( '/test/bla/bla/bla', {
 			param: 'value'
 		}, {
 			authorization: 'my_token'
@@ -100,11 +99,11 @@
 		assert.deepEqual( data, {}, 'succeeds without errors' );
 	} );
 
-	QUnit.test( 'delete()', async function ( assert ) {
-		var api = new mw.Rest();
+	QUnit.test( 'delete()', async ( assert ) => {
+		const api = new mw.Rest();
 
-		var headers, body;
-		this.server.respond( 'DELETE',
+		let headers, body;
+		server.respond( 'DELETE',
 			/rest.php\/test\/bla\/bla\/bla$/,
 			function ( request ) {
 				headers = request.requestHeaders;
@@ -113,7 +112,7 @@
 			}
 		);
 
-		var data = await api.delete( '/test/bla/bla/bla', {
+		const data = await api.delete( '/test/bla/bla/bla', {
 			param: 'value'
 		}, {
 			authorization: 'my_token'
@@ -127,20 +126,20 @@
 		assert.deepEqual( data, {}, 'succeeds without errors' );
 	} );
 
-	QUnit.test( 'http error', function ( assert ) {
-		var api = new mw.Rest();
+	QUnit.test( 'http error', ( assert ) => {
+		const api = new mw.Rest();
 
-		this.server.respond( [ 404, {}, 'FAIL' ] );
+		server.respond( [ 404, {}, 'FAIL' ] );
 
-		var promise = api.get( '/test/rest/path' );
+		const promise = api.get( '/test/rest/path' );
 		assert.rejects( promise, /http/, 'API error should reject the deferred' );
 	} );
 
 	QUnit.test( '#abort', function ( assert ) {
-		var requests = [];
-		var api = new mw.Rest();
+		const requests = [];
+		const api = new mw.Rest();
 		this.sandbox.stub( $, 'ajax', () => {
-			var request = $.Deferred();
+			const request = $.Deferred();
 			request.abort = this.sandbox.spy();
 			requests.push( request );
 			return request;
@@ -149,8 +148,8 @@
 		api.post( '/test2', { a: 1 } );
 		api.abort();
 		assert.strictEqual( requests.length, 2, 'Check both requests triggered' );
-		requests.forEach( function ( request, i ) {
+		requests.forEach( ( request, i ) => {
 			assert.true( request.abort.calledOnce, 'abort request number ' + i );
 		} );
 	} );
-}() );
+} );

@@ -1,13 +1,12 @@
-( function () {
-	QUnit.module( 'mediawiki.api.edit', QUnit.newMwEnvironment( {
-		beforeEach: function () {
-			this.server = this.sandbox.useFakeServer();
-			this.server.respondImmediately = true;
-		}
-	} ) );
+QUnit.module( 'mediawiki.api.edit', ( hooks ) => {
+	let server;
+	hooks.beforeEach( function () {
+		server = this.sandbox.useFakeServer();
+		server.respondImmediately = true;
+	} );
 
-	QUnit.test( 'edit( title, transform String )', function ( assert ) {
-		this.server.respond( function ( req ) {
+	QUnit.test( 'edit( title, transform String )', async ( assert ) => {
+		server.respond( function ( req ) {
 			if ( /query.+titles=Sandbox/.test( req.url ) ) {
 				req.respond( 200, { 'Content-Type': 'application/json' }, JSON.stringify( {
 					curtimestamp: '2016-01-02T12:00:00Z',
@@ -38,17 +37,14 @@
 			}
 		} );
 
-		return new mw.Api()
-			.edit( 'Sandbox', function ( revision ) {
-				return revision.content.replace( 'Sand', 'Box' );
-			} )
-			.then( function ( edit ) {
-				assert.strictEqual( edit.newrevid, 13 );
-			} );
+		const edit = await new mw.Api().edit( 'Sandbox', ( revision ) => {
+			return revision.content.replace( 'Sand', 'Box' );
+		} );
+		assert.strictEqual( edit.newrevid, 13 );
 	} );
 
-	QUnit.test( 'edit( mw.Title, transform String )', function ( assert ) {
-		this.server.respond( function ( req ) {
+	QUnit.test( 'edit( mw.Title, transform String )', async ( assert ) => {
+		server.respond( function ( req ) {
 			if ( /query.+titles=Sandbox/.test( req.url ) ) {
 				req.respond( 200, { 'Content-Type': 'application/json' }, JSON.stringify( {
 					curtimestamp: '2016-01-02T12:00:00Z',
@@ -79,17 +75,14 @@
 			}
 		} );
 
-		return new mw.Api()
-			.edit( new mw.Title( 'Sandbox' ), function ( revision ) {
-				return revision.content.replace( 'Sand', 'Box' );
-			} )
-			.then( function ( edit ) {
-				assert.strictEqual( edit.newrevid, 13 );
-			} );
+		const edit = await new mw.Api().edit( new mw.Title( 'Sandbox' ), ( revision ) => {
+			return revision.content.replace( 'Sand', 'Box' );
+		} );
+		assert.strictEqual( edit.newrevid, 13 );
 	} );
 
-	QUnit.test( 'edit( title, transform Promise )', function ( assert ) {
-		this.server.respond( function ( req ) {
+	QUnit.test( 'edit( title, transform Promise )', async ( assert ) => {
+		server.respond( function ( req ) {
 			if ( /query.+titles=Async/.test( req.url ) ) {
 				req.respond( 200, { 'Content-Type': 'application/json' }, JSON.stringify( {
 					curtimestamp: '2016-02-02T12:00:00Z',
@@ -120,17 +113,14 @@
 			}
 		} );
 
-		return new mw.Api()
-			.edit( 'Async', function ( revision ) {
-				return $.Deferred().resolve( revision.content.replace( 'Async', 'Promise' ) );
-			} )
-			.then( function ( edit ) {
-				assert.strictEqual( edit.newrevid, 23 );
-			} );
+		const edit = await new mw.Api().edit( 'Async', async ( revision ) => {
+			return Promise.resolve( revision.content.replace( 'Async', 'Promise' ) );
+		} );
+		assert.strictEqual( edit.newrevid, 23 );
 	} );
 
-	QUnit.test( 'edit( title, transform Object )', function ( assert ) {
-		this.server.respond( function ( req ) {
+	QUnit.test( 'edit( title, transform Object )', async ( assert ) => {
+		server.respond( function ( req ) {
 			if ( /query.+titles=Param/.test( req.url ) ) {
 				req.respond( 200, { 'Content-Type': 'application/json' }, JSON.stringify( {
 					curtimestamp: '2016-03-02T12:00:00Z',
@@ -161,17 +151,14 @@
 			}
 		} );
 
-		return new mw.Api()
-			.edit( 'Param', function () {
-				return { text: 'Content', summary: 'Sum' };
-			} )
-			.then( function ( edit ) {
-				assert.strictEqual( edit.newrevid, 33 );
-			} );
+		const edit = await new mw.Api().edit( 'Param', function () {
+			return { text: 'Content', summary: 'Sum' };
+		} );
+		assert.strictEqual( edit.newrevid, 33 );
 	} );
 
-	QUnit.test( 'edit( invalid-title, transform String )', function ( assert ) {
-		this.server.respond( function ( req ) {
+	QUnit.test( 'edit( invalid-title, transform String )', ( assert ) => {
+		server.respond( function ( req ) {
 			if ( /query.+titles=%1F%7C/.test( req.url ) ) {
 				req.respond( 200, { 'Content-Type': 'application/json' }, JSON.stringify( {
 					query: {
@@ -185,19 +172,14 @@
 			}
 		} );
 
-		return new mw.Api()
-			.edit( '|', function ( revision ) {
-				return revision.content.replace( 'Sand', 'Box' );
-			} )
-			.then( function () {
-				return $.Deferred().reject( 'Unexpected success' );
-			}, function ( reason ) {
-				assert.strictEqual( reason, 'invalidtitle' );
-			} );
+		const promise = new mw.Api().edit( '|', ( revision ) => {
+			return revision.content.replace( 'Sand', 'Box' );
+		} );
+		assert.rejects( promise, 'invalidtitle' );
 	} );
 
-	QUnit.test( 'create( title, content )', function ( assert ) {
-		this.server.respond( function ( req ) {
+	QUnit.test( 'create( title, content )', async ( assert ) => {
+		server.respond( function ( req ) {
 			if ( /edit.+text=Sand/.test( req.requestBody ) ) {
 				req.respond( 200, { 'Content-Type': 'application/json' }, JSON.stringify( {
 					edit: {
@@ -210,11 +192,7 @@
 			}
 		} );
 
-		return new mw.Api()
-			.create( 'Sandbox', { summary: 'Load sand particles.' }, 'Sand.' )
-			.then( function ( page ) {
-				assert.strictEqual( page.newrevid, 41 );
-			} );
+		const page = await new mw.Api().create( 'Sandbox', { summary: 'Load sand particles.' }, 'Sand.' );
+		assert.strictEqual( page.newrevid, 41 );
 	} );
-
-}() );
+} );
