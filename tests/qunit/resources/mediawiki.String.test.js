@@ -80,4 +80,86 @@ QUnit.module( 'mediawiki.String', () => {
 	}, function ( assert, [ input, expected ] ) {
 		assert.strictEqual( ucFirst( input ), expected );
 	} );
+
+	const { trimByteLength } = require( 'mediawiki.String' );
+
+	QUnit.test.each( 'trimByteLength()', {
+		'simple ASCII': {
+			limit: 10,
+			sample: '12345678901234567890',
+			expected: '1234567890'
+		},
+		'multibyte input': {
+			limit: 14,
+			// U+20AC = Euro symbol (3 bytes)
+			sample: '1234567890\u20AC1234567890\u20AC',
+			expected: '1234567890\u20AC1'
+		},
+		'multibyte outside BMP': {
+			limit: 3,
+			sample: '\uD83D\uDCA9', // Pile of poo emoji 💩
+			expected: ''
+		},
+		'multibyte overlapping a byte': {
+			limit: 12,
+			sample: '1234567890\u20AC1234567890\u20AC',
+			expected: '1234567890'
+		},
+		'at limit with shortening input filter': {
+			limit: 6,
+			sample: 'User:Sample',
+			fn: function ( val ) {
+				return val.replace( 'User:', '' );
+			},
+			expected: 'User:Sample'
+		},
+		'exceed limit with shortening input filter': {
+			limit: 6,
+			sample: 'User:Example',
+			fn: function ( val ) {
+				return val.replace( 'User:', '' );
+			},
+			// The callback excludes prefix before calculating the length.
+			expected: 'User:Exampl'
+		},
+		'below limit with expanding input filter': {
+			limit: 10,
+			sample: '12345678901234567890',
+			fn: function ( text ) {
+				return 'prefix' + text;
+			},
+			// Prefix adds 6 characters, limit is reached after 4
+			expected: '1234'
+		},
+		'trim from insertion point 0': {
+			limit: 3,
+			initial: 'abc',
+			sample: 'zabc', // Adds "z" in front, which is denied.
+			expected: 'abc'
+		},
+		'trim from insertion point 1': {
+			limit: 3,
+			initial: 'abc',
+			sample: 'azbc', // Adds "z" at [1], which is denied.
+			expected: 'abc'
+		},
+		'Do not cut up false matching substrings in emoji insertions': {
+			limit: 12,
+			initial: '\uD83D\uDCA9\uD83D\uDCA9', // "💩💩"
+			sample: '\uD83D\uDCA9\uD83D\uDCB9\uD83E\uDCA9\uD83D\uDCA9', // "💩💹🢩💩"
+			expected: '\uD83D\uDCA9\uD83D\uDCB9\uD83D\uDCA9' // "💩💹💩"
+		},
+		'Unpaired surrogates do not crash': {
+			limit: 4,
+			sample: '\uD800\uD800\uDFFF',
+			expected: '\uD800'
+		}
+	}, function ( assert, opt ) {
+		var res = trimByteLength( opt.initial || '', opt.sample, opt.limit, opt.fn || null );
+		assert.strictEqual(
+			res.newVal,
+			opt.expected,
+			'New value matches the expected string'
+		);
+	} );
 } );
