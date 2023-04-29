@@ -133,6 +133,13 @@ class MWLBFactory {
 		$this->options->assertRequiredOptions( self::APPLY_DEFAULT_CONFIG_OPTIONS );
 
 		$typesWithSchema = self::getDbTypesWithSchemas();
+		if ( Profiler::instance() instanceof ProfilerStub ) {
+			$profilerCallback = null;
+		} else {
+			$profilerCallback = static function ( $section ) {
+				return Profiler::instance()->scopedProfileIn( $section );
+			};
+		}
 
 		$lbConf += [
 			'localDomain' => new DatabaseDomain(
@@ -140,9 +147,7 @@ class MWLBFactory {
 				$this->options->get( MainConfigNames::DBmwschema ),
 				$this->options->get( MainConfigNames::DBprefix )
 			),
-			'profiler' => static function ( $section ) {
-				return Profiler::instance()->scopedProfileIn( $section );
-			},
+			'profiler' => $profilerCallback,
 			'trxProfiler' => Profiler::instance()->getTransactionProfiler(),
 			'logger' => LoggerFactory::getInstance( 'rdbms' ),
 			'errorLogger' => [ MWExceptionHandler::class, 'logException' ],
