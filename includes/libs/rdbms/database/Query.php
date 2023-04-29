@@ -32,8 +32,14 @@ class Query {
 	private $sql;
 	private $flags;
 	private $queryVerb;
-	private $queryTables = [];
+	private $queryTables;
 
+	/**
+	 * @param string $sql
+	 * @param int $flags
+	 * @param string $queryVerb
+	 * @param string|string[]|null|false $queryTables
+	 */
 	public function __construct( string $sql, $flags, $queryVerb, $queryTables = [] ) {
 		$this->sql = $sql;
 		$this->flags = $flags;
@@ -83,6 +89,7 @@ class Query {
 		return $this->sql;
 	}
 
+	/** @return int */
 	public function getFlags() {
 		// The whole concept of flags is terrible. This should be deprecated.
 		return $this->flags;

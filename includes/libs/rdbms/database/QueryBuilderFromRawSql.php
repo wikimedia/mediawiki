@@ -31,6 +31,13 @@ use Wikimedia\Rdbms\Platform\SQLPlatform;
  * @since 1.41
  */
 class QueryBuilderFromRawSql {
+
+	/**
+	 * @param string $sql
+	 * @param int $flags
+	 * @param string $tablePrefix
+	 * @return Query
+	 */
 	public static function buildQuery( string $sql, $flags, string $tablePrefix = '' ) {
 		if ( !$flags && !self::isWriteQuery( $sql ) ) {
 			$flags = SQLPlatform::QUERY_CHANGE_NONE;
