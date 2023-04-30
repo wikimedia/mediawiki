@@ -5,6 +5,10 @@ use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\IPUtils;
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\UpdateQueryBuilder;
 
 /**
  * @covers \MediaWiki\User\UserFactory
@@ -220,6 +224,40 @@ class UserFactoryTest extends MediaWikiIntegrationTestCase {
 		$user = $this->getUserFactory()->newUnsavedTempUser( '*Unregistered 1234' );
 		$this->assertTrue( $user->isTemp() );
 		$this->assertFalse( $user->isNamed() );
+	}
+
+	public function testInvalidateCacheLocal() {
+		$userMock = $this->createMock( User::class );
+		$userMock->method( 'isRegistered' )->willReturn( true );
+		$userMock->method( 'getWikiId' )->willReturn( User::LOCAL );
+		$userMock->expects( $this->once() )->method( 'invalidateCache' );
+
+		$this->getUserFactory()->invalidateCache( $userMock );
+	}
+
+	public function testInvalidateCacheCrossWiki() {
+		$dbMock = $this->createMock( IDatabase::class );
+		$dbMock->method( 'timestamp' )->willReturn( 'timestamp' );
+		$dbMock->expects( $this->once() )
+			->method( 'newUpdateQueryBuilder' )
+			->willReturn( new UpdateQueryBuilder( $dbMock ) );
+		$dbMock->expects( $this->once() )
+			->method( 'update' )
+			->with(
+				'user',
+				[ 'user_touched' => 'timestamp' ],
+				[ 'user_id' => 123 ]
+			);
+
+		$lbMock = $this->createMock( ILoadBalancer::class );
+		$lbMock->method( 'getConnection' )->willReturn( $dbMock );
+
+		$lbFactoryMock = $this->createMock( LBFactory::class );
+		$lbFactoryMock->method( 'getMainLB' )->willReturn( $lbMock );
+		$this->setService( 'DBLoadBalancerFactory', $lbFactoryMock );
+
+		$user = new UserIdentityValue( 123, 'UserIdentityCacheUpdaterTest', 'meta' );
+		$this->getUserFactory()->invalidateCache( $user );
 	}
 
 }

@@ -475,7 +475,7 @@ class SpecialUserRights extends SpecialPage {
 		$newUGMs = $userGroupManager->getUserGroupMemberships( $user );
 
 		// Ensure that caches are cleared
-		$user->invalidateCache();
+		$this->userFactory->invalidateCache( $user );
 
 		// update groups in external authentication database
 		$this->getHookRunner()->onUserGroupsChanged( $user, $add, $remove,

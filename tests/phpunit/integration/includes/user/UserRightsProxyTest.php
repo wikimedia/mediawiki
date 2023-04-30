@@ -10,6 +10,7 @@ use UserRightsProxy;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\UpdateQueryBuilder;
 
 /**
  * @coversDefaultClass UserRightsProxy
@@ -205,6 +206,9 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 				]
 			);
 		$dbMock->expects( $this->once() )
+			->method( 'newUpdateQueryBuilder' )
+			->willReturn( new UpdateQueryBuilder( $dbMock ) );
+		$dbMock->expects( $this->once() )
 			->method( 'update' )
 			->with(
 				'user',
@@ -216,6 +220,7 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 
 		$lbMock = $this->createMock( ILoadBalancer::class );
 		$lbMock->method( 'getMaintenanceConnectionRef' )->willReturn( $dbMock );
+		$lbMock->method( 'getConnection' )->willReturn( $dbMock );
 
 		$lbFactoryMock = $this->createMock( LBFactory::class );
 		$lbFactoryMock->method( 'getMainLB' )->willReturn( $lbMock );

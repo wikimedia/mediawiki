@@ -25,9 +25,13 @@ namespace MediaWiki\User;
 use DBAccessObjectUtils;
 use IDBAccessObject;
 use InvalidArgumentException;
+use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use stdClass;
 use User;
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -42,6 +46,18 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 	 * READ_* constants are inherited from IDBAccessObject
 	 */
 
+	/** @internal */
+	public const CONSTRUCTOR_OPTIONS = [
+		MainConfigNames::SharedDB,
+		MainConfigNames::SharedTables,
+	];
+
+	/** @var ServiceOptions */
+	private $options;
+
+	/** @var ILBFactory */
+	private $loadBalancerFactory;
+
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
@@ -52,14 +68,19 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 	private $lastUserFromIdentity = null;
 
 	/**
-	 * @param ILoadBalancer $loadBalancer
+	 * @param ServiceOptions $options
+	 * @param ILBFactory $loadBalancerFactory
 	 * @param UserNameUtils $userNameUtils
 	 */
 	public function __construct(
-		ILoadBalancer $loadBalancer,
+		ServiceOptions $options,
+		ILBFactory $loadBalancerFactory,
 		UserNameUtils $userNameUtils
 	) {
-		$this->loadBalancer = $loadBalancer;
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+		$this->options = $options;
+		$this->loadBalancerFactory = $loadBalancerFactory;
+		$this->loadBalancer = $loadBalancerFactory->getMainLB();
 		$this->userNameUtils = $userNameUtils;
 	}
 
@@ -338,5 +359,62 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 		$user = new User();
 		$user->setName( $name );
 		return $user;
+	}
+
+	/**
+	 * Purge user related caches, "touch" the user table to invalidate further caches
+	 * @since 1.41
+	 * @param UserIdentity $userIdentity
+	 */
+	public function invalidateCache( UserIdentity $userIdentity ) {
+		if ( !$userIdentity->isRegistered() ) {
+			return;
+		}
+
+		$wikiId = $userIdentity->getWikiId();
+		if ( $wikiId === UserIdentity::LOCAL ) {
+			$legacyUser = $this->newFromUserIdentity( $userIdentity );
+			// Update user_touched within User class to manage state of User::mTouched for CAS check
+			$legacyUser->invalidateCache();
+		} else {
+			// cross-wiki invalidation
+			$userId = $userIdentity->getId( $wikiId );
+
+			$dbw = $this->getUserTableConnection( ILoadBalancer::DB_PRIMARY, $wikiId );
+			$dbw->newUpdateQueryBuilder()
+				->update( 'user' )
+				->set( [ 'user_touched' => $dbw->timestamp() ] )
+				->where( [ 'user_id' => $userId ] )
+				->caller( __METHOD__ )->execute();
+
+			$dbw->onTransactionPreCommitOrIdle(
+				static function () use ( $wikiId, $userId ) {
+					User::purge( $wikiId, $userId );
+				},
+				__METHOD__
+			);
+		}
+	}
+
+	/**
+	 * @param int $mode
+	 * @param string|false $wikiId
+	 * @return IDatabase
+	 */
+	private function getUserTableConnection( $mode, $wikiId ) {
+		if ( is_string( $wikiId ) && $this->loadBalancerFactory->getLocalDomainID() === $wikiId ) {
+			$wikiId = UserIdentity::LOCAL;
+		}
+
+		if ( $this->options->get( MainConfigNames::SharedDB ) &&
+			in_array( 'user', $this->options->get( MainConfigNames::SharedTables ) )
+		) {
+			// The main LB is aliased for the shared database in Setup.php
+			$lb = $this->loadBalancer;
+		} else {
+			$lb = $this->loadBalancerFactory->getMainLB( $wikiId );
+		}
+
+		return $lb->getConnection( $mode, [], $wikiId );
 	}
 }
