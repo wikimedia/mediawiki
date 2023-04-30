@@ -569,11 +569,10 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 				"Unable to normalize the provided actor name {$actor->getName()}"
 			);
 		}
-		$dbw->delete(
-			'actor',
-			[ 'actor_name' => $normalizedName ],
-			__METHOD__
-		);
+		$dbw->newDeleteQueryBuilder()
+			->delete( 'actor' )
+			->where( [ 'actor_name' => $normalizedName ] )
+			->caller( __METHOD__ )->execute();
 		if ( $dbw->affectedRows() !== 0 ) {
 			$this->cache->remove( $actor );
 			return true;

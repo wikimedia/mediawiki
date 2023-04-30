@@ -325,11 +325,10 @@ class TalkPageNotificationManager {
 		}
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		[ $field, $id ] = $this->getQueryFieldAndId( $user );
-		$dbw->delete(
-			'user_newtalk',
-			[ $field => $id ],
-			__METHOD__
-		);
+		$dbw->newDeleteQueryBuilder()
+			->delete( 'user_newtalk' )
+			->where( [ $field => $id ] )
+			->caller( __METHOD__ )->execute();
 		return (bool)$dbw->affectedRows();
 	}
 

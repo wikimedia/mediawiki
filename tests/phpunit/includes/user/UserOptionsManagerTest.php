@@ -7,6 +7,7 @@ use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserOptionsManager;
 use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\DeleteQueryBuilder;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
@@ -342,6 +343,9 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	public function testOptionsDeleteSetDefaultValue() {
 		$user = $this->getTestUser()->getUser();
 		$mockDb = $this->createMock( DBConnRef::class );
+		$mockDb
+			->method( 'newDeleteQueryBuilder' )
+			->willReturnCallback( fn() => new DeleteQueryBuilder( $mockDb ) );
 		$mockDb->expects( $this->once() )
 			->method( 'select' )
 			->willReturn( new FakeResultWrapper( [
