@@ -1581,7 +1581,7 @@ abstract class Installer {
 		}
 
 		// phpcs:ignore MediaWiki.VariableAnalysis.UnusedGlobalVariables
-		global $wgExtensionDirectory, $wgStyleDirectory;
+		global $wgAutoloadClasses, $wgExtensionDirectory, $wgStyleDirectory;
 		$wgExtensionDirectory = "$IP/extensions";
 		$wgStyleDirectory = "$IP/skins";
 
