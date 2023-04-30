@@ -3,17 +3,21 @@
 namespace Wikimedia\Rdbms;
 
 /**
- * A query builder for SELECT queries with a fluent interface.
+ * Build SELECT queries with a fluent interface.
  *
- * Any particular query builder object should only be used for a single database query,
- * and not be reused afterwards. However, to run multiple similar queries,
- * you can create a “template” query builder to set up most of the query,
- * and then clone the object (and potentially modify the clone) for each individual query.
+ * Each query builder object must be used for a single database query only,
+ * and not be reused afterwards. To run multiple similar queries, you can
+ * create a query builder to set up most of your query, which you can use
+ * as a "template" to clone. You can then modify the cloned object for
+ * each individual query.
  *
- * Note that none of the methods in this class are stable to override.
- * The goal of extending this class is creating specialized query builders,
- * like {@link \MediaWiki\Page\PageSelectQueryBuilder}
+ * Note that the methods in this class are not stable to override.
+ * This class may be extended to create query builders for specific database
+ * tables, such {@link \MediaWiki\Page\PageSelectQueryBuilder}, whilst still
+ * provoding the same fluent interface for adding arbitrary additional
+ * conditions and such.
  *
+ * @since 1.35
  * @stable to extend
  * @ingroup Database
  */
