@@ -15,7 +15,8 @@ class SpecialRenameuserTest extends SpecialPageTestBase {
 			$services->getPermissionManager(),
 			$services->getTitleFactory(),
 			$services->getUserFactory(),
-			$services->getUserNamePrefixSearch()
+			$services->getUserNamePrefixSearch(),
+			$services->getUserNameUtils()
 		);
 	}
 
