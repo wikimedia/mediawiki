@@ -285,7 +285,6 @@ class SQLPlatform implements ISQLPlatform {
 
 	public function makeWhereFrom2d( $data, $baseKey, $subKey ) {
 		$conds = [];
-
 		foreach ( $data as $base => $sub ) {
 			if ( count( $sub ) ) {
 				$conds[] = $this->makeList(
@@ -295,12 +294,11 @@ class SQLPlatform implements ISQLPlatform {
 			}
 		}
 
-		if ( $conds ) {
-			return $this->makeList( $conds, self::LIST_OR );
-		} else {
-			// Nothing to search for...
-			return false;
+		if ( !$conds ) {
+			throw new InvalidArgumentException( "Data for $baseKey and $subKey must be non-empty" );
 		}
+
+		return $this->makeList( $conds, self::LIST_OR );
 	}
 
 	public function factorConds( $condsArray ) {

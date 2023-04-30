@@ -242,7 +242,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 
 		$this->addFieldsIf( 'page_namespace', $miser_ns !== null );
 
-		if ( $hasNS ) {
+		if ( $hasNS && $map ) {
 			// Can't use LinkBatch because it throws away Special titles.
 			// And we already have the needed data structure anyway.
 			$this->addWhere( $db->makeWhereFrom2d( $map, $bl_namespace, $bl_title ) );
