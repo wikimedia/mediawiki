@@ -34,8 +34,6 @@ class DatabasePostgres extends Database {
 	private $port;
 	/** @var string */
 	private $tempSchema;
-	/** @var null|string[] Map of (reserved table name => alternate table name) */
-	private $keywordTableMap;
 	/** @var float|string */
 	private $numericVersion;
 
@@ -49,20 +47,9 @@ class DatabasePostgres extends Database {
 	 * @see Database::__construct()
 	 * @param array $params Additional parameters include:
 	 *   - port: A port to append to the hostname
-	 *   - keywordTableMap : Map of reserved table names to alternative table names to use
-	 *   This is is deprecated since 1.37. Reserved identifiers should be quoted where necessary,
 	 */
 	public function __construct( array $params ) {
 		$this->port = intval( $params['port'] ?? null );
-
-		if ( isset( $params['keywordTableMap'] ) ) {
-			wfDeprecatedMsg( 'Passing keywordTableMap parameter to ' .
-				'DatabasePostgres::__construct() is deprecated', '1.37'
-			);
-
-			$this->keywordTableMap = $params['keywordTableMap'];
-		}
-
 		parent::__construct( $params );
 
 		$this->platform = new PostgresPlatform(
