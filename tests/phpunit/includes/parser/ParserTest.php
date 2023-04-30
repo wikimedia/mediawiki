@@ -24,10 +24,7 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 	private function createConstructorArguments() {
 		$options = new ServiceOptions(
 			Parser::CONSTRUCTOR_OPTIONS,
-			array_combine(
-				Parser::CONSTRUCTOR_OPTIONS,
-				array_fill( 0, count( Parser::CONSTRUCTOR_OPTIONS ), null )
-			)
+			array_fill_keys( Parser::CONSTRUCTOR_OPTIONS, null )
 		);
 
 		// Stub out a MagicWordFactory so the Parser can initialize its

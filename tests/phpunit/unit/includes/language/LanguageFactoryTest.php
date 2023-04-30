@@ -21,10 +21,7 @@ class LanguageFactoryTest extends MediaWikiUnitTestCase {
 	private function createFactory() {
 		$options = new ServiceOptions(
 			LanguageFactory::CONSTRUCTOR_OPTIONS,
-			array_combine(
-				LanguageFactory::CONSTRUCTOR_OPTIONS,
-				array_fill( 0, count( LanguageFactory::CONSTRUCTOR_OPTIONS ), null )
-			)
+			array_fill_keys( LanguageFactory::CONSTRUCTOR_OPTIONS, null )
 		);
 		$languageNameUtils = $this->createMock( LanguageNameUtils::class );
 		$languageNameUtils
