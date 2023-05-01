@@ -1400,7 +1400,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$watchTypes = [
 			'edit' => 'watchdefault',
 			'move' => 'watchmoves',
-			'delete' => 'watchdeletion'
 		];
 
 		// Kinda hacky
@@ -1408,13 +1407,12 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			$watchTypes['read'] = 'watchcreations';
 		}
 
-		if ( $user->isAllowed( 'rollback' ) ) {
-			$watchTypes['rollback'] = 'watchrollback';
-		}
-
-		if ( $user->isAllowed( 'upload' ) ) {
-			$watchTypes['upload'] = 'watchuploads';
-		}
+		// Move uncommon actions to end of list
+		$watchTypes += [
+			'rollback' => 'watchrollback',
+			'upload' => 'watchuploads',
+			'delete' => 'watchdeletion',
+		];
 
 		foreach ( $watchTypes as $action => $pref ) {
 			if ( $user->isAllowed( $action ) ) {
