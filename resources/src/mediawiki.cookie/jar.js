@@ -1,4 +1,4 @@
-/*!
+/**
  * Cookie Plugin
  * Based on https://github.com/carhartl/jquery-cookie
  *
@@ -6,8 +6,11 @@
  * Released under the MIT license
  *
  * Now forked by MediaWiki.
+ *
+ * @private
+ * @class mw.cookie.jar
  */
-(function (document) {
+(function () {
 
 	var pluses = /\+/g;
 	var config, cookie;
@@ -38,6 +41,23 @@
 		return config.json ? JSON.parse(value) : value;
 	}
 
+	/**
+	 * Get, set, or remove a cookie.
+	 *
+	 * @method cookie
+	 * @param {string} [key] Cookie name or (when getting) omit to return an object with all
+	 *  current cookie keys and values.
+	 * @param {string|null} [value] Cookie value to set. If `null`, this method will remove the cookie.
+	 *  If omited, this method will get and return the current value.
+	 * @param {Object} [options]
+	 * @param {string} [options.path] Custom scope for cookie key.
+	 * @param {string} [options.domain] Custom scope for cookie key.
+	 * @param {boolean} [options.secure] Custom scope for cookie key.
+	 * @param {string} [options.sameSite] Custom scope for cookie key.
+	 * @param {number} [options.expires] Number of days to store the value (when setting)
+	 * @return {string|Object} The current value (if getting a cookie), or an internal `document.cookie`
+	 *  expression (if setting or removing).
+	 */
 	config = cookie = function (key, value, options) {
 
 		// write
@@ -90,6 +110,17 @@
 
 	config.defaults = {};
 
+	/**
+	 * Remove a cookie by key
+	 *
+	 * @param {string} key
+	 * @param {Object} [options] Custom scope for cookie key, must match the way it was set.
+	 * @param {string} [options.path]
+	 * @param {string} [options.domain]
+	 * @param {boolean} [options.secure]
+	 * @param {string} [options.sameSite]
+	 * @return {boolean} True if the cookie previously existed
+	 */
 	function removeCookie(key, options) {
 		if (cookie(key) !== null) {
 			cookie(key, null, options);
@@ -102,4 +133,4 @@
 		cookie: cookie,
 		removeCookie: removeCookie
 	};
-}(document));
+}());
