@@ -8,8 +8,7 @@
 
 ( function () {
 	var uploadWarning, uploadTemplatePreview, $warningBox,
-		NS_FILE = mw.config.get( 'wgNamespaceIds' ).file,
-		$license = $( '#wpLicense' );
+		NS_FILE = mw.config.get( 'wgNamespaceIds' ).file;
 
 	window.wgUploadWarningObj = uploadWarning = {
 		responseCache: { '': '&nbsp;' },
@@ -145,6 +144,7 @@
 			$( '<tr>' ).append( $warningBox )
 		);
 
+		var $license = $( '#wpLicense' );
 		if ( mw.config.get( 'wgAjaxLicensePreview' ) && $license.length ) {
 			// License selector check
 			$license.on( 'change', function () {
