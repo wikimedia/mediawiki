@@ -1,11 +1,6 @@
-( function () {
-	QUnit.module( 'mediawiki.base', {
-		beforeEach: function () {
-			this.clock = sinon.useFakeTimers();
-		},
-		afterEach: function () {
-			this.clock.restore();
-		}
+QUnit.module( 'mediawiki.base', ( hooks ) => {
+	hooks.beforeEach( function () {
+		this.clock = this.sandbox.useFakeTimers();
 	} );
 
 	QUnit.test( 'mw.hook - add() and fire()', function ( assert ) {
@@ -65,7 +60,7 @@
 	} );
 
 	QUnit.test( 'mw.hook - Chainable', function ( assert ) {
-		var hook, add, fire;
+		let hook;
 
 		hook = mw.hook( 'test.chainable' );
 		assert.strictEqual( hook.add(), hook, 'hook.add is chainable' );
@@ -73,8 +68,8 @@
 		assert.strictEqual( hook.fire(), hook, 'hook.fire is chainable' );
 
 		hook = mw.hook( 'test.detach' );
-		add = hook.add;
-		fire = hook.fire;
+		const add = hook.add;
+		const fire = hook.fire;
 		add( function ( data ) {
 			assert.step( data );
 		} );
@@ -122,9 +117,9 @@
 	} );
 
 	QUnit.test( 'mw.hook - Memory is not wiped when consumed.', function ( assert ) {
-		var handler = function ( data ) {
+		function handler( data ) {
 			assert.step( data + '1' );
-		};
+		}
 
 		mw.hook( 'test.memory' ).fire( 'A' );
 		mw.hook( 'test.memory' ).add( handler );
@@ -143,9 +138,9 @@
 	} );
 
 	QUnit.test( 'mw.hook - Unregistering handler.', function ( assert ) {
-		var handler = function ( data ) {
+		function handler( data ) {
 			assert.step( data );
-		};
+		}
 
 		mw.hook( 'test.remove' )
 			.add( handler )
@@ -311,5 +306,4 @@
 			done();
 		} ] );
 	} );
-
-}() );
+} );

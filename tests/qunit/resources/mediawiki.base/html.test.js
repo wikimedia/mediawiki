@@ -1,5 +1,4 @@
-( function () {
-	QUnit.module( 'mediawiki.html' );
+QUnit.module( 'mediawiki.base/html', () => {
 
 	QUnit.test( 'escape', function ( assert ) {
 		assert.throws(
@@ -44,11 +43,8 @@
 	} );
 
 	QUnit.test( 'element( tagName, attrs, content )', function ( assert ) {
-
 		assert.strictEqual( mw.html.element( 'div', {}, '' ), '<div></div>', 'DIV with empty attributes and content' );
-
 		assert.strictEqual( mw.html.element( 'p', {}, 12 ), '<p>12</p>', 'numbers as content cast to strings' );
-
 		assert.strictEqual( mw.html.element( 'p', { title: 12 }, '' ), '<p title="12"></p>', 'number as attribute value' );
 
 		assert.strictEqual(
@@ -101,5 +97,4 @@
 			'Andhor tag with attributes and content'
 		);
 	} );
-
-}() );
+} );
