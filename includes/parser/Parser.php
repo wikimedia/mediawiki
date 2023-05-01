@@ -4414,9 +4414,10 @@ class Parser {
 
 		# Never ever show TOC if no headers (or suppressed)
 		$suppressToc = $this->mOptions->getSuppressTOC();
-		if ( !$haveTocEntries || $suppressToc ) {
+		if ( !$haveTocEntries ) {
 			$enoughToc = false;
 		}
+		$addTOCPlaceholder = false;
 
 		if ( $isMain && !$suppressToc ) {
 			// We generally output the section information via the API
@@ -4436,6 +4437,9 @@ class Parser {
 			// own criteria for showing/suppressing TOC (T318186).
 			if ( $enoughToc ) {
 				$this->mOutput->setOutputFlag( ParserOutputFlags::SHOW_TOC );
+				if ( !$this->mForceTocPosition ) {
+					$addTOCPlaceholder = true;
+				}
 			}
 
 			// If __NOTOC__ is used on the page (and not overridden by
@@ -4465,7 +4469,7 @@ class Parser {
 			$i++;
 		}
 
-		if ( $enoughToc && $isMain && !$this->mForceTocPosition ) {
+		if ( $addTOCPlaceholder ) {
 			// append the TOC at the beginning
 			// Top anchor now in skin
 			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset At least one element when enoughToc is true
