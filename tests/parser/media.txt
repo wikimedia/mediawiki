@@ -4321,3 +4321,19 @@ parsoid= {
 File:Foobar.jpg
 </gallery>
 !! end
+
+!! test
+Broken media with frame and frameless formats
+!! config
+wgParserEnableLegacyMediaDOM=false
+!! wikitext
+[[File:Barfoo.jpg|frame|123]]
+[[File:Barfoo.jpg|frameless|123]]
+!! html/php
+<figure typeof="mw:Error mw:File/Frame"><a href="/wiki/File:Barfoo.jpg" class="mw-redirect" title="File:Barfoo.jpg"><span class="mw-file-element mw-broken-media" data-width="180">File:Barfoo.jpg</span></a><figcaption>123</figcaption></figure>
+<p><span class="mw-default-size" typeof="mw:Error mw:File/Frameless"><a href="/wiki/File:Barfoo.jpg" class="mw-redirect" title="File:Barfoo.jpg"><span class="mw-file-element mw-broken-media">123</span></a></span>
+</p>
+!! html/parsoid
+<figure typeof="mw:Error mw:File/Frame" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Barfoo.jpg"><span class="mw-broken-media" resource="./File:Barfoo.jpg">File:Barfoo.jpg</span></a><figcaption>123</figcaption></figure>
+<p><span class="mw-default-size" typeof="mw:Error mw:File/Frameless" data-mw='{"caption":"123","errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Barfoo.jpg"><span class="mw-broken-media" resource="./File:Barfoo.jpg" data-width="180">123</span></a></span></p>
+!! end
