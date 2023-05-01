@@ -176,12 +176,14 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 		foreach ( $possibilities as $lang ) {
 			if ( $forTransclusion || $lang !== $baseLang->getCode() ) {
 				$proposed = $base->getSubpage( $lang );
-				if ( $proposed && $proposed->exists() ) {
-					if ( $fragment !== '' ) {
-						$proposed->setFragment( $fragment );
-					}
-					return $proposed;
+			} elseif ( $lang === $baseLang->getCode() ) {
+				$proposed = $base;
+			}
+			if ( $proposed && $proposed->exists() ) {
+				if ( $fragment !== '' ) {
+					$proposed->setFragment( $fragment );
 				}
+				return $proposed;
 			}
 		}
 
