@@ -101,7 +101,7 @@ class GitInfo {
 		);
 		$this->options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		// $this->options must be set before using getCacheFilePath()
-		$this->cacheFile = $this->getCacheFilePath( $repoDir, !$usePrecomputed );
+		$this->cacheFile = $this->getCacheFilePath( $repoDir );
 		$this->logger = LoggerFactory::getInstance( 'gitinfo' );
 		$this->logger->debug(
 			"Candidate cacheFile={$this->cacheFile} for {$repoDir}"
@@ -142,12 +142,11 @@ class GitInfo {
 	 * Compute the path to the cache file for a given directory.
 	 *
 	 * @param string $repoDir The root directory of the repo where .git can be found
-	 * @param bool $forceCache Force returning the cache path.
 	 * @return string Path to GitInfo cache file in $wgGitInfoCacheDirectory or
 	 * fallback in the extension directory itself
 	 * @since 1.24
 	 */
-	private function getCacheFilePath( $repoDir, $forceCache ) {
+	private function getCacheFilePath( $repoDir ) {
 		$gitInfoCacheDirectory = $this->options->get( MainConfigNames::GitInfoCacheDirectory );
 		if ( $gitInfoCacheDirectory === false ) {
 			$gitInfoCacheDirectory = $this->options->get( MainConfigNames::CacheDirectory ) . '/gitinfo';
@@ -171,7 +170,7 @@ class GitInfo {
 			$repoName = strtr( $repoName, DIRECTORY_SEPARATOR, '-' );
 			$fileName = 'info' . $repoName . '.json';
 			$cachePath = "{$gitInfoCacheDirectory}/{$fileName}";
-			if ( is_readable( $cachePath ) || $forceCache ) {
+			if ( is_readable( $cachePath ) ) {
 				return $cachePath;
 			}
 		}
@@ -420,8 +419,8 @@ class GitInfo {
 			}
 
 			$cacheDir = dirname( $this->cacheFile );
-			if ( !( file_exists( $cacheDir ) || wfMkdirParents( $cacheDir, null, __METHOD__ ) )
-				|| !is_writable( $cacheDir )
+			if ( !file_exists( $cacheDir ) &&
+				!wfMkdirParents( $cacheDir, null, __METHOD__ )
 			) {
 				throw new MWException( "Unable to create GitInfo cache \"{$cacheDir}\"" );
 			}
