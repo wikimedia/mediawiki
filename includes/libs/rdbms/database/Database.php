@@ -3347,11 +3347,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function isReadOnly() {
-		return ( $this->getReadOnlyReason() !== false );
+		return ( $this->getReadOnlyReason() !== null );
 	}
 
 	/**
-	 * @return array|false Tuple of (read-only reason, "role" or "lb") or false if it is not
+	 * @return array|null Tuple of (reason string, "role" or "lb") if read-only; null otherwise
 	 */
 	protected function getReadOnlyReason() {
 		$reason = $this->replicationReporter->getTopologyBasedReadOnlyReason();
@@ -3364,7 +3364,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			return [ $reason, 'lb' ];
 		}
 
-		return false;
+		return null;
 	}
 
 	/**

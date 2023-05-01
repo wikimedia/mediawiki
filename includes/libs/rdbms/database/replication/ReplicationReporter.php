@@ -114,6 +114,9 @@ class ReplicationReporter {
 		return false;
 	}
 
+	/**
+	 * @return array|null Tuple of (reason string, "role") if read-only; null otherwise
+	 */
 	public function getTopologyBasedReadOnlyReason() {
 		if ( $this->topologyRole === IDatabase::ROLE_STREAMING_REPLICA ) {
 			return [ 'Server is configured as a read-only replica database.', 'role' ];
@@ -121,7 +124,7 @@ class ReplicationReporter {
 			return [ 'Server is configured as a read-only static clone database.', 'role' ];
 		}
 
-		return [];
+		return null;
 	}
 
 	public function resetReplicationLagStatus( IDatabase $conn ) {

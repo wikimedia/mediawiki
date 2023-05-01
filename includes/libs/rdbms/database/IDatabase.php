@@ -567,16 +567,16 @@ interface IDatabase extends IReadableDatabase {
 	);
 
 	/**
-	 * Get the position of this primary DB
+	 * Get the replication position of this primary DB server
 	 *
-	 * @return DBPrimaryPos|false False if this is not a primary DB
+	 * @return DBPrimaryPos|false Position; false if this is not a primary DB
 	 * @throws DBError If an error occurs, {@see query}
 	 * @since 1.37
 	 */
 	public function getPrimaryPos();
 
 	/**
-	 * @return bool Whether the DB server is marked as read-only server-side
+	 * @return bool Whether this DB server is running in server-side read-only mode
 	 * @throws DBError If an error occurs, {@see query}
 	 * @since 1.28
 	 */
@@ -1110,7 +1110,11 @@ interface IDatabase extends IReadableDatabase {
 	public function namedLocksEnqueue();
 
 	/**
-	 * @return bool Whether this DB server is read-only
+	 * Check if this DB server is marked as read-only according to load balancer info
+	 *
+	 * @note LoadBalancer checks serverIsReadOnly() when setting the load balancer info array
+	 *
+	 * @return bool
 	 * @since 1.27
 	 */
 	public function isReadOnly();

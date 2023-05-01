@@ -872,21 +872,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			return false;
 		}
 
-		// Set primary DB handles as read-only if the load balancer is configured as read-only
-		// or the primary database server is running in server-side read-only mode. Note that
-		// replica DB handles are always read-only via Database::assertIsWritablePrimary().
-		// Read-only mode due to replication lag is *avoided* here to avoid recursion.
-		if ( $i === ServerInfo::WRITER_INDEX ) {
-			if ( $this->readOnlyReason !== false ) {
-				$readOnlyReason = $this->readOnlyReason;
-			} elseif ( $this->isPrimaryConnectionReadOnly( $conn, $flags ) ) {
-				$readOnlyReason = 'The primary database server is running in read-only mode.';
-			} else {
-				$readOnlyReason = false;
-			}
-			$conn->setLBInfo( $conn::LB_READ_ONLY_REASON, $readOnlyReason );
-		}
-
 		return $conn;
 	}
 
@@ -999,6 +984,19 @@ class LoadBalancer implements ILoadBalancerForOwner {
 				[ self::INFO_CONN_CATEGORY => $category ]
 			);
 			if ( $conn->isOpen() ) {
+				// Make Database::isReadOnly() respect server-side and configuration-based
+				// read-only mode. Note that replica handles are always seen as read-only
+				// in Database::isReadOnly() and Database::assertIsWritablePrimary().
+				if ( $i === ServerInfo::WRITER_INDEX ) {
+					if ( $this->readOnlyReason !== false ) {
+						$readOnlyReason = $this->readOnlyReason;
+					} elseif ( $this->isPrimaryRunningReadOnly( $conn ) ) {
+						$readOnlyReason = 'The primary database server is running in read-only mode.';
+					} else {
+						$readOnlyReason = false;
+					}
+					$conn->setLBInfo( $conn::LB_READ_ONLY_REASON, $readOnlyReason );
+				}
 				// Connection obtained; check if it belongs to a tracked connection category
 				if ( isset( $this->conns[$category] ) ) {
 					// Track this connection for future reuse
@@ -1832,47 +1830,10 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 	/**
 	 * @note This method suppresses DBError exceptions in order to avoid severe downtime
-	 * @param IDatabase $conn Primary connection
-	 * @param int $flags Bitfield of class CONN_* constants
-	 * @return bool Whether the entire server or currently selected DB/schema is read-only
-	 */
-	private function isPrimaryConnectionReadOnly( IDatabase $conn, $flags = 0 ) {
-		// Note that table prefixes are not related to server-side read-only mode
-		$key = $this->srvCache->makeGlobalKey( 'rdbms-server-readonly', $conn->getServerName() );
-
-		if ( self::fieldHasBit( $flags, self::CONN_REFRESH_READ_ONLY ) ) {
-			// Refresh the local server cache. This is useful when the caller is
-			// currently in the process of updating a corresponding WANCache key.
-			try {
-				$readOnly = (int)$conn->serverIsReadOnly();
-			} catch ( DBError $e ) {
-				$readOnly = 0;
-			}
-			$this->srvCache->set( $key, $readOnly, BagOStuff::TTL_PROC_SHORT );
-		} else {
-			$readOnly = $this->srvCache->getWithSetCallback(
-				$key,
-				BagOStuff::TTL_PROC_SHORT,
-				static function () use ( $conn ) {
-					try {
-						$readOnly = (int)$conn->serverIsReadOnly();
-					} catch ( DBError $e ) {
-						$readOnly = 0;
-					}
-
-					return $readOnly;
-				}
-			);
-		}
-
-		return (bool)$readOnly;
-	}
-
-	/**
-	 * @note This method suppresses DBError exceptions in order to avoid severe downtime
+	 * @param IDatabase|null $conn Recently acquired primary connection; null if not applicable
 	 * @return bool Whether the entire primary DB server or the local domain DB is read-only
 	 */
-	private function isPrimaryRunningReadOnly() {
+	private function isPrimaryRunningReadOnly( IDatabase $conn = null ) {
 		// Context will often be HTTP GET/HEAD; heavily cache the results
 		return (bool)$this->wanCache->getWithSetCallback(
 			// Note that table prefixes are not related to server-side read-only mode
@@ -1881,26 +1842,25 @@ class LoadBalancer implements ILoadBalancerForOwner {
 				$this->serverInfo->getPrimaryServerName()
 			),
 			self::TTL_CACHE_READONLY,
-			function () {
+			function ( $oldValue ) use ( $conn ) {
 				$scope = $this->trxProfiler->silenceForScope();
-
-				// Refresh the local server cache as well. This is done in order to avoid
-				// backfilling the WANCache with data that is already significantly stale
-				$flags = self::CONN_SILENCE_ERRORS | self::CONN_REFRESH_READ_ONLY;
-				$conn = $this->getServerConnection( ServerInfo::WRITER_INDEX, self::DOMAIN_ANY, $flags );
+				$conn ??= $this->getServerConnection(
+					ServerInfo::WRITER_INDEX,
+					self::DOMAIN_ANY,
+					self::CONN_SILENCE_ERRORS
+				);
 				if ( $conn ) {
 					try {
-						$readOnly = (int)$this->isPrimaryConnectionReadOnly( $conn );
+						$value = (int)$conn->serverIsReadOnly();
 					} catch ( DBError $e ) {
-						$readOnly = 0;
+						$value = is_int( $oldValue ) ? $oldValue : 0;
 					}
 				} else {
-					$readOnly = 0;
+					$value = 0;
 				}
-
 				ScopedCallback::consume( $scope );
 
-				return $readOnly;
+				return $value;
 			},
 			[
 				'busyValue' => 0,
