@@ -1,72 +1,69 @@
-( function () {
-	QUnit.module( 'mediawiki.errorLogger', QUnit.newMwEnvironment() );
+QUnit.module( 'mediawiki.base/errorLogger', () => {
 
 	QUnit.test( 'installGlobalHandler', function ( assert ) {
-		var w = {},
-			errorMessage = 'Foo',
-			errorUrl = 'http://example.com',
-			errorLine = '123',
-			errorColumn = '45',
-			errorObject = new Error( 'Foo' ),
-			oldHandler = this.sandbox.stub();
+		const errorMessage = 'Foo';
+		const url = 'http://example.com';
+		const lineNumber = '123';
+		const columnNumber = '45';
+		const errorObject = new Error( 'Foo' );
 
-		this.sandbox.stub( mw, 'track' );
+		const track = this.sandbox.stub( mw, 'track' );
 
+		let w = {};
 		mw.errorLogger.installGlobalHandler( w );
 
-		assert.strictEqual( typeof w.onerror, 'function', 'Global handler has been installed' );
+		assert.strictEqual( typeof w.onerror, 'function', 'install global handler' );
 		assert.strictEqual(
 			w.onerror(
 				errorMessage,
-				errorUrl,
-				errorLine,
-				errorColumn,
+				url,
+				lineNumber,
+				columnNumber,
 				errorObject
 			),
 			false,
-			'Global handler returns false when there is no previous handler'
+			'return value when there is no previous handler'
 		);
-		sinon.assert.calledWithExactly( mw.track, 'global.error', sinon.match( {
-			errorMessage: errorMessage,
-			url: errorUrl,
-			lineNumber: errorLine,
-			columnNumber: errorColumn,
-			stackTrace: errorObject.stack,
-			errorObject: errorObject
-		} ) );
-		sinon.assert.calledWithExactly( mw.track, 'error.uncaught', sinon.match( errorObject ) );
+		assert.deepEqual( track.getCall( 0 ).args, [
+			'global.error',
+			{
+				errorMessage,
+				url,
+				lineNumber,
+				columnNumber,
+				errorObject,
+				stackTrace: errorObject.stack
+			}
+		], 'global.errror call' );
+		assert.deepEqual( track.getCall( 1 ).args, [ 'error.uncaught', errorObject ], 'error.uncaught call' );
 
 		// ---
 
-		mw.track.reset();
-
+		const oldHandler = this.sandbox.stub();
 		w = { onerror: oldHandler };
-
 		mw.errorLogger.installGlobalHandler( w );
-		w.onerror( errorMessage, errorUrl, errorLine );
-		sinon.assert.calledWithExactly( oldHandler, errorMessage, errorUrl, errorLine );
+		w.onerror( errorMessage, url, lineNumber );
+
+		assert.deepEqual(
+			oldHandler.firstCall.args,
+			[ errorMessage, url, lineNumber ],
+			'oldHandler call'
+		);
 
 		oldHandler.returns( false );
-		assert.strictEqual( w.onerror( errorMessage, errorUrl, errorLine ), false,
-			'Global handler preserves false return from previous handler' );
+		assert.false( w.onerror( errorMessage, url, lineNumber ), 'return value when previous handler returns false' );
 		oldHandler.returns( true );
-		assert.strictEqual( w.onerror( errorMessage, errorUrl, errorLine ), true,
-			'Global handler preserves true return from previous handler' );
+		assert.true( w.onerror( errorMessage, url, lineNumber ), 'return value when previous handler returns true' );
 	} );
 
-	QUnit.test( 'logError', function () {
-		var errorObject = new Error( 'Foo' );
-
-		this.sandbox.stub( mw, 'track' );
+	QUnit.test( 'logError', function ( assert ) {
+		const errorObject = new Error( 'Foo' );
+		const track = this.sandbox.stub( mw, 'track' );
 
 		mw.errorLogger.logError( errorObject );
-
-		sinon.assert.calledWithExactly( mw.track, 'error.caught', sinon.match( errorObject ) );
-
-		// ---
+		assert.deepEqual( track.getCall( 0 ).args, [ 'error.caught', errorObject ], 'track caught' );
 
 		mw.errorLogger.logError( errorObject, 'error.vue' );
-
-		mw.errorLogger.logError( errorObject, 'error.vue', sinon.match( errorObject ) );
+		assert.deepEqual( track.getCall( 1 ).args, [ 'error.vue', errorObject ], 'track vue' );
 	} );
-}() );
+} );
