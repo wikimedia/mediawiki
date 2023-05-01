@@ -967,7 +967,7 @@
 	"mergehistory-go": "Vis flettbare redigeringer",
 	"mergehistory-submit": "Flett sideversjoner",
 	"mergehistory-empty": "Ingen sideversjoner kan flettes.",
-	"mergehistory-done": "{{PLURAL:$4|Én sideversjon|$4 sideversjoner}} av $1 ble flettet til [[:$2]].\n$3.",
+	"mergehistory-done": "{{PLURAL:$4|Én sideversjon|$4 sideversjoner}} av $1 ble flettet til [[:$2]].\n$3",
 	"mergehistory-fail": "Klarte ikke å utføre historikkfletting. Sjekk siden og tidsparameterne igjen.",
 	"mergehistory-fail-bad-timestamp": "Tidsangivelsen er ugyldig.",
 	"mergehistory-fail-invalid-source": "Kildesiden er ugyldig.",

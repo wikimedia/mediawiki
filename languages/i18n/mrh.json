@@ -443,7 +443,7 @@
 	"compareselectedversions": "A tly hawpa revisions pakho",
 	"editundo": "phie",
 	"diff-empty": "(Â nanona y vei)",
-	"diff-multi-sameuser": "(Hmâhtuh alyupa {{PLURAL:$1|likah lia pathiehpa sâ kha|likah lia pathiehna sâ $1 zy}} he palâpa châ vei)",
+	"diff-multi-sameuser": "(Hmâhtuh alyupa {{PLURAL:$1|likah lia pathiehpa sâ kha|likah lia pathiehna sâ $1 zy}} {{GENDER:$3|hmâhtuhpa}} nah alyupa he palâpa châ vei)",
 	"diff-multi-otherusers": "({{PLURAL:$2|hmâhtuh hropa pakha|$2 hmâhtuhzy}} palâ leipa {{PLURAL:$1|aliaryh paraihpa sâkha|$1 aliaryh paraihpazy}})",
 	"searchresults": "Tluana lia hmôpazy",
 	"searchresults-title": "\"$1\" tluana lia hmôpazy",

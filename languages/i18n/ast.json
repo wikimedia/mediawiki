@@ -940,7 +940,7 @@
 	"nextn-title": "{{PLURAL:$1|Siguiente resultáu|Siguientes $1 resultaos}}",
 	"shown-title": "Amosar $1 {{PLURAL:$1|resultáu|resultaos}} por páxina",
 	"viewprevnext": "Ver ($1 {{int:pipe-separator}} $2) ($3)",
-	"searchmenu-exists": "<strong>Hai una páxina llamada «[[:$1]]» nesta wiki.</strong> {{PLURAL:$2|0=|Ver tamién los otros resultaos que s'alcontraron na busca.}}",
+	"searchmenu-exists": "Hai una páxina nomada «[[:$1]]» en {{SITENAME}}. {{PLURAL:$2|0=|Ver tamién los otros resultaos que s'alcontraron na busca.}}",
 	"searchmenu-new": "<strong>¡Crear la páxina «[[:$1]]» nesta wiki!</strong> {{PLURAL:$2|0=|Ver tamién la páxina que s'alcontró cola gueta.|Ver tamién los resultaos qu'alcontró la gueta.}}",
 	"searchprofile-articles": "Páxines de conteníu",
 	"searchprofile-images": "Multimedia",
