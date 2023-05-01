@@ -329,26 +329,34 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function testRespond() {
-		$data = self::getAllModules();
-		// Re-use the ResourceLoader instance to speed up tests.
-		$rl = $data['resourceloader'];
-		foreach ( $data['modules'] as $moduleName => $module ) {
-			if ( $module->getGroup() === RL\Module::GROUP_PRIVATE ) {
-				// Private modules cannot be served from load.php
-				continue;
-			}
-			// Check both general (scripts) and only=styles responses.
-			foreach ( [ null, 'styles' ] as $only ) {
-				$context = new RL\Context(
-					$rl,
-					new FauxRequest( [ 'modules' => $moduleName, 'only' => $only ] )
-				);
-				ob_start();
-				$rl->respond( $context );
-				ob_end_clean();
-				$this->assertSame( [], $rl->getErrors(), "$moduleName errors" );
-			}
+	public static function provideRespond() {
+		$rl = MediaWikiServices::getInstance()->getResourceLoader();
+		foreach ( $rl->getModuleNames() as $moduleName ) {
+			yield $moduleName => [ $moduleName ];
+		}
+	}
+
+	/**
+	 * @dataProvider provideRespond
+	 * @param string $moduleName
+	 */
+	public function testRespond( $moduleName ) {
+		$rl = $this->getServiceContainer()->getResourceLoader();
+		if ( $rl->getModule( $moduleName )->getGroup() === RL\Module::GROUP_PRIVATE ) {
+			// Private modules cannot be served from load.php
+			$this->assertTrue( true );
+			return;
+		}
+		// Check both general (scripts) and only=styles responses.
+		foreach ( [ null, 'styles' ] as $only ) {
+			$context = new RL\Context(
+				$rl,
+				new FauxRequest( [ 'modules' => $moduleName, 'only' => $only ] )
+			);
+			ob_start();
+			$rl->respond( $context );
+			ob_end_clean();
+			$this->assertSame( [], $rl->getErrors() );
 		}
 	}
 }
