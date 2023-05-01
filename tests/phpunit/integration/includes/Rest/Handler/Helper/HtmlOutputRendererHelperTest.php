@@ -470,6 +470,35 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$helper->getHtml();
 	}
 
+	public function testInteractionOfStashAndFlavor() {
+		$page = $this->getExistingTestPage( __METHOD__ );
+
+		$helper = $this->newHelper();
+
+		$user = $this->newUser( [ 'pingLimiter' => true ] );
+		$helper->init( $page, self::PARAM_DEFAULTS, $user );
+
+		// Assert that the initial flavor is "view"
+		$this->assertSame( 'view', $helper->getFlavor() );
+
+		// Assert that we can change the flavor to "edit"
+		$helper->setFlavor( 'edit' );
+		$this->assertSame( 'edit', $helper->getFlavor() );
+
+		// Assert that enabling stashing will force the flavor to be "stash"
+		$helper->setStashingEnabled( true );
+		$this->assertSame( 'stash', $helper->getFlavor() );
+
+		// Assert that disabling stashing will reset the flavor to "view"
+		$helper->setStashingEnabled( false );
+		$this->assertSame( 'view', $helper->getFlavor() );
+
+		// Assert that we cannot change the flavor to "view" when stashing is enabled
+		$helper->setStashingEnabled( true );
+		$helper->setFlavor( 'view' );
+		$this->assertSame( 'stash', $helper->getFlavor() );
+	}
+
 	public function testGetHtmlFragment() {
 		$page = $this->getExistingTestPage();
 

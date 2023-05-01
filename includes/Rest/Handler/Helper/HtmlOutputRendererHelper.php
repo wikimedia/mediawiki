@@ -179,6 +179,10 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 * Flavors may influence parser options, parsoid options, and DOM transformations.
 	 * They will be reflected by the ETag returned by getETag().
 	 *
+	 * @note This method should not be called if stashing mode is enabled.
+	 * @see setStashingEnabled
+	 * @see getFlavor()
+	 *
 	 * @param string $flavor
 	 *
 	 * @return void
@@ -188,7 +192,21 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			throw new LogicException( 'Invalid flavor supplied' );
 		}
 
+		if ( $this->stash ) {
+			// XXX: throw?
+			$flavor = 'stash';
+		}
+
 		$this->flavor = $flavor;
+	}
+
+	/**
+	 * Returns the flavor of HTML that will be generated.
+	 * @see setFlavor()
+	 * @return string
+	 */
+	public function getFlavor(): string {
+		return $this->flavor;
 	}
 
 	/**
