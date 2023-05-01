@@ -194,7 +194,10 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 		$this->srvCache = $params['srvCache'] ?? new EmptyBagOStuff();
 		$this->wanCache = $params['wanCache'] ?? WANObjectCache::newEmpty();
-		$this->databaseFactory = new DatabaseFactory( $params );
+
+		// Note: this parameter is normally absent. It is injectable for testing purposes only.
+		$this->databaseFactory = $params['databaseFactory'] ?? new DatabaseFactory( $params );
+
 		$this->errorLogger = $params['errorLogger'] ?? static function ( Throwable $e ) {
 				trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
 		};
