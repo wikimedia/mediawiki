@@ -2113,7 +2113,9 @@ class OutputPage extends ContextSource {
 		$this->setIndicators( $result );
 
 		$tocData = $parserOutput->getTOCData();
-		if ( $tocData !== null ) {
+		// Do not override existing TOC data if the new one is empty (T307256#8817705)
+		// TODO: Invent a way to merge TOCs from multiple outputs (T327429)
+		if ( $tocData !== null && ( $this->tocData === null || count( $tocData->getSections() ) > 0 ) ) {
 			$this->setTOCData( $tocData );
 		}
 
