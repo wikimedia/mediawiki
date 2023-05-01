@@ -378,6 +378,11 @@ class OutputPage extends ContextSource {
 	private $mEnableTOC = false;
 
 	/**
+	 * @var array<string,bool> Flags set in the ParserOutput
+	 */
+	private $mOutputFlags = [];
+
+	/**
 	 * @var string|null The URL to send in a <link> element with rel=license
 	 */
 	private $copyrightUrl;
@@ -2072,6 +2077,16 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * @internal Will be replaced by direct access to
+	 *  ParserOutput::getOutputFlag()
+	 * @param string $name A flag name from ParserOutputFlags
+	 * @return bool
+	 */
+	public function getOutputFlag( string $name ): bool {
+		return isset( $this->mOutputFlags[$name] );
+	}
+
+	/**
 	 * Add all metadata associated with a ParserOutput object, but without the actual HTML. This
 	 * includes categories, language links, ResourceLoader modules, effects of certain magic words,
 	 * and so on.  It does *not* include section information.
@@ -2106,6 +2121,8 @@ class OutputPage extends ContextSource {
 		// addParserOutputMetadata() may be called multiple times, but the
 		// following lines overwrite any previous data.  These should
 		// be migrated to an injection pattern. (T301020, T300979)
+		// (Note that OutputPage::getOutputFlag() also contains this
+		// information, with flags from each $parserOutput all OR'ed together.)
 		$this->mNewSectionLink = $parserOutput->getNewSection();
 		$this->mHideNewSectionLink = $parserOutput->getHideNewSection();
 		$this->mNoGallery = $parserOutput->getNoGallery();
@@ -2218,6 +2235,16 @@ class OutputPage extends ContextSource {
 		if ( $isTocPresent && !$this->mEnableTOC ) {
 			// Eventually we'll emit a deprecation message here (T293513)
 			$this->mEnableTOC = true;
+		}
+		// Uniform handling of all boolean flags: they are OR'ed together
+		// (See ParserOutput::collectMetadata())
+		$flags =
+			array_flip( $parserOutput->getAllFlags() ) +
+			array_flip( ParserOutputFlags::cases() );
+		foreach ( $flags as $name => $ignore ) {
+			if ( $parserOutput->getOutputFlag( $name ) ) {
+				$this->mOutputFlags[$name] = true;
+			}
 		}
 	}
 
@@ -4583,7 +4610,8 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Whether the output has a table of contents
+	 * Whether the output has a table of contents when the ToC is
+	 * rendered inline.
 	 * @return bool
 	 * @since 1.22
 	 */

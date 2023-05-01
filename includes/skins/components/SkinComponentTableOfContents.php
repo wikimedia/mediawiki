@@ -18,6 +18,7 @@
 
 namespace MediaWiki\Skin;
 
+use MediaWiki\Parser\ParserOutputFlags;
 use OutputPage;
 
 /**
@@ -81,6 +82,10 @@ class SkinComponentTableOfContents implements SkinComponent {
 		$tocData = $this->output->getTOCData();
 		// Return data only if TOC present T298796.
 		if ( $tocData === null ) {
+			return [];
+		}
+		// Respect __NOTOC__
+		if ( $this->output->getOutputFlag( ParserOutputFlags::NO_TOC ) ) {
 			return [];
 		}
 

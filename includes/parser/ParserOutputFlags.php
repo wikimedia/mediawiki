@@ -94,9 +94,21 @@ class ParserOutputFlags {
 	// These flags are stored in the ParserOutput::$mFlags array
 
 	/**
-	 * @var string Show the table of contents in the skin?
+	 * @var string Show the table of contents in the skin?  This is
+	 *  a /suggestion/ based on whether the TOC is "large enough"
+	 *  and other factors, and is intended mostly for skins which
+	 *  want to match the behavior of the traditional inline ToC.
 	 */
 	public const SHOW_TOC = 'show-toc';
+
+	/**
+	 * @var string Suppress the table of contents in the skin?
+	 *  This reflects the use of the __NOTOC__ magic word in the
+	 *  article (possibly modified by __TOC__ or __FORCETOC__),
+	 *  and represents an explicit request from the author to
+	 *  hide the TOC.
+	 */
+	public const NO_TOC = 'no-toc';
 
 	/**
 	 * @var string
@@ -161,6 +173,7 @@ class ParserOutputFlags {
 			self::NEW_SECTION,
 			self::HIDE_NEW_SECTION,
 			self::SHOW_TOC,
+			self::NO_TOC,
 			self::PREVENT_CLICKJACKING,
 			self::VARY_REVISION,
 			self::VARY_REVISION_ID,

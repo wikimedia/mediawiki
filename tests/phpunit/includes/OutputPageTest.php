@@ -1174,14 +1174,20 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op = $this->newInstance();
 
 		$this->assertFalse( $op->showNewSectionLink() );
+		$this->assertFalse( $op->getOutputFlag( ParserOutputFlags::NEW_SECTION ) );
 
-		$pOut1 = $this->createParserOutputStub( 'getNewSection', true );
+		$pOut1 = $this->createParserOutputStubWithFlags(
+			[ 'getNewSection' => true ], [ ParserOutputFlags::NEW_SECTION ]
+		);
 		$op->addParserOutputMetadata( $pOut1 );
 		$this->assertTrue( $op->showNewSectionLink() );
+		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::NEW_SECTION ) );
 
 		$pOut2 = $this->createParserOutputStub( 'getNewSection', false );
 		$op->addParserOutput( $pOut2 );
 		$this->assertFalse( $op->showNewSectionLink() );
+		// Note that flags are OR'ed together, and not reset.
+		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::NEW_SECTION ) );
 	}
 
 	/**
@@ -1193,14 +1199,20 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op = $this->newInstance();
 
 		$this->assertFalse( $op->forceHideNewSectionLink() );
+		$this->assertFalse( $op->getOutputFlag( ParserOutputFlags::HIDE_NEW_SECTION ) );
 
-		$pOut1 = $this->createParserOutputStub( 'getHideNewSection', true );
+		$pOut1 = $this->createParserOutputStubWithFlags(
+			[ 'getHideNewSection' => true ], [ ParserOutputFlags::HIDE_NEW_SECTION ]
+		);
 		$op->addParserOutputMetadata( $pOut1 );
 		$this->assertTrue( $op->forceHideNewSectionLink() );
+		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::HIDE_NEW_SECTION ) );
 
 		$pOut2 = $this->createParserOutputStub( 'getHideNewSection', false );
 		$op->addParserOutput( $pOut2 );
 		$this->assertFalse( $op->forceHideNewSectionLink() );
+		// Note that flags are OR'ed together, and not reset.
+		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::HIDE_NEW_SECTION ) );
 	}
 
 	/**
@@ -1762,6 +1774,19 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		} elseif ( count( $args ) === 2 ) {
 			$retVals = [ $args[0] => $args[1] ];
 		}
+		return $this->createParserOutputStubWithFlags( $retVals, [] );
+	}
+
+	/**
+	 * First argument is an array
+	 * [ $methodName => $returnValue, $methodName => $returnValue, ... ]
+	 * Second argument is an array of parser flags for which ::getOutputFlag()
+	 * should return 'TRUE'.
+	 * @param array $retVals
+	 * @param array $flags
+	 * @return ParserOutput
+	 */
+	private function createParserOutputStubWithFlags( array $retVals, array $flags ): ParserOutput {
 		$pOut = $this->createMock( ParserOutput::class );
 		foreach ( $retVals as $method => $retVal ) {
 			$pOut->method( $method )->willReturn( $retVal );
@@ -1785,6 +1810,10 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		foreach ( $arrayReturningMethods as $method ) {
 			$pOut->method( $method )->willReturn( [] );
 		}
+
+		$pOut->method( 'getOutputFlag' )->willReturnCallback( static function ( $name ) use ( $flags ) {
+			return in_array( $name, $flags, true );
+		} );
 
 		return $pOut;
 	}
@@ -2042,14 +2071,20 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	public function testNoGallery() {
 		$op = $this->newInstance();
 		$this->assertFalse( $op->mNoGallery );
+		$this->assertFalse( $op->getOutputFlag( ParserOutputFlags::NO_GALLERY ) );
 
-		$stubPO1 = $this->createParserOutputStub( 'getNoGallery', true );
+		$stubPO1 = $this->createParserOutputStubWithFlags(
+			[ 'getNoGallery' => true ], [ ParserOutputFlags::NO_GALLERY ]
+		);
 		$op->addParserOutputMetadata( $stubPO1 );
 		$this->assertTrue( $op->mNoGallery );
+		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::NO_GALLERY ) );
 
 		$stubPO2 = $this->createParserOutputStub( 'getNoGallery', false );
 		$op->addParserOutput( $stubPO2 );
 		$this->assertFalse( $op->mNoGallery );
+		// Note that flags are OR'ed together, and not reset.
+		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::NO_GALLERY ) );
 	}
 
 	private static $parserOutputHookCalled;
@@ -2136,15 +2171,19 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op = $this->newInstance();
 		$this->assertSame( '', $op->getHTML() );
 		$this->assertFalse( $op->showNewSectionLink() );
+		$this->assertFalse( $op->getOutputFlag( ParserOutputFlags::NEW_SECTION ) );
 
-		$pOut = $this->createParserOutputStub( [
+		$pOut = $this->createParserOutputStubWithFlags( [
 			'getText' => '<some text>',
 			'getNewSection' => true,
+		], [
+			ParserOutputFlags::NEW_SECTION,
 		] );
 
 		$op->addParserOutput( $pOut );
 		$this->assertSame( '<some text>', $op->getHTML() );
 		$this->assertTrue( $op->showNewSectionLink() );
+		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::NEW_SECTION ) );
 	}
 
 	/**
@@ -3162,24 +3201,24 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	public function testIsTOCEnabled() {
 		$op = $this->newInstance();
 		$this->assertFalse( $op->isTOCEnabled() );
+		$this->assertFalse( $op->getOutputFlag( ParserOutputFlags::SHOW_TOC ) );
 
 		$pOut1 = $this->createParserOutputStub();
-		$pOut1->method( 'getOutputFlag' )->willReturnMap( [
-			[ ParserOutputFlags::SHOW_TOC, false ],
-		] );
 		$op->addParserOutputMetadata( $pOut1 );
 		$this->assertFalse( $op->isTOCEnabled() );
+		$this->assertFalse( $op->getOutputFlag( ParserOutputFlags::SHOW_TOC ) );
 
-		$pOut2 = $this->createParserOutputStub();
-		$pOut2->method( 'getOutputFlag' )->willReturnMap( [
-			[ ParserOutputFlags::SHOW_TOC, true ],
-		] );
+		$pOut2 = $this->createParserOutputStubWithFlags(
+			[], [ ParserOutputFlags::SHOW_TOC ]
+		);
 		$op->addParserOutput( $pOut2 );
 		$this->assertTrue( $op->isTOCEnabled() );
+		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::SHOW_TOC ) );
 
 		// The parser output doesn't disable the TOC after it was enabled
 		$op->addParserOutputMetadata( $pOut1 );
 		$this->assertTrue( $op->isTOCEnabled() );
+		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::SHOW_TOC ) );
 	}
 
 	/**
@@ -3211,6 +3250,27 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		// The parser output doesn't disable the TOC after it was enabled
 		$op->addParserOutputMetadata( $pOut1 );
 		$this->assertTrue( $op->isTOCEnabled() );
+	}
+
+	/**
+	 * @covers OutputPage::addParserOutputMetadata
+	 * @covers OutputPage::addParserOutput
+	 */
+	public function testNoTOC() {
+		$op = $this->newInstance();
+		$this->assertFalse( $op->getOutputFlag( ParserOutputFlags::NO_TOC ) );
+
+		$stubPO1 = $this->createParserOutputStubWithFlags(
+			[], [ ParserOutputFlags::NO_TOC ]
+		);
+		$op->addParserOutputMetadata( $stubPO1 );
+		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::NO_TOC ) );
+
+		$stubPO2 = $this->createParserOutputStub();
+		$this->assertFalse( $stubPO2->getOutputFlag( ParserOutputFlags::NO_TOC ) );
+		$op->addParserOutput( $stubPO2 );
+		// Note that flags are OR'ed together, and not reset.
+		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::NO_TOC ) );
 	}
 
 	/**
