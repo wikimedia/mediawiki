@@ -1109,8 +1109,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$connLossFlag = $this->assessConnectionLoss(
 					$sql->getVerb(),
 					$queryRuntime,
-					$priorSessInfo,
-					__METHOD__
+					$priorSessInfo
 				);
 				// Update session state tracking and try to reestablish a connection
 				$reconnected = $this->replaceLostConnection( $errno, __METHOD__ );
@@ -1289,7 +1288,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param string $verb SQL query verb
 	 * @param float $walltime How many seconds passes while attempting the query
 	 * @param CriticalSessionInfo $priorSessInfo Session state just before the query
-	 * @param string $fname
 	 * @return int Recovery approach. One of the following ERR_* class constants:
 	 *   - Database::ERR_RETRY_QUERY: reconnect silently, retry query
 	 *   - Database::ERR_ABORT_QUERY: reconnect silently, do not retry query
@@ -1299,8 +1297,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private function assessConnectionLoss(
 		string $verb,
 		float $walltime,
-		CriticalSessionInfo $priorSessInfo,
-		string $fname
+		CriticalSessionInfo $priorSessInfo
 	) {
 		if ( $walltime < self::DROPPED_CONN_BLAME_THRESHOLD_SEC ) {
 			// Query failed quickly; the connection was probably lost before the query was sent
@@ -1368,7 +1365,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		if ( $blockers ) {
 			$this->logger->warning(
-				"$fname: cannot reconnect to {db_server} silently: {error}",
+				"cannot reconnect to {db_server} silently: {error}",
 				$this->getLogContext( [
 					'error' => 'session state loss (' . implode( ', ', $blockers ) . ')',
 					'exception' => new RuntimeException(),
