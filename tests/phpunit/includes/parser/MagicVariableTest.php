@@ -30,8 +30,10 @@ class MagicVariableTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( 'wgMiserMode', false );
-		$this->setMwGlobals( 'wgParserCacheExpireTime', 86400 * 7 );
+		$this->setMwGlobals( [
+			'wgMiserMode' => false,
+			'wgParserCacheExpireTime' => 86400 * 7,
+		] );
 
 		$services = $this->getServiceContainer();
 		$contLang = $services->getLanguageFactory()->getLanguage( 'en' );
