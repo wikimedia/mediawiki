@@ -26,6 +26,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Specials\SpecialFewestRevisions;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 class SpecialMostRevisions extends SpecialFewestRevisions {

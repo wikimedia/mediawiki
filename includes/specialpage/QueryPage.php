@@ -29,6 +29,7 @@ use MediaWiki\Specials\SpecialAncientPages;
 use MediaWiki\Specials\SpecialBrokenRedirects;
 use MediaWiki\Specials\SpecialDeadendPages;
 use MediaWiki\Specials\SpecialDoubleRedirects;
+use MediaWiki\Specials\SpecialFewestRevisions;
 use MediaWiki\Specials\SpecialMostImages;
 use MediaWiki\Specials\SpecialWantedFiles;
 use MediaWiki\Specials\SpecialWantedPages;

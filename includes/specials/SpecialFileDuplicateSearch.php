@@ -23,10 +23,18 @@
  * @author Raimond Spekking, based on Special:MIMESearch by Ævar Arnfjörð Bjarmason
  */
 
+namespace MediaWiki\Specials;
+
+use File;
+use HTMLForm;
+use ILanguageConverter;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Title\Title;
+use RepoGroup;
+use SearchEngineFactory;
+use SpecialPage;
 
 /**
  * Searches the database for files of the requested hash, comparing this with the
@@ -269,3 +277,8 @@ class SpecialFileDuplicateSearch extends SpecialPage {
 		return 'media';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialFileDuplicateSearch::class, 'SpecialFileDuplicateSearch' );
