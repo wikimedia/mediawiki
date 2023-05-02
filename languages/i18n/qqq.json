@@ -1444,6 +1444,7 @@
 	"badsiglength": "Warning message that is displayed on [[Special:Preferences]] when trying to save a signature that is too long.\n\nParameters\n* $1 - the maximum number of characters that is allowed in a signature (multi-byte characters are counted as one character)",
 	"badsiglinebreak": "Warning message that is displayed on [[Special:Preferences]] when trying to save a signature that contains a line break.",
 	"linterror-bogus-image-options": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-bogus-image-options-details}}.",
+	"linterror-big-tables": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-large-tables-details}}.",
 	"linterror-deletable-table-tag": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-deletable-table-tag-details}}.",
 	"linterror-html5-misnesting": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-html5-misnesting-details}}.",
 	"linterror-misc-tidy-replacement-issues": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-misc-tidy-replacement-issues-details}}.",
