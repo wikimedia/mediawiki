@@ -19,10 +19,24 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use ChangeTags;
+use ChangeTagsList;
+use ErrorPageError;
+use LogEventsList;
+use LogPage;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Html\Html;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Title\Title;
+use RevisionDeleter;
+use SpecialPage;
+use Status;
+use UnlistedSpecialPage;
+use UserBlockedError;
+use Xml;
+use XmlSelect;
 
 /**
  * Special page for adding and removing change tags to individual revisions.
@@ -489,3 +503,8 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		return 'pagetools';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialEditTags::class, 'SpecialEditTags' );

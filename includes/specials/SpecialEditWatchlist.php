@@ -26,6 +26,16 @@
  * @ingroup Watchlist
  */
 
+namespace MediaWiki\Specials;
+
+use DeferredUpdates;
+use EditWatchlistCheckboxSeriesField;
+use EditWatchlistNormalHTMLForm;
+use FatalError;
+use GenderCache;
+use HTMLForm;
+use LogicException;
+use MalformedTitleException;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkRenderer;
@@ -36,6 +46,20 @@ use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Title\Title;
 use MediaWiki\Watchlist\WatchlistManager;
+use MWException;
+use NamespaceInfo;
+use OOUIHTMLForm;
+use Parser;
+use ParserOutput;
+use SpecialPage;
+use SpecialWatchlist;
+use Status;
+use TitleParser;
+use TitleValue;
+use UnlistedSpecialPage;
+use WatchedItemStore;
+use WatchedItemStoreInterface;
+use WebRequest;
 use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\Parsoid\Core\TOCData;
 
@@ -951,3 +975,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		);
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialEditWatchlist::class, 'SpecialEditWatchlist' );

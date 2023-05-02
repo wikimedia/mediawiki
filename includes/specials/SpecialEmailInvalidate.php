@@ -21,7 +21,11 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
 use MediaWiki\User\UserFactory;
+use Profiler;
+use UnlistedSpecialPage;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -89,3 +93,8 @@ class SpecialEmailInvalidate extends UnlistedSpecialPage {
 		}
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialEmailInvalidate::class, 'SpecialEmailInvalidate' );

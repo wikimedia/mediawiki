@@ -157,6 +157,13 @@ because of Phabricator reports.
   - SpecialDeletedContributions
   - SpecialDiff
   - SpecialDoubleRedirects
+  - SpecialEditPage
+  - SpecialEditTags
+  - SpecialEditWatchlist
+  - SpecialEmailInvalidate
+  - SpecialEmailUser
+  - SpecialExpandTemplates
+  - SpecialExport
 * Various mediawiki.ui variables have been deprecated in favor of
   'minerva.skin.variables.less' Codex design tokens featuring replacements.
 * The jquery.cookie ResourceLoader module has been merged into the existing

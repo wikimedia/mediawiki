@@ -21,11 +21,21 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use HTMLForm;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserOptionsLookup;
+use OutputPage;
+use Parser;
+use ParserOptions;
+use ParserOutput;
+use SpecialPage;
+use Status;
+use Xml;
 
 /**
  * A special page that expands submitted templates, parser functions,
@@ -284,3 +294,8 @@ class SpecialExpandTemplates extends SpecialPage {
 		return 'wiki';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialExpandTemplates::class, 'SpecialExpandTemplates' );

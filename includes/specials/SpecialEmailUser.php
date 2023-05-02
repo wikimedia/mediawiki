@@ -21,10 +21,23 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use Config;
+use ErrorPageError;
+use HTMLForm;
+use IContextSource;
 use MediaWiki\Mail\EmailUser;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
+use MWException;
+use PermissionsError;
+use Status;
+use ThrottledError;
+use UnlistedSpecialPage;
+use User;
+use UserBlockedError;
 
 /**
  * A special page that allows users to send e-mails to other users
@@ -319,3 +332,8 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		return 'users';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialEmailUser::class, 'SpecialEmailUser' );

@@ -21,6 +21,12 @@
  * @ingroup SpecialPage
  * @author DannyS712
  */
+
+namespace MediaWiki\Specials;
+
+use SearchEngineFactory;
+use SpecialRedirectWithAction;
+
 class SpecialEditPage extends SpecialRedirectWithAction {
 
 	/**
@@ -36,3 +42,8 @@ class SpecialEditPage extends SpecialRedirectWithAction {
 	// specialeditpage-page
 	// specialeditpage-submit
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialEditPage::class, 'SpecialEditPage' );

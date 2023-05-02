@@ -62,6 +62,13 @@ use MediaWiki\Specials\SpecialDeletedContributions;
 use MediaWiki\Specials\SpecialDeletePage;
 use MediaWiki\Specials\SpecialDiff;
 use MediaWiki\Specials\SpecialDoubleRedirects;
+use MediaWiki\Specials\SpecialEditPage;
+use MediaWiki\Specials\SpecialEditTags;
+use MediaWiki\Specials\SpecialEditWatchlist;
+use MediaWiki\Specials\SpecialEmailInvalidate;
+use MediaWiki\Specials\SpecialEmailUser;
+use MediaWiki\Specials\SpecialExpandTemplates;
+use MediaWiki\Specials\SpecialExport;
 use MediaWiki\Specials\SpecialMostImages;
 use MediaWiki\Specials\SpecialMovePage;
 use MediaWiki\Specials\SpecialUserRights;
@@ -543,7 +550,7 @@ class SpecialPageFactory {
 			]
 		],
 		'EditWatchlist' => [
-			'class' => \SpecialEditWatchlist::class,
+			'class' => SpecialEditWatchlist::class,
 			'services' => [
 				'WatchedItemStore',
 				'TitleParser',
@@ -830,7 +837,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Export' => [
-			'class' => \SpecialExport::class,
+			'class' => SpecialExport::class,
 			'services' => [
 				'DBLoadBalancerFactory',
 				'WikiExporterFactory',
@@ -887,7 +894,7 @@ class SpecialPageFactory {
 			]
 		],
 		'ExpandTemplates' => [
-			'class' => \SpecialExpandTemplates::class,
+			'class' => SpecialExpandTemplates::class,
 			'services' => [
 				'Parser',
 				'UserOptionsLookup',
@@ -934,19 +941,19 @@ class SpecialPageFactory {
 			'class' => SpecialDiff::class,
 		],
 		'EditPage' => [
-			'class' => \SpecialEditPage::class,
+			'class' => SpecialEditPage::class,
 			'services' => [
 				'SearchEngineFactory',
 			]
 		],
 		'EditTags' => [
-			'class' => \SpecialEditTags::class,
+			'class' => SpecialEditTags::class,
 			'services' => [
 				'PermissionManager',
 			],
 		],
 		'Emailuser' => [
-			'class' => \SpecialEmailUser::class,
+			'class' => SpecialEmailUser::class,
 			'services' => [
 				'UserNameUtils',
 				'UserNamePrefixSearch',
@@ -1189,7 +1196,7 @@ class SpecialPageFactory {
 					]
 				];
 				$this->list['Invalidateemail'] = [
-					'class' => \SpecialEmailInvalidate::class,
+					'class' => SpecialEmailInvalidate::class,
 					'services' => [
 						'UserFactory',
 					]

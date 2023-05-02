@@ -23,11 +23,18 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use HTMLForm;
+use HTMLTextAreaField;
 use MediaWiki\Export\WikiExporterFactory;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
+use SpecialPage;
+use TitleFormatter;
+use WikiExporter;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -623,3 +630,8 @@ class SpecialExport extends SpecialPage {
 		return 'pagetools';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialExport::class, 'SpecialExport' );

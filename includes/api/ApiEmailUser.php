@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Specials\SpecialEmailUser;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
