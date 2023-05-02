@@ -162,6 +162,11 @@ class ForeignResourceManager {
 
 			$this->validateLicense( $moduleName, $info );
 
+			if ( $info['type'] === 'doc-only' ) {
+				$this->output( "... {$moduleName} is documentation-only, skipping\n" );
+				continue;
+			}
+
 			$destDir = "{$this->libDir}/$moduleName";
 
 			if ( $this->action === 'update' ) {

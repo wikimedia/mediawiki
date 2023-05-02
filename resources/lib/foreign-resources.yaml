@@ -34,12 +34,18 @@
 # - `file`: For a plain file.
 # - `multi-file`: For multiple plain files.
 # - `tar`: For a tarball archive (file may be compressed).
+# - `doc-only`: For documenting that a package is used, without managing it
 #
-# ### The "file" type
+# ### Shared fields
 #
+# The following fields are shared by all package types:
 # * `license` : SPDX license identifier
 # * `homepage` : [optional] Homepage URL of library shown on Special:Version
 # * `version` : [optional] Version string of library shown on Special:Version
+#
+# ### The "file" type
+#
+# Besides the shared ones, the following fields are used:
 # * `src`: Full URL to the remote resource.
 # * `integrity`: Cryptographic hash (integrity metadata format per <https://www.w3.org/TR/SRI/>).
 # * `dest`: [optional] The file name to use in the module directory. Default: Basename of URL.
@@ -54,9 +60,7 @@
 #
 # ### The "multi-file" type
 #
-# * `license` : SPDX license identifier
-# * `homepage` : [optional] Homepage URL of library shown on Special:Version
-# * `version` : [optional] Version string of library shown on Special:Version
+# Besides the shared ones, the following fields are used:
 # * `files`: An object mapping destination paths to `src` and `integrity` keys.
 # * `transforms`: [optional] File transformations (see below).
 #
@@ -74,9 +78,7 @@
 #
 # ### The "tar" type
 #
-# * `license` : SPDX license identifier
-# * `homepage` : [optional] Homepage URL of library shown on Special:Version
-# * `version` : [optional] Version string of library shown on Special:Version
+# Besides the shared ones, the following fields are used:
 # * `src`: Full URL to the remote resource.
 # * `integrity`: Cryptographic hash (integrity metadata format per <https://www.w3.org/TR/SRI/>).
 # * `dest`: [optional] The default is to extract all files from the package.
@@ -102,6 +104,12 @@
 # This would extract the "x.js" file, the "i18n" directory (recursive),
 # and any "*.css" files from the "style" directory. They will end up in mymodule/x.js,
 # mymodule/i18n and mymodule/themes, respectively.
+#
+# ### The "doc-only" type
+#
+# This type can be used for packages which are managed in some custom way (e.g. they require a
+# manual build step). manageForeignResources.php will ignore these records, but they will still
+# be shown on Special:Version. Only the shared fields are used.
 #
 # ### File transformations
 #
@@ -311,7 +319,12 @@ jquery.i18n:
     jquery.i18n-*/README.md:
     jquery.i18n-*/src:
 
-# TODO: jquery.ui (!)
+# Heavily modified; see the PATCHES file
+jquery.ui:
+  license: MIT
+  homepage: https://jqueryui.com
+  version: 1.9.2
+  type: doc-only
 
 moment:
   license: MIT
@@ -417,6 +430,20 @@ pako:
       src: https://raw.githubusercontent.com/nodeca/pako/2.0.4/LICENSE
       integrity: sha384-9tg5LwdfxM6Fpdp6Sep9VI0qXS7Eg5gQRPvNrfV3DKIkVVL3EwSK2atu+zRoEwJg
 
+pinia:
+  license: MIT
+  homepage: https://pinia.vuejs.org/
+  version: 2.0.16
+  type: tar
+  src: https://registry.npmjs.org/pinia/-/pinia-2.0.16.tgz
+  integrity: sha512-9/LMVO+/epny1NBfC77vnps4g3JRezxhhoF1xLUk8mZkUIxVnwfEAIRiAX8mYBTD/KCwZqnDMqXc8w3eU0FQGg==
+
+  dest:
+    package/README.md:
+    package/LICENSE:
+    package/dist/pinia.iife.js:
+    package/dist/pinia.iife.prod.js:
+
 qunitjs:
   license: MIT
   homepage: https://qunitjs.com
@@ -467,17 +494,3 @@ vuex:
     package/LICENSE:
     package/dist/vuex.global.js:
     package/dist/vuex.global.prod.js:
-
-pinia:
-  license: MIT
-  homepage: https://pinia.vuejs.org/
-  version: 2.0.16
-  type: tar
-  src: https://registry.npmjs.org/pinia/-/pinia-2.0.16.tgz
-  integrity: sha512-9/LMVO+/epny1NBfC77vnps4g3JRezxhhoF1xLUk8mZkUIxVnwfEAIRiAX8mYBTD/KCwZqnDMqXc8w3eU0FQGg==
-
-  dest:
-    package/README.md:
-    package/LICENSE:
-    package/dist/pinia.iife.js:
-    package/dist/pinia.iife.prod.js:
