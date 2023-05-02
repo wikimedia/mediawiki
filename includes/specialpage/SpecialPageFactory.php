@@ -72,6 +72,7 @@ use MediaWiki\Specials\SpecialExport;
 use MediaWiki\Specials\SpecialFewestRevisions;
 use MediaWiki\Specials\SpecialFileDuplicateSearch;
 use MediaWiki\Specials\SpecialFilepath;
+use MediaWiki\Specials\SpecialGoToInterwiki;
 use MediaWiki\Specials\SpecialMostImages;
 use MediaWiki\Specials\SpecialMovePage;
 use MediaWiki\Specials\SpecialUserRights;
@@ -770,7 +771,7 @@ class SpecialPageFactory {
 			]
 		],
 		'GoToInterwiki' => [
-			'class' => \SpecialGoToInterwiki::class,
+			'class' => SpecialGoToInterwiki::class,
 		],
 
 		// High use pages

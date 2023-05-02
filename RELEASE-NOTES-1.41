@@ -167,6 +167,7 @@ because of Phabricator reports.
   - SpecialFewestRevisions
   - SpecialFileDuplicateSearch
   - SpecialFilepath
+  - SpecialGoToInterwiki
 * Various mediawiki.ui variables have been deprecated in favor of
   'minerva.skin.variables.less' Codex design tokens featuring replacements.
 * The jquery.cookie ResourceLoader module has been merged into the existing

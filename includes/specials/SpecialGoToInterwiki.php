@@ -21,7 +21,10 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
 use MediaWiki\Title\Title;
+use UnlistedSpecialPage;
 
 /**
  * Landing page for non-local interwiki links.
@@ -103,3 +106,8 @@ class SpecialGoToInterwiki extends UnlistedSpecialPage {
 		return 'redirects';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialGoToInterwiki::class, 'SpecialGoToInterwiki' );
