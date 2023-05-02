@@ -1193,6 +1193,7 @@
 	"badsiglength": "Your signature is too long.\nIt must not be more than $1 {{PLURAL:$1|character|characters}} long.",
 	"badsiglinebreak": "Your signature must consist of a single line of wikitext.",
 	"linterror-bogus-image-options": "Bogus file option",
+	"linterror-big-tables": "Large tables that break display on mobile devices",
 	"linterror-deletable-table-tag": "Table tag that should be deleted",
 	"linterror-html5-misnesting": "Misnesting (now broken)",
 	"linterror-misc-tidy-replacement-issues": "Miscellaneous markup errors",
