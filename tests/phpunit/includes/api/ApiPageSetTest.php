@@ -143,40 +143,42 @@ class ApiPageSetTest extends ApiTestCase {
 		return [
 			'convert, redirect, convert' => [
 				[
-					[ '維基百科1', '#REDIRECT [[维基百科2]]' ],
-					[ '維基百科2', '' ],
+					'Esttay 1' => '#REDIRECT [[Test 2]]',
+					'Esttay 2' => '',
 				],
-				[ 'titles' => '维基百科1', 'converttitles' => 1, 'redirects' => 1 ],
-				[ [ 'from' => '维基百科1', 'to' => '維基百科1' ], [ 'from' => '维基百科2', 'to' => '維基百科2' ] ],
-				[ [ 'from' => '維基百科1', 'to' => '维基百科2' ] ],
+				[ 'titles' => 'Test 1', 'converttitles' => 1, 'redirects' => 1 ],
+				[
+					[ 'from' => 'Test 1', 'to' => 'Esttay 1' ],
+					[ 'from' => 'Test 2', 'to' => 'Esttay 2' ]
+				],
+				[ [ 'from' => 'Esttay 1', 'to' => 'Test 2' ] ],
 			],
 
 			'redirect, convert, redirect' => [
 				[
-					[ '維基百科3', '#REDIRECT [[维基百科4]]' ],
-					[ '維基百科4', '#REDIRECT [[維基百科5]]' ],
+					'Esttay 1' => '#REDIRECT [[Test 2]]',
+					'Esttay 2' => '#REDIRECT [[Esttay 3]]',
 				],
-				[ 'titles' => '維基百科3', 'converttitles' => 1, 'redirects' => 1 ],
-				[ [ 'from' => '维基百科4', 'to' => '維基百科4' ] ],
-				[ [ 'from' => '維基百科3', 'to' => '维基百科4' ], [ 'from' => '維基百科4', 'to' => '維基百科5' ] ],
+				[ 'titles' => 'Esttay 1', 'converttitles' => 1, 'redirects' => 1 ],
+				[ [ 'from' => 'Test 2', 'to' => 'Esttay 2' ] ],
+				[
+					[ 'from' => 'Esttay 1', 'to' => 'Test 2' ],
+					[ 'from' => 'Esttay 2', 'to' => 'Esttay 3' ]
+				],
 			],
 
-			'hans redirects to hant with converttitles' => [
-				[
-					[ '维基百科6', '#REDIRECT [[維基百科6]]' ],
-				],
-				[ 'titles' => '维基百科6', 'converttitles' => 1, 'redirects' => 1 ],
-				[ [ 'from' => '維基百科6', 'to' => '维基百科6' ] ],
-				[ [ 'from' => '维基百科6', 'to' => '維基百科6' ] ],
+			'self-redirect to variant, with converttitles' => [
+				[ 'Esttay' => '#REDIRECT [[Test]]' ],
+				[ 'titles' => 'Esttay', 'converttitles' => 1, 'redirects' => 1 ],
+				[ [ 'from' => 'Test', 'to' => 'Esttay' ] ],
+				[ [ 'from' => 'Esttay', 'to' => 'Test' ] ],
 			],
 
-			'hans redirects to hant without converttitles' => [
-				[
-					[ '维基百科6', '#REDIRECT [[維基百科6]]' ],
-				],
-				[ 'titles' => '维基百科6', 'redirects' => 1 ],
+			'self-redirect to variant, without converttitles' => [
+				[ 'Esttay' => '#REDIRECT [[Test]]' ],
+				[ 'titles' => 'Esttay', 'redirects' => 1 ],
 				[],
-				[ [ 'from' => '维基百科6', 'to' => '維基百科6' ] ],
+				[ [ 'from' => 'Esttay', 'to' => 'Test' ] ],
 			],
 		];
 	}
@@ -184,18 +186,16 @@ class ApiPageSetTest extends ApiTestCase {
 	/**
 	 * @dataProvider provideConversionWithRedirects
 	 */
-	public function testHandleConversionWithRedirects( $pages, $params, $expectConversion, $exceptRedirects ) {
-		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'zh' );
-
-		foreach ( $pages as $page ) {
-			$this->editPage( $page[0], $page[1] );
+	public function testHandleConversionWithRedirects( $pages, $params, $expectedConversion, $expectedRedirects ) {
+		foreach ( $pages as $title => $content ) {
+			$this->editPage( $title, $content );
 		}
 
 		$pageSet = $this->newApiPageSet( $params );
 		$pageSet->execute();
 
-		$this->assertSame( $expectConversion, $pageSet->getConvertedTitlesAsResult() );
-		$this->assertSame( $exceptRedirects, $pageSet->getRedirectTitlesAsResult() );
+		$this->assertSame( $expectedConversion, $pageSet->getConvertedTitlesAsResult() );
+		$this->assertSame( $expectedRedirects, $pageSet->getRedirectTitlesAsResult() );
 	}
 
 	public function testSpecialRedirects() {
