@@ -838,6 +838,7 @@
 	"apihelp-query+info-paramvalue-testactionsdetail-boolean": "Gibt einen booleschen Wert für jede Aktion zurück.",
 	"apihelp-query+info-paramvalue-testactionsdetail-full": "Gibt Meldungen zurück, die beschreiben, warum die Aktion nicht erlaubt ist, oder ein leeres Array, wenn sie erlaubt ist.",
 	"apihelp-query+info-paramvalue-testactionsdetail-quick": "Wie <kbd>full</kbd>, aber mit Überspringen von Aufwandsüberprüfungen.",
+	"apihelp-query+info-param-testactionsautocreate": "Prüfen, ob die Durchführung von <var>$1testactions</var> automatisch ein temporäres Konto erstellen würde.",
 	"apihelp-query+info-example-simple": "Ruft Informationen über die Seite <kbd>Hauptseite</kbd> ab.",
 	"apihelp-query+iwbacklinks-summary": "Findet alle Seiten, die auf einen angegebenen Interwikilink verlinken.",
 	"apihelp-query+iwbacklinks-param-prefix": "Präfix für das Interwiki.",
