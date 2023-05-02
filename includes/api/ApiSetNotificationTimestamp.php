@@ -26,7 +26,7 @@
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * API interface for setting the wl_notificationtimestamp field
@@ -39,8 +39,8 @@ class ApiSetNotificationTimestamp extends ApiBase {
 	/** @var RevisionStore */
 	private $revisionStore;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var WatchedItemStoreInterface */
 	private $watchedItemStore;
@@ -48,20 +48,20 @@ class ApiSetNotificationTimestamp extends ApiBase {
 	/**
 	 * @param ApiMain $main
 	 * @param string $action
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param RevisionStore $revisionStore
 	 * @param WatchedItemStoreInterface $watchedItemStore
 	 */
 	public function __construct(
 		ApiMain $main,
 		$action,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		RevisionStore $revisionStore,
 		WatchedItemStoreInterface $watchedItemStore
 	) {
 		parent::__construct( $main, $action );
 
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->revisionStore = $revisionStore;
 		$this->watchedItemStore = $watchedItemStore;
 	}
@@ -92,7 +92,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 			);
 		}
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
+		$dbw = $this->dbProvider->getPrimaryDatabase();
 
 		$timestamp = null;
 		if ( isset( $params['timestamp'] ) ) {

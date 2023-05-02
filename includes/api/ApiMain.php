@@ -248,7 +248,7 @@ class ApiMain extends ApiBase {
 		'setnotificationtimestamp' => [
 			'class' => ApiSetNotificationTimestamp::class,
 			'services' => [
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'RevisionStore',
 				'WatchedItemStore',
 			]
@@ -403,7 +403,7 @@ class ApiMain extends ApiBase {
 		'tag' => [
 			'class' => ApiTag::class,
 			'services' => [
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'RevisionStore',
 			]
 		],
@@ -416,7 +416,7 @@ class ApiMain extends ApiBase {
 		'setpagelanguage' => [
 			'class' => ApiSetPageLanguage::class,
 			'services' => [
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'LanguageNameUtils',
 			]
 		],

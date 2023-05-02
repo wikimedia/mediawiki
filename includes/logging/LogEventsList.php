@@ -31,7 +31,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Permissions\Authority;
-use Wikimedia\Rdbms\IDatabase;
 
 class LogEventsList extends ContextSource {
 	public const NO_ACTION_LINK = 1;
@@ -807,7 +806,7 @@ class LogEventsList extends ContextSource {
 	/**
 	 * SQL clause to skip forbidden log types for this user
 	 *
-	 * @param IDatabase $db
+	 * @param \Wikimedia\Rdbms\IReadableDatabase $db
 	 * @param string $audience Public/user
 	 * @param Authority|null $performer User to check, required when audience isn't public
 	 * @return string|false String on success, false on failure.
