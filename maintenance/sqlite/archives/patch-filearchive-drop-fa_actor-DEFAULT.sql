@@ -7,27 +7,27 @@ BEGIN;
 
 DROP TABLE IF EXISTS /*_*/filearchive_tmp;
 CREATE TABLE /*_*/filearchive_tmp (
-  fa_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  fa_name varchar(255) binary NOT NULL default '',
-  fa_archive_name varchar(255) binary default '',
-  fa_storage_group varbinary(16),
-  fa_storage_key varbinary(64) default '',
-  fa_deleted_user int,
-  fa_deleted_timestamp binary(14) default '',
-  fa_deleted_reason_id bigint unsigned NOT NULL,
-  fa_size int unsigned default 0,
-  fa_width int default 0,
-  fa_height int default 0,
-  fa_metadata mediumblob,
-  fa_bits int default 0,
-  fa_media_type ENUM("UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE", "3D") default NULL,
-  fa_major_mime ENUM("unknown", "application", "audio", "image", "text", "video", "message", "model", "multipart", "chemical") default "unknown",
-  fa_minor_mime varbinary(100) default "unknown",
-  fa_description_id bigint unsigned NOT NULL,
-  fa_actor bigint unsigned NOT NULL,
-  fa_timestamp binary(14) default '',
-  fa_deleted tinyint unsigned NOT NULL default 0,
-  fa_sha1 varbinary(32) NOT NULL default ''
+  fa_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  fa_name TEXT  NOT NULL default '',
+  fa_archive_name TEXT  default '',
+  fa_storage_group BLOB,
+  fa_storage_key BLOB default '',
+  fa_deleted_user INTEGER,
+  fa_deleted_timestamp BLOB default '',
+  fa_deleted_reason_id INTEGER  NOT NULL,
+  fa_size INTEGER  default 0,
+  fa_width INTEGER default 0,
+  fa_height INTEGER default 0,
+  fa_metadata BLOB,
+  fa_bits INTEGER default 0,
+  fa_media_type TEXT default NULL,
+  fa_major_mime TEXT default "unknown",
+  fa_minor_mime BLOB default "unknown",
+  fa_description_id INTEGER  NOT NULL,
+  fa_actor INTEGER  NOT NULL,
+  fa_timestamp BLOB default '',
+  fa_deleted INTEGER  NOT NULL default 0,
+  fa_sha1 BLOB NOT NULL default ''
 ) /*$wgDBTableOptions*/;
 
 INSERT OR IGNORE INTO /*_*/filearchive_tmp (
@@ -50,6 +50,6 @@ CREATE INDEX /*i*/fa_name ON /*_*/filearchive (fa_name, fa_timestamp);
 CREATE INDEX /*i*/fa_storage_group ON /*_*/filearchive (fa_storage_group, fa_storage_key);
 CREATE INDEX /*i*/fa_deleted_timestamp ON /*_*/filearchive (fa_deleted_timestamp);
 CREATE INDEX /*i*/fa_actor_timestamp ON /*_*/filearchive (fa_actor,fa_timestamp);
-CREATE INDEX /*i*/fa_sha1 ON /*_*/filearchive (fa_sha1(10));
+CREATE INDEX /*i*/fa_sha1 ON /*_*/filearchive (fa_sha1);
 
 COMMIT;

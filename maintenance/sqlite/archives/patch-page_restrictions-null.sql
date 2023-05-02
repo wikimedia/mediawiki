@@ -4,19 +4,19 @@ BEGIN;
 DROP TABLE IF EXISTS /*_*/page_tmp;
 
 CREATE TABLE /*_*/page_tmp (
-  page_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  page_namespace int NOT NULL,
-  page_title varchar(255) binary NOT NULL,
-  page_restrictions tinyblob NULL,
-  page_is_redirect tinyint unsigned NOT NULL default 0,
-  page_is_new tinyint unsigned NOT NULL default 0,
-  page_random real unsigned NOT NULL,
-  page_touched binary(14) NOT NULL default '',
-  page_links_updated varbinary(14) NULL default NULL,
-  page_latest int unsigned NOT NULL,
-  page_len int unsigned NOT NULL,
-  page_content_model varbinary(32) DEFAULT NULL,
-  page_lang varbinary(35) DEFAULT NULL
+  page_id INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT,
+  page_namespace INTEGER NOT NULL,
+  page_title TEXT  NOT NULL,
+  page_restrictions BLOB NULL,
+  page_is_redirect INTEGER  NOT NULL default 0,
+  page_is_new INTEGER  NOT NULL default 0,
+  page_random real  NOT NULL,
+  page_touched BLOB NOT NULL default '',
+  page_links_updated BLOB NULL default NULL,
+  page_latest INTEGER  NOT NULL,
+  page_len INTEGER  NOT NULL,
+  page_content_model BLOB DEFAULT NULL,
+  page_lang BLOB DEFAULT NULL
 ) /*$wgDBTableOptions*/;
 
 INSERT INTO /*_*/page_tmp

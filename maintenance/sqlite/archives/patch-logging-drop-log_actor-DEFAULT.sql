@@ -7,17 +7,17 @@ BEGIN;
 
 DROP TABLE IF EXISTS /*_*/logging_tmp;
 CREATE TABLE /*_*/logging_tmp (
-  log_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  log_type varbinary(32) NOT NULL default '',
-  log_action varbinary(32) NOT NULL default '',
-  log_timestamp binary(14) NOT NULL default '19700101000000',
-  log_actor bigint unsigned NOT NULL,
-  log_namespace int NOT NULL default 0,
-  log_title varchar(255) binary NOT NULL default '',
-  log_page int unsigned NULL,
-  log_comment_id bigint unsigned NOT NULL,
-  log_params blob NOT NULL,
-  log_deleted tinyint unsigned NOT NULL default 0
+  log_id INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT,
+  log_type BLOB NOT NULL default '',
+  log_action BLOB NOT NULL default '',
+  log_timestamp BLOB NOT NULL default '19700101000000',
+  log_actor INTEGER  NOT NULL,
+  log_namespace INTEGER NOT NULL default 0,
+  log_title TEXT  NOT NULL default '',
+  log_page INTEGER  NULL,
+  log_comment_id INTEGER  NOT NULL,
+  log_params BLOB NOT NULL,
+  log_deleted INTEGER  NOT NULL default 0
 ) /*$wgDBTableOptions*/;
 
 INSERT OR IGNORE INTO /*_*/logging_tmp (
