@@ -33,7 +33,6 @@
 		<testsuite name="skins">
 			<directory>structure</directory>
 			<file>suites/ExtensionsTestSuite.php</file>
-			<file>suites/LessTestSuite.php</file>
 		</testsuite>
 		<!-- As there is a class Maintenance, we cannot use the name "maintenance" directly -->
 		<testsuite name="maintenance_suite">
@@ -49,7 +48,6 @@
 			<directory>structure</directory>
 			<file>suites/ExtensionsTestSuite.php</file>
 			<file>suites/ExtensionsParserTestSuite.php</file>
-			<file>suites/LessTestSuite.php</file>
 		</testsuite>
 		<testsuite name="unit">
 			<directory>unit</directory>

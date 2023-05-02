@@ -41,7 +41,6 @@
 			<directory>tests/phpunit/skins</directory>
 			<directory>tests/phpunit/structure</directory>
 			<file>tests/phpunit/suites/ExtensionsTestSuite.php</file>
-			<file>tests/phpunit/suites/LessTestSuite.php</file>
 		</testsuite>
 		<!-- As there is a class Maintenance, we cannot use the name "maintenance" directly -->
 		<testsuite name="maintenance_suite">
@@ -57,7 +56,6 @@
 			<directory>tests/phpunit/structure</directory>
 			<file>tests/phpunit/suites/ExtensionsTestSuite.php</file>
 			<file>tests/phpunit/suites/ExtensionsParserTestSuite.php</file>
-			<file>tests/phpunit/suites/LessTestSuite.php</file>
 		</testsuite>
 		<testsuite name="documentation">
 			<directory>tests/phpunit/documentation</directory>
