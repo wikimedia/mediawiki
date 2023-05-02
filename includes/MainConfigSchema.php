@@ -8207,7 +8207,7 @@ class MainConfigSchema {
 	 * ];
 	 * ```
 	 *
-	 * @note For backwards compatibility reasons, this my also be given as a single
+	 * @note For backwards compatibility reasons, this may also be given as a single
 	 *       integer, representing the number of account creations per day.
 	 *
 	 * @warning Requires $wgMainCacheType to be enabled
