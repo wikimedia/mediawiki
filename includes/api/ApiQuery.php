@@ -114,6 +114,7 @@ class ApiQuery extends ApiBase {
 				'LanguageConverterFactory',
 				'RestrictionStore',
 				'LinksMigration',
+				'TempUserCreator',
 			],
 		],
 		'links' => [

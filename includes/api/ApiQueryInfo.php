@@ -29,6 +29,7 @@ use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
+use MediaWiki\User\TempUser\TempUserCreator;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
 
@@ -55,6 +56,8 @@ class ApiQueryInfo extends ApiQueryBase {
 	private $restrictionStore;
 	/** @var LinksMigration */
 	private $linksMigration;
+	/** @var TempUserCreator */
+	private $tempUserCreator;
 
 	private $fld_protection = false, $fld_talkid = false,
 		$fld_subjectid = false, $fld_url = false,
@@ -117,6 +120,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * @param LanguageConverterFactory $languageConverterFactory
 	 * @param RestrictionStore $restrictionStore
 	 * @param LinksMigration $linksMigration
+	 * @param TempUserCreator $tempUserCreator
 	 */
 	public function __construct(
 		ApiQuery $queryModule,
@@ -129,7 +133,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		WatchedItemStore $watchedItemStore,
 		LanguageConverterFactory $languageConverterFactory,
 		RestrictionStore $restrictionStore,
-		LinksMigration $linksMigration
+		LinksMigration $linksMigration,
+		TempUserCreator $tempUserCreator
 	) {
 		parent::__construct( $queryModule, $moduleName, 'in' );
 		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $contentLanguage );
@@ -140,6 +145,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->watchedItemStore = $watchedItemStore;
 		$this->restrictionStore = $restrictionStore;
 		$this->linksMigration = $linksMigration;
+		$this->tempUserCreator = $tempUserCreator;
 	}
 
 	/**
@@ -426,6 +432,17 @@ class ApiQueryInfo extends ApiQueryBase {
 					}
 					$this->addBlockInfoToStatus( $status );
 					$pageInfo['actions'][$action] = $errorFormatter->arrayFromStatus( $status );
+				}
+			}
+
+			if ( $this->params['testactionsautocreate'] ) {
+				$pageInfo['wouldautocreate'] = [];
+				foreach ( $this->params['testactions'] as $action ) {
+					// Copied from EditPage::maybeActivateTempUserCreate
+					$pageInfo['wouldautocreate'][$action] =
+						!$this->getUser()->isRegistered()
+							&& $this->tempUserCreator->isAutoCreateAction( $action )
+							&& $this->getAuthority()->isAllowed( 'createaccount' );
 				}
 			}
 		}
@@ -880,6 +897,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				ParamValidator::PARAM_DEFAULT => 'boolean',
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
+			'testactionsautocreate' => false,
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			],

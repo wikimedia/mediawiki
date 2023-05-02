@@ -173,6 +173,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'usergroups':
 					$fit = $this->appendUserGroups( $p, $params['numberingroup'] );
 					break;
+				case 'autocreatetempuser':
+					$fit = $this->appendAutoCreateTempUser( $p );
+					break;
 				case 'libraries':
 					$fit = $this->appendInstalledLibraries( $p );
 					break;
@@ -679,6 +682,25 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $result->addValue( 'query', $property, $data );
 	}
 
+	protected function appendAutoCreateTempUser( $property ) {
+		$config = $this->getConfig()->get( MainConfigNames::AutoCreateTempUser );
+
+		$data = [ 'enabled' => false ];
+		if ( $config['enabled'] ?? false ) {
+			$data['enabled'] = true;
+			$data['actions'] = $config['actions'];
+			$data['genPattern'] = $config['genPattern'];
+			$data['matchPattern'] = $config['matchPattern'] ?? $data['genPattern'];
+			$data['serialProvider'] = $config['serialProvider'];
+			$data['serialMapping'] = $config['serialMapping'];
+		}
+		if ( isset( $config['reservedPattern'] ) ) {
+			$data['reservedPattern'] = $config['reservedPattern'];
+		}
+
+		return $this->getResult()->addValue( 'query', $property, $data );
+	}
+
 	protected function appendFileExtensions( $property ) {
 		$data = [];
 		foreach (
@@ -1035,6 +1057,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'dbrepllag',
 					'statistics',
 					'usergroups',
+					'autocreatetempuser',
 					'libraries',
 					'extensions',
 					'fileextensions',

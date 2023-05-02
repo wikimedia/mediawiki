@@ -130,6 +130,92 @@ class ApiQueryInfoTest extends ApiTestCase {
 	 * @covers ::execute
 	 * @covers ::extractPageInfo
 	 */
+	public function testExecuteEditActionsAutoCreate() {
+		$page = $this->getExistingTestPage( 'Pluto' );
+		$title = $page->getTitle();
+
+		// Disabled
+		$this->overrideConfigValue( MainConfigNames::AutoCreateTempUser, [
+			'enabled' => false,
+		] );
+		[ $data ] = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'info',
+			'titles' => $title->getText(),
+			'intestactions' => 'edit',
+			'intestactionsautocreate' => true,
+		], null, false, new User() );
+		$result = $data['query']['pages'][$page->getId()]['wouldautocreate']['edit'];
+		$this->assertFalse( $result );
+
+		// Enabled
+		$this->setGroupPermissions( '*', 'createaccount', true );
+		$this->overrideConfigValue( MainConfigNames::AutoCreateTempUser, [
+			'enabled' => true,
+			'actions' => [ 'edit' ],
+			'genPattern' => 'Unregistered $1',
+			'serialProvider' => [],
+			'serialMapping' => [],
+		] );
+		[ $data ] = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'info',
+			'titles' => $title->getText(),
+			'intestactions' => 'edit',
+			'intestactionsautocreate' => true,
+		], null, false, new User() );
+		$result = $data['query']['pages'][$page->getId()]['wouldautocreate']['edit'];
+		$this->assertTrue( $result );
+
+		[ $data ] = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'info',
+			'titles' => $title->getText(),
+			'intestactions' => 'create',
+			'intestactionsautocreate' => true,
+		], null, false, new User() );
+		$result = $data['query']['pages'][$page->getId()]['wouldautocreate']['create'];
+		$this->assertTrue( $result );
+
+		// Enabled - 'read' is not an autocreate action
+		[ $data ] = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'info',
+			'titles' => $title->getText(),
+			'intestactions' => 'read',
+			'intestactionsautocreate' => true,
+		], null, false, new User() );
+		$result = $data['query']['pages'][$page->getId()]['wouldautocreate']['read'];
+		$this->assertFalse( $result );
+
+		// Enabled - but the user is logged in
+		[ $data ] = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'info',
+			'titles' => $title->getText(),
+			'intestactions' => 'edit',
+			'intestactionsautocreate' => true,
+		], null, false, static::getTestSysop()->getAuthority() );
+		$result = $data['query']['pages'][$page->getId()]['wouldautocreate']['edit'];
+		$this->assertFalse( $result );
+
+		// Enabled - but the user isn't allowed to create accounts
+		$this->setGroupPermissions( '*', 'createaccount', false );
+		[ $data ] = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'info',
+			'titles' => $title->getText(),
+			'intestactions' => 'edit',
+			'intestactionsautocreate' => true,
+		], null, false, new User() );
+		$result = $data['query']['pages'][$page->getId()]['wouldautocreate']['edit'];
+		$this->assertFalse( $result );
+	}
+
+	/**
+	 * @covers ::execute
+	 * @covers ::extractPageInfo
+	 */
 	public function testExecuteEditActionsFull() {
 		$page = $this->getExistingTestPage( 'Pluto' );
 		$title = $page->getTitle();
