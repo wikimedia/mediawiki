@@ -169,7 +169,7 @@ because of Phabricator reports.
   - SpecialFilepath
   - SpecialGoToInterwiki
 * Various mediawiki.ui variables have been deprecated in favor of
-  'minerva.skin.variables.less' Codex design tokens featuring replacements.
+  'mediawiki.skin.variables.less' Codex design tokens featuring replacements.
 * The jquery.cookie ResourceLoader module has been merged into the existing
   mediawiki.cookie module; jquery.cookie remains but is deprecated.
 * The global function wfGetLangObj is deprecated and emits deprecation
