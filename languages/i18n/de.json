@@ -123,7 +123,8 @@
 			"Justman10000",
 			"Amire80",
 			"Raimond Spekking",
-			"Ammarpad"
+			"Ammarpad",
+			"Lukasaiko"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -394,7 +395,7 @@
 	"nstab-special": "Spezialseite",
 	"nstab-project": "Projektseite",
 	"nstab-image": "Datei",
-	"nstab-mediawiki": "Systemnachricht",
+	"nstab-mediawiki": "Nachricht",
 	"nstab-template": "Vorlage",
 	"nstab-help": "Hilfeseite",
 	"nstab-category": "Kategorie",

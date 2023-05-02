@@ -236,7 +236,8 @@
 			"Raos10",
 			"SpikeShroom",
 			"James",
-			"The Pro Gamer"
+			"The Pro Gamer",
+			"No se"
 		]
 	},
 	"tog-underline": "Subrayar enlaces:",
@@ -574,7 +575,7 @@
 	"viewsource-title": "Ver el código de «$1»",
 	"actionthrottled": "Acción limitada",
 	"actionthrottledtext": "Como medida contra los abusos, la acción que estás realizando está limitada a un número determinado de veces en un periodo corto de tiempo, y has excedido ese límite.\nInténtalo de nuevo en unos minutos.",
-	"protectedpagetext": "Esta página ha sido protegida para evitar ediciones u otras acciones.",
+	"protectedpagetext": "Esta página ha sido protegida para evitar ediciones u otras acciones. las razones se muestran en el [{{fullurl:Special:Log|type=protect&page={{FULLPAGENAMEE}}}} registro de protecciones]",
 	"viewsourcetext": "Puedes ver y copiar el código fuente de esta página.",
 	"viewyourtext": "Puedes ver y copiar el código de <strong>tus ediciones</strong> en esta página.",
 	"protectedinterface": "Esta página proporciona el texto de la interfaz del software en esta wiki y está protegido para evitar abusos.\nPara agregar o cambiar las traducciones para todas las wikis, usa [https://translatewiki.net/ translatewiki.net], el proyecto de localización de MediaWiki.",
