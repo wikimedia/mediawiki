@@ -33,7 +33,8 @@
 			"Vlad5250",
 			"לערי ריינהארט",
 			"아라",
-			"1233qwer1234qwer4"
+			"1233qwer1234qwer4",
+			"Harald Khan"
 		]
 	},
 	"tog-underline": "Strek under lenkjer:",
@@ -2506,7 +2507,7 @@
 	"creditspage": "Sidegodskriving",
 	"nocredits": "Det finst ikkje ikkje nokon godskrivingsinformasjon for denne sida.",
 	"spamprotectiontitle": "Filter for vern mot reklame",
-	"spamprotectiontext": "Sida du prøvde å lagre vart blokkert av spamfilteret. Dette kjem truleg av at ei ekstern lenkje på sida er svartelista.",
+	"spamprotectiontext": "Teksten du prøvde å lagre vart blokkert av spamfilteret. Dette kjem truleg av at ei ekstern lenkje på sida er svartelista.",
 	"spamprotectionmatch": "Den følgjande teksten utløyste reklamefilteret: $1",
 	"spambot_username": "MediaWiki si spamopprydding",
 	"spam_reverting": "Attenderullar til siste versjon utan lenkje til $1",
@@ -2525,7 +2526,9 @@
 	"pageinfo-namespace": "Namnerom",
 	"pageinfo-article-id": "Side-ID",
 	"pageinfo-language": "Sideinnhaldsspråk",
+	"pageinfo-language-change": "endre",
 	"pageinfo-content-model": "Type sideinnhald",
+	"pageinfo-content-model-change": "endre",
 	"pageinfo-robot-policy": "Robotindeksering",
 	"pageinfo-robot-index": "Tillate",
 	"pageinfo-robot-noindex": "Ikkje tillate",
