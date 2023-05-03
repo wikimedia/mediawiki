@@ -40,8 +40,9 @@
 #
 # The following fields are shared by all package types:
 # * `license` : SPDX license identifier
-# * `homepage` : [optional] Homepage URL of library shown on Special:Version
-# * `version` : [optional] Version string of library shown on Special:Version
+# * `homepage` : [optional] Homepage URL of library, to be shown on Special:Version
+# * `authors` : [optional] Authors string of library, to be shown on Special:Version
+# * `version` : [optional] Version string of library, to be shown on Special:Version
 #
 # ### The "file" type
 #
@@ -133,6 +134,7 @@
 CLDRPluralRuleParser:
   license: MIT
   homepage: https://github.com/santhoshtr/CLDRPluralRuleParser
+  authors: Santhosh Thottingal
   version: 1.3.1-0dda851
   type: file
   src: https://raw.githubusercontent.com/santhoshtr/CLDRPluralRuleParser/0dda851/src/CLDRPluralRuleParser.js
@@ -141,6 +143,7 @@ CLDRPluralRuleParser:
 codex:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
+  authors: Design Systems team, Wikimedia Foundation
   version: 0.9.1
   type: tar
   src: https://registry.npmjs.org/@wikimedia/codex/-/codex-0.9.1.tgz
@@ -159,6 +162,7 @@ codex:
 codex-design-tokens:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
+  authors: Design Systems team, Wikimedia Foundation
   version: 0.9.1
   type: tar
   src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-0.9.1.tgz
@@ -172,6 +176,7 @@ codex-design-tokens:
 codex-icons:
   license: MIT
   homepage: https://doc.wikimedia.org/codex/
+  authors: Design Systems team, Wikimedia Foundation
   version: 0.9.1
   type: tar
   src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-0.9.1.tgz
@@ -185,6 +190,7 @@ codex-icons:
 codex-search:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
+  authors: Design Systems team, Wikimedia Foundation
   version: 0.9.1
   type: tar
   src: https://registry.npmjs.org/@wikimedia/codex-search/-/codex-search-0.9.1.tgz
@@ -202,6 +208,7 @@ codex-search:
 url:
   license: MIT
   homepage: https://github.com/financial-times/polyfill-library
+  authors: Financial Times
   version: 3.111.0-0ece79ce32
   type: multi-file
   files:
@@ -218,6 +225,7 @@ url:
 fetch-polyfill:
   license: MIT
   homepage: https://github.com/github/fetch#readme
+  authors: GitHub, Inc.
   version: 3.6.2
   type: tar
   src: https://registry.npmjs.com/whatwg-fetch/-/whatwg-fetch-3.6.2.tgz
@@ -230,6 +238,7 @@ fetch-polyfill:
 intersection-observer:
   license: Apache-2.0
   homepage: https://github.com/GoogleChromeLabs/intersection-observer
+  authors: Philip Walton
   version: 0.12.0
   type: tar
   src: https://registry.npmjs.org/intersection-observer/-/intersection-observer-0.12.0.tgz
@@ -241,6 +250,7 @@ intersection-observer:
 jquery:
   license: MIT
   homepage: https://jquery.com
+  authors: OpenJS Foundation and other contributors
   version: 3.6.1
   type: multi-file
   files:
@@ -251,8 +261,9 @@ jquery:
 
 jquery.chosen:
   license: MIT
-  version: 1.8.2
   homepage: https://harvesthq.github.io/chosen/
+  authors: Patrick Filler for Harvest, Matthew Lettini, Patrick Filler, Ken Earley, Christophe Coevoet, Koen Punt, and T.J. Schuck.
+  version: 1.8.2
   type: multi-file
   files:
     LICENSE:
@@ -278,6 +289,7 @@ jquery.chosen:
 jquery.client:
   license: MIT
   homepage: https://www.npmjs.com/package/jquery-client
+  authors: Trevor Parscal, Timo Tijhof, and Roan Kattouw
   version: 3.0.0
   type: tar
   src: https://registry.npmjs.org/jquery-client/-/jquery-client-3.0.0.tgz
@@ -291,6 +303,7 @@ jquery.client:
 jquery.form:
   license: GPL-2.0+ OR MIT
   homepage: https://github.com/jquery-form/form
+  authors: Mike Alsup and Kevin Morris
   version: 3.14-ff80d9ddf4
   type: file
   src: https://raw.githubusercontent.com/jquery-form/form/ff80d9ddf4/jquery.form.js
@@ -299,6 +312,7 @@ jquery.form:
 jquery.fullscreen:
   license: GPL-2.0+
   homepage: https://github.com/theopolisme/jquery-fullscreen
+  authors: Theo Patt, Timo Tijhof, Gilles Dubuc
   version: 2.1.0
   type: file
   src: https://raw.githubusercontent.com/theopolisme/jquery-fullscreen/v2.1.0/jquery.fullscreen.js
@@ -307,6 +321,7 @@ jquery.fullscreen:
 jquery.i18n:
   license: MIT OR GPL-2.0-or-later
   homepage: https://github.com/wikimedia/jquery.i18n
+  authors: Language Engineering team, Wikimedia Foundation
   version: 1.0.7
   type: tar
   src: https://codeload.github.com/wikimedia/jquery.i18n/tar.gz/70b5ee20a638cb8fe36baef8d51ac2eb577ce012
@@ -323,12 +338,14 @@ jquery.i18n:
 jquery.ui:
   license: MIT
   homepage: https://jqueryui.com
+  authors: OpenJS Foundation and other contributors
   version: 1.9.2
   type: doc-only
 
 moment:
   license: MIT
   homepage: https://momentjs.com
+  authors: JS Foundation and other contributors
   version: 2.25.2
   type: tar
   src: https://codeload.github.com/moment/moment/tar.gz/2.25.2
@@ -343,6 +360,7 @@ moment:
 mustache:
   license: MIT
   homepage: https://github.com/janl/mustache.js
+  authors: Michael Jackson, Jan Lehnardt, Phillip Johnsen, and other contributors
   version: 4.2.0
   type: tar
   src: https://registry.npmjs.org/mustache/-/mustache-4.2.0.tgz
@@ -354,6 +372,7 @@ mustache:
 oojs:
   license: MIT
   homepage: https://www.mediawiki.org/wiki/OOjs
+  authors: OOjs Team and other contributors
   version: 6.0.0
   type: tar
   src: https://registry.npmjs.org/oojs/-/oojs-6.0.0.tgz
@@ -367,6 +386,7 @@ oojs:
 oojs-router:
   license: MIT
   homepage: https://www.mediawiki.org/wiki/OOjs_Router
+  authors: OOjs Team and other contributors
   version: 0.3.0
   type: tar
   src: https://registry.npmjs.org/oojs-router/-/oojs-router-0.3.0.tgz
@@ -380,6 +400,7 @@ oojs-router:
 ooui:
   license: MIT
   homepage: https://www.mediawiki.org/wiki/OOUI
+  authors: OOUI Team and other contributors
   version: 0.46.3
   type: tar
   src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.46.3.tgz
@@ -415,6 +436,7 @@ ooui:
 pako:
   license: MIT AND Zlib
   homepage: https://github.com/nodeca/pako
+  authors: Andrei Tuputcyn, Vitaly Puzrin, Friedel Ziegelmayer, Kirill Efimov, Jean-loup Gailly, and Mark Adler
   version: 2.0.4
   type: multi-file
   files:
@@ -431,6 +453,7 @@ pako:
 pinia:
   license: MIT
   homepage: https://pinia.vuejs.org/
+  authors: Eduardo San Martin Morote
   version: 2.0.16
   type: tar
   src: https://registry.npmjs.org/pinia/-/pinia-2.0.16.tgz
@@ -445,6 +468,7 @@ pinia:
 qunitjs:
   license: MIT
   homepage: https://qunitjs.com
+  authors: OpenJS Foundation and other contributors
   version: 2.19.4
   type: multi-file
   # Integrity from link modals at https://code.jquery.com/qunit/
@@ -459,6 +483,7 @@ qunitjs:
 sinonjs:
   license: BSD-3-Clause
   homepage: https://sinonjs.org/
+  authors: Christian Johansen and other contributors
   version: 1.17.7
   type: file
   src: https://sinonjs.org/releases/sinon-1.17.7.js
@@ -468,6 +493,7 @@ sinonjs:
 vue:
   license: MIT
   homepage: https://vuejs.org/
+  authors: Yuxi (Evan) You
   version: 3.2.37
   type: tar
   # This is the migration build of Vue 3.2.37 which provides compatibility for Vue 2 code
@@ -482,6 +508,7 @@ vue:
 vuex:
   license: MIT
   homepage: https://vuex.vuejs.org/
+  authors: Yuxi (Evan) You
   version: 4.0.2
   type: tar
   src: https://registry.npmjs.org/vuex/-/vuex-4.0.2.tgz

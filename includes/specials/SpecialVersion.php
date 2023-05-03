@@ -740,6 +740,7 @@ class SpecialVersion extends SpecialPage {
 			. Html::element( 'th', [], $this->msg( 'version-libraries-library' )->text() )
 			. Html::element( 'th', [], $this->msg( 'version-libraries-version' )->text() )
 			. Html::element( 'th', [], $this->msg( 'version-libraries-license' )->text() )
+			. Html::element( 'th', [], $this->msg( 'version-libraries-authors' )->text() )
 			. Html::element( 'th', [], $this->msg( 'version-libraries-source' )->text() )
 			. Html::closeElement( 'tr' );
 
@@ -764,6 +765,7 @@ class SpecialVersion extends SpecialPage {
 				)
 				. Html::element( 'td', [ 'dir' => 'auto' ], $info['version'] )
 				. Html::element( 'td', [ 'dir' => 'auto' ], $info['license'] )
+				. Html::element( 'td', [ 'dir' => 'auto' ], $info['authors'] ?? '—' )
 				. Html::element( 'td', [ 'dir' => 'auto' ], $this->listToText( $info['source'] ) )
 				. Html::closeElement( 'tr' );
 		}
