@@ -74,6 +74,7 @@ use MediaWiki\Specials\SpecialFileDuplicateSearch;
 use MediaWiki\Specials\SpecialFilepath;
 use MediaWiki\Specials\SpecialGoToInterwiki;
 use MediaWiki\Specials\SpecialImport;
+use MediaWiki\Specials\SpecialJavaScriptTest;
 use MediaWiki\Specials\SpecialMostImages;
 use MediaWiki\Specials\SpecialMovePage;
 use MediaWiki\Specials\SpecialUserRights;
@@ -1219,7 +1220,7 @@ class SpecialPageFactory {
 
 			if ( $this->options->get( MainConfigNames::EnableJavaScriptTest ) ) {
 				$this->list['JavaScriptTest'] = [
-					'class' => \SpecialJavaScriptTest::class
+					'class' => SpecialJavaScriptTest::class
 				];
 			}
 

@@ -21,11 +21,17 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use HashConfig;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\ResourceLoader;
+use MultiConfig;
+use SpecialPage;
+use Xml;
 
 /**
  * @ingroup SpecialPage
@@ -195,3 +201,8 @@ HTML;
 		return 'other';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialJavaScriptTest::class, 'SpecialJavaScriptTest' );
