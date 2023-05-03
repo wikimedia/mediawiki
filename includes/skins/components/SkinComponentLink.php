@@ -123,6 +123,7 @@ class SkinComponentLink implements SkinComponent {
 	 */
 	private function makeLink( $key, $item, $options = [] ) {
 		$html = $item['html'] ?? null;
+		$icon = $item['icon'] ?? null;
 		if ( $html ) {
 			return [
 				'html' => $html
@@ -202,6 +203,7 @@ class SkinComponentLink implements SkinComponent {
 		}
 		return [
 			'html' => $html,
+			'icon' => $icon,
 			'array-attributes' => count( $linkHtmlAttributes ) > 0 ? $linkHtmlAttributes : null,
 			'text' => trim( $text )
 		];
