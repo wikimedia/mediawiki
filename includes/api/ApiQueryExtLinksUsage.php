@@ -254,7 +254,11 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 				IntegerDef::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				IntegerDef::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			],
-			'expandurl' => false,
+			'expandurl' => [
+				ParamValidator::PARAM_TYPE => 'boolean',
+				ParamValidator::PARAM_DEFAULT => false,
+				ParamValidator::PARAM_DEPRECATED => true,
+			],
 		];
 
 		if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
