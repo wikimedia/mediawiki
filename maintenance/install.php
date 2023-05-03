@@ -76,6 +76,7 @@ class CommandLineInstaller extends Maintenance {
 
 		$this->addOption( 'dbtype', 'The type of database (mysql)', false, true );
 		$this->addOption( 'dbserver', 'The database host (localhost)', false, true );
+		$this->addOption( 'dbssl', 'Connect to the database over SSL' );
 		$this->addOption( 'dbport', 'The database port; only for PostgreSQL (5432)', false, true );
 		$this->addOption( 'dbname', 'The database name (my_wiki)', false, true );
 		$this->addOption( 'dbpath', 'The path for the SQLite DB ($IP/data)', false, true );

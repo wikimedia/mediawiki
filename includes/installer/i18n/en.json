@@ -96,6 +96,7 @@
 	"config-mysql-old": "MySQL $1 or later is required. You have $2.",
 	"config-mariadb-old": "MariaDB $1 or later is required. You have $2.",
 	"config-db-port": "Database port:",
+	"config-db-ssl": "Connect over SSL",
 	"config-db-schema": "Schema for MediaWiki (no hyphens):",
 	"config-db-schema-help": "This schema will usually be fine.\nOnly change it if you know you need to.",
 	"config-pg-test-error": "Cannot connect to database <strong>$1</strong>: $2",

@@ -42,6 +42,7 @@ class CliInstaller extends Installer {
 		'dbprefix' => 'wgDBprefix',
 		'dbtableoptions' => 'wgDBTableOptions',
 		'dbport' => 'wgDBport',
+		'dbssl' => 'wgDBssl',
 		'dbschema' => 'wgDBmwschema',
 		'dbpath' => 'wgSQLiteDataDir',
 		'server' => 'wgServer',

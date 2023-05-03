@@ -121,6 +121,7 @@
 	"config-mysql-old": "Used as error message. Parameters:\n* $1 - minimum version\n* $2 - the version of MySQL that has been installed\n{{Related|Config-old}}",
 	"config-mariadb-old": "Used as error message. Parameters:\n* $1 - minimum version\n* $2 - the version of MariaDB that has been installed\n{{Related|Config-old}}",
 	"config-db-port": "Field label in MediaWiki installer for database port.",
+	"config-db-ssl": "Field label in MediaWiki installer for connecting to the database with SSL.",
 	"config-db-schema": "Field label in MediaWiki installer for database schema.",
 	"config-db-schema-help": "Help text in MediaWiki installer for database schema.",
 	"config-pg-test-error": "Parameters:\n* $1 - database name\n* $2 - error message",
