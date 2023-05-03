@@ -24,10 +24,15 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
+namespace MediaWiki\Specials;
+
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Title\Title;
+use QueryPage;
+use Skin;
+use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -189,3 +194,8 @@ class SpecialListRedirects extends QueryPage {
 		return 'pages';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialListRedirects::class, 'SpecialListRedirects' );

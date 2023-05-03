@@ -21,11 +21,17 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use ImageListPager;
+use IncludableSpecialPage;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserRigorOptions;
+use RepoGroup;
+use UserCache;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 class SpecialListFiles extends IncludableSpecialPage {
@@ -158,3 +164,8 @@ class SpecialListFiles extends IncludableSpecialPage {
 		return 'media';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialListFiles::class, 'SpecialListFiles' );

@@ -21,7 +21,11 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
 use MediaWiki\Cache\LinkBatchFactory;
+use NamespaceInfo;
+use SpecialShortPages;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -55,3 +59,8 @@ class SpecialLongPages extends SpecialShortPages {
 		return 'maintenance';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialLongPages::class, 'SpecialLongPages' );

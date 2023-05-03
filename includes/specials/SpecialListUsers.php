@@ -25,10 +25,14 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use IncludableSpecialPage;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\Html;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentityLookup;
+use UsersPager;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -119,3 +123,8 @@ class SpecialListUsers extends IncludableSpecialPage {
 		return 'users';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialListUsers::class, 'SpecialListUsers' );

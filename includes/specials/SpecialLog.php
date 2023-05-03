@@ -21,6 +21,13 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use ChangeTags;
+use Hooks;
+use LogEventsList;
+use LogPage;
+use LogPager;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\FormOptions;
@@ -30,6 +37,9 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\UserIdentityLookup;
+use MWTimestamp;
+use PermissionsError;
+use SpecialPage;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Timestamp\TimestampException;
@@ -391,3 +401,8 @@ class SpecialLog extends SpecialPage {
 		return 'changes';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialLog::class, 'SpecialLog' );

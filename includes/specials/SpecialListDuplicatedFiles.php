@@ -24,8 +24,14 @@
  * @author Brian Wolff
  */
 
+namespace MediaWiki\Specials;
+
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Title\Title;
+use QueryPage;
+use Skin;
+use SpecialPage;
+use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -122,3 +128,8 @@ class SpecialListDuplicatedFiles extends QueryPage {
 		return 'media';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialListDuplicatedFiles::class, 'SpecialListDuplicatedFiles' );

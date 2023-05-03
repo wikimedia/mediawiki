@@ -25,6 +25,10 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials\Redirects;
+
+use SpecialRedirectToSpecial;
+
 /**
  * Redirect page: Special:ListBots --> Special:ListUsers/bot.
  *
@@ -35,3 +39,8 @@ class SpecialListBots extends SpecialRedirectToSpecial {
 		parent::__construct( 'Listbots', 'Listusers', 'bot' );
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialListBots::class, 'SpecialListBots' );

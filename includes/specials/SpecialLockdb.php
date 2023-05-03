@@ -21,7 +21,14 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use ErrorPageError;
+use FormSpecialPage;
+use HTMLForm;
 use MediaWiki\MainConfigNames;
+use Status;
+use User;
 use Wikimedia\AtEase\AtEase;
 
 /**
@@ -116,3 +123,8 @@ class SpecialLockdb extends FormSpecialPage {
 		return 'wiki';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialLockdb::class, 'SpecialLockdb' );
