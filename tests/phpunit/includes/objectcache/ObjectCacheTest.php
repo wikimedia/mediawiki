@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\MainConfigSchema;
 
 /**
  * @covers ObjectCache
@@ -20,17 +21,22 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 		] );
 	}
 
+	protected function tearDown(): void {
+		ObjectCache::$localServerCacheClass = null;
+	}
+
 	private function setCacheConfig( $arr = [] ) {
 		$defaults = [
 			CACHE_NONE => [ 'class' => EmptyBagOStuff::class ],
 			CACHE_DB => [ 'class' => SqlBagOStuff::class ],
 			CACHE_ANYTHING => [ 'factory' => 'ObjectCache::newAnything' ],
-			// Mock ACCEL with 'hash' as being installed.
-			// This makes tests deterministic regardless of APC.
-			CACHE_ACCEL => [ 'class' => HashBagOStuff::class ],
+			CACHE_ACCEL => [ 'factory' => 'ObjectCache::getLocalServerInstance' ],
 			'hash' => [ 'class' => HashBagOStuff::class ],
 		];
 		$this->overrideConfigValue( MainConfigNames::ObjectCaches, $arr + $defaults );
+		// Mock ACCEL with 'hash' as being installed.
+		// This makes tests deterministic regardless of APC.
+		ObjectCache::$localServerCacheClass = 'HashBagOStuff';
 	}
 
 	public function testNewAnythingNothing() {
@@ -63,9 +69,7 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 
 	public function testNewAnythingNoAccel() {
 		// Mock APC not being installed (T160519, T147161)
-		$this->setCacheConfig( [
-			CACHE_ACCEL => [ 'class' => EmptyBagOStuff::class ]
-		] );
+		ObjectCache::$localServerCacheClass = EmptyBagOStuff::class;
 		$this->setMainCache( CACHE_ACCEL );
 
 		$this->assertInstanceOf(
@@ -99,5 +103,31 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 			ObjectCache::newAnything( [] ),
 			'No available types or DB. Fallback to none.'
 		);
+	}
+
+	public static function provideIsDatabaseId() {
+		return [
+			[ CACHE_DB, CACHE_NONE, true ],
+			[ 'db-replicated', CACHE_NONE, true ],
+			[ CACHE_ANYTHING, CACHE_DB, true ],
+			[ CACHE_ANYTHING, 'hash', false ],
+			[ CACHE_ANYTHING, CACHE_ANYTHING, true ]
+		];
+	}
+
+	/**
+	 * @dataProvider provideIsDatabaseId
+	 * @param string|int $id
+	 * @param string|int $mainCacheType
+	 * @param bool $expected
+	 */
+	public function testIsDatabaseId( $id, $mainCacheType, $expected ) {
+		$this->setCacheConfig( [
+			'db-replicated' => MainConfigSchema::ObjectCaches['default']['db-replicated']
+		] );
+		$this->setMwGlobals( [
+			'wgMainCacheType' => $mainCacheType
+		] );
+		$this->assertSame( $expected, ObjectCache::isDatabaseId( $id ) );
 	}
 }
