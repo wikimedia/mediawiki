@@ -1053,7 +1053,7 @@
 	"mergehistory-go": "Mostra le modifiche che possono essere unite",
 	"mergehistory-submit": "Unisci le versioni",
 	"mergehistory-empty": "Nessuna versione da unire.",
-	"mergehistory-done": "{{PLURAL:$4|Una versione di $1 è stata unita|$4 versioni di $1 sono state unite}} alla cronologia di [[:$2]].\n$3.",
+	"mergehistory-done": "{{PLURAL:$4|Una versione di $1 è stata unita|$4 versioni di $1 sono state unite}} alla cronologia di [[:$2]].\n$3",
 	"mergehistory-fail": "Impossibile unire le cronologie. Ricontrolla la pagina e i parametri temporali.",
 	"mergehistory-fail-bad-timestamp": "Il timestamp non è valido.",
 	"mergehistory-fail-invalid-source": "La pagina di origine non è valida.",

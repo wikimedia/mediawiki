@@ -3,6 +3,7 @@
 		"authors": [
 			"1233qwer1234qwer4",
 			"ASHmed",
+			"Alshamiri1",
 			"Azouz.anis",
 			"DannyS712",
 			"Dr-Taher",
@@ -899,6 +900,7 @@
 	"apihelp-query+info-paramvalue-testactionsdetail-boolean": "إرجاع قيمة منطقية لكل إجراء.",
 	"apihelp-query+info-paramvalue-testactionsdetail-full": "إرجاع الرسائل التي تصف سبب عدم السماح بالإجراء ، أو مصفوفة فارغة إذا كان مسموحا بها.",
 	"apihelp-query+info-paramvalue-testactionsdetail-quick": "مثل <kbd>full</kbd> ولكن تخطي المراجعات باهظة الثمن.",
+	"apihelp-query+info-param-testactionsautocreate": "اختبر ما إذا كان إجراء <var>اختبار $1</var> سيؤدي تلقائيًا إلى إنشاء حساب مؤقت.",
 	"apihelp-query+info-example-simple": "الحصول على معلومات حول الصفحة <kbd>Main Page</kbd>.",
 	"apihelp-query+info-example-protection": "احصل على معلومات عامة وحماية حول الصفحة <kbd>Main Page</kbd>.",
 	"apihelp-query+iwbacklinks-summary": "العثور على جميع الصفحات التي تصل إلى وصلة الإنترويكي المعطاه.",
@@ -1178,6 +1180,7 @@
 	"apihelp-query+siteinfo-paramvalue-prop-interwikimap": "يرجع خريطة الإنترويكي (يتم ترشيحها اختياريا، ويتم اختيارها اختياريا باستخدام <var>$1inlanguagecode</var>).",
 	"apihelp-query+siteinfo-paramvalue-prop-dbrepllag": "يرجع خادم قاعدة البيانات مع تأخر النسخ المتماثل الأعلى.",
 	"apihelp-query+siteinfo-paramvalue-prop-usergroups": "يرجع مجموعات المستخدمين والصلاحيات المرتبطة.",
+	"apihelp-query+siteinfo-paramvalue-prop-autocreatetempuser": "يُرجع التكوين للإنشاء التلقائي لحسابات المستخدمين المؤقتة (المعروف أيضًا باسم إخفاء IP).",
 	"apihelp-query+siteinfo-paramvalue-prop-libraries": "يرجع المكتبات المثبتة على الويكي.",
 	"apihelp-query+siteinfo-paramvalue-prop-extensions": "يرجع الإضافات المثبتة على الويكي.",
 	"apihelp-query+siteinfo-paramvalue-prop-fileextensions": "يرجع قائمة امتدادات الملفات (أنواع الملفات) المسموح برفعها.",
