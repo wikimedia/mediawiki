@@ -28,6 +28,7 @@ use Message;
 use OverflowException;
 use stdClass;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * @defgroup CommentStore CommentStore
@@ -142,14 +143,14 @@ class CommentStore {
 	 *
 	 * Shared implementation for getComment() and getCommentLegacy()
 	 *
-	 * @param IDatabase|null $db Database handle for getCommentLegacy(), or null for getComment()
+	 * @param IReadableDatabase|null $db Database handle for getCommentLegacy(), or null for getComment()
 	 * @param string $key A key such as "rev_comment" identifying the comment
 	 *  field being fetched.
 	 * @param stdClass|array $row
 	 * @param bool $fallback
 	 * @return CommentStoreComment
 	 */
-	private function getCommentInternal( ?IDatabase $db, $key, $row, $fallback = false ) {
+	private function getCommentInternal( ?IReadableDatabase $db, $key, $row, $fallback = false ) {
 		$row = (array)$row;
 		if ( array_key_exists( "{$key}_text", $row ) && array_key_exists( "{$key}_data", $row ) ) {
 			$cid = $row["{$key}_cid"] ?? null;
@@ -259,14 +260,14 @@ class CommentStore {
 	 *
 	 * @since 1.30
 	 * @since 1.31 Method signature changed, $key parameter added (required since 1.35)
-	 * @param IDatabase $db Database handle to use for lookup
+	 * @param IReadableDatabase $db Database handle to use for lookup
 	 * @param string $key A key such as "rev_comment" identifying the comment
 	 *  field being fetched.
 	 * @param stdClass|array|null $row Result row.
 	 * @param bool $fallback If true, fall back as well as possible instead of throwing an exception.
 	 * @return CommentStoreComment
 	 */
-	public function getCommentLegacy( IDatabase $db, $key, $row = null, $fallback = false ) {
+	public function getCommentLegacy( IReadableDatabase $db, $key, $row = null, $fallback = false ) {
 		if ( $row === null ) {
 			// @codeCoverageIgnoreStart
 			throw new InvalidArgumentException( '$row must not be null' );

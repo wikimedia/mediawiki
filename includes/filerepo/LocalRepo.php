@@ -28,7 +28,9 @@ use MediaWiki\Storage\BlobStore;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -56,6 +58,7 @@ class LocalRepo extends FileRepo {
 
 	/** @var string DB domain of the repo wiki */
 	protected $dbDomain;
+	protected IConnectionProvider $dbProvider;
 	/** @var bool Whether shared cache keys are exposed/accessible */
 	protected $hasAccessibleSharedCache;
 
@@ -84,6 +87,7 @@ class LocalRepo extends FileRepo {
 		$this->hasAccessibleSharedCache = true;
 
 		$this->hasSha1Storage = ( $info['storageLayout'] ?? null ) === 'sha1';
+		$this->dbProvider = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		if ( $this->hasSha1Storage() ) {
 			$this->backend = new FileBackendDBRepoWrapper( [
@@ -498,10 +502,10 @@ class LocalRepo extends FileRepo {
 
 	/**
 	 * Get a connection to the replica DB
-	 * @return IDatabase
+	 * @return IReadableDatabase
 	 */
 	public function getReplicaDB() {
-		return wfGetDB( DB_REPLICA );
+		return $this->dbProvider->getReplicaDatabase();
 	}
 
 	/**
@@ -510,7 +514,7 @@ class LocalRepo extends FileRepo {
 	 * @since 1.37
 	 */
 	public function getPrimaryDB() {
-		return wfGetDB( DB_PRIMARY );
+		return $this->dbProvider->getPrimaryDatabase();
 	}
 
 	/**

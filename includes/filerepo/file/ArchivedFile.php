@@ -26,6 +26,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
@@ -234,7 +235,7 @@ class ArchivedFile {
 
 		if ( !$this->title || $this->title->getNamespace() === NS_FILE ) {
 			$this->dataLoaded = true; // set it here, to have also true on miss
-			$dbr = wfGetDB( DB_REPLICA );
+			$dbr = $this->repo->getReplicaDB();
 			$queryBuilder = FileSelectQueryBuilder::newForArchivedFile( $dbr );
 			$row = $queryBuilder->where( $conds )
 				->orderBy( 'fa_timestamp', SelectQueryBuilder::SORT_DESC )
@@ -318,7 +319,7 @@ class ArchivedFile {
 		$services = MediaWikiServices::getInstance();
 		$this->description = $services->getCommentStore()
 			// Legacy because $row may have come from self::selectFields()
-			->getCommentLegacy( wfGetDB( DB_REPLICA ), 'fa_description', $row )->text;
+			->getCommentLegacy( $this->repo->getReplicaDB(), 'fa_description', $row )->text;
 		$this->user = $services->getUserFactory()
 			->newFromAnyId( $row->fa_user, $row->fa_user_text, $row->fa_actor );
 		$this->timestamp = $row->fa_timestamp;
@@ -543,10 +544,10 @@ class ArchivedFile {
 	 * in $this.
 	 *
 	 * @since 1.39
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param string|Blob $metadataBlob
 	 */
-	protected function loadMetadataFromDbFieldValue( IDatabase $db, $metadataBlob ) {
+	protected function loadMetadataFromDbFieldValue( IReadableDatabase $db, $metadataBlob ) {
 		$this->loadMetadataFromString( $db->decodeBlob( $metadataBlob ) );
 	}
 

@@ -20,7 +20,7 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Permissions\Authority;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * @ingroup API
@@ -70,7 +70,7 @@ trait ApiQueryBlockInfoTrait {
 
 	/**
 	 * @see ApiBase::getDB
-	 * @return IDatabase
+	 * @return IReadableDatabase
 	 */
 	abstract protected function getDB();
 

@@ -23,6 +23,7 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
@@ -113,7 +114,7 @@ abstract class ApiQueryBase extends ApiBase {
 	/**
 	 * Get the Query database connection (read-only)
 	 * @stable to override
-	 * @return IDatabase
+	 * @return IReadableDatabase
 	 */
 	protected function getDB() {
 		$this->mDb ??= $this->getQuery()->getDB();
