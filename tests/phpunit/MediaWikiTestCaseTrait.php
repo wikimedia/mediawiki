@@ -2,8 +2,10 @@
 
 use MediaWiki\HookContainer\HookContainer;
 use PHPUnit\Framework\Constraint\Constraint;
+use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Container\ContainerInterface;
+use SebastianBergmann\Comparator\ComparisonFailure;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Services\NoSuchServiceException;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
@@ -192,6 +194,50 @@ trait MediaWikiTestCaseTrait {
 			$this->assertFileExists( $fileName );
 		}
 		$this->assertEquals( file_get_contents( $fileName ), $actualData, $msg );
+	}
+
+	/**
+	 * Assert that an associative array contains the subset of an expected array.
+	 *
+	 * The internal key order does not matter.
+	 * Values are compared with strict equality.
+	 *
+	 * @since 1.41
+	 * @param array $expected
+	 * @param array $actual
+	 * @param string $message
+	 */
+	protected function assertArrayContains(
+		array $expected,
+		array $actual,
+		$message = ''
+	) {
+		$patched = array_replace_recursive( $actual, $expected );
+
+		ksort( $patched );
+		ksort( $actual );
+		$result = ( $actual === $patched );
+
+		if ( !$result ) {
+			$comparisonFailure = new ComparisonFailure(
+				$patched,
+				$actual,
+				var_export( $patched, true ),
+				var_export( $actual, true )
+			);
+
+			$failureDescription = 'Failed asserting that array contains the expected submap.';
+			if ( $message != '' ) {
+				$failureDescription = $message . "\n" . $failureDescription;
+			}
+
+			throw new ExpectationFailedException(
+				$failureDescription,
+				$comparisonFailure
+			);
+		} else {
+			$this->assertTrue( true, $message );
+		}
 	}
 
 	/**
