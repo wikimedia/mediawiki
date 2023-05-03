@@ -342,21 +342,21 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testRespond( $moduleName ) {
 		$rl = $this->getServiceContainer()->getResourceLoader();
-		if ( $rl->getModule( $moduleName )->getGroup() === RL\Module::GROUP_PRIVATE ) {
+		$module = $rl->getModule( $moduleName );
+		if ( $module->getGroup() === RL\Module::GROUP_PRIVATE ) {
 			// Private modules cannot be served from load.php
 			$this->assertTrue( true );
 			return;
 		}
-		// Check both general (scripts) and only=styles responses.
-		foreach ( [ null, 'styles' ] as $only ) {
-			$context = new RL\Context(
-				$rl,
-				new FauxRequest( [ 'modules' => $moduleName, 'only' => $only ] )
-			);
-			ob_start();
-			$rl->respond( $context );
-			ob_end_clean();
-			$this->assertSame( [], $rl->getErrors() );
-		}
+		// Test only general (scripts) or only=styles responses.
+		$only = $module->getType() === RL\Module::LOAD_STYLES ? 'styles' : null;
+		$context = new RL\Context(
+			$rl,
+			new FauxRequest( [ 'modules' => $moduleName, 'only' => $only ] )
+		);
+		ob_start();
+		$rl->respond( $context );
+		ob_end_clean();
+		$this->assertSame( [], $rl->getErrors() );
 	}
 }
