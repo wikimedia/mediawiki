@@ -469,13 +469,18 @@ class Linker {
 
 		if ( !$thumb ) {
 			$rdfaType = 'mw:Error ' . $rdfaType;
+			$currentExists = $file && $file->exists();
 			if ( $enableLegacyMediaDOM ) {
 				$label = $frameParams['title'];
 			} else {
-				$label = $frameParams['alt'] ?? '';
+				if ( $currentExists ) {
+					$label = wfMessage( 'thumbnail_error', '' )->text();
+				} else {
+					$label = $frameParams['alt'] ?? '';
+				}
 			}
 			$s = self::makeBrokenImageLinkObj(
-				$title, $label, '', '', '', (bool)$time, $handlerParams
+				$title, $label, '', '', '', (bool)$time, $handlerParams, $currentExists
 			);
 		} else {
 			self::processResponsiveImages( $file, $thumb, $handlerParams );
@@ -749,7 +754,7 @@ class Linker {
 				$label = $frameParams['alt'] ?? '';
 			}
 			$s .= self::makeBrokenImageLinkObj(
-				$title, $label, '', '', '', (bool)$time, $handlerParams
+				$title, $label, '', '', '', (bool)$time, $handlerParams, false
 			);
 			$zoomIcon = '';
 		} elseif ( !$thumb ) {
@@ -757,9 +762,9 @@ class Linker {
 			if ( $enableLegacyMediaDOM ) {
 				$s .= wfMessage( 'thumbnail_error', '' )->escaped();
 			} else {
-				$label = $frameParams['alt'] ?? '';
+				$label = wfMessage( 'thumbnail_error', '' )->text();
 				$s .= self::makeBrokenImageLinkObj(
-					$title, $label, '', '', '', (bool)$time, $handlerParams
+					$title, $label, '', '', '', (bool)$time, $handlerParams, true
 				);
 			}
 			$zoomIcon = '';
@@ -861,11 +866,12 @@ class Linker {
 	 * @param string $unused2 Unused parameter kept for b/c
 	 * @param bool $time A file of a certain timestamp was requested
 	 * @param array $handlerParams @since 1.36
+	 * @param bool $currentExists @since 1.41
 	 * @return string
 	 */
 	public static function makeBrokenImageLinkObj(
 		$title, $label = '', $query = '', $unused1 = '', $unused2 = '',
-		$time = false, array $handlerParams = []
+		$time = false, array $handlerParams = [], bool $currentExists = false
 	) {
 		if ( !$title instanceof LinkTarget ) {
 			wfWarn( __METHOD__ . ': Requires $title to be a LinkTarget object.' );
@@ -894,8 +900,8 @@ class Linker {
 		}
 
 		$repoGroup = $services->getRepoGroup();
-		$currentExists = $time
-			&& $repoGroup->findFile( $title ) !== false;
+		$currentExists = $currentExists ||
+			( $time && $repoGroup->findFile( $title ) !== false );
 
 		if ( ( $uploadMissingFileUrl || $uploadNavigationUrl || $enableUploads )
 			&& !$currentExists
