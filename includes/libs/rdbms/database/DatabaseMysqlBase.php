@@ -55,8 +55,6 @@ abstract class DatabaseMysqlBase extends Database {
 	protected $sslCiphers;
 	/** @var bool Use experimental UTF-8 transmission encoding */
 	protected $utf8Mode;
-	/** @var bool|null */
-	protected $defaultBigSelects;
 
 	/** @var ISQLPlatform */
 	protected $platform;
