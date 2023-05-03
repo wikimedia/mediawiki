@@ -41,6 +41,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		'wgDBname',
 		'wgDBuser',
 		'wgDBpassword',
+		'wgDBssl',
 		'wgDBprefix',
 		'wgDBTableOptions',
 	];
@@ -88,6 +89,7 @@ class MysqlInstaller extends DatabaseInstaller {
 			[],
 			$this->parent->getHelpBox( 'config-db-host-help' )
 		) .
+			$this->getCheckBox( 'wgDBssl', 'config-db-ssl' ) .
 			Html::openElement( 'fieldset' ) .
 			Html::element( 'legend', [], wfMessage( 'config-db-wiki-settings' )->text() ) .
 			$this->getTextBox( 'wgDBname', 'config-db-name', [ 'dir' => 'ltr' ],
@@ -100,7 +102,7 @@ class MysqlInstaller extends DatabaseInstaller {
 
 	public function submitConnectForm() {
 		// Get variables from the request.
-		$newValues = $this->setVarsFromRequest( [ 'wgDBserver', 'wgDBname', 'wgDBprefix' ] );
+		$newValues = $this->setVarsFromRequest( [ 'wgDBserver', 'wgDBname', 'wgDBprefix', 'wgDBssl' ] );
 
 		// Validate them.
 		$status = Status::newGood();
@@ -151,6 +153,7 @@ class MysqlInstaller extends DatabaseInstaller {
 				'host' => $this->getVar( 'wgDBserver' ),
 				'user' => $this->getVar( '_InstallUser' ),
 				'password' => $this->getVar( '_InstallPassword' ),
+				'ssl' => $this->getVar( 'wgDBssl' ),
 				'dbname' => false,
 				'flags' => 0,
 				'tablePrefix' => $this->getVar( 'wgDBprefix' ) ] );
@@ -403,6 +406,7 @@ class MysqlInstaller extends DatabaseInstaller {
 					'host' => $this->getVar( 'wgDBserver' ),
 					'user' => $this->getVar( 'wgDBuser' ),
 					'password' => $this->getVar( 'wgDBpassword' ),
+					'ssl' => $this->getVar( 'wgDBssl' ),
 					'dbname' => false,
 					'flags' => 0,
 					'tablePrefix' => $this->getVar( 'wgDBprefix' )
@@ -499,6 +503,7 @@ class MysqlInstaller extends DatabaseInstaller {
 					'host' => $server,
 					'user' => $dbUser,
 					'password' => $password,
+					'ssl' => $this->getVar( 'wgDBssl' ),
 					'dbname' => false,
 					'flags' => 0,
 					'tablePrefix' => $this->getVar( 'wgDBprefix' )
@@ -632,10 +637,12 @@ class MysqlInstaller extends DatabaseInstaller {
 
 	public function getLocalSettings() {
 		$prefix = LocalSettingsGenerator::escapePhpString( $this->getVar( 'wgDBprefix' ) );
+		$useSsl = $this->getVar( 'wgDBssl' ) ? 'true' : 'false';
 		$tblOpts = LocalSettingsGenerator::escapePhpString( $this->getTableOptions() );
 
 		return "# MySQL specific settings
 \$wgDBprefix = \"{$prefix}\";
+\$wgDBssl = {$useSsl};
 
 # MySQL table options to use during installation or update
 \$wgDBTableOptions = \"{$tblOpts}\";";
