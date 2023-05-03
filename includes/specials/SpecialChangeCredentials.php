@@ -1,5 +1,9 @@
 <?php
 
+namespace MediaWiki\Specials;
+
+use AuthManagerSpecialPage;
+use LogicException;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
@@ -8,6 +12,8 @@ use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Title\Title;
+use Message;
+use Status;
 
 /**
  * Special change to change credentials (such as the password).
@@ -293,3 +299,8 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 		return $this->getConfig()->get( MainConfigNames::ChangeCredentialsBlacklist );
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialChangeCredentials::class, 'SpecialChangeCredentials' );

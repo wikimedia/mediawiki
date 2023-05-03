@@ -21,8 +21,20 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use HTMLForm;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\User\UserFactory;
+use PermissionsError;
+use Profiler;
+use ReadOnlyError;
+use Sanitizer;
+use SpecialPage;
+use Status;
+use UnlistedSpecialPage;
+use User;
+use UserNotLoggedIn;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -194,3 +206,8 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 		}
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialConfirmEmail::class, 'SpecialConfirmEmail' );

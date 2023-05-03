@@ -21,6 +21,15 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use ContribsPager;
+use ExternalUserNames;
+use Hooks;
+use HTMLForm;
+use HTMLMultiSelectField;
+use IncludableSpecialPage;
+use LogEventsList;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
@@ -31,7 +40,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Specials\Contribute\ContributeFactory;
-use MediaWiki\Specials\SpecialUserRights;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ActorMigration;
 use MediaWiki\User\UserFactory;
@@ -39,6 +47,12 @@ use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserRigorOptions;
+use MWException;
+use NamespaceInfo;
+use PoolCounterWorkViaCallback;
+use SpecialPage;
+use Status;
+use User;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 
@@ -949,3 +963,8 @@ class SpecialContributions extends IncludableSpecialPage {
 		return [];
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialContributions::class, 'SpecialContributions' );

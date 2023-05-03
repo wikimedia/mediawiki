@@ -47,6 +47,16 @@ use MediaWiki\Specials\SpecialBlockList;
 use MediaWiki\Specials\SpecialBookSources;
 use MediaWiki\Specials\SpecialBotPasswords;
 use MediaWiki\Specials\SpecialBrokenRedirects;
+use MediaWiki\Specials\SpecialCategories;
+use MediaWiki\Specials\SpecialChangeContentModel;
+use MediaWiki\Specials\SpecialChangeCredentials;
+use MediaWiki\Specials\SpecialChangeEmail;
+use MediaWiki\Specials\SpecialChangePassword;
+use MediaWiki\Specials\SpecialComparePages;
+use MediaWiki\Specials\SpecialConfirmEmail;
+use MediaWiki\Specials\SpecialContribute;
+use MediaWiki\Specials\SpecialContributions;
+use MediaWiki\Specials\SpecialCreateAccount;
 use MediaWiki\Specials\SpecialMostImages;
 use MediaWiki\Specials\SpecialMovePage;
 use MediaWiki\Specials\SpecialUserRights;
@@ -302,7 +312,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Categories' => [
-			'class' => \SpecialCategories::class,
+			'class' => SpecialCategories::class,
 			'services' => [
 				'LinkBatchFactory',
 				'DBLoadBalancerFactory',
@@ -342,7 +352,7 @@ class SpecialPageFactory {
 			'class' => \SpecialUserLogout::class,
 		],
 		'CreateAccount' => [
-			'class' => \SpecialCreateAccount::class,
+			'class' => SpecialCreateAccount::class,
 			'services' => [
 				'AuthManager',
 			]
@@ -360,7 +370,7 @@ class SpecialPageFactory {
 			]
 		],
 		'ChangeCredentials' => [
-			'class' => \SpecialChangeCredentials::class,
+			'class' => SpecialChangeCredentials::class,
 			'services' => [
 				'AuthManager',
 			]
@@ -430,7 +440,7 @@ class SpecialPageFactory {
 			],
 		],
 		'ChangePassword' => [
-			'class' => \SpecialChangePassword::class,
+			'class' => SpecialChangePassword::class,
 		],
 		'BotPasswords' => [
 			'class' => SpecialBotPasswords::class,
@@ -473,7 +483,7 @@ class SpecialPageFactory {
 			'class' => \SpecialResetTokens::class,
 		],
 		'Contributions' => [
-			'class' => \SpecialContributions::class,
+			'class' => SpecialContributions::class,
 			'services' => [
 				'LinkBatchFactory',
 				'PermissionManager',
@@ -812,7 +822,7 @@ class SpecialPageFactory {
 
 		// Page tools
 		'ComparePages' => [
-			'class' => \SpecialComparePages::class,
+			'class' => SpecialComparePages::class,
 			'services' => [
 				'RevisionLookup',
 				'ContentHandlerFactory',
@@ -884,7 +894,7 @@ class SpecialPageFactory {
 			],
 		],
 		'ChangeContentModel' => [
-			'class' => \SpecialChangeContentModel::class,
+			'class' => SpecialChangeContentModel::class,
 			'services' => [
 				'ContentHandlerFactory',
 				'ContentModelChangeFactory',
@@ -1057,7 +1067,7 @@ class SpecialPageFactory {
 			'class' => \SpecialPageData::class,
 		],
 		'Contribute' => [
-			'class' => \SpecialContribute::class,
+			'class' => SpecialContribute::class,
 		],
 	];
 
@@ -1172,7 +1182,7 @@ class SpecialPageFactory {
 
 			if ( $this->options->get( MainConfigNames::EmailAuthentication ) ) {
 				$this->list['Confirmemail'] = [
-					'class' => \SpecialConfirmEmail::class,
+					'class' => SpecialConfirmEmail::class,
 					'services' => [
 						'UserFactory',
 					]
@@ -1187,7 +1197,7 @@ class SpecialPageFactory {
 
 			if ( $this->options->get( MainConfigNames::EnableEmail ) ) {
 				$this->list['ChangeEmail'] = [
-					'class' => \SpecialChangeEmail::class,
+					'class' => SpecialChangeEmail::class,
 					'services' => [
 						'AuthManager',
 					],

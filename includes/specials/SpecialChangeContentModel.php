@@ -1,5 +1,13 @@
 <?php
 
+namespace MediaWiki\Specials;
+
+use ContentHandler;
+use ErrorPageError;
+use FormSpecialPage;
+use HTMLForm;
+use LogEventsList;
+use LogPage;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\SpamChecker;
@@ -10,6 +18,9 @@ use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
+use SearchEngineFactory;
+use Status;
+use Xml;
 
 class SpecialChangeContentModel extends FormSpecialPage {
 
@@ -269,3 +280,8 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		return 'pagetools';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialChangeContentModel::class, 'SpecialChangeContentModel' );

@@ -2,6 +2,7 @@
 
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Specials\SpecialChangeCredentials;
 
 /**
  * Special change to remove credentials (such as a two-factor token).

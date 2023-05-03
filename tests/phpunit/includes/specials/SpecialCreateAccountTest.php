@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Specials\SpecialCreateAccount;
+
 /**
  * @covers SpecialCreateAccount
  */

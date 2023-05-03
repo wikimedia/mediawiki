@@ -28,6 +28,7 @@ use MediaWiki\Html\FormOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionFactory;
+use MediaWiki\Specials\SpecialContributions;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;

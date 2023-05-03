@@ -3,6 +3,7 @@
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Specials\SpecialContributions;
 
 /**
  * @author Ammarpad
