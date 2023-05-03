@@ -71,7 +71,7 @@ class UserOptionsManager extends UserOptionsLookup {
 	/** @var LoggerInterface */
 	private $logger;
 
-	/** @var array options modified withing this request */
+	/** @var array options modified within this request */
 	private $modifiedOptions = [];
 
 	/**
