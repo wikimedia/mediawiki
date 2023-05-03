@@ -177,7 +177,11 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 				ParamValidator::PARAM_DEFAULT => '',
 			],
 			'query' => null,
-			'expandurl' => false,
+			'expandurl' => [
+				ParamValidator::PARAM_TYPE => 'boolean',
+				ParamValidator::PARAM_DEFAULT => false,
+				ParamValidator::PARAM_DEPRECATED => true,
+			],
 		];
 	}
 
