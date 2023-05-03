@@ -3,6 +3,11 @@
 # - Behavior of various *toc* magic words
 # - Various edge cases related to heading parsing and TOC behavior
 #   (special chars, language variants, entities, bdi chars, etc.)
+#
+# NOTE about data-parsoid in html/parsoid
+# - html/parsoid sections have data-parsoid="{}" to eliminate unnecessary
+#   html2wt failures because of normalization
+# - We could strip them eithre by marking those tests wt2html, wt2wt only
 
 !! options
 version=2
@@ -469,7 +474,7 @@ Section headings with TOC
 ==Headline 2==
 Some text
 ===Another headline===
-!! html
+!! html/php
 <div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Headline_1"><span class="tocnumber">1</span> <span class="toctext">Headline 1</span></a>
@@ -501,6 +506,15 @@ Some text
 <p>Some text
 </p>
 <h3><span class="mw-headline" id="Another_headline">Another headline</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: Another headline">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
+!! html/parsoid
+<h2 id="Headline_1" data-parsoid="{}">Headline 1</h2>
+<h3 id="Subheadline_1" data-parsoid="{}">Subheadline 1</h3>
+<h5 id="Skipping_a_level" data-parsoid="{}">Skipping a level</h5>
+<h6 id="Skipping_a_level_2" data-parsoid="{}">Skipping a level</h6>
+
+<h2 id="Headline_2" data-parsoid="{}">Headline 2</h2>
+<p data-parsoid="{}">Some text</p>
+<h3 id="Another_headline" data-parsoid="{}">Another headline</h3>
 !! end
 
 !! test
@@ -515,7 +529,7 @@ language=en variant=en-x-piglatin
 ==Headline 2==
 Some text
 ===Another headline===
-!! html
+!! html/php
 <div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en-x-piglatin" dir="ltr"><h2 id="mw-toc-heading">Ontentscay</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Headline_1"><span class="tocnumber">1</span> <span class="toctext">Eadlinehay 1</span></a>
@@ -537,6 +551,12 @@ Some text
 <p>Omesay exttay
 </p>
 <h3><span class="mw-headline" id="Another_headline">Anotherway eadlinehay</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Anotherway eadlinehay">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
+!! html/parsoid
+<h2 id="Headline_1" data-parsoid="{}">Headline 1</h2>
+<h3 id="Subheadline_1" data-parsoid="{}">Subheadline 1</h3>
+<h2 id="Headline_2" data-parsoid="{}">Headline 2</h2>
+<p data-parsoid="{}">Some text</p>
+<h3 id="Another_headline" data-parsoid="{}">Another headline</h3>
 !! end
 
 # Note that even though conversion of the *content* is disabled, the
@@ -555,7 +575,7 @@ language=en variant=en-x-piglatin
 Some text
 ===Another headline===
 __NOCONTENTCONVERT__
-!! html
+!! html/php
 <div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en-x-piglatin" dir="ltr"><h2 id="mw-toc-heading">Ontentscay</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Headline_1"><span class="tocnumber">1</span> <span class="toctext">Headline 1</span></a>
@@ -577,6 +597,13 @@ __NOCONTENTCONVERT__
 <p>Some text
 </p>
 <h3><span class="mw-headline" id="Another_headline">Another headline</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Another headline">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
+!! html/parsoid
+<h2 id="Headline_1" data-parsoid="{}">Headline 1</h2>
+<h3 id="Subheadline_1" data-parsoid="{}">Subheadline 1</h3>
+<h2 id="Headline_2" data-parsoid="{}">Headline 2</h2>
+<p data-parsoid="{}">Some text</p>
+<h3 id="Another_headline" data-parsoid="{}">Another headline</h3>
+<meta property="mw:PageProp/nocontentconvert" data-parsoid="{}" />
 !! end
 
 # The -{T}- below checks for regressions in T26072: the contents of
@@ -628,6 +655,32 @@ Re
 <p>Ball Eray
 </p>
 <h2><span class="mw-headline" id="-.7BFoo_Bar.7D-">Foo Bar</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Foo Bar">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+!! html/parsoid+standalone
+<section data-mw-section-id="0"><!--
+--><p>-{H|Foo=>en:Boo;Foo=>en-x-piglatin:Bob;}-<!--
+-->-{H|Bar=>en:Bat;Bar=>en-x-piglatin:Ball;}-<!--
+-->-{T|en:Foo;en-x-piglatin:Bar;}-<!--
+-->
+Introduction.
+-{A|en:Do; en-x-piglatin:Re;}-</p>
+</section><section data-mw-section-id="1"><h2 id="Foo">Foo</h2>
+<p>Foo Do</p>
+</section><section data-mw-section-id="2"><h2 id="Bar">Bar</h2>
+<p>Bar Re</p>
+</section><section data-mw-section-id="3"><h2 id="-{Foo_Bar}-"><span id="-.7BFoo_Bar.7D-" typeof="mw:FallbackId"></span>-{Foo Bar}-</h2></section>
+!! html/parsoid+integrated
+<section data-mw-section-id="0"><!--
+--><p><meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"oneway":[{"f":"Foo","l":"en","t":"Boo"},{"f":"Foo","l":"en-x-piglatin","t":"Bob"}]}'/><!--
+--><meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"oneway":[{"f":"Bar","l":"en","t":"Bat"},{"f":"Bar","l":"en-x-piglatin","t":"Ball"}]}'/><!--
+--><meta typeof="mw:LanguageVariant" data-mw-variant='{"title":true,"twoway":[{"l":"en","t":"Foo"},{"l":"en-x-piglatin","t":"Bar"}]}'/><!--
+--> Introduction. <span typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"twoway":[{"l":"en","t":"Do"},{"l":"en-x-piglatin","t":"Re"}]}'></span></p>
+</section><section data-mw-section-id="1"><h2 id="Foo">Foo</h2>
+<p>Foo Do</p>
+</section><section data-mw-section-id="2"><h2 id="Bar">Bar</h2>
+<p>Bar Re</p>
+</section><section data-mw-section-id="3"><h2 id="-{Foo_Bar}-"><span id="-.7BFoo_Bar.7D-" typeof="mw:FallbackId"></span><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"Foo Bar"}}'></span></h2>
+</section>
+
 !! end
 
 !! test
@@ -734,7 +787,7 @@ TOC regression (T11764)
 ===title 1.2===
 ==title 2==
 ===title 2.1===
-!! html
+!! html/php
 <div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#title_1"><span class="tocnumber">1</span> <span class="toctext">title 1</span></a>
@@ -761,6 +814,13 @@ TOC regression (T11764)
 <h3><span class="mw-headline" id="title_1.2">title 1.2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: title 1.2">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
 <h2><span class="mw-headline" id="title_2">title 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: title 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h3><span class="mw-headline" id="title_2.1">title 2.1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: title 2.1">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
+!! html/parsoid
+<h2 id="title_1" data-parsoid="{}">title 1</h2>
+<h3 id="title_1.1" data-parsoid="{}">title 1.1</h3>
+<h4 id="title_1.1.1" data-parsoid="{}">title 1.1.1</h4>
+<h3 id="title_1.2" data-parsoid="{}">title 1.2</h3>
+<h2 id="title_2" data-parsoid="{}">title 2</h2>
+<h3 id="title_2.1" data-parsoid="{}">title 2.1</h3>
 !! end
 
 !! test
@@ -789,7 +849,7 @@ wgMaxTocLevel=3
 ===title 1.2===
 ==title 2==
 ===title 2.1===
-!! html
+!! html/php
 <div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#title_1"><span class="tocnumber">1</span> <span class="toctext">title 1</span></a>
@@ -812,6 +872,13 @@ wgMaxTocLevel=3
 <h3><span class="mw-headline" id="title_1.2">title 1.2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: title 1.2">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
 <h2><span class="mw-headline" id="title_2">title 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: title 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h3><span class="mw-headline" id="title_2.1">title 2.1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: title 2.1">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
+!! html/parsoid
+<h2 id="title_1" data-parsoid="{}">title 1</h2>
+<h3 id="title_1.1" data-parsoid="{}">title 1.1</h3>
+<h4 id="title_1.1.1" data-parsoid="{}">title 1.1.1</h4>
+<h3 id="title_1.2" data-parsoid="{}">title 1.2</h3>
+<h2 id="title_2" data-parsoid="{}">title 2</h2>
+<h3 id="title_2.1" data-parsoid="{}">title 2.1</h3>
 !! end
 
 !! test
@@ -824,7 +891,7 @@ wgMaxTocLevel=3
 ====Section 1.1.1====
 ====Section 1.1.1.1====
 ==Section 2==
-!! html
+!! html/php
 <div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Section_1"><span class="tocnumber">1</span> <span class="toctext">Section 1</span></a>
@@ -841,8 +908,13 @@ wgMaxTocLevel=3
 <h4><span class="mw-headline" id="Section_1.1.1">Section 1.1.1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Section 1.1.1">edit</a><span class="mw-editsection-bracket">]</span></span></h4>
 <h4><span class="mw-headline" id="Section_1.1.1.1">Section 1.1.1.1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Section 1.1.1.1">edit</a><span class="mw-editsection-bracket">]</span></span></h4>
 <h2><span class="mw-headline" id="Section_2">Section 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: Section 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+!! html/parsoid
+<h2 id="Section_1" data-parsoid="{}">Section 1</h2>
+<h3 id="Section_1.1" data-parsoid="{}">Section 1.1</h3>
+<h4 id="Section_1.1.1" data-parsoid="{}">Section 1.1.1</h4>
+<h4 id="Section_1.1.1.1" data-parsoid="{}">Section 1.1.1.1</h4>
+<h2 id="Section_2" data-parsoid="{}">Section 2</h2>
 !! end
-
 
 !! test
 Resolving duplicate section names
@@ -875,6 +947,9 @@ Template:sections
 Template with sections, __NOTOC__
 !! options
 showflags
+parsoid={
+	"wrapSections": true
+}
 !! wikitext
 __NOTOC__
 ==Section 0==
@@ -887,16 +962,27 @@ flags=no-toc
 <h3><span class="mw-headline" id="Section_1">Section 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Template:Sections&amp;action=edit&amp;section=T-1" title="Edit section: Section 1">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
 <h2><span class="mw-headline" id="Section_2">Section 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Template:Sections&amp;action=edit&amp;section=T-2" title="Edit section: Section 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="Section_4">Section 4</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Section 4">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+!! html/parsoid
+<section data-mw-section-id="0"><meta property="mw:PageProp/notoc" data-parsoid="{}" />
+</section><section data-mw-section-id="1" about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":["==Section 0==\n",{"template":{"target":{"wt":"sections","href":"./Template:Sections"},"params":{},"i":0}},"\n"]}'><h2 id="Section_0" data-parsoid="{}">Section 0</h2>
+<section data-mw-section-id="-1"><h3 about="#mwt1" typeof="mw:Transclusion" id="Section_1" data-parsoid="{}" data-mw='{"parts":[{"template":{"target":{"wt":"sections","href":"./Template:Sections"},"params":{},"i":0}}]}'>Section 1</h3><span about="#mwt1">
+</span></section></section><section data-mw-section-id="-1" about="#mwt2"><h2 about="#mwt1" id="Section_2">Section 2</h2>
+</section><section data-mw-section-id="2"><h2 id="Section_4" data-parsoid="{}">Section 4</h2></section>
 !! end
 
 !! test
 T307691: show-toc flag: no sections
 !! options
 showflags
+parsoid={
+	"wrapSections": true
+}
 !! wikitext
 !! metadata
 flags=
 !! html
+!! html/parsoid
+<section data-mw-section-id="0"></section>
 !! end
 
 # You can't force a TOC if there aren't any sections
@@ -904,13 +990,16 @@ flags=
 T307691: show-toc flag: no sections, but __FORCETOC__
 !! options
 showflags
+parsoid={
+	"wrapSections": true
+}
 !! wikitext
 __FORCETOC__
 !! metadata
 flags=
 !! html/php
 !! html/parsoid
-<meta property="mw:PageProp/forcetoc"/>
+<section data-mw-section-id="0"><meta property="mw:PageProp/forcetoc"/></section>
 !! end
 
 # Placing a manual __TOC__ doesn't do anything if there aren't any sections
@@ -918,32 +1007,41 @@ flags=
 T307691: show-toc flag: no sections, but __TOC__
 !! options
 showflags
+parsoid={
+	"wrapSections": true
+}
 !! wikitext
 __TOC__
 !! metadata
 flags=
 !! html/php
 !! html/parsoid
-<meta property="mw:PageProp/toc"/>
+<section data-mw-section-id="0"><meta property="mw:PageProp/toc"/></section>
 !! end
 
 !! test
 T307691: show-toc flag: no sections, and __NOTOC__
 !! options
 showflags
+parsoid={
+	"wrapSections": true
+}
 !! wikitext
 __NOTOC__
 !! metadata
 flags=no-toc
 !! html/php
 !! html/parsoid
-<meta property="mw:PageProp/notoc"/>
+<section data-mw-section-id="0"><meta property="mw:PageProp/notoc"/></section>
 !! end
 
 !! test
 T307691: show-toc flag: not "enough" sections
 !! options
 showflags
+parsoid={
+	"wrapSections": true
+}
 !! wikitext
 == One ==
 !! metadata
@@ -951,13 +1049,17 @@ flags=
 !! html/php
 <h2><span class="mw-headline" id="One">One</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: One">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 !! html/parsoid
-<h2 id="One">One</h2>
+<section data-mw-section-id="0"></section><section data-mw-section-id="1"><h2 id="One">One</h2>
+</section>
 !! end
 
 !! test
 T307691: show-toc flag: not "enough" sections, but __FORCETOC__
 !! options
 showflags
+parsoid={
+	"wrapSections": true
+}
 !! wikitext
 __FORCETOC__
 == One ==
@@ -972,14 +1074,18 @@ flags=show-toc
 
 <h2><span class="mw-headline" id="One">One</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: One">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 !! html/parsoid
-<meta property="mw:PageProp/forcetoc"/>
-<h2 id="One">One</h2>
+<section data-mw-section-id="0"><meta property="mw:PageProp/forcetoc"/>
+<meta property="mw:PageProp/toc" data-mw='{"autoGenerated":true}'/></section><section data-mw-section-id="1">
+<h2 id="One">One</h2></section>
 !! end
 
 !! test
 T307691: show-toc flag: not "enough" sections, but __TOC__
 !! options
 showflags
+parsoid={
+	"wrapSections": true
+}
 !! wikitext
 == One ==
 __TOC__
@@ -993,14 +1099,17 @@ flags=show-toc
 </ul>
 </div>
 !! html/parsoid
-<h2 id="One">One</h2>
-<meta property="mw:PageProp/toc"/>
+<section data-mw-section-id="0"></section><section data-mw-section-id="1"><h2 id="One">One</h2>
+<meta property="mw:PageProp/toc"/></section>
 !! end
 
 !! test
 T307691: show-toc flag: not "enough" sections, and __NOTOC__
 !! options
 showflags
+parsoid={
+	"wrapSections": true
+}
 !! wikitext
 __NOTOC__
 == One ==
@@ -1009,14 +1118,18 @@ flags=no-toc
 !! html/php
 <h2><span class="mw-headline" id="One">One</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: One">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 !! html/parsoid
-<meta property="mw:PageProp/notoc"/>
-<h2 id="One">One</h2>
+<section data-mw-section-id="0"><meta property="mw:PageProp/notoc"/>
+</section><section data-mw-section-id="1">
+<h2 id="One">One</h2></section>
 !! end
 
 !! test
 T307691: show-toc flag: "enough" sections
 !! options
 showflags
+parsoid={
+	"wrapSections": true
+}
 !! wikitext
 == One ==
 === Two ===
@@ -1045,16 +1158,19 @@ flags=show-toc
 <h2><span class="mw-headline" id="Three">Three</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Three">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h3><span class="mw-headline" id="Four">Four</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Four">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
 !! html/parsoid
-<h2 id="One">One</h2>
-<h3 id="Two">Two</h3>
-<h2 id="Three">Three</h2>
-<h3 id="Four">Four</h3>
+<section data-mw-section-id="0"><meta property="mw:PageProp/toc" data-mw='{"autoGenerated":true}'/></section><section data-mw-section-id="1"><h2 id="One">One</h2>
+<section data-mw-section-id="2"><h3 id="Two">Two</h3>
+</section></section><section data-mw-section-id="3"><h2 id="Three">Three</h2>
+<section data-mw-section-id="4"><h3 id="Four">Four</h3></section></section>
 !! end
 
 !! test
 T307691: show-toc flag: "enough" sections and __FORCETOC__
 !! options
 showflags
+parsoid={
+	"wrapSections": true
+}
 !! wikitext
 __FORCETOC__
 == One ==
@@ -1084,17 +1200,20 @@ flags=show-toc
 <h2><span class="mw-headline" id="Three">Three</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Three">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h3><span class="mw-headline" id="Four">Four</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Four">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
 !! html/parsoid
-<meta property="mw:PageProp/forcetoc"/>
-<h2 id="One">One</h2>
-<h3 id="Two">Two</h3>
-<h2 id="Three">Three</h2>
-<h3 id="Four">Four</h3>
+<section data-mw-section-id="0"><meta property="mw:PageProp/forcetoc"/>
+<meta property="mw:PageProp/toc" data-mw='{"autoGenerated":true}'/></section><section data-mw-section-id="1"><h2 id="One">One</h2>
+<section data-mw-section-id="2"><h3 id="Two">Two</h3>
+</section></section><section data-mw-section-id="3"><h2 id="Three">Three</h2>
+<section data-mw-section-id="4"><h3 id="Four">Four</h3></section></section>
 !! end
 
 !! test
 T307691: show-toc flag: "enough" sections and __NOTOC__
 !! options
 showflags
+parsoid={
+	"wrapSections": true
+}
 !! wikitext
 __NOTOC__
 == One ==
@@ -1109,11 +1228,11 @@ flags=no-toc
 <h2><span class="mw-headline" id="Three">Three</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Three">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h3><span class="mw-headline" id="Four">Four</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Four">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
 !! html/parsoid
-<meta property="mw:PageProp/notoc"/>
-<h2 id="One">One</h2>
-<h3 id="Two">Two</h3>
-<h2 id="Three">Three</h2>
-<h3 id="Four">Four</h3>
+<section data-mw-section-id="0"><meta property="mw:PageProp/notoc"/>
+</section><section data-mw-section-id="1"><h2 id="One">One</h2>
+<section data-mw-section-id="2"><h3 id="Two">Two</h3>
+</section></section><section data-mw-section-id="3"><h2 id="Three">Three</h2>
+<section data-mw-section-id="4"><h3 id="Four">Four</h3></section></section>
 !! end
 
 !! test
@@ -1142,7 +1261,7 @@ __TOC__
 ==title 1==
 ===title 1.1===
 ==title 2==
-!! html
+!! html/php
 <div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#title_1"><span class="tocnumber">1</span> <span class="toctext">title 1</span></a>
@@ -1157,6 +1276,11 @@ __TOC__
 <h2><span class="mw-headline" id="title_1">title 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: title 1">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h3><span class="mw-headline" id="title_1.1">title 1.1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: title 1.1">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
 <h2><span class="mw-headline" id="title_2">title 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: title 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+!! html/parsoid
+<meta property="mw:PageProp/toc" data-parsoid="{}"/>
+<h2 id="title_1" data-parsoid="{}">title 1</h2>
+<h3 id="title_1.1" data-parsoid="{}">title 1.1</h3>
+<h2 id="title_2" data-parsoid="{}">title 2</h2>
 !! end
 
 # test added in 4e717c01589378893c98e333884315c166c217b3
@@ -1167,6 +1291,9 @@ __TOC__
 __FORCETOC__ override
 !! options
 showflags
+parsoid={
+	"wrapSections": true
+}
 !! wikitext
 __NEWSECTIONLINK__
 __FORCETOC__
@@ -1176,8 +1303,8 @@ flags=mw-NewSection
 <p><br />
 </p>
 !! html/parsoid
-<meta property="mw:PageProp/newsectionlink"/>
-<meta property="mw:PageProp/forcetoc"/>
+<section data-mw-section-id="0"><meta property="mw:PageProp/newsectionlink" />
+<meta property="mw:PageProp/forcetoc" /></section>
 !! end
 
 # Note that Parsoid doesn't emit an explicit TOC.
@@ -1721,10 +1848,10 @@ parsoid=wt2html,wt2wt,html2html
 <h1><span class="mw-headline" id="italic_heading.3D"><i>italic</i> heading=</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: italic heading=">edit</a><span class="mw-editsection-bracket">]</span></span></h1>
 <h1><span class="mw-headline" id=".3Ditalic_heading">=<i>italic</i> heading</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: =italic heading">edit</a><span class="mw-editsection-bracket">]</span></span></h1>
 !! html/parsoid
-<h1 id="foo="><span id="foo.3D" typeof="mw:FallbackId"></span>foo=</h1>
-<h1 id="=foo"><span id=".3Dfoo" typeof="mw:FallbackId"></span>=foo</h1>
-<h1 id="italic_heading="><span id="italic_heading.3D" typeof="mw:FallbackId"></span><i>italic</i> heading=</h1>
-<h1 id="=italic_heading"><span id=".3Ditalic_heading" typeof="mw:FallbackId"></span>=<i>italic</i> heading</h1>
+<h1 id="foo=" data-parsoid="{}"><span id="foo.3D" typeof="mw:FallbackId"></span>foo=</h1>
+<h1 id="=foo" data-parsoid="{}"><span id=".3Dfoo" typeof="mw:FallbackId"></span>=foo</h1>
+<h1 id="italic_heading=" data-parsoid="{}"><span id="italic_heading.3D" typeof="mw:FallbackId"></span><i>italic</i> heading=</h1>
+<h1 id="=italic_heading" data-parsoid="{}"><span id=".3Ditalic_heading" typeof="mw:FallbackId"></span>=<i>italic</i> heading</h1>
 !! end
 
 !! test
@@ -1786,7 +1913,7 @@ Out-of-order TOC heading levels
 =1=
 =====5=====
 ==2==
-!! html
+!! html/php
 <div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#2"><span class="tocnumber">1</span> <span class="toctext">2</span></a>
@@ -1810,4 +1937,11 @@ Out-of-order TOC heading levels
 <h1><span class="mw-headline" id="1">1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: 1">edit</a><span class="mw-editsection-bracket">]</span></span></h1>
 <h5><span class="mw-headline" id="5">5</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: 5">edit</a><span class="mw-editsection-bracket">]</span></span></h5>
 <h2><span class="mw-headline" id="2_2">2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+!! html/parsoid
+<h2 id="2" data-parsoid="{}">2</h2>
+<h6 id="6" data-parsoid="{}">6</h6>
+<h3 id="3" data-parsoid="{}">3</h3>
+<h1 id="1" data-parsoid="{}">1</h1>
+<h5 id="5" data-parsoid="{}">5</h5>
+<h2 id="2_2" data-parsoid="{}">2</h2>
 !! end
