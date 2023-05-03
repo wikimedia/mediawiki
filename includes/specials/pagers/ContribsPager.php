@@ -218,7 +218,6 @@ class ContribsPager extends RangeChronologicalPager {
 		$this->hideMinor = !empty( $options['hideMinor'] );
 		$this->revisionsOnly = !empty( $options['revisionsOnly'] );
 
-		$this->mDb = $dbProvider->getReplicaDatabase();
 		// Needed by call to getIndexField -> getTargetTable from parent constructor
 		$this->actorMigration = $actorMigration ?? $services->getActorMigration();
 		parent::__construct( $context, $linkRenderer ?? $services->getLinkRenderer() );

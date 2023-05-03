@@ -1552,11 +1552,11 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * Return a IDatabase object for reading
+	 * Which database to use for read queries
 	 *
 	 * @return IDatabase
 	 */
-	protected function getDB() {
+	protected function getDB(): IDatabase {
 		return wfGetDB( DB_REPLICA );
 	}
 

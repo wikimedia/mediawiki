@@ -29,7 +29,6 @@ use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
-use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -54,9 +53,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	/** @var WatchlistManager */
 	private $watchlistManager;
 
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
@@ -69,20 +65,17 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	/**
 	 * @param WatchedItemStoreInterface $watchedItemStore
 	 * @param WatchlistManager $watchlistManager
-	 * @param IConnectionProvider $dbProvider
 	 * @param UserOptionsLookup $userOptionsLookup
 	 */
 	public function __construct(
 		WatchedItemStoreInterface $watchedItemStore,
 		WatchlistManager $watchlistManager,
-		IConnectionProvider $dbProvider,
 		UserOptionsLookup $userOptionsLookup
 	) {
 		parent::__construct( 'Watchlist', 'viewmywatchlist' );
 
 		$this->watchedItemStore = $watchedItemStore;
 		$this->watchlistManager = $watchlistManager;
-		$this->dbProvider = $dbProvider;
 		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
@@ -485,15 +478,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			->caller( __METHOD__ );
 
 		return $queryBuilder->fetchResultSet();
-	}
-
-	/**
-	 * Return a IDatabase object for reading
-	 *
-	 * @return IDatabase
-	 */
-	protected function getDB() {
-		return $this->dbProvider->getReplicaDatabase();
 	}
 
 	public function outputFeedLinks() {
