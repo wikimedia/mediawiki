@@ -209,7 +209,6 @@ use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Rdbms\DatabaseFactory;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\RequestTimeout\RequestTimeout;
-use Wikimedia\Services\RecursiveServiceDependencyException;
 use Wikimedia\Stats\StatsCache;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\UUID\GlobalIdGenerator;
@@ -598,21 +597,22 @@ return [
 	},
 
 	'DBLoadBalancerFactoryConfigBuilder' => static function ( MediaWikiServices $services ): MWLBFactory {
-		$cpStashType = $services->getMainConfig()->get( MainConfigNames::ChronologyProtectorStash );
+		$mainConfig = $services->getMainConfig();
+		$cpStashType = $mainConfig->get( MainConfigNames::ChronologyProtectorStash );
+		$cacheId = $mainConfig->get( MainConfigNames::MainCacheType );
+		$isMainCacheBad = ObjectCache::isDatabaseId( $cacheId );
 		if ( is_string( $cpStashType ) ) {
 			$cpStash = ObjectCache::getInstance( $cpStashType );
+		} elseif ( $isMainCacheBad ) {
+			$cpStash = new EmptyBagOStuff();
 		} else {
-			try {
-				$cpStash = ObjectCache::getLocalClusterInstance();
-			} catch ( RecursiveServiceDependencyException $e ) {
-				$cpStash = new EmptyBagOStuff(); // T141804: handle cases like CACHE_DB
-			}
+			$cpStash = ObjectCache::getLocalClusterInstance();
 		}
 
-		try {
+		if ( $isMainCacheBad ) {
+			$wanCache = WANObjectCache::newEmpty();
+		} else {
 			$wanCache = $services->getMainWANObjectCache();
-		} catch ( RecursiveServiceDependencyException $e ) {
-			$wanCache = WANObjectCache::newEmpty(); // T141804: handle cases like CACHE_DB
 		}
 
 		$srvCache = $services->getLocalServerObjectCache();
