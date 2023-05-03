@@ -6888,7 +6888,7 @@ class MainConfigSchema {
 				\MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider::class => [
 					'class' => \MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider::class,
 					'services' => [
-						'DBLoadBalancer',
+						'DBLoadBalancerFactory',
 						'UserOptionsLookup',
 					],
 					'args' => [ [
@@ -6900,7 +6900,7 @@ class MainConfigSchema {
 				\MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider::class => [
 					'class' => \MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider::class,
 					'services' => [
-						'DBLoadBalancer',
+						'DBLoadBalancerFactory',
 					],
 					'args' => [ [
 						// Last one should be authoritative, or else the user will get
@@ -6929,7 +6929,7 @@ class MainConfigSchema {
 				\MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider::class => [
 					'class' => \MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider::class,
 					'services' => [
-						'DBLoadBalancer',
+						'DBLoadBalancerFactory',
 					],
 					'sort' => 200,
 				],

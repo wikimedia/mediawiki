@@ -24,7 +24,7 @@ namespace MediaWiki\Auth;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserRigorOptions;
 use User;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * A primary authentication provider that uses the password field in the 'user' table.
@@ -38,20 +38,20 @@ class LocalPasswordPrimaryAuthenticationProvider
 	/** @var bool If true, this instance is for legacy logins only. */
 	protected $loginOnly = false;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/**
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param array $params Settings
 	 *  - loginOnly: If true, the local passwords are for legacy logins only:
 	 *    the local password will be invalidated when authentication is changed
 	 *    and new users will not have a valid local password set.
 	 */
-	public function __construct( ILoadBalancer $loadBalancer, $params = [] ) {
+	public function __construct( IConnectionProvider $dbProvider, $params = [] ) {
 		parent::__construct( $params );
 		$this->loginOnly = !empty( $params['loginOnly'] );
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 	}
 
 	/**
@@ -100,7 +100,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 			return AuthenticationResponse::newAbstain();
 		}
 
-		$row = $this->loadBalancer->getConnection( DB_REPLICA )->newSelectQueryBuilder()
+		$row = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
 			->select( [ 'user_id', 'user_password', 'user_password_expires' ] )
 			->from( 'user' )
 			->where( [ 'user_name' => $username ] )
@@ -144,7 +144,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 			$newHash = $this->getPasswordFactory()->newFromPlaintext( $req->password );
 			$fname = __METHOD__;
 			\DeferredUpdates::addCallableUpdate( function () use ( $newHash, $oldRow, $fname ) {
-				$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
+				$dbw = $this->dbProvider->getPrimaryDatabase();
 				$dbw->update(
 					'user',
 					[ 'user_password' => $newHash->toString() ],
@@ -170,7 +170,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 			return false;
 		}
 
-		$row = $this->loadBalancer->getConnection( DB_REPLICA )->newSelectQueryBuilder()
+		$row = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
 			->select( [ 'user_password' ] )
 			->from( 'user' )
 			->where( [ 'user_name' => $username ] )
@@ -195,8 +195,9 @@ class LocalPasswordPrimaryAuthenticationProvider
 			return false;
 		}
 
-		[ $db, $options ] = \DBAccessObjectUtils::getDBOptions( $flags );
-		return (bool)$this->loadBalancer->getConnection( $db )->newSelectQueryBuilder()
+		[ $mode, $options ] = \DBAccessObjectUtils::getDBOptions( $flags );
+		$db = \DBAccessObjectUtils::getDBFromIndex( $this->dbProvider, $mode );
+		return (bool)$db->newSelectQueryBuilder()
 			->select( [ 'user_id' ] )
 			->from( 'user' )
 			->where( [ 'user_name' => $username ] )
@@ -221,7 +222,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 			$username = $this->userNameUtils->getCanonical( $req->username,
 				UserRigorOptions::RIGOR_USABLE );
 			if ( $username !== false ) {
-				$row = $this->loadBalancer->getConnection( DB_PRIMARY )->newSelectQueryBuilder()
+				$row = $this->dbProvider->getPrimaryDatabase()->newSelectQueryBuilder()
 					->select( [ 'user_id' ] )
 					->from( 'user' )
 					->where( [ 'user_name' => $username ] )
@@ -264,7 +265,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 		}
 
 		if ( $pwhash ) {
-			$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
+			$dbw = $this->dbProvider->getPrimaryDatabase();
 			$dbw->update(
 				'user',
 				[

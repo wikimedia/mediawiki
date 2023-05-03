@@ -903,7 +903,7 @@ return [
 					'MediaWiki\\Auth\\TemporaryPasswordPrimaryAuthenticationProvider' => [
 						'class' => 'MediaWiki\\Auth\\TemporaryPasswordPrimaryAuthenticationProvider',
 						'services' => [
-							0 => 'DBLoadBalancer',
+							0 => 'DBLoadBalancerFactory',
 							1 => 'UserOptionsLookup',
 						],
 						'args' => [
@@ -916,7 +916,7 @@ return [
 					'MediaWiki\\Auth\\LocalPasswordPrimaryAuthenticationProvider' => [
 						'class' => 'MediaWiki\\Auth\\LocalPasswordPrimaryAuthenticationProvider',
 						'services' => [
-							0 => 'DBLoadBalancer',
+							0 => 'DBLoadBalancerFactory',
 						],
 						'args' => [
 							0 => [
@@ -938,7 +938,7 @@ return [
 					'MediaWiki\\Auth\\EmailNotificationSecondaryAuthenticationProvider' => [
 						'class' => 'MediaWiki\\Auth\\EmailNotificationSecondaryAuthenticationProvider',
 						'services' => [
-							0 => 'DBLoadBalancer',
+							0 => 'DBLoadBalancerFactory',
 						],
 						'sort' => 200,
 					],
