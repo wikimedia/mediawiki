@@ -22,7 +22,11 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use HTMLForm;
 use MediaWiki\Title\Title;
+use RedirectSpecialPage;
 
 /**
  * Redirect from Special:Diff/### to index.php?diff=### and
@@ -137,3 +141,8 @@ class SpecialDiff extends RedirectSpecialPage {
 		return 'redirects';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialDiff::class, 'SpecialDiff' );
