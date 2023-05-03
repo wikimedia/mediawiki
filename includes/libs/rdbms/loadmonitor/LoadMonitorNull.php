@@ -20,33 +20,11 @@
 
 namespace Wikimedia\Rdbms;
 
-use BagOStuff;
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
-use Psr\Log\LoggerInterface;
-use WANObjectCache;
-
 /**
  * @ingroup Database
  */
-class LoadMonitorNull implements ILoadMonitor {
-	public function __construct(
-		ILoadBalancer $lb, BagOStuff $sCache, WANObjectCache $wCache, array $options = []
-	) {
-	}
-
-	public function setLogger( LoggerInterface $logger ) {
-	}
-
-	public function setStatsdDataFactory( StatsdDataFactoryInterface $statsFactory ) {
-	}
-
-	public function scaleLoads( array &$loads ) {
-	}
-
-	public function getLagTimes( array $serverIndexes ) {
-		return array_fill_keys( $serverIndexes, 0 );
-	}
-
-	public function clearCaches() {
+class LoadMonitorNull extends LoadMonitor {
+	public function getServerStates( array $serverIndexes ): array {
+		return array_fill_keys( $serverIndexes, $this->newInitialServerState() );
 	}
 }
