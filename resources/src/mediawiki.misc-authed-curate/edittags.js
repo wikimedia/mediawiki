@@ -2,9 +2,12 @@
  * JavaScript for Special:EditTags
  */
 ( function () {
+	if ( mw.config.get( 'wgCanonicalSpecialPageName' ) !== 'EditTags' ) {
+		return;
+	}
 	$( function () {
-		var $wpReason = $( '#wpReason' ),
-			$tagList = $( '#mw-edittags-tag-list' );
+		var $wpReason = $( '#wpReason' );
+		var $tagList = $( '#mw-edittags-tag-list' );
 
 		if ( $tagList.length ) {
 			$tagList.chosen( {
