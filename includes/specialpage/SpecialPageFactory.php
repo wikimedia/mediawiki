@@ -73,6 +73,7 @@ use MediaWiki\Specials\SpecialFewestRevisions;
 use MediaWiki\Specials\SpecialFileDuplicateSearch;
 use MediaWiki\Specials\SpecialFilepath;
 use MediaWiki\Specials\SpecialGoToInterwiki;
+use MediaWiki\Specials\SpecialImport;
 use MediaWiki\Specials\SpecialMostImages;
 use MediaWiki\Specials\SpecialMovePage;
 use MediaWiki\Specials\SpecialUserRights;
@@ -850,7 +851,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Import' => [
-			'class' => \SpecialImport::class,
+			'class' => SpecialImport::class,
 			'services' => [
 				'PermissionManager',
 				'WikiImporterFactory',

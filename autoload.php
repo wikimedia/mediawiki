@@ -1984,6 +1984,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Specials\\SpecialFileDuplicateSearch' => __DIR__ . '/includes/specials/SpecialFileDuplicateSearch.php',
 	'MediaWiki\\Specials\\SpecialFilepath' => __DIR__ . '/includes/specials/SpecialFilepath.php',
 	'MediaWiki\\Specials\\SpecialGoToInterwiki' => __DIR__ . '/includes/specials/SpecialGoToInterwiki.php',
+	'MediaWiki\\Specials\\SpecialImport' => __DIR__ . '/includes/specials/SpecialImport.php',
 	'MediaWiki\\Specials\\SpecialMostImages' => __DIR__ . '/includes/specials/SpecialMostImages.php',
 	'MediaWiki\\Specials\\SpecialMovePage' => __DIR__ . '/includes/specials/SpecialMovePage.php',
 	'MediaWiki\\Specials\\SpecialUserRights' => __DIR__ . '/includes/specials/SpecialUserRights.php',
