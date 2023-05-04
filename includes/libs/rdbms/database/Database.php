@@ -1978,9 +1978,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @param string $table
-	 * @return array<string,string>
+	 * @return array<string,string> Map of (column => type); [] if not needed
 	 */
-	public function getValueTypesForWithClause( $table ) {
+	protected function getValueTypesForWithClause( $table ) {
 		return [];
 	}
 
