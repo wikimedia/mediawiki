@@ -24,8 +24,20 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use Exception;
+use HTMLForm;
+use ImportReporter;
+use ImportStreamSource;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
+use PermissionsError;
+use ReadOnlyError;
+use SpecialPage;
+use Status;
+use UnexpectedValueException;
+use WikiImporterFactory;
 
 /**
  * MediaWiki page data importer
@@ -469,3 +481,8 @@ class SpecialImport extends SpecialPage {
 		return 'pagetools';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialImport::class, 'SpecialImport' );
