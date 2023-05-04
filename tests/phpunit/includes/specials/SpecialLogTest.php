@@ -5,9 +5,10 @@
  */
 
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Specials\SpecialLog;
 
 /**
- * @covers SpecialLog
+ * @covers \MediaWiki\Specials\SpecialLog
  */
 class SpecialLogTest extends SpecialPageTestBase {
 

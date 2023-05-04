@@ -22,11 +22,19 @@
  * @author Brion Vibber
  */
 
+namespace MediaWiki\Specials;
+
+use HTMLForm;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\ExternalLinks\LinkFilter;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Utils\UrlUtils;
+use Parser;
+use QueryPage;
+use Skin;
+use stdClass;
+use TitleValue;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -287,3 +295,8 @@ class SpecialLinkSearch extends QueryPage {
 		return max( parent::getMaxResults(), 60000 );
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialLinkSearch::class, 'SpecialLinkSearch' );

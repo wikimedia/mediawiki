@@ -21,8 +21,12 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\GrantsLocalization;
+use Sanitizer;
+use SpecialPage;
 
 /**
  * This special page lists all defined rights grants and the associated rights.
@@ -100,3 +104,8 @@ class SpecialListGrants extends SpecialPage {
 		return 'users';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialListGrants::class, 'SpecialListGrants' );

@@ -25,6 +25,10 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials\Redirects;
+
+use SpecialRedirectToSpecial;
+
 /**
  * Redirect page: Special:ListAdmins --> Special:ListUsers/sysop.
  *
@@ -35,3 +39,8 @@ class SpecialListAdmins extends SpecialRedirectToSpecial {
 		parent::__construct( 'Listadmins', 'Listusers', 'sysop' );
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialListAdmins::class, 'SpecialListAdmins' );

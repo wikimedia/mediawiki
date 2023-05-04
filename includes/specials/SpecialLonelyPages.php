@@ -21,9 +21,13 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\LinksMigration;
+use NamespaceInfo;
+use PageQueryPage;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -140,3 +144,8 @@ class SpecialLonelyPages extends PageQueryPage {
 		return 'maintenance';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialLonelyPages::class, 'SpecialLonelyPages' );

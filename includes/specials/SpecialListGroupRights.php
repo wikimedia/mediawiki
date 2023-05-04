@@ -21,12 +21,21 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use ILanguageConverter;
 use MediaWiki\Html\Html;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserGroupManager;
+use NamespaceInfo;
+use Sanitizer;
+use SpecialPage;
+use User;
+use UserGroupMembership;
+use Xml;
 
 /**
  * This special page lists all defined user groups and the associated rights.
@@ -320,3 +329,8 @@ class SpecialListGroupRights extends SpecialPage {
 		return 'users';
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SpecialListGroupRights::class, 'SpecialListGroupRights' );
