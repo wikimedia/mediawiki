@@ -241,10 +241,12 @@ class DatabaseBlockStore {
 				$this->blockRestrictionStore->deleteByBlockId( $ids );
 				$dbw->insert( 'ipblocks', $row, __METHOD__, [ 'IGNORE' ] );
 				$affected = $dbw->affectedRows();
-				$block->setId( $dbw->insertId() );
-				$restrictions = $block->getRawRestrictions();
-				if ( $restrictions ) {
-					$this->blockRestrictionStore->insert( $restrictions );
+				if ( $affected ) {
+					$block->setId( $dbw->insertId() );
+					$restrictions = $block->getRawRestrictions();
+					if ( $restrictions ) {
+						$this->blockRestrictionStore->insert( $restrictions );
+					}
 				}
 			}
 		}
