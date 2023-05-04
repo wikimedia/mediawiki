@@ -93,6 +93,9 @@ class UserOptionsManager extends UserOptionsLookup {
 	/** @var array Query flags used to retrieve options from database */
 	private $queryFlagsUsedForCaching = [];
 
+	/** @var UserNameUtils */
+	private $userNameUtils;
+
 	/**
 	 * @param ServiceOptions $options
 	 * @param DefaultOptionsLookup $defaultOptionsLookup
@@ -101,6 +104,7 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * @param LoggerInterface $logger
 	 * @param HookContainer $hookContainer
 	 * @param UserFactory $userFactory
+	 * @param UserNameUtils $userNameUtils
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -109,7 +113,8 @@ class UserOptionsManager extends UserOptionsLookup {
 		ILoadBalancer $loadBalancer,
 		LoggerInterface $logger,
 		HookContainer $hookContainer,
-		UserFactory $userFactory
+		UserFactory $userFactory,
+		UserNameUtils $userNameUtils
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->serviceOptions = $options;
@@ -119,6 +124,7 @@ class UserOptionsManager extends UserOptionsLookup {
 		$this->logger = $logger;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->userFactory = $userFactory;
+		$this->userNameUtils = $userNameUtils;
 	}
 
 	/**
@@ -415,8 +421,9 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * @internal only public for use in User::saveSettings
 	 */
 	public function saveOptionsInternal( UserIdentity $user, IDatabase $dbw ): bool {
-		if ( !$user->isRegistered() ) {
-			throw new InvalidArgumentException( __METHOD__ . ' was called on anon user' );
+		$isTempUser = $this->userNameUtils->isTemp( $user->getName() );
+		if ( !$user->isRegistered() || $isTempUser ) {
+			throw new InvalidArgumentException( __METHOD__ . ' was called on anon or temporary user' );
 		}
 
 		$userKey = $this->getCacheKey( $user );
@@ -596,7 +603,8 @@ class UserOptionsManager extends UserOptionsLookup {
 	): array {
 		$userKey = $this->getCacheKey( $user );
 		$defaultOptions = $this->defaultOptionsLookup->getDefaultOptions();
-		if ( !$user->isRegistered() ) {
+		$isTempUser = $this->userNameUtils->isTemp( $user->getName() );
+		if ( !$user->isRegistered() || $isTempUser ) {
 			// For unlogged-in users, load language/variant options from request.
 			// There's no need to do it for logged-in users: they can set preferences,
 			// and handling of page content is done by $pageLang->getPreferredVariant() and such,
@@ -644,7 +652,12 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * @return string
 	 */
 	private function getCacheKey( UserIdentity $user ): string {
-		return $user->isRegistered() ? "u:{$user->getId()}" : 'anon';
+		$isTempUser = $this->userNameUtils->isTemp( $user->getName() );
+		if ( !$user->isRegistered() || $isTempUser ) {
+			return 'anon';
+		} else {
+			return "u:{$user->getId()}";
+		}
 	}
 
 	/**
@@ -663,8 +676,9 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * @return bool
 	 */
 	private function canUseCachedValues( UserIdentity $user, int $queryFlags ): bool {
-		if ( !$user->isRegistered() ) {
-			// Anon users don't have options stored in the database,
+		$isTempUser = $this->userNameUtils->isTemp( $user->getName() );
+		if ( !$user->isRegistered() || $isTempUser ) {
+			// Anon & temp users don't have options stored in the database,
 			// so $queryFlags are ignored.
 			return true;
 		}

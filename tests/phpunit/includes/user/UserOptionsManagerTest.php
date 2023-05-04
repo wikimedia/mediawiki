@@ -50,7 +50,8 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 			$overrides['lb'] ?? $services->getDBLoadBalancer(),
 			new NullLogger(),
 			$overrides['hookContainer'] ?? $services->getHookContainer(),
-			$services->getUserFactory()
+			$services->getUserFactory(),
+			$services->getUserNameUtils()
 		);
 	}
 

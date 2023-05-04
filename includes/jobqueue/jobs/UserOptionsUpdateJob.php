@@ -43,7 +43,7 @@ class UserOptionsUpdateJob extends Job implements GenericParameterJob {
 
 		$user = User::newFromId( $this->params['userId'] );
 		$user->load( $user::READ_EXCLUSIVE );
-		if ( !$user->isRegistered() ) {
+		if ( !$user->isNamed() ) {
 			return true;
 		}
 
