@@ -318,7 +318,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			// 'content' => $this->fetchContent,
 		] );
 
-		if ( !$result->isOK() ) {
+		if ( !$result->isGood() ) {
 			// RevisionStore can set some internalerror_info
 			ApiBase::dieDebug( __METHOD__, Status::wrap( $result )->getWikiText( false, false, 'en' ) );
 		}
