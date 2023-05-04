@@ -22,12 +22,12 @@
  */
 
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\DB\ConfiguredReadOnlyMode;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use Wikimedia\ObjectFactory\ObjectFactory;
+use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 
 /**
  * Class to handle file backend registration

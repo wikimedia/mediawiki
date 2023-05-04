@@ -23,10 +23,10 @@ namespace MediaWiki\JobQueue;
 use IBufferingStatsdDataFactory;
 use JobQueueGroup;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\DB\ConfiguredReadOnlyMode;
 use MediaWiki\MainConfigNames;
 use MediaWiki\WikiMap\WikiMap;
 use WANObjectCache;
+use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**

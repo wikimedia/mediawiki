@@ -1,10 +1,10 @@
 <?php
 
-use MediaWiki\DB\ConfiguredReadOnlyMode;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 use Wikimedia\TestingAccessWrapper;
 
 /**

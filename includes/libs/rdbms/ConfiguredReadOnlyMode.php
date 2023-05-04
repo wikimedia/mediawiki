@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\DB;
+namespace Wikimedia\Rdbms;
 
 /**
  * Determine whether a site is statically configured as read-only.

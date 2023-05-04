@@ -1,10 +1,10 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\DB\ConfiguredReadOnlyMode;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 
 /**
  * @coversDefaultClass FileBackendGroup

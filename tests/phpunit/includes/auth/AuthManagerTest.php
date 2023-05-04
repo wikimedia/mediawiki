@@ -10,7 +10,6 @@ use MediaWiki\Auth\Hook\SecuritySensitiveOperationStatusHook;
 use MediaWiki\Auth\Hook\UserLoggedInHook;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\DatabaseBlock;
-use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Languages\LanguageConverterFactory;
@@ -35,6 +34,7 @@ use StatusValue;
 use WebRequest;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 

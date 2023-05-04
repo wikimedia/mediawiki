@@ -1,8 +1,6 @@
 <?php
 
-namespace MediaWiki\DB;
-
-use Wikimedia\Rdbms\ILoadBalancer;
+namespace Wikimedia\Rdbms;
 
 /**
  * Determine whether a site is currently in read-only mode.

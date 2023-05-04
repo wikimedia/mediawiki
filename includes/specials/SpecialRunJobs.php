@@ -21,8 +21,8 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\MainConfigNames;
+use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
  * Special page designed for running background tasks (internal use only)

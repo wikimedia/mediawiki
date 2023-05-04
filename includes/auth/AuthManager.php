@@ -26,7 +26,6 @@ namespace MediaWiki\Auth;
 use Config;
 use Language;
 use MediaWiki\Block\BlockManager;
-use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageConverterFactory;
@@ -53,6 +52,7 @@ use User;
 use WebRequest;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\ScopedCallback;
 
 /**

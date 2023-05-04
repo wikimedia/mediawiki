@@ -21,12 +21,12 @@
 namespace MediaWiki\User;
 
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\DB\ConfiguredReadOnlyMode;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\JobQueue\JobQueueGroupFactory;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
 use Psr\Log\LoggerInterface;
+use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 use Wikimedia\Rdbms\ILBFactory;
 
 /**

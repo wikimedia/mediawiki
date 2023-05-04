@@ -20,7 +20,6 @@
 
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\CommentStore\CommentStore;
-use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
@@ -32,6 +31,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
+use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**

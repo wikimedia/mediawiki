@@ -30,8 +30,6 @@ use MalformedTitleException;
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\DB\ConfiguredReadOnlyMode;
-use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkTarget;
@@ -52,7 +50,9 @@ use WatchedItemStore;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectFactory\ObjectFactory;
+use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\Services\NoSuchServiceException;
 
 /**

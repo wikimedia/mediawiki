@@ -30,7 +30,6 @@ use MediaWiki\Collation\CollationFactory;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Permissions\Authority;
@@ -52,6 +51,7 @@ use TitleFormatter;
 use WatchedItemStoreInterface;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\ReadOnlyMode;
 use WikiPage;
 
 /**

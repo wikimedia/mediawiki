@@ -24,7 +24,6 @@
  */
 
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\Html\Html;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Languages\LanguageConverterFactory;
@@ -39,6 +38,7 @@ use MediaWiki\Search\SearchWidgets\SimpleSearchResultWidget;
 use MediaWiki\Search\TitleMatcher;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserOptionsManager;
+use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
  * implements Special:Search - Run text & title search and display the output

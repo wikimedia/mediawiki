@@ -24,7 +24,6 @@ use Content;
 use IContextSource;
 use Language;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkTarget;
@@ -34,6 +33,7 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use User;
+use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
  * Constraints reflect possible errors that need to be checked

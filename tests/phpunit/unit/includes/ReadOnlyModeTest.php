@@ -1,7 +1,7 @@
 <?php
 
-use MediaWiki\DB\ConfiguredReadOnlyMode;
-use MediaWiki\DB\ReadOnlyMode;
+use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
+use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
  * @covers ReadOnlyMode
