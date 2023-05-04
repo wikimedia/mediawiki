@@ -21,7 +21,6 @@ namespace Wikimedia\Rdbms;
 
 use FSLockManager;
 use LockManager;
-use MediaWiki\MediaWikiServices;
 use NullLockManager;
 use PDO;
 use PDOException;
@@ -130,7 +129,7 @@ class DatabaseSqlite extends Database {
 		$p['schema'] = null;
 		$p['tablePrefix'] = '';
 		/** @var DatabaseSqlite $db */
-		$db = MediaWikiServices::getInstance()->getDatabaseFactory()->create( 'sqlite', $p );
+		$db = ( new DatabaseFactory() )->create( 'sqlite', $p );
 		'@phan-var DatabaseSqlite $db';
 
 		return $db;
