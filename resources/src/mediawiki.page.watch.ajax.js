@@ -78,13 +78,22 @@
 		}
 
 		var msgKey = state === 'loading' ? action + 'ing' : action;
+		// The following messages can be used here:
+		// * watch
+		// * watching
+		// * unwatch
+		// * unwatching
+		var msg = mw.msg( msgKey );
+		const link = $link.get( 0 );
+		if ( link.children.length > 1 && link.lastChild.tagName === 'SPAN' ) {
+			// Handle updated button markup,
+			// where the watchstar contains an icon element and a span element containing the text
+			link.lastChild.textContent = msg;
+		} else {
+			link.textContent = msg;
+		}
+
 		$link
-			// The following messages can be used here:
-			// * watch
-			// * watching
-			// * unwatch
-			// * unwatching
-			.text( mw.msg( msgKey ) )
 			// The following messages can be used here:
 			// * tooltip-ca-watch
 			// * tooltip-ca-unwatch
