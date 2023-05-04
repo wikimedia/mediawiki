@@ -157,6 +157,7 @@ because of Phabricator reports.
 * Support was dropped for skins with paths relative to core which has been
   sending deprecation notices since 1.37. The skin `templateDirectory` key
   should now always be relative to the skin.
+* The jquery.tipsy module, deprecated since 1.28, has now been removed.
 * …
 
 === Deprecations in 1.41 ===

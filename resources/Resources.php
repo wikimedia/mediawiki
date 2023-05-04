@@ -272,14 +272,6 @@ return [
 		'scripts' => 'resources/src/jquery/jquery.textSelection.js',
 	],
 
-	/* jQuery Tipsy */
-
-	'jquery.tipsy' => [
-		'deprecated' => true,
-		'scripts' => 'resources/src/jquery.tipsy/jquery.tipsy.js',
-		'styles' => 'resources/src/jquery.tipsy/jquery.tipsy.css',
-	],
-
 	/* jQuery UI */
 
 	'jquery.ui' => [
