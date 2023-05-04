@@ -1352,6 +1352,7 @@ abstract class Skin extends ContextSource {
 			];
 
 			$nav_urls['log'] = [
+				'icon' => 'listBullet',
 				'href' => self::makeSpecialUrlSubpage( 'Log', $rootUser )
 			];
 
@@ -1362,13 +1363,16 @@ abstract class Skin extends ContextSource {
 				->getUserBlock( $user, null, true );
 				if ( $userBlock ) {
 					$nav_urls['changeblockip'] = [
+						'icon' => 'block',
 						'href' => self::makeSpecialUrlSubpage( 'Block', $rootUser )
 					];
 					$nav_urls['unblockip'] = [
+						'icon' => 'unBlock',
 						'href' => self::makeSpecialUrlSubpage( 'Unblock', $rootUser )
 					];
 				} else {
 					$nav_urls['blockip'] = [
+						'icon' => 'block',
 						'text' => $this->msg( 'blockip', $rootUser )->text(),
 						'href' => self::makeSpecialUrlSubpage( 'Block', $rootUser )
 					];
@@ -1407,6 +1411,7 @@ abstract class Skin extends ContextSource {
 					$linkArgs = [ $rootUser ];
 				}
 				$nav_urls['userrights'] = [
+					'icon' => 'userGroup',
 					'text' => $this->msg(
 						$canChange ? 'tool-link-userrights' : 'tool-link-userrights-readonly',
 						$rootUser
