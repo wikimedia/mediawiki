@@ -1,5 +1,18 @@
 @import 'mediawiki.skin.variables.less';
 
+/**
+ * Deprecated variables
+ *
+ * All variables in this file and the importing of it are deprecated since MediaWiki v1.41.0.
+ * They remain here for one version in order to get skins prepared
+ * for the new skin variable architecture.
+ *
+ * Use Codex Design tokens provided by 'mediawiki.skin.variables.less' instead.
+ * See https://www.mediawiki.org/wiki/Codex#Using_Codex_design_tokens and
+ * https://doc.wikimedia.org/codex/latest/design-tokens/overview.html for more information
+ * on design tokens.
+ */
+
 // Colors for use in mediawiki.ui
 
 // All `@colorGray*` variables are only for reference.
@@ -72,14 +85,6 @@
 
 // Form input sizes, equal to OOUI at 14px base font-size
 @size-input-binary: 1.5625em;
-
-/**
- * Deprecated variables
- */
-// = Deprecated in MW v1.41.0
-// == All following variables carry same key and value, are replaced by Codex design tokens via
-// 'mediawiki.skin.variables.less'. They remain here for 1 version in order to get skins prepared
-// for the new skin variable architecture.
 
 // Colors
 @color-base: @colorGray2;
