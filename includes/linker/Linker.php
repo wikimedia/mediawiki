@@ -1162,7 +1162,10 @@ class Linker {
 		}
 
 		$classes = 'mw-userlink';
-		if ( $userId == 0 ) {
+		if ( MediaWikiServices::getInstance()->getTempUserConfig()->isTempName( $userName ) ) {
+			$classes .= ' mw-tempuserlink';
+			$page = SpecialPage::getTitleValueFor( 'Contributions', $userName );
+		} elseif ( $userId == 0 ) {
 			$page = ExternalUserNames::getUserLinkTitle( $userName );
 
 			if ( ExternalUserNames::isExternal( $userName ) ) {
@@ -1172,15 +1175,7 @@ class Linker {
 			}
 			$classes .= ' mw-anonuserlink'; // Separate link class for anons (T45179)
 		} else {
-			$services = MediaWikiServices::getInstance();
-			if (
-				$services->getTempUserConfig()->isTempName( $userName )
-			) {
-				$classes .= ' mw-tempuserlink';
-				$page = SpecialPage::getTitleFor( 'Contributions', $userName );
-			} else {
-				$page = TitleValue::tryNew( NS_USER, strtr( $userName, ' ', '_' ) );
-			}
+			$page = TitleValue::tryNew( NS_USER, strtr( $userName, ' ', '_' ) );
 		}
 
 		// Wrap the output with <bdi> tags for directionality isolation
