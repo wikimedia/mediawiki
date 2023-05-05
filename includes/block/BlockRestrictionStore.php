@@ -29,7 +29,7 @@ use MediaWiki\Block\Restriction\Restriction;
 use MediaWiki\DAO\WikiAwareEntity;
 use MWException;
 use stdClass;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IResultWrapper;
 
 class BlockRestrictionStore {
@@ -44,9 +44,9 @@ class BlockRestrictionStore {
 	];
 
 	/**
-	 * @var ILoadBalancer
+	 * @var IConnectionProvider
 	 */
-	private $loadBalancer;
+	private $dbProvider;
 
 	/**
 	 * @var string|false
@@ -54,14 +54,14 @@ class BlockRestrictionStore {
 	private $wikiId;
 
 	/**
-	 * @param ILoadBalancer $loadBalancer load balancer for acquiring database connections
+	 * @param IConnectionProvider $dbProvider
 	 * @param string|false $wikiId
 	 */
 	public function __construct(
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		$wikiId = WikiAwareEntity::LOCAL
 	) {
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->wikiId = $wikiId;
 	}
 
@@ -77,16 +77,13 @@ class BlockRestrictionStore {
 			return [];
 		}
 
-		$db = $this->loadBalancer->getConnectionRef( DB_REPLICA, [], $this->wikiId );
-
-		$result = $db->select(
-			[ 'ipblocks_restrictions', 'page' ],
-			[ 'ir_ipb_id', 'ir_type', 'ir_value', 'page_namespace', 'page_title' ],
-			[ 'ir_ipb_id' => $blockId ],
-			__METHOD__,
-			[],
-			[ 'page' => [ 'LEFT JOIN', [ 'ir_type' => PageRestriction::TYPE_ID, 'ir_value=page_id' ] ] ]
-		);
+		$result = $this->dbProvider->getReplicaDatabase( $this->wikiId )
+			->newSelectQueryBuilder()
+			->select( [ 'ir_ipb_id', 'ir_type', 'ir_value', 'page_namespace', 'page_title' ] )
+			->from( 'ipblocks_restrictions' )
+			->leftJoin( 'page', null, [ 'ir_type' => PageRestriction::TYPE_ID, 'ir_value=page_id' ] )
+			->where( [ 'ir_ipb_id' => $blockId ] )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		return $this->resultToRestrictions( $result );
 	}
@@ -115,7 +112,7 @@ class BlockRestrictionStore {
 			return false;
 		}
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY, [], $this->wikiId );
+		$dbw = $this->dbProvider->getPrimaryDatabase( $this->wikiId );
 
 		$dbw->insert(
 			'ipblocks_restrictions',
@@ -136,7 +133,7 @@ class BlockRestrictionStore {
 	 * @return bool
 	 */
 	public function update( array $restrictions ) {
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY, [], $this->wikiId );
+		$dbw = $this->dbProvider->getPrimaryDatabase( $this->wikiId );
 
 		$dbw->startAtomic( __METHOD__ );
 
@@ -150,13 +147,12 @@ class BlockRestrictionStore {
 		$existingList = [];
 		$blockIds = array_keys( $restrictionList );
 		if ( !empty( $blockIds ) ) {
-			$result = $dbw->select(
-				[ 'ipblocks_restrictions' ],
-				[ 'ir_ipb_id', 'ir_type', 'ir_value' ],
-				[ 'ir_ipb_id' => $blockIds ],
-				__METHOD__,
-				[ 'FOR UPDATE' ]
-			);
+			$result = $dbw->newSelectQueryBuilder()
+				->select( [ 'ir_ipb_id', 'ir_type', 'ir_value' ] )
+				->forUpdate()
+				->from( 'ipblocks_restrictions' )
+				->where( [ 'ir_ipb_id' => $blockIds ] )
+				->caller( __METHOD__ )->fetchResultSet();
 
 			$existingList = $this->restrictionsByBlockId(
 				$this->resultToRestrictions( $result )
@@ -208,17 +204,15 @@ class BlockRestrictionStore {
 
 		$parentBlockId = (int)$parentBlockId;
 
-		$db = $this->loadBalancer->getConnectionRef( DB_PRIMARY, [], $this->wikiId );
+		$db = $this->dbProvider->getPrimaryDatabase( $this->wikiId );
 
 		$db->startAtomic( __METHOD__ );
-
-		$blockIds = $db->selectFieldValues(
-			'ipblocks',
-			'ipb_id',
-			[ 'ipb_parent_block_id' => $parentBlockId ],
-			__METHOD__,
-			[ 'FOR UPDATE' ]
-		);
+		$blockIds = $db->newSelectQueryBuilder()
+			->select( 'ipb_id' )
+			->forUpdate()
+			->from( 'ipblocks' )
+			->where( [ 'ipb_parent_block_id' => $parentBlockId ] )
+			->caller( __METHOD__ )->fetchFieldValues();
 
 		$result = true;
 		foreach ( $blockIds as $id ) {
@@ -241,20 +235,19 @@ class BlockRestrictionStore {
 	 * @return bool
 	 */
 	public function delete( array $restrictions ) {
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY, [], $this->wikiId );
+		$dbw = $this->dbProvider->getPrimaryDatabase( $this->wikiId );
 		$result = true;
 		foreach ( $restrictions as $restriction ) {
 			if ( !$restriction instanceof Restriction ) {
 				continue;
 			}
 
-			$success = $dbw->delete(
-				'ipblocks_restrictions',
+			$success = $dbw->newDeleteQueryBuilder()
+				->delete( 'ipblocks_restrictions' )
 				// The restriction row is made up of a compound primary key. Therefore,
 				// the row and the delete conditions are the same.
-				$restriction->toRow(),
-				__METHOD__
-			);
+				->where( $restriction->toRow() )
+				->caller( __METHOD__ )->execute();
 			// Update the result. The first false is the result, otherwise, true.
 			$result = $success && $result;
 		}
@@ -271,12 +264,11 @@ class BlockRestrictionStore {
 	 * @return bool
 	 */
 	public function deleteByBlockId( $blockId ) {
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY, [], $this->wikiId );
-		return $dbw->delete(
-			'ipblocks_restrictions',
-			[ 'ir_ipb_id' => $blockId ],
-			__METHOD__
-		);
+		return $this->dbProvider->getPrimaryDatabase( $this->wikiId )
+			->newDeleteQueryBuilder()
+			->delete( 'ipblocks_restrictions' )
+			->where( [ 'ir_ipb_id' => $blockId ] )
+			->caller( __METHOD__ )->execute();
 	}
 
 	/**
@@ -288,8 +280,7 @@ class BlockRestrictionStore {
 	 * @return bool
 	 */
 	public function deleteByParentBlockId( $parentBlockId ) {
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY, [], $this->wikiId );
-		$dbw->deleteJoin(
+		$this->dbProvider->getPrimaryDatabase( $this->wikiId )->deleteJoin(
 			'ipblocks_restrictions',
 			'ipblocks',
 			'ir_ipb_id',

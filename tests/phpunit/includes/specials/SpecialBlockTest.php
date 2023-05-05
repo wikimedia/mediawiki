@@ -8,7 +8,7 @@ use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Specials\SpecialBlock;
-use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -955,8 +955,8 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @return BlockRestrictionStore
 	 */
 	private function getBlockRestrictionStore(): BlockRestrictionStore {
-		$loadBalancer = $this->createMock( LoadBalancer::class );
+		$dbProvider = $this->createMock( IConnectionProvider::class );
 
-		return new BlockRestrictionStore( $loadBalancer );
+		return new BlockRestrictionStore( $dbProvider );
 	}
 }
