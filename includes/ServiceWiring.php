@@ -906,7 +906,7 @@ return [
 			$services->getTitleFormatter(),
 			$services->getContentLanguage(),
 			$services->getGenderCache(),
-			$services->getDBLoadBalancer(),
+			$services->getDBLoadBalancerFactory(),
 			$services->getLinksMigration(),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);

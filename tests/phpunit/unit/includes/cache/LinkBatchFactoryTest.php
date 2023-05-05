@@ -5,7 +5,7 @@ use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * @group Cache
@@ -40,7 +40,7 @@ class LinkBatchFactoryTest extends MediaWikiUnitTestCase {
 			$this->createMock( TitleFormatter::class ),
 			$this->createMock( Language::class ),
 			$this->createMock( GenderCache::class ),
-			$this->createMock( ILoadBalancer::class ),
+			$this->createMock( IConnectionProvider::class ),
 			$this->createMock( LinksMigration::class ),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
