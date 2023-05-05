@@ -402,14 +402,12 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 		// LinkBatch does not provide a transparent read-through cache.
 		// TODO: Generic $this->assertQueryCount() would do the job.
 		$lbf = $services->getDBLoadBalancerFactory();
-		$fakeLB = $lbf->newMainLB();
-		$fakeLB->disable( __METHOD__ );
 		$linkBatchFactory = new LinkBatchFactory(
 			$services->getLinkCache(),
 			$services->getTitleFormatter(),
 			$services->getContentLanguage(),
 			$services->getGenderCache(),
-			$fakeLB,
+			$lbf,
 			$services->getLinksMigration(),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);

@@ -7,7 +7,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Title\Title;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * @group Database
@@ -28,7 +28,7 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( TitleFormatter::class ),
 			$this->createMock( Language::class ),
 			$this->createMock( GenderCache::class ),
-			$this->createMock( ILoadBalancer::class ),
+			$this->createMock( IConnectionProvider::class ),
 			$this->createMock( LinksMigration::class ),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
@@ -52,7 +52,7 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( TitleFormatter::class ),
 			$this->createMock( Language::class ),
 			$this->createMock( GenderCache::class ),
-			$this->createMock( ILoadBalancer::class ),
+			$this->createMock( IConnectionProvider::class ),
 			$this->createMock( LinksMigration::class ),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
@@ -74,7 +74,7 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( TitleFormatter::class ),
 			$this->createMock( Language::class ),
 			$this->createMock( GenderCache::class ),
-			$this->getServiceContainer()->getDBLoadBalancer(),
+			$this->getServiceContainer()->getDBLoadBalancerFactory(),
 			$this->getServiceContainer()->getLinksMigration(),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
@@ -149,7 +149,7 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 			$services->getTitleFormatter(),
 			$services->getContentLanguage(),
 			$services->getGenderCache(),
-			$services->getDBLoadBalancer(),
+			$services->getDBLoadBalancerFactory(),
 			$services->getLinksMigration(),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
@@ -195,7 +195,7 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( TitleFormatter::class ),
 			$this->createNoOpMock( Language::class ),
 			$this->createNoOpMock( GenderCache::class ),
-			$this->createMock( ILoadBalancer::class ),
+			$this->createMock( IConnectionProvider::class ),
 			$this->createMock( LinksMigration::class ),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
@@ -213,7 +213,7 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( TitleFormatter::class ),
 			$language,
 			$this->createNoOpMock( GenderCache::class ),
-			$this->createMock( ILoadBalancer::class ),
+			$this->createMock( IConnectionProvider::class ),
 			$this->createMock( LinksMigration::class ),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
@@ -237,7 +237,7 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( TitleFormatter::class ),
 			$language,
 			$genderCache,
-			$this->createMock( ILoadBalancer::class ),
+			$this->createMock( IConnectionProvider::class ),
 			$this->createMock( LinksMigration::class ),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);

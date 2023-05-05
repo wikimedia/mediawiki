@@ -29,7 +29,7 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Page\ProperPageIdentity;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Assert\Assert;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
@@ -76,9 +76,9 @@ class LinkBatch {
 	private $genderCache;
 
 	/**
-	 * @var ILoadBalancer
+	 * @var IConnectionProvider
 	 */
-	private $loadBalancer;
+	private $dbProvider;
 
 	/** @var LinksMigration */
 	private $linksMigration;
@@ -95,7 +95,7 @@ class LinkBatch {
 	 * @param TitleFormatter $titleFormatter
 	 * @param Language $contentLanguage
 	 * @param GenderCache $genderCache
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param LinksMigration $linksMigration
 	 * @param LoggerInterface $logger
 	 */
@@ -105,7 +105,7 @@ class LinkBatch {
 		TitleFormatter $titleFormatter,
 		Language $contentLanguage,
 		GenderCache $genderCache,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		LinksMigration $linksMigration,
 		LoggerInterface $logger
 	) {
@@ -113,7 +113,7 @@ class LinkBatch {
 		$this->titleFormatter = $titleFormatter;
 		$this->contentLanguage = $contentLanguage;
 		$this->genderCache = $genderCache;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->linksMigration = $linksMigration;
 		$this->logger = $logger;
 
@@ -321,7 +321,7 @@ class LinkBatch {
 		}
 
 		// This is similar to LinkHolderArray::replaceInternal
-		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 		$queryBuilder = $dbr->newSelectQueryBuilder()
 			->select( LinkCache::getSelectFields() )
 			->from( 'page' )
