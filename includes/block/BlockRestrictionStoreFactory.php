@@ -54,7 +54,7 @@ class BlockRestrictionStoreFactory {
 		$storeCacheKey = $wikiId === WikiAwareEntity::LOCAL ? 'LOCAL' : 'crosswikistore-' . $wikiId;
 		if ( !isset( $this->storeCache[$storeCacheKey] ) ) {
 			$this->storeCache[$storeCacheKey] = new BlockRestrictionStore(
-				$this->loadBalancerFactory->getMainLB( $wikiId ),
+				$this->loadBalancerFactory,
 				$wikiId
 			);
 		}
