@@ -246,6 +246,7 @@
 	 */
 	inspect.grep = function ( pattern ) {
 		if ( typeof pattern.test !== 'function' ) {
+			// eslint-disable-next-line security/detect-non-literal-regexp
 			pattern = new RegExp( mw.util.escapeRegExp( pattern ), 'g' );
 		}
 

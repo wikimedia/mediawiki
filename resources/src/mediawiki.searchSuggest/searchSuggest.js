@@ -12,7 +12,6 @@
 		// T251544: Collect search performance metrics to compare Vue search with
 		// mediawiki.searchSuggest performance. Marks and Measures will only be
 		// recorded on the Vector skin.
-		/* eslint-disable compat/compat */
 		shouldTestSearch = !!( mw.config.get( 'skin' ) === 'vector' &&
 			window.performance &&
 			window.requestAnimationFrame &&
@@ -20,7 +19,7 @@
 			performance.measure &&
 			performance.getEntriesByName &&
 			performance.clearMarks ),
-		/* eslint-enable compat/compat */
+
 		loadStartMark = 'mwVectorLegacySearchLoadStart',
 		queryMark = 'mwVectorLegacySearchQuery',
 		renderMark = 'mwVectorLegacySearchRender',
@@ -121,7 +120,6 @@
 				performance.clearMarks( queryMark );
 			}
 
-			// eslint-disable-next-line compat/compat
 			performance.mark( queryMark );
 		}
 

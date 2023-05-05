@@ -26,7 +26,6 @@
 					var timeZone;
 					try {
 						// This may return undefined
-						// eslint-disable-next-line compat/compat
 						timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 					} catch ( err ) {
 						timeZone = null;

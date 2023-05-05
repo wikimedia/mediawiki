@@ -219,6 +219,7 @@
 				value = '1970-01-01T' + value + 'Z';
 				break;
 		}
+		// eslint-disable-next-line security/detect-unsafe-regex
 		m = /^(\d{4,})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.(\d{1,3}))?Z$/.exec( value );
 		if ( m ) {
 			if ( m[ 7 ] ) {

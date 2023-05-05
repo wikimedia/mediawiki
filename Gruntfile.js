@@ -32,11 +32,13 @@ module.exports = function ( grunt ) {
 					basePath;
 				try {
 					basePath = 'extensions';
+					// eslint-disable-next-line security/detect-non-literal-fs-filename
 					settingsJson = fs.readFileSync(
 						path.resolve( __dirname + '/' + basePath + '/' + qunitComponent + '/extension.json' )
 					);
 				} catch ( e ) {
 					basePath = 'skins';
+					// eslint-disable-next-line security/detect-non-literal-fs-filename
 					settingsJson = fs.readFileSync(
 						path.resolve( __dirname + '/' + basePath + '/' + qunitComponent + '/skin.json' )
 					);

@@ -306,6 +306,7 @@
 				q = {};
 				// using replace to iterate over a string
 				if ( uri.query ) {
+					// eslint-disable-next-line security/detect-unsafe-regex
 					uri.query.replace( /(?:^|&)([^&=]*)(?:(=)([^&]*))?/g, function ( match, k, eq, v ) {
 						var arrayKeyMatch, i;
 						if ( k ) {

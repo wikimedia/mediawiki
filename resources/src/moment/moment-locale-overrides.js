@@ -13,11 +13,11 @@
 	// wgTranslateNumerals is respected.
 	moment.updateLocale( moment.locale(), {
 		preparse: function ( s ) {
-			var i,
-				table = mw.language.getDigitTransformTable();
+			var table = mw.language.getDigitTransformTable();
 			if ( mw.config.get( 'wgTranslateNumerals' ) ) {
-				for ( i = 0; i < 10; i++ ) {
+				for ( var i = 0; i < 10; i++ ) {
 					if ( table[ i ] !== undefined ) {
+						// eslint-disable-next-line security/detect-non-literal-regexp
 						s = s.replace( new RegExp( mw.util.escapeRegExp( table[ i ] ), 'g' ), i );
 					}
 				}
@@ -31,11 +31,11 @@
 			return s;
 		},
 		postformat: function ( s ) {
-			var i,
-				table = mw.language.getDigitTransformTable();
+			var table = mw.language.getDigitTransformTable();
 			if ( mw.config.get( 'wgTranslateNumerals' ) ) {
-				for ( i = 0; i < 10; i++ ) {
+				for ( var i = 0; i < 10; i++ ) {
 					if ( table[ i ] !== undefined ) {
+						// eslint-disable-next-line security/detect-non-literal-regexp
 						s = s.replace( new RegExp( i, 'g' ), table[ i ] );
 					}
 				}

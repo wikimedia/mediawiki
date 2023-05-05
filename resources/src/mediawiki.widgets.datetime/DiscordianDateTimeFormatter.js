@@ -135,6 +135,7 @@
 						return mw.widgets.datetime.DateTimeFormatter.prototype.formatSpecValue.call( this, v );
 					},
 					parseValue: function ( v ) {
+						// eslint-disable-next-line security/detect-unsafe-regex
 						if ( /^\s*(st.?\s*)?tib('?s)?(\s*day)?\s*$/i.test( v ) ) {
 							return 'tib';
 						}

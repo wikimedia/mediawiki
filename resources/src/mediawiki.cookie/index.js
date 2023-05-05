@@ -73,7 +73,6 @@ mw.cookie = {
 			options = { expires: options };
 		}
 		// Apply defaults
-		// eslint-disable-next-line compat/compat
 		options = Object.assign( {}, defaults, options );
 
 		// Don't pass invalid option to jar.cookie
