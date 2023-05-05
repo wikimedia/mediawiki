@@ -192,25 +192,12 @@
 	};
 
 	/**
-	 * Print tabular data to the console, using console.table, console.log,
-	 * or mw.log (in declining order of preference).
+	 * Print tabular data to the console using console.table.
 	 *
 	 * @param {Array} data Tabular data represented as an array of objects
 	 *  with common properties.
 	 */
-	inspect.dumpTable = function ( data ) {
-		try {
-			// Use Function.prototype#call to force an exception on Firefox,
-			// which doesn't define console#table but doesn't complain if you
-			// try to invoke it.
-			// eslint-disable-next-line no-useless-call, compat/compat
-			console.table.call( console, data );
-			return;
-		} catch ( e ) {}
-		try {
-			console.log( JSON.stringify( data, null, 2 ) );
-		} catch ( e ) {}
-	};
+	inspect.dumpTable = console.table;
 
 	/**
 	 * Generate and print reports.
