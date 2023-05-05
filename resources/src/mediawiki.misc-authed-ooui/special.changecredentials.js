@@ -9,36 +9,34 @@
 			var currentApiPromise,
 				self = OO.ui.FieldLayout.static.infuse( $( this ) );
 
-			self.getField().setValidation( function ( password ) {
-				var d;
-
+			self.getField().setValidation( function ( passwordValue ) {
 				if ( currentApiPromise ) {
 					currentApiPromise.abort();
 					currentApiPromise = undefined;
 				}
 
-				password = password.trim();
+				passwordValue = passwordValue.trim();
 
-				if ( password === '' ) {
+				if ( passwordValue === '' ) {
 					self.setErrors( [] );
 					return true;
 				}
 
-				d = $.Deferred();
+				var d = $.Deferred();
 				currentApiPromise = api.post( {
 					action: 'validatepassword',
-					password: password,
+					password: passwordValue,
 					formatversion: 2,
 					errorformat: 'html',
 					errorsuselocal: true,
 					uselang: mw.config.get( 'wgUserLanguage' )
 				} ).done( function ( resp ) {
-					var errors,
-						pwinfo = resp.validatepassword,
+					var pwinfo = resp.validatepassword,
 						good = pwinfo.validity === 'Good';
 
 					currentApiPromise = undefined;
 
+					var errors;
 					if ( !good ) {
 						errors = pwinfo.validitymessages.map( function ( m ) {
 							return new OO.ui.HtmlSnippet( m.html );

@@ -44,7 +44,7 @@
 			}
 
 			// Look for rgb(num%,num%,num%)
-			// eslint-disable-next-line no-cond-assign
+			// eslint-disable-next-line no-cond-assign, security/detect-unsafe-regex
 			if ( result = /rgb\(\s*([0-9]+(?:\.[0-9]+)?)%\s*,\s*([0-9]+(?:\.[0-9]+)?)%\s*,\s*([0-9]+(?:\.[0-9]+)?)%\s*\)/.exec( color ) ) {
 				return [
 					parseFloat( result[ 1 ] ) * 2.55,

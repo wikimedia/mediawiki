@@ -781,22 +781,22 @@
 		 * @return {boolean} Successful
 		 */
 		loadFromHash: function () {
-			var hash = location.hash;
+			var fragment = location.hash;
 
-			if ( oldhash === hash ) {
+			if ( oldhash === fragment ) {
 				return false;
 			}
-			oldhash = hash;
-			if ( hash === '' ) {
+			oldhash = fragment;
+			if ( fragment === '' ) {
 				return false;
 			}
 
 			// I'm surprised this doesn't seem to exist in jQuery or mw.util.
 			var params = {};
-			hash = hash.replace( /\+/g, '%20' );
+			fragment = fragment.replace( /\+/g, '%20' );
 			var pattern = /([^&=#]+)=?([^&#]*)/g;
 			var match;
-			while ( ( match = pattern.exec( hash ) ) ) {
+			while ( ( match = pattern.exec( fragment ) ) ) {
 				params[ decodeURIComponent( match[ 1 ] ) ] = decodeURIComponent( match[ 2 ] );
 			}
 

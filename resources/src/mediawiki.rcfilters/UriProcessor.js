@@ -110,6 +110,7 @@ UriProcessor.prototype.getUpdatedUri = function ( uri ) {
 UriProcessor.prototype._normalizeTargetInUri = function ( uri ) {
 	var parts,
 		// matches [/wiki/]SpecialNS:RCL/[Namespace:]Title/Subpage/Subsubpage/etc
+		// eslint-disable-next-line security/detect-unsafe-regex
 		re = /^((?:\/.+?\/)?.*?:.*?)\/(.*)$/;
 
 	if ( !this.normalizeTarget ) {

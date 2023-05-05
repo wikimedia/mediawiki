@@ -1193,6 +1193,7 @@ mw.jqueryMsg.HtmlEmitter.prototype = {
 				} );
 			} else {
 				var target = textify( arg );
+				// eslint-disable-next-line security/detect-non-literal-regexp
 				if ( target.search( new RegExp( '^(/|' + mw.config.get( 'wgUrlProtocols' ) + ')' ) ) !== -1 ) {
 					$el.attr( 'href', target );
 					if ( target.search( '^' + mw.config.get( 'wgArticlePath' ).replace( /\$1/g, '.+?' ) + '$' ) === -1 ) {

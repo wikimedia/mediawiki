@@ -16,6 +16,7 @@
 				}
 				$.highlightText.innerHighlight(
 					node,
+					// eslint-disable-next-line security/detect-non-literal-regexp
 					new RegExp( '(^|\\s)' + mw.util.escapeRegExp( words[ i ] ), 'i' )
 				);
 			}
@@ -25,6 +26,7 @@
 		prefixHighlight: function ( node, prefix ) {
 			$.highlightText.innerHighlight(
 				node,
+				// eslint-disable-next-line security/detect-non-literal-regexp
 				new RegExp( '(^)' + mw.util.escapeRegExp( prefix ), 'i' )
 			);
 		},
@@ -37,6 +39,7 @@
 
 			$.highlightText.innerHighlight(
 				node,
+				// eslint-disable-next-line security/detect-non-literal-regexp
 				new RegExp( '(^)' + mw.util.escapeRegExp( prefix ) + comboMarks + '*', 'i' )
 			);
 		},

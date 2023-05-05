@@ -124,6 +124,7 @@
 					continue;
 				}
 
+				// eslint-disable-next-line security/detect-non-literal-regexp
 				regexp = new RegExp( sourcePattern );
 				replacement = rule[ 1 ];
 
