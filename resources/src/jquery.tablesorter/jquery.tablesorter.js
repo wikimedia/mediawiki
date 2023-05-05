@@ -300,14 +300,24 @@
 			$table.find( '> tbody' ).first().before( $thead );
 		}
 		if ( !$table.get( 0 ).tFoot ) {
-			var $tfoot = $( '<tfoot>' );
-			var len = $rows.length;
-			for ( var i = len - 1; i >= 0; i-- ) {
-				if ( $( $rows[ i ] ).children( 'td' ).length ) {
-					break;
+			var $tfoot = $( '<tfoot>' ),
+				tfootRows = [],
+				remainingCellRowSpan = 0;
+
+			$rows.each( function () {
+				$( this ).children( 'td' ).each( function () {
+					remainingCellRowSpan = Math.max( this.rowSpan, remainingCellRowSpan );
+				} );
+
+				if ( remainingCellRowSpan > 0 ) {
+					tfootRows = [];
+					remainingCellRowSpan--;
+				} else {
+					tfootRows.push( this );
 				}
-				$tfoot.prepend( $( $rows[ i ] ) );
-			}
+			} );
+
+			$tfoot.append( tfootRows );
 			$table.append( $tfoot );
 		}
 	}

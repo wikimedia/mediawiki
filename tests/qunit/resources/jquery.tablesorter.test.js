@@ -1777,6 +1777,56 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 			] );
 		} );
 
+		QUnit.test( 'T114604 - Breaking tfoot with rowspans', function ( assert ) {
+			var $table = $(
+					'<table class="sortable">' +
+					'<tr><th>A1</th><th>A2</th></tr>' +
+					'<tr><td>B1</td><td>B2</td></tr>' +
+					'<tr><th>C1</th><th>C2</th></tr>' +
+					'<tr><td>D1</td><td rowspan="2">D2</td></tr>' +
+					'<tr><th>E1</th></tr>' +
+					'<tr><th>F1</th><th>F2</th></tr>' +
+					'</table>'
+				),
+				data = {
+					THEAD: [],
+					TBODY: [],
+					TFOOT: []
+				};
+
+			$table.tablesorter();
+
+			$table.find( 'thead,tbody,tfoot' ).find( 'tr' ).each( function () {
+				var row = [],
+					group = $( this ).parent().prop( 'nodeName' );
+
+				$( this ).find( 'td,th' ).each( function () {
+					row.push( $( this ).text() );
+				} );
+
+				data[ group ].push( row );
+			} );
+
+			assert.deepEqual(
+				data,
+				{
+					THEAD: [
+						[ 'A1', 'A2' ]
+					],
+					TBODY: [
+						[ 'B1', 'B2' ],
+						[ 'C1', 'C2' ],
+						[ 'D1', 'D2' ],
+						[ 'E1' ]
+					],
+					TFOOT: [
+						[ 'F1', 'F2' ]
+					]
+				},
+				'Row with rowspan td not added to tfoot'
+			);
+		} );
+
 		// TODO add numbers sorting tests for T10115 with a different language
 	} );
 
