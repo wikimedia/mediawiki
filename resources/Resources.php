@@ -1342,6 +1342,11 @@ return [
 		'packageFiles' => [
 			'mediawiki.action.view.postEdit.js',
 			[ 'name' => 'config.json', 'config' => [ MainConfigNames::EditSubmitButtonLabelPublish ] ],
+			[ 'name' => 'contLangMessages.json', 'callback' => static function ( MessageLocalizer $messageLocalizer ) {
+				return [
+					'tempuser-helppage' => $messageLocalizer->msg( 'tempuser-helppage' )->inContentLanguage()->text(),
+				];
+			} ],
 		],
 		'dependencies' => [
 			'mediawiki.jqueryMsg',
