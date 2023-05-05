@@ -891,6 +891,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			// to basically just debounce CDN traffic. This applies to:
 			// - Internal errors, e.g. due to misconfiguration.
 			// - Version mismatch, e.g. due to deployment race (T117587, T47877).
+			$this->logger->info( 'Client and server registry version out of sync' );
 			$maxage = self::MAXAGE_RECOVER;
 		} elseif ( $context->getVersion() === null ) {
 			// Resources that can't set a version, should have their updates propagate to
