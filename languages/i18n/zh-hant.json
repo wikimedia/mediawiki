@@ -862,7 +862,7 @@
 	"postedit-confirmation-created": "已建立頁面。",
 	"postedit-confirmation-restored": "頁面已還原。",
 	"postedit-confirmation-saved": "已儲存您的編輯。",
-	"postedit-confirmation-published": "已發布您的編輯。",
+	"postedit-confirmation-published": "您的編輯已發布。",
 	"postedit-temp-created-label": "臨時帳號",
 	"postedit-temp-created": "已透過向瀏覽器中添加Cookie為您建立自動生成的帳戶。要選擇一個您偏好的名稱並獲得更多功能，請考慮[$1 建立一個帳戶]。",
 	"edit-already-exists": "無法建立新頁面。\n該頁面已存在。",

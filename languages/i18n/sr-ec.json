@@ -3460,6 +3460,7 @@
 	"version-libraries-license": "Лиценца",
 	"version-libraries-description": "Опис",
 	"version-libraries-authors": "Аутори",
+	"version-libraries-source": "Извор",
 	"redirect": "Преусмерење на датотеку, идентиф. корисника, странице, измене или дневника",
 	"redirect-summary": "Ова посебна страница преусмерава на датотеку (датог имена), страницу (датог идентификатора измене или странице), корисничку страницу (датог бројчаног идентификатора) или унос у дневнику (датог идентификатора). Употреба: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], [[{{#Special:Redirect}}/user/101]] или [[{{#Special:Redirect}}/logid/186]].",
 	"redirect-submit": "Иди",

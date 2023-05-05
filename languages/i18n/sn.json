@@ -536,7 +536,7 @@
 	"nextn-title": "Zvinotevera $1 {{PLURAL:$1|mhedzisiro}}",
 	"shown-title": "Rakidza $1 {{PLURAL:$1|mhedzisiro}} pazanhi",
 	"viewprevnext": "Ringa ($1 {{int:pipe-separator}} $2) ($3)",
-	"searchmenu-exists": "Pane zanhi rinonzi \"[[:$1]]\" pa {[SITENAME}}. {{PLURAL:$2|0=|Ona zvimwe zvimhedzisiro zvekutsvaga zvawanikwa.}}",
+	"searchmenu-exists": "Pane zanhi rinonzi \"[[:$1]]\" pa {{SITENAME}}. {{PLURAL:$2|0=|Ona zvimwe zvimhedzisiro zvekutsvaga zvawanikwa.}}",
 	"searchmenu-new": "Sika zanhi \"[[:$1]]\" pawiki inoi! {{PLURAL:$2|0=|Onawo futi zanhi rinowanikwa nekutsvagurudza kwako.|Onawo futi mhedzisiro dzinowanikwa netsvagurudzo yako.}}",
 	"searchprofile-articles": "Mazanhi echirochemo",
 	"searchprofile-images": "Chaungamidhiya",

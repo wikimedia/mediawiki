@@ -1133,6 +1133,7 @@
 	"badsiglength": "Tu signatura es troppo longe.\nIllo debe haber minus de $1 {{PLURAL:$1|character|characteres}}.",
 	"badsiglinebreak": "Le signatura debe consister de un singule linea de wikitexto.",
 	"linterror-bogus-image-options": "Option de file invalide",
+	"linterror-big-tables": "Grande tabellas que non appare correctemente sur apparatos mobile",
 	"linterror-deletable-table-tag": "Etiquetta \"table\" a deler",
 	"linterror-html5-misnesting": "Mal annidamento (ora defectuose)",
 	"linterror-misc-tidy-replacement-issues": "Diverse errores de marcation",

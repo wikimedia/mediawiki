@@ -1228,6 +1228,7 @@
 	"badsiglength": "Uw ondertekening is te lang.\nDeze moet minder dan $1 {{PLURAL:$1|teken|tekens}} bevatten.",
 	"badsiglinebreak": "Uw handtekening moet bestaan uit één enkele regel wikitekst.",
 	"linterror-bogus-image-options": "Onjuist opgegeven optie mediabestand",
+	"linterror-big-tables": "Grote tabellen die de weergave op mobiele apparaten verstoren",
 	"linterror-deletable-table-tag": "Te verwijderen table-element",
 	"linterror-html5-misnesting": "Foutief genest (inmiddels defect)",
 	"linterror-misc-tidy-replacement-issues": "Diverse opmaakfouten",

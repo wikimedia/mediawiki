@@ -2306,6 +2306,7 @@
 	"version-libraries-license": "لائیسنس",
 	"version-libraries-description": "تفصیل",
 	"version-libraries-authors": "مصنف",
+	"version-libraries-source": "ماخذ",
 	"redirect": "فائل، ورتݨ آلا، ورقہ،دہرائی یا آئی ڈی لاگ دے ذریعے ولدا واپس",
 	"redirect-summary": "ایں خصوصی ورقے نال فائل (درج تھیا فائل ناں)، ورقہ (ورقہ یا نسخے دا درج تھیا شناختی نمبر)، ورتݨ ورقہ (ورتݨ آلے دا درج تھیا شناختی نمبر) یا اندراج نوشتہ (نوشتہ دا درج تھیا شناختی نمبر) دا رجوع مکرر حاصل کیتا ون٘ڄ سڳدا ہے۔ طریقہ استعمال: [[{{#Special:Redirect}}/file/Example.jpg]]، \n[[{{#Special:Redirect}}/page/64308]]، [[{{#Special:Redirect}}/revision/328429]] یا [[{{#Special:Redirect}}/user/101]] یا \n[[{{#Special:Redirect}}/logid/186]]۔",
 	"redirect-submit": "ڄلو",

@@ -1228,6 +1228,7 @@
 	"badsiglength": "Twój podpis jest zbyt długi.\nDopuszczalna długość to $1 {{PLURAL:$1|znak|znaki|znaków}}.",
 	"badsiglinebreak": "Twój podpis musi składać się z pojedynczej linii wikitekstu.",
 	"linterror-bogus-image-options": "Nieprawidłowa opcja pliku",
+	"linterror-big-tables": "Duże tabele, które psują układ na urządzeniach mobilnych",
 	"linterror-deletable-table-tag": "Nadmiarowe znaczniki tabeli do usunięcia",
 	"linterror-html5-misnesting": "Źle zagnieżdżone (i widoczne uszkodzenia)",
 	"linterror-misc-tidy-replacement-issues": "Różnorakie błędy składni",

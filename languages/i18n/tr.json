@@ -1241,6 +1241,7 @@
 	"badsiglength": "İmzanız çok uzun.\n$1 karakterden fazla uzun olmamalıdır.",
 	"badsiglinebreak": "İmzanız tek satır vikimetinden oluşmalıdır.",
 	"linterror-bogus-image-options": "Sahte dosya seçeneği",
+	"linterror-big-tables": "Taşınabilir aygıtlarda görüntüyü bozan büyük tablolar",
 	"linterror-deletable-table-tag": "Silinecek tablo etiketi",
 	"linterror-html5-misnesting": "Yanlış yerleştirme (şimdi bozuk)",
 	"linterror-misc-tidy-replacement-issues": "Çeşitli biçimlendirme hataları",

@@ -4032,7 +4032,7 @@
 	"version-libraries-license": "Column header for the library's license\n{{Identical|License}}",
 	"version-libraries-description": "Column header for the library's description\n{{Identical|Description}}",
 	"version-libraries-authors": "Column header for the library's authors\n{{Identical|Author}}",
-	"version-libraries-source": "Coloumn header for the library's source",
+	"version-libraries-source": "Column header for the library's source on Special:Version.",
 	"redirect": "{{doc-special|Redirect}}\nThis means \"Redirect by file '''name''', user '''ID''', page '''ID''', revision '''ID''', or log '''ID'''\".",
 	"redirect-text": "Inside fieldset for [[Special:Redirect]]",
 	"redirect-summary": "Shown at top of [[Special:Redirect]]",

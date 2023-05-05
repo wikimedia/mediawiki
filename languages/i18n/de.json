@@ -3474,6 +3474,7 @@
 	"version-libraries-license": "Lizenz",
 	"version-libraries-description": "Beschreibung",
 	"version-libraries-authors": "Autoren",
+	"version-libraries-source": "Quelle",
 	"redirect": "Weiterleitung auf Benutzerseite, Seite, Seitenversion, Datei oder Logbucheintrag",
 	"redirect-summary": "Diese Spezialseite leitet auf eine Benutzerseite (numerische Benutzerkennung angegeben), Seite (Seitenkennung angegeben), Seitenversion (Versionskennung angegeben), Datei (Dateiname angegeben) oder einen Logbucheintrag (Logbuchkennung angegeben) weiter. Benutzung: [[{{#Special:Redirect}}/user/101]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], [[{{#Special:Redirect}}/file/Example.jpg]] oder [[{{#Special:Redirect}}/logid/186]].",
 	"redirect-submit": "Los",
