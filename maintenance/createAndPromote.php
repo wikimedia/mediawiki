@@ -145,7 +145,7 @@ class CreateAndPromote extends Maintenance {
 					$user->saveSettings();
 				}
 			} catch ( PasswordError $pwe ) {
-				$this->fatalError( $pwe->getText() );
+				$this->fatalError( 'Setting the password failed: ' . $pwe->getMessage() );
 			}
 		}
 
