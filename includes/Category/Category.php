@@ -24,7 +24,6 @@
 namespace MediaWiki\Category;
 
 use DeferredUpdates;
-use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\Title;
@@ -32,6 +31,7 @@ use MediaWiki\Title\TitleArray;
 use MWException;
 use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
  * Category objects are immutable, strictly speaking. If you call methods that change the database,

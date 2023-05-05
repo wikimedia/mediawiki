@@ -6,7 +6,6 @@ use Generator;
 use JobQueueGroup;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
@@ -24,6 +23,7 @@ use Psr\Log\NullLogger;
 use RepoGroup;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\ReadOnlyMode;
 use WikiPage;
 
 /**

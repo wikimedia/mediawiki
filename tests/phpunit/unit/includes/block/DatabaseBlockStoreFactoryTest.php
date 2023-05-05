@@ -9,12 +9,12 @@ use MediaWiki\Block\DatabaseBlockStoreFactory;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\DAO\WikiAwareEntity;
-use MediaWiki\DB\ConfiguredReadOnlyMode;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\UserFactory;
 use MediaWikiUnitTestCase;
 use Psr\Log\LoggerInterface;
+use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\LoadBalancer;
 

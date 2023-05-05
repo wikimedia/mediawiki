@@ -20,7 +20,6 @@
  * @file
  */
 
-use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\ExtensionInfo;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Languages\LanguageConverterFactory;
@@ -38,6 +37,7 @@ use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
  * A query action to return meta information about the wiki site.

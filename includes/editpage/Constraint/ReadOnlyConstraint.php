@@ -20,8 +20,8 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
-use MediaWiki\DB\ReadOnlyMode;
 use StatusValue;
+use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
  * Verify site is not in read only mode

@@ -8,7 +8,6 @@
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\CommentStore\CommentStoreComment;
-use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
@@ -19,6 +18,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\EditResult;
+use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
  * Temporary action for MCR undos

@@ -19,7 +19,6 @@
  */
 
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\EditPage\Constraint\EditConstraintFactory;
 use MediaWiki\EditPage\Constraint\EditFilterMergedContentHookConstraint;
 use MediaWiki\EditPage\Constraint\PageSizeConstraint;
@@ -34,6 +33,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Title\Title;
 use Psr\Log\NullLogger;
+use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
  * Tests the EditConstraintFactory

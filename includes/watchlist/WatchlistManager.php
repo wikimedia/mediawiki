@@ -22,7 +22,6 @@
 
 namespace MediaWiki\Watchlist;
 
-use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
@@ -41,6 +40,7 @@ use StatusValue;
 use User;
 use WatchedItemStoreInterface;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
+use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
  * WatchlistManager service

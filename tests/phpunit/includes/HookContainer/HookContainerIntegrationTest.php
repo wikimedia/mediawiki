@@ -156,7 +156,7 @@ namespace FooExtension {
 	}
 
 	class ServiceHooks {
-		public function __construct( \MediaWiki\DB\ReadOnlyMode $readOnlyMode ) {
+		public function __construct( \Wikimedia\Rdbms\ReadOnlyMode $readOnlyMode ) {
 		}
 
 		public function onMash( &$arg ) {

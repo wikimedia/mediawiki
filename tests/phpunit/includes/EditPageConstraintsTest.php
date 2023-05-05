@@ -1,12 +1,12 @@
 <?php
 
-use MediaWiki\DB\ReadOnlyMode;
 use MediaWiki\EditPage\EditPage;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
+use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
  * Integration tests for the various edit constraints, ensuring
