@@ -411,9 +411,14 @@ return [
 	},
 
 	'CommentFormatter' => static function ( MediaWikiServices $services ): CommentFormatter {
-		$linkRenderer = $services->getLinkRendererFactory()->create( [ 'renderForComment' => true ] );
-		$parserFactory = new CommentParserFactory(
-			$linkRenderer,
+		return new CommentFormatter(
+			$services->getCommentParserFactory()
+		);
+	},
+
+	'CommentParserFactory' => static function ( MediaWikiServices $services ): CommentParserFactory {
+		return new CommentParserFactory(
+			$services->getLinkRendererFactory()->create( [ 'renderForComment' => true ] ),
 			$services->getLinkBatchFactory(),
 			$services->getLinkCache(),
 			$services->getRepoGroup(),
@@ -423,7 +428,6 @@ return [
 			$services->getNamespaceInfo(),
 			$services->getHookContainer()
 		);
-		return new CommentFormatter( $parserFactory );
 	},
 
 	'CommentStore' => static function ( MediaWikiServices $services ): CommentStore {
@@ -1739,19 +1743,8 @@ return [
 	},
 
 	'RowCommentFormatter' => static function ( MediaWikiServices $services ): RowCommentFormatter {
-		$parserFactory = new CommentParserFactory(
-			$services->getLinkRenderer(),
-			$services->getLinkBatchFactory(),
-			$services->getLinkCache(),
-			$services->getRepoGroup(),
-			RequestContext::getMain()->getLanguage(),
-			$services->getContentLanguage(),
-			$services->getTitleParser(),
-			$services->getNamespaceInfo(),
-			$services->getHookContainer()
-		);
 		return new RowCommentFormatter(
-			$parserFactory,
+			$services->getCommentParserFactory(),
 			$services->getCommentStore()
 		);
 	},
