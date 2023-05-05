@@ -145,7 +145,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers Article::getPage
 	 * @covers WikiPage::getRedirectTarget
-	 * @covers \Mediawiki\Page\RedirectLookup::getRedirectTarget
+	 * @covers \MediaWiki\Page\RedirectLookup::getRedirectTarget
 	 */
 	public function testViewRedirect() {
 		$target = Title::makeTitle( $this->getDefaultWikitextNS(), 'Test_Target' );

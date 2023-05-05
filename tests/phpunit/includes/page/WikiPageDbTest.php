@@ -828,7 +828,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideGetRedirectTarget
 	 * @covers WikiPage::getRedirectTarget
-	 * @covers \Mediawiki\Page\RedirectLookup::getRedirectTarget
+	 * @covers \MediaWiki\Page\RedirectLookup::getRedirectTarget
 	 */
 	public function testGetRedirectTarget( $title, $model, $text, $target ) {
 		$this->overrideConfigValues( [
