@@ -4,7 +4,7 @@
  */
 ( function () {
 
-	$.extend( mw.Api.prototype, {
+	Object.assign( mw.Api.prototype, {
 
 		/**
 		 * Get the current user's groups and rights.

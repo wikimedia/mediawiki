@@ -225,7 +225,7 @@
 		return flipped;
 	}
 
-	$.extend( mw.language, {
+	Object.assign( mw.language, {
 
 		/**
 		 * Converts a number using #getDigitTransformTable.

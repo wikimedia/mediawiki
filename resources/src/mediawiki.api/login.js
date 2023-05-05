@@ -8,7 +8,7 @@
 ( function () {
 	'use strict';
 
-	$.extend( mw.Api.prototype, {
+	Object.assign( mw.Api.prototype, {
 		/**
 		 * @param {string} username
 		 * @param {string} password

@@ -6,7 +6,7 @@
 	 * @class mw.language
 	 */
 
-	$.extend( mw.language, {
+	Object.assign( mw.language, {
 
 		/**
 		 * Get the language fallback chain for current UI language (not including the language itself).

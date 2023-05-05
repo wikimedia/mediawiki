@@ -9,7 +9,7 @@
 ( function () {
 	'use strict';
 
-	$.extend( mw.Api.prototype, {
+	Object.assign( mw.Api.prototype, {
 		/**
 		 * Get a set of messages.
 		 *

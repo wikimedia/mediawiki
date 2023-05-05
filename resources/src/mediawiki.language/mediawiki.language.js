@@ -6,7 +6,7 @@
 	/**
 	 * @class mw.language
 	 */
-	$.extend( mw.language, {
+	Object.assign( mw.language, {
 
 		/**
 		 * Plural form transformations, needed for some languages.
