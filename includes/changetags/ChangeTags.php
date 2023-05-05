@@ -387,7 +387,7 @@ class ChangeTags {
 				'specified when adding or removing a tag from a change!' );
 		}
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
 
 		// Might as well look for rcids and so on.
 		if ( !$rc_id ) {
@@ -869,7 +869,7 @@ class ChangeTags {
 		$logEntry->setParameters( $logParams );
 		$logEntry->setRelations( [ 'Tag' => array_merge( $tagsAdded, $tagsRemoved ) ] );
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
 		$logId = $logEntry->insert( $dbw );
 		// Only send this to UDP, not RC, similar to patrol events
 		$logEntry->publish( $logId, 'udp' );
@@ -1048,9 +1048,10 @@ class ChangeTags {
 		$join_cond_ts_tags = [ self::CHANGE_TAG_DEF => [ 'JOIN', 'ct_tag_id=ctd_id' ] ];
 		$field = 'ctd_name';
 
-		return wfGetDB( DB_REPLICA )->buildGroupConcatField(
-			',', $tagTables, $field, $join_cond, $join_cond_ts_tags
-		);
+		return MediaWikiServices::getInstance()
+			->getDBLoadBalancerFactory()
+			->getReplicaDatabase()
+			->buildGroupConcatField( ',', $tagTables, $field, $join_cond, $join_cond_ts_tags );
 	}
 
 	/**
@@ -1130,7 +1131,7 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function defineTag( $tag ) {
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
 		$tagDef = [
 			'ctd_name' => $tag,
 			'ctd_user_defined' => 1,
@@ -1157,7 +1158,7 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function undefineTag( $tag ) {
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
 
 		$dbw->update(
 			self::CHANGE_TAG_DEF,
@@ -1193,7 +1194,7 @@ class ChangeTags {
 	protected static function logTagManagementAction( string $action, string $tag, string $reason,
 		UserIdentity $user, $tagCount = null, array $logEntryTags = []
 	) {
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
 
 		$logEntry = new ManualLogEntry( 'managetags', $action );
 		$logEntry->setPerformer( $user );
@@ -1486,7 +1487,7 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function deleteTagEverywhere( $tag ) {
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
 		$dbw->startAtomic( __METHOD__ );
 
 		// fetch tag id, this must be done before calling undefineTag(), see T225564
@@ -1761,7 +1762,7 @@ class ChangeTags {
 			$cache->makeKey( 'tags-usage-statistics' ),
 			WANObjectCache::TTL_MINUTE * 5,
 			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
-				$dbr = wfGetDB( DB_REPLICA );
+				$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
 				$res = $dbr->newSelectQueryBuilder()
 					->select( [ 'ctd_name', 'ctd_count' ] )
 					->from( self::CHANGE_TAG_DEF )
