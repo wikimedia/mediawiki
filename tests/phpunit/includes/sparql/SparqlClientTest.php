@@ -82,7 +82,7 @@ JSON;
 		$client = new SparqlClient( 'http://acme.test/', $this->getRequestFactory( $request ) );
 
 		$request->method( 'execute' )->willReturn( \Status::newFatal( "Bad query" ) );
-		$this->expectException( \Mediawiki\Sparql\SparqlException::class );
+		$this->expectException( \MediaWiki\Sparql\SparqlException::class );
 		$result = $client->query( "TEST SPARQL 3" );
 	}
 
