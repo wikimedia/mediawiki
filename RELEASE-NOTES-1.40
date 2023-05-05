@@ -539,9 +539,9 @@ because of Phabricator reports.
   - WikiMap -> MediaWiki\WikiMap\WikiMap
   - WikiReference -> MediaWiki\WikiMap\WikiReference
   - MediaWiki\BadFileLookup -> MediaWiki\Page\File\BadFileLookup
-  - FileDeleteForm -> Mediawiki\Page\File\FileDeleteForm
-  - MergeHistory -> Mediawiki\Page\MergeHistory
-  - MovePage -> Mediawiki\Page\MovePage
+  - FileDeleteForm -> MediaWiki\Page\File\FileDeleteForm
+  - MergeHistory -> MediaWiki\Page\MergeHistory
+  - MovePage -> MediaWiki\Page\MovePage
   - ProtectionForm -> MediaWiki\Page\ProtectionForm
   - LinkFilter -> MediaWiki\ExternalLinks\LinkFilter
   - TitleArray -> MediaWiki\Title\TitleArray
