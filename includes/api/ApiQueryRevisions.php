@@ -403,10 +403,6 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		$hookData = [];
 		$res = $this->select( __METHOD__, [], $hookData );
 
-		if ( $resultPageSet === null ) {
-			$revisions = $this->getRevisionRecords( $res );
-		}
-
 		foreach ( $res as $row ) {
 			if ( ++$count > $this->limit ) {
 				// We've reached the one extra which shows that there are
@@ -426,8 +422,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			if ( $resultPageSet !== null ) {
 				$generated[] = $row->rev_id;
 			} else {
-				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable Set when used
-				$revision = $revisions[$row->rev_id];
+				$revision = $this->revisionStore->newRevisionFromRow( $row, 0, Title::newFromRow( $row ) );
 				$rev = $this->extractRevisionInfo( $revision, $row );
 				$fit = $this->processRow( $row, $rev, $hookData ) &&
 					$this->addPageSubItem( $row->rev_page, $rev, 'rev' );
