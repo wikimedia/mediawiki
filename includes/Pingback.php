@@ -26,7 +26,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\DBError;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -53,8 +53,8 @@ class Pingback {
 	protected $logger;
 	/** @var Config */
 	protected $config;
-	/** @var ILoadBalancer */
-	protected $lb;
+	/** @var IConnectionProvider */
+	protected $dbProvider;
 	/** @var BagOStuff */
 	protected $cache;
 	/** @var HttpRequestFactory */
@@ -64,20 +64,20 @@ class Pingback {
 
 	/**
 	 * @param Config $config
-	 * @param ILoadBalancer $lb
+	 * @param IConnectionProvider $dbProvider
 	 * @param BagOStuff $cache
 	 * @param HttpRequestFactory $http
 	 * @param LoggerInterface $logger
 	 */
 	public function __construct(
 		Config $config,
-		ILoadBalancer $lb,
+		IConnectionProvider $dbProvider,
 		BagOStuff $cache,
 		HttpRequestFactory $http,
 		LoggerInterface $logger
 	) {
 		$this->config = $config;
-		$this->lb = $lb;
+		$this->dbProvider = $dbProvider;
 		$this->cache = $cache;
 		$this->http = $http;
 		$this->logger = $logger;
@@ -120,7 +120,7 @@ class Pingback {
 	 * @return bool
 	 */
 	private function wasRecentlySent(): bool {
-		$timestamp = $this->lb->getConnection( DB_REPLICA )->newSelectQueryBuilder()
+		$timestamp = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
 			->select( 'ul_value' )
 			->from( 'updatelog' )
 			->where( [ 'ul_key' => $this->key ] )
@@ -150,7 +150,7 @@ class Pingback {
 			return false;
 		}
 
-		$dbw = $this->lb->getConnection( DB_PRIMARY );
+		$dbw = $this->dbProvider->getPrimaryDatabase();
 		if ( !$dbw->lock( $this->key, __METHOD__, 0 ) ) {
 			// already in progress
 			return false;
@@ -220,7 +220,7 @@ class Pingback {
 	private function fetchOrInsertId(): string {
 		// We've already obtained a primary connection for the lock, and plan to do a write.
 		// But, still prefer reading this immutable value from a replica to reduce load.
-		$id = $this->lb->getConnection( DB_REPLICA )->newSelectQueryBuilder()
+		$id = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
 			->select( 'ul_value' )
 			->from( 'updatelog' )
 			->where( [ 'ul_key' => 'PingBack' ] )
@@ -229,7 +229,7 @@ class Pingback {
 			return $id;
 		}
 
-		$dbw = $this->lb->getConnection( DB_PRIMARY );
+		$dbw = $this->dbProvider->getPrimaryDatabase();
 		$id = $dbw->newSelectQueryBuilder()
 			->select( 'ul_value' )
 			->from( 'updatelog' )
@@ -278,7 +278,7 @@ class Pingback {
 	 * @throws DBError If timestamp upsert fails
 	 */
 	private function markSent(): void {
-		$dbw = $this->lb->getConnection( DB_PRIMARY );
+		$dbw = $this->dbProvider->getPrimaryDatabase();
 		$timestamp = ConvertibleTimestamp::time();
 		$dbw->upsert(
 			'updatelog',
@@ -308,7 +308,7 @@ class Pingback {
 			// the outer call via Setup.php, all the way here through post-send.
 			$instance = new Pingback(
 				MediaWikiServices::getInstance()->getMainConfig(),
-				MediaWikiServices::getInstance()->getDBLoadBalancer(),
+				MediaWikiServices::getInstance()->getDBLoadBalancerFactory(),
 				ObjectCache::getLocalClusterInstance(),
 				MediaWikiServices::getInstance()->getHttpRequestFactory(),
 				LoggerFactory::getInstance( 'Pingback' )

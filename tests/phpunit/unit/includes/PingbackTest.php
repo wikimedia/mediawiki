@@ -4,7 +4,7 @@ use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\MainConfigNames;
 use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\DBConnRef;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -30,12 +30,13 @@ class PingbackTest extends MediaWikiUnitTestCase {
 		bool $enablePingback = true,
 		$cache = null
 	) {
-		$loadBalancer = $this->createNoOpMock( ILoadBalancer::class, [ 'getConnection' ] );
-		$loadBalancer->method( 'getConnection' )->willReturn( $database );
+		$dbProvider = $this->createNoOpMock( IConnectionProvider::class, [ 'getPrimaryDatabase', 'getReplicaDatabase' ] );
+		$dbProvider->method( 'getPrimaryDatabase' )->willReturn( $database );
+		$dbProvider->method( 'getReplicaDatabase' )->willReturn( $database );
 
 		$pingback = new MockPingback(
 			new HashConfig( [ MainConfigNames::Pingback => $enablePingback ] ),
-			$loadBalancer,
+			$dbProvider,
 			$cache ?? new HashBagOStuff(),
 			$httpRequestFactory,
 			new NullLogger()
