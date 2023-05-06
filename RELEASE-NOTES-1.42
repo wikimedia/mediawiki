@@ -269,6 +269,8 @@ because of Phabricator reports.
   - WebInstallerUpgrade
   - WebInstallerUpgradeDoc
   - WebInstallerWelcome
+* mediawiki.ui/variables.less, deprecated since 1.41, has been removed in
+  favor of mediawiki.skin.variables.less.
 * The module `jquery.cookie` (deprecated as of 1.41) has been removed.  Please
   use `mediawiki.cookie` instead
 * …
