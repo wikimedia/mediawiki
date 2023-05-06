@@ -23,6 +23,7 @@
  * @file
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
@@ -194,9 +195,9 @@ class WebRequest {
 				$router->add( $articlePaths, [ 'action' => '$key' ] );
 			}
 
+			$services = MediaWikiServices::getInstance();
 			global $wgVariantArticlePath;
 			if ( $wgVariantArticlePath ) {
-				$services = MediaWikiServices::getInstance();
 				$router->validateRoute( $wgVariantArticlePath, 'wgVariantArticlePath' );
 				$router->add( $wgVariantArticlePath,
 					[ 'variant' => '$2' ],
@@ -206,7 +207,7 @@ class WebRequest {
 				);
 			}
 
-			Hooks::runner()->onWebRequestPathInfoRouter( $router );
+			( new HookRunner( $services->getHookContainer() ) )->onWebRequestPathInfoRouter( $router );
 
 			$matches = $router->parse( $path );
 		} else {
@@ -1272,10 +1273,11 @@ class WebRequest {
 			throw new MWException( 'Unable to determine IP.' );
 		}
 
+		$services = MediaWikiServices::getInstance();
 		# Append XFF
 		$forwardedFor = $this->getHeader( 'X-Forwarded-For' );
 		if ( $forwardedFor !== false ) {
-			$proxyLookup = MediaWikiServices::getInstance()->getProxyLookup();
+			$proxyLookup = $services->getProxyLookup();
 			$isConfigured = $proxyLookup->isConfiguredProxy( $ip );
 			$ipchain = array_map( 'trim', explode( ',', $forwardedFor ) );
 			$ipchain = array_reverse( $ipchain );
@@ -1324,10 +1326,11 @@ class WebRequest {
 		}
 
 		// Allow extensions to modify the result
+		$hookContainer = $services->getHookContainer();
 		// Optimisation: Hot code called on most requests (T85805).
-		if ( Hooks::isRegistered( 'GetIP' ) ) {
+		if ( $hookContainer->isRegistered( 'GetIP' ) ) {
 			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
-			Hooks::runner()->onGetIP( $ip );
+			( new HookRunner( $hookContainer ) )->onGetIP( $ip );
 		}
 
 		if ( !$ip ) {
