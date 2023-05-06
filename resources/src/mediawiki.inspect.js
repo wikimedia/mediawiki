@@ -162,8 +162,9 @@
 
 		style.textContent = css;
 		document.body.appendChild( style );
-		// eslint-disable-next-line no-jquery/no-each-util
-		$.each( style.sheet.cssRules, function ( index, rule ) {
+		var cssRules = style.sheet.cssRules;
+		for ( var index in cssRules ) {
+			const rule = cssRules[ index ];
 			selectors.total++;
 			// document.querySelector() on prefixed pseudo-elements can throw exceptions
 			// in Firefox and Safari. Ignore these exceptions.
@@ -174,7 +175,7 @@
 					selectors.matched++;
 				}
 			} catch ( e ) {}
-		} );
+		}
 		document.body.removeChild( style );
 		return selectors;
 	};

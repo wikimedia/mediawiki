@@ -240,11 +240,13 @@
 			};
 		}
 		if ( !this.dayLetters ) {
-			this.dayLetters = [];
-			// eslint-disable-next-line no-jquery/no-each-util
-			$.each( this.shortDayNames, function ( k, v ) {
-				this.dayLetters[ k ] = v.slice( 0, 1 );
-			}.bind( this ) );
+			var dayLetters = [];
+			var shortDayNames = this.shortDayNames;
+			for ( var dayOfWeek in shortDayNames ) {
+				var shortDayName = shortDayNames[ dayOfWeek ];
+				dayLetters[ dayOfWeek ] = shortDayName.slice( 0, 1 );
+			}
+			this.dayLetters = dayLetters;
 		}
 
 		if ( !this.hour12Periods ) {

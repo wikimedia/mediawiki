@@ -208,10 +208,11 @@ FilterGroup.prototype.initializeFilters = function ( filterDefinition, groupDefa
 
 	// Check for filters that should be initially selected by their default value
 	if ( this.isSticky() ) {
-		// eslint-disable-next-line no-jquery/no-each-util
-		$.each( this.defaultFilters, function ( filterName, filterValue ) {
+		var defaultFilters = this.defaultFilters;
+		for ( var filterName in defaultFilters ) {
+			var filterValue = defaultFilters[ filterName ];
 			model.getItemByName( filterName ).toggleSelected( filterValue );
-		} );
+		}
 	}
 
 	// Verify that single_option group has at least one item selected
