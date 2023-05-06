@@ -117,6 +117,17 @@ class CreateAndPromote extends Maintenance {
 		}
 
 		if ( !$exists ) {
+			// Verify the password meets the password requirements before creating.
+			// This check is repeated below to account for differences between
+			// the password policy for regular users and for users in certain groups.
+			if ( $password ) {
+				$status = $user->checkPasswordValidity( $password );
+
+				if ( !$status->isGood() ) {
+					$this->fatalError( $status->getMessage( false, false, 'en' )->text() );
+				}
+			}
+
 			// Create the user via AuthManager as there may be various side
 			// effects that are performed by the configured AuthManager chain.
 			$status = MediaWikiServices::getInstance()->getAuthManager()->autoCreateUser(
@@ -128,6 +139,12 @@ class CreateAndPromote extends Maintenance {
 				$this->fatalError( $status->getMessage( false, false, 'en' )->text() );
 			}
 		}
+
+		// Add groups before changing password, as the password policy for certain groups has
+		// stricter requirements.
+		$userGroupManager = $services->getUserGroupManager();
+		// Promote user
+		$userGroupManager->addUserToMultipleGroups( $user, $promotions );
 
 		if ( $password ) {
 			# Try to set the password
@@ -148,10 +165,6 @@ class CreateAndPromote extends Maintenance {
 				$this->fatalError( $pwe->getText() );
 			}
 		}
-
-		$userGroupManager = $services->getUserGroupManager();
-		# Promote user
-		$userGroupManager->addUserToMultipleGroups( $user, $promotions );
 
 		if ( !$exists ) {
 			# Increment site_stats.ss_users
