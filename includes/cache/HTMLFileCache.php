@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Cache\CacheKeyHelper;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
@@ -93,7 +94,8 @@ class HTMLFileCache extends FileCacheBase {
 	 * @return bool
 	 */
 	public static function useFileCache( IContextSource $context, $mode = self::MODE_NORMAL ) {
-		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$services = MediaWikiServices::getInstance();
+		$config = $services->getMainConfig();
 
 		if ( !$config->get( MainConfigNames::UseFileCache ) && $mode !== self::MODE_REBUILD ) {
 			return false;
@@ -125,18 +127,17 @@ class HTMLFileCache extends FileCacheBase {
 
 		// Check that there are no other sources of variation
 		if ( $user->isRegistered() ||
-			!$ulang->equals( MediaWikiServices::getInstance()->getContentLanguage() ) ) {
+			!$ulang->equals( $services->getContentLanguage() ) ) {
 			return false;
 		}
 
-		$userHasNewMessages = MediaWikiServices::getInstance()
-			->getTalkPageNotificationManager()->userHasNewMessages( $user );
+		$userHasNewMessages = $services->getTalkPageNotificationManager()->userHasNewMessages( $user );
 		if ( ( $mode === self::MODE_NORMAL ) && $userHasNewMessages ) {
 			return false;
 		}
 
 		// Allow extensions to disable caching
-		return Hooks::runner()->onHTMLFileCache__useFileCache( $context );
+		return ( new HookRunner( $services->getHookContainer() ) )->onHTMLFileCache__useFileCache( $context );
 	}
 
 	/**

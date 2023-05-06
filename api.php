@@ -34,7 +34,9 @@
  * @ingroup API
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LegacyLogger;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 
 // So extensions (and other code) can check whether they're running in API mode
@@ -76,7 +78,7 @@ function wfApiMain() {
 		$processor = new ApiMain( RequestContext::getMain(), true );
 
 		// Last chance hook before executing the API
-		Hooks::runner()->onApiBeforeMain( $processor );
+		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onApiBeforeMain( $processor );
 		if ( !$processor instanceof ApiMain ) {
 			throw new LogicException( 'ApiBeforeMain hook set $processor to a non-ApiMain class' );
 		}

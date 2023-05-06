@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\ChangeTags\Taggable;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
@@ -467,7 +468,8 @@ class RecentChange implements Taggable {
 		$this->mAttribs['rc_id'] = $dbw->insertId();
 
 		# Notify extensions
-		Hooks::runner()->onRecentChange_save( $this );
+		$hookRunner = new HookRunner( $services->getHookContainer() );
+		$hookRunner->onRecentChange_save( $this );
 
 		// Apply revert tags (if needed)
 		if ( $this->editResult !== null && count( $this->editResult->getRevertTags() ) ) {
@@ -509,7 +511,7 @@ class RecentChange implements Taggable {
 			// Never send an RC notification email about categorization changes
 			if (
 				$title &&
-				Hooks::runner()->onAbortEmailNotification( $editor, $title, $this ) &&
+				$hookRunner->onAbortEmailNotification( $editor, $title, $this ) &&
 				$this->mAttribs['rc_type'] != RC_CATEGORIZE
 			) {
 				// @FIXME: This would be better as an extension hook
@@ -623,7 +625,8 @@ class RecentChange implements Taggable {
 			wfWarn( __METHOD__ . ' with $auto = true' );
 			return [];
 		}
-		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		$services = MediaWikiServices::getInstance();
+		$mainConfig = $services->getMainConfig();
 		$useRCPatrol = $mainConfig->get( MainConfigNames::UseRCPatrol );
 		$useNPPatrol = $mainConfig->get( MainConfigNames::UseNPPatrol );
 		$useFilePatrol = $mainConfig->get( MainConfigNames::UseFilePatrol );
@@ -643,8 +646,9 @@ class RecentChange implements Taggable {
 			$status->fatal( 'rcpatroldisabled' );
 		}
 		$performer->authorizeWrite( 'patrol', $this->getTitle(), $status );
-		$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
-		if ( !Hooks::runner()->onMarkPatrolled(
+		$user = $services->getUserFactory()->newFromAuthority( $performer );
+		$hookRunner = new HookRunner( $services->getHookContainer() );
+		if ( !$hookRunner->onMarkPatrolled(
 			$this->getAttribute( 'rc_id' ), $user, false, false, $tags )
 		) {
 			$status->fatal( 'hookaborted' );
@@ -667,7 +671,7 @@ class RecentChange implements Taggable {
 		// Log this patrol event
 		PatrolLog::record( $this, false, $performer->getUser(), $tags );
 
-		Hooks::runner()->onMarkPatrolledComplete(
+		$hookRunner->onMarkPatrolledComplete(
 			$this->getAttribute( 'rc_id' ), $user, false, false );
 
 		return [];

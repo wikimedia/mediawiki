@@ -74,7 +74,7 @@ class LogEventsList extends ContextSource {
 		if ( $linkRenderer instanceof LinkRenderer ) {
 			$this->linkRenderer = $linkRenderer;
 		}
-		$this->hookRunner = Hooks::runner();
+		$this->hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
 	}
 
 	/**
@@ -791,7 +791,8 @@ class LogEventsList extends ContextSource {
 		}
 
 		/* hook can return false, if we don't want the message to be emitted (Wikia BugId:7093) */
-		if ( Hooks::runner()->onLogEventsListShowLogExtract( $s, $types, $pageName, $user, $param ) ) {
+		$hookRunner = new HookRunner( $services->getHookContainer() );
+		if ( $hookRunner->onLogEventsListShowLogExtract( $s, $types, $pageName, $user, $param ) ) {
 			// $out can be either an OutputPage object or a String-by-reference
 			if ( $out instanceof OutputPage ) {
 				$out->addHTML( $s );

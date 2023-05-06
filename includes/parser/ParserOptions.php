@@ -21,6 +21,7 @@
  * @ingroup Parser
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -1208,7 +1209,7 @@ class ParserOptions {
 			self::$cacheVaryingOptionsHash = self::$initialCacheVaryingOptionsHash;
 			self::$lazyOptions = self::$initialLazyOptions;
 
-			Hooks::runner()->onParserOptionsRegister(
+			( new HookRunner( $services->getHookContainer() ) )->onParserOptionsRegister(
 				self::$defaults,
 				self::$cacheVaryingOptionsHash,
 				self::$lazyOptions
@@ -1451,7 +1452,7 @@ class ParserOptions {
 		$user = $services->getUserFactory()->newFromUserIdentity( $this->getUserIdentity() );
 		// Give a chance for extensions to modify the hash, if they have
 		// extra options or other effects on the parser cache.
-		Hooks::runner()->onPageRenderingHash(
+		( new HookRunner( $services->getHookContainer() ) )->onPageRenderingHash(
 			$confstr,
 			$user,
 			$forOptions

@@ -19,6 +19,7 @@
  * @file
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
@@ -45,7 +46,8 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 	 * @return string|null
 	 */
 	public function getLine( array $feed, RecentChange $rc, $actionComment ) {
-		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		$services = MediaWikiServices::getInstance();
+		$mainConfig = $services->getMainConfig();
 		$useRCPatrol = $mainConfig->get( MainConfigNames::UseRCPatrol );
 		$useNPPatrol = $mainConfig->get( MainConfigNames::UseNPPatrol );
 		$localInterwikis = $mainConfig->get( MainConfigNames::LocalInterwikis );
@@ -80,7 +82,7 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 				$query .= '&rcid=' . $attribs['rc_id'];
 			}
 
-			Hooks::runner()->onIRCLineURL( $url, $query, $rc );
+			( new HookRunner( $services->getHookContainer() ) )->onIRCLineURL( $url, $query, $rc );
 			$url .= $query;
 		}
 
@@ -108,7 +110,7 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 			) );
 			$flag = $attribs['rc_log_action'];
 		} else {
-			$store = MediaWikiServices::getInstance()->getCommentStore();
+			$store = $services->getCommentStore();
 			$comment = self::cleanupForIRC( $store->getComment( 'rc_comment', $attribs )->text );
 			$flag = '';
 			if ( !$attribs['rc_patrolled']

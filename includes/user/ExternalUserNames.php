@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserRigorOptions;
@@ -107,13 +108,14 @@ class ExternalUserNames {
 	 *  username), otherwise the name with the prefix prepended.
 	 */
 	public function applyPrefix( $name ) {
-		$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
+		$services = MediaWikiServices::getInstance();
+		$userNameUtils = $services->getUserNameUtils();
 		if ( $userNameUtils->getCanonical( $name, UserRigorOptions::RIGOR_USABLE ) === false ) {
 			return $name;
 		}
 
 		if ( $this->assignKnownUsers ) {
-			$userIdentityLookup = MediaWikiServices::getInstance()->getUserIdentityLookup();
+			$userIdentityLookup = $services->getUserIdentityLookup();
 			$userIdentity = $userIdentityLookup->getUserIdentityByName( $name );
 			if ( $userIdentity && $userIdentity->isRegistered() ) {
 				return $name;
@@ -122,7 +124,7 @@ class ExternalUserNames {
 			// See if any extension wants to create it.
 			if ( !isset( $this->triedCreations[$name] ) ) {
 				$this->triedCreations[$name] = true;
-				if ( !Hooks::runner()->onImportHandleUnknownUser( $name ) ) {
+				if ( !( new HookRunner( $services->getHookContainer() ) )->onImportHandleUnknownUser( $name ) ) {
 					$userIdentity = $userIdentityLookup->getUserIdentityByName( $name, IDBAccessObject::READ_LATEST );
 					if ( $userIdentity && $userIdentity->isRegistered() ) {
 						return $name;

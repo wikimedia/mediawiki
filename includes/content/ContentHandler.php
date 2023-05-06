@@ -31,6 +31,7 @@ use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreloadTransformParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Content\ValidationParams;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
@@ -1735,9 +1736,10 @@ abstract class ContentHandler {
 			$scopedCallback = $parserOptions->setupFakeRevision( $title, $content, $parserOptions->getUserIdentity() );
 		}
 
+		$hookRunner = new HookRunner( $services->getHookContainer() );
 		$po = new ParserOutput();
 		$parserOptions->registerWatcher( [ $po, 'recordOption' ] );
-		if ( Hooks::runner()->onContentGetParserOutput(
+		if ( $hookRunner->onContentGetParserOutput(
 			// FIXME $cpoParams->getRevId() may be null here?
 			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 			$content, $title, $cpoParams->getRevId(), $parserOptions, $cpoParams->getGenerateHtml(), $po )
@@ -1761,7 +1763,7 @@ abstract class ContentHandler {
 			$parserOptions->setRedirectTarget( $oldRedir );
 		}
 
-		Hooks::runner()->onContentAlterParserOutput( $content, $title, $po );
+		$hookRunner->onContentAlterParserOutput( $content, $title, $po );
 		$parserOptions->registerWatcher( null );
 		if ( isset( $scopedCallback ) ) {
 			ScopedCallback::consume( $scopedCallback );

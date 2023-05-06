@@ -25,6 +25,7 @@
  * @author Daniel Kinzler
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\MagicWord;
@@ -106,7 +107,8 @@ class WikitextContent extends TextContent {
 			# Inserting a new section
 			$subject = strval( $sectionTitle ) !== '' ? wfMessage( 'newsectionheaderdefaultlevel' )
 					->plaintextParams( $sectionTitle )->inContentLanguage()->text() . "\n\n" : '';
-			if ( Hooks::runner()->onPlaceNewSection( $this, $oldtext, $subject, $text ) ) {
+			$hookRunner = ( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) );
+			if ( $hookRunner->onPlaceNewSection( $this, $oldtext, $subject, $text ) ) {
 				$text = strlen( trim( $oldtext ) ) > 0
 					? "{$oldtext}\n\n{$subject}{$text}"
 					: "{$subject}{$text}";

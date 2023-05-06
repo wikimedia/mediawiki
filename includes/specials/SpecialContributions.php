@@ -25,7 +25,6 @@ namespace MediaWiki\Specials;
 
 use ContribsPager;
 use ExternalUserNames;
-use Hooks;
 use HTMLForm;
 use HTMLMultiSelectField;
 use IncludableSpecialPage;
@@ -553,7 +552,7 @@ class SpecialContributions extends IncludableSpecialPage {
 	) {
 		// Fallback to global state, if not provided
 		$permissionManager ??= MediaWikiServices::getInstance()->getPermissionManager();
-		$hookRunner ??= Hooks::runner();
+		$hookRunner ??= new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
 
 		$id = $target->getId();
 		$username = $target->getName();

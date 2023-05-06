@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArray;
@@ -126,7 +127,7 @@ abstract class PrefixSearch {
 			}
 		}
 		$srchres = [];
-		if ( Hooks::runner()->onPrefixSearchBackend(
+		if ( ( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onPrefixSearchBackend(
 			$namespaces, $search, $limit, $srchres, $offset )
 		) {
 			return $this->titles( $this->defaultSearchBackend( $namespaces, $search, $limit, $offset ) );

@@ -30,7 +30,6 @@ use DeprecationHelper;
 use DerivativeContext;
 use ErrorPageError;
 use ExternalUserNames;
-use Hooks;
 use IContextSource;
 use LogEventsList;
 use LogPage;
@@ -61,6 +60,7 @@ use MediaWiki\EditPage\Constraint\SpamRegexConstraint;
 use MediaWiki\EditPage\Constraint\UnicodeConstraint;
 use MediaWiki\EditPage\Constraint\UserBlockConstraint;
 use MediaWiki\EditPage\Constraint\UserRateLimitConstraint;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\RawMessage;
@@ -4227,7 +4227,8 @@ class EditPage implements IEditObject {
 	 * @return string
 	 */
 	public static function getCopyrightWarning( PageReference $page, string $format, MessageLocalizer $localizer ) {
-		$rightsText = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::RightsText );
+		$services = MediaWikiServices::getInstance();
+		$rightsText = $services->getMainConfig()->get( MainConfigNames::RightsText );
 		if ( $rightsText ) {
 			$copywarnMsg = [ 'copyrightwarning',
 				'[[' . $localizer->msg( 'copyrightpage' )->inContentLanguage()->text() . ']]',
@@ -4238,7 +4239,7 @@ class EditPage implements IEditObject {
 		}
 		// Allow for site and per-namespace customization of contribution/copyright notice.
 		$title = Title::newFromPageReference( $page );
-		Hooks::runner()->onEditPageCopyrightWarning( $title, $copywarnMsg );
+		( new HookRunner( $services->getHookContainer() ) )->onEditPageCopyrightWarning( $title, $copywarnMsg );
 		if ( !$copywarnMsg ) {
 			return '';
 		}
@@ -4271,8 +4272,9 @@ class EditPage implements IEditObject {
 		] ) .
 			Html::openElement( 'tbody' );
 
+		$hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
 		foreach ( $output->getLimitReportData() as $key => $value ) {
-			if ( Hooks::runner()->onParserLimitReportFormat( $key, $value, $limitReport, true, true ) ) {
+			if ( $hookRunner->onParserLimitReportFormat( $key, $value, $limitReport, true, true ) ) {
 				$keyMsg = wfMessage( $key );
 				$valueMsg = wfMessage( [ "$key-value-html", "$key-value" ] );
 				if ( !$valueMsg->exists() ) {
@@ -4724,7 +4726,8 @@ class EditPage implements IEditObject {
 		$startingToolbar = '<div id="toolbar"></div>';
 		$toolbar = $startingToolbar;
 
-		if ( !Hooks::runner()->onEditPageBeforeEditToolbar( $toolbar ) ) {
+		$hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
+		if ( !$hookRunner->onEditPageBeforeEditToolbar( $toolbar ) ) {
 			return null;
 		}
 		// Don't add a pointless `<div>` to the page unless a hook caller populated it

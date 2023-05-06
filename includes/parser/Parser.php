@@ -3624,15 +3624,17 @@ class Parser {
 		$revRecord = null;
 		$contextTitle = $parser ? $parser->getTitle() : null;
 
+		$services = MediaWikiServices::getInstance();
 		# Loop to fetch the article, with up to 2 redirects
-		$revLookup = MediaWikiServices::getInstance()->getRevisionLookup();
+		$revLookup = $services->getRevisionLookup();
+		$hookRunner = new HookRunner( $services->getHookContainer() );
 		for ( $i = 0; $i < 3 && is_object( $title ); $i++ ) {
 			# Give extensions a chance to select the revision instead
 			$revRecord = null; # Assume no hook
 			$id = false; # Assume current
 			$origTitle = $title;
 			$titleChanged = false;
-			Hooks::runner()->onBeforeParserFetchTemplateRevisionRecord(
+			$hookRunner->onBeforeParserFetchTemplateRevisionRecord(
 				# The $title is a not a PageIdentity, as it may
 				# contain fragments or even represent an attempt to transclude
 				# a broken or otherwise-missing Title, which the hook may
@@ -3692,7 +3694,7 @@ class Parser {
 			}
 			# If there is no current revision, there is no page
 			if ( $revRecord === null || $revRecord->getId() === null ) {
-				$linkCache = MediaWikiServices::getInstance()->getLinkCache();
+				$linkCache = $services->getLinkCache();
 				$linkCache->addBadLinkObj( $title );
 			}
 			if ( $revRecord ) {
@@ -3716,7 +3718,7 @@ class Parser {
 					break;
 				}
 			} elseif ( $title->getNamespace() === NS_MEDIAWIKI ) {
-				$message = wfMessage( MediaWikiServices::getInstance()->getContentLanguage()->
+				$message = wfMessage( $services->getContentLanguage()->
 					lcfirst( $title->getText() ) )->inContentLanguage();
 				if ( !$message->exists() ) {
 					$text = false;

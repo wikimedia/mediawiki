@@ -21,6 +21,7 @@
  * @ingroup Upload
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -201,8 +202,9 @@ abstract class UploadBase {
 		// Give hooks the chance to handle this request
 		/** @var self|null $className */
 		$className = null;
-		// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
-		Hooks::runner()->onUploadCreateFromRequest( $type, $className );
+		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
+			->onUploadCreateFromRequest( $type, $className );
 		if ( $className === null ) {
 			$className = 'UploadFrom' . $type;
 			wfDebug( __METHOD__ . ": class name: $className" );

@@ -28,7 +28,6 @@ use DeferredUpdates;
 use Exception;
 use ExtensionRegistry;
 use HashBagOStuff;
-use Hooks;
 use HttpStatus;
 use InvalidArgumentException;
 use Less_Environment;
@@ -2027,13 +2026,14 @@ MESSAGE;
 	public static function getSiteConfigSettings(
 		Context $context, Config $conf
 	): array {
+		$services = MediaWikiServices::getInstance();
 		// Namespace related preparation
 		// - wgNamespaceIds: Key-value pairs of all localized, canonical and aliases for namespaces.
 		// - wgCaseSensitiveNamespaces: Array of namespaces that are case-sensitive.
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$contLang = $services->getContentLanguage();
 		$namespaceIds = $contLang->getNamespaceIds();
 		$caseSensitiveNamespaces = [];
-		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+		$nsInfo = $services->getNamespaceInfo();
 		foreach ( $nsInfo->getCanonicalNamespaces() as $index => $name ) {
 			$namespaceIds[$contLang->lc( $name )] = $index;
 			if ( !$nsInfo->isCapitalized( $index ) ) {
@@ -2089,7 +2089,8 @@ MESSAGE;
 			'wgIllegalFileChars' => Title::convertByteClassToUnicodeClass( $illegalFileChars ),
 		];
 
-		Hooks::runner()->onResourceLoaderGetConfigVars( $vars, $skin, $conf );
+		( new \MediaWiki\HookContainer\HookRunner( $services->getHookContainer() ) )
+			->onResourceLoaderGetConfigVars( $vars, $skin, $conf );
 
 		return $vars;
 	}

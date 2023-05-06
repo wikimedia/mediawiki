@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IResultWrapper;
 
 abstract class UserArray implements Iterator {
@@ -34,7 +36,8 @@ abstract class UserArray implements Iterator {
 	 */
 	public static function newFromResult( $res ) {
 		$userArray = null;
-		if ( !Hooks::runner()->onUserArrayFromResult( $userArray, $res ) ) {
+		$hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
+		if ( !$hookRunner->onUserArrayFromResult( $userArray, $res ) ) {
 			return new ArrayIterator( [] );
 		}
 		return $userArray ?? new UserArrayFromResult( $res );

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
@@ -45,7 +46,7 @@ trait RevisionSearchResultTrait {
 		if ( $title !== null ) {
 			$services = MediaWikiServices::getInstance();
 			$id = false;
-			Hooks::runner()->onSearchResultInitFromTitle( $title, $id );
+			( new HookRunner( $services->getHookContainer() ) )->onSearchResultInitFromTitle( $title, $id );
 
 			$this->mRevisionRecord = $services->getRevisionLookup()->getRevisionByTitle(
 				$title,

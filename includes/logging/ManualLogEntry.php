@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\ChangeTags\Taggable;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
@@ -428,7 +429,8 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 			function () use ( $newId, $to, $canAddTags ) {
 				$log = new LogPage( $this->getType() );
 				if ( !$log->isRestricted() ) {
-					Hooks::runner()->onManualLogEntryBeforePublish( $this );
+					( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+						->onManualLogEntryBeforePublish( $this );
 					$rc = $this->getRecentChange( $newId );
 
 					if ( $to === 'rc' || $to === 'rcandudp' ) {

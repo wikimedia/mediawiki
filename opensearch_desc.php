@@ -26,6 +26,9 @@
  * @ingroup entrypoint
  */
 
+use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MediaWikiServices;
+
 // This endpoint is supposed to be independent of request cookies and other
 // details of the session. Enforce this constraint with respect to session use.
 define( 'MW_NO_SESSION', 1 );
@@ -111,7 +114,7 @@ function wfOpenSearchDescMain() {
 
 	// Allow hooks to override the suggestion URL settings in a more
 	// general way than overriding the whole search engine...
-	Hooks::runner()->onOpenSearchUrls( $urls );
+	( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onOpenSearchUrls( $urls );
 
 	foreach ( $urls as $attribs ) {
 		print Xml::element( 'Url', $attribs );

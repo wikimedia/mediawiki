@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -140,7 +141,7 @@ abstract class QueryPage extends SpecialPage {
 				[ SpecialUnusedTemplates::class, 'Unusedtemplates' ],
 				[ SpecialWithoutInterwiki::class, 'Withoutinterwiki' ],
 			];
-			Hooks::runner()->onWgQueryPages( $qp );
+			( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onWgQueryPages( $qp );
 		}
 
 		return $qp;

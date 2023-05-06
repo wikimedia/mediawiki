@@ -22,6 +22,7 @@
  * @author Tyler Romeo, 2012
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -100,7 +101,7 @@ class MWTimestamp extends ConvertibleTimestamp {
 		$diff = $this->diff( $relativeTo );
 
 		$user = User::newFromIdentity( $user ); // For compatibility with the hook signature
-		if ( Hooks::runner()->onGetRelativeTimestamp(
+		if ( ( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onGetRelativeTimestamp(
 			$ts, $diff, $this, $relativeTo, $user, $lang )
 		) {
 			$seconds = ( ( ( $diff->days * 24 + $diff->h ) * 60 + $diff->i ) * 60 + $diff->s );

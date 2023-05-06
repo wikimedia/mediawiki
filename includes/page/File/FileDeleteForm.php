@@ -24,9 +24,9 @@
 
 namespace MediaWiki\Page\File;
 
-use Hooks;
 use LocalFile;
 use ManualLogEntry;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\DeletePage;
 use MediaWiki\Title\Title;
@@ -65,6 +65,7 @@ class FileDeleteForm {
 		$tags = [],
 		bool $deleteTalk = false
 	): Status {
+		$services = MediaWikiServices::getInstance();
 		if ( $oldimage ) {
 			$page = null;
 			$status = $file->deleteOldFile( $oldimage, $reason, $user, $suppress );
@@ -92,7 +93,6 @@ class FileDeleteForm {
 			$status = Status::newFatal( 'cannotdelete',
 				wfEscapeWikiText( $title->getPrefixedText() )
 			);
-			$services = MediaWikiServices::getInstance();
 			$page = $services->getWikiPageFactory()->newFromTitle( $title );
 			'@phan-var \WikiFilePage $page';
 			$deleter = $services->getUserFactory()->newFromUserIdentity( $user );
@@ -152,10 +152,10 @@ class FileDeleteForm {
 		}
 
 		if ( $status->isOK() ) {
-			$legacyUser = MediaWikiServices::getInstance()
-				->getUserFactory()
+			$legacyUser = $services->getUserFactory()
 				->newFromUserIdentity( $user );
-			Hooks::runner()->onFileDeleteComplete( $file, $oldimage, $page, $legacyUser, $reason );
+			( new HookRunner( $services->getHookContainer() ) )
+				->onFileDeleteComplete( $file, $oldimage, $page, $legacyUser, $reason );
 		}
 
 		return $status;

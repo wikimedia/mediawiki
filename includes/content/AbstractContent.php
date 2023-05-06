@@ -31,6 +31,7 @@ use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreloadTransformParamsValue;
 use MediaWiki\Content\Transform\PreSaveTransformParamsValue;
 use MediaWiki\Content\ValidationParams;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\MagicWord;
 use MediaWiki\Title\Title;
@@ -531,7 +532,8 @@ abstract class AbstractContent implements Content {
 		$lossy = ( $lossy === 'lossy' ); // string flag, convert to boolean for convenience
 		$result = false;
 
-		Hooks::runner()->onConvertContent( $this, $toModel, $lossy, $result );
+		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+			->onConvertContent( $this, $toModel, $lossy, $result );
 
 		return $result;
 	}
@@ -580,7 +582,8 @@ abstract class AbstractContent implements Content {
 			$po = new ParserOutput();
 			$options->registerWatcher( [ $po, 'recordOption' ] );
 
-			if ( Hooks::runner()->onContentGetParserOutput(
+			$hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
+			if ( $hookRunner->onContentGetParserOutput(
 				$this, $title, $revId, $options, $generateHtml, $po )
 			) {
 				// Save and restore the old value, just in case something is reusing
@@ -591,7 +594,7 @@ abstract class AbstractContent implements Content {
 				$options->setRedirectTarget( $oldRedir );
 			}
 
-			Hooks::runner()->onContentAlterParserOutput( $this, $title, $po );
+			$hookRunner->onContentAlterParserOutput( $this, $title, $po );
 			$options->registerWatcher( null );
 
 			return $po;

@@ -95,9 +95,10 @@ class GitInfo {
 	 */
 	public function __construct( $repoDir, $usePrecomputed = true ) {
 		$this->repoDir = $repoDir;
+		$services = MediaWikiServices::getInstance();
 		$this->options = new ServiceOptions(
 			self::CONSTRUCTOR_OPTIONS,
-			MediaWikiServices::getInstance()->getMainConfig()
+			$services->getMainConfig()
 		);
 		$this->options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		// $this->options must be set before using getCacheFilePath()
@@ -106,7 +107,7 @@ class GitInfo {
 		$this->logger->debug(
 			"Candidate cacheFile={$this->cacheFile} for {$repoDir}"
 		);
-		$this->hookRunner = Hooks::runner();
+		$this->hookRunner = new HookRunner( $services->getHookContainer() );
 		if ( $usePrecomputed &&
 			$this->cacheFile !== null &&
 			is_readable( $this->cacheFile )
