@@ -46,6 +46,7 @@
 			toggleSwitchWidget.on( 'change', function ( value ) {
 				checkboxWidget.setSelected( value );
 			} );
+			checkboxElement = checkboxWidget.$element[ 0 ];
 			checkboxElement.insertAdjacentElement( 'afterend', toggleSwitchWidget.$element[ 0 ] );
 			checkboxElement.classList.add( 'hidden' );
 		} );
@@ -68,7 +69,10 @@
 			{ action: 'cancel', label: mw.msg( 'prefs-back-title' ), flags: [ 'safe', 'close' ] }
 		];
 		PrefDialog.prototype.initialize = function () {
-			insertToggles( sectionBody.querySelectorAll( 'span.oo-ui-checkboxInputWidget' ) );
+			// T334260 Mobile format breaks global preferences;
+			if ( mw.config.get( 'wgCanonicalSpecialPageName' ) === 'Preferences' ) {
+				insertToggles( sectionBody.querySelectorAll( 'span.oo-ui-checkboxInputWidget[data-ooui]' ) );
+			}
 			this.name = sectionId;
 			PrefDialog.super.prototype.initialize.call( this );
 			this.$body.append( sectionBody );
