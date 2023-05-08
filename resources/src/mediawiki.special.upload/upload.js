@@ -11,31 +11,18 @@
 		NS_FILE = mw.config.get( 'wgNamespaceIds' ).file;
 
 	window.wgUploadWarningObj = uploadWarning = {
-		responseCache: { '': '&nbsp;' },
-		nameToCheck: '',
-		typing: false,
-		delay: 500, // ms
-		timeoutID: false,
 
-		checkNow: function ( fname ) {
-			if ( this.timeoutID ) {
-				clearTimeout( this.timeoutID );
-			}
-			this.nameToCheck = fname;
-			this.timeout();
-		},
-
-		timeout: function () {
+		checkNow: function ( nameToCheck ) {
 			var $spinnerDestCheck, title, requestTitle;
-			if ( this.nameToCheck.trim() === '' ) {
+			if ( nameToCheck.trim() === '' ) {
 				return;
 			}
 			$spinnerDestCheck = $.createSpinner().insertAfter( '#wpDestFile' );
-			title = mw.Title.newFromText( this.nameToCheck, NS_FILE );
+			title = mw.Title.newFromText( nameToCheck, NS_FILE );
 			// If title is null, user input is invalid, the API call will produce details about why,
 			// but it needs the namespace to produce errors related to files (when starts with interwiki)
 			if ( !title || title.getNamespaceId() !== NS_FILE ) {
-				requestTitle = mw.config.get( 'wgFormattedNamespaces' )[ NS_FILE ] + ':' + this.nameToCheck;
+				requestTitle = mw.config.get( 'wgFormattedNamespaces' )[ NS_FILE ] + ':' + nameToCheck;
 			} else {
 				requestTitle = title.getPrefixedText();
 			}
@@ -57,16 +44,11 @@
 				} else if ( page.invalidreason ) {
 					resultOut = page.invalidreason.html;
 				}
-				uploadWarning.processResult( resultOut, uploadWarning.nameToCheck );
+				uploadWarning.setWarning( resultOut );
 				$spinnerDestCheck.remove();
 			} ).catch( function () {
 				$spinnerDestCheck.remove();
 			} );
-		},
-
-		processResult: function ( result, fileName ) {
-			this.setWarning( result );
-			this.responseCache[ fileName ] = result;
 		},
 
 		setWarning: function ( warning ) {
