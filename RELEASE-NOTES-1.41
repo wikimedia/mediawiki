@@ -121,6 +121,7 @@ because of Phabricator reports.
 * Protected method Database::getTempTableWrites() is now private.
 * Config parameter keywordTableMap in DatabasePostgres, deprecated since 1.37,
   has been removed.
+* SQLite no longer supports raw MySQL queries.
 * …
 
 === Deprecations in 1.41 ===
