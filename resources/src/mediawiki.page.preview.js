@@ -170,9 +170,8 @@
 			} );
 
 			// Add all templates to the list, and update the list header.
-			templatesAllInfo.forEach( function ( t ) {
-				addItemToTemplateList( $list, t );
-			} );
+			addItemToTemplateListPromise( $list, templatesAllInfo, 0 );
+
 			// The following messages can be used here:
 			// * templatesusedpreview
 			// * templatesusedsection
@@ -183,12 +182,31 @@
 	}
 
 	/**
+	 * Recursive function to add a template link to the list of templates in use.
+	 * This is useful because addItemToTemplateList() might need to make extra API requests to fetch
+	 * messages, but we don't want to send parallel requests for these (because they're often the
+	 * for the same messages).
+	 * @private
+	 * @param {jQuery} $list The `<ul>` to add the item to.
+	 * @param {Object} templatesInfo All templates' info, sorted by namespace and title.
+	 * @param {number} templateIndex The current item in templatesInfo (0-indexed).
+	 * @return {jQuery.Promise}
+	 */
+	function addItemToTemplateListPromise( $list, templatesInfo, templateIndex ) {
+		return addItemToTemplateList( $list, templatesInfo[ templateIndex ] ).then( function () {
+			if ( templatesInfo[ templateIndex + 1 ] !== undefined ) {
+				addItemToTemplateListPromise( $list, templatesInfo, templateIndex + 1 );
+			}
+		} );
+	}
+
+	/**
 	 * Create list item with relevant links for the given template, and add it to the $list.
 	 *
 	 * @private
 	 * @param {jQuery} $list The `<ul>` to add the item to.
 	 * @param {Object} template Template info with which to construct the `<li>`.
-	 * @return {void}
+	 * @return {jQuery.Promise}
 	 */
 	function addItemToTemplateList( $list, template ) {
 		var canEdit = template.apiData.actions.edit !== undefined;
@@ -210,12 +228,13 @@
 			.attr( 'href', template.title.getUrl( { action: 'edit' } ) )
 			.append( mw.msg( canEdit ? 'editlink' : 'viewsourcelink' ) );
 		var wordSep = mw.message( 'word-separator' ).escaped();
-		getRestrictionsText( template.apiData.protection || [] ).then( function ( restrictionsList ) {
-			// restrictionsList is a comma-separated parentheses-wrapped localized list of restriction level names.
-			var editLinkParens = parenthesesWrap( $editLink[ 0 ].outerHTML );
-			var $li = $( '<li>' ).append( $link, wordSep, editLinkParens, wordSep, restrictionsList );
-			$list.append( $li );
-		} );
+		return getRestrictionsText( template.apiData.protection || [] )
+			.then( function ( restrictionsList ) {
+				// restrictionsList is a comma-separated parentheses-wrapped localized list of restriction level names.
+				var editLinkParens = parenthesesWrap( $editLink[ 0 ].outerHTML );
+				var $li = $( '<li>' ).append( $link, wordSep, editLinkParens, wordSep, restrictionsList );
+				$list.append( $li );
+			} );
 	}
 
 	/**
@@ -259,6 +278,10 @@
 		restrictionLevels.forEach( function ( level ) {
 			msgs.push( 'restriction-level-' + level );
 		} );
+		if ( msgs.length === 0 ) {
+			return $.Deferred().resolve( '' );
+		}
+
 		// Custom restriction levels don't have their messages loaded, so we have to do that.
 		return api.loadMessagesIfMissing( msgs ).then( function () {
 			var localizedMessages = msgs.map( function ( m ) {
