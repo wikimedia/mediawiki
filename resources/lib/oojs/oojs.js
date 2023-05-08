@@ -1,8 +1,8 @@
 /*!
- * OOjs v6.0.0
+ * OOjs v7.0.1
  * https://www.mediawiki.org/wiki/OOjs
  *
- * Copyright 2011-2021 OOjs Team and other contributors.
+ * Copyright 2011-2023 OOjs Team and other contributors.
  * Released under the MIT license
  * https://oojs.mit-license.org
  */
@@ -17,10 +17,12 @@
  * @namespace OO
  */
 var
+	// eslint-disable-next-line no-redeclare
 	OO = {},
 	// Optimisation: Local reference to methods from a global prototype
 	hasOwn = OO.hasOwnProperty,
 	slice = Array.prototype.slice,
+	// eslint-disable-next-line no-redeclare
 	toString = OO.toString;
 
 /* Class Methods */
@@ -79,8 +81,6 @@ OO.initClass = function ( fn ) {
  * @throws {Error} If target already inherits from origin
  */
 OO.inheritClass = function ( targetFn, originFn ) {
-	var targetConstructor;
-
 	if ( !originFn ) {
 		throw new Error( 'inheritClass: Origin is not a function (actually ' + originFn + ')' );
 	}
@@ -88,7 +88,7 @@ OO.inheritClass = function ( targetFn, originFn ) {
 		throw new Error( 'inheritClass: Target already inherits from origin' );
 	}
 
-	targetConstructor = targetFn.prototype.constructor;
+	var targetConstructor = targetFn.prototype.constructor;
 
 	// [DEPRECATED] Provide .parent as alias for code supporting older browsers which
 	// allows people to comply with their style guide.
@@ -143,12 +143,11 @@ OO.inheritClass = function ( targetFn, originFn ) {
  * @param {Function} originFn
  */
 OO.mixinClass = function ( targetFn, originFn ) {
-	var key;
-
 	if ( !originFn ) {
 		throw new Error( 'mixinClass: Origin is not a function (actually ' + originFn + ')' );
 	}
 
+	var key;
 	// Copy prototype properties
 	for ( key in originFn.prototype ) {
 		if ( key !== 'constructor' && hasOwn.call( originFn.prototype, key ) ) {
@@ -202,9 +201,8 @@ OO.isSubclass = function ( testFn, baseFn ) {
  * @return {Object|undefined} obj[arguments[1]][arguments[2]].... or undefined
  */
 OO.getProp = function ( obj ) {
-	var i,
-		retval = obj;
-	for ( i = 1; i < arguments.length; i++ ) {
+	var retval = obj;
+	for ( var i = 1; i < arguments.length; i++ ) {
 		if ( retval === undefined || retval === null ) {
 			// Trying to access a property of undefined or null causes an error
 			return undefined;
@@ -231,12 +229,11 @@ OO.getProp = function ( obj ) {
  * @param {any} [value]
  */
 OO.setProp = function ( obj ) {
-	var i,
-		prop = obj;
 	if ( Object( obj ) !== obj || arguments.length < 2 ) {
 		return;
 	}
-	for ( i = 1; i < arguments.length - 2; i++ ) {
+	var prop = obj;
+	for ( var i = 1; i < arguments.length - 2; i++ ) {
 		if ( prop[ arguments[ i ] ] === undefined ) {
 			prop[ arguments[ i ] ] = {};
 		}
@@ -258,13 +255,13 @@ OO.setProp = function ( obj ) {
  * @param {...any} [keys]
  */
 OO.deleteProp = function ( obj ) {
-	var i,
-		prop = obj,
-		props = [ prop ];
 	if ( Object( obj ) !== obj || arguments.length < 2 ) {
 		return;
 	}
-	for ( i = 1; i < arguments.length - 1; i++ ) {
+	var prop = obj;
+	var props = [ prop ];
+	var i = 1;
+	for ( ; i < arguments.length - 1; i++ ) {
 		if (
 			prop[ arguments[ i ] ] === undefined ||
 			Object( prop[ arguments[ i ] ] ) !== prop[ arguments[ i ] ]
@@ -279,6 +276,7 @@ OO.deleteProp = function ( obj ) {
 	while (
 		props.length > 1 &&
 		( prop = props.pop() ) &&
+
 		OO.isPlainObject( prop ) && !Object.keys( prop ).length
 	) {
 		delete props[ props.length - 1 ][ arguments[ props.length ] ];
@@ -310,11 +308,9 @@ OO.deleteProp = function ( obj ) {
  * @return {Object} Clone of origin
  */
 OO.cloneObject = function ( origin ) {
-	var key, r;
+	var r = Object.create( origin.constructor.prototype );
 
-	r = Object.create( origin.constructor.prototype );
-
-	for ( key in origin ) {
+	for ( var key in origin ) {
 		if ( hasOwn.call( origin, key ) ) {
 			r[ key ] = origin[ key ];
 		}
@@ -332,14 +328,12 @@ OO.cloneObject = function ( origin ) {
  * @return {Array} List of object values
  */
 OO.getObjectValues = function ( obj ) {
-	var key, values;
-
 	if ( obj !== Object( obj ) ) {
 		throw new TypeError( 'Called on non-object' );
 	}
 
-	values = [];
-	for ( key in obj ) {
+	var values = [];
+	for ( var key in obj ) {
 		if ( hasOwn.call( obj, key ) ) {
 			values[ values.length ] = obj[ key ];
 		}
@@ -367,14 +361,13 @@ OO.getObjectValues = function ( obj ) {
  * @return {number|null} Index where val was found, or null if not found
  */
 OO.binarySearch = function ( arr, searchFunc, forInsertion ) {
-	var mid, cmpResult,
-		left = 0,
-		right = arr.length;
+	var left = 0;
+	var right = arr.length;
 	while ( left < right ) {
 		// Equivalent to Math.floor( ( left + right ) / 2 ) but much faster
 		// eslint-disable-next-line no-bitwise
-		mid = ( left + right ) >> 1;
-		cmpResult = searchFunc( arr[ mid ] );
+		var mid = ( left + right ) >> 1;
+		var cmpResult = searchFunc( arr[ mid ] );
 		if ( cmpResult < 0 ) {
 			right = mid;
 		} else if ( cmpResult > 0 ) {
@@ -404,8 +397,6 @@ OO.binarySearch = function ( arr, searchFunc, forInsertion ) {
  * @return {boolean} If the objects contain the same values as each other
  */
 OO.compare = function ( a, b, asymmetrical ) {
-	var aValue, bValue, aType, bType, k;
-
 	if ( a === b ) {
 		return true;
 	}
@@ -417,17 +408,17 @@ OO.compare = function ( a, b, asymmetrical ) {
 		return a.isEqualNode( b );
 	}
 
-	for ( k in a ) {
+	for ( var k in a ) {
 		if ( !hasOwn.call( a, k ) || a[ k ] === undefined || a[ k ] === b[ k ] ) {
 			// Ignore undefined values, because there is no conceptual difference between
 			// a key that is absent and a key that is present but whose value is undefined.
 			continue;
 		}
 
-		aValue = a[ k ];
-		bValue = b[ k ];
-		aType = typeof aValue;
-		bType = typeof bValue;
+		var aValue = a[ k ];
+		var bValue = b[ k ];
+		var aType = typeof aValue;
+		var bType = typeof bValue;
 		if ( aType !== bType ||
 			(
 				( aType === 'string' || aType === 'number' || aType === 'boolean' ) &&
@@ -457,7 +448,7 @@ OO.compare = function ( a, b, asymmetrical ) {
  * @return {Object} Copy of source object
  */
 OO.copy = function ( source, leafCallback, nodeCallback ) {
-	var key, destination;
+	var destination;
 
 	if ( nodeCallback ) {
 		// Extensibility: check before attempting to clone source.
@@ -487,7 +478,7 @@ OO.copy = function ( source, leafCallback, nodeCallback ) {
 	}
 
 	// source is an array or a plain object
-	for ( key in source ) {
+	for ( var key in source ) {
 		destination[ key ] = OO.copy( source[ key ], leafCallback, nodeCallback );
 	}
 
@@ -529,7 +520,6 @@ OO.getHash = function ( val ) {
  * @return {any} Replacement value
  */
 OO.getHash.keySortReplacer = function ( key, val ) {
-	var normalized, keys, i, len;
 	if ( val && typeof val.getHashObject === 'function' ) {
 		// This object has its own custom hash function, use it
 		val = val.getHashObject();
@@ -537,11 +527,10 @@ OO.getHash.keySortReplacer = function ( key, val ) {
 	if ( !Array.isArray( val ) && Object( val ) === val ) {
 		// Only normalize objects when the key-order is ambiguous
 		// (e.g. any object not an array).
-		normalized = {};
-		keys = Object.keys( val ).sort();
-		i = 0;
-		len = keys.length;
-		for ( ; i < len; i += 1 ) {
+		var normalized = {};
+
+		var keys = Object.keys( val ).sort();
+		for ( var i = 0, len = keys.length; i < len; i++ ) {
 			normalized[ keys[ i ] ] = val[ keys[ i ] ];
 		}
 		return normalized;
@@ -561,54 +550,35 @@ OO.getHash.keySortReplacer = function ( key, val ) {
  * @return {Array} Unique values in array
  */
 OO.unique = function ( arr ) {
-	return arr.reduce( function ( result, current ) {
-		if ( result.indexOf( current ) === -1 ) {
-			result.push( current );
-		}
-		return result;
-	}, [] );
+	return Array.from( new Set( arr ) );
 };
 
 /**
  * Compute the union (duplicate-free merge) of a set of arrays.
  *
- * Arrays values must be convertable to object keys (strings).
- *
- * By building an object (with the values for keys) in parallel with
- * the array, a new item's existence in the union can be computed faster.
- *
  * @memberof OO
  * @method simpleArrayUnion
- * @param {...Array} arrays Arrays to union
+ * @param {Array} a First array
+ * @param {...Array} rest Arrays to union
  * @return {Array} Union of the arrays
  */
-OO.simpleArrayUnion = function () {
-	var i, ilen, arr, j, jlen,
-		obj = {},
-		result = [];
+OO.simpleArrayUnion = function ( a, ...rest ) {
+	var set = new Set( a );
 
-	for ( i = 0, ilen = arguments.length; i < ilen; i++ ) {
-		arr = arguments[ i ];
-		for ( j = 0, jlen = arr.length; j < jlen; j++ ) {
-			if ( !obj[ arr[ j ] ] ) {
-				obj[ arr[ j ] ] = true;
-				result.push( arr[ j ] );
-			}
+	for ( var i = 0; i < rest.length; i++ ) {
+		var arr = rest[ i ];
+		for ( var j = 0; j < arr.length; j++ ) {
+			set.add( arr[ j ] );
 		}
 	}
 
-	return result;
+	return Array.from( set );
 };
 
 /**
  * Combine arrays (intersection or difference).
  *
  * An intersection checks the item exists in 'b' while difference checks it doesn't.
- *
- * Arrays values must be convertable to object keys (strings).
- *
- * By building an object (with the values for keys) of 'b' we can
- * compute the result faster.
  *
  * @private
  * @param {Array} a First array
@@ -617,18 +587,13 @@ OO.simpleArrayUnion = function () {
  * @return {Array} Combination (intersection or difference) of arrays
  */
 function simpleArrayCombine( a, b, includeB ) {
-	var i, ilen, isInB,
-		bObj = {},
-		result = [];
+	var set = new Set( b );
+	var result = [];
 
-	for ( i = 0, ilen = b.length; i < ilen; i++ ) {
-		bObj[ b[ i ] ] = true;
-	}
-
-	for ( i = 0, ilen = a.length; i < ilen; i++ ) {
-		isInB = !!bObj[ a[ i ] ];
+	for ( var j = 0; j < a.length; j++ ) {
+		var isInB = set.has( a[ j ] );
 		if ( isInB === includeB ) {
-			result.push( a[ i ] );
+			result.push( a[ j ] );
 		}
 	}
 
@@ -637,8 +602,6 @@ function simpleArrayCombine( a, b, includeB ) {
 
 /**
  * Compute the intersection of two arrays (items in both arrays).
- *
- * Arrays values must be convertable to object keys (strings).
  *
  * @memberof OO
  * @method simpleArrayIntersection
@@ -653,8 +616,6 @@ OO.simpleArrayIntersection = function ( a, b ) {
 /**
  * Compute the difference of two arrays (items in 'a' but not 'b').
  *
- * Arrays values must be convertable to object keys (strings).
- *
  * @memberof OO
  * @method simpleArrayDifference
  * @param {Array} a First array
@@ -665,6 +626,7 @@ OO.simpleArrayDifference = function ( a, b ) {
 	return simpleArrayCombine( a, b, false );
 };
 
+/* eslint-disable-next-line no-redeclare */
 /* global hasOwn, toString */
 
 /**
@@ -675,14 +637,12 @@ OO.simpleArrayDifference = function ( a, b ) {
  * @return {boolean}
  */
 OO.isPlainObject = function ( obj ) {
-	var proto;
-
 	// Optimise for common case where internal [[Class]] property is not "Object"
 	if ( !obj || toString.call( obj ) !== '[object Object]' ) {
 		return false;
 	}
 
-	proto = Object.getPrototypeOf( obj );
+	var proto = Object.getPrototypeOf( obj );
 
 	// Objects without prototype (e.g., `Object.create( null )`) are considered plain
 	if ( !proto ) {
@@ -822,8 +782,6 @@ OO.isPlainObject = function ( obj ) {
 	 * @throws {Error} Listener argument is not a function or a valid method name
 	 */
 	OO.EventEmitter.prototype.off = function ( event, method, context ) {
-		var i, bindings;
-
 		if ( arguments.length === 1 ) {
 			// Remove all bindings for event
 			delete this.bindings[ event ];
@@ -843,8 +801,8 @@ OO.isPlainObject = function ( obj ) {
 		}
 
 		// Remove matching handlers
-		bindings = this.bindings[ event ];
-		i = bindings.length;
+		var bindings = this.bindings[ event ];
+		var i = bindings.length;
 		while ( i-- ) {
 			if ( bindings[ i ].method === method && bindings[ i ].context === context ) {
 				bindings.splice( i, 1 );
@@ -875,18 +833,17 @@ OO.isPlainObject = function ( obj ) {
 	 * @return {boolean} Whether the event was handled by at least one listener
 	 */
 	OO.EventEmitter.prototype.emit = function ( event ) {
-		var bindings, args, i, binding, method;
-
 		if ( !hasOwn.call( this.bindings, event ) ) {
 			return false;
 		}
 
 		// Slicing ensures that we don't get tripped up by event
 		// handlers that add/remove bindings
-		bindings = this.bindings[ event ].slice();
-		args = slice.call( arguments, 1 );
-		for ( i = 0; i < bindings.length; i++ ) {
-			binding = bindings[ i ];
+		var bindings = this.bindings[ event ].slice();
+		var args = slice.call( arguments, 1 );
+		for ( var i = 0; i < bindings.length; i++ ) {
+			var binding = bindings[ i ];
+			var method;
 			if ( typeof binding.method === 'string' ) {
 				// Lookup method by name (late binding)
 				method = binding.context[ binding.method ];
@@ -936,18 +893,18 @@ OO.isPlainObject = function ( obj ) {
 		// We tolerate code duplication with #emit, because the
 		// alternative is an extra level of indirection which will
 		// appear in very many stack traces.
-		var bindings, args, i, binding, method, firstError;
-
 		if ( !hasOwn.call( this.bindings, event ) ) {
 			return false;
 		}
 
+		var firstError;
 		// Slicing ensures that we don't get tripped up by event
 		// handlers that add/remove bindings
-		bindings = this.bindings[ event ].slice();
-		args = slice.call( arguments, 1 );
-		for ( i = 0; i < bindings.length; i++ ) {
-			binding = bindings[ i ];
+		var bindings = this.bindings[ event ].slice();
+		var args = slice.call( arguments, 1 );
+		for ( var i = 0; i < bindings.length; i++ ) {
+			var binding = bindings[ i ];
+			var method;
 			if ( typeof binding.method === 'string' ) {
 				// Lookup method by name (late binding)
 				method = binding.context[ binding.method ];
@@ -994,10 +951,9 @@ OO.isPlainObject = function ( obj ) {
 	 * @return {OO.EventEmitter}
 	 */
 	OO.EventEmitter.prototype.connect = function ( context, methods ) {
-		var method, args, event;
-
-		for ( event in methods ) {
-			method = methods[ event ];
+		for ( var event in methods ) {
+			var method = methods[ event ];
+			var args;
 			// Allow providing additional args
 			if ( Array.isArray( method ) ) {
 				args = method.slice( 1 );
@@ -1026,12 +982,11 @@ OO.isPlainObject = function ( obj ) {
 	 * @return {OO.EventEmitter}
 	 */
 	OO.EventEmitter.prototype.disconnect = function ( context, methods ) {
-		var i, event, method, bindings;
-
+		var event;
 		if ( methods ) {
 			// Remove specific connections to the context
 			for ( event in methods ) {
-				method = methods[ event ];
+				var method = methods[ event ];
 				if ( Array.isArray( method ) ) {
 					method = method[ 0 ];
 				}
@@ -1040,8 +995,8 @@ OO.isPlainObject = function ( obj ) {
 		} else {
 			// Remove all connections to the context
 			for ( event in this.bindings ) {
-				bindings = this.bindings[ event ];
-				i = bindings.length;
+				var bindings = this.bindings[ event ];
+				var i = bindings.length;
 				while ( i-- ) {
 					// bindings[i] may have been removed by the previous step's
 					// this.off so check it still exists
@@ -1177,10 +1132,9 @@ OO.isPlainObject = function ( obj ) {
 	 * @throws {Error} If aggregation already exists
 	 */
 	OO.EmitterList.prototype.aggregate = function ( events ) {
-		var i, item, add, remove, itemEvent, groupEvent;
-
-		for ( itemEvent in events ) {
-			groupEvent = events[ itemEvent ];
+		var i, item;
+		for ( var itemEvent in events ) {
+			var groupEvent = events[ itemEvent ];
 
 			// Remove existing aggregated event
 			if ( Object.prototype.hasOwnProperty.call( this.aggregateItemEvents, itemEvent ) ) {
@@ -1192,7 +1146,7 @@ OO.isPlainObject = function ( obj ) {
 				for ( i = 0; i < this.items.length; i++ ) {
 					item = this.items[ i ];
 					if ( item.connect && item.disconnect ) {
-						remove = {};
+						var remove = {};
 						remove[ itemEvent ] = [ 'emit', this.aggregateItemEvents[ itemEvent ], item ];
 						item.disconnect( this, remove );
 					}
@@ -1209,7 +1163,7 @@ OO.isPlainObject = function ( obj ) {
 				for ( i = 0; i < this.items.length; i++ ) {
 					item = this.items[ i ];
 					if ( item.connect && item.disconnect ) {
-						add = {};
+						var add = {};
 						add[ itemEvent ] = [ 'emit', groupEvent, item ];
 						item.connect( this, add );
 					}
@@ -1231,8 +1185,6 @@ OO.isPlainObject = function ( obj ) {
 	 * @fires OO.EmitterList#move
 	 */
 	OO.EmitterList.prototype.addItems = function ( items, index ) {
-		var i, oldIndex;
-
 		if ( !Array.isArray( items ) ) {
 			items = [ items ];
 		}
@@ -1242,8 +1194,8 @@ OO.isPlainObject = function ( obj ) {
 		}
 
 		index = normalizeArrayIndex( this.items, index );
-		for ( i = 0; i < items.length; i++ ) {
-			oldIndex = this.items.indexOf( items[ i ] );
+		for ( var i = 0; i < items.length; i++ ) {
+			var oldIndex = this.items.indexOf( items[ i ] );
 			if ( oldIndex !== -1 ) {
 				// Move item to new index
 				index = this.moveItem( items[ i ], index );
@@ -1318,8 +1270,6 @@ OO.isPlainObject = function ( obj ) {
 	 * @return {number} The index the item was added at
 	 */
 	OO.EmitterList.prototype.insertItem = function ( item, index ) {
-		var events, event;
-
 		// Throw an error if null or item is not an object.
 		if ( item === null || typeof item !== 'object' ) {
 			throw new Error( 'Expected object, but item is ' + typeof item );
@@ -1327,8 +1277,8 @@ OO.isPlainObject = function ( obj ) {
 
 		// Add the item to event aggregation
 		if ( item.connect && item.disconnect ) {
-			events = {};
-			for ( event in this.aggregateItemEvents ) {
+			var events = {};
+			for ( var event in this.aggregateItemEvents ) {
 				events[ event ] = [ 'emit', this.aggregateItemEvents[ event ], item ];
 			}
 			item.connect( this, events );
@@ -1344,13 +1294,11 @@ OO.isPlainObject = function ( obj ) {
 	/**
 	 * Remove items.
 	 *
-	 * @param {OO.EventEmitter[]} items Items to remove
+	 * @param {OO.EventEmitter|OO.EventEmitter[]} items Items to remove
 	 * @return {OO.EmitterList}
 	 * @fires OO.EmitterList#remove
 	 */
 	OO.EmitterList.prototype.removeItems = function ( items ) {
-		var i, item, index;
-
 		if ( !Array.isArray( items ) ) {
 			items = [ items ];
 		}
@@ -1360,9 +1308,9 @@ OO.isPlainObject = function ( obj ) {
 		}
 
 		// Remove specific items
-		for ( i = 0; i < items.length; i++ ) {
-			item = items[ i ];
-			index = this.items.indexOf( item );
+		for ( var i = 0; i < items.length; i++ ) {
+			var item = items[ i ];
+			var index = this.items.indexOf( item );
 			if ( index !== -1 ) {
 				if ( item.connect && item.disconnect ) {
 					// Disconnect all listeners from the item
@@ -1383,12 +1331,11 @@ OO.isPlainObject = function ( obj ) {
 	 * @fires OO.EmitterList#clear
 	 */
 	OO.EmitterList.prototype.clearItems = function () {
-		var i, item,
-			cleared = this.items.splice( 0, this.items.length );
+		var cleared = this.items.splice( 0, this.items.length );
 
 		// Disconnect all items
-		for ( i = 0; i < cleared.length; i++ ) {
-			item = cleared[ i ];
+		for ( var i = 0; i < cleared.length; i++ ) {
+			var item = cleared[ i ];
 			if ( item.connect && item.disconnect ) {
 				item.disconnect( this );
 			}
@@ -1445,7 +1392,7 @@ OO.mixinClass( OO.SortedEmitterList, OO.EmitterList );
  * An item has changed properties that affect its sort positioning
  * inside the list.
  *
- * @ignore
+ * @private
  * @event OO.SortedEmitterList#itemSortChange
  */
 
@@ -1491,8 +1438,6 @@ OO.SortedEmitterList.prototype.setSortingCallback = function ( sortingCallback )
  * @return {OO.SortedEmitterList}
  */
 OO.SortedEmitterList.prototype.addItems = function ( items ) {
-	var index, i, insertionIndex;
-
 	if ( !Array.isArray( items ) ) {
 		items = [ items ];
 	}
@@ -1501,9 +1446,9 @@ OO.SortedEmitterList.prototype.addItems = function ( items ) {
 		return this;
 	}
 
-	for ( i = 0; i < items.length; i++ ) {
+	for ( var i = 0; i < items.length; i++ ) {
 		// Find insertion index
-		insertionIndex = this.findInsertionIndex( items[ i ] );
+		var insertionIndex = this.findInsertionIndex( items[ i ] );
 
 		// Check if the item exists using the sorting callback
 		// and remove it first if it exists
@@ -1522,7 +1467,7 @@ OO.SortedEmitterList.prototype.addItems = function ( items ) {
 		}
 
 		// Insert item at the insertion index
-		index = this.insertItem( items[ i ], insertionIndex );
+		var index = this.insertItem( items[ i ], insertionIndex );
 		this.emit( 'add', items[ i ], index );
 	}
 
@@ -1602,12 +1547,11 @@ OO.mixinClass( OO.Registry, OO.EventEmitter );
  * @throws {Error} Name argument must be a string or array
  */
 OO.Registry.prototype.register = function ( name, data ) {
-	var i, len;
 	if ( typeof name === 'string' ) {
 		this.registry[ name ] = data;
 		this.emit( 'register', name, data );
 	} else if ( Array.isArray( name ) ) {
-		for ( i = 0, len = name.length; i < len; i++ ) {
+		for ( var i = 0, len = name.length; i < len; i++ ) {
 			this.register( name[ i ], data );
 		}
 	} else {
@@ -1623,15 +1567,14 @@ OO.Registry.prototype.register = function ( name, data ) {
  * @throws {Error} Name argument must be a string or array
  */
 OO.Registry.prototype.unregister = function ( name ) {
-	var i, len, data;
 	if ( typeof name === 'string' ) {
-		data = this.lookup( name );
+		var data = this.lookup( name );
 		if ( data !== undefined ) {
 			delete this.registry[ name ];
 			this.emit( 'unregister', name, data );
 		}
 	} else if ( Array.isArray( name ) ) {
-		for ( i = 0, len = name.length; i < len; i++ ) {
+		for ( var i = 0, len = name.length; i < len; i++ ) {
 			this.unregister( name[ i ] );
 		}
 	} else {
@@ -1667,86 +1610,77 @@ OO.inheritClass( OO.Factory, OO.Registry );
 /* Methods */
 
 /**
- * Register a constructor with the factory.
+ * Register a class with the factory.
  *
  *     function MyClass() {};
  *     OO.initClass( MyClass );
- *     MyClass.static.name = 'hello';
- *     // Register class with the factory, available via the symbolic name "hello"
+ *     MyClass.key = 'hello';
+ *
+ *     // Register class with the factory
  *     factory.register( MyClass );
  *
- * @param {Function} constructor Constructor to use when creating object
- * @param {string} [name] Symbolic name to use for #create().
- *  This parameter may be omitted in favour of letting the constructor decide
- *  its own name, through `constructor.static.name`.
+ *     // Instantiate a class based on its registered key (also known as a "symbolic name")
+ *     factory.create( 'hello' );
+ *
+ * @param {Function} constructor Class to use when creating an object
+ * @param {string} [key] The key for #create().
+ *  This parameter is usually omitted in favour of letting the class declare
+ *  its own key, through `MyClass.key`.
+ *  For backwards-compatiblity with OOjs 6.0 (2021) and older, it can also be declared
+ *  via `MyClass.static.name`.
  * @throws {Error} If a parameter is invalid
  */
-OO.Factory.prototype.register = function ( constructor, name ) {
+OO.Factory.prototype.register = function ( constructor, key ) {
 	if ( typeof constructor !== 'function' ) {
 		throw new Error( 'constructor must be a function, got ' + typeof constructor );
 	}
 	if ( arguments.length <= 1 ) {
-		name = constructor.static && constructor.static.name;
+		key = constructor.key || ( constructor.static && constructor.static.name );
 	}
-	if ( typeof name !== 'string' || name === '' ) {
-		throw new Error( 'name must be a non-empty string' );
+	if ( typeof key !== 'string' || key === '' ) {
+		throw new Error( 'key must be a non-empty string' );
 	}
 
 	// Parent method
-	OO.Factory.super.prototype.register.call( this, name, constructor );
+	OO.Factory.super.prototype.register.call( this, key, constructor );
 };
 
 /**
- * Unregister a constructor from the factory.
+ * Unregister a class from the factory.
  *
- * @param {string|Function} name Constructor function or symbolic name to unregister
+ * @param {string|Function} key Constructor function or key to unregister
  * @throws {Error} If a parameter is invalid
  */
-OO.Factory.prototype.unregister = function ( name ) {
-	if ( typeof name === 'function' ) {
-		name = name.static && name.static.name;
+OO.Factory.prototype.unregister = function ( key ) {
+	if ( typeof key === 'function' ) {
+		key = key.key || ( key.static && key.static.name );
 	}
-	if ( typeof name !== 'string' || name === '' ) {
-		throw new Error( 'name must be a non-empty string' );
+	if ( typeof key !== 'string' || key === '' ) {
+		throw new Error( 'key must be a non-empty string' );
 	}
 
 	// Parent method
-	OO.Factory.super.prototype.unregister.call( this, name );
+	OO.Factory.super.prototype.unregister.call( this, key );
 };
 
 /**
- * Create an object based on a name.
+ * Create an object based on a key.
  *
- * Name is used to look up the constructor to use, while all additional arguments are passed to the
- * constructor directly, so leaving one out will pass an undefined to the constructor.
+ * The key is used to look up the class to use, with any subsequent arguments passed to the
+ * constructor function.
  *
- * @param {string} name Object name
+ * @param {string} key Class key
  * @param {...any} [args] Arguments to pass to the constructor
  * @return {Object} The new object
- * @throws {Error} Unknown object name
+ * @throws {Error} Unknown key
  */
-OO.Factory.prototype.create = function ( name ) {
-	var obj, i,
-		args = [],
-		constructor = this.lookup( name );
-
+OO.Factory.prototype.create = function ( key, ...args ) {
+	var constructor = this.lookup( key );
 	if ( !constructor ) {
-		throw new Error( 'No class registered by that name: ' + name );
+		throw new Error( 'No class registered by that key: ' + key );
 	}
 
-	// Convert arguments to array and shift the first argument (name) off
-	for ( i = 1; i < arguments.length; i++ ) {
-		args.push( arguments[ i ] );
-	}
-
-	// We can't use the "new" operator with .apply directly because apply needs a
-	// context. So instead just do what "new" does: create an object that inherits from
-	// the constructor's prototype (which also makes it an "instanceof" the constructor),
-	// then invoke the constructor with the object as context, and return it (ignoring
-	// the constructor's return value).
-	obj = Object.create( constructor.prototype );
-	constructor.apply( obj, args );
-	return obj;
+	return new constructor( ...args );
 };
 
 /* eslint-env node */

@@ -373,10 +373,10 @@ oojs:
   license: MIT
   homepage: https://www.mediawiki.org/wiki/OOjs
   authors: OOjs Team and other contributors
-  version: 6.0.0
+  version: 7.0.1
   type: tar
-  src: https://registry.npmjs.org/oojs/-/oojs-6.0.0.tgz
-  integrity: sha384-J4GtN11YFt6zOVI6/SjOZ7gXzdYweZJorgUCr5SSV9vBTcth9V5JaZ83tI2jTvI2
+  src: https://registry.npmjs.org/oojs/-/oojs-7.0.1.tgz
+  integrity: sha384-2O0mmkNNV9RilbKtQjCL8wUfIf3Eb+/5CKQEsC4yCbf1NAV1MM67O2GxcC1/cj9Q
   dest:
     package/dist/oojs.js:
     package/AUTHORS.txt:
