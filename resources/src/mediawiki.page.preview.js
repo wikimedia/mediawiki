@@ -165,7 +165,7 @@
 			templatesAllInfo.sort( function ( t1, t2 ) {
 				// Compare titles with the same rules of Title::compare() in PHP.
 				return t1.title.getNamespaceId() !== t2.title.getNamespaceId() ?
-					t1.title.getNamespaceId() > t2.title.getNamespaceId() :
+					t1.title.getNamespaceId() - t2.title.getNamespaceId() :
 					t1.title.getMain().localeCompare( t2.title.getMain() );
 			} );
 
