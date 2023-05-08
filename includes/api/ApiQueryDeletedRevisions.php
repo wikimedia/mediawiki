@@ -239,11 +239,6 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 		$this->addWhereRange( 'ar_id', $dir, null, null );
 
 		$res = $this->select( __METHOD__ );
-
-		if ( $resultPageSet === null ) {
-			$revisions = $this->getRevisionRecords( $res, 'archive' );
-		}
-
 		$count = 0;
 		$generated = [];
 		foreach ( $res as $row ) {
@@ -281,8 +276,7 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 
 				$fit = $this->addPageSubItem(
 					$pageMap[$row->ar_namespace][$row->ar_title],
-					// @phan-suppress-next-line PhanTypeArraySuspiciousNullable Set when used
-					$this->extractRevisionInfo( $revisions[$row->ar_rev_id], $row ),
+					$this->extractRevisionInfo( $this->revisionStore->newRevisionFromArchiveRow( $row ), $row ),
 					'rev'
 				);
 				if ( !$fit ) {

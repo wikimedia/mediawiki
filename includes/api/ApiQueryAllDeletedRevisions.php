@@ -357,7 +357,6 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 
 		if ( $resultPageSet === null ) {
 			$this->executeGenderCacheFromResultWrapper( $res, __METHOD__, 'ar' );
-			$revisions = $this->getRevisionRecords( $res, 'archive' );
 		}
 
 		$pageMap = []; // Maps ns&title to array index
@@ -394,8 +393,7 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 					$generated[] = $row->ar_rev_id;
 				}
 			} else {
-				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable Set when used
-				$revision = $revisions[$row->ar_rev_id];
+				$revision = $this->revisionStore->newRevisionFromArchiveRow( $row );
 				$rev = $this->extractRevisionInfo( $revision, $row );
 
 				if ( !isset( $pageMap[$row->ar_namespace][$row->ar_title] ) ) {
