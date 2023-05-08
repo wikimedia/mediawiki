@@ -70,7 +70,7 @@
 		PrefDialog.prototype.initialize = function () {
 			// T334260 Mobile format breaks global preferences;
 			if ( mw.config.get( 'wgCanonicalSpecialPageName' ) === 'Preferences' ) {
-				insertToggles( sectionBody.querySelectorAll( 'span.oo-ui-checkboxInputWidget' ) );
+				insertToggles( sectionBody.querySelectorAll( 'span.oo-ui-checkboxInputWidget[data-ooui]' ) );
 			}
 			this.name = sectionId;
 			PrefDialog.super.prototype.initialize.call( this );
