@@ -23,6 +23,8 @@ abstract class HTMLFormField {
 	protected $mVFormClass = '';
 	protected $mHelpClass = false;
 	protected $mDefault;
+	private $mNotices;
+
 	/**
 	 * @var array|null|false
 	 */
@@ -567,6 +569,9 @@ abstract class HTMLFormField {
 		if ( isset( $params['hidelabel'] ) ) {
 			$this->mShowEmptyLabels = false;
 		}
+		if ( isset( $params['notices'] ) ) {
+			$this->mNotices = $params['notices'];
+		}
 
 		if ( isset( $params['hide-if'] ) && $params['hide-if'] ) {
 			$this->validateCondState( $params['hide-if'] );
@@ -735,6 +740,7 @@ abstract class HTMLFormField {
 			'errors' => $errors,
 			'infusable' => $infusable,
 			'helpInline' => $this->isHelpInline(),
+			'notices' => $this->mNotices ?: [],
 		];
 		if ( $this->mClass !== '' ) {
 			$config['classes'][] = $this->mClass;
