@@ -3274,7 +3274,7 @@
 	"pageinfo-subpages-value": "$1 ($2 redirection{{PLURAL:$2||s}} ; $3 non-redirection{{PLURAL:$3||s}})",
 	"pageinfo-firstuser": "Créat{{GENDER:$1|eur|rice}} de la page",
 	"pageinfo-firsttime": "Date de création de la page",
-	"pageinfo-lastuser": "Derni{{GENDER:$1|er|ère}} rédacteur{{GENDER:$1|eur|rice}}",
+	"pageinfo-lastuser": "Derni{{GENDER:$1|er|ère}} rédact{{GENDER:$1|eur|rice}}",
 	"pageinfo-lasttime": "Date de la dernière modification",
 	"pageinfo-edits": "Nombre total de modifications",
 	"pageinfo-authors": "Nombre total d’auteurs distincts",

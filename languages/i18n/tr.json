@@ -3508,6 +3508,7 @@
 	"version-libraries-license": "Lisans",
 	"version-libraries-description": "Açıklama",
 	"version-libraries-authors": "Yazarlar",
+	"version-libraries-source": "Kaynak",
 	"redirect": "Dosya, kullanıcı, sayfa ya da revizyon ya da günlük kimliği ile yönlendir",
 	"redirect-summary": "Bu özel sayfa sizi bir dosya (dosya adı verilen), bir sayfa (bir revizyon ya da sayfa ID'si verilen) veya bir kullanıcı sayfasının (sayısal kullanıcı kimliği verilen) adresine yönlendirir. Kullanım: [[{{#Special:Redirect}}/file/Örnek.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], [[{{#Special:Redirect}}/user/101]], veya [[{{#Special:Redirect}}/logid/186]].",
 	"redirect-submit": "Git",

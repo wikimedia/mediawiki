@@ -122,6 +122,7 @@
 	"config-db-prefix-help": "Bir veritabanını birden çok viki arasında veya MediaWiki ile başka bir web uygulaması arasında paylaşmanız gerekirse, çakışmaları önlemek için tüm tablo adlarına bir önek eklemeyi seçebilirsiniz.\nBoşluk kullanmayın.\n\nBu alan genellikle boş bırakılır.",
 	"config-mysql-old": "MySQL $1 veya daha yenisi gerekir. Sizde $2 var.",
 	"config-db-port": "Veritabanı bağlantı noktası:",
+	"config-db-ssl": "SSL üzerinden bağlan",
 	"config-db-schema": "MediaWiki için şema (tiresiz):",
 	"config-db-schema-help": "Bu şema yeterli olacaktır.\nEğer gerçekten ihtiyaç duyarsanız değiştirin.",
 	"config-pg-test-error": "<strong>$1</strong> veritabanıyla bağlantı kurulamıyor: $2",

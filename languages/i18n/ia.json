@@ -3343,6 +3343,7 @@
 	"version-libraries-license": "Licentia",
 	"version-libraries-description": "Description",
 	"version-libraries-authors": "Autores",
+	"version-libraries-source": "Fonte",
 	"redirect": "Rediriger per ID de file, usator, pagina, version o registro",
 	"redirect-summary": "Iste pagina special redirige a un file (si es date le nomine de un file), a un pagina (si es date un ID de version o ID de pagina), a un pagina de usator (si es date un ID de usator numeric) o a un entrata de registro (si es date le ID de un registro). Usage: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], [[{{#Special:Redirect}}/user/101]] o [[{{#Special:Redirect}}/logid/186]].",
 	"redirect-submit": "Va",

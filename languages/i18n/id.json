@@ -3496,6 +3496,7 @@
 	"version-libraries-license": "Lisensi",
 	"version-libraries-description": "Deskripsi",
 	"version-libraries-authors": "Pembuat",
+	"version-libraries-source": "Sumber",
 	"redirect": "Pengalihan berdasarkan ID berkas, pengguna, halaman, revisi, atau log",
 	"redirect-summary": "Halaman istimewa ini beralih ke berkas (sesuai nama berkasnya), halaman (sesuai ID revisinya), atau halaman pengguna (sesuai ID numerik penggunanya). Penggunaan: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], atau [[{{#Special:Redirect}}/user/101]].",
 	"redirect-submit": "Lanjut",

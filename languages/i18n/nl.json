@@ -3453,6 +3453,7 @@
 	"version-libraries-license": "Licentie",
 	"version-libraries-description": "Beschrijving",
 	"version-libraries-authors": "Auteurs",
+	"version-libraries-source": "Bron",
 	"redirect": "Doorverwijzen op bestandsnaam, gebruikers-, pagina-, versie- of logboekregelnummer",
 	"redirect-summary": "Deze speciale pagina verwijst door naar een bestand (als een bestandsnaam wordt opgegeven), een pagina (als een paginanummer of versienummer wordt opgegeven), een gebruikerspagina (als een gebruikersnummer wordt opgegeven) of een logboekregel (als een logboekregel-ID wordt opgegeven). Gebruik: [[{{#Special:Redirect}}/file/Voorbeeld.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], [[{{#Special:Redirect}}/user/101]] of [[{{#Special:Redirect}}/logid/186]].",
 	"redirect-submit": "OK",

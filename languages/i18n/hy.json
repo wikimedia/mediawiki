@@ -2161,6 +2161,7 @@
 	"version-libraries-license": "Արտոնագիր",
 	"version-libraries-description": "Նկարագրություն",
 	"version-libraries-authors": "Հեղինակներ",
+	"version-libraries-source": "Աղբյուր",
 	"redirect": "Վերահղում նիշքի, մասնակցի, էջի, տարբերակի կամ գրանցամատյանի նույնականացման համարից",
 	"redirect-submit": "Անցնել",
 	"redirect-lookup": "Որոնում՝",
