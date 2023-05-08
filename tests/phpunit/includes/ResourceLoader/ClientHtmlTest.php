@@ -122,7 +122,7 @@ class ClientHtmlTest extends \PHPUnit\Framework\TestCase {
 			. '<script>(RLQ=window.RLQ||[]).push(function(){'
 			. 'mw.loader.implement("test.private@{blankVer}",null,{"css":[]});'
 			. '});</script>' . "\n"
-			. '<link rel="stylesheet" href="/w/load.php?lang=nl&amp;modules=test.styles.deprecated%2Cpure&amp;only=styles"/>' . "\n"
+			. '<link rel="stylesheet" href="/w/load.php?lang=nl&amp;modules=test.styles.deprecated%2Cpure&amp;only=styles">' . "\n"
 			. '<style>.private{}</style>' . "\n"
 			. '<script async="" src="/w/load.php?lang=nl&amp;modules=startup&amp;only=scripts&amp;raw=1"></script>';
 		// phpcs:enable
@@ -247,22 +247,22 @@ class ClientHtmlTest extends \PHPUnit\Framework\TestCase {
 				'modules' => [ 'test.styles.pure', 'test.styles.mixed' ],
 				'only' => Module::TYPE_STYLES,
 				'extra' => [],
-				'output' => '<link rel="stylesheet" href="/w/load.php?debug=1&amp;lang=nl&amp;modules=test.styles.mixed&amp;only=styles"/>' . "\n"
-					. '<link rel="stylesheet" href="/w/load.php?debug=1&amp;lang=nl&amp;modules=test.styles.pure&amp;only=styles"/>',
+				'output' => '<link rel="stylesheet" href="/w/load.php?debug=1&amp;lang=nl&amp;modules=test.styles.mixed&amp;only=styles">' . "\n"
+					. '<link rel="stylesheet" href="/w/load.php?debug=1&amp;lang=nl&amp;modules=test.styles.pure&amp;only=styles">',
 			],
 			[
 				'context' => [ 'debug' => 'false' ],
 				'modules' => [ 'test.styles.pure', 'test.styles.mixed' ],
 				'only' => Module::TYPE_STYLES,
 				'extra' => [],
-				'output' => '<link rel="stylesheet" href="/w/load.php?lang=nl&amp;modules=test.styles.mixed%2Cpure&amp;only=styles"/>',
+				'output' => '<link rel="stylesheet" href="/w/load.php?lang=nl&amp;modules=test.styles.mixed%2Cpure&amp;only=styles">',
 			],
 			[
 				'context' => [],
 				'modules' => [ 'test.styles.noscript' ],
 				'only' => Module::TYPE_STYLES,
 				'extra' => [],
-				'output' => '<noscript><link rel="stylesheet" href="/w/load.php?lang=nl&amp;modules=test.styles.noscript&amp;only=styles"/></noscript>',
+				'output' => '<noscript><link rel="stylesheet" href="/w/load.php?lang=nl&amp;modules=test.styles.noscript&amp;only=styles"></noscript>',
 			],
 			[
 				'context' => [],
@@ -298,7 +298,7 @@ class ClientHtmlTest extends \PHPUnit\Framework\TestCase {
 				'only' => Module::TYPE_STYLES,
 				'extra' => [],
 				'output' =>
-					'<link rel="stylesheet" href="/w/load.php?lang=nl&amp;modules=test.styles.pure&amp;only=styles"/>' . "\n"
+					'<link rel="stylesheet" href="/w/load.php?lang=nl&amp;modules=test.styles.pure&amp;only=styles">' . "\n"
 					. '<style>.shouldembed{}</style>'
 			],
 			[
@@ -307,9 +307,9 @@ class ClientHtmlTest extends \PHPUnit\Framework\TestCase {
 				'only' => Module::TYPE_STYLES,
 				'extra' => [],
 				'output' =>
-					'<link rel="stylesheet" href="/w/load.php?lang=nl&amp;modules=test.ordering.a%2Cb&amp;only=styles"/>' . "\n"
+					'<link rel="stylesheet" href="/w/load.php?lang=nl&amp;modules=test.ordering.a%2Cb&amp;only=styles">' . "\n"
 					. '<style>.orderingC{}.orderingD{}</style>' . "\n"
-					. '<link rel="stylesheet" href="/w/load.php?lang=nl&amp;modules=test.ordering.e&amp;only=styles"/>'
+					. '<link rel="stylesheet" href="/w/load.php?lang=nl&amp;modules=test.ordering.e&amp;only=styles">'
 			],
 		];
 		// phpcs:enable

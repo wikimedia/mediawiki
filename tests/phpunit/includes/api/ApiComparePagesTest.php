@@ -439,7 +439,7 @@ class ApiComparePagesTest extends ApiTestCase {
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
 							. '<tr><td class="diff-marker"></td><td class="diff-context diff-side-deleted"><div>== Section 1 ==</div></td><td class="diff-marker"></td><td class="diff-context diff-side-added"><div>== Section 1 ==</div></td></tr>' . "\n"
 							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div><del class="diffchange diffchange-inline">F 1.1</del></div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div><ins class="diffchange diffchange-inline">To text?</ins></div></td></tr>' . "\n"
-							. '<tr><td class="diff-marker"></td><td class="diff-context diff-side-deleted"><br/></td><td class="diff-marker"></td><td class="diff-context diff-side-added"><br/></td></tr>' . "\n"
+							. '<tr><td class="diff-marker"></td><td class="diff-context diff-side-deleted"><br></td><td class="diff-marker"></td><td class="diff-context diff-side-added"><br></td></tr>' . "\n"
 							. '<tr><td class="diff-marker"></td><td class="diff-context diff-side-deleted"><div>== Section 2 ==</div></td><td class="diff-marker"></td><td class="diff-context diff-side-added"><div>== Section 2 ==</div></td></tr>' . "\n"
 							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div><del class="diffchange diffchange-inline">From text?</del></div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div><ins class="diffchange diffchange-inline">F 1.2</ins></div></td></tr>' . "\n",
 					]

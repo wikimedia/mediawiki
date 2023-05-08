@@ -32,11 +32,11 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	private const SCREEN_MEDIA_QUERY = 'screen and (min-width: 982px)';
 	private const SCREEN_ONLY_MEDIA_QUERY = 'only screen and (min-width: 982px)';
-	private const RSS_RC_LINK = '<link rel="alternate" type="application/rss+xml" title=" RSS feed" href="/w/index.php?title=Special:RecentChanges&amp;feed=rss"/>';
-	private const ATOM_RC_LINK = '<link rel="alternate" type="application/atom+xml" title=" Atom feed" href="/w/index.php?title=Special:RecentChanges&amp;feed=atom"/>';
+	private const RSS_RC_LINK = '<link rel="alternate" type="application/rss+xml" title=" RSS feed" href="/w/index.php?title=Special:RecentChanges&amp;feed=rss">';
+	private const ATOM_RC_LINK = '<link rel="alternate" type="application/atom+xml" title=" Atom feed" href="/w/index.php?title=Special:RecentChanges&amp;feed=atom">';
 
-	private const RSS_TEST_LINK = '<link rel="alternate" type="application/rss+xml" title="&quot;Test&quot; RSS feed" href="fake-link"/>';
-	private const ATOM_TEST_LINK = '<link rel="alternate" type="application/atom+xml" title="&quot;Test&quot; Atom feed" href="fake-link"/>';
+	private const RSS_TEST_LINK = '<link rel="alternate" type="application/rss+xml" title="&quot;Test&quot; RSS feed" href="fake-link">';
+	private const ATOM_TEST_LINK = '<link rel="alternate" type="application/atom+xml" title="&quot;Test&quot; Atom feed" href="fake-link">';
 	// phpcs:enable
 
 	// Ensure that we don't affect the global ResourceLoader state.
@@ -457,10 +457,10 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $op->getMetaTags() );
 
 		$links = $op->getHeadLinksArray();
-		$this->assertContains( '<meta http-equiv="expires" content="0"/>', $links );
-		$this->assertContains( '<meta name="keywords" content="first"/>', $links );
-		$this->assertContains( '<meta name="keywords" content="second"/>', $links );
-		$this->assertContains( '<meta property="og:title" content="Ta-duh"/>', $links );
+		$this->assertContains( '<meta http-equiv="expires" content="0">', $links );
+		$this->assertContains( '<meta name="keywords" content="first">', $links );
+		$this->assertContains( '<meta name="keywords" content="second">', $links );
+		$this->assertContains( '<meta property="og:title" content="Ta-duh">', $links );
 		$this->assertArrayHasKey( 'meta-robots', $links );
 	}
 
@@ -811,7 +811,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op->setRobotPolicy( 'noindex, nofollow' );
 
 		$links = $op->getHeadLinksArray();
-		$this->assertContains( '<meta name="robots" content="noindex,nofollow,max-image-preview:standard"/>', $links );
+		$this->assertContains( '<meta name="robots" content="noindex,nofollow,max-image-preview:standard">', $links );
 	}
 
 	/**
@@ -827,12 +827,12 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op->setIndexPolicy( 'index' );
 
 		$links = $op->getHeadLinksArray();
-		$this->assertContains( '<meta name="robots" content="index,nofollow,max-image-preview:standard,max-snippet:500"/>', $links );
+		$this->assertContains( '<meta name="robots" content="index,nofollow,max-image-preview:standard,max-snippet:500">', $links );
 
 		$op->setFollowPolicy( 'follow' );
 		$links = $op->getHeadLinksArray();
 		$this->assertContains(
-			'<meta name="robots" content="max-image-preview:standard,max-snippet:500"/>',
+			'<meta name="robots" content="max-image-preview:standard,max-snippet:500">',
 			$links,
 			'When index,follow (browser default) omit'
 		);
@@ -861,7 +861,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op->setFollowPolicy( 'nofollow' );
 
 		$links = $op->getHeadLinksArray();
-		$this->assertContains( '<meta name="robots" content="noindex,nofollow,max-image-preview:standard"/>', $links );
+		$this->assertContains( '<meta name="robots" content="noindex,nofollow,max-image-preview:standard">', $links );
 	}
 
 	private function extractHTMLTitle( OutputPage $op ) {
@@ -2884,7 +2884,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			[
 				[ [ 'test.baz', 'test.foo', 'test.bar' ], RL\Module::TYPE_STYLES ],
 
-				'<link rel="stylesheet" href="http://127.0.0.1:8080/w/load.php?lang=en&amp;modules=test.bar%2Cbaz%2Cfoo&amp;only=styles"/>'
+				'<link rel="stylesheet" href="http://127.0.0.1:8080/w/load.php?lang=en&amp;modules=test.bar%2Cbaz%2Cfoo&amp;only=styles">'
 			],
 			// Private embed (only=scripts)
 			[
@@ -2909,7 +2909,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			// noscript group
 			[
 				[ 'test.noscript', RL\Module::TYPE_STYLES ],
-				'<noscript><link rel="stylesheet" href="http://127.0.0.1:8080/w/load.php?lang=en&amp;modules=test.noscript&amp;only=styles"/></noscript>'
+				'<noscript><link rel="stylesheet" href="http://127.0.0.1:8080/w/load.php?lang=en&amp;modules=test.noscript&amp;only=styles"></noscript>'
 			],
 			// Load two modules in separate groups
 			[
@@ -2982,25 +2982,25 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			],
 			'default logged-out' => [
 				'exemptStyleModules' => [ 'site' => [ 'site.styles' ] ],
-				'<meta name="ResourceLoaderDynamicStyles" content=""/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=site.styles&amp;only=styles"/>',
+				'<meta name="ResourceLoaderDynamicStyles" content="">' . "\n" .
+				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=site.styles&amp;only=styles">',
 			],
 			'default logged-in' => [
 				'exemptStyleModules' => [ 'site' => [ 'site.styles' ], 'user' => [ 'user.styles' ] ],
-				'<meta name="ResourceLoaderDynamicStyles" content=""/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=site.styles&amp;only=styles"/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=user.styles&amp;only=styles&amp;version=94mvi"/>',
+				'<meta name="ResourceLoaderDynamicStyles" content="">' . "\n" .
+				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=site.styles&amp;only=styles">' . "\n" .
+				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=user.styles&amp;only=styles&amp;version=94mvi">',
 			],
 			'custom modules' => [
 				'exemptStyleModules' => [
 					'site' => [ 'site.styles', 'example.site.a', 'example.site.b' ],
 					'user' => [ 'user.styles', 'example.user' ],
 				],
-				'<meta name="ResourceLoaderDynamicStyles" content=""/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=example.site.a%2Cb&amp;only=styles"/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=site.styles&amp;only=styles"/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=example.user&amp;only=styles&amp;version={blankCombi}"/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=user.styles&amp;only=styles&amp;version=94mvi"/>',
+				'<meta name="ResourceLoaderDynamicStyles" content="">' . "\n" .
+				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=example.site.a%2Cb&amp;only=styles">' . "\n" .
+				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=site.styles&amp;only=styles">' . "\n" .
+				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=example.user&amp;only=styles&amp;version={blankCombi}">' . "\n" .
+				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=user.styles&amp;only=styles&amp;version=94mvi">',
 			],
 		];
 		// phpcs:enable
