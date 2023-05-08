@@ -46,6 +46,11 @@ class SearchInputWidget extends TitleInputWidget {
 			$this->showDescriptions = true;
 		}
 
+		// Perhaps should be upstreamed to TextInputWidget?
+		if ( isset( $config['autocapitalize'] ) ) {
+			$this->input->setAttributes( [ 'autocapitalize' => $config['autocapitalize'] ] );
+		}
+
 		// Initialization
 		$this->addClasses( [ 'mw-widget-searchInputWidget' ] );
 	}
