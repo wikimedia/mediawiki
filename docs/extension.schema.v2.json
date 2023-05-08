@@ -1,6 +1,73 @@
 {
 	"$schema": "http://json-schema.org/schema#",
 	"description": "MediaWiki extension.json schema",
+	"definitions": {
+		"resourceLoaderFileInfo": {
+			"oneOf": [
+				{
+					"type": "string",
+					"description": "The name of the file"
+				},
+				{
+					"type": "object",
+					"properties": {
+						"name": {
+							"type": "string",
+							"description": "The name of the file",
+							"required": true
+						},
+						"type": {
+							"type": "string",
+							"description": "The type of the file. The default is to detect it from the extension",
+							"enum": [ "script", "script-vue", "data", "text" ]
+						},
+						"main": {
+							"type": "boolean",
+							"description": "Used to indicate the main script in a package"
+						},
+						"content": {
+							"type": "string",
+							"description": "The content to use for the file"
+						},
+						"file": {
+							"type": "string",
+							"description": "The relative path to the file"
+						},
+						"callback": {
+							"type": [ "string", "array" ],
+							"description": "A PHP method to call for the file contents"
+						},
+						"callbackParam": {
+							"description": "A value to be passed as the third parameter to the callback and versionCallback"
+						},
+						"versionCallback": {
+							"type": [ "string", "array" ],
+							"description": "A PHP method which will return either a FilePath or the definition summary for the file"
+						},
+						"config": {
+							"oneOf": [
+								{
+									"type": "array",
+									"description": "An array of config variable names to be delivered as a JSON data file",
+									"items": {
+										"type": "string"
+									}
+								},
+								{
+									"type": "object",
+									"description": "A map of output property name to MediaWiki config variable name, to be delivered as a JSON data file",
+									"additionalProperties": {
+										"type": "string"
+									}
+								}
+							]
+						}
+					},
+					"additionalProperties": false
+				}
+			]
+		}
+	},
 	"type": "object",
 	"additionalProperties": false,
 	"patternProperties": {
@@ -238,9 +305,7 @@
 								"scripts": {
 									"type": [ "string", "array" ],
 									"description": "Scripts to always include. Array of file paths or package file objects.",
-									"items": {
-										"type": [ "string", "object" ]
-									}
+									"items": { "$ref": "#/definitions/resourceLoaderFileInfo" }
 								},
 								"languageScripts": {
 									"type": "object",
@@ -251,9 +316,7 @@
 												"string",
 												"array"
 											],
-											"items": {
-												"type": [ "string", "object" ]
-											}
+											"items": { "$ref": "#/definitions/resourceLoaderFileInfo" }
 										}
 									}
 								},
@@ -266,9 +329,7 @@
 												"string",
 												"array"
 											],
-											"items": {
-												"type": [ "string", "object" ]
-											}
+											"items": { "$ref": "#/definitions/resourceLoaderFileInfo" }
 										}
 									}
 								},
@@ -276,7 +337,7 @@
 									"type": [ "string", "array" ],
 									"description": "Scripts to include in debug contexts",
 									"items": {
-										"type": [ "string", "object" ]
+										"type": { "$ref": "#/definitions/resourceLoaderFileInfo" }
 									}
 								},
 								"dependencies": {
@@ -353,7 +414,7 @@
 									"type": [ "string", "array" ],
 									"description": "Package files that can be require()d",
 									"items": {
-										"type": [ "string", "object" ]
+										"type": { "$ref": "#/definitions/resourceLoaderFileInfo" }
 									}
 								},
 								"es6": {
