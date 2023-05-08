@@ -142,6 +142,9 @@ because of Phabricator reports.
 * The following functions from the mediawiki.mixins Less import, deprecated
   since 1.37, have been removed: .transition(), .transition-transform(),
   .transform() and .transform-origin().
+* Database::queryMulti() has been removed without deprecation as it's not used
+  anywhere. Likewise, protected Database::doMultiStatementQuery is dropped and
+  executeQuery signature has changed.
 * …
 
 === Deprecations in 1.41 ===

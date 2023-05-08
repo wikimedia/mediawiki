@@ -263,29 +263,6 @@ interface IDatabase extends IReadableDatabase {
 	public function query( $sql, $fname = __METHOD__, $flags = 0 );
 
 	/**
-	 * Run a batch of SQL query statements and return the results
-	 *
-	 * If any statement results in an error, subsequent statements will not be attempted.
-	 *
-	 * Callers should avoid the use of statements like BEGIN, COMMIT, and ROLLBACK.
-	 * Methods like startAtomic(), endAtomic(), and cancelAtomic() can be used instead.
-	 *
-	 * @see IDatabase::query()
-	 *
-	 * @param string[] $sqls Map of (statement ID => SQL statement)
-	 * @param string $fname Name of the calling function
-	 * @param int $flags Bit field of IDatabase::QUERY_* constants
-	 * @param string|null $summarySql Virtual SQL for profiling (e.g. "UPSERT INTO TABLE 'x'")
-	 * @return array<string,QueryStatus> Ordered map of (statement ID => QueryStatus)
-	 * @throws DBQueryError If a query is issued, fails, and QUERY_SILENCE_ERRORS is not set.
-	 * @throws DBExpectedError If a query is not, and cannot, be issued yet (non-DBQueryError)
-	 * @since 1.39
-	 */
-	public function queryMulti(
-		array $sqls, string $fname = __METHOD__, int $flags = 0, ?string $summarySql = null
-	);
-
-	/**
 	 * Get an UpdateQueryBuilder bound to this connection. This is overridden by
 	 * DBConnRef.
 	 *
