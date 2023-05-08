@@ -29,6 +29,7 @@ use StringUtils;
 use TextContent;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\LikeMatch;
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 /**
  * Some functions to help implement an external link filter for spam control.
@@ -343,33 +344,44 @@ class LinkFilter {
 			return self::getQueryConditionsOld( $filterEntry, $options );
 		}
 		$options += [
-			'protocol' => 'http://',
+			'protocol' => [ 'http://', 'https://' ],
 			'oneWildcard' => false,
 			'db' => null,
 		];
 
-		// First, get the like array
-		$like = self::makeLikeArray( $filterEntry, $options['protocol'] );
-		if ( $like === false ) {
-			return $like;
+		if ( is_string( $options['protocol'] ) ) {
+			$options['protocol'] = [ $options['protocol'] ];
+		} elseif ( $options['protocol'] === null ) {
+			$options['protocol'] = [ 'http://', 'https://' ];
 		}
-		[ $likeDomain, $likePath ] = $like;
 
-		// Get the constant prefix (i.e. everything up to the first wildcard)
-		$trimmedlikeDomain = self::keepOneWildcard( $likeDomain );
-		$trimmedlikePath = self::keepOneWildcard( $likePath );
-		if ( $trimmedlikeDomain[count( $trimmedlikeDomain ) - 1] instanceof LikeMatch ) {
-			array_pop( $trimmedlikeDomain );
+		$domainConditions = [];
+		$db = $options['db'] ?: wfGetDB( DB_REPLICA );
+		foreach ( $options['protocol'] as $protocol ) {
+			$like = self::makeLikeArray( $filterEntry, $protocol );
+			if ( $like === false ) {
+				continue;
+			}
+			[ $likeDomain, $likePath ] = $like;
+			$trimmedlikeDomain = self::keepOneWildcard( $likeDomain );
+			if ( $trimmedlikeDomain[count( $trimmedlikeDomain ) - 1] instanceof LikeMatch ) {
+				array_pop( $trimmedlikeDomain );
+			}
+			$index1 = implode( '', $trimmedlikeDomain );
+			$domainConditions[] = "el_to_domain_index" . $db->buildLike( $index1, $db->anyString() );
 		}
+		if ( !$domainConditions ) {
+			return false;
+		}
+		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable
+		$trimmedlikePath = self::keepOneWildcard( $likePath );
 		if ( $trimmedlikePath[count( $trimmedlikePath ) - 1] instanceof LikeMatch ) {
 			array_pop( $trimmedlikePath );
 		}
-		$db = $options['db'] ?: wfGetDB( DB_REPLICA );
-		$index1 = implode( '', $trimmedlikeDomain );
 		$index2 = implode( '', $trimmedlikePath );
 
 		return [
-			"el_to_domain_index" . $db->buildLike( $index1, $db->anyString() ),
+			$db->makeList( $domainConditions, ISQLPlatform::LIST_OR ),
 			"el_to_path" . $db->buildLike( $index2, $db->anyString() ),
 		];
 	}
@@ -380,6 +392,10 @@ class LinkFilter {
 			'oneWildcard' => false,
 			'db' => null,
 		];
+
+		if ( $options['protocol'] === null ) {
+			$options['protocol'] = 'http://';
+		}
 
 		// First, get the like array
 		$like = self::makeLikeArray( $filterEntry, $options['protocol'] );
