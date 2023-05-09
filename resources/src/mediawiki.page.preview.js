@@ -164,9 +164,13 @@
 			// Sort alphabetically.
 			templatesAllInfo.sort( function ( t1, t2 ) {
 				// Compare titles with the same rules of Title::compare() in PHP.
-				return t1.title.getNamespaceId() !== t2.title.getNamespaceId() ?
-					t1.title.getNamespaceId() - t2.title.getNamespaceId() :
-					t1.title.getMain().localeCompare( t2.title.getMain() );
+				if ( t1.title.getNamespaceId() !== t2.title.getNamespaceId() ) {
+					return t1.title.getNamespaceId() - t2.title.getNamespaceId();
+				} else {
+					return t1.title.getMain() === t2.title.getMain() ?
+						0 :
+						t1.title.getMain() < t2.title.getMain() ? -1 : 1;
+				}
 			} );
 
 			// Add all templates to the list, and update the list header.
