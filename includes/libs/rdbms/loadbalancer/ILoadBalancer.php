@@ -143,8 +143,6 @@ interface ILoadBalancer {
 	public const CONN_SILENCE_ERRORS = 4;
 	/** Caller is requesting the primary DB server for possibly writes */
 	public const CONN_INTENT_WRITABLE = 8;
-	/** Bypass and update any server-side read-only mode state cache */
-	public const CONN_REFRESH_READ_ONLY = 16;
 
 	/**
 	 * Get the name of the overall cluster of database servers managing the dataset
