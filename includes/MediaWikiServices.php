@@ -60,6 +60,7 @@ use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Collation\CollationFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
+use MediaWiki\CommentFormatter\CommentParserFactory;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ConfigRepository;
@@ -869,6 +870,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getCommentFormatter(): CommentFormatter {
 		return $this->getService( 'CommentFormatter' );
+	}
+
+	/**
+	 * @since 1.41
+	 */
+	public function getCommentParserFactory(): CommentParserFactory {
+		return $this->getService( 'CommentParserFactory' );
 	}
 
 	/**
