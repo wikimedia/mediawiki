@@ -5,4 +5,4 @@
  * @ingroup Languages
  */
 
-$fallback = 'gom-deva, hi';
+$fallback = 'gom-deva, gom-latn';

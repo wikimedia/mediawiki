@@ -8,7 +8,7 @@
  * @author The Discoverer
  */
 
-$fallback = 'hi';
+$fallback = 'gom-latn';
 
 $namespaceNames = [
 	NS_MEDIA            => 'माध्यम',
