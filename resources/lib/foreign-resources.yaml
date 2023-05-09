@@ -343,15 +343,13 @@ moment:
 mustache:
   license: MIT
   homepage: https://github.com/janl/mustache.js
-  version: 3.0.1
-  type: multi-file
-  files:
-    mustache.js:
-      src: https://raw.githubusercontent.com/janl/mustache.js/v3.0.1/mustache.js
-      integrity: sha384-YjAj6Nll7fkEWzxTlE9o3NWC9qdZt1Upat6Afjib9eLs8lTODpSKEBHeXq8o/VUH
-    LICENSE:
-      src: https://raw.githubusercontent.com/janl/mustache.js/v3.0.1/LICENSE
-      integrity: sha384-j2EDj6YtCRgFvYDtzo6pXzbskIj/K1Yg65BL0j3/L6UIHxbMtRMJwC/W+XoYx0FZ
+  version: 4.2.0
+  type: tar
+  src: https://registry.npmjs.org/mustache/-/mustache-4.2.0.tgz
+  integrity: sha384-JKpbW4FTGK4zdRNitERF8271K0N5EMpnxY9/yrm8CEUPUE+DZsiBstkkzGd89uJG
+  dest:
+    package/mustache.js:
+    package/LICENSE:
 
 oojs:
   license: MIT
