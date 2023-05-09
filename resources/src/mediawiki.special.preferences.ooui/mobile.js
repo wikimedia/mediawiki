@@ -46,6 +46,7 @@
 			toggleSwitchWidget.on( 'change', function ( value ) {
 				checkboxWidget.setSelected( value );
 			} );
+			checkboxElement = checkboxWidget.$element[ 0 ];
 			checkboxElement.insertAdjacentElement( 'afterend', toggleSwitchWidget.$element[ 0 ] );
 			checkboxElement.classList.add( 'hidden' );
 		} );
