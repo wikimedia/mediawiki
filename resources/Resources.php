@@ -2586,7 +2586,6 @@ return [
 			'period-pm',
 		],
 		'dependencies' => [
-			'jquery.client',
 			'mediawiki.util',
 			'oojs-ui-core',
 			'oojs-ui.styles.icons-moderation',
