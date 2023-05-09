@@ -93,7 +93,7 @@ because of Phabricator reports.
 * MWHttpRequest::factory(), deprecated since 1.34, has been removed.
 * The Http class, deprecated since 1.34, with the functions ::request(),
   ::get(), ::post(), ::userAgent(), ::isValidURI(), ::getProxy(),
-  ::createMultiClient() have been removed. 
+  ::createMultiClient() have been removed.
 * The following unused IDatabase methods were removed without deprecation:
   - ::wasLockTimeout()
   - ::wasConnectionLoss()
