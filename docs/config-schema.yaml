@@ -4965,7 +4965,7 @@ config-schema:
             Set of available actions that can be restricted via action=protect
             You probably shouldn't change this.
             Translated through restriction-* messages.
-            Title::getRestrictionTypes() will remove restrictions that are not
+            RestrictionStore::listApplicableRestrictionTypes() will remove restrictions that are not
             applicable to a specific title (create and upload)
     RestrictionLevels:
         default:

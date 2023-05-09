@@ -7881,7 +7881,7 @@ class MainConfigSchema {
 	 * You probably shouldn't change this.
 	 *
 	 * Translated through restriction-* messages.
-	 * Title::getRestrictionTypes() will remove restrictions that are not
+	 * RestrictionStore::listApplicableRestrictionTypes() will remove restrictions that are not
 	 * applicable to a specific title (create and upload)
 	 */
 	public const RestrictionTypes = [

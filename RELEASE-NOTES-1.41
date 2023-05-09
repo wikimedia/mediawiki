@@ -107,6 +107,21 @@ because of Phabricator reports.
   - ::wasConnectionLoss()
 * PrevNextNavigationRenderer class, deprecated in 1.39,
   has been removed.
+* The following methods in the Title class, deprecated since 1.37, have been
+  removed:
+  - ::areCascadeProtectionSourcesLoaded()
+  - ::areRestrictionsCascading()
+  - ::areRestrictionsLoaded()
+  - ::getAllRestrictions()
+  - ::getCascadeProtectionSources()
+  - ::getFilteredRestrictionTypes()
+  - ::getRestrictionExpiry()
+  - ::getRestrictionTypes()
+  - ::getRestrictions()
+  - ::isCascadeProtected()
+  - ::isProtected()
+  - ::isSemiProtected()
+  - ::loadRestrictionsFromRows()
 * LinkBatch::__construct() now requires that all parameters be passed. The
   fallback to MediaWikiServices emitted deprecation notices since 1.35.
 * The methods IndexPager::getPagingLinks(), IndexPager::getLimitLinks() and

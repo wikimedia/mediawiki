@@ -150,8 +150,7 @@ class RestrictionStore {
 	 * @param PageIdentity $page Must be local
 	 * @param string $action
 	 * @return ?string 14-char timestamp, or 'infinity' if the page is protected forever or not
-	 *   protected at all, or null if the action is not recognized. NOTE: This returns null for
-	 *   unrecognized actions, unlike Title::getRestrictionExpiry which returns false.
+	 *   protected at all, or null if the action is not recognized.
 	 */
 	public function getRestrictionExpiry( PageIdentity $page, string $action ): ?string {
 		$page->assertWiki( PageIdentity::LOCAL );
@@ -545,9 +544,7 @@ class RestrictionStore {
 	 * @param PageIdentity $page Must be local
 	 * @return array[] Two elements: First is an array of PageIdentity objects of the pages from
 	 *   which cascading restrictions have come, which may be empty. Second is an array like that
-	 *   returned by getAllRestrictions(). NOTE: The first element of the return is always an
-	 *   array, unlike Title::getCascadeProtectionSources where the first element is false if there
-	 *   are no sources.
+	 *   returned by getAllRestrictions().
 	 */
 	public function getCascadeProtectionSources( PageIdentity $page ): array {
 		$page->assertWiki( PageIdentity::LOCAL );

@@ -68,7 +68,6 @@ trait MockTitleTrait {
 		$title->method( 'getPageLanguage' )->willReturn( $props['language'] ?? 'qqx' );
 		$title->method( 'getContentModel' )
 			->willReturn( $props['contentModel'] ?? CONTENT_MODEL_WIKITEXT );
-		$title->method( 'getRestrictions' )->willReturn( [] );
 		$title->method( 'getTitleProtection' )->willReturn( false );
 		$title->method( 'canExist' )
 			->willReturn( $ns >= 0 && empty( $props['interwiki'] ) && $text !== '' );
