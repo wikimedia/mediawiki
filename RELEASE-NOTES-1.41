@@ -139,6 +139,9 @@ because of Phabricator reports.
 * Config parameter keywordTableMap in DatabasePostgres, deprecated since 1.37,
   has been removed.
 * SQLite no longer supports raw MySQL queries.
+* The following functions from the mediawiki.mixins Less import, deprecated
+  since 1.37, have been removed: .transition(), .transition-transform(),
+  .transform() and .transform-origin().
 * …
 
 === Deprecations in 1.41 ===
