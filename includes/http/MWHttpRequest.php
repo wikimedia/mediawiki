@@ -186,22 +186,6 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Generate a new request object
-	 * @deprecated since 1.34, use HttpRequestFactory instead. Hard-deprecated since 1.40.
-	 * @param string $url Url to use
-	 * @param array|null $options (optional) extra params to pass (see HttpRequestFactory::create())
-	 * @param string $caller The method making this request, for profiling
-	 * @throws DomainException
-	 * @return MWHttpRequest
-	 * @see MWHttpRequest::__construct
-	 */
-	public static function factory( $url, array $options = null, $caller = __METHOD__ ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return MediaWikiServices::getInstance()->getHttpRequestFactory()
-			->create( $url, $options ?? [], $caller );
-	}
-
-	/**
 	 * Get the body, or content, of the response to the request
 	 *
 	 * @return string

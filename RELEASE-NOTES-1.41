@@ -98,6 +98,7 @@ because of Phabricator reports.
 * Article::getRedirectHeaderHtml() no longer accepts an array as $target.
   Passing an array was deprecated in 1.39.
 * IDatabase::wasErrorReissuable(), deprecated since 1.40, has been removed.
+* MWHttpRequest::factory(), deprecated since 1.34, has been removed.
 * The Http class, deprecated since 1.34, with the functions ::request(),
   ::get(), ::post(), ::userAgent(), ::isValidURI(), ::getProxy(),
   ::createMultiClient() have been removed.
