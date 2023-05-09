@@ -575,7 +575,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	public function ping();
 
 	/**
-	 * Get the amount of replication lag for this database server
+	 * Get the seconds of replication lag on this database server
 	 *
 	 * Callers should avoid using this method while a transaction is active
 	 *
@@ -585,13 +585,12 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	public function getLag();
 
 	/**
-	 * Get the replica server lag when the current transaction started
-	 * or a general lag estimate if not transaction is active
+	 * Get a cached estimate of the seconds of replication lag on this database server,
+	 * using the estimate obtained at the start of the current transaction if one is active
 	 *
-	 * This is useful when transactions might use snapshot isolation
-	 * (e.g. REPEATABLE-READ in innodb), so the "real" lag of that data
-	 * is this lag plus transaction duration. If they don't, it is still
-	 * safe to be pessimistic. In AUTOCOMMIT mode, this still gives an
+	 * This is useful when transactions might use snapshot isolation (e.g. REPEATABLE-READ in
+	 * innodb), so the "real" lag of that data is this lag plus transaction duration. If they
+	 * don't, it is still safe to be pessimistic. In AUTOCOMMIT mode, this still gives an
 	 * indication of the staleness of subsequent reads.
 	 *
 	 * @return array ('lag': seconds or false on error, 'since': UNIX timestamp of BEGIN)
