@@ -1184,6 +1184,8 @@
 	"diff-multi-manyusers": "(No se {{PLURAL:$1|muestra una edición intermedia|muestran $1 ediciones intermedias}} de más de {{PLURAL:$2|un usuario|$2 usuarios}})",
 	"diff-paragraph-moved-tonew": "Se trasladó el párrafo. Pulsa para saltar a la ubicación nueva.",
 	"diff-paragraph-moved-toold": "Se trasladó el párrafo. Pulsa para saltar a la ubicación anterior.",
+	"diff-inline-tooltip-ins": "Contenido añadido",
+	"diff-inline-tooltip-del": "Contenido eliminado",
 	"difference-missing-revision": "No se {{PLURAL:$2|ha encontrado una revisión|han encontrado $2 revisiones}} de la comparación solicitada ($1).\n\nLa causa de esto suele ser un enlace obsoleto hacia una edición de una página que ha sido borrada.\nPara más información, consulta el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
 	"difference-bad-old-revision": "Falta el contenido de la revisión anterior o este está dañado.",
 	"difference-bad-new-revision": "Falta el contenido de la revisión nueva o este está dañado.",
@@ -1355,6 +1357,7 @@
 	"badsiglength": "Tu firma es muy larga.\nDebe contener un máximo de {{PLURAL:$1|un carácter|$1 caracteres}}.",
 	"badsiglinebreak": "Tu firma no puede exceder de una única línea de wikitexto.",
 	"linterror-bogus-image-options": "Opción de archivo inútil",
+	"linterror-big-tables": "Tablas grandes que rompen la visualización en dispositivos móviles",
 	"linterror-deletable-table-tag": "Etiqueta de tabla que se debería borrar",
 	"linterror-html5-misnesting": "Anidación errónea (ahora rota)",
 	"linterror-misc-tidy-replacement-issues": "Errores varios de marcado",
@@ -3578,6 +3581,7 @@
 	"version-libraries-license": "Licencia",
 	"version-libraries-description": "Descripción",
 	"version-libraries-authors": "Autores",
+	"version-libraries-source": "Fuente",
 	"redirect": "Redirigir por archivo o por identificador de usuario, página, revisión o registro",
 	"redirect-summary": "Esta página especial redirige a un archivo (dado un nombre), a una página (dado un identificador de revisión o de página), a una página de usuario (dado un identificador numérico de usuario) o a una entrada del registro (dado un identificador de registro). Uso: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], [[{{#Special:Redirect}}/user/101]] o [[{{#Special:Redirect}}/logid/186]].",
 	"redirect-submit": "Ir",
@@ -4310,6 +4314,6 @@
 	"renameuser-move-log": "Página trasladada automáticamente al cambiar el nombre {{GENDER:$2|del usuario|de la usuaria}} de «[[User:$1|$1]]» a «[[User:$2|$2]]»",
 	"action-renameuser": "cambiar nombres de usuarios",
 	"right-renameuser": "Cambiar nombres de usuarios",
-	"renameuser-renamed-notice": "Se cambió el nombre de {{GENDER:$1|este usuario|esta usuaria}}.\nA continuación se muestra el registro de cambios de nombre de usuario como referencia.",
+	"renameuser-renamed-notice": "Este usuario ha sido renombrado.\nEl registro de cambio de nombre se proporciona a continuación como referencia.",
 	"log-unknown-action": "realizó una acción desconocida «$2» en [[$1]]"
 }
