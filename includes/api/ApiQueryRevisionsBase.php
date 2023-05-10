@@ -33,6 +33,8 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Title\Title;
+use MediaWiki\User\TempUser\TempUserCreator;
+use MediaWiki\User\UserFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -93,6 +95,12 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	/** @var CommentFormatter */
 	private $commentFormatter;
 
+	/** @var TempUserCreator */
+	private $tempUserCreator;
+
+	/** @var UserFactory */
+	private $userFactory;
+
 	/**
 	 * @since 1.37 Support injection of services
 	 * @stable to call
@@ -106,6 +114,8 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	 * @param ContentRenderer|null $contentRenderer
 	 * @param ContentTransformer|null $contentTransformer
 	 * @param CommentFormatter|null $commentFormatter
+	 * @param TempUserCreator|null $tempUserCreator
+	 * @param UserFactory|null $userFactory
 	 */
 	public function __construct(
 		ApiQuery $queryModule,
@@ -117,7 +127,9 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		SlotRoleRegistry $slotRoleRegistry = null,
 		ContentRenderer $contentRenderer = null,
 		ContentTransformer $contentTransformer = null,
-		CommentFormatter $commentFormatter = null
+		CommentFormatter $commentFormatter = null,
+		TempUserCreator $tempUserCreator = null,
+		UserFactory $userFactory = null
 	) {
 		parent::__construct( $queryModule, $moduleName, $paramPrefix );
 		// This class is part of the stable interface and
@@ -130,6 +142,8 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		$this->contentRenderer = $contentRenderer ?? $services->getContentRenderer();
 		$this->contentTransformer = $contentTransformer ?? $services->getContentTransformer();
 		$this->commentFormatter = $commentFormatter ?? $services->getCommentFormatter();
+		$this->tempUserCreator = $tempUserCreator ?? $services->getTempUserCreator();
+		$this->userFactory = $userFactory ?? $services->getUserFactory();
 	}
 
 	public function execute() {
@@ -698,7 +712,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 							$difftocontent = $this->contentTransformer->preSaveTransform(
 								$difftocontent,
 								$title,
-								$this->getUser(),
+								$this->getUserForPreview(),
 								$popts
 							);
 						}
@@ -727,6 +741,19 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		}
 
 		return $vals;
+	}
+
+	private function getUserForPreview() {
+		$user = $this->getUser();
+		if ( !$user->isRegistered()
+			&& $this->tempUserCreator->isAutoCreateAction( 'edit' )
+			&& $user->isAllowed( 'createaccount' )
+		) {
+			return $this->userFactory->newUnsavedTempUser(
+				$this->tempUserCreator->getStashedNameOrPlaceholder( $this->getRequest()->getSession() )
+			);
+		}
+		return $user;
 	}
 
 	/**

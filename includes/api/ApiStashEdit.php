@@ -23,6 +23,8 @@ use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\PageEditStash;
+use MediaWiki\User\TempUser\TempUserCreator;
+use MediaWiki\User\UserFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -55,6 +57,12 @@ class ApiStashEdit extends ApiBase {
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
 
+	/** @var TempUserCreator */
+	private $tempUserCreator;
+
+	/** @var UserFactory */
+	private $userFactory;
+
 	/**
 	 * @param ApiMain $main
 	 * @param string $action
@@ -63,6 +71,8 @@ class ApiStashEdit extends ApiBase {
 	 * @param RevisionLookup $revisionLookup
 	 * @param IBufferingStatsdDataFactory $statsdDataFactory
 	 * @param WikiPageFactory $wikiPageFactory
+	 * @param TempUserCreator $tempUserCreator
+	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
 		ApiMain $main,
@@ -71,7 +81,9 @@ class ApiStashEdit extends ApiBase {
 		PageEditStash $pageEditStash,
 		RevisionLookup $revisionLookup,
 		IBufferingStatsdDataFactory $statsdDataFactory,
-		WikiPageFactory $wikiPageFactory
+		WikiPageFactory $wikiPageFactory,
+		TempUserCreator $tempUserCreator,
+		UserFactory $userFactory
 	) {
 		parent::__construct( $main, $action );
 
@@ -80,6 +92,8 @@ class ApiStashEdit extends ApiBase {
 		$this->revisionLookup = $revisionLookup;
 		$this->statsdDataFactory = $statsdDataFactory;
 		$this->wikiPageFactory = $wikiPageFactory;
+		$this->tempUserCreator = $tempUserCreator;
+		$this->userFactory = $userFactory;
 	}
 
 	public function execute() {
@@ -194,6 +208,7 @@ class ApiStashEdit extends ApiBase {
 		if ( $user->pingLimiter( 'stashedit' ) ) {
 			$status = 'ratelimited';
 		} else {
+			$user = $this->getUserForPreview();
 			$updater = $page->newPageUpdater( $user );
 			$status = $this->pageEditStash->parseAndCache( $updater, $content, $user, $params['summary'] );
 			$this->pageEditStash->stashInputText( $text, $textHash );
@@ -208,6 +223,19 @@ class ApiStashEdit extends ApiBase {
 		}
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $ret );
+	}
+
+	private function getUserForPreview() {
+		$user = $this->getUser();
+		if ( !$user->isRegistered()
+			&& $this->tempUserCreator->isAutoCreateAction( 'edit' )
+			&& $user->isAllowed( 'createaccount' )
+		) {
+			return $this->userFactory->newUnsavedTempUser(
+				$this->tempUserCreator->getStashedNameOrPlaceholder( $this->getRequest()->getSession() )
+			);
+		}
+		return $user;
 	}
 
 	public function getAllowedParams() {

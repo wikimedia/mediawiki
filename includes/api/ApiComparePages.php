@@ -28,6 +28,8 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Title\Title;
+use MediaWiki\User\TempUser\TempUserCreator;
+use MediaWiki\User\UserFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\RequestTimeout\TimeoutException;
 
@@ -55,6 +57,12 @@ class ApiComparePages extends ApiBase {
 	/** @var CommentFormatter */
 	private $commentFormatter;
 
+	/** @var TempUserCreator */
+	private $tempUserCreator;
+
+	/** @var UserFactory */
+	private $userFactory;
+
 	private bool $inlineSupported;
 
 	/**
@@ -65,6 +73,8 @@ class ApiComparePages extends ApiBase {
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param ContentTransformer $contentTransformer
 	 * @param CommentFormatter $commentFormatter
+	 * @param TempUserCreator $tempUserCreator
+	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
 		ApiMain $mainModule,
@@ -73,7 +83,9 @@ class ApiComparePages extends ApiBase {
 		SlotRoleRegistry $slotRoleRegistry,
 		IContentHandlerFactory $contentHandlerFactory,
 		ContentTransformer $contentTransformer,
-		CommentFormatter $commentFormatter
+		CommentFormatter $commentFormatter,
+		TempUserCreator $tempUserCreator,
+		UserFactory $userFactory
 	) {
 		parent::__construct( $mainModule, $moduleName );
 		$this->revisionStore = $revisionStore;
@@ -81,6 +93,8 @@ class ApiComparePages extends ApiBase {
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->contentTransformer = $contentTransformer;
 		$this->commentFormatter = $commentFormatter;
+		$this->tempUserCreator = $tempUserCreator;
+		$this->userFactory = $userFactory;
 		$this->inlineSupported = function_exists( 'wikidiff2_inline_diff' )
 			&& DifferenceEngine::getEngine() === 'wikidiff2';
 	}
@@ -562,7 +576,7 @@ class ApiComparePages extends ApiBase {
 					$content,
 					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 					$title,
-					$this->getUser(),
+					$this->getUserForPreview(),
 					$popts
 				);
 			}
@@ -687,6 +701,19 @@ class ApiComparePages extends ApiBase {
 				$vals["{$prefix}archive"] = true;
 			}
 		}
+	}
+
+	private function getUserForPreview() {
+		$user = $this->getUser();
+		if ( !$user->isRegistered()
+			&& $this->tempUserCreator->isAutoCreateAction( 'edit' )
+			&& $user->isAllowed( 'createaccount' )
+		) {
+			return $this->userFactory->newUnsavedTempUser(
+				$this->tempUserCreator->getStashedNameOrPlaceholder( $this->getRequest()->getSession() )
+			);
+		}
+		return $user;
 	}
 
 	public function getAllowedParams() {

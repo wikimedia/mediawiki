@@ -36,6 +36,8 @@ use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
+use MediaWiki\User\TempUser\TempUserCreator;
+use MediaWiki\User\UserFactory;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
@@ -90,6 +92,12 @@ class ApiParse extends ApiBase {
 	/** @var ContentRenderer */
 	private $contentRenderer;
 
+	/** @var TempUserCreator */
+	private $tempUserCreator;
+
+	/** @var UserFactory */
+	private $userFactory;
+
 	/**
 	 * @param ApiMain $main
 	 * @param string $action
@@ -104,6 +112,8 @@ class ApiParse extends ApiBase {
 	 * @param ContentRenderer $contentRenderer
 	 * @param ContentTransformer $contentTransformer
 	 * @param CommentFormatter $commentFormatter
+	 * @param TempUserCreator $tempUserCreator
+	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
 		ApiMain $main,
@@ -118,7 +128,9 @@ class ApiParse extends ApiBase {
 		WikiPageFactory $wikiPageFactory,
 		ContentRenderer $contentRenderer,
 		ContentTransformer $contentTransformer,
-		CommentFormatter $commentFormatter
+		CommentFormatter $commentFormatter,
+		TempUserCreator $tempUserCreator,
+		UserFactory $userFactory
 	) {
 		parent::__construct( $main, $action );
 		$this->revisionLookup = $revisionLookup;
@@ -132,6 +144,8 @@ class ApiParse extends ApiBase {
 		$this->contentRenderer = $contentRenderer;
 		$this->contentTransformer = $contentTransformer;
 		$this->commentFormatter = $commentFormatter;
+		$this->tempUserCreator = $tempUserCreator;
+		$this->userFactory = $userFactory;
 	}
 
 	private function getPoolKey(): string {
@@ -161,6 +175,19 @@ class ApiParse extends ApiBase {
 			]
 		);
 		return $worker->execute();
+	}
+
+	private function getUserForPreview() {
+		$user = $this->getUser();
+		if ( !$user->isRegistered()
+			&& $this->tempUserCreator->isAutoCreateAction( 'edit' )
+			&& $user->isAllowed( 'createaccount' )
+		) {
+			return $this->userFactory->newUnsavedTempUser(
+				$this->tempUserCreator->getStashedNameOrPlaceholder( $this->getRequest()->getSession() )
+			);
+		}
+		return $user;
 	}
 
 	private function getPageParserOutput(
@@ -397,7 +424,7 @@ class ApiParse extends ApiBase {
 				$this->pstContent = $this->contentTransformer->preSaveTransform(
 					$this->content,
 					$titleObj,
-					$this->getUser(),
+					$this->getUserForPreview(),
 					$popts
 				);
 			}
