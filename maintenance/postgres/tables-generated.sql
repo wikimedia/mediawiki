@@ -903,6 +903,7 @@ CREATE TABLE "user" (
   user_registration TIMESTAMPTZ DEFAULT NULL,
   user_editcount INT DEFAULT NULL,
   user_password_expires TIMESTAMPTZ DEFAULT NULL,
+  user_is_temp SMALLINT DEFAULT 0 NOT NULL,
   PRIMARY KEY(user_id)
 );
 

@@ -839,6 +839,7 @@ CREATE TABLE /*_*/user (
   user_registration BINARY(14) DEFAULT NULL,
   user_editcount INT UNSIGNED DEFAULT NULL,
   user_password_expires VARBINARY(14) DEFAULT NULL,
+  user_is_temp TINYINT(1) DEFAULT 0 NOT NULL,
   UNIQUE INDEX user_name (user_name),
   INDEX user_email_token (user_email_token),
   INDEX user_email (
