@@ -1153,4 +1153,52 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 		$output = $this->platform->buildIntegerCast( 'fieldName' );
 		$this->assertSame( 'CAST( fieldName AS INTEGER )', $output );
 	}
+
+	public static function provideMakeWhereFrom2d() {
+		yield [
+			[ 2 => [ 'Foo' => true, 'Bar' => true ], 4 => [ 'Quux' => true ] ],
+			"(ns = 2 AND title IN ('Foo','Bar') ) OR (ns = 4 AND title = 'Quux')",
+		];
+		yield [
+			[ 2 => [ 'Foo' => true, 'Bar' => true ], 4 => [] ],
+			"(ns = 2 AND title IN ('Foo','Bar') )",
+		];
+		yield [
+			[ 2 => [ 'Foo' => true ], 4 => [] ],
+			"(ns = 2 AND title = 'Foo')",
+		];
+		yield [
+			[ 2 => [ 'Foo' => true ] ],
+			"(ns = 2 AND title = 'Foo')",
+		];
+		yield [
+			[ 'x' => [ 42 ] ],
+			"(ns = 'x' AND title = '0')",
+		];
+	}
+
+	public static function provideMakeWhereFrom2dInvalid() {
+		yield [
+			[],
+			[ 2 => [], 4 => [] ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideMakeWhereFrom2d
+	 */
+	public function testMakeWhereFrom2d( $data, $expected ) {
+		$this->assertSame(
+			$expected,
+			$this->platform->makeWhereFrom2d( $data, 'ns', 'title' )
+		);
+	}
+
+	/**
+	 * @dataProvider provideMakeWhereFrom2dInvalid
+	 */
+	public function testMakeWhereFrom2dInvalid( $data ) {
+		$this->expectException( InvalidArgumentException::class );
+		$this->platform->makeWhereFrom2d( $data, 'ns', 'title' );
+	}
 }

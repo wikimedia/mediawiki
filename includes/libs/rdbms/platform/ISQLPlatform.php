@@ -188,20 +188,34 @@ interface ISQLPlatform {
 	public function makeList( array $a, $mode = self::LIST_COMMA );
 
 	/**
-	 * Build a partial where clause from a 2-d array such as used for LinkBatch.
+	 * Build a "OR" condition with pairs from a two-dimenstional array.
 	 *
-	 * The keys on each level may be either integers or strings, however it's
-	 * assumed that $baseKey is probably an integer-typed column (i.e. integer
-	 * keys are unquoted in the SQL) and $subKey is string-typed (i.e. integer
-	 * keys are quoted as strings in the SQL).
+	 * The associative array should have integer keys relating to the $baseKey field.
+	 * The nested array should have string keys for the $subKey field. The inner
+	 * values are ignored, and are typically boolean true.
 	 *
-	 * @todo Does this actually belong in the library? It seems overly MW-specific.
+	 * Example usage:
+	 * @code
+	 *     $data = [
+	 *         2 => [
+	 *             'Foo' => true,
+	 *             'Bar' => true,
+	 *         ],
+	 *         3 => [
+	 *             'Quux' => true,
+	 *         ],
+	 *     ];
+	 *     // (page_namespace = 2 AND page_title IN ('Foo','Bar'))
+	 *     // OR (page_namespace = 3 AND page_title = 'Quux')
 	 *
-	 * @param array $data Organized as 2-d
-	 *    [ baseKeyVal => [ subKeyVal => [ignored], ... ], ... ]
+	 * @todo This is effectively specific to MediaWiki's LinkBatch.
+	 * Consider deprecating or generalising slightly.
+	 *
+	 * @param array $data Nested array, must be non-empty
+	 * @phan-param non-empty-array $data
 	 * @param string $baseKey Field name to match the base-level keys to (eg 'pl_namespace')
 	 * @param string $subKey Field name to match the sub-level keys to (eg 'pl_title')
-	 * @return string|false SQL fragment, or false if no items in array
+	 * @return string SQL fragment
 	 */
 	public function makeWhereFrom2d( $data, $baseKey, $subKey );
 
