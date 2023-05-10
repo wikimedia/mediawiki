@@ -144,10 +144,10 @@ codex:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
   authors: Design Systems team, Wikimedia Foundation
-  version: 0.9.1
+  version: 0.10.0
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-0.9.1.tgz
-  integrity: sha512-T+D9bnhHPZDjsUD3Td7uKpVuS9IUpWONwvqZjG0WV1Spyslv6FgHM8XEmwZDUWlu3tQl6Z8tskaCc2HY1Rz5Ew==
+  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-0.10.0.tgz
+  integrity: sha512-d51H6yIJH35Vwla5QXj7J8dXOl3Zsl1243CwzQ7Edsk3nvO6KJy6fhsDsOwrbOfgtc0JiCfwkRjni8FB80YWXQ==
   dest:
     package/dist/codex.mjs:
     package/dist/codex.umd.js:
@@ -163,10 +163,10 @@ codex-design-tokens:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
   authors: Design Systems team, Wikimedia Foundation
-  version: 0.9.1
+  version: 0.10.0
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-0.9.1.tgz
-  integrity: sha384-zUasRBrIp94gSRcnPMcZrZxJJJZZSJg47dRWTDwShG/X4xLdA7QNyL4T1DYbOjAG
+  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-0.10.0.tgz
+  integrity: sha384-ofHjKtnHxjmiPmyJbrciTzHsP2SKBsU4UcC0iMjvTjcZiOmxEeK99Tk3Ky6ObNIX
   dest:
     package/dist/theme-wikimedia-ui.less:
     package/dist/theme-wikimedia-ui-legacy.less:
@@ -177,10 +177,10 @@ codex-icons:
   license: MIT
   homepage: https://doc.wikimedia.org/codex/
   authors: Design Systems team, Wikimedia Foundation
-  version: 0.9.1
+  version: 0.10.0
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-0.9.1.tgz
-  integrity: sha384-mEpA1cn7/LQvd7+zWZJ0khPGLkExcrH2RPppT7jFlYqrH14FP9bip+QyAKfheM8g
+  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-0.10.0.tgz
+  integrity: sha384-WU5rnJyGx+tTdEca+QWFrO07dxTVT0dcTxuijZWm4EZ98Eh0UkFI80218iG8/uB7
   dest:
     package/dist/codex-icons.json:
     package/dist/codex-icon-paths.less:
@@ -191,10 +191,10 @@ codex-search:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
   authors: Design Systems team, Wikimedia Foundation
-  version: 0.9.1
+  version: 0.10.0
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-search/-/codex-search-0.9.1.tgz
-  integrity: sha384-OpDK5ojEhbJjpJGv6U1x2Z2YxLetdLwzv8Oum3hmaEomEUottnj5YNzOp5EERXCi
+  src: https://registry.npmjs.org/@wikimedia/codex-search/-/codex-search-0.10.0.tgz
+  integrity: sha384-euakwJj9icEaD9ESJVAMxk22TrMbPwrb/1vQivydA6Wj3sS8bd40BUhXPmNTJaLu
   dest:
     package/dist/codex-search.mjs:
     package/dist/codex-search.umd.js:

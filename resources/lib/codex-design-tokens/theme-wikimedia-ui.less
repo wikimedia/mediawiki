@@ -1,6 +1,6 @@
 
 // Do not edit directly
-// Generated on Tue, 25 Apr 2023 19:52:18 GMT
+// Generated on Wed, 10 May 2023 20:26:33 GMT
 
 @font-size-base: 16px;
 @font-size-x-small: 0.75em; // `x` stands for extra. In this case extra small.
@@ -63,7 +63,7 @@
 @color-link-red--visited: #a55858;
 @opacity-base: 1;
 @opacity-medium: 0.65;
-@opacity-low: 0.30;
+@opacity-low: 0.3;
 @opacity-transparent: 0;
 @opacity-icon-base: 0.87;
 @opacity-icon-base--hover: 0.74;
@@ -159,6 +159,8 @@
 @spacing-400: 64px;
 @spacing-half: 50%; // From here on, spacing tokens which are used for positioning values.
 @spacing-full: 100%;
+@spacing-horizontal-button: 12px - 1px; // Padding should equal 12px of spacing minus the width of the border
+@spacing-horizontal-button-icon-only: 6px - 1px; // Padding should equal 6px of spacing minus the width of the border
 @spacing-horizontal-input-text-two-end-icons: calc( 8px * 2 + 1em + 1px ); // Rely on `calc()` to make token output usable in all formats. When there are two end icons, (i.e. a clear icon and an end icon), we need to double the horizontal padding and account for the size of the extra icon. This token can be used to calculate the horizontal position of the clear icon and the padding-end of the text input.
 @spacing-start-typeahead-search-figure: 12px; // The amount of space between the TypeaheadSearch figure's parent component and the TypeaheadSearch figure (input icon container, search result thumbnail, and footer icon container). We want this space to be uniform so that the figures vertically line up nicely. We use the same horizontal padding as the MenuItem.
 @spacing-start-typeahead-search-icon: calc( 12px + ( 40px - 20px ) / 2 ); // The padding required for the icon to center align with the menu item thumbnail. We calculate the difference in size and add it to the expected spacing.
@@ -273,6 +275,7 @@
 @cursor-zoom-out: zoom-out;
 @unit-absolute: px;
 @unit-relative: em;
+@min-height-text-area: 64px;
 
 // DEPRECATED TOKENS
 // Warning: the following token name is deprecated (No replacement for this token. Only used in non-Codex products and design decision is to need to rely on background for this state.)
