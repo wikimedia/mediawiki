@@ -223,9 +223,9 @@
 								},
 								"scripts": {
 									"type": [ "string", "array" ],
-									"description": "Scripts to always include (array of file paths)",
+									"description": "Scripts to always include. Array of file paths or package file objects.",
 									"items": {
-										"type": "string"
+										"type": [ "string", "object" ]
 									}
 								},
 								"languageScripts": {
@@ -238,7 +238,7 @@
 												"array"
 											],
 											"items": {
-												"type": "string"
+												"type": [ "string", "object" ]
 											}
 										}
 									}
@@ -253,7 +253,7 @@
 												"array"
 											],
 											"items": {
-												"type": "string"
+												"type": [ "string", "object" ]
 											}
 										}
 									}
@@ -262,7 +262,7 @@
 									"type": [ "string", "array" ],
 									"description": "Scripts to include in debug contexts",
 									"items": {
-										"type": "string"
+										"type": [ "string", "object" ]
 									}
 								},
 								"dependencies": {

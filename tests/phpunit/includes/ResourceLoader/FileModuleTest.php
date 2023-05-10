@@ -612,7 +612,7 @@ class FileModuleTest extends ResourceLoaderTestCase {
 		$vueComponentNonDebug = trim( file_get_contents( "$basePath/vue-component-output-nondebug.js.txt" ) );
 		$config = \MediaWiki\MediaWikiServices::getInstance()->getMainConfig();
 		return [
-			[
+			'plain package' => [
 				$base + [
 					'packageFiles' => [
 						'script-comment.js',
@@ -624,16 +624,18 @@ class FileModuleTest extends ResourceLoaderTestCase {
 						'script-comment.js' => [
 							'type' => 'script',
 							'content' => $commentScript,
+							'filePath' => 'script-comment.js'
 						],
 						'script-nosemi.js' => [
 							'type' => 'script',
-							'content' => $nosemiScript
+							'content' => $nosemiScript,
+							'filePath' => 'script-nosemi.js'
 						]
 					],
 					'main' => 'script-comment.js'
 				]
 			],
-			[
+			'deprecated package' => [
 				$base + [
 					'packageFiles' => [
 						'script-comment.js',
@@ -647,6 +649,7 @@ class FileModuleTest extends ResourceLoaderTestCase {
 						'script-comment.js' => [
 							'type' => 'script',
 							'content' => $commentScript,
+							'filePath' => 'script-comment.js',
 						],
 						'script-nosemi.js' => [
 							'type' => 'script',
@@ -654,13 +657,14 @@ class FileModuleTest extends ResourceLoaderTestCase {
 								'"This page is using the deprecated ResourceLoader module \"test-deprecated\".\\n' .
 								"Deprecation test" .
 								'");' .
-								$nosemiScript
+								$nosemiScript,
+							'filePath' => 'script-nosemi.js',
 						]
 					],
 					'main' => 'script-nosemi.js'
 				]
 			],
-			[
+			'explicit main file' => [
 				$base + [
 					'packageFiles' => [
 						[ 'name' => 'init.js', 'file' => 'script-comment.js', 'main' => true ],
@@ -672,10 +676,12 @@ class FileModuleTest extends ResourceLoaderTestCase {
 						'init.js' => [
 							'type' => 'script',
 							'content' => $commentScript,
+							'filePath' => 'script-comment.js',
 						],
 						'nosemi.js' => [
 							'type' => 'script',
-							'content' => $nosemiScript
+							'content' => $nosemiScript,
+							'filePath' => 'script-nosemi.js',
 						]
 					],
 					'main' => 'init.js'
@@ -709,6 +715,7 @@ class FileModuleTest extends ResourceLoaderTestCase {
 						'sample.json' => [
 							'type' => 'data',
 							'content' => (object)[ 'foo' => 'bar', 'answer' => 42 ],
+							'filePath' => 'sample.json',
 						],
 						'bar.js' => [
 							'type' => 'script',
@@ -779,6 +786,7 @@ class FileModuleTest extends ResourceLoaderTestCase {
 						'dynamic.js' => [
 							'type' => 'script',
 							'content' => $commentScript,
+							'filePath' => 'script-comment.js',
 						]
 					],
 					'main' => 'dynamic.js'
@@ -801,6 +809,7 @@ class FileModuleTest extends ResourceLoaderTestCase {
 						'dynamic.js' => [
 							'type' => 'script',
 							'content' => $nosemiScript,
+							'filePath' => 'script-nosemi.js'
 						]
 					],
 					'main' => 'dynamic.js'
@@ -822,6 +831,7 @@ class FileModuleTest extends ResourceLoaderTestCase {
 						'dynamic.js' => [
 							'type' => 'script',
 							'content' => $nosemiBScript,
+							'filePath' => 'script-nosemi.js',
 						]
 					],
 					'main' => 'dynamic.js'
@@ -837,7 +847,8 @@ class FileModuleTest extends ResourceLoaderTestCase {
 					'files' => [
 						'vue-component.vue' => [
 							'type' => 'script',
-							'content' => $vueComponentDebug
+							'content' => $vueComponentDebug,
+							'filePath' => 'vue-component.vue',
 						]
 					],
 					'main' => 'vue-component.vue',
@@ -857,7 +868,8 @@ class FileModuleTest extends ResourceLoaderTestCase {
 					'files' => [
 						'vue-component.vue' => [
 							'type' => 'script',
-							'content' => $vueComponentNonDebug
+							'content' => $vueComponentNonDebug,
+							'filePath' => 'vue-component.vue',
 						]
 					],
 					'main' => 'vue-component.vue'
@@ -866,7 +878,7 @@ class FileModuleTest extends ResourceLoaderTestCase {
 					'debug' => 'false'
 				]
 			],
-			[
+			'missing name' => [
 				$base + [
 					'packageFiles' => [
 						[ 'file' => 'script-comment.js' ]
@@ -882,8 +894,7 @@ class FileModuleTest extends ResourceLoaderTestCase {
 				],
 				LogicException::class
 			],
-			[
-				// 'config' not valid for 'script' type
+			'config not valid for script type' => [
 				$base + [
 					'packageFiles' => [
 						'foo.json' => [ 'type' => 'script', 'config' => [ 'Sitename' ] ]
@@ -891,8 +902,7 @@ class FileModuleTest extends ResourceLoaderTestCase {
 				],
 				LogicException::class
 			],
-			[
-				// 'config' not valid for '*.js' file
+			'config not valid for *.js file' => [
 				$base + [
 					'packageFiles' => [
 						[ 'name' => 'foo.js', 'config' => 'Sitename' ]
@@ -900,8 +910,7 @@ class FileModuleTest extends ResourceLoaderTestCase {
 				],
 				LogicException::class
 			],
-			[
-				// missing type/name/file.
+			'missing type/name/file' => [
 				$base + [
 					'packageFiles' => [
 						'foo.js' => [ 'garbage' => 'data' ]
@@ -909,7 +918,7 @@ class FileModuleTest extends ResourceLoaderTestCase {
 				],
 				LogicException::class
 			],
-			[
+			'nonexistent file' => [
 				$base + [
 					'packageFiles' => [
 						'filethatdoesnotexist142857.js'
@@ -917,8 +926,7 @@ class FileModuleTest extends ResourceLoaderTestCase {
 				],
 				RuntimeException::class
 			],
-			[
-				// JSON can't be a main file
+			'JSON can\'t be a main file' => [
 				$base + [
 					'packageFiles' => [
 						'script-nosemi.js',
@@ -941,13 +949,24 @@ class FileModuleTest extends ResourceLoaderTestCase {
 			$module->setName( $moduleDefinition['name'] );
 		}
 		if ( is_string( $expected ) ) {
-			// Class name of expected exception
+			// $expected is the class name of the expected exception
 			$this->expectException( $expected );
 			$module->getScript( $context );
-		} else {
-			// Array of expected return value
-			$this->assertEquals( $expected, $module->getScript( $context ) );
+			$this->fail( "$expected exception expected" );
 		}
+
+		// Check name property and convert filePath to plain data
+		$result = $module->getScript( $context );
+		foreach ( $result['files'] as $name => &$file ) {
+			$this->assertSame( $name, $file['name'] );
+			unset( $file['name'] );
+			if ( isset( $file['filePath'] ) ) {
+				$this->assertInstanceOf( FilePath::class, $file['filePath'] );
+				$file['filePath'] = $file['filePath']->getPath();
+			}
+		}
+		// Check the rest of the result
+		$this->assertEquals( $expected, $result );
 	}
 
 	public function testRequiresES6() {
