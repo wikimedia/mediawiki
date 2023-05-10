@@ -2782,6 +2782,14 @@ return [
 			],
 		],
 	],
+	'mediawiki.widgets.ToggleSwitchWidget' => [
+		'scripts' => [
+			'resources/src/mediawiki.widgets/mw.widgets.ToggleSwitchWidget.js',
+		],
+		'dependencies' => [
+			'oojs-ui-widgets',
+		],
+	],
 	'mediawiki.watchstar.widgets' => [
 		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.watchstar.widgets",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.watchstar.widgets",

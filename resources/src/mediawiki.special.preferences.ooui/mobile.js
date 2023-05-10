@@ -37,28 +37,7 @@
 		}
 		location.hash = '#mw-prefsection-' + section;
 	};
-	/*
-	 * Add a ToggleSwitchWidget to control each checkboxWidget
-	 * Hide each checkboxWidget
-	 */
-	function insertToggles( checkboxes ) {
-		Array.prototype.forEach.call( checkboxes, function ( checkboxElement ) {
-			var checkboxWidget = OO.ui.infuse( checkboxElement );
-			var toggleSwitchWidget = new OO.ui.ToggleSwitchWidget( {
-				value: checkboxWidget.selected,
-				disabled: checkboxWidget.disabled
-			} );
-			checkboxWidget.on( 'disable', function ( state ) {
-				toggleSwitchWidget.setDisabled( state );
-			} );
-			toggleSwitchWidget.on( 'change', function ( value ) {
-				checkboxWidget.setSelected( value );
-			} );
-			checkboxElement = checkboxWidget.$element[ 0 ];
-			checkboxElement.insertAdjacentElement( 'afterend', toggleSwitchWidget.$element[ 0 ] );
-			checkboxElement.classList.add( 'hidden' );
-		} );
-	}
+
 	/*
 	 * Configure and register a dialog for a pref section
 	 */
@@ -77,10 +56,6 @@
 			{ action: 'cancel', label: mw.msg( 'prefs-back-title' ), flags: [ 'safe', 'close' ] }
 		];
 		PrefDialog.prototype.initialize = function () {
-			// T334260 Mobile format breaks global preferences;
-			if ( mw.config.get( 'wgCanonicalSpecialPageName' ) === 'Preferences' ) {
-				insertToggles( sectionBody.querySelectorAll( 'span.oo-ui-checkboxInputWidget[data-ooui]' ) );
-			}
 			this.name = sectionId;
 			PrefDialog.super.prototype.initialize.call( this );
 			this.$body.append( sectionBody );

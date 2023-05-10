@@ -36,6 +36,9 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 	/** @var bool */
 	private $optionsEditable = true;
 
+	/** @var bool */
+	private $useMobileLayout;
+
 	/**
 	 * @param User $user
 	 */
@@ -131,19 +134,42 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 		return $layout;
 	}
 
+	private function isMobileLayout() {
+		if ( $this->useMobileLayout === null ) {
+			$skin = $this->getSkin();
+			$this->useMobileLayout = false;
+			$this->getHookRunner()->onPreferencesGetLayout( $this->useMobileLayout,
+				$skin->getSkinName(), [ 'isResponsive' => $skin->isResponsive() ] );
+		}
+		return $this->useMobileLayout;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function addFields( $descriptor ) {
+		// Replace checkbox fields with toggle switchs on Special:Preferences
+		if ( $this->isMobileLayout() && $this->getTitle()->isSpecial( 'Preferences' ) ) {
+			foreach ( $descriptor as $_ => &$info ) {
+				if ( isset( $info['type'] ) && in_array( $info['type'], [ 'check', 'toggle' ] ) ) {
+					unset( $info['type'] );
+					$info['class'] = HTMLToggleSwitchField::class;
+				} elseif ( isset( $info['class'] ) && $info['class'] === HTMLCheckField::class ) {
+					$info['class'] = HTMLToggleSwitchField::class;
+				}
+			}
+		}
+		return parent::addFields( $descriptor );
+	}
+
 	/**
 	 * Get the whole body of the form.
 	 * @return string
 	 */
 	public function getBody() {
-		$out = $this->getOutput();
-		$skin = $out->getSkin();
-		$this->getHookRunner()->onPreferencesGetLayout( $useMobileLayout,
-			$skin->getSkinName(), [ 'isResponsive' => $skin->isResponsive() ] );
-
-		if ( $useMobileLayout ) {
+		if ( $this->isMobileLayout() ) {
 			// Import the icons used in the mobile view
-			$out->addModuleStyles(
+			$this->getOutput()->addModuleStyles(
 				[
 					'oojs-ui.styles.icons-user',
 					'oojs-ui.styles.icons-editing-core',
