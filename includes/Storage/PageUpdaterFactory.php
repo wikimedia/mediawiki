@@ -277,7 +277,7 @@ class PageUpdaterFactory {
 			$user,
 			$page, // NOTE: eventually, PageUpdater should not know about WikiPage
 			$derivedPageDataUpdater,
-			$this->loadbalancerFactory->getMainLB(),
+			$this->loadbalancerFactory,
 			$this->revisionStore,
 			$this->slotRoleRegistry,
 			$this->contentHandlerFactory,

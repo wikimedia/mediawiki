@@ -53,10 +53,9 @@ use RuntimeException;
 use TitleFormatter;
 use User;
 use Wikimedia\Assert\Assert;
-use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\DBUnexpectedError;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
 use WikiPage;
 
 /**
@@ -103,9 +102,9 @@ class PageUpdater {
 	private $derivedDataUpdater;
 
 	/**
-	 * @var ILoadBalancer
+	 * @var IConnectionProvider
 	 */
-	private $loadBalancer;
+	private $dbProvider;
 
 	/**
 	 * @var RevisionStore
@@ -213,7 +212,7 @@ class PageUpdater {
 	 * @param UserIdentity $author
 	 * @param WikiPage $wikiPage
 	 * @param DerivedPageDataUpdater $derivedDataUpdater
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param RevisionStore $revisionStore
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param IContentHandlerFactory $contentHandlerFactory
@@ -230,7 +229,7 @@ class PageUpdater {
 		UserIdentity $author,
 		WikiPage $wikiPage,
 		DerivedPageDataUpdater $derivedDataUpdater,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		RevisionStore $revisionStore,
 		SlotRoleRegistry $slotRoleRegistry,
 		IContentHandlerFactory $contentHandlerFactory,
@@ -249,7 +248,7 @@ class PageUpdater {
 		$this->wikiPage = $wikiPage;
 		$this->derivedDataUpdater = $derivedDataUpdater;
 
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->revisionStore = $revisionStore;
 		$this->slotRoleRegistry = $slotRoleRegistry;
 		$this->contentHandlerFactory = $contentHandlerFactory;
@@ -435,15 +434,6 @@ class PageUpdater {
 
 	private function getWikiId() {
 		return $this->revisionStore->getWikiId();
-	}
-
-	/**
-	 * @param int $mode DB_PRIMARY or DB_REPLICA
-	 *
-	 * @return DBConnRef
-	 */
-	private function getDBConnectionRef( $mode ) {
-		return $this->loadBalancer->getConnectionRef( $mode, [], $this->getWikiId() );
 	}
 
 	/**
@@ -1267,7 +1257,7 @@ class PageUpdater {
 			return PageUpdateStatus::newFatal( 'edit-gone-missing' );
 		}
 
-		$dbw = $this->getDBConnectionRef( DB_PRIMARY );
+		$dbw = $this->dbProvider->getPrimaryDatabase( $this->getWikiId() );
 		$dbw->startAtomic( __METHOD__ );
 
 		$slots = $this->revisionStore->updateSlotsOn( $revision, $this->slotsUpdate, $dbw );
@@ -1363,7 +1353,7 @@ class PageUpdater {
 		}
 		$this->buildEditResult( $newRevisionRecord, false );
 
-		$dbw = $this->getDBConnectionRef( DB_PRIMARY );
+		$dbw = $this->dbProvider->getPrimaryDatabase( $this->getWikiId() );
 
 		if ( $changed || $this->forceEmptyRevision ) {
 			$dbw->startAtomic( __METHOD__ );
@@ -1504,7 +1494,7 @@ class PageUpdater {
 		$this->buildEditResult( $newRevisionRecord, true );
 		$now = $newRevisionRecord->getTimestamp();
 
-		$dbw = $this->getDBConnectionRef( DB_PRIMARY );
+		$dbw = $this->dbProvider->getPrimaryDatabase( $this->getWikiId() );
 		$dbw->startAtomic( __METHOD__ );
 
 		// Add the page record unless one already exists for the title
