@@ -135,7 +135,6 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testExtractSkins() {
-		$this->expectDeprecation();
 		$processor = new ExtensionProcessor();
 		$processor->extractInfo( $this->extensionPath, self::$default + [
 			'ValidSkinNames' => [
@@ -152,14 +151,6 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 						[]
 					]
 				],
-				'test-vector-core-relative' => [
-					'class' => 'SkinTestVector',
-					'args' => [
-						[
-							'templateDirectory' => 'skins/Vector/templates',
-						]
-					]
-				],
 				'test-vector-skin-relative' => [
 					'class' => 'SkinTestVector',
 					'args' => [
@@ -174,18 +165,12 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 		$validSkins = $extracted['globals']['wgValidSkinNames'];
 
 		$this->assertArrayHasKey( 'test-vector', $validSkins );
-		$this->assertArrayHasKey( 'test-vector-core-relative', $validSkins );
 		$this->assertArrayHasKey( 'test-vector-empty-args', $validSkins );
 		$this->assertArrayHasKey( 'test-vector-skin-relative', $validSkins );
 		$this->assertSame(
 			$this->dirname . '/templates',
 			$validSkins['test-vector-empty-options']['args'][0]['templateDirectory'],
 			'A sensible default is provided.'
-		);
-		$this->assertSame(
-			'skins/Vector/templates',
-			$validSkins['test-vector-core-relative']['args'][0]['templateDirectory'],
-			'unmodified'
 		);
 		$this->assertSame(
 			$this->dirname . '/templates',

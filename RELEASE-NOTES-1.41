@@ -149,6 +149,9 @@ because of Phabricator reports.
 * Database::queryMulti() has been removed without deprecation as it's not used
   anywhere. Likewise, protected Database::doMultiStatementQuery is dropped and
   executeQuery signature has changed.
+* Support was dropped for skins with paths relative to core which has been
+  sending deprecation notices since 1.37. The skin `templateDirectory` key
+  should now always be relative to the skin.
 * …
 
 === Deprecations in 1.41 ===

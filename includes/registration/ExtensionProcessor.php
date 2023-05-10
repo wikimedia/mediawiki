@@ -705,27 +705,8 @@ class ExtensionProcessor implements Processor {
 	protected function extractSkins( $dir, array $info ) {
 		if ( isset( $info['ValidSkinNames'] ) ) {
 			foreach ( $info['ValidSkinNames'] as $skinKey => $data ) {
-				if ( isset( $data['args'][0]['templateDirectory'] ) ) {
-					$templateDirectory = $data['args'][0]['templateDirectory'];
-					$correctedPath = $dir . '/' . $templateDirectory;
-					// Historically the template directory was relative to core
-					// but it really should've been relative to the skin directory.
-					// If the path exists relative to the skin directory, assume that
-					// is what was intended. Otherwise fall back on the previous behavior
-					// of having it relative to core.
-					if ( is_dir( $correctedPath ) ) {
-						$data['args'][0]['templateDirectory'] = $correctedPath;
-					} else {
-						$data['args'][0]['templateDirectory'] = $templateDirectory;
-						wfDeprecatedMsg(
-							'Template directory should be relative to skin or omitted for skin ' . $skinKey,
-							'1.37'
-						);
-					}
-				} elseif ( isset( $data['args'][0] ) ) {
-					// If not set, we set a sensible default.
-					$data['args'][0]['templateDirectory'] = $dir . '/templates';
-				}
+				$templateDirectory = $data['args'][0]['templateDirectory'] ?? 'templates';
+				$data['args'][0]['templateDirectory'] = $dir . '/' . $templateDirectory;
 				$this->globals['wgValidSkinNames'][$skinKey] = $data;
 			}
 		}
