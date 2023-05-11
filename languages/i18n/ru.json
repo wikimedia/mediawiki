@@ -3598,6 +3598,7 @@
 	"version-libraries-license": "Лицензия",
 	"version-libraries-description": "Описание",
 	"version-libraries-authors": "Авторы",
+	"version-libraries-source": "Источник",
 	"redirect": "Перенаправление с идентификатора файла, участника, страницы, версии или журнала",
 	"redirect-summary": "Эта служебная страница перенаправляет на файл (с имени файла), страницу (с идентификатора версии или страницы), страницу участника (с числового идентификатора участника) или запись журнала (с идентификатора журнала). Использование: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], [[{{#Special:Redirect}}/user/101]] или [[{{#Special:Redirect}}/logid/186]].",
 	"redirect-submit": "Перейти",
