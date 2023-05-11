@@ -880,11 +880,11 @@ class ResourceLoader implements LoggerAwareInterface {
 	): void {
 		HeaderCallback::warnIfHeadersSent();
 
-		if ( $errors
-			|| (
-				$context->getVersion() !== null
-					&& $context->getVersion() !== $this->makeVersionQuery( $context, $context->getModules() )
-			)
+		if ( $errors ) {
+			$maxage = self::MAXAGE_RECOVER;
+		} elseif (
+			$context->getVersion() !== null
+			&& $context->getVersion() !== $this->makeVersionQuery( $context, $context->getModules() )
 		) {
 			// If we need to self-correct, set a very short cache expiry
 			// to basically just debounce CDN traffic. This applies to:
