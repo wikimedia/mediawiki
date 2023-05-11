@@ -1579,7 +1579,10 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$comment = __METHOD__ . ': Sample page for unit test.';
 
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
-		$page->doUserEditContent( ContentHandler::makeContent( $text, $title ), $user, $comment );
+		$status = $page->doUserEditContent( ContentHandler::makeContent( $text, $title ), $user, $comment );
+		if ( !$status->isOK() ) {
+			$this->fail( $status->getWikiText() );
+		}
 
 		return [
 			'title' => $title,
