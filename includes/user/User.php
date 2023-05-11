@@ -1386,7 +1386,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		}
 
 		if ( $reloadFrom ) {
-			$this->mLoadedItems = [];
+			if ( in_array( $reloadFrom, [ 'name', 'id', 'actor' ] ) ) {
+				$this->mLoadedItems = [ $reloadFrom => true ];
+			} else {
+				$this->mLoadedItems = [];
+			}
 			$this->mFrom = $reloadFrom;
 		}
 	}
