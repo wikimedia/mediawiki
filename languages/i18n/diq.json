@@ -4071,6 +4071,8 @@
 	"skin-action-undelete": "Meestere",
 	"skin-action-delete": "Bestere",
 	"skin-action-move": "Bıkırışe",
+	"blockedtext-reason-comment": "Sebebo ke mocniyayo <em>$1</em>",
+	"blockedtext-start-time": "Destpêkerdışê kılitkerdışi: $1",
 	"blockedtext-block-ip": "Adresa IPyiya şımaya nıkayêne $1a.",
 	"renameuser": "Karberi newe ra name ke",
 	"renameuser-linkoncontribs": "{{GENDER:$1|karberi}} reyna name ke",
