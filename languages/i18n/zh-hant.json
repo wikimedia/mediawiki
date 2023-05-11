@@ -132,7 +132,8 @@
 			"阿南之人",
 			"飞舞回堂前",
 			"魔琴",
-			"아라"
+			"아라",
+			"Sidishandsome"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -1171,7 +1172,7 @@
 	"prefs-email": "電子郵件選項",
 	"prefs-rendering": "外觀",
 	"prefs-searchmisc": "一般",
-	"searchprefs": "搜尋偏好設定",
+	"searchprefs": "在偏好設定中搜尋",
 	"searchprefs-noresults": "沒有結果",
 	"saveprefs": "儲存",
 	"restoreprefs": "還原所有預設設定",

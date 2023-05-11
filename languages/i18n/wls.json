@@ -23,7 +23,7 @@
 	"tog-watchrollback": "Hilifaki te 'u pāsina ne'e au kole ke molehi ki te lisi eau muli'i",
 	"tog-minordefault": "Tohi ko te 'atu fetogi ne'e fai e veliveli pe ia",
 	"tog-previewontop": "Fakahā fakatomu'a ia mu'a o te fai fetogi",
-	"tog-previewonfirst": "Fakahā fakatomu'a ia mu' o te 'uluaki fetogi",
+	"tog-previewonfirst": "Fakahā fakatomu'a ia mu'a o te fai fetogi",
 	"tog-oldsig": "Tau tohi fakamo'oni:",
 	"underline-always": "Tu'uma'u",
 	"sunday": "'Ahotapu",
@@ -627,5 +627,12 @@
 	"skin-action-protect": "Puipui",
 	"skin-action-undelete": "Fakafisi",
 	"skin-action-delete": "Molehi",
-	"skin-action-move": "Fetogi higoa"
+	"skin-action-move": "Fetogi higoa",
+	"blockedtext-made-by": "Ne'e ta'ofi e $1.",
+	"blockedtext-reason-comment": "Tupu ko te <em>$1</em>",
+	"blockedtext-start-time": "Kamata ta'ofi: $1",
+	"blockedtext-expiration-time": "'Osi ta'ofi:$1",
+	"blockedtext-intended-blockee": "E amanaki ta'ofi ia:$1",
+	"blockedtext-contact-blocker-admin": "Felogo'i mo $1 pe ko he tahi [[{{MediaWiki:Grouppage-sysop}}|lagiaki]] o 'uhiga mo te ta'ofi aeni.",
+	"blockedtext-include-details-queries": "Tohi fuli te 'u koga aeni i oluga i ni fakafehu'i e ke fai."
 }

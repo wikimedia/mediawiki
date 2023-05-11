@@ -984,7 +984,7 @@
 	"prevn-title": "$1 {{PLURAL:$1|asil}} sadurungnyané",
 	"nextn-title": "$1 {{PLURAL:$1|asil}} salanturnyané",
 	"shown-title": "Sinahang $1 {{PLURAL:$1|asil}} per kaca",
-	"viewprevnext": "Cingak ($1 {{int:pipe-separator}}$2)($3)",
+	"viewprevnext": "Cingak ($1 {{int:pipe-separator}} $2)($3)",
 	"searchmenu-exists": "Wenten lembar sane mamurda \"[[:$1]]\" ring {{SITENAME}}. {{PLURAL:$2|0=| cingakin taler asil rerehan lianan sane kapolihang}}",
 	"searchmenu-new": "Kardi kaca \"[[:$1]]\" ring wiki puniki! {{PLURAL:$2|0=|Taler cingak kaca sané kapolihin ida.|Taler cingak asil pangrereh.}}",
 	"searchprofile-articles": "Kaca daging",

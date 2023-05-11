@@ -1280,7 +1280,7 @@
 	"action-writeapi": "d'API mat Schreifzougrëff ze benotzen",
 	"action-delete": "dës Säit ze läschen",
 	"action-delete-redirect": "Viruleedunge mat just enger Versioun iwwerschreiwen",
-	"action-deleterevision": "Versioune läschen",
+	"action-deleterevision": "spezifesch Versioune vu Säite läschen oder restauréieren",
 	"action-deletedhistory": "déi geläscht Versiounen vun enger Säit weisen",
 	"action-deletedtext": "geläschten Texter oder Ënnerscheeder tëscht geläschte Versioune weisen",
 	"action-browsearchive": "no geläschte Säiten ze sichen",
