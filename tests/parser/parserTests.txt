@@ -4058,8 +4058,8 @@ wgRestrictDisplayTitle=false
 !! metadata
 <i>Parser test</i>
 !! html/php
-!! html/parsoid
-<meta property="mw:PageProp/displaytitle" content="Parser test" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"src":"{{DISPLAYTITLE:&#39;&#39;{{PAGENAME}}&#39;&#39;}}"}' data-mw='{"attribs":[[{"txt":"content"},{"html":"DISPLAYTITLE:&lt;i data-parsoid=&#39;{\"dsr\":[15,31,2,2]}&#39;>&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[]],\"dsr\":[17,29,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"PAGENAME\",\"function\":\"pagename\"},\"params\":{},\"i\":0}}]}&#39;>Parser test&lt;/span>&lt;/i>"}]]}'/>
+!! html/parsoid+integrated
+<span about="#mwt3" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"DISPLAYTITLE:&apos;&apos;{{PAGENAME}}&apos;&apos;","function":"displaytitle"},"params":{},"i":0}}]}'></span>
 !! end
 
 # NOTE: mw:ExpandedAttrs is not the best typeof here. mw:Transclusion is better.
@@ -4077,8 +4077,23 @@ wgRestrictDisplayTitle=false
 !! metadata
 Foo
 !! html/php
+!! html/parsoid+integrated
+<span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"{{1x|DISPLAYTITLE}}:Foo","function":"displaytitle"},"params":{},"i":0}}]}'></span>
+!! end
+
+# Can be removed when T335843 is addressed
+!! test
+Parsoid html2wt b/c check: Cached Parsoid HTML for DISPLAYTITLE should be handled properly
+!! options
+parsoid=html2wt
 !! html/parsoid
+<meta property='mw:PageProp/displaytitle' content='foo'/>
+<meta property="mw:PageProp/displaytitle" content="Parser test" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"src":"{{DISPLAYTITLE:&#39;&#39;{{PAGENAME}}&#39;&#39;}}"}' data-mw='{"attribs":[[{"txt":"content"},{"html":"DISPLAYTITLE:&lt;i data-parsoid=&#39;{\"dsr\":[15,31,2,2]}&#39;>&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[]],\"dsr\":[17,29,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"PAGENAME\",\"function\":\"pagename\"},\"params\":{},\"i\":0}}]}&#39;>Parser test&lt;/span>&lt;/i>"}]]}'/>
 <meta property="mw:PageProp/displaytitle" content="Foo" about="#mwt1" typeof="mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"content"},{"html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[{\"k\":\"1\"}]],\"dsr\":[2,23,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"DISPLAYTITLE\"}},\"i\":0}}]}&#39;>DISPLAYTITLE&lt;/span>:Foo"}]]}'/>
+!! wikitext
+{{DISPLAYTITLE:foo}}
+{{DISPLAYTITLE:''{{PAGENAME}}''}}
+{{{{1x|DISPLAYTITLE}}:Foo}}
 !! end
 
 !! test
@@ -7331,8 +7346,8 @@ parsoid=wt2html
 Parsoid: Defaultsort
 !! wikitext
 {{DEFAULTSORT:Foo}}
-!! html/parsoid
-<meta property="mw:PageProp/categorydefaultsort" content="Foo"/>
+!! html/parsoid+integrated
+<span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"DEFAULTSORT:Foo","function":"defaultsort"},"params":{},"i":0}}]}'></span>
 !! end
 
 !! test
@@ -7346,15 +7361,16 @@ Parsoid: Defaultsort variations (T236846)
 <p><a href="/index.php?title=Template:DEFAULTSORT&amp;action=edit&amp;redlink=1" class="new" title="Template:DEFAULTSORT (page does not exist)">Template:DEFAULTSORT</a>
 </p><p><br />
 </p>
-!! html/parsoid
+!! html/parsoid+integrated
 <p><a rel="mw:WikiLink" href="./Template:DEFAULTSORT?action=edit&amp;redlink=1" title="Template:DEFAULTSORT" about="#mwt1" typeof="mw:Transclusion mw:LocalizedAttrs" class="new" data-parsoid='{"stx":"simple","a":{"href":"./Template:DEFAULTSORT"},"sa":{"href":"Template:DEFAULTSORT"},"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"DEFAULTSORT","href":"./Template:DEFAULTSORT"},"params":{},"i":0}}]}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Template:DEFAULTSORT"]}}'>Template:DEFAULTSORT</a></p>
 
-<meta property="mw:PageProp/categorydefaultsort" content="" data-parsoid='{"src":"{{DEFAULTSORT:}}"}'/>
-<meta property="mw:PageProp/categorydefaultsort" content="DOGGIE" data-parsoid='{"src":"{{DEFAULTSORT:DOGGIE}}"}'/>
+<span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"DEFAULTSORT:","function":"defaultsort"},"params":{},"i":0}}]}'></span>
+<span about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"DEFAULTSORT:DOGGIE","function":"defaultsort"},"params":{},"i":0}}]}'></span>
 !! end
 
+# Can be removed when T335843 is addressed
 !! test
-Parsoid: Defaultsort with key content being added (T236846)
+Parsoid html2wt b/c check: Defaultsort with key content being added (T236846)
 !! options
 parsoid=html2wt
 !! html/parsoid
@@ -7370,8 +7386,8 @@ parsoid=html2wt
 Parsoid: Defaultsort (template-generated)
 !! wikitext
 {{{{1x|DEFAULTSORT}}:Foo}}
-!! html/parsoid
-<meta property="mw:PageProp/categorydefaultsort" content="Foo" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"src":"{{{{1x|DEFAULTSORT}}:Foo}}"}' data-mw='{"attribs":[[{"txt":"content"},{"html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[{\"k\":\"1\"}]],\"dsr\":[2,22,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"DEFAULTSORT\"}},\"i\":0}}]}&#39;>DEFAULTSORT&lt;/span>:Foo"}]]}'/>
+!! html/parsoid+integrated
+<span about="#mwt3" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"{{1x|DEFAULTSORT}}:Foo","function":"defaultsort"},"params":{},"i":0}}]}'></span>
 !! end
 
 ###
@@ -12146,9 +12162,12 @@ this is not the title
 {{DISPLAYTITLE:whatever}}
 !! metadata
 whatever
-!! html
+!! html/php
 <p>this is not the title
 </p>
+!! html/parsoid+integrated
+<p>this is not the title</p>
+<span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"DISPLAYTITLE:whatever","function":"displaytitle"},"params":{},"i":0}}]}'></span>
 !! end
 
 !! test
@@ -12164,9 +12183,12 @@ this is not the title
 {{DISPLAYTITLE:whatever}}
 !! metadata
 <span class="mw-page-title-main">Screen</span>
-!! html
+!! html/php
 <p>this is not the title
 </p>
+!! html/parsoid+integrated
+<p>this is not the title</p>
+<span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"DISPLAYTITLE:whatever","function":"displaytitle"},"params":{},"i":0}}]}'></span>
 !! end
 
 !! test
@@ -12182,9 +12204,12 @@ this is not the title
 {{DISPLAYTITLE:screen}}
 !! metadata
 screen
-!! html
+!! html/php
 <p>this is not the title
 </p>
+!! html/parsoid+integrated
+<p>this is not the title</p>
+<span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"DISPLAYTITLE:screen","function":"displaytitle"},"params":{},"i":0}}]}'></span>
 !! end
 
 !! test
@@ -12203,6 +12228,8 @@ this is not the title
 <p>this is not the title
 <a href="/index.php?title=Template:DISPLAYTITLE:screen&amp;action=edit&amp;redlink=1" class="new" title="Template:DISPLAYTITLE:screen (page does not exist)">Template:DISPLAYTITLE:screen</a>
 </p>
+!! html/parsoid+integrated
+<p>this is not the title <a rel="mw:WikiLink" href="./Template:DISPLAYTITLE:screen?action=edit&amp;redlink=1" title="Template:DISPLAYTITLE:screen" typeof="mw:Transclusion mw:LocalizedAttrs" class="new" data-mw='{"parts":[{"template":{"target":{"wt":"DISPLAYTITLE:screen","function":"displaytitle"},"params":{},"i":0}}]}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Template:DISPLAYTITLE:screen"]}}'>Template:DISPLAYTITLE:screen</a></p>
 !! end
 
 !! test
@@ -12216,9 +12243,11 @@ wgAllowDisplayTitle=false
 this is not the title
 !! metadata
 <span class="mw-page-title-main">Screen</span>
-!! html
+!! html/php
 <p>this is not the title
 </p>
+!! html/parsoid+integrated
+<p>this is not the title</p>
 !! end
 
 !! test
@@ -12237,6 +12266,9 @@ this is not the title
 !! html/php
 <p>this is not the title
 </p>
+!! html/parsoid+integrated
+<p>this is not the title</p>
+<span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"DISPLAYTITLE:&lt;span style=\"display: none;\">s&lt;/span>creen","function":"displaytitle"},"params":{},"i":0}}]}'></span>
 !! end
 
 !! test
@@ -12255,6 +12287,9 @@ this is not the title
 !! html/php
 <p>this is not the title
 </p>
+!! html/parsoid+integrated
+<p>this is not the title</p>
+<span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"DISPLAYTITLE:&lt;span style=\"color: red;\">s&lt;/span>creen","function":"displaytitle"},"params":{},"i":0}}]}'></span>
 !! end
 
 !! test
@@ -12270,9 +12305,12 @@ this is not the title
 {{DISPLAYTITLE:art&copy}}
 !! metadata
 art&amp;copy
-!! html
+!! html/php
 <p>this is not the title
 </p>
+!! html/parsoid+integrated
+<p>this is not the title</p>
+<span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"DISPLAYTITLE:art&amp;copy","function":"displaytitle"},"params":{},"i":0}}]}'></span>
 !! end
 
 !! test
@@ -12291,6 +12329,9 @@ art&amp;copy
 !! html/php
 <p>this is not the title
 </p>
+!! html/parsoid+integrated
+<p>this is not the title</p>
+<span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"DISPLAYTITLE:art&amp;amp;copy","function":"displaytitle"},"params":{},"i":0}}]}'></span>
 !! end
 
 !! test
@@ -12305,9 +12346,11 @@ wgRestrictDisplayTitle=true
 this is not the title
 !! metadata
 <span class="mw-page-title-main">Art&amp;copy</span>
-!! html
+!! html/php
 <p>this is not the title
 </p>
+!! html/parsoid+integrated
+<p>this is not the title</p>
 !! end
 
 !! test
