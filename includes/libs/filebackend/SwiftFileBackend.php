@@ -650,12 +650,8 @@ class SwiftFileBackend extends FileBackendStore {
 		} elseif ( $stat === self::$RES_ERROR ) {
 			$status->fatal( 'backend-fail-internal', $this->name );
 			$this->logger->error( __METHOD__ . ': cannot get container stat' );
-
-			return $status;
-		}
-
-		// (b) Create container as needed with proper ACLs
-		if ( $stat === false ) {
+		} else {
+			// (b) Create container as needed with proper ACLs
 			$params['op'] = 'prepare';
 			$status->merge( $this->createContainer( $fullCont, $params ) );
 		}
@@ -679,7 +675,7 @@ class SwiftFileBackend extends FileBackendStore {
 				$readUsers,
 				$writeUsers
 			) );
-		} elseif ( $stat === false ) {
+		} elseif ( $stat === self::$RES_ABSENT ) {
 			$status->fatal( 'backend-fail-usable', $params['dir'] );
 		} else {
 			$status->fatal( 'backend-fail-internal', $this->name );
@@ -703,7 +699,7 @@ class SwiftFileBackend extends FileBackendStore {
 				$readUsers,
 				$writeUsers
 			) );
-		} elseif ( $stat === false ) {
+		} elseif ( $stat === self::$RES_ABSENT ) {
 			$status->fatal( 'backend-fail-usable', $params['dir'] );
 		} else {
 			$status->fatal( 'backend-fail-internal', $this->name );
@@ -723,17 +719,13 @@ class SwiftFileBackend extends FileBackendStore {
 
 		// (a) Check the container
 		$stat = $this->getContainerStat( $fullCont, true );
-		if ( $stat === false ) {
+		if ( $stat === self::$RES_ABSENT ) {
 			return $status; // ok, nothing to do
-		} elseif ( !is_array( $stat ) ) {
+		} elseif ( $stat === self::$RES_ERROR ) {
 			$status->fatal( 'backend-fail-internal', $this->name );
 			$this->logger->error( __METHOD__ . ': cannot get container stat' );
-
-			return $status;
-		}
-
-		// (b) Delete the container if empty
-		if ( $stat['count'] == 0 ) {
+		} elseif ( is_array( $stat ) && $stat['count'] == 0 ) {
+			// (b) Delete the container if empty
 			$params['op'] = 'clean';
 			$status->merge( $this->deleteContainer( $fullCont, $params ) );
 		}
@@ -1464,7 +1456,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 *
 	 * @param string $container Container name
 	 * @param bool $bypassCache Bypass all caches and load from Swift
-	 * @return array|bool|null False on 404, null on failure
+	 * @return array|false|null False on 404, null on failure
 	 */
 	protected function getContainerStat( $container, $bypassCache = false ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
@@ -1683,7 +1675,7 @@ class SwiftFileBackend extends FileBackendStore {
 			if ( $cstat === self::$RES_ABSENT ) {
 				$stats[$path] = self::$RES_ABSENT;
 				continue; // ok, nothing to do
-			} elseif ( !is_array( $cstat ) ) {
+			} elseif ( $cstat === self::$RES_ERROR ) {
 				$stats[$path] = self::$RES_ERROR;
 				continue;
 			}
