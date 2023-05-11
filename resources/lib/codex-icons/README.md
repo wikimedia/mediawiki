@@ -2,8 +2,7 @@
 
 This package contains the Codex icons, and utility functions needed to work with them.
 The icons are applying “WikimediaUI” theme visual style of Wikimedia Foundation, following
-[Wikimedia Design Style Guide's icon guidelines](https://design.wikimedia.org/style-guide/visual-style_icons.html).
-
+[Design Style Guide's icon guidelines](https://doc.wikimedia.org/codex/latest/style-guide/icons.html)
 ## Using icons
 To use an icon, import it from this package:
 ```

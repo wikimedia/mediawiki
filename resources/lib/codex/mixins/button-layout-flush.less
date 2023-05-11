@@ -1,0 +1,34 @@
+//
+// Align a quiet button's contents flush with its container.
+//
+// Example usage would be a quiet button aligned to the end of the UI that launches a menu, whose
+// content should line up with the edge of the UI. This requires setting a negative margin equal to
+// the button's horizontal padding.
+//
+// @param {string} direction - The direction that the element is aligned, 'top', 'start', or 'end'
+// @param {boolean} is-icon-only - Whether this is an icon-only button
+//
+.cdx-mixin-button-layout-flush( @param-direction, @param-is-icon-only: false ) {
+	.apply-margin( @param-padding ) {
+		& when ( @param-direction = 'top' ) {
+			margin-top: -@param-padding;
+		}
+
+		& when ( @param-direction = 'start' ) {
+			margin-left: -@param-padding;
+		}
+
+		& when ( @param-direction = 'end' ) {
+			margin-right: -@param-padding;
+		}
+	}
+
+	& when ( @param-is-icon-only = false ) {
+		.apply-margin( @spacing-horizontal-button );
+	}
+
+	& when ( @param-is-icon-only = true ) {
+		// TODO: Once T333392 is complete, set a larger padding on small screens.
+		.apply-margin( @spacing-horizontal-button-icon-only );
+	}
+}

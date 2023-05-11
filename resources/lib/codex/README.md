@@ -1,7 +1,7 @@
 # Codex
 
-Codex is a toolkit for building user interfaces within the Wikimedia Design System. Codex contains:
-- Vue components, in this package
+Codex is the design system for Wikimedia. Codex contains:
+- Vue and CSS-only components, in this package
 - Design tokens, in the `@wikimedia/codex-tokens` package
 - Icons, in the `@wikimedia/codex-icons` package
 
