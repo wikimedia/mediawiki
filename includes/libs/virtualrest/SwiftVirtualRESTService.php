@@ -24,6 +24,7 @@
  * Example virtual rest service for OpenStack Swift
  * @todo caching support (APC/memcached)
  * @since 1.23
+ * @deprecated since 1.41
  */
 class SwiftVirtualRESTService extends VirtualRESTService {
 	/** @var array */
@@ -45,6 +46,7 @@ class SwiftVirtualRESTService extends VirtualRESTService {
 	 *   - swiftAuthTTL       : Swift authentication TTL (seconds)
 	 */
 	public function __construct( array $params ) {
+		wfDeprecated( __METHOD__, '1.41' );
 		// set up defaults and merge them with the given params
 		$mparams = array_merge( [
 			'name' => 'swift'
