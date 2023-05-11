@@ -215,47 +215,6 @@ class DatabasePostgres extends Database {
 		);
 	}
 
-	protected function doMultiStatementQuery( array $sqls ): array {
-		$qsByStatementId = [];
-
-		$conn = $this->getBindingHandle();
-		// Clear any previously left over result
-		while ( $pgResultSet = pg_get_result( $conn ) ) {
-			pg_free_result( $pgResultSet );
-		}
-
-		$combinedSql = mb_convert_encoding( implode( ";\n", $sqls ), 'UTF-8' );
-		pg_send_query( $conn, $combinedSql );
-
-		reset( $sqls );
-		while ( ( $pgResultSet = pg_get_result( $conn ) ) !== false ) {
-			$this->lastResultHandle = $pgResultSet;
-
-			$statementId = key( $sqls );
-			if ( $statementId !== null ) {
-				if ( pg_result_error( $pgResultSet ) ) {
-					$res = false;
-				} else {
-					$res = new PostgresResultWrapper( $this, $conn, $pgResultSet );
-				}
-				$qsByStatementId[$statementId] = new QueryStatus(
-					$res,
-					pg_affected_rows( $pgResultSet ),
-					(string)pg_result_error( $pgResultSet ),
-					pg_result_error_field( $pgResultSet, PGSQL_DIAG_SQLSTATE )
-				);
-			}
-			next( $sqls );
-		}
-		// Fill in status for statements aborted due to prior statement failure
-		while ( ( $statementId = key( $sqls ) ) !== null ) {
-			$qsByStatementId[$statementId] = new QueryStatus( false, 0, 'Query aborted', 0 );
-			next( $sqls );
-		}
-
-		return $qsByStatementId;
-	}
-
 	protected function dumpError() {
 		$diags = [
 			PGSQL_DIAG_SEVERITY,
@@ -1170,7 +1129,7 @@ SQL;
 		// https://www.postgresql.org/docs/9.1/functions-admin.html
 		$sql = "pg_advisory_unlock_all()";
 		$query = new Query( $sql, $flags, 'UNLOCK' );
-		$qs = $this->executeQuery( $query, __METHOD__, $flags, $sql );
+		$qs = $this->executeQuery( $query, __METHOD__, $flags );
 		if ( $qs->res === false ) {
 			$this->reportQueryError( $qs->message, $qs->code, $sql, $fname, true );
 		}

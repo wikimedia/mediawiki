@@ -53,59 +53,6 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		);
 	}
 
-	protected function doMultiStatementQuery( array $sqls ): array {
-		$qsByStatementId = [];
-
-		$conn = $this->getBindingHandle();
-		// Clear any previously left over result
-		while ( $conn->more_results() && $conn->next_result() ) {
-			$mysqliResult = $conn->store_result();
-			$mysqliResult->free();
-		}
-
-		$combinedSql = implode( ";\n", $sqls );
-		// Hide packet warnings caused by things like dropped connections
-		AtEase::suppressWarnings();
-		$conn->multi_query( $combinedSql );
-		AtEase::restoreWarnings();
-
-		reset( $sqls );
-		$done = false;
-		do {
-			$mysqliResult = $conn->store_result();
-			$statementId = key( $sqls );
-			if ( $statementId !== null ) {
-				// Database uses "true" for successful queries without result sets
-				if ( $mysqliResult === false ) {
-					$res = ( $conn->errno === 0 );
-				} elseif ( $mysqliResult instanceof mysqli_result ) {
-					$res = new MysqliResultWrapper( $this, $mysqliResult );
-				} else {
-					$res = $mysqliResult;
-				}
-				$qsByStatementId[$statementId] = new QueryStatus(
-					$res,
-					$conn->affected_rows,
-					$conn->error,
-					$conn->errno
-				);
-				next( $sqls );
-			}
-			if ( $conn->more_results() ) {
-				$conn->next_result();
-			} else {
-				$done = true;
-			}
-		} while ( !$done );
-		// Fill in status for statements aborted due to prior statement failure
-		while ( ( $statementId = key( $sqls ) ) !== null ) {
-			$qsByStatementId[$statementId] = new QueryStatus( false, 0, 'Query aborted', 0 );
-			next( $sqls );
-		}
-
-		return $qsByStatementId;
-	}
-
 	/**
 	 * @param string|null $server
 	 * @param string|null $user

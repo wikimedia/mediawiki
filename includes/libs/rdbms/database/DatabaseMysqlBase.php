@@ -160,7 +160,7 @@ abstract class DatabaseMysqlBase extends Database {
 				$query = new Query( $sql, $flags, 'SET' );
 				// Avoid using query() so that replaceLostConnection() does not throw
 				// errors if the transaction status is STATUS_TRX_ERROR
-				$qs = $this->executeQuery( $query, __METHOD__, $flags, $sql );
+				$qs = $this->executeQuery( $query, __METHOD__, $flags );
 				if ( $qs->res === false ) {
 					$this->reportQueryError( $qs->message, $qs->code, $sql, __METHOD__ );
 				}
@@ -194,7 +194,7 @@ abstract class DatabaseMysqlBase extends Database {
 		if ( $database !== $this->getDBname() ) {
 			$sql = 'USE ' . $this->addIdentifierQuotes( $database );
 			$query = new Query( $sql, self::QUERY_CHANGE_TRX, 'USE' );
-			$qs = $this->executeQuery( $query, __METHOD__, self::QUERY_CHANGE_TRX, $sql );
+			$qs = $this->executeQuery( $query, __METHOD__, self::QUERY_CHANGE_TRX );
 			if ( $qs->res === false ) {
 				$this->reportQueryError( $qs->message, $qs->code, $sql, __METHOD__ );
 				return false; // unreachable
@@ -556,7 +556,7 @@ abstract class DatabaseMysqlBase extends Database {
 			$sql = 'SELECT ' . implode( ',', $releaseLockFields );
 			$flags = self::QUERY_CHANGE_LOCKS | self::QUERY_NO_RETRY;
 			$query = new Query( $sql, $flags, 'SELECT' );
-			$qs = $this->executeQuery( $query, __METHOD__, $flags, $sql );
+			$qs = $this->executeQuery( $query, __METHOD__, $flags );
 			if ( $qs->res === false ) {
 				$this->reportQueryError( $qs->message, $qs->code, $sql, $fname, true );
 			}
