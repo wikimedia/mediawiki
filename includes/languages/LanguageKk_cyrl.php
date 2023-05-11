@@ -755,7 +755,7 @@ class LanguageKk_cyrl extends Language {
 		$lastLetter[1] = null;
 		foreach ( $wordReversed as $xvalue ) {
 			foreach ( $allVowels as $yvalue ) {
-				if ( strcmp( $xvalue, $yvalue ) == 0 ) {
+				if ( $xvalue === $yvalue ) {
 					$lastLetter[1] = $xvalue;
 					break;
 				}

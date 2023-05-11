@@ -70,7 +70,7 @@ class LanguageTyv extends Language {
 		$wordLastVowel = null;
 		foreach ( $wordReversed as $xvalue ) {
 			foreach ( $allVowels as $yvalue ) {
-				if ( strcmp( $xvalue, $yvalue ) == 0 ) {
+				if ( $xvalue === $yvalue ) {
 					$wordLastVowel = $xvalue;
 					break;
 				}
