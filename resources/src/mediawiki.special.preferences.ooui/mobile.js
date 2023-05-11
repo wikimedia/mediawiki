@@ -6,6 +6,14 @@
 	// Define a window manager to control the dialogs
 	var dialogFactory = new OO.Factory();
 	var windowManager = new OO.ui.WindowManager( { factory: dialogFactory } );
+	windowManager.on( 'opening', function ( win ) {
+		if ( !win.$body.data( 'mw-section-infused' ) ) {
+			win.$body.removeClass( 'mw-htmlform-autoinfuse-lazy' );
+			mw.hook( 'htmlform.enhance' ).fire( win.$body );
+			win.$body.data( 'mw-section-infused', true );
+		}
+	} );
+
 	// Navigation callback
 	var setSection = function ( sectionName, fieldset ) {
 		// strip possible prefixes from the section to normalize it
@@ -120,8 +128,7 @@
 		Array.prototype.forEach.call( sections, function ( section ) {
 			var sectionContent = document.getElementById( section.id + '-content' );
 			var sectionBody = sectionContent.querySelector( 'div > div.oo-ui-widget' );
-			var sectionTitle = document.getElementById( section.id + '-title' );
-			var sectionText = sectionTitle.querySelector( '.mw-prefs-title' ).textContent;
+			var sectionText = sectionContent.querySelector( '.mw-prefs-title' ).textContent;
 			createSectionDialog( section.id, sectionText, sectionBody );
 		} );
 		var prefSelect = OO.ui.infuse( $( '.mw-mobile-prefs-sections' ) );
