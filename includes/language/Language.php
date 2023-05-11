@@ -1860,7 +1860,7 @@ class Language implements Bcp47Code {
 		$gm = (int)substr( $ts, 4, 2 );
 		$gd = (int)substr( $ts, 6, 2 );
 
-		if ( !strcmp( $cName, 'thai' ) ) {
+		if ( $cName === 'thai' ) {
 			# Thai solar dates
 			# Add 543 years to the Gregorian calendar
 			# Months and days are identical
@@ -1873,12 +1873,12 @@ class Language implements Bcp47Code {
 				}
 				$gm = ( $gm - 3 ) % 12;
 			}
-		} elseif ( ( !strcmp( $cName, 'minguo' ) ) || !strcmp( $cName, 'juche' ) ) {
+		} elseif ( $cName === 'minguo' || $cName === 'juche' ) {
 			# Minguo dates
 			# Deduct 1911 years from the Gregorian calendar
 			# Months and days are identical
 			$gy_offset = $gy - 1911;
-		} elseif ( !strcmp( $cName, 'tenno' ) ) {
+		} elseif ( $cName === 'tenno' ) {
 			# Nengō dates up to Meiji period
 			# Deduct years from the Gregorian calendar
 			# depending on the nengo periods
@@ -4025,7 +4025,7 @@ class Language implements Bcp47Code {
 	public function translateBlockExpiry( $str, UserIdentity $user = null, $now = 0 ) {
 		$duration = SpecialBlock::getSuggestedDurations( $this );
 		foreach ( $duration as $show => $value ) {
-			if ( strcmp( $str, $value ) == 0 ) {
+			if ( $str === $value ) {
 				return trim( $show );
 			}
 		}
