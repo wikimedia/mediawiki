@@ -22,12 +22,12 @@
 
 namespace MediaWiki\Block;
 
-use Hooks;
 use InvalidArgumentException;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -577,8 +577,9 @@ class DatabaseBlock extends AbstractBlock {
 			return false;
 		}
 
+		$services = MediaWikiServices::getInstance();
 		# Allow hooks to cancel the autoblock.
-		if ( !Hooks::runner()->onAbortAutoblock( $autoblockIP, $this ) ) {
+		if ( !( new HookRunner( $services->getHookContainer() ) )->onAbortAutoblock( $autoblockIP, $this ) ) {
 			wfDebug( "Autoblock aborted by hook." );
 			return false;
 		}
@@ -637,8 +638,7 @@ class DatabaseBlock extends AbstractBlock {
 		}
 
 		# Insert the block...
-		$status = MediaWikiServices::getInstance()
-			->getDatabaseBlockStoreFactory()
+		$status = $services->getDatabaseBlockStoreFactory()
 			->getDatabaseBlockStore( $this->getWikiId() )
 			->insertBlock( $autoblock );
 		return $status

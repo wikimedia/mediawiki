@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -1466,7 +1467,8 @@ return [
 				$magicWords = [
 					'SITENAME' => $config->get( MainConfigNames::Sitename ),
 				];
-				Hooks::runner()->onResourceLoaderJqueryMsgModuleMagicWords( $context, $magicWords );
+				( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+					->onResourceLoaderJqueryMsgModuleMagicWords( $context, $magicWords );
 
 				return [
 					'allowedHtmlElements' => $allowedHtmlElements,
@@ -1601,7 +1603,8 @@ return [
 					'selectorLogoutLink' => '#pt-logout a[data-mw="interface"]'
 				];
 
-				Hooks::runner()->onSkinPageReadyConfig( $context, $readyConfig );
+				( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+					->onSkinPageReadyConfig( $context, $readyConfig );
 				return $readyConfig;
 			} ],
 		],
@@ -2196,7 +2199,8 @@ return [
 				'name' => 'layout.js',
 				'callback' => static function ( Context $context ) {
 					$skinName = $context->getSkin();
-					Hooks::runner()->onPreferencesGetLayout( $useMobileLayout, $skinName );
+					( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+						->onPreferencesGetLayout( $useMobileLayout, $skinName );
 					$file = $useMobileLayout ? 'mobile.js' : 'tabs.js';
 					return new FilePath( $file );
 				},

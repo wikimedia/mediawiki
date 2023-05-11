@@ -26,6 +26,7 @@
  * @ingroup Media
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
@@ -231,7 +232,8 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		// Try a hook. Called "Bitmap" for historical reasons.
 		/** @var MediaTransformOutput $mto */
 		$mto = null;
-		Hooks::runner()->onBitmapHandlerTransform( $this, $image, $scalerParams, $mto );
+		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+			->onBitmapHandlerTransform( $this, $image, $scalerParams, $mto );
 		if ( $mto !== null ) {
 			wfDebug( __METHOD__ . ": Hook to BitmapHandlerTransform created an mto" );
 			$scaler = 'hookaborted';
@@ -627,7 +629,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 
 		# For historical reasons, hook starts with BitmapHandler
 		$checkImageAreaHookResult = null;
-		Hooks::runner()->onBitmapHandlerCheckImageArea(
+		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onBitmapHandlerCheckImageArea(
 			$file, $params, $checkImageAreaHookResult );
 
 		if ( $checkImageAreaHookResult !== null ) {

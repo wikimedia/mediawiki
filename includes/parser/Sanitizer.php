@@ -24,6 +24,7 @@
  * @ingroup Parser
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\RemexRemoveTagHandler;
 use MediaWiki\Parser\RemexStripTagHandler;
@@ -1893,7 +1894,8 @@ class Sanitizer {
 	public static function validateEmail( $addr ) {
 		$result = null;
 		// TODO This method should be non-static, and have a HookRunner injected
-		if ( !Hooks::runner()->onIsValidEmailAddr( $addr, $result ) ) {
+		$hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
+		if ( !$hookRunner->onIsValidEmailAddr( $addr, $result ) ) {
 			return $result;
 		}
 

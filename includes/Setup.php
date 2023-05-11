@@ -52,6 +52,7 @@
 
 // phpcs:disable MediaWiki.Usage.DeprecatedGlobalVariables
 use MediaWiki\HookContainer\FauxGlobalHookArray;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
@@ -437,7 +438,7 @@ if ( $wgRequest->getCookie( 'UseDC', '' ) === 'master' ) {
 } )();
 
 // Most of the config is out, some might want to run hooks here.
-Hooks::runner()->onSetupAfterCache();
+( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onSetupAfterCache();
 
 // Now that variant lists may be available, parse any action paths and article paths
 // as query parameters.

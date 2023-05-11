@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\StubObject\StubUserLang;
@@ -147,7 +148,8 @@ abstract class ImageGalleryBase extends ContextSource {
 				'slideshow' => SlideshowImageGallery::class,
 			];
 			// Allow extensions to make a new gallery format.
-			Hooks::runner()->onGalleryGetModes( self::$modeMapping );
+			( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+				->onGalleryGetModes( self::$modeMapping );
 		}
 	}
 

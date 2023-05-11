@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
@@ -86,6 +87,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 		$lang = $this->getRenderLang();
 		$enableLegacyMediaDOM =
 			$this->getConfig()->get( MainConfigNames::ParserEnableLegacyMediaDOM );
+		$hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
 
 		# Output each image...
 		foreach ( $this->mImages as [ $nt, $text, $alt, $link, $handlerOpts, $loading, $imageOptions ] ) {
@@ -98,7 +100,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 				if ( $resolveFilesViaParser ) {
 					# Give extensions a chance to select the file revision for us
 					$options = [];
-					Hooks::runner()->onBeforeParserFetchFileAndTitle(
+					$hookRunner->onBeforeParserFetchFileAndTitle(
 						// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 						$this->mParser, $nt, $options, $descQuery );
 					# Fetch and register the file (file title may be different via hooks)

@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
@@ -760,7 +761,7 @@ TXT;
 				$logger->error( $json, [ 'private' => true ] );
 			}
 
-			Hooks::runner()->onLogException( $e, false );
+			( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onLogException( $e, false );
 		}
 	}
 
@@ -805,6 +806,6 @@ TXT;
 			$logger->log( $unfilteredLevel, $json, [ 'private' => true ] );
 		}
 
-		Hooks::runner()->onLogException( $e, $suppressed );
+		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onLogException( $e, $suppressed );
 	}
 }

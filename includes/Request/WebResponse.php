@@ -22,8 +22,8 @@
 
 namespace MediaWiki\Request;
 
-use Hooks;
 use HttpStatus;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use RuntimeException;
@@ -145,7 +145,8 @@ class WebResponse {
 	 * @since 1.22 Replaced $prefix, $domain, and $forceSecure with $options
 	 */
 	public function setCookie( $name, $value, $expire = 0, $options = [] ) {
-		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		$services = MediaWikiServices::getInstance();
+		$mainConfig = $services->getMainConfig();
 		$cookiePath = $mainConfig->get( MainConfigNames::CookiePath );
 		$cookiePrefix = $mainConfig->get( MainConfigNames::CookiePrefix );
 		$cookieDomain = $mainConfig->get( MainConfigNames::CookieDomain );
@@ -200,7 +201,8 @@ class WebResponse {
 			return;
 		}
 
-		if ( !Hooks::runner()->onWebResponseSetCookie( $name, $value, $expire, $options ) ) {
+		$hookRunner = new HookRunner( $services->getHookContainer() );
+		if ( !$hookRunner->onWebResponseSetCookie( $name, $value, $expire, $options ) ) {
 			return;
 		}
 

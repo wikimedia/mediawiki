@@ -21,6 +21,7 @@
  * @ingroup Upload
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
@@ -147,7 +148,8 @@ class UploadFromUrl extends UploadBase {
 	public static function isAllowedUrl( $url ) {
 		if ( !isset( self::$allowedUrls[$url] ) ) {
 			$allowed = true;
-			Hooks::runner()->onIsUploadAllowedFromUrl( $url, $allowed );
+			( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+				->onIsUploadAllowedFromUrl( $url, $allowed );
 			self::$allowedUrls[$url] = $allowed;
 		}
 

@@ -24,6 +24,7 @@
  * @author Luke Welling lwelling@wikimedia.org
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Mail\UserEmailContact;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -252,7 +253,8 @@ class EmailNotification {
 
 		$formattedPageStatus = [ 'deleted', 'created', 'moved', 'restored', 'changed' ];
 
-		Hooks::runner()->onUpdateUserMailerFormattedPageStatus( $formattedPageStatus );
+		$hookRunner = new HookRunner( $mwServices->getHookContainer() );
+		$hookRunner->onUpdateUserMailerFormattedPageStatus( $formattedPageStatus );
 		if ( !in_array( $this->pageStatus, $formattedPageStatus ) ) {
 			throw new MWException( 'Not a valid page status!' );
 		}
@@ -288,7 +290,7 @@ class EmailNotification {
 						//       see: https://phabricator.wikimedia.org/T208895
 						&& !( $config->get( MainConfigNames::BlockDisablesLogin ) &&
 							$watchingUser->getBlock() )
-						&& Hooks::runner()->onSendWatchlistEmailNotification( $watchingUser, $title, $this )
+						&& $hookRunner->onSendWatchlistEmailNotification( $watchingUser, $title, $this )
 					) {
 						$this->compose( $watchingUser, self::WATCHLIST, $messageCache );
 					}
@@ -341,7 +343,9 @@ class EmailNotification {
 		) {
 			if ( !$targetUser->isEmailConfirmed() ) {
 				wfDebug( __METHOD__ . ": talk page owner doesn't have validated email" );
-			} elseif ( !Hooks::runner()->onAbortTalkPageEmailNotification( $targetUser, $title ) ) {
+			} elseif ( !( new HookRunner( $services->getHookContainer() ) )
+				->onAbortTalkPageEmailNotification( $targetUser, $title )
+			) {
 				wfDebug( __METHOD__ . ": talk page update notification is aborted for this user" );
 			} else {
 				wfDebug( __METHOD__ . ": sending talk page update notification" );

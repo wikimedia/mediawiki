@@ -25,6 +25,7 @@
  * @author Luke Welling lwelling@wikimedia.org
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\WikiMap\WikiMap;
@@ -96,7 +97,8 @@ class UserMailer {
 	 * @return Status
 	 */
 	public static function send( $to, $from, $subject, $body, $options = [] ) {
-		$allowHTMLEmail = MediaWikiServices::getInstance()->getMainConfig()->get(
+		$services = MediaWikiServices::getInstance();
+		$allowHTMLEmail = $services->getMainConfig()->get(
 			MainConfigNames::AllowHTMLEmail );
 
 		if ( !isset( $options['contentType'] ) ) {
@@ -153,7 +155,7 @@ class UserMailer {
 		// target differently to split up the address list
 		if ( count( $to ) > 1 ) {
 			$oldTo = $to;
-			Hooks::runner()->onUserMailerSplitTo( $to );
+			( new HookRunner( $services->getHookContainer() ) )->onUserMailerSplitTo( $to );
 			if ( $oldTo != $to ) {
 				$splitTo = array_diff( $oldTo, $to );
 				$to = array_diff( $oldTo, $splitTo ); // ignore new addresses added in the hook
@@ -197,7 +199,8 @@ class UserMailer {
 		$body,
 		$options = []
 	) {
-		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		$services = MediaWikiServices::getInstance();
+		$mainConfig = $services->getMainConfig();
 		$smtp = $mainConfig->get( MainConfigNames::SMTP );
 		$enotifMaxRecips = $mainConfig->get( MainConfigNames::EnotifMaxRecips );
 		$additionalMailParams = $mainConfig->get( MainConfigNames::AdditionalMailParams );
@@ -206,10 +209,11 @@ class UserMailer {
 		$contentType = $options['contentType'] ?? 'text/plain; charset=UTF-8';
 		$headers = $options['headers'] ?? [];
 
+		$hookRunner = new HookRunner( $services->getHookContainer() );
 		// Allow transformation of content, such as encrypting/signing
 		$error = false;
 		// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
-		if ( !Hooks::runner()->onUserMailerTransformContent( $to, $from, $body, $error ) ) {
+		if ( !$hookRunner->onUserMailerTransformContent( $to, $from, $body, $error ) ) {
 			if ( $error ) {
 				return Status::newFatal( 'php-mail-error', $error );
 			} else {
@@ -251,7 +255,7 @@ class UserMailer {
 		$extraParams = $additionalMailParams;
 
 		// Hook to generate custom VERP address for 'Return-Path'
-		Hooks::runner()->onUserMailerChangeReturnPath( $to, $returnPath );
+		$hookRunner->onUserMailerChangeReturnPath( $to, $returnPath );
 		// Add the envelope sender address using the -f command line option when PHP mail() is used.
 		// Will default to the $from->address when the UserMailerChangeReturnPath hook fails and the
 		// generated VERP address when the hook runs effectively.
@@ -307,7 +311,7 @@ class UserMailer {
 		}
 
 		// allow transformation of MIME-encoded message
-		if ( !Hooks::runner()->onUserMailerTransformMessage(
+		if ( !$hookRunner->onUserMailerTransformMessage(
 			$to, $from, $subject, $headers, $body, $error )
 		) {
 			if ( $error ) {
@@ -317,7 +321,7 @@ class UserMailer {
 			}
 		}
 
-		$ret = Hooks::runner()->onAlternateUserMailer( $headers, $to, $from, $subject, $body );
+		$ret = $hookRunner->onAlternateUserMailer( $headers, $to, $from, $subject, $body );
 		if ( $ret === false ) {
 			// the hook implementation will return false to skip regular mail sending
 			return Status::newGood();

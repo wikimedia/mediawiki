@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Json\JsonUnserializable;
 use MediaWiki\Json\JsonUnserializableTrait;
@@ -437,7 +438,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			$text .= $this->renderDebugInfo();
 		}
 
-		Hooks::runner()->onParserOutputPostCacheTransform( $this, $text, $options );
+		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+			->onParserOutputPostCacheTransform( $this, $text, $options );
 
 		if ( $options['wrapperDivClass'] !== '' && !$options['unwrap'] ) {
 			$text = Html::rawElement( 'div', [ 'class' => $options['wrapperDivClass'] ], $text );
@@ -1990,6 +1992,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			// TODO: flags should go into limit report too.
 			$limitReport .= 'Complications: [' . implode( ', ', $this->getAllFlags() ) . "]\n";
 
+			$hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
 			foreach ( $limitReportData as $key => $value ) {
 				if ( in_array( $key, [
 					'cachereport-origin',
@@ -2001,7 +2004,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 					// These keys are processed separately.
 					continue;
 				}
-				if ( Hooks::runner()->onParserLimitReportFormat(
+				if ( $hookRunner->onParserLimitReportFormat(
 					$key, $value, $limitReport, false, false )
 				) {
 					$keyMsg = wfMessage( $key )->inLanguage( 'en' )->useDatabase( false );

@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\ExtensionInfo;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Linker\Linker;
@@ -325,7 +326,7 @@ class SpecialVersion extends SpecialPage {
 	 * @since 1.34
 	 * @return string[] Array of wikitext strings keyed by wikitext strings
 	 */
-	private static function getSoftwareInformation() {
+	private function getSoftwareInformation() {
 		$dbr = wfGetDB( DB_REPLICA );
 
 		// Put the software in an array of form 'name' => 'version'. All messages should
@@ -339,7 +340,7 @@ class SpecialVersion extends SpecialPage {
 		];
 
 		// Allow a hook to add/remove items.
-		Hooks::runner()->onSoftwareInfo( $software );
+		$this->getHookRunner()->onSoftwareInfo( $software );
 
 		return $software;
 	}
@@ -365,7 +366,7 @@ class SpecialVersion extends SpecialPage {
 			Html::element( 'th', [], $this->msg( 'version-software-version' )->text() )
 		);
 
-		foreach ( self::getSoftwareInformation() as $name => $version ) {
+		foreach ( $this->getSoftwareInformation() as $name => $version ) {
 			$out .= Html::rawElement( 'tr', [],
 				Html::rawElement( 'td', [], $this->msg( new RawMessage( $name ) )->parse() ) .
 				Html::rawElement( 'td', [ 'dir' => 'ltr' ], $this->msg( new RawMessage( $version ) )->parse() )
@@ -430,7 +431,8 @@ class SpecialVersion extends SpecialPage {
 	 */
 	private static function getMWVersionLinked() {
 		$versionUrl = "";
-		if ( Hooks::runner()->onSpecialVersionVersionUrl( MW_VERSION, $versionUrl ) ) {
+		$hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
+		if ( $hookRunner->onSpecialVersionVersionUrl( MW_VERSION, $versionUrl ) ) {
 			$versionParts = [];
 			preg_match( "/^(\d+\.\d+)/", MW_VERSION, $versionParts );
 			$versionUrl = "https://www.mediawiki.org/wiki/MediaWiki_{$versionParts[1]}";
@@ -491,7 +493,8 @@ class SpecialVersion extends SpecialPage {
 				'other' => wfMessage( 'version-other' )->text(),
 			];
 
-			Hooks::runner()->onExtensionTypes( self::$extensionTypes );
+			( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+				->onExtensionTypes( self::$extensionTypes );
 		}
 
 		return self::$extensionTypes;

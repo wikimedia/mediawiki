@@ -24,7 +24,6 @@
 namespace MediaWiki\Specials;
 
 use ChangeTags;
-use Hooks;
 use LogEventsList;
 use LogPage;
 use LogPager;
@@ -34,6 +33,7 @@ use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\Html\ListToggle;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\UserIdentityLookup;
@@ -208,7 +208,8 @@ class SpecialLog extends SpecialPage {
 			'renameuser',
 		];
 
-		( $runner ?? Hooks::runner() )->onGetLogTypesOnUser( $types );
+		( $runner ?? new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+			->onGetLogTypesOnUser( $types );
 		return $types;
 	}
 

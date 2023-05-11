@@ -22,6 +22,7 @@
  * @author PhiLiP <philip.npc@gmail.com>
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
@@ -334,7 +335,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 	public function getPreferredVariant() {
 		$req = $this->getURLVariant();
 
-		Hooks::runner()->onGetLangPreferredVariant( $req );
+		$services = MediaWikiServices::getInstance();
+		( new HookRunner( $services->getHookContainer() ) )->onGetLangPreferredVariant( $req );
 
 		if ( !$req ) {
 			$user = RequestContext::getMain()->getUser();
@@ -349,7 +351,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 			}
 		}
 
-		$defaultLanguageVariant = MediaWikiServices::getInstance()->getMainConfig()
+		$defaultLanguageVariant = $services->getMainConfig()
 			->get( MainConfigNames::DefaultLanguageVariant );
 		if ( !$req && $defaultLanguageVariant ) {
 			$req = $this->validateVariant( $defaultLanguageVariant );

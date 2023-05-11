@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 
@@ -177,18 +178,17 @@ class UserPasswordPolicy {
 	 * @return array the effective policy for $user
 	 */
 	public function getPoliciesForUser( UserIdentity $user ) {
+		$services = MediaWikiServices::getInstance();
 		$effectivePolicy = self::getPoliciesForGroups(
 			$this->policies,
-			MediaWikiServices::getInstance()
-				->getUserGroupManager()
+			$services->getUserGroupManager()
 				->getUserEffectiveGroups( $user ),
 			$this->policies['default']
 		);
 
-		$legacyUser = MediaWikiServices::getInstance()
-			->getUserFactory()
+		$legacyUser = $services->getUserFactory()
 			->newFromUserIdentity( $user );
-		Hooks::runner()->onPasswordPoliciesForUser( $legacyUser, $effectivePolicy );
+		( new HookRunner( $services->getHookContainer() ) )->onPasswordPoliciesForUser( $legacyUser, $effectivePolicy );
 
 		return $effectivePolicy;
 	}

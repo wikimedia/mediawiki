@@ -536,9 +536,10 @@ class ChangeTags {
 			}
 		}
 
-		$userObj = $user ? MediaWikiServices::getInstance()->getUserFactory()->newFromUserIdentity( $user ) : null;
-		Hooks::runner()->onChangeTagsAfterUpdateTags( $tagsToAdd, $tagsToRemove, $prevTags,
-			$rc_id, $rev_id, $log_id, $params, $rc, $userObj );
+		$services = MediaWikiServices::getInstance();
+		$userObj = $user ? $services->getUserFactory()->newFromUserIdentity( $user ) : null;
+		( new HookRunner( $services->getHookContainer() ) )->onChangeTagsAfterUpdateTags(
+			$tagsToAdd, $tagsToRemove, $prevTags, $rc_id, $rev_id, $log_id, $params, $rc, $userObj );
 
 		return [ $tagsToAdd, $tagsToRemove, $prevTags ];
 	}
@@ -640,6 +641,7 @@ class ChangeTags {
 		$checkBlock = true
 	) {
 		$user = null;
+		$services = MediaWikiServices::getInstance();
 		if ( $performer !== null ) {
 			if ( !$performer->isAllowed( 'applychangetags' ) ) {
 				return Status::newFatal( 'tags-apply-no-permission' );
@@ -653,12 +655,12 @@ class ChangeTags {
 			}
 
 			// ChangeTagsAllowedAdd hook still needs a full User object
-			$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
+			$user = $services->getUserFactory()->newFromAuthority( $performer );
 		}
 
 		// to be applied, a tag has to be explicitly defined
 		$allowedTags = self::listExplicitlyDefinedTags();
-		Hooks::runner()->onChangeTagsAllowedAdd( $allowedTags, $tags, $user );
+		( new HookRunner( $services->getHookContainer() ) )->onChangeTagsAllowedAdd( $allowedTags, $tags, $user );
 		$disallowedTags = array_diff( $tags, $allowedTags );
 		if ( $disallowedTags ) {
 			return self::restrictedTagError( 'tags-apply-not-allowed-one',
@@ -1404,6 +1406,7 @@ class ChangeTags {
 	 */
 	public static function canCreateTag( $tag, Authority $performer = null ) {
 		$user = null;
+		$services = MediaWikiServices::getInstance();
 		if ( $performer !== null ) {
 			if ( !$performer->isAllowed( 'managechangetags' ) ) {
 				return Status::newFatal( 'tags-manage-no-permission' );
@@ -1415,7 +1418,7 @@ class ChangeTags {
 				);
 			}
 			// ChangeTagCanCreate hook still needs a full User object
-			$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
+			$user = $services->getUserFactory()->newFromAuthority( $performer );
 		}
 
 		$status = self::isTagNameValid( $tag );
@@ -1431,7 +1434,7 @@ class ChangeTags {
 
 		// check with hooks
 		$canCreateResult = Status::newGood();
-		Hooks::runner()->onChangeTagCanCreate( $tag, $user, $canCreateResult );
+		( new HookRunner( $services->getHookContainer() ) )->onChangeTagCanCreate( $tag, $user, $canCreateResult );
 		return $canCreateResult;
 	}
 
@@ -1487,11 +1490,12 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function deleteTagEverywhere( $tag ) {
-		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
+		$services = MediaWikiServices::getInstance();
+		$dbw = $services->getDBLoadBalancerFactory()->getPrimaryDatabase();
 		$dbw->startAtomic( __METHOD__ );
 
 		// fetch tag id, this must be done before calling undefineTag(), see T225564
-		$tagId = MediaWikiServices::getInstance()->getChangeTagDefStore()->getId( $tag );
+		$tagId = $services->getChangeTagDefStore()->getId( $tag );
 
 		// set ctd_user_defined = 0
 		self::undefineTag( $tag );
@@ -1503,7 +1507,7 @@ class ChangeTags {
 
 		// give extensions a chance
 		$status = Status::newGood();
-		Hooks::runner()->onChangeTagAfterDelete( $tag, $status );
+		( new HookRunner( $services->getHookContainer() ) )->onChangeTagAfterDelete( $tag, $status );
 		// let's not allow error results, as the actual tag deletion succeeded
 		if ( !$status->isOK() ) {
 			wfDebug( 'ChangeTagAfterDelete error condition downgraded to warning' );
@@ -1531,6 +1535,7 @@ class ChangeTags {
 	public static function canDeleteTag( $tag, Authority $performer = null, int $flags = 0 ) {
 		$tagUsage = self::tagUsageStatistics();
 		$user = null;
+		$services = MediaWikiServices::getInstance();
 		if ( $performer !== null ) {
 			if ( !$performer->isAllowed( 'deletechangetags' ) ) {
 				return Status::newFatal( 'tags-delete-no-permission' );
@@ -1542,7 +1547,7 @@ class ChangeTags {
 				);
 			}
 			// ChangeTagCanDelete hook still needs a full User object
-			$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
+			$user = $services->getUserFactory()->newFromAuthority( $performer );
 		}
 
 		if ( !isset( $tagUsage[$tag] ) && !in_array( $tag, self::listDefinedTags() ) ) {
@@ -1566,7 +1571,7 @@ class ChangeTags {
 			$status = Status::newGood();
 		}
 
-		Hooks::runner()->onChangeTagCanDelete( $tag, $user, $status );
+		( new HookRunner( $services->getHookContainer() ) )->onChangeTagCanDelete( $tag, $user, $status );
 		return $status;
 	}
 

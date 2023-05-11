@@ -36,6 +36,7 @@
 
 // NO_AUTOLOAD -- file-scope code
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\ConsoleSpi;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -93,7 +94,7 @@ class MediaWikiShell extends Maintenance {
 
 		$this->setupLogging();
 
-		Hooks::runner()->onMaintenanceShellStart();
+		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onMaintenanceShellStart();
 
 		$shell->run();
 	}

@@ -27,12 +27,12 @@ use ContextSource;
 use DerivativeContext;
 use ExternalUserNames;
 use File;
-use Hooks;
 use HtmlArmor;
 use IContextSource;
 use Language;
 use MediaTransformError;
 use MediaTransformOutput;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Html\HtmlHelper;
 use MediaWiki\MainConfigNames;
@@ -200,7 +200,8 @@ class Linker {
 			$attrs['class'] = 'mw-selflink selflink';
 		}
 		$ret = Html::rawElement( 'a', $attrs, $prefix . $html ) . $trail;
-		if ( !Hooks::runner()->onSelfLinkBegin( $nt, $html, $trail, $prefix, $ret ) ) {
+		$hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
+		if ( !$hookRunner->onSelfLinkBegin( $nt, $html, $trail, $prefix, $ret ) ) {
 			return $ret;
 		}
 
@@ -269,7 +270,8 @@ class Linker {
 			$alt = self::fnamePart( $url );
 		}
 		$img = '';
-		$success = Hooks::runner()->onLinkerMakeExternalImage( $url, $alt, $img );
+		$success = ( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+			->onLinkerMakeExternalImage( $url, $alt, $img );
 		if ( !$success ) {
 			wfDebug( "Hook LinkerMakeExternalImage changed the output of external image "
 				. "with url {$url} and alt text {$alt} to {$img}" );
@@ -328,7 +330,8 @@ class Linker {
 		$title = Title::newFromLinkTarget( $title );
 		$res = null;
 		$dummy = new DummyLinker;
-		if ( !Hooks::runner()->onImageBeforeProduceHTML( $dummy, $title,
+		$hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
+		if ( !$hookRunner->onImageBeforeProduceHTML( $dummy, $title,
 			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 			$file, $frameParams, $handlerParams, $time, $res,
 			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
@@ -1027,7 +1030,7 @@ class Linker {
 			'title' => $alt
 		];
 
-		if ( !Hooks::runner()->onLinkerMakeMediaLinkFile(
+		if ( !( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onLinkerMakeMediaLinkFile(
 			Title::newFromLinkTarget( $title ), $file, $html, $attribs, $ret )
 		) {
 			wfDebug( "Hook LinkerMakeMediaLinkFile changed the output of link "
@@ -1126,7 +1129,7 @@ class Linker {
 			$attribs['rel'] = implode( ' ', $combined );
 		}
 		$link = '';
-		$success = Hooks::runner()->onLinkerMakeExternalLink(
+		$success = ( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onLinkerMakeExternalLink(
 			$url, $text, $link, $attribs, $linktype );
 		if ( !$success ) {
 			wfDebug( "Hook LinkerMakeExternalLink changed the output of link "
@@ -1217,7 +1220,8 @@ class Linker {
 			return ' ' . wfMessage( 'empty-username' )->parse();
 		}
 		global $wgLang;
-		$disableAnonTalk = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::DisableAnonTalk );
+		$services = MediaWikiServices::getInstance();
+		$disableAnonTalk = $services->getMainConfig()->get( MainConfigNames::DisableAnonTalk );
 		$talkable = !( $disableAnonTalk && $userId == 0 );
 		$blockable = !( $flags & self::TOOL_LINKS_NOBLOCK );
 		$addEmailLink = $flags & self::TOOL_LINKS_EMAIL && $userId;
@@ -1260,7 +1264,7 @@ class Linker {
 			$items[] = self::emailLink( $userId, $userText );
 		}
 
-		Hooks::runner()->onUserToolLinksEdit( $userId, $userText, $items );
+		( new HookRunner( $services->getHookContainer() ) )->onUserToolLinksEdit( $userId, $userText, $items );
 
 		if ( !$items ) {
 			return '';
@@ -1929,9 +1933,10 @@ class Linker {
 
 		$inner = self::buildRollbackLink( $revRecord, $context, $editCount );
 
+		$services = MediaWikiServices::getInstance();
 		// Allow extensions to modify the rollback link.
 		// Abort further execution if the extension wants full control over the link.
-		if ( !Hooks::runner()->onLinkerGenerateRollbackLink(
+		if ( !( new HookRunner( $services->getHookContainer() ) )->onLinkerGenerateRollbackLink(
 			$revRecord, $context, $options, $inner ) ) {
 			return $inner;
 		}
@@ -1940,10 +1945,10 @@ class Linker {
 			$inner = $context->msg( 'brackets' )->rawParams( $inner )->escaped();
 		}
 
-		if ( MediaWikiServices::getInstance()->getUserOptionsLookup()
+		if ( $services->getUserOptionsLookup()
 			->getBoolOption( $context->getUser(), 'showrollbackconfirmation' )
 		) {
-			$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+			$stats = $services->getStatsdDataFactory();
 			$stats->increment( 'rollbackconfirmation.event.load' );
 			$context->getOutput()->addModules( 'mediawiki.misc-authed-curate' );
 		}

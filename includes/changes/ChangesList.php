@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\CommentFormatter\RowCommentFormatter;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
@@ -102,9 +103,10 @@ class ChangesList extends ContextSource {
 	public static function newFromContext( IContextSource $context, array $groups = [] ) {
 		$user = $context->getUser();
 		$sk = $context->getSkin();
+		$services = MediaWikiServices::getInstance();
 		$list = null;
-		if ( Hooks::runner()->onFetchChangesList( $user, $sk, $list, $groups ) ) {
-			$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+		if ( ( new HookRunner( $services->getHookContainer() ) )->onFetchChangesList( $user, $sk, $list, $groups ) ) {
+			$userOptionsLookup = $services->getUserOptionsLookup();
 			$new = $context->getRequest()->getBool(
 				'enhanced',
 				$userOptionsLookup->getBoolOption( $user, 'usenewrc' )

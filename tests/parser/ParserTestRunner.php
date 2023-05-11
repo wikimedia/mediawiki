@@ -26,6 +26,7 @@
  * @ingroup Testing
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\MainConfigNames;
@@ -2270,7 +2271,7 @@ class ParserTestRunner {
 		}
 
 		/** @since 1.20 */
-		Hooks::runner()->onParserTestGlobals( $setup );
+		( new HookRunner( $mwServices->getHookContainer() ) )->onParserTestGlobals( $setup );
 
 		// Set content language. This invalidates the magic word cache and title services
 		// In addition the ParserFactory needs to be recreated as well.

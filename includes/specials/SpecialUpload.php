@@ -22,6 +22,7 @@
  * @ingroup Upload
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -640,7 +641,8 @@ class SpecialUpload extends SpecialPage {
 		}
 
 		// allow extensions to modify the content
-		Hooks::runner()->onUploadForm_getInitialPageText( $pageText, $msg, $config );
+		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+			->onUploadForm_getInitialPageText( $pageText, $msg, $config );
 
 		return $pageText;
 	}

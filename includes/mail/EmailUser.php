@@ -21,9 +21,9 @@
 namespace MediaWiki\Mail;
 
 use Config;
-use Hooks;
 use IContextSource;
 use MailAddress;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\MultiUsernameFilter;
@@ -129,9 +129,10 @@ class EmailUser {
 	 *  hook error
 	 */
 	public static function getPermissionsError( $user, $editToken, Config $config = null ) {
+		$services = MediaWikiServices::getInstance();
 		if ( $config === null ) {
 			wfDebug( __METHOD__ . ' called without a Config instance passed to it' );
-			$config = MediaWikiServices::getInstance()->getMainConfig();
+			$config = $services->getMainConfig();
 		}
 		if ( !$config->get( MainConfigNames::EnableEmail ) ||
 			!$config->get( MainConfigNames::EnableUserEmail ) ) {
@@ -144,8 +145,7 @@ class EmailUser {
 			return 'mailnologin';
 		}
 
-		if ( !MediaWikiServices::getInstance()
-			->getPermissionManager()
+		if ( !$services->getPermissionManager()
 			->userHasRight( $user, 'sendemail' )
 		) {
 			return 'badaccess';
@@ -167,8 +167,9 @@ class EmailUser {
 
 		$hookErr = false;
 
-		Hooks::runner()->onUserCanSendEmail( $user, $hookErr );
-		Hooks::runner()->onEmailUserPermissionsErrors( $user, $editToken, $hookErr );
+		$hookRunner = new HookRunner( $services->getHookContainer() );
+		$hookRunner->onUserCanSendEmail( $user, $hookErr );
+		$hookRunner->onEmailUserPermissionsErrors( $user, $editToken, $hookErr );
 
 		return $hookErr ?: null;
 	}
@@ -222,8 +223,9 @@ class EmailUser {
 
 		// Services that are needed, will be injected once this is moved to EmailUserUtils
 		// service, see T265541
-		$hookRunner = Hooks::runner();
-		$emailer = MediaWikiServices::getInstance()->getEmailer();
+		$services = MediaWikiServices::getInstance();
+		$hookRunner = new HookRunner( $services->getHookContainer() );
+		$emailer = $services->getEmailer();
 
 		$error = false;
 		if ( !$hookRunner->onEmailUser( $toAddress, $fromAddress, $subject, $text, $error ) ) {

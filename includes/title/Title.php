@@ -31,7 +31,6 @@ use ContentHandler;
 use DBAccessObjectUtils;
 use DeferredUpdates;
 use DeprecationHelper;
-use Hooks;
 use HTMLCacheUpdateJob;
 use IDBAccessObject;
 use ILanguageConverter;
@@ -41,6 +40,7 @@ use LinkCache;
 use MalformedTitleException;
 use MapCacheLRU;
 use MediaWiki\DAO\WikiAwareEntityTrait;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
@@ -1443,8 +1443,9 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @return bool
 	 */
 	public function isMovable() {
+		$services = MediaWikiServices::getInstance();
 		if (
-			!MediaWikiServices::getInstance()->getNamespaceInfo()->
+			!$services->getNamespaceInfo()->
 				isMovable( $this->mNamespace ) || $this->isExternal()
 		) {
 			// Interwiki title or immovable namespace. Hooks don't get to override here
@@ -1452,7 +1453,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		}
 
 		$result = true;
-		Hooks::runner()->onTitleIsMovable( $this, $result );
+		( new HookRunner( $services->getHookContainer() ) )->onTitleIsMovable( $this, $result );
 		return $result;
 	}
 
@@ -2249,7 +2250,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 
 		# Finally, add the fragment.
 		$url .= $this->getFragmentForURL();
-		Hooks::runner()->onGetFullURL( $this, $url, $query );
+		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onGetFullURL( $this, $url, $query );
 		return $url;
 	}
 
@@ -2308,6 +2309,8 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 
 		$query = self::fixUrlQueryArgs( $query, $query2 );
 
+		$services = MediaWikiServices::getInstance();
+		$hookRunner = new HookRunner( $services->getHookContainer() );
 		$interwiki = self::getInterwikiLookup()->fetch( $this->mInterwiki );
 		if ( $interwiki ) {
 			$namespace = $this->getNsText();
@@ -2326,7 +2329,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 				} else {
 					$url = str_replace( '$1', $dbkey, $wgArticlePath );
 				}
-				Hooks::runner()->onGetLocalURL__Article( $this, $url );
+				$hookRunner->onGetLocalURL__Article( $this, $url );
 			} else {
 				global $wgVariantArticlePath, $wgActionPaths;
 				$url = false;
@@ -2353,8 +2356,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 				if ( $url === false
 					&& $wgVariantArticlePath
 					&& preg_match( '/^variant=([^&]*)$/', $query, $matches )
-					&& $this->getPageLanguage()->equals(
-						MediaWikiServices::getInstance()->getContentLanguage() )
+					&& $this->getPageLanguage()->equals( $services->getContentLanguage() )
 					&& $this->getPageLanguageConverter()->hasVariants()
 				) {
 					$variant = urldecode( $matches[1] );
@@ -2373,10 +2375,10 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 					$url = "{$wgScript}?title={$dbkey}&{$query}";
 				}
 			}
-			Hooks::runner()->onGetLocalURL__Internal( $this, $url, $query );
+			$hookRunner->onGetLocalURL__Internal( $this, $url, $query );
 		}
 
-		Hooks::runner()->onGetLocalURL( $this, $url, $query );
+		$hookRunner->onGetLocalURL( $this, $url, $query );
 		return $url;
 	}
 
@@ -2427,7 +2429,8 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		$query = self::fixUrlQueryArgs( $query, $query2 );
 		$server = $wgInternalServer !== false ? $wgInternalServer : $wgServer;
 		$url = wfExpandUrl( $server . $this->getLocalURL( $query ), PROTO_HTTP );
-		Hooks::runner()->onGetInternalURL( $this, $url, $query );
+		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+			->onGetInternalURL( $this, $url, $query );
 		return $url;
 	}
 
@@ -2447,7 +2450,8 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	public function getCanonicalURL( $query = '', $query2 = false ) {
 		$query = self::fixUrlQueryArgs( $query, $query2 );
 		$url = wfExpandUrl( $this->getLocalURL( $query ) . $this->getFragmentForURL(), PROTO_CANONICAL );
-		Hooks::runner()->onGetCanonicalURL( $this, $url, $query );
+		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+			->onGetCanonicalURL( $this, $url, $query );
 		return $url;
 	}
 
@@ -3339,7 +3343,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 */
 	public function exists( $flags = 0 ): bool {
 		$exists = $this->getArticleID( $flags ) != 0;
-		Hooks::runner()->onTitleExists( $this, $exists );
+		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onTitleExists( $this, $exists );
 		return $exists;
 	}
 
@@ -3362,6 +3366,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	public function isAlwaysKnown() {
 		$isKnown = null;
 
+		$services = MediaWikiServices::getInstance();
 		/**
 		 * Allows overriding default behavior for determining if a page exists.
 		 * If $isKnown is kept as null, regular checks happen. If it's
@@ -3372,7 +3377,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		 * @param Title $title
 		 * @param bool|null $isKnown
 		 */
-		Hooks::runner()->onTitleIsAlwaysKnown( $this, $isKnown );
+		( new HookRunner( $services->getHookContainer() ) )->onTitleIsAlwaysKnown( $this, $isKnown );
 
 		if ( $isKnown !== null ) {
 			return $isKnown;
@@ -3382,7 +3387,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			return true; // any interwiki link might be viewable, for all we know
 		}
 
-		$services = MediaWikiServices::getInstance();
 		switch ( $this->mNamespace ) {
 			case NS_MEDIA:
 			case NS_FILE:
@@ -3738,7 +3742,8 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		// on the Title object passed in, and should probably
 		// tell the users to run updateCollations.php --force
 		// in order to re-sort existing category relations.
-		Hooks::runner()->onGetDefaultSortkey( $this, $unprefixed );
+		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+			->onGetDefaultSortkey( $this, $unprefixed );
 		if ( $prefix !== '' ) {
 			# Separate with a line feed, so the unprefixed part is only used as
 			# a tiebreaker when two pages have the exact same prefix.
@@ -3955,7 +3960,8 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			}
 		}
 
-		Hooks::runner()->onTitleGetEditNotices( $this, $oldid, $notices );
+		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+			->onTitleGetEditNotices( $this, $oldid, $notices );
 		return $notices;
 	}
 

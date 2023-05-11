@@ -39,6 +39,7 @@
  * @ingroup entrypoint
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\TemplateParser;
 use MediaWiki\Title\Title;
 
@@ -149,6 +150,7 @@ function wfImageAuthMain() {
 
 	$title = Title::makeTitleSafe( NS_FILE, $name );
 
+	$hookRunner = new HookRunner( $services->getHookContainer() );
 	if ( !$publicWiki ) {
 		// For private wikis, run extra auth checks and set cache control headers
 		$headers['Cache-Control'] = 'private';
@@ -162,7 +164,7 @@ function wfImageAuthMain() {
 		// Run hook for extension authorization plugins
 		/** @var array $result */
 		$result = null;
-		if ( !Hooks::runner()->onImgAuthBeforeStream( $title, $path, $name, $result ) ) {
+		if ( !$hookRunner->onImgAuthBeforeStream( $title, $path, $name, $result ) ) {
 			wfForbidden( $result[0], $result[1], array_slice( $result, 2 ) );
 			return;
 		}
@@ -188,7 +190,7 @@ function wfImageAuthMain() {
 	}
 
 	// Allow modification of headers before streaming a file
-	Hooks::runner()->onImgAuthModifyHeaders( $title->getTitleValue(), $headers );
+	$hookRunner->onImgAuthModifyHeaders( $title->getTitleValue(), $headers );
 
 	// Stream the requested file
 	[ $headers, $options ] = HTTPFileStreamer::preprocessHeaders( $headers );

@@ -23,6 +23,9 @@
  * @since 1.19
  */
 
+use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MediaWikiServices;
+
 /**
  * This class formats all log entries for log types
  * which have not been converted to the new system.
@@ -117,8 +120,8 @@ class LegacyLogFormatter extends LogFormatter {
 
 		$params = $this->entry->getParameters();
 
-		Hooks::runner()->onLogLine( $type, $subtype, $title, $params, $this->comment,
-			$this->revert, $this->entry->getTimestamp() );
+		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onLogLine(
+			$type, $subtype, $title, $params, $this->comment, $this->revert, $this->entry->getTimestamp() );
 
 		return $this->revert;
 	}

@@ -21,6 +21,7 @@
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\EditPage\EditPage;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
@@ -185,8 +186,9 @@ class Article implements Page {
 		}
 
 		$page = null;
-		// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
-		Hooks::runner()->onArticleFromTitle( $title, $page, $context );
+		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
+			->onArticleFromTitle( $title, $page, $context );
 		if ( !$page ) {
 			switch ( $title->getNamespace() ) {
 				case NS_FILE:
@@ -496,7 +498,8 @@ class Article implements Page {
 
 		$poOptions = [];
 		# Allow extensions to vary parser options used for article rendering
-		Hooks::runner()->onArticleParserOptions( $this, $parserOptions );
+		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+			->onArticleParserOptions( $this, $parserOptions );
 		# Render printable version, use printable version cache
 		if ( $outputPage->isPrintable() ) {
 			$parserOptions->setIsPrintable( true );

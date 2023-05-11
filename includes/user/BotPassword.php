@@ -20,6 +20,7 @@
 
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\Throttler;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\BotPasswordSessionProvider;
@@ -508,7 +509,8 @@ class BotPassword implements IDBAccessObject {
 		} else {
 			$response = AuthenticationResponse::newFail( $status->getMessage() );
 		}
-		Hooks::runner()->onAuthManagerLoginAuthenticateAudit( $response, $user, $name, $extraData );
+		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+			->onAuthManagerLoginAuthenticateAudit( $response, $user, $name, $extraData );
 
 		return $status;
 	}

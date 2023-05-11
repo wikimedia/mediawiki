@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
@@ -73,9 +74,10 @@ class RecentChangesUpdateJob extends Job {
 	}
 
 	protected function purgeExpiredRows() {
-		$rcMaxAge = MediaWikiServices::getInstance()->getMainConfig()->get(
+		$services = MediaWikiServices::getInstance();
+		$rcMaxAge = $services->getMainConfig()->get(
 			MainConfigNames::RCMaxAge );
-		$updateRowsPerQuery = MediaWikiServices::getInstance()->getMainConfig()->get(
+		$updateRowsPerQuery = $services->getMainConfig()->get(
 			MainConfigNames::UpdateRowsPerQuery );
 		$dbw = wfGetDB( DB_PRIMARY );
 		$lockKey = $dbw->getDomainID() . ':recentchanges-prune';
@@ -84,8 +86,9 @@ class RecentChangesUpdateJob extends Job {
 			return;
 		}
 
-		$factory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$factory = $services->getDBLoadBalancerFactory();
 		$ticket = $factory->getEmptyTransactionTicket( __METHOD__ );
+		$hookRunner = new HookRunner( $services->getHookContainer() );
 		$cutoff = $dbw->timestamp( time() - $rcMaxAge );
 		$rcQuery = RecentChange::getQueryInfo();
 		do {
@@ -105,7 +108,7 @@ class RecentChangesUpdateJob extends Job {
 			}
 			if ( $rcIds ) {
 				$dbw->delete( 'recentchanges', [ 'rc_id' => $rcIds ], __METHOD__ );
-				Hooks::runner()->onRecentChangesPurgeRows( $rows );
+				$hookRunner->onRecentChangesPurgeRows( $rows );
 				// There might be more, so try waiting for replica DBs
 				if ( !$factory->commitAndWaitForReplication(
 					__METHOD__, $ticket, [ 'timeout' => 3 ]
