@@ -739,32 +739,20 @@ class LanguageKk_cyrl extends Language {
 	 * @return array
 	 */
 	private function lastLetter( $word, $allVowels ) {
-		$lastLetter = [];
-
 		// Put the word in a form we can play with since we're using UTF-8
-		$ar = preg_split( '//u', parent::lc( $word ), -1, PREG_SPLIT_NO_EMPTY );
-
-		// Here's an array with the order of the letters in the word reversed
-		// so we can find a match quicker *shrug*
-		$wordReversed = array_reverse( $ar );
+		$ar = mb_str_split( parent::lc( $word ), 1 );
 
 		// Here's the last letter in the word
-		$lastLetter[0] = $ar[count( $ar ) - 1];
+		$lastLetter = end( $ar );
 
 		// Find the last vowel in the word
-		$lastLetter[1] = null;
-		foreach ( $wordReversed as $xvalue ) {
-			foreach ( $allVowels as $yvalue ) {
-				if ( $xvalue === $yvalue ) {
-					$lastLetter[1] = $xvalue;
-					break;
-				}
-			}
-			if ( $lastLetter[1] !== null ) {
-				break;
+		for ( $i = count( $ar ); $i--; ) {
+			$lastVowel = $ar[$i];
+			if ( in_array( $lastVowel, $allVowels, true ) ) {
+				return [ $lastLetter, $lastVowel ];
 			}
 		}
 
-		return $lastLetter;
+		return [ $lastLetter, null ];
 	}
 }

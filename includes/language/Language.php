@@ -4024,10 +4024,9 @@ class Language implements Bcp47Code {
 	 */
 	public function translateBlockExpiry( $str, UserIdentity $user = null, $now = 0 ) {
 		$duration = SpecialBlock::getSuggestedDurations( $this );
-		foreach ( $duration as $show => $value ) {
-			if ( $str === $value ) {
-				return trim( $show );
-			}
+		$show = array_search( $str, $duration, true );
+		if ( $show !== false ) {
+			return trim( $show );
 		}
 
 		if ( wfIsInfinity( $str ) ) {
