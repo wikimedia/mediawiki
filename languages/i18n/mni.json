@@ -1086,5 +1086,7 @@
 	"skin-view-edit-local": "ꯑꯀꯨꯞꯄ ꯋꯥꯔꯣꯜ ꯁꯦꯃꯒꯠ ꯁꯥꯒꯠꯂꯨ",
 	"skin-action-protect": "ꯉꯥꯛꯊꯣꯛꯎ",
 	"skin-action-delete": "ꯀꯛꯊꯠꯄꯥ",
-	"skin-action-move": "ꯂꯦꯡꯍꯟꯕꯥ"
+	"skin-action-move": "ꯂꯦꯡꯍꯟꯕꯥ",
+	"blockedtext-made-by": "ꯑꯊꯤꯡꯕ ꯑꯁꯤ $1ꯅꯥ ꯄꯤꯔꯛꯄꯅꯤ ꯫",
+	"blockedtext-reason-comment": "ꯃꯔꯝ ꯑꯁꯤ $1ꯗ ꯂꯩꯔꯦ"
 }

@@ -83,6 +83,7 @@
 	"apihelp-move-param-noredirect": "Ne ustvari preusmeritve.",
 	"apihelp-opensearch-param-search": "Iskalni niz.",
 	"apihelp-opensearch-param-format": "Oblika izhoda.",
+	"apihelp-opensearch-example-te": "Iskanje strani, ki se začnejo s <kbd>Te</kbd>.",
 	"apihelp-parse-paramvalue-prop-categories": "Poda kategorije v razčlenjenem vikibesedilu.",
 	"apihelp-parse-paramvalue-prop-sections": "Poda razdelke v razčlenjenem vikibesedilu.",
 	"apihelp-parse-param-preview": "Razčleni v načinu predogleda.",

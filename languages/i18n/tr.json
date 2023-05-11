@@ -3290,7 +3290,7 @@
 	"friday-at": "$1 Cuma günü",
 	"saturday-at": "$1 Cumartesi günü",
 	"sunday-at": "$1 Pazar günü",
-	"yesterday-at": "$1 dün itibariyle",
+	"yesterday-at": "$1 dün itibarıyla",
 	"bad_image_list": "Biçim aşağıdaki gibidir:\n\nSadece liste öğeleri (* ile başlayan satırlar) dikkate alınmaktadır.\nSatırdaki ilk bağlantı, kötü dosyaya giden bir bağlantı olmalıdır.\nTakip eden bağlantılar istisna olarak kabul edilmektedir. Örneğin: dosya, sayfada satır içinde görünebilir.",
 	"variantname-tg": "tg",
 	"metadata": "Meta veri",

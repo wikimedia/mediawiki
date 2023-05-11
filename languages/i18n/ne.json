@@ -2218,7 +2218,7 @@
 	"sp-contributions-newonly": "पृष्ठ निर्माण सम्बन्धि सम्पादनहरू मात्रै देखाउनुहोस्",
 	"sp-contributions-hideminor": "साना सम्पादनहरू लुकाउनुहोस्",
 	"sp-contributions-submit": "खोज्नुहोस्",
-	"whatlinkshere": "यहाँ के जोडिन्छ",
+	"whatlinkshere": "यहाँके जोडिन्छ",
 	"whatlinkshere-count": "$1 {{PLURAL:$1|पृष्ठ|पृष्ठहरू}} देखाइएको छ।",
 	"whatlinkshere-title": "\"$1\"सँग जोडिएका पृष्ठहरू",
 	"whatlinkshere-page": "पृष्ठ:",
@@ -3455,6 +3455,7 @@
 	"renameuser-page-moved": "$1 पृष्ठलाई $2मा सारियो।",
 	"renameuser-page-unmoved": "$1 पृष्ठलाई $2 मा सार्न सकिएन ।",
 	"log-name-renameuser": "प्रयोगकर्ता पुन: नामकरण अभिलेख",
+	"log-description-renameuser": "यो प्रयोगकर्ता नामहरूमा परिवर्तनहरूको अभिलेख हो।",
 	"logentry-renameuser-renameuser-legacier": "$1ले प्रयोगकर्ता $4लाई प्रयोगकर्ता {{GENDER:$7|$5}}मा {{GENDER:$2|पुन: नामाकरण}} गर्नुभयो",
 	"renameuser-move-log": "{{GENDER:$2|प्रयोगकर्ता}} \"$1\"लाई \"$2\"मा पुन: नामाकरण गर्दा पृष्ठ स्वचालित रूपमा सारियो"
 }

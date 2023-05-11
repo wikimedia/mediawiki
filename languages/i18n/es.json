@@ -236,7 +236,8 @@
 			"ZhaleyLeitnib",
 			"לערי ריינהארט",
 			"ديفيد",
-			"아라"
+			"아라",
+			"No se"
 		]
 	},
 	"tog-underline": "Subrayar enlaces:",
@@ -4306,5 +4307,5 @@
 	"renameuser-move-log": "Página trasladada automáticamente al cambiar el nombre {{GENDER:$2|del usuario|de la usuaria}} de «[[User:$1|$1]]» a «[[User:$2|$2]]»",
 	"action-renameuser": "cambiar nombres de usuarios",
 	"right-renameuser": "Cambiar nombres de usuarios",
-	"renameuser-renamed-notice": "Se cambió el nombre de {{GENDER:$1|este usuario|esta usuaria}}.\nA continuación se muestra el registro de cambios de nombre de usuario como referencia."
+	"renameuser-renamed-notice": "Este usuario ha sido renombrado.\nEl registro de cambio de nombre se proporciona a continuación como referencia."
 }

@@ -2772,7 +2772,7 @@
 	"movereason": "เหตุผล:",
 	"moveotherreason": "เหตุผลอื่น/เพิ่มเติม:",
 	"movereasonotherlist": "เหตุผลอื่น",
-	"movepage-reason-dropdown": "* เหตุผลในการย้ายทั่วไป\n** ชื่อเรื่องสะกดผิด",
+	"movepage-reason-dropdown": "* เหตุผลในการย้ายทั่วไป\n** ชื่อสะกดผิด\n** เปลี่ยนชื่อ\n** ทับศัพท์",
 	"movepage-edit-reasonlist": "แก้ไขเหตุผลการย้าย",
 	"revertmove": "ย้อน",
 	"delete_and_move_text": "มีหน้าปลายทาง \"[[:$1]]\" แล้ว \nคุณต้องการลบหน้าดังกล่าวเพื่อสร้างทางสำหรับการย้ายหรือไม่",
