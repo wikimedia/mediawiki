@@ -486,8 +486,8 @@ function wfGetUrlUtils(): UrlUtils {
 }
 
 /**
- * Expand a potentially local URL to a fully-qualified URL. Assumes $wgServer
- * is correct.
+ * Expand a potentially local URL to a fully-qualified URL using $wgServer
+ * (or one of its alternatives).
  *
  * The meaning of the PROTO_* constants is as follows:
  * PROTO_HTTP: Output a URL starting with http://
@@ -499,10 +499,16 @@ function wfGetUrlUtils(): UrlUtils {
  *    For protocol-relative URLs, use the protocol of $wgCanonicalServer
  * PROTO_INTERNAL: Like PROTO_CANONICAL, but uses $wgInternalServer instead of $wgCanonicalServer
  *
+ * If $url specifies a protocol, or $url is domain-relative and $wgServer
+ * specifies a protocol, PROTO_HTTP, PROTO_HTTPS, PROTO_RELATIVE and
+ * PROTO_CURRENT do not change that.
+ *
+ * Parent references (/../) in the path are resolved (as in wfRemoveDotSegments).
+ *
  * @deprecated since 1.39, use UrlUtils::expand()
- * @param string $url Either fully-qualified or a local path + query
- * @param string|int|null $defaultProto One of the PROTO_* constants. Determines the
- *    protocol to use if $url or $wgServer is protocol-relative
+ * @param string $url An URL; can be absolute (e.g. http://example.com/foo/bar),
+ *    protocol-relative (//example.com/foo/bar) or domain-relative (/foo/bar).
+ * @param string|int|null $defaultProto One of the PROTO_* constants, as described above.
  * @return string|false Fully-qualified URL, current-path-relative URL or false if
  *    no valid URL can be constructed
  */

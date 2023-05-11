@@ -94,7 +94,8 @@ class UrlUtils {
 	}
 
 	/**
-	 * Expand a potentially local URL to a fully-qualified URL.
+	 * Expand a potentially local URL to a fully-qualified URL using $wgServer
+	 * (or one of its alternatives).
 	 *
 	 * The meaning of the PROTO_* constants is as follows:
 	 * PROTO_HTTP: Output a URL starting with http://
@@ -106,12 +107,18 @@ class UrlUtils {
 	 *   protocol-relative URLs, use the protocol of CANONICAL_SERVER
 	 * PROTO_INTERNAL: Like PROTO_CANONICAL, but uses INTERNAL_SERVER instead of CANONICAL_SERVER
 	 *
+	 * If $url specifies a protocol, or $url is domain-relative and $wgServer
+	 * specifies a protocol, PROTO_HTTP, PROTO_HTTPS, PROTO_RELATIVE and
+	 * PROTO_CURRENT do not change that.
+	 *
+	 * Parent references (/../) in the path are resolved (as in wfRemoveDotSegments).
+	 *
 	 * @todo this won't work with current-path-relative URLs like "subdir/foo.html", etc.
 	 *
 	 * @throws BadMethodCallException if no server was passed to the constructor
-	 * @param string $url Either fully-qualified or a local path + query
-	 * @param string|int|null $defaultProto One of the PROTO_* constants. Determines the
-	 *    protocol to use if $url or SERVER is protocol-relative
+	 * @param string $url An URL; can be absolute (e.g. http://example.com/foo/bar),
+	 *    protocol-relative (//example.com/foo/bar) or domain-relative (/foo/bar).
+	 * @param string|int|null $defaultProto One of the PROTO_* constants, as described above.
 	 * @return ?string Fully-qualified URL, current-path-relative URL or null if
 	 *    no valid URL can be constructed
 	 */
