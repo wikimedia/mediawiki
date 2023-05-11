@@ -28,12 +28,14 @@
 	var postEdit = mw.config.get( 'wgPostEdit' );
 
 	var config = require( './config.json' );
+	var contLangMessages = require( './contLangMessages.json' );
 
 	function showTempUserPopup() {
 		var title = mw.message( 'postedit-temp-created-label' ).text();
 		var $content = mw.message(
 			'postedit-temp-created',
-			mw.util.getUrl( 'Special:CreateAccount' )
+			mw.util.getUrl( 'Special:CreateAccount' ),
+			contLangMessages[ 'tempuser-helppage' ]
 		).parseDom();
 
 		var $usernameLink = $( '.mw-userpage-tmp' );
