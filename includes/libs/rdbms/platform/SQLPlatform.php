@@ -1160,7 +1160,7 @@ class SQLPlatform implements ISQLPlatform {
 	 * @return bool
 	 */
 	public function isQuotedIdentifier( $name ) {
-		return $name[0] == '"' && substr( $name, -1, 1 ) == '"';
+		return strlen( $name ) > 1 && $name[0] === '"' && $name[-1] === '"';
 	}
 
 	/**

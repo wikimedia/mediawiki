@@ -44,7 +44,7 @@ class MySQLPlatform extends SQLPlatform {
 	 * @return bool
 	 */
 	public function isQuotedIdentifier( $name ) {
-		return strlen( $name ) && $name[0] == '`' && substr( $name, -1, 1 ) == '`';
+		return strlen( $name ) > 1 && $name[0] === '`' && $name[-1] === '`';
 	}
 
 	public function buildStringCast( $field ) {
