@@ -134,16 +134,45 @@ because of Phabricator reports.
 * CommentStore::getStore(), deprecated since 1.31, has been removed.
 * Article::getRedirectHeaderHtml() no longer accepts an array as $target.
   Passing an array was deprecated in 1.39.
+* BagOStuff::addBusyCallback(), deprecated since 1.39, has been removed.
 * IDatabase::wasErrorReissuable(), deprecated since 1.40, has been removed.
+* IDatabase::lastQuery and IReadableDatabase::lastQuery, deprecated in 1.40,
+  have been removed.
+* Database::queryMulti(), unused, has been removed without deprecation.
+  The protected Database::doMultiStatementQuery method was removed, and the
+  protected Database::executeQuery method signature was changed to take
+  Query object as argument instead of a raw SQL string.
+* Database::unionConditionPermutations(), unused, has been removed without
+  deprecation.
+* The following DatabasePostgres methods were unused and have been removed:
+  - ::currentSequenceValue()
+  - ::triggerExists()
+  - ::ruleExists()
+* The following IDatabase methods were unused and removed without deprecation:
+  - ::wasLockTimeout()
+  - ::wasConnectionLoss()
+* Database::getTempTableWrites(), previously protected, is now private.
+* DatabasePostgres class parameter "keywordTableMap", deprecated since 1.37,
+  has been removed.
+* SelectQueryBuilder::lockForUpdate(), deprecated in 1.40 and unused,
+  has been removed without hard deprecation.
+* ILoadBalancer::closeConnection, unused, has been removed without deprecation.
+* ILoadBalancer::waitFor, unused, has been removed without deprecation.
+* ILBFactory::resolveDomainID, unused, has been removed without deprecation.
+* The following methods have been moved from ILoadBalancer to
+  ILoadBalancerForOwner:
+  - ::redefineLocalDomain()
+  - ::hasPrimaryConnection()
+  - ::setIndexAliases()
+* LBFactory::makeCookieValueFromCPIndex() and ::getCPInfoFromCookieValue()
+  has been moved to ChronologyProtector class without backward compatability
+  as they are not supposed to be used outside of core.
 * MWHttpRequest::factory(), deprecated since 1.34, has been removed.
 * The Http class, deprecated since 1.34, with the functions ::request(),
   ::get(), ::post(), ::userAgent(), ::isValidURI(), ::getProxy(),
   ::createMultiClient() have been removed.
 * WikiPage::factory(), ::newFromID() and ::newFromRow, deprecated in 1.36,
   have been removed.
-* The following unused IDatabase methods were removed without deprecation:
-  - ::wasLockTimeout()
-  - ::wasConnectionLoss()
 * The GenericArrayObject class, deprecated in 1.40,
   has been removed.
 * The $replace parameter has been removed from HookContainer::scopedRegister.
@@ -179,13 +208,6 @@ because of Phabricator reports.
 * Overriding the method IndexPager::makeLink(), deprecated in 1.39,
   is no longer possible.
 * MagicWordFactory::getCacheTime() is deprecated and returns -1.
-* IDatabase::lastQuery and IReadableDatabase::lastQuery, deprecated in 1.40,
-  is now removed.
-* Protected method Database::executeQuery now only takes Query object as
-  argument instead of raw SQL string.
-* Protected method Database::getTempTableWrites() is now private.
-* Config parameter keywordTableMap in DatabasePostgres, deprecated since 1.37,
-  has been removed.
 * Various mediawiki.less mediawiki.ui variables, deprecated in 1.35, have been
   removed. See also below that the remaining mediawiki.ui variables are now also
   deprecated.
@@ -195,9 +217,6 @@ because of Phabricator reports.
 * The following functions from the mediawiki.mixins Less import, deprecated
   since 1.37, have been removed: .transition(), .transition-transform(),
   .transform() and .transform-origin().
-* Database::queryMulti() has been removed without deprecation as it's not used
-  anywhere. Likewise, protected Database::doMultiStatementQuery is dropped and
-  executeQuery signature has changed.
 * Support was dropped for skins with paths relative to core which has been
   sending deprecation notices since 1.37. The skin `templateDirectory` key
   should now always be relative to the skin.
@@ -210,13 +229,6 @@ because of Phabricator reports.
   instead of two rows, one for HTTP and one for HTTPS.
 * MediaWikiIntegrationTestCase::getTestUser(), ::getTestSysop(), and
   ::getMutableTestUser() have been made protected and non-static.
-* The following methods in the DatabasePostgres class, unused, have been
-  removed:
-  - ::currentSequenceValue()
-  - ::triggerExists()
-  - ::ruleExists()
-* Database::unionConditionPermutations(), unused everywhere, have been removed
-  without deprecation.
 * Saving preferences for a temporary user now throws an error (e.g. via
   UserOptionsManager::saveOptions)
 * ApiQuery::getNamedDB() and ApiQueryBase::selectNamedDB(), deprecated in
@@ -224,8 +236,6 @@ because of Phabricator reports.
 * ChangeTags::addTagsAccompanyingChangeWithChecks() and
   ChangeTags::undefineTag() unused everywhere, have been removed without
   deprecation.
-* SelectQueryBuilder::lockForUpdate(), deprecated in 1.40 and unused,
-  has been removed without hard deprecation.
 * SkinTemplateNavigation and SkinTemplateNavigation::SpecialPage hooks,
   deprecated in 1.39, have been removed.
 * Support of the third parameter of LogEventsListGetExtraInputs hook,
@@ -248,21 +258,6 @@ because of Phabricator reports.
 * ParserOutput::hideNewSection(), deprecated since 1.38, has been removed.
 * Many LocalisationCache constants, properties and methods that have no known
   usage outside of the class have been made private without deprecation.
-* ILoadBalancer::closeConnection() has been made removed and
-  LoadBalancer::closeConnection() has been made private as they are not used
-  anywhere.
-* ILoadBalancer::waitFor has been removed without deprecation as it's not used
-  anywhere.
-* ILBFactory::resolveDomainID() has been removed without deprecation as it's
-  not used anywhere.
-* The following methods have been moved from ILoadBalancer to
-  ILoadBalancerForOwner:
-  - ::redefineLocalDomain()
-  - ::hasPrimaryConnection()
-  - ::setIndexAliases()
-* LBFactory::makeCookieValueFromCPIndex() and ::getCPInfoFromCookieValue()
-  has been moved to ChronologyProtector class without backward compatability
-  as they are not supposed to be used outside of core.
 * …
 
 === Deprecations in 1.41 ===

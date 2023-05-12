@@ -831,10 +831,6 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		return $mainValue;
 	}
 
-	final public function addBusyCallback( callable $workCallback ) {
-		wfDeprecated( __METHOD__, '1.39' );
-	}
-
 	/**
 	 * Check if a value should use a segmentation wrapper due to its size
 	 *

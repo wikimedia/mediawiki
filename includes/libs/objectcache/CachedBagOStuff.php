@@ -280,10 +280,6 @@ class CachedBagOStuff extends BagOStuff {
 		);
 	}
 
-	public function addBusyCallback( callable $workCallback ) {
-		$this->store->addBusyCallback( $workCallback );
-	}
-
 	public function setMockTime( &$time ) {
 		parent::setMockTime( $time );
 		$this->procCache->setMockTime( $time );

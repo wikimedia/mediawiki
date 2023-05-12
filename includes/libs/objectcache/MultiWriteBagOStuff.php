@@ -323,10 +323,6 @@ class MultiWriteBagOStuff extends BagOStuff {
 		return $key;
 	}
 
-	public function addBusyCallback( callable $workCallback ) {
-		$this->caches[0]->addBusyCallback( $workCallback );
-	}
-
 	public function setMockTime( &$time ) {
 		parent::setMockTime( $time );
 		foreach ( $this->caches as $cache ) {
