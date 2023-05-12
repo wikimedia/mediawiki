@@ -167,9 +167,10 @@ class UserGroupMembership {
 	 *
 	 * @param string $group Internal group name
 	 * @return string Localized friendly group name
-	 * @deprecated since 1.38, use Language::getGroupName or Message::userGroupParams
+	 * @deprecated since 1.38, use Language::getGroupName or Message::userGroupParams, hard-deprecated in 1.41
 	 */
 	public static function getGroupName( $group ) {
+		wfDeprecated( __METHOD__, '1.41' );
 		return RequestContext::getMain()->getLanguage()->getGroupName( $group );
 	}
 
@@ -181,9 +182,10 @@ class UserGroupMembership {
 	 * @param string|UserIdentity $member Username or UserIdentity of member for gender
 	 * @return string Localized name for group member
 	 * @deprecated since 1.40, use Language::getGroupMemberName or
-	 *   Message::objectParm with instance of UserGroupMembershipParam
+	 *   Message::objectParm with instance of UserGroupMembershipParam, hard-deprecated in 1.41
 	 */
 	public static function getGroupMemberName( $group, $member ) {
+		wfDeprecated( __METHOD__, '1.41' );
 		return RequestContext::getMain()->getLanguage()->getGroupMemberName( $group, $member );
 	}
 

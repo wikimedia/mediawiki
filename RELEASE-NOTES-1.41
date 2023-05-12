@@ -225,6 +225,9 @@ because of Phabricator reports.
   warnings. Use MediaWiki\Languages\LanguageFactory::getLanguage instead.
 * virtualrest::SwiftVirtualRESTService is deprecated in 1.41 and now emits
   deprecation warnings.
+* UserGroupMembership::getGroupName(), deprecated in 1.38, and
+  UserGroupMembership::getGroupMemberName(), deprecated in 1.40, now emit
+  deprecation warnings.
 * …
 
 === Other changes in 1.41 ===
