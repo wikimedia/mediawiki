@@ -256,17 +256,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			throw new LogicException( __METHOD__ . ': already connected' );
 		}
 		// Establish the connection
-		$this->doInitConnection();
-		$this->lastPing = microtime( true );
-	}
-
-	/**
-	 * Actually connect to the database over the wire (or to local files)
-	 *
-	 * @throws DBConnectionError
-	 * @since 1.31
-	 */
-	protected function doInitConnection() {
 		$this->open(
 			$this->connectionParams[self::CONN_HOST],
 			$this->connectionParams[self::CONN_USER],
@@ -275,6 +264,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->connectionParams[self::CONN_INITIAL_SCHEMA],
 			$this->connectionParams[self::CONN_INITIAL_TABLE_PREFIX]
 		);
+		$this->lastPing = microtime( true );
 	}
 
 	/**
@@ -370,22 +360,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function getServerInfo() {
 		return $this->getServerVersion();
-	}
-
-	/**
-	 * Get important session state that cannot be recovered upon connection loss
-	 *
-	 * @return CriticalSessionInfo
-	 */
-	private function getCriticalSessionInfo(): CriticalSessionInfo {
-		return new CriticalSessionInfo(
-			$this->transactionManager->getTrxId(),
-			$this->transactionManager->explicitTrxActive(),
-			$this->transactionManager->pendingWriteCallers(),
-			$this->transactionManager->pendingPreCommitCallbackCallers(),
-			$this->sessionNamedLocks,
-			$this->sessionTempTables
-		);
 	}
 
 	public function tablePrefix( $prefix = null ) {
@@ -636,24 +610,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Make sure that this server is not marked as a replica nor read-only
-	 *
-	 * @throws DBReadOnlyError
-	 * @since 1.37
-	 */
-	protected function assertIsWritablePrimary() {
-		$info = $this->getReadOnlyReason();
-		if ( $info ) {
-			[ $reason, $source ] = $info;
-			if ( $source === 'role' ) {
-				throw new DBReadOnlyRoleError( $this, "Database is read-only: $reason" );
-			} else {
-				throw new DBReadOnlyError( $this, "Database is read-only: $reason" );
-			}
-		}
-	}
-
-	/**
 	 * Closes underlying database connection
 	 * @return bool Whether connection was closed successfully
 	 * @since 1.20
@@ -756,21 +712,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
-	/**
-	 * Check if the table is both a TEMPORARY table and has not yet received CRUD operations
-	 *
-	 * @param string $table
-	 * @return bool
-	 * @since 1.35
-	 */
-	protected function isPristineTemporaryTable( $table ) {
-		$rawTable = $this->tableName( $table, 'raw' );
-
-		return isset( $this->sessionTempTables[$rawTable] )
-			? $this->sessionTempTables[$rawTable]['pristine']
-			: false;
-	}
-
 	public function query( $sql, $fname = __METHOD__, $flags = 0 ) {
 		if ( !( $sql instanceof Query ) ) {
 			$flags = (int)$flags; // b/c; this field used to be a bool
@@ -828,7 +769,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			// Permit temporary table writes on replica connections, but require a writable
 			// master connection for writes to persistent tables.
 			if ( $isPermWrite ) {
-				$this->assertIsWritablePrimary();
+				$info = $this->getReadOnlyReason();
+				if ( $info ) {
+					[ $reason, $source ] = $info;
+					if ( $source === 'role' ) {
+						throw new DBReadOnlyRoleError( $this, "Database is read-only: $reason" );
+					} else {
+						throw new DBReadOnlyError( $this, "Database is read-only: $reason" );
+					}
+				}
 				// DBConnRef uses QUERY_REPLICA_ROLE to enforce replica roles during query()
 				if ( $this->flagsHolder::contains( $sql->getFlags(), self::QUERY_REPLICA_ROLE ) ) {
 					throw new DBReadOnlyRoleError(
@@ -900,8 +849,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		bool $isPermWrite
 	) {
 		// Transaction attributes before issuing this query
-		$priorSessInfo = $this->getCriticalSessionInfo();
-
+		$priorSessInfo = new CriticalSessionInfo(
+			$this->transactionManager->getTrxId(),
+			$this->transactionManager->explicitTrxActive(),
+			$this->transactionManager->pendingWriteCallers(),
+			$this->transactionManager->pendingPreCommitCallbackCallers(),
+			$this->sessionNamedLocks,
+			$this->sessionTempTables
+		);
 		// Get the transaction-aware SQL string used for profiling
 		$prefix = ( $this->getTopologyRole() === self::ROLE_STREAMING_MASTER ) ? 'role-primary: ' : '';
 		$generalizedSql = new GeneralizedSql( $sql->getSQL(), $prefix );
@@ -1249,18 +1204,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	protected function doHandleSessionLossPreconnect() {
 		// no-op
-	}
-
-	/**
-	 * Clean things up after session (and thus transaction) loss after reconnect
-	 */
-	private function handleSessionLossPostconnect() {
-		// Handle callbacks in trxEndCallbacks, e.g. onTransactionResolution().
-		// If callback suppression is set then the array will remain unhandled.
-		$this->runOnTransactionIdleCallbacks( self::TRIGGER_ROLLBACK );
-		// Handle callbacks in trxRecurringCallbacks, e.g. setTransactionListener().
-		// If callback suppression is set then the array will remain unhandled.
-		$this->runTransactionListenerCallbacks( self::TRIGGER_ROLLBACK );
 	}
 
 	/**
@@ -1952,7 +1895,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param array $selectJoinConds
 	 * @since 1.35
 	 */
-	protected function doInsertSelectGeneric(
+	private function doInsertSelectGeneric(
 		$destTable,
 		$srcTable,
 		array $varMap,
@@ -2320,7 +2263,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				// query so that its changes can be cancelled without losing the rest of the
 				// transaction (e.g. changes from other sections or from outside of sections)
 				try {
-					$savepointId = $this->nextSavepointId( $fname );
+					$savepointId = $this->transactionManager->nextSavePointId( $this, $fname );
 					$sql = $this->platform->savepointSqlText( $savepointId );
 					$query = new Query( $sql, self::QUERY_CHANGE_TRX, 'SAVEPOINT' );
 					$this->query( $query, $fname );
@@ -2529,7 +2472,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$cs = $this->commenceCriticalSection( __METHOD__ );
 		try {
-			$this->doCommit( $fname );
+			if ( $this->trxLevel() ) {
+				$query = new Query( 'COMMIT', self::QUERY_CHANGE_TRX, 'COMMIT' );
+				$this->query( $query, $fname );
+			}
 		} catch ( DBError $e ) {
 			$this->completeCriticalSection( __METHOD__, $cs );
 			throw $e;
@@ -2545,21 +2491,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->runTransactionPostCommitCallbacks();
 		}
 		$this->completeCriticalSection( __METHOD__, $cs );
-	}
-
-	/**
-	 * Issues the COMMIT command to the database server.
-	 *
-	 * @stable to override
-	 * @see Database::commit()
-	 * @param string $fname
-	 * @throws DBError
-	 */
-	protected function doCommit( $fname ) {
-		if ( $this->trxLevel() ) {
-			$query = new Query( 'COMMIT', self::QUERY_CHANGE_TRX, 'COMMIT' );
-			$this->query( $query, $fname );
-		}
 	}
 
 	final public function rollback( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
@@ -2651,7 +2582,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				"$fname: acknowledged client-side session loss on {db_server}",
 				$this->getLogContext()
 			);
-			$this->clearCriticalSectionError();
+			$this->csmError = null;
+			$this->csmFname = null;
 			$this->replaceLostConnection( 2048, __METHOD__ );
 
 			return;
@@ -2805,7 +2737,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			);
 		}
 
-		$this->handleSessionLossPostconnect();
+		// Handle callbacks in trxEndCallbacks, e.g. onTransactionResolution().
+		// If callback suppression is set then the array will remain unhandled.
+		$this->runOnTransactionIdleCallbacks( self::TRIGGER_ROLLBACK );
+		// Handle callbacks in trxRecurringCallbacks, e.g. setTransactionListener().
+		// If callback suppression is set then the array will remain unhandled.
+		$this->runTransactionListenerCallbacks( self::TRIGGER_ROLLBACK );
 
 		return $ok;
 	}
@@ -3176,7 +3113,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		foreach ( $tables as $table ) {
 			// Skip TEMPORARY tables with no writes nor sequence updates detected.
 			// This mostly is an optimization for integration testing.
-			if ( !$this->isPristineTemporaryTable( $table ) ) {
+			$rawTable = $this->tableName( $table, 'raw' );
+			$isPristineTempTable = isset( $this->sessionTempTables[$rawTable] )
+			? $this->sessionTempTables[$rawTable]['pristine']
+			: false;
+			if ( !$isPristineTempTable ) {
 				$tablesTruncate[] = $table;
 			}
 		}
@@ -3346,17 +3287,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
-	/**
-	 * Clear any current critical section and error information for recovery
-	 *
-	 * @since 1.41
-	 * @return void
-	 */
-	protected function clearCriticalSectionError() {
-		$this->csmError = null;
-		$this->csmFname = null;
-	}
-
 	public function __toString() {
 		// spl_object_id is PHP >= 7.2
 		$id = function_exists( 'spl_object_id' )
@@ -3514,10 +3444,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->transactionManager->runOnTransactionPreCommitCallbacks( $this );
 	}
 
-	private function nextSavepointId( $fname ) {
-		return $this->transactionManager->nextSavePointId( $this, $fname );
-	}
-
 	public function explicitTrxActive() {
 		return $this->transactionManager->explicitTrxActive();
 	}
@@ -3598,10 +3524,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function tableNamesN( ...$tables ) {
 		return $this->platform->tableNamesN( ...$tables );
-	}
-
-	protected function indexName( $index ) {
-		return $this->platform->indexName( $index );
 	}
 
 	public function addIdentifierQuotes( $s ) {

@@ -319,7 +319,7 @@ class DatabasePostgres extends Database {
 			return null;
 		}
 		foreach ( $res as $row ) {
-			if ( $row->indexname == $this->indexName( $index ) ) {
+			if ( $row->indexname == $this->platform->indexName( $index ) ) {
 				return $row;
 			}
 		}
@@ -395,7 +395,7 @@ __INDEXATTR__;
 		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
 		$sql = "SELECT indexname FROM pg_indexes WHERE tablename='{$table}'" .
 			" AND indexdef LIKE 'CREATE UNIQUE%(" .
-			$this->strencode( $this->indexName( $index ) ) .
+			$this->strencode( $this->platform->indexName( $index ) ) .
 			")'";
 		$res = $this->query( $sql, $fname, $flags );
 		return $res && $res->numRows() > 0;
