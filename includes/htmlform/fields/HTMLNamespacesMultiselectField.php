@@ -94,6 +94,10 @@ class HTMLNamespacesMultiselectField extends HTMLSelectNamespace {
 			$params['input'] = $this->mParams['input'];
 		}
 
+		if ( isset( $this->mParams['allowEditTags'] ) ) {
+			$params['allowEditTags'] = $this->mParams['allowEditTags'];
+		}
+
 		if ( $value !== null ) {
 			// $value is a string, but the widget expects an array
 			$params['default'] = $value === '' ? [] : explode( "\n", $value );
