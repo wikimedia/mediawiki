@@ -1683,6 +1683,9 @@ return [
 			'jquery.spinner',
 		],
 	],
+	'mediawiki.page.media' => [
+		'scripts' => 'resources/src/mediawiki.page.media.js',
+	],
 
 	/* MediaWiki Special pages */
 
