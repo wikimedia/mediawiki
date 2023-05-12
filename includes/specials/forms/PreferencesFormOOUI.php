@@ -299,10 +299,11 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 		$contentDiv->setAttributes( [
 			'id' => 'mw-mobile-prefs-' . $key
 		] );
-		$contentBody = ( new OOUI\Tag( 'div' ) );
-		$contentBody->setAttributes( [
-			'id' => 'mw-mobile-prefs-' . $key . '-content'
-		] );
+		$contentBody = ( new OOUI\Tag( 'div' ) )
+			->addClasses( [ 'mw-htmlform-autoinfuse-lazy' ] )
+			->setAttributes( [
+				'id' => 'mw-mobile-prefs-' . $key . '-content'
+			] );
 		$contentHeader = ( new OOUI\Tag( 'div' ) )->setAttributes( [
 			'id' => 'mw-mobile-prefs-' . $key . '-head'
 		] );
