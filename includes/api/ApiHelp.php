@@ -575,7 +575,7 @@ class ApiHelp extends ApiBase {
 					// Type documentation
 					foreach ( $paramHelp as $m ) {
 						$m->setContext( $context );
-						$info[] = $m;
+						$info[] = $m->parse();
 					}
 
 					foreach ( $info as $i ) {
