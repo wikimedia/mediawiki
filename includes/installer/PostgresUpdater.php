@@ -447,6 +447,9 @@ class PostgresUpdater extends DatabaseUpdater {
 
 			// 1.40
 			[ 'addField', 'externallinks', 'el_to_path', 'patch-externallinks-el_to_path.sql' ],
+
+			// 1.41
+			[ 'addField', 'user', 'user_is_temp', 'patch-user-user_is_temp.sql' ],
 		];
 	}
 

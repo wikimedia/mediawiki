@@ -838,7 +838,8 @@ CREATE TABLE /*_*/user (
   user_email_token_expires BLOB DEFAULT NULL,
   user_registration BLOB DEFAULT NULL,
   user_editcount INTEGER UNSIGNED DEFAULT NULL,
-  user_password_expires BLOB DEFAULT NULL
+  user_password_expires BLOB DEFAULT NULL,
+  user_is_temp SMALLINT DEFAULT 0 NOT NULL
 );
 
 CREATE UNIQUE INDEX user_name ON /*_*/user (user_name);
