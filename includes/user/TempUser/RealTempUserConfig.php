@@ -3,6 +3,7 @@
 namespace MediaWiki\User\TempUser;
 
 use BadMethodCallException;
+use MediaWiki\Permissions\Authority;
 
 /**
  * The real TempUserConfig including internal methods used by TempUserCreator.
@@ -69,6 +70,12 @@ class RealTempUserConfig implements TempUserConfig {
 		}
 		return $this->enabled
 			&& in_array( $action, $this->autoCreateActions, true );
+	}
+
+	public function shouldAutoCreate( Authority $authority, string $action ) {
+		return $this->isAutoCreateAction( $action )
+			&& !$authority->isRegistered()
+			&& $authority->isAllowed( 'createaccount' );
 	}
 
 	public function isTempName( string $name ) {

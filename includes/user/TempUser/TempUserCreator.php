@@ -5,6 +5,7 @@ namespace MediaWiki\User\TempUser;
 use ExtensionRegistry;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\Throttler;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Session\Session;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserRigorOptions;
@@ -148,6 +149,10 @@ class TempUserCreator implements TempUserConfig {
 
 	public function isAutoCreateAction( string $action ) {
 		return $this->config->isAutoCreateAction( $action );
+	}
+
+	public function shouldAutoCreate( Authority $authority, string $action ) {
+		return $this->config->shouldAutoCreate( $authority, $action );
 	}
 
 	public function isTempName( string $name ) {

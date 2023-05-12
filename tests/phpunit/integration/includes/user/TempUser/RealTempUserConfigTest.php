@@ -3,6 +3,8 @@
 namespace MediaWiki\Tests\User\TempUser;
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Permissions\SimpleAuthority;
+use MediaWiki\User\UserIdentityValue;
 
 /**
  * @covers \MediaWiki\User\TempUser\RealTempUserConfig
@@ -72,6 +74,72 @@ class RealTempUserConfigTest extends \MediaWikiIntegrationTestCase {
 		$this->overrideConfigValue( MainConfigNames::AutoCreateTempUser, $config );
 		$tuc = $this->getServiceContainer()->getTempUserConfig();
 		$this->assertSame( $expected, $tuc->isAutoCreateAction( $action ) );
+	}
+
+	public static function provideShouldAutoCreate() {
+		return [
+			'enabled' => [
+				'config' => [
+						'enabled' => true
+					] + self::DEFAULTS,
+				'id' => 0,
+				'rights' => [ 'createaccount' ],
+				'action' => 'edit',
+				'expected' => true
+			],
+			'disabled by config' => [
+				'config' => self::DEFAULTS,
+				'id' => 0,
+				'rights' => [ 'createaccount' ],
+				'action' => 'edit',
+				'expected' => false
+			],
+			'logged in' => [
+				'config' => [
+						'enabled' => true
+					] + self::DEFAULTS,
+				'id' => 1,
+				'rights' => [ 'createaccount' ],
+				'action' => 'edit',
+				'expected' => false
+			],
+			'no createaccount right' => [
+				'config' => [
+						'enabled' => true
+					] + self::DEFAULTS,
+				'id' => 0,
+				'rights' => [ 'edit' ],
+				'action' => 'edit',
+				'expected' => false
+			],
+			'wrong action' => [
+				'config' => [
+						'enabled' => true
+					] + self::DEFAULTS,
+				'id' => 0,
+				'rights' => [ 'createaccount' ],
+				'action' => 'upload',
+				'expected' => false
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideShouldAutoCreate
+	 * @param array $config
+	 * @param int $id
+	 * @param string[] $rights
+	 * @param string $action
+	 * @param bool $expected
+	 */
+	public function testShouldAutoCreate( $config, $id, $rights, $action, $expected ) {
+		$this->overrideConfigValue( MainConfigNames::AutoCreateTempUser, $config );
+		$tuc = $this->getServiceContainer()->getTempUserConfig();
+		$user = new SimpleAuthority(
+			new UserIdentityValue( $id, $id ? 'Test' : '127.0.0.1' ),
+			$rights
+		);
+		$this->assertSame( $expected, $tuc->shouldAutoCreate( $user, $action ) );
 	}
 
 	public static function provideIsTempName() {

@@ -852,10 +852,7 @@ class EditPage implements IEditObject {
 			return;
 		}
 		$user = $this->context->getUser();
-		if ( !$user->isRegistered()
-			&& $this->tempUserCreator->isAutoCreateAction( 'edit' )
-			&& $this->permManager->userHasRight( $user, 'createaccount' )
-		) {
+		if ( $this->tempUserCreator->shouldAutoCreate( $user, 'edit' ) ) {
 			if ( $doAcquire ) {
 				$name = $this->tempUserCreator->acquireAndStashName(
 					$this->context->getRequest()->getSession() );

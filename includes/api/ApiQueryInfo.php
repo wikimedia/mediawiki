@@ -440,9 +440,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				foreach ( $this->params['testactions'] as $action ) {
 					// Copied from EditPage::maybeActivateTempUserCreate
 					$pageInfo['wouldautocreate'][$action] =
-						!$this->getUser()->isRegistered()
-							&& $this->tempUserCreator->isAutoCreateAction( $action )
-							&& $this->getAuthority()->isAllowed( 'createaccount' );
+						$this->tempUserCreator->shouldAutoCreate( $this->getUser(), $action );
 				}
 			}
 		}
