@@ -745,10 +745,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 	private function getUserForPreview() {
 		$user = $this->getUser();
-		if ( !$user->isRegistered()
-			&& $this->tempUserCreator->isAutoCreateAction( 'edit' )
-			&& $user->isAllowed( 'createaccount' )
-		) {
+		if ( $this->tempUserCreator->shouldAutoCreate( $user, 'edit' ) ) {
 			return $this->userFactory->newUnsavedTempUser(
 				$this->tempUserCreator->getStashedNameOrPlaceholder( $this->getRequest()->getSession() )
 			);

@@ -2,6 +2,8 @@
 
 namespace MediaWiki\User\TempUser;
 
+use MediaWiki\Permissions\Authority;
+
 /**
  * Interface for temporary user creation config and name matching.
  *
@@ -26,6 +28,17 @@ interface TempUserConfig {
 	 * @return bool
 	 */
 	public function isAutoCreateAction( string $action );
+
+	/**
+	 * Should/would auto-create be performed if the user attempts to perform
+	 * the given action?
+	 *
+	 * @since 1.41
+	 * @param Authority $authority
+	 * @param string $action
+	 * @return bool
+	 */
+	public function shouldAutoCreate( Authority $authority, string $action );
 
 	/**
 	 * Does the name match the configured pattern indicating that it is a
