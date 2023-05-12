@@ -2385,6 +2385,7 @@ return [
 				7 => 'User-Agent',
 				8 => 'Api-User-Agent',
 				9 => 'Access-Control-Max-Age',
+				10 => 'Authorization',
 			],
 			'RestAPIAdditionalRouteFiles' => [
 			],
