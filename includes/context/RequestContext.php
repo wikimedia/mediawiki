@@ -87,7 +87,7 @@ class RequestContext implements IContextSource, MutableContext {
 	private $lang;
 
 	/**
-	 * @var Skin
+	 * @var Skin|null
 	 */
 	private $skin;
 
@@ -332,8 +332,9 @@ class RequestContext implements IContextSource, MutableContext {
 		$this->user = $user;
 		// Keep authority consistent
 		$this->authority = $user;
-		// Invalidate cached user interface language
+		// Invalidate cached user interface language and skin
 		$this->lang = null;
+		$this->skin = null;
 	}
 
 	/**
