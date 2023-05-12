@@ -7834,7 +7834,7 @@ config-schema:
             even if they match one of the domains allowed by $wgCrossSiteAJAXdomains
             Uses the same syntax as $wgCrossSiteAJAXdomains
     AllowedCorsHeaders:
-        default: [Accept, Accept-Language, Content-Language, Content-Type, Accept-Encoding, DNT, Origin, User-Agent, Api-User-Agent, Access-Control-Max-Age]
+        default: [Accept, Accept-Language, Content-Language, Content-Type, Accept-Encoding, DNT, Origin, User-Agent, Api-User-Agent, Access-Control-Max-Age, Authorization]
         type: array
         description: 'List of allowed headers for cross-origin API requests.'
     RestAPIAdditionalRouteFiles:
