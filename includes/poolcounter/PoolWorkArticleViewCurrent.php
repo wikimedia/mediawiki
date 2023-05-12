@@ -41,6 +41,8 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 	private $lbFactory;
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
+	/** @var bool Whether it should trigger an opportunistic LinksUpdate or not */
+	private bool $triggerLinksUpdate;
 
 	/**
 	 * @param string $workKey
@@ -53,6 +55,7 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 	 * @param LoggerSpi $loggerSpi
 	 * @param WikiPageFactory $wikiPageFactory
 	 * @param bool $cacheable Whether it should store the result in cache or not
+	 * @param bool $triggerLinksUpdate Whether it should trigger an opportunistic LinksUpdate or not
 	 */
 	public function __construct(
 		string $workKey,
@@ -64,7 +67,8 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 		ILBFactory $lbFactory,
 		LoggerSpi $loggerSpi,
 		WikiPageFactory $wikiPageFactory,
-		bool $cacheable = true
+		bool $cacheable = true,
+		bool $triggerLinksUpdate = false
 	) {
 		// TODO: Remove support for partially initialized RevisionRecord instances once
 		//       Article no longer uses fake revisions.
@@ -80,6 +84,7 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 		$this->lbFactory = $lbFactory;
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->cacheable = $cacheable;
+		$this->triggerLinksUpdate = $triggerLinksUpdate;
 	}
 
 	/**
@@ -104,8 +109,10 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 				);
 			}
 
-			$this->wikiPageFactory->newFromTitle( $this->page )
-				->triggerOpportunisticLinksUpdate( $output );
+			if ( $this->triggerLinksUpdate ) {
+				$this->wikiPageFactory->newFromTitle( $this->page )
+					->triggerOpportunisticLinksUpdate( $output );
+			}
 		}
 
 		return $status;

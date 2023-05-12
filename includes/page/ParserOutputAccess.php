@@ -76,6 +76,12 @@ class ParserOutputAccess {
 	 */
 	public const OPT_NO_CACHE = self::OPT_NO_UPDATE_CACHE | self::OPT_NO_CHECK_CACHE;
 
+	/**
+	 * @var int Do perform an opportunistic LinksUpdate on cache miss
+	 * @since 1.41
+	 */
+	public const OPT_LINKS_UPDATE = 8;
+
 	/** @var string Do not read or write any cache */
 	private const CACHE_NONE = 'none';
 
@@ -392,7 +398,8 @@ class ParserOutputAccess {
 					$this->lbFactory,
 					$this->loggerSpi,
 					$this->wikiPageFactory,
-					!( $options & self::OPT_NO_UPDATE_CACHE )
+					!( $options & self::OPT_NO_UPDATE_CACHE ),
+					(bool)( $options & self::OPT_LINKS_UPDATE )
 				);
 
 			case self::CACHE_SECONDARY:

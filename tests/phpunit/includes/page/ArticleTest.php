@@ -200,7 +200,6 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 			[ 'WarmParsoidParserCache' => true ]
 			+ MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidCacheConfig )
 		);
-
 		$title = $this->getExistingTestPage()->getTitle();
 
 		$parserOutputAccess = $this->createNoOpMock(
@@ -212,6 +211,21 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 		$parserOutputAccess
 			->expects( $this->once() ) // This is the key assertion in this test case.
 			->method( 'getParserOutput' )
+			->with(
+				$this->anything(),
+				$this->callback( function ( ParserOptions $parserOptions ) {
+					$this->assertSame( 'page-view', $parserOptions->getRenderReason() );
+					return true;
+				} ),
+				$this->anything(),
+				$this->callback( function ( $options ) {
+					$this->assertTrue( (bool)( $options & ParserOutputAccess::OPT_NO_CHECK_CACHE ),
+						"The cache is not checked again" );
+					$this->assertTrue( (bool)( $options & ParserOutputAccess::OPT_LINKS_UPDATE ),
+						"WikiPage::triggerOpportunisticLinksUpdate is attempted" );
+					return true;
+				} )
+			)
 			->willReturn( Status::newGood( new ParserOutput( 'Old Kittens' ) ) );
 
 		$parsoidOutputAccess = $this->createNoOpMock(
