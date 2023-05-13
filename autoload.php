@@ -2116,7 +2116,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\User\\UserRigorOptions' => __DIR__ . '/includes/user/UserRigorOptions.php',
 	'MediaWiki\\User\\UserSelectQueryBuilder' => __DIR__ . '/includes/user/UserSelectQueryBuilder.php',
 	'MediaWiki\\User\\UserTimeCorrection' => __DIR__ . '/includes/user/UserTimeCorrection.php',
-	'MediaWiki\\User\\WatchlistNotificationManager' => __DIR__ . '/includes/watchlist/WatchlistManager.php',
 	'MediaWiki\\Utils\\UrlUtils' => __DIR__ . '/includes/utils/UrlUtils.php',
 	'MediaWiki\\Watchlist\\WatchlistManager' => __DIR__ . '/includes/watchlist/WatchlistManager.php',
 	'MediaWiki\\Widget\\CheckMatrixWidget' => __DIR__ . '/includes/widget/CheckMatrixWidget.php',

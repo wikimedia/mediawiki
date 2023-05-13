@@ -2129,16 +2129,6 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
-	 * @since 1.35
-	 * @return WatchlistManager
-	 * @deprecated since 1.36 use getWatchlistManager() instead
-	 */
-	public function getWatchlistNotificationManager(): WatchlistManager {
-		wfDeprecated( __METHOD__, '1.36' );
-		return $this->getWatchlistManager();
-	}
-
-	/**
 	 * @since 1.36
 	 * @return WatchlistManager
 	 */

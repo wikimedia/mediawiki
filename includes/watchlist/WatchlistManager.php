@@ -510,9 +510,3 @@ class WatchlistManager {
 		return StatusValue::newGood();
 	}
 }
-
-/**
- * Retain the old class name for backwards compatibility.
- * @deprecated since 1.36
- */
-class_alias( WatchlistManager::class, 'MediaWiki\User\WatchlistNotificationManager' );
