@@ -109,6 +109,10 @@ because of Phabricator reports.
   - ::wasConnectionLoss()
 * PrevNextNavigationRenderer class, deprecated in 1.39,
   has been removed.
+* class alias MediaWiki\User\WatchlistNotificationManager, deprecated in 1.36,
+  has been removed.
+* MediaWikiServices::getWatchlistNotificationManager(), deprecated in 1.36,
+  has been removed.
 * The following methods in the Title class, deprecated since 1.37, have been
   removed:
   - ::areCascadeProtectionSourcesLoaded()
