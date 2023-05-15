@@ -5223,6 +5223,9 @@ class Parser {
 			}
 			$imageOptions['title'] = $this->stripAltText( $label, false );
 
+			// Match makeImage which sets this unconditionally
+			$handlerOptions['targetlang'] = $this->getTargetLanguage()->getCode();
+
 			$ig->add(
 				$title, $label, $alt, '', $handlerOptions,
 				ImageGalleryBase::LOADING_DEFAULT, $imageOptions
