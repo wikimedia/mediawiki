@@ -85,10 +85,10 @@
 		// * unwatching
 		var msg = mw.msg( msgKey );
 		const link = $link.get( 0 );
-		if ( link.children.length > 1 && link.lastChild.tagName === 'SPAN' ) {
+		if ( link.children.length > 1 && link.lastElementChild.tagName === 'SPAN' ) {
 			// Handle updated button markup,
 			// where the watchstar contains an icon element and a span element containing the text
-			link.lastChild.textContent = msg;
+			link.lastElementChild.textContent = msg;
 		} else {
 			link.textContent = msg;
 		}
