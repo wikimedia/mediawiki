@@ -33,7 +33,8 @@
 			"아라",
 			"Olve Utne",
 			"Sophie",
-			"1233qwer1234qwer4"
+			"1233qwer1234qwer4",
+			"Harald Khan"
 		]
 	},
 	"tog-underline": "Strek under lenkjer:",
@@ -2539,7 +2540,9 @@
 	"pageinfo-namespace": "Namnerom",
 	"pageinfo-article-id": "Side-ID",
 	"pageinfo-language": "Sideinnhaldsspråk",
+	"pageinfo-language-change": "endre",
 	"pageinfo-content-model": "Type sideinnhald",
+	"pageinfo-content-model-change": "endre",
 	"pageinfo-robot-policy": "Robotindeksering",
 	"pageinfo-robot-index": "Tillate",
 	"pageinfo-robot-noindex": "Ikkje tillate",

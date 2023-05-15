@@ -14,7 +14,8 @@
 			"Seb35",
 			"Tchoř",
 			"아라",
-			"Patrik L."
+			"Patrik L.",
+			"AlesFiala2002"
 		]
 	},
 	"config-desc": "Instalační program pro MediaWiki",
@@ -307,6 +308,7 @@
 	"config-nofile": "Soubor „$1“ nelze nalézt. Byl smazán?",
 	"config-extension-link": "Věděli jste, že vaše wiki podporuje [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions rozšíření]?\n\nMůžete si prohlédnout [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category seznam rozšíření po kategoriích].",
 	"config-skins-screenshots": "$1 (snímky obrazovky: $2)",
+	"config-skins-screenshot": "$1 ($2)",
 	"config-extensions-requires": "$1 (vyžaduje $2)",
 	"config-screenshot": "snímek obrazovky",
 	"config-extension-not-found": "Nepodařilo se najít registrační soubor pro rozšíření „$1“",
