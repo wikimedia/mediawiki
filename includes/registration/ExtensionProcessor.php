@@ -705,8 +705,10 @@ class ExtensionProcessor implements Processor {
 	protected function extractSkins( $dir, array $info ) {
 		if ( isset( $info['ValidSkinNames'] ) ) {
 			foreach ( $info['ValidSkinNames'] as $skinKey => $data ) {
-				$templateDirectory = $data['args'][0]['templateDirectory'] ?? 'templates';
-				$data['args'][0]['templateDirectory'] = $dir . '/' . $templateDirectory;
+				if ( isset( $data['args'][0] ) ) {
+					$templateDirectory = $data['args'][0]['templateDirectory'] ?? 'templates';
+					$data['args'][0]['templateDirectory'] = $dir . '/' . $templateDirectory;
+				}
 				$this->globals['wgValidSkinNames'][$skinKey] = $data;
 			}
 		}

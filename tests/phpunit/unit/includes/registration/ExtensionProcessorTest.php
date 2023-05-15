@@ -159,6 +159,7 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 						]
 					]
 				],
+				'test-vector-string' => 'TestVector',
 			]
 		], 1 );
 		$extracted = $processor->getExtractedInfo();
@@ -177,6 +178,7 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 			$validSkins['test-vector-skin-relative']['args'][0]['templateDirectory'],
 			'modified'
 		);
+		$this->assertSame( 'TestVector', $validSkins['test-vector-string'] );
 	}
 
 	public function testExtractNamespaces() {
