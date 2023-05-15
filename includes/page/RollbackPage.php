@@ -44,8 +44,8 @@ use StatusValue;
 use TitleFormatter;
 use TitleValue;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
@@ -67,8 +67,8 @@ class RollbackPage {
 	/** @var ServiceOptions */
 	private $options;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var UserFactory */
 	private $userFactory;
@@ -115,7 +115,7 @@ class RollbackPage {
 	/**
 	 * @internal Create via the RollbackPageFactory service.
 	 * @param ServiceOptions $options
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param UserFactory $userFactory
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param RevisionStore $revisionStore
@@ -130,7 +130,7 @@ class RollbackPage {
 	 */
 	public function __construct(
 		ServiceOptions $options,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		UserFactory $userFactory,
 		ReadOnlyMode $readOnlyMode,
 		RevisionStore $revisionStore,
@@ -145,7 +145,7 @@ class RollbackPage {
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->userFactory = $userFactory;
 		$this->readOnlyMode = $readOnlyMode;
 		$this->revisionStore = $revisionStore;
@@ -280,7 +280,7 @@ class RollbackPage {
 			return $result;
 		}
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
+		$dbw = $this->dbProvider->getPrimaryDatabase();
 
 		// TODO: move this query to RevisionSelectQueryBuilder when it's available
 		// Get the last edit not by this person...
@@ -444,19 +444,15 @@ class RollbackPage {
 		$actorId = $this->actorNormalization
 			->acquireActorId( $current->getUser( RevisionRecord::RAW ), $dbw );
 		$timestamp = $dbw->timestamp( $target->getTimestamp() );
-		$rows = $dbw->select(
-			'recentchanges',
-			[ 'rc_id', 'rc_patrolled' ],
-			[
-				'rc_cur_id' => $current->getPageId(),
-				$dbw->buildComparison( '>', [
-					'rc_timestamp' => $timestamp,
-					'rc_this_oldid' => $target->getId(),
-				] ),
-				'rc_actor' => $actorId,
-			],
-			__METHOD__
-		);
+		$rows = $dbw->newSelectQueryBuilder()
+			->select( [ 'rc_id', 'rc_patrolled' ] )
+			->from( 'recentchanges' )
+			->where( [ 'rc_cur_id' => $current->getPageId(), 'rc_actor' => $actorId, ] )
+			->andWhere( $dbw->buildComparison( '>', [
+				'rc_timestamp' => $timestamp,
+				'rc_this_oldid' => $target->getId(),
+			] ) )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		$all = [];
 		$patrolled = [];
@@ -474,40 +470,36 @@ class RollbackPage {
 			// Mark all reverted edits as if they were made by a bot
 			// Also mark only unpatrolled reverted edits as patrolled
 			if ( $unpatrolled ) {
-				$dbw->update(
-					'recentchanges',
-					[ 'rc_bot' => 1, 'rc_patrolled' => RecentChange::PRC_AUTOPATROLLED ],
-					[ 'rc_id' => $unpatrolled ],
-					__METHOD__
-				);
+				$dbw->newUpdateQueryBuilder()
+					->update( 'recentchanges' )
+					->set( [ 'rc_bot' => 1, 'rc_patrolled' => RecentChange::PRC_AUTOPATROLLED ] )
+					->where( [ 'rc_id' => $unpatrolled ] )
+					->caller( __METHOD__ )->execute();
 			}
 			if ( $patrolled ) {
-				$dbw->update(
-					'recentchanges',
-					[ 'rc_bot' => 1 ],
-					[ 'rc_id' => $patrolled ],
-					__METHOD__
-				);
+				$dbw->newUpdateQueryBuilder()
+					->update( 'recentchanges' )
+					->set( [ 'rc_bot' => 1 ] )
+					->where( [ 'rc_id' => $patrolled ] )
+					->caller( __METHOD__ )->execute();
 			}
 		} elseif ( $useRCPatrol ) {
 			// Mark only unpatrolled reverted edits as patrolled
 			if ( $unpatrolled ) {
-				$dbw->update(
-					'recentchanges',
-					[ 'rc_patrolled' => RecentChange::PRC_AUTOPATROLLED ],
-					[ 'rc_id' => $unpatrolled ],
-					__METHOD__
-				);
+				$dbw->newUpdateQueryBuilder()
+					->update( 'recentchanges' )
+					->set( [ 'rc_patrolled' => RecentChange::PRC_AUTOPATROLLED ] )
+					->where( [ 'rc_id' => $unpatrolled ] )
+					->caller( __METHOD__ )->execute();
 			}
 		} else {
 			// Edit is from a bot
 			if ( $all ) {
-				$dbw->update(
-					'recentchanges',
-					[ 'rc_bot' => 1 ],
-					[ 'rc_id' => $all ],
-					__METHOD__
-				);
+				$dbw->newUpdateQueryBuilder()
+					->update( 'recentchanges' )
+					->set( [ 'rc_bot' => 1 ] )
+					->where( [ 'rc_id' => $all ] )
+					->caller( __METHOD__ )->execute();
 			}
 		}
 	}
