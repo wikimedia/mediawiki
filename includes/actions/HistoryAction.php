@@ -188,12 +188,6 @@ class HistoryAction extends FormlessAction {
 			'mediawiki.action.history.styles',
 			'mediawiki.special.changeslist',
 		] );
-		if ( $config->get( MainConfigNames::UseMediaWikiUIEverywhere ) ) {
-			$out->addModuleStyles( [
-				'mediawiki.ui.input',
-				'mediawiki.ui.checkbox',
-			] );
-		}
 
 		// Handle atom/RSS feeds.
 		$feedType = $request->getRawVal( 'feed' );

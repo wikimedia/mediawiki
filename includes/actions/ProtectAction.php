@@ -18,8 +18,6 @@
  * @ingroup Actions
  */
 
-use MediaWiki\MainConfigNames;
-
 /**
  * Handle page protection (action=protect)
  *
@@ -38,14 +36,6 @@ class ProtectAction extends FormlessAction {
 	}
 
 	public function show() {
-		if ( $this->getContext()->getConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere ) ) {
-			$out = $this->getOutput();
-			$out->addModuleStyles( [
-				'mediawiki.ui.input',
-				'mediawiki.ui.checkbox',
-			] );
-		}
-
 		$this->getArticle()->protect();
 	}
 
