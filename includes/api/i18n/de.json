@@ -1004,6 +1004,7 @@
 	"apihelp-query+search-example-text": "Texte nach <kbd>meaning</kbd> durchsuchen.",
 	"apihelp-query+siteinfo-paramvalue-prop-specialpagealiases": "Liste von Spezialseiten-Aliassen.",
 	"apihelp-query+siteinfo-paramvalue-prop-magicwords": "Liste von magischen Wörtern und ihrer Aliasse.",
+	"apihelp-query+siteinfo-paramvalue-prop-autocreatetempuser": "Gibt die Konfiguration für die automatische Erstellung von temporären Benutzerkonten zurück (bekannt zudem als IP-Maskierung).",
 	"apihelp-query+siteinfo-paramvalue-prop-languagevariants": "Gibt eine Liste der Sprachcodes zurück, für die [[mw:Special:MyLanguage/LanguageConverter|LanguageConverter]] aktiviert ist, und die jeweils unterstützten Varianten.",
 	"apihelp-query+siteinfo-example-simple": "Websiteinformationen abrufen",
 	"apihelp-query+stashimageinfo-param-sessionkey": "Alias für $1filekey, für die Rückwärtskompatibilität.",

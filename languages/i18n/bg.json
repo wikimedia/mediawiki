@@ -3357,6 +3357,7 @@
 	"version-libraries-license": "Лиценз",
 	"version-libraries-description": "Описание",
 	"version-libraries-authors": "Автори",
+	"version-libraries-source": "Източник",
 	"redirect": "Пренасочване по идентификатор на файл, потребител, страница, версия или запис от дневника",
 	"redirect-summary": "Тази специална страница пренасочва към файл (като се има предвид името на файла), към страница (по зададена версия или номер на страницата), към потребителска страница (по зададен потребителски номер), или към запис от дневника (по зададен номер на записа). <br />\nИзползване: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], [[{{#Special:Redirect}}/user/101]], или [[{{#Special:Redirect}}/logid/186]].",
 	"redirect-submit": "Отваряне",

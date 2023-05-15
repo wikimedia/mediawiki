@@ -3184,6 +3184,7 @@
 	"version-libraries-license": "Aotre-implijout",
 	"version-libraries-description": "Deskrivadur",
 	"version-libraries-authors": "Aozerien",
+	"version-libraries-source": "Mammenn",
 	"redirect": "Adkas dre restroù, implijerien, pajennoù, stummoù pe ID marilhañ",
 	"redirect-summary": "Adkas a ra ar bajenn dibar-mañ war-zu ur restr (anv ar restr roet), ur bajenn (anaouder ar stumm pe ar bajenn roet), ur bajenn implijer (anaouder niverel an implijer roet), pe ur moned en ur marilh (anaouder ar marilh roet). Implij : [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], [[{{#Special:Redirect}}/user/101]], or [[{{#Special:Redirect}}/logid/186]].",
 	"redirect-submit": "Mont",
