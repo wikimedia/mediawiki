@@ -24,6 +24,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\CodexModule;
 use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\FilePath;
@@ -1472,7 +1473,7 @@ return [
 				$magicWords = [
 					'SITENAME' => $config->get( MainConfigNames::Sitename ),
 				];
-				( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+				( new RL\HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
 					->onResourceLoaderJqueryMsgModuleMagicWords( $context, $magicWords );
 
 				return [

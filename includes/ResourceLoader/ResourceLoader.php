@@ -2089,7 +2089,7 @@ MESSAGE;
 			'wgIllegalFileChars' => Title::convertByteClassToUnicodeClass( $illegalFileChars ),
 		];
 
-		( new \MediaWiki\HookContainer\HookRunner( $services->getHookContainer() ) )
+		( new HookRunner( $services->getHookContainer() ) )
 			->onResourceLoaderGetConfigVars( $vars, $skin, $conf );
 
 		return $vars;

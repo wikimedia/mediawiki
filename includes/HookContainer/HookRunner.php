@@ -3,7 +3,6 @@
 namespace MediaWiki\HookContainer;
 
 use Article;
-use Config;
 use DifferenceEngine;
 use File;
 use IContextSource;
@@ -492,8 +491,6 @@ class HookRunner implements
 	\MediaWiki\RenameUser\Hook\RenameUserPreRenameHook,
 	\MediaWiki\RenameUser\Hook\RenameUserSQLHook,
 	\MediaWiki\RenameUser\Hook\RenameUserWarningHook,
-	\MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook,
-	\MediaWiki\ResourceLoader\Hook\ResourceLoaderJqueryMsgModuleMagicWordsHook,
 	\MediaWiki\Rest\Hook\SearchResultProvideDescriptionHook,
 	\MediaWiki\Revision\Hook\ContentHandlerDefaultModelForHook,
 	\MediaWiki\Revision\Hook\RevisionRecordInsertedHook,
@@ -3255,24 +3252,6 @@ class HookRunner implements
 		return $this->container->run(
 			'ResetPasswordExpiration',
 			[ $user, &$newExpire ]
-		);
-	}
-
-	public function onResourceLoaderGetConfigVars( array &$vars, $skin, Config $config ): void {
-		$this->container->run(
-			'ResourceLoaderGetConfigVars',
-			[ &$vars, $skin, $config ],
-			[ 'abortable' => false ]
-		);
-	}
-
-	public function onResourceLoaderJqueryMsgModuleMagicWords( RL\Context $context,
-		array &$magicWords
-	): void {
-		$this->container->run(
-			'ResourceLoaderJqueryMsgModuleMagicWords',
-			[ $context, &$magicWords ],
-			[ 'abortable' => false ]
 		);
 	}
 
