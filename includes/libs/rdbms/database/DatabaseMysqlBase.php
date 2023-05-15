@@ -20,8 +20,8 @@
 namespace Wikimedia\Rdbms;
 
 use RuntimeException;
-use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\Rdbms\Platform\MySQLPlatform;
+use Wikimedia\Rdbms\Platform\SQLPlatform;
 use Wikimedia\Rdbms\Replication\MysqlReplicationReporter;
 
 /**
@@ -56,7 +56,7 @@ abstract class DatabaseMysqlBase extends Database {
 	/** @var bool Use experimental UTF-8 transmission encoding */
 	protected $utf8Mode;
 
-	/** @var ISQLPlatform */
+	/** @var SQLPlatform */
 	protected $platform;
 
 	/** @var MysqlReplicationReporter */
@@ -373,7 +373,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 */
 	public function indexInfo( $table, $index, $fname = __METHOD__ ) {
 		# https://dev.mysql.com/doc/mysql/en/SHOW_INDEX.html
-		$index = $this->indexName( $index );
+		$index = $this->platform->indexName( $index );
 		$query = new Query(
 			'SHOW INDEX FROM ' . $this->tableName( $table ),
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,

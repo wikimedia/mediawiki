@@ -26,8 +26,8 @@ use PDO;
 use PDOException;
 use PDOStatement;
 use RuntimeException;
-use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\Rdbms\Platform\SqlitePlatform;
+use Wikimedia\Rdbms\Platform\SQLPlatform;
 use Wikimedia\Rdbms\Replication\ReplicationReporter;
 
 /**
@@ -70,7 +70,7 @@ class DatabaseSqlite extends Database {
 		'mmap_size' => 'integer'
 	];
 
-	/** @var ISQLPlatform */
+	/** @var SQLPlatform */
 	protected $platform;
 
 	/**
@@ -488,7 +488,7 @@ class DatabaseSqlite extends Database {
 	 * @return array|false
 	 */
 	public function indexInfo( $table, $index, $fname = __METHOD__ ) {
-		$sql = 'PRAGMA index_info(' . $this->addQuotes( $this->indexName( $index ) ) . ')';
+		$sql = 'PRAGMA index_info(' . $this->addQuotes( $this->platform->indexName( $index ) ) . ')';
 		$res = $this->query( $sql, $fname, self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE );
 		if ( !$res || $res->numRows() == 0 ) {
 			return false;
@@ -511,7 +511,7 @@ class DatabaseSqlite extends Database {
 		$row = $this->selectRow( 'sqlite_master', '*',
 			[
 				'type' => 'index',
-				'name' => $this->indexName( $index ),
+				'name' => $this->platform->indexName( $index ),
 			], $fname );
 		if ( !$row || !isset( $row->sql ) ) {
 			return null;
