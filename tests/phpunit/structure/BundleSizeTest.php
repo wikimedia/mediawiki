@@ -18,47 +18,51 @@ use MediaWikiIntegrationTestCase;
  */
 abstract class BundleSizeTest extends MediaWikiIntegrationTestCase {
 
+	public function provideBundleSize() {
+		foreach ( json_decode( file_get_contents( $this->getBundleSizeConfig() ), true ) as $testCase ) {
+			yield $testCase['resourceModule'] => [ $testCase ];
+		}
+	}
+
 	/**
+	 * @dataProvider provideBundleSize
 	 * @coversNothing
 	 */
-	public function testBundleSize() {
-		$bundleSizeConfig = json_decode( file_get_contents( $this->getBundleSizeConfig() ), true );
-		foreach ( $bundleSizeConfig as $testCase ) {
-			$maxSize = $testCase['maxSize'];
-			$projectName = $testCase['projectName'] ?? '';
-			$moduleName = $testCase['resourceModule'];
-			if ( is_string( $maxSize ) ) {
-				if ( strpos( $maxSize, 'KB' ) !== false || strpos( $maxSize, 'kB' ) !== false ) {
-					$maxSize = (float)str_replace( [ 'KB', 'kB', ' KB', ' kB' ], '', $maxSize );
-					$maxSize = $maxSize * 1024;
-				} elseif ( strpos( $maxSize, 'B' ) !== false ) {
-					$maxSize = (float)str_replace( [ ' B', 'B' ], '', $maxSize );
-				}
+	public function testBundleSize( $testCase ) {
+		$maxSize = $testCase['maxSize'];
+		$projectName = $testCase['projectName'] ?? '';
+		$moduleName = $testCase['resourceModule'];
+		if ( is_string( $maxSize ) ) {
+			if ( strpos( $maxSize, 'KB' ) !== false || strpos( $maxSize, 'kB' ) !== false ) {
+				$maxSize = (float)str_replace( [ 'KB', 'kB', ' KB', ' kB' ], '', $maxSize );
+				$maxSize = $maxSize * 1024;
+			} elseif ( strpos( $maxSize, 'B' ) !== false ) {
+				$maxSize = (float)str_replace( [ ' B', 'B' ], '', $maxSize );
 			}
-			$resourceLoader = MediaWikiServices::getInstance()->getResourceLoader();
-			$request = new FauxRequest(
-				[
-					'lang' => 'en',
-					'modules' => $moduleName,
-					'skin' => $this->getSkinName(),
-				]
-			);
-
-			$context = new Context( $resourceLoader, $request );
-			$module = $resourceLoader->getModule( $moduleName );
-			$contentContext = new DerivativeContext( $context );
-			$contentContext->setOnly(
-				$module->getType() === Module::LOAD_STYLES
-					? Module::TYPE_STYLES
-					: Module::TYPE_COMBINED
-			);
-			$content = $resourceLoader->makeModuleResponse( $context, [ $moduleName => $module ] );
-			$contentTransferSize = strlen( gzencode( $content, 9 ) );
-			$message = $projectName ?
-				"$projectName: $moduleName is less than $maxSize" :
-				"$moduleName is less than $maxSize";
-			$this->assertLessThan( $maxSize, $contentTransferSize, $message );
 		}
+		$resourceLoader = MediaWikiServices::getInstance()->getResourceLoader();
+		$request = new FauxRequest(
+			[
+				'lang' => 'en',
+				'modules' => $moduleName,
+				'skin' => $this->getSkinName(),
+			]
+		);
+
+		$context = new Context( $resourceLoader, $request );
+		$module = $resourceLoader->getModule( $moduleName );
+		$contentContext = new DerivativeContext( $context );
+		$contentContext->setOnly(
+			$module->getType() === Module::LOAD_STYLES
+				? Module::TYPE_STYLES
+				: Module::TYPE_COMBINED
+		);
+		$content = $resourceLoader->makeModuleResponse( $context, [ $moduleName => $module ] );
+		$contentTransferSize = strlen( gzencode( $content, 9 ) );
+		$message = $projectName ?
+			"$projectName: $moduleName is less than $maxSize" :
+			"$moduleName is less than $maxSize";
+		$this->assertLessThan( $maxSize, $contentTransferSize, $message );
 	}
 
 	/**
