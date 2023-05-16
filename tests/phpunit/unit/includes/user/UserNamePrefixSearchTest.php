@@ -9,7 +9,8 @@ use MediaWiki\User\UserNameUtils;
 use MediaWikiUnitTestCase;
 use User;
 use Wikimedia\Rdbms\DBConnRef;
-use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * @covers \MediaWiki\User\UserNamePrefixSearch
@@ -64,13 +65,13 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 		$conds = [ 'user_name LIKE ' . $prefix . 'anyStringGoesHere' ];
 		$joinConds = [];
 		if ( $excludeHidden ) {
-			$tables[] = 'ipblocks';
+			$tables['ipblocks'] = 'ipblocks';
 			$conds['ipb_deleted'] = [ 0, null ];
 			$joinConds['ipblocks'] = [ 'LEFT JOIN', 'user_id=ipb_user' ];
 		}
 		$options = [
 			'LIMIT' => $limit,
-			'ORDER BY' => 'user_name',
+			'ORDER BY' => [ 'user_name' ],
 			'OFFSET' => $offset
 		];
 		$database->expects( $this->once() )
@@ -84,15 +85,15 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 				$joinConds
 			)
 			->willReturn( $result );
+		$database->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $database ) );
 
-		$loadBalancer = $this->createMock( LoadBalancer::class );
-		$loadBalancer->expects( $this->once() )
-			->method( 'getConnectionRef' )
-			->with( DB_REPLICA )
+		$dbProvider = $this->createMock( IConnectionProvider::class );
+		$dbProvider->expects( $this->once() )
+			->method( 'getReplicaDatabase' )
 			->willReturn( $database );
 
 		$userNamePrefixSearch = new UserNamePrefixSearch(
-			$loadBalancer,
+			$dbProvider,
 			$userNameUtils
 		);
 		$res = $userNamePrefixSearch->search(
@@ -136,7 +137,7 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 
 	public function testSearchInvalidAudience() {
 		$userNamePrefixSearch = new UserNamePrefixSearch(
-			$this->createMock( LoadBalancer::class ),
+			$this->createMock( IConnectionProvider::class ),
 			$this->createMock( UserNameUtils::class )
 		);
 
