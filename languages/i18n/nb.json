@@ -2798,7 +2798,7 @@
 	"articleexists": "En side finnes allerede på [[:$1]], eller sidenavnet du har valgt er ikke gyldig.\nVelg et annet navn.",
 	"redirectexists": "En omdirigering finnes allerede på [[:$1]], og kan ikke slettes automatisk.\nVelg et annet navn.",
 	"cantmove-titleprotected": "Du kan ikke flytte en side til dette navnet, fordi den nye tittelen er beskyttet fra opprettelse.",
-	"movetalk": "Flytt tilhørende diskusjonsside.",
+	"movetalk": "Flytt tilhørende diskusjonsside",
 	"move-subpages": "Flytt alle undersider (opp til $1)",
 	"move-talk-subpages": "Flytt alle undersider av diskusjonssiden (opp til $1)",
 	"movepage-page-exists": "Siden $1 finnes allerede og kan ikke overskrives automatisk.",

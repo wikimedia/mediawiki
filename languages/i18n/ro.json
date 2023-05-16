@@ -2614,7 +2614,7 @@
 	"ipb-confirm": "Confirmare blocare",
 	"ipb-sitewide": "Pe site",
 	"ipb-partial": "Parțial",
-	"ipb-sitewide-help": "Blockează editarea pe toate paginile și spatiile de nume. Blochează de asemenea acțiunile implicite ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users Vezi pagina de ajutor])",
+	"ipb-sitewide-help": "Blochează editarea pe toate paginile și spatiile de nume. Blochează de asemenea acțiunile implicite ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users Vezi pagina de ajutor])",
 	"ipb-partial-help": "Vă permite să selectați paginile și spatiile de nume de blocat. Nu blochează acțiunile implicite, dar vă lasă să blocati anumite acțiuni specifice.",
 	"ipb-action-create": "Crearea de pagini noi",
 	"ipb-action-move": "Redenumirea paginilor",
