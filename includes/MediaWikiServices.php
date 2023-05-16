@@ -68,6 +68,8 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\Edit\ParsoidOutputStash;
+use MediaWiki\EditPage\IntroMessageBuilder;
+use MediaWiki\EditPage\PreloadedContentBuilder;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\Export\WikiExporterFactory;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
@@ -1176,6 +1178,14 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.41
+	 * @return IntroMessageBuilder
+	 */
+	public function getIntroMessageBuilder(): IntroMessageBuilder {
+		return $this->getService( 'IntroMessageBuilder' );
+	}
+
+	/**
 	 * @since 1.40
 	 * @return JobFactory
 	 */
@@ -1645,6 +1655,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getPreferencesFactory(): PreferencesFactory {
 		return $this->getService( 'PreferencesFactory' );
+	}
+
+	/**
+	 * @since 1.41
+	 * @return PreloadedContentBuilder
+	 */
+	public function getPreloadedContentBuilder(): PreloadedContentBuilder {
+		return $this->getService( 'PreloadedContentBuilder' );
 	}
 
 	/**

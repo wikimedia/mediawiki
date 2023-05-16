@@ -31,11 +31,9 @@ use DerivativeContext;
 use ErrorPageError;
 use ExternalUserNames;
 use IContextSource;
-use LogEventsList;
 use LogPage;
 use ManualLogEntry;
 use MediaWiki\Block\BlockErrorFormatter;
-use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\CommentStore\CommentStoreComment;
@@ -88,7 +86,6 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
-use MediaWiki\User\UserRigorOptions;
 use MediaWiki\Watchlist\WatchlistManager;
 use Message;
 use MessageLocalizer;
@@ -107,8 +104,6 @@ use ReadOnlyError;
 use RecentChange;
 use RuntimeException;
 use Skin;
-use SpecialMyLanguage;
-use SpecialPage;
 use Status;
 use stdClass;
 use TextContent;
@@ -122,7 +117,6 @@ use Wikimedia\Assert\Assert;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use WikiPage;
-use WikitextContent;
 use Xml;
 
 /**
@@ -767,9 +761,7 @@ class EditPage implements IEditObject {
 		$this->isConflict = false;
 
 		# Show applicable editing introductions
-		if ( $this->formtype === 'initial' || $this->firsttime ) {
-			$this->showIntro();
-		}
+		$this->showIntro();
 
 		# Attempt submission here.  This will check for edit conflicts,
 		# and redundantly check for locked database, blocked IPs, etc.
@@ -791,12 +783,9 @@ class EditPage implements IEditObject {
 				return;
 			}
 
-			if ( !$this->mTitle->getArticleID() ) {
-				$this->getHookRunner()->onEditFormPreloadText( $this->textbox1, $this->mTitle );
-			} else {
+			if ( $this->mTitle->getArticleID() ) {
 				$this->getHookRunner()->onEditFormInitialText( $this );
 			}
-
 		}
 
 		// If we're displaying an old revision, and there are differences between it and the
@@ -1147,27 +1136,6 @@ class EditPage implements IEditObject {
 		) {
 			// Categories are special
 			return true;
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 * Checks whether the user entered a skin name in uppercase,
-	 * e.g. "User:Example/Monobook.css" instead of "monobook.css"
-	 *
-	 * @return bool
-	 */
-	private function isWrongCaseUserConfigPage(): bool {
-		if ( $this->mTitle->isUserConfigPage() ) {
-			$name = $this->mTitle->getSkinFromConfigSubpage();
-			$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
-			$skins = array_merge(
-				array_keys( $skinFactory->getInstalledSkins() ),
-				[ 'common' ]
-			);
-			return !in_array( $name, $skins, true )
-				&& in_array( strtolower( $name ), $skins, true );
 		} else {
 			return false;
 		}
@@ -1540,28 +1508,21 @@ class EditPage implements IEditObject {
 	 * @since 1.21
 	 */
 	protected function getContentObject( $def_content = null ) {
-		$disableAnonTalk = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::DisableAnonTalk );
+		$services = MediaWikiServices::getInstance();
+		$disableAnonTalk = $services->getMainConfig()->get( MainConfigNames::DisableAnonTalk );
+		$request = $this->context->getRequest();
 
 		$content = false;
 
-		$request = $this->context->getRequest();
-		// For message page not locally set, use the i18n message.
-		// For other non-existent articles, use preload text if any.
+		// For non-existent articles and new sections, use preload text if any.
 		if ( !$this->mTitle->exists() || $this->section === 'new' ) {
-			if ( $this->mTitle->getNamespace() === NS_MEDIAWIKI && $this->section !== 'new' ) {
-				# If this is a system message, get the default text.
-				$msg = $this->mTitle->getDefaultMessageText();
-
-				$content = $this->toEditContent( $msg );
-			}
-			if ( $content === false ) {
-				// Custom preload text for new sections
-				$preload = $this->section === 'new' ? 'MediaWiki:addsection-preload' : '';
-				$preload = $request->getVal( 'preload', $preload );
-				'@phan-var string $preload';
-				$params = $request->getArray( 'preloadparams', [] );
-				$content = $this->getPreloadedContent( $preload, $params );
-			}
+			$content = $services->getPreloadedContentBuilder()->getPreloadedContent(
+				$this->mTitle->toPageIdentity(),
+				$this->context->getUser(),
+				$request->getVal( 'preload' ),
+				$request->getArray( 'preloadparams', [] ),
+				$request->getVal( 'section' )
+			);
 		// For existing pages, get text based on "undo" or section parameters.
 		} elseif ( $this->section !== '' ) {
 			// Get section edit text (returns $def_text for invalid sections)
@@ -1607,7 +1568,6 @@ class EditPage implements IEditObject {
 
 					if ( $undoMsg === null ) {
 						$oldContent = $this->page->getContent( RevisionRecord::RAW );
-						$services = MediaWikiServices::getInstance();
 						$popts = ParserOptions::newFromUserAndLang(
 							$this->getUserForPreview(),
 							$services->getContentLanguage()
@@ -1838,132 +1798,6 @@ class EditPage implements IEditObject {
 		}
 
 		return $content;
-	}
-
-	/**
-	 * Get the contents to be preloaded into the box, either set by
-	 * an earlier setPreloadText() or by loading the given page.
-	 *
-	 * @param string $preload Representing the title to preload from.
-	 * @param array $params Parameters to use (interface-message style) in the preloaded text
-	 *
-	 * @return Content
-	 */
-	private function getPreloadedContent( string $preload, array $params ): Content {
-		$handler = $this->contentHandlerFactory->getContentHandler( $this->contentModel );
-
-		// T297725: Don't trick users into making edits to e.g. .js subpages
-		if ( !$handler->supportsPreloadContent() || $preload === '' ) {
-			return $handler->makeEmptyContent();
-		}
-
-		$title = Title::newFromText( $preload );
-
-		if ( $title && $title->getNamespace() == NS_MEDIAWIKI ) {
-			// When the preload source is in NS_MEDIAWIKI, get the content via wfMessage, to
-			// enable preloading from i18n messages. The message framework can work with normal
-			// pages in NS_MEDIAWIKI, so this does not restrict preloading only to i18n messages.
-			$msg = wfMessage( $title->getText() );
-
-			if ( $msg->isDisabled() ) {
-				// Message is disabled and should not be used for preloading
-				return $handler->makeEmptyContent();
-			}
-
-			return new WikitextContent( $msg
-				->params( $params )
-				->inContentLanguage()
-				->text()
-			);
-		}
-
-		// (T299544) Use SpecialMyLanguage redirect so that nonexistent translated pages can
-		// fall back to the corresponding page in a suitable language
-		$title = $this->getTargetTitleIfSpecialMyLanguage( $title );
-
-		# Check for existence to avoid getting MediaWiki:Noarticletext
-		if ( !$this->isPageExistingAndViewable( $title, $this->getContext()->getAuthority() ) ) {
-			// TODO: somehow show a warning to the user!
-			return $handler->makeEmptyContent();
-		}
-
-		$page = $this->wikiPageFactory->newFromTitle( $title );
-		if ( $page->isRedirect() ) {
-			$redirTarget = $this->redirectLookup->getRedirectTarget( $title );
-			$redirTarget = Title::castFromLinkTarget( $redirTarget );
-			# Same as before
-			if ( !$this->isPageExistingAndViewable( $redirTarget, $this->getContext()->getAuthority() ) ) {
-				// TODO: somehow show a warning to the user!
-				return $handler->makeEmptyContent();
-			}
-			$page = $this->wikiPageFactory->newFromTitle( $redirTarget );
-		}
-
-		$content = $page->getContent( RevisionRecord::RAW );
-
-		if ( !$content ) {
-			// TODO: somehow show a warning to the user!
-			return $handler->makeEmptyContent();
-		}
-
-		if ( $content->getModel() !== $handler->getModelID() ) {
-			$converted = $content->convert( $handler->getModelID() );
-
-			if ( !$converted ) {
-				// TODO: somehow show a warning to the user!
-				wfDebug( "Attempt to preload incompatible content: " .
-					"can't convert " . $content->getModel() .
-					" to " . $handler->getModelID() );
-
-				return $handler->makeEmptyContent();
-			}
-
-			$content = $converted;
-		}
-
-		return MediaWikiServices::getInstance()->getContentTransformer()->preloadTransform(
-			$content,
-			$title,
-			// The preload transformations don't depend on the user anyway
-			ParserOptions::newFromAnon(),
-			$params
-		);
-	}
-
-	/**
-	 * If the given Title is Special:MyLanguage/Foo, resolve the language chain for the
-	 * actual target title desired.
-	 *
-	 * @param ?Title $title
-	 * @return ?Title
-	 */
-	private function getTargetTitleIfSpecialMyLanguage( ?Title $title ): ?Title {
-		if ( $title && $title->isSpecialPage() ) {
-			$specialPageFactory = MediaWikiServices::getInstance()->getSpecialPageFactory();
-			[ $spName, $spParam ] = $specialPageFactory->resolveAlias( $title->getText() );
-			if ( $spName ) {
-				$specialPage = $specialPageFactory->getPage( $spName );
-				if ( $specialPage instanceof SpecialMyLanguage ) {
-					$specialPage->setContext( $this->context );
-					$title = $specialPage->findTitleForTransclusion( $spParam );
-				}
-			}
-		}
-		return $title;
-	}
-
-	/**
-	 * Verify if a given title exists and the given user is allowed to view it
-	 *
-	 * @see EditPage::getPreloadedContent()
-	 * @param PageIdentity|null $page
-	 * @param Authority $performer
-	 * @return bool
-	 * @throws \Exception
-	 * @phan-assert-true-condition $page
-	 */
-	private function isPageExistingAndViewable( ?PageIdentity $page, Authority $performer ): bool {
-		return $page && $page->exists() && $performer->authorizeRead( 'read', $page );
 	}
 
 	/**
@@ -3036,162 +2870,46 @@ class EditPage implements IEditObject {
 	 * Show all applicable editing introductions
 	 */
 	private function showIntro(): void {
-		if ( $this->suppressIntro ) {
-			return;
-		}
+		$services = MediaWikiServices::getInstance();
 
-		$out = $this->context->getOutput();
-		$namespace = $this->mTitle->getNamespace();
-		$intro = $this->getCodeEditingIntro(
-			$this->mTitle,
-			$this->context
-		);
-		$out->addHTML( $intro );
+		// Hardcoded list of notices that are suppressable for historical reasons.
+		// This feature was originally added for LiquidThreads, to avoid showing non-essential messages
+		// when commenting in a thread, but some messages were included (or excluded) by mistake before
+		// its implementation was moved to one place, and this list doesn't make a lot of sense.
+		// TODO: Remove the suppressIntro feature from EditPage, and invent a better way for extensions
+		// to skip individual intro messages.
+		$skip = $this->suppressIntro ? [
+			'editintro',
+			'code-editing-intro',
+			'sharedupload-desc-create',
+			'sharedupload-desc-edit',
+			'userpage-userdoesnotexist',
+			'blocked-notice-logextract',
+			'newarticletext',
+			'newarticletextanon',
+			'recreate-moveddeleted-warn',
+		] : [];
 
-		if ( $namespace === NS_FILE ) {
-			# Show a hint to shared repo
-			$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $this->mTitle );
-			if ( $file && !$file->isLocal() ) {
-				$descUrl = $file->getDescriptionUrl();
-				# there must be a description url to show a hint to shared repo
-				if ( $descUrl ) {
-					if ( !$this->mTitle->exists() ) {
-						$out->wrapWikiMsg( "<div class=\"mw-sharedupload-desc-create\">\n$1\n</div>", [
-									'sharedupload-desc-create', $file->getRepo()->getDisplayName(), $descUrl
-						] );
-					} else {
-						$out->wrapWikiMsg( "<div class=\"mw-sharedupload-desc-edit\">\n$1\n</div>", [
-									'sharedupload-desc-edit', $file->getRepo()->getDisplayName(), $descUrl
-						] );
-					}
-				}
-			}
-		}
-
-		# Show a warning message when someone creates/edits a user (talk) page but the user does not exist
-		# Show log extract when the user is currently blocked
-		if ( $namespace === NS_USER || $namespace === NS_USER_TALK ) {
-			$username = explode( '/', $this->mTitle->getText(), 2 )[0];
-			// Allow IP users
-			$validation = UserRigorOptions::RIGOR_NONE;
-			$user = $this->userFactory->newFromName( $username, $validation );
-			$ip = $this->userNameUtils->isIP( $username );
-			$block = DatabaseBlock::newFromTarget( $user, $user );
-
-			$userExists = ( $user && $user->isRegistered() );
-			if ( $userExists && $user->isHidden() &&
-				!$this->permManager->userHasRight( $this->context->getUser(), 'hideuser' )
-			) {
-				// If the user exists, but is hidden, and the viewer cannot see hidden
-				// users, pretend like they don't exist at all. See T120883
-				$userExists = false;
-			}
-
-			if ( !$userExists && !$ip ) {
-				$out->addHTML( Html::warningBox(
-					$out->msg( 'userpage-userdoesnotexist', wfEscapeWikiText( $username ) )->parse(),
-					'mw-userpage-userdoesnotexist'
-				) );
-			} elseif (
-				$block !== null &&
-				$block->getType() !== DatabaseBlock::TYPE_AUTO &&
-				(
-					$block->isSitewide() ||
-					$this->permManager->isBlockedFrom(
-						// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
-						$user,
-						$this->mTitle,
-						true
-					)
+		$messages = $services->getIntroMessageBuilder()->getIntroMessages(
+			IntroMessageBuilder::MORE_FRAMES,
+			$skip,
+			$this->context,
+			$this->mTitle->toPageIdentity(),
+			$this->mArticle->fetchRevisionRecord(),
+			$this->context->getUser(),
+			$this->context->getRequest()->getVal( 'editintro' ),
+			wfArrayToCgi(
+				array_diff_key(
+					$this->context->getRequest()->getValues(),
+					[ 'title' => true, 'returnto' => true, 'returntoquery' => true ]
 				)
-			) {
-				// Show log extract if the user is sitewide blocked or is partially
-				// blocked and not allowed to edit their user page or user talk page
-				LogEventsList::showLogExtract(
-					$out,
-					'block',
-					MediaWikiServices::getInstance()->getNamespaceInfo()->
-						getCanonicalName( NS_USER ) . ':' . $block->getTargetName(),
-					'',
-					[
-						'lim' => 1,
-						'showIfEmpty' => false,
-						'msgKey' => [
-							'blocked-notice-logextract',
-							$user->getName() # Support GENDER in notice
-						]
-					]
-				);
-			}
-		}
-		# Try to add a custom edit intro, or use the standard one if this is not possible.
-		if ( !$this->showCustomIntro() && !$this->mTitle->exists() ) {
-			$helpLink = wfExpandUrl( Skin::makeInternalOrExternalUrl(
-				$this->context->msg( 'helppage' )->inContentLanguage()->text()
-			) );
-			if ( $this->context->getUser()->isRegistered() ) {
-				$out->wrapWikiMsg(
-					// Suppress the external link icon, consider the help url an internal one
-					"<div class=\"mw-newarticletext plainlinks\">\n$1\n</div>",
-					[
-						'newarticletext',
-						$helpLink
-					]
-				);
-			} else {
-				$out->wrapWikiMsg(
-					// Suppress the external link icon, consider the help url an internal one
-					"<div class=\"mw-newarticletextanon plainlinks\">\n$1\n</div>",
-					[
-						'newarticletextanon',
-						$helpLink
-					]
-				);
-			}
-		}
-		# Give a notice if the user is editing a deleted/moved page...
-		if ( !$this->mTitle->exists() ) {
-			$dbr = wfGetDB( DB_REPLICA );
+			),
+			!$this->firsttime
+		);
 
-			LogEventsList::showLogExtract(
-				$out,
-				[ 'delete', 'move' ],
-				$this->mTitle,
-				'',
-				[
-					'lim' => 10,
-					'conds' => [ 'log_action != ' . $dbr->addQuotes( 'revision' ) ],
-					'showIfEmpty' => false,
-					'msgKey' => [ 'recreate-moveddeleted-warn' ]
-				]
-			);
+		foreach ( $messages as $noticeName => $message ) {
+			$this->context->getOutput()->addHTML( $message );
 		}
-	}
-
-	/**
-	 * Attempt to show a custom editing introduction, if supplied
-	 *
-	 * @return bool
-	 */
-	private function showCustomIntro(): bool {
-		if ( $this->editintro ) {
-			$title = Title::newFromText( $this->editintro );
-
-			// (T334855) Use SpecialMyLanguage redirect so that nonexistent translated pages can
-			// fall back to the corresponding page in a suitable language
-			$title = $this->getTargetTitleIfSpecialMyLanguage( $title );
-
-			if ( $this->isPageExistingAndViewable( $title, $this->context->getAuthority() ) ) {
-				// Added using template syntax, to take <noinclude>'s into account.
-				$this->context->getOutput()->addWikiTextAsContent(
-					'<div class="mw-editintro">{{:' . $title->getFullText() . '}}</div>',
-					/*linestart*/true,
-					$this->mTitle
-				);
-				return true;
-			}
-		}
-		return false;
 	}
 
 	/**
@@ -3281,9 +2999,6 @@ class EditPage implements IEditObject {
 		$this->getHookRunner()->onEditPage__showEditForm_initial( $this, $out );
 
 		$this->setHeaders();
-
-		$this->addTalkPageText();
-		$this->addEditNotices();
 
 		if ( !$this->isConflict &&
 			$this->section !== '' &&
@@ -3660,10 +3375,6 @@ class EditPage implements IEditObject {
 
 					if ( !$revRecord->isCurrent() ) {
 						$this->mArticle->setOldSubtitle( $revRecord->getId() );
-						$out->wrapWikiMsg(
-							Html::warningBox( "\n$1\n" ),
-							'editingold'
-						);
 						$this->isOldRev = true;
 					}
 				} elseif ( $this->mTitle->exists() ) {
@@ -3678,186 +3389,7 @@ class EditPage implements IEditObject {
 			}
 		}
 
-		$readOnlyMode = MediaWikiServices::getInstance()->getReadOnlyMode();
-		if ( $readOnlyMode->isReadOnly() ) {
-			$out->wrapWikiMsg(
-				"<div id=\"mw-read-only-warning\">\n$1\n</div>",
-				[ 'readonlywarning', $readOnlyMode->getReason() ]
-			);
-		} elseif ( $user->isAnon() ) {
-			if ( $this->formtype !== 'preview' ) {
-				$returntoquery = array_diff_key(
-					$this->context->getRequest()->getValues(),
-					[ 'title' => true, 'returnto' => true, 'returntoquery' => true ]
-				);
-				$out->addHTML(
-					Html::warningBox(
-						$out->msg(
-							$this->tempUserCreateActive ? 'autocreate-edit-warning' : 'anoneditwarning',
-							// Log-in link
-							SpecialPage::getTitleFor( 'Userlogin' )->getFullURL( [
-								'returnto' => $this->getTitle()->getPrefixedDBkey(),
-								'returntoquery' => wfArrayToCgi( $returntoquery ),
-							] ),
-							// Sign-up link
-							SpecialPage::getTitleFor( 'CreateAccount' )->getFullURL( [
-								'returnto' => $this->getTitle()->getPrefixedDBkey(),
-								'returntoquery' => wfArrayToCgi( $returntoquery ),
-							] )
-						)->parse(),
-						'mw-anon-edit-warning'
-					)
-				);
-			} else {
-				$out->addHTML(
-					Html::warningBox(
-						$out->msg(
-							$this->tempUserCreateActive ? 'autocreate-preview-warning' : 'anonpreviewwarning'
-						)->parse(),
-						'mw-anon-preview-warning'
-					)
-				);
-			}
-		} elseif ( $this->mTitle->isUserConfigPage() ) {
-			# Check the skin exists
-			if ( $this->isWrongCaseUserConfigPage() ) {
-				$out->addHTML(
-					Html::errorBox(
-						$out->msg(
-							'userinvalidconfigtitle',
-							$this->mTitle->getSkinFromConfigSubpage()
-						)->parse(),
-						'',
-						'mw-userinvalidconfigtitle'
-					)
-				);
-			}
-			if ( $this->getTitle()->isSubpageOf( $user->getUserPage() ) ) {
-				$isUserCssConfig = $this->mTitle->isUserCssConfigPage();
-				$isUserJsonConfig = $this->mTitle->isUserJsonConfigPage();
-				$isUserJsConfig = $this->mTitle->isUserJsConfigPage();
-
-				if ( $this->formtype !== 'preview' ) {
-					$config = $this->context->getConfig();
-					if ( $isUserCssConfig && $config->get( MainConfigNames::AllowUserCss ) ) {
-						$out->wrapWikiMsg(
-							"<div id='mw-usercssyoucanpreview'>\n$1\n</div>",
-							[ 'usercssyoucanpreview' ]
-						);
-					} elseif ( $isUserJsonConfig /* No comparable 'AllowUserJson' */ ) {
-						$out->wrapWikiMsg(
-							"<div id='mw-userjsonyoucanpreview'>\n$1\n</div>",
-							[ 'userjsonyoucanpreview' ]
-						);
-					} elseif ( $isUserJsConfig && $config->get( MainConfigNames::AllowUserJs ) ) {
-						$out->wrapWikiMsg(
-							"<div id='mw-userjsyoucanpreview'>\n$1\n</div>",
-							[ 'userjsyoucanpreview' ]
-						);
-					}
-				}
-			}
-		}
-
-		$this->addPageProtectionWarningHeaders();
-
 		$this->addLongPageWarningHeader();
-
-		# Add header copyright warning
-		$this->showHeaderCopyrightWarning();
-	}
-
-	/**
-	 * Adds introduction to code editing.
-	 *
-	 * @param Title $title
-	 * @param IContextSource $ctx
-	 * @return string
-	 */
-	private function getCodeEditingIntro( Title $title, IContextSource $ctx ): string {
-		$isUserJsConfig = $title->isUserJsConfigPage();
-		$namespace = $title->getNamespace();
-		$intro = '';
-		$user = $ctx->getUser();
-
-		if ( $title->isUserConfigPage() ) {
-			if ( $title->isSubpageOf( $user->getUserPage() ) ) {
-				$isUserCssConfig = $title->isUserCssConfigPage();
-				$isUserJsonConfig = $title->isUserJsonConfigPage();
-				$isUserJsConfig = $title->isUserJsConfigPage();
-
-				$warning = $isUserCssConfig
-					? 'usercssispublic'
-					: ( $isUserJsonConfig ? 'userjsonispublic' : 'userjsispublic' );
-
-				$warningText = $ctx->msg( $warning )->parse();
-				$intro .= $warningText ? Html::rawElement(
-					'div',
-					[ 'class' => 'mw-userconfigpublic' ],
-					$warningText
-				) : '';
-			}
-		}
-		$codeMsg = $ctx->msg( 'editpage-code-message' );
-		$codeMessageText = $codeMsg->isDisabled() ? '' : $codeMsg->parseAsBlock();
-		$isJavaScript = $title->hasContentModel( CONTENT_MODEL_JAVASCRIPT );
-		$isCSS = $title->hasContentModel( CONTENT_MODEL_CSS );
-
-		if ( $namespace === NS_MEDIAWIKI ) {
-			$interfaceMsg = $ctx->msg( 'editinginterface' );
-			$interfaceMsgText = $interfaceMsg->parse();
-			# Show a warning if editing an interface message
-			$intro .= $interfaceMsgText ? Html::rawElement(
-				'div',
-				[ 'class' => 'mw-editinginterface' ],
-				$interfaceMsgText
-			) : '';
-			# If this is a default message (but not css, json, or js),
-			# show a hint that it is translatable on translatewiki.net
-			if (
-				!$isCSS
-				&& !$title->hasContentModel( CONTENT_MODEL_JSON )
-				&& !$isJavaScript
-			) {
-				$defaultMessageText = $title->getDefaultMessageText();
-				if ( $defaultMessageText !== false ) {
-					$translateInterfaceText = $ctx->msg( 'translateinterface' )->parse();
-					$intro .= $translateInterfaceText ? Html::rawElement(
-						'div',
-						[ 'class' => 'mw-translateinterface' ],
-						$translateInterfaceText
-					) : '';
-				}
-			}
-		}
-
-		if ( $isUserJsConfig ) {
-			$userConfigDangerousMsg = $ctx->msg( 'userjsdangerous' )->parse();
-			$intro .= $userConfigDangerousMsg ? Html::rawElement(
-				'div',
-				[ 'class' => 'mw-userconfigdangerous' ],
-				$userConfigDangerousMsg
-			) : '';
-		}
-
-		// If the wiki page contains JavaScript or CSS link add message specific to code.
-		if ( $isJavaScript || $isCSS ) {
-			$intro .= $codeMessageText;
-		}
-
-		// If the message is plaintext, (which is the default for a MediaWiki
-		// install) wrap it. If not, then local wiki customizations should be
-		// respected.
-		if ( !empty( $intro ) ) {
-			// While semantically this is a warning, given the impact of editing
-			// these pages,
-			// it's best to deter users who don't understand what they are doing by
-			// acknowledging the danger here. This is a potentially destructive action
-			// so requires destructive coloring.
-			$intro = Html::errorBox( $intro );
-		}
-
-		return $intro;
 	}
 
 	/**
@@ -4169,16 +3701,6 @@ class EditPage implements IEditObject {
 		}
 
 		$this->context->getOutput()->addHTML( Html::rawElement( 'div', [ 'id' => 'wikiDiff' ], $difftext ) );
-	}
-
-	private function showHeaderCopyrightWarning(): void {
-		$msg = 'editpage-head-copy-warn';
-		if ( !$this->context->msg( $msg )->isDisabled() ) {
-			$this->context->getOutput()->wrapWikiMsg(
-				"<div class='editpage-head-copywarn'>\n$1\n</div>",
-				$msg
-			);
-		}
 	}
 
 	/**
@@ -5036,29 +4558,6 @@ class EditPage implements IEditObject {
 		$out->addReturnTo( $this->getContextTitle(), [ 'action' => 'edit' ] );
 	}
 
-	private function addEditNotices(): void {
-		$out = $this->context->getOutput();
-		$editNotices = $this->mTitle->getEditNotices( $this->oldid );
-		if ( count( $editNotices ) ) {
-			$out->addHTML( implode( "\n", $editNotices ) );
-		} else {
-			$msg = $this->context->msg( 'editnotice-notext' );
-			if ( !$msg->isDisabled() ) {
-				$out->addHTML( Html::rawElement(
-					'div',
-					[ 'class' => 'mw-editnotice-notext' ],
-					$msg->parseAsBlock()
-				) );
-			}
-		}
-	}
-
-	private function addTalkPageText(): void {
-		if ( $this->mTitle->isTalkPage() ) {
-			$this->context->getOutput()->addWikiMsg( 'talkpagetext' );
-		}
-	}
-
 	private function addLongPageWarningHeader(): void {
 		if ( $this->contentLength === false ) {
 			$this->contentLength = strlen( $this->textbox1 );
@@ -5085,58 +4584,6 @@ class EditPage implements IEditObject {
 					$out->addWikiTextAsInterface( "<div id='mw-edit-longpage-hint'>\n$msgText\n</div>" );
 				}
 			}
-		}
-	}
-
-	private function addPageProtectionWarningHeaders(): void {
-		$out = $this->context->getOutput();
-		if ( $this->restrictionStore->isProtected( $this->mTitle, 'edit' ) &&
-			$this->permManager->getNamespaceRestrictionLevels(
-				$this->getTitle()->getNamespace()
-			) !== [ '' ]
-		) {
-			# Is the title semi-protected?
-			if ( $this->restrictionStore->isSemiProtected( $this->mTitle ) ) {
-				$noticeMsg = 'semiprotectedpagewarning';
-			} else {
-				# Then it must be protected based on static groups (regular)
-				$noticeMsg = 'protectedpagewarning';
-			}
-			LogEventsList::showLogExtract( $out, 'protect', $this->mTitle, '',
-				[ 'lim' => 1, 'msgKey' => [ $noticeMsg ] ] );
-		}
-		if ( $this->restrictionStore->isCascadeProtected( $this->mTitle ) ) {
-			# Is this page under cascading protection from some source pages?
-			$cascadeSources = $this->restrictionStore->getCascadeProtectionSources( $this->mTitle )[0];
-			/** @var Title[] $cascadeSources */
-			$cascadeSources = array_map( '\MediaWiki\Title\Title::castFromPageIdentity', $cascadeSources );
-			$noticeContent = "\n$1\n";
-			$cascadeSourcesCount = count( $cascadeSources );
-			if ( $cascadeSourcesCount > 0 ) {
-				# Explain, and list the titles responsible
-				foreach ( $cascadeSources as $page ) {
-					$noticeContent .= '* [[:' . $page->getPrefixedText() . "]]\n";
-				}
-			}
-			$notice = Html::warningBox(
-				$noticeContent,
-				'mw-cascadeprotectedwarning'
-			);
-			$out->wrapWikiMsg( $notice, [ 'cascadeprotectedwarning', $cascadeSourcesCount ] );
-		}
-		if ( !$this->mTitle->exists() && $this->restrictionStore->getRestrictions( $this->mTitle, 'create' ) ) {
-			LogEventsList::showLogExtract(
-				$out,
-				'protect',
-				$this->mTitle,
-				'',
-				[
-					'lim' => 1,
-					'showIfEmpty' => false,
-					'msgKey' => [ 'titleprotectedwarning' ],
-					'wrap' => "<div class=\"mw-titleprotectedwarning\">\n$1</div>"
-				]
-			);
 		}
 	}
 
