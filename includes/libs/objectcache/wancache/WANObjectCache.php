@@ -156,13 +156,6 @@ class WANObjectCache implements
 	/** @var int Scheme to use for key coalescing (Hash Tags or Hash Stops) */
 	protected $coalesceScheme;
 
-	/** @var int Reads/second assumed during a hypothetical cache write stampede for a key */
-	private $keyHighQps;
-	/** @var int Stand-in value size assumed during hypothetical cache write stampede for a key */
-	private $keyHighByteSize;
-	/** @var float Max tolerable bytes/second to spend on a cache write stampede for a key */
-	private $keyHighUplinkBps;
-
 	/** @var array<int,array> List of (key, UNIX timestamp) tuples for get() cache misses */
 	private $missLog;
 
@@ -329,16 +322,6 @@ class WANObjectCache implements
 	 *       "helper" keys for a "value" key within the same cache server. This reduces network
 	 *       overhead and reduces the chance the a single downed cache server causes disruption.
 	 *       Use "hash_stop" with mcrouter and "hash_tag" with dynomite. [default: "hash_stop"]
-	 *   - keyHighQps: reads/second assumed during a hypothetical cache write stampede for
-	 *       a single key. This is used to decide when the overhead of checking short-lived
-	 *       write throttling keys is worth it.
-	 *       [default: 100]
-	 *   - keyHighByteSize: value size assumed during hypothetical cache write stampede for a key.
-	 *       This is only used when the actual value size is expensive to determine.
-	 *       [default: 128Kb]
-	 *   - keyHighUplinkBps: maximum tolerable bytes/second to spend on a cache write stampede
-	 *       for a single key. This is used to decide when the overhead of checking short-lived
-	 *       write throttling keys is worth it. [default: (1/100 of a 1Gbps link)]
 	 */
 	public function __construct( array $params ) {
 		$this->cache = $params['cache'];
@@ -354,10 +337,6 @@ class WANObjectCache implements
 			// https://github.com/facebook/mcrouter/wiki/Key-syntax
 			$this->coalesceScheme = self::SCHEME_HASH_STOP;
 		}
-
-		$this->keyHighQps = $params['keyHighQps'] ?? 100;
-		$this->keyHighByteSize = $params['keyHighByteSize'] ?? ( 128 * 1024 );
-		$this->keyHighUplinkBps = $params['keyHighUplinkBps'] ?? ( 1e9 / 8 / 100 );
 
 		$this->setLogger( $params['logger'] ?? new NullLogger() );
 		$this->stats = $params['stats'] ?? new NullStatsdDataFactory();
