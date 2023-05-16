@@ -3,6 +3,7 @@
 use MediaWiki\Content\ValidationParams;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\Hook\OpportunisticLinksUpdateHook;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\MagicWordFactory;
@@ -475,6 +476,15 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @covers ContentHandler::getParserOutputForIndexing
 	 */
 	public function testParserOutputForIndexing() {
+		$opportunisticUpdateHook =
+			$this->createMock( OpportunisticLinksUpdateHook::class );
+		// WikiPage::triggerOpportunisticLinksUpdate should not be triggered when
+		// getParserOutputForIndexing is called
+		$opportunisticUpdateHook->expects( $this->never() )
+			->method( 'onOpportunisticLinksUpdate' )
+			->willReturn( false );
+		$this->setTemporaryHook( 'OpportunisticLinksUpdate', $opportunisticUpdateHook );
+
 		$title = Title::newFromText( 'Smithee', NS_MAIN );
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 		$revision = $page->getRevisionRecord();

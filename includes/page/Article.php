@@ -717,6 +717,11 @@ class Article implements Page {
 		// we already checked in fetchRevisionRecord()
 		$opt |= ParserOutputAccess::OPT_NO_AUDIENCE_CHECK;
 
+		// Attempt to trigger WikiPage::triggerOpportunisticLinksUpdate
+		// Ideally this should not be the responsibility of the ParserCache to control this.
+		// See https://phabricator.wikimedia.org/T329842#8816557 for more context.
+		$opt |= ParserOutputAccess::OPT_LINKS_UPDATE;
+
 		if ( !$rev->getId() || !$useParserCache ) {
 			// fake revision or uncacheable options
 			$opt |= ParserOutputAccess::OPT_NO_CACHE;

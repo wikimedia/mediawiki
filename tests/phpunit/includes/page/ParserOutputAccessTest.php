@@ -2,6 +2,7 @@
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\Hook\OpportunisticLinksUpdateHook;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\RevisionOutputCache;
@@ -209,6 +210,23 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * Install OpportunisticLinksUpdateHook to inspect whether WikiPage::triggerOpportunisticLinksUpdate
+	 * is called or not, the hook implementation will return false disabling the
+	 * WikiPage::triggerOpportunisticLinksUpdate to proceed completely.
+	 * @param bool $called whether WikiPage::triggerOpportunisticLinksUpdate is expected to be called or not
+	 * @return void
+	 */
+	private function installOpportunisticUpdateHook( bool $called ): void {
+		$opportunisticUpdateHook =
+			$this->createMock( OpportunisticLinksUpdateHook::class );
+		// WikiPage::triggerOpportunisticLinksUpdate is not called by default
+		$opportunisticUpdateHook->expects( $this->exactly( $called ? 1 : 0 ) )
+			->method( 'onOpportunisticLinksUpdate' )
+			->willReturn( false );
+		$this->setTemporaryHook( 'OpportunisticLinksUpdate', $opportunisticUpdateHook );
+	}
+
+	/**
 	 * Tests that we can get rendered output for the latest revision.
 	 */
 	public function testOutputForLatestRevision() {
@@ -218,7 +236,25 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$this->editPage( $page, 'Hello \'\'World\'\'!' );
 
 		$parserOptions = $this->getParserOptions();
+		// WikiPage::triggerOpportunisticLinksUpdate is not called by default
+		$this->installOpportunisticUpdateHook( false );
 		$status = $access->getParserOutput( $page, $parserOptions );
+		$this->assertContainsHtml( 'Hello <i>World</i>!', $status );
+	}
+
+	/**
+	 * Tests that we can get rendered output for the latest revision.
+	 */
+	public function testOutputForLatestRevisionWithLinksUpdate() {
+		$access = $this->getParserOutputAccessNoCache();
+
+		$page = $this->getNonexistingTestPage( __METHOD__ );
+		$this->editPage( $page, 'Hello \'\'World\'\'!' );
+
+		$parserOptions = $this->getParserOptions();
+		// With ParserOutputAccess::OPT_LINKS_UPDATE WikiPage::triggerOpportunisticLinksUpdate can be called
+		$this->installOpportunisticUpdateHook( true );
+		$status = $access->getParserOutput( $page, $parserOptions, null, ParserOutputAccess::OPT_LINKS_UPDATE );
 		$this->assertContainsHtml( 'Hello <i>World</i>!', $status );
 	}
 
