@@ -138,11 +138,6 @@ class HookContainer implements SalvageableService {
 
 		$abortable = $options['abortable'] ?? true;
 		foreach ( $this->getHandlers( $hook, $options ) as $handler ) {
-			// The handler is "shadowed" by a scoped hook handler.
-			if ( ( $handler['skip'] ?? 0 ) > 0 ) {
-				continue;
-			}
-
 			if ( $checkDeprecation ) {
 				$this->checkDeprecation( $hook, $handler['functionName'], $options );
 			}
@@ -200,11 +195,9 @@ class HookContainer implements SalvageableService {
 	 *
 	 * @param string $hook Name of hook
 	 * @param callable|string|array $handler Handler to attach
-	 * @param bool $replace (optional) Set true to disable existing handlers for the hook while
-	 *        the scoped handler is active.
 	 * @return ScopedCallback
 	 */
-	public function scopedRegister( string $hook, $handler, bool $replace = false ): ScopedCallback {
+	public function scopedRegister( string $hook, $handler ): ScopedCallback {
 		$handler = $this->normalizeHandler( $hook, $handler );
 		if ( !$handler ) {
 			throw new InvalidArgumentException( 'Bad hook handler!' );
@@ -217,48 +210,15 @@ class HookContainer implements SalvageableService {
 		$this->getHandlers( $hook );
 
 		$this->handlers[$hook][$id] = $handler;
-		if ( $replace ) {
-			$this->updateSkipCounter( $hook, 1, $id );
-		}
 
-		return new ScopedCallback( function () use ( $hook, $id, $replace ) {
-			if ( $replace ) {
-				$this->updateSkipCounter( $hook, -1, $id );
-			}
+		return new ScopedCallback( function () use ( $hook, $id ) {
 			unset( $this->handlers[$hook][$id] );
 		} );
 	}
 
 	/**
-	 * Utility for scopedRegister() for updating the counter in the 'skip'
-	 * field of each handler of the given hook, up to the given index.
-	 *
-	 * The idea is that handlers with a non-zero 'skip' count will be ignored.
-	 * This allows a call to scopedRegister to temporarily disable all previously
-	 * registered handlers, and automatically re-enable them when the temporary
-	 * handler goes out of scope.
-	 *
-	 * @param string $hook
-	 * @param int $n The amount by which to update the count (1 to disable handlers,
-	 *        -1 to re-enable them)
-	 * @param int|string $upTo The index at which to stop the update. This will be the
-	 *        index of the temporary handler registered with scopedRegister.
-	 *
-	 * @return void
-	 */
-	private function updateSkipCounter( string $hook, $n, $upTo ) {
-		foreach ( $this->handlers[$hook] as $i => $unused ) {
-			if ( $i === $upTo ) {
-				break;
-			}
-
-			$current = $this->handlers[$hook][$i]['skip'] ?? 0;
-			$this->handlers[$hook][$i]['skip'] = $current + $n;
-		}
-	}
-
-	/**
 	 * Returns a callable array based on the handler specification provided.
+	 * This will find the appropriate handler object to call a method on,
 	 * This will find the appropriate handler object to call a method on,
 	 * instantiating it if it doesn't exist yet.
 	 *
@@ -463,10 +423,6 @@ class HookContainer implements SalvageableService {
 
 		$callbacks = [];
 		foreach ( $handlers as $h ) {
-			if ( ( $h['skip'] ?? 0 ) > 0 ) {
-				continue;
-			}
-
 			$callback = $h['callback'];
 
 			if ( isset( $h['args'] ) ) {
