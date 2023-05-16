@@ -606,7 +606,7 @@
 	"mergehistory-list": "Birlashtiriladigan tahrirlar tarixi",
 	"mergehistory-go": "Birlashtiriladigan tahrirlarni koʻrsatish",
 	"mergehistory-submit": "Tahrirlarni birlashtirish",
-	"mergehistory-done": "$1 sahifasining $4 {{PLURAL:$4|versiyasi}} [[:$2]] sahifasiga {{PLURAL:$4|birlashtirildi}}.\n$3.",
+	"mergehistory-done": "$1 sahifasining $4 ta {{PLURAL:$4|versiyasi}} [[:$2]] sahifasiga {{PLURAL:$4|birlashtirildi}}.\n$3",
 	"mergehistory-fail-bad-timestamp": "Vaqt tamgʻasi yaroqsiz.",
 	"mergehistory-fail-invalid-source": "Noto‘g‘ri manba sahifasi",
 	"mergehistory-autocomment": "[[:$1]] [[:$2]] bilan birlashtirildi",
