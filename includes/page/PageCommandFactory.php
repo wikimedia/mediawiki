@@ -333,7 +333,7 @@ class PageCommandFactory implements
 	): RollbackPage {
 		return new RollbackPage(
 			new ServiceOptions( RollbackPage::CONSTRUCTOR_OPTIONS, $this->config ),
-			$this->lbFactory->getMainLB(),
+			$this->lbFactory,
 			$this->userFactory,
 			$this->readOnlyMode,
 			$this->revisionStore,
