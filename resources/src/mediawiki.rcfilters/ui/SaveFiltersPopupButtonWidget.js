@@ -31,6 +31,10 @@ var SaveFiltersPopupButtonWidget = function MwRcfiltersUiSaveFiltersPopupButtonW
 			classes: [ 'mw-rcfilters-ui-saveFiltersPopupButtonWidget-popup' ],
 			padded: true,
 			head: true,
+			// Make the popup slightly wider to accommodate titles and labels
+			// from languages that are longer than the original English ones.
+			// See T217304
+			width: 450,
 			icon: 'bookmark',
 			label: mw.msg( 'rcfilters-savedqueries-add-new-title' ),
 			$content: $popupContent
@@ -146,12 +150,7 @@ SaveFiltersPopupButtonWidget.prototype.onPopupReady = function () {
  */
 SaveFiltersPopupButtonWidget.prototype.onSetAsDefaultChange = function ( checked ) {
 	this.applyButton
-		.setIcon( checked ? 'pushPin' : null )
-		.setLabel( mw.msg(
-			checked ?
-				'rcfilters-savedqueries-apply-and-setdefault-label' :
-				'rcfilters-savedqueries-apply-label'
-		) );
+		.setIcon( checked ? 'pushPin' : null );
 };
 
 /**
