@@ -4334,14 +4334,7 @@ class EditPage implements IEditObject {
 
 		$cancel = $this->getCancelLink( $tabindex++ );
 
-		$message = $this->context->msg( 'edithelppage' )->inContentLanguage()->text();
-		$edithelpurl = Skin::makeInternalOrExternalUrl( $message );
-		$edithelp =
-			Html::linkButton(
-				$this->context->msg( 'edithelp' )->text(),
-				[ 'target' => 'helpwindow', 'href' => $edithelpurl ],
-				[ 'mw-ui-quiet' ]
-			) .
+		$edithelp = $this->getHelpLink() .
 			$this->context->msg( 'word-separator' )->escaped() .
 			$this->context->msg( 'newwindow' )->parse();
 
@@ -4369,6 +4362,18 @@ class EditPage implements IEditObject {
 
 	private function incrementConflictStats(): void {
 		$this->getEditConflictHelper()->incrementConflictStats( $this->context->getUser() );
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getHelpLink(): string {
+		$message = $this->context->msg( 'edithelppage' )->inContentLanguage()->text();
+		$editHelpUrl = Skin::makeInternalOrExternalUrl( $message );
+		return Html::element( 'a', [
+			'href' => $editHelpUrl,
+			'target' => 'helpwindow'
+		], $this->context->msg( 'edithelp' )->text() );
 	}
 
 	/**
