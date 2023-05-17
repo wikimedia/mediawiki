@@ -22,7 +22,7 @@ namespace MediaWiki\Revision;
 
 use ChangeTags;
 use MediaWiki\Page\PageIdentity;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -30,21 +30,21 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class ArchivedRevisionLookup {
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var RevisionStore */
 	private $revisionStore;
 
 	/**
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param RevisionStore $revisionStore
 	 */
 	public function __construct(
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		RevisionStore $revisionStore
 	) {
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->revisionStore = $revisionStore;
 	}
 
@@ -77,8 +77,7 @@ class ArchivedRevisionLookup {
 			''
 		);
 
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		return $dbr->select(
+		return $this->dbProvider->getReplicaDatabase()->select(
 			$queryInfo['tables'],
 			$queryInfo['fields'],
 			$conds,
@@ -98,10 +97,9 @@ class ArchivedRevisionLookup {
 	 * @return RevisionRecord|null
 	 */
 	public function getRevisionRecordByTimestamp( PageIdentity $page, $timestamp ): ?RevisionRecord {
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 		return $this->getRevisionByConditions(
 			$page,
-			[ 'ar_timestamp' => $dbr->timestamp( $timestamp ) ]
+			[ 'ar_timestamp' => $this->dbProvider->getReplicaDatabase()->timestamp( $timestamp ) ]
 		);
 	}
 
@@ -128,7 +126,6 @@ class ArchivedRevisionLookup {
 		array $conditions,
 		array $options = []
 	): ?RevisionRecord {
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 		$arQuery = $this->revisionStore->getArchiveQueryInfo();
 
 		$conditions += [
@@ -136,7 +133,7 @@ class ArchivedRevisionLookup {
 			'ar_title' => $page->getDBkey(),
 		];
 
-		$row = $dbr->selectRow(
+		$row = $this->dbProvider->getReplicaDatabase()->selectRow(
 			$arQuery['tables'],
 			$arQuery['fields'],
 			$conditions,
@@ -164,7 +161,7 @@ class ArchivedRevisionLookup {
 	 * @return RevisionRecord|null Null when there is no previous revision
 	 */
 	public function getPreviousRevisionRecord( PageIdentity $page, string $timestamp ): ?RevisionRecord {
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 
 		// Check the previous deleted revision...
 		$row = $dbr->selectRow( 'archive',
@@ -216,8 +213,7 @@ class ArchivedRevisionLookup {
 	 * @return int|false The revision's ID, or false if there is no deleted revision.
 	 */
 	public function getLastRevisionId( PageIdentity $page ) {
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		$revId = $dbr->selectField(
+		$revId = $this->dbProvider->getReplicaDatabase()->selectField(
 			'archive',
 			'ar_rev_id',
 			[ 'ar_namespace' => $page->getNamespace(),
@@ -238,8 +234,7 @@ class ArchivedRevisionLookup {
 	 * @return bool
 	 */
 	public function hasArchivedRevisions( PageIdentity $page ): bool {
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		$row = $dbr->selectRow(
+		$row = $this->dbProvider->getReplicaDatabase()->selectRow(
 			'archive',
 			'1', // We don't care about the value. Allow the database to optimize.
 			[ 'ar_namespace' => $page->getNamespace(),
