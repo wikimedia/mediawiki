@@ -1832,7 +1832,10 @@ class DifferenceEngine extends ContextSource {
 	 */
 	private function getBeforeDiffTable(): string {
 		$legend = null;
-		if ( self::getEngine() === 'wikidiff2' && ( $this->slotDiffOptions['diff-type'] ?? '' ) === 'inline' ) {
+		if ( self::getEngine() === 'wikidiff2'
+			&& ( $this->slotDiffOptions['diff-type'] ?? '' ) === 'inline'
+			&& $this->getSlotDiffRenderers()[SlotRecord::MAIN] instanceof TextSlotDiffRenderer
+		) {
 			// wikidiff2 inline type gets a legend to explain the highlighting colours.
 			$this->getOutput()->addBodyClasses( 'mw-diff-type-inline' );
 			$ins = Html::element(
