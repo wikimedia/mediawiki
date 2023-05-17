@@ -2194,6 +2194,7 @@
 	"confirmemail": "ای میل پتے دی تصدیق کرو",
 	"confirmemail_send": "تصدیقی کوڈ بھیجو",
 	"confirmemail_sent": "تصدیقی ای میل بھیڄ ݙتی۔",
+	"confirmemail_loggedin": "ہُݨ تہاݙے ای میل پتے دی تصدیق تھی ڳئی ہے۔",
 	"confirmemail_subject": "{{SITENAME}} ای میل پتہ کنفرمیشن",
 	"confirmemail_invalidated": "ای میل پتیاں دی تصدیق منسوخ تھی ڳئی",
 	"invalidateemail": "ای میل دا پک منسوخ کرو",

@@ -22,7 +22,7 @@
 	"rest-permission-denied-revision": "ユーザーはリクエストした版（$1）にアクセスできません",
 	"rest-resource-limit-exceeded": "リクエストの処理中にリソースの上限に達しました。",
 	"rest-pagehistory-incompatible-params": "引数「older_than」と「newer_than」を同時に指定できません",
-	"rest-pagehistory-param-range-error": "リビジョン ID は 0 より大きくなければなりません",
+	"rest-pagehistory-param-range-error": "版 ID は 0 より大きくなければなりません",
 	"rest-pagehistory-timestamp-error": "指定した版（$1）のタイムスタンプを取得できません",
 	"rest-pagehistorycount-type-unrecognized": "指定した計数タイプ（$1）は無効です",
 	"rest-pagehistorycount-parameters-invalid": "指定したパラメータの組み合わせはサポートされていません。",
