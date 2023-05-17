@@ -1816,7 +1816,6 @@
 	"rcfilters-savedqueries-new-name-label": "Label for the input that holds the name of the new saved filters in [[Special:RecentChanges]]\n{{Identical|Name}}",
 	"rcfilters-savedqueries-new-name-placeholder": "Placeholder for the input that holds the name of the new saved filters in [[Special:RecentChanges]]",
 	"rcfilters-savedqueries-apply-label": "Label for the button to apply saving a new filter setting in [[Special:RecentChanges]]. This is for a small popup, please try to use a short string.",
-	"rcfilters-savedqueries-apply-and-setdefault-label": "Label for the button to apply saving a new filter setting and set it as default in [[Special:RecentChanges]]. This is for a small popup, please try to use a short string.",
 	"rcfilters-savedqueries-cancel-label": "Label for the button to cancel the saving of a new quick link in [[Special:RecentChanges]]\n{{Identical|Cancel}}",
 	"rcfilters-savedqueries-add-new-title": "Title for the popup to add new quick link in [[Special:RecentChanges]]. This is for a small popup, please try to use a short string.",
 	"rcfilters-savedqueries-already-saved": "Title for the popup in [[Special:RecentChanges]] that indicates that current set of filters is already saved. This is for a small popup, please try to use a short string.",
