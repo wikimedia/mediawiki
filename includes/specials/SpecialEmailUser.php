@@ -207,7 +207,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * @return User|string User object on success or a string on error
 	 */
 	public static function getTarget( $target, User $sender ) {
-		return MediaWikiServices::getInstance()->getEmailUser()->getTarget( $target, $sender );
+		return MediaWikiServices::getInstance()->getEmailUser()->getTarget( (string)$target, $sender );
 	}
 
 	/**
@@ -219,6 +219,9 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * @since 1.30
 	 */
 	public static function validateTarget( $target, User $sender ) {
+		if ( !$target instanceof User ) {
+			return 'notarget';
+		}
 		return MediaWikiServices::getInstance()->getEmailUser()->validateTarget( $target, $sender );
 	}
 
@@ -237,7 +240,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			$emailUser->overrideOptionsFromConfig( $config );
 		}
 		try {
-			return $emailUser->getPermissionsError( $user, $editToken );
+			return $emailUser->getPermissionsError( $user, (string)$editToken );
 		} finally {
 			if ( $config ) {
 				$emailUser->restoreOriginalOptions();
@@ -316,7 +319,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * @return Status|false
 	 */
 	public function onFormSubmit( array $data ) {
-		return $this->emailUser->submit(
+		$res = $this->emailUser->submit(
 			$data['Target'],
 			$data['Subject'],
 			$data['Text'],
@@ -324,6 +327,14 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			$this->getUser(),
 			$this
 		);
+		if ( $res->hasMessage( 'hookaborted' ) ) {
+			// BC: The method could previously return false if the EmailUser hook set the error to false. Preserve
+			// that behaviour until we replace the hook.
+			$res = false;
+		} else {
+			$res = Status::wrap( $res );
+		}
+		return $res;
 	}
 
 	/**
@@ -339,14 +350,21 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		$emailUser = MediaWikiServices::getInstance()->getEmailUser();
 		try {
 			$emailUser->overrideOptionsFromConfig( $context->getConfig() );
-			return $emailUser->submit(
-				$data['Target'],
-				$data['Subject'],
-				$data['Text'],
-				$data['CCMe'],
+			$ret = $emailUser->submit(
+				(string)$data['Target'],
+				(string)$data['Subject'],
+				(string)$data['Text'],
+				(bool)$data['CCMe'],
 				$context->getUser(),
 				$context
 			);
+			if ( $ret->hasMessage( 'hookaborted' ) ) {
+				// BC: The method could previously return false if the EmailUser hook set the error to false.
+				$ret = false;
+			} else {
+				$ret = Status::wrap( $ret );
+			}
+			return $ret;
 		} finally {
 			$emailUser->restoreOriginalOptions();
 		}

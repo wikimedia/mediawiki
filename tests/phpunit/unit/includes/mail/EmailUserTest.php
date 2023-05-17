@@ -16,7 +16,6 @@ use MediaWikiUnitTestCase;
 use Message;
 use MessageLocalizer;
 use RuntimeException;
-use Status;
 use StatusValue;
 use User;
 
@@ -104,7 +103,13 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 		$targetName = 'John Doe';
 		$noopSender = $this->createMock( User::class );
 
-		yield 'Empty target' => [ '', $noopSender, 'notarget' ];
+		$invalidUsername = '123<>|[]';
+		$invalidUsernameUserFactory = $this->createMock( UserFactory::class );
+		$invalidUsernameUserFactory->expects( $this->atLeastOnce() )
+			->method( 'newFromName' )
+			->with( $invalidUsername )
+			->willReturn( null );
+		yield 'Invalid username' => [ $invalidUsername, $noopSender, 'notarget', $invalidUsernameUserFactory ];
 
 		$noEmailTarget = $this->createMock( User::class );
 		$noEmailTarget->method( 'getId' )->willReturn( 1 );
@@ -125,7 +130,7 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideValidateTarget
 	 */
 	public function testValidateTarget(
-		$target,
+		User $target,
 		User $sender,
 		string $expected,
 		UserOptionsLookup $userOptionsLookup = null,
@@ -141,8 +146,6 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 		$validTarget->method( 'getId' )->willReturn( 1 );
 		$validTarget->method( 'isEmailConfirmed' )->willReturn( true );
 		$validTarget->method( 'canReceiveEmail' )->willReturn( true );
-
-		yield 'Target is not a User object' => [ null, $noopUserMock, 'notarget' ];
 
 		$anonTarget = $this->createMock( User::class );
 		$anonTarget->expects( $this->atLeastOnce() )->method( 'getId' )->willReturn( 0 );
@@ -311,7 +314,7 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 			$sender,
 			$this->getMockMessageLocalizer()
 		);
-		if ( $expected instanceof Status ) {
+		if ( $expected instanceof StatusValue ) {
 			$this->assertEquals( $expected, $res );
 		} else {
 			$this->assertSame( $expected, $res );
@@ -323,9 +326,9 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 		$validTarget = 'John Doe';
 		$validTargetUserFactory = $this->getValidTargetUserFactory( $validTarget );
 
-		yield 'Invalid target' => [ '', $validSender, Status::newFatal( 'notargettext' ) ];
+		yield 'Invalid target' => [ '', $validSender, StatusValue::newFatal( 'notargettext' ) ];
 
-		$hookStatusError = Status::newFatal( 'some-hook-error' );
+		$hookStatusError = StatusValue::newFatal( 'some-hook-error' );
 		$emailUserHookUsingStatusHooks = [
 			'EmailUser' => static function ( $a, $b, $c, $d, &$err ) use ( $hookStatusError ) {
 				$err = $hookStatusError;
@@ -349,7 +352,7 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 		yield 'EmailUserHook error as boolean false' => [
 			$validTarget,
 			$validSender,
-			false,
+			StatusValue::newFatal( 'hookaborted' ),
 			$validTargetUserFactory,
 			$emailUserHookUsingBooleanFalseHooks
 		];
@@ -363,7 +366,7 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 		yield 'EmailUserHook error as boolean true' => [
 			$validTarget,
 			$validSender,
-			Status::newGood(),
+			StatusValue::newGood(),
 			$validTargetUserFactory,
 			$emailUserHookUsingBooleanTrueHooks
 		];
@@ -378,7 +381,7 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 		yield 'EmailUserHook error as array' => [
 			$validTarget,
 			$validSender,
-			Status::newFatal( $hookError ),
+			StatusValue::newFatal( $hookError ),
 			$validTargetUserFactory,
 			$emailUserHookUsingArrayHooks
 		];
@@ -393,7 +396,7 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 		yield 'EmailUserHook error as MessageSpecifier' => [
 			$validTarget,
 			$validSender,
-			Status::newFatal( $hookErrorMsg ),
+			StatusValue::newFatal( $hookErrorMsg ),
 			$validTargetUserFactory,
 			$emailUserHookUsingMessageHooks
 		];
@@ -404,7 +407,7 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 		yield 'Error in the Emailer' => [
 			$validTarget,
 			$validSender,
-			Status::wrap( $emailerErrorStatus ),
+			$emailerErrorStatus,
 			$validTargetUserFactory,
 			[],
 			$errorEmailer
@@ -416,7 +419,7 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 		yield 'Successful' => [
 			$validTarget,
 			$validSender,
-			Status::wrap( $emailerSuccessStatus ),
+			$emailerSuccessStatus,
 			$validTargetUserFactory,
 			[],
 			$successEmailer

@@ -74,6 +74,17 @@ class MailAddress {
 	}
 
 	/**
+	 * @param self $other
+	 * @return bool
+	 * @since 1.40
+	 */
+	public function equals( self $other ): bool {
+		return $this->address === $other->address &&
+			$this->name === $other->name &&
+			$this->realName === $other->realName;
+	}
+
+	/**
 	 * Return formatted and quoted address to insert into SMTP headers
 	 * @return string
 	 */

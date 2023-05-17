@@ -39,6 +39,23 @@ class MailAddressTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers MailAddress::equals
+	 * @dataProvider provideEquals
+	 */
+	public function testEquals( MailAddress $first, MailAddress $second, bool $expected ) {
+		$this->assertSame( $expected, $first->equals( $second ) );
+	}
+
+	public function provideEquals(): Generator {
+		$base = new MailAddress( 'a@b.c', 'name', 'realname' );
+
+		yield 'Different addresses' => [ $base, new MailAddress( 'xxx', 'name', 'realname' ), false ];
+		yield 'Different names' => [ $base, new MailAddress( 'a@b.c', 'other name', 'realname' ), false ];
+		yield 'Different real names' => [ $base, new MailAddress( 'a@b.c', 'name', 'other realname' ), false ];
+		yield 'Equal' => [ $base, new MailAddress( 'a@b.c', 'name', 'realname' ), true ];
+	}
+
+	/**
 	 * @covers MailAddress::toString
 	 * @dataProvider provideToString
 	 */
