@@ -47,21 +47,10 @@ class LanguageZh extends LanguageZh_hans {
 	}
 
 	/**
-	 * auto convert to zh-hans and normalize special characters.
-	 *
-	 * @param string $string
-	 * @param string $autoVariant Defaults to 'zh-hans'
-	 * @return string
+	 * @inheritDoc
 	 */
-	public function normalizeForSearch( $string, $autoVariant = 'zh-hans' ) {
-		// always convert to zh-hans before indexing. it should be
-		// better to use zh-hans for search, since conversion from
-		// Traditional to Simplified is less ambiguous than the
-		// other way around
-		$s = $this->getConverterInternal()->autoConvert( $string, $autoVariant );
-		// LanguageZh_hans::normalizeForSearch
-		$s = parent::normalizeForSearch( $s );
-		return $s;
+	protected function getSerchIndexVariant() {
+		return 'zh-hans';
 	}
 
 	/**
