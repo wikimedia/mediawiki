@@ -1033,7 +1033,7 @@
 	"apihelp-query+redirects-example-simple": "Obtener un lista de redirectiones al [[Main Page|pagina principal]].",
 	"apihelp-query+redirects-example-generator": "Obtener information sur tote le redirectiones al [[Main Page|pagina principal]].",
 	"apihelp-query+revisions-summary": "Obtener information sur versiones.",
-	"apihelp-query+revisions-extended-description": "Pote esser usate in plure modos:\n# Obtener datos super un insimul de paginas (ultime version), definiente titles (titulos) o pageids (IDs de pagina).\n# Obtener versiones de un pagina specific, usante titles (titulos) o pageid (ID de pagina) con start (initio), end (fin), o limit (limite).\n# Obtener datos sur un insimul de versiones definiente lor IDs con revids.",
+	"apihelp-query+revisions-extended-description": "Pote esser usate in plure modos:\n# Obtener datos sur un insimul de paginas (ultime version), definiente titles (titulos) o pageids (IDs de pagina).\n# Obtener versiones de un pagina specific, usante titles (titulos) o pageid (ID de pagina) con start (initio), end (fin), o limit (limite).\n# Obtener datos sur un insimul de versiones definiente lor IDs con revids.",
 	"apihelp-query+revisions-paraminfo-singlepageonly": "Pote solmente esser usate con un sol pagina (modo №2).",
 	"apihelp-query+revisions-param-startid": "Comenciar enumeration a partir del data e hora de iste version. Le version debe exister, ma non es necessari que illo pertine a iste pagina.",
 	"apihelp-query+revisions-param-endid": "Terminar enumeration al data e hora de iste version. Le version debe exister, ma non es necessari que illo pertine a iste pagina.",

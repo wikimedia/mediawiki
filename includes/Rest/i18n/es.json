@@ -3,7 +3,8 @@
 		"authors": [
 			"DannyS712",
 			"Fitoschido",
-			"Ihojose"
+			"Ihojose",
+			"MarcoAurelio"
 		]
 	},
 	"rest-prefix-mismatch": "La ruta solicitada ($1) no estaba dentro de la ruta raíz ($2) de la API REST",
@@ -12,12 +13,15 @@
 	"rest-nonexistent-title": "El título especificado ($1) no existe",
 	"rest-nonexistent-title-revision": "La versión especificada ($1) no existe para la página especificada ($2)",
 	"rest-nonexistent-revision": "No existe la revisión especificada ($1)",
+	"rest-nonexistent-user": "El usuario especificado ($1) no existe",
+	"rest-permission-denied-anon": "No accesible por usuario anónimo",
 	"rest-permission-denied-title": "El usuario no tiene permisos para leer el título ($1)",
 	"rest-permission-denied-revision": "El usuario no tiene acceso a la revisión solicitada ($1).",
 	"rest-pagehistory-incompatible-params": "Los parámetros \"older_than\" y \"newer_than\" no se pueden especificar",
 	"rest-pagehistory-param-range-error": "El id de revisión debe ser mayor que 0",
 	"rest-pagehistory-timestamp-error": "No se puede recuperar la marca de tiempo para la revisión especificada ($1)",
 	"rest-pagehistorycount-type-unrecognized": "El tipo de recuento especificado ($1) no es válido",
+	"rest-pagehistorycount-parameters-invalid": "No se admite la combinación de parámetros especificada.",
 	"rest-compare-page-mismatch": "Las revisiones especificadas perteneces a páginas distintas; no se compararán.",
 	"rest-compare-permission-denied": "El usuario no tiene acceso a la revisión solicitada",
 	"rest-compare-nonexistent": "La revisión especificada por el parámetro $1 no existe.",

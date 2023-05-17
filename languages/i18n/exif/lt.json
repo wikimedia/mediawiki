@@ -10,7 +10,8 @@
 			"Perkunas",
 			"Tomasdd",
 			"Vpovilaitis",
-			"Zygimantus"
+			"Zygimantus",
+			"Nokeoo"
 		]
 	},
 	"exif-imagewidth": "Plotis",
@@ -268,6 +269,11 @@
 	"exif-scenetype-1": "Tiesiogiai fotografuotas vaizdas",
 	"exif-customrendered-0": "Standartinis procesas",
 	"exif-customrendered-1": "Pasirinktinis procesas",
+	"exif-customrendered-3": "HDR (originalas išsaugotas)",
+	"exif-customrendered-4": "Originalas (skirtas HDR)",
+	"exif-customrendered-6": "Panorama",
+	"exif-customrendered-7": "Portretas HDR",
+	"exif-customrendered-8": "Portretas",
 	"exif-exposuremode-0": "Automatinis išlaikymas",
 	"exif-exposuremode-1": "Rankinis išlaikymas",
 	"exif-exposuremode-2": "Automatinis skliaustas",

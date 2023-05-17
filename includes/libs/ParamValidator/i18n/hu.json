@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tacsipacsi"
+		]
+	},
+	"paramvalidator-help-default": "Alapértelmezett: $1",
+	"paramvalidator-help-default-empty": "Alapértelmezett: (üres)",
+	"paramvalidator-help-deprecated": "Ez a paraméter elavult.",
+	"paramvalidator-help-multi-all": "Az összes érték megadásához használd a(z) <kbd>$1</kbd> értéket.",
+	"paramvalidator-help-required": "Ez a paraméter kötelező.",
+	"paramvalidator-help-type-boolean": "Típus: {{PLURAL:$1|1=logikai|2=logikai értékek listája}}",
+	"paramvalidator-help-type-enum-can-be-empty": "{{PLURAL:$2|0=Üresnek kell lennie|Lehet üres vagy $1}}",
+	"paramvalidator-help-type-float": "Típus: {{PLURAL:$1|1=lebegőpontos szám|2=lebegőpontos számok listája}}",
+	"paramvalidator-help-type-integer": "Típus: {{PLURAL:$1|1=egész szám|2=egész számok listája}}",
+	"paramvalidator-help-type-limit": "Típus: egész szám vagy „max”",
+	"paramvalidator-help-type-number-max": "Az {{PLURAL:$1|1=érték nem lehet nagyobb|2=értékek nem lehetnek nagyobbak}} mint $3.",
+	"paramvalidator-help-type-number-minmax": "{{PLURAL:$1|1=Az értéknek $2 és $3 között kell lennie.|2=Az értékeknek $2 és $3 között kell lenniük.}}",
+	"paramvalidator-help-type-number-min": "Az {{PLURAL:$1|1=érték nem lehet kisebb|2=értékek nem lehetnek kisebbek}} mint $2.",
+	"paramvalidator-help-type-presenceboolean": "Típus: logikai",
+	"paramvalidator-help-type-string-maxbytes": "Nem lehet hosszabb $1 {{PLURAL:$1|bájtnál}}.",
+	"paramvalidator-help-type-string-maxchars": "Nem lehet hosszabb $1 {{PLURAL:$1|karakternél}}.",
+	"paramvalidator-help-type-timestamp": "Típus: {{PLURAL:$1|1=időbélyeg|2=időbélyegek listája}}"
+}
