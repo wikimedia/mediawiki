@@ -1,30 +1,9 @@
 {
 	"root": true,
 	"extends": [
-		"wikimedia/client-es5",
-		"wikimedia/jquery",
-		"wikimedia/mediawiki"
+		"wikimedia/server"
 	],
-	"globals": {
-		"require": "readonly",
-		"module": "readonly"
-	},
-	"env": {
-		"browser": true,
-		"jquery": true,
-		"es6": true
-	},
-	"ignorePatterns": [ "vendor/**" ],
 	"rules": {
-		"one-var": "off",
-		"no-implicit-globals": "off",
-		"es/no-object-fromentries": "off",
-		"es/no-object-entries": "off",
-		"no-jquery/no-global-selector": "off",
-		"no-jquery/no-sizzle": "off",
-		"max-len": "off"
-	},
-	"parserOptions": {
-		"ecmaVersion": 2021
+		"max-len": "warn"
 	}
 }

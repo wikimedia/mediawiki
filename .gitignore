@@ -1,5 +1,91 @@
-/composer.lock
-/vendor
-/node_modules
+# Repository management
+.svn
+
+# git-deploy status file:
+/.deploy
+
+# Editors
+*.kate-swp
+*~
+\#*#
+.#*
+.*.swp
+.project
+cscope.files
+cscope.out
+*.orig
+## NetBeans
+nbproject*
+project.index
+## Sublime
+sublime-*
+sftp-config.json
+## Visual Studio Code
+*.vscode/
+
+# MediaWiki install & usage
+/cache
+/docs/coverage
+/docs/js
+/docs/latex
+/images/[0-9a-f]
+/images/archive
+/images/cache
+/images/deleted
+/images/lockdir
+/images/temp
+/images/thumb
+## Extension:EasyTimeline
+/images/timeline
+## Extension:Score
+/images/lilypond
+## Extension:TimedMediaHandler
+/images/transcoded
+/images/tmp
+/maintenance/.mweval_history
+/maintenance/.mwsql_history
+/maintenance/dev/data
+/LocalSettings.php
+/includes/PlatformSettings.php
+
+# Building & testing
+npm-debug.log
+node_modules/
+/resources/lib/.foreign
+/tests/phpunit/phpunit.phar
+.phpunit.result.cache
+/tests/phpunit/.phpunit.result.cache
+phpunit.xml
+/tests/selenium/log
 .eslintcache
-.github/*
+.api-testing.config.json
+.phan/local-config.php
+
+# Composer
+/composer.lock
+/composer.local.json
+/composer.phar
+
+# Operating systems
+## Mac OS X
+.DS_Store
+## Windows
+Thumbs.db
+
+# Misc
+.buildpath
+.classpath
+.idea
+*.iml
+.metadata*
+.settings
+/favicon.ico
+/static*
+/tags
+/.htaccess
+/.htpasswd
+*.rej
+
+# Docker
+docker-compose.override.yml
+.env
