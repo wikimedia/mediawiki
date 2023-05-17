@@ -28,10 +28,10 @@ use ErrorPageError;
 use HTMLForm;
 use IContextSource;
 use MediaWiki\Mail\EmailUser;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
-use MWException;
 use PermissionsError;
 use Status;
 use ThrottledError;
@@ -61,20 +61,26 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
+	/** @var EmailUser */
+	private EmailUser $emailUser;
+
 	/**
 	 * @param UserNameUtils $userNameUtils
 	 * @param UserNamePrefixSearch $userNamePrefixSearch
 	 * @param UserOptionsLookup $userOptionsLookup
+	 * @param EmailUser $emailUser
 	 */
 	public function __construct(
 		UserNameUtils $userNameUtils,
 		UserNamePrefixSearch $userNamePrefixSearch,
-		UserOptionsLookup $userOptionsLookup
+		UserOptionsLookup $userOptionsLookup,
+		EmailUser $emailUser
 	) {
 		parent::__construct( 'Emailuser' );
 		$this->userNameUtils = $userNameUtils;
 		$this->userNamePrefixSearch = $userNamePrefixSearch;
 		$this->userOptionsLookup = $userOptionsLookup;
+		$this->emailUser = $emailUser;
 	}
 
 	public function doesWrites() {
@@ -201,7 +207,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * @return User|string User object on success or a string on error
 	 */
 	public static function getTarget( $target, User $sender ) {
-		return EmailUser::getTarget( $target, $sender );
+		return MediaWikiServices::getInstance()->getEmailUser()->getTarget( $target, $sender );
 	}
 
 	/**
@@ -213,7 +219,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * @since 1.30
 	 */
 	public static function validateTarget( $target, User $sender ) {
-		return EmailUser::validateTarget( $target, $sender );
+		return MediaWikiServices::getInstance()->getEmailUser()->validateTarget( $target, $sender );
 	}
 
 	/**
@@ -226,7 +232,17 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 *  hook error
 	 */
 	public static function getPermissionsError( $user, $editToken, Config $config = null ) {
-		return EmailUser::getPermissionsError( $user, $editToken, $config );
+		$emailUser = MediaWikiServices::getInstance()->getEmailUser();
+		if ( $config ) {
+			$emailUser->overrideOptionsFromConfig( $config );
+		}
+		try {
+			return $emailUser->getPermissionsError( $user, $editToken );
+		} finally {
+			if ( $config ) {
+				$emailUser->restoreOriginalOptions();
+			}
+		}
 	}
 
 	/**
@@ -276,7 +292,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			->setTitle( $this->getPageTitle() ) // Remove subpage
 			->addPreHtml( $this->msg( 'emailpagetext', $this->mTarget )->parse() )
 			->setSubmitTextMsg( 'emailsend' )
-			->setSubmitCallback( [ __CLASS__, 'submit' ] )
+			->setSubmitCallback( [ $this, 'onFormSubmit' ] )
 			->setFormIdentifier( 'sendEmailForm' )
 			->setWrapperLegendMsg( 'email-legend' )
 			->prepareForm();
@@ -296,6 +312,21 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	}
 
 	/**
+	 * @param array $data
+	 * @return Status|false
+	 */
+	public function onFormSubmit( array $data ) {
+		return $this->emailUser->submit(
+			$data['Target'],
+			$data['Subject'],
+			$data['Text'],
+			$data['CCMe'],
+			$this->getUser(),
+			$this
+		);
+	}
+
+	/**
 	 * Really send a mail. Permissions should have been checked using
 	 * getPermissionsError(). It is probably also a good
 	 * idea to check the edit token and ping limiter in advance.
@@ -303,10 +334,22 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * @param array $data
 	 * @param IContextSource $context
 	 * @return Status|false
-	 * @throws MWException if EmailUser hook sets the error to something unsupported
 	 */
 	public static function submit( array $data, IContextSource $context ) {
-		return EmailUser::submit( $data, $context );
+		$emailUser = MediaWikiServices::getInstance()->getEmailUser();
+		try {
+			$emailUser->overrideOptionsFromConfig( $context->getConfig() );
+			return $emailUser->submit(
+				$data['Target'],
+				$data['Subject'],
+				$data['Text'],
+				$data['CCMe'],
+				$context->getUser(),
+				$context
+			);
+		} finally {
+			$emailUser->restoreOriginalOptions();
+		}
 	}
 
 	/**

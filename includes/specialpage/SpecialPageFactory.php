@@ -977,6 +977,7 @@ class SpecialPageFactory {
 				'UserNameUtils',
 				'UserNamePrefixSearch',
 				'UserOptionsLookup',
+				'EmailUser',
 			]
 		],
 		'Movepage' => [

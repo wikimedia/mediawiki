@@ -21,7 +21,7 @@ interface EmailUserHook {
 	 *
 	 * @param MailAddress &$to MailAddress object of receiving user
 	 * @param MailAddress &$from MailAddress object of sending user
-	 * @param MailAddress &$subject subject of the mail
+	 * @param string &$subject subject of the mail
 	 * @param string &$text text of the mail
 	 * @param bool|Status|MessageSpecifier|array &$error Out-param for an error.
 	 *   Should be set to a Status object or boolean false.

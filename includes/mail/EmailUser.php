@@ -20,18 +20,25 @@
 
 namespace MediaWiki\Mail;
 
+use BadMethodCallException;
+use CentralIdLookup;
 use Config;
-use IContextSource;
 use MailAddress;
+use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\MultiUsernameFilter;
+use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserOptionsLookup;
+use MessageLocalizer;
 use MessageSpecifier;
-use MWException;
+use RuntimeException;
 use SpecialPage;
 use Status;
 use ThrottledError;
+use UnexpectedValueException;
 use User;
 
 /**
@@ -42,76 +49,114 @@ use User;
  */
 class EmailUser {
 	/**
+	 * @internal For use by ServiceWiring
+	 */
+	public const CONSTRUCTOR_OPTIONS = [
+		MainConfigNames::EnableEmail,
+		MainConfigNames::EnableUserEmail,
+		MainConfigNames::EnableSpecialMute,
+		MainConfigNames::PasswordSender,
+		MainConfigNames::UserEmailUseReplyTo,
+	];
+
+	/** @var ServiceOptions */
+	private ServiceOptions $options;
+	/** @var HookRunner */
+	private HookRunner $hookRunner;
+	/** @var UserOptionsLookup */
+	private UserOptionsLookup $userOptionsLookup;
+	/** @var CentralIdLookup */
+	private CentralIdLookup $centralIdLookup;
+	/** @var PermissionManager */
+	private PermissionManager $permissionManager;
+	/** @var UserFactory */
+	private UserFactory $userFactory;
+	/** @var IEmailer */
+	private IEmailer $emailer;
+
+	/** @var ServiceOptions|null Temporary property for BC with SpecialEmailUser */
+	private ?ServiceOptions $oldOptions;
+
+	/**
+	 * @param ServiceOptions $options
+	 * @param HookContainer $hookContainer
+	 * @param UserOptionsLookup $userOptionsLookup
+	 * @param CentralIdLookup $centralIdLookup
+	 * @param PermissionManager $permissionManager
+	 * @param UserFactory $userFactory
+	 * @param IEmailer $emailer
+	 */
+	public function __construct(
+		ServiceOptions $options,
+		HookContainer $hookContainer,
+		UserOptionsLookup $userOptionsLookup,
+		CentralIdLookup $centralIdLookup,
+		PermissionManager $permissionManager,
+		UserFactory $userFactory,
+		IEmailer $emailer
+	) {
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+		$this->options = $options;
+		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->userOptionsLookup = $userOptionsLookup;
+		$this->centralIdLookup = $centralIdLookup;
+		$this->permissionManager = $permissionManager;
+		$this->userFactory = $userFactory;
+		$this->emailer = $emailer;
+	}
+
+	/**
 	 * Validate target User
 	 *
 	 * @param string $target Target user name
 	 * @param User $sender User sending the email
 	 * @return User|string User object on success or a string on error
 	 */
-	public static function getTarget( $target, User $sender ) {
+	public function getTarget( $target, User $sender ) {
 		if ( $target == '' ) {
-			wfDebug( "Target is empty." );
-
 			return 'notarget';
 		}
 
-		$nu = User::newFromName( $target );
-		$error = self::validateTarget( $nu, $sender );
+		$nu = $this->userFactory->newFromName( $target );
+		$error = $this->validateTarget( $nu, $sender );
 
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable $nu can't be null if $error is empty
 		return $error ?: $nu;
 	}
 
 	/**
 	 * Validate target User
 	 *
-	 * @param User $target Target user
+	 * @param User|null $target Target user
 	 * @param User $sender User sending the email
 	 * @return string Error message or empty string if valid.
 	 */
-	public static function validateTarget( $target, User $sender ) {
+	public function validateTarget( $target, User $sender ) {
 		if ( !$target instanceof User || !$target->getId() ) {
-			wfDebug( "Target is invalid user." );
-
 			return 'notarget';
 		}
 
 		if ( !$target->isEmailConfirmed() ) {
-			wfDebug( "User has no valid email." );
-
 			return 'noemail';
 		}
 
 		if ( !$target->canReceiveEmail() ) {
-			wfDebug( "User does not allow user emails." );
-
 			return 'nowikiemail';
 		}
 
-		$userOptionsLookup = MediaWikiServices::getInstance()
-			->getUserOptionsLookup();
-		if ( !$userOptionsLookup->getOption(
-				$target,
-				'email-allow-new-users'
-			) && $sender->isNewbie()
-		) {
-			wfDebug( "User does not allow user emails from new users." );
-
+		if ( !$this->userOptionsLookup->getOption( $target, 'email-allow-new-users' ) && $sender->isNewbie() ) {
 			return 'nowikiemail';
 		}
 
-		$muteList = $userOptionsLookup->getOption(
+		$muteList = $this->userOptionsLookup->getOption(
 			$target,
 			'email-blacklist',
 			''
 		);
 		if ( $muteList ) {
 			$muteList = MultiUsernameFilter::splitIds( $muteList );
-			$senderId = MediaWikiServices::getInstance()
-				->getCentralIdLookup()
-				->centralIdFromLocalUser( $sender );
+			$senderId = $this->centralIdLookup->centralIdFromLocalUser( $sender );
 			if ( $senderId !== 0 && in_array( $senderId, $muteList ) ) {
-				wfDebug( "User does not allow user emails from this user." );
-
 				return 'nowikiemail';
 			}
 		}
@@ -120,22 +165,39 @@ class EmailUser {
 	}
 
 	/**
+	 * @param Config $config
+	 * @internal Kept only for BC with SpecialEmailUser
+	 * @codeCoverageIgnore
+	 */
+	public function overrideOptionsFromConfig( Config $config ): void {
+		$this->oldOptions = $this->options;
+		$this->options = new ServiceOptions( self::CONSTRUCTOR_OPTIONS, $config );
+	}
+
+	/**
+	 * @internal Kept only for BC with SpecialEmailUser
+	 * @codeCoverageIgnore
+	 */
+	public function restoreOriginalOptions(): void {
+		if ( !$this->oldOptions ) {
+			throw new BadMethodCallException( 'Did not override options.' );
+		}
+		$this->options = $this->oldOptions;
+	}
+
+	/**
 	 * Check whether a user is allowed to send email
 	 *
 	 * @param User $user
 	 * @param string $editToken
-	 * @param Config|null $config optional for backwards compatibility
 	 * @return null|string|array Null on success, string on error, or array on
 	 *  hook error
 	 */
-	public static function getPermissionsError( $user, $editToken, Config $config = null ) {
-		$services = MediaWikiServices::getInstance();
-		if ( $config === null ) {
-			wfDebug( __METHOD__ . ' called without a Config instance passed to it' );
-			$config = $services->getMainConfig();
-		}
-		if ( !$config->get( MainConfigNames::EnableEmail ) ||
-			!$config->get( MainConfigNames::EnableUserEmail ) ) {
+	public function getPermissionsError( User $user, $editToken ) {
+		if (
+			!$this->options->get( MainConfigNames::EnableEmail ) ||
+			!$this->options->get( MainConfigNames::EnableUserEmail )
+		) {
 			return 'usermaildisabled';
 		}
 
@@ -145,31 +207,24 @@ class EmailUser {
 			return 'mailnologin';
 		}
 
-		if ( !$services->getPermissionManager()
-			->userHasRight( $user, 'sendemail' )
-		) {
+		if ( !$this->permissionManager->userHasRight( $user, 'sendemail' ) ) {
 			return 'badaccess';
 		}
 
 		if ( $user->isBlockedFromEmailuser() ) {
-			wfDebug( "User is blocked from sending e-mail." );
-
 			return "blockedemailuser";
 		}
 
 		// Check the ping limiter without incrementing it - we'll check it
 		// again later and increment it on a successful send
 		if ( $user->pingLimiter( 'sendemail', 0 ) ) {
-			wfDebug( "Ping limiter triggered." );
-
 			return 'actionthrottledtext';
 		}
 
 		$hookErr = false;
 
-		$hookRunner = new HookRunner( $services->getHookContainer() );
-		$hookRunner->onUserCanSendEmail( $user, $hookErr );
-		$hookRunner->onEmailUserPermissionsErrors( $user, $editToken, $hookErr );
+		$this->hookRunner->onUserCanSendEmail( $user, $hookErr );
+		$this->hookRunner->onEmailUserPermissionsErrors( $user, $editToken, $hookErr );
 
 		return $hookErr ?: null;
 	}
@@ -179,16 +234,23 @@ class EmailUser {
 	 * getPermissionsError(). It is probably also a good
 	 * idea to check the edit token and ping limiter in advance.
 	 *
-	 * @param array $data
-	 * @param IContextSource $context
+	 * @param string $targetName
+	 * @param string $subject
+	 * @param string $text
+	 * @param bool $CCMe
+	 * @param User $sender
+	 * @param MessageLocalizer $messageLocalizer
 	 * @return Status|false
-	 * @throws MWException if EmailUser hook sets the error to something unsupported
 	 */
-	public static function submit( array $data, IContextSource $context ) {
-		$config = $context->getConfig();
-
-		$sender = $context->getUser();
-		$target = self::getTarget( $data['Target'], $sender );
+	public function submit(
+		$targetName,
+		$subject,
+		$text,
+		$CCMe,
+		User $sender,
+		MessageLocalizer $messageLocalizer
+	) {
+		$target = $this->getTarget( $targetName, $sender );
 		if ( !$target instanceof User ) {
 			// Messages used here: notargettext, noemailtext, nowikiemailtext
 			return Status::newFatal( $target . 'text' );
@@ -196,39 +258,30 @@ class EmailUser {
 
 		$toAddress = MailAddress::newFromUser( $target );
 		$fromAddress = MailAddress::newFromUser( $sender );
-		$subject = $data['Subject'];
-		$text = $data['Text'];
 
 		// Add a standard footer and trim up trailing newlines
 		$text = rtrim( $text ) . "\n\n-- \n";
-		$text .= $context->msg(
+		$text .= $messageLocalizer->msg(
 			'emailuserfooter',
 			$fromAddress->name,
 			$toAddress->name
 		)->inContentLanguage()->text();
 
-		if ( $config->get( MainConfigNames::EnableSpecialMute ) ) {
-			$specialMutePage = SpecialPage::getTitleFor( 'Mute', $sender->getName() );
-			$text .= "\n" . $context->msg(
+		if ( $this->options->get( MainConfigNames::EnableSpecialMute ) ) {
+			$text .= "\n" . $messageLocalizer->msg(
 					'specialmute-email-footer',
-					$specialMutePage->getCanonicalURL(),
+					$this->getSpecialMuteCanonicalURL( $sender->getName() ),
 					$sender->getName()
 				)->inContentLanguage()->text();
 		}
 
 		// Check and increment the rate limits
 		if ( $sender->pingLimiter( 'sendemail' ) ) {
-			throw new ThrottledError();
+			throw $this->getThrottledError();
 		}
 
-		// Services that are needed, will be injected once this is moved to EmailUserUtils
-		// service, see T265541
-		$services = MediaWikiServices::getInstance();
-		$hookRunner = new HookRunner( $services->getHookContainer() );
-		$emailer = $services->getEmailer();
-
 		$error = false;
-		if ( !$hookRunner->onEmailUser( $toAddress, $fromAddress, $subject, $text, $error ) ) {
+		if ( !$this->hookRunner->onEmailUser( $toAddress, $fromAddress, $subject, $text, $error ) ) {
 			if ( $error instanceof Status ) {
 				return $error;
 			} elseif ( $error === false || $error === '' || $error === [] ) {
@@ -249,13 +302,13 @@ class EmailUser {
 				// Setting $error to something else was deprecated in 1.29 and
 				// removed in 1.36, and so an exception is now thrown
 				$type = is_object( $error ) ? get_class( $error ) : gettype( $error );
-				throw new MWException(
+				throw new UnexpectedValueException(
 					'EmailUser hook set $error to unsupported type ' . $type
 				);
 			}
 		}
 
-		if ( $config->get( MainConfigNames::UserEmailUseReplyTo ) ) {
+		if ( $this->options->get( MainConfigNames::UserEmailUseReplyTo ) ) {
 			/**
 			 * Put the generic wiki autogenerated address in the From:
 			 * header and reserve the user for Reply-To.
@@ -265,8 +318,8 @@ class EmailUser {
 			 * SPF and bounce problems with some mailers (see below).
 			 */
 			$mailFrom = new MailAddress(
-				$config->get( MainConfigNames::PasswordSender ),
-				$context->msg( 'emailsender' )->inContentLanguage()->text()
+				$this->options->get( MainConfigNames::PasswordSender ),
+				$messageLocalizer->msg( 'emailsender' )->inContentLanguage()->text()
 			);
 			$replyTo = $fromAddress;
 		} else {
@@ -289,7 +342,7 @@ class EmailUser {
 			$replyTo = null;
 		}
 
-		$status = Status::wrap( $emailer->send(
+		$status = Status::wrap( $this->emailer->send(
 			$toAddress,
 			$mailFrom,
 			$subject,
@@ -305,21 +358,21 @@ class EmailUser {
 		// if the user requested a copy of this mail, do this now,
 		// unless they are emailing themselves, in which case one
 		// copy of the message is sufficient.
-		if ( $data['CCMe'] && $toAddress != $fromAddress ) {
+		if ( $CCMe && $toAddress != $fromAddress ) {
 			$ccTo = $fromAddress;
 			$ccFrom = $fromAddress;
-			$ccSubject = $context->msg( 'emailccsubject' )->plaintextParams(
+			$ccSubject = $messageLocalizer->msg( 'emailccsubject' )->plaintextParams(
 				$target->getName(),
 				$subject
 			)->text();
 			$ccText = $text;
 
-			$hookRunner->onEmailUserCC( $ccTo, $ccFrom, $ccSubject, $ccText );
+			$this->hookRunner->onEmailUserCC( $ccTo, $ccFrom, $ccSubject, $ccText );
 
-			if ( $config->get( MainConfigNames::UserEmailUseReplyTo ) ) {
+			if ( $this->options->get( MainConfigNames::UserEmailUseReplyTo ) ) {
 				$mailFrom = new MailAddress(
-					$config->get( MainConfigNames::PasswordSender ),
-					$context->msg( 'emailsender' )->inContentLanguage()->text()
+					$this->options->get( MainConfigNames::PasswordSender ),
+					$messageLocalizer->msg( 'emailsender' )->inContentLanguage()->text()
 				);
 				$replyTo = $ccFrom;
 			} else {
@@ -327,7 +380,7 @@ class EmailUser {
 				$replyTo = null;
 			}
 
-			$ccStatus = $emailer->send(
+			$ccStatus = $this->emailer->send(
 				$ccTo,
 				$mailFrom,
 				$ccSubject,
@@ -338,8 +391,34 @@ class EmailUser {
 			$status->merge( $ccStatus );
 		}
 
-		$hookRunner->onEmailUserComplete( $toAddress, $fromAddress, $subject, $text );
+		$this->hookRunner->onEmailUserComplete( $toAddress, $fromAddress, $subject, $text );
 
 		return $status;
+	}
+
+	/**
+	 * @param string $targetName
+	 * @return string
+	 * XXX This code is still heavily reliant on global state, so temporarily skip it in tests.
+	 * @codeCoverageIgnore
+	 */
+	private function getSpecialMuteCanonicalURL( string $targetName ): string {
+		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
+			return "Ceci n'est pas une URL";
+		}
+		return SpecialPage::getTitleFor( 'Mute', $targetName )->getCanonicalURL();
+	}
+
+	/**
+	 * @return RuntimeException|ThrottledError
+	 * XXX ErrorPageError (that ThrottledError inherits from) runs heavy logic involving the global state in the
+	 * constructor, and cannot be used in unit tests. See T281935.
+	 * @codeCoverageIgnore
+	 */
+	private function getThrottledError() {
+		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
+			return new RuntimeException( "You are throttled, and I am not running heavy logic in the constructor" );
+		}
+		return new ThrottledError();
 	}
 }
