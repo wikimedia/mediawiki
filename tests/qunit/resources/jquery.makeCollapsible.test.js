@@ -1,7 +1,5 @@
-( function () {
-	var loremIpsum = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.';
-
-	QUnit.module( 'jquery.makeCollapsible', QUnit.newMwEnvironment() );
+QUnit.module( 'jquery.makeCollapsible', () => {
+	const loremIpsum = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.';
 
 	function prepareCollapsible( html, options ) {
 		return $( $.parseHTML( html ) )
@@ -462,4 +460,4 @@
 		} );
 		$toggleInner.find( 'a' ).trigger( 'click' );
 	} );
-}() );
+} );
