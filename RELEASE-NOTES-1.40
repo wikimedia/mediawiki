@@ -60,7 +60,7 @@ For notes on 1.39.x and older releases, see HISTORY.
   the migration stage for the temporary comment database table, from revision.
   Ignore it unless you have a large wiki farm with complex migration needs.
 * $wgSpecialContributeSkinsEnabled – This setting lets you list skins on which
-  Special:Contribute is hidden, for example if they won't work for the feature.
+  Special:Contribute is available, for where others don't work for the feature.
 
 ==== Changed configuration ====
 * $wgPasswordPolicies – This setting, which controls what makes for a valid
