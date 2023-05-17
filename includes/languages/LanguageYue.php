@@ -45,17 +45,4 @@ class LanguageYue extends Language {
 		$s = self::insertSpace( $string, $reg );
 		return $s;
 	}
-
-	/**
-	 * @param string $string
-	 * @return string
-	 */
-	public function normalizeForSearch( $string ) {
-		// Double-width roman characters
-		$s = self::convertDoubleWidth( $string );
-		$s = trim( $s );
-		$s = parent::normalizeForSearch( $s );
-
-		return $s;
-	}
 }

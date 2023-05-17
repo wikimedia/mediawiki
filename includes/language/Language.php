@@ -2840,14 +2840,31 @@ class Language implements Bcp47Code {
 	}
 
 	/**
+	 * Specify the language variant that should be used for search indexing.
+	 *
+	 * @return string|null
+	 */
+	protected function getSerchIndexVariant() {
+		return null;
+	}
+
+	/**
 	 * Some languages have special punctuation need to be normalized.
 	 * Make such changes here.
 	 *
-	 * @param string $string
+	 * Some languages such as Chinese have many-to-one conversions,
+	 * e.g. it should be better to use zh-hans for search, since conversion
+	 * from zh-hant to zh-hans is less ambiguous than the other way around.
+	 *
+	 * @param string $text
 	 * @return string
 	 */
-	public function normalizeForSearch( $string ) {
-		return self::convertDoubleWidth( $string );
+	public function normalizeForSearch( $text ) {
+		$text = self::convertDoubleWidth( $text );
+		if ( $this->getSerchIndexVariant() ) {
+			return $this->getConverterInternal()->autoConvert( $text, $this->getSerchIndexVariant() );
+		}
+		return $text;
 	}
 
 	/**
