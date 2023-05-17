@@ -3743,7 +3743,7 @@
 	"diff-form-revid": "差分の版 ID",
 	"diff-form-submit": "差分を表示",
 	"diff-form-other-revid": "版 ID",
-	"diff-form-error-revid": "数値リビジョンIDを入力してください",
+	"diff-form-error-revid": "数値の版 ID を入力してください",
 	"permanentlink": "固定リンク",
 	"permanentlink-revid": "版 ID",
 	"permanentlink-submit": "版を表示",
