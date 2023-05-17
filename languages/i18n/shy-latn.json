@@ -833,7 +833,6 @@
 	"search-relatedarticle": "Amassaɣ",
 	"searchrelated": "amassaɣ",
 	"searchall": "akk",
-	"showingresults": "Tamuli n {{PLURAL:$1|<strong>Yiwen</strong> wegmud|<strong>$1</strong> n yigmad}} seg  #<strong>$2</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Agmuḍ <strong>$1</strong> si <strong>$3</strong>|Igmaḍ <strong>$1 - $2</strong> si <strong>$3</strong>}}",
 	"search-nonefound": "Ulac igmad i usuter agi.",
 	"search-nonefound-thiswiki": "ulac Agmuḍ l site",

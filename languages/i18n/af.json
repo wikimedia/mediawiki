@@ -891,7 +891,6 @@
 	"search-relatedarticle": "Verwante",
 	"searchrelated": "verwante",
 	"searchall": "alle",
-	"showingresults": "Hier volg {{PLURAL:$1|'''1''' resultaat|'''$1''' resultate}} vanaf #'''$2'''.",
 	"search-showingresults": "{{PLURAL:$4|Resultaat <strong>$1</strong> van <strong>$2</strong>|Resultate <strong>$1 - $2</strong> van <strong>$3</strong>}}",
 	"search-nonefound": "Daar is geen resultate vir die navraag nie.",
 	"powersearch-legend": "Gevorderde soektog",

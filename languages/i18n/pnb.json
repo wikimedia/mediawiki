@@ -749,7 +749,6 @@
 	"search-relatedarticle": "جڑیاں",
 	"searchrelated": "جڑیا",
 	"searchall": "سارے",
-	"showingresults": "تھلیوں دسے گۓ  {{PLURAL:$1|'''1''' نتیجہ|'''$1''' نتیجے}}  شروع #'''$2'''.",
 	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong> وچوں <strong>$1</strong> نتیجہ|<strong>$3</strong> وچوں <strong>$1 توں $2</strong> نتیجے}}",
 	"search-nonefound": "سوال نال رلدے کوئی نتارے نئیں سن۔",
 	"powersearch-legend": "ہور کھوج",

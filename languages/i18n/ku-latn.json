@@ -749,7 +749,6 @@
 	"search-relatedarticle": "Pêwendîdar",
 	"searchrelated": "pêwendîdar",
 	"searchall": "hemû",
-	"showingresults": "{{PLURAL:$1|Encamek|'''$1''' encam}}, bi #'''$2''' dest pê dike.",
 	"showingresultsinrange": "Li jêr {{PLURAL:$1|encamek|<strong>$1</strong> encam}}, ji #<strong>$2</strong> heta #<strong>$3</strong> tên nîşandan.",
 	"search-showingresults": "{{PLURAL:$4|Encam <strong>$1</strong> ji <strong>$3</strong>|Encamên <strong>$1 – $2</strong> ji <strong>$3</strong>}}",
 	"search-nonefound": "Ti rûpelên wek ya daxwazkirî nînin.",

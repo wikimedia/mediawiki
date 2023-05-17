@@ -884,7 +884,6 @@
 	"search-relatedarticle": "Patula-patali",
 	"searchrelated": "patula-patali",
 	"searchall": "sadayana",
-	"showingresults": "Di handap ieu némbongkeun {{PLURAL:$1|'''1''' hasil|'''$1''' hasil}}, dimimitianku  #'''$2'''.",
 	"showingresultsinrange": "Di handap dipidangkeun nepi ka {{PLURAL:$1|<strong>1</strong> hasil}} ti #<strong>$2</strong> nepi ka #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Hasil <strong>$1</strong> ti <strong>$3</strong>|Hasil <strong>$1 - $2</strong> ti <strong>$3</strong>}}",
 	"search-nonefound": "Euweuh hasil nu cocog jeung kueri.",

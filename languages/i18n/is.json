@@ -951,7 +951,6 @@
 	"search-relatedarticle": "Tengt",
 	"searchrelated": "tengt",
 	"searchall": "öllum",
-	"showingresults": "Sýni <strong>$1</strong> {{PLURAL:$1|niðurstöðu|niðurstöður}} frá og með #<strong>$2</strong>.",
 	"showingresultsinrange": "Sýni allt að <strong>$1</strong> {{PLURAL:$1|niðurstöðu|niðurstöður}} á bilinu <strong>$2</strong> til <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Niðurstaða|Niðurstöður}} <strong>$1-$2</strong> af <strong>$3</strong>",
 	"search-nonefound": "Engar niðurstöður pössuðu við fyrirspurnina.",

@@ -892,7 +892,6 @@
 	"search-relatedarticle": "Ligà",
 	"searchrelated": "ligà",
 	"searchall": "tuti",
-	"showingresults": "Qua de soto vien mostrà al massimo {{PLURAL:$1|'''1''' risultato|'''$1''' risultati}} a partir dal nùmaro '''$2'''.",
 	"search-showingresults": "{{PLURAL:$4|Rexultà <strong>$1</strong> de <strong>$3</strong>|Rexultài <strong>$1 - $2</strong> de <strong>$3</strong>}}",
 	"search-nonefound": "La riserca no ła gà catà njiente.",
 	"powersearch-legend": "Riserca avansà",

@@ -947,7 +947,6 @@
 	"search-relatedarticle": "सम्बन्धित",
 	"searchrelated": "सम्बन्धित",
 	"searchall": "सबै",
-	"showingresults": "देखाउँदै  {{PLURAL:$1|'''१''' नतिजा|'''$1''' नतिजाहरू }} , #'''$2''' बाट सुरुहुने ।",
 	"showingresultsinrange": "देखाई रहेको छ{{PLURAL:$1|<strong>1</strong> result|<strong>$1</strong> परिणाम}} सम्म पहुँच  #<strong>$2</strong> देखि #<strong>$3</strong> मा।",
 	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong> मा बाट <strong>$1</strong> परिणाम|<strong>$3</strong> मा बाट परिणाम <strong>$1 - $2</strong>}}",
 	"search-nonefound": "तपाईंको खोजसँग मेल खाने नतिजाहरू भेटिएनन्",

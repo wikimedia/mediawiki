@@ -877,7 +877,6 @@
 	"search-relatedarticle": "Magepokan",
 	"searchrelated": "magepokan",
 	"searchall": "kabèh",
-	"showingresults": "Ing ngisor iki dituduhaké {{PLURAL:$1|'''1''' kasil|'''$1''' kasil}}, wiwitané saking #<strong>$2</strong>.",
 	"showingresultsinrange": "Nuduhaké nganti {{PLURAL:$1|<strong>1</strong> kasil|<strong>$1</strong> kasil}} sajeroning penthangan #<strong>$2</strong> tekan #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Asil <strong>$1</strong> saka <strong>$3</strong>|Asil <strong>$1 – $2</strong> saka <strong>$3</strong>}}",
 	"search-nonefound": "Ora ana asil kang mathuk kuwèri.",

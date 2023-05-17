@@ -1082,7 +1082,6 @@
 	"search-thumbnail-alt": "Мініатюра для $1",
 	"searchrelated": "пов'язаний",
 	"searchall": "усі",
-	"showingresults": "Нижче {{PLURAL:$1|показане|показані|показані|}} <strong>$1</strong> {{PLURAL:$1|результат|результати|результатів|}}, починаючи з №&nbsp;<strong>$2</strong>",
 	"showingresultsinrange": "Нижче показано до {{PLURAL:$1|<strong>1</strong> результату|<strong>$1</strong> результатів}} у діапазоні від #<strong>$2</strong> до #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Результат <strong>$1</strong> із <strong>$3</strong>|Результати <strong>$1 — $2</strong> із <strong>$3</strong>}}",
 	"search-nonefound": "Не знайдено результатів, що відповідають запиту.",

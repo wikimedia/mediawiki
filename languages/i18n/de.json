@@ -1116,7 +1116,6 @@
 	"search-thumbnail-alt": "Vorschaubild für $1",
 	"searchrelated": "verwandt",
 	"searchall": "alle",
-	"showingresults": "Hier {{PLURAL:$1|ist '''1''' Ergebnis|sind '''$1''' Ergebnisse}}, beginnend mit Nummer '''$2.'''",
 	"showingresultsinrange": "Unten {{PLURAL:$1|wird <strong>ein</strong> Ergebnis|werden bis zu <strong>$1</strong> Ergebnisse}} im Bereich <strong>$2</strong> bis <strong>$3</strong> angezeigt.",
 	"search-showingresults": "{{PLURAL:$4|Ergebnis <strong>$1</strong> von <strong>$3</strong>|Ergebnisse <strong>$1 bis $2</strong> von <strong>$3</strong>}}",
 	"search-nonefound": "Zu deiner Suchanfrage wurden keine Ergebnisse gefunden.",

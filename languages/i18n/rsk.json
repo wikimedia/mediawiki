@@ -975,7 +975,6 @@
 	"search-unknown-profile": "Профил преглєдованя „$1” нє препознати. Применює ше основни або дифолт профил.",
 	"searchrelated": "У вязи зоз",
 	"searchall": "Шицки",
-	"showingresults": "Кус нїжей {{PLURAL:$1|1=Приказани <strong>єден</strong> резултат|Приказани <strong>$1</strong> резултати}}; починаюци зоз №&nbsp; <strong>$2</strong>.",
 	"showingresultsinrange": "Кус нїжей{{PLURAL:$1|1=Приказани <strong>єден</strong> резултат|Приказани <strong>$1</strong> резултати}}; обсяг: од <strong>$2</strong> до <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Резултат <strong>$1</strong> of <strong>$3</strong>|Резултати <strong>$1 – $2</strong> од <strong>$3</strong>}}",
 	"search-nonefound": "Нє були пренайдзени  резултати хтори одвитую на питанє",

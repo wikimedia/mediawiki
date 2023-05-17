@@ -671,7 +671,6 @@
 	"search-suggest": "Fortzis fias chirchende: $1",
 	"search-interwiki-more": "(àteru)",
 	"searchall": "totu",
-	"showingresults": "Inoghe sighende {{PLURAL:$1|benit ammustradu '''1''' resurtadu|benint ammustrados '''$1''' resurtados}} incumentzende dae su nùmeru '''$2'''.",
 	"search-showingresults": "{{PLURAL:$4|Resurtadu <strong>$1</strong> de <strong>$3</strong>|Resurtados <strong>$1 – $2</strong> de <strong>$3</strong>}}",
 	"search-nonefound": "Sa chirca no at prodùidu resurtados.",
 	"powersearch-legend": "Chirca delantada",

@@ -980,7 +980,6 @@
 	"search-unknown-profile": "O profî de serchia $1 o l'è sconosciuo, saiâ doeuviou o profî de serchia predefinio.",
 	"searchrelated": "corelæ",
 	"searchall": "tùtti",
-	"showingresults": "Chì appreuvo se mostra a-o mascimo {{PLURAL:$1|'''1''' risultou|'''$1''' risultæ}} a partî da-o nummero '''$2'''.",
 	"showingresultsinrange": "Chì sotta se mostra scin a {{PLURAL:$1|<strong>1</strong> risultou|<strong>$1</strong> risultæ}} da-o <strong>$2</strong> a-o <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Rizultâto <strong>$1</strong> de <strong>$3</strong>|Rizultâti <strong>$1 - $2</strong> de <strong>$3</strong>}}",
 	"search-nonefound": "No l'é stæto atrovòu nìnte",

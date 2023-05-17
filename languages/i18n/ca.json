@@ -1062,7 +1062,6 @@
 	"search-thumbnail-alt": "Miniatura per $1",
 	"searchrelated": "relacionat",
 	"searchall": "tots",
-	"showingresults": "Tot seguit es {{PLURAL:$1|mostra el resultat|mostren els <b>$1</b> resultats començant pel número <b>$2</b>}}.",
 	"showingresultsinrange": "Es mostren a continuació fins a {{PLURAL:$1|<strong>1</strong> resultat|<strong>$1</strong> resultats}} de #<strong>$2</strong> a #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Resultat <strong>$1</strong> de <strong>$3</strong>|Resultats <strong>$1 - $2</strong> de <strong>$3</strong>}}",
 	"search-nonefound": "La cerca no ha donat cap resultat.",

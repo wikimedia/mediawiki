@@ -986,7 +986,6 @@
 	"search-relatedarticle": "Erlazionatua",
 	"searchrelated": "erlazionatua",
 	"searchall": "guztia",
-	"showingresults": "Jarraian {{PLURAL:$1|emaitza <strong>bat</strong> ageri da.|<strong>$1</strong> emaitza ageri dira, #'''$2'''.etik hasita.}}",
 	"showingresultsinrange": "Jarraian {{PLURAL:$1|emaitza <strong>bat</strong> ageri da.|<strong>$1</strong> emaitza ageri dira, </strong>$2</strong>.etik hasi eta <strong>$3</strong>.eraino.}}",
 	"search-showingresults": "{{PLURAL:$4|<strong>$1.</strong> emaitza (guztira <strong>$3</strong> dira)|<strong>$1 - $2.</strong> emaitzak (guztira <strong>$3</strong> dira)}}",
 	"search-nonefound": "Ez dago eskaerarekin bat egiten duten emaitzarik.",

@@ -927,7 +927,6 @@
 	"search-relatedarticle": "ಸಂಬಂದ ಇತ್ತಿನ",
 	"searchrelated": "ಸಂಬಂದ ಇತ್ತಿನ",
 	"searchall": "ಮಾತ",
-	"showingresults": "#<strong>$2</strong>ರ್ದ್ ಸುರುವಾಪಿನ,  {{PLURAL:$1|<strong>1</strong> ಫಲಿತಾಂಶ|<strong>$1</strong>ಫಲಿತಾಂಶೊಲು}} ಮುಟ್ಟದವೆನ್ ಈ  ತಿರ್ತ್ ತೋಜಾವುಂಡು .",
 	"showingresultsinrange": "#<strong>$2</strong>ರ್ದ್  #<strong>$3</strong>.ವ್ಯಾಪ್ತಿದ,  {{PLURAL:$1|<strong>1</strong> ಫಲಿತಾಂಶ|<strong>$1</strong>ಫಲಿತಾಂಶೊಲು}} ಮುಟ್ಟದವೆನ್ ಈ  ತಿರ್ತ್ ತೋಜಾವುಂಡು .",
 	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong>ಟ್ <strong>$1</strong> ಫಲಿತಾಂಸೊ|<strong>$3</strong>ಟ್ <strong>$1 - $2</strong> ಫಲಿತಾಂಸೊಲು}}",
 	"search-nonefound": "ಈರೆನ ವಿಚಾರಣೆಗ್ ತಕ್ಕಂದಿನ ಪಲಿತಾಂಸೊಲು ಇಜ್ಜಿ.",

@@ -1026,7 +1026,6 @@
 	"search-thumbnail-alt": "$1 థంబ్‌నెయిల్",
 	"searchrelated": "సంబంధించినవి",
 	"searchall": "అన్నీ",
-	"showingresults": "#<strong>$2</strong> నుండి మొదలుకొని {{PLURAL:$1|</strong>ఒక్క</strong> ఫలితాన్ని|<strong>$1</strong> ఫలితాలను}} కింద చూపించాం.",
 	"showingresultsinrange": "#<strong>$2</strong> నుండి  #<strong>$3</strong> వరకు ఉన్న ఫలితాల శ్రేణి నుండి {{PLURAL:$1|<strong>ఒక్క</strong> ఫలితం|<strong>$1</strong> ఫలితాల}} వరకు కింద చూపించాం.",
 	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong> లో <strong>$1</strong> ఫలితం|<strong>$3</strong> లో <strong>$1 – $2</strong> ఫలితాలు}}",
 	"search-nonefound": "మీ ప్రశ్నకి సరిపోలిన ఫలితాలేమీ లేవు.",

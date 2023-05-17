@@ -967,7 +967,6 @@
 	"search-relatedarticle": "Бәйле",
 	"searchrelated": "бәйле",
 	"searchall": "барысы",
-	"showingresults": "Түбәндә <strong>$2</strong>&nbsp;№ башлап {{PLURAL:$1|<strong>бер генә</strong> нәтиҗә|<strong>$1</strong> нәтиҗә}} күрсәтелгән.",
 	"showingresultsinrange": "Түбәндә {{PLURAL:$1|<strong>бер</strong>|<strong>$1</strong>}} нәтиҗәгә кадәр <strong>$2</strong> — <strong>$3</strong> колачында күрсәтелгән.",
 	"search-showingresults": "{{PLURAL:$4|Нәтиҗә: <strong>$3</strong> дан <strong>$1</strong>|Нәтиҗәләр: <strong>$3</strong> дан <strong>$1 — $2</strong>}}",
 	"search-nonefound": "Сорауга туры килгән нәтиҗәләр табылмаган.",

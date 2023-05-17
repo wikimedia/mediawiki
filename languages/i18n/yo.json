@@ -817,7 +817,6 @@
 	"search-relatedarticle": "Tóbáramu",
 	"searchrelated": "tóbáramu",
 	"searchall": "gbogbo",
-	"showingresults": "Ìfihàn nísàlẹ̀ títí dé {{PLURAL:$1|èsì '''1'''|àwọn èsì '''$1'''}} láti ìbẹ̀rẹ̀ ní #'''$2'''.",
 	"showingresultsinrange": "Ìfihàn n'ísàlẹ̀ títí dé {{PLURAL:$1|èsì <strong>1</strong>|àwọn èsì <strong>$1</strong>}} tó bẹ̀rẹ̀ láti #<strong>$2</strong> dé #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Èsì <strong>$1</strong> fún <strong>$3</strong>|Àwọn èsì <strong>$1 - $2</strong> fún <strong>$3</strong>}}",
 	"search-nonefound": "Kò sí àwọn èsì kankan tóbáramu mọ́ ìtọrọ.",

@@ -1027,7 +1027,6 @@
 	"search-thumbnail-alt": "Miniatura para \"$1\"",
 	"searchrelated": "relacionado",
 	"searchall": "todo",
-	"showingresults": "{{PLURAL:$1|Móstrase <strong>1</strong> resultado|Móstranse <strong>$1</strong> resultados}}, comezando polo número <strong>$2</strong>.",
 	"showingresultsinrange": "{{PLURAL:$1|Móstrase <strong>1</strong> resultado|Móstranse <strong>$1</strong> resultados}}, comezando polo número <strong>$2</strong> e rematando polo número <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Resultado <strong>$1</strong> de <strong>$3</strong>|Resultados do <strong>$1</strong> ao <strong>$2</strong>, dun total de <strong>$3</strong>}}",
 	"search-nonefound": "Non se atopou ningún resultado que coincidise coa procura.",

@@ -314,7 +314,6 @@
 	"nextn": "lila {{PLURAL:$1|$1}}",
 	"viewprevnext": "Kamukile ($1 {{int:pipe-separator}} $2) ($3)",
 	"searchall": "xete",
-	"showingresults": "Kamukile opi {{PLURAL:$1|'''1''' ekali|'''$1''' ekalina}} di #'''$2'''.",
 	"preferences": "Petohoni di sebelu",
 	"mypreferences": "Zwa petohoni di sebelu",
 	"prefs-edits": "Hloli ye ng'inabi:",

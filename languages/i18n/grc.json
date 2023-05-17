@@ -624,7 +624,6 @@
 	"search-relatedarticle": "Σχετικά",
 	"searchrelated": "σχετικά",
 	"searchall": "ἅπασαι",
-	"showingresults": "Δεικνύναι κατωτέρω μέχρι {{PLURAL:$1|'''1''' ἀποτέλεσμα|'''$1''' ἀποτελέσματα}}· ἐκκίνησις ἐκ τοῦ #'''$2'''.",
 	"search-showingresults": "{{PLURAL:$4|Ἀποτέλεσμα <strong>$1</strong> ἀπό <strong>$3</strong>|Ἀποτελέσματα <strong>$1 - $2</strong> ἀπό <strong>$3</strong>}}",
 	"search-nonefound": "Οὐδὲν ἀποτέλεσμα ἀντίστοιχον τῆς πεύσεως.",
 	"powersearch-legend": "Ἀνωτέρα ἀναζήτησις",

@@ -635,7 +635,6 @@
 	"search-relatedarticle": "Bağlı",
 	"searchrelated": "bağlı",
 	"searchall": "episi",
-	"showingresults": "Aşağıda №&nbsp;<strong>$2</strong>den başlap {{PLURAL:$1|'''1''' netice|'''$1''' netice}} buluna.",
 	"search-showingresults": "\n{{PLURAL:$4|<strong>$3</strong> içün netice|<strong>$3</strong> içün <strong>$1 - $2</strong> neticeler}}",
 	"search-nonefound": "Soratmanen eşleşken bir netice yoq.",
 	"powersearch-legend": "Tafsilâtlı qıdıruv",

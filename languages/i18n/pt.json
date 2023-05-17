@@ -1083,7 +1083,6 @@
 	"search-thumbnail-alt": "Miniatura para $1",
 	"searchrelated": "relacionados",
 	"searchall": "todos",
-	"showingresults": "{{PLURAL:$1|É apresentado <strong>um</strong> resultado|São apresentados até <strong>$1</strong> resultados}} abaixo{{PLURAL:$1||, começando pelo <strong>$2</strong>º}}.",
 	"showingresultsinrange": "Apresenta-se abaixo {{PLURAL:$1|<strong>1</strong> resultado|até <strong>$1</strong> resultados}} no intervalo #<strong>$2</strong> a #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Resultado <strong>$1</strong> de <strong>$3</strong>|Resultados <strong>$1 - $2</strong> de <strong>$3</strong>}}",
 	"search-nonefound": "A pesquisa não produziu resultados.",

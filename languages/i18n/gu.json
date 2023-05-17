@@ -816,7 +816,6 @@
 	"search-relatedarticle": "શોધ સંબંધિત",
 	"searchrelated": "શોધ સંબંધિત",
 	"searchall": "બધા",
-	"showingresults": " {{PLURAL:$1|'''1''' પરિણામ|'''$1''' પરિણામો}} સુધી #'''$2''' થી શરૂ  કરી",
 	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong>નું પરિણામ <strong>$1</strong>|<strong>$3</strong>નાં પરિણામો <strong>$1 - $2</strong>}}",
 	"search-nonefound": "તમે આપેલી માહિતી ને મળતાં આવતાં કોઈ પરિણામો નથી",
 	"powersearch-legend": "વધુ પર્યાયો સાથે શોધો",

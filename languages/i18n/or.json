@@ -857,7 +857,6 @@
 	"search-relatedarticle": "ଯୋଡ଼ା",
 	"searchrelated": "ଯୋଡ଼ା",
 	"searchall": "ସବୁ",
-	"showingresults": "ତଳେ {{PLURAL:$1|'''ଗୋଟିଏ'''  ଫଳାଫଳ|'''$1'''ଟି ଫଳାଫଳ}} ଦେଖାଉଛୁ ଯାହା #'''$2'''ରେ ଆରମ୍ଭ ହୋଇଅଛି ।",
 	"showingresultsinrange": "#<strong>$2</strong> ରୁ #<strong>$3</strong> ଭିତରେ ଥିବା ପାଖାପାଖି {{PLURAL:$1|<strong>ଗୋଟେ</strong> ଫଳାଫଳ|<strong>$1</strong>ଟି ଫଳାଫଳ}} ତଳେ ଦେଖାଉଛୁ ।",
 	"search-showingresults": "{{PLURAL:$4|ଫଳାଫଳ (<strong>$3</strong>ର <strong>$1</strong>) |ଫଳାଫଳ (<strong>$3</strong>ର <strong>$1 - $2</strong>}}",
 	"search-nonefound": "ଆପଣ ଖୋଜିଥିବା ପ୍ରଶ୍ନ ପାଇଁ କିଛି ଫଳ ମିଳିଲା ନାହିଁ ।",

@@ -869,7 +869,6 @@
 	"search-interwiki-more-results": "sayadahay a heci",
 	"search-relatedarticle": "mahizaay",
 	"searchall": "hamin",
-	"showingresults": "isasa’ay paazih nay saka <strong>$2</strong> miteka, pulung {{PLURAL:$1|<strong>1</strong>ku heci|<strong>$1</strong> ku heci}}",
 	"showingresultsinrange": "isasa’ paazih nay saka <strong>$2</strong> ta saka <strong>$3</strong> a {{PLURAL:$1|<strong>$1</strong> heci}}:",
 	"search-showingresults": "{{PLURAL:$4|saka <strong>$1</strong> a heci, pulung <strong>$3</strong>|saka <strong>$1-$2</strong> a heci, pulung <strong>$3</strong>}}",
 	"search-nonefound": "nayi’ matatungusay palalitemuh tu kawaw maheciay.",

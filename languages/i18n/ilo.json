@@ -926,7 +926,6 @@
 	"search-relatedarticle": "Mainaig",
 	"searchrelated": "mainaig",
 	"searchall": "amin",
-	"showingresults": "Maiparang dita baba agingga {{PLURAL:$1|iti <strong>1</strong> a nagbanagan|dagiti <strong>$1</strong> a nagbanagan}} a mangrugi iti #<strong>$2</strong>.",
 	"showingresultsinrange": "Mangipakpakita aginggana {{PLURAL:$1|iti <strong>1</strong> a resulta|dagiti <strong>$1</strong> a resulta}} iti sakop ti #<strong>$2</strong> aginggana iti #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Nagbanagan a <strong>$1</strong> iti <strong>$3</strong>|Dagiti nagbanagan a <strong>$1 - $2</strong> iti <strong>$3</strong>}}",
 	"search-nonefound": "Awan dagiti nagbanagan a maipada iti usisa.",

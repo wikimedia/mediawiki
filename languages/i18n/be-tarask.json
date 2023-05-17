@@ -1004,7 +1004,6 @@
 	"search-unknown-profile": "Профіль пошуку $1 не распазнаны, будзе ўжыты дапомны профіль пошуку.",
 	"searchrelated": "зьвязаны",
 	"searchall": "усе",
-	"showingresults": "Ніжэй {{PLURAL:$1|паданы|паданыя|паданыя}} да '''$1''' {{PLURAL:$1|выніку|вынікаў|вынікаў}}, пачынаючы з #<b>$2</b>.",
 	"showingresultsinrange": "Ніжэй паказаныя да {{PLURAL:$1|<strong>$1</strong> выніку ў|<strong>$1</strong> вынікаў у}} дыяпазоне ад <strong>$2</strong> да <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|1=Вынік <strong>$1</strong> з <strong>$3</strong>|Вынікі <strong>$1—$2</strong> з <strong>$3</strong>}}",
 	"search-nonefound": "Супадзеньняў па запыце ня знойдзена.",

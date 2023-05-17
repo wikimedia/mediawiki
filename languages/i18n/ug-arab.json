@@ -856,7 +856,6 @@
 	"search-relatedarticle": "ئالاقىدار",
 	"searchrelated": "ئالاقىدار",
 	"searchall": "ھەممىسى",
-	"showingresults": "تۆۋەندە '''$2''' - نەتىجىدىن باشلانغان {{PLURAL:$1|'''1''' نەتىجە|'''$1''' نەتىجە}} كۆرسىتىدۇ:",
 	"search-nonefound": "سۈرۈشتۈرۈشكە ماس نەتىجە تېپىلمىدى.",
 	"powersearch-legend": "ئالىي ئىزدەش",
 	"powersearch-ns": "ئات بوشلۇقىدىن ئىزدە:",

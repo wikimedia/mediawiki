@@ -1010,7 +1010,6 @@
 	"search-thumbnail-alt": "Miniadura per $1",
 	"searchrelated": "Corelad",
 	"searchall": "tucc",
-	"showingresults": "Chi adree {{PLURAL:$1|el ven mostrad al pu '''1''' risultad|inn mostrad al pu '''$1''' risultad}} a comenzà del numer '''$2'''.",
 	"showingresultsinrange": "{{PLURAL:$1|A l'è mostrad|A inn mostrad}} chì de sota {{PLURAL:$1|<strong>1</strong> risultad|<strong>$1</strong> risultad}} dal <strong>$2</strong> al <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Resultad <strong>$1</strong> de <strong>$3</strong>|Resultad <strong>$1 – $2</strong> de <strong>$3</strong>}}",
 	"search-nonefound": "A gh'è minga de risultad per la ricerca.",

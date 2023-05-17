@@ -1055,7 +1055,6 @@
 	"search-thumbnail-alt": "$1 এর থাম্বনেইল",
 	"searchrelated": "সম্পর্কিত",
 	"searchall": "সমস্ত",
-	"showingresults": "<strong>$2</strong> নং থেকে শুরু করে {{PLURAL:$1|<strong>১টি</strong> ফলাফল|<strong>$1টি</strong> ফলাফল}} নিচে দেখানো হচ্ছে।",
 	"showingresultsinrange": "<strong>$2</strong> থেকে <strong>$3</strong> নং পরিসীমার মধ্যে থাকা {{PLURAL:$1|<strong>১টি</strong> ফলাফল|<strong>$1টি</strong> ফলাফল}} নিচে দেখানো হচ্ছে।",
 	"search-showingresults": "মোট {{PLURAL:$4|<strong>$3</strong>টি ফলাফলের মধ্যে <strong>$1</strong>টি ফলাফল|<strong>$3</strong>টি ফলাফলের মধ্যে <strong>$1 - $2</strong>টি ফলাফল}}",
 	"search-nonefound": "অনুসন্ধানকৃত জিজ্ঞাসার সাথে মিলে যায় এমন কোনো ফলাফল নেই।",

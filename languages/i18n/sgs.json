@@ -649,7 +649,6 @@
 	"search-relatedarticle": "Sosėjė̄",
 	"searchrelated": "sosėjė̄",
 	"searchall": "vėsė",
-	"showingresults": "Žemiau ruodoma lėgė '''$1''' {{PLURAL:$1|rezoltata|rezoltatu|rezoltatu}} pradedont #'''$2'''.",
 	"showingresultsinrange": "Apatiuo ruod lėgė {{PLURAL:$1|<strong>1</strong> gavėnė|<strong>$1</strong> gavėniū}} nug #<strong>$2</strong> lėgė #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Gavėms <strong>$1</strong> nug <strong>$3</strong>|Gavėmā <strong>$1 - $2</strong> nug <strong>$3</strong>}}",
 	"search-nonefound": "Nier gavėniū, katrėi prėgoltom ožklausėmō.",

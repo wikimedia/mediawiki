@@ -1013,7 +1013,6 @@
 	"search-thumbnail-alt": "Gambar alit antuk $1",
 	"searchrelated": "paiketan",
 	"searchall": "samian",
-	"showingresults": "Ring mentén puniki kasinahang {{PLURAL:$1|<strong>1</strong> asil|<strong>$1</strong> asil}}, kakawitin saking #<strong>$2</strong>.",
 	"showingresultsinrange": "Ring mentén puniki kasinahang {{PLURAL:$1|<strong>1</strong> asil|<strong>$1</strong> asil}}, ring pentangan #<strong>$2</strong> nganti #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Asil <strong>$1</strong> saking <strong>$3</strong>|Asil <strong>$1 – $2</strong> saking <strong>$3</strong>}}",
 	"search-nonefound": "Nénten wénten asil sané cocok sareng kuéri.",

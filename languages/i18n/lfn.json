@@ -898,7 +898,6 @@
 	"search-relatedarticle": "Relatada",
 	"searchrelated": "relatada",
 	"searchall": "tota",
-	"showingresults": "Asta {{PLURAL:$1|<strong>1</strong> resulta|<strong>$1</strong> resultas}} es mostrada a su, comensante con numero <strong>$2</strong>.",
 	"showingresultsinrange": "Asta {{PLURAL:$1|<strong>1</strong> resulta|<strong>$1</strong> resultas}} es mostrada a su, de numero <strong>$2</strong> asta numero <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Resulta <strong>$1</strong> de <strong>$3</strong>|Resultas <strong>$1 - $2</strong> de <strong>$3</strong>}}",
 	"search-nonefound": "No resultas ia es trovada per la xerca.",

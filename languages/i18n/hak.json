@@ -654,7 +654,6 @@
 	"search-interwiki-more": "（還較多）",
 	"searchrelated": "相關",
 	"searchall": "chhiòn-phu",
-	"showingresults": "Ha-mien hién-sṳ chhiùng thi-'''$2'''-thiàu khôi-sṳ́ ke '''$1'''-thiàu kiet-kó:",
 	"search-showingresults": "{{PLURAL:$4|thi <strong>$1</strong> pit kiet-kó, khiung <strong>$3</strong> pit |thi <strong>$1 - $2</strong> pit kiet-kó, khiung <strong>$3</strong> pit }}",
 	"search-nonefound": "Chhai chhà-sûn tú mò kiet-kó siông-fù.",
 	"powersearch-legend": "高級搜尋",

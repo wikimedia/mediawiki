@@ -862,7 +862,6 @@
 	"search-relatedarticle": "සහසම්බන්ධිත",
 	"searchrelated": "ආශ්‍රිත",
 	"searchall": "සියල්ල",
-	"showingresults": "#'''$2''' ගෙන් ආරම්භ කොට, {{PLURAL:$1|ප්‍රතිඵල '''1'''  ක් |ප්‍රතිඵල '''$1''' ක්}} දක්වා පහත පෙන්වා ඇත.",
 	"showingresultsinrange": "ක් දක්වා පහත පෙන්වා {{PLURAL:$1|<strong>1</strong> ප්‍රතිඵල|<strong>$1</strong> ප්‍රතිඵල}} පරාසය තුළ #<strong>$2</strong> සිට #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|ප්‍රතිඵල <strong>$3</strong> කින් <strong>$1</strong> ක්|ප්‍රතිඵල <strong>$3</strong> කින් <strong>$1 සිට $2</strong> දක්වා}}",
 	"search-nonefound": "විමසුම හා ගැලපෙන ප්‍රතිඵල කිසිවක් නොමැත.",

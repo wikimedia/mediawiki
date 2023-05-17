@@ -637,7 +637,6 @@
 	"search-suggest": "Eseye ak òtograf sa : $1",
 	"search-interwiki-more": "(plis)",
 	"searchall": "tout",
-	"showingresults": "Men jiska {{PLURAL:$1|<strong>$1</strong> rezilta}}, premye se #<strong>$2</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Rezilta <strong>$1</strong> sou <strong>$3</strong> |Rezilta <strong>$1 – $2</strong> sou <strong>$3</strong>}}",
 	"search-nonefound": "Rezilta yo nan rechèch ou an pa ka jwenn",
 	"powersearch-legend": "Chèche fon",

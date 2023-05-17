@@ -825,7 +825,6 @@
 	"search-relatedarticle": "Himante",
 	"searchrelated": "himante",
 	"searchall": "kul",
-	"showingresults": "Showing below up to {{PLURAL:$1|<strong>1</strong> result|<strong>$1</strong> results}} starting with #<strong>$2</strong>.",
 	"showingresultsinrange": "Goo ma cebe {{PLURAL:$1|<strong>1</strong> hunyan|<strong>$1}} gamoo ra #<strong>$2</strong> hala #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Hunyan <strong>$1</strong> - <strong>$3</strong>}}",
 	"search-nonefound": "Hunyan kul ši tenji nda hãayanoo.",

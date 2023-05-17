@@ -176,7 +176,6 @@
 	"prevn": "mai neve {{PLURAL:$1|$1}}",
 	"nextn": "mai purane {{PLURAL:$1|$1}}",
 	"viewprevnext": "Dikh ($1 {{int:pipe-separator}} $2) ($3).",
-	"showingresults": "Tele si <b>$1</b> rezultaturya shirdindoi le ginestar <b>$2</b>.",
 	"preferences": "Kamimata",
 	"prefs-skin": "Dikhimos",
 	"datedefault": "Ni ekh kamipen",

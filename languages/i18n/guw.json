@@ -964,7 +964,6 @@
 	"search-thumbnail-alt": "Yẹdide pẹvi na $1",
 	"searchrelated": "Gandego",
 	"searchall": "popolẹpo",
-	"showingresults": "Dohia to odò kakajẹ {{PLURAL:$1|kọdetọn '''1'''|kọdetọn lẹ '''$1'''}} sọn bẹjẹeji to #'''$2'''.",
 	"showingresultsinrange": "Dohia to odò kakajẹ {{PLURAL:$1|kọdetọn <strong>1</strong>|kọdetọn lẹ <strong>$1</strong>}} he bẹjẹeji sọn #<strong>$2</strong> jẹ #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Kọdetọn <strong>$1</strong> na  <strong>$3</strong>|kọdetọn lẹ <strong>$1 - $2</strong> tọn na<strong>$3</strong>}}",
 	"search-nonefound": "Kọdetọn de ma tin na nuhe dín a te",

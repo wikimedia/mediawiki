@@ -1023,7 +1023,6 @@
 	"search-thumbnail-alt": "Minijatura za $1",
 	"searchrelated": "povezano",
 	"searchall": "sve",
-	"showingresults": "{{PLURAL:$1|1=Prikazan je <strong>jedan</strong> rezultat|Prikazan je <strong>$1</strong> rezultat|Prikazana su <strong>$1</strong> rezultata|Prikazano je <strong>$1</strong> rezultata}}; broj prve stavke: <strong>$2</strong>.",
 	"showingresultsinrange": "{{PLURAL:$1|1=Prikazan je <strong>jedan</strong> rezultat|Prikazan je <strong>$1</strong> rezultat|Prikazana su <strong>$1</strong> rezultata|Prikazano je <strong>$1</strong> rezultata}}; opseg: od <strong>$2</strong> do <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Rezultat <strong>$1</strong> od <strong>$3</strong>|Rezultati <strong>$1—$2</strong> od <strong>$3</strong>}}",
 	"search-nonefound": "Nisu pronađeni rezultati koji odgovaraju upitu.",

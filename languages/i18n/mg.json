@@ -894,7 +894,6 @@
 	"search-relatedarticle": "voadinika",
 	"searchrelated": "voadinika",
 	"searchall": "rehetra",
-	"showingresults": "Omeo ny valiny{{PLURAL:$1||}} miisa hatramin'ny <b>$1</b> manomboka ny #<b>$2</b>.",
 	"showingresultsinrange": "Maneho hatramin'ny {{PLURAL:$1|valim-pikarohana <strong>1</strong> |valim-pikarohana <strong>$1</strong>}} amin'ny elanelana #<strong>$2</strong> hatramin'i #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Valim-pikarohana <strong>$1</strong> amin'ny <strong>$3</strong>| Valim-pikarohana <strong>$1 - $2</strong> amin'ny <strong>$3</strong>}}",
 	"search-nonefound": "Tsy nahitana valiny ilay fanontaniana.",

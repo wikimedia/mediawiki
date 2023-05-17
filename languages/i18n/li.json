@@ -915,7 +915,6 @@
 	"search-relatedarticle": "Gerelateerd",
 	"searchrelated": "gerelateerd",
 	"searchall": "alle",
-	"showingresults": "Hieonger staon de <b>$1</b> {{PLURAL:$1|resultaat|resultaat}}, vanaaf #<b>$2</b>.",
 	"showingresultsinrange": "Hie-ónger {{PLURAL:$1|weurt|waere}} heugstes {{PLURAL:$1|<strong>1</strong> rizzeltaot|<strong>$1</strong> rizzeltaote}} getuind in 't bereik #<strong>$2</strong> tot #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Rizzeltaot <strong>$1</strong> van <strong>$2</strong>|Rizzeltaote <strong>$1 - $2</strong> van <strong>$3</strong>}}",
 	"search-nonefound": "D'r zien gein resultate veur diene zeukopdrach.",

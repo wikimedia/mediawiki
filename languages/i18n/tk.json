@@ -887,7 +887,6 @@
 	"search-relatedarticle": "Baglanyşykly",
 	"searchrelated": "baglanyşykly",
 	"searchall": "ählisi",
-	"showingresults": "Aşakda №'''$2''' netijeden başlap, {{PLURAL:$1|'''1''' netije|'''$1''' netije}} görkezilýär.",
 	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong> üçin netije|<strong>$3</strong> üçin <strong>$1 - $2</strong> netijeler}}",
 	"search-nonefound": "Talaba gabat gelýän hiç hili netije ýok.",
 	"search-nonefound-thiswiki": "Bu sahypadaky soraga laýyk netije ýok.",

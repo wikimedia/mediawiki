@@ -970,7 +970,6 @@
 	"search-invalid-sort-order": "$1 രീതിയിലുള്ള ക്രമപ്പെടുത്തൽ മനസ്സിലായില്ല, സ്വതേയുള്ള ക്രമപ്പെടുത്തൽ ഉപയോഗിക്കുന്നു. സാധുവായ ക്രമപ്പെടുത്തൽ രീതികൾ ഇവയാണ്: $2",
 	"searchrelated": "ബന്ധപ്പെട്ടവ",
 	"searchall": "എല്ലാം",
-	"showingresults": "'''$2''' മുതലുള്ള {{PLURAL:$1|'''ഒരു''' ഫലം|'''$1''' ഫലങ്ങൾ}} താഴെ പ്രദർശിപ്പിക്കുന്നു.",
 	"showingresultsinrange": "#<strong>$2</strong> മുതൽ #<strong>$3</strong> വരെയുള്ള പരിധിയിലെ {{PLURAL:$1|<strong>ഒരു</strong> ഫലം|<strong>$1</strong> ഫലങ്ങൾ}} താഴെ പ്രദർശിപ്പിക്കുന്നു.",
 	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong> ഫലത്തിൽ<strong>$1</strong>|<strong>$3</strong> ഫലത്തിൽ <strong>$1 മുതൽ $2</strong> വരെയുള്ളവ}}",
 	"search-nonefound": "താങ്കൾ തിരഞ്ഞ പദത്തിനു യോജിച്ച ഫലങ്ങളൊന്നും ലഭിച്ചില്ല.",

@@ -591,7 +591,6 @@
 	"search-relatedarticle": "Yeneeni ngérte",
 	"searchrelated": "yeneeni ngérte",
 	"searchall": "yépp",
-	"showingresults": "Woneg <b>$1</b> {{PLURAL:$1|ngérte|ciy ngérte}} doore ko ci #<b>$2</b>.",
 	"search-showingresults": "{{PLURAL:$4|Ngérte <strong>$1</strong> ci <strong>$3</strong>|Ngérte <strong>$1 - $2</strong> ci <strong>$3</strong>}}",
 	"search-nonefound": "Ceet gi jurul dara.",
 	"powersearch-legend": "Ceet gu xóot",

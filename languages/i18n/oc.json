@@ -956,7 +956,6 @@
 	"search-relatedarticle": "Relatat",
 	"searchrelated": "relatat",
 	"searchall": "Totes",
-	"showingresults": "Afichatge de <b>$1</b> resultat{{PLURAL:$1||s}} a partir del n°<b>$2</b>.",
 	"showingresultsinrange": "Afichar çaijós fins a {{PLURAL:$1|<strong>1</strong> resultat|<strong>$1</strong> resultats}} dins la seria #<strong>$2</strong> a #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Resultat <strong>$1</strong> demest <strong>$3</strong>|Resultats <strong>$1 a $2</strong> demest <strong>$3</strong>}}",
 	"search-nonefound": "I a pas cap de resultat correspondent a la requèsta.",

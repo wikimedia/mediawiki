@@ -509,7 +509,6 @@
 	"search-relatedarticle": "ກ່ຽວຂ້ອງ",
 	"searchrelated": "ກ່ຽວຂ້ອງ",
 	"searchall": "ທັງໜົດ",
-	"showingresults": "ສະແດງທາງລຸ່ມ ຮອດ {{PLURAL:$1|'''1''' ຜົນ|'''$1''' ຜົນ}} ເລີ່ມຈາກ  #'''$2'''.",
 	"search-nonefound": "ບໍ່ມີຜົນທີ່ກົງກັບຄໍາຖາມ",
 	"preferences": "ການຕັ້ງຄ່າ",
 	"mypreferences": "ການຕັ້ງຄ່າ",

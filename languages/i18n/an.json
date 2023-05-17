@@ -678,7 +678,6 @@
 	"search-relatedarticle": "Relacionato",
 	"searchrelated": "relacionato",
 	"searchall": "totz",
-	"showingresults": "Contino se bi {{PLURAL:$1|amuestra '''1''' resultau|amuestran '''$1''' resultaus}} prencipiando por o numero '''$2'''.",
 	"search-showingresults": "{{PLURAL:$4|Resultau <strong>$1</strong> de <strong>$3</strong>|Resultaus <strong>$1 - $2</strong> de <strong>$3</strong>}}",
 	"search-nonefound": "No s'ha trobau garra resultau que cumpla os criterios.",
 	"powersearch-legend": "Busca abanzata",

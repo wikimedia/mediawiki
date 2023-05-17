@@ -897,7 +897,6 @@
 	"search-relatedarticle": "সম্পৰ্কিত",
 	"searchrelated": "সম্পৰ্কিত",
 	"searchall": "সকলো",
-	"showingresults": "তলত #'''$2'''ৰ পৰা {{PLURAL:$1|'''1''' ফলাফল|'''$1''' ফলাফল}} দেখুওৱা হৈছে।",
 	"showingresultsinrange": "তলত #<strong>$2</strong>ৰ পৰা #<strong>$3</strong> পৰিসৰৰ ভিতৰত {{PLURAL:$1|<strong>1</strong>টা ফলাফল|<strong>$1</strong>টা লৈকে ফলাফল}} দেখুওৱা হৈছে।",
 	"search-showingresults": "{{PLURAL:$4|মুঠ <strong>$3</strong>টা ফলাফলৰ মাজৰ <strong>$1</strong>টা ফলাফল|মুঠ <strong>$3</strong>টা ফলাফলৰ মাজৰ <strong>$1 – $2</strong>টা ফলাফল}}",
 	"search-nonefound": "এই অনুসন্ধানৰ কোনো ফলাফল নাই ।",

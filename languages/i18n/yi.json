@@ -920,7 +920,6 @@
 	"search-relatedarticle": "פארבינדן",
 	"searchrelated": "פארבינדן",
 	"searchall": "אַלע",
-	"showingresults": "ווייזן ביז {{PLURAL:$1|רעזולטאט '''איינס'''|'''$1''' רעזולטאטן}} אנגעפאנגן פון נומער #'''$2''':",
 	"showingresultsinrange": "ווײַזן אונטן ביז {{PLURAL:$1|<strong>1</strong> רעזולטאט|<strong>$1</strong> רעזולטאטן}} אין גרייך #<strong>$2</strong> ביז #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|רעזולטאַט <strong>$1</strong> פֿון <strong>$3</strong>|רעזולטאַטן\n<strong>$1 - $2</strong> פֿון <strong>$3</strong>}}",
 	"search-nonefound": "נישטא קיין רעזולטאטן פֿאַר דער שאלה.",

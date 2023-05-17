@@ -937,7 +937,6 @@
 	"search-relatedarticle": "Сигэнэр",
 	"searchrelated": "сибээстэммит",
 	"searchall": "бары",
-	"showingresults": "Манна {{PLURAL:$1|түмүк|түмүктэр}} {{PLURAL:$1|көрдөрүлүннэ|көрдөрүлүннүлэр}} <strong>$1</strong> , мантан саҕалаан №&nbsp;<strong>$2</strong>.",
 	"showingresultsinrange": "Манна {{PLURAL:$1|<strong>1</strong> түмүк|<strong>$1</strong> түмүк}} мантан саҕалаан <strong>$2</strong> маныаха дылы <strong>$3</strong> көрдөрүлүннэ.",
 	"search-showingresults": "{{PLURAL:$4|Түмүк <strong>$1</strong> из <strong>$3</strong>|Түмүктэр <strong>$1 — $2</strong> мантан <strong>$3</strong>}}",
 	"search-nonefound": "Көрдөбүлгэ эппиэттиир билэлэр көстүбэтилэр.",

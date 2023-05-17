@@ -789,7 +789,6 @@
 	"search-relatedarticle": "Звязаный",
 	"searchrelated": "звязаный",
 	"searchall": "вшыткы",
-	"showingresults": "Ниже {{PLURAL:$1|вказане|вказаны|вказаных}} '''$1''' {{PLURAL:$1|резултат|резултаты|резултатів}}, почінаючіх з №&nbsp;'''$2'''",
 	"search-nonefound": "На вашу пожадавку не были найджены жадны резултаты.",
 	"powersearch-legend": "Розшырене гляданя",
 	"powersearch-ns": "Глядати у просторах назв:",

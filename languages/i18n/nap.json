@@ -954,7 +954,6 @@
 	"search-relatedarticle": "Azzeccato",
 	"searchrelated": "azzeccato",
 	"searchall": "Tutte",
-	"showingresults": "Ccà abbascio {{PLURAL:$1|s'apprisentano 'o massimo '''1''' risultato|veneno apprisentate massimo '''$1''' risultate}} aropp' 'o nummero '''$2'''.",
 	"showingresultsinrange": "{{PLURAL:$1|Vene mmustato|Veneno mmustate}} abbascio {{PLURAL:$1|<strong>1</strong> risultato|<strong>$1</strong> risultate}} d' 'o <strong>$2</strong> a 'o <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Risultato <strong>$1</strong> 'e <strong>$3</strong>|Risultate <strong>$1 - $2</strong> 'e <strong>$3</strong>}}",
 	"search-nonefound": "'A ricerca nun ha produtto risultate.",

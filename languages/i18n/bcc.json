@@ -839,7 +839,6 @@
 	"search-unknown-profile": "$1ء شۏھاز نابزانت اِنت،پݔسری شۏھازی سپتءَ بئ اَنت۔",
 	"searchrelated": "مربوط",
 	"searchall": "کل",
-	"showingresults": "جهل پیش دارگنت تا  {{PLURAL:$1|'''1'''نتیجه|'''$1''' نتایج}} شروع بنت گون #'''$2'''.",
 	"showingresultsinrange": "پیش دارگ مان جهلء تان {{PLURAL:$1|<strong>1</strong> نتیجگ|<strong>$1</strong> نتیجگ}} in range #<strong>$2</strong> تان #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|نتایج <strong>$1</strong> شه <strong>$3</strong>|نتایج <strong>$1 - $2</strong> شه <strong>$3</strong>}}",
 	"search-nonefound": "نتیجه هم دپ په درخواست نیست",

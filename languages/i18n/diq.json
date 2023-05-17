@@ -1008,7 +1008,6 @@
 	"search-unknown-profile": "Profilê cıgeyrayışê $1 nêşınasiyayo, hesabyaye profil do tetbiq bıbo.",
 	"searchrelated": "eleqeyın",
 	"searchall": "pêro",
-	"showingresults": "#<strong>$2</strong> netican ra {{PLURAL:$1|<strong>1</strong> netice cêr dero|<strong>$1</strong> neticeyi cêr derê}}.",
 	"showingresultsinrange": "Cêr de #<strong>$2</strong> be heta #<strong>$3</strong> ra {{PLURAL:$1|<strong>1</strong> netice mocniyeno|<strong>$1</strong> neticeyi mocniyenê}}.",
 	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong>| <strong>$3</strong> netican ra <strong>$1 ra heta $2</strong> asenê}}",
 	"search-nonefound": "Zey perskerdışê şıma peyniye çıniya.",

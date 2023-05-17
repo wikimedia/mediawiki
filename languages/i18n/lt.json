@@ -1039,7 +1039,6 @@
 	"search-thumbnail-alt": "Miniatiūra antraštei: $1",
 	"searchrelated": "susiję",
 	"searchall": "visi",
-	"showingresults": "Žemiau rodoma iki '''$1''' {{PLURAL:$1|rezultato|rezultatų|rezultatų}} pradedant #'''$2'''.",
 	"showingresultsinrange": "Žemiau rodoma iki {{PLURAL:$1|<strong>1</strong> gavinio|<strong>$1</strong> gavinių}} imtyje nuo <strong>$2</strong> iki <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Rezultatas <strong>$1</strong> iš <strong>$3</strong>|Rezultatai <strong>$1 - $2</strong> iš <strong>$3</strong>}}",
 	"search-nonefound": "Nėra rezultatų, atitinkančių užklausą.",

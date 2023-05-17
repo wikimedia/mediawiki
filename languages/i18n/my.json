@@ -807,7 +807,6 @@
 	"search-relatedarticle": "ဆက်နွယ်သော",
 	"searchrelated": "ဆက်နွယ်သော",
 	"searchall": "အားလုံး",
-	"showingresults": "№<strong>$2</strong> နှင့်စသော ရလဒ် {{PLURAL:$1|<strong>1</strong> ခု|<strong>$1</strong> ခု}}ထိကို အောက်တွင် ပြထားသည်။",
 	"showingresultsinrange": "№<strong>$2</strong> မှ #<strong>$3</strong> အထိ ရလဒ် {{PLURAL:$1|<strong>1</strong> ခု|<strong>$1</strong> ခု}}ထိကို အောက်တွင် ပြထားသည်။",
 	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong> ၏ <strong>$1</strong> ရလဒ်|<strong>$3</strong> ၏ <strong>$1 - $2</strong> ရလဒ်များ}}",
 	"search-nonefound": "စုံစမ်းမှုနှင့်ကိုက်ညီသော ရလဒ်မရှိပါ။",

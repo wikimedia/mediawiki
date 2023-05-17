@@ -556,7 +556,6 @@
 	"search-interwiki-more": "(altri)",
 	"searchrelated": "leâts",
 	"searchall": "ducj",
-	"showingresults": "Ca sot {{PLURAL:$1|al è fin a '''1''' risultât|a son fin a '''$1''' risultâts}} scomençant dal numar '''$2'''.",
 	"search-showingresults": "{{PLURAL:$4|Risultât <strong>$1</strong> di <strong>$3</strong>|Resultâts <strong>$1 - $2</strong> di <strong>$3</strong>}}",
 	"search-nonefound": "Nissun risultât par cheste ricercje.",
 	"powersearch-legend": "Ricercje avanzade",

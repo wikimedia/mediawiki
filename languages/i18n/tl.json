@@ -859,7 +859,6 @@
 	"search-relatedarticle": "Kaugnay",
 	"searchrelated": "kaugnay",
 	"searchall": "lahat",
-	"showingresults": "Ipinapakita sa ibaba ang magpahanggang sa {{PLURAL:$1|'''1''' resultang|'''$1''' mga resultang}} nagsisimula sa #'''$2'''.",
 	"search-showingresults": "{{PLURAL:$4|Resulta <strong>$1</strong> ng <strong>$3</strong>|Resulta mula <strong>$1 -  $2</strong> ng <strong>$3</strong>}}",
 	"search-nonefound": "Walang resultang tumugma sa hinahanap.",
 	"powersearch-legend": "Paghahanap na may mas mataas na antas",

@@ -751,7 +751,6 @@
 	"search-relatedarticle": "مرتابطة",
 	"searchrelated": "مرتابطة",
 	"searchall": "كلشي",
-	"showingresults": "باينة لتحت {{PLURAL:$1|<strong>1</strong> نتائج}} بادية برقم <strong>$2</strong>.",
 	"search-showingresults": "{{PLURAL:$4|النتائج <strong>$1</strong> من <strong>$3</strong>|النتائج <strong>$1 - $2</strong> من أصل <strong>$3</strong>}}",
 	"search-nonefound": "حتى نتيجة ما كاطابقش مع هاد الطلب.",
 	"powersearch-legend": "تقلاب متقدم",

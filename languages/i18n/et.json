@@ -1024,7 +1024,6 @@
 	"search-thumbnail-alt": "Tulemuse \"$1\" pisipilt",
 	"searchrelated": "seotud",
 	"searchall": "kõik",
-	"showingresults": "Allpool näidatakse '''{{PLURAL:$1|ühte|$1}}''' tulemust alates '''$2'''. tulemusest.",
 	"showingresultsinrange": "Allpool näidatakse {{PLURAL:$1|<strong>üht</strong>|<strong>$1</strong>}} tulemust vahemikus <strong>$2</strong>–<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|<strong>$1</strong>. tulemus <strong>$3</strong>-st|Tulemused <strong>$1–$2</strong> <strong>$3</strong>-st}}",
 	"search-nonefound": "Päringule ei leitud vasteid.",

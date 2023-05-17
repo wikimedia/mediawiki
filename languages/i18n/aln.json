@@ -556,7 +556,6 @@
 	"search-relatedarticle": "Të ngjajshme",
 	"searchrelated": "të ngjajshme",
 	"searchall": "tâna",
-	"showingresults": "Mâ poshtë {{PLURAL:$1|tregohet '''1''' rezultat|tregohen '''$1''' rezultate}} që nisin me #'''$2'''.",
 	"search-nonefound": "Nuk ka rezultate që përputhen me kërkesën.",
 	"powersearch-legend": "Kërkimi i detajshëm",
 	"powersearch-ns": "Kërkimi në hapësina:",

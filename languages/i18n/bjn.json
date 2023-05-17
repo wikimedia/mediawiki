@@ -816,7 +816,6 @@
 	"search-relatedarticle": "Bakulaan",
 	"searchrelated": "bakulaan",
 	"searchall": "samunyaan",
-	"showingresults": "Di bawah ngini ditampaiakan hingga {{PLURAL:$1|'''1''' kulihan|'''$1''' kukulihan}}, dimulai matan #'''$2'''.",
 	"search-showingresults": "{{PLURAL:$4|Kulihan <strong>$1</strong> matan <strong>$3</strong>|Kulihan <strong>$1 - $2</strong> matan <strong>$3</strong>}}",
 	"search-nonefound": "Kadada hasil nang pas lawan pamintaan.",
 	"powersearch-legend": "Panggagaian mahir",

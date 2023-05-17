@@ -988,7 +988,6 @@
 	"search-unknown-profile": "Lo profil de rechèrche de $1 est pas recognu, lo profil de rechèrche per dèfôt serat aplicâ.",
 	"searchrelated": "rapondu",
 	"searchall": "tot",
-	"showingresults": "Afichâjo ce-desot de tant qu’a <strong>$1</strong> rèsultat{{PLURAL:$1||s}} dês lo nº <strong>$2</strong>.",
 	"showingresultsinrange": "Afichâjo ce-desot de tant qu’a <strong>$1</strong> rèsultat{{PLURAL:$1||s}} dês lo nº <strong>$2</strong> tant qu’u nº <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Rèsultat <strong>$1</strong> entre-mié <strong>$3</strong>|Rèsultats <strong>$1 a $2</strong> entre-mié <strong>$3</strong>}}",
 	"search-nonefound": "Y at gins de rèsultat que corrèspond a la demanda.",

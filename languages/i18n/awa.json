@@ -964,7 +964,6 @@
 	"search-unknown-profile": "Search profile of $1 is unrecognized, default search profile will be applied.",
 	"searchrelated": "सम्बंधित",
 	"searchall": "कुल",
-	"showingresults": "नीचे क्रमांक '''$2''' से सुरु कै कय सबसे ढेर '''$1''' परिणाम {{PLURAL:$1|देखाइ गा है}}।",
 	"showingresultsinrange": "क्रम संख्या #<strong>$2</strong> से #<strong>$3</strong> के बीच के अधिकतम {{PLURAL:$1|<strong>1</strong> परिणाम|<strong>$1</strong> परिणाम}} निम्नवत् हैं।",
 	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong> में से <strong>$1</strong> परिणाम|<strong>$3</strong> में से परिणाम <strong>$1 - $2</strong>}}",
 	"search-nonefound": "आप कय खोज से मिलत जुलत कवनो परिणाम नाई मिला।",

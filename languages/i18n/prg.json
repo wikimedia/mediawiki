@@ -611,7 +611,6 @@
 	"search-relatedarticle": "Ristan",
 	"searchrelated": "gintawai",
 	"searchall": "wisāi",
-	"showingresults": "Zemmais ast listi {{PLURAL:$1|stēisan <strong>$1</strong> rezultātan|sen <strong>1</strong> rezultātan|stēisan <strong>$1</strong> rezultātan}}, pagaūnintei ezze <strong>$2</strong>-asmu rezutātan.",
 	"search-showingresults": "{{PLURAL:$4|Rezultātai<strong>$1 – $2</strong> iz <strong>$3</strong>|Rezultātan <strong>$1</strong> iz <strong>$3</strong>|Rezultātai<strong>$1 – $2</strong> iz <strong>$3</strong>}}",
 	"search-nonefound": "Nisatausnā stēisan rezultātan izpilnintan prasīsenes kritērijans.",
 	"powersearch-legend": "Paplatintā laukīsna",

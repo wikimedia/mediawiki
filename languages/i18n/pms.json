@@ -984,7 +984,6 @@
 	"search-unknown-profile": "Ël profil d'arserca 'd $1 a l'é pa arconossù, ël profil normal d'arserca a sarà aplicà.",
 	"searchrelated": "corelà",
 	"searchall": "tuti",
-	"showingresults": "Ambelessì-sota a treuva fin a {{PLURAL:$1|'''1'''|'''$1'''}} arzultà, a parte dal nùmer #'''$2'''.",
 	"showingresultsinrange": "Smon-e sì-sota fin-a a {{PLURAL:$1|<strong>1</strong>|<strong>$1</strong>}} arzultà ant la serie da #<strong>$2</strong> a #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Arzultà <strong>$1</strong> ëd <strong>$3</strong>|Arzultà <strong>da $1 a $2</strong> ëd <strong>$3</strong>}}",
 	"search-nonefound": "A-i é gnun arzultà për l'arserca.",

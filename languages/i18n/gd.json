@@ -867,7 +867,6 @@
 	"search-relatedarticle": "Co-cheangailte",
 	"searchrelated": "co-cheangailte",
 	"searchall": "a h-uile",
-	"showingresults": "A' sealltainn suas ri <strong>$1</strong> {{PLURAL:$1|toradh|thoradh|toraidhean|toradh}} gu h-ìosal a' tòiseachadh le àireamh <strong>$2</strong>.",
 	"showingresultsinrange": "A' sealltainn suas ri <strong>$1</strong> {{PLURAL:$1|toradh|thoradh|toraidhean|toradh}} san rainse eadar àireamh <strong>$2</strong> is <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Toradh <strong>$1</strong> à <strong>$3</strong>|Toraidhean <strong>$1 - $2</strong> à <strong>$3</strong>|Toraidhean <strong>$1 - $2</strong> à <strong>$3</strong>|Toraidhean <strong>$1 - $2</strong> à <strong>$3</strong>}}",
 	"search-nonefound": "Cha do fhreagair toradh sam bith ri d' iarrtas.",

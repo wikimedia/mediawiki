@@ -983,7 +983,6 @@
 	"search-unknown-profile": "无法识别搜索配置$1，已经应用默认搜索配置",
 	"searchrelated": "相关",
 	"searchall": "全部",
-	"showingresults": "下头显示从第<b>$2</b>条开始个<b>$1</b>条结果：",
 	"showingresultsinrange": "下底显示区间#<strong>$2</strong>到#<strong>$3</strong>个<strong>$1</strong>条结果。",
 	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong>条结果里个<strong>$1</strong>条|<strong>$3</strong>条结果里个<strong>$1~$2</strong>条}}",
 	"search-nonefound": "查询呒没结果。",

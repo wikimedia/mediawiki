@@ -807,7 +807,6 @@
 	"search-relatedarticle": "ಸಂಬಂಧಿತ",
 	"searchrelated": "ಸಂಬಂಧಿತ",
 	"searchall": "ಎಲ್ಲಾ",
-	"showingresults": "ಕೆಳಗೆ #<strong>$2</strong> ಇಂದ ಶುರುವಾದ {{PLURAL:$1|<strong>೧</strong> ಫಲಿತಾಂಶದ|<strong>$1</strong> ಫಲಿತಾಂಶಗಳ}}ವರೆಗೂ ತೋರಿಸಲಾಗುತ್ತಿದೆ.",
 	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong> ರಲ್ಲಿ <strong>$1</strong> ಫಲಿತಾಂಶ|<strong>$1 - $2</strong>ರಲ್ಲಿ <strong>$3</strong> ಫಲಿತಾಂಶಗಳು}}",
 	"search-nonefound": "ನಿಮ್ಮ ವಿಚಾರಣೆಗೆ ತಕ್ಕ ಫಲಿತಾಂಶಗಳಿಲ್ಲ.",
 	"powersearch-legend": "ಮುಂದುವರೆದ ಹುಡುಕಾಟ",

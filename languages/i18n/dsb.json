@@ -789,7 +789,6 @@
 	"search-relatedarticle": "swójźbne",
 	"searchrelated": "swójźbne",
 	"searchall": "wše",
-	"showingresults": "How {{PLURAL:|jo '''1''' wuslědk|stej '''$1''' wuslědka|su '''$1''' wuslědki}} wót cysła '''$2'''.",
 	"showingresultsinrange": "Dołojce pokazujo se do {{PLURAL:$1|<strong>1</strong> wuslědka|<strong>$1</strong> wuslědkowu|<strong>$1</strong> wuslědkow}} we wobłuku <strong>$2</strong> až do <strong>$3</strong>.",
 	"search-nonefound": "Njejsu se wuslědki namakali, kótarež wótpowěduju napšašowanjeju.",
 	"powersearch-legend": "Rozšyrjone pytanje",

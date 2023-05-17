@@ -785,7 +785,6 @@
 	"search-relatedarticle": "Հարակից",
 	"searchrelated": "հարակից",
 	"searchall": "բոլոր",
-	"showingresults": "Ստորև բերված է մինչև {{PLURAL:$1|'''1''' արդյունք|'''$1''' արդյունք}}՝ սկսած №&nbsp;<strong>$2</strong>-ից։",
 	"search-showingresults": "{{PLURAL:$4|<strong>$1</strong> արդյունք <strong>$3</strong>-ից|<strong>$1 - $2</strong> արդյունքներ <strong>$3</strong>-ից}}",
 	"search-nonefound": "Որոնմանը համապատասխանող արդյունքներ չեն գտնվել։",
 	"powersearch-legend": "Ընդլայնված որոնում",

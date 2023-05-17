@@ -581,7 +581,6 @@
 	"search-thumbnail-alt": "Mfananoudoko we $1",
 	"searchrelated": "zvinoenderana",
 	"searchall": "zvose",
-	"showingresults": "Pazasi parikurakidzwa {{PLURAL:$1|<strong>1</strong> mhedzisiro inotanga\n|<strong>$1</strong> mhedzisiro dzinotanga}} na #<strong>$2</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Mhedzisiro <strong>$1</strong> ye <strong>$3</strong>|Mhedzisiro <strong>$1 – $2</strong> ye <strong>$3</strong>}}",
 	"search-nonefound": "Hapana mhedzisiro dzawanikwa dzinoenderana nechabvunzwa.",
 	"search-nonefound-thiswiki": "Pangapasina mhedzisiro dzanga dzichienderana nechabvunzwa pasayiti ino.",

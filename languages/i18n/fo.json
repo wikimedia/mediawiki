@@ -762,7 +762,6 @@
 	"search-relatedarticle": "Líknandi",
 	"searchrelated": "líknandi",
 	"searchall": "alt",
-	"showingresults": "Niðanfyri standa upp til {{PLURAL:$1|'''$1''' úrslit, sum byrjar|'''$1''' úrslit, sum byrja}} við #<b>$2</b>.",
 	"showingresultsinrange": "Niðanfyri verða víst upp til {{PLURAL:$1|<strong>1</strong> úrslit|<strong>$1</strong> úrslit}} í økinum #<strong>$2</strong> til #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Úrslit <strong>$1</strong> av <strong>$3</strong>|Úrslit <strong>$1 - $2</strong> av <strong>$3</strong>}}",
 	"search-nonefound": "Leitingin gav onki úrslit.",

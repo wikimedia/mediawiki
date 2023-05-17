@@ -154,7 +154,6 @@
 	"search-relatedarticle": "Lokuhlobene",
 	"searchrelated": "lokuhlobene",
 	"searchall": "konke",
-	"showingresults": "Ngaphasi kukhonjiswa kuya ku {{PLURAL:$1|'''1''' umphumela|'''$1''' miphumela}} kucalwa nga #'''$2'''.",
 	"search-nonefound": "Kute umphume lotfolwe/lofanele lesicelo sakho.",
 	"powersearch-legend": "Sesha ngalokuphakeme",
 	"powersearch-ns": "Sesha ku namespaces:",

@@ -887,7 +887,6 @@
 	"search-relatedarticle": "सम्बन्धी",
 	"searchrelated": "सम्बन्धी",
 	"searchall": "सभटा",
-	"showingresults": "नीचाँ एतऽ धरि {{PLURAL:$1|'''1''' परिणाम|'''$1''' परिणाम सभ}}  #'''$2''' सँ प्रारम्भ भऽ कऽ।",
 	"showingresultsinrange": "नीचाँ एतऽ धरि {{PLURAL:$1|'''1''' परिणाम|'''$1''' परिणाम सभ}}  #'''$2''' सँ प्रारम्भ भऽ कऽ।",
 	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong> में से <strong>$1</strong> परिणाम|<strong>$3</strong> में सँ परिणाम <strong>$1 - $2</strong>}}",
 	"search-nonefound": "अभ्यर्थनासँ मेल खाइत कोनो परिणाम नै भेटल।",

@@ -572,7 +572,6 @@
 	"search-suggest": "Meitest du „$1“?",
 	"searchrelated": "verwandt",
 	"searchall": "olle",
-	"showingresults": "Hier {{PLURAL:$1|ies '''1''' Ergebnis|sein '''$1''' Ergebnisse}}, beginnend miet Nummer '''$2.'''",
 	"search-showingresults": "{{PLURAL:$4|Ergebnis <strong>$1</strong> vu <strong>$3</strong>|Ergebnisse <strong>$1 bis $2</strong> vu <strong>$3</strong>}}",
 	"search-nonefound": "Fier denne Sichoafroage wurden kenne Ergebnisse gefunda.",
 	"powersearch-ns": "Suche ei Noamasräuma:",

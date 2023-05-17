@@ -753,7 +753,6 @@
 	"search-relatedarticle": "सम्बन्धित",
 	"searchrelated": "सम्बन्धित",
 	"searchall": "सप्पै",
-	"showingresults": "धेखाउँदै  {{PLURAL:$1|'''१''' नतिजा|'''$1''' नतिजाहरू }} , #'''$2''' बठे सुरुहुन्या ।",
 	"showingresultsinrange": "देखाई रह्या छ{{PLURAL:$1|<strong>1</strong> result|<strong>$1</strong> परिणाम}} सम्म पहुँच  #<strong>$2</strong> देखि #<strong>$3</strong> मी।",
 	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong> मै बठे <strong>$1</strong> परिणाम|<strong>$3</strong> मै बठे परिणाम <strong>$1 - $2</strong>}}",
 	"search-nonefound": "तमरो क्वेरीसँग ठक्कर खान्या नतिजाहरू नाइभेटिया",

@@ -800,7 +800,6 @@
 	"search-relatedarticle": "Verwaant",
 	"searchrelated": "verwaant",
 	"searchall": "alles",
-	"showingresults": "Hieronder {{PLURAL:$1|steet '''1''' resultaot|staon '''$1''' resultaoten}}  <b>$1</b> vanaof nummer <b>$2</b>.",
 	"showingresultsinrange": "Hyrunder {{PLURAL:$1|steyt|stån}} hougüüt {{PLURAL:$1|<strong>1</strong> resultaat|<strong>$1 </strong>resultaten}} in et bereik #<strong>$2</strong> tot #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Resultaat <strong>$1</strong> van <strong>$3</strong>|Resultaten <strong>$1 – $2</strong> van <strong>$3</strong>}}",
 	"search-nonefound": "Der bint geen resultaten vöär de söökupdrachte.",

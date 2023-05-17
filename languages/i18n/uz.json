@@ -663,7 +663,6 @@
 	"search-relatedarticle": "Bog'liq",
 	"searchrelated": "bogʻlangan",
 	"searchall": "barchasi",
-	"showingresults": "Quyida №'''$2'''dan boshlab {{PLURAL:$1|'''bitta''' natija|'''$1''' ta natija}} koʻrsatilgan.",
 	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong> ta natijadan <strong>$1</strong> tasi|<strong>$3</strong> ta natijadan <strong>$1 – $2</strong>}}",
 	"search-nonefound": "Talabga javob beradigan natija topilmadi.",
 	"powersearch-legend": "Kengaytirilgan qidiruv",

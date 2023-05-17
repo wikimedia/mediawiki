@@ -753,7 +753,6 @@
 	"search-relatedarticle": "مرتبط",
 	"searchrelated": "مرتبط",
 	"searchall": "موچ",
-	"showingresults": "نشان داتین حداکثر {{PLURAL:$1|'''۱''' نتیجه|'''$1''' نتیجه}} بی جهلگا، شرو شه شماره ئی  '''$2'''.",
 	"showingresultsinrange": "نمایش بی جهلگا {{PLURAL:$1|<strong>1</strong> نتیجه|<strong>$1</strong> نتیجه}} بی محدودهٔ ئی #<strong>$2</strong> تا #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|نتیجه ئان <strong>$1</strong> شه <strong>$3</strong>|نتیجه ئان <strong>$1 - $2</strong> شه <strong>$3</strong>}}",
 	"search-nonefound": "نتیجه په چیزی که شما لوٹیته‌تیت به‌دست نه یات.",

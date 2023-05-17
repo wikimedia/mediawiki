@@ -894,7 +894,6 @@
 	"search-relatedarticle": "Kauyon",
 	"searchrelated": "kauyon",
 	"searchall": "gabos",
-	"showingresults": "Pigpapahiling sa babâ sagkod sa {{PLURAL:$1|'''1''' resulta|'''$1''' mga resulta}} poon sa #'''$2'''.",
 	"search-showingresults": "{{PLURAL:$4|Resulta <strong>$1</strong> kan <strong>$3</strong>|Resulta hali <strong>$1 -  $2</strong> kan <strong>$3</strong>}}",
 	"search-nonefound": "Mayong resulta sa query.",
 	"powersearch-legend": "Adbansiyadong paghahanap",

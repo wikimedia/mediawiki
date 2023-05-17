@@ -1136,7 +1136,6 @@
 	"search-thumbnail-alt": "Miniatura per $1",
 	"searchrelated": "correlati",
 	"searchall": "tutti",
-	"showingresults": "Di seguito {{PLURAL:$1|viene presentato al massimo '''1''' risultato|vengono presentati al massimo '''$1''' risultati}} a partire dal numero '''$2'''.",
 	"showingresultsinrange": "{{PLURAL:$1|Viene mostrato|Vengono mostrati}} sotto {{PLURAL:$1|<strong>1</strong> risultato|<strong>$1</strong> risultati}} dal <strong>$2</strong> al <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Risultato <strong>$1</strong> di <strong>$3</strong>|Risultati <strong>$1 - $2</strong> di <strong>$3</strong>}}",
 	"search-nonefound": "La ricerca non ha prodotto risultati.",

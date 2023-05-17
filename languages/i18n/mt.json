@@ -890,7 +890,6 @@
 	"search-unknown-profile": "Il-profil tat-tfittxija ta' $1 mhux magħruf, se jkun applikat il-profil predefinit għat-tfittxija.",
 	"searchrelated": "relatati",
 	"searchall": "kollha",
-	"showingresults": "Hawn taħt ġie inkluż massimu ta' {{PLURAL:$1|riżultat '''1''' li jibda|'''$1''' riżultat li jibdew}} bin-numru '''$2'''.",
 	"search-showingresults": "{{PLURAL:$4|Riżultat <strong>$1</strong> ta' <strong>$3</strong>|Riżultati <strong>$1 - $2</strong> ta' <strong>$3</strong>}}",
 	"search-nonefound": "It-tfittxija ma tat l-ebda riżultat.",
 	"powersearch-legend": "Tfittxija avvanzata",

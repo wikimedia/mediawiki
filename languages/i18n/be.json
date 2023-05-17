@@ -1039,7 +1039,6 @@
 	"search-thumbnail-alt": "Драбніца для $1",
 	"searchrelated": "маюць дачыненне",
 	"searchall": "усе",
-	"showingresults": "Ніжэй паказаны да {{PLURAL:$1|'''$1''' выніку|'''$1''' вынікаў}}, пачынаючы з нумару '''$2'''.",
 	"showingresultsinrange": "Ніжэй паказаны да {{PLURAL:$1|<strong>1</strong> выніку|<strong>$1</strong> вынікаў}} у дыяпазоне ад #<strong>$2</strong> да #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Вынік <strong>$1</strong> з <strong>$3</strong>|Вынікі <strong>$1 — $2</strong> з <strong>$3</strong>}}",
 	"search-nonefound": "Нічога не было знойдзена.",

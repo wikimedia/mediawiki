@@ -656,7 +656,6 @@
 	"search-relatedarticle": "Verwandt",
 	"searchrelated": "verwandt",
 	"searchall": "all",
-	"showingresults": "Hier {{PLURAL:$1|is een Resultat|sünd '''$1''' Resultaten}}, anfungen mit #'''$2'''.",
 	"search-showingresults": "{{PLURAL:$4|Resultat <strong>$1</strong> vun <strong>$3</strong>|Resultate <strong>$1 – $2</strong> vun <strong>$3</strong>}}",
 	"search-nonefound": "För de Söökanfraag geev dat keen Resultaten.",
 	"powersearch-legend": "Betere Söök",

@@ -730,7 +730,6 @@
 	"search-relatedarticle": "مرتبطه",
 	"searchrelated": "مرتبطه",
 	"searchall": "الكل",
-	"showingresults": "الصفحه دى بتعرض {{PLURAL:$1|<strong>1</strong> نتيجه}} من اول رقم <strong>$2</strong>.",
 	"search-showingresults": "{{PLURAL:$4|النتايج <strong>$1</strong> من <strong>$3</strong>|النتايج <strong>$1 - $2</strong> من أصل <strong>$3</strong>}}",
 	"search-nonefound": "لا توجد نتائج تطابق الاستعلام.",
 	"powersearch-legend": "تدوير متقدم",

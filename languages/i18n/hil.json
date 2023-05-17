@@ -724,7 +724,6 @@
 	"search-relatedarticle": "Konektado",
 	"searchrelated": "konektado",
 	"searchall": "tanan",
-	"showingresults": "Ginapakita sa dalom pakadto sa {{PLURAL:$1|'''1''' ka resulta|'''$1''' ka mga resulta}} umpisa ang #'''$2'''.",
 	"search-showingresults": "{{PLURAL:$4|Resulta <strong>$1</strong> sang <strong>$3</strong>|Mga resulta <strong>$1 – $2</strong> of <strong>$3</strong>}}",
 	"search-nonefound": "Wala sang mga resulta nga nagsanto sa imo nga ginapangita.",
 	"powersearch-legend": "Abanse nga pagpangita",

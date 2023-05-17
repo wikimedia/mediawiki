@@ -942,7 +942,6 @@
 	"search-relatedarticle": "தொடர்புடையவை",
 	"searchrelated": "தொடர்புடையவை",
 	"searchall": "அனைத்தும்",
-	"showingresults": "'''$2''' இலிருந்து தொடங்கும்  {{PLURAL:$1|'''1''' முடிவு கீழே காட்டப்பட்டுள்ளது|'''$1''' முடிவுகள் கீழே காட்டப்பட்டுள்ளன}}.",
 	"showingresultsinrange": "#<strong>$2</strong> இலிருந்து #<strong>$3</strong> வரை  உள்ள  {{PLURAL:$1|<strong>1</strong> முடிவு|<strong>$1</strong> முடிவுகள்}} கீழே காட்டப்படுகின்றன.",
 	"search-showingresults": "{{PLURAL:$4|முடிவு <strong>$1</strong> இன் <strong>$3</strong>|முடிவுகள்<strong>$1 - $2</strong> இன் <strong>$3</strong>}}",
 	"search-nonefound": "உங்கள் வினவலுக்கான முடிவுகள் எதுவும் இல்லை.",

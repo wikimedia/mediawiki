@@ -873,7 +873,6 @@
 	"search-relatedarticle": "sambandh rakkhe hai",
 	"searchrelated": "sambhand rakkhe hai",
 	"searchall": "sab",
-	"showingresults": "Niche dekhae hai {{PLURAL:$1|'''1''' result|'''$1''' results}} #'''$2''' se suruu hoe ke.",
 	"showingresultsinrange": "Niche dekhae hai {{PLURAL:$1|<strong>1</strong> result|<strong>$1</strong> results}} #<strong>$2</strong> se suruu hoe ke #<strong>$3</strong> talak.",
 	"search-showingresults": "{{PLURAL:$4|Result <strong>$1</strong> of <strong>$3</strong>|Results <strong>$1 - $2</strong> of <strong>$3</strong>}}",
 	"search-nonefound": "Ii sawaal ke koi jawab nai hae.",

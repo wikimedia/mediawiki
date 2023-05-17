@@ -816,7 +816,6 @@
 	"search-relatedarticle": "مورتٱبت",
 	"searchrelated": "مورتٱبت",
 	"searchall": "هٱمٱ",
-	"showingresults": "نمایش بؽشترونٱ {{PLURAL:$1|'''۱''' نتیجٱ|'''$1''' نتیجٱ}} د هار، شرۊ د شمارٱ'''$2'''.",
 	"showingresultsinrange": "نمایش بؽشترونٱ {{PLURAL:$1|'''۱''' نٱتیجٱ|'''$1''' نٱتیجٱ}} د هار، شرۊ د شمارٱ'''$2''' تا شمارٱ '''$3'''.",
 	"search-showingresults": "{{PLURAL:$4|نٱتیجٱیا<strong>$1</strong> د <strong>$3</strong>|نٱتیجٱیا<strong>$1 - $2</strong د <strong>$3</strong>}}",
 	"search-nonefound": "هیچ نٱتیجاٛیؽ ڤا پاٛجۊری تو یٱکؽ نؽ.",

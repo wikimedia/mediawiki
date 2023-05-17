@@ -537,7 +537,6 @@
 	"search-relatedarticle": "Gaolmhar",
 	"searchrelated": "gaolmhara",
 	"searchall": "an t-iomlán",
-	"showingresults": "Ag taispeáint thíos {{PLURAL:$1|'''toradh amháin'''|'''$1''' torthaí}}, ag tosú le #'''$2'''.",
 	"search-nonefound": "Ní bhfuarthas toradh ar bith ar an iarratas.",
 	"powersearch-legend": "Cuardach casta",
 	"powersearch-ns": "Cuardaigh in ainmspásanna:",

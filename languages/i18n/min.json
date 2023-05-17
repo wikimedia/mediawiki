@@ -956,7 +956,6 @@
 	"search-unknown-profile": "Profil pancarian $1 tidak dikenali, profil pancarian standar ka diterapan.",
 	"searchrelated": "bakaitan",
 	"searchall": "sadonyo",
-	"showingresults": "Di bawah ko dikaluaan sampai {{PLURAL:$1|'''$1''' hasil}}, dimulai dari #'''$2'''.",
 	"showingresultsinrange": "Manampilkan {{PLURAL:$1|<strong>$1</strong> hasil}} dalam rantang #<strong>$2</strong> sampai #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Hasil <strong>$1</strong> dari <strong>$3</strong>|Hasil <strong>$1 - $2</strong> dari <strong>$3</strong>}}",
 	"search-nonefound": "Indak ado hasil nan sasuai jo pamintaan.",

@@ -528,7 +528,6 @@
 	"search-suggest": "Bedoeln je: $1",
 	"searchrelated": "gerelateerd",
 	"searchall": "aolle",
-	"showingresults": "Ieronder {{PLURAL:$1|sti '''1''' resultaot|staen '''$1''' resultaoten}} vanof #'''$2'''.",
 	"search-nonefound": "Er zin geen resultaot'n vò je zoekopdracht.",
 	"powersearch-legend": "Uutebreid zoeken",
 	"search-external": "Extern zoeken",

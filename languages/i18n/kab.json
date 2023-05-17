@@ -860,7 +860,6 @@
 	"search-relatedarticle": "Amassaɣ",
 	"searchrelated": "ineqqes",
 	"searchall": "akk",
-	"showingresults": "Tamuli n {{PLURAL:$1|'''Yiwen''' wegmud|'''$1''' n yigmad}} seg  #'''$2'''.",
 	"search-showingresults": "{{PLURAL:$4|Agmuḍ <strong>$1</strong> si <strong>$3</strong>|Igmaḍ <strong>$1 - $2</strong> si <strong>$3</strong>}}",
 	"search-nonefound": "Ulac igmad i usuter agi.",
 	"powersearch-legend": "Anadi amahlan",

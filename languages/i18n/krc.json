@@ -1004,7 +1004,6 @@
 	"search-thumbnail-alt": "$1 ючюн гитче сурат",
 	"searchrelated": "бейламлы",
 	"searchall": "бютеу",
-	"showingresults": "<strong>$2</strong> эсебден башлаб {{PLURAL:$1|<strong>1</strong> эсеб|<strong>$1</strong> эсеб}} тюбюндеди:",
 	"showingresultsinrange": "<strong>$2</strong> бла <strong>$3</strong> арасында бютеу {{PLURAL:$1|<strong>1</strong> эсеб|<strong>$1</strong> эсеб}}.",
 	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong> результатдан <strong>$1</strong> результаты|<strong>$3</strong> результатдан <strong>$1 — $2</strong> результатла}}",
 	"search-nonefound": "Соруу бла келишген эсеб джокъду",

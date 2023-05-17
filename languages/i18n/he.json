@@ -1047,7 +1047,6 @@
 	"search-thumbnail-alt": "תמונה ממוזערת עבור $1",
 	"searchrelated": "קשור",
 	"searchall": "הכול",
-	"showingresults": "{{PLURAL:$1|מוצגת תוצאה <strong>אחת</strong>|מוצגות עד <strong>$1</strong> תוצאות}} החל ממספר <strong>$2</strong>:",
 	"showingresultsinrange": "{{PLURAL:$1|מוצגת תוצאה <strong>אחת</strong>|מוצגות עד <strong>$1</strong> תוצאות}} בין המספרים <strong>$2</strong> ו־<strong>$3</strong>:",
 	"search-showingresults": "{{PLURAL:$4|תוצאה <strong>$1</strong> מתוך <strong>$3</strong>|תוצאות <strong>$1 – $2</strong> מתוך <strong>$3</strong>}}",
 	"search-nonefound": "לא נמצאו תוצאות המתאימות לחיפוש.",

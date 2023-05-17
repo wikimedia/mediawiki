@@ -979,7 +979,6 @@
 	"search-thumbnail-alt": "Bawdlun am $1",
 	"searchrelated": "erthyglau eraill tebyg",
 	"searchall": "popeth",
-	"showingresults": "Yn dangos $1 {{PLURAL:$1|canlyniad|canlyniad|ganlyniad|chanlyniad|chanlyniad|canlyniad}} isod gan ddechrau gyda rhif '''$2'''.",
 	"showingresultsinrange": "Yn dangos hyd at {{PLURAL:$1||<strong>1</strong> canlyniad|<strong>$1</strong> ganlyniad|$1 o ganlyniadau}} isod yn yr ystod #<strong>$2</strong> i #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Canlyniad <strong>$1</strong> o <strong>$3</strong>|Canlyniadau <strong>$1 - $2</strong> o <strong>$3</strong>}}",
 	"search-nonefound": "Ni chafwyd dim canlyniadau i'r ymholiad.",

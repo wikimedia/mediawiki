@@ -593,7 +593,6 @@
 	"search-suggest": "Sayîz motoit çoula: $1",
 	"search-interwiki-more": "(dipus)",
 	"searchall": "totafwait",
-	"showingresults": "Cial pa dzo {{PLURAL:$1|'''1''' rizultat|'''$1''' rizultats}} a pårti do limero '''$2'''.",
 	"search-showingresults": "Adierça{{PLURAL:$4||s}} <strong>$1{{PLURAL:$4|| – $2}}</strong> so <strong>$3</strong>",
 	"search-nonefound": "N’&nbsp;a rén di çou ki vs cweroz après",
 	"powersearch-legend": "Pus spepieus rcweraedjes",

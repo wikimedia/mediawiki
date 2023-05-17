@@ -880,7 +880,6 @@
 	"search-relatedarticle": "مرتبط",
 	"searchrelated": "مرتبط",
 	"searchall": "کؤل(گشت)",
-	"showingresults": "نمایش حداکثر {{PLURAL:$1|'''۱''' نتیجه|'''$1''' نتیجه}} در پایین، آغاز از شماره '''$2'''.",
 	"showingresultsinrange": "نمایش در پائین تا {{PLURAL:$1|<strong>1</strong> نتیجه|<strong>$1</strong> نتیجه}} در محدودهٔ #<strong>$2</strong> تا #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|نتایج <strong>$1</strong> از <strong>$3</strong>|نتایج <strong>$1 - $2</strong> از <strong>$3</strong>}}",
 	"search-nonefound": ".نتیجه گإ هؤمۀ إگرۀکتانۀ  پئانؤی",

@@ -976,7 +976,6 @@
 	"search-relatedarticle": "有拏褦",
 	"searchrelated": "有拏褦",
 	"searchall": "全部",
-	"showingresults": "'自#'''$2'''起顯示最多'''$1'''個結果。",
 	"showingresultsinrange": "下面顯示由第 <strong>$2</strong> 個到第 <strong>$3</strong> 個入面嘅第 {{PLURAL:$1|<strong>$1</strong> 個結果}}：",
 	"search-showingresults": "{{PLURAL:$4|第 <strong>$1</strong>個結果，一共有 <strong>$3</strong> 個|第 <strong>$1 - $2</strong> 個結果，一共有 <strong>$3</strong> 個}}",
 	"search-nonefound": "響個查詢度冇結果配合。",

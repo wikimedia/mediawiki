@@ -635,7 +635,6 @@
 	"search-relatedarticle": "Otsiq samasugutsit lehti",
 	"searchrelated": "samasugunõ",
 	"searchall": "kõik",
-	"showingresults": "{{PLURAL:$1|'''Üts''' tulõmus|'''$1''' tulõmust}} (tulõmusõst '''$2''' pääle).",
 	"search-showingresults": "{{PLURAL:$4|<strong>$1</strong>. tulõmus <strong>$3</strong>-st|Tulõmusõq <strong>$1–$2</strong> <strong>$3</strong>-st}}",
 	"search-nonefound": "Perräküsümisele löüdä-äs vastust.",
 	"powersearch-legend": "Laendõt otsminõ",

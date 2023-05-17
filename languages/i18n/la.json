@@ -592,7 +592,6 @@
 	"search-relatedarticle": "Relata",
 	"searchrelated": "relata",
 	"searchall": "omnia",
-	"showingresults": "Subter monstrans {{PLURAL:$1|'''1''' eventu|'''$1''' eventibus}} tenus incipiens ab #'''$2'''.",
 	"search-showingresults": "{{PLURAL:$4|Eventus <strong>$1</strong> inter <strong>$3</strong>|Eventus <strong>$1 – $2</strong> inter <strong>$3</strong>}}",
 	"search-nonefound": "Nullae paginae quaesitionem tuam adaequant.",
 	"powersearch-legend": "Quaerere callidissime",

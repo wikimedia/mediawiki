@@ -977,7 +977,6 @@
 	"search-relatedarticle": "Povezano",
 	"searchrelated": "povezano",
 	"searchall": "sve",
-	"showingresults": "Dolje {{PLURAL:$1|je prikazan <strong>1</strong> rezultat|su prikazana <strong>$1</strong> rezultata|je prikazano '''$1''' rezultata}} počev od #<strong>$2</strong>.",
 	"showingresultsinrange": "Ispod {{PLURAL:$1|je prikazan <strong>1</strong> rezultat|su prikazana <strong>$1</strong> rezultata|je prikazano <strong>$1</strong> rezultata}}, u rasponu od <strong>$2</strong> do <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Rezultat <strong>$1</strong> od <strong>$3</strong>|Rezultati <strong>$1–$2</strong> od <strong>$3</strong>}}",
 	"search-nonefound": "Nisu pronađeni rezultati koji odgovaraju upitu.",

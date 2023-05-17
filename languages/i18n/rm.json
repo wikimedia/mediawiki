@@ -714,7 +714,6 @@
 	"search-relatedarticle": "Sumegliant",
 	"searchrelated": "sumegliant",
 	"searchall": "tuts",
-	"showingresults": "Sutvart èn enfin {{PLURAL:$1|'''in''' resultat|'''$1''' resultats}} cumenzond cun il numer '''$2'''.",
 	"search-showingresults": "{{PLURAL:$4|resultat <strong>$1</strong> da<strong>$3</strong>|resultats<strong>$1 - $2</strong> da <strong>$3</strong>}}",
 	"search-nonefound": "Per il term tschertgà èn nagins resultats vegnids chattads.",
 	"powersearch-legend": "Tschertga extendida",

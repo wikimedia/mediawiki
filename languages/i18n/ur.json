@@ -954,7 +954,6 @@
 	"search-relatedarticle": "متعلقہ",
 	"searchrelated": "متعلقہ",
 	"searchall": "تمام",
-	"showingresults": "ذیل میں #<strong>$2</strong> سے {{PLURAL:$1|<strong>1</strong> تک نتیجہ دکھایا گیا ہے|<strong>$1</strong> تک نتائج دکھائے گئے ہیں}}۔",
 	"showingresultsinrange": "ذیل میں #<strong>$2</strong> سے #<strong>$3</strong> تک {{PLURAL:$1|<strong>1</strong> نتیجہ|<strong>$1</strong> نتائج}} ایک قطار میں درج {{PLURAL:$1|ہے|ہیں}}۔",
 	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong> میں سے <strong>$1</strong> نتیجہ|<strong>$3</strong> میں سے <strong>$1 تا $2</strong> نتائج}}",
 	"search-nonefound": "استفسار کے مطابق کوئی نتیجہ برآمد نہیں ہوا۔",

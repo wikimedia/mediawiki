@@ -1026,7 +1026,6 @@
 	"search-thumbnail-alt": "Минијатура за $1",
 	"searchrelated": "поврзано",
 	"searchall": "сè",
-	"showingresults": "Подолу {{PLURAL:$1|е прикажана <strong>1</strong> ставка|се прикажани <strong>$1</strong> ставки}} почнувајќи од бр. <strong>$2</strong>.",
 	"showingresultsinrange": "Подолу {{PLURAL:$1|е прикажана до <strong>една</strong> ставка|се прикажани до <strong>$1</strong> ставки}} во опсег од <strong>$2</strong> до <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Ставка <strong>$1</strong> од <strong>$3</strong>|Ставки <strong>$1 - $2</strong> од <strong>$3</strong>}}",
 	"search-nonefound": "Нема исходни ставки што одговараат на бараното.",

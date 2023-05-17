@@ -909,7 +909,6 @@
 	"search-relatedarticle": "ایلگیلی",
 	"searchrelated": "ایلگیلی",
 	"searchall": "بوتون",
-	"showingresults": "آشاغیدا نومره '''$2'''-دن باشلایان {{PLURAL:$1|'''بیر'''|'''$1'''}} سونوجا قدر گؤستریلیر.",
 	"showingresultsinrange": "آشاغی دا گوسترمک {{PLURAL:$1|<strong>1</strong> سونو|<strong>$1</strong> سونو}} چان محدوده سینده #<strong>$2</strong> چان #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|نتیجه لر <strong>$1</strong> از <strong>$3</strong>|نتیجه لر<strong>$1 - $2</strong> از <strong>$3</strong>}}",
 	"search-nonefound": "سیزین سورونوزا اویغون نتیجه تاپیلمادی.",

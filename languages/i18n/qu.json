@@ -767,7 +767,6 @@
 	"search-relatedarticle": "Apanakuq",
 	"searchrelated": "apanakuq",
 	"searchall": "tukuy",
-	"showingresults": "Qhipanpiqa rikuchkanki {{PLURAL:$1|'''1''' tarisqatam|'''$1'''-kama tarisqakunatam}}, '''$2''' huchhawan qallarispa.",
 	"showingresultsinrange": "Qhipanpiqa rikuchkanki {{PLURAL:$1|<strong>1</strong>-kama tarisqatam|<strong>$1</strong>-kama tarisqakunatam}}, #<strong>$2</strong> huchhamanta #<strong>$3</strong> huchhakama.",
 	"search-showingresults": "{{PLURAL:$4|Taripasqa <strong>$1</strong>, <strong>$3</strong>-pura|Taripasqakuna <strong>$1</strong>-manta <strong>$2</strong>-kama, <strong>$3</strong>-pura}}",
 	"search-nonefound": "Maskaypaq kay hina kachun nisqakamaqa manam kanchu taripasqakuna.",

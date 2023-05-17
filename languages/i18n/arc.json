@@ -448,7 +448,6 @@
 	"search-relatedarticle": "ܐܚܝܢܝ̈ܐ",
 	"searchrelated": "ܐܚܝܢܝ̈ܐ",
 	"searchall": "ܟܠ",
-	"showingresults": "ܚܘܘܝܐ ܠܬܚܬ {{PLURAL:$1|'''1''' ܦܠܛܐ|'''$1''' ܦܠܛ̈ܐ}} ܫܪܐ ܡܢ ܡܢܝܢܐ '''$2'''.",
 	"search-nonefound": "ܠܝܬ ܦܠܛ̈ܐ ܐܘܝܢ̈ܐ ܠܗܢܐ ܒܨܝܐ.",
 	"powersearch-legend": "ܒܨܝܐ ܡܬܩܕܡܢܐ",
 	"powersearch-ns": "ܒܨܝ ܒܚܩܠܬ̈ܐ:",

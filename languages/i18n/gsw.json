@@ -861,7 +861,6 @@
 	"search-relatedarticle": "Verwandti",
 	"searchrelated": "verwandt",
 	"searchall": "alli",
-	"showingresults": "Do {{PLURAL:$1|isch '''1''' Ergebnis|sin '''$1''' Ergebniss}}, s fangt aa mit dr Nummerer '''$2.'''",
 	"showingresultsinrange": "Do unte {{PLURAL:$1|wird <strong>ei</strong> Ergebnis|wäre bis zue <strong>$1</strong> Ergebnis}} im Berych <strong>$2</strong> bis <strong>$3</strong> aazeigt.",
 	"search-showingresults": "{{PLURAL:$4|Ergebnis <strong>$1</strong> vu <strong>$3</strong>|Ergebnis <strong>$1 bis $2</strong> vu <strong>$3</strong>}}",
 	"search-nonefound": "Fir Dyyni Suechaafrog sin keini Ergebniss gfunde wore.",

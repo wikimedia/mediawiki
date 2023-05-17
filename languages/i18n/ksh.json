@@ -880,7 +880,6 @@
 	"search-relatedarticle": "Ähnlesch",
 	"searchrelated": "ähnlesch",
 	"searchall": "all",
-	"showingresults": "Onge {{PLURAL:$1|weed <strong>eine</strong>|wääde bes <strong>$1</strong>|weed <strong>keine</strong>}} vun de jefonge Endrähsch jezeisch, vun de Nommer <strong>$2</strong> av.",
 	"showingresultsinrange": "{{PLURAL:$1|<strong>Ein</strong> Saachjropp|<strong>$1</strong> Saachjroppe|Kein Saachjropp}}, vun Nommer <strong>$2</strong> bes Nommer <strong>$3</strong> {{PLURAL:$1|weed|wääde|weed}} heh opjeleß.",
 	"search-showingresults": "{{PLURAL:$4|Heh es dä <strong>$1</strong>-te vun <strong>$3</strong> Träffere.|Träffer Nommero <strong>$1 bes $2</strong> vun <strong>$3</strong> Träffer.|Jevonge woodt woodt nix.}}",
 	"search-nonefound": "Mer han nix zopaß jefonge för Ding Aanfrohch.",

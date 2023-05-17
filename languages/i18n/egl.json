@@ -787,7 +787,6 @@
 	"search-relatedarticle": "Rişultêt coleghê",
 	"searchrelated": "coleghê",
 	"searchall": "tót",
-	"showingresults": "Ed sègvit {{PLURAL:$1|a vîn preşentê al mâsim <strong>1</strong> rişultêt| a vînen preşentê al mâsim <strong>$1</strong> rişultêt}} a partîr dal nómer #<strong>$2</strong>.",
 	"showingresultsinrange": "{{PLURAL:$1|Sòt a vîn mustrê| Sòt a vînen mustrê}}  {{PLURAL:$1|<strong>1</strong> rişultêt|<strong>$1</strong> rişultêt}} dal <strong>$2</strong> al <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Rişultêt <strong>$1</strong> ed <strong>$3</strong>|Rişultêt <strong>$1 - $2</strong> ed <strong>$3</strong>}}",
 	"search-nonefound": "La sērca an n'à mìa dê di rişultê.",

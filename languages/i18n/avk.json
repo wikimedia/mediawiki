@@ -663,7 +663,6 @@
 	"search-relatedarticle": "Skedaf",
 	"searchrelated": "skedaf",
 	"searchall": "kot",
-	"showingresults": "Vlevefa nedira va {{PLURAL:$1|'''1''' trasiks|'''$1''' trasiks}} dem #'''$2''' toza.",
 	"search-showingresults": "{{PLURAL:$4|Nekiks <strong>$1</strong> ke <strong>$3</strong>|Nekiks <strong>$1 – $2</strong> ke <strong>$3</strong>}}",
 	"search-nonefound": "Mek trasiks vas kucilara",
 	"powersearch-legend": "Aneyapara",

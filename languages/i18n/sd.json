@@ -779,7 +779,6 @@
 	"search-relatedarticle": "لاڳاپيل",
 	"searchrelated": "لاڳاپيل",
 	"searchall": "سڀ",
-	"showingresults": "ھيٺ #<strong>$2</strong> سان شروع ٿيندڙ {{PLURAL:$1|<strong>1</strong> نتيجو|<strong>$1</strong> نتيجا}} تائين ڏيکاري ٿو.",
 	"showingresultsinrange": "ھيٺ {{PLURAL:$1|<strong>1</strong> نتيجو|<strong>$1</strong> نتيجا}} #<strong>$2</strong> کان #<strong>$3</strong> جي حد تائين ڏيکاري ٿو.",
 	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong> مان <strong>$1 – $2</strong> تائين نتيجا ڏيکاريل}}",
 	"search-nonefound": "توھان جي ڳولا سان ملندڙ ڪي بہ نتيجا نہ ھيا.",

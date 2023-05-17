@@ -711,7 +711,6 @@
 	"search-relatedarticle": "Risulthaddi curriraddi",
 	"searchrelated": "curriraddi",
 	"searchall": "tutti",
-	"showingresults": "Accó {{PLURAL:$1|màssimu '''1''' risulthaddu|màssimu li '''$1''' risulthaddi}} à partì da lu nùmaru #'''$2'''.",
 	"search-showingresults": "{{PLURAL:$4|Risulthaddu <strong>$1</strong> di <strong>$3</strong>|Risulthaddi <strong>$1 a $2</strong> di <strong>$3</strong>}}",
 	"search-nonefound": "Nisciuni risulthaddi pa la to' zercha",
 	"powersearch-legend": "Zercha abanzadda",

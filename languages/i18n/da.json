@@ -1036,7 +1036,6 @@
 	"search-relatedarticle": "Relateret",
 	"searchrelated": "relateret",
 	"searchall": "alle",
-	"showingresults": "Nedenfor vises <b>$1</b> {{PLURAL:$1|resultat|resultater}} startende med nummer <b>$2</b>.",
 	"showingresultsinrange": "Herunder vises op til {{PLURAL:$1|<strong>1</strong> resultat|<strong>$1</strong> resultater}} fra nummer <strong>$2</strong> til nummer <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Resultat <strong>$1</strong> af <strong>$3</strong>|Resultater <strong>$1 – $2</strong> af <strong>$3</strong>}}",
 	"search-nonefound": "Ingen resultater passede på forespørgslen.",

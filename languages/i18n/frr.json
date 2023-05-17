@@ -892,7 +892,6 @@
 	"search-relatedarticle": "Ferbünjen",
 	"searchrelated": "ferbünjen",
 	"searchall": "aaltumaal",
-	"showingresults": "Heer {{PLURAL:$1|as '''1''' resultaat|san '''$1''' resultaaten}}, jo began mä numer '''$2.'''",
 	"showingresultsinrange": "Oner {{PLURAL:$1|woort <strong>ian</strong> resultaat|wurd bit tu <strong>$1</strong> resultaaten}} tesken <strong>$2</strong> an <strong>$3</strong> uunwiset.",
 	"search-showingresults": "{{PLURAL:$4|Resultaat <strong>$1</strong> faan <strong>$3</strong>|Resultaaten <strong>$1 - $2</strong> faan <strong>$3</strong>}}",
 	"search-nonefound": "För din uunfraag san nian resultaaten fünjen wurden.",

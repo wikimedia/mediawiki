@@ -1064,7 +1064,6 @@
 	"search-thumbnail-alt": "Μικρογραφία για το $1",
 	"searchrelated": "σχετικά",
 	"searchall": "όλα",
-	"showingresults": "Παρακάτω {{PLURAL:$1|εμφανίζεται μέχρι <strong>1</strong> αποτέλεσμα|εμφανίζονται μέχρι <strong>$1</strong> αποτελέσματα}} ξεκινώντας από το Νο <strong>$2</strong>.",
 	"showingresultsinrange": "Παρακάτω {{PLURAL:$1|εμφανίζεται μέχρι <strong>1</strong> αποτέλεσμα|εμφανίζονται μέχρι <strong>$1</strong> αποτελέσματα}} σε εύρος από το Νο <strong>$2</strong> μέχρι το Νο <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$5|Αποτέλεσμα <strong>$1</strong> από <strong>$3</strong>|Αποτελέσματα <strong>$1 - $2</strong> από <strong>$3</strong>}}",
 	"search-nonefound": "Δεν υπάρχουν αποτελέσματα που να ικανοποιούν το ερώτημα.",

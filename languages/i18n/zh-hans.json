@@ -1188,7 +1188,6 @@
 	"search-thumbnail-alt": "$1的缩略图",
 	"searchrelated": "相关",
 	"searchall": "所有",
-	"showingresults": "下面显示从第<strong>$2</strong>条结果开始的<strong>$1</strong>条结果。",
 	"showingresultsinrange": "下面显示#<strong>$2</strong>至#<strong>$3</strong>区间的{{PLURAL:$1|<strong>$1</strong>条结果}}。",
 	"search-showingresults": "{{PLURAL:$4|第<strong>$1</strong>条结果，共<strong>$3</strong>条|第<strong>$1-$2</strong>条结果，共<strong>$3</strong>条}}",
 	"search-nonefound": "找不到和查询相匹配的结果。",

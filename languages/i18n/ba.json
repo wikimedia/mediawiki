@@ -951,7 +951,6 @@
 	"search-relatedarticle": "Ҡағылышлы",
 	"searchrelated": "ҡағылышлы",
 	"searchall": "барыһы",
-	"showingresults": "Түбәндә №&nbsp;<strong>$2</strong> һөҙөмтәнән башлап <strong>$1</strong> {{PLURAL:$1|һөҙөмтә}} күрһәтелгән.",
 	"showingresultsinrange": "Түбәндә №&nbsp;<strong>$2</strong> һөҙөмтәнән башлап <strong>$1</strong> {{PLURAL:$1|һөҙөмтә}} күрһәтелгән.<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong> нәтижәнән <strong>$1</strong>| <strong>$3</strong> нәтижәләрҙән <strong>$1 — $2</strong>}}",
 	"search-nonefound": "Был һорауға яуап биреүсе һөҙөмтәләр табылманы.",

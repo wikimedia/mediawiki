@@ -778,7 +778,6 @@
 	"search-relatedarticle": "Verwandte",
 	"searchrelated": "verwandt",
 	"searchall": "alle",
-	"showingresults": "Hier {{PLURAL:$1|ist '''1''' Ergebnis|sind '''$1''' Ergebnisse}}, beginnend mit Nummer '''$2.'''",
 	"showingresultsinrange": "Unne {{PLURAL:$1|weard <strong>en</strong> Ergebnis|werre bis zu <strong>$1</strong> Ergebnisse}} im Bereich <strong>$2</strong> bis <strong>$3</strong> oongezeicht.",
 	"search-showingresults": "{{PLURAL:$4|Rësultaat <strong>$1</strong> fon <strong>$3</strong>|Rësultaate <strong>$1 bis $2</strong> fon <strong>$3</strong>}}",
 	"search-nonefound": "Zu deiner Suchoonfroch wore ken Ergebnisse gefund.",

@@ -918,7 +918,6 @@
 	"search-relatedarticle": "Të ngjashme",
 	"searchrelated": "të ngjashme",
 	"searchall": "krejt",
-	"showingresults": "Më poshtë tregohen {{PLURAL:$1|'''1''' përfundim|'''$1''' përfundime}} duke filluar nga #'''$2'''.",
 	"search-showingresults": "{{PLURAL:$4|Rezultati <strong>$1</strong> nga <strong>$3</strong>|Rezultatet <strong>$1 - $2</strong> nga <strong>$3</strong>}}",
 	"search-nonefound": "Nuk ka rezultate që përputhen me kërkesën.",
 	"search-nonefound-thiswiki": "Nuk ka rezultate që përputhen me kërkesën në këtë sajt.",

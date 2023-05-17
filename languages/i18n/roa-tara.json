@@ -956,7 +956,6 @@
 	"search-relatedarticle": "Colleghete",
 	"searchrelated": "colleghete",
 	"searchall": "tutte",
-	"showingresults": "Stoche a fazze vedè aqquà sotte {{PLURAL:$1|'''1''' resultete|'''$1''' resultete}} ca accumenzene cu #'''$2'''.",
 	"showingresultsinrange": "Stoche a fazze vedè da sotte 'nzigne a {{PLURAL:$1|<strong>1</strong> resultate|<strong>$1</strong> resultate}} jndr'à l'indervalle #<strong>$2</strong> a #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Resultate <strong>$1</strong> de <strong>$3</strong>|Resultate <strong>$1 - $2</strong> de <strong>$3</strong>}}",
 	"search-nonefound": "Non ge stonne resultete ca soddisfecene l'inderrogazione.",

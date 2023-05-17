@@ -915,7 +915,6 @@
 	"search-relatedarticle": "संबंधित",
 	"searchrelated": "संबंधित",
 	"searchall": "सगरी",
-	"showingresults": "नीचे  #'''$2''' से शुरु होखे वाला {{PLURAL:$1|'''1''' रिजल्ट देखावल जा रहल बा|'''$1''' रिजल्ट देखावल जा रहल बाड़ें}}।",
 	"showingresultsinrange": "नीचे #<strong>$2</strong> से #<strong>$3</strong> के रेंज में से {{PLURAL:$1|<strong>1</strong> रिजल्ट देखावल जाता|<strong>$1</strong> रिजल्ट देखावल जात बाड़ें}}।",
 	"search-showingresults": "{{PLURAL:$4|<strong>$1</strong> के रिजल्ट <strong>$3</strong>|<strong>$3</strong> में से <strong>$1 - $2</strong> के रिजल्ट}}",
 	"search-nonefound": "राउर खोज से मेल खात कौनों परिणाम नइखे मिलत",

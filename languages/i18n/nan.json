@@ -639,7 +639,6 @@
 	"search-section": "(toān-lo̍h $1)",
 	"search-suggest": "Lí ê ì-sù sī-m̄-sī: $1",
 	"searchall": "choân-pō·",
-	"showingresults": "Ē-kha tùi #<b>$2</b> khai-sí hián-sī <b>$1</b> hāng kiat-kó.",
 	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong> ê kiat-kó <strong>$1</strong>|<strong>$3</strong> ê kiat-kó <strong>$1 – $2</strong>}}",
 	"search-nonefound": "Chhoē m̄ tio̍h",
 	"powersearch-legend": "Kiám-sek",

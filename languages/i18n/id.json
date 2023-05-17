@@ -1082,7 +1082,6 @@
 	"search-thumbnail-alt": "Gambar mini seharga $1",
 	"searchrelated": "berkaitan",
 	"searchall": "semua",
-	"showingresults": "Di bawah ini ditampilkan hingga {{PLURAL:$1|<strong>1</strong> hasil|<strong>$1</strong> hasil}}, dimulai dari #<strong>$2</strong>.",
 	"showingresultsinrange": "Menampilkan sampai dengan {{PLURAL:$1|<strong>1</strong> hasil|<strong>$1</strong> hasil}} dalam rentang #<strong>$2</strong> sampai #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Hasil <strong>$1</strong> dari <strong>$3</strong>|Hasil <strong>$1 - $2</strong> dari <strong>$3</strong>}}",
 	"search-nonefound": "Tidak ada hasil yang sesuai dengan kriteria.",

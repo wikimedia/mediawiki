@@ -773,7 +773,6 @@
 	"search-relatedarticle": "ဆွိုက်စပ်ဝင်ꩻ",
 	"searchrelated": "ဆွိုက်စပ်ဝင်ꩻ",
 	"searchall": "ကားကအဝ်ႏ",
-	"showingresults": "တောမ်ႏ<strong>$2</strong>ကစဒါႏ အဖြေႏ {{PLURAL:$1|<strong>1</strong> ဗာႏ|<strong>$1</strong> ဗာႏ}}နဝ်ꩻ အဝ်ႏအွဉ်ႏနယ်ခါꩻ လနဝ်ꩻသွူ။",
 	"showingresultsinrange": "အဝ်ႏ<strong>$2</strong>ဗꩻ #<strong>$3</strong>အဖြေႏ {{PLURAL:$1|<strong>1</strong> ဗာႏ|<strong>$1</strong> ဗာႏ}}နဝ်ꩻ အဝ်ႏအွဉ်ႏနယ်ခါꩻ လနဝ်ꩻသွူ။",
 	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong> ကို <strong>$1</strong> လꩻလဒ်|<strong>$3</strong> ကို <strong>$1 - $2</strong> လꩻလဒ်ဖုံႏ}}",
 	"search-nonefound": "တွမ်ႏစောႏတနာႏမုꩻ ကကဲက်ညီႏဒါႏ လꩻလဒ်အဝ်ႏတဝ်း။",

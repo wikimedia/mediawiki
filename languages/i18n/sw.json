@@ -828,7 +828,6 @@
 	"search-relatedarticle": "Zingine zinazofanana",
 	"searchrelated": "zingine zinazofanana",
 	"searchall": "zote",
-	"showingresults": "{{PLURAL:$1|Tokeo '''1''' linaonyeshwa|matokeo '''$1''' yanaonyeshwa}} chini, kuanzia na namba '''$2'''.",
 	"search-showingresults": "{{PLURAL:$4| Matokeo <strong>$1</strong> kati ya <strong>$3</strong> |Matokeo <strong>$1 - $2</strong> kati ya <strong>$3</strong> }}",
 	"search-nonefound": "Hakuna matokeo ya kutafuta ulizio ule.",
 	"powersearch-legend": "Tafuta kwa hali ya juu",

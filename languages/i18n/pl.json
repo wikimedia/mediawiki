@@ -1104,7 +1104,6 @@
 	"search-thumbnail-alt": "Miniatura $1",
 	"searchrelated": "pokrewne",
 	"searchall": "wszystkie",
-	"showingresults": "Poniżej znajduje się lista {{PLURAL:$1|z '''1''' wynikiem|'''$1''' wyników}}, rozpoczynając od wyniku numer '''$2'''.",
 	"showingresultsinrange": "Poniżej wyświetlono co najwyżej {{PLURAL:$1|<strong>1</strong> wynik|<strong>$1</strong> wyniki|<strong>$1</strong> wyników}} w zakresie od <strong>$2</strong> do <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Wynik <strong>$1</strong> z <strong>$3</strong>|Wyniki <strong>$1 – $2</strong> z <strong>$3</strong>}}",
 	"search-nonefound": "Brak wyników spełniających kryteria podane w zapytaniu.",

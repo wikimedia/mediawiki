@@ -959,7 +959,6 @@
 	"search-relatedarticle": "Disoc'hoù kar",
 	"searchrelated": "disoc'hoù kar",
 	"searchall": "An holl",
-	"showingresults": "Diskouez betek {{PLURAL:$1|'''1''' disoc'h|'''$1''' disoc'h}} o kregiñ gant #'''$2'''.",
 	"showingresultsinrange": "O tiskouez amañ dindan betek {{PLURAL:$1|<strong>1</strong> disoc'h|<strong>$1</strong> a zisoc'hoù}} etre #<strong>$2</strong> ha #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Disoc'h <strong>$1</strong> of <strong>$3</strong>|a zisoc'hoù <strong>$1 - $2</strong> diwar <strong>$3</strong>}}",
 	"search-nonefound": "An enklask-mañ ne zisoc'h war netra.",

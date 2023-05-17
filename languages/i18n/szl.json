@@ -722,7 +722,6 @@
 	"search-relatedarticle": "Podane",
 	"searchrelated": "podane",
 	"searchall": "wszyjske",
-	"showingresults": "To lista na keryj je {{PLURAL:$1|'''1''' wyńik|'''$1''' wyńikůw}}, sztartujůnc uod nůmery '''$2'''.",
 	"search-showingresults": "{{PLURAL:$4|Rezultat <strong>$1</strong> ze <strong>$3</strong>|Rezultaty <strong>$1 – $2</strong> ze <strong>$3</strong>}}",
 	"search-nonefound": "Żŏdne wyniki niy ôdpowiadajōm tymu zapytaniu.",
 	"powersearch-legend": "Sznupańy zaawansowane",
