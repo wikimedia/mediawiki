@@ -1,4 +1,1 @@
-Code of Conduct
-===============
-
-The development of this software is covered by a [Code of Conduct](https://www.mediawiki.org/wiki/Special:MyLanguage/Code_of_Conduct).
+By participating, you indicate that you have read the [Miraheze Spaces Code of Conduct](https://meta.miraheze.org/wiki/Special:MyLanguage/Miraheze_Spaces_Code_of_Conduct) and agree to follow it.

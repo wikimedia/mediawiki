@@ -1,183 +1,58 @@
 {
-	"name": "mediawiki/core",
-	"description": "Free software wiki application developed by the Wikimedia Foundation and others",
-	"type": "mediawiki-core",
-	"keywords": [
-		"mediawiki",
-		"wiki"
-	],
-	"homepage": "https://www.mediawiki.org/",
+	"name": "miraheze/manage-wiki",
+	"type": "mediawiki-extension",
+	"description": "Allows people to manage wikis through a web interface.",
+	"homepage": "https://www.mediawiki.org/wiki/Extension:ManageWiki",
+	"license": "GPL-3.0-or-later",
 	"authors": [
 		{
-			"name": "MediaWiki Community",
-			"homepage": "https://www.mediawiki.org/wiki/Special:Version/Credits"
+			"name": "Southparkfan"
+		},
+		{
+			"name": "John Lewis"
+		},
+		{
+			"name": "MacFan4000"
+		},
+		{
+			"name": "Reception123"
+		},
+		{
+			"name": "Universal Omega"
 		}
 	],
-	"license": "GPL-2.0-or-later",
 	"support": {
-		"issues": "https://bugs.mediawiki.org/",
-		"irc": "irc://irc.libera.chat/mediawiki",
-		"wiki": "https://www.mediawiki.org/"
+		"issues": "https://phabricator.miraheze.org/tag/managewiki/",
+		"wiki": "https://www.mediawiki.org/wiki/Extension:ManageWiki"
 	},
-	"prefer-stable": true,
 	"require": {
-		"composer/semver": "3.3.2",
-		"cssjanus/cssjanus": "2.1.1",
-		"ext-calendar": "*",
-		"ext-ctype": "*",
-		"ext-dom": "*",
-		"ext-fileinfo": "*",
-		"ext-iconv": "*",
-		"ext-intl": "*",
-		"ext-json": "*",
-		"ext-libxml": "*",
-		"ext-mbstring": "*",
-		"ext-xml": "*",
-		"ext-xmlreader": "*",
-		"guzzlehttp/guzzle": "7.4.5",
-		"justinrainbow/json-schema": "5.2.11",
-		"liuggio/statsd-php-client": "1.0.18",
-		"monolog/monolog": "2.2.0",
-		"oojs/oojs-ui": "0.44.5",
-		"pear/mail": "1.5.0",
-		"pear/mail_mime": "1.10.11",
-		"pear/net_smtp": "1.10.0",
-		"php": ">=7.4.3",
-		"psr/container": "1.1.1",
-		"psr/log": "1.1.4",
-		"ralouphie/getallheaders": "3.0.3",
-		"symfony/polyfill-php80": "1.26.0",
-		"symfony/yaml": "5.4.10",
-		"wikimedia/assert": "0.5.1",
-		"wikimedia/at-ease": "2.1.0",
-		"wikimedia/base-convert": "2.0.2",
-		"wikimedia/cdb": "2.0.0",
-		"wikimedia/cldr-plural-rule-parser": "2.0.0",
-		"wikimedia/common-passwords": "0.4.0",
-		"wikimedia/composer-merge-plugin": "2.0.1",
-		"wikimedia/html-formatter": "3.0.1",
-		"wikimedia/ip-set": "3.1.0",
-		"wikimedia/ip-utils": "4.0.0",
-		"wikimedia/less.php": "3.1.0",
-		"wikimedia/minify": "2.3.0",
-		"wikimedia/normalized-exception": "1.0.1",
-		"wikimedia/object-factory": "4.0.0",
-		"wikimedia/parsoid": "0.16.1",
-		"wikimedia/php-session-serializer": "2.0.1",
-		"wikimedia/purtle": "1.0.8",
-		"wikimedia/relpath": "3.0.0",
-		"wikimedia/remex-html": "3.0.3",
-		"wikimedia/request-timeout": "1.2.0",
-		"wikimedia/running-stat": "2.1.0",
-		"wikimedia/scoped-callback": "4.0.0",
-		"wikimedia/services": "3.0.0",
-		"wikimedia/shellbox": "3.0.0",
-		"wikimedia/utfnormal": "3.0.2",
-		"wikimedia/timestamp": "4.0.0",
-		"wikimedia/wait-condition-loop": "2.0.2",
-		"wikimedia/wrappedstring": "4.0.1",
-		"wikimedia/xmp-reader": "0.8.6",
-		"zordius/lightncandy": "1.2.6"
+		"composer/installers": ">=1.0.1"
 	},
 	"require-dev": {
-		"composer/spdx-licenses": "1.5.7",
-		"doctrine/dbal": "3.4.2",
-		"doctrine/sql-formatter": "1.1.1",
-		"ext-simplexml": "*",
-		"giorgiosironi/eris": "^0.10.0",
-		"hamcrest/hamcrest-php": "^2.0",
-		"johnkary/phpunit-speedtrap": "^4.0",
-		"mediawiki/mediawiki-codesniffer": "38.0.0",
-		"mediawiki/mediawiki-phan-config": "0.11.1",
-		"nikic/php-parser": "^4.10.2",
-		"php-parallel-lint/php-console-highlighter": "0.5",
-		"php-parallel-lint/php-parallel-lint": "1.3.1",
-		"phpunit/phpunit": "8.5.28",
-		"psy/psysh": "^0.11.1",
-		"seld/jsonlint": "1.8.3",
-		"wikimedia/alea": "^0.9.3",
-		"wikimedia/testing-access-wrapper": "~2.0",
-		"wmde/hamcrest-html-matchers": "^1.0.0"
-	},
-	"replace": {
-		"symfony/polyfill-ctype": "1.99",
-		"symfony/polyfill-mbstring": "1.99"
-	},
-	"suggest": {
-		"ext-apcu": "Faster web responses overall.",
-		"ext-curl": "Faster HTTP services, e.g. when using InstantCommons, Swift, or Etcd.",
-		"ext-gd": "Enable thumbnails for file uploads.",
-		"ext-mysqli": "Enable the MySQL and MariaDB database type for MediaWiki.",
-		"ext-openssl": "Encrypt session data (or opt-out via $wgSessionInsecureSecrets).",
-		"ext-pdo": "Enable the SQLite database type for MediaWiki.",
-		"ext-pgsql": "Enable the PostgreSQL database type for MediaWiki.",
-		"ext-posix": "Enable CLI concurrent processing, e.g. for runJobs.php.",
-		"ext-pcntl": "Enable CLI concurrent processing, e.g. for runJobs.php and rebuildLocalisationCache.php.",
-		"ext-readline": "Enable CLI history and autocomplete, e.g. for eval.php and other REPLs.",
-		"ext-sockets": "Enable CLI concurrent processing, e.g. for rebuildLocalisationCache.php.",
-		"ext-wikidiff2": "Faster text difference engine.",
-		"ext-zlib": "Enable use of GZIP compression, e.g. for SqlBagOStuff (ParserCache), $wgCompressRevisions, or $wgUseFileCache.",
-		"monolog/monolog": "Enable use of MonologSpi ($wgMWLoggerDefaultSpi)."
-	},
-	"autoload": {
-		"psr-0": {
-			"ComposerHookHandler": "includes/composer",
-			"ComposerVendorHtaccessCreator": "includes/composer",
-			"ComposerPhpunitXmlCoverageEdit": "includes/composer"
-		}
-	},
-	"autoload-dev": {
-		"files": [
-			"vendor/hamcrest/hamcrest-php/hamcrest/Hamcrest.php",
-			"vendor/wmde/hamcrest-html-matchers/src/functions.php"
-		]
+		"mediawiki/mediawiki-codesniffer": "41.0.0",
+		"mediawiki/mediawiki-phan-config": "0.12.1",
+		"mediawiki/minus-x": "1.1.1",
+		"php-parallel-lint/php-console-highlighter": "1.0.0",
+		"php-parallel-lint/php-parallel-lint": "1.3.2"
 	},
 	"scripts": {
-		"mw-install:sqlite": "php maintenance/install.php --server=http://localhost:4000 --dbtype sqlite --dbpath cache/ --scriptpath '' --pass adminpassword MediaWiki Admin",
-		"serve": "php -S localhost:4000",
-		"lint": "parallel-lint --exclude node_modules --exclude vendor",
-		"phan": "phan -d . --long-progress-bar",
-		"phpcs": "phpcs -p -s --cache",
 		"fix": [
-			"phpcbf"
+			"minus-x fix .",
+			"phpcbf; if [ $? -eq 1 ]; then exit 0; fi"
 		],
-		"pre-install-cmd": "ComposerHookHandler::onPreInstall",
-		"pre-update-cmd": "ComposerHookHandler::onPreUpdate",
-		"post-install-cmd": "ComposerVendorHtaccessCreator::onEvent",
-		"post-update-cmd": "ComposerVendorHtaccessCreator::onEvent",
-		"releasenotes": "@phpunit:entrypoint --group ReleaseNotes",
 		"test": [
-			"@lint .",
-			"@phpcs ."
-		],
-		"test-some": [
-			"@lint",
+			"parallel-lint . --exclude node_modules --exclude vendor",
+			"minus-x check .",
 			"@phpcs"
 		],
-		"phpunit": "php tests/phpunit/phpunit.php",
-		"phpunit:unit": "phpunit --colors=always --testsuite=core:unit,extensions:unit,skins:unit",
-		"phpunit:integration": "@phpunit --colors=always --testsuite=core:integration,extensions:integration,skins:integration",
-		"phpunit:coverage": "@phpunit --testsuite=core:unit --exclude-group Dump,Broken",
-		"phpunit:coverage-edit": "ComposerPhpunitXmlCoverageEdit::onEvent",
-		"phpunit:entrypoint": "@phpunit -c tests/phpunit/suite.xml"
+		"phan": "phan -d . --long-progress-bar",
+		"phpcs": "phpcs -sp --cache"
 	},
 	"config": {
-		"optimize-autoloader": true,
 		"prepend-autoloader": false,
+		"optimize-autoloader": true,
 		"allow-plugins": {
-			"composer/package-versions-deprecated": true,
-			"wikimedia/composer-merge-plugin": true,
 			"composer/installers": true
-		}
-	},
-	"extra": {
-		"merge-plugin": {
-			"include": [
-				"composer.local.json",
-				"extensions/Wikibase/composer.json",
-				"extensions/WikibaseEdtf/composer.json"
-			],
-			"merge-dev": false
 		}
 	}
 }

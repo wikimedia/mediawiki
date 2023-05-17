@@ -1,11 +1,17 @@
 {
 	"extends": [
-		"stylelint-config-wikimedia/support-basic",
-		"stylelint-config-wikimedia/mediawiki"
+		"stylelint-config-idiomatic-order",
+		"stylelint-config-wikimedia"
+	],
+	"ignoreFiles": [
+		"vendor/**"
 	],
 	"rules": {
-		"selector-class-pattern": "^((mw|oo-ui)-|(wikitable|(toc(|toggle|hidden))|client-(no)?js)$)",
+		"font-weight-notation": null,
+		"selector-max-id": null,
 		"no-descending-specificity": null,
-		"selector-max-id": null
+		"declaration-no-important": null,
+		"unit-disallowed-list": null,
+		"declaration-property-unit-disallowed-list": null
 	}
 }

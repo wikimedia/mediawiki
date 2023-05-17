@@ -1,176 +1,328 @@
 <?php
 
-/**
- * A tool for running hook functions.
- *
- * Copyright 2004, 2005 Evan Prodromou <evan@wikitravel.org>.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
- *
- * @author Evan Prodromou <evan@wikitravel.org>
- * @see hooks.txt
- * @file
- */
+namespace Miraheze\ManageWiki;
 
-use MediaWiki\HookContainer\HookRunner;
+use DatabaseUpdater;
 use MediaWiki\MediaWikiServices;
+use Miraheze\ManageWiki\Helpers\ManageWikiExtensions;
+use Miraheze\ManageWiki\Helpers\ManageWikiNamespaces;
+use Miraheze\ManageWiki\Helpers\ManageWikiPermissions;
+use SpecialPage;
+use TextContentHandler;
+use User;
+use Wikimedia\Rdbms\DBConnRef;
 
-/**
- * Hooks class.
- *
- * Legacy wrapper for HookContainer
- * Please use HookContainer instead.
- *
- * @since 1.18
- */
 class Hooks {
+	private static function getConfig( string $var ) {
+		return MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'managewiki' )->get( $var );
+	}
 
-	/**
-	 * Attach an event handler to a given hook in both legacy and non-legacy hook systems
-	 *
-	 * @param string $name Name of hook
-	 * @param callable $callback Callback function to attach
-	 * @deprecated since 1.35. use HookContainer::register() instead
-	 * @since 1.18
-	 */
-	public static function register( $name, $callback ) {
-		if ( !defined( 'MW_SERVICE_BOOTSTRAP_COMPLETE' ) ) {
-			wfDeprecatedMsg( 'Registering handler for ' . $name .
-				' before MediaWiki bootstrap complete was deprecated in MediaWiki 1.35',
-				'1.35' );
+	public static function fnManageWikiSchemaUpdates( DatabaseUpdater $updater ) {
+		$updater->addExtensionTable( 'mw_namespaces',
+				__DIR__ . '/../sql/mw_namespaces.sql' );
+		$updater->addExtensionTable( 'mw_permissions',
+				__DIR__ . '/../sql/mw_permissions.sql' );
+		$updater->addExtensionTable( 'mw_settings',
+				__DIR__ . '/../sql/mw_settings.sql' );
+
+		$updater->modifyExtensionTable( 'mw_namespaces',
+				__DIR__ . '/../sql/patches/patch-namespace-core-alter.sql' );
+
+		$updater->addExtensionField( 'mw_permissions', 'perm_addgroupstoself',
+				__DIR__ . '/../sql/patches/patch-groups-self.sql' );
+		$updater->addExtensionField( 'mw_permissions', 'perm_autopromote',
+				__DIR__ . '/../sql/patches/patch-autopromote.sql' );
+		$updater->addExtensionField( 'mw_namespaces', 'ns_additional',
+				__DIR__ . '/../sql/patches/patch-namespaces-additional.sql' );
+
+		$updater->addExtensionIndex( 'mw_namespaces', 'ns_dbname',
+				__DIR__ . '/../sql/patches/patch-namespaces-add-indexes.sql' );
+		$updater->addExtensionIndex( 'mw_permissions', 'perm_dbname',
+				__DIR__ . '/../sql/patches/patch-permissions-add-indexes.sql' );
+	}
+
+	public static function onRegistration() {
+		global $wgLogTypes;
+
+		if ( !in_array( 'farmer', $wgLogTypes ) ) {
+			$wgLogTypes[] = 'farmer';
 		}
-		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		$hookContainer->register( $name, $callback );
 	}
 
-	/**
-	 * Clears hooks registered via Hooks::register(). Does not touch $wgHooks.
-	 * This is intended for use while testing and will fail if MW_PHPUNIT_TEST is not defined.
-	 *
-	 * @param string $name The name of the hook to clear.
-	 *
-	 * @since 1.21
-	 * @deprecated since 1.35. Instead of using Hooks::register() and Hooks::clear(),
-	 * use HookContainer::scopedRegister() instead to register a temporary hook
-	 * @throws MWException If not in testing mode.
-	 * @codeCoverageIgnore
-	 */
-	public static function clear( $name ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
-			throw new MWException( 'Cannot reset hooks in operation.' );
+	public static function onContentHandlerForModelID( $modelId, &$handler ) {
+		$handler = new TextContentHandler( $modelId );
+	}
+
+	public static function onCreateWikiJsonBuilder( string $wiki, DBConnRef $dbr, array &$jsonArray ) {
+		$setObject = $dbr->selectRow(
+			'mw_settings',
+			'*',
+			[
+				's_dbname' => $wiki
+			]
+		);
+
+		// Don't need to manipulate this much
+		if ( ManageWiki::checkSetup( 'settings' ) ) {
+			$jsonArray['settings'] = json_decode( $setObject->s_settings, true );
 		}
-		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		$hookContainer->clear( $name );
-	}
 
-	/**
-	 * Returns true if a hook has a function registered to it.
-	 * The function may have been registered either via Hooks::register or in $wgHooks.
-	 *
-	 * @since 1.18
-	 * @deprecated since 1.35. use HookContainer::isRegistered() instead
-	 * @param string $name Name of hook
-	 * @return bool True if the hook has a function registered to it
-	 */
-	public static function isRegistered( $name ) {
-		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		return $hookContainer->isRegistered( $name );
-	}
-
-	/**
-	 * Returns an array of all the event functions attached to a hook
-	 * This combines functions registered via Hooks::register and with $wgHooks.
-	 *
-	 * @since 1.18
-	 * @deprecated since 1.35
-	 * @param string $name Name of the hook
-	 * @return array
-	 */
-	public static function getHandlers( $name ) {
-		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		$handlers = $hookContainer->getLegacyHandlers( $name );
-		$funcName = 'on' . strtr( ucfirst( $name ), ':-', '__' );
-		foreach ( $hookContainer->getHandlers( $name ) as $obj ) {
-			$handlers[] = [ $obj, $funcName ];
+		// Let's create an array of variables so we can easily loop these to enable
+		if ( ManageWiki::checkSetup( 'extensions' ) ) {
+			$manageWikiExtensions = self::getConfig( 'ManageWikiExtensions' );
+			foreach ( json_decode( $setObject->s_extensions, true ) as $ext ) {
+				$jsonArray['extensions'][] = $manageWikiExtensions[$ext]['var'] ??
+					$manageWikiExtensions[$ext]['name'];
+			}
 		}
-		return $handlers;
+
+		// Collate NS entries and decode their entries for the array
+		if ( ManageWiki::checkSetup( 'namespaces' ) ) {
+			$nsObjects = $dbr->select(
+				'mw_namespaces',
+				'*',
+				[
+					'ns_dbname' => $wiki
+				]
+			);
+
+			$lcName = MediaWikiServices::getInstance()->getLocalisationCache()->getItem( $jsonArray['core']['wgLanguageCode'], 'namespaceNames' );
+
+			if ( $jsonArray['core']['wgLanguageCode'] != 'en' ) {
+				$lcEN = MediaWikiServices::getInstance()->getLocalisationCache()->getItem( 'en', 'namespaceNames' );
+			}
+
+			$additional = self::getConfig( 'ManageWikiNamespacesAdditional' );
+			foreach ( $nsObjects as $ns ) {
+				$nsName = $lcName[$ns->ns_namespace_id] ?? $ns->ns_namespace_name;
+				$lcAlias = $lcEN[$ns->ns_namespace_id] ?? null;
+
+				$jsonArray['namespaces'][$nsName] = [
+					'id' => $ns->ns_namespace_id,
+					'core' => (bool)$ns->ns_core,
+					'searchable' => (bool)$ns->ns_searchable,
+					'subpages' => (bool)$ns->ns_subpages,
+					'content' => (bool)$ns->ns_content,
+					'contentmodel' => $ns->ns_content_model,
+					'protection' => ( (bool)$ns->ns_protection ) ? $ns->ns_protection : false,
+					'aliases' => array_merge( json_decode( $ns->ns_aliases, true ), (array)$lcAlias ),
+					'additional' => json_decode( $ns->ns_additional, true )
+				];
+
+				$nsAdditional = (array)json_decode( $ns->ns_additional, true );
+
+				foreach ( $nsAdditional as $var => $val ) {
+					if ( isset( $additional[$var] ) ) {
+						if ( $val ) {
+							switch ( $additional[$var]['type'] ) {
+								case 'check':
+									$jsonArray['settings'][$var][] = (int)$ns->ns_namespace_id;
+									break;
+								case 'vestyle':
+									$jsonArray['settings'][$var][(int)$ns->ns_namespace_id] = true;
+									break;
+								default:
+									if ( ( $additional[$var]['constant'] ) ?? false ) {
+										$jsonArray['settings'][$var] = str_replace( ' ', '_', $val );
+									} else {
+										$jsonArray['settings'][$var][(int)$ns->ns_namespace_id] = $val;
+									}
+							}
+						} elseif (
+							!isset( $additional[$var]['constant'] ) &&
+							( !isset( $jsonArray['settings'][$var] ) || !$jsonArray['settings'][$var] )
+						) {
+							$jsonArray['settings'][$var] = [];
+						}
+
+						if (
+							is_array( $additional[$var]['overridedefault'] ) &&
+							in_array( NS_SPECIAL, $additional[$var]['overridedefault'] ) &&
+							!in_array( NS_SPECIAL, $jsonArray['settings'][$var] ?? [] )
+						) {
+							$jsonArray['settings'][$var][] = NS_SPECIAL;
+						}
+					}
+				}
+			}
+		}
+
+		// Same as NS above but for permissions
+		if ( ManageWiki::checkSetup( 'permissions' ) ) {
+			$permObjects = $dbr->select(
+				'mw_permissions',
+				'*',
+				[
+					'perm_dbname' => $wiki
+				]
+			);
+
+			foreach ( $permObjects as $perm ) {
+				$addPerms = [];
+
+				foreach ( ( self::getConfig( 'ManageWikiPermissionsAdditionalRights' )[$perm->perm_group] ?? [] ) as $right => $bool ) {
+					if ( $bool ) {
+						$addPerms[] = $right;
+					}
+				}
+
+				$jsonArray['permissions'][$perm->perm_group] = [
+					'permissions' => array_merge( json_decode( $perm->perm_permissions, true ) ?? [], $addPerms ),
+					'addgroups' => array_merge( json_decode( $perm->perm_addgroups, true ) ?? [], self::getConfig( 'ManageWikiPermissionsAdditionalAddGroups' )[$perm->perm_group] ?? [] ),
+					'removegroups' => array_merge( json_decode( $perm->perm_removegroups, true ) ?? [], self::getConfig( 'ManageWikiPermissionsAdditionalRemoveGroups' )[$perm->perm_group] ?? [] ),
+					'addself' => json_decode( $perm->perm_addgroupstoself, true ),
+					'removeself' => json_decode( $perm->perm_removegroupsfromself, true ),
+					'autopromote' => json_decode( $perm->perm_autopromote, true )
+				];
+			}
+
+			$diffKeys = array_keys( array_diff_key( self::getConfig( 'ManageWikiPermissionsAdditionalRights' ), $jsonArray['permissions'] ?? [] ) );
+
+			foreach ( $diffKeys as $missingKey ) {
+				$missingPermissions = [];
+
+				foreach ( self::getConfig( 'ManageWikiPermissionsAdditionalRights' )[$missingKey] as $right => $bool ) {
+					if ( $bool ) {
+						$missingPermissions[] = $right;
+					}
+				}
+
+				$jsonArray['permissions'][$missingKey] = [
+					'permissions' => $missingPermissions,
+					'addgroups' => self::getConfig( 'ManageWikiPermissionsAdditionalAddGroups' )[$missingKey] ?? [],
+					'removegroups' => self::getConfig( 'ManageWikiPermissionsAdditionalRemoveGroups' )[$missingKey] ?? [],
+					'addself' => [],
+					'removeself' => [],
+					'autopromote' => []
+				];
+			}
+		}
 	}
 
-	/**
-	 * Call hook functions defined in Hooks::register and $wgHooks.
-	 *
-	 * For the given hook event, fetch the array of hook events and
-	 * process them. Determine the proper callback for each hook and
-	 * then call the actual hook using the appropriate arguments.
-	 * Finally, process the return value and return/throw accordingly.
-	 *
-	 * For hook event that are not abortable through a handler's return value,
-	 * use runWithoutAbort() instead.
-	 *
-	 * @param string $event Event name
-	 * @param array $args Array of parameters passed to hook functions
-	 * @param string|null $deprecatedVersion [optional] Mark hook as deprecated with version number
-	 * @return bool True if no handler aborted the hook
-	 *
-	 * @throws Exception
-	 * @since 1.22 A hook function is not required to return a value for
-	 *   processing to continue. Not returning a value (or explicitly
-	 *   returning null) is equivalent to returning true.
-	 * @deprecated since 1.35 Use HookContainer::run() instead
-	 */
-	public static function run( $event, array $args = [], $deprecatedVersion = null ) {
-		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		$options = $deprecatedVersion ? [ 'deprecatedVersion' => $deprecatedVersion ] : [];
-		return $hookContainer->run( $event, $args, $options );
+	public static function onCreateWikiCreation( $dbname, $private ) {
+		if ( ManageWiki::checkSetup( 'permissions' ) ) {
+			$mwPermissionsDefault = new ManageWikiPermissions( 'default' );
+			$mwPermissions = new ManageWikiPermissions( $dbname );
+			$defaultGroups = array_diff( array_keys( $mwPermissionsDefault->list() ), (array)self::getConfig( 'ManageWikiPermissionsDefaultPrivateGroup' ) );
+
+			foreach ( $defaultGroups as $newgroup ) {
+				$groupData = $mwPermissionsDefault->list( $newgroup );
+				$groupArray = [];
+
+				foreach ( $groupData as $name => $value ) {
+					if ( $name == 'autopromote' ) {
+						$groupArray[$name] = $value;
+					} else {
+						$groupArray[$name]['add'] = $value;
+					}
+				}
+
+				$mwPermissions->modify( $newgroup, $groupArray );
+			}
+
+			$mwPermissions->commit();
+
+			if ( $private ) {
+				self::onCreateWikiStatePrivate( $dbname );
+			}
+
+		}
+
+		if ( self::getConfig( 'ManageWikiExtensions' ) && self::getConfig( 'ManageWikiExtensionsDefault' ) ) {
+			$mwExt = new ManageWikiExtensions( $dbname );
+			$mwExt->add( self::getConfig( 'ManageWikiExtensionsDefault' ) );
+			$mwExt->commit();
+		}
+
+		if ( ManageWiki::checkSetup( 'namespaces' ) ) {
+			$mwNamespacesDefault = new ManageWikiNamespaces( 'default' );
+			$defaultNamespaces = array_keys( $mwNamespacesDefault->list() );
+			$mwNamespaces = new ManageWikiNamespaces( $dbname );
+
+			foreach ( $defaultNamespaces as $namespace ) {
+				$mwNamespaces->modify( $namespace, $mwNamespacesDefault->list( $namespace ) );
+				$mwNamespaces->commit();
+			}
+		}
 	}
 
-	/**
-	 * Call hook functions defined in Hooks::register and $wgHooks.
-	 *
-	 * @param string $event Event name
-	 * @param array $args Array of parameters passed to hook functions
-	 * @param string|null $deprecatedVersion [optional] Mark hook as deprecated with version number
-	 * @return bool Always true
-	 * @throws UnexpectedValueException callback returns an invalid value
-	 * @since 1.30
-	 * @deprecated since 1.35 Use HookContainer::run() with 'abortable' option instead
-	 */
-	public static function runWithoutAbort( $event, array $args = [], $deprecatedVersion = null ) {
-		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		$options = $deprecatedVersion ? [ 'deprecatedVersion' => $deprecatedVersion ] : [];
-		$options[ 'abortable' ] = false;
-		return $hookContainer->run( $event, $args, $options );
+	public static function onCreateWikiTables( &$tables ) {
+		if ( ManageWiki::checkSetup( 'extensions' ) || ManageWiki::checkSetup( 'settings' ) ) {
+			$tables['mw_settings'] = 's_dbname';
+		}
+
+		if ( ManageWiki::checkSetup( 'permissions' ) ) {
+			$tables['mw_permissions'] = 'perm_dbname';
+		}
+
+		if ( ManageWiki::checkSetup( 'namespaces' ) ) {
+			$tables['mw_namespaces'] = 'ns_dbname';
+		}
 	}
 
-	/**
-	 * Get a HookRunner instance for calling hooks using the new interfaces.
-	 *
-	 * Classes using dependency injection should instead receive a HookContainer
-	 * and construct a private HookRunner from it.
-	 *
-	 * Classes without dependency injection may alternatively use
-	 * ProtectedHookAccessorTrait, a trait which provides getHookRunner() as a
-	 * protected method.
-	 *
-	 * @since 1.35
-	 * @internal because HookRunner is intended for core only, see documentation on that class
-	 *
-	 * @return HookRunner
-	 */
-	public static function runner() {
-		return new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
+	public static function onCreateWikiStatePrivate( $dbname ) {
+		if ( ManageWiki::checkSetup( 'permissions' ) && self::getConfig( 'ManageWikiPermissionsDefaultPrivateGroup' ) ) {
+			$mwPermissionsDefault = new ManageWikiPermissions( 'default' );
+			$mwPermissions = new ManageWikiPermissions( $dbname );
+
+			$defaultPrivate = $mwPermissionsDefault->list( self::getConfig( 'ManageWikiPermissionsDefaultPrivateGroup' ) );
+			$privateArray = [];
+
+			foreach ( $defaultPrivate as $name => $value ) {
+				if ( $name == 'autopromote' ) {
+					$privateArray[$name] = $value;
+				} else {
+					$privateArray[$name]['add'] = $value;
+				}
+			}
+
+			$mwPermissions->modify( self::getConfig( 'ManageWikiPermissionsDefaultPrivateGroup' ), $privateArray );
+			$mwPermissions->modify( 'sysop', [ 'addgroups' => [ 'add' => [ self::getConfig( 'ManageWikiPermissionsDefaultPrivateGroup' ) ] ], 'removegroups' => [ 'add' => [ self::getConfig( 'ManageWikiPermissionsDefaultPrivateGroup' ) ] ] ] );
+			$mwPermissions->commit();
+		}
+	}
+
+	public static function onCreateWikiStatePublic( $dbname ) {
+		if ( ManageWiki::checkSetup( 'permissions' ) && self::getConfig( 'ManageWikiPermissionsDefaultPrivateGroup' ) ) {
+			$mwPermissions = new ManageWikiPermissions( $dbname );
+
+			$mwPermissions->remove( self::getConfig( 'ManageWikiPermissionsDefaultPrivateGroup' ) );
+
+			foreach ( array_keys( $mwPermissions->list() ) as $group ) {
+				$mwPermissions->modify( $group, [ 'addgroups' => [ 'remove' => [ self::getConfig( 'ManageWikiPermissionsDefaultPrivateGroup' ) ] ], 'removegroups' => [ 'remove' => [ self::getConfig( 'ManageWikiPermissionsDefaultPrivateGroup' ) ] ] ] );
+			}
+
+			$mwPermissions->commit();
+		}
+	}
+
+	public static function fnNewSidebarItem( $skin, &$bar ) {
+		$append = '';
+		$user = $skin->getUser();
+		$services = MediaWikiServices::getInstance();
+		$permissionManager = $services->getPermissionManager();
+		$userOptionsLookup = $services->getUserOptionsLookup();
+		if ( !$permissionManager->userHasRight( $user, 'managewiki' ) ) {
+			if ( !self::getConfig( 'ManageWikiForceSidebarLinks' ) && !$userOptionsLookup->getOption( $user, 'managewikisidebar', 0 ) ) {
+				return;
+			}
+			$append = '-view';
+		}
+
+		foreach ( (array)ManageWiki::listModules() as $module ) {
+			$bar['managewiki-sidebar-header'][] = [
+				'text' => wfMessage( "managewiki-link-{$module}{$append}" )->plain(),
+				'id' => "managewiki{$module}link",
+				'href' => htmlspecialchars( SpecialPage::getTitleFor( 'ManageWiki', $module )->getFullURL() )
+			];
+		}
+	}
+
+	public static function onGetPreferences( User $user, array &$preferences ) {
+		$preferences['managewikisidebar'] = [
+			'type' => 'toggle',
+			'label-message' => 'managewiki-toggle-forcesidebar',
+			'section' => 'rendering',
+		];
 	}
 }

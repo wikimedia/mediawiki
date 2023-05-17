@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"apiwarn-wikiconfig-nopermission": "Je mag de configuratie voor wiki '$1' niet bekijken.",
+	"managewiki-error-emptygroup": "Zonder toegewezen machtigingen mag je geen groep aanmaken.",
+	"managewiki-header-core": "Kies hieronder wat je wilt beheren en klik op de knop Opslaan om je wijzigingen op te slaan.",
+	"managewiki-header-extensions": "De extensies hier zijn degenen die nu zijn geïnstalleerd, maar je kunt er altijd nog eentje <span class=\"plainlinks\">[https://meta.miraheze.org/wiki/Request_features aanvragen]</span>. <br> Als je klaar bent, druk je op de knop \"opslaan\" om je wijzigingen op te slaan.",
+	"managewiki-header-settings": "Met deze pagina worden de wiki-instellingen van de wiki <b>'$1'</b> beheerd. Als een functie die je wilt hebben hier nog niet op staat, kun je die via <span class=\"plainlinks\">[https://meta.miraheze.org/wiki/Request_features Phabricator]</span> aanvragen. <br> Als je klaar bent, druk je op de knop \"opslaan\" om je wijzigingen op te slaan.",
+	"managewiki-permissions-autopromote": "Hieronder beheer je de automatische bevordering van gebruikers tot lid van deze groep. Let op: als een gebruiker voldoet aan de criteria die je hieronder instelt, erft die alle rechten van deze groep en kun je die nooit uit deze groep verwijderen, tenzij je  de gebruiker één keer bevordert voordat die aan de criteria voldoet.",
+	"managewiki-permissions-group": "Hieronder stel je in hoe deze gebruikersgroep andere gebruikersgroepen mag toewijzen/intrekken.",
+	"managewiki-permissions-resetgroups-header": "Met de knop hieronder wis je alle groepsconfiguratie en herstel je de standaardmachtigingsconfiguratie voor de wiki. Hiermee verwijder je alle eigen aanpassingen, behalve de leestoegang tot de wiki. Ga alleen verder als je zeker weet dat je dit wilt doen.",
+	"managewiki-warning-changes": "Je hebt nog niet al je wijzigingen aan ManageWiki opgeslagen.\nAls je uit deze pagina weggaat zonder op \"$1\" te klikken, worden je ManageWiki-instellingen niet bijgewerkt."
+}

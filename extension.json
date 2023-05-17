@@ -1,0 +1,273 @@
+{
+	"name": "ManageWiki",
+	"author": [
+		"Southparkfan",
+		"John Lewis",
+		"MacFan4000",
+		"Reception123",
+		"Universal Omega"
+	],
+	"url": "https://github.com/miraheze/ManageWiki",
+	"descriptionmsg": "managewiki-desc",
+	"license-name": "GPL-3.0-or-later",
+	"type": "specialpage",
+	"requires": {
+		"MediaWiki": ">= 1.37.0",
+		"extensions": {
+			"CreateWiki": "*"
+		}
+	},
+	"APIListModules": {
+		"wikiconfig": "Miraheze\\ManageWiki\\Api\\QueryWikiConfig"
+	},
+	"APIModules": {
+		"modifyserver": "Miraheze\\ManageWiki\\Api\\ApiModifyServer"
+	},
+	"AvailableRights": [
+		"managewiki",
+		"managewiki-editdefault",
+		"managewiki-restricted"
+	],
+	"DefaultUserOptions": {
+		"managewikisidebar": 0
+	},
+	"SpecialPages": {
+		"DeletedWikis": "Miraheze\\ManageWiki\\Specials\\SpecialDeletedWikis",
+		"ManageWiki": "Miraheze\\ManageWiki\\Specials\\SpecialManageWiki",
+		"ManageWikiDefaultPermissions": "Miraheze\\ManageWiki\\Specials\\SpecialManageWikiDefaultPermissions"
+	},
+	"JobClasses": {
+		"MWScriptJob": "Miraheze\\ManageWiki\\Jobs\\MWScriptJob",
+		"NamespaceMigrationJob": "Miraheze\\ManageWiki\\Jobs\\NamespaceMigrationJob"
+	},
+	"LogActionsHandlers": {
+		"managewiki/delete": "LogFormatter",
+		"managewiki/delete-group": "LogFormatter",
+		"managewiki/lock": "LogFormatter",
+		"managewiki/namespaces": "LogFormatter",
+		"managewiki/namespaces-delete": "LogFormatter",
+		"managewiki/rename": "LogFormatter",
+		"managewiki/rights": "LogFormatter",
+		"managewiki/rights-reset": "LogFormatter",
+		"managewiki/settings": "LogFormatter",
+		"managewiki/undelete": "LogFormatter",
+		"managewiki/unlock": "LogFormatter"
+	},
+	"LogTypes": [
+		"managewiki"
+	],
+	"ActionFilteredLogs": {
+		"managewiki": {
+			"managewikilock": [
+				"lock"
+			],
+			"managewikiunlock": [
+				"unlock"
+			],
+			"namespaces": [
+				"namespaces",
+				"namespaces-delete"
+			],
+			"permissions": [
+				"rename",
+				"rights",
+				"rights-reset",
+				"delete-group"
+			],
+			"settings": [
+				"settings"
+			],
+			"wikidelete": [
+				"delete"
+			],
+			"wikiundelete": [
+				"undelete"
+			]
+		}
+	},
+	"MessagesDirs": {
+		"ManageWiki": [
+			"i18n"
+		]
+	},
+	"ExtensionMessagesFiles": {
+		"ManageWikiAliases": "ManageWikiAliases.php"
+	},
+	"AutoloadNamespaces": {
+		"Miraheze\\ManageWiki\\": "includes/",
+		"Miraheze\\ManageWiki\\Maintenance\\": "maintenance/"
+	},
+	"TestAutoloadNamespaces": {
+		"Miraheze\\ManageWiki\\Tests\\": "tests/phpunit/"
+	},
+	"Hooks": {
+		"ContentHandlerForModelID": [
+			"Miraheze\\ManageWiki\\Hooks::onContentHandlerForModelID"
+		],
+		"CreateWikiCreation": [
+			"Miraheze\\ManageWiki\\Hooks::onCreateWikiCreation"
+		],
+		"CreateWikiJsonBuilder": [
+			"Miraheze\\ManageWiki\\Hooks::onCreateWikiJsonBuilder"
+		],
+		"CreateWikiStatePrivate": [
+			"Miraheze\\ManageWiki\\Hooks::onCreateWikiStatePrivate"
+		],
+		"CreateWikiStatePublic": [
+			"Miraheze\\ManageWiki\\Hooks::onCreateWikiStatePublic"
+		],
+		"CreateWikiTables": [
+			"Miraheze\\ManageWiki\\Hooks::onCreateWikiTables"
+		],
+		"GetPreferences": [
+			"Miraheze\\ManageWiki\\Hooks::onGetPreferences"
+		],
+		"LoadExtensionSchemaUpdates": [
+			"Miraheze\\ManageWiki\\Hooks::fnManageWikiSchemaUpdates"
+		],
+		"SidebarBeforeOutput": [
+			"Miraheze\\ManageWiki\\Hooks::fnNewSidebarItem"
+		]
+	},
+	"ResourceModules": {
+		"ext.managewiki.oouiform": {
+			"targets": [ "desktop", "mobile" ],
+			"scripts": [
+				"ext.managewiki.oouiform.confirmClose.js",
+				"ext.managewiki.oouiform.reviewChanges.js",
+				"ext.managewiki.oouiform.tabs.js"
+			],
+			"messages": [
+				"managewiki-review-title",
+				"managewiki-save",
+				"managewiki-warning-changes"
+			],
+			"dependencies": [
+				"mediawiki.confirmCloseWindow",
+				"mediawiki.storage",
+				"mediawiki.widgets.TitlesMultiselectWidget",
+				"oojs-ui-widgets",
+				"oojs-ui-windows"
+			]
+		},
+		"ext.managewiki.oouiform.styles": {
+			"targets": [ "desktop", "mobile" ],
+			"styles": "ext.managewiki.oouiform.styles.less"
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "modules",
+		"remoteExtPath": "ManageWiki/modules"
+	},
+	"config": {
+		"ManageWiki": {
+			"description": "Array of Booleans. Which modules of ManageWiki should be enabled on the wiki.",
+			"public": true,
+			"value": {
+				"core": false,
+				"extensions": false,
+				"namespaces": false,
+				"permissions": false,
+				"settings": false
+			}
+		},
+		"ManageWikiExtensions": {
+			"description": "Array. An array of extensions enabled within the wiki farm.",
+			"public": true,
+			"value": []
+		},
+		"ManageWikiExtensionsDefault": {
+			"description": "Array. An array of default extensions.",
+			"public": true,
+			"value": []
+		},
+		"ManageWikiNamespacesAdditional": {
+			"description": "Array. Additional settings available for namespaces.",
+			"public": true,
+			"value": []
+		},
+		"ManageWikiNamespacesDisallowedNames": {
+			"description": "Array. Namespaces that can not be used.",
+			"public": true,
+			"value": [
+				"special",
+				"media"
+			]
+		},
+		"ManageWikiSettings": {
+			"description": "Array. An array of settings that can be managed through Special:ManageWiki",
+			"public": true,
+			"value": []
+		},
+		"ManageWikiPermissionsAdditionalAddGroups": {
+			"description": "Array. ManageWiki's version of $wgAddGroups.",
+			"public": true,
+			"value": []
+		},
+		"ManageWikiPermissionsAdditionalAddGroupsSelf": {
+			"description": "Array. ManageWiki's version of $wgGroupsAddToSelf.",
+			"public": true,
+			"value": []
+		},
+		"ManageWikiPermissionsAdditionalRemoveGroups": {
+			"description": "Array. ManageWiki's version of $wgRemoveGroups.",
+			"public": true,
+			"value": []
+		},
+		"ManageWikiPermissionsAdditionalRemoveGroupsSelf": {
+			"description": "Array. ManageWiki's version of $wgGroupsRemoveFromSelf",
+			"public": true,
+			"value": []
+		},
+		"ManageWikiPermissionsAdditionalRights": {
+			"description": "Array. ManageWiki's version of $wgGroupPermissions.",
+			"public": true,
+			"value": []
+		},
+		"ManageWikiPermissionsDisallowedGroups": {
+			"description": "Array. An array of usergroups which ManageWiki can't manage. Will prevent users creating same named groups as well.",
+			"public": true,
+			"value": []
+		},
+		"ManageWikiPermissionsDisallowedRights": {
+			"description": "Array. An array of user rights that ManageWiki can not manage and assign on wiki.",
+			"public": true,
+			"value": [
+				"managewiki-restricted"
+			]
+		},
+		"ManageWikiPermissionsDefaultPrivateGroup": {
+			"description": "String. Name of a group to add to private wikis. False disables this function.",
+			"public": true,
+			"value": ""
+		},
+		"ManageWikiPermissionsPermanentGroups": {
+			"description": "Array. List of user groups that should always exist on the permissions selector.",
+			"public": true,
+			"value": [
+				"*",
+				"user",
+				"sysop",
+				"bureaucrat"
+			]
+		},
+		"ManageWikiHelpUrl": {
+			"description": "String. URL of a help page for ManageWiki on the local wiki farm.",
+			"public": true,
+			"value": ""
+		},
+		"ManageWikiForceSidebarLinks": {
+			"description": "Boolean. Whether to show the ManageWiki links in the side bar to all users. Will show a different message to unprivileged users.",
+			"public": true,
+			"value": false
+		}
+	},
+	"ConfigRegistry": {
+		"managewiki": "GlobalVarConfig::newInstance"
+	},
+	"ServiceWiringFiles": [
+		"includes/ServiceWiring.php"
+	],
+	"callback": "Miraheze\\ManageWiki\\Hooks::onRegistration",
+	"manifest_version": 2
+}

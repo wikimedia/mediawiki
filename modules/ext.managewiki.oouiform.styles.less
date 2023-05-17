@@ -1,0 +1,148 @@
+#managewiki {
+	filter: brightness( 1 );
+
+	.managewiki-submit-formfields {
+		position: -webkit-sticky;
+		position: sticky;
+		bottom: 0;
+		display: flex;
+		align-items: center;
+		padding: 1em 0;
+		border-top: 1px solid #c8ccd1;
+		background: #fff;
+		box-shadow: 0 -4px 4px -4px rgba( 0, 0, 0, 0.25 );
+		gap: 1em;
+
+		.mw-htmlform-submit-buttons {
+			margin: 0;
+		}
+	}
+}
+
+.managewiki-tabs {
+	.managewiki-fieldset-wrapper {
+		padding-right: 0;
+		padding-left: 0;
+
+		&:first-child {
+			padding-top: 0;
+		}
+
+		&:last-child {
+			padding-bottom: 0;
+		}
+	}
+}
+
+.managewiki-tabs-wrapper.oo-ui-panelLayout-framed,
+.managewiki-tabs > .oo-ui-menuLayout-content > .oo-ui-indexLayout-stackLayout > .oo-ui-tabPanelLayout {
+	/* Decrease contrast of `border` slightly as padding/border combination is sufficient
+	 * accessibility wise and focus of content is more important here. */
+	border-color: #c8ccd1;
+}
+
+/* JavaScript disabled */
+.client-nojs {
+	// Disable .oo-ui-panelLayout-framed on outer wrapper
+	.managewiki-tabs-wrapper {
+		border-width: 0;
+		border-radius: 0;
+	}
+
+	.managewiki-tabs {
+		// Hide the tab menu when JS is disabled as we can't use this feature
+		> .oo-ui-menuLayout-menu {
+			display: none;
+		}
+
+		.managewiki-section-fieldset {
+			// <legend> is hard to style, so apply border to top of group
+			> .oo-ui-fieldsetLayout-group {
+				padding-top: 1.5em;
+				border-top: 1px solid #c8ccd1;
+			}
+
+			// Remove spacing between legend and underline
+			&.oo-ui-labelElement > .oo-ui-fieldsetLayout-header > .oo-ui-labelElement-label {
+				margin-bottom: 0;
+			}
+		}
+
+		// Spacing between sections
+		> .oo-ui-menuLayout-content > .oo-ui-indexLayout-stackLayout > .oo-ui-tabPanelLayout:not( :last-child ) {
+			margin-bottom: 1em;
+		}
+	}
+}
+
+/* JavaScript enabled */
+.client-js .managewiki-tabs {
+	.oo-ui-tabPanelLayout {
+		// Panels don't need borders as the IndexLayout is inside a framed wrapper.
+		border: 0;
+
+		// Hide section legend, only used in nojs mode
+		> fieldset > legend {
+			display: none;
+		}
+	}
+
+	// Hide all but the first panel before infusion
+	&:not( .managewiki-tabs-infused ) {
+		.oo-ui-tabPanelLayout:not( :first-child ) {
+			display: none;
+		}
+	}
+}
+
+#mw-htmlform-info {
+	> .oo-ui-fieldLayout-align-top > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
+		display: inline-block;
+		width: 20%;
+		padding: 0;
+		vertical-align: middle;
+	}
+
+	> .oo-ui-fieldLayout-align-top .oo-ui-fieldLayout-help {
+		margin-right: 0;
+	}
+
+	> .oo-ui-fieldLayout.oo-ui-fieldLayout-align-top > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
+		display: inline-block;
+		width: 80%;
+		vertical-align: middle;
+	}
+}
+
+/* Compact number inputs */
+.mw-htmlform-field-HTMLFloatField,
+.mw-htmlform-field-HTMLIntField {
+	.oo-ui-inputWidget {
+		max-width: 10em;
+	}
+}
+
+.oo-ui-fieldLayout-field .oo-ui-tagMultiselectWidget ~ :not( :first-child ) {
+	display: none;
+}
+
+.mw-htmlform-cloner-ul {
+	list-style: none;
+
+	> li > div {
+		display: flex;
+		max-width: 48.4em;
+
+		> .mw-htmlform-field-HTMLTextField {
+			flex-grow: 1;
+		}
+	}
+}
+
+.mw-special-ManageWiki .oo-ui-fieldLayout {
+	margin-top: 0;
+}
+
+.mw-special-ManageWiki .managewiki-fakesubmit {
+	display: none;
+}

@@ -1,0 +1,38 @@
+{
+	"@metadata": {
+		"authors": [
+			"Les Meloures",
+			"Robby"
+		]
+	},
+	"apihelp-query+wikiconfig-paramvalue-prop-inactive": "Nokucken ob d'Wiki als inaktiv markéiert ass",
+	"apihelp-query+wikiconfig-paramvalue-prop-permissions": "D'Rechter vun dëse Benotzergruppe weisen",
+	"apihelp-query+wikiconfig-paramvalue-prop-settings": "D'Astellunge vun der Wiki weisen",
+	"apiwarn-wikiconfig-wikidoesnotexist": "D'Wiki '$1' gëtt et net.",
+	"core-main": "Haapt-Astellungen",
+	"deletedwikis": "Geläscht Wikien",
+	"logentry-managewiki-delete": "$1 huet d'Wiki \"$4\" geläscht",
+	"logentry-managewiki-delete-group": "$1 huet d'Grupp $3 geläscht",
+	"managewiki": "Eng Wiki geréieren",
+	"managewiki-changes-none": "Et goufe keng Ännerunge gemaach.",
+	"managewiki-error-disallowednamespace": "Den Nummraum $1 ass net erlaabt.",
+	"managewiki-error-install": "D'Erweiderung $1 konnt net installéiert ginn.",
+	"managewiki-label-category": "Kategorie",
+	"managewiki-label-closed": "Zou",
+	"managewiki-label-dbname": "Numm vun der Datebank",
+	"managewiki-label-deletewiki": "Dës Wiki läschen?",
+	"managewiki-label-language": "Sprooch",
+	"managewiki-label-private": "Privat",
+	"managewiki-label-inactive": "Inaktiv",
+	"managewiki-label-server": "Numm vum Server",
+	"managewiki-label-undeletewiki": "Dës Wiki restauréieren?",
+	"managewiki-missing": "Déi Wiki gëtt et net.",
+	"managewiki-permissions-autopromote-blocked": "Muss gespaart ginn",
+	"managewiki-permissions-autopromote-bot": "Muss e Bot-Benotzerkont sinn",
+	"managewiki-sidebar-header": "Administratioun",
+	"managewiki-success": "D'Astellunge goufe geännert.",
+	"managewiki-extension-name": "[$1 $2]",
+	"namespaces-delete": "Läschen",
+	"namespaces-namespace": "Haapt-Nummraum",
+	"permissions-delete-checkbox": "Dës Benotzergrupp läschen"
+}
