@@ -62,7 +62,7 @@ class PasswordAuthenticationRequestTest extends AuthenticationRequestTestCase {
 		);
 	}
 
-	public function provideLoadFromSubmission() {
+	public static function provideLoadFromSubmission() {
 		return [
 			'Empty request, login' => [
 				[ AuthManager::ACTION_LOGIN ],

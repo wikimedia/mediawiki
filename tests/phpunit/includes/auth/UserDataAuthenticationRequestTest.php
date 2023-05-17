@@ -64,7 +64,7 @@ class UserDataAuthenticationRequestTest extends AuthenticationRequestTestCase {
 		parent::testLoadFromSubmission( $args, $data, $expectState );
 	}
 
-	public function provideLoadFromSubmission() {
+	public static function provideLoadFromSubmission() {
 		$unhidden = [];
 		$hidden = [ 'realname' ];
 

@@ -2,6 +2,9 @@
 
 namespace MediaWiki\Auth;
 
+use ReflectionMethod;
+use const E_USER_DEPRECATED;
+
 /**
  * @group AuthManager
  */
@@ -79,7 +82,7 @@ abstract class AuthenticationRequestTestCase extends \MediaWikiIntegrationTestCa
 	}
 
 	/**
-	 * @dataProvider provideLoadFromSubmission
+	 * @dataProvider provideLoadFromSubmissionStatically
 	 * @param array $args
 	 * @param array $data
 	 * @param array|bool $expectState
@@ -96,5 +99,24 @@ abstract class AuthenticationRequestTestCase extends \MediaWikiIntegrationTestCa
 		}
 	}
 
-	abstract public function provideLoadFromSubmission();
+	// abstract public static function provideLoadFromSubmission();
+
+	/**
+	 * Tempory override to make provideLoadFromSubmission static.
+	 * See T332865.
+	 */
+	final public static function provideLoadFromSubmissionStatically() {
+		$reflectionMethod = new ReflectionMethod( static::class, 'provideLoadFromSubmission' );
+		if ( $reflectionMethod->isStatic() ) {
+			return $reflectionMethod->invoke( null );
+		}
+
+		trigger_error(
+			'overriding provideLoadFromSubmission as an instance method is deprecated. (' .
+			$reflectionMethod->getFileName() . ':' . $reflectionMethod->getEndLine() . ')',
+			E_USER_DEPRECATED
+		);
+
+		return $reflectionMethod->invoke( new static() );
+	}
 }
