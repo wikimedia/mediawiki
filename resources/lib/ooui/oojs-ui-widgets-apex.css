@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.46.3
+ * OOUI v0.47.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2023 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2023-02-07T00:44:09Z
+ * Date: 2023-05-18T02:15:45Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ),
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
@@ -80,8 +80,22 @@
 .oo-ui-indexLayout.oo-ui-menuLayout.oo-ui-menuLayout-expanded > .oo-ui-menuLayout-content {
   top: 3em;
 }
+.oo-ui-indexLayout-stackLayout > .oo-ui-panelLayout[hidden] {
+  padding: 0;
+}
 .oo-ui-indexLayout-stackLayout > .oo-ui-panelLayout {
   padding: 1.5em;
+}
+
+.oo-ui-copyTextLayout > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
+  max-width: 50em;
+}
+.oo-ui-copyTextLayout-multiline-button {
+  display: block;
+  max-width: 50em;
+  margin-top: 0.5em;
+  /* Float to right of inline help */
+  float: right;
 }
 
 .oo-ui-menuLayout {
@@ -112,7 +126,8 @@
 }
 .oo-ui-menuLayout > .oo-ui-menuLayout-menu,
 .oo-ui-menuLayout > .oo-ui-menuLayout-content {
-  transition: height 250ms, width 250ms, top 250ms, left 250ms, right 250ms, bottom 250ms;
+  transition-property: height, width, top, left, right, bottom;
+  transition-duration: 250ms;
 }
 .oo-ui-menuLayout > .oo-ui-menuLayout-menu {
   height: 15.625em;
@@ -317,7 +332,8 @@
   border: 1px solid #ccc;
   border-radius: 1em;
   box-shadow: 0 0.1em 0.25em rgba(0, 0, 0, 0.1);
-  transition: left 250ms, margin-left 250ms;
+  transition-property: left, margin-left;
+  transition-duration: 250ms;
 }
 .oo-ui-toggleSwitchWidget-glow {
   position: absolute;
@@ -327,7 +343,8 @@
   left: 0;
   border-radius: 1em;
   box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.07);
-  transition: opacity 250ms;
+  transition-property: opacity;
+  transition-duration: 250ms;
   background-color: #cde7f4;
   background-image: linear-gradient(to bottom, #b0d9ee 0, #eaf4fa 100%);
   -webkit-touch-callout: none;
@@ -541,7 +558,7 @@
 .oo-ui-tabSelectWidget-frameless {
   box-shadow: inset 0 -1px 0 0 #ccc;
 }
-.oo-ui-tabSelectWidget-mobile:after {
+.oo-ui-tabSelectWidget-mobile::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -550,12 +567,12 @@
   width: 2em;
   pointer-events: none;
 }
-.oo-ui-tabSelectWidget-mobile.oo-ui-tabSelectWidget-framed:after {
+.oo-ui-tabSelectWidget-mobile.oo-ui-tabSelectWidget-framed::after {
   background-color: #eeeeee;
   background-image: linear-gradient(to right, rgba(238, 238, 238, 0) 0, #eee 100%);
   background-color: transparent;
 }
-.oo-ui-tabSelectWidget-mobile.oo-ui-tabSelectWidget-frameless:after {
+.oo-ui-tabSelectWidget-mobile.oo-ui-tabSelectWidget-frameless::after {
   background-color: #ffffff;
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0, #fff 100%);
   background-color: transparent;
@@ -617,7 +634,8 @@
   border-width: 0;
   background-color: transparent;
   box-shadow: inset 0 0 0 0 #087ecc;
-  transition: color 100ms, box-shadow 100ms;
+  transition-property: color, box-shadow;
+  transition-duration: 100ms;
 }
 .oo-ui-tabSelectWidget-frameless .oo-ui-tabOptionWidget.oo-ui-optionWidget-selected {
   color: #087ecc;
@@ -657,9 +675,6 @@
 }
 .oo-ui-tagMultiselectWidget-outlined {
   width: 100%;
-}
-.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-inlined .oo-ui-tagMultiselectWidget-handle {
-  cursor: text;
 }
 .oo-ui-tagMultiselectWidget.oo-ui-widget-disabled .oo-ui-tagMultiselectWidget-group > input {
   display: none;
@@ -837,7 +852,8 @@
 }
 .oo-ui-tagItemWidget.oo-ui-widget-enabled .oo-ui-buttonElement-button {
   display: block;
-  transition: background-color 100ms;
+  transition-property: background-color;
+  transition-duration: 100ms;
 }
 .oo-ui-tagItemWidget.oo-ui-widget-enabled .oo-ui-buttonElement-button .oo-ui-iconElement-icon {
   min-width: 14px;

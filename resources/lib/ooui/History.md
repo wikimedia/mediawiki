@@ -1,5 +1,59 @@
 # OOUI Release History
 
+## v0.47.0 / 2023-05-17
+### Breaking changes
+* [BREAKING CHANGE] Drop support for ES5 clients (James D. Forrester)
+
+### Features
+* Upstream CopyTextLayout from mediawiki-core (David Chan)
+* Support hidden="until-found" in IndexLayout (tabs) (Ed Sanders)
+
+### Styles
+* WikimediaUI theme: Replace `padding-vertical-menu` (Volker E.)
+* WikimediaUI theme: Unify ToggleSwitch with latest Codex design spec (Volker E.)
+* Don't apply cursor:text to all of TagMultiSelectWidget (Ed Sanders)
+* styles: Consistently use child selectors for dialog structure (Ed Sanders)
+* styles: Replace deprecated `transition-ease-medium` variable (Volker E.)
+* icons: Add 'editing-functions' pack and four icons (Volker E.)
+* icons: Amend 'Wikinews' and 'Wiktionary' logo (Volker E.)
+* icons: Manually optimize MediaWiki/Wikinews/Wiktionary logos (Thiemo Kreuz)
+* icons: Minimize MediaWiki logo (Thiemo Kreuz)
+* icons: Minimize and fix Wikisource logo (Volker E.)
+* icons: Remove unnecessary code from .svg icon files (Thiemo Kreuz)
+* icons: Remove white rectangles from new Wikinews/Wiktionary logos (Thiemo Kreuz)
+
+### Code
+* Add oo-ui-windowManager-size-<size> class instead of custom ones (Ed Sanders)
+* CheckboxMultiselectInputWidget: Debounce internal updates to avoid quadratic performance (Bartosz Dziewoński)
+* CheckboxMultiselectInputWidget: Fix overlong line (Volker E.)
+* CheckboxMultiselectInputWidget: Fix quadratic performance in common methods (Bartosz Dziewoński)
+* Clarify confusing execution order of && vs. || in SelectWidget (Thiemo Kreuz)
+* ComboBoxInputWidget: Fix @example markup (Bartosz Dziewoński)
+* Fix MenuSelectWidget removing unexpected items when tabbing out (Thiemo Kreuz)
+* Improve confusing ENTER behavior in MenuTagMultiselectWidget (Thiemo Kreuz)
+* Make Tag methods fail the same way in PHP before and after 8.1 (Thiemo Kreuz)
+* build: Clean up of phan config (Umherirrender)
+* build: Pin PHPUnit to 9.5.28 (James D. Forrester)
+* build: Switch phan to special library mode (James D. Forrester)
+* build: Update 'oojs' to v7.0.1 (Volker E.)
+* build: Update 'wikimedia-ui-base' to 0.22.0 (Volker E.)
+* build: Update SVGO from v2.8.0 to v3.0.2 (Volker E.)
+* build: Update dependencies (Volker E.)
+* build: Update dependencies to latest (Volker E.)
+* build: Update nvm to 16.19.1 (Volker E.)
+* build: Updating engine.io to 6.4.2 ([BOT] libraryupgrader)
+* build: Updating npm dependencies ([BOT] libraryupgrader)
+* build: Upgrade eslint-config-wikimedia from 0.22.1 to 0.24.0 (James D. Forrester)
+* build: Upgrade eslint-config-wikimedia from 0.24.0 to 0.25.0 (James D. Forrester)
+* build: Upgrade grunt from 1.5.3 to 1.6.1 (James D. Forrester)
+* build: Upgrade mediawiki/mediawiki-codesniffer from 40.0.1 to 41.0.0 (James D. Forrester)
+* build: Upgrade qunit from 2.18.2 to 2.19.4 (James D. Forrester)
+* build: Upgrade stylelint-config-wikimedia from 0.13.1 to 0.14.0 (James D. Forrester)
+* demos: Fix alignment of first icon in group (Ed Sanders)
+* docs: Improve documentation of `.chooseItem()` methods (Thiemo Kreuz)
+* eslint: Remove unnecessary "Set" global (Ed Sanders)
+
+
 ## v0.46.3 / 2023-02-06
 ### Features
 * Respect prefers-reduce-motion preference when scrolling to an element (David Lynch)
