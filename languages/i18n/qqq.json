@@ -1265,8 +1265,6 @@
 	"diff-multi-manyusers": "This message appears in the revision history of a page when comparing two versions which aren't consecutive, and the intermediate revisions have been edited by more than 100 users.\n\nParameters:\n* $1 - the number of revisions, will always be 101 or more\n* $2 - the number of users that were found, which was limited at 100\n{{Related|Diff-multi}}",
 	"diff-paragraph-moved-tonew": "Explaining title tag for the indicating symbols when a paragraph was moved hinting to the new location in the Diff view.",
 	"diff-paragraph-moved-toold": "Explaining title tag for the indicating symbols when a paragraph was moved hinting to the old location in the Diff view.",
-	"diff-inline-tooltip-ins": "Title for inserted content in a diff, shown as a tooltip on the content and also in a legend at the top of the diff.",
-	"diff-inline-tooltip-del": "Title for deleted content in a diff, shown as a tooltip on the content and also in a legend at the top of the diff.",
 	"difference-missing-revision": "Text displayed when the requested revision does not exist using a diff link.\n\nExample: [{{canonicalurl:Project:News|diff=426850&oldid=99999999}} Diff with invalid revision#]\n\nParameters:\n* $1 - the list of missing revision IDs\n* $2 - the number of items in $1 (one or two)",
 	"difference-bad-old-revision": "Text displayed when the old (left-hand side) revision of a diff cannot be loaded due to database corruption.",
 	"difference-bad-new-revision": "Text displayed when the new (right-hand side) revision of a diff cannot be loaded due to database corruption.",

@@ -2,9 +2,6 @@
  * Diff rendering
  */
 
-@diffInserted: #a3d3ff;
-@diffDeleted: #ffe49c;
-
 /* stylelint-disable selector-class-pattern */
 
 .diff {
@@ -77,40 +74,12 @@
 
 .mw-diff-inline-added ins,
 .mw-diff-inline-changed ins {
-	background: @diffInserted;
+	background: #a3d3ff;
 }
 
 .mw-diff-inline-deleted del,
 .mw-diff-inline-changed del {
-	background: @diffDeleted;
-}
-
-.mw-diff-before-diff-table {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin: 1em 0;
-
-	.mw-diff-inline-legend {
-		// Hide legend when not applicable.
-		.mw-diff-type-not-inline & span {
-			display: none;
-		}
-
-		.mw-diff-inline-legend-ins,
-		.mw-diff-inline-legend-del {
-			display: inline-block;
-			padding: 4px 6px;
-		}
-
-		.mw-diff-inline-legend-ins {
-			background: @diffInserted;
-		}
-
-		.mw-diff-inline-legend-del {
-			background: @diffDeleted;
-		}
-	}
+	background: #ffe49c;
 }
 
 .diff-addedline,
@@ -156,11 +125,11 @@
 }
 
 .diff-addedline {
-	border-color: @diffInserted;
+	border-color: #a3d3ff;
 }
 
 .diff-deletedline {
-	border-color: @diffDeleted;
+	border-color: #ffe49c;
 }
 
 .diffchange {

@@ -67,8 +67,6 @@ class DifferenceEngine extends ContextSource {
 
 	use DeprecationHelper;
 
-	public const INLINE_LEGEND_KEY = '01_mw-diff-inline-legend';
-
 	/**
 	 * Constant to indicate diff cache compatibility.
 	 * Bump this when changing the diff formatting in a way that
@@ -1617,14 +1615,13 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
-	 * Add title attributes for tooltips on various diff elements.
+	 * Add title attributes for tooltips on moved paragraph indicators
 	 *
 	 * @param string $text
 	 * @return string
 	 */
 	private function addLocalisedTitleTooltips( $text ) {
-		// Moved paragraph indicators.
-		$text = preg_replace_callback(
+		return preg_replace_callback(
 			'/class="mw-diff-movedpara-(left|right)"/',
 			function ( array $matches ) {
 				$key = $matches[1] === 'right' ?
@@ -1634,20 +1631,6 @@ class DifferenceEngine extends ContextSource {
 			},
 			$text
 		);
-
-		// For inline diffs, add tooltips to `<ins>` and `<del>`.
-		if ( isset( $this->slotDiffOptions['diff-type'] ) && $this->slotDiffOptions['diff-type'] == 'inline' ) {
-			$text = str_replace(
-				[ '<ins>', '<del>' ],
-				[
-					Html::openElement( 'ins', [ 'title' => $this->msg( 'diff-inline-tooltip-ins' )->plain() ] ),
-					Html::openElement( 'del', [ 'title' => $this->msg( 'diff-inline-tooltip-del' )->plain() ] ),
-				],
-				$text
-			);
-		}
-
-		return $text;
 	}
 
 	/**
@@ -1826,48 +1809,6 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
-	 * Get the HTML element to insert above the main diff table,
-	 * but below the area that the DifferenceEngineViewHeaderHook can output to.
-	 * @return string
-	 */
-	private function getBeforeDiffTable(): string {
-		$legend = null;
-		if ( self::getEngine() === 'wikidiff2'
-			&& ( $this->slotDiffOptions['diff-type'] ?? '' ) === 'inline'
-			&& $this->getSlotDiffRenderers()[SlotRecord::MAIN] instanceof TextSlotDiffRenderer
-		) {
-			// wikidiff2 inline type gets a legend to explain the highlighting colours.
-			$this->getOutput()->addBodyClasses( 'mw-diff-type-inline' );
-			$ins = Html::element(
-				'span', [ 'class' => 'mw-diff-inline-legend-ins' ], $this->msg( 'diff-inline-tooltip-ins' )->plain()
-			);
-			$del = Html::element(
-				'span', [ 'class' => 'mw-diff-inline-legend-del' ], $this->msg( 'diff-inline-tooltip-del' )->plain()
-			);
-			$legend = Html::rawElement( 'div', [ 'class' => 'mw-diff-inline-legend' ], "$ins $del" );
-		} else {
-			$this->getOutput()->addBodyClasses( 'mw-diff-type-not-inline' );
-		}
-		// Allow extensions to add other parts to this area (or modify the legend).
-		// An empty placeholder for the legend is added when it's not in use and other items have been added.
-		$parts = [ self::INLINE_LEGEND_KEY => $legend ];
-		$this->hookRunner->onDifferenceEngineBeforeDiffTable( $this, $parts );
-		if ( count( $parts ) > 1 && $parts[self::INLINE_LEGEND_KEY] === null ) {
-			$parts[self::INLINE_LEGEND_KEY] = Html::element( 'div' );
-		}
-		ksort( $parts );
-		if ( count( array_filter( $parts ) ) > 0 ) {
-			$attrs = [
-				'class' => 'mw-diff-before-diff-table',
-				'dir' => $this->getLanguage()->getDir(),
-				'lang' => $this->getLanguage()->getCode(),
-			];
-			return Html::rawElement( 'div', $attrs, implode( '', $parts ) );
-		}
-		return '';
-	}
-
-	/**
 	 * Add the header to a diff body
 	 *
 	 * @param string $diff Diff body
@@ -1880,10 +1821,9 @@ class DifferenceEngine extends ContextSource {
 	 * @return string
 	 */
 	public function addHeader( $diff, $otitle, $ntitle, $multi = '', $notice = '' ) {
-		$header = $this->getBeforeDiffTable();
 		// shared.css sets diff in interface language/dir, but the actual content
 		// is often in a different language, mostly the page content language/dir
-		$header .= Html::openElement( 'table', [
+		$header = Html::openElement( 'table', [
 			'class' => [
 				'diff',
 				// The following classes are used here:
