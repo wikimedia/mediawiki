@@ -445,7 +445,7 @@
 		} );
 	} );
 
-	QUnit.module( 'testrunner-next', QUnit.newMwEnvironment() );
+	QUnit.module( 'testrunner-next' );
 
 	QUnit.test( 'afterEach', function ( assert ) {
 		assert.strictEqual( mw.html.escape( '<' ), '&lt;', 'mock not leaked to next module' );
