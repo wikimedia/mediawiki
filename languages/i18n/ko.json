@@ -1566,7 +1566,6 @@
 	"rcfilters-savedqueries-new-name-label": "이름",
 	"rcfilters-savedqueries-new-name-placeholder": "필터의 목적을 설명하세요",
 	"rcfilters-savedqueries-apply-label": "필터 만들기",
-	"rcfilters-savedqueries-apply-and-setdefault-label": "기본 필터 만들기",
 	"rcfilters-savedqueries-cancel-label": "취소",
 	"rcfilters-savedqueries-add-new-title": "현재의 필터 설정 저장",
 	"rcfilters-savedqueries-already-saved": "이 필터는 이미 저장되어 있습니다. 새로운 저장된 필터를 만들려면 설정을 변경하십시오.",

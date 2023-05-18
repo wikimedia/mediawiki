@@ -1493,7 +1493,6 @@
 	"rcfilters-savedqueries-new-name-label": "Nomine",
 	"rcfilters-savedqueries-new-name-placeholder": "Describe le proposito del filtro",
 	"rcfilters-savedqueries-apply-label": "Crear filtro",
-	"rcfilters-savedqueries-apply-and-setdefault-label": "Crear filtro predefinite",
 	"rcfilters-savedqueries-cancel-label": "Cancellar",
 	"rcfilters-savedqueries-add-new-title": "Salveguardar le configuration actual del filtro",
 	"rcfilters-savedqueries-already-saved": "Iste filtros es jam salveguardate. Cambia tu configuration pro crear un nove filtro salveguardate.",

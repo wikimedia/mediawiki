@@ -1522,7 +1522,6 @@
 	"rcfilters-savedqueries-new-name-label": "Név",
 	"rcfilters-savedqueries-new-name-placeholder": "Írd le a szűrő célját.",
 	"rcfilters-savedqueries-apply-label": "Gyors hivatkozás létrehozása",
-	"rcfilters-savedqueries-apply-and-setdefault-label": "Alapértelmezett szűrő készítése",
 	"rcfilters-savedqueries-cancel-label": "Mégse",
 	"rcfilters-savedqueries-add-new-title": "Aktuális szűrők mentése",
 	"rcfilters-savedqueries-already-saved": "Ezek a szűrők már el lettek mentve. Módosítsd a beállításokat egy új mentett szűrő készítéséhez.",

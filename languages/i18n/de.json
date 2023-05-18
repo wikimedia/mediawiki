@@ -1604,7 +1604,6 @@
 	"rcfilters-savedqueries-new-name-label": "Name",
 	"rcfilters-savedqueries-new-name-placeholder": "Beschreibe den Zweck des Filters",
 	"rcfilters-savedqueries-apply-label": "Filter erstellen",
-	"rcfilters-savedqueries-apply-and-setdefault-label": "Standardfilter erstellen",
 	"rcfilters-savedqueries-cancel-label": "Abbrechen",
 	"rcfilters-savedqueries-add-new-title": "Aktuelle Filtereinstellungen speichern",
 	"rcfilters-savedqueries-already-saved": "Diese Filter sind bereits gespeichert. Ändere deine Einstellungen, um einen neuen Gespeicherten Filter zu erstellen.",

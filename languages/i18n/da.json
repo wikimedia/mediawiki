@@ -1454,7 +1454,6 @@
 	"rcfilters-savedqueries-new-name-label": "Navn",
 	"rcfilters-savedqueries-new-name-placeholder": "Beskriv formålet med filteret",
 	"rcfilters-savedqueries-apply-label": "Opret filter",
-	"rcfilters-savedqueries-apply-and-setdefault-label": "Opret standardfilter",
 	"rcfilters-savedqueries-cancel-label": "Annullér",
 	"rcfilters-savedqueries-add-new-title": "Gem nuværende filterindstillinger",
 	"rcfilters-restore-default-filters": "Gendan standardfiltre",

@@ -1460,7 +1460,6 @@
 	"rcfilters-savedqueries-new-name-label": "Názov",
 	"rcfilters-savedqueries-new-name-placeholder": "Popíšte účel filtra",
 	"rcfilters-savedqueries-apply-label": "Vytvoriť filter",
-	"rcfilters-savedqueries-apply-and-setdefault-label": "Vytvoriť predvolený filter",
 	"rcfilters-savedqueries-cancel-label": "Zrušiť",
 	"rcfilters-savedqueries-add-new-title": "Uložiť súčasné nastavenie filtrov",
 	"rcfilters-savedqueries-already-saved": "Tieto filtre sú už uložené. Zmeňte niektoré nastavenia, ak chcete vytvoriť nový uložený filter.",

@@ -1396,7 +1396,6 @@
 	"rcfilters-savedqueries-new-name-label": "Naziv",
 	"rcfilters-savedqueries-new-name-placeholder": "Opišite svrhu filtra",
 	"rcfilters-savedqueries-apply-label": "Stvori filtar",
-	"rcfilters-savedqueries-apply-and-setdefault-label": "Stvori predodređeni filtar",
 	"rcfilters-savedqueries-cancel-label": "Otkaži",
 	"rcfilters-savedqueries-add-new-title": "Spremi trenutačne postavke filtra",
 	"rcfilters-restore-default-filters": "Vrati zadane filtre",

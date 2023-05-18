@@ -1621,7 +1621,6 @@
 	"rcfilters-savedqueries-new-name-label": "Nome",
 	"rcfilters-savedqueries-new-name-placeholder": "Descrivi lo scopo del filtro",
 	"rcfilters-savedqueries-apply-label": "Crea filtro",
-	"rcfilters-savedqueries-apply-and-setdefault-label": "Crea filtro predefinito",
 	"rcfilters-savedqueries-cancel-label": "Annulla",
 	"rcfilters-savedqueries-add-new-title": "Salva le impostazioni attuali del filtro",
 	"rcfilters-savedqueries-already-saved": "Questi filtri sono già salvati. Modifica le impostazioni per creare un nuovo filtro salvato.",

@@ -1538,7 +1538,6 @@
 	"rcfilters-savedqueries-new-name-label": "Navn",
 	"rcfilters-savedqueries-new-name-placeholder": "Beskriv formålet til filteret",
 	"rcfilters-savedqueries-apply-label": "Opprett filter",
-	"rcfilters-savedqueries-apply-and-setdefault-label": "Opprett standardfilter",
 	"rcfilters-savedqueries-cancel-label": "Avbryt",
 	"rcfilters-savedqueries-add-new-title": "Lagre de gjeldende filterinnstillingene",
 	"rcfilters-savedqueries-already-saved": "Disse filtrene er allerede lagret. Endre innstillingene dine for å opprette et nytt lagret filter.",

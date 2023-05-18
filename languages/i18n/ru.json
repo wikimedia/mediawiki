@@ -1657,7 +1657,6 @@
 	"rcfilters-savedqueries-new-name-label": "Имя",
 	"rcfilters-savedqueries-new-name-placeholder": "Опишите цель фильтра",
 	"rcfilters-savedqueries-apply-label": "Создать фильтр",
-	"rcfilters-savedqueries-apply-and-setdefault-label": "Создать фильтр по умолчанию",
 	"rcfilters-savedqueries-cancel-label": "Отмена",
 	"rcfilters-savedqueries-add-new-title": "Сохранить текущие настройки фильтра",
 	"rcfilters-savedqueries-already-saved": "Эти фильтры уже сохранены. Измените свои настройки, чтобы создать новый Сохранённый фильтр.",

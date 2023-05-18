@@ -1588,7 +1588,6 @@
 	"rcfilters-savedqueries-new-name-label": "Naam",
 	"rcfilters-savedqueries-new-name-placeholder": "Beschrijf het doel van het filter",
 	"rcfilters-savedqueries-apply-label": "Filter aanmaken",
-	"rcfilters-savedqueries-apply-and-setdefault-label": "Standaard filter aanmaken",
 	"rcfilters-savedqueries-cancel-label": "Annuleren",
 	"rcfilters-savedqueries-add-new-title": "Huidige filterinstellingen opslaan",
 	"rcfilters-savedqueries-already-saved": "Deze filters zijn al opgeslagen. Wijzig uw instellingen om een nieuw Filter op te slaan.",

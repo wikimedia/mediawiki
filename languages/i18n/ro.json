@@ -1503,7 +1503,6 @@
 	"rcfilters-savedqueries-new-name-label": "Nume",
 	"rcfilters-savedqueries-new-name-placeholder": "Descrie scopul fitrului",
 	"rcfilters-savedqueries-apply-label": "Crează filtru",
-	"rcfilters-savedqueries-apply-and-setdefault-label": "Creați filtru implicit",
 	"rcfilters-savedqueries-cancel-label": "Anulare",
 	"rcfilters-savedqueries-add-new-title": "Salvați filtrele curente",
 	"rcfilters-savedqueries-already-saved": "Aceste filtre sunt deja salvate. Schimbați setările pentru a salva un nou filtru de căutare.",

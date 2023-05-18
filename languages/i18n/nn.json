@@ -1246,7 +1246,6 @@
 	"rcfilters-savedqueries-new-name-label": "Namn",
 	"rcfilters-savedqueries-new-name-placeholder": "Skildra føremålet med filteret",
 	"rcfilters-savedqueries-apply-label": "Opprett filter",
-	"rcfilters-savedqueries-apply-and-setdefault-label": "Opprett standardfilter",
 	"rcfilters-savedqueries-cancel-label": "Avbryt",
 	"rcfilters-savedqueries-add-new-title": "Lagra gjeldande filterinnstillingar",
 	"rcfilters-savedqueries-already-saved": "Desse filtera er alt lagra. Endra innstillingane dine for å oppretta eit nytt lagra filter.",

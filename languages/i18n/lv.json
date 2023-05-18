@@ -1271,7 +1271,6 @@
 	"rcfilters-savedqueries-new-name-label": "Nosaukums",
 	"rcfilters-savedqueries-new-name-placeholder": "Apraksti filtra būtību",
 	"rcfilters-savedqueries-apply-label": "Izveidot filtru",
-	"rcfilters-savedqueries-apply-and-setdefault-label": "Izveidot noklusēto filtru",
 	"rcfilters-savedqueries-cancel-label": "Atcelt",
 	"rcfilters-savedqueries-add-new-title": "Saglabāt esošos filtra iestatījumus",
 	"rcfilters-savedqueries-already-saved": "Šie filtri jau ir saglabāti. Izmaini savus iestatījumus, lai izveidotu jaunu saglabāto filtru.",

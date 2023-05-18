@@ -1555,7 +1555,6 @@
 	"rcfilters-savedqueries-new-name-label": "Nimi",
 	"rcfilters-savedqueries-new-name-placeholder": "Kuvaa suodattimen tarkoitusta",
 	"rcfilters-savedqueries-apply-label": "Luo suodatin",
-	"rcfilters-savedqueries-apply-and-setdefault-label": "Luo oletussuodatin",
 	"rcfilters-savedqueries-cancel-label": "Peru",
 	"rcfilters-savedqueries-add-new-title": "Tallenna nykyiset suodatinasetukset",
 	"rcfilters-savedqueries-already-saved": "Nämä suodattimet ovat jo tallennettu. Vaihda asetuksiasi luodaksesi uuden tallennetun suodattimen.",

@@ -1506,7 +1506,6 @@
 	"rcfilters-savedqueries-new-name-label": "Име",
 	"rcfilters-savedqueries-new-name-placeholder": "Опишете целта на филтъра",
 	"rcfilters-savedqueries-apply-label": "Създаване на филтър",
-	"rcfilters-savedqueries-apply-and-setdefault-label": "Създаване на филтър по подразбиране",
 	"rcfilters-savedqueries-cancel-label": "Отказ",
 	"rcfilters-savedqueries-add-new-title": "Съхраняване на текущите настройки на филтрите",
 	"rcfilters-savedqueries-already-saved": "Тези филтри вече са съхранени. Променете настройките си, за да създадете нов Запазен филтър.",

@@ -1404,7 +1404,6 @@
 	"rcfilters-savedqueries-new-name-label": "nimi",
 	"rcfilters-savedqueries-new-name-placeholder": "Kuvaa filterin tarkoitusta",
 	"rcfilters-savedqueries-apply-label": "luo filteri",
-	"rcfilters-savedqueries-apply-and-setdefault-label": "luo oletusfilteri",
 	"rcfilters-savedqueries-cancel-label": "Lopeta",
 	"rcfilters-savedqueries-add-new-title": "tallena nykypäiväiset filtterin asetukset",
 	"rcfilters-savedqueries-already-saved": "Nämät filterit on jo tallennettu. Vaiha asetuksiasi ette voit tehhä uuen tallennetun filterin.",

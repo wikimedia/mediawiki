@@ -1605,7 +1605,6 @@
 	"rcfilters-savedqueries-new-name-label": "Ad",
 	"rcfilters-savedqueries-new-name-placeholder": "Süzgecin amacını tanımlayın",
 	"rcfilters-savedqueries-apply-label": "Süzgeç oluştur",
-	"rcfilters-savedqueries-apply-and-setdefault-label": "Varsayılan filtre oluştur",
 	"rcfilters-savedqueries-cancel-label": "İptal",
 	"rcfilters-savedqueries-add-new-title": "Mevcut süzgeç ayarlarını kaydet",
 	"rcfilters-savedqueries-already-saved": "Bu filtreler zaten kaydedildi. Yeni bir Kayıtlı Filtre oluşturmak için ayarlarınızı değiştirin.",
