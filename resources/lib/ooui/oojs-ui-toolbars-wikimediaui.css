@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.46.3
+ * OOUI v0.47.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2023 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2023-02-07T00:44:09Z
+ * Date: 2023-05-18T02:15:45Z
  */
 .oo-ui-tool {
   box-sizing: border-box;
@@ -40,7 +40,8 @@
   line-height: 1.42857143em;
 }
 .oo-ui-tool.oo-ui-widget-enabled .oo-ui-tool-link {
-  transition: background-color 100ms;
+  transition-property: background-color;
+  transition-duration: 100ms;
 }
 .oo-ui-tool.oo-ui-widget-enabled .oo-ui-tool-link:focus {
   outline: 1px solid #36c;
@@ -49,11 +50,13 @@
 }
 .oo-ui-tool.oo-ui-widget-enabled .oo-ui-iconElement-icon {
   opacity: 0.87;
-  transition: opacity 100ms;
+  transition-property: opacity;
+  transition-duration: 100ms;
   transform: translateZ(0);
 }
 .oo-ui-tool.oo-ui-widget-enabled .oo-ui-tool-title {
-  transition: color 100ms;
+  transition-property: color;
+  transition-duration: 100ms;
 }
 .oo-ui-tool.oo-ui-widget-enabled:hover .oo-ui-iconElement-icon {
   opacity: 1;
@@ -381,7 +384,8 @@
   padding-left: 2.5em;
 }
 .oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle {
-  transition: background-color 100ms, box-shadow 100ms;
+  transition-property: background-color, box-shadow;
+  transition-duration: 100ms;
 }
 .oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle:hover {
   background-color: #eaecf0;
@@ -392,7 +396,8 @@
 .oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle .oo-ui-iconElement-icon,
 .oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle .oo-ui-indicatorElement-indicator {
   opacity: 0.87;
-  transition: opacity 100ms;
+  transition-property: opacity;
+  transition-duration: 100ms;
   transform: translateZ(0);
 }
 .oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle:hover .oo-ui-iconElement-icon,
@@ -411,7 +416,8 @@
 }
 .oo-ui-toolbar-actions .oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle {
   border-right: 1px solid transparent;
-  transition: background-color 100ms, border-color 100ms, box-shadow 100ms;
+  transition-property: background-color, border-color, box-shadow;
+  transition-duration: 100ms;
 }
 .oo-ui-toolbar-actions .oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle:hover {
   border-right-color: #eaecf0;
@@ -660,7 +666,7 @@
   border: 0;
   box-shadow: none;
 }
-.oo-ui-toolbar-narrow-bar:after {
+.oo-ui-toolbar-narrow-bar::after {
   content: '';
   display: block;
   position: absolute;
@@ -669,9 +675,9 @@
   width: 100%;
   height: 0;
 }
-.oo-ui-toolbar-narrow.oo-ui-toolbar-position-top .oo-ui-toolbar-bar:after {
+.oo-ui-toolbar-narrow.oo-ui-toolbar-position-top .oo-ui-toolbar-bar::after {
   border-bottom: 1px solid #c8ccd1;
 }
-.oo-ui-toolbar-narrow.oo-ui-toolbar-position-bottom .oo-ui-toolbar-bar:after {
+.oo-ui-toolbar-narrow.oo-ui-toolbar-position-bottom .oo-ui-toolbar-bar::after {
   border-top: 1px solid #c8ccd1;
 }

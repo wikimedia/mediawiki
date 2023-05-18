@@ -22,6 +22,7 @@
 			"Trevor Parscal"
 		]
 	},
+	"ooui-copytextlayout-copy": "Label of button to copy text to clipboard.",
 	"ooui-outline-control-move-down": "Tooltip for a button that moves items in a list down one place",
 	"ooui-outline-control-move-up": "Tooltip for a button that moves items in a list up one place",
 	"ooui-outline-control-remove": "Tooltip for a button that removes items from a list.\n{{Identical|Remove item}}",

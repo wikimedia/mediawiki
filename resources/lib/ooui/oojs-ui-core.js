@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.46.3
+ * OOUI v0.47.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2023 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2023-02-07T00:43:59Z
+ * Date: 2023-05-18T02:15:42Z
  */
 ( function ( OO ) {
 
@@ -529,6 +529,7 @@ OO.ui.getDefaultOverlay = function () {
  * @private
  */
 OO.ui.msg.messages = {
+	"ooui-copytextlayout-copy": "Copy",
 	"ooui-outline-control-move-down": "Move item down",
 	"ooui-outline-control-move-up": "Move item up",
 	"ooui-outline-control-remove": "Remove item",
@@ -6199,8 +6200,8 @@ OO.ui.PopupWidget.prototype.computePosition = function () {
 	// Set height and width before we do anything else, since it might cause our measurements
 	// to change (e.g. due to scrollbars appearing or disappearing), and it also affects centering
 	this.setIdealSize(
-		// The properties refer to the width of this.$popup, but we set the properties on this.$body to
-		// make calculations work out right (T180173), so we subtract padding here.
+		// The properties refer to the width of this.$popup, but we set the properties on this.$body
+		// to make calculations work out right (T180173), so we subtract padding here.
 		this.width !== null ? this.width - ( this.padded ? 24 : 0 ) : 'auto',
 		this.height !== null ? this.height - ( this.padded ? 10 : 0 ) : 'auto'
 	);
@@ -7056,11 +7057,8 @@ OO.ui.SelectWidget.static.normalizeForMatching = function ( text ) {
 	var normalized = text.trim().replace( /\s+/, ' ' ).toLowerCase();
 
 	// Normalize Unicode
-	// eslint-disable-next-line no-restricted-properties
-	if ( normalized.normalize ) {
-		// eslint-disable-next-line no-restricted-properties
-		normalized = normalized.normalize();
-	}
+	normalized = normalized.normalize();
+
 	return normalized;
 };
 
@@ -7216,14 +7214,15 @@ OO.ui.SelectWidget.prototype.onMouseLeave = function () {
  */
 OO.ui.SelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 	var handled = false,
-		currentItem = this.isVisible() && this.findHighlightedItem() || this.findFirstSelectedItem();
+		currentItem = ( this.isVisible() && this.findHighlightedItem() ) ||
+			( !this.multiselect && this.findSelectedItem() );
 
 	var nextItem;
 	if ( !this.isDisabled() ) {
 		switch ( e.keyCode ) {
 			case OO.ui.Keys.ENTER:
 				if ( currentItem ) {
-					// Was only highlighted, now let's select it. No-op if already selected.
+					// Select highlighted item or toggle when multiselect is enabled
 					this.chooseItem( currentItem );
 					handled = true;
 				}
@@ -7362,16 +7361,15 @@ OO.ui.SelectWidget.prototype.onDocumentKeyPress = function ( e ) {
 		return;
 	}
 
-	// eslint-disable-next-line es/no-string-fromcodepoint
-	var c = String.fromCodePoint ? String.fromCodePoint( e.charCode ) :
-		String.fromCharCode( e.charCode );
+	var c = String.fromCodePoint( e.charCode );
 
 	if ( this.keyPressBufferTimer ) {
 		clearTimeout( this.keyPressBufferTimer );
 	}
 	this.keyPressBufferTimer = setTimeout( this.clearKeyPressBuffer.bind( this ), 1500 );
 
-	var item = this.isVisible() && this.findHighlightedItem() || this.findFirstSelectedItem();
+	var item = ( this.isVisible() && this.findHighlightedItem() ) ||
+		( !this.multiselect && this.findSelectedItem() );
 
 	if ( this.keyPressBuffer === c ) {
 		// Common (if weird) special case: typing "xxxx" will cycle through all
@@ -7800,14 +7798,14 @@ OO.ui.SelectWidget.prototype.pressItem = function ( item ) {
 };
 
 /**
- * Choose an item.
+ * Select an item or toggle an item's selection when multiselect is enabled.
  *
  * Note that ‘choose’ should never be modified programmatically. A user can choose
  * an option with the keyboard or mouse and it becomes selected. To select an item programmatically,
  * use the #selectItem method.
  *
- * This method is identical to #selectItem, but may vary in subclasses that take additional action
- * when users choose an item with the keyboard or mouse.
+ * This method is not identical to #selectItem and may vary further in subclasses that take
+ * additional action when users choose an item with the keyboard or mouse.
  *
  * @param {OO.ui.OptionWidget} item Item to choose
  * @fires choose
@@ -8323,7 +8321,7 @@ OO.ui.MenuSelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 				break;
 			case OO.ui.Keys.TAB:
 				if ( this.isVisible() ) {
-					if ( currentItem ) {
+					if ( currentItem && !currentItem.isSelected() ) {
 						// Was only highlighted, now let's select it. No-op if already selected.
 						this.chooseItem( currentItem );
 						handled = true;
@@ -8335,7 +8333,8 @@ OO.ui.MenuSelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 			case OO.ui.Keys.RIGHT:
 			case OO.ui.Keys.HOME:
 			case OO.ui.Keys.END:
-				// Do nothing if a text field is associated, these keys will be handled by the text input
+				// Do nothing if a text field is associated, these keys will be handled by the
+				// text input
 				if ( !this.$input ) {
 					OO.ui.MenuSelectWidget.super.prototype.onDocumentKeyDown.call( this, e );
 				}
@@ -8492,7 +8491,7 @@ OO.ui.MenuSelectWidget.prototype.unbindDocumentKeyPressListener = function () {
 };
 
 /**
- * Choose an item.
+ * Select an item or toggle an item's selection when multiselect is enabled.
  *
  * When a user chooses an item, the menu is closed, unless the hideOnChoose config option is
  * set to false.
@@ -9275,8 +9274,9 @@ OO.ui.MultiselectWidget.prototype.findSelectedItemsData = function () {
  * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.MultiselectWidget.prototype.selectItems = function ( items ) {
+	var itemsSet = new Set( items );
 	this.items.forEach( function ( item ) {
-		var selected = items.indexOf( item ) !== -1;
+		var selected = itemsSet.has( item );
 		item.setSelected( selected );
 	} );
 	return this;
@@ -9290,11 +9290,13 @@ OO.ui.MultiselectWidget.prototype.selectItems = function ( items ) {
  * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.MultiselectWidget.prototype.selectItemsByData = function ( datas ) {
-	var widget = this;
-	var items = datas.map( function ( data ) {
-		return widget.findItemFromData( data );
+	var dataHashSet = new Set( datas.map( function ( data ) {
+		return OO.getHash( data );
+	} ) );
+	this.items.forEach( function ( item ) {
+		var selected = dataHashSet.has( OO.getHash( item.getData() ) );
+		item.setSelected( selected );
 	} );
-	this.selectItems( items );
 	return this;
 };
 
@@ -11026,8 +11028,14 @@ OO.ui.CheckboxMultiselectInputWidget = function OoUiCheckboxMultiselectInputWidg
 	OO.ui.CheckboxMultiselectInputWidget.super.call( this, config );
 
 	// Events
+	// HACK: When selecting multiple items, the 'select' event is fired after every item, and our
+	// handler performs a linear-time operation (validating every selected value), so selecting
+	// multiple items becomes quadratic (T335082#8815547). Debounce it, so that it only executes
+	// once at the end of the selecting, making it linear again. This will make the internal state
+	// momentarily inconsistent while the selecting is ongoing, but that's probably fine.
+	this.onCheckboxesSelectHandler = OO.ui.debounce( this.onCheckboxesSelect );
 	this.checkboxMultiselectWidget.connect( this, {
-		select: 'onCheckboxesSelect'
+		select: 'onCheckboxesSelectHandler'
 	} );
 
 	// Initialization
@@ -11124,11 +11132,14 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.cleanUpValue = function ( value )
 	if ( !Array.isArray( value ) ) {
 		return cleanValue;
 	}
+	var dataHashSet = new Set( this.checkboxMultiselectWidget.getItems().map( function ( item ) {
+		return OO.getHash( item.getData() );
+	} ) );
 	for ( var i = 0; i < value.length; i++ ) {
 		var singleValue = OO.ui.CheckboxMultiselectInputWidget.super.prototype.cleanUpValue
 			.call( this, value[ i ] );
 		// Remove options that we don't have here
-		if ( !this.checkboxMultiselectWidget.findItemFromData( singleValue ) ) {
+		if ( !dataHashSet.has( OO.getHash( singleValue ) ) ) {
 			continue;
 		}
 		cleanValue.push( singleValue );
@@ -11206,12 +11217,12 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.setOptionsData = function ( optio
  * @private
  */
 OO.ui.CheckboxMultiselectInputWidget.prototype.updateOptionsInterface = function () {
-	var defaultValue = this.defaultValue;
+	var defaultValueSet = new Set( this.defaultValue );
 
 	this.checkboxMultiselectWidget.getItems().forEach( function ( item ) {
 		// Remember original selection state. This property can be later used to check whether
 		// the selection state of the input has been changed since it was created.
-		var isDefault = defaultValue.indexOf( item.getData() ) !== -1;
+		var isDefault = defaultValueSet.has( item.getData() );
 		item.checkbox.defaultSelected = isDefault;
 		item.checkbox.$input[ 0 ].defaultChecked = isDefault;
 	} );
@@ -12290,8 +12301,9 @@ OO.ui.MultilineTextInputWidget.prototype.restorePreInfuseState = function ( stat
  *     } );
  *     $( document.body ).append( comboBox.$element );
  *
+ * A ComboBoxInputWidget can have additional option labels:
+ *
  *     @example
- *     // Example: A ComboBoxInputWidget with additional option labels.
  *     var comboBox = new OO.ui.ComboBoxInputWidget( {
  *         value: 'Option 1',
  *         options: [

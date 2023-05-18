@@ -5,6 +5,7 @@
 			"Prevodim"
 		]
 	},
+	"ooui-copytextlayout-copy": "Kopiraj",
 	"ooui-outline-control-move-down": "Premesti stavku nadole",
 	"ooui-outline-control-move-up": "Premesti stavku nagore",
 	"ooui-outline-control-remove": "Ukloni stavku",
@@ -18,12 +19,10 @@
 	"ooui-dialog-process-dismiss": "Odbaci",
 	"ooui-dialog-process-retry": "Pokušaj ponovo",
 	"ooui-dialog-process-continue": "Nastavi",
-	"ooui-combobox-button-label": "Padajuća lista za ComboBox",
 	"ooui-selectfile-button-select": "Izaberite datoteku",
 	"ooui-selectfile-not-supported": "Izbor datoteke nije podržan",
 	"ooui-selectfile-placeholder": "Datoteka nije izabrana",
-	"ooui-selectfile-dragdrop-placeholder": "Otpustite datoteku ovde",
-	"ooui-selectfile-dragdrop-placeholder-multiple": "Otpustite datoteke ovde",
+	"ooui-selectfile-dragdrop-placeholder": "Ovde otpustite datoteku",
 	"ooui-popup-widget-close-button-aria-label": "Zatvori",
 	"ooui-field-help": "Pomoć"
 }

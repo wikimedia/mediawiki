@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.46.3
+ * OOUI v0.47.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2023 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2023-02-07T00:43:59Z
+ * Date: 2023-05-18T02:15:42Z
  */
 ( function ( OO ) {
 
@@ -1044,6 +1044,7 @@ OO.ui.WindowManager = function OoUiWindowManager( config ) {
 	this.preparingToOpen = null;
 	this.preparingToClose = null;
 	this.currentWindow = null;
+	this.lastSize = null;
 	this.globalEvents = false;
 	this.$returnFocusTo = null;
 	this.isolated = false;
@@ -1107,6 +1108,8 @@ OO.mixinClass( OO.ui.WindowManager, OO.EventEmitter );
 
 /**
  * Map of the symbolic name of each window size and its CSS properties.
+ *
+ * Symbolic name must be valid as a CSS class name suffix.
  *
  * @static
  * @inheritable
@@ -1701,10 +1704,25 @@ OO.ui.WindowManager.prototype.updateWindowSize = function ( win ) {
 		return;
 	}
 
-	var isFullscreen = win.getSize() === 'full';
+	var size = win.getSize();
 
+	// The following classes are used here
+	// * oo-ui-windowManager-size-small
+	// * oo-ui-windowManager-size-medium
+	// * oo-ui-windowManager-size-large
+	// * oo-ui-windowManager-size-larger
+	// * oo-ui-windowManager-size-full
+	this.$element
+		.removeClass( 'oo-ui-windowManager-size-' + this.lastSize )
+		.addClass( 'oo-ui-windowManager-size-' + size );
+
+	this.lastSize = size;
+
+	// Backwards compatibility
+	var isFullscreen = size === 'full';
 	this.$element.toggleClass( 'oo-ui-windowManager-fullscreen', isFullscreen );
 	this.$element.toggleClass( 'oo-ui-windowManager-floating', !isFullscreen );
+
 	win.setDimensions( win.getSizeProperties() );
 
 	this.emit( 'resize', win );

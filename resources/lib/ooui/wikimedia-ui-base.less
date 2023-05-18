@@ -1,5 +1,5 @@
 /**
- * WikimediaUI Base v0.21.0
+ * WikimediaUI Base v0.22.0
  * Wikimedia Foundation user interface base variables
  * https://gerrit.wikimedia.org/g/wikimedia-ui-base/
  *
@@ -59,6 +59,9 @@
 @wmui-color-green30:  #14866d; // = HSB 167°, 85%, 53%
 @wmui-color-green50:  #00af89; // = HSB 167°, 100%, 69%
 @wmui-color-green90:  #d5fdf4; // = HSB 166°, 16%, 99%
+
+// Note, this color is part of the Codex Design System, under different naming scheme.
+@wmui-color-green700: #096450;
 
 // Modifier colors, not part of official palette, limited to interaction state usage.
 @wmui-color-base10--lighten: #404244;
@@ -145,10 +148,10 @@
 
 // Opacity
 @opacity-base:                    1;
-@opacity-base--disabled:          0.51; // = `#7d7d7d` on `background-color: #fff`; HSB 0°, 0%, 49%
 @opacity-icon-base:               0.87; // = `#222` on `background-color: #fff`, closest to `#202122`
 @opacity-icon-base--hover:        0.74; // = `#424242` on `background-color: #fff`, closest to `#404244`
 @opacity-icon-base--selected:     1;
+@opacity-icon-base--disabled:    0.51; // = `#7d7d7d` on `background-color: #fff`, closest to `#72777d`. HSB 0°, 0%, 49%.
 @opacity-icon-accessory:          0.67; // = `#555`, closest to `#54595d` on background-color `#fff`.
 
 
@@ -221,10 +224,10 @@
 @border-color-divider:            @wmui-color-base50;
 @border-color-wikitable:          rgba( 84, 89, 93, 0.3 ); // See T168029
 // Border Colors user system messages
-@border-color-error:              @color-error;
-@border-color-warning:            @wmui-color-yellow50;
-@border-color-success:            @color-success;
-@border-color-notice:             @border-color-base;
+@border-color-error:              @wmui-color-red30;
+@border-color-warning:            @wmui-color-yellow30;
+@border-color-success:            @wmui-color-green700;
+@border-color-notice:             @wmui-color-base20;
 // Border Styles
 @border-style-base:               solid;
 // Border Widths
@@ -292,7 +295,7 @@
 @font-weight-bold:                700;
 // Line Heights
 @line-height-base:                1.6;
-@line-height-heading:             1.3;
+@line-height-heading:             1.375;
 @text-decoration-link--hover:     none;
 // Text Shadows
 @text-shadow-base:                0 1px 1px @color-base--inverted; // 'coined' effect
@@ -307,9 +310,16 @@
 // == Animation & Transition ==
 // Transitions
 @transition-base:                 @transition-duration-base; // `ease` is the initial value
-@transition-ease-medium:          @transition-duration-medium;
-// `ease-out` is preferably used on human initiated transitions, for example dialogs
-@transition-ease-out-medium:      ease-out @transition-duration-medium;
+
 // Transitions > Durations
 @transition-duration-base:        100ms;
 @transition-duration-medium:      250ms;
+
+
+// == Deprecated variables ==
+// Since v0.22.0
+@opacity-base--disabled:          @opacity-icon-base--disabled;
+// Use non-shorthand properties instead.
+@transition-ease-medium:          @transition-duration-medium;
+// `ease-out` is preferably used on human initiated transitions, for example dialogs
+@transition-ease-out-medium:      ease-out @transition-duration-medium;

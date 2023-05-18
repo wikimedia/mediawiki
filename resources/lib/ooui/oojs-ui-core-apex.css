@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.46.3
+ * OOUI v0.47.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2023 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2023-02-07T00:44:09Z
+ * Date: 2023-05-18T02:15:45Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -70,7 +70,8 @@
   margin: 0.46875em;
 }
 .oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
-  transition: opacity 250ms;
+  transition-property: opacity;
+  transition-duration: 250ms;
   transform: translateZ(0);
 }
 .oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
@@ -159,7 +160,8 @@
   border: 1px solid #ccc;
   padding: 0.234375em 0.78125em;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
-  transition: border-color 100ms;
+  transition-property: border-color;
+  transition-duration: 100ms;
 }
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button:hover {
   border-color: #aaa;
@@ -358,12 +360,12 @@
   display: block;
   margin-top: 0.75em;
 }
-.oo-ui-fieldLayout:before,
-.oo-ui-fieldLayout:after {
+.oo-ui-fieldLayout::before,
+.oo-ui-fieldLayout::after {
   content: ' ';
   display: table;
 }
-.oo-ui-fieldLayout:after {
+.oo-ui-fieldLayout::after {
   clear: both;
 }
 .oo-ui-fieldLayout.oo-ui-labelElement.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body,
@@ -897,8 +899,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   position: absolute;
   background-repeat: no-repeat;
 }
-.oo-ui-popupWidget-anchored .oo-ui-popupWidget-anchor:before,
-.oo-ui-popupWidget-anchored .oo-ui-popupWidget-anchor:after {
+.oo-ui-popupWidget-anchored .oo-ui-popupWidget-anchor::before,
+.oo-ui-popupWidget-anchored .oo-ui-popupWidget-anchor::after {
   content: '';
   position: absolute;
   width: 0;
@@ -909,29 +911,29 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor {
   left: 0;
 }
-.oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor:before,
-.oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor:after {
+.oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor::before,
+.oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor::after {
   border-top: 0;
 }
 .oo-ui-popupWidget-anchored-bottom .oo-ui-popupWidget-anchor {
   left: 0;
 }
-.oo-ui-popupWidget-anchored-bottom .oo-ui-popupWidget-anchor:before,
-.oo-ui-popupWidget-anchored-bottom .oo-ui-popupWidget-anchor:after {
+.oo-ui-popupWidget-anchored-bottom .oo-ui-popupWidget-anchor::before,
+.oo-ui-popupWidget-anchored-bottom .oo-ui-popupWidget-anchor::after {
   border-bottom: 0;
 }
 .oo-ui-popupWidget-anchored-start .oo-ui-popupWidget-anchor {
   top: 0;
 }
-.oo-ui-popupWidget-anchored-start .oo-ui-popupWidget-anchor:before,
-.oo-ui-popupWidget-anchored-start .oo-ui-popupWidget-anchor:after {
+.oo-ui-popupWidget-anchored-start .oo-ui-popupWidget-anchor::before,
+.oo-ui-popupWidget-anchored-start .oo-ui-popupWidget-anchor::after {
   border-left: 0;
 }
 .oo-ui-popupWidget-anchored-end .oo-ui-popupWidget-anchor {
   top: 0;
 }
-.oo-ui-popupWidget-anchored-end .oo-ui-popupWidget-anchor:before,
-.oo-ui-popupWidget-anchored-end .oo-ui-popupWidget-anchor:after {
+.oo-ui-popupWidget-anchored-end .oo-ui-popupWidget-anchor::before,
+.oo-ui-popupWidget-anchored-end .oo-ui-popupWidget-anchor::after {
   border-right: 0;
 }
 .oo-ui-popupWidget-head {
@@ -971,13 +973,13 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor {
   top: -6px;
 }
-.oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor:before {
+.oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor::before {
   bottom: -7px;
   left: -6px;
   border-bottom-color: #a8a8a8;
   border-width: 7px;
 }
-.oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor:after {
+.oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor::after {
   bottom: -7px;
   left: -5px;
   border-bottom-color: #fff;
@@ -989,13 +991,13 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-popupWidget-anchored-bottom .oo-ui-popupWidget-anchor {
   bottom: -6px;
 }
-.oo-ui-popupWidget-anchored-bottom .oo-ui-popupWidget-anchor:before {
+.oo-ui-popupWidget-anchored-bottom .oo-ui-popupWidget-anchor::before {
   top: -7px;
   left: -6px;
   border-top-color: #aaa;
   border-width: 7px;
 }
-.oo-ui-popupWidget-anchored-bottom .oo-ui-popupWidget-anchor:after {
+.oo-ui-popupWidget-anchored-bottom .oo-ui-popupWidget-anchor::after {
   top: -7px;
   left: -5px;
   border-top-color: #fff;
@@ -1007,13 +1009,13 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-popupWidget-anchored-start .oo-ui-popupWidget-anchor {
   left: -6px;
 }
-.oo-ui-popupWidget-anchored-start .oo-ui-popupWidget-anchor:before {
+.oo-ui-popupWidget-anchored-start .oo-ui-popupWidget-anchor::before {
   right: -7px;
   top: -6px;
   border-right-color: #aaa;
   border-width: 7px;
 }
-.oo-ui-popupWidget-anchored-start .oo-ui-popupWidget-anchor:after {
+.oo-ui-popupWidget-anchored-start .oo-ui-popupWidget-anchor::after {
   right: -7px;
   top: -5px;
   border-right-color: #fff;
@@ -1025,20 +1027,21 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-popupWidget-anchored-end .oo-ui-popupWidget-anchor {
   right: -6px;
 }
-.oo-ui-popupWidget-anchored-end .oo-ui-popupWidget-anchor:before {
+.oo-ui-popupWidget-anchored-end .oo-ui-popupWidget-anchor::before {
   left: -7px;
   top: -6px;
   border-left-color: #aaa;
   border-width: 7px;
 }
-.oo-ui-popupWidget-anchored-end .oo-ui-popupWidget-anchor:after {
+.oo-ui-popupWidget-anchored-end .oo-ui-popupWidget-anchor::after {
   left: -7px;
   top: -5px;
   border-left-color: #fff;
   border-width: 6px;
 }
 .oo-ui-popupWidget-transitioning .oo-ui-popupWidget-popup {
-  transition: width 100ms, height 100ms, left 100ms;
+  transition-property: width, height, left;
+  transition-duration: 100ms;
 }
 .oo-ui-popupWidget-head {
   padding-left: 0.75em;
@@ -1260,7 +1263,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   font-size: inherit;
   font-family: inherit;
   line-height: 1.40625em;
-  transition: border-color 250ms, box-shadow 250ms;
+  transition-property: border-color, box-shadow;
+  transition-duration: 250ms;
 }
 .oo-ui-textInputWidget .oo-ui-pendingElement-pending {
   background-color: #ddd;
@@ -1620,7 +1624,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   background-image: linear-gradient(to bottom, #eaf4fa 0, #b0d9ee 100%);
   height: 1em;
   border-right: 1px solid #ccc;
-  transition: width 250ms;
+  transition-property: width;
+  transition-duration: 250ms;
 }
 .oo-ui-progressBarWidget-indeterminate .oo-ui-progressBarWidget-bar {
   width: 33%;
