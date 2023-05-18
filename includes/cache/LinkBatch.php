@@ -362,6 +362,10 @@ class LinkBatch {
 	 * @return string|false String with SQL where clause fragment, or false if no items.
 	 */
 	public function constructSet( $prefix, $db ) {
+		if ( $this->isEmpty() ) {
+			return false;
+		}
+
 		if ( isset( $this->linksMigration::$prefixToTableMapping[$prefix] ) ) {
 			[ $blNamespace, $blTitle ] = $this->linksMigration->getTitleFields(
 				$this->linksMigration::$prefixToTableMapping[$prefix]
