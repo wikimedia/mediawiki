@@ -2433,7 +2433,7 @@ class EditPage implements IEditObject {
 					$this->summary,
 					$markAsMinor,
 					$this->context->getLanguage(),
-					$requestUser
+					$pstUser
 				)
 			);
 
