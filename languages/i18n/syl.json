@@ -155,7 +155,7 @@
 	"ok": "ꠀꠁꠌ꠆ꠌꠣ",
 	"retrievedfrom": "\"$1\" ꠔꠘꠦ ꠀꠘꠣ",
 	"youhavenewmessages": "{{PLURAL:$3|ꠀꠙꠘꠣꠞ ꠀꠍꠦ}} $1 ($2).",
-	"youhavenewmessagesfromusers": "{{PLURAL:$4|You have}} $1 ꠔꠘꠦ {{PLURAL:$3|another user|$3 users}} ($2).",
+	"youhavenewmessagesfromusers": "{{PLURAL:$4|ꠀꠙ꠆ꠘꠣꠞ ꠀꠍꠦ}} $1 ꠔꠘꠦ {{PLURAL:$3|ꠀꠞꠇ ꠛꠦꠛꠀꠞ ꠇꠞ꠆ꠞꠣ|$3 ꠛꠦꠛꠀꠞ ꠇꠞ꠆ꠞꠣꠁꠘ}} ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|ꠄꠉꠥ ꠘꠄꠀ ꠛꠣꠞ꠆ꠔꠣ|999=ꠘꠄꠀ ꠙꠣꠔꠣ}}",
 	"newmessagesdifflinkplural": "ꠢꠦꠡꠝꠦꠡ {{PLURAL:$1|ꠛꠖꠟꠣꠁꠟ|999=ꠛꠖꠟꠣꠁꠟ}}",
 	"editsection": "ꠟꠦꠈ",
@@ -248,7 +248,7 @@
 	"loginreqlink": "ꠢꠣꠝꠣꠃꠇ꠆ꠇꠣ",
 	"newarticletext": "You have followed a link to a page that does not exist yet.\nTo create the page, start typing in the box below (see the [$1 help page] for more info).\nꠀꠙꠘꠦ ꠎꠥꠖꠤꠘ ꠛꠥꠟꠇꠞꠤ ꠁꠘꠅ ꠀꠁꠘ, click your browser's <strong>back</strong> button.",
 	"anontalkpagetext": "----\n<em>ꠅꠃ is the discussion page for an anonymous user who has not created an account yet, or who does not use it.</em>\nWe therefore have to use the numerical IP address to identify them.\nSuch an IP address can be shared by several users.\nIf you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:CreateAccount|create an account]] or [[Special:UserLogin|log in]] to avoid future confusion with other anonymous users.",
-	"noarticletext": "ꠁ ꠚꠣꠔꠣꠔ ꠅꠘꠦ ꠇꠥꠘꠥ ꠟꠦꠈꠣ ꠘꠣꠁ.\nꠀꠚꠘꠦ ꠅꠁꠘ꠆ꠘ ꠚꠣꠔꠣꠞ ꠝꠣꠏꠦ [[Special:Search/{{PAGENAME}}|ꠁ ꠚꠣꠔꠣꠞ ꠡꠤꠞꠥꠘꠣꠝꠞꠦ ꠔꠥꠇꠣꠅꠇꠣ]],\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs],\nꠛꠣ [{{fullurl:{{FULLPAGENAME}}|action=edit}} ꠁ ꠚꠣꠔꠣ ꠔꠣꠁꠀꠞ ꠈꠞꠇꠣ]</span>.",
+	"noarticletext": "ꠁ ꠚꠣꠔꠣꠔ ꠅꠘꠦ ꠇꠥꠘꠥ ꠟꠦꠈꠣ ꠘꠣꠁ.\nꠀꠚꠘꠦ ꠅꠁꠘ꠆ꠘ ꠚꠣꠔꠣꠞ ꠝꠣꠏꠦ [[Special:Search/{{PAGENAME}}|ꠁ ꠚꠣꠔꠣꠞ ꠡꠤꠞꠥꠘꠣꠝꠞꠦ ꠔꠥꠇꠣꠅꠇꠣ]] ꠨\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ꠅꠟꠣꠘ ꠟꠉ ꠕꠥꠇꠣꠁꠘ] ꠨\nꠘꠣꠄ [{{fullurl:{{FULLPAGENAME}}|action=edit}} ꠁ ꠚꠣꠔꠣ ꠔꠣꠁꠀꠞ ꠈꠞꠇꠣ]</span> ⁕",
 	"noarticletext-nopermission": "ꠅꠈꠘꠇꠥ ꠁ ꠚꠣꠔꠣꠔ ꠇꠥꠘꠥ ꠟꠦꠈꠣ ꠘꠣꠁ.\nꠀꠚꠘꠦ ꠅꠁꠘ꠆ꠘ ꠚꠣꠔꠣꠞ ꠝꠣꠏꠦ [[Special:Search/{{PAGENAME}}|ꠁ ꠚꠣꠔꠣꠞ ꠡꠤꠞꠥꠘꠣꠝꠞꠦ ꠔꠥꠇꠣꠅꠇꠣ]], ꠘꠣꠄ <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ꠅꠎꠣꠔꠤ ꠟꠉ ꠖꠦꠈꠇꠣ]</span>, ꠇꠤꠘꠔꠥꠇ ꠁ ꠚꠣꠔꠣ ꠔꠣꠁꠀꠞ ꠈꠞꠣꠞ ꠙꠣꠞꠝꠤꠡꠘ ꠀꠚꠘꠣꠞ ꠘꠣꠁ.",
 	"userpage-userdoesnotexist-view": "ꠛꠦꠛꠀꠞꠇꠞ꠆ꠞꠣ ꠄꠇꠣꠃꠘ꠆ꠐ \"$1\" ꠢꠣꠞꠣꠁꠟ ꠘꠣꠄ",
 	"previewnote": "<strong>ꠁꠖ ꠞꠣꠈꠛꠣ ꠁꠇꠣꠘ ꠈꠣꠟꠤ ꠖꠦꠈꠣꠁꠛꠣꠞ ꠖꠣꠄ</strong>\nꠀꠙꠘꠣꠞ ꠛꠖꠟꠣꠁꠟ ꠁꠔꠣ ꠀꠛꠧ ꠛꠣꠞꠂꠍꠦꠘꠣ!",
@@ -660,5 +660,12 @@
 	"log-action-filter-block-block": "ꠛꠘ",
 	"paramvalidator-help-type-user-subtype-name": "ꠛꠦꠛꠀꠞꠇꠞ꠆ꠞꠣ ꠘꠣꠝ",
 	"nstab-mainpage": "ꠝꠥꠟ ꠚꠣꠔꠣ",
-	"skin-action-delete": "ꠙꠣꠟꠣꠃꠇ꠆ꠇꠣ"
+	"skin-action-delete": "ꠙꠣꠟꠣꠃꠇ꠆ꠇꠣ",
+	"blockedtext-made-by": "$1 ꠄ ꠁ ꠛꠟꠇ ꠖꠤꠍꠂꠘ ⁕",
+	"blockedtext-reason-comment": "ꠇꠣꠞꠘ ꠎꠣꠘꠣꠁꠍꠂꠘ ꠎꠦ <em>$1</em>",
+	"blockedtext-start-time": "ꠛꠟꠇ ꠀꠞꠝ꠆ꠛ ꠅꠁꠉꠦꠍꠦ ꠪ $1",
+	"blockedtext-expiration-time": "ꠛꠟꠇ ꠡꠦꠡ ꠅꠁꠉꠦꠍꠦ ꠪ $1",
+	"blockedtext-intended-blockee": "ꠛꠟꠇ ꠇꠞꠣꠞ ꠟꠣꠉꠤ ꠪ $1",
+	"blockedtext-contact-blocker-admin": "$1 ꠅꠞꠘꠟꠉꠦ ꠎꠥꠉꠣꠎꠥꠉ ꠇꠞ꠆ꠔꠣ ꠙꠣꠞꠂꠘ ꠀꠞ꠆ꠘꠣꠄ ꠀꠞꠇ [[{{MediaWiki:Grouppage-sysop}}|ꠌꠣꠟꠣꠅꠞꠣꠞ]] ꠟꠉꠦ ꠁ ꠛꠟꠇ ꠟꠂꠀ ꠝꠣꠔꠂꠘ ⁕",
+	"blockedtext-include-details-queries": "ꠏꠤꠈꠣꠘꠤꠞ ꠡꠝꠄ ꠖꠄꠀ ꠇꠞꠤ ꠃꠙ꠆ꠞꠞ ꠢꠇꠟ꠆ꠔꠣꠡꠢ ꠖꠤꠛꠣ ⁕"
 }

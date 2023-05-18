@@ -51,6 +51,7 @@
 	"config-env-good": "Omno verifikesis.\nVu povas intalar MediaWiki.",
 	"config-env-bad": "Omno verifikesis.\nVu NE POVAS intalar MediaWiki.",
 	"config-env-php": "PHP $1 instalesis.",
+	"config-env-icu": "ICU $1 instalesis (ol suportas Unicode $2).",
 	"config-no-db": "Ne povis trovar konvenanta ''driver'' por la datumaro! Vu mustas instalar ''driver'' por datumaro en PHP.\nLa sequanta {{PLURAL:$2|tipo|tipi}} di datumaro esas suportebla: $1.\n\nIf you compiled PHP yourself, reconfigure it with a database client enabled, for example, using <code>./configure --with-mysqli</code>.\nIf you installed PHP from a Debian or Ubuntu package, then you also need to install, for example, the <code>php-mysql</code> package.",
 	"config-outdated-sqlite": "<strong>Atencez:</strong> vu havas SQLite $2, quo esas inferiora a la minima versiono bezonata, $1. SQLite ne esos disponebla.",
 	"config-no-fts3": "<strong>Atencez:</strong> SQLite kompilesis sen la [//sqlite.org/fts3.html modulo FTS3], do l'utensili por serchado ne divenos disponebla hike.",
@@ -210,7 +211,7 @@
 	"config-upload-deleted": "Receveyo por efacita arkivi:",
 	"config-upload-deleted-help": "Selektez receveyo por efacita artikli. Prefereble, ol mustus acesesar per interreto.",
 	"config-personalization-settings": "Personalizo",
-	"config-logo-summary": "Por singla ek ca blanka spaci por plenigar, vu bezonos sendar imajo kun adequata grandeso, ed informar la URL en l'infra buxi. Vu povos uzar <code>$wgStylePath</code> o <code>$wgScriptPath</code> se vua *logotipo relatas a ca treki. Vu povas nekompletigar irga ek l'infra buxi.\n\nEn la suportita retonavigili, vu anke povas tranar arkivi di imaji de vua komputatoro* al eniro-buxi.",
+	"config-logo-summary": "Por singla ek ca blanka spaci por plenigar, vu bezonos sendar imajo kun adequata grandeso, ed informar la URL en la buxi adinfre. Vu povos uzar <code>$wgStylePath</code> o <code>$wgScriptPath</code> se vua *logotipo relatas a ca treki. Vu povas nekompletigar irga ek la buxi adinfra.",
 	"config-logo-preview-main": "Chefpagino",
 	"config-logo-icon": "Logotipo* (ikono):",
 	"config-logo-icon-help": "L'ikono di vua logotipo* mustas esar quadratra, havanta adminime 50px, od esar arkivo SVG.",
@@ -305,6 +306,7 @@
 	"config-screenshot": "skreno-kopiuro",
 	"config-extension-not-found": "Ne povis trovar la registro-arkivo por \"$1\"",
 	"config-extension-dependency": "Eroro pri dependo trovesis dum l'instalo dil extenso \"$1\": $2",
+	"config-ext-skins-more-info": "plusa informo",
 	"mainpagetext": "<strong>MediaWiki instalesis sucese.</strong>",
 	"mainpagedocfooter": "Videz la [https://meta.wikimedia.org/wiki/Help:Contents Guidilo por Uzeri] por plusa informi pri quale uzar la wiki programo.\n\n== Komencar ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Listo pri ''Configuration setting'']\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ E-postala-listo por recevar mesaji de MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Trovar MediaWiki en vua linguo]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Lernez quale kombatar ''spam'' en vua wiki]"
 }

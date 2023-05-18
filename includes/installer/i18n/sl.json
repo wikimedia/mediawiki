@@ -100,7 +100,7 @@
 	"config-mysql-old": "Potreben je MySQL $1 ali novejši; vi imate $2.",
 	"config-db-port": "Vrata podatkovne zbirke:",
 	"config-db-schema": "Shema MediaWiki (brez vezajev)",
-	"config-db-schema-help": "Ta shema je po navadi v redu.\nSpremenite jo samo, če veste, da jo morate.",
+	"config-db-schema-help": "Ta shema je ponavadi v redu.\nSpremenite jo samo, če veste, da jo morate.",
 	"config-pg-test-error": "Ni se mogoče povezati s podatkovno zbirko <strong>$1</strong>: $2",
 	"config-sqlite-dir": "Mapa podatkov SQLite:",
 	"config-sqlite-dir-help": "SQLite shrani vse podatke v eno datoteko.\n\nImenik, ki ga navedete, mora spletnemu strežniku med namestitvijo omogočati zapisovanje.\n\n<strong>Ne</strong> sme biti dostopen prek spleta; zato ga ne postavljamo tja, kjer so vaše datoteke PHP.\n\nNamestitveni program bo skupaj z njim napisal datoteko <code>.htaccess</code>, če pa to ne bo uspelo, lahko kdo pridobi dostop do vaše neobdelane podatkovne zbirke.\nTo vključuje neobdelane uporabniške podatke (e-poštne naslove, zgoščena gesla) kot tudi izbrisane redakcije in druge omejene podatke v vikiju.\n\nRazmislite o tem, da podatkovno zbirko postavite nekam drugam, na primer v <code>/var/lib/mediawiki/yourwiki</code>.",
