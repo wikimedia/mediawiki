@@ -261,6 +261,8 @@ because of Phabricator reports.
   deprecation warnings.
 * UserGroupMembership::getLink() has been deprecated in favour of
   ::getLinkHTML() and ::getLinkWiki().
+* The EmailUserPermissionsErrors hook has been deprecated in favour of the
+  UserCanSendEmail hook.
 * Hooks::isRegistered(), ::getHandlers(), ::run() and ::runWithoutAbort(),
   deprecated in 1.35, now emit deprecation warnings.
 * …

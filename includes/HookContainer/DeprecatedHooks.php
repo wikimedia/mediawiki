@@ -53,6 +53,7 @@ class DeprecatedHooks {
 		'SearchDataForIndex' => [ 'deprecatedVersion' => '1.40', 'silent' => true ],
 		'ArticleUndelete' => [ 'deprecatedVersion' => '1.40', 'silent' => true ],
 		'MessageCache::get' => [ 'deprecatedVersion' => '1.41', 'silent' => true ],
+		'EmailUserPermissionsErrors' => [ 'deprecatedVersion' => '1.41', 'silent' => true ],
 	];
 
 	/**

@@ -10,6 +10,7 @@ use User;
  *
  * @stable to implement
  * @ingroup Hooks
+ * @deprecated since 1.41 Handle the UserCanSendEmail hook instead.
  */
 interface EmailUserPermissionsErrorsHook {
 	/**

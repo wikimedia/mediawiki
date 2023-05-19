@@ -3192,21 +3192,18 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
+	 * @todo Deprecate this method once EmailUser is no longer unstable.
 	 * Is this user allowed to send e-mails within limits of current
 	 * site configuration?
 	 * @return bool
 	 */
 	public function canSendEmail() {
-		$enableEmail = MediaWikiServices::getInstance()->getMainConfig()
-			->get( MainConfigNames::EnableEmail );
-		$enableUserEmail = MediaWikiServices::getInstance()->getMainConfig()
-			->get( MainConfigNames::EnableUserEmail );
-		if ( !$enableEmail || !$enableUserEmail || !$this->isAllowed( 'sendemail' ) ) {
-			return false;
-		}
-		$hookErr = $this->isEmailConfirmed();
-		$this->getHookRunner()->onUserCanSendEmail( $this, $hookErr );
-		return $hookErr;
+		$permError = MediaWikiServices::getInstance()->getEmailUser()->getPermissionsError(
+			$this->getThisAsAuthority(),
+			// XXX Pass an empty edit token, nobody is using it anyway.
+			''
+		);
+		return $permError->isGood();
 	}
 
 	/**
