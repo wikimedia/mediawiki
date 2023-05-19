@@ -295,7 +295,7 @@ class ApiUserrightsTest extends ApiTestCase {
 		$this->doSuccessfulRightsChange( $expectedGroups, $params, $user );
 	}
 
-	public function addAndRemoveGroupsProvider() {
+	public static function addAndRemoveGroupsProvider() {
 		return [
 			'Simple add' => [
 				[ [ 'sysop' ], [] ],

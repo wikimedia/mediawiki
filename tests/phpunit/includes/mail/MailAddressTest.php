@@ -46,7 +46,7 @@ class MailAddressTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $first->equals( $second ) );
 	}
 
-	public function provideEquals(): Generator {
+	public static function provideEquals(): Generator {
 		$base = new MailAddress( 'a@b.c', 'name', 'realname' );
 
 		yield 'Different addresses' => [ $base, new MailAddress( 'xxx', 'name', 'realname' ), false ];

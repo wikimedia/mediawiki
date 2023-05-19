@@ -31,7 +31,7 @@ use MediaWiki\Title\Title;
  */
 class TitleValueTest extends \MediaWikiUnitTestCase {
 
-	public function goodConstructorProvider() {
+	public static function goodConstructorProvider() {
 		return [
 			[ NS_MAIN, '', 'fragment', '', true, false ],
 			[ NS_MAIN, '', '', 'interwiki', false, true ],
@@ -88,7 +88,7 @@ class TitleValueTest extends \MediaWikiUnitTestCase {
 		$this->assertTrue( true ); // we are just checking that no exception is thrown
 	}
 
-	public function badConstructorNamespaceTypeProvider() {
+	public static function badConstructorNamespaceTypeProvider() {
 		return [
 			[ 'foo', 'title', 'fragment', '' ],
 			[ null, 'title', 'fragment', '' ],
@@ -96,7 +96,7 @@ class TitleValueTest extends \MediaWikiUnitTestCase {
 		];
 	}
 
-	public function badConstructorProvider() {
+	public static function badConstructorProvider() {
 		return [
 			[ NS_MAIN, 5, 'fragment', '' ],
 			[ NS_MAIN, null, 'fragment', '' ],
@@ -148,7 +148,7 @@ class TitleValueTest extends \MediaWikiUnitTestCase {
 		TitleValue::assertValidSpec( $ns, $text, $fragment, $interwiki );
 	}
 
-	public function fragmentTitleProvider() {
+	public static function fragmentTitleProvider() {
 		return [
 			[ new TitleValue( NS_MAIN, 'Test' ), 'foo' ],
 			[ new TitleValue( NS_TALK, 'Test', 'foo' ), '' ],
@@ -220,7 +220,7 @@ class TitleValueTest extends \MediaWikiUnitTestCase {
 		$this->assertNull( TitleValue::castPageToLinkTarget( null ) );
 	}
 
-	public function getTextProvider() {
+	public static function getTextProvider() {
 		return [
 			[ 'Foo', 'Foo' ],
 			[ 'Foo_Bar', 'Foo Bar' ],

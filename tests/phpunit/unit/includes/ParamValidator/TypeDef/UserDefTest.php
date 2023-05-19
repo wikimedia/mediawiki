@@ -411,7 +411,7 @@ class UserDefTest extends TypeDefTestCase {
 		$this->assertUserIdentity( $res, 0, "Unknown user" );
 	}
 
-	public function provideMissingId() {
+	public static function provideMissingId() {
 		yield "0 no longer matches request ip" => [ 0 ];
 		yield "Id with no user" => [ 6 ];
 	}

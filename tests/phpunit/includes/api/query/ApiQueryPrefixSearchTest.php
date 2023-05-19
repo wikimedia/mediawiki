@@ -25,7 +25,7 @@ class ApiQueryPrefixSearchTest extends ApiTestCase {
 		MockCompletionSearchEngine::addMockResults( self::TEST_QUERY, $results );
 	}
 
-	public function offsetContinueProvider() {
+	public static function offsetContinueProvider() {
 		return [
 			'no offset' => [ 2, 2, 0, 2 ],
 			'with offset' => [ 7, 2, 5, 2 ],

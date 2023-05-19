@@ -28,7 +28,7 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( $expected, $html );
 	}
 
-	public function provideParsoidParserHtml() {
+	public static function provideParsoidParserHtml() {
 		return [
 			[ [ 'Hello, World' ], 'Hello, World' ],
 			[ [ '__NOTOC__' ], '<meta property="mw:PageProp/notoc"' ],

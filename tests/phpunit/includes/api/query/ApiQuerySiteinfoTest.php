@@ -247,7 +247,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		$this->assertSame( $expected, $data );
 	}
 
-	public function interwikiMapProvider() {
+	public static function interwikiMapProvider() {
 		return [ [ 'local' ], [ '!local' ], [ null ] ];
 	}
 
@@ -283,7 +283,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		$this->assertSame( $expected, $data );
 	}
 
-	public function dbReplLagProvider() {
+	public static function dbReplLagProvider() {
 		return [
 			'no hostnames, no showalldb' => [ false, false ],
 			'no hostnames, showalldb' => [ false, true ],
@@ -407,7 +407,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		$this->assertSame( $expected, $this->doQuery( 'fileextensions' ) );
 	}
 
-	public function groupsProvider() {
+	public static function groupsProvider() {
 		return [
 			'numingroup' => [ true ],
 			'nonumingroup' => [ false ],
@@ -536,7 +536,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		);
 	}
 
-	public function rightsInfoProvider() {
+	public static function rightsInfoProvider() {
 		$licenseTitle = Title::makeTitle( 0, 'License' );
 		$licenseUrl = 'http://license.example/';
 
@@ -594,7 +594,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		$this->assertSame( $expected, $data );
 	}
 
-	public function languagesProvider() {
+	public static function languagesProvider() {
 		return [ [ null ], [ 'fr' ] ];
 	}
 

@@ -144,7 +144,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 		$dbw->insert( 'logging', $logs );
 	}
 
-	public function runProvider() {
+	public static function runProvider() {
 		$allRows = [
 			(object)[
 				'log_type' => 'patrol',

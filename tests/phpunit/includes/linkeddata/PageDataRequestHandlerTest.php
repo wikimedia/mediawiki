@@ -79,7 +79,7 @@ class PageDataRequestHandlerTest extends \MediaWikiLangTestCase {
 		return $output;
 	}
 
-	public function handleRequestProvider() {
+	public static function handleRequestProvider() {
 		$cases = [];
 
 		$cases[] = [ '', [], [], 'Invalid title', 400 ];

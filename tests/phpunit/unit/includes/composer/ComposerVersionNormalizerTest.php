@@ -19,7 +19,7 @@ class ComposerVersionNormalizerTest extends MediaWikiUnitTestCase {
 		$normalizer->normalizeSuffix( $nonString );
 	}
 
-	public function nonStringProvider() {
+	public static function nonStringProvider() {
 		return [
 			[ null ],
 			[ 42 ],
@@ -69,7 +69,7 @@ class ComposerVersionNormalizerTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function complexVersionProvider() {
+	public static function complexVersionProvider() {
 		return [
 			[ '1.22.0alpha', '1.22.0-alpha' ],
 			[ '1.22.0RC', '1.22.0-RC' ],
@@ -102,7 +102,7 @@ class ComposerVersionNormalizerTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function fourLevelVersionsProvider() {
+	public static function fourLevelVersionsProvider() {
 		return [
 			[ '1.22.0.0' ],
 			[ '1.19.2.4' ],
@@ -128,7 +128,7 @@ class ComposerVersionNormalizerTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function levelNormalizationProvider() {
+	public static function levelNormalizationProvider() {
 		return [
 			[ '1.22.0.0', '1.22' ],
 			[ '1.22.0.0', '1.22.0' ],
@@ -146,7 +146,7 @@ class ComposerVersionNormalizerTest extends MediaWikiUnitTestCase {
 		$this->assertRemainsUnchanged( $invalidVersion );
 	}
 
-	public function invalidVersionProvider() {
+	public static function invalidVersionProvider() {
 		return [
 			[ '1.221-a' ],
 			[ '1.221-' ],

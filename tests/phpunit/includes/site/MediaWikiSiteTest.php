@@ -45,7 +45,7 @@ class MediaWikiSiteTest extends SiteTest {
 		$this->assertEquals( 'Foo', $site->normalizePageName( ' foo ' ) );
 	}
 
-	public function fileUrlProvider() {
+	public static function fileUrlProvider() {
 		return [
 			// url, filepath, path arg, expected
 			[ 'https://en.wikipedia.org', '/w/$1', 'api.php', 'https://en.wikipedia.org/w/api.php' ],

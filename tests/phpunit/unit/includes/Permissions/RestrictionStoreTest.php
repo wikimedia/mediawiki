@@ -829,7 +829,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $obj->listAllRestrictionTypes( ...$args ) );
 	}
 
-	public function provideListAllRestrictionTypes() {
+	public static function provideListAllRestrictionTypes() {
 		$expandedRestrictions = array_merge( self::DEFAULT_RESTRICTION_TYPES, [ 'solidify' ] );
 		return [
 			'Exists' => [ [ 'edit', 'move', 'upload' ], [ true ] ],

@@ -367,7 +367,7 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 		);
 	}
 
-	public function fromTitleToTitleContinueComboProvider() {
+	public static function fromTitleToTitleContinueComboProvider() {
 		return [
 			[
 				[
@@ -428,7 +428,7 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 		$this->assertEquals( $expectedItems, $this->getItemsFromApiResponse( $result ) );
 	}
 
-	public function fromTitleToTitleContinueSelfContradictoryComboProvider() {
+	public static function fromTitleToTitleContinueSelfContradictoryComboProvider() {
 		return [
 			[
 				[

@@ -55,7 +55,7 @@ class MWLBFactoryTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function getLBFactoryClassProvider() {
+	public static function getLBFactoryClassProvider() {
 		yield 'undercore alias default' => [
 			[ 'class' => 'LBFactory_Simple' ],
 			Wikimedia\Rdbms\LBFactorySimple::class,

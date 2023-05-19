@@ -36,7 +36,7 @@ class NamespaceImportTitleFactoryTest extends MediaWikiIntegrationTestCase {
 		$this->setContentLang( 'en' );
 	}
 
-	public function basicProvider() {
+	public static function basicProvider() {
 		return [
 			[
 				new ForeignTitle( 0, '', 'MainNamespaceArticle' ),

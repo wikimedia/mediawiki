@@ -46,7 +46,7 @@ class MediaWikiPageNameNormalizerTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function normalizePageTitleProvider() {
+	public static function normalizePageTitleProvider() {
 		// Response are taken from wikidata and kkwiki using the following API request
 		// api.php?action=query&prop=info&redirects=1&converttitles=1&format=json&titles=…
 		return [

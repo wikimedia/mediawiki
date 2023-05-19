@@ -86,7 +86,7 @@ JSON;
 		$result = $client->query( "TEST SPARQL 3" );
 	}
 
-	public function optionsProvider() {
+	public static function optionsProvider() {
 		return [
 			'defaults' => [
 				'TEST тест SPARQL 4 ',

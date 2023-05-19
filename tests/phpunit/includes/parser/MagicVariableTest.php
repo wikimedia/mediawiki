@@ -157,7 +157,7 @@ class MagicVariableTest extends MediaWikiIntegrationTestCase {
 		$this->assertUnPadded( 'revisionmonth1', $month );
 	}
 
-	public function provideCurrentUnitTimestampWords() {
+	public static function provideCurrentUnitTimestampWords() {
 		return [
 			// Afternoon
 			[ 'currentmonth', '20200208153011', '02', 604800 ],
@@ -204,7 +204,7 @@ class MagicVariableTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expTTL, $this->testParser->getOutput()->getCacheExpiry() );
 	}
 
-	public function provideLocalUnitTimestampWords() {
+	public static function provideLocalUnitTimestampWords() {
 		// NOTE: Europe/Stockholm DST applies Sun, Mar 26, 2023 2:00 - Sun, Oct 29, 2023 3:00AM
 		return [
 			// Afternoon

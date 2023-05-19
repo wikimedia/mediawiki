@@ -36,7 +36,7 @@ class RevisionSlotsTest extends MediaWikiUnitTestCase {
 		return new RevisionSlots( $slots );
 	}
 
-	public function provideConstructorFailue() {
+	public static function provideConstructorFailue() {
 		yield 'not an array or callable' => [
 			'foo'
 		];

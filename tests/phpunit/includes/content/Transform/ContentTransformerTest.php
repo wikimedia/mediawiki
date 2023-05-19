@@ -5,7 +5,7 @@ use MediaWiki\Title\Title;
 
 class ContentTransformerTest extends MediaWikiIntegrationTestCase {
 
-	public function preSaveTransformProvider() {
+	public static function preSaveTransformProvider() {
 		return [
 			[
 				new WikitextContent( 'Test ~~~' ),
@@ -31,7 +31,7 @@ class ContentTransformerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expectedContainText, $newContent->serialize() );
 	}
 
-	public function preloadTransformProvider() {
+	public static function preloadTransformProvider() {
 		return [
 			[
 				new WikitextContent( '{{Foo}}<noinclude> censored</noinclude> information <!-- is very secret -->' ),

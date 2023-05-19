@@ -103,7 +103,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Test empty values.
 	 */
-	public function formatValueEmptyProvider() {
+	public static function formatValueEmptyProvider() {
 		return [
 			[
 				'test',
@@ -122,7 +122,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Test the default row values.
 	 */
-	public function formatValueDefaultProvider() {
+	public static function formatValueDefaultProvider() {
 		$row = (object)[
 			'ipb_user' => 0,
 			'ipb_address' => '127.0.0.1',

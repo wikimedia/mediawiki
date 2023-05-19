@@ -309,7 +309,7 @@ class RemexDriverTest extends MediaWikiUnitTestCase {
 		],
 	];
 
-	public function provider() {
+	public static function provider() {
 		$testMathML = <<<'MathML'
 <math xmlns="http://www.w3.org/1998/Math/MathML">
     <mrow>
@@ -357,7 +357,7 @@ MathML;
 		$this->assertEquals( $expected, $result, $desc );
 	}
 
-	public function html5libProvider() {
+	public static function html5libProvider() {
 		$files = json_decode( file_get_contents( __DIR__ . '/html5lib-tests.json' ), true );
 		$tests = [];
 		foreach ( $files as $file => $fileTests ) {

@@ -26,7 +26,7 @@
  */
 class NamespaceAwareForeignTitleFactoryTest extends \MediaWikiUnitTestCase {
 
-	public function basicProvider() {
+	public static function basicProvider() {
 		return [
 			[
 				'MainNamespaceArticle', 0,

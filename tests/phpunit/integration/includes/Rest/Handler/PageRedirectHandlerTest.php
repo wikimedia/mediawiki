@@ -181,7 +181,7 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertUrlQueryParameters( $headerLocation, $queryParams );
 	}
 
-	public function permanentRedirectProvider() {
+	public static function permanentRedirectProvider() {
 		yield [ 'source', '/page/{title}', [], [ 'flavor' => 'edit', 'dummy' => 'test' ] ];
 		yield [ 'bare', '/page/{title}/bare' ];
 		yield [ 'html', '/page/{title}/html' ];

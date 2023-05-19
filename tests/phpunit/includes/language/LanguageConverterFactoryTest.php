@@ -127,7 +127,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		}
 	}
 
-	public function booleanProvider() {
+	public static function booleanProvider() {
 		return [
 			[ false, false, false ],
 			[ false, false, true ],
@@ -220,7 +220,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		}
 	}
 
-	public function codeProvider() {
+	public static function codeProvider() {
 		$trivialWithNothingElseCodes = [
 			'aa', 'ab', 'abs', 'ace', 'ady', 'ady-cyrl', 'aeb', 'aeb-arab', 'aeb-latn',
 			'af', 'ak', 'aln', 'als', 'am', 'an', 'ang', 'anp', 'ar', 'arc', 'arn',

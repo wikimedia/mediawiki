@@ -73,7 +73,7 @@ class MemcachedBagOStuffTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( $key, $this->cache->validateKeyEncoding( $key ) );
 	}
 
-	public function validKeyProvider() {
+	public static function validKeyProvider() {
 		return [
 			'empty' => [ '' ],
 			'digits' => [ '09' ],
@@ -90,7 +90,7 @@ class MemcachedBagOStuffTest extends \MediaWikiUnitTestCase {
 		$this->cache->validateKeyEncoding( $key );
 	}
 
-	public function invalidKeyProvider() {
+	public static function invalidKeyProvider() {
 		return [
 			[ "\x00" ],
 			[ ' ' ],

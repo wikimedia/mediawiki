@@ -17,7 +17,7 @@ class TitleMatcherTest extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, false );
 	}
 
-	public function nearMatchProvider() {
+	public static function nearMatchProvider() {
 		return [
 			'empty request returns nothing' => [ null, 'en', '', 'Near Match Test' ],
 			'with a hash returns nothing' => [ null, 'en', '#near match test', 'Near Match Test' ],
@@ -114,7 +114,7 @@ class TitleMatcherTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected, $title === null ? null : (string)$title );
 	}
 
-	public function hooksProvider() {
+	public static function hooksProvider() {
 		return [
 			'SearchGetNearMatchBefore' => [ 'SearchGetNearMatchBefore' ],
 			'SearchAfterNoDirectMatch' => [ 'SearchAfterNoDirectMatch' ],

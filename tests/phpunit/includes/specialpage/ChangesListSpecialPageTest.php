@@ -956,7 +956,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		];
 	}
 
-	public function provideGetFilterConflicts() {
+	public static function provideGetFilterConflicts() {
 		return [
 			[
 				"parameters" => [],

@@ -14,7 +14,7 @@ class SearchHighlighterTest extends \MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expectedOutput, $actual );
 	}
 
-	public function provideHighlightSimple() {
+	public static function provideHighlightSimple() {
 		return [
 			'no match' => [
 				'this is a very simple text.',

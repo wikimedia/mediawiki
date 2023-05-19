@@ -146,7 +146,7 @@ class WatchedItemQueryServiceIntegrationTest extends MediaWikiIntegrationTestCas
 		$this->assertCount( $initialCount + 4, $result4 );
 	}
 
-	public function invalidWatchlistTokenProvider() {
+	public static function invalidWatchlistTokenProvider() {
 		return [
 			[ 'wrongToken' ],
 			[ '' ],

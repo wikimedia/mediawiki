@@ -58,7 +58,7 @@ class FileTest extends MediaWikiMediaTestCase {
 			$data['message'] );
 	}
 
-	public function getThumbnailBucketProvider() {
+	public static function getThumbnailBucketProvider() {
 		$defaultBuckets = [ 256, 512, 1024, 2048, 4096 ];
 
 		return [
@@ -203,7 +203,7 @@ class FileTest extends MediaWikiMediaTestCase {
 		);
 	}
 
-	public function getThumbnailSourceProvider() {
+	public static function getThumbnailSourceProvider() {
 		return [
 			[ [
 				'supportsBucketing' => true,
