@@ -650,6 +650,18 @@ class MainConfigNames {
 	public const SVGMetadataCutoff = 'SVGMetadataCutoff';
 
 	/**
+	 * Name constant for the SVGNativeRendering setting, for use with Config::get()
+	 * @see MainConfigSchema::SVGNativeRendering
+	 */
+	public const SVGNativeRendering = 'SVGNativeRendering';
+
+	/**
+	 * Name constant for the SVGNativeRenderingSizeLimit setting, for use with Config::get()
+	 * @see MainConfigSchema::SVGNativeRenderingSizeLimit
+	 */
+	public const SVGNativeRenderingSizeLimit = 'SVGNativeRenderingSizeLimit';
+
+	/**
 	 * Name constant for the MediaInTargetLanguage setting, for use with Config::get()
 	 * @see MainConfigSchema::MediaInTargetLanguage
 	 */
