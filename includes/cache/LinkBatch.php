@@ -357,15 +357,15 @@ class LinkBatch {
 	/**
 	 * Construct a WHERE clause which will match all the given titles.
 	 *
+	 * It is the caller's responsibility to only call this if the LinkBatch is
+	 * not empty, because there is no safe way to represent a SQL conditional
+	 * for the empty set.
+	 *
 	 * @param string $prefix The appropriate table's field name prefix ('page', 'pl', etc)
 	 * @param ISQLPlatform $db DB object to use
-	 * @return string|false String with SQL where clause fragment, or false if no items.
+	 * @return string String with SQL where clause fragment
 	 */
 	public function constructSet( $prefix, $db ) {
-		if ( $this->isEmpty() ) {
-			return false;
-		}
-
 		if ( isset( $this->linksMigration::$prefixToTableMapping[$prefix] ) ) {
 			[ $blNamespace, $blTitle ] = $this->linksMigration->getTitleFields(
 				$this->linksMigration::$prefixToTableMapping[$prefix]
