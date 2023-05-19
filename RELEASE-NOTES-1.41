@@ -81,6 +81,8 @@ For notes on 1.40.x and older releases, see HISTORY.
 * …
 
 === Action API changes in 1.41 ===
+* (T322944) `Authorization` was added to the default list of headers
+  allowed for cross-origin API requests ($wgAllowedCorsHeaders).
 * …
 
 === Action API internal changes in 1.41 ===
