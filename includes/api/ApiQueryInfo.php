@@ -20,13 +20,17 @@
  * @file
  */
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\EditPage\IntroMessageBuilder;
+use MediaWiki\EditPage\PreloadedContentBuilder;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\PageReference;
 use MediaWiki\ParamValidator\TypeDef\TitleDef;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\RestrictionStore;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\TempUser\TempUserCreator;
@@ -58,13 +62,20 @@ class ApiQueryInfo extends ApiQueryBase {
 	private $linksMigration;
 	/** @var TempUserCreator */
 	private $tempUserCreator;
+	/** @var IntroMessageBuilder */
+	private $introMessageBuilder;
+	/** @var PreloadedContentBuilder */
+	private $preloadedContentBuilder;
+	/** @var RevisionLookup */
+	private $revisionLookup;
 
 	private $fld_protection = false, $fld_talkid = false,
 		$fld_subjectid = false, $fld_url = false,
 		$fld_readable = false, $fld_watched = false,
 		$fld_watchers = false, $fld_visitingwatchers = false,
 		$fld_notificationtimestamp = false,
-		$fld_preload = false, $fld_displaytitle = false, $fld_varianttitles = false;
+		$fld_preload = false, $fld_preloadcontent = false, $fld_editintro = false,
+		$fld_displaytitle = false, $fld_varianttitles = false;
 
 	/**
 	 * @var bool Whether to include link class information for the
@@ -121,6 +132,9 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * @param RestrictionStore $restrictionStore
 	 * @param LinksMigration $linksMigration
 	 * @param TempUserCreator $tempUserCreator
+	 * @param IntroMessageBuilder $introMessageBuilder
+	 * @param PreloadedContentBuilder $preloadedContentBuilder
+	 * @param RevisionLookup $revisionLookup
 	 */
 	public function __construct(
 		ApiQuery $queryModule,
@@ -134,7 +148,10 @@ class ApiQueryInfo extends ApiQueryBase {
 		LanguageConverterFactory $languageConverterFactory,
 		RestrictionStore $restrictionStore,
 		LinksMigration $linksMigration,
-		TempUserCreator $tempUserCreator
+		TempUserCreator $tempUserCreator,
+		IntroMessageBuilder $introMessageBuilder,
+		PreloadedContentBuilder $preloadedContentBuilder,
+		RevisionLookup $revisionLookup
 	) {
 		parent::__construct( $queryModule, $moduleName, 'in' );
 		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $contentLanguage );
@@ -146,6 +163,9 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->restrictionStore = $restrictionStore;
 		$this->linksMigration = $linksMigration;
 		$this->tempUserCreator = $tempUserCreator;
+		$this->introMessageBuilder = $introMessageBuilder;
+		$this->preloadedContentBuilder = $preloadedContentBuilder;
+		$this->revisionLookup = $revisionLookup;
 	}
 
 	/**
@@ -182,6 +202,8 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->fld_url = isset( $prop['url'] );
 			$this->fld_readable = isset( $prop['readable'] );
 			$this->fld_preload = isset( $prop['preload'] );
+			$this->fld_preloadcontent = isset( $prop['preloadcontent'] );
+			$this->fld_editintro = isset( $prop['editintro'] );
 			$this->fld_displaytitle = isset( $prop['displaytitle'] );
 			$this->fld_varianttitles = isset( $prop['varianttitles'] );
 			$this->fld_linkclasses = isset( $prop['linkclasses'] );
@@ -193,6 +215,17 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->missing = $pageSet->getMissingTitles();
 		$this->everything = $this->titles + $this->missing;
 		$result = $this->getResult();
+
+		if (
+			( $this->fld_preloadcontent || $this->fld_editintro ) &&
+			( count( $this->everything ) > 1 || count( $this->getPageSet()->getRevisionIDs() ) > 1 )
+		) {
+			// This is relatively slow, so disallow doing it for multiple pages, just in case.
+			// (Also, handling multiple revisions would be tricky.)
+			$this->dieWithError(
+				[ 'apierror-info-singlepagerevision', $this->getModulePrefix() ], 'invalidparammix'
+			);
+		}
 
 		uasort( $this->everything, [ Title::class, 'compare' ] );
 		if ( $this->params['continue'] !== null ) {
@@ -389,6 +422,78 @@ class ApiQueryInfo extends ApiQueryBase {
 
 				$pageInfo['preload'] = $text;
 			}
+		}
+
+		if ( $this->fld_preloadcontent ) {
+			$newSection = $this->params['preloadnewsection'];
+			// Preloaded content is not supported for already existing pages or sections.
+			// The actual page/section content should be shown for editing (from prop=revisions API).
+			if ( !$titleExists || $newSection ) {
+				$content = $this->preloadedContentBuilder->getPreloadedContent(
+					$title->toPageIdentity(),
+					$this->getAuthority(),
+					$this->params['preloadcustom'],
+					$this->params['preloadparams'] ?? [],
+					$newSection ? 'new' : null
+				);
+				$defaultContent = $newSection ? null :
+					$this->preloadedContentBuilder->getDefaultContent( $title->toPageIdentity() );
+				$contentIsDefault = $defaultContent ? $content->equals( $defaultContent ) : $content->isEmpty();
+				// Adapted from ApiQueryRevisionsBase::extractAllSlotInfo.
+				// The preloaded content fills the main slot.
+				$pageInfo['preloadcontent']['contentmodel'] = $content->getModel();
+				$pageInfo['preloadcontent']['contentformat'] = $content->getDefaultFormat();
+				ApiResult::setContentValue( $pageInfo['preloadcontent'], 'content', $content->serialize() );
+				// If the preloaded content generated from these parameters is the same as
+				// the default page content, the user should be discouraged from saving the page
+				// (e.g. by disabling the save button until changes are made, or displaying a warning).
+				$pageInfo['preloadisdefault'] = $contentIsDefault;
+			}
+		}
+
+		if ( $this->fld_editintro ) {
+			// Use $title as the context page in every processed message (T300184)
+			$localizerWithTitle = new class( $this, $title ) implements MessageLocalizer {
+				private MessageLocalizer $base;
+				private PageReference $page;
+
+				public function __construct( MessageLocalizer $base, PageReference $page ) {
+					$this->base = $base;
+					$this->page = $page;
+				}
+
+				/**
+				 * @inheritDoc
+				 */
+				public function msg( $key, ...$params ) {
+					return $this->base->msg( $key, ...$params )->page( $this->page );
+				}
+			};
+
+			$styleParamMap = [
+				'lessframes' => IntroMessageBuilder::LESS_FRAMES,
+				'moreframes' => IntroMessageBuilder::MORE_FRAMES,
+			];
+			// If we got here, there is exactly one page and revision in the query
+			$revId = array_key_first( $this->getPageSet()->getLiveRevisionIDs() );
+			$revRecord = $revId ? $this->revisionLookup->getRevisionById( $revId ) : null;
+
+			$messages = $this->introMessageBuilder->getIntroMessages(
+				$styleParamMap[ $this->params['editintrostyle'] ],
+				$this->params['editintroskip'] ?? [],
+				$localizerWithTitle,
+				$title->toPageIdentity(),
+				$revRecord,
+				$this->getAuthority(),
+				$this->params['editintrocustom'],
+				// Maybe expose these as parameters in the future, but for now it doesn't seem worth it:
+				null,
+				false
+			);
+			ApiResult::setIndexedTagName( $messages, 'ei' );
+			ApiResult::setArrayType( $messages, 'kvp', 'key' );
+
+			$pageInfo['editintro'] = $messages;
 		}
 
 		if ( $this->fld_displaytitle ) {
@@ -870,6 +975,8 @@ class ApiQueryInfo extends ApiQueryBase {
 					'url',
 					'readable', # private
 					'preload',
+					'preloadcontent', # private: checks current user's permissions
+					'editintro', # private: checks current user's permissions
 					'displaytitle',
 					'varianttitles',
 					'linkclasses', # private: stub length (and possibly hook colors)
@@ -879,6 +986,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 				EnumDef::PARAM_DEPRECATED_VALUES => [
 					'readable' => true, // Since 1.32
+					'preload' => true, // Since 1.41
 				],
 			],
 			'linkcontext' => [
@@ -896,6 +1004,37 @@ class ApiQueryInfo extends ApiQueryBase {
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
 			'testactionsautocreate' => false,
+			'preloadcustom' => [
+				// This should be a valid and existing page title, but we don't want to validate it here,
+				// because it's usually someone else's fault. It could emit a warning in the future.
+				ParamValidator::PARAM_TYPE => 'string',
+				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'preloadcontentonly' ] ],
+			],
+			'preloadparams' => [
+				ParamValidator::PARAM_ISMULTI => true,
+				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'preloadcontentonly' ] ],
+			],
+			'preloadnewsection' => [
+				ParamValidator::PARAM_TYPE => 'boolean',
+				ParamValidator::PARAM_DEFAULT => false,
+				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'preloadcontentonly' ] ],
+			],
+			'editintrostyle' => [
+				ParamValidator::PARAM_TYPE => [ 'lessframes', 'moreframes' ],
+				ParamValidator::PARAM_DEFAULT => 'moreframes',
+				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'editintroonly' ] ],
+			],
+			'editintroskip' => [
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_ISMULTI => true,
+				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'editintroonly' ] ],
+			],
+			'editintrocustom' => [
+				// This should be a valid and existing page title, but we don't want to validate it here,
+				// because it's usually someone else's fault. It could emit a warning in the future.
+				ParamValidator::PARAM_TYPE => 'string',
+				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'editintroonly' ] ],
+			],
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			],
