@@ -79,7 +79,7 @@ abstract class HookRunnerTestBase extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @dataProvider provideHookRunners
+	 * @dataProvider provideHookRunnersStatically
 	 */
 	public function testHookInterfacesNamingConvention( string $hookRunnerClass ) {
 		$hookRunnerReflectionClass = new ReflectionClass( $hookRunnerClass );
@@ -93,8 +93,8 @@ abstract class HookRunnerTestBase extends MediaWikiUnitTestCase {
 		}
 	}
 
-	public function provideHookMethods() {
-		foreach ( $this->provideHookRunners() as $name => [ $hookRunnerClass ] ) {
+	public static function provideHookMethods() {
+		foreach ( self::provideHookRunnersStatically() as $name => [ $hookRunnerClass ] ) {
 			$hookRunnerReflectionClass = new ReflectionClass( $hookRunnerClass );
 			foreach ( $hookRunnerReflectionClass->getInterfaces() as $hookInterface ) {
 				yield $name . ':' . $hookInterface->getName()
