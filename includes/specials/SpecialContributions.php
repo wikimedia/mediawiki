@@ -655,7 +655,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		}
 
 		# Add a link to rename the user
-		if ( $id && $permissionManager->userHasRight( $sp->getUser(), 'renameuser' ) ) {
+		if ( $id && $permissionManager->userHasRight( $sp->getUser(), 'renameuser' ) && !$target->isTemp() ) {
 			$tools['renameuser'] = $sp->getLinkRenderer()->makeKnownLink(
 				SpecialPage::getTitleFor( 'Renameuser' ),
 				$sp->msg( 'renameuser-linkoncontribs', $userpage->getText() )->text(),

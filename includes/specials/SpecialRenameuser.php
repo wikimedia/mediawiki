@@ -8,6 +8,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNamePrefixSearch;
+use MediaWiki\User\UserNameUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -36,6 +37,9 @@ class SpecialRenameuser extends SpecialPage {
 	/** @var UserNamePrefixSearch */
 	private $userNamePrefixSearch;
 
+	/** @var UserNameUtils */
+	private $userNameUtils;
+
 	/**
 	 * @param IConnectionProvider $dbConns
 	 * @param Language $contentLanguage
@@ -44,6 +48,7 @@ class SpecialRenameuser extends SpecialPage {
 	 * @param TitleFactory $titleFactory
 	 * @param UserFactory $userFactory
 	 * @param UserNamePrefixSearch $userNamePrefixSearch
+	 * @param UserNameUtils $userNameUtils
 	 */
 	public function __construct(
 		IConnectionProvider $dbConns,
@@ -52,7 +57,8 @@ class SpecialRenameuser extends SpecialPage {
 		PermissionManager $permissionManager,
 		TitleFactory $titleFactory,
 		UserFactory $userFactory,
-		UserNamePrefixSearch $userNamePrefixSearch
+		UserNamePrefixSearch $userNamePrefixSearch,
+		UserNameUtils $userNameUtils
 	) {
 		parent::__construct( 'Renameuser', 'renameuser' );
 
@@ -63,6 +69,7 @@ class SpecialRenameuser extends SpecialPage {
 		$this->titleFactory = $titleFactory;
 		$this->userFactory = $userFactory;
 		$this->userNamePrefixSearch = $userNamePrefixSearch;
+		$this->userNameUtils = $userNameUtils;
 	}
 
 	public function doesWrites() {
@@ -142,6 +149,22 @@ class SpecialRenameuser extends SpecialPage {
 		} elseif ( $oldName === $newName ) {
 			$out->addHTML( Html::errorBox( $out->msg( 'renameuser-error-same-user' )->parse() ) );
 
+			return;
+		}
+
+		// Do not act on temp users
+		if ( $this->userNameUtils->isTemp( $oldName ) ) {
+			$out->addHTML( Html::errorBox(
+				$out->msg( 'renameuser-error-temp-user' )->plaintextParams( $oldName )->parse()
+			) );
+			return;
+		}
+		if ( $this->userNameUtils->isTemp( $newName ) ||
+			$this->userNameUtils->isTempReserved( $newName )
+		) {
+			$out->addHTML( Html::errorBox(
+				$out->msg( 'renameuser-error-temp-user-reserved' )->plaintextParams( $newName )->parse()
+			) );
 			return;
 		}
 
@@ -256,7 +279,7 @@ class SpecialRenameuser extends SpecialPage {
 	private function getWarnings( $oldName, $newName ) {
 		$warnings = [];
 		$oldUser = $this->userFactory->newFromName( $oldName, $this->userFactory::RIGOR_NONE );
-		if ( $oldUser && $oldUser->getBlock() ) {
+		if ( $oldUser && !$oldUser->isTemp() && $oldUser->getBlock() ) {
 			$warnings[] = [
 				'renameuser-warning-currentblock',
 				SpecialPage::getTitleFor( 'Log', 'block' )->getFullURL( [ 'page' => $oldName ] )
