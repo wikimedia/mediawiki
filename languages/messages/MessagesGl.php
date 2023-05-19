@@ -44,8 +44,8 @@ $defaultDateFormat = 'dmy';
 
 $dateFormats = [
 	'dmy time' => 'H:i',
-	'dmy date' => 'j \d\e F \d\e Y',
-	'dmy both' => 'j \d\e F \d\e Y "ás" H:i',
+	'dmy date' => 'j "de" F "de" Y',
+	'dmy both' => 'j "de" F "de" Y "ás" H:i',
 ];
 
 /** @phpcs-require-sorted-array */
