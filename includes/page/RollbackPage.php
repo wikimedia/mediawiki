@@ -512,6 +512,13 @@ class RollbackPage {
 	 * @return string
 	 */
 	private function getSummary( RevisionRecord $current, RevisionRecord $target ): string {
+		$revisionsBetween = $this->revisionStore->countRevisionsBetween(
+			$current->getPageId(),
+			$target,
+			$current,
+			1000,
+			RevisionStore::INCLUDE_NEW
+		);
 		$currentEditorForPublic = $current->getUser( RevisionRecord::FOR_PUBLIC );
 		if ( $this->summary === '' ) {
 			if ( !$currentEditorForPublic ) { // no public user name
@@ -535,6 +542,7 @@ class RollbackPage {
 			Message::dateTimeParam( $target->getTimestamp() ),
 			$current->getId(),
 			Message::dateTimeParam( $current->getTimestamp() ),
+			$revisionsBetween,
 		];
 		if ( $summary instanceof MessageValue ) {
 			$summary = ( new Converter() )->convertMessageValue( $summary );
