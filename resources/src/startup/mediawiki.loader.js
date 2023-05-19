@@ -634,7 +634,8 @@
 		return function require( moduleName ) {
 			var fileName = resolveRelativePath( moduleName, basePath );
 			if ( fileName === null ) {
-				// Not a relative path, so it's a module name
+				// Not a relative path, so it's either a module name or,
+				// (if in test mode) a private file imported from another module.
 				return mw.loader.require( moduleName );
 			}
 
@@ -1627,13 +1628,41 @@
 		 * @return {Mixed} Exported value
 		 */
 		require: function ( moduleName ) {
+			var path;
+			if ( window.QUnit ) {
+				// Comply with Node specification
+				// https://nodejs.org/docs/v20.1.0/api/modules.html#all-together
+				//
+				// > Interpret X as a combination of NAME and SUBPATH, where the NAME
+				// > may have a "@scope/" prefix and the subpath begins with a slash (`/`).
+				//
+				// Regex inspired by Node [1], but simplified to suite our purposes
+				// and split in two in order to keep the Regex Star Height under 2,
+				// as per ESLint security/detect-unsafe-regex.
+				//
+				// These patterns match "@scope/module/dir/file.js" and "module/dir/file.js"
+				// respectively. They must not match "module.name" or "@scope/module.name".
+				//
+				// [1] https://github.com/nodejs/node/blob/v20.1.0/lib/internal/modules/cjs/loader.js#L554-L560
+				var paths = moduleName.startsWith( '@' ) ?
+					/^(@[^/]+\/[^/]+)\/(.*)$/.exec( moduleName ) :
+					// eslint-disable-next-line no-mixed-spaces-and-tabs
+					        /^([^/]+)\/(.*)$/.exec( moduleName );
+				if ( paths ) {
+					moduleName = paths[ 1 ];
+					path = paths[ 2 ];
+				}
+			}
+
 			// Only ready modules can be required
 			if ( mw.loader.getState( moduleName ) !== 'ready' ) {
 				// Module may've forgotten to declare a dependency
 				throw new Error( 'Module "' + moduleName + '" is not loaded' );
 			}
 
-			return registry[ moduleName ].module.exports;
+			return path ?
+				makeRequireFunction( registry[ moduleName ], '' )( './' + path ) :
+				registry[ moduleName ].module.exports;
 		}
 	};
 
