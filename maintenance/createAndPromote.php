@@ -54,8 +54,8 @@ class CreateAndPromote extends Maintenance {
 			true
 		);
 
-		$this->addArg( "username", "Username of new user" );
-		$this->addArg( "password", "Password to set", false );
+		$this->addArg( 'username', 'Username of new user' );
+		$this->addArg( 'password', 'Password to set', false );
 	}
 
 	public function execute() {
@@ -67,15 +67,15 @@ class CreateAndPromote extends Maintenance {
 
 		$user = $services->getUserFactory()->newFromName( $username );
 		if ( !is_object( $user ) ) {
-			$this->fatalError( "invalid username." );
+			$this->fatalError( 'invalid username.' );
 		}
 
 		$exists = ( $user->idForName() !== 0 );
 
 		if ( $exists && !$force ) {
-			$this->fatalError( "Account exists. Perhaps you want the --force option?" );
+			$this->fatalError( 'Account exists. Perhaps you want the --force option?' );
 		} elseif ( !$exists && !$password ) {
-			$this->error( "Argument <password> required!" );
+			$this->error( 'Argument <password> required!' );
 			$this->maybeHelp( true );
 		} elseif ( $exists ) {
 			$inGroups = $services->getUserGroupManager()->getUserGroups( $user );
