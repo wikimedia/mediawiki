@@ -1036,8 +1036,6 @@
 	"diff-multi-manyusers": "({{PLURAL:$1|Uma edição intermédia|$1 edições intermédias}} de mais de {{PLURAL:$2|um utilizador|$2 utilizadores}} não {{PLURAL:$1|apresentada|apresentadas}})",
 	"diff-paragraph-moved-tonew": "O parágrafo foi movido. Clique para saltar para a nova posição.",
 	"diff-paragraph-moved-toold": "O parágrafo foi movido. Clique para saltar para a posição anterior.",
-	"diff-inline-tooltip-ins": "Conteúdo adicionado",
-	"diff-inline-tooltip-del": "Conteúdo apagado",
 	"difference-missing-revision": "{{PLURAL:$2|Uma revisão|$2 revisões}} desta diferença ($1) não {{PLURAL:$2|foi encontrada|foram encontradas}}.\n\nIsto é geralmente causado por seguir uma hiperligação de diferenças desatualizada para uma página que foi eliminada.\nOs detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].",
 	"difference-bad-old-revision": "O conteúdo da revisão antiga está em falta ou corrompido.",
 	"difference-bad-new-revision": "O conteúdo da revisão nova está em falta ou corrompido.",

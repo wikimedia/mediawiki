@@ -1148,8 +1148,6 @@
 	"diff-multi-manyusers": "({{PLURAL:$1|Une|$1}} version{{PLURAL:$1||s}} intermédiaire{{PLURAL:$1||s}} par plus d{{PLURAL:$2|’un|e $2}} utilisateur{{PLURAL:$2||s}} {{PLURAL:$1|est|sont}} masquée{{PLURAL:$1||s}})",
 	"diff-paragraph-moved-tonew": "Paragraphe déplacé. Cliquer pour accéder au nouvel emplacement.",
 	"diff-paragraph-moved-toold": "Paragraphe déplacé. Cliquer pour accéder à l’ancien emplacement.",
-	"diff-inline-tooltip-ins": "Contenu ajouté",
-	"diff-inline-tooltip-del": "Contenu supprimé",
 	"difference-missing-revision": "{{PLURAL:$2|Une|$2}} version{{PLURAL:$2||s}} de cette différence ($1) n’{{PLURAL:$2|a|ont}} pas été trouvée{{PLURAL:$2||s}}.\n\nCela survient en général en suivant un lien de différence désuet vers une page qui a été supprimée.\nVous pouvez trouver des détails dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des suppressions].",
 	"difference-bad-old-revision": "Le contenu de l’ancienne révision est manquant ou corrompu.",
 	"difference-bad-new-revision": "Le contenu de la nouvelle révision est manquant ou corrompu.",

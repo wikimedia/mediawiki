@@ -962,8 +962,6 @@
 	"diff-multi-manyusers": "({{PLURAL:$1|Un version intermedie|$1 versiones intermedie}} facite per plus de $2 {{PLURAL:$2|usator|usatores}} non es monstrate)",
 	"diff-paragraph-moved-tonew": "Le paragrapho ha essite displaciate. Clicca pro saltar al nove position.",
 	"diff-paragraph-moved-toold": "Le paragrapho ha essite displaciate. Clicca pro saltar al ancian position.",
-	"diff-inline-tooltip-ins": "Contento addite",
-	"diff-inline-tooltip-del": "Contento delite",
 	"difference-missing-revision": "{{PLURAL:$2|Un version|$2 versiones}} de iste differentia ($1) non ha essite trovate.\n\nIsto es generalmente causate per sequer un ligamine de diff obsolete a un pagina que ha essite delite.\nDetalios se trova in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
 	"difference-bad-old-revision": "Le contento del ancian version manca o es corrumpite.",
 	"difference-bad-new-revision": "Le contento del nove version manca o es corrumpite.",

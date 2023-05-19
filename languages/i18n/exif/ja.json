@@ -409,5 +409,11 @@
 	"exif-exposurelockused": "露出を固定していたか",
 	"exif-exposurelockused-true": "はい",
 	"exif-exposurelockused-false": "いいえ",
+	"exif-poseheadingdegrees": "コンパスの向首方向（度数）",
+	"exif-posepitchdegrees": "ピッチ（度数）",
+	"exif-poserolldegrees": "ロール（度数）",
+	"exif-initialviewheadingdegrees": "初回ビューの向首角（度数）",
+	"exif-initialviewpitchdegrees": "初回ビューのピッチ角（度数）",
+	"exif-initialviewrolldegrees": "初回ビューのロール角（度数）",
 	"exif-stitchingsoftware": "スティッチングソフトウェア"
 }

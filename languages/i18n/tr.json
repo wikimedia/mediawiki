@@ -1068,8 +1068,6 @@
 	"diff-multi-manyusers": "($2 kullanıcıdan fazla tarafından yapılan {{PLURAL:$1|bir ara revizyon|$1 ara revizyon}} gösterilmiyor)",
 	"diff-paragraph-moved-tonew": "Paragraf taşındı. Yeni yere gitmek için tıklayın.",
 	"diff-paragraph-moved-toold": "Paragraf taşındı. Eski yere gitmek için tıklayın.",
-	"diff-inline-tooltip-ins": "İçerik eklendi",
-	"diff-inline-tooltip-del": "İçerik silindi",
 	"difference-missing-revision": "Bu farkın {{PLURAL:$2|bir revizyonu|$2 revizyonu}} ($1) bulunamadı.\n\nBu genellikle, silinen bir sayfaya olan eski tarihli bir fark sayfasına bağlantılardan dolayı olur.\nAyrıntılar [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} silme günlüğünde] bulunabilir.",
 	"difference-bad-old-revision": "Eski revizyonun içeriği eksik veya bozuk.",
 	"difference-bad-new-revision": "Yeni revizyonun içeriği eksik veya bozuk.",

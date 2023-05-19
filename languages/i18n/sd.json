@@ -738,8 +738,6 @@
 	"diff-empty": "(ڪو بہ تفاوت ڪونھي)",
 	"diff-multi-sameuser": "({{PLURAL:$1|ھڪ وچيون ورجاءُ|$1 وچيان ورجاءَ}} ساڳي {{GENDER:$3|واپرائيندڙ}} پاران ظاھر ناھن ڪيل)",
 	"diff-multi-otherusers": "({{PLURAL:$2|ھڪ ٻي واپرائيندڙ|$2 واپرائيندڙن}} پاران {{PLURAL:$1|ھڪ وچيون ورجاءُ|$1 وچيان ورجاءَ}} نہ ڏيکاريل)",
-	"diff-inline-tooltip-ins": "شامل ڪيل مواد",
-	"diff-inline-tooltip-del": "ڊاٿل مواد",
 	"searchresults": "ڳولا نتيجا",
 	"search-filter-title-prefix": "رڳو انھن صفحن ۾ ڳوليندي جن جو عنوان \"$1\" سان شروع ٿي ٿو.",
 	"search-filter-title-prefix-reset": "سڀ صفحا ڳوليو",

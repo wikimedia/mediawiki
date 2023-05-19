@@ -1035,8 +1035,6 @@
 	"diff-multi-manyusers": "({{PLURAL:$1|Satu|$1}} revisi antara oleh lebih dari $2 {{PLURAL:$2|satu|$2}} pengguna tak ditampilkan)",
 	"diff-paragraph-moved-tonew": "Paragraf dipindahkan. Klik untuk melompat ke lokasi baru.",
 	"diff-paragraph-moved-toold": "Paragraf dipindahkan. Klik untuk melompat ke lokasi lama.",
-	"diff-inline-tooltip-ins": "Konten ditambahkan",
-	"diff-inline-tooltip-del": "Konten dihapus",
 	"difference-missing-revision": "{{PLURAL:$2|Satu revisi|$2 revisi}} dari perbedaan ini ($1) {{PLURAL:$2|tidak|tidak}} ditemukan.\n\nHal ini biasanya disebabkan oleh tautan diff yang kedaluwarsa ke halaman yang sudah dihapus.\nRinciannya dapat ditemukan di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
 	"difference-bad-old-revision": "Konten revisi lama hilang atau rusak.",
 	"difference-bad-new-revision": "Konten revisi baru hilang atau rusak.",

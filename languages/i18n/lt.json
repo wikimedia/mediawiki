@@ -992,8 +992,6 @@
 	"diff-multi-manyusers": "(daugiau nei $2 {{PLURAL:$2|naudotojo|naudotojų|naudotojų}} $1 {{PLURAL:$1|tarpinis keitimas nėra rodomas|tarpiniai keitimai nėra rodomi|tarpinių keitimų nėra rodoma}})",
 	"diff-paragraph-moved-tonew": "Pastraipa perkelta. Paspauskite, kad persikeltumėte į naują vietą.",
 	"diff-paragraph-moved-toold": "Pastraipa perkelta. Paspauskite, kad persikeltumėte į seną vietą.",
-	"diff-inline-tooltip-ins": "Pridėtas turinys",
-	"diff-inline-tooltip-del": "Ištrintas turinys",
 	"difference-missing-revision": "{{PLURAL:$2|Vienas pakeitimas|$2 pakeitimai}} šio skirtumo ($1) {{PLURAL:$2|nebuvo}} rasti.\n\nTai paprastai atsitinka kai nuoroda veda į puslapį, kuris buvo ištrintas.\nInformacija gali būti rasta [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
 	"difference-bad-old-revision": "Trūksta senosios versijos turinio arba jis sugadintas.",
 	"difference-bad-new-revision": "Trūksta naujos versijos turinio arba jis sugadintas.",

@@ -1005,8 +1005,6 @@
 	"diff-multi-manyusers": "({{PLURAL:$1|Én mellomversjon|$1 mellomversjoner}} av mer enn $2 {{PLURAL:$2|bruker|brukere}} vises ikke)",
 	"diff-paragraph-moved-tonew": "Avsnittet ble flyttet. Klikk for å hoppe til den nye plasseringen.",
 	"diff-paragraph-moved-toold": "Avsnittet ble flyttet. Klikk for å hoppe til den gamle plasseringen.",
-	"diff-inline-tooltip-ins": "Innhold lagt til",
-	"diff-inline-tooltip-del": "Slettet innhold",
 	"difference-missing-revision": "{{PLURAL:$2|Én sideversjon|$2 sideversjoner}} av denne forskjellen ($1) ble ikke funnet.\n\nDette skyldes som regel at en gammel forskjellslenke er fulgt til en side som er slettet.\nDetaljer kan finnes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
 	"difference-bad-old-revision": "Innholdet i den gamle versjonen mangler eller er skadd.",
 	"difference-bad-new-revision": "Innholdet i den nye versjonen mangler eller er skadd.",
