@@ -265,9 +265,7 @@
 		// - We've never started a buffer before, this will be our first.
 		// - The last buffer we created was flushed meanwhile, so start a new one.
 		// - The next CSS chunk syntactically needs to be at the start of a stylesheet (T37562).
-		//
-		// Optimization: Avoid computing the string length each time ('@import'.length === 7)
-		if ( !lastCssBuffer || cssText.slice( 0, 7 ) === '@import' ) {
+		if ( !lastCssBuffer || cssText.startsWith( '@import' ) ) {
 			lastCssBuffer = {
 				cssText: '',
 				callbacks: []

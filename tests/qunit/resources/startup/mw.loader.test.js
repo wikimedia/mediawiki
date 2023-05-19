@@ -382,7 +382,12 @@
 				} );
 			},
 			{
+				// @import always works in the first stylesheet.
+				// Test with at least two stylesheets to excercise the special
+				// condition in addEmbeddedCSS to support @import (end the batch
+				// earlier than normal).
 				css: [
+					'.something-else-first {}',
 					'@import url(\'' +
 						urlStyleTest( '.mw-test-implement-import', 'float', 'right' ) +
 						'\');\n' +
