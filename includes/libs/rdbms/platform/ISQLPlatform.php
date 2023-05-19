@@ -25,7 +25,7 @@ use Wikimedia\Rdbms\Subquery;
 
 /**
  * Interface for query language.
- * Note: This is for simple SQL operations, use QueryBuilder for building full queries.
+ * Note: This is for simple SQL operations, use query builder classes for building full queries.
  *
  * Methods of this interface should be only used by rdbms library.
  * @since 1.39
@@ -188,14 +188,14 @@ interface ISQLPlatform {
 	public function makeList( array $a, $mode = self::LIST_COMMA );
 
 	/**
-	 * Build a "OR" condition with pairs from a two-dimenstional array.
+	 * Build a "OR" condition with pairs from a two-dimensional array.
 	 *
 	 * The associative array should have integer keys relating to the $baseKey field.
 	 * The nested array should have string keys for the $subKey field. The inner
 	 * values are ignored, and are typically boolean true.
 	 *
 	 * Example usage:
-	 * @code
+	 * ```
 	 *     $data = [
 	 *         2 => [
 	 *             'Foo' => true,
@@ -207,7 +207,7 @@ interface ISQLPlatform {
 	 *     ];
 	 *     // (page_namespace = 2 AND page_title IN ('Foo','Bar'))
 	 *     // OR (page_namespace = 3 AND page_title = 'Quux')
-	 *
+	 * ```
 	 * @todo This is effectively specific to MediaWiki's LinkBatch.
 	 * Consider deprecating or generalising slightly.
 	 *
@@ -281,8 +281,8 @@ interface ISQLPlatform {
 	 *
 	 * This takes a variable-length argument list with parts of pattern to match
 	 * containing either string literals that will be escaped or tokens returned by
-	 * anyChar() or anyString(). Alternatively, the function could be provided with
-	 * an array of aforementioned parameters.
+	 * {@link anyChar()} or {@link anyString()}.
+	 * Alternatively, the function could be provided with an array of the aforementioned parameters.
 	 *
 	 * Example: $dbr->buildLike( 'My_page_title/', $dbr->anyString() ) returns
 	 * a LIKE clause that searches for subpages of 'My page title'.
@@ -298,14 +298,14 @@ interface ISQLPlatform {
 	public function buildLike( $param, ...$params );
 
 	/**
-	 * Returns a token for buildLike() that denotes a '_' to be used in a LIKE query
+	 * Returns a token for {@link buildLike()} that denotes a '_' to be used in a LIKE query
 	 *
 	 * @return LikeMatch
 	 */
 	public function anyChar();
 
 	/**
-	 * Returns a token for buildLike() that denotes a '%' to be used in a LIKE query
+	 * Returns a token for {@link buildLike()} that denotes a '%' to be used in a LIKE query
 	 *
 	 * @return LikeMatch
 	 */
@@ -324,13 +324,13 @@ interface ISQLPlatform {
 	 * This is used for providing overload point for other DB abstractions
 	 * not compatible with the MySQL syntax.
 	 * @param array $sqls SQL statements to combine
-	 * @param bool $all Either IDatabase::UNION_ALL or IDatabase::UNION_DISTINCT
+	 * @param bool $all Either {@link IDatabase::UNION_ALL} or {@link IDatabase::UNION_DISTINCT}
 	 * @return string SQL fragment
 	 */
 	public function unionQueries( $sqls, $all );
 
 	/**
-	 * Convert a timestamp in one of the formats accepted by ConvertibleTimestamp
+	 * Convert a timestamp in one of the formats accepted by {@link ConvertibleTimestamp}
 	 * to the format used for inserting into timestamp fields in this DBMS
 	 *
 	 * The result is unquoted, and needs to be passed through addQuotes()
@@ -512,7 +512,7 @@ interface ISQLPlatform {
 	 *
 	 * All functions of this object which require a table name call this function
 	 * themselves. Pass the canonical name to such functions. This is only needed
-	 * when calling query() directly.
+	 * when calling {@link query()} directly.
 	 *
 	 * @note This function does not sanitize user input. It is not safe to use
 	 *   this function to escape user input.
@@ -533,10 +533,12 @@ interface ISQLPlatform {
 	 * or using {@link SelectQueryBuilder}.
 	 *
 	 * Theoretical example (which really does not require raw SQL):
+	 * ```
 	 * [ 'user' => $user, 'watchlist' => $watchlist ] =
 	 *     $dbr->tableNames( 'user', 'watchlist' );
 	 * $sql = "SELECT wl_namespace, wl_title FROM $watchlist, $user
 	 *         WHERE wl_user=user_id AND wl_user=$nameWithQuotes";
+	 * ```
 	 *
 	 * @param string ...$tables
 	 * @return array
@@ -555,9 +557,11 @@ interface ISQLPlatform {
 	 * methods, or using {@link SelectQueryBuilder}.
 	 *
 	 * Theoretical example (which really does not require raw SQL):
+	 * ```
 	 * [ $user, $watchlist ] = $dbr->tableNamesN( 'user', 'watchlist' );
 	 * $sql = "SELECT wl_namespace,wl_title FROM $watchlist,$user
 	 *         WHERE wl_user=user_id AND wl_user=$nameWithQuotes";
+	 * ```
 	 *
 	 * @param string ...$tables
 	 * @return array
