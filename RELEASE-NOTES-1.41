@@ -237,6 +237,8 @@ because of Phabricator reports.
 * UserGroupMembership::getGroupName(), deprecated in 1.38, and
   UserGroupMembership::getGroupMemberName(), deprecated in 1.40, now emit
   deprecation warnings.
+* Hooks::isRegistered(), ::getHandlers(), ::run() and ::runWithoutAbort(),
+  deprecated in 1.35, now emit deprecation warnings.
 * …
 
 === Other changes in 1.41 ===
