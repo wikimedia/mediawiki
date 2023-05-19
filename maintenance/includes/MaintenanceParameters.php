@@ -77,7 +77,7 @@ class MaintenanceParameters {
 	private $errors = [];
 
 	/** @var string */
-	private $usagePrefix = 'php';
+	private $usagePrefix = 'php maintenance/run.php';
 
 	/**
 	 * Returns a reference to a member field.

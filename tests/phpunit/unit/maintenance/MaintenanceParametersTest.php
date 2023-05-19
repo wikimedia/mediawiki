@@ -367,7 +367,7 @@ class MaintenanceParametersTest extends TestCase {
 		$lines = preg_split( '/\s*[\r\n]\s*/', $help );
 		$lines = array_values( array_filter( $lines ) );
 
-		$synopsisIndex = $this->findInLines( $lines, 'Usage: php Foo' );
+		$synopsisIndex = $this->findInLines( $lines, 'Usage: php maintenance/run.php Foo' );
 		$this->assertNotFalse( $synopsisIndex );
 		$synopsis = $lines[$synopsisIndex];
 
@@ -429,7 +429,7 @@ class MaintenanceParametersTest extends TestCase {
 		$lines = preg_split( '/\s*[\r\n]\s*/', $help );
 		$lines = array_values( array_filter( $lines ) );
 
-		$synopsisIndex = $this->findInLines( $lines, 'Usage: php Foo' );
+		$synopsisIndex = $this->findInLines( $lines, 'Usage: php maintenance/run.php Foo' );
 		$this->assertNotFalse( $synopsisIndex );
 		$synopsis = $lines[$synopsisIndex];
 
