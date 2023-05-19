@@ -21,7 +21,7 @@ use MediaWiki\Category\CategoriesRdf;
 use MediaWiki\MainConfigNames;
 use Wikimedia\Purtle\RdfWriter;
 use Wikimedia\Purtle\RdfWriterFactory;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -55,11 +55,11 @@ class DumpCategoriesAsRdf extends Maintenance {
 
 	/**
 	 * Produce row iterator for categories.
-	 * @param IDatabase $dbr Database connection
+	 * @param IReadableDatabase $dbr
 	 * @param string $fname Name of the calling function
 	 * @return RecursiveIterator
 	 */
-	public function getCategoryIterator( IDatabase $dbr, $fname ) {
+	public function getCategoryIterator( IReadableDatabase $dbr, $fname ) {
 		$it = new BatchRowIterator(
 			$dbr,
 			[ 'page', 'page_props', 'category' ],
@@ -94,12 +94,12 @@ class DumpCategoriesAsRdf extends Maintenance {
 
 	/**
 	 * Get iterator for links for categories.
-	 * @param IDatabase $dbr
+	 * @param IReadableDatabase $dbr
 	 * @param int[] $ids List of page IDs
 	 * @param string $fname Name of the calling function
 	 * @return Traversable
 	 */
-	public function getCategoryLinksIterator( IDatabase $dbr, array $ids, $fname ) {
+	public function getCategoryLinksIterator( IReadableDatabase $dbr, array $ids, $fname ) {
 		$it = new BatchRowIterator(
 			$dbr,
 			'categorylinks',
