@@ -61,6 +61,7 @@ use MediaWiki\Block\UserBlockCommandFactory;
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Category\TrackingCategories;
+use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Collation\CollationFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentFormatter\CommentParserFactory;
@@ -402,6 +403,20 @@ return [
 
 	'ChangeTagDefStore' => static function ( MediaWikiServices $services ): NameTableStore {
 		return $services->getNameTableStoreFactory()->getChangeTagDef();
+	},
+
+	'ChangeTagsStore' => static function ( MediaWikiServices $services ): ChangeTagsStore {
+		return new ChangeTagsStore(
+			$services->getDBLoadBalancerFactory(),
+			$services->getChangeTagDefStore(),
+			$services->getMainWANObjectCache(),
+			$services->getHookContainer(),
+			LoggerFactory::getInstance( 'ChangeTags' ),
+			new ServiceOptions(
+				ChangeTagsStore::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			)
+		);
 	},
 
 	'CollationFactory' => static function ( MediaWikiServices $services ): CollationFactory {

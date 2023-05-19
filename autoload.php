@@ -967,6 +967,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Category\\Category' => __DIR__ . '/includes/Category/Category.php',
 	'MediaWiki\\Category\\CategoryViewer' => __DIR__ . '/includes/Category/CategoryViewer.php',
 	'MediaWiki\\Category\\TrackingCategories' => __DIR__ . '/includes/Category/TrackingCategories.php',
+	'MediaWiki\\ChangeTags\\ChangeTagsStore' => __DIR__ . '/includes/changetags/ChangeTagsStore.php',
 	'MediaWiki\\ChangeTags\\Hook\\ChangeTagAfterDeleteHook' => __DIR__ . '/includes/changetags/Hook/ChangeTagAfterDeleteHook.php',
 	'MediaWiki\\ChangeTags\\Hook\\ChangeTagCanCreateHook' => __DIR__ . '/includes/changetags/Hook/ChangeTagCanCreateHook.php',
 	'MediaWiki\\ChangeTags\\Hook\\ChangeTagCanDeleteHook' => __DIR__ . '/includes/changetags/Hook/ChangeTagCanDeleteHook.php',

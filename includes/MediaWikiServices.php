@@ -58,6 +58,7 @@ use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Category\TrackingCategories;
+use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Collation\CollationFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentFormatter\CommentParserFactory;
@@ -857,6 +858,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getChangeTagDefStore(): NameTableStore {
 		return $this->getService( 'ChangeTagDefStore' );
+	}
+
+	/**
+	 * @since 1.41
+	 * @return ChangeTagsStore
+	 */
+	public function getChangeTagsStore(): ChangeTagsStore {
+		return $this->getService( 'ChangeTagsStore' );
 	}
 
 	/**
