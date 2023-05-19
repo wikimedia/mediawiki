@@ -207,7 +207,14 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * @return User|string User object on success or a string on error
 	 */
 	public static function getTarget( $target, User $sender ) {
-		return MediaWikiServices::getInstance()->getEmailUser()->getTarget( (string)$target, $sender );
+		$status = MediaWikiServices::getInstance()->getEmailUser()->getTarget( (string)$target, $sender );
+		if ( !$status->isGood() ) {
+			$msg = $status->getErrors()[0]['message'];
+			$ret = $msg === 'emailnotarget' ? 'notarget' : preg_replace( '/text$/', '', $msg );
+		} else {
+			$ret = $status->getValue();
+		}
+		return $ret;
 	}
 
 	/**
@@ -222,7 +229,14 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		if ( !$target instanceof User ) {
 			return 'notarget';
 		}
-		return MediaWikiServices::getInstance()->getEmailUser()->validateTarget( $target, $sender );
+		$status = MediaWikiServices::getInstance()->getEmailUser()->validateTarget( $target, $sender );
+		if ( $status->isGood() ) {
+			$ret = '';
+		} else {
+			$msg = $status->getErrors()[0]['message'];
+			$ret = $msg === 'emailnotarget' ? 'notarget' : preg_replace( '/text$/', '', $msg );
+		}
+		return $ret;
 	}
 
 	/**
@@ -279,12 +293,11 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	public function sendEmailForm() {
 		$out = $this->getOutput();
 
-		$ret = $this->mTargetObj;
-		if ( !$ret instanceof User ) {
+		if ( !$this->mTargetObj instanceof User ) {
 			if ( $this->mTarget != '' ) {
-				// Messages used here: notargettext, noemailtext, nowikiemailtext
-				$ret = ( $ret == 'notarget' ) ? 'emailnotarget' : ( $ret . 'text' );
-				return Status::newFatal( $ret );
+				// Messages used here: noemailtext, nowikiemailtext
+				$msg = ( $this->mTargetObj === 'notarget' ) ? 'emailnotarget' : ( $this->mTargetObj . 'text' );
+				return Status::newFatal( $msg );
 			}
 			return false;
 		}
@@ -309,7 +322,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		if ( $result === true || ( $result instanceof Status && $result->isGood() ) ) {
 			$out->setPageTitle( $this->msg( 'emailsent' ) );
 			$out->addWikiMsg( 'emailsenttext', $this->mTarget );
-			$out->returnToMain( false, $ret->getUserPage() );
+			$out->returnToMain( false, $this->mTargetObj->getUserPage() );
 		}
 		return true;
 	}
@@ -361,6 +374,10 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			if ( $ret->hasMessage( 'hookaborted' ) ) {
 				// BC: The method could previously return false if the EmailUser hook set the error to false.
 				$ret = false;
+			} elseif ( $ret->hasMessage( 'noemailtarget' ) ) {
+				// BC: The previous implementation would use notargettext even if noemailtarget would be the right
+				// message to use here.
+				return Status::newFatal( 'notargettext' );
 			} else {
 				$ret = Status::wrap( $ret );
 			}

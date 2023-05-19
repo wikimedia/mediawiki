@@ -83,19 +83,20 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 	/**
 	 * @param mixed $target
 	 * @param User $sender
-	 * @param string|null $expected String for an error message to compare, or null to indicate that we're expecting
-	 * a User object.
+	 * @param StatusValue|null $expected StatusValue object to compare for errors, or null to indicate that we're
+	 * expecting a good StatusValue with a User object as value.
 	 * @param UserFactory|null $userFactory
 	 * @covers ::getTarget
 	 * @dataProvider provideGetTarget
 	 */
-	public function testGetTarget( $target, User $sender, ?string $expected, UserFactory $userFactory = null ) {
+	public function testGetTarget( $target, User $sender, ?StatusValue $expected, UserFactory $userFactory = null ) {
 		$emailUser = $this->getEmailUser( null, null, $userFactory );
-		$actualTarget = $emailUser->getTarget( $target, $sender );
+		$actualStatus = $emailUser->getTarget( $target, $sender );
 		if ( $expected === null ) {
-			$this->assertInstanceOf( User::class, $actualTarget );
+			$this->assertStatusGood( $actualStatus );
+			$this->assertInstanceOf( User::class, $actualStatus->getValue() );
 		} else {
-			$this->assertSame( $expected, $actualTarget );
+			$this->assertEquals( $expected, $actualStatus );
 		}
 	}
 
@@ -109,7 +110,12 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 			->method( 'newFromName' )
 			->with( $invalidUsername )
 			->willReturn( null );
-		yield 'Invalid username' => [ $invalidUsername, $noopSender, 'notarget', $invalidUsernameUserFactory ];
+		yield 'Invalid username' => [
+			$invalidUsername,
+			$noopSender,
+			StatusValue::newFatal( 'emailnotarget' ),
+			$invalidUsernameUserFactory
+		];
 
 		$noEmailTarget = $this->createMock( User::class );
 		$noEmailTarget->method( 'getId' )->willReturn( 1 );
@@ -119,7 +125,12 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 			->method( 'newFromName' )
 			->with( $targetName )
 			->willReturn( $noEmailTarget );
-		yield 'Invalid target' => [ $targetName, $noopSender, 'noemail', $noEmailTargetUserFactory ];
+		yield 'Invalid target' => [
+			$targetName,
+			$noopSender,
+			StatusValue::newFatal( 'noemailtext' ),
+			$noEmailTargetUserFactory
+		];
 
 		$validTargetUserFactory = $this->getValidTargetUserFactory( $targetName );
 		yield 'Valid target' => [ $targetName, $noopSender, null, $validTargetUserFactory ];
@@ -132,12 +143,12 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 	public function testValidateTarget(
 		User $target,
 		User $sender,
-		string $expected,
+		StatusValue $expected,
 		UserOptionsLookup $userOptionsLookup = null,
 		CentralIdLookup $centralIdLookup = null
 	) {
 		$emailUser = $this->getEmailUser( $userOptionsLookup, $centralIdLookup );
-		$this->assertSame( $expected, $emailUser->validateTarget( $target, $sender ) );
+		$this->assertEquals( $expected, $emailUser->validateTarget( $target, $sender ) );
 	}
 
 	public function provideValidateTarget(): Generator {
@@ -149,18 +160,26 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 
 		$anonTarget = $this->createMock( User::class );
 		$anonTarget->expects( $this->atLeastOnce() )->method( 'getId' )->willReturn( 0 );
-		yield 'Target has user ID 0' => [ $anonTarget, $noopUserMock, 'notarget' ];
+		yield 'Target has user ID 0' => [ $anonTarget, $noopUserMock, StatusValue::newFatal( 'emailnotarget' ) ];
 
 		$emailNotConfirmedTarget = $this->createMock( User::class );
 		$emailNotConfirmedTarget->method( 'getId' )->willReturn( 1 );
 		$emailNotConfirmedTarget->expects( $this->atLeastOnce() )->method( 'isEmailConfirmed' )->willReturn( false );
-		yield 'Target does not have confirmed email' => [ $emailNotConfirmedTarget, $noopUserMock, 'noemail' ];
+		yield 'Target does not have confirmed email' => [
+			$emailNotConfirmedTarget,
+			$noopUserMock,
+			StatusValue::newFatal( 'noemailtext' )
+		];
 
 		$cannotReceiveEmailsTarget = $this->createMock( User::class );
 		$cannotReceiveEmailsTarget->method( 'getId' )->willReturn( 1 );
 		$cannotReceiveEmailsTarget->method( 'isEmailConfirmed' )->willReturn( true );
 		$cannotReceiveEmailsTarget->expects( $this->atLeastOnce() )->method( 'canReceiveEmail' )->willReturn( false );
-		yield 'Target cannot receive emails' => [ $cannotReceiveEmailsTarget, $noopUserMock, 'nowikiemail' ];
+		yield 'Target cannot receive emails' => [
+			$cannotReceiveEmailsTarget,
+			$noopUserMock,
+			StatusValue::newFatal( 'nowikiemailtext' )
+		];
 
 		$newbieSender = $this->createMock( User::class );
 		$newbieSender->expects( $this->atLeastOnce() )->method( 'isNewbie' )->willReturn( true );
@@ -172,7 +191,7 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 		yield 'Target does not allow emails from newbie and sender is newbie' => [
 			$validTarget,
 			$newbieSender,
-			'nowikiemail',
+			StatusValue::newFatal( 'nowikiemailtext' ),
 			$noNewbieEmailsOptionsLookup
 		];
 
@@ -191,12 +210,12 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 		yield 'Target muted the sender' => [
 			$validTarget,
 			$noopUserMock,
-			'nowikiemail',
+			StatusValue::newFatal( 'nowikiemailtext' ),
 			$muteListOptionsLookup,
 			$centralIdLookup
 		];
 
-		yield 'Valid' => [ $validTarget, $noopUserMock, '' ];
+		yield 'Valid' => [ $validTarget, $noopUserMock, StatusValue::newGood() ];
 	}
 
 	/**
@@ -326,7 +345,7 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 		$validTarget = 'John Doe';
 		$validTargetUserFactory = $this->getValidTargetUserFactory( $validTarget );
 
-		yield 'Invalid target' => [ '', $validSender, StatusValue::newFatal( 'notargettext' ) ];
+		yield 'Invalid target' => [ '', $validSender, StatusValue::newFatal( 'emailnotarget' ) ];
 
 		$hookStatusError = StatusValue::newFatal( 'some-hook-error' );
 		$emailUserHookUsingStatusHooks = [

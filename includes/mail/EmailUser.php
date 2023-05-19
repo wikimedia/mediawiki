@@ -110,15 +110,18 @@ class EmailUser {
 	 *
 	 * @param string $target Target user name
 	 * @param User $sender User sending the email
-	 * @return User|string User object on success or a string on error
+	 * @return StatusValue With errors, or with a User object as value on success.
 	 */
-	public function getTarget( string $target, User $sender ) {
+	public function getTarget( string $target, User $sender ): StatusValue {
 		$nu = $this->userFactory->newFromName( $target );
 		if ( !$nu instanceof User ) {
-			return 'notarget';
+			return StatusValue::newFatal( 'emailnotarget' );
 		}
-		$error = $this->validateTarget( $nu, $sender );
-		return $error ?: $nu;
+		$status = $this->validateTarget( $nu, $sender );
+		if ( !$status->isGood() ) {
+			return $status;
+		}
+		return StatusValue::newGood( $nu );
 	}
 
 	/**
@@ -126,23 +129,23 @@ class EmailUser {
 	 *
 	 * @param User $target Target user
 	 * @param User $sender User sending the email
-	 * @return string Error message or empty string if valid.
+	 * @return StatusValue
 	 */
-	public function validateTarget( User $target, User $sender ): string {
+	public function validateTarget( User $target, User $sender ): StatusValue {
 		if ( !$target->getId() ) {
-			return 'notarget';
+			return StatusValue::newFatal( 'emailnotarget' );
 		}
 
 		if ( !$target->isEmailConfirmed() ) {
-			return 'noemail';
+			return StatusValue::newFatal( 'noemailtext' );
 		}
 
 		if ( !$target->canReceiveEmail() ) {
-			return 'nowikiemail';
+			return StatusValue::newFatal( 'nowikiemailtext' );
 		}
 
 		if ( !$this->userOptionsLookup->getOption( $target, 'email-allow-new-users' ) && $sender->isNewbie() ) {
-			return 'nowikiemail';
+			return StatusValue::newFatal( 'nowikiemailtext' );
 		}
 
 		$muteList = $this->userOptionsLookup->getOption(
@@ -154,11 +157,11 @@ class EmailUser {
 			$muteList = MultiUsernameFilter::splitIds( $muteList );
 			$senderId = $this->centralIdLookup->centralIdFromLocalUser( $sender );
 			if ( $senderId !== 0 && in_array( $senderId, $muteList ) ) {
-				return 'nowikiemail';
+				return StatusValue::newFatal( 'nowikiemailtext' );
 			}
 		}
 
-		return '';
+		return StatusValue::newGood();
 	}
 
 	/**
@@ -247,11 +250,11 @@ class EmailUser {
 		User $sender,
 		MessageLocalizer $messageLocalizer
 	): StatusValue {
-		$target = $this->getTarget( $targetName, $sender );
-		if ( !$target instanceof User ) {
-			// Messages used here: notargettext, noemailtext, nowikiemailtext
-			return StatusValue::newFatal( $target . 'text' );
+		$targetStatus = $this->getTarget( $targetName, $sender );
+		if ( !$targetStatus->isGood() ) {
+			return $targetStatus;
 		}
+		$target = $targetStatus->getValue();
 
 		$toAddress = MailAddress::newFromUser( $target );
 		$fromAddress = MailAddress::newFromUser( $sender );
