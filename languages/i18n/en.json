@@ -968,7 +968,7 @@
 	"mergehistory-from": "Source page:",
 	"mergehistory-into": "Destination page:",
 	"mergehistory-list": "Mergeable edit history",
-	"mergehistory-merge": "The following revisions of [[:$1]] can be merged into [[:$2]].\nUse the radio button column to merge in only the revisions created at and before the specified time.\nNote that using the navigation links will reset this column.",
+	"mergehistory-merge": "The following revisions of [[:$1]] can be merged into [[:$2]].\nUse the radio button column to merge in only the revisions created at and before the specified time.\nNote that using the navigation links will clear the reason field.",
 	"mergehistory-go": "Show mergeable edits",
 	"mergehistory-submit": "Merge revisions",
 	"mergehistory-empty": "No revisions can be merged.",
