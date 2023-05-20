@@ -433,7 +433,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		] )->getFormDescriptor( $userMock, $this->context );
 		$this->assertArrayHasKey( 'default', $prefs['usergroups'] );
 		$this->assertEquals(
-			UserGroupMembership::getLink( 'user', $this->context, 'html' ),
+			UserGroupMembership::getLinkHTML( 'user', $this->context ),
 			( $prefs['usergroups']['default'] )()
 		);
 	}

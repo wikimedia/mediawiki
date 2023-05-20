@@ -59,7 +59,7 @@ class PermissionsError extends ErrorPageError {
 				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Null on permission is check when used here
 				->getGroupsWithPermission( $this->permission ) as $group
 			) {
-				$groups[] = UserGroupMembership::getLink( $group, RequestContext::getMain(), 'wiki' );
+				$groups[] = UserGroupMembership::getLinkWiki( $group, RequestContext::getMain() );
 			}
 
 			if ( $groups ) {

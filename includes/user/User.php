@@ -3420,7 +3420,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		foreach ( MediaWikiServices::getInstance()
 				->getGroupPermissionsLookup()
 				->getGroupsWithPermission( $permission ) as $group ) {
-			$groups[] = UserGroupMembership::getLink( $group, RequestContext::getMain(), 'wiki' );
+			$groups[] = UserGroupMembership::getLinkWiki( $group, RequestContext::getMain() );
 		}
 
 		if ( $groups ) {

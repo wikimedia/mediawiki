@@ -308,7 +308,7 @@ class SpecialListGroupRights extends SpecialPage {
 				if ( count( $changeGroup ) ) {
 					$groupLinks = [];
 					foreach ( $changeGroup as $group ) {
-						$groupLinks[] = UserGroupMembership::getLink( $group, $this->getContext(), 'wiki' );
+						$groupLinks[] = UserGroupMembership::getLinkWiki( $group, $this->getContext() );
 					}
 					// For grep: listgrouprights-addgroup, listgrouprights-removegroup,
 					// listgrouprights-addgroup-self, listgrouprights-removegroup-self

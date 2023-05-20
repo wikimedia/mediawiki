@@ -723,9 +723,8 @@ class SpecialUserRights extends SpecialPage {
 	protected function showEditUserGroupsForm( $user, $groups, $groupMemberships ) {
 		$list = $membersList = $tempList = $tempMembersList = [];
 		foreach ( $groupMemberships as $ugm ) {
-			$linkG = UserGroupMembership::getLink( $ugm, $this->getContext(), 'html' );
-			$linkM = UserGroupMembership::getLink( $ugm, $this->getContext(), 'html',
-				$user->getName() );
+			$linkG = UserGroupMembership::getLinkHTML( $ugm, $this->getContext() );
+			$linkM = UserGroupMembership::getLinkHTML( $ugm, $this->getContext(), $user->getName() );
 			if ( $ugm->getExpiry() ) {
 				$tempList[] = $linkG;
 				$tempMembersList[] = $linkM;
@@ -742,20 +741,17 @@ class SpecialUserRights extends SpecialPage {
 		if ( $user->getWikiId() === UserIdentity::LOCAL ) {
 			// Listing autopromote groups works only on the local wiki
 			foreach ( $this->userGroupManager->getUserAutopromoteGroups( $user ) as $group ) {
-				$autoList[] = UserGroupMembership::getLink( $group, $this->getContext(), 'html' );
-				$autoMembersList[] = UserGroupMembership::getLink( $group, $this->getContext(),
-					'html', $user->getName() );
+				$autoList[] = UserGroupMembership::getLinkHTML( $group, $this->getContext() );
+				$autoMembersList[] = UserGroupMembership::getLinkHTML( $group, $this->getContext(), $user->getName() );
 			}
 		}
 
 		$language = $this->getLanguage();
-		// @phan-suppress-next-line SecurityCheck-XSS T183174
 		$displayedList = $this->msg( 'userrights-groupsmember-type' )
 			->rawParams(
 				$language->commaList( array_merge( $tempList, $list ) ),
 				$language->commaList( array_merge( $tempMembersList, $membersList ) )
 			)->escaped();
-		// @phan-suppress-next-line SecurityCheck-XSS T183174
 		$displayedAutolist = $this->msg( 'userrights-groupsmember-type' )
 			->rawParams(
 				$language->commaList( $autoList ),
