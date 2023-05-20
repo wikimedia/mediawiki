@@ -43,7 +43,7 @@ describe( 'The parse action', function () {
                     '== Two =='
 			} );
 
-			assert.include( result.parse.text[ '*' ], 'id="toc"' );
+			assert.match( result.parse.text[ '*' ], /id="toc"|property="mw:PageProp\/toc"/ );
 		} );
 
 		it( 'supports __NOTOC__', async () => {
@@ -56,7 +56,7 @@ describe( 'The parse action', function () {
                     '== Four =='
 			} );
 
-			assert.notInclude( result.parse.text[ '*' ], 'id="toc"' );
+			assert.notMatch( result.parse.text[ '*' ], /id="toc"|property="mw:PageProp\/toc"/ );
 		} );
 	} );
 
