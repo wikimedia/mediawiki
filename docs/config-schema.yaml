@@ -3163,7 +3163,7 @@ config-schema:
             Since some of these fields can be provided by extensions it defaults to an empty array.
             @since 1.36
     DefaultSkin:
-        default: vector
+        default: vector-2022
         description: |-
             Default skin, for new users and anonymous visitors. Registered users may
             change this to any one of the other available skins in their preferences.

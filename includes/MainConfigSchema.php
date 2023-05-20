@@ -5093,7 +5093,7 @@ class MainConfigSchema {
 	 * change this to any one of the other available skins in their preferences.
 	 */
 	public const DefaultSkin = [
-		'default' => 'vector',
+		'default' => 'vector-2022',
 	];
 
 	/**
