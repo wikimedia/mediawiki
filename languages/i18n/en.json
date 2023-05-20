@@ -964,7 +964,7 @@
 	"suppressionlogtext": "Below is a list of deletions and blocks involving content hidden from administrators.\nSee the [[Special:BlockList|block list]] for the list of currently operational bans and blocks.",
 	"mergehistory": "Merge page histories",
 	"mergehistory-header": "This page lets you merge revisions of the history of one source page into a newer page.\nMake sure that this change will maintain historical page continuity.",
-	"mergehistory-box": "Merge revisions of two pages:",
+	"mergehistory-box": "Merge revisions of two pages",
 	"mergehistory-from": "Source page:",
 	"mergehistory-into": "Destination page:",
 	"mergehistory-list": "Mergeable edit history",
