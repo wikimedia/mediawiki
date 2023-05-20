@@ -313,7 +313,8 @@ class SpecialVersion extends SpecialPage {
 			'Timo Tijhof', 'Daniel Kinzler', 'Jeroen De Dauw', 'Brad Jorsch',
 			'Bartosz Dziewoński', 'Ed Sanders', 'Moriel Schottlender',
 			'Kunal Mehta', 'James D. Forrester', 'Brian Wolff', 'Adam Shorland',
-			'DannyS712', 'Ori Livneh',
+			'DannyS712', 'Ori Livneh', 'Max Semenik', 'Amir Sarabadani',
+			'Derk-Jan Hartman', 'Petr Pchelko',
 			$othersLink, $translatorsLink
 		];
 
