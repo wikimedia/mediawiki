@@ -636,7 +636,7 @@ return [
 			'BrowserFormatDetection' => 'telephone=no',
 			'SkinMetaTags' => [
 			],
-			'DefaultSkin' => 'vector',
+			'DefaultSkin' => 'vector-2022',
 			'FallbackSkin' => 'fallback',
 			'SkipSkins' => [
 			],
