@@ -484,6 +484,8 @@ class DatabaseBlock extends AbstractBlock {
 	 * block (same name and options) already in the database.
 	 *
 	 * @deprecated since 1.36 Use DatabaseBlockStore::insertBlock instead.
+	 *             Passing a custom db connection is throwing a deprecation warning since 1.41.
+	 *
 	 * @param IDatabase|null $dbw If you have one available
 	 * @return bool|array False on failure, assoc array on success:
 	 * 	('id' => block ID, 'autoIds' => array of autoblock IDs)
