@@ -40,6 +40,9 @@ For notes on 1.40.x and older releases, see HISTORY.
 * …
 
 === New user-facing features in 1.41 ===
+* …
+
+=== New features for sysadmins in 1.41 ===
 * $wgDBssl can now enabled in the installer when the database type is
   Postgres or MariaDB/MySQL (T335828).
 * …
