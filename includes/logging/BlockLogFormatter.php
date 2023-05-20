@@ -84,12 +84,14 @@ class BlockLogFormatter extends LogFormatter {
 			// block restrictions
 			if ( isset( $params[6] ) ) {
 				$pages = $params[6]['pages'] ?? [];
-				$pages = array_map( function ( $page ) {
-					return $this->makePageLink( Title::newFromText( $page ) );
-				}, $pages );
+				$pageLinks = [];
+				foreach ( $pages as $page ) {
+					$pageLinks[] = $this->makePageLink( Title::newFromText( $page ) );
+				}
 
-				$namespaces = $params[6]['namespaces'] ?? [];
-				$namespaces = array_map( function ( $ns ) {
+				$rawNamespaces = $params[6]['namespaces'] ?? [];
+				$namespaces = [];
+				foreach ( $rawNamespaces as $ns ) {
 					$text = (int)$ns === NS_MAIN
 						? $this->msg( 'blanknamespace' )->escaped()
 						: htmlspecialchars( $this->context->getLanguage()->getFormattedNsText( $ns ) );
@@ -97,26 +99,27 @@ class BlockLogFormatter extends LogFormatter {
 						// Because the plaintext cannot link to the Special:AllPages
 						// link that is linked to in non-plaintext mode, just return
 						// the name of the namespace.
-						return $text;
+						$namespaces[] = $text;
 					} else {
-						return $this->makePageLink(
+						$namespaces[] = $this->makePageLink(
 							SpecialPage::getTitleFor( 'Allpages' ),
 							[ 'namespace' => $ns ],
 							$text
 						);
 					}
-				}, $namespaces );
+				}
 
-				$actions = $params[6]['actions'] ?? [];
-				$actions = array_map( function ( $actions ) {
-					return $this->msg( 'ipb-action-' . $actions )->escaped();
-				}, $actions );
+				$rawActions = $params[6]['actions'] ?? [];
+				$actions = [];
+				foreach ( $rawActions as $action ) {
+					$actions[] = $this->msg( 'ipb-action-' . $action )->escaped();
+				}
 
 				$restrictions = [];
-				if ( $pages ) {
+				if ( $pageLinks ) {
 					$restrictions[] = $this->msg( 'logentry-partialblock-block-page' )
-						->numParams( count( $pages ) )
-						->rawParams( $this->context->getLanguage()->listToText( $pages ) )->escaped();
+						->numParams( count( $pageLinks ) )
+						->rawParams( $this->context->getLanguage()->listToText( $pageLinks ) )->escaped();
 				}
 
 				if ( $namespaces ) {
