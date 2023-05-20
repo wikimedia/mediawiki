@@ -33,7 +33,7 @@ define( 'MEDIAWIKI_INSTALL', true );
  * Maintenance script to install and configure MediaWiki
  *
  * Default values for the options are defined in MainConfigSchema.php
- * (see the mapping in CliInstaller.php)
+ * (see the mapping in includes/installer/CliInstaller.php)
  * Default for --dbpath (SQLite-specific) is defined in SqliteInstaller::getGlobalDefaults
  *
  * @ingroup Maintenance
@@ -59,7 +59,7 @@ class CommandLineInstaller extends Maintenance {
 		/* $this->addOption( 'email', 'The email for the wiki administrator', false, true ); */
 		$this->addOption(
 			'scriptpath',
-			'The relative path of the wiki in the web server (/wiki)',
+			'The relative path of the wiki in the web server (/' . basename( dirname( __DIR__ ) ) . ')',
 			false,
 			true
 		);
@@ -132,6 +132,11 @@ class CommandLineInstaller extends Maintenance {
 		$siteName = $this->getArg( 0, 'MediaWiki' ); // Will not be set if used with --env-checks
 		$adminName = $this->getArg( 1 );
 		$envChecksOnly = $this->hasOption( 'env-checks' );
+
+		$scriptpath = $this->getOption( 'scriptpath', false );
+		if ( $scriptpath === false ) {
+			$this->mOptions['scriptpath'] = '/' . basename( dirname( __DIR__ ) );
+		}
 
 		$this->setDbPassOption();
 		if ( !$envChecksOnly ) {
