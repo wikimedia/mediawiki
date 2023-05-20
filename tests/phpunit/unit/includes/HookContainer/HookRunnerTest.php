@@ -13,7 +13,7 @@ use MediaWiki\HookContainer\HookRunner;
  */
 class HookRunnerTest extends HookRunnerTestBase {
 
-	public function provideHookRunners() {
+	public static function provideHookRunners() {
 		yield ApiHookRunner::class => [ ApiHookRunner::class ];
 		yield HookRunner::class => [ HookRunner::class ];
 	}
