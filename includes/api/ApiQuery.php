@@ -117,6 +117,9 @@ class ApiQuery extends ApiBase {
 				'RestrictionStore',
 				'LinksMigration',
 				'TempUserCreator',
+				'IntroMessageBuilder',
+				'PreloadedContentBuilder',
+				'RevisionLookup',
 			],
 		],
 		'links' => [
