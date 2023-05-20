@@ -156,8 +156,8 @@ HTML;
 	function checkVendorExistence() {
 		if ( !file_exists( dirname( __FILE__ ) . '/../vendor/autoload.php' ) ) {
 			$cliText = "Error: You are missing some external dependencies. \n"
-				. "MediaWiki also has some external dependencies that need to be installed\n"
-				. "via composer or from a separate git repo. Please see\n"
+				. "MediaWiki has external dependencies that need to be installed via Composer\n"
+				. "or from a separate git repository. Please see\n"
 				. "https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries\n"
 				. "for help on installing the required components.";
 
@@ -167,8 +167,8 @@ HTML;
 			// phpcs:disable Generic.Files.LineLength
 			$web['longHtml'] = <<<HTML
 		<p>
-		MediaWiki also has some external dependencies that need to be installed via
-		composer or from a separate git repo. Please see the
+		MediaWiki has external dependencies that need to be installed via Composer
+		or from a separate git repository. Please see the
 		<a href="https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries">instructions
 		for installing libraries</a> on mediawiki.org for help on installing the required components.
 		</p>
