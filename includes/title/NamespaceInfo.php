@@ -25,7 +25,6 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 
 /**
  * This is a utility class for dealing with namespaces that encodes all the "magic" behaviors of
@@ -601,25 +600,6 @@ class NamespaceInfo {
 	 */
 	public function getNamespaceContentModel( $index ) {
 		return $this->options->get( MainConfigNames::NamespaceContentModels )[$index] ?? null;
-	}
-
-	/**
-	 * Determine which restriction levels it makes sense to use in a namespace,
-	 * optionally filtered by a user's rights.
-	 *
-	 * @deprecated since 1.34 User PermissionManager::getNamespaceRestrictionLevels instead.
-	 * @param int $index Index to check
-	 * @param User|null $user User to check
-	 * @return string[]
-	 */
-	public function getRestrictionLevels( $index, User $user = null ) {
-		// PermissionManager is not injected because adding an explicit dependency
-		// breaks MW installer by adding a dependency chain on the database before
-		// it was set up. Also, the method is deprecated and will be soon removed.
-		wfDeprecated( __METHOD__, '1.34' );
-		return MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->getNamespaceRestrictionLevels( $index, $user );
 	}
 
 	/**

@@ -367,16 +367,11 @@ trait DummyServicesTrait {
 	 */
 	private function getDummyNamespaceInfo( array $options = [] ): NamespaceInfo {
 		// Rather than trying to use a complicated mock, it turns out that almost
-		// all of the NamespaceInfo service works fine in unit tests. The only issues:
+		// all of the NamespaceInfo service works fine in unit tests. The only issue:
 		//   - in two places, NamespaceInfo tries to read extension attributes through
 		//     ExtensionRegistry::getInstance()->getAttribute() - this should work fine
 		//     in unit tests, it just won't include any extension info since those are
 		//     not loaded
-		//   - ::getRestrictionLevels() is a deprecated wrapper that calls
-		//     PermissionManager::getNamespaceRestrictionLevels() - the PermissionManager
-		//     is retrieved from MediaWikiServices, which doesn't work in unit tests.
-		//     This shouldn't be an issue though, since it should only be called in
-		//     the dedicated tests for that deprecation method, which use the real service
 
 		// configuration is based on the defaults in MainConfigSchema
 		$serviceOptions = new ServiceOptions(

@@ -8,7 +8,6 @@
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use Wikimedia\ScopedCallback;
 
@@ -1239,77 +1238,6 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 
 	// %} End miscellaneous
 	// %} End canonical namespaces
-
-	/**********************************************************************************************
-	 * Restriction levels
-	 * %{
-	 */
-
-	/**
-	 * TODO: This is superceeded by PermissionManagerTest::testGetNamespaceRestrictionLevels
-	 * Remove when deprecated method is removed.
-	 * @dataProvider provideGetRestrictionLevels
-	 * @covers NamespaceInfo::getRestrictionLevels
-	 */
-	public function testGetRestrictionLevels( array $expected, $ns, array $groups = null ) {
-		$this->hideDeprecated( 'NamespaceInfo::getRestrictionLevels' );
-		$this->setGroupPermissions( [
-			'*' => [ 'edit' => true ],
-			'autoconfirmed' => [ 'editsemiprotected' => true ],
-			'sysop' => [
-				'editsemiprotected' => true,
-				'editprotected' => true,
-			],
-			'privileged' => [ 'privileged' => true ],
-		] );
-		$this->overrideConfigValues( [
-			MainConfigNames::RevokePermissions => [
-				'noeditsemiprotected' => [ 'editsemiprotected' => true ],
-			],
-			MainConfigNames::NamespaceProtection => [
-				NS_MAIN => 'autoconfirmed',
-				NS_USER => 'sysop',
-				101 => [ 'editsemiprotected', 'privileged' ],
-			],
-			MainConfigNames::RestrictionLevels => [ '', 'autoconfirmed', 'sysop' ],
-			MainConfigNames::Autopromote => []
-		] );
-		$obj = $this->newObj();
-		$user = $groups === null ? null : $this->getTestUser( $groups )->getUser();
-		$this->assertSame( $expected, $obj->getRestrictionLevels( $ns, $user ) );
-	}
-
-	public static function provideGetRestrictionLevels() {
-		return [
-			'No namespace restriction' => [ [ '', 'autoconfirmed', 'sysop' ], NS_TALK ],
-			'Restricted to autoconfirmed' => [ [ '', 'sysop' ], NS_MAIN ],
-			'Restricted to sysop' => [ [ '' ], NS_USER ],
-			'Restricted to someone in two groups' => [ [ '', 'sysop' ], 101 ],
-			'No special permissions' => [ [ '' ], NS_TALK, [] ],
-			'autoconfirmed' => [
-				[ '', 'autoconfirmed' ],
-				NS_TALK,
-				[ 'autoconfirmed' ]
-			],
-			'autoconfirmed revoked' => [
-				[ '' ],
-				NS_TALK,
-				[ 'autoconfirmed', 'noeditsemiprotected' ]
-			],
-			'sysop' => [
-				[ '', 'autoconfirmed', 'sysop' ],
-				NS_TALK,
-				[ 'sysop' ]
-			],
-			'sysop with autoconfirmed revoked (a bit silly)' => [
-				[ '', 'sysop' ],
-				NS_TALK,
-				[ 'sysop', 'noeditsemiprotected' ]
-			],
-		];
-	}
-
-	// %} End restriction levels
 
 	/**
 	 * @coversNothing
