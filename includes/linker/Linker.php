@@ -1379,17 +1379,17 @@ class Linker {
 		// TODO inject authority
 		$authority = RequestContext::getMain()->getAuthority();
 
-		if ( $revRecord->isDeleted( RevisionRecord::DELETED_USER ) && $isPublic ) {
-			$link = wfMessage( 'rev-deleted-user' )->escaped();
-		} elseif ( $revRecord->userCan( RevisionRecord::DELETED_USER, $authority ) ) {
-			$revUser = $revRecord->getUser( RevisionRecord::FOR_THIS_USER, $authority );
-			$link = self::userLink(
-				$revUser ? $revUser->getId() : 0,
-				$revUser ? $revUser->getName() : ''
-			);
+		$revUser = $revRecord->getUser(
+			$isPublic ? RevisionRecord::FOR_PUBLIC : RevisionRecord::FOR_THIS_USER,
+			$authority
+		);
+		if ( $revUser ) {
+			$link = self::userLink( $revUser->getId(), $revUser->getName() );
 		} else {
+			// User is deleted and we can't (or don't want to) view it
 			$link = wfMessage( 'rev-deleted-user' )->escaped();
 		}
+
 		if ( $revRecord->isDeleted( RevisionRecord::DELETED_USER ) ) {
 			$class = self::getRevisionDeletedClass( $revRecord );
 			return '<span class="' . $class . '">' . $link . '</span>';
@@ -1431,31 +1431,26 @@ class Linker {
 		// TODO inject authority
 		$authority = RequestContext::getMain()->getAuthority();
 
-		if ( $revRecord->userCan( RevisionRecord::DELETED_USER, $authority ) &&
-			( !$revRecord->isDeleted( RevisionRecord::DELETED_USER ) || !$isPublic )
-		) {
-			$revUser = $revRecord->getUser( RevisionRecord::FOR_THIS_USER, $authority );
-			$userId = $revUser ? $revUser->getId() : 0;
-			$userText = $revUser ? $revUser->getName() : '';
-
-			if ( $userId || $userText !== '' ) {
-				$link = self::userLink(
-					$userId,
-					$userText,
-					false,
-					[ 'data-mw-revid' => $revRecord->getId() ]
-				) . self::userToolLinks(
-					$userId,
-					$userText,
-					false,
-					0,
-					null,
-					$useParentheses
-				);
-			}
-		}
-
-		if ( !isset( $link ) ) {
+		$revUser = $revRecord->getUser(
+			$isPublic ? RevisionRecord::FOR_PUBLIC : RevisionRecord::FOR_THIS_USER,
+			$authority
+		);
+		if ( $revUser ) {
+			$link = self::userLink(
+				$revUser->getId(),
+				$revUser->getName(),
+				false,
+				[ 'data-mw-revid' => $revRecord->getId() ]
+			) . self::userToolLinks(
+				$revUser->getId(),
+				$revUser->getName(),
+				false,
+				0,
+				null,
+				$useParentheses
+			);
+		} else {
+			// User is deleted and we can't (or don't want to) view it
 			$link = wfMessage( 'rev-deleted-user' )->escaped();
 		}
 
