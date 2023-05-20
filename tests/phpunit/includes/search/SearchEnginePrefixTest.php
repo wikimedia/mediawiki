@@ -366,7 +366,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	public function paginationProvider() {
+	public static function paginationProvider() {
 		$res = [ 'Example', 'Example Bar', 'Example Foo', 'Example Foo/Bar' ];
 		return [
 			'With less than requested results no pagination' => [

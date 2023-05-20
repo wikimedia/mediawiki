@@ -208,7 +208,7 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 		$method->invokeArgs( $handler, [ $content, $cpoParams, &$parserOutput ] );
 	}
 
-	public function provideFillParserOutput() {
+	public static function provideFillParserOutput() {
 		return [ [ false ], [ true ] ];
 	}
 }

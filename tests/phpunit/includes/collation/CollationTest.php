@@ -96,7 +96,7 @@ class CollationTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $firstLetter, $col->getFirstLetter( $string ) );
 	}
 
-	public function firstLetterProvider() {
+	public static function firstLetterProvider() {
 		return [
 			[ 'uppercase', 'Abc', 'A' ],
 			[ 'uppercase', 'abc', 'A' ],

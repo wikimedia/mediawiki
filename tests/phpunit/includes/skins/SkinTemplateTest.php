@@ -35,7 +35,7 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function makeListItemProvider() {
+	public static function makeListItemProvider() {
 		return [
 			[
 				'<li class="class mw-list-item" title="itemtitle"><a href="url" title="title">text</a></li>',

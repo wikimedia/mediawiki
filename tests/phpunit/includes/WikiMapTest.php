@@ -213,7 +213,7 @@ class WikiMapTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	public function provideGetWikiFromUrl() {
+	public static function provideGetWikiFromUrl() {
 		return [
 			[ 'http://this.wiki.org', 'thiswiki' ],
 			[ 'https://this.wiki.org', 'thiswiki' ],
@@ -239,7 +239,7 @@ class WikiMapTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $wiki, WikiMap::getWikiFromUrl( $url ) );
 	}
 
-	public function provideGetWikiIdFromDbDomain() {
+	public static function provideGetWikiIdFromDbDomain() {
 		return [
 			[ 'db-prefix_', 'db-prefix_' ],
 			[ WikiMap::getCurrentWikiId(), WikiMap::getCurrentWikiId() ],
@@ -281,7 +281,7 @@ class WikiMapTest extends MediaWikiLangTestCase {
 		$this->assertTrue( WikiMap::isCurrentWikiDbDomain( WikiMap::getCurrentWikiDbDomain() ) );
 	}
 
-	public function provideIsCurrentWikiId() {
+	public static function provideIsCurrentWikiId() {
 		return [
 			[ 'db', 'db', null, '' ],
 			[ 'db-schema-','db', 'schema', '' ],

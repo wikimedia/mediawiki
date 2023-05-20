@@ -1403,7 +1403,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 3, $calls, 'Callback was not used; used interim' );
 	}
 
-	public function getBusyValues_Provider() {
+	public static function getBusyValues_Provider() {
 		$hash = new HashBagOStuff( [] );
 
 		return [

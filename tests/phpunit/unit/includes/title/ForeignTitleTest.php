@@ -26,7 +26,7 @@
  */
 class ForeignTitleTest extends \MediaWikiUnitTestCase {
 
-	public function basicProvider() {
+	public static function basicProvider() {
 		return [
 			[
 				new ForeignTitle( 20, 'Contributor', 'JohnDoe' ),
@@ -73,7 +73,7 @@ class ForeignTitleTest extends \MediaWikiUnitTestCase {
 		$title->getNamespaceId();
 	}
 
-	public function fullTextProvider() {
+	public static function fullTextProvider() {
 		return [
 			[
 				new ForeignTitle( 20, 'Contributor', 'JohnDoe' ),

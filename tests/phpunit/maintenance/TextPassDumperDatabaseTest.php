@@ -503,7 +503,7 @@ class TextPassDumperDatabaselessTest extends MediaWikiLangTestCase {
 	 *
 	 * @dataProvider bufferSizeProvider
 	 */
-	public function bufferSizeProvider() {
+	public static function bufferSizeProvider() {
 		// expected, bufferSize to initialize with, message
 		return [
 			[ 512 * 1024, 512 * 1024, "Setting 512 KiB is not effective" ],

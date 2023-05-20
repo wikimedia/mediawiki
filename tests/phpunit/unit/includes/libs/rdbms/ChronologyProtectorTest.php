@@ -42,7 +42,7 @@ class ChronologyProtectorTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( $expectedId, $cp->getClientId() );
 	}
 
-	public function clientIdProvider() {
+	public static function clientIdProvider() {
 		return [
 			[
 				[

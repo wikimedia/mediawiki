@@ -172,7 +172,7 @@ class ApiParamValidatorTest extends ApiTestCase {
 		$this->assertEquals( $expect, $validator->checkSettings( $module, $params, $name, [] ) );
 	}
 
-	public function provideCheckSettings() {
+	public static function provideCheckSettings() {
 		$keys = [
 			'Y', ApiBase::PARAM_RANGE_ENFORCE, ApiBase::PARAM_HELP_MSG, ApiBase::PARAM_HELP_MSG_APPEND,
 			ApiBase::PARAM_HELP_MSG_INFO, ApiBase::PARAM_HELP_MSG_PER_VALUE, ApiBase::PARAM_TEMPLATE_VARS,

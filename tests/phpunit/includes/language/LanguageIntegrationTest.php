@@ -1683,7 +1683,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		$this->assertEquals( $number, $normalisedNum );
 	}
 
-	public function parseFormattedNumberProvider() {
+	public static function parseFormattedNumberProvider() {
 		return [
 			[ 'de', 377.01 ],
 			[ 'fa', 334 ],

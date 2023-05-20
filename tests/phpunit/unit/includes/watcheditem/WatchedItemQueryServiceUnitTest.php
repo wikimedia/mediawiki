@@ -451,7 +451,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( [ '20160203123456', 42 ], $startFrom );
 	}
 
-	public function getWatchedItemsWithRecentChangeInfoOptionsProvider() {
+	public static function getWatchedItemsWithRecentChangeInfoOptionsProvider() {
 		return [
 			[
 				[ 'includeFields' => [ WatchedItemQueryService::INCLUDE_FLAGS ] ],
@@ -857,7 +857,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		$this->assertNull( $startFrom );
 	}
 
-	public function filterPatrolledOptionProvider() {
+	public static function filterPatrolledOptionProvider() {
 		return [
 			'Patrolled' => [ WatchedItemQueryService::FILTER_PATROLLED ],
 			'Not patrolled' => [ WatchedItemQueryService::FILTER_NOT_PATROLLED ],
@@ -894,7 +894,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		$this->assertSame( [], $items );
 	}
 
-	public function mysqlIndexOptimizationProvider() {
+	public static function mysqlIndexOptimizationProvider() {
 		return [
 			[
 				'mysql',
@@ -953,7 +953,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		$this->assertSame( [], $items );
 	}
 
-	public function userPermissionRelatedExtraChecksProvider() {
+	public static function userPermissionRelatedExtraChecksProvider() {
 		return [
 			[
 				[],
@@ -1555,7 +1555,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		$this->assertSame( [], $items );
 	}
 
-	public function getWatchedItemsForUserInvalidOptionsProvider() {
+	public static function getWatchedItemsForUserInvalidOptionsProvider() {
 		return [
 			[
 				[ 'sort' => 'foo' ],

@@ -345,7 +345,7 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 		$this->assertInstanceOf( $type, $service );
 	}
 
-	public function provideGetService() {
+	public static function provideGetService() {
 		global $IP;
 		$serviceList = require "$IP/includes/ServiceWiring.php";
 		$ret = [];

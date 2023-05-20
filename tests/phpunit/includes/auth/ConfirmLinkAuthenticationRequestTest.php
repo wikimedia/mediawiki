@@ -50,7 +50,7 @@ class ConfirmLinkAuthenticationRequestTest extends AuthenticationRequestTestCase
 		return $reqs;
 	}
 
-	public function provideLoadFromSubmission() {
+	public static function provideLoadFromSubmission() {
 		$reqs = self::getLinkRequests();
 
 		return [

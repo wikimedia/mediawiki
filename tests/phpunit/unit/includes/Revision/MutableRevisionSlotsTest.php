@@ -23,7 +23,7 @@ class MutableRevisionSlotsTest extends RevisionSlotsTest {
 		return new MutableRevisionSlots( $slots );
 	}
 
-	public function provideConstructorFailue() {
+	public static function provideConstructorFailue() {
 		yield 'array or the wrong thing' => [
 			[ 1, 2, 3 ]
 		];

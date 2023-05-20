@@ -30,7 +30,7 @@ use Wikimedia\Assert\ParameterAssertionException;
  */
 class PageReferenceValueTest extends MediaWikiUnitTestCase {
 
-	public function goodConstructorProvider() {
+	public static function goodConstructorProvider() {
 		return [
 			[ NS_MAIN, 'Test', false ],
 			[ NS_MAIN, 'Test', false ],
@@ -51,7 +51,7 @@ class PageReferenceValueTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $dbKey, $pageReference->getDBkey() );
 	}
 
-	public function badConstructorProvider() {
+	public static function badConstructorProvider() {
 		return [
 			[ NS_MAIN, 'Test', 2.3 ],
 		];

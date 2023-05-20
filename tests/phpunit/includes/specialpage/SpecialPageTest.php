@@ -30,7 +30,7 @@ class SpecialPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected, $title );
 	}
 
-	public function getTitleForProvider() {
+	public static function getTitleForProvider() {
 		return [
 			[ 'UserLogin', 'Userlogin' ]
 		];
@@ -52,7 +52,7 @@ class SpecialPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected, $title );
 	}
 
-	public function getTitleForWithWarningProvider() {
+	public static function getTitleForWithWarningProvider() {
 		return [
 			[ Title::makeTitle( NS_SPECIAL, 'UserLogin' ), 'UserLogin' ]
 		];
@@ -76,7 +76,7 @@ class SpecialPageTest extends MediaWikiIntegrationTestCase {
 		$specialPage->requireLogin( ...array_filter( [ $reason, $title ] ) );
 	}
 
-	public function requireLoginAnonProvider() {
+	public static function requireLoginAnonProvider() {
 		$lang = 'en';
 
 		$expected1 = wfMessage( 'exception-nologin-text' )->inLanguage( $lang )->text();

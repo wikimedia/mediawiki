@@ -48,7 +48,7 @@ class SubpageImportTitleFactoryTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function basicProvider() {
+	public static function basicProvider() {
 		return [
 			[
 				new ForeignTitle( 0, '', 'MainNamespaceArticle' ),

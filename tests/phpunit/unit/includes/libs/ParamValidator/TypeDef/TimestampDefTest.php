@@ -27,7 +27,7 @@ class TimestampDefTest extends TypeDefTestCase {
 		$this->getInstance( new SimpleCallbacks( [] ), $options );
 	}
 
-	public function provideConstructorOptions(): array {
+	public static function provideConstructorOptions(): array {
 		return [
 			'Basic test' => [ [], true ],
 			'Default format ConvertibleTimestamp' => [ [ 'defaultFormat' => 'ConvertibleTimestamp' ], true ],

@@ -41,7 +41,7 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 		$this->assertMatchesRegularExpression( $expected, $line, $message );
 	}
 
-	public function recentChangesLine_CssForLineNumberProvider() {
+	public static function recentChangesLine_CssForLineNumberProvider() {
 		return [
 			[ '/mw-line-odd/', 1, 'odd line number' ],
 			[ '/mw-line-even/', 2, 'even line number' ]

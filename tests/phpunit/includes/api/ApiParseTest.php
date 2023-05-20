@@ -588,7 +588,7 @@ class ApiParseTest extends ApiTestCase {
 		$this->assertParsedToRegexp( $expected, $res );
 	}
 
-	public function providerTestParsoid() {
+	public static function providerTestParsoid() {
 		// Legacy parses, with and without pre-existing content.
 		$expected = '!^<p><a href="[^"]*" title="Foo">Foo</a>\n</p>$!';
 		yield [ false, false, $expected ];

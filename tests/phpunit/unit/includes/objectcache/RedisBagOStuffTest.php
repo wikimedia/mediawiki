@@ -26,7 +26,7 @@ class RedisBagOStuffTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $actual, $message );
 	}
 
-	public function unserializeProvider() {
+	public static function unserializeProvider() {
 		return [
 			[
 				-1,

@@ -316,7 +316,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 		$this->assertSameActors( $expected, $actor, $wikiId );
 	}
 
-	public function provideNewActorFromRowFields_exception() {
+	public static function provideNewActorFromRowFields_exception() {
 		yield 'empty name' => [
 			42, // $actorId
 			'', // $name
