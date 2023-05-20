@@ -97,13 +97,13 @@ class BlockLogFormatter extends LogFormatter {
 				if ( $pages ) {
 					$restrictions[] = $this->msg( 'logentry-partialblock-block-page' )
 						->numParams( count( $pages ) )
-						->rawParams( $this->context->getLanguage()->listToText( $pages ) )->text();
+						->rawParams( $this->context->getLanguage()->listToText( $pages ) )->escaped();
 				}
 
 				if ( $namespaces ) {
 					$restrictions[] = $this->msg( 'logentry-partialblock-block-ns' )
 						->numParams( count( $namespaces ) )
-						->rawParams( $this->context->getLanguage()->listToText( $namespaces ) )->text();
+						->rawParams( $this->context->getLanguage()->listToText( $namespaces ) )->escaped();
 				}
 
 				$params[6] = Message::rawParam( $this->context->getLanguage()->listToText( $restrictions ) );
