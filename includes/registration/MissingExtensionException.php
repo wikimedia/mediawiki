@@ -28,7 +28,7 @@ class MissingExtensionException extends Exception {
 	 * @param string $error Text of error mtime gave
 	 */
 	public function __construct( $path, $error ) {
-		$this->isSkin = substr( $path, -10 ) === "/skin.json";
+		$this->isSkin = str_ends_with( $path, "/skin.json" );
 		$m = [];
 		preg_match( "!/([^/]*)/[^/]*.json$!", $path, $m );
 		if ( $m ) {

@@ -141,7 +141,7 @@ class DatabaseTestHelper extends Database {
 			$check = $m[1];
 		}
 
-		if ( substr( $check, 0, strlen( $this->testName ) ) !== $this->testName ) {
+		if ( !str_starts_with( $check, $this->testName ) ) {
 			throw new MWException( 'function name does not start with test class. ' .
 				$fname . ' vs. ' . $this->testName . '. ' .
 				'Please provide __METHOD__ to database methods.' );

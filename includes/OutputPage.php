@@ -4410,9 +4410,10 @@ class OutputPage extends ContextSource {
 			$media = 'all';
 		}
 
-		if ( substr( $style, 0, 1 ) == '/' ||
-			substr( $style, 0, 5 ) == 'http:' ||
-			substr( $style, 0, 6 ) == 'https:' ) {
+		if ( str_starts_with( $style, '/' ) ||
+			str_starts_with( $style, 'http:' ) ||
+			str_starts_with( $style, 'https:' )
+		) {
 			$url = $style;
 		} else {
 			$config = $this->getConfig();
@@ -4463,7 +4464,7 @@ class OutputPage extends ContextSource {
 		} else {
 			$remotePath = $remotePathPrefix;
 		}
-		if ( strpos( $path, $remotePath ) !== 0 || substr( $path, 0, 2 ) === '//' ) {
+		if ( !str_starts_with( $path, $remotePath ) || str_starts_with( $path, '//' ) ) {
 			// - Path is outside wgResourceBasePath, ignore.
 			// - Path is protocol-relative. Fixes T155310. Not supported by RelPath lib.
 			return $path;

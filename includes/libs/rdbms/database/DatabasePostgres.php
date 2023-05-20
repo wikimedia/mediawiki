@@ -1062,7 +1062,7 @@ SQL;
 
 	public function streamStatementEnd( &$sql, &$newLine ) {
 		# Allow dollar quoting for function declarations
-		if ( substr( $newLine, 0, 4 ) == '$mw$' ) {
+		if ( str_starts_with( $newLine, '$mw$' ) ) {
 			if ( $this->delimiter ) {
 				$this->delimiter = false;
 			} else {

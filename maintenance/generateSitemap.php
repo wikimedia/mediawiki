@@ -195,7 +195,7 @@ class GenerateSitemap extends Maintenance {
 		$dbDomain = WikiMap::getCurrentWikiDbDomain()->getId();
 		$this->fspath = realpath( $fspath ) . DIRECTORY_SEPARATOR;
 		$this->urlpath = $this->getOption( 'urlpath', "" );
-		if ( $this->urlpath !== "" && substr( $this->urlpath, -1 ) !== '/' ) {
+		if ( $this->urlpath !== "" && $this->urlpath[-1] !== '/' ) {
 			$this->urlpath .= '/';
 		}
 		$this->identifier = $this->getOption( 'identifier', $dbDomain );
@@ -517,7 +517,7 @@ class GenerateSitemap extends Maintenance {
 	private function indexEntry( $filename ) {
 		return "\t<sitemap>\n" .
 			"\t\t<loc>" . wfGetServerUrl( PROTO_CANONICAL ) .
-				( substr( $this->urlpath, 0, 1 ) === "/" ? "" : "/" ) .
+				( $this->urlpath[0] === "/" ? "" : "/" ) .
 				"{$this->urlpath}$filename</loc>\n" .
 			"\t\t<lastmod>{$this->timestamp}</lastmod>\n" .
 			"\t</sitemap>\n";

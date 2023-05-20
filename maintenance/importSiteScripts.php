@@ -98,7 +98,7 @@ class ImportSiteScripts extends Maintenance {
 
 			$page = null;
 			foreach ( $result['query']['allpages'] as $page ) {
-				if ( substr( $page['title'], -3 ) === '.js' ) {
+				if ( str_ends_with( $page['title'], '.js' ) ) {
 					strtok( $page['title'], ':' );
 					$pages[] = strtok( '' );
 				}

@@ -135,7 +135,7 @@ class ExtensionRegistryTest extends MediaWikiUnitTestCase {
 		if ( $before ) {
 			foreach ( $before as $key => $value ) {
 				// mw prefixed globals does not exist normally
-				if ( substr( $key, 0, 2 ) == 'mw' ) {
+				if ( str_starts_with( $key, 'mw' ) ) {
 					$GLOBALS[$key] = $value;
 				} else {
 					$this->setGlobal( $key, $value );
@@ -161,7 +161,7 @@ class ExtensionRegistryTest extends MediaWikiUnitTestCase {
 		// Remove mw prefixed globals
 		if ( $before ) {
 			foreach ( $before as $key => $value ) {
-				if ( substr( $key, 0, 2 ) == 'mw' ) {
+				if ( str_starts_with( $key, 'mw' ) ) {
 					unset( $GLOBALS[$key] );
 				}
 			}

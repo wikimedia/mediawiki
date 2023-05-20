@@ -247,7 +247,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 			$path = $this->stripPath( $val, $this->dir );
 			// When path starts with tests/parser/ the file would be autodiscovered with
 			// extension registry, so no need to add it to extension.json
-			if ( substr( $path, 0, 13 ) !== 'tests/parser/' || substr( $path, -4 ) !== '.txt' ) {
+			if ( !str_starts_with( $path, 'tests/parser/' ) || !str_ends_with( $path, '.txt' ) ) {
 				$out[$key] = $path;
 			}
 		}

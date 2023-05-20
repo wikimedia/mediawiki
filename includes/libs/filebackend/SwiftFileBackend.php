@@ -1792,7 +1792,7 @@ class SwiftFileBackend extends FileBackendStore {
 				}
 			}
 			// Ceph RGW does not use <account> in URLs (OpenStack Swift uses "/v1/<account>")
-			if ( substr( $this->authCreds['storage_url'], -3 ) === '/v1' ) {
+			if ( str_ends_with( $this->authCreds['storage_url'], '/v1' ) ) {
 				$this->isRGW = true; // take advantage of strong consistency in Ceph
 			}
 		}
