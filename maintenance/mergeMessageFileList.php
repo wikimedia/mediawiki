@@ -86,7 +86,6 @@ class MergeMessageFileList extends Maintenance {
 					$possibilities = [
 						"$extdir/$extname/extension.json",
 						"$extdir/$extname/skin.json",
-						"$extdir/$extname/$extname.php"
 					];
 					$found = false;
 					foreach ( $possibilities as $extfile ) {
@@ -99,7 +98,8 @@ class MergeMessageFileList extends Maintenance {
 
 					if ( !$found ) {
 						$this->error( "Extension {$extname} in {$extdir} lacks expected entry point: " .
-							"extension.json, skin.json, or {$extname}.php." );
+							"extension.json or skin.json " .
+							"(PHP entry points are no longer supported by this script)." );
 					}
 				}
 			}
@@ -152,7 +152,10 @@ class MergeMessageFileList extends Maintenance {
 			if ( $extension !== '' ) {
 				# Paths may use the string $IP to be substituted by the actual value
 				$extension = str_replace( '$IP', $IP, $extension );
-				if ( file_exists( $extension ) ) {
+				if ( !str_ends_with( $extension, '.json' ) ) {
+					$this->error( "Extension {$extension} does not end with .json " .
+						"(PHP entry points are no longer supported by this script)" );
+				} elseif ( file_exists( $extension ) ) {
 					$files[] = $extension;
 				} else {
 					$this->error( "Extension {$extension} doesn't exist" );
@@ -178,12 +181,7 @@ class MergeMessageFileList extends Maintenance {
 			if ( !$quiet ) {
 				fwrite( STDERR, "Loading data from $fileName\n" );
 			}
-			// Using extension.json or skin.json
-			if ( str_ends_with( $fileName, '.json' ) ) {
-				$queue[$fileName] = 1;
-			} else {
-				require_once $fileName;
-			}
+			$queue[$fileName] = 1;
 		}
 
 		$config = $this->getConfig();

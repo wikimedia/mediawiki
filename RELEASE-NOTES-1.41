@@ -257,6 +257,9 @@ because of Phabricator reports.
 * ExternalLinksLookup::getExternalLinksForPage() now exists to centralize
   logic of looking up externallinks rows.
 * The update script no longer accepts the --skip-compat-checks option.
+* The mergeMessageFileList script now only works for extensions and skins
+  supporting extension registration (using extension.json or skin.json).
+  It will no longer attempt to load PHP entry points.
 * …
 
 == Compatibility ==
