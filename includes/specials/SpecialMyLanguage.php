@@ -23,9 +23,12 @@
  * @copyright Copyright © 2010-2013 Niklas Laxström, Siebrand Mazeland
  */
 
+namespace MediaWiki\Specials;
+
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Title\Title;
+use RedirectSpecialArticle;
 
 /**
  * Unlisted special page just to redirect the user to the translated version of
@@ -202,3 +205,9 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 		return true;
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialMyLanguage::class, 'SpecialMyLanguage' );

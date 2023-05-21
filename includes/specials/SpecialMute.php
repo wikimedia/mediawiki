@@ -19,12 +19,19 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use CentralIdLookup;
+use ErrorPageError;
+use FormSpecialPage;
+use HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Preferences\MultiUsernameFilter;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsManager;
+use User;
 
 /**
  * A special page that allows users to modify their notification
@@ -266,3 +273,8 @@ class SpecialMute extends FormSpecialPage {
 		return MultiUsernameFilter::splitIds( $muteList );
 	}
 }
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialMute::class, 'SpecialMute' );

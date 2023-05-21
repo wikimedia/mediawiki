@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Specials\SpecialMyLanguage;
 use MediaWiki\Title\Title;
 
 /**

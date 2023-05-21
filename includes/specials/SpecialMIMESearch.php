@@ -22,10 +22,20 @@
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
+namespace MediaWiki\Specials;
+
+use File;
+use HtmlArmor;
+use HTMLForm;
+use ILanguageConverter;
+use LocalFile;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Title\Title;
+use QueryPage;
+use Skin;
+use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -262,3 +272,9 @@ class SpecialMIMESearch extends QueryPage {
 		return 'media';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialMIMESearch::class, 'SpecialMIMESearch' );

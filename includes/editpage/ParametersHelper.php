@@ -5,9 +5,9 @@ namespace MediaWiki\EditPage;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\SpecialPage\SpecialPageFactory;
+use MediaWiki\Specials\SpecialMyLanguage;
 use MediaWiki\Title\Title;
 use RequestContext;
-use SpecialMyLanguage;
 
 /**
  * Helper methods for resolving EditPage parameters that deal with page titles.
