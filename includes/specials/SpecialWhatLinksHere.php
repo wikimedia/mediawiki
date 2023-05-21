@@ -29,7 +29,7 @@ use MediaWiki\Navigation\PagerNavigationBuilder;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use Wikimedia\Rdbms\IConnectionProvider;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
@@ -282,7 +282,7 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 		$sortDirection = $dir === 'prev' ? SelectQueryBuilder::SORT_DESC : SelectQueryBuilder::SORT_ASC;
 
 		$fname = __METHOD__;
-		$queryFunc = static function ( IDatabase $dbr, $table, $fromCol ) use (
+		$queryFunc = static function ( IReadableDatabase $dbr, $table, $fromCol ) use (
 			$conds, $target, $limit, $sortDirection, $fname
 		) {
 			// Read an extra row as an at-end check
