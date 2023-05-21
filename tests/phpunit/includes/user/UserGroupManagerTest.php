@@ -568,7 +568,8 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideGetUserAutopromoteEmailConfirmed() {
-		$successUserMock = $this->createNoOpMock( User::class, [ 'getEmail', 'getEmailAuthenticationTimestamp' ] );
+		$successUserMock = $this->createNoOpMock( User::class, [ 'getEmail', 'getEmailAuthenticationTimestamp', 'assertWiki' ] );
+		$successUserMock->method( 'assertWiki' )->willReturn( true );
 		$successUserMock->expects( $this->once() )
 			->method( 'getEmail' )
 			->willReturn( 'test@test.com' );
@@ -578,14 +579,16 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		yield 'Successfull autopromote' => [
 			true, $successUserMock, [ 'test_autoconfirmed' ]
 		];
-		$emailAuthMock = $this->createNoOpMock( User::class, [ 'getEmail' ] );
+		$emailAuthMock = $this->createNoOpMock( User::class, [ 'getEmail', 'assertWiki' ] );
+		$emailAuthMock->method( 'assertWiki' )->willReturn( true );
 		$emailAuthMock->expects( $this->once() )
 			->method( 'getEmail' )
 			->willReturn( 'test@test.com' );
 		yield 'wgEmailAuthentication is false' => [
 			false, $emailAuthMock, [ 'test_autoconfirmed' ]
 		];
-		$invalidEmailMock = $this->createNoOpMock( User::class, [ 'getEmail' ] );
+		$invalidEmailMock = $this->createNoOpMock( User::class, [ 'getEmail', 'assertWiki' ] );
+		$invalidEmailMock->method( 'assertWiki' )->willReturn( true );
 		$invalidEmailMock
 			->expects( $this->once() )
 			->method( 'getEmail' )
@@ -593,7 +596,8 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		yield 'Invalid email' => [
 			true, $invalidEmailMock, []
 		];
-		$nullTimestampMock = $this->createNoOpMock( User::class, [ 'getEmail', 'getEmailAuthenticationTimestamp' ] );
+		$nullTimestampMock = $this->createNoOpMock( User::class, [ 'getEmail', 'getEmailAuthenticationTimestamp', 'assertWiki' ] );
+		$nullTimestampMock->method( 'assertWiki' )->willReturn( true );
 		$nullTimestampMock->expects( $this->once() )
 			->method( 'getEmail' )
 			->willReturn( 'test@test.com' );
@@ -715,7 +719,8 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 			'AutoConfirmAge' => 10000000,
 			'Autopromote' => [ 'test_autoconfirmed' => $requiredCondition ]
 		] );
-		$user = $this->createNoOpMock( User::class, [ 'getRegistration' ] );
+		$user = $this->createNoOpMock( User::class, [ 'getRegistration', 'assertWiki' ] );
+		$user->method( 'assertWiki' )->willReturn( true );
 		$user->method( 'getRegistration' )
 			->willReturn( $registrationTs );
 		$this->assertArrayEquals( $expected, $manager->getUserAutopromoteGroups( $user ) );
@@ -818,7 +823,8 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$requestMock->expects( $this->once() )
 			->method( 'getIP' )
 			->willReturn( $userIp );
-		$user = $this->createNoOpMock( User::class, [ 'getRequest' ] );
+		$user = $this->createNoOpMock( User::class, [ 'getRequest', 'assertWiki' ] );
+		$user->method( 'assertWiki' )->willReturn( true );
 		$user->expects( $this->once() )
 			->method( 'getRequest' )
 			->willReturn( $requestMock );
