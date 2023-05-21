@@ -25,11 +25,9 @@
 				}
 				checkAllChangeOngoing = true;
 
-				// Select or de-select all the title checkboxes for this namespace,
-				// using jQuery since OOUI's selectItems has completely unacceptable
-				// performance with as few as 200 items (T335082)
+				// Select or de-select all the title checkboxes for this namespace
 				var multiselect = multiselects[ index ];
-				multiselect.$element.find( 'input' ).prop( 'checked', isChecked );
+				multiselect.selectItems( isChecked ? multiselect.items : [] );
 
 				checkAllChangeOngoing = false;
 			} );
