@@ -589,12 +589,15 @@ class SpecialSearch extends SpecialPage {
 
 		$widget = new BasicSearchResultSetWidget( $this, $mainResultWidget, $sidebarResultsWidget );
 
+		$out->addHTML( '<div class="mw-search-visualclear"></div>' );
+		$this->prevNextLinks( $totalRes, $textMatches, $term, 'mw-search-pager-top', $out );
+
 		$out->addHTML( $widget->render(
 			$term, $this->offset, $titleMatches, $textMatches
 		) );
 
 		$out->addHTML( '<div class="mw-search-visualclear"></div>' );
-		$this->prevNextLinks( $totalRes, $textMatches, $term, $out );
+		$this->prevNextLinks( $totalRes, $textMatches, $term, 'mw-search-pager-bottom', $out );
 
 		// Close <div class='searchresults'>
 		$out->addHTML( "</div>" );
@@ -898,9 +901,16 @@ class SpecialSearch extends SpecialPage {
 	 * @param null|int $totalRes
 	 * @param null|ISearchResultSet $textMatches
 	 * @param string $term
+	 * @param string $class
 	 * @param OutputPage $out
 	 */
-	private function prevNextLinks( ?int $totalRes, ?ISearchResultSet $textMatches, string $term, OutputPage $out ) {
+	private function prevNextLinks(
+		?int $totalRes,
+		?ISearchResultSet $textMatches,
+		string $term,
+		string $class,
+		OutputPage $out
+	) {
 		if ( $totalRes > $this->limit || $this->offset ) {
 			// Allow matches to define the correct offset, as interleaved
 			// AB testing may require a different next page offset.
@@ -921,7 +931,7 @@ class SpecialSearch extends SpecialPage {
 				$this->buildPrevNextNavigation( $offset, $this->limit,
 					$this->powerSearchOptions() + [ 'search' => $newSearchTerm ],
 					$this->limit + $this->offset >= $totalRes );
-			$out->addHTML( "<div class='mw-search-pager-bottom'>{$prevNext}</div>\n" );
+			$out->addHTML( "<div class='{$class}'>{$prevNext}</div>\n" );
 		}
 	}
 
