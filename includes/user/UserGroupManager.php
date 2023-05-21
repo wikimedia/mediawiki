@@ -284,7 +284,6 @@ class UserGroupManager implements IDBAccessObject {
 		int $queryFlags = self::READ_NORMAL,
 		bool $recache = false
 	): array {
-		$user->assertWiki( $this->dbDomain );
 		$userKey = $this->getCacheKey( $user );
 		if ( $recache ||
 			!isset( $this->userGroupCache[$userKey][self::CACHE_IMPLICIT] ) ||
@@ -329,7 +328,6 @@ class UserGroupManager implements IDBAccessObject {
 		int $queryFlags = self::READ_NORMAL,
 		bool $recache = false
 	): array {
-		$user->assertWiki( $this->dbDomain );
 		$userKey = $this->getCacheKey( $user );
 		// Ignore cache if the $recache flag is set, cached values can not be used
 		// or the cache value is missing
@@ -372,7 +370,6 @@ class UserGroupManager implements IDBAccessObject {
 		UserIdentity $user,
 		int $queryFlags = self::READ_NORMAL
 	): array {
-		$user->assertWiki( $this->dbDomain );
 		$userKey = $this->getCacheKey( $user );
 
 		if ( $this->canUseCachedValues( $user, self::CACHE_FORMER, $queryFlags ) &&
@@ -389,7 +386,7 @@ class UserGroupManager implements IDBAccessObject {
 		$res = $this->getDBConnectionRefForQueryFlags( $queryFlags )->newSelectQueryBuilder()
 			->select( 'ufg_group' )
 			->from( 'user_former_groups' )
-			->where( [ 'ufg_user' => $user->getId( $this->dbDomain ) ] )
+			->where( [ 'ufg_user' => $user->getId() ] )
 			->caller( __METHOD__ )
 			->fetchResultSet();
 		$formerGroups = [];
@@ -410,7 +407,6 @@ class UserGroupManager implements IDBAccessObject {
 	 * @see $wgAutopromote
 	 */
 	public function getUserAutopromoteGroups( UserIdentity $user ): array {
-		$user->assertWiki( $this->dbDomain );
 		$promote = [];
 		// TODO: remove the need for the full user object
 		$userObj = User::newFromIdentity( $user );
@@ -440,7 +436,6 @@ class UserGroupManager implements IDBAccessObject {
 		UserIdentity $user,
 		string $event
 	): array {
-		$user->assertWiki( $this->dbDomain );
 		$autopromoteOnce = $this->options->get( MainConfigNames::AutopromoteOnce );
 		$promote = [];
 
@@ -629,7 +624,6 @@ class UserGroupManager implements IDBAccessObject {
 			!$this->dbDomain || WikiMap::isCurrentWikiDbDomain( $this->dbDomain ),
 			__METHOD__ . " is not supported for foreign domains: {$this->dbDomain} used"
 		);
-		$user->assertWiki( $this->dbDomain );
 
 		if ( $this->readOnlyMode->isReadOnly() || !$user->isRegistered() ) {
 			return [];
@@ -704,7 +698,6 @@ class UserGroupManager implements IDBAccessObject {
 		UserIdentity $user,
 		int $queryFlags = self::READ_NORMAL
 	): array {
-		$user->assertWiki( $this->dbDomain );
 		$userKey = $this->getCacheKey( $user );
 
 		if ( $this->canUseCachedValues( $user, self::CACHE_MEMBERSHIP, $queryFlags ) &&
@@ -721,7 +714,7 @@ class UserGroupManager implements IDBAccessObject {
 
 		$queryBuilder = $this->newQueryBuilder( $this->getDBConnectionRefForQueryFlags( $queryFlags ) );
 		$res = $queryBuilder
-			->where( [ 'ug_user' => $user->getId( $this->dbDomain ) ] )
+			->where( [ 'ug_user' => $user->getId() ] )
 			->caller( __METHOD__ )
 			->fetchResultSet();
 
@@ -760,7 +753,6 @@ class UserGroupManager implements IDBAccessObject {
 		string $expiry = null,
 		bool $allowUpdate = false
 	): bool {
-		$user->assertWiki( $this->dbDomain );
 		if ( $this->readOnlyMode->isReadOnly() ) {
 			return false;
 		}
@@ -793,7 +785,7 @@ class UserGroupManager implements IDBAccessObject {
 		$dbw->insert(
 			'user_groups',
 			[
-				'ug_user' => $user->getId( $this->dbDomain ),
+				'ug_user' => $user->getId(),
 				'ug_group' => $group,
 				'ug_expiry' => $expiry ? $dbw->timestamp( $expiry ) : null,
 			],
@@ -806,7 +798,7 @@ class UserGroupManager implements IDBAccessObject {
 			// Conflicting row already exists; it should be overridden if it is either expired
 			// or if $allowUpdate is true and the current row is different than the loaded row.
 			$conds = [
-				'ug_user' => $user->getId( $this->dbDomain ),
+				'ug_user' => $user->getId(),
 				'ug_group' => $group
 			];
 			if ( $allowUpdate ) {
@@ -842,7 +834,7 @@ class UserGroupManager implements IDBAccessObject {
 		} );
 
 		if ( $affected > 0 ) {
-			$oldUgms[$group] = new UserGroupMembership( $user->getId( $this->dbDomain ), $group, $expiry );
+			$oldUgms[$group] = new UserGroupMembership( $user->getId(), $group, $expiry );
 			if ( !$oldUgms[$group]->isExpired() ) {
 				$this->setCache(
 					$this->getCacheKey( $user ),
@@ -893,7 +885,6 @@ class UserGroupManager implements IDBAccessObject {
 	 * @return bool
 	 */
 	public function removeUserFromGroup( UserIdentity $user, string $group ): bool {
-		$user->assertWiki( $this->dbDomain );
 		// TODO: Deprecate passing out user object in the hook by introducing
 		// an alternative hook
 		if ( $this->hookContainer->isRegistered( 'UserRemoveGroup' ) ) {
@@ -920,7 +911,7 @@ class UserGroupManager implements IDBAccessObject {
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY, [], $this->dbDomain );
 		$dbw->newDeleteQueryBuilder()
 			->delete( 'user_groups' )
-			->where( [ 'ug_user' => $user->getId( $this->dbDomain ), 'ug_group' => $group ] )
+			->where( [ 'ug_user' => $user->getId(), 'ug_group' => $group ] )
 			->caller( __METHOD__ )->execute();
 
 		if ( !$dbw->affectedRows() ) {
@@ -929,7 +920,7 @@ class UserGroupManager implements IDBAccessObject {
 		// Remember that the user was in this group
 		$dbw->insert(
 			'user_former_groups',
-			[ 'ufg_user' => $user->getId( $this->dbDomain ), 'ufg_group' => $group ],
+			[ 'ufg_user' => $user->getId(), 'ufg_group' => $group ],
 			__METHOD__,
 			[ 'IGNORE' ]
 		);
@@ -1127,7 +1118,6 @@ class UserGroupManager implements IDBAccessObject {
 	 * @param UserIdentity $user
 	 */
 	public function clearCache( UserIdentity $user ) {
-		$user->assertWiki( $this->dbDomain );
 		$userKey = $this->getCacheKey( $user );
 		unset( $this->userGroupCache[$userKey] );
 		unset( $this->queryFlagsUsedForCaching[$userKey] );
@@ -1178,7 +1168,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * @return string
 	 */
 	private function getCacheKey( UserIdentity $user ): string {
-		return $user->isRegistered() ? "u:{$user->getId( $this->dbDomain )}" : "anon:{$user->getName()}";
+		return $user->isRegistered() ? "u:{$user->getId()}" : "anon:{$user->getName()}";
 	}
 
 	/**
