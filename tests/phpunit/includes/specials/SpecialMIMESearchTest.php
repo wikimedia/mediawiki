@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Specials\SpecialMIMESearch;
 use MediaWiki\Title\Title;
 
 /**

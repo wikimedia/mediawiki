@@ -24,9 +24,11 @@
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
+namespace MediaWiki\Specials;
+
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
-use MediaWiki\Specials\SpecialFewestRevisions;
+use NamespaceInfo;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 class SpecialMostRevisions extends SpecialFewestRevisions {
@@ -60,3 +62,9 @@ class SpecialMostRevisions extends SpecialFewestRevisions {
 		return 'highuse';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialMostRevisions::class, 'SpecialMostRevisions' );

@@ -232,6 +232,17 @@ because of Phabricator reports.
   - SpecialLog
   - SpecialLonelyPages
   - SpecialLongPages
+  - SpecialMIMESearch
+  - SpecialMediaStatistics
+  - SpecialMergeHistory
+  - SpecialMostCategories
+  - SpecialMostInterwikis
+  - SpecialMostLinked
+  - SpecialMostLinkedCategories
+  - SpecialMostLinkedTemplates
+  - SpecialMostRevisions
+  - SpecialMute
+  - SpecialMyLanguage
 * Various mediawiki.ui variables have been deprecated in favor of
   'mediawiki.skin.variables.less' Codex design tokens featuring replacements.
 * The jquery.cookie ResourceLoader module has been merged into the existing

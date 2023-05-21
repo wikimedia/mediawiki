@@ -22,8 +22,17 @@
  * @author Brian Wolff
  */
 
+namespace MediaWiki\Specials;
+
+use LogicException;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\Html;
+use MimeAnalyzer;
+use OutputPage;
+use QueryPage;
+use Skin;
+use SpecialPage;
+use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -404,3 +413,9 @@ class SpecialMediaStatistics extends QueryPage {
 		$res->seek( 0 );
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialMediaStatistics::class, 'SpecialMediaStatistics' );

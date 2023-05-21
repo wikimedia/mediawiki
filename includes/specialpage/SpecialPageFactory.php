@@ -88,8 +88,19 @@ use MediaWiki\Specials\SpecialLockdb;
 use MediaWiki\Specials\SpecialLog;
 use MediaWiki\Specials\SpecialLonelyPages;
 use MediaWiki\Specials\SpecialLongPages;
+use MediaWiki\Specials\SpecialMediaStatistics;
+use MediaWiki\Specials\SpecialMergeHistory;
+use MediaWiki\Specials\SpecialMIMESearch;
+use MediaWiki\Specials\SpecialMostCategories;
 use MediaWiki\Specials\SpecialMostImages;
+use MediaWiki\Specials\SpecialMostInterwikis;
+use MediaWiki\Specials\SpecialMostLinked;
+use MediaWiki\Specials\SpecialMostLinkedCategories;
+use MediaWiki\Specials\SpecialMostLinkedTemplates;
+use MediaWiki\Specials\SpecialMostRevisions;
 use MediaWiki\Specials\SpecialMovePage;
+use MediaWiki\Specials\SpecialMute;
+use MediaWiki\Specials\SpecialMyLanguage;
 use MediaWiki\Specials\SpecialUserRights;
 use MediaWiki\Specials\SpecialWantedFiles;
 use MediaWiki\Specials\SpecialWantedPages;
@@ -668,7 +679,7 @@ class SpecialPageFactory {
 			]
 		],
 		'MediaStatistics' => [
-			'class' => \SpecialMediaStatistics::class,
+			'class' => SpecialMediaStatistics::class,
 			'services' => [
 				'MimeAnalyzer',
 				'DBLoadBalancerFactory',
@@ -676,7 +687,7 @@ class SpecialPageFactory {
 			]
 		],
 		'MIMEsearch' => [
-			'class' => \SpecialMIMESearch::class,
+			'class' => SpecialMIMESearch::class,
 			'services' => [
 				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
@@ -791,7 +802,7 @@ class SpecialPageFactory {
 
 		// High use pages
 		'Mostlinkedcategories' => [
-			'class' => \SpecialMostLinkedCategories::class,
+			'class' => SpecialMostLinkedCategories::class,
 			'services' => [
 				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
@@ -806,7 +817,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Mostinterwikis' => [
-			'class' => \SpecialMostInterwikis::class,
+			'class' => SpecialMostInterwikis::class,
 			'services' => [
 				'NamespaceInfo',
 				'DBLoadBalancerFactory',
@@ -814,14 +825,14 @@ class SpecialPageFactory {
 			]
 		],
 		'Mostlinked' => [
-			'class' => \SpecialMostLinked::class,
+			'class' => SpecialMostLinked::class,
 			'services' => [
 				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 			]
 		],
 		'Mostlinkedtemplates' => [
-			'class' => \SpecialMostLinkedTemplates::class,
+			'class' => SpecialMostLinkedTemplates::class,
 			'services' => [
 				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
@@ -829,7 +840,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Mostcategories' => [
-			'class' => \SpecialMostCategories::class,
+			'class' => SpecialMostCategories::class,
 			'services' => [
 				'NamespaceInfo',
 				'DBLoadBalancerFactory',
@@ -837,7 +848,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Mostrevisions' => [
-			'class' => \SpecialMostRevisions::class,
+			'class' => SpecialMostRevisions::class,
 			'services' => [
 				// Same as for Fewestrevisions
 				'NamespaceInfo',
@@ -903,7 +914,7 @@ class SpecialPageFactory {
 			]
 		],
 		'MergeHistory' => [
-			'class' => \SpecialMergeHistory::class,
+			'class' => SpecialMergeHistory::class,
 			'services' => [
 				'MergeHistoryFactory',
 				'LinkBatchFactory',
@@ -1002,7 +1013,7 @@ class SpecialPageFactory {
 			'class' => \SpecialMycontributions::class,
 		],
 		'MyLanguage' => [
-			'class' => \SpecialMyLanguage::class,
+			'class' => SpecialMyLanguage::class,
 			'services' => [
 				'LanguageNameUtils',
 				'RedirectLookup'
@@ -1242,7 +1253,7 @@ class SpecialPageFactory {
 
 			if ( $this->options->get( MainConfigNames::EnableSpecialMute ) ) {
 				$this->list['Mute'] = [
-					'class' => \SpecialMute::class,
+					'class' => SpecialMute::class,
 					'services' => [
 						'CentralIdLookup',
 						'UserOptionsManager',

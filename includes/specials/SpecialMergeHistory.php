@@ -21,6 +21,12 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use ChangeTags;
+use HTMLForm;
+use LogEventsList;
+use LogPage;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Html\Html;
@@ -29,7 +35,11 @@ use MediaWiki\Page\MergeHistoryFactory;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Title\Title;
+use MergeHistoryPager;
+use SpecialPage;
+use Status;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Xml;
 
 /**
  * Special page allowing users with the appropriate permissions to
@@ -468,3 +478,9 @@ class SpecialMergeHistory extends SpecialPage {
 		return 'pagetools';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialMergeHistory::class, 'SpecialMergeHistory' );
