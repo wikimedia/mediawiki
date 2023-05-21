@@ -52,6 +52,8 @@ For notes on 1.40.x and older releases, see HISTORY.
 * Added ForeignResourcesDir extension.json / skin.json attribute, which should
   point to the directory holding your foreign-resources.yaml file. See
   https://www.mediawiki.org/wiki/Foreign_resources for background.
+* Added a .gitmessage commit template. To use it, run:
+  `git config commit.template .gitmessage`
 * …
 
 === External library changes in 1.41 ===
