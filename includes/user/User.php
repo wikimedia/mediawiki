@@ -2884,6 +2884,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/**
 	 * Get whether the user is blocked from using Special:Emailuser.
 	 * @return bool
+	 * @todo Deprecate in favour of EmailUser when that's no longer unstable
 	 */
 	public function isBlockedFromEmailuser() {
 		$this->getBlockedStatus();

@@ -24,6 +24,7 @@ use BadMethodCallException;
 use CentralIdLookup;
 use Config;
 use MailAddress;
+use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -31,7 +32,6 @@ use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\MultiUsernameFilter;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserOptionsLookup;
@@ -72,8 +72,6 @@ class EmailUser {
 	private UserOptionsLookup $userOptionsLookup;
 	/** @var CentralIdLookup */
 	private CentralIdLookup $centralIdLookup;
-	/** @var PermissionManager */
-	private PermissionManager $permissionManager;
 	/** @var UserFactory */
 	private UserFactory $userFactory;
 	/** @var IEmailer */
@@ -87,7 +85,6 @@ class EmailUser {
 	 * @param HookContainer $hookContainer
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param CentralIdLookup $centralIdLookup
-	 * @param PermissionManager $permissionManager
 	 * @param UserFactory $userFactory
 	 * @param IEmailer $emailer
 	 */
@@ -96,7 +93,6 @@ class EmailUser {
 		HookContainer $hookContainer,
 		UserOptionsLookup $userOptionsLookup,
 		CentralIdLookup $centralIdLookup,
-		PermissionManager $permissionManager,
 		UserFactory $userFactory,
 		IEmailer $emailer
 	) {
@@ -105,7 +101,6 @@ class EmailUser {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->userOptionsLookup = $userOptionsLookup;
 		$this->centralIdLookup = $centralIdLookup;
-		$this->permissionManager = $permissionManager;
 		$this->userFactory = $userFactory;
 		$this->emailer = $emailer;
 	}
@@ -113,12 +108,15 @@ class EmailUser {
 	/**
 	 * Validate target User
 	 *
-	 * @param User $target Target user
+	 * @param UserEmailContact $target Target user
 	 * @param Authority $sender User sending the email
 	 * @return StatusValue
 	 */
-	public function validateTarget( User $target, Authority $sender ): StatusValue {
-		if ( !$target->getId() ) {
+	public function validateTarget( UserEmailContact $target, Authority $sender ): StatusValue {
+		$targetIdentity = $target->getUser();
+		$targetUser = $this->userFactory->newFromUserIdentity( $targetIdentity );
+
+		if ( !$targetIdentity->getId() ) {
 			return StatusValue::newFatal( 'emailnotarget' );
 		}
 
@@ -126,23 +124,26 @@ class EmailUser {
 			return StatusValue::newFatal( 'noemailtext' );
 		}
 
-		if ( !$target->canReceiveEmail() ) {
+		if ( !$targetUser->canReceiveEmail() ) {
 			return StatusValue::newFatal( 'nowikiemailtext' );
 		}
 
-		$sender = $this->userFactory->newFromAuthority( $sender );
-		if ( !$this->userOptionsLookup->getOption( $target, 'email-allow-new-users' ) && $sender->isNewbie() ) {
+		$senderUser = $this->userFactory->newFromAuthority( $sender );
+		if (
+			!$this->userOptionsLookup->getOption( $targetIdentity, 'email-allow-new-users' ) &&
+			$senderUser->isNewbie()
+		) {
 			return StatusValue::newFatal( 'nowikiemailtext' );
 		}
 
 		$muteList = $this->userOptionsLookup->getOption(
-			$target,
+			$targetIdentity,
 			'email-blacklist',
 			''
 		);
 		if ( $muteList ) {
 			$muteList = MultiUsernameFilter::splitIds( $muteList );
-			$senderId = $this->centralIdLookup->centralIdFromLocalUser( $sender );
+			$senderId = $this->centralIdLookup->centralIdFromLocalUser( $sender->getUser() );
 			if ( $senderId !== 0 && in_array( $senderId, $muteList ) ) {
 				return StatusValue::newFatal( 'nowikiemailtext' );
 			}
@@ -196,11 +197,12 @@ class EmailUser {
 			return StatusValue::newFatal( 'mailnologin' );
 		}
 
-		if ( !$this->permissionManager->userHasRight( $user, 'sendemail' ) ) {
+		if ( !$performer->isAllowed( 'sendemail' ) ) {
 			return StatusValue::newFatal( 'badaccess' );
 		}
 
-		if ( $user->isBlockedFromEmailuser() ) {
+		$block = $performer->getBlock();
+		if ( $block instanceof AbstractBlock && $block->appliesToRight( 'sendemail' ) ) {
 			return StatusValue::newFatal( $this->getBlockedMessage( $user ) );
 		}
 
@@ -231,7 +233,7 @@ class EmailUser {
 	 * getPermissionsError(). It is probably also a good
 	 * idea to check the edit token and ping limiter in advance.
 	 *
-	 * @param User $target
+	 * @param UserEmailContact $target
 	 * @param string $subject
 	 * @param string $text
 	 * @param bool $CCMe
@@ -240,21 +242,27 @@ class EmailUser {
 	 * @return StatusValue
 	 */
 	public function submit(
-		User $target,
+		UserEmailContact $target,
 		string $subject,
 		string $text,
 		bool $CCMe,
 		Authority $sender,
 		MessageLocalizer $messageLocalizer
 	): StatusValue {
-		$sender = $this->userFactory->newFromAuthority( $sender );
+		$senderIdentity = $sender->getUser();
+		$senderUser = $this->userFactory->newFromAuthority( $sender );
 		$targetStatus = $this->validateTarget( $target, $sender );
 		if ( !$targetStatus->isGood() ) {
 			return $targetStatus;
 		}
 
+		// Check and increment the rate limits
+		if ( $senderUser->pingLimiter( 'sendemail' ) ) {
+			throw $this->getThrottledError();
+		}
+
 		$toAddress = MailAddress::newFromUser( $target );
-		$fromAddress = MailAddress::newFromUser( $sender );
+		$fromAddress = MailAddress::newFromUser( $senderUser );
 
 		// Add a standard footer and trim up trailing newlines
 		$text = rtrim( $text ) . "\n\n-- \n";
@@ -267,14 +275,9 @@ class EmailUser {
 		if ( $this->options->get( MainConfigNames::EnableSpecialMute ) ) {
 			$text .= "\n" . $messageLocalizer->msg(
 					'specialmute-email-footer',
-					$this->getSpecialMuteCanonicalURL( $sender->getName() ),
-					$sender->getName()
+					$this->getSpecialMuteCanonicalURL( $senderIdentity->getName() ),
+					$senderIdentity->getName()
 				)->inContentLanguage()->text();
-		}
-
-		// Check and increment the rate limits
-		if ( $sender->pingLimiter( 'sendemail' ) ) {
-			throw $this->getThrottledError();
 		}
 
 		$error = false;
@@ -328,7 +331,7 @@ class EmailUser {
 			$ccTo = $fromAddress;
 			$ccFrom = $fromAddress;
 			$ccSubject = $messageLocalizer->msg( 'emailccsubject' )->plaintextParams(
-				$target->getName(),
+				$target->getUser()->getName(),
 				$subject
 			)->text();
 			$ccText = $text;
