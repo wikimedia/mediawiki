@@ -27,13 +27,17 @@ use MailAddress;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\MultiUsernameFilter;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserOptionsLookup;
+use Message;
 use MessageLocalizer;
 use MessageSpecifier;
+use RequestContext;
 use RuntimeException;
 use SpecialPage;
 use StatusValue;
@@ -190,43 +194,51 @@ class EmailUser {
 	 *
 	 * @param User $user
 	 * @param string $editToken
-	 * @return null|string|array Null on success, string on error, or array on
-	 *  hook error
+	 * @return StatusValue For BC, the StatusValue's value can be set to a string representing a message key to use
+	 * with ErrorPageError.
 	 */
-	public function getPermissionsError( User $user, string $editToken ) {
+	public function getPermissionsError( User $user, string $editToken ): StatusValue {
 		if (
 			!$this->options->get( MainConfigNames::EnableEmail ) ||
 			!$this->options->get( MainConfigNames::EnableUserEmail )
 		) {
-			return 'usermaildisabled';
+			return StatusValue::newFatal( 'usermaildisabled' );
 		}
 
 		// Run this before checking 'sendemail' permission
 		// to show appropriate message to anons (T160309)
 		if ( !$user->isEmailConfirmed() ) {
-			return 'mailnologin';
+			return StatusValue::newFatal( 'mailnologin' );
 		}
 
 		if ( !$this->permissionManager->userHasRight( $user, 'sendemail' ) ) {
-			return 'badaccess';
+			return StatusValue::newFatal( 'badaccess' );
 		}
 
 		if ( $user->isBlockedFromEmailuser() ) {
-			return "blockedemailuser";
+			return StatusValue::newFatal( $this->getBlockedMessage( $user ) );
 		}
 
 		// Check the ping limiter without incrementing it - we'll check it
 		// again later and increment it on a successful send
 		if ( $user->pingLimiter( 'sendemail', 0 ) ) {
-			return 'actionthrottledtext';
+			return StatusValue::newFatal( 'actionthrottledtext' );
 		}
 
 		$hookErr = false;
 
+		// XXX Replace these hooks with versions that simply use StatusValue for errors.
 		$this->hookRunner->onUserCanSendEmail( $user, $hookErr );
 		$this->hookRunner->onEmailUserPermissionsErrors( $user, $editToken, $hookErr );
+		if ( is_array( $hookErr ) ) {
+			// SpamBlacklist uses null for the third element, and there might be more handlers not using an array.
+			$msgParamsArray = is_array( $hookErr[2] ) ? $hookErr[2] : [];
+			$ret = StatusValue::newFatal( $hookErr[1], ...$msgParamsArray );
+			$ret->value = $hookErr[0];
+			return $ret;
+		}
 
-		return $hookErr ?: null;
+		return StatusValue::newGood();
 	}
 
 	/**
@@ -423,5 +435,29 @@ class EmailUser {
 			return new RuntimeException( "You are throttled, and I am not running heavy logic in the constructor" );
 		}
 		return new ThrottledError();
+	}
+
+	/**
+	 * XXX Temporary method to obtain a message for blocked users. This code shouldn't be here, and we should just
+	 * use Authority/PermissionManager to obtain a message. So don't bother making this pretty.
+	 * @param User $user
+	 * @return Message
+	 * @codeCoverageIgnore
+	 */
+	private function getBlockedMessage( User $user ): Message {
+		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
+			return new RawMessage( 'You shall not send' );
+		}
+		$blockErrorFormatter = MediaWikiServices::getInstance()->getBlockErrorFormatter();
+		$block = $user->getBlock();
+		if ( !$block ) {
+			throw new BadMethodCallException( 'This method should only be called if the user is blocked' );
+		}
+		return $blockErrorFormatter->getMessage(
+			$block,
+			$user,
+			RequestContext::getMain()->getLanguage(),
+			RequestContext::getMain()->getRequest()->getIP()
+		);
 	}
 }

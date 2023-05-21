@@ -224,13 +224,13 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 	 */
 	public function testGetPermissionsError(
 		User $user,
-		$expected,
+		StatusValue $expected,
 		PermissionManager $permissionManager = null,
 		array $configOverrides = [],
 		array $hooks = []
 	) {
 		$emailUser = $this->getEmailUser( null, null, null, $permissionManager, $configOverrides, $hooks );
-		$this->assertSame( $expected, $emailUser->getPermissionsError( $user, 'some-token' ) );
+		$this->assertEquals( $expected, $emailUser->getPermissionsError( $user, 'some-token' ) );
 	}
 
 	public function providePermissionsError(): Generator {
@@ -239,28 +239,32 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 
 		yield 'Emails disabled' => [
 			$validSender,
-			'usermaildisabled',
+			StatusValue::newFatal( 'usermaildisabled' ),
 			null,
 			[ MainConfigNames::EnableEmail => false ]
 		];
 
 		yield 'User emails disabled' => [
 			$validSender,
-			'usermaildisabled',
+			StatusValue::newFatal( 'usermaildisabled' ),
 			null,
 			[ MainConfigNames::EnableUserEmail => false ]
 		];
 
 		$noEmailSender = $this->createMock( User::class );
 		$noEmailSender->expects( $this->atLeastOnce() )->method( 'isEmailConfirmed' )->willReturn( false );
-		yield 'Sender does not have an email' => [ $noEmailSender, 'mailnologin' ];
+		yield 'Sender does not have an email' => [ $noEmailSender, StatusValue::newFatal( 'mailnologin' ) ];
 
 		$notAllowedPermManager = $this->createMock( PermissionManager::class );
 		$notAllowedPermManager->expects( $this->atLeastOnce() )
 			->method( 'userHasRight' )
 			->with( $validSender, 'sendemail' )
 			->willReturn( false );
-		yield 'Sender is not allowed to send emails' => [ $validSender, 'badaccess', $notAllowedPermManager ];
+		yield 'Sender is not allowed to send emails' => [
+			$validSender,
+			StatusValue::newFatal( 'badaccess' ),
+			$notAllowedPermManager
+		];
 
 		$allowedPermManager = $this->createMock( PermissionManager::class );
 		$allowedPermManager->method( 'userHasRight' )
@@ -270,7 +274,11 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 		$blockedSender = $this->createMock( User::class );
 		$blockedSender->method( 'isEmailConfirmed' )->willReturn( true );
 		$blockedSender->expects( $this->atLeastOnce() )->method( 'isBlockedFromEmailuser' )->willReturn( true );
-		yield 'Sender is blocked from emailing users' => [ $blockedSender, 'blockedemailuser', $allowedPermManager ];
+		yield 'Sender is blocked from emailing users' => [
+			$blockedSender,
+			StatusValue::newFatal( new RawMessage( 'You shall not send' ) ),
+			$allowedPermManager
+		];
 
 		$ratelimitedSender = $this->createMock( User::class );
 		$ratelimitedSender->method( 'isEmailConfirmed' )->willReturn( true );
@@ -278,38 +286,49 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 			->method( 'pingLimiter' )
 			->with( 'sendemail' )
 			->willReturn( true );
-		yield 'Sender is rate-limited' => [ $ratelimitedSender, 'actionthrottledtext', $allowedPermManager ];
+		yield 'Sender is rate-limited' => [
+			$ratelimitedSender,
+			StatusValue::newFatal( 'actionthrottledtext' ),
+			$allowedPermManager
+		];
 
-		$userCanSendEmailError = 'first-hook-error';
+		$userCanSendEmailError = [ 'first-hook-error', 'first-hook-error-text', [] ];
 		$userCanSendEmailHooks = [
 			'UserCanSendEmail' => static function ( $user, &$err ) use ( $userCanSendEmailError ) {
 				$err = $userCanSendEmailError;
 			}
 		];
+		$expectedStatusFirstHook = StatusValue::newFatal( $userCanSendEmailError[1], ...$userCanSendEmailError[2] );
+		$expectedStatusFirstHook->value = $userCanSendEmailError[0];
 		yield 'UserCanSendEmail hook error' => [
 			$validSender,
-			$userCanSendEmailError,
+			$expectedStatusFirstHook,
 			$allowedPermManager,
 			[],
 			$userCanSendEmailHooks
 		];
 
-		$emailUserPermissionsErrorsError = 'second-hook-error';
+		$emailUserPermissionsErrorsError = [ 'second-hook-error', 'second-hook-error-text', [] ];
 		$emailUserPermissionsErrorsHooks = [
 			'EmailUserPermissionsErrors' =>
 				static function ( $user, $token, &$err ) use ( $emailUserPermissionsErrorsError ) {
 					$err = $emailUserPermissionsErrorsError;
 				}
 		];
+		$expectedStatusSecondHook = StatusValue::newFatal(
+			$emailUserPermissionsErrorsError[1],
+			...$emailUserPermissionsErrorsError[2]
+		);
+		$expectedStatusSecondHook->value = $emailUserPermissionsErrorsError[0];
 		yield 'EmailUserPermissionsErrors hook error' => [
 			$validSender,
-			$emailUserPermissionsErrorsError,
+			$expectedStatusSecondHook,
 			$allowedPermManager,
 			[],
 			$emailUserPermissionsErrorsHooks
 		];
 
-		yield 'Successful' => [ $validSender, null, $allowedPermManager ];
+		yield 'Successful' => [ $validSender, StatusValue::newGood(), $allowedPermManager ];
 	}
 
 	/**
