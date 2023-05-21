@@ -330,7 +330,6 @@ class SearchHandler extends Handler {
 
 		return [
 			'mimetype' => $thumbnail->getMimeType(),
-			'size' => $thumbnail->getSize(),
 			'width' => $thumbnail->getWidth(),
 			'height' => $thumbnail->getHeight(),
 			'duration' => $thumbnail->getDuration(),

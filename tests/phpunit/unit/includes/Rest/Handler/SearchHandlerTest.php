@@ -477,7 +477,7 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 					foreach ( $pageIdentities as $pageId => $pageIdentity ) {
 						$result[ $pageId ] = new SearchResultThumbnail(
 							'image/png',
-							2250,
+							null,
 							100,
 							125,
 							500,
@@ -502,7 +502,6 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( 125, $data['pages'][0][ 'thumbnail' ]['height'] );
 		$this->assertSame( 100, $data['pages'][0][ 'thumbnail' ]['width'] );
 		$this->assertSame( 'image/png', $data['pages'][0][ 'thumbnail' ]['mimetype'] );
-		$this->assertSame( 2250, $data['pages'][0][ 'thumbnail' ]['size'] );
 		$this->assertSame( 500, $data['pages'][0][ 'thumbnail' ]['duration'] );
 		$this->assertArrayHasKey( 'description', $data['pages'][0] );
 		$this->assertSame( 'Description_1', $data['pages'][0][ 'description' ] );
