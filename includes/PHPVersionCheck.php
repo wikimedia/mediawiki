@@ -157,7 +157,8 @@ HTML;
 		if ( !file_exists( dirname( __FILE__ ) . '/../vendor/autoload.php' ) ) {
 			$cliText = "Error: You are missing some external dependencies. \n"
 				. "MediaWiki has external dependencies that need to be installed via Composer\n"
-				. "or from a separate git repository. Please see\n"
+				. "or from a separate repository. Please see\n"
+				. "https://www.mediawiki.org/wiki/Manual:Installation_requirements#PHP and\n"
 				. "https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries\n"
 				. "for help on installing the required components.";
 
@@ -168,9 +169,11 @@ HTML;
 			$web['longHtml'] = <<<HTML
 		<p>
 		MediaWiki has external dependencies that need to be installed via Composer
-		or from a separate git repository. Please see the
+		or from a separate repository. Please see the
+		<a href="https://www.mediawiki.org/wiki/Manual:Installation_requirements#PHP">PHP
+		installation requirements</a> and the
 		<a href="https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries">instructions
-		for installing libraries</a> on mediawiki.org for help on installing the required components.
+		for installing PHP libraries</a> on mediawiki.org for help on installing the required components.
 		</p>
 HTML;
 			// phpcs:enable Generic.Files.LineLength
