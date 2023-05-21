@@ -492,6 +492,6 @@ class UsersPager extends AlphabeticPager {
 	 * @return string
 	 */
 	protected function buildGroupLink( $group, $username ) {
-		return UserGroupMembership::getLink( $group, $this->getContext(), 'html', $username );
+		return UserGroupMembership::getLinkHTML( $group, $this->getContext(), $username );
 	}
 }

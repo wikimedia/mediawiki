@@ -443,9 +443,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				foreach ( $userEffectiveGroups as $ueg ) {
 					$groupStringOrObject = $userGroupMemberships[$ueg] ?? $ueg;
 
-					$userG = UserGroupMembership::getLink( $groupStringOrObject, $context, 'html' );
-					$userM = UserGroupMembership::getLink( $groupStringOrObject, $context, 'html',
-						$userName );
+					$userG = UserGroupMembership::getLinkHTML( $groupStringOrObject, $context );
+					$userM = UserGroupMembership::getLinkHTML( $groupStringOrObject, $context, $userName );
 
 					// Store expiring groups separately, so we can place them before non-expiring
 					// groups in the list. This is to avoid the ambiguity of something like
@@ -467,7 +466,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				sort( $userTempMembers );
 				$userGroups = array_merge( $userTempGroups, $userGroups );
 				$userMembers = array_merge( $userTempMembers, $userMembers );
-				// @phan-suppress-next-line SecurityCheck-XSS T183174
 				return $context->msg( 'prefs-memberingroups-type' )
 					->rawParams( $lang->commaList( $userGroups ), $lang->commaList( $userMembers ) )
 					->escaped();
