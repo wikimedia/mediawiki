@@ -24,7 +24,11 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials\Redirects;
+
 use MediaWiki\Title\Title;
+use RedirectSpecialPage;
+use SpecialPage;
 
 /**
  * Special page pointing to current user's uploaded files.
@@ -55,3 +59,8 @@ class SpecialMyuploads extends RedirectSpecialPage {
 		return true;
 	}
 }
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialMyuploads::class, 'SpecialMyuploads' );

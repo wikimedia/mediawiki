@@ -182,6 +182,7 @@ because of Phabricator reports.
   class names are now deprecated aliases:
   - SpecialActiveUsers
   - SpecialAllMessages
+  - SpecialAllMyUploads (under MediaWiki\Specials\Redirects)
   - SpecialAncientPages
   - SpecialApiHelp
   - SpecialApiSandbox
@@ -245,6 +246,11 @@ because of Phabricator reports.
   - SpecialMostRevisions
   - SpecialMute
   - SpecialMyLanguage
+  - SpecialMycontributions (under MediaWiki\Specials\Redirects)
+  - SpecialMylog (under MediaWiki\Specials\Redirects)
+  - SpecialMypage (under MediaWiki\Specials\Redirects)
+  - SpecialMytalk (under MediaWiki\Specials\Redirects)
+  - SpecialMyuploads (under MediaWiki\Specials\Redirects)
 * Various mediawiki.ui variables have been deprecated in favor of
   'mediawiki.skin.variables.less' Codex design tokens featuring replacements.
 * The jquery.cookie ResourceLoader module has been merged into the existing
