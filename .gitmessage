@@ -1,0 +1,33 @@
+component: Some awesome subject
+
+Why:
+
+- …
+
+What:
+
+- …
+
+Bug: TXXXXX
+#
+# When in doubt, consult https://www.mediawiki.org/wiki/Gerrit/Commit_message_guidelines
+#
+# - Subject should be 50 characters or less
+# - Separate body from subject
+# - Use imperative mood, avoid passive voice
+# - Wrap the body text at 72 chars
+#
+# Explain "why" and "what". If it does not make sense to include
+# this in your commit message, then delete those sections.
+#
+# Don't forget the Bug: line
+# Don't leave a blank line after the Bug: line
+#
+# If you are unsure about what to use for component:
+#  - "HookContainer" could work for changes to include/HookContainer
+#  - "phpunit" for changes to PHPUnit tests
+#  - "Authentication" for changes affecting multiple sections
+#     relating to user authentication
+#
+# Hint: you can enable this to be used as a template for git commit
+# git config commit.template .gitmessage
