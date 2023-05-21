@@ -19,7 +19,12 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials\Redirects;
+
+use LogPage;
 use MediaWiki\Title\Title;
+use RedirectSpecialPage;
+use SpecialPage;
 
 /**
  * Special page pointing to current user's Special:Log.
@@ -66,3 +71,9 @@ class SpecialMylog extends RedirectSpecialPage {
 		return $subpages;
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialMylog::class, 'SpecialMylog' );

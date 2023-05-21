@@ -33,8 +33,14 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Profiler\ProfilingContext;
+use MediaWiki\Specials\Redirects\SpecialAllMyUploads;
 use MediaWiki\Specials\Redirects\SpecialListAdmins;
 use MediaWiki\Specials\Redirects\SpecialListBots;
+use MediaWiki\Specials\Redirects\SpecialMycontributions;
+use MediaWiki\Specials\Redirects\SpecialMylog;
+use MediaWiki\Specials\Redirects\SpecialMypage;
+use MediaWiki\Specials\Redirects\SpecialMytalk;
+use MediaWiki\Specials\Redirects\SpecialMyuploads;
 use MediaWiki\Specials\SpecialActiveUsers;
 use MediaWiki\Specials\SpecialAllMessages;
 use MediaWiki\Specials\SpecialAllPages;
@@ -1010,7 +1016,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Mycontributions' => [
-			'class' => \SpecialMycontributions::class,
+			'class' => SpecialMycontributions::class,
 		],
 		'MyLanguage' => [
 			'class' => SpecialMyLanguage::class,
@@ -1020,13 +1026,13 @@ class SpecialPageFactory {
 			]
 		],
 		'Mylog' => [
-			'class' => \SpecialMylog::class,
+			'class' => SpecialMylog::class,
 		],
 		'Mypage' => [
-			'class' => \SpecialMypage::class,
+			'class' => SpecialMypage::class,
 		],
 		'Mytalk' => [
-			'class' => \SpecialMytalk::class,
+			'class' => SpecialMytalk::class,
 		],
 		'PageHistory' => [
 			'class' => \SpecialPageHistory::class,
@@ -1053,10 +1059,10 @@ class SpecialPageFactory {
 			]
 		],
 		'Myuploads' => [
-			'class' => \SpecialMyuploads::class,
+			'class' => SpecialMyuploads::class,
 		],
 		'AllMyUploads' => [
-			'class' => \SpecialAllMyUploads::class,
+			'class' => SpecialAllMyUploads::class,
 		],
 		'NewSection' => [
 			'class' => \SpecialNewSection::class,

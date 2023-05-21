@@ -24,7 +24,10 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials\Redirects;
+
 use MediaWiki\Title\Title;
+use RedirectSpecialArticle;
 
 /**
  * Special page pointing to current user's talk page.
@@ -58,3 +61,8 @@ class SpecialMytalk extends RedirectSpecialArticle {
 		return true;
 	}
 }
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialMytalk::class, 'SpecialMytalk' );
