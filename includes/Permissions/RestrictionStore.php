@@ -20,8 +20,8 @@ use stdClass;
 use TitleValue;
 use WANObjectCache;
 use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * Class RestrictionStore
@@ -370,7 +370,7 @@ class RestrictionStore {
 		$id = $page->getId();
 		if ( $id ) {
 			$fname = __METHOD__;
-			$loadRestrictionsFromDb = static function ( IDatabase $dbr ) use ( $fname, $id ) {
+			$loadRestrictionsFromDb = static function ( IReadableDatabase $dbr ) use ( $fname, $id ) {
 				return iterator_to_array(
 					$dbr->newSelectQueryBuilder()
 					->select( [ 'pr_type', 'pr_expiry', 'pr_level', 'pr_cascade' ] )

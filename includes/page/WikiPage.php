@@ -58,6 +58,7 @@ use Wikimedia\NonSerializable\NonSerializableTrait;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
@@ -366,9 +367,12 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * a new page object.
 	 * @since 1.31
 	 * @return array[] With three keys:
-	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()` or `SelectQueryBuilder::tables`
-	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()` or `SelectQueryBuilder::fields`
-	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()` or `SelectQueryBuilder::joinConds`
+	 *   - tables: (string[]) to include in the `$table` to `IReadableDatabase->select()` or
+	 *     `SelectQueryBuilder::tables`
+	 *   - fields: (string[]) to include in the `$vars` to `IReadableDatabase->select()` or
+	 *     `SelectQueryBuilder::fields`
+	 *   - joins: (array) to include in the `$join_conds` to `IReadableDatabase->select()` or
+	 *     `SelectQueryBuilder::joinConds`
 	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
 	public static function getQueryInfo() {
@@ -402,7 +406,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 
 	/**
 	 * Fetch a page record with the given conditions
-	 * @param IDatabase $dbr
+	 * @param IReadableDatabase $dbr
 	 * @param array $conditions
 	 * @param array $options
 	 * @return stdClass|false Database result resource, or false on failure
@@ -431,7 +435,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * Fetch a page record matching the Title object's namespace and title
 	 * using a sanitized title string
 	 *
-	 * @param IDatabase $dbr
+	 * @param IReadableDatabase $dbr
 	 * @param Title $title
 	 * @param array $options
 	 * @return stdClass|false Database result resource, or false on failure
@@ -449,7 +453,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	/**
 	 * Fetch a page record matching the requested ID
 	 *
-	 * @param IDatabase $dbr
+	 * @param IReadableDatabase $dbr
 	 * @param int $id
 	 * @param array $options
 	 * @return stdClass|false Database result resource, or false on failure

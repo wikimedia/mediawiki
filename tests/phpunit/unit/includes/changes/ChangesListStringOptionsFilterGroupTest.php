@@ -2,6 +2,7 @@
 
 use MediaWiki\Html\FormOptions;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -42,7 +43,7 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiUnitTestCase {
 		$queryCallable = function (
 			string $className,
 			IContextSource $ctx,
-			IDatabase $dbr,
+			IReadableDatabase $dbr,
 			&$tables,
 			&$fields,
 			&$conds,
@@ -106,7 +107,7 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiUnitTestCase {
 		$noFiltersAllowedCallable = static function (
 			string $className,
 			IContextSource $ctx,
-			IDatabase $dbr,
+			IReadableDatabase $dbr,
 			&$tables,
 			&$fields,
 			&$conds,

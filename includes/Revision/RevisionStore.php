@@ -76,6 +76,7 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 /**
  * Service for looking up page revisions.
@@ -3065,7 +3066,7 @@ class RevisionStore
 	/**
 	 * Converts revision limits to query conditions.
 	 *
-	 * @param IDatabase $dbr
+	 * @param ISQLPlatform $dbr
 	 * @param RevisionRecord|null $old Old revision.
 	 *  If null is provided, count starting from the first revision (inclusive).
 	 * @param RevisionRecord|null $new New revision.
@@ -3077,7 +3078,7 @@ class RevisionStore
 	 * @return array
 	 */
 	private function getRevisionLimitConditions(
-		IDatabase $dbr,
+		ISQLPlatform $dbr,
 		RevisionRecord $old = null,
 		RevisionRecord $new = null,
 		$options = []

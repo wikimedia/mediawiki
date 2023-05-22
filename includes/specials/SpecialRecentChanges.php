@@ -27,6 +27,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -107,7 +108,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			],
 			'default' => ChangesListStringOptionsFilterGroup::NONE,
 			'queryCallable' => function ( string $specialClassName, IContextSource $ctx,
-				IDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds, $selectedValues
+				IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds, $selectedValues
 			) {
 				sort( $selectedValues );
 				$notwatchedCond = 'wl_user IS NULL';

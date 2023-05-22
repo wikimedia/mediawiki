@@ -23,7 +23,7 @@ use MediaWiki\Page\UndeletePage;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -129,11 +129,11 @@ class PageArchive {
 	}
 
 	/**
-	 * @param IDatabase $dbr
+	 * @param IReadableDatabase $dbr
 	 * @param string|array $condition
 	 * @return IResultWrapper
 	 */
-	protected static function listPages( $dbr, $condition ) {
+	protected static function listPages( IReadableDatabase $dbr, $condition ) {
 		return $dbr->select(
 			[ 'archive' ],
 			[
