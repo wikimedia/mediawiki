@@ -155,7 +155,7 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::getPermissionsError
+	 * @covers ::authorizeSend
 	 * @dataProvider providePermissionsError
 	 */
 	public function testGetPermissionsError(
@@ -171,7 +171,7 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 			$this->expectDeprecationAndContinue( '/Use of EmailUserPermissionsErrors hook/' );
 		}
 		$emailUser = $this->getEmailUser( $performerUser, null, null, $userFactory, $configOverrides, $hooks );
-		$this->assertEquals( $expected, $emailUser->getPermissionsError( 'some-token' ) );
+		$this->assertEquals( $expected, $emailUser->authorizeSend( 'some-token' ) );
 	}
 
 	public function providePermissionsError(): Generator {
@@ -269,11 +269,26 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 			true
 		];
 
+		$emailUserAuthorizeSendError = 'my-hook-error';
+		$emailUserAuthorizeSendHooks = [
+			'EmailUserAuthorizeSend' =>
+				static function ( $user, StatusValue $status ) use ( $emailUserAuthorizeSendError ) {
+					$status->fatal( $emailUserAuthorizeSendError );
+					return false;
+				}
+		];
+		yield 'EmailUserAuthorizeSend hook error' => [
+			$validSender,
+			StatusValue::newFatal( $emailUserAuthorizeSendError ),
+			[],
+			$emailUserAuthorizeSendHooks
+		];
+
 		yield 'Successful' => [ $validSender, StatusValue::newGood() ];
 	}
 
 	/**
-	 * @covers ::submit
+	 * @covers ::sendEmailUnsafe
 	 * @dataProvider provideSubmit
 	 */
 	public function testSubmit(
@@ -288,7 +303,7 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 			->with( $target )
 			->willReturn( $target );
 		$emailUser = $this->getEmailUser( $sender, null, null, $userFactory, [], $hooks, $emailer );
-		$res = $emailUser->submit(
+		$res = $emailUser->sendEmailUnsafe(
 			$target,
 			'subject',
 			'text',
@@ -375,6 +390,22 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 			$emailUserHookUsingMessageHooks
 		];
 
+		$emailUserSendEmailHookError = 'some-pretty-hook-error';
+		$emailUserHookUsingStatusHooks = [
+			'EmailUserSendEmail' => static function ( $a, $b, $c, $d, $e, $f, StatusValue $status )
+				use ( $emailUserSendEmailHookError )
+			{
+				$status->fatal( $emailUserSendEmailHookError );
+				return false;
+			}
+		];
+		yield 'EmailUserSendEmail error as a Status' => [
+			$validTarget,
+			$validSender,
+			StatusValue::newFatal( $emailUserSendEmailHookError ),
+			$emailUserHookUsingStatusHooks
+		];
+
 		$emailerErrorStatus = StatusValue::newFatal( 'emailer-error' );
 		$errorEmailer = $this->createMock( IEmailer::class );
 		$errorEmailer->expects( $this->atLeastOnce() )->method( 'send' )->willReturn( $emailerErrorStatus );
@@ -399,7 +430,7 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::submit
+	 * @covers ::sendEmailUnsafe
 	 */
 	public function testSubmit__rateLimited() {
 		$senderUser = $this->createMock( User::class );
@@ -410,7 +441,7 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 
 		$this->expectException( RuntimeException::class );
 		$this->expectExceptionMessage( 'You are throttled' );
-		$res = $this->getEmailUser( $senderUser, null, null, $senderUserFactory )->submit(
+		$res = $this->getEmailUser( $senderUser, null, null, $senderUserFactory )->sendEmailUnsafe(
 			$this->getValidTarget(),
 			'subject',
 			'text',

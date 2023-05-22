@@ -109,7 +109,8 @@ class EmailUser {
 	}
 
 	/**
-	 * Validate target User
+	 * @internal
+	 * @todo This method might perhaps be moved to a UserEmailContactLookup or something.
 	 *
 	 * @param UserEmailContact $target Target user
 	 * @return StatusValue
@@ -155,13 +156,13 @@ class EmailUser {
 	}
 
 	/**
-	 * Check whether a user is allowed to send email
+	 * Authorize the email sending, checking permissions etc.
 	 *
 	 * @param string $editToken
 	 * @return StatusValue For BC, the StatusValue's value can be set to a string representing a message key to use
 	 * with ErrorPageError.
 	 */
-	public function getPermissionsError( string $editToken ): StatusValue {
+	public function authorizeSend( string $editToken ): StatusValue {
 		if (
 			!$this->options->get( MainConfigNames::EnableEmail ) ||
 			!$this->options->get( MainConfigNames::EnableUserEmail )
@@ -194,7 +195,7 @@ class EmailUser {
 
 		$hookErr = false;
 
-		// XXX Replace these hooks with versions that simply use StatusValue for errors.
+		// TODO Remove deprecated hooks
 		$this->hookRunner->onUserCanSendEmail( $user, $hookErr );
 		$this->hookRunner->onEmailUserPermissionsErrors( $user, $editToken, $hookErr );
 		if ( is_array( $hookErr ) ) {
@@ -204,14 +205,17 @@ class EmailUser {
 			$ret->value = $hookErr[0];
 			return $ret;
 		}
+		$hookStatus = StatusValue::newGood();
+		$hookRes = $this->hookRunner->onEmailUserAuthorizeSend( $this->sender, $hookStatus );
+		if ( !$hookRes && !$hookStatus->isGood() ) {
+			return $hookStatus;
+		}
 
 		return StatusValue::newGood();
 	}
 
 	/**
-	 * Really send a mail. Permissions should have been checked using
-	 * getPermissionsError(). It is probably also a good
-	 * idea to check the edit token and ping limiter in advance.
+	 * Really send a mail, without permission checks.
 	 *
 	 * @param UserEmailContact $target
 	 * @param string $subject
@@ -220,7 +224,7 @@ class EmailUser {
 	 * @param MessageLocalizer $messageLocalizer
 	 * @return StatusValue
 	 */
-	public function submit(
+	public function sendEmailUnsafe(
 		UserEmailContact $target,
 		string $subject,
 		string $text,
@@ -259,7 +263,7 @@ class EmailUser {
 		}
 
 		$error = false;
-		// FIXME Replace this hook with a new one that returns errors in a SINGLE format.
+		// TODO Remove deprecated ugly hook
 		if ( !$this->hookRunner->onEmailUser( $toAddress, $fromAddress, $subject, $text, $error ) ) {
 			if ( $error instanceof StatusValue ) {
 				return $error;
@@ -285,6 +289,20 @@ class EmailUser {
 					'EmailUser hook set $error to unsupported type ' . $type
 				);
 			}
+		}
+
+		$hookStatus = StatusValue::newGood();
+		$hookRes = $this->hookRunner->onEmailUserSendEmail(
+			$this->sender,
+			$fromAddress,
+			$target,
+			$toAddress,
+			$subject,
+			$text,
+			$hookStatus
+		);
+		if ( !$hookRes && !$hookStatus->isGood() ) {
+			return $hookStatus;
 		}
 
 		[ $mailFrom, $replyTo ] = $this->getFromAndReplyTo( $fromAddress, $messageLocalizer );

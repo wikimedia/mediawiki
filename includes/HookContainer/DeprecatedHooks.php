@@ -54,6 +54,8 @@ class DeprecatedHooks {
 		'ArticleUndelete' => [ 'deprecatedVersion' => '1.40', 'silent' => true ],
 		'MessageCache::get' => [ 'deprecatedVersion' => '1.41', 'silent' => true ],
 		'EmailUserPermissionsErrors' => [ 'deprecatedVersion' => '1.41' ],
+		'UserCanSendEmail' => [ 'deprecatedVersion' => '1.41', 'silent' => true ],
+		'EmailUser' => [ 'deprecatedVersion' => '1.41', 'silent' => true ],
 	];
 
 	/**
