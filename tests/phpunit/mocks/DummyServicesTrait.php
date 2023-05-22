@@ -28,6 +28,8 @@ use InvalidArgumentException;
 use Language;
 use MalformedTitleException;
 use MediaWiki\Cache\CacheKeyHelper;
+use MediaWiki\CommentFormatter\CommentParser;
+use MediaWiki\CommentFormatter\CommentParserFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Interwiki\InterwikiLookup;
@@ -88,6 +90,26 @@ trait DummyServicesTrait {
 		}
 		$defaultSettings = iterator_to_array( MainConfigSchema::listDefaultValues() );
 		return $defaultSettings;
+	}
+
+	/**
+	 * @param CommentParser $parser to always return
+	 * @return CommentParserFactory
+	 */
+	private function getDummyCommentParserFactory(
+		CommentParser $parser
+	): CommentParserFactory {
+		return new class( $parser ) extends CommentParserFactory {
+			private $parser;
+
+			public function __construct( $parser ) {
+				$this->parser = $parser;
+			}
+
+			public function create() {
+				return $this->parser;
+			}
+		};
 	}
 
 	/**

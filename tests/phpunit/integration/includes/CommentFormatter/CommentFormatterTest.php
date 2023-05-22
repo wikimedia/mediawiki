@@ -5,13 +5,13 @@ namespace MediaWiki\Tests\Integration\CommentFormatter;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentFormatter\CommentItem;
 use MediaWiki\CommentFormatter\CommentParser;
-use MediaWiki\CommentFormatter\CommentParserFactory;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Tests\Unit\CommentFormatter\CommentFormatterTestUtils;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use TitleValue;
@@ -23,6 +23,8 @@ use TitleValue;
  * @covers \MediaWiki\CommentFormatter\CommentFormatter
  */
 class CommentFormatterTest extends MediaWikiIntegrationTestCase {
+	use DummyServicesTrait;
+
 	private function getParser() {
 		return new class extends CommentParser {
 			public function __construct() {
@@ -64,23 +66,10 @@ class CommentFormatterTest extends MediaWikiIntegrationTestCase {
 		};
 	}
 
-	private function getParserFactory() {
-		$parser = $this->getParser();
-		return new class( $parser ) extends CommentParserFactory {
-			private $parser;
-
-			public function __construct( $parser ) {
-				$this->parser = $parser;
-			}
-
-			public function create() {
-				return $this->parser;
-			}
-		};
-	}
-
 	private function newCommentFormatter() {
-		return new CommentFormatter( $this->getParserFactory() );
+		return new CommentFormatter(
+			$this->getDummyCommentParserFactory( $this->getParser() )
+		);
 	}
 
 	public function testCreateBatch() {
