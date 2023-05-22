@@ -4,11 +4,16 @@
 			"LongJohn nl",
 			"Mainframe98",
 			"Dutchy45",
-			"Romaine"
+			"Romaine",
+			"HanV",
+			"McDutchie"
 		]
 	},
+	"rest-prefix-mismatch": "Het gevraagde pad ($1) bevind zich niet in het REST API-rootpad ($2)",
 	"rest-wrong-method": "De requestmethode ($1) is {{PLURAL:$3|niet de toegestane methode voor dit pad|een van de toegestane methoden voor dit pad}} ($2)",
+	"rest-no-match": "Het gevraagde relatieve pad ($1) komt niet overeen met een bekende handler",
 	"rest-nonexistent-title": "De opgegeven titel ($1) bestaat niet",
+	"rest-nonexistent-title-revision": "De opgegeven revisie ($1) bestaat niet voor de opgegeven pagina ($2)",
 	"rest-nonexistent-revision": "De opgevraagde versie ($1) bestaat niet",
 	"rest-nonexistent-user": "De opgegeven gebruiker ($1) bestaat niet.",
 	"rest-invalid-user": "De opgegeven gebruikersnaam ($1) is niet geldig",

@@ -907,6 +907,7 @@
 	"tags-edit-existing-tags-none": "\"Nimidä\"",
 	"compare-page1": "Sivu 1",
 	"compare-page2": "Sivu 2",
+	"htmlform-submit": "Lähetä",
 	"htmlform-no": "Ei",
 	"htmlform-yes": "Muga",
 	"logentry-delete-delete": "$1 {{GENDER:$2|iäreotettu}} sivu $3",

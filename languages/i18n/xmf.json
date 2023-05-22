@@ -2497,7 +2497,7 @@
 	"ipaddressorusername": "IP მიოწურაფუ, მახვარებუშ ჯოხო ვარ-და ბლოკუაშ ID:",
 	"ipbreason": "სამანჯელი:",
 	"ipbreason-dropdown": "* ბლოკუაშ სტანდარტული ბაძაძეფი\n** ტყურა ინფორმაციაშ ინოძინა\n** ხასჷლეფიშ დინორეშ ლასუა\n** სპამ რსხილეფი გალენი ვებ-ხასჷლეფშა\n** ბორული ტექსტიშ/ნახვარიშ ინოძინა\n** შქურინაფა, მახვარებუეფიშ აკორაბადუა\n** მუსხირენი ანგარიშიშ უბადოთ გჷმორინაფა\n** მახვარებუშ უმუღებუ ჯოხო",
-	"ipb-hardblock": "სისტემაშა მიშლირი მახვარებუშო ათე IP მიოეურაფუთ რგებაფაშ გოზურგუა",
+	"ipb-hardblock": "სისტემაშა მიშულირი მახვარებუშო ათე IP მიოწურაფუთ რგებაფაშ გოხურგუა",
 	"ipbcreateaccount": "ანგარიშიშ გოჭყაფა",
 	"ipbemailban": "ელექტრონული ფოსტაშ ჯღონუა",
 	"ipbsubmit": "მახვარებუშ ბლოკუა",
@@ -3658,5 +3658,6 @@
 	"passwordpolicies-policyflag-forcechange": "მიშულაშ ბორჯის ითირას ოკო",
 	"userlogout-continue": "გიშულა გონებჷნანო?",
 	"paramvalidator-help-type-user-subtype-name": "მახვარებუშ ჯოხო",
-	"paramvalidator-help-type-user-subtype-ip": "IP"
+	"paramvalidator-help-type-user-subtype-ip": "IP",
+	"paramvalidator-help-type-user-subtype-cidr": "IP დიაპაზონი"
 }
