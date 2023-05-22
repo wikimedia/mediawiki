@@ -54,8 +54,6 @@
 	"config-no-db": "Ezin izan da aurkitu datu-basearen driver egoki bat! Instalatu behar duzu PHP-ko datu-basearen driver bat. Hurrengo datu {{PLURAL:$2|basea|baseak}} onartzen {{PLURAL:$2|da|dira}}:$1\n\n\nPHP-k zuk konpilatu baduzu, berkonfiguratu datu-basearen bezeroarekin gaituta, adibidez, <code>./configure --with-mysqli</code>. erabiliz.\nDebian edo Ubuntu pakete batetik PHPa instalatu baduzu, orduan instalatu behar duzu ere bai hurrengo adibide bezalako bat <code>php-mysql</code>",
 	"config-outdated-sqlite": "<strong>Warning:</strong> SQLite $1 daukazu, hau da, gutxieneko bertsioa $2 baino atzeratutagoa da. SQLite ez dago erabilgarri.",
 	"config-no-fts3": "<strong>Warning:</strong> SQLite konpilatu egin da  [//sqlite.org/fts3.html FTS3 module] barik, \nbilaketa funtzioak ez dira erabilgarri izango \"backend\" honetan.",
-	"config-pcre-old": "<strong>Fatal:</strong> PCRE $1 edo berriagoa behar da.\nZure PHP bitarra PCRE $2 rekin lotzen da.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE Informazio gehiago].",
-	"config-pcre-no-utf8": "<strong>Fatal:</strong> PHREko PCRE modulua PCRE_UTF8 ko laguntza gabe bildu da.\nMediaWiki-k UTF-8 euskarria behar du behar bezala funtziona dezan.",
 	"config-memory-raised": "PHP-ko <code>memory_limit</code> $1 da, $2-ra igota.",
 	"config-memory-bad": "<strong>Warning:</strong> PHPko <code>memory_limit</code> $1 da.\nZiurrenik hau oso baxua da.\nInstalazioa huts egin dezake!",
 	"config-apc": "[https://www.php.net/apc APC] instalatuta dago",

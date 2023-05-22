@@ -394,7 +394,7 @@
 	"undo-success": "Bul öñdeme joqqa şığarılwı mümkin. Talabıñızdı quptap aldın ala tömendegi salıstırwdı tekserip şığıñız da, öñdemeni joqqa şığarwın bitirw üşin tömendegi özgeristerdi saqtañız.",
 	"undo-failure": "Bul öñdeme joqqa şyğarylmaidy, sebebi arada qaqtyğysty öñdemeler bar.",
 	"undo-norev": "Bul öñdeme joqqa şığarılmaýdı, sebebi bul joq nemese joýılğan.",
-	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User_talk:$2|talqılawı]]) istegen nömir $1 nusqasın joqqa şığardı",
+	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User_talk:$2|talqılawı]]) istegen nömir [[Special:Diff/$1|$1]] nusqasın joqqa şığardı",
 	"viewpagelogs": "Bul bet üşin jwrnal oqïğaların qaraw",
 	"nohistory": "Mında bul bettiniñ tüzetw tarïxı joq.",
 	"currentrev": "Ağımdıq tüzetw",

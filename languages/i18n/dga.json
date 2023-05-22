@@ -287,7 +287,7 @@
 	"compareselectedversions": "Laŋ yelle a boɔbo poɔ bee kaabu poɔ",
 	"editundo": "leɛ puori",
 	"diff-empty": "Tɛɛtɛɛ kyɛbe",
-	"diff-multi-sameuser": "({{PLURAL:$1|bonyeni zannedobo leɛkaabo\n| zannedobo leɛkaare}} a soba ne o zu ba yi)",
+	"diff-multi-sameuser": "({{PLURAL:$1|bonyeni zannedobo leɛkaabo\n|$1 zannedobo leɛkaare}} a soba ne o zu ba yi)",
 	"diff-multi-otherusers": "({{PLURAL:$1|Sɔgyeni kaabi|$1 soga leɛkabi}} by {{PLURAL:$2|boŋmaala kaŋa|$2 sɔɔbɔ}} ba Willi bu)",
 	"searchresults": "Bɔ a baaraa yɛlɛ",
 	"searchresults-title": "Bɔ a baaraa yɛlɛ ko \"$1\"",

@@ -54,8 +54,6 @@
 	"config-no-db": "¡Nun pudo alcontrase un controlador de base de datos afayadizu! Necesites instalar un controlador de base de datos pa PHP.\n{{PLURAL:$2|Tien sofitu el tipu de base de datos siguiente|Tienen sofitu los tipos de base de datos siguientes}}: $1.\n\nSi compilasti PHP tu mesmu, reconfigúralu con un cliente de base de datos activáu, por exemplu, usando <code>./configure --with-mysqli</code>.\nSi instalasti PHP dende un paquete de Debian o Ubuntu, necesites instalar tamién,por exemplu, el paquete <code>php-mysql</code>.",
 	"config-outdated-sqlite": "<strong>Avisu:</strong> tienes SQLite $1, que ye menor que la versión mínima necesaria $2. SQLite nun tará disponible.",
 	"config-no-fts3": "'''Avisu:''' SQLite ta compiláu ensin el [//sqlite.org/fts3.html módulu FTS3]; les funciones de gueta nun tarán disponibles nesti sistema.",
-	"config-pcre-old": "<strong>Fatal:</strong> Ríquese PCRE $1 o posterior.\nEl binariu de PHP ta enllazáu con PCRE $2.\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Errors_and_symptoms/PCRE Más información].",
-	"config-pcre-no-utf8": "<strong>Erru fatal:</strong> Paez que'l módulu PCRE de PHP foi compiláu ensin el soporte PCRE_UTF8.\nMediaWiki requier compatibilidá con UTF_8 pa furrular correutamente.",
 	"config-memory-raised": "El parámetru <code>memory_limit</code> de PHP ye $1. Auméntase a $2.",
 	"config-memory-bad": "<strong>Alvertencia:</strong>: el parámetru <code>memory_limit</code> de PHP ye $1.\nProbablemente sía demasiáu baxu.\n¡La instalación puede fallar!",
 	"config-apc": "[https://www.php.net/apc APC] ta instaláu",

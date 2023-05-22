@@ -424,7 +424,7 @@
 	"post-expand-template-argument-category": "含到略過模板參數嗰頁",
 	"undo-success": "箇隻編輯可以拕取銷。請檢查吖以確定箇係倷想扤嗰，接到保存修改去完成撤銷編輯。",
 	"undo-failure": "半中嗰編輯有人挭仗，箇隻編輯伓可以拕取銷。",
-	"undo-summary": "取消由[[Special:Contributions/$2|$2]] （[[User talk:$2|對話]]）所修訂嗰 $1",
+	"undo-summary": "取消由[[Special:Contributions/$2|$2]] （[[User talk:$2|對話]]）所修訂嗰 [[Special:Diff/$1|$1]]",
 	"viewpagelogs": "眵吖箇頁嗰日誌",
 	"nohistory": "箇頁冇修改歷史。",
 	"currentrev": "眼前嗰修改版本",

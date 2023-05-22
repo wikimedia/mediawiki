@@ -539,7 +539,7 @@
 	"undo-success": "Deñiştirme lâğu etile bile. Lütfen, mına bu deñiştirmelerni yapmağa istegeniñizden emin olmaq içün versiyalar teñeştirilüvini közden keçirip deñiştirmelerni saqlamaq içün \"Saifeni saqla\" dögmesine basıñız.",
 	"undo-failure": "Aradaki deñiştirmeler bir-birine kelişikli olmağanı içün deñiştirme lâğu etilip olamay.",
 	"undo-norev": "Deñiştirme lâğu etilip olamaz, çünki o ya da yoq, ya da bar edi, amma yoq etilgen.",
-	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User talk:$2|muzakere]]) qullanıcısınıñ $1 nomeralı deñiştirmesini lâğu etüv.",
+	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User talk:$2|muzakere]]) qullanıcısınıñ [[Special:Diff/$1|$1]] nomeralı deñiştirmesini lâğu etüv.",
 	"viewpagelogs": "Bu saifeniñ jurnallarını köster",
 	"nohistory": "Bu saifeniñ keçmiş versiyası yoq.",
 	"currentrev": "Şimdiki versiya",

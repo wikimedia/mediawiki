@@ -56,7 +56,6 @@
 	"config-no-db": "Impossìbil trové un pilòta ëd base ëd dàit bon! A dev instalé un pilòta ëd base ëd dàit për PHP.\n{{PLURAL:$2|La sòrt ëd base ëd dàit mantnùa a l'é costa|Le sòrt ëd base ëd dàit mantùe a son coste}} sì-dapress: $1.\n\nS'a l'é compilasse PHP chiel-midem, ch'a lo configura torna con un client ëd base ëd dàit abilità, për esempi an dovrand <code>./configure --with-mysqli</code>.\nS'a l'ha instalà PHP dai pachèt Debian o Ubuntu, antlora a dev ëdcò anstalé, për esempi, ël mòdul <code>php-mysql</code>.",
 	"config-outdated-sqlite": "'''Avis''': chiel a l'ha SQLite $1, che a l'é pi vej che la version mìnima dont a-i é damanca $2. SQLite a sarà pa disponìbil.",
 	"config-no-fts3": "'''Avis''': SQLite a l'é compilà sensa ël mòdul [//sqlite.org/fts3.html FTS3], le funsion d'arserca a saran pa disponìbij su cost motor.",
-	"config-pcre-no-utf8": "'''Fatal''': ël mòdul PCRE ëd PHP a smija esse compilà sensa l'apògg PCRE_UTF8.\nMediaWiki a ciama l'apògg d'UTF8 për marcé për da bin.",
 	"config-memory-raised": "<code>memory_limit</code> ëd PHP a l'é $1, aussà a $2.",
 	"config-memory-bad": "'''Avis:''' <code>memory_limit</code> ëd PHP a l'é $1.\nSossì a l'é probabilment tròp bass.\nL'instalassion a peul falì!",
 	"config-apc": "[https://www.php.net/apc APC] a l'é instalà",

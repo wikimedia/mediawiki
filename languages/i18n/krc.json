@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"DannyS712",
 			"Don Alessandro",
 			"Ernác",
@@ -806,11 +807,11 @@
 	"undo-main-slot-only": "Тюзетиу, баш слотну тышындагъы контентни тутханы ючюн, кери алынныкъ тюлдю.",
 	"undo-norev": "Болмагъаны неда кетерилгени ючюн, тюрлениу ызына алыналлыкъ тюлдю.",
 	"undo-nochange": "Тюзетиу, алайсыз да кери алыннганнга ушайды.",
-	"undo-summary": "$1 тюрлениу [[Special:Contributions/$2|$2]] ([[User talk:$2|сюзюу]]) ызына алынды.",
-	"undo-summary-anon": "[[Special:Contributions/$2|$2]] джанындан этилген тюрлендириу $1 кери алынды",
-	"undo-summary-import": "[[:$2|$3]] къошулуучу джанындан импорт этилген $1 тюзетиу кери алынды",
-	"undo-summary-import2": "$2 къошулуучу $1 версияны импортун кери ал",
-	"undo-summary-username-hidden": "Таша къошулуучу этген $1 версия кери алынады",
+	"undo-summary": "[[Special:Diff/$1|$1]] тюрлениу [[Special:Contributions/$2|$2]] ([[User talk:$2|сюзюу]]) ызына алынды.",
+	"undo-summary-anon": "[[Special:Contributions/$2|$2]] джанындан этилген тюрлендириу [[Special:Diff/$1|$1]] кери алынды",
+	"undo-summary-import": "[[:$2|$3]] къошулуучу джанындан импорт этилген [[Special:Diff/$1|$1]] тюзетиу кери алынды",
+	"undo-summary-import2": "$2 къошулуучу [[Special:Diff/$1|$1]] версияны импортун кери ал",
+	"undo-summary-username-hidden": "Таша къошулуучу этген [[Special:Diff/$1|$1]] версия кери алынады",
 	"viewpagelogs": "Бу бетни журналларына къара",
 	"viewpagelogs-lowercase": "Бу бет ючюн журналларына къара",
 	"nohistory": "Бу бетни тюрлениулерини тарихи джокъду.",

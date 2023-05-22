@@ -351,7 +351,7 @@
 	"permissionserrorstext": "Me necoccebj permiccionde zo, pre'zo {{PLURAL:$1|rae|rae'}}:",
 	"undo-success": "Ticpatlöx zo pos-coccebj iixponintöx. Controlar comparicion zo !-cmaade verifiatom jan coccebj yazuáxiim ö xuniim quiíx zo !-cmaade fini iixponintöx ticpatlöx zo.",
 	"undo-failure": "Ticpatlöx zo necoccebj ticpatlöxde ticpatlöxám iti-am conflictom.",
-	"undo-summary": "Iixponintöx revicion $1 'de [[Special:Contributions/$2|$2]] ([[User talk:$2|Czaxö]])",
+	"undo-summary": "Iixponintöx revicion [[Special:Diff/$1|$1]] 'de [[Special:Contributions/$2|$2]] ([[User talk:$2|Czaxö]])",
 	"viewpagelogs": "Cohuatlöx logámde jan páhina",
 	"nohistory": "Jan páhina necoccebj históriade ticpatlöx.",
 	"currentrev": "Revicion cmaa",

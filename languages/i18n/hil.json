@@ -573,7 +573,7 @@
 	"undo-success": "Ang pag-ilis indi mahuman.\nPalihog lantaw sang pagbaki-baki sa dalom agod to nga mapamatud-an kon amo gid man sini ang imo luyag buhaton, dayon tipona ang mga pagbag-o sa dalom agod to nga matapos ang pagliwat sang pag-ilis.",
 	"undo-failure": "Ang pag-ilis indi na maliwat pa tungod sang nagakonplikto nga mga pang-tunga nga pag-ilis.",
 	"undo-norev": "Ang pag-ilis indii na maliwat pa tungod kay ini wala naga-eksister ukon ginpanas na.",
-	"undo-summary": "Liwaton ang pagbag-o sang $1 sa [[Special:Contributions/$2|$2]] ([[User talk:$2|$2]])",
+	"undo-summary": "Liwaton ang pagbag-o sang [[Special:Diff/$1|$1]] sa [[Special:Contributions/$2|$2]] ([[User talk:$2|$2]])",
 	"viewpagelogs": "Tan-awon ang mga log para sa sini nga pahina",
 	"nohistory": "Wala sang kasaysayan sang pag-ilis sang sini nga panid.",
 	"currentrev": "Mga Inislan Subong",

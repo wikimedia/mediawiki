@@ -731,7 +731,7 @@
 	"undo-success": "Sta modifega ła połe esare desfada.\nControła łe difarense mostrae soto intrà łe do version par esar seguro che el contegnuo el specia cheło che te dexìderi, e de conseguensa salvar łe modifeghe par finir ła proçedura de desfamento.",
 	"undo-failure": "No se połe mija desfar ła modifega, par via che on altro utente el ga xà fato on altra modifega",
 	"undo-norev": "Ła modifega no ła połe esare desfada parché no ła ghe xé o parché ła xé stada descançełada.",
-	"undo-summary": "Desfà el canbio $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|discusion]])",
+	"undo-summary": "Desfà el canbio [[Special:Diff/$1|$1]] de [[Special:Contributions/$2|$2]] ([[User talk:$2|discusion]])",
 	"viewpagelogs": "Varda i rejistri de sta pajina",
 	"nohistory": "La cronołogia de łe version de sta pàxena no la xè reperibiłe.",
 	"currentrev": "Ultima version",

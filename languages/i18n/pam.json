@@ -417,7 +417,7 @@
 	"undo-success": "E maliaring iurung ing pamag-edit a ini. Pakilawe mo reng pikumparang bersion king lalam ba mung akit nung ini pin ing buri mung gawan, at kaibat, i-save mo retang miyalilan bang mayari ing pamanurung king edit.",
 	"undo-failure": "E maliaring iurung ing edit a ini uling e la mipapareu deng minunang me-edit.",
 	"undo-norev": "E maliaring iurung ing edit a ini uling ala yu o mebura ya.",
-	"undo-summary": "Iurung ya ing miyalilan $1 nang [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]])",
+	"undo-summary": "Iurung ya ing miyalilan [[Special:Diff/$1|$1]] nang [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]])",
 	"viewpagelogs": "Lon la reng log para king bulung a ini",
 	"nohistory": "Alang amlat ning pamag-edit (edit history) para king bulung a ini.",
 	"currentrev": "Kasalungsungan a pangayalili",

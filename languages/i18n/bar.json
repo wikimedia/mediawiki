@@ -456,7 +456,7 @@
 	"post-expand-template-inclusion-category": "Seitn, wo d Gress vo de eibundnan Vorlogn ibaschrittn is",
 	"post-expand-template-argument-warning": "'''Obocht:''' De Seitn enthoit mindastns oa Argument in da Vorlog, wo expandiat z grouss is. \nDe Parameta wean ignoriad.",
 	"post-expand-template-argument-category": "Seitn mid ignoriadn Voalognparametan",
-	"undo-summary": "Änderrung $1 voh [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussión]]) ryckgängig gmocht.",
+	"undo-summary": "Änderrung [[Special:Diff/$1|$1]] voh [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussión]]) ryckgängig gmocht.",
 	"viewpagelogs": "Logbiacha fia de Datei ozoagn",
 	"currentrev": "Aktuelle Versión",
 	"currentrev-asof": "Letzte Version vo $1",

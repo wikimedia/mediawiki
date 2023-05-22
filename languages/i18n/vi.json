@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Apple",
 			"Arisa",
 			"Asmen",
@@ -851,11 +852,11 @@
 	"undo-main-slot-only": "Sửa đổi không thể phục hồi vì nó có liên quan đến nội dung bên ngoài khe chính.",
 	"undo-norev": "Sửa đổi không thể hồi phục vì nó không tồn tại hoặc đã bị xóa.",
 	"undo-nochange": "Hình như sửa đổi này đã được lùi lại rồi.",
-	"undo-summary": "Đã lùi lại sửa đổi $1 của [[Special:Contributions/$2|$2]] ([[User talk:$2|thảo luận]])",
-	"undo-summary-anon": "Đã lùi lại sửa đổi $1 của [[Special:Contributions/$2|$2]]",
-	"undo-summary-import": "Đã lùi lại sửa đổi $1 đã nhập của người dùng [[:$2|$3]]",
-	"undo-summary-import2": "Đã lùi lại sửa đổi $1 đã nhập của người dùng $2",
-	"undo-summary-username-hidden": "Đã lùi lại sửa đổi $1 của một người dùng ẩn",
+	"undo-summary": "Đã lùi lại sửa đổi [[Special:Diff/$1|$1]] của [[Special:Contributions/$2|$2]] ([[User talk:$2|thảo luận]])",
+	"undo-summary-anon": "Đã lùi lại sửa đổi [[Special:Diff/$1|$1]] của [[Special:Contributions/$2|$2]]",
+	"undo-summary-import": "Đã lùi lại sửa đổi [[Special:Diff/$1|$1]] đã nhập của người dùng [[:$2|$3]]",
+	"undo-summary-import2": "Đã lùi lại sửa đổi [[Special:Diff/$1|$1]] đã nhập của người dùng $2",
+	"undo-summary-username-hidden": "Đã lùi lại sửa đổi [[Special:Diff/$1|$1]] của một người dùng ẩn",
 	"viewpagelogs": "Xem nhật trình của trang này",
 	"viewpagelogs-lowercase": "xem nhật trình của trang này",
 	"nohistory": "Trang này chưa có lịch sử.",

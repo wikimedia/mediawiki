@@ -454,7 +454,7 @@
 	"undo-success": "Im de Änderung rickgängig zu macha, bitte de Beoarbeetung ei der Vergleichsansicht kontrolliera und dann uff „Seyte speichern“ klicka.",
 	"undo-failure": "De Änderung konnte ne rickgängig gemacht waan, do dar betroffene Obschnitt zwischazeitlich verändert wurde.",
 	"undo-norev": "De Beoarbeetung konnte ne rickgängig gemacht waan, do se ne vorhanden ies oder geläscht wurde.",
-	"undo-summary": "Änderung $1 vu [[Special:Contributions/$2|$2]] ([[User talk:$2|Dischkur]]) wurde rickgängig gemacht.",
+	"undo-summary": "Änderung [[Special:Diff/$1|$1]] vu [[Special:Contributions/$2|$2]] ([[User talk:$2|Dischkur]]) wurde rickgängig gemacht.",
 	"viewpagelogs": "Logbicher fier diese Seite oazeega",
 	"nohistory": "'S gitt kenne Versionsgeschichte fier diese Seite.",
 	"currentrev-asof": "Aktuelle Version vum $1",

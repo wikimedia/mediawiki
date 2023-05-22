@@ -550,7 +550,7 @@
 	"parser-template-recursion-depth-warning": "Limit depase pou kantite fwa yon modèl ka rele tèt li ($1)",
 	"language-converter-depth-warning": "Limit sou pwofondè konvètisè lang yo depase ($1)",
 	"undo-failure": "Modifikasyon sa a pa ka defè sa ap lakòz konfli ak modifikasyon entèmedyè yo.",
-	"undo-summary": "Defèt modifikasyon $1[[Special:Contributions/$2|$2]] yo ([[User talk:$2|diskite]])",
+	"undo-summary": "Defèt modifikasyon [[Special:Diff/$1|$1]][[Special:Contributions/$2|$2]] yo ([[User talk:$2|diskite]])",
 	"viewpagelogs": "Gade jounal yo pou paj sa a",
 	"nohistory": "Istorik pou paj sa pa egziste ditou.",
 	"currentrev": "Vèsyon kounye a",

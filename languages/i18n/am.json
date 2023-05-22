@@ -497,7 +497,7 @@
 	"undo-success": "ያ ለውጥ በቀጥታ ሊገለበጥ ይቻላል። እባክዎ ከታች ያለውን ማነጻጸርያ ተመልክተው ይህ እንደሚፈልጉ ያረጋግጡና ለውጡ እንዲገለበጥ '''ገጹን ለማቅረብ''' ይጫኑ።",
 	"undo-failure": "ከዚሁ ለውጥ በኋላ ቅራኔ ለውጦች ስለ ገቡ ሊገለበጥ አይቻልም።",
 	"undo-norev": "ለውጡ አይኖርም ወይም ጠፍቷልና ሊገለበጥ አልተቻለም።",
-	"undo-summary": "አንድ ለውጥ $1 ከ[[Special:Contributions/$2|$2]] ([[User talk:$2|ውይይት]]) ገለበጠ",
+	"undo-summary": "አንድ ለውጥ [[Special:Diff/$1|$1]] ከ[[Special:Contributions/$2|$2]] ([[User talk:$2|ውይይት]]) ገለበጠ",
 	"viewpagelogs": "መዝገቦች ለዚሁ ገጽ",
 	"nohistory": "ለዚሁ ገጽ የዕትሞች ታሪክ የለም።",
 	"currentrev": "የአሁኑ እትም",

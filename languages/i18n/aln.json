@@ -445,7 +445,7 @@
 	"undo-success": "Redaktimi nuk mund të kthehej. Ju lutem kontrolloni ndryshimet e mëposhtëme për të vërtetuar dëshirën e veprimit dhe pastaj kryeni ndryshimet për të plotësuar kthimin e redaktimit.",
 	"undo-failure": "Redaktimi nuk mund të kthehej për shkak të përplasjeve të ndërmjetshme.",
 	"undo-norev": "S'mund të zhbëja këtë redaktim pasi nuk ekziston ose është grisur.",
-	"undo-summary": "U kthye versioni $1 i bërë nga [[Special:Contributions/$2]] ([[User talk:$2]])",
+	"undo-summary": "U kthye versioni [[Special:Diff/$1|$1]] i bërë nga [[Special:Contributions/$2]] ([[User talk:$2]])",
 	"viewpagelogs": "Shih regjistrat për këtë faqe",
 	"nohistory": "Nuk ka histori redaktimesh për këtë faqe.",
 	"currentrev": "Versioni i tanishëm",

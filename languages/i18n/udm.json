@@ -436,7 +436,7 @@
 	"content-model-css": "CSS",
 	"undo-failure": "Воштонэз куспысьтыз воштонъёс керетэмен быдтыны ӧз лу.",
 	"undo-norev": "Воштонэз быдтыны ӧз лу, уго со ӧвӧл яке сое ӵушиллям.",
-	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User talk:$2|вераськон]]) викиавторлэн $1 номеро тупатонэз палэнтэмын",
+	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User talk:$2|вераськон]]) викиавторлэн [[Special:Diff/$1|$1]] номеро тупатонэз палэнтэмын",
 	"viewpagelogs": "Та бамлы журналъёсыз возьматыны",
 	"currentrev-asof": "Алиез версия $1",
 	"revisionasof": "$1 версия",

@@ -409,7 +409,7 @@
 	"log-fulllog": "Gweles an govnoten dhien",
 	"content-model-wikitext": "wikitekst",
 	"undo-success": "Y hyllir diswul an chanj-ma.\nCheckyewgh mar pleg an kehevelyans a-woles rag gwirya bos hemma an pyth a vynnowgh, hag ena gwithewgh an chanjyow a-woles rag gorfenna diswul an chanj.",
-	"undo-summary": "Amendyans $1 gans [[Special:Contributions/$2|$2]] ([[User talk:$2|keskows]]) diswrys",
+	"undo-summary": "Amendyans [[Special:Diff/$1|$1]] gans [[Special:Contributions/$2|$2]] ([[User talk:$2|keskows]]) diswrys",
 	"viewpagelogs": "Gweles kovnotennow an folen ma",
 	"currentrev": "Amendyans diwettha",
 	"currentrev-asof": "An amendyans diwettha a-dhia $1",

@@ -76,8 +76,6 @@
 	"config-no-db": "Impossibile trovare un driver adatto per il database! È necessario installare un driver per PHP.\n{{PLURAL:$2|Il seguente formato di database è supportato|I seguenti formati di database sono supportati}}: $1.\n\nSe compili PHP autonomamente, riconfiguralo attivando un client database, per esempio utilizzando <code>./configure --with-mysqli</code>.\nQualora avessi installato PHP per mezzo di un pacchetto Debian o Ubuntu, allora devi installare anche il pacchetto <code>php-mysql</code>.",
 	"config-outdated-sqlite": "<strong>Attenzione</strong>: è presente SQLite $2 mentre è richiesta la versione $1, SQLite non sarà disponibile.",
 	"config-no-fts3": "'''Attenzione''': SQLite è compilato senza il [//sqlite.org/fts3.html modulo FTS3], le funzionalità di ricerca non saranno disponibili su questo backend.",
-	"config-pcre-old": "<strong>Errore fatale:</strong> si richiede PCRE  $1 o successivo.\nIl tuo file binario PHP è collegato con PCRE $2.\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Errors_and_symptoms/Maggiori informazioni su PCRE].",
-	"config-pcre-no-utf8": "'''Errore''': Il modulo PCRE di PHP sembra essere stato compilato senza il supporto PCRE_UTF8, ma MediaWiki lo richiede per funzionare correttamente.",
 	"config-pcre-invalid-newline": "<strong>Fatal:</strong> Il modulo PCRE di PHP sembra essere compilato con PCRE_CONFIG_NEWLINE = -1 per ANY.\nMediaWiki non è compatibile con questa configurazione.",
 	"config-memory-raised": "Il valore <code>memory_limit</code> di PHP è $1, aumentato a $2.",
 	"config-memory-bad": "''Attenzione:''' Il valore di <code>memory_limit</code> di PHP è $1.\nProbabilmente è troppo basso.\nL'installazione potrebbe non riuscire!",

@@ -563,7 +563,7 @@
 	"undo-success": "Questa modificaziun na po betg vegnir revocada.\nControlleschan en la vista per cumparegliar sutvart sche quei è quai che ti vuls far e lura memorisescha las midadas sutvart per terminar la modificaziun.",
 	"undo-failure": "La modificaziun na pudeva betg vegnir revocada causa modificaziuns pli novas che stattan en conflict cun questa acziun.",
 	"undo-norev": "La modificaziun na pudeva betg vegnir revocada perquai ch'ella n'exista betg u è vegnida stizzada.",
-	"undo-summary": "Revocar la versiun $1 da [[Special:Contributions/$2|$2]] ([[User talk:$2|discussiun]])",
+	"undo-summary": "Revocar la versiun [[Special:Diff/$1|$1]] da [[Special:Contributions/$2|$2]] ([[User talk:$2|discussiun]])",
 	"viewpagelogs": "Guardar ils protocols da questa pagina",
 	"nohistory": "Per questa pagina n'exista nagina cronologia.",
 	"currentrev": "Versiun actuala",

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"BaRaN6161 TURK",
 			"Baciccin",
 			"C.R.",
@@ -792,11 +793,11 @@
 	"undo-main-slot-only": "A modiffica a no poeu ese anulaâ percose a pertocca do contegnuo esterno a-o slot prinçipâ.",
 	"undo-norev": "A modiffica a no peu ese anullâ perché a no l'existe ò donque a l'è stæta scassâ.",
 	"undo-nochange": "Pâ che-a modiffica a sæ zà stæta anullâ.",
-	"undo-summary": "Annullou a modiffica $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|discuscion]])",
-	"undo-summary-anon": "Anulou a modiffica $1 de [[Special:Contributions/$2|$2]]",
-	"undo-summary-import": "Desfa a revixon $1 importâ da l'utente [[:$2|$3]]",
-	"undo-summary-import2": "Desfa a revixon $1 importâ da l'utente $2",
-	"undo-summary-username-hidden": "Anullou a modiffica $1 de un utente ascoso",
+	"undo-summary": "Annullou a modiffica [[Special:Diff/$1|$1]] de [[Special:Contributions/$2|$2]] ([[User talk:$2|discuscion]])",
+	"undo-summary-anon": "Anulou a modiffica [[Special:Diff/$1|$1]] de [[Special:Contributions/$2|$2]]",
+	"undo-summary-import": "Desfa a revixon [[Special:Diff/$1|$1]] importâ da l'utente [[:$2|$3]]",
+	"undo-summary-import2": "Desfa a revixon [[Special:Diff/$1|$1]] importâ da l'utente $2",
+	"undo-summary-username-hidden": "Anullou a modiffica [[Special:Diff/$1|$1]] de un utente ascoso",
 	"viewpagelogs": "Amîa i regìstri relatîvi a 'sta pàgina chi.",
 	"nohistory": "A stoia de verscioin de sta paggina a no gh'è.",
 	"currentrev": "Versción atoâle",

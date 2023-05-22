@@ -384,7 +384,7 @@
 	"expensive-parserfunction-category": "Кунта эсир чылай ресурс ыйтакан функцисемпе нумай ĕçлекен страницăсене куратăр",
 	"post-expand-template-argument-category": "Шаблон аргуменчĕсене сиктерсе хăварнă страницăсем",
 	"undo-norev": "Ку тӳрлетĕве пăрахăçлама май çук — вăл е пулман та, е ăна кăларса пăрахнă.",
-	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User talk:$2|сӳтсе яв]]) $1 улăштарнине тавăрчĕ",
+	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User talk:$2|сӳтсе яв]]) [[Special:Diff/$1|$1]] улăштарнине тавăрчĕ",
 	"viewpagelogs": "Ку страницăн журналĕсене пăхмалли",
 	"nohistory": "Ку страницăн улшăнусен журналĕ çук.",
 	"currentrev": "Хальхи верси",

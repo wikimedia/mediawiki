@@ -66,8 +66,6 @@
 	"config-no-db": "Nem sikerült egyetlen használható adatbázis-illesztőprogramot sem találni. Telepítened kell egyet a PHP-hez.\nA következő {{PLURAL:$2|adatbázistípus támogatott|adatbázistípusok támogatottak}}: $1.\n\nHa a PHP-t magad fordítottad, konfiguráld újra úgy, hogy engedélyezve legyen egy adatbáziskliens, pl. a <code>./configure --with-mysqli</code> parancs használatával.\nHa a PHP-t Debian vagy Ubuntu csomaggal telepítetted, akkor szükséged lesz például a <code>php-mysql</code> csomagra is.",
 	"config-outdated-sqlite": "<strong>Figyelmeztetés:</strong> SQLite $2 verziód van, ami alacsonyabb a legalább szükséges $1 verziónál. Az SQLite nem lesz elérhető.",
 	"config-no-fts3": "<strong>Figyelmeztetés:</strong> Az SQLite [//sqlite.org/fts3.html FTS3 modul] nélkül lett fordítva, a keresési funkciók nem fognak működni ezen a rendszeren.",
-	"config-pcre-old": "<strong>Kritikus hiba:</strong> PCRE $1 vagy későbbi szükséges.\nA te PHP binárisod a PCRE $2 verziójával van linkelve.\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Errors_and_symptoms/PCRE További információ].",
-	"config-pcre-no-utf8": "<strong>Kritikus hiba:</strong> Úgy tűnik, hogy a PHP PRCE modulja PRCE_UTF8 támogatás nélkül lett fordítva.\nA MediaWikinek UTF-8-támogatásra van szüksége a helyes működéshez.",
 	"config-memory-raised": "A PHP <code>memory_limit</code> beállításának értéke: $1. Meg lett növelve a következő értékre: $2.",
 	"config-memory-bad": "<strong>Figyelmeztetés:</strong> A PHP <code>memory_limit</code> beállításának értéke $1.\nEz az érték valószínűleg túl kevés, a telepítés sikertelen lehet.",
 	"config-apc": "Az [https://www.php.net/apc APC] telepítve van",

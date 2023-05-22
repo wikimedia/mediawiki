@@ -609,7 +609,7 @@
 	"undo-success": "Li redaction posse esser anullat. Pleser vide li comparation infra por verificar que ti es quo vu cari far, e tande conservar li changes infra por terminar anullant li redaction.",
 	"undo-failure": "Li redaction ne posse esser anullat payand conflicte de redactiones.",
 	"undo-norev": "Li redaction ne posse esser anullat pro que it ne existe o esset deletet.",
-	"undo-summary": "Anullat revision $1 per [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]])",
+	"undo-summary": "Anullat revision [[Special:Diff/$1|$1]] per [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]])",
 	"viewpagelogs": "Vider diariumes por ti págine",
 	"viewpagelogs-lowercase": "vider diariumes por ti págine",
 	"currentrev": "Ultim revision",

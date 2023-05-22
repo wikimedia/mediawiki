@@ -71,8 +71,6 @@
 	"config-no-db": "Не вдалося знайти потрібний драйвер бази даних! Вам необхідно встановити драйвер бази даних для PHP. Підтримуються {{PLURAL:$2|такий тип|такі типи}} баз даних: $1.\n\nЯкщо ви скомпілювали PHP самостійно, переналаштуйте його з увімкненим клієнтом бази даних, наприклад за допомогою <code>./configure --with-mysqli</code>.\n\nЯкщо установлено PHP з пакетів Debian або Ubuntu, тоді ви також повинні встановити, наприклад, пакунок <code>php-mysql</code>.",
 	"config-outdated-sqlite": "<strong>Увага:</strong> у Вас встановлена версія SQLite $2, а це нижче, ніж мінімально необхідна версія $1. SQLite буде недоступним.",
 	"config-no-fts3": "'''Увага''': SQLite зібраний без [//sqlite.org/fts3.html модуля FTS3], функції пошуку не будуть працювати у цій системі.",
-	"config-pcre-old": "<strong>Фатальна помилка:</strong> потрібно PCRE версії $1 або пізнішої.\nВаш виконуваний файл PHP пов'язаний з PCRE версії $2.\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Errors_and_symptoms/PCRE Подробиці].",
-	"config-pcre-no-utf8": "'''Помилка''': PCRE-модуть PHP, вочевидь, було зібрано без підтримки PCRE_UTF8.\nMediaWiki вимагає підтримку UTF-8 для коректної роботи.",
 	"config-memory-raised": "Обмеження пам'яті PHP (<code>memory_limit</code>) $1, піднято до $2.",
 	"config-memory-bad": "'''Увага:''' Розмір пам'яті PHP (<code>memory_limit</code>) становить $1.\nІмовірно, це замало.\nВстановлення може не вдатись!",
 	"config-apc": "[https://www.php.net/apc APC] встановлено",

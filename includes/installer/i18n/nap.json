@@ -52,8 +52,6 @@
 	"config-no-db": "Nun se può truvà nu driver adatto p' 'o database! È necessario installare nu driver p' 'o PHP.\n{{PLURAL:$2|'O furmato suppurtato|'E furmate suppurtate}} 'e database ccà annanze: $1.\n\nSi cumpilate PHP autonomamente, riaccunciatevello attivando nu client database, p'esempio ausannoo <code>./configure --with-mysqli</code>.\nQuanno fosse installato PHP pe' bbìa 'e nu pacchetto Debian o Ubuntu, allora avite 'a installà pure 'o pacchetto <code>php-mysql</code>.",
 	"config-outdated-sqlite": "'''Attenziò''': tenite 'o SQLite $1 pe' tramente ca ce vulesse 'a verziona $2, SQLite nun sarrà a disposizione.",
 	"config-no-fts3": "'''Attenziò''': SQLite è cumpilato senza 'o [//sqlite.org/fts3.html modulo FTS3], 'e funziune 'e p'ascià dinto nun sarranno a disposizione ncopp'a stu backend.",
-	"config-pcre-old": "<strong>Errore fatale:</strong> s'addimanna PCRE  $1 o succiessivo.\n'O file vuosto binario PHP è acucchiato c' 'o PCRE $2.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE Cchiù nfurmaziune].",
-	"config-pcre-no-utf8": "<strong>Fatale:</strong> 'E module PCRE d' 'o PHP pare ca se so' compilate senza PCRE_UTF8 supporto.\nA MediaWiki serve nu supporto UTF-8 pe' putè funziunà apposto.",
 	"config-memory-raised": "'O valore 'e PHP <code>memory_limit</code> è $1, aumentato a $2.",
 	"config-memory-bad": "<strong>Attenziò:</strong> 'o valore 'e PHP <code>memory_limit</code> è $1.\nProbabbilmente troppo basso.\n'A installazione se putesse scassà!",
 	"config-apc": "[https://www.php.net/apc APC] è installato",

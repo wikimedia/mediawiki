@@ -614,7 +614,7 @@
 	"language-converter-depth-warning": "فتًي لحدً دبال لعمق د محول اللغة ($1)",
 	"undo-failure": "ما يمكنش تسترجع التعديل بسباب تعديلات متعارضة طرات في الصفحة.",
 	"undo-norev": "ماصدقش الرجوع من التعديل حيت إمًا ماكاينش ولاتحيًد.",
-	"undo-summary": "رّجوع على تّعديل $1 من [[Special:Contributions/$2|$2]] ([[User talk:$2|مداكرة]])",
+	"undo-summary": "رّجوع على تّعديل [[Special:Diff/$1|$1]] من [[Special:Contributions/$2|$2]] ([[User talk:$2|مداكرة]])",
 	"viewpagelogs": "شوف السجلات ديال هاد الصفحة",
 	"viewpagelogs-lowercase": "شوف السجلات ديال هاد الصفحة",
 	"nohistory": "ماكاين تا تاريخ د التعديلات لهاد الصفحة.",

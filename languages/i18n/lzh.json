@@ -604,7 +604,7 @@
 	"undo-success": "此審可返也。查確然完之。",
 	"undo-failure": "中審之異，此審無返也。",
 	"undo-norev": "其審無存或刪，此審無返也。",
-	"undo-summary": "返[[Special:Contributions/$2|$2]]（[[User talk:$2|書]]）之審$1",
+	"undo-summary": "返[[Special:Contributions/$2|$2]]（[[User talk:$2|書]]）之審[[Special:Diff/$1|$1]]",
 	"viewpagelogs": "覽誌",
 	"nohistory": "此題無誌",
 	"currentrev": "今審",

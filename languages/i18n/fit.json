@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Kaganer",
 			"Mestos",
 			"Meänmaa2",
@@ -769,11 +770,11 @@
 	"undo-main-slot-only": "Mookkausta ei voitu kumota, koska mookkaus koskee sisältöä pääaluveen ulkopuolela.",
 	"undo-norev": "Muokkausta ei voia kumota, koska sitä ei ole olemassa tai se oon poistettu.",
 	"undo-nochange": "Tämä mookkaus näyttää olevan jo kumottu.",
-	"undo-summary": "Kumottu mookkaus $1, jonka teki [[Special:Contributions/$2|$2]] ([[User talk:$2|keskustelu]])",
-	"undo-summary-anon": "Kumottu mookkaus $1, jonka teki [[Special:Contributions/$2|$2]]",
-	"undo-summary-import": "Kumottu tuotu mookkaus $1, jonka teki [[:$2|$3]]",
-	"undo-summary-import2": "Kumottu tuotu mookkaus $1, jonka teki $2",
-	"undo-summary-username-hidden": "Kumottu mookkaus $1, jonka oon tehnyt piilotettu käyttäjä",
+	"undo-summary": "Kumottu mookkaus [[Special:Diff/$1|$1]], jonka teki [[Special:Contributions/$2|$2]] ([[User talk:$2|keskustelu]])",
+	"undo-summary-anon": "Kumottu mookkaus [[Special:Diff/$1|$1]], jonka teki [[Special:Contributions/$2|$2]]",
+	"undo-summary-import": "Kumottu tuotu mookkaus [[Special:Diff/$1|$1]], jonka teki [[:$2|$3]]",
+	"undo-summary-import2": "Kumottu tuotu mookkaus [[Special:Diff/$1|$1]], jonka teki $2",
+	"undo-summary-username-hidden": "Kumottu mookkaus [[Special:Diff/$1|$1]], jonka oon tehnyt piilotettu käyttäjä",
 	"viewpagelogs": "Näytä tämän sivun lokit",
 	"viewpagelogs-lowercase": "Näytä tämän sivun lokit",
 	"nohistory": "Tällä sivula ei ole muutoshistuuriaa.",

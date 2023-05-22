@@ -71,8 +71,6 @@
 	"config-no-db": "Pengandar basis data yang sesuai tidak ditemukan! Anda perlu menginstal pengandar basis data untuk PHP.\n{{PLURAL:$2|Jenis|Jenis}} basis data yang didukung: $1.\n\nJika Anda mengompilasi PHP sendiri, ubahlah konfigurasinya dengan mengaktifkan klien basis data, misalnya menggunakan <code>./configure --with-mysqli</code>.\nJika Anda menginstal PHP dari paket Debian atau Ubuntu, maka Anda juga perlu menginstal seperti paket <code>php-mysql</code>.",
 	"config-outdated-sqlite": "<strong>Peringatan:</strong> Anda menggunakan SQLite $2, yang lebih rendah dari versi minimum yang diperlukan $1. SQLite akan tidak tersedia.",
 	"config-no-fts3": "'''Peringatan''': SQLite dikompilasi tanpa [//sqlite.org/fts3.html modul FTS3], fitur pencarian tidak akan tersedia pada konfigurasi ini.",
-	"config-pcre-old": "<strong>Fatal:</strong> PCRE $1 atau kemudian diperlukan.\nBiner PHP Anda dihubungkan dengan PCRE $2. [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Errors_and_symptoms/PCRE Selengkapnya].",
-	"config-pcre-no-utf8": "'''Fatal''': Modul PCRE PHP tampaknya dikompilasi tanpa dukungan PCRE_UTF8.\nMediaWiki memerlukan dukungan UTF-8 untuk berfungsi dengan benar.",
 	"config-memory-raised": "<code>memory_limit</code> PHP adalah $1, dinaikkan ke $2.",
 	"config-memory-bad": "'''Peringatan:''' <code>memory_limit</code> PHP adalah $1.\nIni terlalu rendah.\nInstalasi terancam gagal!",
 	"config-apc": "[https://www.php.net/apc APC] telah dipasang",

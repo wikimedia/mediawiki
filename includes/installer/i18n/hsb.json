@@ -48,7 +48,6 @@
 	"config-no-db": "Njeda so přihódny ćěrjak datoweje banki namakać! Dyrbiš ćěrjak datoweje banki za PHP instalować.\nSlědowace typy datoweje banki so podpěruja: $1.\n\nJeli sy PHP sam kompilował, konfiguruj jón znowa z aktiwizowanym programom datoweje banki, na přikład z pomocu <code>./configure --with-mysqli</code>.\nJeli sy PHP z Debianoweho abo Ubuntuoweho paketa instalował, dyrbiš tež paket <code>php-mysql</code> instalować.",
 	"config-outdated-sqlite": "'''Warnowanje''': maš SQLite $1, kotryž je starši hač minimalna trěbna wersija $2. SQLite njebudźe k dispoziciji stać.",
 	"config-no-fts3": "'''Warnowanje''': SQLite je so bjez [//sqlite.org/fts3.html FTS3-modula] kompilował, pytanske funkcije njebudu k dispoziciji stać.",
-	"config-pcre-no-utf8": "'''Ćežki zmylk''': Zda so, zo PCRE-modul za PHP ma so bjez PCRE_UTF8-podpěry kompilować.\nMediaWiki trjeba UTF-8-podpěru, zo by korektnje fungował.",
 	"config-memory-raised": "PHP-parameter <code>memory_limit</code> je $1, je so na hódnotu $2 zwyšił.",
 	"config-memory-bad": "'''Warnowanje:''' PHP-parameter <code>memory_limit</code> ma hódnotu $1,\nTo je najskerje přeniske.\nInstalacija móhła so njeporadźić!",
 	"config-apc": "[https://www.php.net/apc APC] je instalowany",

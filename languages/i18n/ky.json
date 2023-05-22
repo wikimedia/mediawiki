@@ -508,7 +508,7 @@
 	"post-expand-template-argument-warning": "'''Эскертүү:''' Бул барак, жок дегенде, абдан чоң көлөмдүү калыптын бир жүйөсүн камтыйт жана  жайылганда өлчөмү абдан чоң болуп кетет. \nУшул сыяктуу жүйөлөр аттатылды.",
 	"post-expand-template-argument-category": "Калыптардын аттатылган жүйөлөрүн камтыган барактар",
 	"parser-template-loop-warning": "Калыптарда илмек бар:[[$1]]",
-	"undo-summary": "Кайра $1 жокко [[Special:Contributions/$2|$2]] ([[User talk:$2|сюзюу]])",
+	"undo-summary": "Кайра [[Special:Diff/$1|$1]] жокко [[Special:Contributions/$2|$2]] ([[User talk:$2|сюзюу]])",
 	"viewpagelogs": "Бул барактын журналдарын көрүү",
 	"nohistory": "Бул барактын өзгөртүүлөр тарыхы жок",
 	"currentrev": "Соңку нускасы",

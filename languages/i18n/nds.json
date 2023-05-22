@@ -525,7 +525,7 @@
 	"undo-success": "De Ännern kann trüchdreiht warrn. Vergliek ünnen de Versionen, dat ok allens richtig is, un spieker de Siet denn af.",
 	"undo-failure": "Kunn de Siet nich op de vörige Version trüchdreihn. De Afsnitt is twüschendör al wedder ännert worrn.",
 	"undo-norev": "De Ännern kunn nich trüchdreiht warrn, de gifft dat nich oder is wegsmeten worrn.",
-	"undo-summary": "Ännern $1 vun [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskuschoon]]) trüchdreiht.",
+	"undo-summary": "Ännern [[Special:Diff/$1|$1]] vun [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskuschoon]]) trüchdreiht.",
 	"viewpagelogs": "Logbook för disse Siet",
 	"nohistory": "Disse Siet hett keen Vörgeschicht.",
 	"currentrev": "Aktuelle Version",

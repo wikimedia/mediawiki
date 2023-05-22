@@ -42,7 +42,6 @@
 	"config-env-php": "PHP $1 isch inschtalliert.",
 	"config-no-db": "S isch kei adäquate Datebanktryyber gfunde wore!",
 	"config-no-fts3": "'''Warnig:''' SQLite isch ohni s [//sqlite.org/fts3.html FTS3-Modul] kumpiliert wore, s stehn kei Suechfunktione z Verfiegig.",
-	"config-pcre-no-utf8": "'''Fatale Fähler: S PHP-Modul PCRE isch schyns ohni PCRE_UTF8-Unterstitzig kompiliert wore.'''\nMediaWiki brucht d UTF-8-Unterstitzi zum fählerfrej lauffähig syy.",
 	"config-memory-raised": "Dr PHP-Parameter <code>memory_limit</code> lyt bi $1 un isch uf $2 uffegsetzt wore.",
 	"config-memory-bad": "'''Warnig:''' Dr PHP-Parameter <code>memory_limit</code> lyt bi $1.\nDää Wärt isch wahrschyns z nider.\nDr Inschtallationsvorgang chennt wäge däm fählschlaa!",
 	"config-apc": "[https://www.php.net/apc APC] isch inschtalliert",

@@ -627,7 +627,7 @@
 	"content-json-empty-array": "Rêza vala",
 	"undo-success": "Ev guhartin dikare were şûndekirin.\nJi kerema xwe ferqa piştî tomarkirinê bibîne, bê ka tu dixwazî vê guhwrtoyê biweşînî an na. Ger te xeletiyem kir, ji kerema xwe derkeve.",
 	"undo-failure": "Ji ber guhartinên piştî wê ev guhartin nikare were şûndekirin.",
-	"undo-summary": "Guhartoya $1 ya [[Special:Contributions/$2|$2]] ([[User talk:$2|gotûbêj]]) şûnde kir",
+	"undo-summary": "Guhartoya [[Special:Diff/$1|$1]] ya [[Special:Contributions/$2|$2]] ([[User talk:$2|gotûbêj]]) şûnde kir",
 	"viewpagelogs": "Guhartinên vê rûpelê bibîne",
 	"nohistory": "Dîroka guhartina vê rûpelê nîne.",
 	"currentrev": "Guhartoya niha",

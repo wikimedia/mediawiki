@@ -53,8 +53,6 @@
 	"config-env-php": "PHP $1 je instaliran.",
 	"config-outdated-sqlite": "<strong>Upozorenje:</strong> imate SQLite $2, koji je niži od najmanje tražene verzije $1. SQLite će biti nedostupan.",
 	"config-no-fts3": "<strong>Upozorenje:</strong> SQLite je kompajliran bez [//sqlite.org/fts3.html FTS3 modula], funkcije pretrage biće nedostupne na ovoj bazi podataka.",
-	"config-pcre-old": "<strong>Neotklonjiva greška:</strong> Neophodan je PCRE $1 ili noviji.\nVaš binarni PHP je povezan sa PCRE $2.\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Errors_and_symptoms/PCRE Više informacija].",
-	"config-pcre-no-utf8": "<strong>Neotklonjiva greška:</strong> Izgleda da je PCRE modul PHP-a  kompajliran bez PCRE_UTF8 podrške.\nMediaWiki zahteva UTF-8 podršku za ispravno funkcionisanje.",
 	"config-memory-raised": "Vrednost parametra <code>memory_limit</code> PHP-a iznosi $1, podignuta na $2.",
 	"config-memory-bad": "<strong>Upozorenje:</strong> Vrednost parametra <code>memory_limit</code> PHP-a iznosi $1.\nOvo je verovatno prenisko.\nInstalacija možda neće uspeti!",
 	"config-apc": "[https://www.php.net/apc APC] je instaliran",

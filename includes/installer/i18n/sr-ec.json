@@ -59,8 +59,6 @@
 	"config-env-php": "PHP $1 је инсталиран.",
 	"config-outdated-sqlite": "<strong>Упозорење:</strong> имате SQLite $2, који је нижи од најмање тражене верзије $1. SQLite ће бити недоступан.",
 	"config-no-fts3": "<strong>Упозорење:</strong> SQLite је компајлиран без [//sqlite.org/fts3.html FTS3 модула], функције претраге биће недоступне на овој бази података.",
-	"config-pcre-old": "<strong>Неотклоњива грешка:</strong> Неопходан је PCRE $1 или новији.\nВаш бинарни PHP је повезан са PCRE $2.\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Errors_and_symptoms/PCRE Више информација].",
-	"config-pcre-no-utf8": "<strong>Неотклоњива грешка:</strong> Изгледа да је PCRE модул PHP-а  компајлиран без PCRE_UTF8 подршке.\nMediaWiki захтева UTF-8 подршку за исправно функционисање.",
 	"config-memory-raised": "Вредност параметра <code>memory_limit</code> PHP-а износи $1, подигнута на $2.",
 	"config-memory-bad": "<strong>Упозорење:</strong> Вредност параметра <code>memory_limit</code> PHP-а износи $1.\nОво је вероватно прениско.\nИнсталација можда неће успети!",
 	"config-apc": "[https://www.php.net/apc APC] је инсталиран",

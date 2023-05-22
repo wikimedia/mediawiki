@@ -553,7 +553,7 @@
 	"post-expand-template-argument-category": "Andozalarning toʻldirilmagan oʻzgaruvchilariga ega sahifalar",
 	"undo-success": "Tahrirni bekor qilish imkoniyati bor. Iltimos, solishtirish oynasini koʻrib chiqib, aynan shu oʻzgarishlarni bekor qilmoqchiligingizga ishonch hosil qiling va undan keyin „Saqlash“ tugmasini bosing.",
 	"undo-failure": "Keyingi tahrirlar bilan chalkashib ketgani sababli, ushbu tahrirni alohida oʻzini bekor qilishni iloji yoʻq.",
-	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User talk:$2|munozara]]) tomonidan qilingan $1-sonli tahrir qaytarildi",
+	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User talk:$2|munozara]]) tomonidan qilingan [[Special:Diff/$1|$1]]-sonli tahrir qaytarildi",
 	"viewpagelogs": "Ushbu sahifaga doir qaydlarni koʻrsat",
 	"viewpagelogs-lowercase": "ushbu sahifaga doir qaydlarni koʻrsat",
 	"nohistory": "Ushbu sahifa uchun oʻzgarishlar tarixi mavjud emas.",

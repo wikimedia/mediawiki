@@ -700,7 +700,7 @@
 	"undo-success": "Matatanggal ang pagbabago.\nPakitingnan ang paghahambing sa ibaba para masiyasat kung ito ang ibig mong gawin, at pagkatapos sagipin ang mga pagbabago sa ibaba para matapos ang pagtatanggal ng pagbabago.",
 	"undo-failure": "Hindi mabalik ang binago dahil sa isang magkasabay na magkaibang pagbabago.",
 	"undo-norev": "Hindi matanggal ang pagbabago dahil hindi ito umiiral o nabura na.",
-	"undo-summary": "Tanggalin ang pagbabagong $1 ni [[Special:Contributions/$2|$2]] ([[User talk:$2|Usapan]])",
+	"undo-summary": "Tanggalin ang pagbabagong [[Special:Diff/$1|$1]] ni [[Special:Contributions/$2|$2]] ([[User talk:$2|Usapan]])",
 	"viewpagelogs": "Tingnan ang mga log para sa pahinang ito",
 	"nohistory": "Walang kasaysayan ng pagbabago para sa pahinang ito.",
 	"currentrev": "Pangkasalukuyang pagbabago",

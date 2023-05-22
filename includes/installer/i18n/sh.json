@@ -54,8 +54,6 @@
 	"config-no-db": "Nisam mogao pronaći odgovarajući upravljački program za bazu podataka! Morat ćete uspostaviti upravljački program za PHP-bazu.\n{{PLURAL:$2|Podržana je sljedeća vrsta|Podržane su sljedeće vrste}} baze: $1.\n\nAko ste sami kompilirali PHP, omogućite bazni klijent u postavkama - npr. s <code>./configure --with-mysqli</code>.\nAko ovaj PHP uspostavite iz Debian ili Ubuntu paketa, tada ćete ga morati uspostaviti, npr., paket <code>php-mysql</code>.",
 	"config-outdated-sqlite": "<strong>Upozorenje</strong>: imate SQLite $2. Najstarija dopuštena verzija je $1. Stoga, SQLite će biti nedostupan.",
 	"config-no-fts3": "'''Upozorenje''': SQLite se kompilira bez modula [//sqlite.org/fts3.html FTS3] - za tu bazu podataka neće biti mogućnosti pretrage.",
-	"config-pcre-old": "'''Kobno:''' Potreban je PCRE $1 ili novija verzija.\nVaš PHP-binarni je svezan s PCRE $2.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE Više informacija].",
-	"config-pcre-no-utf8": "<strong>Kobno</strong>: PCRE modul PHP-a je hitan bez podrške za PCRE_UTF8.\nMediaWiki zahtijeva podršku za UTF-8 kako bi ispravno funkcionirao.",
 	"config-memory-raised": "<code>memory_limit</code> za PHP iznosi $1, povišen na $2.",
 	"config-memory-bad": "<strong>Upozorenje:</strong> <code>memory_limit</code> za PHP iznosi $1.\nOvo je vjerovatno premalo.\nUspostava možda neće uspjeti!",
 	"config-apc": "[https://www.php.net/apc APC] je uspostavljen",

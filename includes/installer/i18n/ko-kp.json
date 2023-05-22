@@ -49,8 +49,6 @@
 	"config-no-db": "적절한 자료기지 구동기를 찾지 못했습니다! PHP용 자료기지 구동기를 설치해야 합니다.\n다음 자료기지 {{PLURAL:$2|류형을}} 지원합니다: $1.\n\nPHP를 직접 콤파일했다면, 례를 들어 <code>./configure --with-mysqli</code>을 사용하여, 자료기지 의뢰기를 활성화하도록 다시 설정하세요.\n데비안이나 우분투 꾸레미에서 PHP를 설치했다면 <code>php-mysql</code> 꾸레미도 설치해야 합니다.",
 	"config-outdated-sqlite": "<strong>경고:</strong> 최소 요구 판본 $2 보다 낮은 SQLite $1이(가) 있습니다. SQLite를 사용할수 없습니다.",
 	"config-no-fts3": "<strong>경고:</strong> SQLite를 [//sqlite.org/fts3.html FTS3 모듈] 없이 콤파일하며, 검색 기능은 뒤단프로그람에 사용할수 없습니다.",
-	"config-pcre-old": "<strong>치명:</strong> PCRE $1 또는 그 이상이 필요합니다.\nPHP 바이너리는 PCRE $2에 련결되여있습니다. [https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE 자세한 정보].",
-	"config-pcre-no-utf8": "<strong>치명:</strong> PHP의 PCRE 모듈은 RCRE_UTF8 지원 없이 콤파일된것 같습니다.\n매체위키가 옳바르게 작동하려면 UTF-8을 지원해야 합니다.",
 	"config-memory-raised": "PHP의 <code>memory_limit</code>는 $1이며 $2(으)로 늘렸습니다.",
 	"config-memory-bad": "<strong>경고:</strong> PHP의 <code>memory_limit</code>는 $1입니다.\n아마도 너무 낮은것 같습니다.\n설치가 실패할수 있습니다!",
 	"config-apc": "[https://www.php.net/apc APC]가 설치되였습니다",

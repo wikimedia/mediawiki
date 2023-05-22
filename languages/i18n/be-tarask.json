@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Artsiom91",
 			"Cesco",
 			"Chadyka",
@@ -809,11 +810,11 @@
 	"undo-main-slot-only": "Праўка ня можа быць адмененая, бо яна ўключае зьмест па-за асноўным месцам.",
 	"undo-norev": "Рэдагаваньне ня можа быць адмененае, таму што яно не існуе альбо было выдаленае.",
 	"undo-nochange": "Выглядае, што праўка ўжо была адмененая.",
-	"undo-summary": "Скасаваньне праўкі $1 {{GENDER:$2|удзельніка|удзельніцы}} [[Special:Contributions/$2|$2]] ([[User talk:$2|гутаркі]])",
-	"undo-summary-anon": "Адмяніць рэвізію $1 аўтарства [[Special:Contributions/$2|$2]]",
-	"undo-summary-import": "Скасаваць імпартаваную рэдакцыю $1 карыстачом [[:$2|$3]]",
-	"undo-summary-import2": "Скасаваць імпартаваную рэдакцыю $1 карыстачом $2",
-	"undo-summary-username-hidden": "Скасаваньне вэрсіі $1 схаванага ўдзельніка",
+	"undo-summary": "Скасаваньне праўкі [[Special:Diff/$1|$1]] {{GENDER:$2|удзельніка|удзельніцы}} [[Special:Contributions/$2|$2]] ([[User talk:$2|гутаркі]])",
+	"undo-summary-anon": "Адмяніць рэвізію [[Special:Diff/$1|$1]] аўтарства [[Special:Contributions/$2|$2]]",
+	"undo-summary-import": "Скасаваць імпартаваную рэдакцыю [[Special:Diff/$1|$1]] карыстачом [[:$2|$3]]",
+	"undo-summary-import2": "Скасаваць імпартаваную рэдакцыю [[Special:Diff/$1|$1]] карыстачом $2",
+	"undo-summary-username-hidden": "Скасаваньне вэрсіі [[Special:Diff/$1|$1]] схаванага ўдзельніка",
 	"viewpagelogs": "Паказаць журналы падзеяў для гэтай старонкі",
 	"viewpagelogs-lowercase": "паказаць справаздачы для гэтай старонкі",
 	"nohistory": "Гісторыя зьменаў для гэтай старонкі адсутнічае.",

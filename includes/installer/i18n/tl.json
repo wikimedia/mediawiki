@@ -55,7 +55,6 @@
 	"config-no-db": "Hindi matagpuan ang isang angkop na tagapagmaneho ng kalipunan ng datos! Kailangan mong magluklok ng isang tagapagmaneho ng kalipunan ng dato para sa PHP.\nTinatangkilik ang {{PLURAL:$2|mga}} sumusunod na uri ng kalipunan ng dato: $1.\n\nKung ikaw mismo ang nangalap ng PHP, muling isaayos ito na pinagagana ang isang kliyente ng kalipunan ng dato, halimbawa na ang paggamit ng <code>./configure --with-mysqli</code>.\nKung iniluklok mo ang PHP mula sa isang pakete ng Debian o Ubuntu, kung gayon kailangan mo ring magluklok, halimbawa ay ang paketeng <code>php-mysql</code>.",
 	"config-outdated-sqlite": "'''Babala''': mayroong kang $1 ng SQLite, na mas mababa kaysa sa pinaka mababang kailangang bersiyon na $2. Magiging hindi makukuha ang SQLite.",
 	"config-no-fts3": "'''Warning''': Ang SQLite ay hindi itinala at tinipon na wala ang [//sqlite.org/fts3.html modulong FTS3], ang mga tampok na panghanap ay magiging hindi makukuha sa ibabaw ng panlikod na dulong ito.",
-	"config-pcre-no-utf8": "'''Malubha''': Tila tinipon ang modyul na PCRE ng PHP na wala ang suporta ng PCRE_UTF8.\nNangangailangan ang MediaWiki ng suporta ng UTF-8 upang maging tama ang pag-andar.",
 	"config-memory-raised": "Ang <code>hangganan_ng_alaala</code> ng PHP ay $1, itinaas sa $2.",
 	"config-memory-bad": "'''Babala:''' Ang <code>hangganan_ng_alaala</code> ng PHP ay $1.\nIto ay maaaring napakababa.\nMaaaring mabigo ang pagluluklok!",
 	"config-apc": "Ininstala na ang [https://www.php.net/apc APC]",

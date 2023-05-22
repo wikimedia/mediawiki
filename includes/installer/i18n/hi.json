@@ -60,8 +60,6 @@
 	"config-no-db": "अनुकूल डेटाबेस ड्राइवर नहीं मिला! आपको PHP के लिए एक डेटाबेस ड्राइवर स्थापित करना होगा।\nडेटाबेस {{PLURAL:$2|का यह|के ये}} प्रकार समर्थित {{PLURAL:$2|है|हैं}}: $1।\n\nअगर आपने PHP को खुद कंपाइल किया है, इसे <code>./configure --with-mysqli</code> की मदद से एक डेटाबेस क्लाइंट सक्षम करके दोबारा कॉन्फ़िगर करें।\nअगर आपने किसी Debian या Ubuntu पैकेज से PHP को स्थापित किया है, आपको <code>php-mysql</code> जैसे किसी पैकेज को भी सक्षम करना होगा।",
 	"config-outdated-sqlite": "<strong>चेतावनी:</strong> आपके पास SQLite $2 है, जो न्यूनतम आवश्यक संस्करण $1 से कम है। SQLite अनुपलब्ध होगा।",
 	"config-no-fts3": "<strong>चेतावनी:</strong> SQLite को [//sqlite.org/fts3.html FTS3 मॉड्यूल], के बिना कंपाइल किया गया है, खोज की सुविधाएँ इस बैक-एंड में काम नहीं करेंगी।",
-	"config-pcre-old": "<strong>गंभीर:</strong> PCRE $1 या किसी बाद के संस्करण की ज़रूरत है।\nआपका PHP बाइनरी PCRE $2 से जुड़ा है।\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Errors_and_symptoms/PCRE अधिक जानकारी]।",
-	"config-pcre-no-utf8": "<strong>गंभीर:</strong> ऐसा लगता है PHP का PCRE मॉड्यूल PCRE_UTF8 के समर्थन के बिना कंपाइल किया गया था।\nठीक से काम करने के लिए मीडियाविकि को UTF-8 की ज़रूरत है।",
 	"config-pcre-invalid-newline": "<strong>गंभीर:</strong> PHP का PCRE मॉड्यूल ANY के लिए PCRE_CONFIG_NEWLINE = -1 के साथ कॉन्फ़िगर किया गया था।\nमीडियाविकि पर यह कॉन्फ़िगरेशन समर्थित नहीं है।",
 	"config-memory-raised": "PHP का <code>memory_limit</code> $1 है, जो $2 तक बढ़ गई है।",
 	"config-memory-bad": "<strong>चेतावनी:</strong> PHP का <code>memory_limit</code> $1 है।\nयह कुछ ज़्यादा ही कम है।\nस्थापना असफल हो सकती है!",

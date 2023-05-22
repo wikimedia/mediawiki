@@ -530,7 +530,7 @@
 	"undo-success": "A edición se puet desfer.\nAntes de desfer a edición, mire-se a siguient comparanza ta comprebar que ye ixo o que quiere fer, y alce alavez os cambios ta desfer asinas a edición.",
 	"undo-failure": "No se puet desfer a edición pues un atro usuario ha feito una edición intermeya.",
 	"undo-norev": "No s'ha puesto desfer a edición porque no existiba u ya s'heba borrato.",
-	"undo-summary": "Desfeita a edición $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|desc.]])",
+	"undo-summary": "Desfeita a edición [[Special:Diff/$1|$1]] de [[Special:Contributions/$2|$2]] ([[User talk:$2|desc.]])",
 	"viewpagelogs": "Veyer os rechistros d'ista pachina",
 	"nohistory": "Ista pachina no tiene un historial d'edicions.",
 	"currentrev": "Versión actual",

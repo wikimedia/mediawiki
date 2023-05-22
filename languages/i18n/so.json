@@ -476,7 +476,7 @@
 	"post-expand-template-inclusion-warning": "'''Digniin:''' Aad oo u weyn yahay tusmo'da aad ku dartay.\nTusmooyinka qaar lagumo dari doono.",
 	"post-expand-template-inclusion-category": "Boggaga ku xad gudbay weyninka tusmo'da",
 	"post-expand-template-argument-warning": "'''Digniin:'''Boggaan waxaa ku jira ugu yaraan hal iyo wixii ka badan oo template ah, waxaana ku xiran kuwa kale.",
-	"undo-summary": "Noqay bedelaadka $1 ee sameeyay  [[Special:Contributions/$2|$2]] ([[User talk:$2|hadal]])",
+	"undo-summary": "Noqay bedelaadka [[Special:Diff/$1|$1]] ee sameeyay  [[Special:Contributions/$2|$2]] ([[User talk:$2|hadal]])",
 	"viewpagelogs": "Fiiri diiwaanada boggaan",
 	"nohistory": "Boggaan malahan taariikhda bedelaadka",
 	"currentrev": "Bedelkii ugu danbeeyay",

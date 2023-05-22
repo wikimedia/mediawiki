@@ -657,7 +657,7 @@
 	"undo-success": "Àtúnṣe náà ṣe é múkúrò.\nẸ jọ̀wọ́ ẹ wo ìfiwéra ìsàlẹ̀ láti rídájú pé ohun tí ẹ fẹ́ nì yẹn, nígbà náà ẹ mú àwọn àtúnṣe náà pamọ́ láti parí ìmúkúrò àtúnṣe.",
 	"undo-failure": "Àtúnṣe náà kò ṣe é múkúrò nítorí títakora àwọn àtúnṣe inú àrin.",
 	"undo-norev": "Àtúnṣe náà kò ṣe é múkúrò nítorí pé kò sí tàbí pé ó ti jẹ́ píparẹ́.",
-	"undo-summary": "Ìmúkúrò àtúnyẹ̀wò $1 ti [[Special:Contributions/$2|$2]] ([[User talk:$2|ọ̀rọ̀]])",
+	"undo-summary": "Ìmúkúrò àtúnyẹ̀wò [[Special:Diff/$1|$1]] ti [[Special:Contributions/$2|$2]] ([[User talk:$2|ọ̀rọ̀]])",
 	"viewpagelogs": "Ẹ wo àkọsílẹ̀ ìṣẹ̀lẹ̀ fún ojúewé yìí",
 	"nohistory": "Kò sí ìtàn àtùnṣe fún ojúewé yìí.",
 	"currentrev": "Àtúnyẹ̀wò ìsinsìnyí",

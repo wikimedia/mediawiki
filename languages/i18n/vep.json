@@ -511,7 +511,7 @@
 	"language-converter-depth-warning": "Kelen konverteran süvüden ülätazopind om ületadud ($1)",
 	"undo-failure": "Ei voi tühjištada redakcijad, sikš miše läbiredakcijad konfliktuidas.",
 	"undo-norev": "Ei voi endištada lehtpol't, sikš miše mugošt lehtpol't ei ole vai se om jo čutud.",
-	"undo-summary": "Tühjitadud toižetuz $1, kudamban tegi $2 (arutelu)",
+	"undo-summary": "Tühjitadud toižetuz [[Special:Diff/$1|$1]], kudamban tegi $2 (arutelu)",
 	"viewpagelogs": "Ozutada aigkirjad necen lehtpolen täht",
 	"nohistory": "Necen lehtpolen täht ei ole toižetusiden aigkirjad.",
 	"currentrev": "Nügüdläine versii",

@@ -62,8 +62,6 @@
 	"config-no-db": "Nu am găsit un driver de bază de date potrivit! Trebuie să instalați un driver de bază de date pentru PHP.\nUrmătoarea bază de date {{PLURAL:$2|tip este|tipuri sunt}} este acceptată: $1.\nDacă ați compilat singuri PHP, reconfigurați-l cu un client de bază de date activat, de exemplu, utilizând <code>./ configure --with-mysqli</code>.\nDacă ați instalat PHP dintr-un pachet Debian sau Ubuntu, atunci trebuie să instalați, de exemplu, pachetul <code>php-mysql</code>",
 	"config-outdated-sqlite": "<strong>Atenție:</strong> aveții SQLite $2, care este mai mic decât versiunea minimă $1. SQLite nu va fi disponibil.",
 	"config-no-fts3": "<strong>Atenție:</strong> SQLite este compus fără [//sqlite.org/fts3.html modulu FTS3], caută caracteristici care nu vor fi disponibile la finalul acesta.",
-	"config-pcre-old": "<strong>Fatal:</> PCRE $1 sau mai târziu este necesar este necesar. \nPHP tău este binar este legat de PCRE $2. \n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE Mai multe informații].",
-	"config-pcre-no-utf8": "<strong>Fatal:</strong> Modul PCRE al PHP pare să fie compilat fără suport PCRE_UTF8.\nMediaWiki necesită ca suportul UTF-8 să funcționeze corect.",
 	"config-memory-raised": "PHP<code>memory_limit</code> este $1, mărit cu $2.",
 	"config-memory-bad": "<strong>Atenție:</strong> PHP<code>memory_limit</code> este $1.\nAcesta este probabil mai jos.\nAceastă instalare eșuează!",
 	"config-apc": "[https://www.php.net/apc APC] este instalat",

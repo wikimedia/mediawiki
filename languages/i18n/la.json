@@ -490,7 +490,7 @@
 	"content-model-wikitext": "vicitextum",
 	"parser-template-loop-warning": "Ansa formulae detecta: [[$1]]",
 	"undo-norev": "Recensio abrogari non potuit quia non est aut deleta est.",
-	"undo-summary": "Abrogans recensionem $1 ab usore [[Special:Contributions/$2|$2]] ([[User talk:$2|Disputatio]])",
+	"undo-summary": "Abrogans recensionem [[Special:Diff/$1|$1]] ab usore [[Special:Contributions/$2|$2]] ([[User talk:$2|Disputatio]])",
 	"viewpagelogs": "Vide acta huius paginae",
 	"nohistory": "Huic paginae non est historia.",
 	"currentrev": "Redactio novissima",

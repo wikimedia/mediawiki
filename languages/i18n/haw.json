@@ -465,7 +465,7 @@
 	"post-expand-template-argument-warning": "<strong>E akahele:</strong> Aia ma kēia ʻaoʻao i kekahi a ʻoi pilikia anakuhi e loaʻa i kekahi nui hoʻonui nunui loa.\nUa waiho ʻia kēia mau pilikia.",
 	"post-expand-template-argument-category": "Nā ʻAoʻao e loaʻa nā pilikia anakuhi i waiho ʻia",
 	"undo-success": "Hiki iā ʻoe ke hoʻihoʻi i kēia loli.\nE ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā loli i lalo no ka hoʻopau ʻana o ka hoʻihoʻi o ka loli.",
-	"undo-summary": "Hoʻihoʻi mai i ke kāmua $1 na [[Special:Contributions/$2|$2]] ([[User talk:$2|walaʻau]])",
+	"undo-summary": "Hoʻihoʻi mai i ke kāmua [[Special:Diff/$1|$1]] na [[Special:Contributions/$2|$2]] ([[User talk:$2|walaʻau]])",
 	"viewpagelogs": "Nānā i nā moʻolelo no kēia ʻaoʻao",
 	"currentrev": "Kāmua hou",
 	"currentrev-asof": "Ke Kāmua houloa ma $1",

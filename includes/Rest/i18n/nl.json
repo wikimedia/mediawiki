@@ -22,6 +22,7 @@
 	"rest-pagehistory-incompatible-params": "Parameters \"older_than\" en \"newer_than\" kunnen niet beide worden opgegeven",
 	"rest-pagehistory-param-range-error": "Versie ID moet groter zijn dan 0",
 	"rest-compare-permission-denied": "Gebruiker heeft geen toegang tot de gevraagde herzieningen",
+	"rest-badtoken": "Het opgegeven CSRF-token is ongeldig.",
 	"rest-badtoken-missing": "De parameter <var>token</var> is vereist, tenzij u een CSRF-veilige authenticatiemethode gebruikt.",
 	"rest-badtoken-nosession": "CSRF-fout – geen sessie."
 }

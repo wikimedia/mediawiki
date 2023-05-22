@@ -57,7 +57,6 @@
 	"config-env-icu": "Įdiegtas ICU $1 (palaiko Unicode $2).",
 	"config-outdated-sqlite": "<strong>Įspėjimas:</strong> jūs turite SQLite $2, kuri yra žemesnė nei minimali reikalinga versija $1. SQLite nebus prieinama.",
 	"config-no-fts3": "<strong>Įspėjimas:</strong> SQLite sukompiliuota be [//sqlite.org/fts3.html FTS3 modulio], paieškos funkcijos šioje vidinėje sistemoje nebus pasiekiamos.",
-	"config-pcre-no-utf8": "<strong>Kritinė:</strong> atrodo, kad PHP PCRE modulis buvo sukompiliuotas be PCRE_UTF8 palaikymo.\nMediaWiki reikalingas UTF-8 palaikymas, kad tinkamai veiktų.",
 	"config-memory-raised": "PHP <code>memory_limit</code> yra $1, padidintas iki $2.",
 	"config-memory-bad": "<strong>Įspėjimas:</strong> PHP <code>memory_limit</code> yra $1.\nTai tikriausiai per mažai.\nĮdiegimas gali nepavykti!",
 	"config-apc": "[https://www.php.net/apc APC] yra įdiegtas",

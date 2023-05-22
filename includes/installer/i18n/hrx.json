@@ -52,8 +52,6 @@
 	"config-no-db": "Es konnt ken adäquater Datenbanktreiwer gefund sin. Es muss doher en Datenbanktreiwer für PHP installiert sin.\nDie folchende Datebanksysteme werre unnerstützt: $1\n\nWenn du PHP sellebst kompiliert host, konfigurier es erneit mit en aktiviert Datebankclient, zum Beispiel dorrich Verwennung von <code>./configure --with-mysqli</code>.\nWenn du PHP von en Debian- orrer Ubuntu-Paket installiert host, dann musst du ooch beispielsweis das <code>php-mysql</code>-Paket installiere.",
 	"config-outdated-sqlite": "'''Warnung:''' SQLite $1 ist installiert. Allerdings benöticht MediaWiki SQLite $2 orrer höcher. SQLite weard doher net verfüchbar sin.",
 	"config-no-fts3": "'''Warnung:''' SQLite woard ohne das [//sqlite.org/fts3.html FTS3-Modul] kompiliert, so dass ken Suchfunktione für das Datenbanksystem zur Verfüchung stehn werre.",
-	"config-pcre-old": "<strong>Fataler Fehler:</strong> PCRE $1 orrer neier ist notwendich!\nDie vorhandne PHP-Binärdatei ist mit PCRE $2 verknüpft.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE Weitre Informatione].",
-	"config-pcre-no-utf8": "'''Fataler Fehler:''' Das PHP-Modul PCRE scheint ohne PCRE_UTF8-Unterstützung kompiliert worre sin.\nMediaWiki benöticht die UTF-8-Unnerstützung, um fehlerfrei looffähich zu sin.",
 	"config-memory-raised": "Der PHP-Parameter <code>memory_limit</code> betruch $1 und woard uff $2 erhöcht.",
 	"config-memory-bad": "'''Warnung:''' Der PHP-Parameter <code>memory_limit</code> beträcht $1.\nDer Weart ist wahrscheinlich zu niedrich.\nDer Installationsvoargang könnt doher scheitre!",
 	"config-apc": "[https://www.php.net/apc APC] ist installiert",

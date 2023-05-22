@@ -445,7 +445,7 @@
 	"moveddeleted-notice": "Na starna òsta rëmniãtô.\nDali je spisënk rëmaniô, zazychrowaniô ë przenoszeniô ti starnë.",
 	"content-model-wikitext": "wikitekst",
 	"undo-failure": "Edicëjô nié mògłą bëc copniãtô przez zwadã z midzëedicëją.",
-	"undo-summary": "Anulowanié wersje $1 aùtora [[Special:Contributions/$2|$2]] ([[User talk:$2|diskùsjô]])",
+	"undo-summary": "Anulowanié wersje [[Special:Diff/$1|$1]] aùtora [[Special:Contributions/$2|$2]] ([[User talk:$2|diskùsjô]])",
 	"viewpagelogs": "Òbôczë rejestrë dzéjanió dlô ti starnë",
 	"currentrev": "Aktualnô wersëjô",
 	"currentrev-asof": "Aktualnô wersëjô na dzéń $1",

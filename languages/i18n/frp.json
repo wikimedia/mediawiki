@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Cedric31",
 			"ChrisPtDe",
 			"DannyS712",
@@ -794,11 +795,11 @@
 	"undo-main-slot-only": "Lo changement at pas possu étre dèfêt, demande un contegnu en defôr de l’emplacement principâl.",
 	"undo-norev": "Lo changement at pas possu étre dèfêt, il est inègzistent ou ben il est étâ suprimâ.",
 	"undo-nochange": "Semble que lo changement seye ja étâ dèfêt.",
-	"undo-summary": "Dèfêta de la vèrsion $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|discutar]])",
-	"undo-summary-anon": "Dèfêta de la vèrsion $1 de [[Special:Contributions/$2|$2]]",
-	"undo-summary-import": "Dèfêta de la vèrsion $1 importâye per l’utilisator [[:$2|$3]]",
-	"undo-summary-import2": "Dèfêta de la vèrsion $1 importâye per l’utilisator $2",
-	"undo-summary-username-hidden": "Dèfêta de la vèrsion $1 d’un utilisator cachiê",
+	"undo-summary": "Dèfêta de la vèrsion [[Special:Diff/$1|$1]] de [[Special:Contributions/$2|$2]] ([[User talk:$2|discutar]])",
+	"undo-summary-anon": "Dèfêta de la vèrsion [[Special:Diff/$1|$1]] de [[Special:Contributions/$2|$2]]",
+	"undo-summary-import": "Dèfêta de la vèrsion [[Special:Diff/$1|$1]] importâye per l’utilisator [[:$2|$3]]",
+	"undo-summary-import2": "Dèfêta de la vèrsion [[Special:Diff/$1|$1]] importâye per l’utilisator $2",
+	"undo-summary-username-hidden": "Dèfêta de la vèrsion [[Special:Diff/$1|$1]] d’un utilisator cachiê",
 	"viewpagelogs": "Vêde los jornâls sus cela pâge",
 	"viewpagelogs-lowercase": "vêre los jornâls sus cela pâge",
 	"nohistory": "Ègziste gins d’historico des changements por cela pâge.",

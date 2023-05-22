@@ -60,8 +60,6 @@
 	"config-no-db": "ไม่พบไดรเวอร์ฐานข้อมูลที่เหมาะสม! คุณจำเป็นต้องติดตั้งไดรเวอร์ฐานข้อมูลสำหรับ PHP\n{{PLURAL:$2|ชนิด}}ฐานข้อมูลต่อไปนี้ได้รับการสนับสนุน: $1\n\nถ้าคุณคอมไพล์ PHP ด้วยตนเอง ให้กำหนดค่าใหม่อีกครั้งโดยเปิดใช้งานไคลเอนต์ฐานข้อมูล ตัวอย่างเช่น ใช้ <code>./configure --with-mysqli</code>\nถ้าคุณติดตั้ง PHP จากแพกเกจ Debian หรือ Ubuntu คุณก็จำเป็นต้องติดตั้งแพกเกจต่อไปนี้ ตัวอย่างเช่น แพกเกจ <code>php-mysql</code>",
 	"config-outdated-sqlite": "<strong>คำเตือน:</strong> คุณมี SQLite $2 ซึ่งต่ำกว่ารุ่นขั้นต่ำที่ต้องการ $1 ดังนั้น SQLite จะไม่พร้อมให้ใช้งาน",
 	"config-no-fts3": "<strong>คำเตือน:</strong> SQLite ถูกคอมไพล์โดยไม่มี[//sqlite.org/fts3.html โมดูล FTS3] คุณลักษณะการค้นหาจะไม่พร้อมใช้งานบนแบ็กเอนด์นี้",
-	"config-pcre-old": "<strong>ข้อผิดพลาดร้ายแรง:</strong> ต้องใช้ PCRE $1 หรือสูงกว่า\nไบนารี PHP ของคุณถูกเชื่อมโยงกับ PCRE $2\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Errors_and_symptoms/PCRE ข้อมูลเพิ่มเติม]",
-	"config-pcre-no-utf8": "<strong>ข้อผิดพลาดร้ายแรง:</strong> โมดูล PCRE ของ PHP ดูเหมือนจะถูกคอมไพล์โดยไม่มีการรองรับ PCRE_UTF8\nMediaWiki ต้องการการรองรับ UTF-8 เพื่อให้ทำงานได้อย่างถูกต้อง",
 	"config-memory-raised": "<code>memory_limit</code> ของ PHP คือ $1 ได้เพิ่มเป็น $2",
 	"config-memory-bad": "<strong>คำเตือน:</strong> <code>memory_limit</code> ของ PHP คือ $1.\nเป็นไปได้ว่ามันอาจต่ำเกินไป\nการติดตั้งอาจล้มเหลวได้!",
 	"config-apc": "มี [https://www.php.net/apc APC] ติดตั้งอยู่",

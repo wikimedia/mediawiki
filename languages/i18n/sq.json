@@ -752,7 +752,7 @@
 	"undo-success": "Përpunimi s’mund të zhbëhet. \nJu lutemi, kontrolloni krahasimin më poshtë për të verifikuar se kjo është ajo që doni të bëni dhe mandej publikoni ndryshimet më poshtë, që të përfundohet zhbërja e përpunimit.",
 	"undo-failure": "Redaktimi s’u zhbë dot, për shkak redaktimeve të ndërmjetme me përplasje.",
 	"undo-norev": "Redaktimi nuk mund të zhbëhet sepse nuk ekziston ose është fshirë.",
-	"undo-summary": "Zhbëje versionin $1 i bërë nga [[Special:Contributions/$2|$2]] ([[User talk:$2|ligjëratë]])",
+	"undo-summary": "Zhbëje versionin [[Special:Diff/$1|$1]] i bërë nga [[Special:Contributions/$2|$2]] ([[User talk:$2|ligjëratë]])",
 	"viewpagelogs": "Shiko regjistrat për këtë faqe",
 	"nohistory": "Nuk ka histori redaktimesh për këtë faqe.",
 	"currentrev": "Versioni i tanishëm",

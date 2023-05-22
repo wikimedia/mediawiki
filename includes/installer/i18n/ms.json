@@ -53,7 +53,6 @@
 	"config-env-php": "PHP $1 dipasang.",
 	"config-outdated-sqlite": "<strong>Amaran:</strong> anda mempunyai SQLite $1 yang lebih rendah daripada versi keperluan minimum $1. SQLite tidak akan disediakan.",
 	"config-no-fts3": "<strong>Amaran:</strong> SQLite disusun tanpa [//sqlite.org/fts3.html modil FTS3], maka ciri-ciri pencarian tidak akan disediakan pada backend ini.",
-	"config-pcre-old": "<strong>Amaran keras:</strong> PCRE $1 ke atas diperlukan.\nBinari PHP anda berpaut dengan PCRE $2.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE Keterangan lanjut].",
 	"config-memory-bad": "<strong>Amaran:</strong> <code>memory_limit</code> (Had memori) PHP ialah $1.\nIni mungkin terlalu rendah.\nPemasangan mungkin akan gagal!",
 	"config-apc": "[https://www.php.net/apc APC] dipasang",
 	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] dipasang",

@@ -503,7 +503,7 @@
 	"undo-success": "Üzgärtüdän baş tartıp bula.\nYuramalaranı çağıştırunı qarağız häm, üzgärtülär Sez telägänçä bulsa, bitne saqlağız.",
 	"undo-failure": "Aralıqtağı üzgärtülär turı kilmäw säbäple, üzgärtüdän baş tartıp bulmıy.",
 	"undo-norev": "Üzgärtü yuq yäisä ul beterelgän, şuña annan baş tartıp bulmıy.",
-	"undo-summary": "[[Special:Contributions/$2|$2]] qullanuçısınıñ ([[User talk:$2|bäxäs]]) $1 üzgärtüennän baş tartu",
+	"undo-summary": "[[Special:Contributions/$2|$2]] qullanuçısınıñ ([[User talk:$2|bäxäs]]) [[Special:Diff/$1|$1]] üzgärtüennän baş tartu",
 	"viewpagelogs": "Bu bitneñ köndäleklären qaraw",
 	"nohistory": "Bu bitneñ üzgärtülär tarixı yuq.",
 	"currentrev": "Xäzerge yurama",

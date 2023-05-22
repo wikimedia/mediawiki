@@ -534,7 +534,7 @@
 	"undo-success": "Betaks tir rodimaskin. Va vlevefa dolunhera vay stujel nume ageltal da batcoba tir rinafa djumaskina aze ta tenukera va dimaskira va betara va vlevef betakseem giwal.",
 	"undo-failure": "Betaks me zo rodimaskir, larde walif betaks co rokobodad.",
 	"undo-norev": "Dimbetara tir merotisa golde metira ok sulara.",
-	"undo-summary": "Dimaskira va $1 betaks ke [[Special:Contributions/$2|$2]] ([[User talk:$2|Prilara]])",
+	"undo-summary": "Dimaskira va [[Special:Diff/$1|$1]] betaks ke [[Special:Contributions/$2|$2]] ([[User talk:$2|Prilara]])",
 	"viewpagelogs": "Wira va \"logs\" ke batu bu",
 	"nohistory": "Nedoy izvot va batu bu.",
 	"currentrev": "Noelaf siatos",

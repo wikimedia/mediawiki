@@ -594,7 +594,7 @@
 	"undo-success": "Suntingan kiye teyeng dibatalna.\nMonggo priksa perbandingan nang ngisor kiye ngo mastekna nek kiye pancen sing Rika arep lakoni, lan banjur simpen pangowahan kuwe nggo ngrampungna pambatalan suntingan.",
 	"undo-failure": "Suntingan kiye ora teyeng dibatalna jalaran ana konflik panyuntingan antara.",
 	"undo-norev": "Suntingan kiye ora teyeng dibatalna jalaran wis ora ana utawa anu wis dibusek.",
-	"undo-summary": "Mbatalna revisi $1 sekang [[Special:Contributions/$2|$2]] ([[User talk:$2|dopokan]])",
+	"undo-summary": "Mbatalna revisi [[Special:Diff/$1|$1]] sekang [[Special:Contributions/$2|$2]] ([[User talk:$2|dopokan]])",
 	"viewpagelogs": "Deleng log-e kaca kiye",
 	"nohistory": "Ora ana sajarah panyuntingan kanggo kaca kiye.",
 	"currentrev": "Revisi sekiyé",

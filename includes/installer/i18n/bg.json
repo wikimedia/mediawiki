@@ -58,8 +58,6 @@
 	"config-no-db": "Не може да бъде открит подходящ драйвер за база данни! Необходимо е да инсталирате драйвер за база данни за PHP.\n{{PLURAL:$2|Поддържа се следния тип|Поддържат се следните типове}} бази от данни: $1.\n\nАко сами сте компилирали PHP, преконфигурирайте го с включен клиент за база данни, например чрез използване на <code>./configure --with-mysqli</code>.\nАко сте инсталирали PHP от пакет за Debian или Ubuntu, необходимо е също така да инсталирате и модула <code>php-mysql</code>.",
 	"config-outdated-sqlite": "<strong>Внимание:</strong> имате инсталиран SQLite $2, а минималната допустима версия е $1. SQLite ще бъде недостъпна за ползване.",
 	"config-no-fts3": "<strong>Предупреждение:</strong> SQLite е компилирана без [//sqlite.org/fts3.html модула FTS3], затова възможностите за търсене няма да са достъпни.",
-	"config-pcre-old": "<strong>Фатална грешка:</strong> Изисква се PCRE версия $1 или по-нова.\nИзпълнимият файл на PHP е свързан с PCRE версия $2.\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Errors_and_symptoms/Повече информация за PCRE].",
-	"config-pcre-no-utf8": "<strong>Фатално:</strong> Модулът PCRE на PHP изглежда е компилиран без поддръжка на PCRE_UTF8.\nЗа да функционира правилно, МедияУики изисква поддръжка на UTF-8.",
 	"config-memory-raised": "<code>memory_limit</code> на PHP е $1, увеличаване до $2.",
 	"config-memory-bad": "<strong>Внимание:</strong> <code>memory_limit</code> на PHP е $1.\nСтойността вероятно е твърде ниска.\nВъзможно е инсталацията да се провали!",
 	"config-apc": "[https://www.php.net/apc APC] е инсталиран",

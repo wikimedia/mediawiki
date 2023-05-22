@@ -543,7 +543,7 @@
 	"post-expand-template-argument-category": "Poslapē, katrėi tor praleistū šabluona argomentu",
 	"undo-success": "Keitėms gal būtė atšaukts. Prašuom patėkrėntė palīgėnėma, asonti žemiau, kū patvėrtėntomiet, kū Tamsta šėta ė nuorėt padarītė, ė tumet ėšsauguokit pakeitėmos, asontios žemiau, kū ožbėngtomiet keitėma atšaukėma.",
 	"undo-failure": "Keitėms nagal būt atšaukts diel konflėktounantiu tarpėniu pakeitėmu.",
-	"undo-summary": "Pargrōžėnams pakeitėms $1, padėrbts nauduotuojė [[Special:Contributions/$2|$2]] ([[User talk:$2|aptarėms]])",
+	"undo-summary": "Pargrōžėnams pakeitėms [[Special:Diff/$1|$1]], padėrbts nauduotuojė [[Special:Contributions/$2|$2]] ([[User talk:$2|aptarėms]])",
 	"viewpagelogs": "Ruodītė ton poslapė īpatingus notėkėmus",
 	"nohistory": "Šėts poslapis netor keitėmu istuorėjės.",
 	"currentrev": "Vielībasā atmains",

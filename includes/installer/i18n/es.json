@@ -103,8 +103,6 @@
 	"config-no-db": "No se encontró un controlador adecuado para la base de datos. Necesitas instalar un controlador de base de datos para PHP.\n{{PLURAL:$2|Se admite el siguiente gestor de bases de datos|Se admiten los siguientes gestores de bases de datos}}: $1.\n\nSi compilaste PHP por tu cuenta, debes reconfigurarlo activando un cliente de base de datos, por ejemplo, mediante <code>./configure --with-mysqli</code>.\nSi instalaste PHP desde un paquete de Debian o Ubuntu, también debes instalar, por ejemplo, el paquete <code>php-mysql</code>.",
 	"config-outdated-sqlite": "<strong>Advertencia:</strong> tienes SQLite $2, que es inferior a la mínima versión requerida: $1. SQLite no estará disponible.",
 	"config-no-fts3": "<strong>Advertencia:</strong> SQLite está compilado sin el [//sqlite.org/fts3.html módulo FTS3]. Las funcionalidades de búsqueda no estarán disponibles en esta instalación.",
-	"config-pcre-old": "<strong>Grave:</strong> se necesita PCRE $1 o posterior.\nEl binario de PHP está enlazado con PCRE $2.\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Errors_and_symptoms/PCRE Más información].",
-	"config-pcre-no-utf8": "'''Error fatal ''': Parece que el módulo PCRE de PHP fue compilado sin el soporte PCRE_UTF8.\nMediaWiki requiere compatibilidad con UTF-8 para funcionar correctamente.",
 	"config-memory-raised": "El parámetro <code>memory_limit</code> de PHP es $1. Se aumenta a $2.",
 	"config-memory-bad": "<strong>Advertencia:</strong> el parámetro <code>memory_limit</code> de PHP es $1.\nProbablemente sea demasiado bajo.\n¡La instalación puede fallar!",
 	"config-apc": "[https://www.php.net/apc APC] está instalado",

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Arjunaraoc",
 			"Ashokjayanti",
 			"Bvprasadenwiki",
@@ -827,11 +828,11 @@
 	"undo-main-slot-only": "ఈ దిద్దుబాటులో మెయిన్ స్లాటుకు బయట కంటెంటు ఉన్నందున దీన్ని రద్దు చెయ్యలేకపోయాం.",
 	"undo-norev": "ఈ దిద్దుబాటు అసలు లేకపోవటం వలన గానీ, లేదా తొలగించేయడం వలన గానీ దాన్ని రద్దుచేయలేకపోతున్నాం.",
 	"undo-nochange": "ఆ మార్పును ఈసరికే రద్దు చేసినట్లుగా కనిపిస్తోంది.",
-	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User talk:$2|చర్చ]]) యొక్క కూర్పు $1 ను రద్దుచెయ్యి",
-	"undo-summary-anon": "[[Special:Contributions/$2|$2]] గారి కూర్పు $1 రద్దు",
-	"undo-summary-import": "వాడుకరి [[:$2|$3]] చేసిన దిగుమతి కూర్పు $1 రద్దు",
-	"undo-summary-import2": "వాడుకరి $2 చేసిన దిగుమతి కూర్పు $1 రద్దు",
-	"undo-summary-username-hidden": "దాచబడిన వాడుకరి చేసిన కూర్పు $1 ని వెనక్కి తిప్పండి",
+	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User talk:$2|చర్చ]]) యొక్క కూర్పు [[Special:Diff/$1|$1]] ను రద్దుచెయ్యి",
+	"undo-summary-anon": "[[Special:Contributions/$2|$2]] గారి కూర్పు [[Special:Diff/$1|$1]] రద్దు",
+	"undo-summary-import": "వాడుకరి [[:$2|$3]] చేసిన దిగుమతి కూర్పు [[Special:Diff/$1|$1]] రద్దు",
+	"undo-summary-import2": "వాడుకరి $2 చేసిన దిగుమతి కూర్పు [[Special:Diff/$1|$1]] రద్దు",
+	"undo-summary-username-hidden": "దాచబడిన వాడుకరి చేసిన కూర్పు [[Special:Diff/$1|$1]] ని వెనక్కి తిప్పండి",
 	"viewpagelogs": "ఈ పేజీకి సంబంధించిన లాగ్‌లను చూడండి",
 	"viewpagelogs-lowercase": "ఈ పేజీకి సంబంధించిన లాగ్‌లను చూడండి",
 	"nohistory": "ఈ పేజీకి మార్పుల చరిత్ర లేదు.",

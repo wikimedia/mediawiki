@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Chiak",
 			"Danny B.",
 			"Dušan Kreheľ",
@@ -822,11 +823,11 @@
 	"undo-main-slot-only": "Úprava nemohla byť vrátená, pretože obsahuje obsah mimo hlavný slot.",
 	"undo-norev": "Túto úpravu nie je možné vrátiť, pretože neexistuje alebo bola zmazaná.",
 	"undo-nochange": "Zdá sa, že úprava už bola zrušená.",
-	"undo-summary": "Revízia $1 používateľa [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusia]]) bola vrátená",
-	"undo-summary-anon": "Revízia $1 používateľa [[Special:Contributions/$2|$2]] bola vrátená",
-	"undo-summary-import": "Importovaná revízia $1 používateľa [[:$2|$3]] bola vrátená",
-	"undo-summary-import2": "Importovaná revízia $1 používateľa $2 bola vrátená",
-	"undo-summary-username-hidden": "Vrátiť revíziu $1, ktorú vykonal skrytý používateľ",
+	"undo-summary": "Revízia [[Special:Diff/$1|$1]] používateľa [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusia]]) bola vrátená",
+	"undo-summary-anon": "Revízia [[Special:Diff/$1|$1]] používateľa [[Special:Contributions/$2|$2]] bola vrátená",
+	"undo-summary-import": "Importovaná revízia [[Special:Diff/$1|$1]] používateľa [[:$2|$3]] bola vrátená",
+	"undo-summary-import2": "Importovaná revízia [[Special:Diff/$1|$1]] používateľa $2 bola vrátená",
+	"undo-summary-username-hidden": "Vrátiť revíziu [[Special:Diff/$1|$1]], ktorú vykonal skrytý používateľ",
 	"viewpagelogs": "Zobraziť záznamy pre túto stránku",
 	"viewpagelogs-lowercase": "zobraz logy pre túto stránku",
 	"nohistory": "Pre túto stránku neexistuje história.",

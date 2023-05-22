@@ -421,7 +421,7 @@
 	"post-expand-template-argument-category": "Pagina's die missende sjabloonelement'n bevatt'n",
 	"undo-success": "Ieronder sti de tekst wirin a de wiezigieng onedaene is emikt. Controleer voe 't opslaene of a 't resultaot ewenst is.",
 	"undo-failure": "De wiezigieng kan nie onhedaen emikt worn vanwehe aore striedihe wiezigiengen.",
-	"undo-summary": "Versie $1 van [[Special:Contributions/$2|$2]] ([[User talk:$2|overleg]]) onedaen emikt.",
+	"undo-summary": "Versie [[Special:Diff/$1|$1]] van [[Special:Contributions/$2|$2]] ([[User talk:$2|overleg]]) onedaen emikt.",
 	"viewpagelogs": "Bekiek de logboeken vò deêze bladzie",
 	"nohistory": "Deêze pagina is nie bewerkt.",
 	"currentrev": "Udihe versie",

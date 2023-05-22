@@ -576,7 +576,7 @@
 	"post-expand-template-inclusion-warning": "'''Kéng-pò:'''Pau ji̍t lâi ê pán-bôo sioⁿ koè tsē ia̍h tuā.\nŪ chi̍t-koá-á ē bô pau ji̍t lâi.",
 	"undo-success": "Pian-chi̍p í-keng chhú-siau. Chhiáⁿ khak-tēng, liáu-āu kā ē-kha ho̍k-goân ê kái-piàn pó-chûn--khí-lâi.",
 	"undo-failure": "Pian-chi̍p bē-tàng chhú-siau, in-ūi chhiong tio̍h kî-kan chhah-ji̍p ê pian-chi̍p.",
-	"undo-summary": "Chhú-siau [[Special:Contributions/$2|$2]] ([[User talk:$2|thó-lūn]]) ê siu-tēng-pún $1",
+	"undo-summary": "Chhú-siau [[Special:Contributions/$2|$2]] ([[User talk:$2|thó-lūn]]) ê siu-tēng-pún [[Special:Diff/$1|$1]]",
 	"viewpagelogs": "Khoàⁿ chit ia̍h ê logs",
 	"nohistory": "Chit ia̍h bô pian-chi̍p-sú.",
 	"currentrev": "Hiān-chú-sî ê siu-tēng-pún",

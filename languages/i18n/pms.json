@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Borichèt",
 			"Bèrto 'd Sèra",
 			"DannyS712",
@@ -793,11 +794,11 @@
 	"undo-main-slot-only": "La modìfica a peul pa esse anulà përchè a comprend ëd contnù fòra dla posission prinsipal.",
 	"undo-norev": "La modìfica a peul nen esse anulà përchè a esist pa o a l'é stàita anulà.",
 	"undo-nochange": "A smija che la modìfica a sia già stàita anulà.",
-	"undo-summary": "Gavà la revision $1 fàita da [[Special:Contributions/$2|$2]] ([[User talk:$2|Ciaciarade]])",
-	"undo-summary-anon": "Anulé la revision $1 ëd [[Special:Contributions/$2|$2]]",
-	"undo-summary-import": "Anulé la revision $1 amportà da l'utent [[:$2|$3]]",
-	"undo-summary-import2": "Anulé la revision $1 amportà da l'utent $2",
-	"undo-summary-username-hidden": "Anulé la revision $1 ëd n'utent ëstërmà",
+	"undo-summary": "Gavà la revision [[Special:Diff/$1|$1]] fàita da [[Special:Contributions/$2|$2]] ([[User talk:$2|Ciaciarade]])",
+	"undo-summary-anon": "Anulé la revision [[Special:Diff/$1|$1]] ëd [[Special:Contributions/$2|$2]]",
+	"undo-summary-import": "Anulé la revision [[Special:Diff/$1|$1]] amportà da l'utent [[:$2|$3]]",
+	"undo-summary-import2": "Anulé la revision [[Special:Diff/$1|$1]] amportà da l'utent $2",
+	"undo-summary-username-hidden": "Anulé la revision [[Special:Diff/$1|$1]] ëd n'utent ëstërmà",
 	"viewpagelogs": "Smon ij registr dë sta pàgina-sì",
 	"viewpagelogs-lowercase": "vardé ij registr dë sta pàgina-sì",
 	"nohistory": "La stòria dle version dë sta pàgina-sì a l'é pa trovasse.",

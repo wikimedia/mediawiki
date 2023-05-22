@@ -581,7 +581,7 @@
 	"undo-success": "Sprowjyńy zostoło wycofane. Prosza pomjarkować ukozane půniżyj dyferencyje mjyndzy wersyjůma, coby zweryfikować jejich poprawność, potym zaś naszkryflać pomjyńańo coby zakończyć uoperacyjo.",
 	"undo-failure": "Ta edycyjŏ niy może być cŏfniyntŏ skuli kōnfliktu ze wersyjami postrzednimi.",
 	"undo-norev": "Edycyje niy idzie cŏfnōńć, bo ôna niy istniyje abo była wyciepniyntŏ.",
-	"undo-summary": "Wycŏfanie wersyje $1 ôd [[Special:Contributions/$2|$2]] ([[User talk:$2|dyskusyjŏ]])",
+	"undo-summary": "Wycŏfanie wersyje [[Special:Diff/$1|$1]] ôd [[Special:Contributions/$2|$2]] ([[User talk:$2|dyskusyjŏ]])",
 	"viewpagelogs": "Ôbejzdrz regesty dlŏ tyj zajty",
 	"nohistory": "Ta zajta ńy mo swojij historyje sprowjyń.",
 	"currentrev": "Aktuelno wersyjo",

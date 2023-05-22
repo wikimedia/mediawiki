@@ -453,7 +453,7 @@
 	"undo-success": "Se puei eshazel la eición. Enantis d’eshazel la eición, compreba la siguienti comparáncia pa verifical que realmenti es lo que quieis hazel, i altonci, emburaqui los chambus pa, d’esta horma, eshazel la eición.",
 	"undo-failure": "Nu es posibri eshazel la eición ebiu a que otru usuáriu á realizau una eición entelmeya.",
 	"undo-norev": "La eición nu pué sel eshecha ebiu a que nu dessisti, u hue esborrá",
-	"undo-summary": "Eshazel revisión $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Caraba]])",
+	"undo-summary": "Eshazel revisión [[Special:Diff/$1|$1]] de [[Special:Contributions/$2|$2]] ([[User talk:$2|Caraba]])",
 	"viewpagelogs": "Vel los rustrihus d’esta páhina",
 	"nohistory": "Nu ai dengún estorial d’eicionis pa esta páhina.",
 	"currentrev": "Revisión atual",

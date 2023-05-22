@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Asmen",
 			"Bjarki S",
 			"Cessator",
@@ -770,9 +771,9 @@
 	"undo-failure": "Breytinguna var ekki hægt að taka tilbaka vegna breytinga í millitíðinni.",
 	"undo-norev": "Ekki var hægt að taka breytinguna aftr því að hún er ekki til eða henni var eytt.",
 	"undo-nochange": "Breytingin virðist þegar hafa verið tekin til baka.",
-	"undo-summary": "Tek aftur breytingu $1 frá [[Special:Contributions/$2|$2]] ([[User talk:$2|spjall]])",
-	"undo-summary-import2": "Afturkalla innflutta útgáfu $1 frá notandanum $2",
-	"undo-summary-username-hidden": "Afturkalla breytingu $1 eftir faldan notanda",
+	"undo-summary": "Tek aftur breytingu [[Special:Diff/$1|$1]] frá [[Special:Contributions/$2|$2]] ([[User talk:$2|spjall]])",
+	"undo-summary-import2": "Afturkalla innflutta útgáfu [[Special:Diff/$1|$1]] frá notandanum $2",
+	"undo-summary-username-hidden": "Afturkalla breytingu [[Special:Diff/$1|$1]] eftir faldan notanda",
 	"viewpagelogs": "Sýna aðgerðir varðandi þessa síðu",
 	"viewpagelogs-lowercase": "skoða aðgerðir varðandi þessa síðu",
 	"nohistory": "Þessi síða hefur enga breytingaskrá.",

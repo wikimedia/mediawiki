@@ -469,7 +469,7 @@
 	"unsupported-content-model": "<strong>Attention :</strong> le modèle de contenu $1 n’est pas pris en charge sus ce wiki.",
 	"undo-success": "Le changement peut être renversé.  Regardez donc la comparaison en bas pour être sûr que c'est comme vous voulez, et puis sauvez les changements en bas pour finir le renversage du changement.",
 	"undo-failure": "Le changement pouvait pas être renversé à cause d'une dispute de changements.",
-	"undo-summary": "Défaire la révision $1 par [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]])",
+	"undo-summary": "Défaire la révision [[Special:Diff/$1|$1]] par [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]])",
 	"viewpagelogs": "Voir les notes pour cette page",
 	"nohistory": "Y a pas de changements pour cette page.",
 	"currentrev": "Version courante",

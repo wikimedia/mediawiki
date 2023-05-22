@@ -462,7 +462,7 @@
 	"undo-success": "Gii coppite man nga kaa neenal. Xoolal méngale gi ne ci suuf ngir wóorlu ne ni ëmbit li mel na ni nga ko bëgge, te nga denc xët wi ngir jeexal.",
 	"undo-failure": "Neenalug coppite gi defuwul: man naa jur ab jàppante ci coppite yi ci diggante bi",
 	"undo-norev": "Coppite gi manoo koo neenal ndaxte nekkul walla dañu koo far",
-	"undo-summary": "Neenalug coppite $1 yu [[Special:Contributions/$2|$2]] ([[User talk:$2|waxtaan]])",
+	"undo-summary": "Neenalug coppite [[Special:Diff/$1|$1]] yu [[Special:Contributions/$2|$2]] ([[User talk:$2|waxtaan]])",
 	"viewpagelogs": "Xool yéenekaayu xët wii",
 	"nohistory": "Xët wii amulub jaar-jaar.",
 	"currentrev": "Sumb bi teew",

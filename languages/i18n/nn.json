@@ -725,7 +725,7 @@
 	"undo-failure": "Endringa kunne ikkje attenderullast grunna konflikt med endringar som er gjorde i mellomtida.",
 	"undo-norev": "Endringa kunne ikkje fjernast fordi han ikkje finst eller vart sletta",
 	"undo-nochange": "Det ser ut til at endringa alt er fjerna.",
-	"undo-summary": "Rullar attende versjon $1 av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusjon]])",
+	"undo-summary": "Rullar attende versjon [[Special:Diff/$1|$1]] av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusjon]])",
 	"viewpagelogs": "Vis loggar for denne sida",
 	"viewpagelogs-lowercase": "vis loggar for denne sida",
 	"nohistory": "Det finst ikkje nokon historikk for denne sida.",

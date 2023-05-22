@@ -371,7 +371,7 @@
 	"undo-success": "Ang pag-usab puyde iway-bili.\nPalihog og tsek sa komparison sa ubos aron ma-tsek nga kini gyud ang imong gustong mahimo, ug unya tipigi ang mga pag-usab sa ubos aron mahuman ang pag-way-bili sa pag-usab.",
 	"undo-failure": "Ang pag-usab dili puyde mapa-way-bili tungod sa mga naka-conflict nga intermediate nga mga pag-usab.",
 	"undo-norev": "Ang pag-usab dili puyde mapa-way-bili tungod kay wala pa ni mahimo o kaha natangtang na kini.",
-	"undo-summary": "Giway-bili  ang rebisyon  $1 ni [[Special:Contributions/$2|$2]] ([[User talk:$2|Hisgot]])",
+	"undo-summary": "Giway-bili  ang rebisyon  [[Special:Diff/$1|$1]] ni [[Special:Contributions/$2|$2]] ([[User talk:$2|Hisgot]])",
 	"viewpagelogs": "Tan-awa ang mga log niining panid",
 	"nohistory": "Walay kaagi sa pag-usab niining panid.",
 	"currentrev": "Kasamtangang rebisyon",

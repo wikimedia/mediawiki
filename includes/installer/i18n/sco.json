@@ -52,8 +52,6 @@
 	"config-no-db": "Could nae find a suitable database driver! Ye need tae install a database driver for PHP.\nThe follaein database {{PLURAL:$2|type is|types are}} supportit: $1.\n\nIf you compiled PHP yersel, reconfigur it wi a database client enabled, for example, uisin <code>./configure --with-mysqli</code>.\nIf ye installed PHP frae a Debian or Ubuntu package, then ye an aa need tae install, for example, the <code>php-mysql</code> package.",
 	"config-outdated-sqlite": "<strong>Warnishment:</strong> ye have SQLite $1, this is lower than minimum required version $2. SQLite will be onavailable.",
 	"config-no-fts3": "<strong>Warnishment:</strong> SQLite is compiled wioot the [//sqlite.org/fts3.html FTS3 module], rake features will be onavailable oan this backend.",
-	"config-pcre-old": "<strong>Fatal:</strong> PCRE $1 or later is required.\nYer PHP binary is link't wi PCRE $2.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE Mair informâtion].",
-	"config-pcre-no-utf8": "<strong>Fatal:</strong> PHP's PCRE module seems tae be compiled wioot PCRE_UTF8 support.\nMediaWiki requires UTF-8 support tae function correctly.",
 	"config-memory-raised": "PHP's <code>memerie_limit</code> is $1, raised til $2.",
 	"config-memory-bad": "<strong>Warnishment:</strong> PHP's <code>memerie_limit</code> is $1.\nThis is proably ower low.\nThe installation micht fail!",
 	"config-apc": "[https://www.php.net/apc APC] is installed.",

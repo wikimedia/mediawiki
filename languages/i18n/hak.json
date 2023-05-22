@@ -558,7 +558,7 @@
 	"undo-success": "邇次編寫可以分撤銷。請檢查下背對比來核實邇確實係汝想做嘅，之後保存下背更改來完成撤銷編寫。",
 	"undo-failure": "由於中途嘅編寫毋一致，本編輯毋做得撤銷。",
 	"undo-norev": "由於其嘅修訂版本毋存在或已刪除，本編寫毋做得撤銷。",
-	"undo-summary": "Chhí-sêu yù [[Special:Contributions/$2|$2]] （[[User talk:$2|tui-fa]]） só chok-chhut ke siû-thin $1",
+	"undo-summary": "Chhí-sêu yù [[Special:Contributions/$2|$2]] （[[User talk:$2|tui-fa]]） só chok-chhut ke siû-thin [[Special:Diff/$1|$1]]",
 	"viewpagelogs": "Chhà-khon liá-chak ya̍p-mien ke ngit-chì",
 	"nohistory": "無本頁嘅修訂版本記錄。",
 	"currentrev": "最新版本",

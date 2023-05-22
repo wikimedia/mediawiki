@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Anarhistička Maca",
 			"Anton008",
 			"Astrind",
@@ -794,11 +795,11 @@
 	"undo-failure": "Ova izmjena ne može biti uklonjena zbog postojanja međuinačica.",
 	"undo-norev": "Izmjena nije mogla biti uklonjena jer ne postoji ili je obrisana.",
 	"undo-nochange": "Čini se da je uređivanje već uklonjeno.",
-	"undo-summary": "uklanjanje izmjene $1 {{GENDER:$2|suradnika|suradnice}} [[Posebno:Doprinosi/$2|$2]] ([[Razgovor sa suradnikom:$2|razgovor]])",
-	"undo-summary-anon": "uklanjanje izmjene $1 suradnika/ce [[Special:Contributions/$2|$2]]",
-	"undo-summary-import": "uklanjanje uvezene izmjene $1 suradnika/ce [[:$2|$3]]",
-	"undo-summary-import2": "uklanjanje uvezene izmjene $1 suradnika/ce $2",
-	"undo-summary-username-hidden": "Uklanjanje izmjene $1 suradnika skrivenoga suradničkoga imena",
+	"undo-summary": "uklanjanje izmjene [[Special:Diff/$1|$1]] {{GENDER:$2|suradnika|suradnice}} [[Posebno:Doprinosi/$2|$2]] ([[Razgovor sa suradnikom:$2|razgovor]])",
+	"undo-summary-anon": "uklanjanje izmjene [[Special:Diff/$1|$1]] suradnika/ce [[Special:Contributions/$2|$2]]",
+	"undo-summary-import": "uklanjanje uvezene izmjene [[Special:Diff/$1|$1]] suradnika/ce [[:$2|$3]]",
+	"undo-summary-import2": "uklanjanje uvezene izmjene [[Special:Diff/$1|$1]] suradnika/ce $2",
+	"undo-summary-username-hidden": "Uklanjanje izmjene [[Special:Diff/$1|$1]] suradnika skrivenoga suradničkoga imena",
 	"viewpagelogs": "Vidi evidencije za ovu stranicu",
 	"viewpagelogs-lowercase": "vidi evidencije za ovu stranicu",
 	"nohistory": "Ne postoji povijest izmjena za ovu stranicu.",
