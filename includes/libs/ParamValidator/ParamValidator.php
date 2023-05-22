@@ -594,6 +594,18 @@ class ParamValidator {
 					$name, $value, $settings
 				);
 			}
+
+			// T326764: If the type of the actual param value is different from
+			// the type that is defined via getParamSettings(), throw an exception
+			// because this is a type to value mismatch.
+			if ( is_array( $value ) ) {
+				throw new ValidationException(
+					DataMessageValue::new( 'paramvalidator-notmulti', [], 'badvalue' )
+						->plaintextParams( $name, gettype( $value ) ),
+					$name, $value, $settings
+				);
+			}
+
 			return $typeDef->validate( $name, $value, $settings, $options );
 		}
 
