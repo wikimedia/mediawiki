@@ -106,27 +106,27 @@ class BlockLogFormatter extends LogFormatter {
 
 				$actions = $params[6]['actions'] ?? [];
 				$actions = array_map( function ( $actions ) {
-					return $this->msg( 'ipb-action-' . $actions )->text();
+					return $this->msg( 'ipb-action-' . $actions )->escaped();
 				}, $actions );
 
 				$restrictions = [];
 				if ( $pages ) {
 					$restrictions[] = $this->msg( 'logentry-partialblock-block-page' )
 						->numParams( count( $pages ) )
-						->rawParams( $this->context->getLanguage()->listToText( $pages ) )->text();
+						->rawParams( $this->context->getLanguage()->listToText( $pages ) )->escaped();
 				}
 
 				if ( $namespaces ) {
 					$restrictions[] = $this->msg( 'logentry-partialblock-block-ns' )
 						->numParams( count( $namespaces ) )
-						->rawParams( $this->context->getLanguage()->listToText( $namespaces ) )->text();
+						->rawParams( $this->context->getLanguage()->listToText( $namespaces ) )->escaped();
 				}
 				$enablePartialActionBlocks = $this->context->getConfig()
 					->get( MainConfigNames::EnablePartialActionBlocks );
 				if ( $actions && $enablePartialActionBlocks ) {
 					$restrictions[] = $this->msg( 'logentry-partialblock-block-action' )
 						->numParams( count( $actions ) )
-						->rawParams( $this->context->getLanguage()->listToText( $actions ) )->text();
+						->rawParams( $this->context->getLanguage()->listToText( $actions ) )->escaped();
 				}
 
 				$params[6] = Message::rawParam( $this->context->getLanguage()->listToText( $restrictions ) );

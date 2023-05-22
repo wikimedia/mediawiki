@@ -15,7 +15,8 @@
 			"عثمان خان شاہ",
 			"아라",
 			"1233qwer1234qwer4",
-			"Af420"
+			"Af420",
+			"Base"
 		]
 	},
 	"tog-underline": "کرښنې تړنې:",
@@ -741,7 +742,7 @@
 	"rev-deleted-unhide-diff": "د دې مخ بیاکتنه روانه <strong>ماتول ده</strong>.\nتفصيلات په دې ځای کې موندل کيداى شي[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} د ماتولو يادښت].\nتاسو لا هم کولی شئ [$1 دا بیاکتنه وګورئ] که تاسو غواړئ چې پرمخ بوځي.",
 	"rev-suppressed-unhide-diff": "د دې مخ بیاکتنه روانه <strong>ماتول ده</strong>.\nتفصيلات په دې ځای کې موندل کيداى شي[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} د ماتولو يادښت].\nتاسو لا هم کولی شئ [$1 دا بیاکتنه وګورئ] که تاسو غواړئ چې پرمخ بوځي.",
 	"rev-deleted-diff-view": "ددې مخ سمون ''' ړنګ شوی '''.\nتاسو کولی شئ دا وګورئ؛ دا کېدای شي اړوند معلومات [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}ړنګ شوی] په کې شامل وي.",
-	"rev-suppressed-diff-view": "د دې مخ بڼه <strong>ړنگه شوه</strong>.\nد دې مخ اړونده تفصيل په [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ړنگون يادښت] کې موندلی شی.",
+	"rev-suppressed-diff-view": "د دې مخ بڼه <strong>ړنگه شوه</strong>.\nد دې مخ اړونده تفصيل په [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} ړنگون يادښت] کې موندلی شی.",
 	"rev-delundel": "ښکارېدنه بدلول",
 	"rev-showdeleted": "ښکاره کول",
 	"revisiondelete": "د ړنگولو/ناړنگولو مخکتنې",

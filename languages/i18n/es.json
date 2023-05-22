@@ -234,7 +234,10 @@
 			"ديفيد",
 			"아라",
 			"Raos10",
-			"SpikeShroom"
+			"SpikeShroom",
+			"James",
+			"The Pro Gamer",
+			"No se"
 		]
 	},
 	"tog-underline": "Subrayar enlaces:",
@@ -3385,13 +3388,13 @@
 	"confirmemail_needlogin": "Necesitas $1 para confirmar tu dirección electrónica.",
 	"confirmemail_success": "Se ha confirmado tu dirección de correo electrónico.\nAhora puedes [[Special:UserLogin|acceder]] y disfrutar de la wiki.",
 	"confirmemail_loggedin": "Tu dirección de correo electrónico ha sido confirmada.",
-	"confirmemail_subject": "confirmación de la dirección de correo de {{SITENAME}}",
+	"confirmemail_subject": "Confirmación de la dirección de correo electrónico en {{SITENAME}}",
 	"confirmemail_body": "Alguien, probablemente tú mismo, ha registrado desde la dirección IP $1 la cuenta \"$2\" en {{SITENAME}}, utilizando esta dirección de correo.\n\nPara confirmar que esta cuenta realmente te pertenece y activar el correo en {{SITENAME}}, sigue este enlace en tu navegador:\n\n$3\n\nSi la cuenta *no* es tuya, sigue este otro enlace para cancelar la confirmación de la dirección de correo:\n\n$5\n\nEl código de confirmación expirará el $4.",
-	"confirmemail_body_changed": "Alguien, probablemente tú,\nha modificado la dirección de correo electrónico asociado a la cuenta \"$2\" hacia esta en {{SITENAME}}, desde la dirección IP $1.\n\nPara confirmar que esta cuenta realmente te pertenece y reactivar las funciones de correo electrónico en {{SITENAME}}, sigue este enlace en tu navegador:\n\n$3\n\nSi la cuenta *no* te pertenece, sigue este otro enlace para cancelar la confirmación:\n\n$5\n\nEste código de confirmación expirará el $4.",
+	"confirmemail_body_changed": "Alguien, probablemente tú, ha modificado la dirección de correo electrónico asociada a la cuenta «$2» de {{SITENAME}} desde la dirección IP $1.\n\nPara confirmar que esta cuenta realmente te pertenece y reactivar las funciones de correo electrónico en {{SITENAME}}, sigue este enlace en tu navegador:\n\n$3\n\nSi la cuenta *no* te pertenece, sigue este otro enlace para cancelar la confirmación:\n\n$5\n\nEste código de confirmación expirará el $4.",
 	"confirmemail_body_set": "Alguien, probablemente tú, ha establecido la dirección de correo electrónico de la cuenta $2 a esta dirección en {{SITENAME}}, desde la dirección IP $1.\n\nPara confirmar que esta cuenta realmente te pertenece y activar las funciones de correo electrónico en {{SITENAME}}, sigue este enlace en tu navegador:\n\n$3\n\nSi la cuenta *no* te pertenece, sigue este otro enlace para cancelar la confirmación:\n\n$5\n\nEste código de confirmación expirará el $4.",
 	"confirmemail_invalidated": "La confirmación de la dirección de correo electrónico ha sido cancelada",
 	"invalidateemail": "Cancelar confirmación de correo electrónico",
-	"notificationemail_subject_changed": "{{SITENAME}} dirección de correo electrónico registrada ha sido cambiada",
+	"notificationemail_subject_changed": "Tu dirección de correo electrónico registrada en {{SITENAME}} ha sido modificada",
 	"notificationemail_subject_removed": "{{SITENAME}} dirección de correo electrónico ha sido eliminada",
 	"notificationemail_body_changed": "Alguien, probablemente usted, desde la dirección IP $1,\nha cambiado la dirección de correo electrónico de la cuenta \"$2\" en {{SITENAME}} a \"$3\".\n\nSi no realizó usted este cambio, póngase en contacto con un administrador del sitio inmediatamente.",
 	"notificationemail_body_removed": "Alguien, probablemente usted, desde la dirección IP $1 ha eliminado la dirección de correo electrónico asociada a la cuenta \"$2\" en {{SITENAME}}.\n\nSi no realizó usted este cambio, póngase en contacto con un administrador del sitio inmediatamente.",

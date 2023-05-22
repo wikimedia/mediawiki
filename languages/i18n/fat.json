@@ -6,9 +6,15 @@
 			"Leonard Nketsia",
 			"Lynessa",
 			"Robertjamal12",
-			"Suzieturkson"
+			"Suzieturkson",
+			"Wendygyadu"
 		]
 	},
+	"tog-underline": "Twa link nyinara ase",
+	"tog-hideminor": "Yi nsesa nketsenketse no fi nsesa akyɛr no mu",
+	"tog-hidepatrolled": "Yi ma W'ahwɛmu no fi nsesa akyɛr no mu",
+	"tog-newpageshidepatrolled": "Fa nkrataa W'ahwɛ mu dadaw no sie",
+	"tog-hidecategorization": "fa nkyekyɛmu no sie",
 	"sunday": "Kwesida",
 	"monday": "Dwowda",
 	"tuesday": "Benada",
@@ -286,7 +292,7 @@
 	"prevn-title": "{{PLURAL:$1|Nsunsuando}} $1 a abɛsen",
 	"nextn-title": "{{PLURAL:$1|nsunsuando}} $1 ɔtoa do",
 	"shown-title": "Yi {{PLURAL:$1|nsunsuando}} $1 kyerɛ wɔ kratafa biara mu",
-	"viewprevnext": "Hwɛ ($1 {{no mu:pipe-separator}} $2) ($3)",
+	"viewprevnext": "Hwɛ ($1 {{int:pipe-separator}} $2) ($3)",
 	"searchmenu-exists": "Kratafa bi wɔ hɔ a wɔato no dzin \"[[:$1]]\" wɔ {{SITENAME}} do. {{PLURAL:$2|0=|Hwɛ nhwehwɛmu nsunsuando nkaa no so.}}",
 	"searchmenu-new": "Yɛ kratafa no \"[[:$1]]\" wɔ dɛm wiki yi do! {{PLURAL:$2|0=|Hwɛ kratafa no a wo nhwehwɛmu no ehu no so.|Hwɛ nhwehwɛmu nsunsuando ahorow no so.}}",
 	"searchprofile-articles": "Nkratafa a wɔkyerɛ dza ɔwɔ mu",

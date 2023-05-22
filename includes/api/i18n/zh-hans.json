@@ -1256,7 +1256,7 @@
 	"apihelp-query+transcludedin-paramvalue-prop-pageid": "每个页面的页面ID。",
 	"apihelp-query+transcludedin-paramvalue-prop-title": "每个页面的标题。",
 	"apihelp-query+transcludedin-paramvalue-prop-redirect": "标记作为重定向的页面。",
-	"apihelp-query+transcludedin-param-namespace": "至包含这些命名空间的页面。",
+	"apihelp-query+transcludedin-param-namespace": "只包含这些命名空间的页面。",
 	"apihelp-query+transcludedin-param-limit": "返回多少。",
 	"apihelp-query+transcludedin-param-show": "只显示符合以下标准的项：\n;redirect:只显示重定向。\n;!redirect:只显示非重定向。",
 	"apihelp-query+transcludedin-example-simple": "获取嵌入<kbd>Main Page</kbd>的页面列表。",

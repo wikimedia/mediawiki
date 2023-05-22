@@ -93,7 +93,9 @@
 			"WikiPhoenix",
 			"לערי ריינהארט",
 			"아라",
-			"Adjoka"
+			"Adjoka",
+			"Cohan",
+			"Kitayama"
 		]
 	},
 	"tog-underline": "Stryk under länkar:",
@@ -3717,7 +3719,7 @@
 	"feedback-thanks-title": "Tack!",
 	"feedback-useragent": "Användaragent:",
 	"searchsuggest-search": "Sök på {{SITENAME}}",
-	"searchsuggest-containing": "Sökningar som innehåller",
+	"searchsuggest-containing": "Sök efter sidor som innehåller",
 	"search-match-redirect-label": "Omdirigera till exakta matchningar vid sökning",
 	"search-match-redirect-help": "Markera detta för att omdirigera till en sida när sidtiteln matchar det du har sökt efter",
 	"searchlimit-label": "Antal sökresultat att visa på varje sida:",
