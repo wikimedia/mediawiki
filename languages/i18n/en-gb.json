@@ -47,7 +47,9 @@
 			"Usandaru555",
 			"Valentine Badu",
 			"Vogone",
-			"Xð"
+			"Xð",
+			"Boke",
+			"Dreamy Jazz"
 		]
 	},
 	"tog-hidecategorization": "Hide categorisation of pages",
@@ -73,7 +75,7 @@
 	"filenotfound": "Could not find file ‘$1’.",
 	"unexpected": "Unexpected value: ‘$1’=‘$2’.",
 	"cannotdelete": "The page or file ‘$1’ could not be deleted.\nIt may have already been deleted by someone else.",
-	"title-invalid-talk-namespace": "The requested page title refers to a talk page that can not exist.",
+	"title-invalid-talk-namespace": "The requested page title refers to a talk page that cannot exist.",
 	"botpasswords-no-central-id": "To use bot passwords, you must be logged in to a centralised account.",
 	"botpasswords-label-resetpassword": "Reset password",
 	"blockedtext": "<strong>Your username or IP address has been blocked.</strong>\n\nThe block was made by $1.\nThe reason given is <em>$2</em>.\n\n* Start of block: $8\n* Expiration of block: $6\n* Intended blockee: $7\n\nYou can contact $1 or another [[{{MediaWiki:Grouppage-sysop}}|administrator]] to discuss the block.\nYou can use the \"{{int:emailuser}}\" feature if a valid e-mail address is specified in your [[Special:Preferences|preferences]] and you have not been blocked from using it.\nYour current IP address is $3, and the block ID is #$5.\nPlease include all above details in any queries you make.",

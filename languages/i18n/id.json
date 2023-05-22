@@ -89,7 +89,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Agam Riyandana",
-			"Naufal06"
+			"Naufal06",
+			"Base"
 		]
 	},
 	"tog-underline": "Garis bawahi pranala:",
@@ -102,7 +103,7 @@
 	"tog-editondblclick": "Sunting halaman dengan klik ganda",
 	"tog-editsectiononrightclick": "Fungsikan penyuntingan bagian dengan mengeklik kanan pada judul bagian",
 	"tog-watchcreations": "Tambahkan halaman yang saya buat dan berkas yang saya unggah ke daftar pantauan",
-	"tog-watchdefault": "Tambahkan halaman yang saya sunting ke daftar pantauan",
+	"tog-watchdefault": "Tambahkan halaman dan berkas yang saya sunting ke daftar pantauan",
 	"tog-watchmoves": "Tambahkan halaman dan berkas yang saya pindahkan ke daftar pantauan",
 	"tog-watchdeletion": "Tambahkan halaman dan berkas yang saya hapus ke daftar pantauan",
 	"tog-watchuploads": "Tambahkan berkas baru yang saya unggah ke daftar pantauan",
@@ -925,7 +926,7 @@
 	"rev-deleted-unhide-diff": "Salah satu revisi pada tampilan perbedaan ini telah <strong>dihapus</strong>.\nPerinciannya mungkin tersedia di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].\nSebagai seorang pengurus, Anda masih dapat [$1 melihat perbedaan ini] jika Anda menginginkannya.",
 	"rev-suppressed-unhide-diff": "Salah satu perbedaan revisi telah <strong>disembunyikan</strong>.\nPerinciannya mungkin terdapat di [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penyembunyian].\nSebagai pengurus, Anda masih dapat [$1 melihat perbedaan ini] jika Anda menginginkannya.",
 	"rev-deleted-diff-view": "Salah satu revisi perbedaan ini telah <strong>dihapus</strong>.\nAnda dapat melihat perbedaannya; perincian dapat ditemukan di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
-	"rev-suppressed-diff-view": "Salah satu revisi perbedaan ini telah <strong>disembunyikan</strong>.\nSebagai seorang pengurus, Anda dapat melihat perbedaan ini; perinciannya dapat ditemukan di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penyembunyian].",
+	"rev-suppressed-diff-view": "Salah satu revisi perbedaan ini telah <strong>disembunyikan</strong>.\nSebagai seorang pengurus, Anda dapat melihat perbedaan ini; perinciannya dapat ditemukan di [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penyembunyian].",
 	"rev-delundel": "ubah keterlihatan",
 	"rev-showdeleted": "tampilkan",
 	"revisiondelete": "Hapus/batal hapus revisi",

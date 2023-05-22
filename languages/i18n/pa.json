@@ -34,7 +34,8 @@
 			"ਪ੍ਰਚਾਰਕ",
 			"아라",
 			"Bgo eiu",
-			"Jagseer S Sidhu"
+			"Jagseer S Sidhu",
+			"Base"
 		]
 	},
 	"tog-underline": "ਲਿੰਕ ਹੇਠ-ਲਾਈਨ:",
@@ -694,7 +695,7 @@
 	"rev-deleted-no-diff": "ਤੁਸੀਂ ਇਹ ਫ਼ਰਕ ਨਹੀਂ ਵੇਖ ਸਕਦੇ ਕਿਉਂਕਿ ਇਹਨਾਂ ਵਿੱਚੋਂ ਇੱਕ ਰੀਵਿਜ਼ਨ '''ਮਿਟਾਈ''' ਜਾ ਚੁੱਕੀ ਹੈ।\nਤਫ਼ਸੀਲ [{{fullurl:{{#Special:Log}}/delete|\npage={{FULLPAGENAMEE}}}} ਮਿਟਾਉਣ ਦੇ ਚਿੱਠੇ] ਵਿਚ ਵੇਖੀ ਜਾ ਸਕਦੀ ਹੈ।",
 	"rev-suppressed-no-diff": "ਤੁਸੀਂ ਇਹ ਫ਼ਰਕ ਨਹੀਂ ਵੇਖ ਸਕਦੇ ਕਿਉਂਕਿ ਇਹਨਾਂ ਵਿੱਚੋਂ ਇੱਕ ਦੁਹਰਾਅ '''ਮਿਟਾਈ''' ਜਾ ਚੁੱਕੀ ਹੈ।",
 	"rev-deleted-unhide-diff": "ਇਸ ਫ਼ਰਕ ਵਿੱਚੋਂ ਇੱਕ ਰੀਵਿਜ਼ਨ '''ਮਿਟਾਈ''' ਜਾ ਚੁੱਕੀ ਹੈ।\nਤਫ਼ਸੀਲ [{{fullurl:{{#Special:Log}}/delete|\npage={{FULLPAGENAMEE}}}} ਮਿਟਾਉਣ ਦੇ ਚਿੱਠੇ] ਵਿਚ ਵੇਖੀ ਜਾ ਸਕਦੀ ਹੈ।\nਜੇ ਤੁਸੀਂ ਅੱਗੇ ਵਧਣਾ ਚਾਹੋ ਤਾਂ ਹਾਲੇ ਵੀ [$1 ਇਹ ਰੀਵਿਜ਼ਨ ਵੇਖ] ਸਕਦੇ ਹੋ।",
-	"rev-suppressed-diff-view": "ਇਸ ਅੰਤਰ ਦੇ ਦੁਹਰਾਅ ਵਿੱਚੋਂ ਇੱਕ ਨੂੰ '''ਦਬਾਅ''' ਦਿੱਤਾ ਗਿਆ ਹੈ। ਤੁਸੀਂ ਇਸ ਅੰਤਰ ਨੂੰ ਦੇਖ ਸਕਦੇ ਹੋ; [{{fullurl:{{#Special:Log}}/delete|\npage={{FULLPAGENAMEE}}}} ਜ਼ਬਤੀ ਦੇ ਚਿੱਠੇ] ਵਿੱਚ ਵੇਰਵੇ ਲੱਭੇ ਜਾ ਸਕਦੇ ਹਨ।",
+	"rev-suppressed-diff-view": "ਇਸ ਅੰਤਰ ਦੇ ਦੁਹਰਾਅ ਵਿੱਚੋਂ ਇੱਕ ਨੂੰ '''ਦਬਾਅ''' ਦਿੱਤਾ ਗਿਆ ਹੈ। ਤੁਸੀਂ ਇਸ ਅੰਤਰ ਨੂੰ ਦੇਖ ਸਕਦੇ ਹੋ; [{{fullurl:{{#Special:Log}}/suppress|\npage={{FULLPAGENAMEE}}}} ਜ਼ਬਤੀ ਦੇ ਚਿੱਠੇ] ਵਿੱਚ ਵੇਰਵੇ ਲੱਭੇ ਜਾ ਸਕਦੇ ਹਨ।",
 	"rev-delundel": "ਵਿਖਾਓ/ਲੁਕਾਓ",
 	"rev-showdeleted": "ਵਿਖਾਓ",
 	"revisiondelete": "ਹਟਾਓ/ਅਣ-ਹਟਾਓ ਦੁਹਰਾਅ",

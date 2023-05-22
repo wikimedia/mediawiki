@@ -7445,6 +7445,7 @@ config-schema:
             - User-Agent
             - Api-User-Agent
             - Access-Control-Max-Age
+            - Authorization
         type: array
         description: 'List of allowed headers for cross-origin API requests.'
     RestAPIAdditionalRouteFiles:

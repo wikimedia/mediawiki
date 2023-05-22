@@ -335,10 +335,11 @@ class MessageCache implements LoggerAwareInterface {
 		$staleCache = false; // a cache array with expired data, or false if none has been loaded
 		$where = []; // Debug info, delayed to avoid spamming debug log too much
 
-		// Hash of the contents is stored in memcache, to detect if data-center cache
-		// or local cache goes out of date (e.g. due to replace() on some other server)
+		// A hash of the expected content is stored in a WAN cache key, providing a way
+		// to invalid the local cache on every server whenever a message page changes.
 		list( $hash, $hashVolatile ) = $this->getValidationHash( $code );
 		$this->cacheVolatile[$code] = $hashVolatile;
+		$volatilityOnlyStaleness = false;
 
 		// Try the local cache and check against the cluster hash key...
 		$cache = $this->getLocalCache( $code );
@@ -351,8 +352,10 @@ class MessageCache implements LoggerAwareInterface {
 			$where[] = 'local cache is expired';
 			$staleCache = $cache;
 		} elseif ( $hashVolatile ) {
+			// Some recent message page changes might not show due to DB lag
 			$where[] = 'local cache validation key is expired/volatile';
 			$staleCache = $cache;
+			$volatilityOnlyStaleness = true;
 		} else {
 			$where[] = 'got from local cache';
 			$this->cache->set( $code, $cache );
@@ -360,15 +363,14 @@ class MessageCache implements LoggerAwareInterface {
 		}
 
 		if ( !$success ) {
+			// Try the cluster cache, using a lock for regeneration...
 			$cacheKey = $this->clusterCache->makeKey( 'messages', $code );
-			// Try the global cache. If it is empty, try to acquire a lock. If
-			// the lock can't be acquired, wait for the other thread to finish
-			// and then try the global cache a second time.
 			for ( $failedAttempts = 0; $failedAttempts <= 1; $failedAttempts++ ) {
-				if ( $hashVolatile && $staleCache ) {
-					// Do not bother fetching the whole cache blob to avoid I/O.
-					// Instead, just try to get the non-blocking $statusKey lock
-					// below, and use the local stale value if it was not acquired.
+				if ( $volatilityOnlyStaleness && $staleCache ) {
+					// While the cluster cache *might* be more up-to-date, we do not want
+					// the I/O strain of every application server fetching the key here during
+					// the volatility period. Either this thread wins the lock and regenerates
+					// the cache or the stale local cache value gets reused.
 					$where[] = 'global cache is presumed expired';
 				} else {
 					$cache = $this->clusterCache->get( $cacheKey );
@@ -378,9 +380,7 @@ class MessageCache implements LoggerAwareInterface {
 						$where[] = 'global cache is expired';
 						$staleCache = $cache;
 					} elseif ( $hashVolatile ) {
-						// DB results are replica DB lag prone until the holdoff TTL passes.
-						// By then, updates should be reflected in loadFromDBWithLock().
-						// One thread regenerates the cache while others use old values.
+						// Some recent message page changes might not show due to DB lag
 						$where[] = 'global cache is expired/volatile';
 						$staleCache = $cache;
 					} else {
@@ -388,18 +388,14 @@ class MessageCache implements LoggerAwareInterface {
 						$this->cache->set( $code, $cache );
 						$this->saveToCaches( $cache, 'local-only', $code );
 						$success = true;
+						break;
 					}
 				}
 
-				if ( $success ) {
-					// Done, no need to retry
-					break;
-				}
-
-				// We need to call loadFromDB. Limit the concurrency to one process.
+				// We need to call loadFromDB(). Limit the concurrency to one thread.
 				// This prevents the site from going down when the cache expires.
 				// Note that the DB slam protection lock here is non-blocking.
-				$loadStatus = $this->loadFromDBWithLock( $code, $where, $mode );
+				$loadStatus = $this->loadFromDBWithMainLock( $code, $where, $mode );
 				if ( $loadStatus === true ) {
 					$success = true;
 					break;
@@ -410,16 +406,23 @@ class MessageCache implements LoggerAwareInterface {
 					$success = true;
 					break;
 				} elseif ( $failedAttempts > 0 ) {
+					$where[] = 'failed to find cache after waiting';
 					// Already blocked once, so avoid another lock/unlock cycle.
 					// This case will typically be hit if memcached is down, or if
 					// loadFromDB() takes longer than LOCK_WAIT.
-					$where[] = "could not acquire status key.";
 					break;
 				} elseif ( $loadStatus === 'cantacquire' ) {
 					// Wait for the other thread to finish, then retry. Normally,
 					// the memcached get() will then yield the other thread's result.
-					$where[] = 'waited for other thread to complete';
-					$this->getReentrantScopedLock( $cacheKey );
+					$where[] = 'waiting for other thread to complete';
+					[ , $ioError ] = $this->getReentrantScopedLock( $code );
+					if ( $ioError ) {
+						$where[] = 'failed waiting';
+						// Call loadFromDB() with concurrency limited to one thread per server.
+						// It should be rare for all servers to lack even a stale local cache.
+						$success = $this->loadFromDBWithLocalLock( $code, $where, $mode );
+						break;
+					}
 				} else {
 					// Disable cache; $loadStatus is 'disabled'
 					break;
@@ -450,9 +453,9 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param string $code
 	 * @param string[] &$where List of debug comments
 	 * @param int|null $mode Use MessageCache::FOR_UPDATE to use DB_PRIMARY
-	 * @return true|string True on success or one of ("cantacquire", "disabled")
+	 * @return true|string One (true, "cantacquire", "disabled")
 	 */
-	private function loadFromDBWithLock( $code, array &$where, $mode = null ) {
+	private function loadFromDBWithMainLock( $code, array &$where, $mode = null ) {
 		// If cache updates on all levels fail, give up on message overrides.
 		// This is to avoid easy site outages; see $saveSuccess comments below.
 		$statusKey = $this->clusterCache->makeKey( 'messages', $code, 'status' );
@@ -463,14 +466,13 @@ class MessageCache implements LoggerAwareInterface {
 		}
 
 		// Now let's regenerate
-		$where[] = 'loading from database';
+		$where[] = 'loading from DB';
 
 		// Lock the cache to prevent conflicting writes.
 		// This lock is non-blocking so stale cache can quickly be used.
 		// Note that load() will call a blocking getReentrantScopedLock()
 		// after this if it really need to wait for any current thread.
-		$cacheKey = $this->clusterCache->makeKey( 'messages', $code );
-		$scopedLock = $this->getReentrantScopedLock( $cacheKey, 0 );
+		[ $scopedLock ] = $this->getReentrantScopedLock( $code, 0 );
 		if ( !$scopedLock ) {
 			$where[] = 'could not acquire main lock';
 			return 'cantacquire';
@@ -503,6 +505,32 @@ class MessageCache implements LoggerAwareInterface {
 		}
 
 		return true;
+	}
+
+	/**
+	 * @param string $code
+	 * @param string[] &$where List of debug comments
+	 * @param int|null $mode Use MessageCache::FOR_UPDATE to use DB_PRIMARY
+	 * @return bool Success
+	 */
+	private function loadFromDBWithLocalLock( $code, array &$where, $mode = null ) {
+		$success = false;
+		$where[] = 'loading from DB using local lock';
+
+		$scopedLock = $this->srvCache->getScopedLock(
+			$this->srvCache->makeKey( 'messages', $code ),
+			self::WAIT_SEC,
+			self::LOCK_TTL,
+			__METHOD__
+		);
+		if ( $scopedLock ) {
+			$cache = $this->loadFromDB( $code, $mode );
+			$this->cache->set( $code, $cache );
+			$this->saveToCaches( $cache, 'local-only', $code );
+			$success = true;
+		}
+
+		return $success;
 	}
 
 	/**
@@ -758,9 +786,7 @@ class MessageCache implements LoggerAwareInterface {
 	 */
 	public function refreshAndReplaceInternal( string $code, array $replacements ) {
 		// Allow one caller at a time to avoid race conditions
-		$scopedLock = $this->getReentrantScopedLock(
-			$this->clusterCache->makeKey( 'messages', $code )
-		);
+		[ $scopedLock ] = $this->getReentrantScopedLock( $code );
 		if ( !$scopedLock ) {
 			foreach ( $replacements as list( $title ) ) {
 				$this->logger->error(
@@ -884,7 +910,7 @@ class MessageCache implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Get the md5 used to validate the local APC cache
+	 * Get the md5 used to validate the local server cache
 	 *
 	 * @param string $code
 	 * @return array (hash or false, bool expiry/volatility status)
@@ -902,7 +928,6 @@ class MessageCache implements LoggerAwareInterface {
 			if ( ( time() - $value['latest'] ) < WANObjectCache::TTL_MINUTE ) {
 				// Cache was recently updated via replace() and should be up-to-date.
 				// That method is only called in the primary datacenter and uses FOR_UPDATE.
-				// Also, it is unlikely that the current datacenter is *now* secondary one.
 				$expired = false;
 			} else {
 				// See if the "check" key was bumped after the hash was generated
@@ -918,7 +943,7 @@ class MessageCache implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Set the md5 used to validate the local disk cache
+	 * Set the md5 used to validate the local server cache
 	 *
 	 * If $cache has a 'LATEST' UNIX timestamp key, then the hash will not
 	 * be treated as "volatile" by getValidationHash() for the next few seconds.
@@ -939,12 +964,24 @@ class MessageCache implements LoggerAwareInterface {
 	}
 
 	/**
-	 * @param string $key A language message cache key that stores blobs
+	 * @param string $code Language to which load messages
 	 * @param int $timeout Wait timeout in seconds
-	 * @return null|ScopedCallback
+	 * @return array (ScopedCallback or null, whether locking failed due to an I/O error)
+	 * @phan-return array{0:ScopedCallback|null,1:bool}
 	 */
-	private function getReentrantScopedLock( $key, $timeout = self::WAIT_SEC ) {
-		return $this->clusterCache->getScopedLock( $key, $timeout, self::LOCK_TTL, __METHOD__ );
+	private function getReentrantScopedLock( $code, $timeout = self::WAIT_SEC ) {
+		$key = $this->clusterCache->makeKey( 'messages', $code );
+
+		$watchPoint = $this->clusterCache->watchErrors();
+		$scopedLock = $this->clusterCache->getScopedLock(
+			$key,
+			$timeout,
+			self::LOCK_TTL,
+			__METHOD__
+		);
+		$error = ( !$scopedLock && $this->clusterCache->getLastError( $watchPoint ) );
+
+		return [ $scopedLock, $error ];
 	}
 
 	/**
