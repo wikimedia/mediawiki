@@ -413,7 +413,7 @@ class HandlerTest extends \MediaWikiUnitTestCase {
 				'Cache-Control' => 'max-age=123'
 			],
 			false, // no persistent session
-			'private,no-cache,s-maxage=0'
+			'private,must-revalidate,s-maxage=0'
 		];
 
 		yield 'POST with cache control' => [
@@ -436,7 +436,7 @@ class HandlerTest extends \MediaWikiUnitTestCase {
 			'GET',
 			[ 'Cache-Control' => 'max-age=123' ],
 			true, // persistent session
-			'private,no-cache,s-maxage=0'
+			'private,must-revalidate,s-maxage=0'
 		];
 	}
 

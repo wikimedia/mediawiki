@@ -318,7 +318,7 @@ abstract class Handler {
 		// cookies in the response, or the response itself may vary on user-specific variables,
 		// for example on private wikis where the 'read' permission is restricted. (T264631)
 		if ( $response->getHeaderLine( 'Set-Cookie' ) || $this->getSession()->isPersistent() ) {
-			$response->setHeader( 'Cache-Control', 'private,no-cache,s-maxage=0' );
+			$response->setHeader( 'Cache-Control', 'private,must-revalidate,s-maxage=0' );
 		}
 
 		if ( !$response->getHeaderLine( 'Cache-Control' ) ) {
