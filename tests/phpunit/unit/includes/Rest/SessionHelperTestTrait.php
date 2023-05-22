@@ -26,9 +26,14 @@ trait SessionHelperTestTrait {
 		$sessionProvider->method( 'safeAgainstCsrf' )->willReturn( $csrfSafe );
 
 		/** @var Session&MockObject $session */
-		$session = $this->createMock( Session::class );
+		$session = $this->createMock( Session::class, [
+			'getSessionId',
+			'getProvider',
+			'isPersistent'
+		] );
 		$session->method( 'getSessionId' )->willReturn( new SessionId( 'test' ) );
 		$session->method( 'getProvider' )->willReturn( $sessionProvider );
+		$session->method( 'isPersistent' )->willReturn( true );
 
 		return $session;
 	}
