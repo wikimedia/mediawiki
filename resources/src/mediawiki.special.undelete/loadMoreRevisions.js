@@ -12,9 +12,10 @@
 		var $oldList = $( '.mw-undelete-revlist' );
 		var $spinner = $.createSpinner( { size: 'large', type: 'block' } );
 		$oldList.after( $spinner );
-		var path = mw.util.wikiScript() +
-			'?title=' + mw.config.get( 'wgPageName' ) +
-			'&target=' + mw.config.get( 'wgRelevantPageName' );
+		var path = mw.util.wikiScript() + '?' + $.param( {
+			title: mw.config.get( 'wgPageName' ),
+			target: mw.config.get( 'wgRelevantPageName' )
+		} );
 
 		$.ajax( {
 			type: 'GET',
@@ -39,6 +40,7 @@
 			},
 			error: function ( data, textStatus, errorMessage ) {
 				$spinner.remove();
+				$link.show();
 				mw.log.error( errorMessage );
 			}
 		} );

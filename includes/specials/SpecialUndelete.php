@@ -949,14 +949,14 @@ class SpecialUndelete extends SpecialPage {
 		$dbr = $this->dbProvider->getReplicaDatabase();
 		if ( $this->mHistoryOffset ) {
 			$encOffset = $dbr->addQuotes( $dbr->timestamp( $this->mHistoryOffset ) );
-			$offset = [ "ar_timestamp < $encOffset" ];
+			$extraConds = [ "ar_timestamp < $encOffset" ];
 		} else {
-			$offset = [];
+			$extraConds = [];
 		}
 		$revisions = $this->archivedRevisionLookup->listRevisions(
 			$this->mTargetObj,
-			$offset,
-			[ 'LIMIT' => self::REVISION_HISTORY_LIMIT + 1 ]
+			$extraConds,
+			self::REVISION_HISTORY_LIMIT + 1
 		);
 		$batch = $this->linkBatchFactory->newLinkBatch();
 		$this->addRevisionsToBatch( $batch, $revisions );
@@ -1025,7 +1025,7 @@ class SpecialUndelete extends SpecialPage {
 		$revisions = $this->archivedRevisionLookup->listRevisions(
 			$this->mTargetObj,
 			[],
-			[ 'LIMIT' => self::REVISION_HISTORY_LIMIT + 1 ]
+			self::REVISION_HISTORY_LIMIT + 1
 		);
 		$files = $archive->listFiles();
 		$numRevisions = $revisions->numRows();
