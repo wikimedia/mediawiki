@@ -320,8 +320,8 @@ class SearchFormWidget {
 				'inputId' => 'mw-search-powersearch-remember',
 				// The token goes here rather than in a hidden field so it
 				// is only sent when necessary (not every form submission)
-				'value' => $this->specialSearch->getUser()
-					->getEditToken( 'searchnamespace', $this->specialSearch->getRequest() )
+				'value' => $this->specialSearch->getContext()->getCsrfTokenSet()
+					->getToken( 'searchnamespace' )
 			] ),
 			[
 			'label' => $this->specialSearch->msg( 'powersearch-remember' )->text(),
