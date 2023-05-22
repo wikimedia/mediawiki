@@ -22,7 +22,6 @@ namespace MediaWiki\Mail;
 
 use BadMethodCallException;
 use CentralIdLookup;
-use Config;
 use MailAddress;
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Config\ServiceOptions;
@@ -77,8 +76,8 @@ class EmailUser {
 	/** @var IEmailer */
 	private IEmailer $emailer;
 
-	/** @var ServiceOptions|null Temporary property for BC with SpecialEmailUser */
-	private ?ServiceOptions $oldOptions;
+	/** @var Authority */
+	private Authority $sender;
 
 	/**
 	 * @param ServiceOptions $options
@@ -87,6 +86,7 @@ class EmailUser {
 	 * @param CentralIdLookup $centralIdLookup
 	 * @param UserFactory $userFactory
 	 * @param IEmailer $emailer
+	 * @param Authority $sender
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -94,7 +94,8 @@ class EmailUser {
 		UserOptionsLookup $userOptionsLookup,
 		CentralIdLookup $centralIdLookup,
 		UserFactory $userFactory,
-		IEmailer $emailer
+		IEmailer $emailer,
+		Authority $sender
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
@@ -103,16 +104,17 @@ class EmailUser {
 		$this->centralIdLookup = $centralIdLookup;
 		$this->userFactory = $userFactory;
 		$this->emailer = $emailer;
+
+		$this->sender = $sender;
 	}
 
 	/**
 	 * Validate target User
 	 *
 	 * @param UserEmailContact $target Target user
-	 * @param Authority $sender User sending the email
 	 * @return StatusValue
 	 */
-	public function validateTarget( UserEmailContact $target, Authority $sender ): StatusValue {
+	public function validateTarget( UserEmailContact $target ): StatusValue {
 		$targetIdentity = $target->getUser();
 		$targetUser = $this->userFactory->newFromUserIdentity( $targetIdentity );
 
@@ -128,7 +130,7 @@ class EmailUser {
 			return StatusValue::newFatal( 'nowikiemailtext' );
 		}
 
-		$senderUser = $this->userFactory->newFromAuthority( $sender );
+		$senderUser = $this->userFactory->newFromAuthority( $this->sender );
 		if (
 			!$this->userOptionsLookup->getOption( $targetIdentity, 'email-allow-new-users' ) &&
 			$senderUser->isNewbie()
@@ -143,7 +145,7 @@ class EmailUser {
 		);
 		if ( $muteList ) {
 			$muteList = MultiUsernameFilter::splitIds( $muteList );
-			$senderId = $this->centralIdLookup->centralIdFromLocalUser( $sender->getUser() );
+			$senderId = $this->centralIdLookup->centralIdFromLocalUser( $this->sender->getUser() );
 			if ( $senderId !== 0 && in_array( $senderId, $muteList ) ) {
 				return StatusValue::newFatal( 'nowikiemailtext' );
 			}
@@ -153,35 +155,13 @@ class EmailUser {
 	}
 
 	/**
-	 * @param Config $config
-	 * @internal Kept only for BC with SpecialEmailUser
-	 * @codeCoverageIgnore
-	 */
-	public function overrideOptionsFromConfig( Config $config ): void {
-		$this->oldOptions = $this->options;
-		$this->options = new ServiceOptions( self::CONSTRUCTOR_OPTIONS, $config );
-	}
-
-	/**
-	 * @internal Kept only for BC with SpecialEmailUser
-	 * @codeCoverageIgnore
-	 */
-	public function restoreOriginalOptions(): void {
-		if ( !$this->oldOptions ) {
-			throw new BadMethodCallException( 'Did not override options.' );
-		}
-		$this->options = $this->oldOptions;
-	}
-
-	/**
 	 * Check whether a user is allowed to send email
 	 *
-	 * @param Authority $performer
 	 * @param string $editToken
 	 * @return StatusValue For BC, the StatusValue's value can be set to a string representing a message key to use
 	 * with ErrorPageError.
 	 */
-	public function getPermissionsError( Authority $performer, string $editToken ): StatusValue {
+	public function getPermissionsError( string $editToken ): StatusValue {
 		if (
 			!$this->options->get( MainConfigNames::EnableEmail ) ||
 			!$this->options->get( MainConfigNames::EnableUserEmail )
@@ -189,7 +169,7 @@ class EmailUser {
 			return StatusValue::newFatal( 'usermaildisabled' );
 		}
 
-		$user = $this->userFactory->newFromAuthority( $performer );
+		$user = $this->userFactory->newFromAuthority( $this->sender );
 
 		// Run this before checking 'sendemail' permission
 		// to show appropriate message to anons (T160309)
@@ -197,11 +177,11 @@ class EmailUser {
 			return StatusValue::newFatal( 'mailnologin' );
 		}
 
-		if ( !$performer->isAllowed( 'sendemail' ) ) {
+		if ( !$this->sender->isAllowed( 'sendemail' ) ) {
 			return StatusValue::newFatal( 'badaccess' );
 		}
 
-		$block = $performer->getBlock();
+		$block = $this->sender->getBlock();
 		if ( $block instanceof AbstractBlock && $block->appliesToRight( 'sendemail' ) ) {
 			return StatusValue::newFatal( $this->getBlockedMessage( $user ) );
 		}
@@ -237,7 +217,6 @@ class EmailUser {
 	 * @param string $subject
 	 * @param string $text
 	 * @param bool $CCMe
-	 * @param Authority $sender
 	 * @param MessageLocalizer $messageLocalizer
 	 * @return StatusValue
 	 */
@@ -246,12 +225,11 @@ class EmailUser {
 		string $subject,
 		string $text,
 		bool $CCMe,
-		Authority $sender,
 		MessageLocalizer $messageLocalizer
 	): StatusValue {
-		$senderIdentity = $sender->getUser();
-		$senderUser = $this->userFactory->newFromAuthority( $sender );
-		$targetStatus = $this->validateTarget( $target, $sender );
+		$senderIdentity = $this->sender->getUser();
+		$senderUser = $this->userFactory->newFromAuthority( $this->sender );
+		$targetStatus = $this->validateTarget( $target );
 		if ( !$targetStatus->isGood() ) {
 			return $targetStatus;
 		}

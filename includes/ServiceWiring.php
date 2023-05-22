@@ -106,6 +106,7 @@ use MediaWiki\Linker\LinkTargetStore;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Mail\Emailer;
 use MediaWiki\Mail\EmailUser;
+use MediaWiki\Mail\EmailUserFactory;
 use MediaWiki\Mail\IEmailer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -675,8 +676,8 @@ return [
 		return new Emailer();
 	},
 
-	'EmailUser' => static function ( MediaWikiServices $services ): EmailUser {
-		return new EmailUser(
+	'EmailUserFactory' => static function ( MediaWikiServices $services ): EmailUserFactory {
+		return new EmailUserFactory(
 			new ServiceOptions( EmailUser::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getHookContainer(),
 			$services->getUserOptionsLookup(),

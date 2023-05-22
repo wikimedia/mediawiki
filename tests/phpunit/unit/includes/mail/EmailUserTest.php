@@ -26,6 +26,7 @@ use User;
  */
 class EmailUserTest extends MediaWikiUnitTestCase {
 	private function getEmailUser(
+		Authority $sender,
 		UserOptionsLookup $userOptionsLookup = null,
 		CentralIdLookup $centralIdLookup = null,
 		UserFactory $userFactory = null,
@@ -50,7 +51,8 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 			$userOptionsLookup ?? $this->createMock( UserOptionsLookup::class ),
 			$centralIdLookup ?? $this->createMock( CentralIdLookup::class ),
 			$userFactory ?? $this->createMock( UserFactory::class ),
-			$emailer ?? $this->createMock( IEmailer::class )
+			$emailer ?? $this->createMock( IEmailer::class ),
+			$sender
 		);
 	}
 
@@ -80,8 +82,8 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 		$userFactory = $this->createMock( UserFactory::class );
 		$userFactory->method( 'newFromAuthority' )->willReturn( $sender );
 		$userFactory->method( 'newFromUserIdentity' )->willReturn( $target );
-		$emailUser = $this->getEmailUser( $userOptionsLookup, $centralIdLookup, $userFactory );
-		$this->assertEquals( $expected, $emailUser->validateTarget( $target, $sender ) );
+		$emailUser = $this->getEmailUser( $sender, $userOptionsLookup, $centralIdLookup, $userFactory );
+		$this->assertEquals( $expected, $emailUser->validateTarget( $target ) );
 	}
 
 	public function provideValidateTarget(): Generator {
@@ -168,8 +170,8 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 		if ( $expectDeprecation ) {
 			$this->expectDeprecationAndContinue( '/Use of EmailUserPermissionsErrors hook/' );
 		}
-		$emailUser = $this->getEmailUser( null, null, $userFactory, $configOverrides, $hooks );
-		$this->assertEquals( $expected, $emailUser->getPermissionsError( $performerUser, 'some-token' ) );
+		$emailUser = $this->getEmailUser( $performerUser, null, null, $userFactory, $configOverrides, $hooks );
+		$this->assertEquals( $expected, $emailUser->getPermissionsError( 'some-token' ) );
 	}
 
 	public function providePermissionsError(): Generator {
@@ -285,13 +287,12 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 		$userFactory->method( 'newFromUserIdentity' )
 			->with( $target )
 			->willReturn( $target );
-		$emailUser = $this->getEmailUser( null, null, $userFactory, [], $hooks, $emailer );
+		$emailUser = $this->getEmailUser( $sender, null, null, $userFactory, [], $hooks, $emailer );
 		$res = $emailUser->submit(
 			$target,
 			'subject',
 			'text',
 			false,
-			$sender,
 			$this->getMockMessageLocalizer()
 		);
 		$this->assertEquals( $expected, $res );
@@ -409,12 +410,11 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 
 		$this->expectException( RuntimeException::class );
 		$this->expectExceptionMessage( 'You are throttled' );
-		$res = $this->getEmailUser( null, null, $senderUserFactory )->submit(
+		$res = $this->getEmailUser( $senderUser, null, null, $senderUserFactory )->submit(
 			$this->getValidTarget(),
 			'subject',
 			'text',
 			false,
-			$senderUser,
 			$this->getMockMessageLocalizer()
 		);
 		// This assertion should not be reached if the test passes, but it can be helpful to determine why

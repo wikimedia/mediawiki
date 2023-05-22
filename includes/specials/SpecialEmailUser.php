@@ -27,7 +27,7 @@ use Config;
 use ErrorPageError;
 use HTMLForm;
 use IContextSource;
-use MediaWiki\Mail\EmailUser;
+use MediaWiki\Mail\EmailUserFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNamePrefixSearch;
@@ -63,8 +63,8 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
-	/** @var EmailUser */
-	private EmailUser $emailUser;
+	/** @var EmailUserFactory */
+	private EmailUserFactory $emailUserFactory;
 
 	/** @var UserFactory */
 	private UserFactory $userFactory;
@@ -73,21 +73,21 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * @param UserNameUtils $userNameUtils
 	 * @param UserNamePrefixSearch $userNamePrefixSearch
 	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param EmailUser $emailUser
+	 * @param EmailUserFactory $emailUserFactory
 	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
 		UserNameUtils $userNameUtils,
 		UserNamePrefixSearch $userNamePrefixSearch,
 		UserOptionsLookup $userOptionsLookup,
-		EmailUser $emailUser,
+		EmailUserFactory $emailUserFactory,
 		UserFactory $userFactory
 	) {
 		parent::__construct( 'Emailuser' );
 		$this->userNameUtils = $userNameUtils;
 		$this->userNamePrefixSearch = $userNamePrefixSearch;
 		$this->userOptionsLookup = $userOptionsLookup;
-		$this->emailUser = $emailUser;
+		$this->emailUserFactory = $emailUserFactory;
 		$this->userFactory = $userFactory;
 	}
 
@@ -220,7 +220,9 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			return 'notarget';
 		}
 
-		$status = MediaWikiServices::getInstance()->getEmailUser()->validateTarget( $targetObject, $sender );
+		$status = MediaWikiServices::getInstance()->getEmailUserFactory()
+			->newEmailUser( $sender )
+			->validateTarget( $targetObject );
 		if ( !$status->isGood() ) {
 			$msg = $status->getErrors()[0]['message'];
 			$ret = $msg === 'emailnotarget' ? 'notarget' : preg_replace( '/text$/', '', $msg );
@@ -242,7 +244,9 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		if ( !$target instanceof User ) {
 			return 'notarget';
 		}
-		$status = MediaWikiServices::getInstance()->getEmailUser()->validateTarget( $target, $sender );
+		$status = MediaWikiServices::getInstance()->getEmailUserFactory()
+			->newEmailUser( $sender )
+			->validateTarget( $target );
 		if ( $status->isGood() ) {
 			$ret = '';
 		} else {
@@ -262,33 +266,24 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 *  hook error
 	 */
 	public static function getPermissionsError( $user, $editToken, Config $config = null ) {
-		$emailUser = MediaWikiServices::getInstance()->getEmailUser();
-		if ( $config ) {
-			$emailUser->overrideOptionsFromConfig( $config );
+		$emailUser = MediaWikiServices::getInstance()->getEmailUserFactory()->newEmailUserBC( $user, $config );
+		$status = $emailUser->getPermissionsError( (string)$editToken );
+		if ( $status->isGood() ) {
+			return null;
 		}
-		try {
-			$status = $emailUser->getPermissionsError( $user, (string)$editToken );
-			if ( $status->isGood() ) {
-				return null;
-			}
-			foreach ( $status->getErrors() as $err ) {
-				$errKey = $err['message'] instanceof Message ? $err['message']->getKey() : $err['message'];
-				if ( strpos( $errKey, 'blockedtext' ) !== false ) {
-					// BC for block messages
-					return "blockedemailuser";
-				}
-			}
-			$error = $status->getErrors()[0];
-			if ( $status->getValue() !== null ) {
-				// BC for hook errors intended to be used with ErrorPageError
-				return [ $status->getValue(), $error['message'], $error['params'] ];
-			}
-			return $error['message'];
-		} finally {
-			if ( $config ) {
-				$emailUser->restoreOriginalOptions();
+		foreach ( $status->getErrors() as $err ) {
+			$errKey = $err['message'] instanceof Message ? $err['message']->getKey() : $err['message'];
+			if ( strpos( $errKey, 'blockedtext' ) !== false ) {
+				// BC for block messages
+				return "blockedemailuser";
 			}
 		}
+		$error = $status->getErrors()[0];
+		if ( $status->getValue() !== null ) {
+			// BC for hook errors intended to be used with ErrorPageError
+			return [ $status->getValue(), $error['message'], $error['params'] ];
+		}
+		return $error['message'];
 	}
 
 	/**
@@ -365,12 +360,11 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		if ( !$target instanceof User ) {
 			return Status::newFatal( 'emailnotarget' );
 		}
-		$res = $this->emailUser->submit(
+		$res = $this->emailUserFactory->newEmailUser( $this->getAuthority() )->submit(
 			$target,
 			$data['Subject'],
 			$data['Text'],
 			$data['CCMe'],
-			$this->getAuthority(),
 			$this
 		);
 		if ( $res->hasMessage( 'hookaborted' ) ) {
@@ -398,31 +392,27 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			return Status::newFatal( 'emailnotarget' );
 		}
 
-		$emailUser = MediaWikiServices::getInstance()->getEmailUser();
-		try {
-			$emailUser->overrideOptionsFromConfig( $context->getConfig() );
-			$ret = $emailUser->submit(
-				$target,
-				(string)$data['Subject'],
-				(string)$data['Text'],
-				(bool)$data['CCMe'],
-				$context->getAuthority(),
-				$context
-			);
-			if ( $ret->hasMessage( 'hookaborted' ) ) {
-				// BC: The method could previously return false if the EmailUser hook set the error to false.
-				$ret = false;
-			} elseif ( $ret->hasMessage( 'noemailtarget' ) ) {
-				// BC: The previous implementation would use notargettext even if noemailtarget would be the right
-				// message to use here.
-				return Status::newFatal( 'notargettext' );
-			} else {
-				$ret = Status::wrap( $ret );
-			}
-			return $ret;
-		} finally {
-			$emailUser->restoreOriginalOptions();
+		$emailUser = MediaWikiServices::getInstance()->getEmailUserFactory()
+			->newEmailUserBC( $context->getAuthority(), $context->getConfig() );
+
+		$ret = $emailUser->submit(
+			$target,
+			(string)$data['Subject'],
+			(string)$data['Text'],
+			(bool)$data['CCMe'],
+			$context
+		);
+		if ( $ret->hasMessage( 'hookaborted' ) ) {
+			// BC: The method could previously return false if the EmailUser hook set the error to false.
+			$ret = false;
+		} elseif ( $ret->hasMessage( 'noemailtarget' ) ) {
+			// BC: The previous implementation would use notargettext even if noemailtarget would be the right
+			// message to use here.
+			return Status::newFatal( 'notargettext' );
+		} else {
+			$ret = Status::wrap( $ret );
 		}
+		return $ret;
 	}
 
 	/**

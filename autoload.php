@@ -1506,6 +1506,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Logger\\NullSpi' => __DIR__ . '/includes/debug/logger/NullSpi.php',
 	'MediaWiki\\Logger\\Spi' => __DIR__ . '/includes/debug/logger/Spi.php',
 	'MediaWiki\\Mail\\EmailUser' => __DIR__ . '/includes/mail/EmailUser.php',
+	'MediaWiki\\Mail\\EmailUserFactory' => __DIR__ . '/includes/mail/EmailUserFactory.php',
 	'MediaWiki\\Mail\\Emailer' => __DIR__ . '/includes/mail/Emailer.php',
 	'MediaWiki\\Mail\\IEmailer' => __DIR__ . '/includes/mail/IEmailer.php',
 	'MediaWiki\\Mail\\UserEmailContact' => __DIR__ . '/includes/mail/UserEmailContact.php',
