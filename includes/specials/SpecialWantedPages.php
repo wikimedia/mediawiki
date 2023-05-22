@@ -59,7 +59,6 @@ class SpecialWantedPages extends WantedQueryPage {
 			$this->limit = (int)$par;
 			$this->offset = 0;
 		}
-		$this->setListoutput( $inc );
 		$this->shownavigation = !$inc;
 		parent::execute( $par );
 	}
