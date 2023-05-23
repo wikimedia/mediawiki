@@ -590,7 +590,7 @@ class ApiUpload extends ApiBase {
 		$permission = $this->mUpload->isAllowed( $user );
 
 		if ( $permission !== true ) {
-			if ( !$user->isRegistered() ) {
+			if ( !$user->isNamed() ) {
 				$this->dieWithError( [ 'apierror-mustbeloggedin', $this->msg( 'action-upload' ) ] );
 			}
 
