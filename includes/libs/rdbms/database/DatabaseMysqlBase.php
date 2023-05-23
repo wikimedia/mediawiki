@@ -140,20 +140,22 @@ abstract class DatabaseMysqlBase extends Database {
 				$tablePrefix
 			);
 			$this->platform->setPrefix( $tablePrefix );
-			// Abstract over any excessive MySQL defaults
-			$set = [ 'group_concat_max_len = 262144' ];
-			// Set any custom settings defined by site config
-			// https://dev.mysql.com/doc/refman/5.7/en/innodb-parameters.html
-			foreach ( $this->connectionVariables as $var => $val ) {
-				// Escape strings but not numbers to avoid MySQL complaining
-				if ( !is_int( $val ) && !is_float( $val ) ) {
-					$val = $this->addQuotes( $val );
+
+			$set = [];
+			if ( !$this->flagsHolder->getFlag( self::DBO_GAUGE ) ) {
+				// Abstract over any excessive MySQL defaults
+				$set[] = 'group_concat_max_len = 262144';
+				// Set any custom settings defined by site config
+				// https://dev.mysql.com/doc/refman/5.7/en/innodb-parameters.html
+				foreach ( $this->connectionVariables as $var => $val ) {
+					// Escape strings but not numbers to avoid MySQL complaining
+					if ( !is_int( $val ) && !is_float( $val ) ) {
+						$val = $this->addQuotes( $val );
+					}
+					$set[] = $this->platform->addIdentifierQuotes( $var ) . ' = ' . $val;
 				}
-				$set[] = $this->platform->addIdentifierQuotes( $var ) . ' = ' . $val;
 			}
 
-			// @phan-suppress-next-next-line PhanRedundantCondition
-			// Safety check to avoid empty SET query
 			if ( $set ) {
 				$sql = 'SET ' . implode( ', ', $set );
 				$flags = self::QUERY_NO_RETRY | self::QUERY_CHANGE_TRX;

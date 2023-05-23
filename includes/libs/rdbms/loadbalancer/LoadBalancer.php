@@ -1062,12 +1062,21 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 
 		$server = $this->serverInfo->getServerInfoStrict( $i );
-		// Use low connection/read timeouts for connection used for gauging server health.
-		// Gauge information should be cached and used to avoid outages. Indefinite hanging
-		// while gauging servers would do the opposite.
 		if ( $lbInfo[self::INFO_CONN_CATEGORY] === self::CATEGORY_GAUGE ) {
+			// Use low connection/read timeouts for connection used for gauging server health.
+			// Gauge information should be cached and used to avoid outages. Indefinite hanging
+			// while gauging servers would do the opposite.
 			$server['connectTimeout'] = min( 1, $server['connectTimeout'] ?? INF );
 			$server['receiveTimeout'] = min( 1, $server['receiveTimeout'] ?? INF );
+			// Avoid implicit transactions and avoid any SET query for session variables during
+			// Database::open(). If a server becomes slow, every extra query can cause significant
+			// delays, even with low connect/receive timeouts.
+			$server['flags'] ??= 0;
+			$server['flags'] &= ~IDatabase::DBO_DEFAULT;
+			$server['flags'] |= IDatabase::DBO_GAUGE;
+		} else {
+			// Use implicit transactions unless explicitly configured otherwise
+			$server['flags'] ??= IDatabase::DBO_DEFAULT;
 		}
 
 		$conn = $this->databaseFactory->create(
@@ -1089,12 +1098,10 @@ class LoadBalancer implements ILoadBalancerForOwner {
 				'logger' => $this->logger,
 				'errorLogger' => $this->errorLogger,
 				'trxProfiler' => $this->trxProfiler,
-				'flags' => $server['flags'] ?? IDatabase::DBO_DEFAULT,
+				'lbInfo' => [ self::INFO_SERVER_INDEX => $i ] + $lbInfo
 			] ),
 			Database::NEW_UNCONNECTED
 		);
-		// Attach load balancer information to the handle
-		$conn->setLBInfo( [ self::INFO_SERVER_INDEX => $i ] + $lbInfo );
 		// Set alternative table/index names before any queries can be issued
 		$conn->setTableAliases( $this->tableAliases );
 		$conn->setIndexAliases( $this->indexAliases );

@@ -24,31 +24,40 @@ namespace Wikimedia\Rdbms\Database;
  */
 interface IDatabaseFlags {
 
-	/** @var string Do not remember the prior flags */
+	/** Do not remember the prior flags */
 	public const REMEMBER_NOTHING = '';
-	/** @var string Remember the prior flags */
+	/** Remember the prior flags */
 	public const REMEMBER_PRIOR = 'remember';
-	/** @var string Restore to the prior flag state */
+	/** Restore to the prior flag state */
 	public const RESTORE_PRIOR = 'prior';
-	/** @var string Restore to the initial flag state */
+	/** Restore to the initial flag state */
 	public const RESTORE_INITIAL = 'initial';
 
-	/** @var int Enable debug logging of all SQL queries */
+	/** Enable debug logging of all SQL queries */
 	public const DBO_DEBUG = 1;
-	/** @var int Unused since 1.34 */
+	/** Unused since 1.34 */
 	public const DBO_NOBUFFER = 2;
-	/** @var int Unused since 1.31 */
+	/** Unused since 1.31 */
 	public const DBO_IGNORE = 4;
-	/** @var int Automatically start a transaction before running a query if none is active */
+	/** Automatically start a transaction before running a query if none is active */
 	public const DBO_TRX = 8;
-	/** @var int Join load balancer transaction rounds (which control DBO_TRX) in non-CLI mode */
+	/** Join load balancer transaction rounds (which control DBO_TRX) in non-CLI mode */
 	public const DBO_DEFAULT = 16;
-	/** @var int Use DB persistent connections if possible */
+	/** Use DB persistent connections if possible */
 	public const DBO_PERSISTENT = 32;
-	/** @var int DBA session mode; was used by Oracle */
+	/** DBA session mode; was used by Oracle */
 	public const DBO_SYSDBA = 64;
-	/** @var int Schema file mode; was used by Oracle */
+	/** Schema file mode; was used by Oracle */
 	public const DBO_DDLMODE = 128;
+	/**
+	 * Enable SSL/TLS in connection protocol
+	 * @deprecated since 1.39 use 'ssl' parameter
+	 */
+	public const DBO_SSL = 256;
+	/** Enable compression in connection protocol */
+	public const DBO_COMPRESS = 512;
+	/** Optimize connection for guaging server state (e.g. ILoadBalancer::CONN_UNTRACKED_GAUGE) */
+	public const DBO_GAUGE = 1024;
 
 	/**
 	 * Set a flag for this connection
