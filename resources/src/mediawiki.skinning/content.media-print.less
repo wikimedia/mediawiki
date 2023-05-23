@@ -6,10 +6,8 @@ figure[ typeof~='mw:File/Frame' ] {
 	border-bottom: 0;  // No border to figcaption
 	background-color: @background-color-thumbinner-print;
 
-	> :not( figcaption ) {
-		.mw-file-element:not( .mw-broken-media ) {
-			border: @border-thumbimage-print;
-		}
+	> :not( figcaption ) .mw-file-element {
+		border: @border-thumbimage-print;
 	}
 
 	> figcaption {
@@ -21,6 +19,6 @@ figure[ typeof~='mw:File/Frame' ] {
 	}
 }
 
-.mw-image-border .mw-file-element:not( .mw-broken-media ) {
+.mw-image-border .mw-file-element {
 	border: @border-thumbborder-print;
 }
