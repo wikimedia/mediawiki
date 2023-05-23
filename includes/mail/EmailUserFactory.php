@@ -27,6 +27,8 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserOptionsLookup;
+use Wikimedia\Message\IMessageFormatterFactory;
+use Wikimedia\Message\ITextFormatter;
 
 /**
  * Factory for EmailUser objects.
@@ -47,6 +49,10 @@ class EmailUserFactory {
 	private UserFactory $userFactory;
 	/** @var IEmailer */
 	private IEmailer $emailer;
+	/** @var IMessageFormatterFactory */
+	private IMessageFormatterFactory $messageFormatterFactory;
+	/** @var ITextFormatter */
+	private ITextFormatter $contLangMsgFormatter;
 
 	/**
 	 * @param ServiceOptions $options
@@ -55,6 +61,8 @@ class EmailUserFactory {
 	 * @param CentralIdLookup $centralIdLookup
 	 * @param UserFactory $userFactory
 	 * @param IEmailer $emailer
+	 * @param IMessageFormatterFactory $messageFormatterFactory
+	 * @param ITextFormatter $contLangMsgFormatter
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -62,7 +70,9 @@ class EmailUserFactory {
 		UserOptionsLookup $userOptionsLookup,
 		CentralIdLookup $centralIdLookup,
 		UserFactory $userFactory,
-		IEmailer $emailer
+		IEmailer $emailer,
+		IMessageFormatterFactory $messageFormatterFactory,
+		ITextFormatter $contLangMsgFormatter
 	) {
 		$options->assertRequiredOptions( EmailUser::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
@@ -71,6 +81,8 @@ class EmailUserFactory {
 		$this->centralIdLookup = $centralIdLookup;
 		$this->userFactory = $userFactory;
 		$this->emailer = $emailer;
+		$this->messageFormatterFactory = $messageFormatterFactory;
+		$this->contLangMsgFormatter = $contLangMsgFormatter;
 	}
 
 	/**
@@ -85,6 +97,8 @@ class EmailUserFactory {
 			$this->centralIdLookup,
 			$this->userFactory,
 			$this->emailer,
+			$this->messageFormatterFactory,
+			$this->contLangMsgFormatter,
 			$sender
 		);
 	}
@@ -104,6 +118,8 @@ class EmailUserFactory {
 			$this->centralIdLookup,
 			$this->userFactory,
 			$this->emailer,
+			$this->messageFormatterFactory,
+			$this->contLangMsgFormatter,
 			$sender
 		);
 	}
