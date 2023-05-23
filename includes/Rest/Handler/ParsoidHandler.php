@@ -843,6 +843,23 @@ abstract class ParsoidHandler extends Handler {
 
 		if ( $format === ParsoidFormatHelper::FORMAT_LINT ) {
 			$lints = $this->wtLint( $pageConfig, $attribs, $wikitext );
+
+			// FIXME: Once we improve handling of "hidden" lint categories in Parsoid
+			// to not generate these by default, we can get rid of this hack here.
+			// Till then, filter out 'large-tables' lints.
+			$lintRemoved = false;
+			foreach ( $lints as $index => $lint ) {
+				if ( $lint['type'] === 'large-tables' ) {
+					unset( $lints[$index] );
+					$lintRemoved = true;
+				}
+			}
+			// Resequence array indexes of unset elements which otherwise are json formatted
+			// with unwanted index keys
+			if ( $lintRemoved ) {
+				$lints = array_values( $lints );
+			}
+
 			$response = $this->getResponseFactory()->createJson( $lints );
 			return $response;
 		}
