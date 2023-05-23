@@ -84,7 +84,7 @@
 	"config-no-db": "Не удалось найти подходящие драйвера баз данных! Вам необходимо установить драйвера базы данных для PHP.\n{{PLURAL:$2|Поддерживается следующий тип|Поддерживаются следующие типы}} баз данных: $1.\n\nЕсли вы скомпилировали PHP сами, перенастройте его с включением клиента баз данных, например, с помощью <code>./configure --with-mysqli</code>.\nЕсли вы установили PHP из пакетов Debian или Ubuntu, то вам также необходимо установить, например, пакет <code>php-mysql</code>.",
 	"config-outdated-sqlite": "<strong>Внимание</strong>: у Вас установлен SQLite $2, версия которого ниже требуемой $1. SQLite будет недоступен.",
 	"config-no-fts3": "<strong>Внимание</strong>: SQLite собран без модуля [//sqlite.org/fts3.html FTS3] — поиск не будет работать для этой базы данных.",
-	"config-pcre-invalid-newline": "<strong>Неустранимая ошибка:</strong> PHP-модуль PCRE, по-видимому, скомпилирован с параметром PCRE_CONFIG_NEWLINE = -1 для ANY.\nMediaWiki не совместим с такой конфигурацией.",
+	"config-pcre-invalid-newline": "<strong>Неустранимая ошибка:</strong> Библиотека PCRE2, по-видимому, скомпилирована с параметром <code>--enable-newline-is-any</code>.\nMediaWiki не совместима с такой конфигурацией.",
 	"config-memory-raised": "Ограничение на доступную PHP память (<code>memory_limit</code>) поднято с $1 до $2.",
 	"config-memory-bad": "<strong>Внимание</strong>: размер PHP <code>memory_limit</code> составляет $1.\nВероятно, этого слишком мало.\nУстановка может завершиться ошибкой!",
 	"config-apc": "[https://www.php.net/apc APC] установлен",

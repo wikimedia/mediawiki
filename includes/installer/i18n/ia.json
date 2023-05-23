@@ -56,7 +56,7 @@
 	"config-no-db": "Non poteva trovar un driver appropriate pro le base de datos! Es necessari installar un driver de base de datos pro PHP.\nLe sequente {{PLURAL:$2|typo|typos}} de base de datos es supportate: $1.\n\nSi tu compilava PHP tu mesme, reconfigura lo con un cliente de base de datos activate, per exemplo, usante <code>./configure --with-mysqli</code>.\nSi tu installava PHP ex un pacchetto Debian o Ubuntu, tu debe etiam installar, per exemplo, le modulo <code>php-mysql</code>.",
 	"config-outdated-sqlite": "<strong>Attention</strong>: tu ha SQLite $2, que es inferior al minime version requirite, $1. SQLite essera indisponibile.",
 	"config-no-fts3": "'''Attention''': SQLite es compilate sin [//sqlite.org/fts3.html modulo FTS3]; functionalitate de recerca non essera disponibile in iste back-end.",
-	"config-pcre-invalid-newline": "<strong>Fatal:</strong> Le modulo PCRE de PHP pare haber essite compilate con PCRE_CONFIG_NEWLINE = -1 pro ANY.\nMediaWiki non es compatibile con iste configuration.",
+	"config-pcre-invalid-newline": "<strong>Fatal:</strong> Le bibliotheca PCRE2 pare haber essite compilate con <code>--enable-newline-is-any</code>.\nMediaWiki non es compatibile con iste configuration.",
 	"config-memory-raised": "Le <code>memory_limit</code> de PHP es $1, elevate a $2.",
 	"config-memory-bad": "'''Aviso:''' Le <code>memory_limit</code> de PHP es $1.\nIsto es probabilemente troppo basse.\nLe installation pote faller!",
 	"config-apc": "[https://www.php.net/apc APC] es installate",

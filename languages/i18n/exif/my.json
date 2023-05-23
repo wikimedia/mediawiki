@@ -69,6 +69,7 @@
 	"exif-gpsdop": "အတိုင်းအတာ တိကျမှု",
 	"exif-gpsspeedref": "အမြန်နှုန်း ယူနစ်",
 	"exif-gpsspeed": "ဂျီပီအက်စ်လက်ခံသူ အမြန်နှုန်း",
+	"exif-gpstrackref": "ရွေ့လျားမှု ဦးတည်ချက်အတွက် အကိုးအကား",
 	"exif-gpstrack": "ရွေ့လျား လားရာ",
 	"exif-gpsimgdirectionref": "ရုပ်ပုံလားရာ၏ အကိုးအကား",
 	"exif-gpsimgdirection": "ရုပ်ပုံ၏ လမ်းကြောင်း",
