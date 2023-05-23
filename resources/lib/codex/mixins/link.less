@@ -30,12 +30,6 @@
 // Link styles can be used inside of other Vue components, or anywhere that Less
 // is available; JS is not required.
 
-// TODO: Replace with design tokens when available.
-@font-size-browser: 16;
-@font-size-base: 14 / @font-size-browser;
-@min-size-icon-small: 14px;
-@size-icon-small: unit( ( 14 / @font-size-browser / @font-size-base ), em );
-
 .cdx-mixin-link-base() {
 	color: @color-progressive;
 	border-radius: @border-radius-base;
@@ -64,11 +58,12 @@
 	}
 
 	.cdx-icon:last-child {
-		// Note, `@min-size-icon-small` & `@size-icon-small` are an approximation in our current
+		// Note, `@min-size-icon-x-small` & `@size-icon-small` are an approximation in our current
 		// 16/14 base font theme environment.
-		// TODO: Revisit with Codex themes and with token icon sizes.
-		min-width: @min-size-icon-small;
-		min-height: @min-size-icon-small;
+		// We're faking it to make it, `@min-size-icon-x-small` is `12px` in both themes,
+		// `@size-icon-small` is `1em`, achieving the desired size.
+		min-width: @min-size-icon-x-small;
+		min-height: @min-size-icon-x-small;
 		width: @size-icon-small;
 		height: @size-icon-small;
 		padding-left: @spacing-25;

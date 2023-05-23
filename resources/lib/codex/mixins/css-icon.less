@@ -24,18 +24,48 @@
 }
 
 //
-// Get background rules for a CSS icon.
+// Get background rules for a CSS icon (or mask rules for icons in buttons).
 //
 // @param {string} size-icon - The size of the icon, used to set background-size
 // @param {string} background-position - The background position value
-.cdx-mixin-css-icon-background( @param-size-icon: @size-icon-medium, @param-background-position: @background-position-base ) {
+// @param {boolean} is-button-icon: Whether this icon is inside of a <button> element.
+//
+.cdx-mixin-css-icon-background( @param-size-icon: @size-icon-medium, @param-background-position: @background-position-base, @param-is-button-icon: false ) {
 	.get-calculated-min-size-icon( @param-size-icon );
-	background-position: @param-background-position;
-	background-repeat: no-repeat;
-	// Set background size to the relative @param-size-icon or to @calculated-min-size-icon, whichever is larger.
-	// This ensures that the icon will never appear smaller than @calculated-min-size-icon.
-	// Escape the max() call to prevent older Less versions from trying to do the max() calculation at compile time.
-	background-size: calc( ~'max( @{param-size-icon}, @{calculated-min-size-icon} )' );
+
+	.set-background-rules() {
+		background-position: @param-background-position;
+		background-repeat: no-repeat;
+		// Set background size to the relative @param-size-icon or to @calculated-min-size-icon, whichever is larger.
+		// This ensures that the icon will never appear smaller than @calculated-min-size-icon.
+		// Escape the max() call to prevent older Less versions from trying to do the max() calculation at compile time.
+		background-size: calc( ~'max( @{param-size-icon}, @{calculated-min-size-icon} )' );
+	}
+
+	& when ( @param-is-button-icon = false ) {
+		.set-background-rules();
+	}
+
+	& when ( @param-is-button-icon = true ) {
+		// Fall back to background rules.
+		@supports not ( mask-image: none ) and ( -webkit-mask-image: none ) {
+			.set-background-rules();
+		}
+
+		@supports ( mask-image: none ) or ( -webkit-mask-image: none ) {
+			/* stylelint-disable plugin/no-unsupported-browser-features */
+			// Support Chrome
+			-webkit-mask-size: calc( ~'max( @{param-size-icon}, @{calculated-min-size-icon} )' );
+			mask-size: calc( ~'max( @{param-size-icon}, @{calculated-min-size-icon} )' );
+			// Support Chrome
+			-webkit-mask-repeat: no-repeat;
+			mask-repeat: no-repeat;
+			// Support Chrome
+			-webkit-mask-position: @param-background-position;
+			mask-position: @param-background-position;
+			/* stylelint-enable plugin/no-unsupported-browser-features */
+		}
+	}
 }
 
 //
@@ -103,17 +133,15 @@
 
 	// For browsers that support it, use mask-image to set the SVG so we can change the color with
 	// much more granularity in the Button styles via the background color.
-	.cdx-button & {
-		@supports ( mask-image: none ) or ( -webkit-mask-image: none ) {
-			background-image: none;
-			// Support Chrome
-			/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-			-webkit-mask-image: url( @background-image-url );
-			/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-			mask-image: url( @background-image-url );
-			transition-property: background-color;
-			transition-duration: @transition-duration-base;
-		}
+	@supports ( mask-image: none ) or ( -webkit-mask-image: none ) {
+		background-image: none;
+		// Support Chrome
+		/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+		-webkit-mask-image: url( @background-image-url );
+		/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+		mask-image: url( @background-image-url );
+		transition-property: @transition-property-icon-css-only;
+		transition-duration: @transition-duration-base;
 	}
 }
 
@@ -239,7 +267,7 @@
 	@param-vertical-align: text-bottom
 ) {
 /* stylelint-enable indentation */
-	.cdx-mixin-css-icon-background( @param-size-icon, @param-background-position );
+	.cdx-mixin-css-icon-background( @param-size-icon, @param-background-position, @param-is-button-icon );
 	.cdx-mixin-css-icon-size( @param-size-icon );
 	.cdx-mixin-css-icon-alignment( @param-vertical-align );
 	.cdx-mixin-css-icon-background-image( @param-icon, @param-fill-color, @param-is-button-icon );
