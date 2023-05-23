@@ -132,8 +132,10 @@ span.comment {
 	font-style: italic;
 	unicode-bidi: -moz-isolate;
 	unicode-bidi: isolate;
+	// Covering several contexts for breaking up long comments, see T158725.
 	word-wrap: break-word;
 	overflow-wrap: break-word;
+	word-break: break-word;
 }
 
 /* The auto-generated edit comments */
