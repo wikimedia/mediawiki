@@ -14,7 +14,8 @@
 			"Whym",
 			"Yusuke1109",
 			"ネイ",
-			"Marine-Blue"
+			"Marine-Blue",
+			"Hzy980512"
 		]
 	},
 	"exif-imagewidth": "画像の幅",
@@ -398,6 +399,8 @@
 	"exif-urgency-low": "低 ($1)",
 	"exif-urgency-high": "高 ($1)",
 	"exif-urgency-other": "利用者定義の優先度 ($1)",
+	"exif-firstphotodate": "初回撮影日",
+	"exif-lastphotodate": "最後撮影日",
 	"exif-projectiontype": "投影方式",
 	"exif-projectiontype-equirectangular": "正距円筒図法",
 	"exif-usepanoramaviewer": "パノラマビューワーを使用するか",
@@ -406,5 +409,11 @@
 	"exif-exposurelockused": "露出を固定していたか",
 	"exif-exposurelockused-true": "はい",
 	"exif-exposurelockused-false": "いいえ",
+	"exif-poseheadingdegrees": "コンパスの向首方向（度数）",
+	"exif-posepitchdegrees": "ピッチ（度数）",
+	"exif-poserolldegrees": "ロール（度数）",
+	"exif-initialviewheadingdegrees": "初回ビューの向首角（度数）",
+	"exif-initialviewpitchdegrees": "初回ビューのピッチ角（度数）",
+	"exif-initialviewrolldegrees": "初回ビューのロール角（度数）",
 	"exif-stitchingsoftware": "スティッチングソフトウェア"
 }

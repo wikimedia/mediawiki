@@ -20,5 +20,6 @@
 	"rest-permission-denied-anon": "Niet toegankelijk voor anonieme gebruiker",
 	"rest-pagehistory-incompatible-params": "Parameters \"older_than\" en \"newer_than\" kunnen niet beide worden opgegeven",
 	"rest-pagehistory-param-range-error": "Versie ID moet groter zijn dan 0",
-	"rest-compare-permission-denied": "Gebruiker heeft geen toegang tot de gevraagde herzieningen"
+	"rest-compare-permission-denied": "Gebruiker heeft geen toegang tot de gevraagde herzieningen",
+	"rest-badtoken": "Het opgegeven CSRF-token is ongeldig."
 }

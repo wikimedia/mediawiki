@@ -30,7 +30,8 @@
 			"Yusuke1109",
 			"ネイ",
 			"青子守歌",
-			"아라"
+			"아라",
+			"背番号4のエース"
 		]
 	},
 	"config-desc": "MediaWiki のインストーラー",
@@ -226,7 +227,7 @@
 	"config-enable-email": "メール送信を有効にする",
 	"config-enable-email-help": "メールを使用したい場合は、[https://www.php.net/manual/en/mail.configuration.php PHP のメール設定]が正しく設定されている必要があります。\nメールの機能を使用しない場合は、ここで無効にすることができます。",
 	"config-email-user": "利用者間のメールを有効にする",
-	"config-email-user-help": "設定で有効になっている場合、すべてのユーザーがお互いにメールのやりとりを行うことを許可する。",
+	"config-email-user-help": "設定で有効になっている場合、すべての利用者がお互いにメールのやりとりを行うことを許可する。",
 	"config-email-usertalk": "利用者のトークページでの通知を有効にする",
 	"config-email-usertalk-help": "設定で有効にしている場合は、利用者のトークページの変更の通知を受けることを利用者に許可する。",
 	"config-email-watchlist": "ウォッチリストの通知を有効にする",

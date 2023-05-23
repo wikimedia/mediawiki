@@ -120,7 +120,8 @@
 			"Ömer Berkay",
 			"İnternion",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"MrSchipunov"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çizme:",
@@ -3050,7 +3051,7 @@
 	"tooltip-p-personal": "Kullanıcı menüsü",
 	"tooltip-n-mainpage": "Anasayfayı ziyaret et",
 	"tooltip-n-mainpage-description": "Anasayfayı ziyaret et",
-	"tooltip-n-portal": "Proje hakkında, neler yapabilirsiniz, ne nerdedir",
+	"tooltip-n-portal": "Proje hakkında, neler yapabilirsiniz, ne nerededir",
 	"tooltip-n-currentevents": "Güncel olaylarla ilgili son bilgiler",
 	"tooltip-n-recentchanges": "Vikide yapılmış son değişikliklerin listesi",
 	"tooltip-n-randompage": "Rastgele bir sayfaya gidin",
