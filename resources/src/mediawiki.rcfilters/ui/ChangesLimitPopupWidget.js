@@ -36,6 +36,11 @@ ChangesLimitPopupWidget = function MwRcfiltersUiChangesLimitPopupWidget( limitMo
 	this.valuePicker.connect( this, { choose: [ 'emit', 'limit' ] } );
 	this.groupByPageCheckbox.connect( this, { change: [ 'emit', 'groupByPage' ] } );
 	this.groupByPageItemModel.connect( this, { update: 'onGroupByPageModelUpdate' } );
+	// HACK: Directly connect to the checkbox click event so that we can save the preference
+	// when the user explicitly interacts with the checkbox rather than when the checkbox changes
+	// state. This is to make sure that we only save preference when the user explicitly interacts
+	// with the UI.
+	this.groupByPageCheckbox.$element.on( 'click', this.onGroupByPageUserClick.bind( this ) );
 
 	// Initialize
 	this.$element
@@ -51,6 +56,7 @@ ChangesLimitPopupWidget = function MwRcfiltersUiChangesLimitPopupWidget( limitMo
 					}
 				).$element
 		);
+
 	this.valuePicker.selectWidget.$element.attr( 'aria-label', mw.msg( 'rcfilters-limit-title' ) );
 };
 
@@ -79,6 +85,13 @@ OO.inheritClass( ChangesLimitPopupWidget, OO.ui.Widget );
  */
 ChangesLimitPopupWidget.prototype.onGroupByPageModelUpdate = function () {
 	this.groupByPageCheckbox.setSelected( this.groupByPageItemModel.isSelected() );
+};
+
+/**
+ * Respond to user explicitly clicking the Group by page checkbox
+ */
+ChangesLimitPopupWidget.prototype.onGroupByPageUserClick = function () {
+	this.emit( 'groupByPageUserClick', this.groupByPageCheckbox.isSelected() );
 };
 
 module.exports = ChangesLimitPopupWidget;

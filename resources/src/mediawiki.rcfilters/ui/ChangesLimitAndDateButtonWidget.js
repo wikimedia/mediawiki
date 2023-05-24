@@ -106,7 +106,8 @@ ChangesLimitAndDateButtonWidget.prototype.onModelInitialize = function () {
 		this.daysGroupModel.connect( this, { update: 'updateButtonLabel' } );
 		this.changesLimitPopupWidget.connect( this, {
 			limit: 'onPopupLimit',
-			groupByPage: 'onPopupGroupByPage'
+			groupByPage: 'onPopupGroupByPage',
+			groupByPageUserClick: 'onPopupGroupByPageUserClick'
 		} );
 		datePopupWidget.connect( this, { days: 'onPopupDays' } );
 
@@ -150,8 +151,16 @@ ChangesLimitAndDateButtonWidget.prototype.onPopupLimit = function ( filterName )
  */
 ChangesLimitAndDateButtonWidget.prototype.onPopupGroupByPage = function ( isGrouped ) {
 	this.controller.toggleFilterSelect( this.groupByPageItemModel.getName(), isGrouped );
-	this.controller.updateGroupByPageDefault( isGrouped );
 	this.button.popup.toggle( false );
+};
+
+/**
+ * Respond to popup request to save the group by page setting in preferences
+ *
+ * @param {boolean} isSelected The state of the group by page checkbox
+ */
+ChangesLimitAndDateButtonWidget.prototype.onPopupGroupByPageUserClick = function ( isSelected ) {
+	this.controller.updateGroupByPageDefault( isSelected );
 };
 
 /**
