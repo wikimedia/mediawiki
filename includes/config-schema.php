@@ -224,6 +224,8 @@ return [
 			'SVGConverterPath' => '',
 			'SVGMaxSize' => 5120,
 			'SVGMetadataCutoff' => 262144,
+			'SVGNativeRendering' => 'false',
+			'SVGNativeRenderingSizeLimit' => 51200,
 			'MediaInTargetLanguage' => true,
 			'MaxImageArea' => 12500000,
 			'MaxAnimatedGifArea' => 12500000,
@@ -2520,6 +2522,10 @@ return [
 			'ParserTestMediaHandlers' => 'object',
 			'MaxInterlacingAreas' => 'object',
 			'SVGConverters' => 'object',
+			'SVGNativeRendering' => [
+				0 => 'string',
+				1 => 'boolean',
+			],
 			'MaxImageArea' => [
 				0 => 'string',
 				1 => 'integer',

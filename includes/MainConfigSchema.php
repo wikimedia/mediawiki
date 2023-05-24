@@ -1940,6 +1940,32 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Whether native rendering by the browser agent is allowed
+	 *
+	 * Default is false. Setting it to true disables all SVG conversion.
+	 * Setting to the string 'partial' will only allow native rendering
+	 * when the filesize is below SVGNativeRenderingSizeLimit and if the
+	 * file contains at most 1 language.
+	 *
+	 * @since 1.41
+	 */
+	public const SVGNativeRendering = [
+		'default' => 'false',
+		'type' => 'string|boolean',
+	];
+
+	/**
+	 * Filesize limit for allowing SVGs to render natively by the browser agent
+	 *
+	 * Default is 50kB.
+	 *
+	 * @since 1.41
+	 */
+	public const SVGNativeRenderingSizeLimit = [
+		'default' => 50 * 1024,
+	];
+
+	/**
 	 * Whether thumbnails should be generated in target language (usually, same as
 	 * page language), if available.
 	 *

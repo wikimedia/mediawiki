@@ -635,6 +635,18 @@ $wgSVGMaxSize = null;
 $wgSVGMetadataCutoff = null;
 
 /**
+ * Config variable stub for the SVGNativeRendering setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::SVGNativeRendering
+ */
+$wgSVGNativeRendering = null;
+
+/**
+ * Config variable stub for the SVGNativeRenderingSizeLimit setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::SVGNativeRenderingSizeLimit
+ */
+$wgSVGNativeRenderingSizeLimit = null;
+
+/**
  * Config variable stub for the MediaInTargetLanguage setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::MediaInTargetLanguage
  */
