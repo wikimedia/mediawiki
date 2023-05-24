@@ -169,6 +169,11 @@ because of Phabricator reports.
 * The jquery.tipsy module, deprecated since 1.28, has now been removed.
 * NamespaceInfo::getRestrictionLevels(), deprecated in 1.34, has been removed.
   Use PermissionManager::getNamespaceRestrictionLevels() instead.
+* The following methods in the DatabasePostgres class, unused, have been
+  removed:
+  - ::currentSequenceValue()
+  - ::triggerExists()
+  - ::ruleExists()
 * …
 
 === Deprecations in 1.41 ===
