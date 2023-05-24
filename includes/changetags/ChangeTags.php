@@ -1132,12 +1132,10 @@ class ChangeTags {
 			$result->value = null;
 			return $result;
 		}
-
-		// do it!
-		self::defineTag( $tag );
-
-		// log it
 		$changeTagStore = MediaWikiServices::getInstance()->getChangeTagsStore();
+
+		$changeTagStore->defineTag( $tag );
+
 		$logId = $changeTagStore->logTagManagementAction( 'activate', $tag, $reason, $performer->getUser(),
 			null, $logEntryTags );
 
@@ -1167,7 +1165,7 @@ class ChangeTags {
 		}
 
 		// only explicitly-defined tags can be deactivated
-		$explicitlyDefinedTags = self::listExplicitlyDefinedTags();
+		$explicitlyDefinedTags = MediaWikiServices::getInstance()->getChangeTagsStore()->listExplicitlyDefinedTags();
 		if ( !in_array( $tag, $explicitlyDefinedTags ) ) {
 			return Status::newFatal( 'tags-deactivate-not-allowed', $tag );
 		}
@@ -1200,12 +1198,10 @@ class ChangeTags {
 			$result->value = null;
 			return $result;
 		}
-
-		// do it!
-		self::undefineTag( $tag );
-
-		// log it
 		$changeTagStore = MediaWikiServices::getInstance()->getChangeTagsStore();
+
+		$changeTagStore->undefineTag( $tag );
+
 		$logId = $changeTagStore->logTagManagementAction( 'deactivate', $tag, $reason,
 			$performer->getUser(), null, $logEntryTags );
 
@@ -1498,35 +1494,12 @@ class ChangeTags {
 	 *
 	 * Tries memcached first.
 	 *
+	 * @deprecated since 1.41 use ChangeTagsStore instead
 	 * @return string[] Array of strings: tags
 	 * @since 1.25
 	 */
 	public static function listExplicitlyDefinedTags() {
-		$fname = __METHOD__;
-
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-		return $cache->getWithSetCallback(
-			$cache->makeKey( 'valid-tags-db' ),
-			WANObjectCache::TTL_MINUTE * 5,
-			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
-				$dbr = wfGetDB( DB_REPLICA );
-
-				$setOpts += Database::getCacheSetOptions( $dbr );
-				$tags = $dbr->newSelectQueryBuilder()
-					->select( 'ctd_name' )
-					->from( self::CHANGE_TAG_DEF )
-					->where( [ 'ctd_user_defined' => 1 ] )
-					->caller( $fname )
-					->fetchFieldValues();
-
-				return array_unique( $tags );
-			},
-			[
-				'checkKeys' => [ $cache->makeKey( 'valid-tags-db' ) ],
-				'lockTSE' => WANObjectCache::TTL_MINUTE * 5,
-				'pcTTL' => WANObjectCache::TTL_PROC_LONG
-			]
-		);
+		return MediaWikiServices::getInstance()->getChangeTagsStore()->listExplicitlyDefinedTags();
 	}
 
 	/**
@@ -1535,33 +1508,12 @@ class ChangeTags {
 	 *
 	 * Tries memcached first.
 	 *
+	 * @deprecated since 1.41 use ChangeTagsStore instead
 	 * @return string[] Array of strings: tags
 	 * @since 1.25
 	 */
 	public static function listSoftwareDefinedTags() {
-		// core defined tags
-		$tags = self::getSoftwareTags( true );
-		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		if ( !$hookContainer->isRegistered( 'ListDefinedTags' ) ) {
-			return $tags;
-		}
-		$hookRunner = new HookRunner( $hookContainer );
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-		return $cache->getWithSetCallback(
-			$cache->makeKey( 'valid-tags-hook' ),
-			WANObjectCache::TTL_MINUTE * 5,
-			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $tags, $hookRunner ) {
-				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
-
-				$hookRunner->onListDefinedTags( $tags );
-				return array_unique( $tags );
-			},
-			[
-				'checkKeys' => [ $cache->makeKey( 'valid-tags-hook' ) ],
-				'lockTSE' => WANObjectCache::TTL_MINUTE * 5,
-				'pcTTL' => WANObjectCache::TTL_PROC_LONG
-			]
-		);
+		return MediaWikiServices::getInstance()->getChangeTagsStore()->listSoftwareDefinedTags();
 	}
 
 	/**
