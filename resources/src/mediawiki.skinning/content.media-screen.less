@@ -25,10 +25,8 @@ figure[ typeof~='mw:File/Frame' ] {
 	}
 }
 
-.mw-image-border > :not( figcaption ) {
-	.mw-file-element:not( .mw-broken-media ) {
-		border: @border-thumbborder-screen;
-	}
+.mw-image-border .mw-file-element:not( .mw-broken-media ) {
+	border: @border-thumbborder-screen;
 }
 
 /* Magnify clip, not present for broken media */
