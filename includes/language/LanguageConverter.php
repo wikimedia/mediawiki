@@ -630,6 +630,19 @@ abstract class LanguageConverter implements ILanguageConverter {
 		// Otherwise translate it
 		if ( trim( $text ) ) {
 			$this->loadTables();
+			// (T337427) Debugging / note error state if mTables not initialised
+			if ( !$this->mTables[$variant] ) {
+				$log = LoggerFactory::getInstance( 'languageconverter' );
+				$log->error( "Tables not initialised for variant in " . __METHOD__
+					. ". No language conversion made for this string.",
+					[
+						"method" => __METHOD__,
+						"variant" => $variant,
+						"startOfText" => substr( $text, 0, 500 )
+					]
+				);
+				return $text;
+			}
 			$text = $this->mTables[$variant]->replace( $text );
 		}
 		return $text;
