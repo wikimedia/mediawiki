@@ -103,11 +103,15 @@ class UserGroupManagerFactory {
 	}
 
 	/**
-	 * @param string|false $dbDomain
+	 * @param string|false $wikiId
 	 * @return UserGroupManager
 	 */
-	public function getUserGroupManager( $dbDomain = false ): UserGroupManager {
-		// TODO: Once UserRightsProxy is removed, cache the instance per domain.
+	public function getUserGroupManager( $wikiId = UserIdentity::LOCAL ): UserGroupManager {
+		if ( is_string( $wikiId ) && $this->dbLoadBalancerFactory->getLocalDomainID() === $wikiId ) {
+			$wikiId = UserIdentity::LOCAL;
+		}
+
+		// TODO: Once UserRightsProxy is removed, cache the instance per wiki.
 		return new UserGroupManager(
 			$this->options,
 			$this->configuredReadOnlyMode,
@@ -115,11 +119,11 @@ class UserGroupManagerFactory {
 			$this->hookContainer,
 			$this->userEditTracker,
 			$this->groupPermissionLookup,
-			$this->jobQueueGroupFactory->makeJobQueueGroup( $dbDomain ),
+			$this->jobQueueGroupFactory->makeJobQueueGroup( $wikiId ),
 			$this->logger,
 			$this->tempUserConfig,
 			$this->clearCacheCallbacks,
-			$dbDomain
+			$wikiId
 		);
 	}
 }
