@@ -402,7 +402,7 @@ ooui:
   homepage: https://www.mediawiki.org/wiki/OOUI
   authors: OOUI Team and other contributors
   version: 0.47.0
-  type: tar
+  type: doc-only # temporary
   src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.47.0.tgz
   integrity: sha384-V+Lc6noFXnGfnM56KoZUZAkGR2vPhnDmWbUdgFgz9B8/M8Wg/nc2+fZ5qEUeTXlE
 
