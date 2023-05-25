@@ -351,10 +351,7 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 			// protocol-relative URL cases per T31854...
 			[
 				'//example.org/test.cgi?id=12345',
-				[
-					[ 'http://org.example.', '/test.cgi?id=12345' ],
-					[ 'https://org.example.', '/test.cgi?id=12345' ]
-				]
+				[ [ 'https://org.example.', '/test.cgi?id=12345' ] ]
 			],
 
 			// IP addresses

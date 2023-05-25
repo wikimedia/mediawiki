@@ -170,6 +170,8 @@ because of Phabricator reports.
 * The jquery.tipsy module, deprecated since 1.28, has now been removed.
 * NamespaceInfo::getRestrictionLevels(), deprecated in 1.34, has been removed.
   Use PermissionManager::getNamespaceRestrictionLevels() instead.
+* Proto-relative external links are now stored and indexed only as HTTPS
+  instead of two rows, one for HTTP and one for HTTPS.
 * The following methods in the DatabasePostgres class, unused, have been
   removed:
   - ::currentSequenceValue()

@@ -164,8 +164,7 @@ class LinkFilter {
 	 * Converts a URL into a format for el_index
 	 * @since 1.33
 	 * @param string $url
-	 * @return string[][] Usually one entry, but might be two in case of
-	 *  protocol-relative URLs. Empty array on error.
+	 * @return string[][] One entry. Empty array on error.
 	 *  Each entry is an array in form of <host,path>
 	 */
 	public static function makeIndexes( $url ) {
@@ -211,7 +210,7 @@ class LinkFilter {
 		}
 
 		if ( $bits['scheme'] == '' ) {
-			return [ [ "http:$index", $index2 ], [ "https:$index", $index2 ] ];
+			return [ [ "https:$index", $index2 ] ];
 		} else {
 			return [ [ $index, $index2 ] ];
 		}
