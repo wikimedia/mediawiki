@@ -660,6 +660,8 @@ class Linker {
 		$enableLegacyMediaDOM = $services->getMainConfig()->get( MainConfigNames::ParserEnableLegacyMediaDOM );
 
 		$page = $handlerParams['page'] ?? false;
+		$lang = $handlerParams['lang'] ?? false;
+
 		if ( !isset( $frameParams['align'] ) ) {
 			$frameParams['align'] = '';
 			if ( $enableLegacyMediaDOM ) {
@@ -722,13 +724,16 @@ class Linker {
 
 		$url = Title::newFromLinkTarget( $title )->getLocalURL( $query );
 		$linkTitleQuery = [];
-
-		if ( $page ) {
-			$linkTitleQuery['page'] = $page;
+		if ( $page || $lang ) {
+			if ( $page ) {
+				$linkTitleQuery['page'] = $page;
+			}
+			if ( $lang ) {
+				$linkTitleQuery['lang'] = $lang;
+			}
 			# ThumbnailImage::toHtml() already adds page= onto the end of DjVu URLs
 			# So we don't need to pass it here in $query. However, the URL for the
 			# zoom icon still needs it, so we make a unique query for it. See T16771
-			# FIXME: What about "lang" and other querystring parameters
 			$url = wfAppendQuery( $url, $linkTitleQuery );
 		}
 
