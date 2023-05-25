@@ -2411,7 +2411,7 @@ wgParserEnableLegacyMediaDOM=false
 </p><p><a href="/wiki/%27%27Pentecoste%27%27" title="&#39;&#39;Pentecoste&#39;&#39;"><i>Pentecoste</i></a>
 </p>
 !! html/parsoid
-<p><span class="mw-default-size" typeof="mw:Error mw:File" data-parsoid='{"optList":[]}' data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Denys_Savchenko_''Pentecoste''.jpg"><span class="mw-broken-media" resource="./File:Denys_Savchenko_''Pentecoste''.jpg" data-parsoid='{"a":{"resource":"./File:Denys_Savchenko_&apos;&apos;Pentecoste&apos;&apos;.jpg"},"sa":{"resource":"File:Denys_Savchenko_&apos;&apos;Pentecoste&apos;&apos;.jpg"}}'>File:Denys Savchenko ''Pentecoste''.jpg</span></a></span></p>
+<p><span class="mw-default-size" typeof="mw:Error mw:File" data-parsoid='{"optList":[]}' data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Denys_Savchenko_''Pentecoste''.jpg"><span class="mw-file-element mw-broken-media" resource="./File:Denys_Savchenko_''Pentecoste''.jpg" data-parsoid='{"a":{"resource":"./File:Denys_Savchenko_&apos;&apos;Pentecoste&apos;&apos;.jpg"},"sa":{"resource":"File:Denys_Savchenko_&apos;&apos;Pentecoste&apos;&apos;.jpg"}}'>File:Denys Savchenko ''Pentecoste''.jpg</span></a></span></p>
 
 <p><a rel="mw:WikiLink" href="./''Pentecoste''" title="''Pentecoste''" data-parsoid='{"stx":"simple","a":{"href":"./&apos;&apos;Pentecoste&apos;&apos;"},"sa":{"href":"&apos;&apos;Pentecoste&apos;&apos;"}}'>''Pentecoste''</a></p>
 
@@ -5808,7 +5808,7 @@ File with template filename
 !! wikitext
 [[File:{{1x|Foobar.jpg}}]]
 !! html/parsoid
-<p><span class="mw-default-size" typeof="mw:File mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"href"},{"html":"File:&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"}]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"Foobar.jpg\"}},\"i\":0}}]}&apos;>Foobar.jpg&lt;/span>"}]]}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"File:{{1x|Foobar.jpg}}"}}'/></a></span></p>
+<p><span class="mw-default-size" typeof="mw:File mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"href"},{"html":"File:&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"}]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"Foobar.jpg\"}},\"i\":0}}]}&apos;>Foobar.jpg&lt;/span>"}]]}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"File:{{1x|Foobar.jpg}}"}}' class="mw-file-element"/></a></span></p>
 !! end
 
 !!test
@@ -6836,6 +6836,47 @@ subpage title=[[Subpage test/1/2/3/4]]
 <p>[[User:../subpage]]
 [[meatball:../subpage]]
 </p>
+!! end
+
+!! test
+T335847: Resolve forward slash title
+!! options
+subpage title=[[/]]
+!! wikitext
+===123===
+!! html/php
+<h3><span class="mw-headline" id="123">123</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=/&amp;action=edit&amp;section=1" title="Edit section: 123">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
+!! html/parsoid
+<h3 id="123" data-parsoid="{}">123</h3>
+!! end
+
+## The next two tests capture an inconsistency between relative link parsing on
+## the "/" page in the legacy parser.  Parsoid's output seems preferable.
+
+!! test
+T335847: Resolve subpage of control title
+!! options
+subpage title=[[Asdf]]
+!! wikitext
+[[../Hi]]
+!! html/php
+<p>[[../Hi]]
+</p>
+!! html/parsoid
+<p>[[../Hi]]</p>
+!! end
+
+!! test
+T335847: Resolve subpage of forward slash title
+!! options
+subpage title=[[/]]
+!! wikitext
+[[../Hi]]
+!! html/php
+<p><a href="/index.php?title=/Hi&amp;action=edit&amp;redlink=1" class="new" title="/Hi (page does not exist)">/Hi</a>
+</p>
+!! html/parsoid
+<p>[[../Hi]]</p>
 !! end
 
 ###
@@ -7961,7 +8002,7 @@ wgParserEnableLegacyMediaDOM=false
 </p>
 !! html/parsoid
 <p>[[Media:Foobar.jpg|<a rel="mw:WikiLink" href="./Test" title="Test" data-parsoid='{"stx":"simple","a":{"href":"./Test"},"sa":{"href":"Test"}}'>Test</a>]]
-[[Media:Foobar.jpg|<span class="mw-default-size" typeof="mw:File" data-parsoid='{"optList":[]}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></span>]]</p>
+[[Media:Foobar.jpg|<span class="mw-default-size" typeof="mw:File" data-parsoid='{"optList":[]}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"File:Foobar.jpg"}}' class="mw-file-element"/></a></span>]]</p>
 !! end
 
 !! test
@@ -12562,7 +12603,7 @@ wgParserEnableLegacyMediaDOM=false
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./User:+%25?action=edit&amp;redlink=1" title="User:+%" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./User:+%25"},"sa":{"href":"User:+%"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["User:+%"]}}'>User:+%</a> <a rel="mw:WikiLink" href="./Page+title%25?action=edit&amp;redlink=1" title="Page+title%" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./Page+title%25"},"sa":{"href":"Page+title%"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Page+title%"]}}'>Page+title%</a>
 <a rel="mw:WikiLink" href="./%25+?action=edit&amp;redlink=1" title="%+" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./%25+"},"sa":{"href":"%+"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["%+"]}}'>%+</a> <a rel="mw:WikiLink" href="./%25+?action=edit&amp;redlink=1" title="%+" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"piped","a":{"href":"./%25+"},"sa":{"href":"%+"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["%+"]}}'>%20</a> <a rel="mw:WikiLink" href="./%25+?action=edit&amp;redlink=1" title="%+" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./%25+"},"sa":{"href":"%+ "}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["%+"]}}'>%+ </a> <a rel="mw:WikiLink" href="./%25+r?action=edit&amp;redlink=1" title="%+r" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./%25+r"},"sa":{"href":"%+r"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["%+r"]}}'>%+r</a>
-<a rel="mw:WikiLink" href="./%25?action=edit&amp;redlink=1" title="%" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./%25"},"sa":{"href":"%"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["%"]}}'>%</a> <a rel="mw:WikiLink" href="./+?action=edit&amp;redlink=1" title="+" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./+"},"sa":{"href":"+"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["+"]}}'>+</a> <span class="mw-default-size" typeof="mw:Error mw:File" data-parsoid='{"optList":[{"ck":"bogus","ak":"foo"},{"ck":"caption","ak":"[[bar]]"}]}' data-mw='{"caption":"&lt;a rel=\"mw:WikiLink\" href=\"./Bar\" title=\"Bar\" data-parsoid=&apos;{\"stx\":\"simple\",\"a\":{\"href\":\"./Bar\"},\"sa\":{\"href\":\"bar\"},\"dsr\":[94,101,2,2]}&apos;>bar&lt;/a>","errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/%25+abc9"><span class="mw-broken-media" resource="./File:%25+abc9" data-parsoid='{"a":{"resource":"./File:%25+abc9"},"sa":{"resource":"File:%+abc%39"}}'>bar</span></a></span>
+<a rel="mw:WikiLink" href="./%25?action=edit&amp;redlink=1" title="%" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./%25"},"sa":{"href":"%"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["%"]}}'>%</a> <a rel="mw:WikiLink" href="./+?action=edit&amp;redlink=1" title="+" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./+"},"sa":{"href":"+"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["+"]}}'>+</a> <span class="mw-default-size" typeof="mw:Error mw:File" data-parsoid='{"optList":[{"ck":"bogus","ak":"foo"},{"ck":"caption","ak":"[[bar]]"}]}' data-mw='{"caption":"&lt;a rel=\"mw:WikiLink\" href=\"./Bar\" title=\"Bar\" data-parsoid=&apos;{\"stx\":\"simple\",\"a\":{\"href\":\"./Bar\"},\"sa\":{\"href\":\"bar\"},\"dsr\":[94,101,2,2]}&apos;>bar&lt;/a>","errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/%25+abc9"><span class="mw-file-element mw-broken-media" resource="./File:%25+abc9" data-parsoid='{"a":{"resource":"./File:%25+abc9"},"sa":{"resource":"File:%+abc%39"}}'>bar</span></a></span>
 <a rel="mw:WikiLink" href="./3E?action=edit&amp;redlink=1" title="3E" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./3E"},"sa":{"href":"%33%45"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["3E"]}}'>3E</a> <a rel="mw:WikiLink" href="./3E+?action=edit&amp;redlink=1" title="3E+" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./3E+"},"sa":{"href":"%33%45+"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["3E+"]}}'>3E+</a></p>
 !! end
 
@@ -13538,8 +13579,8 @@ Multi-line image caption generated by templates with/without trailing newlines
 [[File:Foobar.jpg|thumb|300x300px|foo\n{{1x|A}}\n{{1x|B}}\n{{1x|C}}]]
 [[File:Foobar.jpg|thumb|300x300px|foo\n{{1x|A}}\n{{1x|B}}\n{{1x|C}}\n\n]]
 !! html/parsoid
-<figure typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="34" width="300" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/450px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/600px-Foobar.jpg 2x"/></a><figcaption>foo\n<span about="#mwt9" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"A"}},"i":0}}]}'>A</span>\n<span about="#mwt10" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"B"}},"i":0}}]}'>B</span>\n<span about="#mwt11" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"C"}},"i":0}}]}'>C</span></figcaption></figure>
-<figure typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="34" width="300" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/450px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/600px-Foobar.jpg 2x"/></a><figcaption>foo\n<span about="#mwt12" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"A"}},"i":0}}]}'>A</span>\n<span about="#mwt13" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"B"}},"i":0}}]}'>B</span>\n<span about="#mwt14" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"C"}},"i":0}}]}'>C</span>\n\n</figcaption></figure>
+<figure typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="34" width="300" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/450px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/600px-Foobar.jpg 2x" class="mw-file-element"/></a><figcaption>foo\n<span about="#mwt9" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"A"}},"i":0}}]}'>A</span>\n<span about="#mwt10" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"B"}},"i":0}}]}'>B</span>\n<span about="#mwt11" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"C"}},"i":0}}]}'>C</span></figcaption></figure>
+<figure typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="34" width="300" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/450px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/600px-Foobar.jpg 2x" class="mw-file-element"/></a><figcaption>foo\n<span about="#mwt12" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"A"}},"i":0}}]}'>A</span>\n<span about="#mwt13" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"B"}},"i":0}}]}'>B</span>\n<span about="#mwt14" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"C"}},"i":0}}]}'>C</span>\n\n</figcaption></figure>
 !! end
 
 !! test
