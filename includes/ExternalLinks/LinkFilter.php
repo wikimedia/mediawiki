@@ -164,10 +164,11 @@ class LinkFilter {
 	 * Converts a URL into a format for el_index
 	 * @since 1.33
 	 * @param string $url
+	 * @param bool $reverseDomain
 	 * @return string[][] One entry. Empty array on error.
 	 *  Each entry is an array in form of <host,path>
 	 */
-	public static function makeIndexes( $url ) {
+	public static function makeIndexes( $url, $reverseDomain = true ) {
 		// NOTE: If you change the output of this method, you'll probably have to increment self::VERSION!
 
 		// NOTE: refreshExternallinksIndex.php assumes that only protocol-relative URLs return more
@@ -185,14 +186,20 @@ class LinkFilter {
 		if ( $bits['scheme'] == 'mailto' ) {
 			$mailparts = explode( '@', $bits['host'], 2 );
 			if ( count( $mailparts ) === 2 ) {
-				$domainpart = self::indexifyHost( $mailparts[1] );
+				if ( $reverseDomain ) {
+					$domainpart = self::indexifyHost( $mailparts[1] );
+				} else {
+					$domainpart = $mailparts[1];
+				}
 			} else {
 				// No @, assume it's a local part with no domain
 				$domainpart = '';
 			}
 			$bits['host'] = $domainpart . '@' . $mailparts[0];
 		} else {
-			$bits['host'] = self::indexifyHost( $bits['host'] );
+			if ( $reverseDomain ) {
+				$bits['host'] = self::indexifyHost( $bits['host'] );
+			}
 		}
 
 		// Reconstruct the pseudo-URL
@@ -214,6 +221,32 @@ class LinkFilter {
 		} else {
 			return [ [ $index, $index2 ] ];
 		}
+	}
+
+	/**
+	 * Converts a set of URLs to be able to compare them with existing indexes
+	 * @since 1.41
+	 * @param string[] $urls List of URLs to be indexed
+	 * @return string[]
+	 */
+	public static function getIndexedUrlsNonReversed( $urls ) {
+		$migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::ExternalLinksSchemaMigrationStage
+		);
+		if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+			return $urls;
+		}
+		$newLinks = [];
+		foreach ( $urls as $url ) {
+			$indexes = self::makeIndexes( $url, false );
+			if ( !$indexes ) {
+				continue;
+			}
+			foreach ( $indexes as $index ) {
+				$newLinks[] = $index[0] . $index[1];
+			}
+		}
+		return $newLinks;
 	}
 
 	public static function reverseIndexe( $domainIndex ) {

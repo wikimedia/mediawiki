@@ -639,4 +639,39 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 			],
 		];
 	}
+
+	/**
+	 * @dataProvider provideGetIndexedUrlsNonReversed
+	 * @covers LinkFilter::getIndexedUrlsNonReversed
+	 */
+	public function testGetIndexedUrlsNonReversed( $urls, $expected ) {
+		$this->overrideConfigValue( MainConfigNames::ExternalLinksSchemaMigrationStage, SCHEMA_COMPAT_NEW );
+		$list = LinkFilter::getIndexedUrlsNonReversed( $urls );
+		$this->assertEquals( $expected, $list );
+	}
+
+	public static function provideGetIndexedUrlsNonReversed() {
+		return [
+			'Basic example' => [
+				[ 'https://example.com' ],
+				[ 'https://example.com/' ],
+			],
+			'Basic example with path' => [
+				[ 'https://example.com/foobar' ],
+				[ 'https://example.com/foobar' ],
+			],
+			'Proto-relative' => [
+				[ '//example.com/foobar' ],
+				[ 'https://example.com/foobar' ],
+			],
+			'Links with port' => [
+				[ 'https://spam.com/index.html:8000' ],
+				[ 'https://spam.com/index.html:8000' ],
+			],
+			'Links with user' => [
+				[ 'https://foo@spam.com/bar.html' ],
+				[ 'https://spam.com/bar.html' ],
+			],
+		];
+	}
 }
