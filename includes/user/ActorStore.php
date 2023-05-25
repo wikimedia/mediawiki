@@ -193,11 +193,11 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 * Find an actor by $id.
 	 *
 	 * @param int $actorId
-	 * @param IDatabase $db The database connection to operate on.
+	 * @param IReadableDatabase $db The database connection to operate on.
 	 *        The database must correspond to ActorStore's wiki ID.
 	 * @return UserIdentity|null Returns null if no actor with this $actorId exists in the database.
 	 */
-	public function getActorById( int $actorId, IDatabase $db ): ?UserIdentity {
+	public function getActorById( int $actorId, IReadableDatabase $db ): ?UserIdentity {
 		$this->checkDatabaseDomain( $db );
 
 		if ( !$actorId ) {
@@ -328,11 +328,11 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 * Find the actor_id of the given $name.
 	 *
 	 * @param string $name
-	 * @param IDatabase $db The database connection to operate on.
+	 * @param IReadableDatabase $db The database connection to operate on.
 	 *        The database must correspond to ActorStore's wiki ID.
 	 * @return int|null
 	 */
-	public function findActorIdByName( $name, IDatabase $db ): ?int {
+	public function findActorIdByName( $name, IReadableDatabase $db ): ?int {
 		$name = $this->normalizeUserName( $name );
 		if ( $name === null ) {
 			return null;
@@ -675,9 +675,9 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 * Throws an exception if the given database connection does not belong to the wiki this
 	 * ActorStore is bound to.
 	 *
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 */
-	private function checkDatabaseDomain( IDatabase $db ) {
+	private function checkDatabaseDomain( IReadableDatabase $db ) {
 		$dbDomain = $db->getDomainID();
 		$storeDomain = $this->loadBalancer->resolveDomainID( $this->wikiId );
 		if ( $dbDomain !== $storeDomain ) {
@@ -708,12 +708,12 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	/**
 	 * Returns a specialized SelectQueryBuilder for querying the UserIdentity objects.
 	 *
-	 * @param IDatabase|int $dbOrQueryFlags The database connection to perform the query on,
+	 * @param IReadableDatabase|int $dbOrQueryFlags The database connection to perform the query on,
 	 *   or one of self::READ_* constants.
 	 * @return UserSelectQueryBuilder
 	 */
 	public function newSelectQueryBuilder( $dbOrQueryFlags = self::READ_NORMAL ): UserSelectQueryBuilder {
-		if ( $dbOrQueryFlags instanceof IDatabase ) {
+		if ( $dbOrQueryFlags instanceof IReadableDatabase ) {
 			[ $db, $options ] = [ $dbOrQueryFlags, [] ];
 			$this->checkDatabaseDomain( $db );
 		} else {

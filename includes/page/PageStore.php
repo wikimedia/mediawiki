@@ -20,6 +20,7 @@ use TitleParser;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * @since 1.36
@@ -393,13 +394,13 @@ class PageStore implements PageLookup {
 	/**
 	 * @unstable
 	 *
-	 * @param IDatabase|int $dbOrFlags The database connection to use, or a READ_XXX constant
+	 * @param IReadableDatabase|int $dbOrFlags The database connection to use, or a READ_XXX constant
 	 *        indicating what kind of database connection to use.
 	 *
 	 * @return PageSelectQueryBuilder
 	 */
 	public function newSelectQueryBuilder( $dbOrFlags = self::READ_NORMAL ): PageSelectQueryBuilder {
-		if ( $dbOrFlags instanceof IDatabase ) {
+		if ( $dbOrFlags instanceof IReadableDatabase ) {
 			$db = $dbOrFlags;
 			$options = [];
 		} else {

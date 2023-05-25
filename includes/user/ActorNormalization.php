@@ -70,11 +70,11 @@ interface ActorNormalization {
 	 * Find the actor_id for the given name.
 	 *
 	 * @param string $name
-	 * @param IDatabase $db The database connection to operate on.
+	 * @param IReadableDatabase $db The database connection to operate on.
 	 *        The database must correspond to the wiki this ActorNormalization is bound to.
 	 * @return int|null
 	 */
-	public function findActorIdByName( string $name, IDatabase $db ): ?int;
+	public function findActorIdByName( string $name, IReadableDatabase $db ): ?int;
 
 	/**
 	 * Find the actor_id of the given $user.
@@ -102,11 +102,11 @@ interface ActorNormalization {
 	 * Find an actor by $id.
 	 *
 	 * @param int $actorId
-	 * @param IDatabase $db The database connection to operate on.
+	 * @param IReadableDatabase $db The database connection to operate on.
 	 *        The database must correspond to the wiki this ActorNormalization is bound to.
 	 * @return UserIdentity|null Returns null if no actor with this $actorId exists in the database.
 	 */
-	public function getActorById( int $actorId, IDatabase $db ): ?UserIdentity;
+	public function getActorById( int $actorId, IReadableDatabase $db ): ?UserIdentity;
 
 	/**
 	 * In case all reasonable attempts of initializing a proper actor from the

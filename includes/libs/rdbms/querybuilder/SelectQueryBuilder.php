@@ -30,22 +30,22 @@ class SelectQueryBuilder extends JoinGroupBase {
 	public const SORT_DESC = 'DESC';
 
 	/**
-	 * @var array The fields to be passed to IDatabase::select()
+	 * @var array The fields to be passed to IReadableDatabase::select()
 	 */
 	private $fields = [];
 
 	/**
-	 * @var array The conditions to be passed to IDatabase::select()
+	 * @var array The conditions to be passed to IReadableDatabase::select()
 	 */
 	private $conds = [];
 
 	/**
-	 * @var string The caller (function name) to be passed to IDatabase::select()
+	 * @var string The caller (function name) to be passed to IReadableDatabase::select()
 	 */
 	private $caller = __CLASS__;
 
 	/**
-	 * @var array The options to be passed to IDatabase::select()
+	 * @var array The options to be passed to IReadableDatabase::select()
 	 */
 	protected $options = [];
 
@@ -54,27 +54,27 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 */
 	private $nextAutoAlias = 1;
 
-	/** @var IDatabase */
-	protected $db;
+	/** @var IReadableDatabase */
+	protected IReadableDatabase $db;
 
 	/**
 	 * Only for use in subclasses. To create a SelectQueryBuilder instance,
 	 * use `$db->newSelectQueryBuilder()` instead.
 	 *
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 */
-	public function __construct( IDatabase $db ) {
+	public function __construct( IReadableDatabase $db ) {
 		$this->db = $db;
 	}
 
 	/**
-	 * Change the IDatabase object the query builder is bound to. The specified
-	 * IDatabase will subsequently be used to execute the query.
+	 * Change the IReadableDatabase object the query builder is bound to. The specified
+	 * IReadableDatabase will subsequently be used to execute the query.
 	 *
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @return $this
 	 */
-	public function connection( IDatabase $db ) {
+	public function connection( IReadableDatabase $db ) {
 		if ( $this->db->getType() !== $db->getType() ) {
 			throw new \InvalidArgumentException( __METHOD__ .
 				' cannot switch to a database of a different type.' );
@@ -190,7 +190,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * fragment. If the array key is non-numeric, the key is taken to be an
 	 * alias for the field.
 	 *
-	 * @see IDatabase::select()
+	 * @see IReadableDatabase::select()
 	 *
 	 * @param string|string[] $fields
 	 * @return $this
@@ -257,13 +257,13 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * Note that expressions are often DBMS-dependent in their syntax.
 	 * DBMS-independent wrappers are provided for constructing several types of
 	 * expression commonly used in condition queries. See:
-	 *    - IDatabase::buildLike()
-	 *    - IDatabase::conditional()
+	 *    - IReadableDatabase::buildLike()
+	 *    - IReadableDatabase::conditional()
 	 *
 	 * Untrusted user input is safe in the values of string keys, however untrusted
 	 * input must not be used in the array key names or in the values of numeric keys.
 	 * Escaping of untrusted input used in values of numeric keys should be done via
-	 * IDatabase::addQuotes()
+	 * IReadableDatabase::addQuotes()
 	 *
 	 * @return $this
 	 */
@@ -276,7 +276,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 					// @phan-suppress-previous-line PhanTypeMismatchDimFetch
 					// T288882
 					$this->conds[] = $this->db->makeList(
-						[ $key => $cond ], IDatabase::LIST_AND );
+						[ $key => $cond ], IReadableDatabase::LIST_AND );
 				} else {
 					$this->conds[$key] = $cond;
 				}
@@ -309,7 +309,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 
 	/**
 	 * Manually append to the $join_conds array which will be passed to
-	 * IDatabase::select(). This is not recommended for new code. Instead,
+	 * IReadableDatabase::select(). This is not recommended for new code. Instead,
 	 * join() and leftJoin() should be used.
 	 *
 	 * @param array $joinConds
@@ -492,7 +492,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * If a string is given, the index hint is applied to the most recently
 	 * appended table or alias. If an array is given, it is assumed to be an
 	 * associative array with the alias names in the keys and the indexes in
-	 * the values, as in the USE INDEX option to IDatabase::select(). The
+	 * the values, as in the USE INDEX option to IReadableDatabase::select(). The
 	 * array will be merged with the existing value.
 	 *
 	 * @param string|string[] $index
@@ -509,7 +509,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * If a string is given, the index hint is applied to the most recently
 	 * appended table or alias. If an array is given, it is assumed to be an
 	 * associative array with the alias names in the keys and the indexes in
-	 * the values, as in the IGNORE INDEX option to IDatabase::select(). The
+	 * the values, as in the IGNORE INDEX option to IReadableDatabase::select(). The
 	 * array will be merged with the existing value.
 	 *
 	 * @param string|string[] $index
@@ -608,7 +608,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 
 	/**
 	 * Manually set an option in the $options array to be passed to
-	 * IDatabase::select()
+	 * IReadableDatabase::select()
 	 *
 	 * @param string $name The option name
 	 * @param mixed $value The option value, or null for a boolean option
@@ -625,7 +625,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 
 	/**
 	 * Manually set multiple options in the $options array to be passed to
-	 * IDatabase::select().
+	 * IReadableDatabase::select().
 	 *
 	 * @param array $options
 	 * @return $this
@@ -759,8 +759,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 */
 	public function lockForUpdate() {
 		wfDeprecated( 'SelectQueryBuilder::lockForUpdate()', '1.40' );
-		return $this->db->lockForUpdate( $this->tables, $this->conds, $this->caller,
-			$this->options, $this->joinConds );
+		return $this->forUpdate()->fetchRowCount();
 	}
 
 	/**

@@ -23,7 +23,7 @@ namespace MediaWiki\User;
 use Iterator;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\PreconditionException;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 class UserSelectQueryBuilder extends SelectQueryBuilder {
@@ -33,10 +33,10 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 
 	/**
 	 * @internal
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param ActorStore $actorStore
 	 */
-	public function __construct( IDatabase $db, ActorStore $actorStore ) {
+	public function __construct( IReadableDatabase $db, ActorStore $actorStore ) {
 		parent::__construct( $db );
 		$this->actorStore = $actorStore;
 		$this->table( 'actor' );
@@ -102,8 +102,7 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 		if ( !isset( $this->options['LIMIT'] ) ) {
 			throw new PreconditionException( 'Must set a limit when using a user name prefix' );
 		}
-		$like = $this->db->buildLike( $prefix, $this->db->anyString() );
-		$this->conds( "actor_name{$like}" );
+		$this->conds( 'actor_name' . $this->db->buildLike( $prefix, $this->db->anyString() ) );
 		return $this;
 	}
 
