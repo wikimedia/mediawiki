@@ -1016,7 +1016,7 @@
 	"mergehistory-from": "Bronpagina:",
 	"mergehistory-into": "Bestemmingspagina:",
 	"mergehistory-list": "Samenvoegbare bewerkingsgeschiedenis",
-	"mergehistory-merge": "De volgende versies van [[:$1]] kunnen worden samengevoegd naar [[:$2]].\nGebruik de kolom met keuzerondjes om alleen de versies gemaakt op en voor de opgegeven tijd samen te voegen.\nLet op dat het gebruiken van de navigatiekoppelingen deze kolom opnieuw instelt.",
+	"mergehistory-merge": "De volgende versies van [[:$1]] kunnen worden samengevoegd naar [[:$2]].\nGebruik de kolom met keuzerondjes om alleen de versies gemaakt op en voor de opgegeven tijd samen te voegen.\nLet op dat het gebruiken van de navigatiekoppelingen het veld met de reden wist.",
 	"mergehistory-go": "Samenvoegbare bewerkingen bekijken",
 	"mergehistory-submit": "Versies samenvoegen",
 	"mergehistory-empty": "Er zijn geen versies die samengevoegd kunnen worden.",

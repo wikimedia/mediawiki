@@ -106,6 +106,7 @@
 	"config-db-prefix-help": "여러 위키 사이 또는 미디어위키와 다른 웹 애플리케이션 사이에 하나의 데이터베이스를 공유해야 하는 경우, 충돌을 피하기 위해 모든 테이블 이름에 접두어를 추가하도록 선택할 수 있습니다.\n공백을 사용하지 마세요.\n\n이 필드는 일반적으로 비어 있습니다.",
 	"config-mysql-old": "MySQL $1 이상이 필요합니다. $2이(가) 있습니다.",
 	"config-db-port": "데이터베이스 포트:",
+	"config-db-ssl": "SSL을 통해 연결",
 	"config-db-schema": "미디어위키에 대한 스키마 (하이픈 없음):",
 	"config-db-schema-help": "보통 이 스키마는 문제가 없습니다.\n필요한 경우에만 바꾸세요.",
 	"config-pg-test-error": "<strong>$1</strong> 데이터베이스에 연결할 수 없습니다: $2",

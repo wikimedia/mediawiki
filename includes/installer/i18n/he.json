@@ -64,7 +64,7 @@
 	"config-no-db": "לא נמצא דרייבר מסד נתונים מתאים. יש להתקין דרייבר מסד נתונים ל־PHP.\n{{PLURAL:$2|נתמך הסוג הבא של מסד נתונים|נתמכים הסוגים הבאים של מסדי נתונים}}: $1.\n\nאם קִמפלת את PHP בעצמך, יש להגדיר אותו מחדש ולהפעיל את לקוח מסד נתונים, למשל באמצעות <code dir=\"ltr\">./configure --with-mysqli</code>.\nאם התקנת את PHP מחבילה של דביאן או של אובונטו, יש להתקין, למשל, גם את המודול <code dir=\"ltr\">php-mysql</code>.",
 	"config-outdated-sqlite": "<strong>אזהרה</strong>: במערכת מתוקן SQLite $2. גרסה זו לא נתמכת ולשימוש ב־SQLite נדרשת גרסה $1 לפחות. SQLlite לא יהיה זמין.",
 	"config-no-fts3": "'''אזהרה''': SQLite מהודר ללא [//sqlite.org/fts3.html מודול FTS]. יכולות חיפוש לא יהיו זמינות בהתקנה הזאת.",
-	"config-pcre-invalid-newline": "<strong>שגיאה סופנית:</strong> מודול PCRE של PHP הודר עם PCRE_CONFIG_NEWLINE = -1 עבור ANY.\nמדיה־ויקי אינה תואמת לתצורה כזאת.",
+	"config-pcre-invalid-newline": "<strong>שגיאה סופנית:</strong> נראה שספריית PCRE2 הודרה עם <code dir=\"ltr\">--enable-newline-is-any</code>.\nמדיה־ויקי אינה תואמת לתצורה הזאת.",
 	"config-memory-raised": "ערך האפשרות <code>memory_limit</code> של PHP הוא $1, הועלה ל־$2.",
 	"config-memory-bad": "'''אזהרה:''' ערך האפשרות <code>memory_limit</code> של PHP הוא $1.\nזה כנראה נמוך מדי.\nההתקנה עשויה להיכשל!",
 	"config-apc": "[https://www.php.net/apc APC] מותקן",

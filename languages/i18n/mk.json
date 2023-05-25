@@ -824,7 +824,7 @@
 	"undo-main-slot-only": "Уредувањето не може да се отповика бидејќи има содржина вон главниот жлеб.",
 	"undo-norev": "Измената не можеше да биде вратена бидејќи не постои или била избришана.",
 	"undo-nochange": "Се чини дека измената (уредувањето) е веќе вратена.",
-	"undo-summary": "Откажано уредувањето [[Special:Diff/$1|$1]] на уредникот [[Special:Contribs/$2|$2]] ([[User talk:$2|разговор]])",
+	"undo-summary": "Откажано уредувањето [[Special:Diff/$1|$1]] на [[Special:Contributions/$2|$2]] ([[User talk:$2|разговор]])",
 	"undo-summary-anon": "Отповикај ја преработката [[Special:Diff/$1|$1]] на [[Special:Contributions/$2|$2]]",
 	"undo-summary-import": "Отповикај ја увезената преработка [[Special:Diff/$1|$1]] од корисникот [[:$2|$3]]",
 	"undo-summary-import2": "Отповикај ја увезената преработка [[Special:Diff/$1|$1]] од корисникот $2",

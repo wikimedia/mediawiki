@@ -785,7 +785,7 @@
 	"rcfilters-filter-showlinkedfrom-label": "Čájet rievdadusaid siidduin, maidda lea liŋka siiddus",
 	"rcfilters-filter-showlinkedto-label": "Čájet rievdadusaid siidduin, main lea liŋka siidui",
 	"rcfilters-target-page-placeholder": "Čále siidonama (dahje kategoriija)",
-	"rcnotefrom": "Vuolábealde leat rievdadusat '''$2''' rájes. Eanemusta '''$1''' mearkkastaga čájehuvvo.",
+	"rcnotefrom": "Vuolábealde {{PLURAL:$5|lea rievdadus|leat rievdadusat}} <strong>$3, $4</strong> rájes. Eanemustá <strong>$1</strong> čájehuvvojit.",
 	"rclistfrom": "Čájet ođđa rievdadusat $3 $2 rájes",
 	"rcshowhideminor": "$1 unna rievdádusat",
 	"rcshowhideminor-show": "Čájet",
