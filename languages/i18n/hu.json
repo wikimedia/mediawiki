@@ -63,7 +63,8 @@
 			"ViDam",
 			"Wolf Rex",
 			"Xbspiro",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Hivatkozások aláhúzása:",
@@ -1964,7 +1965,7 @@
 	"upload-disallowed-here": "Ezt a fájlt nem lehet felülírni.",
 	"filerevert": "$1 visszaállítása",
 	"filerevert-legend": "Fájl visszaállítása",
-	"filerevert-intro": "<span class=\"plainlinks\">A(z) '''[[Media:$1|$1]]''' fájl [$4 verzióját állítod vissza, dátum: $3, $2].</span>",
+	"filerevert-intro": "A(z) '''[[Media:$1|$1]]''' fájl [$4 $2, $3-kori verzióját] készülsz visszaállítani.",
 	"filerevert-comment": "Ok:",
 	"filerevert-defaultcomment": "A $1, $2 ($3)-kori verzió visszaállítása",
 	"filerevert-submit": "Visszaállítás",
@@ -2314,7 +2315,7 @@
 	"emailccme": "Az üzenet másolatát küldje el nekem is e-mailben",
 	"emailccsubject": "$1 szerkesztőnek küldött $2 tárgyú üzenet másolata",
 	"emailsent": "E-mail elküldve",
-	"emailsenttext": "E-mail üzenetedet elküldtük.",
+	"emailsenttext": "E-mail-üzenetedet elküldtük.",
 	"emailuserfooter": "Ezt az e-mailt $1 küldte $2 számára, az „{{int:emailuser}}” funkció használatával a(z) {{SITENAME}} wikin. Ha válaszolsz erre az üzenetre, az a választ közvetlenül az eredeti feladónak küldöd, felfedve az e-mail-címedet neki.",
 	"usermessage-summary": "Rendszerüzenet megadása.",
 	"usermessage-editor": "Rendszerüzenetek",
@@ -3702,7 +3703,7 @@
 	"api-error-badtoken": "Belső hiba: hibás token.",
 	"api-error-emptypage": "Új, üres lap létrehozása nem engedélyezett.",
 	"api-error-publishfailed": "Belső hiba: a kiszolgálónak nem sikerült közzétennie az ideiglenes fájlt.",
-	"api-error-stashfailed": "Belső hiba: a kiszolgálünak nem sikerült eltárolni az ideiglenes fájlt.",
+	"api-error-stashfailed": "Belső hiba: a kiszolgálónak nem sikerült eltárolnia az ideiglenes fájlt.",
 	"api-error-unknown-warning": "Ismeretlen figyelmeztetés: „$1”.",
 	"api-error-unknownerror": "Ismeretlen hiba: „$1”.",
 	"duration-seconds": "$1 {{PLURAL:$1|másodperc}}",

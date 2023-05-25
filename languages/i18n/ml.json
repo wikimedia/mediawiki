@@ -36,7 +36,8 @@
 			"Vssun",
 			"Ævar Arnfjörð Bjarmason <avarab@gmail.com>",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "കണ്ണികൾക്ക് അടിവരയിടുക:",
@@ -2391,6 +2392,7 @@
 	"contributions-title": "$1 എന്ന ഉപയോക്താവിന്റെ സംഭാവനകൾ",
 	"mycontris": "സംഭാവനകൾ",
 	"anoncontribs": "സംഭാവനകൾ",
+	"contribute": "തിരുത്തുക",
 	"contribsub2": "ഉപയോക്താവ് {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "ഉപയോക്താവ് {{GENDER:$3|$1}}",
 	"contributions-userdoesnotexist": "\"$1\" എന്ന ഉപയോക്തൃ അം‌ഗത്വം നിലവിലില്ല.",
@@ -3551,6 +3553,7 @@
 	"json-error-syntax": "എഴുത്തുരീതിയിൽ പിഴവ്",
 	"json-error-utf8": "തെറ്റായരൂപത്തിലുള്ള UTF-8 അക്ഷരങ്ങൾ, മിക്കവാറും തെറ്റായി എൻകോഡ് ചെയ്യപ്പെട്ടവ",
 	"headline-anchor-title": "ഈ ഭാഗത്തേക്കുള്ള കണ്ണി",
+	"special-tab-contribute-short": "മെച്ചപ്പെടുത്തുക",
 	"special-characters-group-latin": "ലാറ്റിൻ",
 	"special-characters-group-latinextended": "ലാറ്റിൻ വിപുലം",
 	"special-characters-group-ipa": "ഐ.പി.എ.",

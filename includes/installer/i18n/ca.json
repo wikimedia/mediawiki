@@ -83,7 +83,7 @@
 	"config-using-server": "S'utilitza el nom del servidor «<nowiki>$1</nowiki>».",
 	"config-using-uri": "S'utilitza l'URL del servidor «<nowiki>$1$2</nowiki>».",
 	"config-uploads-not-safe": "<strong>Avís:</strong> El directori de càrregues per defecte <code>$1</code> és vulnerable a l'execució d'scripts arbitraris.\nEncara que el MediaWiki comprova tots els fitxers que es carreguen davant d'amenaces de seguretat, és molt recomanable [https://www.mediawiki.org/ wiki/Special:MyLanguage/Manual:Security#Upload_security tancar aquesta vulnerabilitat de seguretat] abans d'habilitar les càrregues.",
-	"config-no-cli-uploads-check": "<strong>Avís</strong>: no s'ha comprovat el directori per defecte per a càrregues (<code><span class=\"notranslate\">$1</span></code>$) per vulnerabilitats en l'execució arbitrària durant la instal·lació amb la línia d'ordres.",
+	"config-no-cli-uploads-check": "<strong>Avís</strong>: no s'ha comprovat el directori per defecte per a càrregues (<code>$1/code>$) per vulnerabilitats en l'execució arbitrària durant la instal·lació amb la línia d'ordres.",
 	"config-using-32bit": "<strong>Avís</strong>: el vostre sistema sembla que s'executa amb enters de 32 bits. Això [https://www.mediawiki.org/wiki/special:MyLanguage/Manual:32-bit no és aconsellable].",
 	"config-db-type": "Tipus de base de dades:",
 	"config-db-host": "Servidor de la base de dades:",
