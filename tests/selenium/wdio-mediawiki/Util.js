@@ -12,12 +12,15 @@ module.exports = {
 	 * @param {string} moduleStatus 'registered', 'loaded', 'loading', 'ready', 'error', 'missing'
 	 * @param {number} timeout The wait time in milliseconds before the wait fails
 	 */
-	waitForModuleState( moduleName, moduleStatus = 'ready', timeout = 2000 ) {
-		browser.waitUntil( () => {
-			return browser.execute( ( arg ) => {
+	async waitForModuleState( moduleName, moduleStatus = 'ready', timeout = 5000 ) {
+		await browser.waitUntil( async () => {
+			return await browser.execute( ( arg ) => {
 				return typeof mw !== 'undefined' &&
 					mw.loader.getState( arg.name ) === arg.status;
 			}, { status: moduleStatus, name: moduleName } );
-		}, timeout, 'Failed to wait for ' + moduleName + ' to be ' + moduleStatus + ' after ' + timeout + ' ms.' );
+		}, {
+			timeout: timeout,
+			timeoutMsg: 'Failed to wait for ' + moduleName + ' to be ' + moduleStatus + ' after ' + timeout + ' ms.'
+		} );
 	}
 };
