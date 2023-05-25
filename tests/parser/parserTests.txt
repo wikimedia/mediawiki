@@ -8408,6 +8408,20 @@ CSS line continuation 2
 !! end
 
 !! test
+Allow aria attributes
+!! config
+wgFragmentMode=[ "legacy" ]
+!! wikitext
+<span aria-describedby=id1 aria-flowto=id2 aria-hidden=true
+      aria-label=id3 aria-labelledby=id4 aria-level=3 aria-owns=id5>foo</span>
+<span aria-bogus=stripped>bar</span>
+!! html
+<p><span aria-describedby="id1" aria-flowto="id2" aria-hidden="true" aria-label="id3" aria-labelledby="id4" aria-level="3" aria-owns="id5">foo</span>
+<span>bar</span>
+</p>
+!! end
+
+!! test
 Expansion of multi-line templates in attribute values (T8255)
 !! wikitext
 <div style="background: {{1x|#00FF00}}">-</div>

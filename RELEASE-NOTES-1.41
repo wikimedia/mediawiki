@@ -41,6 +41,7 @@ For notes on 1.40.x and older releases, see HISTORY.
 
 === New user-facing features in 1.41 ===
 * Special:RandomPage can now take multiple namespaces in its URL, split by ','.
+* The aria-level HTML attribute is now allowed in wikitext by the Sanitizer.
 * …
 
 === New features for sysadmins in 1.41 ===
