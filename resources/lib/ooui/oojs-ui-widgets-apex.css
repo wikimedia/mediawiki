@@ -82,6 +82,8 @@
 }
 .oo-ui-indexLayout-stackLayout > .oo-ui-panelLayout[hidden] {
   padding: 0;
+  pointer-events: none;
+  opacity: 0;
 }
 .oo-ui-indexLayout-stackLayout > .oo-ui-panelLayout {
   padding: 1.5em;
