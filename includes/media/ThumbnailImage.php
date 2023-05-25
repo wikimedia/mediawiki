@@ -110,6 +110,7 @@ class ThumbnailImage extends MediaTransformOutput {
 	 *     parser-extlink-*   Attributes added by parser for external links:
 	 *          parser-extlink-rel: add rel="nofollow"
 	 *          parser-extlink-target: link target, but overridden by custom-target-link
+	 *     magnify-resource   To set the HTML resource attribute, when necessary
 	 *
 	 * For images, desc-link and file-link are implemented as a click-through. For
 	 * sounds and videos, they may be displayed in other ways.
@@ -136,6 +137,16 @@ class ThumbnailImage extends MediaTransformOutput {
 		// parameter if it's explicitly requested.
 		if ( isset( $options['alt'] ) ) {
 			$attribs['alt'] = $options['alt'];
+		}
+
+		// Description links get the mw-file-description class and link
+		// to the file description page, making the resource redundant
+		if (
+			!$enableLegacyMediaDOM &&
+			isset( $options['magnify-resource'] ) &&
+			!( $options['desc-link'] ?? false )
+		) {
+			$attribs['resource'] = $options['magnify-resource'];
 		}
 
 		$attribs += [
