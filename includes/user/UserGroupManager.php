@@ -386,7 +386,8 @@ class UserGroupManager implements IDBAccessObject {
 		$res = $this->getDBConnectionRefForQueryFlags( $queryFlags )->newSelectQueryBuilder()
 			->select( 'ufg_group' )
 			->from( 'user_former_groups' )
-			->where( [ 'ufg_user' => $user->getId() ] )
+			// TODO Replace getWikiId with wiki id of this class (T337590)
+			->where( [ 'ufg_user' => $user->getId( $user->getWikiId() ) ] )
 			->caller( __METHOD__ )
 			->fetchResultSet();
 		$formerGroups = [];
@@ -714,7 +715,8 @@ class UserGroupManager implements IDBAccessObject {
 
 		$queryBuilder = $this->newQueryBuilder( $this->getDBConnectionRefForQueryFlags( $queryFlags ) );
 		$res = $queryBuilder
-			->where( [ 'ug_user' => $user->getId() ] )
+			// TODO Replace getWikiId with wiki id of this class (T337590)
+			->where( [ 'ug_user' => $user->getId( $user->getWikiId() ) ] )
 			->caller( __METHOD__ )
 			->fetchResultSet();
 
@@ -785,7 +787,8 @@ class UserGroupManager implements IDBAccessObject {
 		$dbw->insert(
 			'user_groups',
 			[
-				'ug_user' => $user->getId(),
+				// TODO Replace getWikiId with wiki id of this class (T337590)
+				'ug_user' => $user->getId( $user->getWikiId() ),
 				'ug_group' => $group,
 				'ug_expiry' => $expiry ? $dbw->timestamp( $expiry ) : null,
 			],
@@ -798,7 +801,8 @@ class UserGroupManager implements IDBAccessObject {
 			// Conflicting row already exists; it should be overridden if it is either expired
 			// or if $allowUpdate is true and the current row is different than the loaded row.
 			$conds = [
-				'ug_user' => $user->getId(),
+				// TODO Replace getWikiId with wiki id of this class (T337590)
+				'ug_user' => $user->getId( $user->getWikiId() ),
 				'ug_group' => $group
 			];
 			if ( $allowUpdate ) {
@@ -834,7 +838,8 @@ class UserGroupManager implements IDBAccessObject {
 		} );
 
 		if ( $affected > 0 ) {
-			$oldUgms[$group] = new UserGroupMembership( $user->getId(), $group, $expiry );
+			// TODO Replace getWikiId with wiki id of this class (T337590)
+			$oldUgms[$group] = new UserGroupMembership( $user->getId( $user->getWikiId() ), $group, $expiry );
 			if ( !$oldUgms[$group]->isExpired() ) {
 				$this->setCache(
 					$this->getCacheKey( $user ),
@@ -911,7 +916,8 @@ class UserGroupManager implements IDBAccessObject {
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY, [], $this->dbDomain );
 		$dbw->newDeleteQueryBuilder()
 			->delete( 'user_groups' )
-			->where( [ 'ug_user' => $user->getId(), 'ug_group' => $group ] )
+			// TODO Replace getWikiId with wiki id of this class (T337590)
+			->where( [ 'ug_user' => $user->getId( $user->getWikiId() ), 'ug_group' => $group ] )
 			->caller( __METHOD__ )->execute();
 
 		if ( !$dbw->affectedRows() ) {
@@ -920,7 +926,8 @@ class UserGroupManager implements IDBAccessObject {
 		// Remember that the user was in this group
 		$dbw->insert(
 			'user_former_groups',
-			[ 'ufg_user' => $user->getId(), 'ufg_group' => $group ],
+			// TODO Replace getWikiId with wiki id of this class (T337590)
+			[ 'ufg_user' => $user->getId( $user->getWikiId() ), 'ufg_group' => $group ],
 			__METHOD__,
 			[ 'IGNORE' ]
 		);
@@ -1168,7 +1175,8 @@ class UserGroupManager implements IDBAccessObject {
 	 * @return string
 	 */
 	private function getCacheKey( UserIdentity $user ): string {
-		return $user->isRegistered() ? "u:{$user->getId()}" : "anon:{$user->getName()}";
+		// TODO Replace getWikiId with wiki id of this class (T337590)
+		return $user->isRegistered() ? "u:{$user->getId( $user->getWikiId() )}" : "anon:{$user->getName()}";
 	}
 
 	/**
