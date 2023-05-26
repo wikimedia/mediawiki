@@ -27,6 +27,7 @@ use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Specials\SpecialUserRights;
 use MediaWiki\User\UserGroupManager;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -34,6 +35,7 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiUserrights extends ApiBase {
 
+	/** @var UserIdentity|null */
 	private $mUser = null;
 
 	/** @var UserGroupManager */
@@ -131,7 +133,7 @@ class ApiUserrights extends ApiBase {
 
 	/**
 	 * @param array $params
-	 * @return User
+	 * @return UserIdentity
 	 */
 	private function getUrUser( array $params ) {
 		if ( $this->mUser !== null ) {
