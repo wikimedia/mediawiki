@@ -84,8 +84,24 @@
 		}
 
 		.oo-ui-tabPanelLayout.mw-prefs-search-matched {
+			// TODO: Consider changing the stackLayout to continuous mode while
+			// searching, instead of applying these CSS hacks. (T337531#8881995)
+			// ----
+			// Panels can be hidden with hidden=true (display:none) or
+			// hidden=until-found (content-visibility:hidden), so override
+			// both of these.
 			// stylelint-disable-next-line declaration-no-important
 			display: block !important;
+			content-visibility: visible;
+			// Additionally, hidden panels have their containers hidden,
+			// so override this too:;
+			opacity: 1;
+			pointer-events: auto;
+			// These hacks will change to width:0;height:0;overflow:hidden;
+			// in the next OOUI release.
+			width: auto;
+			height: auto;
+			overflow: auto;
 
 			> fieldset > legend {
 				background: #eaecf0;
