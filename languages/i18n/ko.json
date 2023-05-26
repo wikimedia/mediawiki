@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Adreamy",
 			"Albamhandae",
 			"Altostratus",
 			"Amire80",
@@ -882,7 +883,7 @@
 	"undo-nochange": "편집이 이미 되돌려진 것으로 나타납니다.",
 	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User talk:$2|토론]])의 [[Special:Diff/$1|$1]]판 편집을 되돌림",
 	"undo-summary-anon": "[[Special:Contributions/$2|$2]]의 [[Special:Diff/$1|$1]] 판을 되돌림",
-	"undo-summary-import": "사용자 [[:$2|$3]]님이 가져온 [[Special:Diff/$1|$1]]판을 되돌림",
+	"undo-summary-import": "[[:$2|$3]]님이 가져온 [[Special:Diff/$1|$1]]판을 되돌림",
 	"undo-summary-import2": "가져온 [[Special:Diff/$1|$1]]판을 $2님이 되돌림",
 	"undo-summary-username-hidden": "숨겨진 사용자가 [[Special:Diff/$1|$1]] 판을 되돌림",
 	"viewpagelogs": "이 문서의 기록 보기",

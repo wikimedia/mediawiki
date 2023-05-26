@@ -296,7 +296,7 @@
 	"compareselectedversions": "ꠝꠤꠟꠣꠃꠇ꠆ꠇꠣ selected revisions",
 	"editundo": "ꠚꠤꠞꠣꠅ",
 	"diff-empty": "(ꠇꠥꠘꠥ ꠛꠦꠡꠇꠝ ꠘꠣꠁ)",
-	"diff-multi-sameuser": "({{PLURAL:$1|ꠄꠇ ꠝꠣꠏꠣꠝꠣꠏꠤ ꠢꠤꠞ꠆ꠛꠣꠞ ꠖꠦꠈꠣ|$1 ꠝꠣꠏꠣꠝꠣꠏꠤ ꠢꠤꠞ꠆ꠛꠣꠞ ꠖꠦꠈꠣ}} ꠄꠇꠤ {{GENDER:$3|ꠛꠦꠛꠀꠞꠇꠞ꠆ꠞꠣ}} ꠖꠦꠈꠣꠁꠟ ꠅꠁꠍꠦꠘꠣ)",
+	"diff-multi-sameuser": "({{PLURAL:$1|ꠝꠣꠏꠦ ꠖꠥꠀꠞꠣ ꠖꠦꠈꠣ|$1 ꠝꠣꠏꠦ ꠖꠥꠀꠞꠣ ꠖꠦꠈꠣ}} ꠄꠇꠤ {{GENDER:$3|ꠛꠦꠛꠀꠞꠈꠞ꠆ꠞꠣ}} ꠖꠦꠈꠣꠁꠟ ꠅꠁꠍꠦꠘꠣ)",
 	"diff-multi-otherusers": "({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by {{PLURAL:$2|one other user|$2 users}} ꠖꠦꠈꠣꠁꠟ ꠅꠁꠍꠦꠘꠣ)",
 	"searchresults": "ꠚꠟ ꠔꠥꠇꠣꠅ",
 	"searchresults-title": " \"$1\"-ꠅꠞ ꠟꠣꠉꠤ ꠚꠟ ꠔꠥꠇꠣꠅ",
