@@ -120,6 +120,7 @@ class ConnectionManager {
 	 * @deprecated since 1.38
 	 */
 	public function releaseConnection( IDatabase $db ) {
+		wfDeprecated( 'ConnectionManager::releaseConnection()', '1.38' );
 		$this->loadBalancer->reuseConnection( $db );
 	}
 
@@ -132,6 +133,7 @@ class ConnectionManager {
 	 * @deprecated since 1.39; Use getWriteConnection()
 	 */
 	public function getWriteConnectionRef() {
+		wfDeprecated( 'ConnectionManager::getWriteConnectionRef()', '1.39' );
 		return $this->getConnectionRef( DB_PRIMARY );
 	}
 
@@ -144,6 +146,7 @@ class ConnectionManager {
 	 * @deprecated since 1.38; Use getReadConnection()
 	 */
 	public function getReadConnectionRef( array $groups = null ) {
+		wfDeprecated( 'ConnectionManager::getReadConnectionRef()', '1.38' );
 		$groups ??= $this->groups;
 		return $this->getConnectionRef( DB_REPLICA, $groups );
 	}
@@ -156,6 +159,7 @@ class ConnectionManager {
 	 * @deprecated since 1.39; Use getWriteConnection()
 	 */
 	public function getLazyWriteConnectionRef(): DBConnRef {
+		wfDeprecated( 'ConnectionManager::getLazyWriteConnectionRef()', '1.39' );
 		return $this->getConnectionRef( DB_PRIMARY );
 	}
 
@@ -168,6 +172,7 @@ class ConnectionManager {
 	 * @deprecated since 1.39; Use getReadConnection()
 	 */
 	public function getLazyReadConnectionRef( array $groups = null ) {
+		wfDeprecated( 'ConnectionManager::getLazyReadConnectionRef()', '1.39' );
 		$groups ??= $this->groups;
 		return $this->getConnectionRef( DB_REPLICA, $groups );
 	}
