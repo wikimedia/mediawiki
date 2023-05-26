@@ -1160,11 +1160,14 @@ abstract class LanguageConverter implements ILanguageConverter {
 
 		$this->mTablesLoaded = true;
 		$cache = ObjectCache::getInstance( $languageConverterCacheType );
-		$cacheKey = $cache->makeKey( 'conversiontables', $this->getMainCode(), self::CACHE_VERSION_KEY );
+		$cacheKey = $cache->makeKey(
+			'conversiontables', $this->getMainCode(),
+			md5( implode( ',', $this->getVariants() ) ), self::CACHE_VERSION_KEY
+		);
 		if ( !$fromCache ) {
 			$cache->delete( $cacheKey );
 		}
-		$this->mTables = $cache->getWithSetCallback( $cacheKey, 43200, function () {
+		$this->mTables = $cache->getWithSetCallback( $cacheKey, $cache::TTL_HOUR * 12, function () {
 			// We will first load the default tables
 			// then update them using things in MediaWiki:Conversiontable/*
 			$tables = $this->loadDefaultTables();
