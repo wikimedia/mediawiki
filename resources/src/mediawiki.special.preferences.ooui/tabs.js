@@ -155,6 +155,8 @@
 			var isSearching = !!val;
 			tabs.$element.toggleClass( 'mw-prefs-tabs-searching', isSearching );
 			tabs.tabSelectWidget.toggle( !isSearching );
+			tabs.contentPanel.setContinuous( isSearching );
+
 			$( '.mw-prefs-search-matched' ).removeClass( 'mw-prefs-search-matched' );
 			$( '.mw-prefs-search-highlight' ).removeClass( 'mw-prefs-search-highlight' );
 			var hasResults = false;
