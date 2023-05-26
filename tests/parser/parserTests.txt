@@ -8453,13 +8453,15 @@ Allow aria attributes
 !! config
 wgFragmentMode=[ "legacy" ]
 !! wikitext
-<span aria-describedby=id1 aria-flowto=id2 aria-hidden=true
-      aria-label=id3 aria-labelledby=id4 aria-level=3 aria-owns=id5>foo</span>
-<span aria-bogus=stripped>bar</span>
-!! html
+<span aria-describedby="id1" aria-flowto="id2" aria-hidden="true" aria-label="id3" aria-labelledby="id4" aria-level="3" aria-owns="id5">foo</span>
+<span aria-bogus="stripped">bar</span>
+!! html/php
 <p><span aria-describedby="id1" aria-flowto="id2" aria-hidden="true" aria-label="id3" aria-labelledby="id4" aria-level="3" aria-owns="id5">foo</span>
 <span>bar</span>
 </p>
+!! html/parsoid
+<p><span aria-describedby="id1" aria-flowto="id2" aria-hidden="true" aria-label="id3" aria-labelledby="id4" aria-level="3" aria-owns="id5">foo</span>
+<span data-parsoid='{"stx":"html","a":{"aria-bogus":null},"sa":{"aria-bogus":"stripped"}}'>bar</span></p>
 !! end
 
 !! test
