@@ -116,7 +116,7 @@ class Names {
 		'ce' => 'нохчийн', # Chechen
 		'ceb' => 'Cebuano', # Cebuano
 		'ch' => 'Chamoru', # Chamorro
-		'cho' => 'Chahta Anumpa', # Choctaw
+		'cho' => 'Chahta anumpa', # Choctaw
 		'chr' => 'ᏣᎳᎩ', # Cherokee
 		'chy' => 'Tsetsêhestâhese', # Cheyenne
 		'ckb' => 'کوردی', # Central Kurdish
