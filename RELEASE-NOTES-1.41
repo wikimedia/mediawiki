@@ -102,6 +102,7 @@ because of Phabricator reports.
 
 * (T332113) Added language support for Northern Hindko (hno).
 * (T333425) Added language support for Iraqi (Mesopotamian) Arabic (acm).
+* (T336919) Added language support for Crimean Tatar (Romania) (crh-ro).
 * (T332118) Namespace translations for Angika (anp) were added
 
 === Breaking changes in 1.41 ===

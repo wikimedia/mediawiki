@@ -126,6 +126,7 @@ class Names {
 		'crh' => 'qırımtatarca', # Crimean Tatar (multiple scripts - defaults to Latin)
 		'crh-cyrl' => 'къырымтатарджа (Кирилл)', # Crimean Tatar (Cyrillic)
 		'crh-latn' => 'qırımtatarca (Latin)', # Crimean Tatar (Latin)
+		'crh-ro' => 'tatarşa', # Crimean Tatar (Romania)
 		'cs' => 'čeština', # Czech
 		'csb' => 'kaszëbsczi', # Cassubian
 		'cu' => 'словѣньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ', # Old Church Slavonic (ancient language)

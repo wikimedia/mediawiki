@@ -108,6 +108,7 @@ class LanguageCode {
 		// to `kk-Cyrl-KZ`.
 		// (See getVariantsFallbacks() in KkConverter.php for Arab/Cyrl/Latn id.)
 		// (See getVariantsFallbacks() in ZhConverter.php for Hans/Hant id.)
+		'crh-ro' => 'crh-Latn-RO',
 		'kk-cn' => 'kk-Arab-CN',
 		'kk-tr' => 'kk-Latn-TR',
 		'zh-cn' => 'zh-Hans-CN',
