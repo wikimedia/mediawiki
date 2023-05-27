@@ -734,7 +734,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @return string[]
 	 * @since 1.25
 	 */
-	public function getIndicators() {
+	public function getIndicators(): array {
 		return $this->mIndicators;
 	}
 

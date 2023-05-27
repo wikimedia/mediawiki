@@ -1678,7 +1678,7 @@ class OutputPage extends ContextSource {
 	 * @return string[] Keys: identifiers, values: HTML contents
 	 * @since 1.25
 	 */
-	public function getIndicators() {
+	public function getIndicators(): array {
 		// Note that some -- but not all -- indicators will be wrapped
 		// with a class appropriate for user-generated wikitext content
 		// (usually .mw-parser-output). The exceptions would be an
