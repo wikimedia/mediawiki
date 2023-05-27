@@ -26,10 +26,12 @@ namespace MediaWiki\Languages\Data;
  * These determine things like interwikis, language selectors, and so on.
  * Safe to change without running scripts on the respective sites.
  *
- * Some writing systems require some line-height fixes. This includes
- * most Indic scripts, like Devanagari.
- * If you are adding support for such a language, add it also to
- * the relevant section in shared.css.
+ * See https://www.mediawiki.org/wiki/Manual:Adding_and_removing_languages
+ * for detailed documentation about maintaining this file, especially:
+ * - Finding the correct autonym.
+ * - What other files may have to be updated when updating this one.
+ * - Special handling for languages written in scripts of South
+ *   and South-East Asia (Devanagari, Burmese, etc.).
  *
  * Do not use this class directly. Use LanguageNameUtils::getLanguageNames(), which
  * includes support for the CLDR extension.
