@@ -397,6 +397,8 @@ because of Phabricator reports.
    - $mInterwiki  -> getInterwiki()
    - $mFragment   -> getFragment()
 * Skin::bottomScripts, deprecated since 1.37, has been removed.
+* The return value of IDatabase::upsert(), deprecated since 1.33, has been
+  removed.
 * …
 
 === Deprecations in 1.42 ===

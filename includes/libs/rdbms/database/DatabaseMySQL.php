@@ -563,7 +563,7 @@ class DatabaseMySQL extends Database {
 	public function upsert( $table, array $rows, $uniqueKeys, array $set, $fname = __METHOD__ ) {
 		$identityKey = $this->platform->normalizeUpsertParams( $uniqueKeys, $rows );
 		if ( !$rows ) {
-			return true;
+			return;
 		}
 		$this->platform->assertValidUpsertSetArray( $set, $identityKey, $rows );
 
@@ -582,7 +582,6 @@ class DatabaseMySQL extends Database {
 		$this->query( $query, $fname );
 		// Count updates of conflicting rows and row inserts equally toward the change count
 		$this->lastQueryAffectedRows = min( $this->lastQueryAffectedRows, count( $rows ) );
-		return true;
 	}
 
 	public function replace( $table, $uniqueKeys, $rows, $fname = __METHOD__ ) {
