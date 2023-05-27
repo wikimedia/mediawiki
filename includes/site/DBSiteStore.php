@@ -163,8 +163,6 @@ class DBSiteStore implements SiteStore {
 
 		$dbw->startAtomic( __METHOD__ );
 
-		$success = true;
-
 		$internalIds = [];
 		$localIds = [];
 
@@ -191,11 +189,9 @@ class DBSiteStore implements SiteStore {
 
 			$rowId = $site->getInternalId();
 			if ( $rowId !== null ) {
-				$success = $dbw->update(
-					'sites', $fields, [ 'site_id' => $rowId ], __METHOD__
-				) && $success;
+				$dbw->update( 'sites', $fields, [ 'site_id' => $rowId ], __METHOD__ );
 			} else {
-				$success = $dbw->insert( 'sites', $fields, __METHOD__ ) && $success;
+				$dbw->insert( 'sites', $fields, __METHOD__ );
 				$rowId = $dbw->insertId();
 			}
 
@@ -230,7 +226,7 @@ class DBSiteStore implements SiteStore {
 
 		$this->reset();
 
-		return $success;
+		return true;
 	}
 
 	/**

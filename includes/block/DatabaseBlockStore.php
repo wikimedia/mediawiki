@@ -305,7 +305,9 @@ class DatabaseBlockStore {
 		$row = $this->getArrayForDatabaseBlock( $block, $dbw );
 		$dbw->startAtomic( __METHOD__ );
 
-		$result = $dbw->update(
+		$result = true;
+
+		$dbw->update(
 			'ipblocks',
 			$row,
 			[ 'ipb_id' => $blockId ],
@@ -317,12 +319,10 @@ class DatabaseBlockStore {
 		if ( $restrictions !== null ) {
 			// An empty array should remove all of the restrictions.
 			if ( empty( $restrictions ) ) {
-				$success = $this->blockRestrictionStore->deleteByBlockId( $blockId );
+				$result = $this->blockRestrictionStore->deleteByBlockId( $blockId );
 			} else {
-				$success = $this->blockRestrictionStore->update( $restrictions );
+				$result = $this->blockRestrictionStore->update( $restrictions );
 			}
-			// Update the result. The first false is the result, otherwise, true.
-			$result = $result && $success;
 		}
 
 		if ( $block->isAutoblocking() ) {

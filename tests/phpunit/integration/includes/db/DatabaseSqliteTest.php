@@ -261,9 +261,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$databaseCreation = $db->query( 'CREATE TABLE a ( a_1 )', __METHOD__ );
 		$this->assertInstanceOf( ResultWrapper::class, $databaseCreation, "Database creation" );
 
-		$insertion = $db->insert( 'a', [ 'a_1' => 10 ], __METHOD__ );
-		$this->assertTrue( $insertion, "Insertion worked" );
-
+		$db->insert( 'a', [ 'a_1' => 10 ], __METHOD__ );
 		$this->assertIsInt( $db->insertId(), "Actual typecheck" );
 		$this->assertTrue( $db->close(), "closing database" );
 	}
@@ -275,7 +273,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		$db->query( 'CREATE TABLE testInsertAffectedRows ( foo )', __METHOD__ );
 
-		$insertion = $db->insert(
+		$db->insert(
 			'testInsertAffectedRows',
 			[
 				[ 'foo' => 10 ],
@@ -284,7 +282,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 			],
 			__METHOD__
 		);
-		$this->assertTrue( $insertion, "Insertion worked" );
 
 		$this->assertSame( 3, $db->affectedRows() );
 		$this->assertTrue( $db->close(), "closing database" );
