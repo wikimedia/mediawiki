@@ -450,6 +450,7 @@ class PostgresUpdater extends DatabaseUpdater {
 
 			// 1.41
 			[ 'addField', 'user', 'user_is_temp', 'patch-user-user_is_temp.sql' ],
+			[ 'runMaintenance', MigrateRevisionCommentTemp::class, 'maintenance/migrateRevisionCommentTemp.php' ],
 		];
 	}
 
