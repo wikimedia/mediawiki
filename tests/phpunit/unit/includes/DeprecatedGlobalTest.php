@@ -21,7 +21,7 @@
 use MediaWiki\StubObject\DeprecatedGlobal;
 
 /**
- * @covers DeprecatedGlobal
+ * @covers MediaWiki\StubObject\DeprecatedGlobal
  */
 class DeprecatedGlobalTest extends MediaWikiUnitTestCase {
 	private $oldErrorLevel;

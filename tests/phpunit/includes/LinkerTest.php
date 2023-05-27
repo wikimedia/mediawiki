@@ -13,7 +13,7 @@ use MediaWiki\Title\Title;
 class LinkerTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideCasesForUserLink
-	 * @covers Linker::userLink
+	 * @covers MediaWiki\Linker\Linker::userLink
 	 */
 	public function testUserLink( $expected, $userId, $userName, $altUserName = false, $msg = '' ) {
 		$this->overrideConfigValue( MainConfigNames::ArticlePath, '/wiki/$1' );
@@ -152,7 +152,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideUserToolLinks
-	 * @covers Linker::userToolLinks
+	 * @covers MediaWiki\Linker\Linker::userToolLinks
 	 * @param string $expected
 	 * @param int $userId
 	 * @param string $userText
@@ -178,7 +178,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideUserTalkLink
-	 * @covers Linker::userTalkLink
+	 * @covers MediaWiki\Linker\Linker::userTalkLink
 	 * @param string $expected
 	 * @param int $userId
 	 * @param string $userText
@@ -204,7 +204,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideBlockLink
-	 * @covers Linker::blockLink
+	 * @covers MediaWiki\Linker\Linker::blockLink
 	 * @param string $expected
 	 * @param int $userId
 	 * @param string $userText
@@ -230,7 +230,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideEmailLink
-	 * @covers Linker::emailLink
+	 * @covers MediaWiki\Linker\Linker::emailLink
 	 * @param string $expected
 	 * @param int $userId
 	 * @param string $userText
@@ -256,8 +256,8 @@ class LinkerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideCasesForFormatComment
-	 * @covers Linker::formatComment
-	 * @covers Linker::formatLinksInComment
+	 * @covers MediaWiki\Linker\Linker::formatComment
+	 * @covers MediaWiki\Linker\Linker::formatLinksInComment
 	 * @covers \MediaWiki\CommentFormatter\CommentParser
 	 * @covers \MediaWiki\CommentFormatter\CommentFormatter
 	 */
@@ -478,7 +478,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Linker::formatLinksInComment
+	 * @covers MediaWiki\Linker\Linker::formatLinksInComment
 	 * @covers \MediaWiki\CommentFormatter\CommentParser
 	 * @covers \MediaWiki\CommentFormatter\CommentFormatter
 	 * @dataProvider provideCasesForFormatLinksInComment
@@ -508,7 +508,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Linker::generateRollback
+	 * @covers MediaWiki\Linker\Linker::generateRollback
 	 * @dataProvider provideCasesForRollbackGeneration
 	 */
 	public function testGenerateRollback( $rollbackEnabled, $expectedModules, $title ) {
@@ -630,7 +630,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Linker::tooltipAndAccesskeyAttribs
+	 * @covers MediaWiki\Linker\Linker::tooltipAndAccesskeyAttribs
 	 * @dataProvider provideTooltipAndAccesskeyAttribs
 	 */
 	public function testTooltipAndAccesskeyAttribs( $name, $msgParams, $options, $expected ) {
@@ -652,7 +652,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Linker::commentBlock
+	 * @covers MediaWiki\Linker\Linker::commentBlock
 	 * @dataProvider provideCommentBlock
 	 */
 	public function testCommentBlock(
@@ -728,7 +728,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Linker::revComment
+	 * @covers MediaWiki\Linker\Linker::revComment
 	 * @dataProvider provideRevComment
 	 */
 	public function testRevComment(
@@ -790,7 +790,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Linker::specialLink
+	 * @covers MediaWiki\Linker\Linker::specialLink
 	 * @dataProvider provideSpecialLink
 	 */
 	public function testSpecialLink( $expected, $target, $key = null ) {

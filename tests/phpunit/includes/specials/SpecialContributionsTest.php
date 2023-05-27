@@ -8,7 +8,7 @@ use MediaWiki\Specials\SpecialContributions;
 /**
  * @author Ammarpad
  * @group Database
- * @covers SpecialContributions
+ * @covers MediaWiki\Specials\SpecialContributions
  */
 class SpecialContributionsTest extends SpecialPageTestBase {
 	private $pageName = __CLASS__ . 'BlaBlaTest';
@@ -39,7 +39,7 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers SpecialContributions::execute
+	 * @covers MediaWiki\Specials\SpecialContributions::execute
 	 * @dataProvider provideTestExecuteRange
 	 */
 	public function testExecuteRange( $username, $shouldShowLinks ) {
@@ -54,7 +54,7 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers SpecialContributions::execute
+	 * @covers MediaWiki\Specials\SpecialContributions::execute
 	 * @dataProvider provideTestExecuteNonRange
 	 */
 	public function testExecuteNonRange( $username, $shouldShowLinks ) {
@@ -106,7 +106,7 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers SpecialContributions::execute
+	 * @covers MediaWiki\Specials\SpecialContributions::execute
 	 * @dataProvider provideYearMonthParams
 	 */
 	public function testYearMonthParams( string $year, string $month, bool $expect ) {

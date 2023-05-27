@@ -7,7 +7,7 @@ use MediaWiki\User\UserOptionsManager;
 
 /**
  * @group SpecialPage
- * @covers SpecialMute
+ * @covers MediaWiki\Specials\SpecialMute
  */
 class SpecialMuteTest extends SpecialPageTestBase {
 
@@ -34,7 +34,7 @@ class SpecialMuteTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers SpecialMute::execute
+	 * @covers MediaWiki\Specials\SpecialMute::execute
 	 */
 	public function testInvalidTarget() {
 		$user = $this->getTestUser()->getUser();
@@ -46,7 +46,7 @@ class SpecialMuteTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers SpecialMute::execute
+	 * @covers MediaWiki\Specials\SpecialMute::execute
 	 */
 	public function testEmailBlacklistNotEnabled() {
 		$this->setTemporaryHook(
@@ -65,7 +65,7 @@ class SpecialMuteTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers SpecialMute::execute
+	 * @covers MediaWiki\Specials\SpecialMute::execute
 	 */
 	public function testUserNotLoggedIn() {
 		$this->expectException( UserNotLoggedIn::class );
@@ -73,7 +73,7 @@ class SpecialMuteTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers SpecialMute::execute
+	 * @covers MediaWiki\Specials\SpecialMute::execute
 	 */
 	public function testMuteAddsUserToEmailBlacklist() {
 		$targetUser = $this->getTestUser()->getUser();
@@ -96,7 +96,7 @@ class SpecialMuteTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers SpecialMute::execute
+	 * @covers MediaWiki\Specials\SpecialMute::execute
 	 */
 	public function testUnmuteRemovesUserFromEmailBlacklist() {
 		$targetUser = $this->getTestUser()->getUser();

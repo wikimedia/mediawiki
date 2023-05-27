@@ -30,7 +30,7 @@ class SpecialBooksourcesTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers SpecialBookSources::isValidISBN
+	 * @covers MediaWiki\Specials\SpecialBookSources::isValidISBN
 	 * @dataProvider provideISBNs
 	 */
 	public function testIsValidISBN( $isbn, $isValid ) {
@@ -46,7 +46,7 @@ class SpecialBooksourcesTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers SpecialBookSources::execute
+	 * @covers MediaWiki\Specials\SpecialBookSources::execute
 	 */
 	public function testExecute() {
 		[ $html, ] = $this->executeSpecialPage( 'Invalid', null, 'qqx' );

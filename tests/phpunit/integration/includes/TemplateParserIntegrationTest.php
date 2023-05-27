@@ -5,7 +5,7 @@ use MediaWiki\MainConfigNames;
 
 /**
  * @group Templates
- * @coversDefaultClass TemplateParser
+ * @coversDefaultClass MediaWiki\Html\TemplateParser
  */
 class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 
@@ -171,7 +171,7 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideProcessTemplate
-	 * @covers TemplateParser
+	 * @covers MediaWiki\Html\TemplateParser
 	 */
 	public function testProcessTemplate( $name, $args, $result, $exception = false ) {
 		$tp = new TemplateParser( self::DIR, new EmptyBagOStuff );
@@ -293,7 +293,7 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers TemplateParser::compile
+	 * @covers MediaWiki\Html\TemplateParser::compile
 	 */
 	public function testCompileReturnsPHPCodeAndMetadata() {
 		$store = null;

@@ -4,8 +4,8 @@ use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
- * @covers ReadOnlyMode
- * @covers ConfiguredReadOnlyMode
+ * @covers Wikimedia\Rdbms\ReadOnlyMode
+ * @covers Wikimedia\Rdbms\ConfiguredReadOnlyMode
  */
 class ReadOnlyModeTest extends MediaWikiUnitTestCase {
 

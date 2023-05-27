@@ -6,7 +6,7 @@ use MediaWiki\Specials\SpecialBlankpage;
  * @license GPL-2.0-or-later
  * @author Addshore
  *
- * @covers SpecialBlankpage
+ * @covers MediaWiki\Specials\SpecialBlankpage
  */
 class SpecialBlankPageTest extends SpecialPageTestBase {
 

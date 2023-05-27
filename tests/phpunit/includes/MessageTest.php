@@ -396,8 +396,8 @@ class MessageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers RawMessage::__construct
-	 * @covers RawMessage::fetchMessage
+	 * @covers MediaWiki\Language\RawMessage::__construct
+	 * @covers MediaWiki\Language\RawMessage::fetchMessage
 	 */
 	public function testRawMessage() {
 		$msg = new RawMessage( 'example &' );

@@ -43,7 +43,7 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Category::initialize()
+	 * @covers MediaWiki\Category\Category::initialize()
 	 */
 	public function testInitialize_idNotExist() {
 		$category = Category::newFromID( -1 );
@@ -76,7 +76,7 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Category::initialize()
+	 * @covers MediaWiki\Category\Category::initialize()
 	 * @dataProvider provideInitializeVariants
 	 */
 	public function testInitialize( $createFunction, $createParam, $testFunction, $expected ) {
@@ -85,8 +85,8 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Category::newFromName()
-	 * @covers Category::getName()
+	 * @covers MediaWiki\Category\Category::newFromName()
+	 * @covers MediaWiki\Category\Category::getName()
 	 */
 	public function testNewFromName_validTitle() {
 		$category = Category::newFromName( 'Example' );
@@ -94,14 +94,14 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Category::newFromName()
+	 * @covers MediaWiki\Category\Category::newFromName()
 	 */
 	public function testNewFromName_invalidTitle() {
 		$this->assertFalse( Category::newFromName( '#' ) );
 	}
 
 	/**
-	 * @covers Category::newFromTitle()
+	 * @covers MediaWiki\Category\Category::newFromTitle()
 	 */
 	public function testNewFromTitle() {
 		$title = Title::makeTitle( NS_CATEGORY, 'Example' );
@@ -112,8 +112,8 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Category::newFromID()
-	 * @covers Category::getID()
+	 * @covers MediaWiki\Category\Category::newFromID()
+	 * @covers MediaWiki\Category\Category::getID()
 	 */
 	public function testNewFromID() {
 		$category = Category::newFromID( 5 );
@@ -121,7 +121,7 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Category::newFromRow()
+	 * @covers MediaWiki\Category\Category::newFromRow()
 	 */
 	public function testNewFromRow_found() {
 		$dbw = wfGetDB( DB_PRIMARY );
@@ -137,7 +137,7 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Category::newFromRow()
+	 * @covers MediaWiki\Category\Category::newFromRow()
 	 */
 	public function testNewFromRow_notFoundWithoutTitle() {
 		$dbw = wfGetDB( DB_PRIMARY );
@@ -154,7 +154,7 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Category::newFromRow()
+	 * @covers MediaWiki\Category\Category::newFromRow()
 	 */
 	public function testNewFromRow_notFoundWithTitle() {
 		$dbw = wfGetDB( DB_PRIMARY );
@@ -176,9 +176,9 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Category::getMemberCount()
-	 * @covers Category::getSubcatCount()
-	 * @covers Category::getFileCount()
+	 * @covers MediaWiki\Category\Category::getMemberCount()
+	 * @covers MediaWiki\Category\Category::getSubcatCount()
+	 * @covers MediaWiki\Category\Category::getFileCount()
 	 */
 	public function testGetCounts() {
 		// See data set in addDBDataOnce

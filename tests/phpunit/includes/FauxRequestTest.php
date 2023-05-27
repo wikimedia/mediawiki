@@ -12,7 +12,7 @@ class FauxRequestTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers FauxRequest::__construct
+	 * @covers MediaWiki\Request\FauxRequest::__construct
 	 */
 	public function testConstructInvalidData() {
 		$this->expectException( MWException::class );
@@ -21,7 +21,7 @@ class FauxRequestTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers FauxRequest::__construct
+	 * @covers MediaWiki\Request\FauxRequest::__construct
 	 */
 	public function testConstructInvalidSession() {
 		$this->expectException( MWException::class );
@@ -30,7 +30,7 @@ class FauxRequestTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers FauxRequest::__construct
+	 * @covers MediaWiki\Request\FauxRequest::__construct
 	 */
 	public function testConstructWithSession() {
 		$session = SessionManager::singleton()->getEmptySession( new FauxRequest( [] ) );
@@ -41,7 +41,7 @@ class FauxRequestTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers FauxRequest::getText
+	 * @covers MediaWiki\Request\FauxRequest::getText
 	 */
 	public function testGetText() {
 		$req = new FauxRequest( [ 'x' => 'Value' ] );
@@ -51,7 +51,7 @@ class FauxRequestTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Integration test for parent method
-	 * @covers FauxRequest::getVal
+	 * @covers MediaWiki\Request\FauxRequest::getVal
 	 */
 	public function testGetVal() {
 		$req = new FauxRequest( [ 'crlf' => "A\r\nb" ] );
@@ -60,7 +60,7 @@ class FauxRequestTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Integration test for parent method
-	 * @covers FauxRequest::getRawVal
+	 * @covers MediaWiki\Request\FauxRequest::getRawVal
 	 */
 	public function testGetRawVal() {
 		$req = new FauxRequest( [
@@ -75,7 +75,7 @@ class FauxRequestTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers FauxRequest::getValues
+	 * @covers MediaWiki\Request\FauxRequest::getValues
 	 */
 	public function testGetValues() {
 		$values = [ 'x' => 'Value', 'y' => '' ];
@@ -84,7 +84,7 @@ class FauxRequestTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers FauxRequest::getQueryValues
+	 * @covers MediaWiki\Request\FauxRequest::getQueryValues
 	 */
 	public function testGetQueryValues() {
 		$values = [ 'x' => 'Value', 'y' => '' ];
@@ -96,7 +96,7 @@ class FauxRequestTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers FauxRequest::getMethod
+	 * @covers MediaWiki\Request\FauxRequest::getMethod
 	 */
 	public function testGetMethod() {
 		$req = new FauxRequest( [] );
@@ -106,7 +106,7 @@ class FauxRequestTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers FauxRequest::wasPosted
+	 * @covers MediaWiki\Request\FauxRequest::wasPosted
 	 */
 	public function testWasPosted() {
 		$req = new FauxRequest( [] );
@@ -116,9 +116,9 @@ class FauxRequestTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers FauxRequest::getCookie
-	 * @covers FauxRequest::setCookie
-	 * @covers FauxRequest::setCookies
+	 * @covers MediaWiki\Request\FauxRequest::getCookie
+	 * @covers MediaWiki\Request\FauxRequest::setCookie
+	 * @covers MediaWiki\Request\FauxRequest::setCookies
 	 */
 	public function testCookies() {
 		$req = new FauxRequest();
@@ -133,9 +133,9 @@ class FauxRequestTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers FauxRequest::getCookie
-	 * @covers FauxRequest::setCookie
-	 * @covers FauxRequest::setCookies
+	 * @covers MediaWiki\Request\FauxRequest::getCookie
+	 * @covers MediaWiki\Request\FauxRequest::setCookie
+	 * @covers MediaWiki\Request\FauxRequest::setCookies
 	 */
 	public function testCookiesDefaultPrefix() {
 		global $wgCookiePrefix;
@@ -152,7 +152,7 @@ class FauxRequestTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers FauxRequest::getRequestURL
+	 * @covers MediaWiki\Request\FauxRequest::getRequestURL
 	 */
 	public function testGetRequestURL_disallowed() {
 		$req = new FauxRequest();
@@ -161,8 +161,8 @@ class FauxRequestTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers FauxRequest::setRequestURL
-	 * @covers FauxRequest::getRequestURL
+	 * @covers MediaWiki\Request\FauxRequest::setRequestURL
+	 * @covers MediaWiki\Request\FauxRequest::getRequestURL
 	 */
 	public function testSetRequestURL() {
 		$req = new FauxRequest();
@@ -171,7 +171,7 @@ class FauxRequestTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers FauxRequest::getFullRequestURL
+	 * @covers MediaWiki\Request\FauxRequest::getFullRequestURL
 	 */
 	public function testGetFullRequestURL_disallowed() {
 		$req = new FauxRequest();
@@ -181,7 +181,7 @@ class FauxRequestTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers FauxRequest::getFullRequestURL
+	 * @covers MediaWiki\Request\FauxRequest::getFullRequestURL
 	 */
 	public function testGetFullRequestURL_http() {
 		$req = new FauxRequest();
@@ -194,7 +194,7 @@ class FauxRequestTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers FauxRequest::getFullRequestURL
+	 * @covers MediaWiki\Request\FauxRequest::getFullRequestURL
 	 */
 	public function testGetFullRequestURL_https() {
 		$req = new FauxRequest( [], false, null, 'https' );
@@ -207,8 +207,8 @@ class FauxRequestTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers FauxRequest::__construct
-	 * @covers FauxRequest::getProtocol
+	 * @covers MediaWiki\Request\FauxRequest::__construct
+	 * @covers MediaWiki\Request\FauxRequest::getProtocol
 	 */
 	public function testProtocol() {
 		$req = new FauxRequest();
@@ -220,9 +220,9 @@ class FauxRequestTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers FauxRequest::setHeader
-	 * @covers FauxRequest::setHeaders
-	 * @covers FauxRequest::getHeader
+	 * @covers MediaWiki\Request\FauxRequest::setHeader
+	 * @covers MediaWiki\Request\FauxRequest::setHeaders
+	 * @covers MediaWiki\Request\FauxRequest::getHeader
 	 */
 	public function testGetSetHeader() {
 		$value = 'text/plain, text/html';
@@ -241,7 +241,7 @@ class FauxRequestTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers FauxRequest::initHeaders
+	 * @covers MediaWiki\Request\FauxRequest::initHeaders
 	 */
 	public function testGetAllHeaders() {
 		$_SERVER['HTTP_TEST'] = 'Example';
@@ -253,8 +253,8 @@ class FauxRequestTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers FauxRequest::__construct
-	 * @covers FauxRequest::getSessionArray
+	 * @covers MediaWiki\Request\FauxRequest::__construct
+	 * @covers MediaWiki\Request\FauxRequest::getSessionArray
 	 */
 	public function testSessionData() {
 		$values = [ 'x' => 'Value', 'y' => '' ];
@@ -267,7 +267,7 @@ class FauxRequestTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers FauxRequest::getPostValues
+	 * @covers MediaWiki\Request\FauxRequest::getPostValues
 	 */
 	public function testGetPostValues() {
 		$values = [ 'x' => 'Value', 'y' => '' ];
@@ -280,9 +280,9 @@ class FauxRequestTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers FauxRequest::getRawQueryString
-	 * @covers FauxRequest::getRawPostString
-	 * @covers FauxRequest::getRawInput
+	 * @covers MediaWiki\Request\FauxRequest::getRawQueryString
+	 * @covers MediaWiki\Request\FauxRequest::getRawPostString
+	 * @covers MediaWiki\Request\FauxRequest::getRawInput
 	 */
 	public function testDummies() {
 		$req = new FauxRequest();

@@ -23,7 +23,7 @@ use WikitextContent;
  *
  * @covers McrUndoAction
  * @covers WikiPage
- * @covers EditPage
+ * @covers MediaWiki\EditPage\EditPage
  *
  * @group Database
  * @group medium

@@ -4,12 +4,12 @@ use MediaWiki\Html\ListToggle;
 use MediaWiki\Tests\Unit\FakeQqxMessageLocalizer;
 
 /**
- * @covers ListToggle
+ * @covers MediaWiki\Html\ListToggle
  */
 class ListToggleTest extends MediaWikiUnitTestCase {
 
 	/**
-	 * @covers ListToggle::__construct
+	 * @covers MediaWiki\Html\ListToggle::__construct
 	 */
 	public function testConstruct() {
 		$output = $this->createMock( OutputPage::class );
@@ -24,7 +24,7 @@ class ListToggleTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ListToggle::getHTML
+	 * @covers MediaWiki\Html\ListToggle::getHTML
 	 */
 	public function testGetHTML() {
 		$language = $this->createMock( Language::class );

@@ -37,7 +37,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideExtractSectionTitle
-	 * @covers EditPage::extractSectionTitle
+	 * @covers MediaWiki\EditPage\EditPage::extractSectionTitle
 	 */
 	public function testExtractSectionTitle( $section, $title ) {
 		$this->assertEquals(
@@ -279,7 +279,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideCreatePages
-	 * @covers EditPage
+	 * @covers MediaWiki\EditPage\EditPage
 	 */
 	public function testCreatePage(
 		$desc, $pageTitle, $user, $editText, $expectedCode, $expectedText, $ignoreBlank = false
@@ -315,7 +315,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideCreatePages
-	 * @covers EditPage
+	 * @covers MediaWiki\EditPage\EditPage
 	 */
 	public function testCreatePageTrx(
 		$desc, $pageTitle, $user, $editText, $expectedCode, $expectedText, $ignoreBlank = false
@@ -366,7 +366,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers EditPage
+	 * @covers MediaWiki\EditPage\EditPage
 	 */
 	public function testUpdatePage() {
 		$checkIds = [];
@@ -408,7 +408,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers EditPage
+	 * @covers MediaWiki\EditPage\EditPage
 	 */
 	public function testUpdateNoMinor() {
 		$user = $this->getTestUser()->getUser();
@@ -465,7 +465,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers EditPage
+	 * @covers MediaWiki\EditPage\EditPage
 	 */
 	public function testUpdatePageTrx() {
 		$text = "one";
@@ -591,7 +591,7 @@ hello
 
 	/**
 	 * @dataProvider provideSectionEdit
-	 * @covers EditPage
+	 * @covers MediaWiki\EditPage\EditPage
 	 */
 	public function testSectionEdit( $title, $base, $section, $text, $summary, $expected ) {
 		$edit = [
@@ -660,7 +660,7 @@ hello
 
 	/**
 	 * @dataProvider provideConflictDetection
-	 * @covers EditPage
+	 * @covers MediaWiki\EditPage\EditPage
 	 */
 	public function testConflictDetection( $editUser, $newEdit, $expectedCode, $message ) {
 		// create page
@@ -786,7 +786,7 @@ hello
 
 	/**
 	 * @dataProvider provideAutoMerge
-	 * @covers EditPage
+	 * @covers MediaWiki\EditPage\EditPage
 	 */
 	public function testAutoMerge( $baseUser, $text, $adamsEdit, $bertasEdit,
 		$expectedCode, $expectedText, $message = null
@@ -835,7 +835,7 @@ hello
 
 	/**
 	 * @depends testAutoMerge
-	 * @covers EditPage
+	 * @covers MediaWiki\EditPage\EditPage
 	 */
 	public function testCheckDirectEditingDisallowed_forNonTextContent() {
 		$user = $this->getTestUser()->getUser();
@@ -929,7 +929,7 @@ hello
 	/**
 	 * The watchlist expiry field should select the entered value on preview, rather than the
 	 * calculated number of days till the expiry (as it shows on edit).
-	 * @covers EditPage::getCheckboxesDefinition()
+	 * @covers MediaWiki\EditPage\EditPage::getCheckboxesDefinition()
 	 * @dataProvider provideWatchlistExpiry()
 	 */
 	public function testWatchlistExpiry( $existingExpiry, $postVal, $selected, $options ) {
@@ -999,7 +999,7 @@ hello
 
 	/**
 	 * T277204
-	 * @covers EditPage
+	 * @covers MediaWiki\EditPage\EditPage
 	 */
 	public function testFalseyEditRevId() {
 		$elmosEdit['wpTextbox1'] = 'Elmo\'s text';
