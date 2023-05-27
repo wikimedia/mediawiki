@@ -209,7 +209,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropSequence', 'ip_changes', 'ip_changes_ipc_rev_id_seq' ],
 			[ 'changeField', 'ip_changes', 'ipc_hex', 'TEXT', "ipc_hex::TEXT DEFAULT ''" ],
 			[ 'setDefault', 'ip_changes', 'ipc_rev_id', 0 ],
-			[ 'changeField', 'revision_comment_temp', 'revcomment_comment_id', 'BIGINT', '' ],
 			[ 'renameIndex', 'watchlist', 'namespace_title', 'wl_namespace_title' ],
 			[ 'dropFkey', 'page_props', 'pp_page' ],
 			// page_props primary key change moved from the Schema SQL file to here in 1.36
@@ -451,6 +450,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			// 1.41
 			[ 'addField', 'user', 'user_is_temp', 'patch-user-user_is_temp.sql' ],
 			[ 'runMaintenance', MigrateRevisionCommentTemp::class, 'maintenance/migrateRevisionCommentTemp.php' ],
+			[ 'dropTable', 'revision_comment_temp' ],
 		];
 	}
 

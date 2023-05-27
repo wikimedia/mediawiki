@@ -805,9 +805,6 @@ class DeletePage {
 			$dbw->insert( 'archive', $rowsInsert, __METHOD__ );
 
 			$dbw->delete( 'revision', [ 'rev_id' => $revids ], __METHOD__ );
-			if ( $this->commentStore->getTempTableMigrationStage( 'rev_comment' ) & SCHEMA_COMPAT_WRITE_OLD ) {
-				$dbw->delete( 'revision_comment_temp', [ 'revcomment_rev' => $revids ], __METHOD__ );
-			}
 			// Also delete records from ip_changes as applicable.
 			if ( count( $ipRevIds ) > 0 ) {
 				$dbw->delete( 'ip_changes', [ 'ipc_rev_id' => $ipRevIds ], __METHOD__ );
