@@ -1140,7 +1140,7 @@ config-schema:
             Don't read SVG metadata beyond this point.
             Default is 1024*256 bytes
     SVGNativeRendering:
-        default: 'false'
+        default: false
         type:
             - string
             - boolean

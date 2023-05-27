@@ -1950,7 +1950,7 @@ class MainConfigSchema {
 	 * @since 1.41
 	 */
 	public const SVGNativeRendering = [
-		'default' => 'false',
+		'default' => false,
 		'type' => 'string|boolean',
 	];
 
