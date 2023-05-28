@@ -82,7 +82,7 @@
 				var $tabPanel = $field.closest( '.oo-ui-tabPanelLayout' );
 
 				function addToIndex( $label, $highlight ) {
-					var text = $label.val() || $label[ 0 ].innerText.toLowerCase().trim().replace( /\s+/, ' ' );
+					var text = $label.val() || $label[ 0 ].textContent.toLowerCase().trim().replace( /\s+/, ' ' );
 					if ( text ) {
 						index[ text ] = index[ text ] || [];
 						index[ text ].push( {
