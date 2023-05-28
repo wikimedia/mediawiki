@@ -206,13 +206,13 @@ intersection-observer:
 jquery:
   license: MIT
   homepage: https://jquery.com
-  version: 3.6.1
+  version: 3.7.1
   type: multi-file
   files:
     # Integrities from link modals https://code.jquery.com/jquery/
     jquery.js:
-      src: https://code.jquery.com/jquery-3.6.1.js
-      integrity: sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=
+      src: https://code.jquery.com/jquery-3.7.1.js
+      integrity: sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=
 
 jquery.chosen:
   license: MIT
