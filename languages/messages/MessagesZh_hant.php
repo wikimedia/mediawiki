@@ -302,6 +302,19 @@ $magicWords = [
 	'url_query'                 => [ '0', '查詢', 'QUERY' ],
 ];
 
+$datePreferences = [
+	'default',
+	'ISO 8601',
+];
+
+$defaultDateFormat = 'zh';
+
+$dateFormats = [
+	'zh time' => 'H:i',
+	'zh date' => 'Y年n月j日 (l)',
+	'zh both' => 'Y年n月j日 (D) H:i',
+];
+
 $bookstoreList = [
 	'博客來書店' => 'http://www.books.com.tw/exep/prod/booksfile.php?item=$1',
 	'三民書店' => 'http://www.sanmin.com.tw/page-qsearch.asp?ct=search_isbn&qu=$1',
