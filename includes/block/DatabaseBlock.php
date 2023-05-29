@@ -734,7 +734,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * @inheritDoc
 	 */
 	public function getId( $wikiId = self::LOCAL ): ?int {
-		$this->deprecateInvalidCrossWiki( $wikiId, '1.38' );
+		$this->assertWiki( $wikiId );
 		return $this->mId;
 	}
 

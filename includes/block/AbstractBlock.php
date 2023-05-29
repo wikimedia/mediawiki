@@ -134,7 +134,7 @@ abstract class AbstractBlock implements Block {
 	 * @inheritDoc
 	 */
 	public function getId( $wikiId = self::LOCAL ): ?int {
-		$this->deprecateInvalidCrossWiki( $wikiId, '1.38' );
+		$this->assertWiki( $wikiId );
 		return null;
 	}
 

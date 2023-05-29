@@ -158,6 +158,8 @@ because of Phabricator reports.
 * Various mediawiki.less mediawiki.ui variables, deprecated in 1.35, have been
   removed. See also below that the remaining mediawiki.ui variables are now also
   deprecated.
+* Calling getId() on an AbstractBlock from the wrong wiki, deprecated since
+  1.38, now throws an exception.
 * SQLite no longer supports raw MySQL queries.
 * The following functions from the mediawiki.mixins Less import, deprecated
   since 1.37, have been removed: .transition(), .transition-transform(),
