@@ -107,7 +107,7 @@ class ConnectionManager {
 	 * @since 1.37 Added optional $flags parameter
 	 * @param string[]|null $groups
 	 * @param int $flags
-	 * @return IDatabase
+	 * @return IReadableDatabase
 	 */
 	public function getReadConnection( ?array $groups = null, int $flags = 0 ) {
 		$groups ??= $this->groups;

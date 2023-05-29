@@ -64,7 +64,7 @@ class SessionConsistentConnectionManager extends ConnectionManager {
 	 * @param string[]|null $groups
 	 * @param int $flags
 	 *
-	 * @return IDatabase
+	 * @return IReadableDatabase
 	 */
 	public function getReadConnection( ?array $groups = null, int $flags = 0 ) {
 		if ( $this->forceWriteConnection ) {
