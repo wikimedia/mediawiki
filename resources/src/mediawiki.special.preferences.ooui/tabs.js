@@ -73,13 +73,20 @@
 		var index, texts;
 		function buildIndex() {
 			index = {};
-			var $fields = tabs.contentPanel.$element.find(
-				'[class^=mw-htmlform-field-]:not( #mw-prefsection-betafeatures .mw-htmlform-field-HTMLInfoField ):not( .mw-prefs-search-noindex )'
+			var $fields = tabs.contentPanel.$element.find( '[class^=mw-htmlform-field-]:not( .mw-prefs-search-noindex )' );
+			var $descFields = $fields.filter(
+				'.oo-ui-fieldsetLayout-group > .oo-ui-widget > .mw-htmlform-field-HTMLInfoField'
 			);
-			$fields.each( function () {
+			$fields.not( $descFields ).each( function () {
 				var $field = $( this );
 				var $wrapper = $field.parents( '.mw-prefs-fieldset-wrapper' );
 				var $tabPanel = $field.closest( '.oo-ui-tabPanelLayout' );
+				var $labels = $field.find(
+					'.oo-ui-labelElement-label, .oo-ui-textInputWidget .oo-ui-inputWidget-input, p'
+				).add(
+					$wrapper.find( '> .oo-ui-fieldsetLayout > .oo-ui-fieldsetLayout-header .oo-ui-labelElement-label' )
+				);
+				$field = $field.add( $tabPanel.find( $descFields ) );
 
 				function addToIndex( $label, $highlight ) {
 					var text = $label.val() || $label[ 0 ].textContent.toLowerCase().trim().replace( /\s+/, ' ' );
@@ -94,9 +101,7 @@
 					}
 				}
 
-				$field.find( '.oo-ui-labelElement-label, .oo-ui-textInputWidget .oo-ui-inputWidget-input, p' ).add(
-					$wrapper.find( '> .oo-ui-fieldsetLayout > .oo-ui-fieldsetLayout-header .oo-ui-labelElement-label' )
-				).each( function () {
+				$labels.each( function () {
 					addToIndex( $( this ) );
 
 					// Check if there we are in an infusable dropdown and collect other options
