@@ -2646,6 +2646,7 @@
 	"undelete-show-file-confirm": "您確定要檢視檔案 \"<nowiki>$1</nowiki>\" 於 $2 $3 已刪除的修訂？",
 	"undelete-show-file-submit": "是",
 	"undelete-back-to-list": "檢視所有已刪除的修訂",
+	"undelete-load-more-revisions": "載入更多修訂",
 	"namespace": "命名空間：",
 	"invert": "反向選擇",
 	"tooltip-invert": "勾選此核選方塊以隱藏選擇命名空間中的頁面變更 (若勾選相關命名空間，則會同時隱藏相關命名空間)",

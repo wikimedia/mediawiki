@@ -2853,7 +2853,7 @@
 	"watchlistedit-normal-done": "{{PLURAL:$1|Singla titulo|$1 tituli}} removesis de vua surveyo-listo:",
 	"watchlistedit-raw-title": "Redaktar texto di surveyo-listo",
 	"watchlistedit-raw-legend": "Redaktar vua surveyo-listo en formo di texto",
-	"watchlistedit-raw-explain": "Tituli en vua surveyo-listo montresas adinfre, e povas modifikesar per adjuntado od eskarto de la listo; nur un titulo per lineo.\nKande vu finos, kliktez \"{{int:Watchlistedit-raw-submit}}\".\nVu anke povas [[Special:EditWatchlist|uzar la redaktero ordinara ('standard')]].",
+	"watchlistedit-raw-explain": "Tituli en vua surveyo-listo montresas adinfre, e povas modifikesar per adjuntado od eskarto de la listo; nur un titulo po lineo.\nKande vu finos, kliktez \"{{int:Watchlistedit-raw-submit}}\".\nVu anke povas [[Special:EditWatchlist|uzar la redaktero ordinara ('standard')]].",
 	"watchlistedit-raw-titles": "Tituli:",
 	"watchlistedit-raw-submit": "Aktualigar surveyo-listo",
 	"watchlistedit-clear-title": "Vakuigar la surveyo-listo",

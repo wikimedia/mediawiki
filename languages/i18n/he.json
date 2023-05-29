@@ -2569,6 +2569,7 @@
 	"undelete-show-file-confirm": "האם ברצונך לצפות בגרסה המחוקה של הקובץ \"<nowiki>$1</nowiki>\" מ־$3, $2?",
 	"undelete-show-file-submit": "כן",
 	"undelete-back-to-list": "הצגת כל הגרסאות המחוקות",
+	"undelete-load-more-revisions": "לטעון עוד גרסאות",
 	"namespace": "מרחב שם:",
 	"invert": "היפוך בחירה",
 	"tooltip-invert": "יש לסמן את התיבה הזאת כדי להסתיר שינויים בדפים במרחב השם שנבחר (ובמרחב השם המשויך, אם הוא סומן)",

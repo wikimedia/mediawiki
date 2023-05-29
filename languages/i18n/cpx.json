@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"ChoiChong",
 			"Kahin He",
 			"魔琴"
@@ -73,7 +74,7 @@
 	"about": "關於",
 	"article": "内容页",
 	"newwindow": "（伫新窗口开爬起）",
-	"cancel": "取消/Chṳ̂-sa̤u",
+	"cancel": "取消",
 	"moredotdotdot": "厄価兮",
 	"mypage": "頁面",
 	"mytalk": "討論",
@@ -87,7 +88,6 @@
 	"errorpagetitle": "错误",
 	"returnto": "转去$1。",
 	"tagline": "来自{{SITENAME}}",
-	"help": "Bang-cē̤",
 	"search": "𢶀𢶀",
 	"searchbutton": "𢶀𢶀",
 	"go": "去",
@@ -226,7 +226,6 @@
 	"cannotcreateaccount-title": "𣍐創建帳戶",
 	"yourdomainname": "汝兮域名：",
 	"password-change-forbidden": "汝𣍐佇者個維基內修改密碼。",
-	"login": "láuk-diē",
 	"nav-login-createaccount": "登錄/創建帳戶",
 	"logout": "退出",
 	"userlogout": "退出",
@@ -260,7 +259,6 @@
 	"pt-login-button": "躒入",
 	"pt-login-continue-button": "繼續登錄",
 	"pt-createaccount": "开新账号",
-	"pt-userlogout": "Láuk-chók",
 	"changepassword": "修改密碼",
 	"oldpassword": "舊兮密碼：",
 	"newpassword": "新兮密碼：",
@@ -539,6 +537,5 @@
 	"htmlform-submit": "提交",
 	"revdelete-content-hid": "隐藏内容",
 	"searchsuggest-search": "寻讨{{SITENAME}}",
-	"searchsuggest-containing": "寻讨含有以下内容兮页面",
-	"duration-days": "$1 {{PLURAL:$1|ci̍h}}"
+	"searchsuggest-containing": "寻讨含有以下内容兮页面"
 }

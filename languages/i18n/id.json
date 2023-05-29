@@ -990,7 +990,7 @@
 	"suppressionlogtext": "Berikut adalah daftar penghapusan dan pemblokiran, termasuk isi yang disembunyikan dari para pengurus.\nLihat [[Special:BlockList|daftar pemblokiran]] untuk daftar pembatasan dan pemblokiraan yang sedang berjalan.",
 	"mergehistory": "Riwayat penggabungan sejarah halaman",
 	"mergehistory-header": "Halaman ini memperbolehkan Anda untuk menggabungkan revisi-revisi dari satu halaman sumber ke halaman yang lebih baru.\nPastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu halaman.",
-	"mergehistory-box": "Gabung revisi-revisi dari dua halaman:",
+	"mergehistory-box": "Gabung revisi-revisi dari dua halaman",
 	"mergehistory-from": "Halaman sumber:",
 	"mergehistory-into": "Halaman tujuan:",
 	"mergehistory-list": "Sejarah suntingan yang dapat digabungkan",

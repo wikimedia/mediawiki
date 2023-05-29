@@ -4049,7 +4049,7 @@
 	"specialmute-error-no-options": "Dempingsfunksjoner er ikke tilgjengelige. Dette kan være fordi du ikke har bekreftet epostadressen din, eller at wikiadministratoren har slått av epostfunksjoner og/eller svartelisting av eposter for denne wikien.",
 	"specialmute-email-footer": "Besøk <$1> for å behandle epostinnstillingene som gjelder brukeren {{BIDI:$2}}.",
 	"specialmute-login-required": "Logg inn for å endre dempingsinnstillingene dine.",
-	"mute-preferences": "Dempingsinnstillinger",
+	"mute-preferences": "Dempings&shy;innstillinger",
 	"revid": "sideversjon $1",
 	"pageid": "side-ID $1",
 	"rawhtml-notallowed": "&lt;html&gt;-tagger kan ikke brukes utenfor normale sider.",
