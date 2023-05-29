@@ -180,7 +180,7 @@ class DatabaseTestHelper extends Database {
 		return true;
 	}
 
-	public function insertId() {
+	protected function lastInsertId() {
 		return -1;
 	}
 
@@ -238,7 +238,8 @@ class DatabaseTestHelper extends Database {
 		if ( $this->nextResMapQueue ) {
 			$this->lastResMap = array_shift( $this->nextResMapQueue );
 			if ( !$this->lastResMap['errno'] && $this->forcedAffectedCountQueue ) {
-				$this->affectedRowCount = array_shift( $this->forcedAffectedCountQueue );
+				$count = array_shift( $this->forcedAffectedCountQueue );
+				$this->lastQueryAffectedRows = $count;
 			}
 		} else {
 			$this->lastResMap = [ 'res' => [], 'errno' => 0, 'error' => '' ];

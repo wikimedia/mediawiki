@@ -234,18 +234,14 @@ class DatabasePostgres extends Database {
 		}
 	}
 
-	public function insertId() {
-		$query = new Query(
-			"SELECT lastval()",
-			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,
-			'SELECT',
-			[]
-		);
-		$res = $this->query( $query, __METHOD__ );
-		$row = $res->fetchRow();
+	protected function lastInsertId() {
+		// Avoid using query() to prevent unwanted side-effects like changing affected
+		// row counts or connection retries. Note that lastval() is connection-specific.
+		// Note that this causes "lastval is not yet defined in this session" errors if
+		// nextval() was never directly or implicitly triggered (error out any transaction).
+		$qs = $this->doSingleStatementQuery( "SELECT lastval() AS id" );
 
-		// @phan-suppress-next-line PhanTypeMismatchReturnProbablyReal Return type is undefined for no lastval
-		return $row[0] === null ? null : (int)$row[0];
+		return $qs->res ? (int)$qs->res->fetchRow()['id'] : 0;
 	}
 
 	public function lastError() {
@@ -1123,6 +1119,38 @@ __INDEXATTR__;
 		$row = $res->fetchObject();
 
 		return $row && strtolower( $row->default_transaction_read_only ) === 'on';
+	}
+
+	protected function getInsertIdColumnForUpsert( $table ) {
+		$column = null;
+
+		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
+		$encTable = $this->addQuotes( $this->realTableName( $table, 'raw' ) );
+		foreach ( $this->getCoreSchemas() as $schema ) {
+			$encSchema = $this->addQuotes( $schema );
+			$query = new Query(
+				"SELECT column_name,data_type,column_default " .
+					"FROM information_schema.columns " .
+					"WHERE table_name = $encTable AND table_schema = $encSchema",
+				self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,
+				'SELECT'
+			);
+			$res = $this->query( $query, __METHOD__ );
+			if ( $res->numRows() ) {
+				foreach ( $res as $row ) {
+					if (
+						$row->column_default !== null &&
+						str_starts_with( $row->column_default, "nextval(" ) &&
+						in_array( $row->data_type, [ 'integer', 'bigint' ], true )
+					) {
+						$column = $row->column_name;
+					}
+				}
+				break;
+			}
+		}
+
+		return $column;
 	}
 
 	public static function getAttributes() {

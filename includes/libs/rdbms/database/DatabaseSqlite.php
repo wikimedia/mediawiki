@@ -379,7 +379,7 @@ class DatabaseSqlite extends Database {
 
 	protected function doSingleStatementQuery( string $sql ): QueryStatus {
 		$res = $this->getBindingHandle()->query( $sql );
-
+		// Note that rowCount() returns 0 for SELECT for SQLite
 		return new QueryStatus(
 			$res instanceof PDOStatement ? new SqliteResultWrapper( $res ) : $res,
 			$res ? $res->rowCount() : 0,
@@ -423,14 +423,9 @@ class DatabaseSqlite extends Database {
 		return true;
 	}
 
-	/**
-	 * This must be called after nextSequenceVal
-	 *
-	 * @return int
-	 */
-	public function insertId() {
+	protected function lastInsertId() {
 		// PDO::lastInsertId yields a string :(
-		return intval( $this->getBindingHandle()->lastInsertId() );
+		return (int)$this->getBindingHandle()->lastInsertId();
 	}
 
 	/**
@@ -532,6 +527,8 @@ class DatabaseSqlite extends Database {
 		$encTable = $this->tableName( $table );
 		[ $sqlColumns, $sqlTuples ] = $this->platform->makeInsertLists( $rows );
 		// https://sqlite.org/lang_insert.html
+		// Note that any auto-increment columns on conflicting rows will be reassigned
+		// due to combined DELETE+INSERT semantics. This will be reflected in insertId().
 		$this->query(
 			"REPLACE INTO $encTable ($sqlColumns) VALUES $sqlTuples",
 			$fname,
@@ -913,6 +910,22 @@ class DatabaseSqlite extends Database {
 	 */
 	protected function getBindingHandle() {
 		return parent::getBindingHandle();
+	}
+
+	protected function getInsertIdColumnForUpsert( $table ) {
+		$tableRaw = $this->tableName( $table, 'raw' );
+		$res = $this->query(
+			'PRAGMA table_info(' . $this->addQuotes( $tableRaw ) . ')',
+			__METHOD__,
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+		);
+		foreach ( $res as $row ) {
+			if ( $row->pk && strtolower( $row->type ) === 'integer' ) {
+				return $row->name;
+			}
+		}
+
+		return null;
 	}
 }
 

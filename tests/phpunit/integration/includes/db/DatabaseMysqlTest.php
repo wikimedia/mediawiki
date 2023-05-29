@@ -265,4 +265,224 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		return $conn;
 	}
 
+	/**
+	 * @covers \Wikimedia\Rdbms\Database::insert()
+	 * @covers \Wikimedia\Rdbms\Database::insertId()
+	 */
+	public function testInsertIdAfterInsert() {
+		$dTable = $this->createDestTable();
+
+		$rows = [ [ 'k' => 'Luca', 'v' => mt_rand( 1, 100 ), 't' => time() ] ];
+
+		$this->conn->insert( $dTable, $rows, __METHOD__ );
+		$this->assertSame( 1, $this->conn->affectedRows() );
+		$this->assertSame( 1, $this->conn->insertId() );
+
+		$this->assertSame( 1, (int)$this->conn->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertSame( 1, $this->conn->affectedRows() );
+		$this->assertSame( 0, $this->conn->insertId() );
+
+		$this->dropDestTable();
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\Database::insert()
+	 * @covers \Wikimedia\Rdbms\Database::insertId()
+	 */
+	public function testInsertIdAfterInsertIgnore() {
+		$dTable = $this->createDestTable();
+
+		$rows = [ [ 'k' => 'Luca', 'v' => mt_rand( 1, 100 ), 't' => time() ] ];
+
+		$this->conn->insert( $dTable, $rows, __METHOD__, 'IGNORE' );
+		$this->assertSame( 1, $this->conn->affectedRows() );
+		$this->assertSame( 1, $this->conn->insertId() );
+		$this->assertSame( 1, (int)$this->conn->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+
+		$this->conn->insert( $dTable, $rows, __METHOD__, 'IGNORE' );
+		$this->assertSame( 0, $this->conn->affectedRows() );
+		$this->assertSame( 0, $this->conn->insertId() );
+
+		$this->assertSame( 1, (int)$this->conn->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertSame( 1, $this->conn->affectedRows() );
+		$this->assertSame( 0, $this->conn->insertId() );
+
+		$this->dropDestTable();
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\Database::replace()
+	 * @covers \Wikimedia\Rdbms\Database::insertId()
+	 */
+	public function testInsertIdAfterReplace() {
+		$dTable = $this->createDestTable();
+
+		$rows = [ [ 'k' => 'Luca', 'v' => mt_rand( 1, 100 ), 't' => time() ] ];
+
+		$this->conn->replace( $dTable, 'k', $rows, __METHOD__ );
+		$this->assertSame( 1, $this->conn->affectedRows() );
+		$this->assertSame( 1, $this->conn->insertId() );
+		$this->assertSame( 1, (int)$this->conn->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+
+		$this->conn->replace( $dTable, 'k', $rows, __METHOD__ );
+		$this->assertSame( 2, $this->conn->affectedRows() );
+		$this->assertSame( 2, $this->conn->insertId() );
+
+		$this->assertSame( 2, (int)$this->conn->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertSame( 1, $this->conn->affectedRows() );
+		$this->assertSame( 0, $this->conn->insertId() );
+
+		$this->dropDestTable();
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\Database::upsert()
+	 * @covers \Wikimedia\Rdbms\Database::insertId()
+	 */
+	public function testInsertIdAfterUpsert() {
+		$dTable = $this->createDestTable();
+
+		$rows = [ [ 'k' => 'Luca', 'v' => mt_rand( 1, 100 ), 't' => time() ] ];
+		$set = [
+			'v = ' . $this->conn->buildExcludedValue( 'v' ),
+			't = ' . $this->conn->buildExcludedValue( 't' ) . ' + 1'
+		];
+
+		$this->conn->upsert( $dTable, $rows, 'k', $set, __METHOD__ );
+		$this->assertSame( 1, $this->conn->affectedRows() );
+		$this->assertSame( 1, $this->conn->insertId() );
+		$this->assertSame( 1, (int)$this->conn->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+
+		$this->conn->upsert( $dTable, $rows, 'k', $set, __METHOD__ );
+		$this->assertSame( 2, $this->conn->affectedRows() );
+		$this->assertSame( 1, $this->conn->insertId() );
+
+		$this->assertSame( 1, (int)$this->conn->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertSame( 1, $this->conn->affectedRows() );
+		$this->assertSame( 0, $this->conn->insertId() );
+
+		$this->dropDestTable();
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\Database::insertSelect()
+	 * @covers \Wikimedia\Rdbms\Database::insertId()
+	 */
+	public function testInsertIdAfterInsertSelect() {
+		$sTable = $this->createSourceTable();
+		$dTable = $this->createDestTable();
+
+		$rows = [ [ 'sk' => 'Luca', 'sv' => mt_rand( 1, 100 ), 'st' => time() ] ];
+		$this->conn->insert( $sTable, $rows, __METHOD__, 'IGNORE' );
+		$this->assertSame( 1, $this->conn->affectedRows() );
+		$this->assertSame( 1, $this->conn->insertId() );
+		$this->assertSame( 1, (int)$this->conn->selectField( $sTable, 'sn', [ 'sk' => 'Luca' ] ) );
+
+		$this->conn->insertSelect(
+			$dTable,
+			$sTable,
+			[ 'k' => 'sk', 'v' => 'sv', 't' => 'st' ],
+			[ 'sk' => 'Luca' ],
+			__METHOD__,
+			'IGNORE'
+		);
+		$this->assertSame( 1, $this->conn->affectedRows() );
+		$this->assertSame( 1, $this->conn->insertId() );
+
+		$this->assertSame( 1, (int)$this->conn->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertSame( 1, $this->conn->affectedRows() );
+		$this->assertSame( 0, $this->conn->insertId() );
+
+		$this->dropSourceTable();
+		$this->dropDestTable();
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\Database::insertSelect()
+	 * @covers \Wikimedia\Rdbms\Database::insertId()
+	 */
+	public function testInsertIdAfterInsertSelectIgnore() {
+		$sTable = $this->createSourceTable();
+		$dTable = $this->createDestTable();
+
+		$rows = [ [ 'sk' => 'Luca', 'sv' => mt_rand( 1, 100 ), 'st' => time() ] ];
+		$this->conn->insert( $sTable, $rows, __METHOD__, 'IGNORE' );
+		$this->assertSame( 1, $this->conn->affectedRows() );
+		$this->assertSame( 1, $this->conn->insertId() );
+		$this->assertSame( 1, (int)$this->conn->selectField( $sTable, 'sn', [ 'sk' => 'Luca' ] ) );
+
+		$this->conn->insertSelect(
+			$dTable,
+			$sTable,
+			[ 'k' => 'sk', 'v' => 'sv', 't' => 'st' ],
+			[ 'sk' => 'Luca' ],
+			__METHOD__,
+			'IGNORE'
+		);
+		$this->assertSame( 1, $this->conn->affectedRows() );
+		$this->assertSame( 1, $this->conn->insertId() );
+		$this->assertSame( 1, (int)$this->conn->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+
+		$this->conn->insertSelect(
+			$dTable,
+			$sTable,
+			[ 'k' => 'sk', 'v' => 'sv', 't' => 'st' ],
+			[ 'sk' => 'Luca' ],
+			__METHOD__,
+			'IGNORE'
+		);
+		$this->assertSame( 0, $this->conn->affectedRows() );
+		$this->assertSame( 0, $this->conn->insertId() );
+
+		$this->assertSame( 1, (int)$this->conn->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertSame( 1, $this->conn->affectedRows() );
+		$this->assertSame( 0, $this->conn->insertId() );
+
+		$this->dropSourceTable();
+		$this->dropDestTable();
+	}
+
+	private function createSourceTable() {
+		global $wgDBname;
+
+		$this->conn->query( "DROP TABLE IF EXISTS `$wgDBname`.`tmp_src_tbl`" );
+		$this->conn->query(
+			"CREATE TEMPORARY TABLE `$wgDBname`.`tmp_src_tbl` (" .
+			"sn integer not null unique key auto_increment, " .
+			"sk varchar(255) unique, " .
+			"sv integer, " .
+			"st integer" .
+			")"
+		);
+
+		return "$wgDBname.tmp_src_tbl";
+	}
+
+	private function createDestTable() {
+		global $wgDBname;
+
+		$this->conn->query( "DROP TABLE IF EXISTS `$wgDBname`.`tmp_dst_tbl`" );
+		$this->conn->query(
+			"CREATE TEMPORARY TABLE `$wgDBname`.`tmp_dst_tbl` (" .
+			"n integer not null unique key auto_increment, " .
+			"k varchar(255) unique, " .
+			"v integer, " .
+			"t integer" .
+			")"
+		);
+
+		return "$wgDBname.tmp_dst_tbl";
+	}
+
+	private function dropSourceTable() {
+		global $wgDBname;
+
+		$this->conn->query( "DROP TEMPORARY TABLE IF EXISTS `$wgDBname`.`tmp_src_tbl`" );
+	}
+
+	private function dropDestTable() {
+		global $wgDBname;
+
+		$this->conn->query( "DROP TEMPORARY TABLE IF EXISTS `$wgDBname`.`tmp_dst_tbl`" );
+	}
 }

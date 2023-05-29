@@ -403,6 +403,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	 */
 	private function getMockDB( $methods = [] ) {
 		static $abstractMethods = [
+			'lastInsertId',
 			'closeConnection',
 			'doSingleStatementQuery',
 			'fieldInfo',

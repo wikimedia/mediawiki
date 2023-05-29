@@ -395,4 +395,208 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 			],
 		];
 	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insert()
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insertId()
+	 */
+	public function testInsertIdAfterInsert() {
+		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
+		$dTable = $this->createDestTable( $db );
+
+		$rows = [ [ 'k' => 'Luca', 'v' => mt_rand( 1, 100 ), 't' => time() ] ];
+
+		$db->insert( $dTable, $rows, __METHOD__ );
+		$this->assertSame( 1, $db->affectedRows() );
+		$this->assertSame( 1, $db->insertId() );
+
+		$this->assertSame( 1, (int)$db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertSame( 0, $db->affectedRows() );
+		$this->assertSame( 0, $db->insertId() );
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insert()
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insertId()
+	 */
+	public function testInsertIdAfterInsertIgnore() {
+		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
+		$dTable = $this->createDestTable( $db );
+
+		$rows = [ [ 'k' => 'Luca', 'v' => mt_rand( 1, 100 ), 't' => time() ] ];
+
+		$db->insert( $dTable, $rows, __METHOD__, 'IGNORE' );
+		$this->assertSame( 1, $db->affectedRows() );
+		$this->assertSame( 1, $db->insertId() );
+		$this->assertSame( 1, (int)$db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+
+		$db->insert( $dTable, $rows, __METHOD__, 'IGNORE' );
+		$this->assertSame( 0, $db->affectedRows() );
+		$this->assertSame( 0, $db->insertId() );
+
+		$this->assertSame( 1, (int)$db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertSame( 0, $db->affectedRows() );
+		$this->assertSame( 0, $db->insertId() );
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::replace()
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insertId()
+	 */
+	public function testInsertIdAfterReplace() {
+		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
+		$dTable = $this->createDestTable( $db );
+
+		$rows = [ [ 'k' => 'Luca', 'v' => mt_rand( 1, 100 ), 't' => time() ] ];
+
+		$db->replace( $dTable, 'k', $rows, __METHOD__ );
+		$this->assertSame( 1, $db->affectedRows() );
+		$this->assertSame( 1, $db->insertId() );
+		$this->assertSame( 1, (int)$db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+
+		$db->replace( $dTable, 'k', $rows, __METHOD__ );
+		$this->assertSame( 1, $db->affectedRows() );
+		$this->assertSame( 2, $db->insertId() );
+
+		$this->assertSame( 2, (int)$db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertSame( 0, $db->affectedRows() );
+		$this->assertSame( 0, $db->insertId() );
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::upsert()
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insertId()
+	 */
+	public function testInsertIdAfterUpsert() {
+		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
+		$dTable = $this->createDestTable( $db );
+
+		$rows = [ [ 'k' => 'Luca', 'v' => mt_rand( 1, 100 ), 't' => time() ] ];
+		$otherRows = [ [ 'k' => 'Skylar', 'v' => mt_rand( 1, 100 ), 't' => time() ] ];
+		$set = [
+			'v = ' . $db->buildExcludedValue( 'v' ),
+			't = ' . $db->buildExcludedValue( 't' ) . ' + 1'
+		];
+
+		$db->upsert( $dTable, $rows, 'k', $set, __METHOD__ );
+		$this->assertSame( 1, $db->affectedRows() );
+		$this->assertSame( 1, $db->insertId() );
+		$this->assertSame( 1, (int)$db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+
+		$db->upsert( $dTable, $otherRows, 'k', $set, __METHOD__ );
+		$this->assertSame( 1, $db->affectedRows() );
+		$this->assertSame( 2, $db->insertId() );
+
+		$db->upsert( $dTable, $rows, 'k', $set, __METHOD__ );
+		$this->assertSame( 1, $db->affectedRows() );
+		$this->assertSame( 1, $db->insertId() );
+
+		$this->assertSame( 1, (int)$db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertSame( 0, $db->affectedRows() );
+		$this->assertSame( 0, $db->insertId() );
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insertSelect()
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insertId()
+	 */
+	public function testInsertIdAfterInsertSelect() {
+		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
+		$sTable = $this->createSourceTable( $db );
+		$dTable = $this->createDestTable( $db );
+
+		$rows = [ [ 'sk' => 'Luca', 'sv' => mt_rand( 1, 100 ), 'st' => time() ] ];
+		$db->insert( $sTable, $rows, __METHOD__, 'IGNORE' );
+		$this->assertSame( 1, $db->affectedRows() );
+		$this->assertSame( 1, $db->insertId() );
+		$this->assertSame( 1, (int)$db->selectField( $sTable, 'sn', [ 'sk' => 'Luca' ] ) );
+
+		$db->insertSelect(
+			$dTable,
+			$sTable,
+			[ 'k' => 'sk', 'v' => 'sv', 't' => 'st' ],
+			[ 'sk' => 'Luca' ],
+			__METHOD__,
+			'IGNORE'
+		);
+		$this->assertSame( 1, $db->affectedRows() );
+		$this->assertSame( 1, $db->insertId() );
+
+		$this->assertSame( 1, (int)$db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertSame( 0, $db->affectedRows() );
+		$this->assertSame( 0, $db->insertId() );
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insertSelect()
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insertId()
+	 */
+	public function testInsertIdAfterInsertSelectIgnore() {
+		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
+		$sTable = $this->createSourceTable( $db );
+		$dTable = $this->createDestTable( $db );
+
+		$rows = [ [ 'sk' => 'Luca', 'sv' => mt_rand( 1, 100 ), 'st' => time() ] ];
+		$db->insert( $sTable, $rows, __METHOD__, 'IGNORE' );
+		$this->assertSame( 1, $db->affectedRows() );
+		$this->assertSame( 1, $db->insertId() );
+		$this->assertSame( 1, (int)$db->selectField( $sTable, 'sn', [ 'sk' => 'Luca' ] ) );
+
+		$db->insertSelect(
+			$dTable,
+			$sTable,
+			[ 'k' => 'sk', 'v' => 'sv', 't' => 'st' ],
+			[ 'sk' => 'Luca' ],
+			__METHOD__,
+			'IGNORE'
+		);
+		$this->assertSame( 1, $db->affectedRows() );
+		$this->assertSame( 1, $db->insertId() );
+		$this->assertSame( 1, (int)$db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+
+		$db->insertSelect(
+			$dTable,
+			$sTable,
+			[ 'k' => 'sk', 'v' => 'sv', 't' => 'st' ],
+			[ 'sk' => 'Luca' ],
+			__METHOD__,
+			'IGNORE'
+		);
+		$this->assertSame( 0, $db->affectedRows() );
+		$this->assertSame( 0, $db->insertId() );
+
+		$this->assertSame( 1, (int)$db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertSame( 0, $db->affectedRows() );
+		$this->assertSame( 0, $db->insertId() );
+	}
+
+	private function createSourceTable( IDatabase $db ) {
+		$db->query( "DROP TABLE IF EXISTS tmp_src_tbl" );
+		$db->query(
+			"CREATE TABLE tmp_src_tbl (" .
+			"sn integer not null primary key autoincrement, " .
+			"sk text, " .
+			"sv integer, " .
+			"st integer" .
+			")"
+		);
+		$db->query( "CREATE UNIQUE INDEX tmp_src_tbl_sk ON tmp_src_tbl (sk)" );
+
+		return "tmp_src_tbl";
+	}
+
+	private function createDestTable( IDatabase $db ) {
+		$db->query( "DROP TABLE IF EXISTS tmp_dst_tbl" );
+		$db->query(
+			"CREATE TABLE tmp_dst_tbl (" .
+			"n integer not null primary key autoincrement, " .
+			"k text, " .
+			"v integer, " .
+			"t integer" .
+			")"
+		);
+		$db->query( "CREATE UNIQUE INDEX tmp_dst_tbl_k ON tmp_dst_tbl (k)" );
+
+		return "tmp_dst_tbl";
+	}
 }
