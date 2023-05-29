@@ -60,7 +60,8 @@
 			"FARMER",
 			"Meghmollar2017",
 			"মোঃ মারুফ হাসান24",
-			"Aishik Rehman"
+			"Aishik Rehman",
+			"Amire80"
 		]
 	},
 	"tog-underline": "সংযোগের নিচে দাগ দেখানো হোক:",
@@ -2677,7 +2678,7 @@
 	"blocklist-editing-ns": "নামস্থানসমূহ",
 	"ipblocklist-empty": "বাধাতালিকা খালি।",
 	"ipblocklist-no-results": "অনুরুদ্ধ আইপি ঠিকানা বা ব্যবহারকারী নামটির উপর কোন বাধা নেই।",
-	"blocklink": "বাধা দাও",
+	"blocklink": "বাধা দিন",
 	"unblocklink": "বাধা তুলুন",
 	"change-blocklink": "বাধা পরিবর্তন করুন",
 	"empty-username": "(কোনও ব্যবহারকারীর নাম উপলব্ধ নেই)",

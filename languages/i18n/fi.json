@@ -86,7 +86,8 @@
 			"Korjaus1",
 			"Huusmik",
 			"Valtlai",
-			"Lliehu"
+			"Lliehu",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Linkkien alleviivaus:",
@@ -3241,6 +3242,7 @@
 	"confirm-watch-top": "Lisätäänkö tämä sivu tarkkailulistallesi?",
 	"confirm-watch-label": "Tarkkailulistan ajanjakso:",
 	"watchlist-expiry-options": "Pysyvä:infinite,1 viikko:1 week,1 kuukausi:1 month,3 kuukautta:3 months,6 kuukautta:6 months",
+	"watchlist-expires-in-aria-label": "Vanhentuva tarkkailulistan kohde",
 	"confirm-watch-button-expiry": "Tarkkaile",
 	"confirm-unwatch-button": "OK",
 	"confirm-unwatch-top": "Poistetaanko tämä sivu tarkkailulistaltasi?",
