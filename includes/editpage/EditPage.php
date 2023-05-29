@@ -760,9 +760,6 @@ class EditPage implements IEditObject {
 
 		$this->isConflict = false;
 
-		# Show applicable editing introductions
-		$this->showIntro();
-
 		# Attempt submission here.  This will check for edit conflicts,
 		# and redundantly check for locked database, blocked IPs, etc.
 		# that edit() already checked just in case someone tries to sneak
@@ -2996,9 +2993,13 @@ class EditPage implements IEditObject {
 
 		$out = $this->context->getOutput();
 
+		// FlaggedRevs depends on running this hook before adding edit notices in showIntro() (T337637)
 		$this->getHookRunner()->onEditPage__showEditForm_initial( $this, $out );
 
 		$this->setHeaders();
+
+		// Show applicable editing introductions
+		$this->showIntro();
 
 		if ( !$this->isConflict &&
 			$this->section !== '' &&
