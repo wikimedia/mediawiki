@@ -2,7 +2,7 @@
 
 namespace Wikimedia\Tests\Rdbms;
 
-use PHPUnit\Framework\TestCase;
+use MediaWikiUnitTestCase;
 use Wikimedia\Rdbms\ConnectionManager;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IDatabase;
@@ -14,7 +14,7 @@ use Wikimedia\Rdbms\LoadBalancer;
  *
  * @author Daniel Kinzler
  */
-class ConnectionManagerTest extends TestCase {
+class ConnectionManagerTest extends MediaWikiUnitTestCase {
 
 	public function testGetReadConnection_nullGroups() {
 		$database = $this->createMock( IDatabase::class );
@@ -86,6 +86,7 @@ class ConnectionManagerTest extends TestCase {
 			->willReturn( null );
 
 		$manager = new ConnectionManager( $lb );
+		$this->expectDeprecationAndContinue( '/releaseConnection/' );
 		$manager->releaseConnection( $database );
 	}
 
@@ -99,6 +100,7 @@ class ConnectionManagerTest extends TestCase {
 			->willReturn( $database );
 
 		$manager = new ConnectionManager( $lb, 'someDbName', [ 'group1' ] );
+		$this->expectDeprecationAndContinue( '/getReadConnectionRef/' );
 		$actual = $manager->getReadConnectionRef();
 
 		$this->assertSame( $database, $actual );
@@ -114,6 +116,7 @@ class ConnectionManagerTest extends TestCase {
 			->willReturn( $database );
 
 		$manager = new ConnectionManager( $lb, 'someDbName', [ 'group1' ] );
+		$this->expectDeprecationAndContinue( '/getReadConnectionRef/' );
 		$actual = $manager->getReadConnectionRef( [ 'group2' ] );
 
 		$this->assertSame( $database, $actual );
@@ -129,6 +132,7 @@ class ConnectionManagerTest extends TestCase {
 			->willReturn( $database );
 
 		$manager = new ConnectionManager( $lb, 'someDbName', [ 'group1' ] );
+		$this->expectDeprecationAndContinue( '/getLazyWriteConnectionRef/' );
 		$actual = $manager->getLazyWriteConnectionRef();
 
 		$this->assertSame( $database, $actual );
@@ -144,6 +148,7 @@ class ConnectionManagerTest extends TestCase {
 			->willReturn( $database );
 
 		$manager = new ConnectionManager( $lb, 'someDbName', [ 'group1' ] );
+		$this->expectDeprecationAndContinue( '/getLazyReadConnectionRef/' );
 		$actual = $manager->getLazyReadConnectionRef();
 
 		$this->assertSame( $database, $actual );
@@ -159,6 +164,7 @@ class ConnectionManagerTest extends TestCase {
 			->willReturn( $database );
 
 		$manager = new ConnectionManager( $lb, 'someDbName', [ 'group1' ] );
+		$this->expectDeprecationAndContinue( '/getLazyReadConnectionRef/' );
 		$actual = $manager->getLazyReadConnectionRef( [ 'group2' ] );
 
 		$this->assertSame( $database, $actual );
@@ -174,6 +180,7 @@ class ConnectionManagerTest extends TestCase {
 			->willReturn( $database );
 
 		$manager = new ConnectionManager( $lb, 'someDbName', [ 'group1' ] );
+		$this->expectDeprecationAndContinue( '/getWriteConnectionRef/' );
 		$actual = $manager->getWriteConnectionRef();
 
 		$this->assertSame( $database, $actual );
