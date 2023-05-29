@@ -64,13 +64,6 @@ interface IDatabase extends IReadableDatabase {
 	public const ESTIMATE_TOTAL = 'total';
 	/** @var string Estimate time to apply (scanning, applying) */
 	public const ESTIMATE_DB_APPLY = 'apply';
-	/**
-	 * @var int Enable SSL/TLS in connection protocol
-	 * @deprecated since 1.39 use 'ssl' parameter
-	 */
-	public const DBO_SSL = 256;
-	/** @var int Enable compression in connection protocol */
-	public const DBO_COMPRESS = 512;
 
 	/** Flag to return the lock acquisition timestamp (null if not acquired) */
 	public const LOCK_TIMESTAMP = 1;
