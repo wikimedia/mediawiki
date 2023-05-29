@@ -455,8 +455,7 @@ return [
 	'CommentStore' => static function ( MediaWikiServices $services ): CommentStore {
 		return new CommentStore(
 			$services->getContentLanguage(),
-			MIGRATION_NEW,
-			$services->getMainConfig()->get( MainConfigNames::CommentTempTableSchemaMigrationStage )
+			MIGRATION_NEW
 		);
 	},
 

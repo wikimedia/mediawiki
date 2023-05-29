@@ -3256,19 +3256,6 @@ class MainConfigSchema {
 		'type' => 'integer',
 	];
 
-	/**
-	 * Comment temp tables schema migration stage.
-	 *
-	 * Use the SCHEMA_COMPAT_XXX flags.
-	 *
-	 * History:
-	 *  - 1.40: Added
-	 */
-	public const CommentTempTableSchemaMigrationStage = [
-		'default' => [],
-		'type' => 'map',
-	];
-
 	// endregion -- End of DB settings
 
 	/***************************************************************************/
