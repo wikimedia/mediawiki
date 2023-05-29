@@ -162,6 +162,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	 * @param string $html
 	 * @param RevisionRecord|int|null $rev
 	 * @param PageIdentity $page
+	 * @param string $version
 	 *
 	 * @return ParserOutput
 	 */
@@ -169,7 +170,8 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		ParserOptions $parserOpts,
 		string $html,
 		$rev,
-		PageIdentity $page
+		PageIdentity $page,
+		string $version = '08-15'
 	): ParserOutput {
 		$lang = $parserOpts->getTargetLanguage();
 		$lang = $lang ? $lang->getCode() : 'en';
@@ -188,7 +190,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 				't3s7' => [ 'dsr' => [ 0, 0, 0, 0 ] ],
 			] ],
 			'mw' => [ 'ids' => [] ],
-			'version' => '08-15',
+			'version' => $version,
 			'headers' => [
 				'content-language' => $lang
 			]
@@ -1077,6 +1079,40 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$output = $helper->getHtml();
 		$this->assertStringContainsString( 'Dummy output', $output->getText() );
 		$this->assertSame( '0/dummy-output', $output->getExtensionData( 'parsoid-render-id' ) );
+	}
+
+	/**
+	 * HtmlOutputRendererHelper should force a reparse if getParserOuput doesn't
+	 * return Parsoid's default version.
+	 */
+	public function testForceDefault() {
+		$page = $this->getExistingTestPage();
+
+		$poa = $this->createMock( ParsoidOutputAccess::class );
+		$poa->method( 'getParserOutput' )
+			->willReturnCallback( function (
+				PageIdentity $page,
+				ParserOptions $parserOpts,
+				$revision = null,
+				int $options = 0
+			) {
+				static $first = true;
+				if ( $first ) {
+					$version = '1.1.1'; // Not the default
+					$first = false;
+				} else {
+					$version = Parsoid::defaultHTMLVersion();
+					$this->assertGreaterThan( 0, $options & ParsoidOutputAccess::OPT_FORCE_PARSE );
+				}
+				$html = $this->getMockHtml( $revision );
+				$pout = $this->makeParserOutput( $parserOpts, $html, $revision, $page, $version );
+				return Status::newGood( $pout );
+			} );
+
+		$helper = $this->newHelper( null, $poa );
+		$helper->init( $page, [], $this->newUser() );
+		$pb = $helper->getPageBundle();
+		$this->assertSame( $pb->version, Parsoid::defaultHTMLVersion() );
 	}
 
 }
