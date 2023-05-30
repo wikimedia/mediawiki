@@ -17,6 +17,7 @@ THIS IS NOT A RELEASE YET
 * Added symfony/polyfill-php83.
 * Updated symfony/yaml from 5.4.10 to 5.4.23.
 * Updated wikimedia/timestamp from 4.0.0 to 4.1.1.
+* (T229992) LocalisationCache: Preserve fallback source language info [backport]
 
 == MediaWiki 1.39.5 ==
 

@@ -299,4 +299,30 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 			}
 		}
 	}
+
+	/**
+	 * @dataProvider provideLocalOverride
+	 * @param string $messageKey
+	 */
+	public function testLocalOverride( $messageKey ) {
+		$messageCache = $this->getServiceContainer()->getMessageCache();
+		$oldMessageZh = $messageCache->get( $messageKey, true, 'zh' );
+		$oldMessageZh_tw = $messageCache->get( $messageKey, true, 'zh-tw' );
+
+		$localOverrideHK = $messageKey . '_zh-hk';
+		$this->makePage( ucfirst( $messageKey ), 'zh-hk', $localOverrideHK );
+		$this->assertEquals( $oldMessageZh, $messageCache->get( $messageKey, true, 'zh' ), 'Local override overlapped (main code)' );
+		$this->assertEquals( $oldMessageZh_tw, $messageCache->get( $messageKey, true, 'zh-tw' ), 'Local override overlapped' );
+		$this->assertEquals( $localOverrideHK, $messageCache->get( $messageKey, true, 'zh-hk' ), 'Local override failed (self)' );
+		$this->assertEquals( $localOverrideHK, $messageCache->get( $messageKey, true, 'zh-mo' ), 'Local override failed (fallback)' );
+	}
+
+	public static function provideLocalOverride() {
+		return [
+			// Preloaded with preloadedMessages
+			[ 'nstab-main' ],
+			// Not preloaded
+			[ 'nstab-help' ],
+		];
+	}
 }

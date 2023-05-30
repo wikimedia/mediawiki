@@ -44,7 +44,7 @@ use Psr\Log\LoggerInterface;
  * @ingroup Language
  */
 class LocalisationCache {
-	public const VERSION = 4;
+	public const VERSION = 5;
 
 	/** @var ServiceOptions */
 	private $options;
@@ -63,6 +63,11 @@ class LocalisationCache {
 	 * items, there are no subkeys.
 	 */
 	protected $data = [];
+
+	/**
+	 * The source language of cached data items. Only supports messages for now.
+	 */
+	protected $sourceLanguage = [];
 
 	/**
 	 * The persistent store object. An instance of LCStore.
@@ -171,6 +176,17 @@ class LocalisationCache {
 	 * Keys for items where the subitems are stored in the backend separately.
 	 */
 	public static $splitKeys = [ 'messages' ];
+
+	/**
+	 * Keys for items that will be prefixed with its source language code,
+	 * which should be stripped out when loading from cache.
+	 */
+	public static $sourcePrefixKeys = [ 'messages' ];
+
+	/**
+	 * Separator for the source language prefix.
+	 */
+	protected const SOURCEPREFIX_SEPARATOR = ':';
 
 	/**
 	 * Keys which are loaded automatically by initLanguage()
@@ -318,6 +334,7 @@ class LocalisationCache {
 			return $this->shallowFallbacks[$code];
 		}
 
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 		return $this->data[$code][$key];
 	}
 
@@ -336,6 +353,26 @@ class LocalisationCache {
 		}
 
 		return $this->data[$code][$key][$subkey] ?? null;
+	}
+
+	/**
+	 * Get a subitem with its source language. Only supports messages for now.
+	 *
+	 * @since 1.41 (backported to 1.40.2 and 1.39.6)
+	 * @param string $code
+	 * @param string $key
+	 * @param string $subkey
+	 * @return string[]|null Return [ subitem, sourceLanguage ] if the subitem is defined.
+	 */
+	public function getSubitemWithSource( $code, $key, $subkey ) {
+		$subitem = $this->getSubitem( $code, $key, $subkey );
+		// Undefined in the backend.
+		if ( $subitem === null ) {
+			return null;
+		}
+
+		// The source language should have been set, but to avoid Phan error and be double sure.
+		return [ $subitem, $this->sourceLanguage[$code][$key][$subkey] ?? $code ];
 	}
 
 	/**
@@ -390,7 +427,7 @@ class LocalisationCache {
 				if ( isset( $this->data[$code][$key][$subkey] ) ) {
 					continue;
 				}
-				$this->data[$code][$key][$subkey] = $this->getSubitem( $code, $key, $subkey );
+				$this->loadSubitem( $code, $key, $subkey );
 			}
 		} else {
 			$this->data[$code][$key] = $this->store->get( $code, $key );
@@ -430,7 +467,15 @@ class LocalisationCache {
 		}
 
 		$value = $this->store->get( $code, "$key:$subkey" );
-		$this->data[$code][$key][$subkey] = $value;
+		if ( $value !== null && in_array( $key, self::$sourcePrefixKeys ) ) {
+			[
+				$this->sourceLanguage[$code][$key][$subkey],
+				$this->data[$code][$key][$subkey]
+			] = explode( self::SOURCEPREFIX_SEPARATOR, $value, 2 );
+		} else {
+			$this->data[$code][$key][$subkey] = $value;
+		}
+
 		$this->loadedSubitems[$code][$key][$subkey] = true;
 	}
 
@@ -522,6 +567,19 @@ class LocalisationCache {
 				throw new MWException( 'Invalid or missing localisation cache.' );
 			}
 		}
+
+		foreach ( self::$sourcePrefixKeys as $key ) {
+			if ( !isset( $preload[$key] ) ) {
+				continue;
+			}
+			foreach ( $preload[$key] as $subkey => $value ) {
+				[
+					$this->sourceLanguage[$code][$key][$subkey],
+					$preload[$key][$subkey]
+				] = explode( self::SOURCEPREFIX_SEPARATOR, $value, 2 );
+			}
+		}
+
 		$this->data[$code] = $preload;
 		foreach ( $preload as $key => $item ) {
 			if ( in_array( $key, self::$splitKeys ) ) {
@@ -606,8 +664,7 @@ class LocalisationCache {
 			}
 		}
 
-		// The JSON format only supports messages, none of the other variables, so wrap the data
-		return [ 'messages' => $data ];
+		return $data;
 	}
 
 	/**
@@ -909,6 +966,13 @@ class LocalisationCache {
 			foreach ( $data as $key => $item ) {
 				foreach ( $codeSequence as $csCode ) {
 					if ( isset( $item[$csCode] ) ) {
+						// Keep the behaviour the same as for json messages.
+						// TODO: Consider deprecating using a PHP file for messages.
+						if ( in_array( $key, self::$sourcePrefixKeys ) ) {
+							foreach ( $item[$csCode] as $subkey => $_ ) {
+								$this->sourceLanguage[$code][$key][$subkey] ??= $csCode;
+							}
+						}
 						$this->mergeItem( $key, $extensionData[$csCode][$key], $item[$csCode] );
 						$used = true;
 					}
@@ -929,11 +993,12 @@ class LocalisationCache {
 			foreach ( $messageDirs as $dirs ) {
 				foreach ( (array)$dirs as $dir ) {
 					$fileName = "$dir/$csCode.json";
-					$data = $this->readJSONFile( $fileName );
+					$messages = $this->readJSONFile( $fileName );
 
-					foreach ( $data as $key => $item ) {
-						$this->mergeItem( $key, $csData[$key], $item );
+					foreach ( $messages as $subkey => $_ ) {
+						$this->sourceLanguage[$code]['messages'][$subkey] ??= $csCode;
 					}
+					$this->mergeItem( 'messages', $csData['messages'], $messages );
 
 					$deps[] = new FileDependency( $fileName );
 				}
@@ -1034,14 +1099,24 @@ class LocalisationCache {
 		$unused = true; // Used to be $purgeBlobs, removed in 1.34
 		$this->hookRunner->onLocalisationCacheRecache( $this, $code, $allData, $unused );
 
-		# Set the preload key
-		$allData['preload'] = $this->buildPreload( $allData );
-
 		# Save to the process cache and register the items loaded
 		$this->data[$code] = $allData;
 		foreach ( $allData as $key => $item ) {
 			$this->loadedItems[$code][$key] = true;
 		}
+
+		# Prefix each item with its source language code before save
+		foreach ( self::$sourcePrefixKeys as $key ) {
+			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
+			foreach ( $allData[$key] as $subKey => $value ) {
+				// The source language should have been set, but to avoid Phan error and be double sure.
+				$allData[$key][$subKey] = ( $this->sourceLanguage[$code][$key][$subKey] ?? $code ) .
+					self::SOURCEPREFIX_SEPARATOR . $value;
+			}
+		}
+
+		# Set the preload key
+		$allData['preload'] = $this->buildPreload( $allData );
 
 		# Save to the persistent cache
 		$this->store->startWrite( $code );
@@ -1099,6 +1174,7 @@ class LocalisationCache {
 		unset( $this->loadedSubitems[$code] );
 		unset( $this->initialisedLangs[$code] );
 		unset( $this->shallowFallbacks[$code] );
+		unset( $this->sourceLanguage[$code] );
 
 		foreach ( $this->shallowFallbacks as $shallowCode => $fbCode ) {
 			if ( $fbCode === $code ) {
