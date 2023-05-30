@@ -66,7 +66,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Html::openElement
+	 * @covers MediaWiki\Html\Html::openElement
 	 */
 	public function testOpenElement() {
 		$this->expectNotice();
@@ -75,10 +75,10 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Html::element
-	 * @covers Html::rawElement
-	 * @covers Html::openElement
-	 * @covers Html::closeElement
+	 * @covers MediaWiki\Html\Html::element
+	 * @covers MediaWiki\Html\Html::rawElement
+	 * @covers MediaWiki\Html\Html::openElement
+	 * @covers MediaWiki\Html\Html::closeElement
 	 */
 	public function testElementBasics() {
 		$this->assertEquals(
@@ -120,7 +120,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider dataXmlMimeType
-	 * @covers Html::isXmlMimeType
+	 * @covers MediaWiki\Html\Html::isXmlMimeType
 	 */
 	public function testXmlMimeType( $mimetype, $isXmlMimeType ) {
 		$this->assertEquals( $isXmlMimeType, Html::isXmlMimeType( $mimetype ) );
@@ -179,7 +179,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Html::expandAttributes
+	 * @covers MediaWiki\Html\Html::expandAttributes
 	 * @dataProvider provideExpandAttributes
 	 */
 	public function testExpandAttributes( string $expect, array $attribs ) {
@@ -193,7 +193,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Html::expandAttributes
+	 * @covers MediaWiki\Html\Html::expandAttributes
 	 * @dataProvider provideExpandAttributesEmpty
 	 */
 	public function testExpandAttributesEmpty( array $attribs ) {
@@ -264,7 +264,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	 * attributes that use space separated lists and also
 	 * allows arrays to be used as values.
 	 *
-	 * @covers Html::expandAttributes
+	 * @covers MediaWiki\Html\Html::expandAttributes
 	 * @dataProvider provideExpandAttributesClass
 	 */
 	public function testExpandAttributesClass( string $expect, $classes ) {
@@ -275,7 +275,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Html::expandAttributes
+	 * @covers MediaWiki\Html\Html::expandAttributes
 	 */
 	public function testExpandAttributes_ArrayOnNonListValueAttribute_ThrowsException() {
 		// Real-life test case found in the Popups extension (see Gerrit cf0fd64),
@@ -290,8 +290,8 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Html::namespaceSelector
-	 * @covers Html::namespaceSelectorOptions
+	 * @covers MediaWiki\Html\Html::namespaceSelector
+	 * @covers MediaWiki\Html\Html::namespaceSelectorOptions
 	 */
 	public function testNamespaceSelector() {
 		$this->assertEquals(
@@ -400,7 +400,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Html::namespaceSelector
+	 * @covers MediaWiki\Html\Html::namespaceSelector
 	 */
 	public function testCanFilterOutNamespaces() {
 		$this->assertEquals(
@@ -445,7 +445,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Html::namespaceSelector
+	 * @covers MediaWiki\Html\Html::namespaceSelector
 	 */
 	public function testCanDisableANamespaces() {
 		$this->assertEquals(
@@ -476,7 +476,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideHtml5InputTypes
-	 * @covers Html::element
+	 * @covers MediaWiki\Html\Html::element
 	 */
 	public function testHtmlElementAcceptsNewHtml5TypesInHtml5Mode( $HTML5InputType ) {
 		$this->assertEquals(
@@ -487,8 +487,8 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Html::warningBox
-	 * @covers Html::messageBox
+	 * @covers MediaWiki\Html\Html::warningBox
+	 * @covers MediaWiki\Html\Html::messageBox
 	 */
 	public function testWarningBox() {
 		$this->assertEquals(
@@ -498,8 +498,8 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Html::errorBox
-	 * @covers Html::messageBox
+	 * @covers MediaWiki\Html\Html::errorBox
+	 * @covers MediaWiki\Html\Html::messageBox
 	 */
 	public function testErrorBox() {
 		$this->assertEquals(
@@ -517,8 +517,8 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Html::successBox
-	 * @covers Html::messageBox
+	 * @covers MediaWiki\Html\Html::successBox
+	 * @covers MediaWiki\Html\Html::messageBox
 	 */
 	public function testSuccessBox() {
 		$this->assertEquals(
@@ -559,7 +559,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Test out Html::element drops or enforces default value
-	 * @covers Html::dropDefaults
+	 * @covers MediaWiki\Html\Html::dropDefaults
 	 * @dataProvider provideElementsWithAttributesHavingDefaultValues
 	 */
 	public function testDropDefaults( $expected, $element, $attribs, $message = '' ) {
@@ -710,7 +710,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Html::input
+	 * @covers MediaWiki\Html\Html::input
 	 */
 	public function testWrapperInput() {
 		$this->assertEquals(
@@ -726,7 +726,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Html::check
+	 * @covers MediaWiki\Html\Html::check
 	 */
 	public function testWrapperCheck() {
 		$this->assertEquals(
@@ -747,7 +747,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Html::radio
+	 * @covers MediaWiki\Html\Html::radio
 	 */
 	public function testWrapperRadio() {
 		$this->assertEquals(
@@ -768,7 +768,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Html::label
+	 * @covers MediaWiki\Html\Html::label
 	 */
 	public function testWrapperLabel() {
 		$this->assertEquals(
@@ -806,7 +806,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideSrcSetImages
-	 * @covers Html::srcSet
+	 * @covers MediaWiki\Html\Html::srcSet
 	 */
 	public function testSrcSet( $images, $expected, $message ) {
 		$this->assertEquals( $expected, Html::srcSet( $images ), $message );
@@ -854,7 +854,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideInlineScript
-	 * @covers Html::inlineScript
+	 * @covers MediaWiki\Html\Html::inlineScript
 	 */
 	public function testInlineScript( $code, $expected, $error = false ) {
 		if ( $error ) {

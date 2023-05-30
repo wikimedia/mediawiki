@@ -33,10 +33,10 @@ class FauxResponseTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers FauxResponse::setCookie
-	 * @covers FauxResponse::getCookie
-	 * @covers FauxResponse::getCookieData
-	 * @covers FauxResponse::getCookies
+	 * @covers MediaWiki\Request\FauxResponse::setCookie
+	 * @covers MediaWiki\Request\FauxResponse::getCookie
+	 * @covers MediaWiki\Request\FauxResponse::getCookieData
+	 * @covers MediaWiki\Request\FauxResponse::getCookies
 	 */
 	public function testCookie() {
 		$expire = time() + 100;
@@ -75,8 +75,8 @@ class FauxResponseTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers FauxResponse::getheader
-	 * @covers FauxResponse::header
+	 * @covers MediaWiki\Request\FauxResponse::getheader
+	 * @covers MediaWiki\Request\FauxResponse::header
 	 */
 	public function testHeader() {
 		$this->assertNull( $this->response->getHeader( 'Location' ), 'Non-existing header' );
@@ -111,7 +111,7 @@ class FauxResponseTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers FauxResponse::getStatusCode
+	 * @covers MediaWiki\Request\FauxResponse::getStatusCode
 	 */
 	public function testResponseCode() {
 		$this->response->header( 'HTTP/1.1 200' );

@@ -7,12 +7,12 @@ use MediaWiki\Title\Title;
 /**
  * @group Database
  *
- * @covers Title::getLocalURL
- * @covers Title::getLinkURL
- * @covers Title::getFullURL
- * @covers Title::getFullUrlForRedirect
- * @covers Title::getCanonicalURL
- * @covers Title::getInternalURL
+ * @covers MediaWiki\Title\Title::getLocalURL
+ * @covers MediaWiki\Title\Title::getLinkURL
+ * @covers MediaWiki\Title\Title::getFullURL
+ * @covers MediaWiki\Title\Title::getFullUrlForRedirect
+ * @covers MediaWiki\Title\Title::getCanonicalURL
+ * @covers MediaWiki\Title\Title::getInternalURL
  */
 class TitleUrlTest extends MediaWikiLangTestCase {
 	use DummyServicesTrait;

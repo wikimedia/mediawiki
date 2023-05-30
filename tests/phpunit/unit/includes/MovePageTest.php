@@ -12,7 +12,7 @@ use MediaWikiUnitTestCase;
 use MockTitleTrait;
 
 /**
- * @coversDefaultClass MovePage
+ * @coversDefaultClass MediaWiki\Page\MovePage
  * @package MediaWiki\Tests\Unit
  * @method MovePage newServiceInstance(string $serviceClass, array $parameterOverrides)
  */
@@ -88,9 +88,9 @@ class MovePageTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideCheckPermissions
-	 * @covers MovePage::checkPermissions
-	 * @covers MovePage::authorizeMove
-	 * @covers MovePage::probablyCanMove
+	 * @covers MediaWiki\Page\MovePage::checkPermissions
+	 * @covers MediaWiki\Page\MovePage::authorizeMove
+	 * @covers MediaWiki\Page\MovePage::probablyCanMove
 	 */
 	public function testCheckPermissions( Authority $authority, bool $good ) {
 		$spamChecker = $this->createNoOpMock( SpamChecker::class, [ 'checkSummary' ] );
@@ -110,9 +110,9 @@ class MovePageTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MovePage::checkPermissions
-	 * @covers MovePage::authorizeMove
-	 * @covers MovePage::probablyCanMove
+	 * @covers MediaWiki\Page\MovePage::checkPermissions
+	 * @covers MediaWiki\Page\MovePage::authorizeMove
+	 * @covers MediaWiki\Page\MovePage::probablyCanMove
 	 */
 	public function testCheckPermissions_spam() {
 		$spamChecker = $this->createNoOpMock( SpamChecker::class, [ 'checkSummary' ] );

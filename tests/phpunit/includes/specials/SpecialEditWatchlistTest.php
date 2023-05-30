@@ -7,7 +7,7 @@ use MediaWiki\Specials\SpecialEditWatchlist;
  *
  * @group Database
  *
- * @covers SpecialEditWatchlist
+ * @covers MediaWiki\Specials\SpecialEditWatchlist
  */
 class SpecialEditWatchlistTest extends SpecialPageTestBase {
 

@@ -11,8 +11,8 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
  * @group Database
- * @covers ActorMigration
- * @covers ActorMigrationBase
+ * @covers MediaWiki\User\ActorMigration
+ * @covers MediaWiki\User\ActorMigrationBase
  */
 class ActorMigrationTest extends MediaWikiLangTestCase {
 

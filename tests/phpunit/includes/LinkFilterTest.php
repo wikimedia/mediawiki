@@ -5,7 +5,7 @@ use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\LikeMatch;
 
 /**
- * @covers LinkFilter
+ * @covers MediaWiki\ExternalLinks\LinkFilter
  * @group Database
  */
 class LinkFilterTest extends MediaWikiLangTestCase {
@@ -290,7 +290,7 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideMakeIndexes()
-	 * @covers LinkFilter::makeIndexes
+	 * @covers MediaWiki\ExternalLinks\LinkFilter::makeIndexes
 	 */
 	public function testMakeIndexes( $url, $expected ) {
 		// Set global so file:// tests can work
@@ -388,7 +388,7 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideReverseIndexes()
-	 * @covers LinkFilter::reverseIndexe
+	 * @covers MediaWiki\ExternalLinks\LinkFilter::reverseIndexe
 	 */
 	public function testReverseIndex( $url, $expected ) {
 		// Set global so file:// tests can work
@@ -486,7 +486,7 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideGetQueryConditions
-	 * @covers LinkFilter::getQueryConditions
+	 * @covers MediaWiki\ExternalLinks\LinkFilter::getQueryConditions
 	 */
 	public function testGetQueryConditions( $query, $options, $expected ) {
 		$this->overrideConfigValue( MainConfigNames::ExternalLinksSchemaMigrationStage, SCHEMA_COMPAT_OLD );
@@ -564,7 +564,7 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideGetQueryConditionsReadNew
-	 * @covers LinkFilter::getQueryConditions
+	 * @covers MediaWiki\ExternalLinks\LinkFilter::getQueryConditions
 	 */
 	public function testGetQueryConditionsReadNew( $query, $options, $expected ) {
 		$this->overrideConfigValue( MainConfigNames::ExternalLinksSchemaMigrationStage, SCHEMA_COMPAT_NEW );
@@ -642,7 +642,7 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideGetIndexedUrlsNonReversed
-	 * @covers LinkFilter::getIndexedUrlsNonReversed
+	 * @covers MediaWiki\ExternalLinks\LinkFilter::getIndexedUrlsNonReversed
 	 */
 	public function testGetIndexedUrlsNonReversed( $urls, $expected ) {
 		$this->overrideConfigValue( MainConfigNames::ExternalLinksSchemaMigrationStage, SCHEMA_COMPAT_NEW );

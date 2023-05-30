@@ -14,7 +14,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
- * @covers MovePage
+ * @covers MediaWiki\Page\MovePage
  * @group Database
  */
 class MovePageTest extends MediaWikiIntegrationTestCase {
@@ -111,10 +111,10 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideIsValidMove
-	 * @covers MovePage::isValidMove
-	 * @covers MovePage::isValidMoveTarget
-	 * @covers MovePage::isValidFileMove
-	 * @covers MovePage::__construct
+	 * @covers MediaWiki\Page\MovePage::isValidMove
+	 * @covers MediaWiki\Page\MovePage::isValidMoveTarget
+	 * @covers MediaWiki\Page\MovePage::isValidFileMove
+	 * @covers MediaWiki\Page\MovePage::__construct
 	 *
 	 * @param string|Title $old
 	 * @param string|Title $new
@@ -323,7 +323,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Test for the move operation being aborted via the TitleMove hook
-	 * @covers MovePage::move
+	 * @covers MediaWiki\Page\MovePage::move
 	 */
 	public function testMoveAbortedByTitleMoveHook() {
 		$error = 'Preventing move operation with TitleMove hook.';
@@ -350,7 +350,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Test moving subpages from one page to another
-	 * @covers MovePage::moveSubpages
+	 * @covers MediaWiki\Page\MovePage::moveSubpages
 	 */
 	public function testMoveSubpages() {
 		$name = ucfirst( __FUNCTION__ );
@@ -383,7 +383,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Test moving subpages from one page to another
-	 * @covers MovePage::moveSubpagesIfAllowed
+	 * @covers MediaWiki\Page\MovePage::moveSubpagesIfAllowed
 	 */
 	public function testMoveSubpagesIfAllowed() {
 		$name = ucfirst( __FUNCTION__ );
@@ -461,7 +461,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Test redirect handling
 	 *
-	 * @covers MovePage::isValidMove
+	 * @covers MediaWiki\Page\MovePage::isValidMove
 	 */
 	public function testRedirects() {
 		$this->editPage( 'ExistentRedirect', '#REDIRECT [[Existent]]' );

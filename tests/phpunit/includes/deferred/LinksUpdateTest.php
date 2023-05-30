@@ -11,7 +11,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers LinksUpdate
+ * @covers MediaWiki\Deferred\LinksUpdate\LinksUpdate
  * @covers \MediaWiki\Deferred\LinksUpdate\CategoryLinksTable
  * @covers \MediaWiki\Deferred\LinksUpdate\ExternalLinksTable
  * @covers \MediaWiki\Deferred\LinksUpdate\GenericPageLinksTable
@@ -184,8 +184,8 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @covers ParserOutput::addExternalLink
-	 * @covers LinksUpdate::getAddedExternalLinks
-	 * @covers LinksUpdate::getRemovedExternalLinks
+	 * @covers MediaWiki\Deferred\LinksUpdate\LinksUpdate::getAddedExternalLinks
+	 * @covers MediaWiki\Deferred\LinksUpdate\LinksUpdate::getRemovedExternalLinks
 	 */
 	public function testUpdate_externallinks() {
 		/** @var ParserOutput $po */

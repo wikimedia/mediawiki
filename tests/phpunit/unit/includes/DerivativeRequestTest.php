@@ -3,7 +3,7 @@
 use MediaWiki\Request\DerivativeRequest;
 
 /**
- * @covers DerivativeRequest
+ * @covers MediaWiki\Request\DerivativeRequest
  */
 class DerivativeRequestTest extends MediaWikiUnitTestCase {
 

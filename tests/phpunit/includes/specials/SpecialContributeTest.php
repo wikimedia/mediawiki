@@ -6,7 +6,7 @@ use MediaWiki\Specials\SpecialContribute;
 /**
  * @author MAbualruz
  * @group Database
- * @covers SpecialContribute
+ * @covers MediaWiki\Specials\SpecialContribute
  */
 class SpecialContributeTest extends SpecialPageTestBase {
 	/** @var string */
@@ -24,7 +24,7 @@ class SpecialContributeTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers SpecialContribute::execute
+	 * @covers MediaWiki\Specials\SpecialContribute::execute
 	 */
 	public function testExecute() {
 		$this->specialContribute = new SpecialContribute();

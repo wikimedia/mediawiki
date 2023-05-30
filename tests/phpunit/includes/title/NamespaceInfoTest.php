@@ -611,7 +611,7 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 	 * @covers NamespaceInfo::getSubject
 	 * @covers NamespaceInfo::getSubjectPage
 	 * @covers NamespaceInfo::isMethodValidFor
-	 * @covers Title::getSubjectPage
+	 * @covers MediaWiki\Title\Title::getSubjectPage
 	 *
 	 * @param int $subject
 	 * @param int $talk
@@ -654,7 +654,7 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 	 * @covers NamespaceInfo::getTalk
 	 * @covers NamespaceInfo::getTalkPage
 	 * @covers NamespaceInfo::isMethodValidFor
-	 * @covers Title::getTalkPage
+	 * @covers MediaWiki\Title\Title::getTalkPage
 	 *
 	 * @param int $subject
 	 * @param int $talk
@@ -782,7 +782,7 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideSubjectTalk
 	 * @covers NamespaceInfo::getAssociated
 	 * @covers NamespaceInfo::getAssociatedPage
-	 * @covers Title::getOtherPage
+	 * @covers MediaWiki\Title\Title::getOtherPage
 	 *
 	 * @param int $subject
 	 * @param int $talk

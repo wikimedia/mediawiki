@@ -8,7 +8,7 @@ use MediaWiki\SiteStats\SiteStats;
 class SiteStatsTest extends MediaWikiIntegrationTestCase {
 
 	/**
-	 * @covers SiteStats::jobs
+	 * @covers MediaWiki\SiteStats\SiteStats::jobs
 	 */
 	public function testJobsCountGetCached() {
 		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
@@ -38,7 +38,7 @@ class SiteStatsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers SiteStats
+	 * @covers MediaWiki\SiteStats\SiteStats
 	 */
 	public function testInit() {
 		$this->db->delete( 'site_stats', IDatabase::ALL_ROWS, __METHOD__ );

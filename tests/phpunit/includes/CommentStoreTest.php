@@ -7,7 +7,7 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
  * @group Database
- * @covers CommentStore
+ * @covers MediaWiki\CommentStore\CommentStore
  * @covers CommentStoreComment
  */
 class CommentStoreTest extends MediaWikiLangTestCase {
