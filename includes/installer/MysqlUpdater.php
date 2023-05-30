@@ -176,6 +176,7 @@ class MysqlUpdater extends DatabaseUpdater {
 
 			// 1.43
 			[ 'migratePagelinks' ],
+			[ 'modifyField', 'revision', 'rev_id', 'patch-revision-cleanup.sql' ],
 		];
 	}
 
