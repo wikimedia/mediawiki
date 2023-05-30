@@ -86,7 +86,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Valtlai",
-			"Lliehu"
+			"Lliehu",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Linkkien alleviivaus:",
@@ -1004,6 +1005,7 @@
 	"mergehistory-comment": "Yhdisti sivun [[:$1]] sivuun [[:$2]]: $3",
 	"mergehistory-same-destination": "Lähde- ja kohdesivut eivät voi olla samat",
 	"mergehistory-reason": "Syy:",
+	"mergehistory-source-deleted-reason": "Lähdesivu poistettu automaattisesti historian yhdistämisen jälkeen, koska sen sisältömalli ei tue ohjauksia ja muita versioita ei ole jäljellä",
 	"mergehistory-source-deleted": "Lisäksi [[:$1]] on poistettu, koska siinä ei enää ole näkyviä versioita ja sen sisältömalli ei tue ohjauksia.",
 	"mergehistory-revisionrow": "$1 ($2) $3 . . $4 $5 $6",
 	"mergelog": "Yhdistämisloki",
@@ -3268,6 +3270,7 @@
 	"confirm-watch-top": "Lisätäänkö tämä sivu tarkkailulistallesi?",
 	"confirm-watch-label": "Tarkkailulistan ajanjakso:",
 	"watchlist-expiry-options": "Pysyvä:infinite,1 viikko:1 week,1 kuukausi:1 month,3 kuukautta:3 months,6 kuukautta:6 months",
+	"watchlist-expires-in-aria-label": "Vanhentuva tarkkailulistan kohde",
 	"confirm-watch-button-expiry": "Tarkkaile",
 	"confirm-unwatch-button": "OK",
 	"confirm-unwatch-top": "Poistetaanko tämä sivu tarkkailulistaltasi?",
@@ -3477,6 +3480,7 @@
 	"tag-mw-manual-revert": "Muokkaamalla palautettu",
 	"tag-mw-manual-revert-description": "Muokkaukset, joissa sivu palautetaan käsin aikaisemmin esiintyneeseen versioon",
 	"tag-mw-reverted": "Palautettu",
+	"tag-mw-reverted-description": "Muokkaukset, jotka myöhemmin kumottiin toisella muokkauksella",
 	"tag-mw-server-side-upload-description": "Ylläpitoskripteillä tallennetut mediatiedostot",
 	"tags-title": "Merkkaukset",
 	"tags-intro": "Tämä sivu luetteloi ne merkkaukset (''engl.'' tags), joilla ohjelmisto voi merkitä muokkauksia, ja mitä ne tarkoittavat.",
@@ -3638,6 +3642,7 @@
 	"htmlform-title-badnamespace": "Sivu [[:$1]] ei ole nimiavaruudessa ”{{ns:$2}}”.",
 	"htmlform-title-not-creatable": "”$1” ei kelpaa sivun nimeksi.",
 	"htmlform-title-not-exists": "Sivua $1 ei ole olemassa.",
+	"htmlform-title-interwiki": "$1 on wikien välinen otsikko, pitäisi olla paikallinen.",
 	"htmlform-user-not-exists": "Käyttäjää <strong>$1</strong> ei ole olemassa.",
 	"htmlform-user-not-valid": "<strong>$1</strong> ei ole kelvollinen käyttäjänimi.",
 	"htmlform-tag-not-allowed": "$1 ei ole sallittu tunniste",

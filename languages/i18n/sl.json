@@ -3223,7 +3223,7 @@
 	"metadata-collapse": "Skrij razširjene podrobnosti",
 	"metadata-fields": "V skrčeni razpredelnici metapodatkov slike bodo prikazana le v tem sporočilu našteta polja.\nDruga bodo po privzetem skrita.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
 	"metadata-langitem": "<strong>$2:</strong> $1",
-	"namespacesall": "vse",
+	"namespacesall": "vsi",
 	"monthsall": "vse",
 	"confirmemail": "Potrditev naslova elektronske pošte",
 	"confirmemail_noemail": "Nimate določenega veljavnega e-poštnega naslova v vaših [[Special:Preferences|uporabniških nastavitvah]].",
