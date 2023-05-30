@@ -88,6 +88,8 @@ use MediaWiki\Title\Title;
  *    'help-inline'         -- Whether help text (defined using options above) will be shown
  *                             inline after the input field, rather than in a popup.
  *                             Defaults to true. Only used by OOUI form fields.
+ *    'notices'             -- Array of plain text notices to display below the input field.
+ *                             Only used by OOUI form fields.
  *    'required'            -- passed through to the object, indicating that it
  *                             is a required field.
  *    'size'                -- the length of text fields

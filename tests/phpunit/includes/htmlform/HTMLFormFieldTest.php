@@ -426,4 +426,23 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 			[ '===', 'wpcloner[0][foo]', '1' ],
 		];
 	}
+
+	public function testNoticeInfo() {
+		$form = $this->getNewForm( [
+			'withNotice' => [ 'type' => 'check', 'notices' => [ 'a notice' ] ],
+			'withoutNotice' => [ 'type' => 'check' ],
+		], [] );
+
+		$configWithNotice = $configWithoutNotice = [];
+		$form->getField( 'withNotice' )->getOOUI( '' )->getConfig( $configWithNotice );
+		$form->getField( 'withoutNotice' )->getOOUI( '' )->getConfig( $configWithoutNotice );
+
+		$this->assertArrayHasKey( 'notices', $configWithNotice );
+		$this->assertSame(
+			[ 'a notice' ],
+			$configWithNotice['notices']
+		);
+		$this->assertArrayNotHasKey( 'notices', $configWithoutNotice );
+	}
+
 }
