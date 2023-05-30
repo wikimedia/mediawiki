@@ -3432,6 +3432,7 @@
 	"watchlistedit-normal-legend": "Вилучення заголовків зі списку спостереження",
 	"watchlistedit-normal-explain": "Далі наведені заголовки з вашого списку спостереження.\nДля вилучення сторінки зі списку необхідно поставити галочку в квадратику біля нього і натиснути «{{int:Watchlistedit-normal-submit}}».\nВи можете також [[Special:EditWatchlist/raw|редагувати список як текстові рядки]].",
 	"watchlistedit-normal-submit": "Вилучити заголовки",
+	"watchlistedit-normal-check-all": "Вибрати всі",
 	"watchlistedit-normal-done": "{{PLURAL:$1|$1 заголовок був вилучений|$1 заголовки були вилучені|$1 заголовків були вилучені}} з вашого списку спостереження:",
 	"watchlistedit-raw-title": "Редагування рядків списку спостереження",
 	"watchlistedit-raw-legend": "Редагування рядків списку спостереження",

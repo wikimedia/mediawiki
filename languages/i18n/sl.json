@@ -2556,6 +2556,7 @@
 	"undelete-show-file-submit": "Da",
 	"undelete-revision-row2": "$1 ($2) $3 . . $4 $5 $6 $7 $8",
 	"undelete-back-to-list": "Ogled vseh izbrisanih redakcij",
+	"undelete-load-more-revisions": "Naloži več redakcij",
 	"namespace": "Imenski prostor:",
 	"invert": "obrni izbor",
 	"tooltip-invert": "Označite to polje, da skrijete spremembe v izbranem imenskem prostoru (in povezanih imenskih prostorih, če je označeno)",

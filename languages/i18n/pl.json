@@ -2623,6 +2623,7 @@
 	"undelete-show-file-confirm": "Czy na pewno chcesz zobaczyć usuniętą wersję pliku „<nowiki>$1</nowiki>” z $2 $3?",
 	"undelete-show-file-submit": "Tak",
 	"undelete-back-to-list": "Zobacz wszystkie usunięte wersje",
+	"undelete-load-more-revisions": "Wczytaj więcej wersji",
 	"namespace": "Przestrzeń nazw:",
 	"invert": "odwróć wybór",
 	"tooltip-invert": "Zaznacz to pole, aby ukryć zmiany na stronach w wybranych przestrzeniach nazw (oraz związanych z nimi innymi przestrzeniami nazw, jeśli zaznaczono)",

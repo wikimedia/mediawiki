@@ -2527,6 +2527,7 @@
 	"undelete-show-file-confirm": "Es tu secur de voler vider un version delite del file \"<nowiki>$1</nowiki>\" del $2 a $3?",
 	"undelete-show-file-submit": "Si",
 	"undelete-back-to-list": "Vider tote le versiones delite",
+	"undelete-load-more-revisions": "Cargar plus versiones",
 	"namespace": "Spatio de nomines:",
 	"invert": "Inverter selection",
 	"tooltip-invert": "Marca iste quadrato pro celar le modificationes in paginas intra le spatio de nomines seligite (e le spatio de nomines associate, si tal option es seligite)",

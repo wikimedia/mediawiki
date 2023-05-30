@@ -2651,6 +2651,7 @@
 	"undelete-show-file-submit": "Evet",
 	"undelete-revision-row2": "$1 ($2) $3 . . $4 $5 $6 $7 $8",
 	"undelete-back-to-list": "Silinen tüm revizyonları gör",
+	"undelete-load-more-revisions": "Daha fazla revizyon yükle",
 	"namespace": "Ad alanı:",
 	"invert": "Seçimi ters çevir",
 	"tooltip-invert": "Seçili ad alanındaki (ve seçili ise ilişkili ad alanlarındaki) sayfalara olan değişiklikleri gizlemek için bu kutucuğu işaretleyin",
