@@ -158,10 +158,14 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 		StatusValue $expected,
 		PermissionManager $permissionManager = null,
 		array $configOverrides = [],
-		array $hooks = []
+		array $hooks = [],
+		bool $expectDeprecation = false
 	) {
 		$userFactory = $this->createMock( UserFactory::class );
 		$userFactory->method( 'newFromAuthority' )->willReturn( $performerUser );
+		if ( $expectDeprecation ) {
+			$this->expectDeprecationAndContinue( '/Use of EmailUserPermissionsErrors hook/' );
+		}
 		$emailUser = $this->getEmailUser( null, null, $userFactory, $permissionManager, $configOverrides, $hooks );
 		$this->assertEquals( $expected, $emailUser->getPermissionsError( $performerUser, 'some-token' ) );
 	}
@@ -258,7 +262,8 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 			$expectedStatusSecondHook,
 			$allowedPermManager,
 			[],
-			$emailUserPermissionsErrorsHooks
+			$emailUserPermissionsErrorsHooks,
+			true
 		];
 
 		yield 'Successful' => [ $validSender, StatusValue::newGood(), $allowedPermManager ];
