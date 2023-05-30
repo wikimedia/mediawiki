@@ -5,6 +5,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 
 /**
+ * @covers MediaWiki\Category\Category
  * @group Database
  * @group Category
  */
@@ -25,7 +26,6 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function addDBData() {
-		// Add a row to the 'category' table
 		$this->db->insert(
 			'category',
 			[
@@ -42,9 +42,6 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers MediaWiki\Category\Category::initialize()
-	 */
 	public function testInitialize_idNotExist() {
 		$category = Category::newFromID( -1 );
 		$this->assertFalse( $category->getName() );
@@ -76,7 +73,6 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Category\Category::initialize()
 	 * @dataProvider provideInitializeVariants
 	 */
 	public function testInitialize( $createFunction, $createParam, $testFunction, $expected ) {
@@ -84,25 +80,15 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected, $category->{$testFunction}() );
 	}
 
-	/**
-	 * @covers MediaWiki\Category\Category::newFromName()
-	 * @covers MediaWiki\Category\Category::getName()
-	 */
 	public function testNewFromName_validTitle() {
 		$category = Category::newFromName( 'Example' );
 		$this->assertSame( 'Example', $category->getName() );
 	}
 
-	/**
-	 * @covers MediaWiki\Category\Category::newFromName()
-	 */
 	public function testNewFromName_invalidTitle() {
 		$this->assertFalse( Category::newFromName( '#' ) );
 	}
 
-	/**
-	 * @covers MediaWiki\Category\Category::newFromTitle()
-	 */
 	public function testNewFromTitle() {
 		$title = Title::makeTitle( NS_CATEGORY, 'Example' );
 		$category = Category::newFromTitle( $title );
@@ -111,18 +97,11 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $title->isSamePageAs( $category->getTitle() ) );
 	}
 
-	/**
-	 * @covers MediaWiki\Category\Category::newFromID()
-	 * @covers MediaWiki\Category\Category::getID()
-	 */
 	public function testNewFromID() {
 		$category = Category::newFromID( 5 );
 		$this->assertSame( 5, $category->getID() );
 	}
 
-	/**
-	 * @covers MediaWiki\Category\Category::newFromRow()
-	 */
 	public function testNewFromRow_found() {
 		$dbw = wfGetDB( DB_PRIMARY );
 
@@ -136,9 +115,6 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( '1', $category->getID() );
 	}
 
-	/**
-	 * @covers MediaWiki\Category\Category::newFromRow()
-	 */
 	public function testNewFromRow_notFoundWithoutTitle() {
 		$dbw = wfGetDB( DB_PRIMARY );
 
@@ -153,9 +129,6 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( Category::newFromRow( $row ) );
 	}
 
-	/**
-	 * @covers MediaWiki\Category\Category::newFromRow()
-	 */
 	public function testNewFromRow_notFoundWithTitle() {
 		$dbw = wfGetDB( DB_PRIMARY );
 
@@ -175,17 +148,11 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $category->getID() );
 	}
 
-	/**
-	 * @covers MediaWiki\Category\Category::getMemberCount()
-	 * @covers MediaWiki\Category\Category::getSubcatCount()
-	 * @covers MediaWiki\Category\Category::getFileCount()
-	 */
 	public function testGetCounts() {
-		// See data set in addDBDataOnce
+		// Defined via addDBDataOnce
 		$category = Category::newFromID( 1 );
 		$this->assertEquals( 3, $category->getMemberCount() );
 		$this->assertEquals( 4, $category->getSubcatCount() );
 		$this->assertEquals( 5, $category->getFileCount() );
 	}
-
 }
