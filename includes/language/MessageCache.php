@@ -1135,10 +1135,18 @@ class MessageCache implements LoggerAwareInterface {
 			$uckey = null;
 		}
 
-		// Check the CDB cache
-		$message = $lang->getMessage( $lckey );
-		if ( $message !== null ) {
-			return $message;
+		// Return a special value handled in Message::format() to display the message key
+		// (and fallback keys) and the parameters passed to the message.
+		// TODO: Move to a better place.
+		if ( $langcode === 'qqx' ) {
+			return '($*)';
+		}
+
+		// Check the localisation cache
+		[ $defaultMessage, $messageSource ] =
+			$this->localisationCache->getSubitemWithSource( $langcode, 'messages', $lckey );
+		if ( $messageSource === $langcode ) {
+			return $defaultMessage;
 		}
 
 		// Try checking the database for all of the fallback languages
@@ -1158,10 +1166,16 @@ class MessageCache implements LoggerAwareInterface {
 					return $message;
 				}
 				$alreadyTried[$code] = true;
+
+				// Reached the source language of the default message. Don't look for DB overrides
+				// further back in the fallback chain. (T229992)
+				if ( $code === $messageSource ) {
+					return $defaultMessage;
+				}
 			}
 		}
 
-		return false;
+		return $defaultMessage ?? false;
 	}
 
 	/**
