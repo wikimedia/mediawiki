@@ -40,7 +40,7 @@ describe( 'Page Source', () => {
 			assert.deepEqual( status, 301, text );
 		} );
 
-		it( 'When a wiki redirect exists, it should ne present in the body response', async () => {
+		it( 'When a wiki redirect exists, it should be present in the body response', async () => {
 			const redirectPageDbkey = utils.dbkey( redirectPage );
 			const redirectedPageDbKey = utils.dbkey( redirectedPage );
 			const { status, body: { redirect_target }, text } = await client.get( `/page/${redirectPageDbkey}` );
@@ -93,7 +93,7 @@ describe( 'Page Source', () => {
 			assert.deepEqual( status, 301, text );
 		} );
 
-		it( 'When a wiki redirect exists, it should ne present in the body response', async () => {
+		it( 'When a wiki redirect exists, it should be present in the body response', async () => {
 			const redirectPageDbkey = utils.dbkey( redirectPage );
 			const redirectedPageDbKey = utils.dbkey( redirectedPage );
 			const { status, body: { redirect_target }, text } = await client.get( `/page/${redirectPageDbkey}/bare` );
