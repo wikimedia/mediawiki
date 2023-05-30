@@ -100,6 +100,8 @@ class AvailableRightsTest extends PHPUnit\Framework\TestCase {
 			[],
 			$missing,
 			"Each user right (core/extensions) has a corresponding $prefix message."
+				. ' See the instructions at: '
+				. 'https://www.mediawiki.org/wiki/Manual:User_rights#Adding_new_rights'
 		);
 	}
 }
