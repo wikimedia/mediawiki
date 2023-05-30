@@ -657,10 +657,8 @@ class GlobalIdGenerator {
 
 		$this->loaded = true;
 
-		$nodeId = '';
-		if ( is_file( $this->nodeIdFile ) ) {
-			$nodeId = file_get_contents( $this->nodeIdFile );
-		}
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$nodeId = @file_get_contents( $this->nodeIdFile ) ?: '';
 		// Try to get some ID that uniquely identifies this machine (RFC 4122)...
 		if ( !preg_match( '/^[0-9a-f]{12}$/i', $nodeId ) ) {
 			AtEase::suppressWarnings();
