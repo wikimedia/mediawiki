@@ -113,6 +113,24 @@ class RenameUsersMatchingPattern extends Maintenance {
 					continue;
 				}
 				$newName = $toPattern->generate( $variablePart );
+
+				// Canonicalize
+				$newTitle = $this->titleFactory->makeTitleSafe( NS_USER, $newName );
+				$newUser = $this->userFactory->newFromName( $newName );
+				if ( !$newTitle || !$newUser ) {
+					$this->output( "Cannot rename \"$oldName\" " .
+						"because \"$newName\" is not a valid title\n" );
+					continue;
+				}
+				$newName = $newTitle->getText();
+
+				// Check destination existence
+				if ( $newUser->isRegistered() ) {
+					$this->output( "Cannot rename \"$oldName\" " .
+						"because \"$newName\" already exists\n" );
+					continue;
+				}
+
 				$numRenamed += $this->renameUser( $oldName, $newName ) ? 1 : 0;
 				$this->waitForReplication();
 			}
