@@ -57,7 +57,7 @@ class CommentStore extends CommentStoreBase {
 			'pk' => 'revcomment_rev',
 			'field' => 'revcomment_comment_id',
 			'joinPK' => 'rev_id',
-			'stage' => MIGRATION_OLD,
+			'stage' => SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW,
 			'deprecatedIn' => null,
 		],
 	];
