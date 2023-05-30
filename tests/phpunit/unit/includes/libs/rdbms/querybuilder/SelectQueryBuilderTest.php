@@ -530,19 +530,6 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 			$this->db->getLastSqls() );
 	}
 
-	public function testLockForUpdate() {
-		$this->sqb
-			->table( 't' )
-			->conds( [ 'a' => 'b' ] )
-			->caller( __METHOD__ );
-		$this->db->begin( __METHOD__ );
-		$this->expectDeprecationAndContinue( '/lockForUpdate/' );
-		$this->sqb->lockForUpdate();
-		$this->db->rollback( __METHOD__ );
-		$this->assertEquals( 'BEGIN; SELECT COUNT(*) AS rowcount FROM (SELECT 1 FROM t WHERE a = \'b\'   FOR UPDATE) tmp_count; ROLLBACK',
-			$this->db->getLastSqls() );
-	}
-
 	public function testBuildGroupConcatField() {
 		$this->sqb
 			->select( 'f' )

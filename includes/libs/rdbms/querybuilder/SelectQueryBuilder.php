@@ -751,18 +751,6 @@ class SelectQueryBuilder extends JoinGroupBase {
 	}
 
 	/**
-	 * Run the SELECT query with the FOR UPDATE option. The field list is ignored.
-	 *
-	 * @deprecated since 1.40, use $this->forUpdate()->fetchRowCount() if you need
-	 *   the return value or $this->forUpdate()->acquireRowLocks() if you don't.
-	 * @return int
-	 */
-	public function lockForUpdate() {
-		wfDeprecated( 'SelectQueryBuilder::lockForUpdate()', '1.40' );
-		return $this->forUpdate()->fetchRowCount();
-	}
-
-	/**
 	 * Build a GROUP_CONCAT or equivalent statement for a query.
 	 *
 	 * This is useful for combining a field for several rows into a single string.
