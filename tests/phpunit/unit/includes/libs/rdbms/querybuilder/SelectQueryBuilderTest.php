@@ -8,8 +8,7 @@ use Wikimedia\Rdbms\Subquery;
  * @covers \Wikimedia\Rdbms\SelectQueryBuilder
  * @covers \Wikimedia\Rdbms\JoinGroup
  */
-class SelectQueryBuilderTest extends PHPUnit\Framework\TestCase {
-	use MediaWikiCoversValidator;
+class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 
 	/** @var DatabaseTestHelper */
 	private $db;
@@ -537,6 +536,7 @@ class SelectQueryBuilderTest extends PHPUnit\Framework\TestCase {
 			->conds( [ 'a' => 'b' ] )
 			->caller( __METHOD__ );
 		$this->db->begin( __METHOD__ );
+		$this->expectDeprecationAndContinue( '/lockForUpdate/' );
 		$this->sqb->lockForUpdate();
 		$this->db->rollback( __METHOD__ );
 		$this->assertEquals( 'BEGIN; SELECT COUNT(*) AS rowcount FROM (SELECT 1 FROM t WHERE a = \'b\'   FOR UPDATE) tmp_count; ROLLBACK',

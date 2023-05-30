@@ -758,6 +758,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * @return int
 	 */
 	public function lockForUpdate() {
+		wfDeprecated( 'SelectQueryBuilder::lockForUpdate()', '1.40' );
 		return $this->db->lockForUpdate( $this->tables, $this->conds, $this->caller,
 			$this->options, $this->joinConds );
 	}
