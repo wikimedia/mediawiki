@@ -74,6 +74,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\DAO\WikiAwareEntity;
+use MediaWiki\Deferred\DeferredUpdatesManager;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Edit\SimpleParsoidOutputStash;
 use MediaWiki\EditPage\Constraint\EditConstraintFactory;
@@ -651,6 +652,10 @@ return [
 			$services->getCriticalSectionProvider(),
 			$services->getStatsdDataFactory()
 		);
+	},
+
+	'DeferredUpdatesManager' => static function ( MediaWikiServices $services ): DeferredUpdatesManager {
+		return new DeferredUpdatesManager();
 	},
 
 	'DeletePageFactory' => static function ( MediaWikiServices $services ): DeletePageFactory {
