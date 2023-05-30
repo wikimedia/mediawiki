@@ -2595,6 +2595,7 @@ class Language implements Bcp47Code {
 	}
 
 	/**
+	 * @deprecated since 1.41, use LocalisationCache or MessageCache as appropriate.
 	 * @param string $key
 	 * @return string|null
 	 */
@@ -2603,6 +2604,7 @@ class Language implements Bcp47Code {
 	}
 
 	/**
+	 * @deprecated since 1.41, use LocalisationCache directly.
 	 * @return string[]
 	 */
 	public function getAllMessages() {

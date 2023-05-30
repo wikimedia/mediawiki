@@ -2250,6 +2250,7 @@ class ParserTestRunner {
 				$mwServices->resetServiceForTesting( 'LanguageFactory' );
 				$mwServices->resetServiceForTesting( 'LanguageNameUtils' );
 				$mwServices->resetServiceForTesting( 'LocalisationCache' );
+				$mwServices->resetServiceForTesting( 'MessageCache' ); // Update its l10n cache instance
 			};
 			$setup[] = $reset;
 			$teardown[] = $reset;
@@ -2289,6 +2290,7 @@ class ParserTestRunner {
 			$mwServices->resetServiceForTesting( 'ContentLanguage' );
 		};
 		$reset = function () use ( $mwServices ) {
+			$mwServices->resetServiceForTesting( 'MessageCache' );
 			$mwServices->resetServiceForTesting( 'MagicWordFactory' );
 			$this->resetTitleServices();
 			$mwServices->resetServiceForTesting( 'ParserFactory' );
