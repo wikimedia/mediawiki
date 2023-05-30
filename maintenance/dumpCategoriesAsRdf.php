@@ -19,6 +19,7 @@
 
 use MediaWiki\Category\CategoriesRdf;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Purtle\RdfWriter;
 use Wikimedia\Purtle\RdfWriterFactory;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -123,6 +124,7 @@ class DumpCategoriesAsRdf extends Maintenance {
 		if ( substr( $licenseUrl, 0, 2 ) == '//' ) {
 			$licenseUrl = 'https:' . $licenseUrl;
 		}
+		$urlUtils = MediaWikiServices::getInstance()->getUrlUtils();
 		$this->rdfWriter->about( $this->categoriesRdf->getDumpURI() )
 			->a( 'schema', 'Dataset' )
 			->a( 'owl', 'Ontology' )
@@ -130,7 +132,7 @@ class DumpCategoriesAsRdf extends Maintenance {
 			->say( 'schema', 'softwareVersion' )->value( CategoriesRdf::FORMAT_VERSION )
 			->say( 'schema', 'dateModified' )
 			->value( wfTimestamp( TS_ISO_8601, $timestamp ), 'xsd', 'dateTime' )
-			->say( 'schema', 'isPartOf' )->is( wfExpandUrl( '/', PROTO_CANONICAL ) )
+			->say( 'schema', 'isPartOf' )->is( (string)$urlUtils->expand( '/', PROTO_CANONICAL ) )
 			->say( 'owl', 'imports' )->is( CategoriesRdf::OWL_URL );
 	}
 

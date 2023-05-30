@@ -78,14 +78,18 @@ function wfOpenSearchDescMain() {
 	print Xml::element( 'ShortName', null, $fullName );
 	print Xml::element( 'Description', null, $fullName );
 
+	$services = MediaWikiServices::getInstance();
+
 	// By default we'll use the site favicon.
 	// Double-check if IE supports this properly?
 	print Xml::element( 'Image',
 		[
 			'height' => 16,
 			'width' => 16,
-			'type' => 'image/x-icon' ],
-		wfExpandUrl( $wgFavicon, PROTO_CURRENT ) );
+			'type' => 'image/x-icon'
+		],
+		(string)$services->getUrlUtils()->expand( $wgFavicon, PROTO_CURRENT )
+	);
 
 	$urls = [];
 
@@ -114,7 +118,7 @@ function wfOpenSearchDescMain() {
 
 	// Allow hooks to override the suggestion URL settings in a more
 	// general way than overriding the whole search engine...
-	( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onOpenSearchUrls( $urls );
+	( new HookRunner( $services->getHookContainer() ) )->onOpenSearchUrls( $urls );
 
 	foreach ( $urls as $attribs ) {
 		print Xml::element( 'Url', $attribs );
