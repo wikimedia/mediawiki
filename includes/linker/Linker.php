@@ -812,7 +812,7 @@ class Linker {
 					'img-class' => 'mw-file-element',
 				];
 				// Only thumbs gets the magnify link
-				if ( $rdfaType === 'mw:File/Thumb' ) {
+				if ( $rdfaType === 'mw:File/Thumb' && $parser ) {
 					$params['magnify-resource'] = $url;
 					$parser->getOutput()->addModules( [ 'mediawiki.page.media' ] );
 				}
