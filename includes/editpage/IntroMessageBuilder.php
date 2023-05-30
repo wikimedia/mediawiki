@@ -139,6 +139,8 @@ class IntroMessageBuilder {
 		$title = Title::newFromPageIdentity( $page );
 		$messages = new IntroMessageList( $frames, $skip );
 
+		$this->addOldRevisionWarning( $messages, $localizer, $revRecord );
+
 		if ( !$preview ) {
 			$this->addCodeEditingIntro( $messages, $localizer, $title, $performer );
 			$this->addSharedRepoHint( $messages, $localizer, $page );
@@ -150,7 +152,6 @@ class IntroMessageBuilder {
 		$this->addTalkPageText( $messages, $localizer, $title );
 		$this->addEditNotices( $messages, $localizer, $title, $revRecord );
 
-		$this->addOldRevisionWarning( $messages, $localizer, $revRecord );
 		$this->addReadOnlyWarning( $messages, $localizer );
 		$this->addAnonEditWarning( $messages, $localizer, $title, $performer, $returnToQuery, $preview );
 		$this->addUserConfigPageInfo( $messages, $localizer, $title, $performer, $preview );
@@ -472,7 +473,8 @@ class IntroMessageBuilder {
 		?RevisionRecord $revRecord
 	): void {
 		if ( $revRecord && !$revRecord->isCurrent() ) {
-			$messages->add( $localizer->msg( 'editingold' ), Html::warningBox( "\n$1\n" ) );
+			// This wrapper frame is not optional (T337071)
+			$messages->addWithKey( 'editingold', Html::warningBox( $localizer->msg( 'editingold' )->parse() ) );
 		}
 	}
 
