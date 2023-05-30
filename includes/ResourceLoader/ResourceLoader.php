@@ -1894,7 +1894,7 @@ MESSAGE;
 	 * The base URL must have a server and should have a protocol.
 	 * A protocol-relative base expands to HTTPS.
 	 *
-	 * This is a standalone version of MediaWiki's wfExpandUrl (T32956).
+	 * This is a standalone version of MediaWiki's UrlUtils::expand (T32956).
 	 *
 	 * @internal For use by core ResourceLoader classes only
 	 * @param string $base

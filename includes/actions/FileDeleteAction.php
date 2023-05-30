@@ -176,7 +176,10 @@ class FileDeleteAction extends DeleteAction {
 				wfEscapeWikiText( $this->getTitle()->getText() ),
 				$lang->date( $this->oldFile->getTimestamp(), true ),
 				$lang->time( $this->oldFile->getTimestamp(), true ),
-				wfExpandUrl( $this->file->getArchiveUrl( $this->oldImage ), PROTO_CURRENT )
+				(string)MediaWikiServices::getInstance()->getUrlUtils()->expand(
+					$this->file->getArchiveUrl( $this->oldImage ),
+					PROTO_CURRENT
+				)
 			)->parseAsBlock();
 		} else {
 			return $this->getContext()->msg(

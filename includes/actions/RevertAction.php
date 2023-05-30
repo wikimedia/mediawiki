@@ -23,6 +23,8 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * File reversion user interface
  * WikiPage must contain getFile method: \WikiFilePage
@@ -121,7 +123,7 @@ class RevertAction extends FormAction {
 				'raw' => true,
 				'default' => $this->msg( 'filerevert-intro',
 					$this->getTitle()->getText(), $userDate, $userTime,
-					wfExpandUrl(
+					(string)MediaWikiServices::getInstance()->getUrlUtils()->expand(
 						$this->getFile()
 							->getArchiveUrl(
 								$this->getRequest()->getText( 'oldimage' )
@@ -178,7 +180,7 @@ class RevertAction extends FormAction {
 
 		$this->getOutput()->addWikiMsg( 'filerevert-success', $this->getTitle()->getText(),
 			$userDate, $userTime,
-			wfExpandUrl(
+			(string)MediaWikiServices::getInstance()->getUrlUtils()->expand(
 				$this->getFile()
 					->getArchiveUrl(
 						$this->getRequest()->getText( 'oldimage' )

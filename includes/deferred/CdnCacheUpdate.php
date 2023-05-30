@@ -326,7 +326,7 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	 * @return string
 	 */
 	private static function expand( $url ) {
-		return wfExpandUrl( $url, PROTO_INTERNAL );
+		return (string)MediaWikiServices::getInstance()->getUrlUtils()->expand( $url, PROTO_INTERNAL );
 	}
 
 	/**

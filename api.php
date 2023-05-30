@@ -52,11 +52,13 @@ function wfApiMain() {
 
 	$starttime = microtime( true );
 
+	$services = MediaWikiServices::getInstance();
+
 	// PATH_INFO can be used for stupid things. We don't support it for api.php at
 	// all, so error out if it's present. (T128209)
 	if ( isset( $_SERVER['PATH_INFO'] ) && $_SERVER['PATH_INFO'] != '' ) {
 		$correctUrl = wfAppendQuery( wfScript( 'api' ), $wgRequest->getQueryValuesOnly() );
-		$correctUrl = wfExpandUrl( $correctUrl, PROTO_CANONICAL );
+		$correctUrl = (string)$services->getUrlUtils()->expand( $correctUrl, PROTO_CANONICAL );
 		header( "Location: $correctUrl", true, 301 );
 		echo 'This endpoint does not support "path info", i.e. extra text between "api.php"'
 			. 'and the "?". Remove any such text and try again.';
@@ -78,7 +80,7 @@ function wfApiMain() {
 		$processor = new ApiMain( RequestContext::getMain(), true );
 
 		// Last chance hook before executing the API
-		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onApiBeforeMain( $processor );
+		( new HookRunner( $services->getHookContainer() ) )->onApiBeforeMain( $processor );
 		if ( !$processor instanceof ApiMain ) {
 			throw new LogicException( 'ApiBeforeMain hook set $processor to a non-ApiMain class' );
 		}
