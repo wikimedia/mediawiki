@@ -186,7 +186,7 @@
 					function ( userInfo ) {
 						booklet.setPage( 'upload' );
 						if ( userInfo.rights.indexOf( 'upload' ) === -1 ) {
-							if ( mw.user.isAnon() ) {
+							if ( !mw.user.isNamed() ) {
 								booklet.getPage( 'upload' ).$element.msg( 'apierror-mustbeloggedin', mw.msg( 'action-upload' ) );
 							} else {
 								booklet.getPage( 'upload' ).$element.msg( 'apierror-permissiondenied', mw.msg( 'action-upload' ) );
