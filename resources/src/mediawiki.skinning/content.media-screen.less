@@ -33,6 +33,13 @@ figure[ typeof~='mw:File/Thumb' ] {
 		width: 15px;
 		height: 11px;
 
+		// Default where page content language is not set
+		// Allow to flip
+		margin-left: 3px;
+		float: right;
+
+		// Defaults for page content language
+
 		.mw-content-ltr & {
 			/* @noflip */
 			margin-left: 3px;
@@ -59,6 +66,13 @@ figure[ typeof~='mw:File/Thumb' ] {
 			height: 11px;
 			position: absolute;
 			bottom: -11px;
+
+			// Default where page content language is not set
+			// Allow to flip
+			right: 6px;
+			background-image: @background-image-magnify-ltr;
+
+			// Defaults for page content language
 
 			.mw-content-ltr & {
 				/* @noflip */

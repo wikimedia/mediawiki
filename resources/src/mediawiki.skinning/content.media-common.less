@@ -56,8 +56,6 @@ figure[ typeof~='mw:File/Frameless' ] {
 
 figure[ typeof~='mw:File/Thumb' ],
 figure[ typeof~='mw:File/Frame' ] {
-	margin: 0;  // Maybe belongs in element.css for figure
-	margin-bottom: @margin-bottom-thumb;
 	display: table;
 	text-align: center;
 	border-collapse: collapse;
@@ -70,6 +68,12 @@ figure[ typeof~='mw:File/Frame' ] {
 			border: 0;
 		}
 	}
+
+	// Default where page content language is not set
+	// Allow to flip
+	margin: @margin-tright;
+	clear: right;
+	float: right;
 
 	// Defaults for page content language
 
@@ -175,6 +179,12 @@ figure[ typeof~='mw:File/Frame' ] {
 		 * From https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-wrap
 		 */
 		word-break: break-word;
+
+		// Default where page content language is not set
+		// Allow to flip
+		text-align: left;
+
+		// Defaults for page content language
 
 		.mw-content-ltr & {
 			/* @noflip */
