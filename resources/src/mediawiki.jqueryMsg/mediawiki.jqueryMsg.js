@@ -1482,9 +1482,13 @@ mw.Message.prototype.parser = function ( format ) {
  * @return {jQuery}
  */
 mw.Message.prototype.parseDom = ( function () {
-	var $wrapper = $( '<div>' );
+	var failableParserFn;
+
 	return function () {
-		// eslint-disable-next-line mediawiki/msg-doc
-		return $wrapper.msg( this.key, this.parameters ).contents().detach();
+		if ( !failableParserFn ) {
+			failableParserFn = getFailableParserFn();
+		}
+		var $result = failableParserFn( [ this.key, this.parameters ] );
+		return $result.contents();
 	};
 }() );
