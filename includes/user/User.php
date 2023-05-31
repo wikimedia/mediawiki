@@ -3556,6 +3556,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 
 	/**
 	 * Is the user an autocreated temporary user?
+	 * @since 1.39
 	 * @return bool
 	 */
 	public function isTemp(): bool {
@@ -3569,6 +3570,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/**
 	 * Is the user a normal non-temporary registered user?
 	 *
+	 * @since 1.39
 	 * @return bool
 	 */
 	public function isNamed(): bool {
