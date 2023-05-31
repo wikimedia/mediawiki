@@ -92,9 +92,10 @@ class LinkFilter {
 	/**
 	 * Canonicalize a hostname for el_index
 	 * @param string $host
+	 * @param bool $reverse whether to reverse the domain name or not
 	 * @return string
 	 */
-	private static function indexifyHost( $host ) {
+	private static function indexifyHost( $host, $reverse = true ) {
 		// NOTE: If you change the output of this method, you'll probably have to increment self::VERSION!
 
 		// Canonicalize.
@@ -122,6 +123,9 @@ class LinkFilter {
 		if ( preg_match( '/^\[([0-9a-f:*]+)\]$/', rawurldecode( $host ), $m ) ) {
 			$ip = $m[1];
 			if ( IPUtils::isValid( $ip ) ) {
+				if ( !$reverse ) {
+					return '[' . IPUtils::sanitizeIP( $ip ) . ']';
+				}
 				return 'V6.' . implode( '.', explode( ':', IPUtils::sanitizeIP( $ip ) ) ) . '.';
 			}
 			if ( substr( $ip, -2 ) === ':*' ) {
@@ -129,12 +133,18 @@ class LinkFilter {
 				if ( IPUtils::isValid( "{$cutIp}::" ) ) {
 					// Wildcard IP doesn't contain "::", so multiple parts can be wild
 					$ct = count( explode( ':', $ip ) ) - 1;
+					if ( !$reverse ) {
+						return '[' . IPUtils::sanitizeIP( "{$cutIp}::" ) . ']';
+					}
 					return 'V6.' .
 						implode( '.', array_slice( explode( ':', IPUtils::sanitizeIP( "{$cutIp}::" ) ), 0, $ct ) ) .
 						'.*.';
 				}
 				if ( IPUtils::isValid( "{$cutIp}:1" ) ) {
 					// Wildcard IP does contain "::", so only the last part is wild
+					if ( !$reverse ) {
+						return '[' . IPUtils::sanitizeIP( "{$cutIp}:1" ) . ']';
+					}
 					return 'V6.' .
 						substr( implode( '.', explode( ':', IPUtils::sanitizeIP( "{$cutIp}:1" ) ) ), 0, -1 ) .
 						'*.';
@@ -151,13 +161,20 @@ class LinkFilter {
 		// IPv4?
 		$b = '(?:0*25[0-5]|0*2[0-4][0-9]|0*1[0-9][0-9]|0*[0-9]?[0-9])';
 		if ( preg_match( "/^(?:{$b}\.){3}{$b}$|^(?:{$b}\.){1,3}\*$/", $host ) ) {
+			if ( !$reverse ) {
+				return $host;
+			}
 			return 'V4.' . implode( '.', array_map( static function ( $v ) {
 				return $v === '*' ? $v : (int)$v;
 			}, explode( '.', $host ) ) ) . '.';
 		}
 
 		// Must be a host name.
-		return implode( '.', array_reverse( explode( '.', $host ) ) ) . '.';
+		if ( $reverse ) {
+			return implode( '.', array_reverse( explode( '.', $host ) ) ) . '.';
+		} else {
+			return $host;
+		}
 	}
 
 	/**
@@ -186,11 +203,7 @@ class LinkFilter {
 		if ( $bits['scheme'] == 'mailto' ) {
 			$mailparts = explode( '@', $bits['host'], 2 );
 			if ( count( $mailparts ) === 2 ) {
-				if ( $reverseDomain ) {
-					$domainpart = self::indexifyHost( $mailparts[1] );
-				} else {
-					$domainpart = $mailparts[1];
-				}
+				$domainpart = self::indexifyHost( $mailparts[1], $reverseDomain );
 			} else {
 				// No @, assume it's a local part with no domain
 				$domainpart = '';
@@ -201,9 +214,7 @@ class LinkFilter {
 				$bits['host'] = $mailparts[0] . '@' . $domainpart;
 			}
 		} else {
-			if ( $reverseDomain ) {
-				$bits['host'] = self::indexifyHost( $bits['host'] );
-			}
+			$bits['host'] = self::indexifyHost( $bits['host'], $reverseDomain );
 		}
 
 		// Reconstruct the pseudo-URL
@@ -264,17 +275,32 @@ class LinkFilter {
 		if ( $bits['scheme'] == 'mailto' ) {
 			$mailparts = explode( '@', $bits['host'], 2 );
 			if ( count( $mailparts ) === 2 ) {
-				$domainpart = rtrim( self::indexifyHost( $mailparts[0] ), '.' );
+				$domainpart = rtrim( self::reverseDomain( $mailparts[0] ), '.' );
 			} else {
 				// No @, assume it's a local part with no domain
 				$domainpart = '';
 			}
 			$bits['host'] = $mailparts[1] . '@' . $domainpart;
 		} else {
-			$bits['host'] = rtrim( self::indexifyHost( $bits['host'] ), '.' );
+			$bits['host'] = rtrim( self::reverseDomain( $bits['host'] ), '.' );
 		}
 
 		return $bits['scheme'] . $bits['delimiter'] . $bits['host'];
+	}
+
+	private static function reverseDomain( $domain ) {
+		if ( substr( $domain, 0, 3 ) === 'V6.' ) {
+			$ipv6 = str_replace( '.', ':', trim( substr( $domain, 3 ), '.' ) );
+			if ( IPUtils::isValid( $ipv6 ) ) {
+				return '[' . $ipv6 . ']';
+			}
+		} elseif ( substr( $domain, 0, 3 ) === 'V4.' ) {
+			$ipv4 = trim( substr( $domain, 3 ), '.' );
+			if ( IPUtils::isValid( $ipv4 ) ) {
+				return $ipv4;
+			}
+		}
+		return self::indexifyHost( $domain );
 	}
 
 	/**

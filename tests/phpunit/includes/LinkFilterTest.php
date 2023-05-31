@@ -454,16 +454,16 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 
 			// IP addresses
 			[
-				'http://192.0.2.0/foo',
-				'http://V4.192.0.2.0'
+				'http://V4.192.0.2.0./foo',
+				'http://192.0.2.0'
 			],
 			[
-				'http://192.0.0002.0/foo',
-				'http://V4.192.0.2.0'
+				'http://V4.192.0.2.0./foo',
+				'http://192.0.2.0'
 			],
 			[
-				'http://[2001:db8::1]/foo',
-				'http://V6.2001.DB8.0.0.0.0.0.1'
+				'http://V6.2001.DB8.0.0.0.0.0.1./foo',
+				'http://[2001:DB8:0:0:0:0:0:1]'
 			],
 
 			// Explicit specification of the DNS root
@@ -676,6 +676,14 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 				[ 'mailto:foo@example.com' ],
 				[ 'mailto:foo@example.com' ],
 			],
+			'IPv6 (gosh I hate ipv6)' => [
+				[ 'http://[::1]/' ],
+				[ 'http://[0:0:0:0:0:0:0:1]/' ]
+			],
+			'IPv4' => [
+				[ 'http://0.0.0.1/' ],
+				[ 'http://0.0.0.1/' ]
+			]
 		];
 	}
 }
