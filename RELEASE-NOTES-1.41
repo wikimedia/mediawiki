@@ -280,6 +280,8 @@ because of Phabricator reports.
   deprecation warnings.
 * UserGroupMembership::getLink() has been deprecated in favour of
   ::getLinkHTML() and ::getLinkWiki().
+* SearchResultThumbnail::getSize() has been deprecated to be dropped in the
+  future as it is resource intensive and degrades performance.
 * The EmailUserPermissionsErrors hook has been deprecated in favour of the
   UserCanSendEmail hook.
 * Hooks::isRegistered(), ::getHandlers(), ::run() and ::runWithoutAbort(),
