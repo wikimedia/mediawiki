@@ -429,19 +429,13 @@ class DeleteAction extends FormlessAction {
 
 		$delPage = $this->deletePageFactory->newDeletePage( $this->getWikiPage(), $this->getAuthority() );
 		if ( $delPage->canProbablyDeleteAssociatedTalk()->isGood() ) {
-			$fields[] = new OOUI\FieldLayout(
-				new OOUI\CheckboxInputWidget( [
-					'name' => 'wpDeleteTalk',
-					'inputId' => 'wpDeleteTalk',
-					'tabIndex' => 3,
-					'selected' => false,
-				] ),
-				[
-					'label' => $this->msg( 'deletepage-deletetalk' )->text(),
-					'align' => 'inline',
-					'infusable' => true,
-				]
-			);
+			$fields['DeleteTalk'] = [
+				'type' => 'check',
+				'id' => 'wpDeleteTalk',
+				'tabIndex' => 3,
+				'default' => false,
+				'label-message' => 'deletepage-deletetalk',
+			];
 		}
 
 		if ( $user->isRegistered() ) {
