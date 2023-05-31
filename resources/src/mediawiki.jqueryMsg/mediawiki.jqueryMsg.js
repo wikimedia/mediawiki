@@ -219,11 +219,11 @@ mw.jqueryMsg.getMessageFunction = function ( options ) {
 		if ( !failableParserFn ) {
 			failableParserFn = getFailableParserFn( options );
 		}
-		var failableResult = failableParserFn( arguments );
+		var $result = failableParserFn( arguments );
 		if ( format === 'text' || format === 'escaped' ) {
-			return failableResult.text();
+			return $result.text();
 		} else {
-			return failableResult.html();
+			return $result.html();
 		}
 	};
 };
@@ -257,9 +257,8 @@ mw.jqueryMsg.getPlugin = function ( options ) {
 		if ( !failableParserFn ) {
 			failableParserFn = getFailableParserFn( options );
 		}
-		var $target = this.empty();
-		appendWithoutParsing( $target, failableParserFn( arguments ) );
-		return $target;
+		var $result = failableParserFn( arguments );
+		return this.empty().append( $result.contents() );
 	};
 };
 
