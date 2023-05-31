@@ -22,7 +22,8 @@ class ApiOpenSearchTest extends MediaWikiIntegrationTestCase {
 			'opensearch',
 			$this->getServiceContainer()->getLinkBatchFactory(),
 			$config,
-			$engineFactory
+			$engineFactory,
+			$this->getServiceContainer()->getUrlUtils()
 		);
 
 		$engine->method( 'getProfiles' )

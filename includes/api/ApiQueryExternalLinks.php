@@ -22,6 +22,7 @@
 
 use MediaWiki\ExternalLinks\LinkFilter;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Utils\UrlUtils;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
@@ -32,8 +33,18 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiQueryExternalLinks extends ApiQueryBase {
 
-	public function __construct( ApiQuery $query, $moduleName ) {
+	/** @var UrlUtils */
+	private $urlUtils;
+
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 * @param UrlUtils $urlUtils
+	 */
+	public function __construct( ApiQuery $query, $moduleName, UrlUtils $urlUtils ) {
 		parent::__construct( $query, $moduleName, 'el' );
+
+		$this->urlUtils = $urlUtils;
 	}
 
 	public function execute() {
@@ -137,7 +148,7 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 			}
 			// expand protocol-relative urls
 			if ( $params['expandurl'] ) {
-				$to = wfExpandUrl( $to, PROTO_CANONICAL );
+				$to = (string)$this->urlUtils->expand( $to, PROTO_CANONICAL );
 			}
 			ApiResult::setContentValue( $entry, 'url', $to );
 			$fit = $this->addPageSubItem( $row->el_from, $entry );

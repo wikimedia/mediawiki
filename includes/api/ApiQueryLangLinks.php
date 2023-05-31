@@ -23,6 +23,7 @@
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
+use MediaWiki\Utils\UrlUtils;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
@@ -39,15 +40,20 @@ class ApiQueryLangLinks extends ApiQueryBase {
 	/** @var Language */
 	private $contentLanguage;
 
+	/** @var UrlUtils */
+	private $urlUtils;
+
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
 		LanguageNameUtils $languageNameUtils,
-		Language $contentLanguage
+		Language $contentLanguage,
+		UrlUtils $urlUtils
 	) {
 		parent::__construct( $query, $moduleName, 'll' );
 		$this->languageNameUtils = $languageNameUtils;
 		$this->contentLanguage = $contentLanguage;
+		$this->urlUtils = $urlUtils;
 	}
 
 	public function execute() {
@@ -139,7 +145,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			if ( isset( $prop['url'] ) ) {
 				$title = Title::newFromText( "{$row->ll_lang}:{$row->ll_title}" );
 				if ( $title ) {
-					$entry['url'] = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
+					$entry['url'] = (string)$this->urlUtils->expand( $title->getFullURL(), PROTO_CURRENT );
 				}
 			}
 

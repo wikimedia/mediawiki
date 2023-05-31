@@ -82,6 +82,9 @@ class ApiQuery extends ApiBase {
 		],
 		'extlinks' => [
 			'class' => ApiQueryExternalLinks::class,
+			'services' => [
+				'UrlUtils',
+			],
 		],
 		'fileusage' => [
 			'class' => ApiQueryBacklinksprop::class,
@@ -118,6 +121,7 @@ class ApiQuery extends ApiBase {
 				'IntroMessageBuilder',
 				'PreloadedContentBuilder',
 				'RevisionLookup',
+				'UrlUtils',
 			],
 		],
 		'links' => [
@@ -137,12 +141,16 @@ class ApiQuery extends ApiBase {
 		],
 		'iwlinks' => [
 			'class' => ApiQueryIWLinks::class,
+			'services' => [
+				'UrlUtils',
+			]
 		],
 		'langlinks' => [
 			'class' => ApiQueryLangLinks::class,
 			'services' => [
 				'LanguageNameUtils',
 				'ContentLanguage',
+				'UrlUtils',
 			]
 		],
 		'pageprops' => [
@@ -340,6 +348,9 @@ class ApiQuery extends ApiBase {
 		],
 		'exturlusage' => [
 			'class' => ApiQueryExtLinksUsage::class,
+			'services' => [
+				'UrlUtils',
+			],
 		],
 		'filearchive' => [
 			'class' => ApiQueryFilearchive::class,
@@ -502,6 +513,7 @@ class ApiQuery extends ApiBase {
 				'SkinFactory',
 				'DBLoadBalancer',
 				'ReadOnlyMode',
+				'UrlUtils',
 			]
 		],
 		'userinfo' => [

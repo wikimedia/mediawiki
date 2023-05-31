@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\Title\Title;
+use MediaWiki\Utils\UrlUtils;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
@@ -34,8 +35,18 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiQueryIWLinks extends ApiQueryBase {
 
-	public function __construct( ApiQuery $query, $moduleName ) {
+	/** @var UrlUtils */
+	private $urlUtils;
+
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 * @param UrlUtils $urlUtils
+	 */
+	public function __construct( ApiQuery $query, $moduleName, UrlUtils $urlUtils ) {
 		parent::__construct( $query, $moduleName, 'iw' );
+
+		$this->urlUtils = $urlUtils;
 	}
 
 	public function execute() {
@@ -128,7 +139,7 @@ class ApiQueryIWLinks extends ApiQueryBase {
 			if ( isset( $prop['url'] ) ) {
 				$title = Title::newFromText( "{$row->iwl_prefix}:{$row->iwl_title}" );
 				if ( $title ) {
-					$entry['url'] = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
+					$entry['url'] = (string)$this->urlUtils->expand( $title->getFullURL(), PROTO_CURRENT );
 				}
 			}
 
