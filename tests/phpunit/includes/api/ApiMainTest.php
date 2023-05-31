@@ -959,6 +959,10 @@ class ApiMainTest extends ApiTestCase {
 	 * @dataProvider provideExceptionErrors
 	 */
 	public function testExceptionErrors( $error, $expectReturn, $expectResult ) {
+		$this->overrideConfigValues( [
+			MainConfigNames::Server => 'https://local.example',
+			MainConfigNames::ScriptPath => '/w',
+		] );
 		$context = new RequestContext();
 		$context->setRequest( new FauxRequest( [ 'errorformat' => 'plaintext' ] ) );
 		$context->setLanguage( 'en' );
@@ -987,7 +991,7 @@ class ApiMainTest extends ApiTestCase {
 	// Not static so $this can be used
 	public function provideExceptionErrors() {
 		$reqId = WebRequest::getRequestId();
-		$doclink = wfExpandUrl( wfScript( 'api' ) );
+		$doclink = 'https://local.example/w/api.php';
 
 		$ex = new InvalidArgumentException( 'Random exception' );
 		$trace = wfMessage( 'api-exception-trace',

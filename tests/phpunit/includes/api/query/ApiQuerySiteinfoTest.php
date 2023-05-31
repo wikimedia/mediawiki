@@ -507,12 +507,10 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	/**
 	 * @dataProvider rightsInfoProvider
 	 */
-	public function testRightsInfo( $page, $url, $text, $expectedUrlOrTitle, $expectedText ) {
-		$expectedUrl = ( $expectedUrlOrTitle instanceof Title )
-			? wfExpandUrl( $expectedUrlOrTitle->getLinkURL(), PROTO_CURRENT )
-			: $expectedUrlOrTitle;
-
+	public function testRightsInfo( $page, $url, $text, $expectedUrl, $expectedText ) {
 		$this->overrideConfigValues( [
+			MainConfigNames::Server => 'https://local.example',
+			MainConfigNames::ArticlePath => '/wiki/$1',
 			MainConfigNames::RightsPage => $page,
 			MainConfigNames::RightsUrl => $url,
 			MainConfigNames::RightsText => $text,
@@ -537,20 +535,20 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public static function rightsInfoProvider() {
-		$licenseTitle = Title::makeTitle( 0, 'License' );
+		$licenseTitleUrl = 'https://local.example/wiki/License';
 		$licenseUrl = 'http://license.example/';
 
 		return [
 			'No rights info' => [ null, null, null, '', '' ],
-			'Only page' => [ 'License', null, null, $licenseTitle, 'License' ],
+			'Only page' => [ 'License', null, null, $licenseTitleUrl, 'License' ],
 			'Only URL' => [ null, $licenseUrl, null, $licenseUrl, '' ],
 			'Only text' => [ null, null, '!!!', '', '!!!' ],
 			// URL is ignored if page is specified
-			'Page and URL' => [ 'License', $licenseUrl, null, $licenseTitle, 'License' ],
+			'Page and URL' => [ 'License', $licenseUrl, null, $licenseTitleUrl, 'License' ],
 			'URL and text' => [ null, $licenseUrl, '!!!', $licenseUrl, '!!!' ],
-			'Page and text' => [ 'License', null, '!!!', $licenseTitle, '!!!' ],
-			'Page and URL and text' => [ 'License', $licenseUrl, '!!!', $licenseTitle, '!!!' ],
-			'Pagename "0"' => [ '0', null, null, Title::makeTitle( 0, '0' ), '0' ],
+			'Page and text' => [ 'License', null, '!!!', $licenseTitleUrl, '!!!' ],
+			'Page and URL and text' => [ 'License', $licenseUrl, '!!!', $licenseTitleUrl, '!!!' ],
+			'Pagename "0"' => [ '0', null, null, 'https://local.example/wiki/0', '0' ],
 			'URL "0"' => [ null, '0', null, '0', '' ],
 			'Text "0"' => [ null, null, '0', '', '0' ],
 		];
