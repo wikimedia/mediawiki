@@ -195,7 +195,11 @@ class LinkFilter {
 				// No @, assume it's a local part with no domain
 				$domainpart = '';
 			}
-			$bits['host'] = $domainpart . '@' . $mailparts[0];
+			if ( $reverseDomain ) {
+				$bits['host'] = $domainpart . '@' . $mailparts[0];
+			} else {
+				$bits['host'] = $mailparts[0] . '@' . $domainpart;
+			}
 		} else {
 			if ( $reverseDomain ) {
 				$bits['host'] = self::indexifyHost( $bits['host'] );
@@ -260,12 +264,12 @@ class LinkFilter {
 		if ( $bits['scheme'] == 'mailto' ) {
 			$mailparts = explode( '@', $bits['host'], 2 );
 			if ( count( $mailparts ) === 2 ) {
-				$domainpart = rtrim( self::indexifyHost( $mailparts[1] ), '.' );
+				$domainpart = rtrim( self::indexifyHost( $mailparts[0] ), '.' );
 			} else {
 				// No @, assume it's a local part with no domain
 				$domainpart = '';
 			}
-			$bits['host'] = $mailparts[0] . '@' . $domainpart;
+			$bits['host'] = $mailparts[1] . '@' . $domainpart;
 		} else {
 			$bits['host'] = rtrim( self::indexifyHost( $bits['host'] ), '.' );
 		}

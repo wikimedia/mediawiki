@@ -414,12 +414,12 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 			],
 			[
 				// mailtos are handled special
-				'mailto:wiki@org.wikimedia.',
+				'mailto:org.wikimedia.@wiki',
 				'mailto:wiki@wikimedia.org'
 			],
 			[
 				// mailtos are handled special
-				'mailto:wiki',
+				'mailto:@wiki',
 				'mailto:wiki@'
 			],
 
@@ -671,6 +671,10 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 			'Links with user' => [
 				[ 'https://foo@spam.com/bar.html' ],
 				[ 'https://spam.com/bar.html' ],
+			],
+			'Mailto' => [
+				[ 'mailto:foo@example.com' ],
+				[ 'mailto:foo@example.com' ],
 			],
 		];
 	}
