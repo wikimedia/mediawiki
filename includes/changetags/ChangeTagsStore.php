@@ -34,6 +34,7 @@ use MediaWiki\User\UserIdentity;
 use Psr\Log\LoggerInterface;
 use Status;
 use WANObjectCache;
+use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -85,6 +86,7 @@ class ChangeTagsStore {
 	private NameTableStore $changeTagDefStore;
 	private WANObjectCache $wanCache;
 	private HookRunner $hookRunner;
+	private HookContainer $hookContainer;
 
 	public function __construct(
 		IConnectionProvider $dbProvider,
@@ -100,6 +102,7 @@ class ChangeTagsStore {
 		$this->options = $options;
 		$this->changeTagDefStore = $changeTagDefStore;
 		$this->wanCache = $wanCache;
+		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
@@ -386,6 +389,74 @@ class ChangeTagsStore {
 			},
 			[
 				'checkKeys' => [ $this->wanCache->makeKey( 'tags-usage-statistics' ) ],
+				'lockTSE' => WANObjectCache::TTL_MINUTE * 5,
+				'pcTTL' => WANObjectCache::TTL_PROC_LONG
+			]
+		);
+	}
+
+	/**
+	 * Lists tags explicitly defined in the `change_tag_def` table of the database.
+	 *
+	 * Tries memcached first.
+	 *
+	 * @return string[] Array of strings: tags
+	 * @since 1.25
+	 */
+	public function listExplicitlyDefinedTags() {
+		$fname = __METHOD__;
+		$dbProvider = $this->dbProvider;
+
+		return $this->wanCache->getWithSetCallback(
+			$this->wanCache->makeKey( 'valid-tags-db' ),
+			WANObjectCache::TTL_MINUTE * 5,
+			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname, $dbProvider ) {
+				$dbr = $dbProvider->getReplicaDatabase();
+				$setOpts += Database::getCacheSetOptions( $dbr );
+				$tags = $dbr->newSelectQueryBuilder()
+					->select( 'ctd_name' )
+					->from( self::CHANGE_TAG_DEF )
+					->where( [ 'ctd_user_defined' => 1 ] )
+					->caller( $fname )
+					->fetchFieldValues();
+
+				return array_unique( $tags );
+			},
+			[
+				'checkKeys' => [ $this->wanCache->makeKey( 'valid-tags-db' ) ],
+				'lockTSE' => WANObjectCache::TTL_MINUTE * 5,
+				'pcTTL' => WANObjectCache::TTL_PROC_LONG
+			]
+		);
+	}
+
+	/**
+	 * Lists tags defined by core or extensions using the ListDefinedTags hook.
+	 * Extensions need only define those tags they deem to be in active use.
+	 *
+	 * Tries memcached first.
+	 *
+	 * @return string[] Array of strings: tags
+	 * @since 1.25
+	 */
+	public function listSoftwareDefinedTags() {
+		// core defined tags
+		$tags = $this->getSoftwareTags( true );
+		if ( !$this->hookContainer->isRegistered( 'ListDefinedTags' ) ) {
+			return $tags;
+		}
+		$hookRunner = $this->hookRunner;
+		$dbProvider = $this->dbProvider;
+		return $this->wanCache->getWithSetCallback(
+			$this->wanCache->makeKey( 'valid-tags-hook' ),
+			WANObjectCache::TTL_MINUTE * 5,
+			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $tags, $hookRunner, $dbProvider ) {
+				$setOpts += Database::getCacheSetOptions( $dbProvider->getReplicaDatabase() );
+				$hookRunner->onListDefinedTags( $tags );
+				return array_unique( $tags );
+			},
+			[
+				'checkKeys' => [ $this->wanCache->makeKey( 'valid-tags-hook' ) ],
 				'lockTSE' => WANObjectCache::TTL_MINUTE * 5,
 				'pcTTL' => WANObjectCache::TTL_PROC_LONG
 			]
