@@ -4110,7 +4110,7 @@
 	"paramvalidator-help-type-user-subtype-cidr": "IP-osoiteavaruus",
 	"paramvalidator-help-type-user-subtype-interwiki": "interwikinimi (esim. \"prefix>EsimerkkiNimi\")",
 	"paramvalidator-help-type-user-subtype-id": "käyttäjän tunnistenumero (esim. \"#12345\")",
-	"paramvalidator-badtitle": "Virheellinen arvo \"$2\" otsikkparametrille <var>$1</var>: kelvoton otsikkomerkkijono.",
+	"paramvalidator-badtitle": "Virheellinen arvo \"$2\" otsikkoparametrille <var>$1</var>: kelvoton otsikkomerkkijono.",
 	"paramvalidator-missingtitle": "Virheellinen arvo \"$2\" otsikkoparametrille <var>$1</var>: sivua ei ole olemassa.",
 	"paramvalidator-help-type-title": "Tyyppi: sivun nimi",
 	"paramvalidator-help-type-title-must-exist": "Hyväksyy vain olemassa olevia sivuja.",
