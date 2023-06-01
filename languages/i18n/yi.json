@@ -1346,7 +1346,7 @@
 	"rcfilters-filter-lastrevision-label": "לעצטע ווערסיע",
 	"rcfilters-filter-previousrevision-label": "נישט די לעצטע ווערסיעס",
 	"rcfilters-filter-excluded": "אויסגעשלאסן",
-	"rcfilters-tag-prefix-namespace-inverted": "<strong>:נישט</strong> $1",
+	"rcfilters-tag-prefix-namespace-inverted": "<strong>נישט</strong> :$1",
 	"rcfilters-exclude-button-off": "אויסשליסן געוויילטע",
 	"rcfilters-view-tags": "מאַרקירטע רעדאַקטירונגען",
 	"rcfilters-liveupdates-button": "לעבעדיקע דערהיינטיקונגען",

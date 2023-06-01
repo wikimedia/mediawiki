@@ -42,7 +42,8 @@
 			"กิ๊ฟ เลิกล่ะ สายแข็ง",
 			"จักรกฤช วงศ์สระหลวง (Jakkrit Vongsraluang) / PaePae",
 			"วรากร อึ้งวิเชียร (Varakorn Ungvichian)",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "การขีดเส้นใต้ลิงก์:",
@@ -908,7 +909,7 @@
 	"revdelete-hide-comment": "ความย่อการแก้ไข",
 	"revdelete-hide-user": "ชื่อผู้ใช้/เลขที่อยู่ไอพีผู้เขียน",
 	"revdelete-hide-restricted": "ยับยั้งข้อมูลจากผู้ดูแลระบบเช่นเดียวกับผู้ใช้อื่น",
-	"revdelete-radio-same": "(ไม่เปลี่ยนแปลง)",
+	"revdelete-radio-same": "ไม่เปลี่ยนแปลง",
 	"revdelete-radio-set": "ซ่อน",
 	"revdelete-radio-unset": "เปิดเผย",
 	"revdelete-suppress": "ยับยั้งข้อมูลจากผู้ดูแลระบบเช่นเดียวกับผู้ใช้อื่น",
@@ -2772,7 +2773,7 @@
 	"movereason": "เหตุผล:",
 	"moveotherreason": "เหตุผลอื่น/เพิ่มเติม:",
 	"movereasonotherlist": "เหตุผลอื่น",
-	"movepage-reason-dropdown": "* เหตุผลในการย้ายทั่วไป\n** ชื่อสะกดผิด\n** เปลี่ยนชื่อ\n** ทับศัพท์",
+	"movepage-reason-dropdown": "* เหตุผลทั่วไปในการย้าย\n** ชื่อสะกดผิด\n** เปลี่ยนชื่อ\n** ทับศัพท์",
 	"movepage-edit-reasonlist": "แก้ไขเหตุผลการย้าย",
 	"revertmove": "ย้อน",
 	"delete_and_move_text": "มีหน้าปลายทาง \"[[:$1]]\" แล้ว \nคุณต้องการลบหน้าดังกล่าวเพื่อสร้างทางสำหรับการย้ายหรือไม่",
@@ -3691,6 +3692,8 @@
 	"json-error-state-mismatch": "JSON ไม่ถูกต้องหรือผิดรูปแบบ",
 	"json-error-syntax": "ข้อผิดพลาดไวยากรณ์",
 	"headline-anchor-title": "โยงมาส่วนนี้",
+	"special-tab-contribute-short": "ส่วนร่วม",
+	"special-tab-contributions-short": "ดูส่วนร่วม",
 	"special-characters-group-latin": "ละติน",
 	"special-characters-group-latinextended": "ละตินส่วนขยาย",
 	"special-characters-group-ipa": "สัทอักษรสากล",
