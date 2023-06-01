@@ -25,8 +25,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\ParamValidator\ParamValidator;
-use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * This is the main query class. It behaves similar to ApiMain: based on the
@@ -539,11 +537,7 @@ class ApiQuery extends ApiBase {
 	private $mPageSet;
 
 	private $mParams;
-	private $mNamedDB = [];
 	private $mModuleMgr;
-
-	/** @var ILoadBalancer */
-	private $loadBalancer;
 
 	/** @var WikiExporterFactory */
 	private $wikiExporterFactory;
@@ -552,14 +546,12 @@ class ApiQuery extends ApiBase {
 	 * @param ApiMain $main
 	 * @param string $action
 	 * @param ObjectFactory $objectFactory
-	 * @param ILoadBalancer $loadBalancer
 	 * @param WikiExporterFactory $wikiExporterFactory
 	 */
 	public function __construct(
 		ApiMain $main,
 		$action,
 		ObjectFactory $objectFactory,
-		ILoadBalancer $loadBalancer,
 		WikiExporterFactory $wikiExporterFactory
 	) {
 		parent::__construct( $main, $action );
@@ -582,7 +574,6 @@ class ApiQuery extends ApiBase {
 
 		// Create PageSet that will process titles/pageids/revids/generator
 		$this->mPageSet = new ApiPageSet( $this );
-		$this->loadBalancer = $loadBalancer;
 		$this->wikiExporterFactory = $wikiExporterFactory;
 	}
 
@@ -592,29 +583,6 @@ class ApiQuery extends ApiBase {
 	 */
 	public function getModuleManager() {
 		return $this->mModuleMgr;
-	}
-
-	/**
-	 * Get a cached database connection with a given name.
-	 *
-	 * If no such connection has been requested before, it will be created.
-	 * Subsequent calls with the same $name will return the same connection
-	 * as the first, regardless of the values of $db and $groups.
-	 *
-	 * @deprecated since 1.39 Use or override ApiBase::getDB() and optionally
-	 *  pass a query group to wfGetDB() or ILoadBalancer::getConnectionRef().
-	 * @param string $name Name to assign to the database connection
-	 * @param int $db One of the DB_* constants
-	 * @param string|string[] $groups Query groups
-	 * @return IDatabase
-	 */
-	public function getNamedDB( $name, $db, $groups ) {
-		wfDeprecated( __METHOD__, '1.39' );
-		if ( !array_key_exists( $name, $this->mNamedDB ) ) {
-			$this->mNamedDB[$name] = $this->loadBalancer->getConnectionRef( $db, $groups );
-		}
-
-		return $this->mNamedDB[$name];
 	}
 
 	/**

@@ -180,6 +180,8 @@ because of Phabricator reports.
   - ::currentSequenceValue()
   - ::triggerExists()
   - ::ruleExists()
+* ApiQuery::getNamedDB() and ApiQueryBase::selectNamedDB(), deprecated in
+  1.39, have been removed.
 * …
 
 === Deprecations in 1.41 ===
