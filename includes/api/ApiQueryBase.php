@@ -122,24 +122,6 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
-	 * Change the database connection for subsequent calls to ::getDB().
-	 *
-	 * See ApiQuery::getNamedDB() for more information.
-	 *
-	 * @deprecated since 1.39 Use or override ApiBase::getDB() and optionally
-	 *  pass a query group to wfGetDB() or ILoadBalancer::getConnectionRef().
-	 * @param string $name Name to assign to the database connection
-	 * @param int $db One of the DB_* constants
-	 * @param string|string[] $groups Query groups
-	 * @return IDatabase
-	 */
-	public function selectNamedDB( $name, $db, $groups ) {
-		wfDeprecated( __METHOD__, '1.39' );
-		$this->mDb = $this->getQuery()->getNamedDB( $name, $db, $groups );
-		return $this->mDb;
-	}
-
-	/**
 	 * Get the PageSet object to work on
 	 * @stable to override
 	 * @return ApiPageSet

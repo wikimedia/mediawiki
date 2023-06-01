@@ -126,7 +126,6 @@ class ApiMain extends ApiBase {
 			'class' => ApiQuery::class,
 			'services' => [
 				'ObjectFactory',
-				'DBLoadBalancer',
 				'WikiExporterFactory',
 			]
 		],
