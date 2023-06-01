@@ -23,7 +23,7 @@
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\WikiMap\WikiMap;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * A CentralIdLookup provider that just uses local IDs. Useful if the wiki
@@ -37,8 +37,8 @@ use Wikimedia\Rdbms\ILoadBalancer;
  */
 class LocalIdLookup extends CentralIdLookup {
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var string|null */
 	private $sharedDB;
@@ -51,16 +51,16 @@ class LocalIdLookup extends CentralIdLookup {
 
 	/**
 	 * @param Config $config
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 */
 	public function __construct(
 		Config $config,
-		ILoadBalancer $loadBalancer
+		IConnectionProvider $dbProvider
 	) {
 		$this->sharedDB = $config->get( MainConfigNames::SharedDB );
 		$this->sharedTables = $config->get( MainConfigNames::SharedTables );
 		$this->localDatabases = $config->get( MainConfigNames::LocalDatabases );
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 	}
 
 	public function isAttached( UserIdentity $user, $wikiId = UserIdentity::LOCAL ): bool {
@@ -89,21 +89,20 @@ class LocalIdLookup extends CentralIdLookup {
 		}
 		$audience = $this->checkAudience( $audience );
 		[ $index, $options ] = DBAccessObjectUtils::getDBOptions( $flags );
-		$db = $this->loadBalancer->getConnectionRef( $index );
+		$db = DBAccessObjectUtils::getDBFromIndex( $this->dbProvider, $index );
+		$queryBuilder = $db->newSelectQueryBuilder();
+		$queryBuilder
+			->select( [ 'user_id', 'user_name' ] )
+			->from( 'user' )
+			->where( [ 'user_id' => array_map( 'intval', array_keys( $idToName ) ) ] )
+			->options( $options );
 
-		$tables = [ 'user' ];
-		$fields = [ 'user_id', 'user_name' ];
-		$where = [
-			'user_id' => array_map( 'intval', array_keys( $idToName ) ),
-		];
-		$join = [];
 		if ( $audience && !$audience->isAllowed( 'hideuser' ) ) {
-			$tables[] = 'ipblocks';
-			$join['ipblocks'] = [ 'LEFT JOIN', 'ipb_user=user_id' ];
-			$fields[] = 'ipb_deleted';
+			$queryBuilder->leftJoin( 'ipblocks', null, 'ipb_user=user_id' );
+			$queryBuilder->field( 'ipb_deleted' );
 		}
 
-		$res = $db->select( $tables, $fields, $where, __METHOD__, $options, $join );
+		$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 		foreach ( $res as $row ) {
 			$idToName[$row->user_id] = empty( $row->ipb_deleted ) ? $row->user_name : '';
 		}
@@ -120,21 +119,20 @@ class LocalIdLookup extends CentralIdLookup {
 
 		$audience = $this->checkAudience( $audience );
 		[ $index, $options ] = DBAccessObjectUtils::getDBOptions( $flags );
-		$db = $this->loadBalancer->getConnectionRef( $index );
+		$db = DBAccessObjectUtils::getDBFromIndex( $this->dbProvider, $index );
+		$queryBuilder = $db->newSelectQueryBuilder();
+		$queryBuilder
+			->select( [ 'user_id', 'user_name' ] )
+			->from( 'user' )
+			->where( [ 'user_name' => array_map( 'strval', array_keys( $nameToId ) ) ] )
+			->options( $options );
 
-		$tables = [ 'user' ];
-		$fields = [ 'user_id', 'user_name' ];
-		$where = [
-			'user_name' => array_map( 'strval', array_keys( $nameToId ) ),
-		];
-		$join = [];
 		if ( $audience && !$audience->isAllowed( 'hideuser' ) ) {
-			$tables[] = 'ipblocks';
-			$join['ipblocks'] = [ 'LEFT JOIN', 'ipb_user=user_id' ];
-			$where[] = 'ipb_deleted = 0 OR ipb_deleted IS NULL';
+			$queryBuilder->leftJoin( 'ipblocks', null, 'ipb_user=user_id' );
+			$queryBuilder->where( 'ipb_deleted = 0 OR ipb_deleted IS NULL' );
 		}
 
-		$res = $db->select( $tables, $fields, $where, __METHOD__, $options, $join );
+		$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 		foreach ( $res as $row ) {
 			$nameToId[$row->user_name] = (int)$row->user_id;
 		}

@@ -29,7 +29,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MWTimestamp;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
@@ -51,8 +51,8 @@ class TalkPageNotificationManager {
 	/** @var bool */
 	private $disableAnonTalk;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var ReadOnlyMode */
 	private $readOnlyMode;
@@ -68,7 +68,7 @@ class TalkPageNotificationManager {
 
 	/**
 	 * @param ServiceOptions $serviceOptions
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param RevisionLookup $revisionLookup
 	 * @param HookContainer $hookContainer
@@ -76,7 +76,7 @@ class TalkPageNotificationManager {
 	 */
 	public function __construct(
 		ServiceOptions $serviceOptions,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		ReadOnlyMode $readOnlyMode,
 		RevisionLookup $revisionLookup,
 		HookContainer $hookContainer,
@@ -84,7 +84,7 @@ class TalkPageNotificationManager {
 	) {
 		$serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->disableAnonTalk = $serviceOptions->get( MainConfigNames::DisableAnonTalk );
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->readOnlyMode = $readOnlyMode;
 		$this->revisionLookup = $revisionLookup;
 		$this->hookRunner = new HookRunner( $hookContainer );
@@ -224,10 +224,9 @@ class TalkPageNotificationManager {
 			return null;
 		}
 
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 		[ $field, $id ] = $this->getQueryFieldAndId( $user );
 		// Get the "last viewed rev" timestamp from the oldest message notification
-		$timestamp = $dbr->selectField(
+		$timestamp = $this->dbProvider->getReplicaDatabase()->selectField(
 			'user_newtalk',
 			'MIN(user_last_timestamp)',
 			[ $field => $id ],
@@ -266,9 +265,8 @@ class TalkPageNotificationManager {
 	 * @return bool True if the user has new messages
 	 */
 	private function dbCheckNewUserMessages( UserIdentity $user ): bool {
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 		[ $field, $id ] = $this->getQueryFieldAndId( $user );
-		$ok = $dbr->selectField(
+		$ok = $this->dbProvider->getReplicaDatabase()->selectField(
 			'user_newtalk',
 			$field,
 			[ $field => $id ],
@@ -300,7 +298,7 @@ class TalkPageNotificationManager {
 		}
 
 		// Mark the user as having new messages since this revision
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
+		$dbw = $this->dbProvider->getPrimaryDatabase();
 		[ $field, $id ] = $this->getQueryFieldAndId( $user );
 		$dbw->insert(
 			'user_newtalk',
@@ -323,7 +321,7 @@ class TalkPageNotificationManager {
 		if ( $this->readOnlyMode->isReadOnly() ) {
 			return false;
 		}
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
+		$dbw = $this->dbProvider->getPrimaryDatabase();
 		[ $field, $id ] = $this->getQueryFieldAndId( $user );
 		$dbw->newDeleteQueryBuilder()
 			->delete( 'user_newtalk' )

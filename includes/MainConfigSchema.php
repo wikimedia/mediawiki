@@ -6766,7 +6766,7 @@ class MainConfigSchema {
 				'class' => LocalIdLookup::class,
 				'services' => [
 					'MainConfig',
-					'DBLoadBalancer',
+					'DBLoadBalancerFactory',
 				]
 			]
 		],

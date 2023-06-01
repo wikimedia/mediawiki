@@ -4316,7 +4316,7 @@ config-schema:
             @since 1.36
     CentralIdLookupProviders:
         default:
-            local: { class: LocalIdLookup, services: [MainConfig, DBLoadBalancer] }
+            local: { class: LocalIdLookup, services: [MainConfig, DBLoadBalancerFactory] }
         type: object
         description: |-
             Central ID lookup providers

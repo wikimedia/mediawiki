@@ -9,7 +9,7 @@ use InvalidArgumentException;
 use JobQueueGroup;
 use UserEditCountInitJob;
 use UserEditCountUpdate;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -27,8 +27,8 @@ class UserEditTracker {
 	/** @var ActorMigration */
 	private $actorMigration;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var JobQueueGroup */
 	private $jobQueueGroup;
@@ -43,16 +43,16 @@ class UserEditTracker {
 
 	/**
 	 * @param ActorMigration $actorMigration
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param JobQueueGroup $jobQueueGroup
 	 */
 	public function __construct(
 		ActorMigration $actorMigration,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		JobQueueGroup $jobQueueGroup
 	) {
 		$this->actorMigration = $actorMigration;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->jobQueueGroup = $jobQueueGroup;
 	}
 
@@ -74,8 +74,7 @@ class UserEditTracker {
 			return $this->userEditCountCache[ $cacheKey ];
 		}
 
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		$count = $dbr->selectField(
+		$count = $this->dbProvider->getReplicaDatabase()->selectField(
 			'user',
 			'user_editcount',
 			[ 'user_id' => $userId ],
@@ -97,7 +96,7 @@ class UserEditTracker {
 	 * @return int
 	 */
 	public function initializeUserEditCount( UserIdentity $user ): int {
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 		$actorWhere = $this->actorMigration->getWhere( $dbr, 'rev_user', $user );
 
 		$count = (int)$dbr->selectField(
@@ -172,9 +171,9 @@ class UserEditTracker {
 		if ( !$user->isRegistered() ) {
 			return false;
 		}
-		list( $index ) = DBAccessObjectUtils::getDBOptions( $flags );
+		[ $index ] = DBAccessObjectUtils::getDBOptions( $flags );
+		$db = DBAccessObjectUtils::getDBFromIndex( $this->dbProvider, $index );
 
-		$db = $this->loadBalancer->getConnectionRef( $index );
 		$actorWhere = $this->actorMigration->getWhere( $db, 'rev_user', $user );
 
 		$sortOrder = ( $type === self::FIRST_EDIT ) ? 'ASC' : 'DESC';

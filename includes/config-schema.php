@@ -840,7 +840,7 @@ return [
 					'class' => 'LocalIdLookup',
 					'services' => [
 						0 => 'MainConfig',
-						1 => 'DBLoadBalancer',
+						1 => 'DBLoadBalancerFactory',
 					],
 				],
 			],

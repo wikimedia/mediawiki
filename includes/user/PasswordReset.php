@@ -32,7 +32,7 @@ use MediaWiki\User\UserOptionsLookup;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Helper class for the password reset functionality shared by the web UI and the API.
@@ -53,8 +53,8 @@ class PasswordReset implements LoggerAwareInterface {
 	/** @var HookRunner */
 	private $hookRunner;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var UserFactory */
 	private $userFactory;
@@ -88,7 +88,7 @@ class PasswordReset implements LoggerAwareInterface {
 	 * @param LoggerInterface $logger
 	 * @param AuthManager $authManager
 	 * @param HookContainer $hookContainer
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param UserFactory $userFactory
 	 * @param UserNameUtils $userNameUtils
 	 * @param UserOptionsLookup $userOptionsLookup
@@ -98,7 +98,7 @@ class PasswordReset implements LoggerAwareInterface {
 		LoggerInterface $logger,
 		AuthManager $authManager,
 		HookContainer $hookContainer,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		UserFactory $userFactory,
 		UserNameUtils $userNameUtils,
 		UserOptionsLookup $userOptionsLookup
@@ -110,7 +110,7 @@ class PasswordReset implements LoggerAwareInterface {
 
 		$this->authManager = $authManager;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->userFactory = $userFactory;
 		$this->userNameUtils = $userNameUtils;
 		$this->userOptionsLookup = $userOptionsLookup;
@@ -368,7 +368,7 @@ class PasswordReset implements LoggerAwareInterface {
 	 */
 	protected function getUsersByEmail( $email ) {
 		$userQuery = User::getQueryInfo();
-		$res = $this->loadBalancer->getConnectionRef( DB_REPLICA )->select(
+		$res = $this->dbProvider->getReplicaDatabase()->select(
 			$userQuery['tables'],
 			$userQuery['fields'],
 			[ 'user_email' => $email ],

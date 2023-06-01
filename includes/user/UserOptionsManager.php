@@ -35,8 +35,8 @@ use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * A service class to control user options
@@ -63,8 +63,8 @@ class UserOptionsManager extends UserOptionsLookup {
 	/** @var LanguageConverterFactory */
 	private $languageConverterFactory;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var UserFactory */
 	private $userFactory;
@@ -101,7 +101,7 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * @param ServiceOptions $options
 	 * @param DefaultOptionsLookup $defaultOptionsLookup
 	 * @param LanguageConverterFactory $languageConverterFactory
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param LoggerInterface $logger
 	 * @param HookContainer $hookContainer
 	 * @param UserFactory $userFactory
@@ -111,7 +111,7 @@ class UserOptionsManager extends UserOptionsLookup {
 		ServiceOptions $options,
 		DefaultOptionsLookup $defaultOptionsLookup,
 		LanguageConverterFactory $languageConverterFactory,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		LoggerInterface $logger,
 		HookContainer $hookContainer,
 		UserFactory $userFactory,
@@ -121,7 +121,7 @@ class UserOptionsManager extends UserOptionsLookup {
 		$this->serviceOptions = $options;
 		$this->defaultOptionsLookup = $defaultOptionsLookup;
 		$this->languageConverterFactory = $languageConverterFactory;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->logger = $logger;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->userFactory = $userFactory;
@@ -396,7 +396,7 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * @param UserIdentity $user
 	 */
 	public function saveOptions( UserIdentity $user ) {
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
+		$dbw = $this->dbProvider->getPrimaryDatabase();
 		$changed = $this->saveOptionsInternal( $user, $dbw );
 		$legacyUser = $this->userFactory->newFromUserIdentity( $user );
 		// Before UserOptionsManager, User::saveSettings was used for user options
@@ -676,7 +676,7 @@ class UserOptionsManager extends UserOptionsLookup {
 	 */
 	private function getDBAndOptionsForQueryFlags( $queryFlags ): array {
 		[ $mode, $options ] = DBAccessObjectUtils::getDBOptions( $queryFlags );
-		return [ $this->loadBalancer->getConnectionRef( $mode, [] ), $options ];
+		return [ DBAccessObjectUtils::getDBFromIndex( $this->dbProvider, $mode ), $options ];
 	}
 
 	/**

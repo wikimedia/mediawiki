@@ -53,7 +53,7 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 					'DisableAnonTalk' => $disableAnonTalk
 				] )
 			),
-			$services->getDBLoadBalancer(),
+			$services->getDBLoadBalancerFactory(),
 			$this->getDummyReadOnlyMode( $isReadOnly ),
 			$revisionLookup ?? $services->getRevisionLookup(),
 			$this->createHookContainer(),

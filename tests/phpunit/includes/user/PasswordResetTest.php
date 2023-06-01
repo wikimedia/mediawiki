@@ -12,7 +12,7 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
 use Psr\Log\NullLogger;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * TODO make this a unit test, all dependencies are injected, but DatabaseBlock::__construct()
@@ -49,7 +49,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 			new NullLogger(),
 			$authManager,
 			$this->createHookContainer(),
-			$this->createNoOpMock( ILoadBalancer::class ),
+			$this->createNoOpMock( IConnectionProvider::class ),
 			$this->createNoOpMock( UserFactory::class ),
 			$this->createNoOpMock( UserNameUtils::class ),
 			$this->createNoOpMock( UserOptionsLookup::class )
@@ -246,7 +246,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 				new NullLogger(),
 				$authManager,
 				$this->createHookContainer(),
-				$this->createNoOpMock( ILoadBalancer::class ),
+				$this->createNoOpMock( IConnectionProvider::class ),
 				$userFactory,
 				$this->getDummyUserNameUtils(),
 				$userOptionsLookup
