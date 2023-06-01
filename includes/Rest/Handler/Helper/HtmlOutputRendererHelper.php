@@ -778,28 +778,6 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 				$flags,
 				$this->lenientRevHandling
 			);
-
-			// T333606: Force a reparse if the version coming from cache is not the default
-			if ( $status->isOK() ) {
-				$parserOutput = $status->getValue();
-				$pageBundleData = $parserOutput->getExtensionData(
-					PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY
-				);
-				$cachedVersion = $pageBundleData['version'] ?? null;
-				if (
-					$cachedVersion !== null && // T325137: BadContentModel, no sense in reparsing
-					$cachedVersion !== Parsoid::defaultHTMLVersion()
-				) {
-					$parserOptions->setRenderReason( 'not-parsoid-default' );
-					$status = $this->parsoidOutputAccess->getParserOutput(
-						$this->page,
-						$parserOptions,
-						$this->revisionOrId,
-						$flags | ParserOutputAccess::OPT_FORCE_PARSE,
-						$this->lenientRevHandling
-					);
-				}
-			}
 		} else {
 			$status = $this->parsoidOutputAccess->parseUncacheable(
 				$this->page,

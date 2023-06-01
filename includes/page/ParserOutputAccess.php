@@ -25,6 +25,7 @@ use MapCacheLRU;
 use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\PoolCounter\PoolCounterWork;
 use MediaWiki\PoolCounter\PoolWorkArticleView;
@@ -38,6 +39,7 @@ use MediaWiki\Title\TitleFormatter;
 use ParserCache;
 use ParserOptions;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\ILBFactory;
 
@@ -103,6 +105,12 @@ class ParserOutputAccess {
 	 * @since 1.42
 	 */
 	public const OPT_FOR_ARTICLE_VIEW = 16;
+
+	/**
+	 * @var int Ignore the profile version of the result from the cache.
+	 *      Otherwise, if it's not Parsoid's default, it will be invalidated.
+	 */
+	public const OPT_IGNORE_PROFILE_VERSION = 128;
 
 	/** @var string Do not read or write any cache */
 	private const CACHE_NONE = 'none';
@@ -251,6 +259,25 @@ class ParserOutputAccess {
 			$output = null;
 		}
 
+		$notHitReason = 'miss';
+		if (
+			$output && !( $options & self::OPT_IGNORE_PROFILE_VERSION ) &&
+			$parserOptions->getUseParsoid()
+		) {
+			$pageBundleData = $output->getExtensionData(
+				PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY
+			);
+			// T333606: Force a reparse if the version coming from cache is not the default
+			$cachedVersion = $pageBundleData['version'] ?? null;
+			if (
+				$cachedVersion !== null && // T325137: BadContentModel, no sense in reparsing
+				$cachedVersion !== Parsoid::defaultHTMLVersion()
+			) {
+				$notHitReason = 'obsolete';
+				$output = null;
+			}
+		}
+
 		if ( $output && !$isOld ) {
 			$this->localCache->setField( $classCacheKey, $page->getLatest(), $output );
 		}
@@ -258,7 +285,7 @@ class ParserOutputAccess {
 		if ( $output ) {
 			$this->statsDataFactory->increment( "ParserOutputAccess.Cache.$useCache.hit" );
 		} else {
-			$this->statsDataFactory->increment( "ParserOutputAccess.Cache.$useCache.miss" );
+			$this->statsDataFactory->increment( "ParserOutputAccess.Cache.$useCache.$notHitReason" );
 		}
 
 		return $output ?: null; // convert false to null
