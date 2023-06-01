@@ -754,7 +754,7 @@ return [
 	],
 	'mediawiki.diff' => [
 		'scripts' => [
-			'resources/src/mediawiki.diff.styles/diff.js',
+			'resources/src/mediawiki.diff/diff.js',
 		],
 	],
 	'mediawiki.diff.styles' => [
