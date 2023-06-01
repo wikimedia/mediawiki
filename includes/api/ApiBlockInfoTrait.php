@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
@@ -64,6 +65,10 @@ trait ApiBlockInfoTrait {
 		$vals['blockpartial'] = !$block->isSitewide();
 		$vals['blocknocreate'] = $block->isCreateAccountBlocked();
 		$vals['blockanononly'] = !$block->isHardblock();
+		if ( $block instanceof AbstractBlock ) {
+			$vals['blockemail'] = $block->isEmailBlocked();
+			$vals['blockowntalk'] = !$block->isUsertalkEditAllowed();
+		}
 
 		$user = $this->getUser();
 		// Formatted timestamps

@@ -22,6 +22,8 @@ class ApiBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 			'blockedbyid' => 0,
 			'blockreason' => '',
 			'blockexpiry' => 'infinite',
+			'blockemail' => false,
+			'blockowntalk' => true,
 		], $expectedInfo );
 		$this->assertArraySubmapSame( $subset, $info, "Matching block details" );
 	}
@@ -35,6 +37,10 @@ class ApiBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 			'Partial block' => [
 				new DatabaseBlock( [ 'sitewide' => false ] ),
 				[ 'blockpartial' => true ],
+			],
+			'Email block' => [
+				new DatabaseBlock( [ 'blockEmail' => true ] ),
+				[ 'blockemail' => true ]
 			],
 			'System block' => [
 				new SystemBlock( [ 'systemBlock' => 'proxy' ] ),
