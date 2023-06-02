@@ -548,7 +548,6 @@ $wgAutoloadLocalClasses = [
 	'GenerateSitemap' => __DIR__ . '/maintenance/generateSitemap.php',
 	'GenerateUcfirstOverrides' => __DIR__ . '/maintenance/language/generateUcfirstOverrides.php',
 	'GenerateUpperCharTable' => __DIR__ . '/maintenance/language/generateUpperCharTable.php',
-	'GenericArrayObject' => __DIR__ . '/includes/libs/GenericArrayObject.php',
 	'GenericParameterJob' => __DIR__ . '/includes/jobqueue/GenericParameterJob.php',
 	'GetConfiguration' => __DIR__ . '/maintenance/getConfiguration.php',
 	'GetLagTimes' => __DIR__ . '/maintenance/getLagTimes.php',

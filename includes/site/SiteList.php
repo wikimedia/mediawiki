@@ -19,13 +19,24 @@
  */
 
 /**
- * Collection of Site objects.
+ * Array-like collection of Site objects.
+ *
+ * This uses ArrayObject to intercept additions and deletions for purposes
+ * such as additional indexing, and to enforce that values are restricted
+ * to Site objects only.
  *
  * @since 1.21
  * @ingroup Site
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class SiteList extends GenericArrayObject {
+class SiteList extends ArrayObject {
+	/**
+	 * @see SiteList::getNewOffset()
+	 * @since 1.20
+	 * @var int
+	 */
+	protected $indexOffset = 0;
+
 	/**
 	 * Internal site identifiers pointing to their sites offset value.
 	 *
@@ -55,10 +66,58 @@ class SiteList extends GenericArrayObject {
 	protected $byNavigationId = [];
 
 	/**
-	 * @see GenericArrayObject::getObjectType
+	 * @see Overrides ArrayObject::__construct https://www.php.net/manual/en/arrayobject.construct.php
+	 * @since 1.20
+	 * @param null|array $input
+	 * @param int $flags
+	 * @param string $iterator_class
+	 */
+	public function __construct( $input = null, $flags = 0, $iterator_class = 'ArrayIterator' ) {
+		parent::__construct( [], $flags, $iterator_class );
+
+		if ( $input !== null ) {
+			foreach ( $input as $offset => $value ) {
+				$this->offsetSet( $offset, $value );
+			}
+		}
+	}
+
+	/**
+	 * @see Overrides ArrayObject::append
+	 * @since 1.20
+	 * @param mixed $value
+	 */
+	public function append( $value ): void {
+		$this->setElement( null, $value );
+	}
+
+	/**
+	 * @since 1.20
+	 * @see Overrides ArrayObject::offsetSet()
+	 * @param mixed $index
+	 * @param mixed $value
+	 */
+	public function offsetSet( $index, $value ): void {
+		$this->setElement( $index, $value );
+	}
+
+	/**
+	 * Returns if the provided value has the same type as the elements
+	 * that can be added to this ArrayObject.
+	 *
+	 * @since 1.20
+	 * @param mixed $value
+	 * @return bool
+	 */
+	protected function hasValidType( $value ) {
+		$class = $this->getObjectType();
+		return $value instanceof $class;
+	}
+
+	/**
+	 * The class or interface type that array elements must match.
 	 *
 	 * @since 1.21
-	 *
 	 * @return string
 	 */
 	public function getObjectType() {
@@ -66,16 +125,36 @@ class SiteList extends GenericArrayObject {
 	}
 
 	/**
-	 * @see GenericArrayObject::preSetElement
+	 * Find a new offset for when appending an element.
 	 *
-	 * @since 1.21
-	 *
-	 * @param int|string $index
-	 * @param Site $site
-	 *
-	 * @return bool
+	 * @since 1.20
+	 * @return int
 	 */
-	protected function preSetElement( $index, $site ) {
+	protected function getNewOffset() {
+		while ( $this->offsetExists( $this->indexOffset ) ) {
+			$this->indexOffset++;
+		}
+
+		return $this->indexOffset;
+	}
+
+	/**
+	 * Actually set the element and enforce type checking and offset resolving.
+	 *
+	 * @since 1.20
+	 * @param int|string|null $index
+	 * @param Site $site
+	 */
+	protected function setElement( $index, $site ) {
+		if ( !$this->hasValidType( $site ) ) {
+			throw new InvalidArgumentException(
+				'Can only add ' . $this->getObjectType() . ' implementing objects to '
+				. static::class . '.'
+			);
+		}
+
+		$index ??= $this->getNewOffset();
+
 		if ( $this->hasSite( $site->getGlobalId() ) ) {
 			$this->removeSite( $site->getGlobalId() );
 		}
@@ -88,7 +167,7 @@ class SiteList extends GenericArrayObject {
 			$this->byNavigationId[$navId] = $index;
 		}
 
-		return true;
+		parent::offsetSet( $index, $site );
 	}
 
 	/**
@@ -167,10 +246,9 @@ class SiteList extends GenericArrayObject {
 	}
 
 	/**
-	 * Returns if the list contains no sites.
+	 * Whether the list contains no sites.
 	 *
 	 * @since 1.21
-	 *
 	 * @return bool
 	 */
 	public function isEmpty() {
@@ -288,7 +366,7 @@ class SiteList extends GenericArrayObject {
 	}
 
 	/**
-	 * A version ID that identifies the serialization structure used by getSerializationData()
+	 * A version ID that identifies the serialization structure used by __serialize()
 	 * and unserialize(). This is useful for constructing cache keys in cases where the cache relies
 	 * on serialization for storing the SiteList.
 	 *
@@ -299,7 +377,7 @@ class SiteList extends GenericArrayObject {
 
 	/**
 	 * Returns the version ID that identifies the serialization structure used by
-	 * getSerializationData() and unserialize(), including the structure of any nested structures.
+	 * __serialize() and unserialize(), including the structure of any nested structures.
 	 * This is useful for constructing cache keys in cases where the cache relies
 	 * on serialization for storing the SiteList.
 	 *
@@ -311,34 +389,37 @@ class SiteList extends GenericArrayObject {
 	}
 
 	/**
-	 * @see GenericArrayObject::getSerializationData
-	 *
-	 * @since 1.21
-	 *
+	 * @see Overrides Serializable::serialize
+	 * @since 1.38
 	 * @return array
 	 */
-	protected function getSerializationData() {
+	public function __serialize(): array {
+		// Data that should go into serialization calls.
+		//
 		// NOTE: When changing the structure, either implement unserialize() to handle the
 		//      old structure too, or update SERIAL_VERSION_ID to kill any caches.
-		return array_merge(
-			parent::getSerializationData(),
-			[
-				'internalIds' => $this->byInternalId,
-				'globalIds' => $this->byGlobalId,
-				'navigationIds' => $this->byNavigationId
-			]
-		);
+		return [
+			'data' => $this->getArrayCopy(),
+			'index' => $this->indexOffset,
+			'internalIds' => $this->byInternalId,
+			'globalIds' => $this->byGlobalId,
+			'navigationIds' => $this->byNavigationId,
+		];
 	}
 
 	/**
-	 * @see GenericArrayObject::__unserialize
-	 *
+	 * @see Overrides Serializable::unserialize
 	 * @since 1.38
-	 *
 	 * @param array $serializationData
 	 */
 	public function __unserialize( $serializationData ): void {
-		parent::__unserialize( $serializationData );
+		foreach ( $serializationData['data'] as $offset => $value ) {
+			// Just set the element, bypassing checks and offset resolving,
+			// as these elements have already gone through this.
+			parent::offsetSet( $offset, $value );
+		}
+
+		$this->indexOffset = $serializationData['index'];
 
 		$this->byInternalId = $serializationData['internalIds'];
 		$this->byGlobalId = $serializationData['globalIds'];
