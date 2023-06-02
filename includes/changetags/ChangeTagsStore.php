@@ -30,8 +30,10 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Title\Title;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Psr\Log\LoggerInterface;
+use RecentChange;
 use Status;
 use WANObjectCache;
 use Wikimedia\Rdbms\Database;
@@ -86,6 +88,7 @@ class ChangeTagsStore {
 	private NameTableStore $changeTagDefStore;
 	private WANObjectCache $wanCache;
 	private HookRunner $hookRunner;
+	private UserFactory $userFactory;
 	private HookContainer $hookContainer;
 
 	public function __construct(
@@ -94,6 +97,7 @@ class ChangeTagsStore {
 		WANObjectCache $wanCache,
 		HookContainer $hookContainer,
 		LoggerInterface $logger,
+		UserFactory $userFactory,
 		ServiceOptions $options
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -103,6 +107,7 @@ class ChangeTagsStore {
 		$this->changeTagDefStore = $changeTagDefStore;
 		$this->wanCache = $wanCache;
 		$this->hookContainer = $hookContainer;
+		$this->userFactory = $userFactory;
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
@@ -457,6 +462,289 @@ class ChangeTagsStore {
 			},
 			[
 				'checkKeys' => [ $this->wanCache->makeKey( 'valid-tags-hook' ) ],
+				'lockTSE' => WANObjectCache::TTL_MINUTE * 5,
+				'pcTTL' => WANObjectCache::TTL_PROC_LONG
+			]
+		);
+	}
+
+	/**
+	 * Return all the tags associated with the given recent change ID,
+	 * revision ID, and/or log entry ID.
+	 *
+	 * @param IReadableDatabase $db the database to query
+	 * @param int|null $rc_id
+	 * @param int|null $rev_id
+	 * @param int|null $log_id
+	 * @return string[]
+	 */
+	public function getTags( IReadableDatabase $db, $rc_id = null, $rev_id = null, $log_id = null ) {
+		return array_keys( $this->getTagsWithData( $db, $rc_id, $rev_id, $log_id ) );
+	}
+
+	/**
+	 * Basically lists defined tags which count even if they aren't applied to anything.
+	 * It returns a union of the results of listExplicitlyDefinedTags() and
+	 * listSoftwareDefinedTags()
+	 *
+	 * @return string[] Array of strings: tags
+	 */
+	public function listDefinedTags() {
+		$tags1 = $this->listExplicitlyDefinedTags();
+		$tags2 = $this->listSoftwareDefinedTags();
+		return array_values( array_unique( array_merge( $tags1, $tags2 ) ) );
+	}
+
+	/**
+	 * Add and remove tags to/from a change given its rc_id, rev_id and/or log_id,
+	 * without verifying that the tags exist or are valid. If a tag is present in
+	 * both $tagsToAdd and $tagsToRemove, it will be removed.
+	 *
+	 * This function should only be used by extensions to manipulate tags they
+	 * have registered using the ListDefinedTags hook. When dealing with user
+	 * input, call updateTagsWithChecks() instead.
+	 *
+	 * @param string|array|null $tagsToAdd Tags to add to the change
+	 * @param string|array|null $tagsToRemove Tags to remove from the change
+	 * @param int|null &$rc_id The rc_id of the change to add the tags to.
+	 * Pass a variable whose value is null if the rc_id is not relevant or unknown.
+	 * @param int|null &$rev_id The rev_id of the change to add the tags to.
+	 * Pass a variable whose value is null if the rev_id is not relevant or unknown.
+	 * @param int|null &$log_id The log_id of the change to add the tags to.
+	 * Pass a variable whose value is null if the log_id is not relevant or unknown.
+	 * @param string|null $params Params to put in the ct_params field of table
+	 * 'change_tag' when adding tags
+	 * @param RecentChange|null $rc Recent change being tagged, in case the tagging accompanies
+	 * the action
+	 * @param UserIdentity|null $user Tagging user, in case the tagging is subsequent to the tagged action
+	 *
+	 * @return array Index 0 is an array of tags actually added, index 1 is an
+	 * array of tags actually removed, index 2 is an array of tags present on the
+	 * revision or log entry before any changes were made
+	 */
+	public function updateTags( $tagsToAdd, $tagsToRemove, &$rc_id = null,
+		&$rev_id = null, &$log_id = null, $params = null, RecentChange $rc = null,
+		UserIdentity $user = null
+	) {
+		$tagsToAdd = array_filter(
+			(array)$tagsToAdd, // Make sure we're submitting all tags...
+			static function ( $value ) {
+				return ( $value ?? '' ) !== '';
+			}
+		);
+		$tagsToRemove = array_filter(
+			(array)$tagsToRemove,
+			static function ( $value ) {
+				return ( $value ?? '' ) !== '';
+			}
+		);
+
+		if ( !$rc_id && !$rev_id && !$log_id ) {
+			throw new BadMethodCallException( 'At least one of: RCID, revision ID, and log ID MUST be ' .
+				'specified when adding or removing a tag from a change!' );
+		}
+
+		$dbw = $this->dbProvider->getPrimaryDatabase();
+
+		// Might as well look for rcids and so on.
+		if ( !$rc_id ) {
+			// Info might be out of date, somewhat fractionally, on replica DB.
+			// LogEntry/LogPage and WikiPage match rev/log/rc timestamps,
+			// so use that relation to avoid full table scans.
+			if ( $log_id ) {
+				$rc_id = $dbw->newSelectQueryBuilder()
+					->select( 'rc_id' )
+					->from( 'logging' )
+					->join( 'recentchanges', null, [
+						'rc_timestamp = log_timestamp',
+						'rc_logid = log_id'
+					] )
+					->where( [ 'log_id' => $log_id ] )
+					->caller( __METHOD__ )
+					->fetchField();
+			} elseif ( $rev_id ) {
+				$rc_id = $dbw->newSelectQueryBuilder()
+					->select( 'rc_id' )
+					->from( 'revision' )
+					->join( 'recentchanges', null, [
+						'rc_this_oldid = rev_id'
+					] )
+					->where( [ 'rev_id' => $rev_id ] )
+					->caller( __METHOD__ )
+					->fetchField();
+			}
+		} elseif ( !$log_id && !$rev_id ) {
+			// Info might be out of date, somewhat fractionally, on replica DB.
+			$log_id = $dbw->newSelectQueryBuilder()
+				->select( 'rc_logid' )
+				->from( 'recentchanges' )
+				->where( [ 'rc_id' => $rc_id ] )
+				->caller( __METHOD__ )
+				->fetchField();
+			$rev_id = $dbw->newSelectQueryBuilder()
+				->select( 'rc_this_oldid' )
+				->from( 'recentchanges' )
+				->where( [ 'rc_id' => $rc_id ] )
+				->caller( __METHOD__ )
+				->fetchField();
+		}
+
+		if ( $log_id && !$rev_id ) {
+			$rev_id = $dbw->newSelectQueryBuilder()
+				->select( 'ls_value' )
+				->from( 'log_search' )
+				->where( [ 'ls_field' => 'associated_rev_id', 'ls_log_id' => $log_id ] )
+				->caller( __METHOD__ )
+				->fetchField();
+		} elseif ( !$log_id && $rev_id ) {
+			$log_id = $dbw->newSelectQueryBuilder()
+				->select( 'ls_log_id' )
+				->from( 'log_search' )
+				->where( [ 'ls_field' => 'associated_rev_id', 'ls_value' => (string)$rev_id ] )
+				->caller( __METHOD__ )
+				->fetchField();
+		}
+
+		$prevTags = $this->getTags( $dbw, $rc_id, $rev_id, $log_id );
+
+		// add tags
+		$tagsToAdd = array_values( array_diff( $tagsToAdd, $prevTags ) );
+		$newTags = array_unique( array_merge( $prevTags, $tagsToAdd ) );
+
+		// remove tags
+		$tagsToRemove = array_values( array_intersect( $tagsToRemove, $newTags ) );
+		$newTags = array_values( array_diff( $newTags, $tagsToRemove ) );
+
+		sort( $prevTags );
+		sort( $newTags );
+		if ( $prevTags == $newTags ) {
+			return [ [], [], $prevTags ];
+		}
+
+		// insert a row into change_tag for each new tag
+		if ( count( $tagsToAdd ) ) {
+			$changeTagMapping = [];
+			foreach ( $tagsToAdd as $tag ) {
+				$changeTagMapping[$tag] = $this->changeTagDefStore->acquireId( $tag );
+			}
+			$fname = __METHOD__;
+			// T207881: update the counts at the end of the transaction
+			$dbw->onTransactionPreCommitOrIdle( static function () use ( $dbw, $tagsToAdd, $fname ) {
+				$dbw->update(
+					self::CHANGE_TAG_DEF,
+					[ 'ctd_count = ctd_count + 1' ],
+					[ 'ctd_name' => $tagsToAdd ],
+					$fname
+				);
+			}, $fname );
+
+			$tagsRows = [];
+			foreach ( $tagsToAdd as $tag ) {
+				// Filter so we don't insert NULLs as zero accidentally.
+				// Keep in mind that $rc_id === null means "I don't care/know about the
+				// rc_id, just delete $tag on this revision/log entry". It doesn't
+				// mean "only delete tags on this revision/log WHERE rc_id IS NULL".
+				$tagsRows[] = array_filter(
+					[
+						'ct_rc_id' => $rc_id,
+						'ct_log_id' => $log_id,
+						'ct_rev_id' => $rev_id,
+						'ct_params' => $params,
+						'ct_tag_id' => $changeTagMapping[$tag] ?? null,
+					]
+				);
+
+			}
+
+			$dbw->insert( self::CHANGE_TAG, $tagsRows, __METHOD__, [ 'IGNORE' ] );
+		}
+
+		// delete from change_tag
+		if ( count( $tagsToRemove ) ) {
+			$fname = __METHOD__;
+			foreach ( $tagsToRemove as $tag ) {
+				$conds = array_filter(
+					[
+						'ct_rc_id' => $rc_id,
+						'ct_log_id' => $log_id,
+						'ct_rev_id' => $rev_id,
+						'ct_tag_id' => $this->changeTagDefStore->getId( $tag ),
+					]
+				);
+				$dbw->delete( self::CHANGE_TAG, $conds, __METHOD__ );
+				if ( $dbw->affectedRows() ) {
+					// T207881: update the counts at the end of the transaction
+					$dbw->onTransactionPreCommitOrIdle( static function () use ( $dbw, $tag, $fname ) {
+						$dbw->update(
+							self::CHANGE_TAG_DEF,
+							[ 'ctd_count = ctd_count - 1' ],
+							[ 'ctd_name' => $tag ],
+							$fname
+						);
+
+						$dbw->delete(
+							self::CHANGE_TAG_DEF,
+							[ 'ctd_name' => $tag, 'ctd_count' => 0, 'ctd_user_defined' => 0 ],
+							$fname
+						);
+					}, $fname );
+				}
+			}
+		}
+
+		$userObj = $user ? $this->userFactory->newFromUserIdentity( $user ) : null;
+		$this->hookRunner->onChangeTagsAfterUpdateTags(
+			$tagsToAdd, $tagsToRemove, $prevTags, $rc_id, $rev_id, $log_id, $params, $rc, $userObj );
+
+		return [ $tagsToAdd, $tagsToRemove, $prevTags ];
+	}
+
+	/**
+	 * Add tags to a change given its rc_id, rev_id and/or log_id
+	 *
+	 * @param string|string[] $tags Tags to add to the change
+	 * @param int|null $rc_id The rc_id of the change to add the tags to
+	 * @param int|null $rev_id The rev_id of the change to add the tags to
+	 * @param int|null $log_id The log_id of the change to add the tags to
+	 * @param string|null $params Params to put in the ct_params field of table 'change_tag'
+	 * @param RecentChange|null $rc Recent change, in case the tagging accompanies the action
+	 * (this should normally be the case)
+	 *
+	 * @return bool False if no changes are made, otherwise true
+	 */
+	public function addTags( $tags, $rc_id = null, $rev_id = null,
+		$log_id = null, $params = null, RecentChange $rc = null
+	) {
+		$result = $this->updateTags( $tags, null, $rc_id, $rev_id, $log_id, $params, $rc );
+		return (bool)$result[0];
+	}
+
+	/**
+	 * Lists those tags which core or extensions report as being "active".
+	 *
+	 * @return array
+	 * @since 1.41
+	 */
+	public function listSoftwareActivatedTags() {
+		// core active tags
+		$tags = $this->getSoftwareTags();
+		if ( !$this->hookContainer->isRegistered( 'ChangeTagsListActive' ) ) {
+			return $tags;
+		}
+		$hookRunner = $this->hookRunner;
+
+		return $this->wanCache->getWithSetCallback(
+			$this->wanCache->makeKey( 'active-tags' ),
+			WANObjectCache::TTL_MINUTE * 5,
+			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $tags, $hookRunner ) {
+				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
+
+				// Ask extensions which tags they consider active
+				$hookRunner->onChangeTagsListActive( $tags );
+				return $tags;
+			},
+			[
+				'checkKeys' => [ $this->wanCache->makeKey( 'active-tags' ) ],
 				'lockTSE' => WANObjectCache::TTL_MINUTE * 5,
 				'pcTTL' => WANObjectCache::TTL_PROC_LONG
 			]

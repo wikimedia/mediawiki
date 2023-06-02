@@ -30,7 +30,6 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
-use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IReadableDatabase;
 
 class ChangeTags {
@@ -115,11 +114,6 @@ class ChangeTags {
 	 */
 	private const CHANGE_TAG = 'change_tag';
 
-	/**
-	 * Name of change_tag_def table
-	 */
-	private const CHANGE_TAG_DEF = 'change_tag_def';
-
 	public const DISPLAY_TABLE_ALIAS = 'changetagdisplay';
 
 	/**
@@ -170,7 +164,7 @@ class ChangeTags {
 		$classes = [];
 
 		$tags = explode( ',', $tags );
-		$order = array_flip( self::listDefinedTags() );
+		$order = array_flip( MediaWikiServices::getInstance()->getChangeTagsStore()->listDefinedTags() );
 		usort( $tags, static function ( $a, $b ) use ( $order ) {
 			return ( $order[ $a ] ?? INF ) <=> ( $order[ $b ] ?? INF );
 		} );
@@ -283,6 +277,7 @@ class ChangeTags {
 	/**
 	 * Add tags to a change given its rc_id, rev_id and/or log_id
 	 *
+	 * @deprecated since 1.41 use ChangeTagsStore instead.
 	 * @param string|string[] $tags Tags to add to the change
 	 * @param int|null $rc_id The rc_id of the change to add the tags to
 	 * @param int|null $rev_id The rev_id of the change to add the tags to
@@ -296,8 +291,9 @@ class ChangeTags {
 	public static function addTags( $tags, $rc_id = null, $rev_id = null,
 		$log_id = null, $params = null, RecentChange $rc = null
 	) {
-		$result = self::updateTags( $tags, null, $rc_id, $rev_id, $log_id, $params, $rc );
-		return (bool)$result[0];
+		return MediaWikiServices::getInstance()->getChangeTagsStore()->addTags(
+			$tags, $rc_id, $rev_id, $log_id, $params, $rc
+		);
 	}
 
 	/**
@@ -309,6 +305,7 @@ class ChangeTags {
 	 * have registered using the ListDefinedTags hook. When dealing with user
 	 * input, call updateTagsWithChecks() instead.
 	 *
+	 * @deprecated since 1.41 use ChangeTagStore::updateTags()
 	 * @param string|array|null $tagsToAdd Tags to add to the change
 	 * @param string|array|null $tagsToRemove Tags to remove from the change
 	 * @param int|null &$rc_id The rc_id of the change to add the tags to.
@@ -333,179 +330,9 @@ class ChangeTags {
 		&$rev_id = null, &$log_id = null, $params = null, RecentChange $rc = null,
 		UserIdentity $user = null
 	) {
-		$tagsToAdd = array_filter(
-			(array)$tagsToAdd, // Make sure we're submitting all tags...
-			static function ( $value ) {
-				return ( $value ?? '' ) !== '';
-			}
+		return MediaWikiServices::getInstance()->getChangeTagsStore()->updateTags(
+			$tagsToAdd, $tagsToRemove, $rc_id, $rev_id, $log_id, $params, $rc, $user
 		);
-		$tagsToRemove = array_filter(
-			(array)$tagsToRemove,
-			static function ( $value ) {
-				return ( $value ?? '' ) !== '';
-			}
-		);
-
-		if ( !$rc_id && !$rev_id && !$log_id ) {
-			throw new BadMethodCallException( 'At least one of: RCID, revision ID, and log ID MUST be ' .
-				'specified when adding or removing a tag from a change!' );
-		}
-
-		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
-
-		// Might as well look for rcids and so on.
-		if ( !$rc_id ) {
-			// Info might be out of date, somewhat fractionally, on replica DB.
-			// LogEntry/LogPage and WikiPage match rev/log/rc timestamps,
-			// so use that relation to avoid full table scans.
-			if ( $log_id ) {
-				$rc_id = $dbw->newSelectQueryBuilder()
-					->select( 'rc_id' )
-					->from( 'logging' )
-					->join( 'recentchanges', null, [
-						'rc_timestamp = log_timestamp',
-						'rc_logid = log_id'
-					] )
-					->where( [ 'log_id' => $log_id ] )
-					->caller( __METHOD__ )
-					->fetchField();
-			} elseif ( $rev_id ) {
-				$rc_id = $dbw->newSelectQueryBuilder()
-					->select( 'rc_id' )
-					->from( 'revision' )
-					->join( 'recentchanges', null, [
-						'rc_this_oldid = rev_id'
-					] )
-					->where( [ 'rev_id' => $rev_id ] )
-					->caller( __METHOD__ )
-					->fetchField();
-			}
-		} elseif ( !$log_id && !$rev_id ) {
-			// Info might be out of date, somewhat fractionally, on replica DB.
-			$log_id = $dbw->newSelectQueryBuilder()
-				->select( 'rc_logid' )
-				->from( 'recentchanges' )
-				->where( [ 'rc_id' => $rc_id ] )
-				->caller( __METHOD__ )
-				->fetchField();
-			$rev_id = $dbw->newSelectQueryBuilder()
-				->select( 'rc_this_oldid' )
-				->from( 'recentchanges' )
-				->where( [ 'rc_id' => $rc_id ] )
-				->caller( __METHOD__ )
-				->fetchField();
-		}
-
-		if ( $log_id && !$rev_id ) {
-			$rev_id = $dbw->newSelectQueryBuilder()
-				->select( 'ls_value' )
-				->from( 'log_search' )
-				->where( [ 'ls_field' => 'associated_rev_id', 'ls_log_id' => $log_id ] )
-				->caller( __METHOD__ )
-				->fetchField();
-		} elseif ( !$log_id && $rev_id ) {
-			$log_id = $dbw->newSelectQueryBuilder()
-				->select( 'ls_log_id' )
-				->from( 'log_search' )
-				->where( [ 'ls_field' => 'associated_rev_id', 'ls_value' => (string)$rev_id ] )
-				->caller( __METHOD__ )
-				->fetchField();
-		}
-
-		$prevTags = self::getTags( $dbw, $rc_id, $rev_id, $log_id );
-
-		// add tags
-		$tagsToAdd = array_values( array_diff( $tagsToAdd, $prevTags ) );
-		$newTags = array_unique( array_merge( $prevTags, $tagsToAdd ) );
-
-		// remove tags
-		$tagsToRemove = array_values( array_intersect( $tagsToRemove, $newTags ) );
-		$newTags = array_values( array_diff( $newTags, $tagsToRemove ) );
-
-		sort( $prevTags );
-		sort( $newTags );
-		if ( $prevTags == $newTags ) {
-			return [ [], [], $prevTags ];
-		}
-
-		// insert a row into change_tag for each new tag
-		$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
-		if ( count( $tagsToAdd ) ) {
-			$changeTagMapping = [];
-			foreach ( $tagsToAdd as $tag ) {
-				$changeTagMapping[$tag] = $changeTagDefStore->acquireId( $tag );
-			}
-			$fname = __METHOD__;
-			// T207881: update the counts at the end of the transaction
-			$dbw->onTransactionPreCommitOrIdle( static function () use ( $dbw, $tagsToAdd, $fname ) {
-				$dbw->update(
-					self::CHANGE_TAG_DEF,
-					[ 'ctd_count = ctd_count + 1' ],
-					[ 'ctd_name' => $tagsToAdd ],
-					$fname
-				);
-			}, $fname );
-
-			$tagsRows = [];
-			foreach ( $tagsToAdd as $tag ) {
-				// Filter so we don't insert NULLs as zero accidentally.
-				// Keep in mind that $rc_id === null means "I don't care/know about the
-				// rc_id, just delete $tag on this revision/log entry". It doesn't
-				// mean "only delete tags on this revision/log WHERE rc_id IS NULL".
-				$tagsRows[] = array_filter(
-					[
-						'ct_rc_id' => $rc_id,
-						'ct_log_id' => $log_id,
-						'ct_rev_id' => $rev_id,
-						'ct_params' => $params,
-						'ct_tag_id' => $changeTagMapping[$tag] ?? null,
-					]
-				);
-
-			}
-
-			$dbw->insert( self::CHANGE_TAG, $tagsRows, __METHOD__, [ 'IGNORE' ] );
-		}
-
-		// delete from change_tag
-		if ( count( $tagsToRemove ) ) {
-			$fname = __METHOD__;
-			foreach ( $tagsToRemove as $tag ) {
-				$conds = array_filter(
-					[
-						'ct_rc_id' => $rc_id,
-						'ct_log_id' => $log_id,
-						'ct_rev_id' => $rev_id,
-						'ct_tag_id' => $changeTagDefStore->getId( $tag ),
-					]
-				);
-				$dbw->delete( self::CHANGE_TAG, $conds, __METHOD__ );
-				if ( $dbw->affectedRows() ) {
-					// T207881: update the counts at the end of the transaction
-					$dbw->onTransactionPreCommitOrIdle( static function () use ( $dbw, $tag, $fname ) {
-						$dbw->update(
-							self::CHANGE_TAG_DEF,
-							[ 'ctd_count = ctd_count - 1' ],
-							[ 'ctd_name' => $tag ],
-							$fname
-						);
-
-						$dbw->delete(
-							self::CHANGE_TAG_DEF,
-							[ 'ctd_name' => $tag, 'ctd_count' => 0, 'ctd_user_defined' => 0 ],
-							$fname
-						);
-					}, $fname );
-				}
-			}
-		}
-
-		$services = MediaWikiServices::getInstance();
-		$userObj = $user ? $services->getUserFactory()->newFromUserIdentity( $user ) : null;
-		( new HookRunner( $services->getHookContainer() ) )->onChangeTagsAfterUpdateTags(
-			$tagsToAdd, $tagsToRemove, $prevTags, $rc_id, $rev_id, $log_id, $params, $rc, $userObj );
-
-		return [ $tagsToAdd, $tagsToRemove, $prevTags ];
 	}
 
 	/**
@@ -530,6 +357,7 @@ class ChangeTags {
 	 * Return all the tags associated with the given recent change ID,
 	 * revision ID, and/or log entry ID.
 	 *
+	 * @deprecated since 1.41 use ChangeTagStore::getTags()
 	 * @param IReadableDatabase $db the database to query
 	 * @param int|null $rc_id
 	 * @param int|null $rev_id
@@ -537,7 +365,7 @@ class ChangeTags {
 	 * @return string[]
 	 */
 	public static function getTags( IReadableDatabase $db, $rc_id = null, $rev_id = null, $log_id = null ) {
-		return array_keys( self::getTagsWithData( $db, $rc_id, $rev_id, $log_id ) );
+		return MediaWikiServices::getInstance()->getChangeTagsStore()->getTags( $db, $rc_id, $rev_id, $log_id );
 	}
 
 	/**
@@ -598,7 +426,7 @@ class ChangeTags {
 		}
 
 		// to be applied, a tag has to be explicitly defined
-		$allowedTags = self::listExplicitlyDefinedTags();
+		$allowedTags = $services->getChangeTagsStore()->listExplicitlyDefinedTags();
 		( new HookRunner( $services->getHookContainer() ) )->onChangeTagsAllowedAdd( $allowedTags, $tags, $user );
 		$disallowedTags = array_diff( $tags, $allowedTags );
 		if ( $disallowedTags ) {
@@ -607,42 +435,6 @@ class ChangeTags {
 		}
 
 		return Status::newGood();
-	}
-
-	/**
-	 * Adds tags to a given change, checking whether it is allowed first, but
-	 * without adding a log entry. Useful for cases where the tag is being added
-	 * along with the action that generated the change (e.g. tagging an edit as
-	 * it is being made).
-	 *
-	 * Extensions should not use this function, unless directly handling a user
-	 * request to add a particular tag. Normally, extensions should call
-	 * ChangeTags::updateTags() instead.
-	 *
-	 * @param string[] $tags Tags to apply
-	 * @param int|null $rc_id The rc_id of the change to add the tags to
-	 * @param int|null $rev_id The rev_id of the change to add the tags to
-	 * @param int|null $log_id The log_id of the change to add the tags to
-	 * @param string $params Params to put in the ct_params field of table
-	 * 'change_tag' when adding tags
-	 * @param Authority $performer Who to give credit for the action
-	 * @return Status
-	 * @since 1.25
-	 */
-	public static function addTagsAccompanyingChangeWithChecks(
-		array $tags, $rc_id, $rev_id, $log_id, $params, Authority $performer
-	) {
-		// are we allowed to do this?
-		$result = self::canAddTagsAccompanyingChange( $tags, $performer );
-		if ( !$result->isOK() ) {
-			$result->value = null;
-			return $result;
-		}
-
-		// do it!
-		self::addTags( $tags, $rc_id, $rev_id, $log_id, $params );
-
-		return Status::newGood( true );
 	}
 
 	/**
@@ -677,10 +469,11 @@ class ChangeTags {
 			}
 		}
 
+		$changeTagStore = MediaWikiServices::getInstance()->getChangeTagsStore();
 		if ( $tagsToAdd ) {
 			// to be added, a tag has to be explicitly defined
 			// @todo Allow extensions to define tags that can be applied by users...
-			$explicitlyDefinedTags = self::listExplicitlyDefinedTags();
+			$explicitlyDefinedTags = $changeTagStore->listExplicitlyDefinedTags();
 			$diff = array_diff( $tagsToAdd, $explicitlyDefinedTags );
 			if ( $diff ) {
 				return self::restrictedTagError( 'tags-update-add-not-allowed-one',
@@ -692,7 +485,7 @@ class ChangeTags {
 			// to be removed, a tag must not be defined by an extension, or equivalently it
 			// has to be either explicitly defined or not defined at all
 			// (assuming no edge case of a tag both explicitly-defined and extension-defined)
-			$softwareDefinedTags = self::listSoftwareDefinedTags();
+			$softwareDefinedTags = $changeTagStore->listSoftwareDefinedTags();
 			$intersect = array_intersect( $tagsToRemove, $softwareDefinedTags );
 			if ( $intersect ) {
 				return self::restrictedTagError( 'tags-update-remove-not-allowed-one',
@@ -762,7 +555,8 @@ class ChangeTags {
 		}
 
 		// do it!
-		[ $tagsAdded, $tagsRemoved, $initialTags ] = self::updateTags( $tagsToAdd,
+		$changeTagStore = MediaWikiServices::getInstance()->getChangeTagsStore();
+		[ $tagsAdded, $tagsRemoved, $initialTags ] = $changeTagStore->updateTags( $tagsToAdd,
 			$tagsToRemove, $rc_id, $rev_id, $log_id, $params, null, $user );
 		if ( !$tagsAdded && !$tagsRemoved ) {
 			// no-op, don't log it
@@ -854,7 +648,7 @@ class ChangeTags {
 		$conds = (array)$conds;
 		$options = (array)$options;
 
-		$fields['ts_tags'] = self::makeTagSummarySubquery( $tables );
+		$fields['ts_tags'] = MediaWikiServices::getInstance()->getChangeTagsStore()->makeTagSummarySubquery( $tables );
 		// We use an alias and qualify the conditions in case there are
 		// multiple joins to this table.
 		// In particular for compatibility with the RC filters that extension Translate does.
@@ -992,8 +786,9 @@ class ChangeTags {
 		}
 
 		$config = $context->getConfig();
+		$changeTagStore = MediaWikiServices::getInstance()->getChangeTagsStore();
 		if ( !$config->get( MainConfigNames::UseTagFilter ) ||
-		!count( self::listDefinedTags() ) ) {
+		!count( $changeTagStore->listDefinedTags() ) ) {
 			return [];
 		}
 
@@ -1055,19 +850,6 @@ class ChangeTags {
 	}
 
 	/**
-	 * Update ctd_user_defined = 0 field in change_tag_def.
-	 * The tag may remain in use by extensions, and may still show up as 'defined'
-	 * if an extension is setting it from the ListDefinedTags hook.
-	 *
-	 * @deprecated since 1.41 use ChangeTagsStore
-	 * @param string $tag Tag to remove
-	 * @since 1.25
-	 */
-	public static function undefineTag( $tag ) {
-		MediaWikiServices::getInstance()->getChangeTagsStore()->undefineTag( $tag );
-	}
-
-	/**
 	 * Is it OK to allow the user to activate this tag?
 	 *
 	 * @param string $tag Tag that you are interested in activating
@@ -1092,14 +874,14 @@ class ChangeTags {
 		// defined tags cannot be activated (a defined tag is either extension-
 		// defined, in which case the extension chooses whether or not to active it;
 		// or user-defined, in which case it is considered active)
-		$definedTags = self::listDefinedTags();
+		$changeTagStore = MediaWikiServices::getInstance()->getChangeTagsStore();
+		$definedTags = $changeTagStore->listDefinedTags();
 		if ( in_array( $tag, $definedTags ) ) {
 			return Status::newFatal( 'tags-activate-not-allowed', $tag );
 		}
 
 		// non-existing tags cannot be activated
-		$tagUsage = self::tagUsageStatistics();
-		if ( !isset( $tagUsage[$tag] ) ) { // we already know the tag is undefined
+		if ( !isset( $changeTagStore->tagUsageStatistics()[$tag] ) ) { // we already know the tag is undefined
 			return Status::newFatal( 'tags-activate-not-found', $tag );
 		}
 
@@ -1274,8 +1056,11 @@ class ChangeTags {
 		}
 
 		// does the tag already exist?
-		$tagUsage = self::tagUsageStatistics();
-		if ( isset( $tagUsage[$tag] ) || in_array( $tag, self::listDefinedTags() ) ) {
+		$changeTagStore = $services->getChangeTagsStore();
+		if (
+			isset( $changeTagStore->tagUsageStatistics()[$tag] ) ||
+			in_array( $tag, $changeTagStore->listDefinedTags() )
+		) {
 			return Status::newFatal( 'tags-create-already-exists', $tag );
 		}
 
@@ -1314,11 +1099,8 @@ class ChangeTags {
 			return $result;
 		}
 
-		// do it!
-		self::defineTag( $tag );
-
-		// log it
 		$changeTagStore = MediaWikiServices::getInstance()->getChangeTagsStore();
+		$changeTagStore->defineTag( $tag );
 		$logId = $changeTagStore->logTagManagementAction( 'create', $tag, $reason,
 			$performer->getUser(), null, $logEntryTags );
 
@@ -1355,7 +1137,6 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function canDeleteTag( $tag, Authority $performer = null, int $flags = 0 ) {
-		$tagUsage = self::tagUsageStatistics();
 		$user = null;
 		$services = MediaWikiServices::getInstance();
 		if ( $performer !== null ) {
@@ -1372,7 +1153,12 @@ class ChangeTags {
 			$user = $services->getUserFactory()->newFromAuthority( $performer );
 		}
 
-		if ( !isset( $tagUsage[$tag] ) && !in_array( $tag, self::listDefinedTags() ) ) {
+		$changeTagStore = $services->getChangeTagsStore();
+		$tagUsage = $changeTagStore->tagUsageStatistics();
+		if (
+			!isset( $tagUsage[$tag] ) &&
+			!in_array( $tag, $changeTagStore->listDefinedTags() )
+		) {
 			return Status::newFatal( 'tags-delete-not-found', $tag );
 		}
 
@@ -1383,7 +1169,7 @@ class ChangeTags {
 			return Status::newFatal( 'tags-delete-too-many-uses', $tag, self::MAX_DELETE_USES );
 		}
 
-		$softwareDefined = self::listSoftwareDefinedTags();
+		$softwareDefined = $changeTagStore->listSoftwareDefinedTags();
 		if ( in_array( $tag, $softwareDefined ) ) {
 			// extension-defined tags can't be deleted unless the extension
 			// specifically allows it
@@ -1417,6 +1203,7 @@ class ChangeTags {
 	public static function deleteTagWithChecks( string $tag, string $reason, Authority $performer,
 		bool $ignoreWarnings = false, array $logEntryTags = []
 	) {
+		$changeTagStore = MediaWikiServices::getInstance()->getChangeTagsStore();
 		// are we allowed to do this?
 		$result = self::canDeleteTag( $tag, $performer );
 		if ( $ignoreWarnings ? !$result->isOK() : !$result->isGood() ) {
@@ -1425,11 +1212,10 @@ class ChangeTags {
 		}
 
 		// store the tag usage statistics
-		$tagUsage = self::tagUsageStatistics();
-		$hitcount = $tagUsage[$tag] ?? 0;
+		$hitcount = $changeTagStore->tagUsageStatistics()[$tag] ?? 0;
 
 		// do it!
-		$deleteResult = self::deleteTagEverywhere( $tag );
+		$deleteResult = $changeTagStore->deleteTagEverywhere( $tag );
 		if ( !$deleteResult->isOK() ) {
 			return $deleteResult;
 		}
@@ -1446,34 +1232,12 @@ class ChangeTags {
 	/**
 	 * Lists those tags which core or extensions report as being "active".
 	 *
+	 * @deprecated since 1.41 use ChangeTagsStore instead
 	 * @return array
 	 * @since 1.25
 	 */
 	public static function listSoftwareActivatedTags() {
-		// core active tags
-		$tags = self::getSoftwareTags();
-		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		if ( !$hookContainer->isRegistered( 'ChangeTagsListActive' ) ) {
-			return $tags;
-		}
-		$hookRunner = new HookRunner( $hookContainer );
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-		return $cache->getWithSetCallback(
-			$cache->makeKey( 'active-tags' ),
-			WANObjectCache::TTL_MINUTE * 5,
-			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $tags, $hookRunner ) {
-				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
-
-				// Ask extensions which tags they consider active
-				$hookRunner->onChangeTagsListActive( $tags );
-				return $tags;
-			},
-			[
-				'checkKeys' => [ $cache->makeKey( 'active-tags' ) ],
-				'lockTSE' => WANObjectCache::TTL_MINUTE * 5,
-				'pcTTL' => WANObjectCache::TTL_PROC_LONG
-			]
-		);
+		return MediaWikiServices::getInstance()->getChangeTagsStore()->listSoftwareActivatedTags();
 	}
 
 	/**
@@ -1481,12 +1245,11 @@ class ChangeTags {
 	 * It returns a union of the results of listExplicitlyDefinedTags() and
 	 * listSoftwareDefinedTags()
 	 *
+	 * @deprecated since 1.41 use ChangeTagsStore instead
 	 * @return string[] Array of strings: tags
 	 */
 	public static function listDefinedTags() {
-		$tags1 = self::listExplicitlyDefinedTags();
-		$tags2 = self::listSoftwareDefinedTags();
-		return array_values( array_unique( array_merge( $tags1, $tags2 ) ) );
+		return MediaWikiServices::getInstance()->getChangeTagsStore()->listDefinedTags();
 	}
 
 	/**
@@ -1574,11 +1337,12 @@ class ChangeTags {
 			$cache->makeKey( 'tags-list-summary', $lang->getCode() ),
 			WANObjectCache::TTL_DAY,
 			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $localizer ) {
-				$tagHitCounts = self::tagUsageStatistics();
+				$changeTagStore = MediaWikiServices::getInstance()->getChangeTagsStore();
+				$tagHitCounts = $changeTagStore->tagUsageStatistics();
 
 				$result = [];
 				// Only list tags that are still actively defined
-				foreach ( self::listDefinedTags() as $tagName ) {
+				foreach ( $changeTagStore->listDefinedTags() as $tagName ) {
 					// Only list tags with more than 0 hits
 					$hits = $tagHitCounts[$tagName] ?? 0;
 					if ( $hits <= 0 ) {
@@ -1657,6 +1421,7 @@ class ChangeTags {
 	 * @return bool
 	 */
 	public static function showTagEditingUI( Authority $performer ) {
-		return $performer->isAllowed( 'changetags' ) && (bool)self::listExplicitlyDefinedTags();
+		$changeTagStore = MediaWikiServices::getInstance()->getChangeTagsStore();
+		return $performer->isAllowed( 'changetags' ) && (bool)$changeTagStore->listExplicitlyDefinedTags();
 	}
 }

@@ -414,6 +414,7 @@ return [
 			$services->getMainWANObjectCache(),
 			$services->getHookContainer(),
 			LoggerFactory::getInstance( 'ChangeTags' ),
+			$services->getUserFactory(),
 			new ServiceOptions(
 				ChangeTagsStore::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig()
