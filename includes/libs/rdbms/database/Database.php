@@ -3653,26 +3653,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->platform->unionQueries( $sqls, $all );
 	}
 
-	public function unionConditionPermutations(
-		$table,
-		$vars,
-		array $permute_conds,
-		$extra_conds = '',
-		$fname = __METHOD__,
-		$options = [],
-		$join_conds = []
-	) {
-		return $this->platform->unionConditionPermutations(
-			$table,
-			$vars,
-			$permute_conds,
-			$extra_conds,
-			$fname,
-			$options,
-			$join_conds
-		);
-	}
-
 	public function conditional( $cond, $caseTrueExpression, $caseFalseExpression ) {
 		return $this->platform->conditional( $cond, $caseTrueExpression, $caseFalseExpression );
 	}

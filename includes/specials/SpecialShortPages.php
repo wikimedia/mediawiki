@@ -29,7 +29,6 @@ use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
-use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 /**
  * SpecialShortpages extends QueryPage. It is used to return the shortest
@@ -96,6 +95,7 @@ class SpecialShortPages extends QueryPage {
 		$dbr = $this->getRecacheDB();
 		$query = $this->getQueryInfo();
 		$order = $this->getOrderFields();
+		$sqb = $dbr->newSelectQueryBuilder();
 
 		if ( $this->sortDescending() ) {
 			foreach ( $order as &$field ) {
@@ -103,41 +103,36 @@ class SpecialShortPages extends QueryPage {
 			}
 		}
 
-		$tables = isset( $query['tables'] ) ? (array)$query['tables'] : [];
-		$fields = isset( $query['fields'] ) ? (array)$query['fields'] : [];
 		$conds = isset( $query['conds'] ) ? (array)$query['conds'] : [];
-		$options = isset( $query['options'] ) ? (array)$query['options'] : [];
-		$join_conds = isset( $query['join_conds'] ) ? (array)$query['join_conds'] : [];
-
-		if ( $limit !== false ) {
-			$options['LIMIT'] = intval( $limit );
-		}
-
-		if ( $offset !== false ) {
-			$options['OFFSET'] = intval( $offset );
-		}
-
 		$namespaces = $conds['page_namespace'];
-		if ( count( $namespaces ) === 1 ) {
-			$options['ORDER BY'] = $order;
-			$res = $dbr->select( $tables, $fields, $conds, $fname,
-				$options, $join_conds
-			);
+		unset( $conds['page_namespace'] );
+
+		$sqb
+			->select( isset( $query['fields'] ) ? (array)$query['fields'] : [] )
+			->tables( isset( $query['tables'] ) ? (array)$query['tables'] : [] )
+			->where( $conds )
+			->options( isset( $query['options'] ) ? (array)$query['options'] : [] )
+			->joinConds( isset( $query['join_conds'] ) ? (array)$query['join_conds'] : [] );
+		if ( $limit !== false ) {
+			$sqb->limit( intval( $limit ) );
+		}
+		if ( $offset !== false ) {
+			$sqb->offset( intval( $offset ) );
+		}
+
+		if ( count( $namespaces ) === 1 || !$dbr->unionSupportsOrderAndLimit() ) {
+			$sqb->andWhere( [ 'page_namespace' => $namespaces ] );
+			$sqb->orderBy( $order );
+			$res = $sqb->caller( $fname )->fetchResultSet();
 		} else {
-			unset( $conds['page_namespace'] );
-			$options['INNER ORDER BY'] = $order;
-			$options['ORDER BY'] = [ 'value' . ( $this->sortDescending() ? ' DESC' : '' ) ];
-			$sql = $dbr->unionConditionPermutations(
-				$tables,
-				$fields,
-				[ 'page_namespace' => $namespaces ],
-				$conds,
-				$fname,
-				$options,
-				$join_conds
-			);
-			// phpcs:ignore MediaWiki.Usage.DbrQueryUsage.DbrQueryFound
-			$res = $dbr->query( $sql, $fname, ISQLPlatform::QUERY_CHANGE_NONE );
+			$uqb = $dbr->newUnionQueryBuilder();
+			foreach ( $namespaces as $namespace ) {
+				$nsSqb = clone $sqb;
+				$nsSqb->orderBy( $order );
+				$nsSqb->andWhere( [ 'page_namespace' => $namespace ] );
+				$uqb->add( $nsSqb );
+			}
+			$res = $uqb->caller( $fname )->fetchResultSet();
 		}
 
 		return $res;

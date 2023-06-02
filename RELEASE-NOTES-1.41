@@ -180,6 +180,8 @@ because of Phabricator reports.
   - ::currentSequenceValue()
   - ::triggerExists()
   - ::ruleExists()
+* Database::unionConditionPermutations(), unused everywhere, have been removed
+  without deprecation.
 * ApiQuery::getNamedDB() and ApiQueryBase::selectNamedDB(), deprecated in
   1.39, have been removed.
 * SelectQueryBuilder::lockForUpdate(), deprecated in 1.40 and unused,
