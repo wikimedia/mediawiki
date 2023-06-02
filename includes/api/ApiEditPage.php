@@ -585,6 +585,34 @@ class ApiEditPage extends ApiBase {
 					}
 				}
 				$this->persistGlobalSession();
+
+				if ( isset( $result['savedTempUser'] ) ) {
+					$returnToQuery = $params['returntoquery'];
+					$returnToAnchor = $params['returntoanchor'];
+					if ( str_starts_with( $returnToQuery, '?' ) ) {
+						// Remove leading '?' if provided (both ways work, but this is more common elsewhere)
+						$returnToQuery = substr( $returnToQuery, 1 );
+					}
+					if ( $returnToAnchor !== '' && !str_starts_with( $returnToAnchor, '#' ) ) {
+						// Add leading '#' if missing (it's required)
+						$returnToAnchor = '#' . $returnToAnchor;
+					}
+					$r['tempusercreated'] = true;
+					$url = $titleObj->getFullURL();
+					$redirectUrl = $url;
+					$this->getHookRunner()->onTempUserCreatedRedirect(
+						$this->getRequest()->getSession(),
+						$result['savedTempUser'],
+						$params['returnto'] ?? $titleObj->getPrefixedDBkey(),
+						$params['returntoquery'],
+						$params['returntoanchor'],
+						$redirectUrl
+					);
+					if ( $redirectUrl !== $url ) {
+						$r['tempusercreatedredirect'] = $redirectUrl;
+					}
+				}
+
 				break;
 
 			default:
@@ -739,6 +767,17 @@ class ApiEditPage extends ApiBase {
 			],
 			'contentmodel' => [
 				ParamValidator::PARAM_TYPE => $this->contentHandlerFactory->getContentModels(),
+			],
+			'returnto' => [
+				ParamValidator::PARAM_TYPE => 'title',
+			],
+			'returntoquery' => [
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_DEFAULT => '',
+			],
+			'returntoanchor' => [
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_DEFAULT => '',
 			],
 			'token' => [
 				// Standard definition automatically inserted
