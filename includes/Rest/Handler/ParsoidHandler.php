@@ -40,9 +40,11 @@ use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseException;
+use MediaWiki\Revision\BadRevisionException;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Revision\SuppressedDataException;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 use MobileContext;
@@ -622,11 +624,31 @@ abstract class ParsoidHandler extends Handler {
 		}
 
 		$hasOldId = ( $attribs['oldid'] !== null );
-		if ( ( !$html2WtMode || $hasOldId ) && $pageConfig->getRevisionContent() === null ) {
-			// T234549
-			throw new HttpException(
-				'The specified revision does not exist.', 404
-			);
+		if ( !$html2WtMode || $hasOldId ) {
+			$pageContent = $pageConfig->getRevisionContent();
+			if ( $pageContent === null ) {
+				// T234549
+				throw new HttpException(
+					'The specified revision does not exist.', 404
+				);
+			}
+			try {
+				// FIXME: Parsoid is littered with the main slot assumption
+				$pageContent->getContent( SlotRecord::MAIN );
+			} catch ( BadRevisionException $e ) {
+				throw new HttpException(
+					'The text of this revision is missing or corrupted.', 410
+				);
+			} catch ( SuppressedDataException $e ) {
+				throw new HttpException(
+					'Access to the content has been suppressed for this audience.', 403
+				);
+			} catch ( RevisionAccessException $e ) {
+				error_log( $e );
+				throw new HttpException(
+					'Revision access exception.', 404
+				);
+			}
 		}
 
 		if ( !$html2WtMode && $wikitext === null && !$hasOldId ) {
