@@ -241,6 +241,8 @@ class HTMLForm extends ContextSource {
 	protected $mSubmitTooltip;
 
 	protected $mFormIdentifier;
+	protected $mSingleForm = false;
+
 	/** @var Title|null */
 	protected $mTitle;
 	protected $mMethod = 'post';
@@ -583,7 +585,8 @@ class HTMLForm extends ContextSource {
 		# Load data from the request.
 		if (
 			$this->mFormIdentifier === null ||
-			$this->getRequest()->getVal( 'wpFormIdentifier' ) === $this->mFormIdentifier
+			$this->getRequest()->getVal( 'wpFormIdentifier' ) === $this->mFormIdentifier ||
+			$this->mSingleForm && $this->getMethod() === 'get'
 		) {
 			$this->loadFieldData();
 		} else {
@@ -1692,18 +1695,22 @@ class HTMLForm extends ContextSource {
 	 * HTMLForm to determine whether the form was submitted (or merely viewed). Setting this serves
 	 * two purposes:
 	 *
-	 * - If you use two or more forms on one page, it allows HTMLForm to identify which of the forms
-	 *   was submitted, and not attempt to validate the other ones.
+	 * - If you use two or more forms on one page with the same submit target, it allows HTMLForm
+	 *   to identify which of the forms was submitted, and not attempt to validate the other ones.
 	 * - If you use checkbox or multiselect fields inside a form using the GET method, it allows
 	 *   HTMLForm to distinguish between the initial page view and a form submission with all
-	 *   checkboxes or select options unchecked.
+	 *   checkboxes or select options unchecked. Set the second parameter to true if you are sure
+	 *   this is the only form on the page, which allows form fields to be prefilled with query
+	 *   params.
 	 *
 	 * @since 1.28
 	 * @param string $ident
+	 * @param bool $single Only work with GET form, see above. (since 1.41)
 	 * @return $this
 	 */
-	public function setFormIdentifier( $ident ) {
+	public function setFormIdentifier( string $ident, bool $single = false ) {
 		$this->mFormIdentifier = $ident;
+		$this->mSingleForm = $single;
 
 		return $this;
 	}
