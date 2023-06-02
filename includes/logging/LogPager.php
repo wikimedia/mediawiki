@@ -150,6 +150,7 @@ class LogPager extends ReverseChronologicalPager {
 			return $filters;
 		}
 
+		// FIXME: This is broken, values from HTMLForm should be used.
 		$wpfilters = $this->getRequest()->getArray( "wpfilters" );
 		$filterLogTypes = $this->getConfig()->get( MainConfigNames::FilterLogTypes );
 

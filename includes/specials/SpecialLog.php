@@ -288,22 +288,16 @@ class SpecialLog extends SpecialPage {
 		}
 
 		# Show form options
-		$loglist->showOptions(
+		$succeed = $loglist->showOptions(
 			$pager->getType(),
-			$performer,
-			$pager->getPage(),
-			$pager->getPattern(),
 			$pager->getYear(),
 			$pager->getMonth(),
 			$pager->getDay(),
-			$pager->getFilterParams(),
-			$pager->getTagFilter(),
-			$pager->getAction(),
-			[
-				'offender' => $opts->getValue( 'offender' ),
-			],
-			$pager->getTagInvert()
+			$pager->getAction()
 		);
+		if ( !$succeed ) {
+			return;
+		}
 
 		# Insert list
 		$logBody = $pager->getBody();
