@@ -20,10 +20,18 @@
  * @file
  */
 
+namespace MediaWiki\Installer;
+
+use BagOStuff;
+use Config;
+use DeferredUpdates;
+use FormatJson;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MWCryptRand;
+use ObjectCache;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -317,3 +325,8 @@ class Pingback {
 		} );
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( Pingback::class, 'Pingback' );

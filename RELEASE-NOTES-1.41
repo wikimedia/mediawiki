@@ -268,6 +268,7 @@ because of Phabricator reports.
   'mediawiki.skin.variables.less' Codex design tokens featuring replacements.
 * The jquery.cookie ResourceLoader module has been merged into the existing
   mediawiki.cookie module; jquery.cookie remains but is deprecated.
+* The Pingback class has been moved into the MediaWiki\Installer namespace.
 * Passing a database to DatabaseBlockStore::insertBlock() is deprecated.
   DatabaseBlockStoreFactory should be used to fetch a correct
   DatabaseBlockStore instead.

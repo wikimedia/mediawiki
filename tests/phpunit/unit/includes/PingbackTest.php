@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Installer\Pingback;
 use MediaWiki\MainConfigNames;
 use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\DBConnRef;

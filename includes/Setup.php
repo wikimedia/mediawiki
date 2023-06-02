@@ -53,6 +53,7 @@
 // phpcs:disable MediaWiki.Usage.DeprecatedGlobalVariables
 use MediaWiki\HookContainer\FauxGlobalHookArray;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Installer\Pingback;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
