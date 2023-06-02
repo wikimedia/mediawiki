@@ -381,13 +381,14 @@ class SpecialMovePage extends UnlistedSpecialPage {
 			( $oldTalk->exists()
 				|| ( $oldTitleTalkSubpages && $canMoveSubpage ) );
 
-		$dbr = $this->dbProvider->getReplicaDatabase();
 		if ( $this->getConfig()->get( MainConfigNames::FixDoubleRedirects ) ) {
-			$hasRedirects = (bool)$dbr->selectField( 'redirect', '1',
-				[
-					'rd_namespace' => $this->oldTitle->getNamespace(),
-					'rd_title' => $this->oldTitle->getDBkey(),
-				], __METHOD__ );
+			$queryBuilder = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
+				->select( '1' )
+				->from( 'redirect' )
+				->where( [ 'rd_namespace' => $this->oldTitle->getNamespace() ] )
+				->andWhere( [ 'rd_title' => $this->oldTitle->getDBkey() ] );
+
+			$hasRedirects = (bool)$queryBuilder->caller( __METHOD__ )->fetchField();
 		} else {
 			$hasRedirects = false;
 		}
@@ -890,11 +891,11 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		$extraPages = [];
 		if ( $conds !== null ) {
 			$extraPages = TitleArray::newFromResult(
-				$dbr->select( 'page',
-					[ 'page_id', 'page_namespace', 'page_title' ],
-					$conds,
-					__METHOD__
-				)
+				$dbr->newSelectQueryBuilder()
+					->select( [ 'page_id', 'page_namespace', 'page_title' ] )
+					->from( 'page' )
+					->where( $conds )
+					->caller( __METHOD__ )->fetchResultSet()
 			);
 		}
 

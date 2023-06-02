@@ -251,24 +251,22 @@ class SpecialPagesWithProp extends QueryPage {
 	}
 
 	protected function queryExistingProps( $limit = null, $offset = 0 ) {
-		$opts = [
-			'DISTINCT', 'ORDER BY' => 'pp_propname'
-		];
+		$queryBuilder =
+			$this->getDatabaseProvider()
+				 ->getReplicaDatabase()
+				 ->newSelectQueryBuilder()
+				 ->select( 'pp_propname' )
+				 ->distinct()
+				 ->from( 'page_props' )
+				 ->orderBy( 'pp_propname' );
+
 		if ( $limit ) {
-			$opts['LIMIT'] = $limit;
+			$queryBuilder->limit( $limit );
 		}
 		if ( $offset ) {
-			$opts['OFFSET'] = $offset;
+			$queryBuilder->offset( $offset );
 		}
-
-		$dbr = $this->getDatabaseProvider()->getReplicaDatabase();
-		$res = $dbr->select(
-			'page_props',
-			'pp_propname',
-			'',
-			__METHOD__,
-			$opts
-		);
+		$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 
 		$propnames = [];
 		foreach ( $res as $row ) {
