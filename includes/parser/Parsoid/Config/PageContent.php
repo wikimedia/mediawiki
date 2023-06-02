@@ -21,7 +21,6 @@ namespace MediaWiki\Parser\Parsoid\Config;
 
 use InvalidArgumentException;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Parsoid\Config\PageContent as IPageContent;
 
 /**
@@ -82,9 +81,8 @@ class PageContent extends IPageContent {
 
 	/** @inheritDoc */
 	public function getRedirectTarget(): ?string {
-		$content = $this->rev->getContent( SlotRecord::MAIN );
-		$target = $content ? $content->getRedirectTarget() : null;
-		return $target ? $target->getPrefixedDBkey() : null;
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
+		throw new \Error( "Unused, remove" );
 	}
 
 }
