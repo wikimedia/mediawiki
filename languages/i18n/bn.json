@@ -856,7 +856,7 @@
 	"undo-nochange": "সম্পাদনাটি পূর্বেই বাতিল করা হয়েছে।",
 	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User talk:$2|আলাপ]])-এর সম্পাদিত [[Special:Diff/$1|$1]] নম্বর সংশোধনটি বাতিল করা হয়েছে",
 	"undo-summary-anon": "[[Special:Contributions/$2|$2]]-এর সম্পাদিত [[Special:Diff/$1|$1]] নম্বর সংশোধনটি বাতিল করা হয়েছে",
-	"undo-summary-import": "ব্যবহারকারী [[:$2|$3]] দ্বারা আমদানিকৃত [[Special:Diff/$1|$1]] নং সংস্করণ বাতিল করুন",
+	"undo-summary-import": "ব্যবহারকারী [[:$2|$3]] দ্বারা আমদানিকৃত [[Special:Diff/$1|$1]] নং সংস্করণ বাতিল করা হয়েছে",
 	"undo-summary-import2": "ব্যবহারকারী $2 দ্বারা আমদানিকৃত [[Special:Diff/$1|$1]] নং সংস্করণ বাতিল করুন",
 	"undo-summary-username-hidden": "একজন লুকানো ব্যবহারকারীর করা [[Special:Diff/$1|$1]] নং সংশোধনটি বাতিল করা হয়েছে",
 	"viewpagelogs": "এই পাতার জন্য লগগুলো দেখুন",

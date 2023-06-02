@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Anugrahgori",
+			"Bennylin",
 			"NoiX180",
 			"Slaia"
 		]
@@ -724,7 +725,7 @@
 	"compareselectedversions": "Faedogö wamulö'ö nifili",
 	"editundo": "fuli furi",
 	"diff-empty": "(Lö sifabö'ö)",
-	"diff-multi-sameuser": "(Lö te'oroma'ö {{PLURAL:$1|sambua revisi gotalua|$1 revisi ba gotalua}} nibulö'ö zangoguna andre)",
+	"diff-multi-sameuser": "(Lö te'oroma'ö {{PLURAL:$1|sambua revisi gotalua|$1 revisi ba gotalua}} nibulö'ö {{GENDER:$3|zangoguna}} andre)",
 	"diff-multi-otherusers": "(Lö te'oroma'ö {{PLURAL:$1|sambua revisi ba gotalua|$1 revisi ba gotalua}} nifalua {{PLURAL:$2|samösa zangoguna|$2 zangoguna}})",
 	"searchresults": "Nisöndra ba wangalui",
 	"searchresults-title": "Nisöndra ba wangalui \"$1\"",

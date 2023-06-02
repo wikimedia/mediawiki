@@ -3,6 +3,7 @@
 		"authors": [
 			"*Surak*",
 			"1233qwer1234qwer4",
+			"Abcdefg",
 			"Als-Holder",
 			"Ameisenigel",
 			"Amire80",
@@ -914,8 +915,8 @@
 	"undo-norev": "Die Bearbeitung konnte nicht rückgängig gemacht werden, da sie nicht vorhanden ist oder gelöscht wurde.",
 	"undo-nochange": "Anscheinend wurde diese Bearbeitung bereits rückgängig gemacht.",
 	"undo-summary": "Änderung [[Special:Diff/$1|$1]] von [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) rückgängig gemacht.",
-	"undo-summary-anon": "Änderung $1 von [[Special:Contributions/$2|$2]] rückgängig gemacht",
-	"undo-summary-import": "Änderung importierte Version [[Special:Diff/$1|$1]] von Benutzer [[:$2|$3]] rückgängig gemacht",
+	"undo-summary-anon": "Änderung [[Special:Diff/$1|$1]] von [[Special:Contributions/$2|$2]] rückgängig gemacht",
+	"undo-summary-import": "importierte Änderung [[Special:Diff/$1|$1]] von Benutzer [[:$2|$3]] rückgängig gemacht",
 	"undo-summary-import2": "Änderung importierte Version [[Special:Diff/$1|$1]] von Benutzer $2 rückgängig gemacht",
 	"undo-summary-username-hidden": "Änderung [[Special:Diff/$1|$1]] eines versteckten Benutzers rückgängig gemacht.",
 	"viewpagelogs": "Logbücher dieser Seite anzeigen",

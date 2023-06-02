@@ -1282,7 +1282,7 @@
 	"pager-older-n": "{{PLURAL:$1|eskiroq 1|eskiroq $1}}",
 	"suppress": "Bekitish",
 	"apihelp": "API yordam sahifasi",
-	"apihelp-no-such-module": "Module \"$1\" topilmadi.",
+	"apihelp-no-such-module": "„$1“ moduli topilmadi.",
 	"apisandbox": "API qumloq sahifasi",
 	"apisandbox-jsonly": "API qumloqdan foyalanish uchun JavaScript talab etiladi.",
 	"apisandbox-submit": "Soʻrov yaratish",

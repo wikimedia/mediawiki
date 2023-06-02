@@ -3,7 +3,8 @@
 		"authors": [
 			"Hello903hello",
 			"Moon0319",
-			"Z423x5c6"
+			"Z423x5c6",
+			"捍粵者"
 		]
 	},
 	"config-desc": "MediaWiki安裝程式",
@@ -57,7 +58,7 @@
 	"config-install-success": "MediaWiki已經成功安裝咗。你而家可以去 <$1$2> 去睇你嘅wiki。\n如果你有任何問題，請去常見問題一覽：\n<https://www.mediawiki.org/wiki/Manual:FAQ> 或者去嗰版上面任何一個論壇搵幫手。",
 	"config-download-localsettings": "下載<code>LocalSettings.php</code>",
 	"config-help": "幫手",
-	"config-nofile": "搵毋到檔案「$1」。佢係毋係俾人刪咗？",
+	"config-nofile": "搵毋到檔案「$1」，係毋係有人刪咗？",
 	"config-skins-screenshots": "$1（螢幕截圖： $2）",
 	"config-screenshot": "螢幕截圖",
 	"mainpagetext": "<strong>MediaWiki已經裝好。</strong>",

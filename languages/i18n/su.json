@@ -3,6 +3,7 @@
 		"authors": [
 			"Aditia.Gunawan",
 			"Akbar Soepadhi",
+			"Bennylin",
 			"DannyS712",
 			"Daud I.F. Argana",
 			"Dipusparaga",
@@ -845,7 +846,7 @@
 	"showhideselectedversions": "Témbongkeun/sumputkeun révisi nu dipilih",
 	"editundo": "bolaykeun",
 	"diff-empty": "(taya bédana)",
-	"diff-multi-sameuser": "({{PLURAL:$1|Hiji révisi antara|$1 révisi antara}} karya leuwih ti {{PLURAL:$2|pamaké|pamaké}} teu ditémbongkeun)",
+	"diff-multi-sameuser": "({{PLURAL:$1|Hiji révisi antara|$1 révisi antara}} karya leuwih ti {{GENDER:$3|pamaké|pamaké}} teu ditémbongkeun)",
 	"diff-multi-otherusers": "({{PLURAL:$1|Hiji révisi antara|$1 révisi antara}} karya leuwih ti {{PLURAL:$2|hiji pamaké|$2 pamaké}} teu ditémbongkeun)",
 	"diff-multi-manyusers": "({{PLURAL:$1|Hiji révisi antara|$1 révisi antara}} karya leuwih ti {{PLURAL:$2|pamaké|pamaké}} teu ditémbongkeun)",
 	"searchresults": "Hasil maluruh",
