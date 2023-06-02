@@ -4,7 +4,7 @@ use MediaWiki\User\StaticUserOptionsLookup;
 use MediaWiki\User\UserIdentityValue;
 
 /**
- * Tests timestamp parsing and output.
+ * @covers MWTimestamp
  */
 class MWTimestampTest extends MediaWikiLangTestCase {
 
@@ -22,7 +22,6 @@ class MWTimestampTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideRelativeTimestampTests
-	 * @covers MWTimestamp::getRelativeTimestamp
 	 */
 	public function testRelativeTimestamp(
 		$tsTime, // The timestamp to format
