@@ -3,9 +3,10 @@
 use MediaWiki\MainConfigNames;
 
 /**
- * Split into separate \MediaWiki\Tests\Unit\XmlTest for unit tests
+ * See also \MediaWiki\Tests\Unit\XmlTest for the pure unit tests
  *
  * @group Xml
+ * @covers Xml
  */
 class XmlTest extends MediaWikiIntegrationTestCase {
 
@@ -59,7 +60,6 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Xml::element
 	 * @dataProvider provideElement
 	 */
 	public function testElement( string $expect, string $element, $attribs, $content ) {
@@ -69,9 +69,6 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers Xml::input
-	 */
 	public function testElementInputCanHaveAValueOfZero() {
 		$this->assertEquals(
 			'<input name="name" value="0" />',
@@ -80,9 +77,6 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers Xml::openElement
-	 */
 	public function testOpenElement() {
 		$this->assertEquals(
 			'<element k="v">',
@@ -91,9 +85,6 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers Xml::closeElement
-	 */
 	public function testCloseElement() {
 		$this->assertEquals( '</element>', Xml::closeElement( 'element' ), 'closeElement() shortcut' );
 	}
@@ -139,7 +130,6 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Xml::monthSelector
 	 * @dataProvider provideMonthSelector
 	 */
 	public function testMonthSelector( $expected, $selected, $allmonths, $id ) {
@@ -149,9 +139,6 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers Xml::span
-	 */
 	public function testSpan() {
 		$this->assertEquals(
 			'<span class="foo" id="testSpan">element</span>',
@@ -159,9 +146,6 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers Xml::dateMenu
-	 */
 	public function testDateMenu() {
 		$curYear = intval( gmdate( 'Y' ) );
 		$prevYear = $curYear - 1;
@@ -251,9 +235,6 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers Xml::textarea
-	 */
 	public function testTextareaNoContent() {
 		$this->assertEquals(
 			'<textarea name="name" id="name" cols="40" rows="5"></textarea>',
@@ -262,9 +243,6 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers Xml::textarea
-	 */
 	public function testTextareaAttribs() {
 		$this->assertEquals(
 			'<textarea name="name" id="name" cols="20" rows="10">&lt;txt&gt;</textarea>',
@@ -273,9 +251,6 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers Xml::label
-	 */
 	public function testLabelCreation() {
 		$this->assertEquals(
 			'<label for="id">name</label>',
@@ -284,9 +259,6 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers Xml::label
-	 */
 	public function testLabelAttributeCanOnlyBeClassOrTitle() {
 		$this->assertEquals(
 			'<label for="id">name</label>',
@@ -316,9 +288,6 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers Xml::languageSelector
-	 */
 	public function testLanguageSelector() {
 		$select = Xml::languageSelector( 'en', true, null,
 			[ 'id' => 'testlang' ], wfMessage( 'yourlanguage' ) );
@@ -328,9 +297,6 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers Xml::listDropDown
-	 */
 	public function testListDropDown() {
 		$this->assertEquals(
 			'<select name="test-name" id="test-name" class="test-css" tabindex="2">' .
@@ -360,9 +326,6 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers Xml::listDropDownOptions
-	 */
 	public function testListDropDownOptions() {
 		$this->assertEquals(
 			[
@@ -383,9 +346,6 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers Xml::listDropDownOptions
-	 */
 	public function testListDropDownOptionsOthers() {
 		// Do not use the value for 'other' as option group - T251351
 		$this->assertEquals(
@@ -404,9 +364,6 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers Xml::listDropDownOptionsOoui
-	 */
 	public function testListDropDownOptionsOoui() {
 		$this->assertEquals(
 			[
@@ -462,7 +419,6 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Xml::fieldset
 	 * @dataProvider provideFieldset
 	 */
 	public function testFieldset( string $expect, array $args ) {
@@ -472,9 +428,6 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers Xml::buildTable
-	 */
 	public function testBuildTable() {
 		$firstRow = [ 'foo', 'bar' ];
 		$secondRow = [ 'Berlin', 'Tehran' ];
@@ -492,9 +445,6 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers Xml::buildTableRow
-	 */
 	public function testBuildTableRow() {
 		$this->assertEquals(
 			'<tr id="testRow"><td>foo</td><td>bar</td></tr>',

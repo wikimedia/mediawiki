@@ -25,6 +25,7 @@ use Wikimedia\TestingAccessWrapper;
  *
  * @group Database
  * @group Output
+ * @covers OutputPage
  */
 class OutputPageTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;
@@ -60,10 +61,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideRedirect
-	 *
-	 * @covers OutputPage::__construct
-	 * @covers OutputPage::redirect
-	 * @covers OutputPage::getRedirect
 	 */
 	public function testRedirect( $url, $code = null ) {
 		$op = $this->newInstance();
@@ -143,11 +140,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @covers OutputPage::setCanonicalUrl
-	 * @covers OutputPage::getCanonicalUrl
-	 * @covers OutputPage::getHeadLinksArray
-	 */
 	public function testSetCanonicalUrl() {
 		$op = $this->newInstance();
 		$op->setCanonicalUrl( 'http://example.comm' );
@@ -197,7 +189,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideGetHeadLinksArray
-	 * @covers OutputPage::getHeadLinksArray
 	 */
 	public function testGetHeadLinksArray( $config, $canonicalUrl, $isArticleRelated, $canonicalUrlToSet = null ) {
 		$request = new FauxRequest();
@@ -218,8 +209,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Test the generation of hreflang Tags when site language has variants
-	 *
-	 * @covers OutputPage::getHeadLinksArray
 	 */
 	public function testGetLanguageVariantUrl() {
 		$this->overrideConfigValue( 'LanguageCode', 'zh' );
@@ -309,7 +298,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideCanonicalUrlAndAlternateUrlData
-	 * @covers OutputPage::getHeadLinksArray
 	 */
 	public function testCanonicalUrlAndAlternateUrls(
 		$messsage, $action, $urlVariant, $canonicalUrl, $altUrlLangCode, $present, $nonpresent
@@ -359,10 +347,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers OutputPage::setCopyrightUrl
-	 * @covers OutputPage::getHeadLinksArray
-	 */
 	public function testSetCopyrightUrl() {
 		$op = $this->newInstance();
 		$op->setCopyrightUrl( 'http://example.com' );
@@ -375,7 +359,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideFeedLinkData
-	 * @covers OutputPage::getHeadLinksArray
 	 */
 	public function testRecentChangesFeed( $feed, $advertised_feed_types,
 				$message, $present, $non_present ) {
@@ -421,10 +404,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideAdditionalFeedData
-	 * @covers OutputPage::getHeadLinksArray
-	 * @covers OutputPage::addFeedLink
-	 * @covers OutputPage::getSyndicationLinks
-	 * @covers OutputPage::isSyndicated
 	 */
 	public function testAdditionalFeeds( $feed, $advertised_feed_types, $message,
 			$additional_feed_type, $present, $non_present, $any_ui_links ) {
@@ -436,11 +415,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	// @todo How to test setStatusCode?
 
-	/**
-	 * @covers OutputPage::addMeta
-	 * @covers OutputPage::getMetaTags
-	 * @covers OutputPage::getHeadLinksArray
-	 */
 	public function testMetaTags() {
 		$op = $this->newInstance();
 		$op->addMeta( 'http:expires', '0' );
@@ -464,11 +438,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayHasKey( 'meta-robots', $links );
 	}
 
-	/**
-	 * @covers OutputPage::addLink
-	 * @covers OutputPage::getLinkTags
-	 * @covers OutputPage::getHeadLinksArray
-	 */
 	public function testAddLink() {
 		$op = $this->newInstance();
 
@@ -490,9 +459,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	/**
-	 * @covers OutputPage::addScript
-	 */
 	public function testAddScript() {
 		$op = $this->newInstance();
 		$op->addScript( 'some random string' );
@@ -503,9 +469,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers OutputPage::addScriptFile
-	 */
 	public function testAddScriptFile() {
 		$op = $this->newInstance();
 		$op->addScriptFile( '/somescript.js' );
@@ -518,9 +481,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers OutputPage::addInlineScript
-	 */
 	public function testAddInlineScript() {
 		$op = $this->newInstance();
 		$op->addInlineScript( 'let foo = "bar";' );
@@ -535,10 +495,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	// @todo How to test filterModules(), warnModuleTargetFilter(), getModules(), etc.?
 
-	/**
-	 * @covers OutputPage::getTarget
-	 * @covers OutputPage::setTarget
-	 */
 	public function testSetTarget() {
 		$op = $this->newInstance();
 		$op->setTarget( 'foo' );
@@ -549,12 +505,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	// @todo How to test addContentOverride(Callback)?
 
-	/**
-	 * @covers OutputPage::getHeadItemsArray
-	 * @covers OutputPage::addHeadItem
-	 * @covers OutputPage::addHeadItems
-	 * @covers OutputPage::hasHeadItem
-	 */
 	public function testHeadItems() {
 		$op = $this->newInstance();
 		$op->addHeadItem( 'a', 'b' );
@@ -574,11 +524,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			'' . $op->headElement( $op->getContext()->getSkin() ) );
 	}
 
-	/**
-	 * @covers OutputPage::getHeadItemsArray
-	 * @covers OutputPage::addParserOutputMetadata
-	 * @covers OutputPage::addParserOutput
-	 */
 	public function testHeadItemsParserOutput() {
 		$op = $this->newInstance();
 		$stubPO1 = $this->createParserOutputStub( 'getHeadItems', [ 'a' => 'b' ] );
@@ -604,10 +549,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			'' . $op->headElement( $op->getContext()->getSkin() ) );
 	}
 
-	/**
-	 * @covers OutputPage::addParserOutputMetadata
-	 * @covers OutputPage::addParserOutput
-	 */
 	public function testCSPParserOutput() {
 		$this->overrideConfigValue( MainConfigNames::CSPHeader, [] );
 		foreach ( [ 'Default', 'Script', 'Style' ] as $type ) {
@@ -622,9 +563,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	/**
-	 * @covers OutputPage::addBodyClasses
-	 */
 	public function testAddBodyClasses() {
 		$op = $this->newInstance();
 		$op->addBodyClasses( 'a' );
@@ -637,10 +575,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			'' . $op->headElement( $op->getContext()->getSkin() ) );
 	}
 
-	/**
-	 * @covers OutputPage::setArticleBodyOnly
-	 * @covers OutputPage::getArticleBodyOnly
-	 */
 	public function testArticleBodyOnly() {
 		$op = $this->newInstance();
 		$this->assertFalse( $op->getArticleBodyOnly() );
@@ -653,10 +587,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( '<b>a</b>', $op->output( true ) );
 	}
 
-	/**
-	 * @covers OutputPage::setProperty
-	 * @covers OutputPage::getProperty
-	 */
 	public function testProperties() {
 		$op = $this->newInstance();
 
@@ -671,9 +601,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideCheckLastModified
-	 *
-	 * @covers OutputPage::checkLastModified
-	 * @covers OutputPage::getCdnCacheEpoch
 	 */
 	public function testCheckLastModified(
 		$timestamp, $ifModifiedSince, $expected, $config = [], $callback = null
@@ -759,8 +686,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideCdnCacheEpoch
-	 *
-	 * @covers OutputPage::getCdnCacheEpoch
 	 */
 	public function testCdnCacheEpoch( $params ) {
 		$out = TestingAccessWrapper::newFromObject( $this->newInstance() );
@@ -802,10 +727,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	// @todo How to test setLastModified?
 
-	/**
-	 * @covers OutputPage::setRobotPolicy
-	 * @covers OutputPage::getHeadLinksArray
-	 */
 	public function testSetRobotPolicy() {
 		$op = $this->newInstance();
 		$op->setRobotPolicy( 'noindex, nofollow' );
@@ -814,12 +735,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertContains( '<meta name="robots" content="noindex,nofollow,max-image-preview:standard">', $links );
 	}
 
-	/**
-	 * @covers OutputPage::setRobotPolicy
-	 * @covers OutputPage::setRobotsOptions
-	 * @covers OutputPage::setIndexPolicy
-	 * @covers OutputPage::getHeadLinksArray
-	 */
 	public function testSetRobotsOptions() {
 		$op = $this->newInstance();
 		$op->setRobotPolicy( 'noindex, nofollow' );
@@ -838,10 +753,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers OutputPage::setRobotPolicy
-	 * @covers OutputPage::getRobotPolicy
-	 */
 	public function testGetRobotPolicy() {
 		$op = $this->newInstance();
 		$op->setRobotPolicy( 'noindex, follow' );
@@ -850,11 +761,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'noindex,follow', $policy );
 	}
 
-	/**
-	 * @covers OutputPage::setIndexPolicy
-	 * @covers OutputPage::setFollowPolicy
-	 * @covers OutputPage::getHeadLinksArray
-	 */
 	public function testSetIndexFollowPolicies() {
 		$op = $this->newInstance();
 		$op->setIndexPolicy( 'noindex' );
@@ -890,10 +796,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		return $op->msg( ...$msgParams )->inContentLanguage()->text();
 	}
 
-	/**
-	 * @covers OutputPage::setHTMLTitle
-	 * @covers OutputPage::getHTMLTitle
-	 */
 	public function testHTMLTitle() {
 		$op = $this->newInstance();
 
@@ -922,9 +824,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( '', $op->getPageTitle() );
 	}
 
-	/**
-	 * @covers OutputPage::setRedirectedFrom
-	 */
 	public function testSetRedirectedFrom() {
 		$op = $this->newInstance();
 
@@ -932,10 +831,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'Talk:Some_page', $op->getJSVars()['wgRedirectedFrom'] );
 	}
 
-	/**
-	 * @covers OutputPage::setPageTitle
-	 * @covers OutputPage::getPageTitle
-	 */
 	public function testPageTitle() {
 		// We don't test the actual HTML output anywhere, because that's up to the skin.
 		$op = $this->newInstance();
@@ -989,9 +884,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $this->getMsgText( $op, 'pagetitle', $text ), $op->getHTMLTitle() );
 	}
 
-	/**
-	 * @covers OutputPage::setTitle
-	 */
 	public function testSetTitle() {
 		$op = $this->newInstance();
 
@@ -1002,12 +894,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'Another test page', $op->getTitle()->getPrefixedText() );
 	}
 
-	/**
-	 * @covers OutputPage::setSubtitle
-	 * @covers OutputPage::clearSubtitle
-	 * @covers OutputPage::addSubtitle
-	 * @covers OutputPage::getSubtitle
-	 */
 	public function testSubtitle() {
 		$op = $this->newInstance();
 
@@ -1035,8 +921,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideBacklinkSubtitle
-	 *
-	 * @covers OutputPage::buildBacklinkSubtitle
 	 */
 	public function testBuildBacklinkSubtitle( $titles, $queries, $contains, $notContains ) {
 		if ( count( $titles ) > 1 ) {
@@ -1061,9 +945,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideBacklinkSubtitle
-	 *
-	 * @covers OutputPage::addBacklinkSubtitle
-	 * @covers OutputPage::getSubtitle
 	 */
 	public function testAddBacklinkSubtitle( $titles, $queries, $contains, $notContains ) {
 		$op = $this->newInstance();
@@ -1135,10 +1016,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @covers OutputPage::setPrintable
-	 * @covers OutputPage::isPrintable
-	 */
 	public function testPrintable() {
 		$op = $this->newInstance();
 
@@ -1149,10 +1026,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $op->isPrintable() );
 	}
 
-	/**
-	 * @covers OutputPage::disable
-	 * @covers OutputPage::isDisabled
-	 */
 	public function testDisable() {
 		$op = $this->newInstance();
 
@@ -1165,11 +1038,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( '', $op->output( true ) );
 	}
 
-	/**
-	 * @covers OutputPage::showNewSectionLink
-	 * @covers OutputPage::addParserOutputMetadata
-	 * @covers OutputPage::addParserOutput
-	 */
 	public function testShowNewSectionLink() {
 		$op = $this->newInstance();
 
@@ -1190,11 +1058,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::NEW_SECTION ) );
 	}
 
-	/**
-	 * @covers OutputPage::forceHideNewSectionLink
-	 * @covers OutputPage::addParserOutputMetadata
-	 * @covers OutputPage::addParserOutput
-	 */
 	public function testForceHideNewSectionLink() {
 		$op = $this->newInstance();
 
@@ -1215,10 +1078,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::HIDE_NEW_SECTION ) );
 	}
 
-	/**
-	 * @covers OutputPage::setSyndicated
-	 * @covers OutputPage::isSyndicated
-	 */
 	public function testSetSyndicated() {
 		$op = $this->newInstance( [ 'Feed' => true ] );
 		$this->assertFalse( $op->isSyndicated() );
@@ -1236,12 +1095,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $op->isSyndicated() );
 	}
 
-	/**
-	 * @covers OutputPage::isSyndicated
-	 * @covers OutputPage::setFeedAppendQuery
-	 * @covers OutputPage::addFeedLink
-	 * @covers OutputPage::getSyndicationLinks()
-	 */
 	public function testFeedLinks() {
 		$op = $this->newInstance( [ 'Feed' => true ] );
 		$this->assertSame( [], $op->getSyndicationLinks() );
@@ -1277,12 +1130,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [], $op->getSyndicationLinks() );
 	}
 
-	/**
-	 * @covers OutputPage::setArticleFlag
-	 * @covers OutputPage::isArticle
-	 * @covers OutputPage::setArticleRelated
-	 * @covers OutputPage::isArticleRelated
-	 */
 	public function testArticleFlags() {
 		$op = $this->newInstance();
 		$this->assertFalse( $op->isArticle() );
@@ -1306,13 +1153,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $op->isArticleRelated() );
 	}
 
-	/**
-	 * @covers OutputPage::addLanguageLinks
-	 * @covers OutputPage::setLanguageLinks
-	 * @covers OutputPage::getLanguageLinks
-	 * @covers OutputPage::addParserOutputMetadata
-	 * @covers OutputPage::addParserOutput
-	 */
 	public function testLanguageLinks() {
 		$op = $this->newInstance();
 		$this->assertSame( [], $op->getLanguageLinks() );
@@ -1341,9 +1181,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideGetCategories
 	 *
-	 * @covers OutputPage::addCategoryLinks
-	 * @covers OutputPage::getCategories
-	 * @covers OutputPage::getCategoryLinks
 	 *
 	 * @param array $args Array of form [ category name => sort key ]
 	 * @param array $fakeResults Array of form [ category name => value to return from mocked
@@ -1369,10 +1206,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideGetCategories
-	 *
-	 * @covers OutputPage::addCategoryLinks
-	 * @covers OutputPage::getCategories
-	 * @covers OutputPage::getCategoryLinks
 	 */
 	public function testAddCategoryLinksOneByOne(
 		array $args, array $fakeResults, ?callable $variantLinkCallback,
@@ -1399,10 +1232,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideGetCategories
-	 *
-	 * @covers OutputPage::setCategoryLinks
-	 * @covers OutputPage::getCategories
-	 * @covers OutputPage::getCategoryLinks
 	 */
 	public function testSetCategoryLinks(
 		array $args, array $fakeResults, ?callable $variantLinkCallback,
@@ -1425,11 +1254,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideGetCategories
-	 *
-	 * @covers OutputPage::addParserOutputMetadata
-	 * @covers OutputPage::addParserOutput
-	 * @covers OutputPage::getCategories
-	 * @covers OutputPage::getCategoryLinks
 	 */
 	public function testParserOutputCategoryLinks(
 		array $args, array $fakeResults, ?callable $variantLinkCallback,
@@ -1575,9 +1399,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @covers OutputPage::getCategories
-	 */
 	public function testGetCategoriesInvalid() {
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( 'Invalid category type given: hiddne' );
@@ -1589,12 +1410,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	// @todo Should we test addCategoryLinksToLBAndGetResult?  If so, how?  Insert some test rows in
 	// the DB?
 
-	/**
-	 * @covers OutputPage::setIndicators
-	 * @covers OutputPage::getIndicators
-	 * @covers OutputPage::addParserOutputMetadata
-	 * @covers OutputPage::addParserOutput
-	 */
 	public function testIndicators() {
 		$op = $this->newInstance();
 		$this->assertSame( [], $op->getIndicators() );
@@ -1638,10 +1453,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		], $op->getIndicators() );
 	}
 
-	/**
-	 * @covers OutputPage::addHelpLink
-	 * @covers OutputPage::getIndicators
-	 */
 	public function testAddHelpLink() {
 		$op = $this->newInstance();
 
@@ -1658,13 +1469,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringNotContainsString( 'Manual:PHP', $indicators['mw-helplink'] );
 	}
 
-	/**
-	 * @covers OutputPage::prependHTML
-	 * @covers OutputPage::addHTML
-	 * @covers OutputPage::addElement
-	 * @covers OutputPage::clearHTML
-	 * @covers OutputPage::getHTML
-	 */
 	public function testBodyHTML() {
 		$op = $this->newInstance();
 		$this->assertSame( '', $op->getHTML() );
@@ -1687,8 +1491,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideRevisionId
-	 * @covers OutputPage::setRevisionId
-	 * @covers OutputPage::getRevisionId
 	 */
 	public function testRevisionId( $newVal, $expected ) {
 		$op = $this->newInstance();
@@ -1711,10 +1513,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @covers OutputPage::setRevisionTimestamp
-	 * @covers OutputPage::getRevisionTimestamp
-	 */
 	public function testRevisionTimestamp() {
 		$op = $this->newInstance();
 		$this->assertNull( $op->getRevisionTimestamp() );
@@ -1725,10 +1523,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertNull( $op->getRevisionTimestamp() );
 	}
 
-	/**
-	 * @covers OutputPage::setFileVersion
-	 * @covers OutputPage::getFileVersion
-	 */
 	public function testFileVersion() {
 		$op = $this->newInstance();
 		$this->assertNull( $op->getFileVersion() );
@@ -1818,11 +1612,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		return $pOut;
 	}
 
-	/**
-	 * @covers OutputPage::getTemplateIds
-	 * @covers OutputPage::addParserOutputMetadata
-	 * @covers OutputPage::addParserOutput
-	 */
 	public function testTemplateIds() {
 		$op = $this->newInstance();
 		$this->assertSame( [], $op->getTemplateIds() );
@@ -1865,11 +1654,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $finalIds, $op->getTemplateIds() );
 	}
 
-	/**
-	 * @covers OutputPage::getFileSearchOptions
-	 * @covers OutputPage::addParserOutputMetadata
-	 * @covers OutputPage::addParserOutput
-	 */
 	public function testFileSearchOptions() {
 		$op = $this->newInstance();
 		$this->assertSame( [], $op->getFileSearchOptions() );
@@ -1912,10 +1696,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideAddWikiText
-	 * @covers OutputPage::addWikiTextAsInterface
-	 * @covers OutputPage::wrapWikiTextAsInterface
-	 * @covers OutputPage::addWikiTextAsContent
-	 * @covers OutputPage::getHTML
 	 */
 	public function testAddWikiText( $method, array $args, $expected ) {
 		$op = $this->newInstance();
@@ -2014,9 +1794,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		return $ret;
 	}
 
-	/**
-	 * @covers OutputPage::addWikiTextAsInterface
-	 */
 	public function testAddWikiTextAsInterfaceNoTitle() {
 		$this->expectException( MWException::class );
 		$this->expectExceptionMessage( 'Title is null' );
@@ -2025,9 +1802,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op->addWikiTextAsInterface( 'a' );
 	}
 
-	/**
-	 * @covers OutputPage::addWikiTextAsContent
-	 */
 	public function testAddWikiTextAsContentNoTitle() {
 		$this->expectException( MWException::class );
 		$this->expectExceptionMessage( 'Title is null' );
@@ -2036,9 +1810,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op->addWikiTextAsContent( 'a' );
 	}
 
-	/**
-	 * @covers OutputPage::addWikiMsg
-	 */
 	public function testAddWikiMsg() {
 		$msg = wfMessage( 'parentheses' );
 		$this->assertSame( '(a)', $msg->rawParams( 'a' )->plain() );
@@ -2050,9 +1821,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( "<p>(<b>a)\n</b></p>", $op->getHTML() );
 	}
 
-	/**
-	 * @covers OutputPage::wrapWikiMsg
-	 */
 	public function testWrapWikiMsg() {
 		$msg = wfMessage( 'parentheses' );
 		$this->assertSame( '(a)', $msg->rawParams( 'a' )->plain() );
@@ -2064,10 +1832,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( "<p>[(<b>a)]\n</b></p>", $op->getHTML() );
 	}
 
-	/**
-	 * @covers OutputPage::addParserOutputMetadata
-	 * @covers OutputPage::addParserOutput
-	 */
 	public function testNoGallery() {
 		$op = $this->newInstance();
 		$this->assertFalse( $op->mNoGallery );
@@ -2089,9 +1853,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	private static $parserOutputHookCalled;
 
-	/**
-	 * @covers OutputPage::addParserOutputMetadata
-	 */
 	public function testParserOutputHooks() {
 		$op = $this->newInstance();
 		$pOut = $this->createParserOutputStub( 'getOutputHooks', [
@@ -2148,9 +1909,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	// Otherwise those lines of addParserOutputMetadata() will be reported as covered, but we won't
 	// be testing they actually work.
 
-	/**
-	 * @covers OutputPage::addParserOutputText
-	 */
 	public function testAddParserOutputText() {
 		$op = $this->newInstance();
 		$this->assertSame( '', $op->getHTML() );
@@ -2164,9 +1922,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( '<some text>', $op->getHTML() );
 	}
 
-	/**
-	 * @covers OutputPage::addParserOutput
-	 */
 	public function testAddParserOutput() {
 		$op = $this->newInstance();
 		$this->assertSame( '', $op->getHTML() );
@@ -2186,9 +1941,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::NEW_SECTION ) );
 	}
 
-	/**
-	 * @covers OutputPage::addTemplate
-	 */
 	public function testAddTemplate() {
 		$template = $this->createMock( QuickTemplate::class );
 		$template->method( 'getHTML' )->willReturn( '<abc>&def;' );
@@ -2201,7 +1953,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideParseAs
-	 * @covers OutputPage::parseAsContent
 	 */
 	public function testParseAsContent(
 		array $args, $expectedHTML, $expectedHTMLInline = null
@@ -2212,7 +1963,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideParseAs
-	 * @covers OutputPage::parseAsInterface
 	 */
 	public function testParseAsInterface(
 		array $args, $expectedHTML, $expectedHTMLInline = null
@@ -2223,7 +1973,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideParseAs
-	 * @covers OutputPage::parseInlineAsInterface
 	 */
 	public function testParseInlineAsInterface(
 		array $args, $expectedHTML, $expectedHTMLInline = null
@@ -2263,9 +2012,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @covers OutputPage::parseAsContent
-	 */
 	public function testParseAsContentNullTitle() {
 		$this->expectException( MWException::class );
 		$this->expectExceptionMessage( 'Empty $mTitle in OutputPage::parseInternal' );
@@ -2273,9 +2019,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op->parseAsContent( '' );
 	}
 
-	/**
-	 * @covers OutputPage::parseAsInterface
-	 */
 	public function testParseAsInterfaceNullTitle() {
 		$this->expectException( MWException::class );
 		$this->expectExceptionMessage( 'Empty $mTitle in OutputPage::parseInternal' );
@@ -2283,9 +2026,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op->parseAsInterface( '' );
 	}
 
-	/**
-	 * @covers OutputPage::parseInlineAsInterface
-	 */
 	public function testParseInlineAsInterfaceNullTitle() {
 		$this->expectException( MWException::class );
 		$this->expectExceptionMessage( 'Empty $mTitle in OutputPage::parseInternal' );
@@ -2293,10 +2033,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op->parseInlineAsInterface( '' );
 	}
 
-	/**
-	 * @covers OutputPage::setCdnMaxage
-	 * @covers OutputPage::lowerCdnMaxage
-	 */
 	public function testCdnMaxage() {
 		$op = $this->newInstance();
 		$wrapper = TestingAccessWrapper::newFromObject( $op );
@@ -2338,7 +2074,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideAdaptCdnTTL
-	 * @covers OutputPage::adaptCdnTTL
 	 * @param array $args To pass to adaptCdnTTL()
 	 * @param int $expected Expected new value of mCdnMaxageLimit
 	 * @param array $options Associative array:
@@ -2404,12 +2139,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @covers OutputPage::disableClientCache
-	 * @covers OutputPage::enableClientCache
-	 * @covers OutputPage::addParserOutputMetadata
-	 * @covers OutputPage::addParserOutput
-	 */
 	public function testClientCache() {
 		$op = $this->newInstance();
 		$op->considerCacheSettingsFinal();
@@ -2444,9 +2173,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( false, $op->couldBePublicCached() );
 	}
 
-	/**
-	 * @covers OutputPage::getCacheVaryCookies
-	 */
 	public function testGetCacheVaryCookies() {
 		global $wgCookiePrefix, $wgDBname;
 		$op = $this->newInstance();
@@ -2475,9 +2201,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expectedCookies, $op->getCacheVaryCookies() );
 	}
 
-	/**
-	 * @covers OutputPage::haveCacheVaryCookies
-	 */
 	public function testHaveCacheVaryCookies() {
 		$request = new FauxRequest();
 		$op = $this->newInstance( [], $request );
@@ -2497,8 +2220,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideVaryHeaders
 	 *
-	 * @covers OutputPage::addVaryHeader
-	 * @covers OutputPage::getVaryHeader
 	 *
 	 * @param array[] $calls For each array, call addVaryHeader() with those arguments
 	 * @param string[] $cookies Array of cookie names to vary on
@@ -2612,9 +2333,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @covers OutputPage::getVaryHeader
-	 */
 	public function testVaryHeaderDefault() {
 		$op = $this->newInstance();
 		$this->assertSame( 'Vary: Accept-Encoding, Cookie', $op->getVaryHeader() );
@@ -2622,9 +2340,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideLinkHeaders
-	 *
-	 * @covers OutputPage::addLinkHeader
-	 * @covers OutputPage::getLinkHeader
 	 */
 	public function testLinkHeaders( array $headers, $result ) {
 		$op = $this->newInstance();
@@ -2659,7 +2374,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideAddAcceptLanguage
-	 * @covers OutputPage::addAcceptLanguage
 	 */
 	public function testAddAcceptLanguage(
 		$code, array $variants, $expected, array $options = []
@@ -2733,12 +2447,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @covers OutputPage::setPreventClickjacking
-	 * @covers OutputPage::getPreventClickjacking
-	 * @covers OutputPage::addParserOutputMetadata
-	 * @covers OutputPage::addParserOutput
-	 */
 	public function testClickjacking() {
 		$op = $this->newInstance();
 		$this->assertTrue( $op->getPreventClickjacking() );
@@ -2774,8 +2482,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideGetFrameOptions
-	 * @covers OutputPage::getFrameOptions
-	 * @covers OutputPage::setPreventClickjacking
 	 */
 	public function testGetFrameOptions(
 		$breakFrames, $preventClickjacking, $editPageFrameOptions, $expected
@@ -2804,8 +2510,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 * See ClientHtmlTest for full coverage.
 	 *
 	 * @dataProvider provideMakeResourceLoaderLink
-	 *
-	 * @covers OutputPage::makeResourceLoaderLink
 	 */
 	public function testMakeResourceLoaderLink( $args, $expectedHtml ) {
 		$this->overrideConfigValues( [
@@ -2925,8 +2629,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideBuildExemptModules
-	 *
-	 * @covers OutputPage::buildExemptModules
 	 */
 	public function testBuildExemptModules( array $exemptStyleModules, $expect ) {
 		$this->overrideConfigValues( [
@@ -3008,8 +2710,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideTransformFilePath
-	 * @covers OutputPage::transformFilePath
-	 * @covers OutputPage::transformResourcePath
 	 */
 	public function testTransformResourcePath( $baseDir, $basePath, $uploadDir = null,
 		$uploadPath = null, $path = null, $expected = null
@@ -3121,11 +2821,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $args['expectedReturn'], $actualReturn, $args['message'] );
 	}
 
-	/**
-	 * Tests print requests
-	 *
-	 * @covers OutputPage::transformCssMedia
-	 */
 	public function testPrintRequests() {
 		$this->assertTransformCssMediaCase( [
 			'queryData' => [ 'printable' => '1' ],
@@ -3157,9 +2852,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Tests screen requests, without either query parameter set
-	 *
-	 * @covers OutputPage::transformCssMedia
+	 * Test screen requests, without either query parameter set
 	 */
 	public function testScreenRequests() {
 		$this->assertTransformCssMediaCase( [
@@ -3193,11 +2886,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		] );
 	}
 
-	/**
-	 * @covers OutputPage::isTOCEnabled
-	 * @covers OutputPage::addParserOutputMetadata
-	 * @covers OutputPage::addParserOutput
-	 */
 	public function testIsTOCEnabled() {
 		$op = $this->newInstance();
 		$this->assertFalse( $op->isTOCEnabled() );
@@ -3221,11 +2909,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::SHOW_TOC ) );
 	}
 
-	/**
-	 * @covers OutputPage::isTOCEnabled
-	 * @covers OutputPage::addParserOutputMetadata
-	 * @covers OutputPage::addParserOutput
-	 */
 	public function testIsTOCEnabledBackCompat() {
 		// This tests backward compatibility: OutputPage *used* to use
 		// ParserOutput::getTOCHTML() to determine whether the TOC should
@@ -3252,10 +2935,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $op->isTOCEnabled() );
 	}
 
-	/**
-	 * @covers OutputPage::addParserOutputMetadata
-	 * @covers OutputPage::addParserOutput
-	 */
 	public function testNoTOC() {
 		$op = $this->newInstance();
 		$this->assertFalse( $op->getOutputFlag( ParserOutputFlags::NO_TOC ) );
@@ -3352,7 +3031,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 * @param int $titleLastRevision Last Title revision to set
 	 * @param int $outputRevision Revision stored in OutputPage
 	 * @param bool $expectedResult Expected result of $output->isRevisionCurrent call
-	 * @covers OutputPage::isRevisionCurrent
 	 * @dataProvider provideIsRevisionCurrent
 	 */
 	public function testIsRevisionCurrent( $titleLastRevision, $outputRevision, $expectedResult ) {
@@ -3377,7 +3055,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers OutputPage::sendCacheControl
 	 * @dataProvider provideSendCacheControl
 	 */
 	public function testSendCacheControl( array $options = [], array $expectations = [] ) {
@@ -3523,7 +3200,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideGetJsVarsEditable
-	 * @covers OutputPage::getJSVars
 	 */
 	public function testGetJsVarsEditable( Authority $performer, array $expectedEditableConfig ) {
 		$op = $this->newInstance( [], null, null, $performer );
@@ -3596,7 +3272,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideUserCanPreview
-	 * @covers OutputPage::userCanPreview
 	 */
 	public function testUserCanPreview( Authority $performer, WebRequest $request, bool $expected ) {
 		$op = $this->newInstance( [], $request, null, $performer );

@@ -33,9 +33,7 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * createRegexFromLike($like)
-	 *
-	 * Takes an array as created by LinkFilter::makeLikeArray() and creates a regex from it
+	 * Take an array from LinkFilter::makeLikeArray(), and create a regex from it
 	 *
 	 * @param array $like Array as created by LinkFilter::makeLikeArray()
 	 * @return string Regex
@@ -61,11 +59,6 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 		return $regex;
 	}
 
-	/**
-	 * provideValidPatterns()
-	 *
-	 * @return array
-	 */
 	public static function provideValidPatterns() {
 		return [
 			// Protocol, Search pattern, URL which matches the pattern
@@ -196,8 +189,6 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * testMakeLikeArrayWithValidPatterns()
-	 *
 	 * Tests whether the LIKE clause produced by LinkFilter::makeLikeArray($pattern, $protocol)
 	 * will find one of the URL indexes produced by LinkFilter::makeIndexes($url)
 	 *
@@ -245,11 +236,6 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 		}
 	}
 
-	/**
-	 * provideInvalidPatterns()
-	 *
-	 * @return array
-	 */
 	public static function provideInvalidPatterns() {
 		return [
 			[ '' ],
@@ -290,7 +276,6 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideMakeIndexes()
-	 * @covers MediaWiki\ExternalLinks\LinkFilter::makeIndexes
 	 */
 	public function testMakeIndexes( $url, $expected ) {
 		// Set global so file:// tests can work
@@ -388,7 +373,6 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideReverseIndexes()
-	 * @covers MediaWiki\ExternalLinks\LinkFilter::reverseIndexe
 	 */
 	public function testReverseIndex( $url, $expected ) {
 		// Set global so file:// tests can work
@@ -486,7 +470,6 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideGetQueryConditions
-	 * @covers MediaWiki\ExternalLinks\LinkFilter::getQueryConditions
 	 */
 	public function testGetQueryConditions( $query, $options, $expected ) {
 		$this->overrideConfigValue( MainConfigNames::ExternalLinksSchemaMigrationStage, SCHEMA_COMPAT_OLD );
@@ -564,7 +547,6 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideGetQueryConditionsReadNew
-	 * @covers MediaWiki\ExternalLinks\LinkFilter::getQueryConditions
 	 */
 	public function testGetQueryConditionsReadNew( $query, $options, $expected ) {
 		$this->overrideConfigValue( MainConfigNames::ExternalLinksSchemaMigrationStage, SCHEMA_COMPAT_NEW );
@@ -642,7 +624,6 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideGetIndexedUrlsNonReversed
-	 * @covers MediaWiki\ExternalLinks\LinkFilter::getIndexedUrlsNonReversed
 	 */
 	public function testGetIndexedUrlsNonReversed( $urls, $expected ) {
 		$this->overrideConfigValue( MainConfigNames::ExternalLinksSchemaMigrationStage, SCHEMA_COMPAT_NEW );
