@@ -23,7 +23,7 @@
 		"dotenv": "8.2.0",
 		"eslint-config-wikimedia": "0.25.0",
 		"grunt": "1.6.1",
-		"grunt-banana-checker": "0.10.0",
+		"grunt-banana-checker": "0.11.0",
 		"grunt-contrib-copy": "1.0.0",
 		"grunt-contrib-watch": "1.1.0",
 		"grunt-eslint": "24.0.1",
@@ -35,7 +35,7 @@
 		"karma-mocha-reporter": "2.2.5",
 		"karma-qunit": "4.1.2",
 		"qunit": "2.19.4",
-		"stylelint-config-wikimedia": "0.14.0",
+		"stylelint-config-wikimedia": "0.15.0",
 		"svgo": "2.8.0",
 		"wdio-mediawiki": "file:tests/selenium/wdio-mediawiki"
 	}
