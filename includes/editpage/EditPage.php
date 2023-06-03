@@ -1892,39 +1892,35 @@ class EditPage implements IEditObject {
 				return true;
 
 			case self::AS_SUCCESS_NEW_ARTICLE:
-				$query = $resultDetails['redirect'] ? 'redirect=no' : '';
+				$queryParts = [];
+				if ( $resultDetails['redirect'] ) {
+					$queryParts[] = 'redirect=no';
+				}
 				if ( $extraQueryRedirect ) {
-					if ( $query !== '' ) {
-						$query .= '&';
-					}
-					$query .= $extraQueryRedirect;
+					$queryParts[] = $extraQueryRedirect;
 				}
 				$anchor = $resultDetails['sectionanchor'] ?? '';
-				$this->doPostEditRedirect( $query, $anchor );
+				$this->doPostEditRedirect( implode( '&', $queryParts ), $anchor );
 				return false;
 
 			case self::AS_SUCCESS_UPDATE:
 				$extraQuery = '';
 				$sectionanchor = $resultDetails['sectionanchor'];
-
 				// Give extensions a chance to modify URL query on update
 				$this->getHookRunner()->onArticleUpdateBeforeRedirect( $this->mArticle,
 					$sectionanchor, $extraQuery );
 
+				$queryParts = [];
 				if ( $resultDetails['redirect'] ) {
-					if ( $extraQuery !== '' ) {
-						$extraQuery = '&' . $extraQuery;
-					}
-					$extraQuery = 'redirect=no' . $extraQuery;
+					$queryParts[] = 'redirect=no';
+				}
+				if ( $extraQuery ) {
+					$queryParts[] = $extraQuery;
 				}
 				if ( $extraQueryRedirect ) {
-					if ( $extraQuery !== '' ) {
-						$extraQuery .= '&';
-					}
-					$extraQuery .= $extraQueryRedirect;
+					$queryParts[] = $extraQueryRedirect;
 				}
-
-				$this->doPostEditRedirect( $extraQuery, $sectionanchor );
+				$this->doPostEditRedirect( implode( '&', $queryParts ), $sectionanchor );
 				return false;
 
 			case self::AS_SPAM_ERROR:
