@@ -635,6 +635,7 @@ class ParamValidator {
 		if ( count( $valuesList ) > $sizeLimit ) {
 			throw new ValidationException(
 				DataMessageValue::new( 'paramvalidator-toomanyvalues', [], 'toomanyvalues', [
+					'parameter' => $name,
 					'limit' => $sizeLimit,
 					'lowlimit' => $limit1,
 					'highlimit' => $limit2,
