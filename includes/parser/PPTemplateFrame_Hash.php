@@ -86,7 +86,6 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	}
 
 	/**
-	 * @throws MWException
 	 * @param string|int $key
 	 * @param string|PPNode $root
 	 * @param int $flags

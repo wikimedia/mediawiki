@@ -19,10 +19,10 @@ use Wikimedia\RequestTimeout\RequestTimeout;
 class DatabaseTestHelper extends Database {
 
 	/**
-	 * @var string[] __CLASS__ of the test suite,
+	 * @var string __CLASS__ of the test suite,
 	 * used to determine, if the function name is passed every time to query()
 	 */
-	protected $testName = [];
+	protected string $testName;
 
 	/**
 	 * @var string[] Array of lastSqls passed to query(),
@@ -46,7 +46,7 @@ class DatabaseTestHelper extends Database {
 	/** @var int[] */
 	protected $forcedAffectedCountQueue = [];
 
-	public function __construct( $testName, array $opts = [] ) {
+	public function __construct( string $testName, array $opts = [] ) {
 		$params = $opts + [
 			'host' => null,
 			'user' => null,
@@ -142,7 +142,7 @@ class DatabaseTestHelper extends Database {
 		}
 
 		if ( !str_starts_with( $check, $this->testName ) ) {
-			throw new MWException( 'function name does not start with test class. ' .
+			throw new LogicException( 'function name does not start with test class. ' .
 				$fname . ' vs. ' . $this->testName . '. ' .
 				'Please provide __METHOD__ to database methods.' );
 		}

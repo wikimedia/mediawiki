@@ -13,6 +13,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWikiLangTestCase;
 use MWException;
+use RuntimeException;
 use WikiExporter;
 use WikiPage;
 
@@ -61,8 +62,6 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 * @param string $text Revisions text
 	 * @param string $summary Revisions summary
 	 * @param string $model The model ID (defaults to wikitext)
-	 *
-	 * @throws MWException
 	 * @return array
 	 */
 	protected function addRevision(
@@ -77,7 +76,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 		$rev = $this->addMultiSlotRevision( $page, [ SlotRecord::MAIN => $content ], $summary );
 
 		if ( !$rev ) {
-			throw new MWException( "Could not create revision" );
+			throw new RuntimeException( "Could not create revision" );
 		}
 
 		$text_id = $this->getSlotTextId( $rev->getSlot( SlotRecord::MAIN ) );

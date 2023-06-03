@@ -50,10 +50,9 @@ abstract class PasswordTestCase extends MediaWikiUnitTestCase {
 	 * element is whether the second parameter (a password hash) and the third
 	 * parameter (a password) should match.
 	 * @return array
-	 * @throws MWException
 	 */
 	public static function providePasswordTests() {
-		throw new MWException( "Not implemented" );
+		throw new LogicException( "Not implemented" );
 	}
 
 	/**

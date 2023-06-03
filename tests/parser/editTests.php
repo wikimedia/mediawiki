@@ -276,7 +276,7 @@ class ParserEditTests extends Maintenance {
 		$options = [];
 		foreach ( $specs as $spec ) {
 			if ( !preg_match( '/^(.*\[)(.)(\].*)$/', $spec, $m ) ) {
-				throw new MWException( 'Invalid option spec: ' . $spec );
+				throw new LogicException( 'Invalid option spec: ' . $spec );
 			}
 			print '* ' . $m[1] . $term->color( '35' ) . $m[2] . $term->color( '0' ) . $m[3] . "\n";
 			$options[strtoupper( $m[2] )] = true;

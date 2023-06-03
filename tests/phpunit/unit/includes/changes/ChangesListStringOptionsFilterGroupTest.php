@@ -114,7 +114,7 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiUnitTestCase {
 			&$join_conds,
 			$actualSelectedValues
 		) use ( $message ) {
-			throw new MWException( $message );
+			throw new LogicException( $message );
 		};
 
 		$groupDefinition = [

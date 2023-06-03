@@ -1523,7 +1523,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function dieStatus( StatusValue $status ) {
 		if ( $status->isGood() ) {
-			throw new MWException( 'Successful status passed to ApiBase::dieStatus' );
+			throw new LogicException( 'Successful status passed to ApiBase::dieStatus' );
 		}
 
 		// ApiUsageException needs a fatal status, but this method has

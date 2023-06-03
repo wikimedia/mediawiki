@@ -32,7 +32,7 @@ class ParsoidTestFileSuite extends TestSuite {
 			} );
 		} catch ( \Exception $e ) {
 			// Friendlier wrapping for any syntax errors that might occur.
-			throw new MWException(
+			throw new RuntimeException(
 				$fileName . ': ' . $e->getMessage()
 			);
 		}
