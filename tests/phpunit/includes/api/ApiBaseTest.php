@@ -453,6 +453,7 @@ class ApiBaseTest extends ApiTestCase {
 					Message::plaintextParam( 'myParam' ),
 					Message::numParam( 2 ),
 				], 'toomanyvalues', [
+					'parameter' => 'myParam',
 					'limit' => 2,
 					'lowlimit' => 2,
 					'highlimit' => 500,
@@ -471,6 +472,7 @@ class ApiBaseTest extends ApiTestCase {
 					Message::plaintextParam( 'myParam' ),
 					Message::numParam( 2 ),
 				], 'toomanyvalues', [
+					'parameter' => 'myParam',
 					'limit' => 2,
 					'lowlimit' => 2,
 					'highlimit' => 3,

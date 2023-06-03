@@ -731,6 +731,7 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 				[],
 				new ValidationException(
 					DataMessageValue::new( 'paramvalidator-toomanyvalues', [], 'toomanyvalues', [
+						'parameter' => 'foobar',
 						'limit' => 2,
 						'lowlimit' => 2,
 						'highlimit' => 4,
@@ -750,6 +751,7 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 				[],
 				new ValidationException(
 					DataMessageValue::new( 'paramvalidator-toomanyvalues', [], 'toomanyvalues', [
+						'parameter' => 'foobar',
 						'limit' => 2,
 						'lowlimit' => 2,
 						'highlimit' => 4,
@@ -781,6 +783,7 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 				[],
 				new ValidationException(
 					DataMessageValue::new( 'paramvalidator-toomanyvalues', [], 'toomanyvalues', [
+						'parameter' => 'foobar',
 						'limit' => 4,
 						'lowlimit' => 2,
 						'highlimit' => 4,
@@ -799,6 +802,7 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 				[],
 				new ValidationException(
 					DataMessageValue::new( 'paramvalidator-toomanyvalues', [], 'toomanyvalues', [
+						'parameter' => 'foobar',
 						'limit' => 2,
 						'lowlimit' => 2,
 						'highlimit' => 4,
@@ -830,6 +834,7 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 				[],
 				new ValidationException(
 					DataMessageValue::new( 'paramvalidator-toomanyvalues', [], 'toomanyvalues', [
+						'parameter' => 'foobar',
 						'limit' => 4,
 						'lowlimit' => 2,
 						'highlimit' => 4,
