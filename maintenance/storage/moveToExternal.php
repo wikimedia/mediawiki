@@ -171,7 +171,8 @@ class MoveToExternal extends Maintenance {
 						continue;
 					} elseif ( $obj instanceof HistoryBlobCurStub ) {
 						// Copy cur text to ES
-						[ $text, $flags ] = $this->compress( $obj->getText(), [ 'utf-8' ] );
+						[ $text, $flags ] = $this->resolveLegacyEncoding( $obj->getText(), [] );
+						[ $text, $flags ] = $this->compress( $text, $flags );
 					} elseif ( $obj instanceof ConcatenatedGzipHistoryBlob ) {
 						// Store as is
 					} else {
