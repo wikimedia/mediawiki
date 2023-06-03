@@ -15,7 +15,7 @@
 	],
 	"license": "GPL-2.0-or-later",
 	"support": {
-		"issues": "https://bugs.mediawiki.org/",
+		"issues": "https://phabricator.wikimedia.org/",
 		"irc": "irc://irc.libera.chat/mediawiki",
 		"wiki": "https://www.mediawiki.org/"
 	},
