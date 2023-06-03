@@ -3199,11 +3199,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool
 	 */
 	public function canSendEmail() {
-		$permError = MediaWikiServices::getInstance()->getEmailUser()->getPermissionsError(
-			$this->getThisAsAuthority(),
+		$permError = MediaWikiServices::getInstance()->getEmailUserFactory()
+			->newEmailUser( $this->getThisAsAuthority() )
 			// XXX Pass an empty edit token, nobody is using it anyway.
-			''
-		);
+			->getPermissionsError( '' );
 		return $permError->isGood();
 	}
 

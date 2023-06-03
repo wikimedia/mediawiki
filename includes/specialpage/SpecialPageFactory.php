@@ -994,7 +994,7 @@ class SpecialPageFactory {
 				'UserNameUtils',
 				'UserNamePrefixSearch',
 				'UserOptionsLookup',
-				'EmailUser',
+				'EmailUserFactory',
 				'UserFactory',
 			]
 		],

@@ -92,7 +92,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTargetLookup;
-use MediaWiki\Mail\EmailUser;
+use MediaWiki\Mail\EmailUserFactory;
 use MediaWiki\Mail\IEmailer;
 use MediaWiki\Page\ContentModelChangeFactory;
 use MediaWiki\Page\DeletePageFactory;
@@ -1086,10 +1086,10 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.41
-	 * @return EmailUser
+	 * @return EmailUserFactory
 	 */
-	public function getEmailUser(): EmailUser {
-		return $this->getService( 'EmailUser' );
+	public function getEmailUserFactory(): EmailUserFactory {
+		return $this->getService( 'EmailUserFactory' );
 	}
 
 	/**
