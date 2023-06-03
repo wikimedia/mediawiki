@@ -33,6 +33,7 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
+use Message;
 use PermissionsError;
 use Status;
 use ThrottledError;
@@ -271,7 +272,8 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				return null;
 			}
 			foreach ( $status->getErrors() as $err ) {
-				if ( strpos( $err['message'], 'blockedtext' ) !== false ) {
+				$errKey = $err['message'] instanceof Message ? $err['message']->getKey() : $err['message'];
+				if ( strpos( $errKey, 'blockedtext' ) !== false ) {
 					// BC for block messages
 					return "blockedemailuser";
 				}

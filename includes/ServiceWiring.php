@@ -681,7 +681,6 @@ return [
 			$services->getHookContainer(),
 			$services->getUserOptionsLookup(),
 			$services->getCentralIdLookup(),
-			$services->getPermissionManager(),
 			$services->getUserFactory(),
 			$services->getEmailer()
 		);
