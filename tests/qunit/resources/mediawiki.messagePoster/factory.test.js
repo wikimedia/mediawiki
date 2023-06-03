@@ -1,28 +1,26 @@
-( function () {
-	var TEST_MODEL = 'test-content-model';
+QUnit.module( 'mediawiki.messagePoster', ( hooks ) => {
+	const TEST_MODEL = 'test-content-model';
 
-	QUnit.module( 'mediawiki.messagePoster', QUnit.newMwEnvironment( {
-		afterEach: function () {
-			mw.messagePoster.factory.unregister( TEST_MODEL );
-		}
-	} ) );
+	hooks.afterEach( function () {
+		mw.messagePoster.factory.unregister( TEST_MODEL );
+	} );
 
-	QUnit.test( 'register', function ( assert ) {
-		var testMessagePosterConstructor = function () {};
+	QUnit.test( 'register', ( assert ) => {
+		function MessagePosterConstructor() {}
 
-		mw.messagePoster.factory.register( TEST_MODEL, testMessagePosterConstructor );
+		mw.messagePoster.factory.register( TEST_MODEL, MessagePosterConstructor );
 		assert.strictEqual(
 			mw.messagePoster.factory.contentModelToClass[ TEST_MODEL ],
-			testMessagePosterConstructor,
+			MessagePosterConstructor,
 			'Constructor is registered'
 		);
 
 		assert.throws(
 			function () {
-				mw.messagePoster.factory.register( TEST_MODEL, testMessagePosterConstructor );
+				mw.messagePoster.factory.register( TEST_MODEL, MessagePosterConstructor );
 			},
 			new RegExp( 'Content model "' + TEST_MODEL + '" is already registered' ),
 			'Throws exception is same model is registered a second time'
 		);
 	} );
-}() );
+} );
