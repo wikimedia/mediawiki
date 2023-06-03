@@ -217,10 +217,6 @@ abstract class BackupDumper extends Maintenance {
 		$register( $this );
 	}
 
-	public function execute() {
-		throw new MWException( 'execute() must be overridden in subclasses' );
-	}
-
 	/**
 	 * Processes arguments and sets $this->$sink accordingly
 	 */

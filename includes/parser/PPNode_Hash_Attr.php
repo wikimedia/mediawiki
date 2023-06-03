@@ -86,16 +86,16 @@ class PPNode_Hash_Attr implements PPNode {
 
 	public function splitArg() {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
-		throw new MWException( __METHOD__ . ': not supported' );
+		throw new LogicException( __METHOD__ . ': not supported' );
 	}
 
 	public function splitExt() {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
-		throw new MWException( __METHOD__ . ': not supported' );
+		throw new LogicException( __METHOD__ . ': not supported' );
 	}
 
 	public function splitHeading() {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
-		throw new MWException( __METHOD__ . ': not supported' );
+		throw new LogicException( __METHOD__ . ': not supported' );
 	}
 }

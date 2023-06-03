@@ -139,7 +139,6 @@ class CleanupSpam extends Maintenance {
 	 * @param string $domain
 	 * @param string $protocol
 	 * @param Authority $performer
-	 * @throws MWException
 	 */
 	private function cleanupArticle( $id, $domain, $protocol, Authority $performer ) {
 		$title = Title::newFromID( $id );
