@@ -1941,8 +1941,6 @@ abstract class FileBackendStore extends FileBackend {
 				}
 			}
 		}
-		// Get rid of any paths that failed normalization
-		$paths = array_filter( $paths, 'strlen' ); // remove nulls
 		// Get all the corresponding cache keys for paths...
 		foreach ( $paths as $path ) {
 			[ , $rel, ] = $this->resolveStoragePath( $path );
