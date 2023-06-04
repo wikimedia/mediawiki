@@ -105,7 +105,7 @@ abstract class HookRunnerTestBase extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideHookMethods
 	 */
-	public function testAllArgumentsArePassed(
+	public function testHookContainerArguments(
 		string $hookRunnerClass,
 		ReflectionMethod $hookMethod
 	) {
@@ -119,17 +119,23 @@ abstract class HookRunnerTestBase extends MediaWikiUnitTestCase {
 				$params[] = $bogusValue;
 			}
 		}
+		$hookMethodName = $hookMethod->getName();
 		$mockContainer = $this->createNoOpMock( HookContainer::class, [ 'run' ] );
 		$mockContainer
 			->expects( $this->once() )
 			->method( 'run' )
-			->willReturnCallback( function ( string $hookName, array $hookCallParams ) use ( $params ) {
-				$this->assertNotSame( '', $hookName );
+			->willReturnCallback( function ( string $hookName, array $hookCallParams ) use ( $hookMethodName, $params ) {
+				// HookContainer builds the method from the hook name with some normalisation,
+				// so the passed hook name and the method must be equal
+				// This is not a function in HookContainer as hooks are hot path
+				// and just avoid the extra call for performance
+				$expectedFuncName = 'on' . strtr( ucfirst( $hookName ), ':-', '__' );
+				$this->assertSame( $expectedFuncName, $hookMethodName,
+					'Interface function must named "on<hook name>" with : or - replaced by _' );
 				$this->assertSame( $params, $hookCallParams );
 				return true;
 			} );
 		$hookRunner = new $hookRunnerClass( $mockContainer );
-		$hookMethodName = $hookMethod->getName();
 		$hookRunner->$hookMethodName( ...$params );
 	}
 
