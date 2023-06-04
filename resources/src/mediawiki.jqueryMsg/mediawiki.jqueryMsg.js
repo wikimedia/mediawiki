@@ -279,7 +279,7 @@ mw.jqueryMsg.Parser = function ( options ) {
 };
 // Backwards-compatible alias
 // @deprecated since 1.31
-mw.jqueryMsg.parser = mw.jqueryMsg.Parser;
+mw.log.deprecate( mw.jqueryMsg, 'parser', mw.jqueryMsg.Parser, 'Use mw.jqueryMsg.Parser instead.', 'mw.jqueryMsg.parser' );
 
 mw.jqueryMsg.Parser.prototype = {
 	/**

@@ -324,6 +324,7 @@ because of Phabricator reports.
 * The following skin methods were deprecated:
   - Skin::makeSpecialUrl (use Title or Special class instead)
   - Skin::makeSpecialUrlSubpage (use Title or Special class instead)
+* mw.jqueryMsg.parser, deprecated in 1.31, now emits deprecation warnings.
 * …
 
 === Other changes in 1.41 ===
