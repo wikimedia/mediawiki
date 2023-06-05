@@ -4257,3 +4257,8 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	}
 
 }
+
+/**
+ * @since 1.40 (backported in 1.39.4)
+ */
+class_alias( Title::class, 'MediaWiki\\Title\\Title' );
