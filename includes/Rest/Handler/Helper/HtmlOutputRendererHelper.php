@@ -756,6 +756,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 					$cachedVersion !== null && // T325137: BadContentModel, no sense in reparsing
 					$cachedVersion !== Parsoid::defaultHTMLVersion()
 				) {
+					$parserOptions->setRenderReason( 'not-parsoid-default' );
 					$status = $this->parsoidOutputAccess->getParserOutput(
 						$this->page,
 						$parserOptions,
