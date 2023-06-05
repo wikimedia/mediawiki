@@ -911,7 +911,6 @@ abstract class UploadBase {
 		$props = $this->mFileProps;
 
 		$error = null;
-		// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 		$this->getHookRunner()->onUploadVerifyUpload( $this, $user, $props, $comment, $pageText, $error );
 		if ( $error ) {
 			if ( !is_array( $error ) ) {
