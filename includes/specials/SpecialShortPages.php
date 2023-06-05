@@ -94,20 +94,17 @@ class SpecialShortPages extends QueryPage {
 		$fname = static::class . '::reallyDoQuery';
 		$dbr = $this->getRecacheDB();
 		$query = $this->getQueryInfo();
-		$order = $this->getOrderFields();
-		$sqb = $dbr->newSelectQueryBuilder();
-
-		if ( $this->sortDescending() ) {
-			foreach ( $order as &$field ) {
-				$field .= ' DESC';
-			}
-		}
-
 		$conds = isset( $query['conds'] ) ? (array)$query['conds'] : [];
 		$namespaces = $conds['page_namespace'];
 		unset( $conds['page_namespace'] );
 
-		$sqb
+		if ( count( $namespaces ) === 1 || !$dbr->unionSupportsOrderAndLimit() ) {
+			return parent::reallyDoQuery( $limit, $offset );
+		}
+
+		// Optimization: Fix slow query on MySQL the case of multiple content namespaces,
+		// by rewriting this as a UNION of separate single namespace queries (T168010).
+		$sqb = $dbr->newSelectQueryBuilder()
 			->select( isset( $query['fields'] ) ? (array)$query['fields'] : [] )
 			->tables( isset( $query['tables'] ) ? (array)$query['tables'] : [] )
 			->where( $conds )
@@ -120,22 +117,21 @@ class SpecialShortPages extends QueryPage {
 			$sqb->offset( intval( $offset ) );
 		}
 
-		if ( count( $namespaces ) === 1 || !$dbr->unionSupportsOrderAndLimit() ) {
-			$sqb->andWhere( [ 'page_namespace' => $namespaces ] );
-			$sqb->orderBy( $order );
-			$res = $sqb->caller( $fname )->fetchResultSet();
-		} else {
-			$uqb = $dbr->newUnionQueryBuilder();
-			foreach ( $namespaces as $namespace ) {
-				$nsSqb = clone $sqb;
-				$nsSqb->orderBy( $order );
-				$nsSqb->andWhere( [ 'page_namespace' => $namespace ] );
-				$uqb->add( $nsSqb );
+		$order = $this->getOrderFields();
+		if ( $this->sortDescending() ) {
+			foreach ( $order as &$field ) {
+				$field .= ' DESC';
 			}
-			$res = $uqb->caller( $fname )->fetchResultSet();
 		}
 
-		return $res;
+		$uqb = $dbr->newUnionQueryBuilder();
+		foreach ( $namespaces as $namespace ) {
+			$nsSqb = clone $sqb;
+			$nsSqb->orderBy( $order );
+			$nsSqb->andWhere( [ 'page_namespace' => $namespace ] );
+			$uqb->add( $nsSqb );
+		}
+		return $uqb->caller( $fname )->fetchResultSet();
 	}
 
 	protected function getOrderFields() {
