@@ -22,7 +22,7 @@ namespace MediaWiki\User;
 
 use IDBAccessObject;
 use InvalidArgumentException;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * Service for looking up UserIdentity
@@ -60,7 +60,7 @@ interface UserIdentityLookup extends IDBAccessObject {
 	/**
 	 * Returns a specialized SelectQueryBuilder for querying the UserIdentity objects.
 	 *
-	 * @param IDatabase|int $dbOrQueryFlags The database connection to perform the query on,
+	 * @param IReadableDatabase|int $dbOrQueryFlags The database connection to perform the query on,
 	 *   or one of the self::READ_* constants.
 	 * @return UserSelectQueryBuilder
 	 */
