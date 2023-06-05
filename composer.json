@@ -175,6 +175,7 @@
 		"merge-plugin": {
 			"include": [
 				"composer.local.json",
+				"extensions/OOJSPlus/composer.json",
 				"extensions/Wikibase/composer.json",
 				"extensions/WikibaseEdtf/composer.json"
 			],
