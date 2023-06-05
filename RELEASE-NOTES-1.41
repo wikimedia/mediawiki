@@ -182,6 +182,8 @@ because of Phabricator reports.
   - ::ruleExists()
 * ApiQuery::getNamedDB() and ApiQueryBase::selectNamedDB(), deprecated in
   1.39, have been removed.
+* SelectQueryBuilder::lockForUpdate(), deprecated in 1.40 and unused,
+  has been removed without hard deprecation.
 * …
 
 === Deprecations in 1.41 ===
