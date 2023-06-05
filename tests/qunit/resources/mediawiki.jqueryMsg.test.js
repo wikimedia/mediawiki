@@ -1145,6 +1145,12 @@
 		logSpy = this.sandbox.spy( mw.log, 'warn' );
 
 		assert.strictEqual(
+			mw.message( 'invalid-wikitext' ).isParseable(),
+			false,
+			'Invalid wikitext: reported as not parseable'
+		);
+
+		assert.strictEqual(
 			formatParse( 'invalid-wikitext' ),
 			'&lt;b&gt;{{FAIL}}&lt;/b&gt;',
 			'Invalid wikitext: \'parse\' format'
@@ -1279,6 +1285,12 @@
 			$( '<span>' ).msg( 'integration-test' ).html(),
 			expected,
 			'jQuery plugin $.fn.msg() works correctly'
+		);
+
+		assert.strictEqual(
+			mw.message( 'integration-test' ).isParseable(),
+			true,
+			'mw.message().isParseable() works correctly'
 		);
 
 		assert.strictEqual(

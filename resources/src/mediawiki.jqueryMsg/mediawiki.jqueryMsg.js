@@ -1492,3 +1492,23 @@ mw.Message.prototype.parseDom = ( function () {
 		return $result.contents();
 	};
 }() );
+
+/**
+ * Check whether the message contains only syntax supported by jqueryMsg.
+ *
+ * This method is only available when jqueryMsg is loaded.
+ *
+ * @since 1.41
+ * @method isParseable
+ * @member mw.Message
+ * @return {boolean}
+ */
+mw.Message.prototype.isParseable = function () {
+	var parser = new mw.jqueryMsg.Parser();
+	try {
+		parser.parse( this.key, this.parameters );
+		return true;
+	} catch ( e ) {
+		return false;
+	}
+};
