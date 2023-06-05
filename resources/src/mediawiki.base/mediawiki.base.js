@@ -336,7 +336,7 @@ mw.msg = function () {
  */
 mw.notify = function ( message, options ) {
 	// Lazy load
-	return mw.loader.using( 'mediawiki.notification', function () {
+	return mw.loader.using( 'mediawiki.notification' ).then( function () {
 		return mw.notification.notify( message, options );
 	} );
 };
