@@ -513,6 +513,7 @@ $wgAutoloadLocalClasses = [
 	'FixDefaultJsonContentPages' => __DIR__ . '/maintenance/fixDefaultJsonContentPages.php',
 	'FixDoubleRedirects' => __DIR__ . '/maintenance/fixDoubleRedirects.php',
 	'FixExtLinksProtocolRelative' => __DIR__ . '/maintenance/fixExtLinksProtocolRelative.php',
+	'FixLegacyEncoding' => __DIR__ . '/maintenance/storage/fixLegacyEncoding.php',
 	'FixMergeHistoryCorruption' => __DIR__ . '/maintenance/fixMergeHistoryCorruption.php',
 	'FixTimestamps' => __DIR__ . '/maintenance/fixTimestamps.php',
 	'FixUserRegistration' => __DIR__ . '/maintenance/fixUserRegistration.php',
