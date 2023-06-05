@@ -17,7 +17,8 @@
 			"NoiX180",
 			"ProudBatak",
 			"Salomo Christian Hutajulu",
-			"Sotarduga78"
+			"Sotarduga78",
+			"Bennylin"
 		]
 	},
 	"tog-underline": "Ondolhon panait",
@@ -140,7 +141,7 @@
 	"edit": "Patota",
 	"create": "Tompa",
 	"create-local": "Tambahon deskripsi lokal",
-	"delete": "Sesa Alaman on",
+	"delete": "Sesa",
 	"undelete_short": "Sundat sesa $1 {{PLURAL:$1|panotaan|panotaan}}",
 	"protect": "Alaman na di jaga",
 	"protect_change": "Pauba",
@@ -608,6 +609,7 @@
 	"proxyblocker": "Pangambati proksi",
 	"move-page-legend": "Papinda alaman",
 	"movelogpage": "Log paorothon",
+	"movereason": "Alana:",
 	"revertmove": "Sundati",
 	"export": "Ekspor alaman",
 	"allmessagesname": "Goar",
