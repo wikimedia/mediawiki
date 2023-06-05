@@ -77,7 +77,7 @@ class PageContent extends IPageContent {
 	/** @inheritDoc */
 	public function getContent( string $role ): string {
 		$this->checkRole( $role );
-		return $this->rev->getContent( $role )->serialize();
+		return $this->rev->getContentOrThrow( $role )->serialize();
 	}
 
 	/** @inheritDoc */
