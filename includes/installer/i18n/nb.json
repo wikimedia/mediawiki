@@ -62,7 +62,7 @@
 	"config-no-db": "Fant ingen passende databasedriver! Du må installere en databasedriver for PHP.\nFølgende {{PLURAL:$2|databasetype|databasetyper}} støttes: $1\n\nOm du kompilerte PHP selv, rekonfigurer den med en aktivert databaseklient, for eksempel ved å bruke <code>./configure --with-mysqli</code>.\nOm du installerte PHP fra en Debian- eller Ubuntu-pakke, må du også installere for eksempel <code>php-mysql</code>-pakken.",
 	"config-outdated-sqlite": "<strong>Advarsel:</strong> Du har SQLite $2, som er en eldre versjon enn minimumskravet SQLite $1. SQLite vil ikke være tilgjengelig.",
 	"config-no-fts3": "'''Advarsel''': SQLite er kompilert uten [//sqlite.org/fts3.html FTS3-modulen], søkefunksjoner vil ikke være tilgjengelig på dette bakstykket.",
-	"config-pcre-invalid-newline": "<strong>Fatal feil:</strong> PHPs PCRE-modul ser ut til å være kompilert med PCRE_CONFIG_NEWLINE = -1 for ANY.\nMediaWiki er ikke kompatibel med denne konfigurasjonen.",
+	"config-pcre-invalid-newline": "<strong>Fatal feil:</strong> PCRE2-biblioteket ser ut til å være kompilert med <code>--enable-newline-is-any</code>.\nMediaWiki er ikke kompatibel med denne konfigurasjonen.",
 	"config-memory-raised": "PHPs <code>memory_limit</code> er $1, økt til $2.",
 	"config-memory-bad": "'''Advarsel:''' PHPs <code>memory_limit</code> er $1.\nDette er sannsynligvis for lavt.\nInstallasjonen kan mislykkes!",
 	"config-apc": "[https://www.php.net/apc APC] er installert",

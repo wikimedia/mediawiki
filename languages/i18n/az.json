@@ -2483,6 +2483,7 @@
 	"markedaspatrollednotify": "\"$1\" səhifəsindəki bu redaktə patrullanmış kimi işarələndi.",
 	"patrol-log-page": "Patrul qeydləri",
 	"patrol-log-header": "Bu yoxlanmış dəyişikliklərin gündəliyidir.",
+	"confirm-markpatrolled-top": "$2 səhifəsinin $3 versiyası patrullanmış kimi işarələnsin?",
 	"deletedrevision": "Köhnə versiyaları silindi $1.",
 	"filedeleteerror-short": "Fayl silinərkən xəta: $1",
 	"filedeleteerror-long": "Fayl silinərkən üzə çıxan xətalar:\n\n$1",

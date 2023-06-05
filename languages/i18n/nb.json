@@ -2573,6 +2573,7 @@
 	"undelete-show-file-confirm": "Er du sikker på at du vil vise en slettet versjon av filen «<nowiki>$1</nowiki>» fra $2 klokken $3?",
 	"undelete-show-file-submit": "Ja",
 	"undelete-back-to-list": "Vis alle slettede sideversjoner",
+	"undelete-load-more-revisions": "Last inn flere sideversjoner",
 	"namespace": "Navnerom:",
 	"invert": "Inverter valg",
 	"tooltip-invert": "Kryss av denne boksen for å skjule endringer på sider i det valgte navnerommet (og tilhørende navnerom hvis de også er avkrysset)",
