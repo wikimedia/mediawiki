@@ -183,27 +183,23 @@ class SpecialPrefixindex extends SpecialAllPages {
 			# ## @todo FIXME: Should complain if $fromNs != $namespace
 
 			$dbr = $this->dbProvider->getReplicaDatabase();
-
-			$conds = [
-				'page_namespace' => $namespace,
-				'page_title' . $dbr->buildLike( $prefixKey, $dbr->anyString() ),
-				'page_title >= ' . $dbr->addQuotes( $fromKey ),
-			];
+			$queryBuiler = $dbr->newSelectQueryBuilder()
+				->select( LinkCache::getSelectFields() )
+				->from( 'page' )
+				->where( [
+					'page_namespace' => $namespace,
+					'page_title' . $dbr->buildLike( $prefixKey, $dbr->anyString() ),
+					'page_title >= ' . $dbr->addQuotes( $fromKey ),
+				] )
+				->orderBy( 'page_title' )
+				->limit( $this->maxPerPage + 1 )
+				->useIndex( 'page_name_title' );
 
 			if ( $this->hideRedirects ) {
-				$conds['page_is_redirect'] = 0;
+				$queryBuiler->andWhere( [ 'page_is_redirect' => 0 ] );
 			}
 
-			$res = $dbr->select( 'page',
-				LinkCache::getSelectFields(),
-				$conds,
-				__METHOD__,
-				[
-					'ORDER BY' => 'page_title',
-					'LIMIT' => $this->maxPerPage + 1,
-					'USE INDEX' => 'page_name_title',
-				]
-			);
+			$res = $queryBuiler->caller( __METHOD__ )->fetchResultSet();
 
 			// @todo FIXME: Side link to previous
 

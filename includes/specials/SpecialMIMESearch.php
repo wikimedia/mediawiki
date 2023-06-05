@@ -166,18 +166,17 @@ class SpecialMIMESearch extends QueryPage {
 	}
 
 	protected function getSuggestionsForTypes() {
-		$dbr = $this->getDatabaseProvider()->getReplicaDatabase();
-		$lastMajor = null;
-		$suggestions = [];
-		$result = $dbr->select(
-			[ 'image' ],
+		$queryBuilder = $this->getDatabaseProvider()->getReplicaDatabase()->newSelectQueryBuilder();
+		$queryBuilder
 			// We ignore img_media_type, but using it in the query is needed for MySQL to choose a
 			// sensible execution plan
-			[ 'img_media_type', 'img_major_mime', 'img_minor_mime' ],
-			[],
-			__METHOD__,
-			[ 'GROUP BY' => [ 'img_media_type', 'img_major_mime', 'img_minor_mime' ] ]
-		);
+			->select( [ 'img_media_type', 'img_major_mime', 'img_minor_mime' ] )
+			->from( 'image' )
+			->groupBy( [ 'img_media_type', 'img_major_mime', 'img_minor_mime' ] );
+		$result = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
+
+		$lastMajor = null;
+		$suggestions = [];
 		foreach ( $result as $row ) {
 			$major = $row->img_major_mime;
 			$minor = $row->img_minor_mime;
