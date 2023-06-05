@@ -1197,7 +1197,6 @@ class SpecialUndelete extends SpecialPage {
 					) .
 					Html::closeElement( 'div' ) .
 					"\n";
-				$out->addModules( 'mediawiki.special.undelete' );
 			}
 		} else {
 			$out->addWikiMsg( 'nohistory' );

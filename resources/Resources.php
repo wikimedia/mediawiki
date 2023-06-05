@@ -1218,18 +1218,6 @@ return [
 			'visibleTimeout.js'
 		],
 	],
-	'mediawiki.special.undelete' => [
-		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.special.undelete",
-		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.special.undelete",
-		'packageFiles' => [
-			'loadMoreRevisions.js'
-		],
-		'targets' => [ 'desktop', 'mobile' ],
-		'dependencies' => [
-			'jquery.spinner',
-			'mediawiki.util'
-		],
-	],
 
 	/* MediaWiki Action */
 
@@ -2079,18 +2067,21 @@ return [
 			'special.pageLanguage.js',
 			'special.revisionDelete.js',
 			'special.undelete.js',
+			'special.undelete.loadMoreRevisions.js',
 		],
 		'dependencies' => [
-			'mediawiki.api', // special.changecredentials.js
-			'mediawiki.htmlform.ooui', // special.changecredentials.js
-			// used by special.movePage.js, special.undelete.js, action.delete.js, special.revisionDelete.js
+			'jquery.spinner',
+			'mediawiki.util',
+			'mediawiki.api',
+			'mediawiki.htmlform.ooui',
 			'mediawiki.widgets.visibleLengthLimit',
-			'mediawiki.widgets', // special.movePage.js, special.undelete.js, special.import.js
-			'oojs-ui-core', // special.pageLanguage.js
+			'mediawiki.widgets',
+			'oojs-ui-core',
 		],
 		'messages' => [
+			// Used by action.delete.js, special.revisionDelete.js
 			// @todo Load this message in content language
-			'colon-separator', // action.delete.js, special.revisionDelete.js
+			'colon-separator',
 		],
 	],
 	// This bundles various small (under 2 KB?) JavaScript files that:
