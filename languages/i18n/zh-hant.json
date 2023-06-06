@@ -132,7 +132,9 @@
 			"아라",
 			"Willy1018",
 			"捍粵者",
-			"阿南之人"
+			"阿南之人",
+			"Amire80",
+			"Sidishandsome"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -402,7 +404,7 @@
 	"nstab-user": "{{GENDER:$1|使用者頁面}}",
 	"nstab-media": "媒體頁面",
 	"nstab-special": "特殊頁面",
-	"nstab-project": "計畫頁面",
+	"nstab-project": "專案頁面",
 	"nstab-image": "檔案",
 	"nstab-mediawiki": "訊息",
 	"nstab-template": "模板",
@@ -3062,7 +3064,7 @@
 	"tooltip-ca-nstab-user": "檢視使用者頁面",
 	"tooltip-ca-nstab-media": "檢視媒體頁面",
 	"tooltip-ca-nstab-special": "此頁面為特殊頁面，無法編輯",
-	"tooltip-ca-nstab-project": "檢視計畫頁面",
+	"tooltip-ca-nstab-project": "檢視專案頁面",
 	"tooltip-ca-nstab-image": "檢視檔案頁面",
 	"tooltip-ca-nstab-mediawiki": "檢視系統訊息",
 	"tooltip-ca-nstab-template": "檢視模板",

@@ -515,7 +515,7 @@
 	"difference-title": "$1: Laametu giddon de'iya dummatettaa",
 	"lineno": "Yafaraa $1:",
 	"compareselectedversions": "Doorettida zaaretota geeddaranawu",
-	"editundo": "guyye zaara",
+	"editundo": "Aggaaga",
 	"diff-empty": "(dummatetti baawa)",
 	"diff-multi-sameuser": "({{PLURAL:$1|issi gidda laamiyaa|$1 gidda laameta}} beettenna issi yaran)",
 	"diff-multi-otherusers": "({{PLURAL:$1|Issi gidda laamiyaa|$1 gidda laameta}} by {{PLURAL:$2|issi hara yaran|$2 yarata}} beettennaagan)",

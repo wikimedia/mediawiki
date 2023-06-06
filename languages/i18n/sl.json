@@ -3506,7 +3506,7 @@
 	"fileduplicatesearch-info": "$1 × $2 pik<br />Velikost datoteke: $3<br />Vrsta MIME: $4",
 	"fileduplicatesearch-result-1": "Datoteka »$1« nima identičnih dvojnikov.",
 	"fileduplicatesearch-result-n": "Datoteka »$1« ima $2 {{PLURAL:$2|identični dvojnik|identična dvojnika|identične dvojnike|identičnih dvojnikov}}.",
-	"fileduplicatesearch-noresults": "Datoteke imenovane »$1« ni mogoče najti.",
+	"fileduplicatesearch-noresults": "Datoteke z imenom »$1« ni bilo mogoče najti.",
 	"specialpages": "Posebne strani",
 	"specialpages-note-top": "Legenda",
 	"specialpages-note-restricted": "* Navadne posebne strani.\n* <span class=\"mw-specialpagerestricted\">Omejene posebne strani.</span>",
