@@ -3137,7 +3137,7 @@
 	"pageinfo-subpages-value": "$1 ($2 {{PLURAL:$2|ohjaus|ohjausta}}; $3 {{PLURAL:$3|ei-ohjausta}})",
 	"pageinfo-firstuser": "Sivun luonut",
 	"pageinfo-firsttime": "Sivun luontipäivämäärä",
-	"pageinfo-lastuser": "Viimeisin muokkaaja",
+	"pageinfo-lastuser": "Viimeisin {{GENDER:$1|muokkaaja}}",
 	"pageinfo-lasttime": "Viimeisin muokkauspäivämäärä",
 	"pageinfo-edits": "Muokkausten kokonaismäärä",
 	"pageinfo-authors": "Sivun eri muokkaajien kokonaismäärä",
