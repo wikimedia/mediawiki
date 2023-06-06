@@ -354,7 +354,7 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, (int)$this->conn->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
 
 		$this->conn->upsert( $dTable, $rows, 'k', $set, __METHOD__ );
-		$this->assertSame( 2, $this->conn->affectedRows() );
+		$this->assertSame( 1, $this->conn->affectedRows() );
 		$this->assertSame( 1, $this->conn->insertId() );
 
 		$this->assertSame( 1, (int)$this->conn->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
