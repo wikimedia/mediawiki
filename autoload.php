@@ -1055,6 +1055,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Diff\\Hook\\DifferenceEngineShowEmptyOldContentHook' => __DIR__ . '/includes/diff/Hook/DifferenceEngineShowEmptyOldContentHook.php',
 	'MediaWiki\\Diff\\Hook\\DifferenceEngineViewHeaderHook' => __DIR__ . '/includes/diff/Hook/DifferenceEngineViewHeaderHook.php',
 	'MediaWiki\\Diff\\Hook\\NewDifferenceEngineHook' => __DIR__ . '/includes/diff/Hook/NewDifferenceEngineHook.php',
+	'MediaWiki\\Diff\\Hook\\TextSlotDiffRendererTablePrefixHook' => __DIR__ . '/includes/diff/Hook/TextSlotDiffRendererTablePrefixHook.php',
 	'MediaWiki\\Diff\\WordAccumulator' => __DIR__ . '/includes/diff/WordAccumulator.php',
 	'MediaWiki\\EditPage\\Constraint\\AccidentalRecreationConstraint' => __DIR__ . '/includes/editpage/Constraint/AccidentalRecreationConstraint.php',
 	'MediaWiki\\EditPage\\Constraint\\AutoSummaryMissingSummaryConstraint' => __DIR__ . '/includes/editpage/Constraint/AutoSummaryMissingSummaryConstraint.php',

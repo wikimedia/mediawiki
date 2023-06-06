@@ -919,6 +919,11 @@ class DifferenceEngine extends ContextSource {
 				$notice .= Html::warningBox( $msg->parse() );
 			}
 
+			// Add table prefixes.
+			foreach ( $this->getSlotDiffRenderers() as $slotDiffRenderer ) {
+				$out->addHTML( $slotDiffRenderer->getTablePrefix( $this->getContext() ) );
+			}
+
 			$this->showDiff( $oldHeader, $newHeader, $notice );
 			if ( !$diffOnly ) {
 				$this->renderNewRevision();
@@ -1615,13 +1620,14 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
-	 * Add title attributes for tooltips on moved paragraph indicators
+	 * Add title attributes for tooltips on various diff elements
 	 *
 	 * @param string $text
 	 * @return string
 	 */
 	private function addLocalisedTitleTooltips( $text ) {
-		return preg_replace_callback(
+		// Moved paragraph indicators.
+		$text = preg_replace_callback(
 			'/class="mw-diff-movedpara-(left|right)"/',
 			function ( array $matches ) {
 				$key = $matches[1] === 'right' ?
@@ -1631,6 +1637,20 @@ class DifferenceEngine extends ContextSource {
 			},
 			$text
 		);
+
+		// For inline diffs, add tooltips to `<ins>` and `<del>`.
+		if ( isset( $this->slotDiffOptions['diff-type'] ) && $this->slotDiffOptions['diff-type'] == 'inline' ) {
+			$text = str_replace(
+				[ '<ins>', '<del>' ],
+				[
+					Html::openElement( 'ins', [ 'title' => $this->msg( 'diff-inline-tooltip-ins' )->plain() ] ),
+					Html::openElement( 'del', [ 'title' => $this->msg( 'diff-inline-tooltip-del' )->plain() ] ),
+				],
+				$text
+			);
+		}
+
+		return $text;
 	}
 
 	/**
