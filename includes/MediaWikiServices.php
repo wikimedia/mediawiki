@@ -79,6 +79,7 @@ use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Installer\Pingback;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Interwiki\NullInterwikiLookup;
 use MediaWiki\JobQueue\JobFactory;
@@ -1666,6 +1667,15 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getPermissionManager(): PermissionManager {
 		return $this->getService( 'PermissionManager' );
+	}
+
+	/**
+	 * @since 1.41
+	 * @return Pingback
+	 * @internal
+	 */
+	public function getPingback(): Pingback {
+		return $this->getService( 'Pingback' );
 	}
 
 	/**
