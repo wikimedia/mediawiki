@@ -2,7 +2,6 @@
 
 namespace MediaWiki\HookContainer {
 
-	use InvalidArgumentException;
 	use MediaWiki\Tests\Unit\DummyServicesTrait;
 	use MediaWikiUnitTestCase;
 	use stdClass;
@@ -58,13 +57,11 @@ namespace MediaWiki\HookContainer {
 
 		public static function provideRegister() {
 			return [
-				'function' => [ 'strtoupper', 'strtoupper' ],
-				'object' => [ new \FooExtension\Hooks(), 'FooExtension\Hooks::onFooActionComplete' ],
-				'object and method' => [ [ new FooClass(), 'fooMethod' ], 'MediaWiki\HookContainer\FooClass::fooMethod' ],
-				'object in array with no method' => [ new \FooExtension\Hooks(), 'FooExtension\Hooks::onFooActionComplete' ],
+				// not yet supported: 'function' => [ 'strtoupper', 'strtoupper' ],
+				// not yet supported: 'object' => [ new \FooExtension\Hooks(), 'FooExtension\Hooks::onFooActionComplete' ],
 				'extension' => [
 					self::HANDLER_REGISTRATION,
-					'FooExtension\Hooks::onFooActionComplete'
+					'FooExtension\Hooks'
 				]
 			];
 		}
@@ -79,21 +76,20 @@ namespace MediaWiki\HookContainer {
 				'FooActionComplete' => [ $handler ]
 			], [] );
 
-			$handlers = $hookContainer->getHandlerDescriptions( 'FooActionComplete' );
+			$handlers = $hookContainer->getHandlers( 'FooActionComplete' );
 
-			$this->assertSame( $expected, $handlers[0] );
+			$this->assertSame( $expected, get_class( $handlers[0] ) );
 		}
 
 		/**
 		 * Values returned: hook, handlersToRegister, expectedReturn
 		 */
-		public static function provideGetHandlerDescriptions() {
+		public static function provideGetHandlers() {
 			return [
 				'NoHandlersExist' => [
 					'MWTestHook',
 					null,
-					0,
-					0
+					[],
 				],
 				'SuccessfulHandlerReturn' => [
 					'FooActionComplete',
@@ -104,8 +100,9 @@ namespace MediaWiki\HookContainer {
 							'services' => [],
 						],
 					],
-					1,
-					1
+					[
+						new \FooExtension\Hooks(),
+					],
 				],
 				'SkipDeprecated' => [
 					'FooActionCompleteDeprecated',
@@ -117,8 +114,7 @@ namespace MediaWiki\HookContainer {
 						],
 						'deprecated' => true,
 					],
-					1,
-					0
+					[],
 				],
 			];
 		}
@@ -239,13 +235,13 @@ namespace MediaWiki\HookContainer {
 			} );
 
 			// handlers registered in 2 different ways
-			$this->assertCount( 2, $hookContainer->getHandlerCallbacks( 'MWTestHook' ) );
+			$this->assertCount( 2, $hookContainer->getLegacyHandlers( 'MWTestHook' ) );
 			$hookContainer->run( 'MWTestHook' );
 			$this->assertEquals( 2, $numCalls );
 
 			// Remove one of the handlers that increments $called
 			ScopedCallback::consume( $reset );
-			$this->assertCount( 1, $hookContainer->getHandlerCallbacks( 'MWTestHook' ) );
+			$this->assertCount( 1, $hookContainer->getLegacyHandlers( 'MWTestHook' ) );
 
 			$numCalls = 0;
 			$hookContainer->run( 'MWTestHook' );
@@ -253,16 +249,10 @@ namespace MediaWiki\HookContainer {
 		}
 
 		/**
-		 * @covers \MediaWiki\HookContainer\HookContainer::getHandlerDescriptions
-		 * @covers \MediaWiki\HookContainer\HookContainer::getHandlerCallbacks
-		 * @dataProvider provideGetHandlerDescriptions
+		 * @covers \MediaWiki\HookContainer\HookContainer::getHandlers
+		 * @dataProvider provideGetHandlers
 		 */
-		public function testGetHandlers(
-			string $hook,
-			?array $handlerToRegister,
-			int $expectedDescriptions,
-			int $expectedCallbacks
-		) {
+		public function testGetHandlers( string $hook, ?array $handlerToRegister, array $expectedReturn ) {
 			if ( $handlerToRegister ) {
 				$hooks = [ $hook => [ $handlerToRegister ] ];
 			} else {
@@ -272,24 +262,37 @@ namespace MediaWiki\HookContainer {
 				'FooActionCompleteDeprecated' => [ 'deprecatedVersion' => '1.35' ]
 			];
 			$hookContainer = $this->newHookContainer( [], $hooks, $fakeDeprecatedHooks );
-
-			$descriptions = $hookContainer->getHandlerDescriptions( $hook );
-			$this->assertCount(
-				$expectedDescriptions,
-				$descriptions,
-				'getHandlerDescriptions()'
+			$handlers = $hookContainer->getHandlers( $hook );
+			$this->assertArrayEquals(
+				$handlers,
+				$expectedReturn,
+				'HookContainer::getHandlers() should return array of handler functions'
 			);
+		}
 
-			$callbacks = $hookContainer->getHandlerCallbacks( $hook );
-			$this->assertCount(
-				$expectedCallbacks,
+		/**
+		 * @covers \MediaWiki\HookContainer\HookContainer::getLegacyHandlers
+		 */
+		public function testGetLegacyHandler() {
+			$hookContainer = $this->newHookContainer( [], [], [] );
+			$hookContainer->register(
+				'FooActionComplete',
+				[ new FooClass(),
+					'fooMethod'
+				]
+			);
+			$expectedHandlers = [ [ new FooClass(),
+				'fooMethod'
+			] ];
+			$callbacks = $hookContainer->getLegacyHandlers( 'FooActionComplete' );
+			$this->assertIsCallable( $callbacks[0] );
+			$this->assertArrayEquals(
 				$callbacks,
-				'getHandlerCallbacks()'
+				$expectedHandlers,
+				true
 			);
 
-			foreach ( $callbacks as $clbk ) {
-				$this->assertIsCallable( $clbk );
-			}
+			// TODO: Test support for handlers with extra args once that is fixed.
 		}
 
 		/**
@@ -297,9 +300,6 @@ namespace MediaWiki\HookContainer {
 		 */
 		public static function provideRunConfigured() {
 			$fooObj = new FooClass();
-			$closure = static function ( &$count ) {
-				$count++;
-			};
 			$extra	= 10;
 			return [
 				// Callables
@@ -307,10 +307,11 @@ namespace MediaWiki\HookContainer {
 				'Object and method' => [ [ $fooObj, 'fooMethod' ] ],
 				'Class name and static method' => [ [ 'MediaWiki\HookContainer\FooClass', 'fooStaticMethod' ] ],
 				'static method' => [ 'MediaWiki\HookContainer\FooClass::fooStaticMethod' ],
-				'Closure' => [ $closure ],
-
-				// Shorthand
-				'Object' => [ $fooObj ],
+				'Closure' => [
+					static function ( &$count ) {
+						$count++;
+					}
+				],
 
 				// Handlers with extra data attached
 				'static method with extra data' => [
@@ -319,6 +320,7 @@ namespace MediaWiki\HookContainer {
 				],
 				'Object and method with extra data' => [ [ [ $fooObj, 'fooMethodWithExtra' ], $extra ], 11 ],
 				'Function extra data' => [ [ 'fooGlobalFunctionWithExtra', $extra ], 11 ],
+				'Function in array with extra data' => [ [ [ 'fooGlobalFunctionWithExtra' ], $extra ], 11 ],
 				'Closure with extra data' => [
 					[
 						static function ( int $inc, &$count ) {
@@ -329,18 +331,8 @@ namespace MediaWiki\HookContainer {
 					11
 				],
 
-				// No-ops
-				'empty array' => [ [], 1 ],
-				'null' => [ null, 1 ],
-				'false' => [ false, 1 ],
-				'NOOP' => [ HookContainer::NOOP, 1 ],
-
 				// Strange edge cases
-				'Object in array without method' => [ [ $fooObj ] ],
-				'Callable in array' => [ [ [ $fooObj, 'fooMethod' ] ] ],
-				'Closure in array with no extra data' => [ [ $closure ] ],
 				'Function in array' => [ [ 'fooGlobalFunction' ] ],
-				'Function in array in array' => [ [ [ 'fooGlobalFunction' ] ] ],
 				'static method as array in array' => [
 					[ [ 'MediaWiki\HookContainer\FooClass', 'fooStaticMethod' ] ]
 				],
@@ -352,6 +344,7 @@ namespace MediaWiki\HookContainer {
 
 		/**
 		 * @covers \MediaWiki\HookContainer\HookContainer::run
+		 * @covers \MediaWiki\HookContainer\HookContainer::callLegacyHook
 		 * @covers \MediaWiki\HookContainer\HookContainer::normalizeHandler
 		 * @dataProvider provideRunConfigured
 		 */
@@ -366,9 +359,9 @@ namespace MediaWiki\HookContainer {
 
 		/**
 		 * @covers \MediaWiki\HookContainer\HookContainer::run
+		 * @covers \MediaWiki\HookContainer\HookContainer::callLegacyHook
 		 * @covers \MediaWiki\HookContainer\HookContainer::normalizeHandler
 		 * @dataProvider provideRunConfigured
-		 * @dataProvider provideRunExtensionHook
 		 */
 		public function testRegisterAndRun( $handler, $expectedCount = 2 ) {
 			$hookContainer = $this->newHookContainer( [], [] );
@@ -383,45 +376,6 @@ namespace MediaWiki\HookContainer {
 		/**
 		 * Values returned: hook, handler, handler arguments, options
 		 */
-		public static function provideRegisterAndRunCallback() {
-			$fooObj = new FooClass();
-			return [
-				// Callables
-				'Function' => [ 'fooGlobalFunction' ],
-				'Object and method' => [ [ $fooObj, 'fooMethod' ] ],
-				'Class name and static method' => [ [ 'MediaWiki\HookContainer\FooClass', 'fooStaticMethod' ] ],
-				'static method' => [ 'MediaWiki\HookContainer\FooClass::fooStaticMethod' ],
-				'Closure' => [
-					static function ( &$count ) {
-						$count++;
-					}
-				],
-
-				// Extension-style handler
-				'Extension handler' => [ self::HANDLER_REGISTRATION ],
-
-				// NOTE: hook handlers with extra data are not supported for callbacks!
-			];
-		}
-
-		/**
-		 * @covers \MediaWiki\HookContainer\HookContainer::getHandlerCallbacks
-		 * @dataProvider provideRegisterAndRunCallback
-		 */
-		public function testRegisterAndRunCallback( $handler, $expectedCount = 2 ) {
-			$hookContainer = $this->newHookContainer( [], [] );
-			$hookContainer->register( 'Increment', $handler );
-
-			$count = 1;
-			foreach ( $hookContainer->getHandlerCallbacks( 'Increment' ) as $callback ) {
-				$callback( $count );
-			}
-			$this->assertSame( $expectedCount, $count );
-		}
-
-		/**
-		 * Values returned: hook, handler, handler arguments, options
-		 */
 		public static function provideRunExtensionHook() {
 			return [
 				[ self::HANDLER_REGISTRATION ],
@@ -430,14 +384,15 @@ namespace MediaWiki\HookContainer {
 
 		/**
 		 * @covers \MediaWiki\HookContainer\HookContainer::run
+		 * @covers \MediaWiki\HookContainer\HookContainer::callLegacyHook
 		 * @covers \MediaWiki\HookContainer\HookContainer::normalizeHandler
 		 * @dataProvider provideRunExtensionHook
 		 */
 		public function testRunExtensionHook( array $handler, $expectedCount = 1 ) {
-			$hookContainer = $this->newHookContainer( [], [ 'X\\Y::Increment' => [ $handler ] ] );
+			$hookContainer = $this->newHookContainer( [], [ 'Increment' => [ $handler ] ] );
 
 			$count = 0;
-			$hookValue = $hookContainer->run( 'X\\Y::Increment', [ &$count ] );
+			$hookValue = $hookContainer->run( 'Increment', [ &$count ] );
 			$this->assertTrue( $hookValue );
 			$this->assertSame( $expectedCount, $count );
 		}
@@ -456,6 +411,7 @@ namespace MediaWiki\HookContainer {
 
 		/**
 		 * @covers \MediaWiki\HookContainer\HookContainer::run
+		 * @covers \MediaWiki\HookContainer\HookContainer::callLegacyHook
 		 * @covers \MediaWiki\HookContainer\HookContainer::normalizeHandler
 		 * @dataProvider provideRunFailsWithNoService
 		 */
@@ -495,7 +451,7 @@ namespace MediaWiki\HookContainer {
 			$seq = [ 'start' ];
 			$hookContainer->run( 'Append', [ &$seq ] );
 
-			$expected = [ 'start', 'configured1', 'configured2', 'FooExtension', 'registered' ];
+			$expected = [ 'start', 'configured1', 'configured2', 'registered', 'FooExtension' ];
 			$this->assertSame( $expected, $seq );
 		}
 
@@ -571,16 +527,21 @@ namespace MediaWiki\HookContainer {
 		/**
 		 * Test running deprecated hooks from $wgHooks with the deprecation declared in HookContainer.
 		 * @covers \MediaWiki\HookContainer\HookContainer::run
+		 * @covers \MediaWiki\HookContainer\HookContainer::callLegacyHook
 		 * @dataProvider provideRegisterDeprecated
 		 */
-		public function testRunConfiguredDeprecated( array $deprecationInfo ) {
+		public function testRunConfiguredDeprecated( array $deprecationInfo, bool $expectWarning ) {
 			$hookContainer = $this->newHookContainer(
 				[ 'Increment' => [ self::HANDLER_FUNCTION ] ],
 				[],
 				[ 'Increment' => $deprecationInfo ]
 			);
 
-			// No warning expected when running the hook!
+			// Expected deprecation?
+			if ( $expectWarning ) {
+				$this->expectDeprecationAndContinue( '/Use of Increment hook/' );
+			}
+
 			// Deprecated hooks should still be functional!
 			$count = 0;
 			$hookContainer->run( 'Increment', [ &$count ] );
@@ -590,6 +551,7 @@ namespace MediaWiki\HookContainer {
 		/**
 		 * Test running deprecated hooks from $wgHooks with the deprecation passed in the options parameter.
 		 * @covers \MediaWiki\HookContainer\HookContainer::run
+		 * @covers \MediaWiki\HookContainer\HookContainer::callLegacyHook
 		 * @dataProvider provideRegisterDeprecated
 		 */
 		public function testRunConfiguredDeprecatedWithOption( array $deprecationInfo, bool $expectWarning ) {
@@ -626,41 +588,21 @@ namespace MediaWiki\HookContainer {
 				[ 'Increment' => $deprecationInfo ]
 			);
 
+			// NOTE: Currently expected to NOT trigger a deprecation warning. May change.
+
 			// Deprecated hooks should be functional, the handle that acknowledges deprecation should be skipped.
-			// We do not expect deprecation warnings here. They are covered by emitDeprecationWarnings()
 			$count = 0;
 			$hookContainer->run( 'Increment', [ &$count ] );
 			$this->assertSame( 1, $count );
-		}
 
-		/**
-		 * Test running deprecated hooks from extensions.
-		 *
-		 * @covers \MediaWiki\HookContainer\HookContainer::run
-		 */
-		public function testRunHandlerObjectDeprecatedWithOption() {
-			$deprecationInfo = [ 'deprecatedVersion' => '1.0' ];
-
-			// If the handler acknowledges deprecation, it should be skipped
-			$knownDeprecated = self::HANDLER_REGISTRATION + [ 'deprecated' => true ];
-
-			$hookContainer = $this->newHookContainer(
-				[],
-				[ 'Increment' => [ self::HANDLER_REGISTRATION, $knownDeprecated ] ],
-				[ 'Increment' => $deprecationInfo ]
-			);
-
-			// We do expect deprecation warnings when the 'deprecationVersion' key is provided in the $options parameter.
-			$this->expectDeprecationAndContinue( '/Use of Increment hook/' );
-
-			// Deprecated hooks should be functional, the handle that acknowledges deprecation should be skipped.
-			$count = 0;
+			// Try again, with $deprecationInfo as $options
 			$hookContainer->run( 'Increment', [ &$count ], $deprecationInfo );
-			$this->assertSame( 1, $count );
+			$this->assertSame( 2, $count );
 		}
 
 		/**
 		 * @covers \MediaWiki\HookContainer\HookContainer::getHookNames
+		 * @covers \MediaWiki\HookContainer\HookContainer::getRegisteredHooks
 		 */
 		public function testGetHookNames() {
 			$fooHandler = [ 'handler' => [
@@ -683,18 +625,15 @@ namespace MediaWiki\HookContainer {
 
 			$container->register( 'C', 'strtoupper' );
 
-			// Ask for a few hooks that have no handlers.
-			// Negative caching inside HookHandler should not cause them to be returned from getHookNames
-			$container->isRegistered( 'X' );
-			$container->getHandlerCallbacks( 'Y' );
-
 			$this->assertArrayEquals( [ 'A', 'B', 'C' ], $container->getHookNames() );
+			$this->assertArrayEquals( [ 'A', 'B', 'C' ], $container->getRegisteredHooks() );
 
 			// make sure we are getting each hook name only once
 			$container->register( 'B', 'strtoupper' );
 			$container->register( 'A', 'strtoupper' );
 
 			$this->assertArrayEquals( [ 'A', 'B', 'C' ], $container->getHookNames() );
+			$this->assertArrayEquals( [ 'A', 'B', 'C' ], $container->getRegisteredHooks() );
 		}
 
 		/**
@@ -703,6 +642,10 @@ namespace MediaWiki\HookContainer {
 		public static function provideRunErrors() {
 			// XXX: should also fail: non-function string, empty array
 			return [
+				'a number' => [
+					123,
+					[]
+				],
 				'return a string' => [
 					static function () {
 						return 'string';
@@ -729,49 +672,6 @@ namespace MediaWiki\HookContainer {
 			$this->expectException( UnexpectedValueException::class );
 			$hookContainer->register( 'MWTestHook', $handler );
 			$hookContainer->run( 'MWTestHook', [], $options );
-		}
-
-		/**
-		 * Values returned: hook, handlersToRegister, options
-		 */
-		public static function provideRegisterErrors() {
-			// XXX: should also fail: non-function string, empty array
-			return [
-				'a number' => [ 123 ],
-				'non-callable string' => [ 'a, b, c' ],
-				'array referencing an unknown method' => [ [ self::class, 'thisMethodDoesNotExist' ] ],
-				'empty string' => [ '' ],
-				'zero' => [ 0 ],
-				'true' => [ true ],
-			];
-		}
-
-		/**
-		 * @dataProvider provideRegisterErrors
-		 * @covers \MediaWiki\HookContainer\HookContainer::normalizeHandler
-		 * @covers \MediaWiki\HookContainer\HookContainer::register
-		 */
-		public function testRegisterErrors( $badHandler ) {
-			$hookContainer = $this->newHookContainer();
-
-			$this->expectException( InvalidArgumentException::class );
-			$hookContainer->register( 'MWTestHook', $badHandler );
-		}
-
-		/**
-		 * @dataProvider provideRegisterErrors
-		 * @covers \MediaWiki\HookContainer\HookContainer::normalizeHandler
-		 * @covers \MediaWiki\HookContainer\HookContainer::run
-		 */
-		public function testRunWithBadHandlers( $badHandler ) {
-			$goodHandler = self::HANDLER_FUNCTION;
-			$hookContainer = $this->newHookContainer( [ 'MWTestHook' => [ $badHandler, $goodHandler ] ] );
-
-			// Bad handlers from the constructor should fail silently
-			$count = 0;
-			$hookContainer->run( 'MWTestHook', [ &$count ] );
-
-			$this->assertSame( 1, $count );
 		}
 
 		public static function provideEmitDeprecationWarnings() {
@@ -855,7 +755,8 @@ namespace MediaWiki\HookContainer {
 
 		/**
 		 * @covers \MediaWiki\HookContainer\HookContainer::isRegistered
-		 * @covers \MediaWiki\HookContainer\HookContainer::getHandlerCallbacks
+		 * @covers \MediaWiki\HookContainer\HookContainer::getHandlers
+		 * @covers \MediaWiki\HookContainer\HookContainer::getLegacyHandlers
 		 * @covers \MediaWiki\HookContainer\HookContainer::register
 		 * @covers \MediaWiki\HookContainer\HookContainer::clear
 		 */
@@ -884,11 +785,11 @@ namespace MediaWiki\HookContainer {
 			$this->assertTrue( $hookContainer->isRegistered( 'XyzHook' ) );
 			$this->assertTrue( $hookContainer->isRegistered( 'FooActionComplete' ) );
 
-			$this->assertSame( [], $hookContainer->getHandlerCallbacks( 'Increment' ) );
-			$this->assertSame( [], $hookContainer->getHandlerCallbacks( 'Increment' ) );
-			$this->assertNotEmpty( $hookContainer->getHandlerCallbacks( 'AbcHook' ) );
-			$this->assertNotEmpty( $hookContainer->getHandlerCallbacks( 'FooActionComplete' ) );
-			$this->assertNotEmpty( $hookContainer->getHandlerCallbacks( 'XyzHook' ) );
+			$this->assertSame( [], $hookContainer->getLegacyHandlers( 'Increment' ) );
+			$this->assertSame( [], $hookContainer->getHandlers( 'Increment' ) );
+			$this->assertNotEmpty( $hookContainer->getLegacyHandlers( 'AbcHook' ) );
+			$this->assertNotEmpty( $hookContainer->getHandlers( 'FooActionComplete' ) );
+			$this->assertNotEmpty( $hookContainer->getLegacyHandlers( 'XyzHook' ) );
 
 			// No more increment!
 			$hookContainer->run( 'Increment', [ &$count ] );
@@ -983,10 +884,6 @@ namespace MediaWiki\HookContainer {
 			return true;
 		}
 
-		public function onIncrement( &$count ) {
-			$count++;
-		}
-
 		public static function fooStaticMethod( &$count ) {
 			$count++;
 			return null;
@@ -1041,10 +938,6 @@ namespace FooExtension {
 		}
 
 		public function onIncrement( &$count ) {
-			$count++;
-		}
-
-		public function onX_Y__Increment( &$count ) {
 			$count++;
 		}
 

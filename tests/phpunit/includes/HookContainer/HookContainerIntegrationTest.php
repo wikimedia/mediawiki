@@ -43,14 +43,14 @@ namespace MediaWiki\HookContainer {
 			$hookContainer->register( 'FooHook', static function () {
 				return true;
 			} );
-			$handlersBeforeScopedRegister = $hookContainer->getHandlerCallbacks( 'FooHook' );
+			$handlersBeforeScopedRegister = $hookContainer->getLegacyHandlers( 'FooHook' );
 			$this->assertCount( 2, $handlersBeforeScopedRegister );
 
 			// Wipe out the 2 existing handlers and add a new scoped handler
 			$reset2 = $hookContainer->scopedRegister( 'FooHook', static function () {
 				return true;
 			}, true );
-			$handlersAfterScopedRegister = $hookContainer->getHandlerCallbacks( 'FooHook' );
+			$handlersAfterScopedRegister = $hookContainer->getLegacyHandlers( 'FooHook' );
 			$this->assertCount( 1, $handlersAfterScopedRegister );
 
 			ScopedCallback::consume( $reset2 );
@@ -58,7 +58,7 @@ namespace MediaWiki\HookContainer {
 			// Teardown causes the original handlers to be re-applied
 			$this->mediaWikiTearDown();
 
-			$handlersAfterTearDown = $hookContainer->getHandlerCallbacks( 'FooHook' );
+			$handlersAfterTearDown = $hookContainer->getLegacyHandlers( 'FooHook' );
 			$this->assertCount( 2, $handlersAfterTearDown );
 		}
 

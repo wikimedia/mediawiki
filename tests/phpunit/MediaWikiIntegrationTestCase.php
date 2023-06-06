@@ -2542,7 +2542,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @since 1.40
 	 */
 	protected function clearHooks( ?array $hookNames = null ) {
-		$hookNames ??= $this->localServices->getHookContainer()->getHookNames();
+		$hookNames ??= $this->localServices->getHookContainer()->getRegisteredHooks();
 		foreach ( $hookNames as $name ) {
 			$this->clearHook( $name );
 		}

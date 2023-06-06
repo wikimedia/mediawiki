@@ -100,7 +100,12 @@ class Hooks {
 	public static function getHandlers( $name ) {
 		wfDeprecated( __METHOD__, '1.35' );
 		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		return $hookContainer->getHandlerCallbacks( $name );
+		$handlers = $hookContainer->getLegacyHandlers( $name );
+		$funcName = 'on' . strtr( ucfirst( $name ), ':-', '__' );
+		foreach ( $hookContainer->getHandlers( $name ) as $obj ) {
+			$handlers[] = [ $obj, $funcName ];
+		}
+		return $handlers;
 	}
 
 	/**

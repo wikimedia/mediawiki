@@ -33,7 +33,7 @@ class FauxGlobalHookArrayTest extends \MediaWikiUnitTestCase {
 		$hooks['FirstHook'][] = $handler;
 
 		$this->assertTrue( $container->isRegistered( 'FirstHook' ) );
-		$this->assertCount( 1, $container->getHandlerCallbacks( 'FirstHook' ) );
+		$this->assertCount( 1, $container->getLegacyHandlers( 'FirstHook' ) );
 
 		$this->assertTrue( isset( $hooks['FirstHook'] ) );
 		$this->assertCount( 1, $hooks['FirstHook'] );

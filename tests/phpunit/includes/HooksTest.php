@@ -1,7 +1,5 @@
 <?php
 
-use Wikimedia\ScopedCallback;
-
 class HooksTest extends MediaWikiIntegrationTestCase {
 
 	private const MOCK_HOOK_NAME = 'MediaWikiHooksTest001';
@@ -11,23 +9,23 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideHooks() {
-		$obj = new HookTestDummyHookHandlerClass();
+		$i = new HookTestDummyHookHandlerClass();
 
 		return [
 			[
 				'Object and method',
-				[ $obj, 'someNonStatic' ],
+				[ $i, 'someNonStatic' ],
 				'changed-nonstatic',
 				'changed-nonstatic'
 			],
-			[ 'Object and no method', [ $obj ], 'changed-onevent', 'original' ],
+			[ 'Object and no method', [ $i ], 'changed-onevent', 'original' ],
 			[
 				'Object and method with data',
-				[ $obj, 'someNonStaticWithData', 'data' ],
+				[ $i, 'someNonStaticWithData', 'data' ],
 				'data',
 				'original'
 			],
-			[ 'Object and static method', [ $obj, 'someStatic' ], 'changed-static', 'original' ],
+			[ 'Object and static method', [ $i, 'someStatic' ], 'changed-static', 'original' ],
 			[
 				'Class::method static call',
 				[ 'HookTestDummyHookHandlerClass::someStatic' ],
@@ -69,50 +67,6 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame( $expectedFoo, $foo, $msg );
 		$this->assertSame( $expectedBar, $bar, $msg );
-	}
-
-	/**
-	 * @covers Hooks::getHandlers
-	 */
-	public function testGetHandlers() {
-		global $wgHooks;
-		$hookContainer = $this->getServiceContainer()->getHookContainer();
-
-		$this->filterDeprecated( '/\$wgHooks/' );
-		$this->hideDeprecated( 'Hooks::getHandlers' );
-
-		$this->assertSame(
-			[],
-			Hooks::getHandlers( 'MediaWikiHooksTest001' ),
-			'No hooks registered'
-		);
-
-		$a = [ new HookTestDummyHookHandlerClass(), 'someStatic' ];
-		$b = [ new HookTestDummyHookHandlerClass(), 'onMediaWikiHooksTest001' ];
-
-		$wgHooks['MediaWikiHooksTest001'][] = $a;
-
-		$this->assertSame(
-			[ $a ],
-			array_values( Hooks::getHandlers( 'MediaWikiHooksTest001' ) ),
-			'Hook registered by $wgHooks'
-		);
-		$reset = $hookContainer->scopedRegister( 'MediaWikiHooksTest001', $b );
-		$this->assertSame(
-			[ $a, $b ],
-			array_values( Hooks::getHandlers( 'MediaWikiHooksTest001' ) ),
-			'Hooks::getHandlers() should return hooks registered via wgHooks as well as Hooks::register'
-		);
-
-		ScopedCallback::consume( $reset );
-		unset( $wgHooks['MediaWikiHooksTest001'] );
-
-		$hookContainer->register( 'MediaWikiHooksTest001', $b );
-		$this->assertSame(
-			[ $b ],
-			array_values( Hooks::getHandlers( 'MediaWikiHooksTest001' ) ),
-			'Hook registered by Hook::register'
-		);
 	}
 
 	/**
@@ -169,9 +123,8 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 	public function testUncallableFunction() {
 		$this->hideDeprecated( 'Hooks::run' );
 		$hookContainer = $this->getServiceContainer()->getHookContainer();
-
-		$this->expectException( InvalidArgumentException::class );
 		$hookContainer->register( self::MOCK_HOOK_NAME, 'ThisFunctionDoesntExist' );
+		$this->expectExceptionMessage( 'Call to undefined function ThisFunctionDoesntExist' );
 		Hooks::run( self::MOCK_HOOK_NAME, [] );
 	}
 
@@ -235,8 +188,8 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 	public function testCallHook_UnknownDatatype() {
 		$this->hideDeprecated( 'Hooks::run' );
 		$hookContainer = $this->getServiceContainer()->getHookContainer();
-		$this->expectException( InvalidArgumentException::class );
 		$hookContainer->register( self::MOCK_HOOK_NAME, 12345 );
+		$this->expectException( UnexpectedValueException::class );
 		Hooks::run( self::MOCK_HOOK_NAME );
 	}
 
@@ -246,10 +199,9 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 	public function testCallHook_Deprecated() {
 		$hookContainer = $this->getServiceContainer()->getHookContainer();
 		$hookContainer->register( self::MOCK_HOOK_NAME, 'HookTestDummyHookHandlerClass::someStatic' );
-		$this->expectDeprecationAndContinue( '/Use of MediaWikiHooksTest001 hook/' );
+		$this->expectDeprecation();
 
 		$a = $b = 0;
-		$this->hideDeprecated( 'Hooks::run' );
 		Hooks::run( self::MOCK_HOOK_NAME, [ $a, $b ], '1.31' );
 	}
 
@@ -293,7 +245,9 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 		$foo = 'original';
 
 		$this->expectException( UnexpectedValueException::class );
-		$this->expectExceptionMessage( 'unabortable MediaWikiHooksTest001' );
+		$this->expectExceptionMessage( 'Invalid return from hook-MediaWikiHooksTest001-closure for ' .
+			'unabortable MediaWikiHooksTest001'
+		);
 		Hooks::runWithoutAbort( self::MOCK_HOOK_NAME, [ &$foo ] );
 	}
 
@@ -306,7 +260,7 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 		$hookContainer->register( self::MOCK_HOOK_NAME, static function () {
 			return 'test';
 		} );
-		$this->expectException( UnexpectedValueException::class );
+		$this->expectDeprecation();
 		Hooks::run( self::MOCK_HOOK_NAME, [] );
 	}
 }

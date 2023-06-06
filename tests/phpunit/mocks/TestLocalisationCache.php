@@ -25,6 +25,32 @@ class TestLocalisationCache extends LocalisationCache {
 		$this->selfAccess = TestingAccessWrapper::newFromObject( $this );
 	}
 
+	/**
+	 * Recurse through the given array and replace every object by a scalar value that can be
+	 * serialized as JSON to use as a hash key.
+	 *
+	 * @param array $arr
+	 * @return array
+	 */
+	private static function hashiblifyArray( array $arr ): array {
+		foreach ( $arr as $key => $val ) {
+			if ( is_array( $val ) ) {
+				$arr[$key] = self::hashiblifyArray( $val );
+			} elseif ( is_object( $val ) ) {
+				// spl_object_hash() may return duplicate values if an object is destroyed and a new
+				// one gets its hash and happens to be registered in the same hook in the same
+				// location. This seems unlikely, but let's be safe and maintain a reference so it
+				// can't happen. (In practice, there are probably no objects in the hooks at all.)
+				static $objects = [];
+				if ( !in_array( $val, $objects, true ) ) {
+					$objects[] = $val;
+				}
+				$arr[$key] = spl_object_hash( $val );
+			}
+		}
+		return $arr;
+	}
+
 	public function recache( $code ) {
 		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 		// Test run performance is killed if we have to regenerate l10n for every test
@@ -32,8 +58,11 @@ class TestLocalisationCache extends LocalisationCache {
 			$code,
 			$this->selfAccess->options->get( MainConfigNames::ExtensionMessagesFiles ),
 			$this->selfAccess->options->get( MainConfigNames::MessagesDirs ),
-			$hookContainer->getHandlerDescriptions( 'LocalisationCacheRecacheFallback' ),
-			$hookContainer->getHandlerDescriptions( 'LocalisationCacheRecache' ),
+			// json_encode doesn't handle objects well
+			self::hashiblifyArray( $hookContainer->getLegacyHandlers( 'LocalisationCacheRecacheFallback' ) ),
+			self::hashiblifyArray( $hookContainer->getHandlers( 'LocalisationCacheRecacheFallback' ) ),
+			self::hashiblifyArray( $hookContainer->getLegacyHandlers( 'LocalisationCacheRecache' ) ),
+			self::hashiblifyArray( $hookContainer->getHandlers( 'LocalisationCacheRecache' ) ),
 		] ) );
 		if ( isset( self::$testingCache[$cacheKey] ) ) {
 			$this->data[$code] = self::$testingCache[$cacheKey];

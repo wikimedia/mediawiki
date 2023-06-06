@@ -72,9 +72,7 @@ class FauxHookHandlerArray implements \ArrayAccess, \IteratorAggregate {
 
 	private function getHandler( $offset ) {
 		if ( $this->handlers === null ) {
-			// NOTE: getHandlerCallbacks() only exists to support this.
-			//       It should be deleted when we no longer need it here.
-			$this->handlers = $this->hookContainer->getHandlerCallbacks( $this->name );
+			$this->handlers = $this->hookContainer->getLegacyHandlers( $this->name );
 		}
 
 		return $this->handlers[$offset] ?? null;
@@ -83,9 +81,7 @@ class FauxHookHandlerArray implements \ArrayAccess, \IteratorAggregate {
 	#[\ReturnTypeWillChange]
 	public function getIterator() {
 		if ( $this->handlers === null ) {
-			// NOTE: getHandlerCallbacks() only exists to support this.
-			//       It should be deleted when we no longer need it here.
-			$this->handlers = $this->hookContainer->getHandlerCallbacks( $this->name );
+			$this->handlers = $this->hookContainer->getLegacyHandlers( $this->name );
 		}
 
 		return new \ArrayIterator( $this->handlers );

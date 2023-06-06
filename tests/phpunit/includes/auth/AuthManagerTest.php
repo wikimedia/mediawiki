@@ -55,6 +55,8 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 
 	/** @var HookContainer */
 	private $hookContainer;
+	/** @var array */
+	private $authHooks;
 
 	/** @var UserNameUtils */
 	protected $userNameUtils;
@@ -114,7 +116,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$mock = $this->getMockBuilder( $hookInterface )
 			->onlyMethods( [ "on$hook" ] )
 			->getMock();
-		$this->hookContainer->register( $hook, $mock );
+		$this->authHooks[$hook][] = $mock;
 		return $mock->expects( $expect )->method( "on$hook" );
 	}
 
@@ -123,7 +125,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	 * @param string $hook
 	 */
 	protected function unhook( $hook ) {
-		$this->hookContainer->clear( $hook );
+		$this->authHooks[$hook] = [];
 	}
 
 	/**
@@ -224,9 +226,21 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$this->watchlistManager = $this->getServiceContainer()->getWatchlistManager();
 		}
 		if ( $regen || !$this->hookContainer ) {
-			// Set up a HookContainer we control
+			// Set up a HookContainer similar to the normal one except that it
+			// gets global hooks from $this->authHooks instead of $wgHooks
 			$this->hookContainer = new HookContainer(
-				new StaticHookRegistry( [], [], [] ),
+				new class( $this->authHooks ) extends StaticHookRegistry {
+					private $hooks;
+
+					public function __construct( &$hooks ) {
+						parent::__construct();
+						$this->hooks =& $hooks;
+					}
+
+					public function getGlobalHooks() {
+						return $this->hooks;
+					}
+				},
 				$this->objectFactory
 			);
 		}

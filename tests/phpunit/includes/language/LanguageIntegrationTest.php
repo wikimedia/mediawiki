@@ -44,7 +44,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		// Don't allow installed hooks to run, except if a test restores them via origHooks (needed
 		// for testIsKnownLanguageTag_cldr)
 		$this->origHandlers = $this->getServiceContainer()->getHookContainer()
-			->getHandlerCallbacks( 'LanguageGetTranslatedLanguageNames' );
+			->getLegacyHandlers( 'LanguageGetTranslatedLanguageNames' );
 
 		$this->clearHook( 'LanguageGetTranslatedLanguageNames' );
 		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, true );

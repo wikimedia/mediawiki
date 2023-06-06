@@ -1084,44 +1084,41 @@ class SpecialVersion extends SpecialPage {
 	 * @return string HTML
 	 */
 	private function getHooks() {
-		if ( !$this->getConfig()->get( MainConfigNames::SpecialVersionShowHooks ) ) {
-			return '';
-		}
+		if ( $this->getConfig()->get( MainConfigNames::SpecialVersionShowHooks ) ) {
+			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+			$hookNames = $hookContainer->getHookNames();
+			sort( $hookNames );
 
-		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		$hookNames = $hookContainer->getHookNames();
-
-		if ( !$hookNames ) {
-			return '';
-		}
-
-		sort( $hookNames );
-
-		$ret = [];
-		$this->addTocSection( 'version-hooks', 'mw-version-hooks' );
-		$ret[] = Html::element(
-			'h2',
-			[ 'id' => 'mw-version-hooks' ],
-			$this->msg( 'version-hooks' )->text()
-		);
-		$ret[] = Html::openElement( 'table', [ 'class' => 'wikitable', 'id' => 'sv-hooks' ] );
-		$ret[] = Html::openElement( 'tr' );
-		$ret[] = Html::element( 'th', [], $this->msg( 'version-hook-name' )->text() );
-		$ret[] = Html::element( 'th', [], $this->msg( 'version-hook-subscribedby' )->text() );
-		$ret[] = Html::closeElement( 'tr' );
-
-		foreach ( $hookNames as $name ) {
-			$handlers = $hookContainer->getHandlerDescriptions( $name );
-
+			$ret = [];
+			$this->addTocSection( 'version-hooks', 'mw-version-hooks' );
+			$ret[] = Html::element(
+				'h2',
+				[ 'id' => 'mw-version-hooks' ],
+				$this->msg( 'version-hooks' )->text()
+			);
+			$ret[] = Html::openElement( 'table', [ 'class' => 'wikitable', 'id' => 'sv-hooks' ] );
 			$ret[] = Html::openElement( 'tr' );
-			$ret[] = Html::element( 'td', [], $name );
-			$ret[] = Html::element( 'td', [], $this->listToText( $handlers ) );
+			$ret[] = Html::element( 'th', [], $this->msg( 'version-hook-name' )->text() );
+			$ret[] = Html::element( 'th', [], $this->msg( 'version-hook-subscribedby' )->text() );
 			$ret[] = Html::closeElement( 'tr' );
+
+			foreach ( $hookNames as $hook ) {
+				$hooks = $hookContainer->getLegacyHandlers( $hook );
+				if ( !$hooks ) {
+					continue;
+				}
+				$ret[] = Html::openElement( 'tr' );
+				$ret[] = Html::element( 'td', [], $hook );
+				$ret[] = Html::element( 'td', [], $this->listToText( $hooks ) );
+				$ret[] = Html::closeElement( 'tr' );
+			}
+
+			$ret[] = Html::closeElement( 'table' );
+
+			return implode( "\n", $ret );
 		}
 
-		$ret[] = Html::closeElement( 'table' );
-
-		return implode( "\n", $ret );
+		return '';
 	}
 
 	private function openExtType( string $text = null, string $name = null ) {
