@@ -252,7 +252,7 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, (int)$this->db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
 
 		$this->db->replace( $dTable, 'k', $rows, __METHOD__ );
-		$this->assertSame( 2, $this->db->affectedRows() );
+		$this->assertSame( 1, $this->db->affectedRows() );
 		$this->assertSame( 2, $this->db->insertId() );
 
 		$this->assertSame( 2, (int)$this->db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );

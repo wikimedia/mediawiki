@@ -1677,7 +1677,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					[ $this->platform->makeKeyCollisionCondition( [ $row ], $identityKey ) ]
 				);
 				$this->query( $query, $fname );
-				$affectedRowCount += $this->lastQueryAffectedRows;
 				// Insert the new row
 				$query = new Query(
 					$this->platform->dispatchingInsertSqlText( $table, $row, [] ),
