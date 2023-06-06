@@ -33,14 +33,22 @@ class Query {
 	private $flags;
 	private $queryVerb;
 	private $queryTables;
+	private string $cleanedSql;
 
 	/**
 	 * @param string $sql
 	 * @param int $flags
 	 * @param string $queryVerb
 	 * @param string|string[]|null|false $queryTables
+	 * @param string $cleanedSql
 	 */
-	public function __construct( string $sql, $flags, $queryVerb, $queryTables = [] ) {
+	public function __construct(
+		string $sql,
+		$flags,
+		$queryVerb,
+		$queryTables = [],
+		$cleanedSql = ''
+	) {
 		$this->sql = $sql;
 		$this->flags = $flags;
 		$this->queryVerb = $queryVerb;
@@ -53,6 +61,7 @@ class Query {
 		} else {
 			throw new DBLanguageError( __METHOD__ . ' called with incorrect table parameter' );
 		}
+		$this->cleanedSql = substr( $cleanedSql, 0, 255 );
 	}
 
 	public function isWriteQuery() {
@@ -97,5 +106,9 @@ class Query {
 
 	public function getTables(): array {
 		return $this->queryTables;
+	}
+
+	public function getCleanedSql(): string {
+		return $this->cleanedSql;
 	}
 }

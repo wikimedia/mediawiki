@@ -797,8 +797,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			// No temporary tables written to either
 			$tempTableChanges = [];
 		}
-		// Add agent and calling method comments to the SQL
-		$cStatement = $this->makeCommentedSql( $sql->getSQL(), $fname );
 
 		// Whether a silent retry attempt is left for recoverable connection loss errors
 		$retryLeft = !$this->flagsHolder::contains( $flags, self::QUERY_NO_RETRY );
@@ -812,7 +810,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$retryLeft = false;
 			}
 			// Send the query statement to the server and fetch any results.
-			$status = $this->attemptQuery( $sql, $cStatement, $fname, $isPermWrite );
+			$status = $this->attemptQuery( $sql, $fname, $isPermWrite );
 		} while (
 			// An error occurred that can be recovered from via query retry
 			$this->flagsHolder::contains( $status->flags, self::ERR_RETRY_QUERY ) &&
@@ -843,7 +841,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @see doSingleStatementQuery()
 	 *
 	 * @param Query $sql SQL statement
-	 * @param string $cStatement commented SQL statement
 	 * @param string $fname Name of the calling function
 	 * @param bool $isPermWrite Whether it's a query writing to permanent tables
 	 * @return QueryStatus statement result
@@ -851,7 +848,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	private function attemptQuery(
 		$sql,
-		$cStatement,
 		string $fname,
 		bool $isPermWrite
 	) {
@@ -866,10 +862,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		);
 		// Get the transaction-aware SQL string used for profiling
 		$prefix = ( $this->getTopologyRole() === self::ROLE_STREAMING_MASTER ) ? 'role-primary: ' : '';
-		$generalizedSql = new GeneralizedSql( $sql->getSQL(), $prefix );
 
 		// Start profile section
-		$ps = $this->profiler ? ( $this->profiler )( $generalizedSql->stringify() ) : null;
+		if ( $sql->getCleanedSql() ) {
+			$generalizedSql = $sql;
+			$ps = $this->profiler ? ( $this->profiler )( $sql->getCleanedSql() ) : null;
+		} else {
+			$generalizedSql = new GeneralizedSql( $sql->getSQL(), $prefix );
+			$ps = $this->profiler ? ( $this->profiler )( $generalizedSql->stringify() ) : null;
+		}
+		// Add agent and calling method comments to the SQL
+		$cStatement = $this->makeCommentedSql( $sql->getSQL(), $fname );
 		$startTime = microtime( true );
 
 		// Clear any overrides from a prior "query method". Note that this does not affect
@@ -1012,7 +1015,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// NOTE: Don't add varying ids such as request id or session id to the comment.
 		// It would break aggregation of similar queries in analysis tools (see T193050#7512149)
 		$encName = preg_replace( '/[\x00-\x1F\/]/', '-', "$fname {$this->agent}" );
-
 		return preg_replace( '/\s|$/', " /* $encName */ ", $sql, 1 );
 	}
 
@@ -1670,14 +1672,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		try {
 			foreach ( $rows as $row ) {
 				// Delete any conflicting rows (including ones inserted from $rows)
-				$query = new Query(
-					$this->platform->deleteSqlText(
-						$table,
-						[ $this->platform->makeKeyCollisionCondition( [ $row ], $identityKey ) ]
-					),
-					self::QUERY_CHANGE_ROWS,
-					'DELETE',
-					$table
+				$query = $this->platform->deleteSqlText(
+					$table,
+					[ $this->platform->makeKeyCollisionCondition( [ $row ], $identityKey ) ]
 				);
 				$this->query( $query, $fname );
 				$affectedRowCount += $this->lastQueryAffectedRows;
@@ -1875,9 +1872,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function delete( $table, $conds, $fname = __METHOD__ ) {
-		$sql = $this->platform->deleteSqlText( $table, $conds );
-		$query = new Query( $sql, self::QUERY_CHANGE_ROWS, 'DELETE', $table );
-		$this->query( $query, $fname );
+		$this->query( $this->platform->deleteSqlText( $table, $conds ), $fname );
 
 		return true;
 	}

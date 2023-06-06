@@ -583,12 +583,14 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @dataProvider provideDelete
 	 */
-	public function testDelete( $sql, $sqlText ) {
-		$actual = $this->platform->deleteSqlText(
+	public function testDelete( $sql, $sqlText, $cleanedSql ) {
+		$res = $this->platform->deleteSqlText(
 			$sql['table'],
-			$sql['conds']
+			$sql['conds'],
+			'Foo::bar()'
 		);
-		$this->assertSame( $sqlText, $actual );
+		$this->assertSame( $sqlText, $res->getSQL() );
+		$this->assertSame( $cleanedSql, $res->getCleanedSql() );
 	}
 
 	public static function provideDelete() {
@@ -598,23 +600,24 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 					'table' => 'table',
 					'conds' => [ 'alias' => 'text' ],
 				],
-				"DELETE FROM table " .
-				"WHERE alias = 'text'"
+				"DELETE FROM table WHERE alias = 'text'",
+				"DELETE FROM table WHERE alias = '?'"
 			],
 			[
 				[
 					'table' => 'table',
 					'conds' => 'alias = \'text\'',
 				],
-				"DELETE FROM table " .
-				"WHERE alias = 'text'"
+				"DELETE FROM table WHERE alias = 'text'",
+				"DELETE FROM table WHERE ?"
 			],
 			[
 				[
 					'table' => 'table',
 					'conds' => '*',
 				],
-				"DELETE FROM table"
+				"DELETE FROM table",
+				"DELETE FROM table",
 			],
 		];
 	}
