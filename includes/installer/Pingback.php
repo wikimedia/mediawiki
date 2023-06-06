@@ -116,7 +116,17 @@ class Pingback {
 			return;
 		}
 
-		$this->markSent();
+		// Record the fact that we have sent a pingback for this MediaWiki version,
+		// so we don't submit data multiple times.
+		$dbw = $this->dbProvider->getPrimaryDatabase();
+		$timestamp = ConvertibleTimestamp::time();
+		$dbw->upsert(
+			'updatelog',
+			[ 'ul_key' => $this->key, 'ul_value' => $timestamp ],
+			'ul_key',
+			[ 'ul_value' => $timestamp ],
+			__METHOD__
+		);
 		$this->logger->debug( __METHOD__ . ": pingback sent OK ({$this->key})" );
 	}
 
@@ -275,24 +285,6 @@ class Pingback {
 		$queryString = rawurlencode( str_replace( ' ', '\u0020', $json ) ) . ';';
 		$url = 'https://www.mediawiki.org/beacon/event?' . $queryString;
 		return $this->http->post( $url, [], __METHOD__ ) !== null;
-	}
-
-	/**
-	 * Record the fact that we have sent a pingback for this MediaWiki version,
-	 * to ensure we don't submit data multiple times.
-	 *
-	 * @throws DBError If timestamp upsert fails
-	 */
-	private function markSent(): void {
-		$dbw = $this->dbProvider->getPrimaryDatabase();
-		$timestamp = ConvertibleTimestamp::time();
-		$dbw->upsert(
-			'updatelog',
-			[ 'ul_key' => $this->key, 'ul_value' => $timestamp ],
-			'ul_key',
-			[ 'ul_value' => $timestamp ],
-			__METHOD__
-		);
 	}
 
 	/**
