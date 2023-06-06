@@ -68,7 +68,7 @@ For notes on 1.40.x and older releases, see HISTORY.
 
 ==== Changed external libraries ====
 * Updated codex, codex-search, codex-design-tokens and codex-icons
-  from v0.6.2 to v0.11.0.
+  from v0.6.2 to v0.12.0.
 * Updated Mustache from 3.0.1 to 4.2.0.
 * Updated OOjs from 6.0.0 to 7.0.1.
 * Updated wikimedia/composer-merge-plugin from 2.0.1 to 2.1.0.
