@@ -291,6 +291,8 @@ because of Phabricator reports.
   future as it is resource intensive and degrades performance.
 * The EmailUserPermissionsErrors hook has been deprecated in favour of the
   UserCanSendEmail hook.
+* SiteConfiguration::extractVar() and ::extractGlobal() have been deprecated
+  and also emit deprecation warnings.
 * Hooks::isRegistered(), ::getHandlers(), ::run() and ::runWithoutAbort(),
   deprecated in 1.35, now emit deprecation warnings.
 * …
