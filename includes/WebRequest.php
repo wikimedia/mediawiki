@@ -405,9 +405,8 @@ class WebRequest {
 		foreach ( (array)$bases as $keyValue => $base ) {
 			// Find the part after $wgArticlePath
 			$base = str_replace( '$1', '', $base );
-			$baseLen = strlen( $base );
-			if ( substr( $path, 0, $baseLen ) == $base ) {
-				$raw = substr( $path, $baseLen );
+			if ( str_starts_with( $path, $base ) ) {
+				$raw = substr( $path, strlen( $base ) );
 				if ( $raw !== '' ) {
 					$matches = [ 'title' => rawurldecode( $raw ) ];
 					if ( $key ) {

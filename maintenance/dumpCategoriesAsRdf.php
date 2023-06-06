@@ -121,7 +121,7 @@ class DumpCategoriesAsRdf extends Maintenance {
 	 */
 	public function addDumpHeader( $timestamp ) {
 		$licenseUrl = $this->getConfig()->get( MainConfigNames::RightsUrl );
-		if ( substr( $licenseUrl, 0, 2 ) == '//' ) {
+		if ( str_starts_with( $licenseUrl, '//' ) ) {
 			$licenseUrl = 'https:' . $licenseUrl;
 		}
 		$urlUtils = MediaWikiServices::getInstance()->getUrlUtils();

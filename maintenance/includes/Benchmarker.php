@@ -225,7 +225,7 @@ abstract class Benchmarker extends Maintenance {
 	protected function loadFile( $file ) {
 		$content = file_get_contents( $file );
 		// Detect GZIP compression header
-		if ( substr( $content, 0, 2 ) === "\037\213" ) {
+		if ( str_starts_with( $content, "\037\213" ) ) {
 			$content = gzdecode( $content );
 		}
 		return $content;

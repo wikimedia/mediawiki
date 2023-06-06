@@ -134,9 +134,8 @@ abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
 			return $key;
 		}
 
-		$prefixLength = strlen( $this->routingPrefix );
-		if ( substr( $key, 0, $prefixLength ) === $this->routingPrefix ) {
-			return substr( $key, $prefixLength );
+		if ( str_starts_with( $key, $this->routingPrefix ) ) {
+			return substr( $key, strlen( $this->routingPrefix ) );
 		}
 
 		return $key;
