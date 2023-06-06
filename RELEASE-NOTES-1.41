@@ -119,6 +119,8 @@ because of Phabricator reports.
 * The following unused IDatabase methods were removed without deprecation:
   - ::wasLockTimeout()
   - ::wasConnectionLoss()
+* The GenericArrayObject class, deprecated in 1.40,
+  has been removed.
 * PrevNextNavigationRenderer class, deprecated in 1.39,
   has been removed.
 * class alias MediaWiki\User\WatchlistNotificationManager, deprecated in 1.36,
