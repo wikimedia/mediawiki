@@ -135,7 +135,7 @@ ChangesListWrapperWidget.prototype.onModelUpdate = function (
 						// * recentchanges-network
 						// * recentchanges-notargetpage
 						// * allpagesbadtitle
-						.text( mw.message( this.getMsgKeyForNoResults( noResultsDetails ) ).parse() )
+						.html( mw.message( this.getMsgKeyForNoResults( noResultsDetails ) ).parse() )
 				);
 
 			// remove all classes matching mw-changeslist-*
