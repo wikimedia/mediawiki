@@ -1,6 +1,6 @@
 
 // Do not edit directly
-// Generated on Tue, 23 May 2023 21:03:14 GMT
+// Generated on Tue, 06 Jun 2023 20:31:41 GMT
 
 @font-size-base: 14px;
 @font-size-x-small: 0.8571429em; // `x` stands for extra. In this case extra small.
@@ -92,13 +92,12 @@
 @z-index-stacking-2: 2;
 @z-index-stacking-3: 3;
 @box-sizing-base: border-box;
-@min-size-base: 32px; // TODO: Deprecate key and change to `min-size-component`?
+@min-size-interactive-pointer: 32px;
+@min-size-interactive-touch: 44px;
 @min-size-search-figure: 40px; // Alias for use in TypeaheadSearch and Thumbnail components for the same purpose and for better code readability.
 @min-size-icon-x-small: 12px;
 @min-size-icon-small: 16px;
 @min-size-icon-medium: 20px;
-@min-size-interactive-pointer: 32px;
-@min-size-interactive-touch: 44px;
 @min-size-input-binary: 20px;
 @min-size-toggle-switch-grip: 20px;
 @size-0: 0;
@@ -289,6 +288,8 @@
 @background-color-primary--hover: rgba( 51, 102, 204, 0.1 );
 // Warning: the following token name is deprecated (Use `color-subtle` instead. Note, that `color-subtle` is using `color.gray600` instead of `color.gray500` now.)
 @color-base--subtle: #72777d;
+// Warning: the following token name is deprecated (Use `min-size-interactive-pointer`/`min-size-interactive-touch` instead.)
+@min-size-base: 32px;
 // Warning: the following token name is deprecated, use min-width-breakpoint-mobile instead. (Legacy breakpoint. Use `min-width`/`max-width` breakpoint token instead. A mobile device's screen width. Many older feature phones have screens smaller than this value.)
 @width-breakpoint-mobile: 320px;
 // Warning: the following token name is deprecated (Legacy breakpoint. Use `min-width`/`max-width` breakpoint token instead. A tablet device's screen width.)

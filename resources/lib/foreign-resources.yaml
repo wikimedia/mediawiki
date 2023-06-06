@@ -146,8 +146,8 @@ codex:
   authors: Design Systems team, Wikimedia Foundation
   version: 0.11.0
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-0.11.0.tgz
-  integrity: sha512-DYI9ewtEqNykzYp1nMcyrtbKpGbVPTWkbxV9QJIDIDe2GayA8XbfK/7u0V5cnTU90iqCLwqsEnQZiXX4QDvsWg==
+  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-0.12.0.tgz
+  integrity: sha384-sQjXN6MeS/QnDZmH4pWG/MQsaTyAdbB8x1b5TxFtxBxyhQsH+CDSJuVmFD9/tFav
   dest:
     package/dist/codex.mjs:
     package/dist/codex.umd.js:
@@ -165,8 +165,8 @@ codex-design-tokens:
   authors: Design Systems team, Wikimedia Foundation
   version: 0.11.0
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-0.11.0.tgz
-  integrity: sha384-nmByU1lD0yg5Q1kgCnm0y9fXCKBtTlRfzZHicIkI+LcqkenMDOHmJ6JSM9XIK01v
+  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-0.12.0.tgz
+  integrity: sha384-BbB/aCCDc7LyXrA7/NATTQWYFtGWo1EFS+FywCqyYW6Me43yz8KOWlHqHrXXuBah
   dest:
     package/dist/theme-wikimedia-ui.less:
     package/dist/theme-wikimedia-ui-legacy.less:
@@ -179,8 +179,8 @@ codex-icons:
   authors: Design Systems team, Wikimedia Foundation
   version: 0.11.0
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-0.11.0.tgz
-  integrity: sha384-jhGSjv85E+L30XFhxRoDXnuDc1MFhZVCpX6A7iDcx2d38FnqOW40BPrj43fMGRdw
+  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-0.12.0.tgz
+  integrity: sha384-tcJgEkSN8WBA+zG+feaAmNiHfurOy1xmUBB9SJJiOm4vflpHKUTjojzcvWdiS+jS
   dest:
     package/dist/codex-icons.json:
     package/dist/codex-icon-paths.less:
@@ -193,8 +193,8 @@ codex-search:
   authors: Design Systems team, Wikimedia Foundation
   version: 0.11.0
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-search/-/codex-search-0.11.0.tgz
-  integrity: sha384-e9+fWWoEkGR7fC/dmk+b3LRtn94cAQ9275uYdRNCwPq268ND4fv4uo4bqKZSSV9u
+  src: https://registry.npmjs.org/@wikimedia/codex-search/-/codex-search-0.12.0.tgz
+  integrity: sha384-PUk5q84eIVWhGbqavUtjFchDNO3YUB8eC75j4VhmHE2SgcOGOymME5wBwHBPE+uo
   dest:
     package/dist/codex-search.mjs:
     package/dist/codex-search.umd.js:
