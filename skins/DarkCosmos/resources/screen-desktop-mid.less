@@ -1,0 +1,53 @@
+@import 'variables.less';
+
+// Two-column layout
+
+#mw-content-block {
+	clear: both;
+}
+
+#p-logo-text {
+	min-width: 14em;
+}
+
+#mw-site-navigation,
+#mw-related-navigation {
+	.column-left();
+	display: block;
+	width: 14em;
+	position: relative;
+}
+
+#mw-site-navigation {
+	// keep margins from overlapping
+	overflow: hidden;
+}
+
+#mw-related-navigation > div.sidebar-chunk:first-child {
+	margin-top: 0;
+}
+
+#mw-content-wrapper {
+	float: right;
+	margin-left: -14em;
+	width: 100%;
+}
+
+#mw-content,
+#content-bottom-stuff {
+	margin-left: 14em;
+}
+
+// Redundant content category list
+#catlinks {
+	display: none;
+}
+
+.color-right {
+	background: rgb(55,55,55);
+}
+
+.ts-inner,
+.color-middle-container {
+	max-width: 150em - 14em;
+}

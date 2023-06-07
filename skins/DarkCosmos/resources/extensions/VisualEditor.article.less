@@ -1,0 +1,32 @@
+@import '../variables.less';
+
+@media screen {
+	.client-js {
+		.mw-editsection-divider {
+			display: none;
+		}
+
+		#ca-edit a {
+			.ca-icon( '../images/pencil-source-grey' );
+		}
+
+		#ca-ve-edit a {
+			.ca-icon( '../images/pencil-grey' );
+		}
+
+		@media ( max-width: 850px ) {
+			#ca-ve-edit a {
+				.ca-icon-only();
+			}
+		}
+	}
+
+	.client-nojs,
+	.ve-not-available {
+		.mw-editsection a {
+			// make the icon part of the link
+			padding-left: 20px;
+			margin-left: -20px;
+		}
+	}
+}

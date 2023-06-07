@@ -1,0 +1,83 @@
+@import '../variables.less';
+
+@media screen {
+	div.mw-echo-ui-overlay {
+		z-index: 100;
+	}
+
+	.mw-echo-alert {
+		display: block;
+		padding: 0.25em 1em;
+		margin-left: -1em;
+		margin-right: -1em;
+	}
+
+	/* Handle and position Echo icons */
+	#personal-extra {
+		white-space: nowrap;
+
+		ul {
+			list-style: none;
+			margin: 0.85em 0 0;
+			padding: 0;
+		}
+
+		li {
+			margin: 0 0.4em 0 0;
+			float: left;
+		}
+	}
+
+	@media ( min-width: 851px ) {
+		div#personal {
+			padding-left: 0;
+		}
+
+		#personal-extra {
+			float: left;
+			padding: 0 0.75em;
+		}
+	}
+
+	@media ( max-width: 850px ) {
+		.mw-echo-ui-notificationBadgeButtonPopupWidget {
+			z-index: 2;
+		}
+
+		#personal-extra {
+			position: absolute;
+			top: 0.9em;
+			right: 8.75em;
+
+			li {
+				margin-right: 1.25em;
+			}
+		}
+
+		/* Temporary hack:
+		 * Make notifications visible. !important is for overriding echo's inline styles.
+		 * Remove all of this once the underlying OOUI issue is fixed in general for mobile displays.
+		 */
+		.mw-echo-ui-overlay {
+			margin: 0 10px;
+
+			.oo-ui-popupWidget-anchored > .oo-ui-popupWidget-anchor {
+				display: none;
+			}
+
+			.mw-echo-ui-notificationBadgeButtonPopupWidget-popup {
+				left: 0 !important;
+				width: 100%;
+
+				.oo-ui-popupWidget-popup {
+					width: initial !important;
+					max-width: 500px;
+
+					.oo-ui-clippableElement-clippable {
+						width: 100% !important;
+					}
+				}
+			}
+		}
+	}
+}

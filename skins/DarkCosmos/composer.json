@@ -1,0 +1,23 @@
+{
+    "require-dev": {
+        "jakub-onderka/php-parallel-lint": "1.0.0",
+        "mediawiki/mediawiki-codesniffer": "24.0.0",
+        "jakub-onderka/php-console-highlighter": "0.3.2",
+        "mediawiki/minus-x": "0.3.1",
+        "mediawiki/mediawiki-phan-config": "0.6.1"
+    },
+    "scripts": {
+        "fix": [
+            "phpcbf",
+            "minus-x fix ."
+        ],
+        "test": [
+            "parallel-lint . --exclude node_modules --exclude vendor",
+            "phpcs -p -s",
+            "minus-x check ."
+        ]
+    },
+    "extra": {
+        "phan-taint-check-plugin": "2.0.1"
+    }
+}

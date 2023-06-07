@@ -1,0 +1,33 @@
+@import 'mediawiki.mixins';
+@import 'themes/wikimedia.less'; // default theme
+// .import-themes(); // might be how we apply any selected theme(s); not implemented
+
+// Should really be part of the theme, but currently too much alignment/positioning
+// breaks if this is changed.
+@font-size: 0.9em;
+
+// Widths
+
+// Remember to also update skin.json (and possibly mobile.js) if you change these
+// For some reason doing @mobile-width + 1px doesn't seem to actually work,
+// so we need both for each thing
+@mobile-width: 850px;
+@desktop-small-floor: 851px;
+@desktop-small-width: 1099px;
+@desktop-mid-floor: 1100px;
+@desktop-mid-width: 1339px;
+@desktop-large-floor: 1340px;
+
+// The max-width for the content
+@content-width: 150em;
+
+@content-padding: 4em;
+
+@column-left-size: 14em;
+@column-right-size: 14em;
+
+@fixed-header-height: 3.125em;
+@color-height: 0.35em;
+
+// DarkCosmos functions
+@import 'mixins.less';

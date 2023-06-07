@@ -1,0 +1,185 @@
+// Miscellaneous assembly
+// Remember to use this for similar things that need to be consistent, not
+// for things that are basically the same thing repeated, which should use
+// a shared class instead.
+
+.background-image-svg(@svg, @fallback) {
+	background-image: url(@svg);
+}
+// To hide objects, but keep them accessible for screen-readers
+.hidden() {
+	position: absolute;
+	top: -9999px;
+	left: 0;
+}
+
+// Icons - hides labels, but keep them accessible for screen-readers
+.icon() {
+	text-indent: -99999px;
+	border: 0;
+	background-color: transparent;
+	background-repeat: no-repeat;
+}
+
+// Icons for the page actions menus
+.ca-icon( @icon: '' ) {
+	.background-image-svg( '@{icon}.svg', '@{icon}.png' );
+	border: 0;
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-position: left top;
+	display: inline-block;
+	margin-bottom: -0.35em;
+	padding: 0 2px 0 20px;
+}
+
+// For use after .ca-icon() ...
+.ca-icon-only() {
+	text-indent: -99999px;
+	width: 20px;
+	overflow: hidden; // T174314
+	box-sizing: border-box;
+	padding: 0;
+}
+
+.box() {
+	background: rgb(69,69,72);
+	border: solid rgb(43,43,46);
+	border-width: 1px 1px 0.2em;
+	padding: 1.25em 1.75em;
+	box-shadow: 0 1px 2px 1px rgba( 0, 0, 0, 0.02 );
+}
+
+.unbox() {
+	background: transparent;
+	border: 0;
+	padding: 0;
+	box-shadow: none;
+}
+
+.nav-block() {
+	.box();
+	padding: 1.5em 1.5em 0;
+	margin: 1em 0;
+	line-height: 1.125;
+	word-wrap: break-word;
+	font-size: 0.95em;
+
+	ul,
+	li {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	h3 {
+		font-weight: normal;
+		font-size: 1em;
+		margin: 0.25em 0 0.75em 0;
+		padding-bottom: 0.15em;
+		border-bottom: solid 2px rgb(43,43,46);
+	}
+
+	.mw-portlet-body {
+		margin-bottom: 2em;
+	}
+
+	li {
+		padding: 0.25em 0;
+	}
+}
+
+.column-right() {
+	padding-left: 1em;
+	box-sizing: border-box;
+
+	.sidebar-chunk {
+		.nav-block();
+	}
+}
+
+.column-left() {
+	padding-right: 1em;
+	box-sizing: border-box;
+
+	.sidebar-chunk {
+		.nav-block();
+	}
+}
+
+// Dropdowns
+.dropdown-header() {
+	cursor: pointer;
+	margin-bottom: -1em;
+	padding-bottom: 1em;
+
+	&:after {
+		display: inline-block;
+		content: '';
+		width: 22px;
+		height: 12px;
+		.background-image-svg( 'images/arrow-down-grey.svg', 'images/arrow-down-grey.png' );
+		background-position: center center;
+		background-repeat: no-repeat;
+	}
+}
+
+.dropdown-menu( @direction: right ) {
+	.nav-block();
+	background: rgb(55,55,55);
+	box-shadow: 0 2px 3px 1px rgba( 0, 0, 0, 0.05 );
+	position: absolute;
+	padding: 20px 2em 0;
+	margin: 0;
+	min-width: 9.153em;
+	top: 2.95em;
+	@{direction}: -1em;
+	overflow: visible;
+	z-index: 3;
+}
+
+.dropdown-pokey() {
+	&:before,
+	&:after {
+		transform: rotate( 360deg ); // to force some smoothing in annoying browsers
+		border-bottom: 10px solid rgb(43,43,46);
+		border-left: 10px solid transparent;
+		border-right: 10px solid transparent;
+		content: '';
+		height: 0;
+		width: 0;
+		position: absolute;
+		right: 1em;
+		z-index: 4;
+	}
+
+	&:before {
+		top: -10px;
+	}
+
+	&:after {
+		border-bottom-color: rgb(55,55,55);
+		top: -8px;
+	}
+}
+
+// Categories on bottom of page
+
+.categories-bottom() {
+	#catlinks-sidebar {
+		display: none;
+	}
+
+	#catlinks {
+		margin: 0 4em;
+		padding: 1em 0 0.5em;
+
+		li {
+			border-left: 0;
+		}
+
+		div {
+			margin: 0 0 0.35em;
+		}
+	}
+}

@@ -1,0 +1,175 @@
+@import 'variables.less';
+
+// Single-column layout with dropdown menus
+
+#mw-content-block {
+	padding: 0;
+	position: relative;
+	// In case of high resolution usage
+	max-width: 150em - 14em - 14em;
+}
+
+.ts-inner {
+	max-width: 150em - 14em - 14em;
+}
+
+#mw-content {
+	border-width: 0 0 1px;
+	clear: both;
+	margin-top: 5.425em;
+}
+
+#mw-content-container {
+	padding-bottom: 0;
+}
+
+.categories-bottom();
+
+#mw-data-after-content {
+	padding: 0 4em;
+}
+
+// Header navigation
+
+.sidebar-chunk {
+	display: inline-block;
+	position: relative;
+
+	h2 {
+		display: inline-block;
+	}
+}
+
+.sidebar-inner,
+#p-logo {
+	display: none !important;
+}
+
+.color-right,
+.color-middle {
+	background: rgb(55,55,55);
+}
+
+// Have these cover the fixed header color-bar using the mw-header-nav-hack (with its own color-bar at the bottom)
+#mw-site-navigation,
+#mw-related-navigation {
+	display: inline-block;
+	position: relative;
+	z-index: 99;
+
+	h2 {
+		font-weight: normal;
+		font-family: 'Linux Libertine', 'Times New Roman', 'Liberation Serif', 'Nimbus Roman', 'Noto Serif', 'Times', serif;
+		font-size: 1.25em;
+		padding: 0.5em 0 0.2em;
+		margin: 0;
+
+		.dropdown-header();
+	}
+}
+
+.client-nojs .sidebar-chunk:hover {
+	.sidebar-inner {
+		display: block !important;
+	}
+}
+
+#mw-header-nav-hack {
+	border-top: solid 2px rgb(43,43,46);
+	display: block;
+	position: absolute;
+	z-index: 98;
+	background: rgb(55,55,55);
+	width: 100%;
+}
+
+#mw-header-nav-hack .color-bar {
+	margin-top: 2.5em; // Height of expected menu header contents
+}
+
+#mw-site-navigation {
+	position: absolute;
+	top: -2.35em;
+	left: 2em;
+
+	.sidebar-chunk {
+		margin: 0 1em 0 0;
+	}
+
+	.sidebar-inner {
+		.dropdown-menu( left );
+	}
+}
+
+#mw-site-navigation .sidebar-chunk h2 span {
+	.dropdown-pokey();
+
+	&:before,
+	&:after {
+		right: 1px;
+		display: none;
+	}
+
+	&:before {
+		top: 34px;
+	}
+
+	&:after {
+		top: 36px;
+	}
+}
+
+#mw-site-navigation .dropdown-active,
+.client-nojs #mw-site-navigation .sidebar-chunk:hover {
+	h2 span {
+		&:before,
+		&:after {
+			display: block;
+		}
+	}
+}
+
+#mw-related-navigation {
+	position: absolute;
+	top: -2.35em;
+	right: 2em;
+
+	.sidebar-chunk {
+		margin: 0 0 0 1em;
+	}
+
+	.sidebar-inner {
+		.dropdown-menu();
+		.dropdown-pokey();
+		top: 2.95em !important; // to override mobile positioning
+	}
+}
+
+// Consistency
+
+#mw-header {
+	padding: 0 2em;
+}
+
+#p-logo-text a {
+	padding-left: 0;
+	padding-right: 0.5em;
+}
+
+#mw-footer {
+	padding: 0 4em;
+}
+
+// Personal menu
+
+#personal {
+	float: right;
+
+	h2 span {
+		max-width: 130px;
+	}
+
+	.dropdown {
+		right: -1em;
+	}
+}

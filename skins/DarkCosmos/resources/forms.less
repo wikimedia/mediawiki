@@ -1,0 +1,68 @@
+@import 'variables.less';
+
+input {
+	font-family: 'Segoe UI', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lato', 'Liberation Sans', 'Noto Sans', 'Helvetica Neue', 'Helvetica', sans-serif;
+}
+
+// Because weird special cases that get broken by this usually aren't forms?
+form input {
+	margin: 0.5em 0;
+	padding: 0.34em;
+}
+
+.mw-input-with-label {
+	display: block; // wat (this is probably an awful idea but aaaaaah whatever)
+}
+
+// Fix for half-arsed date input conversion on special:contributions and anywhere else
+// that's not actually ooui: add just enough margin to keep multiple widgets from fondling
+// each other
+.mw-widget-dateInputWidget {
+	margin: 0 0 0.2em 0;
+}
+
+// More fondling, because we've removed the default margins in normalise
+input[ type='radio' ],
+input[ type='checkbox' ] {
+	margin: 0.35em 0.2em 0.25em 0.35em;
+	box-sizing: border-box;
+}
+
+textarea,
+#searchInput {
+	box-sizing: border-box;
+	box-shadow: inset 0 1px 1px 1px rgba( 0, 0, 0, 0.05 );
+}
+
+textarea {
+	width: 100%;
+	resize: vertical;
+	box-sizing: border-box;
+	line-height: 1.3em;
+	border: solid 1px rgb(43,43,46);
+}
+
+div.editOptions {
+	padding: 1.25em 1.75em;
+	border: solid rgb(43,43,46);
+	border-width: 0 1px 0.2em;
+	background: rgb(43,43,46);
+
+	// For Extension:TemplateSandbox and the like
+	fieldset {
+		margin-top: 1em;
+	}
+}
+
+/* Extension:TemplateSandbox stuff */
+.mw-templatesandbox-page label {
+	padding: 0;
+}
+
+#wpTemplateSandboxPreview {
+	margin-left: 0.5em;
+}
+
+.mw-special-Watchlist .mw-input-with-label {
+	display: inline-block;
+}

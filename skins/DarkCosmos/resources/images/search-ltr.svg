@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="1.0beta2 (2b71d25, 2019-12-03)"
+   sodipodi:docname="magnifying-glass.svg"
+   id="svg14"
+   version="1.1"
+   viewBox="0 0 24 24"
+   height="24"
+   width="24">
+  <metadata
+     id="metadata20">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs18" />
+  <sodipodi:namedview
+     inkscape:current-layer="svg14"
+     inkscape:window-maximized="0"
+     inkscape:window-y="23"
+     inkscape:window-x="0"
+     inkscape:cy="12"
+     inkscape:cx="12"
+     inkscape:zoom="33.166667"
+     showgrid="false"
+     id="namedview16"
+     inkscape:window-height="480"
+     inkscape:window-width="658"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     guidetolerance="10"
+     gridtolerance="10"
+     objecttolerance="10"
+     borderopacity="1"
+     inkscape:document-rotation="0"
+     bordercolor="#666666"
+     pagecolor="#ffffff" />
+  <title
+     id="title10">magnifying glass</title>
+  <path
+     style="fill:#e3dbdb"
+     id="path12"
+     d="M16.474 15.44c1.147-1.375 1.835-3.21 1.835-5.16a7.98 7.98 0 0 0-8.03-8.03 7.98 7.98 0 0 0-8.03 8.03 7.98 7.98 0 0 0 8.03 8.03c1.72 0 3.21-.46 4.47-1.378l4.473 4.474c.46.46 1.262.46 1.836 0l.69-.688-5.278-5.277zm-11.93-5.16c0-3.21 2.524-5.735 5.735-5.735 3.21 0 5.732 2.524 5.732 5.735 0 3.212-2.524 5.736-5.736 5.736-3.212 0-5.736-2.638-5.736-5.736z"
+     fill-rule="evenodd"
+     fill="#54595d" />
+</svg>

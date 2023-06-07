@@ -1,0 +1,749 @@
+@import 'variables.less';
+@import 'mixins.less';
+
+/* Page layout */
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lato', 'Liberation Sans', 'Noto Sans', 'Helvetica Neue', 'Helvetica', sans-serif;
+    color: rgb(215,215,216);
+    background: rgb(50,50,51);
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+#mw-content {
+    .box;
+    background: rgb(74,74,77);
+    padding: 3em;
+    box-shadow: 0 10px 12px 0 rgb(42, 42, 43, 1), 0 12px 26px 0 rgb(42, 42, 43, 1);
+}
+
+#bodyContentOuter {
+    /* Set a z-index for the content to group it away from any nav stuff (extensions) - T200148 */
+    position: relative;
+    z-index: 0;
+}
+
+.mw-body {
+    word-wrap: break-word;
+}
+
+#mw-footer-container {
+    color: rgb(156,156,157);
+    font-size: 0.8em;
+
+    a {
+        color: rgb(46,151,198);
+
+        &:hover,
+        &:visited {
+            color: rgb(46,151,198);
+            text-decoration: underline;
+        }
+    }
+
+    ul {
+        margin: 0;
+    }
+}
+
+#p-logo {
+    text-align: center;
+    margin: auto;
+}
+
+#p-logo-text {
+    max-width: 14em;
+    text-align: center;
+    line-height: 1;
+
+    a {
+        padding: 0.1em 1em 0.2em;
+        color: rgb(206,206,207);
+        font-family: 'Linux Libertine', 'Times New Roman', 'Liberation Serif', 'Nimbus Roman', 'Noto Serif', 'Times', serif;
+        font-variant: small-caps;
+        font-size: 1.85em;
+        display: block;
+
+        /* 13+ character names */
+        &.long {
+            font-size: 1.5em;
+            padding: 0 0.75em 0 0;
+            line-height: 0.8;
+        }
+
+        /* images */
+        &.wordmark {
+            padding: 0 0.5em 0 0;
+        }
+    }
+}
+
+/* Search */
+
+#simpleSearch {
+    box-shadow: inset 0 2px 4px 0 rgba( 0, 0, 0, 0.05 );
+    background: #39393c;
+    position: relative;
+    border: solid 1px #262626;
+    color: rgb(206,206,207);
+}
+
+#searchInput {
+    border: 0;
+    margin: 0;
+    height: 2.1em;
+    padding: 0.4em 4.5em 0.2em 2em;
+    box-shadow: none;
+    background: transparent;
+    width: 100%;
+    min-height: 0;
+    font-family: inherit;
+    color: rgb(206,206,207);
+}
+
+#searchButton,
+#mw-searchButton {
+    position: absolute;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    right: 1.5em;
+    width: 2.5em;
+    height: 2.5em;
+    .icon;
+    .background-image-svg( 'images/search-ltr.svg', 'images/search-ltr.png' );
+    background-position: center 40%;
+    box-shadow: none;
+}
+
+.suggestions {
+    background: #39393c;
+    box-shadow: 0 2px 2px 1px rgba( 0, 0, 0, 0.05 );
+
+    .suggestions-special {
+        background-color: #39393c;
+        border: 1px solid #262626;
+        border-bottom-width: 0.2em;
+        padding: 0.75em 2em;
+        color: rgb(206,206,207);
+    }
+
+    .suggestions-results {
+        background-color: #39393c;
+        border: 1px solid #262626;
+        border-bottom-width: 0.2em;
+    }
+
+    .suggestions-result {
+        color: rgb(206,206,207);
+        padding: 0.65em 2em 0.35em;
+    }
+
+    .suggestions-result-current {
+        background-color: rgb(55,55,55);
+        color: rgb(206,206,207);
+    }
+}
+
+.dropdown-toggle {
+    .dropdown-header();
+}
+
+/* Footer */
+
+#mw-footer {
+    padding-top: 0.5em;
+    padding-bottom: 1em;
+
+    ul,
+    li {
+        margin: 1em 0;
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer-icons {
+        float: right;
+        margin: 0 0 0 1em;
+
+        li {
+            margin: 0 0 1em 0;
+        }
+    }
+
+    .footer-places li {
+        display: inline;
+        padding-right: 1em;
+    }
+
+    #lastmod,
+    #credits,
+    #copyright {
+        display: block;
+    }
+}
+
+/* Content */
+
+.tools-inline,
+.tools-inline & {
+    div,
+    ul,
+    li {
+        list-style: none;
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.tools-inline li {
+    margin: 0.25em 0 1em;
+    border-bottom: solid 3px transparent;
+
+    &:hover {
+        border-bottom-color: rgb(43,43,46);
+    }
+
+    &.selected {
+        border-bottom-color: rgb(70, 160, 190);
+
+        a {
+            color: rgb(206,206,207);
+        }
+    }
+}
+
+#p-namespaces {
+    float: left;
+
+    li {
+        margin-right: 1em;
+    }
+}
+
+#p-views,
+#p-more {
+    float: right;
+
+    li {
+        margin-left: 1em;
+    }
+}
+
+#ca-watch a {
+    .ca-icon( 'images/star' );
+    .ca-icon-only();
+}
+
+#ca-unwatch a {
+    .ca-icon( 'images/star-filled' );
+    .ca-icon-only();
+}
+
+
+#ca-view {
+    .hidden();
+
+    // Let's give anyone who forcibly brings it back a creepy eyeball
+    a {
+        .ca-icon( 'images/eyeball-grey' );
+    }
+}
+
+
+#siteNotice {
+    font-size: 95%;
+    margin: 0.5em auto 1.5em;
+}
+
+#localNotice {
+    .box();
+    padding: 0;
+    text-align: center;
+
+    p {
+        margin-left: 1em;
+        margin-right: 1em;
+    }
+}
+
+/* Misc */
+
+a {
+    text-decoration: none;
+    color: rgb(96,201,248);
+
+    &:hover,
+    &:visited {
+        color: rgb(96,201,248);
+        text-decoration: underline;
+    }
+}
+
+a.new,
+.new a {
+    color: #fd6a5d;
+
+    &:hover,
+    &:visited {
+        color: #fc1703;
+    }
+}
+
+a.mw-selflink {
+    color: rgb(206,206,207);
+    font-weight: bold;
+    text-decoration: inherit;
+}
+
+.mw-editsection {
+    font-family: 'Segoe UI', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lato', 'Liberation Sans', 'Noto Sans', 'Helvetica Neue', 'Helvetica', sans-serif;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    padding-left: 20px;
+    padding-top: 0.5em;
+
+    a {
+        display: inline-block;
+        padding: 0.5em 0 0.25em;
+        margin-right: 1em;
+
+        &:first-of-type {
+            // make the icon part of the first link
+            padding-left: 20px;
+            margin-left: -20px;
+        }
+    }
+}
+
+.mw-editsection-bracket {
+    display: none;
+}
+
+.visual-clear {
+    clear: both;
+}
+
+.mw-indicators {
+    float: right;
+    margin: 0.75em 0 0 1em;
+}
+
+.mw-indicator {
+    display: inline-block;
+}
+
+div.magnify a {
+    display: block;
+    text-indent: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 20px;
+    height: 20px;
+    margin: 0 0 0.5em 0.5em;
+    .background-image-svg( 'images/magnify-ltr.svg', 'images/magnify-ltr.png' );
+}
+
+/* Subtitle area */
+#contentSub {
+    font-size: 84%;
+    color: rgb(206,206,207);
+
+    /* This forces "redirect page" (on a redirect page) etc. on a new line */
+    .subpages {
+        display: block;
+    }
+}
+
+/* pre and code styles copypasted from core
+ * /resources/src/mediawiki.skinning/elements.css and modified a bit */
+
+.screenplay,
+code,
+tt,
+kbd,
+pre,
+samp {
+    font-family: 'Menlo', 'Consolas', 'Monaco', 'Noto Mono', 'Nimbus Mono L', monospace;
+}
+
+code,
+pre,
+.mw-code {
+    color: rgb(206,206,207);
+    background-color: rgb(69,69,72);
+    border: 1px solid rgb(43,43,46);
+}
+
+code {
+    padding: 1px 4px;
+}
+
+pre,
+.mw-code {
+    padding: 1em;
+    /* Wrap lines in overflow. T2260, T103780 */
+    white-space: pre-wrap;
+}
+
+.mw-body {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    dt {
+        font-weight: normal;
+        font-family: 'Linux Libertine', 'Times New Roman', 'Liberation Serif', 'Nimbus Roman', 'Noto Serif', 'Times', serif;
+        line-height: 1.125;
+        margin: 1.25em 0 0.5em;
+    }
+
+    dt {
+        font-weight: bold;
+        font-family: 'Linux Libertine', 'Times New Roman', 'Liberation Serif', 'Nimbus Roman', 'Noto Serif', 'Times', serif;
+        line-height: 1.125;
+        margin: 1.5em 0 0.5em;
+        margin-bottom: 0.1em;
+    }
+
+    dl {
+        margin-top: 0.2em;
+        margin-bottom: 0.5em;
+    }
+
+    form dt {
+        margin: 0 0.5em 0 0;
+    }
+
+    .firstHeading {
+    text-align: center;
+    }
+
+    h1.firstHeading {
+        margin: 0.25em 0 0.5em;
+        border-bottom: solid 4px rgb(70, 160, 190);
+    }
+
+    h1 {
+        font-size: 2em;
+        border-bottom: solid 3px rgb(43,43,46);
+    }
+
+    h2 {
+        font-size: 1.8em;
+        border-bottom: solid 2px rgb(43,43,46);
+    }
+
+    h3 {
+        font-size: 1.6em;
+    }
+
+    h4 {
+        font-size: 1.4em;
+    }
+
+    h5 {
+        font-size: 1.25em;
+    }
+
+    h6 {
+        font-size: 1.2em;
+    }
+
+    dt {
+        margin-top: 1em;
+    }
+
+    dd {
+        margin-bottom: 1em;
+    }
+
+    .mw-changeslist-legend dt {
+        margin: 0 0.5em 0 0;
+    }
+
+    .mw-changeslist-legend dd {
+        margin-bottom: 0;
+    }
+
+    // overflow:hidden on the header itself breaks tall scripts, but we need to hide
+    // overflow on the border itself in output for proper thumb handling. Too weird to
+    // change this everywhere, so we'll just do it for parser output for now.
+    .mw-parser-output {
+        h1,
+        h2 {
+            border-bottom: 0;
+
+            &:after {
+                content: '';
+                display: block;
+                border-bottom: solid 2px rgb(43,43,46);
+                overflow: hidden;
+            }
+        }
+
+        h1:after {
+            border-bottom-width: 3px;
+        }
+    }
+}
+
+#siteSub {
+    margin: -0.5em 0 0.5em 0;
+    font-style: italic;
+    font-family: 'Linux Libertine', 'Times New Roman', 'Liberation Serif', 'Nimbus Roman', 'Noto Serif', 'Times', serif;
+    display: none;
+}
+
+hr {
+    border-width: 1px;
+    border-color: rgb(43,43,46);
+    border-style: solid none solid none;
+    margin: 0.5em 0;
+}
+
+pre {
+    overflow: auto;
+    white-space: pre-wrap;
+}
+
+p {
+    margin: 1em 0;
+}
+
+ul {
+    padding: 0;
+    margin: 0.3em 0 0 1.6em;
+}
+
+.mw-empty-elt {
+    display: none;
+}
+
+.center {
+    margin: auto;
+    text-align: center;
+}
+
+/* Thumbnails */
+.floatright,
+.tright {
+    margin: 0 0 0.5em 0.5em;
+    padding: 0 0 1em 1.5em;
+}
+
+.floatleft,
+.tleft {
+    margin: 0 0.5em 0.5em 0;
+    padding: 0 1.5em 1em 0;
+}
+
+.thumbinner {
+    .box;
+    padding: 0.75em;
+    /* Properly center framed thumbnail images (T219717) */
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+}
+
+.thumbcaption {
+    font-size: 95%;
+    padding: 0.5em 0 0;
+    // For the magnify link on empty captions
+    min-height: 1em;
+}
+
+.thumbinner .thumbimage,
+.thumbborder {
+    border: solid 1px rgb(43,43,46);
+}
+
+.mw-body li.gallerybox div.thumb {
+    .box;
+    padding: 0;
+}
+
+/* Tables of contents */
+ul#filetoc,
+.toc,
+.mw-warning {
+    display: table;
+    .box;
+    padding: 1.25em 1.75em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    min-width: 15em;
+}
+
+.toc {
+    line-height: 1.2;
+
+    ul {
+        margin: 1em 0 0;
+        list-style: none;
+        text-align: left;
+    }
+
+    li {
+        margin: 0.3em 0;
+
+        &:last-child {
+            margin-bottom: 0.5em;
+        }
+    }
+}
+
+ul#filetoc {
+    display: block;
+    margin-bottom: 2em;
+}
+
+.mw-body .toctitle {
+    border-bottom: solid 2px rgb(43,43,46);
+
+    h2 {
+        font-size: 1em;
+        font-family: 'Segoe UI', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lato', 'Liberation Sans', 'Noto Sans', 'Helvetica Neue', 'Helvetica', sans-serif;
+        margin: 0;
+        display: inline;
+
+        &:after {
+            display: none;
+        }
+    }
+}
+
+.toctogglespan {
+    float: right;
+}
+
+// Remove brackets around the show/hide button of the TOC
+// The selectors have a higher specifity than in core
+body :not( :checked ) > .toctogglespan:before,
+body :not( :checked ) > .toctogglespan:after {
+    content: '';
+}
+
+.toctogglelabel {
+    padding-left: 0; // Overwrite label { padding-left: 0.5em; } from forms.less
+    margin-left: 0.5em; // Create new distance to the TOC title without increasing the focus ring
+}
+
+.toclevel-1 {
+    margin-bottom: 0.25em;
+}
+
+.tocnumber {
+    color: rgb(206,206,207);
+}
+
+.skin-darkcosmos .mw-body .oo-ui-tagMultiselectWidget-handle,
+.skin-darkcosmos .mw-body .oo-ui-capsuleMultiselectWidget-handle {
+    margin: 0; // wat
+}
+
+.mw-body .mw-rcfilters-ui-changesListWrapperWidget .mw-changeslist-legend, // wat
+.mw-changeslist-legend,
+.mw-body .mw-search-profile-tabs,
+.mw-body fieldset#mw-searchoptions,
+.wikitable,
+.mw-datatable {
+    color: rgb(206,206,207);
+    .box;
+}
+
+.mw-body .mw-search-profile-tabs {
+    padding: 0.5em;
+}
+
+.mw-datatable,
+.wikitable {
+    border-color: rgb(43,43,46);
+
+    > tr > th,
+    > tr > td,
+    > * > tr > th,
+    > * > tr > td {
+        border: 1px solid rgb(43,43,46);
+        padding: 0.4em 0.5em;
+    }
+
+    > tr > th,
+    > * > tr > th {
+        border-bottom-width: 2px;
+    }
+
+    > tr > td,
+    > * > tr > td {
+        background: rgb(69,69,72);
+    }
+}
+
+.mw-datatable th {
+    background: rgb(53, 126, 151);
+}
+
+.wikitable th {
+    background: rgb(43,43,46);
+}
+
+/* Color bars */
+
+.color-bar {
+    width: 100%;
+}
+
+.color-middle-container {
+    max-width: 150em;
+    margin: 0 auto -0.35em;
+    position: relative;
+}
+
+.color-middle {
+    height: 0.2em;
+    background: rgb(55,55,55);
+    widht: 100%;
+}
+
+.color-left {
+    height: 0.2em;
+    background: rgb(55,55,55);
+    widht: 100%;
+}
+
+.color-right {
+    height: 0.2em;
+    background: rgb(55,55,55);
+    widht: 100%;
+}
+
+/* Portlets */
+.emptyPortlet,
+#mw-page-header-links .emptyPortlet {
+    display: none;
+}
+
+#p-lang.emptyPortlet {
+    display: inherit;
+}
+
+/* Hidden stuff */
+
+#p-namespaces h3,
+#p-views h3,
+#p-more h3,
+#p-search h3 {
+    .hidden;
+}
+

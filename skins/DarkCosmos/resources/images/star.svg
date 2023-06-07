@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="20"
+   height="20"
+   viewBox="0 0 20 20"
+   version="1.1"
+   id="svg14"
+   sodipodi:docname="star.svg"
+   inkscape:version="1.0beta2 (2b71d25, 2019-12-03)">
+  <metadata
+     id="metadata20">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs18" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     inkscape:document-rotation="0"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1697"
+     inkscape:window-height="877"
+     id="namedview16"
+     showgrid="false"
+     inkscape:zoom="39.8"
+     inkscape:cx="13.542714"
+     inkscape:cy="12.311558"
+     inkscape:window-x="0"
+     inkscape:window-y="23"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg14" />
+  <title
+     id="title10">un-star</title>
+  <path
+     d="M 15.979899,5.788019 H 10.386935 L 7.9899497,0.5 5.5929648,5.788019 H 0 l 4.3625126,4.450071 -1.3103518,5.69479 4.9377889,-3.010103 4.9377883,3.034509 -1.302361,-5.694789 z"
+     id="path12"
+     style="fill:#e3dbdb;stroke-width:0.806235"
+     inkscape:connector-curvature="0" />
+</svg>

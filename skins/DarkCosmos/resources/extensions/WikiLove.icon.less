@@ -1,0 +1,20 @@
+@import '../variables.less';
+
+@media screen {
+	#ca-wikilove a {
+		.ca-icon ( '../images/heart-grey' );
+	}
+
+	@media ( min-width: @desktop-small-floor ) {
+		// per setting icon-only
+		#ca-wikilove.icon a {
+			.ca-icon-only();
+		}
+	}
+
+	@media ( max-width: 850px ) {
+		#ca-wikilove a {
+			.ca-icon-only();
+		}
+	}
+}

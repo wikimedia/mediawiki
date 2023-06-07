@@ -1,0 +1,27 @@
+{
+    "@metadata": {
+        "authors": [ "Killarnee" ]
+    },
+    "skinname-darkcosmos": "DarkCosmos",
+    "darkcosmos-desc": "The skin that changes everything",
+    "darkcosmos-anonymous": "Not logged in",
+    "darkcosmos-loggedinas": "Logged in as '''$1'''",
+    "darkcosmos-notloggedin": "Not logged in",
+    "darkcosmos-userpage": "{{GENDER:$1|User}} page",
+    "darkcosmos-talkpage": "{{GENDER:$1|User}} talk",
+    "darkcosmos-pagelog": "Page logs",
+    "darkcosmos-more": "More",
+    "darkcosmos-sitetools": "Tools",
+    "darkcosmos-pageactions": "Page",
+    "darkcosmos-userpagetools": "User",
+    "darkcosmos-action-addsection": "New topic",
+    "darkcosmos-view-view": "Read",
+    "darkcosmos-pagemisc": "More",
+    "darkcosmos-namespaces": "Namespaces",
+    "darkcosmos-pagetools": "Page actions",
+    "darkcosmos-languages": "Languages",
+    "darkcosmos-projects": "Other projects",
+    "darkcosmos-sitetitle": "{{int:Sitetitle}}",
+    "darkcosmos.css": "/* CSS placed here will affect users of the DarkCosmos skin */",
+    "darkcosmos.js": "/* Any JavaScript here will be loaded for users using the DarkCosmos skin */"
+}

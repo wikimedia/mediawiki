@@ -1,0 +1,203 @@
+@import 'variables.less';
+
+// T181484 (firefox and chrome; doesn't fix anything else as yet)
+body,
+html {
+	scroll-padding-top: 3.125em + 0.5em;
+}
+
+// Override menu display from mobile
+// This also requires !importants where they hover and stuff
+.dropdown,
+.sidebar-inner {
+	display: block !important;
+}
+
+.ts-inner {
+	max-width: 150em;
+	box-sizing: border-box;
+	padding: 0 1em;
+	margin: auto;
+}
+
+div.mw-notification-area {
+	top: 3.125em + 0.25em;
+}
+
+/* Header */
+
+#mw-header {
+	.flex-display;
+}
+
+#mw-header-container {
+	/* Stupid IE10+ bug requires defining the height property for this to work
+	 * the way it is intended; without doing that this'll break horribly under
+	 * IE10 and IE11. */
+	height: 0;
+	position: fixed;
+	z-index: 100;
+	top: 0;
+	width: 100%;
+	background: rgb(55,55,55);
+	color: rgb(206,206,207);
+	padding: 0.5em 0 0;
+	min-height: 3.125em;
+	box-sizing: border-box;
+}
+
+#p-logo-text {
+	.flex(0, 0, auto, 1);
+}
+
+#p-search {
+	.flex(1, 1, auto, 2);
+}
+
+#user-tools {
+	.flex(0, 1, auto, 3);
+	display: inline-block;
+
+	h2 span {
+		display: inline-block;
+		max-width: 300px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	// Because the overflow:hidden above messes up the alignment...
+	#personal h2:after {
+		height: 18px;
+	}
+}
+
+#mw-header-nav-hack,
+#mw-header-hack {
+	position: fixed;
+	z-index: 97;
+	top: 3.125em;
+	box-shadow: 0 3px 3px 2px rgba( 0, 0, 0, 0.075 ), 0 0 2px rgba( 0, 0, 0, 0.2 );
+}
+
+#mw-header-nav-hack {
+	display: none;
+}
+
+#personal {
+	display: inline-block;
+	position: relative;
+	padding-left: 1.5em;
+	line-height: 1;
+
+	.dropdown {
+		top: 3.15em;
+		display: none !important;
+		.dropdown-menu();
+		.dropdown-pokey();
+	}
+
+	.pokey {
+		top: 1.9em;
+	}
+
+	h2 {
+		margin: 0;
+		padding: 0.5em 0 0 25px;
+		font-family: 'Linux Libertine', 'Times New Roman', 'Liberation Serif', 'Nimbus Roman', 'Noto Serif', 'Times', serif;
+		font-weight: normal;
+		font-size: 1.25em;
+		.background-image-svg( 'images/user-grey.svg', 'images/user-grey.png' );
+		background-position: left 7px;
+		background-repeat: no-repeat;
+
+		.dropdown-header();
+
+		span {
+			display: inline-block;
+			height: 1em;
+			word-wrap: break-word;
+		}
+	}
+}
+
+.client-nojs #personal:hover {
+	.pokey,
+	.dropdown {
+		display: block !important;
+	}
+}
+
+#mw-wrapper .dropdown-active {
+	.pokey,
+	.dropdown,
+	.sidebar-inner {
+		display: block !important;
+	}
+}
+
+#p-variants-desktop {
+	float: right;
+	margin: 0.25em 0 1em 1em;
+	position: relative;
+
+	h3 {
+		.dropdown-header();
+		.ca-icon( 'images/languages-grey' );
+		font-size: 1em;
+		font-family: 'Segoe UI', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lato', 'Liberation Sans', 'Noto Sans', 'Helvetica Neue', 'Helvetica', sans-serif;
+		border-bottom: transparent;
+		margin: 0 0 -1em;
+		line-height: 1.5;
+		padding-bottom: 1em;
+	}
+
+	.dropdown {
+		display: none !important;
+		.dropdown-menu();
+		.dropdown-pokey();
+		// Override the mobile thing
+		top: 2.25em !important;
+		padding-bottom: 2em;
+		margin-right: 2px;
+
+		.selected a {
+			color: rgb(206,206,207);
+		}
+	}
+}
+
+.client-nojs #p-variants-desktop:hover .dropdown {
+	display: block !important;
+}
+
+.mw-wiki-logo {
+	display: block;
+	margin: 0.75em auto 0;
+
+	&.fallback {
+		content: '';
+		width: 11em;
+		height: 11em;
+		background-repeat: no-repeat;
+		background-position: center center;
+	}
+
+	&.darkcosmos-logo {
+		background-image: none;
+	}
+}
+
+#p-variants,
+#other-languages.variants-only,
+#mw-page-header-links #p-more,
+.sidebar-chunk h2 {
+	display: none;
+}
+
+/* Content */
+
+#mw-content-container {
+	margin-top: 3.125em + 0.35em;
+	padding-bottom: 1em;
+}

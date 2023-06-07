@@ -1,0 +1,113 @@
+{
+    "name": "DarkCosmos",
+    "version": "1.0.0",
+    "author": "Killarnee",
+    "url": "https://www.mediawiki.org/wiki/Skin:DarkCosmos",
+    "descriptionmsg": "darkcosmos-desc",
+    "namemsg": "skinname-darkcosmos",
+    "license-name": "GPL-2.0-or-later",
+    "type": "skin",
+    "requires": {
+        "MediaWiki": ">= 1.39.0"
+    },
+    "ValidSkinNames": {
+        "darkcosmos": {
+            "class": "SkinTemplate",
+            "args": [
+                {
+                    "name": "darkcosmos",
+                    "responsive": true,
+                    "template": "DarkCosmosTemplate",
+                    "bodyOnly": true,
+                    "styles": [
+                        "skins.darkcosmos"
+                    ],
+                    "scripts": [
+                        "skins.darkcosmos.js",
+                        "skins.darkcosmos.mobile"
+                    ]
+                }
+            ]
+        }
+    },
+    "MessagesDirs": {
+        "DarkCosmos": [
+            "i18n"
+        ]
+    },
+    "ResourceModules": {
+        "skins.darkcosmos": {
+            "targets": [ "desktop", "mobile" ],
+            "class": "ResourceLoaderSkinModule",
+            "features": {
+                "logo": true,
+                "content-links": true,
+                "content-links-external": true
+            },
+            "styles": {
+                "resources/libraries/normalise.css": {
+                    "media": "screen"
+                },
+                "resources/forms.less": {
+                    "media": "screen"
+                },
+                "resources/screen-common.less": {
+                    "media": "screen"
+                },
+                "resources/screen-desktop.less": {
+                    "media": "screen and (min-width: 851px)"
+                },
+                "resources/screen-desktop-full.less": {
+                    "media": "screen and (min-width: 1340px)"
+                },
+                "resources/screen-desktop-mid.less": {
+                    "media": "screen and (min-width: 1100px) and (max-width: 1339px)"
+                },
+                "resources/screen-desktop-small.less": {
+                    "media": "screen and (min-width: 851px) and (max-width: 1099px)"
+                },
+                "resources/screen-mobile.less": {
+                    "media": "screen and (max-width: 850px)"
+                },
+                "0": "resources/screen-misc.less",
+                "resources/print.css": {
+                    "media": "print"
+                }
+            },
+            "@NOTE": "Remember to also update variables.less if you change the width cutoffs here. screen-misc.less and mobile.js may also need updating."
+        },
+        "skins.darkcosmos.js": {
+            "targets": [ "desktop" ],
+            "scripts": [
+                "resources/main.js"
+            ]
+        },
+        "skins.darkcosmos.mobile": {
+            "targets": [ "desktop", "mobile" ],
+            "scripts": [
+                "resources/mobile.js"
+            ]
+        }
+    },
+    "ResourceFileModulePaths": {
+        "localBasePath": "",
+        "remoteSkinPath": "DarkCosmos"
+    },
+    "ResourceModuleSkinStyles": {
+        "darkcosmos": {
+            "+oojs-ui-core.styles": "resources/ooui.less",
+            "+ext.echo.styles.badge": "resources/extensions/Echo.less",
+            "+ext.visualEditor.core": "resources/extensions/VisualEditor.core.less",
+            "+ext.visualEditor.desktopArticleTarget.noscript": "resources/extensions/VisualEditor.article.less",
+            "+ext.CodeMirror.visualEditor.init": "resources/extensions/VisualEditor.CodeMirror.less",
+            "+ext.dismissableSiteNotice.styles": "resources/extensions/DismissableSiteNotice.less",
+            "+ext.MWOAuth.AuthorizeForm": "resources/extensions/MWOAuth.AuthorizeForm.less",
+            "+ext.wikiLove.icon": "resources/extensions/WikiLove.icon.less",
+            "+ext.proofreadpage.page.navigation": "resources/extensions/Proofreadpage.page.navigation.less"
+        }
+    },
+    "AutoloadClasses": {
+        "DarkCosmosTemplate": "includes/DarkCosmosTemplate.php"
+    },
+    "manifest_version": 1
+}
