@@ -106,32 +106,44 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	/**
 	 * Set extra log parameters.
 	 *
-	 * You can pass params to the log action message by prefixing the keys with
-	 * a number and optional type, using colons to separate the fields. The
-	 * numbering should start with number 4 (matching the $4 message parameter),
-	 * the first three parameters are hardcoded for every message ($1 is a link
-	 * to the username and user talk page of the performing user, $2 is just the
-	 * username (for determining gender), $3 is a link to the target page).
+	 * Takes an array in a parameter name => parameter value format. The array
+	 * will be converted to string via serialize() and stored in the log_params
+	 * database field. (If you want to store parameters in such a way that they
+	 * can be targeted by DB queries, use setRelations() instead.)
+	 *
+	 * You can pass these parameters to the log action message by prefixing the
+	 * keys with a number and optional type, using colons to separate the fields.
+	 * The numbering should start with number 4 (matching the $4 message
+	 * parameter), as the first three parameters are hardcoded for every message
+	 * ($1 is a link to the username and user talk page of the performing user,
+	 * $2 is just the username (for determining gender), $3 is a link to the
+	 * target page).
+	 *
+	 * If you want to store stuff that should not be available in messages, don't
+	 * prefix the array key with a number and don't use the colons. (Note that
+	 * such parameters will still be publicly viewable via the API.)
+	 *
+	 * Example:
+	 *   $entry->setParameters( [
+	 *     // store and use in messages as $4
+	 *     '4::color' => 'blue',
+	 *     // store as is, use in messages as $5 with Message::numParam()
+	 *     '5:number:count' => 3000,
+	 *     // store but do not use in messages
+	 *     'animal' => 'dog'
+	 *   ] );
 	 *
 	 * Typically, these parameters will be used in the logentry-<type>-<subtype>
 	 * message, but custom formatters, declared via $wgLogActionsHandlers, can
 	 * override that.
 	 *
-	 * If you want to store stuff that should not be available in messages, don't
-	 * prefix the array key with a number and don't use the colons. Parameters
-	 * which should be searchable need to be set with setRelations() instead.
-	 *
-	 * Example:
-	 *   $entry->setParameters(
-	 *     '4::color' => 'blue',
-	 *     '5:number:count' => 3000,
-	 *     'animal' => 'dog'
-	 *   );
-	 *
 	 * @since 1.19
 	 * @param array $parameters Associative array
-	 * @see LogFormatter::formatParameterValue for valid parameter types and
-	 *   their meanings
+	 * @see LogFormatter::formatParameterValue() for valid parameter types and
+	 *   their meanings.
+	 * @see self::setRelations() for storing parameters in a way that can be searched.
+	 * @see LogFormatter::getMessageKey() for determining which message these
+	 *   parameters will be used in.
 	 */
 	public function setParameters( $parameters ) {
 		$this->parameters = $parameters;
@@ -139,9 +151,11 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 
 	/**
 	 * Declare arbitrary tag/value relations to this log entry.
-	 * These can be used to filter log entries later on.
+	 * These will be stored in the log_search table and can be used
+	 * to filter log entries later on.
 	 *
-	 * @param array $relations Map of (tag => (list of values|value))
+	 * @param array $relations Map of (tag => (list of values|value)); values must be string.
+	 *   When an array of values is given, a separate DB row will be created for each value.
 	 * @since 1.22
 	 */
 	public function setRelations( array $relations ) {

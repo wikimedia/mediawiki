@@ -565,14 +565,21 @@ class LogFormatter {
 	}
 
 	/**
-	 * Formats parameters intended for action message from
-	 * array of all parameters. There are three hardcoded
-	 * parameters (array is zero-indexed, this list not):
-	 *  - 1: user name with premade link
-	 *  - 2: usable for gender magic function
-	 *  - 3: target page with premade link
+	 * Formats parameters intended for action message from array of all parameters.
+	 * There are three hardcoded parameters:
+	 *  - $1: user name with premade link
+	 *  - $2: usable for gender magic function
+	 *  - $3: target page with premade link
+	 * More parameters might be present, depending on what code created the log
+	 * entry.
+	 *
+	 * The parameters are returned as a non-associative array that can be passed to
+	 * Message::params(), so $logFormatter->getMessageParameters()[0] is the $1 parameter
+	 * in the message and so on.
+	 *
 	 * @stable to override
 	 * @return array
+	 * @see ManualLogEntry::setParameters() for how parameters are determined.
 	 */
 	protected function getMessageParameters() {
 		if ( isset( $this->parsedParameters ) ) {
