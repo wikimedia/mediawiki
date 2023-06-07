@@ -510,7 +510,8 @@
 			'.templatesUsed',
 			'.limitreport',
 			'.mw-summary-preview',
-			'.hiddencats'
+			'.hiddencats',
+			'.mw-editTools'
 		];
 	}
 
