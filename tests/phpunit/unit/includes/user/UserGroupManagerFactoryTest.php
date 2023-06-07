@@ -7,6 +7,7 @@ use JobQueueGroup;
 use MediaWiki\JobQueue\JobQueueGroupFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
+use MediaWiki\WikiMap\WikiMap;
 use MediaWikiUnitTestCase;
 use ReflectionParameter;
 use Wikimedia\Rdbms\ILBFactory;
@@ -40,9 +41,11 @@ class UserGroupManagerFactoryTest extends MediaWikiUnitTestCase {
 
 	protected function getOverriddenMockValueForParam( ReflectionParameter $param ) {
 		if ( $param->getType() && $param->getType()->getName() === ILBFactory::class ) {
-			$mock = $this->createNoOpMock( ILBFactory::class, [ 'getMainLB' ] );
+			$mock = $this->createNoOpMock( ILBFactory::class, [ 'getMainLB', 'getLocalDomainID' ] );
 			$mock->method( 'getMainLB' )
 				->willReturn( $this->createNoOpMock( ILoadBalancer::class ) );
+			$mock->method( 'getLocalDomainID' )
+				->willReturn( WikiMap::getCurrentWikiId() );
 			return [ $mock ];
 		}
 		if ( $param->getType() && $param->getType()->getName() === JobQueueGroupFactory::class ) {
