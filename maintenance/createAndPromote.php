@@ -177,7 +177,8 @@ class CreateAndPromote extends Maintenance {
 		$userGroupManager = $services->getUserGroupManager();
 		$oldGroups = $userGroupManager->getUserGroups( $user );
 		$userGroupManager->addUserToMultipleGroups( $user, $promotions );
-		$this->addLogEntry( $user, $oldGroups, array_merge( $oldGroups, $promotions ), $this->getOption( 'reason' ) );
+		$reason = $this->getOption( 'reason' ) ?: '';
+		$this->addLogEntry( $user, $oldGroups, array_merge( $oldGroups, $promotions ), $reason );
 
 		if ( !$exists ) {
 			# Increment site_stats.ss_users
