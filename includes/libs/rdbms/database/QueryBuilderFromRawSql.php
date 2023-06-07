@@ -125,4 +125,34 @@ class QueryBuilderFromRawSql {
 
 		return $queryTables;
 	}
+
+	/**
+	 * Removes most variables from an SQL query and replaces them with X or N for numbers.
+	 * It's only slightly flawed. Don't use for anything important.
+	 *
+	 * @param string $sql A SQL Query
+	 *
+	 * @return string
+	 */
+	public static function generalizeSQL( $sql ) {
+		# This does the same as the regexp below would do, but in such a way
+		# as to avoid crashing php on some large strings.
+		# $sql = preg_replace( "/'([^\\\\']|\\\\.)*'|\"([^\\\\\"]|\\\\.)*\"/", "'X'", $sql );
+
+		$sql = str_replace( "\\\\", '', $sql );
+		$sql = str_replace( "\\'", '', $sql );
+		$sql = str_replace( "\\\"", '', $sql );
+		$sql = preg_replace( "/'.*'/s", "'X'", $sql );
+		$sql = preg_replace( '/".*"/s', "'X'", $sql );
+
+		# All newlines, tabs, etc replaced by single space
+		$sql = preg_replace( '/\s+/', ' ', $sql );
+
+		# All numbers => N,
+		# except the ones surrounded by characters, e.g. l10n
+		$sql = preg_replace( '/-?\d+(,-?\d+)+/', 'N,...,N', $sql );
+		$sql = preg_replace( '/(?<![a-zA-Z])-?\d+(?![a-zA-Z])/', 'N', $sql );
+
+		return $sql;
+	}
 }

@@ -2,6 +2,9 @@
  * Diff rendering
  */
 
+@diffInserted: #a3d3ff;
+@diffDeleted: #ffe49c;
+
 /* stylelint-disable selector-class-pattern */
 
 .diff {
@@ -74,12 +77,35 @@
 
 .mw-diff-inline-added ins,
 .mw-diff-inline-changed ins {
-	background: #a3d3ff;
+	background: @diffInserted;
 }
 
 .mw-diff-inline-deleted del,
 .mw-diff-inline-changed del {
-	background: #ffe49c;
+	background: @diffDeleted;
+}
+
+.mw-diff-table-prefix {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 1em 0;
+
+	.mw-diff-inline-legend {
+		.mw-diff-inline-legend-ins,
+		.mw-diff-inline-legend-del {
+			display: inline-block;
+			padding: 4px 6px;
+		}
+
+		.mw-diff-inline-legend-ins {
+			background: @diffInserted;
+		}
+
+		.mw-diff-inline-legend-del {
+			background: @diffDeleted;
+		}
+	}
 }
 
 .diff-addedline,
@@ -125,11 +151,11 @@
 }
 
 .diff-addedline {
-	border-color: #a3d3ff;
+	border-color: @diffInserted;
 }
 
 .diff-deletedline {
-	border-color: #ffe49c;
+	border-color: @diffDeleted;
 }
 
 .diffchange {

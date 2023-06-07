@@ -509,7 +509,8 @@
 			// Editing-related
 			'.templatesUsed',
 			'.limitreport',
-			'.mw-summary-preview'
+			'.mw-summary-preview',
+			'.hiddencats'
 		];
 	}
 

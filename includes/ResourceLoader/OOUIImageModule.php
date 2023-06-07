@@ -77,7 +77,7 @@ class OOUIImageModule extends ImageModule {
 		}
 
 		// Extra selectors to allow using the same icons for old-style MediaWiki UI code
-		if ( substr( $module, 0, 5 ) === 'icons' ) {
+		if ( str_starts_with( $module, 'icons' ) ) {
 			$definition['selectorWithoutVariant'] = '.oo-ui-icon-{name}, .mw-ui-icon-{name}:before';
 			$definition['selectorWithVariant'] = '.oo-ui-image-{variant}.oo-ui-icon-{name}, ' .
 				'.mw-ui-icon-{name}-{variant}:before';

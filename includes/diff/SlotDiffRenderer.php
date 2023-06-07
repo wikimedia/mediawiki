@@ -50,6 +50,16 @@ abstract class SlotDiffRenderer {
 	abstract public function getDiff( Content $oldContent = null, Content $newContent = null );
 
 	/**
+	 * Get the content to add above the main diff table.
+	 *
+	 * @param IContextSource $context
+	 * @return string The full HTML for the prefix area, with its contents.
+	 */
+	public function getTablePrefix( IContextSource $context ): string {
+		return '';
+	}
+
+	/**
 	 * Add modules needed for correct styling/behavior of the diff.
 	 * @stable to override
 	 * @param OutputPage $output

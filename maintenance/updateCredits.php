@@ -64,7 +64,7 @@ foreach ( $lines as $line ) {
 	if ( empty( $line ) ) {
 		continue;
 	}
-	if ( substr( $line, 0, 5 ) === '[BOT]' ) {
+	if ( str_starts_with( $line, '[BOT]' ) ) {
 		continue;
 	}
 	$contributors[$line] = true;

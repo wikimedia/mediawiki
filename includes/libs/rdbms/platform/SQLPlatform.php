@@ -1498,22 +1498,41 @@ class SQLPlatform implements ISQLPlatform {
 	/**
 	 * @param string $table
 	 * @param string|array $conds
-	 * @return string
+	 * @return Query
 	 */
 	public function deleteSqlText( $table, $conds ) {
 		$this->assertConditionIsNotEmpty( $conds, __METHOD__, false );
 
-		$table = $this->tableName( $table );
-		$sql = "DELETE FROM $table";
+		$encTable = $this->tableName( $table );
+		$sql = "DELETE FROM $encTable";
 
+		$condsSql = '';
+		$cleanCondsSql = '';
 		if ( $conds !== self::ALL_ROWS ) {
+			$cleanCondsSql = ' WHERE ' . $this->scrubConditions( $conds );
 			if ( is_array( $conds ) ) {
 				$conds = $this->makeList( $conds, self::LIST_AND );
 			}
-			$sql .= ' WHERE ' . $conds;
+			$condsSql .= ' WHERE ' . $conds;
 		}
+		return new Query(
+			$sql . $condsSql,
+			self::QUERY_CHANGE_ROWS,
+			'DELETE',
+			$table,
+			$sql . $cleanCondsSql
+		);
+	}
 
-		return $sql;
+	private function scrubConditions( $conds ) {
+		if ( is_array( $conds ) ) {
+			$newConds = [];
+			foreach ( $conds as $key => $value ) {
+				$newConds[$key] = '?';
+			}
+			return $this->makeList( $newConds, self::LIST_AND );
+		}
+		return '?';
 	}
 
 	public function updateSqlText( $table, $set, $conds, $options ) {

@@ -89,6 +89,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Installer\Pingback;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\JobQueue\JobFactory;
@@ -1580,6 +1581,16 @@ return [
 			$services->getTempUserConfig(),
 			$services->getUserFactory(),
 			$services->getActionFactory()
+		);
+	},
+
+	'Pingback' => static function ( MediaWikiServices $services ): PingBack {
+		return new Pingback(
+			$services->getMainConfig(),
+			$services->getDBLoadBalancerFactory(),
+			ObjectCache::getLocalClusterInstance(),
+			$services->getHttpRequestFactory(),
+			LoggerFactory::getInstance( 'Pingback' )
 		);
 	},
 

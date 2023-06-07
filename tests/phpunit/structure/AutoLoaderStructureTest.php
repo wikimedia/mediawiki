@@ -88,7 +88,7 @@ class AutoLoaderStructureTest extends MediaWikiIntegrationTestCase {
 		foreach ( $expected as $class => $file ) {
 			// Only prefix $IP if it doesn't have it already.
 			// Generally local classes don't have it, and those from extensions and test suites do.
-			if ( substr( $file, 0, 1 ) != '/' && substr( $file, 1, 1 ) != ':' ) {
+			if ( $file[0] !== '/' && $file[1] !== ':' ) {
 				$filePath = self::fixSlashes( "$IP/$file" );
 			} else {
 				$filePath = self::fixSlashes( $file );

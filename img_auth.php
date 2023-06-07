@@ -135,7 +135,7 @@ function wfImageAuthMain() {
 		$filename = $repo->getZonePath( 'public' ) . $path;
 		// Check to see if the file exists and is not deleted
 		$bits = explode( '!', $name, 2 );
-		if ( substr( $path, 0, 9 ) === '/archive/' && count( $bits ) == 2 ) {
+		if ( str_starts_with( $path, '/archive/' ) && count( $bits ) == 2 ) {
 			$file = $repo->newFromArchiveName( $bits[1], $name );
 		} else {
 			$file = $repo->newFile( $name );

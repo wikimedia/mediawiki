@@ -585,6 +585,8 @@ abstract class DatabaseMysqlBase extends Database {
 			"ON DUPLICATE KEY UPDATE $sqlColumnAssignments";
 		$query = new Query( $sql, self::QUERY_CHANGE_ROWS, 'INSERT', $table );
 		$this->query( $query, $fname );
+		// Count updates of conflicting rows and row inserts equally toward the change count
+		$this->lastQueryAffectedRows = min( $this->lastQueryAffectedRows, count( $rows ) );
 	}
 
 	protected function doReplace( $table, array $identityKey, array $rows, $fname ) {
@@ -596,6 +598,8 @@ abstract class DatabaseMysqlBase extends Database {
 		// due to combined DELETE+INSERT semantics. This will be reflected in insertId().
 		$query = new Query( $sql, self::QUERY_CHANGE_ROWS, 'REPLACE', $table );
 		$this->query( $query, $fname );
+		// Do not count deletions of conflicting rows toward the change count
+		$this->lastQueryAffectedRows = min( $this->lastQueryAffectedRows, count( $rows ) );
 	}
 
 	/**

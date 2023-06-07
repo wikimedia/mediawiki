@@ -19,6 +19,9 @@ class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 
 	private $autoloaderState;
 
+	/** @var ?ExtensionRegistry */
+	private $originalExtensionRegistry = null;
+
 	protected function setUp(): void {
 		global $wgHooks;
 
@@ -43,6 +46,11 @@ class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 
 	protected function tearDown(): void {
 		AutoLoader::restoreState( $this->autoloaderState );
+
+		if ( $this->originalExtensionRegistry ) {
+			$this->setExtensionRegistry( $this->originalExtensionRegistry );
+		}
+
 		parent::tearDown();
 	}
 
@@ -75,27 +83,47 @@ class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayHasKey( 1300, $GLOBALS['wgNamespaceContentModels'] );
 	}
 
+	private function setExtensionRegistry( ExtensionRegistry $registry ) {
+		$class = new \ReflectionClass( ExtensionRegistry::class );
+
+		if ( !$this->originalExtensionRegistry ) {
+			$this->originalExtensionRegistry = $class->getStaticPropertyValue( 'instance' );
+		}
+
+		$class->setStaticPropertyValue( 'instance', $registry );
+	}
+
+	public static function onAnEvent() {
+		// no-op
+	}
+
+	public static function onBooEvent() {
+		// no-op
+	}
+
 	public function testExportHooks() {
 		$manifest = [
 			'Hooks' => [
-				'AnEvent' => 'FooBarClass::onAnEvent',
+				'AnEvent' => self::class . '::onAnEvent',
 				'BooEvent' => 'main',
 			],
-			'HookHandler' => [
-				'main' => [ 'class' => 'Whatever' ]
+			'HookHandlers' => [
+				'main' => [ 'class' => self::class ]
 			],
 		];
 
 		$file = $this->makeManifestFile( $manifest );
 
 		$registry = new ExtensionRegistry();
+		$this->setExtensionRegistry( $registry );
+
 		$registry->queue( $file );
 		$registry->loadFromQueue();
 
 		$this->resetServices();
 		$hookContainer = $this->getServiceContainer()->getHookContainer();
-		$this->assertTrue( $hookContainer->isRegistered( 'AnEvent' ) );
-		$this->assertTrue( $hookContainer->isRegistered( 'BooEvent' ) );
+		$this->assertTrue( $hookContainer->isRegistered( 'AnEvent' ), 'AnEvent' );
+		$this->assertTrue( $hookContainer->isRegistered( 'BooEvent' ), 'BooEvent' );
 	}
 
 	public function testExportAutoload() {

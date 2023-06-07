@@ -315,7 +315,7 @@ class TransactionProfiler implements LoggerAwareInterface, StatsdAwareInterface 
 	 *
 	 * This assumes that all queries are synchronous (non-overlapping)
 	 *
-	 * @param string|GeneralizedSql $query Function name or generalized SQL
+	 * @param string|GeneralizedSql|Query $query Function name or generalized SQL
 	 * @param float $sTime Starting UNIX wall time
 	 * @param bool $isWrite Whether this is a write query
 	 * @param int|null $rowCount Number of affected/read rows
@@ -503,7 +503,7 @@ class TransactionProfiler implements LoggerAwareInterface, StatsdAwareInterface 
 
 	/**
 	 * @param string $event
-	 * @param string|GeneralizedSql $query
+	 * @param string|GeneralizedSql|Query $query
 	 * @param float|int $actual
 	 * @param string|null $trxId Transaction id
 	 * @param string|null $serverName db host name like db1234
@@ -548,18 +548,24 @@ class TransactionProfiler implements LoggerAwareInterface, StatsdAwareInterface 
 	}
 
 	/**
-	 * @param GeneralizedSql|string $query
+	 * @param GeneralizedSql|string|Query $query
 	 * @return string
 	 */
 	private function getGeneralizedSql( $query ) {
+		if ( $query instanceof Query ) {
+			return $query->getCleanedSql();
+		}
 		return $query instanceof GeneralizedSql ? $query->stringify() : $query;
 	}
 
 	/**
-	 * @param GeneralizedSql|string $query
+	 * @param GeneralizedSql|string|Query $query
 	 * @return string
 	 */
 	private function getRawSql( $query ) {
+		if ( $query instanceof Query ) {
+			return $query->getSQL();
+		}
 		return $query instanceof GeneralizedSql ? $query->getRawSql() : $query;
 	}
 
