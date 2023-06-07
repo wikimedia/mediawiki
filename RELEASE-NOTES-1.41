@@ -55,6 +55,13 @@ For notes on 1.40.x and older releases, see HISTORY.
   https://www.mediawiki.org/wiki/Foreign_resources for background.
 * Added a .gitmessage commit template. To use it, run:
   `git config commit.template .gitmessage`
+* A new hook, TextSlotDiffRendererTablePrefixHook, has been added to allow
+  extensions to add content within #mw-content-text but after the
+  DifferenceEngineViewHeader or DifferenceEngineShowDiffPage hooks have been
+  run. The new hook is used to add elements within a horizontal display area,
+  where their order can be explicitly set. Examples of uses for this include
+  adding the VisualEditor diff-type switch, and the legend for inline diffs that
+  is displayed if Wikidiff2 is installed.
 * …
 
 === External library changes in 1.41 ===
