@@ -1478,10 +1478,11 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			'page_content_model' => $model,
 		];
 
-		$dbw->update( 'page',
-			$row,
-			$conditions,
-			__METHOD__ );
+		$dbw->newUpdateQueryBuilder()
+			->update( 'page' )
+			->set( $row )
+			->where( $conditions )
+			->caller( __METHOD__ )->execute();
 
 		$result = $dbw->affectedRows() > 0;
 		if ( $result ) {
@@ -3063,12 +3064,11 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		// UPDATE instead of INSERT...ON DUPLICATE KEY UPDATE
 		// to avoid creating gaps in the cat_id sequence.
 		if ( $existingAdded ) {
-			$dbw->update(
-				'category',
-				$addFields,
-				[ 'cat_id' => array_keys( $existingAdded ) ],
-				__METHOD__
-			);
+			$dbw->newUpdateQueryBuilder()
+				->update( 'category' )
+				->set( $addFields )
+				->where( [ 'cat_id' => array_keys( $existingAdded ) ] )
+				->caller( __METHOD__ )->execute();
 		}
 
 		if ( $missingAdded ) {
@@ -3091,12 +3091,11 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		}
 
 		if ( $existingDeleted ) {
-			$dbw->update(
-				'category',
-				$removeFields,
-				[ 'cat_id' => array_keys( $existingDeleted ) ],
-				__METHOD__
-			);
+			$dbw->newUpdateQueryBuilder()
+				->update( 'category' )
+				->set( $removeFields )
+				->where( [ 'cat_id' => array_keys( $existingDeleted ) ] )
+				->caller( __METHOD__ )->execute();
 		}
 
 		foreach ( $added as $catName ) {

@@ -268,15 +268,11 @@ class SpecialPageLanguage extends FormSpecialPage {
 		$logNew = $newLanguage ?: $defLang . '[def]';
 
 		// Writing new page language to database
-		$dbw->update(
-			'page',
-			[ 'page_lang' => $newLanguage ],
-			[
-				'page_id' => $pageId,
-				'page_lang' => $oldLanguage
-			],
-			__METHOD__
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'page' )
+			->set( [ 'page_lang' => $newLanguage ] )
+			->where( [ 'page_id' => $pageId,'page_lang' => $oldLanguage ] )
+			->caller( __METHOD__ )->execute();
 
 		if ( !$dbw->affectedRows() ) {
 			return Status::newFatal( 'pagelang-db-failed' );

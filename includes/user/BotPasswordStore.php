@@ -302,12 +302,11 @@ class BotPasswordStore implements IDBAccessObject {
 		}
 
 		$dbw = $this->getDatabase( DB_PRIMARY );
-		$dbw->update(
-			'bot_passwords',
-			$fields,
-			$conds,
-			__METHOD__
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'bot_passwords' )
+			->set( $fields )
+			->where( $conds )
+			->caller( __METHOD__ )->execute();
 
 		$ok = (bool)$dbw->affectedRows();
 		if ( $ok ) {
@@ -382,12 +381,11 @@ class BotPasswordStore implements IDBAccessObject {
 		}
 
 		$dbw = $this->getDatabase( DB_PRIMARY );
-		$dbw->update(
-			'bot_passwords',
-			[ 'bp_password' => PasswordFactory::newInvalidPassword()->toString() ],
-			[ 'bp_user' => $centralId ],
-			__METHOD__
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'bot_passwords' )
+			->set( [ 'bp_password' => PasswordFactory::newInvalidPassword()->toString() ] )
+			->where( [ 'bp_user' => $centralId ] )
+			->caller( __METHOD__ )->execute();
 		return (bool)$dbw->affectedRows();
 	}
 

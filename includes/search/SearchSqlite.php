@@ -323,9 +323,10 @@ class SearchSqlite extends SearchDatabase {
 		}
 
 		$dbw = $this->lb->getConnectionRef( DB_PRIMARY );
-		$dbw->update( 'searchindex',
-			[ 'si_title' => $title ],
-			[ 'rowid' => $id ],
-			__METHOD__ );
+		$dbw->newUpdateQueryBuilder()
+			->update( 'searchindex' )
+			->set( [ 'si_title' => $title ] )
+			->where( [ 'rowid' => $id ] )
+			->caller( __METHOD__ )->execute();
 	}
 }

@@ -1327,13 +1327,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		$newTouched = $this->newTouchedTimestamp();
 
 		$dbw = wfGetDB( DB_PRIMARY );
-		$dbw->update( 'user',
-			[ 'user_touched' => $dbw->timestamp( $newTouched ) ],
-			$this->makeUpdateConditions( $dbw, [
-				'user_id' => $this->mId,
-			] ),
-			__METHOD__
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'user' )
+			->set( [ 'user_touched' => $dbw->timestamp( $newTouched ) ] )
+			->where( $this->makeUpdateConditions( $dbw, [ 'user_id' => $this->mId, ] ) )
+			->caller( __METHOD__ )->execute();
 		$success = ( $dbw->affectedRows() > 0 );
 
 		if ( $success ) {
@@ -2604,12 +2602,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 				);
 			}
 
-			$dbw->update(
-				'actor',
-				[ 'actor_name' => $this->mName ],
-				[ 'actor_user' => $this->mId ],
-				$fname
-			);
+			$dbw->newUpdateQueryBuilder()
+				->update( 'actor' )
+				->set( [ 'actor_name' => $this->mName ] )
+				->where( [ 'actor_user' => $this->mId ] )
+				->caller( $fname )->execute();
 			MediaWikiServices::getInstance()->getActorStore()->deleteUserIdentityFromCache( $this );
 		} );
 

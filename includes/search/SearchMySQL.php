@@ -368,11 +368,11 @@ class SearchMySQL extends SearchDatabase {
 	 */
 	public function updateTitle( $id, $title ) {
 		$dbw = $this->lb->getConnectionRef( DB_PRIMARY );
-		$dbw->update( 'searchindex',
-			[ 'si_title' => $this->normalizeText( $title ) ],
-			[ 'si_page' => $id ],
-			__METHOD__
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'searchindex' )
+			->set( [ 'si_title' => $this->normalizeText( $title ) ] )
+			->where( [ 'si_page' => $id ] )
+			->caller( __METHOD__ )->execute();
 	}
 
 	/**

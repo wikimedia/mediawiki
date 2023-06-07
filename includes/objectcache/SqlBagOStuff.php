@@ -865,12 +865,11 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 			$existingCount = 0;
 			foreach ( $keysBatchesByExpiry as $expiry => $keyBatch ) {
-				$db->update(
-					$ptable,
-					[ 'exptime' => $this->encodeDbExpiry( $db, $expiry ) ],
-					$this->buildExistenceConditions( $db, $keyBatch, (int)$mtime ),
-					__METHOD__
-				);
+				$db->newUpdateQueryBuilder()
+					->update( $ptable )
+					->set( [ 'exptime' => $this->encodeDbExpiry( $db, $expiry ) ] )
+					->where( $this->buildExistenceConditions( $db, $keyBatch, (int)$mtime ) )
+					->caller( __METHOD__ )->execute();
 				$existingCount += $db->affectedRows();
 			}
 			if ( $existingCount === count( $argsByKey ) ) {

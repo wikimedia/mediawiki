@@ -34,12 +34,11 @@ class RevDelArchivedRevisionItem extends RevDelArchiveItem {
 
 	public function setBits( $bits ) {
 		$dbw = wfGetDB( DB_PRIMARY );
-		$dbw->update( 'archive',
-			[ 'ar_deleted' => $bits ],
-			[ 'ar_rev_id' => $this->row->ar_rev_id,
-				'ar_deleted' => $this->getBits()
-			],
-			__METHOD__ );
+		$dbw->newUpdateQueryBuilder()
+			->update( 'archive' )
+			->set( [ 'ar_deleted' => $bits ] )
+			->where( [ 'ar_rev_id' => $this->row->ar_rev_id,'ar_deleted' => $this->getBits() ] )
+			->caller( __METHOD__ )->execute();
 
 		return (bool)$dbw->affectedRows();
 	}

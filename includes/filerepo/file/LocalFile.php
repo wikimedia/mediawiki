@@ -818,8 +818,9 @@ class LocalFile extends File {
 
 		wfDebug( __METHOD__ . ': upgrading ' . $this->getName() . " to the current schema" );
 
-		$dbw->update( 'image',
-			[
+		$dbw->newUpdateQueryBuilder()
+			->update( 'image' )
+			->set( [
 				'img_size' => $this->size,
 				'img_width' => $this->width,
 				'img_height' => $this->height,
@@ -829,13 +830,9 @@ class LocalFile extends File {
 				'img_minor_mime' => $minor,
 				'img_metadata' => $this->getMetadataForDb( $dbw ),
 				'img_sha1' => $this->sha1,
-			],
-			array_merge(
-				[ 'img_name' => $this->getName() ],
-				$freshnessCondition
-			),
-			__METHOD__
-		);
+			] )
+			->where( array_merge( [ 'img_name' => $this->getName() ], $freshnessCondition ) )
+			->caller( __METHOD__ )->execute();
 
 		$this->invalidateCache();
 
@@ -851,15 +848,11 @@ class LocalFile extends File {
 			return;
 		}
 		$dbw = $this->repo->getPrimaryDB();
-		$dbw->update(
-			'image',
-			[ 'img_metadata' => $this->getMetadataForDb( $dbw ) ],
-			[
-				'img_name' => $this->name,
-				'img_timestamp' => $dbw->timestamp( $this->timestamp ),
-			],
-			__METHOD__
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'image' )
+			->set( [ 'img_metadata' => $this->getMetadataForDb( $dbw ) ] )
+			->where( [ 'img_name' => $this->name,'img_timestamp' => $dbw->timestamp( $this->timestamp ), ] )
+			->caller( __METHOD__ )->execute();
 		$this->upgraded = true;
 	}
 
@@ -1893,8 +1886,9 @@ class LocalFile extends File {
 				[ 'img_name' => $this->getName() ], __METHOD__, [], [], $joins );
 
 			# Update the current image row
-			$dbw->update( 'image',
-				[
+			$dbw->newUpdateQueryBuilder()
+				->update( 'image' )
+				->set( [
 					'img_size' => $this->size,
 					'img_width' => intval( $this->width ),
 					'img_height' => intval( $this->height ),
@@ -1905,10 +1899,9 @@ class LocalFile extends File {
 					'img_timestamp' => $dbw->timestamp( $timestamp ),
 					'img_metadata' => $this->getMetadataForDb( $dbw ),
 					'img_sha1' => $this->sha1
-				] + $commentFields + $actorFields,
-				[ 'img_name' => $this->getName() ],
-				__METHOD__
-			);
+				] + $commentFields + $actorFields )
+				->where( [ 'img_name' => $this->getName() ] )
+				->caller( __METHOD__ )->execute();
 		}
 
 		$descTitle = $this->getTitle();

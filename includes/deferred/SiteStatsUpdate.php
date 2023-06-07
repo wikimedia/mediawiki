@@ -146,7 +146,11 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 
 				if ( $set ) {
 					if ( $hasNegativeDelta ) {
-						$dbw->update( 'site_stats', $set, [ 'ss_row_id' => $shard ], $fname );
+						$dbw->newUpdateQueryBuilder()
+							->update( 'site_stats' )
+							->set( $set )
+							->where( [ 'ss_row_id' => $shard ] )
+							->caller( $fname )->execute();
 					} else {
 						$dbw->upsert(
 							'site_stats',
@@ -189,12 +193,11 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 			] )
 			->caller( __METHOD__ )
 			->fetchField();
-		$dbw->update(
-			'site_stats',
-			[ 'ss_active_users' => intval( $activeUsers ) ],
-			[ 'ss_row_id' => 1 ],
-			__METHOD__
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'site_stats' )
+			->set( [ 'ss_active_users' => intval( $activeUsers ) ] )
+			->where( [ 'ss_row_id' => 1 ] )
+			->caller( __METHOD__ )->execute();
 
 		// Invalid cache used by parser functions
 		SiteStats::unload();

@@ -145,15 +145,11 @@ class LocalPasswordPrimaryAuthenticationProvider
 			$fname = __METHOD__;
 			\DeferredUpdates::addCallableUpdate( function () use ( $newHash, $oldRow, $fname ) {
 				$dbw = $this->dbProvider->getPrimaryDatabase();
-				$dbw->update(
-					'user',
-					[ 'user_password' => $newHash->toString() ],
-					[
-						'user_id' => $oldRow->user_id,
-						'user_password' => $oldRow->user_password
-					],
-					$fname
-				);
+				$dbw->newUpdateQueryBuilder()
+					->update( 'user' )
+					->set( [ 'user_password' => $newHash->toString() ] )
+					->where( [ 'user_id' => $oldRow->user_id,'user_password' => $oldRow->user_password ] )
+					->caller( $fname )->execute();
 			} );
 		}
 		// @codeCoverageIgnoreEnd
@@ -266,16 +262,15 @@ class LocalPasswordPrimaryAuthenticationProvider
 
 		if ( $pwhash ) {
 			$dbw = $this->dbProvider->getPrimaryDatabase();
-			$dbw->update(
-				'user',
-				[
+			$dbw->newUpdateQueryBuilder()
+				->update( 'user' )
+				->set( [
 					'user_password' => $pwhash->toString(),
 					// @phan-suppress-next-line PhanPossiblyUndeclaredVariable expiry is set together with pwhash
 					'user_password_expires' => $dbw->timestampOrNull( $expiry ),
-				],
-				[ 'user_name' => $username ],
-				__METHOD__
-			);
+				 ] )
+				->where( [ 'user_name' => $username ] )
+				->caller( __METHOD__ )->execute();
 		}
 	}
 

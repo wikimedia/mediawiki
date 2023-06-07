@@ -189,7 +189,11 @@ class DBSiteStore implements SiteStore {
 
 			$rowId = $site->getInternalId();
 			if ( $rowId !== null ) {
-				$dbw->update( 'sites', $fields, [ 'site_id' => $rowId ], __METHOD__ );
+				$dbw->newUpdateQueryBuilder()
+					->update( 'sites' )
+					->set( $fields )
+					->where( [ 'site_id' => $rowId ] )
+					->caller( __METHOD__ )->execute();
 			} else {
 				$dbw->insert( 'sites', $fields, __METHOD__ );
 				$rowId = $dbw->insertId();

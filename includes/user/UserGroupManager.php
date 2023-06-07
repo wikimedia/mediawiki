@@ -814,12 +814,11 @@ class UserGroupManager implements IDBAccessObject {
 				// Update the current row if it is expired
 				$conds[] = "ug_expiry < {$dbw->addQuotes( $dbw->timestamp() )}";
 			}
-			$dbw->update(
-				'user_groups',
-				[ 'ug_expiry' => $expiry ? $dbw->timestamp( $expiry ) : null ],
-				$conds,
-				__METHOD__
-			);
+			$dbw->newUpdateQueryBuilder()
+				->update( 'user_groups' )
+				->set( [ 'ug_expiry' => $expiry ? $dbw->timestamp( $expiry ) : null ] )
+				->where( $conds )
+				->caller( __METHOD__ )->execute();
 			$affected = $dbw->affectedRows();
 		}
 		$dbw->endAtomic( __METHOD__ );

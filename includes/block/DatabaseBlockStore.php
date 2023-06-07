@@ -307,12 +307,11 @@ class DatabaseBlockStore {
 
 		$result = true;
 
-		$dbw->update(
-			'ipblocks',
-			$row,
-			[ 'ipb_id' => $blockId ],
-			__METHOD__
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'ipblocks' )
+			->set( $row )
+			->where( [ 'ipb_id' => $blockId ] )
+			->caller( __METHOD__ )->execute();
 
 		// Only update the restrictions if they have been modified.
 		$restrictions = $block->getRawRestrictions();
@@ -327,12 +326,11 @@ class DatabaseBlockStore {
 
 		if ( $block->isAutoblocking() ) {
 			// update corresponding autoblock(s) (T50813)
-			$dbw->update(
-				'ipblocks',
-				$this->getArrayForAutoblockUpdate( $block ),
-				[ 'ipb_parent_block_id' => $blockId ],
-				__METHOD__
-			);
+			$dbw->newUpdateQueryBuilder()
+				->update( 'ipblocks' )
+				->set( $this->getArrayForAutoblockUpdate( $block ) )
+				->where( [ 'ipb_parent_block_id' => $blockId ] )
+				->caller( __METHOD__ )->execute();
 
 			// Only update the restrictions if they have been modified.
 			if ( $restrictions !== null ) {

@@ -683,16 +683,11 @@ class RecentChange implements Taggable {
 	 */
 	public function reallyMarkPatrolled() {
 		$dbw = wfGetDB( DB_PRIMARY );
-		$dbw->update(
-			'recentchanges',
-			[
-				'rc_patrolled' => self::PRC_PATROLLED
-			],
-			[
-				'rc_id' => $this->getAttribute( 'rc_id' )
-			],
-			__METHOD__
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'recentchanges' )
+			->set( [ 'rc_patrolled' => self::PRC_PATROLLED ] )
+			->where( [ 'rc_id' => $this->getAttribute( 'rc_id' ) ] )
+			->caller( __METHOD__ )->execute();
 		// Invalidate the page cache after the page has been patrolled
 		// to make sure that the Patrol link isn't visible any longer!
 		$this->getTitle()->invalidateCache();

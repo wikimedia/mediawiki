@@ -463,15 +463,15 @@ class JobQueueDB extends JobQueue {
 					->orderBy( 'job_id', SelectQueryBuilder::SORT_ASC )
 					->limit( 1 );
 
-				$dbw->update( 'job',
-					[
+				$dbw->newUpdateQueryBuilder()
+					->update( 'job' )
+					->set( [
 						'job_token' => $uuid,
 						'job_token_timestamp' => $dbw->timestamp(),
-						'job_attempts = job_attempts+1' ],
-					[ 'job_id = (' . $qb->getSQL() . ')'
-					],
-					__METHOD__
-				);
+						'job_attempts = job_attempts+1'
+					] )
+					->where( [ 'job_id = (' . $qb->getSQL() . ')' ] )
+					->caller( __METHOD__ )->execute();
 			}
 
 			if ( !$dbw->affectedRows() ) {

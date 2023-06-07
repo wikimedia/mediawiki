@@ -114,15 +114,15 @@ class RevDelFileItem extends RevDelItem {
 
 		# Do the database operations
 		$dbw = wfGetDB( DB_PRIMARY );
-		$dbw->update( 'oldimage',
-			[ 'oi_deleted' => $bits ],
-			[
+		$dbw->newUpdateQueryBuilder()
+			->update( 'oldimage' )
+			->set( [ 'oi_deleted' => $bits ] )
+			->where( [
 				'oi_name' => $this->row->oi_name,
 				'oi_timestamp' => $this->row->oi_timestamp,
 				'oi_deleted' => $this->getBits()
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )->execute();
 
 		return (bool)$dbw->affectedRows();
 	}

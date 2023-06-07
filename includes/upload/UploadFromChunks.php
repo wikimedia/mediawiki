@@ -268,16 +268,15 @@ class UploadFromChunks extends UploadFromFile {
 			$this->getOffset() . ' inx:' . $this->getChunkIndex() );
 
 		$dbw = $this->repo->getPrimaryDB();
-		$dbw->update(
-			'uploadstash',
-			[
+		$dbw->newUpdateQueryBuilder()
+			->update( 'uploadstash' )
+			->set( [
 				'us_status' => 'chunks',
 				'us_chunk_inx' => $this->getChunkIndex(),
 				'us_size' => $this->getOffset()
-			],
-			[ 'us_key' => $this->mFileKey ],
-			__METHOD__
-		);
+			] )
+			->where( [ 'us_key' => $this->mFileKey ] )
+			->caller( __METHOD__ )->execute();
 	}
 
 	/**

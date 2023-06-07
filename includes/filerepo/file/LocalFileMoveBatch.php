@@ -374,24 +374,25 @@ class LocalFileMoveBatch {
 		$dbw = $this->db;
 
 		// Update current image
-		$dbw->update(
-			'image',
-			[ 'img_name' => $this->newName ],
-			[ 'img_name' => $this->oldName ],
-			__METHOD__
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'image' )
+			->set( [ 'img_name' => $this->newName ] )
+			->where( [ 'img_name' => $this->oldName ] )
+			->caller( __METHOD__ )->execute();
 
 		// Update old images
-		$dbw->update(
-			'oldimage',
-			[
+		$dbw->newUpdateQueryBuilder()
+			->update( 'oldimage' )
+			->set( [
 				'oi_name' => $this->newName,
-				'oi_archive_name = ' . $dbw->strreplace( 'oi_archive_name',
-					$dbw->addQuotes( $this->oldName ), $dbw->addQuotes( $this->newName ) ),
-			],
-			[ 'oi_name' => $this->oldName ],
-			__METHOD__
-		);
+				'oi_archive_name = ' . $dbw->strreplace(
+					'oi_archive_name',
+					$dbw->addQuotes( $this->oldName ),
+					$dbw->addQuotes( $this->newName )
+				),
+			] )
+			->where( [ 'oi_name' => $this->oldName ] )
+			->caller( __METHOD__ )->execute();
 	}
 
 	/**

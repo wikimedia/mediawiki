@@ -358,8 +358,9 @@ class OldLocalFile extends LocalFile {
 		[ $major, $minor ] = self::splitMime( $this->mime );
 
 		wfDebug( __METHOD__ . ': upgrading ' . $this->archive_name . " to the current schema" );
-		$dbw->update( 'oldimage',
-			[
+		$dbw->newUpdateQueryBuilder()
+			->update( 'oldimage' )
+			->set( [
 				'oi_size' => $this->size,
 				'oi_width' => $this->width,
 				'oi_height' => $this->height,
@@ -369,11 +370,9 @@ class OldLocalFile extends LocalFile {
 				'oi_minor_mime' => $minor,
 				'oi_metadata' => $this->getMetadataForDb( $dbw ),
 				'oi_sha1' => $this->sha1,
-			], [
-				'oi_name' => $this->getName(),
-				'oi_archive_name' => $this->archive_name ],
-			__METHOD__
-		);
+			] )
+			->where( [ 'oi_name' => $this->getName(),'oi_archive_name' => $this->archive_name ] )
+			->caller( __METHOD__ )->execute();
 	}
 
 	protected function reserializeMetadata() {

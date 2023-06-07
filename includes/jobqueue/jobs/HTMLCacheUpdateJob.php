@@ -147,14 +147,11 @@ class HTMLCacheUpdateJob extends Job {
 		// Check $wgUpdateRowsPerQuery; batch jobs are sized by that already.
 		$batches = array_chunk( $pageIds, $config->get( MainConfigNames::UpdateRowsPerQuery ) );
 		foreach ( $batches as $batch ) {
-			$dbw->update( 'page',
-				[ 'page_touched' => $dbw->timestamp( $newTouchedUnix ) ],
-				[
-					'page_id' => $batch,
-					"page_touched < " . $dbw->addQuotes( $dbw->timestamp( $casTsUnix ) )
-				],
-				__METHOD__
-			);
+			$dbw->newUpdateQueryBuilder()
+				->update( 'page' )
+				->set( [ 'page_touched' => $dbw->timestamp( $newTouchedUnix ) ] )
+				->where( [ 'page_id' => $batch,"page_touched < " . $dbw->addQuotes( $dbw->timestamp( $casTsUnix ) ) ] )
+				->caller( __METHOD__ )->execute();
 			if ( count( $batches ) > 1 ) {
 				$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
 			}

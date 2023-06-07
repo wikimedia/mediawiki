@@ -251,12 +251,11 @@ class ChangeTagsStore {
 	public function undefineTag( $tag ) {
 		$dbw = $this->dbProvider->getPrimaryDatabase();
 
-		$dbw->update(
-			self::CHANGE_TAG_DEF,
-			[ 'ctd_user_defined' => 0 ],
-			[ 'ctd_name' => $tag ],
-			__METHOD__
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( self::CHANGE_TAG_DEF )
+			->set( [ 'ctd_user_defined' => 0 ] )
+			->where( [ 'ctd_name' => $tag ] )
+			->caller( __METHOD__ )->execute();
 
 		$dbw->delete(
 			self::CHANGE_TAG_DEF,
@@ -630,12 +629,11 @@ class ChangeTagsStore {
 			$fname = __METHOD__;
 			// T207881: update the counts at the end of the transaction
 			$dbw->onTransactionPreCommitOrIdle( static function () use ( $dbw, $tagsToAdd, $fname ) {
-				$dbw->update(
-					self::CHANGE_TAG_DEF,
-					[ 'ctd_count = ctd_count + 1' ],
-					[ 'ctd_name' => $tagsToAdd ],
-					$fname
-				);
+				$dbw->newUpdateQueryBuilder()
+					->update( self::CHANGE_TAG_DEF )
+					->set( [ 'ctd_count = ctd_count + 1' ] )
+					->where( [ 'ctd_name' => $tagsToAdd ] )
+					->caller( $fname )->execute();
 			}, $fname );
 
 			$tagsRows = [];
@@ -675,12 +673,11 @@ class ChangeTagsStore {
 				if ( $dbw->affectedRows() ) {
 					// T207881: update the counts at the end of the transaction
 					$dbw->onTransactionPreCommitOrIdle( static function () use ( $dbw, $tag, $fname ) {
-						$dbw->update(
-							self::CHANGE_TAG_DEF,
-							[ 'ctd_count = ctd_count - 1' ],
-							[ 'ctd_name' => $tag ],
-							$fname
-						);
+						$dbw->newUpdateQueryBuilder()
+							->update( self::CHANGE_TAG_DEF )
+							->set( [ 'ctd_count = ctd_count - 1' ] )
+							->where( [ 'ctd_name' => $tag ] )
+							->caller( $fname )->execute();
 
 						$dbw->delete(
 							self::CHANGE_TAG_DEF,

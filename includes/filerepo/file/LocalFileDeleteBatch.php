@@ -149,10 +149,14 @@ class LocalFileDeleteBatch {
 
 					if ( $props['fileExists'] ) {
 						// Upgrade the oldimage row
-						$dbw->update( 'oldimage',
-							[ 'oi_sha1' => $props['sha1'] ],
-							[ 'oi_name' => $this->file->getName(), 'oi_archive_name' => $row->oi_archive_name ],
-							__METHOD__ );
+						$dbw->newUpdateQueryBuilder()
+							->update( 'oldimage' )
+							->set( [ 'oi_sha1' => $props['sha1'] ] )
+							->where( [
+								'oi_name' => $this->file->getName(),
+								'oi_archive_name' => $row->oi_archive_name,
+							] )
+							->caller( __METHOD__ )->execute();
 						$hashes[$row->oi_archive_name] = $props['sha1'];
 					} else {
 						$hashes[$row->oi_archive_name] = false;
