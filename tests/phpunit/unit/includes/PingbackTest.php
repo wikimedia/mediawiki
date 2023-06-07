@@ -24,8 +24,9 @@ class PingbackTest extends MediaWikiUnitTestCase {
 	 * @param HttpRequestFactory $httpRequestFactory
 	 * @param bool $enablePingback
 	 * @param BagOStuff|null $cache
+	 * @return Pingback
 	 */
-	private function testRun(
+	private function makePingback(
 		DBConnRef $database,
 		$httpRequestFactory,
 		bool $enablePingback = true,
@@ -35,27 +36,26 @@ class PingbackTest extends MediaWikiUnitTestCase {
 		$dbProvider->method( 'getPrimaryDatabase' )->willReturn( $database );
 		$dbProvider->method( 'getReplicaDatabase' )->willReturn( $database );
 
-		$pingback = new MockPingback(
+		return new MockPingback(
 			new HashConfig( [ MainConfigNames::Pingback => $enablePingback ] ),
 			$dbProvider,
 			$cache ?? new HashBagOStuff(),
 			$httpRequestFactory,
 			new NullLogger()
 		);
-		// All of the assertions are in the expectations
-		$pingback->run();
 	}
 
 	public function testDisabled() {
 		// Scenario: Disabled
-		// Expect:
-		// - no db calls (no select, lock, or upsert)
-		// - no HTTP request
-		$this->testRun(
+		$pingback = $this->makePingback(
 			$this->createNoOpMock( DBConnRef::class ),
 			$this->createNoOpMock( HttpRequestFactory::class ),
 			false /* $enablePingback */
 		);
+		// Expect:
+		// - no db select, lock, or upsert (asserted via no-op mock)
+		// - no HTTP request (asserted via no-op mock)
+		$pingback->run();
 	}
 
 	public function testCacheBusy() {
@@ -63,10 +63,6 @@ class PingbackTest extends MediaWikiUnitTestCase {
 		// - enabled
 		// - table is empty
 		// - cache lock is unavailable
-		// Expect:
-		// - no db lock
-		// - no HTTP request
-		// - no db upsert for timestamp
 		$database = $this->createNoOpMock( DBConnRef::class, [ 'selectField', 'newSelectQueryBuilder' ] );
 		$database->expects( $this->once() )->method( 'selectField' )->willReturn( false );
 		$database->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $database ) );
@@ -74,12 +70,18 @@ class PingbackTest extends MediaWikiUnitTestCase {
 		$cache = $this->createMock( BagOStuff::class );
 		$cache->method( 'add' )->willReturn( false );
 
-		$this->testRun(
+		$pingback = $this->makePingback(
 			$database,
 			$this->createNoOpMock( HttpRequestFactory::class ),
 			true, /* $enablePingback */
 			$cache
 		);
+
+		// Expect:
+		// - no db lock
+		// - no HTTP request
+		// - no db upsert for timestamp
+		$pingback->run();
 	}
 
 	public function testDbBusy() {
@@ -88,18 +90,19 @@ class PingbackTest extends MediaWikiUnitTestCase {
 		// - table is empty
 		// - cache lock is available
 		// - db lock is unavailable
-		// Expect:
-		// - no HTTP request
-		// - no db upsert for timestamp
 		$database = $this->createNoOpMock( DBConnRef::class, [ 'selectField', 'lock', 'newSelectQueryBuilder' ] );
 		$database->expects( $this->once() )->method( 'selectField' )->willReturn( false );
 		$database->expects( $this->once() )->method( 'lock' )->willReturn( false );
 		$database->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $database ) );
 
-		$this->testRun(
+		$pingback = $this->makePingback(
 			$database,
 			$this->createNoOpMock( HttpRequestFactory::class )
 		);
+		// Expect:
+		// - no HTTP request
+		// - no db upsert for timestamp
+		$pingback->run();
 	}
 
 	/**
@@ -112,10 +115,6 @@ class PingbackTest extends MediaWikiUnitTestCase {
 		//     - empty ($priorPing is false)
 		//     - has a ping from over a month ago ($piorPing)
 		// - cache lock and db lock are available
-		// Expect:
-		// - db lock acquired
-		// - HTTP POST request
-		// - db upsert for timestamp
 		$database = $this->createNoOpMock( DBConnRef::class, [ 'selectField', 'lock', 'upsert', 'newSelectQueryBuilder' ] );
 		$httpRequestFactory = $this->createNoOpMock( HttpRequestFactory::class, [ 'post' ] );
 
@@ -128,10 +127,15 @@ class PingbackTest extends MediaWikiUnitTestCase {
 		$database->expects( $this->once() )->method( 'upsert' );
 		$database->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $database ) );
 
-		$this->testRun(
+		$pingback = $this->makePingback(
 			$database,
 			$httpRequestFactory
 		);
+		// Expect:
+		// - db lock acquired
+		// - HTTP POST request
+		// - db upsert for timestamp
+		$pingback->run();
 	}
 
 	public static function provideMakePing() {
@@ -146,20 +150,21 @@ class PingbackTest extends MediaWikiUnitTestCase {
 		// - enabled
 		// - table contains a ping from one hour ago
 		// - cache lock and db lock are available
-		// Expect:
-		// - no db lock
-		// - no HTTP request
-		// - no db upsert for timestamp
 		$database = $this->createNoOpMock( DBConnRef::class, [ 'selectField', 'newSelectQueryBuilder' ] );
 		$database->expects( $this->once() )->method( 'selectField' )->willReturn(
 			ConvertibleTimestamp::convert( TS_UNIX, '20110401080000' )
 		);
 		$database->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $database ) );
 
-		$this->testRun(
+		$pingback = $this->makePingback(
 			$database,
 			$this->createNoOpMock( HttpRequestFactory::class )
 		);
+		// Expect:
+		// - no db lock
+		// - no HTTP request
+		// - no db upsert for timestamp
+		$pingback->run();
 	}
 }
 
