@@ -1757,42 +1757,17 @@ class SQLPlatform implements ISQLPlatform {
 	 *
 	 * @param string|string[]|string[][] $uniqueKeys Unique indexes (only one is allowed)
 	 * @param array[] &$rows The row array, which will be replaced with a normalized version.
-	 * @return string[]|null List of columns that defines a single unique index, or null for
-	 *   a legacy fallback to plain insert.
+	 * @return string[] List of columns that defines a single unique index
 	 * @since 1.35
 	 */
 	final public function normalizeUpsertParams( $uniqueKeys, &$rows ) {
 		$rows = $this->normalizeRowArray( $rows );
-		if ( !$rows ) {
-			return null;
-		}
 		if ( !$uniqueKeys ) {
-			// For backwards compatibility, allow insertion of rows with no applicable key
-			$this->logger->warning(
-				"upsert/replace called with no unique key",
-				[
-					'exception' => new RuntimeException(),
-					'db_log_category' => 'sql',
-				]
-			);
-			return null;
+			throw new DBLanguageError( 'No unique key specified for upsert/replace' );
 		}
 		$identityKey = $this->normalizeUpsertKeys( $uniqueKeys );
-		if ( $identityKey ) {
-			$allDefaultKeyValues = $this->assertValidUpsertRowArray( $rows, $identityKey );
-			if ( $allDefaultKeyValues ) {
-				// For backwards compatibility, allow insertion of rows with all-NULL
-				// values for the unique columns (e.g. for an AUTOINCREMENT column)
-				$this->logger->warning(
-					"upsert/replace called with all-null values for unique key",
-					[
-						'exception' => new RuntimeException(),
-						'db_log_category' => 'sql',
-					]
-				);
-				return null;
-			}
-		}
+		$this->assertValidUpsertRowArray( $rows, $identityKey );
+
 		return $identityKey;
 	}
 
@@ -1821,8 +1796,7 @@ class SQLPlatform implements ISQLPlatform {
 
 	/**
 	 * @param string|string[]|string[][] $uniqueKeys Unique indexes (only one is allowed)
-	 * @return string[]|null List of columns that defines a single unique index,
-	 *   or null for a legacy fallback to plain insert.
+	 * @return string[] List of columns that defines a single unique index
 	 * @since 1.35
 	 */
 	private function normalizeUpsertKeys( $uniqueKeys ) {
@@ -1859,27 +1833,18 @@ class SQLPlatform implements ISQLPlatform {
 	/**
 	 * @param array<int,array> $rows Normalized list of rows to insert
 	 * @param string[] $identityKey Columns of the (unique) identity key to UPSERT upon
-	 * @return bool Whether all the rows have NULL/absent values for all identity key columns
 	 * @since 1.37
 	 */
 	final protected function assertValidUpsertRowArray( array $rows, array $identityKey ) {
-		$numNulls = 0;
 		foreach ( $rows as $row ) {
 			foreach ( $identityKey as $column ) {
-				$numNulls += ( isset( $row[$column] ) ? 0 : 1 );
+				if ( !isset( $row[$column] ) ) {
+					throw new DBLanguageError(
+						"NULL/absent values for unique key (" . implode( ',', $identityKey ) . ")"
+					);
+				}
 			}
 		}
-
-		if (
-			$numNulls &&
-			$numNulls !== ( count( $rows ) * count( $identityKey ) )
-		) {
-			throw new DBLanguageError(
-				"NULL/absent values for unique key (" . implode( ',', $identityKey ) . ")"
-			);
-		}
-
-		return (bool)$numNulls;
 	}
 
 	/**

@@ -1644,15 +1644,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function replace( $table, $uniqueKeys, $rows, $fname = __METHOD__ ) {
 		$identityKey = $this->platform->normalizeUpsertParams( $uniqueKeys, $rows );
-		if ( !$rows ) {
-			return;
-		}
-		if ( $identityKey ) {
+		if ( $rows ) {
 			$this->doReplace( $table, $identityKey, $rows, $fname );
-		} else {
-			$sql = $this->platform->insertSqlText( $table, $rows );
-			$query = new Query( $sql, self::QUERY_CHANGE_ROWS, 'INSERT', $table );
-			$this->query( $query, $fname );
 		}
 	}
 
@@ -1699,16 +1692,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function upsert( $table, array $rows, $uniqueKeys, array $set, $fname = __METHOD__ ) {
 		$identityKey = $this->platform->normalizeUpsertParams( $uniqueKeys, $rows );
-		if ( !$rows ) {
-			return true;
-		}
-		if ( $identityKey ) {
+		if ( $rows ) {
 			$this->platform->assertValidUpsertSetArray( $set, $identityKey, $rows );
 			$this->doUpsert( $table, $rows, $identityKey, $set, $fname );
-		} else {
-			$sql = $this->platform->insertSqlText( $table, $rows );
-			$query = new Query( $sql, self::QUERY_CHANGE_ROWS, 'INSERT', $table );
-			$this->query( $query, $fname );
 		}
 
 		return true;

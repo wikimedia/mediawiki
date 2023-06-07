@@ -560,20 +560,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 					"(md_module,md_skin,md_deps) " .
 					"VALUES ('module2','skin2','deps2'); COMMIT"
 			],
-			[
-				[
-					'table' => 'module_deps',
-					'uniqueIndexes' => [],
-					'rows' => [
-						'md_module' => 'module',
-						'md_skin' => 'skin',
-						'md_deps' => 'deps',
-					],
-				],
-				"INSERT INTO module_deps " .
-					"(md_module,md_skin,md_deps) " .
-					"VALUES ('module','skin','deps')"
-			],
 		];
 	}
 
