@@ -708,13 +708,13 @@ class MimeAnalyzer implements LoggerAwareInterface {
 		$script_type = null;
 
 		# detect by shebang
-		if ( substr( $head, 0, 2 ) == "#!" ) {
+		if ( str_starts_with( $head, "#!" ) ) {
 			$script_type = "ASCII";
-		} elseif ( substr( $head, 0, 5 ) == "\xef\xbb\xbf#!" ) {
+		} elseif ( str_starts_with( $head, "\xef\xbb\xbf#!" ) ) {
 			$script_type = "UTF-8";
-		} elseif ( substr( $head, 0, 7 ) == "\xfe\xff\x00#\x00!" ) {
+		} elseif ( str_starts_with( $head, "\xfe\xff\x00#\x00!" ) ) {
 			$script_type = "UTF-16BE";
-		} elseif ( substr( $head, 0, 7 ) == "\xff\xfe#\x00!" ) {
+		} elseif ( str_starts_with( $head, "\xff\xfe#\x00!" ) ) {
 			$script_type = "UTF-16LE";
 		}
 

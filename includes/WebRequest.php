@@ -405,9 +405,8 @@ class WebRequest {
 		foreach ( (array)$bases as $keyValue => $base ) {
 			// Find the part after $wgArticlePath
 			$base = str_replace( '$1', '', $base );
-			$baseLen = strlen( $base );
-			if ( substr( $path, 0, $baseLen ) == $base ) {
-				$raw = substr( $path, $baseLen );
+			if ( str_starts_with( $path, $base ) ) {
+				$raw = substr( $path, strlen( $base ) );
 				if ( $raw !== '' ) {
 					$matches = [ 'title' => rawurldecode( $raw ) ];
 					if ( $key ) {
@@ -497,7 +496,7 @@ class WebRequest {
 	}
 
 	/**
-	 * Fetch a text string and partially normalized it.
+	 * Fetch a text string and partially normalize it.
 	 *
 	 * Use of this method is discouraged. It doesn't normalize line breaks and defaults to null
 	 * instead of the empty string. Instead:

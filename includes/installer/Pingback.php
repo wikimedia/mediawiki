@@ -27,11 +27,9 @@ use Config;
 use DeferredUpdates;
 use FormatJson;
 use MediaWiki\Http\HttpRequestFactory;
-use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MWCryptRand;
-use ObjectCache;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -302,7 +300,8 @@ class Pingback {
 	 * sent and (if so) proceed to send it.
 	 */
 	public static function schedulePingback(): void {
-		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$services = MediaWikiServices::getInstance();
+		$config = $services->getMainConfig();
 		if ( !$config->get( MainConfigNames::Pingback ) ) {
 			// Fault tolerance:
 			// Pingback is unusual. On a plain install of MediaWiki, it is likely the only
@@ -311,17 +310,8 @@ class Pingback {
 			// or DB_PRIMARY have issues, allow this to be turned off completely. (T269516)
 			return;
 		}
-		DeferredUpdates::addCallableUpdate( static function () {
-			// Avoid re-use of $config as that would hold the same object from
-			// the outer call via Setup.php, all the way here through post-send.
-			$instance = new Pingback(
-				MediaWikiServices::getInstance()->getMainConfig(),
-				MediaWikiServices::getInstance()->getDBLoadBalancerFactory(),
-				ObjectCache::getLocalClusterInstance(),
-				MediaWikiServices::getInstance()->getHttpRequestFactory(),
-				LoggerFactory::getInstance( 'Pingback' )
-			);
-			$instance->run();
+		DeferredUpdates::addCallableUpdate( static function () use ( $services ) {
+			$services->getPingback()->run();
 		} );
 	}
 }

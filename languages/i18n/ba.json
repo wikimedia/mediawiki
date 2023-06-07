@@ -3231,7 +3231,7 @@
 	"feedback-thanks-title": "Рәхмәт!",
 	"feedback-useragent": "Браузер:",
 	"searchsuggest-search": "{{SITENAME}} эсендә эҙләү",
-	"searchsuggest-containing": "эстәлегендә...",
+	"searchsuggest-containing": "Эстәлегендә булған биттәрҙе эҙләргә",
 	"api-clientside-error-timeout": "Көтөлгән ваҡыт эсендә сервер яуып бирмәне.",
 	"api-error-badtoken": "Эске хата: дөрөҫ булмаған токен",
 	"api-error-emptypage": "Яңы буш биттәр яһау тыйыла.",

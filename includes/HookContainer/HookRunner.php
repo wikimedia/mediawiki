@@ -83,6 +83,7 @@ class HookRunner implements
 	\MediaWiki\Diff\Hook\AbortDiffCacheHook,
 	\MediaWiki\Diff\Hook\ArticleContentOnDiffHook,
 	\MediaWiki\Diff\Hook\DifferenceEngineAfterLoadNewTextHook,
+	\MediaWiki\Diff\Hook\TextSlotDiffRendererTablePrefixHook,
 	\MediaWiki\Diff\Hook\DifferenceEngineLoadTextAfterNewContentIsLoadedHook,
 	\MediaWiki\Diff\Hook\DifferenceEngineMarkPatrolledLinkHook,
 	\MediaWiki\Diff\Hook\DifferenceEngineMarkPatrolledRCIDHook,
@@ -1319,6 +1320,17 @@ class HookRunner implements
 		return $this->container->run(
 			'DifferenceEngineAfterLoadNewText',
 			[ $differenceEngine ]
+		);
+	}
+
+	public function onTextSlotDiffRendererTablePrefix(
+		\TextSlotDiffRenderer $textSlotDiffRenderer,
+		IContextSource $context,
+		array &$parts
+	) {
+		return $this->container->run(
+			'TextSlotDiffRendererTablePrefix',
+			[ $textSlotDiffRenderer, $context, &$parts ]
 		);
 	}
 

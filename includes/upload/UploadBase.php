@@ -1709,7 +1709,7 @@ abstract class UploadBase {
 			# use set/animate to add event-handler attribute to parent
 			if ( ( $strippedElement === 'set' || $strippedElement === 'animate' )
 				&& $stripped === 'attributename'
-				&& substr( $value, 0, 2 ) === 'on'
+				&& str_starts_with( $value, 'on' )
 			) {
 				wfDebug( __METHOD__ . ": Found svg setting event-handler attribute with "
 					. "\"<$strippedElement $stripped='$value'...\" in uploaded file." );

@@ -679,6 +679,8 @@ abstract class ContentHandler {
 		$slotDiffRenderer->setStatsdDataFactory( $statsdDataFactory );
 		// XXX using the page language would be better, but it's unclear how that should be injected
 		$slotDiffRenderer->setLanguage( $contentLanguage );
+		$slotDiffRenderer->setHookContainer( MediaWikiServices::getInstance()->getHookContainer() );
+		$slotDiffRenderer->setContentModel( $this->getModelID() );
 
 		$inline = ( $options['diff-type'] ?? '' ) === 'inline';
 		$engine = DifferenceEngine::getEngine();

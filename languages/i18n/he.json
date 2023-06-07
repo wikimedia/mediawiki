@@ -4151,7 +4151,7 @@
 	"newpages-showhide-redirect": "$1 הפניות",
 	"newpages-showhide-registered": "$1 משתמשים רשומים",
 	"blockedtext-made-by": "החסימה בוצעה על־ידי $1.",
-	"blockedtext-reason-comment": "הסיבה שניתנה לכך היא <em>$1</em>.",
+	"blockedtext-reason-comment": "הסיבה שניתנה לכך היא <em>$1</em>",
 	"blockedtext-start-time": "תחילת החסימה: $1",
 	"blockedtext-expiration-time": "* פקיעת החסימה: $1",
 	"blockedtext-expiration-longest-block": "פקיעת החסימה הארוכה ביותר: $1",

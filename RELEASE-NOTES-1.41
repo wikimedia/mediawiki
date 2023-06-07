@@ -68,10 +68,11 @@ For notes on 1.40.x and older releases, see HISTORY.
 
 ==== Changed external libraries ====
 * Updated codex, codex-search, codex-design-tokens and codex-icons
-  from v0.6.2 to v0.11.0.
+  from v0.6.2 to v0.12.0.
 * Updated Mustache from 3.0.1 to 4.2.0.
 * Updated OOjs from 6.0.0 to 7.0.1.
 * Updated wikimedia/composer-merge-plugin from 2.0.1 to 2.1.0.
+* Updated wikimedia/common-passwords from 0.4.0 to 0.5.0.
 * Updated wikimedia/minify from 2.3.0 to 2.4.0.
 * Updated wikimedia/less.php from 4.0.0 to 4.1.0.
 * Updated OOUI from v0.46.3 to v0.47.0.
@@ -118,6 +119,8 @@ because of Phabricator reports.
 * The following unused IDatabase methods were removed without deprecation:
   - ::wasLockTimeout()
   - ::wasConnectionLoss()
+* The GenericArrayObject class, deprecated in 1.40,
+  has been removed.
 * PrevNextNavigationRenderer class, deprecated in 1.39,
   has been removed.
 * class alias MediaWiki\User\WatchlistNotificationManager, deprecated in 1.36,
@@ -291,6 +294,8 @@ because of Phabricator reports.
   future as it is resource intensive and degrades performance.
 * The EmailUserPermissionsErrors hook has been deprecated in favour of the
   UserCanSendEmail hook.
+* SiteConfiguration::extractVar() and ::extractGlobal() have been deprecated
+  and also emit deprecation warnings.
 * Hooks::isRegistered(), ::getHandlers(), ::run() and ::runWithoutAbort(),
   deprecated in 1.35, now emit deprecation warnings.
 * …

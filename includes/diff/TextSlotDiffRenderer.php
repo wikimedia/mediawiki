@@ -21,6 +21,9 @@
  * @ingroup DifferenceEngine
  */
 
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 use Wikimedia\Assert\Assert;
@@ -49,17 +52,25 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	/** Use an external executable. */
 	public const ENGINE_EXTERNAL = 'external';
 
+	public const INLINE_LEGEND_KEY = '10_mw-diff-inline-legend';
+
 	/** @var IBufferingStatsdDataFactory|null */
 	private $statsdDataFactory;
 
 	/** @var Language|null The language this content is in. */
 	private $language;
 
+	/** @var HookRunner|null */
+	private $hookRunner;
+
 	/** @var string One of the ENGINE_* constants. */
 	private $engine = self::ENGINE_PHP;
 
 	/** @var string|null Path to an executable to be used as the diff engine. */
 	private $externalEngine;
+
+	/** @var string */
+	private $contentModel;
 
 	/** @inheritDoc */
 	public function getExtraCacheKeys() {
@@ -100,6 +111,22 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	}
 
 	/**
+	 * @since 1.41
+	 * @param HookContainer $hookContainer
+	 */
+	public function setHookContainer( HookContainer $hookContainer ): void {
+		$this->hookRunner = new HookRunner( $hookContainer );
+	}
+
+	/**
+	 * @param string $contentModel
+	 * @since 1.41
+	 */
+	public function setContentModel( string $contentModel ) {
+		$this->contentModel = $contentModel;
+	}
+
+	/**
 	 * Set which diff engine to use.
 	 * @param string $type One of the ENGINE_* constants.
 	 * @param string|null $executable Path to an external executable, only when type is ENGINE_EXTERNAL.
@@ -120,6 +147,16 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 		$this->externalEngine = $executable;
 	}
 
+	/**
+	 * Get the content model ID that this renderer acts on
+	 *
+	 * @since 1.41
+	 * @return string
+	 */
+	public function getContentModel(): string {
+		return $this->contentModel;
+	}
+
 	/** @inheritDoc */
 	public function getDiff( Content $oldContent = null, Content $newContent = null ) {
 		$this->normalizeContents( $oldContent, $newContent, TextContent::class );
@@ -128,6 +165,41 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 		$newText = $newContent->serialize();
 
 		return $this->getTextDiff( $oldText, $newText );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getTablePrefix( IContextSource $context ): string {
+		$legend = null;
+		// wikidiff2 inline type gets a legend to explain the highlighting colours.
+		if ( $this->engine === self::ENGINE_WIKIDIFF2_INLINE ) {
+			$ins = Html::element(
+				'span', [ 'class' => 'mw-diff-inline-legend-ins' ], $context->msg( 'diff-inline-tooltip-ins' )->plain()
+			);
+			$del = Html::element(
+				'span', [ 'class' => 'mw-diff-inline-legend-del' ], $context->msg( 'diff-inline-tooltip-del' )->plain()
+			);
+			$legend = Html::rawElement( 'div', [ 'class' => 'mw-diff-inline-legend' ], "$ins $del" );
+		}
+		// Allow extensions to add other parts to this area (or modify the legend).
+		// An empty placeholder for the legend is added when it's not in use and other items have been added.
+		$parts = [ self::INLINE_LEGEND_KEY => $legend ];
+
+		$this->hookRunner->onTextSlotDiffRendererTablePrefix( $this, $context, $parts );
+		if ( count( $parts ) > 1 && $parts[self::INLINE_LEGEND_KEY] === null ) {
+			$parts[self::INLINE_LEGEND_KEY] = Html::element( 'div' );
+		}
+		ksort( $parts );
+		if ( count( array_filter( $parts ) ) > 0 ) {
+			$attrs = [
+				'class' => 'mw-diff-table-prefix',
+				'dir' => $this->language->getDir(),
+				'lang' => $this->language->getCode(),
+			];
+			return Html::rawElement( 'div', $attrs, implode( '', $parts ) );
+		}
+		return '';
 	}
 
 	/**

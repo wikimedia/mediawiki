@@ -1012,11 +1012,11 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$data = [];
 		foreach ( $hookNames as $name ) {
-			$subscribers = $hookContainer->getLegacyHandlers( $name );
+			$subscribers = $hookContainer->getHandlerDescriptions( $name );
 
 			$arr = [
 				'name' => $name,
-				'subscribers' => array_map( [ SpecialVersion::class, 'arrayToString' ], $subscribers ),
+				'subscribers' => $subscribers,
 			];
 
 			ApiResult::setArrayType( $arr['subscribers'], 'array' );
