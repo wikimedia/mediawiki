@@ -30,7 +30,7 @@ use MediaWiki\Specials\SpecialEditWatchlist;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -192,7 +192,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 					'activeValue' => false,
 					'default' => $this->userOptionsLookup->getBoolOption( $this->getUser(), 'extendwatchlist' ),
 					'queryCallable' => function ( string $specialClassName, IContextSource $ctx,
-						IDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
+						IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
 					) {
 						$nonRevisionTypes = [ RC_LOG ];
 						$this->getHookRunner()->onSpecialWatchlistGetNonRevisionTypes( $nonRevisionTypes );
@@ -247,7 +247,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			'queryCallable' => static function (
 				string $specialPageClassName,
 				IContextSource $context,
-				IDatabase $dbr,
+				IReadableDatabase $dbr,
 				&$tables,
 				&$fields,
 				&$conds,
