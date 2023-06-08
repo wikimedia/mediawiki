@@ -371,7 +371,10 @@ class OldLocalFile extends LocalFile {
 				'oi_metadata' => $this->getMetadataForDb( $dbw ),
 				'oi_sha1' => $this->sha1,
 			] )
-			->where( [ 'oi_name' => $this->getName(),'oi_archive_name' => $this->archive_name ] )
+			->where( [
+				'oi_name' => $this->getName(),
+				'oi_archive_name' => $this->archive_name,
+			] )
 			->caller( __METHOD__ )->execute();
 	}
 

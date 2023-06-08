@@ -150,7 +150,8 @@ class HTMLCacheUpdateJob extends Job {
 			$dbw->newUpdateQueryBuilder()
 				->update( 'page' )
 				->set( [ 'page_touched' => $dbw->timestamp( $newTouchedUnix ) ] )
-				->where( [ 'page_id' => $batch,"page_touched < " . $dbw->addQuotes( $dbw->timestamp( $casTsUnix ) ) ] )
+				->where( [ 'page_id' => $batch ] )
+				->andWhere( $dbw->buildComparison( '<', [ 'page_touched' => $dbw->timestamp( $casTsUnix ) ] ) )
 				->caller( __METHOD__ )->execute();
 			if ( count( $batches ) > 1 ) {
 				$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );

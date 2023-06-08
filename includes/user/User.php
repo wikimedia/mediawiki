@@ -1330,7 +1330,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		$dbw->newUpdateQueryBuilder()
 			->update( 'user' )
 			->set( [ 'user_touched' => $dbw->timestamp( $newTouched ) ] )
-			->where( $this->makeUpdateConditions( $dbw, [ 'user_id' => $this->mId, ] ) )
+			->where( $this->makeUpdateConditions( $dbw, [
+				'user_id' => $this->mId,
+			] ) )
 			->caller( __METHOD__ )->execute();
 		$success = ( $dbw->affectedRows() > 0 );
 

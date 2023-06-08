@@ -120,7 +120,7 @@ class RenameUserJob extends Job {
 				$dbw->newUpdateQueryBuilder()
 					->update( $table )
 					->set( [ $column => $newname ] )
-					->where( [ $column => $oldname,$uniqueKey => $batch ] )
+					->where( [ $column => $oldname, $uniqueKey => $batch ] )
 					->caller( __METHOD__ )->execute();
 			}
 		} else {

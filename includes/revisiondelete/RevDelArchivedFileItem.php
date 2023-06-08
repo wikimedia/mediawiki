@@ -71,7 +71,10 @@ class RevDelArchivedFileItem extends RevDelFileItem {
 		$dbw->newUpdateQueryBuilder()
 			->update( 'filearchive' )
 			->set( [ 'fa_deleted' => $bits ] )
-			->where( [ 'fa_id' => $this->row->fa_id,'fa_deleted' => $this->getBits(), ] )
+			->where( [
+				'fa_id' => $this->row->fa_id,
+				'fa_deleted' => $this->getBits(),
+			] )
 			->caller( __METHOD__ )->execute();
 
 		return (bool)$dbw->affectedRows();

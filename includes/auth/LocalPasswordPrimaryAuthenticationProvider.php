@@ -148,7 +148,10 @@ class LocalPasswordPrimaryAuthenticationProvider
 				$dbw->newUpdateQueryBuilder()
 					->update( 'user' )
 					->set( [ 'user_password' => $newHash->toString() ] )
-					->where( [ 'user_id' => $oldRow->user_id,'user_password' => $oldRow->user_password ] )
+					->where( [
+						'user_id' => $oldRow->user_id,
+						'user_password' => $oldRow->user_password,
+					] )
 					->caller( $fname )->execute();
 			} );
 		}

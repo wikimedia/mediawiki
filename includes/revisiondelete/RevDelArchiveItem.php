@@ -72,6 +72,7 @@ class RevDelArchiveItem extends RevDelRevisionItem {
 			->where( [
 				'ar_namespace' => $this->list->getPage()->getNamespace(),
 				'ar_title' => $this->list->getPage()->getDBkey(),
+				// use timestamp for index
 				'ar_timestamp' => $this->row->ar_timestamp,
 				'ar_rev_id' => $this->row->ar_rev_id,
 				'ar_deleted' => $this->getBits()

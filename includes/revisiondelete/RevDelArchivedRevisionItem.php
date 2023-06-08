@@ -37,7 +37,10 @@ class RevDelArchivedRevisionItem extends RevDelArchiveItem {
 		$dbw->newUpdateQueryBuilder()
 			->update( 'archive' )
 			->set( [ 'ar_deleted' => $bits ] )
-			->where( [ 'ar_rev_id' => $this->row->ar_rev_id,'ar_deleted' => $this->getBits() ] )
+			->where( [
+				'ar_rev_id' => $this->row->ar_rev_id,
+				'ar_deleted' => $this->getBits(),
+			] )
 			->caller( __METHOD__ )->execute();
 
 		return (bool)$dbw->affectedRows();

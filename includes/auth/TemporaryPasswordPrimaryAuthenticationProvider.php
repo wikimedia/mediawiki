@@ -321,7 +321,10 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 
 		$dbw->newUpdateQueryBuilder()
 			->update( 'user' )
-			->set( [ 'user_newpassword' => $pwhash->toString(),'user_newpass_time' => $newpassTime, ] )
+			->set( [
+				'user_newpassword' => $pwhash->toString(),
+				'user_newpass_time' => $newpassTime,
+			] )
 			->where( [ 'user_name' => $username ] )
 			->caller( __METHOD__ )->execute();
 

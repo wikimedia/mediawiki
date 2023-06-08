@@ -831,7 +831,8 @@ class LocalFile extends File {
 				'img_metadata' => $this->getMetadataForDb( $dbw ),
 				'img_sha1' => $this->sha1,
 			] )
-			->where( array_merge( [ 'img_name' => $this->getName() ], $freshnessCondition ) )
+			->where( [ 'img_name' => $this->getName() ] )
+			->andWhere( $freshnessCondition )
 			->caller( __METHOD__ )->execute();
 
 		$this->invalidateCache();
@@ -851,7 +852,10 @@ class LocalFile extends File {
 		$dbw->newUpdateQueryBuilder()
 			->update( 'image' )
 			->set( [ 'img_metadata' => $this->getMetadataForDb( $dbw ) ] )
-			->where( [ 'img_name' => $this->name,'img_timestamp' => $dbw->timestamp( $this->timestamp ), ] )
+			->where( [
+				'img_name' => $this->name,
+				'img_timestamp' => $dbw->timestamp( $this->timestamp ),
+			] )
 			->caller( __METHOD__ )->execute();
 		$this->upgraded = true;
 	}
