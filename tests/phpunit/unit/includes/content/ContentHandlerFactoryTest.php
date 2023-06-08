@@ -119,35 +119,69 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 		}
 	}
 
-	public static function provideHandlerSpecsWithMWException(): array {
+	public static function provideHandlerSpecsWithException(): array {
 		return [
-			'MWException expected' => [
+			'Callback exists but returns the wrong type' => [
 				[
 					'ExistCallbackWithWrongType' => static function () {
 						return true;
-					},
+					}
+				],
+				UnexpectedValueException::class
+			],
+			'Callback exists but returns null' => [
+				[
 					'ExistCallbackWithNull' => static function () {
 						return null;
-					},
+					}
+				],
+				UnexpectedValueException::class
+			],
+			'Callback exists but returns the empty string' => [
+				[
 					'ExistCallbackWithEmptyString' => static function () {
 						return '';
-					},
-					'WrongClassName' => self::class,
-					'WrongType' => true,
-					'NullType' => null,
-
+					}
 				],
-				MWException::class,
+				UnexpectedValueException::class
 			],
-			'Error expected' => [
+			'Wrong class name' => [
 				[
-					'WrongClassNameNotExist' => 'ClassNameNotExist',
+					'WrongClassName' => self::class
+				],
+				UnexpectedValueException::class
+			],
+			'Wrong type' => [
+				[
+					'WrongType' => true
+				],
+				InvalidArgumentException::class
+			],
+			'Is null' => [
+				[
+					'NullType' => null
+				],
+				MWUnknownContentModelException::class
+			],
+			'Class does not exist' => [
+				[
+					'WrongClassNameNotExist' => 'ClassNameNotExist'
+				],
+				InvalidArgumentException::class
+			],
+			'Callback with non-existing class name' => [
+				[
 					'ExistCallbackWithNotExistClassName' => static function () {
 						return ClassNameNotExist();
 					},
+				],
+				Error::class
+			],
+			'Empty string' => [
+				[
 					'EmptyString' => '',
 				],
-				Error::class,
+				InvalidArgumentException::class
 			],
 		];
 	}
@@ -158,33 +192,26 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Content\ContentHandlerFactory::createContentHandlerFromHandlerSpec
 	 * @covers \MediaWiki\Content\ContentHandlerFactory::validateContentHandler
 	 *
-	 * @dataProvider provideHandlerSpecsWithMWException
+	 * @dataProvider provideHandlerSpecsWithException
 	 */
 	public function testCreateContentHandlerForModelID_callWithProvider_throwsException(
 		array $handlerSpecs,
 		string $exceptionClassName
 	): void {
-		/**
-		 * @var Exception $exceptionExpected
-		 */
-		$objectFactory = $this->createMock( ObjectFactory::class );
-		$objectFactory->method( 'createObject' )
-			->willThrowException( $this->createMock( $exceptionClassName ) );
+		if ( count( $handlerSpecs ) !== 1 ) {
+			$this->fail( 'Dataprovider provided wrong amount of specs' );
+		}
+
 		$factory = new ContentHandlerFactory(
 			$handlerSpecs,
-			$objectFactory,
+			$this->createSimpleObjectFactory(),
 			$this->createMock( HookContainer::class ),
 			$this->logger
 		);
 
-		foreach ( $handlerSpecs as $modelID => $handlerSpec ) {
-			try {
-				$factory->getContentHandler( $modelID );
-				$this->fail();
-			} catch ( \Throwable $exception ) {
-				$this->assertInstanceOf( $exceptionClassName, $exception );
-			}
-		}
+		$modelID = key( $handlerSpecs );
+		$this->expectException( $exceptionClassName );
+		$factory->getContentHandler( $modelID );
 	}
 
 	/**

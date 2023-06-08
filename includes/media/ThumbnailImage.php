@@ -115,7 +115,6 @@ class ThumbnailImage extends MediaTransformOutput {
 	 * For images, desc-link and file-link are implemented as a click-through. For
 	 * sounds and videos, they may be displayed in other ways.
 	 *
-	 * @throws MWException
 	 * @return string
 	 */
 	public function toHtml( $options = [] ) {
@@ -125,7 +124,7 @@ class ThumbnailImage extends MediaTransformOutput {
 		$enableLegacyMediaDOM = $mainConfig->get( MainConfigNames::ParserEnableLegacyMediaDOM );
 
 		if ( func_num_args() === 2 ) {
-			throw new MWException( __METHOD__ . ' called in the old style' );
+			throw new BadMethodCallException( __METHOD__ . ' called in the old style' );
 		}
 
 		$query = $options['desc-query'] ?? '';

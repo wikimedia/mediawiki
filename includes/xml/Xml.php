@@ -64,21 +64,17 @@ class Xml {
 	 * The values are passed to Sanitizer::encodeAttribute.
 	 * Returns null or empty string if no attributes given.
 	 * @param array|null $attribs Array of attributes for an XML element
-	 * @throws MWException
 	 * @return null|string
 	 */
-	public static function expandAttributes( $attribs ) {
-		$out = '';
+	public static function expandAttributes( ?array $attribs ) {
 		if ( $attribs === null ) {
 			return null;
-		} elseif ( is_array( $attribs ) ) {
-			foreach ( $attribs as $name => $val ) {
-				$out .= " {$name}=\"" . Sanitizer::encodeAttribute( $val ) . '"';
-			}
-			return $out;
-		} else {
-			throw new MWException( 'Expected attribute array, got something else in ' . __METHOD__ );
 		}
+		$out = '';
+		foreach ( $attribs as $name => $val ) {
+			$out .= " {$name}=\"" . Sanitizer::encodeAttribute( $val ) . '"';
+		}
+		return $out;
 	}
 
 	/**

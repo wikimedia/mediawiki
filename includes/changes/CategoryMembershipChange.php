@@ -92,12 +92,10 @@ class CategoryMembershipChange {
 	 *
 	 * @param callable $callback
 	 * @see RecentChange::newForCategorization for callback signiture
-	 *
-	 * @throws MWException
 	 */
 	public function overrideNewForCategorizationCallback( callable $callback ) {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			throw new MWException( 'Cannot override newForCategorization callback in operation.' );
+			throw new BadMethodCallException( 'Cannot override newForCategorization callback in operation.' );
 		}
 		$this->newForCategorizationCallback = $callback;
 	}

@@ -1195,7 +1195,6 @@ class Sanitizer {
 	 * attribs regex matches.
 	 *
 	 * @param array $set
-	 * @throws MWException When tag conditions are not met.
 	 * @return string
 	 */
 	private static function getTagAttributeCallback( $set ) {
@@ -1214,7 +1213,7 @@ class Sanitizer {
 			# https://www.w3.org/TR/html5/syntax.html#syntax-attribute-name
 			return "";
 		} else {
-			throw new MWException( "Tag conditions not met. This should never happen and is a bug." );
+			throw new LogicException( "Tag conditions not met. This should never happen and is a bug." );
 		}
 	}
 

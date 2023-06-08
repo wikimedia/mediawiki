@@ -179,8 +179,6 @@ class PasswordReset implements LoggerAwareInterface {
 	 * @param string|null $username The user whose password is reset
 	 * @param string|null $email Alternative way to specify the user
 	 * @return StatusValue
-	 * @throws LogicException When the user is not allowed to perform the action
-	 * @throws MWException On unexpected DB errors
 	 */
 	public function execute(
 		User $performingUser,
@@ -364,7 +362,6 @@ class PasswordReset implements LoggerAwareInterface {
 	 *
 	 * @param string $email
 	 * @return User[]
-	 * @throws MWException On unexpected database errors
 	 */
 	protected function getUsersByEmail( $email ) {
 		$userQuery = User::getQueryInfo();
@@ -379,7 +376,7 @@ class PasswordReset implements LoggerAwareInterface {
 
 		if ( !$res ) {
 			// Some sort of database error, probably unreachable
-			throw new MWException( 'Unknown database error in ' . __METHOD__ );
+			throw new RuntimeException( 'Unknown database error in ' . __METHOD__ );
 		}
 
 		$users = [];

@@ -14,17 +14,8 @@ class FauxRequestTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers MediaWiki\Request\FauxRequest::__construct
 	 */
-	public function testConstructInvalidData() {
-		$this->expectException( MWException::class );
-		$this->expectExceptionMessage( 'bogus data' );
-		new FauxRequest( 'x' );
-	}
-
-	/**
-	 * @covers MediaWiki\Request\FauxRequest::__construct
-	 */
 	public function testConstructInvalidSession() {
-		$this->expectException( MWException::class );
+		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( 'bogus session' );
 		new FauxRequest( [], false, 'x' );
 	}

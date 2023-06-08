@@ -1150,13 +1150,12 @@ abstract class ApiBase extends ContextSource {
 	 * @param string $token Supplied token
 	 * @param array $params All supplied parameters for the module
 	 * @return bool
-	 * @throws MWException
 	 */
 	final public function validateToken( $token, array $params ) {
 		$tokenType = $this->needsToken();
 		$salts = ApiQueryTokens::getTokenTypeSalts();
 		if ( !isset( $salts[$tokenType] ) ) {
-			throw new MWException(
+			throw new LogicException(
 				"Module '{$this->getModuleName()}' tried to use token type '$tokenType' " .
 					'without registering it'
 			);

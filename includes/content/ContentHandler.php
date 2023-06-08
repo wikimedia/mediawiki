@@ -149,16 +149,15 @@ abstract class ContentHandler {
 	 * @param string|null $format The format to use for deserialization. If not
 	 *    given, the model's default format is used.
 	 *
-	 * @throws MWException If model ID or format is not supported or if the text can not be
-	 * unserialized using the format.
 	 * @throws MWContentSerializationException
+	 * @throws MWUnknownContentModelException
 	 * @return Content A Content object representing the text.
 	 */
 	public static function makeContent( $text, Title $title = null,
 		$modelId = null, $format = null ) {
 		if ( $modelId === null ) {
 			if ( $title === null ) {
-				throw new MWException( "Must provide a Title object or a content model ID." );
+				throw new BadMethodCallException( "Must provide a Title object or a content model ID." );
 			}
 
 			$modelId = $title->getContentModel();

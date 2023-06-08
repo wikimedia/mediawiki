@@ -93,7 +93,7 @@ class ImportFailureTest extends MediaWikiLangTestCase {
 		yield [ 'MissingSlotTextField', MWException::class, '/^Missing text field in import.$/' ];
 		yield [ 'MissingSlotRole', MWException::class, '/^Missing role for imported slot.$/' ];
 		yield [ 'UndefinedSlotRole', MWException::class, '/^Undefined slot role .*$/' ];
-		yield [ 'UndefinedContentModel', MWException::class, '/not registered on this wiki/' ];
+		yield [ 'UndefinedContentModel', MWUnknownContentModelException::class, '/not registered on this wiki/' ];
 	}
 
 	/**
