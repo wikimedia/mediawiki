@@ -1359,7 +1359,7 @@ return [
 			$services->getMainWANObjectCache(),
 			$services->getPermissionManager(),
 			$services->getWikiPageFactory(),
-			ChangeTags::getSoftwareTags()
+			$services->getChangeTagsStore()->getSoftwareTags()
 		);
 	},
 

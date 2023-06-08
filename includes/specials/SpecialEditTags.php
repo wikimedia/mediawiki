@@ -21,11 +21,11 @@
 
 namespace MediaWiki\Specials;
 
-use ChangeTags;
 use ChangeTagsList;
 use ErrorPageError;
 use LogEventsList;
 use LogPage;
+use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Html\Html;
 use MediaWiki\Permissions\PermissionManager;
@@ -69,16 +69,21 @@ class SpecialEditTags extends UnlistedSpecialPage {
 
 	/** @var PermissionManager */
 	private $permissionManager;
+	/**
+	 * @var ChangeTagsStore
+	 */
+	private $changeTagsStore;
 
 	/**
 	 * @inheritDoc
 	 *
 	 * @param PermissionManager $permissionManager
 	 */
-	public function __construct( PermissionManager $permissionManager ) {
+	public function __construct( PermissionManager $permissionManager, ChangeTagsStore $changeTagsStore ) {
 		parent::__construct( 'EditTags', 'changetags' );
 
 		$this->permissionManager = $permissionManager;
+		$this->changeTagsStore = $changeTagsStore;
 	}
 
 	public function doesWrites() {
@@ -385,7 +390,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	 *
 	 * @param array $selectedTags The tags that should be preselected in the
 	 * list. Any tags in this list, but not in the list returned by
-	 * ChangeTags::listExplicitlyDefinedTags, will be appended to the <select>
+	 * ChangeTagsStore::listExplicitlyDefinedTags, will be appended to the <select>
 	 * element.
 	 * @param string $label The text of a <label> to precede the <select>
 	 * @return array HTML <label> element at index 0, HTML <select> element at
@@ -399,7 +404,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		$select->setAttribute( 'multiple', 'multiple' );
 		$select->setAttribute( 'size', '8' );
 
-		$tags = ChangeTags::listExplicitlyDefinedTags();
+		$tags = $this->changeTagsStore->listExplicitlyDefinedTags();
 		$tags = array_unique( array_merge( $tags, $selectedTags ) );
 
 		// Values of $tags are also used as <option> labels

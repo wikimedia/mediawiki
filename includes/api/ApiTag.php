@@ -19,6 +19,7 @@
  * @file
  */
 
+use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Revision\RevisionStore;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -37,22 +38,26 @@ class ApiTag extends ApiBase {
 
 	/** @var RevisionStore */
 	private $revisionStore;
+	private ChangeTagsStore $changeTagsStore;
 
 	/**
 	 * @param ApiMain $main
 	 * @param string $action
 	 * @param IConnectionProvider $dbProvider
 	 * @param RevisionStore $revisionStore
+	 * @param ChangeTagsStore $changeTagsStore
 	 */
 	public function __construct(
 		ApiMain $main,
 		$action,
 		IConnectionProvider $dbProvider,
-		RevisionStore $revisionStore
+		RevisionStore $revisionStore,
+		ChangeTagsStore $changeTagsStore
 	) {
 		parent::__construct( $main, $action );
 		$this->dbr = $dbProvider->getReplicaDatabase();
 		$this->revisionStore = $revisionStore;
+		$this->changeTagsStore = $changeTagsStore;
 	}
 
 	public function execute() {
@@ -186,7 +191,7 @@ class ApiTag extends ApiBase {
 				ApiResult::setIndexedTagName( $idResult['removed'], 't' );
 
 				if ( $params['tags'] ) {
-					ChangeTags::addTags( $params['tags'], null, null, $status->value->logId );
+					$this->changeTagsStore->addTags( $params['tags'], null, null, $status->value->logId );
 				}
 			}
 		}

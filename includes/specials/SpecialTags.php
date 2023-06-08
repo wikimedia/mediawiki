@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\MainConfigNames;
 
@@ -45,9 +46,11 @@ class SpecialTags extends SpecialPage {
 	 * @var array List of software activated tags
 	 */
 	protected $softwareActivatedTags;
+	private ChangeTagsStore $changeTagsStore;
 
-	public function __construct() {
+	public function __construct( ChangeTagsStore $changeTagsStore ) {
 		parent::__construct( 'Tags' );
+		$this->changeTagsStore = $changeTagsStore;
 	}
 
 	public function execute( $par ) {
@@ -124,13 +127,13 @@ class SpecialTags extends SpecialPage {
 		}
 
 		// Used to get hitcounts for #doTagRow()
-		$tagStats = ChangeTags::tagUsageStatistics();
+		$tagStats = $this->changeTagsStore->tagUsageStatistics();
 
 		// Used in #doTagRow()
 		$this->explicitlyDefinedTags = array_fill_keys(
-			ChangeTags::listExplicitlyDefinedTags(), true );
+			$this->changeTagsStore->listExplicitlyDefinedTags(), true );
 		$this->softwareDefinedTags = array_fill_keys(
-			ChangeTags::listSoftwareDefinedTags(), true );
+			$this->changeTagsStore->listSoftwareDefinedTags(), true );
 
 		// List all defined tags, even if they were never applied
 		$definedTags = array_keys( $this->explicitlyDefinedTags + $this->softwareDefinedTags );
@@ -156,7 +159,7 @@ class SpecialTags extends SpecialPage {
 		$tbody = '';
 		// Used in #doTagRow()
 		$this->softwareActivatedTags = array_fill_keys(
-			ChangeTags::listSoftwareActivatedTags(), true );
+			$this->changeTagsStore->listSoftwareActivatedTags(), true );
 
 		// Insert tags that have been applied at least once
 		foreach ( $tagStats as $tag => $hitcount ) {
@@ -347,7 +350,7 @@ class SpecialTags extends SpecialPage {
 		}
 
 		$preText = $this->msg( 'tags-delete-explanation-initial', $tag )->parseAsBlock();
-		$tagUsage = ChangeTags::tagUsageStatistics();
+		$tagUsage = $this->changeTagsStore->tagUsageStatistics();
 		if ( isset( $tagUsage[$tag] ) && $tagUsage[$tag] > 0 ) {
 			$preText .= $this->msg( 'tags-delete-explanation-in-use', $tag,
 				$tagUsage[$tag] )->parseAsBlock();
@@ -356,7 +359,7 @@ class SpecialTags extends SpecialPage {
 
 		// see if the tag is in use
 		$this->softwareActivatedTags = array_fill_keys(
-			ChangeTags::listSoftwareActivatedTags(), true );
+			$this->changeTagsStore->listSoftwareActivatedTags(), true );
 		if ( isset( $this->softwareActivatedTags[$tag] ) ) {
 			$preText .= $this->msg( 'tags-delete-explanation-active', $tag )->parseAsBlock();
 		}

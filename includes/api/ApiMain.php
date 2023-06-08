@@ -410,6 +410,7 @@ class ApiMain extends ApiBase {
 			'services' => [
 				'DBLoadBalancerFactory',
 				'RevisionStore',
+				'ChangeTagsStore',
 			]
 		],
 		'mergehistory' => [

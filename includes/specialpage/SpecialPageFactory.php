@@ -663,6 +663,9 @@ class SpecialPageFactory {
 		],
 		'Tags' => [
 			'class' => \SpecialTags::class,
+			'services' => [
+				'ChangeTagsStore',
+			]
 		],
 
 		// Media reports and uploads
@@ -986,6 +989,7 @@ class SpecialPageFactory {
 			'class' => SpecialEditTags::class,
 			'services' => [
 				'PermissionManager',
+				'ChangeTagsStore',
 			],
 		],
 		'Emailuser' => [

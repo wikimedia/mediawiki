@@ -417,6 +417,9 @@ class ApiQuery extends ApiBase {
 		],
 		'tags' => [
 			'class' => ApiQueryTags::class,
+			'services' => [
+				'ChangeTagsStore',
+			]
 		],
 		'usercontribs' => [
 			'class' => ApiQueryUserContribs::class,
