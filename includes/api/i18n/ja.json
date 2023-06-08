@@ -22,7 +22,8 @@
 			"Yamagata Yusuke",
 			"Yusuke1109",
 			"Yuukin0248",
-			"ネイ"
+			"ネイ",
+			"Kokage si"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|説明文書]]\n* [[mw:Special:MyLanguage/API:Etiquette|礼儀と使い方ガイド]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ メーリングリスト]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ API 告知]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R バグの報告とリクエスト]\n</div>\n<strong>状態:</strong> MediaWiki APIは、積極的にサポートされ、改善された成熟した安定したインターフェースです。避けようとはしていますが、時には壊れた変更が加えられるかもしれません。更新の通知を受け取るには、[https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ mediawiki-api-announce メーリングリスト]に参加してください。\n<strong>誤ったリクエスト:</strong> 誤ったリクエストが API に送られた場合、\"MediaWiki-API-Error\" HTTP ヘッダーが送信され、そのヘッダーの値と送り返されるエラーコードは同じ値にセットされます。より詳しい情報は [[mw:Special:MyLanguage/API:Errors_and_warnings|API:Errors and warnings]] を参照してください。\n\n<p class=\"mw-apisandbox-link\"><strong>テスト:</strong> API のリクエストのテストは、[[Special:ApiSandbox]]で簡単に行えます。</p>",
@@ -30,7 +31,7 @@
 	"apihelp-main-param-format": "出力する形式です。",
 	"apihelp-main-param-smaxage": "<code>s-maxage</code> HTTP キャッシュ コントロール ヘッダー に、この秒数を設定します。エラーがキャッシュされることはありません。",
 	"apihelp-main-param-maxage": "<code>max-age</code> HTTP キャッシュ コントロール ヘッダー に、この秒数を設定します。エラーがキャッシュされることはありません。",
-	"apihelp-main-param-assert": "<kbd>user</kbd> を設定した場合は利用者がログイン済みかどうかを、<kbd>bot</kbd> を指定した場合はボット権限があるかどうかを、それぞれ検証します。",
+	"apihelp-main-param-assert": "<kbd>user</kbd> に設定した場合は利用者がログインしていることを、 <kbd>anon</kbd> に設定した場合はログインして<em>いない</em>ことを、<kbd>bot</kbd> の場合はボット利用者権限があることを検証します。",
 	"apihelp-main-param-assertuser": "現在の利用者が指定された利用者であることを確認します。",
 	"apihelp-main-param-requestid": "任意の値を指定でき、その値が結果に含められます。リクエストを識別するために使用できます。",
 	"apihelp-main-param-servedby": "リクエストを処理したホスト名を結果に含めます。",
@@ -133,7 +134,7 @@
 	"apihelp-edit-param-nocreate": "そのページが存在しない場合にエラーを返します。",
 	"apihelp-edit-param-watch": "そのページを現在の利用者のウォッチリストに追加します。",
 	"apihelp-edit-param-unwatch": "そのページを現在の利用者のウォッチリストから除去します。",
-	"apihelp-edit-param-prependtext": "このテキストをページの先頭に追加します。$1text をオーバーライドします。",
+	"apihelp-edit-param-prependtext": "このテキストをページまたはセクションの先頭に追加します。$1text をオーバーライドします。",
 	"apihelp-edit-param-appendtext": "このテキストをページの末尾に追加する。$1textを上書きします。\n\n新しい節を追加するにはこのパラメーターではなく $1section=newを使用してください。",
 	"apihelp-edit-param-undo": "この版を取り消します。$1text, $1prependtext および $1appendtext をオーバーライドします。",
 	"apihelp-edit-param-undoafter": "$1undo からこの版までのすべての版を取り消します。設定しない場合、ひとつの版のみ取り消されます。",
@@ -1029,7 +1030,7 @@
 	"api-help-param-type-limit": "型: 整数または <kbd>max</kbd>",
 	"api-help-param-type-presenceboolean": "型: 真偽値 ([[Special:ApiHelp/main#main/datatype/boolean|詳細]])",
 	"api-help-param-type-enum": "{{PLURAL:$1|1=値 (次の値のいずれか1つ)|2=値 (<kbd>{{!}}</kbd> または[[Special:ApiHelp/main#main/datatypes|別の文字列]]で区切る)}}: $2",
-	"api-help-param-multi-separate": "複数の値は <kbd>|</kbd> もしくは[[Special:ApiHelp/main#main/datatypes|代わりの文字]]で区切ってください。",
+	"api-help-param-multi-separate": "複数の値は <kbd>|</kbd> または[[Special:ApiHelp/main#main/datatypes|代わりの文字]]で区切ってください。",
 	"api-help-param-multi-all": "すべての値を指定するには、<kbd>$1</kbd>を用いてください。",
 	"api-help-param-default-empty": "既定値: <span class=\"apihelp-empty\">(空)</span>",
 	"api-help-param-token": "[[Special:ApiHelp/query+tokens|action=query&meta=tokens]] から取得した「$1」トークン",

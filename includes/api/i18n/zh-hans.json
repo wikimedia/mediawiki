@@ -49,7 +49,8 @@
 			"神樂坂秀吉",
 			"科劳",
 			"落花有意12138",
-			"铁桶"
+			"铁桶",
+			"捍粵者"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|文档]]\n* [[mw:Special:MyLanguage/API:Etiquette|礼仪和使用指引]]\n* [[mw:Special:MyLanguage/API:FAQ|常见问题]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ 邮件列表]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ API宣告]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 程序错误与功能请求]\n</div>\n<strong>状态：</strong>MediaWiki API是一个成熟稳定的接口，得到了积极的支持和改进。尽管我们尽力避免，但偶尔也需要作出重大更新；请订阅[https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ mediawiki-api-announce 邮件列表]以便获得更新通知。\n\n<strong>错误请求：</strong>当API收到错误请求时，HTTP header将会返回一个包含\"MediaWiki-API-Error\"的值，随后header的值与error code将会送回并设置为相同的值。详细信息请参阅[[mw:Special:MyLanguage/API:Errors_and_warnings|API：错误与警告]]。\n\n<p class=\"mw-apisandbox-link\"><strong>测试中：</strong>测试API请求的易用性，请参见[[Special:ApiSandbox]]。</p>",
@@ -502,7 +503,7 @@
 	"apihelp-query+alldeletedrevisions-param-to": "列出至此标题为止。",
 	"apihelp-query+alldeletedrevisions-param-prefix": "搜索所有以此值开头的页面标题。",
 	"apihelp-query+alldeletedrevisions-param-tag": "只列出被此标签标记的修订。",
-	"apihelp-query+alldeletedrevisions-param-user": "只列出此用户做出的修订。",
+	"apihelp-query+alldeletedrevisions-param-user": "只列出此用户的修订。",
 	"apihelp-query+alldeletedrevisions-param-excludeuser": "不要列出此用户做出的修订。",
 	"apihelp-query+alldeletedrevisions-param-namespace": "只列出此命名空间的页面。",
 	"apihelp-query+alldeletedrevisions-param-miser-user-namespace": "<strong>注意：</strong>由于[[mw:Special:MyLanguage/Manual:$wgMiserMode|miser模式]]，同时使用<var>$1user</var>和<var>$1namespace</var>将导致继续前返回少于<var>$1limit</var>个结果，在极端条件下可能不返回任何结果。",

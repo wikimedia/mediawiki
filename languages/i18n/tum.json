@@ -381,7 +381,7 @@
 	"previewnote": "<strong>Kumbukilani kuti ichi ntchiyelezgelo waka.</strong>\nMundazomelezge dankha kusintha!",
 	"continue-editing": "Luta pakulembela",
 	"creating": "Kulemba $1",
-	"editingsection": "Kulemba $1 (malo)",
+	"editingsection": "Kulemba $1 (chigaŵa)",
 	"templatesused": "{{PLURAL:$1|Nkhwaska yagwiliskika|Nkhwaska zagwiliskika}} apa:",
 	"template-protected": "(tchinjilizika)",
 	"template-semiprotected": "(jani lakutetezeka pachoko)",
@@ -429,7 +429,7 @@
 	"searchprofile-advanced": "Mwakulutilila",
 	"search-result-size": "$1 ({{PLURAL:$2|1 lizgo|$2 mazgo}})",
 	"search-redirect": "(kufumila ku $1)",
-	"search-section": "(malo $1)",
+	"search-section": "(chigaŵa $1)",
 	"search-category": "(mtundu $1)",
 	"search-suggest": "Mwang'anamulanga: $1",
 	"search-interwiki-more": "(vinandi)",
@@ -690,5 +690,12 @@
 	"nstab-mainpage": "Jani likulu",
 	"skin-action-protect": "Kutchinjilizga",
 	"skin-action-delete": "Fufuta",
-	"skin-action-move": "Ithya"
+	"skin-action-move": "Ithya",
+	"blockedtext-made-by": "Walikukanizga ni $1.",
+	"blockedtext-reason-comment": "Chifukwa ntchakuti <em>$1</em>",
+	"blockedtext-start-time": "Kwamba kwakukanizga: $1",
+	"blockedtext-expiration-time": "Kumala kwa kukanizga: $1",
+	"blockedtext-contact-blocker-admin": "Mungafumba $1 panji  [[{{MediaWiki:Grouppage-sysop}}|administrator]] zakuti mulongosolelane.",
+	"blockedtext-block-id": "Ndipo block ID ni #$1.",
+	"blockedtext-include-details-queries": "Chonde sazgani vose ivo vili pachanya pakufumba ovwili."
 }

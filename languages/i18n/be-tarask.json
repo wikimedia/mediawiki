@@ -676,8 +676,8 @@
 	"missing-revision-permission": "Рэвізія #$1 належыць выдаленай старонцы. Вы можаце [{{fullurl:{{#Special:Undelete}}|target=$3&timestamp=$2&diff=prev}} праглядзець яе]; па падрабязнасьці зьвяртацца да [{{fullurl:{{#Special:Log}}/delete|page=$3}} справаздачы выдаленьняў].",
 	"missing-revision": "Вэрсія старонкі №$1 з назвай «{{FULLPAGENAME}}» не існуе.\n\nЗвычайна гэта здараецца з-за пераходу па састарэлай спасылцы на старонку, якая была выдаленая.\nПадрабязнасьці можна знайсьці ў [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журнале выдаленьняў].",
 	"missing-revision-content": "Ня ўдалося загрузіць зьмест рэвізіі #$1 старонкі з назвай «$2».",
-	"userpage-userdoesnotexist": "Рахунак удзельніка «$1» не зарэгістраваны. Калі ласка, удакладніце, ці жадаеце Вы стварыць/рэдагаваць гэтую старонку.",
-	"userpage-userdoesnotexist-view": "Рахунак «$1» ня створаны.",
+	"userpage-userdoesnotexist": "Уліковы запіс «$1» у гэтай вікі не зарэгістраваны. Калі ласка, удакладніце, ці жадаеце Вы стварыць/рэдагаваць гэтую старонку.",
+	"userpage-userdoesnotexist-view": "Уліковы запіс «$1» у гэтай вікі не зарэгістраваны.",
 	"blocked-notice-logextract": "{{GENDER:$1|Гэты ўдзельнік у|Гэтая ўдзельніца ў}} цяперашні момант {{GENDER:$1|заблякаваны|заблякаваная}}.\nАпошні запіс з журналу блякаваньняў пададзены ніжэй для даведкі:",
 	"clearyourcache": "<strong>Заўвага:</strong> каб пабачыць зьмены пасьля публікацыі, Вам можа спатрэбіцца ачысьціць кэш Вашага браўзэра. \n* <strong>Firefox / Safari:</strong> трымайце <em>Shift</em> і націсьніце <em>Reload</em>, ці націсьніце <em>Ctrl-F5</em> ці <em>Ctrl-R</em> (<em>⌘-R</em> на Mac)\n* <strong>Google Chrome:</strong> націсьніце <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> на Mac)\n* <strong>Internet Explorer / Edge:</strong> трымайце <em>Ctrl</em> і націсьніце <em>Refresh</em>, ці націсьніце <em>Ctrl-F5</em>\n* <strong>Opera:</strong> націсьніце <em>Ctrl-F5</em>.",
 	"usercssyoucanpreview": "<strong>Падказка:</strong> выкарыстоўвайце кнопку «{{int:showpreview}}», каб паспрабаваць новы CSS-код перад яго публікацыяй.",
@@ -4013,6 +4013,11 @@
 	"skin-action-move": "Перанесьці",
 	"parsoid-stash-rate-limit-error": "Памылка захоўваньня з прычыны перавышэньня дапушчальнага ліміту. Калі ласка, паспрабуйце пазьней.",
 	"parsoid-resource-limit-exceeded": "Перавышаны ліміт рэсурсаў парсоіду: $1",
+	"blockedtext-made-by": "Блякаваньне зрабіў удзельнік $1.",
+	"blockedtext-reason-comment": "Прычына блякаваньня: <em>$1</em>",
+	"blockedtext-start-time": "Пачатак блякаваньня: $1",
+	"blockedtext-expiration-time": "Сканчэньне блякаваньня: $1",
+	"blockedtext-intended-blockee": "Заблякаваны: $1",
 	"renameuser": "Перайменаваць рахунак удзельніка",
 	"renameuser-linkoncontribs": "перайменаваць {{GENDER:$1|удзельніка|удзельніцу}}",
 	"renameuser-linkoncontribs-text": "Перайменаваць рахунак {{GENDER:$1|гэтага ўдзельніка|гэтай удзельніцы}}",
@@ -4041,5 +4046,5 @@
 	"renameuser-move-log": "Аўтаматычнае перайменаваньне старонкі пры перайменаваньні рахунку {{GENDER:$2|ўдзельніка|ўдзельніцы}} з «[[User:$1|$1]]» у «[[User:$2|$2]]»",
 	"action-renameuser": "пераймяноўваць удзельнікаў",
 	"right-renameuser": "Перайменаваньне ўдзельнікаў",
-	"renameuser-renamed-notice": "{{GENDER:$1|Гэты удзельнік быў перайменаваны|Гэтая удзельніца была перайменаваная}}.\nЖурнал перайменаваньняў удзельнікаў пададзены ніжэй для даведкі."
+	"renameuser-renamed-notice": "Гэты ўдзельнік быў перайменаваны.\nДля даведкі ніжэй пададзены журнал перайменаваньняў."
 }
