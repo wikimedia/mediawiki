@@ -43,9 +43,9 @@ use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 use Wikimedia\Rdbms\DBConnRef;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
@@ -946,11 +946,11 @@ class UserGroupManager implements IDBAccessObject {
 	/**
 	 * Return the query builder to build upon and query
 	 *
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @return SelectQueryBuilder
 	 * @internal
 	 */
-	public function newQueryBuilder( IDatabase $db ): SelectQueryBuilder {
+	public function newQueryBuilder( IReadableDatabase $db ): SelectQueryBuilder {
 		 return $db->newSelectQueryBuilder()
 			->select( [
 				'ug_user',
