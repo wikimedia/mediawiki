@@ -35,7 +35,7 @@ class SkinMustacheTest extends MediaWikiIntegrationTestCase {
 		$mock->method( 'getTitle' )
 			->willReturn( $title );
 		$mock->method( 'getIndicators' )
-			->willReturn( '' );
+			->willReturn( [ '' ] );
 		$mock->method( 'getLanguageLinks' )
 			->willReturn( [] );
 		$mock->method( 'getCSP' )

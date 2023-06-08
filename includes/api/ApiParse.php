@@ -678,9 +678,9 @@ class ApiParse extends ApiBase {
 
 		if ( isset( $prop['indicators'] ) ) {
 			if ( $skin ) {
-				$result_array['indicators'] = (array)$outputPage->getIndicators();
+				$result_array['indicators'] = $outputPage->getIndicators();
 			} else {
-				$result_array['indicators'] = (array)$p_result->getIndicators();
+				$result_array['indicators'] = $p_result->getIndicators();
 			}
 			ApiResult::setArrayType( $result_array['indicators'], 'BCkvp', 'name' );
 		}
