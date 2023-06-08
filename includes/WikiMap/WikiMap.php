@@ -110,6 +110,9 @@ class WikiMap {
 
 		$canonicalServer = $urlParts['scheme'] ?? 'http';
 		$canonicalServer .= '://' . $urlParts['host'];
+		if ( isset( $urlParts['port'] ) ) {
+			$canonicalServer .= ':' . $urlParts['port'];
+		}
 
 		return new WikiReference( $canonicalServer, $path );
 	}
