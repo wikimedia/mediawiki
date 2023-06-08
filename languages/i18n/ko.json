@@ -1037,6 +1037,8 @@
 	"diff-multi-manyusers": "({{PLURAL:$2|사용자}} $2명 이상의 {{PLURAL:$1|중간 판 하나|중간 판 $1개}}는 보이지 않습니다)",
 	"diff-paragraph-moved-tonew": "문단이 이동되었습니다. 새로운 위치로 이동하려면 클릭하십시오.",
 	"diff-paragraph-moved-toold": "문단이 이동되었습니다. 오래된 위치로 이동하려면 클릭하십시오.",
+	"diff-inline-tooltip-ins": "내용 추가됨",
+	"diff-inline-tooltip-del": "내용 삭제됨",
 	"difference-missing-revision": "문서 비교에서 {{PLURAL:$2|하나|$2개}}의 판($1)을 찾을 수 {{PLURAL:$2|없습니다}}.\n\n이 문제는 주로 삭제된 문서를 가리키는 오래된 문서 비교 링크로 인해 발생합니다.\n자세한 내용은 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 확인할 수 있습니다.",
 	"difference-bad-old-revision": "이전 판의 내용이 없거나 손상되었습니다.",
 	"difference-bad-new-revision": "새로운 판의 내용이 없거나 손상되었습니다.",

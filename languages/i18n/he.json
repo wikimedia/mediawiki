@@ -1000,6 +1000,8 @@
 	"diff-multi-manyusers": "({{PLURAL:$1|גרסת ביניים אחת|$1 גרסאות ביניים}} של יותר {{PLURAL:$2|ממשתמש אחד|מ־$2 משתמשים}} {{PLURAL:$1|אינה מוצגת|אינן מוצגות}})",
 	"diff-paragraph-moved-tonew": "הפסקה הועברה. ניתן ללחוץ כאן כדי לעבור למיקומה החדש.",
 	"diff-paragraph-moved-toold": "הפסקה הועברה. ניתן ללחוץ כאן כדי לעבור למיקומה הישן.",
+	"diff-inline-tooltip-ins": "תוכן שנוסף",
+	"diff-inline-tooltip-del": "תוכן שנמחק",
 	"difference-missing-revision": "{{PLURAL:$2|גרסה אחת|$2 גרסאות}} מתוך הגרסאות שביקשת להשוות ($1) {{PLURAL:$2|לא נמצאה|לא נמצאו}}.\n\nזה נגרם בדרך־כלל עקב לחיצה על קישור ישן להבדלים בין גרסאות של דף שנמחק.\nאפשר למצוא פרטים ב[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].",
 	"difference-bad-old-revision": "התוכן של הגרסה הישנה חסר או פגום.",
 	"difference-bad-new-revision": "התוכן של הגרסה החדשה חסר או פגום.",

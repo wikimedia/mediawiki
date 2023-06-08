@@ -1058,6 +1058,8 @@
 	"diff-multi-manyusers": "($1 tussenliggende {{PLURAL:$1|versie|versies}} door meer dan $2 {{PLURAL:$2|gebruiker|gebruikers}}  worden niet weergegeven)",
 	"diff-paragraph-moved-tonew": "Deze alinea is verplaatst. Klik om naar de nieuwe locatie te springen.",
 	"diff-paragraph-moved-toold": "Deze alinea is verplaatst. Klik om naar de oude locatie te springen.",
+	"diff-inline-tooltip-ins": "Toegevoegde inhoud",
+	"diff-inline-tooltip-del": "Verwijderde inhoud",
 	"difference-missing-revision": "{{PLURAL:$2|Eén versie|$2 versies}} van deze verschillen ($1) {{PLURAL:$2|is|zijn}} niet aangetroffen.\n\nDit wordt meestal veroorzaakt door het volgen van een verouderde koppeling verschillen voor een pagina die is verwijderd.\nMeer gegevens zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].",
 	"difference-bad-old-revision": "De inhoud van de oude versie ontbreekt of is beschadigd.",
 	"difference-bad-new-revision": "De inhoud van de nieuwe versie ontbreekt of is beschadigd.",

@@ -1008,6 +1008,8 @@
 	"diff-multi-manyusers": "({{PLURAL:$1|Není zobrazena 1 mezilehlá verze|Nejsou zobrazeny $1 mezilehlé verze|Není zobrazeno $1 mezilehlých verzí}} od více než {{PLURAL:$2|1 uživatele|$2 uživatelů}}.)",
 	"diff-paragraph-moved-tonew": "Odstavec byl přesunut. Kliknutím skočíte na nové umístění.",
 	"diff-paragraph-moved-toold": "Odstavec byl přesunut. Kliknutím skočíte na původní umístění.",
+	"diff-inline-tooltip-ins": "Přidaný obsah",
+	"diff-inline-tooltip-del": "Smazaný obsah",
 	"difference-missing-revision": "{{PLURAL:$2|Jedna z revizí|$2 revize|$2 revizí}} k požadovanému porovnání ($1) {{PLURAL:$2|neexistuje|neexistují|neexistuje}}.\n\nToto je obvykle způsobeno tím, že jste následovali zastaralý odkaz na historickou verzi stránky, jež byla smazána.\nPodrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
 	"difference-bad-old-revision": "Obsah staré revize chybí nebo je poškozen.",
 	"difference-bad-new-revision": "Obsah nové revize chybí nebo je poškozen.",

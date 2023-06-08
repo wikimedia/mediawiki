@@ -1002,6 +1002,8 @@
 	"diff-multi-manyusers": "({{PLURAL:$1|Egy közbeeső változat|$1 közbeeső változat}} nincs mutatva, amit $2 szerkesztő módosított)",
 	"diff-paragraph-moved-tonew": "A szakaszt áthelyezték. Kattints ide az új helyére való ugráshoz.",
 	"diff-paragraph-moved-toold": "A szakaszt áthelyezték. Kattints ide a régi helyére való ugráshoz.",
+	"diff-inline-tooltip-ins": "Tartalom hozzáadva",
+	"diff-inline-tooltip-del": "Tartalom törölve",
 	"difference-missing-revision": "Az összehasonlítandó változatok {{PLURAL:$2|egyike ($1) nem található|($1) nem találhatóak}}.\n\nEzt általában egy elavult, törölt oldalra mutató laptörténeti hivatkozás használata okozza. Részletek a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatóak.",
 	"difference-bad-old-revision": "A régi lapváltozat tartalma hiányzik vagy sérült.",
 	"difference-bad-new-revision": "Az új lapváltozat tartalma hiányzik vagy sérült.",

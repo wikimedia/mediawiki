@@ -973,6 +973,8 @@
 	"diff-multi-manyusers": "({{PLURAL:$1|Ena vmesna redakcija več kot $2 {{PLURAL:$2|uporabnika|uporabnikov}} ni prikazana|Dve vmesni redakciji več kot $2 {{PLURAL:$2|uporabnika|uporabnikov}} nista prikazani|$1 vmesne redakcije več kot $2 {{PLURAL:$2|uporabnika|uporabnikov}} niso prikazane|$1 vmesnih redakcij več kot $2 {{PLURAL:$2|uporabnika|uporabnikov}} ni prikazanih}})",
 	"diff-paragraph-moved-tonew": "Odstavek je bil prestavljen. Kliknite za premik na novo mesto.",
 	"diff-paragraph-moved-toold": "Odstavek je bil prestavljen. Kliknite, da skočite na prejšnje mesto.",
+	"diff-inline-tooltip-ins": "Vsebina dodana",
+	"diff-inline-tooltip-del": "Vsebina izbrisana",
 	"difference-missing-revision": "{{PLURAL:$2|Ene redakcije|$2 redakcij}} te razlike ($1) {{PLURAL:$2|ni bilo mogoče}} najti.\n\nTo se ponavadi zgodi, ko sledite zastareli povezavi na razliko redakcij strani, ki jo je nekdo izbrisal.\nPodrobnosti lahko najdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} dnevniku brisanja].",
 	"difference-bad-old-revision": "Vsebina stare redakcije manjka ali je okvarjena.",
 	"difference-bad-new-revision": "Vsebina nove redakcije manjka ali je okvarjena.",
