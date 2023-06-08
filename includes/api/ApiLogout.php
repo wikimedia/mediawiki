@@ -67,6 +67,13 @@ class ApiLogout extends ApiBase {
 		return 'csrf';
 	}
 
+	public function isWriteMode() {
+		// While core is optimized by default to not require DB writes on log out,
+		// these are authenticated POST requests and extensions (eg. CheckUser) are
+		// allowed to perform DB writes here without warnings.
+		return true;
+	}
+
 	protected function getWebUITokenSalt( array $params ) {
 		return 'logoutToken';
 	}
