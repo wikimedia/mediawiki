@@ -285,7 +285,11 @@ class LinkFilter {
 			$bits['host'] = rtrim( self::reverseDomain( $bits['host'] ), '.' );
 		}
 
-		return $bits['scheme'] . $bits['delimiter'] . $bits['host'];
+		$index = $bits['scheme'] . $bits['delimiter'] . $bits['host'];
+		if ( isset( $bits['port'] ) && $bits['port'] ) {
+			$index .= ':' . $bits['port'];
+		}
+		return $index;
 	}
 
 	private static function reverseDomain( $domain ) {

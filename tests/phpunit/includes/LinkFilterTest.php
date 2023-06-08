@@ -465,6 +465,12 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 				'http://com.example../foo',
 				'http://.example.com'
 			],
+
+			// port
+			[
+				'http://com.example.:8000/foo',
+				'http://example.com:8000'
+			],
 		];
 	}
 
