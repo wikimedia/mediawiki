@@ -38,7 +38,7 @@ use MediaWiki\User\UserRigorOptions;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -462,7 +462,7 @@ class ContribsPager extends RangeChronologicalPager {
 
 	/**
 	 * Get SQL conditions for an IP range, if applicable
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param string $ip The IP address or CIDR
 	 * @return string|false SQL for valid IP ranges, false if invalid
 	 */
