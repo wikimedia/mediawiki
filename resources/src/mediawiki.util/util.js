@@ -513,19 +513,36 @@ var util = {
 	},
 
 	/**
-	 * The added element and associated HTML ID.
+	 * Creates a detached portlet Element in the skin with no elements.
+	 * The caller must add the portlet to the desired location and add elements
+	 * to it using mw.util.addPortletLink.
 	 *
-	 * This allows skins to make transformations to menu items (for example adding icons).
-	 *
-	 * This event is fired by #addPortletLink after it adds a link to the DOM. If the
-	 * link parameters was invalid, or the menu not found, then this hook is not fired.
-	 *
-	 * @event util_addPortletLink
-	 * @param {HTMLElement} item
-	 * @param {Object} options
-	 * @param {string|undefined} options.id
+	 * @event util.addPortlet
+	 * @param {string} id of the new portlet.
+	 * @param {string} [label] of the new portlet.
+	 * @return {HTMLElement}
 	 */
-
+	addPortlet: function ( id, label ) {
+		const portlet = document.createElement( 'div' );
+		// These classes should be kept in sync with includes/skins/components/SkinComponentMenu.php.
+		// eslint-disable-next-line mediawiki/class-doc
+		portlet.classList.add( 'mw-portlet', 'mw-portlet-' + id, 'emptyPortlet',
+			// Additional class is added to allow skins to track portlets added via this mechanism.
+			'mw-portlet-js'
+		);
+		portlet.id = id;
+		if ( label ) {
+			const labelNode = document.createElement( 'label' );
+			labelNode.textContent = label;
+			portlet.appendChild( labelNode );
+		}
+		const listWrapper = document.createElement( 'div' );
+		const list = document.createElement( 'ul' );
+		listWrapper.appendChild( list );
+		portlet.appendChild( listWrapper );
+		mw.hook( 'util.addPortlet' ).fire( portlet );
+		return portlet;
+	},
 	/**
 	 * Add a link to a portlet menu on the page, such as:
 	 *

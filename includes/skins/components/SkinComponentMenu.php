@@ -122,6 +122,7 @@ class SkinComponentMenu implements SkinComponent {
 		$isEmptyPortlet = ( $isEmptyContent && $isEmptyAfterContent && $isEmptyBeforeContent && $isEmptyItems );
 		$data = [
 			'id' => $id,
+			// Any changes to these classes should be synced with resources/src/mediawiki.util/util.js
 			'class' => 'mw-portlet ' . Sanitizer::escapeClass( "mw-portlet-$name" ),
 			'html-tooltip' => Linker::tooltip( $id ),
 			'html-items' => '',
