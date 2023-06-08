@@ -28,7 +28,7 @@ class LanguageTrTest extends LanguageClassesTestCase {
 		} elseif ( $func == 'lcfirst' ) {
 			$res = $this->getLang()->lcfirst( $input );
 		} else {
-			throw new MWException( __METHOD__ . " given an invalid function name '$func'" );
+			throw new InvalidArgumentException( __METHOD__ . " given an invalid function name '$func'" );
 		}
 
 		$msg = "Converting $inputCase case '$input' with $func should give '$expected'";

@@ -7,9 +7,9 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
-use MWException;
 use RequestContext;
 use RevisionDeleter;
+use RuntimeException;
 use Wikimedia\Rdbms\IDatabase;
 use WikitextContent;
 
@@ -62,7 +62,7 @@ trait PageDumpTestDataTrait {
 
 			if ( $this->namespace === $this->talk_namespace ) {
 				// @todo work around this.
-				throw new MWException( "The default wikitext namespace is the talk namespace. "
+				throw new RuntimeException( "The default wikitext namespace is the talk namespace. "
 					. " We can't currently deal with that." );
 			}
 

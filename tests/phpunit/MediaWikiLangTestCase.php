@@ -16,7 +16,7 @@ abstract class MediaWikiLangTestCase extends MediaWikiIntegrationTestCase {
 		$services = MediaWikiServices::getInstance();
 		$contLang = $services->getContentLanguage();
 		if ( $wgLanguageCode != $contLang->getCode() ) {
-			throw new MWException( "Error in MediaWikiLangTestCase::setUp(): " .
+			throw new RuntimeException( "Error in " . __METHOD__ . ': ' .
 				"\$wgLanguageCode ('$wgLanguageCode') is different from content language code (" .
 				$contLang->getCode() . ")" );
 		}

@@ -266,20 +266,18 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Returns a WikiPage representing an existing page.
+	 * Returns a WikiPage representing an existing page. This method requires database support, which can be enabled
+	 * with "@group Database", or by listing the tables under testing in $this->tablesUsed, or by returning
+	 * true from needsDB().
 	 *
 	 * @since 1.32
 	 *
 	 * @param Title|string|null $title
 	 * @return WikiPage
-	 * @throws MWException If this test cases's needsDB() method doesn't return true.
-	 *         Test cases can use "@group Database" to enable database test support,
-	 *         or list the tables under testing in $this->tablesUsed, or override the
-	 *         needsDB() method.
 	 */
 	protected function getExistingTestPage( $title = null ) {
 		if ( !$this->needsDB() ) {
-			throw new MWException( 'When testing with pages, the test cases\'s needsDB()' .
+			throw new LogicException( 'When testing with pages, the test cases\'s needsDB()' .
 				' method should return true. Use @group Database or $this->tablesUsed.' );
 		}
 
@@ -307,20 +305,18 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Returns a WikiPage representing a non-existing page.
+	 * Returns a WikiPage representing a non-existing page. This method requires database support, which can be enabled
+	 * with "@group Database", or by listing the tables under testing in $this->tablesUsed, or by returning
+	 * true from needsDB().
 	 *
 	 * @since 1.32
 	 *
 	 * @param Title|string|null $title
 	 * @return WikiPage
-	 * @throws MWException If this test cases's needsDB() method doesn't return true.
-	 *         Test cases can use "@group Database" to enable database test support,
-	 *         or list the tables under testing in $this->tablesUsed, or override the
-	 *         needsDB() method.
 	 */
 	protected function getNonexistingTestPage( $title = null ) {
 		if ( !$this->needsDB() ) {
-			throw new MWException( 'When testing with pages, the test cases\'s needsDB()' .
+			throw new LogicException( 'When testing with pages, the test cases\'s needsDB()' .
 				' method should return true. Use @group Database or $this->tablesUsed.' );
 		}
 
@@ -1047,8 +1043,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param string $name The name of the global, as in wgFooBar
 	 * @param array $values The array containing the entries to set in that global
 	 *
-	 * @throws MWException If the designated global is not an array.
-	 *
 	 * @note This will call resetServices().
 	 *
 	 * @since 1.21
@@ -1067,7 +1061,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			}
 
 			if ( !is_array( $merged ) ) {
-				throw new MWException( "MW global $name is not an array." );
+				throw new RuntimeException( "MW global $name is not an array." );
 			}
 
 			foreach ( $values as $k => $v ) {
@@ -1138,7 +1132,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * call to a test method.
 	 *
 	 * @note Calling this after having called setService() in the same test method (or the
-	 *       associated setUp) will result in an MWException.
+	 *       associated setUp) will result in an exception.
 	 *       Tests should use either overrideMwServices() or setService(), but not mix both.
 	 *       Since 1.34, resetServices() is available as an alternative compatible with setService().
 	 *
@@ -1148,14 +1142,13 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 *        names, values are callables.
 	 *
 	 * @return MediaWikiServices
-	 * @throws MWException
 	 * @since 1.27
 	 */
 	protected function overrideMwServices(
 		Config $customOverrides = null, array $services = []
 	) {
 		if ( $this->overriddenServices ) {
-			throw new MWException(
+			throw new LogicException(
 				'The following services were set and are now being unset by overrideMwServices: ' .
 					implode( ', ', $this->overriddenServices )
 			);
@@ -1541,7 +1534,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Insert a new page.
+	 * Insert a new page. This method requires database support, which can be enabled with "@group Database", or by
+	 * listing the tables under testing in $this->tablesUsed, or by returning true from needsDB().
 	 *
 	 * Should be called from addDBData().
 	 *
@@ -1551,10 +1545,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param int|null $namespace Namespace id (name cannot already contain namespace)
 	 * @param User|null $user If null, static::getTestSysop()->getUser() is used.
 	 * @return array Title object and page id
-	 * @throws MWException If this test cases's needsDB() method doesn't return true.
-	 *         Test cases can use "@group Database" to enable database test support,
-	 *         or list the tables under testing in $this->tablesUsed, or override the
-	 *         needsDB() method.
 	 */
 	protected function insertPage(
 		$pageName,
@@ -1563,7 +1553,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		User $user = null
 	) {
 		if ( !$this->needsDB() ) {
-			throw new MWException( 'When testing with pages, the test cases\'s needsDB()' .
+			throw new RuntimeException( 'When testing with pages, the test cases\'s needsDB()' .
 				' method should return true. Use @group Database or $this->tablesUsed.' );
 		}
 
@@ -1772,8 +1762,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 *
 	 * @param IMaintainableDatabase $db The database connection
 	 * @param string $prefix The prefix to use for the new table set (aka schema).
-	 *
-	 * @throws MWException If the database table prefix is already $prefix
 	 */
 	public static function setupTestDB( IMaintainableDatabase $db, $prefix ) {
 		if ( self::$dbSetup ) {
@@ -1781,7 +1769,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		if ( $db->tablePrefix() === $prefix ) {
-			throw new MWException(
+			throw new BadMethodCallException(
 				'Cannot run unit tests, the database prefix is already "' . $prefix . '"' );
 		}
 
@@ -2232,12 +2220,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @throws MWException
 	 * @since 1.18
 	 */
 	protected function checkDbIsSupported() {
 		if ( !in_array( $this->db->getType(), $this->supportedDBs ) ) {
-			throw new MWException( $this->db->getType() . " is not currently supported for unit testing." );
+			throw new RuntimeException( $this->db->getType() . " is not currently supported for unit testing." );
 		}
 	}
 
@@ -2265,6 +2252,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * the values given in the order of the columns in the $fields parameter.
 	 * Note that the rows are sorted by the columns given in $fields.
 	 *
+	 * This method requires database support, which can be enabled with "@group Database", or by listing the tables
+	 * under testing in $this->tablesUsed, or by returning true from needsDB().
+	 *
 	 * @since 1.20
 	 *
 	 * @param string|array $table The table(s) to query
@@ -2273,17 +2263,12 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param array $expectedRows An array of arrays giving the expected rows.
 	 * @param array $options Options for the query
 	 * @param array $join_conds Join conditions for the query
-	 *
-	 * @throws MWException If this test cases's needsDB() method doesn't return true.
-	 *         Test cases can use "@group Database" to enable database test support,
-	 *         or list the tables under testing in $this->tablesUsed, or override the
-	 *         needsDB() method.
 	 */
 	protected function assertSelect(
 		$table, $fields, $condition, array $expectedRows, array $options = [], array $join_conds = []
 	) {
 		if ( !$this->needsDB() ) {
-			throw new MWException( 'When testing database state, the test cases\'s needDB()' .
+			throw new LogicException( 'When testing database state, the test cases\'s needDB()' .
 				' method should return true. Use @group Database or $this->tablesUsed.' );
 		}
 
@@ -2399,7 +2384,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	/**
 	 * Returns the ID of a namespace that defaults to Wikitext.
 	 *
-	 * @throws MWException If there is none.
 	 * @return int The ID of the wikitext Namespace
 	 * @since 1.21
 	 */
@@ -2450,7 +2434,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		// give up
 		// @todo Inside a test, we could skip the test as incomplete.
 		//        But frequently, this is used in fixture setup.
-		throw new MWException( "No namespace defaults to wikitext!" );
+		throw new RuntimeException( "No namespace defaults to wikitext!" );
 	}
 
 	/**
@@ -2562,17 +2546,16 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Edits or creates a page/revision
+	 * Edits or creates a page/revision. This method requires database support, which can be enabled with
+	 * "@group Database", or by listing the tables under testing in $this->tablesUsed, or by returning true
+	 * from needsDB().
+	 *
 	 * @param string|PageIdentity|LinkTarget|WikiPage $page the page to edit
 	 * @param string|Content $content the new content of the page
 	 * @param string $summary Optional summary string for the revision
 	 * @param int $defaultNs Optional namespace id
 	 * @param Authority|null $performer If null, static::getTestUser()->getAuthority() is used.
 	 * @return PageUpdateStatus Object as returned by WikiPage::doUserEditContent()
-	 * @throws MWException If this test cases's needsDB() method doesn't return true.
-	 *         Test cases can use "@group Database" to enable database test support,
-	 *         or list the tables under testing in $this->tablesUsed, or override the
-	 *         needsDB() method.
 	 */
 	protected function editPage(
 		$page,
@@ -2582,7 +2565,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		Authority $performer = null
 	) {
 		if ( !$this->needsDB() ) {
-			throw new MWException( 'When testing with pages, the test cases\'s needsDB()' .
+			throw new LogicException( 'When testing with pages, the test cases\'s needsDB()' .
 				' method should return true. Use @group Database or $this->tablesUsed.' );
 		}
 

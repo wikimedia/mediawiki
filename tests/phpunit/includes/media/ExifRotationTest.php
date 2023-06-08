@@ -84,7 +84,7 @@ class ExifRotationTest extends MediaWikiMediaTestCase {
 					'height' => $matches[2]
 				];
 			} else {
-				throw new MWException( 'bogus test data format ' . $size );
+				throw new InvalidArgumentException( 'bogus test data format ' . $size );
 			}
 
 			$file = $this->dataFile( $name, $type );
@@ -190,7 +190,7 @@ class ExifRotationTest extends MediaWikiMediaTestCase {
 					'height' => $matches[2]
 				];
 			} else {
-				throw new MWException( 'bogus test data format ' . $size );
+				throw new InvalidArgumentException( 'bogus test data format ' . $size );
 			}
 
 			$file = $this->dataFile( $name, $type );

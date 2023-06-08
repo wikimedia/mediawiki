@@ -311,7 +311,7 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideGetters() {
-		$getServiceCases = $this->provideGetService();
+		$getServiceCases = self::provideGetService();
 		$getterCases = [];
 
 		// All getters should be named just like the service, with "get" added.
@@ -352,7 +352,7 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 		foreach ( $serviceList as $name => $callback ) {
 			$fun = new ReflectionFunction( $callback );
 			if ( !$fun->hasReturnType() ) {
-				throw new MWException( 'All service callbacks must have a return type defined, ' .
+				throw new LogicException( 'All service callbacks must have a return type defined, ' .
 					"none found for $name" );
 			}
 
@@ -389,7 +389,7 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 
 	public function testDefaultServiceWiringServicesHaveTests() {
 		global $IP;
-		$testedServices = array_keys( $this->provideGetService() );
+		$testedServices = array_keys( self::provideGetService() );
 		$allServices = array_keys( require "$IP/includes/ServiceWiring.php" );
 		$this->assertEquals(
 			[],
@@ -407,7 +407,7 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 		}, $methods );
 		$serviceNames = array_map( static function ( $name ) {
 			return "get$name";
-		}, array_keys( $this->provideGetService() ) );
+		}, array_keys( self::provideGetService() ) );
 		$names = array_values( array_filter( $names, static function ( $name ) use ( $serviceNames ) {
 			return in_array( $name, $serviceNames );
 		} ) );

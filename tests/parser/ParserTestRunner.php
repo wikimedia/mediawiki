@@ -544,7 +544,7 @@ class ParserTestRunner {
 	protected function createRepoGroup() {
 		if ( $this->uploadDir ) {
 			if ( $this->fileBackendName ) {
-				throw new MWException( 'You cannot specify both use-filebackend and upload-dir' );
+				throw new RuntimeException( 'You cannot specify both use-filebackend and upload-dir' );
 			}
 			$backend = new FSFileBackend( [
 				'name' => 'local-backend',
@@ -562,7 +562,7 @@ class ParserTestRunner {
 				}
 			}
 			if ( $useConfig === false ) {
-				throw new MWException( "Unable to find file backend \"$name\"" );
+				throw new RuntimeException( "Unable to find file backend \"$name\"" );
 			}
 			$useConfig['name'] = 'local-backend'; // swap name
 			unset( $useConfig['lockManager'] );
@@ -658,7 +658,7 @@ class ParserTestRunner {
 	 */
 	protected function markSetupDone( $funcName ) {
 		if ( $this->setupDone[$funcName] ) {
-			throw new MWException( "$funcName is already done" );
+			throw new RuntimeException( "$funcName is already done" );
 		}
 		$this->setupDone[$funcName] = true;
 		return function () use ( $funcName ) {
@@ -672,7 +672,7 @@ class ParserTestRunner {
 	 */
 	protected function checkSetupDone( string $funcName ) {
 		if ( !$this->setupDone[$funcName] ) {
-			throw new MWException( "$funcName must be called before calling " . wfGetCaller() );
+			throw new BadMethodCallException( "$funcName must be called before calling " . wfGetCaller() );
 		}
 	}
 
@@ -992,7 +992,7 @@ class ParserTestRunner {
 		// Verify minimum version #
 		$testFormat = intval( $fileOptions['version'] ?? '1' );
 		if ( $testFormat < 2 ) {
-			throw new MWException(
+			throw new RuntimeException(
 				"$filename needs an update. Support for the parserTest v1 file format was removed in MediaWiki 1.36"
 			);
 		}
@@ -1183,7 +1183,7 @@ class ParserTestRunner {
 				// To be safe, we don't try to write a file that doesn't
 				// (yet) exist.  Create an empty file if you need to, and
 				// then we'll happily update it for you.
-				throw new MWException(
+				throw new RuntimeException(
 					"Known failures file for $filename does not exist, " .
 					"and so won't be updated."
 				);
@@ -1817,7 +1817,7 @@ class ParserTestRunner {
 		if ( $test->wikitext === null && !$mode->isCachingMode() ) {
 			// If mode is 'cache' we're executing this in order to
 			// set cachedWTstr.
-			throw new MWException( 'Error in the test setup' );
+			throw new RuntimeException( 'Error in the test setup' );
 		}
 
 		$test->cachedWTstr = $origWT = $parsoid->html2wikitext( $pageConfig, $html );
@@ -1884,7 +1884,7 @@ class ParserTestRunner {
 		);
 
 		if ( $test->changetree === [ 'manual' ] && !isset( $test->options['parsoid']['changes'] ) ) {
-			throw new MWException( 'Error in the test setup!' );
+			throw new RuntimeException( 'Error in the test setup!' );
 		}
 
 		// Apply edits to the HTML.
@@ -2366,7 +2366,7 @@ class ParserTestRunner {
 
 		$suspiciousPrefixes = [ self::DB_PREFIX, MediaWikiIntegrationTestCase::DB_PREFIX ];
 		if ( in_array( $wgDBprefix, $suspiciousPrefixes ) ) {
-			throw new MWException( "\$wgDBprefix=$wgDBprefix suggests DB setup is already done" );
+			throw new RuntimeException( "\$wgDBprefix=$wgDBprefix suggests DB setup is already done" );
 		}
 
 		$teardown = [];
@@ -2798,8 +2798,6 @@ class ParserTestRunner {
 	 * @param string $text The article text
 	 * @param string $file The input file name
 	 * @param int|string $line The input line number, for reporting errors
-	 * @throws Exception
-	 * @throws MWException
 	 */
 	private function addArticle( $name, $text, $file, $line ) {
 		$text = self::chomp( $text );
@@ -2809,7 +2807,7 @@ class ParserTestRunner {
 		wfDebug( __METHOD__ . ": adding $name" );
 
 		if ( $title === null ) {
-			throw new MWException( "invalid title '$name' at $file:$line\n" );
+			throw new RuntimeException( "invalid title '$name' at $file:$line\n" );
 		}
 
 		$user = MediaWikiIntegrationTestCase::getTestSysop()->getUser();
@@ -2828,7 +2826,7 @@ class ParserTestRunner {
 			if ( $newContent->equals( $content ) ) {
 				return;
 			}
-			throw new MWException(
+			throw new RuntimeException(
 				"duplicate article '$name' with different content at $file:$line\n"
 			);
 		}
@@ -2868,7 +2866,7 @@ class ParserTestRunner {
 		}
 
 		if ( !$status->isOK() ) {
-			throw new MWException( $status->getWikiText( false, false, 'en' ) );
+			throw new RuntimeException( $status->getWikiText( false, false, 'en' ) );
 		}
 
 		// an edit always attempt to purge backlink links such as history

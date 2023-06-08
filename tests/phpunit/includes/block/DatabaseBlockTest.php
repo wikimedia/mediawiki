@@ -38,7 +38,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 * @param UserIdentity $user
 	 *
 	 * @return DatabaseBlock
-	 * @throws MWException
 	 */
 	private function addBlockForUser( UserIdentity $user ) {
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
@@ -63,7 +62,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		// its value might change depending on the order the tests are run.
 		// ApiBlockTest insert its own blocks!
 		if ( !$block->getId() ) {
-			throw new MWException( "Failed to insert block for BlockTest; old leftover block remaining?" );
+			throw new RuntimeException( "Failed to insert block for BlockTest; old leftover block remaining?" );
 		}
 
 		$this->addXffBlocks();

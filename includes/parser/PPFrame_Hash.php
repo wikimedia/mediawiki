@@ -102,7 +102,6 @@ class PPFrame_Hash implements PPFrame {
 	 * @param PPNode[]|false|PPNode_Hash_Array $args
 	 * @param Title|false $title
 	 * @param int $indexOffset
-	 * @throws MWException
 	 * @return PPTemplateFrame_Hash
 	 */
 	public function newChild( $args = false, $title = false, $indexOffset = 0 ) {
@@ -115,7 +114,7 @@ class PPFrame_Hash implements PPFrame {
 			if ( $args instanceof PPNode_Hash_Array ) {
 				$args = $args->value;
 			} elseif ( !is_array( $args ) ) {
-				throw new MWException( __METHOD__ . ': $args must be array or PPNode_Hash_Array' );
+				throw new InvalidArgumentException( __METHOD__ . ': $args must be array or PPNode_Hash_Array' );
 			}
 			foreach ( $args as $arg ) {
 				$bits = $arg->splitArg();
@@ -154,7 +153,6 @@ class PPFrame_Hash implements PPFrame {
 	}
 
 	/**
-	 * @throws MWException
 	 * @param string|int $key
 	 * @param string|PPNode $root
 	 * @param int $flags
@@ -166,7 +164,6 @@ class PPFrame_Hash implements PPFrame {
 	}
 
 	/**
-	 * @throws MWException
 	 * @param string|PPNode $root
 	 * @param int $flags
 	 * @return string
@@ -251,12 +248,12 @@ class PPFrame_Hash implements PPFrame {
 			} elseif ( is_array( $contextNode ) ) {
 				// Node descriptor array
 				if ( count( $contextNode ) !== 2 ) {
-					throw new MWException( __METHOD__ .
+					throw new RuntimeException( __METHOD__ .
 						': found an array where a node descriptor should be' );
 				}
 				[ $contextName, $contextChildren ] = $contextNode;
 			} else {
-				throw new MWException( __METHOD__ . ': Invalid parameter type' );
+				throw new RuntimeException( __METHOD__ . ': Invalid parameter type' );
 			}
 
 			// Handle node descriptor array or tree object

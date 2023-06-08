@@ -126,8 +126,6 @@ abstract class DiffFormatter {
 	 * @param int $ybeg
 	 * @param int $ylen
 	 * @param array &$edits
-	 *
-	 * @throws MWException If the edit type is not known.
 	 */
 	protected function block( $xbeg, $xlen, $ybeg, $ylen, &$edits ) {
 		$this->startBlock( $this->blockHeader( $xbeg, $xlen, $ybeg, $ylen ) );
@@ -141,7 +139,7 @@ abstract class DiffFormatter {
 			} elseif ( $edit->type == 'change' ) {
 				$this->changed( $edit->orig, $edit->closing );
 			} else {
-				throw new MWException( "Unknown edit type: {$edit->type}" );
+				throw new UnexpectedValueException( "Unknown edit type: {$edit->type}" );
 			}
 		}
 		$this->endBlock();

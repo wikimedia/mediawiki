@@ -23,7 +23,7 @@ class JobQueueTest extends MediaWikiIntegrationTestCase {
 		if ( $this->getCliArg( 'use-jobqueue' ) ) {
 			$name = $this->getCliArg( 'use-jobqueue' );
 			if ( !isset( $wgJobTypeConf[$name] ) ) {
-				throw new MWException( "No \$wgJobTypeConf entry for '$name'." );
+				throw new RuntimeException( "No \$wgJobTypeConf entry for '$name'." );
 			}
 			$baseConfig = $wgJobTypeConf[$name];
 		} else {

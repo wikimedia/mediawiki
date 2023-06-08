@@ -344,12 +344,20 @@ class SpecialPageFactoryTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\SpecialPage\SpecialPageFactory::capturePath
 	 */
 	public function testSpecialPageCapturePathExceptions() {
+		$expectedException = new RuntimeException( 'Uh-oh!' );
 		$this->overrideConfigValue( MainConfigNames::SpecialPages, [
 			'ExceptionPage' => [
-				'factory' => static function () {
-					return new class() extends SpecialPage {
+				'factory' => static function () use ( $expectedException ) {
+					return new class( $expectedException ) extends SpecialPage {
+						private Exception $expectedException;
+
+						public function __construct( $expectedException ) {
+							parent::__construct();
+							$this->expectedException = $expectedException;
+						}
+
 						public function execute( $par ) {
-							throw new MWException( 'for testing' );
+							throw $this->expectedException;
 						}
 
 						public function isIncludable() {
@@ -363,7 +371,7 @@ class SpecialPageFactoryTest extends MediaWikiIntegrationTestCase {
 		$factory = $this->getFactory();
 		$factory->getPage( 'ExceptionPage' );
 
-		$this->expectException( MWException::class );
+		$this->expectExceptionObject( $expectedException );
 		$factory->capturePath(
 			Title::makeTitle( NS_SPECIAL, 'ExceptionPage' ),
 			RequestContext::getMain()

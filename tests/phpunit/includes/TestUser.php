@@ -31,7 +31,7 @@ class TestUser {
 			$wgDBprefix !== MediaWikiIntegrationTestCase::DB_PREFIX &&
 			$wgDBprefix !== ParserTestRunner::DB_PREFIX
 		) {
-			throw new MWException( "Can't create user on real database" );
+			throw new RuntimeException( "Can't create user on real database" );
 		}
 	}
 
@@ -60,7 +60,7 @@ class TestUser {
 			);
 
 			if ( !$this->user ) {
-				throw new MWException( "Error creating TestUser " . $username );
+				throw new RuntimeException( "Error creating TestUser " . $username );
 			}
 		}
 
@@ -131,7 +131,7 @@ class TestUser {
 	 */
 	public static function setPasswordForUser( User $user, $password ) {
 		if ( !$user->getId() ) {
-			throw new MWException( "Passed User has not been added to the database yet!" );
+			throw new InvalidArgumentException( "Passed User has not been added to the database yet!" );
 		}
 
 		$dbw = wfGetDB( DB_PRIMARY );
@@ -142,7 +142,7 @@ class TestUser {
 			__METHOD__
 		);
 		if ( !$row ) {
-			throw new MWException( "Passed User has an ID but is not in the database?" );
+			throw new RuntimeException( "Passed User has an ID but is not in the database?" );
 		}
 
 		$passwordFactory = MediaWikiServices::getInstance()->getPasswordFactory();

@@ -68,13 +68,13 @@ class WfUrlencodeTest extends MediaWikiUnitTestCase {
 			return $expectations;
 		} elseif ( is_array( $expectations ) ) {
 			if ( !array_key_exists( $server, $expectations ) ) {
-				throw new MWException( __METHOD__ . " expectation does not have any "
+				throw new InvalidArgumentException( __METHOD__ . " expectation does not have any "
 					. "value for server name $server. Check the provider array.\n" );
 			} else {
 				return $expectations[$server];
 			}
 		} else {
-			throw new MWException( __METHOD__ . " given invalid expectation for "
+			throw new InvalidArgumentException( __METHOD__ . " given invalid expectation for "
 				. "'$server'. Should be a string or an array [ <http server name> => <string> ].\n" );
 		}
 	}
