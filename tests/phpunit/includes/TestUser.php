@@ -148,12 +148,11 @@ class TestUser {
 		$passwordFactory = MediaWikiServices::getInstance()->getPasswordFactory();
 		if ( !$passwordFactory->newFromCiphertext( $row->user_password )->verify( $password ) ) {
 			$passwordHash = $passwordFactory->newFromPlaintext( $password );
-			$dbw->update(
-				'user',
-				[ 'user_password' => $passwordHash->toString() ],
-				[ 'user_id' => $user->getId() ],
-				__METHOD__
-			);
+			$dbw->newUpdateQueryBuilder()
+				->update( 'user' )
+				->set( [ 'user_password' => $passwordHash->toString() ] )
+				->where( [ 'user_id' => $user->getId() ] )
+				->caller( __METHOD__ )->execute();
 		}
 	}
 
