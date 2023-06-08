@@ -28,7 +28,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -163,14 +163,14 @@ class AllMessagesTablePager extends TablePager {
 	 * @param array $messageNames
 	 * @param string $langcode What language code
 	 * @param bool $foreign Whether the $langcode is not the content language
-	 * @param IDatabase|null $dbr
+	 * @param IReadableDatabase|null $dbr
 	 * @return array A 'pages' and 'talks' array with the keys of existing pages
 	 */
 	public static function getCustomisedStatuses(
 		$messageNames,
 		$langcode = 'en',
 		$foreign = false,
-		IDatabase $dbr = null
+		IReadableDatabase $dbr = null
 	) {
 		// FIXME: This function should be moved to Language:: or something.
 		// Fallback to global state, if not provided
