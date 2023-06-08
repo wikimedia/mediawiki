@@ -171,11 +171,11 @@ trait PageDumpTestDataTrait {
 	 * @return RevisionRecord
 	 */
 	protected function corruptRevisionData( IDatabase $db, RevisionRecord $revision ) {
-		$db->update(
-			'content',
-			[ 'content_address' => 'tt:0' ],
-			[ 'content_id' => $revision->getSlot( \MediaWiki\Revision\SlotRecord::MAIN )->getContentId() ]
-		);
+		$db->newUpdateQueryBuilder()
+			->update( 'content' )
+			->set( [ 'content_address' => 'tt:0' ] )
+			->where( [ 'content_id' => $revision->getSlot( \MediaWiki\Revision\SlotRecord::MAIN )->getContentId() ] )
+			->execute();
 
 		$revision = MediaWikiServices::getInstance()->getRevisionLookup()->getRevisionById(
 			$revision->getId()
