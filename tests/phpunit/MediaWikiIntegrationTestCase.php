@@ -2079,7 +2079,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			// some groups of tables are connected such that if any is used, all should be cleared
 			$extraTables = [
 				'user' => [ 'user', 'user_groups', 'user_properties', 'actor' ],
-				'page' => [ 'page', 'revision', 'ip_changes', 'revision_comment_temp', 'comment', 'archive',
+				'page' => [ 'page', 'revision', 'ip_changes', 'comment', 'archive',
 					'slots', 'content', 'content_models', 'slot_roles', 'redirect', 'change_tag' ],
 				'logging' => [ 'logging', 'log_search', 'change_tag' ],
 			];

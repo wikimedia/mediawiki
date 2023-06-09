@@ -418,16 +418,6 @@ CREATE TABLE /*_*/ip_changes (
 ) /*$wgDBTableOptions*/;
 
 
-CREATE TABLE /*_*/revision_comment_temp (
-  revcomment_rev INT UNSIGNED NOT NULL,
-  revcomment_comment_id BIGINT UNSIGNED NOT NULL,
-  UNIQUE INDEX revcomment_rev (revcomment_rev),
-  PRIMARY KEY(
-    revcomment_rev, revcomment_comment_id
-  )
-) /*$wgDBTableOptions*/;
-
-
 CREATE TABLE /*_*/page_props (
   pp_page INT UNSIGNED NOT NULL,
   pp_propname VARBINARY(60) NOT NULL,

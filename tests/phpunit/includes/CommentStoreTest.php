@@ -14,7 +14,6 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 
 	protected $tablesUsed = [
 		'revision',
-		'revision_comment_temp',
 		'ipblocks',
 		'comment',
 	];

@@ -57,7 +57,6 @@ class ArchivedRevisionLookupTest extends MediaWikiIntegrationTestCase {
 			[
 				'page',
 				'revision',
-				'revision_comment_temp',
 				'ip_changes',
 				'text',
 				'archive',
