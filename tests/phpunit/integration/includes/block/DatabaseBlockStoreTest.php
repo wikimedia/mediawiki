@@ -255,7 +255,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	public function testInsertBlockError() {
 		$block = $this->createMock( DatabaseBlock::class );
 
-		$this->expectException( MWException::class );
+		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( 'insert' );
 
 		$store = $this->getStore();
@@ -361,7 +361,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$block->method( 'getWikiId' )
 			->willReturn( DatabaseBlock::LOCAL );
 
-		$this->expectException( MWException::class );
+		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( 'delete' );
 
 		$store = $this->getStore();

@@ -1367,11 +1367,10 @@ class DifferenceEngine extends ContextSource {
 	 *
 	 * @return string[]
 	 * @phan-return non-empty-array<string>
-	 * @throws MWException
 	 */
 	protected function getDiffBodyCacheKeyParams() {
 		if ( !$this->mOldid || !$this->mNewid ) {
-			throw new MWException( 'mOldid and mNewid must be set to get diff cache key.' );
+			throw new BadMethodCallException( 'mOldid and mNewid must be set to get diff cache key.' );
 		}
 
 		$engine = $this->getEngine();

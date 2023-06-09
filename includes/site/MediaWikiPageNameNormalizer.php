@@ -77,15 +77,8 @@ class MediaWikiPageNameNormalizer {
 	 * @return string|false The normalized form of the title,
 	 * or false to indicate an invalid title, a missing page,
 	 * or some other kind of error.
-	 * @throws \MWException
-	 * @throws InvalidArgumentException
 	 */
-	public function normalizePageName( $pageName, $apiUrl, $followRedirect = self::FOLLOW_REDIRECT ) {
-		// Check if we have strings as arguments.
-		if ( !is_string( $pageName ) ) {
-			throw new \MWException( '$pageName must be a string' );
-		}
-
+	public function normalizePageName( string $pageName, $apiUrl, $followRedirect = self::FOLLOW_REDIRECT ) {
 		if ( $followRedirect === self::FOLLOW_REDIRECT ) {
 			$redirects = true;
 		} elseif ( $followRedirect === self::NOFOLLOW_REDIRECT ) {

@@ -91,9 +91,6 @@ class UserMailer {
 	 *     'replyTo' MailAddress
 	 *     'contentType' string default 'text/plain; charset=UTF-8'
 	 *     'headers' array Extra headers to set
-	 *
-	 * @throws MWException
-	 * @throws Exception
 	 * @return Status
 	 */
 	public static function send( $to, $from, $subject, $body, $options = [] ) {
@@ -187,9 +184,6 @@ class UserMailer {
 	 *     'replyTo' MailAddress
 	 *     'contentType' string default 'text/plain; charset=UTF-8'
 	 *     'headers' array Extra headers to set
-	 *
-	 * @throws MWException
-	 * @throws Exception
 	 * @return Status
 	 */
 	protected static function sendInternal(

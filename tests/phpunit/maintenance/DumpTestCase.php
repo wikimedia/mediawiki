@@ -12,7 +12,6 @@ use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWikiLangTestCase;
-use MWException;
 use RuntimeException;
 use WikiExporter;
 use WikiPage;
@@ -121,8 +120,6 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 * @param WikiPage $page Page to add the revision to
 	 * @param Content[] $slots A mapping of slot names to Content objects
 	 * @param string $summary Revisions summary
-	 *
-	 * @throws MWException
 	 * @return RevisionRecord
 	 */
 	protected function addMultiSlotRevision(

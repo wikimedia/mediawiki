@@ -220,7 +220,6 @@ class EmailNotification {
 	 * @param int $oldid Revision ID
 	 * @param array $watchers Array of user IDs
 	 * @param string $pageStatus
-	 * @throws MWException
 	 */
 	public function actuallyNotifyOnPageChange(
 		Authority $editor,
@@ -256,7 +255,7 @@ class EmailNotification {
 		$hookRunner = new HookRunner( $mwServices->getHookContainer() );
 		$hookRunner->onUpdateUserMailerFormattedPageStatus( $formattedPageStatus );
 		if ( !in_array( $this->pageStatus, $formattedPageStatus ) ) {
-			throw new MWException( 'Not a valid page status!' );
+			throw new UnexpectedValueException( 'Not a valid page status!' );
 		}
 
 		$userTalkId = false;

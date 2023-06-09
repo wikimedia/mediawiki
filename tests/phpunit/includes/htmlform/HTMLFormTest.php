@@ -90,7 +90,6 @@ class HTMLFormTest extends MediaWikiIntegrationTestCase {
 	 * @param array $requestData HTTP request data
 	 * @param array|null $tokens User's CSRF tokens in a salt => value format, or null for anon
 	 * @param bool $shouldBeAuthorized
-	 * @throws MWException
 	 */
 	public function testCsrf(
 		?string $formTokenSalt,

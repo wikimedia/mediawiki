@@ -183,7 +183,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 
 		foreach ( $importableRevision->getSlotRoles() as $role ) {
 			if ( !$this->slotRoleRegistry->isDefinedRole( $role ) ) {
-				throw new MWException( "Undefined slot role $role" );
+				throw new RuntimeException( "Undefined slot role $role" );
 			}
 
 			$newContent = $importableRevision->getContent( $role );
