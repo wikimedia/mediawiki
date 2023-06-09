@@ -18,6 +18,11 @@
  * @file
  */
 
+namespace Wikimedia\EventRelayer;
+
+use EventRelayer;
+use UnexpectedValueException;
+
 /**
  * Factory class for spawning EventRelayer objects using configuration
  *
@@ -60,3 +65,5 @@ class EventRelayerGroup {
 		return $this->relayers[$channelKey];
 	}
 }
+
+class_alias( EventRelayerGroup::class, 'EventRelayerGroup' );
