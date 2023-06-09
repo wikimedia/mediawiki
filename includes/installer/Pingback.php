@@ -1,7 +1,5 @@
 <?php
 /**
- * Send information about this MediaWiki instance to MediaWiki.org.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -24,11 +22,9 @@ namespace MediaWiki\Installer;
 
 use BagOStuff;
 use Config;
-use DeferredUpdates;
 use FormatJson;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MWCryptRand;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\DBError;
@@ -285,26 +281,6 @@ class Pingback {
 		$queryString = rawurlencode( str_replace( ' ', '\u0020', $json ) ) . ';';
 		$url = 'https://www.mediawiki.org/beacon/event?' . $queryString;
 		return $this->http->post( $url, [], __METHOD__ ) !== null;
-	}
-
-	/**
-	 * Schedule a deferred callable that will check if a pingback should be
-	 * sent and (if so) proceed to send it.
-	 */
-	public static function schedulePingback(): void {
-		$services = MediaWikiServices::getInstance();
-		$config = $services->getMainConfig();
-		if ( !$config->get( MainConfigNames::Pingback ) ) {
-			// Fault tolerance:
-			// Pingback is unusual. On a plain install of MediaWiki, it is likely the only
-			// feature making use of DeferredUpdates and DB_PRIMARY on most page views.
-			// In order for the wiki to remain available and readable even if DeferredUpdates
-			// or DB_PRIMARY have issues, allow this to be turned off completely. (T269516)
-			return;
-		}
-		DeferredUpdates::addCallableUpdate( static function () use ( $services ) {
-			$services->getPingback()->run();
-		} );
 	}
 }
 

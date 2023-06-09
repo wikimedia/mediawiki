@@ -53,7 +53,6 @@
 // phpcs:disable MediaWiki.Usage.DeprecatedGlobalVariables
 use MediaWiki\HookContainer\FauxGlobalHookArray;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\Installer\Pingback;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
@@ -586,8 +585,17 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 	unset( $sessionUser );
 }
 
-if ( !$wgCommandLineMode ) {
-	Pingback::schedulePingback();
+// Optimization: Avoid overhead from DeferredUpdates and Pingback deps when turned off.
+if ( !$wgCommandLineMode && $wgPingback ) {
+	// NOTE: Do not refactor to inject Config or otherwise make unconditional service call.
+	//
+	// On a plain install of MediaWiki, Pingback is likely the *only* feature
+	// involving DeferredUpdates or DB_PRIMARY on a regular page view.
+	// To allow for error recovery and fault isolation, let admins turn this
+	// off completely. (T269516)
+	DeferredUpdates::addCallableUpdate( static function () {
+		MediaWikiServices::getInstance()->getPingback()->run();
+	} );
 }
 
 $settingsWarnings = $wgSettings->getWarnings();
