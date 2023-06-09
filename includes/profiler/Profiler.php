@@ -164,7 +164,6 @@ abstract class Profiler {
 	/**
 	 * Get all usable outputs.
 	 *
-	 * @throws MWException
 	 * @return ProfilerOutput[]
 	 * @since 1.25
 	 */
@@ -178,7 +177,7 @@ abstract class Profiler {
 				? 'ProfilerOutput' . ucfirst( $outputType )
 				: $outputType;
 			if ( !class_exists( $outputClass ) ) {
-				throw new MWException( "'$outputType' is an invalid output type" );
+				throw new UnexpectedValueException( "'$outputType' is an invalid output type" );
 			}
 			$outputInstance = new $outputClass( $this, $this->params );
 			if ( $outputInstance->canUse() ) {
@@ -223,7 +222,6 @@ abstract class Profiler {
 	/**
 	 * Log the data to the script/request output for all ProfilerOutput instances that do so
 	 *
-	 * @throws MWException
 	 * @since 1.26
 	 */
 	public function logDataPageOutputOnly() {

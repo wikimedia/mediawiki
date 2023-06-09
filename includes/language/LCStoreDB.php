@@ -71,7 +71,7 @@ class LCStoreDB implements LCStore {
 		if ( $this->readOnly ) {
 			return;
 		} elseif ( !$code ) {
-			throw new MWException( __METHOD__ . ": Invalid language \"$code\"" );
+			throw new InvalidArgumentException( __METHOD__ . ": Invalid language \"$code\"" );
 		}
 
 		$dbw = $this->getWriteConnection();
@@ -85,7 +85,7 @@ class LCStoreDB implements LCStore {
 		if ( $this->readOnly ) {
 			return;
 		} elseif ( $this->code === null ) {
-			throw new MWException( __CLASS__ . ': must call startWrite() before finishWrite()' );
+			throw new LogicException( __CLASS__ . ': must call startWrite() before finishWrite()' );
 		}
 
 		$scope = Profiler::instance()->getTransactionProfiler()->silenceForScope();
@@ -121,7 +121,7 @@ class LCStoreDB implements LCStore {
 		if ( $this->readOnly ) {
 			return;
 		} elseif ( $this->code === null ) {
-			throw new MWException( __CLASS__ . ': must call startWrite() before set()' );
+			throw new LogicException( __CLASS__ . ': must call startWrite() before set()' );
 		}
 
 		$dbw = $this->getWriteConnection();
@@ -142,7 +142,7 @@ class LCStoreDB implements LCStore {
 				$dbFactory = MediaWikiServices::getInstance()->getDatabaseFactory();
 				$this->dbw = $dbFactory->create( $this->server['type'], $this->server );
 				if ( !$this->dbw ) {
-					throw new MWException( __CLASS__ . ': failed to obtain a DB connection' );
+					throw new RuntimeException( __CLASS__ . ': failed to obtain a DB connection' );
 				}
 			} else {
 				$this->dbw = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();

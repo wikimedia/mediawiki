@@ -4,6 +4,7 @@ namespace MediaWiki\HookContainer {
 
 	use Error;
 	use InvalidArgumentException;
+	use LogicException;
 	use MediaWiki\Tests\Unit\DummyServicesTrait;
 	use MediaWikiUnitTestCase;
 	use stdClass;
@@ -177,7 +178,7 @@ namespace MediaWiki\HookContainer {
 
 			$secondHookContainer->register( 'TestHook', self::HANDLER_FUNCTION );
 
-			$this->expectException( \MWException::class );
+			$this->expectException( LogicException::class );
 			$secondHookContainer->salvage( $firstHookContainer );
 		}
 

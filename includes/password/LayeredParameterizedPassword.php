@@ -44,9 +44,11 @@ class LayeredParameterizedPassword extends ParameterizedPassword {
 			$passObj = $this->factory->newFromType( $type );
 
 			if ( !$passObj instanceof ParameterizedPassword ) {
-				throw new MWException( 'Underlying type must be a parameterized password.' );
+				throw new UnexpectedValueException( 'Underlying type must be a parameterized password.' );
 			} elseif ( $passObj->getDelimiter() === $this->getDelimiter() ) {
-				throw new MWException( 'Underlying type cannot use same delimiter as encapsulating type.' );
+				throw new UnexpectedValueException(
+					'Underlying type cannot use same delimiter as encapsulating type.'
+				);
 			}
 
 			$params[] = implode( $passObj->getDelimiter(), $passObj->getDefaultParams() );
@@ -95,13 +97,11 @@ class LayeredParameterizedPassword extends ParameterizedPassword {
 	 * get an updated hash with all the layers.
 	 *
 	 * @param ParameterizedPassword $passObj Password hash of the first layer
-	 *
-	 * @throws MWException If the first parameter is not of the correct type
 	 */
 	public function partialCrypt( ParameterizedPassword $passObj ) {
 		$type = $passObj->config['type'];
 		if ( $type !== $this->config['types'][0] ) {
-			throw new MWException( 'Only a hash in the first layer can be finished.' );
+			throw new InvalidArgumentException( 'Only a hash in the first layer can be finished.' );
 		}
 
 		// Gather info from the existing hash

@@ -76,7 +76,7 @@ class EncryptedPassword extends ParameterizedPassword {
 	/**
 	 * Updates the underlying hash by encrypting it with the newest secret.
 	 *
-	 * @throws MWException If the configuration is not valid
+	 * @throws PasswordError If the configuration is not valid
 	 * @return bool True if the password was updated
 	 */
 	public function update(): bool {

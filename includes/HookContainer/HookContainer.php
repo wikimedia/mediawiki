@@ -30,7 +30,6 @@ use Error;
 use InvalidArgumentException;
 use LogicException;
 use MWDebug;
-use MWException;
 use UnexpectedValueException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\NonSerializable\NonSerializableTrait;
@@ -107,12 +106,11 @@ class HookContainer implements SalvageableService {
 	 *
 	 * @param HookContainer|SalvageableService $other The object to salvage state from. $other be
 	 * of type HookContainer
-	 * @throws MWException
 	 */
 	public function salvage( SalvageableService $other ) {
 		Assert::parameterType( self::class, $other, '$other' );
 		if ( $this->handlers || $this->handlerObjects || $this->extraHandlers ) {
-			throw new MWException( 'salvage() must be called immediately after construction' );
+			throw new LogicException( 'salvage() must be called immediately after construction' );
 		}
 		$this->handlerObjects = $other->handlerObjects;
 		$this->handlers = $other->handlers;

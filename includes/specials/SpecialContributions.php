@@ -53,7 +53,6 @@ use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserRigorOptions;
-use MWException;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 
@@ -960,7 +959,6 @@ class SpecialContributions extends IncludableSpecialPage {
 
 	/**
 	 * @inheritDoc
-	 * @throws MWException
 	 */
 	public function getAssociatedNavigationLinks(): array {
 		if (

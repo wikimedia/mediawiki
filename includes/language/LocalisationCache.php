@@ -290,7 +290,7 @@ class LocalisationCache {
 		} elseif ( $conf['store'] === 'array' ) {
 			$storeClass = LCStoreStaticArray::class;
 		} else {
-			throw new MWException(
+			throw new ConfigException(
 				'Please set $wgLocalisationCacheConf[\'store\'] to something sensible.'
 			);
 		}
@@ -586,7 +586,6 @@ class LocalisationCache {
 	 * Initialise a language in this object. Rebuild the cache if necessary.
 	 *
 	 * @param string $code
-	 * @throws MWException
 	 */
 	private function initLanguage( $code ) {
 		if ( isset( $this->initialisedLangs[$code] ) ) {
@@ -607,7 +606,7 @@ class LocalisationCache {
 			if ( $this->langNameUtils->isSupportedLanguage( $code ) ) {
 				$this->recache( $code );
 			} elseif ( $code === 'en' ) {
-				throw new MWException( 'MessagesEn.php is missing.' );
+				throw new RuntimeException( 'MessagesEn.php is missing.' );
 			} else {
 				$this->initShallowFallback( $code, 'en' );
 			}
@@ -621,14 +620,14 @@ class LocalisationCache {
 			if ( $this->manualRecache ) {
 				// No Messages*.php file. Do shallow fallback to en.
 				if ( $code === 'en' ) {
-					throw new MWException( 'No localisation cache found for English. ' .
+					throw new RuntimeException( 'No localisation cache found for English. ' .
 						'Please run maintenance/rebuildLocalisationCache.php.' );
 				}
 				$this->initShallowFallback( $code, 'en' );
 
 				return;
 			} else {
-				throw new MWException( 'Invalid or missing localisation cache.' );
+				throw new RuntimeException( 'Invalid or missing localisation cache.' );
 			}
 		}
 
@@ -687,7 +686,6 @@ class LocalisationCache {
 	 *
 	 * @param string $_fileName
 	 * @param string $_fileType
-	 * @throws MWException
 	 * @return array
 	 */
 	protected function readPHPFile( $_fileName, $_fileType ) {
@@ -714,7 +712,7 @@ class LocalisationCache {
 				$data['aliases'] = $aliases;
 			}
 		} else {
-			throw new MWException( __METHOD__ . ": Invalid file type: $_fileType" );
+			throw new InvalidArgumentException( __METHOD__ . ": Invalid file type: $_fileType" );
 		}
 
 		return $data;
@@ -982,7 +980,7 @@ class LocalisationCache {
 	 */
 	private function loadCoreData( string $code ) {
 		if ( !$code ) {
-			throw new MWException( "Invalid language code requested" );
+			throw new InvalidArgumentException( "Invalid language code requested" );
 		}
 		if ( $this->coreDataLoaded[$code] ?? false ) {
 			return;
@@ -1061,11 +1059,10 @@ class LocalisationCache {
 	 * and save it to the persistent cache store and the process cache.
 	 *
 	 * @param string $code
-	 * @throws MWException
 	 */
 	public function recache( $code ) {
 		if ( !$code ) {
-			throw new MWException( "Invalid language code requested" );
+			throw new InvalidArgumentException( "Invalid language code requested" );
 		}
 		$this->recachedLangs[ $code ] = true;
 
@@ -1186,7 +1183,7 @@ class LocalisationCache {
 		}
 
 		if ( !isset( $allData['rtl'] ) ) {
-			throw new MWException( __METHOD__ . ': Localisation data failed validation check! ' .
+			throw new RuntimeException( __METHOD__ . ': Localisation data failed validation check! ' .
 				'Check that your languages/messages/MessagesEn.php file is intact.' );
 		}
 

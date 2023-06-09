@@ -36,7 +36,6 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use MWException;
 use PermissionsError;
 use RepoGroup;
 use RevDelList;
@@ -352,8 +351,6 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 * Show a deleted file version requested by the visitor.
 	 * @todo Mostly copied from Special:Undelete. Refactor.
 	 * @param string $archiveName
-	 * @throws MWException
-	 * @throws PermissionsError
 	 */
 	protected function tryShowFile( $archiveName ) {
 		$repo = $this->repoGroup->getLocalRepo();

@@ -31,7 +31,7 @@ class ImageListPagerTest extends MediaWikiIntegrationTestCase {
 			false,
 			false
 		);
-		$this->expectException( MWException::class );
+		$this->expectException( UnexpectedValueException::class );
 		$this->expectExceptionMessage( "invalid_field" );
 		$page->formatValue( 'invalid_field', 'invalid_value' );
 	}
