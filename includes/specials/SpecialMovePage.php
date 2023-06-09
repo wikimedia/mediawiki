@@ -217,18 +217,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 			: Title::makeTitleSafe( $newTitleTextNs, $newTitleTextMain );
 
 		$user = $this->getUser();
-
-		# Check rights
-		$permErrors = $this->permManager->getPermissionErrors( 'move', $user, $this->oldTitle );
-		if ( count( $permErrors ) ) {
-			// Auto-block user's IP if the account was "hard" blocked
-			DeferredUpdates::addCallableUpdate( static function () use ( $user ) {
-				$user->spreadAnyEditBlock();
-			} );
-			throw new PermissionsError( 'move', $permErrors );
-		}
-
-		$def = !$request->wasPosted();
+		$isSubmit = $request->getRawVal( 'action' ) === 'submit' && $request->wasPosted();
 
 		$reasonList = $request->getText( 'wpReasonList', 'other' );
 		$reason = $request->getText( 'wpReason' );
@@ -239,17 +228,27 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		} else {
 			$this->reason = $reasonList;
 		}
-		$this->moveTalk = $request->getBool( 'wpMovetalk', $def );
-		$this->fixRedirects = $request->getBool( 'wpFixRedirects', $def );
-		$this->leaveRedirect = $request->getBool( 'wpLeaveRedirect', $def );
+		$this->moveTalk = $request->getBool( 'wpMovetalk', !$isSubmit );
+		$this->fixRedirects = $request->getBool( 'wpFixRedirects', !$isSubmit );
+		$this->leaveRedirect = $request->getBool( 'wpLeaveRedirect', !$isSubmit );
 		// T222953: Tick the "move subpages" box by default
-		$this->moveSubpages = $request->getBool( 'wpMovesubpages', $def );
+		$this->moveSubpages = $request->getBool( 'wpMovesubpages', !$isSubmit );
 		$this->deleteAndMove = $request->getBool( 'wpDeleteAndMove' );
 		$this->moveOverShared = $request->getBool( 'wpMoveOverSharedFile' );
 		$this->watch = $request->getCheck( 'wpWatch' ) && $user->isRegistered();
 
-		if ( $request->getRawVal( 'action' ) == 'submit' && $request->wasPosted()
-			&& $user->matchEditToken( $request->getVal( 'wpEditToken' ) )
+		# Check rights
+		$rigor = $isSubmit ? PermissionManager::RIGOR_SECURE : PermissionManager::RIGOR_FULL;
+		$permErrors = $this->permManager->getPermissionErrors( 'move', $user, $this->oldTitle, $rigor );
+		if ( count( $permErrors ) ) {
+			// Auto-block user's IP if the account was "hard" blocked
+			DeferredUpdates::addCallableUpdate( static function () use ( $user ) {
+				$user->spreadAnyEditBlock();
+			} );
+			throw new PermissionsError( 'move', $permErrors );
+		}
+
+		if ( $isSubmit && $user->matchEditToken( $request->getVal( 'wpEditToken' ) )
 		) {
 			$this->doSubmit();
 		} else {
@@ -369,11 +368,11 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		$oldTitleTalkSubpages = $this->oldTitle->getTalkPage()->hasSubpages();
 
 		$canMoveSubpage = ( $oldTitleSubpages || $oldTitleTalkSubpages ) &&
-			!count( $this->permManager->getPermissionErrors(
+			$this->permManager->quickUserCan(
 				'move-subpages',
 				$user,
 				$this->oldTitle
-			) );
+			);
 
 		# We also want to be able to move assoc. subpage talk-pages even if base page
 		# has no associated talk page, so || with $oldTitleTalkSubpages.
