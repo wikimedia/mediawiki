@@ -25,7 +25,6 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	protected function tearDown(): void {
-		ChangeTags::$avoidReopeningTablesForTesting = false;
 		parent::tearDown();
 	}
 
@@ -47,12 +46,13 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		$exclude = false
 	) {
 		$this->overrideConfigValue( MainConfigNames::UseTagFilter, $useTags );
-
-		if ( $avoidReopeningTables && $this->db->getType() !== 'mysql' ) {
-			$this->markTestSkipped( 'MySQL only' );
+		if (
+			$avoidReopeningTables &&
+			$this->db->getType() == 'mysql' &&
+			strpos( $this->db->getSoftwareLink(), 'MySQL' )
+		) {
+			$this->markTestSkipped( 'See T256006' );
 		}
-
-		ChangeTags::$avoidReopeningTablesForTesting = $avoidReopeningTables;
 
 		$rcId = 123;
 		ChangeTags::updateTags( [ 'foo', 'bar', '0' ], [], $rcId );
@@ -279,7 +279,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 				true, // tag filtering enabled
 				true, // avoid reopening tables
 				[
-					'tables' => [ 'archive', 'changetagdisplay' => 'change_tag_for_display_query' ],
+					'tables' => [ 'archive', 'changetagdisplay' => 'change_tag' ],
 					'fields' => [ 'ar_id', 'ar_timestamp', 'ts_tags' => $groupConcats['archive'] ],
 					'conds' => [ "ar_timestamp > '20170714183203'", 'changetagdisplay.ct_tag_id' => [ 1 ] ],
 					'join_conds' => [ 'changetagdisplay' => [ 'JOIN', 'changetagdisplay.ct_rev_id=ar_rev_id' ] ],
@@ -407,7 +407,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 				true, // tag filtering enabled
 				true, // avoid reopening tables
 				[
-					'tables' => [ 'recentchanges', 'changetagdisplay' => 'change_tag_for_display_query' ],
+					'tables' => [ 'recentchanges', 'changetagdisplay' => 'change_tag' ],
 					'fields' => [ 'rc_id', 'ts_tags' => $groupConcats['recentchanges'] ],
 					'conds' => [ "rc_timestamp > '20170714183203'", 'changetagdisplay.ct_tag_id' => [ 1, 2 ] ],
 					'join_conds' => [ 'changetagdisplay' => [ 'JOIN', 'changetagdisplay.ct_rc_id=rc_id' ] ],
