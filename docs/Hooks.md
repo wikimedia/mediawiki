@@ -50,10 +50,12 @@ the service.
 A hook runner is a class which implements hook interfaces, proxying the calls
 to `HookContainer::run()`.
 
-MediaWiki has two hook runner classes: HookRunner and ApiHookRunner.
+MediaWiki has three hook runner classes: HookRunner, ApiHookRunner and
+ResourceLoader\HookRunner.
 ApiHookRunner has proxy methods for all hooks which are called by the Action
 API. HookRunner has proxy methods for all hooks which are called by other parts
-of Core. Some hooks are implemented in both classes.
+of Core. ResourceLoader\HookRunner contains hooks specific to ResourceLoader.
+Some hooks are implemented in two hook runner classes.
 
 Extensions which call hooks should create their own hook runner class, by
 analogy with the ones in Core. Hook runner classes are effectively internal
@@ -63,15 +65,12 @@ it is safer for extensions to define their own hook runner classes even if
 they are calling Core hooks.
 
 New code should typically be written in a service which takes a HookContainer
-as a constructor parameter. However, for the convenience of existing static
-functions in MediaWiki Core, `Hooks::runner()` may be used to obtain a
-HookRunner instance. This is equivalent to
-
-    new HookRunner( MediaWikiServices::getInstance()->getHookContainer() )
-
+as a constructor parameter. In static functions it can fall back to the global
+HookContainer instance.
 For example, to call the hook `Mash`, as defined above, in static code:
 
-    Hooks::runner()->onMash( $banana );
+    $hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() )
+    $hookRunner->onMash( $banana );
 
 ## How to handle a hook event in an extension
 
