@@ -2832,10 +2832,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @see WANObjectCache::set()
 	 * @see WANObjectCache::getWithSetCallback()
 	 *
-	 * @param IDatabase|null ...$dbs
+	 * @param IReadableDatabase|null ...$dbs
 	 * Note: For backward compatibility, it is allowed for null values
 	 * to be passed among the parameters. This is deprecated since 1.36,
-	 * only IDatabase objects should be passed.
+	 * only IReadableDatabase objects should be passed.
 	 *
 	 * @return array Map of values:
 	 *   - lag: highest lag of any of the DBs or false on error (e.g. replication stopped)
@@ -2844,11 +2844,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @throws DBError
 	 * @since 1.27
 	 */
-	public static function getCacheSetOptions( ?IDatabase ...$dbs ) {
+	public static function getCacheSetOptions( ?IReadableDatabase ...$dbs ) {
 		$res = [ 'lag' => 0, 'since' => INF, 'pending' => false ];
 
 		foreach ( func_get_args() as $db ) {
-			if ( $db instanceof IDatabase ) {
+			if ( $db instanceof IReadableDatabase ) {
 				$status = $db->getSessionLagStatus();
 
 				if ( $status['lag'] === false ) {
@@ -2857,6 +2857,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					$res['lag'] = max( $res['lag'], $status['lag'] );
 				}
 				$res['since'] = min( $res['since'], $status['since'] );
+			}
+
+			if ( $db instanceof IDatabase ) {
 				$res['pending'] = $res['pending'] ?: $db->writesPending();
 			}
 		}

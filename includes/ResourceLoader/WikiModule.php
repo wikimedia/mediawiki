@@ -36,7 +36,6 @@ use MemoizedCallable;
 use TitleValue;
 use Wikimedia\Minify\CSSMin;
 use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -181,7 +180,7 @@ class WikiModule extends Module {
 	 * be set to the foreign wiki directly. Methods getScript() and getContent()
 	 * will not use this handle and are not valid on the local wiki.
 	 *
-	 * @return IDatabase
+	 * @return IReadableDatabase
 	 */
 	protected function getDB() {
 		return wfGetDB( DB_REPLICA );
@@ -583,11 +582,11 @@ class WikiModule extends Module {
 	/**
 	 * @since 1.28
 	 * @param Context $context
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param string[] $moduleNames
 	 */
 	public static function preloadTitleInfo(
-		Context $context, IDatabase $db, array $moduleNames
+		Context $context, IReadableDatabase $db, array $moduleNames
 	) {
 		$rl = $context->getResourceLoader();
 		// getDB() can be overridden to point to a foreign database.

@@ -38,7 +38,7 @@ use MediaWiki\Title\TitleArray;
 use MediaWiki\Title\TitleArrayFromResult;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\FakeResultWrapper;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
@@ -138,7 +138,7 @@ class BacklinkCache {
 	/**
 	 * Get the replica DB connection to the database
 	 *
-	 * @return IDatabase
+	 * @return IReadableDatabase
 	 */
 	protected function getDB() {
 		return wfGetDB( DB_REPLICA );
