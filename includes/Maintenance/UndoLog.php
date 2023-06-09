@@ -34,12 +34,12 @@ class UndoLog {
 	 * @return bool
 	 */
 	public function update( $table, array $newValues, array $oldValues, $fname ) {
-		$this->dbw->update(
-			$table,
-			$newValues,
-			$oldValues,
-			$fname
-		);
+		$this->dbw->newUpdateQueryBuilder()
+			->update( $table )
+			->set( $newValues )
+			->where( $oldValues )
+			->caller( $fname )->execute();
+
 		$updated = (bool)$this->dbw->affectedRows();
 		if ( $this->file && $updated ) {
 			$table = $this->dbw->tableName( $table );

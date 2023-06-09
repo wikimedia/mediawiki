@@ -591,11 +591,11 @@ class LinksUpdate extends DataUpdate {
 		if ( $this->mId ) {
 			// The link updates made here only reflect the freshness of the parser output
 			$timestamp = $this->mParserOutput->getCacheTime();
-			$this->getDB()->update( 'page',
-				[ 'page_links_updated' => $this->getDB()->timestamp( $timestamp ) ],
-				[ 'page_id' => $this->mId ],
-				__METHOD__
-			);
+			$this->getDB()->newUpdateQueryBuilder()
+				->update( 'page' )
+				->set( [ 'page_links_updated' => $this->getDB()->timestamp( $timestamp ) ] )
+				->where( [ 'page_id' => $this->mId ] )
+				->caller( __METHOD__ )->execute();
 		}
 	}
 

@@ -2045,12 +2045,12 @@ class LocalFile extends File {
 					# Also log page, in case where we just created it above
 					$update['log_page'] = $updateLogPage;
 				}
-				$this->getRepo()->getPrimaryDB()->update(
-					'logging',
-					$update,
-					[ 'log_id' => $logId ],
-					$fname
-				);
+				$this->getRepo()->getPrimaryDB()->newUpdateQueryBuilder()
+					->update( 'logging' )
+					->set( $update )
+					->where( [ 'log_id' => $logId ] )
+					->caller( $fname )->execute();
+
 				$this->getRepo()->getPrimaryDB()->insert(
 					'log_search',
 					[

@@ -1226,12 +1226,12 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 					->fetchFieldValues();
 				if ( $wlIds ) {
 					$wlIds = array_map( 'intval', $wlIds );
-					$dbw->update(
-						'watchlist',
-						[ 'wl_notificationtimestamp' => $timestamp ],
-						[ 'wl_id' => $wlIds ],
-						__METHOD__
-					);
+					$dbw->newUpdateQueryBuilder()
+						->update( 'watchlist' )
+						->set( [ 'wl_notificationtimestamp' => $timestamp ] )
+						->where( [ 'wl_id' => $wlIds ] )
+						->caller( __METHOD__ )->execute();
+
 					$affectedSinceWait += $dbw->affectedRows();
 					// Wait for replication every time we've touched updateRowsPerQuery rows
 					if ( $affectedSinceWait >= $this->updateRowsPerQuery ) {
@@ -1351,12 +1351,12 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 					$wlIdsChunks = array_chunk( $wlIds, $this->updateRowsPerQuery );
 					foreach ( $wlIdsChunks as $wlIdsChunk ) {
-						$dbw->update(
-							'watchlist',
-							[ 'wl_notificationtimestamp' => $dbw->timestamp( $timestamp ) ],
-							[ 'wl_id' => $wlIdsChunk ],
-							$fname
-						);
+						$dbw->newUpdateQueryBuilder()
+							->update( 'watchlist' )
+							->set( [ 'wl_notificationtimestamp' => $dbw->timestamp( $timestamp ) ] )
+							->where( [ 'wl_id' => $wlIdsChunk ] )
+							->caller( $fname )->execute();
+
 						if ( count( $wlIdsChunks ) > 1 ) {
 							$this->lbFactory->commitAndWaitForReplication(
 								$fname, $ticket, [ 'domain' => $dbw->getDomainID() ]

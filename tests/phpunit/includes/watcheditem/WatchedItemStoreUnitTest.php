@@ -17,6 +17,7 @@ use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\Rdbms\UpdateQueryBuilder;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -37,6 +38,8 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		$mock = $this->createMock( DBConnRef::class );
 		$mock->method( 'newSelectQueryBuilder' )
 			->willReturn( new SelectQueryBuilder( $mock ), new SelectQueryBuilder( $mock ), new SelectQueryBuilder( $mock ) );
+		$mock->method( 'newUpdateQueryBuilder' )
+			->willReturn( new UpdateQueryBuilder( $mock ), new UpdateQueryBuilder( $mock ), new UpdateQueryBuilder( $mock ) );
 		return $mock;
 	}
 
