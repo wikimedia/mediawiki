@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Achiri Bitamsimli",
+			"Alhaj Darajaati",
+			"Chirifo",
+			"Dnshitobu",
+			"Jahinfo",
+			"Masssly",
+			"Musahfm",
+			"Ruky Wunpini"
+		]
+	},
+	"vector-language-button-aria-label": "Kpemi lahabali bali sheli ni. Din be {{PLURAL:$1|$1 Balli |$1 Bala}}",
+	"vector-language-variant-switcher-label": "Taɣimi balli woliginsima",
+	"vector-action-addsection": "Pahimi yaɣili",
+	"vector-action-delete": "Nyahima",
+	"vector-action-move": "Tirisibu",
+	"vector-action-protect": "Gubu",
+	"vector-view-create": "Namma",
+	"vector-view-edit": "Mali niŋ",
+	"vector-view-history": "Lihimi tarihi",
+	"vector-view-view": "Karimma",
+	"vector-more-actions": "Lihimi n pahi",
+	"vector-searchsuggest-containing": "Yuli bo yaɣi shɛŋa din mali <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+}

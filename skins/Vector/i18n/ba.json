@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Assele",
+			"Haqmar",
+			"Sagan",
+			"Рустам Нурыев"
+		]
+	},
+	"skinname-vector": "Векторлы",
+	"vector-skin-desc": "Хәҙерге заман  «Векторлы» күренеше, биҙәлеш яүыртылған һәм яңы мөмкинлектәр файҙаланылған",
+	"vector-action-addsection": "Тема өҫтәргә",
+	"vector-action-delete": "Юйырға",
+	"vector-action-move": "Исемен үҙгәртергә",
+	"vector-action-protect": "Һаҡларға",
+	"vector-action-undelete": "Тергеҙергә",
+	"vector-action-unprotect": "Һаҡлауҙы үҙгәртергә",
+	"vector-view-create": "Яһау",
+	"vector-view-edit": "Үҙгәртергә",
+	"vector-view-history": "Тарихты ҡарау",
+	"vector-view-view": "Уҡыу",
+	"vector-view-viewsource": "Сығанаҡты ҡарарға",
+	"vector-more-actions": "Тағы",
+	"vector-searchsuggest-containing": "Эсәтегендә <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> булған биттәрҙе эҙләргә"
+}

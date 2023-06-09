@@ -1,0 +1,72 @@
+@import '../../common/variables.less';
+@import 'mediawiki.mixins.less';
+@import 'mediawiki.mixins.rotation.less';
+
+/* Watch/Unwatch Icon Styling */
+/* Only use icon if the menu item is not collapsed into the "More" dropdown
+ * (in which case it is inside `.vector-menu-dropdown` instead of `.vector-menu-tabs`). */
+.vector-menu-tabs {
+	// `#ca-unwatch` & `#ca-watch` both carry `.mw-watchlink` as well.
+	@width-watchlink: unit( 28 / @font-size-tabs / @font-size-browser, em );
+	@height-watchlink: unit( 40 / @font-size-tabs / @font-size-browser, em );
+	@size-watchlink-icon: unit( 16 / @font-size-tabs / @font-size-browser, em );
+
+	.mw-watchlink.icon a {
+		width: @width-watchlink;
+		/* This hides the text but shows the background image */
+		/* Must not exceed parent's height, otherwise the background disappears on Chrome (T196610) */
+		height: 0;
+		padding: @height-watchlink 0 0 0;
+		overflow: hidden;
+
+		&::before {
+			background-repeat: no-repeat;
+			background-position: 50% 50%;
+			content: '';
+			display: block;
+			position: absolute;
+			top: unit( 14 / @font-size-tabs / @font-size-browser, em );
+			left: unit( 5 / @font-size-tabs / @font-size-browser, em );
+			width: @size-watchlink-icon;
+			height: @size-watchlink-icon;
+		}
+	}
+
+	#ca-unwatch.icon a::before {
+		background-image: url( ../common/images/unwatch-icon.svg );
+	}
+
+	#ca-unwatch.mw-watchlink-temp.icon a::before {
+		background-image: url( ../common/images/unwatch-temp-icon.svg );
+	}
+
+	#ca-watch.icon a::before {
+		background-image: url( ../common/images/watch-icon.svg );
+	}
+
+	#ca-unwatch.icon a:hover::before,
+	#ca-unwatch.icon a:focus::before {
+		background-image: url( ../common/images/unwatch-icon-hl.svg );
+	}
+
+	#ca-unwatch.mw-watchlink-temp.icon a:hover::before,
+	#ca-unwatch.mw-watchlink-temp.icon a:focus::before {
+		background-image: url( ../common/images/unwatch-temp-icon-hl.svg );
+	}
+
+	#ca-watch.icon a:hover::before,
+	#ca-watch.icon a:focus::before {
+		background-image: url( ../common/images/watch-icon-hl.svg );
+	}
+
+	// Loading watchstar link class.
+	#ca-unwatch.icon .loading::before,
+	#ca-watch.icon .loading::before {
+		.rotation( 700ms );
+		/* Suppress the hilarious rotating focus outline on Firefox */
+		outline: 0;
+		cursor: default;
+		pointer-events: none;
+		transform-origin: 50% 50%;
+	}
+}

@@ -1,0 +1,88 @@
+{{!
+	string|null html-site-notice the contents of a banner defined in MediaWiki:Sitenotice.
+		Also used by CentralNotice to inject banners into Vector.
+	Indicator[] array-indicators wiki-defined badges such as "good article",
+		"featured article". An empty array if none are defined.
+	string html-title
+	bool is-article
+	string msg-tagline
+	string html-subtitle
+	string html-undelete-link
+	string html-newtalk
+	string msg-vector-jumptonavigation
+	string msg-vector-jumptosearch
+	string msg-vector-jumptocontent
+	string html-body-content
+	string html-categories
+	string html-after-content
+	LogoOptions data-logos
+	object data-portlets
+	MenuDefinition data-portlets.data-personal
+	MenuDefinition data-portlets.data-namespaces
+	MenuDefinition data-portlets.data-variants
+	MenuDefinition data-portlets.data-views
+	MenuDefinition data-portlets.data-actions
+	object data-search-box. See SearchBox.mustache for documentation.
+	string msg-vector-action-toggle-sidebar The label used by the sidebar button.
+	string msg-vector-main-menu-tooltip The title attribute for the main menu icon.
+	object data-main-menu. See MainMenu.mustache for documentation.
+	object data-footer for footer template partial. see Footer.mustache for documentation.
+}}
+<a class="mw-jump-link" href="#bodyContent">{{msg-vector-jumptocontent}}</a>
+<div class="vector-header-container">
+	{{>Header}}
+</div>
+<div class="mw-page-container">
+	<div class="mw-page-container-inner">
+		{{>MainMenuPinned}}
+		<div class="vector-sitenotice-container">
+			<div id="siteNotice">{{{html-site-notice}}}</div>
+		</div>
+		{{#data-toc}}
+		<input type="checkbox" id="vector-toc-collapsed-checkbox" class="vector-menu-checkbox">
+		<nav id="mw-panel-toc" role="navigation" aria-label="{{ msg-vector-toc-label }}" data-event-name="ui.sidebar-toc" class="mw-table-of-contents-container vector-toc-landmark vector-sticky-pinned-container">
+			{{! T313060 Additional container div needed to prevent the sticky element from being siblings with the footer }}
+			{{#data-toc-pinnable-container}}
+			{{>PinnableContainer/Pinned/Open}}
+				{{#is-pinned}}
+					{{#data-toc}}{{>TableOfContents}}{{/data-toc}}
+				{{/is-pinned}}
+			{{>PinnableContainer/Close}}
+			{{/data-toc-pinnable-container}}
+		</nav>
+		{{/data-toc}}
+		<div class="mw-content-container">
+			{{! `role` is unnecessary but kept to support selectors in any gadgets or user styles. }}
+			<main id="content" class="mw-body" role="main">
+				{{>PageTitlebar}}
+				{{>PageToolbar}}
+				{{>ColumnEnd}}
+				<div id="bodyContent" class="vector-body" aria-labelledby="firstHeading" data-mw-ve-target-container>
+					{{>BeforeContent}}
+					{{! the #contentSub element is currently used by editors, do not hide or remove it
+						until https://phabricator.wikimedia.org/T316830 has been addressed}}
+					<div id="contentSub"{{{html-user-language-attributes}}}>{{{html-subtitle}}}</div>
+					{{#html-undelete-link}}<div id="contentSub2">{{{.}}}</div>{{/html-undelete-link}}
+					{{{html-user-message}}}
+					{{{html-body-content}}}
+					{{{html-categories}}}
+					{{#is-language-in-content-bottom}}
+						{{#data-lang-dropdown}}{{>LanguageDropdown}}{{/data-lang-dropdown}}
+					{{/is-language-in-content-bottom}}
+				</div>
+			</main>
+			{{{html-after-content}}}
+		</div>
+		<div class="mw-footer-container">
+			{{#data-footer}}{{>Footer}}{{/data-footer}}
+		</div>
+	</div> {{! END mw-page-container-inner }}
+</div> {{! END mw-page-container }}
+{{#data-vector-sticky-header}}
+<div class="vector-header-container vector-sticky-header-container">
+	{{>StickyHeader}}
+</div>
+{{/data-vector-sticky-header}}
+<div class='vector-settings'>
+	{{#data-vector-settings-button}}{{>Button}}{{/data-vector-settings-button}}
+</div>

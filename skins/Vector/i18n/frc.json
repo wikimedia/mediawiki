@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Beunice",
+			"Ebe123",
+			"Hangmanwa7id"
+		]
+	},
+	"vector-action-delete": "Supprimer",
+	"vector-action-move": "Renommer",
+	"vector-action-protect": "Protéger",
+	"vector-view-create": "Créer",
+	"vector-view-edit": "Changer",
+	"vector-view-history": "Voir l’historique",
+	"vector-view-view": "Lire",
+	"vector-view-viewsource": "Regarder la source",
+	"vector-more-actions": "Plus"
+}

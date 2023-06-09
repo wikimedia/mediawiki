@@ -1,0 +1,48 @@
+/**
+ * PinnableElement
+ * Pinned containers are typically dropdown menus that have been
+ * placed in a sidebar column, e.g. page tools menu, main menu.
+ */
+
+.vector-pinnable-element {
+	font-size: @font-size-dropdown;
+}
+
+.vector-pinned-container {
+	.mixin-vector-content-box();
+	.mixin-vector-scrollable-with-fade();
+	// Border-box changes the height calculation.
+	box-sizing: border-box;
+	padding: @padding-vertical-dropdown-menu @padding-horizontal-dropdown-menu;
+	margin-bottom: @grid-column-gap;
+	// Height is viewport height - row gap above and below the container.
+	max-height: ~'calc( 100vh - (@{grid-row-gap} * 2) )';
+}
+
+// Applies styles for making a pinned element sticky
+.vector-sticky-pinned-container {
+	// stylelint-disable-next-line plugin/no-unsupported-browser-features
+	position: sticky;
+	top: @grid-row-gap;
+}
+
+/**
+ * At lower resolutions, we want to hide the pinned containers when JS is enabled since these
+ * elements collapse (become unpinned) at this resolution via PinnableElement.js.
+ * Although this is handled in JS, this rule prevents the pinned menu from
+ * appearing on pageload, at low resolutions, before the JS kicks in.
+ *
+ * When JS is disabled, we still want to hide the pinned containers at lower resolutions
+ * to fallback to the gradeC, single column layout.
+ */
+@media ( max-width: @max-width-tablet ) {
+	// .client-js and .client-nojs selectors needed to increase specificity to override gradeC.less
+	// Prefered to using !important as this still needs to be overridable to handle
+	// the anon, no-js TOC case found in layouts/toc/unpinned.less
+	&.client-js,
+	&.client-nojs {
+		.vector-pinned-container {
+			display: none;
+		}
+	}
+}

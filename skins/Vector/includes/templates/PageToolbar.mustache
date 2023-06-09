@@ -1,0 +1,28 @@
+<div class="vector-page-toolbar">
+	<div class="vector-page-toolbar-container">
+		{{#data-portlets}}
+		<div id="left-navigation">
+			<nav aria-label="{{msg-namespaces}}">
+				{{#data-associated-pages}}{{>Tabs}}{{/data-associated-pages}}
+				{{#data-vector-variants}}{{>VariantsDropdown}}{{/data-vector-variants}}
+			</nav>
+		</div>
+		<div id="right-navigation" class="vector-collapsible">
+			<nav aria-label="{{msg-views}}">
+				{{#data-views}}{{>Tabs}}{{/data-views}}
+			</nav>
+
+			<nav class="vector-page-tools-landmark" aria-label="{{msg-tooltip-p-cactions}}">
+				{{#data-page-tools-dropdown}}{{>Dropdown/Open}}{{/data-page-tools-dropdown}}
+					{{#data-page-tools}}
+					{{>PinnableContainer/Unpinned/Open}}
+						{{! Use `#vector-page-tools-unpinned-container .vector-page-tools` to target styles at this element}}
+						{{^is-pinned}}{{>PageTools}}{{/is-pinned}}
+					{{>PinnableContainer/Close}}
+					{{/data-page-tools}}
+				{{#data-page-tools-dropdown}}{{>Dropdown/Close}}{{/data-page-tools-dropdown}}
+			</nav>
+		</div>
+		{{/data-portlets}}
+	</div>
+</div>

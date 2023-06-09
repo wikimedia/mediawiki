@@ -1,0 +1,152 @@
+@import '../../common/variables.less';
+
+/**
+ * Checkbox hack used by collapsed TOC on narrow viewports for no JS users.
+ * Although it's display:none, the :checked state is still affected when clicking
+ * the associated label.
+ */
+#vector-toc-collapsed-checkbox {
+	display: none;
+}
+
+.vector-toc {
+	max-height: 75vh;
+	box-sizing: border-box;
+	overflow-y: auto;
+	overflow-x: hidden;
+	background-color: @background-color-page-container;
+	font-size: @font-size-base;
+
+	.vector-pinnable-header-label {
+		// Override heading element styles in elements.less
+		overflow: unset;
+	}
+
+	.vector-toc-numb {
+		display: none;
+	}
+
+	.vector-toc-toggle {
+		// For no-js users, toggling is disabled and icon is hidden
+		display: none;
+		position: absolute;
+		top: 1px; // visually center icon
+		left: ~'calc( -1 * @{size-toc-subsection-toggle-icon} - 1px )'; // leaves 6px between icon + text
+		width: @size-toc-subsection-toggle-icon; // ~22px @ 12
+		height: @size-toc-subsection-toggle-icon;
+		font-size: 0.75em; // reduces size of toggle icon to 12px @ 16
+		transition: @transition-duration-base;
+		color: transparent;
+		cursor: pointer;
+		// Vertically center the icon with the text
+		margin-top: 2px;
+	}
+
+	.vector-toc-link {
+		word-break: break-word;
+		color: @color-link;
+		display: block;
+	}
+
+	// Highlight and bold active sections, active top sections that are unexpanded
+	// and active top sections that are the only active element.
+	.vector-toc-list-item-active,
+	.vector-toc-level-1-active:not( .vector-toc-list-item-expanded ),
+	.vector-toc-list-item-active.vector-toc-level-1-active {
+		> .vector-toc-link {
+			// Highlight active section
+			color: @color-base;
+			font-weight: bold;
+
+			.vector-toc-text {
+				// Increase width to prevent line wrapping due to bold text
+				// Avoid applying on link element to avoid focus indicator changing size
+				width: ~'calc( 100% + @{padding-horizontal-dropdown-menu-item} )';
+			}
+		}
+	}
+
+	// Highlight active top sections that contain an active section
+	.vector-toc-level-1-active:not( .vector-toc-list-item-active ) > .vector-toc-link {
+		color: @color-base;
+	}
+
+	.vector-toc-text {
+		// Match .mixin-vector-dropdown-menu-item() vertical padding
+		padding: @padding-vertical-dropdown-menu-item 0;
+	}
+
+	.vector-toc-contents,
+	.vector-toc-list {
+		margin: 0;
+		list-style: none;
+	}
+
+	.vector-toc-list-item {
+		display: block;
+		position: relative;
+		list-style-type: none;
+		padding-left: 8px;
+		margin: 0;
+
+		&.vector-toc-level-1 {
+			padding-left: 0;
+		}
+
+		a {
+			font-size: inherit;
+		}
+	}
+}
+
+// Collapse ToC sections by default, excluding no-js
+&.client-js .vector-toc {
+	.vector-toc-level-1 .vector-toc-list-item {
+		display: none;
+	}
+
+	.vector-toc-level-1.vector-toc-list-item-expanded .vector-toc-list-item {
+		display: block;
+	}
+
+	.vector-toc-toggle {
+		display: block;
+	}
+
+	.vector-toc-level-1.vector-toc-list-item-expanded .vector-toc-toggle {
+		transform: rotate( 0deg );
+	}
+}
+
+&.client-js body.ltr .vector-toc .vector-toc-toggle {
+	transform: rotate( -90deg );
+}
+
+&.client-js body.rtl .vector-toc .vector-toc-toggle {
+	transform: rotate( 90deg );
+}
+
+// Ensure there is only 1 table of contents landmark at anytime
+.vector-toc-landmark {
+	display: none;
+}
+
+&.vector-feature-toc-pinned-disabled body:not( .vector-sticky-header-visible ) .vector-page-titlebar,
+&.vector-feature-toc-pinned-disabled .vector-sticky-header-visible .vector-sticky-header-context-bar,
+&.vector-feature-toc-pinned-enabled .mw-page-container-inner {
+	> .vector-toc-landmark {
+		display: block;
+	}
+}
+
+// On smaller viewports the TOC will always be moved to the page titlebar via JS
+// regardless of the TOC pinned classes
+@media ( max-width: @max-width-tablet ) {
+	&.client-js .vector-page-titlebar .vector-toc-landmark {
+		display: block;
+	}
+
+	&.client-js .mw-table-of-contents-container.vector-toc-landmark {
+		display: none;
+	}
+}

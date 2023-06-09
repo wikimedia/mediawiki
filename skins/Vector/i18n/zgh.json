@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amara-Amaziɣ",
+			"Aslmad mohamed belarhzali",
+			"Brahim-essaidi",
+			"YesIn",
+			"ⵕⴰⵊⵉ"
+		]
+	},
+	"vector-languages": "ⵜⵓⵜⵍⴰⵢⵉⵏ",
+	"vector-language-button-label": "{{PLURAL:$1|$1 ⵜⵓⵜⵍⴰⵢⵜ|$1 ⵜⵓⵜⵍⴰⵢⵉⵏ}}",
+	"vector-no-language-button-label": "ⵔⵏⵓ ⵜⵓⵜⵍⴰⵢⵉⵏ",
+	"vector-action-addsection": "ⵔⵏⵓ ⴰⵙⵏⵜⵍ",
+	"vector-action-delete": "ⴽⴽⵙ",
+	"vector-action-move": "ⵙⵎⴰⵜⵜⵉ",
+	"vector-action-protect": "ⵢⴰⵔⴰⵢ",
+	"vector-view-create": "ⵙⵏⴼⵍⵓⵍ",
+	"vector-view-edit": "ⵙⵏⴼⵍ",
+	"vector-view-history": "ⵙⴽⵏ ⴰⵎⵣⵔⴰⵢ",
+	"vector-view-view": "ⵖⵔ",
+	"vector-more-actions": "ⵓⴳⴳⴰⵔ",
+	"vector-search-loader": "ⴰⵣⴷⴰⵎ ⵏ ⵉⵙⵓⵎⴰⵔ ⵏ ⵓⵔⵣⵣⵓ",
+	"vector-searchsuggest-containing": "ⵔⵣⵓ ⵖⴼ ⵜⴰⵙⵏⵉⵡⵉⵏ ⵓⵎⴰⵏⵉⵏ <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-page-tools-label": "ⵉⵎⴰⵙⵙⵏ",
+	"vector-page-tools-general-label": "ⴰⵎⴰⵜⴰⵢ",
+	"vector-unpin-element-label": "ⵙⵙⵏⵜⵍ"
+}

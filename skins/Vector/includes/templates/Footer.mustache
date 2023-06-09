@@ -1,0 +1,23 @@
+{{!
+	@typedef object footerItem
+	@prop string id of list item element
+	@prop string html of list item
+	@prop footerItem[] items
+
+	@typedef object footerRow
+	@prop string className of list element
+	@prop string id of list element
+	@prop footerItem[] array-items
+
+	string|null html-user-language-attributes a string of attribute HTML
+	footerRow data-info the info row
+	footerRow data-places the places row
+	footerRow data-icons the icons row
+}}
+{{! `role` is unnecessary but kept to support selectors in any gadgets or user styles and
+	to mitigate a VoiceOver bug. }}
+<footer id="footer" class="mw-footer" role="contentinfo" {{{html-user-language-attributes}}}>
+	{{#data-info}}{{>Footer__row}}{{/data-info}}
+	{{#data-places}}{{>Footer__row}}{{/data-places}}
+	{{#data-icons}}{{>Footer__row}}{{/data-icons}}
+</footer>

@@ -1,0 +1,36 @@
+PROJECT_NAME           = Vector
+PROJECT_BRIEF          = "Vector is a skin for MediaWiki. Vector has been the default skin on all Wikimedia wikis since 2010."
+
+OUTPUT_DIRECTORY       = docs
+HTML_OUTPUT            = php
+
+# Intepret the first line of a comment as a brief description?
+JAVADOC_AUTOBRIEF      = YES
+QT_AUTOBRIEF           = YES
+
+WARN_NO_PARAMDOC       = YES
+
+INPUT                  = .
+EXCLUDE_PATTERNS       = doc docs vendor node_modules tests
+FILE_PATTERNS          = *.php
+
+# Search through subdirectories for input files?
+RECURSIVE              = YES
+
+# NOTE: USE_MDFILE_AS_MAINPAGE requires that the specified file is included as an input file.
+USE_MDFILE_AS_MAINPAGE = ./README.md
+INPUT                 += ./README.md
+
+HTML_DYNAMIC_SECTIONS  = YES
+GENERATE_TREEVIEW      = YES
+TREEVIEW_WIDTH         = 250
+
+GENERATE_LATEX         = NO
+
+HAVE_DOT               = YES
+DOT_FONTNAME           = Helvetica
+DOT_FONTSIZE           = 12
+TEMPLATE_RELATIONS     = YES
+
+# Makes dot run faster. Requires graphviz >1.8.10
+DOT_MULTI_TARGETS      = YES

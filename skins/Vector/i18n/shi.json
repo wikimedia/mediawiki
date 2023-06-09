@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amara-Amaziɣ",
+			"Ayour2002",
+			"Dalinanir",
+			"Lhoussine AIT TAYFST"
+		]
+	},
+	"vector-languages": "Tutlayin",
+	"vector-language-button-label": "{{PLURAL:$1|$1 tutlayt|$1 tutlayin}}",
+	"vector-action-addsection": "Rnu asntl",
+	"vector-action-delete": "Kks",
+	"vector-action-move": "Smatti",
+	"vector-action-protect": "Qqil",
+	"vector-action-undelete": "Rard may mayḥiydn",
+	"vector-action-unprotect": "ssnfl aḥbu",
+	"vector-view-create": "Snulfu",
+	"vector-view-edit": "Snfl",
+	"vector-view-history": "Ẓr amzruy",
+	"vector-view-view": "Ɣr",
+	"vector-view-viewsource": "Ẓr aɣbalu",
+	"vector-more-actions": "Uggar",
+	"vector-page-tools-label": "Imassn",
+	"vector-unpin-element-label": "ssntl"
+}

@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Klenje",
+			"Tocaibon"
+		]
+	},
+	"vector-languages": "Lenghis",
+	"vector-language-button-label": "{{PLURAL:$1|$1 lenghe|$1 lenghis}}",
+	"vector-no-language-button-label": "Zonte lenghis",
+	"vector-action-addsection": "Gnove sezion",
+	"vector-action-delete": "Elimine",
+	"vector-action-move": "Môf",
+	"vector-action-protect": "Protêç",
+	"vector-action-undelete": "Recupere",
+	"vector-action-unprotect": "Gambie la protezion",
+	"vector-view-create": "Cree",
+	"vector-view-edit": "Cambie",
+	"vector-view-history": "Cjale il storic",
+	"vector-view-view": "Lei",
+	"vector-view-viewsource": "Cjale risultive",
+	"vector-more-actions": "Di plui",
+	"vector-searchsuggest-containing": "Cîr pagjinis cun dentri <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-page-tools-label": "Imprescj",
+	"vector-page-tools-general-label": "Gjenerâl",
+	"vector-unpin-element-label": "plate"
+}

@@ -1,0 +1,32 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fadli Idris",
+			"Si Gam Acèh"
+		]
+	},
+	"vector-opt-out": "Gantoe u rupa awai",
+	"vector-languages": "Bahsa",
+	"vector-language-button-label": "{{PLURAL:$1|$1 bahsa}}",
+	"vector-no-language-button-label": "Tamah bahsa",
+	"vector-action-addsection": "Tamah bhaih",
+	"vector-action-delete": "Sampôh",
+	"vector-action-move": "Pupinah",
+	"vector-action-protect": "Peulindông",
+	"vector-action-undelete": "Bateuë sampôh",
+	"vector-action-unprotect": "Gantoe neulindông",
+	"vector-view-create": "Peugöt",
+	"vector-view-edit": "Peusaneut",
+	"vector-view-history": "Eu riwayat",
+	"vector-view-view": "Beuet",
+	"vector-view-viewsource": "Eu nè",
+	"vector-more-actions": "Lom",
+	"vector-searchsuggest-containing": "Mita mieng nyang na <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-page-tools-label": "Alat",
+	"vector-page-tools-general-label": "Umom",
+	"vector-page-tools-actions-label": "Buet",
+	"vector-pin-element-label": "pinah u bateueng binèh",
+	"vector-unpin-element-label": "som",
+	"vector-2022-prefs-talkpage": "[[mw:Talk:Reading/Web/Desktop_Improvements|Peugah haba]]",
+	"tooltip-vector-anon-user-menu-title": "Peuniléh laén"
+}

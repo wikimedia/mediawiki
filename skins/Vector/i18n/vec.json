@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Alunardon90",
+			"Candalua",
+			"Fierodelveneto",
+			"Frigotoni",
+			"GatoSelvadego",
+			"Vajotwo"
+		]
+	},
+	"vector-language-button-label": "{{PLURAL:$1|$1 łéngua|$1 łéngue}}",
+	"vector-action-addsection": "Xonta discusion",
+	"vector-action-delete": "Descançeła",
+	"vector-action-move": "Sposta",
+	"vector-action-protect": "Protexi",
+	"vector-action-undelete": "Recùpara",
+	"vector-action-unprotect": "Canbia ƚa protesion",
+	"vector-view-create": "Crea",
+	"vector-view-edit": "Canbia",
+	"vector-view-history": "Varda l'istorego",
+	"vector-view-view": "Lexi",
+	"vector-view-viewsource": "Varda el testo",
+	"vector-more-actions": "Piasè"
+}

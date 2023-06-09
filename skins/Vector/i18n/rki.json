@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Aggasena",
+			"Cakkaparla",
+			"ReyLon Mrat",
+			"Tejoebāsa",
+			"YaThaWinTha"
+		]
+	},
+	"vector-languages": "ဘာသာစကားတိ",
+	"vector-language-button-label": "{{PLURAL:$1|ဘာသာစကား $1 ခု|$1 ဘာသာစကားများ $1 ခု}}",
+	"vector-no-language-button-label": "ဘာသာစကားတိ ထည့်သွင်းပါ",
+	"vector-action-addsection": "ခေါင်းစီးတိထည့်ပါ",
+	"vector-action-delete": "ဖျက်​ပါ​",
+	"vector-action-move": "ရွိလျားရေ",
+	"vector-action-protect": "ကာကွယ်ရေ",
+	"vector-view-create": "ဖန်တီးပါ",
+	"vector-view-edit": "တီးဖြတ်ပါ",
+	"vector-view-history": "သမိုင်းတိကိုကြည့်ပါ",
+	"vector-view-view": "ဖတ်ကြေ့ပါ",
+	"vector-more-actions": "ထပ်လို့",
+	"vector-searchsuggest-containing": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>ပါဝင်ရေ စာမျက်နှာတိ ယှာဖွီရန်",
+	"vector-page-tools-label": "ကိရိယာတိ",
+	"vector-page-tools-general-label": "အထွီအထွီ",
+	"vector-unpin-element-label": "ဝှက်တေ"
+}

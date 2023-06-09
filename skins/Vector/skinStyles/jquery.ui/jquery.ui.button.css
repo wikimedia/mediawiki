@@ -1,0 +1,310 @@
+/*!
+ * jQuery UI Button 1.11.2-alpha
+ * http://jqueryui.com
+ *
+ * Copyright 2012 jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/button/#theming
+ */
+.ui-button {
+	display: inline-block;
+	position: relative;
+	padding: 0;
+	line-height: normal;
+	margin-right: .1em;
+	cursor: pointer;
+	vertical-align: middle;
+	text-align: center;
+	overflow: visible; /* removes extra width in IE */
+}
+.ui-button,
+.ui-button:link,
+.ui-button:visited,
+.ui-button:hover,
+.ui-button:active {
+	text-decoration: none;
+}
+/* to make room for the icon, a width needs to be set here */
+.ui-button-icon-only {
+	width: 2.2em;
+}
+/* button elements seem to need a little more width */
+button.ui-button-icon-only {
+	width: 2.4em;
+}
+.ui-button-icons-only {
+	width: 3.4em;
+}
+button.ui-button-icons-only {
+	width: 3.7em;
+}
+
+/* button text element */
+.ui-button .ui-button-text {
+	display: block;
+	line-height: normal;
+}
+.ui-button-text-only .ui-button-text {
+	padding: .4em 1em;
+}
+.ui-button-icon-only .ui-button-text,
+.ui-button-icons-only .ui-button-text {
+	padding: .4em;
+	text-indent: -9999999px;
+}
+.ui-button-text-icon-primary .ui-button-text,
+.ui-button-text-icons .ui-button-text {
+	padding: .4em 1em .4em 2.1em;
+}
+.ui-button-text-icon-secondary .ui-button-text,
+.ui-button-text-icons .ui-button-text {
+	padding: .4em 2.1em .4em 1em;
+}
+.ui-button-text-icons .ui-button-text {
+	padding-left: 2.1em;
+	padding-right: 2.1em;
+}
+/* no icon support for input elements, provide padding by default */
+input.ui-button {
+	padding: .4em 1em;
+}
+
+/* button icon element(s) */
+.ui-button-icon-only .ui-icon,
+.ui-button-text-icon-primary .ui-icon,
+.ui-button-text-icon-secondary .ui-icon,
+.ui-button-text-icons .ui-icon,
+.ui-button-icons-only .ui-icon {
+	position: absolute;
+	top: 50%;
+	margin-top: -8px;
+}
+.ui-button-icon-only .ui-icon {
+	left: 50%;
+	margin-left: -8px;
+}
+.ui-button-text-icon-primary .ui-button-icon-primary,
+.ui-button-text-icons .ui-button-icon-primary,
+.ui-button-icons-only .ui-button-icon-primary {
+	left: .5em;
+}
+.ui-button-text-icon-secondary .ui-button-icon-secondary,
+.ui-button-text-icons .ui-button-icon-secondary,
+.ui-button-icons-only .ui-button-icon-secondary {
+	right: .5em;
+}
+
+/* button sets */
+.ui-buttonset {
+	margin-right: 7px;
+}
+.ui-buttonset .ui-button {
+	margin-left: 0;
+	margin-right: -.3em;
+}
+
+/* workarounds */
+/* reset extra padding in Firefox, see h5bp.com/l */
+input.ui-button::-moz-focus-inner,
+button.ui-button::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+
+/* Disables the annoying dashed border Firefox puts on active buttons */
+body button.ui-button::-moz-focus-inner {
+	border: 0;
+}
+/* Give large buttons some extra padding */
+body .ui-button-large {
+	padding: 5px;
+}
+/* Use white icons for colored buttons */
+.ui-button-green .ui-icon,
+.ui-button-blue .ui-icon,
+.ui-button-red .ui-icon,
+.ui-button-orange .ui-icon {
+	/* @embed */
+	background-image: url(images/ui-icons_ffffff_256x240.png) !important;
+}
+
+/* Corner radius */
+/* This is normally handled in jquery.ui.theme.css, but in our case, the corner
+   styling of our buttons doesn't match our default widget corner styling */
+.ui-button.ui-corner-all,
+.ui-button.ui-corner-top,
+.ui-button.ui-corner-left,
+.ui-button.ui-corner-tl {
+	border-top-left-radius: 4px;
+}
+.ui-button.ui-corner-all,
+.ui-button.ui-corner-top,
+
+.ui-button.ui-corner-right,
+.ui-button.ui-corner-tr {
+	border-top-right-radius: 4px;
+}
+.ui-button.ui-corner-all,
+.ui-button.ui-corner-bottom,
+.ui-button.ui-corner-left,
+.ui-button.ui-corner-bl {
+	border-bottom-left-radius: 4px;
+}
+.ui-button.ui-corner-all,
+.ui-button.ui-corner-bottom,
+.ui-button.ui-corner-right,
+.ui-button.ui-corner-br {
+	border-bottom-right-radius: 4px;
+}
+
+body .ui-button {
+	color: #2779aa;
+	margin: 0.5em 0 0.5em 0.4em;
+	border: 1px solid #aaa !important;
+	background: #f0f0f0 !important;
+	background: linear-gradient(to bottom, #fff 0%, #ddd 90%) !important;
+	cursor: pointer;
+	font-size: 1em;
+	line-height: 1.4em;
+	width: auto;
+	overflow: visible;
+	box-shadow: 0 1px 3px rgba(0,0,0,.2);
+}
+
+body .ui-button-icon-only {
+	width: 2.2em;
+}
+
+body .ui-button-icons-only {
+	width: 3.4em;
+}
+
+body .ui-button:hover {
+	color: #2779aa;
+	border-color: #bbb !important;
+	background: #fff !important;
+	background: linear-gradient(to bottom, #fff 0%, #eee 90%) !important;
+	box-shadow: 0 1px 3px rgba(0,0,0,.1);
+}
+body .ui-button:active,
+body .ui-button:focus {
+	border-color: #8ad !important;
+	box-shadow: 0 0 1px 1px rgba(167,215,249,.5);
+}
+body .ui-button:active {
+	background: #e0e0e0 !important;
+	background: linear-gradient(to bottom, #f0f0f0 0%, #d0d0d0 90%) !important;
+}
+
+/* Customizations for MediaWiki Vector */
+
+/* Green buttons */
+body .ui-button-green,
+body .ui-button-green .ui-button-text {
+	color: white;
+	text-shadow: 0 -1px 1px #072;
+}
+body .ui-button.ui-button-green {
+	border-color: #294 !important;
+	background: #295 !important;
+	background: linear-gradient(to bottom, #3c8 0%, #295 90%) !important;
+	box-shadow: 0 1px 3px rgba(0,0,0,.3);
+}
+body .ui-button.ui-button-green:hover {
+	background: #33a055 !important;
+	background: linear-gradient(to bottom, #44d388 0%, #33a055 90%) !important;
+	box-shadow: 0 1px 3px rgba(0,0,0,.25);
+}
+body .ui-button.ui-button-green:active,
+body .ui-button.ui-button-green:focus {
+	border-color: #172 !important;
+	box-shadow: 0 0 2px 2px rgba(167,215,249,.75);
+}
+body .ui-button.ui-button-green:active {
+	background: #338855 !important;
+	background: linear-gradient(to bottom, #30c080 0%, #338855 90%) !important;
+}
+
+/* Blue buttons */
+body .ui-button-blue,
+body .ui-button-blue .ui-button-text {
+	color: white;
+	text-shadow: 0 -1px 1px #037;
+}
+body .ui-button.ui-button-blue {
+	border-color: #468 !important;
+	background: #36b !important;
+	background: linear-gradient(to bottom, #48e 0%, #36b 90%) !important;
+	box-shadow: 0 1px 3px rgba(0,0,0,.35);
+}
+body .ui-button.ui-button-blue:hover {
+	background: #36c !important;
+	background: linear-gradient(to bottom, #59e 0%, #36c 90%) !important;
+}
+body .ui-button.ui-button-blue:active,
+body .ui-button.ui-button-blue:focus {
+	border-color: #357 !important;
+	box-shadow: 0 0 2px 2px rgba(167,215,249,.75);
+}
+body .ui-button.ui-button-blue:active {
+	background: #3060a0 !important;
+	background: linear-gradient(to bottom, #4080e0 0%, #3060a0 90%) !important;
+}
+
+/* Red buttons */
+body .ui-button-red,
+body .ui-button-red .ui-button-text {
+	color: white;
+	text-shadow: 0 -1px 1px #700;
+}
+body .ui-button.ui-button-red {
+	border-color: #944 !important;
+	background: #a22 !important;
+	background: linear-gradient(to bottom, #d44 0%, #a22 90%) !important;
+	box-shadow: 0 1px 3px rgba(0,0,0,.35);
+}
+body .ui-button.ui-button-red:hover {
+	border-color: #a44 !important;
+	background: #b03333 !important;
+	background: linear-gradient(to bottom, #ee4646 0%, #b03333 90%) !important;
+	box-shadow: 0 1px 3px rgba(0,0,0,.3);
+}
+body .ui-button.ui-button-red:active,
+body .ui-button.ui-button-red:focus {
+	border-color: #747 !important;
+	box-shadow: 0 0 2px 2px rgba(167,215,249,.7);
+}
+body .ui-button.ui-button-red:active {
+	background: #952020 !important;
+	background: linear-gradient(to bottom, #d04545 0%, #952020 90%) !important;
+}
+
+/* Disabled buttons */
+body .ui-button-green.disabled,
+body .ui-button-green.disabled:hover,
+body .ui-button-green.disabled:active,
+body .ui-button-green.disabled:focus,
+body .ui-button-blue.disabled,
+body .ui-button-blue.disabled:hover,
+body .ui-button-blue.disabled:active,
+body .ui-button-blue.disabled:focus,
+body .ui-button-red.disabled,
+body .ui-button-red.disabled:hover,
+body .ui-button-red.disabled:active,
+body .ui-button-red.disabled:focus,
+body .ui-button.disabled,
+body .ui-button.disabled:hover {
+	color: #aaa;
+	border-color: #ccc !important;
+	background: #eee !important;
+	background: linear-gradient(to bottom, #f6f6f6 0%, #eee 90%) !important;
+	box-shadow: 0 1px 3px rgba(0,0,0,0);
+}
+body .ui-button-green.disabled .ui-button-text,
+body .ui-button-blue.disabled .ui-button-text,
+body .ui-button-red.disabled .ui-button-text {
+	color: #aaa;
+	text-shadow: 0 1px 1px #fff;
+}

@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Daud I.F. Argana",
+			"Kandar",
+			"Pijri Paijar"
+		]
+	},
+	"vector-skin-desc": "MonoBook vérsi modéren dina pidangan anu leuwih anyar jeung leuwih hadé",
+	"vector-languages": "Basa",
+	"vector-language-button-label": "{{PLURAL:$1|$1 basa}}",
+	"vector-no-language-button-label": "Tambahkeun basa",
+	"vector-action-addsection": "Tambah jejer",
+	"vector-action-delete": "Hapus",
+	"vector-action-move": "Pindahkeun",
+	"vector-action-protect": "Konci",
+	"vector-action-undelete": "Bolaykeun ngahapus",
+	"vector-action-unprotect": "Robah protéksi",
+	"vector-view-create": "Jieun",
+	"vector-view-edit": "Édit",
+	"vector-view-history": "Témbongkeun jujutan",
+	"vector-view-view": "Baca",
+	"vector-view-viewsource": "Témbongkeun sumber",
+	"vector-more-actions": "Lianna",
+	"vector-searchsuggest-containing": "Paluruh kaca-kaca anu ngandung <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-page-tools-label": "Parabot",
+	"vector-page-tools-general-label": "Umum",
+	"vector-unpin-element-label": "sumputkeun"
+}

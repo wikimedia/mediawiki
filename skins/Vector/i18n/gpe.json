@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"DaSupremo"
+		]
+	},
+	"vector-languages": "Languages",
+	"vector-language-button-label": "{{PLURAL:$1|$1 language|$1 languages}}",
+	"vector-no-language-button-label": "Add languages",
+	"vector-action-addsection": "Add topic",
+	"vector-action-delete": "Delete",
+	"vector-action-move": "Move am",
+	"vector-action-protect": "Protect",
+	"vector-view-create": "Create",
+	"vector-view-edit": "Edit",
+	"vector-view-history": "View history",
+	"vector-view-view": "Read",
+	"vector-more-actions": "More",
+	"vector-searchsuggest-containing": "Search for pages wey dey contain <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-page-tools-label": "Tools",
+	"vector-page-tools-general-label": "General",
+	"vector-unpin-element-label": "hide am"
+}

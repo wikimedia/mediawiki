@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"भारत्पराक्रमि"
+		]
+	},
+	"vector-languages": "भाषाएँ",
+	"vector-language-button-label": "{{PLURAL:$1|$1 भाषा|$1 भाषाएँ}}",
+	"vector-no-language-button-label": "भाषाएँ जोड़ें",
+	"vector-action-addsection": "विषय जोड़ें",
+	"vector-action-delete": "हटाएँ",
+	"vector-action-move": "स्थानांतरित करें",
+	"vector-action-protect": "सुरक्षा करें",
+	"vector-view-create": "बनावें",
+	"vector-view-history": "इतिहास नै देखें",
+	"vector-more-actions": "और भी",
+	"vector-searchsuggest-containing": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> सी सहित पन्ने  खोजें",
+	"vector-page-tools-label": "औजारें",
+	"vector-page-tools-general-label": "सामान्य",
+	"vector-unpin-element-label": "छिपावें"
+}

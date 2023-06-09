@@ -1,0 +1,108 @@
+/**
+ * Less mixins.
+ */
+
+.mixin-vector-page-container-sizing() {
+	// Set a min-width to make explicit we do not support anything below this threshold.
+	// For devices too small, they should be more useable with horizontal scrolling.
+	// e.g. Portrait on an iPad
+	min-width: @min-width-supported;
+	max-width: @max-width-page-container;
+	padding-left: @padding-horizontal-page-container;
+	padding-right: @padding-horizontal-page-container;
+	box-sizing: border-box;
+}
+
+// Defines the arrow beside dropdown headings.
+.mixin-vector-legacy-menu-heading-arrow {
+	content: '';
+	background: url( ../common/images/arrow-down.svg ) 100% 50% no-repeat;
+	width: unit( 16 / @font-size-tabs / @font-size-browser, em );
+	height: unit( 16 / @font-size-tabs / @font-size-browser, em );
+}
+
+.mixin-vector-menu-heading-arrow() {
+	content: '';
+	background: url( ../common/images/arrow-down.svg ) 100% 50% no-repeat;
+	width: unit( 16 / @font-size-tabs / @font-size-browser, em );
+	height: unit( 16 / @font-size-tabs / @font-size-browser, em );
+	// https://phabricator.wikimedia.org/T319070#8284272
+	margin-left: -1px;
+}
+
+.mixin-vector-content-box() {
+	background-color: @background-color-base;
+	border: @border-width-base @border-style-base @border-color-content-box;
+	border-radius: @border-radius-content-box;
+}
+
+.mixin-vector-dropdown-menu() {
+	.mixin-vector-content-box();
+	padding: @padding-horizontal-dropdown-menu @padding-vertical-dropdown-menu;
+	font-size: @font-size-dropdown;
+	box-shadow: 0 2px 6px -1px rgba( 0, 0, 0, 0.2 );
+	transition-property: opacity;
+	transition-duration: @transition-duration-base;
+	// TODO Add consistent min/max values for dropdowns in T316055
+	width: max-content;
+	max-width: 200px;
+}
+
+.mixin-vector-dropdown-menu-item() {
+	display: flex;
+	align-items: center;
+	padding: @padding-vertical-dropdown-menu-item 0;
+
+	&:not( .mw-selflink ):visited {
+		color: @color-link;
+	}
+
+	&.selected a,
+	&.selected a:visited {
+		color: @color-link-selected;
+	}
+}
+
+.mixin-page-container() {
+	max-width: @max-width-page-container;
+	// Set a min-width to make explicit we do not support anything below this threshold.
+	// For devices too small, they should be more useable with horizontal scrolling.
+	// e.g. Portrait on an iPad
+	min-width: @min-width-supported;
+	margin: 0 auto;
+	padding-left: @padding-horizontal-page-container;
+	padding-right: @padding-horizontal-page-container;
+	background-color: @background-color-page-container;
+	box-sizing: border-box;
+
+	@media ( min-width: @min-width-desktop ) {
+		padding-left: @padding-horizontal-page-container-desktop;
+		padding-right: @padding-horizontal-page-container-desktop;
+	}
+
+	@media ( min-width: @min-width-desktop-wide ) {
+		padding-left: @padding-horizontal-page-container-desktop-wide;
+		padding-right: @padding-horizontal-page-container-desktop-wide;
+	}
+}
+
+.mixin-vector-scrollable-with-fade() {
+	overflow-y: auto;
+
+	&::after {
+		content: '';
+		display: block;
+		position: sticky;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: ~'calc( 100% + @{padding-vertical-dropdown-menu} )';
+		height: @padding-vertical-dropdown-menu;
+		margin-top: -@padding-vertical-dropdown-menu;
+		margin-left: -@padding-vertical-dropdown-menu;
+		transform: translate( 0, @padding-vertical-dropdown-menu );
+		background: linear-gradient( rgba( 255, 255, 255, 0 ), @background-color-page-container );
+		background-repeat: no-repeat;
+		pointer-events: none; // Make the link below the fade clickable
+	}
+}

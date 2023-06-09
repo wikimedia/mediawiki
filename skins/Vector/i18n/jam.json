@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dentonius",
+			"Hazard-SJ",
+			"Katxis",
+			"Yocahuna"
+		]
+	},
+	"vector-action-addsection": "Add on one nex' topic",
+	"vector-action-delete": "Diliit",
+	"vector-action-move": "Muuv",
+	"vector-action-protect": "Protek",
+	"vector-action-undelete": "Andiliit",
+	"vector-action-unprotect": "Neu protektian",
+	"vector-view-create": "Mek",
+	"vector-view-edit": "Change up",
+	"vector-view-history": "Pree di change dem",
+	"vector-view-view": "Read",
+	"vector-view-viewsource": "Vyuu Suos",
+	"vector-more-actions": "More"
+}

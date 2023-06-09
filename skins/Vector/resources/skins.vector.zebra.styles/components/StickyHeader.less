@@ -1,0 +1,172 @@
+@spacing-search-title-divider: 30px;
+@font-size-sticky-header-links: unit( 14 / @font-size-browser, em ); // Equals `0.875em`.
+
+.vector-sticky-header-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: @z-index-header;
+	// Hide sticky header until visible class is applied to the body
+	transition: @transition-sticky-header;
+	display: none;
+	transform: translateY( -100% );
+	opacity: 0;
+}
+
+.vector-sticky-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	//
+	// Layout
+	//
+	&-start,
+	&-end,
+	&-icons,
+	&-buttons,
+	&-context-bar {
+		display: flex;
+		align-items: center;
+	}
+
+	&-start {
+		flex-grow: 1;
+		min-width: 0;
+	}
+
+	// Apply nowrap to title and buttons
+	// Must apply to &-ccontext-bar-primary rather than &-context-bar or &-start
+	// to avoid applying nowrap to the collapsed TOC menu
+	&-context-bar-primary,
+	&-end {
+		white-space: nowrap;
+	}
+
+	//
+	// Components
+	//
+	&-context-bar {
+		border-left: @border-width-base @border-style-base #c8c8c8;
+		padding-left: @spacing-search-title-divider;
+		min-width: 0;
+		margin-left: @spacing-search-title-divider;
+	}
+
+	&-context-bar-primary {
+		overflow: hidden;
+		font-family: @font-family-serif;
+		// T296320 closest standardized option to 22px (24px)
+		font-size: @font-size-heading-2;
+		text-overflow: ellipsis;
+
+		// T300134 Prevent text from wrapping in the sticky header.
+		wbr {
+			display: none;
+		}
+	}
+
+	&-buttons {
+		// Reduce language and add topic button font size
+		font-size: @font-size-sticky-header-links;
+	}
+
+	&-end,
+	&-icons,
+	&-buttons {
+		// Spacing between buttons
+		column-gap: 8px;
+	}
+
+	&-buttons > .mw-ui-quiet {
+		// All quiet buttons, even those with labels, should have 5px horizontal padding
+		// TODO: Move this fix upstream?
+		padding: 5px;
+	}
+
+	.vector-search-box {
+		// Hide the search box until the user toggles it.
+		display: none;
+	}
+
+	&.vector-header-search-toggled {
+		// .vector-sticky-header-search-toggle left border (1px) + left padding (12px)
+		// - .cdx-text-input__start-icon left offset (9px [1]) = 4px
+		// [1] see https://gerrit.wikimedia.org/r/plugins/gitiles/design/codex/+/refs/tags/v0.1.0-alpha.8/packages/codex/src/components/text-input/TextInput.vue#257
+		@margin-start-search-box: 4px;
+		// .vector-sticky-header-search-toggle left border (1px) + left padding (12px)
+		// - .cdx-text-input__start-icon left offset (22px [2]) = -9px
+		// [2] see https://gerrit.wikimedia.org/r/plugins/gitiles/design/codex/+/refs/tags/v0.1.0-alpha.8/packages/codex/src/components/typeahead-search/TypeaheadSearch.vue#708
+		@margin-start-search-box-with-thumbnail: -9px;
+
+		.vector-sticky-header-search-toggle,
+		.vector-sticky-header-context-bar {
+			display: none;
+		}
+
+		.vector-search-box {
+			display: block;
+			margin-left: @margin-start-search-box;
+		}
+
+		// T296318 Decrease the start margin of the search box to account for the
+		// icon's increased start position when the search component has thumbnails.
+		.vector-search-box-show-thumbnail {
+			margin-left: @margin-start-search-box-with-thumbnail;
+
+			.cdx-text-input__start-icon {
+				color: @color-base;
+			}
+		}
+	}
+}
+
+// T298836 Sticky header is only shown at higher resolutions
+@media ( min-width: @min-width-desktop ) {
+	&.client-js.vector-sticky-header-enabled {
+		// T290518: When the sticky header is enabled (feature flag is on, js is
+		// enabled, and viewport is at higher resolutions), add scroll padding to the
+		// root element. This is needed so that the sticky header does not overlap the
+		// top of an element when the URI has a hash fragment (e.g. when the user clicks
+		// a jump link) and when the user tabs through elements in reverse order.
+		//
+		// Please note that this class must be independent of the
+		// .vector-sticky-header-visible class to correctly handle situations where the
+		// sticky header isn't visible yet but we still need scroll padding applied
+		// (e.g. when the user navigates to a page with a hash fragment in the URI).
+		scroll-padding-top: ~'calc( @{height-header} + @{scroll-padding-top} )';
+
+		.vector-sticky-header-container {
+			// Sticky header is only enabled for js users and when feature flag is enabled
+			display: flex;
+		}
+
+		.vector-sticky-header-visible .vector-sticky-header-container {
+			// Show sticky header with transition when visible class is applied to the body
+			opacity: @opacity-base;
+			transform: translateY( 0 );
+		}
+
+		.vector-pinned-container {
+			max-height: ~'calc( 100vh - @{height-header} - (@{grid-row-gap} * 2) )';
+		}
+
+		.vector-sticky-pinned-container {
+			top: ~'calc( @{height-header} + @{grid-row-gap})';
+		}
+
+		// - T289817 `.mw-sticky-header-element` provides an API for template developers
+		//   to make their templates compatible with the Vector 2022 sticky header.
+		//   @stable See the Integration notes for developers section at
+		//   https://www.mediawiki.org/wiki/Reading/Web/Desktop_Improvements/Features/Sticky_Header
+		// - `.charts-stickyhead th` makes chart and table headers appear below the sticky header.
+		// - Unlike the rule above targeting toc & page tools, this does not need extra padding
+		//   for the context box, since these elements are inside the content container.
+		.mw-sticky-header-element,
+		.charts-stickyhead th {
+			/* stylelint-disable-next-line declaration-no-important */
+			top: @height-header !important;
+		}
+	}
+}

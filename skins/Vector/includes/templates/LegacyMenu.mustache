@@ -1,0 +1,34 @@
+{{!
+	See @typedef MenuDefinition
+}}
+{{! `role` is unnecessary but kept to support selectors in any gadgets or user styles. }}
+{{! DO NOT REMOVE vector-menu class. It is used for click tracking in Extension:WikimediaEvents }}
+<nav id="{{id}}" class="vector-menu{{#class}} {{.}}{{/class}}" aria-labelledby="{{id}}-label" role="navigation" {{{html-tooltip}}} {{{html-user-language-attributes}}}>
+	{{#is-dropdown}}
+	<input type="checkbox"
+		id="{{id}}-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-{{id}}"
+		class="vector-menu-checkbox{{#checkbox-class}} {{.}}{{/checkbox-class}}"
+		aria-labelledby="{{id}}-label"
+	/>
+	<label
+		id="{{id}}-label"
+		{{#aria-label}} aria-label="{{.}}"{{/aria-label}}
+		class="vector-menu-heading{{#heading-class}} {{.}}{{/heading-class}}"
+	>
+		{{{html-vector-heading-icon}}}<span class="vector-menu-heading-label">{{label}}</span>
+	</label>
+	{{/is-dropdown}}
+	{{^is-dropdown}}
+	<h3
+		id="{{id}}-label"
+		{{#aria-label}} aria-label="{{.}}"{{/aria-label}}
+		class="vector-menu-heading{{#heading-class}} {{.}}{{/heading-class}}"
+	>
+		{{{html-vector-heading-icon}}}<span class="vector-menu-heading-label">{{label}}</span>
+	</h3>
+	{{/is-dropdown}}
+	{{>MenuContents}}
+</nav>

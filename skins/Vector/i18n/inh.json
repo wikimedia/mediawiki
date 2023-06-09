@@ -1,0 +1,33 @@
+{
+	"@metadata": {
+		"authors": [
+			"Adam-Yourist",
+			"Amire80",
+			"ElizaMag",
+			"Sapral Mikail",
+			"Умар"
+		]
+	},
+	"skinname-vector": "Вéктора",
+	"vector-language-button-label": "{{PLURAL:$1|$1 мотт}}",
+	"vector-action-addsection": "Тема тӀатоха",
+	"vector-action-delete": "ДӀаяккха",
+	"vector-action-move": "ЦӀи хувца",
+	"vector-action-protect": "Лорае",
+	"vector-action-undelete": "Хьаметтаоттаде",
+	"vector-action-unprotect": "Лораяр хувца",
+	"vector-view-create": "Хьакхолла",
+	"vector-view-edit": "Тоаде",
+	"vector-view-history": "Хувцамаш",
+	"vector-view-view": "Де́ша",
+	"vector-view-viewsource": "Хьалххе бӀаргтохара разметкага хьажар",
+	"vector-more-actions": "Кхы а",
+	"vector-anon-user-menu-pages": "Авторизаци яь йоацача доакъашхошта йола оагӀонаш",
+	"vector-anon-user-menu-pages-learn": "дукхагӀа хá",
+	"vector-main-menu-tooltip": "Керттера меню",
+	"vector-main-menu-label": "Керттера меню",
+	"vector-page-tools-label": "Кечалаш",
+	"vector-page-tools-general-label": "Юкъара",
+	"vector-pin-element-label": "дехьаяккха аьттехьа",
+	"vector-main-menu-unpinned-popup": "Керттера меню укхазахьа дехьаяьккхай."
+}

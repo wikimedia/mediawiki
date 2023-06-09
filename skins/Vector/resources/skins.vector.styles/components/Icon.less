@@ -1,0 +1,5 @@
+// Make sure all icons are the correct color https://phabricator.wikimedia.org/T317800
+.mw-ui-icon::before {
+	// `@opacity-icon-base` equals to `#222` on `background-color: #fff`, closest to `#202122`.
+	opacity: @opacity-icon-base;
+}

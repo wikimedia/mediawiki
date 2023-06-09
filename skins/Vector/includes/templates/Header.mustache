@@ -1,0 +1,12 @@
+<header class="vector-header mw-header">
+	<div class="vector-header-start">
+		<nav class="vector-main-menu-landmark" aria-label="{{msg-vector-site-nav-label}}" role="navigation">
+			{{>MainMenuDropdown}}
+		</nav>
+		{{#data-logos}}{{>Logo}}{{/data-logos}}
+	</div>
+	<div class="vector-header-end">
+		{{#data-search-box}}{{>SearchBox}}{{/data-search-box}}
+		{{#data-vector-user-links}}{{>UserLinks}}{{/data-vector-user-links}}
+	</div>
+</header>

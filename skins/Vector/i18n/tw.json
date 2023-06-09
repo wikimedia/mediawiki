@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"AC Krah",
+			"Amire80",
+			"Robertjamal12",
+			"Warmglow"
+		]
+	},
+	"vector-language-button-label": "{{PLURAL:$1|$1 kasa|$1 kasa ahorow}}",
+	"vector-language-redirect-to-top": "Wɔ {{SITENAME}} kasa links nu wɔ suro biaɛ a krataa no din titiriw no wɔ [[#p-lang-btn|Go to top]]",
+	"vector-action-addsection": "Fa atifi asɛm ka ho",
+	"vector-action-delete": "Pepa",
+	"vector-action-move": "Yi kɔ bɛbi foforo",
+	"vector-action-protect": "Bammɔ",
+	"vector-view-create": "Create",
+	"vector-view-edit": "Sesa",
+	"vector-view-history": "Hwɛ abakɔsɛm",
+	"vector-view-view": "Kenkan",
+	"vector-more-actions": "Pii",
+	"vector-unpin-element-label": "fa sie"
+}

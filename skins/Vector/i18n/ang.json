@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gott wisst",
+			"Heahwrita",
+			"Hogweard",
+			"JJohnson1701"
+		]
+	},
+	"vector-action-addsection": "Besettan mearcunge",
+	"vector-action-delete": "Forleos",
+	"vector-action-move": "Wegan",
+	"vector-action-protect": "Beorgan",
+	"vector-action-undelete": "Scieppan tramet eft",
+	"vector-action-unprotect": "Andwendan beorgunge",
+	"vector-view-create": "Scieppan",
+	"vector-view-edit": "Adiht",
+	"vector-view-history": "Seoh stær",
+	"vector-view-view": "Ræd",
+	"vector-view-viewsource": "Sēon fruman",
+	"vector-more-actions": "Ma",
+	"vector-main-menu-label": "Heafodlic cyrewrit"
+}

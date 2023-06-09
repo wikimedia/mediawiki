@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Abdeaitali",
+			"Amire80",
+			"Enzoreg",
+			"Ideophagous",
+			"Reda Benkhadra",
+			"SADI9I",
+			"SADIQUI",
+			"Zanatos"
+		]
+	},
+	"vector-opt-out": "رجع ل الشكل لقديم",
+	"vector-language-button-label": "{{PLURAL:$1|$1 لوغة|$1 لوغات}}",
+	"vector-language-redirect-to-top": "ف هاد لويكيپيديا ليانات د لوغات كاينين ف لفوق د صفحة حدا لعنوان. [[#p-lang-btn|سير لفوق]].",
+	"vector-action-addsection": "زيد شي موضوع",
+	"vector-action-delete": "محي",
+	"vector-action-move": "حوّل",
+	"vector-action-protect": "حمي",
+	"vector-action-undelete": "لغي الحدف",
+	"vector-action-unprotect": "بدّل الحماية",
+	"vector-view-create": "أنشئ",
+	"vector-view-edit": "بدل",
+	"vector-view-history": "تاريخ",
+	"vector-view-view": "قرا",
+	"vector-view-viewsource": "شوف لمصدر",
+	"vector-more-actions": "كتر",
+	"vector-searchsuggest-containing": "قلب علا صفاحي فيهم <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+}

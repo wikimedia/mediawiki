@@ -1,0 +1,10 @@
+<div class="vector-column-end">
+	<nav class="vector-page-tools-landmark vector-sticky-pinned-container" aria-label="{{msg-tooltip-p-cactions}}">
+		{{#data-page-tools}}
+		{{>PinnableContainer/Pinned/Open}}
+			{{! Use `#vector-page-tools-pinned-container .vector-page-tools` to target styles at this element}}
+			{{#is-pinned}}{{>PageTools}}{{/is-pinned}}
+		{{>PinnableContainer/Close}}
+		{{/data-page-tools}}
+	</nav>
+</div>

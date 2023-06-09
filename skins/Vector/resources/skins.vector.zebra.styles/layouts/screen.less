@@ -1,0 +1,199 @@
+/**
+ * Vector modern layout styles for screen
+ *
+ * Layout rules divide the page into sections and how VectorComponents should be arranged in the skin.
+ * The rules here should only define the layout, not color or typography.
+ */
+
+// Note this uses variables defined in mediawiki.skin.variables so that VisualEditor can read them
+// see T259331.
+@padding-content: @padding-top-content 0 1.5em;
+
+/**
+ * Padding for the page content column gets smaller at narrow screen widths.
+ * NOTE: This selector represents the HTML element because :root is unavailable due to how
+ * the file is wrapped in an html selector in the skins.vector.zebra.styles/skin.less file.
+ */
+html& {
+	--padding-vertical-content: @padding-vertical-content-box;
+	--padding-horizontal-content: @padding-horizontal-content-box;
+}
+
+@media ( min-width: @min-width-desktop ) {
+	html& {
+		--padding-horizontal-content: @padding-horizontal-content-box-wide;
+	}
+}
+
+&html {
+	scroll-padding-top: @scroll-padding-top;
+}
+
+body {
+	background-color: @background-color-secondary--modern;
+	color: @color-base;
+}
+
+.mw-body,
+.parsoid-body {
+	direction: ltr;
+}
+
+.mw-body .firstHeading {
+	word-wrap: break-word;
+	margin-bottom: 0;
+}
+
+.mw-header {
+	// allow z-index to apply so search results overlay article
+	position: relative;
+	z-index: @z-index-header;
+}
+
+#mw-content-text {
+	margin-top: 16px;
+}
+
+/* Content */
+.mw-indicators {
+	z-index: @z-index-indicators;
+}
+
+.vector-page-titlebar {
+	.mixin-clearfix();
+	box-shadow: none;
+	// Faux bottom border that stretches to the edges
+	// of the *content*, not the full width of the box.
+	&::after {
+		content: '';
+		display: block;
+		position: absolute;
+		bottom: 0;
+		left: var( --padding-horizontal-content );
+		right: var( --padding-horizontal-content );
+		height: 1px;
+		background-color: @border-color-base;
+	}
+}
+
+.vector-body-before-content {
+	// Contain the floating .mw-indicators, but don't use clearfix because of browser inconsistencies
+	// when combining 'clear' and 'margin-top' (T325391)
+	overflow: hidden;
+
+	// Margin is only applied to indicators inside `.vector-body-before-content` since they can
+	// also appear next to the page title, where margin is not needed.
+	.mw-indicators {
+		margin-top: @margin-top-pre-content;
+	}
+}
+
+// Language button at bottom of content.
+.mw-body .mw-portlet-lang {
+	float: right;
+}
+
+/**
+ * Style main content column to appear as a single box.
+ * We cannot use a wrapper to create the border around these elements because
+ * the Page Tools menu sits between the toolbar and content body and appears as a visually
+ * distinct box when it's pinned (i.e. a wrapper element would wrap Page Tools as well).
+ */
+.vector-page-titlebar,
+.vector-page-toolbar,
+.vector-body {
+	.mixin-vector-content-box();
+	padding-left: var( --padding-horizontal-content );
+	padding-right: var( --padding-horizontal-content );
+}
+
+.vector-page-titlebar {
+	padding-top: var( --padding-vertical-content );
+	/* stylelint-disable-next-line declaration-property-value-disallowed-list */
+	border-bottom-style: none;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.vector-page-toolbar {
+	/* stylelint-disable-next-line declaration-property-value-disallowed-list */
+	border-top-style: none;
+	/* stylelint-disable-next-line declaration-property-value-disallowed-list */
+	border-bottom-style: none;
+	border-radius: 0;
+}
+
+.vector-body {
+	position: relative;
+	z-index: @z-index-base;
+	padding-bottom: var( --padding-vertical-content );
+	border-top-right-radius: 0;
+	border-top-left-radius: 0;
+	/* stylelint-disable-next-line declaration-property-value-disallowed-list */
+	border-top-style: none;
+}
+
+#siteSub {
+	margin-top: @margin-top-pre-content; // T311564
+}
+
+// Styles only applied to non-empty #contentSub to avoid extra margins when both #contentSub and #contentSub2
+// are rendered.
+#contentSub:not( :empty ),
+#contentSub2 {
+	font-size: 84%;
+	line-height: 1.2em;
+	color: @color-subtle;
+	width: auto;
+	// Visually separate #contentSub and #contentSub2 (T315639)
+	margin: @margin-top-pre-content 0 0;
+}
+
+.parsoid-body {
+	padding: @padding-content;
+}
+
+// Container logic.
+.mw-page-container {
+	.mixin-vector-page-container-sizing();
+	// Setting position and z-index is important as it allows overlays appended to the body tag
+	// to position themselves over the Vector interface. This forms another stacking context for
+	// elements placed inside this element
+	position: relative;
+	z-index: @z-index-base;
+	margin: 0 auto;
+	// Use non-zero padding to disable margin collapse.
+	// Be careful not to use overflow-y: scroll here (see T270146 and T271868)
+	padding-top: 0.05px;
+}
+
+.vector-header-container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	background-color: @background-color-page-container;
+	border-bottom: @border-width-base @border-style-base @border-color-content-box;
+}
+
+.vector-header-container .mw-header,
+.vector-header-container .vector-sticky-header {
+	width: 100%;
+	// A min-height is set to account for projects where no icon is set.
+	min-height: @height-header;
+	.mixin-vector-page-container-sizing();
+}
+
+&.vector-feature-limited-width-disabled .mw-page-container,
+&.vector-feature-limited-width-disabled .vector-sticky-header,
+&.vector-feature-limited-width-disabled .mw-header {
+	max-width: none;
+}
+
+.skin--responsive .mw-page-container {
+	min-width: auto;
+}
+
+.vector-column-end {
+	// T327460: Prevent subpixel rendering issues associated with the text and Chrome.
+	contain: paint;
+}

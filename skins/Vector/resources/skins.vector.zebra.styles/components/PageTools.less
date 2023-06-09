@@ -1,0 +1,21 @@
+// Ensure there is only 1 page tools landmark at anytime
+&.vector-feature-page-tools-pinned-enabled .vector-page-toolbar-container .vector-page-tools-landmark,
+&.vector-feature-page-tools-pinned-disabled .vector-column-end .vector-page-tools-landmark {
+	display: none;
+}
+
+// Ensure collapsible items are visible on lower resolutions
+.vector-page-tools .vector-more-collapsible-item {
+	display: block;
+
+	@media ( min-width: @min-width-tablet ) {
+		display: none;
+	}
+}
+
+// Make sure pcactions is displayed on lower resolutions (even if .emptyPortlet present)
+.vector-page-tools .vector-has-collapsible-items {
+	@media ( max-width: @max-width-mobile ) {
+		display: block;
+	}
+}

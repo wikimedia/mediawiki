@@ -1,0 +1,26 @@
+{{!
+	LogoDefinition logo
+	string link-mainpage link to the main page (from SkinMustache in core)
+	string msg-sitesubtitle the contents of the sitesubtitle message key
+}}
+<a href="{{link-mainpage}}" class="mw-logo">
+	{{#icon}}
+	{{! alt is provided for valid HTML but given aria-hidden not needed. }}
+	<img class="mw-logo-icon" src="{{.}}" alt=""
+		aria-hidden="true" height="50" width="50">
+	{{/icon}}
+	<span class="mw-logo-container">
+		{{#wordmark}}
+		<img class="mw-logo-wordmark" alt="{{msg-sitetitle}}"
+			src="{{src}}" style="{{style}}">
+		{{/wordmark}}
+		{{^wordmark}}
+		<strong class="mw-logo-wordmark">{{msg-sitetitle}}</strong>
+		{{/wordmark}}
+		{{#tagline}}
+		<img class="mw-logo-tagline"
+			alt="{{msg-sitesubtitle}}"
+			src="{{src}}" width="{{width}}" height="{{height}}" style="{{style}}">
+		{{/tagline}}
+	</span>
+</a>

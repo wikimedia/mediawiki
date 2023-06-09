@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Aey Tai Nuea",
+			"咽頭べさ"
+		]
+	},
+	"vector-languages": "ᥚᥣᥱ ᥔᥣᥱ ᥑᥣᥛᥰ",
+	"vector-language-button-label": "{{PLURAL:$1|$1 ᥚᥣᥱ ᥔᥣᥱ|$1 ᥚᥣᥱ ᥔᥣᥱ ᥑᥣᥛᥰ}}",
+	"vector-no-language-button-label": "ᥚᥣᥱ ᥔᥣᥱ ᥑᥣᥛᥰ ᥖᥒᥰ ᥔᥥᥒᥲ",
+	"vector-action-addsection": "ᥗᥦᥛᥴ ᥔᥬᥱ ᥞᥨᥝᥴ ᥑᥨᥝᥲ",
+	"vector-action-delete": "ᥛᥩᥖᥱ ᥙᥦᥖ",
+	"vector-action-move": "ᥑᥣᥭᥳ",
+	"vector-action-protect": "ᥞᥥᥳ ᥐᥒᥲ",
+	"vector-view-create": "ᥔᥣᥒᥲ",
+	"vector-view-edit": "ᥛᥨᥢᥳ ᥛᥥᥰ",
+	"vector-view-history": "ᥖᥨᥭᥰ ᥙᥪᥢᥰ",
+	"vector-view-view": "ᥚᥖᥴ ᥖᥨᥭᥰ",
+	"vector-more-actions": "ᥘᥛᥴ ᥘᥫᥴ",
+	"vector-searchsuggest-containing": "ᥔᥩᥐ ᥞᥣᥴ ᥖᥩᥢᥲ ᥖᥣᥱ ᥘᥣᥲ ᥘᥤᥐ ᥓᥫᥰ ᥑᥝᥲ ᥙᥣᥰ ᥝᥭᥳ <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-page-tools-label": "ᥑᥫᥒ ᥐᥛᥳ ᥐᥦᥛ",
+	"vector-page-tools-general-label": "ᥐᥧ ᥓᥫᥰ",
+	"vector-unpin-element-label": "ᥔᥫᥒᥱ ᥝᥭᥳ"
+}

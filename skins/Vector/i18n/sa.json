@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"NehalDaveND",
+			"Shubha"
+		]
+	},
+	"vector-action-addsection": "विषयः योज्यताम्",
+	"vector-action-delete": "अपाक्रियताम्",
+	"vector-action-move": "शीर्षकं परिवर्त्यताम्",
+	"vector-action-protect": "संरक्ष्यताम्",
+	"vector-action-undelete": "अनपाक्रियाम्",
+	"vector-action-unprotect": "संरक्षणं परिवर्तयतु",
+	"vector-view-create": "सृज्यताम्",
+	"vector-view-edit": "सम्पाद्यताम्",
+	"vector-view-history": "इतिहासः दृश्यताम्",
+	"vector-view-view": "पठ्यताम्",
+	"vector-view-viewsource": "स्रोतः दृश्यताम्",
+	"vector-more-actions": "अधिकम्"
+}

@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Samatics"
+		]
+	},
+	"vector-languages": "Langwej-dem",
+	"vector-language-button-label": "{{PLURAL:$1|$1 langwej|$1 langwej-dem}}",
+	"vector-no-language-button-label": "Ad langwej-dem",
+	"vector-action-addsection": "Put anoda topik",
+	"vector-action-delete": "Komot-am",
+	"vector-action-move": "Muv-am",
+	"vector-action-protect": "Protet-am",
+	"vector-view-create": "Mek-am",
+	"vector-view-edit": "Chenj-am",
+	"vector-view-history": "See wetin don hapun hie",
+	"vector-view-view": "Read-am",
+	"vector-more-actions": "Si oda tins:",
+	"vector-searchsuggest-containing": "Find pej-dem wey get <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-page-tools-label": "Tins wey you go yuz wok",
+	"vector-page-tools-general-label": "General",
+	"vector-unpin-element-label": "hide-am"
+}

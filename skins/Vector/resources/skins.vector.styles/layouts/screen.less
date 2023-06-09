@@ -1,0 +1,138 @@
+/**
+ * Vector modern layout styles for screen
+ *
+ * Layout rules divide the page into sections and how VectorComponents should be arranged in the skin.
+ * The rules here should only define the layout, not color or typography.
+ */
+
+@import '../../common/variables.less';
+@import 'mediawiki.mixins.less';
+
+// Content container
+
+// Note this uses variables defined in mediawiki.skin.variables so that VisualEditor can read them
+// see T259331.
+@padding-content: @padding-top-content 0 1.5em;
+
+&html {
+	scroll-padding-top: @scroll-padding-top;
+}
+
+body {
+	background-color: @background-color-secondary--modern;
+	color: @color-base;
+}
+
+.mw-body,
+.parsoid-body {
+	direction: ltr;
+}
+
+.mw-body {
+	// T315261 Remove horizontal padding, rely on .mw-page-container padding instead
+	padding: @padding-content;
+
+	.firstHeading {
+		word-wrap: break-word;
+		margin-bottom: 0;
+	}
+}
+
+.mw-header {
+	// allow z-index to apply so search results overlay article
+	position: relative;
+	z-index: @z-index-header;
+}
+
+#mw-content-text {
+	margin-top: 16px;
+}
+
+/* Main column */
+.mw-body,
+#mw-data-after-content,
+.mw-footer {
+	margin-left: 0;
+}
+
+/* Content */
+.mw-indicators {
+	z-index: @z-index-indicators;
+}
+
+.vector-page-titlebar {
+	.mixin-clearfix();
+}
+
+.vector-body-before-content {
+	// Contain the floating .mw-indicators, but don't use clearfix because of browser inconsistencies
+	// when combining 'clear' and 'margin-top' (T325391)
+	overflow: hidden;
+
+	// Margin is only applied to indicators inside `.vector-body-before-content` since they can
+	// also appear next to the page title, where margin is not needed.
+	.mw-indicators {
+		margin-top: @margin-top-pre-content;
+	}
+}
+
+.mw-body .mw-portlet-lang {
+	float: right;
+}
+
+.vector-body {
+	position: relative;
+	z-index: @z-index-base;
+}
+
+#siteSub {
+	margin-top: @margin-top-pre-content; // T311564
+}
+
+// Styles only applied to non-empty #contentSub to avoid extra margins when both #contentSub and #contentSub2
+// are rendered.
+#contentSub:not( :empty ),
+#contentSub2 {
+	font-size: 84%;
+	line-height: 1.2em;
+	color: @color-subtle;
+	width: auto;
+	// Visually separate #contentSub and #contentSub2 (T315639)
+	margin: @margin-top-pre-content 0 0;
+}
+
+.parsoid-body {
+	padding: @padding-content;
+}
+
+// Container logic.
+.mw-page-container {
+	// Create stacking context.
+	// Setting position and z-index as it allows overlays appended to the body tag
+	// to position themselves over the Vector interface. This forms another stacking context for
+	// elements placed inside this element
+	position: relative;
+	z-index: @z-index-base;
+	// Use non-zero padding to disable margin collapse.
+	// Be careful not to use overflow-y: scroll here (see T270146 and T271868)
+	padding-top: 0.05px;
+	padding-bottom: 0.05px;
+	.mixin-page-container();
+}
+
+.vector-header-container {
+	.mw-header,
+	.vector-sticky-header {
+		width: 100%;
+		// A min-height is set to account for projects where no icon is set.
+		min-height: @height-header;
+	}
+}
+
+&.vector-feature-limited-width-disabled .mw-page-container {
+	max-width: none;
+}
+
+.skin--responsive .mw-page-container {
+	min-width: auto;
+}

@@ -1,0 +1,37 @@
+/**
+ * Targets all dropdown labels.
+ * - language variants, Actions menus
+ * - more menu, user menu
+ * - ULS button in sticky header
+ */
+.vector-dropdown > .vector-menu-heading:not( .mw-ui-icon-element ) {
+	display: flex;
+
+	&::after {
+		.mixin-vector-menu-heading-arrow();
+	}
+}
+
+/**
+ * Dropdown container
+ */
+.vector-dropdown .vector-dropdown-content {
+	.mixin-vector-dropdown-menu();
+	.mixin-vector-scrollable-with-fade();
+	max-height: 75vh;
+}
+
+.vector-pinnable-element .vector-menu-heading {
+	color: @color-subtle;
+	font-weight: normal;
+	cursor: default;
+	padding: @padding-vertical-dropdown-menu-item 0;
+	margin: @padding-vertical-dropdown-menu-item 0;
+	border-bottom: @border-width-base @border-style-base @border-color-content-box;
+}
+
+.vector-pinnable-element .mw-list-item a,
+.vector-dropdown-content .mw-list-item a {
+	.mixin-vector-dropdown-menu-item();
+	color: @color-link;
+}

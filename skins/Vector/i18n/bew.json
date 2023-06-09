@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bangrapip",
+			"Naval Scene"
+		]
+	},
+	"vector-action-delete": "Apus",
+	"vector-action-move": "Pindahin",
+	"vector-action-undelete": "Urungin ngapusnya",
+	"vector-view-create": "Keja"
+}

@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"C933103",
+			"LuciferianThomas",
+			"StarrySky",
+			"Winston Sung",
+			"Wxyveronica"
+		]
+	},
+	"vector-language-button-label": "{{PLURAL:$1|$1}} 種語言",
+	"vector-no-language-button-label": "添加語言",
+	"vector-view-edit": "編輯",
+	"vector-view-history": "檢視歷史",
+	"vector-view-view": "閱讀",
+	"vector-more-actions": "更多",
+	"vector-toc-label": "目次",
+	"vector-toc-beginning": "序言"
+}

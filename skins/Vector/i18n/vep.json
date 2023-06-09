@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sebranik",
+			"Игорь Бродский"
+		]
+	},
+	"vector-action-addsection": "Ližada tem",
+	"vector-action-delete": "Čuta poiš",
+	"vector-action-move": "Udesnimitada",
+	"vector-action-protect": "Kaita",
+	"vector-action-undelete": "Pördutada",
+	"vector-action-unprotect": "Toižetada kaičend",
+	"vector-view-create": "Säta",
+	"vector-view-edit": "Redaktiruida",
+	"vector-view-history": "Kacta istorii",
+	"vector-view-view": "Lugeda",
+	"vector-view-viewsource": "Kacta purtkehe",
+	"vector-more-actions": "Völ"
+}

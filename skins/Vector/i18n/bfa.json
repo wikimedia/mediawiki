@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Denayadennis"
+		]
+	},
+	"vector-languages": "Kutujin",
+	"vector-language-button-label": "{{PLURAL:$1|$1 kutu |$1 kutujin}}",
+	"vector-no-language-button-label": "'yalaki kune kutujin",
+	"vector-page-tools-label": "Tito",
+	"vector-page-tools-general-label": "'bukuluŋ",
+	"vector-unpin-element-label": "muke"
+}

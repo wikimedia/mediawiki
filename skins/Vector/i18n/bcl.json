@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Daramlagon",
+			"Filipinayzd",
+			"Geopoet",
+			"Kunokuno",
+			"ShimunUfesoj"
+		]
+	},
+	"vector-language-button-label": "{{PLURAL:$1|$1 lenggwahe|$1 mga lenggwahe}}",
+	"vector-action-addsection": "Magdagdag nin pag-uulayan",
+	"vector-action-delete": "puraon",
+	"vector-action-move": "Ibalyo",
+	"vector-action-protect": "Protektaran",
+	"vector-action-undelete": "Bawion sa pagkapara",
+	"vector-action-unprotect": "Ribayan an proteksyon",
+	"vector-view-create": "Gibuhon",
+	"vector-view-edit": "Baguhon",
+	"vector-view-history": "Hilingon an kasaysayan",
+	"vector-view-view": "Basahon",
+	"vector-view-viewsource": "Hilingón an ginikánan",
+	"vector-more-actions": "Labi pa",
+	"vector-searchsuggest-containing": "Maghanap nin mga pahinang igwang  <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+}

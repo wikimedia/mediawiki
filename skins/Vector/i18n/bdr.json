@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tofeiku"
+		]
+	},
+	"vector-language-button-label": "{{PLURAL:$1|$1 ling}}",
+	"vector-action-delete": "Penelanyap",
+	"vector-action-move": "Pinali",
+	"vector-action-protect": "Sindung",
+	"vector-view-create": "Muat",
+	"vector-view-edit": "Niuba",
+	"vector-view-history": "Ngenda' kisa dau-dau",
+	"vector-view-view": "Boso",
+	"vector-more-actions": "Iko",
+	"vector-searchsuggest-containing": "Penemia laman yang bengen <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+}

@@ -1,0 +1,43 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sovichet",
+			"គីមស៊្រុន",
+			"វ័ណថារិទ្ធ"
+		]
+	},
+	"skinname-vector": "វ៉ិចទ័រ​​",
+	"vector-opt-out": "ប្តូរទៅរូបរាងចាស់",
+	"vector.css": "/* CSS បានដាក់ទីនេះនឹងមានអនុភាពលើអ្នកប្រើប្រាស់នៃសំបក Vector */",
+	"vector-languages": "ភាសា",
+	"vector-language-button-label": "{{PLURAL:$1|$1 ភាសា}}",
+	"vector-no-language-button-label": "បន្ថែមភាសា",
+	"vector-action-addsection": "បន្ថែម​ប្រធានបទ​",
+	"vector-action-delete": "លុបចោល",
+	"vector-action-move": "ប្តូរទីតាំង",
+	"vector-action-protect": "ការពារ",
+	"vector-action-undelete": "ឈប់លុបចោល",
+	"vector-action-unprotect": "ប្ដូរការការពារ",
+	"vector-view-create": "បង្កើត​",
+	"vector-view-edit": "កែប្រែ​",
+	"vector-view-history": "មើល​ប្រវត្តិ​",
+	"vector-view-view": "អាន",
+	"vector-view-viewsource": "មើល​កូដ",
+	"vector-more-actions": "ច្រើនទៀត",
+	"vector-searchsuggest-containing": "ស្វែងរកទំព័រដែលមានពាក្យ<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-toc-label": "មាតិកា",
+	"vector-toc-beginning": "ក្បាលទំព័រ",
+	"vector-anon-user-menu-pages": "ទំព័រសម្រាប់អ្នកកែសម្រួលដែលបានកត់ឈ្មោះចេញ",
+	"vector-anon-user-menu-pages-learn": "ស្វែងយល់បន្ថែម",
+	"vector-anon-user-menu-pages-label": "ស្វែងយល់បន្ថែមអំពីការកែសម្រួល",
+	"vector-main-menu-tooltip": "បញ្ជីដើម",
+	"vector-toc-menu-tooltip": "​មាតិកា",
+	"vector-main-menu-label": "បញ្ជីដើម",
+	"vector-page-tools-label": "ឧបករណ៍​",
+	"vector-page-tools-general-label": "ទូទៅ​",
+	"vector-page-tools-actions-label": "សកម្មភាព",
+	"vector-pin-element-label": "ប្ដូរទីតាំងទៅរបារចំហៀង",
+	"vector-unpin-element-label": "លាក់",
+	"vector-2022-prefs-talkpage": "[[mw:Talk:Reading/Web/Desktop_Improvements|ទំព័រពិភាក្សា]]",
+	"tooltip-vector-anon-user-menu-title": "ជម្រើសផ្សេងទៀត"
+}

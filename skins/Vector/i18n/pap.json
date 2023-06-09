@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Irus",
+			"ObaTango"
+		]
+	},
+	"vector-language-button-label": "{{PLURAL:$1|$1 idioma}}",
+	"vector-action-addsection": "Añadí un tópiko",
+	"vector-action-delete": "Kita",
+	"vector-action-move": "Move",
+	"vector-action-protect": "Protehá",
+	"vector-view-create": "Krea",
+	"vector-view-edit": "Editá",
+	"vector-view-history": "Bista di e historia",
+	"vector-view-view": "Lesa",
+	"vector-more-actions": "Mas",
+	"vector-searchsuggest-containing": "Buska página ku tin <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+}

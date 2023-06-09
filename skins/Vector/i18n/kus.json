@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Bugirbiig"
+		]
+	},
+	"vector-languages": "Buudi piana'ad",
+	"vector-language-button-label": "{{PLURAL:$1|$1 buudi pian'uk|$1 buudi pian'ad}}",
+	"vector-no-language-button-label": "Paasim Pian'ad",
+	"vector-action-addsection": "Pɛ'ɛsim pian'azug",
+	"vector-action-delete": "Yisim",
+	"vector-action-move": "Vuugim",
+	"vector-action-protect": "Gur",
+	"vector-view-create": "Maalim",
+	"vector-view-edit": "Dɛmisim gbɛlima",
+	"vector-view-history": "Gɔsim linɛ dɛŋin maal",
+	"vector-view-view": "Karim",
+	"vector-more-actions": "iem paas",
+	"vector-searchsuggest-containing": "Iem lakir banɛ mɔri <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-page-tools-label": "La'ad",
+	"vector-page-tools-general-label": "Li wʋsa",
+	"vector-unpin-element-label": "su'am"
+}

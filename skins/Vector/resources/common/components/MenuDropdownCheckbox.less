@@ -1,0 +1,85 @@
+@import '../variables.less';
+
+/**
+ * Common styles responsible for hiding/showing the Vector dropdown.
+ */
+
+/**
+ * Vector Dropdown. Contains the dropdown label, checkbox, and
+ * dropdown content.
+ */
+.vector-menu-dropdown {
+	position: relative;
+
+	// Dropdown menu container. Hidden by default until checkbox is checked.
+	> .vector-menu-content {
+		position: absolute;
+		top: 100%;
+		left: -@border-width-base;
+		opacity: 0;
+		height: 0;
+		visibility: hidden;
+		overflow: hidden;
+		margin: 0;
+		padding: 0;
+		z-index: @z-index-dropdown;
+	}
+
+	// Dropdown <ul> element.
+	> .vector-menu-content-list {
+		list-style: none;
+	}
+
+	// dropdown list items.
+	.mw-list-item {
+		padding: 0;
+		margin: 0;
+
+		a {
+			cursor: pointer;
+		}
+	}
+
+	.selected a,
+	.selected a:visited {
+		color: @color-link-selected;
+		text-decoration: none;
+	}
+}
+
+/**
+ * Invisible checkbox covering the dropdown menu handle.
+ */
+.vector-menu-checkbox {
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: @z-index-stacking-1;
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	// Hide the checkbox completely in browsers that don't support :checked
+	display: none;
+
+	// Hide and show menu content based off checked status.
+	&:checked ~ .vector-menu-content {
+		opacity: 1;
+		visibility: visible;
+		height: auto;
+	}
+
+	:not( :checked ) > & {
+		// When the browser supports :checked, display it
+		display: block;
+	}
+
+	// Add focus state to menu dropdown buttons (i.e. #p-variants, #p-cactions)
+	&:focus + .vector-menu-heading {
+		// Simulate browser focus ring
+		outline: dotted 1px; // Firefox style
+		outline: auto -webkit-focus-ring-color; // Webkit style
+	}
+}

@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Comp1089",
+			"Enye Lav",
+			"Merrahtar"
+		]
+	},
+	"vector-languages": "Кывъяс",
+	"vector-language-button-label": "{{PLURAL:$1|кыв}}",
+	"vector-action-move": "Ним вежны",
+	"vector-view-create": "Лӧсьӧдны",
+	"vector-view-edit": "Вежны",
+	"vector-view-history": "История",
+	"vector-view-view": "Лыддьыны",
+	"vector-more-actions": "Нӧшта",
+	"vector-searchsuggest-containing": "Корсьны лист бокъяс, кӧні эм <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+}

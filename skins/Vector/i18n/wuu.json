@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Benojan",
+			"Poiuyt",
+			"Subarupan",
+			"飞舞回堂前"
+		]
+	},
+	"vector.css": "/* 放勒伊𡍲个CSS会影响用Vector皮肤个用户 */",
+	"vector-action-addsection": "加话题",
+	"vector-action-delete": "删除",
+	"vector-action-move": "移动",
+	"vector-action-protect": "保护",
+	"vector-action-undelete": "取消删除",
+	"vector-action-unprotect": "更改保护",
+	"vector-view-create": "创建",
+	"vector-view-edit": "编辑",
+	"vector-view-history": "望历史",
+	"vector-view-view": "阅读",
+	"vector-view-viewsource": "望源码",
+	"vector-more-actions": "更多"
+}

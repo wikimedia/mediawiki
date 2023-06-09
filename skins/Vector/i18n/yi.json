@@ -1,0 +1,41 @@
+{
+	"@metadata": {
+		"authors": [
+			"Castillerian",
+			"Har-wradim",
+			"Joystick",
+			"Pacha Tchernof",
+			"פוילישער"
+		]
+	},
+	"skinname-vector": "וועקטאר אלט (2010)",
+	"vector-skin-desc": "פֿארזארגט צוויי וועקטאר וואריאנטן:\n* 2011 - די מאדערנע ווערסיע פון מאנאבוק מיט פרישן אויסזען און א סך באניצער־פריינדלעכקייט פארבעסערונגען\n* 2022 - די נייעסטע ווערסיע, אנטוויקלט אלס טייל פונעם WMF [[mw:Desktop Improvements|דעסקטאפ פֿארבעסערונגען]] פראיעקט",
+	"prefs-vector-enable-vector-1-help": "במשך די קומענדיגע יארן וועט מען ביסלעכווייז דערהיינטיקן דעם וועקטאר באניצער־אייבערפֿלאך. קלאסישער וועקטאר וועט אייך לאזן באקוקן די אלטע ווערסיע פון וועקטאר (פֿון דעצעמבער 2019). To learn more about the updates, go to our [[mw:Reading/Web/Desktop_Improvements|project page]].",
+	"vector.css": "/* אלע CSS דא וועל ווערן געלאדן פֿאר באניצער פונעם וועקטאר סקין */",
+	"vector-languages": "שפּראַכן",
+	"vector-language-button-label": "{{PLURAL:$1|$1 שפּראַך|$1 שפּראַכן}}",
+	"vector-no-language-button-label": "צולייגן שפראַכן",
+	"vector-language-redirect-to-top": "אין דער אויסגאבע פֿון {{SITENAME}} געפֿינען זיך די שפּראַך פֿאַרבינדונגען אין שפּיץ פֿונעם בלאַט, קעגנאיבער דעם אַרטיקל טיטל. [[#p-lang-btn|גיין ארויף אויבן]].",
+	"vector-action-addsection": "צושטעלן טעמע",
+	"vector-action-delete": "אויסמעקן",
+	"vector-action-move": "באַוועגן",
+	"vector-action-protect": "שיצן",
+	"vector-action-undelete": "מבטל זיין אויסמעקן",
+	"vector-action-unprotect": "ענדערונג באַשיצונג",
+	"vector-view-create": "שאַפֿן",
+	"vector-view-edit": "רעדאַקטירן",
+	"vector-view-history": "ווייזן היסטאָריע",
+	"vector-view-view": "לייענען",
+	"vector-view-viewsource": "ווײַזן מקור",
+	"vector-more-actions": "נאָך",
+	"vector-toc-label": "אינהאַלט",
+	"vector-toc-beginning": "אָנפֿאַנג",
+	"vector-main-menu-tooltip": "הויפט־מעניו",
+	"vector-toc-menu-tooltip": "אינהאַלט טאַבעלע",
+	"vector-page-tools-label": "געצייג",
+	"vector-page-tools-general-label": "אַלגעמיין",
+	"vector-pin-element-label": "אַריבערפיֿרן צו זייט־פאַס",
+	"vector-unpin-element-label": "באַהאַלטן",
+	"vector-toc-unpinned-popup": "די אינהאַלט־טאַבעלע האט מען אַריבערגעפֿירט אַהער.",
+	"vector-main-menu-unpinned-popup": "דעם הויפט־מעניו האט מען אַריבערגעפֿירט אַהער."
+}

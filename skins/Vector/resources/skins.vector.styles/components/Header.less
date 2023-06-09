@@ -1,0 +1,76 @@
+@import '../../common/variables.less';
+@import '../../common/mixins.less';
+@import 'mediawiki.mixins.less';
+
+.mw-header {
+	// Vertical centering of header elements (IE>=11), requires Flexbox.
+	.flex-display();
+	flex-wrap: nowrap;
+	// https://caniuse.com/#search=align-items
+	align-items: center;
+	padding-top: 8px;
+	padding-bottom: 8px;
+
+	.vector-header-start,
+	.vector-header-end {
+		display: flex;
+		align-items: center;
+	}
+
+	.vector-header-end {
+		flex-grow: 1;
+	}
+
+	@media ( min-width: @min-width-desktop-wide ) {
+		.client-js & .vector-search-box.vector-search-box-auto-expand-width {
+			// Ensure search box is aligned with content when it autoexpands (i.e. search thumbnails)
+			margin-left: -@size-search-expand;
+		}
+	}
+
+	@media ( min-width: @min-width-desktop ) {
+		.vector-search-box {
+			margin-right: @margin-end-search;
+		}
+	}
+
+	@media ( max-width: @max-width-tablet ) {
+		/**
+	 	 * Toggles the visibility of the search box at lower resolutions.
+		 */
+		&.vector-header-search-toggled {
+			.vector-header-start,
+			.search-toggle {
+				display: none;
+			}
+
+			.vector-search-box-collapses > div {
+				display: block;
+			}
+
+			.vector-search-box {
+				// T284242#7206507: Widen the suggestion results to the edge of the search
+				// button at small resolutions.
+				position: relative;
+				margin-right: @margin-end-search;
+
+				// Override default max width at lower resolutions
+				> div {
+					max-width: none;
+				}
+			}
+
+			// Make the menu below the search input wider, to match the width of the input+button
+			// rather than just the width of the input
+			.cdx-search-input__input-wrapper {
+				position: static;
+			}
+
+			// Since the end button's corner is now right above the menu's corner, don't use a
+			// rounded corner here (T310525)
+			.cdx-typeahead-search--expanded .cdx-search-input__end-button {
+				border-bottom-right-radius: 0;
+			}
+		}
+	}
+}

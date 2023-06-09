@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"1AnuraagPandey"
+		]
+	},
+	"vector-action-addsection": "शिर्षक जोडा जाय",
+	"vector-action-delete": "मेटावा जाय",
+	"vector-action-move": "घुस्कावा जाय",
+	"vector-action-protect": "सुरक्षित करा जाय",
+	"vector-action-undelete": "हटाइब वापस लिहा जाय",
+	"vector-action-unprotect": "सुरक्षा परिवर्तन करा जाय",
+	"vector-view-create": "बनावा जाय",
+	"vector-view-edit": "सम्पादन",
+	"vector-view-history": "इतिहास देखा जाय",
+	"vector-view-view": "पढा जाय",
+	"vector-view-viewsource": "स्रोत देखा जाय",
+	"vector-more-actions": "अउर"
+}

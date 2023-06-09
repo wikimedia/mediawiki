@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Abdul Fatawu 352",
+			"Amire80",
+			"Hasslaebetch"
+		]
+	},
+	"vector-languages": "Goama",
+	"vector-language-button-label": "{{PLURAL:$1|$1 buud-gomde|$1 buud-goama}}",
+	"vector-no-language-button-label": "Paas goama",
+	"vector-action-addsection": "Paase wɛɛbgẽ",
+	"vector-action-delete": "Yẽese",
+	"vector-action-move": "Kedme",
+	"vector-action-protect": "Kogle",
+	"vector-view-create": "Naane",
+	"vector-view-edit": "Tekre",
+	"vector-view-history": "Gese kibare",
+	"vector-view-view": "Karme",
+	"vector-more-actions": "Paase",
+	"vector-searchsuggest-containing": "Bao nemse n tar <strong class=\"cdx-typeahead-search_search-footer_query\">$1</strong>",
+	"vector-page-tools-label": "Teedo",
+	"vector-page-tools-general-label": "Bõn-gilli",
+	"vector-unpin-element-label": "lilli"
+}

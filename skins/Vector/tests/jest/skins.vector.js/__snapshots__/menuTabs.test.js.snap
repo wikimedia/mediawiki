@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`menuTabs adds vector-tab-noicon class to li element when part of tabs 1`] = `
+"
+				<div id=\\"p-views\\" class=\\"vector-menu mw-portlet mw-portlet-views vector-menu-tabs\\">
+					<div class=\\"vector-menu-content\\">
+						<ul class=\\"vector-menu-content-list\\">
+							<li class=\\"mw-list-item mw-list-item-js vector-tab-noicon\\" id=\\"test-id\\">
+								<a href=\\"#test-href\\">
+									<span>
+										test link content
+									</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+		"
+`;
+
+exports[`menuTabs does not add vector-tab-noicon class to li element when not part of tabs 1`] = `
+"
+			<div id=\\"p-variants\\" class=\\"vector-menu mw-portlet mw-portlet-variants vector-menu-dropdown\\">
+				<div class=\\"vector-menu-content\\">
+					<ul class=\\"vector-menu-content-list\\">
+						<li class=\\"mw-list-item mw-list-item-js\\" id=\\"test-id\\">
+							<a href=\\"#test-href\\">
+								<span>
+									test link content
+								</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		"
+`;

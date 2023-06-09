@@ -1,0 +1,226 @@
+@wmui-color-base0: #000;
+
+@color-base: @wmui-color-base0;
+
+@border-color-base: @wmui-color-base0;
+@border-color-footer: #eee;
+
+/* These styles retain the existing typography in skin.less
+In future (when deploying these styles) we may want to refactor skins.vector.styles
+to apply certain styles in print as well as screen mode. */
+.toc,
+body {
+	padding: 10px;
+	font-family: @font-family-serif;
+}
+
+// Tables, thumbs and lists are sans-serif in print mode (unlike screen mode) because these will render
+// more legibly on print media in a smaller font sizes
+.printfooter,
+.mw-footer,
+.thumb,
+figure,
+table,
+ol,
+dl,
+ul,
+h3,
+h4,
+h5,
+h6 {
+	font-family: @font-family-sans;
+}
+
+// Images, such as formulas, render best in serif. Math fallback images, for example, have an
+// inline style attribute setting their dimensions in ex (x-height) units, which is relative the
+// font size:
+// 	<img
+// 		src="https://wikimedia.org/api/rest_v1/media/math/render/svg/d03b01348b751e6f4eaff085b3effa9542e2935d"
+// 		class="mwe-math-fallback-image-inline"
+// 		aria-hidden="true"
+// 		style="vertical-align: -2.171ex; width: 11.418ex; height: 5.676ex;"
+// 		alt="r_{s}={\frac {2GM}{c^{2}}}">
+img {
+	font-family: @font-family-serif;
+}
+
+// Normalize Blue links in the article
+.mw-body a:not( .image ) {
+	border-bottom: 1px solid #aaa;
+}
+
+.firstHeading {
+	font-size: 25pt;
+	line-height: 28pt;
+	margin-bottom: 20px;
+	padding-bottom: 5px;
+}
+
+// Headings
+.firstHeading,
+h2 {
+	// To avoid the bottom border of section headings with floated elements
+	overflow: hidden;
+	border-bottom: 2px solid @border-color-base;
+}
+
+h3,
+h4,
+h5,
+h6 {
+	margin: 30px 0 0;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+	padding: 0;
+	position: relative;
+}
+
+h2 {
+	font-size: 18pt;
+	line-height: 24pt;
+	margin-bottom: 0.25em;
+}
+
+h3 {
+	font-size: 14pt;
+	line-height: 20pt;
+}
+
+h4,
+h5,
+h6 {
+	font-size: 12pt;
+	line-height: 16pt;
+}
+
+p {
+	font-size: 12pt;
+	line-height: 16pt;
+	margin-top: 5px;
+	text-align: justify;
+
+	// T175008
+	// When a paragraph is surrounded by floating elements from both
+	// sides, we want to make sure that there is at least some space
+	// before showing the text. Otherwise, small lengths of text may show
+	// between the surrounding elements, making the reading experience less
+	// enjoyable. If there is not enough space the following code will push
+	// the paragraph contents until after the floating element(s).
+	&::before {
+		content: '';
+		display: block;
+		width: 120pt;
+		overflow: hidden;
+	}
+}
+
+blockquote {
+	border-left: 2px solid @border-color-base;
+	padding-left: 20px;
+}
+
+ol,
+ul {
+	margin: 10px 0 0 1.6em;
+	padding: 0;
+
+	li {
+		padding: 2px 0;
+		font-size: 12pt;
+
+		// T178667: Inline lists in new print styles should not
+		// have a smaller font size than surrounding content
+		table & {
+			font-size: inherit;
+		}
+	}
+}
+
+.toc {
+	page-break-before: avoid;
+	page-break-after: avoid;
+	background: none;
+	border: 0;
+	display: table;
+
+	a {
+		border: 0;
+		font-weight: normal;
+	}
+
+	> ul {
+		> li {
+			margin-bottom: 4px;
+			font-weight: bold;
+		}
+	}
+
+	ul {
+		margin: 0;
+		list-style: none;
+
+		ul {
+			padding-left: 30px;
+		}
+	}
+
+	li.toclevel-1 {
+		> a {
+			font-size: 12pt;
+			font-weight: bold;
+		}
+	}
+}
+
+#mw-navigation,
+/* Used by a variety of templates and historically part of the Vector skin. */
+.noprint,
+.mw-jump-link,
+.mw-portlet-lang,
+.toc .tocnumber {
+	display: none;
+}
+
+.printfooter {
+	margin-top: 10px;
+	border-top: 3px solid @border-color-base;
+	padding-top: 10px;
+	font-size: 10pt;
+	clear: both;
+}
+
+.mw-footer {
+	margin-top: 12px;
+	border-top: 1px solid @border-color-footer;
+	padding-top: 5px;
+}
+
+#footer-info {
+	margin: 0;
+	padding: 0;
+
+	li {
+		color: #999;
+		list-style: none;
+		display: block;
+		padding-bottom: 10px;
+		font-size: 10pt;
+
+		a {
+			// override default black print style.
+			color: #999 !important; /* stylelint-disable-line declaration-no-important */
+		}
+	}
+}
+
+// Last updated as primary info.
+#footer-info-lastmod {
+	color: @color-base;
+	font-size: 12pt;
+	font-weight: bold;
+}

@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Noktonissian"
+		]
+	},
+	"vector-languages": "ᨽᩣᩈᩣ",
+	"vector-language-button-label": "{{PLURAL:$1|$1 ᨽᩣᩈᩣ}}",
+	"vector-no-language-button-label": "ᨽᩮ᩠ᨾᩥ᩵ᨽᩣᩈᩣ",
+	"vector-action-addsection": "ᨲᩮᩬᩥ᩵ᨾᩉ᩠ᩅᩫᨡᩬᩴ᩶",
+	"vector-action-delete": "ᩃᩫ᩠ᨷ",
+	"vector-action-move": "ᨸᩖ᩠᩵ᨿᩁᨩᩨ᩵",
+	"vector-action-protect": "ᨣᩩ᩶ᨾᨠᩢ᩠ᨶ",
+	"vector-view-create": "ᨸᩖᩯᨦ",
+	"vector-view-edit": "ᨠᩯ᩶ᨡᩱ",
+	"vector-view-history": "ᨹᩬᩴ᩵ᨷᩅᩢᨲ᩠ᨲᩥ᩺",
+	"vector-view-view": "ᩋ᩵ᩣ᩠ᨶ",
+	"vector-more-actions": "ᨾᩦᨳᩯ᩠ᨾ",
+	"vector-searchsuggest-containing": "ᨪᩰᩬᩡᩉᩣᩉ᩠ᨶ᩶ᩣᨴᩦ᩵ᨾᩦ<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-page-tools-label": "ᨣᩕᩮᩬᩥ᩵ᨦᨾᩨ",
+	"vector-page-tools-general-label": "ᨵ᩠ᩅᩫ᩵ᨻᩱ",
+	"vector-unpin-element-label": "ᨪ᩵ᩬᩁ"
+}

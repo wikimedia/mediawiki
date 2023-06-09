@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Demmy"
+		]
+	},
+	"vector-language-button-label": "{{PLURAL:$1|ojúewé $1|àwọn ojúewé $1}}",
+	"vector-action-addsection": "Àfikún orí-ọ̀rọ̀",
+	"vector-action-delete": "Ìparẹ́",
+	"vector-action-move": "Ìyípòdà",
+	"vector-action-protect": "Àbò",
+	"vector-action-undelete": "Ìmúkúrò ìparẹ́",
+	"vector-action-unprotect": "Ìyípadà àbò",
+	"vector-view-create": "Ṣ'èdá",
+	"vector-view-edit": "Àtúnṣe",
+	"vector-view-history": "Wo ìtàn",
+	"vector-view-view": "Àwòkà",
+	"vector-view-viewsource": "Wo àmìọ̀rọ̀",
+	"vector-more-actions": "Ọ̀pọ̀",
+	"vector-searchsuggest-containing": "Ṣe ìwárí fún àwọn ojúewé tó ní <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+}

@@ -1,0 +1,129 @@
+//
+// Grid layout
+//
+
+/* Use of minmax is important to restrict the maximum grid column width more information: T314756 */
+@grid-template-column-desktop: ~'@{width-column-start-desktop} minmax(0, 1fr)';
+@grid-template-column-desktop-wide: ~'@{width-column-start-desktop-wide} minmax(0, 1fr)';
+
+@media ( min-width: @min-width-desktop ) {
+	.mw-page-container-inner {
+		display: grid;
+		column-gap: @grid-column-gap;
+		grid-template: ~'min-content min-content 1fr min-content / @{grid-template-column-desktop}';
+		grid-template-areas: 'siteNotice siteNotice'
+			'mainMenu pageContent'
+			'toc pageContent'
+			'footer footer';
+	}
+
+	.vector-sitenotice-container {
+		grid-area: siteNotice;
+	}
+
+	.mw-table-of-contents-container {
+		grid-area: toc;
+		overflow-anchor: none; // T330108
+	}
+
+	.vector-main-menu-container {
+		grid-area: mainMenu;
+		overflow-anchor: none; // T330108
+	}
+
+	.mw-content-container {
+		grid-area: pageContent;
+	}
+
+	.mw-footer-container {
+		grid-area: footer;
+	}
+}
+
+@media ( min-width: @min-width-desktop-wide ) {
+	.mw-page-container-inner {
+		grid-template-columns: @grid-template-column-desktop-wide;
+	}
+
+	.mw-header {
+		display: grid;
+		column-gap: @grid-column-gap;
+		grid-template: ~'auto / @{grid-template-column-desktop-wide}';
+		grid-template-areas: 'headerStart headerEnd';
+
+		.vector-header-start {
+			grid-area: headerStart;
+		}
+
+		.vector-header-end {
+			grid-area: headerEnd;
+		}
+	}
+}
+
+&.vector-feature-limited-width-disabled .mw-content-container,
+&.vector-feature-limited-width-content-disabled .mw-content-container,
+&.vector-feature-limited-width-disabled .mw-table-of-contents-container,
+&.vector-feature-limited-width-content-disabled .mw-table-of-contents-container {
+	// Allow the max-width of content on history/special pages to be wider than
+	// the max-width of content on article pages.
+	// Note, we don't disable the max-width on .vector-page-toolbar-container intentionally
+	// to support easier navigation between tabs.
+	// See T293441 for further information on that.
+	// Both rules are !important as they are final. Max-width on a page should be restored by removing the `skin-vector-disable-max-width`,
+	// preferably by modification to the feature flag VectorMaxWidthOptions. Code should never attempt to override this rule.
+	/* stylelint-disable-next-line declaration-no-important */
+	max-width: none !important;
+	/* stylelint-disable-next-line declaration-no-important */
+	width: 100% !important;
+}
+
+// Horizontally center content when column start is empty (i.e. no pinned ToC or pinned main menu)
+&.vector-feature-main-menu-pinned-disabled .vector-sidebar-container-no-toc ~ .mw-content-container,
+&.vector-feature-main-menu-pinned-disabled.vector-feature-toc-pinned-disabled .mw-content-container {
+	grid-column: mainMenu / pageContent;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+@media ( min-width: @min-width-desktop ) {
+	.mw-body {
+		display: grid;
+		grid-template: ~'min-content min-content min-content 1fr / minmax(0, @{max-width-content-container}) min-content';
+		/**
+		 * NOTE: T327715 - 'titlebar-cx' grid area is a temporary workaround to accommodate
+		 * the Content Translation extension and should not be used beyond that.
+		 * FIXME: This can be removed when T322740 is resolved.
+		 */
+		grid-template-areas: 'titlebar-cx .'
+			'titlebar columnEnd'
+			'toolbar columnEnd'
+			'content columnEnd';
+
+		.vector-page-titlebar {
+			grid-area: titlebar;
+		}
+
+		.vector-page-toolbar {
+			grid-area: toolbar;
+		}
+
+		#bodyContent {
+			grid-area: content;
+		}
+
+		.vector-column-end {
+			grid-area: columnEnd;
+			overflow-anchor: none;
+		}
+	}
+
+	&.vector-feature-page-tools-pinned-enabled .mw-body {
+		column-gap: @grid-column-gap;
+	}
+
+	&.vector-feature-limited-width-disabled .mw-body,
+	&.vector-feature-limited-width-content-disabled .mw-body {
+		grid-template-columns: ~'minmax(0, 1fr) min-content';
+	}
+}

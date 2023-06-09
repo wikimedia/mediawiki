@@ -1,0 +1,33 @@
+// Ensure there is only 1 main menu landmark at anytime
+&.vector-feature-main-menu-pinned-enabled .vector-header-start .vector-main-menu-landmark,
+&.vector-feature-main-menu-pinned-disabled .vector-main-menu-container .vector-main-menu-landmark {
+	display: none;
+}
+
+.vector-main-menu {
+
+	// Hide #p-navigation label
+	#p-navigation .vector-menu-heading {
+		display: none;
+	}
+
+	// Match styles of .mw-list-item a in PinnableElement.less
+	.vector-main-menu-action-opt-out a,
+	.vector-main-menu-action-lang-alert .vector-main-menu-action-content {
+		.mixin-vector-dropdown-menu-item();
+	}
+
+	.vector-main-menu-action-opt-out a {
+		font-weight: bold;
+	}
+
+	.vector-main-menu-action-lang-alert .vector-main-menu-action-content {
+		padding-top: 0;
+	}
+
+	.vector-language-sidebar-alert {
+		// Override default .mw-message-box styles
+		padding: 8px;
+		margin: 0;
+	}
+}

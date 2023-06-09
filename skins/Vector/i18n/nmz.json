@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"GastonJeremiah"
+		]
+	},
+	"vector-language-button-label": "{{PLURAL:$1|gwɛɛlb $1|$1 lam}}",
+	"vector-action-addsection": "Hewlb gwɛɛtjugu",
+	"vector-action-delete": "Kpii",
+	"vector-action-move": "Tɔtg",
+	"vector-action-protect": "Hɛg",
+	"vector-view-create": "Hɛ/ree",
+	"vector-view-edit": "Manyii",
+	"vector-view-history": "Gwɛɛt nyanb",
+	"vector-view-view": "Kaal",
+	"vector-more-actions": "Jeengu"
+}

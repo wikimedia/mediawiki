@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"ArmenBakkalian",
+			"Azniv Stepanian",
+			"Rajemian",
+			"Դավիթ Սարոյան",
+			"Սերգեյ Սաֆարյան"
+		]
+	},
+	"vector-language-button-label": "{{PLURAL:$1|$1 լեզու}}",
+	"vector-action-addsection": "Աւելցնել քննարկում",
+	"vector-action-delete": "Ջնջել",
+	"vector-action-move": "Տեղափոխել այս էջը",
+	"vector-action-protect": "Պահել",
+	"vector-view-create": "Ստեղծել",
+	"vector-view-edit": "Խմբագրել",
+	"vector-view-history": "Տեսնել պատմութիւնը",
+	"vector-view-view": "Կարդալ",
+	"vector-more-actions": "Աւելի"
+}

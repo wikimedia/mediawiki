@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Itsmine",
+			"Justincheng12345",
+			"Nemo bis"
+		]
+	},
+	"skinname-vector": "動力",
+	"vector.css": "/* 此之 CSS 用於動力面之簿也 */",
+	"vector.js": "/* 此之JavaScript將載於用動力面之簿 */",
+	"vector-action-addsection": "入題",
+	"vector-action-delete": "刪",
+	"vector-action-move": "遷",
+	"vector-action-protect": "緘",
+	"vector-action-undelete": "覽刪",
+	"vector-action-unprotect": "啟",
+	"vector-view-create": "立",
+	"vector-view-edit": "纂",
+	"vector-view-history": "覽史",
+	"vector-view-view": "閱",
+	"vector-view-viewsource": "覽源",
+	"vector-more-actions": "餘"
+}

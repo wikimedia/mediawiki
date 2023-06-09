@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"NR Deblocked",
+			"ОйЛ"
+		]
+	},
+	"vector-action-addsection": "новꙑ бєсѣдꙑ чѧсти сътворѥниѥ",
+	"vector-action-delete": "поничьжєниѥ",
+	"vector-action-move": "прѣимєнованиѥ",
+	"vector-action-protect": "ꙁабранѥниѥ",
+	"vector-action-unprotect": "иꙁмѣни ꙁабранѥниꙗ обраꙁъ",
+	"vector-view-create": "сътворѥниѥ",
+	"vector-view-edit": "исправлѥниѥ",
+	"vector-view-history": "їсторїꙗ",
+	"vector-view-view": "чьтѥниѥ",
+	"vector-view-viewsource": "страницѧ источьнъ обраꙁъ",
+	"vector-more-actions": "вѧщє",
+	"vector-main-menu-tooltip": "​Главное​ ​меню​",
+	"tooltip-vector-anon-user-menu-title": "Бо́льше ѻпцїй"
+}

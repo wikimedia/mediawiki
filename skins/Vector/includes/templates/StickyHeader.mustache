@@ -1,0 +1,57 @@
+{{!
+	Sticky header is hidden from screen readers because it contains duplicated content
+	that is already accessible to assistive tech via landmark roles, element type, and other navigation methods.
+	The interactive elements in the sticky header should have the `tabindex="-1"` attribute set to ensure
+	the header is also not tab accessible.
+
+	See https://dequeuniversity.com/rules/axe/4.1/aria-hidden-focus and https://phabricator.wikimedia.org/T290201
+	for more context.
+
+	The exception to this is the TOC in the sticky header, which is not duplicated and is moved into the
+	sticky header in the DOM. We apply `aria-hidden` to all the contents of the sticky header except for the TOC.
+}}
+<div id="vector-sticky-header" class="vector-sticky-header">
+	<div class="vector-sticky-header-start">
+		<div class="vector-sticky-header-icon-start mw-ui-icon-flush-left mw-ui-icon-flush-right" aria-hidden="true">
+			{{#data-button-start}}
+			{{>Button}}
+			{{/data-button-start}}
+		</div>
+		{{#data-search}}
+		{{>SearchBox}}
+		{{/data-search}}
+		<div class="vector-sticky-header-context-bar">
+			{{#data-toc}}
+			{{! TOC is moved into this dropdown from the sidebar in stickyHeader.js. }}
+			<nav role="navigation" aria-label="{{ msg-vector-toc-label }}" class="vector-toc-landmark">
+				{{#data-sticky-header-toc-dropdown}}
+					{{>Dropdown/Open}}
+						{{#data-sticky-header-toc-pinnable-container}}
+						{{>PinnableContainer/Unpinned/Open}}
+						{{>PinnableContainer/Close}}
+						{{/data-sticky-header-toc-pinnable-container}}
+					{{>Dropdown/Close}}
+				{{/data-sticky-header-toc-dropdown}}
+			</nav>
+			{{/data-toc}}
+			<div class="vector-sticky-header-context-bar-primary" aria-hidden="true" {{{html-user-language-attributes}}}>{{{html-title}}}</div>
+		</div>
+	</div>
+	<div class="vector-sticky-header-end" aria-hidden="true">
+		<div class="vector-sticky-header-icons">
+			{{#array-icon-buttons}}
+			{{>Button}}
+			{{/array-icon-buttons}}
+		</div>
+		<div class="vector-sticky-header-buttons">
+			{{#array-buttons}}
+			{{>Button}}
+			{{/array-buttons}}
+		</div>
+		<div class="vector-sticky-header-icon-end">
+			<div class="vector-user-links">
+				{{! User menu items with unique ids are cloned here from the fixed header in stickyHeader.js. }}
+			</div>
+		</div>
+	</div>
+</div>

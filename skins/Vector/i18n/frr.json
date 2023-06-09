@@ -1,0 +1,38 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Murma174",
+			"Pyt"
+		]
+	},
+	"vector-skin-desc": "Modern wersion faan Monobook mä frisk skak an föl muar mögelkhaiden",
+	"vector-languages": "Spriaken",
+	"vector-language-button-label": "{{PLURAL:$1|$1 spriak|$1 spriaken}}",
+	"vector-no-language-button-label": "Muar spriaken",
+	"vector-action-addsection": "Nei kirew began",
+	"vector-action-delete": "Strik",
+	"vector-action-move": "Fersküüw",
+	"vector-action-protect": "Seekre",
+	"vector-action-undelete": "Weder iinstel",
+	"vector-action-unprotect": "Sidjenseekerhaid",
+	"vector-view-create": "Maage",
+	"vector-view-edit": "Bewerke",
+	"vector-view-history": "Ferluup uunluke",
+	"vector-view-view": "Lees",
+	"vector-view-viewsource": "Kweltekst uunluke",
+	"vector-more-actions": "Muar",
+	"vector-searchsuggest-containing": "Sjük sidjen, huar <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> banen as",
+	"vector-toc-label": "Auersicht",
+	"vector-toc-beginning": "Began",
+	"vector-main-menu-tooltip": "Hoodütjwool",
+	"vector-toc-menu-tooltip": "Auersicht",
+	"vector-main-menu-label": "Hoodütjwool",
+	"vector-page-tools-label": "Werktjüügen",
+	"vector-page-tools-general-label": "Algemian",
+	"vector-page-tools-actions-label": "Aksioonen",
+	"vector-pin-element-label": "Tu't sidjenliist fersküüw",
+	"vector-unpin-element-label": "Fersteeg",
+	"tooltip-vector-anon-user-menu-title": "Muar ütjwool",
+	"vector-page-tools-unpinned-popup": "Rääskapen san nü heer boowen."
+}

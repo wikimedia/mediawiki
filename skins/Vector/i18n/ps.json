@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Af420",
+			"Ahmed-Najib-Biabani-Ibrahimkhel",
+			"Amjad Khan"
+		]
+	},
+	"skinname-vector": "وېکټور",
+	"vector.css": "/* د CSS هره بڼه چې دلته ځای پر ځای کېږي هغه به د وېکټور د پوښ ټولو کارنانو لپاره کار کوي */",
+	"vector.js": "/* د جاوا هر يو سکرېپټ چې دلته ځای پر ځای کېږي هغه به د وېکټور د پوښ ټولو کارنانو لپاره کار کوي */",
+	"vector-language-button-aria-label": "ليکنه په بله ژبه کي وګورئ. دا ليکنه په {{PLURAL:$1|$1 ژبه|$1 ژبو}} کې شتون لري.",
+	"vector-language-button-label": "{{PLURAL:$1|$1 ژبه|$1 ژبې}}",
+	"vector-language-redirect-to-top": "په دې {{SITENAME}} کې د نورو ژبو لینکونه د لیکنې د سرلیک څخه لوړ موقيعت لري. [[#p-lang-btn|لوړ ولاړ سئ]].",
+	"vector-action-addsection": "سرليک ورگډول",
+	"vector-action-delete": "ړنگول",
+	"vector-action-move": "لېږدول",
+	"vector-action-protect": "ژغورل",
+	"vector-action-undelete": "ناړنگول",
+	"vector-action-unprotect": "ژغورنه بدلول",
+	"vector-view-create": "جوړول",
+	"vector-view-edit": "سمول",
+	"vector-view-history": "پېښليک کتل",
+	"vector-view-view": "لوستل",
+	"vector-view-viewsource": "سرچينه کتل",
+	"vector-more-actions": "نور",
+	"vector-toc-beginning": "پیل"
+}

@@ -1,0 +1,22 @@
+{{!
+	@typedef object main-menu-action
+	@prop string href
+	@prop string text
+
+	string html-logo-attributes for site logo. Must be used inside tag e.g. `class="logo" lang="en-gb"`
+	MenuDefinition data-portlets-first
+	MenuDefinition[] array-portlets-rest
+	main-menu-action data-main-menu-action For displaying an emphasized action in the main menu.
+}}
+<div class="vector-main-menu-container {{^data-toc}}vector-sidebar-container-no-toc{{/data-toc}}">
+	<div id="mw-navigation">
+		<nav id="mw-panel" class="vector-main-menu-landmark" aria-label="{{msg-vector-site-nav-label}}" role="navigation">
+		{{#data-main-menu}}
+			{{>PinnableContainer/Pinned/Open}}
+				{{! Use `#vector-main-menu-pinned-container .vector-main-menu` to target styles at this element}}
+				{{#is-pinned}}{{>MainMenu}}{{/is-pinned}}
+			{{>PinnableContainer/Close}}
+		{{/data-main-menu}}
+		</nav>
+	</div>
+</div>

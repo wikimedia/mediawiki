@@ -1,0 +1,191 @@
+/**
+ * Layout rules divide the page into sections and how VectorComponents should be arranged in the skin.
+ * The rules here should only define the layout, not color or typography.
+ * See '../../common/' folder for latter stylesheets.
+ */
+
+@import 'mediawiki.mixins.less';
+@import '../../common/variables.less';
+
+body {
+	background-color: @background-color-secondary;
+	overflow-y: scroll;
+}
+
+.mw-body,
+.parsoid-body {
+	// General background/foreground color definition as one exception to the rule.
+	background-color: @background-color-base;
+	color: @color-base;
+	direction: ltr;
+	padding: 1em;
+}
+
+#p-personal {
+	position: absolute;
+	top: @top-personal-tools;
+	right: 0.75em;
+
+	ul {
+		padding-left: 10em; /* Keep from overlapping logo */
+	}
+}
+
+.mw-body,
+#mw-data-after-content {
+	margin-left: 10em;
+}
+
+.mw-body {
+	// Merge the border below with tabs' one (in their background image).
+	margin-top: -@border-width-base;
+	// Border on top, left, and bottom side.
+	border: @border-width-base @border-style-base @border-color-content;
+	border-right-width: 0;
+
+	.firstHeading {
+		/* Change the default from mediawiki.skinning CSS to let indicators float into heading area */
+		overflow: visible;
+	}
+}
+
+.mw-indicators {
+	z-index: @z-index-indicators;
+}
+
+.vector-body {
+	position: relative;
+	z-index: @z-index-base;
+}
+
+/* Head */
+#mw-page-base {
+	.vertical-gradient( @background-color-base, @background-color-secondary, 50%, 100% );
+	background-position: bottom left;
+	height: 5em;
+}
+
+#mw-head-base {
+	margin-top: -5em;
+	margin-left: 10em;
+	height: 5em;
+}
+
+/* Hide, but keep accessible for screen-readers */
+#mw-navigation h2 {
+	position: absolute;
+	top: -9999px;
+}
+
+#mw-head {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
+}
+
+/* Navigation Containers */
+#left-navigation {
+	float: left;
+	margin-left: 10em;
+	margin-top: 2.5em;
+	/* When right nav would overlap left nav, it's placed below it
+	(normal CSS floats behavior). This rule ensures that no empty space
+	is shown between them due to right nav's margin-top. Page layout
+	is still broken, but at least the nav overlaps only the page title
+	instead of half the content. */
+	margin-bottom: -2.5em;
+}
+
+#right-navigation {
+	float: right;
+	margin-top: 2.5em;
+}
+
+/* Search */
+.vector-search-box {
+	float: left;
+	margin-right: 0.5em;
+	margin-left: 0.5em;
+
+	// FIXME: This selector requires knowledge of the internals of the search component
+	// and should not be used here.
+	form {
+		margin: 0.5em 0 0;
+	}
+}
+
+// Defined as `div`.
+// Provide extra element for gadgets due to `form` already carrying an `id`.
+// FIXME: This selector requires knowledge of the internals of the search component
+.vector-search-box-inner {
+	min-width: 5em;
+	width: 20vw;
+	max-width: 20em;
+}
+
+/* Sidebar */
+#mw-panel {
+	position: absolute;
+	top: 0;
+	width: 10em;
+	left: 0;
+}
+
+// hide the heading of the first menu
+#p-logo + .mw-portlet .vector-menu-heading {
+	display: none;
+}
+
+.mw-footer {
+	margin-left: 10em;
+	margin-top: 0;
+	padding: 0.75em;
+}
+
+/* Vector screen styles for high definition displays. These rules cross the above components and are
+   grouped together here only for the sake of the media query common to each. */
+@media ( min-width: 982px ) {
+	.mw-body,
+	#mw-head-base,
+	#left-navigation,
+	#mw-data-after-content,
+	.mw-footer {
+		margin-left: 11em;
+	}
+
+	.mw-body {
+		padding: 1.25em 1.5em 1.5em 1.5em;
+	}
+
+	.mw-footer {
+		padding: 1.25em;
+	}
+
+	#mw-panel {
+		padding-left: 0.5em;
+	}
+
+	.vector-search-box {
+		margin-right: 1em;
+	}
+
+	#p-personal {
+		right: 1em;
+	}
+}
+
+// Directionality styles previously provided by the deprecated `legacy` feature (T287410)
+// for HTML elements which do not carry dir HTML attributes.
+// These have been copied across to legacy Vector to minimize disruption caused by T287701.
+// If you are reading this comment in 2022, please consider checking usage in wikitext and
+// removing them both.
+.mw-content-ltr {
+	/* @noflip */
+	direction: ltr;
+}
+
+.mw-content-rtl {
+	/* @noflip */
+	direction: rtl;
+}

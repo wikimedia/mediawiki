@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Esbardu",
+			"Tokvo",
+			"Xuacu"
+		]
+	},
+	"skinname-vector": "Vector",
+	"vector-skin-desc": "Versión moderna de MonoBook, con un aspeutu frescu y munchos ameyoramientos d'usabilidá",
+	"prefs-vector-enable-vector-1-label": "Utilizar versión anticuada de Vector",
+	"vector.css": "/* Los CSS allugaos equí afeutarán a los usuarios del aspeutu Vector */",
+	"vector.js": "/* Cualesquier JavaScript que tea equí se cargará pa los usuarios del aspeutu Vector */",
+	"vector-language-button-label": "{{PLURAL:$1|$1 llingua|$1 llingües}}",
+	"vector-action-addsection": "Amestar seición",
+	"vector-action-delete": "Desaniciar",
+	"vector-action-move": "Treslladar",
+	"vector-action-protect": "Protexer",
+	"vector-action-undelete": "Restaurar",
+	"vector-action-unprotect": "Camudar la proteición",
+	"vector-view-create": "Crear",
+	"vector-view-edit": "Editar",
+	"vector-view-history": "Ver historial",
+	"vector-view-view": "Lleer",
+	"vector-view-viewsource": "Ver fonte",
+	"vector-jumptonavigation": "Saltar a navegación",
+	"vector-jumptosearch": "Saltar a la gueta",
+	"vector-more-actions": "Más"
+}

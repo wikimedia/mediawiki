@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Purodha"
+		]
+	},
+	"skinname-vector": "Väktor",
+	"vector-skin-desc": "En modärne Väsjohn vun dä älldere Bedehnbovverfläsch „Monobooch“ met enem neue Ußsinn un Verbäßeronge bem Bedehne.",
+	"vector.css": "/* Dat CSS heh aan dä Schtäll wirrek blohß op de Bedehnbovverfläsch „Väktor“ */",
+	"vector.js": "/* De JavaSkreppte fun heh krejje alle Sigge met dä Bedehnbovverfläsch „Väktor“ jeschek */",
+	"vector-action-addsection": "Ne neue Afschnet onge drahn!",
+	"vector-action-delete": "Fottschmihße!",
+	"vector-action-move": "Ömnänne!",
+	"vector-action-protect": "Schöze!",
+	"vector-action-undelete": "Zerökholle!",
+	"vector-action-unprotect": "Schoz ändere!",
+	"vector-view-create": "Neu Schrihve!",
+	"vector-view-edit": "Änndere!",
+	"vector-view-history": "Väsjohne zeije!",
+	"vector-view-view": "Lässe!",
+	"vector-view-viewsource": "Der Wikkitäx aanlohre!",
+	"vector-more-actions": "Mih"
+}

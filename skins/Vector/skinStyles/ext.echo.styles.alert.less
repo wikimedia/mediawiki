@@ -1,0 +1,39 @@
+@import '../resources/common/variables.less';
+
+/** Mixin for collapsing the Echo new messages alert */
+.echo-alert-collapse() {
+	font-size: 12px;
+	position: absolute;
+	top: 100%;
+	right: 0;
+}
+
+.vector-user-links {
+	.vector-menu-content-list {
+		.mw-echo-alert {
+			padding: 0.2em 0.5em;
+			white-space: nowrap;
+			// Prevent alert message from pushing user links off screen
+			max-width: 270px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+
+			.mw-ui-icon.mw-ui-icon-before::before {
+				display: none;
+			}
+		}
+
+		@media ( max-width: @min-width-desktop-wide ) {
+			.mw-echo-alert {
+				.echo-alert-collapse();
+			}
+		}
+	}
+}
+
+// If the user link is wide, always collapse
+.vector-user-links-wide .vector-menu-content-list {
+	.mw-echo-alert {
+		.echo-alert-collapse();
+	}
+}

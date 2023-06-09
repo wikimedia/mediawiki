@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gtbot2007",
+			"Keenan Pepper",
+			"LesVisages",
+			"Robin van der Vliet",
+			"Tbodt",
+			"שוקו מוקה"
+		]
+	},
+	"vector-language-button-label": "toki $1",
+	"vector-action-addsection": "o pana e ijo toki sin",
+	"vector-action-delete": "o weka",
+	"vector-action-move": "o ante e nimi",
+	"vector-action-protect": "o awen",
+	"vector-view-create": "o pali",
+	"vector-view-edit": "o ante",
+	"vector-view-history": "o lukin e tenpo pini",
+	"vector-view-view": "o lukin",
+	"vector-more-actions": "ante",
+	"vector-searchsuggest-containing": "o alasa e lipu ni: lipu li jo insa e <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-toc-beginning": "open"
+}

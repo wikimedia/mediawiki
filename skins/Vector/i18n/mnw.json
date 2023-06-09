@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Htawmonzel",
+			"咽頭べさ"
+		]
+	},
+	"vector-language-button-label": "{{PLURAL:$1|$1 အရေဝ်ဘာသာ|$1 အရေဝ်ဘာသာဂမၠိုင်}}",
+	"vector-no-language-button-label": "စုတ် အရေဝ်ဘာသာဂမၠိုင်",
+	"vector-action-addsection": "စုတ် ပရူပရာ",
+	"vector-action-delete": "ပလီု",
+	"vector-action-move": "ပြံင်ပဆုဲ",
+	"vector-action-protect": "စဵုဒၞာ",
+	"vector-action-undelete": "ဟွံသ္ပပလီုထောံ",
+	"vector-view-create": "ခၞံကၠောန်",
+	"vector-view-edit": "ပလေဝ်ဒါန်",
+	"vector-view-history": "ထ္ၜး လၟေင်အပြံင်အလှာဲ",
+	"vector-view-view": "ဗှ်",
+	"vector-more-actions": "ဆက်ဗှ်",
+	"vector-searchsuggest-containing": "ဂၠာဲသွက်မုက်လိက်လုပ်အဝေါၚ် <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>ဂမၠိုၚ်"
+}

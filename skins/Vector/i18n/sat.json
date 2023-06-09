@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Albinus",
+			"Amire80",
+			"Manik Soren",
+			"Ramjit Tudu",
+			"Rocky 734",
+			"Samar88",
+			"Srabony90"
+		]
+	},
+	"vector-language-button-label": "{{PLURAL:$1|$1 ᱯᱟᱹᱨᱥᱤ|$1 ᱯᱟᱹᱨᱥᱤ ᱠᱚ}}",
+	"vector-action-addsection": "ᱥᱟᱛᱚᱢ ᱥᱮᱞᱮᱫ",
+	"vector-action-delete": "ᱜᱮᱫ ᱜᱤᱰᱤ",
+	"vector-action-move": "ᱩᱪᱟᱹᱲ",
+	"vector-action-protect": "ᱨᱩᱠᱷᱤᱭᱟᱹ",
+	"vector-action-undelete": "ᱵᱟᱝ ᱜᱮᱫ ᱜᱤᱰᱤ",
+	"vector-action-unprotect": "ᱵᱚᱫᱚᱞ ᱨᱩᱠᱷᱤᱭᱟᱹ",
+	"vector-view-create": "ᱛᱮᱭᱟᱨ",
+	"vector-view-edit": "ᱥᱟᱯᱲᱟᱣ",
+	"vector-view-history": "ᱱᱟᱜᱟᱢ ᱧᱮᱞᱢᱮ",
+	"vector-view-view": "ᱯᱟᱲᱦᱟᱣᱢᱮ",
+	"vector-view-viewsource": "ᱯᱷᱮᱰᱟᱛ ᱧᱮᱞᱢᱮ",
+	"vector-more-actions": "ᱵᱟᱹᱲᱛᱤ"
+}

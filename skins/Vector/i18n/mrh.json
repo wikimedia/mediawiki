@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Laitei",
+			"Taytay",
+			"Teitei Para"
+		]
+	},
+	"vector-languages": "Reihchâzy",
+	"vector-language-button-label": "{{PLURAL:$1|$1 reihchâ|$1 reihchâzy}}",
+	"vector-no-language-button-label": "Reihchâzy khô",
+	"vector-action-addsection": "Chôtlâhpi khô",
+	"vector-action-delete": "Parao",
+	"vector-action-move": "Paly",
+	"vector-action-protect": "Vaih",
+	"vector-view-create": "Tao",
+	"vector-view-edit": "Taopathi",
+	"vector-view-history": "Chhichânazy palâ teh",
+	"vector-view-view": "Reih teih",
+	"vector-more-actions": "A hluh via",
+	"vector-searchsuggest-containing": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> ahlaopa hmiazy tlua teh",
+	"vector-page-tools-label": "Hmobaohpazy",
+	"vector-page-tools-general-label": "Vâtlâh",
+	"vector-unpin-element-label": "nyu"
+}

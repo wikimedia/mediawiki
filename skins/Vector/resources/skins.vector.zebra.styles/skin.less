@@ -1,0 +1,27 @@
+/**
+ * Vector Zebra stylesheets
+ * NOTE: The skins.vector.zebra.styles module is intended to hold
+ * styles that are in-development under a feature flag.
+ * This module should be folded back into skins.vector.styles after
+ * the feature flag as been removed.
+ */
+
+@import 'mediawiki.mixins.less';
+@import './variables.less';
+@import './mixins.less';
+
+@media screen {
+	.vector-feature-zebra-design-enabled {
+		@import './layouts/screen.less';
+		@import './layouts/grid.less';
+		@import './layouts/toc/pinned.less';
+		@import './layouts/toc/unpinned.less';
+		@import './components/Dropdown.less';
+		@import './components/MainMenu.less';
+		@import './components/PinnableElement.less';
+		@import './components/PinnableHeader.less';
+		@import './components/PageTools.less';
+		@import './components/StickyHeader.less';
+		@import './components/TableOfContents.less';
+	}
+}

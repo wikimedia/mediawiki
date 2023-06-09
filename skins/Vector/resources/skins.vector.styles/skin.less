@@ -1,0 +1,56 @@
+/**
+ * Vector modern stylesheets
+ * See '../common/common.less' for common screen and print Vector stylesheets.
+ */
+
+@import 'mediawiki.mixins.less';
+@import '../common/variables.less';
+@import '../common/mixins.less';
+
+@media screen {
+	.vector-feature-zebra-design-disabled {
+		// Layouts
+		@import './layouts/screen.less';
+		@import './layouts/preZebra.less';
+		@import './layouts/grid.less';
+		@import './layouts/toc/pinned.less';
+		@import './layouts/toc/unpinned.less';
+		// Components
+		@import './components/Dropdown.less';
+		@import './components/MainMenu.less';
+		@import './components/PinnableElement.less';
+		@import './components/PinnableHeader.less';
+		@import './components/PageTools.less';
+		@import './components/StickyHeader.less';
+		@import './components/TableOfContents.less';
+	}
+}
+
+@media screen {
+	// Components
+	@import './components/SearchBoxLoader.less';
+	@import './components/VueEnhancedSearchBox.less';
+	@import './components/LanguageDropdown.less';
+	@import './components/UserLinks.less';
+	@import './components/Header.less';
+	@import './components/Footer.less';
+	@import './components/Menu.less';
+	@import './components/MenuTabs.less';
+	@import './components/PageTitlebar.less';
+	@import './components/PageToolbar.less';
+	@import './components/PopupNotification.less';
+	@import './components/Watchstar.less';
+	@import './components/Icon.less';
+	@import './components/LimitedWidthToggle.less';
+}
+
+@media all {
+	// Component styles that should apply in all media.
+	@import './components/Logo.less';
+}
+
+@media print {
+	@import './layouts/print.less';
+}
+
+@import './layouts/gradeC.less';

@@ -1,0 +1,15 @@
+/**
+ * Adjusts column ratio of the search page when sidebar is closed
+ */
+@import '../resources/common/variables.less';
+
+.vector-feature-main-menu-pinned-disabled .mw-searchresults-has-iw {
+	@media only screen and ( min-width: @width-breakpoint-desktop ) {
+		#mw-interwiki-results {
+			display: inline-block;
+			width: ~'calc( 100% / 12 * 3 )';
+			margin-left: ~'calc( 100% / 12 )';
+			margin-right: ~'calc( 100% / 12 )';
+		}
+	}
+}

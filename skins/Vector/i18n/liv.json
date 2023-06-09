@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kengšepā",
+			"Warbola"
+		]
+	},
+	"vector-action-addsection": "Pan jūrõ tēma",
+	"vector-action-delete": "Kištāntõgid jarā",
+	"vector-action-move": "Vīž jarā",
+	"vector-action-protect": "Kaitsõmi",
+	"vector-view-create": "Lūo",
+	"vector-view-edit": "Redigīer",
+	"vector-view-history": "Nägţ istōrijõ",
+	"vector-view-view": "Vaņțõl",
+	"vector-view-viewsource": "Vaņ ovāt tekstõ"
+}

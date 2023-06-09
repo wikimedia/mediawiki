@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Enkhsaihan2005",
+			"Nikki",
+			"Wikibilig"
+		]
+	},
+	"vector-language-button-label": "{{PLURAL:$1|$1 ᠬᠡᠯᠡ}}",
+	"vector-action-addsection": "ᠰᠡᠳᠦᠪ ᠨᠡᠮᠡᠬᠦ",
+	"vector-view-create": "ᠡᠭᠦᠰᠬᠡᠬᠦ",
+	"vector-view-edit": "ᠵᠠᠰᠠᠪᠤᠷᠢᠯᠠᠬᠤ",
+	"vector-view-history": "ᠲᠡᠦᠬᠡ",
+	"vector-view-view": "ᠤᠩᠰᠢᠬᠤ",
+	"vector-more-actions": "ᠳᠡᠯᠭᠡᠷᠡᠩᠭᠦᠢ",
+	"vector-page-tools-label": "ᠬᠡᠷᠡᠭᠯᠡᠭᠦᠷ"
+}

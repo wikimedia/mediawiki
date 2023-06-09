@@ -1,0 +1,178 @@
+/*
+ * Vector's common typography rules,
+ * including whitespace with `margin` & `padding` and list bullets
+ * as part of typographic styles. Iconography wouldn't belong here.
+ *
+ */
+
+@import './variables.less';
+
+html {
+	font-size: @font-size-root;
+}
+
+html,
+body {
+	font-family: @font-family-sans;
+}
+
+ul {
+	// `list-style-image` sits on `ul` as it inherits and we don't need to worry about `ol`.
+	// No need for PNG fallback. Fallback is browser default (a smaller, also black, circle).
+	list-style-image: url( images/bullet-icon.svg );
+}
+
+pre,
+.mw-code {
+	line-height: @line-height-code;
+}
+
+.mw-jump-link:not( :focus ) {
+	.mixin-screen-reader-text;
+	.user-select( none );
+}
+
+/* Use unscoped selector to allow edit sections outside of .mw-body-content and .vector-body (T160269) */
+.mw-editsection,
+.mw-editsection-like {
+	font-family: @font-family-sans;
+}
+
+/* Main content area, including siteNotice, indicators, categories, firstHeading and `.vector-body`. */
+.mw-body {
+	// h1's can exist outside of `.mw-body-content` so some heading styles
+	// therefore need to be defined in `.mw-body` as well.
+	& h1,
+	&-content h1,
+	&-content h2 {
+		margin-bottom: 0.25em;
+		padding: 0;
+		font-family: @font-family-serif;
+		line-height: @line-height-heading;
+
+		// Fallback heading font for scripts which render poorly in `@font-family-serif`.
+		// See T73240
+		&:lang( ja ), /* See T65817 */
+		&:lang( he ), /* See T65843 and T65844 */
+		&:lang( ko ) { /* See T65827 */
+			font-family: @font-family-sans--fallback;
+		}
+
+		&:lang( ckb ) { /* See T306317 */
+			font-family: 'Scheherazade', @font-family-serif;
+		}
+
+		/* Burmese (Myanmar) language headlines would be cropped with set `line-height` */
+		/* See T193270 */
+		&:lang( my ) {
+			line-height: normal;
+		}
+	}
+
+	& h1,
+	&-content h1 {
+		font-size: @font-size-heading-1;
+	}
+}
+
+// T335625 - Move siteSub into common.less to prevent it from being feature-flagged
+// and overriding on-wiki modifications.
+#siteSub {
+	// By default the sitesub (i.e. tagline) is hidden as it was hidden in Vector legacy but site styles can reveal.
+	display: none;
+}
+
+.vector-body {
+	font-size: @font-size-base;
+	// Support IE 9-11, Trident cuts values 2 digits after decimal point.
+	// `calc` enables to set correct calculation in place again. See T102364.
+	font-size: @font-size-base--trident-hack;
+	line-height: @line-height-base;
+
+	#siteSub {
+		font-size: 12.8px; // T311421
+	}
+
+	h1 {
+		margin-top: 1em;
+	}
+
+	h2 {
+		margin-top: 1em;
+		font-size: @font-size-heading-2;
+	}
+
+	h3,
+	h4,
+	h5,
+	h6 {
+		margin-top: 0.3em;
+		margin-bottom: 0;
+		padding-bottom: 0;
+		line-height: @line-height-base;
+	}
+
+	h3 {
+		font-size: @font-size-heading-3;
+	}
+
+	h3,
+	h4 {
+		font-weight: bold;
+	}
+
+	h4,
+	h5,
+	h6 {
+		font-size: @font-size-reset; // Reset.
+	}
+
+	.toc h2 {
+		font-family: @font-family-sans;
+		font-size: @font-size-reset; // Reset.
+	}
+
+	p {
+		margin: 0.5em 0;
+	}
+
+	blockquote {
+		border-left: @border-start-blockquote;
+		padding: @padding-blockquote;
+
+		// Ensure not to inherit whitespace mashing margins on child elements.
+		> :first-child {
+			margin-top: 0;
+		}
+
+		> :last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+// External links
+// Use of `a` element selector for limiting generic class scope due to `.external` widespread usage.
+.mw-parser-output {
+	a {
+		// Deal with long links (T327334, inspired by Minerva solution T62387)
+		word-wrap: break-word;
+	}
+
+	a.external {
+		// Use copy of Codex/OOUI WikimediaUI theme's 'linkExternal' icon in progressive color.
+		// Note that CSSJanus is flipping the `ltr` in the URL to `rtl`.
+		// Therefore make sure that both icons are available and up-to-date.
+		background-image: url( images/link-external-small-ltr-progressive.svg );
+		background-position: center right;
+		background-repeat: no-repeat;
+		// Equivalent of `12px` at calculation base of `14px` is `0.857em`.
+		background-size: 0.857em;
+		padding-right: 1em;
+
+		// See T330712 for better understanding of this class and any future changes.
+		&.free {
+			word-break: break-all;
+		}
+	}
+}

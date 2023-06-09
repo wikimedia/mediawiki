@@ -1,0 +1,34 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Edith Nwobu",
+			"Ifexin",
+			"Karen",
+			"Oby Ezeilo",
+			"Pasjoesscc",
+			"Timzy D'Great",
+			"Tochiprecious",
+			"Ukabia",
+			"Uzoma Ozurumba"
+		]
+	},
+	"vector-language-button-label": "{{PLURAL:$1|$1 asụsụ}}",
+	"vector-action-addsection": "Tinye isiokwu",
+	"vector-action-delete": "Kàcha",
+	"vector-action-move": "Papụ̀",
+	"vector-action-protect": "Cẹdolu",
+	"vector-action-undelete": "Á gbàkashikwà",
+	"vector-action-unprotect": "Nchẹdo mgbanwe",
+	"vector-view-create": "Kèe",
+	"vector-view-edit": "Dezie",
+	"vector-view-history": "Lèe onye rụrụ ọrụ a",
+	"vector-view-view": "Gụ̀ọ",
+	"vector-view-viewsource": "Lee ebeosi",
+	"vector-more-actions": "Ọzọ",
+	"vector-searchsuggest-containing": "Chọọ peeji ndị gụnyere <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-toc-label": "Ndịna",
+	"vector-toc-toggle-button-label": "Chọba ndịnisiokwu $1",
+	"vector-pin-element-label": "Ga na nootu akụkụ",
+	"vector-unpin-element-label": "zoo"
+}

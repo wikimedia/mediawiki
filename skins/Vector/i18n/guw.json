@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Anthonymodec",
+			"Atej2*",
+			"Gadarawamo",
+			"Hunpatinjob",
+			"Misteld",
+			"Samatics"
+		]
+	},
+	"vector-languages": "Ogbè lẹ",
+	"vector-language-button-label": "{{PLURAL:$1|$1 ogbè|$1 ogbè lẹ}}",
+	"vector-no-language-button-label": "Yi ogbè lẹ dogọ",
+	"vector-action-addsection": "Yi hosọ dogọ",
+	"vector-action-delete": "Sunsunsẹ",
+	"vector-action-move": "Sẹtẹn",
+	"vector-action-protect": "Họ́",
+	"vector-view-create": "Dá",
+	"vector-view-edit": "Jlado",
+	"vector-view-history": "Pọ́n kandai",
+	"vector-view-view": "Hia",
+	"vector-more-actions": "Dogọ",
+	"vector-searchsuggest-containing": "Dín weda he bẹ <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> hẹn lẹ",
+	"vector-toc-label": "Nuhe e bẹhẹn lẹ",
+	"vector-anon-user-menu-pages-learn": "Plọnnu dogọ",
+	"vector-page-tools-label": "Azọ́nwanu lẹ",
+	"vector-page-tools-general-label": "Dopọ",
+	"vector-unpin-element-label": "whlá"
+}

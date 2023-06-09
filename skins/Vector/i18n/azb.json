@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Alp Er Tunqa",
+			"Amir a57",
+			"Bir morty",
+			"E THP",
+			"Ebrahimi-amir",
+			"Ilğım",
+			"Mousa"
+		]
+	},
+	"vector-language-button-label": "{{PLURAL:$1|$1 دیل|$1 دیل‌لر}}",
+	"vector-action-addsection": "مؤوضوع آرتیر",
+	"vector-action-delete": "سیل",
+	"vector-action-move": "داشی",
+	"vector-action-protect": "قوْرو",
+	"vector-action-undelete": "سیلمگی قایتار",
+	"vector-action-unprotect": "قوْروماغی دَییشدیر",
+	"vector-view-create": "یارات",
+	"vector-view-edit": "دَییشدیر",
+	"vector-view-history": "گئچمیشه باخ",
+	"vector-view-view": "اوْخو",
+	"vector-view-viewsource": "قایناغا باخ",
+	"vector-more-actions": "داها"
+}

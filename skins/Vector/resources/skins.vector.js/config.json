@@ -1,0 +1,4 @@
+{
+	"@doc": "This file describes the shape of the AB config. It exists to support jest and TypeScript.",
+	"VectorSearchApiUrl": ""
+}

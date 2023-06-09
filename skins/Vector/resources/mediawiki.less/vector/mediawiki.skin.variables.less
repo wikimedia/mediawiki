@@ -1,0 +1,39 @@
+/**
+ * This file is a LESS import match for "mediawiki.skin.variables.less"
+ * when legacy Vector (useskin=vector) is the active skin.
+ */
+
+@import 'mediawiki.skin.defaults.less';
+
+// Use the legacy version (for a 14px base font size) of the wikimedia-ui theme
+@import 'mediawiki.skin.codex-design-tokens/theme-wikimedia-ui-legacy.less';
+
+// Overrides for Codex variables:
+
+// Opacity
+@opacity-medium: 0.67; // Codex: 0.65
+@opacity-low: 0.33; // Codex: 0.30
+@opacity-icon-base: 1; // Codex: 0.87
+@opacity-icon-base--hover: 0.8; // = `#333` on `background-color: #fff`. Codex: 0.74
+@opacity-base--disabled: 0.55; // = `#737373` on `background-color: #fff`, still within WCAG level AA. Codex: 0.51
+
+// Fonts
+@font-size-base: 1em; // Codex: 14px
+// Body content uses the user setting in browser / the system default sans-serif font:
+// Arial on Windows, Roboto on Android.
+// FIXME: Use WikimediaUI Base's OS specific default sans-serif fonts.
+@font-family-sans: sans-serif; // Codex: 'Helvetica Neue', 'Helvetica', 'Liberation Sans', 'Arial', sans-serif;
+
+// Overrides for non-Codex variables:
+
+// Set pre July 2022 colors for links (T213778).
+@color-link: #0645ad;
+@color-link--visited: #0b0080;
+@color-link--active: #faa700;
+@color-link-new: #ba0000;
+@color-link-new--visited: #a55858;
+
+// Note these colors are different from Vector 2022 for historic reasons:
+@color-link-external: #36b;
+@color-link-external--visited: #636;
+@color-link-external--active: #b63;

@@ -1,0 +1,52 @@
+@import '../../common/variables.less';
+
+/* Personal Menu */
+.vector-user-menu-legacy {
+	li {
+		font-size: @font-size-nav-personal;
+		float: left;
+		margin-left: 0.75em;
+		// `padding-top` instead of `margin-top` necessary for
+		// anonymous user icon position below
+		padding-top: 0.5em;
+		line-height: @line-height-nav-personal;
+	}
+
+	/* Icon for registered user names & anonymous message */
+	#pt-anonuserpage,
+	#pt-userpage a {
+		background-position: @background-position-nav-personal-icon;
+		background-image: url( images/user-avatar.svg );
+		background-repeat: no-repeat;
+		background-size: @background-size-nav-personal-icon @background-size-nav-personal-icon;
+		padding-top: 0.5em;
+		padding-left: 1.5em;
+
+		&.mw-userpage-tmp {
+			font-weight: normal;
+			opacity: 0.67;
+			background-image: url( images/userAnonymous.svg );
+		}
+	}
+
+	#pt-userpage {
+		padding-top: 0;
+
+		a {
+			display: inline-block;
+		}
+	}
+
+	/* Show anonymous "Not logged in" text in gray */
+	#pt-anonuserpage {
+		color: #54595d;
+	}
+
+	.vector-menu-content-list {
+		display: flex;
+		flex-wrap: wrap;
+		flex-grow: 1;
+		justify-content: flex-end;
+		align-items: baseline;
+	}
+}

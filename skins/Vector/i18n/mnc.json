@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"ChoiChong",
+			"Chulsu463",
+			"Minggantu",
+			"Nikki",
+			"Obonggi",
+			"Араси"
+		]
+	},
+	"vector-action-addsection": "Nogila joringga",
+	"vector-action-delete": "Dabgire",
+	"vector-action-move": "Guribure",
+	"vector-action-protect": "Karmara",
+	"vector-view-create": "Ilibure",
+	"vector-view-edit": "Banjibume arara",
+	"vector-view-history": "Ere xu fiyelen i suduri be baicara",
+	"vector-view-view": "Hvlara",
+	"vector-view-viewsource": "Da šu wen be baicara",
+	"vector-more-actions": "Ele lbdu tuwanaki"
+}

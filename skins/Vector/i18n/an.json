@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Carlos Cristia",
+			"Juanpabl"
+		]
+	},
+	"skinname-vector": "Vector",
+	"vector.css": "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Vector */",
+	"vector.js": "/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios que usen a piel Vector */",
+	"vector-action-addsection": "Adhibir nueva sección",
+	"vector-action-delete": "Borrar",
+	"vector-action-move": "Tresladar",
+	"vector-action-protect": "Protecher",
+	"vector-action-undelete": "Restaurar",
+	"vector-action-unprotect": "Cambiar protección",
+	"vector-view-create": "Creyar",
+	"vector-view-edit": "Editar",
+	"vector-view-history": "Amostrar l'historial",
+	"vector-view-view": "Leyer",
+	"vector-view-viewsource": "Veyer o codigo fuent",
+	"vector-more-actions": "Mas"
+}

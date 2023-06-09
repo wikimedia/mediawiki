@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Saraiki"
+		]
+	},
+	"vector-opt-out": "پراݨی شکل صورت تے واپس ون٘ڄو",
+	"vector-languages": "زباناں",
+	"vector-language-button-label": "{{PLURAL:$1|$1 زبان|$1 زباناں}}",
+	"vector-no-language-button-label": "زباناں شامل کرو",
+	"vector-action-addsection": "نواں موضوع",
+	"vector-action-delete": "مٹاؤ",
+	"vector-action-move": "ٹورو",
+	"vector-action-protect": "حفاظت کرو",
+	"vector-view-create": "بݨاؤ",
+	"vector-view-edit": "لکھو",
+	"vector-view-history": "تاریخچہ",
+	"vector-view-view": "پڑھو",
+	"vector-more-actions": "ٻئے",
+	"vector-main-menu-label": "اصل مینیو",
+	"vector-page-tools-label": "اوزار",
+	"vector-page-tools-general-label": "عمومی",
+	"vector-page-tools-actions-label": "عمل",
+	"vector-unpin-element-label": "لُکاؤ"
+}

@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Kjeanclaude"
+		]
+	},
+	"vector-languages": "Aniein moun",
+	"vector-language-button-label": "{{PLURAL:$1|$1 aniein|$1 aniein moun}}",
+	"vector-no-language-button-label": "Fa aniein moun goua sou",
+	"vector-action-addsection": "Fa ndè ouflè goua sou",
+	"vector-action-delete": "Nounnoun",
+	"vector-action-move": "Katchi floua boué nga i douman",
+	"vector-action-protect": "Sassawa",
+	"vector-view-create": "Yi",
+	"vector-view-edit": "Klè noun",
+	"vector-view-history": "Nian laa sa",
+	"vector-view-view": "Kanngan",
+	"vector-more-actions": "Ouflè ékun",
+	"vector-searchsuggest-containing": "Kounndè floué boué moun nga liké nga wo noun: <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-page-tools-label": "Liké moun",
+	"vector-page-tools-general-label": "Lika ngba (liké kounndèlè)",
+	"vector-unpin-element-label": "fa fia"
+}

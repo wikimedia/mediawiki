@@ -1,0 +1,11 @@
+<div
+	class="vector-pinnable-header {{data-pinnable-element-id}}-pinnable-header vector-pinnable-header-{{#is-pinned}}pinned{{/is-pinned}}{{^is-pinned}}unpinned{{/is-pinned}}"
+	{{#data-feature-name}}data-feature-name="{{.}}"{{/data-feature-name}}
+	{{#data-pinnable-element-id}}data-pinnable-element-id="{{.}}"{{/data-pinnable-element-id}}
+	{{#data-pinned-container-id}}data-pinned-container-id="{{.}}"{{/data-pinned-container-id}}
+	{{#data-unpinned-container-id}}data-unpinned-container-id="{{.}}"{{/data-unpinned-container-id}}
+>
+	<{{label-tag-name}} class="vector-pinnable-header-label">{{label}}</{{label-tag-name}}>
+	<button class="vector-pinnable-header-toggle-button vector-pinnable-header-pin-button" data-event-name="pinnable-header.{{data-pinnable-element-id}}.pin">{{pin-label}}</button>
+	<button class="vector-pinnable-header-toggle-button vector-pinnable-header-unpin-button" data-event-name="pinnable-header.{{data-pinnable-element-id}}.unpin">{{unpin-label}}</button>
+</div>

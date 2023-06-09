@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kaajawa",
+			"V.narsikar"
+		]
+	},
+	"skinname-vector": "सदिश",
+	"vector-skin-desc": "मोनोबुकची आधुनिक आवृत्ती टवटवीत दिसण्यासह व अनेक वापर सुधारणा असलेली",
+	"vector-action-addsection": "विषय जोडा",
+	"vector-action-delete": "वगळा",
+	"vector-action-move": "स्थानांतरण",
+	"vector-action-protect": "सुरक्षित करा",
+	"vector-action-undelete": "वगळलेले पुनर्स्थापित करा",
+	"vector-action-unprotect": "सुरक्षितता बदला",
+	"vector-view-create": "तयार करा",
+	"vector-view-edit": "संपादन",
+	"vector-view-history": "इतिहास पहा",
+	"vector-view-view": "वाचा",
+	"vector-view-viewsource": "स्रोत पहा",
+	"vector-more-actions": "अधिक"
+}

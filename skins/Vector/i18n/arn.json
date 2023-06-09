@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Clerc",
+			"Fiestoforo",
+			"Manke ruLpa"
+		]
+	},
+	"vector-language-button-label": "{{PLURAL:$1|$1 zugun}}",
+	"vector-action-addsection": "Püñamtun zungu",
+	"vector-action-delete": "Liftun",
+	"vector-action-move": "Nengümün",
+	"vector-action-protect": "Nürüfkünun",
+	"vector-action-undelete": "Wüñoñamümün",
+	"vector-action-unprotect": "Kalekünun Nürüfkünun",
+	"vector-view-create": "Zewman",
+	"vector-view-edit": "Kümeelün",
+	"vector-view-history": "Pengepe tukulpan",
+	"vector-view-view": "Chillkatun",
+	"vector-view-viewsource": "Kimam chew küpan chi wirin",
+	"vector-more-actions": "Zoy",
+	"vector-searchsuggest-containing": "Kintun kom tapülh nielu <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+}

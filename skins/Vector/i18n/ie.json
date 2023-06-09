@@ -1,0 +1,34 @@
+{
+	"@metadata": {
+		"authors": [
+			"Makuba",
+			"Renan",
+			"Stavanger7"
+		]
+	},
+	"vector-skin-desc": "Version modern del MonoBook che aspecte frisc e plu amelioramentes de usabilitá",
+	"prefs-vector-enable-vector-1-label": "Usar Legacy Vector",
+	"prefs-vector-enable-vector-1-help": "In proxim annus, noi va esser gradualmen actualisant li pelle Vector. Li Legacy Vector va permisser vu vider li version antiqui del Vector (quam Decembre 2019). Por aprender plu concernent li actualisationes, ea por nor [[mw:Reading/Web/Desktop_Improvements|págine del projecte]].",
+	"vector-opt-out": "Changear por version antiqui",
+	"vector-opt-out-tooltip": "Changear tui specificationes por restituer li antiqui aspecte del pelle (Vector anteriori)",
+	"vector.css": "/* CSS colocat ci va afectar usatores de pelle Vector */",
+	"vector.js": "/* Alquel JavaScript ci va esser cargat por usatores que usa li pelle Vector */",
+	"vector-action-toggle-sidebar": "Changear barre lateral",
+	"vector-language-button-label": "{{PLURAL:$1|$1 lingue|$1 lingues}}",
+	"vector-action-addsection": "Addir tema",
+	"vector-action-delete": "Deleter",
+	"vector-action-move": "Mover",
+	"vector-action-protect": "Protecter",
+	"vector-action-undelete": "Restituer",
+	"vector-action-unprotect": "Changear protection",
+	"vector-view-create": "Crear",
+	"vector-view-edit": "Redacter",
+	"vector-view-history": "Historico de versiones",
+	"vector-view-view": "Leer",
+	"vector-view-viewsource": "Vider fonte",
+	"vector-jumptonavigation": "Saltar por navigation",
+	"vector-jumptosearch": "Saltar por sercha",
+	"vector-jumptocontent": "Saltar por contenete",
+	"vector-more-actions": "Plu",
+	"vector-search-loader": "Cargar suggestiones de sercha"
+}

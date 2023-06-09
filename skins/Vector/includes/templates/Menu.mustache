@@ -1,0 +1,12 @@
+{{!
+	See @typedef MenuDefinition
+}}
+{{! DO NOT REMOVE vector-menu class. It is used for click tracking in Extension:WikimediaEvents }}
+<div id="{{id}}" class="vector-menu{{#class}} {{.}}{{/class}}" {{{html-tooltip}}} {{{html-user-language-attributes}}}>
+	{{#label}}
+	<div class="vector-menu-heading{{#label-class}} {{.}}{{/label-class}}">
+		{{{.}}}
+	</div>
+	{{/label}}
+	{{>MenuContents}}
+</div>

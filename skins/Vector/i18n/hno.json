@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bgo eiu"
+		]
+	},
+	"vector-languages": "زباناں",
+	"vector-language-button-label": "{{PLURAL:$1|$1 زبان|$1 زباناں}}",
+	"vector-no-language-button-label": "ہور زباناں جڑو",
+	"vector-action-addsection": "مضمون جوڑو",
+	"vector-action-delete": "ہٹاؤ",
+	"vector-action-move": "ہلو",
+	"vector-action-protect": "گاڈ کرو",
+	"vector-view-create": "بنڑاؤ",
+	"vector-view-history": "تریخ دیکھو",
+	"vector-more-actions": "ودھیک",
+	"vector-page-tools-label": "رچاݨی",
+	"vector-page-tools-general-label": "عام",
+	"vector-unpin-element-label": "چھپو"
+}

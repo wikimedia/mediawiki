@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sticky header renders 1`] = `
+"<div id=\\"vector-sticky-header\\" class=\\"vector-sticky-header\\">
+	<div class=\\"vector-sticky-header-start\\">
+		<div class=\\"vector-sticky-header-icon-start mw-ui-icon-flush-left mw-ui-icon-flush-right\\" aria-hidden=\\"true\\">
+
+<button class=\\"mw-ui-button mw-ui-quiet mw-ui-icon mw-ui-icon-element vector-sticky-header-search-toggle\\" data-event-name=\\"ui.vector-sticky-search-form.icon\\" tabindex=\\"-1\\"><span class=\\"mw-ui-icon mw-ui-icon-search mw-ui-icon-wikimedia-search\\"></span>
+
+<span>search</span>
+
+</button>
+		</div>
+<div> </div>		<div class=\\"vector-sticky-header-context-bar\\">
+			<nav role=\\"navigation\\" aria-label=\\"\\" class=\\"vector-toc-landmark\\">
+<div id=\\"vector-sticky-header-toc\\" class=\\"vector-menu vector-dropdown vector-menu-dropdown mw-portlet mw-portlet-sticky-header-toc vector-sticky-header-toc\\">
+	<input type=\\"checkbox\\" id=\\"vector-sticky-header-toc-checkbox\\" role=\\"button\\" aria-haspopup=\\"true\\" data-event-name=\\"ui.dropdown-vector-sticky-header-toc\\" class=\\"vector-menu-checkbox\\" aria-label=\\"\\" tabindex=\\"-1\\">
+	<label id=\\"vector-sticky-header-toc-label\\" for=\\"vector-sticky-header-toc-checkbox\\" class=\\"vector-menu-heading mw-ui-button mw-ui-quiet mw-ui-icon mw-ui-icon-element mw-ui-icon-wikimedia-listBullet\\" aria-hidden=\\"true\\" tabindex=\\"-1\\">
+		<span class=\\"vector-menu-heading-label\\"></span>
+	</label>
+	<div class=\\"vector-menu-content vector-dropdown-content\\">
+
+	</div>
+</div>			</nav>
+			<div class=\\"vector-sticky-header-context-bar-primary\\" aria-hidden=\\"true\\"></div>
+		</div>
+	</div>
+	<div class=\\"vector-sticky-header-end\\" aria-hidden=\\"true\\">
+		<div class=\\"vector-sticky-header-icons\\">
+<a href=\\"#\\" id=\\"ca-talk-sticky-header\\" class=\\"mw-ui-button mw-ui-quiet mw-ui-icon-element sticky-header-icon\\" data-event-name=\\"talk-sticky-header\\" tabindex=\\"-1\\"><span class=\\"mw-ui-icon mw-ui-icon-speechBubbles mw-ui-icon-wikimedia-speechBubbles\\"></span>
+
+<span></span>
+</a>
+
+<a href=\\"#\\" id=\\"ca-history-sticky-header\\" class=\\"mw-ui-button mw-ui-quiet mw-ui-icon-element sticky-header-icon\\" data-event-name=\\"history-sticky-header\\" tabindex=\\"-1\\"><span class=\\"mw-ui-icon mw-ui-icon-history mw-ui-icon-wikimedia-history\\"></span>
+
+<span></span>
+</a>
+
+<a href=\\"#\\" id=\\"ca-watchstar-sticky-header\\" class=\\"mw-ui-button mw-ui-quiet mw-ui-icon-element sticky-header-icon mw-watchlink\\" data-event-name=\\"watch-sticky-header\\" tabindex=\\"-1\\"><span class=\\"mw-ui-icon mw-ui-icon-star mw-ui-icon-wikimedia-star\\"></span>
+
+<span></span>
+</a>
+
+<a href=\\"#\\" id=\\"ca-ve-edit-sticky-header\\" class=\\"mw-ui-button mw-ui-quiet mw-ui-icon-element sticky-header-icon\\" data-event-name=\\"ve-edit-sticky-header\\" tabindex=\\"-1\\"><span class=\\"mw-ui-icon mw-ui-icon-edit mw-ui-icon-wikimedia-edit\\"></span>
+
+<span></span>
+</a>
+
+<a href=\\"#\\" id=\\"ca-edit-sticky-header\\" class=\\"mw-ui-button mw-ui-quiet mw-ui-icon-element sticky-header-icon\\" data-event-name=\\"wikitext-edit-sticky-header\\" tabindex=\\"-1\\"><span class=\\"mw-ui-icon mw-ui-icon-wikiText mw-ui-icon-wikimedia-wikiText\\"></span>
+
+<span></span>
+</a>
+
+<a href=\\"#\\" id=\\"ca-viewsource-sticky-header\\" class=\\"mw-ui-button mw-ui-quiet mw-ui-icon-element sticky-header-icon\\" data-event-name=\\"editLock\\" tabindex=\\"-1\\"><span class=\\"mw-ui-icon mw-ui-icon-star mw-ui-icon-wikimedia-star\\"></span>
+
+<span></span>
+</a>
+
+		</div>
+		<div class=\\"vector-sticky-header-buttons\\">
+
+<button id=\\"p-lang-btn-sticky-header\\" class=\\"mw-ui-button mw-ui-quiet mw-interlanguage-selector\\" data-event-name=\\"ui.dropdown-p-lang-btn-sticky-header\\" tabindex=\\"-1\\"><span>0 languages</span>
+
+</button>
+		</div>
+		<div class=\\"vector-sticky-header-icon-end\\">
+			<div class=\\"vector-user-links\\">
+			</div>
+		</div>
+	</div>
+</div>
+"
+`;

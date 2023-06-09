@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Diupwijk",
+			"EileenSanda"
+		]
+	},
+	"vector-skin-desc": "Moderna versión af MonoBook við frískari útsjónd og nógvum nýtslubetringum",
+	"vector-action-addsection": "Nýtt evni",
+	"vector-action-delete": "Strika",
+	"vector-action-move": "Flyt",
+	"vector-action-protect": "Friða",
+	"vector-action-undelete": "Endurstovna",
+	"vector-action-unprotect": "Broyt verju",
+	"vector-view-create": "Stovna",
+	"vector-view-edit": "Rætta",
+	"vector-view-history": "Vís søgu",
+	"vector-view-view": "Les",
+	"vector-view-viewsource": "Vís keldu",
+	"vector-more-actions": "Meira"
+}

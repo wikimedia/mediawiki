@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Songhay"
+		]
+	},
+	"vector-action-addsection": "Furari tonton",
+	"vector-action-delete": "Tuusu",
+	"vector-action-move": "Ganandi",
+	"vector-action-protect": "Jejebu",
+	"vector-view-create": "Tee",
+	"vector-view-edit": "Barmay",
+	"vector-view-history": "Taarikoo guna",
+	"vector-view-view": "Caw",
+	"vector-more-actions": "Ka tonton"
+}

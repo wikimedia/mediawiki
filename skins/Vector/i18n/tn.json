@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Rebelagent"
+		]
+	},
+	"vector-language-button-label": "{{PLURAL:$1|$1 teme|$1 diteme}}",
+	"vector-action-addsection": "Tsenya Setlhogo",
+	"vector-action-delete": "Sutlha",
+	"vector-action-move": "Sutisa",
+	"vector-action-protect": "Sireletsa",
+	"vector-view-create": "Dira",
+	"vector-view-edit": "Fetola",
+	"vector-view-history": "Bona Segologolo",
+	"vector-view-view": "Bala",
+	"vector-more-actions": "Bontsi",
+	"vector-searchsuggest-containing": "Batla ditsebe tse di naleng <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+}

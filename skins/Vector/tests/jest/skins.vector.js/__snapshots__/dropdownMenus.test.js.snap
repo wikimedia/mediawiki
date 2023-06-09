@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`addPortletLinkHandler Adds a span with icon class to dropdown menus 1`] = `
+"
+		<ul class=\\"vector-menu vector-menu-dropdown\\">
+			<li class=\\"mw-list-item mw-list-item-js\\" id=\\"test-id\\">
+				<a href=\\"#test-href\\">
+					<span>
+						test link content
+					</span>
+				</a>
+			</li>
+		</ul>"
+`;
+
+exports[`addPortletLinkHandler Does not add an icon when noicon class is present 1`] = `
+"
+		<ul class=\\"vector-menu vector-menu-dropdown\\">
+			<li class=\\"mw-list-item mw-list-item-js\\" id=\\"test-id\\">
+				<a href=\\"#test-href\\">
+					<span>
+						test link content
+					</span>
+				</a>
+			</li>
+		</ul>"
+`;

@@ -1,0 +1,8 @@
+{{#href}}<a href="{{.}}"{{/href}}
+{{^href}}<button{{/href}}
+	{{#id}}id="{{.}}"{{/id}}
+	class="{{class}}"
+	{{#array-attributes}}{{key}}="{{value}}"{{/array-attributes}}>{{!
+	}}{{#icon}}{{>Icon}}{{/icon}}<span>{{label}}</span>
+{{#href}}</a>{{/href}}
+{{^href}}</button>{{/href}}

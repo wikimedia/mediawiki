@@ -1,0 +1,60 @@
+@import '../../common/variables.less';
+
+@border-base-ems: unit( @border-width-base / @font-size-browser / @font-size-base, em );
+
+.vector-page-toolbar-container {
+	display: flex;
+	font-size: @font-size-tabs;
+	// Use box-shadow instead of border to allow border collapsing between titlebar and toolbar
+	box-shadow: 0 1px @border-color-portal-heading;
+	// Add bottom margin to account for box-shadow
+	margin-bottom: 1px;
+
+	.mw-portlet-views {
+		display: none;
+
+		@media ( min-width: @min-width-tablet ) {
+			&:not( .emptyPortlet ) {
+				display: block;
+			}
+		}
+	}
+
+	.mw-ui-icon-element {
+		// Override icon styles to apply .mw-ui-icon-small styles
+		// FIXME: To be replaced with Codex mixins
+		.mw-ui-icon {
+			min-width: 16px;
+			min-height: 16px;
+			width: 1em;
+			height: 1em;
+
+			&::before {
+				min-width: 100%;
+				min-height: 100%;
+				background-size: 100% 100%;
+			}
+		}
+	}
+}
+
+// ID Selectors outside of .vector-page-toolbar-container to avoid over-specificity.
+#left-navigation {
+	// flex ensures all child elements align on one line.
+	display: flex;
+	margin-left: -@padding-horizontal-tabs;
+	// pushes #right-navigation to the end of the line.
+	flex-grow: 1;
+}
+
+#right-navigation {
+	// flex ensures all child elements align on one line.
+	display: flex;
+	margin-right: -@padding-horizontal-tabs;
+	// Any dropdowns inside the right navigation in modern Vector (e.g. "more" menu).
+	// should be right-aligned to prevent horizontal scrolling.
+	.vector-menu-content {
+		left: auto;
+		right: -@border-width-base;
+	}
+}

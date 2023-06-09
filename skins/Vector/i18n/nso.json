@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mohau"
+		]
+	},
+	"vector-action-addsection": "Lokela sererwa",
+	"vector-action-delete": "Phumula",
+	"vector-action-move": "Huduša",
+	"vector-action-protect": "Lota",
+	"vector-view-create": "Hlola",
+	"vector-view-edit": "Fetola",
+	"vector-view-history": "Laetša histori",
+	"vector-view-view": "Bala",
+	"vector-view-viewsource": "Lebelela mothopo"
+}

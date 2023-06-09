@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Lam-ang",
+			"Saluyot"
+		]
+	},
+	"vector-skin-desc": "Moderno a bersion ti MonoBook nga addaan iti baro a langa ken adu kadagiti naserbi a panagpasayaat",
+	"vector-language-button-label": "{{PLURAL:$1|$1 a pagsasao|dagiti $1 a pagsasao}}",
+	"vector-action-addsection": "Agnayon iti topiko",
+	"vector-action-delete": "Ikkaten",
+	"vector-action-move": "Iyalis",
+	"vector-action-protect": "Salakniban",
+	"vector-action-undelete": "Isubli ti inikkat",
+	"vector-action-unprotect": "Baliwan ti salaknib",
+	"vector-view-create": "Agpartuat",
+	"vector-view-edit": "Urnosen",
+	"vector-view-history": "Kitaen ti pakasaritaan",
+	"vector-view-view": "Basaen",
+	"vector-view-viewsource": "Kitaen ti taudan",
+	"vector-jumptonavigation": "Darsen a mapan iti pagdaliasatan",
+	"vector-jumptosearch": "Darsen a mapan agbiruk",
+	"vector-more-actions": "Adu pay",
+	"vector-searchsuggest-containing": "Agbiruk kadagiti panid nga nga aglaon iti <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+}

@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gazeb",
+			"KHMELNYTSKYIA",
+			"Tkalyn"
+		]
+	},
+	"vector-action-addsection": "Придати тему",
+	"vector-action-delete": "Вымазати",
+	"vector-action-move": "Переменовати",
+	"vector-action-protect": "Всокотити",
+	"vector-action-undelete": "Обновити",
+	"vector-action-unprotect": "Змінити замок",
+	"vector-view-create": "Створити",
+	"vector-view-edit": "Едітовати",
+	"vector-view-history": "Видїти історію",
+	"vector-view-view": "Чітати",
+	"vector-view-viewsource": "Видїти код",
+	"vector-more-actions": "Веце"
+}

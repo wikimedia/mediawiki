@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Borichèt"
+		]
+	},
+	"vector-action-addsection": "Gionté n'argoment",
+	"vector-action-delete": "Scancelé",
+	"vector-action-move": "Tramudé",
+	"vector-action-protect": "Protege",
+	"vector-action-undelete": "Arcuperé",
+	"vector-action-unprotect": "Cangé la protession",
+	"vector-view-create": "Creé",
+	"vector-view-edit": "Modifiché",
+	"vector-view-history": "Smon-e la stòria",
+	"vector-view-view": "Lese",
+	"vector-view-viewsource": "Vëdde la sorgiss",
+	"vector-more-actions": "Ëd pi"
+}

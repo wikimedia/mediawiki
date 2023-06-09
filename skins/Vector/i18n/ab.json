@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fraxinus.cs",
+			"Pupsik-ipa",
+			"Temuri rajavi"
+		]
+	},
+	"vector-languages": "Абызшәақәа",
+	"vector-language-button-label": "{{PLURAL:$1|$1 абызшәа|$1 абызшәақәа}}",
+	"vector-no-language-button-label": "Абызшәақәа рыцҵатәуп",
+	"vector-action-addsection": "Атема ацҵатәуп",
+	"vector-action-delete": "Ианыхтәуп",
+	"vector-action-move": "Ахьӡ аԥсахра",
+	"vector-view-create": "Арҿиара",
+	"vector-view-edit": "Аредакциазура",
+	"vector-view-history": "Аҭоурых",
+	"vector-view-view": "Аԥхьара",
+	"vector-view-viewsource": "Ахәаԥшра",
+	"vector-more-actions": "Еиҭа"
+}

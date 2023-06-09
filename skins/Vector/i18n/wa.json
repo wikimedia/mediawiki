@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Reptilien.19831209BE1",
+			"Srtxg"
+		]
+	},
+	"vector-action-addsection": "Radjouter on sudjet",
+	"vector-action-delete": "Disfacer",
+	"vector-action-move": "Displaecî",
+	"vector-action-protect": "Protedjî",
+	"vector-action-undelete": "Rapexhî",
+	"vector-action-unprotect": "Candjî l' protedjaedje",
+	"vector-view-create": "Ahiver",
+	"vector-view-edit": "Candjî",
+	"vector-view-history": "Vey l’&nbsp;istwere",
+	"vector-view-view": "Lére",
+	"vector-view-viewsource": "Vey côde sourdant",
+	"vector-more-actions": "Di pus"
+}

@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Ganbarzada",
+			"Patriot Kor",
+			"Patriot Kur",
+			"Гусейн"
+		]
+	},
+	"vector-language-button-label": "{{PLURAL:$1|$1 zıvon|$1 zıvonon}}",
+	"vector-action-addsection": "Mıvzo əlovə bıkə",
+	"vector-action-delete": "Mole",
+	"vector-action-move": "Kuç kardə",
+	"vector-action-protect": "Mıdofiə karde",
+	"vector-action-undelete": "Бәрпо кардеј",
+	"vector-action-unprotect": "Mıdofiyə dəqiş karde",
+	"vector-view-create": "Сохтеј",
+	"vector-view-edit": "Sərosti bıkə",
+	"vector-view-history": "Diyəkə bə torix",
+	"vector-view-view": "Bıhand",
+	"vector-view-viewsource": "Səvon diyə karde",
+	"vector-more-actions": "Ve"
+}

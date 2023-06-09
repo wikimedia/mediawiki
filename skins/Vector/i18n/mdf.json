@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Metsavend",
+			"Numulunj pilgae"
+		]
+	},
+	"vector-language-button-label": "{{PLURAL:$1|$1 кяль|$1 кяльхть}}",
+	"vector-action-addsection": "Поладомс мезень колга корхтамс",
+	"vector-action-delete": "Нардамс",
+	"vector-action-move": "Шашфтомс",
+	"vector-action-protect": "Араламс",
+	"vector-action-undelete": "Мърдафтомс",
+	"vector-action-unprotect": "Араламать полафтомс",
+	"vector-view-create": "Тиемс",
+	"vector-view-edit": "Петнемс",
+	"vector-view-history": "История няфтемс",
+	"vector-view-view": "Морафтомс",
+	"vector-view-viewsource": "Лисьма няфтемс",
+	"vector-more-actions": "Сяда лама"
+}

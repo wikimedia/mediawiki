@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Imdadb"
+		]
+	},
+	"vector-action-addsection": "Púskun sarhál",
+	"vector-action-delete": "Mesa",
+	"vector-action-move": "Surif",
+	"vector-action-protect": "Rakk",
+	"vector-view-create": "Biná",
+	"vector-view-edit": "Radbadal",
+	"vector-view-history": "Lekav e ur",
+	"vector-view-view": "Xuán",
+	"vector-view-viewsource": "Bumpad e ur",
+	"vector-more-actions": "Pen"
+}

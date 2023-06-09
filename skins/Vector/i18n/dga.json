@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Linus Konkor",
+			"Yirkang",
+			"Zakaria Tunsung"
+		]
+	},
+	"vector-languages": "Kɔkɔɛ",
+	"vector-language-button-label": "{{PLURAL:$1|$1 kɔkɔre|$1 kɔkɔɛ}}",
+	"vector-no-language-button-label": "Poɔ kɔkɔɛ",
+	"vector-action-addsection": "Paali yɛlzu",
+	"vector-action-delete": "Iri bare",
+	"vector-action-move": "Kyɛne ane gaa",
+	"vector-action-protect": "Guubo",
+	"vector-view-create": "Maale",
+	"vector-view-edit": "Leɛre",
+	"vector-view-history": "Kaa dabaŋkoroŋ",
+	"vector-view-view": "Gane",
+	"vector-more-actions": "Yaga",
+	"vector-searchsuggest-containing": "Bɔ leɛre ama naŋ taa <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-page-tools-label": "Tɔtɔbomma",
+	"vector-page-tools-general-label": "Te zaa",
+	"vector-unpin-element-label": "Sɔgele"
+}

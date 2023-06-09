@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Mahuton"
+		]
+	},
+	"vector-languages": "Gbé lɛ́",
+	"vector-language-button-label": "{{PLURAL:$1|$1 gbé|$1 gbé lɛ}}",
+	"vector-no-language-button-label": "Gɔ gbé ɖévo lɛ na",
+	"vector-action-addsection": "Gɔ́ xóta yɔ́yɔ́ ɖévo ná",
+	"vector-action-delete": "Sunsun sin",
+	"vector-action-move": "Ɖyɔ nyikɔ tɔn",
+	"vector-action-protect": "Cyɔn alɔ do",
+	"vector-view-create": "Blɔ",
+	"vector-view-edit": "Wlǎn nú",
+	"vector-view-history": "Nyín nukún ɖo ɖiɖyɔ tɛnmɛ tɛnmɛ wémá ɔ tɔn lɛ jí",
+	"vector-view-view": "Xá",
+	"vector-more-actions": "Susu",
+	"vector-searchsuggest-containing": "Ba wéma é mɛ <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> ɖé é",
+	"vector-page-tools-label": "Azɔwanú",
+	"vector-unpin-element-label": "sɛxwe"
+}

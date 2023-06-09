@@ -1,0 +1,9 @@
+{{! `heading` is optional. }}
+<div class="vector-main-menu-action vector-main-menu-action-{{action}}">
+	<div class="vector-main-menu-action-item">
+		{{#heading}}<div class="vector-main-menu-action-heading vector-menu-heading">{{.}}</div>{{/heading}}
+		<div class="vector-main-menu-action-content vector-menu-content">
+			{{{html-content}}}
+		</div>
+	</div>
+</div>

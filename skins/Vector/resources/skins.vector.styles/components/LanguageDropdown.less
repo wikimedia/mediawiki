@@ -1,0 +1,127 @@
+// The use of mixins.buttons requires @font-size-base to be defined for this to work in Storybook
+@import '../../common/variables.less';
+@import '../../common/mixins.less';
+@import 'mediawiki.mixins.less';
+
+// Note vector-feature-language-in-header-enabled class is not used here as that class
+// only applies to main page.
+// This must be limited to vector-page-titlebar as the mw-portlet-lang class is shared with
+// the language portlet that can display in the sidebar.
+.vector-page-titlebar .mw-portlet-lang {
+	box-sizing: border-box;
+	height: @height-button-lang;
+	flex-shrink: 0;
+
+	// If there are no languages and JavaScript is not enabled there is no fallback so we hide
+	// the button altogether.
+	.mw-portlet-lang-heading-0 {
+		.client-nojs & {
+			display: none;
+		}
+	}
+
+	.vector-menu-heading {
+		// Prevent select of span text "X languages"
+		user-select: none;
+		// Set opacity to `1` on language button (it applies to more menu because of label color).
+		opacity: @opacity-base;
+
+		.vector-menu-heading-label {
+			// Special treatment for language button, based on Vector font-size
+			font-size: @font-size-base;
+		}
+
+		// T291286: Temporarily use progressive ULS style
+		&.mw-ui-progressive.mw-ui-quiet {
+			.mw-ui-icon::before {
+				// Ensure inverted language icon is white
+				opacity: @opacity-base;
+			}
+
+			&::after {
+				// Invert arrow color
+				background-image: url( ../common/images/arrow-down-progressive.svg );
+				opacity: @opacity-base;
+			}
+		}
+	}
+
+	input:active + .vector-menu-heading {
+		&.mw-ui-progressive.mw-ui-quiet {
+			.mw-ui-icon {
+				// stylelint-disable-next-line plugin/no-unsupported-browser-features
+				filter: brightness( 0 ) invert( 1 );
+			}
+
+			&::after {
+				background-image: url( ../common/images/arrow-down-invert.svg );
+			}
+		}
+	}
+
+	// The `vector-menu-content` class is present twice in current implementation of language switcher
+	// (see FIXME in Dropdown/Open.mustache) so it is important we target the direct child.
+	> .vector-menu-content {
+		top: auto;
+		left: -@border-width-base;
+		right: -@border-width-base;
+		// align borders of open menu align with button
+		box-sizing: border-box;
+		max-height: 65vh;
+		overflow: auto;
+
+		// Adds to the show/hide technique in Dropdown.less with
+		// display to prevent rendering and long scrolling on Main page
+		display: none;
+
+		li a {
+			font-size: inherit;
+		}
+	}
+
+	.vector-menu-checkbox:checked ~ .vector-menu-content {
+		display: block;
+	}
+
+	.after-portlet {
+		// ensure there is a visual separation between the language links and additional links.
+		margin-top: 10px;
+	}
+
+	// styles for less prominent Language button (without label) to be used for non-content pages (see T316559)
+	.mw-portlet-lang-heading-empty + .vector-menu-content {
+		left: auto;
+		right: 0;
+		min-width: 300px;
+
+		.mw-portlet-empty-language-selector-body {
+			padding: 20px;
+			border-bottom: @border-style-base @border-width-base @border-color-portal-heading;
+			color: @color-subtle;
+		}
+	}
+}
+
+// Hides language button with CSS, ensures language button is in DOM for temporary JS hack for interwiki links
+// Temporary solution to T287206, can be removed when ULS dialog includes interwiki links
+#p-lang-btn.mw-portlet-empty {
+	display: none;
+}
+
+.mw-interlanguage-selector {
+	display: flex;
+
+	&::after {
+		.mixin-vector-menu-heading-arrow();
+	}
+}
+
+// Hide the "Add languages" on pages which are not action=view where there are 0 languages
+.vector-dropdown > .vector-menu-heading.mw-portlet-lang-heading-0 {
+	display: none;
+}
+
+// Show it on view pages where there are 0 languages so user can add languages (JavaScript required)
+.client-js .action-view .vector-dropdown > .vector-menu-heading.mw-portlet-lang-heading-0 {
+	display: flex;
+}

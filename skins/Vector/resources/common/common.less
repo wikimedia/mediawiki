@@ -1,0 +1,25 @@
+/**
+ * Common styles and components shared by both,
+ * Vector legacy and Vector modern.
+ */
+
+@import './variables.less';
+@import 'mediawiki.mixins.less';
+
+@media screen {
+	// Common styles
+	@import './normalize.less';
+	@import './typography.less';
+
+	// Components
+	@import './components/Indicators.less';
+	@import './components/SiteNotice.less';
+	@import './components/MenuDropdownCheckbox.less';
+	@import './components/SearchBox.less';
+	@import './components/SidebarLogo.less';
+	@import './components/Footer.less';
+}
+
+@media print {
+	@import './print.less';
+}

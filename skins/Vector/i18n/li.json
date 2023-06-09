@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ooswesthoesbes",
+			"Robin van der Vliet",
+			"Robin0van0der0vliet"
+		]
+	},
+	"vector-skin-desc": "Modern versie van MonoBook mit e frisj uterlik en verbaeteringe op 't gebeed van gebroeksvruntjelikheid",
+	"vector-language-button-label": "{{PLURAL:$1|$1 spraok|$1 spraoke}}",
+	"vector-action-addsection": "Voog köpke toe",
+	"vector-action-delete": "Sjaf eweg",
+	"vector-action-move": "Verplaats",
+	"vector-action-protect": "Besjirm",
+	"vector-action-undelete": "Plaats trök",
+	"vector-action-unprotect": "Anger beveiliging",
+	"vector-view-create": "Maak aan",
+	"vector-view-edit": "Bewirk",
+	"vector-view-history": "Bekiek de gesjiedenis",
+	"vector-view-view": "Laes",
+	"vector-view-viewsource": "Bekiek bróntèks",
+	"vector-more-actions": "Mieë"
+}

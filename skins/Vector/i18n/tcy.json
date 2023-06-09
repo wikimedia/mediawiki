@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"BHARATHESHA ALASANDEMAJALU",
+			"Chidananda Kampa",
+			"Kiranpoojary",
+			"Mahaveer Indra",
+			"NamwikiTL",
+			"VASANTH S.N.",
+			"Vishwanatha Badikana"
+		]
+	},
+	"vector-action-addsection": "ವಿಸಯೊ ಸೇರಾಲೆ",
+	"vector-action-delete": "ಮಾಜಾಲೆ",
+	"vector-action-move": "ಸ್ತಲಾಂತರೊ ಮಲ್ಪುಲೆ",
+	"vector-action-protect": "ಸಂರಕ್ಷಿಸಾಲೆ",
+	"vector-action-undelete": "ಮಾಜಾವಡೆ",
+	"vector-action-unprotect": "ಬದಲಾವಣೆನ್ ರಕ್ಷಿಸಾಲೆ",
+	"vector-view-create": "ಸ್ರಿಸ್ಟಿಸಲೆ",
+	"vector-view-edit": "ಸಂಪೊಲಿಪುಲೆ",
+	"vector-view-history": "ಇತಿಹಾಸೊನು ತೂಲೆ",
+	"vector-view-view": "ಓದ್‍ಲೆ",
+	"vector-view-viewsource": "ಮೂಲೊನು ತೂಲೆ",
+	"vector-more-actions": "ನನಾತ್",
+	"vector-searchsuggest-containing": "ಉಂದು<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> ಇಪ್ಪುನ ಪುಟೊಕ್ಲೆನ್ ನಾಡ್‌ಲೆ"
+}

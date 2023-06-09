@@ -1,0 +1,43 @@
+{
+	"@metadata": {
+		"authors": [
+			"Joanmp17"
+		]
+	},
+	"skinname-vector": "ቨክተር",
+	"vector-opt-out": "ናብ ናይ ቀደም ትርኢት ለውጥ",
+	"vector-languages": "ቋንቋታት",
+	"vector-language-button-label": "{{PLURAL:$1|$1 ቋንቋ|$1 ቋንቋታት}}",
+	"vector-no-language-button-label": "ቋንቋታት ወስኽ",
+	"vector-action-addsection": "ክፋል ወስኽ",
+	"vector-action-delete": "ሰርዝ",
+	"vector-action-move": "ኣንቀሳቕስ",
+	"vector-action-protect": "ሓልው",
+	"vector-action-unprotect": "ሓለዋ ለውጥ",
+	"vector-view-create": "ፍጠር",
+	"vector-view-edit": "ኣመዓራርይ",
+	"vector-view-history": "ታሪኽ ርኣይ",
+	"vector-view-view": "ኣንብብ",
+	"vector-view-viewsource": "ኮድ ርኣይ",
+	"vector-jumptonavigation": "ናብ ዳህሳስ ኪድ",
+	"vector-jumptosearch": "ናብ ምድላይ ኪድ",
+	"vector-jumptocontent": "ናብ ትሕዝቶ ኪድ",
+	"vector-more-actions": "ተወሳኺ",
+	"vector-toc-label": "ትሕዝቶታት",
+	"vector-toc-beginning": "መጀመርታ",
+	"vector-anon-user-menu-pages-learn": "ተወሳኺ ሓበሬታ",
+	"vector-anon-user-menu-pages-label": "ብዛዕባ ኣርትዖት ዝያዳ ሓበሬታ ርኸብ",
+	"vector-main-menu-tooltip": "ቀንዲ መምረጺ",
+	"vector-toc-menu-tooltip": "ሰሌዳ ትሕዝቶታት",
+	"vector-main-menu-label": "ቀንዲ መምረጺ",
+	"vector-page-tools-label": "መሳርሒታት",
+	"vector-page-tools-general-label": "ሓፈሻዊ",
+	"vector-page-tools-actions-label": "ተግባራት",
+	"vector-pin-element-label": "ናብ ጎድናዊ ሽራጥ ኣንቀሳቕስ",
+	"vector-unpin-element-label": "ሕባእ",
+	"vector-2022-prefs-talkpage": "[[mw:Talk:Reading/Web/Desktop_Improvements|ምይይጥ]]",
+	"tooltip-vector-anon-user-menu-title": "ተወሳኺ ኣማራጽታት",
+	"vector-toc-unpinned-popup": "እቲ ሰሌዳ ትሕዝቶታት ናብዚ ተንቀሳቒሱ ኣሎ።",
+	"vector-page-tools-unpinned-popup": "እቲ መምረጺ መሳርሒታት ናብዚ ተንቀሳቒሱ ኣሎ።",
+	"vector-main-menu-unpinned-popup": "እቲ ቀንዲ መምረጺ ናብዚ ተንቀሳቒሱ ኣሎ።"
+}

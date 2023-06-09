@@ -1,0 +1,197 @@
+@import 'mediawiki.skin.variables.less';
+
+//
+// == Media query breakpoints ==
+//
+@min-width-mobile: @width-breakpoint-mobile; // Above 320px
+@max-width-mobile: @width-breakpoint-tablet - 1px; // Below 719px
+@min-width-tablet: @width-breakpoint-tablet; // Above 720px
+@max-width-tablet: @width-breakpoint-desktop - 1px; // Below 999px
+@min-width-desktop: @width-breakpoint-desktop; // Above 1000px
+@max-width-desktop: @width-breakpoint-desktop-wide - 1px; // Below 1199px
+@min-width-desktop-wide: @width-breakpoint-desktop-wide; // Above 1200px
+
+// Defines the minimum viewport width, at which point the layout will not get any
+// smaller and will start horizontal scrolling instead.
+@min-width-supported: unit( 500px / @font-size-browser, em );
+
+// Sizing calculation primitives.
+@font-size-root: 100%;
+@font-size-browser: 16; // Assumed browser default of `16px`
+
+//
+// == Page content ==
+//
+
+@color-link-selected: @color-base;
+
+@outline-color-base--focus: @color-progressive;
+
+//
+// == Typography ==
+//
+// Typography in Wikimedia Design Style Guide:;
+// https://design.wikimedia.org/style-guide/visual-style_typography.html
+// Historic overview and background information of fonts in Wikimedia software:
+// https://www.mediawiki.org/wiki/Wikimedia_User_Interface/Use_cases/Font_family_stack
+// Source of this font stack definition in WikimediaUI Base:
+// https://phabricator.wikimedia.org/source/wikimedia-ui-base/browse/master/wikimedia-ui-base.less$202
+@font-family-serif: 'Linux Libertine', 'Georgia', 'Times', serif;
+
+// Body content uses the user setting in browser / operating system default sans-serif font:
+// For example, Arial on Windows, Roboto on Android.
+// FIXME: Use WikimediaUI Base's OS specific default sans-serif fonts.
+// @font-family-sans is set in mediawiki.variables/variables.less
+
+// Fallback for headings, language: ja,he,ko. See T73240, T65817, T65843, T65844, T65827.
+@font-family-sans--fallback: sans-serif;
+
+@font-size-base: unit( 14 / @font-size-browser, em ); // Equals `0.875em`.
+@font-size-base--trident-hack: calc( 1em ~'*' unit( @font-size-base ) );
+@font-size-reset: @font-size-root;
+@font-size-heading-1: 1.8em;
+@font-size-heading-2: 1.5em;
+@font-size-heading-3: 1.2em;
+@font-size-notification: 0.8em;
+@font-size-site-notice: 0.8em;
+@font-size-footer: unit( 12 / @font-size-browser, em );
+
+@line-height-base: 1.6;
+@line-height-heading: 1.375;
+@line-height-code: 1.3;
+@line-height-footer-info: 1.4;
+@line-height-footer-buttons: 2;
+
+@size-icon: unit( 20 / @font-size-browser, em );
+
+// FIXME: Use global variable since Echo and CentralNotice use this variable
+@border-color-content: #a7d7f9;
+// Due to darker background gradient, border needs to be darkened for aligned visual perception.
+@border-color-content--tabs-inactive: darken( @border-color-content, 10% );
+@border-color-portal-heading: #c8ccd1;
+// Use `rgba()` notation for better Safari support, see T254489.
+@border-start-blockquote: 4px @border-style-base #eaecf0;
+@padding-top-content: 0.5em;
+@padding-blockquote: 8px 32px;
+
+@background-color-secondary--modern: #f8f9fa;
+@background-color-page-container: @background-color-base;
+
+// Navigation
+@background-color-secondary: #f6f6f6;
+// Navigation `line-height` has to be set in `em`s due to a rendering calculation issue.
+@line-height-nav: 1.125em;
+
+// Navigation: Personal tools
+@background-position-nav-personal-icon: left unit( 4 / @font-size-browser / @font-size-nav-personal, em );
+@background-size-nav-personal-icon: unit( 14 / @font-size-browser / @font-size-nav-personal, em );
+@top-personal-tools: 6px;
+@font-size-nav-personal: 0.75em;
+// Using `unit()` without second parameter to achieve a unitless output for `line-height`.
+@line-height-nav-personal: unit( 14 / @font-size-browser / @font-size-nav-personal ); // Equals `1.667`.
+
+// Tabs
+@font-size-tabs: unit( 13 / @font-size-browser, em ); // Equals `0.8125em`.
+@padding-horizontal-tabs: 8px;
+@padding-top-tabs: 12px;
+@padding-vertical-tabs: @padding-top-tabs 0 7px 0;
+
+// Dropdowns
+@height-dropdown-menu-item: unit( 32 / @font-size-browser, rem );
+@padding-vertical-dropdown-menu-item: 6px;
+@padding-horizontal-dropdown-menu-item: 14px;
+@font-size-dropdown: unit( @font-size-base, rem ); // Equals `0.875rem`.
+
+// Scroll Indicator
+@height-scroll-indicator: 30px;
+// The amount of space that should be between the bottom of the viewport and the
+// bottom of the scroll indicator.
+@max-height-bottom-spacing-scroll-indicator: 16px;
+
+// TOC and Page tools Pinned elements
+@padding-top-pinned-element: unit( (30px - @padding-top-tabs) / @font-size-browser, em);
+
+// Page Tools
+// 2.34 (height of #firstHeading) - the padding on the pinned element to allow
+// for 30px of space between the top of the pinned element and the top of the viewport.
+@margin-top-pinned-page-tools: (@font-size-heading-1 * @line-height-heading) - @padding-top-pinned-element;
+
+// TOC
+@spacing-subsection-toggle: 22px; // @size-toc-subsection-toggle-icon @ 12
+@size-toc-subsection-toggle-icon: 1.834em;
+// Add the top padding of .mw-body element to @margin-top-pinned-page-tools
+// since it starts higher on the page.
+@margin-top-pinned-toc: @margin-top-pinned-page-tools + @padding-top-content;
+
+// Search
+@max-width-search: unit( 500px / @font-size-browser / @font-size-base, em ); // 35.71428571em @ 16 & 0.875em T270202
+@min-width-search-button: 28px;
+@width-search-button: unit( 28 / @font-size-browser / @font-size-search-input, em );
+@font-size-search-input: unit( 13 / @font-size-browser, em ); // Equals `0.8125em`.
+// Derived from @size-typeahead-search-focus-addition in Codex
+// https://gerrit.wikimedia.org/r/plugins/gitiles/design/codex/+/refs/tags/v0.1.0-alpha.8/packages/codex/src/components/typeahead-search/TypeaheadSearch.vue#703
+@size-search-expand: 24px;
+@margin-end-search: 12px;
+
+// Language button
+@height-button-lang: unit( 32 / @font-size-browser, em );
+
+// Pre-content
+@margin-top-pre-content: 8px;
+
+// Header
+// T245190 T296321 For sticky header, set an explicit height. This is needed for scroll padding
+// and for other sticky elements on the page. Setting the height in relative units enables
+// the header's height to adapt to the browser's font size setting. Because
+// this variable is used to determine top offsets for sticky elements where the
+// font-size might not be 16px, using rem avoids the cascading effects of em units.
+@height-header: unit( 50px / @font-size-browser, rem );
+
+// Z-indices
+// See Codex tokens https://doc.wikimedia.org/codex/latest/design-tokens/z-index.html
+
+// Header z-index-header with 200 in Codex higher than @z-index-dropdown so that search results
+// overlay variants and more menu.
+@z-index-header: @z-index-fixed;
+@z-index-search-button: @z-index-stacking-1;
+@z-index-search-loader: @z-index-stacking-1;
+// Ensure that this is displayed on top of .vector-body and clickable.
+@z-index-indicators: @z-index-stacking-1;
+// Menus must overlap indicators (@z-index-indicators) and VisualEditor toolbar (z-index: 2).
+// @z-index-dropdown: 50; in Codex.
+// @z-index-overlay is 450 in new Codex tokens; was 101.
+
+// See skinStyles/jquery.ui/jquery.ui.slider.css.
+// @z-index-ui-slider-range: 1;
+// See skinStyles/jquery.ui/jquery.ui.datepicker.css.
+// @z-index-ui-datepicker-cover: -1;
+// See skinStyles/jquery.ui/jquery.ui.slider.css.
+// @z-index-ui-slider-handle: 2;
+// See skinStyles/jquery.ui/jquery.ui.selectable.css.
+// @z-index-ui-selectable-helper: 100;
+// See skinStyles/jquery.ui/jquery.ui.tooltip.css.
+// @z-index-ui-tooltip: 9999;
+
+// Transitions
+// Sticky header hide/show transition
+@transition-sticky-header: transform 250ms linear;
+
+//
+// Layout
+//
+@max-width-page-container: unit( 1596px / @font-size-browser, em ); // T305069 - 99.75em @ 16
+@max-width-content-container: unit( 960px / @font-size-browser, em ); // T305069 - 60em @ 16
+@padding-horizontal-page-container: unit( 24px / @font-size-browser, em );
+@padding-horizontal-page-container-desktop: unit( 44px / @font-size-browser, em );
+@padding-horizontal-page-container-desktop-wide: unit( 52px / @font-size-browser, em );
+// T314419 - Scroll padding is modified primarily to bring section headings into a position that is
+// easier to read, which is slightly lower than the very top of the page. The primary use-case is when
+// navigating sections via the table of contents. When changing this value, also change the value in
+// resources/skins.vector.scripts/setupIntersectionObservers.js
+@scroll-padding-top: 75px;
+
+// Grid
+@grid-row-gap: 24px;
+@grid-column-gap: 36px;
+@width-column-start-desktop: unit( 196px / @font-size-browser, em ); // Total width including gap is 232px
+@width-column-start-desktop-wide: unit( 248px / @font-size-browser, em ); // Total width including gap is 284px

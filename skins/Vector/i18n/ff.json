@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Ibrahima",
+			"Ibrahima Malal Sarr",
+			"Musaddam Idriss"
+		]
+	},
+	"vector-language-button-label": "{{PLURAL:$1|ɗemngal|$1 ɗemngal}}",
+	"vector-action-addsection": "Ɓeydi toɓɓere",
+	"vector-action-delete": "Momtu",
+	"vector-action-move": "Dirtin",
+	"vector-action-protect": "Hisnu",
+	"vector-view-create": "Sos",
+	"vector-view-edit": "Taƴto",
+	"vector-view-history": "Yiyto aslol",
+	"vector-view-view": "Tar",
+	"vector-view-viewsource": "Yiyto ɗaɗol",
+	"vector-more-actions": "Ɓeydu",
+	"vector-searchsuggest-containing": "Yiylo kelle coomɗe $1<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+}

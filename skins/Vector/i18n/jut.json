@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ghiutun",
+			"Jyllanj"
+		]
+	},
+	"vector-action-addsection": "Ny emn",
+	"vector-action-move": "Flytt",
+	"vector-action-protect": "Beskøtt",
+	"vector-view-create": "Oprett",
+	"vector-view-edit": "Redigiir",
+	"vector-view-history": "Sie historik",
+	"vector-view-view": "Läs",
+	"vector-more-actions": "Mier"
+}

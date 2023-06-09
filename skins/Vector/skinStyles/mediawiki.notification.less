@@ -1,0 +1,30 @@
+@import '../resources/common/variables.less';
+
+/* mediawiki.notification */
+
+.mw-notification-area {
+	font-size: @font-size-notification;
+}
+
+.mw-notification-area-layout {
+	top: 3.5em;
+}
+
+.mw-notification {
+	border: @border-base;
+	border-radius: @border-radius-base;
+	box-shadow: 0 2px 2px 0 rgba( 0, 0, 0, 0.25 );
+}
+
+.vector-sticky-header-enabled .mw-notification-area {
+	transition: @transition-sticky-header;
+}
+
+/**
+ * When the sticky header is open in modern Vector,
+ * and the notification bar is also open, the notification
+ * should be moved so that it doesn't obstruct the sticky header
+ */
+.vector-sticky-header-visible .mw-notification-area-overlay > .mw-notification-area-floating {
+	transform: translateY( @height-header );
+}

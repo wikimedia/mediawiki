@@ -1,0 +1,12 @@
+{{!
+	See @typedef SidebarData
+}}
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="{{link-mainpage}}"
+			title="{{msg-tooltip-p-logo}}"></a>
+	</div>
+	{{#data-portlets-first}}{{>LegacyMenu}}{{/data-portlets-first}}
+	{{#array-portlets-rest}}{{>LegacyMenu}}{{/array-portlets-rest}}
+	{{#data-portlets.data-languages}}{{>LegacyMenu}}{{/data-portlets.data-languages}}
+</div>

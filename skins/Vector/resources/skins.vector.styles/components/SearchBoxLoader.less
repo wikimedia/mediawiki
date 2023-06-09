@@ -1,0 +1,101 @@
+/**
+ * Loading indicator for search widget
+ *
+ * By adding a class on the parent search form
+ * <div id="simpleSearch" class="search-form__loader"></div>
+ * A pseudo element is added via ':after' that mimics the appearance
+ * of the search suggestion and contains the text
+ * "Loading search suggestions" (message key: vector-search-loader).
+ *
+ * After appearing for more than a second, a progress-bar animation appears
+ * above the loading indicator.
+ *
+ **/
+
+@import '../../common/variables.less';
+
+// Derived from @size-search-figure in Codex.
+// https://gerrit.wikimedia.org/r/plugins/gitiles/design/codex/+/refs/tags/v0.1.0-alpha.8/packages/codex/src/components/typeahead-search/TypeaheadSearch.vue#676
+@size-search-figure: 40px;
+// Derived from text input start icon padding in Codex.
+// https://gerrit.wikimedia.org/r/plugins/gitiles/design/codex/+/refs/tags/v0.1.0-alpha.8/packages/codex/src/components/text-input/TextInput.vue#257
+@padding-left-start-icon: 36px;
+// Derived from @padding-vertical-menu-item: 8px in Codex.
+// https://gerrit.wikimedia.org/r/plugins/gitiles/design/codex/+/refs/tags/v0.1.0-alpha.8/packages/codex/src/components/typeahead-search/TypeaheadSearch.vue#678
+@padding-vertical-menu-item: 8px;
+
+.search-form__loader::after {
+	// Set the i18n message.
+	content: attr( data-loading-msg );
+	//
+	// Position loader below the input.
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	position: absolute;
+	top: 100%;
+	width: 100%;
+	// Compute the height of a Codex menu item: the height of the thumbnail
+	// + the padding around the thumbnail. Then also add our own border-bottom-width, because we're
+	// using box-sizing: border-box;
+	height: ~'calc( @{size-search-figure} + 2*@{padding-vertical-menu-item} + @{border-width-base} )';
+	//
+	// Ensure the 100% width doesn't extend beyond the input.
+	box-sizing: border-box;
+	//
+	// Align loader style with input.
+	border: @border-base;
+	border-top-width: 0; // Hide the top border so it doesn't interfere with focus state.
+	border-radius: 0 0 @border-radius-base @border-radius-base;
+	box-shadow: @box-shadow-inset-small @box-shadow-color-transparent;
+	padding-left: @padding-left-start-icon;
+	//
+	// Hide text in case it extends beyond the input.
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	//
+	// Prevent Vector tabs from overlapping T254695#6461044
+	z-index: @z-index-search-loader;
+	//
+	// Add a progress-bar to the loading indicator,
+	// but only show it animating after 1 second of loading.
+	background: /*image*/ linear-gradient( 90deg, @color-progressive 0%, @color-progressive 100% )
+		/* position / size*/ -10% 0 ~'/' 0 2px
+		/* repeat */ no-repeat,/*second bg, just color*/#fff;
+	//
+	// Animates the progress-bar.
+	animation: /* name */ search-loader-progress-bar
+		/* duration */ 1200ms
+		/* timing function */ linear
+		/* delay */ 500ms
+		/* iteration count */ infinite
+		/* fill direction */ alternate;
+
+	.vector-search-box-show-thumbnail.vector-search-box-auto-expand-width & {
+		margin-left: @size-search-expand;
+		width: ~'calc( 100% - @{size-search-expand} )';
+	}
+}
+
+@keyframes search-loader-progress-bar {
+	0% {
+		background-size: 0 2px;
+		background-position: -10% 0;
+	}
+
+	30% {
+		background-size: 30% 2px;
+		background-position: -10% 0;
+	}
+
+	70% {
+		background-size: 30% 2px;
+		background-position: 110% 0;
+	}
+
+	100% {
+		background-size: 0 2px;
+		background-position: 110% 0;
+	}
+}

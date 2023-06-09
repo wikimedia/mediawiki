@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"RFScott"
+		]
+	},
+	"vector-language-button-label": "{{PLURAL:$1|$1 хэсэ}}",
+	"vector-action-addsection": "Темава аӈгойни",
+	"vector-action-delete": "Нангалаори",
+	"vector-action-move": "Энэвэмбури",
+	"vector-action-protect": "Кандёри",
+	"vector-view-create": "Аӈговори",
+	"vector-view-edit": "Калаори",
+	"vector-view-history": "Дюлэ дурун",
+	"vector-view-view": "Холаори",
+	"vector-more-actions": "Гучи"
+}

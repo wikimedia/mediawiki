@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Kscanne",
+			"Kwekubo",
+			"Moydow",
+			"Tem"
+		]
+	},
+	"skinname-vector": "Veicteoir",
+	"vector-action-addsection": "Cuir topaic leis",
+	"vector-action-delete": "Scrios",
+	"vector-action-move": "Athainmnigh",
+	"vector-action-protect": "Glasáil",
+	"vector-action-undelete": "Díscrios",
+	"vector-action-unprotect": "Díghlasáil",
+	"vector-view-create": "Cruthaigh",
+	"vector-view-edit": "Cuir in eagar",
+	"vector-view-history": "Féach ar stair",
+	"vector-view-view": "Léigh",
+	"vector-view-viewsource": "Féach ar fhoinse",
+	"vector-more-actions": "Tuilleadh",
+	"vector-searchsuggest-containing": "Cuardaigh leathanaigh ina bhfuil <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+}

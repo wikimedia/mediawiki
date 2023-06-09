@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Quintino Lopes Castro Tavares",
+			"Waldir",
+			"Waldyrious"
+		]
+	},
+	"vector-language-button-label": "{{PLURAL:$1|$1 língua}}",
+	"vector-action-addsection": "Adisiona tópiku",
+	"vector-action-delete": "Paga",
+	"vector-action-protect": "Proteji",
+	"vector-view-create": "Kria",
+	"vector-view-edit": "Muda",
+	"vector-view-history": "Odja istóriku",
+	"vector-view-view": "Le",
+	"vector-view-viewsource": "Odja kódigu-fonti",
+	"vector-more-actions": "Más",
+	"vector-page-tools-label": "Feramentas",
+	"vector-unpin-element-label": "sukundi"
+}

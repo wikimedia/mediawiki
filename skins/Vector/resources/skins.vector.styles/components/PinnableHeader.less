@@ -1,0 +1,57 @@
+.vector-pinnable-header {
+	.mixin-vector-dropdown-menu-item();
+	// Override display: flex applied by .mixin-vector-dropdown-menu-item()
+	display: block;
+}
+
+.vector-pinned-container .vector-page-tools .vector-pinnable-header,
+.vector-pinned-container .vector-toc .vector-pinnable-header {
+	// Match styles with tabs in page toolbar to ensure TOC and Page Tools pinnable headers
+	// align with page toolbar border
+	padding: @padding-vertical-tabs;
+	margin-bottom: -1px;
+}
+
+.vector-pinnable-header-label {
+	display: inline-block;
+	color: @color-subtle;
+	font-size: unit( 14 / @font-size-browser, rem );
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+// Styles for the "move to sidebar/hide" buttons, hidden by default.
+.vector-pinnable-header-toggle-button {
+	display: none;
+	border: 0;
+	padding: 0;
+	background-color: transparent;
+	color: @color-progressive;
+	cursor: pointer;
+	text-align: left;
+
+	&:hover {
+		color: @color-progressive--hover;
+	}
+
+	&::before {
+		content: '@{msg-brackets-start}';
+		color: @color-subtle;
+	}
+
+	&::after {
+		content: '@{msg-brackets-end}';
+		color: @color-subtle;
+	}
+}
+
+// Pinnable behavior is only enabled when JS is enabled and on larger viewports
+@media ( min-width: @min-width-desktop ) {
+	&.client-js {
+		.vector-pinnable-header-unpinned .vector-pinnable-header-pin-button,
+		.vector-pinnable-header-pinned .vector-pinnable-header-unpin-button {
+			display: inline-block;
+		}
+	}
+}

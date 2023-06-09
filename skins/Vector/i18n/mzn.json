@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mjbmr",
+			"محک"
+		]
+	},
+	"vector-languages": "زوون",
+	"vector-language-button-label": "{{PLURAL:$1|$1 زوون}}",
+	"vector-no-language-button-label": "زوون اضافه هکردن",
+	"vector-action-addsection": "ترنه گپ بزوئن",
+	"vector-action-delete": "پاک هاکردن",
+	"vector-action-move": "دکش هاکردن",
+	"vector-action-protect": "زلفن بزوئن",
+	"vector-action-undelete": "دباره بنویشته بیّن",
+	"vector-action-unprotect": "زلفن عوض هاکردن",
+	"vector-view-create": "بساتن",
+	"vector-view-edit": "دچی‌ین",
+	"vector-view-history": "تاریخچه",
+	"vector-view-view": "بخوندستن",
+	"vector-view-viewsource": "ونه منبع ره هارشائن",
+	"vector-more-actions": "ویشته",
+	"vector-searchsuggest-containing": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> دار صفحه‌ئون دله چرخه‌تو هکردن",
+	"vector-toc-beginning": "لید",
+	"vector-page-tools-label": "ابزارون",
+	"vector-page-tools-general-label": "عمومی",
+	"vector-unpin-element-label": "پیتی"
+}

@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jaeminlovetaejoon",
+			"SawJaemin"
+		]
+	},
+	"vector-action-addsection": "မၤအါထီၣ်တၢ်ဂ့ၢ်ခိၣ်တီ",
+	"vector-action-delete": "ထူးသံကွံာ်",
+	"vector-action-move": "သုး",
+	"vector-action-protect": "ဒီသဒၢ",
+	"vector-view-create": "တ့ထီၣ်",
+	"vector-view-edit": "အဲးဒံၣ်",
+	"vector-view-history": "ကွၢ်တၢ်စံၣ်စိၤတဲစိၤ",
+	"vector-view-view": "ဖး",
+	"vector-more-actions": "အါထီၣ်",
+	"tooltip-vector-anon-user-menu-title": "တၢ်ဃုထၢအါထီၣ်"
+}

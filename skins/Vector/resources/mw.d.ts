@@ -1,0 +1,1 @@
+import '@wikimedia/types-wikimedia';

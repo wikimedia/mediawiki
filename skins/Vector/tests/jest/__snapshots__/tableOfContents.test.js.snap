@@ -1,0 +1,261 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table of contents reloadTableOfContents re-renders toc when wikipage.tableOfContents hook is fired with empty sections 1`] = `
+"<div id=\\"vector-toc\\" class=\\"vector-toc vector-pinnable-element\\">
+<div class=\\"vector-pinnable-header vector-toc-pinnable-header vector-pinnable-header-pinned\\" data-feature-name=\\"pinned\\" data-pinnable-element-id=\\"vector-toc\\">
+	<h2 class=\\"vector-pinnable-header-label\\">Contents</h2>
+	<button class=\\"vector-pinnable-header-toggle-button vector-pinnable-header-pin-button\\" data-event-name=\\"pinnable-header.vector-toc.pin\\">move to sidebar</button>
+	<button class=\\"vector-pinnable-header-toggle-button vector-pinnable-header-unpin-button\\" data-event-name=\\"pinnable-header.vector-toc.unpin\\">hide</button>
+</div>
+<ul class=\\"vector-toc-contents\\" id=\\"mw-panel-toc-list\\">
+	<li id=\\"toc-mw-content-text\\" class=\\"vector-toc-list-item vector-toc-level-1\\">
+		<a href=\\"#\\" class=\\"vector-toc-link\\">
+			<div class=\\"vector-toc-text\\">Beginning</div>
+		</a>
+	</li>
+<li id=\\"toc-foo\\" class=\\"vector-toc-list-item vector-toc-level-1 vector-toc-list-item-expanded\\">
+	<a class=\\"vector-toc-link\\" href=\\"#foo\\">
+		<div class=\\"vector-toc-text\\">
+		<span class=\\"vector-toc-numb\\">1</span>foo</div>
+	</a>
+	<ul id=\\"toc-foo-sublist\\" class=\\"vector-toc-list\\">
+	</ul>
+</li>
+<li id=\\"toc-bar\\" class=\\"vector-toc-list-item vector-toc-level-1 vector-toc-list-item-expanded\\">
+	<a class=\\"vector-toc-link\\" href=\\"#bar\\">
+		<div class=\\"vector-toc-text\\">
+		<span class=\\"vector-toc-numb\\">2</span>bar</div>
+	</a>
+		<button aria-controls=\\"toc-bar-sublist\\" class=\\"mw-ui-icon mw-ui-icon-wikimedia-expand mw-ui-icon-small vector-toc-toggle\\" aria-expanded=\\"true\\">
+			Toggle bar subsection
+		</button>
+	<ul id=\\"toc-bar-sublist\\" class=\\"vector-toc-list\\">
+<li id=\\"toc-baz\\" class=\\"vector-toc-list-item vector-toc-level-2\\">
+	<a class=\\"vector-toc-link\\" href=\\"#baz\\">
+		<div class=\\"vector-toc-text\\">
+		<span class=\\"vector-toc-numb\\">2.1</span>baz</div>
+	</a>
+	<ul id=\\"toc-baz-sublist\\" class=\\"vector-toc-list\\">
+<li id=\\"toc-qux\\" class=\\"vector-toc-list-item vector-toc-level-3\\">
+	<a class=\\"vector-toc-link\\" href=\\"#qux\\">
+		<div class=\\"vector-toc-text\\">
+		<span class=\\"vector-toc-numb\\">2.1.1</span>qux</div>
+	</a>
+	<ul id=\\"toc-qux-sublist\\" class=\\"vector-toc-list\\">
+	</ul>
+</li>
+	</ul>
+</li>
+	</ul>
+</li>
+<li id=\\"toc-quux\\" class=\\"vector-toc-list-item vector-toc-level-1 vector-toc-list-item-expanded\\">
+	<a class=\\"vector-toc-link\\" href=\\"#quux\\">
+		<div class=\\"vector-toc-text\\">
+		<span class=\\"vector-toc-numb\\">3</span>quux</div>
+	</a>
+	<ul id=\\"toc-quux-sublist\\" class=\\"vector-toc-list\\">
+	</ul>
+</li>
+</ul>
+</div>
+"
+`;
+
+exports[`Table of contents reloadTableOfContents re-renders toc when wikipage.tableOfContents hook is fired with sections 1`] = `
+"<div id=\\"vector-toc\\" class=\\"vector-toc vector-pinnable-element\\">
+<div class=\\"vector-pinnable-header vector-toc-pinnable-header vector-pinnable-header-pinned\\" data-feature-name=\\"pinned\\" data-pinnable-element-id=\\"vector-toc\\">
+	<h2 class=\\"vector-pinnable-header-label\\">Contents</h2>
+	<button class=\\"vector-pinnable-header-toggle-button vector-pinnable-header-pin-button\\" data-event-name=\\"pinnable-header.vector-toc.pin\\">move to sidebar</button>
+	<button class=\\"vector-pinnable-header-toggle-button vector-pinnable-header-unpin-button\\" data-event-name=\\"pinnable-header.vector-toc.unpin\\">hide</button>
+</div>
+<ul class=\\"vector-toc-contents\\" id=\\"mw-panel-toc-list\\"><div id=\\"vector-toc\\" class=\\"vector-toc vector-pinnable-element\\">
+<div class=\\"vector-pinnable-header vector-toc-pinnable-header vector-pinnable-header-pinned\\" data-feature-name=\\"pinned\\" data-pinnable-element-id=\\"vector-toc\\">
+	<h2 class=\\"vector-pinnable-header-label\\">Contents</h2>
+	<button class=\\"vector-pinnable-header-toggle-button vector-pinnable-header-pin-button\\" data-event-name=\\"pinnable-header.vector-toc.pin\\">move to sidebar</button>
+	<button class=\\"vector-pinnable-header-toggle-button vector-pinnable-header-unpin-button\\" data-event-name=\\"pinnable-header.vector-toc.unpin\\">hide</button>
+</div>
+<ul class=\\"vector-toc-contents\\" id=\\"mw-panel-toc-list\\">
+	<li id=\\"toc-mw-content-text\\" class=\\"vector-toc-list-item vector-toc-level-1\\">
+		<a href=\\"#\\" class=\\"vector-toc-link\\">
+			<div class=\\"vector-toc-text\\">Beginning</div>
+		</a>
+	</li>
+<li id=\\"toc-foo\\" class=\\"vector-toc-list-item vector-toc-level-1 vector-toc-list-item-expanded\\">
+	<a class=\\"vector-toc-link\\" href=\\"#foo\\">
+		<div class=\\"vector-toc-text\\">
+		<span class=\\"vector-toc-numb\\">1</span>foo</div>
+	</a>
+	<ul id=\\"toc-foo-sublist\\" class=\\"vector-toc-list\\">
+	</ul>
+</li>
+<li id=\\"toc-bar\\" class=\\"vector-toc-list-item vector-toc-level-1 vector-toc-list-item-expanded\\">
+	<a class=\\"vector-toc-link\\" href=\\"#bar\\">
+		<div class=\\"vector-toc-text\\">
+		<span class=\\"vector-toc-numb\\">2</span>bar</div>
+	</a>
+		<button aria-controls=\\"toc-bar-sublist\\" class=\\"mw-ui-icon mw-ui-icon-wikimedia-expand mw-ui-icon-small vector-toc-toggle\\" aria-expanded=\\"true\\">
+			Toggle bar subsection
+		</button>
+	<ul id=\\"toc-bar-sublist\\" class=\\"vector-toc-list\\">
+<li id=\\"toc-baz\\" class=\\"vector-toc-list-item vector-toc-level-2\\">
+	<a class=\\"vector-toc-link\\" href=\\"#baz\\">
+		<div class=\\"vector-toc-text\\">
+		<span class=\\"vector-toc-numb\\">2.1</span>baz</div>
+	</a>
+	<ul id=\\"toc-baz-sublist\\" class=\\"vector-toc-list\\">
+<li id=\\"toc-qux\\" class=\\"vector-toc-list-item vector-toc-level-3\\">
+	<a class=\\"vector-toc-link\\" href=\\"#qux\\">
+		<div class=\\"vector-toc-text\\">
+		<span class=\\"vector-toc-numb\\">2.1.1</span>qux</div>
+	</a>
+	<ul id=\\"toc-qux-sublist\\" class=\\"vector-toc-list\\">
+	</ul>
+</li>
+	</ul>
+</li>
+	</ul>
+</li>
+<li id=\\"toc-quux\\" class=\\"vector-toc-list-item vector-toc-level-1 vector-toc-list-item-expanded\\">
+	<a class=\\"vector-toc-link\\" href=\\"#quux\\">
+		<div class=\\"vector-toc-text\\">
+		<span class=\\"vector-toc-numb\\">3</span>quux</div>
+	</a>
+	<ul id=\\"toc-quux-sublist\\" class=\\"vector-toc-list\\">
+	</ul>
+</li>
+<li id=\\"toc-bat\\" class=\\"vector-toc-list-item vector-toc-level-1 vector-toc-list-item-expanded\\">
+	<a class=\\"vector-toc-link\\" href=\\"#bat\\">
+		<div class=\\"vector-toc-text\\">
+		<span class=\\"vector-toc-numb\\">4</span>bat</div>
+	</a>
+	<ul id=\\"toc-bat-sublist\\" class=\\"vector-toc-list\\">
+	</ul>
+</li>
+</ul>
+</div>
+</ul>
+</div>
+"
+`;
+
+exports[`Table of contents renders when \`vector-is-collapse-sections-enabled\` is false 1`] = `
+"<div id=\\"vector-toc\\" class=\\"vector-toc vector-pinnable-element\\">
+<div class=\\"vector-pinnable-header vector-toc-pinnable-header vector-pinnable-header-pinned\\" data-feature-name=\\"pinned\\" data-pinnable-element-id=\\"vector-toc\\">
+	<h2 class=\\"vector-pinnable-header-label\\">Contents</h2>
+	<button class=\\"vector-pinnable-header-toggle-button vector-pinnable-header-pin-button\\" data-event-name=\\"pinnable-header.vector-toc.pin\\">move to sidebar</button>
+	<button class=\\"vector-pinnable-header-toggle-button vector-pinnable-header-unpin-button\\" data-event-name=\\"pinnable-header.vector-toc.unpin\\">hide</button>
+</div>
+<ul class=\\"vector-toc-contents\\" id=\\"mw-panel-toc-list\\">
+	<li id=\\"toc-mw-content-text\\" class=\\"vector-toc-list-item vector-toc-level-1\\">
+		<a href=\\"#\\" class=\\"vector-toc-link\\">
+			<div class=\\"vector-toc-text\\">Beginning</div>
+		</a>
+	</li>
+<li id=\\"toc-foo\\" class=\\"vector-toc-list-item vector-toc-level-1 vector-toc-list-item-expanded\\">
+	<a class=\\"vector-toc-link\\" href=\\"#foo\\">
+		<div class=\\"vector-toc-text\\">
+		<span class=\\"vector-toc-numb\\">1</span>foo</div>
+	</a>
+	<ul id=\\"toc-foo-sublist\\" class=\\"vector-toc-list\\">
+	</ul>
+</li>
+<li id=\\"toc-bar\\" class=\\"vector-toc-list-item vector-toc-level-1 vector-toc-list-item-expanded\\">
+	<a class=\\"vector-toc-link\\" href=\\"#bar\\">
+		<div class=\\"vector-toc-text\\">
+		<span class=\\"vector-toc-numb\\">2</span>bar</div>
+	</a>
+		<button aria-controls=\\"toc-bar-sublist\\" class=\\"mw-ui-icon mw-ui-icon-wikimedia-expand mw-ui-icon-small vector-toc-toggle\\" aria-expanded=\\"true\\">
+			Toggle bar subsection
+		</button>
+	<ul id=\\"toc-bar-sublist\\" class=\\"vector-toc-list\\">
+<li id=\\"toc-baz\\" class=\\"vector-toc-list-item vector-toc-level-2\\">
+	<a class=\\"vector-toc-link\\" href=\\"#baz\\">
+		<div class=\\"vector-toc-text\\">
+		<span class=\\"vector-toc-numb\\">2.1</span>baz</div>
+	</a>
+	<ul id=\\"toc-baz-sublist\\" class=\\"vector-toc-list\\">
+<li id=\\"toc-qux\\" class=\\"vector-toc-list-item vector-toc-level-3\\">
+	<a class=\\"vector-toc-link\\" href=\\"#qux\\">
+		<div class=\\"vector-toc-text\\">
+		<span class=\\"vector-toc-numb\\">2.1.1</span>qux</div>
+	</a>
+	<ul id=\\"toc-qux-sublist\\" class=\\"vector-toc-list\\">
+	</ul>
+</li>
+	</ul>
+</li>
+	</ul>
+</li>
+<li id=\\"toc-quux\\" class=\\"vector-toc-list-item vector-toc-level-1 vector-toc-list-item-expanded\\">
+	<a class=\\"vector-toc-link\\" href=\\"#quux\\">
+		<div class=\\"vector-toc-text\\">
+		<span class=\\"vector-toc-numb\\">3</span>quux</div>
+	</a>
+	<ul id=\\"toc-quux-sublist\\" class=\\"vector-toc-list\\">
+	</ul>
+</li>
+</ul>
+</div>
+"
+`;
+
+exports[`Table of contents renders when \`vector-is-collapse-sections-enabled\` is true 1`] = `
+"<div id=\\"vector-toc\\" class=\\"vector-toc vector-pinnable-element\\">
+<div class=\\"vector-pinnable-header vector-toc-pinnable-header vector-pinnable-header-pinned\\" data-feature-name=\\"pinned\\" data-pinnable-element-id=\\"vector-toc\\">
+	<h2 class=\\"vector-pinnable-header-label\\">Contents</h2>
+	<button class=\\"vector-pinnable-header-toggle-button vector-pinnable-header-pin-button\\" data-event-name=\\"pinnable-header.vector-toc.pin\\">move to sidebar</button>
+	<button class=\\"vector-pinnable-header-toggle-button vector-pinnable-header-unpin-button\\" data-event-name=\\"pinnable-header.vector-toc.unpin\\">hide</button>
+</div>
+<ul class=\\"vector-toc-contents\\" id=\\"mw-panel-toc-list\\">
+	<li id=\\"toc-mw-content-text\\" class=\\"vector-toc-list-item vector-toc-level-1\\">
+		<a href=\\"#\\" class=\\"vector-toc-link\\">
+			<div class=\\"vector-toc-text\\">Beginning</div>
+		</a>
+	</li>
+<li id=\\"toc-foo\\" class=\\"vector-toc-list-item vector-toc-level-1\\">
+	<a class=\\"vector-toc-link\\" href=\\"#foo\\">
+		<div class=\\"vector-toc-text\\">
+		<span class=\\"vector-toc-numb\\">1</span>foo</div>
+	</a>
+	<ul id=\\"toc-foo-sublist\\" class=\\"vector-toc-list\\">
+	</ul>
+</li>
+<li id=\\"toc-bar\\" class=\\"vector-toc-list-item vector-toc-level-1\\">
+	<a class=\\"vector-toc-link\\" href=\\"#bar\\">
+		<div class=\\"vector-toc-text\\">
+		<span class=\\"vector-toc-numb\\">2</span>bar</div>
+	</a>
+		<button aria-controls=\\"toc-bar-sublist\\" class=\\"mw-ui-icon mw-ui-icon-wikimedia-expand mw-ui-icon-small vector-toc-toggle\\" aria-expanded=\\"false\\">
+			Toggle bar subsection
+		</button>
+	<ul id=\\"toc-bar-sublist\\" class=\\"vector-toc-list\\">
+<li id=\\"toc-baz\\" class=\\"vector-toc-list-item vector-toc-level-2\\">
+	<a class=\\"vector-toc-link\\" href=\\"#baz\\">
+		<div class=\\"vector-toc-text\\">
+		<span class=\\"vector-toc-numb\\">2.1</span>baz</div>
+	</a>
+	<ul id=\\"toc-baz-sublist\\" class=\\"vector-toc-list\\">
+<li id=\\"toc-qux\\" class=\\"vector-toc-list-item vector-toc-level-3\\">
+	<a class=\\"vector-toc-link\\" href=\\"#qux\\">
+		<div class=\\"vector-toc-text\\">
+		<span class=\\"vector-toc-numb\\">2.1.1</span>qux</div>
+	</a>
+	<ul id=\\"toc-qux-sublist\\" class=\\"vector-toc-list\\">
+	</ul>
+</li>
+	</ul>
+</li>
+	</ul>
+</li>
+<li id=\\"toc-quux\\" class=\\"vector-toc-list-item vector-toc-level-1\\">
+	<a class=\\"vector-toc-link\\" href=\\"#quux\\">
+		<div class=\\"vector-toc-text\\">
+		<span class=\\"vector-toc-numb\\">3</span>quux</div>
+	</a>
+	<ul id=\\"toc-quux-sublist\\" class=\\"vector-toc-list\\">
+	</ul>
+</li>
+</ul>
+</div>
+"
+`;

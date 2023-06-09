@@ -1,0 +1,12 @@
+{{!-
+	Page Precontent - Placed below the page toolbar on all pages.
+	Contains the indicators (if the language button is beside the title)
+	qnd tagline, which is only rendered on article page.
+}}
+<div class="vector-body-before-content">
+	{{#has-buttons-in-content-top}}
+		{{>Indicators}}
+	{{/has-buttons-in-content-top}}
+
+	{{#is-article}}<div id="siteSub" class="noprint">{{msg-tagline}}</div>{{/is-article}}
+</div>

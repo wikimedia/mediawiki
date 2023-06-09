@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Singhalawap",
+			"Thushara",
+			"දසනැබළයෝ",
+			"පසිඳු කාවින්ද",
+			"සුරනිමල"
+		]
+	},
+	"vector-action-addsection": "මාතෘකාවක් එක්කරන්න",
+	"vector-action-delete": "මකන්න",
+	"vector-action-move": "ගෙනයන්න",
+	"vector-action-protect": "ආරක්‍ෂණය",
+	"vector-action-undelete": "මකාදැමීම අවලංගු කරන්න",
+	"vector-action-unprotect": "ආරක්ෂණ තත්වය වෙනස් කරන්න",
+	"vector-view-create": "තනන්න",
+	"vector-view-edit": "සංස්කරණය කරන්න",
+	"vector-view-history": "ඉතිහාසය බලන්න",
+	"vector-view-view": "කියවන්න",
+	"vector-view-viewsource": "මූලාශ්‍රය නරඹන්න",
+	"vector-more-actions": "තවත්"
+}

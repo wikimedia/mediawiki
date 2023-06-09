@@ -1,0 +1,44 @@
+@import '../variables.less';
+
+/* Footer */
+.mw-footer {
+	direction: ltr;
+
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	li {
+		color: @color-base;
+		margin: 0;
+		padding: 0.5em 0;
+		font-size: @font-size-footer;
+	}
+}
+
+#footer-icons {
+	float: right;
+
+	li {
+		float: left;
+		margin-left: 0.5em;
+		line-height: @line-height-footer-buttons;
+		text-align: right;
+	}
+}
+
+#footer-info {
+	li {
+		line-height: @line-height-footer-info;
+	}
+}
+
+#footer-places {
+	li {
+		float: left;
+		margin-right: 1em;
+		line-height: @line-height-footer-buttons;
+	}
+}

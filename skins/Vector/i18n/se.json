@@ -1,0 +1,40 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gálaniitoluodda",
+			"Jeblad",
+			"Kimberli Mäkäräinen (WMNO)",
+			"Trondtr",
+			"Tynnoel"
+		]
+	},
+	"vector-languages": "Gielat",
+	"vector-language-button-label": "{{PLURAL:$1|$1 giella|$1 giela}}",
+	"vector-no-language-button-label": "Lasit gielaid",
+	"vector-action-addsection": "Lasit fáttá",
+	"vector-action-delete": "Sihko",
+	"vector-action-move": "Sirdde",
+	"vector-action-protect": "Suodjal",
+	"vector-action-undelete": "Máhcat",
+	"vector-action-unprotect": "Rievdat suodjaleami",
+	"vector-view-create": "Álggat",
+	"vector-view-edit": "Rievdat",
+	"vector-view-history": "Geahča historjjá",
+	"vector-view-view": "Loga",
+	"vector-view-viewsource": "Geahča gáldokoda",
+	"vector-jumptonavigation": "Njuikes navigašuvdnii",
+	"vector-jumptosearch": "Njuikes ohcamii",
+	"vector-jumptocontent": "Njuikes sisdollui",
+	"vector-more-actions": "Eanet",
+	"vector-search-loader": "Viežžamin ohcanevttohusaid",
+	"vector-searchsuggest-containing": "Oza siidduid main lea <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-toc-label": "Sisdoallu",
+	"vector-anon-user-menu-pages-learn": "lassedieđut",
+	"vector-anon-user-menu-pages-label": "Lassedieđut rievdadeami birra",
+	"vector-main-menu-tooltip": "Váldofállu",
+	"vector-toc-menu-tooltip": "Sisdoallu",
+	"vector-toc-collapsible-button-label": "Čájet dahje čiega sisdoalu",
+	"vector-main-menu-label": "Váldofállu",
+	"vector-page-tools-label": "Neavvut",
+	"vector-unpin-element-label": "čiega"
+}

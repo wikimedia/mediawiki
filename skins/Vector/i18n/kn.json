@@ -1,0 +1,43 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ktkaushik",
+			"Nayvik",
+			"Omshivaprakash",
+			"VASANTH S.N.",
+			"~aanzx"
+		]
+	},
+	"vector-skin-desc": "2 ವೆಕ್ಟರ್ ಚರ್ಮವನ್ನು ಒದಗಿಸುತ್ತದೆ:\n* 2011 - ತಾಜಾ ನೋಟ ಮತ್ತು ಅನೇಕ ಉಪಯುಕ್ತತೆ ಸುಧಾರಣೆಗಳೊಂದಿಗೆ ಮೊನೋಬುಕ್ ನ ಆಧುನಿಕ ಆವೃತ್ತಿ.\n* 2022 - ವೆಕ್ಟರ್ ಅನ್ನು WMF [[mw:Desktop Improvements]] ಯೋಜನೆಯ ಭಾಗವಾಗಿ ನಿರ್ಮಿಸಲಾಗಿದೆ.",
+	"prefs-vector-enable-vector-1-label": "ಲೆಗಸಿ ವೆಕ್ಟರ್ ಬಳಸಿ",
+	"vector-languages": "ಭಾಷೆಗಳು",
+	"vector-language-button-aria-label": "ಇನ್ನೊಂದು ಭಾಷೆಯ ಲೇಖನಕ್ಕೆ ಹೋಗಿ. {{PLURAL:$1| $1 ಭಾಷೆಯಲ್ಲಿ| $1 ಭಾಷೆಗಳಲ್ಲಿ}} ಲಭ್ಯವಿದೆ",
+	"vector-language-button-label": "{{PLURAL:$1|$1 ಭಾಷೆ|$1 ಭಾಷೆಗಳು}}",
+	"vector-no-language-button-label": "ಭಾಷೆಗಳನ್ನು ಸೇರಿಸಿ",
+	"vector-no-language-button-aria-label": "ಈ ಲೇಖನವು ಈ ಭಾಷೆಯಲ್ಲಿ ಮಾತ್ರ ಅಸ್ತಿತ್ವದಲ್ಲಿದೆ. ಇತರ ಭಾಷೆಗಳಿಗೆ ಲೇಖನವನ್ನು ಸೇರಿಸಿ",
+	"vector-language-variant-switcher-label": "ಭಾಷಾ ರೂಪಾಂತರವನ್ನು ಬದಲಾಯಿಸಿ",
+	"vector-action-addsection": "ವಿಷಯ ಸೇರಿಸಿ",
+	"vector-action-delete": "ಅಳಿಸು",
+	"vector-action-move": "ಸ್ಥಳಾಂತರಿಸಿ",
+	"vector-action-protect": "ಸಂರಕ್ಷಿಸು",
+	"vector-action-undelete": "ಅಳಿಸಬೇಡ",
+	"vector-action-unprotect": "ರಕ್ಷಣೆಯನ್ನು ಬದಲಾವಣೆ",
+	"vector-view-create": "ಸೃಷ್ಟಿಸು",
+	"vector-view-edit": "ಸಂಪಾದಿಸಿ",
+	"vector-view-history": "ಇತಿಹಾಸವನ್ನು ನೋಡಿ",
+	"vector-view-view": "ಓದು",
+	"vector-view-viewsource": "ಮೂಲವನ್ನು ನೋಡು",
+	"vector-jumptonavigation": "ನ್ಯಾವಿಗೇಷನ್‌ಗೆ ಹೋಗು",
+	"vector-jumptosearch": "ಹುಡುಕಲು ಹೋಗು",
+	"vector-jumptocontent": "ವಿಷಯಕ್ಕೆ ಹೋಗು",
+	"vector-more-actions": "ಇನ್ನಷ್ಟು",
+	"vector-searchsuggest-containing": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> ಹೊಂದಿರುವ ಪುಟಗಳಿಗಾಗಿ ಹುಡುಕಿ",
+	"vector-toc-label": "ಪರಿವಿಡಿ",
+	"vector-toc-beginning": "ಮುನ್ನುಡಿ",
+	"vector-anon-user-menu-pages": "ಲಾಗ್ ಔಟ್ ಆದ ಸಂಪಾದಕರಿಗೆ ಪುಟಗಳು",
+	"vector-anon-user-menu-pages-learn": "ಹೆಚ್ಚಿನ ಮಾಹಿತಿ",
+	"vector-page-tools-label": "ಉಪಕರಣಗಳು",
+	"vector-page-tools-general-label": "ಸಾಮಾನ್ಯ",
+	"vector-unpin-element-label": "ಮರೆ ಮಾಡಿ",
+	"vector-prefs-limited-width": "ಸೀಮಿತ ಪುಟ ಅಗಲ ಮೋಡ್ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ"
+}

@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kimberli Mäkäräinen (WMNO)",
+			"Seipinne",
+			"Trondtr",
+			"Yupik"
+		]
+	},
+	"vector-opt-out": "Molso ovdebii olgoldâsháámán",
+	"vector-languages": "Kielah",
+	"vector-language-button-label": "{{PLURAL:$1|$1 kielâ|$1 kielâ|$1 kielâ|$1 kiellâd}}",
+	"vector-no-language-button-label": "Lasseet kielâid",
+	"vector-action-addsection": "Lasseet fáádá",
+	"vector-action-delete": "Siho",
+	"vector-action-move": "Sirde",
+	"vector-action-protect": "Suoijii",
+	"vector-action-undelete": "Maaccât",
+	"vector-view-create": "Räähti",
+	"vector-view-edit": "Mute",
+	"vector-view-history": "Čääiti historjá",
+	"vector-view-view": "Luuvâ",
+	"vector-view-viewsource": "Čääiti käldeekoodi",
+	"vector-jumptonavigation": "Njuškii navigistmân",
+	"vector-jumptosearch": "Njuškii ucâmân",
+	"vector-jumptocontent": "Njuškii siskáldâsân",
+	"vector-more-actions": "Eenâb",
+	"vector-searchsuggest-containing": "Uusâ siijđoid, moh siskáldeh <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-toc-beginning": "Algâttâs",
+	"vector-main-menu-tooltip": "Uáivivaljiittâh",
+	"vector-main-menu-label": "Uáivivaljiittâh",
+	"vector-page-tools-label": "Tyejiniävuh",
+	"vector-unpin-element-label": "čievâ",
+	"tooltip-vector-anon-user-menu-title": "Lase valjiimeh"
+}

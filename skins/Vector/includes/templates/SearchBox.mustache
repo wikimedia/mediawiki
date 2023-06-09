@@ -1,0 +1,44 @@
+{{!
+ See @typedef SearchData
+}}
+<div{{#is-primary}} id="p-search"{{/is-primary}} role="search" class="{{class}} vector-search-box">
+	{{#is-collapsible}}
+	{{#data-collapsed-search-button}}
+	{{>Button}}
+	{{/data-collapsed-search-button}}
+	{{/is-collapsible}}
+	<div>
+		{{#has-label}}
+			<h3 {{{html-user-language-attributes}}}>
+				<label{{#is-primary}} for="searchInput"{{/is-primary}}>{{msg-search}}</label>
+			</h3>
+		{{/has-label}}
+		<form action="{{form-action}}" id="{{form-id}}"
+			class="vector-search-box-form">
+			<div {{#is-primary}}id="simpleSearch"{{/is-primary}}
+				class="vector-search-box-inner"
+				{{#input-location}} data-search-loc="{{.}}"{{/input-location}}>
+				<input class="vector-search-box-input"
+					{{#is-primary}}{{{html-input-attributes}}} id="searchInput"{{/is-primary}}
+					{{^is-primary}}
+					type="search" name="search"
+					placeholder="{{msg-searchsuggest-search}}"
+					{{/is-primary}}
+				>
+				<input type="hidden" name="title" value="{{page-title}}">
+				{{!	We construct two buttons (for 'go' and 'fulltext' search modes), but only one will be
+						visible and actionable at a time (they are overlaid on top of each other in CSS).
+						* Browsers will use the 'fulltext' one by default (as it's the first in tree-order),
+							which is desirable when they are unable to show search suggestions (either due to being
+							broken or having JavaScript turned off).
+						* The mediawiki.searchSuggest module, after doing tests for the broken browsers, removes
+							the 'fulltext' button and handles 'fulltext' search itself; this will reveal the 'go'
+							button and cause it to be used.	!}}
+				<input{{#is-primary}} id="mw-searchButton"{{/is-primary}}
+					{{{html-button-fulltext-attributes}}} value="{{msg-searchbutton}}">
+				<input{{#is-primary}} id="searchButton"{{/is-primary}}
+					{{{html-button-go-attributes}}} value="{{msg-searcharticle}}">
+			</div>
+		</form>
+	</div>
+</div>

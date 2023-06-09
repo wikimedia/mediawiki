@@ -1,0 +1,136 @@
+@import '../../common/variables.less';
+@import '../../common/mixins.less';
+@import 'mediawiki.mixins.less';
+
+@font-size-user-links: unit( 14 / @font-size-browser, em ); // Equals `0.875em`.
+// Applies to links in the overflow menu that do not have the .mw-ui-button class.
+@overflow-link-margin: 0 8px;
+
+/**
+ * Container that holds both the horizontal menu and dropdown menus.
+ */
+.vector-user-links {
+	display: flex;
+	align-items: center;
+	position: relative;
+	justify-content: flex-end;
+	flex-shrink: 1;
+
+	.mw-ui-button {
+		// FIXME: Overrides mw-ui-button's `display: inline-block` property so that
+		// the text in the button is vertically centered. `.mw-ui-button` sets a
+		// min-height to the button, but should also vertically center the
+		// button's children.
+		display: flex;
+		align-items: center;
+	}
+
+	.mw-list-item {
+		margin: 0;
+	}
+}
+
+/**
+ * Both logged-in and logged-out dropdown menus.
+ */
+.vector-user-menu {
+	.vector-menu-content {
+		left: auto;
+		right: 0;
+	}
+
+	// Used to hide collapsible items inside the dropdown menu
+	// as well as the dropdown menu itself when the menu is empty
+	&.user-links-collapsible-item,
+	.user-links-collapsible-item {
+		@media ( min-width: @min-width-tablet ) {
+			display: none;
+		}
+	}
+}
+
+/**
+ * Horizontal links menu - logged in and logged out.
+ */
+.vector-user-links .mw-portlet-vector-user-menu-overflow {
+	font-size: @font-size-user-links;
+
+	// Ensure icon buttons have a base font of 16px
+	.mw-ui-icon-element {
+		font-size: unit( 16 / @font-size-browser, rem );
+	}
+
+	.vector-menu-content-list {
+		display: flex;
+		align-items: center;
+	}
+
+	@media ( min-width: @min-width-desktop ) {
+		// Right margin to separate overflow menu from dropdown
+		margin-right: 8px;
+
+		// Separate menu items inside overflow menu
+		.vector-menu-content-list {
+			column-gap: 8px;
+		}
+	}
+
+	@media ( max-width: @max-width-tablet ) {
+		// Only apply 8px spacing to normal links (i.e. Create account, User page)
+		// Links with button classes will have a larger touch area
+		// and therefore dont need additional spacing
+		a:not( .mw-ui-button ):not( .mw-echo-notifications-badge  ) {
+			margin: 0 8px;
+		}
+	}
+
+	.user-links-collapsible-item {
+		@media ( max-width: @max-width-mobile ) {
+			display: none;
+		}
+	}
+}
+
+/**
+ * Logged-in dropdown menu
+ */
+.vector-user-menu-logged-in {
+	.vector-menu-heading::after {
+		.mixin-vector-menu-heading-arrow();
+	}
+}
+
+/**
+ * Dropdown menu items- Special treatment for special links.
+ */
+#p-user-menu-anon-editor .vector-menu-heading {
+	display: block;
+
+	a::before {
+		content: '@{msg-parentheses-start}';
+	}
+
+	a::after {
+		content: '@{msg-parentheses-end}';
+	}
+}
+
+//User-page link in personal (overflow) menu.
+#pt-userpage-2 {
+	max-width: unit( 155 / @font-size-browser / @font-size-user-links, em );
+
+	a:not( .mw-selflink ) {
+		// T312157 Override redlink (.new) color for non-existant userpage
+		color: @color-link;
+	}
+
+	span {
+		.text-overflow( @visible: false );
+	}
+
+	// T287522#7295558: Increase the max-width of the username when viewport
+	// allows for it.
+	@media ( min-width: @min-width-desktop-wide ) {
+		max-width: unit( 200 / @font-size-browser / @font-size-user-links, em );
+	}
+}

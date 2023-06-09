@@ -1,0 +1,11 @@
+{{! Use `.mw-portlet-lang` to target styles at this element}}
+{{>Dropdown/Open}}
+	{{#is-language-selector-empty}}
+		<div class="mw-portlet-empty-language-selector-body">
+			{{msg-empty-language-selector-body}}
+		</div>
+	{{/is-language-selector-empty}}
+	{{^is-language-selector-empty}}
+		{{>MenuContents}}
+	{{/is-language-selector-empty}}
+{{>Dropdown/Close}}

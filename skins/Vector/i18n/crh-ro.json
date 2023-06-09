@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Zolgoyo"
+		]
+	},
+	"vector-languages": "Tĭller",
+	"vector-language-button-label": "{{PLURAL:$1|tĭl}}",
+	"vector-no-language-button-label": "Tĭl qoş",
+	"vector-action-addsection": "Mewzu qoş",
+	"vector-action-delete": "Yoq et",
+	"vector-action-move": "Adını degĭştĭr",
+	"vector-action-protect": "Qolla",
+	"vector-view-create": "Yarat",
+	"vector-view-history": "Keşmĭş",
+	"vector-more-actions": "Taa köp",
+	"vector-searchsuggest-containing": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> ĭşergen saypalardı qıdır",
+	"vector-page-tools-label": "Aletler",
+	"vector-page-tools-general-label": "Genel",
+	"vector-unpin-element-label": "gĭzle"
+}

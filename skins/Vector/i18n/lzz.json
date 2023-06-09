@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bombola",
+			"Ceas08",
+			"Cem Rize",
+			"Erdemaslancan",
+			"Velg"
+		]
+	},
+	"vector-action-addsection": "Konu ekle",
+	"vector-action-delete": "Jili",
+	"vector-action-move": "Tori",
+	"vector-action-protect": "İçvi",
+	"vector-view-create": "dokʼidi",
+	"vector-view-edit": "Doktiri",
+	"vector-view-history": "Dosyaşi tarixi",
+	"vector-view-view": "İǩitxi",
+	"vector-more-actions": "Daha fazla"
+}

@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Nikki"
+		]
+	},
+	"vector-languages": "ᡤᡳᠰᡠᠨ",
+	"vector-action-addsection": "ᠨᠣᡤᡳᠯᠠ ᠵᠣᡵᡳᠩᡤᠠ",
+	"vector-action-delete": "ᡩᠠᠪᡤᡳᡵᡝ",
+	"vector-action-move": "ᡤᡠᡵᡳᠪᡠᡵᡝ",
+	"vector-action-protect": "ᡴᠠᡵᠮᠠᡵᠠ",
+	"vector-action-unprotect": "ᡴᠠᡵᠮᠠᠨ ᠪᡝ ᡥᠠᠯᠠᠮᠪᡳ",
+	"vector-view-create": "ᡳᠯᡳᠪᡠᡵᡝ",
+	"vector-view-edit": "ᠪᠠᠨᠵᡳᠪᡠᠮᡝ ᠠᡵᠠᡵᠠ",
+	"vector-view-history": "ᡝᡵᡝ ᡧᡠ ᡶᡳᠶᡝᠯᡝᠨ ᡳ ᠰᡠᡩᡠᡵᡳ ᠪᡝ ᠪᠠᡳᠴᠠᡵᠠ",
+	"vector-view-view": "ᡥᡡᠯᠠᡵᠠ",
+	"vector-view-viewsource": "ᡩᠠ ᡧᡠ ᠸᡝᠨ ᠪᡝ ᠪᠠᡳᠴᠠᡵᠠ",
+	"vector-more-actions": "ᡝᠯᡝ",
+	"vector-toc-label": "ᡧᠣᡧᠣᡥᠣᠨ ᡥᠠᠴᡳᠨ",
+	"vector-page-tools-label": "ᠠᡤᡡᡵᠠ ᡳ ᠰᡳᡨᡥᡝᠨ"
+}

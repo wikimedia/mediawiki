@@ -1,0 +1,45 @@
+.vector-pinnable-header {
+	padding-bottom: @padding-vertical-dropdown-menu-item;
+	margin-bottom: @padding-vertical-dropdown-menu-item;
+	border-bottom: @border-width-base @border-style-base @border-color-content-box;
+	// Line height helps space label & button when spanning multiple lines,
+	// while still keeping them vertically centered when on one line.
+	line-height: @line-height-medium;
+}
+
+.vector-pinnable-header-label {
+	display: inline-block;
+	vertical-align: middle;
+	font-size: @font-size-dropdown;
+	margin: 0 @size-50 0 0;
+	padding: 0;
+	border: 0;
+	font-weight: bold;
+}
+
+// Styles for the "move to sidebar/hide" buttons, hidden by default.
+.vector-pinnable-header-toggle-button {
+	display: none;
+	border: 0;
+	padding: @spacing-25 @spacing-50;
+	background-color: @background-color-interactive;
+	color: @color-base;
+	cursor: pointer;
+	text-align: left;
+	font-size: unit( 12 / @font-size-browser, rem );
+	border-radius: @border-radius-base;
+
+	&:hover {
+		background-color: @background-color-secondary--modern;
+	}
+}
+
+// Pinnable behavior is only enabled when JS is enabled and on larger viewports
+@media ( min-width: @min-width-desktop ) {
+	&.client-js {
+		.vector-pinnable-header-unpinned .vector-pinnable-header-pin-button,
+		.vector-pinnable-header-pinned .vector-pinnable-header-unpin-button {
+			display: inline-block;
+		}
+	}
+}

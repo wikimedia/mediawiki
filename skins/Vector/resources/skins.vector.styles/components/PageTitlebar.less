@@ -1,0 +1,51 @@
+@import '../../common/variables.less';
+
+.vector-page-titlebar {
+	position: relative;
+	display: flex;
+	// T335633 - Although nowrap is default, setting it explicitly to prevent layout issues with ToC & languages button.
+	flex-wrap: nowrap;
+	// Ensure language button or indicators are positioned to the right even when the title is hidden
+	justify-content: flex-end;
+	// Use box-shadow instead of border to allow border collapsing between titlebar and toolbar
+	// FIXME: Delete box shadow after VectorZebraDesign flag is removed
+	box-shadow: 0 1px @border-color-base;
+	align-items: center;
+
+	&-blank {
+		box-shadow: none;
+	}
+
+	.firstHeading {
+		flex-grow: 1;
+		border: 0;
+	}
+
+	.vector-page-titlebar-toc.ve-active {
+		display: none !important; /* stylelint-disable-line declaration-no-important */
+	}
+
+	> .mw-ui-button {
+		font-size: @font-size-base;
+		// Removes redundant whitespace (line break) between Icon and Button templates
+		display: flex;
+		// When labels have multiple words e.g. "Add topic" make sure they do not wrap onto
+		// new line. This can happen when editing pages with long titles. e.g. F36867314
+		white-space: nowrap;
+
+		// At low resolutions, the rule in core for `.mw-ui-button:not(.mw-ui-icon-element)`
+		// interferes with add topic and makes it overlap the language button. e.g. F36867319
+		&:not( .mw-ui-icon-element ) {
+			min-width: auto;
+		}
+	}
+
+	> .mw-ui-button,
+	> .mw-portlet-lang {
+		&:last-child {
+			// This number should be synced with the value in:
+			// https://github.com/wikimedia/mediawiki/blob/master/resources/src/mediawiki.less/mediawiki.ui/mixins.buttons.less#L33
+			margin-right: -12px;
+		}
+	}
+}

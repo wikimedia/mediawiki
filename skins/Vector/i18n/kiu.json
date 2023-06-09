@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"1917 Ekim Devrimi",
+			"Kumkumuk",
+			"Mirzali"
+		]
+	},
+	"vector-skin-desc": "Asayışo de newe be versiyonê MonoBookiyo modern ra û weşkerdışê ke şenê bıgureniyê",
+	"vector-action-addsection": "Mewzu ilawe ke",
+	"vector-action-delete": "Bestere",
+	"vector-action-move": "Bere",
+	"vector-action-protect": "Bısevekne",
+	"vector-action-undelete": "Esterıtene peyser bıcê",
+	"vector-action-unprotect": "Şeveknayışi bıvurne",
+	"vector-view-create": "Vıraze",
+	"vector-view-edit": "Bıvurne",
+	"vector-view-history": "Tarixi bıvêne",
+	"vector-view-view": "Bıwane",
+	"vector-view-viewsource": "Çımey bıvêne",
+	"vector-jumptonavigation": "Xıl de be pusula",
+	"vector-jumptosearch": "Xıl de cıgeyrayışi",
+	"vector-more-actions": "Zêde"
+}

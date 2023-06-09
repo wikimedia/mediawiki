@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Lam-ang"
+		]
+	},
+	"vector-action-delete": "Buralen",
+	"vector-action-move": "Iyales",
+	"vector-action-protect": "Iyagel",
+	"vector-view-create": "Palsaen",
+	"vector-view-edit": "Dumaen",
+	"vector-view-history": "Nengnengen so awaran",
+	"vector-view-view": "Basaen",
+	"vector-more-actions": "Lalo"
+}

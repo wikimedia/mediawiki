@@ -1,0 +1,96 @@
+@import '../../common/variables.less';
+@import 'mediawiki.mixins.less';
+
+/**
+ * Styling for namespace tabs (page, discussion) and views (read, edit, view history, watch and other actions)
+ */
+
+/* Tab list items */
+.vector-menu-tabs {
+	float: left;
+
+	// With mw-ui-icons, expand watchstar and wikilove links it to cover full touch area
+	.mw-list-item {
+		.mw-ui-icon-element {
+			font-size: unit( 16 / @font-size-browser, rem );
+			// Align small icons with the bottom of the tabs.
+			margin: 4px 2px 0 2px;
+			// Do not increase size at lower resolutions
+			padding: 0.3125em;
+		}
+	}
+
+	// T316574 Override visited link styles
+	.mw-list-item a {
+		color: @color-link;
+	}
+
+	/* focus and hover have outlines. Text underline interferes with bottom border */
+	.mw-list-item.vector-tab-noicon a:focus,
+	.mw-list-item.vector-tab-noicon a:hover {
+		text-decoration: none;
+		border-bottom: 2px @border-style-base;
+	}
+
+	.mw-list-item.new a,
+	.mw-list-item.new a:visited {
+		color: @color-link-new;
+	}
+
+	.mw-list-item.selected a,
+	.mw-list-item.selected a:visited {
+		color: @color-link-selected;
+		border-bottom: 2px @border-style-base;
+	}
+}
+
+/**
+ * Tab list item appearance. Applies to both <li>'s inside .vector-menu-tabs
+ * and dropdown menus inside the article toolbar
+ */
+.vector-menu-tabs .mw-list-item.vector-tab-noicon,
+.vector-page-toolbar-container .vector-menu-dropdown {
+	margin: 0 @padding-horizontal-tabs;
+}
+
+.vector-menu-tabs .mw-list-item,
+.vector-page-toolbar-container .vector-menu-dropdown > .vector-menu-heading {
+	// Only apply no wrap
+	white-space: nowrap;
+}
+
+.vector-menu-tabs .mw-list-item,
+.vector-page-toolbar-container .vector-menu-dropdown {
+	float: left;
+	margin-bottom: 0; /* overrides default `li` styling */
+
+	// target links inside of .vector-tab-menu
+	// and dropdown menu headings inside the article toolbar.
+	// NOTE: Consider adding a single selector to define both items,
+	// since they both appear beside each other in the article toolbar.
+	& > a,
+	> .vector-menu-heading {
+		display: inline-flex;
+		position: relative;
+		cursor: pointer;
+		// max-height & box-sizing to make link, watchstar & dropdown height consistent.
+		// NOTE: Was 40px instead of 41, but changed to avoid visual regressions.
+		max-height: unit( 41 / @font-size-tabs / @font-size-browser, em );
+		box-sizing: border-box;
+		font-weight: normal;
+	}
+
+	> .vector-menu-heading {
+		// For better compatibility with gadgets (like Twinkle) that append
+		// <H3> elements as dropdown headings (which was the convention in legacy Vector).
+		font-size: inherit;
+	}
+
+	&.vector-tab-noicon > a,
+	> .vector-menu-heading {
+		// Top & bottom padding to increase clickable area.
+		padding: @padding-vertical-tabs;
+		// bottom margin to overlap border with toolbar border.
+		margin-bottom: -1px;
+	}
+}

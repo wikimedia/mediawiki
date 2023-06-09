@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"এম আবু সাঈদ",
+			"ꠢꠣꠍꠘ ꠞꠣꠎꠣ"
+		]
+	},
+	"vector-languages": "ꠜꠣꠡꠣꠁꠘ",
+	"vector-language-button-label": "{{PLURAL:$1|$1 ꠝꠣꠔ|$1 ꠝꠣꠔꠣꠁꠘ}}",
+	"vector-no-language-button-label": "ꠢꠇ꠆ꠇꠟ ꠝꠣꠔꠣꠁꠘ ꠎꠥꠉ ꠈꠞꠂꠘ",
+	"vector-action-addsection": "ꠐꠙꠤꠇ ꠡꠥꠞꠥ ꠈꠞꠁꠘ",
+	"vector-action-delete": "ꠙꠣꠟꠣꠃꠇ꠆ꠇꠣ",
+	"vector-action-move": "ꠢꠞꠣꠅ",
+	"vector-action-protect": "ꠞꠇꠇꠣ ꠈꠞꠣ",
+	"vector-view-create": "ꠛꠣꠘꠣꠅ",
+	"vector-view-edit": "ꠟꠦꠈ",
+	"vector-view-history": "ꠁꠔꠤꠀꠡ ꠖꠦꠈꠇꠣ",
+	"vector-view-view": "ꠙꠠ",
+	"vector-more-actions": "ꠀꠞꠧ",
+	"vector-searchsuggest-containing": "ꠚꠣꠔꠣ ꠕꠥꠇꠣꠃꠇ꠆ꠇꠣ ꠎꠦꠘꠅ <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-page-tools-label": "ꠎꠤꠘꠤꠡꠣꠁꠘ",
+	"vector-page-tools-general-label": "ꠡꠣꠗꠣꠞꠘ",
+	"vector-unpin-element-label": "ꠟꠥꠇꠣꠁꠘ"
+}

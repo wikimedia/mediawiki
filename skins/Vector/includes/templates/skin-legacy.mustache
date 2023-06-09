@@ -1,0 +1,69 @@
+{{!
+	string|null html-site-notice the contents of a banner defined in MediaWiki:Sitenotice.
+		Also used by CentralNotice to inject banners into Vector.
+	Indicator[] array-indicators wiki-defined badges such as "good article",
+		"featured article". An empty array if none are defined.
+	string html-title
+	bool is-article
+	string msg-tagline
+	string html-subtitle
+	string html-undelete-link
+	string html-newtalk
+	string msg-vector-jumptonavigation
+	string msg-vector-jumptosearch
+	string html-body-content
+	string html-categories
+	string html-after-content
+	string msg-navigation-heading
+	MenuDefinition data-portlets.data-personal
+	MenuDefinition data-portlets.data-namespaces
+	MenuDefinition data-portlets.data-variants
+	MenuDefinition data-portlets.data-views
+	MenuDefinition data-portlets.data-actions
+	object data-search-box. See SearchBox.mustache for documentation.
+	object data-portlets-main-menu. See MainMenu.mustache for documentation.
+	object data-footer for footer template partial. see Footer.mustache for documentation.
+}}
+<div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice">{{{html-site-notice}}}</div>
+	{{>Indicators}}
+	{{{html-title-heading}}}
+	<div id="bodyContent" class="vector-body">
+		{{#is-article}}<div id="siteSub" class="noprint">{{msg-tagline}}</div>{{/is-article}}
+		<div id="contentSub"{{{html-user-language-attributes}}}>{{{html-subtitle}}}</div>
+		<div id="contentSub2">{{{html-undelete-link}}}</div>
+		{{{html-user-message}}}
+		{{!
+			Keep this empty `div` for compatibility with gadgets and user scripts
+			using this place to insert extra elements before.
+		}}
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">{{msg-vector-jumptonavigation}}</a>
+		<a class="mw-jump-link" href="#searchInput">{{msg-vector-jumptosearch}}</a>
+		{{{html-body-content}}}
+		{{{html-categories}}}
+	</div>
+</div>
+{{{html-after-content}}}
+<div id="mw-navigation">
+	<h2>{{msg-navigation-heading}}</h2>
+	<div id="mw-head">
+		{{#data-portlets}}
+		{{>LegacyUserLinks}}
+		<div id="left-navigation">
+			{{#data-namespaces}}{{>LegacyMenu}}{{/data-namespaces}}
+			{{#data-variants}}{{>LegacyMenu}}{{/data-variants}}
+		</div>
+		<div id="right-navigation">
+			{{#data-views}}{{>LegacyMenu}}{{/data-views}}
+			{{#data-actions}}{{>LegacyMenu}}{{/data-actions}}
+			{{#data-search-box}}{{>SearchBox}}{{/data-search-box}}
+		</div>
+		{{/data-portlets}}
+	</div>
+	{{#data-portlets-main-menu}}{{>LegacySidebar}}{{/data-portlets-main-menu}}
+</div>
+{{#data-footer}}{{>Footer}}{{/data-footer}}

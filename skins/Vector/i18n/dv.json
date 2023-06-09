@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Glaisher",
+			"Ushau97"
+		]
+	},
+	"vector-action-addsection": "ޚިޔާލެއް އިތުރުކުރައްވާ",
+	"vector-action-delete": "ފޮހެލައްވާ",
+	"vector-action-move": "ތަން ބަދަލުކުރައްވާ",
+	"vector-action-protect": "ދިފާޢުކުރައްވާ",
+	"vector-action-undelete": "އިޔާދަކުރައްވާ",
+	"vector-action-unprotect": "ދިފާޢުކުރުން ބަދަލުކުރައްވާ",
+	"vector-view-create": "ފަށްޓަވާ",
+	"vector-view-edit": "އުނިއިތުރު ގެންނަވާ",
+	"vector-view-history": "ޞަފްޙާގެ ތާރީޚް",
+	"vector-view-view": "ކިޔުއްވާ",
+	"vector-view-viewsource": "މަސްދަރު ބައްލަވާ",
+	"vector-more-actions": "އިތުރަށް"
+}

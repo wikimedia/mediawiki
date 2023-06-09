@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Don Alessandro",
+			"TayfunEt.",
+			"Zolgoyo"
+		]
+	},
+	"vector-languages": "Tiller",
+	"vector-language-button-label": "{{PLURAL:$1|$1 til|$1 tiller}}",
+	"vector-no-language-button-label": "Til qoş",
+	"vector-action-addsection": "Mevzu qoş",
+	"vector-action-delete": "Yoq et",
+	"vector-action-move": "Adını deñiştir",
+	"vector-action-protect": "Qorçala",
+	"vector-action-undelete": "Yañıdan yarat",
+	"vector-action-unprotect": "Qorçalavnı deñiştir",
+	"vector-view-create": "Yarat",
+	"vector-view-edit": "Deñiştir",
+	"vector-view-history": "Keçmişini köster",
+	"vector-view-view": "Oqu",
+	"vector-view-viewsource": "Menba kodunı köster",
+	"vector-more-actions": "Başqa areketler",
+	"vector-searchsuggest-containing": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> içeren saifelerni qıdır",
+	"vector-page-tools-label": "Aletler",
+	"vector-unpin-element-label": "gizle"
+}

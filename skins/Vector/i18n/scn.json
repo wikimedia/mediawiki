@@ -1,0 +1,36 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ajeje Brazorf",
+			"Gmelfi",
+			"Melos",
+			"Pippinu",
+			"Sarvaturi"
+		]
+	},
+	"vector-skin-desc": "Virsioni muderna di MonoBook cu n'aspettu novu e tanti migghiuramenti nta l'usabbilità",
+	"vector-languages": "Lingui",
+	"vector-language-button-label": "{{PLURAL:$1|$1 lingua|$1 lingui}}",
+	"vector-no-language-button-label": "Agghiunci lingui",
+	"vector-action-addsection": "Agghiunci n'argumentu",
+	"vector-action-delete": "Cancella",
+	"vector-action-move": "Sposta",
+	"vector-action-protect": "Pruteggi",
+	"vector-action-undelete": "Annulla la cancillazzioni",
+	"vector-action-unprotect": "Cancia la prutizzioni",
+	"vector-view-create": "Crea",
+	"vector-view-edit": "Cancia",
+	"vector-view-history": "Talìa la crunuluggìa",
+	"vector-view-view": "Leggi",
+	"vector-view-viewsource": "Talìa la surgenti",
+	"vector-more-actions": "Àutri cosi",
+	"vector-searchsuggest-containing": "Arricerca li pàggini ca cuntènnunu<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-intro-page": "Help:Ntroduzzioni",
+	"vector-toc-label": "Ìnnici",
+	"vector-anon-user-menu-pages-learn": "àutri nfurmazzioni",
+	"vector-main-menu-tooltip": "Menu principali",
+	"vector-page-tools-label": "Strummenta",
+	"vector-page-tools-general-label": "Ginirali",
+	"vector-unpin-element-label": "ammuccia",
+	"tooltip-vector-anon-user-menu-title": "Àutri opzioni"
+}

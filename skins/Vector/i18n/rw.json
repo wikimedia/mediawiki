@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"RebecaRwanda",
+			"Vogone"
+		]
+	},
+	"vector-language-button-label": "{{PLURAL:$1|$1 ururimi|$1 indimi}}",
+	"vector-action-addsection": "Ongeramo Ingingo",
+	"vector-action-move": "Imura",
+	"vector-view-create": "Tangiza",
+	"vector-view-edit": "Hindura",
+	"vector-view-history": "Reba amateka",
+	"vector-view-view": "Soma",
+	"vector-more-actions": "Ibindi"
+}

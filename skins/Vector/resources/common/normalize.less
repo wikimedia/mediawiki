@@ -1,0 +1,18 @@
+/*
+ * Normalize styles across rendering engines.
+ * Ideally, these rules should live in core and be shared across skins.
+ *
+ */
+
+@import './variables.less';
+
+html,
+body {
+	height: 100%;
+}
+
+// Support Blink based browsers.
+// They use `outline` for focus styles, we're only amending the color here, see T245887.
+:focus {
+	outline-color: @outline-color-base--focus;
+}

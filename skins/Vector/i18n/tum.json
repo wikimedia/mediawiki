@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Tumbuka Arch"
+		]
+	},
+	"vector-languages": "Viyowoyelo",
+	"vector-language-button-label": "{{PLURAL:$1|$1 chiyowoyelo|$1 viyowoyelo}}",
+	"vector-no-language-button-label": "Sazgapo viyowoyelo",
+	"vector-action-addsection": "Sazgapo mutu",
+	"vector-action-delete": "Fufuta",
+	"vector-action-move": "Ithya",
+	"vector-view-create": "Yata",
+	"vector-view-edit": "Lemba",
+	"vector-view-history": "Wona mayambilo",
+	"vector-view-view": "Ŵelenga",
+	"vector-more-actions": "Vinandi",
+	"vector-searchsuggest-containing": "Fufuza ma jani agho muli <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-page-tools-label": "Vilwelo",
+	"vector-page-tools-general-label": "Vya masiku ghose",
+	"vector-unpin-element-label": "kubisa"
+}

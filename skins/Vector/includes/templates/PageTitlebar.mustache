@@ -1,0 +1,47 @@
+{{!-
+	Page titlebar - Main <H1> title for all pages, with either the indicators or language selector.
+	When language button is visible, indicators are placed in the BeforeContent.mustache template instead.
+}}
+<header class="mw-body-header vector-page-titlebar{{#is-title-blank}} vector-page-titlebar-blank{{/is-title-blank}}">
+	{{#data-toc}}
+	{{! Checkbox hack used by collapsed TOC on narrow viewports for no JS users }}
+	<label
+		id="vector-toc-collapsed-button"
+		class="mw-ui-button mw-ui-quiet mw-ui-icon-flush-left mw-ui-icon-element"
+		for="vector-toc-collapsed-checkbox"
+		role="button"
+		aria-controls="vector-toc"
+		tabindex="0"
+		title="{{msg-vector-toc-menu-tooltip}}">
+		<span class="mw-ui-icon mw-ui-icon-wikimedia-listBullet"></span>
+		<span>{{msg-vector-toc-collapsible-button-label}}</span>
+	</label>
+
+	{{! TOC is moved into this dropdown from the sidebar in stickyHeader.js. }}
+	<nav role="navigation" aria-label="{{ msg-vector-toc-label }}" class="vector-toc-landmark">
+		{{#data-page-titlebar-toc-dropdown}}{{>Dropdown/Open}}{{/data-page-titlebar-toc-dropdown}}
+			{{#data-page-titlebar-toc-pinnable-container}}
+			{{>PinnableContainer/Unpinned/Open}}
+				{{^is-pinned}}
+					{{#data-toc}}{{>TableOfContents}}{{/data-toc}}
+				{{/is-pinned}}
+			{{>PinnableContainer/Close}}
+			{{/data-page-titlebar-toc-pinnable-container}}
+		{{#data-page-titlebar-toc-dropdown}}{{>Dropdown/Close}}{{/data-page-titlebar-toc-dropdown}}
+	</nav>
+	{{/data-toc}}
+	{{{html-title-heading}}}
+
+	{{#has-buttons-in-content-top}}
+		{{#data-lang-dropdown}}
+			{{>LanguageDropdown}}
+		{{/data-lang-dropdown}}
+		{{#data-add-topic-button}}
+			{{>Button}}
+		{{/data-add-topic-button}}
+	{{/has-buttons-in-content-top}}
+
+	{{^has-buttons-in-content-top}}
+		{{>Indicators}}
+	{{/has-buttons-in-content-top}}
+</header>

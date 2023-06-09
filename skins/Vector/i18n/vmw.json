@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Gildo Máquina",
+			"Gito da Ana",
+			"Jacinto Jeque",
+			"Tomas Armando Moz"
+		]
+	},
+	"vector-languages": "Mattaava",
+	"vector-language-button-label": "{{PLURAL:$1|$1 nttaava|$1 Mattaava}}",
+	"vector-no-language-button-label": "Yuncererya mattaava",
+	"vector-action-addsection": "Ophitaanya yoolempwa",
+	"vector-action-delete": "Ocipiha",
+	"vector-action-move": "Okumiha",
+	"vector-action-protect": "Okhapelela",
+	"vector-view-create": "Opaka",
+	"vector-view-edit": "Owehiha",
+	"vector-view-history": "Moonelo wa ethale",
+	"vector-view-view": "Osoma",
+	"vector-more-actions": "Vanceene",
+	"vector-searchsuggest-containing": "Waavya makukhu arimomo <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-page-tools-label": "Ikaruma",
+	"vector-page-tools-general-label": "Xeneraale",
+	"vector-unpin-element-label": "ottukuttherya"
+}

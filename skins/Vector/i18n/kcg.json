@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Kambai Akau"
+		]
+	},
+	"vector-languages": "Lilyem",
+	"vector-language-button-label": "{{PLURAL:$1|a̱lyem $1|lilyem $1}}",
+	"vector-no-language-button-label": "Mbeang lilyem",
+	"vector-action-addsection": "Mbeang a̱pyia̱ a̱lyiat",
+	"vector-action-delete": "Ti̱n",
+	"vector-action-move": "Shyei",
+	"vector-action-protect": "Cam",
+	"vector-view-create": "Khwuk",
+	"vector-view-edit": "Jhyuk",
+	"vector-view-history": "Nwuan nkhang",
+	"vector-view-view": "Fang",
+	"vector-more-actions": "Nkyang njhyang",
+	"vector-searchsuggest-containing": "Zop ngwat na̱ byia̱ <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-anon-user-menu-pages-learn": "myiam nkyang jhyang",
+	"vector-anon-user-menu-pages-label": "Myiam nkyang jhyang tazwa jhyuk",
+	"vector-main-menu-tooltip": "A̱tsak meniu",
+	"vector-toc-menu-tooltip": "A̱tyii Nkyangmami",
+	"vector-page-tools-label": "Nkyangta̱m",
+	"vector-page-tools-general-label": "Kuzangka̱i",
+	"vector-unpin-element-label": "ta̱kup"
+}

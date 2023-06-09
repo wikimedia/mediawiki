@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"Aursani",
+			"Avicennasis",
+			"C1614",
+			"John Reid",
+			"Macofe",
+			"Omnipaedista"
+		]
+	},
+	"vector-skin-desc": "Modern version o MonoBook wi ae fresh luik n monie uisabeelitie impruivments",
+	"vector-languages": "Leids",
+	"vector-no-language-button-label": "Eik leids",
+	"vector-action-addsection": "Eik topic",
+	"vector-action-delete": "Delyte",
+	"vector-action-move": "Muiv",
+	"vector-action-protect": "Fend",
+	"vector-action-undelete": "Ondelyte",
+	"vector-action-unprotect": "Chynge protection",
+	"vector-view-create": "Ceaut",
+	"vector-view-edit": "Eedit",
+	"vector-view-history": "See histerie",
+	"vector-view-view": "Read",
+	"vector-view-viewsource": "See Soorce",
+	"vector-more-actions": "Mair",
+	"vector-searchsuggest-containing": "Sairch fur pages containin <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-page-tools-label": "Tuils",
+	"vector-page-tools-general-label": "General",
+	"vector-unpin-element-label": "Dern"
+}

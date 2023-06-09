@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Ebenoffen1",
+			"Leonard Nketsia"
+		]
+	},
+	"vector-languages": "Kasahorow",
+	"vector-language-button-label": "{{PLURAL:$1|$1 kasa|$1 kasahorow}}",
+	"vector-no-language-button-label": "Fa kasa afofor ka ho",
+	"vector-action-addsection": "Fa tsirasɛm ka ho",
+	"vector-action-delete": "Pepa fi hɔ",
+	"vector-action-move": "Twe kɔ",
+	"vector-action-protect": "Bambɔ",
+	"vector-view-create": "Yɛ fofor",
+	"vector-view-edit": "Sesa mu",
+	"vector-view-history": "Hwɛ abakɔsɛm",
+	"vector-view-view": "Kenkan",
+	"vector-more-actions": "Pii",
+	"vector-searchsuggest-containing": "Hwehwɛ nkrataafa a <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> wɔ mu",
+	"vector-page-tools-label": "Edwumadze",
+	"vector-page-tools-general-label": "Kɛsemu",
+	"vector-unpin-element-label": "fa suma"
+}

@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bua333",
+			"Joe Watzmo",
+			"Mucalexx",
+			"WikiBayer"
+		]
+	},
+	"vector-languages": "Sproochen",
+	"vector-language-button-label": "{{PLURAL:$1|$1 Sprache|$1 Sproochen}}",
+	"vector-no-language-button-label": "Sproochen dazuafiang",
+	"vector-action-addsection": "An Obschnitt dazua doa",
+	"vector-action-delete": "Leschn",
+	"vector-action-move": "Vaschiabm",
+	"vector-action-protect": "schitzn",
+	"vector-action-undelete": "Wiederherstön",
+	"vector-action-unprotect": "freigeem",
+	"vector-view-create": "Aufbaun",
+	"vector-view-edit": "Werkeln",
+	"vector-view-history": "Gschicht åhschaun",
+	"vector-view-view": "Leesen",
+	"vector-view-viewsource": "Quejtext ozoagn",
+	"vector-more-actions": "Meara",
+	"vector-searchsuggest-containing": "Suach nooch Seiten, dé <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> énthoiden",
+	"vector-page-tools-label": "Werkzeig",
+	"vector-page-tools-general-label": "Oigmoah",
+	"vector-unpin-element-label": "vastegga"
+}

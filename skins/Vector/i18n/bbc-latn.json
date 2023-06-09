@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bennylin",
+			"Daniel Harahap",
+			"NoiX180",
+			"Salomo Christian Hutajulu",
+			"WBT003Bugari",
+			"WBT006Hendra",
+			"WBT009Anju"
+		]
+	},
+	"vector-languages": "Parhataan",
+	"vector-language-button-label": "{{PLURAL:$1|$1 parhataan|$1 parhataan}}",
+	"vector-no-language-button-label": "Tambah parhataan",
+	"vector-action-addsection": "Bagian na imbaru",
+	"vector-action-delete": "Sesa",
+	"vector-action-move": "Pahusor",
+	"vector-action-protect": "Ramoti",
+	"vector-action-undelete": "unang sesa",
+	"vector-action-unprotect": "Uba parlindungan",
+	"vector-view-create": "Tompa",
+	"vector-view-edit": "Patota",
+	"vector-view-history": "Patudu turihonna",
+	"vector-view-view": "Jaha",
+	"vector-view-viewsource": "Ida haroanna",
+	"vector-more-actions": "Lobian",
+	"vector-page-tools-label": "Parhohas",
+	"vector-unpin-element-label": "bunihon"
+}

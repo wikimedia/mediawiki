@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Adamsa123",
+			"Amire80",
+			"Celekan",
+			"GR44 Luc",
+			"Highlander45temp",
+			"Inyzh",
+			"SamGamgee",
+			"Siklawy",
+			"SmartNart12"
+		]
+	},
+	"vector-action-addsection": "Ӏофтхьабз",
+	"vector-action-delete": "ТегъэкӀ",
+	"vector-action-move": "Хьы",
+	"vector-action-protect": "Иухъумэ",
+	"vector-action-undelete": "УмылъэкӀ",
+	"vector-action-unprotect": "Умыухъумэ",
+	"vector-view-create": "КъэшӀ",
+	"vector-view-edit": "ХэӀэзыхь",
+	"vector-view-history": "Тарихъым eплъ",
+	"vector-view-view": "Едж",
+	"vector-view-viewsource": "Еплъ лъапсэм",
+	"vector-more-actions": "Джыри"
+}

@@ -1,0 +1,32 @@
+{
+	"@metadata": {
+		"authors": [
+			"Awangba Mangang",
+			"꯴꯰꯴"
+		]
+	},
+	"vector-languages": "ꯂꯣꯟꯁꯤꯡ",
+	"vector-language-button-label": "{{PLURAL:$1|$1 ꯂꯣꯟ|$1 ꯂꯣꯟꯁꯤꯡ}}",
+	"vector-no-language-button-label": "ꯂꯣꯟꯁꯤꯡ ꯍꯥꯞꯆꯤꯟꯕ",
+	"vector-action-addsection": "ꯅꯩꯅꯕ ꯍꯤꯔꯝ ꯍꯥꯞꯆꯤꯟꯂꯨ",
+	"vector-action-delete": "ꯀꯛꯊꯠꯄꯥ",
+	"vector-action-move": "ꯂꯦꯡꯍꯟꯕꯥ",
+	"vector-action-protect": "ꯉꯥꯛꯊꯣꯛꯂꯕꯥ",
+	"vector-view-create": "ꯁꯥꯕꯥ",
+	"vector-view-edit": "ꯁꯦꯝꯒꯠꯄꯥ",
+	"vector-view-history": "ꯄꯨꯋꯥꯔꯤ ꯎꯠꯂꯨ",
+	"vector-view-view": "ꯄꯥꯑꯣ",
+	"vector-view-viewsource": "ꯍꯧꯔꯛꯐꯝ ꯌꯦꯡꯉꯨ",
+	"vector-jumptosearch": "ꯊꯤꯕꯥ ꯗ ꯆꯣꯡꯉꯨ",
+	"vector-more-actions": "ꯋꯥꯠꯂꯤ",
+	"vector-searchsuggest-containing": "ꯂꯃꯥꯏꯁꯤꯡ ꯑꯁꯤ ꯌꯥꯎꯕ ꯊꯤꯕꯥ <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-toc-label": "ꯃꯅꯨꯡꯒꯤ ꯑꯌꯥꯎꯕꯁꯤꯡ",
+	"vector-toc-beginning": "ꯍꯧꯔꯛꯄ",
+	"vector-anon-user-menu-pages-learn": "ꯍꯦꯟꯅ ꯇꯝꯁꯤꯟꯂꯨ",
+	"vector-site-nav-label": "ꯃꯐꯝ",
+	"vector-main-menu-label": "ꯃꯔꯨꯑꯣꯏꯕ ꯌꯦꯡꯐꯝ",
+	"vector-page-tools-label": "ꯈꯨꯠꯂꯥꯏꯁꯤꯡ",
+	"vector-page-tools-general-label": "ꯃꯌꯥꯝꯒꯤ ꯑꯣꯏꯕ",
+	"vector-page-tools-actions-label": "ꯊꯕꯛ ꯄꯥꯡꯊꯣꯛꯄ",
+	"vector-unpin-element-label": "ꯂꯣꯠꯂꯨ"
+}

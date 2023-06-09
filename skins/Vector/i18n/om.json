@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ahrada2016",
+			"Maammee",
+			"Oromoo"
+		]
+	},
+	"vector-action-addsection": "Mata duree ida'i",
+	"vector-action-delete": "Balleessi",
+	"vector-action-move": "Oofi",
+	"vector-action-protect": "Eegumsa",
+	"vector-action-undelete": "Hin balleessin",
+	"vector-view-create": "Uumi",
+	"vector-view-edit": "Gulaali",
+	"vector-view-history": "Seenaa laali",
+	"vector-view-view": "Dubbisi",
+	"vector-view-viewsource": "Lakkaddaa laali",
+	"vector-jumptonavigation": "Gara kallatti ce'i",
+	"vector-jumptosearch": "Gara barbaadutti ce'i",
+	"vector-more-actions": "Dabalata"
+}

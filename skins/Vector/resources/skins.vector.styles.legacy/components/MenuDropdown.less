@@ -1,0 +1,92 @@
+@import '../../common/variables.less';
+@import 'mediawiki.mixins.less';
+@import '../../common/mixins.less';
+
+// Flips the chevron so it points up when the dropdown is open.
+.vector-menu-checkbox:checked + .vector-menu-heading::after {
+	transform: scaleY( -1 );
+}
+
+/**
+ * Dropdown menus that only appear in the tab bar in legacy Vector.
+ */
+.vector-menu-dropdown {
+	direction: ltr;
+	float: left;
+	cursor: pointer;
+	position: relative;
+	line-height: 1.125em;
+
+	// menu label with chevron icon.
+	.vector-menu-heading {
+		display: flex;
+		color: @color-subtle;
+		font-size: @font-size-tabs;
+		// Tab separator: Outer end (right in LTR) border of "Actions" menu.
+		background-position: right bottom;
+		margin: 0 -@border-width-base 0 0;
+		// `padding-top` needs to scale with font-size.
+		padding: 1.25em 8px 6px;
+		font-weight: normal;
+
+		&::after {
+			.mixin-vector-legacy-menu-heading-arrow();
+			// Modify the color of the image from the default #202122 to approx. #404244 to match the text.
+			opacity: @opacity-icon-base;
+		}
+
+		&:hover,
+		&:focus {
+			color: @color-base;
+
+			&::after {
+				opacity: @opacity-icon-base--selected;
+			}
+		}
+	}
+
+	/**
+	 * Dropdown container.
+	 */
+	.vector-menu-content {
+		line-height: 1.125em;
+		background-color: @background-color-base;
+		border: @border-width-base @border-style-base @border-color-base;
+		border-top-width: 0;
+		box-shadow: 0 1px 1px 0 rgba( 0, 0, 0, 0.1 );
+		transition-property: opacity;
+		transition-duration: @transition-duration-base;
+		// The menu content should not be narrower than the menu button.
+		min-width: 100%;
+	}
+
+	// Open the dropdown container via hover.
+	&:hover .vector-menu-content {
+		opacity: @opacity-base;
+		visibility: visible;
+		height: auto;
+	}
+
+	.mw-list-item {
+		text-align: left;
+		line-height: 1em;
+
+		a:not( .mw-ui-icon ) {
+			font-size: @font-size-tabs;
+		}
+
+		a {
+			// displays all links in a single column.
+			display: block;
+			white-space: nowrap;
+			padding: 0.625em;
+			color: @color-link;
+		}
+
+		&.selected a,
+		&.selected a:visited {
+			color: @color-link-selected;
+			text-decoration: none;
+		}
+	}
+}

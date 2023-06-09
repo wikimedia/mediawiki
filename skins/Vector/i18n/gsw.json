@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Als-Holder",
+			"Amire80"
+		]
+	},
+	"vector-language-button-label": "{{PLURAL:$1|$1 Sproch|$1 Sproche}}",
+	"vector-action-addsection": "Abschnitt zuefiege",
+	"vector-action-delete": "Lesche",
+	"vector-action-move": "Verschiebe",
+	"vector-action-protect": "Schitze",
+	"vector-action-undelete": "Widerhärstelle",
+	"vector-action-unprotect": "Syteschutz ändere",
+	"vector-view-create": "Aalege",
+	"vector-view-edit": "Bearbeite",
+	"vector-view-history": "Versionsgschicht",
+	"vector-view-view": "Läse",
+	"vector-view-viewsource": "Quälltext aaluege",
+	"vector-more-actions": "Meh",
+	"vector-searchsuggest-containing": "No Syte sueche, wu s <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> din het"
+}

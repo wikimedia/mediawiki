@@ -1,0 +1,43 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Joetaras"
+		]
+	},
+	"skinname-vector": "Vettore",
+	"vector-skin-desc": "Versione moderne de MonoBook cu 'nu sguarde aggiornate e 'nu sbuènne de miglioramende sus a l'ausabbilità",
+	"prefs-vector-enable-vector-1-label": "Ause 'u vettore andiche",
+	"prefs-vector-enable-vector-1-help": "Jndr'à le prossime anne, amma aggiornà a chiane chiane 'u skin Vector. Legacy Vector te face 'ndrucà 'a versione vecchie de Vector (partenne da decembre 2019). Pe sapè de cchiù sus a le aggiornaminde, vèje sus 'a [[mw:Reading/Web/Desktop_Improvements|pàgene d'u pruggette]] nostre.",
+	"vector-opt-out": "Passe a grafeche d'apprime",
+	"vector-opt-out-tooltip": "Cange le 'mbostaziune pe turnà rrete a 'u vecchie mode d'u skin (Vector andiche)",
+	"vector.css": "/* Tutte le CSS aqquà avène carecate pe le utinde ca ausane 'a masckere Vector */",
+	"vector.js": "/* Tutte le JavaScript aqquà avène carecate pe le utinde ca ausane 'a masckere Vector */",
+	"vector-action-toggle-sidebar": "Live e mitte 'a barre laterale",
+	"vector-language-button-aria-label": "Vèje a 'na vôsce jndr'à 'n'otra lènghe. Desponibbele jndr'à {{PLURAL:$1|$1 lènghe}}",
+	"vector-language-button-label": "{{PLURAL:$1|$1 lènghe}}",
+	"vector-language-variant-switcher-label": "Cange 'a variande d'a lènghe",
+	"vector-action-addsection": "Aggiunge 'na discussiona",
+	"vector-action-delete": "Scangille",
+	"vector-action-move": "Spuèste",
+	"vector-action-protect": "Protegge",
+	"vector-action-undelete": "Repristine",
+	"vector-action-unprotect": "Cange 'a protezione",
+	"vector-view-create": "Ccreje",
+	"vector-view-edit": "Cange",
+	"vector-view-history": "Vide 'u cunde",
+	"vector-view-view": "Ligge",
+	"vector-view-viewsource": "Vide 'u sorgende",
+	"vector-jumptonavigation": "Zumbe sus 'a navigazzione",
+	"vector-jumptosearch": "Zumbe sus 'a recerche",
+	"vector-jumptocontent": "Zumbe a 'u condenute",
+	"vector-more-actions": "De cchiù",
+	"vector-search-loader": "Stoche a careche le suggereminde de recerche",
+	"vector-searchsuggest-containing": "Cirche le pàggene ca tènene <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-intro-page": "Help:'Ndroduzione",
+	"vector-anon-user-menu-pages": "Pàggene pe le cangiature non trasute",
+	"vector-anon-user-menu-pages-learn": "'mbare de cchiù",
+	"vector-anon-user-menu-pages-label": "'Mbare de cchiù sus a le cangiaminde",
+	"vector-main-menu-tooltip": "Menu prengepàle",
+	"tooltip-vector-anon-user-menu-title": "Cchiù opziune"
+}

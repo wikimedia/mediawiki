@@ -1,0 +1,76 @@
+@import '../../common/variables.less';
+@import 'mediawiki.mixins.less';
+
+.mw-logo {
+	.flex-display();
+	// If icon is not configured, ensure that the logo still takes up available
+	// space allocated by layout.
+	height: 100%;
+	// Center vertically.
+	align-items: center;
+	// Hamburger menu icon with padding (22px + 12px = 46px) + right margin (12px) + logo (222px @ 16) + space between
+	// logo and searchbox (28px) = 296px which equals the sum of widths of sidebar elements (i.e. TOC) when toggled.
+	// 226px @ 16 provides correct spacing between the right edge of logo container + left edge of searchbox input.
+	min-width: 13.875em; // 222px @ 16
+
+	.vector-feature-main-menu-pinned-disabled & {
+		// The logo is 40px from the page container.
+		// Main menu button width (20px) + 20px = 40px
+		margin-left: 20px;
+	}
+}
+
+.mw-logo-icon {
+	// For browsers which do not support flexbox we float left.
+	// This will be ignored in flexbox browsers.
+	float: left;
+	margin-right: 10px;
+	// Hide mobile icon at lower resolutions and defer to wordmark
+	display: none;
+	@size-mw-logo-icon: unit( 50 / @font-size-browser, em );
+	width: @size-mw-logo-icon;
+	height: @size-mw-logo-icon;
+
+	@media ( min-width: @min-width-tablet ) {
+		display: block;
+	}
+}
+
+.mw-logo-container {
+	// For browsers which do not support flexbox we float left.
+	// This will be ignored in flexbox browsers.
+	// The two children `div`s will lay out in a row.
+	float: left;
+	// At mobile resolutions restrict logo to 120px to optimize for a 340px display (@min-width-supported)
+	// (based on https://gs.statcounter.com/screen-resolution-stats/mobile/worldwide)
+	// This accounts for up to 5 icons
+	// (Echo notifications x 2, search, hamburger and personal menu)
+	// where the icons have 44px each (44x5 = 220px)
+	max-width: 120px;
+
+	img {
+		width: 100%;
+	}
+
+	@media ( min-width: @min-width-tablet ) {
+		max-width: none;
+
+		img {
+			width: auto;
+		}
+	}
+}
+
+// Note for 3rd parties where no wgLogos['wordmark'] is defined
+// the site title is not clipped. We may need to revisit this later
+// for projects with long site titles.
+.mw-logo-wordmark {
+	display: block;
+	margin: 0 auto;
+}
+
+.mw-logo-tagline {
+	// For browsers which do not support flexbox.
+	display: block;
+	margin: 5px auto 0;
+}

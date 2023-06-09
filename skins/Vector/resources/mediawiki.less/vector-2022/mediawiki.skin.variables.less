@@ -1,0 +1,46 @@
+/**
+ * ###IMPORTANT:##
+ * If editing this file, please also edit the respective file in the MinervaNeue skin.
+ * ####
+ *
+ * This file is a LESS @import match for "mediawiki.skin.variables.less"
+ * when Vector 2022 is the active skin.
+ * Please note, that legacy Vector is handled by
+ * "mediwiki.less.legacy/mediawiki.skin.variables.less".
+ *
+ * Please also note, that both current Wikimedia Design Style Guide based skins,
+ * Vector 2022 and Minerva Neue are using the same variable values respectively in their
+ * repositories.
+ */
+
+@import 'mediawiki.skin.defaults.less';
+
+// Use the legacy version (for a 14px base font size) of the wikimedia-ui theme
+@import 'mediawiki.skin.codex-design-tokens/theme-wikimedia-ui-legacy.less';
+
+// Overrides for Codex variables:
+
+// Fonts
+@font-size-base: 1em; // Codex: 14px
+
+// Body content uses the user setting in browser / the system default sans-serif font:
+// Arial on Windows, Roboto on Android.
+// FIXME: Use Codex's OS specific default sans-serif fonts.
+@font-family-sans: @font-family-sans--fallback; // Codex: 'Helvetica Neue', 'Helvetica', 'Liberation Sans', 'Arial', sans-serif;
+
+// Overrides for non-Codex variables:
+
+// Colors
+@color-link: @color-progressive;
+@color-link--visited: #795cb2;
+@color-link--active: #faa700;
+// Link colors for new or missing articles, also known as “Red links”.
+// https://www.wikidata.org/wiki/Q13417974#sitelinks-wikipedia
+@color-link-new: @color-link-red;
+@color-link-new--visited: @color-link-red--visited;
+// Link colors for a power user feature to highlight links to other projects.
+// In Vector 2022 we unify these colors by default for simpler orientation by average users.
+// It's still possible to overwrite the styles per user.
+@color-link-external: @color-progressive;
+@color-link-external--visited: #795cb2;
+@color-link-external--active: #faa700;

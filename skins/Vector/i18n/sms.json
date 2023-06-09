@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Yupik"
+		]
+	},
+	"vector-languages": "Ǩiõl",
+	"vector-language-button-label": "{{PLURAL:$1|$1 ǩiõllâd|0=Ni õhtt ǩiõll|1=1 ǩiõll|2=2 ǩiõl|3=3 ǩiõl|4=4 ǩiõl|5=5 ǩiõl|6=6 ǩiõl}}",
+	"vector-no-language-button-label": "Lââʹzzet ǩiõlid",
+	"vector-action-addsection": "Lââʹzzet teeʹm",
+	"vector-action-delete": "Jaukkâd",
+	"vector-action-move": "Seeʹrd",
+	"vector-action-protect": "Suõjjâd",
+	"vector-action-undelete": "Maaccât",
+	"vector-action-unprotect": "Muuʹtt suõjjeemtääʹzz",
+	"vector-view-create": "Raaj",
+	"vector-view-edit": "Muuʹtt",
+	"vector-view-history": "Čuäʹjet historia",
+	"vector-view-view": "Looǥǥ",
+	"vector-view-viewsource": "Čuäʹjet käivvkood",
+	"vector-more-actions": "Lââʹzz",
+	"vector-searchsuggest-containing": "Ooʒʒ seeidaid, koin lij <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-toc-label": "Siiskâžlooǥǥtõs",
+	"vector-anon-user-menu-pages-learn": "lââʹssteâđ",
+	"vector-main-menu-tooltip": "Väʹlddvaʹlljõk",
+	"vector-toc-menu-tooltip": "Siiskâžlooǥǥtõs",
+	"vector-site-nav-label": "Seiddõs",
+	"vector-page-tools-label": "Neävv",
+	"vector-unpin-element-label": "čiõǥǥ"
+}

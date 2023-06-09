@@ -1,0 +1,115 @@
+@import 'mediawiki.mixins.less';
+@import '../../common/variables.less';
+
+// Defined as `div`.
+// Provide extra element for gadgets due to `form` already carrying an `id`.
+.vector-search-box-inner {
+	position: relative;
+	height: 100%;
+}
+
+// The search input.
+// Note that these rules only apply to the non-Vue enabled search input field.
+// When Vue.js has loaded this element will no longer be in the page and substituted with
+// a Codex element.
+.vector-search-box-input {
+	background-color: rgba( 255, 255, 255, 0.5 );
+	color: @color-emphasized;
+	width: 100%;
+	// Reduce height slightly from standard to match legacy Vector tabs.
+	height: unit( 28 / @font-size-browser / @font-size-search-input, em ); // Equals `2.15384615em`.
+	box-sizing: border-box;
+	border: @border-base;
+	border-radius: @border-radius-base;
+	// `padding-right` equals to `#searchbutton` width below.
+	padding: 5px @width-search-button 5px 0.4em;
+	box-shadow: @box-shadow-inset-small @box-shadow-color-transparent;
+	// Match Codex.
+	font-family: inherit;
+	font-size: @font-size-search-input;
+	direction: ltr;
+	transition-property: border-color, box-shadow;
+	transition-duration: @transition-duration-medium;
+
+	// Undo the proprietary styles, we provide our own.
+	// Support: Safari/iOS `none` needed, Chrome would accept `textfield` as well. See T247299.
+	// stylelint-disable-next-line plugin/no-unsupported-browser-features
+	-webkit-appearance: none;
+	// Support: Firefox.
+	// stylelint-disable-next-line plugin/no-unsupported-browser-features
+	-moz-appearance: textfield;
+
+	.vector-search-box-inner:hover & {
+		border-color: #72777d;
+	}
+
+	&:focus,
+	.vector-search-box-inner:hover &:focus {
+		outline: 0;
+		border-color: @border-color-progressive--focus;
+		box-shadow: @box-shadow-inset-small @box-shadow-color-progressive--focus;
+	}
+
+	.mixin-placeholder( {
+		color: @color-placeholder;
+		opacity: @opacity-base;
+	} );
+
+	&::-webkit-search-decoration,
+	&::-webkit-search-cancel-button,
+	&::-webkit-search-results-button,
+	&::-webkit-search-results-decoration {
+		display: none;
+	}
+}
+
+// The search buttons. Fallback and search button are displayed in the same position,
+// and if both are present the fulltext search one obscures the 'Go' one.
+.searchButton {
+	background-color: transparent;
+	position: absolute;
+	top: @border-width-base;
+	bottom: @border-width-base;
+	// `@border-width-base * 2` is in regards to harmonize position start and end.
+	right: @border-width-base;
+	min-width: @min-width-search-button;
+	width: @width-search-button;
+	border: 0;
+	padding: 0;
+	cursor: pointer;
+	// Equal `font-size` to search input for `padding` calculation.
+	font-size: @font-size-search-input;
+	/* Opera 12 on RTL flips the text in a funny way without this. */
+	/* @noflip */
+	direction: ltr;
+	/* Hide button text and replace it with the image. */
+	text-indent: -99999px;
+	white-space: nowrap;
+	overflow: hidden;
+	z-index: @z-index-search-button;
+}
+
+.searchButton[ name='go' ] {
+	background: no-repeat center/unit( 16 / @font-size-browser / @font-size-search-input, em ) url( images/search.svg );
+	opacity: 0.67;
+}
+
+.search-toggle {
+	// At lower resolutions the search input is hidden and a toggle is shown
+	display: block;
+	float: right;
+	// Ensures the button has a font size of 16px
+	font-size: unit( 16 / @font-size-browser, rem );
+
+	@media ( min-width: @min-width-desktop ) {
+		display: none;
+	}
+}
+
+.vector-search-box-collapses > div {
+	display: none;
+
+	@media ( min-width: @min-width-desktop ) {
+		display: block;
+	}
+}

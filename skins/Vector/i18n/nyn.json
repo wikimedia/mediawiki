@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Kakonjo"
+		]
+	},
+	"vector-language-button-label": "{{PLURAL:$1|$1 orurimi|$1 endimi}}",
+	"vector-action-addsection": "Taho omuhajaano",
+	"vector-action-delete": "Sangura",
+	"vector-action-move": "Tambuza",
+	"vector-action-protect": "Tsiba",
+	"vector-view-create": "Hangaho",
+	"vector-view-edit": "Gorora",
+	"vector-view-history": "Reba ebi'kozirwe",
+	"vector-view-view": "Shoma",
+	"vector-more-actions": "Ebikukiraho",
+	"vector-toc-toggle-button-label": "Rabyamu $1 Akacweeka"
+}

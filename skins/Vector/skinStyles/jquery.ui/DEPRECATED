@@ -1,0 +1,6 @@
+The files in this folder are styling a deprecated module. In November 2022 after a discussion
+between Growth, editing and web team (and others), it was agreed that these styles should apply
+to both the Vector and Vector 2022 skins, but that these should be considered frozen and
+not modified further. More context on this decision can be found on:
+https://www.mediawiki.org/wiki/Readers/Web/Dev_notes/jQuery_UI
+

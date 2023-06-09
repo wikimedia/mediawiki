@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Samatics"
+		]
+	},
+	"vector-language-button-label": "{{PLURAL:$1|$1 usem|$1 mme usem}}",
+	"vector-view-view": "Kot"
+}

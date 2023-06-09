@@ -1,0 +1,182 @@
+@import '../../common/variables.less';
+
+/**
+ * Minimal styling for initial no-JS server-rendered
+ * search form, which gets replaced by Codex on focus.
+ * Most values are hard-coded since they aim to
+ * mimic Codex-specific variables and disable the
+ * ResourceLoader LESS transformation of `calc`.
+ */
+
+// Derived from @size-base design token in Codex
+@size-base: 32px;
+
+@min-size-search-button: 30px;
+@background-size-x-search-button: 20px;
+
+// Search container
+// We have to put those styles outside `.skin-vector-search-vue`,
+// as we can't address no-JS modern and Vue enhanced otherwise.
+.vector-search-box {
+	// Use Vector's base font-size, as this is a component outside of `.vector-body`.
+	font-size: @font-size-base;
+	// Support IE 9-11, Trident cuts values 2 digits after decimal point.
+	// `calc` enables to set correct calculation in place again. See T102364.
+	font-size: @font-size-base--trident-hack;
+	// If this is a flex item, make sure it grows into available space.
+	flex-grow: 1;
+
+	> div {
+		max-width: @max-width-search;
+	}
+}
+
+// Typeahead search elements
+.vector-search-box-vue .vector-search-box-input,
+.vector-search-box-vue .searchButton {
+	// Overrides #mw-searchButton in resources/skins.vector.styles/SearchBox.less
+	font-size: inherit;
+}
+
+.vector-search-box-vue .vector-search-box-input {
+	height: auto;
+	// The following is copied directly from Codex.
+	min-height: @size-base;
+	line-height: 1.4285714;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
+.vector-search-box-vue .searchButton {
+	background-size: @background-size-x-search-button auto;
+}
+
+// Only apply the following Codex-related rules to clients who have js enabled.
+.client-js .vector-search-box-vue {
+	// Derived from @size-search-figure in Codex.
+	// https://gerrit.wikimedia.org/r/plugins/gitiles/design/codex/+/refs/tags/v0.1.0-alpha.8/packages/codex/src/components/typeahead-search/TypeaheadSearch.vue#676
+	@size-search-figure: 40px;
+	// Derived from text input start icon padding in Codex.
+	// https://gerrit.wikimedia.org/r/plugins/gitiles/design/codex/+/refs/tags/v0.1.0-alpha.8/packages/codex/src/components/text-input/TextInput.vue#257
+	@padding-left-start-icon: 36px;
+	// Derived from the @size-icon-medium token in Codex. 14px is the base font size in Vector.
+	@size-icon-medium: unit( 20 / 14, em );
+	// Derived from icon positioning in Codex. This is essentially (@padding-left-start-icon - @size-icon-medium)/2
+	@position-left-icon: 8px;
+
+	.vector-typeahead-search {
+		// Hide the button, only show it on hover or when the input or the button itself is focused
+		.cdx-search-input__end-button {
+			opacity: 0;
+			// 250ms transition to match the border-color transition in CdxTextInput
+			transition: opacity 250ms;
+
+			&:focus {
+				opacity: @opacity-base;
+			}
+		}
+
+		// Hide the border between the input and the button
+		.cdx-text-input__input:not( :hover ):not( :focus ) {
+			border-right-color: transparent;
+		}
+
+		&--active,
+		&:hover {
+			.cdx-search-input__end-button {
+				opacity: @opacity-base;
+			}
+
+			// Make the text input's right border appear on top of the button's left border,
+			// otherwise the hover transition looks weird
+			.cdx-text-input {
+				z-index: @z-index-stacking-1;
+			}
+
+			// Use straight corners instead of rounded corners for the border between the
+			// input and the button. Only apply this on hover, to reduce (but not eliminate) the
+			// tiny gap in the input's border when the button is hidden
+			.cdx-text-input__input {
+				border-top-right-radius: 0;
+				border-bottom-right-radius: 0;
+			}
+		}
+
+		.cdx-menu-item {
+			// Remove margin-bottom on li elements that is applied by
+			// mediawiki.skinning/elements.css.
+			margin-bottom: 0;
+
+			a {
+				// Remove link underline on hover that is applied by
+				// mediawiki.skinning/elements.css.
+				text-decoration: none;
+			}
+		}
+
+		// Reset Codex. Prevents the input border and the start icon from animating
+		// when the input gets inserted into the DOM while being focused.
+		&.vector-search-box-disable-transitions {
+			.cdx-text-input__input:enabled,
+			.cdx-text-input__start-icon {
+				transition: none;
+			}
+		}
+	}
+
+	.vector-search-box-input {
+		padding-left: @padding-left-start-icon;
+		// Derived from @padding-input-text in Codex's TextInput component.
+		padding-right: 8px;
+	}
+
+	// Move & resize search icon to match Codex.
+	.searchButton {
+		// T270202: Act like a an inert element instead of a submit button before
+		// Codex loads to discourage people clicking on it since it is a submit
+		// button styled to look like Codex's inert start icon. Note, ideally these
+		// submit buttons should be changed to inert elements like span to be
+		// semantically correct.
+		pointer-events: none;
+		// Override the default right & left position of the icon.
+		right: auto;
+		top: 0;
+		bottom: 0;
+		// Accounts for the 1px input border.
+		left: @border-width-base;
+		// Increase size to match Codex.
+		width: @padding-left-start-icon;
+		// Set opacity to match icon color from Codex (0.51 approximates #72777d)
+		opacity: @opacity-icon-base--disabled;
+		// Use relative sizing for the icon
+		background-size: @size-icon-medium auto;
+		// Make sure the icon is positioned consistently with Codex; if we don't do this, it'll
+		// be centered which will be different from Codex's positioning if the text size zoom
+		// is not 100%
+		background-position-x: @position-left-icon;
+	}
+
+	.vector-search-box-input:focus ~ .searchButton {
+		// When the input is focused, change icon color to match Codex (0.87 approximates #202122)
+		opacity: @opacity-icon-base;
+	}
+
+	&.vector-search-box-show-thumbnail {
+		> div {
+			// Ensure the input + search button = 500px when unfocused and `auto-expand-width` enabled (i.e. search in header)
+			// Also increases the width of the sticky header search, which has `auto-expand-width` disabled
+			max-width: @max-width-search + unit( @size-search-expand / @font-size-browser / @font-size-base, em ); // 37.42857143em @ 16 & 0.875em
+		}
+
+		&.vector-search-box-auto-expand-width .searchButton {
+			// Accounts for the margin that allocates space for the input expanding and
+			// 1px input border.
+			left: @size-search-expand + @border-width-base;
+		}
+
+		&.vector-search-box-auto-expand-width .vector-search-box-input {
+			margin-left: @size-search-expand;
+			width: ~'calc( 100% - @{size-search-expand} )';
+		}
+	}
+}

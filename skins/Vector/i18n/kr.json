@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Aliyu shaba",
+			"Amire80",
+			"Mohammedbama123"
+		]
+	},
+	"vector-languages": "Tǝlam",
+	"vector-language-button-label": "{{PLURAL:$1|$1 telam|$1 telam wa gade}}",
+	"vector-no-language-button-label": "Tǝlam yira",
+	"vector-action-addsection": "Bayin yukko",
+	"vector-action-delete": "Chinne",
+	"vector-action-move": "Huutu",
+	"vector-action-protect": "Teliwune",
+	"vector-view-create": "Awo kelta",
+	"vector-view-edit": "Yasa",
+	"vector-view-history": "Awodoyə közina kuru",
+	"vector-view-view": "Qra",
+	"vector-more-actions": "Kuru",
+	"vector-searchsuggest-containing": "Na awoodoyə gnazanama mata <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-page-tools-label": "Awoo ciddaye",
+	"vector-page-tools-general-label": "Samma",
+	"vector-unpin-element-label": "Grane"
+}

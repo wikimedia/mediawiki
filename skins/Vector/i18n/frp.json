@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"ChrisPtDe"
+		]
+	},
+	"skinname-vector": "Vèctor",
+	"vector.css": "/* Lo code CSS betâ ique afècterat los usanciérs de l’habelyâjo « Vèctor ». */",
+	"vector.js": "/* Tot code JavaScript betâ ique serat chargiê per los usanciérs de l’habelyâjo « Vèctor ». */",
+	"vector-language-button-label": "$1 lengou{{PLURAL:$1|a|es}}",
+	"vector-action-addsection": "Apondre na chousa",
+	"vector-action-delete": "Suprimar",
+	"vector-action-move": "Renomar",
+	"vector-action-protect": "Protègiér",
+	"vector-action-undelete": "Refâre",
+	"vector-action-unprotect": "Changiér la protèccion",
+	"vector-view-create": "Fâre",
+	"vector-view-edit": "Changiér",
+	"vector-view-history": "Vêre l’historico",
+	"vector-view-view": "Liére",
+	"vector-view-viewsource": "Vêre lo tèxto sôrsa",
+	"vector-more-actions": "Més",
+	"vector-searchsuggest-containing": "Rechèrchiér les pâges que contegnont <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+}

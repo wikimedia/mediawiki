@@ -1,0 +1,17 @@
+//
+// No grid support behaviour
+//
+
+// If there is no display grid support we remove pinnable elements
+// On IE11 this leaves a clean single column grid.
+// To be revisited when table of contents is collapsible in which situation we should be able to
+// force it as sticky.
+.vector-pinned-container {
+	display: none;
+}
+
+@supports ( display: grid ) {
+	.vector-pinned-container {
+		display: block;
+	}
+}

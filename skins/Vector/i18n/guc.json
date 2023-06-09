@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Leonfd1992",
+			"Maor X",
+			"Wilfredor"
+		]
+	},
+	"vector-opt-out": "Awanajaa sünainmüin sukuwa'ipaka paalainka",
+	"vector-language-button-label": "{{PLURAL:$1|$1 anüikii|$1 anüikikalüirua}}",
+	"vector-action-addsection": "Alüjülee jeketü",
+	"vector-action-delete": "Ojuichajaa",
+	"vector-action-move": "Ansülaa",
+	"vector-action-protect": "Eisalajaa",
+	"vector-view-create": "Akumajaa",
+	"vector-view-edit": "Anaataa",
+	"vector-view-history": "E'rajaa a'wanajaanüka",
+	"vector-view-view": "Aashaje'eraa",
+	"vector-view-viewsource": "Anüliaa eejeetülee",
+	"vector-more-actions": "Soo'omüin",
+	"vector-searchsuggest-containing": "Achajaa sulu'u tü ee'iyalayaaka kalu'uko <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+}

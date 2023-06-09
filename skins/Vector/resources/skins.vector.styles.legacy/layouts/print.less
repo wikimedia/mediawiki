@@ -1,0 +1,37 @@
+/**
+ * Print styles previously provided by the deprecated `legacy` feature (T287410)
+ * Copied from mediawiki.skinning/commonPrint.less in Mediawiki 1.36 core
+ */
+
+/**
+ * Hide all the elements irrelevant for printing
+ * Skins however can and should override.
+ */
+/* General hide-in-print class, please only use sparely */
+.noprint,
+/* Various content classes, in alphabetical order */
+.mw-cite-backlink,
+.mw-redirectedfrom,
+.patrollink,
+/* Various content ids, in alphabetical order */
+#column-one,
+#footer-places,
+#mw-navigation,
+/* Deprecated, changed in core */
+#f-poweredbyico,
+#f-copyrightico,
+li#about,
+li#disclaimer,
+li#mobileview,
+li#privacy {
+	display: none;
+}
+
+#footer {
+	background: #fff;
+	color: #000;
+	margin-top: 1em;
+	border-top: 1pt solid #aaa;
+	padding-top: 5px;
+	direction: ltr;
+}

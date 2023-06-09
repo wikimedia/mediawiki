@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Han4299"
+		]
+	},
+	"vector-languages": "Basa",
+	"vector-language-button-label": "{{PLURAL:$1|$1 basana}}",
+	"vector-no-language-button-label": "Tamba basa",
+	"vector-action-addsection": "Tawang beru",
+	"vector-action-delete": "Pelak",
+	"vector-action-move": "Palettek",
+	"vector-action-protect": "Linrungi",
+	"vector-view-create": "Parek",
+	"vector-view-edit": "Pinra",
+	"vector-view-history": "Cinik riwayakna",
+	"vector-view-view": "Baca",
+	"vector-more-actions": "Maraengangna",
+	"vector-searchsuggest-containing": "Boya barambang na ambonei <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-page-tools-label": "Parewa",
+	"vector-page-tools-general-label": "Ammang",
+	"vector-unpin-element-label": "pacokkoi"
+}

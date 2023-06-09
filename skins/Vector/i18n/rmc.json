@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Adehertogh"
+		]
+	},
+	"vector-languages": "Čhiba",
+	"vector-language-button-label": "{{PLURAL:$1|$1 čhib|$1 čhiba}}",
+	"vector-action-addsection": "Te prithovel dumakero koter",
+	"vector-action-delete": "Tele te khosel",
+	"vector-action-move": "Avrete te thovel",
+	"vector-action-protect": "Tele te phandel",
+	"vector-view-create": "Ker",
+	"vector-view-edit": "Te pikerel",
+	"vector-view-history": "Te dikhel čirlatuňipen",
+	"vector-view-view": "Te genel",
+	"vector-more-actions": "Buter"
+}

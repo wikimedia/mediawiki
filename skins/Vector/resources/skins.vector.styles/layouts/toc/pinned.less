@@ -1,0 +1,48 @@
+@import '../../../common/variables.less';
+@import '../../../common/mixins.less';
+
+.mw-table-of-contents-container {
+	// Needed for Grid-based layout
+	align-self: start;
+	height: 100%;
+}
+
+@media ( min-width: @min-width-desktop ) {
+	&.vector-feature-toc-pinned-enabled #mw-panel-toc {
+		// Support: Chrome
+		// Work around sticky-positioned layers disabling subpixel text rendering (T327460).
+		// NOTE: This property has an effect similar to 'overflow: hidden', and will prevent elements
+		// inside of the panel from being rendered outside of its bounding box, even when they would
+		// be positioned there using absolute positioning, negative margin, transforms, etc.
+		// That's why the negative margins have to be applied here, instead of on #vector-toc.
+		contain: paint;
+		// Align the left edge of the TOC text with the page container
+		margin-left: -@spacing-subsection-toggle;
+	}
+
+	#vector-toc-pinned-container {
+		// stylelint-disable-next-line plugin/no-unsupported-browser-features
+		position: sticky;
+		top: 0;
+	}
+
+	&.vector-feature-toc-pinned-enabled #vector-toc-pinned-container {
+		// Default spacing separating the sidebar TOC from the main menu.
+		margin-top: 1.5em;
+	}
+
+	&.vector-feature-main-menu-pinned-disabled.vector-feature-toc-pinned-enabled #vector-toc-pinned-container {
+		// Align TOC with bottom of title when main menu is not pinned but the TOC is
+		margin-top: @margin-top-pinned-toc;
+	}
+
+	// T302076: Add fade scrollable indicator when TOC is in sidebar
+	// Avoid showing indicator when the TOC is floating, or collapsed in the page title/sticky header
+	#vector-toc-pinned-container .vector-toc {
+		max-height: ~'calc( 100vh - @{max-height-bottom-spacing-scroll-indicator} )';
+		padding-top: @padding-top-pinned-element;
+		padding-left: @spacing-subsection-toggle;
+		padding-right: @padding-horizontal-dropdown-menu-item;
+		.mixin-vector-scroll-indicator();
+	}
+}

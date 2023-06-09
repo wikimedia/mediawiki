@@ -1,0 +1,18 @@
+{
+	"root": true,
+	"extends": [
+		"../.eslintrc.json"
+	],
+	"parserOptions": {
+		"ecmaVersion": 2018
+	},
+	"rules": {
+		"es-x/no-rest-spread-properties": "off",
+		"es-x/no-async-functions": "off"
+	},
+	"env": {
+		"es6": true,
+		"node": true,
+		"jest": true
+	}
+}

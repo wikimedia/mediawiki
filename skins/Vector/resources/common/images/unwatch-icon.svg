@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
+	<title>
+		unwatch
+	</title>
+	<defs>
+		<linearGradient id="a" x1="13.5" x2="4.6" y1="14.4" y2="3.4" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#c2edff"/>
+			<stop offset=".5" stop-color="#68bdff"/>
+			<stop offset="1" stop-color="#fff"/>
+		</linearGradient>
+	</defs>
+	<path fill="url(#a)" stroke="#7cb5d1" d="m8.1 1.1 2.2 4.5 4.8.7-3.5 3.4.9 4.8L8 12.2l-4.3 2.3.8-4.8L1 6.3l4.8-.7z"/>
+</svg>

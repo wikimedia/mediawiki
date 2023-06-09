@@ -1,0 +1,68 @@
+@import '../../common/variables.less';
+@import '../../common/mixins.less';
+@import 'mediawiki.mixins.less';
+
+/**
+ * Targets all dropdown labels.
+ * - language variants, Actions menus
+ * - more menu, user menu
+ * - ULS button in sticky header
+ */
+.vector-dropdown > .vector-menu-heading:not( .mw-ui-icon-element ) {
+	display: flex;
+
+	&::after {
+		.mixin-vector-menu-heading-arrow();
+	}
+}
+
+/**
+ * Dropdown container
+ */
+.vector-dropdown {
+	.vector-dropdown-content,
+	> .vector-menu-content {
+		background-color: @background-color-base;
+		border: @border-width-base @border-style-base @border-color-base;
+		box-shadow: 0 1px 1px 0 rgba( 0, 0, 0, 0.1 );
+		transition-property: opacity;
+		transition-duration: @transition-duration-base;
+		padding: 4px 0;
+		// TODO Add consistent min/max values for dropdowns in T316055
+		width: max-content;
+		max-width: 200px;
+	}
+}
+
+.vector-pinnable-element,
+.vector-dropdown-content {
+	.vector-menu-heading {
+		.mixin-vector-dropdown-menu-item();
+		.mixin-vector-menu-heading();
+	}
+
+	.mw-list-item a {
+		// Mirror styles from Dropdown.less
+		.mixin-vector-dropdown-menu-item();
+		color: @color-link;
+	}
+
+	> *:not( :last-child ) {
+		// Apply bottom border to every children of dropdown contents and pinnable elements except the last
+		border-bottom: @border-width-base @border-style-base #eaecf0;
+	}
+}
+
+/**
+ * Dropdown menu items.
+ */
+.vector-dropdown .mw-list-item {
+	a {
+		.mixin-vector-dropdown-menu-item();
+
+		// The link is a mw-selflink in the case of temporary users.
+		&:not( .mw-selflink ) {
+			color: @color-link;
+		}
+	}
+}

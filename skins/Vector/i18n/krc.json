@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ernác",
+			"Iltever",
+			"Къарачайлы"
+		]
+	},
+	"skinname-vector": "Вектор",
+	"vector-language-button-label": "{{PLURAL:$1|$1 тил}}",
+	"vector-action-addsection": "Джангы тема къош",
+	"vector-action-delete": "Кетер",
+	"vector-action-move": "Атын ауушдур",
+	"vector-action-protect": "Джакъла",
+	"vector-action-undelete": "Къайтар",
+	"vector-action-unprotect": "Джакълауну тюрлендир",
+	"vector-view-create": "Къура",
+	"vector-view-edit": "Тюрлендир",
+	"vector-view-history": "Тарихи",
+	"vector-view-view": "Окъу",
+	"vector-view-viewsource": "Кодха къара",
+	"vector-more-actions": "Энтда",
+	"vector-searchsuggest-containing": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> ичинде болгъан бетлени изле",
+	"vector-main-menu-label": "Баш меню",
+	"vector-limited-width-toggle": "Чекленнген контентни кенглигин алмашдыр",
+	"vector-page-tools-label": "Адырла",
+	"vector-prefs-limited-width-help": "Джазылгъан тынч окъулурча, кенгликни чеклениу режимин джандырыгъыз."
+}

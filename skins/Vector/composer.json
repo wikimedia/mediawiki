@@ -1,0 +1,61 @@
+{
+	"name": "mediawiki/vector-skin",
+	"type": "mediawiki-skin",
+	"description": "Modern version of the MonoBook skin",
+	"keywords": [
+		"wiki",
+		"MediaWiki",
+		"skin"
+	],
+	"homepage": "https://www.mediawiki.org/wiki/Skin:Vector",
+	"license": "GPL-2.0-or-later",
+	"authors": [
+		{
+			"name": "Trevor Parscal"
+		},
+		{
+			"name": "Roan Kattouw"
+		}
+	],
+	"support": {
+		"wiki": "https://www.mediawiki.org/wiki/Skin:Vector",
+		"forum": "https://www.mediawiki.org/wiki/Skin_talk:Vector",
+		"source": "http://gerrit.wikimedia.org/g/mediawiki/skins/Vector",
+		"irc": "irc://irc.libera.chat/mediawiki"
+	},
+	"require": {
+		"composer/installers": ">1.0.12"
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "1.x-dev"
+		},
+		"installer-name": "Vector"
+	},
+	"require-dev": {
+		"mediawiki/mediawiki-codesniffer": "41.0.0",
+		"mediawiki/mediawiki-phan-config": "0.12.1",
+		"mediawiki/minus-x": "1.1.1",
+		"php-parallel-lint/php-console-highlighter": "1.0.0",
+		"php-parallel-lint/php-parallel-lint": "1.3.2"
+	},
+	"scripts": {
+		"fix": [
+			"minus-x fix .",
+			"phpcbf"
+		],
+		"test": [
+			"parallel-lint . --exclude node_modules --exclude vendor",
+			"@phpcs",
+			"minus-x check ."
+		],
+		"test:size": "php ../../vendor/phpunit/phpunit/phpunit -c ../../phpunit.xml.dist tests/phpunit/structure/BundleSizeTest.php",
+		"phan": "phan -d . --long-progress-bar",
+		"phpcs": "phpcs -sp --cache"
+	},
+	"config": {
+		"allow-plugins": {
+			"composer/installers": true
+		}
+	}
+}

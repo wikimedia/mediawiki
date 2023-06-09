@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Abylaikhan 94",
+			"Gorgich",
+			"TayfunEt.",
+			"Zolgoyo"
+		]
+	},
+	"vector-languages": "Тиллер",
+	"vector-language-button-label": "{{PLURAL:$1|$1 тил}}",
+	"vector-no-language-button-label": "Тил косув",
+	"vector-action-addsection": "Мевзу косув",
+	"vector-action-delete": "Йок ет",
+	"vector-action-move": "Тагы",
+	"vector-action-protect": "Корув",
+	"vector-view-create": "Яратув",
+	"vector-view-edit": "Туьрлентуьв",
+	"vector-view-history": "Тарихын карав",
+	"vector-view-view": "Окув",
+	"vector-more-actions": "Тагы",
+	"vector-searchsuggest-containing": "Бар бетлерди излев <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-page-tools-label": "Алетлер",
+	"vector-unpin-element-label": "сакла"
+}

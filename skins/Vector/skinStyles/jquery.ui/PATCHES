@@ -1,0 +1,25 @@
+jquery.ui.button.css
+* Picked from jQuery UI 1.11.2-alpha instead of 1.9.2.
+* Extra customizations.
+
+jquery.ui.datepicker.css
+* Add @noflip to prevent CSSJanus flipping.
+
+jquery.ui.dialog.css
+* Extra customizations.
+
+jquery.ui.resizable.css
+* Add @noflip to prevent CSSJanus flipping.
+
+jquery.ui.theme.css
+* Add @embed instructions for CSSMin.
+* Change font-size from 1.0em to 0.8em.
+* Join ".ui-icon", ".ui-widget-content .ui-icon" and ".ui-widget-header .ui-icon" rules
+  to optimise image embedding.
+* Removed ".ui-widget-content a { color: #362b36; }" and
+  ".ui-widget-header a { color: #222222; }" due to bug T85857.
+
+images:
+* Add close.png and titlebar-fade.png (used in customizations for
+  jquery.ui.dialog.css)
+* Change chmod from 755 to 644.

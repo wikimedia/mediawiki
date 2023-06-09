@@ -1,0 +1,15 @@
+{
+	"rules": {
+		"jquery/no-class": "off",
+		"jquery/no-extend": "off",
+		"jquery/no-animate": "off",
+		"jquery/no-find": "off",
+		"jquery/no-attr": "off",
+		"jquery/no-trigger": "off",
+		"jquery/no-hide": "off",
+		"jquery/no-each": "off",
+		"jquery/no-css": "off",
+		"jquery/no-data": "off",
+		"jquery/no-parent": "off"
+	}
+}

@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jokomarel",
+			"RMizo"
+		]
+	},
+	"vector-language-button-label": "{{PLURAL:$1|$1 ṭawng|$1 ṭawngte}}",
+	"vector-action-addsection": "Thupui belhna",
+	"vector-action-delete": "Paihna",
+	"vector-action-move": "Sawnna",
+	"vector-action-protect": "Venhimna",
+	"vector-action-undelete": "Lak kir lehna",
+	"vector-action-unprotect": "Venhimna dinhmun tidanglam rawh",
+	"vector-view-create": "Siamna",
+	"vector-view-edit": "Siamţhatna",
+	"vector-view-history": "Hunhlui-chanchin",
+	"vector-view-view": "Chhiarna",
+	"vector-view-viewsource": "A hnar enna",
+	"vector-more-actions": "Belh",
+	"vector-searchsuggest-containing": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> awmna phek zawng tur"
+}

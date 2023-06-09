@@ -1,0 +1,48 @@
+@import '../../common/variables.less';
+@import '../../common/mixins.less';
+
+// Ensure there is only 1 page tools landmark at anytime
+&.vector-feature-page-tools-pinned-enabled .vector-page-toolbar-container .vector-page-tools-landmark,
+&.vector-feature-page-tools-pinned-disabled .vector-column-end .vector-page-tools-landmark {
+	display: none;
+}
+
+.vector-column-end {
+	// T327460: Prevent subpixel rendering issues associated with the text and Chrome.
+	contain: paint;
+
+	.vector-page-tools-landmark {
+		// stylelint-disable-next-line plugin/no-unsupported-browser-features
+		position: sticky;
+		top: 0;
+		margin-top: @margin-top-pinned-page-tools;
+	}
+}
+
+#vector-page-tools-pinned-container .vector-page-tools {
+	width: 140px;
+	// Match spacing of TOC and main menu
+	margin-left: @padding-horizontal-dropdown-menu-item;
+	max-height: ~'calc( 100vh - @{max-height-bottom-spacing-scroll-indicator} )';
+	overflow-y: auto;
+	box-sizing: border-box;
+	padding-top: @padding-top-pinned-element;
+	// Add fade indicator.
+	.mixin-vector-scroll-indicator();
+}
+
+// Ensure collapsible items are visible on lower resolutions
+.vector-page-tools .vector-more-collapsible-item {
+	display: block;
+
+	@media ( min-width: @min-width-tablet ) {
+		display: none;
+	}
+}
+
+// Make sure pcactions is displayed on lower resolutions (even if .emptyPortlet present)
+.vector-page-tools .vector-has-collapsible-items {
+	@media ( max-width: @max-width-mobile ) {
+		display: block;
+	}
+}

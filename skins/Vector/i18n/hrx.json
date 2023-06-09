@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Iohanen",
+			"Midnight Gambler",
+			"Paul Beppler"
+		]
+	},
+	"vector-language-button-label": "{{PLURAL:$1|$1 Sproch|$1 Sproche}}",
+	"vector-action-addsection": "Abschnidd addizioneere",
+	"vector-action-delete": "Lösche",
+	"vector-action-move": "Bewehe",
+	"vector-action-protect": "Schütz",
+	"vector-action-undelete": "Wiederherstelle",
+	"vector-action-unprotect": "Seiteschutz ännre",
+	"vector-view-create": "Erstelle",
+	"vector-view-edit": "Beaarvete",
+	"vector-view-history": "Vërsionsgeschicht",
+	"vector-view-view": "Lese",
+	"vector-view-viewsource": "Quelltext oonzeiche",
+	"vector-more-actions": "Meh",
+	"vector-searchsuggest-containing": "Suche noh Seite wo <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> enthelld."
+}

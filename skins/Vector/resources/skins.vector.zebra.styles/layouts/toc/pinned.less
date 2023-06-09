@@ -1,0 +1,14 @@
+.mw-table-of-contents-container {
+	// Needed for Grid-based layout
+	align-self: start;
+}
+
+&.vector-feature-toc-pinned-enabled #mw-panel-toc {
+	// Support: Chrome
+	// Work around sticky-positioned layers disabling subpixel text rendering (T327460).
+	// NOTE: This property has an effect similar to 'overflow: hidden', and will prevent elements
+	// inside of the panel from being rendered outside of its bounding box, even when they would
+	// be positioned there using absolute positioning, negative margin, transforms, etc.
+	// That's why the negative margins have to be applied here, instead of on #vector-toc.
+	contain: paint;
+}

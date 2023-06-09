@@ -1,0 +1,38 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"NoiX180",
+			"Slaia"
+		]
+	},
+	"vector-skin-desc": "Versi modern MonoBook. Oroma awuyu zikhalania ba oya zi no te'atulö'ö",
+	"prefs-vector-enable-vector-1-label": "Oguna'ö versi Vector satua",
+	"prefs-vector-enable-vector-1-help": "Ba ndröfi-ndröfi fönada itugu ara itugu oi tefonukha guli Vector. Fili Vector Satua ba wamaigi versi satua (irugi Des 2019). Ae ba [[mw:Reading/Web/Desktop_Improvements|newali proyek]] ba wamaigi fefu ngawalö wamohouni.",
+	"vector-opt-out": "Oguna'ö zikhala satua",
+	"vector-opt-out-tooltip": "Bulö'ö stelan na'omasi'ö mangawuli furi ba zikhala satua (legacy Vector/Vector Satua)",
+	"vector-action-toggle-sidebar": "Oroma'ö/bini'ö nahia ba zinga",
+	"vector-languages": "Li",
+	"vector-language-button-label": "{{PLURAL:$1|$1 li}}",
+	"vector-no-language-button-label": "Nönö li bö'ö",
+	"vector-action-addsection": "Nönö mbörö huhuo",
+	"vector-action-delete": "Tibo'ö",
+	"vector-action-move": "Fawu'a",
+	"vector-action-protect": "Kusi",
+	"vector-action-undelete": "Fangawuli furi zi no tetibo'ö",
+	"vector-action-unprotect": "Kusi (tebai mubulö'ö)",
+	"vector-view-create": "Fazökhi",
+	"vector-view-edit": "Bulö'ö",
+	"vector-view-history": "Faigi waö-waö",
+	"vector-view-view": "Baso",
+	"vector-view-viewsource": "Faigi kode",
+	"vector-jumptonavigation": "Ae ba navigasi",
+	"vector-jumptosearch": "Ae ba wangalui",
+	"vector-jumptocontent": "Ae ba nösi",
+	"vector-more-actions": "Tohu-tohunia",
+	"vector-search-loader": "Mama'anö duma-duma ni'alui",
+	"vector-searchsuggest-containing": "Alui nga'örö si so bakha <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"vector-page-tools-label": "Fakake",
+	"vector-page-tools-general-label": "Umum",
+	"vector-unpin-element-label": "bini'ö"
+}

@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Khun Kt",
+			"Ninjastrikers",
+			"咽頭べさ"
+		]
+	},
+	"vector-languages": "ဘာႏသာႏငဝ်းငွါဖုံႏ",
+	"vector-language-button-label": "{{PLURAL:$1|$1 ဘာႏသာႏငဝ်းငွါ|$1 ဘာႏသာႏငဝ်းငွါဖိုင်ႏ}}",
+	"vector-action-addsection": "ထဲမ်သော့ꩻထဲင်း အကျောင်ꩻခရာႏတသာ",
+	"vector-action-delete": "ယားကုဲင်",
+	"vector-action-move": "ခြုဲင်း",
+	"vector-action-protect": "ရဲးကမ်းသွော့",
+	"vector-action-undelete": "ယားကုဲင်တဝ်းဒုမ်",
+	"vector-action-unprotect": "ပြောင်ꩻလုဲင်ႏ အရဲးအကမ်း",
+	"vector-view-create": "ဖန်ဆင်ꩻ",
+	"vector-view-edit": "မွဉ်းဖျင်",
+	"vector-view-history": "ထွားရာႏဇာႏဝင်ႏ",
+	"vector-view-view": "ဟော်ꩻ",
+	"vector-view-viewsource": "ထွားအရွီးအခိုႏ",
+	"vector-more-actions": "ထဲင်းယင်း",
+	"vector-intro-page": "Help:ငဝ်းတယ်ႏအွဉ်",
+	"vector-anon-user-menu-pages-learn": "လွူꩻထွားထဲင်းအသွုပ်",
+	"vector-anon-user-menu-pages-label": "လွူꩻထွားထဲင်း မွဉ်းဖျင်ခရာႏအထဲင်း",
+	"tooltip-vector-anon-user-menu-title": "လွိုက်ခရာႏအထဲင်းဖိုင်ႏ"
+}

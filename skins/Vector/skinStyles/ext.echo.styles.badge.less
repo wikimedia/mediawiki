@@ -1,0 +1,55 @@
+@import '../resources/common/variables.less';
+
+.mixin-notification-badge() {
+	position: relative;
+
+	// When 99+ allow counter so spill outside icon
+	&.mw-ui-button {
+		overflow: visible;
+	}
+
+	&::after {
+		position: absolute;
+		left: 55%;
+		top: 43%;
+		font-size: unit( 12 / @font-size-browser, em );
+		padding: 7px 0.3em;
+		border: 1px solid #fff;
+		border-radius: @border-radius-base;
+		background-color: #72777d;
+		content: attr( data-counter-text );
+		color: #fff;
+	}
+
+	// The number of notifications shouldn't show if there are none.
+	&[ data-counter-num='0' ]::after {
+		content: none;
+	}
+}
+
+.mw-echo-notification-badge-nojs {
+	.mixin-notification-badge();
+}
+
+// Special colors for unseen notifications
+#pt-notifications-alert .mw-echo-unseen-notifications::after {
+	background-color: @color-destructive;
+}
+
+#pt-notifications-notice .mw-echo-unseen-notifications::after {
+	background-color: @color-progressive;
+}
+
+// Override ULS enhanced buttons
+#pt-notifications-notice .mw-echo-notifications-badge,
+#pt-notifications-alert .mw-echo-notifications-badge {
+	.mixin-notification-badge();
+	margin: 0;
+	line-height: 0;
+	opacity: 1;
+
+	&:focus {
+		// Copied from mixins.buttons.less, match button focus styles
+		box-shadow: @box-shadow-inset-small @box-shadow-color-progressive--focus, @box-shadow-inset-medium @box-shadow-color-inverted;
+	}
+}

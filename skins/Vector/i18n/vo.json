@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Malafaya"
+		]
+	},
+	"vector-action-addsection": "Lüükön yegädi",
+	"vector-action-delete": "Moükön",
+	"vector-action-move": "Topätükön",
+	"vector-action-protect": "Jelön",
+	"vector-action-undelete": "Sämoükön",
+	"vector-action-unprotect": "Votükön jeli",
+	"vector-view-create": "Jafön",
+	"vector-view-edit": "Redakön",
+	"vector-view-history": "Logön jenotemi",
+	"vector-view-view": "Reidön",
+	"vector-view-viewsource": "Logön fonäti",
+	"vector-more-actions": "Pluikos"
+}

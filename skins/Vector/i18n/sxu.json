@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jun Misugi"
+		]
+	},
+	"vector-language-button-label": "{{PLURAL:$1|$1 Sprooche|$1 Sproochn}}",
+	"vector-action-addsection": "Abschnidd hinzufüchen",
+	"vector-action-move": "Forschie'm",
+	"vector-view-create": "Ärschdelln",
+	"vector-view-edit": "Ändorn",
+	"vector-view-history": "Fersionsgeschischde",
+	"vector-view-view": "Lesn",
+	"vector-more-actions": "Mehr"
+}
