@@ -56,15 +56,15 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		// Work around T256006
-		ChangeTags::$avoidReopeningTablesForTesting = true;
+		if ( $this->db->getType() == 'mysql' && strpos( $this->db->getSoftwareLink(), 'MySQL' ) ) {
+			$this->markTestSkipped( 'See T256006' );
+		}
 
 		// MessageCache needs to be explicitly enabled to load changetag display text.
 		$this->getServiceContainer()->getMessageCache()->enable();
 	}
 
 	protected function tearDown(): void {
-		ChangeTags::$avoidReopeningTablesForTesting = false;
 		$this->getServiceContainer()->getMessageCache()->disable();
 
 		parent::tearDown();

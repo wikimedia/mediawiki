@@ -117,18 +117,6 @@ class ChangeTags {
 	public const DISPLAY_TABLE_ALIAS = 'changetagdisplay';
 
 	/**
-	 * If true, this class attempts to avoid reopening database tables within the same query,
-	 * to avoid the "Can't reopen table" error when operating on temporary tables while running
-	 * tests.
-	 *
-	 * @see https://phabricator.wikimedia.org/T256006
-	 * @see 1.35
-	 *
-	 * @var bool
-	 */
-	public static $avoidReopeningTablesForTesting = false;
-
-	/**
 	 * Loads defined core tags, checks for invalid types (if not array),
 	 * and filters for supported and enabled (if $all is false) tags only.
 	 *
@@ -678,7 +666,6 @@ class ChangeTags {
 		if ( $filter_tag !== [] && $filter_tag !== '' ) {
 			// Somebody wants to filter on a tag.
 			// Add an INNER JOIN on change_tag
-			$tagTable = self::getDisplayTableName();
 			$filterTagIds = [];
 			$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
 			foreach ( (array)$filter_tag as $filterTagName ) {
@@ -690,7 +677,7 @@ class ChangeTags {
 
 			if ( $exclude ) {
 				if ( $filterTagIds !== [] ) {
-					$tables[self::DISPLAY_TABLE_ALIAS] = $tagTable;
+					$tables[self::DISPLAY_TABLE_ALIAS] = self::CHANGE_TAG;
 					$join_conds[self::DISPLAY_TABLE_ALIAS] = [
 						'LEFT JOIN',
 						[ $join_cond, self::DISPLAY_TABLE_ALIAS . '.ct_tag_id' => $filterTagIds ]
@@ -698,7 +685,7 @@ class ChangeTags {
 					$conds[] = self::DISPLAY_TABLE_ALIAS . ".ct_tag_id IS NULL";
 				}
 			} else {
-				$tables[self::DISPLAY_TABLE_ALIAS] = $tagTable;
+				$tables[self::DISPLAY_TABLE_ALIAS] = self::CHANGE_TAG;
 				$join_conds[self::DISPLAY_TABLE_ALIAS] = [ 'JOIN', $join_cond ];
 				if ( $filterTagIds !== [] ) {
 					$conds[self::DISPLAY_TABLE_ALIAS . '.ct_tag_id'] = $filterTagIds;
@@ -721,38 +708,11 @@ class ChangeTags {
 	 * Get the name of the change_tag table to use for modifyDisplayQuery().
 	 * This also does first-call initialisation of the table in testing mode.
 	 *
+	 * @deprecated since 1.41 use ChangeTags::CHANGE_TAG instead
 	 * @return string
 	 */
 	public static function getDisplayTableName() {
-		$tagTable = self::CHANGE_TAG;
-		if ( self::$avoidReopeningTablesForTesting && defined( 'MW_PHPUNIT_TEST' ) ) {
-			$db = wfGetDB( DB_REPLICA );
-
-			if ( $db->getType() === 'mysql' ) {
-				// When filtering by tag, we are using the change_tag table twice:
-				// Once in a join for filtering, and once in a sub-query to list all
-				// tags for each revision. This does not work with temporary tables
-				// on some versions of MySQL, which causes phpunit tests to fail.
-				// As a hacky workaround, we copy the temporary table, and join
-				// against the copy. It is acknowledged that this is quite horrific.
-				// Discuss at T256006.
-
-				$tagTable = 'change_tag_for_display_query';
-				if ( !$db->tableExists( $tagTable ) ) {
-					$db->query(
-						'CREATE TEMPORARY TABLE IF NOT EXISTS ' . $db->tableName( $tagTable )
-						. ' LIKE ' . $db->tableName( self::CHANGE_TAG ),
-						__METHOD__
-					);
-					$db->query(
-						'INSERT IGNORE INTO ' . $db->tableName( $tagTable )
-						. ' SELECT * FROM ' . $db->tableName( self::CHANGE_TAG ),
-						__METHOD__
-					);
-				}
-			}
-		}
-		return $tagTable;
+		return self::CHANGE_TAG;
 	}
 
 	/**
