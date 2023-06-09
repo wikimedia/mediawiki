@@ -2169,7 +2169,6 @@ abstract class Skin extends ContextSource {
 	 * @param string $mode representing the type of button wanted
 	 *  either `go`, `fulltext` or `image`
 	 * @param array $attrs (optional)
-	 * @throws MWException if bad value of $mode passed in
 	 * @deprecated 1.39 use $this->getTemplateData()['data-search-box'] instead.
 	 *   Note: When removing this function please merge SkinTemplate::makeSearchButtonInternal
 	 *   with SkinTemplate::makeSearchButton.

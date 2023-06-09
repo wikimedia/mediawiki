@@ -564,7 +564,6 @@ class SiteConfiguration {
 	 * @param string $wiki
 	 * @param string|string[] $settings A setting name or array of setting names
 	 * @return mixed|mixed[] Array if $settings is an array, otherwise the value
-	 * @throws MWException
 	 * @since 1.21
 	 */
 	public function getConfig( $wiki, $settings ) {
@@ -574,9 +573,9 @@ class SiteConfiguration {
 			$res = [];
 			foreach ( $settings as $name ) {
 				if ( !preg_match( '/^wg[A-Z]/', $name ) ) {
-					throw new MWException( "Variable '$name' does start with 'wg'." );
+					throw new ConfigException( "Variable '$name' does start with 'wg'." );
 				} elseif ( !isset( $GLOBALS[$name] ) ) {
-					throw new MWException( "Variable '$name' is not set." );
+					throw new ConfigException( "Variable '$name' is not set." );
 				}
 				$res[$name] = $GLOBALS[$name];
 			}
@@ -588,7 +587,7 @@ class SiteConfiguration {
 					return $multi ? $res : current( $res ); // cache hit
 				}
 			} elseif ( !in_array( $wiki, $this->wikis ) ) {
-				throw new MWException( "No such wiki '$wiki'." );
+				throw new ConfigException( "No such wiki '$wiki'." );
 			} else {
 				$this->cfgCache[$wiki] = [];
 			}
@@ -606,11 +605,11 @@ class SiteConfiguration {
 
 			$data = trim( $result->getStdout() );
 			if ( $result->getExitCode() || $data === '' ) {
-				throw new MWException( "Failed to run getConfiguration.php: {$result->getStdout()}" );
+				throw new RuntimeException( "Failed to run getConfiguration.php: {$result->getStdout()}" );
 			}
 			$res = unserialize( $data );
 			if ( !is_array( $res ) ) {
-				throw new MWException( "Failed to unserialize configuration array." );
+				throw new RuntimeException( "Failed to unserialize configuration array." );
 			}
 			$this->cfgCache[$wiki] += $res;
 		}

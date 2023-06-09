@@ -632,8 +632,6 @@ class ZipDirectoryReader {
 	 *          Not null terminated.
 	 *
 	 * @param int $offset The offset into the string at which to start unpacking.
-	 *
-	 * @throws MWException
 	 * @return array Unpacked associative array. Note that large integers in the input
 	 *    may be represented as floating point numbers in the return value, so
 	 *    the use of weak comparison is advised.
@@ -655,7 +653,7 @@ class ZipDirectoryReader {
 						$pos += $fieldSize;
 						break;
 					default:
-						throw new MWException( __METHOD__ . ": invalid type \"$typeName\"" );
+						throw new UnexpectedValueException( __METHOD__ . ": invalid type \"$typeName\"" );
 				}
 			} else {
 				// Unsigned little-endian integer

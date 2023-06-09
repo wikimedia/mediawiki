@@ -1598,7 +1598,6 @@ class SkinTemplate extends Skin {
 	 * @param string $mode representing the type of button wanted
 	 *  either `go`, `fulltext` or `image`
 	 * @param array $attrs (optional)
-	 * @throws MWException if bad value of $mode passed in
 	 * @return string of HTML button
 	 */
 	final public function makeSearchButton( $mode, $attrs = [] ) {
@@ -1621,7 +1620,6 @@ class SkinTemplate extends Skin {
 	 *  either `go`, `fulltext` or `image`
 	 * @param array $searchData Skin data returned by Skin::getTemplateData()['data-search-box']
 	 * @param array $attrs (optional)
-	 * @throws MWException if bad value of $mode passed in
 	 * @internal Please use SkinTemplate::makeSearchButton.
 	 *  For usage only inside Skin class to support deprecated Skin::makeSearchButton method.
 	 *  This should be merged with SkinTemplate::makeSearchButton when
@@ -1668,7 +1666,7 @@ class SkinTemplate extends Skin {
 				];
 				return Html::rawElement( 'button', $buttonAttrs, Html::element( 'img', $imgAttrs ) );
 			default:
-				throw new MWException( 'Unknown mode passed to SkinTemplate::makeSearchButton' );
+				throw new InvalidArgumentException( 'Unknown mode passed to ' . __METHOD__ );
 		}
 	}
 

@@ -229,7 +229,6 @@ class BacklinkCache {
 	/**
 	 * Get the field name prefix for a given table
 	 * @param string $table
-	 * @throws MWException
 	 * @return null|string
 	 */
 	protected function getPrefix( $table ) {
@@ -250,7 +249,7 @@ class BacklinkCache {
 			if ( $prefix ) {
 				return $prefix;
 			} else {
-				throw new MWException( "Invalid table \"$table\" in " . __CLASS__ );
+				throw new LogicException( "Invalid table \"$table\" in " . __CLASS__ );
 			}
 		}
 	}
@@ -262,7 +261,6 @@ class BacklinkCache {
 	 * @param string $table
 	 * @param string $select
 	 * @return SelectQueryBuilder
-	 * @throws MWException
 	 */
 	private function initQueryBuilderForTable( string $table, string $select ): SelectQueryBuilder {
 		$prefix = $this->getPrefix( $table );
@@ -323,7 +321,7 @@ class BacklinkCache {
 					$conds
 				);
 				if ( !$conds ) {
-					throw new MWException( "Invalid table \"$table\" in " . __CLASS__ );
+					throw new LogicException( "Invalid table \"$table\" in " . __CLASS__ );
 				}
 				if ( $joinPageTable ) {
 					$queryBuilder->table( 'page' ); // join condition in $conds
@@ -479,7 +477,6 @@ class BacklinkCache {
 	 * @param IResultWrapper $res Database result
 	 * @param int $batchSize
 	 * @param bool $isComplete Whether $res includes all the backlinks
-	 * @throws MWException
 	 * @return array
 	 */
 	protected function partitionResult( $res, $batchSize, $isComplete = true ) {
@@ -508,7 +505,7 @@ class BacklinkCache {
 
 			# Check order
 			if ( $start && $end && $start > $end ) {
-				throw new MWException( __METHOD__ . ': Internal error: query result out of order' );
+				throw new RuntimeException( __METHOD__ . ': Internal error: query result out of order' );
 			}
 
 			$batches[] = [ $start, $end ];

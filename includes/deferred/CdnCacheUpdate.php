@@ -182,7 +182,6 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	/**
 	 * Send Hyper Text Caching Protocol (HTCP) CLR requests
 	 *
-	 * @throws MWException
 	 * @param string[] $urls Collection of URLs to purge
 	 */
 	private static function HTCPPurge( array $urls ) {
@@ -226,7 +225,7 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 
 		foreach ( $urls as $url ) {
 			if ( !is_string( $url ) ) {
-				throw new MWException( 'Bad purge URL' );
+				throw new InvalidArgumentException( 'Bad purge URL' );
 			}
 			$url = self::expand( $url );
 			$conf = self::getRuleForURL( $url, $htcpRouting );
@@ -242,7 +241,7 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 			}
 			foreach ( $conf as $subconf ) {
 				if ( !isset( $subconf['host'] ) || !isset( $subconf['port'] ) ) {
-					throw new MWException( "Invalid HTCP rule for URL $url\n" );
+					throw new RuntimeException( "Invalid HTCP rule for URL $url\n" );
 				}
 			}
 

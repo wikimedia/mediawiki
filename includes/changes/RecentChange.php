@@ -590,7 +590,6 @@ class RecentChange implements Taggable {
 	 * @param string $uri URI to get the engine object for
 	 * @param array $params
 	 * @return FormattedRCFeed
-	 * @throws MWException
 	 */
 	public static function getEngine( $uri, $params = [] ) {
 		wfDeprecated( __METHOD__, '1.29' );
@@ -598,10 +597,10 @@ class RecentChange implements Taggable {
 			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::RCEngines );
 		$scheme = parse_url( $uri, PHP_URL_SCHEME );
 		if ( !$scheme ) {
-			throw new MWException( "Invalid RCFeed uri: '$uri'" );
+			throw new InvalidArgumentException( "Invalid RCFeed uri: '$uri'" );
 		}
 		if ( !isset( $rcEngines[$scheme] ) ) {
-			throw new MWException( "Unknown RCFeed engine: '$scheme'" );
+			throw new InvalidArgumentException( "Unknown RCFeed engine: '$scheme'" );
 		}
 		if ( defined( 'MW_PHPUNIT_TEST' ) && is_object( $rcEngines[$scheme] ) ) {
 			return $rcEngines[$scheme];
@@ -1252,7 +1251,7 @@ class RecentChange implements Taggable {
 		global $wgRequest;
 		if ( $ip ) {
 			if ( !IPUtils::isIPAddress( $ip ) ) {
-				throw new MWException( "Attempt to write \"" . $ip .
+				throw new RuntimeException( "Attempt to write \"" . $ip .
 					"\" as an IP address into recent changes" );
 			}
 		} else {

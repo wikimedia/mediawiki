@@ -384,7 +384,6 @@ class ApiOpenSearch extends ApiBase {
 	 *
 	 * @param string $type MIME type
 	 * @return string
-	 * @throws MWException
 	 */
 	public static function getOpenSearchTemplate( $type ) {
 		$config = MediaWikiServices::getInstance()->getSearchEngineConfig();
@@ -410,7 +409,7 @@ class ApiOpenSearch extends ApiBase {
 					'?action=opensearch&format=xml&search={searchTerms}&namespace=' . $ns;
 
 			default:
-				throw new MWException( __METHOD__ . ": Unknown type '$type'" );
+				throw new InvalidArgumentException( __METHOD__ . ": Unknown type '$type'" );
 		}
 	}
 }

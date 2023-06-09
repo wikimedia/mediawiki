@@ -98,7 +98,6 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	 * @param mixed $value
 	 *
 	 * @return string
-	 * @throws MWException
 	 */
 	public function formatOptions( $options, $value ) {
 		$html = '';
@@ -134,7 +133,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 
 	protected function getOneCheckbox( $checked, $attribs, $label ) {
 		if ( $this->mParent instanceof OOUIHTMLForm ) {
-			throw new MWException( 'HTMLMultiSelectField#getOneCheckbox() is not supported' );
+			throw new RuntimeException( __METHOD__ . ' is not supported' );
 		} else {
 			$elementFunc = [ Html::class, $this->mOptionsLabelsNotFromMessage ? 'rawElement' : 'element' ];
 			$checkbox =
@@ -157,12 +156,11 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	/**
 	 * Get options and make them into arrays suitable for OOUI.
 	 * @stable to override
-	 * @throws MWException
 	 */
 	public function getOptionsOOUI() {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		// Sections make this difficult. See getInputOOUI().
-		throw new MWException( 'HTMLMultiSelectField#getOptionsOOUI() is not supported' );
+		throw new RuntimeException( __METHOD__ . ' is not supported' );
 	}
 
 	/**
