@@ -160,7 +160,6 @@ class Throttler implements LoggerAwareInterface {
 	 *
 	 * @param string|null $username
 	 * @param string|null $ip
-	 * @throws \MWException
 	 */
 	public function clear( $username = null, $ip = null ) {
 		$userKey = $username ? md5( $username ) : null;

@@ -34,8 +34,8 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
-use MWException;
 use stdClass;
+use UnexpectedValueException;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
@@ -231,7 +231,6 @@ class DatabaseBlock extends AbstractBlock {
 	 * @param bool $fromPrimary
 	 * @param UserIdentity|string|null $vagueTarget Also search for blocks affecting this target.
 	 *     Doesn't make any sense to use TYPE_AUTO / TYPE_ID here. Leave blank to skip IP lookups.
-	 * @throws MWException
 	 * @return DatabaseBlock[] Any relevant blocks
 	 */
 	protected static function newLoad(
@@ -276,7 +275,7 @@ class DatabaseBlock extends AbstractBlock {
 					break;
 
 				default:
-					throw new MWException( "Tried to load block with invalid type" );
+					throw new UnexpectedValueException( "Tried to load block with invalid type" );
 			}
 		}
 
@@ -469,7 +468,6 @@ class DatabaseBlock extends AbstractBlock {
 	 * Delete the row from the IP blocks table.
 	 *
 	 * @deprecated since 1.36 Use DatabaseBlockStore::deleteBlock instead.
-	 * @throws MWException
 	 * @return bool
 	 */
 	public function delete() {
@@ -683,7 +681,6 @@ class DatabaseBlock extends AbstractBlock {
 
 	/**
 	 * Get the IP address at the start of the range in Hex form
-	 * @throws MWException
 	 * @return string IP in Hex form
 	 */
 	public function getRangeStart() {
@@ -696,13 +693,12 @@ class DatabaseBlock extends AbstractBlock {
 				[ $start, /*...*/ ] = IPUtils::parseRange( $this->target );
 				return $start;
 			default:
-				throw new MWException( "Block with invalid type" );
+				throw new UnexpectedValueException( "Block with invalid type" );
 		}
 	}
 
 	/**
 	 * Get the IP address at the end of the range in Hex form
-	 * @throws MWException
 	 * @return string IP in Hex form
 	 */
 	public function getRangeEnd() {
@@ -715,7 +711,7 @@ class DatabaseBlock extends AbstractBlock {
 				[ /*...*/, $end ] = IPUtils::parseRange( $this->target );
 				return $end;
 			default:
-				throw new MWException( "Block with invalid type" );
+				throw new UnexpectedValueException( "Block with invalid type" );
 		}
 	}
 

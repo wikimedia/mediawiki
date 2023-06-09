@@ -27,7 +27,6 @@ use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
 use MediaWiki\DAO\WikiAwareEntity;
-use MWException;
 use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -231,7 +230,6 @@ class BlockRestrictionStore {
 	 *
 	 * @since 1.33
 	 * @param Restriction[] $restrictions
-	 * @throws MWException
 	 * @return bool
 	 */
 	public function delete( array $restrictions ) {
@@ -260,7 +258,6 @@ class BlockRestrictionStore {
 	 *
 	 * @since 1.33
 	 * @param int|array $blockId
-	 * @throws MWException
 	 * @return bool
 	 */
 	public function deleteByBlockId( $blockId ) {
@@ -276,7 +273,6 @@ class BlockRestrictionStore {
 	 *
 	 * @since 1.33
 	 * @param int|array $parentBlockId
-	 * @throws MWException
 	 * @return bool
 	 */
 	public function deleteByParentBlockId( $parentBlockId ) {

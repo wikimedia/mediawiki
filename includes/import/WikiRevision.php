@@ -195,19 +195,10 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	}
 
 	/**
-	 * @since 1.7 taking a Title object (string before)
 	 * @param Title $title
-	 * @throws MWException
 	 */
-	public function setTitle( $title ) {
-		if ( is_object( $title ) ) {
-			$this->title = $title;
-		} elseif ( $title === null ) {
-			throw new MWException( "WikiRevision given a null title in import. "
-				. "You may need to adjust \$wgLegalTitleChars." );
-		} else {
-			throw new MWException( "WikiRevision given non-object title in import." );
-		}
+	public function setTitle( Title $title ) {
+		$this->title = $title;
 	}
 
 	/**

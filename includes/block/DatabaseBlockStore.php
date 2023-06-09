@@ -32,7 +32,6 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\UserFactory;
-use MWException;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -192,7 +191,6 @@ class DatabaseBlockStore {
 	 *                       DatabaseBlockStore instead.
 	 * @return bool|array False on failure, assoc array on success:
 	 *      ('id' => block ID, 'autoIds' => array of autoblock IDs)
-	 * @throws MWException
 	 */
 	public function insertBlock(
 		DatabaseBlock $block,
@@ -200,7 +198,7 @@ class DatabaseBlockStore {
 	) {
 		$blocker = $block->getBlocker();
 		if ( !$blocker || $blocker->getName() === '' ) {
-			throw new MWException( 'Cannot insert a block without a blocker set' );
+			throw new InvalidArgumentException( 'Cannot insert a block without a blocker set' );
 		}
 
 		if ( $database !== null ) {
@@ -295,7 +293,7 @@ class DatabaseBlockStore {
 
 		$blockId = $block->getId( $this->wikiId );
 		if ( !$blockId ) {
-			throw new MWException(
+			throw new InvalidArgumentException(
 				__METHOD__ . " requires that a block id be set\n"
 			);
 		}
@@ -364,7 +362,6 @@ class DatabaseBlockStore {
 	 *
 	 * @param DatabaseBlock $block
 	 * @return bool whether it was deleted
-	 * @throws MWException
 	 */
 	public function deleteBlock( DatabaseBlock $block ): bool {
 		if ( $this->readOnlyMode->isReadOnly() ) {
@@ -376,7 +373,7 @@ class DatabaseBlockStore {
 		$blockId = $block->getId( $this->wikiId );
 
 		if ( !$blockId ) {
-			throw new MWException(
+			throw new InvalidArgumentException(
 				__METHOD__ . " requires that a block id be set\n"
 			);
 		}

@@ -2214,8 +2214,6 @@ more stuff
 
 	/**
 	 * @covers WikiPage::factory
-	 *
-	 * @throws MWException
 	 */
 	public function testWikiPageFactoryHookValid() {
 		$this->hideDeprecated( 'WikiPage::factory' );

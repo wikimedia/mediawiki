@@ -222,8 +222,9 @@ class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::execute
 	 */
 	public function testDoWorkRaiseException() {
+		$expectedException = new RuntimeException( __METHOD__ );
 		$worker = $this->configureFixture(
-			[ 'doWork' => $this->throwException( new MWException() ) ],
+			[ 'doWork' => $this->throwException( $expectedException ) ],
 			[
 				'acquireForMe' => $this->returnValue( Status::newGood( PoolCounter::LOCK_HELD ) ),
 				'release' => $this->returnValue( '' )
@@ -231,8 +232,8 @@ class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 			[]
 		);
 
-		$this->expectException( MWException::class );
-		$result = $worker->execute();
+		$this->expectExceptionObject( $expectedException );
+		$worker->execute();
 	}
 
 	/**

@@ -200,53 +200,51 @@ abstract class HTMLFormField {
 	 * be done later.
 	 *
 	 * @param array $params
-	 * @throws MWException
 	 */
 	protected function validateCondState( $params ) {
 		$origParams = $params;
 		$op = array_shift( $params );
 
-		try {
-			switch ( $op ) {
-				case 'NOT':
-					if ( count( $params ) !== 1 ) {
-						throw new MWException( "NOT takes exactly one parameter" );
-					}
-					// Fall-through intentionally
-
-				case 'AND':
-				case 'OR':
-				case 'NAND':
-				case 'NOR':
-					foreach ( $params as $i => $p ) {
-						if ( !is_array( $p ) ) {
-							$type = gettype( $p );
-							throw new MWException( "Expected array, found $type at index $i" );
-						}
-						$this->validateCondState( $p );
-					}
-					break;
-
-				case '===':
-				case '!==':
-					if ( count( $params ) !== 2 ) {
-						throw new MWException( "$op takes exactly two parameters" );
-					}
-					[ $name, $value ] = $params;
-					if ( !is_string( $name ) || !is_string( $value ) ) {
-						throw new MWException( "Parameters for $op must be strings" );
-					}
-					break;
-
-				default:
-					throw new MWException( "Unknown operation" );
-			}
-		} catch ( MWException $ex ) {
-			throw new MWException(
+		$makeException = function ( string $details ) use ( $origParams ): InvalidArgumentException {
+			return new InvalidArgumentException(
 				"Invalid hide-if or disable-if specification for $this->mName: " .
-				$ex->getMessage() . " in " . var_export( $origParams, true ),
-				0, $ex
+				$details . " in " . var_export( $origParams, true )
 			);
+		};
+
+		switch ( $op ) {
+			case 'NOT':
+				if ( count( $params ) !== 1 ) {
+					throw $makeException( "NOT takes exactly one parameter" );
+				}
+				// Fall-through intentionally
+
+			case 'AND':
+			case 'OR':
+			case 'NAND':
+			case 'NOR':
+				foreach ( $params as $i => $p ) {
+					if ( !is_array( $p ) ) {
+						$type = gettype( $p );
+						throw $makeException( "Expected array, found $type at index $i" );
+					}
+					$this->validateCondState( $p );
+				}
+				break;
+
+			case '===':
+			case '!==':
+				if ( count( $params ) !== 2 ) {
+					throw $makeException( "$op takes exactly two parameters" );
+				}
+				[ $name, $value ] = $params;
+				if ( !is_string( $name ) || !is_string( $value ) ) {
+					throw $makeException( "Parameters for $op must be strings" );
+				}
+				break;
+
+			default:
+				throw $makeException( "Unknown operation" );
 		}
 	}
 
@@ -256,7 +254,6 @@ abstract class HTMLFormField {
 	 * @param array $alldata
 	 * @param array $params
 	 * @return bool
-	 * @throws MWException
 	 */
 	protected function checkStateRecurse( array $alldata, array $params ) {
 		$op = array_shift( $params );
@@ -500,7 +497,6 @@ abstract class HTMLFormField {
 	 * @param array $params Associative Array. See HTMLForm doc for syntax.
 	 *
 	 * @since 1.22 The 'label' attribute no longer accepts raw HTML, use 'label-raw' instead
-	 * @throws MWException
 	 */
 	public function __construct( $params ) {
 		$this->mParams = $params;

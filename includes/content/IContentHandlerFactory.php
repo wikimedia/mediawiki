@@ -4,7 +4,6 @@ namespace MediaWiki\Content;
 
 use ContentHandler;
 use FatalError;
-use MWException;
 use MWUnknownContentModelException;
 
 interface IContentHandlerFactory {
@@ -15,7 +14,6 @@ interface IContentHandlerFactory {
 	 * @param string $modelID
 	 *
 	 * @return ContentHandler
-	 * @throws MWException For internal errors and problems in the configuration.
 	 * @throws MWUnknownContentModelException If no handler is known for the model ID.
 	 */
 	public function getContentHandler( string $modelID ): ContentHandler;
@@ -26,7 +24,6 @@ interface IContentHandlerFactory {
 	 * by this method.
 	 *
 	 * @return string[]
-	 * @throws MWException
 	 * @throws FatalError
 	 */
 	public function getContentModels(): array;
@@ -35,7 +32,6 @@ interface IContentHandlerFactory {
 	 * Returns a list of all serialization formats supported for any of the defined content models.
 	 * @see ContentHandler::getSupportedFormats()
 	 * @return string[]
-	 * @throws MWException
 	 */
 	public function getAllContentFormats(): array;
 

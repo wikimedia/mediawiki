@@ -218,7 +218,7 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 			],
 			'requestData' => [],
 			'callback' => null,
-			'exception' => [ MWException::class, '/Unknown operation/' ],
+			'exception' => [ InvalidArgumentException::class, '/Unknown operation/' ],
 		];
 		yield 'Invalid conditional specification (NOT)' => [
 			'fieldInfo' => [
@@ -226,7 +226,7 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 			],
 			'requestData' => [],
 			'callback' => null,
-			'exception' => [ MWException::class, '/NOT takes exactly one parameter/' ],
+			'exception' => [ InvalidArgumentException::class, '/NOT takes exactly one parameter/' ],
 		];
 		yield 'Invalid conditional specification (AND/OR/NAND/NOR)' => [
 			'fieldInfo' => [
@@ -234,7 +234,7 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 			],
 			'requestData' => [],
 			'callback' => null,
-			'exception' => [ MWException::class, '/Expected array, found string/' ],
+			'exception' => [ InvalidArgumentException::class, '/Expected array, found string/' ],
 		];
 		yield 'Invalid conditional specification (===/!==) 1' => [
 			'fieldInfo' => [
@@ -242,7 +242,7 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 			],
 			'requestData' => [],
 			'callback' => null,
-			'exception' => [ MWException::class, '/=== takes exactly two parameters/' ],
+			'exception' => [ InvalidArgumentException::class, '/=== takes exactly two parameters/' ],
 		];
 		yield 'Invalid conditional specification (===/!==) 2' => [
 			'fieldInfo' => [
@@ -250,7 +250,7 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 			],
 			'requestData' => [],
 			'callback' => null,
-			'exception' => [ MWException::class, '/Parameters for === must be strings/' ],
+			'exception' => [ InvalidArgumentException::class, '/Parameters for === must be strings/' ],
 		];
 
 		yield 'Field disabled if "check" field is checked' => [

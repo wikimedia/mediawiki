@@ -32,7 +32,6 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 	 * @param RevisionRecord[] &$revisions will be filled with the RevisionRecord for $content.
 	 *
 	 * @return WikiPage
-	 * @throws MWException
 	 */
 	private function getPage( $title, array $revisionContents = [], array &$revisions = [] ) {
 		if ( is_string( $title ) ) {
