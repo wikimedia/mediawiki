@@ -61,6 +61,7 @@ abstract class ImageHandler extends MediaHandler {
 	/**
 	 * @inheritDoc
 	 * @stable to override
+	 * @throws MediaTransformInvalidParametersException
 	 */
 	public function makeParamString( $params ) {
 		if ( isset( $params['physicalWidth'] ) ) {

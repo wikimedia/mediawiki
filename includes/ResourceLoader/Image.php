@@ -23,6 +23,7 @@ namespace MediaWiki\ResourceLoader;
 use DOMDocument;
 use FileBackend;
 use InvalidArgumentException;
+use InvalidSVGException;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -456,7 +457,12 @@ class Image {
 
 		file_put_contents( $tempFilenameSvg, $svg );
 
-		$svgReader = new SVGReader( $tempFilenameSvg );
+		try {
+			$svgReader = new SVGReader( $tempFilenameSvg );
+		} catch ( InvalidSVGException $e ) {
+			// XXX Can this ever happen?
+			throw new RuntimeException( 'Invalid SVG', 0, $e );
+		}
 		$metadata = $svgReader->getMetadata();
 		if ( !isset( $metadata['width'] ) || !isset( $metadata['height'] ) ) {
 			unlink( $tempFilenameSvg );

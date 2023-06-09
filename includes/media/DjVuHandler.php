@@ -256,7 +256,6 @@ class DjVuHandler extends ImageHandler {
 	 * @param File $file The DjVu file in question
 	 * @param bool $gettext
 	 * @return string|false|array metadata
-	 * @throws MWException
 	 */
 	private function getMetadataInternal( File $file, $gettext ) {
 		$itemNames = [ 'error', '_error', 'data' ];

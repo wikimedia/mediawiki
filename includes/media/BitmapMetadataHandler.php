@@ -24,7 +24,6 @@
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\RequestTimeout\TimeoutException;
 use Wikimedia\XMPReader\Reader as XMPReader;
 
 /**
@@ -71,9 +70,7 @@ class BitmapMetadataHandler {
 	private function doApp13( $app13 ) {
 		try {
 			$this->iptcType = JpegMetadataExtractor::doPSIR( $app13 );
-		} catch ( TimeoutException $e ) {
-			throw $e;
-		} catch ( Exception $e ) {
+		} catch ( InvalidPSIRException $e ) {
 			// Error reading the iptc hash information.
 			// This probably means the App13 segment is something other than what we expect.
 			// However, still try to read it, and treat it as if the hash didn't exist.
@@ -163,7 +160,7 @@ class BitmapMetadataHandler {
 	 *
 	 * @param string $filename Filename (with full path)
 	 * @return array Metadata result array.
-	 * @throws MWException On invalid file.
+	 * @throws InvalidJpegException
 	 */
 	public static function Jpeg( $filename ) {
 		$showXMP = XMPReader::isSupported();
@@ -279,14 +276,14 @@ class BitmapMetadataHandler {
 	 *
 	 * The various exceptions this throws are caught later.
 	 * @param string $filename
-	 * @throws MWException
+	 * @throws InvalidTiffException
 	 * @return array The metadata.
 	 */
 	public static function Tiff( $filename ) {
 		if ( file_exists( $filename ) ) {
 			$byteOrder = self::getTiffByteOrder( $filename );
 			if ( !$byteOrder ) {
-				throw new MWException( "Error determining byte order of $filename" );
+				throw new InvalidTiffException( "Error determining byte order of $filename" );
 			}
 			$exif = new Exif( $filename, $byteOrder );
 			$data = $exif->getFilteredData();
@@ -295,10 +292,10 @@ class BitmapMetadataHandler {
 
 				return $data;
 			} else {
-				throw new MWException( "Could not extract data from tiff file $filename" );
+				throw new InvalidTiffException( "Could not extract data from tiff file $filename" );
 			}
 		} else {
-			throw new MWException( "File doesn't exist - $filename" );
+			throw new InvalidTiffException( "File doesn't exist - $filename" );
 		}
 	}
 

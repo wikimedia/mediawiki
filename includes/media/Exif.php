@@ -101,7 +101,6 @@ class Exif {
 	 * @param string $file Filename.
 	 * @param string $byteOrder Type of byte ordering either 'BE' (Big Endian)
 	 *   or 'LE' (Little Endian). Default ''.
-	 * @throws MWException
 	 * @todo FIXME: The following are broke:
 	 *   SubjectArea. Need to test the more obscure tags.
 	 *   DigitalZoomRatio = 0/0 is rejected. need to determine if that's valid.
@@ -416,7 +415,7 @@ class Exif {
 			$data = exif_read_data( $this->file, '', true );
 			AtEase::restoreWarnings();
 		} else {
-			throw new MWException( "Internal error: exif_read_data not present. " .
+			throw new ConfigException( "Internal error: exif_read_data not present. " .
 				"\$wgShowEXIF may be incorrectly set or not checked by an extension." );
 		}
 		/**

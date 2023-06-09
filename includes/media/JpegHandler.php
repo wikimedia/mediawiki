@@ -106,7 +106,7 @@ class JpegHandler extends ExifBitmapHandler {
 			$meta = BitmapMetadataHandler::Jpeg( $filename );
 			if ( !is_array( $meta ) ) {
 				// This should never happen, but doesn't hurt to be paranoid.
-				throw new MWException( 'Metadata array is not an array' );
+				throw new InvalidJpegException( 'Metadata array is not an array' );
 			}
 			$meta['MEDIAWIKI_EXIF_VERSION'] = Exif::version();
 
@@ -121,9 +121,7 @@ class JpegHandler extends ExifBitmapHandler {
 			unset( $meta['SOF'] );
 			$info['metadata'] = $meta;
 			return $info;
-		} catch ( MWException $e ) {
-			// BitmapMetadataHandler throws an exception in certain exceptional
-			// cases like if file does not exist.
+		} catch ( InvalidJpegException $e ) {
 			wfDebug( __METHOD__ . ': ' . $e->getMessage() );
 
 			// This used to return an integer-like string from getMetadata(),

@@ -54,7 +54,7 @@ class SVGReader {
 	/**
 	 * Creates an SVGReader drawing from the source provided
 	 * @param string $source URI from which to read
-	 * @throws MWException|Exception
+	 * @throws InvalidSVGException
 	 */
 	public function __construct( $source ) {
 		$svgMetadataCutoff = MediaWikiServices::getInstance()->getMainConfig()
@@ -64,21 +64,21 @@ class SVGReader {
 		// Don't use $file->getSize() since file object passed to SVGHandler::getMetadata is bogus.
 		$size = filesize( $source );
 		if ( $size === false ) {
-			throw new MWException( "Error getting filesize of SVG." );
+			throw new InvalidSVGException( "Error getting filesize of SVG." );
 		}
 
 		if ( $size > $svgMetadataCutoff ) {
 			$this->debug( "SVG is $size bytes, which is bigger than {$svgMetadataCutoff}. Truncating." );
 			$contents = file_get_contents( $source, false, null, 0, $svgMetadataCutoff );
 			if ( $contents === false ) {
-				throw new MWException( 'Error reading SVG file.' );
+				throw new InvalidSVGException( 'Error reading SVG file.' );
 			}
 			$status = $this->reader->XML( $contents, null, LIBXML_NOERROR | LIBXML_NOWARNING );
 		} else {
 			$status = $this->reader->open( $source, null, LIBXML_NOERROR | LIBXML_NOWARNING );
 		}
 		if ( !$status ) {
-			throw new MWException( "Error getting xml of SVG." );
+			throw new InvalidSVGException( "Error getting xml of SVG." );
 		}
 
 		// Expand entities, since Adobe Illustrator uses them for xmlns
@@ -107,11 +107,9 @@ class SVGReader {
 		// be a better way.
 		AtEase::suppressWarnings();
 		try {
-			$this->read();
-		} catch ( Exception $e ) {
-			// Note, if this happens, the width/height will be taken to be 0x0.
+			// Note: if this throws, the width/height will be taken to be 0x0.
 			// Should we consider it the default 512x512 instead?
-			throw $e;
+			$this->read();
 		} finally {
 			libxml_disable_entity_loader( $oldDisable );
 			AtEase::restoreWarnings();
@@ -127,7 +125,7 @@ class SVGReader {
 
 	/**
 	 * Read the SVG
-	 * @throws MWException
+	 * @throws InvalidSVGException
 	 * @return bool
 	 */
 	protected function read() {
@@ -139,7 +137,7 @@ class SVGReader {
 		}
 
 		if ( $this->reader->localName !== 'svg' || $this->reader->namespaceURI !== self::NS_SVG ) {
-			throw new MWException( "Expected <svg> tag, got " .
+			throw new InvalidSVGException( "Expected <svg> tag, got " .
 				$this->reader->localName . " in NS " . $this->reader->namespaceURI );
 		}
 		$this->debug( '<svg> tag is correct.' );
@@ -220,7 +218,6 @@ class SVGReader {
 	 * Read an XML snippet from an element
 	 *
 	 * @param string|null $metafield Field that we will fill with the result
-	 * @throws MWException
 	 */
 	private function readXml( $metafield = null ) {
 		$this->debug( "Read top level metadata" );
