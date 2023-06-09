@@ -248,7 +248,7 @@ abstract class ContentHandler {
 	 *
 	 * If no ContentHandler is defined for the desired $modelId, the
 	 * ContentHandler may be provided by the ContentHandlerForModelID hook.
-	 * If no ContentHandler can be determined, an MWException is raised.
+	 * If no ContentHandler can be determined, an MWUnknownContentModelException is raised.
 	 *
 	 * @since 1.21
 	 *
@@ -258,7 +258,6 @@ abstract class ContentHandler {
 	 * @param string $modelId The ID of the content model for which to get a
 	 *    handler. Use CONTENT_MODEL_XXX constants.
 	 *
-	 * @throws MWException For internal errors and problems in the configuration.
 	 * @throws MWUnknownContentModelException If no handler is known for the model ID.
 	 * @return ContentHandler The ContentHandler singleton for handling the model given by the ID.
 	 */
@@ -278,7 +277,6 @@ abstract class ContentHandler {
 	 *    constant or returned by Content::getModel() or SlotRecord::getModel().
 	 * @param Language|null $lang The language to parse the message in (since 1.26)
 	 *
-	 * @throws MWException If the model ID isn't known.
 	 * @return string The content model's localized name.
 	 */
 	public static function getLocalizedName( $name, Language $lang = null ) {
@@ -299,8 +297,6 @@ abstract class ContentHandler {
 	 * @see ContentHandlerFactory::getContentModels
 	 *
 	 * @return string[]
-	 * @throws MWException
-	 * @throws MWUnknownContentModelException
 	 */
 	public static function getContentModels() {
 		return MediaWikiServices::getInstance()->getContentHandlerFactory()->getContentModels();
@@ -308,8 +304,6 @@ abstract class ContentHandler {
 
 	/**
 	 * @return string[]
-	 * @throws MWException
-	 * @throws MWUnknownContentModelException
 	 *
 	 * @deprecated since 1.35, use ContentHandlerFactory::getAllContentFormats
 	 * @see ContentHandlerFactory::getAllContentFormats
@@ -751,7 +745,7 @@ abstract class ContentHandler {
 		$this->getHookRunner()->onPageContentLanguage( $title, $pageLang, $wgLang );
 
 		if ( !$pageLang instanceof Language ) {
-			throw new MWException( 'onPageContentLanguage() hook provided an invalid $pageLang object.' );
+			throw new UnexpectedValueException( 'onPageContentLanguage() hook provided an invalid $pageLang object.' );
 		}
 
 		return $pageLang;
@@ -1758,8 +1752,6 @@ abstract class ContentHandler {
 	 * @param Content $content
 	 * @param ContentParseParams $cpoParams
 	 * @param ParserOutput &$output The output object to fill (reference).
-	 *
-	 * @throws MWException
 	 */
 	protected function fillParserOutput(
 		Content $content,
@@ -1767,7 +1759,7 @@ abstract class ContentHandler {
 		ParserOutput &$output
 	) {
 		// Subclasses must override fillParserOutput() to directly don't fail.
-		throw new MWException( 'Subclasses of ContentHandler must override fillParserOutput!' );
+		throw new LogicException( 'Subclasses of ContentHandler must override fillParserOutput!' );
 	}
 
 }

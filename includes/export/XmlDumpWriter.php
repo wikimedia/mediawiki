@@ -28,6 +28,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
@@ -314,14 +315,12 @@ class XmlDumpWriter {
 	}
 
 	/**
-	 * Invokes the given callback, catching and logging any storage related
-	 * exceptions.
+	 * Invokes the given callback, catching and logging any exceptions.
 	 *
 	 * @param callable $callback
 	 * @param string $warning The warning to output in case of a storage related exception.
 	 *
-	 * @return mixed Returns the method's return value,
-	 *         or null in case of a storage related exception.
+	 * @return mixed Returns the method's return value, or null in case of an exception.
 	 * @throws Exception
 	 */
 	private function invokeLenient( $callback, $warning ) {
@@ -329,14 +328,9 @@ class XmlDumpWriter {
 			return $callback();
 		} catch ( SuppressedDataException $ex ) {
 			return null;
-		} catch ( Exception $ex ) {
-			if ( $ex instanceof MWException || $ex instanceof RuntimeException ||
-				$ex instanceof InvalidArgumentException || $ex instanceof ErrorException ) {
-				MWDebug::warning( $warning . ': ' . $ex->getMessage() );
-				return null;
-			} else {
-				throw $ex;
-			}
+		} catch ( MWException | RuntimeException | InvalidArgumentException | ErrorException $ex ) {
+			MWDebug::warning( $warning . ': ' . $ex->getMessage() );
+			return null;
 		}
 	}
 
@@ -348,8 +342,7 @@ class XmlDumpWriter {
 	 * @param null|stdClass[] $slotRows
 	 *
 	 * @return string
-	 * @throws FatalError
-	 * @throws MWException
+	 * @throws RevisionAccessException
 	 */
 	public function writeRevision( $row, $slotRows = null ) {
 		$rev = $this->getRevisionStore()->newRevisionFromRowAndSlots(

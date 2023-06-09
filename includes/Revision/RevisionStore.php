@@ -1553,7 +1553,6 @@ class RevisionStore
 	 * @param PageIdentity $page
 	 *
 	 * @return RevisionSlots
-	 * @throws MWException
 	 */
 	private function newRevisionSlots(
 		$revId,
@@ -1593,7 +1592,6 @@ class RevisionStore
 	 *   override ar_parent_id.
 	 *
 	 * @return RevisionRecord
-	 * @throws MWException
 	 */
 	public function newRevisionFromArchiveRow(
 		$row,
@@ -1642,7 +1640,6 @@ class RevisionStore
 	 *   override ar_parent_id.
 	 *
 	 * @return RevisionRecord
-	 * @throws MWException
 	 */
 	public function newRevisionFromArchiveRowAndSlots(
 		stdClass $row,
@@ -1653,7 +1650,7 @@ class RevisionStore
 	) {
 		if ( !$page && isset( $overrides['title'] ) ) {
 			if ( !( $overrides['title'] instanceof PageIdentity ) ) {
-				throw new MWException( 'title field override must contain a PageIdentity object.' );
+				throw new InvalidArgumentException( 'title field override must contain a PageIdentity object.' );
 			}
 
 			$page = $overrides['title'];
@@ -1715,7 +1712,6 @@ class RevisionStore
 	 *   data is returned from getters, by querying the database as needed
 	 *
 	 * @return RevisionRecord
-	 * @throws MWException
 	 * @throws RevisionAccessException
 	 * @see RevisionFactory::newRevisionFromRow
 	 */
@@ -2026,10 +2022,9 @@ class RevisionStore
 		}
 
 		// which method to use for creating RevisionRecords
-		$newRevisionRecord = [
-			$this,
-			$archiveMode ? 'newRevisionFromArchiveRowAndSlots' : 'newRevisionFromRowAndSlots'
-		];
+		$newRevisionRecord = $archiveMode
+			? [ $this, 'newRevisionFromArchiveRowAndSlots' ]
+			: [ $this, 'newRevisionFromRowAndSlots' ];
 
 		if ( !isset( $options['slots'] ) ) {
 			$result->setResult(

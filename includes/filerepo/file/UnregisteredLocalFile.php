@@ -76,7 +76,6 @@ class UnregisteredLocalFile extends File {
 	 * Create an UnregisteredLocalFile based on a path or a (title,repo) pair.
 	 * A FileRepo object is not required here, unlike most other File classes.
 	 *
-	 * @throws MWException
 	 * @param Title|false $title
 	 * @param FileRepo|false $repo
 	 * @param string|false $path
@@ -84,7 +83,7 @@ class UnregisteredLocalFile extends File {
 	 */
 	public function __construct( $title = false, $repo = false, $path = false, $mime = false ) {
 		if ( !( $title && $repo ) && !$path ) {
-			throw new MWException( __METHOD__ .
+			throw new BadMethodCallException( __METHOD__ .
 				': not enough parameters, must specify title and repo, or a full path' );
 		}
 		if ( $title instanceof Title ) {

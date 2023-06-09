@@ -236,7 +236,6 @@ class WikiExporter {
 
 	/**
 	 * @param string $name
-	 * @throws MWException
 	 */
 	public function pageByName( $name ) {
 		try {
@@ -245,7 +244,7 @@ class WikiExporter {
 				'page_namespace=' . $link->getNamespace() .
 				' AND page_title=' . $this->db->addQuotes( $link->getDBkey() ) );
 		} catch ( MalformedTitleException $ex ) {
-			throw new MWException( "Can't export invalid title" );
+			throw new RuntimeException( "Can't export invalid title" );
 		}
 	}
 
@@ -308,8 +307,6 @@ class WikiExporter {
 	/**
 	 * @param string $cond
 	 * @param bool $orderRevs
-	 * @throws MWException
-	 * @throws Exception
 	 */
 	protected function dumpFrom( $cond = '', $orderRevs = false ) {
 		if ( is_int( $this->history ) && ( $this->history & self::LOGS ) ) {
@@ -321,7 +318,6 @@ class WikiExporter {
 
 	/**
 	 * @param string $cond
-	 * @throws Exception
 	 */
 	protected function dumpLogs( $cond ) {
 		$where = [];
@@ -376,8 +372,6 @@ class WikiExporter {
 	/**
 	 * @param string $cond
 	 * @param bool $orderRevs
-	 * @throws MWException
-	 * @throws Exception
 	 */
 	protected function dumpPages( $cond, $orderRevs ) {
 		$revQuery = $this->revisionStore->getQueryInfo( [ 'page' ] );
@@ -450,13 +444,13 @@ class WikiExporter {
 			$join['revision'] = [ 'JOIN', 'page_id=rev_page AND page_latest=rev_id' ];
 			# One, and only one hook should set this, and return false
 			if ( $this->hookRunner->onWikiExporter__dumpStableQuery( $tables, $opts, $join ) ) {
-				throw new MWException( __METHOD__ . " given invalid history dump type." );
+				throw new LogicException( __METHOD__ . " given invalid history dump type." );
 			}
 		} elseif ( $this->history & self::RANGE ) {
 			# Dump of revisions within a specified range.  Condition already set in revsByRange().
 		} else {
 			# Unknown history specification parameter?
-			throw new MWException( __METHOD__ . " given invalid history dump type." );
+			throw new UnexpectedValueException( __METHOD__ . " given invalid history dump type." );
 		}
 
 		$done = false;

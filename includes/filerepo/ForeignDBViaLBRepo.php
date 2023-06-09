@@ -71,9 +71,11 @@ class ForeignDBViaLBRepo extends LocalRepo implements IForeignRepoWithDB {
 		return MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 	}
 
+	/**
+	 * @return never
+	 */
 	protected function assertWritableRepo() {
-		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
-		throw new MWException( static::class . ': write operations are not supported.' );
+		throw new LogicException( static::class . ': write operations are not supported.' );
 	}
 
 	public function getInfo() {

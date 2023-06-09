@@ -4,7 +4,7 @@
  * @newable
  * @stable to extend
  */
-class HTMLFormFieldRequiredOptionsException extends MWException {
+class HTMLFormFieldRequiredOptionsException extends InvalidArgumentException {
 
 	/**
 	 * @stable to call

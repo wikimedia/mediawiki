@@ -466,7 +466,6 @@ class HTMLForm extends ContextSource {
 	 * @param string $format The name of the format to use, must be one of
 	 *   $this->availableDisplayFormats
 	 *
-	 * @throws MWException
 	 * @since 1.20
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
@@ -475,12 +474,12 @@ class HTMLForm extends ContextSource {
 			in_array( $format, $this->availableSubclassDisplayFormats, true ) ||
 			in_array( $this->displayFormat, $this->availableSubclassDisplayFormats, true )
 		) {
-			throw new MWException( 'Cannot change display format after creation, ' .
+			throw new LogicException( 'Cannot change display format after creation, ' .
 				'use HTMLForm::factory() instead' );
 		}
 
 		if ( !in_array( $format, $this->availableDisplayFormats, true ) ) {
-			throw new MWException( 'Display format must be one of ' .
+			throw new InvalidArgumentException( 'Display format must be one of ' .
 				print_r(
 					array_merge(
 						$this->availableDisplayFormats,
@@ -524,7 +523,6 @@ class HTMLForm extends ContextSource {
 	 * @param array &$descriptor Input Descriptor, as described
 	 * 	in the class documentation
 	 *
-	 * @throws MWException
 	 * @return string Name of a HTMLFormField subclass
 	 */
 	public static function getClassFromDescriptor( $fieldname, &$descriptor ) {
@@ -538,7 +536,7 @@ class HTMLForm extends ContextSource {
 		}
 
 		if ( !$class ) {
-			throw new MWException( "Descriptor with no class for $fieldname: "
+			throw new InvalidArgumentException( "Descriptor with no class for $fieldname: "
 				. print_r( $descriptor, true ) );
 		}
 
@@ -555,7 +553,6 @@ class HTMLForm extends ContextSource {
 	 * @param HTMLForm|null $parent Parent instance of HTMLForm
 	 *
 	 * @warning Not passing (or passing null) for $parent is deprecated as of 1.40
-	 * @throws MWException
 	 * @return HTMLFormField Instance of a subclass of HTMLFormField
 	 */
 	public static function loadInputFromParameters( $fieldname, $descriptor,
@@ -580,7 +577,6 @@ class HTMLForm extends ContextSource {
 	 * @warning When doing method chaining, that should be the very last
 	 * method call before displayForm().
 	 *
-	 * @throws MWException
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	public function prepareForm() {
@@ -673,7 +669,6 @@ class HTMLForm extends ContextSource {
 	 * Validate all the fields, and call the submission callback
 	 * function if everything is kosher.
 	 * @stable to override
-	 * @throws MWException
 	 * @return bool|string|array|Status
 	 *     - Bool true or a good Status object indicates success,
 	 *     - Bool false indicates no submission was attempted,
@@ -742,7 +737,7 @@ class HTMLForm extends ContextSource {
 
 		$callback = $this->mSubmitCallback;
 		if ( !is_callable( $callback ) ) {
-			throw new MWException( 'HTMLForm: no submit callback provided. Use ' .
+			throw new LogicException( 'HTMLForm: no submit callback provided. Use ' .
 				'setSubmitCallback() to set one.' );
 		}
 
