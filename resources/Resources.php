@@ -1902,6 +1902,8 @@ return [
 		],
 	],
 	'mediawiki.interface.helpers.styles' => [
+		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.interface.helpers.styles",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.interface.helpers.styles",
 		'class' => LessVarFileModule::class,
 		'lessMessages' => [
 			'comma-separator',
@@ -1912,8 +1914,11 @@ return [
 			'brackets-end',
 			'pipe-separator'
 		],
+		'styles' => [
+			'linker.styles.less',
+		],
 		'skinStyles' => [
-			'default' => 'resources/src/mediawiki.interface.helpers.styles.less',
+			'default' => 'skinStyles.less',
 		],
 	],
 	'mediawiki.special' => [

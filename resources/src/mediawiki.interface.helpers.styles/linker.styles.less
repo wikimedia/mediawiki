@@ -1,0 +1,92 @@
+/* stylelint-disable selector-class-pattern */
+
+@import 'mediawiki.skin.variables.less';
+@import 'mediawiki.mixins.less';
+
+/**
+ * Helper classes to provide styles for classes provided by functions of Linker class or Changes class.
+ * Also used for CommentFormatter class, which was previous in Linker.
+ */
+
+/** Class is added by ChangesList::flag */
+.unpatrolled {
+	font-weight: bold;
+	color: #d33;
+}
+
+/** Class is added by ChangesList::flag */
+.newpage,
+.minoredit,
+.botedit {
+	font-weight: bold;
+}
+
+/** Class is added by Linker::userLink */
+.mw-userlink {
+	// Word-break overlong user names, see T237230.
+	// FIXME: This property is introduced now, but will be separated in a follow-up
+	// caring about 'i18n-directionality', see T247033.
+	.hyphens( auto );
+	unicode-bidi: embed;
+}
+
+/** Class is added by Linker::userLink */
+.mw-tempuserlink {
+	// @background-color-interactive
+	background-color: #eaecf0;
+	padding: 2px 8px 2px 8px;
+	border-radius: @border-radius-base;
+}
+
+/* Comment portions of RC entries, also used by MediaWiki\CommentFormatter\CommentFormatter::formatBlock */
+span.comment {
+	font-style: italic;
+	unicode-bidi: -moz-isolate;
+	unicode-bidi: isolate;
+	// Covering several contexts for breaking up long comments, see T158725.
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	word-break: break-word;
+}
+
+/* The auto-generated edit comments */
+.autocomment,
+.autocomment a,
+.autocomment a:visited {
+	color: #72777d;
+}
+
+.mw-comment-none {
+	.mixin-screen-reader-text();
+}
+
+/** rev_deleted stuff */
+li span.deleted,
+span.history-deleted {
+	text-decoration: line-through;
+	color: #72777d;
+	font-style: italic;
+}
+
+span.mw-history-suppressed {
+	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+	text-decoration-style: double;
+	color: #202122;
+}
+
+/* (show/hide) revision deletion links */
+span.mw-revdelundel-link,
+strong.mw-revdelundel-link {
+	font-size: 90%;
+}
+
+// Historically this has been styled red, but should be distinguished from
+// normal red links as the contributions page does exist. To be revisited later.
+// More context: T303571#7781282
+.mw-usertoollinks-contribs-no-edits {
+	color: @color-link-new;
+
+	&:visited {
+		color: @color-link-new--visited;
+	}
+}
