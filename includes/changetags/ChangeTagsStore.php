@@ -729,12 +729,13 @@ class ChangeTagsStore {
 			return $tags;
 		}
 		$hookRunner = $this->hookRunner;
+		$dbProvider = $this->dbProvider;
 
 		return $this->wanCache->getWithSetCallback(
 			$this->wanCache->makeKey( 'active-tags' ),
 			WANObjectCache::TTL_MINUTE * 5,
-			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $tags, $hookRunner ) {
-				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
+			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $tags, $hookRunner, $dbProvider ) {
+				$setOpts += Database::getCacheSetOptions( $dbProvider->getReplicaDatabase() );
 
 				// Ask extensions which tags they consider active
 				$hookRunner->onChangeTagsListActive( $tags );
