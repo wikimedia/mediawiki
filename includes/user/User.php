@@ -2575,8 +2575,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 
 		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->doAtomicSection( __METHOD__, function ( IDatabase $dbw, $fname ) use ( $newTouched ) {
-			$dbw->update( 'user',
-				[ /* SET */
+			$dbw->newUpdateQueryBuilder()
+				->update( 'user' )
+				->set( [
 					'user_name' => $this->mName,
 					'user_real_name' => $this->mRealName,
 					'user_email' => $this->mEmail,
@@ -2585,10 +2586,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 					'user_token' => strval( $this->mToken ),
 					'user_email_token' => $this->mEmailToken,
 					'user_email_token_expires' => $dbw->timestampOrNull( $this->mEmailTokenExpires ),
-				], $this->makeUpdateConditions( $dbw, [ /* WHERE */
+				] )
+				->where( $this->makeUpdateConditions( $dbw, [ /* WHERE */
 					'user_id' => $this->mId,
-				] ), $fname
-			);
+				] ) )
+				->caller( $fname )->execute();
 
 			if ( !$dbw->affectedRows() ) {
 				// Maybe the problem was a missed cache update; clear it to be safe

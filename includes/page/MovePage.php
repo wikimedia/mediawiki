@@ -946,14 +946,14 @@ class MovePage {
 		$newpage = $this->wikiPageFactory->newFromTitle( $nt );
 
 		# Change the name of the target page:
-		$dbw->update( 'page',
-			/* SET */ [
+		$dbw->newUpdateQueryBuilder()
+			->update( 'page' )
+			->set( [
 				'page_namespace' => $nt->getNamespace(),
 				'page_title' => $nt->getDBkey(),
-			],
-			/* WHERE */ [ 'page_id' => $oldid ],
-			__METHOD__
-		);
+			] )
+			->where( [ 'page_id' => $oldid ] )
+			->caller( __METHOD__ )->execute();
 
 		// Reset $nt before using it to create the null revision (T248789).
 		// But not $this->oldTitle yet, see below (T47348).

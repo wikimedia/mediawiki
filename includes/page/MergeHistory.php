@@ -329,12 +329,11 @@ class MergeHistory {
 
 		$this->dbw->startAtomic( __METHOD__ );
 
-		$this->dbw->update(
-			'revision',
-			[ 'rev_page' => $this->dest->getId() ],
-			[ 'rev_page' => $this->source->getId(), $this->getTimeWhere() ],
-			__METHOD__
-		);
+		$this->dbw->newUpdateQueryBuilder()
+			->update( 'revision' )
+			->set( [ 'rev_page' => $this->dest->getId() ] )
+			->where( [ 'rev_page' => $this->source->getId(), $this->getTimeWhere() ] )
+			->caller( __METHOD__ )->execute();
 
 		// Check if this did anything
 		$this->revisionsMerged = $this->dbw->affectedRows();

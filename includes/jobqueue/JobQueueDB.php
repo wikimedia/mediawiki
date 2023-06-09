@@ -406,14 +406,20 @@ class JobQueueDB extends JobQueue {
 				break;
 			}
 
-			$dbw->update( 'job', // update by PK
-				[
+			$dbw->newUpdateQueryBuilder()
+				->update( 'job' ) // update by PK
+				->set( [
 					'job_token' => $uuid,
 					'job_token_timestamp' => $dbw->timestamp(),
-					'job_attempts = job_attempts+1' ],
-				[ 'job_cmd' => $this->type, 'job_id' => $row->job_id, 'job_token' => '' ],
-				__METHOD__
-			);
+					'job_attempts = job_attempts+1'
+				] )
+				->where( [
+					'job_cmd' => $this->type,
+					'job_id' => $row->job_id,
+					'job_token' => ''
+				] )
+				->caller( __METHOD__ )->execute();
+
 			// This might get raced out by another runner when claiming the previously
 			// selected row. The use of job_random should minimize this problem, however.
 			if ( !$dbw->affectedRows() ) {
@@ -736,14 +742,18 @@ class JobQueueDB extends JobQueue {
 					// Reset job_token for these jobs so that other runners will pick them up.
 					// Set the timestamp to the current time, as it is useful to now that the job
 					// was already tried before (the timestamp becomes the "released" time).
-					$dbw->update( 'job',
-						[
+					$dbw->newUpdateQueryBuilder()
+						->update( 'job' )
+						->set( [
 							'job_token' => '',
 							'job_token_timestamp' => $dbw->timestamp( $now ) // time of release
-						],
-						[ 'job_id' => $ids, "job_token != {$dbw->addQuotes( '' )}" ],
-						__METHOD__
-					);
+						] )
+						->where( [
+							'job_id' => $ids,
+							"job_token != {$dbw->addQuotes( '' )}"
+						] )
+						->caller( __METHOD__ )->execute();
+
 					$affected = $dbw->affectedRows();
 					$count += $affected;
 					$this->incrStats( 'recycles', $this->type, $affected );

@@ -86,12 +86,11 @@ class BatchRowWriter {
 		}
 
 		foreach ( $updates as $update ) {
-			$this->db->update(
-				$this->table,
-				$update['changes'],
-				$update['primaryKey'],
-				$caller
-			);
+			$this->db->newUpdateQueryBuilder()
+				->update( $this->table )
+				->set( $update['changes'] )
+				->where( $update['primaryKey'] )
+				->caller( $caller )->execute();
 		}
 
 		$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
