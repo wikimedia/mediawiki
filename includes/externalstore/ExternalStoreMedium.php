@@ -71,7 +71,7 @@ abstract class ExternalStoreMedium implements LoggerAwareInterface {
 	 *
 	 * @param string $url An external store URL
 	 * @return string|bool The text stored or false on error
-	 * @throws MWException
+	 * @throws ExternalStoreException
 	 */
 	abstract public function fetchFromURL( $url );
 
@@ -100,7 +100,7 @@ abstract class ExternalStoreMedium implements LoggerAwareInterface {
 	 * @param string $location The location name
 	 * @param string $data The data item
 	 * @return string|bool The URL of the stored data item, or false on error
-	 * @throws MWException
+	 * @throws ExternalStoreException
 	 */
 	abstract public function store( $location, $data );
 

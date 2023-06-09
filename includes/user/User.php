@@ -1478,7 +1478,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @param int $incrBy Positive amount to increment counter by [defaults to 1]
 	 *
 	 * @return bool True if a rate limiter was tripped
-	 * @throws MWException
 	 */
 	public function pingLimiter( $action = 'edit', $incrBy = 1 ) {
 		$limiter = MediaWikiServices::getInstance()->getRateLimiter();

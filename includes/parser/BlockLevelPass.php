@@ -441,7 +441,6 @@ class BlockLevelPass {
 	 * @param string $str The string to split
 	 * @param string &$before Set to everything before the ':'
 	 * @param string &$after Set to everything after the ':'
-	 * @throws MWException
 	 * @return int|false The position of the ':', or false if none found
 	 */
 	private function findColonNoLinks( $str, &$before, &$after ) {
@@ -591,7 +590,7 @@ class BlockLevelPass {
 					}
 					break;
 				default:
-					throw new MWException( "State machine error in " . __METHOD__ );
+					throw new LogicException( "State machine error in " . __METHOD__ );
 			}
 		}
 		if ( $ltLevel > 0 || $lcLevel > 0 ) {

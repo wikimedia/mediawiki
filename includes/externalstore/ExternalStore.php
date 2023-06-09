@@ -49,7 +49,6 @@ class ExternalStore {
 	 * @param string $url The URL of the text to get
 	 * @param array $params Associative array of ExternalStoreMedium parameters
 	 * @return string|bool The text stored or false on error
-	 * @throws MWException
 	 * @deprecated since 1.34
 	 */
 	public static function fetchFromURL( $url, array $params = [] ) {
@@ -71,7 +70,6 @@ class ExternalStore {
 	 * @param string $data
 	 * @param array $params Associative array of ExternalStoreMedium parameters
 	 * @return string|bool The URL of the stored data item, or false on error
-	 * @throws MWException
 	 * @deprecated since 1.34
 	 */
 	public static function insert( $url, $data, array $params = [] ) {
@@ -91,7 +89,7 @@ class ExternalStore {
 	 * @param array $urls The URLs of the text to get
 	 * @return array Map from url to its data.  Data is either string when found
 	 *     or false on failure.
-	 * @throws MWException
+	 * @throws ExternalStoreException
 	 * @deprecated since 1.34
 	 */
 	public static function batchFetchFromURLs( array $urls ) {
@@ -107,7 +105,7 @@ class ExternalStore {
 	 * @param string $data
 	 * @param array $params Map of ExternalStoreMedium::__construct context parameters
 	 * @return string The URL of the stored data item
-	 * @throws MWException
+	 * @throws ExternalStoreException
 	 * @deprecated since 1.34
 	 */
 	public static function insertToDefault( $data, array $params = [] ) {
@@ -124,7 +122,7 @@ class ExternalStore {
 	 * @param string $data
 	 * @param array $params Map of ExternalStoreMedium::__construct context parameters
 	 * @return string The URL of the stored data item
-	 * @throws MWException
+	 * @throws ExternalStoreException
 	 * @deprecated since 1.34
 	 */
 	public static function insertWithFallback( array $tryStores, $data, array $params = [] ) {
@@ -137,7 +135,7 @@ class ExternalStore {
 	 * @param string $data
 	 * @param string $wiki
 	 * @return string The URL of the stored data item
-	 * @throws MWException
+	 * @throws ExternalStoreException
 	 * @deprecated since 1.34 Use insertToDefault() with 'wiki' set
 	 */
 	public static function insertToForeignDefault( $data, $wiki ) {

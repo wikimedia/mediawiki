@@ -45,7 +45,6 @@ class CoreTagHooks {
 	 * @param ServiceOptions $options
 	 *
 	 * @return void
-	 * @throws MWException
 	 * @internal
 	 */
 	public static function register( Parser $parser, ServiceOptions $options ) {
@@ -101,7 +100,6 @@ class CoreTagHooks {
 	 * @param ?string $content
 	 * @param array $attributes
 	 * @param Parser $parser
-	 * @throws MWException
 	 * @return array|string Output of tag hook
 	 * @internal
 	 */
@@ -123,7 +121,7 @@ class CoreTagHooks {
 				);
 			}
 		} else {
-			throw new MWException( '<html> extension tag encountered unexpectedly' );
+			throw new UnexpectedValueException( '<html> extension tag encountered unexpectedly' );
 		}
 	}
 

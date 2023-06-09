@@ -119,7 +119,6 @@ class ContributionsLookup {
 	 * @param string|null $tag
 	 *
 	 * @return ContributionsSegment
-	 * @throws \MWException
 	 */
 	public function getContributions(
 		UserIdentity $target,

@@ -46,14 +46,12 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
-use MWException;
 use Psr\Log\LoggerInterface;
 use RecentChange;
 use RuntimeException;
 use TitleFormatter;
 use User;
 use Wikimedia\Assert\Assert;
-use Wikimedia\Rdbms\DBUnexpectedError;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use WikiPage;
@@ -353,7 +351,7 @@ class PageUpdater {
 	 */
 	public function updateAuthor( UserIdentity $author ) {
 		if ( $this->author->getName() !== $author->getName() ) {
-			throw new \MWException( 'Cannot replace the author with an author ' .
+			throw new InvalidArgumentException( 'Cannot replace the author with an author ' .
 				'of a different name, since DerivedPageDataUpdater may have stored the ' .
 				'old name.' );
 		}
@@ -818,9 +816,6 @@ class PageUpdater {
 	 * @return RevisionRecord|null The new revision, or null if no new revision was created due
 	 *         to a failure or a null-edit. Use wasRevisionCreated(), wasSuccessful() and getStatus()
 	 *         to determine the outcome of the revision creation.
-	 *
-	 * @throws MWException
-	 * @throws RuntimeException
 	 */
 	public function saveRevision( CommentStoreComment $summary, int $flags = 0 ) {
 		$this->setFlags( $flags );
@@ -1299,8 +1294,6 @@ class PageUpdater {
 
 	/**
 	 * @param CommentStoreComment $summary The edit summary
-	 *
-	 * @throws MWException
 	 * @return PageUpdateStatus
 	 */
 	private function doModify( CommentStoreComment $summary ): PageUpdateStatus {
@@ -1463,9 +1456,6 @@ class PageUpdater {
 
 	/**
 	 * @param CommentStoreComment $summary The edit summary
-	 *
-	 * @throws DBUnexpectedError
-	 * @throws MWException
 	 * @return PageUpdateStatus
 	 */
 	private function doCreate( CommentStoreComment $summary ): PageUpdateStatus {

@@ -394,8 +394,6 @@ abstract class SearchEngine {
 	 * @return false|array false if no namespace was extracted, an array
 	 * with the parsed query at index 0 and an array of namespaces at index
 	 * 1 (or null for all namespaces).
-	 * @throws FatalError
-	 * @throws MWException
 	 */
 	public static function parseNamespacePrefixes(
 		$query,

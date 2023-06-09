@@ -577,14 +577,13 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * @param int $maxWidth Max width to display at
 	 * @param int $maxHeight Max height to display at
 	 * @param int $page
-	 * @throws MWException
 	 * @return array Array (width, height)
 	 * @since 1.35
 	 */
 	public function getDisplayWidthHeight( $maxWidth, $maxHeight, $page = 1 ) {
 		if ( !$maxWidth || !$maxHeight ) {
 			// should never happen
-			throw new MWException( 'Using a choice from $wgImageLimits that is 0x0' );
+			throw new ConfigException( 'Using a choice from $wgImageLimits that is 0x0' );
 		}
 
 		$width = $this->getWidth( $page );
