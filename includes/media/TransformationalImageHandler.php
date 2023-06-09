@@ -465,14 +465,13 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 *
 	 * @param string $path The file path
 	 * @param string|false $scene The scene specification, or false if there is none
-	 * @throws MWException
 	 * @return string
 	 */
 	protected function escapeMagickInput( $path, $scene = false ) {
 		# Die on initial metacharacters (caller should prepend path)
 		$firstChar = substr( $path, 0, 1 );
 		if ( $firstChar === '~' || $firstChar === '@' ) {
-			throw new MWException( __METHOD__ . ': cannot escape this path name' );
+			throw new InvalidArgumentException( __METHOD__ . ': cannot escape this path name' );
 		}
 
 		# Escape glob chars
@@ -500,7 +499,6 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 *
 	 * @param string $path The file path
 	 * @param string|false $scene The scene specification, or false if there is none
-	 * @throws MWException
 	 * @return string
 	 */
 	protected function escapeMagickPath( $path, $scene = false ) {
@@ -511,7 +509,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 				// OK, it's a drive letter
 				// ImageMagick has a similar exception, see IsMagickConflict()
 			} else {
-				throw new MWException( __METHOD__ . ': unexpected colon character in path name' );
+				throw new InvalidArgumentException( __METHOD__ . ': unexpected colon character in path name' );
 			}
 		}
 

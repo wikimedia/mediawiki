@@ -1216,13 +1216,12 @@ class FormatMetadata extends ContextSource {
 	 * @param string $lang Lang code of item or false
 	 * @param bool $default If it is default value.
 	 * @param bool $noHtml If to avoid html (for back-compat)
-	 * @throws MWException
 	 * @return string Language item (Note: despite how this looks, this is
 	 *   treated as wikitext, not as HTML).
 	 */
 	private function langItem( $value, $lang, $default = false, $noHtml = false ) {
 		if ( $lang === false && $default === false ) {
-			throw new MWException( '$lang and $default cannot both be false.' );
+			throw new BadMethodCallException( '$lang and $default cannot both be false.' );
 		}
 
 		if ( $noHtml ) {

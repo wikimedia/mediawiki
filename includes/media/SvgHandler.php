@@ -25,7 +25,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 use Wikimedia\AtEase\AtEase;
-use Wikimedia\RequestTimeout\TimeoutException;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -349,7 +348,6 @@ class SvgHandler extends ImageHandler {
 	 * @param int $width
 	 * @param int $height
 	 * @param string|false $lang Language code of the language to render the SVG in
-	 * @throws MWException
 	 * @return bool|MediaTransformError
 	 */
 	public function rasterize( $srcPath, $dstPath, $width, $height, $lang = false ) {
@@ -364,7 +362,7 @@ class SvgHandler extends ImageHandler {
 				// This is a PHP callable
 				$func = $svgConverters[$svgConverter][0];
 				if ( !is_callable( $func ) ) {
-					throw new MWException( "$func is not callable" );
+					throw new UnexpectedValueException( "$func is not callable" );
 				}
 				$err = $func( $srcPath,
 					$dstPath,
@@ -464,9 +462,7 @@ class SvgHandler extends ImageHandler {
 		try {
 			$svgReader = new SVGReader( $filename );
 			$metadata += $svgReader->getMetadata();
-		} catch ( TimeoutException $e ) {
-			throw $e;
-		} catch ( Exception $e ) { // @todo SVG specific exceptions
+		} catch ( InvalidSVGException $e ) {
 			// File not found, broken, etc.
 			$metadata['error'] = [
 				'message' => $e->getMessage(),
