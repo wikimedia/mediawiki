@@ -1480,7 +1480,6 @@ class ApiMain extends ApiBase {
 	/**
 	 * Set up the module for response
 	 * @return ApiBase The module that will handle this action
-	 * @throws MWException
 	 * @throws ApiUsageException
 	 */
 	protected function setupModule() {
@@ -1499,14 +1498,14 @@ class ApiMain extends ApiBase {
 
 		// Check token, if necessary
 		if ( $module->needsToken() === true ) {
-			throw new MWException(
+			throw new LogicException(
 				"Module '{$module->getModuleName()}' must be updated for the new token handling. " .
 				'See documentation for ApiBase::needsToken for details.'
 			);
 		}
 		if ( $module->needsToken() ) {
 			if ( !$module->mustBePosted() ) {
-				throw new MWException(
+				throw new LogicException(
 					"Module '{$module->getModuleName()}' must require POST to use tokens."
 				);
 			}

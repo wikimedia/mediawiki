@@ -69,11 +69,11 @@ class RunJobs extends Maintenance {
 			} elseif ( $procs != 1 ) {
 				try {
 					$fc = new ForkController( $procs );
-					if ( $fc->start() != 'child' ) {
-						return;
-					}
-				} catch ( MWException $e ) {
+				} catch ( Throwable $e ) {
 					$this->fatalError( $e->getMessage() );
+				}
+				if ( $fc->start() != 'child' ) {
+					return;
 				}
 			}
 		}

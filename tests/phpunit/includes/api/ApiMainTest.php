@@ -250,7 +250,7 @@ class ApiMainTest extends ApiTestCase {
 	}
 
 	public function testSetupModuleNeedsTokenTrue() {
-		$this->expectException( MWException::class );
+		$this->expectException( LogicException::class );
 		$this->expectExceptionMessage(
 			"Module 'testmodule' must be updated for the new token handling. " .
 				"See documentation for ApiBase::needsToken for details."
@@ -271,7 +271,7 @@ class ApiMainTest extends ApiTestCase {
 	}
 
 	public function testSetupModuleNeedsTokenNeedntBePosted() {
-		$this->expectException( MWException::class );
+		$this->expectException( LogicException::class );
 		$this->expectExceptionMessage( "Module 'testmodule' must require POST to use tokens." );
 
 		$mock = $this->createMock( ApiBase::class );

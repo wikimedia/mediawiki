@@ -168,7 +168,6 @@ TEXT
 
 	/**
 	 * @param LinkTarget|null $title
-	 * @throws MWException
 	 * @return bool
 	 */
 	private function skippedNamespace( $title ) {
