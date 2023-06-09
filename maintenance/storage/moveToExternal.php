@@ -231,6 +231,7 @@ class MoveToExternal extends Maintenance {
 	private function resolveLegacyEncoding( $text, $flags ) {
 		if ( $this->legacyEncoding !== null
 			&& !in_array( 'utf-8', $flags )
+			&& !in_array( 'utf8', $flags )
 		) {
 			AtEase::suppressWarnings();
 			$text = iconv( $this->legacyEncoding, 'UTF-8//IGNORE', $text );
