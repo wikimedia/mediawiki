@@ -20,7 +20,6 @@
 
 namespace Wikimedia\EventRelayer;
 
-use EventRelayer;
 use UnexpectedValueException;
 
 /**

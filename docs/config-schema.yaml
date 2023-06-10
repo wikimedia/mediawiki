@@ -7719,7 +7719,7 @@ config-schema:
             @since 1.25
     EventRelayerConfig:
         default:
-            default: { class: EventRelayerNull }
+            default: { class: Wikimedia\EventRelayer\EventRelayerNull }
         type: object
         description: |-
             Mapping of event channels (or channel categories) to EventRelayer configuration.

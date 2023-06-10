@@ -33,7 +33,6 @@ use DoubleRedirectJob;
 use EmaillingJob;
 use EmptyBagOStuff;
 use EnotifNotifyJob;
-use EventRelayerNull;
 use FallbackContentHandler;
 use Generator;
 use HashBagOStuff;
@@ -83,6 +82,7 @@ use UserGroupExpiryJob;
 use UserOptionsUpdateJob;
 use WatchlistExpiryJob;
 use WebRequest;
+use Wikimedia\EventRelayer\EventRelayerNull;
 use WikitextContentHandler;
 use WinCacheBagOStuff;
 
