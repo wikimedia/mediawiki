@@ -29,7 +29,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArrayFromResult;
 use MediaWiki\Title\TitleFactory;
-use MWException;
+use RuntimeException;
 use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\ReadOnlyMode;
@@ -86,12 +86,11 @@ class Category {
 	/**
 	 * Set up all member variables using a database query.
 	 * @param int $mode One of (Category::LOAD_ONLY, Category::LAZY_INIT_ROW)
-	 * @throws MWException
 	 * @return bool True on success, false on failure.
 	 */
 	protected function initialize( $mode = self::LOAD_ONLY ) {
 		if ( $this->mName === null && $this->mID === null ) {
-			throw new MWException( __METHOD__ . ' has both names and IDs null' );
+			throw new RuntimeException( __METHOD__ . ' has both names and IDs null' );
 		} elseif ( $this->mID === null ) {
 			$where = [ 'cat_title' => $this->mName ];
 		} elseif ( $this->mName === null ) {

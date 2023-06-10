@@ -300,7 +300,6 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @param int|string|RevisionRecord|null $revIdOrText
 	 *
 	 * @return PageConfig
-	 * @throws \MWException
 	 */
 	private function getPageConfig( PageIdentity $page, $revIdOrText = null ): PageConfig {
 		$rev = null;

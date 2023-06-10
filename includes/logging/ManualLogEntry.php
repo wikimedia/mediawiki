@@ -289,7 +289,6 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	 *
 	 * @param IDatabase|null $dbw
 	 * @return int ID of the log entry
-	 * @throws MWException
 	 */
 	public function insert( IDatabase $dbw = null ) {
 		$services = MediaWikiServices::getInstance();
@@ -336,7 +335,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 		$rows = [];
 		foreach ( $relations as $tag => $values ) {
 			if ( !strlen( $tag ) ) {
-				throw new MWException( "Got empty log search tag." );
+				throw new UnexpectedValueException( "Got empty log search tag." );
 			}
 
 			if ( !is_array( $values ) ) {

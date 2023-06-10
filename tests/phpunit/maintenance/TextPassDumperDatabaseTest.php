@@ -430,8 +430,6 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 	 *   of iteration > 1 have no corresponding representation in the database.
 	 *
 	 * @return string Absolute filename of the stub
-	 * @throws \FatalError
-	 * @throws \MWException
 	 */
 	private function setUpStub( $templateName, $schemaVersion, $outFile = null, $iterations = 1 ) {
 		if ( $outFile === null ) {

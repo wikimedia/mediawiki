@@ -23,10 +23,10 @@
 
 namespace MediaWiki\Installer;
 
+use InvalidArgumentException;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
-use MWException;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseFactory;
 use Wikimedia\Rdbms\DatabasePostgres;
@@ -236,8 +236,6 @@ class PostgresInstaller extends DatabaseInstaller {
 	 *    - create-schema: A connection to the new DB, for creating schemas and
 	 *                     other similar objects in the new DB.
 	 *    - create-tables: A connection with a role suitable for creating tables.
-	 *
-	 * @throws MWException
 	 * @return Status On success, a connection object will be in the value member.
 	 */
 	protected function openPgConnection( $type ) {
@@ -265,7 +263,7 @@ class PostgresInstaller extends DatabaseInstaller {
 
 				return $status;
 			default:
-				throw new MWException( "Invalid special connection type: \"$type\"" );
+				throw new InvalidArgumentException( "Invalid special connection type: \"$type\"" );
 		}
 	}
 

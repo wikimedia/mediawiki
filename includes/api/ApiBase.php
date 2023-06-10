@@ -1767,7 +1767,6 @@ abstract class ApiBase extends ContextSource {
 	 *
 	 * @param string $method Method or function name
 	 * @param string $message Error message
-	 * @throws MWException always
 	 * @return never
 	 */
 	protected static function dieDebug( $method, $message ) {

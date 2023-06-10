@@ -116,7 +116,6 @@ class LocalRepo extends FileRepo {
 	}
 
 	/**
-	 * @throws MWException
 	 * @param stdClass $row
 	 * @return LocalFile
 	 */
@@ -126,7 +125,7 @@ class LocalRepo extends FileRepo {
 		} elseif ( isset( $row->oi_name ) ) {
 			return call_user_func( $this->oldFileFromRowFactory, $row, $this );
 		} else {
-			throw new MWException( __METHOD__ . ': invalid row' );
+			throw new InvalidArgumentException( __METHOD__ . ': invalid row' );
 		}
 	}
 

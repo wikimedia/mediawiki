@@ -79,7 +79,7 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testNewFileFromRow_invalid() {
-		$this->expectException( MWException::class );
+		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( 'LocalRepo::newFileFromRow: invalid row' );
 
 		$row = (object)[
@@ -183,7 +183,7 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testCheckRedirect_invalidFile() {
-		$this->expectException( MWException::class );
+		$this->expectException( RuntimeException::class );
 		$this->expectExceptionMessage( '`Notafile` is not a valid file title.' );
 		$this->newRepo()->checkRedirect( Title::makeTitle( NS_MAIN, 'Notafile' ) );
 	}

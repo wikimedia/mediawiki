@@ -524,7 +524,7 @@ class LocalFile extends File {
 				$this->loadMetadataFromDbFieldValue( $db, $fieldMap['metadata'] );
 			}
 		} else {
-			throw new MWException( "Could not find data for image '{$this->getName()}'." );
+			throw new RuntimeException( "Could not find data for image '{$this->getName()}'." );
 		}
 	}
 
@@ -1073,7 +1073,7 @@ class LocalFile extends File {
 			$s = serialize( $this->getMetadataArray() );
 		}
 		if ( !is_string( $s ) ) {
-			throw new MWException( 'Could not serialize image metadata value for DB' );
+			throw new RuntimeException( 'Could not serialize image metadata value for DB' );
 		}
 		return $db->encodeBlob( $s );
 	}
@@ -1845,7 +1845,7 @@ class LocalFile extends File {
 		$descId = $descTitle->getArticleID();
 		$wikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $descTitle );
 		if ( !$wikiPage instanceof WikiFilePage ) {
-			throw new MWException( 'Cannot instance WikiFilePage for ' . $this->getName()
+			throw new UnexpectedValueException( 'Cannot obtain instance of WikiFilePage for ' . $this->getName()
 				. ', got instance of ' . get_class( $wikiPage ) );
 		}
 		$wikiPage->setFile( $this );

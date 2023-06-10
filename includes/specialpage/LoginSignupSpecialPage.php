@@ -46,7 +46,6 @@ use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use Message;
-use MWException;
 use PermissionsError;
 use ReadOnlyError;
 use RequestContext;
@@ -533,7 +532,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * @throws ErrorPageError
 	 * @throws Exception
 	 * @throws FatalError
-	 * @throws MWException
 	 * @throws PermissionsError
 	 * @throws ReadOnlyError
 	 * @internal

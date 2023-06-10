@@ -67,11 +67,10 @@ class DumpFileOutput extends DumpOutput {
 
 	/**
 	 * @param string $newname
-	 * @throws MWException
 	 */
 	protected function renameOrException( $newname ) {
 		if ( !rename( $this->filename, $newname ) ) {
-			throw new MWException( __METHOD__ . ": rename of file {$this->filename} to $newname failed\n" );
+			throw new RuntimeException( __METHOD__ . ": rename of file {$this->filename} to $newname failed\n" );
 		}
 	}
 

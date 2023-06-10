@@ -291,10 +291,6 @@ function wfStreamThumb( array $params ) {
 			'The specified thumbnail parameters are not valid: ' . $e->getMessage()
 		);
 		return;
-	} catch ( MWException $e ) {
-		wfThumbError( 500, $e->getHTML(), 'Exception caught while extracting thumb name',
-			[ 'exception' => $e ] );
-		return;
 	}
 
 	// For 404 handled thumbnails, we only use the base name of the URI

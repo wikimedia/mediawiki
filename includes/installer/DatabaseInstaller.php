@@ -28,6 +28,7 @@ use Exception;
 use MediaWiki\Html\Html;
 use MediaWiki\Status\Status;
 use MWException;
+use RuntimeException;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
@@ -379,7 +380,7 @@ abstract class DatabaseInstaller {
 			$msg = __METHOD__ . ': unexpected error while establishing'
 				. ' a database connection with message: '
 				. $status->getMessage()->plain();
-			throw new MWException( $msg );
+			throw new RuntimeException( $msg );
 		}
 	}
 
@@ -391,7 +392,7 @@ abstract class DatabaseInstaller {
 	public function enableLB() {
 		$status = $this->getConnection();
 		if ( !$status->isOK() ) {
-			throw new MWException( __METHOD__ . ': unexpected DB connection error' );
+			throw new RuntimeException( __METHOD__ . ': unexpected DB connection error' );
 		}
 		$connection = $status->value;
 		$virtualDomains = $this->parent->getVirtualDomains();

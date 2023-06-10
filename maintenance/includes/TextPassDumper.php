@@ -555,7 +555,7 @@ TEXT
 			$contentHandler = $this->getServiceContainer()
 				->getContentHandlerFactory()
 				->getContentHandler( $model );
-		} catch ( MWException $ex ) {
+		} catch ( MWUnknownContentModelException $ex ) {
 			wfWarn( "Unable to apply export transformation for content model '$model': " .
 				$ex->getMessage() );
 

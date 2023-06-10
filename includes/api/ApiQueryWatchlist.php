@@ -183,13 +183,9 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		}
 
 		if ( $params['type'] !== null ) {
-			try {
-				$rcTypes = RecentChange::parseToRCType( $params['type'] );
-				if ( $rcTypes ) {
-					$options['rcTypes'] = $rcTypes;
-				}
-			} catch ( Exception $e ) {
-				ApiBase::dieDebug( __METHOD__, $e->getMessage() );
+			$rcTypes = RecentChange::parseToRCType( $params['type'] );
+			if ( $rcTypes ) {
+				$options['rcTypes'] = $rcTypes;
 			}
 		}
 

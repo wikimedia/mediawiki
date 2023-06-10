@@ -148,11 +148,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		] );
 
 		if ( $params['type'] !== null ) {
-			try {
-				$this->addWhereFld( 'rc_type', RecentChange::parseToRCType( $params['type'] ) );
-			} catch ( Exception $e ) {
-				ApiBase::dieDebug( __METHOD__, $e->getMessage() );
-			}
+			$this->addWhereFld( 'rc_type', RecentChange::parseToRCType( $params['type'] ) );
 		}
 
 		$title = $params['title'];

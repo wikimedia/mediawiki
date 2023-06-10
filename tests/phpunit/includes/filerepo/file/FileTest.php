@@ -473,7 +473,7 @@ class FileTest extends MediaWikiMediaTestCase {
 		$actual = File::normalizeTitle( $title );
 		$this->assertNull( $actual );
 
-		$this->expectException( MWException::class );
+		$this->expectException( RuntimeException::class );
 		File::normalizeTitle( $title, 'exception' );
 	}
 

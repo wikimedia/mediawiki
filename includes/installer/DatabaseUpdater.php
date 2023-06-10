@@ -41,7 +41,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\ResourceLoader\MessageBlobStore;
 use MediaWiki\SiteStats\SiteStatsInit;
 use MigrateLinksTable;
-use MWException;
 use PopulateBacklinkNamespace;
 use PopulateFilearchiveSha1;
 use PopulateImageSha1;
@@ -52,6 +51,7 @@ use PopulateRevisionSha1;
 use RebuildLocalisationCache;
 use RefreshImageMetadata;
 use RuntimeException;
+use UnexpectedValueException;
 use UpdateCollation;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -241,8 +241,6 @@ abstract class DatabaseUpdater {
 	 * @param IMaintainableDatabase $db
 	 * @param bool $shared
 	 * @param Maintenance|null $maintenance
-	 *
-	 * @throws MWException
 	 * @return DatabaseUpdater
 	 */
 	public static function newForDB(
@@ -257,7 +255,7 @@ abstract class DatabaseUpdater {
 			return new $class( $db, $shared, $maintenance );
 		}
 
-		throw new MWException( __METHOD__ . ' called for unsupported $wgDBtype' );
+		throw new UnexpectedValueException( __METHOD__ . ' called for unsupported DB type' );
 	}
 
 	/**
@@ -727,12 +725,11 @@ abstract class DatabaseUpdater {
 	 *
 	 * @param string $line Text to append to the file
 	 * @return bool False to skip actually executing the file
-	 * @throws MWException
 	 */
 	protected function appendLine( $line ) {
 		$line = rtrim( $line ) . ";\n";
 		if ( fwrite( $this->fileHandle, $line ) === false ) {
-			throw new MWException( "trouble writing file" );
+			throw new RuntimeException( "trouble writing file" );
 		}
 
 		return false;

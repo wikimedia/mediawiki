@@ -41,12 +41,7 @@ class JobQueueTest extends MediaWikiIntegrationTestCase {
 			'queueFifoTTL' => [ 'order' => 'fifo', 'claimTTL' => 10 ],
 		];
 		foreach ( $variants as $q => $settings ) {
-			try {
-				$this->$q = JobQueue::factory( $settings + $baseConfig );
-			} catch ( MWException $e ) {
-				// unsupported?
-				// @todo What if it was another error?
-			}
+			$this->$q = JobQueue::factory( $settings + $baseConfig );
 		}
 	}
 

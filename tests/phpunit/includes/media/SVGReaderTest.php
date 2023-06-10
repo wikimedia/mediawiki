@@ -33,18 +33,13 @@ class SVGReaderTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	private function assertMetadata( $infile, $expected ) {
-		try {
-			$svgReader = new SVGReader( $infile );
-			$data = $svgReader->getMetadata();
-
-			$this->assertEquals( $expected, $data, 'SVG metadata extraction test' );
-		} catch ( MWException $e ) {
-			if ( $expected === false ) {
-				$this->assertTrue( true, 'SVG metadata extracted test (expected failure)' );
-			} else {
-				throw $e;
-			}
+		if ( $expected === false ) {
+			$this->expectException( InvalidSVGException::class );
 		}
+		$svgReader = new SVGReader( $infile );
+		$data = $svgReader->getMetadata();
+
+		$this->assertEquals( $expected, $data, 'SVG metadata extraction test' );
 	}
 
 	public static function provideSvgFiles() {

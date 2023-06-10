@@ -795,8 +795,6 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 	 * @param ParsoidRenderID|PageBundle|ParserOutput|null $originalRendering
 	 * @param string|string[]|null $expectedText Null means use the original content
 	 *
-	 * @throws HttpException
-	 * @throws \MWException
 	 * @covers \MediaWiki\Rest\Handler\Helper\HtmlInputTransformHelper::setOriginal
 	 */
 	public function testSetOriginal( ?SelserContext $stashed, $rev, $originalRendering, $expectedText ) {

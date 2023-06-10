@@ -8,6 +8,7 @@ use MediaWiki\CommentFormatter\CommentParser;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
@@ -255,8 +256,7 @@ class CommentFormatterTest extends MediaWikiIntegrationTestCase {
 	 * @param string $text
 	 * @param bool $isDeleted
 	 * @param bool $isAllowed
-	 * @return array{RevisionRecord,Authority}
-	 * @throws \MWException
+	 * @return array<RevisionRecord|Authority>
 	 */
 	private function makeRevisionAndAuthority( $text, $isDeleted, $isAllowed ) {
 		$page = new PageIdentityValue( 1, 0, 'Page', false );

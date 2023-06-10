@@ -2271,7 +2271,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::getContentBlobsForBatch
-	 * @throws \MWException
 	 */
 	public function testGetContentBlobsForBatch_archive() {
 		$page1 = $this->getTestPage( __METHOD__ );
@@ -3043,7 +3042,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::getContentBlobsForBatch
-	 * @throws \MWException
 	 */
 	public function testGetContentBlobsForBatch_error() {
 		$page1 = $this->getTestPage();
@@ -3132,7 +3130,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionsFromBatch
-	 * @throws \MWException
 	 */
 	public function testNewRevisionsFromBatch_error() {
 		$page = $this->getTestPage();

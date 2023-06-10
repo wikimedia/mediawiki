@@ -115,7 +115,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$parser = $this->getServiceContainer()->getParser();
 		$po = ParserOptions::newFromAnon();
 		$parser->setHook( 'recursivecallparser', [ $this, 'helperParserFunc' ] );
-		$this->expectException( MWException::class );
+		$this->expectException( LogicException::class );
 		$this->expectExceptionMessage(
 			"Parser state cleared while parsing. Did you call Parser::parse recursively?"
 		);

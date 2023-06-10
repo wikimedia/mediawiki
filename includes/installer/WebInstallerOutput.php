@@ -23,12 +23,12 @@
 namespace MediaWiki\Installer;
 
 use Language;
+use LogicException;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\ResourceLoader;
-use MWException;
 
 /**
  * Output class modelled on OutputPage.
@@ -100,12 +100,10 @@ class WebInstallerOutput {
 
 	/**
 	 * @param string $url
-	 *
-	 * @throws MWException
 	 */
 	public function redirect( $url ) {
 		if ( $this->headerDone ) {
-			throw new MWException( __METHOD__ . ' called after sending headers' );
+			throw new LogicException( __METHOD__ . ' called after sending headers' );
 		}
 		$this->redirectTarget = $url;
 	}

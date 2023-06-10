@@ -171,8 +171,7 @@ class RecentChange implements Taggable {
 	/**
 	 * Parsing text to RC_* constants
 	 * @since 1.24
-	 * @param string|array $type
-	 * @throws InvalidArgumentException
+	 * @param string|array $type Callers must make sure that the given types are valid RC types.
 	 * @return int|array RC_TYPE
 	 */
 	public static function parseToRCType( $type ) {

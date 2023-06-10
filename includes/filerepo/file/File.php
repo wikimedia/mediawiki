@@ -207,7 +207,6 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 *
 	 * @param PageIdentity|LinkTarget|string $title
 	 * @param string|false $exception Use 'exception' to throw an error on bad titles
-	 * @throws MWException
 	 * @return Title|null
 	 */
 	public static function normalizeTitle( $title, $exception = false ) {
@@ -234,7 +233,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 			$ret = Title::makeTitleSafe( NS_FILE, (string)$ret );
 		}
 		if ( !$ret && $exception !== false ) {
-			throw new MWException( "`$title` is not a valid file title." );
+			throw new RuntimeException( "`$title` is not a valid file title." );
 		}
 
 		return $ret;
