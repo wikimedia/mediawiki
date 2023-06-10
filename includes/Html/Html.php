@@ -30,7 +30,7 @@ use InvalidArgumentException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\ContentSecurityPolicy;
-use MWException;
+use UnexpectedValueException;
 
 /**
  * This class is a collection of static functions that serve two purposes:
@@ -505,7 +505,6 @@ class Html {
 	 *   you can omit the key, e.g., [ 'checked' ] instead of
 	 *   [ 'checked' => 'checked' ] or such.
 	 *
-	 * @throws MWException If an attribute that doesn't allow lists is set to an array
 	 * @return string HTML fragment that goes between element name and '>'
 	 *   (starting with a space if at least one attribute is output)
 	 */
@@ -585,7 +584,7 @@ class Html {
 				// phpcs:ignore Generic.PHP.DiscourageGoto
 				goto not_bool; // NOSONAR
 			} elseif ( is_array( $value ) ) {
-				throw new MWException( "HTML attribute $key can not contain a list of values" );
+				throw new UnexpectedValueException( "HTML attribute $key can not contain a list of values" );
 			}
 
 			if ( isset( self::$boolAttribs[$key] ) ) {

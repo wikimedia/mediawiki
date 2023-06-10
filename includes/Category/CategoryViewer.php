@@ -30,6 +30,7 @@ use IContextSource;
 use ILanguageConverter;
 use ImageGalleryBase;
 use ImageGalleryClassNotFoundException;
+use InvalidArgumentException;
 use LinkCache;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
@@ -40,7 +41,6 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
-use MWException;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 class CategoryViewer extends ContextSource {
@@ -763,7 +763,6 @@ class CategoryViewer extends ContextSource {
 	 *
 	 * @param PageReference $page The title (usually $this->title)
 	 * @param string $section Which section
-	 * @throws MWException
 	 * @return LinkTarget
 	 */
 	private function addFragmentToTitle( PageReference $page, string $section ): LinkTarget {
@@ -778,7 +777,7 @@ class CategoryViewer extends ContextSource {
 				$fragment = 'mw-category-media';
 				break;
 			default:
-				throw new MWException( __METHOD__ .
+				throw new InvalidArgumentException( __METHOD__ .
 					" Invalid section $section." );
 		}
 

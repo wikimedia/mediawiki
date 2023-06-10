@@ -73,18 +73,17 @@ class DiffHistoryBlob implements HistoryBlob {
 
 	public function __construct() {
 		if ( !function_exists( 'gzdeflate' ) ) {
-			throw new MWException( "Need zlib support to read or write DiffHistoryBlob\n" );
+			throw new RuntimeException( "Need zlib support to read or write DiffHistoryBlob\n" );
 		}
 	}
 
 	/**
-	 * @throws MWException
 	 * @param string $text
 	 * @return string
 	 */
 	public function addItem( $text ) {
 		if ( $this->mFrozen ) {
-			throw new MWException( __METHOD__ . ": Cannot add more items after sleep/wakeup" );
+			throw new BadMethodCallException( __METHOD__ . ": Cannot add more items after sleep/wakeup" );
 		}
 
 		$this->mItems[] = $text;
@@ -115,12 +114,9 @@ class DiffHistoryBlob implements HistoryBlob {
 		return $this->getItem( $this->mDefaultKey );
 	}
 
-	/**
-	 * @throws MWException
-	 */
 	private function compress() {
 		if ( !function_exists( 'xdiff_string_rabdiff' ) ) {
-			throw new MWException( "Need xdiff support to write DiffHistoryBlob\n" );
+			throw new RuntimeException( "Need xdiff support to write DiffHistoryBlob\n" );
 		}
 		if ( isset( $this->mDiffs ) ) {
 			// Already compressed

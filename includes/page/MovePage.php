@@ -50,6 +50,7 @@ use MediaWiki\User\UserIdentity;
 use MWException;
 use RepoGroup;
 use RequestContext;
+use RuntimeException;
 use StringUtils;
 use WatchedItemStoreInterface;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -976,7 +977,8 @@ class MovePage {
 			$msg = 'Failed to create null revision while moving page ID ' .
 				$oldid . ' to ' . $nt->getPrefixedDBkey() . " (page ID $id)";
 
-			throw new MWException( $msg );
+			// XXX This should be handled more gracefully
+			throw new RuntimeException( $msg );
 		}
 
 		$nullRevision = $this->revisionStore->insertRevisionOn( $nullRevision, $dbw );

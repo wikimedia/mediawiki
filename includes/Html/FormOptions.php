@@ -29,6 +29,7 @@
 namespace MediaWiki\Html;
 
 use ArrayAccess;
+use InvalidArgumentException;
 use MediaWiki\Request\WebRequest;
 use MWException;
 
@@ -115,11 +116,9 @@ class FormOptions implements ArrayAccess {
 	 * Used to find out which type the data is. All types are defined in the 'Type constants' section
 	 * of this class.
 	 *
-	 * Detection of the INTNULL type is not supported; INT will be assumed if the data is an integer,
-	 * MWException will be thrown if it's null.
+	 * Detection of the INTNULL type is not supported; INT will be assumed if the data is an integer.
 	 *
 	 * @param mixed $data Value to guess the type for
-	 * @throws MWException If unable to guess the type
 	 * @return int Type constant
 	 */
 	public static function guessType( $data ) {
@@ -134,7 +133,7 @@ class FormOptions implements ArrayAccess {
 		} elseif ( is_array( $data ) ) {
 			return self::ARR;
 		} else {
-			throw new MWException( 'Unsupported datatype' );
+			throw new InvalidArgumentException( 'Unsupported datatype' );
 		}
 	}
 

@@ -20,8 +20,8 @@
 
 namespace MediaWiki\PoolCounter;
 
+use InvalidArgumentException;
 use MediaWiki\Status\Status;
-use MWException;
 use Wikimedia\IPUtils;
 
 /**
@@ -54,15 +54,14 @@ class PoolCounterConnectionManager {
 
 	/**
 	 * @param array $conf
-	 * @throws MWException
 	 */
 	public function __construct( $conf ) {
+		if ( !count( $conf['servers'] ) ) {
+			throw new InvalidArgumentException( __METHOD__ . ': no servers configured' );
+		}
 		$this->hostNames = $conf['servers'];
 		$this->timeout = $conf['timeout'] ?? 0.1;
 		$this->connect_timeout = $conf['connect_timeout'] ?? 0;
-		if ( !count( $this->hostNames ) ) {
-			throw new MWException( __METHOD__ . ': no servers configured' );
-		}
 	}
 
 	/**

@@ -54,7 +54,6 @@ use MediaWiki\User\UserGroupMembership;
 use MediaWiki\User\UserTimeCorrection;
 use Message;
 use MessageLocalizer;
-use MWException;
 use OOUI\ButtonWidget;
 use OOUI\FieldLayout;
 use OOUI\HtmlSnippet;
@@ -241,7 +240,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	}
 
 	/**
-	 * @throws MWException
 	 * @param User $user
 	 * @param IContextSource $context
 	 * @return array
@@ -312,7 +310,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 	/**
 	 * Loads existing values for a given array of preferences
-	 * @throws MWException
 	 * @param User $user
 	 * @param IContextSource $context
 	 * @param array &$defaultPreferences Array to load values for
@@ -357,7 +354,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				$info['default'] = $globalDefault;
 			} else {
 				$globalDefault = json_encode( $globalDefault );
-				throw new MWException(
+				throw new UnexpectedValueException(
 					"Default '$globalDefault' is invalid for preference $name of user " . $user->getName()
 				);
 			}
