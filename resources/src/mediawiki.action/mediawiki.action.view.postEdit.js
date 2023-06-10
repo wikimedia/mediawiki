@@ -25,10 +25,9 @@
 	 * @member mw.hook
 	 */
 
-	var postEdit = mw.config.get( 'wgPostEdit' );
-
 	var config = require( './config.json' );
 	var contLangMessages = require( './contLangMessages.json' );
+	var storageKey = 'mw-PostEdit' + mw.config.get( 'wgPageName' );
 
 	function showTempUserPopup() {
 		var title = mw.message( 'postedit-temp-created-label' ).text();
@@ -94,34 +93,104 @@
 		}
 	}
 
-	// JS-only flag that allows another module providing a hook handler to suppress the default one.
-	if ( !mw.config.get( 'wgPostEditConfirmationDisabled' ) ) {
-		mw.hook( 'postEdit' ).add( showConfirmation );
+	function init() {
+		// JS-only flag that allows another module providing a hook handler to suppress the default one.
+		if ( !mw.config.get( 'wgPostEditConfirmationDisabled' ) ) {
+			mw.hook( 'postEdit' ).add( showConfirmation );
+		}
+
+		// Check storage and cookie (set server-side)
+		var action = mw.storage.session.get( storageKey ) || mw.config.get( 'wgPostEdit' );
+		if ( action ) {
+			var tempUserCreated = false;
+			var plusPos = action.indexOf( '+' );
+			if ( plusPos > -1 ) {
+				action = action.slice( 0, plusPos );
+				tempUserCreated = true;
+			}
+
+			// Set 'wgPostEdit' when displaying a message requested via storage, to allow CampaignEvents
+			// to override post-edit behavior for some page creations performed using VisualEditor, which
+			// shows a message via storage when creating new pages (T240041#8148006):
+			// https://gerrit.wikimedia.org/g/mediawiki/extensions/CampaignEvents/+/e380af0c69b17ecb05fc3258f92c9df625a35449/resources/ext.campaignEvents.eventpage/index.js#187
+			// https://gerrit.wikimedia.org/g/mediawiki/extensions/VisualEditor/+/192c1051120c8dd331f00b9024b5beadab1cb89a/modules/ve-mw/init/targets/ve.init.mw.ArticleTarget.js#656
+			// TODO: We should provide a better API for this that doesn't require extensions to parse the
+			// 'action' value themselves, and doesn't require accessing 'wgPostEdit' from mw.config.
+			mw.config.set( 'wgPostEdit', action );
+
+			module.exports.fireHook( action, tempUserCreated );
+		}
+
+		// Clear storage (cookie is cleared server-side)
+		mw.storage.session.remove( storageKey );
 	}
 
-	if ( postEdit ) {
-		var action = postEdit;
-		var tempUserCreated = false;
-		var plusPos = action.indexOf( '+' );
-		if ( plusPos > -1 ) {
-			action = action.slice( 0, plusPos );
-			tempUserCreated = true;
+	/**
+	 * Show post-edit messages.
+	 *
+	 * Usage:
+	 *
+	 *     var postEdit = require( 'mediawiki.action.view.postEdit' );
+	 *     postEdit.fireHook( 'saved' );
+	 *
+	 * @class mw.plugin.action.view.postEdit
+	 * @singleton
+	 */
+	module.exports = {
+
+		/**
+		 * Show a post-edit message now.
+		 *
+		 * This is just a shortcut for firing mw.hook#postEdit.
+		 *
+		 * @param {string} [action] One of 'saved', 'created', 'restored'
+		 * @param {boolean} [tempUserCreated] Whether a temporary account was created during this edit
+		 */
+		fireHook: function ( action, tempUserCreated ) {
+			if ( !action ) {
+				action = 'saved';
+			}
+			if ( action === 'saved' && config.EditSubmitButtonLabelPublish ) {
+				action = 'published';
+			}
+			mw.hook( 'postEdit' ).fire( {
+				// The following messages can be used here:
+				// * postedit-confirmation-published
+				// * postedit-confirmation-saved
+				// * postedit-confirmation-created
+				// * postedit-confirmation-restored
+				message: mw.msg(
+					'postedit-confirmation-' + action,
+					mw.user
+				),
+				tempUserCreated: tempUserCreated
+			} );
+		},
+
+		/**
+		 * Show a post-edit message on the next page load.
+		 *
+		 * The necessary data is stored in session storage for up to 20 minutes, and cleared when the
+		 * page is loaded again.
+		 *
+		 * @param {string} [action] One of 'saved', 'created', 'restored'
+		 * @param {boolean} [tempUserCreated] Whether a temporary account was created during this edit
+		 */
+		fireHookOnPageReload: function ( action, tempUserCreated ) {
+			if ( !action ) {
+				action = 'saved';
+			}
+			if ( tempUserCreated ) {
+				action += '+tempuser';
+			}
+			mw.storage.session.set(
+				storageKey,
+				action,
+				1200 // same duration as EditPage::POST_EDIT_COOKIE_DURATION
+			);
 		}
-		if ( action === 'saved' && config.EditSubmitButtonLabelPublish ) {
-			action = 'published';
-		}
-		mw.hook( 'postEdit' ).fire( {
-			// The following messages can be used here:
-			// * postedit-confirmation-published
-			// * postedit-confirmation-saved
-			// * postedit-confirmation-created
-			// * postedit-confirmation-restored
-			message: mw.msg(
-				'postedit-confirmation-' + action,
-				mw.user
-			),
-			tempUserCreated: tempUserCreated
-		} );
-	}
+	};
+
+	init();
 
 }() );

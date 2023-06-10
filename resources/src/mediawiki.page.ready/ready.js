@@ -278,6 +278,14 @@ if ( config.search ) {
 	loadSearchModule( 'mediawiki.searchSuggest' );
 }
 
+try {
+	// Load the post-edit notification module if a notification has been scheduled.
+	// Use `sessionStorage` directly instead of 'mediawiki.storage' to minimize dependencies.
+	if ( sessionStorage.getItem( 'PostEdit' + mw.config.get( 'wgPageName' ) ) ) {
+		mw.loader.load( 'mediawiki.action.view.postEdit' );
+	}
+} catch ( err ) {}
+
 module.exports = {
 	loadSearchModule: loadSearchModule,
 	checkboxHack: require( './checkboxHack.js' )
