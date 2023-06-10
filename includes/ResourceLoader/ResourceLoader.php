@@ -1475,7 +1475,7 @@ MESSAGE;
 		// to produce smaller output. They are expanded by mw.loader.register on
 		// the other end.
 		$index = [];
-		foreach ( $modules as $i => &$module ) {
+		foreach ( $modules as $i => $module ) {
 			// Build module name index
 			$index[$module[0]] = $i;
 		}
@@ -1488,9 +1488,8 @@ MESSAGE;
 					}
 				}
 			}
+			self::trimArray( $module );
 		}
-
-		array_walk( $modules, [ self::class, 'trimArray' ] );
 
 		return 'mw.loader.register('
 			. $context->encodeJson( $modules )
