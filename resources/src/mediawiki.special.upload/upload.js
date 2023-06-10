@@ -235,8 +235,6 @@
 		 *
 		 * TODO: Is there a way we can ask the browser what's supported in `<img>`s?
 		 *
-		 * TODO: Put SVG back after working around Firefox 7 bug <https://phabricator.wikimedia.org/T33643>
-		 *
 		 * @param {File} file
 		 * @return {boolean}
 		 */
