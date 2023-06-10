@@ -841,14 +841,12 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @param string $variant The target variant code
 	 * @param int &$startPos
 	 * @param int $depth Depth of recursion
-	 *
-	 * @throws MWException
 	 * @return string Converted text
 	 */
 	protected function recursiveConvertRule( $text, $variant, &$startPos, $depth = 0 ) {
 		// Quick check (no function calls)
 		if ( $text[$startPos] !== '-' || $text[$startPos + 1] !== '{' ) {
-			throw new MWException( __METHOD__ . ': invalid input string' );
+			throw new InvalidArgumentException( __METHOD__ . ': invalid input string' );
 		}
 
 		$startPos += 2;
@@ -900,7 +898,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 					$this->applyManualConv( $rule );
 					return $rule->getDisplay();
 				default:
-					throw new MWException( __METHOD__ . ': invalid regex match' );
+					throw new UnexpectedValueException( __METHOD__ . ': invalid regex match' );
 			}
 		}
 

@@ -262,15 +262,14 @@ abstract class UploadBase {
 
 	/**
 	 * @param string $name The desired destination name
-	 * @param string|null $tempPath
+	 * @param string|null $tempPath Callers should make sure this is not a storage path
 	 * @param int|null $fileSize
 	 * @param bool $removeTempFile (false) remove the temporary file?
-	 * @throws MWException
 	 */
 	public function initializePathInfo( $name, $tempPath, $fileSize, $removeTempFile = false ) {
 		$this->mDesiredDestName = $name;
 		if ( FileBackend::isStoragePath( $tempPath ) ) {
-			throw new MWException( __METHOD__ . " given storage path `$tempPath`." );
+			throw new InvalidArgumentException( __METHOD__ . " given storage path `$tempPath`." );
 		}
 
 		$this->setTempFile( $tempPath, $fileSize );

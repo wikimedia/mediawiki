@@ -559,7 +559,6 @@ class LocalFile extends File {
 	/**
 	 * @param array|stdClass $row
 	 * @param string $prefix
-	 * @throws MWException
 	 * @return array
 	 */
 	protected function unprefixRow( $row, $prefix = 'img_' ) {
@@ -568,7 +567,7 @@ class LocalFile extends File {
 
 		// Double check prefix once
 		if ( substr( array_key_first( $array ), 0, $prefixLength ) !== $prefix ) {
-			throw new MWException( __METHOD__ . ': incorrect $prefix parameter' );
+			throw new InvalidArgumentException( __METHOD__ . ': incorrect $prefix parameter' );
 		}
 
 		$decoded = [];
@@ -2285,7 +2284,6 @@ class LocalFile extends File {
 	 * @param string $reason
 	 * @param UserIdentity $user
 	 * @param bool $suppress
-	 * @throws MWException Exception on database or file store failure
 	 * @return Status
 	 */
 	public function deleteOldFile( $archiveName, $reason, UserIdentity $user, $suppress = false ) {

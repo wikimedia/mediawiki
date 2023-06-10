@@ -722,7 +722,6 @@ class LocalisationCache {
 	 * Read a JSON file containing localisation messages.
 	 *
 	 * @param string $fileName Name of file to read
-	 * @throws MWException If there is a syntax error in the JSON file
 	 * @return array Array with a 'messages' key, or empty array if the file doesn't exist
 	 */
 	private function readJSONFile( $fileName ) {
@@ -737,7 +736,7 @@ class LocalisationCache {
 
 		$data = FormatJson::decode( $json, true );
 		if ( $data === null ) {
-			throw new MWException( __METHOD__ . ": Invalid JSON file: $fileName" );
+			throw new RuntimeException( __METHOD__ . ": Invalid JSON file: $fileName" );
 		}
 
 		// Remove keys starting with '@'; they are reserved for metadata and non-message data
@@ -819,13 +818,12 @@ class LocalisationCache {
 	 * rules, and save the compiled rules in a process-local cache.
 	 *
 	 * @param string $fileName
-	 * @throws MWException
 	 */
 	private static function loadPluralFile( $fileName ) {
 		// Use file_get_contents instead of DOMDocument::load (T58439)
 		$xml = file_get_contents( $fileName );
 		if ( !$xml ) {
-			throw new MWException( "Unable to read plurals file $fileName" );
+			throw new RuntimeException( "Unable to read plurals file $fileName" );
 		}
 		$doc = new DOMDocument;
 		$doc->loadXML( $xml );

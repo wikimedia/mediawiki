@@ -47,7 +47,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
-use MWException;
 use RepoGroup;
 use RequestContext;
 use RuntimeException;
@@ -608,7 +607,6 @@ class MovePage {
 	/**
 	 * @param callable $subpageMoveCallback
 	 * @return Status
-	 * @throws MWException
 	 */
 	private function moveSubpagesInternal( callable $subpageMoveCallback ) {
 		// Do the source and target namespaces support subpages?

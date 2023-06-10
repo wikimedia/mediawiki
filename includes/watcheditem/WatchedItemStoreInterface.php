@@ -22,7 +22,6 @@
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\User\UserIdentity;
-use Wikimedia\Rdbms\DBUnexpectedError;
 
 /**
  * @author Addshore
@@ -70,8 +69,6 @@ interface WatchedItemStoreInterface {
 	 * @param mixed $threshold timestamp accepted by wfTimestamp
 	 *
 	 * @return int
-	 * @throws DBUnexpectedError
-	 * @throws MWException
 	 */
 	public function countVisitingWatchers( $target, $threshold );
 
@@ -240,8 +237,6 @@ interface WatchedItemStoreInterface {
 	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
 	 *
 	 * @return bool success
-	 * @throws DBUnexpectedError
-	 * @throws MWException
 	 */
 	public function removeWatch( UserIdentity $user, $target );
 

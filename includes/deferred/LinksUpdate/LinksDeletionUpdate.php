@@ -30,7 +30,6 @@ use MediaWiki\Deferred\EnqueueableDataUpdate;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutput;
-use MWException;
 use WikiPage;
 
 /**
@@ -46,7 +45,6 @@ class LinksDeletionUpdate extends LinksUpdate implements EnqueueableDataUpdate {
 	 * @param WikiPage $page Page we are updating
 	 * @param int|null $pageId ID of the page we are updating [optional]
 	 * @param string|null $timestamp TS_MW timestamp of deletion
-	 * @throws MWException
 	 */
 	public function __construct( WikiPage $page, $pageId = null, $timestamp = null ) {
 		$this->page = $page;

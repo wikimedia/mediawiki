@@ -133,7 +133,6 @@ class WikiImporter {
 
 	/**
 	 * Creates an ImportXMLReader drawing from the source provided
-	 * @throws MWException
 	 */
 	public function __construct(
 		ImportSource $source,
@@ -694,7 +693,7 @@ class WikiImporter {
 						'message' => $error->message,
 					] );
 				} else {
-					throw new MWException(
+					throw new UnexpectedValueException(
 						"Expected '<mediawiki>' tag, got '<{$this->reader->localName}>' tag."
 					);
 				}
@@ -1018,13 +1017,12 @@ class WikiImporter {
 	 * @param array $contentInfo
 	 *
 	 * @return Content
-	 * @throws MWException
 	 */
 	private function makeContent( Title $title, $revisionId, $contentInfo ) {
 		$maxArticleSize = $this->config->get( MainConfigNames::MaxArticleSize );
 
 		if ( !isset( $contentInfo['text'] ) ) {
-			throw new MWException( 'Missing text field in import.' );
+			throw new InvalidArgumentException( 'Missing text field in import.' );
 		}
 
 		// Make sure revisions won't violate $wgMaxArticleSize, which could lead to
@@ -1042,7 +1040,7 @@ class WikiImporter {
 				] ) ) &&
 			strlen( $contentInfo['text'] ) > $maxArticleSize * 1024
 		) {
-			throw new MWException( 'The text of ' .
+			throw new RuntimeException( 'The text of ' .
 				( $revisionId ?
 					"the revision with ID $revisionId" :
 					'a revision'
@@ -1063,7 +1061,6 @@ class WikiImporter {
 	/**
 	 * @param array $pageInfo
 	 * @param array $revisionInfo
-	 * @throws MWException
 	 * @return mixed|false
 	 */
 	private function processRevision( $pageInfo, $revisionInfo ) {
@@ -1082,7 +1079,7 @@ class WikiImporter {
 
 		foreach ( $revisionInfo['content'] ?? [] as $slotInfo ) {
 			if ( !isset( $slotInfo['role'] ) ) {
-				throw new MWException( "Missing role for imported slot." );
+				throw new RuntimeException( "Missing role for imported slot." );
 			}
 
 			$content = $this->makeContent( $title, $revId, $slotInfo );
@@ -1321,7 +1318,7 @@ class WikiImporter {
 			$error = libxml_get_last_error();
 			// phpcs:ignore Generic.PHP.NoSilencedErrors
 			@libxml_disable_entity_loader( $oldDisable );
-			throw new MWException(
+			throw new RuntimeException(
 				'Encountered an internal error while initializing WikiImporter object: ' . $error->message
 			);
 		}
@@ -1344,7 +1341,7 @@ class WikiImporter {
 			if ( $error ) {
 				$errorMessage = 'XML error at line ' . $error->line . ': ' . $error->message;
 				wfDebug( __METHOD__ . ': Invalid xml found - ' . $errorMessage );
-				throw new MWException( $errorMessage );
+				throw new RuntimeException( $errorMessage );
 			}
 		} finally {
 			libxml_disable_entity_loader( $oldDisable );

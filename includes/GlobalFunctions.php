@@ -1383,7 +1383,7 @@ function wfTempDir() {
 /**
  * Make directory, and make all parent directories if they don't exist
  *
- * @param string $dir Full path to directory to create
+ * @param string $dir Full path to directory to create. Callers should make sure this is not a storage path.
  * @param int|null $mode Chmod value to use, default is $wgDirectoryMode
  * @param string|null $caller Optional caller param for debugging.
  * @return bool

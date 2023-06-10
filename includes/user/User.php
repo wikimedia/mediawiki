@@ -26,7 +26,6 @@ use AllowDynamicProperties;
 use ArrayIterator;
 use DBAccessObjectUtils;
 use Exception;
-use FatalError;
 use IDBAccessObject;
 use InvalidArgumentException;
 use MailAddress;
@@ -55,7 +54,6 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MWCryptHash;
 use MWCryptRand;
-use MWException;
 use MWExceptionHandler;
 use PasswordFactory;
 use RequestContext;
@@ -1497,8 +1495,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 *
 	 * @param string $ip IP address, uses current client if none given
 	 * @return AbstractBlock|null Block object if blocked, null otherwise
-	 * @throws FatalError
-	 * @throws MWException
 	 * @deprecated since 1.40. Use getBlock instead
 	 */
 	public function getGlobalBlock( $ip = '' ) {
@@ -2521,7 +2517,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 					"CAS update failed on user_touched for user ID '{user_id}' ({db_flag} read)",
 					[ 'user_id' => $this->mId, 'db_flag' => $from ]
 				);
-				throw new MWException( "CAS update failed on user_touched. " .
+				throw new RuntimeException( "CAS update failed on user_touched. " .
 					"The version of the user to be saved is older than the current version."
 				);
 			}
@@ -2683,7 +2679,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * so it is still advisable to make the call conditional on isRegistered(),
 	 * and to commit the transaction after calling.
 	 *
-	 * @throws MWException
 	 * @return Status
 	 */
 	public function addToDatabase() {
@@ -2730,7 +2725,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 					$loaded = true;
 				}
 				if ( !$loaded ) {
-					throw new MWException( $fname . ": hit a key conflict attempting " .
+					throw new RuntimeException( $fname . ": hit a key conflict attempting " .
 						"to insert user '{$this->mName}' row, but it was not present in select!" );
 				}
 				return Status::newFatal( 'userexists' );

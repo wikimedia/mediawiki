@@ -90,11 +90,11 @@ class ImportFailureTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideImportFailure() {
-		yield [ 'BadXML', MWException::class, '/^XML error at line 3: Opening and ending tag mismatch:.*$/' ];
-		yield [ 'MissingMediaWikiTag', MWException::class, "/^Expected '<mediawiki>' tag, got .*$/" ];
-		yield [ 'MissingMainTextField', MWException::class, '/^Missing text field in import.$/' ];
-		yield [ 'MissingSlotTextField', MWException::class, '/^Missing text field in import.$/' ];
-		yield [ 'MissingSlotRole', MWException::class, '/^Missing role for imported slot.$/' ];
+		yield [ 'BadXML', RuntimeException::class, '/^XML error at line 3: Opening and ending tag mismatch:.*$/' ];
+		yield [ 'MissingMediaWikiTag', UnexpectedValueException::class, "/^Expected '<mediawiki>' tag, got .*$/" ];
+		yield [ 'MissingMainTextField', InvalidArgumentException::class, '/^Missing text field in import.$/' ];
+		yield [ 'MissingSlotTextField', InvalidArgumentException::class, '/^Missing text field in import.$/' ];
+		yield [ 'MissingSlotRole', RuntimeException::class, '/^Missing role for imported slot.$/' ];
 		yield [ 'UndefinedSlotRole', RuntimeException::class, '/^Undefined slot role .*$/' ];
 		yield [ 'UndefinedContentModel', MWUnknownContentModelException::class, '/not registered on this wiki/' ];
 	}
