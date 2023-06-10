@@ -204,6 +204,7 @@ use MediaWiki\Watchlist\WatchlistManager;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\DependencyStore\SqlModuleDependencyStore;
+use Wikimedia\EventRelayer\EventRelayerGroup;
 use Wikimedia\Message\IMessageFormatterFactory;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Parsoid\Config\Api\DataAccess as ApiDataAccess;
