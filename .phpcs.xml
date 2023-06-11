@@ -80,10 +80,7 @@
 		<exclude-pattern>*/maintenance/storage/recompressTracked\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/storage/trackBlobs\.php</exclude-pattern>
 		<!-- Skip violations in some tests for now -->
-		<exclude-pattern>*/tests/phpunit/unit/includes/GlobalFunctions/*</exclude-pattern>
-		<exclude-pattern>*/tests/phpunit/includes/GlobalFunctions/*</exclude-pattern>
 		<exclude-pattern>*/tests/phpunit/maintenance/*</exclude-pattern>
-		<exclude-pattern>*/tests/phpunit/integration/includes/GlobalFunctions/*</exclude-pattern>
 	</rule>
 	<rule ref="Generic.PHP.NoSilencedErrors.Discouraged">
 		<exclude-pattern>*/tests/*</exclude-pattern>
