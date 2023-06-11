@@ -239,7 +239,7 @@
 		 * @return {boolean}
 		 */
 		function fileIsPreviewable( file ) {
-			var known = [ 'image/png', 'image/gif', 'image/jpeg', 'image/svg+xml' ],
+			var known = [ 'image/png', 'image/gif', 'image/jpeg', 'image/svg+xml', 'image/webp' ],
 				tooHuge = 10 * 1024 * 1024;
 			return ( known.indexOf( file.type ) !== -1 ) && file.size > 0 && file.size < tooHuge;
 		}
