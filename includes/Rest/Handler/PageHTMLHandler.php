@@ -4,15 +4,14 @@ namespace MediaWiki\Rest\Handler;
 
 use LogicException;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Page\RedirectStore;
 use MediaWiki\Rest\Handler\Helper\HtmlOutputHelper;
 use MediaWiki\Rest\Handler\Helper\PageContentHelper;
+use MediaWiki\Rest\Handler\Helper\PageRedirectHelper;
 use MediaWiki\Rest\Handler\Helper\PageRestHelperFactory;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Rest\StringStream;
-use TitleFormatter;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -23,32 +22,26 @@ use Wikimedia\Assert\Assert;
  * @package MediaWiki\Rest\Handler
  */
 class PageHTMLHandler extends SimpleHandler {
-	use PageRedirectHandlerTrait;
 
-	/** @var HtmlOutputHelper */
-	private $htmlHelper;
-
-	/** @var PageContentHelper */
-	private $contentHelper;
-
-	/** @var TitleFormatter */
-	private $titleFormatter;
-
-	/** @var RedirectStore */
-	private $redirectStore;
-
+	private HtmlOutputHelper $htmlHelper;
+	private PageContentHelper $contentHelper;
 	private PageRestHelperFactory $helperFactory;
 
 	public function __construct(
-		TitleFormatter $titleFormatter,
-		RedirectStore $redirectStore,
 		PageRestHelperFactory $helperFactory
 	) {
-		$this->titleFormatter = $titleFormatter;
-		$this->redirectStore = $redirectStore;
 		$this->contentHelper = $helperFactory->newPageContentHelper();
 		$this->helperFactory = $helperFactory;
 		$this->htmlHelper = $helperFactory->newHtmlOutputRendererHelper();
+	}
+
+	private function getRedirectHelper(): PageRedirectHelper {
+		return $this->helperFactory->newPageRedirectHelper(
+			$this->getResponseFactory(),
+			$this->getRouter(),
+			$this->getPath(),
+			$this->getRequest()
+		);
 	}
 
 	protected function postValidationSetup() {
@@ -101,12 +94,12 @@ class PageHTMLHandler extends SimpleHandler {
 		// $this->contentHelper->checkAccess() did not throw.
 		Assert::invariant( $page !== null, 'Page should be known' );
 
-		$redirectResponse = $this->createRedirectResponseIfNeeded(
+		$redirectHelper = $this->getRedirectHelper();
+		$redirectHelper->setFollowWikiRedirects( $followWikiRedirects );
+
+		$redirectResponse = $redirectHelper->createRedirectResponseIfNeeded(
 			$page,
-			$followWikiRedirects,
-			$this->contentHelper->getTitleText(),
-			$this->titleFormatter,
-			$this->redirectStore
+			$this->contentHelper->getTitleText()
 		);
 
 		if ( $redirectResponse !== null ) {
@@ -127,9 +120,7 @@ class PageHTMLHandler extends SimpleHandler {
 				$body = $this->contentHelper->constructMetadata();
 				$body['html'] = $parserOutputHtml;
 
-				$redirectTargetUrl = $this->getWikiRedirectTargetUrl(
-					$page, $this->redirectStore, $this->titleFormatter
-				);
+				$redirectTargetUrl = $redirectHelper->getWikiRedirectTargetUrl( $page );
 
 				if ( $redirectTargetUrl ) {
 					$body['redirect_target'] = $redirectTargetUrl;

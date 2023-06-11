@@ -7,6 +7,8 @@ use IDBAccessObject;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageLookup;
 use MediaWiki\Permissions\GroupPermissionsLookup;
+use MediaWiki\Rest\Handler\Helper\PageRedirectHelper;
+use MediaWiki\Rest\Handler\Helper\PageRestHelperFactory;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
@@ -27,28 +29,17 @@ use Wikimedia\Rdbms\IResultWrapper;
  * Handler class for Core REST API endpoints that perform operations on revisions
  */
 class PageHistoryHandler extends SimpleHandler {
-	use PageRedirectHandlerTrait;
 
 	private const REVISIONS_RETURN_LIMIT = 20;
 	private const ALLOWED_FILTER_TYPES = [ 'anonymous', 'bot', 'reverted', 'minor' ];
 
-	/** @var RevisionStore */
-	private $revisionStore;
-
-	/** @var NameTableStore */
-	private $changeTagDefStore;
-
-	/** @var GroupPermissionsLookup */
-	private $groupPermissionsLookup;
-
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var PageLookup */
-	private $pageLookup;
-
-	/** @var TitleFormatter */
-	private $titleFormatter;
+	private RevisionStore $revisionStore;
+	private NameTableStore $changeTagDefStore;
+	private GroupPermissionsLookup $groupPermissionsLookup;
+	private IConnectionProvider $dbProvider;
+	private PageLookup $pageLookup;
+	private TitleFormatter $titleFormatter;
+	private PageRestHelperFactory $helperFactory;
 
 	/**
 	 * @var ExistingPageRecord|false|null
@@ -64,6 +55,7 @@ class PageHistoryHandler extends SimpleHandler {
 	 * @param IConnectionProvider $dbProvider
 	 * @param PageLookup $pageLookup
 	 * @param TitleFormatter $titleFormatter
+	 * @param PageRestHelperFactory $helperFactory
 	 */
 	public function __construct(
 		RevisionStore $revisionStore,
@@ -71,7 +63,8 @@ class PageHistoryHandler extends SimpleHandler {
 		GroupPermissionsLookup $groupPermissionsLookup,
 		IConnectionProvider $dbProvider,
 		PageLookup $pageLookup,
-		TitleFormatter $titleFormatter
+		TitleFormatter $titleFormatter,
+		PageRestHelperFactory $helperFactory
 	) {
 		$this->revisionStore = $revisionStore;
 		$this->changeTagDefStore = $nameTableStoreFactory->getChangeTagDef();
@@ -79,6 +72,16 @@ class PageHistoryHandler extends SimpleHandler {
 		$this->dbProvider = $dbProvider;
 		$this->pageLookup = $pageLookup;
 		$this->titleFormatter = $titleFormatter;
+		$this->helperFactory = $helperFactory;
+	}
+
+	private function getRedirectHelper(): PageRedirectHelper {
+		return $this->helperFactory->newPageRedirectHelper(
+			$this->getResponseFactory(),
+			$this->getRouter(),
+			$this->getPath(),
+			$this->getRequest()
+		);
 	}
 
 	/**
@@ -146,10 +149,9 @@ class PageHistoryHandler extends SimpleHandler {
 		}
 
 		'@phan-var \MediaWiki\Page\ExistingPageRecord $page';
-		$redirectResponse = $this->createNormalizationRedirectResponseIfNeeded(
+		$redirectResponse = $this->getRedirectHelper()->createNormalizationRedirectResponseIfNeeded(
 			$page,
-			$params['title'] ?? null,
-			$this->titleFormatter
+			$params['title'] ?? null
 		);
 
 		if ( $redirectResponse !== null ) {

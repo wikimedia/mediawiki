@@ -6,6 +6,8 @@ use ChangeTags;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageLookup;
 use MediaWiki\Permissions\GroupPermissionsLookup;
+use MediaWiki\Rest\Handler\Helper\PageRedirectHelper;
+use MediaWiki\Rest\Handler\Helper\PageRestHelperFactory;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
@@ -15,7 +17,6 @@ use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\User\ActorMigration;
-use TitleFormatter;
 use WANObjectCache;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
@@ -27,7 +28,6 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * Handler class for Core REST API endpoints that perform operations on revisions
  */
 class PageHistoryCountHandler extends SimpleHandler {
-	use PageRedirectHandlerTrait;
 
 	/** The maximum number of counts to return per type of revision */
 	private const COUNT_LIMITS = [
@@ -47,29 +47,14 @@ class PageHistoryCountHandler extends SimpleHandler {
 
 	private const MAX_AGE_200 = 60;
 
-	/** @var RevisionStore */
-	private $revisionStore;
-
-	/** @var NameTableStore */
-	private $changeTagDefStore;
-
-	/** @var GroupPermissionsLookup */
-	private $groupPermissionsLookup;
-
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var PageLookup */
-	private $pageLookup;
-
-	/** @var WANObjectCache */
-	private $cache;
-
-	/** @var ActorMigration */
-	private $actorMigration;
-
-	/** @var TitleFormatter */
-	private $titleFormatter;
+	private RevisionStore $revisionStore;
+	private NameTableStore $changeTagDefStore;
+	private GroupPermissionsLookup $groupPermissionsLookup;
+	private IConnectionProvider $dbProvider;
+	private PageLookup $pageLookup;
+	private WANObjectCache $cache;
+	private ActorMigration $actorMigration;
+	private PageRestHelperFactory $helperFactory;
 
 	/** @var RevisionRecord|false|null */
 	private $revision = false;
@@ -88,7 +73,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * @param WANObjectCache $cache
 	 * @param PageLookup $pageLookup
 	 * @param ActorMigration $actorMigration
-	 * @param TitleFormatter $titleFormatter
+	 * @param PageRestHelperFactory $helperFactory
 	 */
 	public function __construct(
 		RevisionStore $revisionStore,
@@ -98,7 +83,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 		WANObjectCache $cache,
 		PageLookup $pageLookup,
 		ActorMigration $actorMigration,
-		TitleFormatter $titleFormatter
+		PageRestHelperFactory $helperFactory
 	) {
 		$this->revisionStore = $revisionStore;
 		$this->changeTagDefStore = $nameTableStoreFactory->getChangeTagDef();
@@ -107,7 +92,16 @@ class PageHistoryCountHandler extends SimpleHandler {
 		$this->cache = $cache;
 		$this->pageLookup = $pageLookup;
 		$this->actorMigration = $actorMigration;
-		$this->titleFormatter = $titleFormatter;
+		$this->helperFactory = $helperFactory;
+	}
+
+	private function getRedirectHelper(): PageRedirectHelper {
+		return $this->helperFactory->newPageRedirectHelper(
+			$this->getResponseFactory(),
+			$this->getRouter(),
+			$this->getPath(),
+			$this->getRequest()
+		);
 	}
 
 	private function normalizeType( $type ) {
@@ -174,10 +168,9 @@ class PageHistoryCountHandler extends SimpleHandler {
 		}
 
 		'@phan-var \MediaWiki\Page\ExistingPageRecord $page';
-		$redirectResponse = $this->createNormalizationRedirectResponseIfNeeded(
+		$redirectResponse = $this->getRedirectHelper()->createNormalizationRedirectResponseIfNeeded(
 			$page,
-			$params['title'] ?? null,
-			$this->titleFormatter
+			$params['title'] ?? null
 		);
 
 		if ( $redirectResponse !== null ) {

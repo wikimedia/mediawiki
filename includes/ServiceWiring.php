@@ -1295,7 +1295,8 @@ return [
 			$services->getParsoidOutputAccess(),
 			$services->getHtmlTransformFactory(),
 			$services->getContentHandlerFactory(),
-			$services->getLanguageFactory()
+			$services->getLanguageFactory(),
+			$services->getRedirectStore()
 		);
 	},
 

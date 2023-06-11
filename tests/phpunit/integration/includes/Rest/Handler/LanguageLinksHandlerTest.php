@@ -61,7 +61,8 @@ class LanguageLinksHandlerTest extends \MediaWikiIntegrationTestCase {
 			$languageNameUtils,
 			$titleCodec,
 			$titleCodec,
-			$this->getServiceContainer()->getPageStore()
+			$this->getServiceContainer()->getPageStore(),
+			$this->getServiceContainer()->getPageRestHelperFactory()
 		);
 	}
 

@@ -8,8 +8,12 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Page\PageLookup;
+use MediaWiki\Page\RedirectStore;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
+use MediaWiki\Rest\RequestInterface;
+use MediaWiki\Rest\ResponseFactory;
+use MediaWiki\Rest\Router;
 use MediaWiki\Revision\RevisionLookup;
 use TitleFormatter;
 
@@ -33,6 +37,7 @@ class PageRestHelperFactory {
 	private HtmlTransformFactory $htmlTransformFactory;
 	private IContentHandlerFactory $contentHandlerFactory;
 	private LanguageFactory $languageFactory;
+	private RedirectStore $redirectStore;
 
 	/**
 	 * @param ServiceOptions $options
@@ -45,6 +50,7 @@ class PageRestHelperFactory {
 	 * @param HtmlTransformFactory $htmlTransformFactory
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param LanguageFactory $languageFactory
+	 * @param RedirectStore $redirectStore
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -56,7 +62,8 @@ class PageRestHelperFactory {
 		ParsoidOutputAccess $parsoidOutputAccess,
 		HtmlTransformFactory $htmlTransformFactory,
 		IContentHandlerFactory $contentHandlerFactory,
-		LanguageFactory $languageFactory
+		LanguageFactory $languageFactory,
+		RedirectStore $redirectStore
 	) {
 		$this->options = $options;
 		$this->revisionLookup = $revisionLookup;
@@ -68,6 +75,7 @@ class PageRestHelperFactory {
 		$this->htmlTransformFactory = $htmlTransformFactory;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->languageFactory = $languageFactory;
+		$this->redirectStore = $redirectStore;
 	}
 
 	public function newRevisionContentHelper(): RevisionContentHelper {
@@ -110,6 +118,25 @@ class PageRestHelperFactory {
 			$this->parsoidOutputStash,
 			$this->parsoidOutputAccess,
 			$envOptions
+		);
+	}
+
+	/**
+	 * @since 1.41
+	 */
+	public function newPageRedirectHelper(
+		ResponseFactory $responseFactory,
+		Router $router,
+		string $route,
+		RequestInterface $request
+	): PageRedirectHelper {
+		return new PageRedirectHelper(
+			$this->redirectStore,
+			$this->titleFormatter,
+			$responseFactory,
+			$router,
+			$route,
+			$request
 		);
 	}
 
