@@ -843,7 +843,7 @@
 	"postedit-confirmation-saved": "Uw bewerking is opgeslagen.",
 	"postedit-confirmation-published": "Uw bewerking is opgeslagen.",
 	"postedit-temp-created-label": "Tijdelijk account",
-	"postedit-temp-created": "Een [[$2|automatisch gegenereerd account]] is voor u aangemaakt door het toevoegen van een cookie aan uw browser. Overweeg [$1 een account aan te maken] om een naam naar keuze te kiezen en toegang te krijgen tot meer functionaliteit.",
+	"postedit-temp-created": "Er is een [[$2|automatisch gegenereerd account]] voor u aangemaakt door een cookie aan uw browser toe te voegen. Wilt u uw eigen naam kiezen en meer functies kunnen gebruiken, overweeg dan eens [$1 een account aan te maken].",
 	"edit-already-exists": "De pagina is niet aangemaakt.\nDeze bestaat al.",
 	"defaultmessagetext": "Standaardinhoud",
 	"content-failed-to-parse": "Het was niet mogelijk de inhoud van het MIME-type $2 voor het model $1 te verwerken: $3.",
