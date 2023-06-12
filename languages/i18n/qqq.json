@@ -688,6 +688,7 @@
 	"logout": "Used as link text in your personal toolbox (upper right side).\n\nSee also:\n* {{msg-mw|Logout}}\n* {{msg-mw|Accesskey-pt-logout}}\n* {{msg-mw|Tooltip-pt-logout}}\n{{Identical|Log out}}",
 	"userlogout": "{{doc-special|UserLogout|unlisted=1}}\n{{Identical|Log out}}",
 	"userlogout-summary": "{{ignored}}",
+	"templogout": "Used as log out link text in your personal toolbox (upper right side) for temp users.",
 	"notloggedin": "This message is displayed in the standard skin when not logged in. The message is placed above the login link in the top right corner of pages.\n\n{{Identical|Not logged in}}",
 	"userlogin-noaccount": "In the [[Special:Userlogin]] form, this is the text prior to button inviting user to join project.\n{{Identical|Do not have an account}}",
 	"userlogin-joinproject": "Text of button inviting user to create an account.\n\nSee example: [[Special:UserLogin]]",

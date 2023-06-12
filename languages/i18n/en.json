@@ -437,6 +437,7 @@
 	"logout": "Log out",
 	"userlogout": "Log out",
 	"userlogout-summary": "",
+	"templogout": "Exit session",
 	"notloggedin": "Not logged in",
 	"userlogin-noaccount": "Don't have an account?",
 	"userlogin-joinproject": "Join {{SITENAME}}",

@@ -475,7 +475,7 @@ class SkinTemplate extends Skin {
 			$personal_urls = $this->makeContributionsLink( $personal_urls, 'mycontris', $this->username, $active );
 
 			// if we can't set the user, we can't unset it either
-			if ( !$this->isTempUser && $request->getSession()->canSetUser() ) {
+			if ( $request->getSession()->canSetUser() ) {
 				$personal_urls['logout'] = $this->buildLogoutLinkData();
 			}
 		} else {
@@ -508,7 +508,7 @@ class SkinTemplate extends Skin {
 				$personal_urls = $this->makeContributionsLink( $personal_urls, 'anoncontribs', null, false );
 			}
 		}
-		if ( $this->isTempUser || !$this->loggedin ) {
+		if ( !$this->loggedin ) {
 			$useCombinedLoginLink = $this->useCombinedLoginLink();
 			$login_url = $this->buildLoginData( $returnto, $useCombinedLoginLink );
 			$createaccount_url = $this->buildCreateAccountData( $returnto );
@@ -718,10 +718,12 @@ class SkinTemplate extends Skin {
 	final protected function buildLogoutLinkData() {
 		$title = $this->getTitle();
 		$returnto = $this->getReturnToParam();
+		$isTemp = $this->isTempUser;
+		$msg = $isTemp ? 'templogout' : 'pt-userlogout';
 
 		return [
 			'single-id' => 'pt-logout',
-			'text' => $this->msg( 'pt-userlogout' )->text(),
+			'text' => $this->msg( $msg )->text(),
 			'data-mw' => 'interface',
 			'href' => self::makeSpecialUrl( 'Userlogout',
 				// Note: userlogout link must always contain an & character, otherwise we might not be able
