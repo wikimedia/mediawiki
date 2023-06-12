@@ -2433,7 +2433,7 @@ return [
 			],
 			'EventRelayerConfig' => [
 				'default' => [
-					'class' => 'EventRelayerNull',
+					'class' => 'Wikimedia\\EventRelayer\\EventRelayerNull',
 				],
 			],
 			'Pingback' => false,

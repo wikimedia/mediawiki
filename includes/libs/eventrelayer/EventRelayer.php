@@ -17,6 +17,9 @@
  *
  * @file
  */
+
+namespace Wikimedia\EventRelayer;
+
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -68,3 +71,5 @@ abstract class EventRelayer implements LoggerAwareInterface {
 	 */
 	abstract protected function doNotify( $channel, array $events );
 }
+
+class_alias( EventRelayer::class, 'EventRelayer' );
