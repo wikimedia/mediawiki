@@ -1492,6 +1492,7 @@
 	"changecontentmodel-reason-label": "Sababi:",
 	"changecontentmodel-submit": "Oʻzgartirish",
 	"changecontentmodel-success-title": "Matn modeli oʻzgartirildi.",
+	"logentry-contentmodel-change": "$1 $3 sahifasi kontent modelini „$4“dan „$5“ga {{GENDER:$2|oʻzgartirdi}}",
 	"logentry-contentmodel-change-revertlink": "qaytarish",
 	"logentry-contentmodel-change-revert": "qaytarish",
 	"protectlogpage": "Himoyalash qaydlari",
