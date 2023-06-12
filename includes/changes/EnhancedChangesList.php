@@ -47,7 +47,6 @@ class EnhancedChangesList extends ChangesList {
 	/**
 	 * @param IContextSource $context
 	 * @param ChangesListFilterGroup[] $filterGroups Array of ChangesListFilterGroup objects (currently optional)
-	 * @throws MWException
 	 */
 	public function __construct( $context, array $filterGroups = [] ) {
 		parent::__construct( $context, $filterGroups );
@@ -151,7 +150,6 @@ class EnhancedChangesList extends ChangesList {
 	 * Enhanced RC group
 	 * @param RCCacheEntry[] $block
 	 * @return string
-	 * @throws DomainException
 	 */
 	protected function recentChangesBlockGroup( $block ) {
 		$recentChangesFlags = $this->getConfig()->get( MainConfigNames::RecentChangesFlags );
@@ -351,9 +349,6 @@ class EnhancedChangesList extends ChangesList {
 	 * @param RCCacheEntry $rcObj
 	 * @param array $queryParams
 	 * @return array
-	 * @throws Exception
-	 * @throws FatalError
-	 * @throws MWException
 	 */
 	protected function getLineData( array $block, RCCacheEntry $rcObj, array $queryParams = [] ) {
 		$RCShowChangedSize = $this->getConfig()->get( MainConfigNames::RCShowChangedSize );

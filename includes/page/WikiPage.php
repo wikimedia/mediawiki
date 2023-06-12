@@ -1493,7 +1493,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			$insertedRow = $this->pageData( $dbw, [ 'page_id' => $this->getId() ] );
 
 			if ( !$insertedRow ) {
-				throw new MWException( 'Failed to load freshly inserted row' );
+				throw new RuntimeException( 'Failed to load freshly inserted row' );
 			}
 
 			$this->mTitle->loadFromRow( $insertedRow );
@@ -1596,7 +1596,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @param string $sectionTitle New section's subject, only if $section is "new".
 	 * @param string $edittime Revision timestamp or null to use the current revision.
 	 *
-	 * @throws MWException
 	 * @return Content|null New complete article content, or null if error.
 	 *
 	 * @since 1.21
@@ -1636,7 +1635,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @param string $sectionTitle New section's subject, only if $section is "new".
 	 * @param int|null $baseRevId
 	 *
-	 * @throws MWException
 	 * @return Content|null New complete article content, or null if error.
 	 *
 	 * @since 1.24
@@ -1649,7 +1647,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			$newContent = $sectionContent;
 		} else {
 			if ( !$this->supportsSections() ) {
-				throw new MWException( "sections not supported for content model " .
+				throw new BadMethodCallException( "sections not supported for content model " .
 					$this->getContentHandler()->getModelID() );
 			}
 
@@ -1846,7 +1844,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * (with ChangeTags::canAddTagsAccompanyingChange)
 	 * @param int $undidRevId Id of revision that was undone or 0
 	 *
-	 * @throws MWException
 	 * @return PageUpdateStatus Possible errors:
 	 *     edit-hook-aborted: The ArticleSave hook aborted the edit but didn't
 	 *       set the fatal flag of $status.

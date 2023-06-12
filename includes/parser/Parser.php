@@ -477,7 +477,7 @@ class Parser {
 		if ( ParserFactory::$inParserFactory === 0 ) {
 			// Direct construction of Parser was deprecated in 1.34 and
 			// removed in 1.36; use a ParserFactory instead.
-			throw new MWException( 'Direct construction of Parser not allowed' );
+			throw new BadMethodCallException( 'Direct construction of Parser not allowed' );
 		}
 		$svcOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->svcOptions = $svcOptions;
@@ -1777,7 +1777,6 @@ class Parser {
 	}
 
 	/**
-	 * @throws MWException
 	 * @param array $m
 	 * @return string HTML
 	 */
@@ -1813,7 +1812,7 @@ class Parser {
 				$id = $m[5];
 			} else {
 				// Should never happen
-				throw new MWException( __METHOD__ . ': unrecognised match type "' .
+				throw new UnexpectedValueException( __METHOD__ . ': unrecognised match type "' .
 					substr( $m[0], 0, 20 ) . '"' );
 			}
 			$url = wfMessage( $urlmsg, $id )->inContentLanguage()->text();
@@ -3943,8 +3942,6 @@ class Parser {
 	 *     Normally, nowikis are only processed for the HTML output type. With this
 	 *     arg set to true, they are processed (and converted to a nowiki strip marker)
 	 *     for all output types.
-	 *
-	 * @throws MWException
 	 * @return string
 	 * @internal
 	 * @since 1.12
@@ -4030,7 +4027,7 @@ class Parser {
 		} elseif ( $markerType === 'general' ) {
 			$this->mStripState->addGeneral( $marker, $output );
 		} else {
-			throw new MWException( __METHOD__ . ': invalid marker type' );
+			throw new UnexpectedValueException( __METHOD__ . ': invalid marker type' );
 		}
 		return $marker;
 	}
@@ -4897,14 +4894,13 @@ class Parser {
 	 *
 	 * @param string $tag The tag to use, e.g. 'hook' for "<hook>"
 	 * @param callable $callback The callback to use for the tag
-	 * @throws MWException
 	 * @return callable|null The old value of the mTagHooks array associated with the hook
 	 * @since 1.3
 	 */
 	public function setHook( $tag, callable $callback ) {
 		$tag = strtolower( $tag );
 		if ( preg_match( '/[<>\r\n]/', $tag, $m ) ) {
-			throw new MWException( "Invalid character {$m[0]} in setHook('$tag', ...) call" );
+			throw new InvalidArgumentException( "Invalid character {$m[0]} in setHook('$tag', ...) call" );
 		}
 		$oldVal = $this->mTagHooks[$tag] ?? null;
 		$this->mTagHooks[$tag] = $callback;
@@ -4964,7 +4960,6 @@ class Parser {
 	 *     Please read the documentation in includes/parser/Preprocessor.php for more information
 	 *     about the methods available in PPFrame and PPNode.
 	 *
-	 * @throws MWException
 	 * @return string|callable|null The old callback function for this name, if any
 	 * @since 1.6
 	 */
@@ -4975,7 +4970,7 @@ class Parser {
 		# Add to function cache
 		$mw = $this->magicWordFactory->get( $id );
 		if ( !$mw ) {
-			throw new MWException( __METHOD__ . '() expecting a magic word identifier.' );
+			throw new InvalidArgumentException( __METHOD__ . '() expecting a magic word identifier.' );
 		}
 
 		$synonyms = $mw->getSynonyms();

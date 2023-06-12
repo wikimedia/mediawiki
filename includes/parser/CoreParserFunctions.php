@@ -57,7 +57,6 @@ class CoreParserFunctions {
 	 * @param ServiceOptions $options
 	 *
 	 * @return void
-	 * @throws MWException
 	 * @internal
 	 */
 	public static function register( Parser $parser, ServiceOptions $options ) {

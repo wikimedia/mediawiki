@@ -123,7 +123,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		);
 		$id = $dbw->insertId();
 		if ( !$id ) {
-			throw new MWException( __METHOD__ . ': no insert ID' );
+			throw new ExternalStoreException( __METHOD__ . ': no insert ID' );
 		}
 
 		return "DB://$location/$id";

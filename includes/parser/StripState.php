@@ -81,14 +81,13 @@ class StripState {
 	}
 
 	/**
-	 * @throws MWException
 	 * @param string $type
 	 * @param string $marker
 	 * @param string|Closure $value
 	 */
 	protected function addItem( $type, $marker, $value ) {
 		if ( !preg_match( $this->regex, $marker, $m ) ) {
-			throw new MWException( "Invalid marker: $marker" );
+			throw new InvalidArgumentException( "Invalid marker: $marker" );
 		}
 
 		$this->data[$type][$m[1]] = $value;

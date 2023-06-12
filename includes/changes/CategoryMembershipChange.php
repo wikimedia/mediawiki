@@ -69,8 +69,6 @@ class CategoryMembershipChange {
 	 * @param Title $pageTitle Title instance of the categorized page
 	 * @param BacklinkCache $backlinkCache
 	 * @param RevisionRecord|null $revision Latest revision of the categorized page.
-	 *
-	 * @throws MWException
 	 */
 	public function __construct(
 		Title $pageTitle, BacklinkCache $backlinkCache, RevisionRecord $revision = null
@@ -157,8 +155,6 @@ class CategoryMembershipChange {
 	 * @param string $lastTimestamp Parent revision timestamp of this change in TS_MW format
 	 * @param RevisionRecord|null $revision
 	 * @param bool $added true, if the category was added, false for removed
-	 *
-	 * @throws MWException
 	 */
 	private function notifyCategorization(
 		$timestamp,

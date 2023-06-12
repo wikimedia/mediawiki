@@ -114,30 +114,26 @@ trait MediaFileTrait {
 	private function getTransformInfo( $file, $duration, $maxWidth, $maxHeight ) {
 		$transformInfo = null;
 
-		try {
-			[ $width, $height ] = $file->getDisplayWidthHeight( $maxWidth, $maxHeight );
-			$transform = $file->transform( [ 'width' => $width, 'height' => $height ] );
-			if ( $transform && !$transform->isError() ) {
-				// $file->getSize() returns original size. Only include if dimensions match.
-				$size = null;
-				if ( $file->getWidth() == $transform->getWidth() &&
-					$file->getHeight() == $transform->getHeight()
-				) {
-					$size = $file->getSize();
-				}
-
-				$transformInfo = [
-					'mediatype' => $transform->getFile()->getMediaType(),
-					'size' => $size,
-					'width' => $transform->getWidth() ?: null,
-					'height' => $transform->getHeight() ?: null,
-					'duration' => $duration,
-					'url' => MediaWikiServices::getInstance()->getUrlUtils()
-						->expand( $transform->getUrl(), PROTO_RELATIVE ),
-				];
+		[ $width, $height ] = $file->getDisplayWidthHeight( $maxWidth, $maxHeight );
+		$transform = $file->transform( [ 'width' => $width, 'height' => $height ] );
+		if ( $transform && !$transform->isError() ) {
+			// $file->getSize() returns original size. Only include if dimensions match.
+			$size = null;
+			if ( $file->getWidth() == $transform->getWidth() &&
+				$file->getHeight() == $transform->getHeight()
+			) {
+				$size = $file->getSize();
 			}
-		} catch ( MWException $e ) {
-			// Caller decides what to do on failure
+
+			$transformInfo = [
+				'mediatype' => $transform->getFile()->getMediaType(),
+				'size' => $size,
+				'width' => $transform->getWidth() ?: null,
+				'height' => $transform->getHeight() ?: null,
+				'duration' => $duration,
+				'url' => MediaWikiServices::getInstance()->getUrlUtils()
+					->expand( $transform->getUrl(), PROTO_RELATIVE ),
+			];
 		}
 
 		return $transformInfo;

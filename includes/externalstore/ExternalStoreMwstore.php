@@ -114,7 +114,7 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 			return $url;
 		}
 
-		throw new MWException( __METHOD__ . ": operation failed: $status" );
+		throw new ExternalStoreException( __METHOD__ . ": operation failed: $status" );
 	}
 
 	public function isReadOnly( $backend ) {
