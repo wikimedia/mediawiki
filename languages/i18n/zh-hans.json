@@ -3186,7 +3186,7 @@
 	"siteuser": "{{SITENAME}}用户$1",
 	"anonuser": "{{SITENAME}}匿名用户$1",
 	"lastmodifiedatby": "本页面由$3最后编辑于$1 $2。",
-	"othercontribs": "基于$1的工作。",
+	"othercontribs": "基于$1的贡献。",
 	"others": "其他",
 	"siteusers": "{{SITENAME}}{{PLURAL:$2|{{GENDER:$1|用户}}}}$1",
 	"anonusers": "{{SITENAME}}匿名{{PLURAL:$2|用户}}$1",

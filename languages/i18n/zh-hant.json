@@ -134,7 +134,8 @@
 			"捍粵者",
 			"阿南之人",
 			"Amire80",
-			"Sidishandsome"
+			"Sidishandsome",
+			"Roy17"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -1242,12 +1243,12 @@
 	"linterror-tidy-font-bug": "Font標籤嘗試改變連結顏色",
 	"linterror-tidy-whitespace-bug": "空格解析錯誤",
 	"linterror-unclosed-quotes-in-heading": "未閉合引號從目次中溢出",
-	"yourgender": "您希望使用何種性別稱呼？",
-	"gender-unknown": "當提到您時，本軟體會盡可能使用性別中性詞彙",
-	"gender-notknown": "保密",
-	"gender-male": "男",
-	"gender-female": "女",
-	"prefs-help-gender": "此偏好設定為選填欄位。軟體會使用您選擇的方式稱呼您，對他人提到您時也會使用適當語法稱呼。此項資訊會被公開。",
+	"yourgender": "您希望使用何種性別稱呼您？",
+	"gender-unknown": "當提到您時，本軟體會盡可能使用性別中立的字詞",
+	"gender-notknown": "TA 編輯 Wiki 頁面",
+	"gender-male": "他編輯 Wiki 頁面",
+	"gender-female": "她編輯 Wiki 頁面",
+	"prefs-help-gender": "此偏好設定為選填欄位。軟體會在稱呼您或對他人提到您時，使用填寫在此處的值以正確的文法性別稱呼您。這項資訊會公開。",
 	"email": "Email",
 	"prefs-help-realname": "真實姓名為選填欄位。\n若提供，真實姓名可能會用來作為您的作品的署名。",
 	"prefs-help-email": "電子郵件地址為選填欄位，但是當您忘記密碼而要重設時需要此資訊。",

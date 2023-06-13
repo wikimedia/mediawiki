@@ -821,7 +821,7 @@
 	"templatesusedpreview": "{{PLURAL:$1|Die folgende Vorlage wird|Folgende Vorlagen werden}} von dieser Seitenvorschau verwendet:",
 	"templatesusedsection": "{{PLURAL:$1|Die folgende Vorlage wird|Folgende Vorlagen werden}} in diesem Abschnitt verwendet:",
 	"template-protected": "schreibgeschützt (nur Administratoren)",
-	"template-semiprotected": "(schreibgeschützt (nur angemeldete, nicht neue Benutzer))",
+	"template-semiprotected": "schreibgeschützt (nur angemeldete, nicht neue Benutzer)",
 	"hiddencategories": "Diese Seite ist in {{PLURAL:$1|einer versteckten Kategorie|$1 versteckten Kategorien}} enthalten:",
 	"edittools": "<!-- Dieser Text wird unter dem „Bearbeiten“-Formular sowie dem „Hochladen“-Formular angezeigt. -->",
 	"nocreatetext": "Auf {{SITENAME}} wurde das Erstellen neuer Seiten eingeschränkt. Du kannst bestehende Seiten ändern oder dich [[Special:UserLogin|anmelden]].",
