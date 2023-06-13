@@ -31,6 +31,7 @@
  * Such information should also be cached locally on the server and auth requests should
  * have reasonable timeouts.
  *
+ * @deprecated since 1.41, Use MultiHttpClient from the HttpRequestFactory.
  * @since 1.23
  */
 abstract class VirtualRESTService {
