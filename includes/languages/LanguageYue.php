@@ -19,19 +19,30 @@
  */
 
 /**
- * Cantonese
- *
- * This handles both Traditional and Simplified Han script.
- * Right now, we only distinguish `yue-hans` and `yue-hant`.
+ * Cantonese (粵語)
  *
  * @ingroup Languages
  */
-class LanguageYue extends LanguageZh {
+class LanguageYue extends Language {
 
 	/**
-	 * @inheritDoc
+	 * @return bool
 	 */
-	protected function getSerchIndexVariant() {
-		return 'yue-hant';
+	public function hasWordBreaks() {
+		return false;
+	}
+
+	/**
+	 * Eventually this should be a word segmentation;
+	 * for now just treat each character as a word.
+	 * @todo FIXME: Only do this for Han characters...
+	 *
+	 * @param string $string
+	 * @return string
+	 */
+	public function segmentByWord( $string ) {
+		$reg = "/([\\xc0-\\xff][\\x80-\\xbf]*)/";
+		$s = self::insertSpace( $string, $reg );
+		return $s;
 	}
 }

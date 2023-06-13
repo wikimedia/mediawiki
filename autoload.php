@@ -3056,7 +3056,6 @@ $wgAutoloadLocalClasses = [
 	'XmlJsCode' => __DIR__ . '/includes/xml/XmlJsCode.php',
 	'XmlSelect' => __DIR__ . '/includes/xml/XmlSelect.php',
 	'XmlTypeCheck' => __DIR__ . '/includes/libs/mime/XmlTypeCheck.php',
-	'YueConverter' => __DIR__ . '/includes/language/converters/YueConverter.php',
 	'ZhConverter' => __DIR__ . '/includes/language/converters/ZhConverter.php',
 	'ZipDirectoryReader' => __DIR__ . '/includes/utils/ZipDirectoryReader.php',
 	'ZipDirectoryReaderError' => __DIR__ . '/includes/utils/ZipDirectoryReaderError.php',

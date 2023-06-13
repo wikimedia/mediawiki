@@ -262,7 +262,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 			'tt-cyrl', 'tt-latn', 'tum', 'tw', 'ty', 'tyv', 'tzm', 'udm', 'ug', 'ug-arab',
 			'ug-latn', 'uk', 'ur', 'uz-cyrl', 'uz-latn', 've', 'vec', 'vep', 'vi', 'vls',
 			'vmf', 'vo', 'vot', 'vro', 'wa', 'war', 'wo', 'wuu-hans', 'wuu-hant', 'xal',
-			'xh', 'xmf', 'xsy', 'yi', 'yo', 'yue-hans', 'yue-hant', 'za', 'zea', 'zgh',
+			'xh', 'xmf', 'xsy', 'yi', 'yo', 'yue', 'yue-hans', 'yue-hant', 'za', 'zea', 'zgh',
 			'zh-classical', 'zh-cn', 'zh-hans', 'zh-hant', 'zh-hk', 'zh-min-nan', 'zh-mo',
 			'zh-my', 'zh-sg', 'zh-tw', 'zu',
 		];
@@ -467,18 +467,6 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 				'wuu' => 'disable',
 				'wuu-hans' => 'bidirectional',
 				'wuu-hant' => 'bidirectional'
-			]
-		];
-
-		yield 'yue' => [
-			'yue', 'yue-hant', 'YueConverter',
-			[ 'yue-hant', 'yue-hans' ],
-			[
-				'yue-hant' => [ 'yue-hans' ],
-				'yue-hans' => [ 'yue-hant' ],
-			], [], [], [
-				'yue-hant' => 'disable',
-				'yue-hans' => 'bidirectional',
 			]
 		];
 
