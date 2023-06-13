@@ -2324,6 +2324,7 @@ $wgAutoloadLocalClasses = [
 	'PrefixingStatsdDataFactoryProxy' => __DIR__ . '/includes/libs/Stats/PrefixingStatsdDataFactoryProxy.php',
 	'Preprocessor' => __DIR__ . '/includes/parser/Preprocessor.php',
 	'Preprocessor_Hash' => __DIR__ . '/includes/parser/Preprocessor_Hash.php',
+	'PrewarmParsoidParserCache' => __DIR__ . '/maintenance/prewarmParsoidParserCache.php',
 	'Processor' => __DIR__ . '/includes/registration/Processor.php',
 	'Profiler' => __DIR__ . '/includes/profiler/Profiler.php',
 	'ProfilerExcimer' => __DIR__ . '/includes/profiler/ProfilerExcimer.php',
