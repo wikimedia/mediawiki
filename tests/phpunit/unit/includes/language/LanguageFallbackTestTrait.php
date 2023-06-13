@@ -3,8 +3,6 @@
 // phpcs:disable MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
 // phpcs:disable MediaWiki.Commenting.FunctionComment.ObjectTypeHintReturn
 
-use Wikimedia\Assert\PostconditionException;
-
 /**
  * Code to test the getFallbackFor, getFallbacksFor, and getFallbacksIncludingSiteLanguage methods
  * that have historically been static methods of the Language class. It can be used to test any
@@ -165,30 +163,6 @@ trait LanguageFallbackTestTrait {
 
 		// This is the one that should throw.
 		$this->callMethod( $callee, 'getAll', 'fr', 7 );
-	}
-
-	/**
-	 * @covers MediaWiki\Languages\LanguageFallback::getAll
-	 * @covers Language::getFallbacksFor
-	 */
-	public function testGetAll_invalidFallback() {
-		$callee = $this->getCallee( [ 'fallbackMap' => [ 'qqz' => [ 'fr', 'de', '!!!', 'hi' ] ] ] );
-
-		$this->expectException( PostconditionException::class );
-		$this->expectExceptionMessage( "Invalid fallback code '!!!' in fallback sequence for 'qqz'" );
-		$this->callMethod( $callee, 'getAll', 'qqz' );
-	}
-
-	/**
-	 * @covers MediaWiki\Languages\LanguageFallback::getAll
-	 * @covers Language::getFallbacksFor
-	 */
-	public function testGetAll_invalidFallback_strict() {
-		$callee = $this->getCallee( [ 'fallbackMap' => [ 'qqz' => [ 'fr', 'de', '!!!', 'hi' ] ] ] );
-
-		$this->expectException( PostconditionException::class );
-		$this->expectExceptionMessage( "Invalid fallback code '!!!' in fallback sequence for 'qqz'" );
-		$this->callMethod( $callee, 'getAll', 'qqz', $this->getStrictKey() );
 	}
 
 	/**

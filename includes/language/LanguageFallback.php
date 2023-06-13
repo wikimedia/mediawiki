@@ -22,7 +22,6 @@ namespace MediaWiki\Languages;
 
 use InvalidArgumentException;
 use LocalisationCache;
-use Wikimedia\Assert\Assert;
 
 /**
  * @since 1.35
@@ -115,11 +114,6 @@ class LanguageFallback {
 
 			default:
 				throw new InvalidArgumentException( "Invalid fallback mode \"$mode\"" );
-		}
-
-		foreach ( $ret as $fallbackCode ) {
-			Assert::postcondition( $this->langNameUtils->isValidBuiltInCode( $fallbackCode ),
-				"Invalid fallback code '$fallbackCode' in fallback sequence for '$code'" );
 		}
 
 		return $ret;
