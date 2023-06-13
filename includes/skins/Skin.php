@@ -1635,7 +1635,10 @@ abstract class Skin extends ContextSource {
 				return 'die';
 			case 'recentchanges':
 				return 'recentChanges';
+			// These menu items are commonly added in MediaWiki:Sidebar. We should
+			// reconsider the location of this logic in future.
 			case 'help':
+			case 'help-mediawiki':
 				return 'help';
 			default:
 				return null;
