@@ -763,13 +763,11 @@ class RevisionStore
 	) {
 		$revisionRow = $this->getBaseRevisionRow( $dbw, $rev, $parentId );
 
-		[ $commentFields, $commentCallback ] =
-			$this->commentStore->insertWithTempTable(
-				$dbw,
-				'rev_comment',
-				$rev->getComment( RevisionRecord::RAW )
-			);
-		$revisionRow += $commentFields;
+		$revisionRow += $this->commentStore->insert(
+			$dbw,
+			'rev_comment',
+			$rev->getComment( RevisionRecord::RAW )
+		);
 
 		[ $actorFields, $actorCallback ] =
 			$this->actorMigration->getInsertValuesWithTempTable(
@@ -857,7 +855,6 @@ class RevisionStore
 			}
 		}
 
-		$commentCallback( $revisionRow['rev_id'] );
 		$actorCallback( $revisionRow['rev_id'], $revisionRow );
 
 		return $revisionRow;

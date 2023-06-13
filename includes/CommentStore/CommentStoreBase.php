@@ -51,18 +51,6 @@ class CommentStoreBase {
 	public const MAX_DATA_LENGTH = 65535;
 
 	/**
-	 * Define fields that use temporary tables for transitional purposes
-	 * Array keys are field names, values are arrays with these possible fields:
-	 *  - table: Temporary table name
-	 *  - pk: Temporary table column referring to the main table's primary key
-	 *  - field: Temporary table column referring comment.comment_id
-	 *  - joinPK: Main table's primary key
-	 *  - stage: Migration stage
-	 *  - deprecatedIn: Version when using insertWithTempTable() was deprecated
-	 */
-	protected $tempTables;
-
-	/**
 	 * @var int One of the MIGRATION_* constants, or an appropriate combination
 	 *  of SCHEMA_COMPAT_* constants.
 	 * @todo Deprecate and remove once extensions seem unlikely to need to use
@@ -77,13 +65,12 @@ class CommentStoreBase {
 	private $lang;
 
 	/**
-	 * @param array $tempTables Define fields that use temporary tables for transitional purposes
 	 * @param Language $lang Language to use for comment truncation. Defaults
 	 *  to content language.
 	 * @param int $stage One of the MIGRATION_* constants, or an appropriate
 	 *  combination of SCHEMA_COMPAT_* constants.
 	 */
-	public function __construct( $tempTables, Language $lang, $stage ) {
+	public function __construct( Language $lang, $stage ) {
 		if ( ( $stage & SCHEMA_COMPAT_WRITE_BOTH ) === 0 ) {
 			throw new InvalidArgumentException( '$stage must include a write mode' );
 		}
@@ -91,7 +78,6 @@ class CommentStoreBase {
 			throw new InvalidArgumentException( '$stage must include a read mode' );
 		}
 
-		$this->tempTables = $tempTables;
 		$this->lang = $lang;
 		$this->stage = $stage;
 	}
@@ -123,13 +109,7 @@ class CommentStoreBase {
 				$fields["{$key}_old"] = $key;
 			}
 
-			$tempTableStage = $this->tempTables[$key]['stage'] ?? MIGRATION_NEW;
-			if ( $tempTableStage & SCHEMA_COMPAT_READ_OLD ) {
-				$fields["{$key}_pk"] = $this->tempTables[$key]['joinPK'];
-			}
-			if ( $tempTableStage & SCHEMA_COMPAT_READ_NEW ) {
-				$fields["{$key}_id"] = "{$key}_id";
-			}
+			$fields["{$key}_id"] = "{$key}_id";
 		}
 		return $fields;
 	}
@@ -164,25 +144,9 @@ class CommentStoreBase {
 			} else { // READ_BOTH or READ_NEW
 				$join = ( $this->stage & SCHEMA_COMPAT_READ_OLD ) ? 'LEFT JOIN' : 'JOIN';
 
-				$tempTableStage = $this->tempTables[$key]['stage'] ?? MIGRATION_NEW;
-				if ( $tempTableStage & SCHEMA_COMPAT_READ_OLD ) {
-					$t = $this->tempTables[$key];
-					$alias = "temp_$key";
-					$tables[$alias] = $t['table'];
-					$joins[$alias] = [ $join, "{$alias}.{$t['pk']} = {$t['joinPK']}" ];
-					if ( ( $tempTableStage & SCHEMA_COMPAT_READ_BOTH ) === SCHEMA_COMPAT_READ_OLD ) {
-						$joinField = "{$alias}.{$t['field']}";
-					} else {
-						$joins[$alias][0] = 'LEFT JOIN';
-						$joinField = "(CASE WHEN {$key}_id != 0 THEN {$key}_id ELSE {$alias}.{$t['field']} END)";
-					}
-				} else {
-					$joinField = "{$key}_id";
-				}
-
 				$alias = "comment_$key";
 				$tables[$alias] = 'comment';
-				$joins[$alias] = [ $join, "{$alias}.comment_id = {$joinField}" ];
+				$joins[$alias] = [ $join, "{$alias}.comment_id = {$key}_id" ];
 
 				if ( ( $this->stage & SCHEMA_COMPAT_READ_BOTH ) === SCHEMA_COMPAT_READ_NEW ) {
 					$fields["{$key}_text"] = "{$alias}.comment_text";
@@ -234,9 +198,8 @@ class CommentStoreBase {
 			}
 			$data = null;
 		} else {
-			$tempTableStage = $this->tempTables[$key]['stage'] ?? MIGRATION_NEW;
 			$row2 = null;
-			if ( ( $tempTableStage & SCHEMA_COMPAT_READ_NEW ) && array_key_exists( "{$key}_id", $row ) ) {
+			if ( array_key_exists( "{$key}_id", $row ) ) {
 				if ( !$db ) {
 					throw new InvalidArgumentException(
 						"\$row does not contain fields needed for comment $key and getComment(), but "
@@ -248,24 +211,6 @@ class CommentStoreBase {
 					->select( [ 'comment_id', 'comment_text', 'comment_data' ] )
 					->from( 'comment' )
 					->where( [ 'comment_id' => $id ] )
-					->caller( __METHOD__ )->fetchRow();
-			}
-			if ( !$row2 && ( $tempTableStage & SCHEMA_COMPAT_READ_OLD ) &&
-				array_key_exists( "{$key}_pk", $row )
-			) {
-				if ( !$db ) {
-					throw new InvalidArgumentException(
-						"\$row does not contain fields needed for comment $key and getComment(), but "
-						. "does have fields for getCommentLegacy()"
-					);
-				}
-				$t = $this->tempTables[$key];
-				$id = $row["{$key}_pk"];
-				$row2 = $db->newSelectQueryBuilder()
-					->select( [ 'comment_id', 'comment_text', 'comment_data' ] )
-					->from( $t['table'] )
-					->join( 'comment', null, [ "comment_id = {$t['field']}" ] )
-					->where( [ $t['pk'] => $id ] )
 					->caller( __METHOD__ )->fetchRow();
 			}
 			if ( $row2 === null && $fallback && isset( $row[$key] ) ) {
@@ -448,50 +393,6 @@ class CommentStoreBase {
 	}
 
 	/**
-	 * Implementation for `self::insert()` and `self::insertWithTempTable()`
-	 * @param IDatabase $dbw
-	 * @param string $key A key such as "rev_comment" identifying the comment
-	 *  field being fetched.
-	 * @param string|Message|CommentStoreComment $comment
-	 * @param array|null $data
-	 * @return array [ array $fields, callable $callback ]
-	 */
-	private function insertInternal( IDatabase $dbw, $key, $comment, $data ) {
-		$fields = [];
-		$callback = null;
-
-		$comment = $this->createComment( $dbw, $comment, $data );
-
-		if ( $this->stage & SCHEMA_COMPAT_WRITE_OLD ) {
-			$fields[$key] = $this->lang->truncateForDatabase( $comment->text, 255 );
-		}
-
-		if ( $this->stage & SCHEMA_COMPAT_WRITE_NEW ) {
-			$tempTableStage = $this->tempTables[$key]['stage'] ?? MIGRATION_NEW;
-			if ( $tempTableStage & SCHEMA_COMPAT_WRITE_OLD ) {
-				$t = $this->tempTables[$key];
-				$func = __METHOD__;
-				$commentId = $comment->id;
-				$callback = static function ( $id ) use ( $dbw, $commentId, $t, $func ) {
-					$dbw->insert(
-						$t['table'],
-						[
-							$t['pk'] => $id,
-							$t['field'] => $commentId,
-						],
-						$func
-					);
-				};
-			}
-			if ( $tempTableStage & SCHEMA_COMPAT_WRITE_NEW ) {
-				$fields["{$key}_id"] = $comment->id;
-			}
-		}
-
-		return [ $fields, $callback ];
-	}
-
-	/**
 	 * Insert a comment in preparation for a row that references it
 	 *
 	 * @note It's recommended to include both the call to this method and the
@@ -513,68 +414,18 @@ class CommentStoreBase {
 			// @codeCoverageIgnoreEnd
 		}
 
-		$tempTableStage = $this->tempTables[$key]['stage'] ?? MIGRATION_NEW;
-		if ( $tempTableStage & SCHEMA_COMPAT_WRITE_OLD ) {
-			throw new InvalidArgumentException( "Must use insertWithTempTable() for $key" );
+		$fields = [];
+		$comment = $this->createComment( $dbw, $comment, $data );
+
+		if ( $this->stage & SCHEMA_COMPAT_WRITE_OLD ) {
+			$fields[$key] = $this->lang->truncateForDatabase( $comment->text, 255 );
 		}
 
-		[ $fields ] = $this->insertInternal( $dbw, $key, $comment, $data );
+		if ( $this->stage & SCHEMA_COMPAT_WRITE_NEW ) {
+			$fields["{$key}_id"] = $comment->id;
+		}
+
 		return $fields;
-	}
-
-	/**
-	 * Insert a comment in a temporary table in preparation for a row that references it
-	 *
-	 * This is currently needed for "rev_comment". In the future that requirement will be removed.
-	 *
-	 * @note It's recommended to include both the call to this method and the
-	 *  row insert in the same transaction.
-	 *
-	 * @since 1.30
-	 * @since 1.31 Method signature changed, $key parameter added (required since 1.35)
-	 * @param IDatabase $dbw Database handle to insert on
-	 * @param string $key A key such as "rev_comment" identifying the comment
-	 *  field being fetched.
-	 * @param string|Message|CommentStoreComment|null $comment As for `self::createComment()`
-	 * @param array|null $data As for `self::createComment()`
-	 * @return array Two values:
-	 *  - array Fields for the insert or update
-	 *  - callable Function to call when the primary key of the row being
-	 *    inserted/updated is known. Pass it that primary key.
-	 */
-	public function insertWithTempTable( IDatabase $dbw, $key, $comment = null, $data = null ) {
-		if ( $comment === null ) {
-			// @codeCoverageIgnoreStart
-			throw new InvalidArgumentException( '$comment can not be null' );
-			// @codeCoverageIgnoreEnd
-		}
-
-		if ( !isset( $this->tempTables[$key] ) ) {
-			throw new InvalidArgumentException( "Must use insert() for $key" );
-		} elseif ( isset( $this->tempTables[$key]['deprecatedIn'] ) ) {
-			wfDeprecated( __METHOD__ . " for $key", $this->tempTables[$key]['deprecatedIn'] );
-		}
-
-		[ $fields, $callback ] = $this->insertInternal( $dbw, $key, $comment, $data );
-		if ( !$callback ) {
-			$callback = static function () {
-				// Do nothing.
-			};
-		}
-		return [ $fields, $callback ];
-	}
-
-	/**
-	 * @since 1.40
-	 *
-	 * @param string $key
-	 * @return int|null
-	 */
-	public function getTempTableMigrationStage( string $key ) {
-		if ( !isset( $this->tempTables[$key] ) ) {
-			throw new InvalidArgumentException( "There is no temp table for $key" );
-		}
-		return $this->tempTables[$key]['stage'];
 	}
 
 	/**

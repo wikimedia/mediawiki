@@ -20,8 +20,6 @@
 
 namespace MediaWiki\CommentStore;
 
-use Language;
-
 /**
  * @defgroup CommentStore CommentStore
  *
@@ -41,37 +39,6 @@ use Language;
  * @since 1.30
  */
 class CommentStore extends CommentStoreBase {
-	/**
-	 * Define fields that use temporary tables for transitional purposes
-	 * Array keys are field names, values are arrays with these possible fields:
-	 *  - table: Temporary table name
-	 *  - pk: Temporary table column referring to the main table's primary key
-	 *  - field: Temporary table column referring comment.comment_id
-	 *  - joinPK: Main table's primary key
-	 *  - stage: Migration stage
-	 *  - deprecatedIn: Version when using insertWithTempTable() was deprecated
-	 */
-	protected const TEMP_TABLES = [
-		'rev_comment' => [
-			'table' => 'revision_comment_temp',
-			'pk' => 'revcomment_rev',
-			'field' => 'revcomment_comment_id',
-			'joinPK' => 'rev_id',
-			'stage' => SCHEMA_COMPAT_NEW,
-			'deprecatedIn' => null,
-		],
-	];
-
-	/**
-	 * @param Language $lang Language to use for comment truncation. Defaults
-	 *  to content language.
-	 * @param int $stage One of the MIGRATION_* constants, or an appropriate
-	 *  combination of SCHEMA_COMPAT_* constants. Always MIGRATION_NEW for
-	 *  MediaWiki core since 1.33.
-	 */
-	public function __construct( Language $lang, $stage ) {
-		parent::__construct( self::TEMP_TABLES, $lang, $stage );
-	}
 }
 
 class_alias( CommentStore::class, 'CommentStore' );
