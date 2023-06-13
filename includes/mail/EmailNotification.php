@@ -331,6 +331,8 @@ class EmailNotification {
 			wfDebug( __METHOD__ . ": user talk page edited, but user does not exist" );
 		} elseif ( $targetUser->getId() == $editor->getId() ) {
 			wfDebug( __METHOD__ . ": user edited their own talk page, no notification sent" );
+		} elseif ( $targetUser->isTemp() ) {
+			wfDebug( __METHOD__ . ": talk page owner is a temporary user so doesn't have email" );
 		} elseif ( $config->get( MainConfigNames::BlockDisablesLogin ) &&
 			$targetUser->getBlock()
 		) {
@@ -409,12 +411,15 @@ class EmailNotification {
 			'';
 		$keys['$UNWATCHURL'] = $this->title->getCanonicalURL( 'action=unwatch' );
 
-		if ( !$this->editor->isRegistered() ) {
+		if ( $this->editor->isAnon() ) {
 			# real anon (user:xxx.xxx.xxx.xxx)
 			$keys['$PAGEEDITOR'] = wfMessage( 'enotif_anon_editor', $this->editor->getName() )
 				->inContentLanguage()->text();
 			$keys['$PAGEEDITOR_EMAIL'] = wfMessage( 'noemailtitle' )->inContentLanguage()->text();
-
+		} elseif ( $this->editor->isTemp() ) {
+			$keys['$PAGEEDITOR'] = wfMessage( 'enotif_temp_editor', $this->editor->getName() )
+				->inContentLanguage()->text();
+			$keys['$PAGEEDITOR_EMAIL'] = wfMessage( 'noemailtitle' )->inContentLanguage()->text();
 		} else {
 			$keys['$PAGEEDITOR'] = $config->get( MainConfigNames::EnotifUseRealName ) &&
 					$this->editor->getRealName() !== ''
