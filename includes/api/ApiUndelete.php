@@ -86,6 +86,9 @@ class ApiUndelete extends ApiBase {
 		if ( !$titleObj || $titleObj->isExternal() ) {
 			$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $params['title'] ) ] );
 		}
+		if ( !$titleObj->canExist() ) {
+			$this->dieWithError( 'apierror-pagecannotexist' );
+		}
 
 		// Convert timestamps
 		if ( !isset( $params['timestamps'] ) ) {
