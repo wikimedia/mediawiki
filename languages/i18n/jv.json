@@ -24,7 +24,8 @@
 			"Vlad5250",
 			"לערי ריינהארט",
 			"아라",
-			"Base"
+			"Base",
+			"Bangrapip"
 		]
 	},
 	"tog-underline": "Garis ngisori pranala:",
@@ -2349,7 +2350,7 @@
 	"semiprotectedpagemovewarning": "<strong>Cathetan:</strong> Kaca iki wis direksa saéngga mung naraguna kadhaftar kang bisa ngalihaké.\nÈntri log pungkasan cumepak ing ngisor kanggo rujukan:",
 	"move-over-sharedrepo": "[[:$1]] ana ing panyimpenan barengan. Ngalih barkas mawa sesirah iki bakal ngamblegi barkas barengan iku.",
 	"file-exists-sharedrepo": "Jeneng berkas kapilih wis ana kanggo ing panyimpenan bebarengan.\nMangga pilih jeneng liya.",
-	"export": "Èspor kaca",
+	"export": "Èkspor kaca",
 	"exporttext": "Panjenengan bisa ngèkspor tèks lan sajarah panyuntingan kaca tartamtu utawa sèt kaca awujud XML tartamtu. Banjur iki bisa diimpor ing wiki liyané nganggo MediaWiki nganggo fasilitas [[Special:Import|impor kaca]].\n\nKanggo ngèkspor kaca-kaca artikel, lebokna irah-irahan utawa judhul sajroning kothak tèks ing ngisor iki, irah-irahan utawa judhul siji per baris, lan pilihen apa panjenengan péngin ngèkspor jangkep karo vèrsi sadurungé, utawa namung vèrsi saiki mawa cathetan panyuntingan pungkasan.\n\nYèn panjenengan namun péngin ngimpor vèrsi pungkasan, panjenengan uga bisa nganggo pranala kusus, contoné [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] kanggo ngèkspor artikel \"[[{{MediaWiki:Mainpage}}]]\".",
 	"exportall": "Ngèkspor kabèh kaca",
 	"exportcuronly": "Namung èkspor révisi saiki, dudu kabèh vèrsi lawas",
