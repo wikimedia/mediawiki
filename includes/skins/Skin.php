@@ -34,6 +34,7 @@ use MediaWiki\Skin\SkinComponentListItem;
 use MediaWiki\Skin\SkinComponentMenu;
 use MediaWiki\Skin\SkinComponentRegistry;
 use MediaWiki\Skin\SkinComponentRegistryContext;
+use MediaWiki\Skin\SkinComponentUtils;
 use MediaWiki\Specials\SpecialEmailUser;
 use MediaWiki\Specials\SpecialUserRights;
 use MediaWiki\Title\Title;
@@ -1082,29 +1083,25 @@ abstract class Skin extends ContextSource {
 	 * If $proto is set to null, make a local URL. Otherwise, make a full
 	 * URL with the protocol specified.
 	 *
+	 * @deprecated since 1.39 - Moved to SkinComponentUtils::makeSpecialUrl
 	 * @param string $name Name of the Special page
 	 * @param string|array $urlaction Query to append
 	 * @param string|null $proto Protocol to use or null for a local URL
 	 * @return string
 	 */
 	public static function makeSpecialUrl( $name, $urlaction = '', $proto = null ) {
-		$title = SpecialPage::getSafeTitleFor( $name );
-		if ( $proto === null ) {
-			return $title->getLocalURL( $urlaction );
-		} else {
-			return $title->getFullURL( $urlaction, false, $proto );
-		}
+		return SkinComponentUtils::makeSpecialUrl( $name, $urlaction, $proto );
 	}
 
 	/**
+	 * @deprecated since 1.39 - Moved to SkinComponentUtils::makeSpecialUrlSubpage
 	 * @param string $name
 	 * @param string|bool $subpage false for no subpage
 	 * @param string|array $urlaction
 	 * @return string
 	 */
 	public static function makeSpecialUrlSubpage( $name, $subpage, $urlaction = '' ) {
-		$title = SpecialPage::getSafeTitleFor( $name, $subpage );
-		return $title->getLocalURL( $urlaction );
+		return SkinComponentUtils::makeSpecialUrl( $name, $subpage, $urlaction );
 	}
 
 	/**
@@ -1281,11 +1278,11 @@ abstract class Skin extends ContextSource {
 		if ( $uploadNavigationUrl ) {
 			$nav_urls['upload'] = [ 'href' => $uploadNavigationUrl ];
 		} elseif ( UploadBase::isEnabled() && UploadBase::isAllowed( $this->getAuthority() ) === true ) {
-			$nav_urls['upload'] = [ 'href' => self::makeSpecialUrl( 'Upload' ) ];
+			$nav_urls['upload'] = [ 'href' => SkinComponentUtils::makeSpecialUrl( 'Upload' ) ];
 		} else {
 			$nav_urls['upload'] = false;
 		}
-		$nav_urls['specialpages'] = [ 'href' => self::makeSpecialUrl( 'Specialpages' ) ];
+		$nav_urls['specialpages'] = [ 'href' => SkinComponentUtils::makeSpecialUrl( 'Specialpages' ) ];
 
 		$nav_urls['print'] = false;
 		$nav_urls['permalink'] = false;
@@ -1347,13 +1344,13 @@ abstract class Skin extends ContextSource {
 
 			$nav_urls['contributions'] = [
 				'text' => $this->msg( 'tool-link-contributions', $rootUser )->text(),
-				'href' => self::makeSpecialUrlSubpage( 'Contributions', $rootUser ),
+				'href' => SkinComponentUtils::makeSpecialUrlSubpage( 'Contributions', $rootUser ),
 				'tooltip-params' => [ $rootUser ],
 			];
 
 			$nav_urls['log'] = [
 				'icon' => 'listBullet',
-				'href' => self::makeSpecialUrlSubpage( 'Log', $rootUser )
+				'href' => SkinComponentUtils::makeSpecialUrlSubpage( 'Log', $rootUser )
 			];
 
 			if ( $this->getAuthority()->isAllowed( 'block' ) ) {
@@ -1364,17 +1361,17 @@ abstract class Skin extends ContextSource {
 				if ( $userBlock ) {
 					$nav_urls['changeblockip'] = [
 						'icon' => 'block',
-						'href' => self::makeSpecialUrlSubpage( 'Block', $rootUser )
+						'href' => SkinComponentUtils::makeSpecialUrlSubpage( 'Block', $rootUser )
 					];
 					$nav_urls['unblockip'] = [
 						'icon' => 'unBlock',
-						'href' => self::makeSpecialUrlSubpage( 'Unblock', $rootUser )
+						'href' => SkinComponentUtils::makeSpecialUrlSubpage( 'Unblock', $rootUser )
 					];
 				} else {
 					$nav_urls['blockip'] = [
 						'icon' => 'block',
 						'text' => $this->msg( 'blockip', $rootUser )->text(),
-						'href' => self::makeSpecialUrlSubpage( 'Block', $rootUser )
+						'href' => SkinComponentUtils::makeSpecialUrlSubpage( 'Block', $rootUser )
 					];
 				}
 			}
@@ -1382,7 +1379,7 @@ abstract class Skin extends ContextSource {
 			if ( $this->showEmailUser( $user ) ) {
 				$nav_urls['emailuser'] = [
 					'text' => $this->msg( 'tool-link-emailuser', $rootUser )->text(),
-					'href' => self::makeSpecialUrlSubpage( 'Emailuser', $rootUser ),
+					'href' => SkinComponentUtils::makeSpecialUrlSubpage( 'Emailuser', $rootUser ),
 					'tooltip-params' => [ $rootUser ],
 				];
 			}
@@ -1394,7 +1391,7 @@ abstract class Skin extends ContextSource {
 				) {
 					$nav_urls['mute'] = [
 						'text' => $this->msg( 'mute-preferences' )->text(),
-						'href' => self::makeSpecialUrlSubpage( 'Mute', $rootUser )
+						'href' => SkinComponentUtils::makeSpecialUrlSubpage( 'Mute', $rootUser )
 					];
 				}
 
@@ -1416,7 +1413,7 @@ abstract class Skin extends ContextSource {
 						$canChange ? 'tool-link-userrights' : 'tool-link-userrights-readonly',
 						$rootUser
 					)->text(),
-					'href' => self::makeSpecialUrlSubpage( 'Userrights', ...$linkArgs )
+					'href' => SkinComponentUtils::makeSpecialUrlSubpage( 'Userrights', ...$linkArgs )
 				];
 			}
 		}
