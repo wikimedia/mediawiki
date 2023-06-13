@@ -644,7 +644,6 @@ abstract class ParsoidHandler extends Handler {
 					'Access to the content has been suppressed for this audience.', 403
 				);
 			} catch ( RevisionAccessException $e ) {
-				error_log( $e );
 				throw new HttpException(
 					'Revision access exception.', 404
 				);
