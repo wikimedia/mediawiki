@@ -67,9 +67,15 @@
 		if ( key.slice( 0, EXPIRY_PREFIX.length ) === EXPIRY_PREFIX ) {
 			throw new Error( 'Key can\'t have a prefix of ' + EXPIRY_PREFIX );
 		}
+		// Compare to `false` instead of checking falsiness to tolerate subclasses and mocks in
+		// extensions that weren't updated to add a return value to setExpires().
+		if ( this.setExpires( key, expiry ) === false ) {
+			// If we failed to set the expiration time, don't try to set the value,
+			// otherwise it might end up set with no expiration.
+			return false;
+		}
 		try {
 			this.store.setItem( key, value );
-			this.setExpires( key, expiry );
 			return true;
 		} catch ( e ) {}
 		return false;
@@ -135,6 +141,7 @@
 	 * @param {number} [expiry] Number of seconds after which this item can be deleted,
 	 *  omit to clear the expiry (either making the item never expire, or to clean up
 	 *  when deleting a key).
+	 * @return {boolean} The expiry was set (or cleared) [since 1.41]
 	 */
 	SafeStorage.prototype.setExpires = function ( key, expiry ) {
 		if ( expiry ) {
@@ -143,12 +150,15 @@
 					EXPIRY_PREFIX + key,
 					Math.floor( Date.now() / 1000 ) + expiry
 				);
+				return true;
 			} catch ( e ) {}
 		} else {
 			try {
 				this.store.removeItem( EXPIRY_PREFIX + key );
+				return true;
 			} catch ( e ) {}
 		}
+		return false;
 	};
 
 	// Minimum amount of time (in milliseconds) for an iteration involving localStorage access.
