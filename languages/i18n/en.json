@@ -4525,6 +4525,7 @@
 	"copyupload-allowed-domains": "",
 	"parsoid-stash-rate-limit-error": "Stashing failed because rate limit was exceeded. Please try again later.",
 	"parsoid-resource-limit-exceeded": "Parsoid resources limit exceeded: $1",
+	"parsoid-revision-access": "Parsoid can't access the revision: $1",
 	"parsoid-client-error": "Invalid input Parsoid: $1",
 	"newpages-showhide-bots": "$1 bots",
 	"newpages-showhide-patrolled": "$1 patrolled edits",

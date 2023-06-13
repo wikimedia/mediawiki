@@ -436,31 +436,35 @@ class ParsoidOutputAccess {
 			[ $page, $revision ] = $this->resolveRevision( $page, $revision );
 		}
 
-		$mainSlot = $revision->getSlot( SlotRecord::MAIN );
-		$contentModel = $mainSlot->getModel();
-		if ( !$this->supportsContentModel( $contentModel ) ) {
-			// This is a messy fix for T324711. The real solution is T311648.
-			// For now, just return dummy parser output.
-			return $this->makeDummyParserOutput( $contentModel );
+		try {
+			$mainSlot = $revision->getSlot( SlotRecord::MAIN );
+			$contentModel = $mainSlot->getModel();
+			if ( !$this->supportsContentModel( $contentModel ) ) {
+				// This is a messy fix for T324711. The real solution is T311648.
+				// For now, just return dummy parser output.
+				return $this->makeDummyParserOutput( $contentModel );
 
-			// TODO: go back to throwing, once RESTbase no longer expects to get a parsoid rendering for
-			//any kind of content (T324711).
-			/*
-				// TODO: throw an internal exception here, convert to HttpError in HtmlOutputRendererHelper.
-				throw new HttpException( 'Parsoid does not support content model ' . $mainSlot->getModel(), 400 );
+				// TODO: go back to throwing, once RESTbase no longer expects to get a parsoid rendering for
+				//any kind of content (T324711).
+				/*
+					// TODO: throw an internal exception here, convert to HttpError in HtmlOutputRendererHelper.
+					throw new HttpException( 'Parsoid does not support content model ' . $mainSlot->getModel(), 400 );
+				}
+				*/
 			}
-			*/
-		}
 
-		$languageOverride = $parserOpts->getTargetLanguage();
-		$pageConfig = $this->parsoidPageConfigFactory->create(
-			$page,
-			null,
-			$revision,
-			null,
-			$languageOverride,
-			$this->options->get( MainConfigNames::ParsoidSettings )
-		);
+			$pageConfig = $this->parsoidPageConfigFactory->create(
+				$page,
+				null,
+				$revision,
+				null,
+				$parserOpts->getTargetLanguage(),
+				$this->options->get( MainConfigNames::ParsoidSettings ),
+				true  // ensureAccessibleContent
+			);
+		} catch ( RevisionAccessException $e ) {
+			return Status::newFatal( 'parsoid-revision-access', $e->getMessage() );
+		}
 
 		$status = $this->parseInternal( $pageConfig, $parsoidOptions );
 

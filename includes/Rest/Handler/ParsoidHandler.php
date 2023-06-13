@@ -40,11 +40,9 @@ use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseException;
-use MediaWiki\Revision\BadRevisionException;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\Revision\SuppressedDataException;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 use MobileContext;
@@ -592,6 +590,9 @@ abstract class ParsoidHandler extends Handler {
 			);
 		}
 
+		$hasOldId = ( $revision !== null );
+		$ensureAccessibleContent = !$html2WtMode || $hasOldId;
+
 		try {
 			// Note: Parsoid by design isn't supposed to use the user
 			// context right now, and all user state is expected to be
@@ -601,37 +602,10 @@ abstract class ParsoidHandler extends Handler {
 			// @phan-suppress-next-line PhanUndeclaredMethod method defined in subtype
 			$pageConfig = $this->pageConfigFactory->create(
 				$title, $user, $revisionRecord ?? $revision, null, $pagelanguageOverride,
-				$this->parsoidSettings
+				$this->parsoidSettings, $ensureAccessibleContent
 			);
-		} catch ( RevisionAccessException $exception ) {
-			throw new HttpException( 'The specified revision is deleted or suppressed.', 404 );
-		}
-
-		$hasOldId = ( $revision !== null );
-		if ( !$html2WtMode || $hasOldId ) {
-			$pageContent = $pageConfig->getRevisionContent();
-			if ( $pageContent === null ) {
-				// T234549
-				throw new HttpException(
-					'The specified revision does not exist.', 404
-				);
-			}
-			try {
-				// FIXME: Parsoid is littered with the main slot assumption
-				$pageContent->getContent( SlotRecord::MAIN );
-			} catch ( BadRevisionException $e ) {
-				throw new HttpException(
-					'The text of this revision is missing or corrupted.', 410
-				);
-			} catch ( SuppressedDataException $e ) {
-				throw new HttpException(
-					'Access to the content has been suppressed for this audience.', 403
-				);
-			} catch ( RevisionAccessException $e ) {
-				throw new HttpException(
-					'Revision access exception.', 404
-				);
-			}
+		} catch ( RevisionAccessException $e ) {
+			throw new HttpException( $e->getMessage(), 404 );
 		}
 
 		if ( !$html2WtMode && $wikitextOverride === null && !$hasOldId ) {
