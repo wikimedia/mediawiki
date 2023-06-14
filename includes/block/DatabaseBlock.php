@@ -564,7 +564,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * Autoblocks the given IP, referring to this block.
 	 *
 	 * @param string $autoblockIP The IP to autoblock.
-	 * @return int|bool ID if an autoblock was inserted, false if not.
+	 * @return int|false ID if an autoblock was inserted, false if not.
 	 */
 	public function doAutoblock( $autoblockIP ) {
 		# If autoblocks are disabled, go away.
@@ -572,14 +572,22 @@ class DatabaseBlock extends AbstractBlock {
 			return false;
 		}
 
+		$services = MediaWikiServices::getInstance();
+		[ $target, $type ] = $services->getBlockUtils()
+			->parseBlockTarget( $autoblockIP );
+		if ( $type != self::TYPE_IP ) {
+			wfDebug( "Autoblock not supported for ip ranges." );
+			return false;
+		}
+		$target = (string)$target;
+
 		# Check if autoblock exempt.
-		if ( self::isExemptedFromAutoblocks( $autoblockIP ) ) {
+		if ( self::isExemptedFromAutoblocks( $target ) ) {
 			return false;
 		}
 
-		$services = MediaWikiServices::getInstance();
 		# Allow hooks to cancel the autoblock.
-		if ( !( new HookRunner( $services->getHookContainer() ) )->onAbortAutoblock( $autoblockIP, $this ) ) {
+		if ( !( new HookRunner( $services->getHookContainer() ) )->onAbortAutoblock( $target, $this ) ) {
 			wfDebug( "Autoblock aborted by hook." );
 			return false;
 		}
@@ -594,7 +602,7 @@ class DatabaseBlock extends AbstractBlock {
 		$res = $dbr->select(
 			$blockQuery['tables'],
 			$blockQuery['fields'],
-			[ 'ipb_address' => $autoblockIP ],
+			[ 'ipb_address' => $target ],
 			__METHOD__,
 			[],
 			$blockQuery['joins']
@@ -632,8 +640,8 @@ class DatabaseBlock extends AbstractBlock {
 
 		# Make a new block object with the desired properties.
 		$autoblock = new DatabaseBlock( [ 'wiki' => $this->getWikiId() ] );
-		wfDebug( "Autoblocking {$this->getTargetName()}@" . $autoblockIP );
-		$autoblock->setTarget( UserIdentityValue::newAnonymous( $autoblockIP, $this->getWikiId() ) );
+		wfDebug( "Autoblocking {$this->getTargetName()}@" . $target );
+		$autoblock->setTarget( UserIdentityValue::newAnonymous( $target, $this->getWikiId() ) );
 		$autoblock->setBlocker( $blocker );
 		$autoblock->setReason(
 			wfMessage(
