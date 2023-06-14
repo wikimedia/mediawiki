@@ -195,8 +195,6 @@ class DeleteQueryBuilder {
 
 	/**
 	 * Run the constructed DELETE query and return the result.
-	 *
-	 * @return bool
 	 */
 	public function execute() {
 		if ( !$this->conds ) {
@@ -207,7 +205,7 @@ class DeleteQueryBuilder {
 			throw new UnexpectedValueException(
 				__METHOD__ . ' expects table not to be empty' );
 		}
-		return $this->db->delete( $this->table, $this->conds, $this->caller );
+		$this->db->delete( $this->table, $this->conds, $this->caller );
 	}
 
 	/**

@@ -303,8 +303,6 @@ class UpdateQueryBuilder {
 
 	/**
 	 * Run the constructed UPDATE query and return the result.
-	 *
-	 * @return bool
 	 */
 	public function execute() {
 		if ( !$this->conds ) {
@@ -319,7 +317,7 @@ class UpdateQueryBuilder {
 			throw new UnexpectedValueException(
 				__METHOD__ . ' expects table not to be empty' );
 		}
-		return $this->db->update( $this->table, $this->set, $this->conds, $this->caller, $this->options );
+		$this->db->update( $this->table, $this->set, $this->conds, $this->caller, $this->options );
 	}
 
 	/**

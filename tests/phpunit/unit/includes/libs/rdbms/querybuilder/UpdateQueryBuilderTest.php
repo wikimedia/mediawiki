@@ -97,9 +97,8 @@ class UpdateQueryBuilderTest extends PHPUnit\Framework\TestCase {
 
 	public function testExecute() {
 		$this->uqb->update( 't' )->set( 'f' )->where( 'c' )->caller( __METHOD__ );
-		$res = $this->uqb->execute();
+		$this->uqb->execute();
 		$this->assertEquals( 'UPDATE t SET f WHERE (c)', $this->db->getLastSqls() );
-		$this->assertIsBool( $res );
 	}
 
 	public function testGetQueryInfo() {
