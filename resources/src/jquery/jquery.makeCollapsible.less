@@ -8,13 +8,21 @@
 
 /* See also jquery.makeCollapsible.js */
 .mw-collapsible-toggle {
-	// This element is now a button, but it used to be a <span> containing a link,
-	// so keep those styles for now (until someone dares to try to change the design).
-	all: unset;
 	float: right;
 	-moz-user-select: none;
 	-webkit-user-select: none;
+	-ms-user-select: none;
 	user-select: none;
+	// This element is now a button, but it used to be a link, so keep link styles for now
+	// (until someone dares to try to change the design).
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background: none;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
 
 	.mw-collapsible-text {
 		color: @color-link;
