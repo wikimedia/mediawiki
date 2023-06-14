@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\CommentStore\CommentStore;
-use MediaWiki\CommentStore\CommentStoreBase;
 use MediaWiki\Language\RawMessage;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
@@ -42,30 +41,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 		$lang->method( 'truncateForVisual' )->willReturnCallback( static function ( $str, $len ) {
 			return mb_strlen( $str ) > $len ? mb_substr( $str, 0, $len - 3 ) . '...' : $str;
 		} );
-		return new class( $lang, $stage ) extends CommentStoreBase {
-			protected const TEMP_TABLES = [
-				'rev_comment' => [
-					'table' => 'revision_comment_temp',
-					'pk' => 'revcomment_rev',
-					'field' => 'revcomment_comment_id',
-					'joinPK' => 'rev_id',
-					'stage' => MIGRATION_OLD,
-					'deprecatedIn' => null,
-				],
-				'cs2_comment' => [
-					'table' => 'commentstore2_temp',
-					'pk' => 'cs2t_id',
-					'field' => 'cs2t_comment_id',
-					'joinPK' => 'cs2_id',
-					'stage' => MIGRATION_OLD,
-					'deprecatedIn' => null,
-				],
-			];
-
-			public function __construct( $lang, $stage ) {
-				parent::__construct( self::TEMP_TABLES, $lang, $stage );
-			}
-		};
+		return new CommentStore( $lang, $stage );
 	}
 
 	/**
@@ -77,8 +53,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 		try {
 			$m = new CommentStore(
 				$this->createMock( Language::class ),
-				$stage,
-				[]
+				$stage
 			);
 			if ( $exceptionMsg !== null ) {
 				$this->fail( 'Expected exception not thrown' );
@@ -162,15 +137,15 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 			],
 			'Revision, write-both' => [
 				MIGRATION_WRITE_BOTH, 'rev_comment',
-				[ 'rev_comment_old' => 'rev_comment', 'rev_comment_pk' => 'rev_id' ],
+				[ 'rev_comment_old' => 'rev_comment', 'rev_comment_id' => 'rev_comment_id' ],
 			],
 			'Revision, write-new' => [
 				MIGRATION_WRITE_NEW, 'rev_comment',
-				[ 'rev_comment_old' => 'rev_comment', 'rev_comment_pk' => 'rev_id' ],
+				[ 'rev_comment_old' => 'rev_comment', 'rev_comment_id' => 'rev_comment_id' ],
 			],
 			'Revision, new' => [
 				MIGRATION_NEW, 'rev_comment',
-				[ 'rev_comment_pk' => 'rev_id' ],
+				[ 'rev_comment_id' => 'rev_comment_id' ],
 			],
 			'Revision, write-both/read-old' => [
 				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'rev_comment',
@@ -182,7 +157,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 			],
 			'Revision, write-both/read-new' => [
 				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'rev_comment',
-				[ 'rev_comment_pk' => 'rev_id' ],
+				[ 'rev_comment_id' => 'rev_comment_id' ],
 			],
 
 			'Image, old' => [
@@ -333,7 +308,6 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 			'Revision, write-both' => [
 				MIGRATION_WRITE_BOTH, 'rev_comment', [
 					'tables' => [
-						'temp_rev_comment' => 'revision_comment_temp',
 						'comment_rev_comment' => 'comment',
 					],
 					'fields' => [
@@ -342,16 +316,13 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 						'rev_comment_cid' => 'comment_rev_comment.comment_id',
 					],
 					'joins' => [
-						'temp_rev_comment' => [ 'LEFT JOIN', 'temp_rev_comment.revcomment_rev = rev_id' ],
-						'comment_rev_comment' => [ 'LEFT JOIN',
-							'comment_rev_comment.comment_id = temp_rev_comment.revcomment_comment_id' ],
+						'comment_rev_comment' => [ 'LEFT JOIN', 'comment_rev_comment.comment_id = rev_comment_id' ],
 					],
 				],
 			],
 			'Revision, write-new' => [
 				MIGRATION_WRITE_NEW, 'rev_comment', [
 					'tables' => [
-						'temp_rev_comment' => 'revision_comment_temp',
 						'comment_rev_comment' => 'comment',
 					],
 					'fields' => [
@@ -360,16 +331,13 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 						'rev_comment_cid' => 'comment_rev_comment.comment_id',
 					],
 					'joins' => [
-						'temp_rev_comment' => [ 'LEFT JOIN', 'temp_rev_comment.revcomment_rev = rev_id' ],
-						'comment_rev_comment' => [ 'LEFT JOIN',
-							'comment_rev_comment.comment_id = temp_rev_comment.revcomment_comment_id' ],
+						'comment_rev_comment' => [ 'LEFT JOIN', 'comment_rev_comment.comment_id = rev_comment_id' ],
 					],
 				],
 			],
 			'Revision, new' => [
 				MIGRATION_NEW, 'rev_comment', [
 					'tables' => [
-						'temp_rev_comment' => 'revision_comment_temp',
 						'comment_rev_comment' => 'comment',
 					],
 					'fields' => [
@@ -378,9 +346,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 						'rev_comment_cid' => 'comment_rev_comment.comment_id',
 					],
 					'joins' => [
-						'temp_rev_comment' => [ 'JOIN', 'temp_rev_comment.revcomment_rev = rev_id' ],
-						'comment_rev_comment' => [ 'JOIN',
-							'comment_rev_comment.comment_id = temp_rev_comment.revcomment_comment_id' ],
+						'comment_rev_comment' => [ 'JOIN', 'comment_rev_comment.comment_id = rev_comment_id' ],
 					],
 				],
 			],
@@ -398,7 +364,6 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 			'Revision, write-both/read-new' => [
 				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'rev_comment', [
 					'tables' => [
-						'temp_rev_comment' => 'revision_comment_temp',
 						'comment_rev_comment' => 'comment',
 					],
 					'fields' => [
@@ -407,9 +372,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 						'rev_comment_cid' => 'comment_rev_comment.comment_id',
 					],
 					'joins' => [
-						'temp_rev_comment' => [ 'JOIN', 'temp_rev_comment.revcomment_rev = rev_id' ],
-						'comment_rev_comment' => [ 'JOIN',
-							'comment_rev_comment.comment_id = temp_rev_comment.revcomment_comment_id' ],
+						'comment_rev_comment' => [ 'JOIN', 'comment_rev_comment.comment_id = rev_comment_id' ],
 					],
 				],
 			],
@@ -557,31 +520,21 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 
 		foreach ( $stages as $writeStage => $possibleReadStages ) {
 			$wstore = $this->makeStore( $writeStage );
-			$usesTemp = $key === 'cs2_comment';
 
-			if ( $usesTemp ) {
-				[ $fields, $callback ] = $wstore->insertWithTempTable(
-					$this->db, $key, $comment, $data
-				);
-			} else {
-				$fields = $wstore->insert( $this->db, $key, $comment, $data );
-			}
+			$fields = $wstore->insert( $this->db, $key, $comment, $data );
 
 			if ( $writeStage & SCHEMA_COMPAT_WRITE_OLD ) {
 				$this->assertSame( $expect['text'], $fields[$key], "old field, stage=$writeStage" );
 			} else {
 				$this->assertArrayNotHasKey( $key, $fields, "old field, stage=$writeStage" );
 			}
-			if ( ( $writeStage & SCHEMA_COMPAT_WRITE_NEW ) && !$usesTemp ) {
+			if ( $writeStage & SCHEMA_COMPAT_WRITE_NEW ) {
 				$this->assertArrayHasKey( "{$key}_id", $fields, "new field, stage=$writeStage" );
 			} else {
 				$this->assertArrayNotHasKey( "{$key}_id", $fields, "new field, stage=$writeStage" );
 			}
 
 			$this->db->insert( $table, [ $pk => ++$id ] + $fields, __METHOD__ );
-			if ( $usesTemp ) {
-				$callback( $id );
-			}
 
 			foreach ( $possibleReadStages as $readStage ) {
 				$rstore = $this->makeStore( $readStage );
@@ -672,49 +625,6 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 					'data' => [ 'foo' => 'bar' ],
 				]
 			],
-
-			'Revision, text comment' => [
-				'commentstore2', 'cs2_comment', 'cs2_id', '{{text}} comment', null, [
-					'text' => '{{text}} comment',
-					'message' => $textCommentMsg,
-					'data' => null,
-				]
-			],
-			'Revision, text comment with data' => [
-				'commentstore2', 'cs2_comment', 'cs2_id', '{{text}} comment', [ 'message' => 42 ], [
-					'text' => '{{text}} comment',
-					'message' => $textCommentMsg,
-					'data' => [ 'message' => 42 ],
-				]
-			],
-			'Revision, message comment' => [
-				'commentstore2', 'cs2_comment', 'cs2_id', $msgComment, null, [
-					'text' => '(message comment)',
-					'message' => $msgComment,
-					'data' => null,
-				]
-			],
-			'Revision, message comment with data' => [
-				'commentstore2', 'cs2_comment', 'cs2_id', $msgComment, [ 'message' => 42 ], [
-					'text' => '(message comment)',
-					'message' => $msgComment,
-					'data' => [ 'message' => 42 ],
-				]
-			],
-			'Revision, nested message comment' => [
-				'commentstore2', 'cs2_comment', 'cs2_id', $nestedMsgComment, null, [
-					'text' => '(Main Page)',
-					'message' => $nestedMsgComment,
-					'data' => null,
-				]
-			],
-			'Revision, CommentStoreComment' => [
-				'commentstore2', 'cs2_comment', 'cs2_id', clone $comStoreComment, [ 'baz' => 'baz' ], [
-					'text' => 'comment store comment',
-					'message' => $comStoreComment->message,
-					'data' => [ 'foo' => 'bar' ],
-				]
-			],
 		];
 	}
 
@@ -759,7 +669,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 		$res = @$store->getComment( 'rev_comment', [ 'rev_comment' => 'comment' ], true );
 		$this->assertSame( 'comment', $res->text );
 		try {
-			$store->getComment( 'rev_comment', [ 'rev_comment_pk' => 1 ] );
+			$store->getComment( 'rev_comment', [ 'rev_comment_id' => 1 ] );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( InvalidArgumentException $ex ) {
 			$this->assertSame(
@@ -768,68 +678,6 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 				$ex->getMessage()
 			);
 		}
-	}
-
-	public static function provideStages() {
-		return [
-			'MIGRATION_OLD' => [ MIGRATION_OLD ],
-			'MIGRATION_WRITE_BOTH' => [ MIGRATION_WRITE_BOTH ],
-			'MIGRATION_WRITE_NEW' => [ MIGRATION_WRITE_NEW ],
-			'MIGRATION_NEW' => [ MIGRATION_NEW ],
-
-			'SCHEMA_COMPAT write-both/read-old' => [ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD ],
-			'SCHEMA_COMPAT write-both/read-new' => [ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideStages
-	 * @param int $stage
-	 */
-	public function testInsertWrong( $stage ) {
-		$store = $this->makeStore( $stage );
-		$this->expectException( InvalidArgumentException::class );
-		$this->expectExceptionMessage( "Must use insertWithTempTable() for rev_comment" );
-		$store->insert( $this->db, 'rev_comment', 'foo' );
-	}
-
-	/**
-	 * @dataProvider provideStages
-	 * @param int $stage
-	 */
-	public function testInsertWithTempTableWrong( $stage ) {
-		$store = $this->makeStore( $stage );
-		$this->expectException( InvalidArgumentException::class );
-		$this->expectExceptionMessage( "Must use insert() for ipb_reason" );
-		$store->insertWithTempTable( $this->db, 'ipb_reason', 'foo' );
-	}
-
-	/**
-	 * @dataProvider provideStages
-	 * @param int $stage
-	 */
-	public function testInsertWithTempTableDeprecated( $stage ) {
-		$lang = $this->getServiceContainer()->getContentLanguage();
-		$store = new class( $lang, $stage ) extends CommentStoreBase {
-			public function __construct( $lang, $stage ) {
-				parent::__construct(
-					[
-						'ipb_reason' => [
-							'stage' => MIGRATION_NEW,
-							'deprecatedIn' => '1.30',
-						],
-					],
-					$lang,
-					$stage
-				);
-			}
-		};
-
-		$this->hideDeprecated(
-			'MediaWiki\\CommentStore\\CommentStoreBase::insertWithTempTable for ipb_reason'
-		);
-		[ $fields, $callback ] = $store->insertWithTempTable( $this->db, 'ipb_reason', 'foo' );
-		$this->assertIsCallable( $callback );
 	}
 
 	public function testInsertTruncation() {
