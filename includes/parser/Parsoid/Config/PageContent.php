@@ -79,10 +79,4 @@ class PageContent extends IPageContent {
 		return $this->rev->getContentOrThrow( $role )->serialize();
 	}
 
-	/** @inheritDoc */
-	public function getRedirectTarget(): ?string {
-		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
-		throw new \Error( "Unused, remove" );
-	}
-
 }
