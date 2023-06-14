@@ -2396,6 +2396,7 @@
 	"enotif_lastvisited": "לצפייה בכל השינויים מאז ביקורך האחרון בדף, ר' $1",
 	"enotif_lastdiff": "לצפייה בשינוי זה, ר' $1",
 	"enotif_anon_editor": "משתמש אנונימי $1",
+	"enotif_temp_editor": "משתמש זמני $1",
 	"enotif_body": "לכבוד $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nתקציר העריכה: $PAGESUMMARY $PAGEMINOREDIT\n\nבאפשרותך ליצור קשר עם העורך:\nבדואר אלקטרוני: $PAGEEDITOR_EMAIL\nבאתר: $PAGEEDITOR_WIKI\n\nלא תהיינה הודעות על פעולות נוספות עד לביקורך בדף הזה מהחשבון שלך. באפשרותך גם לאפס את דגלי ההודעות עבור כל הדפים שברשימת המעקב שלך.\n\nבברכה, מערכת ההודעות של {{SITENAME}}.\n\n--\nכדי לשנות את ההגדרות של הודעות הדוא\"ל, באפשרותך לבקר בדף:\n{{canonicalurl:{{#special:Preferences}}}}\n\nכדי לשנות את ההגדרות של רשימת המעקב שלך, באפשרותך לבקר בדף:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nכדי להסיר את הדף הזה מרשימת המעקב שלך, באפשרותך לבקר בדף:\n$UNWATCHURL\n\nלמשוב ולעזרה נוספת:\n$HELPPAGE",
 	"enotif_minoredit": "זוהי עריכה משנית",
 	"created": "נוצר",
