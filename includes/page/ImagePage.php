@@ -485,6 +485,7 @@ class ImagePage extends Article {
 					$linkPrev = $linkNext = '';
 					$count = $this->displayImg->pageCount();
 					$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+					$out->addModules( 'mediawiki.page.media' );
 
 					if ( $page > 1 ) {
 						$label = $context->msg( 'imgmultipageprev' )->text();
