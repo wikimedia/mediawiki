@@ -148,6 +148,7 @@ class DatabaseBlockStore {
 					[ 'LIMIT' => $limit ]
 				);
 				if ( $ids ) {
+					$ids = array_map( 'intval', $ids );
 					$store->deleteByBlockId( $ids );
 					$dbw->delete( 'ipblocks', [ 'ipb_id' => $ids ], $fname );
 				}
@@ -244,6 +245,7 @@ class DatabaseBlockStore {
 				__METHOD__
 			);
 			if ( $ids ) {
+				$ids = array_map( 'intval', $ids );
 				$dbw->delete( 'ipblocks', [ 'ipb_id' => $ids ], __METHOD__ );
 				$this->blockRestrictionStore->deleteByBlockId( $ids );
 				$dbw->insert( 'ipblocks', $row, __METHOD__, [ 'IGNORE' ] );
