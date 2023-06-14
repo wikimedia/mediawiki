@@ -587,7 +587,32 @@ class DatabaseBlock extends AbstractBlock {
 		# It's okay to autoblock. Go ahead and insert/update the block...
 
 		# Do not add a *new* block if the IP is already blocked.
-		$ipblock = self::newFromTarget( $autoblockIP );
+		$dbr = $this->getDBConnection( DB_REPLICA );
+
+		$blockQuery = self::getQueryInfo();
+
+		$res = $dbr->select(
+			$blockQuery['tables'],
+			$blockQuery['fields'],
+			[ 'ipb_address' => $autoblockIP ],
+			__METHOD__,
+			[],
+			$blockQuery['joins']
+		);
+
+		$blocks = [];
+		foreach ( $res as $row ) {
+			$block = new DatabaseBlock( [ 'wiki' => $this->getWikiId() ] );
+			$block->initFromRow( $row );
+
+			if ( $block->isExpired() ) {
+				continue;
+			}
+
+			$blocks[] = $block;
+		}
+		$ipblock = self::chooseMostSpecificBlock( $blocks );
+
 		if ( $ipblock ) {
 			# Check if the block is an autoblock and would exceed the user block
 			# if renewed. If so, do nothing, otherwise prolong the block time...
