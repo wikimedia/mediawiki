@@ -92,45 +92,46 @@ class LogEventsList extends ContextSource {
 	/**
 	 * Show options for the log list
 	 *
-	 * @param array|string $types
-	 * @param string $user
-	 * @param string|PageReference $page
-	 * @param bool $pattern
+	 * @param array $types
 	 * @param int|string $year Use 0 to start with no year preselected.
 	 * @param int|string $month A month in the 1..12 range. Use 0 to start with no month
 	 *  preselected.
 	 * @param int|string $day A day in the 1..31 range. Use 0 to start with no month
 	 *  preselected.
-	 * @param array|null $filter
-	 * @param string $tagFilter Tag to select by default
 	 * @param string|null $action
-	 * @param array $extras
-	 * @param bool $tagInvert whether tags are filtered for (false) or out (true)
+	 * @return bool Whether the options are valid
 	 */
-	public function showOptions( $types = [], $user = '', $page = '', $pattern = false, $year = 0,
-		$month = 0, $day = 0, $filter = null, $tagFilter = '', $action = null, $extras = [],
-		$tagInvert = false
-	) {
-		// For B/C, we take strings, but make sure they are converted...
-		$types = ( $types === '' ) ? [] : (array)$types;
-
+	public function showOptions( $types = [], $year = 0, $month = 0, $day = 0, $action = null ) {
 		$formDescriptor = [];
 
 		// Basic selectors
-		$formDescriptor['type'] = $this->getTypeMenuDesc( $types );
-		$formDescriptor['user'] = $this->getUserInputDesc( $user );
-		$formDescriptor['page'] = $this->getTitleInputDesc( $page );
+		$formDescriptor['type'] = $this->getTypeMenuDesc();
+		$formDescriptor['user'] = [
+			'class' => HTMLUserTextField::class,
+			'label-message' => 'specialloguserlabel',
+			'name' => 'user',
+		];
+		$formDescriptor['page'] = [
+			'class' => HTMLTitleTextField::class,
+			'label-message' => 'speciallogtitlelabel',
+			'name' => 'page',
+			'required' => false,
+		];
 
 		// Title pattern, if allowed
 		if ( !$this->getConfig()->get( MainConfigNames::MiserMode ) ) {
-			$formDescriptor['pattern'] = $this->getTitlePatternDesc( $pattern );
+			$formDescriptor['pattern'] = [
+				'type' => 'check',
+				'label-message' => 'log-title-wildcard',
+				'name' => 'pattern',
+			];
 		}
 
 		// Add extra inputs if any
 		// This could either be a form descriptor array or a string with raw HTML.
 		// We need it to work in both cases and show a deprecation warning if it
 		// is a string. See T199495.
-		$extraInputsDescriptor = $this->getExtraInputsDesc( $types, $extras );
+		$extraInputsDescriptor = $this->getExtraInputsDesc( $types );
 		if (
 			is_array( $extraInputsDescriptor ) &&
 			!empty( $extraInputsDescriptor )
@@ -157,19 +158,17 @@ class LogEventsList extends ContextSource {
 			'type' => 'tagfilter',
 			'name' => 'tagfilter',
 			'label-message' => 'tag-filter',
-			'default' => $tagFilter,
 		];
 		$formDescriptor['tagInvert'] = [
 			'type' => 'check',
 			'name' => 'tagInvert',
 			'label-message' => 'invert',
 			'hide-if' => [ '===', 'tagfilter', '' ],
-			'default' => $tagInvert,
 		];
 
-		// Filter links
-		if ( $filter ) {
-			$formDescriptor['filters'] = $this->getFiltersDesc( $filter );
+		// Filter checkboxes, when work on all logs
+		if ( count( $types ) === 0 ) {
+			$formDescriptor['filters'] = $this->getFiltersDesc();
 		}
 
 		// Action filter
@@ -178,18 +177,20 @@ class LogEventsList extends ContextSource {
 			$this->allowedActions !== null &&
 			count( $this->allowedActions ) > 0
 		) {
-			$formDescriptor['subtype'] = $this->getActionSelectorDesc( $types, $action );
+			$formDescriptor['subtype'] = $this->getActionSelectorDesc( $types );
 		}
 
-		$context = new DerivativeContext( $this->getContext() );
-		$context->setTitle( SpecialPage::getTitleFor( 'Log' ) ); // Remove subpage
-		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $context );
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
 		$htmlForm
+			->setTitle( SpecialPage::getTitleFor( 'Log' ) ) // Remove subpage
 			->setSubmitTextMsg( 'logeventslist-submit' )
 			->setMethod( 'GET' )
 			->setWrapperLegendMsg( 'log' )
-			// T321154
-			->setFormIdentifier( 'logeventslist' );
+			->setFormIdentifier( 'logeventslist', true ) // T321154
+			// Dummy callback for data validation in trySubmit()
+			->setSubmitCallback( static function () {
+				return true;
+			} );
 
 		// TODO This will should be removed at some point. See T199495.
 		if ( isset( $extraInputsString ) ) {
@@ -200,39 +201,33 @@ class LogEventsList extends ContextSource {
 			) );
 		}
 
-		$htmlForm->prepareForm()->displayForm( false );
+		$result = $htmlForm->prepareForm()->trySubmit();
+		$htmlForm->displayForm( $result );
+		return $result === true || ( $result instanceof Status && $result->isGood() );
 	}
 
 	/**
-	 * @param array $filter
 	 * @return array Form descriptor
 	 */
-	private function getFiltersDesc( $filter ) {
+	private function getFiltersDesc() {
 		$optionsMsg = [];
-		$default = [];
-		foreach ( $filter as $type => $val ) {
+		$filters = $this->getConfig()->get( MainConfigNames::FilterLogTypes );
+		foreach ( $filters as $type => $val ) {
 			$optionsMsg["logeventslist-{$type}-log"] = $type;
-
-			if ( $val === false ) {
-				$default[] = $type;
-			}
 		}
 		return [
 			'class' => HTMLMultiSelectField::class,
 			'label-message' => 'logeventslist-more-filters',
 			'flatlist' => true,
 			'options-messages' => $optionsMsg,
-			'default' => $default,
+			'default' => array_keys( array_intersect( $filters, [ false ] ) ),
 		];
 	}
 
 	/**
-	 * @param array $queryTypes
 	 * @return array Form descriptor
 	 */
-	private function getTypeMenuDesc( $queryTypes ) {
-		$queryType = count( $queryTypes ) == 1 ? $queryTypes[0] : '';
-
+	private function getTypeMenuDesc() {
 		$typesByName = []; // Temporary array
 		// First pass to load the log names
 		foreach ( LogPage::validTypes() as $type ) {
@@ -255,67 +250,20 @@ class LogEventsList extends ContextSource {
 			'class' => HTMLSelectField::class,
 			'name' => 'type',
 			'options' => array_flip( $typesByName ),
-			'default' => $queryType,
-		];
-	}
-
-	/**
-	 * @param string $user
-	 * @return array Form descriptor
-	 */
-	private function getUserInputDesc( $user ) {
-		return [
-			'class' => HTMLUserTextField::class,
-			'label-message' => 'specialloguserlabel',
-			'name' => 'user',
-			'default' => $user,
-		];
-	}
-
-	/**
-	 * @param string|PageReference $page
-	 * @return array Form descriptor
-	 */
-	private function getTitleInputDesc( $page ) {
-		if ( $page instanceof PageReference ) {
-			$titleFormatter = MediaWikiServices::getInstance()->getTitleFormatter();
-			$page = $titleFormatter->getPrefixedText( $page );
-		}
-		return [
-			'class' => HTMLTitleTextField::class,
-			'label-message' => 'speciallogtitlelabel',
-			'name' => 'page',
-			'required' => false,
-			'default' => $page,
-		];
-	}
-
-	/**
-	 * @param bool $pattern
-	 * @return array Form descriptor
-	 */
-	private function getTitlePatternDesc( $pattern ) {
-		return [
-			'type' => 'check',
-			'label-message' => 'log-title-wildcard',
-			'name' => 'pattern',
-			'default' => $pattern,
 		];
 	}
 
 	/**
 	 * @param array $types
-	 * @param array $extras
 	 * @return array|string Form descriptor or string with HTML
 	 */
-	private function getExtraInputsDesc( $types, $extras ) {
+	private function getExtraInputsDesc( $types ) {
 		if ( count( $types ) == 1 ) {
 			if ( $types[0] == 'suppress' ) {
 				return [
 					'type' => 'text',
 					'label-message' => 'revdelete-offender',
 					'name' => 'offender',
-					'default' => $extras['offender'] ?? '',
 				];
 			} else {
 				// Allow extensions to add their own extra inputs
@@ -334,10 +282,9 @@ class LogEventsList extends ContextSource {
 	/**
 	 * Drop down menu for selection of actions that can be used to filter the log
 	 * @param array $types
-	 * @param string $action
 	 * @return array Form descriptor
 	 */
-	private function getActionSelectorDesc( $types, $action ) {
+	private function getActionSelectorDesc( $types ) {
 		$actionOptions = [];
 		$actionOptions[ 'log-action-filter-all' ] = '';
 
@@ -350,7 +297,6 @@ class LogEventsList extends ContextSource {
 			'class' => HTMLSelectField::class,
 			'name' => 'subtype',
 			'options-messages' => $actionOptions,
-			'default' => $action,
 			'label' => $this->msg( 'log-action-filter-' . $types[0] )->text(),
 		];
 	}
