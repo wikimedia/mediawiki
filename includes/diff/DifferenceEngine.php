@@ -178,6 +178,9 @@ class DifferenceEngine extends ContextSource {
 	/** @var bool Was the diff fetched from cache? */
 	protected $mCacheHit = false;
 
+	/** @var string|null Cache key if the diff was fetched from cache */
+	private $cacheHitKey = null;
+
 	/**
 	 * Set this to true to add debug info to the HTML output.
 	 * Warning: this may cause RSS readers to spuriously mark articles as "new"
@@ -1214,6 +1217,10 @@ class DifferenceEngine extends ContextSource {
 				"</div>\n";
 		}
 
+		if ( $this->cacheHitKey !== null ) {
+			$body .= "\n<!-- diff cache key " . htmlspecialchars( $this->cacheHitKey ) . " -->\n";
+		}
+
 		return $this->addHeader( $body, $otitle, $ntitle, $multi, $notice );
 	}
 
@@ -1269,13 +1276,13 @@ class DifferenceEngine extends ContextSource {
 				if ( is_string( $difftext ) ) {
 					$stats->updateCount( 'diff_cache.hit', 1 );
 					$difftext = $this->localiseDiff( $difftext );
-					$difftext .= "\n<!-- diff cache key $key -->\n";
-
+					$this->cacheHitKey = $key;
 					return $difftext;
 				}
 			} // don't try to load but save the result
 		}
 		$this->mCacheHit = false;
+		$this->cacheHitKey = null;
 
 		// Loadtext is permission safe, this just clears out the diff
 		if ( !$this->loadText() ) {
