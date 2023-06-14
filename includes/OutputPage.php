@@ -3693,7 +3693,13 @@ class OutputPage extends ContextSource {
 					resolveAlias( $title->getDBkey() );
 		} elseif ( $this->canUseWikiPage() ) {
 			$wikiPage = $this->getWikiPage();
-			$curRevisionId = $wikiPage->getLatest();
+			// If we already know that the latest revision ID is the same as the revision ID being viewed,
+			// avoid fetching it again, as it may give inconsistent results (T339164).
+			if ( $this->isRevisionCurrent() && $this->getRevisionId() ) {
+				$curRevisionId = $this->getRevisionId();
+			} else {
+				$curRevisionId = $wikiPage->getLatest();
+			}
 			$articleId = $wikiPage->getId();
 		}
 
