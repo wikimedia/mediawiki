@@ -26,7 +26,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
  *
  * @ingroup FileRepo
  */
-class ForeignDBViaLBRepo extends LocalRepo {
+class ForeignDBViaLBRepo extends LocalRepo implements IForeignRepoWithDB {
 	/** @var array */
 	protected $fileFactory = [ ForeignDBFile::class, 'newFromTitle' ];
 
