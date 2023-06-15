@@ -154,10 +154,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 		$lines = explode( "\n", $rawMimeTypes );
 		foreach ( $lines as $s ) {
 			$s = trim( $s );
-			if ( empty( $s ) ) {
-				continue;
-			}
-			if ( strpos( $s, '#' ) === 0 ) {
+			if ( $s === '' || str_starts_with( $s, '#' ) ) {
 				continue;
 			}
 
@@ -190,10 +187,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 		$lines = explode( "\n", $rawMimeInfo );
 		foreach ( $lines as $s ) {
 			$s = trim( $s );
-			if ( empty( $s ) ) {
-				continue;
-			}
-			if ( strpos( $s, '#' ) === 0 ) {
+			if ( $s === '' || str_starts_with( $s, '#' ) ) {
 				continue;
 			}
 

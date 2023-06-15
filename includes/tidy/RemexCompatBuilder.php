@@ -12,13 +12,7 @@ class RemexCompatBuilder extends TreeBuilder {
 	public function reconstructAFE( $sourceStart ) {
 		// These checks are redundant with the parent, but here for performance
 		$entry = $this->afe->getTail();
-		if ( !$entry ) {
-			return;
-		}
-		if ( $entry instanceof Marker ) {
-			return;
-		}
-		if ( $entry->stackIndex !== null ) {
+		if ( !$entry || $entry instanceof Marker || $entry->stackIndex !== null ) {
 			return;
 		}
 

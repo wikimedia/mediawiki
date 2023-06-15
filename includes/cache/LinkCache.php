@@ -535,11 +535,7 @@ class LinkCache implements LoggerAwareInterface {
 	 */
 	private function getPersistentCacheKey( $page ) {
 		// if no key can be derived, the page isn't cacheable
-		if ( $this->getCacheKey( $page ) === null ) {
-			return null;
-		}
-
-		if ( !$this->usePersistentCache( $page ) ) {
+		if ( $this->getCacheKey( $page ) === null || !$this->usePersistentCache( $page ) ) {
 			return null;
 		}
 

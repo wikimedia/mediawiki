@@ -102,14 +102,9 @@ class ExtensionJsonValidator {
 		$version = $data->manifest_version;
 		$schemaPath = __DIR__ . "/../../docs/extension.schema.v$version.json";
 
-		// Not too old
-		if ( $version < ExtensionRegistry::OLDEST_MANIFEST_VERSION ) {
-			throw new ExtensionJsonValidationError(
-				"$path is using a non-supported schema version"
-			);
-		}
-
-		if ( $version > ExtensionRegistry::MANIFEST_VERSION ) {
+		if ( $version < ExtensionRegistry::OLDEST_MANIFEST_VERSION ||
+			$version > ExtensionRegistry::MANIFEST_VERSION
+		) {
 			throw new ExtensionJsonValidationError(
 				"$path is using a non-supported schema version"
 			);

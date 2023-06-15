@@ -86,11 +86,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 
 	public function beginPrimaryAuthentication( array $reqs ) {
 		$req = AuthenticationRequest::getRequestByClass( $reqs, PasswordAuthenticationRequest::class );
-		if ( !$req ) {
-			return AuthenticationResponse::newAbstain();
-		}
-
-		if ( $req->username === null || $req->password === null ) {
+		if ( !$req || $req->username === null || $req->password === null ) {
 			return AuthenticationResponse::newAbstain();
 		}
 

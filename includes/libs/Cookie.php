@@ -98,18 +98,13 @@ class Cookie {
 
 		// Only allow full, valid IP addresses
 		if ( preg_match( '/^[0-9.]+$/', $domain ) ) {
-			if ( count( $dc ) != 4 ) {
-				return false;
-			}
-
-			if ( ip2long( $domain ) === false ) {
+			if ( count( $dc ) !== 4 || ip2long( $domain ) === false ) {
 				return false;
 			}
 
 			if ( $originDomain == null || $originDomain == $domain ) {
 				return true;
 			}
-
 		}
 
 		// Don't allow cookies for "co.uk" or "gov.uk", etc, but allow "supermarket.uk"

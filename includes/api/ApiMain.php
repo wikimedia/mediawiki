@@ -672,20 +672,13 @@ class ApiMain extends ApiBase {
 		$request = $this->getRequest();
 
 		// JSONP mode
-		if ( $request->getCheck( 'callback' ) ) {
-			$this->lacksSameOriginSecurity = true;
-			return true;
-		}
-
-		// Anonymous CORS
-		if ( $request->getVal( 'origin' ) === '*' ) {
-			$this->lacksSameOriginSecurity = true;
-			return true;
-		}
-
-		// Header to be used from XMLHTTPRequest when the request might
-		// otherwise be used for XSS.
-		if ( $request->getHeader( 'Treat-as-Untrusted' ) !== false ) {
+		if ( $request->getCheck( 'callback' ) ||
+			// Anonymous CORS
+			$request->getVal( 'origin' ) === '*' ||
+			// Header to be used from XMLHTTPRequest when the request might
+			// otherwise be used for XSS.
+			$request->getHeader( 'Treat-as-Untrusted' ) !== false
+		) {
 			$this->lacksSameOriginSecurity = true;
 			return true;
 		}

@@ -102,10 +102,9 @@ class BaseDump {
 			if ( $slot !== SlotRecord::MAIN ) {
 				$lastSlot = SlotRecord::MAIN;
 				while ( $lastSlot !== $slot ) {
-					if ( !$this->skipTo( 'content', 'revision' ) ) {
-						return null;
-					}
-					if ( !$this->skipTo( 'role', 'revision' ) ) {
+					if ( !$this->skipTo( 'content', 'revision' ) ||
+						!$this->skipTo( 'role', 'revision' )
+					) {
 						return null;
 					}
 					$lastSlot = $this->nodeContents();

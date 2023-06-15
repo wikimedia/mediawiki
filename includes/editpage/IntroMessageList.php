@@ -40,13 +40,9 @@ class IntroMessageList {
 	}
 
 	public function add( Message $msg, string $wrap = '$1' ): void {
-		if ( $msg->isDisabled() ) {
-			return;
+		if ( !$msg->isDisabled() && !isset( $this->skip[ $msg->getKey() ] ) ) {
+			$this->addWithKey( $msg->getKey(), $msg->parse(), $wrap );
 		}
-		if ( isset( $this->skip[ $msg->getKey() ] ) ) {
-			return;
-		}
-		$this->addWithKey( $msg->getKey(), $msg->parse(), $wrap );
 	}
 
 	public function addWithKey( string $key, string $html, string $wrap = '$1' ): void {
@@ -54,10 +50,9 @@ class IntroMessageList {
 			// Remove empty notices (T265798)
 			return;
 		}
-		if ( isset( $this->skip[ $key ] ) ) {
-			return;
+		if ( !isset( $this->skip[$key] ) ) {
+			$this->list[$key] = $this->wrap( $html, $wrap );
 		}
-		$this->list[ $key ] = $this->wrap( $html, $wrap );
 	}
 
 	public function getList(): array {
