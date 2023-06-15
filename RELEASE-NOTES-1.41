@@ -184,6 +184,8 @@ because of Phabricator reports.
 * Support was dropped for skins with paths relative to core which has been
   sending deprecation notices since 1.37. The skin `templateDirectory` key
   should now always be relative to the skin.
+* The Skin public thisquery property was removed without deprecation. Only
+  one skin was known to use it and that has been patched accordingly.
 * The jquery.tipsy module, deprecated since 1.28, has now been removed.
 * NamespaceInfo::getRestrictionLevels(), deprecated in 1.34, has been removed.
   Use PermissionManager::getNamespaceRestrictionLevels() instead.
@@ -316,6 +318,9 @@ because of Phabricator reports.
   LocalisationCache or MessageCache as appropriate.
 * VirtualRESTService class is deprecated in 1.41 and as a replacement
   we can use MultiHttpClient.
+* The following skin methods were deprecated:
+  - Skin::makeSpecialUrl (use Title or Special class instead)
+  - Skin::makeSpecialUrlSubpage (use Title or Special class instead)
 * …
 
 === Other changes in 1.41 ===

@@ -26,6 +26,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\ResourceLoader as RL;
+use MediaWiki\Skin\SkinComponentUtils;
 use MediaWiki\Specials\Contribute\ContributeFactory;
 use MediaWiki\Title\Title;
 
@@ -47,7 +48,6 @@ class SkinTemplate extends Skin {
 	public $thispage;
 	public $titletxt;
 	public $userpage;
-	public $thisquery;
 	// TODO: Rename this to $isRegistered (but that's a breaking change)
 	public $loggedin;
 	public $username;
@@ -112,14 +112,6 @@ class SkinTemplate extends Skin {
 		$this->titletxt = $title->getPrefixedText();
 		$userpageTitle = $user->getUserPage();
 		$this->userpage = $userpageTitle->getPrefixedText();
-		$query = [];
-		if ( !$request->wasPosted() ) {
-			$query = $request->getValues();
-			unset( $query['title'] );
-			unset( $query['returnto'] );
-			unset( $query['returntoquery'] );
-		}
-		$this->thisquery = wfArrayToCgi( $query );
 		$this->loggedin = $user->isRegistered();
 		$this->username = $user->getName();
 		$this->isTempUser = $user->isTemp();
@@ -415,7 +407,7 @@ class SkinTemplate extends Skin {
 		$services = MediaWikiServices::getInstance();
 		$authManager = $services->getAuthManager();
 		$groupPermissionsLookup = $services->getGroupPermissionsLookup();
-		$returnto = $this->getReturnToParam();
+		$returnto = SkinComponentUtils::getReturnToParam( $title, $request, $authority );
 
 		/* set up the default links for the personal toolbar */
 		$personal_urls = [];
@@ -440,7 +432,7 @@ class SkinTemplate extends Skin {
 				'icon' => 'userTalk'
 			];
 			if ( !$this->isTempUser ) {
-				$href = self::makeSpecialUrl( 'Preferences' );
+				$href = SkinComponentUtils::makeSpecialUrl( 'Preferences' );
 				$personal_urls['preferences'] = [
 					'text' => $this->msg( 'mypreferences' )->text(),
 					'href' => $href,
@@ -501,7 +493,7 @@ class SkinTemplate extends Skin {
 				// huge loss.
 				$personal_urls['anontalk'] = [
 					'text' => $this->msg( 'anontalk' )->text(),
-					'href' => self::makeSpecialUrlSubpage( 'Mytalk', false ),
+					'href' => SkinComponentUtils::makeSpecialUrlSubpage( 'Mytalk', false ),
 					'active' => false,
 					'icon' => 'userTalk',
 				];
@@ -533,40 +525,6 @@ class SkinTemplate extends Skin {
 		$this->getHookRunner()->onPersonalUrls( $personal_urls, $title, $this );
 
 		return $personal_urls;
-	}
-
-	/**
-	 * Builds query params for the page to return to, used when building links
-	 * @unstable
-	 *
-	 * @return string[]
-	 */
-	protected function getReturnToParam() {
-		$title = $this->getTitle();
-		$request = $this->getRequest();
-
-		# Due to T34276, if a user does not have read permissions,
-		# $this->getTitle() will just give Special:Badtitle, which is
-		# not especially useful as a returnto parameter. Use the title
-		# from the request instead, if there was one.
-		if ( $this->getAuthority()->isAllowed( 'read' ) ) {
-			$page = $title;
-		} else {
-			$page = Title::newFromText( $request->getVal( 'title', '' ) );
-		}
-		$page = $request->getVal( 'returnto', $page );
-		$returnto = [];
-		if ( strval( $page ) !== '' ) {
-			$returnto['returnto'] = $page;
-			$query = $request->getVal( 'returntoquery', $this->thisquery );
-			$paramsArray = wfCgiToArray( $query );
-			$query = wfArrayToCgi( $paramsArray );
-			if ( $query != '' ) {
-				$returnto['returntoquery'] = $query;
-			}
-		}
-
-		return $returnto;
 	}
 
 	/**
@@ -605,7 +563,7 @@ class SkinTemplate extends Skin {
 		$login_url = [
 			'single-id' => 'pt-login',
 			'text' => $this->msg( $loginlink )->text(),
-			'href' => self::makeSpecialUrl( 'Userlogin', $returnto ),
+			'href' => SkinComponentUtils::makeSpecialUrl( 'Userlogin', $returnto ),
 			'active' => $title->isSpecial( 'Userlogin' )
 				|| $title->isSpecial( 'CreateAccount' ) && $useCombinedLoginLink,
 			'icon' => 'logIn'
@@ -717,7 +675,9 @@ class SkinTemplate extends Skin {
 	 */
 	final protected function buildLogoutLinkData() {
 		$title = $this->getTitle();
-		$returnto = $this->getReturnToParam();
+		$request = $this->getRequest();
+		$authority = $this->getAuthority();
+		$returnto = SkinComponentUtils::getReturnToParam( $title, $request, $authority );
 		$isTemp = $this->isTempUser;
 		$msg = $isTemp ? 'templogout' : 'pt-userlogout';
 
@@ -725,7 +685,7 @@ class SkinTemplate extends Skin {
 			'single-id' => 'pt-logout',
 			'text' => $this->msg( $msg )->text(),
 			'data-mw' => 'interface',
-			'href' => self::makeSpecialUrl( 'Userlogout',
+			'href' => SkinComponentUtils::makeSpecialUrl( 'Userlogout',
 				// Note: userlogout link must always contain an & character, otherwise we might not be able
 				// to detect a buggy precaching proxy (T19790)
 				( $title->isSpecial( 'Preferences' ) ? [] : $returnto ) ),
@@ -747,7 +707,7 @@ class SkinTemplate extends Skin {
 		return [
 			'single-id' => 'pt-createaccount',
 			'text' => $this->msg( 'pt-createaccount' )->text(),
-			'href' => self::makeSpecialUrl( 'CreateAccount', $returnto ),
+			'href' => SkinComponentUtils::makeSpecialUrl( 'CreateAccount', $returnto ),
 			'active' => $title->isSpecial( 'CreateAccount' ),
 			'icon' => 'userAdd'
 		];
@@ -799,7 +759,7 @@ class SkinTemplate extends Skin {
 	 * @return array Array of data required to create a watchlist link.
 	 */
 	private function buildWatchlistData() {
-		$href = self::makeSpecialUrl( 'Watchlist' );
+		$href = SkinComponentUtils::makeSpecialUrl( 'Watchlist' );
 		$pageurl = $this->getTitle()->getLocalURL();
 
 		return [
@@ -1699,7 +1659,7 @@ class SkinTemplate extends Skin {
 		$isSpecialContributeShowable = $this->isSpecialContributeShowable();
 		$subpage = $userName ?? false;
 		if ( $isSpecialContributeShowable ) {
-			$href = self::makeSpecialUrlSubpage(
+			$href = SkinComponentUtils::makeSpecialUrlSubpage(
 				'Contribute',
 				false
 			);
@@ -1710,7 +1670,7 @@ class SkinTemplate extends Skin {
 				'icon' => 'edit'
 			];
 		} else {
-			$href = self::makeSpecialUrlSubpage(
+			$href = SkinComponentUtils::makeSpecialUrlSubpage(
 				$subpage !== false ? 'Contributions' : 'Mycontributions',
 				$subpage
 			);
