@@ -5,9 +5,11 @@
  */
 
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Specials\SpecialLog;
 
 /**
+ * @group Database
  * @covers \MediaWiki\Specials\SpecialLog
  */
 class SpecialLogTest extends SpecialPageTestBase {
@@ -39,6 +41,50 @@ class SpecialLogTest extends SpecialPageTestBase {
 			'qqx'
 		);
 		$this->assertStringContainsString( '(log-summary)', $html );
+	}
+
+	public function testSuppressionLog() {
+		// Have "BadGuy" create a revision
+		$user = ( new TestUser( 'BadGuy' ) )->getUser();
+		$title = $this->insertPage( 'Foo', 'Bar', null, $user )['title'];
+		$revId = $title->getLatestRevID();
+
+		// Hide our revision's comment
+		$list = RevisionDeleter::createList( 'revision', RequestContext::getMain(), $title, [ $revId ] );
+		$status = $list->setVisibility( [
+			'value' => [
+				RevisionRecord::DELETED_RESTRICTED => 1,
+				RevisionRecord::DELETED_COMMENT => 1
+			],
+			'comment' => 'SpecialLogTest'
+		] );
+		$this->assertTrue( $status->isGood() );
+
+		// Allow everyone to read the suppression log
+		$this->mergeMwGlobalArrayValue(
+			'wgGroupPermissions', [
+				'*' => [
+					'suppressionlog' => true
+				]
+			]
+		);
+
+		[ $html, ] = $this->executeSpecialPage(
+			'suppress',
+			new FauxRequest( [ 'offender' => 'BadGuy' ] ),
+			'qqx'
+		);
+		$this->assertStringNotContainsString( '(logempty)', $html );
+		$this->assertStringContainsString( '(logentry-suppress-revision', $html );
+
+		// Suppression log for unknown user should be empty
+		[ $html, ] = $this->executeSpecialPage(
+			'suppress',
+			new FauxRequest( [ 'offender' => 'GoodGuy' ] ),
+			'qqx'
+		);
+		$this->assertStringContainsString( '(logempty)', $html );
+		$this->assertStringNotContainsString( '(logentry-suppress-revision', $html );
 	}
 
 }

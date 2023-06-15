@@ -149,7 +149,10 @@ class SpecialLog extends SpecialPage {
 			$offenderName = $opts->getValue( 'offender' );
 			$offenderId = $this->actorNormalization->findActorIdByName( $offenderName, $dbr );
 			if ( $offenderId ) {
-				$qc = [ 'ls_field' => 'target_author_actor', 'ls_value' => $offenderId ];
+				$qc = [ 'ls_field' => 'target_author_actor', 'ls_value' => strval( $offenderId ) ];
+			} else {
+				// Unknown offender, thus results have to be empty
+				$qc = [ '1=0' ];
 			}
 		} else {
 			// Allow extensions to add relations to their search types
