@@ -68,7 +68,7 @@ class BlockRestrictionStore {
 	 * Retrieves the restrictions from the database by block id.
 	 *
 	 * @since 1.33
-	 * @param int|array $blockId
+	 * @param int|int[] $blockId
 	 * @return Restriction[]
 	 */
 	public function loadByBlockId( $blockId ) {
@@ -257,7 +257,7 @@ class BlockRestrictionStore {
 	 * Delete the restrictions by block ID.
 	 *
 	 * @since 1.33
-	 * @param int|array $blockId
+	 * @param int|int[] $blockId
 	 * @return bool
 	 */
 	public function deleteByBlockId( $blockId ) {
@@ -272,7 +272,7 @@ class BlockRestrictionStore {
 	 * Delete the restrictions by parent block ID.
 	 *
 	 * @since 1.33
-	 * @param int|array $parentBlockId
+	 * @param int|int[] $parentBlockId
 	 * @return bool
 	 */
 	public function deleteByParentBlockId( $parentBlockId ) {

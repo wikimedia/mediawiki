@@ -502,7 +502,7 @@ class BlockListPager extends TablePager {
 			}
 
 			if ( !$row->ipb_sitewide ) {
-				$partialBlocks[] = $row->ipb_id;
+				$partialBlocks[] = (int)$row->ipb_id;
 			}
 		}
 
