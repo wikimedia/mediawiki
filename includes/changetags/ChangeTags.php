@@ -27,7 +27,6 @@ use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
-use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -615,6 +614,7 @@ class ChangeTags {
 	 * ORDER BY. For example, if you had ORDER BY foo_timestamp DESC, you will now need
 	 * GROUP BY foo_timestamp, foo_id ORDER BY foo_timestamp DESC, foo_id DESC.
 	 *
+	 * @deprecated since 1.41 use ChangeTagsStore::modifyDisplayQuery instead
 	 * @param string|array &$tables Table names, see Database::select
 	 * @param string|array &$fields Fields used in query, see Database::select
 	 * @param string|array &$conds Conditions used in query, see Database::select
@@ -627,81 +627,15 @@ class ChangeTags {
 	public static function modifyDisplayQuery( &$tables, &$fields, &$conds,
 		&$join_conds, &$options, $filter_tag = '', bool $exclude = false
 	) {
-		$useTagFilter = MediaWikiServices::getInstance()->getMainConfig()->get(
-			MainConfigNames::UseTagFilter );
-
-		// Normalize to arrays
-		$tables = (array)$tables;
-		$fields = (array)$fields;
-		$conds = (array)$conds;
-		$options = (array)$options;
-
-		$fields['ts_tags'] = MediaWikiServices::getInstance()->getChangeTagsStore()->makeTagSummarySubquery( $tables );
-		// We use an alias and qualify the conditions in case there are
-		// multiple joins to this table.
-		// In particular for compatibility with the RC filters that extension Translate does.
-
-		// Figure out which ID field to use
-		if ( in_array( 'recentchanges', $tables ) ) {
-			$join_cond = self::DISPLAY_TABLE_ALIAS . '.ct_rc_id=rc_id';
-		} elseif ( in_array( 'logging', $tables ) ) {
-			$join_cond = self::DISPLAY_TABLE_ALIAS . '.ct_log_id=log_id';
-		} elseif ( in_array( 'revision', $tables ) ) {
-			$join_cond = self::DISPLAY_TABLE_ALIAS . '.ct_rev_id=rev_id';
-		} elseif ( in_array( 'archive', $tables ) ) {
-			$join_cond = self::DISPLAY_TABLE_ALIAS . '.ct_rev_id=ar_rev_id';
-		} else {
-			throw new InvalidArgumentException( 'Unable to determine appropriate JOIN condition for tagging.' );
-		}
-
-		if ( !$useTagFilter ) {
-			return;
-		}
-
-		if ( !is_array( $filter_tag ) ) {
-			// some callers provide false or null
-			$filter_tag = (string)$filter_tag;
-		}
-
-		if ( $filter_tag !== [] && $filter_tag !== '' ) {
-			// Somebody wants to filter on a tag.
-			// Add an INNER JOIN on change_tag
-			$filterTagIds = [];
-			$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
-			foreach ( (array)$filter_tag as $filterTagName ) {
-				try {
-					$filterTagIds[] = $changeTagDefStore->getId( $filterTagName );
-				} catch ( NameTableAccessException $exception ) {
-				}
-			}
-
-			if ( $exclude ) {
-				if ( $filterTagIds !== [] ) {
-					$tables[self::DISPLAY_TABLE_ALIAS] = self::CHANGE_TAG;
-					$join_conds[self::DISPLAY_TABLE_ALIAS] = [
-						'LEFT JOIN',
-						[ $join_cond, self::DISPLAY_TABLE_ALIAS . '.ct_tag_id' => $filterTagIds ]
-					];
-					$conds[] = self::DISPLAY_TABLE_ALIAS . ".ct_tag_id IS NULL";
-				}
-			} else {
-				$tables[self::DISPLAY_TABLE_ALIAS] = self::CHANGE_TAG;
-				$join_conds[self::DISPLAY_TABLE_ALIAS] = [ 'JOIN', $join_cond ];
-				if ( $filterTagIds !== [] ) {
-					$conds[self::DISPLAY_TABLE_ALIAS . '.ct_tag_id'] = $filterTagIds;
-				} else {
-					// all tags were invalid, return nothing
-					$conds[] = '0=1';
-				}
-
-				if (
-					is_array( $filter_tag ) && count( $filter_tag ) > 1 &&
-					!in_array( 'DISTINCT', $options )
-				) {
-					$options[] = 'DISTINCT';
-				}
-			}
-		}
+		MediaWikiServices::getInstance()->getChangeTagsStore()->modifyDisplayQuery(
+			$tables,
+			$fields,
+			$conds,
+			$join_conds,
+			$options,
+			$filter_tag,
+			$exclude
+		);
 	}
 
 	/**

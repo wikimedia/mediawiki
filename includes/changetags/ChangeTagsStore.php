@@ -28,6 +28,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;
@@ -58,11 +59,14 @@ class ChangeTagsStore {
 	 */
 	private const CHANGE_TAG_DEF = 'change_tag_def';
 
+	public const DISPLAY_TABLE_ALIAS = 'changetagdisplay';
+
 	/**
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::SoftwareTags,
+		MainConfigNames::UseTagFilter,
 	];
 
 	/**
@@ -747,5 +751,103 @@ class ChangeTagsStore {
 				'pcTTL' => WANObjectCache::TTL_PROC_LONG
 			]
 		);
+	}
+
+	/**
+	 * Applies all tags-related changes to a query.
+	 * Handles selecting tags, and filtering.
+	 * Needs $tables to be set up properly, so we can figure out which join conditions to use.
+	 *
+	 * WARNING: If $filter_tag contains more than one tag and $exclude is false, this function
+	 * will add DISTINCT, which may cause performance problems for your query unless you put
+	 * the ID field of your table at the end of the ORDER BY, and set a GROUP BY equal to the
+	 * ORDER BY. For example, if you had ORDER BY foo_timestamp DESC, you will now need
+	 * GROUP BY foo_timestamp, foo_id ORDER BY foo_timestamp DESC, foo_id DESC.
+	 *
+	 * @param string|array &$tables Table names, see Database::select
+	 * @param string|array &$fields Fields used in query, see Database::select
+	 * @param string|array &$conds Conditions used in query, see Database::select
+	 * @param array &$join_conds Join conditions, see Database::select
+	 * @param string|array &$options Options, see Database::select
+	 * @param string|array|false|null $filter_tag Tag(s) to select on (OR)
+	 * @param bool $exclude If true, exclude tag(s) from $filter_tag (NOR)
+	 *
+	 */
+	public function modifyDisplayQuery( &$tables, &$fields, &$conds,
+		&$join_conds, &$options, $filter_tag = '', bool $exclude = false
+	) {
+		$useTagFilter = $this->options->get( MainConfigNames::UseTagFilter );
+
+		// Normalize to arrays
+		$tables = (array)$tables;
+		$fields = (array)$fields;
+		$conds = (array)$conds;
+		$options = (array)$options;
+
+		$fields['ts_tags'] = $this->makeTagSummarySubquery( $tables );
+		// We use an alias and qualify the conditions in case there are
+		// multiple joins to this table.
+		// In particular for compatibility with the RC filters that extension Translate does.
+
+		// Figure out which ID field to use
+		if ( in_array( 'recentchanges', $tables ) ) {
+			$join_cond = self::DISPLAY_TABLE_ALIAS . '.ct_rc_id=rc_id';
+		} elseif ( in_array( 'logging', $tables ) ) {
+			$join_cond = self::DISPLAY_TABLE_ALIAS . '.ct_log_id=log_id';
+		} elseif ( in_array( 'revision', $tables ) ) {
+			$join_cond = self::DISPLAY_TABLE_ALIAS . '.ct_rev_id=rev_id';
+		} elseif ( in_array( 'archive', $tables ) ) {
+			$join_cond = self::DISPLAY_TABLE_ALIAS . '.ct_rev_id=ar_rev_id';
+		} else {
+			throw new InvalidArgumentException( 'Unable to determine appropriate JOIN condition for tagging.' );
+		}
+
+		if ( !$useTagFilter ) {
+			return;
+		}
+
+		if ( !is_array( $filter_tag ) ) {
+			// some callers provide false or null
+			$filter_tag = (string)$filter_tag;
+		}
+
+		if ( $filter_tag !== [] && $filter_tag !== '' ) {
+			// Somebody wants to filter on a tag.
+			// Add an INNER JOIN on change_tag
+			$filterTagIds = [];
+			foreach ( (array)$filter_tag as $filterTagName ) {
+				try {
+					$filterTagIds[] = $this->changeTagDefStore->getId( $filterTagName );
+				} catch ( NameTableAccessException $exception ) {
+				}
+			}
+
+			if ( $exclude ) {
+				if ( $filterTagIds !== [] ) {
+					$tables[self::DISPLAY_TABLE_ALIAS] = self::CHANGE_TAG;
+					$join_conds[self::DISPLAY_TABLE_ALIAS] = [
+						'LEFT JOIN',
+						[ $join_cond, self::DISPLAY_TABLE_ALIAS . '.ct_tag_id' => $filterTagIds ]
+					];
+					$conds[] = self::DISPLAY_TABLE_ALIAS . ".ct_tag_id IS NULL";
+				}
+			} else {
+				$tables[self::DISPLAY_TABLE_ALIAS] = self::CHANGE_TAG;
+				$join_conds[self::DISPLAY_TABLE_ALIAS] = [ 'JOIN', $join_cond ];
+				if ( $filterTagIds !== [] ) {
+					$conds[self::DISPLAY_TABLE_ALIAS . '.ct_tag_id'] = $filterTagIds;
+				} else {
+					// all tags were invalid, return nothing
+					$conds[] = '0=1';
+				}
+
+				if (
+					is_array( $filter_tag ) && count( $filter_tag ) > 1 &&
+					!in_array( 'DISTINCT', $options )
+				) {
+					$options[] = 'DISTINCT';
+				}
+			}
+		}
 	}
 }
