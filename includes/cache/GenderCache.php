@@ -130,12 +130,10 @@ class GenderCache {
 	public function doTitlesArray( $titles, $caller = '' ) {
 		$users = [];
 		foreach ( $titles as $titleObj ) {
-			if ( !$this->nsInfo->hasGenderDistinction( $titleObj->getNamespace() ) ) {
-				continue;
+			if ( $this->nsInfo->hasGenderDistinction( $titleObj->getNamespace() ) ) {
+				$users[] = $titleObj->getText();
 			}
-			$users[] = $titleObj->getText();
 		}
-
 		$this->doQuery( $users, $caller );
 	}
 

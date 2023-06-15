@@ -879,17 +879,10 @@ class MessageCache implements LoggerAwareInterface {
 	 * @return bool
 	 */
 	private function isCacheExpired( $cache ) {
-		if ( !isset( $cache['VERSION'] ) || !isset( $cache['EXPIRY'] ) ) {
-			return true;
-		}
-		if ( $cache['VERSION'] !== MSG_CACHE_VERSION ) {
-			return true;
-		}
-		if ( wfTimestampNow() >= $cache['EXPIRY'] ) {
-			return true;
-		}
-
-		return false;
+		return !isset( $cache['VERSION'] ) ||
+			!isset( $cache['EXPIRY'] ) ||
+			$cache['VERSION'] !== MSG_CACHE_VERSION ||
+			$cache['EXPIRY'] <= wfTimestampNow();
 	}
 
 	/**
