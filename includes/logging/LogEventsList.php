@@ -187,8 +187,12 @@ class LogEventsList extends ContextSource {
 			->setMethod( 'GET' )
 			->setWrapperLegendMsg( 'log' )
 			->setFormIdentifier( 'logeventslist', true ) // T321154
-			// Dummy callback for data validation in trySubmit()
-			->setSubmitCallback( static function () {
+			// Set callback for data validation and log type description.
+			->setSubmitCallback( static function ( $formData, $form ) {
+				$form->addPreHtml(
+					( new LogPage( $formData['type'] ) )->getDescription()
+						->setContext( $form->getContext() )->parseAsBlock()
+				);
 				return true;
 			} );
 
