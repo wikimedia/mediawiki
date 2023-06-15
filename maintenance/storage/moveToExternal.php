@@ -234,6 +234,14 @@ class MoveToExternal extends Maintenance {
 			&& !in_array( 'utf-8', $flags )
 			&& !in_array( 'utf8', $flags )
 		) {
+			// First decompress the entry so we don't try to convert a binary gzip to utf-8
+			if ( in_array( 'gzip', $flags ) ) {
+				if ( !$this->gzip ) {
+					return [ $text, $flags ];
+				}
+				$flags = array_diff( $flags, [ 'gzip' ] );
+				$text = gzinflate( $text );
+			}
 			AtEase::suppressWarnings();
 			$text = iconv( $this->legacyEncoding, 'UTF-8//IGNORE', $text );
 			AtEase::restoreWarnings();
