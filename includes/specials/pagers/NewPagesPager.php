@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\FormOptions;
@@ -53,6 +54,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
+	private ChangeTagsStore $changeTagsStore;
 
 	/**
 	 * @param SpecialNewpages $form
@@ -68,7 +70,8 @@ class NewPagesPager extends ReverseChronologicalPager {
 		HookContainer $hookContainer,
 		LinkBatchFactory $linkBatchFactory,
 		NamespaceInfo $namespaceInfo,
-		FormOptions $opts
+		FormOptions $opts,
+		ChangeTagsStore $changeTagsStore
 	) {
 		parent::__construct( $form->getContext() );
 		$this->groupPermissionsLookup = $groupPermissionsLookup;
@@ -77,6 +80,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$this->namespaceInfo = $namespaceInfo;
 		$this->mForm = $form;
 		$this->opts = $opts;
+		$this->changeTagsStore = $changeTagsStore;
 	}
 
 	public function getQueryInfo() {
@@ -139,7 +143,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		];
 
 		// Modify query for tags
-		ChangeTags::modifyDisplayQuery(
+		$this->changeTagsStore->modifyDisplayQuery(
 			$info['tables'],
 			$info['fields'],
 			$info['conds'],

@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Content\IContentHandlerFactory;
@@ -77,6 +78,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 	/** @var CommentFormatter */
 	private $commentFormatter;
+	private ChangeTagsStore $changeTagsStore;
 
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory
@@ -96,7 +98,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 		RevisionLookup $revisionLookup,
 		NamespaceInfo $namespaceInfo,
 		UserOptionsLookup $userOptionsLookup,
-		CommentFormatter $commentFormatter
+		CommentFormatter $commentFormatter,
+		ChangeTagsStore $changeTagsStore
 	) {
 		parent::__construct( 'Newpages' );
 		$this->linkBatchFactory = $linkBatchFactory;
@@ -107,6 +110,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$this->namespaceInfo = $namespaceInfo;
 		$this->userOptionsLookup = $userOptionsLookup;
 		$this->commentFormatter = $commentFormatter;
+		$this->changeTagsStore = $changeTagsStore;
 	}
 
 	/**
@@ -532,7 +536,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$this->getHookContainer(),
 			$this->linkBatchFactory,
 			$this->namespaceInfo,
-			$this->opts
+			$this->opts,
+			$this->changeTagsStore
 		);
 	}
 

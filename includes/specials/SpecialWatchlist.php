@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
@@ -62,6 +63,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 * constants (e.g. EDIT_NORMAL)
 	 */
 	private $currentMode;
+	private ChangeTagsStore $changeTagsStore;
 
 	/**
 	 * @param WatchedItemStoreInterface $watchedItemStore
@@ -71,13 +73,15 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	public function __construct(
 		WatchedItemStoreInterface $watchedItemStore,
 		WatchlistManager $watchlistManager,
-		UserOptionsLookup $userOptionsLookup
+		UserOptionsLookup $userOptionsLookup,
+		ChangeTagsStore $changeTagsStore
 	) {
 		parent::__construct( 'Watchlist', 'viewmywatchlist' );
 
 		$this->watchedItemStore = $watchedItemStore;
 		$this->watchlistManager = $watchlistManager;
 		$this->userOptionsLookup = $userOptionsLookup;
+		$this->changeTagsStore = $changeTagsStore;
 	}
 
 	public function doesWrites() {
@@ -436,7 +440,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		}
 
 		$tagFilter = $opts['tagfilter'] !== '' ? explode( '|', $opts['tagfilter'] ) : [];
-		ChangeTags::modifyDisplayQuery(
+		$this->changeTagsStore->modifyDisplayQuery(
 			$tables,
 			$fields,
 			$conds,
@@ -457,7 +461,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			'LIMIT' => $opts['limit']
 		];
 		if ( in_array( 'DISTINCT', $query_options ) ) {
-			// ChangeTags::modifyDisplayQuery() adds DISTINCT when filtering on multiple tags.
+			// ChangeTagsStore::modifyDisplayQuery() adds DISTINCT when filtering on multiple tags.
 			// In order to prevent DISTINCT from causing query performance problems,
 			// we have to GROUP BY the primary key. This in turn requires us to add
 			// the primary key to the end of the ORDER BY, and the old ORDER BY to the
