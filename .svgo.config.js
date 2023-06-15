@@ -1,6 +1,6 @@
 /**
  * SVGO Configuration
- * Compatible to v2.4.0+
+ * Compatible to v3.0.0+
  * Recommended options from:
  * https://www.mediawiki.org/wiki/Manual:Coding_conventions/SVG#Exemplified_safe_configuration
  */
@@ -14,7 +14,7 @@ module.exports = {
 			name: 'preset-default',
 			params: {
 				overrides: {
-					cleanupIDs: false,
+					cleanupIds: false,
 					removeDesc: false,
 					removeTitle: false,
 					removeViewBox: false,
@@ -31,7 +31,7 @@ module.exports = {
 		'sortAttrs'
 	],
 	// Set whitespace according to Wikimedia Coding Conventions.
-	// @see https://github.com/svg/svgo/blob/v2.8.0/lib/stringifier.js#L41 for available options.
+	// @see https://github.com/svg/svgo/blob/main/lib/stringifier.js#L39 for available options.
 	js2svg: {
 		eol: 'lf',
 		finalNewline: true,
