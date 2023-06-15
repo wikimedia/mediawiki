@@ -166,32 +166,25 @@ class SpecialProtectedtitles extends SpecialPage {
 	 * @return string|array
 	 */
 	private function getLevelMenu() {
-		// Temporary array
-		$m = [ $this->msg( 'restriction-level-all' )->text() => 0 ];
-		$options = [];
+		$options = [ 'restriction-level-all' => 0 ];
 
-		// First pass to load the log names
+		// Load the log names as options
 		foreach ( $this->getConfig()->get( MainConfigNames::RestrictionLevels ) as $type ) {
 			if ( $type != '' && $type != '*' ) {
 				// Messages: restriction-level-sysop, restriction-level-autoconfirmed
-				$text = $this->msg( "restriction-level-$type" )->text();
-				$m[$text] = $type;
+				$options["restriction-level-$type"] = $type;
 			}
 		}
 
 		// Is there only one level (aside from "all")?
-		if ( count( $m ) <= 2 ) {
+		if ( count( $options ) <= 2 ) {
 			return '';
-		}
-		// Third pass generates sorted XHTML content
-		foreach ( $m as $text => $type ) {
-			$options[ $text ] = $type;
 		}
 
 		return [
 			'type' => 'select',
-			'options' => $options,
-			'label' => $this->msg( 'restriction-level' )->text(),
+			'options-messages' => $options,
+			'label-message' => 'restriction-level',
 			'name' => $this->IdLevel,
 			'id' => $this->IdLevel
 		];
