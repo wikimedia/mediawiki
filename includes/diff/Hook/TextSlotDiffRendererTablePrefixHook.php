@@ -21,7 +21,7 @@ interface TextSlotDiffRendererTablePrefixHook {
 	 *
 	 * @param TextSlotDiffRenderer $textSlotDiffRenderer
 	 * @param IContextSource $context
-	 * @param mixed[] &$parts HTML strings to add to a container above the diff table.
+	 * @param (string|null)[] &$parts HTML strings to add to a container above the diff table.
 	 * Will be sorted by key before being output.
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

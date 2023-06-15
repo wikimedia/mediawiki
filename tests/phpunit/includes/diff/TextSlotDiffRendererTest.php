@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use Wikimedia\Assert\ParameterTypeException;
 
 /**
@@ -128,4 +129,60 @@ class TextSlotDiffRendererTest extends MediaWikiIntegrationTestCase {
 		return ContentHandler::makeContent( $str, null, $model );
 	}
 
+	public static function provideGetTablePrefix() {
+		return [
+			'php' => [
+				TextSlotDiffRenderer::ENGINE_PHP,
+				[
+					TextSlotDiffRenderer::INLINE_LEGEND_KEY => '<div></div>',
+					TextSlotDiffRenderer::INLINE_SWITCHER_KEY => null
+				]
+			],
+			'wikidiff2' => [
+				TextSlotDiffRenderer::ENGINE_WIKIDIFF2,
+				[
+					TextSlotDiffRenderer::INLINE_LEGEND_KEY =>
+						'class="mw-diff-inline-legend mw-diff-element-hidden"',
+					TextSlotDiffRenderer::INLINE_SWITCHER_KEY => 'mw-diffPage-inlineToggle-container'
+				]
+			],
+			'inline' => [
+				TextSlotDiffRenderer::ENGINE_WIKIDIFF2_INLINE,
+				[
+					TextSlotDiffRenderer::INLINE_LEGEND_KEY =>
+						'class="mw-diff-inline-legend".*\(diff-inline-tooltip-ins\)',
+					TextSlotDiffRenderer::INLINE_SWITCHER_KEY => 'mw-diffPage-inlineToggle-container'
+				]
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetTablePrefix
+	 * @param string $engine
+	 * @param string[] $expectedPatterns
+	 */
+	public function testGetTablePrefix( $engine, $expectedPatterns ) {
+		OOUI\Theme::setSingleton( new OOUI\BlankTheme() );
+		$this->overrideConfigValue( MainConfigNames::ShowDiffToggleSwitch, true );
+
+		$slotDiffRenderer = $this->getTextSlotDiffRenderer();
+		$slotDiffRenderer->setHookContainer( $this->createHookContainer() );
+		$slotDiffRenderer->setEngine( $engine );
+
+		$context = new RequestContext;
+		$context->setLanguage( 'qqx' );
+
+		$title = $this->getServiceContainer()->getTitleFactory()->newFromText( 'Test' );
+		$result = $slotDiffRenderer->getTablePrefix( $context, $title );
+		$this->assertSameSize( $expectedPatterns, $result );
+		foreach ( $expectedPatterns as $key => $pattern ) {
+			if ( $pattern === null ) {
+				$this->assertNull( $result[$key], "\$result[$key]" );
+			} else {
+				$this->assertMatchesRegularExpression(
+					"#$pattern#", $result[$key], "\$result[$key]" );
+			}
+		}
+	}
 }
