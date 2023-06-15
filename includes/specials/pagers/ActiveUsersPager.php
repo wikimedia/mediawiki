@@ -227,7 +227,7 @@ class ActiveUsersPager extends UsersPager {
 
 		$uids = [];
 		foreach ( $this->mResult as $row ) {
-			$uids[] = $row->user_id;
+			$uids[] = (int)$row->user_id;
 		}
 		// Fetch the block status of the user for showing "(blocked)" text and for
 		// striking out names of suppressed users when privileged user views the list.
