@@ -1937,6 +1937,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Skin\\SkinComponentRegistryContext' => __DIR__ . '/includes/skins/components/SkinComponentRegistryContext.php',
 	'MediaWiki\\Skin\\SkinComponentSearch' => __DIR__ . '/includes/skins/components/SkinComponentSearch.php',
 	'MediaWiki\\Skin\\SkinComponentTableOfContents' => __DIR__ . '/includes/skins/components/SkinComponentTableOfContents.php',
+	'MediaWiki\\Skin\\SkinComponentTempUserBanner' => __DIR__ . '/includes/skins/components/SkinComponentTempUserBanner.php',
 	'MediaWiki\\Skin\\SkinComponentUtils' => __DIR__ . '/includes/skins/components/SkinComponentUtils.php',
 	'MediaWiki\\Skins\\Hook\\SkinAfterPortletHook' => __DIR__ . '/includes/skins/Hook/SkinAfterPortletHook.php',
 	'MediaWiki\\Skins\\Hook\\SkinPageReadyConfigHook' => __DIR__ . '/includes/skins/Hook/SkinPageReadyConfigHook.php',

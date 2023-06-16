@@ -2340,6 +2340,9 @@ abstract class Skin extends ContextSource {
 			// the <html>, <head> and <body> tags. For SkinMustache this is always true and
 			// ignored.
 			'bodyOnly' => false,
+			// Does the skin support the temporary user banner?
+			// If it does the temporary user banner is displayed at the top of the page.
+			'tempUserBanner' => false,
 			'menus' => [
 				// Legacy keys that are enabled by default for backwards compatibility
 				'namespaces',
