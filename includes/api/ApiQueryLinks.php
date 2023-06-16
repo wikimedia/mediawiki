@@ -136,15 +136,14 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 					$lb->addObj( $title );
 				}
 			}
-			$cond = $lb->constructSet( $this->prefix, $this->getDB() );
-			if ( $cond ) {
-				$this->addWhere( $cond );
-				$multiNS = count( $lb->data ) !== 1;
-				$multiTitle = count( array_merge( ...$lb->data ) ) !== 1;
-			} else {
-				// No titles so no results
+			if ( $lb->isEmpty() ) {
+				// No titles, no results!
 				return;
 			}
+			$cond = $lb->constructSet( $this->prefix, $this->getDB() );
+			$this->addWhere( $cond );
+			$multiNS = count( $lb->data ) !== 1;
+			$multiTitle = count( array_merge( ...$lb->data ) ) !== 1;
 		} elseif ( $params['namespace'] ) {
 			$this->addWhereFld( $nsField, $params['namespace'] );
 			$multiNS = $params['namespace'] === null || count( $params['namespace'] ) !== 1;
