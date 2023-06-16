@@ -102,6 +102,9 @@ class ApiParse extends ApiBase {
 	/** @var UrlUtils */
 	private $urlUtils;
 
+	/** @var TitleFormatter */
+	private $titleFormatter;
+
 	/**
 	 * @param ApiMain $main
 	 * @param string $action
@@ -119,6 +122,7 @@ class ApiParse extends ApiBase {
 	 * @param TempUserCreator $tempUserCreator
 	 * @param UserFactory $userFactory
 	 * @param UrlUtils $urlUtils
+	 * @param TitleFormatter $titleFormatter
 	 */
 	public function __construct(
 		ApiMain $main,
@@ -136,7 +140,8 @@ class ApiParse extends ApiBase {
 		CommentFormatter $commentFormatter,
 		TempUserCreator $tempUserCreator,
 		UserFactory $userFactory,
-		UrlUtils $urlUtils
+		UrlUtils $urlUtils,
+		TitleFormatter $titleFormatter
 	) {
 		parent::__construct( $main, $action );
 		$this->revisionLookup = $revisionLookup;
@@ -153,6 +158,7 @@ class ApiParse extends ApiBase {
 		$this->tempUserCreator = $tempUserCreator;
 		$this->userFactory = $userFactory;
 		$this->urlUtils = $urlUtils;
+		$this->titleFormatter = $titleFormatter;
 	}
 
 	private function getPoolKey(): string {
@@ -311,8 +317,8 @@ class ApiParse extends ApiBase {
 					$pageSet->execute();
 					$redirValues = $pageSet->getRedirectTitlesAsResult( $this->getResult() );
 
-					foreach ( $pageSet->getRedirectTitles() as $title ) {
-						$pageParams = [ 'title' => $title->getFullText() ];
+					foreach ( $pageSet->getRedirectTargets() as $redirectTarget ) {
+						$pageParams = [ 'title' => $this->titleFormatter->getFullText( $redirectTarget ) ];
 					}
 				} elseif ( $pageid !== null ) {
 					$pageParams = [ 'pageid' => $pageid ];
