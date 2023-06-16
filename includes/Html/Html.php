@@ -753,12 +753,25 @@ class Html {
 		if ( $heading !== '' ) {
 			$html = self::element( 'h2', [], $heading ) . $html;
 		}
+		$coreClasses = [
+			'mw-message-box',
+			'cdx-message',
+			'cdx-message--block'
+		];
 		if ( is_array( $className ) ) {
-			$className[] = 'mw-message-box';
+			$className = array_merge(
+				$coreClasses,
+				$className
+			);
 		} else {
-			$className .= ' mw-message-box';
+			$className .= ' ' . implode( ' ', $coreClasses );
 		}
-		return self::rawElement( 'div', [ 'class' => $className ], $html );
+		return self::rawElement( 'div', [ 'class' => $className ],
+			self::element( 'span', [ 'class' => 'cdx-message__icon' ] ) .
+			self::rawElement( 'div', [
+				'class' => 'cdx-message__content'
+			], $html )
+		);
 	}
 
 	/**
@@ -769,7 +782,9 @@ class Html {
 	 * @return string of HTML representing the notice
 	 */
 	public static function noticeBox( $html, $className ) {
-		return self::messageBox( $html, [ 'mw-message-box-notice', $className ] );
+		return self::messageBox( $html, [
+			'mw-message-box-notice',
+			'cdx-message--notice', $className ] );
 	}
 
 	/**
@@ -781,7 +796,9 @@ class Html {
 	 * @return string of HTML representing a warning box.
 	 */
 	public static function warningBox( $html, $className = '' ) {
-		return self::messageBox( $html, [ 'mw-message-box-warning', $className ] );
+		return self::messageBox( $html, [
+			'mw-message-box-warning',
+			'cdx-message--warning', $className ] );
 	}
 
 	/**
@@ -794,7 +811,9 @@ class Html {
 	 * @return string of HTML representing an error box.
 	 */
 	public static function errorBox( $html, $heading = '', $className = '' ) {
-		return self::messageBox( $html, [ 'mw-message-box-error', $className ], $heading );
+		return self::messageBox( $html, [
+			'mw-message-box-error',
+			'cdx-message--error', $className ], $heading );
 	}
 
 	/**
@@ -806,7 +825,9 @@ class Html {
 	 * @return string of HTML representing a success box.
 	 */
 	public static function successBox( $html, $className = '' ) {
-		return self::messageBox( $html, [ 'mw-message-box-success', $className ] );
+		return self::messageBox( $html, [
+			'mw-message-box-success',
+			'cdx-message--success', $className ] );
 	}
 
 	/**

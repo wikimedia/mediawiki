@@ -295,7 +295,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$article->view();
 		$output = $article->getContext()->getOutput();
 		$this->assertStringContainsString( 'Test A', $this->getHtml( $output ) );
-		$this->assertSame( 1, substr_count( $output->getSubtitle(), 'class="mw-message-box-warning mw-revision mw-message-box"' ) );
+		$this->assertSame( 1, substr_count( $output->getSubtitle(), 'cdx-message--warning' ) );
 		$this->assertSame( $idA, $output->getRevisionId() );
 		$this->assertSame( $idA, $outputPageBeforeHTMLRevisionId );
 		$this->assertSame( $revisions[1]->getTimestamp(), $output->getRevisionTimestamp() );
