@@ -77,6 +77,15 @@ class SpecialLogTest extends SpecialPageTestBase {
 		$this->assertStringNotContainsString( '(logempty)', $html );
 		$this->assertStringContainsString( '(logentry-suppress-revision', $html );
 
+		// Full suppression log
+		[ $html, ] = $this->executeSpecialPage(
+			'suppress',
+			new FauxRequest(),
+			'qqx'
+		);
+		$this->assertStringNotContainsString( '(logempty)', $html );
+		$this->assertStringContainsString( '(logentry-suppress-revision', $html );
+
 		// Suppression log for unknown user should be empty
 		[ $html, ] = $this->executeSpecialPage(
 			'suppress',
