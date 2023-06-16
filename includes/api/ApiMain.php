@@ -359,6 +359,7 @@ class ApiMain extends ApiBase {
 			'class' => ApiWatch::class,
 			'services' => [
 				'WatchlistManager',
+				'TitleFormatter',
 			]
 		],
 		'patrol' => [
