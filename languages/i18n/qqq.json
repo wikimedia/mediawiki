@@ -1544,6 +1544,7 @@
 	"group-suppress": "{{doc-group|suppress}}\nThis is an optional (disabled by default) user group, meant for the suppression feature in [[mw:Flow|Flow]]. It is not to be confused with the Oversighters group, which also has access to the [[mw:RevisionDelete|RevisionDelete]] feature, to change the visibility of revisions through [[Special:RevisionDelete]].\n\n{{Identical|Suppress}}",
 	"group-all": "The name of the user group that contains all users, including anonymous users\n\n{{Identical|All}}",
 	"group-user-member": "{{doc-group|user|member}}\n{{Identical|User}}",
+	"group-named-member": "{{doc-group|user|named}}\n{{Identical|User}}",
 	"group-autoconfirmed-member": "{{doc-group|autoconfirmed|member}}",
 	"group-bot-member": "{{doc-group|bot|member}}",
 	"group-sysop-member": "{{doc-group|sysop|member}}\n{{Identical|Administrator}}",

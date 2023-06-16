@@ -1293,6 +1293,7 @@
 	"group-suppress": "Suppressors",
 	"group-all": "(all)",
 	"group-user-member": "{{GENDER:$1|user}}",
+	"group-named-member": "{{GENDER:$1|registered user}}",
 	"group-autoconfirmed-member": "{{GENDER:$1|autoconfirmed user}}",
 	"group-bot-member": "{{GENDER:$1|bot}}",
 	"group-sysop-member": "{{GENDER:$1|administrator}}",
