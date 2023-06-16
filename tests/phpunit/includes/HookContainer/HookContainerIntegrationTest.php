@@ -33,39 +33,6 @@ namespace MediaWiki\HookContainer {
 		 * @covers \MediaWiki\HookContainer\HookContainer::run
 		 * @covers \MediaWiki\HookContainer\HookContainer::scopedRegister
 		 */
-		public function testPreviouslyRegisteredHooksAreReAppliedAfterScopedRegisterRemovesThem() {
-			$hookContainer = $this->getServiceContainer()->getHookContainer();
-
-			// Some handlers for FooHook have been previously set
-			$hookContainer->register( 'FooHook', static function () {
-				return true;
-			} );
-			$hookContainer->register( 'FooHook', static function () {
-				return true;
-			} );
-			$handlersBeforeScopedRegister = $hookContainer->getHandlerCallbacks( 'FooHook' );
-			$this->assertCount( 2, $handlersBeforeScopedRegister );
-
-			// Wipe out the 2 existing handlers and add a new scoped handler
-			$reset2 = $hookContainer->scopedRegister( 'FooHook', static function () {
-				return true;
-			}, true );
-			$handlersAfterScopedRegister = $hookContainer->getHandlerCallbacks( 'FooHook' );
-			$this->assertCount( 1, $handlersAfterScopedRegister );
-
-			ScopedCallback::consume( $reset2 );
-
-			// Teardown causes the original handlers to be re-applied
-			$this->mediaWikiTearDown();
-
-			$handlersAfterTearDown = $hookContainer->getHandlerCallbacks( 'FooHook' );
-			$this->assertCount( 2, $handlersAfterTearDown );
-		}
-
-		/**
-		 * @covers \MediaWiki\HookContainer\HookContainer::run
-		 * @covers \MediaWiki\HookContainer\HookContainer::scopedRegister
-		 */
 		public function testHookRunsWithMultipleMixedHandlerTypes() {
 			$handlerExt = [
 				'FooHook' => [
@@ -84,10 +51,10 @@ namespace MediaWiki\HookContainer {
 			$numHandlersExecuted = 0;
 			$reset = $hookContainer->scopedRegister( 'FooHook', static function ( &$numHandlersRun ) {
 				$numHandlersRun++;
-			}, false );
+			} );
 			$reset2 = $hookContainer->scopedRegister( 'FooHook', static function ( &$numHandlersRun ) {
 				$numHandlersRun++;
-			}, false );
+			} );
 
 			$hookContainer->run( 'FooHook', [ &$numHandlersExecuted ] );
 			$this->assertEquals( 3, $numHandlersExecuted );

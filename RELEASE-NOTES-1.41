@@ -132,6 +132,9 @@ because of Phabricator reports.
   - ::wasConnectionLoss()
 * The GenericArrayObject class, deprecated in 1.40,
   has been removed.
+* The $replace parameter has been removed from HookContainer::scopedRegister.
+  This parameter was unused outside core, and the functionality was intended
+  for testing.
 * PrevNextNavigationRenderer class, deprecated in 1.39,
   has been removed.
 * class alias MediaWiki\User\WatchlistNotificationManager, deprecated in 1.36,
