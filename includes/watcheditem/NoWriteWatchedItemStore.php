@@ -19,8 +19,6 @@
  * @ingroup Watchlist
  */
 
-use MediaWiki\Linker\LinkTarget;
-use MediaWiki\Page\PageIdentity;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\DBReadOnlyError;
 
@@ -31,10 +29,7 @@ use Wikimedia\Rdbms\DBReadOnlyError;
  */
 class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 
-	/**
-	 * @var WatchedItemStoreInterface
-	 */
-	private $actualStore;
+	private WatchedItemStoreInterface $actualStore;
 
 	private const DB_READONLY_ERROR = 'The watchlist is currently readonly.';
 
@@ -46,36 +41,22 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		$this->actualStore = $actualStore;
 	}
 
+	/** @inheritDoc */
 	public function countWatchedItems( UserIdentity $user ) {
 		return $this->actualStore->countWatchedItems( $user );
 	}
 
-	/**
-	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
-	 * @return int
-	 */
+	/** @inheritDoc */
 	public function countWatchers( $target ) {
 		return $this->actualStore->countWatchers( $target );
 	}
 
-	/**
-	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
-	 * @param mixed $threshold
-	 * @return int
-	 * @throws MWException
-	 */
+	/** @inheritDoc */
 	public function countVisitingWatchers( $target, $threshold ) {
 		return $this->actualStore->countVisitingWatchers( $target, $threshold );
 	}
 
-	/**
-	 * @param LinkTarget[]|PageIdentity[] $targets deprecated passing LinkTarget[] since 1.36
-	 * @param array $options Allowed keys:
-	 *        'minimumWatchers' => int
-	 * @return array multi dimensional like $return[$namespaceId][$titleString] = int $watchers
-	 *         All targets will be present in the result. 0 either means no watchers or the number
-	 *         of watchers was below the minimumWatchers option if passed.
-	 */
+	/** @inheritDoc */
 	public function countWatchersMultiple( array $targets, array $options = [] ) {
 		return $this->actualStore->countWatchersMultiple(
 			$targets,
@@ -83,22 +64,7 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		);
 	}
 
-	/**
-	 * @param array $targetsWithVisitThresholds array of pairs (LinkTarget|PageIdentity $target,
-	 *     mixed $threshold),
-	 *        $threshold is:
-	 *        - a timestamp of the recent edit if $target exists (format accepted by wfTimestamp)
-	 *        - null if $target doesn't exist
-	 *      deprecated passing LinkTarget since 1.36
-	 * @param int|null $minimumWatchers
-	 * @return array multi-dimensional like $return[$namespaceId][$titleString] = $watchers,
-	 *         where $watchers is an int:
-	 *         - if the page exists, number of users watching who have visited the page recently
-	 *         - if the page doesn't exist, number of users that have the page on their watchlist
-	 *         - 0 means there are no visiting watchers or their number is below the
-	 *     minimumWatchers
-	 *         option (if passed).
-	 */
+	/** @inheritDoc */
 	public function countVisitingWatchersMultiple(
 		array $targetsWithVisitThresholds,
 		$minimumWatchers = null
@@ -109,104 +75,62 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		);
 	}
 
-	/**
-	 * @param UserIdentity $user
-	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
-	 * @return false|WatchedItem
-	 */
+	/** @inheritDoc */
 	public function getWatchedItem( UserIdentity $user, $target ) {
 		return $this->actualStore->getWatchedItem( $user, $target );
 	}
 
-	/**
-	 * @param UserIdentity $user
-	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
-	 * @return false|WatchedItem
-	 */
+	/** @inheritDoc */
 	public function loadWatchedItem( UserIdentity $user, $target ) {
 		return $this->actualStore->loadWatchedItem( $user, $target );
 	}
 
-	/**
-	 * @param UserIdentity $user
-	 * @param LinkTarget[]|PageIdentity[] $targets deprecated passing LinkTarget[] since 1.36
-	 * @return WatchedItem[]|false
-	 */
+	/** @inheritDoc */
 	public function loadWatchedItemsBatch( UserIdentity $user, array $targets ) {
 		return $this->actualStore->loadWatchedItemsBatch( $user, $targets );
 	}
 
+	/** @inheritDoc */
 	public function getWatchedItemsForUser( UserIdentity $user, array $options = [] ) {
 		return $this->actualStore->getWatchedItemsForUser( $user, $options );
 	}
 
-	/**
-	 * @param UserIdentity $user
-	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
-	 * @return bool
-	 */
+	/** @inheritDoc */
 	public function isWatched( UserIdentity $user, $target ) {
 		return $this->actualStore->isWatched( $user, $target );
 	}
 
-	/**
-	 * @param UserIdentity $user
-	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
-	 * @return bool
-	 */
+	/** @inheritDoc */
 	public function isTempWatched( UserIdentity $user, $target ): bool {
 		return $this->actualStore->isTempWatched( $user, $target );
 	}
 
-	/**
-	 * @param UserIdentity $user
-	 * @param LinkTarget[]|PageIdentity[] $targets deprecated passing LinkTarget[] since 1.36
-	 * @return array multi-dimensional like $return[$namespaceId][$titleString] = $timestamp,
-	 *         where $timestamp is:
-	 *         - string|null value of wl_notificationtimestamp,
-	 *         - false if $target is not watched by $user.
-	 */
+	/** @inheritDoc */
 	public function getNotificationTimestampsBatch( UserIdentity $user, array $targets ) {
 		return $this->actualStore->getNotificationTimestampsBatch( $user, $targets );
 	}
 
+	/** @inheritDoc */
 	public function countUnreadNotifications( UserIdentity $user, $unreadLimit = null ) {
 		return $this->actualStore->countUnreadNotifications( $user, $unreadLimit );
 	}
 
-	/**
-	 * @param LinkTarget|PageIdentity $oldTarget deprecated passing LinkTarget since 1.36
-	 * @param LinkTarget|PageIdentity $newTarget deprecated passing LinkTarget since 1.36
-	 */
+	/** @inheritDoc */
 	public function duplicateAllAssociatedEntries( $oldTarget, $newTarget ) {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
-	/**
-	 * @param LinkTarget|PageIdentity $oldTarget deprecated passing LinkTarget since 1.36
-	 * @param LinkTarget|PageIdentity $newTarget deprecated passing LinkTarget since 1.36
-	 */
+	/** @inheritDoc */
 	public function duplicateEntry( $oldTarget, $newTarget ) {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
-	/**
-	 * @param UserIdentity $user
-	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
-	 * @param string|null $expiry
-	 */
+	/** @inheritDoc */
 	public function addWatch( UserIdentity $user, $target, ?string $expiry = null ) {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
-	/**
-	 *
-	 * @param UserIdentity $user
-	 * @param LinkTarget[]|PageIdentity[] $targets deprecated passing LinkTarget[] since 1.36
-	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp(),
-	 *   null will not create expiries, or leave them unchanged should they already exist.
-	 * @return bool success
-	 */
+	/** @inheritDoc */
 	public function addWatchBatchForUser(
 		UserIdentity $user,
 		array $targets,
@@ -215,22 +139,12 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
-	/**
-	 * @param UserIdentity $user
-	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
-	 * @return bool|void
-	 */
+	/** @inheritDoc */
 	public function removeWatch( UserIdentity $user, $target ) {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
-	/**
-	 * @param UserIdentity $user The user to set the timestamps for
-	 * @param string|null $timestamp Set the update timestamp to this value
-	 * @param LinkTarget[]|PageIdentity[] $targets List of targets to update. Default to all targets.
-	 *         deprecated passing LinkTarget[] since 1.36
-	 * @return bool success
-	 */
+	/** @inheritDoc */
 	public function setNotificationTimestampsForUser(
 		UserIdentity $user,
 		$timestamp,
@@ -239,29 +153,19 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
-	/**
-	 * @param UserIdentity $editor
-	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
-	 * @param string $timestamp
-	 * @return int[]|void
-	 */
+	/** @inheritDoc */
 	public function updateNotificationTimestamp(
 		UserIdentity $editor, $target, $timestamp
 	) {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
+	/** @inheritDoc */
 	public function resetAllNotificationTimestampsForUser( UserIdentity $user, $timestamp = null ) {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
-	/**
-	 * @param UserIdentity $user
-	 * @param LinkTarget|PageIdentity $title deprecated passing LinkTarget since 1.36
-	 * @param string $force
-	 * @param int $oldid
-	 * @return bool|void
-	 */
+	/** @inheritDoc */
 	public function resetNotificationTimestamp(
 		UserIdentity $user,
 		$title,
@@ -271,47 +175,44 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
+	/** @inheritDoc */
 	public function clearUserWatchedItems( UserIdentity $user ) {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
+	/** @inheritDoc */
 	public function mustClearWatchedItemsUsingJobQueue( UserIdentity $user ): bool {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
+	/** @inheritDoc */
 	public function clearUserWatchedItemsUsingJobQueue( UserIdentity $user ) {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
+	/** @inheritDoc */
 	public function maybeEnqueueWatchlistExpiryJob(): void {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
-	/**
-	 * @param UserIdentity $user
-	 * @param LinkTarget[]|PageIdentity[] $targets deprecated passing LinkTarget[] since 1.36
-	 * @return bool success
-	 */
+	/** @inheritDoc */
 	public function removeWatchBatchForUser( UserIdentity $user, array $targets ) {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
-	/**
-	 * @param string|null $timestamp
-	 * @param UserIdentity $user
-	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
-	 * @return bool|string|null
-	 */
+	/** @inheritDoc */
 	public function getLatestNotificationTimestamp(
 		$timestamp, UserIdentity $user, $target
 	) {
 		return wfTimestampOrNull( TS_MW, $timestamp );
 	}
 
+	/** @inheritDoc */
 	public function countExpired(): int {
 		return $this->actualStore->countExpired();
 	}
 
+	/** @inheritDoc */
 	public function removeExpired( int $limit, bool $deleteOrphans = false ): void {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
