@@ -193,7 +193,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				throw new ErrorPageError( $title, $msg, $params );
 		}
 
-		// A little hack: HTMLForm will check $this->mTarget only, if the form was posted, not
+		// A little hack: HTMLForm will check wpTarget only, if the form was posted, not
 		// if the user opens Special:EmailUser/Florian (e.g.). So check, if the user did that
 		// and show the "Send email to user" form directly, if so. Show the "enter username"
 		// form, otherwise.
@@ -297,17 +297,20 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				'type' => 'user',
 				'exists' => true,
 				'required' => true,
-				'label' => $this->msg( 'emailusername' )->text(),
+				'label-message' => 'emailusername',
 				'id' => 'emailusertarget',
 				'autofocus' => true,
-				'value' => $name,
+				// Prefill for subpage syntax and old target param.
+				'filter-callback' => static function ( $value ) use ( $name ) {
+					return $value ?? $name;
+				}
 			]
 		], $this->getContext() );
 
 		$htmlForm
+			->setMethod( 'GET' )
 			->setTitle( $this->getPageTitle() ) // Remove subpage
 			->setSubmitCallback( [ $this, 'sendEmailForm' ] )
-			->setFormIdentifier( 'userForm' )
 			->setId( 'askusername' )
 			->setWrapperLegendMsg( 'emailtarget' )
 			->setSubmitTextMsg( 'emailusernamesubmit' )
@@ -333,7 +336,6 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			->addPreHtml( $this->msg( 'emailpagetext', $this->mTarget )->parse() )
 			->setSubmitTextMsg( 'emailsend' )
 			->setSubmitCallback( [ $this, 'onFormSubmit' ] )
-			->setFormIdentifier( 'sendEmailForm' )
 			->setWrapperLegendMsg( 'email-legend' )
 			->prepareForm();
 
