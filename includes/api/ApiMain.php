@@ -127,6 +127,8 @@ class ApiMain extends ApiBase {
 			'services' => [
 				'ObjectFactory',
 				'WikiExporterFactory',
+				'TitleFormatter',
+				'TitleFactory',
 			]
 		],
 		'expandtemplates' => [
