@@ -2460,7 +2460,7 @@
 	"revertpage-nouser": "Tilbakestilte {{PLURAL:$7|endring|endringer}} av skjult bruker til siste versjon av\n{{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Tilbakestilte endringer av {{GENDER:$3|$1}}; endret til siste versjon av {{GENDER:$4|$2}}.",
 	"sessionfailure-title": "Sesjonsfeil",
-	"sessionfailure": "Det ser ut til å være et problem med innloggingen din, og handlingen ble avbrutt av sikkerhetshensyn. Vennlgist prøv å sende skjemaet en gang til.",
+	"sessionfailure": "Det ser ut til å være et problem med innloggingen din, og handlingen ble avbrutt av sikkerhetshensyn. Vennligst prøv å sende skjemaet en gang til.",
 	"changecontentmodel": "Endre innholdsmodellen til en side",
 	"changecontentmodel-legend": "Endre innholdsmodell",
 	"changecontentmodel-title-label": "Sidetittel:",

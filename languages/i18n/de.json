@@ -534,6 +534,7 @@
 	"nav-login-createaccount": "Anmelden / Benutzerkonto erstellen",
 	"logout": "Abmelden",
 	"userlogout": "Abmelden",
+	"templogout": "Session beenden",
 	"notloggedin": "Nicht angemeldet",
 	"userlogin-noaccount": "Du hast noch kein Benutzerkonto?",
 	"userlogin-joinproject": "Bei {{SITENAME}} registrieren",
