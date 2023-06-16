@@ -144,9 +144,9 @@ class SpecialLog extends SpecialPage {
 
 		# Handle type-specific inputs
 		$qc = [];
-		if ( $opts->getValue( 'type' ) == 'suppress' ) {
+		$offenderName = $opts->getValue( 'offender' );
+		if ( $opts->getValue( 'type' ) == 'suppress' && $offenderName !== '' ) {
 			$dbr = $this->dbProvider->getReplicaDatabase();
-			$offenderName = $opts->getValue( 'offender' );
 			$offenderId = $this->actorNormalization->findActorIdByName( $offenderName, $dbr );
 			if ( $offenderId ) {
 				$qc = [ 'ls_field' => 'target_author_actor', 'ls_value' => strval( $offenderId ) ];
