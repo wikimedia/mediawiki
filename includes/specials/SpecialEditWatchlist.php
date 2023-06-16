@@ -31,7 +31,6 @@ namespace MediaWiki\Specials;
 use DeferredUpdates;
 use EditWatchlistCheckboxSeriesField;
 use EditWatchlistNormalHTMLForm;
-use FatalError;
 use GenderCache;
 use HTMLForm;
 use LogicException;
@@ -46,7 +45,6 @@ use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Title\Title;
 use MediaWiki\Watchlist\WatchlistManager;
-use MWException;
 use NamespaceInfo;
 use OOUIHTMLForm;
 use Parser;
@@ -326,30 +324,28 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		if ( count( $wanted ) > 0 ) {
 			$toWatch = array_diff( $wanted, $current );
 			$toUnwatch = array_diff( $current, $wanted );
-			$this->watchTitles( $toWatch );
-			$this->unwatchTitles( $toUnwatch );
-			$this->getUser()->invalidateCache();
-
-			if ( count( $toWatch ) > 0 || count( $toUnwatch ) > 0 ) {
-				$this->successMessage = $this->msg( 'watchlistedit-raw-done' )->parse();
-			} else {
+			if ( !$toWatch && !$toUnwatch ) {
 				return false;
 			}
 
-			if ( count( $toWatch ) > 0 ) {
+			$this->watchTitles( $toWatch );
+			$this->unwatchTitles( $toUnwatch );
+			$this->getUser()->invalidateCache();
+			$this->successMessage = $this->msg( 'watchlistedit-raw-done' )->parse();
+
+			if ( $toWatch ) {
 				$this->successMessage .= ' ' . $this->msg( 'watchlistedit-raw-added' )
 					->numParams( count( $toWatch ) )->parse();
 				$this->showTitles( $toWatch, $this->successMessage );
 			}
 
-			if ( count( $toUnwatch ) > 0 ) {
+			if ( $toUnwatch ) {
 				$this->successMessage .= ' ' . $this->msg( 'watchlistedit-raw-removed' )
 					->numParams( count( $toUnwatch ) )->parse();
 				$this->showTitles( $toUnwatch, $this->successMessage );
 			}
 		} else {
-
-			if ( count( $current ) === 0 ) {
+			if ( !$current ) {
 				return false;
 			}
 
@@ -601,14 +597,15 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * Add a list of targets to a user's watchlist
 	 *
 	 * @param string[]|LinkTarget[] $targets
-	 * @return bool
-	 * @throws FatalError
-	 * @throws MWException
 	 */
-	private function watchTitles( array $targets ) {
-		return $this->watchedItemStore->addWatchBatchForUser(
+	private function watchTitles( array $targets ): void {
+		if ( $targets &&
+			$this->watchedItemStore->addWatchBatchForUser(
 				$this->getUser(), $this->getExpandedTargets( $targets )
-			) && $this->runWatchUnwatchCompleteHook( 'Watch', $targets );
+			)
+		) {
+			$this->runWatchUnwatchCompleteHook( 'Watch', $targets );
+		}
 	}
 
 	/**
@@ -618,26 +615,23 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * is preferred, since Titles are very memory-heavy
 	 *
 	 * @param string[]|LinkTarget[] $targets
-	 *
-	 * @return bool
-	 * @throws FatalError
-	 * @throws MWException
 	 */
-	private function unwatchTitles( array $targets ) {
-		return $this->watchedItemStore->removeWatchBatchForUser(
+	private function unwatchTitles( array $targets ): void {
+		if ( $targets &&
+			$this->watchedItemStore->removeWatchBatchForUser(
 				$this->getUser(), $this->getExpandedTargets( $targets )
-			) && $this->runWatchUnwatchCompleteHook( 'Unwatch', $targets );
+			)
+		) {
+			$this->runWatchUnwatchCompleteHook( 'Unwatch', $targets );
+		}
 	}
 
 	/**
 	 * @param string $action
 	 *   Can be "Watch" or "Unwatch"
 	 * @param string[]|LinkTarget[] $targets
-	 * @return bool
-	 * @throws FatalError
-	 * @throws MWException
 	 */
-	private function runWatchUnwatchCompleteHook( $action, $targets ) {
+	private function runWatchUnwatchCompleteHook( string $action, array $targets ): void {
 		foreach ( $targets as $target ) {
 			$title = $target instanceof LinkTarget ?
 				Title::newFromLinkTarget( $target ) :
@@ -650,7 +644,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				$this->getHookRunner()->onUnwatchArticleComplete( $user, $page );
 			}
 		}
-		return true;
 	}
 
 	/**
