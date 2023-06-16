@@ -1452,15 +1452,14 @@ class LocalFile extends File {
 				// a flood of jobs for huge files.
 				$pageLimit = min( $this->pageCount(), self::MAX_PAGE_RENDER_JOBS );
 
-				for ( $page = 1; $page <= $pageLimit; $page++ ) {
-					$jobs[] = new ThumbnailRenderJob(
-						$this->getTitle(),
-						[ 'transformParams' => [
-							'width' => $size,
-							'page' => $page,
-						] ]
-					);
-				}
+				$jobs[] = new ThumbnailRenderJob(
+					$this->getTitle(),
+					[
+					'transformParams' => [ 'width' => $size, 'page' => 1 ],
+					'enqueueNextPage' => true,
+					'pageLimit' => $pageLimit
+					]
+				);
 			} elseif ( $this->isVectorized() || $this->getWidth() > $size ) {
 				$jobs[] = new ThumbnailRenderJob(
 					$this->getTitle(),
