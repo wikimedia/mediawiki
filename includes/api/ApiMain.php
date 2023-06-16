@@ -256,6 +256,8 @@ class ApiMain extends ApiBase {
 				'DBLoadBalancerFactory',
 				'RevisionStore',
 				'WatchedItemStore',
+				'TitleFormatter',
+				'TitleFactory',
 			]
 		],
 		'rollback' => [
