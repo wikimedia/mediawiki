@@ -62,8 +62,6 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 	public function testTemporaryRedirect(
 		$format, $path, $queryParams, $expectedStatus, $hasBodyRedirectTarget = true
 	) {
-		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
-
 		$targetPageTitle = 'PageEndpointTestPage';
 		$redirectPageTitle = 'RedirectPage';
 		$this->getExistingTestPage( $targetPageTitle );
@@ -155,7 +153,6 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider permanentRedirectProvider
 	 */
 	public function testPermanentRedirect( $format, $path, $extraPathParams = [], $queryParams = [] ) {
-		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
 		$page = $this->getExistingTestPage( 'SourceEndpointTestPage with spaces' );
 		$this->assertTrue(
 			$this->editPage( $page, self::WIKITEXT )->isGood(),

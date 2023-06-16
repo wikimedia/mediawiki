@@ -162,7 +162,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	 * @param string $html
 	 * @param RevisionRecord|int|null $rev
 	 * @param PageIdentity $page
-	 * @param string $version
+	 * @param string|null $version
 	 *
 	 * @return ParserOutput
 	 */
@@ -171,10 +171,11 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		string $html,
 		$rev,
 		PageIdentity $page,
-		string $version = '08-15'
+		string $version = null
 	): ParserOutput {
 		$lang = $parserOpts->getTargetLanguage();
 		$lang = $lang ? $lang->getCode() : 'en';
+		$version ??= Parsoid::defaultHTMLVersion();
 
 		$html = "<!DOCTYPE html><html lang=\"$lang\"><body><div id='t3s7'>$html</div></body></html>";
 
@@ -201,8 +202,6 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-
-		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
 
 		$this->overrideConfigValue( MainConfigNames::CacheEpoch, self::CACHE_EPOCH );
 
@@ -935,7 +934,9 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 			]
 		];
 
-		$rev = $this->createNoOpMock( RevisionRecord::class );
+		$rev = $this->createNoOpMock( RevisionRecord::class, [ 'getId' ] );
+		$rev->method( 'getId' )->willReturn( 7 );
+
 		$lang = $this->createNoOpMock( Language::class );
 		yield 'Revision and Language' => [
 			$page,
@@ -1029,10 +1030,16 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		if ( $targetLanguage ) {
 			$helper->setVariantConversionLanguage( new Bcp47CodeValue( $targetLanguage ) );
 			$expectedCalls['addHeader'] = [ [ 'Vary', 'Accept-Language' ] ];
+		}
 
-			if ( $setContentLanguageHeader ) {
-				$expectedCalls['setHeader'] = [ [ 'Content-Language', $targetLanguage ] ];
-			}
+		if ( $setContentLanguageHeader ) {
+			$expectedCalls['setHeader'][] = [ 'Content-Language', $targetLanguage ?: 'en' ];
+
+			$version = Parsoid::defaultHTMLVersion();
+			$expectedCalls['setHeader'][] = [
+				'Content-Type',
+				'text/html; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/HTML/' . $version . '"',
+			];
 		}
 
 		$responseInterface = $this->getResponseInterfaceMock( $expectedCalls );
