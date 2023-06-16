@@ -80,7 +80,7 @@ class PageHTMLHandler extends SimpleHandler {
 	 * @throws LocalizedHttpException
 	 */
 	public function run(): Response {
-		$this->contentHelper->checkAccess();
+		$this->contentHelper->checkAccessPermission();
 		$page = $this->contentHelper->getPageIdentity();
 		$params = $this->getRequest()->getQueryParams();
 
@@ -96,7 +96,8 @@ class PageHTMLHandler extends SimpleHandler {
 
 		$redirectHelper = $this->getRedirectHelper();
 		$redirectHelper->setFollowWikiRedirects( $followWikiRedirects );
-
+		// Should treat variant redirects a special case as wiki redirects
+		// if ?redirect=no language variant should do nothing and fall into the 404 path
 		$redirectResponse = $redirectHelper->createRedirectResponseIfNeeded(
 			$page,
 			$this->contentHelper->getTitleText()
@@ -105,6 +106,9 @@ class PageHTMLHandler extends SimpleHandler {
 		if ( $redirectResponse !== null ) {
 			return $redirectResponse;
 		}
+
+		// We could have a missing page at this point, check and return 404 if that's the case
+		$this->contentHelper->checkHasContent();
 
 		$parserOutput = $this->htmlHelper->getHtml();
 		$parserOutputHtml = $parserOutput->getRawText();

@@ -28,6 +28,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -1040,14 +1041,23 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * The input parameters may be modified upon return
 	 *
 	 * @param string &$link The name of the link, note the value returned is NOT the DB key.
-	 * @param Title &$nt The title object of the link
+	 *        Will be updated to the variant title text if a variant link is found.
+	 * @param Title|PageReference|LinkTarget &$nt The title object of the link.
+	 *        Will be replaced by a Title object if a variant link is found.
 	 * @param bool $ignoreOtherCond To disable other conditions when
 	 *   we need to transclude a template or update a category's link
 	 */
 	public function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
 		# If the article has already existed, there is no need to
 		# check it again, otherwise it may cause a fault.
-		if ( is_object( $nt ) && $nt->exists() ) {
+		if ( $nt instanceof LinkTarget ) {
+			$nt = Title::castFromLinkTarget( $nt );
+			if ( $nt->exists() ) {
+				return;
+			}
+		}
+
+		if ( $nt instanceof PageIdentity && $nt->exists() ) {
 			return;
 		}
 

@@ -6,6 +6,7 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Edit\ParsoidOutputStash;
+use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Page\PageLookup;
 use MediaWiki\Page\RedirectStore;
@@ -38,6 +39,7 @@ class PageRestHelperFactory {
 	private IContentHandlerFactory $contentHandlerFactory;
 	private LanguageFactory $languageFactory;
 	private RedirectStore $redirectStore;
+	private LanguageConverterFactory $languageConverterFactory;
 
 	/**
 	 * @param ServiceOptions $options
@@ -51,6 +53,7 @@ class PageRestHelperFactory {
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param LanguageFactory $languageFactory
 	 * @param RedirectStore $redirectStore
+	 * @param LanguageConverterFactory $languageConverterFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -63,7 +66,8 @@ class PageRestHelperFactory {
 		HtmlTransformFactory $htmlTransformFactory,
 		IContentHandlerFactory $contentHandlerFactory,
 		LanguageFactory $languageFactory,
-		RedirectStore $redirectStore
+		RedirectStore $redirectStore,
+		LanguageConverterFactory $languageConverterFactory
 	) {
 		$this->options = $options;
 		$this->revisionLookup = $revisionLookup;
@@ -76,6 +80,7 @@ class PageRestHelperFactory {
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->languageFactory = $languageFactory;
 		$this->redirectStore = $redirectStore;
+		$this->languageConverterFactory = $languageConverterFactory;
 	}
 
 	public function newRevisionContentHelper(): RevisionContentHelper {
@@ -136,7 +141,8 @@ class PageRestHelperFactory {
 			$responseFactory,
 			$router,
 			$route,
-			$request
+			$request,
+			$this->languageConverterFactory
 		);
 	}
 

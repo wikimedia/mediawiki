@@ -11,6 +11,7 @@ use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Tests\Rest\Handler\PageHandlerTestTrait;
 use MediaWikiIntegrationTestCase;
+use Title;
 
 /**
  * @covers \MediaWiki\Rest\Handler\Helper\PageRedirectHelper
@@ -46,7 +47,8 @@ class PageRedirectHelperTest extends MediaWikiIntegrationTestCase {
 			$responseFactory,
 			$router,
 			'/test/{title}',
-			$request
+			$request,
+			$services->getLanguageConverterFactory()
 		);
 	}
 
@@ -122,7 +124,7 @@ class PageRedirectHelperTest extends MediaWikiIntegrationTestCase {
 
 		$target = $helper->getWikiRedirectTargetUrl( $page );
 		$resp1 = $helper->createWikiRedirectResponseIfNeeded( $page );
-		$resp2 = $helper->createRedirectResponseIfNeeded( $page, null );
+		$resp2 = $helper->createRedirectResponseIfNeeded( $page, $page->getDBkey() );
 
 		if ( $expectedUrl === null ) {
 			$this->assertNull( $target );
@@ -139,6 +141,24 @@ class PageRedirectHelperTest extends MediaWikiIntegrationTestCase {
 			$this->assertSame( $expectedUrl, $resp2->getHeaderLine( 'Location' ) );
 			$this->assertSame( 307, $resp2->getStatusCode() );
 		}
+	}
+
+	public function testVariantRedirect() {
+		$page = $this->getNonexistingTestPage( 'TestPage' );
+		// NOTE: "TestPage" variant to en-x-piglatin is "EsttayAgepay"
+		$this->insertPage( Title::newFromText( 'EsttayAgepay' ) );
+
+		$helper = $this->newRedirectHelper();
+		$helper->setFollowWikiRedirects( true );
+
+		$resp = $helper->createRedirectResponseIfNeeded( $page, $page->getDBkey() );
+
+		$this->assertNotNull( $resp );
+		$this->assertSame(
+			'https://example.test/api/test/EsttayAgepay',
+			$resp->getHeaderLine( 'Location' )
+		);
+		$this->assertSame( 307, $resp->getStatusCode() );
 	}
 
 	public function testWikiRedirectDisabled() {

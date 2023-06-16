@@ -8,6 +8,7 @@ use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\Handler\Helper\PageContentHelper;
 use MediaWiki\Rest\HttpException;
+use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -143,8 +144,27 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 			$helper->checkAccess();
 			$this->fail( 'Expected HttpException' );
 		} catch ( HttpException $ex ) {
-			$this->assertSame( 404, $ex->getCode() );
+			$this->assertSame( 403, $ex->getCode() );
 		}
+	}
+
+	public function testCheckHasContent() {
+		$page = $this->getNonexistingTestPage( __METHOD__ )->getDBkey();
+		$helper = $this->newHelper( [ 'title' => $page ] );
+
+		$this->expectException( LocalizedHttpException::class );
+		$this->expectExceptionCode( 404 );
+
+		$helper->checkHasContent();
+	}
+
+	public function testCheckAccessPermission() {
+		$helper = $this->newHelper();
+
+		$this->expectException( LocalizedHttpException::class );
+		$this->expectExceptionCode( 403 );
+
+		$helper->checkAccessPermission();
 	}
 
 	/**
