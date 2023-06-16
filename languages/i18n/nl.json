@@ -2451,6 +2451,7 @@
 	"enotif_lastvisited": "Voor alle wijzigingen sinds uw laatste bezoek, zie $1",
 	"enotif_lastdiff": "Om deze wijziging te bekijken, ga naar $1",
 	"enotif_anon_editor": "anonieme gebruiker $1",
+	"enotif_temp_editor": "tijdelijke gebruiker $1",
 	"enotif_body": "Beste $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nSamenvatting van de wijziging: $PAGESUMMARY $PAGEMINOREDIT\n\nContactgegevens van de auteur:\nE-mailadres: $PAGEEDITOR_EMAIL\nWiki: $PAGEEDITOR_WIKI\n\nEr komen geen andere meldingen meer in geval van verdere activiteit, tot u de pagina bezoekt als u ingelogd bent. U zou ook alle pagina's die u op uw volglijst bijhoudt als 'bezocht' kunnen markeren.\n\nGroet van uw {{SITENAME}}-meldsysteem.\n\n--\nU kunt uw e-mailinstellingen wijzigen op:\n{{canonicalurl:{{#special:Preferences}}}}\n\nU kunt uw volglijstinstellingen wijzigen op:\n{{canonicalurl:Special:Watchlist/edit}}\n\nU kunt de pagina van uw volglijst verwijderen via de volgende koppeling:\n$UNWATCHURL\n\nTerugkoppeling en verdere assistentie:\n$HELPPAGE",
 	"enotif_minoredit": "Dit is een kleine bewerking",
 	"created": "aangemaakt",
