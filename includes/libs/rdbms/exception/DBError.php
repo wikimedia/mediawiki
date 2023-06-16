@@ -22,7 +22,13 @@ namespace Wikimedia\Rdbms;
 use RuntimeException;
 
 /**
- * Database error base class
+ * Database error base class.
+ *
+ * Catching and silencing this class or its subclasses is strongly discouraged.
+ * Most code should not catch DB errors at all,
+ * but let them bubble to the MediaWiki exception handler.
+ * If necessary, cleanup can be done in a finally block;
+ * catching the exception and then rethrowing it is also acceptable.
  *
  * @newable
  * @stable to extend
