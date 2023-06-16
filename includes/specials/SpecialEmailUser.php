@@ -49,12 +49,6 @@ use UserBlockedError;
  * @ingroup SpecialPage
  */
 class SpecialEmailUser extends SpecialPage {
-	protected $mTarget;
-
-	/**
-	 * @var User|string
-	 */
-	protected $mTargetObj;
 
 	private UserNameUtils $userNameUtils;
 	private UserNamePrefixSearch $userNamePrefixSearch;
@@ -89,15 +83,10 @@ class SpecialEmailUser extends SpecialPage {
 	}
 
 	public function getDescription() {
-		$target = self::getTarget( $this->mTarget ?? '', $this->getUser() );
-		if ( !$target instanceof User ) {
-			return $this->msg( 'emailuser-title-notarget' );
-		}
-
-		return $this->msg( 'emailuser-title-target', $target->getName() );
+		return $this->msg( 'emailuser-title-notarget' );
 	}
 
-	protected function getFormFields() {
+	protected function getFormFields( User $target ) {
 		$linkRenderer = $this->getLinkRenderer();
 		$user = $this->getUser();
 		return [
@@ -115,15 +104,15 @@ class SpecialEmailUser extends SpecialPage {
 				'type' => 'info',
 				'raw' => 1,
 				'default' => $linkRenderer->makeLink(
-					$this->mTargetObj->getUserPage(),
-					$this->mTargetObj->getName()
+					$target->getUserPage(),
+					$target->getName()
 				),
 				'label-message' => 'emailto',
 				'id' => 'mw-emailuser-recipient',
 			],
 			'Target' => [
 				'type' => 'hidden',
-				'default' => $this->mTargetObj->getName(),
+				'default' => $target->getName(),
 			],
 			'Subject' => [
 				'type' => 'text',
@@ -148,16 +137,12 @@ class SpecialEmailUser extends SpecialPage {
 	}
 
 	public function execute( $par ) {
+		$this->setHeaders();
+		$this->outputHeader();
+
 		$out = $this->getOutput();
 		$request = $this->getRequest();
 		$out->addModuleStyles( 'mediawiki.special' );
-
-		$this->mTarget = $par ?? $request->getVal( 'wpTarget', $request->getVal( 'target', '' ) );
-
-		// This needs to be below assignment of $this->mTarget because
-		// getDescription() needs it to determine the correct page title.
-		$this->setHeaders();
-		$this->outputHeader();
 
 		// Error out if sending user cannot do this. Don't authorize yet.
 		$error = self::getPermissionsError(
@@ -188,18 +173,11 @@ class SpecialEmailUser extends SpecialPage {
 				throw new ErrorPageError( $title, $msg, $params );
 		}
 
-		// A little hack: HTMLForm will check wpTarget only, if the form was posted, not
-		// if the user opens Special:EmailUser/Florian (e.g.). So check, if the user did that
-		// and show the "Send email to user" form directly, if so. Show the "enter username"
-		// form, otherwise.
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable target is set
-		$this->mTargetObj = self::getTarget( $this->mTarget, $this->getUser() );
-		if ( !$this->mTargetObj instanceof User ) {
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable target is set
-			$this->userForm( $this->mTarget );
-		} else {
-			$this->sendEmailForm();
-		}
+		// Always go through the userform, it will do validations on the target
+		// and display the emailform for us.
+		$target = $par ?? $request->getVal( 'wpTarget', $request->getVal( 'target', '' ) );
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Defaults to empty string
+		$this->userForm( $target );
 	}
 
 	/**
@@ -309,6 +287,18 @@ class SpecialEmailUser extends SpecialPage {
 				'filter-callback' => static function ( $value ) use ( $name ) {
 					return str_replace( '_', ' ',
 						( $value !== '' && $value !== false && $value !== null ) ? $value : $name );
+				},
+				'validation-callback' => function ( $value ) {
+					// HTMLForm checked that this is a valid user name
+					$target = $this->userFactory->newFromName( $value );
+					$statusValue = $this->emailUserFactory
+						// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
+						->newEmailUser( $this->getUser() )->validateTarget( $target );
+					if ( !$statusValue->isGood() ) {
+						// TODO: Return Status instead of StatusValue from validateTarget() method?
+						return Status::wrap( $statusValue )->getMessage();
+					}
+					return true;
 				}
 			]
 		], $this->getContext() );
@@ -323,23 +313,20 @@ class SpecialEmailUser extends SpecialPage {
 			->show();
 	}
 
-	public function sendEmailForm() {
+	/**
+	 * @param array $data
+	 * @return bool
+	 */
+	public function sendEmailForm( array $data ) {
 		$out = $this->getOutput();
 
-		if ( !$this->mTargetObj instanceof User ) {
-			if ( $this->mTarget != '' ) {
-				// Messages used here: noemailtext, nowikiemailtext
-				$msg = ( $this->mTargetObj === 'notarget' ) ? 'emailnotarget' : ( $this->mTargetObj . 'text' );
-				return Status::newFatal( $msg );
-			}
-			return false;
-		}
-
-		$htmlForm = HTMLForm::factory( 'ooui', $this->getFormFields(), $this->getContext() );
-		// By now we are supposed to be sure that $this->mTarget is a user name
+		// HTMLForm checked that this is a valid user name, the return value can never be null.
+		$target = $this->userFactory->newFromName( $data['Target'] );
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
+		$htmlForm = HTMLForm::factory( 'ooui', $this->getFormFields( $target ), $this->getContext() );
 		$htmlForm
 			->setTitle( $this->getPageTitle() ) // Remove subpage
-			->addPreHtml( $this->msg( 'emailpagetext', $this->mTarget )->parse() )
+			->addPreHtml( $this->msg( 'emailpagetext', $target->getName() )->parse() )
 			->setSubmitTextMsg( 'emailsend' )
 			->setSubmitCallback( [ $this, 'onFormSubmit' ] )
 			->setWrapperLegendMsg( 'email-legend' )
@@ -353,8 +340,10 @@ class SpecialEmailUser extends SpecialPage {
 
 		if ( $result === true || ( $result instanceof Status && $result->isGood() ) ) {
 			$out->setPageTitleMsg( $this->msg( 'emailsent' ) );
-			$out->addWikiMsg( 'emailsenttext', $this->mTarget );
-			$out->returnToMain( false, $this->mTargetObj->getUserPage() );
+			$out->addWikiMsg( 'emailsenttext', $target->getName() );
+			$out->returnToMain( false, $target->getUserPage() );
+		} else {
+			$out->setPageTitleMsg( $this->msg( 'emailuser-title-target', $target->getName() ) );
 		}
 		return true;
 	}
@@ -365,10 +354,8 @@ class SpecialEmailUser extends SpecialPage {
 	 * @internal Only public because it's used as an HTMLForm callback.
 	 */
 	public function onFormSubmit( array $data ) {
+		// HTMLForm checked that this is a valid user name, the return value can never be null.
 		$target = $this->userFactory->newFromName( $data['Target'] );
-		if ( !$target instanceof User ) {
-			return StatusValue::newFatal( 'emailnotarget' );
-		}
 
 		$emailUser = $this->emailUserFactory->newEmailUser( $this->getAuthority() );
 		$emailUser->setEditToken( $this->getRequest()->getVal( 'wpEditToken' ) );
@@ -380,6 +367,7 @@ class SpecialEmailUser extends SpecialPage {
 			return $status;
 		}
 
+		// @phan-suppress-next-next-line PhanTypeMismatchArgumentNullable
 		$res = $emailUser->sendEmailUnsafe(
 			$target,
 			$data['Subject'],
