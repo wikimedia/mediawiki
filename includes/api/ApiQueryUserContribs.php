@@ -32,6 +32,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\ActorMigration;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
+use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserNameUtils;
 use Wikimedia\IPUtils;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -270,7 +271,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 							$fromName = $ipAddr;
 							break;
 						}
-						yield User::newFromName( $ipAddr, false );
+						yield UserIdentityValue::newAnonymous( $ipAddr );
 					}
 				} while ( $fromName !== false );
 			} );
