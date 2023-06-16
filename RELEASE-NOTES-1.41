@@ -325,6 +325,9 @@ because of Phabricator reports.
   - Skin::makeSpecialUrl (use Title or Special class instead)
   - Skin::makeSpecialUrlSubpage (use Title or Special class instead)
 * mw.jqueryMsg.parser, deprecated in 1.31, now emits deprecation warnings.
+* ResourceLoader (T127268): The targets system is deprecated. Modules that
+have been marked as desktop or mobile only are no longer supported and
+will send deprecation warnings.
 * …
 
 === Other changes in 1.41 ===

@@ -187,6 +187,14 @@ class StartUpModule extends Module {
 			$module = $resourceLoader->getModule( $name );
 			$moduleTargets = $module->getTargets();
 			$moduleSkins = $module->getSkins();
+			$targetMismatch = !in_array( 'mobile', $moduleTargets ) || !in_array( 'desktop', $moduleTargets );
+			$hasValidTarget = in_array( 'mobile', $moduleTargets ) || in_array( 'desktop', $moduleTargets );
+			if ( $hasValidTarget && $targetMismatch ) {
+				wfDeprecated(
+					'Modules must target desktop and mobile. Module name:' . $name,
+					'1.41'
+				);
+			}
 			if (
 				( !$byPassTargetFilter && !in_array( $target, $moduleTargets ) )
 				|| ( $safemode && $module->getOrigin() > Module::ORIGIN_CORE_INDIVIDUAL )
