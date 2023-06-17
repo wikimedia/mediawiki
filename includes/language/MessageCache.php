@@ -1410,11 +1410,7 @@ class MessageCache implements LoggerAwareInterface {
 	 */
 	public function transform( $message, $interface = false, $language = null, PageReference $page = null ) {
 		// Avoid creating parser if nothing to transform
-		if ( strpos( $message, '{{' ) === false ) {
-			return $message;
-		}
-
-		if ( $this->inParser ) {
+		if ( $this->inParser || !str_contains( $message, '{{' ) ) {
 			return $message;
 		}
 

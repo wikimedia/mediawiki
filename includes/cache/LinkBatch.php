@@ -341,11 +341,7 @@ class LinkBatch {
 	 * @return bool Whether the query was successful
 	 */
 	public function doGenderQuery() {
-		if ( $this->isEmpty() ) {
-			return false;
-		}
-
-		if ( !$this->contentLanguage->needsGenderDistinction() ) {
+		if ( $this->isEmpty() || !$this->contentLanguage->needsGenderDistinction() ) {
 			return false;
 		}
 

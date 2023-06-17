@@ -327,9 +327,7 @@ class StatusValue {
 	 * @return bool
 	 */
 	public function hasMessage( $message ) {
-		if ( $message instanceof MessageSpecifier ) {
-			$message = $message->getKey();
-		} elseif ( $message instanceof MessageValue ) {
+		if ( $message instanceof MessageSpecifier || $message instanceof MessageValue ) {
 			$message = $message->getKey();
 		}
 
@@ -356,9 +354,7 @@ class StatusValue {
 	public function hasMessagesExcept( ...$messages ) {
 		$exceptedKeys = [];
 		foreach ( $messages as $message ) {
-			if ( $message instanceof MessageSpecifier ) {
-				$message = $message->getKey();
-			} elseif ( $message instanceof MessageValue ) {
+			if ( $message instanceof MessageSpecifier || $message instanceof MessageValue ) {
 				$message = $message->getKey();
 			}
 			$exceptedKeys[] = $message;

@@ -213,13 +213,7 @@ abstract class UploadBase {
 			}
 		}
 
-		// Check whether this upload class is enabled
-		if ( !$className::isEnabled() ) {
-			return null;
-		}
-
-		// Check whether the request is valid
-		if ( !$className::isValidRequest( $request ) ) {
+		if ( !$className::isEnabled() || !$className::isValidRequest( $request ) ) {
 			return null;
 		}
 

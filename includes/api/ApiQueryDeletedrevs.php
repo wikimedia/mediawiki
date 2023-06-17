@@ -107,12 +107,10 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 		// If we're in a mode that breaks the same-origin policy, no tokens can
 		// be obtained
-		if ( $this->lacksSameOriginSecurity() ) {
-			$fld_token = false;
-		}
-
-		// If user can't undelete, no tokens
-		if ( !$this->getAuthority()->isAllowed( 'undelete' ) ) {
+		if ( $this->lacksSameOriginSecurity() ||
+			// If user can't undelete, no tokens
+			!$this->getAuthority()->isAllowed( 'undelete' )
+		) {
 			$fld_token = false;
 		}
 

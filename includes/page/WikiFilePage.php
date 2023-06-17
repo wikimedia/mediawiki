@@ -165,10 +165,7 @@ class WikiFilePage extends WikiPage {
 		 */
 		foreach ( $dupes as $index => $file ) {
 			$key = $file->getRepoName() . ':' . $file->getName();
-			if ( $key == $self ) {
-				unset( $dupes[$index] );
-			}
-			if ( $file->getSize() != $size ) {
+			if ( $key === $self || $file->getSize() != $size ) {
 				unset( $dupes[$index] );
 			}
 		}

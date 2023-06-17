@@ -165,11 +165,9 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 		}
 
 		$pwhash = $this->getPassword( $row->user_newpassword );
-		if ( !$pwhash->verify( $req->password ) ) {
-			return $this->failResponse( $req );
-		}
-
-		if ( !$this->isTimestampValid( $row->user_newpass_time ) ) {
+		if ( !$pwhash->verify( $req->password ) ||
+			!$this->isTimestampValid( $row->user_newpass_time )
+		) {
 			return $this->failResponse( $req );
 		}
 

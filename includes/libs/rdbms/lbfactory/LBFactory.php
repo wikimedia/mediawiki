@@ -203,11 +203,9 @@ abstract class LBFactory implements ILBFactory {
 		}
 
 		$conf = ( $this->configCallback )();
-		if ( !$conf ) {
-			return;
+		if ( $conf ) {
+			$this->reconfigure( $conf );
 		}
-
-		$this->reconfigure( $conf );
 	}
 
 	/**

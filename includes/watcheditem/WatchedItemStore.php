@@ -487,10 +487,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @return bool
 	 */
 	public function removeWatchBatchForUser( UserIdentity $user, array $titles ): bool {
-		if ( $this->readOnlyMode->isReadOnly() ) {
-			return false;
-		}
-		if ( !$user->isRegistered() ) {
+		if ( !$user->isRegistered() || $this->readOnlyMode->isReadOnly() ) {
 			return false;
 		}
 		if ( !$titles ) {
@@ -1022,11 +1019,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		array $targets,
 		?string $expiry = null
 	): bool {
-		if ( $this->readOnlyMode->isReadOnly() ) {
-			return false;
-		}
 		// Only registered user can have a watchlist
-		if ( !$user->isRegistered() ) {
+		if ( !$user->isRegistered() || $this->readOnlyMode->isReadOnly() ) {
 			return false;
 		}
 
@@ -1390,7 +1384,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		$time = time();
 
 		// Only registered user can have a watchlist
-		if ( $this->readOnlyMode->isReadOnly() || !$user->isRegistered() ) {
+		if ( !$user->isRegistered() || $this->readOnlyMode->isReadOnly() ) {
 			return false;
 		}
 
