@@ -212,7 +212,7 @@
 	 * @param {string} text CSS text
 	 * @param {Node|null} [nextNode] The element where the style tag
 	 *  should be inserted before
-	 * @return {HTMLElement} Reference to the created style element
+	 * @return {HTMLStyleElement} Reference to the created style element
 	 */
 	function newStyleTag( text, nextNode ) {
 		var el = document.createElement( 'style' );
