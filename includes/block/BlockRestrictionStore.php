@@ -234,23 +234,20 @@ class BlockRestrictionStore {
 	 */
 	public function delete( array $restrictions ) {
 		$dbw = $this->dbProvider->getPrimaryDatabase( $this->wikiId );
-		$result = true;
 		foreach ( $restrictions as $restriction ) {
 			if ( !$restriction instanceof Restriction ) {
 				continue;
 			}
 
-			$success = $dbw->newDeleteQueryBuilder()
+			$dbw->newDeleteQueryBuilder()
 				->delete( 'ipblocks_restrictions' )
 				// The restriction row is made up of a compound primary key. Therefore,
 				// the row and the delete conditions are the same.
 				->where( $restriction->toRow() )
 				->caller( __METHOD__ )->execute();
-			// Update the result. The first false is the result, otherwise, true.
-			$result = $success && $result;
 		}
 
-		return $result;
+		return true;
 	}
 
 	/**
@@ -261,11 +258,12 @@ class BlockRestrictionStore {
 	 * @return bool
 	 */
 	public function deleteByBlockId( $blockId ) {
-		return $this->dbProvider->getPrimaryDatabase( $this->wikiId )
+		$this->dbProvider->getPrimaryDatabase( $this->wikiId )
 			->newDeleteQueryBuilder()
 			->delete( 'ipblocks_restrictions' )
 			->where( [ 'ir_ipb_id' => $blockId ] )
 			->caller( __METHOD__ )->execute();
+		return true;
 	}
 
 	/**

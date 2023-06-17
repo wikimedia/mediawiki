@@ -46,9 +46,8 @@ class DeleteQueryBuilderTest extends PHPUnit\Framework\TestCase {
 
 	public function testExecute() {
 		$this->dqb->delete( 't' )->where( 'c' )->caller( __METHOD__ );
-		$res = $this->dqb->execute();
+		$this->dqb->execute();
 		$this->assertEquals( 'DELETE FROM t WHERE (c)', $this->db->getLastSqls() );
-		$this->assertIsBool( $res );
 	}
 
 	public function testGetQueryInfo() {
