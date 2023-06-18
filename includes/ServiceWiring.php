@@ -1650,7 +1650,7 @@ return [
 	},
 
 	'RateLimiter' => static function ( MediaWikiServices $services ): RateLimiter {
-		return new RateLimiter(
+		$rateLimiter = new RateLimiter(
 			new ServiceOptions( RateLimiter::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getWRStatsFactory(),
 			$services->getCentralIdLookupFactory()->getNonLocalLookup(),
@@ -1658,6 +1658,10 @@ return [
 			$services->getUserGroupManager(),
 			$services->getHookContainer()
 		);
+
+		$rateLimiter->setStats( $services->getStatsdDataFactory() );
+
+		return $rateLimiter;
 	},
 
 	'ReadOnlyMode' => static function ( MediaWikiServices $services ): ReadOnlyMode {

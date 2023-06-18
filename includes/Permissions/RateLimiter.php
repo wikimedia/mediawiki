@@ -21,6 +21,7 @@
 namespace MediaWiki\Permissions;
 
 use CentralIdLookup;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -28,6 +29,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
+use NullStatsdDataFactory;
 use Psr\Log\LoggerInterface;
 use Wikimedia\IPUtils;
 use Wikimedia\WRStats\LimitCondition;
@@ -65,6 +67,8 @@ class RateLimiter {
 	/** @var UserFactory */
 	private $userFactory;
 
+	private StatsdDataFactoryInterface $stats;
+
 	/**
 	 * @internal
 	 */
@@ -90,6 +94,7 @@ class RateLimiter {
 		HookContainer $hookContainer
 	) {
 		$this->logger = LoggerFactory::getInstance( 'ratelimit' );
+		$this->stats = new NullStatsdDataFactory();
 
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
@@ -100,6 +105,14 @@ class RateLimiter {
 		$this->hookRunner = new HookRunner( $hookContainer );
 
 		$this->rateLimits = $this->options->get( MainConfigNames::RateLimits );
+	}
+
+	public function setStats( StatsdDataFactoryInterface $stats ) {
+		$this->stats = $stats;
+	}
+
+	private function incrementStats( $name ) {
+		$this->stats->increment( "RateLimiter.$name" );
 	}
 
 	/**
@@ -145,6 +158,7 @@ class RateLimiter {
 		$result = false;
 		$legacyUser = $this->userFactory->newFromUserIdentity( $user );
 		if ( !$this->hookRunner->onPingLimiter( $legacyUser, $action, $result, $incrBy ) ) {
+			$this->incrementStats( "limit.$action.result." . ( $result ? 'tripped_by_hook' : 'passed_by_hook' ) );
 			return $result;
 		}
 
@@ -154,6 +168,7 @@ class RateLimiter {
 
 		// Some groups shouldn't trigger the ping limiter, ever
 		if ( $this->canBypass( $action ) && $this->isExempt( $subject ) ) {
+			$this->incrementStats( "limit.$action.result.exempt" );
 			return false;
 		}
 
@@ -272,9 +287,15 @@ class RateLimiter {
 					'key' => $type
 				] + $loggerInfo
 			);
+
+			$this->incrementStats( "limit.$action.tripped_by.$type" );
 		}
 
-		return !$batchResult->isAllowed();
+		$allowed = $batchResult->isAllowed();
+
+		$this->incrementStats( "limit.$action.result." . ( $allowed ? 'passed' : 'tripped' ) );
+
+		return !$allowed;
 	}
 
 	private function canBypass( string $action ) {
