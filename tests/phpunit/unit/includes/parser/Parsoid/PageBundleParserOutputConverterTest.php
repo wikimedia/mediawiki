@@ -28,13 +28,13 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 	/** @dataProvider provideParserOutputFromPageBundle */
 	public function testParserOutputFromPageBundleShouldPreserveMetadata( PageBundle $pageBundle ) {
 		// Create a ParserOutput with some metadata properties already set.
-		$output = new ParserOutput();
-		$output->setExtensionData( 'test-key', 'test-data' );
-		$output->setOutputFlag( ParserOutputFlags::NO_GALLERY );
-		$output->setPageProperty( 'forcetoc', '' );
+		$original = new ParserOutput();
+		$original->setExtensionData( 'test-key', 'test-data' );
+		$original->setOutputFlag( ParserOutputFlags::NO_GALLERY );
+		$original->setPageProperty( 'forcetoc', '' );
 
 		// This should preserve the metadata.
-		$output = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle, $output );
+		$output = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle, $original );
 		$this->assertSame( $pageBundle->html, $output->getRawText() );
 
 		// Check the page bundle data
@@ -50,6 +50,10 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 'test-data', $output->getExtensionData( 'test-key' ) );
 		$this->assertSame( true, $output->getOutputFlag( ParserOutputFlags::NO_GALLERY ) );
 		$this->assertSame( '', $output->getPageProperty( 'forcetoc' ) );
+
+		// Check that $original and $output can be modified independently of each other
+		$original->setText( 'new text version' );
+		$this->assertNotSame( 'new text version', $output->getRawText() );
 	}
 
 	public static function provideParserOutputFromPageBundle() {
