@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:Movepage
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -17,8 +15,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @file
- * @ingroup SpecialPage
+ * @files
  */
 
 namespace MediaWiki\Specials;
@@ -63,7 +60,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
 use Xml;
 
 /**
- * A special page that allows users to change page titles
+ * Implement Special:Movepage for changing page titles
  *
  * @ingroup SpecialPage
  */
@@ -76,8 +73,6 @@ class SpecialMovePage extends UnlistedSpecialPage {
 
 	/** @var string Text input */
 	protected $reason;
-
-	// Checks
 
 	/** @var bool */
 	protected $moveTalk;
@@ -184,9 +179,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 
 	public function execute( $par ) {
 		$this->useTransactionalTimeLimit();
-
 		$this->checkReadOnly();
-
 		$this->setHeaders();
 		$this->outputHeader();
 
@@ -228,30 +221,38 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		} else {
 			$this->reason = $reasonList;
 		}
-		$this->moveTalk = $request->getBool( 'wpMovetalk', !$isSubmit );
-		$this->fixRedirects = $request->getBool( 'wpFixRedirects', !$isSubmit );
-		$this->leaveRedirect = $request->getBool( 'wpLeaveRedirect', !$isSubmit );
+		// Default to checked, but don't fill in true during submission (browsers only submit checked values)
+		// TODO: Use HTMLForm to take care of this.
+		$def = !$isSubmit;
+		$this->moveTalk = $request->getBool( 'wpMovetalk', $def );
+		$this->fixRedirects = $request->getBool( 'wpFixRedirects', $def );
+		$this->leaveRedirect = $request->getBool( 'wpLeaveRedirect', $def );
 		// T222953: Tick the "move subpages" box by default
-		$this->moveSubpages = $request->getBool( 'wpMovesubpages', !$isSubmit );
+		$this->moveSubpages = $request->getBool( 'wpMovesubpages', $def );
 		$this->deleteAndMove = $request->getBool( 'wpDeleteAndMove' );
 		$this->moveOverShared = $request->getBool( 'wpMoveOverSharedFile' );
 		$this->watch = $request->getCheck( 'wpWatch' ) && $user->isRegistered();
 
-		# Check rights
-		$rigor = $isSubmit ? PermissionManager::RIGOR_SECURE : PermissionManager::RIGOR_FULL;
-		$permErrors = $this->permManager->getPermissionErrors( 'move', $user, $this->oldTitle, $rigor );
-		if ( count( $permErrors ) ) {
-			// Auto-block user's IP if the account was "hard" blocked
-			DeferredUpdates::addCallableUpdate( static function () use ( $user ) {
-				$user->spreadAnyEditBlock();
-			} );
-			throw new PermissionsError( 'move', $permErrors );
-		}
-
-		if ( $isSubmit && $user->matchEditToken( $request->getVal( 'wpEditToken' ) )
-		) {
+		// Similar to other SpecialPage/Action classes, when tokens fail (likely due to reset or expiry),
+		// do not show an error but show the form again for easy re-submit.
+		if ( $isSubmit && $user->matchEditToken( $request->getVal( 'wpEditToken' ) ) ) {
+			// Check rights
+			$permErrors = $this->permManager->getPermissionErrors( 'move', $user, $this->oldTitle,
+				PermissionManager::RIGOR_SECURE );
+			// If the account is "hard" blocked, auto-block IP
+			DeferredUpdates::addCallableUpdate( [ $user, 'spreadAnyEditBlock' ] );
+			if ( $permErrors ) {
+				throw new PermissionsError( 'move', $permErrors );
+			}
 			$this->doSubmit();
 		} else {
+			// Avoid primary DB connection on form view (T283265)
+			$permErrors = $this->permManager->getPermissionErrors( 'move', $user, $this->oldTitle,
+				PermissionManager::RIGOR_FULL );
+			if ( $permErrors ) {
+				DeferredUpdates::addCallableUpdate( [ $user, 'spreadAnyEditBlock' ] );
+				throw new PermissionsError( 'move', $permErrors );
+			}
 			$this->showForm( [] );
 		}
 	}
@@ -308,7 +309,6 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		$moveOverShared = false;
 
 		$user = $this->getUser();
-
 		$newTitle = $this->newTitle;
 
 		if ( !$newTitle ) {
