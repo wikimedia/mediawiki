@@ -629,6 +629,7 @@ class SpecialPageFactory {
 				'WatchedItemStore',
 				'WatchlistManager',
 				'UserOptionsLookup',
+				'ChangeTagsStore',
 			]
 		],
 		'Newpages' => [
@@ -642,6 +643,7 @@ class SpecialPageFactory {
 				'NamespaceInfo',
 				'UserOptionsLookup',
 				'CommentFormatter',
+				'ChangeTagsStore',
 			]
 		],
 		'Recentchanges' => [
@@ -650,6 +652,7 @@ class SpecialPageFactory {
 				'WatchedItemStore',
 				'MessageCache',
 				'UserOptionsLookup',
+				'ChangeTagsStore',
 			]
 		],
 		'Recentchangeslinked' => [
@@ -659,6 +662,7 @@ class SpecialPageFactory {
 				'MessageCache',
 				'UserOptionsLookup',
 				'SearchEngineFactory',
+				'ChangeTagsStore',
 			]
 		],
 		'Tags' => [

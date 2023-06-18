@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
@@ -50,6 +51,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 	/** @var int */
 	public $denseRcSizeThreshold = 10000;
+	private ChangeTagsStore $changeTagsStore;
 
 	/**
 	 * @param WatchedItemStoreInterface|null $watchedItemStore
@@ -59,7 +61,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	public function __construct(
 		WatchedItemStoreInterface $watchedItemStore = null,
 		MessageCache $messageCache = null,
-		UserOptionsLookup $userOptionsLookup = null
+		UserOptionsLookup $userOptionsLookup = null,
+		ChangeTagsStore $changeTagsStore = null
 	) {
 		parent::__construct( 'Recentchanges', '' );
 		// This class is extended and therefor fallback to global state - T265310
@@ -67,6 +70,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$this->watchedItemStore = $watchedItemStore ?? $services->getWatchedItemStore();
 		$this->messageCache = $messageCache ?? $services->getMessageCache();
 		$this->userOptionsLookup = $userOptionsLookup ?? $services->getUserOptionsLookup();
+		$this->changeTagsStore = $changeTagsStore ?? $services->getChangeTagsStore();
 
 		$this->watchlistFilterGroupDefinition = [
 			'name' => 'watchlist',
@@ -363,7 +367,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$join_conds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];
 
 		$tagFilter = $opts['tagfilter'] !== '' ? explode( '|', $opts['tagfilter'] ) : [];
-		ChangeTags::modifyDisplayQuery(
+		$this->changeTagsStore->modifyDisplayQuery(
 			$tables,
 			$fields,
 			$conds,
@@ -398,7 +402,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		}
 
 		if ( in_array( 'DISTINCT', $query_options ) ) {
-			// ChangeTags::modifyDisplayQuery() adds DISTINCT when filtering on multiple tags.
+			// ChangeTagsStore::modifyDisplayQuery() adds DISTINCT when filtering on multiple tags.
 			// In order to prevent DISTINCT from causing query performance problems,
 			// we have to GROUP BY the primary key. This in turn requires us to add
 			// the primary key to the end of the ORDER BY, and the old ORDER BY to the

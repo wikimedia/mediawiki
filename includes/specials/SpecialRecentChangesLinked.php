@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
@@ -40,6 +41,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 
 	/** @var SearchEngineFactory */
 	private $searchEngineFactory;
+	private ChangeTagsStore $changeTagsStore;
 
 	/**
 	 * @param WatchedItemStoreInterface $watchedItemStore
@@ -51,7 +53,8 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		WatchedItemStoreInterface $watchedItemStore,
 		MessageCache $messageCache,
 		UserOptionsLookup $userOptionsLookup,
-		SearchEngineFactory $searchEngineFactory
+		SearchEngineFactory $searchEngineFactory,
+		ChangeTagsStore $changeTagsStore
 	) {
 		parent::__construct(
 			$watchedItemStore,
@@ -60,6 +63,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		);
 		$this->mName = 'Recentchangeslinked';
 		$this->searchEngineFactory = $searchEngineFactory;
+		$this->changeTagsStore = $changeTagsStore;
 	}
 
 	public function getDefaultOptions() {
@@ -127,7 +131,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		$select[] = 'page_latest';
 
 		$tagFilter = $opts['tagfilter'] !== '' ? explode( '|', $opts['tagfilter'] ) : [];
-		ChangeTags::modifyDisplayQuery(
+		$this->changeTagsStore->modifyDisplayQuery(
 			$tables,
 			$select,
 			$conds,
@@ -139,7 +143,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 
 		if ( $dbr->unionSupportsOrderAndLimit() ) {
 			if ( in_array( 'DISTINCT', $query_options ) ) {
-				// ChangeTags::modifyDisplayQuery() will have added DISTINCT.
+				// ChangeTagsStore::modifyDisplayQuery() will have added DISTINCT.
 				// To prevent this from causing query performance problems, we need to add
 				// a GROUP BY, and add rc_id to the ORDER BY.
 				$order = [

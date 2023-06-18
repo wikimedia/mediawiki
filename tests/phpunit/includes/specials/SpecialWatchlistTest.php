@@ -50,7 +50,8 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 		return new SpecialWatchlist(
 			$services->getWatchedItemStore(),
 			$services->getWatchlistManager(),
-			$services->getUserOptionsLookup()
+			$services->getUserOptionsLookup(),
+			$services->getChangeTagsStore()
 		);
 	}
 
