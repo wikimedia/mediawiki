@@ -20,7 +20,8 @@
 namespace MediaWiki\Permissions;
 
 use Article;
-use Exception;
+use BadMethodCallException;
+use InvalidArgumentException;
 use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\DatabaseBlock;
@@ -146,7 +147,7 @@ class PermissionManager {
 	 * "right-$right".
 	 * @showinitializer
 	 */
-	private $coreRights = [
+	private const CORE_RIGHTS = [
 		'apihighlimits',
 		'applychangetags',
 		'autoconfirmed',
@@ -446,7 +447,6 @@ class PermissionManager {
 	 *   - RIGOR_SECURE : does cheap and expensive checks, using the primary DB as needed
 	 * @param bool $short Set this to true to stop after the first permission error.
 	 * @return array[] Array of arrays of the arguments to wfMessage to explain permissions problems.
-	 * @throws Exception
 	 */
 	private function getPermissionErrorsInternal(
 		$action,
@@ -456,7 +456,7 @@ class PermissionManager {
 		$short = false
 	): array {
 		if ( !in_array( $rigor, [ self::RIGOR_QUICK, self::RIGOR_FULL, self::RIGOR_SECURE ] ) ) {
-			throw new Exception( "Invalid rigor parameter '$rigor'." );
+			throw new InvalidArgumentException( "Invalid rigor parameter '$rigor'." );
 		}
 
 		// With RIGOR_QUICK we can assume automatic account creation will
@@ -471,38 +471,26 @@ class PermissionManager {
 		}
 
 		# Read has special handling
-		if ( $action == 'read' ) {
+		if ( $action === 'read' ) {
 			$checks = [
-				'checkPermissionHooks',
-				'checkReadPermissions',
-				'checkUserBlock', // for wgBlockDisablesLogin
+				[ $this, 'checkPermissionHooks' ],
+				[ $this, 'checkReadPermissions' ],
+				[ $this, 'checkUserBlock' ], // for wgBlockDisablesLogin
 			];
 			# Don't call checkSpecialsAndNSPermissions, checkSiteConfigPermissions
 			# or checkUserConfigPermissions here as it will lead to duplicate
 			# error messages. This is okay to do since anywhere that checks for
 			# create will also check for edit, and those checks are called for edit.
-		} elseif ( $action == 'create' ) {
+		} elseif ( $action === 'create' ) {
 			$checks = [
-				'checkQuickPermissions',
-				'checkPermissionHooks',
-				'checkPageRestrictions',
-				'checkCascadingSourcesRestrictions',
-				'checkActionPermissions',
-				'checkUserBlock'
+				[ $this, 'checkQuickPermissions' ],
+				[ $this, 'checkPermissionHooks' ],
+				[ $this, 'checkPageRestrictions' ],
+				[ $this, 'checkCascadingSourcesRestrictions' ],
+				[ $this, 'checkActionPermissions' ],
+				[ $this, 'checkUserBlock' ],
 			];
 		} else {
-			$checks = [
-				'checkQuickPermissions',
-				'checkPermissionHooks',
-				'checkSpecialsAndNSPermissions',
-				'checkSiteConfigPermissions',
-				'checkUserConfigPermissions',
-				'checkPageRestrictions',
-				'checkCascadingSourcesRestrictions',
-				'checkActionPermissions',
-				'checkUserBlock'
-			];
-
 			// Exclude checkUserConfigPermissions on actions that cannot change the
 			// content of the configuration pages.
 			$skipUserConfigActions = [
@@ -524,19 +512,27 @@ class PermissionManager {
 				'viewsuppressed',
 			];
 
-			if ( in_array( $action, $skipUserConfigActions, true ) ) {
-				$checks = array_diff(
-					$checks,
-					[ 'checkUserConfigPermissions' ]
-				);
-				// Reset numbering
-				$checks = array_values( $checks );
+			$checks = [
+				[ $this, 'checkQuickPermissions' ],
+				[ $this, 'checkPermissionHooks' ],
+				[ $this, 'checkSpecialsAndNSPermissions' ],
+				[ $this, 'checkSiteConfigPermissions' ],
+			];
+			if ( !in_array( $action, $skipUserConfigActions, true ) ) {
+				$checks[] = [ $this, 'checkUserConfigPermissions' ];
 			}
+			$checks = [
+				...$checks,
+				[ $this, 'checkPageRestrictions' ],
+				[ $this, 'checkCascadingSourcesRestrictions' ],
+				[ $this, 'checkActionPermissions' ],
+				[ $this, 'checkUserBlock' ]
+			];
 		}
 
 		$errors = [];
 		foreach ( $checks as $method ) {
-			$errors = $this->$method( $action, $user, $errors, $rigor, $short, $page );
+			$errors = $method( $action, $user, $errors, $rigor, $short, $page );
 
 			if ( $short && $errors !== [] ) {
 				break;
@@ -657,14 +653,14 @@ class PermissionManager {
 		} elseif ( $this->userHasRight( $user, 'read' ) ) {
 			// If the user is allowed to read pages, he is allowed to read all pages
 			$allowed = true;
-		} elseif ( $this->isSameSpecialPage( 'Userlogin', $title )
-			|| $this->isSameSpecialPage( 'PasswordReset', $title )
-			|| $this->isSameSpecialPage( 'Userlogout', $title )
+		} elseif ( $this->isSameSpecialPage( 'Userlogin', $page )
+			|| $this->isSameSpecialPage( 'PasswordReset', $page )
+			|| $this->isSameSpecialPage( 'Userlogout', $page )
 		) {
 			// Always grant access to the login page.
 			// Even anons need to be able to log in.
 			$allowed = true;
-		} elseif ( $this->isSameSpecialPage( 'RunJobs', $title ) ) {
+		} elseif ( $this->isSameSpecialPage( 'RunJobs', $page ) ) {
 			// relies on HMAC key signature alone
 			$allowed = true;
 		} elseif ( is_array( $whiteListRead ) && count( $whiteListRead ) ) {
@@ -678,7 +674,7 @@ class PermissionManager {
 				|| in_array( $dbName, $whiteListRead, true )
 			) {
 				$allowed = true;
-			} elseif ( $title->getNamespace() === NS_MAIN ) {
+			} elseif ( $page->getNamespace() === NS_MAIN ) {
 				// Old settings might have the title prefixed with
 				// a colon for main-namespace pages
 				if ( in_array( ':' . $name, $whiteListRead ) ) {
@@ -750,9 +746,8 @@ class PermissionManager {
 	 */
 	private function isSameSpecialPage( $name, LinkTarget $page ): bool {
 		if ( $page->getNamespace() === NS_SPECIAL ) {
-			[ $thisName, /* $subpage */ ] =
-				$this->specialPageFactory->resolveAlias( $page->getDBkey() );
-			if ( $name == $thisName ) {
+			[ $pageName ] = $this->specialPageFactory->resolveAlias( $page->getDBkey() );
+			if ( $name === $pageName ) {
 				return true;
 			}
 		}
@@ -938,7 +933,7 @@ class PermissionManager {
 			$this->nsInfo->hasSubpages( $title->getNamespace() ) &&
 			strpos( $title->getText(), '/' ) !== false;
 
-		if ( $action == 'create' ) {
+		if ( $action === 'create' ) {
 			if (
 				( $this->nsInfo->isTalk( $title->getNamespace() ) &&
 					!$this->userHasRight( $user, 'createtalk' ) ) ||
@@ -947,7 +942,7 @@ class PermissionManager {
 			) {
 				$errors[] = $user->isNamed() ? [ 'nocreate-loggedin' ] : [ 'nocreatetext' ];
 			}
-		} elseif ( $action == 'move' ) {
+		} elseif ( $action === 'move' ) {
 			if ( !$this->userHasRight( $user, 'move-rootuserpages' )
 				&& $title->getNamespace() === NS_USER && !$isSubPage
 			) {
@@ -989,7 +984,7 @@ class PermissionManager {
 					$errors[] = [ 'movenotallowed' ];
 				}
 			}
-		} elseif ( $action == 'move-target' ) {
+		} elseif ( $action === 'move-target' ) {
 			if ( !$this->userHasRight( $user, 'move' ) ) {
 				// User can't move anything
 				$errors[] = [ 'movenotallowed' ];
@@ -1041,11 +1036,11 @@ class PermissionManager {
 		$title = Title::newFromLinkTarget( $page );
 		foreach ( $this->restrictionStore->getRestrictions( $title, $action ) as $right ) {
 			// Backwards compatibility, rewrite sysop -> editprotected
-			if ( $right == 'sysop' ) {
+			if ( $right === 'sysop' ) {
 				$right = 'editprotected';
 			}
 			// Backwards compatibility, rewrite autoconfirmed -> editsemiprotected
-			if ( $right == 'autoconfirmed' ) {
+			if ( $right === 'autoconfirmed' ) {
 				$right = 'editsemiprotected';
 			}
 			if ( $right == '' ) {
@@ -1096,11 +1091,11 @@ class PermissionManager {
 			if ( isset( $restrictions[$action] ) ) {
 				foreach ( $restrictions[$action] as $right ) {
 					// Backwards compatibility, rewrite sysop -> editprotected
-					if ( $right == 'sysop' ) {
+					if ( $right === 'sysop' ) {
 						$right = 'editprotected';
 					}
 					// Backwards compatibility, rewrite autoconfirmed -> editsemiprotected
-					if ( $right == 'autoconfirmed' ) {
+					if ( $right === 'autoconfirmed' ) {
 						$right = 'editsemiprotected';
 					}
 					if ( $right != '' && !$this->userHasAllRights( $user, 'protect', $right ) ) {
@@ -1142,25 +1137,25 @@ class PermissionManager {
 		// TODO: remove & rework upon further use of LinkTarget
 		$title = Title::newFromLinkTarget( $page );
 
-		if ( $action == 'protect' ) {
+		if ( $action === 'protect' ) {
 			if ( count( $this->getPermissionErrorsInternal( 'edit', $user, $title, $rigor, true ) ) ) {
 				// If they can't edit, they shouldn't protect.
 				$errors[] = [ 'protect-cantedit' ];
 			}
-		} elseif ( $action == 'create' ) {
-			$title_protection = $title->getTitleProtection();
-			if ( $title_protection ) {
-				if ( $title_protection['permission'] == ''
-					|| !$this->userHasRight( $user, $title_protection['permission'] )
+		} elseif ( $action === 'create' ) {
+			$createProtection = $this->restrictionStore->getCreateProtection( $title );
+			if ( $createProtection ) {
+				if ( $createProtection['permission'] == ''
+					|| !$this->userHasRight( $user, $createProtection['permission'] )
 				) {
 					$errors[] = [
 						'titleprotected',
-						$this->userCache->getProp( $title_protection['user'], 'name' ),
-						$title_protection['reason']
+						$this->userCache->getProp( $createProtection['user'], 'name' ),
+						$createProtection['reason']
 					];
 				}
 			}
-		} elseif ( $action == 'move' ) {
+		} elseif ( $action === 'move' ) {
 			// Check for immobile pages
 			if ( !$this->nsInfo->isMovable( $title->getNamespace() ) ) {
 				// Specific message for this case
@@ -1173,7 +1168,7 @@ class PermissionManager {
 				// Less specific message for rarer cases
 				$errors[] = [ 'immobile-source-page' ];
 			}
-		} elseif ( $action == 'move-target' ) {
+		} elseif ( $action === 'move-target' ) {
 			if ( !$this->nsInfo->isMovable( $title->getNamespace() ) ) {
 				$nsText = $title->getNsText();
 				if ( $nsText === '' ) {
@@ -1183,7 +1178,7 @@ class PermissionManager {
 			} elseif ( !$title->isMovable() ) {
 				$errors[] = [ 'immobile-target-page' ];
 			}
-		} elseif ( $action == 'delete' || $action == 'delete-redirect' ) {
+		} elseif ( $action === 'delete' || $action === 'delete-redirect' ) {
 			$tempErrors = $this->checkPageRestrictions( 'edit', $user, [], $rigor, true, $title );
 			if ( !$tempErrors ) {
 				$tempErrors = $this->checkCascadingSourcesRestrictions( 'edit',
@@ -1194,7 +1189,7 @@ class PermissionManager {
 				$errors[] = [ 'deleteprotected' ];
 			}
 			if ( $rigor !== self::RIGOR_QUICK
-				&& $action == 'delete'
+				&& $action === 'delete'
 				&& $this->options->get( MainConfigNames::DeleteRevisionsLimit )
 				&& !$this->userCan( 'bigdelete', $user, $title )
 				&& $title->isBigDeletion()
@@ -1661,11 +1656,11 @@ class PermissionManager {
 		if ( $this->allRights === null ) {
 			if ( count( $this->options->get( MainConfigNames::AvailableRights ) ) ) {
 				$this->allRights = array_unique( array_merge(
-					$this->coreRights,
+					self::CORE_RIGHTS,
 					$this->options->get( MainConfigNames::AvailableRights )
 				) );
 			} else {
-				$this->allRights = $this->coreRights;
+				$this->allRights = self::CORE_RIGHTS;
 			}
 			$this->hookRunner->onUserGetAllRights( $this->allRights );
 		}
@@ -1703,10 +1698,10 @@ class PermissionManager {
 			if ( $user ) {
 				$levels = array_values( array_filter( $levels, function ( $level ) use ( $user ) {
 					$right = $level;
-					if ( $right == 'sysop' ) {
+					if ( $right === 'sysop' ) {
 						$right = 'editprotected'; // BC
 					}
-					if ( $right == 'autoconfirmed' ) {
+					if ( $right === 'autoconfirmed' ) {
 						$right = 'editsemiprotected'; // BC
 					}
 					return $this->userHasRight( $user, $right );
@@ -1725,10 +1720,10 @@ class PermissionManager {
 		// First, for each right, get a list of groups with that right.
 		$namespaceRightGroups = [];
 		foreach ( (array)$this->options->get( MainConfigNames::NamespaceProtection )[$index] as $right ) {
-			if ( $right == 'sysop' ) {
+			if ( $right === 'sysop' ) {
 				$right = 'editprotected'; // BC
 			}
-			if ( $right == 'autoconfirmed' ) {
+			if ( $right === 'autoconfirmed' ) {
 				$right = 'editsemiprotected'; // BC
 			}
 			if ( $right != '' ) {
@@ -1740,10 +1735,10 @@ class PermissionManager {
 		$usableLevels = [ '' ];
 		foreach ( $this->options->get( MainConfigNames::RestrictionLevels ) as $level ) {
 			$right = $level;
-			if ( $right == 'sysop' ) {
+			if ( $right === 'sysop' ) {
 				$right = 'editprotected'; // BC
 			}
-			if ( $right == 'autoconfirmed' ) {
+			if ( $right === 'autoconfirmed' ) {
 				$right = 'editsemiprotected'; // BC
 			}
 
@@ -1815,7 +1810,7 @@ class PermissionManager {
 	 */
 	public function overrideUserRightsForTesting( $user, $rights = [] ) {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			throw new Exception( __METHOD__ . ' can not be called outside of tests' );
+			throw new BadMethodCallException( __METHOD__ . ' can not be called outside of tests' );
 		}
 		$this->usersRights[ $this->getRightsCacheKey( $user ) ] =
 			is_array( $rights ) ? $rights : [ $rights ];
