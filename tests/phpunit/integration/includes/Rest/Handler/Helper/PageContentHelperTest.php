@@ -244,7 +244,7 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testForbiddenMessagePage() {
 		$page = $this->getNonexistingTestPage(
-			Title::newFromText( 'MediaWiki:Logouttext' )
+			Title::makeTitle( NS_MEDIAWIKI, 'Logouttext' )
 		);
 		$title = $page->getTitle();
 		$helper = $this->newHelper(
@@ -283,7 +283,7 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testMessagePage() {
 		$page = $this->getNonexistingTestPage(
-			Title::newFromText( 'MediaWiki:Logouttext' )
+			Title::makeTitle( NS_MEDIAWIKI, 'Logouttext' )
 		);
 		$title = $page->getTitle();
 		$helper = $this->newHelper(

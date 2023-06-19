@@ -319,7 +319,7 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 			new SkinTemplate( [ 'template' => 'SkinQuickTemplateTest', 'name' => 'test' ] )
 		);
 
-		$wrapper->getContext()->setTitle( Title::newFromText( 'PrepareQuickTemplateTest' ) );
+		$wrapper->getContext()->setTitle( Title::makeTitle( NS_MAIN, 'PrepareQuickTemplateTest' ) );
 		$tpl = $wrapper->prepareQuickTemplate();
 		$contentNav = $tpl->get( 'content_navigation' );
 

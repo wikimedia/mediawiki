@@ -80,6 +80,6 @@ class SampleTest extends MediaWikiLangTestCase {
 	 */
 	public function testTitleObjectFromObject() {
 		$this->expectException( InvalidArgumentException::class );
-		Title::newFromText( Title::newFromText( "test" ) );
+		Title::newFromText( Title::makeTitle( NS_MAIN, 'Test' ) );
 	}
 }

@@ -235,7 +235,7 @@ just a test"
 	 * @covers WikitextContent::updateRedirect
 	 */
 	public function testUpdateRedirect() {
-		$target = Title::newFromText( "testUpdateRedirect_target" );
+		$target = Title::makeTitle( NS_MAIN, 'TestUpdateRedirect_target' );
 
 		// test with non-redirect page
 		$content = $this->newContent( "hello world." );
@@ -279,7 +279,7 @@ just a test"
 	 * @covers ParserOptions::setRedirectTarget
 	 */
 	public function testRedirectParserOption() {
-		$title = Title::newFromText( 'testRedirectParserOption' );
+		$title = Title::makeTitle( NS_MAIN, 'TestRedirectParserOption' );
 		$contentRenderer = $this->getServiceContainer()->getContentRenderer();
 
 		// Set up hook and its reporting variables

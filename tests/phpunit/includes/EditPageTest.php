@@ -795,7 +795,7 @@ hello
 
 		// create page
 		$ns = $this->getDefaultWikitextNS();
-		$title = Title::newFromText( 'EditPageTest_testAutoMerge', $ns );
+		$title = Title::makeTitle( NS_MAIN, 'EditPageTest_testAutoMerge', $ns );
 		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
 		$page = $wikiPageFactory->newFromTitle( $title );
 

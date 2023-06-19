@@ -191,7 +191,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 		$ctx = new RequestContext();
 		$term = '{{SITENAME}}';
 		$ctx->setRequest( new FauxRequest( [ 'search' => $term, 'fulltext' => 1 ] ) );
-		$ctx->setTitle( Title::newFromText( 'Special:Search' ) );
+		$ctx->setTitle( Title::makeTitle( NS_SPECIAL, 'Search' ) );
 		$search = $this->newSpecialPage();
 		$search->setContext( $ctx );
 
@@ -393,7 +393,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValue( MainConfigNames::Script, '/w/index.php' );
 
 		$ctx = new RequestContext;
-		$sp = Title::newFromText( 'Special:Search/foo_bar' );
+		$sp = Title::makeTitle( NS_SPECIAL, 'Search/foo_bar' );
 		$this->getServiceContainer()->getSpecialPageFactory()->executePath( $sp, $ctx );
 		$url = $ctx->getOutput()->getRedirect();
 

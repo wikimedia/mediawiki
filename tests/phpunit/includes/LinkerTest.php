@@ -288,7 +288,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 
 		if ( $title === false ) {
 			// We need a page title that exists
-			$title = Title::newFromText( 'Special:BlankPage' );
+			$title = Title::makeTitle( NS_SPECIAL, 'BlankPage' );
 		}
 
 		$this->assertEquals(
@@ -703,12 +703,12 @@ class LinkerTest extends MediaWikiLangTestCase {
 			'Link to other page section' => [
 				' <span class="comment">(<a href="/wiki/Special:BlankPage#Test" title="Special:BlankPage">#Test</a>)</span>',
 				'[[#Test]]',
-				Title::newFromText( 'Special:BlankPage' )
+				Title::makeTitle( NS_SPECIAL, 'BlankPage' )
 			],
 			'$local is true' => [
 				' <span class="comment">(<a href="#Test">#Test</a>)</span>',
 				'[[#Test]]',
-				Title::newFromText( 'Special:BlankPage' ),
+				Title::makeTitle( NS_SPECIAL, 'BlankPage' ),
 				true
 			],
 			'Given wikiId' => [
@@ -720,7 +720,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 			'Section link to external wiki page' => [
 				' <span class="comment">(<a class="external" rel="nofollow" href="//en.example.org/w/Special:BlankPage#Test">#Test</a>)</span>',
 				'[[#Test]]',
-				Title::newFromText( 'Special:BlankPage' ),
+				Title::makeTitle( NS_SPECIAL, 'BlankPage' ),
 				false,
 				'enwiki'
 			],

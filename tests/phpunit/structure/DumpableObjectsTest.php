@@ -28,7 +28,7 @@ class DumpableObjectsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testTitle() {
-		$object = Title::newFromText( 'Test' );
+		$object = Title::makeTitle( NS_MAIN, 'Test' );
 		$this->assertLessThan( 100000, $this->dumpSize( $object ) );
 	}
 

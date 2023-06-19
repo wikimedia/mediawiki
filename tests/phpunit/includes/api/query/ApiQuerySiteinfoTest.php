@@ -490,12 +490,12 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		// @todo Test git info
 
 		$this->assertSame(
-			Title::newFromText( 'Special:Version/License/Ersatz Extension' )->getLinkURL(),
+			Title::makeTitle( NS_SPECIAL, 'Version/License/Ersatz Extension' )->getLinkURL(),
 			$data[0]['license']
 		);
 
 		$this->assertSame(
-			Title::newFromText( 'Special:Version/Credits/Ersatz Extension' )->getLinkURL(),
+			Title::makeTitle( NS_SPECIAL, 'Version/Credits/Ersatz Extension' )->getLinkURL(),
 			$data[0]['credits']
 		);
 
