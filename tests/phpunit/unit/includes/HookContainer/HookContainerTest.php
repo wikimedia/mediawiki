@@ -2,12 +2,14 @@
 
 namespace MediaWiki\HookContainer {
 
+	use Error;
 	use InvalidArgumentException;
 	use MediaWiki\Tests\Unit\DummyServicesTrait;
 	use MediaWikiUnitTestCase;
 	use stdClass;
 	use UnexpectedValueException;
 	use Wikimedia\ScopedCallback;
+	use Wikimedia\TestingAccessWrapper;
 
 	class HookContainerTest extends MediaWikiUnitTestCase {
 		use DummyServicesTrait;
@@ -61,11 +63,14 @@ namespace MediaWiki\HookContainer {
 				'function' => [ 'strtoupper', 'strtoupper' ],
 				'object' => [ new \FooExtension\Hooks(), 'FooExtension\Hooks::onFooActionComplete' ],
 				'object and method' => [ [ new FooClass(), 'fooMethod' ], 'MediaWiki\HookContainer\FooClass::fooMethod' ],
-				'object in array with no method' => [ new \FooExtension\Hooks(), 'FooExtension\Hooks::onFooActionComplete' ],
 				'extension' => [
 					self::HANDLER_REGISTRATION,
 					'FooExtension\Hooks::onFooActionComplete'
-				]
+				],
+				'callable referencing a class that extends an unknown class' => [
+					[ 'MediaWiki\Tests\BrokenClass', 'aMethod' ],
+					'MediaWiki\Tests\BrokenClass::aMethod'
+				],
 			];
 		}
 
@@ -395,7 +400,7 @@ namespace MediaWiki\HookContainer {
 				],
 				'Object and fully-qualified non-static method' => [
 					[ $fooObj, 'MediaWiki\HookContainer\FooClass::fooMethod' ]
-				],
+				]
 			];
 		}
 
@@ -784,7 +789,12 @@ namespace MediaWiki\HookContainer {
 						return false;
 					},
 					[ 'abortable' => false ]
-				]
+				],
+				'callable referencing a class that extends an unknown class' => [
+					[ 'MediaWiki\\Tests\\BrokenClass', 'aMethod' ],
+					[],
+					Error::class
+				],
 			];
 		}
 
@@ -793,11 +803,12 @@ namespace MediaWiki\HookContainer {
 		 * @covers \MediaWiki\HookContainer\HookContainer::normalizeHandler
 		 * Test errors thrown with invalid handlers
 		 */
-		public function testRunErrors( $handler, $options ) {
+		public function testRunErrors( $handler, $options, $expected = UnexpectedValueException::class ) {
 			$hookContainer = $this->newHookContainer();
-			$this->filterDeprecated( '/^Returning a string from a hook handler/' );
-			$this->expectException( UnexpectedValueException::class );
 			$hookContainer->register( 'MWTestHook', $handler );
+
+			$this->filterDeprecated( '/^Returning a string from a hook handler/' );
+			$this->expectException( $expected );
 			$hookContainer->run( 'MWTestHook', [], $options );
 		}
 
@@ -813,6 +824,10 @@ namespace MediaWiki\HookContainer {
 				'empty string' => [ '' ],
 				'zero' => [ 0 ],
 				'true' => [ true ],
+				'callable referencing an unknown class' => [
+					[ 'FooExtension\DoesNotExist', 'onFoo' ],
+					'FooExtension\DoesNotExist::onFoo'
+				],
 			];
 		}
 
@@ -976,6 +991,83 @@ namespace MediaWiki\HookContainer {
 			$hookContainer->run( 'Increment', [ &$count ] );
 			$this->assertSame( 11, $count );
 			$this->assertTrue( $hookContainer->isRegistered( 'Increment' ) );
+		}
+
+		public static function provideMayBeCallable() {
+			yield 'function' => [
+				'strtoupper',
+			];
+			yield 'closure' => [
+				static function () {
+					// noop
+				},
+			];
+			yield 'object and method' => [
+				[ new FooClass(), 'fooMethod' ],
+			];
+			yield 'static method as array' => [
+				[ FooClass::class, 'fooStaticMethod', ],
+			];
+			yield 'static method as string' => [
+				'MediaWiki\HookContainer\FooClass::fooStaticMethod',
+			];
+			yield 'callable referencing a class that extends an unknown class' => [
+				[ 'MediaWiki\Tests\BrokenClass', 'aMethod' ],
+			];
+		}
+
+		public static function provideNotCallable() {
+			yield 'object' => [
+				new \FooExtension\Hooks(),
+			];
+			yield 'object and non-existing method' => [
+				[ new FooClass(), 'noSuchMethod' ],
+			];
+			yield 'object and method and extra stuff' => [
+				[ new FooClass(), 'fooMethod', 'extra', 'stuff' ],
+			];
+			yield 'object and method assoc' => [
+				[ 'a' => new FooClass(), 'b' => 'fooMethod' ],
+			];
+			yield 'object and method nested in array' => [
+				[ [ new FooClass(), 'fooMethod' ], 'whatever' ],
+			];
+			yield 'non-existing static method on existing class' => [
+				'MediaWiki\HookContainer\FooClass::noSuchMethod',
+			];
+			yield 'global function with extra data in array' => [
+				[ 'strtoupper', 'extra' ],
+			];
+			yield 'non-existing static method on existing class as array' => [
+				[ FooClass::class, 'noSuchMethod' ],
+			];
+			yield 'non-function text' => [
+				'just some text',
+			];
+			yield 'object in array with no method' => [
+				[ new \FooExtension\Hooks() ],
+			];
+			yield 'callable referencing an unknown class' => [
+				[ 'FooExtension\DoesNotExist', 'onFoo' ],
+			];
+		}
+
+		/**
+		 * @covers \MediaWiki\HookContainer\HookContainer::mayBeCallable
+		 * @dataProvider provideMayBeCallable
+		 */
+		public function testMayBeCallable_true( $v ) {
+			$access = TestingAccessWrapper::newFromClass( HookContainer::class );
+			$this->assertTrue( $access->mayBeCallable( $v ) );
+		}
+
+		/**
+		 * @covers \MediaWiki\HookContainer\HookContainer::mayBeCallable
+		 * @dataProvider provideNotCallable
+		 */
+		public function testMayBeCallable_false( $v ) {
+			$access = TestingAccessWrapper::newFromClass( HookContainer::class );
+			$this->assertFalse( $access->mayBeCallable( $v ) );
 		}
 	}
 
