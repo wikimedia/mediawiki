@@ -2653,7 +2653,7 @@
 	"undeleteinvert": "選択を反転",
 	"undeletecomment": "理由:",
 	"cannotundelete": "復元に一部またはすべて失敗しました:\n$1",
-	"undeletedpage": "<strong>$1 の削除は取り消されました</strong>\n\n最近の削除と復元の記録については、[[Special:Log/delete|削除ログ]]を参照してください。",
+	"undeletedpage": "<strong>$1 を復元しました</strong>\n\n最近の削除と復元の記録については、[[Special:Log/delete|削除記録]]を参照してください。",
 	"undelete-header": "最近削除されたページは[[Special:Log/delete|削除記録]]で確認できます。",
 	"undelete-search-title": "削除されたページの検索",
 	"undelete-search-box": "削除されたページの検索",

@@ -626,6 +626,8 @@
 	"preview": "Kucken ouni ofzespäicheren",
 	"showpreview": "Kucken ouni ofzespäicheren",
 	"showdiff": "Ännerunge weisen",
+	"temp-user-banner-description": "Dir benotzt en temporäre Kont",
+	"temp-user-banner-tooltip-title": "Temporäre Kont",
 	"blankarticle": "<strong>Opgepasst:</strong> D'Säit déi Dir uleet ass eidel.\nWann Dir nach eng Kéier op \"$1\" klickt, da gëtt d'Säit ugeluecht.",
 	"anoneditwarning": "<strong>Opgepasst:</strong> Dir sidd net ageloggt. Dowéinst gëtt amplaz vun engem Benotzernumm Är IP-Adress ëffentlech gewise wann Dir Ännerunge maacht. Wann Dir <strong>[$1 Iech aloggt]</strong> oder <strong>[$2 e Benotzerkont opmaacht]</strong>, da ginn Är Ännerungen Ärem Benotzerkont zougedeelt, an Dir hutt och nach aner Avantagen.",
 	"anonpreviewwarning": "<em>Dir sidd net ageloggt. Wann Dir ofspäichert gëtt Är IP-Adress an der Lëscht vun de Versioune vun dëser Säit enregistréiert.</em>",

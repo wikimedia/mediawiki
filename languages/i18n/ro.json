@@ -770,6 +770,7 @@
 	"postedit-confirmation-restored": "Pagina a fost restaurată.",
 	"postedit-confirmation-saved": "Modificarea dumneavoastră a fost salvată.",
 	"postedit-confirmation-published": "Editarea dumneavoastră a fost publicată.",
+	"postedit-temp-created-label": "Cont temporar",
 	"edit-already-exists": "Pagina nouă nu a putut fi creată.\nEa există deja.",
 	"defaultmessagetext": "Textul implicit",
 	"content-failed-to-parse": "Nu s-a putut analiza conținutul de tip $2 pentru modelul $1: $3",
