@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserNameUtils;
@@ -39,8 +40,8 @@ class EmailNotificationSecondaryAuthenticationProviderTest extends \MediaWikiInt
 
 	public function testConstructor() {
 		$config = new \HashConfig( [
-			'EnableEmail' => true,
-			'EmailAuthentication' => true,
+			MainConfigNames::EnableEmail => true,
+			MainConfigNames::EmailAuthentication => true,
 		] );
 
 		$provider = $this->getProvider( [

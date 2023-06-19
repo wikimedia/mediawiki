@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\ResourceLoader;
 use Generator;
 use HashConfig;
 use InvalidArgumentException;
+use MediaWiki\MainConfigNames;
 use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\FilePath;
 use MediaWiki\ResourceLoader\SkinModule;
@@ -123,8 +124,8 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 		return [
 			[
 				[
-					'Logos' => [],
-					'Logo' => '/logo.png',
+					MainConfigNames::Logos => [],
+					MainConfigNames::Logo => '/logo.png',
 				],
 				[
 					'1x' => '/logo.png',
@@ -132,11 +133,11 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 			],
 			[
 				[
-					'Logos' => [
+					MainConfigNames::Logos => [
 						'svg' => '/logo.svg',
 						'2x' => 'logo-2x.png'
 					],
-					'Logo' => '/logo.png',
+					MainConfigNames::Logo => '/logo.png',
 				],
 				[
 					'svg' => '/logo.svg',
@@ -146,7 +147,7 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 			],
 			[
 				[
-					'Logos' => [
+					MainConfigNames::Logos => [
 						'wordmark' => [
 							'src' => '/logo-wordmark.png',
 							'width' => 100,
@@ -239,7 +240,7 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 		$module->expects( $this->once() )->method( 'getLogoData' )
 			->willReturn( $logo );
 		$module->setConfig( new HashConfig( [
-			'ParserEnableLegacyMediaDOM' => false,
+			MainConfigNames::ParserEnableLegacyMediaDOM => false,
 		] + self::getSettings() ) );
 
 		$ctx = $this->createMock( Context::class );
@@ -260,9 +261,9 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 
 	public function testGetAvailableLogosRuntimeException() {
 		$logos = SkinModule::getAvailableLogos( new HashConfig( [
-			'Logo' => false,
-			'Logos' => false,
-			'LogoHD' => false,
+			MainConfigNames::Logo => false,
+			MainConfigNames::Logos => false,
+			MainConfigNames::LogoHD => false,
 		] ) );
 		$this->assertSame( [], $logos );
 	}
@@ -291,9 +292,9 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 		return [
 			'wordmark' => [
 				'config' => [
-					'BaseDirectory' => MW_INSTALL_PATH,
-					'ResourceBasePath' => '/w',
-					'Logos' => [
+					MainConfigNames::BaseDirectory => MW_INSTALL_PATH,
+					MainConfigNames::ResourceBasePath => '/w',
+					MainConfigNames::Logos => [
 						'1x' => '/img/default.png',
 						'wordmark' => [
 							'src' => '/img/wordmark.png',
@@ -306,9 +307,9 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 			],
 			'simple' => [
 				'config' => [
-					'BaseDirectory' => MW_INSTALL_PATH,
-					'ResourceBasePath' => '/w',
-					'Logos' => [
+					MainConfigNames::BaseDirectory => MW_INSTALL_PATH,
+					MainConfigNames::ResourceBasePath => '/w',
+					MainConfigNames::Logos => [
 						'1x' => '/img/default.png',
 					],
 				],
@@ -316,9 +317,9 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 			],
 			'default and 2x' => [
 				'config' => [
-					'BaseDirectory' => MW_INSTALL_PATH,
-					'ResourceBasePath' => '/w',
-					'Logos' => [
+					MainConfigNames::BaseDirectory => MW_INSTALL_PATH,
+					MainConfigNames::ResourceBasePath => '/w',
+					MainConfigNames::Logos => [
 						'1x' => '/img/default.png',
 						'2x' => '/img/two-x.png',
 					],
@@ -330,9 +331,9 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 			],
 			'default and all HiDPIs' => [
 				'config' => [
-					'BaseDirectory' => MW_INSTALL_PATH,
-					'ResourceBasePath' => '/w',
-					'Logos' => [
+					MainConfigNames::BaseDirectory => MW_INSTALL_PATH,
+					MainConfigNames::ResourceBasePath => '/w',
+					MainConfigNames::Logos => [
 						'1x' => '/img/default.png',
 						'1.5x' => '/img/one-point-five.png',
 						'2x' => '/img/two-x.png',
@@ -346,9 +347,9 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 			],
 			'default and SVG' => [
 				'config' => [
-					'BaseDirectory' => MW_INSTALL_PATH,
-					'ResourceBasePath' => '/w',
-					'Logos' => [
+					MainConfigNames::BaseDirectory => MW_INSTALL_PATH,
+					MainConfigNames::ResourceBasePath => '/w',
+					MainConfigNames::Logos => [
 						'1x' => '/img/default.png',
 						'svg' => '/img/vector.svg',
 					],
@@ -360,9 +361,9 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 			],
 			'everything' => [
 				'config' => [
-					'BaseDirectory' => MW_INSTALL_PATH,
-					'ResourceBasePath' => '/w',
-					'Logos' => [
+					MainConfigNames::BaseDirectory => MW_INSTALL_PATH,
+					MainConfigNames::ResourceBasePath => '/w',
+					MainConfigNames::Logos => [
 						'1x' => '/img/default.png',
 						'1.5x' => '/img/one-point-five.png',
 						'2x' => '/img/two-x.png',
@@ -376,10 +377,10 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 			],
 			'versioned url' => [
 				'config' => [
-					'BaseDirectory' => dirname( dirname( __DIR__ ) ) . '/data/media',
-					'ResourceBasePath' => '/w',
-					'UploadPath' => '/w/images',
-					'Logos' => [
+					MainConfigNames::BaseDirectory => dirname( dirname( __DIR__ ) ) . '/data/media',
+					MainConfigNames::ResourceBasePath => '/w',
+					MainConfigNames::UploadPath => '/w/images',
+					MainConfigNames::Logos => [
 						'1x' => '/w/test.jpg',
 					],
 				],
@@ -396,10 +397,10 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 		$ctx->method( 'getLanguage' )->willReturn( $lang );
 		$module = new SkinModule();
 		$module->setConfig( new HashConfig( $config + [
-			'BaseDirectory' => '/dummy',
-			'ResourceBasePath' => '/w',
-			'Logo' => false,
-			'LogoHD' => false,
+			MainConfigNames::BaseDirectory => '/dummy',
+			MainConfigNames::ResourceBasePath => '/w',
+			MainConfigNames::Logo => false,
+			MainConfigNames::LogoHD => false
 		] + self::getSettings() ) );
 
 		$this->assertEquals( [ $result ], $module->getHeaders( $ctx ) );

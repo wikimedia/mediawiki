@@ -2968,9 +2968,9 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		return [
 			[
 				[
-					'ResourceBasePath' => '/w',
-					'Logo' => '/img/default.png',
-					'Logos' => [
+					MainConfigNames::ResourceBasePath => '/w',
+					MainConfigNames::Logo => '/img/default.png',
+					MainConfigNames::Logos => [
 						'1.5x' => '/img/one-point-five.png',
 						'2x' => '/img/two-x.png',
 					],
@@ -2983,8 +2983,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			],
 			[
 				[
-					'ResourceBasePath' => '/w',
-					'Logos' => [
+					MainConfigNames::ResourceBasePath => '/w',
+					MainConfigNames::Logos => [
 						'1x' => '/img/default.png',
 					],
 				],
@@ -2992,8 +2992,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			],
 			[
 				[
-					'ResourceBasePath' => '/w',
-					'Logos' => [
+					MainConfigNames::ResourceBasePath => '/w',
+					MainConfigNames::Logos => [
 						'1x' => '/img/default.png',
 						'2x' => '/img/two-x.png',
 					],
@@ -3004,8 +3004,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			],
 			[
 				[
-					'ResourceBasePath' => '/w',
-					'Logos' => [
+					MainConfigNames::ResourceBasePath => '/w',
+					MainConfigNames::Logos => [
 						'1x' => '/img/default.png',
 						'svg' => '/img/vector.svg',
 					],
@@ -3015,12 +3015,12 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			],
 			[
 				[
-					'ResourceBasePath' => '/w',
-					'Logos' => [
+					MainConfigNames::ResourceBasePath => '/w',
+					MainConfigNames::Logos => [
 						'1x' => '/w/test.jpg',
 					],
-					'UploadPath' => '/w/images',
-					'BaseDirectory' => dirname( __DIR__ ) . '/data/media'
+					MainConfigNames::UploadPath => '/w/images',
+					MainConfigNames::BaseDirectory => dirname( __DIR__ ) . '/data/media'
 				],
 				'Link: </w/test.jpg?edcf2>;rel=preload;as=image',
 			],
@@ -3288,15 +3288,15 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 		$context->setConfig( new MultiConfig( [
 			new HashConfig( $config + [
-				'AppleTouchIcon' => false,
-				'EnableCanonicalServerLink' => false,
-				'Favicon' => false,
-				'Feed' => false,
-				'LanguageCode' => false,
-				'ReferrerPolicy' => false,
-				'RightsPage' => false,
-				'RightsUrl' => false,
-				'UniversalEditButton' => false,
+				MainConfigNames::AppleTouchIcon => false,
+				MainConfigNames::EnableCanonicalServerLink => false,
+				MainConfigNames::Favicon => false,
+				MainConfigNames::Feed => false,
+				MainConfigNames::LanguageCode => false,
+				MainConfigNames::ReferrerPolicy => false,
+				MainConfigNames::RightsPage => false,
+				MainConfigNames::RightsUrl => false,
+				MainConfigNames::UniversalEditButton => false,
 			] ),
 			$this->getServiceContainer()->getMainConfig(),
 		] ) );

@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserNameUtils;
@@ -236,7 +237,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 				$done[$req->id] = true;
 			} );
 		$config = new \HashConfig( [
-			'AuthManagerConfig' => [
+			MainConfigNames::AuthManagerConfig => [
 				'preauth' => [],
 				'primaryauth' => [],
 				'secondaryauth' => [

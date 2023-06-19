@@ -38,7 +38,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		$mwServices = $this->getServiceContainer();
 		if ( !$this->config ) {
 			$this->config = new \HashConfig( [
-				'EmailEnabled' => true,
+				MainConfigNames::EnableEmail
 			] );
 		}
 		$config = new \MultiConfig( [
@@ -127,10 +127,10 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 
 	public function testConfig() {
 		$config = new \HashConfig( [
-			'EnableEmail' => false,
-			'NewPasswordExpiry' => 100,
-			'PasswordReminderResendTime' => 101,
-			'AllowRequiringEmailForResets' => false,
+			MainConfigNames::EnableEmail => false,
+			MainConfigNames::NewPasswordExpiry => 100,
+			MainConfigNames::PasswordReminderResendTime => 101,
+			MainConfigNames::AllowRequiringEmailForResets => false,
 		] );
 
 		$provider = new TemporaryPasswordPrimaryAuthenticationProvider(

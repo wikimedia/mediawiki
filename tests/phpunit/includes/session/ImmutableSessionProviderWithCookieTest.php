@@ -19,8 +19,8 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 
 	private function getProvider( $name, $prefix = null, $forceHTTPS = false, $logger = null ) {
 		$config = new \HashConfig();
-		$config->set( 'CookiePrefix', 'wgCookiePrefix' );
-		$config->set( 'ForceHTTPS', $forceHTTPS );
+		$config->set( MainConfigNames::CookiePrefix, 'wgCookiePrefix' );
+		$config->set( MainConfigNames::ForceHTTPS, $forceHTTPS );
 
 		$params = [
 			'sessionCookieName' => $name,

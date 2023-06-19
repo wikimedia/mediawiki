@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\ResourceLoader;
 
 use EmptyResourceLoader;
 use HashConfig;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\ResourceLoader;
@@ -25,8 +26,8 @@ class ContextTest extends \PHPUnit\Framework\TestCase {
 
 	protected static function getResourceLoader() {
 		return new EmptyResourceLoader( new HashConfig( [
-			'ResourceLoaderDebug' => false,
-			'LoadScript' => '/w/load.php',
+			MainConfigNames::ResourceLoaderDebug => false,
+			MainConfigNames::LoadScript => '/w/load.php',
 		] ) );
 	}
 

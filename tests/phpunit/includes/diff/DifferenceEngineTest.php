@@ -364,13 +364,13 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 	public static function provideMarkPatrolledLink() {
 		yield 'PatrollingEnabledUserAllowed' => [
 			'sysop',
-			new HashConfig( [ 'UseRCPatrol' => true, 'LanguageCode' => 'qxx' ] ),
+			new HashConfig( [ MainConfigNames::UseRCPatrol => true, MainConfigNames::LanguageCode => 'qxx' ] ),
 			'Mark as patrolled'
 		];
 
 		yield 'PatrollingEnabledUserNotAllowed' => [
 			null,
-			new HashConfig( [ 'UseRCPatrol' => true, 'LanguageCode' => 'qxx' ] ),
+			new HashConfig( [ MainConfigNames::UseRCPatrol => true, MainConfigNames::LanguageCode => 'qxx' ] ),
 			''
 		];
 

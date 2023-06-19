@@ -964,7 +964,7 @@ class ApiMainTest extends ApiTestCase {
 		$context->setLanguage( 'en' );
 		$context->setConfig( new MultiConfig( [
 			new HashConfig( [
-				'ShowHostnames' => true, 'ShowExceptionDetails' => true,
+				MainConfigNames::ShowHostnames => true, MainConfigNames::ShowExceptionDetails => true,
 			] ),
 			$context->getConfig()
 		] ) );

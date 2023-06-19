@@ -156,8 +156,8 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		// @todo: Because we're currently using User, which uses the global config...
 		$this->overrideConfigValue( MainConfigNames::PasswordExpireGrace, 100 );
 
-		$this->config->set( 'PasswordExpireGrace', 100 );
-		$this->config->set( 'InvalidPasswordReset', true );
+		$this->config->set( MainConfigNames::PasswordExpireGrace, 100 );
+		$this->config->set( MainConfigNames::InvalidPasswordReset, true );
 
 		$provider = new LocalPasswordPrimaryAuthenticationProvider(
 			$this->getServiceContainer()->getDBLoadBalancerFactory()
@@ -349,7 +349,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			$ret->message->getKey()
 		);
 
-		$this->config->set( 'LegacyEncoding', true );
+		$this->config->set( MainConfigNames::LegacyEncoding, true );
 		$this->assertEquals(
 			AuthenticationResponse::newPass( $userName ),
 			$provider->beginPrimaryAuthentication( $reqs )
@@ -367,7 +367,6 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		);
 
 		// Correct handling of really old password hashes
-		$this->config->set( 'PasswordSalt', true );
 		$password = md5( "$id-" . md5( 'FooBar' ) );
 		$dbw->update( 'user', [ 'user_password' => $password ], [ 'user_name' => $userName ] );
 		$req->password = 'FooBar';

@@ -31,10 +31,10 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$cacheType = $this->setMainCache( $this->store );
 
 		$this->config = new \HashConfig( [
-			'LanguageCode' => 'en',
-			'SessionCacheType' => $cacheType,
-			'ObjectCacheSessionExpiry' => 100,
-			'SessionProviders' => [
+			MainConfigNames::LanguageCode => 'en',
+			MainConfigNames::SessionCacheType => $cacheType,
+			MainConfigNames::ObjectCacheSessionExpiry => 100,
+			MainConfigNames::SessionProviders => [
 				[ 'class' => \DummySessionProvider::class ],
 			]
 		] );

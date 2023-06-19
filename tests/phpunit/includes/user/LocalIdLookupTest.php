@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserIdentityValue;
 
@@ -43,9 +44,9 @@ class LocalIdLookupTest extends MediaWikiIntegrationTestCase {
 	private function newLookup( array $configOverride = [] ) {
 		return new LocalIdLookup(
 			new HashConfig( [
-				'SharedDB' => null,
-				'SharedTables' => [],
-				'LocalDatabases' => [],
+				MainConfigNames::SharedDB => null,
+				MainConfigNames::SharedTables => [],
+				MainConfigNames::LocalDatabases => [],
 			] + $configOverride ),
 			$this->getServiceContainer()->getDBLoadBalancerFactory()
 		);
@@ -126,9 +127,9 @@ class LocalIdLookupTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testIsAttachedShared( $sharedDB, $sharedTable, $localDBSet ) {
 		$lookup = $this->newLookup( [
-			'SharedDB' => $sharedDB ? "dummy" : null,
-			'SharedTables' => $sharedTable ? [ 'user' ] : [],
-			'LocalDatabases' => $localDBSet ? [ 'shared' ] : [],
+			MainConfigNames::SharedDB => $sharedDB ? "dummy" : null,
+			MainConfigNames::SharedTables => $sharedTable ? [ 'user' ] : [],
+			MainConfigNames::LocalDatabases => $localDBSet ? [ 'shared' ] : [],
 		] );
 		$this->assertSame(
 			$sharedDB && $sharedTable && $localDBSet,
