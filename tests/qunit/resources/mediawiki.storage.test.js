@@ -1,10 +1,11 @@
 ( function () {
+	const EXPIRY_PREFIX = '_EXPIRY_';
+
 	QUnit.module( 'mediawiki.storage' );
 
 	QUnit.test( 'set/get(Object) with storage support', function ( assert ) {
 		var data = {},
 			done = assert.async(),
-			EXPIRY_PREFIX = '_EXPIRY_',
 			object = { test: 'value' },
 			stub = {
 				setItem: function ( k, v ) {
@@ -119,6 +120,37 @@
 		assert.strictEqual( mw.storage.remove( 'bar' ), false );
 
 		mw.storage.store = old;
+	} );
+
+	QUnit.test( 'set/get with expiry - partial failure', function ( assert ) {
+		var store = {};
+		var stub = {
+			setItem: this.sandbox.spy( function ( k, v ) {
+				if ( k.startsWith( EXPIRY_PREFIX ) ) {
+					// Mock a failing store when trying to set a key with expiry
+					throw new Error();
+				}
+				store[ k ] = v;
+			} ),
+			getItem: function ( k ) {
+				return store[ k ] || null;
+			},
+			removeItem: function ( k ) {
+				delete store[ k ];
+			}
+		};
+		this.sandbox.stub( mw.storage, 'store', stub );
+
+		// Test the test code above
+		mw.storage.set( 'bar', 'test' );
+		assert.strictEqual( mw.storage.get( 'bar' ), 'test' );
+
+		// Test the failure behavior when setting expiry
+		mw.storage.set( 'foo', 'test', 99 );
+		assert.strictEqual( stub.setItem.withArgs( EXPIRY_PREFIX + 'foo' ).calledOnce, true );
+		assert.strictEqual( stub.setItem.withArgs( 'foo' ).notCalled, true );
+		assert.strictEqual( mw.storage.get( 'foo' ), null, 'Item was not set when setting expiry failed' );
+
 	} );
 
 }() );
