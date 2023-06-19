@@ -107,10 +107,10 @@ class SpecialLog extends SpecialPage {
 		$opts->add( 'logid', '' );
 
 		// Set values
-		$opts->fetchValuesFromRequest( $this->getRequest() );
 		if ( $par !== null ) {
-			$this->parseParams( $opts, (string)$par );
+			$this->parseParams( (string)$par );
 		}
+		$opts->fetchValuesFromRequest( $this->getRequest() );
 
 		// Set date values
 		$dateString = $this->getRequest()->getVal( 'wpdate' );
@@ -131,17 +131,15 @@ class SpecialLog extends SpecialPage {
 
 		// If the user doesn't have the right permission to view the specific
 		// log type, throw a PermissionsError
-		// If the log type is invalid, just show all public logs
 		$logRestrictions = $this->getConfig()->get( MainConfigNames::LogRestrictions );
 		$type = $opts->getValue( 'type' );
-		if ( !LogPage::isLogType( $type ) ) {
-			$opts->setValue( 'type', '' );
-		} elseif ( isset( $logRestrictions[$type] )
+		if ( isset( $logRestrictions[$type] )
 			&& !$this->getAuthority()->isAllowed( $logRestrictions[$type] )
 		) {
 			throw new PermissionsError( $logRestrictions[$type] );
 		}
 
+		# TODO: Move this into LogPager like other query conditions.
 		# Handle type-specific inputs
 		$qc = [];
 		$offenderName = $opts->getValue( 'offender' );
@@ -160,6 +158,7 @@ class SpecialLog extends SpecialPage {
 				$opts->getValue( 'type' ), $this->getRequest(), $qc );
 		}
 
+		# TODO: Move this into LogEventList and use it as filter-callback in the field descriptor.
 		# Some log types are only for a 'User:' title but we might have been given
 		# only the username instead of the full title 'User:username'. This part try
 		# to lookup for a user by that name and eventually fix user input. See T3697.
@@ -172,17 +171,17 @@ class SpecialLog extends SpecialPage {
 					$page = IPUtils::sanitizeRange( $target->getText() );
 				}
 				# User forgot to add 'User:', we are adding it for him
-				$opts->setValue( 'page',
-					Title::makeTitleSafe( NS_USER, $page )
-				);
+				$page = Title::makeTitleSafe( NS_USER, $page )->getPrefixedText();
 			} elseif ( $target && $target->getNamespace() === NS_USER
 				&& IPUtils::isValidRange( $target->getText() )
 			) {
 				$page = IPUtils::sanitizeRange( $target->getText() );
 				if ( $page !== $target->getText() ) {
-					$opts->setValue( 'page', Title::makeTitleSafe( NS_USER, $page ) );
+					$page = Title::makeTitleSafe( NS_USER, $page )->getPrefixedText();
 				}
 			}
+			$opts->setValue( 'page', $page );
+			$this->getRequest()->setVal( 'page', $page );
 		}
 
 		$this->show( $opts, $qc );
@@ -234,23 +233,21 @@ class SpecialLog extends SpecialPage {
 	 * - Two parts: Special:Log/logtype/username
 	 * - Otherwise, assume the whole subpage is a username.
 	 *
-	 * @param FormOptions $opts
 	 * @param string $par
 	 */
-	private function parseParams( FormOptions $opts, $par ) {
+	private function parseParams( string $par ) {
 		# Get parameters
-		$par ??= '';
-		$parms = explode( '/', $par );
+		$parms = explode( '/', $par, 2 );
 		$symsForAll = [ '*', 'all' ];
-		if ( $parms[0] != '' &&
-			( in_array( $par, LogPage::validTypes() ) || in_array( $par, $symsForAll ) )
+		if ( $parms[0] !== '' &&
+			( in_array( $parms[0], LogPage::validTypes() ) || in_array( $parms[0], $symsForAll ) )
 		) {
-			$opts->setValue( 'type', $par );
-		} elseif ( count( $parms ) == 2 ) {
-			$opts->setValue( 'type', $parms[0] );
-			$opts->setValue( 'user', $parms[1] );
-		} elseif ( $par != '' ) {
-			$opts->setValue( 'user', $par );
+			$this->getRequest()->setVal( 'type', $parms[0] );
+			if ( count( $parms ) === 2 ) {
+				$this->getRequest()->setVal( 'user', $parms[1] );
+			}
+		} elseif ( $par !== '' ) {
+			$this->getRequest()->setVal( 'user', $par );
 		}
 	}
 
@@ -279,8 +276,6 @@ class SpecialLog extends SpecialPage {
 			$opts->getValue( 'tagInvert' )
 		);
 
-		$this->addHeader( $opts->getValue( 'type' ) );
-
 		# Set relevant user
 		$performer = $pager->getPerformer();
 		if ( $performer ) {
@@ -301,6 +296,10 @@ class SpecialLog extends SpecialPage {
 		if ( !$succeed ) {
 			return;
 		}
+
+		$this->getOutput()->setPageTitle(
+			( new LogPage( $opts->getValue( 'type' ) ) )->getName()
+		);
 
 		# Insert list
 		$logBody = $pager->getBody();
@@ -381,18 +380,6 @@ class SpecialLog extends SpecialPage {
 		$s .= Html::closeElement( 'form' );
 
 		return $s;
-	}
-
-	/**
-	 * Set page title and show header for this log type
-	 * @param string $type
-	 * @since 1.19
-	 */
-	protected function addHeader( $type ) {
-		$page = new LogPage( $type );
-		$this->getOutput()->setPageTitle( $page->getName() );
-		$this->getOutput()->addHTML( $page->getDescription()
-			->setContext( $this->getContext() )->parseAsBlock() );
 	}
 
 	protected function getGroupName() {
