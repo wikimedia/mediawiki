@@ -116,14 +116,12 @@ class DifferenceEngine extends ContextSource {
 
 	/**
 	 * Title of old revision or null if the old revision does not exist or does not belong to a page.
-	 * Since 1.32 public access is deprecated and the property can be null.
 	 * @var Title|null
 	 */
 	protected $mOldPage;
 
 	/**
 	 * Title of new revision or null if the new revision does not exist or does not belong to a page.
-	 * Since 1.32 public access is deprecated and the property can be null.
 	 * @var Title|null
 	 */
 	protected $mNewPage;
@@ -264,16 +262,6 @@ class DifferenceEngine extends ContextSource {
 	public function __construct( $context = null, $old = 0, $new = 0, $rcid = 0,
 		$refreshCache = false, $unhide = false
 	) {
-		$this->deprecatePublicProperty( 'mOldid', '1.32', __CLASS__ );
-		$this->deprecatePublicProperty( 'mNewid', '1.32', __CLASS__ );
-		$this->deprecatePublicProperty( 'mOldPage', '1.32', __CLASS__ );
-		$this->deprecatePublicProperty( 'mNewPage', '1.32', __CLASS__ );
-		$this->deprecatePublicProperty( 'mOldContent', '1.32', __CLASS__ );
-		$this->deprecatePublicProperty( 'mNewContent', '1.32', __CLASS__ );
-		$this->deprecatePublicProperty( 'mRevisionsLoaded', '1.32', __CLASS__ );
-		$this->deprecatePublicProperty( 'mTextLoaded', '1.32', __CLASS__ );
-		$this->deprecatePublicProperty( 'mCacheHit', '1.32', __CLASS__ );
-
 		if ( $context instanceof IContextSource ) {
 			$this->setContext( $context );
 		}

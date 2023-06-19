@@ -253,15 +253,6 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 				$this->statsdDataFactory->timing( 'diff_time', $time );
 			}
 
-			// TODO reimplement this using T142313
-			/*
-			// Log requests slower than 99th percentile
-			if ( $time > 100 && $this->mOldPage && $this->mNewPage ) {
-				wfDebugLog( 'diff',
-					"$time ms diff: {$this->mOldid} -> {$this->mNewid} {$this->mNewPage}" );
-			}
-			*/
-
 			return $result;
 		};
 
