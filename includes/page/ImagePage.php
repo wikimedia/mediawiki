@@ -347,6 +347,7 @@ class ImagePage extends Article {
 		$enableUploads = $mainConfig->get( MainConfigNames::EnableUploads );
 		$send404Code = $mainConfig->get( MainConfigNames::Send404Code );
 		$svgMaxSize = $mainConfig->get( MainConfigNames::SVGMaxSize );
+		$enableLegacyMediaDOM = $mainConfig->get( MainConfigNames::ParserEnableLegacyMediaDOM );
 		$this->loadFile();
 		$out = $context->getOutput();
 		$user = $context->getUser();
@@ -485,7 +486,9 @@ class ImagePage extends Article {
 					$linkPrev = $linkNext = '';
 					$count = $this->displayImg->pageCount();
 					$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-					$out->addModules( 'mediawiki.page.media' );
+					if ( !$enableLegacyMediaDOM ) {
+						$out->addModules( 'mediawiki.page.media' );
+					}
 
 					if ( $page > 1 ) {
 						$label = $context->msg( 'imgmultipageprev' )->text();
