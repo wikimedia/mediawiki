@@ -54,7 +54,7 @@ class FallbackContentHandlerTest extends MediaWikiLangTestCase {
 		$this->setUserLang( 'en' );
 		$this->setContentLang( 'qqx' );
 
-		$title = Title::newFromText( 'Test' );
+		$title = Title::makeTitle( NS_MAIN, 'Test' );
 		$content = $this->newContent( 'Horkyporky' );
 		$contentRenderer = $this->getServiceContainer()->getContentRenderer();
 		$po = $contentRenderer->getParserOutput( $content, $title );

@@ -193,7 +193,7 @@ class JavaScriptContentTest extends TextContentTest {
 			MainConfigNames::Script => '/w/index.php',
 			MainConfigNames::ResourceBasePath => '/w',
 		] );
-		$target = Title::newFromText( "testUpdateRedirect_target" );
+		$target = Title::makeTitle( NS_MAIN, 'TestUpdateRedirect_target' );
 
 		$content = new JavaScriptContent( $oldText );
 		$newContent = $content->updateRedirect( $target );

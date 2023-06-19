@@ -309,7 +309,7 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 
 		if ( $title === false ) {
 			// We need a page title that exists
-			$title = Title::newFromText( 'Special:BlankPage' );
+			$title = Title::makeTitle( NS_SPECIAL, 'BlankPage' );
 		}
 
 		$parser = $this->getParser();
@@ -376,7 +376,7 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 	 */
 	public function testFormatLinksInComment( $expected, $input, $wiki ) {
 		$parser = $this->getParser();
-		$title = Title::newFromText( 'Special:BlankPage' );
+		$title = Title::makeTitle( NS_SPECIAL, 'BlankPage' );
 		$result = $parser->finalize(
 			$parser->preprocess(
 				$input, $title, false, $wiki, false

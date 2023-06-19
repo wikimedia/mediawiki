@@ -336,7 +336,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->setContentLang( 'en' );
 
 		$content = new DummyContentHandlerForTesting( CONTENT_MODEL_WIKITEXT );
-		$title = Title::newFromText( 'Help:Test' );
+		$title = Title::makeTitle( NS_HELP, 'Test' );
 		// Create a new content object with no content
 		$newContent = ContentHandler::makeContent( '', $title, CONTENT_MODEL_WIKITEXT, null );
 		// first check, if we become a blank page created summary with the right bitmask
@@ -447,7 +447,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testDataIndexFields() {
 		$mockEngine = $this->createMock( SearchEngine::class );
-		$title = Title::newFromText( 'Not_Main_Page', NS_MAIN );
+		$title = Title::makeTitle( NS_MAIN, 'Not_Main_Page' );
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
 		$this->setTemporaryHook( 'SearchDataForIndex',
@@ -485,7 +485,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 			->willReturn( false );
 		$this->setTemporaryHook( 'OpportunisticLinksUpdate', $opportunisticUpdateHook );
 
-		$title = Title::newFromText( 'Smithee', NS_MAIN );
+		$title = Title::makeTitle( NS_MAIN, 'Smithee' );
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 		$revision = $page->getRevisionRecord();
 
@@ -640,7 +640,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
 
-		$title = Title::newFromText( "SimpleTitle", $namespace );
+		$title = Title::makeTitle( $namespace, 'SimpleTitle' );
 
 		$this->overrideConfigValue( MainConfigNames::DefaultLanguageVariant, $variant );
 
