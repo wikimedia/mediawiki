@@ -1830,6 +1830,7 @@
 	"filedelete-reason-otherlist": "Ostali razlozi",
 	"filedelete-reason-dropdown": "*Uobičajeni razlozi brisanja\n** Kršenje autorskih prava\n** Datoteka dvojnik",
 	"filedelete-edit-reasonlist": "Uredi razloge brisanja",
+	"filedelete-edit-reasonlist-suppress": "Uredi razloge za skrivanje",
 	"filedelete-maintenance": "Brisanje i povratak datoteka je privremeno onemogućen tokom održavanja.",
 	"filedelete-maintenance-title": "Ne mogu izbrisati datoteku",
 	"mimesearch": "MIME pretraga",

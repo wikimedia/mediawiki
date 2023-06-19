@@ -40,5 +40,6 @@
 	"apihelp-expandtemplates-param-text": "Wikitekst za pretvoriti.",
 	"apihelp-expandtemplates-paramvalue-prop-wikitext": "Prošireni wikitekst.",
 	"apihelp-feedcontributions-param-hideminor": "Sakrij manje izmjene.",
-	"apihelp-feedrecentchanges-param-from": "Prikaži izmjene otada."
+	"apihelp-feedrecentchanges-param-from": "Prikaži izmjene otada.",
+	"api-help-examples": "{{PLURAL:$1|Primjer|Primjeri}}:"
 }
