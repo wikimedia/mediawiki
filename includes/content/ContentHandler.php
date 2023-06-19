@@ -671,7 +671,18 @@ abstract class ContentHandler {
 		if ( $internalRenderer !== null ) {
 			return $internalRenderer;
 		}
+		return $this->createTextSlotDiffRenderer( $options );
+	}
 
+	/**
+	 * Create a TextSlotDiffRenderer and inject dependencies
+	 *
+	 * @since 1.41
+	 *
+	 * @param array $options
+	 * @return TextSlotDiffRenderer
+	 */
+	final protected function createTextSlotDiffRenderer( array $options = [] ): TextSlotDiffRenderer {
 		$contentLanguage = MediaWikiServices::getInstance()->getContentLanguage();
 		$statsdDataFactory = MediaWikiServices::getInstance()->getStatsdDataFactory();
 		$slotDiffRenderer = new TextSlotDiffRenderer();
