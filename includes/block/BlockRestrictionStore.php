@@ -196,22 +196,27 @@ class BlockRestrictionStore {
 	 * @return bool
 	 */
 	public function updateByParentBlockId( $parentBlockId, array $restrictions ) {
-		// If removing all of the restrictions, then just delete them all.
-		if ( empty( $restrictions ) ) {
-			return $this->deleteByParentBlockId( $parentBlockId );
-		}
-
 		$parentBlockId = (int)$parentBlockId;
 
 		$db = $this->dbProvider->getPrimaryDatabase( $this->wikiId );
 
-		$db->startAtomic( __METHOD__ );
 		$blockIds = $db->newSelectQueryBuilder()
 			->select( 'ipb_id' )
 			->forUpdate()
 			->from( 'ipblocks' )
 			->where( [ 'ipb_parent_block_id' => $parentBlockId ] )
 			->caller( __METHOD__ )->fetchFieldValues();
+		if ( !$blockIds ) {
+			return true;
+		}
+
+		// If removing all of the restrictions, then just delete them all.
+		if ( empty( $restrictions ) ) {
+			$blockIds = array_map( 'intval', $blockIds );
+			return $this->deleteByBlockId( $blockIds );
+		}
+
+		$db->startAtomic( __METHOD__ );
 
 		$result = true;
 		foreach ( $blockIds as $id ) {
@@ -263,25 +268,6 @@ class BlockRestrictionStore {
 			->delete( 'ipblocks_restrictions' )
 			->where( [ 'ir_ipb_id' => $blockId ] )
 			->caller( __METHOD__ )->execute();
-		return true;
-	}
-
-	/**
-	 * Delete the restrictions by parent block ID.
-	 *
-	 * @since 1.33
-	 * @param int|int[] $parentBlockId
-	 * @return bool
-	 */
-	public function deleteByParentBlockId( $parentBlockId ) {
-		$this->dbProvider->getPrimaryDatabase( $this->wikiId )->deleteJoin(
-			'ipblocks_restrictions',
-			'ipblocks',
-			'ir_ipb_id',
-			'ipb_id',
-			[ 'ipb_parent_block_id' => $parentBlockId ],
-			__METHOD__
-		);
 		return true;
 	}
 

@@ -449,38 +449,6 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers ::deleteByParentBlockId
-	 */
-	public function testDeleteByParentBlockId() {
-		// Create a block with no autoblock.
-		$block = $this->insertBlock();
-		$page = $this->getExistingTestPage( 'Foo' );
-		$this->blockRestrictionStore->insert( [
-			new PageRestriction( $block->getId(), $page->getId() ),
-		] );
-		$autoblockId = $block->doAutoblock( '127.0.0.1' );
-
-		// Ensure that the restrictions on the block have not changed.
-		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
-		$this->assertCount( 1, $restrictions );
-
-		// Ensure that the restrictions on the autoblock are the same as the block.
-		$restrictions = $this->blockRestrictionStore->loadByBlockId( $autoblockId );
-		$this->assertCount( 1, $restrictions );
-
-		// Remove all of the restrictions on the autoblock (but leave the block unchanged).
-		$this->blockRestrictionStore->deleteByParentBlockId( $block->getId() );
-
-		// Ensure that the restrictions on the block have not changed.
-		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
-		$this->assertCount( 1, $restrictions );
-
-		// Ensure that the restrictions on the autoblock have been removed.
-		$restrictions = $this->blockRestrictionStore->loadByBlockId( $autoblockId );
-		$this->assertSame( [], $restrictions );
-	}
-
-	/**
 	 * @covers ::equals
 	 * @dataProvider equalsDataProvider
 	 *
