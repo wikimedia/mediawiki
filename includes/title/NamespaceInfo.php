@@ -249,15 +249,9 @@ class NamespaceInfo {
 	 * @return bool True if this title either is a talk page or can have a talk page associated.
 	 */
 	public function canHaveTalkPage( LinkTarget $target ) {
-		if ( $target->getText() === '' || $target->getInterwiki() !== '' ) {
-			return false;
-		}
-
-		if ( $target->getNamespace() < NS_MAIN ) {
-			return false;
-		}
-
-		return true;
+		return $target->getNamespace() >= NS_MAIN &&
+			!$target->isExternal() &&
+			$target->getText() !== '';
 	}
 
 	/**

@@ -197,19 +197,9 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			->from( 'user' )
 			->where( [ 'user_name' => $username ] )
 			->caller( __METHOD__ )->fetchRow();
-		if ( !$row ) {
-			return false;
-		}
-
-		if ( $this->getPassword( $row->user_newpassword ) instanceof \InvalidPassword ) {
-			return false;
-		}
-
-		if ( !$this->isTimestampValid( $row->user_newpass_time ) ) {
-			return false;
-		}
-
-		return true;
+		return $row &&
+			!( $this->getPassword( $row->user_newpassword ) instanceof \InvalidPassword ) &&
+			$this->isTimestampValid( $row->user_newpass_time );
 	}
 
 	public function testUserExists( $username, $flags = User::READ_NORMAL ) {

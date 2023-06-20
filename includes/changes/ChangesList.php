@@ -948,19 +948,13 @@ class ChangesList extends ContextSource {
 			$rcLogType = $rc->rc_log_type;
 		}
 
-		if ( !$isPatrolled ) {
-			if ( $user->useRCPatrol() ) {
-				return true;
-			}
-			if ( $user->useNPPatrol() && $rcType == RC_NEW ) {
-				return true;
-			}
-			if ( $user->useFilePatrol() && $rcLogType == 'upload' ) {
-				return true;
-			}
+		if ( $isPatrolled ) {
+			return false;
 		}
 
-		return false;
+		return $user->useRCPatrol() ||
+			( $rcType == RC_NEW && $user->useNPPatrol() ) ||
+			( $rcLogType === 'upload' && $user->useFilePatrol() );
 	}
 
 	/**

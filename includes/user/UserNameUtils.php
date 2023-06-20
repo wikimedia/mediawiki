@@ -315,20 +315,11 @@ class UserNameUtils implements UserRigorOptions {
 		// RIGOR_NONE handled above
 		switch ( $validate ) {
 			case self::RIGOR_VALID:
-				if ( !$this->isValid( $name ) ) {
-					return false;
-				}
-				return $name;
+				return $this->isValid( $name ) ? $name : false;
 			case self::RIGOR_USABLE:
-				if ( !$this->isUsable( $name ) ) {
-					return false;
-				}
-				return $name;
+				return $this->isUsable( $name ) ? $name : false;
 			case self::RIGOR_CREATABLE:
-				if ( !$this->isCreatable( $name ) ) {
-					return false;
-				}
-				return $name;
+				return $this->isCreatable( $name ) ? $name : false;
 			default:
 				throw new InvalidArgumentException(
 					"Invalid parameter value for validation ($validate) in " .

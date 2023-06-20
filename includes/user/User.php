@@ -3233,16 +3233,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		$this->load();
 		$confirmed = true;
 		if ( $this->getHookRunner()->onEmailConfirmed( $this, $confirmed ) ) {
-			if ( $this->isAnon() ) {
-				return false;
-			}
-			if ( !Sanitizer::validateEmail( $this->getEmail() ) ) {
-				return false;
-			}
-			if ( $emailAuthentication && !$this->getEmailAuthenticationTimestamp() ) {
-				return false;
-			}
-			return true;
+			return !$this->isAnon() &&
+				Sanitizer::validateEmail( $this->getEmail() ) &&
+				( !$emailAuthentication || $this->getEmailAuthenticationTimestamp() );
 		}
 
 		return $confirmed;
