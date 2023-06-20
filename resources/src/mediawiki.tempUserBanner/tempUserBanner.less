@@ -1,0 +1,39 @@
+/**
+ * Temporary-user banner
+ * (a.k.a. the gray banner that shows up for IP masking user)
+ * per https://phabricator.wikimedia.org/T330510
+ **/
+
+@import 'mediawiki.skin.variables.less';
+
+.mw-temp-user-banner {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: flex-end;
+	gap: @spacing-50;
+	padding: @spacing-50;
+	font-size: @font-size-small;
+	background-color: @background-color-backdrop-dark;
+	color: @color-inverted;
+}
+
+.mw-temp-user-banner-username {
+	font-weight: bold;
+}
+
+.mw-temp-user-banner-tooltip {
+	position: relative;
+	color: @color-base;
+	z-index: 300;
+
+	.mw-temp-user-banner-tooltip-icon {
+		.cdx-mixin-css-icon(@cdx-icon-info, @param-is-button-icon: true);
+		background-color: @color-inverted;
+		cursor: pointer;
+	}
+}
+
+.client-nojs .mw-temp-user-banner-tooltip-icon {
+	display: none;
+}

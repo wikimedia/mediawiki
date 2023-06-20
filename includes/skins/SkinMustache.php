@@ -57,15 +57,12 @@ class SkinMustache extends SkinTemplate {
 	 * @return string
 	 */
 	private function createTempUserBannerHTML() {
-		// Only enable banner on Vector 2022 and Minerva skins.
 		$isSupportedSkin = $this->getOptions()['tempUserBanner'];
 		$isTempUser = $this->getUser()->isTemp();
 
 		if ( !$isSupportedSkin || !$isTempUser ) {
 			return '';
 		}
-
-		$this->getOutput()->addModuleStyles( 'codex-search-styles' );
 
 		$returntoParam = SkinComponentUtils::getReturnToParam(
 			$this->getTitle(),

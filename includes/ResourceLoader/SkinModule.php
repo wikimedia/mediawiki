@@ -115,9 +115,6 @@ class SkinModule extends LessVarFileModule {
 	 * "interface-subtitle":
 	 *     Default interface styling for subtitle area.
 	 *
-	 * "interface-temp-user-banner":
-	 *    Banner that informs users they are using a temporary account.
-	 *
 	 * "interface-user-message":
 	 *     Default interface styling for html-user-message (you have new talk page messages box)
 	 *
@@ -196,9 +193,6 @@ class SkinModule extends LessVarFileModule {
 		'interface-user-message' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/interface-user-message.less' ],
 		],
-		'interface-temp-user-banner' => [
-			'all' => [ 'resources/src/mediawiki.skinning/interface.temp-user-banner.less' ],
-		],
 		'elements' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/elements.less' ],
 			'print' => [ 'resources/src/mediawiki.skinning/elements-print.less' ],
@@ -236,8 +230,7 @@ class SkinModule extends LessVarFileModule {
 		'accessibility' => true,
 		'content-body' => true,
 		'interface-core' => true,
-		'toc' => true,
-		'interface-temp-user-banner' => true
+		'toc' => true
 	];
 
 	/**

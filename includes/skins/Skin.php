@@ -383,6 +383,7 @@ abstract class Skin extends ContextSource {
 				'core' => [],
 				'content' => [],
 				'syndicate' => [],
+				'user' => []
 			],
 			'core' => [
 				'site',
@@ -443,6 +444,10 @@ abstract class Skin extends ContextSource {
 			$modules['styles']['syndicate'][] = 'mediawiki.feedlink';
 		}
 
+		if ( $user->isTemp() ) {
+			$modules['user'][] = 'mediawiki.tempUserBanner';
+			$modules['styles']['user'][] = 'mediawiki.tempUserBanner.styles';
+		}
 		return $modules;
 	}
 
