@@ -9,6 +9,7 @@ use Generator;
 use JobQueueGroup;
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Deferred\DeferredUpdatesManager;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\DeletePage;
@@ -113,6 +114,7 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 			$this->createMock( BacklinkCacheFactory::class ),
 			$nsInfo ?? $this->createMock( NamespaceInfo::class ),
 			$this->createMock( ITextFormatter::class ),
+			$this->createMock( DeferredUpdatesManager::class ),
 			$page,
 			$deleter ?? $this->createMock( Authority::class )
 		);

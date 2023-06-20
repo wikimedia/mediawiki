@@ -7,7 +7,6 @@ use BagOStuff;
 use ChangeTags;
 use Content;
 use DeferrableUpdate;
-use DeferredUpdates;
 use DeletePageJob;
 use Exception;
 use JobQueueGroup;
@@ -16,6 +15,7 @@ use ManualLogEntry;
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Deferred\DeferredUpdatesManager;
 use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\HookContainer\HookContainer;
@@ -91,6 +91,8 @@ class DeletePage {
 	private $namespaceInfo;
 	/** @var ITextFormatter */
 	private $contLangMsgTextFormatter;
+	/** @var DeferredUpdatesManager */
+	private DeferredUpdatesManager $deferredUpdatesManager;
 
 	/** @var bool */
 	private $isDeletePageUnitTest = false;
@@ -145,6 +147,7 @@ class DeletePage {
 	 * @param BacklinkCacheFactory $backlinkCacheFactory
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param ITextFormatter $contLangMsgTextFormatter
+	 * @param DeferredUpdatesManager $deferredUpdatesManager
 	 * @param ProperPageIdentity $page
 	 * @param Authority $deleter
 	 */
@@ -163,6 +166,7 @@ class DeletePage {
 		BacklinkCacheFactory $backlinkCacheFactory,
 		NamespaceInfo $namespaceInfo,
 		ITextFormatter $contLangMsgTextFormatter,
+		DeferredUpdatesManager $deferredUpdatesManager,
 		ProperPageIdentity $page,
 		Authority $deleter
 	) {
@@ -181,6 +185,7 @@ class DeletePage {
 		$this->backlinkCacheFactory = $backlinkCacheFactory;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->contLangMsgTextFormatter = $contLangMsgTextFormatter;
+		$this->deferredUpdatesManager = $deferredUpdatesManager;
 
 		$this->page = $wikiPageFactory->newFromTitle( $page );
 		$this->deleter = $deleter;
@@ -835,17 +840,14 @@ class DeletePage {
 		}
 
 		// Update site status
-		if ( !$this->isDeletePageUnitTest ) {
-			// TODO Remove conditional once DeferredUpdates is servicified (T265749)
-			DeferredUpdates::addUpdate( SiteStatsUpdate::factory(
-				[ 'edits' => 1, 'articles' => $countable ? -1 : 0, 'pages' => -1 ]
-			) );
+		$this->deferredUpdatesManager->addUpdate( SiteStatsUpdate::factory(
+			[ 'edits' => 1, 'articles' => $countable ? -1 : 0, 'pages' => -1 ]
+		) );
 
-			// Delete pagelinks, update secondary indexes, etc
-			$updates = $this->getDeletionUpdates( $page, $revRecord );
-			foreach ( $updates as $update ) {
-				DeferredUpdates::addUpdate( $update );
-			}
+		// Delete pagelinks, update secondary indexes, etc
+		$updates = $this->getDeletionUpdates( $page, $revRecord );
+		foreach ( $updates as $update ) {
+			$this->deferredUpdatesManager->addUpdate( $update );
 		}
 
 		// Reparse any pages transcluding this page
@@ -883,11 +885,8 @@ class DeletePage {
 		// Reset the page object and the Title object
 		$page->loadFromRow( false, WikiPage::READ_LATEST );
 
-		if ( !$this->isDeletePageUnitTest ) {
-			// TODO Remove conditional once DeferredUpdates is servicified (T265749)
-			// Search engine
-			DeferredUpdates::addUpdate( new SearchUpdate( $page->getId(), $page->getTitle() ) );
-		}
+		// Search engine
+		$this->deferredUpdatesManager->addUpdate( new SearchUpdate( $page->getId(), $page->getTitle() ) );
 	}
 
 	/**
@@ -901,6 +900,10 @@ class DeletePage {
 	 * @return DeferrableUpdate[]
 	 */
 	public function getDeletionUpdates( WikiPage $page, RevisionRecord $rev ): array {
+		if ( $this->isDeletePageUnitTest ) {
+			// Hack: LinksDeletionUpdate reads from the global state in the constructor
+			return [];
+		}
 		$slotContent = array_map( static function ( SlotRecord $slot ) {
 			return $slot->getContent();
 		}, $rev->getSlots()->getSlots() );

@@ -30,6 +30,7 @@ use MediaWiki\Collation\CollationFactory;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Deferred\DeferredUpdatesManager;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Permissions\Authority;
@@ -155,6 +156,9 @@ class PageCommandFactory implements
 	/** @var RestrictionStore */
 	private $restrictionStore;
 
+	/** @var DeferredUpdatesManager */
+	private DeferredUpdatesManager $deferredUpdatesManager;
+
 	public function __construct(
 		Config $config,
 		LBFactory $lbFactory,
@@ -184,7 +188,8 @@ class PageCommandFactory implements
 		PageUpdaterFactory $pageUpdaterFactory,
 		ITextFormatter $contLangMsgTextFormatter,
 		ArchivedRevisionLookup $archivedRevisionLookup,
-		RestrictionStore $restrictionStore
+		RestrictionStore $restrictionStore,
+		DeferredUpdatesManager $deferredUpdatesManager
 	) {
 		$this->config = $config;
 		$this->lbFactory = $lbFactory;
@@ -215,6 +220,7 @@ class PageCommandFactory implements
 		$this->contLangMsgTextFormatter = $contLangMsgTextFormatter;
 		$this->archivedRevisionLookup = $archivedRevisionLookup;
 		$this->restrictionStore = $restrictionStore;
+		$this->deferredUpdatesManager = $deferredUpdatesManager;
 	}
 
 	/**
@@ -258,6 +264,7 @@ class PageCommandFactory implements
 			$this->backlinkCacheFactory,
 			$this->namespaceInfo,
 			$this->contLangMsgTextFormatter,
+			$this->deferredUpdatesManager,
 			$page,
 			$deleter
 		);
