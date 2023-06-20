@@ -2,7 +2,7 @@
 
 Codex is the design system for Wikimedia. Codex contains:
 - Vue and CSS-only components, in this package
-- Design tokens, in the `@wikimedia/codex-tokens` package
+- Design tokens, in the `@wikimedia/codex-design-tokens` package
 - Icons, in the `@wikimedia/codex-icons` package
 
 For more details, read the [Codex documentation](https://doc.wikimedia.org/codex/latest/).
