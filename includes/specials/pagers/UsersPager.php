@@ -299,7 +299,7 @@ class UsersPager extends AlphabeticPager {
 		foreach ( $this->mResult as $row ) {
 			$batch->add( NS_USER, $row->user_name );
 			$batch->add( NS_USER_TALK, $row->user_name );
-			$userIds[] = $row->user_id;
+			$userIds[] = (int)$row->user_id;
 		}
 
 		// Lookup groups for all the users
