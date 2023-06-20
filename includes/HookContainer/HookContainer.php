@@ -171,7 +171,7 @@ class HookContainer implements SalvageableService {
 	}
 
 	/**
-	 * Clear hooks registered via Hooks::register().
+	 * Clear handlers of the given hook.
 	 * This is intended for use while testing and will fail if MW_PHPUNIT_TEST
 	 * and MW_PARSER_TEST are not defined.
 	 *
@@ -520,11 +520,14 @@ class HookContainer implements SalvageableService {
 		$registeredHooks = $this->registry->getExtensionHooks();
 		$configuredHooks = $this->registry->getGlobalHooks();
 
-		$rawHandlers = array_merge(
-			$configuredHooks[ $hook ] ?? [],
-			$registeredHooks[ $hook ] ?? [],
-			$this->handlers[ $hook ] ?? []
-		);
+		if ( isset( $this->handlers[ $hook ] ) ) {
+			$rawHandlers = $this->handlers[ $hook ];
+		} else {
+			$rawHandlers = array_merge(
+				$configuredHooks[ $hook ] ?? [],
+				$registeredHooks[ $hook ] ?? []
+			);
+		}
 
 		foreach ( $rawHandlers as $raw ) {
 			$descr = $this->describeHandler( $hook, $raw );

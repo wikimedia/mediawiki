@@ -85,6 +85,32 @@ namespace MediaWiki\HookContainer {
 		}
 
 		/**
+		 * @covers \MediaWiki\HookContainer\HookContainer::getHandlerDescriptions
+		 */
+		public function testGetHandlerDescriptions() {
+			$handler = 'MediaWiki\HookContainer\FooClass::fooStaticMethod';
+			$expected = [ $handler ];
+
+			$hookContainer = $this->newHookContainer(
+				[
+					'BarActionComplete' => [ $handler ]
+				],
+				[
+					'FooActionComplete' => [ $handler ]
+				], [] );
+
+			$this->assertSame( $expected, $hookContainer->getHandlerDescriptions( 'FooActionComplete' ) );
+			$this->assertSame( $expected, $hookContainer->getHandlerDescriptions( 'BarActionComplete' ) );
+
+			// Fire the hooks, then check again
+			$hookContainer->run( 'FooActionComplete', [ 1 ] );
+			$hookContainer->run( 'BarActionComplete', [ 1 ] );
+
+			$this->assertSame( $expected, $hookContainer->getHandlerDescriptions( 'FooActionComplete' ) );
+			$this->assertSame( $expected, $hookContainer->getHandlerDescriptions( 'BarActionComplete' ) );
+		}
+
+		/**
 		 * Values returned: hook, handlersToRegister, expectedReturn
 		 */
 		public static function provideGetHandlerDescriptions() {
@@ -925,9 +951,7 @@ namespace MediaWiki\HookContainer {
 			$this->assertTrue( $hookContainer->isRegistered( 'XyzHook' ) );
 			$this->assertTrue( $hookContainer->isRegistered( 'FooActionComplete' ) );
 
-			// NOTE: getHandlerDescriptions() will still return the handlers provided to the constructor.
-			//       The clear() method only affects handlers introduced by calling register().
-			$this->assertCount( 2, $hookContainer->getHandlerDescriptions( 'Increment' ) );
+			$this->assertCount( 0, $hookContainer->getHandlerDescriptions( 'Increment' ) );
 			$this->assertNotEmpty( $hookContainer->getHandlerDescriptions( 'AbcHook' ) );
 			$this->assertNotEmpty( $hookContainer->getHandlerDescriptions( 'FooActionComplete' ) );
 			$this->assertNotEmpty( $hookContainer->getHandlerDescriptions( 'XyzHook' ) );
