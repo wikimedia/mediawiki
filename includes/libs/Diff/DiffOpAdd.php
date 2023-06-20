@@ -31,7 +31,6 @@ namespace Wikimedia\Diff;
  * Extends DiffOp. Used to mark strings that have been
  * added from the first string array.
  *
- * @internal
  * @ingroup DifferenceEngine
  */
 class DiffOpAdd extends DiffOp {

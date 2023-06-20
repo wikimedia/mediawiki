@@ -31,7 +31,6 @@ namespace Wikimedia\Diff;
  * Extends DiffOp. Used to mark strings that have been
  * copied from one string array to the other.
  *
- * @internal
  * @ingroup DifferenceEngine
  */
 class DiffOpCopy extends DiffOp {

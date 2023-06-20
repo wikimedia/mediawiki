@@ -31,7 +31,6 @@ namespace Wikimedia\Diff;
  * Extends DiffOp. Used to mark strings that have been
  * deleted from the first string array.
  *
- * @internal
  * @ingroup DifferenceEngine
  */
 class DiffOpDelete extends DiffOp {

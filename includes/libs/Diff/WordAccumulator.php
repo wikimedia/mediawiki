@@ -27,8 +27,6 @@ namespace Wikimedia\Diff;
 
 /**
  * Stores, escapes and formats the results of word-level diff
- *
- * @internal
  */
 class WordAccumulator {
 	/** @var string */

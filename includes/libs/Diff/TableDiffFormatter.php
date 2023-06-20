@@ -27,7 +27,6 @@
 namespace Wikimedia\Diff;
 
 use InvalidArgumentException;
-use MediaWiki\Html\Html;
 
 /**
  * MediaWiki default table style diff formatter
@@ -76,16 +75,16 @@ class TableDiffFormatter extends DiffFormatter {
 	protected function blockHeader( $xbeg, $xlen, $ybeg, $ylen ) {
 		// '<!--LINE \d+ -->' get replaced by a localised line number
 		// in DifferenceEngine::localiseLineNumbers
-		return Html::rawElement(
+		return $this->rawElement(
 			'tr',
 			[],
-			Html::rawElement(
+			$this->rawElement(
 				'td',
 				[ 'colspan' => '2', 'class' => 'diff-lineno', 'id' => 'mw-diff-left-l' . $xbeg ],
 				'<!--LINE ' . $xbeg . '-->'
 			) .
 			"\n" .
-			Html::rawElement(
+			$this->rawElement(
 				'td',
 				[ 'colspan' => '2', 'class' => 'diff-lineno' ],
 				'<!--LINE ' . $ybeg . '-->'
@@ -154,9 +153,9 @@ class TableDiffFormatter extends DiffFormatter {
 	protected function wrapLine( $marker, $class, $line ) {
 		if ( $line !== '' ) {
 			// The <div> wrapper is needed for 'overflow: auto' style to scroll properly
-			$line = Html::rawElement( 'div', [], $this->escapeWhiteSpace( $line ) );
+			$line = $this->rawElement( 'div', [], $this->escapeWhiteSpace( $line ) );
 		} else {
-			$line = Html::element( 'br' );
+			$line = '<br>';
 		}
 
 		$markerAttrs = [ 'class' => 'diff-marker' ];
@@ -164,8 +163,12 @@ class TableDiffFormatter extends DiffFormatter {
 			$markerAttrs['data-marker'] = $marker;
 		}
 
-		return Html::element( 'td', $markerAttrs ) .
-			Html::rawElement( 'td', [ 'class' => $class ], $line );
+		if ( is_array( $class ) ) {
+			$class = implode( ' ', $class );
+		}
+
+		return $this->element( 'td', $markerAttrs ) .
+			$this->rawElement( 'td', [ 'class' => $class ], $line );
 	}
 
 	/**
@@ -173,7 +176,7 @@ class TableDiffFormatter extends DiffFormatter {
 	 * @return string
 	 */
 	protected function emptyLine( string $side ) {
-		return Html::element( 'td', [ 'colspan' => '2', 'class' => $this->getClassForSide( $side ) ] );
+		return $this->element( 'td', [ 'colspan' => '2', 'class' => $this->getClassForSide( $side ) ] );
 	}
 
 	/**
@@ -184,12 +187,12 @@ class TableDiffFormatter extends DiffFormatter {
 	protected function added( $lines ) {
 		foreach ( $lines as $line ) {
 			$this->writeOutput(
-				Html::rawElement(
+				$this->rawElement(
 					'tr',
 					[],
 					$this->emptyLine( self::SIDE_DELETED ) .
 					$this->addedLine(
-						Html::element(
+						$this->element(
 							'ins',
 							[ 'class' => 'diffchange' ],
 							$line
@@ -209,11 +212,11 @@ class TableDiffFormatter extends DiffFormatter {
 	protected function deleted( $lines ) {
 		foreach ( $lines as $line ) {
 			$this->writeOutput(
-				Html::rawElement(
+				$this->rawElement(
 					'tr',
 					[],
 					$this->deletedLine(
-						Html::element(
+						$this->element(
 							'del',
 							[ 'class' => 'diffchange' ],
 							$line
@@ -234,7 +237,7 @@ class TableDiffFormatter extends DiffFormatter {
 	protected function context( $lines ) {
 		foreach ( $lines as $line ) {
 			$this->writeOutput(
-				Html::rawElement(
+				$this->rawElement(
 					'tr',
 					[],
 					$this->contextLine( htmlspecialchars( $line ), self::SIDE_DELETED ) .
@@ -266,7 +269,7 @@ class TableDiffFormatter extends DiffFormatter {
 			$delLine = $i < $ndel ? $this->deletedLine( $del[$i] ) : $this->emptyLine( self::SIDE_DELETED );
 			$addLine = $i < $nadd ? $this->addedLine( $add[$i] ) : $this->emptyLine( self::SIDE_ADDED );
 			$this->writeOutput(
-				Html::rawElement(
+				$this->rawElement(
 					'tr',
 					[],
 					$delLine . $addLine
@@ -288,6 +291,35 @@ class TableDiffFormatter extends DiffFormatter {
 			throw new InvalidArgumentException( "Invalid diff side: $side" );
 		}
 		return self::SIDE_CLASSES[$side];
+	}
+
+	/**
+	 * Serialize an HTML element, with raw contents.
+	 *
+	 * @param string $element
+	 * @param string[] $attribs
+	 * @param string $contents The HTML element contents
+	 * @return string
+	 */
+	private function rawElement( $element, $attribs = [], $contents = '' ) {
+		$ret = "<$element";
+		foreach ( $attribs as $name => $value ) {
+			$ret .= " $name=\"" . htmlspecialchars( $value, ENT_QUOTES ) . '"';
+		}
+		$ret .= ">$contents</$element>";
+		return $ret;
+	}
+
+	/**
+	 * Serialize an HTML element, encoding the text contents.
+	 *
+	 * @param string $element
+	 * @param string[] $attribs
+	 * @param string $contents The text contents
+	 * @return string
+	 */
+	private function element( $element, $attribs = [], $contents = '' ) {
+		return $this->rawElement( $element, $attribs, htmlspecialchars( $contents, ENT_NOQUOTES ) );
 	}
 }
 
