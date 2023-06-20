@@ -44,6 +44,15 @@ abstract class ExtensionServicesTestBase extends MediaWikiIntegrationTestCase {
 	 */
 	protected string $serviceNamePrefix;
 
+	/**
+	 * @var string[] An optional list of service names that,
+	 * despite starting with the {@link self::$serviceNamePrefix},
+	 * have no corresponding getter method on the ExtensionServices class.
+	 * This can be used to temporarily support the old name of a renamed service
+	 * for backwards compatibility with other extensions.
+	 */
+	protected array $serviceNamesWithoutMethods = [];
+
 	/** @dataProvider provideMethods */
 	public function testMethodSignature( ReflectionMethod $method ): void {
 		$this->assertTrue( $method->isPublic(),
@@ -125,6 +134,25 @@ abstract class ExtensionServicesTestBase extends MediaWikiIntegrationTestCase {
 			}
 		}
 		return $this->createMock( $type->getName() );
+	}
+
+	public function testMethodsExist(): void {
+		if ( $this->serviceNamePrefix === '' ) {
+			return;
+		}
+
+		$reflectionClass = new ReflectionClass( $this->className );
+		foreach ( $this->getServiceContainer()->getServiceNames() as $serviceName ) {
+			if ( in_array( $serviceName, $this->serviceNamesWithoutMethods, true ) ) {
+				continue;
+			}
+			if ( str_starts_with( $serviceName, $this->serviceNamePrefix ) ) {
+				$serviceNameSuffix = substr( $serviceName, strlen( $this->serviceNamePrefix ) );
+				$_ = $reflectionClass->getMethod( 'get' . $serviceNameSuffix ); // should not throw
+			}
+		}
+
+		$this->assertTrue( true, 'test did not throw' );
 	}
 
 }
