@@ -1,5 +1,7 @@
 <?php
 
+namespace Wikimedia\Diff;
+
 /**
  * @author Addshore
  *

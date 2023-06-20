@@ -22,7 +22,8 @@
  * @file
  * @ingroup DifferenceEngine
  */
-use MediaWiki\Diff\ComplexityException;
+
+namespace Wikimedia\Diff;
 
 // FIXME: Don't use assert() in this file
 // phpcs:disable MediaWiki.Usage.ForbiddenFunctions.assert
@@ -811,3 +812,6 @@ class DiffEngine {
 	}
 
 }
+
+/** @deprecated since 1.41 */
+class_alias( DiffEngine::class, 'DiffEngine' );

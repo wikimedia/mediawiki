@@ -123,7 +123,6 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/includes/diff
 	'CustomDifferenceEngine' => "$testDir/phpunit/includes/diff/CustomDifferenceEngine.php",
-	'FakeDiffOp' => "$testDir/phpunit/includes/diff/FakeDiffOp.php",
 
 	# tests/phpunit/includes/externalstore
 	'ExternalStoreForTesting' => "$testDir/phpunit/includes/externalstore/ExternalStoreForTesting.php",
@@ -178,6 +177,7 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/includes/libs
 	'BagOStuffTestBase' => "$testDir/phpunit/includes/libs/objectcache/BagOStuffTestBase.php",
+	'Wikimedia\Diff\FakeDiffOp' => "$testDir/phpunit/unit/includes/libs/Diff/FakeDiffOp.php",
 	'Wikimedia\ParamValidator\TypeDef\TypeDefTestCase' => "$testDir/phpunit/unit/includes/libs/ParamValidator/TypeDef/TypeDefTestCase.php",
 	'Wikimedia\ParamValidator\TypeDef\TypeDefTestCaseTrait' => "$testDir/phpunit/unit/includes/libs/ParamValidator/TypeDef/TypeDefTestCaseTrait.php",
 

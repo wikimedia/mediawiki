@@ -23,13 +23,12 @@
  * @defgroup DifferenceEngine DifferenceEngine
  */
 
-namespace MediaWiki\Diff;
+namespace Wikimedia\Diff;
 
 /**
  * Stores, escapes and formats the results of word-level diff
  *
  * @internal
- * @ingroup DifferenceEngine
  */
 class WordAccumulator {
 	/** @var string */
@@ -112,3 +111,6 @@ class WordAccumulator {
 		return $this->lines;
 	}
 }
+
+/** @deprecated since 1.41 */
+class_alias( WordAccumulator::class, 'WordAccumulator' );

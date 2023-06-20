@@ -25,6 +25,8 @@
  * @ingroup DifferenceEngine
  */
 
+namespace Wikimedia\Diff;
+
 /**
  * Extends DiffOp. Used to mark strings that have been
  * deleted from the first string array.
@@ -51,3 +53,6 @@ class DiffOpDelete extends DiffOp {
 		return new DiffOpAdd( $this->orig );
 	}
 }
+
+/** @deprecated since 1.41 */
+class_alias( DiffOpDelete::class, 'DiffOpDelete' );

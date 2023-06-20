@@ -23,8 +23,7 @@
  * @defgroup DifferenceEngine DifferenceEngine
  */
 
-use MediaWiki\Diff\ComplexityException;
-use MediaWiki\Diff\WordAccumulator;
+namespace Wikimedia\Diff;
 
 /**
  * Performs a word-level diff on several lines
@@ -32,7 +31,7 @@ use MediaWiki\Diff\WordAccumulator;
  * @newable
  * @ingroup DifferenceEngine
  */
-class WordLevelDiff extends \Diff {
+class WordLevelDiff extends Diff {
 	/**
 	 * @inheritDoc
 	 */
@@ -141,3 +140,6 @@ class WordLevelDiff extends \Diff {
 	}
 
 }
+
+/** @deprecated since 1.41 */
+class_alias( WordLevelDiff::class, 'WordLevelDiff' );

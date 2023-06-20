@@ -21,12 +21,14 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\Diff\ComplexityException;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use Wikimedia\Bcp47Code\Bcp47Code;
+use Wikimedia\Diff\ArrayDiffFormatter;
+use Wikimedia\Diff\ComplexityException;
+use Wikimedia\Diff\Diff;
 
 require_once __DIR__ . '/Maintenance.php';
 

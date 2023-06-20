@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Portions taken from phpwiki-1.3.3.
+ * A PHP diff engine for phpwiki. (Taken from phpwiki-1.3.3)
  *
  * Copyright © 2000, 2001 Geoffrey T. Dairiki <dairiki@dairiki.org>
  * You may copy this code freely under the conditions of the GPL.
@@ -24,62 +25,35 @@
  * @ingroup DifferenceEngine
  */
 
+namespace Wikimedia\Diff;
+
 /**
- * A formatter that outputs unified diffs
- * @newable
+ * Extends DiffOp. Used to mark strings that have been
+ * changed from the first string array (both added and subtracted).
+ *
+ * @internal
  * @ingroup DifferenceEngine
  */
-class UnifiedDiffFormatter extends DiffFormatter {
-
-	/** @var int */
-	protected $leadingContextLines = 2;
-
-	/** @var int */
-	protected $trailingContextLines = 2;
-
-	/**
-	 * @param string[] $lines
-	 * @param string $prefix
-	 */
-	protected function lines( $lines, $prefix = ' ' ) {
-		foreach ( $lines as $line ) {
-			$this->writeOutput( "{$prefix}{$line}\n" );
-		}
-	}
-
-	/**
-	 * @param string[] $lines
-	 */
-	protected function added( $lines ) {
-		$this->lines( $lines, '+' );
-	}
-
-	/**
-	 * @param string[] $lines
-	 */
-	protected function deleted( $lines ) {
-		$this->lines( $lines, '-' );
-	}
+class DiffOpChange extends DiffOp {
+	/** @inheritDoc */
+	public $type = 'change';
 
 	/**
 	 * @param string[] $orig
 	 * @param string[] $closing
 	 */
-	protected function changed( $orig, $closing ) {
-		$this->deleted( $orig );
-		$this->added( $closing );
+	public function __construct( $orig, $closing ) {
+		$this->orig = $orig;
+		$this->closing = $closing;
 	}
 
 	/**
-	 * @param int $xbeg
-	 * @param int $xlen
-	 * @param int $ybeg
-	 * @param int $ylen
-	 *
-	 * @return string
+	 * @return DiffOpChange
 	 */
-	protected function blockHeader( $xbeg, $xlen, $ybeg, $ylen ) {
-		return "@@ -$xbeg,$xlen +$ybeg,$ylen @@";
+	public function reverse() {
+		return new DiffOpChange( $this->closing, $this->orig );
 	}
-
 }
+
+/** @deprecated since 1.41 */
+class_alias( DiffOpChange::class, 'DiffOpChange' );

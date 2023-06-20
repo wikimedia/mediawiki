@@ -19,7 +19,7 @@
  * @ingroup DifferenceEngine
  */
 
-namespace MediaWiki\Diff;
+namespace Wikimedia\Diff;
 
 use Exception;
 
@@ -35,3 +35,6 @@ class ComplexityException extends Exception {
 		parent::__construct( 'Diff is too complex to generate' );
 	}
 }
+
+/** @deprecated since 1.41 */
+class_alias( ComplexityException::class, 'MediaWiki\\Diff\\ComplexityException' );

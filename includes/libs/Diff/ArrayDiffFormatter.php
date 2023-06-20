@@ -24,6 +24,8 @@
  * @ingroup DifferenceEngine
  */
 
+namespace Wikimedia\Diff;
+
 /**
  * A pseudo-formatter that just passes along the Diff::$edits array
  * @newable
@@ -82,3 +84,6 @@ class ArrayDiffFormatter extends DiffFormatter {
 	}
 
 }
+
+/** @deprecated since 1.41 */
+class_alias( ArrayDiffFormatter::class, 'ArrayDiffFormatter' );

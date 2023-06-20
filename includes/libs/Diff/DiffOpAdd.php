@@ -25,30 +25,34 @@
  * @ingroup DifferenceEngine
  */
 
+namespace Wikimedia\Diff;
+
 /**
  * Extends DiffOp. Used to mark strings that have been
- * changed from the first string array (both added and subtracted).
+ * added from the first string array.
  *
  * @internal
  * @ingroup DifferenceEngine
  */
-class DiffOpChange extends DiffOp {
+class DiffOpAdd extends DiffOp {
 	/** @inheritDoc */
-	public $type = 'change';
+	public $type = 'add';
 
 	/**
-	 * @param string[] $orig
-	 * @param string[] $closing
+	 * @param string[] $lines
 	 */
-	public function __construct( $orig, $closing ) {
-		$this->orig = $orig;
-		$this->closing = $closing;
+	public function __construct( $lines ) {
+		$this->closing = $lines;
+		$this->orig = false;
 	}
 
 	/**
-	 * @return DiffOpChange
+	 * @return DiffOpDelete
 	 */
 	public function reverse() {
-		return new DiffOpChange( $this->closing, $this->orig );
+		return new DiffOpDelete( $this->closing );
 	}
 }
+
+/** @deprecated since 1.41 */
+class_alias( DiffOpAdd::class, 'DiffOpAdd' );

@@ -27,6 +27,8 @@ use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Diff\Diff;
+use Wikimedia\Diff\TableDiffFormatter;
 
 /**
  * Renders a slot diff by doing a text diff on the native representation.
