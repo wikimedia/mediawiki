@@ -33,6 +33,7 @@ use MediaWiki\Page\ProtectionForm;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\BadRevisionException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -128,6 +129,9 @@ class Article implements Page {
 	/** @var JobQueueGroup */
 	private $jobQueueGroup;
 
+	/** @var ArchivedRevisionLookup */
+	private $archivedRevisionLookup;
+
 	/**
 	 * @var RevisionRecord|null Revision to be shown
 	 *
@@ -152,6 +156,7 @@ class Article implements Page {
 		$this->commentFormatter = $services->getCommentFormatter();
 		$this->wikiPageFactory = $services->getWikiPageFactory();
 		$this->jobQueueGroup = $services->getJobQueueGroup();
+		$this->archivedRevisionLookup = $services->getArchivedRevisionLookup();
 	}
 
 	/**
@@ -1516,8 +1521,7 @@ class Article implements Page {
 			if ( $oldid ) {
 				// T251066: Try loading the revision from the archive table.
 				// Show link to view it if it exists and the user has permission to view it.
-				$pa = new PageArchive( $title );
-				$revRecord = $pa->getArchivedRevisionRecord( $oldid );
+				$revRecord = $this->archivedRevisionLookup->getArchivedRevisionRecord( $title, $oldid );
 				if ( $revRecord && $revRecord->userCan(
 					RevisionRecord::DELETED_TEXT,
 					$context->getAuthority()
