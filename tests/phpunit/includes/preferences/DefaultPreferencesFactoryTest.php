@@ -311,7 +311,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 			'option' => 'new'
 		];
 		$configMock = new HashConfig( [
-			'HiddenPrefs' => []
+			MainConfigNames::HiddenPrefs => []
 		] );
 		$form = $this->createMock( PreferencesFormOOUI::class );
 

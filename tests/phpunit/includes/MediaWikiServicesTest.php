@@ -23,9 +23,9 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 		$globalConfig = new GlobalVarConfig();
 
 		$testConfig = new HashConfig();
-		$testConfig->set( 'ServiceWiringFiles', $globalConfig->get( 'ServiceWiringFiles' ) );
-		$testConfig->set( 'ConfigRegistry', $globalConfig->get( 'ConfigRegistry' ) );
-		$testConfig->set( 'Hooks', [] );
+		$testConfig->set( MainConfigNames::ServiceWiringFiles, $globalConfig->get( MainConfigNames::ServiceWiringFiles ) );
+		$testConfig->set( MainConfigNames::ConfigRegistry, $globalConfig->get( MainConfigNames::ConfigRegistry ) );
+		$testConfig->set( MainConfigNames::Hooks, [] );
 
 		return $testConfig;
 	}
@@ -46,7 +46,7 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 
 	private function newConfigWithMockWiring() {
 		$config = new HashConfig;
-		$config->set( 'ServiceWiringFiles', [ __DIR__ . '/MockServiceWiring.php' ] );
+		$config->set( MainConfigNames::ServiceWiringFiles, [ __DIR__ . '/MockServiceWiring.php' ] );
 		return $config;
 	}
 

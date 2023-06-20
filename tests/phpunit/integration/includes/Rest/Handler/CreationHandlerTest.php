@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Rest\Handler;
 
 use ApiUsageException;
 use HashConfig;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\Handler\CreationHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
@@ -30,8 +31,8 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 
 	private function newHandler( $resultData, $throwException = null, $csrfSafe = false ) {
 		$config = new HashConfig( [
-			'RightsUrl' => 'https://creativecommons.org/licenses/by-sa/4.0/',
-			'RightsText' => 'CC-BY-SA 4.0'
+			MainConfigNames::RightsUrl => 'https://creativecommons.org/licenses/by-sa/4.0/',
+			MainConfigNames::RightsText => 'CC-BY-SA 4.0'
 		] );
 
 		// Claims that wikitext and plaintext are defined, but trying to get the actual

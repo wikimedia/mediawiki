@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
@@ -50,7 +51,7 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 			new ServiceOptions(
 				TalkPageNotificationManager::CONSTRUCTOR_OPTIONS,
 				new HashConfig( [
-					'DisableAnonTalk' => $disableAnonTalk
+					MainConfigNames::DisableAnonTalk => $disableAnonTalk
 				] )
 			),
 			$services->getDBLoadBalancerFactory(),

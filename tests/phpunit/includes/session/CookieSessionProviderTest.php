@@ -20,16 +20,16 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 
 	private function getConfig() {
 		return new \HashConfig( [
-			'CookiePrefix' => 'CookiePrefix',
-			'CookiePath' => 'CookiePath',
-			'CookieDomain' => 'CookieDomain',
-			'CookieSecure' => true,
-			'CookieHttpOnly' => true,
-			'CookieSameSite' => '',
-			'SessionName' => false,
-			'CookieExpiration' => 100,
-			'ExtendedLoginCookieExpiration' => 200,
-			'ForceHTTPS' => false,
+			MainConfigNames::CookiePrefix => 'CookiePrefix',
+			MainConfigNames::CookiePath => 'CookiePath',
+			MainConfigNames::CookieDomain => 'CookieDomain',
+			MainConfigNames::CookieSecure => true,
+			MainConfigNames::CookieHttpOnly => true,
+			MainConfigNames::CookieSameSite => '',
+			MainConfigNames::SessionName => false,
+			MainConfigNames::CookieExpiration => 100,
+			MainConfigNames::ExtendedLoginCookieExpiration => 200,
+			MainConfigNames::ForceHTTPS => false,
 		] );
 	}
 

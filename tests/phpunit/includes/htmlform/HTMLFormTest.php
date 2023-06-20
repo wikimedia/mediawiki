@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Language\RawMessage;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
 
@@ -104,7 +105,7 @@ class HTMLFormTest extends MediaWikiIntegrationTestCase {
 				return $tokens && isset( $tokens[$salt] ) && $tokens[$salt] === $token;
 			} );
 		$context = $this->createConfiguredMock( RequestContext::class, [
-			'getConfig' => new HashConfig( [ 'HTMLFormAllowTableFormat' => true ] ),
+			'getConfig' => new HashConfig( [ MainConfigNames::HTMLFormAllowTableFormat => true ] ),
 			'getRequest' => new FauxRequest( $requestData, true ),
 			'getUser' => $user,
 		] );

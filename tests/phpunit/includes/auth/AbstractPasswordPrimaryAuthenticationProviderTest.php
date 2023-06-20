@@ -63,10 +63,10 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 		$this->initProvider( $provider, new MultiConfig( [ $config, $this->getServiceContainer()->getMainConfig() ] ) );
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 
-		$config->set( 'PasswordExpirationDays', 0 );
+		$config->set( MainConfigNames::PasswordExpirationDays, 0 );
 		$this->assertNull( $providerPriv->getNewPasswordExpiry( 'UTSysop' ) );
 
-		$config->set( 'PasswordExpirationDays', 5 );
+		$config->set( MainConfigNames::PasswordExpirationDays, 5 );
 		$this->assertEqualsWithDelta(
 			time() + 5 * 86400,
 			wfTimestamp( TS_UNIX, $providerPriv->getNewPasswordExpiry( 'UTSysop' ) ),
@@ -122,7 +122,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 
 	public function testSetPasswordResetFlag() {
 		$config = new \HashConfig( [
-			'InvalidPasswordReset' => true,
+			MainConfigNames::InvalidPasswordReset => true,
 		] );
 
 		$services = $this->getServiceContainer();
@@ -164,7 +164,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 		$this->assertSame( 'resetpass-validity-soft', $ret->msg->getKey() );
 		$this->assertFalse( $ret->hard );
 
-		$config->set( 'InvalidPasswordReset', false );
+		$config->set( MainConfigNames::InvalidPasswordReset, false );
 		$manager->removeAuthenticationSessionData( null );
 		$providerPriv->setPasswordResetFlag( 'Foo', $status );
 		$ret = $manager->getAuthenticationSessionData( 'reset-pass' );

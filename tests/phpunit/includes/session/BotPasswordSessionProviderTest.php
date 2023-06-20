@@ -35,10 +35,10 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$configHash = json_encode( [ $name, $prefix, $isApiRequest ] );
 		if ( !$this->config || $this->configHash !== $configHash ) {
 			$this->config = new \HashConfig( [
-				'CookiePrefix' => 'wgCookiePrefix',
-				'EnableBotPasswords' => true,
-				'BotPasswordsDatabase' => false,
-				'SessionProviders' => $wgSessionProviders + [
+				MainConfigNames::CookiePrefix => 'wgCookiePrefix',
+				MainConfigNames::EnableBotPasswords => true,
+				MainConfigNames::BotPasswordsDatabase => false,
+				MainConfigNames::SessionProviders => $wgSessionProviders + [
 					BotPasswordSessionProvider::class => [
 						'class' => BotPasswordSessionProvider::class,
 						'args' => [ $params ],

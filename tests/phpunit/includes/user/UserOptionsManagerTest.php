@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserOptionsLookup;
@@ -38,8 +39,8 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 			new ServiceOptions(
 				UserOptionsManager::CONSTRUCTOR_OPTIONS,
 				new HashConfig( [
-					'HiddenPrefs' => [ 'hidden_user_option' ],
-					'LocalTZoffset' => 0,
+					MainConfigNames::HiddenPrefs => [ 'hidden_user_option' ],
+					MainConfigNames::LocalTZoffset => 0,
 				] )
 			),
 			$this->getDefaultManager(

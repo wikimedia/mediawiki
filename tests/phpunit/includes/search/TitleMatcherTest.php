@@ -106,7 +106,7 @@ class TitleMatcherTest extends MediaWikiIntegrationTestCase {
 		$this->addGoodLinkObject( 42, Title::newFromText( $titleText ) );
 
 		$config = new HashConfig( [
-			'EnableSearchContributorsByIP' => $enableSearchContributorsByIP,
+			MainConfigNames::EnableSearchContributorsByIP => $enableSearchContributorsByIP,
 		] );
 
 		$matcher = $this->getTitleMatcher( $config, $langCode );
@@ -129,7 +129,7 @@ class TitleMatcherTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testNearMatch_Hooks( $hook ) {
 		$config = new HashConfig( [
-			'EnableSearchContributorsByIP' => false,
+			MainConfigNames::EnableSearchContributorsByIP => false,
 		] );
 
 		$this->setTemporaryHook( $hook, static function ( $term, &$title ) {
@@ -154,7 +154,7 @@ class TitleMatcherTest extends MediaWikiIntegrationTestCase {
 		$this->addGoodLinkObject( 42, Title::makeTitle( NS_MAIN, "Test Link" ) );
 
 		$config = new HashConfig( [
-			'EnableSearchContributorsByIP' => false,
+			MainConfigNames::EnableSearchContributorsByIP => false,
 		] );
 
 		$matcher = $this->getTitleMatcher( $config, 'en' );

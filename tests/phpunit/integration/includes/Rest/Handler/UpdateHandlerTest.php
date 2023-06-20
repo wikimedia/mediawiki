@@ -6,6 +6,7 @@ use ApiUsageException;
 use FormatJson;
 use HashConfig;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Rest\Handler\UpdateHandler;
@@ -38,8 +39,8 @@ class UpdateHandlerTest extends \MediaWikiLangTestCase {
 
 	private function newHandler( $resultData, $throwException = null, $csrfSafe = false ) {
 		$config = new HashConfig( [
-			'RightsUrl' => 'https://creativecommons.org/licenses/by-sa/4.0/',
-			'RightsText' => 'CC-BY-SA 4.0'
+			MainConfigNames::RightsUrl => 'https://creativecommons.org/licenses/by-sa/4.0/',
+			MainConfigNames::RightsText => 'CC-BY-SA 4.0'
 		] );
 
 		$wikitextContentHandler = new WikitextContentHandler(

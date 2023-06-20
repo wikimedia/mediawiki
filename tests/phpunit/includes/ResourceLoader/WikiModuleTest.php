@@ -10,6 +10,7 @@ use HashConfig;
 use JavaScriptContent;
 use JavaScriptContentHandler;
 use LinkCacheTestTrait;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageRecord;
@@ -74,8 +75,8 @@ class WikiModuleTest extends ResourceLoaderTestCase {
 
 	public static function provideGetPages() {
 		$settings = self::getSettings() + [
-			'UseSiteJs' => true,
-			'UseSiteCss' => true,
+			MainConfigNames::UseSiteJs => true,
+			MainConfigNames::UseSiteCss => true,
 		];
 
 		$params = [
@@ -89,15 +90,15 @@ class WikiModuleTest extends ResourceLoaderTestCase {
 				'MediaWiki:Common.js' => [ 'type' => 'script' ],
 				'MediaWiki:Common.css' => [ 'type' => 'style' ]
 			] ],
-			[ $params, new HashConfig( [ 'UseSiteCss' => false ] + $settings ), [
+			[ $params, new HashConfig( [ MainConfigNames::UseSiteCss => false ] + $settings ), [
 				'MediaWiki:Common.js' => [ 'type' => 'script' ],
 			] ],
-			[ $params, new HashConfig( [ 'UseSiteJs' => false ] + $settings ), [
+			[ $params, new HashConfig( [ MainConfigNames::UseSiteJs => false ] + $settings ), [
 				'MediaWiki:Common.css' => [ 'type' => 'style' ],
 			] ],
 			[ $params,
 				new HashConfig(
-					[ 'UseSiteJs' => false, 'UseSiteCss' => false ]
+					[ MainConfigNames::UseSiteJs => false, MainConfigNames::UseSiteCss => false ]
 				),
 				[]
 			],

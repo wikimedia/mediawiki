@@ -6,6 +6,7 @@ use ChangeTags;
 use DeferredUpdates;
 use FormatJson;
 use HashConfig;
+use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use RecentChange;
 
@@ -188,7 +189,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		$num = 5;
 
 		// disable patrolling
-		$this->overrideMwServices( new HashConfig( [ 'UseRCPatrol' => false ] ) );
+		$this->overrideMwServices( new HashConfig( [ MainConfigNames::UseRCPatrol => false ] ) );
 
 		$revisionIds = $this->setupEditsOnPage( $num );
 		$pageTitle = $this->getExistingTestPage()->getTitle()->getDBkey();
