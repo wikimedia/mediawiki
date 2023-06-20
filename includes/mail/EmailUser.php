@@ -35,7 +35,6 @@ use MediaWiki\Preferences\MultiUsernameFilter;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserOptionsLookup;
 use Message;
-use MessageLocalizer;
 use MessageSpecifier;
 use RequestContext;
 use RuntimeException;
@@ -44,9 +43,12 @@ use StatusValue;
 use ThrottledError;
 use UnexpectedValueException;
 use User;
+use Wikimedia\Message\IMessageFormatterFactory;
+use Wikimedia\Message\ITextFormatter;
+use Wikimedia\Message\MessageValue;
 
 /**
- * Command for sending emails to users.
+ * Command for sending emails to users. This class is stateless and can be used for multiple sends.
  *
  * @since 1.40
  * @unstable
@@ -75,6 +77,10 @@ class EmailUser {
 	private UserFactory $userFactory;
 	/** @var IEmailer */
 	private IEmailer $emailer;
+	/** @var IMessageFormatterFactory */
+	private IMessageFormatterFactory $messageFormatterFactory;
+	/** @var ITextFormatter */
+	private ITextFormatter $contLangMsgFormatter;
 
 	/** @var Authority */
 	private Authority $sender;
@@ -86,6 +92,8 @@ class EmailUser {
 	 * @param CentralIdLookup $centralIdLookup
 	 * @param UserFactory $userFactory
 	 * @param IEmailer $emailer
+	 * @param IMessageFormatterFactory $messageFormatterFactory
+	 * @param ITextFormatter $contLangMsgFormatter
 	 * @param Authority $sender
 	 */
 	public function __construct(
@@ -95,6 +103,8 @@ class EmailUser {
 		CentralIdLookup $centralIdLookup,
 		UserFactory $userFactory,
 		IEmailer $emailer,
+		IMessageFormatterFactory $messageFormatterFactory,
+		ITextFormatter $contLangMsgFormatter,
 		Authority $sender
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -104,6 +114,8 @@ class EmailUser {
 		$this->centralIdLookup = $centralIdLookup;
 		$this->userFactory = $userFactory;
 		$this->emailer = $emailer;
+		$this->messageFormatterFactory = $messageFormatterFactory;
+		$this->contLangMsgFormatter = $contLangMsgFormatter;
 
 		$this->sender = $sender;
 	}
@@ -117,7 +129,6 @@ class EmailUser {
 	 */
 	public function validateTarget( UserEmailContact $target ): StatusValue {
 		$targetIdentity = $target->getUser();
-		$targetUser = $this->userFactory->newFromUserIdentity( $targetIdentity );
 
 		if ( !$targetIdentity->getId() ) {
 			return StatusValue::newFatal( 'emailnotarget' );
@@ -127,6 +138,7 @@ class EmailUser {
 			return StatusValue::newFatal( 'noemailtext' );
 		}
 
+		$targetUser = $this->userFactory->newFromUserIdentity( $targetIdentity );
 		if ( !$targetUser->canReceiveEmail() ) {
 			return StatusValue::newFatal( 'nowikiemailtext' );
 		}
@@ -158,9 +170,12 @@ class EmailUser {
 	/**
 	 * Authorize the email sending, checking permissions etc.
 	 *
+	 * @internal This method should only be used by SpecialEmailUser. This could change when the $editToken parameter
+	 * is removed.
+	 *
 	 * @param string $editToken
 	 * @return StatusValue For BC, the StatusValue's value can be set to a string representing a message key to use
-	 * with ErrorPageError.
+	 * with ErrorPageError. Only SpecialEmailUser should rely on this.
 	 */
 	public function authorizeSend( string $editToken ): StatusValue {
 		if (
@@ -178,6 +193,8 @@ class EmailUser {
 			return StatusValue::newFatal( 'mailnologin' );
 		}
 
+		// TODO We should simply use Authority for checking permissions and blocks (and the rate limit, after T310476)
+		// However, that requires a target page, and it's unclear what page should be used here (T339822).
 		if ( !$this->sender->isAllowed( 'sendemail' ) ) {
 			return StatusValue::newFatal( 'badaccess' );
 		}
@@ -221,7 +238,7 @@ class EmailUser {
 	 * @param string $subject
 	 * @param string $text
 	 * @param bool $CCMe
-	 * @param MessageLocalizer $messageLocalizer
+	 * @param string $langCode Code of the language to be used for interface messages
 	 * @return StatusValue
 	 */
 	public function sendEmailUnsafe(
@@ -229,15 +246,15 @@ class EmailUser {
 		string $subject,
 		string $text,
 		bool $CCMe,
-		MessageLocalizer $messageLocalizer
+		string $langCode
 	): StatusValue {
 		$senderIdentity = $this->sender->getUser();
-		$senderUser = $this->userFactory->newFromAuthority( $this->sender );
 		$targetStatus = $this->validateTarget( $target );
 		if ( !$targetStatus->isGood() ) {
 			return $targetStatus;
 		}
 
+		$senderUser = $this->userFactory->newFromAuthority( $this->sender );
 		// Check and increment the rate limits
 		if ( $senderUser->pingLimiter( 'sendemail' ) ) {
 			throw $this->getThrottledError();
@@ -248,18 +265,20 @@ class EmailUser {
 
 		// Add a standard footer and trim up trailing newlines
 		$text = rtrim( $text ) . "\n\n-- \n";
-		$text .= $messageLocalizer->msg(
-			'emailuserfooter',
-			$fromAddress->name,
-			$toAddress->name
-		)->inContentLanguage()->text();
+		$text .= $this->contLangMsgFormatter->format(
+			MessageValue::new( 'emailuserfooter', [ $fromAddress->name, $toAddress->name ] )
+		);
 
 		if ( $this->options->get( MainConfigNames::EnableSpecialMute ) ) {
-			$text .= "\n" . $messageLocalizer->msg(
+			$text .= "\n" . $this->contLangMsgFormatter->format(
+				MessageValue::new(
 					'specialmute-email-footer',
-					$this->getSpecialMuteCanonicalURL( $senderIdentity->getName() ),
-					$senderIdentity->getName()
-				)->inContentLanguage()->text();
+					[
+						$this->getSpecialMuteCanonicalURL( $senderIdentity->getName() ),
+						$senderIdentity->getName()
+					]
+				)
+			);
 		}
 
 		$error = false;
@@ -305,7 +324,7 @@ class EmailUser {
 			return $hookStatus;
 		}
 
-		[ $mailFrom, $replyTo ] = $this->getFromAndReplyTo( $fromAddress, $messageLocalizer );
+		[ $mailFrom, $replyTo ] = $this->getFromAndReplyTo( $fromAddress );
 
 		$status = $this->emailer->send(
 			$toAddress,
@@ -324,17 +343,20 @@ class EmailUser {
 		// unless they are emailing themselves, in which case one
 		// copy of the message is sufficient.
 		if ( $CCMe && !$toAddress->equals( $fromAddress ) ) {
+			$userMsgFormatter = $this->messageFormatterFactory->getTextFormatter( $langCode );
 			$ccTo = $fromAddress;
 			$ccFrom = $fromAddress;
-			$ccSubject = $messageLocalizer->msg( 'emailccsubject' )->plaintextParams(
-				$target->getUser()->getName(),
-				$subject
-			)->text();
+			$ccSubject = $userMsgFormatter->format(
+				MessageValue::new( 'emailccsubject' )->plaintextParams(
+					$target->getUser()->getName(),
+					$subject
+				)
+			);
 			$ccText = $text;
 
 			$this->hookRunner->onEmailUserCC( $ccTo, $ccFrom, $ccSubject, $ccText );
 
-			[ $mailFrom, $replyTo ] = $this->getFromAndReplyTo( $ccFrom, $messageLocalizer );
+			[ $mailFrom, $replyTo ] = $this->getFromAndReplyTo( $ccFrom );
 
 			$ccStatus = $this->emailer->send(
 				$ccTo,
@@ -354,11 +376,10 @@ class EmailUser {
 
 	/**
 	 * @param MailAddress $fromAddress
-	 * @param MessageLocalizer $messageLocalizer
 	 * @return array
 	 * @phan-return array{0:MailAddress,1:?MailAddress}
 	 */
-	private function getFromAndReplyTo( MailAddress $fromAddress, MessageLocalizer $messageLocalizer ): array {
+	private function getFromAndReplyTo( MailAddress $fromAddress ): array {
 		if ( $this->options->get( MainConfigNames::UserEmailUseReplyTo ) ) {
 			/**
 			 * Put the generic wiki autogenerated address in the From:
@@ -370,7 +391,7 @@ class EmailUser {
 			 */
 			$mailFrom = new MailAddress(
 				$this->options->get( MainConfigNames::PasswordSender ),
-				$messageLocalizer->msg( 'emailsender' )->inContentLanguage()->text()
+				$this->contLangMsgFormatter->format( MessageValue::new( 'emailsender' ) )
 			);
 			$replyTo = $fromAddress;
 		} else {

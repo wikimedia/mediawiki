@@ -365,7 +365,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			$data['Subject'],
 			$data['Text'],
 			$data['CCMe'],
-			$this
+			$this->getLanguage()->getCode()
 		);
 		if ( $res->hasMessage( 'hookaborted' ) ) {
 			// BC: The method could previously return false if the EmailUser hook set the error to false. Preserve
@@ -400,7 +400,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			(string)$data['Subject'],
 			(string)$data['Text'],
 			(bool)$data['CCMe'],
-			$context
+			$context->getLanguage()->getCode()
 		);
 		if ( $ret->hasMessage( 'hookaborted' ) ) {
 			// BC: The method could previously return false if the EmailUser hook set the error to false.

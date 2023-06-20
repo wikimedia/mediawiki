@@ -14,11 +14,11 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWikiUnitTestCase;
-use Message;
-use MessageLocalizer;
 use RuntimeException;
 use StatusValue;
 use User;
+use Wikimedia\Message\IMessageFormatterFactory;
+use Wikimedia\Message\ITextFormatter;
 
 /**
  * @coversDefaultClass \MediaWiki\Mail\EmailUser
@@ -52,20 +52,10 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 			$centralIdLookup ?? $this->createMock( CentralIdLookup::class ),
 			$userFactory ?? $this->createMock( UserFactory::class ),
 			$emailer ?? $this->createMock( IEmailer::class ),
+			$this->createMock( IMessageFormatterFactory::class ),
+			$this->createMock( ITextFormatter::class ),
 			$sender
 		);
-	}
-
-	/**
-	 * Returns a valid MessageLocalizer mock. We don't care about MessageLocalizer at all, but since the return value
-	 * of ::msg() is not typehinted, we're forced to specify a mocked Message to return so that chained method calls
-	 * won't break.
-	 * @return MessageLocalizer
-	 */
-	private function getMockMessageLocalizer(): MessageLocalizer {
-		$messageLocalizer = $this->createMock( MessageLocalizer::class );
-		$messageLocalizer->method( 'msg' )->willReturn( $this->createMock( Message::class ) );
-		return $messageLocalizer;
 	}
 
 	/**
@@ -308,7 +298,7 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 			'subject',
 			'text',
 			false,
-			$this->getMockMessageLocalizer()
+			'qqx'
 		);
 		$this->assertEquals( $expected, $res );
 	}
@@ -446,7 +436,7 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 			'subject',
 			'text',
 			false,
-			$this->getMockMessageLocalizer()
+			'qqx'
 		);
 		// This assertion should not be reached if the test passes, but it can be helpful to determine why
 		// the test is failing.

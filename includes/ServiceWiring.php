@@ -685,7 +685,9 @@ return [
 			$services->getUserOptionsLookup(),
 			$services->getCentralIdLookup(),
 			$services->getUserFactory(),
-			$services->getEmailer()
+			$services->getEmailer(),
+			$services->getMessageFormatterFactory(),
+			$services->getMessageFormatterFactory()->getTextFormatter( $services->getContentLanguage()->getCode() )
 		);
 	},
 
