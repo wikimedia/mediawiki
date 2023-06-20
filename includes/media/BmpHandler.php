@@ -21,6 +21,8 @@
  * @ingroup Media
  */
 
+use MediaWiki\Libs\UnpackFailedException;
+
 /**
  * Handler for Microsoft's bitmap format; getimagesize() doesn't
  * support these files
@@ -69,9 +71,9 @@ class BmpHandler extends BitmapHandler {
 
 		// Convert the unsigned long 32 bits (little endian):
 		try {
-			$w = wfUnpack( 'V', $w, 4 );
-			$h = wfUnpack( 'V', $h, 4 );
-		} catch ( MWException $e ) {
+			$w = StringUtils::unpack( 'V', $w, 4 );
+			$h = StringUtils::unpack( 'V', $h, 4 );
+		} catch ( UnpackFailedException $e ) {
 			return [];
 		}
 

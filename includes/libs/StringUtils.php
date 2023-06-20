@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Libs\UnpackFailedException;
+use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
 
 /**
@@ -329,5 +331,43 @@ class StringUtils {
 		} else {
 			return new ArrayIterator( explode( $separator, $subject ) );
 		}
+	}
+
+	/**
+	 * Wrapper around php's unpack.
+	 *
+	 * @param string $format The format string (See php's docs)
+	 * @param string $data A binary string of binary data
+	 * @param int|false $length The minimum length of $data or false. This is to
+	 * 	prevent reading beyond the end of $data. false to disable the check.
+	 *
+	 * Also be careful when using this function to read unsigned 32 bit integer
+	 * because php might make it negative.
+	 *
+	 * @throws UnpackFailedException If $data not long enough, or if unpack fails
+	 * @return array Associative array of the extracted data
+	 * @since 1.42
+	 */
+	public static function unpack( string $format, string $data, $length = false ): array {
+		Assert::parameterType( [ 'integer', 'false' ], $length, '$length' );
+		if ( $length !== false ) {
+			$realLen = strlen( $data );
+			if ( $realLen < $length ) {
+				throw new UnpackFailedException( "Tried to unpack a "
+					. "string of length $realLen, but needed one "
+					. "of at least length $length."
+				);
+			}
+		}
+
+		AtEase::suppressWarnings();
+		$result = unpack( $format, $data );
+		AtEase::restoreWarnings();
+
+		if ( $result === false ) {
+			// If it cannot extract the packed data.
+			throw new UnpackFailedException( "unpack could not unpack binary data" );
+		}
+		return $result;
 	}
 }
