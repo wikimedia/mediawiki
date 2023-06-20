@@ -311,8 +311,10 @@ because of Phabricator reports.
   ::getLinkHTML() and ::getLinkWiki().
 * SearchResultThumbnail::getSize() has been deprecated to be dropped in the
   future as it is resource intensive and degrades performance.
-* The EmailUserPermissionsErrors hook has been deprecated in favour of the
-  UserCanSendEmail hook.
+* The EmailUserPermissionsErrors and UserCanSendEmail hooks have been
+  deprecated in favour of the EmailUserAuthorizeSend hook.
+* The EmailUser hook has been deprecated in favour of the EmailUserSendEmail
+  hook.
 * SiteConfiguration::extractVar() and ::extractGlobal() have been deprecated
   and also emit deprecation warnings.
 * Hooks::isRegistered(), ::getHandlers(), ::run() and ::runWithoutAbort(),

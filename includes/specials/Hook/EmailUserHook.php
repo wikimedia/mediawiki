@@ -10,8 +10,8 @@ use Status;
  * This is a hook handler interface, see docs/Hooks.md.
  * Use the hook name "EmailUser" to register handlers implementing this interface.
  *
- * @stable to implement
  * @ingroup Hooks
+ * @deprecated since 1.41 Handle the EmailUserSendEmail hook instead.
  */
 interface EmailUserHook {
 	/**

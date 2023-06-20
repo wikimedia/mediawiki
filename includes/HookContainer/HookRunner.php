@@ -6,9 +6,11 @@ use Article;
 use File;
 use IContextSource;
 use JsonContent;
+use MailAddress;
 use ManualLogEntry;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Mail\UserEmailContact;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;
@@ -171,6 +173,8 @@ class HookRunner implements
 	\MediaWiki\Hook\EmailUserFormHook,
 	\MediaWiki\Hook\EmailUserHook,
 	\MediaWiki\Hook\EmailUserPermissionsErrorsHook,
+	\MediaWiki\Mail\Hook\EmailUserAuthorizeSendHook,
+	\MediaWiki\Mail\Hook\EmailUserSendEmailHook,
 	\MediaWiki\Hook\EnhancedChangesListModifyBlockLineDataHook,
 	\MediaWiki\Hook\EnhancedChangesListModifyLineDataHook,
 	\MediaWiki\Hook\EnhancedChangesList__getLogTextHook,
@@ -1641,6 +1645,28 @@ class HookRunner implements
 		return $this->container->run(
 			'EmailUserPermissionsErrors',
 			[ $user, $editToken, &$hookErr ]
+		);
+	}
+
+	public function onEmailUserAuthorizeSend( Authority $sender, StatusValue $status ) {
+		return $this->container->run(
+			'EmailUserAuthorizeSend',
+			[ $sender, $status ]
+		);
+	}
+
+	public function onEmailUserSendEmail(
+		Authority $from,
+		MailAddress $fromAddress,
+		UserEmailContact $to,
+		MailAddress $toAddress,
+		string $subject,
+		string $text,
+		StatusValue $status
+	) {
+		return $this->container->run(
+			'EmailUserSendEmail',
+			[ $from, $fromAddress, $to, $toAddress, $subject, $text, $status ]
 		);
 	}
 

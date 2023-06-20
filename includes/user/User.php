@@ -3202,7 +3202,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		$permError = MediaWikiServices::getInstance()->getEmailUserFactory()
 			->newEmailUser( $this->getThisAsAuthority() )
 			// XXX Pass an empty edit token, nobody is using it anyway.
-			->getPermissionsError( '' );
+			->authorizeSend( '' );
 		return $permError->isGood();
 	}
 
