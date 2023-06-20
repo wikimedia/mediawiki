@@ -474,11 +474,10 @@ class MergeHistory {
 			// We have created a redirect page so let's
 			// record the link from the page to the new title.
 			// It should have no other outgoing links...
-			$this->dbw->delete(
-				'pagelinks',
-				[ 'pl_from' => $this->source->getId() ],
-				__METHOD__
-			);
+			$this->dbw->newDeleteQueryBuilder()
+				->delete( 'pagelinks' )
+				->where( [ 'pl_from' => $this->source->getId() ] )
+				->caller( __METHOD__ )->execute();
 			$this->dbw->insert( 'pagelinks',
 				[
 					'pl_from' => $this->source->getId(),

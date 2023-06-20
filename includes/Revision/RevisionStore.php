@@ -818,7 +818,10 @@ class RevisionStore
 						__METHOD__
 					);
 
-					$dbw->delete( 'revision', [ 'rev_id' => $revisionRow['rev_id'] ], __METHOD__ );
+					$dbw->newDeleteQueryBuilder()
+						->delete( 'revision' )
+						->where( [ 'rev_id' => $revisionRow['rev_id'] ] )
+						->caller( __METHOD__ )->execute();
 
 					// The locking here is mostly to make MySQL bypass the REPEATABLE-READ transaction
 					// isolation (weird MySQL "feature"). It does seem to block concurrent auto-incrementing

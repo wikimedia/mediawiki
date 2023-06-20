@@ -637,7 +637,10 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			);
 		} else {
 			// Just purge the keys since there is only one primary (e.g. "source of truth")
-			$db->delete( $ptable, [ 'keyname' => array_keys( $argsByKey ) ], __METHOD__ );
+			$db->newDeleteQueryBuilder()
+				->delete( $ptable )
+				->where( [ 'keyname' => array_keys( $argsByKey ) ] )
+				->caller( __METHOD__ )->execute();
 		}
 
 		foreach ( $argsByKey as $key => $arg ) {
@@ -1467,14 +1470,13 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 						$maxExp = $row->exptime;
 					}
 
-					$db->delete(
-						$this->getTableNameByShard( $tableIndex ),
-						[
+					$db->newDeleteQueryBuilder()
+						->delete( $this->getTableNameByShard( $tableIndex ) )
+						->where( [
 							'keyname' => $keys,
-							'exptime < ' . $db->addQuotes( $db->timestamp( $cutoffUnix ) ),
-						],
-						__METHOD__
-					);
+							$db->buildComparison( '<', [ 'exptime' => $db->timestamp( $cutoffUnix ) ] ),
+						] )
+						->caller( __METHOD__ )->execute();
 					$keysDeletedCount += $db->affectedRows();
 				}
 

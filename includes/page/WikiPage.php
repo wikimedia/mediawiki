@@ -1541,8 +1541,10 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			$success = $this->insertRedirectEntry( $redirectTitle );
 		} else {
 			// This is not a redirect, remove row from redirect table
-			$where = [ 'rd_from' => $this->getId() ];
-			$dbw->delete( 'redirect', $where, __METHOD__ );
+			$dbw->newDeleteQueryBuilder()
+				->delete( 'redirect' )
+				->where( [ 'rd_from' => $this->getId() ] )
+				->caller( __METHOD__ )->execute();
 			$success = true;
 		}
 
@@ -2310,11 +2312,10 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			);
 
 			if ( $existingProtectionIds ) {
-				$dbw->delete(
-					'page_restrictions',
-					[ 'pr_id' => $existingProtectionIds ],
-					__METHOD__
-				);
+				$dbw->newDeleteQueryBuilder()
+					->delete( 'page_restrictions' )
+					->where( [ 'pr_id' => $existingProtectionIds ] )
+					->caller( __METHOD__ )->execute();
 			}
 
 			// Update restrictions table
@@ -2369,12 +2370,13 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 					'expiry' => $expiry['create'],
 				];
 			} else {
-				$dbw->delete( 'protected_titles',
-					[
+				$dbw->newDeleteQueryBuilder()
+					->delete( 'protected_titles' )
+					->where( [
 						'pt_namespace' => $this->mTitle->getNamespace(),
 						'pt_title' => $this->mTitle->getDBkey()
-					], __METHOD__
-				);
+					] )
+					->caller( __METHOD__ )->execute();
 			}
 		}
 

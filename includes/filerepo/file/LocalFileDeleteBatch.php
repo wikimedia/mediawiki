@@ -297,15 +297,20 @@ class LocalFileDeleteBatch {
 		[ $oldRels, $deleteCurrent ] = $this->getOldRels();
 
 		if ( count( $oldRels ) ) {
-			$dbw->delete( 'oldimage',
-				[
+			$dbw->newDeleteQueryBuilder()
+				->delete( 'oldimage' )
+				->where( [
 					'oi_name' => $this->file->getName(),
 					'oi_archive_name' => array_map( 'strval', array_keys( $oldRels ) )
-				], __METHOD__ );
+				] )
+				->caller( __METHOD__ )->execute();
 		}
 
 		if ( $deleteCurrent ) {
-			$dbw->delete( 'image', [ 'img_name' => $this->file->getName() ], __METHOD__ );
+			$dbw->newDeleteQueryBuilder()
+				->delete( 'image' )
+				->where( [ 'img_name' => $this->file->getName() ] )
+				->caller( __METHOD__ )->execute();
 		}
 	}
 

@@ -631,9 +631,10 @@ class UndeletePage {
 		}
 
 		// Now that it's safely stored, take it out of the archive
-		$dbw->delete( 'archive',
-			$oldWhere,
-			__METHOD__ );
+		$dbw->newDeleteQueryBuilder()
+			->delete( 'archive' )
+			->where( $oldWhere )
+			->caller( __METHOD__ )->execute();
 
 		// Status value is count of revisions, whether the page has been created,
 		// last revision undeleted and all undeleted pages

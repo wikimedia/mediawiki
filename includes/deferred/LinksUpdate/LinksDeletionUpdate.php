@@ -91,10 +91,16 @@ class LinksDeletionUpdate extends LinksUpdate implements EnqueueableDataUpdate {
 		}
 
 		// Delete restrictions for the deleted page
-		$dbw->delete( 'page_restrictions', [ 'pr_page' => $id ], __METHOD__ );
+		$dbw->newDeleteQueryBuilder()
+			->delete( 'page_restrictions' )
+			->where( [ 'pr_page' => $id ] )
+			->caller( __METHOD__ )->execute();
 
 		// Delete any redirect entry
-		$dbw->delete( 'redirect', [ 'rd_from' => $id ], __METHOD__ );
+		$dbw->newDeleteQueryBuilder()
+			->delete( 'redirect' )
+			->where( [ 'rd_from' => $id ] )
+			->caller( __METHOD__ )->execute();
 
 		// Find recentchanges entries to clean up...
 		// Select RC IDs just by curid, and not by title (see T307865 and T140960)
@@ -108,7 +114,10 @@ class LinksDeletionUpdate extends LinksUpdate implements EnqueueableDataUpdate {
 		// T98706: delete by PK to avoid lock contention with RC delete log insertions
 		$rcIdBatches = array_chunk( $rcIdsForPage, $batchSize );
 		foreach ( $rcIdBatches as $rcIdBatch ) {
-			$dbw->delete( 'recentchanges', [ 'rc_id' => $rcIdBatch ], __METHOD__ );
+			$dbw->newDeleteQueryBuilder()
+				->delete( 'recentchanges' )
+				->where( [ 'rc_id' => $rcIdBatch ] )
+				->caller( __METHOD__ )->execute();
 			if ( count( $rcIdBatches ) > 1 ) {
 				$lbFactory->commitAndWaitForReplication(
 					__METHOD__, $this->ticket, [ 'domain' => $dbw->getDomainID() ]

@@ -458,12 +458,10 @@ abstract class LinksTable {
 
 		$deleteBatches = array_chunk( $this->rowsToDelete, $batchSize );
 		foreach ( $deleteBatches as $chunk ) {
-			$factoredConds = $db->factorConds( $chunk );
-			$db->delete(
-				$table,
-				$factoredConds,
-				__METHOD__
-			);
+			$db->newDeleteQueryBuilder()
+				->delete( $table )
+				->where( $db->factorConds( $chunk ) )
+				->caller( __METHOD__ )->execute();
 			if ( count( $deleteBatches ) > 1 ) {
 				$this->lbFactory->commitAndWaitForReplication(
 					__METHOD__, $ticket, [ 'domain' => $domainId ]

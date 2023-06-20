@@ -650,7 +650,10 @@ class DeletePage {
 		$wikiPageBeforeDelete = clone $page;
 
 		// Now that it's safely backed up, delete it
-		$dbw->delete( 'page', [ 'page_id' => $id ], __METHOD__ );
+		$dbw->newDeleteQueryBuilder()
+			->delete( 'page' )
+			->where( [ 'page_id' => $id ] )
+			->caller( __METHOD__ )->execute();
 
 		// Log the deletion, if the page was suppressed, put it in the suppression log instead
 		$logtype = $this->suppress ? 'suppress' : 'delete';
@@ -809,10 +812,16 @@ class DeletePage {
 			// Copy them into the archive table
 			$dbw->insert( 'archive', $rowsInsert, __METHOD__ );
 
-			$dbw->delete( 'revision', [ 'rev_id' => $revids ], __METHOD__ );
+			$dbw->newDeleteQueryBuilder()
+				->delete( 'revision' )
+				->where( [ 'rev_id' => $revids ] )
+				->caller( __METHOD__ )->execute();
 			// Also delete records from ip_changes as applicable.
 			if ( count( $ipRevIds ) > 0 ) {
-				$dbw->delete( 'ip_changes', [ 'ipc_rev_id' => $ipRevIds ], __METHOD__ );
+				$dbw->newDeleteQueryBuilder()
+					->delete( 'ip_changes' )
+					->where( [ 'ipc_rev_id' => $ipRevIds ] )
+					->caller( __METHOD__ )->execute();
 			}
 		}
 

@@ -150,7 +150,10 @@ class DatabaseBlockStore {
 				if ( $ids ) {
 					$ids = array_map( 'intval', $ids );
 					$store->deleteByBlockId( $ids );
-					$dbw->delete( 'ipblocks', [ 'ipb_id' => $ids ], $fname );
+					$dbw->newDeleteQueryBuilder()
+						->delete( 'ipblocks' )
+						->where( [ 'ipb_id' => $ids ] )
+						->caller( $fname )->execute();
 				}
 			}
 		) );
@@ -246,7 +249,10 @@ class DatabaseBlockStore {
 			);
 			if ( $ids ) {
 				$ids = array_map( 'intval', $ids );
-				$dbw->delete( 'ipblocks', [ 'ipb_id' => $ids ], __METHOD__ );
+				$dbw->newDeleteQueryBuilder()
+					->delete( 'ipblocks' )
+					->where( [ 'ipb_id' => $ids ] )
+					->caller( __METHOD__ )->execute();
 				$this->blockRestrictionStore->deleteByBlockId( $ids );
 				$dbw->insert( 'ipblocks', $row, __METHOD__, [ 'IGNORE' ] );
 				$affected = $dbw->affectedRows();
@@ -342,11 +348,10 @@ class DatabaseBlockStore {
 		} else {
 			// autoblock no longer required, delete corresponding autoblock(s)
 			$this->blockRestrictionStore->deleteByParentBlockId( $blockId );
-			$dbw->delete(
-				'ipblocks',
-				[ 'ipb_parent_block_id' => $blockId ],
-				__METHOD__
-			);
+			$dbw->newDeleteQueryBuilder()
+				->delete( 'ipblocks' )
+				->where( [ 'ipb_parent_block_id' => $blockId ] )
+				->caller( __METHOD__ )->execute();
 		}
 
 		$dbw->endAtomic( __METHOD__ );
@@ -382,18 +387,16 @@ class DatabaseBlockStore {
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY, [], $this->wikiId );
 
 		$this->blockRestrictionStore->deleteByParentBlockId( $blockId );
-		$dbw->delete(
-			'ipblocks',
-			[ 'ipb_parent_block_id' => $blockId ],
-			__METHOD__
-		);
+		$dbw->newDeleteQueryBuilder()
+			->delete( 'ipblocks' )
+			->where( [ 'ipb_parent_block_id' => $blockId ] )
+			->caller( __METHOD__ )->execute();
 
 		$this->blockRestrictionStore->deleteByBlockId( $blockId );
-		$dbw->delete(
-			'ipblocks',
-			[ 'ipb_id' => $blockId ],
-			__METHOD__
-		);
+		$dbw->newDeleteQueryBuilder()
+			->delete( 'ipblocks' )
+			->where( [ 'ipb_id' => $blockId ] )
+			->caller( __METHOD__ )->execute();
 
 		return $dbw->affectedRows() > 0;
 	}

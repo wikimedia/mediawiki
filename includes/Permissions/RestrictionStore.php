@@ -201,11 +201,10 @@ class RestrictionStore {
 		$page->assertWiki( PageIdentity::LOCAL );
 
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
-		$dbw->delete(
-			'protected_titles',
-			[ 'pt_namespace' => $page->getNamespace(), 'pt_title' => $page->getDBkey() ],
-			__METHOD__
-		);
+		$dbw->newDeleteQueryBuilder()
+			->delete( 'protected_titles' )
+			->where( [ 'pt_namespace' => $page->getNamespace(), 'pt_title' => $page->getDBkey() ] )
+			->caller( __METHOD__ )->execute();
 		$this->cache[CacheKeyHelper::getKeyForPage( $page )]['create_protection'] = null;
 	}
 

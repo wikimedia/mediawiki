@@ -2537,7 +2537,10 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 					[ 'LIMIT' => $config->get( MainConfigNames::UpdateRowsPerQuery ) ] // T135470
 				);
 				if ( $ids ) {
-					$dbw->delete( 'page_restrictions', [ 'pr_id' => $ids ], $fname );
+					$dbw->newDeleteQueryBuilder()
+						->delete( 'page_restrictions' )
+						->where( [ 'pr_id' => $ids ] )
+						->caller( $fname )->execute();
 				}
 			}
 		) );
@@ -2546,11 +2549,10 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			wfGetDB( DB_PRIMARY ),
 			__METHOD__,
 			static function ( IDatabase $dbw, $fname ) {
-				$dbw->delete(
-					'protected_titles',
-					[ 'pt_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ],
-					$fname
-				);
+				$dbw->newDeleteQueryBuilder()
+					->delete( 'protected_titles' )
+					->where( $dbw->buildComparison( '<', [ 'pt_expiry' => $dbw->timestamp() ] ) )
+					->caller( $fname )->execute();
 			}
 		) );
 	}

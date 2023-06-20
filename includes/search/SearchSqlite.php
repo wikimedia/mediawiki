@@ -301,7 +301,10 @@ class SearchSqlite extends SearchDatabase {
 		// @todo find a method to do it in a single request,
 		// couldn't do it so far due to typelessness of FTS3 tables.
 		$dbw = $this->lb->getConnectionRef( DB_PRIMARY );
-		$dbw->delete( 'searchindex', [ 'rowid' => $id ], __METHOD__ );
+		$dbw->newDeleteQueryBuilder()
+			->delete( 'searchindex' )
+			->where( [ 'rowid' => $id ] )
+			->caller( __METHOD__ )->execute();
 		$dbw->insert( 'searchindex',
 			[
 				'rowid' => $id,

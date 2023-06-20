@@ -435,11 +435,10 @@ class Category {
 					->caller( __METHOD__ )->execute();
 			} else {
 				# The category is empty and has no description page, delete it
-				$dbw->delete(
-					'category',
-					[ 'cat_title' => $this->mName ],
-					__METHOD__
-				);
+				$dbw->newDeleteQueryBuilder()
+					->delete( 'category' )
+					->where( [ 'cat_title' => $this->mName ] )
+					->caller( __METHOD__ )->execute();
 				$this->mID = false;
 			}
 		} elseif ( $shouldExist ) {

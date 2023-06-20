@@ -384,7 +384,10 @@ class SearchMySQL extends SearchDatabase {
 	 */
 	public function delete( $id, $title ) {
 		$dbw = $this->lb->getConnectionRef( DB_PRIMARY );
-		$dbw->delete( 'searchindex', [ 'si_page' => $id ], __METHOD__ );
+		$dbw->newDeleteQueryBuilder()
+			->delete( 'searchindex' )
+			->where( [ 'si_page' => $id ] )
+			->caller( __METHOD__ )->execute();
 	}
 
 	/**
