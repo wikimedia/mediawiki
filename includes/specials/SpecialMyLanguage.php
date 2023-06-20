@@ -152,6 +152,7 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 		$uiLang = $this->getLanguage();
 		$baseLang = $base->getPageLanguage();
 
+		// T309329: Always use subpages for transclusion
 		// $baseLang can be StubUserLang, this order would pass the typehint on Language::equals - T326400
 		if ( !$forTransclusion && $baseLang->equals( $uiLang ) ) {
 			// Short circuit when the current UI language is the
@@ -177,11 +178,14 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 		// Check for fallback languages specified by the UI language
 		$possibilities = $uiLang->getFallbackLanguages();
 		foreach ( $possibilities as $lang ) {
-			if ( $forTransclusion || $lang !== $baseLang->getCode() ) {
-				$proposed = $base->getSubpage( $lang );
-			} elseif ( $lang === $baseLang->getCode() ) {
-				$proposed = $base;
+			// $base already include fragments
+			// T309329: Always use subpages for transclusion
+			// T333187: Do not ignore base language page if matched
+			if ( !$forTransclusion && $lang === $baseLang->getCode() ) {
+				return $base;
 			}
+			// Look for subpages if is for transclusion or didn't match base page language
+			$proposed = $base->getSubpage( $lang );
 			if ( $proposed && $proposed->exists() ) {
 				if ( $fragment !== '' ) {
 					$proposed->setFragment( $fragment );
