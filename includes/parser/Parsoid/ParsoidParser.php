@@ -135,6 +135,16 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 			'outputContentVersion' => Parsoid::defaultHTMLVersion(),
 		], $headers, $parserOutput );
 		$parserOutput = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle, $parserOutput );
+
+		# Copied from Parser.php::parse and should probably be abstracted
+		# into the parent base class (probably as part of T236809)
+		# Wrap non-interface parser output in a <div> so it can be targeted
+		# with CSS (T37247)
+		$class = $options->getWrapOutputClass();
+		if ( $class !== false && !$options->getInterfaceMessage() ) {
+			$parserOutput->addWrapperDivClass( $class );
+		}
+
 		$this->makeLimitReport( $options, $parserOutput );
 
 		return $parserOutput;
