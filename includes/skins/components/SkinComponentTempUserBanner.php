@@ -45,40 +45,40 @@ class SkinComponentTempUserBanner implements SkinComponent {
 	}
 
 	private function createLoginLink() {
-		return Html::rawElement( 'a',
+		return Html::element( 'a',
 		[
 			'href' => $this->loginUrl,
 			'id' => 'pt-login',
-			'title' => $this->localizer->msg( 'tooltip-pt-login' ),
+			'title' => $this->localizer->msg( 'tooltip-pt-login' )->text(),
 			'class' => 'cdx-button cdx-button--fake-button cdx-button--fake-button--enabled'
 		],
-		$this->localizer->msg( 'pt-login' ) );
+		$this->localizer->msg( 'pt-login' )->text() );
 	}
 
 	private function createAccountLink() {
-		return Html::rawElement( 'a',
+		return Html::element( 'a',
 			[
 				'href' => $this->createAccountUrl,
 				'id' => 'pt-createaccount',
-				'title' => $this->localizer->msg( 'tooltip-pt-createaccount' ),
+				'title' => $this->localizer->msg( 'tooltip-pt-createaccount' )->text(),
 				'class' => 'cdx-button cdx-button--fake-button cdx-button--fake-button--enabled'
 			],
-			$this->localizer->msg( 'pt-createaccount' )
+			$this->localizer->msg( 'pt-createaccount' )->text()
 		);
 	}
 
 	private function renderBannerHTML() {
 		return Html::rawElement( 'div', [ 'class' => 'mw-temp-user-banner' ],
-			HTML::rawElement( 'p', [],
-				$this->localizer->msg( 'temp-user-banner-description' )->text() .
-				$this->localizer->msg( 'colon-separator' )->text() .
-				HTML::rawElement( 'span', [ 'class' => 'mw-temp-user-banner-username' ], $this->username )
+			Html::rawElement( 'p', [],
+				$this->localizer->msg( 'temp-user-banner-description' )->escaped() .
+				$this->localizer->msg( 'colon-separator' )->escaped() .
+				Html::element( 'span', [ 'class' => 'mw-temp-user-banner-username' ], $this->username )
 			) .
 			$this->createLoginLink() .
 			$this->createAccountLink() .
-			HTML::rawElement( 'div', [ 'class' => 'mw-temp-user-tooltip' ],
-				HTML::rawElement( 'p', [], $this->localizer->msg( 'temp-user-banner-tooltip-title' )->text() ) .
-				HTML::rawElement( 'p', [], $this->localizer->msg( 'temp-user-banner-tooltip-description' )->parse() )
+			Html::rawElement( 'div', [ 'class' => 'mw-temp-user-tooltip' ],
+				Html::element( 'p', [], $this->localizer->msg( 'temp-user-banner-tooltip-title' )->text() ) .
+				Html::rawElement( 'p', [], $this->localizer->msg( 'temp-user-banner-tooltip-description' )->parse() )
 			)
 		);
 	}
