@@ -2368,7 +2368,6 @@ $wgAutoloadLocalClasses = [
 	'RSSFeed' => __DIR__ . '/includes/Feed/RSSFeed.php',
 	'RandomPage' => __DIR__ . '/includes/specials/SpecialRandomPage.php',
 	'RangeChronologicalPager' => __DIR__ . '/includes/pager/RangeChronologicalPager.php',
-	'RangeDifference' => __DIR__ . '/includes/diff/RangeDifference.php',
 	'RawAction' => __DIR__ . '/includes/actions/RawAction.php',
 	'RawMessage' => __DIR__ . '/includes/language/RawMessage.php',
 	'ReadOnlyError' => __DIR__ . '/includes/exception/ReadOnlyError.php',
