@@ -24,6 +24,8 @@
  * @ingroup DifferenceEngine
  */
 
+namespace Wikimedia\Diff;
+
 /**
  * Class representing a 'diff' between two sequences of strings.
  * @newable
@@ -51,7 +53,7 @@ class Diff {
 	 * @param string[] $from_lines An array of strings.
 	 *   Typically these are lines from a file.
 	 * @param string[] $to_lines An array of strings.
-	 * @throws \MediaWiki\Diff\ComplexityException
+	 * @throws ComplexityException
 	 */
 	public function __construct( $from_lines, $to_lines ) {
 		$eng = new DiffEngine;
@@ -161,3 +163,6 @@ class Diff {
 		return $lines;
 	}
 }
+
+/** @deprecated since 1.41 */
+class_alias( Diff::class, 'Diff' );

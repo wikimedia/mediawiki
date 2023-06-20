@@ -25,29 +25,38 @@
  * @ingroup DifferenceEngine
  */
 
+namespace Wikimedia\Diff;
+
 /**
  * Extends DiffOp. Used to mark strings that have been
- * added from the first string array.
+ * copied from one string array to the other.
  *
  * @internal
  * @ingroup DifferenceEngine
  */
-class DiffOpAdd extends DiffOp {
+class DiffOpCopy extends DiffOp {
 	/** @inheritDoc */
-	public $type = 'add';
+	public $type = 'copy';
 
 	/**
-	 * @param string[] $lines
+	 * @param string[] $orig
+	 * @param string[]|false $closing Should either be identical to $orig, or not given
 	 */
-	public function __construct( $lines ) {
-		$this->closing = $lines;
-		$this->orig = false;
+	public function __construct( $orig, $closing = false ) {
+		if ( !is_array( $closing ) ) {
+			$closing = $orig;
+		}
+		$this->orig = $orig;
+		$this->closing = $closing;
 	}
 
 	/**
-	 * @return DiffOpDelete
+	 * @return DiffOpCopy
 	 */
 	public function reverse() {
-		return new DiffOpDelete( $this->closing );
+		return new DiffOpCopy( $this->closing, $this->orig );
 	}
 }
+
+/** @deprecated since 1.41 */
+class_alias( DiffOpCopy::class, 'DiffOpCopy' );

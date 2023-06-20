@@ -24,6 +24,10 @@
  * @ingroup DifferenceEngine
  */
 
+namespace Wikimedia\Diff;
+
+use UnexpectedValueException;
+
 /**
  * Base class for diff formatters
  *
@@ -250,3 +254,6 @@ abstract class DiffFormatter {
 	}
 
 }
+
+/** @deprecated since 1.41 */
+class_alias( DiffFormatter::class, 'DiffFormatter' );

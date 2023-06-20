@@ -24,6 +24,9 @@
  * @ingroup DifferenceEngine
  */
 
+namespace Wikimedia\Diff;
+
+use InvalidArgumentException;
 use MediaWiki\Html\Html;
 
 /**
@@ -287,3 +290,6 @@ class TableDiffFormatter extends DiffFormatter {
 		return self::SIDE_CLASSES[$side];
 	}
 }
+
+/** @deprecated since 1.41 */
+class_alias( TableDiffFormatter::class, 'TableDiffFormatter' );

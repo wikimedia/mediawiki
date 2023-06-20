@@ -25,6 +25,8 @@
  * @defgroup DifferenceEngine DifferenceEngine
  */
 
+namespace Wikimedia\Diff;
+
 /**
  * The base class for all other DiffOp classes.
  *
@@ -109,3 +111,6 @@ abstract class DiffOp {
 		return $this->closing ? count( $this->closing ) : 0;
 	}
 }
+
+/** @deprecated since 1.41 */
+class_alias( DiffOp::class, 'DiffOp' );

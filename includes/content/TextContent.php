@@ -27,6 +27,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Diff\Diff;
 
 /**
  * Content object implementation for representing flat text.
