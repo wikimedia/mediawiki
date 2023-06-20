@@ -699,10 +699,16 @@ class SwiftFileBackend extends FileBackendStore {
 
 	protected function doPublishInternal( $fullCont, $dir, array $params ) {
 		$status = $this->newStatus();
+		if ( empty( $params['access'] ) ) {
+			return $status; // nothing to do
+		}
 
 		$stat = $this->getContainerStat( $fullCont );
 		if ( is_array( $stat ) ) {
 			$readUsers = array_merge( $this->readUsers, [ $this->swiftUser, '.r:*' ] );
+			if ( !empty( $params['listing'] ) ) {
+				array_push( $readUsers, '.rlistings' );
+			}
 			$writeUsers = array_merge( $this->writeUsers, [ $this->swiftUser ] );
 
 			// Make container public to end-users...
@@ -1495,6 +1501,9 @@ class SwiftFileBackend extends FileBackendStore {
 		if ( empty( $params['noAccess'] ) ) {
 			// public
 			$readUsers = array_merge( $this->readUsers, [ '.r:*', $this->swiftUser ] );
+			if ( empty( $params['noListing'] ) ) {
+				array_push( $readUsers, '.rlistings' );
+			}
 			$writeUsers = array_merge( $this->writeUsers, [ $this->swiftUser ] );
 		} else {
 			// private
