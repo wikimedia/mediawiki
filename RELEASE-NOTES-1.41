@@ -201,6 +201,8 @@ because of Phabricator reports.
   - ::ruleExists()
 * Database::unionConditionPermutations(), unused everywhere, have been removed
   without deprecation.
+* Saving preferences for a temporary user now throws an error (e.g. via
+  UserOptionsManager::saveOptions)
 * ApiQuery::getNamedDB() and ApiQueryBase::selectNamedDB(), deprecated in
   1.39, have been removed.
 * ChangeTags::addTagsAccompanyingChangeWithChecks() and
