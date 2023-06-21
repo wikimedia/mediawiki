@@ -641,6 +641,8 @@
 	"preview": "Rhagolwg",
 	"showpreview": "Dangos rhagolwg",
 	"showdiff": "Dangos newidiadau",
+	"temp-user-banner-description": "Rydych chi'n defnyddio cyfrif dros dro",
+	"temp-user-banner-tooltip-title": "Cyfrif dros dro",
 	"blankarticle": "<strong>Rhybudd:</strong> Rydych chi am greu tudalen wag.\nOs cliciwch \"$1\" eto, bydd y dudalen yn cael ei chreu heb gynnwys.",
 	"anoneditwarning": "<strong>Rhybudd</strong>: Nid ydych wedi mewngofnodi. Fe fydd eich cyfeiriad IP yn ymddangos ar hanes golygu cyhoeddus y dudalen hon. Gallwch ddewis cuddio'ch cyfeiriad IP drwy <strong>[$1 fewngofnodi]</strong> neu <strong>[$2 greu cyfrif]</strong> cyn golygu.",
 	"autocreate-edit-warning": "<strong>Rhybudd:</strong> Rydych chi heb fewngofnodi. Bydd eich golygiad yn cael ei gysylltu ag <strong>[[{{MediaWiki:tempuser-helppage}}|enw a gynhyrchwyd yn awtomatig]]</strong> trwy gosod cwci ar eich porwr. Bydd eich cyfeiriad IP yn weladwy i ddefnyddwyr dibynadwy. Os ydych chi'n <strong>[$1 mewngofnodi]</strong> neu yn <strong>[$2 creu cyfrif]</strong>, fe fydd eich cyfraniadau yn cael eu cysylltu ag enw o'ch dewis, ynghyd â buddion eraill.",
