@@ -26,7 +26,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\DeletePage;
 use MediaWiki\Page\DeletePageFactory;
-use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserOptionsLookup;
@@ -39,7 +38,7 @@ use Wikimedia\RequestTimeout\TimeoutException;
  *
  * @ingroup Actions
  */
-class DeleteAction extends FormlessAction {
+class DeleteAction extends FormAction {
 
 	/**
 	 * Constants used to localize form fields
@@ -106,13 +105,41 @@ class DeleteAction extends FormlessAction {
 		return 'delete';
 	}
 
-	public function onView() {
-		return null;
+	public function onSubmit( $data ) {
+		return false;
+	}
+
+	public function onSuccess() {
+		return false;
+	}
+
+	protected function usesOOUI() {
+		return true;
+	}
+
+	protected function getPageTitle() {
+		$title = $this->getTitle();
+		return $this->msg( 'delete-confirm', $title->getPrefixedText() );
+	}
+
+	protected function alterForm( HTMLForm $form ) {
+		$title = $this->getTitle();
+		$form
+			->setWrapperLegendMsg( $this->getFormMsg( self::MSG_LEGEND ) )
+			->setWrapperAttributes( [ 'id' => 'mw-delete-table' ] )
+			->suppressDefaultSubmit()
+			->setId( 'deleteconfirm' )
+			->setTokenSalt( [ 'delete', $title->getPrefixedText() ] );
 	}
 
 	public function show() {
+		$this->setHeaders();
 		$this->useTransactionalTimeLimit();
 		$this->addHelpLink( 'Help:Sysop deleting and undeleting' );
+
+		// This will throw exceptions if there's a problem
+		$this->checkCanExecute( $this->getUser() );
+
 		$this->tempDelete();
 	}
 
@@ -123,9 +150,6 @@ class DeleteAction extends FormlessAction {
 		$user = $context->getUser();
 		$request = $context->getRequest();
 		$outputPage = $context->getOutput();
-
-		$this->runExecuteChecks();
-		$this->prepareOutput( $context->msg( 'delete-confirm', $title->getPrefixedText() ) );
 
 		# Better double-check that it hasn't been deleted yet!
 		$article->getPage()->loadPageData(
@@ -349,7 +373,11 @@ class DeleteAction extends FormlessAction {
 		// FIXME: Replace (or at least rename) this hook
 		$this->getHookRunner()->onArticleConfirmDelete( $this->getArticle(), $outputPage, $reason );
 
-		$this->showForm( $reason );
+		$form = $this->getForm();
+		if ( $form->show() ) {
+			$this->onSuccess();
+		}
+
 		$this->showEditReasonsLinks();
 		$this->showLogEntries();
 	}
@@ -384,9 +412,9 @@ class DeleteAction extends FormlessAction {
 	}
 
 	/**
-	 * @param string $reason
+	 * @return array
 	 */
-	protected function showForm( string $reason ): void {
+	protected function getFormFields(): array {
 		$user = $this->getUser();
 		$title = $this->getTitle();
 
@@ -422,7 +450,7 @@ class DeleteAction extends FormlessAction {
 			'tabindex' => 2,
 			'maxlength' => CommentStore::COMMENT_CHARACTER_LIMIT,
 			'infusable' => true,
-			'default' => $reason,
+			'default' => $this->getDefaultReason(),
 			'autofocus' => true,
 			'label' => $this->getFormMsg( self::MSG_REASON_OTHER )->text(),
 		];
@@ -467,28 +495,7 @@ class DeleteAction extends FormlessAction {
 			'flags' => [ 'primary', 'destructive' ],
 		];
 
-		HTMLForm::factory( 'ooui', $fields, $this->getContext() )
-			->setWrapperLegendMsg( $this->getFormMsg( self::MSG_LEGEND ) )
-			->setWrapperAttributes( [ 'id' => 'mw-delete-table' ] )
-			->suppressDefaultSubmit()
-			->setAction( $this->getFormAction() )
-			->setId( 'deleteconfirm' )
-			->setTokenSalt( [ 'delete', $title->getPrefixedText() ] )
-			->showAlways();
-	}
-
-	/**
-	 * @todo Should use Action::checkCanExecute instead
-	 */
-	protected function runExecuteChecks(): void {
-		$permissionStatus = PermissionStatus::newEmpty();
-		if ( !$this->getAuthority()->definitelyCan( 'delete', $this->getTitle(), $permissionStatus ) ) {
-			throw new PermissionsError( 'delete', $permissionStatus );
-		}
-
-		if ( $this->readOnlyMode->isReadOnly() ) {
-			throw new ReadOnlyError;
-		}
+		return $fields;
 	}
 
 	/**
@@ -517,16 +524,6 @@ class DeleteAction extends FormlessAction {
 		$outputPage = $this->getContext()->getOutput();
 		$outputPage->addHTML( Xml::element( 'h2', null, $deleteLogPage->getName()->text() ) );
 		LogEventsList::showLogExtract( $outputPage, 'delete', $this->getTitle() );
-	}
-
-	/**
-	 * @param Message $pageTitle
-	 */
-	protected function prepareOutput( Message $pageTitle ): void {
-		$outputPage = $this->getOutput();
-		$outputPage->setPageTitle( $pageTitle );
-		$outputPage->addBacklinkSubtitle( $this->getTitle() );
-		$outputPage->setRobotPolicy( 'noindex,nofollow' );
 	}
 
 	protected function prepareOutputForForm(): void {
@@ -615,9 +612,5 @@ class DeleteAction extends FormlessAction {
 			->fetchRowCount();
 
 		return $res > 1;
-	}
-
-	public function doesWrites() {
-		return true;
 	}
 }
