@@ -208,7 +208,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	 * Diff the text representations of two content objects (or just two pieces of text in general).
 	 * @param string $oldText
 	 * @param string $newText
-	 * @return string HTML, one or more <tr> tags.
+	 * @return string HTML. One or more <tr> tags, or an empty string if the inputs are identical.
 	 */
 	public function getTextDiff( string $oldText, string $newText ) {
 		$diff = function () use ( $oldText, $newText ) {
@@ -268,6 +268,10 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 
 		$oldText = str_replace( "\r\n", "\n", $oldText );
 		$newText = str_replace( "\r\n", "\n", $newText );
+
+		if ( $oldText === $newText ) {
+			return '';
+		}
 
 		// Better external diff engine, the 2 may some day be dropped
 		// This one does the escaping and segmenting itself

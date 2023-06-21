@@ -296,7 +296,8 @@ class DifferenceEngine extends ContextSource {
 
 	/**
 	 * @return SlotDiffRenderer[] Diff renderers for each slot, keyed by role name.
-	 *   Includes slots only present in one of the revisions.
+	 *   Includes slots only present in one of the revisions. Does not include slots
+	 *   for which content is identical in the two revisions.
 	 */
 	protected function getSlotDiffRenderers() {
 		if ( $this->isSlotDiffRenderer ) {
@@ -309,14 +310,20 @@ class DifferenceEngine extends ContextSource {
 			}
 
 			$slotContents = $this->getSlotContents();
-			$this->slotDiffRenderers = array_map( function ( array $contents ) {
-				/** @var Content $content */
-				$content = $contents['new'] ?: $contents['old'];
-				return $content->getContentHandler()->getSlotDiffRenderer(
+			$this->slotDiffRenderers = [];
+			foreach ( $slotContents as $role => $contents ) {
+				if ( $contents['new'] && $contents['old']
+					&& $contents['new']->equals( $contents['old'] )
+				) {
+					// Do not produce a diff of identical content
+					continue;
+				}
+				$handler = ( $contents['new'] ?: $contents['old'] )->getContentHandler();
+				$this->slotDiffRenderers[$role] = $handler->getSlotDiffRenderer(
 					$this->getContext(),
 					$this->slotDiffOptions
 				);
-			}, $slotContents );
+			}
 		}
 
 		return $this->slotDiffRenderers;
@@ -335,7 +342,7 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Get the old and new content objects for all slots.
 	 * This method does not do any permission checks.
-	 * @return array [ role => [ 'old' => SlotRecord|null, 'new' => SlotRecord|null ], ... ]
+	 * @return (Content|null)[][] [ role => [ 'old' => Content|null, 'new' => Content|null ], ... ]
 	 */
 	protected function getSlotContents() {
 		if ( $this->isContentOverridden ) {
@@ -1334,7 +1341,7 @@ class DifferenceEngine extends ContextSource {
 		$slotContents = $this->getSlotContents();
 		$slotDiff = $diffRenderers[$role]->getDiff( $slotContents[$role]['old'],
 			$slotContents[$role]['new'] );
-		if ( !$slotDiff ) {
+		if ( $slotDiff === '' ) {
 			return false;
 		}
 
