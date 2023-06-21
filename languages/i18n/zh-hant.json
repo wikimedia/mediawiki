@@ -1237,7 +1237,7 @@
 	"gender-notknown": "TA 編輯 Wiki 頁面",
 	"gender-male": "他編輯 Wiki 頁面",
 	"gender-female": "她編輯 Wiki 頁面",
-	"prefs-help-gender": "此偏好設定為選填欄位。\n軟體會在提到您或對他人時，使用填寫在此處的值以正確的文法性別稱呼您。\n這項資訊會公開。",
+	"prefs-help-gender": "此偏好設定為選填欄位。軟體會在稱呼您或對他人提到您時，使用填寫在此處的值以正確的文法性別稱呼您。這項資訊會公開。",
 	"email": "Email",
 	"prefs-help-realname": "真實姓名為選填欄位。\n若提供，真實姓名可能會用來作為您的作品的署名。",
 	"prefs-help-email": "電子郵件地址為選填欄位，但是當您忘記密碼而要重設時需要此資訊。",

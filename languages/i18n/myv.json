@@ -129,6 +129,8 @@
 	"october-date": "Ожоков $1",
 	"november-date": "Сундерьков $1",
 	"december-date": "Ацамков $1",
+	"period-am": "AM",
+	"period-pm": "PM",
 	"pagecategories": "{{PLURAL:$1|Категория|Категорият}}",
 	"category_header": "\"$1\" категориясонть лопатне",
 	"subcategories": "пелькскатегорият арасть",
