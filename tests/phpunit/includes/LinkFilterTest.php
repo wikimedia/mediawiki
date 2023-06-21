@@ -566,7 +566,8 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 				'example.com',
 				[],
 				[
-					'el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' ',
+					'(el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' ) OR ' .
+					'(el_to_domain_index LIKE \'https://com.example.%\' ESCAPE \'`\' )',
 					'el_to_path LIKE \'/%\' ESCAPE \'`\' ',
 				],
 			],
@@ -574,7 +575,8 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 				'example.com/foobar',
 				[],
 				[
-					'el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' ',
+					'(el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' ) OR ' .
+					'(el_to_domain_index LIKE \'https://com.example.%\' ESCAPE \'`\' )',
 					'el_to_path LIKE \'/foobar%\' ESCAPE \'`\' ',
 				],
 			],
@@ -582,7 +584,8 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 				'*.example.com',
 				[],
 				[
-					'el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' ',
+					'(el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' ) OR ' .
+					'(el_to_domain_index LIKE \'https://com.example.%\' ESCAPE \'`\' )',
 					'el_to_path LIKE \'/%\' ESCAPE \'`\' ',
 				],
 			],
@@ -590,7 +593,8 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 				'*.example.com/foobar',
 				[],
 				[
-					'el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' ',
+					'(el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' ) OR ' .
+					'(el_to_domain_index LIKE \'https://com.example.%\' ESCAPE \'`\' )',
 					'el_to_path LIKE \'/foobar%\' ESCAPE \'`\' ',
 				],
 			],
@@ -598,7 +602,8 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 				'*.example.com/foobar',
 				[ 'oneWildcard' => true ],
 				[
-					'el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' ',
+					'(el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' ) OR ' .
+					'(el_to_domain_index LIKE \'https://com.example.%\' ESCAPE \'`\' )',
 					'el_to_path LIKE \'/foobar%\' ESCAPE \'`\' ',
 				],
 			],
@@ -606,7 +611,8 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 				'example.com/blah/blah/blah/blah/blah/blah/blah/blah/blah/blah?foo=',
 				[],
 				[
-					'el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' ',
+					'(el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' ) OR ' .
+					'(el_to_domain_index LIKE \'https://com.example.%\' ESCAPE \'`\' )',
 					'el_to_path LIKE ' .
 					'\'/blah/blah/blah/blah/blah/blah/blah/blah/blah/blah?foo=%\' ' .
 					'ESCAPE \'`\' ',
@@ -621,7 +627,7 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 				'example.com',
 				[ 'protocol' => 'https://' ],
 				[
-					"el_to_domain_index LIKE 'https://com.example.%' ESCAPE '`' ",
+					"(el_to_domain_index LIKE 'https://com.example.%' ESCAPE '`' )",
 					"el_to_path LIKE '/%' ESCAPE '`' ",
 				],
 			],
