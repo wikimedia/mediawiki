@@ -33,10 +33,6 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 		$this->context = new RequestContext();
 		$this->context->setTitle( $title );
 
-		if ( !self::$revisions ) {
-			self::$revisions = $this->doEdits();
-		}
-
 		$this->overrideConfigValue( MainConfigNames::DiffEngine, 'php' );
 
 		$slotRoleRegistry = $this->getServiceContainer()->getSlotRoleRegistry();
@@ -49,6 +45,10 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 				true
 			);
 		}
+	}
+
+	public function addDBDataOnce() {
+		self::$revisions = $this->doEdits();
 	}
 
 	/**
@@ -83,51 +83,70 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 		return $revisions;
 	}
 
-	public function testMapDiffPrevNext() {
-		$cases = $this->getMapDiffPrevNextCases();
+	private function expandData( $data ) {
+		if ( is_array( $data ) ) {
+			foreach ( $data as &$value ) {
+				$value = $this->expandData( $value );
+			}
+		} elseif ( is_string( $data ) ) {
+			$data = preg_replace_callback(
+				'/rev\[([0-9]+)]/',
+				static function ( $m ) {
+					return self::$revisions[(int)$m[1]];
+				},
+				$data
+			);
+		}
+		return $data;
+	}
 
-		foreach ( $cases as [ $expected, $old, $new, $message ] ) {
-			$diffEngine = new DifferenceEngine( $this->context, $old, $new, 2, true, false );
-			$diffMap = $diffEngine->mapDiffPrevNext( $old, $new );
-			$this->assertEquals( $expected, $diffMap, $message );
+	private function expandTestArgs( $args ) {
+		foreach ( $args as &$arg ) {
+			$arg = $this->expandData( $arg );
 		}
 	}
 
-	private function getMapDiffPrevNextCases() {
-		$revs = self::$revisions;
+	/**
+	 * @dataProvider provideMapDiffPrevNext
+	 */
+	public function testMapDiffPrevNext( $expected, $old, $new, $message ) {
+		$this->expandTestArgs( [ &$expected, &$old, &$new, &$message ] );
+		$diffEngine = new DifferenceEngine( $this->context, $old, $new, 2, true, false );
+		$diffMap = $diffEngine->mapDiffPrevNext( $old, $new );
+		$this->assertEquals( $expected, $diffMap, $message );
+	}
 
+	public static function provideMapDiffPrevNext() {
 		return [
-			[ [ $revs[1], $revs[2] ], $revs[2], 'prev', 'diff=prev' ],
-			[ [ $revs[2], $revs[3] ], $revs[2], 'next', 'diff=next' ],
-			[ [ $revs[1], $revs[3] ], $revs[1], $revs[3], 'diff=' . $revs[3] ]
+			[ [ 'rev[1]', 'rev[2]' ], 'rev[2]', 'prev', 'diff=prev' ],
+			[ [ 'rev[2]', 'rev[3]' ], 'rev[2]', 'next', 'diff=next' ],
+			[ [ 'rev[1]', 'rev[3]' ], 'rev[1]', 'rev[3]', 'diff=rev3' ]
 		];
 	}
 
-	public function testLoadRevisionData() {
-		$cases = $this->getLoadRevisionDataCases();
+	/**
+	 * @dataProvider provideLoadRevision
+	 */
+	public function testLoadRevisionData( $expectedOld, $expectedNew, $expectedRet, $old, $new ) {
+		$this->expandTestArgs( [ &$expectedOld, &$expectedNew, &$expectedRet, &$old, &$new ] );
+		$diffEngine = new DifferenceEngine( $this->context, $old, $new, 2, true, false );
+		$ret = $diffEngine->loadRevisionData();
+		$ret2 = $diffEngine->loadRevisionData();
 
-		foreach ( $cases as $testName => [ $expectedOld, $expectedNew, $expectedRet, $old, $new ] ) {
-			$diffEngine = new DifferenceEngine( $this->context, $old, $new, 2, true, false );
-			$ret = $diffEngine->loadRevisionData();
-			$ret2 = $diffEngine->loadRevisionData();
-
-			$this->assertEquals( $expectedOld, $diffEngine->getOldid(), $testName );
-			$this->assertEquals( $expectedNew, $diffEngine->getNewid(), $testName );
-			$this->assertEquals( $expectedRet, $ret, $testName );
-			$this->assertEquals( $expectedRet, $ret2, $testName );
-		}
+		$this->assertEquals( $expectedOld, $diffEngine->getOldid() );
+		$this->assertEquals( $expectedNew, $diffEngine->getNewid() );
+		$this->assertEquals( $expectedRet, $ret );
+		$this->assertEquals( $expectedRet, $ret2 );
 	}
 
-	private function getLoadRevisionDataCases() {
-		$revs = self::$revisions;
-
+	public static function provideLoadRevision() {
 		return [
-			'diff=prev' => [ $revs[2], $revs[3], true, $revs[3], 'prev' ],
-			'diff=next' => [ $revs[2], $revs[3], true, $revs[2], 'next' ],
-			'diff=' . $revs[3] => [ $revs[1], $revs[3], true, $revs[1], $revs[3] ],
-			'diff=0' => [ $revs[1], $revs[3], true, $revs[1], 0 ],
-			'diff=prev&oldid=<first>' => [ false, $revs[0], true, $revs[0], 'prev' ],
-			'invalid' => [ 123456789, $revs[1], false, 123456789, $revs[1] ],
+			'diff=prev' => [ 'rev[2]', 'rev[3]', true, 'rev[3]', 'prev' ],
+			'diff=next' => [ 'rev[2]', 'rev[3]', true, 'rev[2]', 'next' ],
+			'diff=' . 'rev[3]' => [ 'rev[1]', 'rev[3]', true, 'rev[1]', 'rev[3]' ],
+			'diff=0' => [ 'rev[1]', 'rev[3]', true, 'rev[1]', 0 ],
+			'diff=prev&oldid=<first>' => [ false, 'rev[0]', true, 'rev[0]', 'prev' ],
+			'invalid' => [ 123456789, 'rev[1]', false, 123456789, 'rev[1]' ],
 		];
 	}
 
@@ -220,12 +239,8 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testSetRevisions() {
-		$main1 = SlotRecord::newUnsaved( SlotRecord::MAIN,
-			ContentHandler::makeContent( 'xxx', null, CONTENT_MODEL_TEXT ) );
-		$main2 = SlotRecord::newUnsaved( SlotRecord::MAIN,
-			ContentHandler::makeContent( 'yyy', null, CONTENT_MODEL_TEXT ) );
-		$rev1 = $this->getRevisionRecord( $main1 );
-		$rev2 = $this->getRevisionRecord( $main2 );
+		$rev1 = $this->getRevisionRecord( [ SlotRecord::MAIN => 'xxx' ] );
+		$rev2 = $this->getRevisionRecord( [ SlotRecord::MAIN => 'yyy' ] );
 
 		$differenceEngine = new DifferenceEngine();
 		$differenceEngine->setRevisions( $rev1, $rev2 );
@@ -242,8 +257,10 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideGetDiffBody
 	 */
 	public function testGetDiffBody(
-		?RevisionRecord $oldRevision, ?RevisionRecord $newRevision, $expectedDiff
+		?array $oldSlots, ?array $newSlots, $expectedDiff
 	) {
+		$oldRevision = $this->getRevisionRecord( $oldSlots );
+		$newRevision = $this->getRevisionRecord( $newSlots );
 		if ( $expectedDiff instanceof Exception ) {
 			$this->expectException( get_class( $expectedDiff ) );
 			$this->expectExceptionMessage( $expectedDiff->getMessage() );
@@ -258,49 +275,43 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expectedDiff, $this->getPlainDiff( $diff ) );
 	}
 
-	public function provideGetDiffBody() {
-		$main1 = SlotRecord::newUnsaved( SlotRecord::MAIN,
-			ContentHandler::makeContent( 'xxx', null, CONTENT_MODEL_TEXT ) );
-		$main2 = SlotRecord::newUnsaved( SlotRecord::MAIN,
-			ContentHandler::makeContent( 'yyy', null, CONTENT_MODEL_TEXT ) );
-		$slot1 = SlotRecord::newUnsaved( 'slot',
-			ContentHandler::makeContent( 'aaa', null, CONTENT_MODEL_TEXT ) );
-		$slot2 = SlotRecord::newUnsaved( 'slot',
-			ContentHandler::makeContent( 'bbb', null, CONTENT_MODEL_TEXT ) );
-		$slot3 = SlotRecord::newDerived( 'derivedslot',
-			ContentHandler::makeContent( 'aaa', null, CONTENT_MODEL_TEXT ) );
-		$slot4 = SlotRecord::newDerived( 'derivedslot',
-			ContentHandler::makeContent( 'bbb', null, CONTENT_MODEL_TEXT ) );
+	public static function provideGetDiffBody() {
+		$main1 = [ SlotRecord::MAIN => 'xxx' ];
+		$main2 = [ SlotRecord::MAIN => 'yyy' ];
+		$slot1 = [ 'slot' => 'aaa' ];
+		$slot2 = [ 'slot' => 'bbb' ];
+		$slot3 = [ 'derivedslot' => 'aaa' ];
+		$slot4 = [ 'derivedslot' => 'bbb' ];
 
 		return [
 			'revision vs. null' => [
 				null,
-				$this->getRevisionRecord( $main1, $slot1 ),
+				$main1 + $slot1,
 				'',
 			],
 			'revision vs. itself' => [
-				$this->getRevisionRecord( $main1, $slot1 ),
-				$this->getRevisionRecord( $main1, $slot1 ),
+				$main1 + $slot1,
+				$main1 + $slot1,
 				'',
 			],
 			'different text in one slot' => [
-				$this->getRevisionRecord( $main1, $slot1 ),
-				$this->getRevisionRecord( $main1, $slot2 ),
+				$main1 + $slot1,
+				$main1 + $slot2,
 				"slotLine 1:\nLine 1:\n-aaa+bbb",
 			],
 			'different text in two slots' => [
-				$this->getRevisionRecord( $main1, $slot1 ),
-				$this->getRevisionRecord( $main2, $slot2 ),
+				$main1 + $slot1,
+				$main2 + $slot2,
 				"Line 1:\nLine 1:\n-xxx+yyy\nslotLine 1:\nLine 1:\n-aaa+bbb",
 			],
 			'new slot' => [
-				$this->getRevisionRecord( $main1 ),
-				$this->getRevisionRecord( $main1, $slot1 ),
+				$main1,
+				$main1 + $slot1,
 				"slotLine 1:\nLine 1:\n- +aaa",
 			],
 			'ignored difference in derived slot' => [
-				$this->getRevisionRecord( $main1, $slot3 ),
-				$this->getRevisionRecord( $main1, $slot4 ),
+				$main1 + $slot3,
+				$main1 + $slot4,
 				'',
 			],
 		];
@@ -345,7 +356,7 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 		$user = $this->getTestUser( $group )->getUser();
 		$this->context->setUser( $user );
 		if ( $config ) {
-			$this->context->setConfig( $config );
+			$this->context->setConfig( new HashConfig( $config ) );
 		}
 
 		$page = $this->getNonexistingTestPage( 'Page1' );
@@ -364,13 +375,13 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 	public static function provideMarkPatrolledLink() {
 		yield 'PatrollingEnabledUserAllowed' => [
 			'sysop',
-			new HashConfig( [ MainConfigNames::UseRCPatrol => true, MainConfigNames::LanguageCode => 'qxx' ] ),
+			[ MainConfigNames::UseRCPatrol => true, MainConfigNames::LanguageCode => 'qxx' ],
 			'Mark as patrolled'
 		];
 
 		yield 'PatrollingEnabledUserNotAllowed' => [
 			null,
-			new HashConfig( [ MainConfigNames::UseRCPatrol => true, MainConfigNames::LanguageCode => 'qxx' ] ),
+			[ MainConfigNames::UseRCPatrol => true, MainConfigNames::LanguageCode => 'qxx' ],
 			''
 		];
 
@@ -406,14 +417,25 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param SlotRecord ...$slots
-	 * @return MutableRevisionRecord
+	 * @param string[]|null $slots Array mapping slot role to text content.
+	 *   If the role is "derivedslot", the slot will be marked as derived.
+	 * @return MutableRevisionRecord|null
 	 */
-	private function getRevisionRecord( ...$slots ) {
+	private function getRevisionRecord( $slots ) {
+		if ( $slots === null ) {
+			return null;
+		}
+
 		$title = $this->makeMockTitle( __CLASS__ );
 		$revision = new MutableRevisionRecord( $title );
-		foreach ( $slots as $slot ) {
-			$revision->setSlot( $slot );
+		foreach ( $slots as $role => $text ) {
+			$content = ContentHandler::makeContent( $text, null, CONTENT_MODEL_TEXT );
+			if ( $role === 'derivedslot' ) {
+				$slotRecord = SlotRecord::newDerived( $role, $content );
+			} else {
+				$slotRecord = SlotRecord::newUnsaved( $role, $content );
+			}
+			$revision->setSlot( $slotRecord );
 		}
 		return $revision;
 	}
