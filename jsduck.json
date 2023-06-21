@@ -7,7 +7,7 @@
 	"--builtin-classes": true,
 	"--processes": "0",
 	"--warnings-exit-nonzero": true,
-	"--external": "Blob,File,FileList,HTMLDocument,HTMLElement,HTMLIFrameElement,HTMLInputElement,HTMLBodyElement,HTMLHtmlElement,HTMLStyleElement,KeyboardEvent,MouseEvent,Node,Window,XMLDocument,Set",
+	"--external": "Blob,File,FileList,HTMLDocument,HTMLElement,HTMLIFrameElement,HTMLInputElement,HTMLBodyElement,HTMLHtmlElement,HTMLStyleElement,KeyboardEvent,MouseEvent,Node,Window,XMLDocument,Set,URL,URLSearchParams",
 	"--output": "docs/js",
 	"--exclude": [
 		"resources/src/jquery.tablesorter",

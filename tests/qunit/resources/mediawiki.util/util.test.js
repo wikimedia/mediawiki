@@ -236,6 +236,38 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		assert.strictEqual( util.getParamValue( 'title', url ), null, 'T268058: getParamValue can return null on input it cannot decode.' );
 	} );
 
+	QUnit.test( 'getArrayParam', function ( assert ) {
+		const params1 = new URLSearchParams( '?foo[]=a&foo[]=b&foo[]=c' );
+		const params2 = new URLSearchParams( '?foo[0]=a&foo[1]=b&foo[2]=c' );
+		const params3 = new URLSearchParams( '?foo[1]=b&foo[0]=a&foo[]=c' );
+		const expected = [ 'a', 'b', 'c' ];
+		assert.deepEqual( util.getArrayParam( 'foo', params1 ), expected,
+			'array query parameters are parsed (implicit indexes)' );
+		assert.deepEqual( util.getArrayParam( 'foo', params2 ), expected,
+			'array query parameters are parsed (explicit indexes)' );
+		assert.deepEqual( util.getArrayParam( 'foo', params3 ), expected,
+			'array query parameters are parsed (mixed indexes, out of order)' );
+
+		const paramsMissing = new URLSearchParams( '?foo[0]=a&foo[2]=c' );
+		// eslint-disable-next-line no-sparse-arrays
+		const expectedMissing = [ 'a', , 'c' ];
+		assert.deepEqual( util.getArrayParam( 'foo', paramsMissing ), expectedMissing,
+			'array query parameters are parsed (missing array item)' );
+
+		const paramsWeird = new URLSearchParams( '?foo[0]=a&foo[1][1]=b&foo[x]=c' );
+		const expectedWeird = [ 'a' ];
+		assert.deepEqual( util.getArrayParam( 'foo', paramsWeird ), expectedWeird,
+			'array query parameters are parsed (multi-dimensional or associative arrays are ignored)' );
+
+		const paramsNotArray = new URLSearchParams( '?foo=a' );
+		assert.deepEqual( util.getArrayParam( 'foo', paramsNotArray ), null,
+			'non-array query parameters are ignored' );
+
+		const paramsOther = new URLSearchParams( '?bar[]=a' );
+		assert.deepEqual( util.getArrayParam( 'foo', paramsOther ), null,
+			'other query parameters are ignored' );
+	} );
+
 	function getParents( link ) {
 		return $( link ).parents( '#qunit-fixture *' ).toArray()
 			.map( function ( el ) {
