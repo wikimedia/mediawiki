@@ -452,7 +452,7 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @dataProvider provideUpdate
 	 */
-	public function testUpdate( $sql, $sqlText ) {
+	public function testUpdate( $sql, $sqlText, $clean ) {
 		$this->hideDeprecated( 'Wikimedia\Rdbms\Platform\SQLPlatform::updateSqlText' );
 		$actual = $this->platform->updateSqlText(
 			$sql['table'],
@@ -460,7 +460,8 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 			$sql['conds'],
 			$sql['options'] ?? []
 		);
-		$this->assertSame( $sqlText, $actual );
+		$this->assertSame( $sqlText, $actual->getSQL() );
+		$this->assertSame( $clean, $actual->getCleanedSql() );
 	}
 
 	public static function provideUpdate() {
@@ -471,10 +472,8 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 					'values' => [ 'field' => 'text', 'field2' => 'text2' ],
 					'conds' => [ 'alias' => 'text' ],
 				],
-				"UPDATE  table " .
-				"SET field = 'text'" .
-				",field2 = 'text2' " .
-				"WHERE alias = 'text'"
+				"UPDATE  table SET field = 'text',field2 = 'text2' WHERE alias = 'text'",
+				"UPDATE  table SET field = '?',field2 = '?' WHERE alias = '?'",
 			],
 			[
 				[
@@ -482,10 +481,8 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 					'values' => [ 'field' => 'text', 'field2' => 'text2' ],
 					'conds' => 'alias = \'text\'',
 				],
-				"UPDATE  table " .
-				"SET field = 'text'" .
-				",field2 = 'text2' " .
-				"WHERE alias = 'text'"
+				"UPDATE  table SET field = 'text',field2 = 'text2' WHERE alias = 'text'",
+				"UPDATE  table SET field = '?',field2 = '?' WHERE ?",
 			],
 			[
 				[
@@ -493,10 +490,8 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 					'values' => [ 'field = other', 'field2' => 'text2' ],
 					'conds' => [ 'id' => '1' ],
 				],
-				"UPDATE  table " .
-				"SET field = other" .
-				",field2 = 'text2' " .
-				"WHERE id = '1'"
+				"UPDATE  table SET field = other,field2 = 'text2' WHERE id = '1'",
+				"UPDATE  table SET ?,field2 = '?' WHERE id = '?'",
 			],
 			[
 				[
@@ -504,9 +499,8 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 					'values' => [ 'field = other', 'field2' => 'text2' ],
 					'conds' => '*',
 				],
-				"UPDATE  table " .
-				"SET field = other" .
-				",field2 = 'text2'"
+				"UPDATE  table SET field = other,field2 = 'text2'",
+				"UPDATE  table SET ?,field2 = '?'",
 			],
 			[
 				[
@@ -514,9 +508,8 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 					'values' => [ 'field = other', 'field2' => 'text2' ],
 					'conds' => [ '*' ],
 				],
-				"UPDATE  table " .
-				"SET field = other" .
-				",field2 = 'text2'"
+				"UPDATE  table SET field = other,field2 = 'text2'",
+				"UPDATE  table SET ?,field2 = '?'",
 			],
 			[
 				[
@@ -524,9 +517,8 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 					'values' => [ 'field' => 'text', 'field2' => 'text2' ],
 					'conds' => null,
 				],
-				"UPDATE  table " .
-				"SET field = 'text'" .
-				",field2 = 'text2'",
+				"UPDATE  table SET field = 'text',field2 = 'text2'",
+				"UPDATE  table SET field = '?',field2 = '?'",
 			],
 			[
 				[
@@ -534,9 +526,8 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 					'values' => [ 'field = other', 'field2' => 'text2' ],
 					'conds' => [],
 				],
-				"UPDATE  table " .
-				"SET field = other" .
-				",field2 = 'text2'",
+				"UPDATE  table SET field = other,field2 = 'text2'",
+				"UPDATE  table SET ?,field2 = '?'",
 			],
 			[
 				[
@@ -544,10 +535,9 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 					'values' => [ 'field = other', 'field2' => 'text2' ],
 					'conds' => '',
 				],
-				"UPDATE  table " .
-				"SET field = other" .
-				",field2 = 'text2'",
-			],
+				"UPDATE  table SET field = other,field2 = 'text2'",
+				"UPDATE  table SET ?,field2 = '?'",
+			]
 		];
 	}
 
