@@ -47,8 +47,6 @@ class DeprecatedHooks {
 		'userCan' => [ 'deprecatedVersion' => '1.37' ],
 		'ArticleDelete' => [ 'deprecatedVersion' => '1.37', 'silent' => true ],
 		'ArticleDeleteComplete' => [ 'deprecatedVersion' => '1.37', 'silent' => true ],
-		'SkinTemplateNavigation' => [ 'deprecatedVersion' => '1.39' ],
-		'SkinTemplateNavigation::SpecialPage' => [ 'deprecatedVersion' => '1.39' ],
 		'PersonalUrls' => [ 'deprecatedVersion' => '1.39' ],
 		'SearchDataForIndex' => [ 'deprecatedVersion' => '1.40', 'silent' => true ],
 		'ArticleUndelete' => [ 'deprecatedVersion' => '1.40', 'silent' => true ],
