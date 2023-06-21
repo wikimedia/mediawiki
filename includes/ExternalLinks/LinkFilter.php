@@ -1,7 +1,5 @@
 <?php
 /**
- * Functions to help implement an external link filter for spam control.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -32,14 +30,16 @@ use Wikimedia\Rdbms\LikeMatch;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 /**
- * Some functions to help implement an external link filter for spam control.
+ * Utilities for formatting and querying the externallinks table.
  *
- * @todo implement the filter. Currently these are just some functions to help
- * maintenance/cleanupSpam.php remove links to a single specified domain. The
- * next thing is to implement functions for checking a given page against a big
- * list of domains.
+ * This is primarily used by \MediaWiki\Deferred\LinksUpdate\ExternalLinksTable
+ * for managing the storage layer, and by SpecialLinkSearch and ApiQueryExtLinksUsage
+ * as query interface.
  *
- * Another cool thing to do would be a web interface for fast spam removal.
+ * For spam removal and anti-spam meausures based on this, see also:
+ * - maintenance/cleanupSpam.php
+ * - SpamBlacklist extension
+ * - AbuseFilter extension (Special:BlockedExternalDomains, T337431)
  */
 class LinkFilter {
 	/**
@@ -65,19 +65,17 @@ class LinkFilter {
 		}
 
 		$text = $content->getText();
-
 		$regex = self::makeRegex( $filterEntry, $protocol );
 		return preg_match( $regex, $text );
 	}
 
 	/**
-	 * Builds a regex pattern for $filterEntry.
+	 * Build a regex pattern for $filterEntry.
 	 *
 	 * @todo This doesn't match the rest of the functionality here.
 	 * @param string $filterEntry URL, if it begins with "*.", it'll be
 	 *        replaced to match any subdomain
 	 * @param string $protocol 'http://' or 'https://'
-	 *
 	 * @return string Regex pattern, for preg_match()
 	 */
 	private static function makeRegex( $filterEntry, $protocol ) {
@@ -91,7 +89,8 @@ class LinkFilter {
 	}
 
 	/**
-	 * Canonicalize a hostname for el_index
+	 * Canonicalize a hostname for the externallinks table
+	 *
 	 * @param string $host
 	 * @param bool $reverse whether to reverse the domain name or not
 	 * @return string
@@ -179,7 +178,8 @@ class LinkFilter {
 	}
 
 	/**
-	 * Converts a URL into a format for el_index
+	 * Convert given URL to format for the externallinks table
+	 *
 	 * @since 1.33
 	 * @param string $url
 	 * @param bool $reverseDomain
@@ -309,8 +309,9 @@ class LinkFilter {
 	}
 
 	/**
-	 * Return query conditions which will match the specified string. There are
-	 * several kinds of filter entry:
+	 * Return conditions for the externallinks table from a given filter entry.
+	 *
+	 * There are several ways you can query:
 	 *
 	 *     *.domain.com    -  Matches domain.com and www.domain.com
 	 *     domain.com      -  Matches domain.com or domain.com/ but not www.domain.com
@@ -329,12 +330,10 @@ class LinkFilter {
 	 * @since 1.33
 	 * @param string $filterEntry Filter entry, as described above
 	 * @param array $options Options are:
-	 *   - protocol: (string) Protocol to query (default http://)
-	 *   - oneWildcard: (bool) Stop at the first wildcard (default false)
-	 *   - db: (IDatabase|null) Database to use.
-	 * @return array|false Conditions to be used for the query (to be ANDed) or
-	 *  false on error. To determine if the query is constant on the
-	 *  el_index_60 field, check whether key 'el_index_60' is set.
+	 *   - protocol: (null, string, array) Protocol to query (default: `http://` and `https://`)
+	 *   - oneWildcard: (bool) Stop at the first wildcard (default: false)
+	 *   - db: (IReadableDatabase|null) Database for building SQL text.
+	 * @return array|false Query conditions (to be ANDed) or false on error.
 	 */
 	public static function getQueryConditions( $filterEntry, array $options = [] ) {
 		$migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
@@ -388,11 +387,10 @@ class LinkFilter {
 
 	private static function getQueryConditionsOld( $filterEntry, array $options = [] ) {
 		$options += [
-			'protocol' => 'http://',
+			'protocol' => null,
 			'oneWildcard' => false,
 			'db' => null,
 		];
-
 		if ( $options['protocol'] === null ) {
 			$options['protocol'] = 'http://';
 		}
