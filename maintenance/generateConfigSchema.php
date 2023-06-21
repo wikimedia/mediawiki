@@ -229,7 +229,7 @@ class GenerateConfigSchema extends Maintenance {
 			" * the respective config setting.\n" .
 			" *\n" .
 			" * @note this class is generated automatically by maintenance/generateConfigSchema.php\n" .
-			" * @since 1.38\n" .
+			" * @since 1.39\n" .
 			" */\n";
 
 		$code .= "class MainConfigNames {\n";

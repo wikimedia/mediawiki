@@ -17,7 +17,7 @@ namespace MediaWiki;
  * the respective config setting.
  *
  * @note this class is generated automatically by maintenance/generateConfigSchema.php
- * @since 1.38
+ * @since 1.39
  */
 class MainConfigNames {
 
