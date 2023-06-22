@@ -148,16 +148,16 @@ class MoveToExternal extends Maintenance {
 				$lbFactory->waitForReplication();
 			}
 
-			$res = $dbr->select( 'text', [ 'old_id', 'old_flags', 'old_text' ],
-				[
-					"old_id BETWEEN $blockStart AND $blockEnd",
-					'old_flags NOT ' . $dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() ),
-				], __METHOD__
-			);
+			$res = $dbr->newSelectQueryBuilder()
+				->select( [ 'old_id', 'old_flags', 'old_text' ] )
+				->from( 'text' )
+				->where( $this->getConditions( $blockStart, $blockEnd, $dbr ) )
+				->caller( __METHOD__ )->fetchResultSet();
 			foreach ( $res as $row ) {
 				$text = $row->old_text;
 				$id = $row->old_id;
 				$flags = SqlBlobStore::explodeFlags( $row->old_flags );
+				[ $text, $flags ] = $this->resolveText( $text, $flags );
 
 				if ( in_array( 'error', $flags ) ) {
 					continue;
@@ -280,6 +280,17 @@ class MoveToExternal extends Maintenance {
 			}
 		}
 		$this->output( "$numResolved of $numTotal stubs resolved\n" );
+	}
+
+	protected function getConditions( $blockStart, $blockEnd, $dbr ) {
+		return [
+			"old_id BETWEEN $blockStart AND $blockEnd",
+			'old_flags NOT ' . $dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() ),
+		];
+	}
+
+	protected function resolveText( $text, $flags ) {
+		return [ $text, $flags ];
 	}
 }
 
