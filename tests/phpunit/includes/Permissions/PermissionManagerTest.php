@@ -431,7 +431,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			],
 			MainConfigNames::GroupPermissions => [
 				'*' => [ 'edit' => false ],
-				'user' => [ 'edit' => true, 'createpage' => true ],
+				'temp' => [ 'edit' => true, 'createpage' => true ],
 			]
 		] );
 		$services = $this->getServiceContainer();

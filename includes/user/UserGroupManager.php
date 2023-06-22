@@ -291,7 +291,7 @@ class UserGroupManager implements IDBAccessObject {
 		) {
 			$groups = [ '*' ];
 			if ( $this->tempUserConfig->isTempName( $user->getName() ) ) {
-				$groups[] = 'user';
+				$groups[] = 'temp';
 			} elseif ( $user->isRegistered() ) {
 				$groups[] = 'user';
 				if ( $this->tempUserConfig->isEnabled() ) {
