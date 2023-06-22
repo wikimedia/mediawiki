@@ -1343,6 +1343,7 @@ return [
 		'dependencies' => [
 			'mediawiki.jqueryMsg',
 			'mediawiki.notification',
+			'mediawiki.storage',
 			'oojs-ui-core',
 			'oojs-ui.styles.icons-interactions',
 		],

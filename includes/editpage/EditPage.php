@@ -163,7 +163,7 @@ class EditPage implements IEditObject {
 
 	/**
 	 * Duration of PostEdit cookie, in seconds.
-	 * The cookie will be removed instantly if the JavaScript runs.
+	 * The cookie will be removed on the next page view of this article (Article::view()).
 	 *
 	 * Otherwise, though, we don't want the cookies to accumulate.
 	 * RFC 2109 ( https://www.ietf.org/rfc/rfc2109.txt ) specifies a possible
@@ -173,6 +173,9 @@ class EditPage implements IEditObject {
 	 *
 	 * A value of 20 minutes should be enough to take into account slow loads and minor
 	 * clock skew while still avoiding cookie accumulation when JavaScript is turned off.
+	 *
+	 * Some say this is too long (T211233), others say it is too short (T289538).
+	 * The same value is used for client-side post-edit storage (in mediawiki.action.view.postEdit).
 	 */
 	public const POST_EDIT_COOKIE_DURATION = 1200;
 
