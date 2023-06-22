@@ -335,8 +335,6 @@ class HookRunner implements
 	\MediaWiki\Hook\SkinPreloadExistenceHook,
 	\MediaWiki\Hook\SkinSubPageSubtitleHook,
 	\MediaWiki\Hook\SkinTemplateGetLanguageLinkHook,
-	\MediaWiki\Hook\SkinTemplateNavigationHook,
-	\MediaWiki\Hook\SkinTemplateNavigation__SpecialPageHook,
 	\MediaWiki\Hook\SkinTemplateNavigation__UniversalHook,
 	\MediaWiki\Hook\PersonalUrlsHook,
 	\MediaWiki\Hook\SoftwareInfoHook,
@@ -3588,28 +3586,6 @@ class HookRunner implements
 		return $this->container->run(
 			'SkinTemplateGetLanguageLink',
 			[ &$languageLink, $languageLinkTitle, $title, $outputPage ]
-		);
-	}
-
-	/**
-	 * @deprecated since 1.39 Use onSkinTemplateNavigation__Universal instead
-	 */
-	public function onSkinTemplateNavigation( $sktemplate, &$links ): void {
-		$this->container->run(
-			'SkinTemplateNavigation',
-			[ $sktemplate, &$links ],
-			[ 'abortable' => false ]
-		);
-	}
-
-	/**
-	 * @deprecated since 1.39 Use onSkinTemplateNavigation__Universal instead
-	 */
-	public function onSkinTemplateNavigation__SpecialPage( $sktemplate, &$links ): void {
-		$this->container->run(
-			'SkinTemplateNavigation::SpecialPage',
-			[ $sktemplate, &$links ],
-			[ 'abortable' => false ]
 		);
 	}
 

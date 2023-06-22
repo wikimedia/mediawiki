@@ -946,13 +946,6 @@ class SkinTemplate extends Skin {
 	protected function runOnSkinTemplateNavigationHooks( SkinTemplate $skin, &$content_navigation ) {
 		$beforeHookAssociatedPages = array_keys( $content_navigation['associated-pages'] );
 		$beforeHookNamespaces = array_keys( $content_navigation['namespaces'] );
-		$title = $this->getRelevantTitle();
-		if ( $title->canExist() ) {
-			$this->getHookRunner()->onSkinTemplateNavigation( $skin, $content_navigation );
-		} else {
-			$this->getHookRunner()->onSkinTemplateNavigation__SpecialPage(
-				$skin, $content_navigation );
-		}
 
 		// Equiv to SkinTemplateContentActions, run
 		$this->getHookRunner()->onSkinTemplateNavigation__Universal(
