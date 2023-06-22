@@ -26,7 +26,8 @@
 			"Сербијана",
 			"לערי ריינהארט",
 			"ديفيد",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Podvlačenje linkova:",
@@ -1059,6 +1060,8 @@
 	"prefs-email": "E-mail opcije",
 	"prefs-rendering": "Izgled",
 	"prefs-searchmisc": "Opšte",
+	"searchprefs": "Pretraži postavke",
+	"searchprefs-noresults": "Nema rezultata",
 	"saveprefs": "Snimi postavke",
 	"restoreprefs": "Vrati sve na podrazumijevano",
 	"prefs-editing": "Uređivanje",
@@ -1066,6 +1069,7 @@
 	"recentchangesdays": "Broj dana za prikaz u nedavnim izmjenama:",
 	"recentchangesdays-max": "(najviše $1 {{PLURAL:$1|dan|dana}})",
 	"recentchangescount": "Podrazumevani broj izmjena za prikaz u skorašnjim izmjenama, istorijama stranica i dnevnicima:",
+	"prefs-back-title": "Nazad na postavke",
 	"prefs-description-personal": "Kontrolirajte kako se pojavljujete, povezujete se i komunicirate.",
 	"prefs-description-rendering": "Konfigurirajte izgled, veličinu i čitanje.",
 	"prefs-description-editing": "Prilagodite način na koji unosite, pratite i pregledavate izmjene.",
@@ -3354,6 +3358,7 @@
 	"tags": "Oznake valjane izmjene",
 	"tag-filter": "Filtar [[Special:Tags|oznaka]]:",
 	"tag-filter-submit": "Filtar",
+	"tag-hidden": "$1 (sakrivena oznaka)",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|oznaka|oznake}}]]: $2",
 	"tag-mw-contentmodelchange": "izmjena sadržajnog modela",
 	"tag-mw-contentmodelchange-description": "Uređivanja što [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel mijenjaju sadržajni model] jedne stranice",

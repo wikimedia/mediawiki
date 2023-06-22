@@ -90,7 +90,9 @@
 			"WongKentir",
 			"לערי ריינהארט",
 			"아라",
-			"Base"
+			"Base",
+			"Amire80",
+			"Taylor"
 		]
 	},
 	"tog-underline": "Garis bawahi pranala:",
@@ -983,7 +985,7 @@
 	"revdelete-reason-dropdown-suppress": "* Alasan umum penyembunyian\n** Informasi pribadi yang tidak pantas",
 	"revdelete-otherreason": "Alasan lain/tambahan:",
 	"revdelete-reasonotherlist": "Alasan lain",
-	"revdelete-edit-reasonlist": "Alasan penghapusan suntingan",
+	"revdelete-edit-reasonlist": "Sunting daftar alasan penghapusan revisi",
 	"revdelete-edit-reasonlist-suppress": "Alasan penekanan penyuntingan",
 	"revdelete-offender": "Pemilik revisi:",
 	"suppressionlog": "Log penyembunyian",
@@ -2471,7 +2473,7 @@
 	"deleteotherreason": "Alasan lain/tambahan:",
 	"deletereasonotherlist": "Alasan lain",
 	"deletereason-dropdown": "*Alasan penghapusan\n** Permintaan pengguna\n** Pelanggaran hak cipta\n** Vandalisme",
-	"delete-edit-reasonlist": "Alasan penghapusan suntingan",
+	"delete-edit-reasonlist": "Sunting daftar alasan penghapusan halaman",
 	"delete-edit-reasonlist-suppress": "Alasan penghalangan penyuntingan",
 	"delete-toobig": "Halaman ini memiliki sejarah penyuntingan yang panjang, melebihi {{PLURAL:$1|revisi|revisi}}.\nPenghapusan halaman dengan sejarah penyuntingan yang panjang tidak diperbolehkan untuk mencegah kerusakan di {{SITENAME}}.",
 	"delete-toomanyrevisions": "Anda mencoba menghapus lebih dari $1 {{PLURAL:$1|revisi}} pada satu waktu. Operasi seperti itu telah dibatasi untuk menghindari masalah yang tidak disengaja di {{SITENAME}}.",

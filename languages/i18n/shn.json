@@ -2622,7 +2622,7 @@
 	"saturday-at": "ဝၼ်းသဝ် မိူဝ်ႈ $1",
 	"sunday-at": "ဝၼ်းဢႃးတိတ်ႉ မိူဝ်ႈ $1",
 	"yesterday-at": "မိူဝ်ႈဝႃး မိူဝ်ႈ $1",
-	"metadata": "ၶေႃႈမုၼ်းၼႅပ်ႇ",
+	"metadata": "မႄႇတႃႇတေႇတႃႇ",
 	"metadata-help": "ၾၢႆႇဢၼ်ၼႆႉ မၼ်းၶဝ်ႈပႃးဝႆႉလွၼ်ႉၶၢဝ်ႇ ထႅမ်သႂ်ႇမႂ်ႇ၊ ဢၼ်ဢၢပ်ႈထုၵ်ႉတီႈ ၵွင်ႈထႆႇ digital ဢမ်ႇၼၼ် ဢဝ် scanner ​ထႅမ်သႂ်ႇသေ သၢင်ႈဝႆႉ ဢမ်ႇၼၼ် လႅၵ်ႈလၢႆႈဝႆႉ။\nသင်ၸိူဝ်ႉၾၢႆႇဢၼ်ၼႆႉ ထုၵ်ႇမႄးၶိုၼ်းဝႆႉၵႃႈတီႈ ၾၢႆႇငဝ်ႈတိုၼ်းမၼ်းၼႆ ၼႂ်းၵႃႈ ၸဝ်ႈၵဝ်ႇမႄးဝႆႉၼၼ်ႉ မၼ်းတေဢမ်ႇထၢင်ႇႁၢင်ႈလႆႈ ၵူႈလွင်ႈ။",
 	"metadata-fields": "ၸိူဝ်းပဵၼ် လွၵ်းၶေႃႈမုၼ်းႁူဝ်ယွႆႈ တႃႇၶႅပ်းႁၢင်ႈ ဢၼ်မီးဝႆႉတီႈၼႂ်း ၶေႃႈၶၢဝ်ႇပွတ်း message ၼႆႉၼႆ မၼ်းတေၶဝ်ႈပႃးဝႆႉ ၵႃႈတီႈ ၼႃႈလိၵ်ႈၶႅပ်းႁၢင်ႈ ဢၼ်တေၼႄပၼ် ၽွင်းမိူဝ်ႈ လွၵ်းၶေႃႈမုၼ်းႁူဝ်ယွႆႈ လၼ်ႇၼႄပၼ်။\nဢၼ်ၵိုတ်းလိူဝ်ၸိူဝ်းၼၼ်ႉတႄႉ တေထုၵ်ႇလပ်ႉဝႆႉ ၸွမ်းၼင်ႇ ပိူင်ၵႅဝ်ႈမၼ်း။\n\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "တင်းမူတ်း",

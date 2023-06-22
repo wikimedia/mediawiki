@@ -116,6 +116,8 @@
 	"oct": "Ожо.",
 	"nov": "Сун.",
 	"dec": "Аца.",
+	"period-am": "AM",
+	"period-pm": "PM",
 	"pagecategories": "{{PLURAL:$1|Категория|Категорият}}",
 	"category_header": "\"$1\" категориясонть лопатне",
 	"subcategories": "пелькскатегорият арасть",

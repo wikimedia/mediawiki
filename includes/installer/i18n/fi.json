@@ -232,6 +232,8 @@
 	"config-logo-preview-main": "Etusivu",
 	"config-logo-icon": "Logo (kuvake):",
 	"config-logo-icon-help": "Logokuvakkeen tulee olla neliön muotoinen ja mieluiten suurempi kuin 50 kuvapistettä tai SVG.",
+	"config-logo-wordmark": "Tekstilogo (valinnainen):",
+	"config-logo-tagline": "Slogan (valinnainen)",
 	"config-logo-sidebar": "Sivupalkin logo (valinnainen):",
 	"config-logo-filedrop": "Pudota kuvatiedosto tähän",
 	"config-instantcommons": "Aktivoi Instant Commons",
