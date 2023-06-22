@@ -48,7 +48,7 @@
 	 * @param {jQuery.Event} e
 	 */
 	function doLivePreview( e ) {
-		var isDiff, section, $editform, $textbox, preview, $wikiPreview;
+		var isDiff, $editform, $textbox, preview, $wikiPreview;
 
 		preview = require( 'mediawiki.page.preview' );
 		isDiff = ( e.target.name === 'wpDiff' );
@@ -56,13 +56,7 @@
 		$editform = $( '#editform' );
 		$textbox = $editform.find( '#wpTextbox1' );
 
-		section = $editform.find( '[name="wpSection"]' ).val();
-
 		if ( $textbox.length === 0 ) {
-			return;
-		}
-		// Show changes for a new section is not yet supported
-		if ( isDiff && section === 'new' ) {
 			return;
 		}
 
