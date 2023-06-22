@@ -35,7 +35,6 @@ use NullStatsdDataFactory;
 use ParserCache;
 use PHPUnit\Framework\MockObject\MockObject;
 use TitleValue;
-use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Config\DataAccess;
@@ -200,26 +199,6 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 				}
 
 				return parent::acceptable( $attribs );
-			}
-
-			public function createPageConfig(
-				string $title,
-				?int $revision,
-				?string $wikitextOverride = null,
-				?Bcp47Code $pagelanguageOverride = null
-			): PageConfig {
-				if ( isset( $this->overrides['createPageConfig'] ) ) {
-					return $this->overrides['createPageConfig'](
-						$title, $revision, $wikitextOverride, $pagelanguageOverride
-					);
-				}
-
-				return parent::createPageConfig(
-					$title,
-					$revision,
-					$wikitextOverride,
-					$pagelanguageOverride
-				);
 			}
 
 			public function tryToCreatePageConfig(
