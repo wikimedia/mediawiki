@@ -64,7 +64,6 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testExecuteWithHtml() {
-		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
 		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage/with/slashes' );
 		$this->assertTrue(
 			$this->editPage( $page, self::WIKITEXT )->isGood(),
@@ -87,8 +86,6 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testExecuteWillLint() {
-		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
-
 		$this->overrideConfigValue( MainConfigNames::ParsoidSettings, [
 			'linting' => true
 		] );
@@ -115,7 +112,6 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testExecuteWithHtmlForSystemMessagePage() {
-		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
 		$title = Title::newFromText( 'MediaWiki:Logouttext' );
 		$page = $this->getNonexistingTestPage( $title );
 
@@ -144,7 +140,6 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testExecuteHtmlOnly() {
-		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
 		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage/with/slashes' );
 		$this->assertTrue(
 			$this->editPage( $page, self::WIKITEXT )->isGood(),
@@ -167,7 +162,6 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testExecuteHtmlOnlyForSystemMessagePage() {
-		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
 		$title = Title::newFromText( 'MediaWiki:Logouttext/de' );
 		$page = $this->getNonexistingTestPage( $title );
 
@@ -256,8 +250,6 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testEtagLastModified() {
-		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
-
 		$time = time();
 		MWTimestamp::setFakeTime( $time );
 
@@ -346,8 +338,6 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		Exception $parsoidException,
 		Exception $expectedException
 	) {
-		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
-
 		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage/with/slashes' );
 		$request = new RequestData(
 			[ 'pathParams' => [ 'title' => $page->getTitle()->getPrefixedText() ] ]
