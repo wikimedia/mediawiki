@@ -180,7 +180,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 	 * @covers ::searchPreferences
 	 */
 	public function testGetForm() {
-		$this->setTemporaryHook( 'GetPreferences', null );
+		$this->setTemporaryHook( 'GetPreferences', HookContainer::NOOP );
 
 		$testUser = $this->getTestUser();
 		$prefFactory = $this->getPreferencesFactory();

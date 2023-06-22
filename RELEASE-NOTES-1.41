@@ -296,6 +296,11 @@ because of Phabricator reports.
   - SpecialMyuploads (under MediaWiki\Specials\Redirects)
 * Various mediawiki.ui variables have been deprecated in favor of
   'mediawiki.skin.variables.less' Codex design tokens featuring replacements.
+* Hook handlers must now be specified either as a PHP callable, or as a PHP
+  object that has a method matching the hook name. Other ways to specify
+  the handler are deprecated and will soon be removed. Deprecated ways to
+  specify a hook handler include callables wrapped in an array. Handlers
+  defined using a "HookHandlers" entry in extension.json are not affected.
 * The jquery.cookie ResourceLoader module has been merged into the existing
   mediawiki.cookie module; jquery.cookie remains but is deprecated.
 * The Pingback class has been moved into the MediaWiki\Installer namespace.

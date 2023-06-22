@@ -279,6 +279,9 @@ class HookContainer implements SalvageableService {
 			$ofs = strpos( $handler[1], '::' );
 
 			if ( $ofs !== false ) {
+				$msg = self::callableToString( $handler );
+				wfDeprecatedMsg( "Deprecated handler style for hook '$hook': " .
+					"callable using qualified method name ($msg)" );
 				$handler[1] = substr( $handler[1], $ofs + 2 );
 			}
 		}
@@ -287,11 +290,19 @@ class HookContainer implements SalvageableService {
 		if ( is_array( $handler ) && is_object( $handler[0] ?? false ) && !isset( $handler[1] ) ) {
 			if ( !$handler[0] instanceof Closure ) {
 				$handler[1] = $this->getHookMethodName( $hook );
+				$msg = self::callableToString( $handler );
+				wfDeprecatedMsg( "Deprecated handler style for hook '$hook': object wrapped in array ($msg)" );
 			}
 		}
 
 		// The empty callback is used to represent a no-op handler in some test cases.
 		if ( $handler === [] || $handler === null || $handler === false || $handler === self::NOOP ) {
+			if ( $handler !== self::NOOP ) {
+				wfDeprecatedMsg(
+					"Deprecated handler style for hook '$hook': falsy value, use HookContainer::NOOP instead."
+				);
+			}
+
 			return [
 				'callback' => static function () {
 					// no-op
@@ -351,6 +362,8 @@ class HookContainer implements SalvageableService {
 					[ [ $obj, $method ] ],
 					array_slice( $handler, 2 )
 				);
+				$msg = self::callableToString( $handler[1] );
+				wfDeprecatedMsg( "Deprecated handler style for hook '$hook': callable array with extra data ($msg)" );
 			}
 		}
 
@@ -360,12 +373,16 @@ class HookContainer implements SalvageableService {
 		// Backwards-compatibility for callbacks in the form [ [ $function ], $data ]
 		if ( is_array( $callback ) && count( $callback ) === 1 && is_string( $callback[0] ?? null ) ) {
 			$callback = $callback[0];
+			$msg = self::callableToString( $callback );
+			wfDeprecatedMsg( "Deprecated handler style for hook '$hook': function wrapped in array ($msg)" );
 		}
 
 		if ( !is_callable( $callback ) ) {
 			return false;
 		}
 
+		$msg = self::callableToString( $callback );
+		wfDeprecatedMsg( "Deprecated handler style for hook '$hook': callable wrapped in array ($msg)" );
 		return [
 			'callback' => $callback,
 			'functionName' => self::callableToString( $callback ),
@@ -617,7 +634,8 @@ class HookContainer implements SalvageableService {
 		}
 
 		if ( $callable instanceof Closure ) {
-			return '*closure*';
+			$hash = spl_object_hash( $callable );
+			return "*closure#$hash*";
 		}
 
 		if ( is_array( $callable ) ) {

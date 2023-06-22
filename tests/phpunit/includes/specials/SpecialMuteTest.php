@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Specials\SpecialMute;
@@ -51,7 +52,7 @@ class SpecialMuteTest extends SpecialPageTestBase {
 	public function testEmailBlacklistNotEnabled() {
 		$this->setTemporaryHook(
 			'SpecialMuteModifyFormFields',
-			null
+			HookContainer::NOOP
 		);
 
 		$this->overrideConfigValue( MainConfigNames::EnableUserEmailMuteList, false );

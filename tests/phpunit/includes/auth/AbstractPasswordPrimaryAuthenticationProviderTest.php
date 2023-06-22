@@ -79,10 +79,10 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 			null,
 			null,
 			$this->createHookContainer( [
-				'ResetPasswordExpiration' => [ function ( $user, &$expires ) {
+				'ResetPasswordExpiration' => function ( $user, &$expires ) {
 					$this->assertSame( 'UTSysop', $user->getName() );
 					$expires = '30001231235959';
-				} ]
+				}
 			] )
 		);
 		$this->assertSame( '30001231235959', $providerPriv->getNewPasswordExpiry( 'UTSysop' ) );
