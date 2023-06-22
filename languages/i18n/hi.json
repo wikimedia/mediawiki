@@ -109,7 +109,8 @@
 			"राम प्रसाद जोशी",
 			"रोहित रावत",
 			"संजीव कुमार",
-			"아라"
+			"아라",
+			"अजीत कुमार तिवारी"
 		]
 	},
 	"tog-underline": "रेखांकित कड़ियाँ:",
@@ -744,7 +745,7 @@
 	"noarticletext-nopermission": "फ़िलहाल इस पृष्ठ पर कोई सामग्री नहीं है।\nआप दूसरे पृष्ठों में [[Special:Search/{{PAGENAME}}|इस शीर्षक की खोज]] कर सकते हैं,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} संबंधित लॉग खोज सकते हैं], मगर आपको इसे बनाने की अनुमति नहीं है।",
 	"missing-revision": "\"{{FULLPAGENAME}}\" पृष्ठ का अवतरण #$1 मौजूद नहीं है।\n\nआम तौर पर यह एक हटाए गए पृष्ठ के पुराने लिंक पर क्लिक करने से होता है।\nअधिक जानकारी के लिए आप [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} हटाने का लॉग] देख सकते हैं।",
 	"userpage-userdoesnotexist": "सदस्य खाता \"$1\" पंजीकृत नहीं है।\nकृपया जाँच लें कि आप यह पृष्ठ संपादित अथवा निर्मित करना चाहते हैं या नहीं।",
-	"userpage-userdoesnotexist-view": "सदस्य \"$1\" पंजीकृत नहीं है।",
+	"userpage-userdoesnotexist-view": "इस विकि पर सदस्य \"$1\" पंजीकृत नहीं है।",
 	"blocked-notice-logextract": "यह {{GENDER:$1|सदस्य}} वर्तमान में अवरोधित हैं।\nजानकारी आखिरी अवरोध एंट्री नीचे दी गई है।",
 	"clearyourcache": "<strong>ध्यान दें:</strong> प्रकाशित करने के बाद बदलाव देखने के लिए आपको अपने ब्राउज़र के कैश को हटाना पड़ सकता है।\n* <strong>Firefox/Safari:</strong> <em>Reload</em> क्लिक समय <em>Shift</em> दबाएँ, या फिर <em>Ctrl-F5</em> या <em>Ctrl-R</em> दबाएँ (Mac पर <em>⌘-R</em>)\n* <strong>Google Chrome:</strong> <em>Ctrl-Shift-R</em> दबाएँ (Mac पर <em>⌘-Shift-R</em>)\n* <strong>Internet Explorer/Edge:</strong> <em>Refresh</em> पर क्लिक करते समय <em>Ctrl</em> दबाएँ, या <em>Ctrl-F5</em> दबाएँ\n* <strong>Opera:</strong> <em>Ctrl-F5</em> दबाएँ।",
 	"usercssyoucanpreview": "<strong>टिप्पणी:</strong> प्रकाशित करने से पहले अपने नए CSS का नमूना देखने के लिए \"{{int:showpreview}}\" दबाएँ।",
@@ -860,7 +861,7 @@
 	"unstrip-size-warning": "बिना सीमा के आकार की सीमा पार हो गई ($1)",
 	"unstrip-size-category": "Pages where the unstrip size limit is exceeded",
 	"converter-manual-rule-error": "मैन्यूअल भाषा परिवर्तन नियम में त्रुटि",
-	"undo-success": "यह संपादन पूर्ववत किया जा सकता है।\nऐसा करने के लिये कृपया निम्नलिखित पाठ को ध्यान से देखकर बदलाव संजोयें।",
+	"undo-success": "यह संपादन पूर्ववत किया जा सकता है।\nऐसा करने के लिये कृपया निम्नलिखित पाठ को ध्यान से देखकर बदलाव प्रकाशित करें।",
 	"undo-failure": "इस बीच दूसरे बदलाव होने के कारण यह संपादन पूर्ववत करना संभव नहीं है।",
 	"undo-main-slot-only": "यह सम्पादन पूर्ववत नहीं किया जा सका क्योंकि इसमें मुख्य स्लॉट से बाहर सामग्रियाँ जुड़ी हैं।",
 	"undo-norev": "यह बदलाव वापिस नहीं कर पाये हैं क्योंकि या तो इसे पहले से पलटा दिया गया है या फिर पृष्ठ हटा दिया गया है।",
@@ -2314,7 +2315,7 @@
 	"delete-legend": "हटाएँ",
 	"historywarning": "<strong>चेतावनी:<strong> आप जो पृष्ठ हटाने जा रहे हैं उसके इतिहास में $1 {{PLURAL:$1|अवतरण}} हैं:",
 	"historyaction-submit": "दिखाएँ",
-	"confirmdeletetext": "आप एक पृष्ठ को उसके सभी अवतरणों सहित हटाने जा रहे हैं।\nजाँच लें कि आप ये करना चाहते हैं, आप इसके पर्निआमों से अवगत हैं, और आप ये [[{{MediaWiki:Policy-url}}|नीति]] के अनुसार कर रहे हैं।",
+	"confirmdeletetext": "आप एक पृष्ठ को उसके सभी अवतरणों सहित हटाने जा रहे हैं।\nजाँच लें कि आप ये करना चाहते हैं, आप इसके परिणामों से अवगत हैं, और आप ये [[{{MediaWiki:Policy-url}}|नीति]] के अनुसार कर रहे हैं।",
 	"actioncomplete": "कार्य पूर्ण",
 	"actionfailed": "क्रिया विफल",
 	"deletedtext": "\"$1\" को हटाया गया है।\nहाल में हटाये गये पृष्ठों की सूची के लिये $2 देखें।",
