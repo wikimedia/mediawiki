@@ -34,20 +34,21 @@ final class PageBundleParserOutputConverter {
 	 * and transformations.
 	 *
 	 * @param PageBundle $pageBundle
-	 * @param ?ParserOutput $parserOutput If provided this $parserOutput
-	 *  will be reused and returned, preserving non-PageBundle metadata
-	 *  which may be stored in it.
+	 * @param ?ParserOutput $originalParserOutput Any non-parsoid metadata
+	 *  from $originalParserOutput will be copied into the new ParserOutput object.
 	 *
 	 * @return ParserOutput
 	 */
 	public static function parserOutputFromPageBundle(
-		PageBundle $pageBundle, ?ParserOutput $parserOutput = null
+		PageBundle $pageBundle, ?ParserOutput $originalParserOutput = null
 	): ParserOutput {
-		if ( $parserOutput === null ) {
-			$parserOutput = new ParserOutput( $pageBundle->html );
-		} else {
-			$parserOutput->setText( $pageBundle->html );
+		$parserOutput = new ParserOutput( $pageBundle->html );
+
+		if ( $originalParserOutput ) {
+			$parserOutput->mergeHtmlMetaDataFrom( $originalParserOutput );
+			$parserOutput->mergeTrackingMetaDataFrom( $originalParserOutput );
 		}
+
 		$parserOutput->setExtensionData(
 			self::PARSOID_PAGE_BUNDLE_KEY,
 			[
