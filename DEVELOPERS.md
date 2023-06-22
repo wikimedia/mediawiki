@@ -111,7 +111,7 @@ MediaWiki container. You can then run one or more commands as needed and stay
 within the container shell.
 
 You can also run a single command in the container directly from your host
-shell, for example: `docker compose exec mediawiki php maintenance/update.php`.
+shell, for example: `docker compose exec mediawiki php maintenance/run.php update`.
 
 ### PHPUnit
 
@@ -277,7 +277,7 @@ To empty the wiki database and re-install it:
 * Delete the `cache/sqlite` directory.
 * Re-run the "Install MediaWiki database" command.
 
-You can now restore or copy over any modifications you had in your previous `LocalSettings.php` file. And if you have additonal extensions installed that required a database table, then also run: `docker compose exec mediawiki php maintenance/update.php`.
+You can now restore or copy over any modifications you had in your previous `LocalSettings.php` file. And if you have additonal extensions installed that required a database table, then also run: `docker compose exec mediawiki php maintenance/run.php update`.
 
 ## Troubleshooting
 
