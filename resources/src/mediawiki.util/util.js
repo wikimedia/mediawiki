@@ -949,9 +949,9 @@ var util = {
 			return ip.replace( /(^|\.)0+(\d)/g, '$1$2' );
 		}
 		ip = ip.toUpperCase();
-		var abbrevPos = ip.search( /::/ );
+		var abbrevPos = ip.indexOf( '::' );
 		if ( abbrevPos !== -1 ) {
-			var CIDRStart = ip.search( /\// );
+			var CIDRStart = ip.indexOf( '/' );
 			var addressEnd = ( CIDRStart !== -1 ) ? CIDRStart - 1 : ip.length - 1;
 			var repeatStr, extra, pad;
 			if ( abbrevPos === 0 ) {
@@ -990,7 +990,7 @@ var util = {
 		}
 		if ( this.isIPv6Address( ip, true ) ) {
 			var cidr, matches, ipCidrSplit, i, replaceZeros;
-			if ( ip.search( /\// ) !== -1 ) {
+			if ( ip.indexOf( '/' ) !== -1 ) {
 				ipCidrSplit = ip.split( '/', 2 );
 				ip = ipCidrSplit[ 0 ];
 				cidr = ipCidrSplit[ 1 ];
