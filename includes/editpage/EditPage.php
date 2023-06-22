@@ -2665,6 +2665,9 @@ class EditPage implements IEditObject {
 	 * Register the change of watch status
 	 */
 	private function updateWatchlist(): void {
+		if ( $this->tempUserCreateActive ) {
+			return;
+		}
 		$user = $this->getUserForSave();
 		if ( !$user->isNamed() ) {
 			return;
