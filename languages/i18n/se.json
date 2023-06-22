@@ -1683,6 +1683,7 @@
 	"mw-widgets-abandonedit-title": "Háliidatgo don duođaid dahkat dán?",
 	"mw-widgets-copytextlayout-copy": "Máŋge",
 	"mw-widgets-copytextlayout-copy-fail": "Čuohpusgirjái máŋgen ii lihkostuvvan.",
+	"mw-widgets-copytextlayout-copy-success": "Čuohpusgirjái máŋgen lihkostuvai.",
 	"mw-widgets-mediasearch-input-placeholder": "Oza mediaid",
 	"mw-widgets-mediasearch-recent-uploads": "{{GENDER:$1|Don}} leat gieskat lásten",
 	"mw-widgets-mediasearch-noresults": "Eai bohtosat.",

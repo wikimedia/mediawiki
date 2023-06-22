@@ -3026,6 +3026,7 @@
 	"tooltip-t-specialpages": "רשימה של כל הדפים המיוחדים",
 	"tooltip-t-print": "גרסה להדפסה של הדף הזה",
 	"tooltip-t-permalink": "קישור קבוע לגרסה הזאת של הדף הזה",
+	"tooltip-ca-nstab": "צפייה בדף הנושא",
 	"tooltip-ca-nstab-main": "צפייה בדף התוכן",
 	"tooltip-ca-nstab-user": "הצגת דף {{GENDER:{{BASEPAGENAME}}|המשתמש|המשתמשת}}",
 	"tooltip-ca-nstab-media": "צפייה בפריט המדיה",
