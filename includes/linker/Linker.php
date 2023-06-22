@@ -2173,6 +2173,12 @@ class Linker {
 			$localizer = self::getContextFromMain();
 		}
 		$message = $localizer->msg( "tooltip-$name", $msgParams );
+		// Set a default tooltip for subject namespace tabs if that hasn't
+		// been defined. See T22126
+		if ( !$message->exists() && str_starts_with( $name, 'ca-nstab-' ) ) {
+			$message = $localizer->msg( 'tooltip-ca-nstab' );
+		}
+
 		if ( $message->isDisabled() ) {
 			$tooltip = false;
 		} else {
@@ -2222,6 +2228,11 @@ class Linker {
 				$localizer = self::getContextFromMain();
 			}
 			$msg = $localizer->msg( "accesskey-$name" );
+			// Set a default accesskey for subject namespace tabs if an
+			// accesskey has not been defined. See T22126
+			if ( !$msg->exists() && str_starts_with( $name, 'ca-nstab-' ) ) {
+				$msg = $localizer->msg( 'accesskey-ca-nstab' );
+			}
 			self::$accesskeycache[$name] = $msg->isDisabled() ? false : $msg->plain();
 		}
 		return self::$accesskeycache[$name];
