@@ -340,7 +340,7 @@
 	 * @param {Object} response
 	 * @param {boolean} isSection Whether a section is currently being edited.
 	 */
-	function parseResponse( config, response, isSection ) {
+	function handleParseResponse( config, response, isSection ) {
 		var $content;
 
 		// Js config variables and modules.
@@ -469,9 +469,9 @@
 	 *
 	 * @private
 	 * @param {Object} config
-	 * @param {Object} response
+	 * @param {Object[]|null} response
 	 */
-	function parseDiffResponse( config, response ) {
+	function handleDiffResponse( config, response ) {
 		var $table = config.$diffNode.find( 'table.diff' );
 
 		if ( response && response[ 0 ].compare.bodies.main ) {
@@ -642,13 +642,13 @@
 		}
 
 		return $.when( parseRequest, diffRequest )
-			.done( function ( response, diffResponse ) {
-				showEditSummary( config.$formNode, response[ 0 ], config.showDiff );
+			.done( function ( parseResponse, diffResponse ) {
+				showEditSummary( config.$formNode, parseResponse[ 0 ], config.showDiff );
 
 				if ( config.showDiff ) {
-					parseDiffResponse( config, diffResponse );
+					handleDiffResponse( config, diffResponse );
 				} else {
-					parseResponse( config, response[ 0 ], section !== '' );
+					handleParseResponse( config, parseResponse[ 0 ], section !== '' );
 				}
 
 				mw.hook( 'wikipage.editform' ).fire( config.$formNode );
