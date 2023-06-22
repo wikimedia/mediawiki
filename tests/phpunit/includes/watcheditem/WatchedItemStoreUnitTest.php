@@ -13,6 +13,7 @@ use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserIdentityValue;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\DeleteQueryBuilder;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactory;
@@ -40,6 +41,8 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			->willReturn( new SelectQueryBuilder( $mock ), new SelectQueryBuilder( $mock ), new SelectQueryBuilder( $mock ) );
 		$mock->method( 'newUpdateQueryBuilder' )
 			->willReturn( new UpdateQueryBuilder( $mock ), new UpdateQueryBuilder( $mock ), new UpdateQueryBuilder( $mock ) );
+		$mock->method( 'newDeleteQueryBuilder' )
+			->willReturn( new DeleteQueryBuilder( $mock ), new DeleteQueryBuilder( $mock ), new DeleteQueryBuilder( $mock ) );
 		return $mock;
 	}
 

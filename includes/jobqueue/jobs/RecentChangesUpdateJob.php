@@ -107,7 +107,10 @@ class RecentChangesUpdateJob extends Job {
 				$rows[] = $row;
 			}
 			if ( $rcIds ) {
-				$dbw->delete( 'recentchanges', [ 'rc_id' => $rcIds ], __METHOD__ );
+				$dbw->newDeleteQueryBuilder()
+					->delete( 'recentchanges' )
+					->where( [ 'rc_id' => $rcIds ] )
+					->caller( __METHOD__ )->execute();
 				$hookRunner->onRecentChangesPurgeRows( $rows );
 				// There might be more, so try waiting for replica DBs
 				if ( !$factory->commitAndWaitForReplication(
@@ -233,13 +236,13 @@ class RecentChangesUpdateJob extends Job {
 		);
 
 		// Rotate out users that have not edited in too long (according to old data set)
-		$dbw->delete( 'querycachetwo',
-			[
+		$dbw->newDeleteQueryBuilder()
+			->delete( 'querycachetwo' )
+			->where( [
 				'qcc_type' => 'activeusers',
-				'qcc_value < ' . $dbw->addQuotes( $nowUnix - $days * 86400 ) // TS_UNIX
-			],
-			__METHOD__
-		);
+				$dbw->buildComparison( '<', [ 'qcc_value' => $nowUnix - $days * 86400 ] ) // TS_UNIX
+			] )
+			->caller( __METHOD__ )->execute();
 
 		if ( !MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::MiserMode ) ) {
 			SiteStatsUpdate::cacheUpdate( $dbw );

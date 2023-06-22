@@ -327,9 +327,10 @@ class LocalFileRestoreBatch {
 		}
 
 		if ( $deleteIds ) {
-			$dbw->delete( 'filearchive',
-				[ 'fa_id' => $deleteIds ],
-				__METHOD__ );
+			$dbw->newDeleteQueryBuilder()
+				->delete( 'filearchive' )
+				->where( [ 'fa_id' => $deleteIds ] )
+				->caller( __METHOD__ )->execute();
 		}
 
 		// If store batch is empty (all files are missing), deletion is to be considered successful

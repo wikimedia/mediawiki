@@ -207,11 +207,10 @@ class DBSiteStore implements SiteStore {
 		}
 
 		if ( $internalIds !== [] ) {
-			$dbw->delete(
-				'site_identifiers',
-				[ 'si_site' => $internalIds ],
-				__METHOD__
-			);
+			$dbw->newDeleteQueryBuilder()
+				->delete( 'site_identifiers' )
+				->where( [ 'si_site' => $internalIds ] )
+				->caller( __METHOD__ )->execute();
 		}
 
 		foreach ( $localIds as $localId ) {

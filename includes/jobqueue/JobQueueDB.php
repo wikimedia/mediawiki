@@ -514,11 +514,10 @@ class JobQueueDB extends JobQueue {
 		$scope = $this->getScopedNoTrxFlag( $dbw );
 		try {
 			// Delete a row with a single DELETE without holding row locks over RTTs...
-			$dbw->delete(
-				'job',
-				[ 'job_cmd' => $this->type, 'job_id' => $id ],
-				__METHOD__
-			);
+			$dbw->newDeleteQueryBuilder()
+				->delete( 'job' )
+				->where( [ 'job_cmd' => $this->type, 'job_id' => $id ] )
+				->caller( __METHOD__ )->execute();
 
 			$this->incrStats( 'acks', $this->type );
 		} catch ( DBError $e ) {
@@ -560,7 +559,10 @@ class JobQueueDB extends JobQueue {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedNoTrxFlag( $dbw );
 		try {
-			$dbw->delete( 'job', [ 'job_cmd' => $this->type ], __METHOD__ );
+			$dbw->newDeleteQueryBuilder()
+				->delete( 'job' )
+				->where( [ 'job_cmd' => $this->type ] )
+				->caller( __METHOD__ )->execute();
 		} catch ( DBError $e ) {
 			throw $this->getDBException( $e );
 		}
@@ -784,7 +786,10 @@ class JobQueueDB extends JobQueue {
 				}, iterator_to_array( $res )
 			);
 			if ( count( $ids ) ) {
-				$dbw->delete( 'job', [ 'job_id' => $ids ], __METHOD__ );
+				$dbw->newDeleteQueryBuilder()
+					->delete( 'job' )
+					->where( [ 'job_id' => $ids ] )
+					->caller( __METHOD__ )->execute();
 				$affected = $dbw->affectedRows();
 				$count += $affected;
 				$this->incrStats( 'abandons', $this->type, $affected );

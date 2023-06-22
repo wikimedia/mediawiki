@@ -77,10 +77,15 @@ class ClearUserWatchlistJob extends Job implements GenericParameterJob {
 			return true;
 		}
 
-		$dbw->delete( 'watchlist', [ 'wl_id' => $watchlistIds ], __METHOD__ );
-		if ( MediaWikiServices::getInstance()->getMainConfig()->get(
-		MainConfigNames::WatchlistExpiry ) ) {
-			$dbw->delete( 'watchlist_expiry', [ 'we_item' => $watchlistIds ], __METHOD__ );
+		$dbw->newDeleteQueryBuilder()
+			->delete( 'watchlist' )
+			->where( [ 'wl_id' => $watchlistIds ] )
+			->caller( __METHOD__ )->execute();
+		if ( MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::WatchlistExpiry ) ) {
+			$dbw->newDeleteQueryBuilder()
+				->delete( 'watchlist_expiry' )
+				->where( [ 'we_item' => $watchlistIds ] )
+				->caller( __METHOD__ )->execute();
 		}
 
 		// Commit changes and remove lock before inserting next job.

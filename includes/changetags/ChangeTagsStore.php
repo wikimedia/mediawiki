@@ -261,11 +261,10 @@ class ChangeTagsStore {
 			->where( [ 'ctd_name' => $tag ] )
 			->caller( __METHOD__ )->execute();
 
-		$dbw->delete(
-			self::CHANGE_TAG_DEF,
-			[ 'ctd_name' => $tag, 'ctd_count' => 0 ],
-			__METHOD__
-		);
+		$dbw->newDeleteQueryBuilder()
+			->delete( self::CHANGE_TAG_DEF )
+			->where( [ 'ctd_name' => $tag, 'ctd_count' => 0 ] )
+			->caller( __METHOD__ )->execute();
 
 		// clear the memcache of defined tags
 		$this->purgeTagCacheAll();
@@ -333,8 +332,14 @@ class ChangeTagsStore {
 		$this->undefineTag( $tag );
 
 		// delete from change_tag
-		$dbw->delete( self::CHANGE_TAG, [ 'ct_tag_id' => $tagId ], __METHOD__ );
-		$dbw->delete( self::CHANGE_TAG_DEF, [ 'ctd_name' => $tag ], __METHOD__ );
+		$dbw->newDeleteQueryBuilder()
+			->delete( self::CHANGE_TAG )
+			->where( [ 'ct_tag_id' => $tagId ] )
+			->caller( __METHOD__ )->execute();
+		$dbw->newDeleteQueryBuilder()
+			->delete( self::CHANGE_TAG_DEF )
+			->where( [ 'ctd_name' => $tag ] )
+			->caller( __METHOD__ )->execute();
 		$dbw->endAtomic( __METHOD__ );
 
 		// give extensions a chance
@@ -673,7 +678,10 @@ class ChangeTagsStore {
 						'ct_tag_id' => $this->changeTagDefStore->getId( $tag ),
 					]
 				);
-				$dbw->delete( self::CHANGE_TAG, $conds, __METHOD__ );
+				$dbw->newDeleteQueryBuilder()
+					->delete( self::CHANGE_TAG )
+					->where( $conds )
+					->caller( __METHOD__ )->execute();
 				if ( $dbw->affectedRows() ) {
 					// T207881: update the counts at the end of the transaction
 					$dbw->onTransactionPreCommitOrIdle( static function () use ( $dbw, $tag, $fname ) {
@@ -683,11 +691,10 @@ class ChangeTagsStore {
 							->where( [ 'ctd_name' => $tag ] )
 							->caller( $fname )->execute();
 
-						$dbw->delete(
-							self::CHANGE_TAG_DEF,
-							[ 'ctd_name' => $tag, 'ctd_count' => 0, 'ctd_user_defined' => 0 ],
-							$fname
-						);
+						$dbw->newDeleteQueryBuilder()
+							->delete( self::CHANGE_TAG_DEF )
+							->where( [ 'ctd_name' => $tag, 'ctd_count' => 0, 'ctd_user_defined' => 0 ] )
+							->caller( $fname )->execute();
 					}, $fname );
 				}
 			}

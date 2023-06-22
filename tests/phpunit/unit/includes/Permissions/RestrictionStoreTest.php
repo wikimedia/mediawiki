@@ -22,6 +22,7 @@ use RuntimeException;
 use UnexpectedValueException;
 use WANObjectCache;
 use Wikimedia\Assert\PreconditionException;
+use Wikimedia\Rdbms\DeleteQueryBuilder;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -61,7 +62,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 		foreach ( $expectedCalls as $index => $calls ) {
 			$dbs[$index] = $this->createNoOpMock(
 				IDatabase::class,
-				array_merge( array_keys( $calls ), [ 'newSelectQueryBuilder' ] )
+				array_merge( array_keys( $calls ), [ 'newSelectQueryBuilder', 'newDeleteQueryBuilder' ] )
 			);
 			foreach ( $calls as $method => $callback ) {
 				$count = 1;
@@ -75,6 +76,11 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 				->method( 'newSelectQueryBuilder' )
 				->willReturnCallback( static function () use ( $dbs, $index ) {
 					return new SelectQueryBuilder( $dbs[$index] );
+				} );
+			$dbs[$index]
+				->method( 'newDeleteQueryBuilder' )
+				->willReturnCallback( static function () use ( $dbs, $index ) {
+					return new DeleteQueryBuilder( $dbs[$index] );
 				} );
 		}
 

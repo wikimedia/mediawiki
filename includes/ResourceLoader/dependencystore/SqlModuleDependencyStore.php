@@ -135,11 +135,10 @@ class SqlModuleDependencyStore extends DependencyStore {
 		}
 
 		if ( $disjunctionConds ) {
-			$dbw->delete(
-				'module_deps',
-				$dbw->makeList( $disjunctionConds, $dbw::LIST_OR ),
-				__METHOD__
-			);
+			$dbw->newDeleteQueryBuilder()
+				->delete( 'module_deps' )
+				->where( $dbw->makeList( $disjunctionConds, $dbw::LIST_OR ) )
+				->caller( __METHOD__ )->execute();
 		}
 	}
 
