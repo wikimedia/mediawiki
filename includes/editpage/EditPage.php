@@ -81,6 +81,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Title\Title;
+use MediaWiki\User\TempUser\CreateStatus;
 use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
@@ -2482,6 +2483,9 @@ class EditPage implements IEditObject {
 		$status = $this->createTempUser( $pageUpdater );
 		if ( !$status->isOK() ) {
 			return $status;
+		}
+		if ( $status instanceof CreateStatus ) {
+			$result['savedTempUser'] = $status->getUser();
 		}
 
 		if ( $this->undidRev && $this->isUndoClean( $content ) ) {
