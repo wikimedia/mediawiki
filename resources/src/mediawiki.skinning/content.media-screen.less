@@ -35,21 +35,21 @@ figure[ typeof~='mw:File/Thumb' ] {
 
 		// Default where page content language is not set
 		// Allow to flip
-		margin-left: 3px;
+		margin: 0 0 0 3px;
 		float: right;
 
 		// Defaults for page content language
 
 		.mw-content-ltr & {
 			/* @noflip */
-			margin-left: 3px;
+			margin: 0 0 0 3px;
 			/* @noflip */
 			float: right;
 		}
 
 		.mw-content-rtl & {
 			/* @noflip */
-			margin-right: 3px;
+			margin: 0 3px 0 0;
 			/* @noflip */
 			float: left;
 		}
@@ -78,10 +78,14 @@ figure[ typeof~='mw:File/Thumb' ] {
 				/* @noflip */
 				right: 6px;
 				/* @noflip */
+				left: auto;
+				/* @noflip */
 				background-image: @background-image-magnify-ltr;
 			}
 
 			.mw-content-rtl & {
+				/* @noflip */
+				right: auto;
 				/* @noflip */
 				left: 6px;
 				/* @noflip */
