@@ -2231,13 +2231,15 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * fragment
 	 *
 	 * @see self::getLocalURL for the arguments.
-	 * @see wfExpandUrl
+	 * @see \MediaWiki\Utils\UrlUtils::expand()
 	 * @param string|array $query
 	 * @param string|string[]|false $query2
 	 * @param string|int|null $proto Protocol type to use in URL
 	 * @return string The URL
 	 */
 	public function getFullURL( $query = '', $query2 = false, $proto = PROTO_RELATIVE ) {
+		$services = MediaWikiServices::getInstance();
+
 		$query = self::fixUrlQueryArgs( $query, $query2 );
 
 		# Hand off all the decisions on urls to getLocalURL
@@ -2245,12 +2247,12 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 
 		# Expand the url to make it a full url. Note that getLocalURL has the
 		# potential to output full urls for a variety of reasons, so we use
-		# wfExpandUrl instead of simply prepending $wgServer
-		$url = wfExpandUrl( $url, $proto );
+		# UrlUtils::expand() instead of simply prepending $wgServer
+		$url = (string)$services->getUrlUtils()->expand( $url, $proto );
 
 		# Finally, add the fragment.
 		$url .= $this->getFragmentForURL();
-		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onGetFullURL( $this, $url, $query );
+		( new HookRunner( $services->getHookContainer() ) )->onGetFullURL( $this, $url, $query );
 		return $url;
 	}
 
@@ -2426,10 +2428,12 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 */
 	public function getInternalURL( $query = '', $query2 = false ) {
 		global $wgInternalServer, $wgServer;
+		$services = MediaWikiServices::getInstance();
+
 		$query = self::fixUrlQueryArgs( $query, $query2 );
 		$server = $wgInternalServer !== false ? $wgInternalServer : $wgServer;
-		$url = wfExpandUrl( $server . $this->getLocalURL( $query ), PROTO_HTTP );
-		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+		$url = (string)$services->getUrlUtils()->expand( $server . $this->getLocalURL( $query ), PROTO_HTTP );
+		( new HookRunner( $services->getHookContainer() ) )
 			->onGetInternalURL( $this, $url, $query );
 		return $url;
 	}
@@ -2448,9 +2452,14 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @since 1.18
 	 */
 	public function getCanonicalURL( $query = '', $query2 = false ) {
+		$services = MediaWikiServices::getInstance();
+
 		$query = self::fixUrlQueryArgs( $query, $query2 );
-		$url = wfExpandUrl( $this->getLocalURL( $query ) . $this->getFragmentForURL(), PROTO_CANONICAL );
-		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+		$url = (string)$services->getUrlUtils()->expand(
+			$this->getLocalURL( $query ) . $this->getFragmentForURL(),
+			PROTO_CANONICAL
+		);
+		( new HookRunner( $services->getHookContainer() ) )
 			->onGetCanonicalURL( $this, $url, $query );
 		return $url;
 	}

@@ -383,15 +383,17 @@ class MediaWiki {
 			return false;
 		}
 
+		$services = MediaWikiServices::getInstance();
+
 		if ( $title->isSpecialPage() ) {
-			[ $name, $subpage ] = MediaWikiServices::getInstance()->getSpecialPageFactory()->
+			[ $name, $subpage ] = $services->getSpecialPageFactory()->
 				resolveAlias( $title->getDBkey() );
 			if ( $name ) {
 				$title = SpecialPage::getTitleFor( $name, $subpage );
 			}
 		}
 		// Redirect to canonical url, make it a 301 to allow caching
-		$targetUrl = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
+		$targetUrl = (string)$services->getUrlUtils()->expand( $title->getFullURL(), PROTO_CURRENT );
 		if ( $targetUrl == $request->getFullRequestURL() ) {
 			$message = "Redirect loop detected!\n\n" .
 				"This means the wiki got confused about what page was " .
@@ -960,8 +962,16 @@ class MediaWiki {
 		$force = $this->config->get( MainConfigNames::ForceHTTPS );
 
 		// Don't redirect if $wgServer is explicitly HTTP. We test for this here
-		// by checking whether wfExpandUrl() is able to force HTTPS.
-		if ( !preg_match( '#^https://#', wfExpandUrl( $request->getRequestURL(), PROTO_HTTPS ) ) ) {
+		// by checking whether UrlUtils::expand() is able to force HTTPS.
+		if (
+			!preg_match(
+				'#^https://#',
+				(string)MediaWikiServices::getInstance()->getUrlUtils()->expand(
+					$request->getRequestURL(),
+					PROTO_HTTPS
+				)
+			)
+		) {
 			if ( $force ) {
 				throw new RuntimeException( '$wgForceHTTPS is true but the server is not HTTPS' );
 			}

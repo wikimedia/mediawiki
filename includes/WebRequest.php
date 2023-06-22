@@ -981,7 +981,7 @@ class WebRequest {
 	public function getFullRequestURL() {
 		// Pass an explicit PROTO constant instead of PROTO_CURRENT so that we
 		// do not rely on state from the global $wgRequest object (which it would,
-		// via wfGetServerUrl/wfExpandUrl/$wgRequest->protocol).
+		// via wfGetServerUrl/UrlUtils::expand()/$wgRequest->protocol).
 		if ( $this->getProtocol() === 'http' ) {
 			return wfGetServerUrl( PROTO_HTTP ) . $this->getRequestURL();
 		} else {
@@ -1437,8 +1437,9 @@ class WebRequest {
 	 * @since 1.39
 	 */
 	public function matchURLForCDN( array $cdnUrls ) {
-		$reqUrl = wfExpandUrl( $this->getRequestURL(), PROTO_INTERNAL );
-		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$services = MediaWikiServices::getInstance();
+		$reqUrl = (string)$services->getUrlUtils()->expand( $this->getRequestURL(), PROTO_INTERNAL );
+		$config = $services->getMainConfig();
 		if ( $config->get( MainConfigNames::CdnMatchParameterOrder ) ) {
 			// Strict matching
 			return in_array( $reqUrl, $cdnUrls, true );
