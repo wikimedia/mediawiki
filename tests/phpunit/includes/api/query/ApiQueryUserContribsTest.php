@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\Title\Title;
-
 /**
  * @group API
  * @group Database
@@ -20,18 +18,19 @@ class ApiQueryUserContribsTest extends ApiTestCase {
 			User::newFromName( 'IW>' . __CLASS__, false ),
 		];
 
-		$title = Title::makeTitle( NS_MAIN, 'ApiQueryUserContribsTest' );
+		$page = $this->getServiceContainer()->getWikiPageFactory()
+			->newFromLinkTarget( new TitleValue( NS_MAIN, 'ApiQueryUserContribsTest' ) );
 		for ( $i = 0; $i < 3; $i++ ) {
 			foreach ( array_reverse( $users ) as $user ) {
 				$status = $this->editPage(
-					$title,
-					"Test revision $user #$i",
+					$page,
+					new WikitextContent( "Test revision $user #$i" ),
 					'Test edit',
 					NS_MAIN,
 					$user
 				);
 				if ( !$status->isOK() ) {
-					$this->fail( "Failed to edit $title: " . $status->getWikiText( false, false, 'en' ) );
+					$this->fail( 'Failed to edit: ' . $status->getWikiText( false, false, 'en' ) );
 				}
 			}
 		}
