@@ -166,6 +166,7 @@ trait LanguageNameUtilsTestTrait {
 	 * @covers Language::fetchLanguageName
 	 */
 	public function testGetLanguageNames( $expected, $code, ...$otherArgs ) {
+		$this->clearLanguageHook( 'LanguageGetTranslatedLanguageNames' );
 		$this->assertGetLanguageNames( [], $expected, $code, ...$otherArgs );
 	}
 
@@ -173,8 +174,7 @@ trait LanguageNameUtilsTestTrait {
 		// @todo There are probably lots of interesting tests to add here.
 		return [
 			'Simple code' => [ 'Deutsch', 'de' ],
-			'Simple code in a different language (doesn\'t work without hook)' =>
-				[ 'Deutsch', 'de', 'fr' ],
+			'Simple code in a different language' => [ 'Deutsch', 'de', 'fr' ],
 			'Invalid code' => [ '', '&' ],
 			'Pig Latin' => [ 'Igpay Atinlay', 'en-x-piglatin', AUTONYMS, ALL ],
 			'qqq doesn\'t have a name' => [ '', 'qqq', AUTONYMS, ALL ],
@@ -185,11 +185,17 @@ trait LanguageNameUtilsTestTrait {
 	}
 
 	/**
-	 * Set a temporary hook, allows using DI.
+	 * Set hook for current test.
 	 * @param string $hookName
 	 * @param mixed $handler Value suitable for a hook handler
 	 */
 	abstract protected function setLanguageTemporaryHook( string $hookName, $handler ): void;
+
+	/**
+	 * Clear hook for the current test.
+	 * @param string $hookName
+	 */
+	abstract protected function clearLanguageHook( string $hookName ): void;
 
 	/**
 	 * @dataProvider provideGetLanguageNames_withHook

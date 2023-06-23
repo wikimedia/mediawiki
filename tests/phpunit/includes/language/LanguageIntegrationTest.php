@@ -18,9 +18,6 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	use DummyServicesTrait;
 	use LanguageNameUtilsTestTrait;
 
-	/** @var array Copy of the handlers for LanguageGetTranslatedLanguageNames */
-	private $origHandlers;
-
 	private function newLanguage( $class = Language::class, $code = 'en' ) {
 		// Needed to support the setMwGlobals calls for the various tests, but this should
 		// probably be changed to have the configuration injected into this method instead
@@ -41,12 +38,6 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		// Don't allow installed hooks to run, except if a test restores them via origHooks (needed
-		// for testIsKnownLanguageTag_cldr)
-		$this->origHandlers = $this->getServiceContainer()->getHookContainer()
-			->getHandlerCallbacks( 'LanguageGetTranslatedLanguageNames' );
-
-		$this->clearHook( 'LanguageGetTranslatedLanguageNames' );
 		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, true );
 	}
 
@@ -1881,6 +1872,10 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		$this->setTemporaryHook( $hookName, $handler );
 	}
 
+	protected function clearLanguageHook( string $hookName ): void {
+		$this->clearHook( $hookName );
+	}
+
 	/**
 	 * Call getLanguageName() and getLanguageNames() using the Language static methods.
 	 *
@@ -1893,6 +1888,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		if ( $options ) {
 			$this->overrideConfigValues( $options );
 		}
+
 		$this->hideDeprecated( 'Language::fetchLanguageName' );
 		$this->hideDeprecated( 'Language::fetchLanguageNames' );
 		$this->assertSame( $expected,
@@ -1931,23 +1927,19 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 * @covers MediaWiki\Languages\LanguageNameUtils::isKnownLanguageTag
 	 * @covers Language::isKnownLanguageTag
 	 */
-	public function testIsKnownLanguageTag_cldr() {
-		if ( !class_exists( LanguageNames::class ) ) {
-			$this->markTestSkipped( 'The LanguageNames class is not available. '
-				. 'The CLDR extension is probably not installed.' );
+	public function testCldr() {
+		if ( !ExtensionRegistry::getInstance()->isLoaded( 'CLDR' ) ) {
+			$this->markTestSkipped( 'The CLDR extension is not installed.' );
 		}
-
-		// We need to restore extension's hook handlers.
-		foreach ( $this->origHandlers as $handler ) {
-			$this->setTemporaryHook( 'LanguageGetTranslatedLanguageNames', $handler );
-		}
-		$this->overrideConfigValue( MainConfigNames::Hooks, $this->origHandlers );
 
 		$this->hideDeprecated( 'Language::isKnownLanguageTag' );
+		$this->hideDeprecated( 'Language::fetchLanguageName' );
 
 		// "pal" is an ancient language, which probably will not appear in Names.php, but appears in
 		// CLDR in English
 		$this->assertTrue( Language::isKnownLanguageTag( 'pal' ) );
+
+		$this->assertSame( 'allemand', Language::fetchLanguageName( 'de', 'fr' ) );
 	}
 
 	/**

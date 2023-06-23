@@ -29,6 +29,8 @@ class FauxGlobalHookArrayTest extends \MediaWikiUnitTestCase {
 		$container = new HookContainer( $registry, $factory );
 		$hooks = new FauxGlobalHookArray( $container );
 
+		$this->expectDeprecationAndContinue( '/getHandlerCallbacks/' );
+
 		// Register a handler via the array
 		$hooks['FirstHook'][] = $handler;
 
