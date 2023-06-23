@@ -1101,7 +1101,7 @@ abstract class Skin extends ContextSource {
 	 * @return string
 	 */
 	public static function makeSpecialUrlSubpage( $name, $subpage, $urlaction = '' ) {
-		return SkinComponentUtils::makeSpecialUrl( $name, $subpage, $urlaction );
+		return SkinComponentUtils::makeSpecialUrlSubpage( $name, $subpage, $urlaction );
 	}
 
 	/**
