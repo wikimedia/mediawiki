@@ -2413,14 +2413,6 @@ return [
 			],
 		],
 	],
-	// Lightweight module for anchor styles
-	'mediawiki.ui.anchor' => [
-		'skinStyles' => [
-			'default' => [
-				'resources/src/mediawiki.ui.anchor/anchor.less',
-			],
-		],
-	],
 	// Lightweight module for button styles
 	'mediawiki.ui.button' => [
 		'skinStyles' => [

@@ -214,6 +214,9 @@ because of Phabricator reports.
   has been removed without hard deprecation.
 * SkinTemplateNavigation and SkinTemplateNavigation::SpecialPage hooks,
   deprecated in 1.39, have been removed.
+* The module mw.ui.anchor has been removed. Projects that need it should
+  maintain a local copy or use the Codex link mixin. More information
+  at T235961.
 * …
 
 === Deprecations in 1.41 ===
