@@ -651,9 +651,9 @@ class MovePage {
 					StringUtils::escapeRegexReplacement( $this->newTitle->getDBkey() ), # T23234
 					$oldSubpage->getDBkey() );
 			if ( $oldSubpage->isTalkPage() ) {
-				$newNs = $this->newTitle->getTalkPage()->getNamespace();
+				$newNs = $this->nsInfo->getTalkPage( $this->newTitle )->getNamespace();
 			} else {
-				$newNs = $this->newTitle->getSubjectPage()->getNamespace();
+				$newNs = $this->nsInfo->getSubjectPage( $this->newTitle )->getNamespace();
 			}
 			// T16385: we need makeTitleSafe because the new page names may be longer than 255
 			// characters.
