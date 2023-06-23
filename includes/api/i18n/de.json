@@ -181,6 +181,7 @@
 	"apihelp-edit-param-redirect": "Weiterleitungen automatisch auflösen.",
 	"apihelp-edit-param-contentformat": "Für den Eingabetext verwendetes Inhaltsserialisierungsformat.",
 	"apihelp-edit-param-contentmodel": "Inhaltsmodell des neuen Inhalts.",
+	"apihelp-edit-param-returnto": "Seitentitel. Wenn durch das Speichern der Bearbeitung ein temporäres Konto erstellt wurde, antwortet die API möglicherweise mit einer URL, die der Client besuchen sollte, um die Anmeldung abzuschließen. Wenn dieser Parameter angegeben wird, wird die URL auf die angegebene Seite umgeleitet und nicht auf die Seite, die bearbeitet wurde.",
 	"apihelp-edit-param-token": "Der Token sollte immer als letzter Parameter gesendet werden, zumindest aber nach dem $1text-Parameter.",
 	"apihelp-edit-example-edit": "Eine Seite bearbeiten",
 	"apihelp-edit-example-prepend": "<kbd>_&#95;NOTOC_&#95;</kbd> bei einer Seite voranstellen",

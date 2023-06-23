@@ -3189,6 +3189,7 @@
 	"tooltip-t-specialpages": "Liste de toutes les pages spéciales",
 	"tooltip-t-print": "Version imprimable de cette page",
 	"tooltip-t-permalink": "Adresse permanente de cette version de cette page",
+	"tooltip-ca-nstab": "Afficher la page du sujet",
 	"tooltip-ca-nstab-main": "Voir le contenu de la page",
 	"tooltip-ca-nstab-user": "Voir la page utilisateur",
 	"tooltip-ca-nstab-media": "Visualiser la page du média",

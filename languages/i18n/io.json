@@ -952,7 +952,7 @@
 	"showhideselectedversions": "Modifikez la videbleso di la selektita versioni",
 	"editundo": "desfacez",
 	"diff-empty": "(Nula difero)",
-	"diff-multi-sameuser": "(ne montresas {{PLURAL:$1|1 meza revizo|$1 meza revizi}} facita da la sama uzero)",
+	"diff-multi-sameuser": "{{PLURAL:$1|1 meza revizuro|$1 meza revizuri}} facita dal {GENDER:$3|uzero}} ne montresas.",
 	"diff-multi-otherusers": "(ne montresas {{PLURAL:$1|1 intermeza revizo|$1 intermeza revizi}} facita da {{PLURAL:$2|altra uzero|$2 altra uzeri}})",
 	"diff-multi-manyusers": "({{PLURAL:$1|1 intermeza revizo|$1 intermeza revizi}} facita da plu kam $2 {{PLURAL:$2|uzero|$2 uzeri}} ne montresas)",
 	"diff-paragraph-moved-tonew": "Paragrafo movesis. Kliktez por saltar a lua nova lokizo.",
