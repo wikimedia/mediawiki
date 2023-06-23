@@ -127,6 +127,8 @@ because of Phabricator reports.
 * The Http class, deprecated since 1.34, with the functions ::request(),
   ::get(), ::post(), ::userAgent(), ::isValidURI(), ::getProxy(),
   ::createMultiClient() have been removed.
+* WikiPage::factory(), ::newFromID() and ::newFromRow, deprecated in 1.36,
+  have been removed.
 * The following unused IDatabase methods were removed without deprecation:
   - ::wasLockTimeout()
   - ::wasConnectionLoss()

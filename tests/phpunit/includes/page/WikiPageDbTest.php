@@ -5,8 +5,6 @@ use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Page\PageIdentity;
-use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
@@ -1368,29 +1366,6 @@ more stuff
 	}
 
 	/**
-	 * @covers WikiPage::factory
-	 */
-	public function testWikiPageFactory() {
-		$this->hideDeprecated( 'WikiPage::factory' );
-		$title = Title::makeTitle( NS_FILE, 'Someimage.png' );
-		$page = WikiPage::factory( $title );
-		$this->assertEquals( WikiFilePage::class, get_class( $page ) );
-
-		$title = Title::makeTitle( NS_CATEGORY, 'SomeCategory' );
-		$page = WikiPage::factory( $title );
-		$this->assertEquals( WikiCategoryPage::class, get_class( $page ) );
-
-		$title = Title::makeTitle( NS_MAIN, 'SomePage' );
-		$page = WikiPage::factory( $title );
-		$this->assertEquals( WikiPage::class, get_class( $page ) );
-		$this->assertSame( $page, WikiPage::factory( $page ) );
-
-		$title = new PageIdentityValue( 0, NS_MAIN, 'SomePage', PageIdentity::LOCAL );
-		$page = WikiPage::factory( $title );
-		$this->assertEquals( WikiPage::class, get_class( $page ) );
-	}
-
-	/**
 	 * @covers WikiPage::loadPageData
 	 * @covers WikiPage::wasLoadedFrom
 	 */
@@ -1610,110 +1585,6 @@ more stuff
 			$row[$key] = $value;
 		}
 		return (object)$row;
-	}
-
-	public function provideNewFromRowSuccess() {
-		yield 'basic row' => [
-			$this->getRow(),
-			static function ( WikiPage $wikiPage, self $test ) {
-				$test->assertSame( 44, $wikiPage->getId() );
-				$test->assertSame( 76, $wikiPage->getTitle()->getLength() );
-				$test->assertTrue( $wikiPage->getPageIsRedirectField() );
-				$test->assertSame( 99, $wikiPage->getLatest() );
-				$test->assertSame( true, $wikiPage->isNew() );
-				$test->assertSame( 'it', $wikiPage->getLanguage() );
-				$test->assertSame( 3, $wikiPage->getTitle()->getNamespace() );
-				$test->assertSame( 'JaJaTitle', $wikiPage->getTitle()->getDBkey() );
-				$test->assertSame( '20120101020202', $wikiPage->getTouched() );
-				$test->assertSame( '20140101020202', $wikiPage->getLinksTimestamp() );
-			}
-		];
-		yield 'different timestamp formats' => [
-			$this->getRow( [
-				'page_touched' => '2012-01-01 02:02:02',
-				'page_links_updated' => '2014-01-01 02:02:02',
-			] ),
-			static function ( WikiPage $wikiPage, self $test ) {
-				$test->assertSame( '20120101020202', $wikiPage->getTouched() );
-				$test->assertSame( '20140101020202', $wikiPage->getLinksTimestamp() );
-			}
-		];
-		yield 'no language' => [
-			$this->getRow( [
-				'page_lang' => null,
-			] ),
-			static function ( WikiPage $wikiPage, self $test ) {
-				$test->assertNull(
-					$wikiPage->getLanguage()
-				);
-			}
-		];
-		yield 'not redirect' => [
-			$this->getRow( [
-				'page_is_redirect' => '0',
-			] ),
-			static function ( WikiPage $wikiPage, self $test ) {
-				$test->assertFalse( $wikiPage->isRedirect() );
-			}
-		];
-		yield 'not new' => [
-			$this->getRow( [
-				'page_is_new' => '0',
-			] ),
-			static function ( WikiPage $wikiPage, self $test ) {
-				$test->assertFalse( $wikiPage->isNew() );
-			}
-		];
-	}
-
-	/**
-	 * @covers WikiPage::newFromRow
-	 * @covers WikiPage::loadFromRow
-	 * @dataProvider provideNewFromRowSuccess
-	 *
-	 * @param stdClass $row
-	 * @param callable $assertions
-	 */
-	public function testNewFromRow( $row, $assertions ) {
-		$this->hideDeprecated( 'WikiPage::newFromRow' );
-		$page = WikiPage::newFromRow( $row, WikiPage::READ_NORMAL );
-		$assertions( $page, $this );
-	}
-
-	public static function provideTestNewFromId_returnsNullOnBadPageId() {
-		yield [ 0 ];
-		yield [ -11 ];
-	}
-
-	/**
-	 * @covers WikiPage::newFromID
-	 * @dataProvider provideTestNewFromId_returnsNullOnBadPageId
-	 */
-	public function testNewFromId_returnsNullOnBadPageId( $pageId ) {
-		$this->hideDeprecated( 'WikiPage::newFromID' );
-		$this->assertNull( WikiPage::newFromID( $pageId ) );
-	}
-
-	/**
-	 * @covers WikiPage::newFromID
-	 */
-	public function testNewFromId_appearsToFetchCorrectRow() {
-		$this->hideDeprecated( 'WikiPage::newFromID' );
-		$createdPage = $this->createPage( __METHOD__, 'Xsfaij09' );
-		$fetchedPage = WikiPage::newFromID( $createdPage->getId() );
-		$this->assertSame( $createdPage->getId(), $fetchedPage->getId() );
-		$this->assertEquals(
-			$createdPage->getContent()->getText(),
-			$fetchedPage->getContent()->getText()
-		);
-	}
-
-	/**
-	 * @covers WikiPage::newFromID
-	 */
-	public function testNewFromId_returnsNullOnNonExistingId() {
-		$this->hideDeprecated( 'WikiPage::newFromID' );
-		$this->assertNull( WikiPage::newFromID( 2147483647 ) );
 	}
 
 	/**
@@ -2210,31 +2081,6 @@ more stuff
 			$edit2->timestamp = $edit->timestamp;
 		}
 		$this->assertNotEquals( $edit, $edit2, $message );
-	}
-
-	/**
-	 * @covers WikiPage::factory
-	 */
-	public function testWikiPageFactoryHookValid() {
-		$this->hideDeprecated( 'WikiPage::factory' );
-		$isCalled = false;
-		$expectedWikiPage = $this->createMock( WikiPage::class );
-
-		$this->setTemporaryHook(
-			'WikiPageFactory',
-			static function ( $title, &$page ) use ( &$isCalled, $expectedWikiPage ) {
-				$page = $expectedWikiPage;
-				$isCalled = true;
-
-				return false;
-			}
-		);
-
-		$title = Title::makeTitle( NS_CATEGORY, 'SomeCategory' );
-		$wikiPage = WikiPage::factory( $title );
-
-		$this->assertTrue( $isCalled );
-		$this->assertSame( $expectedWikiPage, $wikiPage );
 	}
 
 	/**

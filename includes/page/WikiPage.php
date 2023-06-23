@@ -199,54 +199,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	}
 
 	/**
-	 * Create a WikiPage object of the appropriate class for the given PageIdentity.
-	 * The PageIdentity must represent a proper page that can exist on the wiki,
-	 * that is, not a special page or media link or section link or interwiki link.
-	 *
-	 * @param PageIdentity $pageIdentity
-	 *
-	 * @return WikiPage|WikiCategoryPage|WikiFilePage
-	 * @deprecated since 1.36, hard deprecated 1.40, use WikiPageFactory::newFromTitle instead
-	 */
-	public static function factory( PageIdentity $pageIdentity ) {
-		wfDeprecated( __METHOD__, '1.36' );
-		return MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $pageIdentity );
-	}
-
-	/**
-	 * Constructor from a page id
-	 *
-	 * @param int $id Article ID to load
-	 * @param string|int $from One of the following values:
-	 *        - "fromdb" or WikiPage::READ_NORMAL to select from a replica DB
-	 *        - "fromdbmaster" or WikiPage::READ_LATEST to select from the primary database
-	 *
-	 * @return WikiPage|null
-	 * @deprecated since 1.36, hard deprecated 1.40, use WikiPageFactory::newFromID instead
-	 */
-	public static function newFromID( $id, $from = 'fromdb' ) {
-		wfDeprecated( __METHOD__, '1.36' );
-		return MediaWikiServices::getInstance()->getWikiPageFactory()->newFromID( $id, $from );
-	}
-
-	/**
-	 * Constructor from a database row
-	 *
-	 * @since 1.20
-	 * @param stdClass $row Database row containing at least fields returned by getQueryInfo().
-	 * @param string|int $from Source of $data:
-	 *        - "fromdb" or WikiPage::READ_NORMAL: from a replica DB
-	 *        - "fromdbmaster" or WikiPage::READ_LATEST: from the primary DB
-	 *        - "forupdate" or WikiPage::READ_LOCKING: from the primary DB using SELECT FOR UPDATE
-	 * @return WikiPage
-	 * @deprecated since 1.36, hard deprecated 1.40, use WikiPageFactory::newFromRow instead
-	 */
-	public static function newFromRow( $row, $from = 'fromdb' ) {
-		wfDeprecated( __METHOD__, '1.36' );
-		return MediaWikiServices::getInstance()->getWikiPageFactory()->newFromRow( $row, $from );
-	}
-
-	/**
 	 * Convert 'fromdb', 'fromdbmaster' and 'forupdate' to READ_* constants.
 	 *
 	 * @param stdClass|string|int $type
