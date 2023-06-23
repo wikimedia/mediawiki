@@ -3,13 +3,15 @@
 namespace MediaWiki\Tests\Rest\Handler;
 
 use HashBagOStuff;
+use InvalidArgumentException;
 use MediaWiki\Rest\RequestData;
+use MediaWiki\Rest\RequestInterface;
 use MediaWikiIntegrationTestCase;
 
 /**
  * @covers \MediaWiki\Rest\Handler\PageSourceHandler
  * @covers \MediaWiki\Rest\Handler\PageHTMLHandler
- * @covers \MediaWiki\Rest\Handler\PageRedirectHandlerTrait
+ * @covers \MediaWiki\Rest\Handler\Helper\PageRedirectHelper
  * @group Database
  */
 class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
@@ -24,8 +26,6 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 	/** @var HashBagOStuff */
 	private $parserCacheBagOStuff;
 
-	private $handlers;
-
 	protected function setUp(): void {
 		parent::setUp();
 
@@ -39,21 +39,27 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 
 		$this->parserCacheBagOStuff = new HashBagOStuff();
+	}
 
-		$pageSourceHandler = $this->newPageSourceHandler();
-		$pageHtmlHandler = $this->newPageHtmlHandler();
-		$pageHistoryHandler = $this->newPageHistoryHandler();
-		$pageHistoryCountHandler = $this->newPageHistoryCountHandler();
-		$languageLinksHandler = $this->newLanguageLinksHandler();
-		$this->handlers = [
-			'source' => $pageSourceHandler,
-			'bare' => $pageSourceHandler,
-			'html' => $pageHtmlHandler,
-			'with_html' => $pageHtmlHandler,
-			'history' => $pageHistoryHandler,
-			'history_count' => $pageHistoryCountHandler,
-			'links_language' => $languageLinksHandler,
-		];
+	private function getHandler( $name, RequestInterface $request ) {
+		switch ( $name ) {
+			case 'source':
+				return $this->newPageSourceHandler();
+			case 'bare':
+				return $this->newPageSourceHandler();
+			case 'html':
+				return $this->newPageHtmlHandler( null, $request );
+			case 'with_html':
+				return $this->newPageHtmlHandler( null, $request );
+			case 'history':
+				return $this->newPageHistoryHandler();
+			case 'history_count':
+				return $this->newPageHistoryCountHandler();
+			case 'links_language':
+				return $this->newLanguageLinksHandler();
+			default:
+				throw new InvalidArgumentException( "Unknown handler: $name" );
+		}
 	}
 
 	/**
@@ -74,7 +80,7 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 				'queryParams' => $queryParams
 			]
 		);
-		$handler = $this->handlers[$format];
+		$handler = $this->getHandler( $format, $request );
 		$response = $this->executeHandler( $handler, $request, [
 			'format' => $format,
 			'path' => $path,
@@ -167,7 +173,7 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 			]
 		);
 
-		$handler = $this->handlers[$format];
+		$handler = $this->getHandler( $format, $request );
 		$response = $this->executeHandler( $handler, $request, [
 			'format' => $format,
 			'path' => $path
