@@ -49,7 +49,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 use MobileContext;
 use RequestContext;
-use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Http\HttpAcceptParser;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\Parsoid\Config\DataAccess;
@@ -500,54 +499,6 @@ abstract class ParsoidHandler extends Handler {
 	}
 
 	/**
-	 * @param string $title The page to be transformed
-	 * @param ?int $revision The revision to be transformed
-	 * @param ?string $wikitextOverride
-	 *   Custom wikitext to use instead of the real content of the page.
-	 * @param ?Bcp47Code $pagelanguageOverride
-	 * @return PageConfig
-	 */
-	protected function createPageConfig(
-		string $title, ?int $revision, ?string $wikitextOverride = null,
-		?Bcp47Code $pagelanguageOverride = null
-	): PageConfig {
-		$title = $title ? Title::newFromText( $title ) : Title::newMainPage();
-		if ( !$title ) {
-			// TODO use proper validation
-			throw new LogicException( 'Title not found!' );
-		}
-		$user = RequestContext::getMain()->getUser();
-
-		if ( $wikitextOverride === null ) {
-			$revisionRecord = null;
-		} else {
-			// Create a mutable revision record point to the same revision
-			// and set to the desired wikitext.
-			$revisionRecord = new MutableRevisionRecord( $title );
-			if ( $revision !== null ) {
-				$revisionRecord->setId( $revision );
-			}
-			$revisionRecord->setSlot(
-				SlotRecord::newUnsaved(
-					SlotRecord::MAIN,
-					new WikitextContent( $wikitextOverride )
-				)
-			);
-		}
-
-		// Note: Parsoid by design isn't supposed to use the user
-		// context right now, and all user state is expected to be
-		// introduced as a post-parse transform.  So although we pass a
-		// User here, it only currently affects the output in obscure
-		// corner cases; see PageConfigFactory::create() for more.
-		// @phan-suppress-next-line PhanUndeclaredMethod method defined in subtype
-		return $this->pageConfigFactory->create(
-			$title, $user, $revisionRecord ?? $revision, null, $pagelanguageOverride,
-			$this->parsoidSettings
-		);
-	}
-
-	/**
 	 * Redirect to another Parsoid URL (e.g. canonization)
 	 *
 	 * @stable to override
@@ -604,26 +555,59 @@ abstract class ParsoidHandler extends Handler {
 	 * for callers to handle.
 	 *
 	 * @param array $attribs
-	 * @param ?string $wikitext
+	 * @param ?string $wikitextOverride
+	 *   Custom wikitext to use instead of the real content of the page.
 	 * @param bool $html2WtMode
 	 * @return PageConfig
 	 * @throws HttpException
 	 */
 	protected function tryToCreatePageConfig(
-		array $attribs, ?string $wikitext = null, bool $html2WtMode = false
+		array $attribs, ?string $wikitextOverride = null, bool $html2WtMode = false
 	): PageConfig {
-		$oldid = $attribs['oldid'];
+		$revision = $attribs['oldid'];
+		$pagelanguageOverride = $attribs['pagelanguage'];
+		$title = $attribs['pageName'];
+
+		$title = $title ? Title::newFromText( $title ) : Title::newMainPage();
+		if ( !$title ) {
+			// TODO use proper validation
+			throw new LogicException( 'Title not found!' );
+		}
+		$user = RequestContext::getMain()->getUser();
+
+		if ( $wikitextOverride === null ) {
+			$revisionRecord = null;
+		} else {
+			// Create a mutable revision record point to the same revision
+			// and set to the desired wikitext.
+			$revisionRecord = new MutableRevisionRecord( $title );
+			if ( $revision !== null ) {
+				$revisionRecord->setId( $revision );
+			}
+			$revisionRecord->setSlot(
+				SlotRecord::newUnsaved(
+					SlotRecord::MAIN,
+					new WikitextContent( $wikitextOverride )
+				)
+			);
+		}
 
 		try {
-			$pageConfig = $this->createPageConfig(
-				$attribs['pageName'], $oldid, $wikitext,
-				$attribs['pagelanguage']
+			// Note: Parsoid by design isn't supposed to use the user
+			// context right now, and all user state is expected to be
+			// introduced as a post-parse transform.  So although we pass a
+			// User here, it only currently affects the output in obscure
+			// corner cases; see PageConfigFactory::create() for more.
+			// @phan-suppress-next-line PhanUndeclaredMethod method defined in subtype
+			$pageConfig = $this->pageConfigFactory->create(
+				$title, $user, $revisionRecord ?? $revision, null, $pagelanguageOverride,
+				$this->parsoidSettings
 			);
 		} catch ( RevisionAccessException $exception ) {
 			throw new HttpException( 'The specified revision is deleted or suppressed.', 404 );
 		}
 
-		$hasOldId = ( $attribs['oldid'] !== null );
+		$hasOldId = ( $revision !== null );
 		if ( !$html2WtMode || $hasOldId ) {
 			$pageContent = $pageConfig->getRevisionContent();
 			if ( $pageContent === null ) {
@@ -650,7 +634,7 @@ abstract class ParsoidHandler extends Handler {
 			}
 		}
 
-		if ( !$html2WtMode && $wikitext === null && !$hasOldId ) {
+		if ( !$html2WtMode && $wikitextOverride === null && !$hasOldId ) {
 			// Redirect to the latest revid
 			throw new ResponseException(
 				$this->createRedirectToOldidResponse( $pageConfig, $attribs )
