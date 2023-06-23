@@ -146,11 +146,13 @@ class Html {
 		$useMediaWikiUIEverywhere = MediaWikiServices::getInstance()
 			->getMainConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere );
 		if ( $useMediaWikiUIEverywhere ) {
+			$cdxInputClass = 'cdx-text-input__input';
+			// This will only apply if the input is not using official Codex classes.
+			// In future this should trigger a deprecation warning.
 			if ( isset( $attrs['class'] ) ) {
-				if ( is_array( $attrs['class'] ) ) {
+				$classAsArray = is_string( $attrs[ 'class' ] ) ? explode( ' ', $attrs[ 'class' ] ) : $attrs[ 'class' ];
+				if ( !in_array( $cdxInputClass, $classAsArray ) ) {
 					$attrs['class'][] = 'mw-ui-input';
-				} else {
-					$attrs['class'] .= ' mw-ui-input';
 				}
 			} else {
 				$attrs['class'] = 'mw-ui-input';

@@ -267,6 +267,7 @@ $wgAutoloadLocalClasses = [
 	'CloneDatabase' => __DIR__ . '/includes/db/CloneDatabase.php',
 	'CodeCleanerGlobalsPass' => __DIR__ . '/maintenance/CodeCleanerGlobalsPass.php',
 	'CodeContentHandler' => __DIR__ . '/includes/content/CodeContentHandler.php',
+	'CodexHTMLForm' => __DIR__ . '/includes/htmlform/CodexHTMLForm.php',
 	'CollapsibleFieldsetLayout' => __DIR__ . '/includes/htmlform/CollapsibleFieldsetLayout.php',
 	'Collation' => __DIR__ . '/includes/collation/Collation.php',
 	'CollationCkb' => __DIR__ . '/includes/collation/CollationCkb.php',

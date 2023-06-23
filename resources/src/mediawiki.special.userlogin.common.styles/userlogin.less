@@ -1,9 +1,31 @@
 /* User login and signup forms */
 @import 'mediawiki.skin.variables.less';
 
-.mw-ui-vform .mw-form-related-link-container {
-	margin-bottom: 0.5em;
-	text-align: center;
+@defaultFormWidth: 290px;
+
+.mw-htmlform {
+	box-sizing: border-box;
+
+	@media ( min-width: @min-width-breakpoint-tablet ) {
+		width: @defaultFormWidth;
+	}
+}
+
+// Temporarily hide message box icon.
+// The login form should use notices rather than warning.
+// This should be addressed as part of T341298.
+#userloginForm .cdx-message__icon {
+	display: none;
+}
+
+#mw-createaccount-join,
+.mw-htmlform-submit {
+	width: 100%;
+	justify-content: center;
+}
+
+.mw-htmlform-field-HTMLSubmitField + .mw-form-related-link-container {
+	margin-top: 0.5em;
 }
 
 .mw-ui-vform .mw-secure {
@@ -78,4 +100,50 @@ section.mw-form-header {
 /* stylelint-disable-next-line selector-class-pattern */
 .fancycaptcha-image-container {
 	width: 100%;
+}
+
+@media ( min-width: @min-width-breakpoint-tablet ) {
+	/* stylelint-disable-next-line selector-class-pattern */
+	.htmlform-tip,
+	.mw-ui-vform-field,
+	.mw-userlogin-rememberme,
+	.mw-htmlform-field-HTMLTextField {
+		margin: 0 0 15px;
+	}
+}
+
+// For mobile devices we snap the inputs together and compact UI so
+// superfluous information is hidden.
+@media ( max-width: @max-width-breakpoint-mobile ) {
+	#userloginForm .cdx-text-input input {
+		border-radius: 0;
+		// https://www.w3.org/WAI/WCAG21/Understanding/target-size.html
+		min-height: 44px;
+	}
+
+	.mw-htmlform-field-HTMLCheckField,
+	.mw-htmlform-submit {
+		margin-top: 15px;
+	}
+
+	.mw-htmlform-field-HTMLCheckField {
+		margin-bottom: 15px;
+	}
+
+	/* stylelint-disable-next-line selector-class-pattern */
+	.htmlform-tip,
+	.mw-createacct-benefits-container,
+	.mw-userlogin-rememberme,
+	.mw-ui-vform-field > label {
+		display: none;
+	}
+
+	#wpReason,
+	#wpRealName,
+	/* Only if the password follows directly after login */
+	.mw-userlogin-username + .mw-userlogin-password #wpPassword2,
+	#wpRetype,
+	#wpEmail {
+		border-top: 0;
+	}
 }

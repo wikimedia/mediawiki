@@ -331,6 +331,7 @@ class HTMLForm extends ContextSource {
 	 */
 	protected $availableSubclassDisplayFormats = [
 		'vform',
+		'codex',
 		'ooui',
 	];
 
@@ -357,6 +358,8 @@ class HTMLForm extends ContextSource {
 		$displayFormat, $descriptor, IContextSource $context, $messagePrefix = ''
 	) {
 		switch ( $displayFormat ) {
+			case 'codex':
+				return new CodexHTMLForm( $descriptor, $context, $messagePrefix );
 			case 'vform':
 				return new VFormHTMLForm( $descriptor, $context, $messagePrefix );
 			case 'ooui':

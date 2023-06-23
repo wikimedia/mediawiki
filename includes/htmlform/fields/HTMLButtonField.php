@@ -69,12 +69,16 @@ class HTMLButtonField extends HTMLFormField {
 	public function getInputHTML( $value ) {
 		$flags = '';
 		$prefix = 'mw-htmlform-';
+		$isCodexForm = $this->mParent instanceof CodexHTMLForm;
 		if ( $this->mParent instanceof VFormHTMLForm ||
-			$this->mParent->getConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere )
+			( !$isCodexForm && $this->mParent->getConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere ) )
 		) {
 			$prefix = 'mw-ui-';
 			// add mw-ui-button separately, so the descriptor doesn't need to set it
 			$flags .= ' ' . $prefix . 'button';
+		}
+		if ( $isCodexForm ) {
+			$flags .= ' cdx-button cdx-button--action-progressive cdx-button--weight-primary';
 		}
 		foreach ( $this->mFlags as $flag ) {
 			$flags .= ' ' . $prefix . $flag;

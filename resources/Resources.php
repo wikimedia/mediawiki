@@ -2312,8 +2312,11 @@ return [
 		],
 	],
 	'mediawiki.special.userlogin.common.styles' => [
+		'styles' => [
+			'resources/src/mediawiki.special.userlogin.common.styles/userlogin.less',
+		],
 		'skinStyles' => [
-			'default' => 'resources/src/mediawiki.special.userlogin.common.styles/userlogin.less',
+			'default' => 'resources/src/mediawiki.special.userlogin.common.styles/skinStyles.less',
 		],
 	],
 	'mediawiki.special.userlogin.login.styles' => [
