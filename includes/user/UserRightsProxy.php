@@ -1,6 +1,6 @@
 <?php
 /**
- * Representation of an user on a other locally-hosted wiki.
+ * Representation of a user on another locally-hosted wiki.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
