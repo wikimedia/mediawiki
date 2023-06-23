@@ -26,6 +26,7 @@ use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
+use MediaWiki\Utils\UrlUtils;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -43,25 +44,31 @@ class ApiOpenSearch extends ApiBase {
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
 
+	/** @var UrlUtils */
+	private $urlUtils;
+
 	/**
 	 * @param ApiMain $mainModule
 	 * @param string $moduleName
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param SearchEngineConfig $searchEngineConfig
 	 * @param SearchEngineFactory $searchEngineFactory
+	 * @param UrlUtils $urlUtils
 	 */
 	public function __construct(
 		ApiMain $mainModule,
 		$moduleName,
 		LinkBatchFactory $linkBatchFactory,
 		SearchEngineConfig $searchEngineConfig,
-		SearchEngineFactory $searchEngineFactory
+		SearchEngineFactory $searchEngineFactory,
+		UrlUtils $urlUtils
 	) {
 		parent::__construct( $mainModule, $moduleName );
 		$this->linkBatchFactory = $linkBatchFactory;
 		// Services needed in SearchApi trait
 		$this->searchEngineConfig = $searchEngineConfig;
 		$this->searchEngineFactory = $searchEngineFactory;
+		$this->urlUtils = $urlUtils;
 	}
 
 	/**
@@ -209,7 +216,7 @@ class ApiOpenSearch extends ApiBase {
 						'extract' => false,
 						'extract trimmed' => false,
 						'image' => false,
-						'url' => wfExpandUrl( $title->getFullURL(), PROTO_CURRENT ),
+						'url' => (string)$this->urlUtils->expand( $title->getFullURL(), PROTO_CURRENT ),
 					];
 				}
 			}
@@ -226,7 +233,7 @@ class ApiOpenSearch extends ApiBase {
 					'extract' => false,
 					'extract trimmed' => false,
 					'image' => false,
-					'url' => wfExpandUrl( $title->getFullURL(), PROTO_CURRENT ),
+					'url' => (string)$this->urlUtils->expand( $title->getFullURL(), PROTO_CURRENT ),
 				];
 			}
 		}

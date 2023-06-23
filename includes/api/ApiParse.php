@@ -38,6 +38,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\UserFactory;
+use MediaWiki\Utils\UrlUtils;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
@@ -98,6 +99,9 @@ class ApiParse extends ApiBase {
 	/** @var UserFactory */
 	private $userFactory;
 
+	/** @var UrlUtils */
+	private $urlUtils;
+
 	/**
 	 * @param ApiMain $main
 	 * @param string $action
@@ -114,6 +118,7 @@ class ApiParse extends ApiBase {
 	 * @param CommentFormatter $commentFormatter
 	 * @param TempUserCreator $tempUserCreator
 	 * @param UserFactory $userFactory
+	 * @param UrlUtils $urlUtils
 	 */
 	public function __construct(
 		ApiMain $main,
@@ -130,7 +135,8 @@ class ApiParse extends ApiBase {
 		ContentTransformer $contentTransformer,
 		CommentFormatter $commentFormatter,
 		TempUserCreator $tempUserCreator,
-		UserFactory $userFactory
+		UserFactory $userFactory,
+		UrlUtils $urlUtils
 	) {
 		parent::__construct( $main, $action );
 		$this->revisionLookup = $revisionLookup;
@@ -146,6 +152,7 @@ class ApiParse extends ApiBase {
 		$this->commentFormatter = $commentFormatter;
 		$this->tempUserCreator = $tempUserCreator;
 		$this->userFactory = $userFactory;
+		$this->urlUtils = $urlUtils;
 	}
 
 	private function getPoolKey(): string {
@@ -903,7 +910,7 @@ class ApiParse extends ApiBase {
 
 			$entry['lang'] = $bits[0];
 			if ( $title ) {
-				$entry['url'] = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
+				$entry['url'] = (string)$this->urlUtils->expand( $title->getFullURL(), PROTO_CURRENT );
 				// localised language name in 'uselang' language
 				$entry['langname'] = $this->languageNameUtils->getLanguageName(
 					$title->getInterwiki(),
@@ -991,7 +998,7 @@ class ApiParse extends ApiBase {
 
 				$title = Title::newFromText( "{$prefix}:{$title}" );
 				if ( $title ) {
-					$entry['url'] = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
+					$entry['url'] = (string)$this->urlUtils->expand( $title->getFullURL(), PROTO_CURRENT );
 				}
 
 				ApiResult::setContentValue( $entry, 'title', $title->getFullText() );

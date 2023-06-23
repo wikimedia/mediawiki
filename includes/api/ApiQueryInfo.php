@@ -34,6 +34,7 @@ use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\TempUser\TempUserCreator;
+use MediaWiki\Utils\UrlUtils;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
 
@@ -68,6 +69,8 @@ class ApiQueryInfo extends ApiQueryBase {
 	private $preloadedContentBuilder;
 	/** @var RevisionLookup */
 	private $revisionLookup;
+	/** @var UrlUtils */
+	private $urlUtils;
 
 	private $fld_protection = false, $fld_talkid = false,
 		$fld_subjectid = false, $fld_url = false,
@@ -135,6 +138,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * @param IntroMessageBuilder $introMessageBuilder
 	 * @param PreloadedContentBuilder $preloadedContentBuilder
 	 * @param RevisionLookup $revisionLookup
+	 * @param UrlUtils $urlUtils
 	 */
 	public function __construct(
 		ApiQuery $queryModule,
@@ -151,7 +155,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		TempUserCreator $tempUserCreator,
 		IntroMessageBuilder $introMessageBuilder,
 		PreloadedContentBuilder $preloadedContentBuilder,
-		RevisionLookup $revisionLookup
+		RevisionLookup $revisionLookup,
+		UrlUtils $urlUtils
 	) {
 		parent::__construct( $queryModule, $moduleName, 'in' );
 		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $contentLanguage );
@@ -166,6 +171,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->introMessageBuilder = $introMessageBuilder;
 		$this->preloadedContentBuilder = $preloadedContentBuilder;
 		$this->revisionLookup = $revisionLookup;
+		$this->urlUtils = $urlUtils;
 	}
 
 	/**
@@ -404,9 +410,15 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		if ( $this->fld_url ) {
-			$pageInfo['fullurl'] = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
-			$pageInfo['editurl'] = wfExpandUrl( $title->getFullURL( 'action=edit' ), PROTO_CURRENT );
-			$pageInfo['canonicalurl'] = wfExpandUrl( $title->getFullURL(), PROTO_CANONICAL );
+			$pageInfo['fullurl'] = (string)$this->urlUtils->expand(
+				$title->getFullURL(), PROTO_CURRENT
+			);
+			$pageInfo['editurl'] = (string)$this->urlUtils->expand(
+				$title->getFullURL( 'action=edit' ), PROTO_CURRENT
+			);
+			$pageInfo['canonicalurl'] = (string)$this->urlUtils->expand(
+				$title->getFullURL(), PROTO_CANONICAL
+			);
 		}
 		if ( $this->fld_readable ) {
 			$pageInfo['readable'] = $this->getAuthority()->definitelyCan( 'read', $title );

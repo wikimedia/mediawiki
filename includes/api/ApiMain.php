@@ -152,6 +152,7 @@ class ApiMain extends ApiBase {
 				'CommentFormatter',
 				'TempUserCreator',
 				'UserFactory',
+				'UrlUtils',
 			]
 		],
 		'stashedit' => [
@@ -172,6 +173,7 @@ class ApiMain extends ApiBase {
 				'LinkBatchFactory',
 				'SearchEngineConfig',
 				'SearchEngineFactory',
+				'UrlUtils',
 			]
 		],
 		'feedcontributions' => [
@@ -1390,7 +1392,7 @@ class ApiMain extends ApiBase {
 			$path = null;
 		}
 		if ( $e instanceof ApiUsageException ) {
-			$link = wfExpandUrl( wfScript( 'api' ) );
+			$link = (string)MediaWikiServices::getInstance()->getUrlUtils()->expand( wfScript( 'api' ) );
 			$result->addContentValue(
 				$path,
 				'docref',

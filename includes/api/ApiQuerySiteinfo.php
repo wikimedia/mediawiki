@@ -34,6 +34,7 @@ use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\Utils\UrlUtils;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -88,6 +89,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	/** @var ReadOnlyMode */
 	private $readOnlyMode;
 
+	/** @var UrlUtils */
+	private $urlUtils;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
@@ -105,6 +109,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	 * @param SkinFactory $skinFactory
 	 * @param ILoadBalancer $loadBalancer
 	 * @param ReadOnlyMode $readOnlyMode
+	 * @param UrlUtils $urlUtils
 	 */
 	public function __construct(
 		ApiQuery $query,
@@ -122,7 +127,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		SpecialPageFactory $specialPageFactory,
 		SkinFactory $skinFactory,
 		ILoadBalancer $loadBalancer,
-		ReadOnlyMode $readOnlyMode
+		ReadOnlyMode $readOnlyMode,
+		UrlUtils $urlUtils
 	) {
 		parent::__construct( $query, $moduleName, 'si' );
 		$this->userOptionsLookup = $userOptionsLookup;
@@ -139,6 +145,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$this->skinFactory = $skinFactory;
 		$this->loadBalancer = $loadBalancer;
 		$this->readOnlyMode = $readOnlyMode;
+		$this->urlUtils = $urlUtils;
 	}
 
 	public function execute() {
@@ -241,14 +248,14 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data = [];
 		$mainPage = Title::newMainPage();
 		$data['mainpage'] = $mainPage->getPrefixedText();
-		$data['base'] = wfExpandUrl( $mainPage->getFullURL(), PROTO_CURRENT );
+		$data['base'] = (string)$this->urlUtils->expand( $mainPage->getFullURL(), PROTO_CURRENT );
 		$data['sitename'] = $config->get( MainConfigNames::Sitename );
 		$data['mainpageisdomainroot'] = (bool)$config->get( MainConfigNames::MainPageIsDomainRoot );
 
 		// A logo can either be a relative or an absolute path
 		// make sure we always return an absolute path
 		$logo = SkinModule::getAvailableLogos( $config );
-		$data['logo'] = wfExpandUrl( $logo['1x'], PROTO_RELATIVE );
+		$data['logo'] = (string)$this->urlUtils->expand( $logo['1x'], PROTO_RELATIVE );
 
 		$data['generator'] = 'MediaWiki ' . MW_VERSION;
 
@@ -374,7 +381,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$favicon = $config->get( MainConfigNames::Favicon );
 		if ( $favicon ) {
 			// Expand any local path to full URL to improve API usability (T77093).
-			$data['favicon'] = wfExpandUrl( $favicon );
+			$data['favicon'] = (string)$this->urlUtils->expand( $favicon );
 		}
 
 		$data['centralidlookupprovider'] =
@@ -565,7 +572,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				}
 			}
 
-			$val['url'] = wfExpandUrl( $row['iw_url'], PROTO_CURRENT );
+			$val['url'] = (string)$this->urlUtils->expand( $row['iw_url'], PROTO_CURRENT );
 			$val['protorel'] = str_starts_with( $row['iw_url'], '//' );
 			if ( isset( $row['iw_wikiid'] ) && $row['iw_wikiid'] !== '' ) {
 				$val['wikiid'] = $row['iw_wikiid'];
@@ -821,7 +828,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		// The default value is null, but the installer sets it to empty string
 		if ( strlen( (string)$rightsPage ) ) {
 			$title = Title::newFromText( $rightsPage );
-			$url = wfExpandUrl( $title->getLinkURL(), PROTO_CURRENT );
+			$url = (string)$this->urlUtils->expand( $title->getLinkURL(), PROTO_CURRENT );
 		} else {
 			$title = false;
 			$url = $config->get( MainConfigNames::RightsUrl );

@@ -23,6 +23,7 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 
 /**
@@ -30,7 +31,6 @@ use MediaWiki\Title\Title;
  * @ingroup API
  */
 class ApiRsd extends ApiBase {
-
 	public function execute() {
 		$result = $this->getResult();
 
@@ -83,10 +83,12 @@ class ApiRsd extends ApiBase {
 	 * @return array[]
 	 */
 	protected function getRsdApiList() {
+		// Loaded here rather than injected due to the direct extension of ApiBase.
+		$urlUtils = MediaWikiServices::getInstance()->getUrlUtils();
 		$apis = [
 			'MediaWiki' => [
 				// The API link is required for all RSD API entries.
-				'apiLink' => wfExpandUrl( wfScript( 'api' ), PROTO_CURRENT ),
+				'apiLink' => (string)$urlUtils->expand( wfScript( 'api' ), PROTO_CURRENT ),
 
 				// Docs link is optional, but recommended.
 				'docs' => 'https://www.mediawiki.org/wiki/Special:MyLanguage/API',
