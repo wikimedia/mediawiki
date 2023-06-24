@@ -2828,8 +2828,9 @@ class OutputPage extends ContextSource {
 		$config = $this->getConfig();
 
 		if ( $this->mRedirect != '' ) {
+			$services = MediaWikiServices::getInstance();
 			# Standards require redirect URLs to be absolute
-			$this->mRedirect = wfExpandUrl( $this->mRedirect, PROTO_CURRENT );
+			$this->mRedirect = (string)$services->getUrlUtils()->expand( $this->mRedirect, PROTO_CURRENT );
 
 			$redirect = $this->mRedirect;
 			$code = $this->mRedirectCode;
@@ -4004,6 +4005,8 @@ class OutputPage extends ContextSource {
 			'title' => $this->msg( 'opensearch-desc' )->inContentLanguage()->text(),
 		] );
 
+		$services = MediaWikiServices::getInstance();
+
 		# Real Simple Discovery link, provides auto-discovery information
 		# for the MediaWiki API (and potentially additional custom API
 		# support such as WordPress or Twitter-compatible APIs for a
@@ -4014,7 +4017,7 @@ class OutputPage extends ContextSource {
 			// Output a protocol-relative URL here if $wgServer is protocol-relative.
 			// Whether RSD accepts relative or protocol-relative URLs is completely
 			// undocumented, though.
-			'href' => wfExpandUrl( wfAppendQuery(
+			'href' => (string)$services->getUrlUtils()->expand( wfAppendQuery(
 				wfScript( 'api' ),
 				[ 'action' => 'rsd' ] ),
 				PROTO_RELATIVE
@@ -4074,7 +4077,7 @@ class OutputPage extends ContextSource {
 			$urlVariant = $pageLanguageConverter->getURLVariant();
 
 			if ( $canonicalUrl !== false ) {
-				$canonicalUrl = wfExpandUrl( $canonicalUrl, PROTO_CANONICAL );
+				$canonicalUrl = (string)$services->getUrlUtils()->expand( $canonicalUrl, PROTO_CANONICAL );
 			} elseif ( $this->isArticleRelated() ) {
 				if ( $isCanonicalUrlAction ) {
 					$query['action'] = $action;
@@ -4085,7 +4088,7 @@ class OutputPage extends ContextSource {
 				$canonicalUrl = $this->getTitle()->getCanonicalURL( $query );
 			} else {
 				$reqUrl = $this->getRequest()->getRequestURL();
-				$canonicalUrl = wfExpandUrl( $reqUrl, PROTO_CANONICAL );
+				$canonicalUrl = (string)$services->getUrlUtils()->expand( $reqUrl, PROTO_CANONICAL );
 			}
 		}
 
