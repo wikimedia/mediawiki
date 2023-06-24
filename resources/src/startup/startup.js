@@ -9,7 +9,10 @@
 /**
  * See <https://www.mediawiki.org/wiki/Compatibility#Browsers>
  *
- * Browsers known to pass these checks get served our modern run-time (Grade A or Grade X):
+ * Browsers that pass these checks get served our modern run-time. This includes all Grade A
+ * browsers, and some Grade C and Grade X browsers.
+ *
+ * The following browsers are known to pass these checks:
  * - Chrome 63+
  * - Edge 79+
  * - Opera 50+
