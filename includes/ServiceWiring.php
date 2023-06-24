@@ -1088,7 +1088,7 @@ return [
 		$id = $mainConfig->get( MainConfigNames::MainStash );
 		$params = $mainConfig->get( MainConfigNames::ObjectCaches )[$id] ?? null;
 		if ( !$params ) {
-			throw new UnexpectedValueException(
+			throw new ConfigException(
 				"\$wgObjectCaches must have \"$id\" set (via \$wgMainStash)"
 			);
 		}
@@ -2437,7 +2437,7 @@ return [
 		$id = $mainConfig->get( MainConfigNames::MainCacheType );
 		$params = $mainConfig->get( MainConfigNames::ObjectCaches )[$id] ?? null;
 		if ( !$params ) {
-			throw new UnexpectedValueException(
+			throw new ConfigException(
 				"\$wgObjectCaches must have \"$id\" set (via \$wgMainCacheType)"
 			);
 		}
