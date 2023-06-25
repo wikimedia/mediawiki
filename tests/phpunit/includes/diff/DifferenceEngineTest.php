@@ -6,6 +6,7 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -65,20 +66,49 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 	protected function doEdits() {
 		$title = $this->getTitle();
 
-		$strings = [ "it is a kitten", "two kittens", "three kittens", "four kittens" ];
+		$strings = [
+			0 => "no kittens",
+			1 => "one kitten",
+			2 => "two kittens",
+			3 => "three kittens",
+			4 => "fnord kittens",
+			5 => "kitten's phone number is +1 303 503 229",
+			6 => "six kittens",
+			7 => "seven kittens",
+		];
 		$revisions = [];
 
-		$user = $this->getTestSysop()->getAuthority();
-		foreach ( $strings as $string ) {
+		$sysop = $this->getTestSysop()->getAuthority();
+		$user = $this->getTestUser()->getAuthority();
+		foreach ( $strings as $i => $string ) {
 			$status = $this->editPage(
 				$title,
 				$string,
 				'edit page',
 				NS_MAIN,
-				$user
+				$i == 6 ? $user : $sysop
 			);
 			$revisions[] = $status->getNewRevision()->getId();
 		}
+
+		// Normal user cannot see the fnord
+		$this->revisionDelete(
+			$revisions[4],
+			[
+				RevisionRecord::DELETED_TEXT => 1,
+			],
+			'Testing'
+		);
+
+		// Suppress kitten dox
+		$this->revisionDelete(
+			$revisions[5],
+			[
+				RevisionRecord::DELETED_TEXT => 1,
+				RevisionRecord::DELETED_RESTRICTED => 1,
+			],
+			'Testing'
+		);
 
 		return $revisions;
 	}
@@ -94,6 +124,11 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 				static function ( $m ) {
 					return self::$revisions[(int)$m[1]];
 				},
+				$data
+			);
+			$data = str_replace(
+				'rev[cur]',
+				self::$revisions[array_key_last( self::$revisions )],
 				$data
 			);
 		}
@@ -143,8 +178,8 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 		return [
 			'diff=prev' => [ 'rev[2]', 'rev[3]', true, 'rev[3]', 'prev' ],
 			'diff=next' => [ 'rev[2]', 'rev[3]', true, 'rev[2]', 'next' ],
-			'diff=' . 'rev[3]' => [ 'rev[1]', 'rev[3]', true, 'rev[1]', 'rev[3]' ],
-			'diff=0' => [ 'rev[1]', 'rev[3]', true, 'rev[1]', 0 ],
+			'diff=rev[3]' => [ 'rev[1]', 'rev[3]', true, 'rev[1]', 'rev[3]' ],
+			'diff=0' => [ 'rev[1]', 'rev[cur]', true, 'rev[1]', 0 ],
 			'diff=prev&oldid=<first>' => [ false, 'rev[0]', true, 'rev[0]', 'prev' ],
 			'invalid' => [ 123456789, 'rev[1]', false, 123456789, 'rev[1]' ],
 		];
@@ -469,15 +504,12 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 	public function testRevisionHeader( $deletedFlag, $allowedAction ) {
 		$revs = self::$revisions;
 
-		if ( $deletedFlag !== 'none' ) {
-			$this->revisionDelete(
-				$revs[1],
-				[
-					RevisionRecord::DELETED_TEXT => 1,
-					RevisionRecord::DELETED_RESTRICTED => $deletedFlag === 'suppressed' ? 1 : 0,
-				],
-				'Testing'
-			);
+		if ( $deletedFlag === 'none' ) {
+			$oldRevId = $revs[1];
+		} elseif ( $deletedFlag === 'deleted' ) {
+			$oldRevId = $revs[4];
+		} elseif ( $deletedFlag === 'suppressed' ) {
+			$oldRevId = $revs[5];
 		}
 
 		$context = new DerivativeContext( $this->context );
@@ -497,7 +529,7 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 			new SimpleAuthority( $this->getTestUser()->getUser(), $permissionSet )
 		);
 
-		$diffEngine = new DifferenceEngine( $context, $revs[1], $revs[2], 2, true, true );
+		$diffEngine = new DifferenceEngine( $context, $oldRevId, $revs[2], 2, true, true );
 		$this->assertTrue( $diffEngine->loadRevisionData() );
 		$revisionHeaderHtml = $diffEngine->getRevisionHeader( $diffEngine->getOldRevision(), 'complete' );
 
@@ -505,9 +537,9 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( '(revisionasof:', $revisionHeaderHtml );
 
 		if ( $allowedAction === 'none' ) {
-			$this->assertStringNotContainsString( 'oldid=' . $revs[1], $revisionHeaderHtml );
+			$this->assertStringNotContainsString( 'oldid=' . $oldRevId, $revisionHeaderHtml );
 		} else {
-			$this->assertStringContainsString( 'oldid=' . $revs[1], $revisionHeaderHtml );
+			$this->assertStringContainsString( 'oldid=' . $oldRevId, $revisionHeaderHtml );
 		}
 		if ( $allowedAction === 'edit' ) {
 			$this->assertStringContainsString( '(editold)', $revisionHeaderHtml );
@@ -543,5 +575,200 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 			[ 'suppressed', 'view' ],
 			[ 'suppressed', 'edit' ],
 		];
+	}
+
+	/**
+	 * @dataProvider provideShowDiffPage
+	 * @param array $reqParams
+	 * @param array $userRights
+	 * @param array $expected
+	 */
+	public function testShowDiffPage( $reqParams, $userRights, $expected ) {
+		$this->expandTestArgs( [ &$reqParams, &$expected ] );
+		$context = new DerivativeContext( $this->context );
+
+		$authority = new SimpleAuthority(
+			new UserIdentityValue( 1, 'User' ),
+			$userRights
+		);
+		$context->setAuthority( $authority );
+
+		$request = new FauxRequest( $reqParams );
+		$context->setRequest( $request );
+
+		$context->setLanguage( 'qqx' );
+
+		$out = new OutputPage( $context );
+		$context->setOutput( $out );
+
+		$engine = new DifferenceEngine(
+			$context,
+			$request->getIntOrNull( 'oldid' ),
+			$request->getVal( 'diff' ),
+			0,
+			false,
+			$request->getInt( 'unhide' ) === 1
+		);
+
+		if ( isset( $expected['exception'] ) ) {
+			$this->expectException( $expected['exception'] );
+		}
+
+		$engine->showDiffPage( $request->getBool( 'diffonly' ) );
+
+		if ( isset( $expected['html'] ) ) {
+			$this->assertMatchesRegularExpression(
+				'{' . $expected['html'] . '}s',
+				$out->getHTML(),
+				'OutputPage::getHTML'
+			);
+		}
+	}
+
+	public static function provideShowDiffPage() {
+		$cases = [
+			'missing oldid' => [
+				'params' => [
+					'oldid' => '1000000',
+					'diff' => 'prev',
+				],
+				'expected' => [
+					'html' => '\(difference-missing-revision: 1000000, 1\)',
+				]
+			],
+			'missing prev' => [
+				'params' => [
+					'oldid' => 'rev[0]',
+					'diff' => 'prev'
+				],
+				'expected' => [
+					'html' =>
+						'\(diff-empty\).*' .
+						'<div class="mw-parser-output"><p>no kittens'
+				],
+			],
+			'normal diff=prev' => [
+				'params' => [
+					'oldid' => 'rev[1]',
+					'diff' => 'prev'
+				],
+				'expected' => [
+					'html' =>
+						'\(viewsourceold\).*' .
+						'<del class="diffchange diffchange-inline">no kittens</del>.*' .
+						'<ins class="diffchange diffchange-inline">one kitten</ins>.*' .
+						'<div class="mw-parser-output"><p>one kitten',
+				]
+			],
+			'normal diff=number' => [
+				'params' => [
+					'oldid' => 'rev[0]',
+					'diff' => 'rev[1]'
+				],
+				'expected' => [
+					'html' =>
+						'\(viewsourceold\).*' .
+						'<del class="diffchange diffchange-inline">no kittens</del>.*' .
+						'<ins class="diffchange diffchange-inline">one kitten</ins>.*' .
+						'<div class="mw-parser-output"><p>one kitten',
+				]
+			],
+			'user cannot read' => [
+				'params' => [
+					'oldid' => 'rev[1]',
+					'diff' => 'prev',
+				],
+				'userRights' => [],
+				'expected' => [
+					'exception' => PermissionsError::class,
+				]
+			],
+			'user can rollback' => [
+				'params' => [
+					'oldid' => 'rev[6]',
+					'diff' => 'rev[7]',
+				],
+				'userRights' => [ 'read', 'edit', 'rollback' ],
+				'expected' => [
+					'html' =>
+						'\(editold\).*' .
+						'\(rollbacklinkcount: 1\)',
+				]
+			],
+			'diffonly' => [
+				'params' => [
+					'oldid' => 'rev[1]',
+					'diff' => 'prev',
+					'diffonly' => '1',
+				],
+				'expected' => [
+					'html' =>
+						'<del class="diffchange diffchange-inline">no kittens</del>.*' .
+						'<ins class="diffchange diffchange-inline">one kitten</ins>.*' .
+						'</table>$',
+				]
+			],
+			'deleted LHS' => [
+				'params' => [
+					'oldid' => 'rev[4]',
+					'diff' => 'rev[1]'
+				],
+				'expected' => [
+					'html' => '<div id="mw-diff-otitle1">.*' .
+						'<span class="history-deleted">.*' .
+						'<div id="mw-diff-ntitle1">.*' .
+						'\(rev-deleted-no-diff\)',
+				]
+			],
+			'deleted RHS' => [
+				'params' => [
+					'oldid' => 'rev[3]',
+					'diff' => 'rev[4]'
+				],
+				'expected' => [
+					'html' =>
+						'<div id="mw-diff-otitle1">.*' .
+						'<div id="mw-diff-ntitle1">.*' .
+						'<span class="history-deleted">.*' .
+						'\(rev-deleted-no-diff\)',
+				]
+			],
+			'deleted LHS can unhide' => [
+				'params' => [
+					'oldid' => 'rev[4]',
+					'diff' => 'rev[1]'
+				],
+				'userRights' => [ 'read', 'deletedtext' ],
+				'expected' => [
+					'html' =>
+						'<div id="mw-diff-ntitle1">.*' .
+						'\(rev-deleted-unhide-diff:.*' .
+						'&amp;unhide=1.*',
+				]
+			],
+			'deleted RHS with unhide' => [
+				'params' => [
+					'oldid' => 'rev[3]',
+					'diff' => 'rev[4]',
+					'unhide' => '1'
+				],
+				'userRights' => [ 'read', 'deletedtext' ],
+				'expected' => [
+					'html' =>
+						'\(rev-deleted-diff-view\).*' .
+						'<del class="diffchange diffchange-inline">three </del>.*' .
+						'<ins class="diffchange diffchange-inline">fnord </ins>.*' .
+						'<div class="mw-parser-output"><p>fnord kittens',
+				]
+			],
+		];
+
+		foreach ( $cases as $name => $case ) {
+			yield $name => [
+				$case['params'],
+				$case['userRights'] ?? [ 'read' ],
+				$case['expected']
+			];
+		}
 	}
 }
