@@ -879,11 +879,12 @@ class ApiEditPageTest extends ApiTestCase {
 		// up if a revision number was skipped, e.g., if two transactions try
 		// to insert new revision rows at once and the first one to succeed
 		// gets rolled back.
-		$name = 'Help:' . ucfirst( __FUNCTION__ );
+		$page = $this->getServiceContainer()->getWikiPageFactory()
+			->newFromLinkTarget( new TitleValue( NS_HELP, 'TestUndoAfterToInvalidRev' ) );
 
-		$revId1 = $this->editPage( $name, '1' )->getNewRevision()->getId();
-		$revId2 = $this->editPage( $name, '2' )->getNewRevision()->getId();
-		$revId3 = $this->editPage( $name, '3' )->getNewRevision()->getId();
+		$revId1 = $this->editPage( $page, '1' )->getNewRevision()->getId();
+		$revId2 = $this->editPage( $page, '2' )->getNewRevision()->getId();
+		$revId3 = $this->editPage( $page, '3' )->getNewRevision()->getId();
 
 		// Make the middle revision disappear
 		$dbw = wfGetDB( DB_PRIMARY );
@@ -895,7 +896,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
-			'title' => $name,
+			'title' => $page->getTitle()->getPrefixedText(),
 			'undo' => $revId3,
 			'undoafter' => $revId2,
 		] );
@@ -906,14 +907,15 @@ class ApiEditPageTest extends ApiTestCase {
 	 * undoafter is hidden (rev_deleted).
 	 */
 	public function testUndoAfterToHiddenRev() {
-		$name = 'Help:' . ucfirst( __FUNCTION__ );
-		$titleObj = Title::newFromText( $name );
+		$page = $this->getServiceContainer()->getWikiPageFactory()
+			->newFromLinkTarget( new TitleValue( NS_HELP, 'TestUndoAfterToHiddenRev' ) );
+		$titleObj = $page->getTitle();
 
-		$this->editPage( $name, '0' );
+		$this->editPage( $page, '0' );
 
-		$revId1 = $this->editPage( $name, '1' )->getNewRevision()->getId();
+		$revId1 = $this->editPage( $page, '1' )->getNewRevision()->getId();
 
-		$revId2 = $this->editPage( $name, '2' )->getNewRevision()->getId();
+		$revId2 = $this->editPage( $page, '2' )->getNewRevision()->getId();
 
 		// Hide the middle revision
 		$list = RevisionDeleter::createList( 'revision',
@@ -927,7 +929,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
-			'title' => $name,
+			'title' => $titleObj->getPrefixedText(),
 			'undo' => $revId2,
 			'undoafter' => $revId1,
 		] );
@@ -940,14 +942,13 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testUndoWithSwappedRevisions() {
 		$this->markTestSkippedIfNoDiff3();
 
-		$name = 'Help:' . ucfirst( __FUNCTION__ );
-		$titleObj = Title::newFromText( $name );
+		$page = $this->getServiceContainer()->getWikiPageFactory()
+			->newFromLinkTarget( new TitleValue( NS_HELP, 'TestUndoWithSwappedRevisions' ) );
+		$this->editPage( $page, '0' );
 
-		$this->editPage( $name, '0' );
+		$revId2 = $this->editPage( $page, '2' )->getNewRevision()->getId();
 
-		$revId2 = $this->editPage( $name, '2' )->getNewRevision()->getId();
-
-		$revId1 = $this->editPage( $name, '1' )->getNewRevision()->getId();
+		$revId1 = $this->editPage( $page, '1' )->getNewRevision()->getId();
 
 		// Now monkey with the timestamp
 		$dbw = wfGetDB( DB_PRIMARY );
@@ -960,57 +961,54 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
-			'title' => $name,
+			'title' => $page->getTitle()->getPrefixedText(),
 			'undo' => $revId2,
 			'undoafter' => $revId1,
 		] );
 
-		$text = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $titleObj )->getContent()->getText();
-
-		$this->assertSame( '1', $text );
+		$page->loadPageData( WikiPage::READ_LATEST );
+		$this->assertSame( '1', $page->getContent()->getText() );
 	}
 
 	public function testUndoWithConflicts() {
-		$name = 'Help:' . ucfirst( __FUNCTION__ );
-
 		$this->expectApiErrorCode( 'undofailure' );
 
-		$this->editPage( $name, '1' );
+		$page = $this->getServiceContainer()->getWikiPageFactory()
+			->newFromLinkTarget( new TitleValue( NS_HELP, 'TestUndoWithConflicts' ) );
+		$this->editPage( $page, '1' );
 
-		$revId = $this->editPage( $name, '2' )->getNewRevision()->getId();
+		$revId = $this->editPage( $page, '2' )->getNewRevision()->getId();
 
-		$this->editPage( $name, '3' );
+		$this->editPage( $page, '3' );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
-			'title' => $name,
+			'title' => $page->getTitle()->getPrefixedText(),
 			'undo' => $revId,
 		] );
 
-		$text = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( $name ) )->getContent()
-			->getText();
-		$this->assertSame( '3', $text );
+		$page->loadPageData( WikiPage::READ_LATEST );
+		$this->assertSame( '3', $page->getContent()->getText() );
 	}
 
 	public function testReversedUndoAfter() {
 		$this->markTestSkippedIfNoDiff3();
 
-		$name = 'Help:' . ucfirst( __FUNCTION__ );
-
-		$this->editPage( $name, '0' );
-		$revId1 = $this->editPage( $name, '1' )->getNewRevision()->getId();
-		$revId2 = $this->editPage( $name, '2' )->getNewRevision()->getId();
+		$page = $this->getServiceContainer()->getWikiPageFactory()
+			->newFromLinkTarget( new TitleValue( NS_HELP, 'TestReversedUndoAfter' ) );
+		$this->editPage( $page, '0' );
+		$revId1 = $this->editPage( $page, '1' )->getNewRevision()->getId();
+		$revId2 = $this->editPage( $page, '2' )->getNewRevision()->getId();
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
-			'title' => $name,
+			'title' => $page->getTitle()->getPrefixedText(),
 			'undo' => $revId1,
 			'undoafter' => $revId2,
 		] );
 
-		$text = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( $name ) )->getContent()
-			->getText();
-		$this->assertSame( '2', $text );
+		$page->loadPageData( WikiPage::READ_LATEST );
+		$this->assertSame( '2', $page->getContent()->getText() );
 	}
 
 	public function testUndoToRevFromDifferentPage() {

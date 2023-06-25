@@ -23,7 +23,6 @@
 use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
-use MediaWiki\Title\Title;
 
 /**
  * @group API
@@ -39,17 +38,19 @@ class ApiParseTest extends ApiTestCase {
 	protected static $revIds = [];
 
 	public function addDBDataOnce() {
-		$status = $this->editPage( __CLASS__, 'Test for revdel' );
+		$page = $this->getServiceContainer()->getWikiPageFactory()
+			->newFromLinkTarget( new TitleValue( NS_MAIN, __CLASS__ ) );
+		$status = $this->editPage( $page, 'Test for revdel' );
 		self::$pageId = $status->getNewRevision()->getPageId();
 		self::$revIds['revdel'] = $status->getNewRevision()->getId();
 
-		$status = $this->editPage( __CLASS__, 'Test for suppressed' );
+		$status = $this->editPage( $page, 'Test for suppressed' );
 		self::$revIds['suppressed'] = $status->getNewRevision()->getId();
 
-		$status = $this->editPage( __CLASS__, 'Test for oldid' );
+		$status = $this->editPage( $page, 'Test for oldid' );
 		self::$revIds['oldid'] = $status->getNewRevision()->getId();
 
-		$status = $this->editPage( __CLASS__, 'Test for latest' );
+		$status = $this->editPage( $page, 'Test for latest' );
 		self::$revIds['latest'] = $status->getNewRevision()->getId();
 
 		$this->revisionDelete( self::$revIds['revdel'] );
@@ -60,8 +61,6 @@ class ApiParseTest extends ApiTestCase {
 				RevisionRecord::DELETED_RESTRICTED => 1
 			]
 		);
-
-		Title::clearCaches(); // Otherwise it has the wrong latest revision for some reason
 	}
 
 	/**

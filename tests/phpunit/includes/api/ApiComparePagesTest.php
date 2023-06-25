@@ -15,20 +15,21 @@ class ApiComparePagesTest extends ApiTestCase {
 	protected static $repl = [];
 
 	protected function addPage( $page, $text, $model = CONTENT_MODEL_WIKITEXT ) {
-		$title = Title::makeTitle( NS_MAIN, 'ApiComparePagesTest ' . $page );
+		$page = $this->getServiceContainer()->getWikiPageFactory()
+			->newFromLinkTarget( new TitleValue( NS_MAIN, 'ApiComparePagesTest ' . $page ) );
 		$content = $this->getServiceContainer()->getContentHandlerFactory()
 			->getContentHandler( $model )
 			->unserializeContent( $text );
 		$performer = static::getTestSysop()->getAuthority();
 		$status = $this->editPage(
-			$title,
+			$page,
 			$content,
 			'Test for ApiComparePagesTest: ' . $text,
 			NS_MAIN,
 			$performer
 		);
 		if ( !$status->isOK() ) {
-			$this->fail( "Failed to create $title: " . $status->getWikiText( false, false, 'en' ) );
+			$this->fail( 'Failed to create ' . $page->getTitle()->getPrefixedText() . ': ' . $status->getWikiText( false, false, 'en' ) );
 		}
 		return $status->getNewRevision()->getId();
 	}
