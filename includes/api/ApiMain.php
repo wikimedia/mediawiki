@@ -399,6 +399,7 @@ class ApiMain extends ApiBase {
 			'services' => [
 				'RepoGroup',
 				'TempFSFileFactory',
+				'TitleFactory',
 			]
 		],
 		'revisiondelete' => [
