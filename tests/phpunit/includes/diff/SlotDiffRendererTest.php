@@ -55,10 +55,20 @@ class SlotDiffRendererTest extends \MediaWikiIntegrationTestCase {
 			],
 			'type filter failure (left)' => [
 				new TextContent( 'abc' ), new WikitextContent( 'def' ), WikitextContent::class,
-				null, null, ParameterTypeException::class,
+				// Throws incompatible exception because the right content matches the filter and the
+				// left doesn't. All other kinds of mismatches should result in a parameter type exception.
+				null, null, IncompatibleDiffTypesException::class,
 			],
 			'type filter failure (right)' => [
 				new WikitextContent( 'abc' ), new TextContent( 'def' ), WikitextContent::class,
+				null, null, ParameterTypeException::class,
+			],
+			'type filter failure (left, with null)' => [
+				new TextContent( 'abc' ), null, WikitextContent::class,
+				null, null, ParameterTypeException::class,
+			],
+			'type filter failure (right, with null)' => [
+				null, new TextContent( 'def' ), WikitextContent::class,
 				null, null, ParameterTypeException::class,
 			],
 			'type filter (array syntax)' => [

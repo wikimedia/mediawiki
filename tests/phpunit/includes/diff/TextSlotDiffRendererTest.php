@@ -77,7 +77,7 @@ class TextSlotDiffRendererTest extends MediaWikiIntegrationTestCase {
 			'non-text left content' => [
 				[ '', 'testing-nontext' ],
 				[ "aaa\nbbb\nccc" ],
-				new ParameterTypeException( '$oldContent', 'TextContent|null' ),
+				new IncompatibleDiffTypesException( 'testing-nontext', 'text' ),
 			],
 			'non-text right content' => [
 				[ "aaa\nbbb\nccc" ],

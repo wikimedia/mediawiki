@@ -1301,8 +1301,12 @@ class DifferenceEngine extends ContextSource {
 		// read permissions here.
 		$slotContents = $this->getSlotContents();
 		foreach ( $this->getSlotDiffRenderers() as $role => $slotDiffRenderer ) {
-			$slotDiff = $slotDiffRenderer->getDiff( $slotContents[$role]['old'],
-				$slotContents[$role]['new'] );
+			try {
+				$slotDiff = $slotDiffRenderer->getDiff( $slotContents[$role]['old'],
+					$slotContents[$role]['new'] );
+			} catch ( IncompatibleDiffTypesException $e ) {
+				$slotDiff = $this->getSlotError( $e->getMessageObject()->parse() );
+			}
 			if ( $slotDiff && $role !== SlotRecord::MAIN ) {
 				// FIXME: ask SlotRoleHandler::getSlotNameMessage
 				$slotTitle = $role;
@@ -1339,8 +1343,12 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		$slotContents = $this->getSlotContents();
-		$slotDiff = $diffRenderers[$role]->getDiff( $slotContents[$role]['old'],
-			$slotContents[$role]['new'] );
+		try {
+			$slotDiff = $diffRenderers[$role]->getDiff( $slotContents[$role]['old'],
+				$slotContents[$role]['new'] );
+		} catch ( IncompatibleDiffTypesException $e ) {
+			$slotDiff = $this->getSlotError( $e->getMessageObject()->parse() );
+		}
 		if ( $slotDiff === '' ) {
 			return false;
 		}
@@ -1367,6 +1375,20 @@ class DifferenceEngine extends ContextSource {
 		$userLang = $this->getLanguage()->getHtmlCode();
 		return Html::rawElement( 'tr', [ 'class' => 'mw-diff-slot-header', 'lang' => $userLang ],
 			Html::element( 'th', [ 'colspan' => $columnCount ], $headerText ) );
+	}
+
+	/**
+	 * Get an error message for inclusion in a diff body (as a table row).
+	 *
+	 * @param string $errorText The text of the error
+	 * @return string
+	 */
+	protected function getSlotError( $errorText ) {
+		// The old revision is missing on oldid=<first>&diff=prev; only 2 columns in that case.
+		$columnCount = $this->mOldRevisionRecord ? 4 : 2;
+		$userLang = $this->getLanguage()->getHtmlCode();
+		return Html::rawElement( 'tr', [ 'class' => 'mw-diff-slot-error', 'lang' => $userLang ],
+			Html::element( 'td', [ 'colspan' => $columnCount ], $errorText ) );
 	}
 
 	/**
