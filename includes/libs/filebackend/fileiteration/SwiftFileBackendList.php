@@ -30,11 +30,11 @@
  * @ingroup FileBackend
  */
 abstract class SwiftFileBackendList implements Iterator {
-	/** @var array List of path or (path,stat array) entries */
-	protected $bufferIter = [];
+	/** @var string[]|array[] Current page of entries; path list or (path,stat map) list */
+	protected $iterableBuffer = [];
 
-	/** @var string|null List items *after* this path */
-	protected $bufferAfter = null;
+	/** @var string|null Continuation marker; the next page starts *after* this path */
+	protected $continueAfter = null;
 
 	/** @var int */
 	protected $pos = 0;
@@ -61,6 +61,8 @@ abstract class SwiftFileBackendList implements Iterator {
 	 * @param string $fullCont Resolved container name
 	 * @param string $dir Resolved directory relative to container
 	 * @param array $params
+	 * @note This defers I/O by not buffering the first page (useful for AppendIterator use)
+	 * @note Do not call current()/valid() without calling rewind() first
 	 */
 	public function __construct( SwiftFileBackend $backend, $fullCont, $dir, array $params ) {
 		$this->backend = $backend;
@@ -89,15 +91,23 @@ abstract class SwiftFileBackendList implements Iterator {
 	 * @inheritDoc
 	 */
 	public function next(): void {
-		// Advance to the next file in the page
-		next( $this->bufferIter );
 		++$this->pos;
-		// Check if there are no files left in this page and
+		if ( $this->iterableBuffer === null ) {
+			// Last page of entries failed to load
+			return;
+		}
+		// Advance to the next entry in the page
+		next( $this->iterableBuffer );
+		// Check if there are no entries left in this page and
 		// advance to the next page if this page was not empty.
-		if ( !$this->valid() && count( $this->bufferIter ) ) {
-			$this->bufferIter = $this->pageFromList(
-				$this->container, $this->dir, $this->bufferAfter, self::PAGE_SIZE, $this->params
-			); // updates $this->bufferAfter
+		if ( !$this->valid() && count( $this->iterableBuffer ) ) {
+			$this->iterableBuffer = $this->pageFromList(
+				$this->container,
+				$this->dir,
+				$this->continueAfter,
+				self::PAGE_SIZE,
+				$this->params
+			);
 		}
 	}
 
@@ -106,11 +116,15 @@ abstract class SwiftFileBackendList implements Iterator {
 	 */
 	public function rewind(): void {
 		$this->pos = 0;
-		$this->bufferAfter = null;
-		$this->bufferIter = $this->pageFromList(
+		$this->continueAfter = null;
+		$this->iterableBuffer = $this->pageFromList(
+			$this->container,
+			$this->dir,
 			// @phan-suppress-next-line PhanTypeMismatchArgumentPropertyReferenceReal
-			$this->container, $this->dir, $this->bufferAfter, self::PAGE_SIZE, $this->params
-		); // updates $this->bufferAfter
+			$this->continueAfter,
+			self::PAGE_SIZE,
+			$this->params
+		);
 	}
 
 	/**
@@ -118,19 +132,20 @@ abstract class SwiftFileBackendList implements Iterator {
 	 * @return bool
 	 */
 	public function valid(): bool {
-		if ( $this->bufferIter === null ) {
-			return false; // some failure?
-		} else {
-			return ( current( $this->bufferIter ) !== false ); // no paths can have this value
+		if ( $this->iterableBuffer === null ) {
+			// Last page of entries failed to load
+			return false;
 		}
+		// Note that entries (paths/tuples) are never boolean
+		return ( current( $this->iterableBuffer ) !== false );
 	}
 
 	/**
-	 * Get the given list portion (page)
+	 * Get the next page of entries
 	 *
 	 * @param string $container Resolved container name
 	 * @param string $dir Resolved path relative to container
-	 * @param string &$after @phan-output-reference
+	 * @param string &$after @phan-output-reference Continuation marker
 	 * @param int $limit
 	 * @param array $params
 	 * @return Traversable|array
