@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"1233qwer1234qwer4",
+			"DiGro",
 			"Edoderoo",
 			"Elderson",
 			"Elroy",
@@ -116,6 +117,9 @@
 	"apihelp-edit-param-undoafter": "Maak alle revisies vanaf $1undo tot deze ongedaan. Indien niet ingesteld wordt slechts één revisie ongedaan gemaakt.",
 	"apihelp-edit-param-redirect": "Doorverwijzingen automatisch oplossen.",
 	"apihelp-edit-param-contentmodel": "Inhoudsmodel van de nieuwe inhoud.",
+	"apihelp-edit-param-returnto": "Pagina titel. Als het opslaan van de bewerking een tijdelijk account heeft gemaakt, kan de API reageren met een URL die de client moet bezoeken om het inloggen te voltooien. Als deze parameter wordt opgegeven, wordt de URL omgeleid naar de opgegeven pagina, in plaats van naar de pagina die is bewerkt.",
+	"apihelp-edit-param-returntoquery": "URL-queryparameters (met leidende <kbd>?</kbd> ). Als het opslaan van de bewerking een tijdelijk account heeft gemaakt, kan de API reageren met een URL die de client moet bezoeken om het inloggen te voltooien. Als deze parameter wordt opgegeven, wordt de URL omgeleid naar een pagina met de opgegeven queryparameters.",
+	"apihelp-edit-param-returntoanchor": "URL-fragment (met voorloop <kbd>#</kbd>). Als het opslaan van de bewerking een tijdelijk account heeft gemaakt, kan de API reageren met een URL die de client moet bezoeken om het inloggen te voltooien. Als deze parameter wordt opgegeven, wordt de URL omgeleid naar een pagina met het gegeven fragment.",
 	"apihelp-edit-param-token": "De token moet altijd als de laatste parameter worden verzonden, of in ieder geval na de $1text parameter.",
 	"apihelp-edit-example-edit": "Een pagina bewerken.",
 	"apihelp-edit-example-prepend": "Voeg <kbd>_&#95;NOTOC_&#95;</kbd> toe aan het begin van een pagina.",
