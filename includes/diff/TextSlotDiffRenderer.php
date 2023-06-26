@@ -184,23 +184,23 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 
 		$showDiffToggleSwitch = $context->getConfig()->get( MainConfigNames::ShowDiffToggleSwitch );
 
-		if ( $showDiffToggleSwitch ) {
-			// wikidiff2 inline type gets a legend to explain the highlighting colours and show an inline toggle
-			if ( $this->engine === self::ENGINE_WIKIDIFF2 ||
-				$this->engine === self::ENGINE_WIKIDIFF2_INLINE ) {
-				$ins = Html::element( 'span',
-					[ 'class' => 'mw-diff-inline-legend-ins' ],
-					$context->msg( 'diff-inline-tooltip-ins' )->plain()
-				);
-				$del = Html::element( 'span',
-					[ 'class' => 'mw-diff-inline-legend-del' ],
-					$context->msg( 'diff-inline-tooltip-del' )->plain()
-				);
-				$hideDiffClass = $this->engine === self::ENGINE_WIKIDIFF2 ? 'mw-diff-element-hidden' : '';
-				$legend = Html::rawElement( 'div',
-					[ 'class' => 'mw-diff-inline-legend ' . $hideDiffClass ], "$ins $del"
-				);
+		// wikidiff2 inline type gets a legend to explain the highlighting colours and show an inline toggle
+		if ( $this->engine === self::ENGINE_WIKIDIFF2 ||
+			$this->engine === self::ENGINE_WIKIDIFF2_INLINE ) {
+			$ins = Html::element( 'span',
+				[ 'class' => 'mw-diff-inline-legend-ins' ],
+				$context->msg( 'diff-inline-tooltip-ins' )->plain()
+			);
+			$del = Html::element( 'span',
+				[ 'class' => 'mw-diff-inline-legend-del' ],
+				$context->msg( 'diff-inline-tooltip-del' )->plain()
+			);
+			$hideDiffClass = $this->engine === self::ENGINE_WIKIDIFF2 ? 'mw-diff-element-hidden' : '';
+			$legend = Html::rawElement( 'div',
+				[ 'class' => 'mw-diff-inline-legend ' . $hideDiffClass ], "$ins $del"
+			);
 
+			if ( $showDiffToggleSwitch ) {
 				$values = $context->getRequest()->getValues();
 				$isInlineDiffType = isset( $values['diff-type'] ) && $values['diff-type'] === 'inline';
 				unset( $values[ 'diff-type' ] );
