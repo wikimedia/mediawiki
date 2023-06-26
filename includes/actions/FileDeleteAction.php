@@ -63,6 +63,11 @@ class FileDeleteAction extends DeleteAction {
 		}
 	}
 
+	protected function getPageTitle() {
+		$title = $this->getTitle();
+		return $this->msg( 'filedelete', $title->getText() );
+	}
+
 	protected function tempDelete() {
 		$file = $this->file;
 		/** @var LocalFile $file */'@phan-var LocalFile $file';
@@ -73,10 +78,7 @@ class FileDeleteAction extends DeleteAction {
 		$context = $this->getContext();
 		$title = $this->getTitle();
 
-		$this->runExecuteChecks();
-
 		$outputPage = $context->getOutput();
-		$this->prepareOutput( $context->msg( 'filedelete', $title->getText() ) );
 
 		$request = $context->getRequest();
 
@@ -153,7 +155,10 @@ class FileDeleteAction extends DeleteAction {
 	private function showConfirm() {
 		$this->prepareOutputForForm();
 		$this->showFormWarnings();
-		$this->showForm( $this->getDefaultReason() );
+		$form = $this->getForm();
+		if ( $form->show() ) {
+			$this->onSuccess();
+		}
 		$this->showEditReasonsLinks();
 		$this->showLogEntries();
 	}
@@ -203,15 +208,12 @@ class FileDeleteAction extends DeleteAction {
 		return $this->getTitle()->getLocalURL( $q );
 	}
 
-	/**
-	 * @inheritDoc
-	 */
-	protected function runExecuteChecks(): void {
-		parent::runExecuteChecks();
-
+	public function getRestriction() {
 		if ( $this->getContext()->getConfig()->get( MainConfigNames::UploadMaintenance ) ) {
 			throw new ErrorPageError( 'filedelete-maintenance-title', 'filedelete-maintenance' );
 		}
+
+		return null;
 	}
 
 	/**
@@ -230,13 +232,5 @@ class FileDeleteAction extends DeleteAction {
 			self::MSG_EDIT_REASONS => 'filedelete-edit-reasonlist',
 			self::MSG_EDIT_REASONS_SUPPRESS => 'filedelete-edit-reasonlist-suppress',
 		];
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	protected function getDefaultReason(): string {
-		// TODO Should we autogenerate something for files?
-		return $this->getRequest()->getText( 'wpReason' );
 	}
 }
