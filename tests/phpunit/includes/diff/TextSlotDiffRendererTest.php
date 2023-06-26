@@ -142,7 +142,7 @@ class TextSlotDiffRendererTest extends MediaWikiIntegrationTestCase {
 				TextSlotDiffRenderer::ENGINE_WIKIDIFF2,
 				[
 					TextSlotDiffRenderer::INLINE_LEGEND_KEY =>
-						'class="mw-diff-inline-legend mw-diff-element-hidden"',
+						'class="mw-diff-inline-legend oo-ui-element-hidden"',
 					TextSlotDiffRenderer::INLINE_SWITCHER_KEY => 'mw-diffPage-inlineToggle-container'
 				]
 			],

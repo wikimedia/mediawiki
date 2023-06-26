@@ -195,7 +195,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 				[ 'class' => 'mw-diff-inline-legend-del' ],
 				$context->msg( 'diff-inline-tooltip-del' )->plain()
 			);
-			$hideDiffClass = $this->engine === self::ENGINE_WIKIDIFF2 ? 'mw-diff-element-hidden' : '';
+			$hideDiffClass = $this->engine === self::ENGINE_WIKIDIFF2 ? 'oo-ui-element-hidden' : '';
 			$legend = Html::rawElement( 'div',
 				[ 'class' => 'mw-diff-inline-legend ' . $hideDiffClass ], "$ins $del"
 			);

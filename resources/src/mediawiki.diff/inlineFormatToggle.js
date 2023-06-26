@@ -31,13 +31,13 @@
 	 * @param {boolean} isInline
 	 */
 	function onDiffTypeInlineChange( isInline ) {
-		$inlineLegendContainer.toggleClass( 'mw-diff-element-hidden', !isInline );
+		$inlineLegendContainer.toggleClass( 'oo-ui-element-hidden', !isInline );
 		if ( typeof $wikitextDiffBodyInline !== 'undefined' ) {
-			$wikitextDiffBodyInline.toggleClass( 'mw-diff-element-hidden', !isInline );
+			$wikitextDiffBodyInline.toggleClass( 'oo-ui-element-hidden', !isInline );
 		}
 
 		if ( typeof $wikitextDiffBodyTable !== 'undefined' ) {
-			$wikitextDiffBodyTable.toggleClass( 'mw-diff-element-hidden', isInline );
+			$wikitextDiffBodyTable.toggleClass( 'oo-ui-element-hidden', isInline );
 		}
 
 		if ( ( isInline && typeof $wikitextDiffBodyInline === 'undefined' ) ||
@@ -53,9 +53,9 @@
 	 */
 	function onDiffTypeInlineDisabled( disabled ) {
 		if ( disabled ) {
-			$inlineLegendContainer.addClass( 'mw-diff-element-hidden' );
+			$inlineLegendContainer.addClass( 'oo-ui-element-hidden' );
 		} else {
-			$inlineLegendContainer.toggleClass( 'mw-diff-element-hidden', !inlineToggleSwitch.getValue() );
+			$inlineLegendContainer.toggleClass( 'oo-ui-element-hidden', !inlineToggleSwitch.getValue() );
 		}
 	}
 
