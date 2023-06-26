@@ -7786,3 +7786,9 @@ config-schema:
         description: |-
             List of skins to not show the Special:Contribute page
             @since 1.40
+    ShowDiffToggleSwitch:
+        default: false
+        type: boolean
+        description: |
+            Specifies if users should see the inline switch in diff pages
+            This is a temporary feature flag

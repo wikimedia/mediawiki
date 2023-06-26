@@ -87,13 +87,19 @@
 	background: @diffDeleted;
 }
 
+.mw-diff-element-hidden {
+	display: none;
+}
+
 .mw-diff-table-prefix {
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-end;
 	align-items: center;
 	margin: 1em 0;
 
 	.mw-diff-inline-legend {
+		margin-right: auto;
+
 		.mw-diff-inline-legend-ins,
 		.mw-diff-inline-legend-del {
 			display: inline-block;

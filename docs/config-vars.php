@@ -4386,3 +4386,9 @@ $wgSkinsPreferred = null;
  * @see MediaWiki\MainConfigSchema::SpecialContributeSkinsEnabled
  */
 $wgSpecialContributeSkinsEnabled = null;
+
+/**
+ * Config variable stub for the ShowDiffToggleSwitch setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::ShowDiffToggleSwitch
+ */
+$wgShowDiffToggleSwitch = null;

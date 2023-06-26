@@ -20,6 +20,7 @@
  * @file
  * @ingroup DifferenceEngine
  */
+use MediaWiki\Title\Title;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -54,9 +55,10 @@ abstract class SlotDiffRenderer {
 	 * Get the content to add above the main diff table.
 	 *
 	 * @param IContextSource $context
+	 * @param Title $newTitle
 	 * @return string The full HTML for the prefix area, with its contents.
 	 */
-	public function getTablePrefix( IContextSource $context ): string {
+	public function getTablePrefix( IContextSource $context, Title $newTitle ): string {
 		return '';
 	}
 

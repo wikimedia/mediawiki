@@ -12492,6 +12492,15 @@ class MainConfigSchema {
 		'type' => 'list',
 	];
 
+	/**
+	 * Specifies if users should see the inline switch in diff pages
+	 * This is a temporary feature flag
+	 *
+	 */
+	public const ShowDiffToggleSwitch = [
+		'default' => false,
+		'type' => 'boolean',
+	];
 	// endregion -- End Miscellaneous
 
 }

@@ -1272,6 +1272,8 @@
 	"diff-paragraph-moved-toold": "Explaining title tag for the indicating symbols when a paragraph was moved hinting to the old location in the Diff view.",
 	"diff-inline-tooltip-ins": "Title for inserted content in a diff, shown as a tooltip on the content and also in a legend at the top of the diff.",
 	"diff-inline-tooltip-del": "Title for deleted content in a diff, shown as a tooltip on the content and also in a legend at the top of the diff.",
+	"diff-inline-format-label": "Used as label for inline diff format",
+	"diff-table-format-label": "Used as label for table diff format",
 	"difference-missing-revision": "Text displayed when the requested revision does not exist using a diff link.\n\nExample: [{{canonicalurl:Project:News|diff=426850&oldid=99999999}} Diff with invalid revision#]\n\nParameters:\n* $1 - the list of missing revision IDs\n* $2 - the number of items in $1 (one or two)",
 	"difference-bad-old-revision": "Text displayed when the old (left-hand side) revision of a diff cannot be loaded due to database corruption.",
 	"difference-bad-new-revision": "Text displayed when the new (right-hand side) revision of a diff cannot be loaded due to database corruption.",

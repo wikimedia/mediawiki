@@ -1021,6 +1021,8 @@
 	"diff-paragraph-moved-toold": "Paragraph was moved. Click to jump to old location.",
 	"diff-inline-tooltip-ins": "Content added",
 	"diff-inline-tooltip-del": "Content deleted",
+	"diff-inline-format-label": "Inline",
+	"diff-table-format-label": "Table",
 	"difference-missing-revision": "{{PLURAL:$2|One revision|$2 revisions}} of this difference ($1) {{PLURAL:$2|was|were}} not found.\n\nThis is usually caused by following an outdated diff link to a page that has been deleted.\nDetails can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
 	"difference-bad-old-revision": "The content of the old revision is missing or corrupted.",
 	"difference-bad-new-revision": "The content of the new revision is missing or corrupted.",
