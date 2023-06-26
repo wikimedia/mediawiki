@@ -1602,6 +1602,17 @@
 		/**
 		 * Get the state of a module.
 		 *
+		 * Possible states are:
+		 * - `registered`: the module is available for loading but no caller requested it yet.
+		 * - `loading`, `loaded`, `executing`: the module was required through mw.loader (either
+		 *    directly or as dependency of another module), but isn't fully loaded yet.
+		 * - `ready`: the module was required through mw.loader and has been fully loaded.
+		 * - `error`: the module was required through mw.loader, but loading it has failed
+		 *    (most likely because the module or one of its dependencies produced an error during
+		 *    execution).
+		 * - `missing`: the module was registered client-side and requested, but the server
+		 *    denied knowledge of the module's existence.
+		 *
 		 * @param {string} module Name of module
 		 * @return {string|null} The state, or null if the module (or its state) is not
 		 *  in the registry.
