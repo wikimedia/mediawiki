@@ -29,6 +29,7 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
@@ -1115,10 +1116,19 @@ class DifferenceEngine extends ContextSource {
 					$wikiPage = $this->wikiPageFactory->newFromTitle( $this->mNewPage );
 				}
 
-				$parserOutput = $this->getParserOutput( $wikiPage, $this->mNewRevisionRecord );
+				$parserOptions = $wikiPage->makeParserOptions( $this->getContext() );
+				$parserOptions->setRenderReason( 'diff-page' );
 
-				# WikiPage::getParserOutput() should not return false, but just in case
-				if ( $parserOutput ) {
+				$parserOutputAccess = MediaWikiServices::getInstance()->getParserOutputAccess();
+				$status = $parserOutputAccess->getParserOutput(
+					$wikiPage,
+					$parserOptions,
+					$this->mNewRevisionRecord,
+					// we already checked
+					ParserOutputAccess::OPT_NO_AUDIENCE_CHECK
+				);
+				if ( $status->isOK() ) {
+					$parserOutput = $status->getValue();
 					// Allow extensions to change parser output here
 					if ( $this->hookRunner->onDifferenceEngineRenderRevisionAddParserOutput(
 						$this, $out, $parserOutput, $wikiPage )
@@ -1132,6 +1142,14 @@ class DifferenceEngine extends ContextSource {
 							'absoluteURLs' => $this->slotDiffOptions['expand-url'] ?? false
 						] );
 					}
+				} else {
+					$out->addHTML(
+						Html::errorBox(
+							$out->parseAsInterface(
+								$status->getWikiText( false, false, $this->getLanguage() )
+							)
+						)
+					);
 				}
 			}
 		}
@@ -1141,25 +1159,6 @@ class DifferenceEngine extends ContextSource {
 			# Add redundant patrol link on bottom...
 			$out->addHTML( $this->markPatrolledLink() );
 		}
-	}
-
-	/**
-	 * @param WikiPage $page
-	 * @param RevisionRecord $revRecord
-	 *
-	 * @return ParserOutput|false False if the revision was not found
-	 */
-	protected function getParserOutput( WikiPage $page, RevisionRecord $revRecord ) {
-		if ( !$revRecord->getId() ) {
-			// WikiPage::getParserOutput wants a revision ID. Passing 0 will incorrectly show
-			// the current revision, so fail instead. If need be, WikiPage::getParserOutput
-			// could be made to accept a RevisionRecord instead of the id.
-			return false;
-		}
-
-		$parserOptions = $page->makeParserOptions( $this->getContext() );
-		$parserOptions->setRenderReason( 'diff-page' );
-		return $page->getParserOutput( $parserOptions, $revRecord->getId() );
 	}
 
 	/**
