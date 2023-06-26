@@ -73,6 +73,10 @@ abstract class SchemaMaintenance extends Maintenance {
 		);
 	}
 
+	public function canExecuteWithoutLocalSettings(): bool {
+		return true;
+	}
+
 	public function execute() {
 		global $IP;
 
