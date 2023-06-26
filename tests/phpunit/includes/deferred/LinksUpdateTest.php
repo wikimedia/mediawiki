@@ -311,8 +311,6 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		$this->runAllRelatedJobs();
 
 		$this->assertRecentChangeByCategorization(
-			$title,
-			$wikiPage->getParserOutput( ParserOptions::newFromAnon() ),
 			Title::newFromText( 'Category:Foo' ),
 			[ [ 'Foo', '[[:Testing]] added to category' ] ]
 		);
@@ -325,8 +323,6 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		$this->runAllRelatedJobs();
 
 		$this->assertRecentChangeByCategorization(
-			$title,
-			$wikiPage->getParserOutput( ParserOptions::newFromAnon() ),
 			Title::newFromText( 'Category:Foo' ),
 			[
 				[ 'Foo', '[[:Testing]] added to category' ],
@@ -335,8 +331,6 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		);
 
 		$this->assertRecentChangeByCategorization(
-			$title,
-			$wikiPage->getParserOutput( ParserOptions::newFromAnon() ),
 			Title::newFromText( 'Category:Bar' ),
 			[
 				[ 'Bar', '[[:Testing]] added to category' ],
@@ -367,8 +361,6 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		$this->runAllRelatedJobs();
 
 		$this->assertRecentChangeByCategorization(
-			$templateTitle,
-			$templatePage->getParserOutput( ParserOptions::newFromAnon() ),
 			Title::newFromText( 'Baz' ),
 			[]
 		);
@@ -381,8 +373,6 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		$this->runAllRelatedJobs();
 
 		$this->assertRecentChangeByCategorization(
-			$templateTitle,
-			$templatePage->getParserOutput( ParserOptions::newFromAnon() ),
 			Title::newFromText( 'Baz' ),
 			[ [
 				'Baz',
@@ -780,7 +770,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	}
 
 	protected function assertRecentChangeByCategorization(
-		Title $pageTitle, ParserOutput $parserOutput, Title $categoryTitle, $expectedRows
+		Title $categoryTitle, $expectedRows
 	) {
 		$this->assertSelect(
 			[ 'recentchanges', 'comment' ],
