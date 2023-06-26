@@ -4,7 +4,8 @@
 ( function () {
 
 	var parsedMessages = require( './mediawiki.action.edit.preview.parsedMessages.json' ),
-		api = new mw.Api();
+		api = new mw.Api(),
+		$diffNode;
 
 	/**
 	 * Parse preview response
@@ -98,6 +99,7 @@
 					.append( $( '<strong>' ).text( mw.msg( 'previewerrortext' ) ) )
 					.append( $errorMsg );
 			$wikiPreview.hide().before( $errorBox );
+			$diffNode.hide();
 		} );
 	}
 
@@ -158,41 +160,40 @@
 			var alignStart, rtlDir;
 			rtlDir = $( '#wpTextbox1' ).attr( 'dir' ) === 'rtl';
 			alignStart = rtlDir ? 'right' : 'left';
-			$( '#wikiPreview' ).after(
-				$( '<div>' )
-					.hide()
-					.attr( 'id', 'wikiDiff' )
-					// The following classes are used here:
-					// * diff-editfont-monospace
-					// * diff-editfont-sans-serif
-					// * diff-editfont-serif
-					.addClass( 'diff-editfont-' + mw.user.options.get( 'editfont' ) )
-					// The following classes are used here:
-					// * diff-contentalign-left
-					// * diff-contentalign-right
-					.addClass( 'diff-contentalign-' + alignStart )
-					.append(
-						$( '<table>' ).addClass( 'diff' ).append(
-							$( '<col>' ).addClass( 'diff-marker' ),
-							$( '<col>' ).addClass( 'diff-content' ),
-							$( '<col>' ).addClass( 'diff-marker' ),
-							$( '<col>' ).addClass( 'diff-content' ),
-							$( '<thead>' ).append(
-								$( '<tr>' ).addClass( 'diff-title' ).append(
-									$( '<td>' )
-										.attr( 'colspan', 2 )
-										.addClass( 'diff-otitle diff-side-deleted' )
-										.text( mw.msg( 'currentrev' ) ),
-									$( '<td>' )
-										.attr( 'colspan', 2 )
-										.addClass( 'diff-ntitle diff-side-added' )
-										.text( mw.msg( 'yourtext' ) )
-								)
-							),
-							$( '<tbody>' )
-						)
+			$diffNode = $( '<div>' )
+				.hide()
+				.attr( 'id', 'wikiDiff' )
+				// The following classes are used here:
+				// * diff-editfont-monospace
+				// * diff-editfont-sans-serif
+				// * diff-editfont-serif
+				.addClass( 'diff-editfont-' + mw.user.options.get( 'editfont' ) )
+				// The following classes are used here:
+				// * diff-contentalign-left
+				// * diff-contentalign-right
+				.addClass( 'diff-contentalign-' + alignStart )
+				.append(
+					$( '<table>' ).addClass( 'diff' ).append(
+						$( '<col>' ).addClass( 'diff-marker' ),
+						$( '<col>' ).addClass( 'diff-content' ),
+						$( '<col>' ).addClass( 'diff-marker' ),
+						$( '<col>' ).addClass( 'diff-content' ),
+						$( '<thead>' ).append(
+							$( '<tr>' ).addClass( 'diff-title' ).append(
+								$( '<td>' )
+									.attr( 'colspan', 2 )
+									.addClass( 'diff-otitle diff-side-deleted' )
+									.text( mw.msg( 'currentrev' ) ),
+								$( '<td>' )
+									.attr( 'colspan', 2 )
+									.addClass( 'diff-ntitle diff-side-added' )
+									.text( mw.msg( 'yourtext' ) )
+							)
+						),
+						$( '<tbody>' )
 					)
-			);
+				);
+			$( '#wikiPreview' ).after( $diffNode );
 		}
 
 		// This should be moved down to '#editform', but is kept on the body for now
