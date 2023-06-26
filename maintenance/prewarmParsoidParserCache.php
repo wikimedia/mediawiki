@@ -38,6 +38,7 @@ class PrewarmParsoidParserCache extends Maintenance {
 			false
 		);
 		$this->addOption( 'start-from', 'Start from this page ID', false, true );
+		$this->addOption( 'namespace', 'Filter pages in this namespace', false, true );
 		$this->setBatchSize( 100 );
 	}
 
@@ -78,6 +79,18 @@ class PrewarmParsoidParserCache extends Maintenance {
 		);
 	}
 
+	/*
+	 * NamespaceInfo::getCanonicalIndex() requires the namespace to be in lowercase,
+	 * so let's do some normalization and return its canonical index.
+	 *
+	 * @param string $namespace The namespace string from the command line
+	 * @return int The canonical index of the namespace
+	 */
+	private function normalizeNamespace( string $namespace ): int {
+		return MediaWikiServices::getInstance()->getNamespaceInfo()
+			->getCanonicalIndex( strtolower( $namespace ) );
+	}
+
 	/**
 	 * Populate parser cache with parsoid output.
 	 *
@@ -86,6 +99,14 @@ class PrewarmParsoidParserCache extends Maintenance {
 	public function execute() {
 		$force = $this->getOption( 'force' );
 		$startFrom = $this->getOption( 'start-from' );
+
+		// We need the namespace index instead of the name to perform the query
+		// on, because that's what the page table stores (in the page_namespace field).
+		$namespaceIndex = null;
+		$namespace = $this->getOption( 'namespace' );
+		if ( $namespace !== null ) {
+			$namespaceIndex = $this->normalizeNamespace( $namespace );
+		}
 
 		if ( $force !== null ) {
 			// If --force is supplied, for a parse for supported pages or supported
@@ -97,7 +118,11 @@ class PrewarmParsoidParserCache extends Maintenance {
 
 		$this->output( "\nWarming parsoid parser cache with Parsoid output...\n\n" );
 		while ( true ) {
-			$query = $this->getQueryBuilder()->where( 'page_id >= ' . $startFrom )
+			$query = $this->getQueryBuilder();
+			if ( $namespaceIndex !== null ) {
+				$query = $query->where( [ 'page_namespace' => $namespaceIndex ] );
+			}
+			$query = $query->where( 'page_id >= ' . $startFrom )
 				->limit( $this->getBatchSize() );
 
 			$result = $query->fetchResultSet();
