@@ -935,15 +935,32 @@ class DifferenceEngine extends ContextSource {
 				$out->enableOOUI();
 			}
 
-			// Add table prefixes.
-			foreach ( $this->getSlotDiffRenderers() as $slotDiffRenderer ) {
-				$out->addHTML( $slotDiffRenderer->getTablePrefix( $this->getContext(), $this->mNewPage ) );
-			}
-
+			$this->showTablePrefixes();
 			$this->showDiff( $oldHeader, $newHeader, $notice );
 			if ( !$diffOnly ) {
 				$this->renderNewRevision();
 			}
+		}
+	}
+
+	/**
+	 * Add table prefixes
+	 */
+	private function showTablePrefixes() {
+		$parts = [];
+		foreach ( $this->getSlotDiffRenderers() as $slotDiffRenderer ) {
+			$parts += $slotDiffRenderer->getTablePrefix( $this->getContext(), $this->mNewPage );
+		}
+		ksort( $parts );
+		if ( count( array_filter( $parts ) ) > 0 ) {
+			$language = $this->getLanguage();
+			$attrs = [
+				'class' => 'mw-diff-table-prefix',
+				'dir' => $language->getDir(),
+				'lang' => $language->getCode(),
+			];
+			$this->getOutput()->addHTML(
+				Html::rawElement( 'div', $attrs, implode( '', $parts ) ) );
 		}
 	}
 

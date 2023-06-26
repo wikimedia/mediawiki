@@ -178,7 +178,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	/**
 	 * @inheritDoc
 	 */
-	public function getTablePrefix( IContextSource $context, Title $newTitle ): string {
+	public function getTablePrefix( IContextSource $context, Title $newTitle ): array {
 		$legend = null;
 		$inlineSwitcher = null;
 
@@ -233,16 +233,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 		if ( count( $parts ) > 1 && $parts[self::INLINE_LEGEND_KEY] === null ) {
 			$parts[self::INLINE_LEGEND_KEY] = Html::element( 'div' );
 		}
-		ksort( $parts );
-		if ( count( array_filter( $parts ) ) > 0 ) {
-			$attrs = [
-				'class' => 'mw-diff-table-prefix',
-				'dir' => $this->language->getDir(),
-				'lang' => $this->language->getCode(),
-			];
-			return Html::rawElement( 'div', $attrs, implode( '', $parts ) );
-		}
-		return '';
+		return $parts;
 	}
 
 	/**

@@ -54,12 +54,14 @@ abstract class SlotDiffRenderer {
 	/**
 	 * Get the content to add above the main diff table.
 	 *
+	 * @since 1.41
 	 * @param IContextSource $context
 	 * @param Title $newTitle
-	 * @return string The full HTML for the prefix area, with its contents.
+	 * @return (string|null)[] An array of HTML fragments to assemble into the prefix
+	 *   area. They will be deduplicated and sorted by key.
 	 */
-	public function getTablePrefix( IContextSource $context, Title $newTitle ): string {
-		return '';
+	public function getTablePrefix( IContextSource $context, Title $newTitle ): array {
+		return [];
 	}
 
 	/**
