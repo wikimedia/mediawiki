@@ -522,31 +522,28 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotSame( $pageId, $old->getId() );
 
 		// ensure links tables where updated
-		$this->assertSelect(
-			'pagelinks',
-			[ 'pl_namespace', 'pl_title', 'pl_from_namespace' ],
-			[ 'pl_from' => $pageId ],
-			[
+		$this->newSelectQueryBuilder()
+			->select( [ 'pl_namespace', 'pl_title', 'pl_from_namespace' ] )
+			->from( 'pagelinks' )
+			->where( [ 'pl_from' => $pageId ] )
+			->assertResultSet( [
 				[ NS_MAIN, 'Test', NS_PROJECT ]
-			]
-		);
+			] );
 		$targetId = MediaWikiServices::getInstance()->getLinkTargetLookup()->getLinkTargetId( $title );
-		$this->assertSelect(
-			'templatelinks',
-			[ 'tl_target_id', 'tl_from_namespace' ],
-			[ 'tl_from' => $pageId ],
-			[
+		$this->newSelectQueryBuilder()
+			->select( [ 'tl_target_id', 'tl_from_namespace' ] )
+			->from( 'templatelinks' )
+			->where( [ 'tl_from' => $pageId ] )
+			->assertResultSet( [
 				[ $targetId, NS_PROJECT ]
-			]
-		);
-		$this->assertSelect(
-			'imagelinks',
-			[ 'il_to', 'il_from_namespace' ],
-			[ 'il_from' => $pageId ],
-			[
+			] );
+		$this->newSelectQueryBuilder()
+			->select( [ 'il_to', 'il_from_namespace' ] )
+			->from( 'imagelinks' )
+			->where( [ 'il_from' => $pageId ] )
+			->assertResultSet( [
 				[ 'Existent.jpg', NS_PROJECT ]
-			]
-		);
+			] );
 	}
 
 }

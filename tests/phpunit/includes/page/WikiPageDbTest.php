@@ -321,12 +321,11 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$id = $page->getId();
 
 		// Test page creation logging
-		$this->assertSelect(
-			'logging',
-			[ 'log_type', 'log_action' ],
-			[ 'log_page' => $id ],
-			[ [ 'create', 'create' ] ]
-		);
+		$this->newSelectQueryBuilder()
+			->select( [ 'log_type', 'log_action' ] )
+			->from( 'logging' )
+			->where( [ 'log_page' => $id ] )
+			->assertResultSet( [ [ 'create', 'create' ] ] );
 
 		$this->assertTrue( $title->getArticleID() > 0, "Title object should have new page id" );
 		$this->assertTrue( $id > 0, "WikiPage should have new page id" );
@@ -1478,12 +1477,11 @@ more stuff
 	}
 
 	private function assertRedirectTableCountForPageId( $pageId, $expectedRows ) {
-		$this->assertSelect(
-			'redirect',
-			[ 'rd_namespace', 'rd_title' ],
-			[ 'rd_from' => $pageId ],
-			$expectedRows
-		);
+		$this->newSelectQueryBuilder()
+			->select( [ 'rd_namespace', 'rd_title' ] )
+			->from( 'redirect' )
+			->where( [ 'rd_from' => $pageId ] )
+			->assertResultSet( $expectedRows );
 	}
 
 	/**
@@ -1498,18 +1496,17 @@ more stuff
 		$reflectedTitle->mInterwiki = 'eninter';
 		$page->insertRedirectEntry( $targetTitle, null );
 
-		$this->assertSelect(
-			'redirect',
-			[ 'rd_from', 'rd_namespace', 'rd_title', 'rd_fragment', 'rd_interwiki' ],
-			[ 'rd_from' => $page->getId() ],
-			[ [
+		$this->newSelectQueryBuilder()
+			->select( [ 'rd_from', 'rd_namespace', 'rd_title', 'rd_fragment', 'rd_interwiki' ] )
+			->from( 'redirect' )
+			->where( [ 'rd_from' => $page->getId() ] )
+			->assertResultSet( [ [
 				strval( $page->getId() ),
 				strval( $targetTitle->getNamespace() ),
 				strval( $targetTitle->getDBkey() ),
 				strval( $targetTitle->getFragment() ),
 				strval( $targetTitle->getInterwiki() ),
-			] ]
-		);
+			] ] );
 	}
 
 	/**
@@ -1524,18 +1521,17 @@ more stuff
 		$reflectedTitle->mInterwiki = 'eninter';
 		$page->insertRedirectEntry( $targetTitle, $page->getLatest() );
 
-		$this->assertSelect(
-			'redirect',
-			[ 'rd_from', 'rd_namespace', 'rd_title', 'rd_fragment', 'rd_interwiki' ],
-			[ 'rd_from' => $page->getId() ],
-			[ [
+		$this->newSelectQueryBuilder()
+			->select( [ 'rd_from', 'rd_namespace', 'rd_title', 'rd_fragment', 'rd_interwiki' ] )
+			->from( 'redirect' )
+			->where( [ 'rd_from' => $page->getId() ] )
+			->assertResultSet( [ [
 				strval( $page->getId() ),
 				strval( $targetTitle->getNamespace() ),
 				strval( $targetTitle->getDBkey() ),
 				strval( $targetTitle->getFragment() ),
 				strval( $targetTitle->getInterwiki() ),
-			] ]
-		);
+			] ] );
 	}
 
 	/**
@@ -1655,26 +1651,25 @@ more stuff
 		$condition = [ 'page_id' => $result ];
 
 		// Check the default fields have been filled
-		$this->assertSelect(
-			'page',
-			[
+		$this->newSelectQueryBuilder()
+			->select( [
 				'page_namespace',
 				'page_title',
 				'page_is_redirect',
 				'page_is_new',
 				'page_latest',
 				'page_len',
-			],
-			$condition,
-			[ [
+			] )
+			->from( 'page' )
+			->where( $condition )
+			->assertResultSet( [ [
 				'0',
 				__METHOD__,
 				'0',
 				'1',
 				'0',
 				'0',
-			] ]
-		);
+			] ] );
 
 		// Check the page_random field has been filled
 		$pageRandom = $this->db->selectField( 'page', 'page_random', $condition );
@@ -1711,12 +1706,11 @@ more stuff
 		$condition = [ 'page_id' => $result ];
 
 		// Check there is actually a row in the db
-		$this->assertSelect(
-			'page',
-			[ 'page_title' ],
-			$condition,
-			[ [ __METHOD__ ] ]
-		);
+		$this->newSelectQueryBuilder()
+			->select( 'page_title' )
+			->from( 'page' )
+			->where( $condition )
+			->assertResultSet( [ [ __METHOD__ ] ] );
 	}
 
 	public static function provideTestDoUpdateRestrictions_setBasicRestrictions() {
@@ -1901,12 +1895,11 @@ more stuff
 		);
 		$this->assertStatusGood( $status );
 		$this->assertIsInt( $status->getValue() );
-		$this->assertSelect(
-			'logging',
-			[ 'log_type', 'log_action' ],
-			[ 'log_id' => $status->getValue() ],
-			[ [ 'protect', 'protect' ] ]
-		);
+		$this->newSelectQueryBuilder()
+			->select( [ 'log_type', 'log_action' ] )
+			->from( 'logging' )
+			->where( [ 'log_id' => $status->getValue() ] )
+			->assertResultSet( [ [ 'protect', 'protect' ] ] );
 
 		// Modify the protection
 		$status = $page->doUpdateRestrictions(
@@ -1919,12 +1912,11 @@ more stuff
 		);
 		$this->assertStatusGood( $status );
 		$this->assertIsInt( $status->getValue() );
-		$this->assertSelect(
-			'logging',
-			[ 'log_type', 'log_action' ],
-			[ 'log_id' => $status->getValue() ],
-			[ [ 'protect', 'modify' ] ]
-		);
+		$this->newSelectQueryBuilder()
+			->select( [ 'log_type', 'log_action' ] )
+			->from( 'logging' )
+			->where( [ 'log_id' => $status->getValue() ] )
+			->assertResultSet( [ [ 'protect', 'modify' ] ] );
 
 		// Remove the protection
 		$status = $page->doUpdateRestrictions(
@@ -1937,12 +1929,11 @@ more stuff
 		);
 		$this->assertStatusGood( $status );
 		$this->assertIsInt( $status->getValue() );
-		$this->assertSelect(
-			'logging',
-			[ 'log_type', 'log_action' ],
-			[ 'log_id' => $status->getValue() ],
-			[ [ 'protect', 'unprotect' ] ]
-		);
+		$this->newSelectQueryBuilder()
+			->select( [ 'log_type', 'log_action' ] )
+			->from( 'logging' )
+			->where( [ 'log_id' => $status->getValue() ] )
+			->assertResultSet( [ [ 'protect', 'unprotect' ] ] );
 	}
 
 	/**

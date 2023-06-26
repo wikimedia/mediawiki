@@ -196,14 +196,14 @@ class ArchivedRevisionLookupTest extends MediaWikiIntegrationTestCase {
 		$slotsQuery = $revisionStore->getSlotsQueryInfo( [ 'content' ] );
 
 		foreach ( $revisions as $row ) {
-			$this->assertSelect(
-				$slotsQuery['tables'],
-				'count(*)',
-				[ 'slot_revision_id' => $row->ar_rev_id ],
-				[ [ 1 ] ],
-				[],
-				$slotsQuery['joins']
-			);
+			$this->newSelectQueryBuilder()
+				->select( 'count(*)' )
+				->queryInfo( [
+					'tables' => $slotsQuery['tables'],
+					'joins' => $slotsQuery['joins']
+				] )
+				->where( [ 'slot_revision_id' => $row->ar_rev_id ] )
+				->assertFieldValue( 1 );
 		}
 	}
 
