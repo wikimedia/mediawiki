@@ -49,6 +49,8 @@ use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBExpectedError;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -834,26 +836,14 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		$loadBalancer = $services->getDBLoadBalancer();
 		$dbr = $loadBalancer->getConnectionRef( DB_REPLICA );
 
-		$userQuery = self::getQueryInfo();
-		$row = $dbr->selectRow(
-			$userQuery['tables'],
-			$userQuery['fields'],
-			[ 'user_name' => $name ],
-			__METHOD__,
-			[],
-			$userQuery['joins']
-		);
+		$userQuery = self::newQueryBuilder( $dbr )
+			->where( [ 'user_name' => $name ] )
+			->caller( __METHOD__ );
+		$row = $userQuery->fetchRow();
 		if ( !$row ) {
 			// Try the primary database...
-			$dbw = $loadBalancer->getConnectionRef( DB_PRIMARY );
-			$row = $dbw->selectRow(
-				$userQuery['tables'],
-				$userQuery['fields'],
-				[ 'user_name' => $name ],
-				__METHOD__,
-				[],
-				$userQuery['joins']
-			);
+			$userQuery->connection( $loadBalancer->getConnectionRef( DB_PRIMARY ) );
+			$row = $userQuery->fetchRow();
 		}
 
 		if ( !$row ) {
@@ -1138,21 +1128,17 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		[ $index, $options ] = DBAccessObjectUtils::getDBOptions( $flags );
 		$db = wfGetDB( $index );
 
-		$userQuery = self::getQueryInfo();
-		$s = $db->selectRow(
-			$userQuery['tables'],
-			$userQuery['fields'],
-			[ 'user_id' => $this->mId ],
-			__METHOD__,
-			$options,
-			$userQuery['joins']
-		);
+		$row = self::newQueryBuilder( $db )
+			->where( [ 'user_id' => $this->mId ] )
+			->options( $options )
+			->caller( __METHOD__ )
+			->fetchRow();
 
 		$this->queryFlagsUsed = $flags;
 
-		if ( $s !== false ) {
+		if ( $row !== false ) {
 			// Initialise user table data
-			$this->loadFromRow( $s );
+			$this->loadFromRow( $row );
 			return true;
 		}
 
@@ -3396,6 +3382,35 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		];
 
 		return $ret;
+	}
+
+	/**
+	 * Get a SelectQueryBuilder with the tables, fields and join conditions
+	 * needed to create a new User object.
+	 *
+	 * The return value is a plain SelectQueryBuilder, not a UserSelectQueryBuilder.
+	 * That way, there is no need for an ActorStore.
+	 *
+	 * @return SelectQueryBuilder
+	 */
+	public static function newQueryBuilder( IReadableDatabase $db ) {
+		return $db->newSelectQueryBuilder()
+			->select( [
+				'user_id',
+				'user_name',
+				'user_real_name',
+				'user_email',
+				'user_touched',
+				'user_token',
+				'user_email_authenticated',
+				'user_email_token',
+				'user_email_token_expires',
+				'user_registration',
+				'user_editcount',
+				'user_actor.actor_id',
+			] )
+			->from( 'user' )
+			->join( 'actor', 'user_actor', 'user_actor.actor_user = user_id' );
 	}
 
 	/**

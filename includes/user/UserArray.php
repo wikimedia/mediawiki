@@ -59,15 +59,10 @@ abstract class UserArray implements Iterator {
 			return new ArrayIterator( [] );
 		}
 		$dbr = wfGetDB( DB_REPLICA );
-		$userQuery = User::getQueryInfo();
-		$res = $dbr->select(
-			$userQuery['tables'],
-			$userQuery['fields'],
-			[ 'user_id' => array_unique( $ids ) ],
-			__METHOD__,
-			[],
-			$userQuery['joins']
-		);
+		$res = User::newQueryBuilder( $dbr )
+			->where( [ 'user_id' => array_unique( $ids ) ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 		return self::newFromResult( $res );
 	}
 
@@ -88,15 +83,10 @@ abstract class UserArray implements Iterator {
 			return new ArrayIterator( [] );
 		}
 		$dbr = wfGetDB( DB_REPLICA );
-		$userQuery = User::getQueryInfo();
-		$res = $dbr->select(
-			$userQuery['tables'],
-			$userQuery['fields'],
-			[ 'user_name' => array_unique( $names ) ],
-			__METHOD__,
-			[],
-			$userQuery['joins']
-		);
+		$res = User::newQueryBuilder( $dbr )
+			->where( [ 'user_name' => array_unique( $names ) ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 		return self::newFromResult( $res );
 	}
 

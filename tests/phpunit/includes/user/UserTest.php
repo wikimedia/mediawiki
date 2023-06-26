@@ -685,15 +685,10 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$db = wfGetDB( DB_PRIMARY );
-		$userQuery = User::getQueryInfo();
-		$row = $db->selectRow(
-			$userQuery['tables'],
-			$userQuery['fields'],
-			[ 'user_id' => $this->user->getId() ],
-			__METHOD__,
-			[],
-			$userQuery['joins']
-		);
+		$row = User::newQueryBuilder( $db )
+			->where( [ 'user_id' => $this->user->getId() ] )
+			->caller( __METHOD__ )
+			->fetchRow();
 		$row->user_editcount = $editCount;
 		if ( $memberSince !== null ) {
 			$row->user_registration = $db->timestamp( time() - $memberSince * 86400 );
@@ -766,9 +761,10 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $user->getId(), $user2->getId(),
 			'User::newFromActorId works for an existing user' );
 
-		$queryInfo = User::getQueryInfo();
-		$row = $this->db->selectRow( $queryInfo['tables'],
-			$queryInfo['fields'], [ 'user_id' => $id ], __METHOD__ );
+		$row = User::newQueryBuilder( $this->db )
+			->where( [ 'user_id' => $id ] )
+			->caller( __METHOD__ )
+			->fetchRow();
 		$user = User::newFromRow( $row );
 		$this->assertGreaterThan( 0, $user->getActorId(),
 			'Actor ID can be retrieved for user loaded with User::selectFields()' );
