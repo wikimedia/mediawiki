@@ -23,6 +23,7 @@
 use MediaWiki\Export\WikiExporterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleFactory;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -557,17 +558,27 @@ class ApiQuery extends ApiBase {
 	/** @var WikiExporterFactory */
 	private $wikiExporterFactory;
 
+	/** @var TitleFormatter */
+	private $titleFormatter;
+
+	/** @var TitleFactory */
+	private $titleFactory;
+
 	/**
 	 * @param ApiMain $main
 	 * @param string $action
 	 * @param ObjectFactory $objectFactory
 	 * @param WikiExporterFactory $wikiExporterFactory
+	 * @param TitleFormatter $titleFormatter
+	 * @param TitleFactory $titleFactory
 	 */
 	public function __construct(
 		ApiMain $main,
 		$action,
 		ObjectFactory $objectFactory,
-		WikiExporterFactory $wikiExporterFactory
+		WikiExporterFactory $wikiExporterFactory,
+		TitleFormatter $titleFormatter,
+		TitleFactory $titleFactory
 	) {
 		parent::__construct( $main, $action );
 
@@ -590,6 +601,8 @@ class ApiQuery extends ApiBase {
 		// Create PageSet that will process titles/pageids/revids/generator
 		$this->mPageSet = new ApiPageSet( $this );
 		$this->wikiExporterFactory = $wikiExporterFactory;
+		$this->titleFormatter = $titleFormatter;
+		$this->titleFactory = $titleFactory;
 	}
 
 	/**
@@ -779,13 +792,16 @@ class ApiQuery extends ApiBase {
 		}
 
 		// Page elements
+		// Cannot use ApiPageSet::getInvalidTitlesAndRevisions, it does not set $fakeId
 		$pages = [];
 
 		// Report any missing titles
-		foreach ( $pageSet->getMissingTitles() as $fakeId => $title ) {
+		foreach ( $pageSet->getMissingPages() as $fakeId => $page ) {
 			$vals = [];
-			ApiQueryBase::addTitleInfo( $vals, $title );
+			$vals['ns'] = $page->getNamespace();
+			$vals['title'] = $this->titleFormatter->getPrefixedText( $page );
 			$vals['missing'] = true;
+			$title = $this->titleFactory->newFromPageIdentity( $page );
 			if ( $title->isKnown() ) {
 				$vals['known'] = true;
 			}
@@ -803,11 +819,13 @@ class ApiQuery extends ApiBase {
 			];
 		}
 		// Report special pages
-		/** @var Title $title */
-		foreach ( $pageSet->getSpecialTitles() as $fakeId => $title ) {
+		/** @var \MediaWiki\Page\PageReference $page */
+		foreach ( $pageSet->getSpecialPages() as $fakeId => $page ) {
 			$vals = [];
-			ApiQueryBase::addTitleInfo( $vals, $title );
+			$vals['ns'] = $page->getNamespace();
+			$vals['title'] = $this->titleFormatter->getPrefixedText( $page );
 			$vals['special'] = true;
+			$title = $this->titleFactory->newFromPageReference( $page );
 			if ( !$title->isKnown() ) {
 				$vals['missing'] = true;
 			}
@@ -815,10 +833,11 @@ class ApiQuery extends ApiBase {
 		}
 
 		// Output general page information for found titles
-		foreach ( $pageSet->getGoodTitles() as $pageid => $title ) {
+		foreach ( $pageSet->getGoodPages() as $pageid => $page ) {
 			$vals = [];
 			$vals['pageid'] = $pageid;
-			ApiQueryBase::addTitleInfo( $vals, $title );
+			$vals['ns'] = $page->getNamespace();
+			$vals['title'] = $this->titleFormatter->getPrefixedText( $page );
 			$pages[$pageid] = $vals;
 		}
 
