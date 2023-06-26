@@ -139,9 +139,9 @@
 					if ( i === rows.length - 1 ) {
 						// If its the last row, and we can't fit it,
 						// don't make the entire row huge.
-						avgZoom = ( totalZoom / ( rows.length - 1 ) ) * curRowHeight;
+						avgZoom = totalZoom / ( rows.length - 1 );
 						if ( isFinite( avgZoom ) && avgZoom >= 1 && avgZoom <= 1.5 ) {
-							preferredHeight = avgZoom;
+							preferredHeight = avgZoom * curRowHeight;
 						} else {
 							// Probably a single row gallery
 							preferredHeight = curRowHeight;
