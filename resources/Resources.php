@@ -1633,6 +1633,7 @@ return [
 		],
 		'dependencies' => [
 			'mediawiki.api',
+			'mediawiki.user',
 			'mediawiki.util',
 			'mediawiki.Title',
 			'mediawiki.jqueryMsg',
