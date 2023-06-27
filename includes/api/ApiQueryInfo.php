@@ -26,6 +26,7 @@ use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\ParamValidator\TypeDef\TitleDef;
 use MediaWiki\Permissions\PermissionStatus;
@@ -93,11 +94,11 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	private $params;
 
-	/** @var Title[] */
+	/** @var PageIdentity[] */
 	private $titles;
-	/** @var Title[] */
+	/** @var PageIdentity[] */
 	private $missing;
-	/** @var Title[] */
+	/** @var PageIdentity[] */
 	private $everything;
 
 	private $pageIsRedir, $pageIsNew, $pageTouched,
@@ -217,8 +218,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		$pageSet = $this->getPageSet();
-		$this->titles = $pageSet->getGoodTitles();
-		$this->missing = $pageSet->getMissingTitles();
+		$this->titles = $pageSet->getGoodPages();
+		$this->missing = $pageSet->getMissingPages();
 		$this->everything = $this->titles + $this->missing;
 		$result = $this->getResult();
 
@@ -240,8 +241,8 @@ class ApiQueryInfo extends ApiQueryBase {
 			$cont = $this->parseContinueParamOrDie( $this->params['continue'], [ 'int', 'string' ] );
 			$conttitle = $this->titleFactory->makeTitleSafe( $cont[0], $cont[1] );
 			$this->dieContinueUsageIf( !$conttitle );
-			foreach ( $this->everything as $pageid => $title ) {
-				if ( Title::compare( $title, $conttitle ) >= 0 ) {
+			foreach ( $this->everything as $pageid => $page ) {
+				if ( Title::compare( $page, $conttitle ) >= 0 ) {
 					break;
 				}
 				unset( $this->titles[$pageid] );
@@ -294,17 +295,17 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->getLinkClasses( $this->params['linkcontext'] );
 		}
 
-		/** @var Title $title */
-		foreach ( $this->everything as $pageid => $title ) {
-			$pageInfo = $this->extractPageInfo( $pageid, $title );
+		/** @var PageIdentity $page */
+		foreach ( $this->everything as $pageid => $page ) {
+			$pageInfo = $this->extractPageInfo( $pageid, $page );
 			$fit = $pageInfo !== null && $result->addValue( [
 				'query',
 				'pages'
 			], $pageid, $pageInfo );
 			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'continue',
-					$title->getNamespace() . '|' .
-					$title->getText() );
+					$page->getNamespace() . '|' .
+					$this->titleFormatter->getText( $page ) );
 				break;
 			}
 		}
@@ -313,15 +314,16 @@ class ApiQueryInfo extends ApiQueryBase {
 	/**
 	 * Get a result array with information about a title
 	 * @param int $pageid Page ID (negative for missing titles)
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @return array|null
 	 */
-	private function extractPageInfo( $pageid, $title ) {
+	private function extractPageInfo( $pageid, $page ) {
+		$title = $this->titleFactory->newFromPageIdentity( $page );
 		$pageInfo = [];
-		// $title->exists() needs pageid, which is not set for all title objects
-		$titleExists = $pageid > 0;
-		$ns = $title->getNamespace();
-		$dbkey = $title->getDBkey();
+		// $page->exists() needs pageid, which is not set for all title objects
+		$pageExists = $pageid > 0;
+		$ns = $page->getNamespace();
+		$dbkey = $page->getDBkey();
 
 		$pageInfo['contentmodel'] = $title->getContentModel();
 
@@ -330,7 +332,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$pageInfo['pagelanguagehtmlcode'] = $pageLanguage->getHtmlCode();
 		$pageInfo['pagelanguagedir'] = $pageLanguage->getDir();
 
-		if ( $titleExists ) {
+		if ( $pageExists ) {
 			$pageInfo['touched'] = wfTimestamp( TS_ISO_8601, $this->pageTouched[$pageid] );
 			$pageInfo['lastrevid'] = (int)$this->pageLatest[$pageid];
 			$pageInfo['length'] = (int)$this->pageLength[$pageid];
@@ -405,7 +407,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		if ( $this->fld_associatedpage && $ns >= NS_MAIN ) {
 			$pageInfo['associatedpage'] = $this->titleFormatter->getPrefixedText(
-				$this->namespaceInfo->getAssociatedPage( $title )
+				$this->namespaceInfo->getAssociatedPage( TitleValue::newFromPage( $page ) )
 			);
 		}
 
@@ -421,11 +423,11 @@ class ApiQueryInfo extends ApiQueryBase {
 			);
 		}
 		if ( $this->fld_readable ) {
-			$pageInfo['readable'] = $this->getAuthority()->definitelyCan( 'read', $title );
+			$pageInfo['readable'] = $this->getAuthority()->definitelyCan( 'read', $page );
 		}
 
 		if ( $this->fld_preload ) {
-			if ( $titleExists ) {
+			if ( $pageExists ) {
 				$pageInfo['preload'] = '';
 			} else {
 				$text = null;
@@ -440,7 +442,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$newSection = $this->params['preloadnewsection'];
 			// Preloaded content is not supported for already existing pages or sections.
 			// The actual page/section content should be shown for editing (from prop=revisions API).
-			if ( !$titleExists || $newSection ) {
+			if ( !$pageExists || $newSection ) {
 				$content = $this->preloadedContentBuilder->getPreloadedContent(
 					$title->toPageIdentity(),
 					$this->getAuthority(),
@@ -464,8 +466,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		if ( $this->fld_editintro ) {
-			// Use $title as the context page in every processed message (T300184)
-			$localizerWithTitle = new class( $this, $title ) implements MessageLocalizer {
+			// Use $page as the context page in every processed message (T300184)
+			$localizerWithPage = new class( $this, $page ) implements MessageLocalizer {
 				private MessageLocalizer $base;
 				private PageReference $page;
 
@@ -493,7 +495,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$messages = $this->introMessageBuilder->getIntroMessages(
 				$styleParamMap[ $this->params['editintrostyle'] ],
 				$this->params['editintroskip'] ?? [],
-				$localizerWithTitle,
+				$localizerWithPage,
 				$title->toPageIdentity(),
 				$revRecord,
 				$this->getAuthority(),
@@ -510,7 +512,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		if ( $this->fld_displaytitle ) {
 			$pageInfo['displaytitle'] = $this->displaytitles[$pageid] ??
-				htmlspecialchars( $title->getPrefixedText(), ENT_NOQUOTES );
+				htmlspecialchars( $this->titleFormatter->getPrefixedText( $page ), ENT_NOQUOTES );
 		}
 
 		if ( $this->fld_varianttitles && isset( $this->variantTitles[$pageid] ) ) {
@@ -539,13 +541,13 @@ class ApiQueryInfo extends ApiQueryBase {
 				$this->countTestedActions++;
 
 				if ( $detailLevel === 'boolean' ) {
-					$pageInfo['actions'][$action] = $this->getAuthority()->authorizeRead( $action, $title );
+					$pageInfo['actions'][$action] = $this->getAuthority()->authorizeRead( $action, $page );
 				} else {
 					$status = new PermissionStatus();
 					if ( $detailLevel === 'quick' ) {
-						$this->getAuthority()->probablyCan( $action, $title, $status );
+						$this->getAuthority()->probablyCan( $action, $page, $status );
 					} else {
-						$this->getAuthority()->definitelyCan( $action, $title, $status );
+						$this->getAuthority()->definitelyCan( $action, $page, $status );
 					}
 					$this->addBlockInfoToStatus( $status );
 					$pageInfo['actions'][$action] = $errorFormatter->arrayFromStatus( $status );
@@ -582,8 +584,8 @@ class ApiQueryInfo extends ApiQueryBase {
 
 			$res = $this->select( __METHOD__ );
 			foreach ( $res as $row ) {
-				/** @var Title $title */
-				$title = $this->titles[$row->pr_page];
+				/** @var PageReference $page */
+				$page = $this->titles[$row->pr_page];
 				$a = [
 					'type' => $row->pr_type,
 					'level' => $row->pr_level,
@@ -592,7 +594,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				if ( $row->pr_cascade ) {
 					$a['cascade'] = true;
 				}
-				$this->protections[$title->getNamespace()][$title->getDBkey()][] = $a;
+				$this->protections[$page->getNamespace()][$page->getDBkey()][] = $a;
 			}
 		}
 
@@ -616,15 +618,15 @@ class ApiQueryInfo extends ApiQueryBase {
 		// Separate good and missing titles into files and other pages
 		// and populate $this->restrictionTypes
 		$images = $others = [];
-		foreach ( $this->everything as $title ) {
-			if ( $title->getNamespace() === NS_FILE ) {
-				$images[] = $title->getDBkey();
+		foreach ( $this->everything as $page ) {
+			if ( $page->getNamespace() === NS_FILE ) {
+				$images[] = $page->getDBkey();
 			} else {
-				$others[] = $title;
+				$others[] = $page;
 			}
 			// Applicable protection types
-			$this->restrictionTypes[$title->getNamespace()][$title->getDBkey()] =
-				array_values( $this->restrictionStore->listApplicableRestrictionTypes( $title ) );
+			$this->restrictionTypes[$page->getNamespace()][$page->getDBkey()] =
+				array_values( $this->restrictionStore->listApplicableRestrictionTypes( $page ) );
 		}
 
 		[ $blNamespace, $blTitle ] = $this->linksMigration->getTitleFields( 'templatelinks' );
@@ -688,14 +690,14 @@ class ApiQueryInfo extends ApiQueryBase {
 		$getTitles = $this->talkids = $this->subjectids = [];
 		$nsInfo = $this->namespaceInfo;
 
-		/** @var Title $t */
-		foreach ( $this->everything as $t ) {
-			if ( $nsInfo->isTalk( $t->getNamespace() ) ) {
+		/** @var PageReference $page */
+		foreach ( $this->everything as $page ) {
+			if ( $nsInfo->isTalk( $page->getNamespace() ) ) {
 				if ( $this->fld_subjectid ) {
-					$getTitles[] = $t->getSubjectPage();
+					$getTitles[] = $nsInfo->getSubjectPage( TitleValue::newFromPage( $page ) );
 				}
 			} elseif ( $this->fld_talkid ) {
-				$getTitles[] = $t->getTalkPage();
+				$getTitles[] = $nsInfo->getTalkPage( TitleValue::newFromPage( $page ) );
 			}
 		}
 		if ( $getTitles === [] ) {
@@ -763,10 +765,10 @@ class ApiQueryInfo extends ApiQueryBase {
 		// $classes (being careful to maintain space separation).
 		$classes = [];
 		$pagemap = [];
-		foreach ( $this->titles as $pageId => $title ) {
-			$pdbk = $title->getPrefixedDBkey();
+		foreach ( $this->titles as $pageId => $page ) {
+			$pdbk = $this->titleFormatter->getPrefixedDBkey( $page );
 			$pagemap[$pageId] = $pdbk;
-			$classes[$pdbk] = $title->isRedirect() ? 'mw-redirect' : '';
+			$classes[$pdbk] = isset( $this->pageIsRedir[$pageId] ) && $this->pageIsRedir[$pageId] ? 'mw-redirect' : '';
 		}
 		// legacy hook requires a real Title, not a LinkTarget
 		$context_title = $this->titleFactory->newFromLinkTarget(
@@ -781,8 +783,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		//  (b) a proper array of strings (possibly zero-length),
 		//      not a single space-separated string (possibly the empty string)
 		$this->linkClasses = [];
-		foreach ( $this->titles as $pageId => $title ) {
-			$pdbk = $title->getPrefixedDBkey();
+		foreach ( $this->titles as $pageId => $page ) {
+			$pdbk = $this->titleFormatter->getPrefixedDBkey( $page );
 			$this->linkClasses[$pageId] = preg_split(
 				'/\s+/', $classes[$pdbk] ?? '', -1, PREG_SPLIT_NO_EMPTY
 			);
@@ -794,10 +796,10 @@ class ApiQueryInfo extends ApiQueryBase {
 			return;
 		}
 		$this->variantTitles = [];
-		foreach ( $this->titles as $pageId => $t ) {
+		foreach ( $this->titles as $pageId => $page ) {
 			$this->variantTitles[$pageId] = isset( $this->displaytitles[$pageId] )
 				? $this->getAllVariants( $this->displaytitles[$pageId] )
-				: $this->getAllVariants( $t->getText(), $t->getNamespace() );
+				: $this->getAllVariants( $this->titleFormatter->getText( $page ), $page->getNamespace() );
 		}
 	}
 
@@ -921,7 +923,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				$timestamps[$row->page_namespace][$row->page_title] = (int)$revTimestamp - $age;
 			}
 			$titlesWithThresholds = array_map(
-				static function ( LinkTarget $target ) use ( $timestamps ) {
+				static function ( PageReference $target ) use ( $timestamps ) {
 					return [
 						$target, $timestamps[$target->getNamespace()][$target->getDBkey()]
 					];
@@ -934,7 +936,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$titlesWithThresholds = array_merge(
 				$titlesWithThresholds,
 				array_map(
-					static function ( LinkTarget $target ) {
+					static function ( PageReference $target ) {
 						return [ $target, null ];
 					},
 					$this->missing
