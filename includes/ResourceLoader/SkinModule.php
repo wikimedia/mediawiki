@@ -197,7 +197,7 @@ class SkinModule extends LessVarFileModule {
 			'screen' => [ 'resources/src/mediawiki.skinning/interface-user-message.less' ],
 		],
 		'interface-temp-user-banner' => [
-			'screen' => [ 'resources/src/mediawiki.skinning/interface.temp-user-banner.less' ],
+			'all' => [ 'resources/src/mediawiki.skinning/interface.temp-user-banner.less' ],
 		],
 		'elements' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/elements.less' ],
