@@ -24,8 +24,8 @@
  * Job that has a run() method and metadata accessors for JobQueue::pop() and JobQueue::ack()
  *
  * Instances are not only enqueueable via JobQueue::push(), but they can also be executed by
- * by calling their run() method. When constructing a job to be enqueued via JobQueue::push(),
- * it will not be possible to construct a RunnableJob instance if the class for that job is not
+ * calling their run() method. When constructing a job to be enqueued via JobQueue::push(), it
+ * will not be possible to construct a RunnableJob instance if the class for that job is not
  * loaded by the application for the local DB domain. In that case, the general-purpose
  * JobSpecification class can be used instead.
  *

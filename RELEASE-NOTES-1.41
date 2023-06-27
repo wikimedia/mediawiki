@@ -216,6 +216,7 @@ because of Phabricator reports.
   deprecated in 1.39, have been removed.
 * Support of the third parameter of LogEventsListGetExtraInputs hook,
   deprecated since 1.32, has been removed.
+* JobSpecification::getTitle(), deprecated in 1.37, has been removed.
 * The module mw.ui.anchor has been removed. Projects that need it should
   maintain a local copy or use the Codex link mixin. More information
   at T235961.
@@ -342,13 +343,14 @@ because of Phabricator reports.
   LocalisationCache or MessageCache as appropriate.
 * VirtualRESTService class is deprecated in 1.41 and as a replacement
   we can use MultiHttpClient.
+* JobSpecification::toSerializableArray() now emits deprecation warnings.
 * The following skin methods were deprecated:
   - Skin::makeSpecialUrl (use Title or Special class instead)
   - Skin::makeSpecialUrlSubpage (use Title or Special class instead)
 * mw.jqueryMsg.parser, deprecated in 1.31, now emits deprecation warnings.
 * ResourceLoader (T127268): The targets system is deprecated. Modules that
-have been marked as desktop or mobile only are no longer supported and
-will send deprecation warnings.
+  have been marked as desktop or mobile only are no longer supported and
+  will send deprecation warnings.
 * …
 
 === Other changes in 1.41 ===

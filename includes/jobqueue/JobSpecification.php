@@ -22,7 +22,6 @@
 
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
-use MediaWiki\Title\Title;
 
 /**
  * Job queue task description base code
@@ -103,15 +102,6 @@ class JobSpecification implements IJobSpecification {
 		return $this->type;
 	}
 
-	/**
-	 * @deprecated since 1.37.
-	 * @return Title|null
-	 */
-	public function getTitle() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return Title::castFromPageReference( $this->page );
-	}
-
 	public function getParams() {
 		return $this->params;
 	}
@@ -164,10 +154,12 @@ class JobSpecification implements IJobSpecification {
 	}
 
 	/**
+	 * @deprecated since 1.41
 	 * @return array Field/value map that can immediately be serialized
 	 * @since 1.25
 	 */
 	public function toSerializableArray() {
+		wfDeprecated( __METHOD__, '1.41' );
 		return [
 			'type'   => $this->type,
 			'params' => $this->params,
