@@ -614,6 +614,10 @@ class SpecialUserRights extends SpecialPage {
 			return Status::newFatal( 'nouserspecified' );
 		}
 
+		if ( $this->userNameUtils->isTemp( $name ) ) {
+			return Status::newFatal( 'userrights-no-tempuser' );
+		}
+
 		if ( $name[0] == '#' ) {
 			// Numeric ID can be specified...
 			// We'll do a lookup for the name internally.

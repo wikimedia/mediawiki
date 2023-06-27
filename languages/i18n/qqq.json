@@ -1539,6 +1539,7 @@
 	"userrights-expiry-in-past": "Error message on [[Special:UserRights]] when the user types an expiry date that has already passed.\n\nParameters:\n* $1 - group name",
 	"userrights-cannot-shorten-expiry": "Error message on [[Special:UserRights]] when the user tries to move the expiry date to be closer to the present and they do not have permission to do so. \"Bring forward\" is a phrasal verb meaning \"move to an earlier time\".\n\nParameters:\n* $1 - group name",
 	"userrights-conflict": "Shown on [[Special:UserRights]] if the target's rights have been changed since the form was loaded.",
+	"userrights-no-tempuser": "Used as error message on [[Special:UserRights]] when the user is temporary user.",
 	"group": "{{Identical|Group}}",
 	"group-user": "{{doc-group|user}}\n{{Identical|User}}",
 	"group-named": "{{doc-group|named}}\nThe name of the group that contains regular logged-in users, not including auto-created temporary users.",
