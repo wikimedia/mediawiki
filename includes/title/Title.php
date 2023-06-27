@@ -4135,7 +4135,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		$this->assertProperPage();
 
 		Assert::precondition(
-			$this->exists(),
+			$this->exists( $flags ),
 			'This Title instance does not represent an existing page: ' . $this
 		);
 
