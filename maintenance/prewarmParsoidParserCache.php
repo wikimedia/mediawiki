@@ -1,8 +1,10 @@
 <?php
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageLookup;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
@@ -26,14 +28,17 @@ class PrewarmParsoidParserCache extends Maintenance {
 		parent::__construct();
 
 		$this->addDescription(
-			'Populate Parser cache with parsoid output. By default, script will run for all pages.'
+			'Populate parser cache with parsoid output. By default, script attempt to run' .
+			'for supported content model pages (in a specified batch if provided)'
 		);
 		$this->addOption(
 			'force',
-			'This will force parse all pages in the wiki',
+			'Re-parse pages even if the cached entry seems up to date',
 			false,
 			false
 		);
+		$this->addOption( 'start-from', 'Start from this page ID', false, true );
+		$this->setBatchSize( 100 );
 	}
 
 	private function getPageLookup(): PageLookup {
@@ -51,16 +56,26 @@ class PrewarmParsoidParserCache extends Maintenance {
 		return $this->parsoidOutputAccess;
 	}
 
-	private function getQuery(): SelectQueryBuilder {
+	private function getQueryBuilder(): SelectQueryBuilder {
 		$dbr = $this->getDB( DB_REPLICA );
 
-		$query = $dbr->newSelectQueryBuilder()
+		return $dbr->newSelectQueryBuilder()
 			->select( [ 'page_id' ] )
 			->from( 'page' )
 			->caller( __METHOD__ )
 			->orderBy( 'page_id', SelectQueryBuilder::SORT_ASC );
+	}
 
-		return $query;
+	private function parse(
+		PageIdentity $page,
+		RevisionRecord $revision
+	) {
+		return $this->parsoidOutputAccess->getParserOutput(
+			$page,
+			ParserOptions::newFromAnon(),
+			$revision,
+			$this->forceParse | ParsoidOutputAccess::OPT_LOG_LINT_DATA
+		);
 	}
 
 	/**
@@ -69,54 +84,70 @@ class PrewarmParsoidParserCache extends Maintenance {
 	 * @return bool
 	 */
 	public function execute() {
-		// If --force is supplied, for a parse
 		$force = $this->getOption( 'force' );
+		$startFrom = $this->getOption( 'start-from' );
 
 		if ( $force !== null ) {
+			// If --force is supplied, for a parse for supported pages or supported
+			// pages in the specified batch.
 			$this->forceParse = ParsoidOutputAccess::OPT_FORCE_PARSE;
 		}
 
-		$query = $this->getQuery();
-		$result = $query->fetchResultSet();
+		$startFrom = (int)$startFrom;
 
-		// Look through pages by pageId and populate the parserCache
-		foreach ( $result as $row ) {
-			$page = $this->getPageLookup()->getPageById( $row->page_id );
-			if ( $page === null ) {
-				$this->output( "Page with ID $row->page_id not found. Skipping this page ID..." );
-				continue;
+		$this->output( "\nWarming parsoid parser cache with Parsoid output...\n\n" );
+		while ( true ) {
+			$query = $this->getQueryBuilder()->where( 'page_id >= ' . $startFrom )
+				->limit( $this->getBatchSize() );
+
+			$result = $query->fetchResultSet();
+
+			if ( !$result->numRows() ) {
+				break;
 			}
 
-			$parserOpts = ParserOptions::newFromAnon();
-			$latestRevision = $page->getLatest();
-			$revision = $this->getRevisionLookup()->getRevisionById( $latestRevision );
-			$mainSlot = $revision->getSlot( SlotRecord::MAIN );
+			$currentBatch = $startFrom + ( $this->getBatchSize() - 1 );
+			$this->output( "\n\nBatch: $startFrom - $currentBatch\n----\n" );
 
-			// POA will write a dummy output to PC, but we don't want that here. Just skip!
-			if ( !$this->getParsoidOutputAccess()->supportsContentModel( $mainSlot->getModel() ) ) {
-				$this->output( __METHOD__ .
-					': Parsoid does not support content model "' .
-					$mainSlot->getModel() .
-					"\". Skipping this page with ID: $row->page_id... \n"
-				);
-				continue;
+			// Look through pages by pageId and populate the parserCache
+			foreach ( $result as $row ) {
+				$page = $this->getPageLookup()->getPageById( $row->page_id );
+				$startFrom = ( (int)$row->page_id + 1 );
+
+				if ( $page === null ) {
+					$this->output( "\n[Skipped] Page ID: $row->page_id not found.\n" );
+					continue;
+				}
+
+				$latestRevision = $page->getLatest();
+				$revision = $this->getRevisionLookup()->getRevisionById( $latestRevision );
+				$mainSlot = $revision->getSlot( SlotRecord::MAIN );
+
+				// POA will write a dummy output to PC, but we don't want that here. Just skip!
+				if ( !$this->getParsoidOutputAccess()->supportsContentModel( $mainSlot->getModel() ) ) {
+					$this->output(
+						'[Skipped] Content model "' .
+						$mainSlot->getModel() .
+						"\" not supported for page ID: $row->page_id.\n"
+					);
+					continue;
+				}
+
+				$status = $this->parse( $page, $revision );
+				if ( !$status->isOK() ) {
+					$this->output(
+						__METHOD__ .
+						": Error parsing page ID: $row->page_id or writing to parser cache\n"
+					);
+					continue;
+				}
+
+				$this->output( "[Done] Page ID: $row->page_id ✔️\n" );
 			}
-
-			$this->output( "\nGenerating and writing output to parser cache for page ID: $row->page_id \n" );
-			$status = $this->parsoidOutputAccess->getParserOutput(
-				$page,
-				$parserOpts,
-				$revision,
-				$this->forceParse | ParsoidOutputAccess::OPT_LOG_LINT_DATA
-			);
-
-			if ( !$status->isOK() ) {
-				$this->output( __METHOD__ . ": Error writing to parser cache for page ID: $row->page_id \n" );
-				continue;
-			}
-			$this->output( "Parser cache has been populated with Parsoid output for page ID: $row->page_id \n\n" );
+			$this->waitForReplication();
 		}
-		$this->output( "\nDone populating for all pages...\n" );
+
+		$this->output( "\nDone pre-warming parsoid parser cache...\n" );
 
 		return true;
 	}
