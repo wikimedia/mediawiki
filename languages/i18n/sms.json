@@ -1304,7 +1304,7 @@
 	"logentry-newusers-autocreate": "Tobdldõõǥǥ $1 {{GENDER:$2|raʹjješ}} automaattsânji",
 	"logentry-protect-move_prot": "$1 {{GENDER:$2|siiʹrdi}} suõjjeemasetõõzzid seeidast $4 sijddu $3",
 	"logentry-protect-modify": "$1 {{GENDER:$2|muuʹtti}} suõjjeemasetõõzzid seeidast $3 ($4)",
-	"rightsnone": "(jie leäkku)",
+	"rightsnone": "(ni vooʹps)",
 	"rightslogentry-temporary-group": "$1 (kõskkpoddsaž $2 räjja)",
 	"feedback-cancel": "Jõõsk",
 	"feedback-dialog-title": "Uuʹd maacctõõzz",

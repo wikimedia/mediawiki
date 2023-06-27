@@ -1043,6 +1043,7 @@
 	"diff-paragraph-moved-toold": "Paragraf dipindahkan. Klik untuk melompat ke lokasi lama.",
 	"diff-inline-tooltip-ins": "Konten ditambahkan",
 	"diff-inline-tooltip-del": "Konten dihapus",
+	"diff-table-format-label": "Tabel",
 	"difference-missing-revision": "{{PLURAL:$2|Satu revisi|$2 revisi}} dari perbedaan ini ($1) {{PLURAL:$2|tidak|tidak}} ditemukan.\n\nHal ini biasanya disebabkan oleh tautan diff yang kedaluwarsa ke halaman yang sudah dihapus.\nRinciannya dapat ditemukan di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
 	"difference-bad-old-revision": "Konten revisi lama hilang atau rusak.",
 	"difference-bad-new-revision": "Konten revisi baru hilang atau rusak.",

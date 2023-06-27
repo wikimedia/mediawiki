@@ -983,6 +983,7 @@
 	"diff-paragraph-moved-toold": "Пункт күсерелгән. Элекке урынына күсер өсөн, төймәгә баҫығыҙ.",
 	"diff-inline-tooltip-ins": "Эстәлек өҫтәлгән",
 	"diff-inline-tooltip-del": "Эстәлек юйылған",
+	"diff-table-format-label": "Таблица",
 	"difference-missing-revision": "$1 айырмаһының {{PLURAL:$2|1=бер өлгөһө|$2 өлгөһө}} табылманы.\n\nБыл хәл, ғәҙәттә, юйылған биткә яһалған айырма һылтанмаһының ваҡыты үтеүенән барлыҡҡа килә.\nТулыраҡ мәғлүмәт өсөн ҡарағыҙ: [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} юйыу яҙмалары].",
 	"difference-bad-old-revision": "Элекке версия эстәлеге юҡ йәки боҙолған.",
 	"difference-bad-new-revision": "Яңы версия эстәлеге юҡ йәки боҙолған.",
