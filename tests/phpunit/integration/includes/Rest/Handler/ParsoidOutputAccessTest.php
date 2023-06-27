@@ -12,6 +12,7 @@ use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\NullLogger;
@@ -601,6 +602,35 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		// The revision ID is set to 0, so that's what is in the cache.
 		$this->assertSame( 0, $parserOutput->getCacheRevisionId() );
 		$this->assertNotEmpty( $parserOutput->getCacheTime() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::parse
+	 */
+	public function testParseDeletedRevision() {
+		$page = $this->getNonexistingTestPage( __METHOD__ );
+		$pOpts = ParserOptions::newFromAnon();
+
+		// Create a fake revision record
+		$revRecord = new MutableRevisionRecord( $page->getTitle() );
+		$revRecord->setId( 0 );
+		$revRecord->setPageId( $page->getId() );
+		$revRecord->setContent(
+			SlotRecord::MAIN,
+			new WikitextContent( 'test' )
+		);
+		// Induce a RevisionAccessException
+		$revRecord->setVisibility( RevisionRecord::DELETED_TEXT );
+
+		$parsoidOutputAccess = $this->getServiceContainer()->getParsoidOutputAccess();
+		$status = $parsoidOutputAccess->parse( $page->getTitle(), $pOpts, self::ENV_OPTS, $revRecord );
+
+		$this->assertInstanceOf( Status::class, $status );
+		$this->assertTrue( !$status->isOK() );
+		$this->assertSame(
+			[ 'parsoid-revision-access', 'Not an available content version.' ],
+			$status->getErrorsArray()[0] ?? []
+		);
 	}
 
 	/**

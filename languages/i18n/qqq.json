@@ -4776,6 +4776,7 @@
 	"copyupload-allowed-domains": "{{notranslate}}",
 	"parsoid-stash-rate-limit-error": "Error message returned by parsoid REST endpoints when the rate limit for stashing has been exceeded.",
 	"parsoid-resource-limit-exceeded": "Error message indicating that Parsoid exceeded resource limits.  Parameters:\n* $1 - a non-translatable internal error message specifying the problem.",
+	"parsoid-revision-access": "Error message indicating that Parsoid can't access the revision:  Parameters:\n* $1 - a non-translatable internal error message specifying the problem.",
 	"parsoid-client-error": "Error message indicating that Parsoid received invalid input.  Parameters:\n* $1 - a non-translatable internal error message specifying the problem.",
 	"newpages-showhide-bots": "Option text in [[Special:NewPages]]. Parameters:\n* $1 - the \"show/hide\" command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}",
 	"newpages-showhide-patrolled": "Option text in [[Special:NewPages]]. Parameters:\n* $1 - the \"show/hide\" command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}",
