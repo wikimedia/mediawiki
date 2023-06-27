@@ -627,6 +627,23 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 		$this->assertSQL( "SELECT a,c AS b,d FROM t JOIN u ON ((tt=uu)) WHERE a = '1' AND (a = '2') ORDER BY a LIMIT 1" );
 	}
 
+	public function testMerge() {
+		$this->sqb
+			->select( [ 'a', 'b' => 'c' ] )
+			->from( 't' )
+			->where( [ 'a' => '1' ] )
+			->orderBy( 'a' )
+			->merge(
+				( new SelectQueryBuilder( $this->db ) )
+					->select( 'd' )
+					->from( 'u' )
+					->join( 'v', 'v', 'uu=vv' )
+					->where( [ 'a' => '2' ] )
+					->limit( 1 )
+			);
+		$this->assertSQL( "SELECT a,c AS b,d FROM t,u JOIN v ON ((uu=vv)) WHERE a = '1' AND (a = '2') ORDER BY a LIMIT 1" );
+	}
+
 	public function testAcquireRowLocks() {
 		$this->sqb
 			->table( 't' )
@@ -636,5 +653,13 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 			->acquireRowLocks();
 		$this->assertEquals( 'SELECT 1 FROM t WHERE a = \'b\'   FOR UPDATE',
 			$this->db->getLastSqls() );
+	}
+
+	public function testClearFields() {
+		$this->sqb
+			->fields( [ 'a', 'b' ] )
+			->clearFields()
+			->fields( [ 'c', 'd' ] );
+		$this->assertSQL( "SELECT c,d" );
 	}
 }

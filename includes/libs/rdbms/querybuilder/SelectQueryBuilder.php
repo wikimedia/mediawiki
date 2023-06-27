@@ -54,6 +54,11 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 */
 	private $nextAutoAlias = 1;
 
+	/**
+	 * @var bool True if $this->caller has been set
+	 */
+	private $isCallerOverridden = false;
+
 	/** @var IReadableDatabase */
 	protected IReadableDatabase $db;
 
@@ -149,6 +154,26 @@ class SelectQueryBuilder extends JoinGroupBase {
 	}
 
 	/**
+	 * Merge another query builder with this one. Append the other builder's
+	 * tables, joins, fields, conditions and options to this one.
+	 *
+	 * @since 1.41
+	 * @param SelectQueryBuilder $builder
+	 * @return $this
+	 */
+	public function merge( SelectQueryBuilder $builder ) {
+		$this->rawTables( $builder->tables );
+		$this->fields( $builder->fields );
+		$this->where( $builder->conds );
+		$this->options( $builder->options );
+		$this->joinConds( $builder->joinConds );
+		if ( $builder->isCallerOverridden ) {
+			$this->caller( $builder->caller );
+		}
+		return $this;
+	}
+
+	/**
 	 * Get an empty SelectQueryBuilder which can be used to build a subquery
 	 * of this query.
 	 * @return SelectQueryBuilder
@@ -228,6 +253,16 @@ class SelectQueryBuilder extends JoinGroupBase {
 		} else {
 			$this->fields[$alias] = $field;
 		}
+		return $this;
+	}
+
+	/**
+	 * Remove all fields from the query.
+	 *
+	 * @return $this
+	 */
+	public function clearFields() {
+		$this->fields = [];
 		return $this;
 	}
 
@@ -643,6 +678,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 */
 	public function caller( $fname ) {
 		$this->caller = $fname;
+		$this->isCallerOverridden = true;
 		return $this;
 	}
 
