@@ -364,20 +364,10 @@ class PasswordReset implements LoggerAwareInterface {
 	 * @return User[]
 	 */
 	protected function getUsersByEmail( $email ) {
-		$userQuery = User::getQueryInfo();
-		$res = $this->dbProvider->getReplicaDatabase()->select(
-			$userQuery['tables'],
-			$userQuery['fields'],
-			[ 'user_email' => $email ],
-			__METHOD__,
-			[],
-			$userQuery['joins']
-		);
-
-		if ( !$res ) {
-			// Some sort of database error, probably unreachable
-			throw new RuntimeException( 'Unknown database error in ' . __METHOD__ );
-		}
+		$res = User::newQueryBuilder( $this->dbProvider->getReplicaDatabase() )
+			->where( [ 'user_email' => $email ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		$users = [];
 		foreach ( $res as $row ) {

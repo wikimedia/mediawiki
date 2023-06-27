@@ -143,10 +143,7 @@ class ApiQueryUsers extends ApiQueryBase {
 		$result = $this->getResult();
 
 		if ( count( $parameters ) ) {
-			$userQuery = User::getQueryInfo();
-			$this->addTables( $userQuery['tables'] );
-			$this->addFields( $userQuery['fields'] );
-			$this->addJoinConds( $userQuery['joins'] );
+			$this->getQueryBuilder()->merge( User::newQueryBuilder( $db ) );
 			if ( $useNames ) {
 				$this->addWhereFld( 'user_name', $goodNames );
 			} else {
