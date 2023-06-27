@@ -95,7 +95,8 @@
 			"아라",
 			"Adjoka",
 			"Cohan",
-			"Kitayama"
+			"Kitayama",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Stryk under länkar:",
@@ -3590,7 +3591,7 @@
 	"htmlform-int-toohigh": "Värdet du valde är över maximumet på $1",
 	"htmlform-multiselect-toomany": "Antalet objekt du angav är ovanför maxgränsen $1.",
 	"htmlform-required": "Det här värdet krävs",
-	"htmlform-submit": "Spara",
+	"htmlform-submit": "Skicka",
 	"htmlform-reset": "Ogör ändringar",
 	"htmlform-selectorother-other": "Andra",
 	"htmlform-no": "Nej",

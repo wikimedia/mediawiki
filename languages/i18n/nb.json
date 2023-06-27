@@ -509,7 +509,7 @@
 	"createacct-temp-warning": "Redigeringene du har gjort med den midlertidige kontoen din blir ikke overført til den permanente kontoen.",
 	"noname": "Du har ikke oppgitt et gyldig brukernavn.",
 	"loginsuccesstitle": "Logget inn",
-	"loginsuccess": "Du er nå logget inn på {{SITENAME}} som «$1».",
+	"loginsuccess": "<strong>Du er nå logget inn på {{SITENAME}} som «$1».</strong>",
 	"nosuchuser": "Det finnes ingen bruker ved navn «$1».\nMerk at det skilles mellom store og små bokstaver.\nSjekk stavemåten eller [[Special:CreateAccount|opprett en ny konto]].",
 	"nosuchusershort": "Det finnes ingen bruker ved navn «$1». Kontroller stavemåten.",
 	"nouserspecified": "Du må oppgi et brukernavn.",

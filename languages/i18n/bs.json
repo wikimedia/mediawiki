@@ -2152,6 +2152,7 @@
 	"addedwatchtext-short": "Stranica \"$1\" je dodana na vaš spisak praćenja.",
 	"addedwatchexpiry-options-label": "Period praćenja:",
 	"addedwatchindefinitelytext": "Stranica \"[[:$1]]\" i njena stranica za razgovor trajno su dodane na Vaš [[Special:Watchlist|spisak praćenja]].",
+	"addedwatchindefinitelytext-talk": "\"[[:$1]]\" i njoj pridružena stranica trajno su dodani na Vaš [[Special:Watchlist|spisak praćenja]].",
 	"removewatch": "Ukloni sa spiska praćenja",
 	"removedwatchtext": "Stranica \"[[:$1]]\" i njena stranica za razgovor uklonjene su s Vašeg [[Special:Watchlist|spiska praćenja]].",
 	"removedwatchtext-talk": "\"[[:$1]]\" i njoj pridružena stranica uklonjene su s Vašeg [[Special:Watchlist|spiska praćenja]].",
