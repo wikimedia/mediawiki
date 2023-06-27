@@ -575,7 +575,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$successUserMock->expects( $this->once() )
 			->method( 'getEmailAuthenticationTimestamp' )
 			->willReturn( wfTimestampNow() );
-		yield 'Successfull autopromote' => [
+		yield 'Successful autopromote' => [
 			true, $successUserMock, [ 'test_autoconfirmed' ]
 		];
 		$emailAuthMock = $this->createNoOpMock( User::class, [ 'getEmail' ] );
@@ -626,7 +626,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideGetUserAutopromoteEditCount() {
-		yield 'Successfull promote' => [
+		yield 'Successful promote' => [
 			[ APCOND_EDITCOUNT, 5 ], true, 10, [ 'test_autoconfirmed' ]
 		];
 		yield 'Required edit count negative' => [
@@ -682,7 +682,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideGetUserAutopromoteAge() {
-		yield 'Successfull promote' => [
+		yield 'Successful promote' => [
 			[ APCOND_AGE, 1000 ],
 			MWTimestamp::convert( TS_MW, time() - 1000000 ),
 			[ 'test_autoconfirmed' ]
@@ -722,7 +722,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideGetUserAutopromoteEditAge() {
-		yield 'Successfull promote' => [
+		yield 'Successful promote' => [
 			[ APCOND_AGE_FROM_EDIT, 1000 ],
 			MWTimestamp::convert( TS_MW, time() - 1000000 ),
 			[ 'test_autoconfirmed' ]
@@ -758,7 +758,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideGetUserAutopromoteGroups() {
-		yield 'Successfull promote' => [
+		yield 'Successful promote' => [
 			[ 'group1', 'group2' ], [ 'group1', 'group2' ], [ 'test_autoconfirmed' ]
 		];
 		yield 'Not enough groups to promote' => [
