@@ -611,6 +611,22 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 		$this->assertSQL( "SELECT f FROM t JOIN u ON ((tt=uu)) WHERE a = 'b' LIMIT 1" );
 	}
 
+	public function testQueryInfoMerge() {
+		$this->sqb
+			->select( [ 'a', 'b' => 'c' ] )
+			->from( 't' )
+			->where( [ 'a' => '1' ] )
+			->orderBy( 'a' )
+			->queryInfo( [
+				'tables' => [ 'u' => 'u' ],
+				'fields' => [ 'd' ],
+				'conds' => [ 'a' => '2' ],
+				'options' => [ 'LIMIT' => 1 ],
+				'joins' => [ 'u' => [ 'JOIN', 'tt=uu' ] ]
+			] );
+		$this->assertSQL( "SELECT a,c AS b,d FROM t JOIN u ON ((tt=uu)) WHERE a = '1' AND (a = '2') ORDER BY a LIMIT 1" );
+	}
+
 	public function testAcquireRowLocks() {
 		$this->sqb
 			->table( 't' )
