@@ -248,6 +248,31 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'ucs2', $transform->getOffsetType() );
 	}
 
+	/**
+	 * Assert that in case we set only one of the options, the other(s)
+	 * should fall back to their correct defaults.
+	 */
+	public function testOptionsForIndividualDefaults() {
+		$transform = $this->createHtmlToContentTransformWithOriginalData( '', [] );
+
+		$this->assertSame( 'wikitext', $transform->getContentModel() );
+		$this->assertSame( 'byte', $transform->getOffsetType() );
+
+		$transform = $this->createHtmlToContentTransformWithOriginalData( '', [] );
+		// Set only content model
+		$transform->setOptions( [ 'contentmodel' => 'text' ] );
+
+		$this->assertSame( 'text', $transform->getContentModel() );
+		$this->assertSame( 'byte', $transform->getOffsetType() );
+
+		$transform = $this->createHtmlToContentTransformWithOriginalData( '', [] );
+		// Set only offset type
+		$transform->setOptions( [ 'offsetType' => 'ucs2' ] );
+
+		$this->assertSame( 'wikitext', $transform->getContentModel() );
+		$this->assertSame( 'ucs2', $transform->getOffsetType() );
+	}
+
 	private function getTextFromFile( string $name ): string {
 		return trim( file_get_contents( __DIR__ . "/data/Transform/$name" ) );
 	}
