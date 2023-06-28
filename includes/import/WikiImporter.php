@@ -47,7 +47,7 @@ use Wikimedia\NormalizedException\NormalizedException;
  * @ingroup SpecialPage
  */
 class WikiImporter {
-	/** @var XMLReader */
+	/** @var XMLReader|null */
 	private $reader;
 
 	/** @var string */
@@ -162,7 +162,6 @@ class WikiImporter {
 		IContentHandlerFactory $contentHandlerFactory,
 		SlotRoleRegistry $slotRoleRegistry
 	) {
-		$this->reader = new XMLReader();
 		$this->config = $config;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->contentLanguage = $contentLanguage;
@@ -1335,16 +1334,29 @@ class WikiImporter {
 
 	/**
 	 * Open the XMLReader connected to the source adapter id
+	 * @suppress PhanStaticCallToNonStatic, UnusedSuppression -- for PHP 7.4 support
 	 */
 	private function openReader() {
 		// Enable the entity loader, as it is needed for loading external URLs via
 		// XMLReader::open (T86036)
 		// phpcs:ignore Generic.PHP.NoSilencedErrors -- suppress deprecation per T268847
 		$oldDisable = @libxml_disable_entity_loader( false );
-		if ( defined( 'LIBXML_PARSEHUGE' ) ) {
-			$status = $this->reader->open( 'uploadsource://' . $this->sourceAdapterId, null, LIBXML_PARSEHUGE );
+
+		if ( PHP_VERSION_ID >= 80000 ) {
+			// A static call is now preferred, and avoids https://github.com/php/php-src/issues/11548
+			$reader = XMLReader::open(
+				'uploadsource://' . $this->sourceAdapterId, null, LIBXML_PARSEHUGE );
+			if ( $reader instanceof XMLReader ) {
+				$this->reader = $reader;
+				$status = true;
+			} else {
+				$status = false;
+			}
 		} else {
-			$status = $this->reader->open( 'uploadsource://' . $this->sourceAdapterId );
+			// A static call generated a deprecation warning prior to PHP 8.0
+			$this->reader = new XMLReader;
+			$status = $this->reader->open(
+				'uploadsource://' . $this->sourceAdapterId, null, LIBXML_PARSEHUGE );
 		}
 		if ( !$status ) {
 			$error = libxml_get_last_error();
