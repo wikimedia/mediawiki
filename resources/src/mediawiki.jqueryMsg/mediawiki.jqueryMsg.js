@@ -1025,7 +1025,6 @@ mw.jqueryMsg.HtmlEmitter.prototype = {
 	concat: function ( nodes ) {
 		var $span = $( '<span>' ).addClass( 'mediaWiki_htmlEmitter' );
 		// Use Array.from since mixed parameter.
-		// eslint-disable-next-line compat/compat
 		Array.from( nodes ).forEach( function ( node ) {
 			// Let jQuery append nodes, arrays of nodes and jQuery objects
 			// other things (strings, numbers, ..) are appended as text nodes (not as HTML strings)

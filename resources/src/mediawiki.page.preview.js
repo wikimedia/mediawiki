@@ -195,6 +195,7 @@
 	 * This is useful because addItemToTemplateList() might need to make extra API requests to fetch
 	 * messages, but we don't want to send parallel requests for these (because they're often the
 	 * for the same messages).
+	 *
 	 * @private
 	 * @param {jQuery} $list The `<ul>` to add the item to.
 	 * @param {Object} templatesInfo All templates' info, sorted by namespace and title.
