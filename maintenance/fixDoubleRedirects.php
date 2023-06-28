@@ -97,6 +97,7 @@ class FixDoubleRedirects extends Maintenance {
 		$jobs = [];
 		$processedTitles = "\n";
 		$n = 0;
+		$services = MediaWikiServices::getInstance();
 		foreach ( $res as $row ) {
 			$titleA = Title::makeTitle( $row->pa_namespace, $row->pa_title );
 			$titleB = Title::makeTitle( $row->pb_namespace, $row->pb_title );
@@ -112,10 +113,16 @@ class FixDoubleRedirects extends Maintenance {
 
 			$processedTitles .= "* [[$titleA]]\n";
 
-			$job = new DoubleRedirectJob( $titleA, [
-				'reason' => 'maintenance',
-				'redirTitle' => $titleB->getPrefixedDBkey()
-			] );
+			$job = new DoubleRedirectJob(
+				$titleA,
+				[
+					'reason' => 'maintenance',
+					'redirTitle' => $titleB->getPrefixedDBkey()
+				],
+				$services->getRevisionLookup(),
+				$services->getMagicWordFactory(),
+				$services->getWikiPageFactory()
+			);
 
 			if ( !$async ) {
 				$success = ( $dryrun ? true : $job->run() );

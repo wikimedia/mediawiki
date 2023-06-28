@@ -11075,7 +11075,16 @@ class MainConfigSchema {
 			'htmlCacheUpdate' => HTMLCacheUpdateJob::class,
 			'sendMail' => EmaillingJob::class,
 			'enotifNotify' => EnotifNotifyJob::class,
-			'fixDoubleRedirect' => DoubleRedirectJob::class,
+			'fixDoubleRedirect' => [
+				'class' => DoubleRedirectJob::class,
+				'services' => [
+					'RevisionLookup',
+					'MagicWordFactory',
+					'WikiPageFactory',
+				],
+				// This job requires a title
+				'needsPage' => true,
+			],
 			'AssembleUploadChunks' => AssembleUploadChunksJob::class,
 			'PublishStashedFile' => PublishStashedFileJob::class,
 			'ThumbnailRender' => ThumbnailRenderJob::class,
