@@ -35,7 +35,7 @@ use MediaWiki\Revision\SlotRecord;
  * @ingroup SpecialPage
  */
 class WikiImporter {
-	/** @var XMLReader */
+	/** @var XMLReader|null */
 	private $reader;
 	private $foreignNamespaces = null;
 	private $mLogItemCallback, $mUploadCallback, $mRevisionCallback, $mPageCallback;
@@ -62,13 +62,13 @@ class WikiImporter {
 	 * @param ImportSource $source
 	 * @param Config $config
 	 * @throws Exception
+	 * @suppress PhanStaticCallToNonStatic, UnusedSuppression -- for PHP 7.4 support
 	 */
 	public function __construct( ImportSource $source, Config $config ) {
 		if ( !class_exists( 'XMLReader' ) ) {
 			throw new Exception( 'Import requires PHP to have been compiled with libxml support' );
 		}
 
-		$this->reader = new XMLReader();
 		$this->config = $config;
 		$this->hookRunner = Hooks::runner();
 
@@ -81,10 +81,21 @@ class WikiImporter {
 		// XMLReader::open (T86036)
 		// phpcs:ignore Generic.PHP.NoSilencedErrors -- suppress deprecation per T268847
 		$oldDisable = @libxml_disable_entity_loader( false );
-		if ( defined( 'LIBXML_PARSEHUGE' ) ) {
-			$status = $this->reader->open( "uploadsource://$id", null, LIBXML_PARSEHUGE );
+		if ( PHP_VERSION_ID >= 80000 ) {
+			// A static call is now preferred, and avoids https://github.com/php/php-src/issues/11548
+			$reader = XMLReader::open(
+				"uploadsource://$id", null, LIBXML_PARSEHUGE );
+			if ( $reader instanceof XMLReader ) {
+				$this->reader = $reader;
+				$status = true;
+			} else {
+				$status = false;
+			}
 		} else {
-			$status = $this->reader->open( "uploadsource://$id" );
+			// A static call generated a deprecation warning prior to PHP 8.0
+			$this->reader = new XMLReader;
+			$status = $this->reader->open(
+				"uploadsource://$id", null, LIBXML_PARSEHUGE );
 		}
 		if ( !$status ) {
 			$error = libxml_get_last_error();
