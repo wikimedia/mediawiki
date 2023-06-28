@@ -2311,7 +2311,6 @@
 	"protect-fallback": "Dozvolite samo korisnicima sa \"$1\" ovlastima/privilegijama",
 	"protect-level-autoconfirmed": "Dopušteno samo automatski potvrđenim korisnicima",
 	"protect-level-sysop": "Dopušteno samo administratorima",
-	"protect-summary-desc": "[$1=$2] ($3)",
 	"protect-summary-cascade": "prenosna zaštita",
 	"protect-expiring": "ističe $1 (UTC)",
 	"protect-expiring-local": "ističe $2 u $3",

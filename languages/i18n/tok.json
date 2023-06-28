@@ -112,8 +112,6 @@
 	"category-article-count": "{{PLURAL:$2|lipu ni taso li lon kulupu ni.|lipu $1 ni li lon kulupu ni. ale la lipu $2 li lon kulupu ni.}}",
 	"category-article-count-limited": "kulupu ni la, {{PLURAL:$1|lipu}} ni li lon:",
 	"category-file-count-limited": "kulupu ni la, {{PLURAL:$1|ijo}} ni li lon:",
-	"categoryviewer-pagedlinks": "($1) ($2)",
-	"category-header-numerals": "$1–$2",
 	"about": "sona pi lipu ni",
 	"article": "lipu sona",
 	"newwindow": "(ona li open e lupa sin)",

@@ -965,7 +965,6 @@
 	"youremail": "E-mail:",
 	"username": "{{GENDER:$1|Isem l-utent}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Membru}} tal-{{PLURAL:$1|grupp|gruppi}}:",
-	"prefs-memberingroups-type": "$1",
 	"group-membership-link-with-expiry": "$1(sa $2)",
 	"prefs-registration": "Ħin ta' reġistrazzjoni:",
 	"yourrealname": "Isem proprju:",

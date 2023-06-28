@@ -1132,7 +1132,6 @@
 	"userrights-nodatabase": "La base de datos $1 nun esiste o nun ye llocal.",
 	"userrights-changeable-col": "Grupos que pues camudar",
 	"userrights-unchangeable-col": "Grupos que nun pues camudar",
-	"userrights-irreversible-marker": "$1*",
 	"userrights-no-shorten-expiry-marker": "$1#",
 	"userrights-expiry-current": "Caduca el $1",
 	"userrights-expiry-none": "Nun caduca",

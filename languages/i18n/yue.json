@@ -767,7 +767,6 @@
 	"content-model-text": "純文字",
 	"content-model-javascript": "JavaScript程式語言",
 	"content-model-css": "層疊樣式表",
-	"content-model-json": "JSON",
 	"content-json-empty-object": "吉嘅嘢",
 	"content-json-empty-array": "吉嘅陣列",
 	"duplicate-args-warning": "<strong>警告：</strong> [[:$1]]調用咗[[:$2]]並且指定咗多過一個值畀「$3」呢個參數，祇有最後一次指定嘅值會用到。",
