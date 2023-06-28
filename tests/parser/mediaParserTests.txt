@@ -217,7 +217,7 @@ File:Bad.jpg
 !! html/php
 <ul class="gallery mw-gallery-traditional">
 		<li class="gallerybox" style="width: 155px">
-			<div class="thumb" style="height: 150px;"><span typeof="mw:Error mw:File"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Bad.jpg" class="new" title="File:Bad.jpg"><span class="mw-broken-media" data-width="120" data-height="120">File:Bad.jpg</span></a></span></div>
+			<div class="thumb" style="height: 150px;"><span typeof="mw:Error mw:File"><a href="/wiki/File:Bad.jpg" title="File:Bad.jpg"><span class="mw-broken-media" data-width="120" data-height="120">File:Bad.jpg</span></a></span></div>
 			<div class="gallerytext">
 			</div>
 		</li>
@@ -2469,7 +2469,7 @@ wgParserEnableLegacyMediaDOM=false
 !! wikitext
 [[Image:foobar.jpg|thumbnail= ]]
 !! html/php
-<figure typeof="mw:Error mw:File/Thumb"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Foobar.jpg" class="new" title="File:Foobar.jpg"><span class="mw-broken-media" data-width="180">File:Foobar.jpg</span></a><figcaption></figcaption></figure>
+<figure typeof="mw:Error mw:File/Thumb"><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg"><span class="mw-broken-media" data-width="180">Error creating thumbnail: </span></a><figcaption></figcaption></figure>
 !! html/parsoid
 <figure typeof="mw:Error mw:File/Thumb" data-parsoid='{"optList":[{"ck":"manualthumb","ak":"thumbnail= "}]}' data-mw='{"attribs":[["manualthumb",{"txt":""}]],"errors":[{"key":"apierror-invalidtitle","message":"Invalid thumbnail title.","params":{"name":""}}]}'><a href="./Special:FilePath/Foobar.jpg"><span class="mw-broken-media" resource="./File:Foobar.jpg" data-parsoid='{"a":{"resource":"./File:Foobar.jpg"},"sa":{"resource":"Image:foobar.jpg"}}'>File:Foobar.jpg</span></a><figcaption></figcaption></figure>
 !! end
