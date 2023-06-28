@@ -155,6 +155,7 @@ class ApiMain extends ApiBase {
 				'TempUserCreator',
 				'UserFactory',
 				'UrlUtils',
+				'TitleFormatter',
 			]
 		],
 		'stashedit' => [
