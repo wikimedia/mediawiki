@@ -6,13 +6,15 @@
 * Localisation updates.
 * (T330464) Work around argument corruption bug in XMLReader::open.
 * build: Updating mediawiki/mediawiki-phan-config to 0.12.1.
+* Fix frame and frameless rdfa depending on file existing.
+* (T329214) Pass whether current rev of file exists to
+  Linker::makeBrokenImageLinkObj.
+* (T334659) Handle thumb errors when !$enableLegacyMediaDOM.
+* A manualthumb that doesn't exist should be considered a thumb error.
+* (T313157) IndexPager: Also protect against $offset being 0.
+* (T335612, CVE-2023-36674) SECURITY: Move badFile lookup to Linker.
 
 == MediaWiki 1.40.0-rc.0 ==
-
-THIS IS NOT A RELEASE YET
-
-MediaWiki 1.40 is a pre-release testing branch, and is not recommended
-for use in production.
 
 == Upgrading notes for 1.40 ==
 Don't forget to always back up your database before upgrading!
