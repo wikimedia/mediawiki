@@ -20,6 +20,7 @@ use MessageLocalizer;
  *     ->willReturnCallback( [ new FakeQqxMessageLocalizer(), 'msg' ] );
  * ```
  *
+ * @since 1.40 (backported in 1.39.4)
  * @license GPL-2.0-or-later
  */
 class FakeQqxMessageLocalizer implements MessageLocalizer {
