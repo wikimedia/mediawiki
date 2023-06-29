@@ -443,7 +443,10 @@ class Linker {
 			$thumb = false;
 		}
 
-		if ( !$thumb ) {
+		$isBadFile = $file && $thumb &&
+			$parser->getBadFileLookup()->isBadFile( $title->getDBkey(), $parser->getTitle() );
+
+		if ( !$thumb || $isBadFile ) {
 			$rdfaType = 'mw:Error ' . $rdfaType;
 			$label = '';
 			if ( $enableLegacyMediaDOM ) {
@@ -712,6 +715,12 @@ class Linker {
 				. "<div class=\"thumbinner\" style=\"width:{$outerWidth}px;\">";
 		}
 
+		$isBadFile = $exists && $thumb && $parser &&
+			$parser->getBadFileLookup()->isBadFile(
+				$manualthumb ? $manual_title : $title->getDBkey(),
+				$parser->getTitle()
+			);
+
 		if ( !$exists ) {
 			$label = '';
 			if ( $enableLegacyMediaDOM ) {
@@ -723,7 +732,7 @@ class Linker {
 				$title, $label, '', '', '', (bool)$time, $handlerParams
 			);
 			$zoomIcon = '';
-		} elseif ( !$thumb ) {
+		} elseif ( !$thumb || $isBadFile ) {
 			if ( $enableLegacyMediaDOM ) {
 				$s .= wfMessage( 'thumbnail_error', '' )->escaped();
 			} else {
