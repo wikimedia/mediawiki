@@ -287,11 +287,10 @@ class SpecialLog extends SpecialPage {
 
 		# Show form options
 		$succeed = $loglist->showOptions(
-			$pager->getType(),
-			$pager->getYear(),
-			$pager->getMonth(),
-			$pager->getDay(),
-			$pager->getAction()
+			$opts->getValue( 'type' ),
+			$opts->getValue( 'year' ),
+			$opts->getValue( 'month' ),
+			$opts->getValue( 'day' )
 		);
 		if ( !$succeed ) {
 			return;

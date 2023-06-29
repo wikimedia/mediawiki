@@ -327,7 +327,6 @@ class LogPager extends ReverseChronologicalPager {
 		$actions = $this->getConfig()->get( MainConfigNames::ActionFilteredLogs );
 		if ( isset( $actions[$type] ) ) {
 			// log type can be filtered by actions
-			$this->mLogEventsList->setAllowedActions( array_keys( $actions[$type] ) );
 			if ( $action !== '' && isset( $actions[$type][$action] ) ) {
 				// add condition to query
 				$this->mConds['log_action'] = $actions[$type][$action];
