@@ -10,6 +10,10 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.38.6 ===
 * Localisation updates.
+* (T333990) composer.json: Explicitly pin psr/http-message to 1.0.1.
+* (T322944) Add Authorization to default $wgAllowedCorsHeaders.
+* (T332889, CVE-2023-36675) SECURITY: Fix escaping in BlockLogFormatter.
+* (T330464) Work around argument corruption bug in XMLReader::open.
 
 == MediaWiki 1.38.6 ==
 
