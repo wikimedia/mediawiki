@@ -392,7 +392,7 @@ class Linker {
 				$frameParams['align'] = $parser->getTargetLanguage()->alignEnd();
 			}
 			return $prefix .
-				self::makeThumbLink2( $title, $file, $frameParams, $handlerParams, $time, $query ) .
+				self::makeThumbLink2( $title, $file, $frameParams, $handlerParams, $time, $query, $parser ) .
 				$postfix;
 		}
 
@@ -413,7 +413,10 @@ class Linker {
 			$thumb = false;
 		}
 
-		if ( !$thumb ) {
+		$isBadFile = $file && $thumb &&
+			$parser->getBadFileLookup()->isBadFile( $title->getDBkey(), $parser->getTitle() );
+
+		if ( !$thumb || $isBadFile ) {
 			$s = self::makeBrokenImageLinkObj( $title, $frameParams['title'], '', '', '', $time == true );
 		} else {
 			self::processResponsiveImages( $file, $thumb, $handlerParams );
@@ -511,10 +514,11 @@ class Linker {
 	 * @param array $handlerParams
 	 * @param bool $time
 	 * @param string $query
+	 * @param Parser|null $parser
 	 * @return string
 	 */
 	public static function makeThumbLink2( LinkTarget $title, $file, $frameParams = [],
-		$handlerParams = [], $time = false, $query = ""
+		$handlerParams = [], $time = false, $query = "", ?Parser $parser = null
 	) {
 		$exists = $file && $file->exists();
 
@@ -594,10 +598,16 @@ class Linker {
 		$s = "<div class=\"thumb t{$frameParams['align']}\">"
 			. "<div class=\"thumbinner\" style=\"width:{$outerWidth}px;\">";
 
+		$isBadFile = $exists && $thumb && $parser &&
+			$parser->getBadFileLookup()->isBadFile(
+				$manualthumb ? $manual_title : $title->getDBkey(),
+				$parser->getTitle()
+			);
+
 		if ( !$exists ) {
 			$s .= self::makeBrokenImageLinkObj( $title, $frameParams['title'], '', '', '', $time == true );
 			$zoomIcon = '';
-		} elseif ( !$thumb ) {
+		} elseif ( !$thumb || $isBadFile ) {
 			$s .= wfMessage( 'thumbnail_error', '' )->escaped();
 			$zoomIcon = '';
 		} else {
