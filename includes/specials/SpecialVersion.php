@@ -340,6 +340,11 @@ class SpecialVersion extends SpecialPage {
 			$dbr->getSoftwareLink() => $dbr->getServerInfo(),
 		];
 
+		// T339915: If wikidiff2 is installed, show version
+		if ( phpversion( "wikidiff2" ) ) {
+			$software[ '[https://www.mediawiki.org/wiki/Wikidiff2 wikidiff2]' ] = phpversion( "wikidiff2" );
+		}
+
 		// Allow a hook to add/remove items.
 		$this->getHookRunner()->onSoftwareInfo( $software );
 
