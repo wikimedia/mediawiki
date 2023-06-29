@@ -517,11 +517,15 @@ class InfoAction extends FormlessAction {
 					$prefixIndex,
 					$this->msg( 'pageinfo-subpages-name' )->text()
 				),
-				$this->msg( 'pageinfo-subpages-value' )
-					->numParams(
+				// $wgNamespacesWithSubpages can be changed and this can be unset (T340749)
+				isset( $pageCounts['subpages'] )
+					? $this->msg( 'pageinfo-subpages-value' )->numParams(
 						$pageCounts['subpages']['total'],
 						$pageCounts['subpages']['redirects'],
 						$pageCounts['subpages']['nonredirects']
+					) : $this->msg( 'pageinfo-subpages-value-unknown' )->rawParams(
+						$linkRenderer->makeKnownLink(
+							$title, $this->msg( 'purge' )->text(), [], [ 'action' => 'purge' ] )
 					)
 			];
 		}

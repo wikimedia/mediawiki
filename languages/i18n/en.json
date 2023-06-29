@@ -3362,6 +3362,7 @@
 	"pageinfo-redirects-value": "$1",
 	"pageinfo-subpages-name": "Number of subpages of this page",
 	"pageinfo-subpages-value": "$1 ($2 {{PLURAL:$2|redirect|redirects}}; $3 {{PLURAL:$3|non-redirect|non-redirects}})",
+	"pageinfo-subpages-value-unknown": "Unknown ($1)",
 	"pageinfo-firstuser": "Page {{GENDER:$1|creator}}",
 	"pageinfo-firsttime": "Date of page creation",
 	"pageinfo-lastuser": "Latest {{GENDER:$1|editor}}",
