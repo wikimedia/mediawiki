@@ -13,17 +13,21 @@ PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 
 == MediaWiki 1.35.11 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.35 branch.
 
 === Changes since MediaWiki 1.35.10 ===
 * Localisation updates.
 * (T333990) composer.json: Explicitly pin psr/http-message to 1.0.1.
+* (T335203, CVE-2023-29197) SECURITY: Upgrading guzzlehttp/psr7
+  (1.9.0 => 1.9.1).
 * (T269636) Add Access-Control-Max-Age to $wgAllowedCorsHeaders.
 * (T322944) Add Authorization to default $wgAllowedCorsHeaders.
 * (T332889, CVE-2023-36675) SECURITY: Fix escaping in BlockLogFormatter.
 * (T297917) objectcache: avoid use of ctype_digit() in
   WANObjectCache::adaptiveTTL().
 * (T330464) Work around argument corruption bug in XMLReader::open.
+* (T313157) IndexPager: Also protect against $offset being 0.
+* (T335612, CVE-2023-36674) SECURITY: Move badFile lookup to Linker.
 
 == MediaWiki 1.35.10 ==
 
