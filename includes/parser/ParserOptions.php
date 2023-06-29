@@ -1352,7 +1352,7 @@ class ParserOptions {
 	 * Record that an option was internally accessed.
 	 *
 	 * This calls the watcher set by ParserOptions::registerWatcher().
-	 * Typically, the watcher callback is ParserOutput::registerOption().
+	 * Typically, the watcher callback is ParserOutput::recordOption().
 	 * The information registered this way is consumed by ParserCache::save().
 	 *
 	 * @param string $optionName Name of the option
