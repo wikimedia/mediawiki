@@ -4301,3 +4301,15 @@ wgParserEnableLegacyMediaDOM=false
 <figure typeof="mw:Error mw:File/Frame" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Barfoo.jpg"><span class="mw-broken-media" resource="./File:Barfoo.jpg">File:Barfoo.jpg</span></a><figcaption>123</figcaption></figure>
 <p><span class="mw-default-size" typeof="mw:Error mw:File/Frameless" data-mw='{"caption":"123","errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Barfoo.jpg"><span class="mw-broken-media" resource="./File:Barfoo.jpg" data-width="180">123</span></a></span></p>
 !! end
+
+!! test
+Media with broken manualthumb
+!! config
+wgParserEnableLegacyMediaDOM=false
+!! wikitext
+[[File:Foobar.jpg|thumbnail=Barfoo.jpg|123]]
+!! html/php
+<figure typeof="mw:Error mw:File/Thumb"><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg"><span class="mw-broken-media" data-width="180">Error creating thumbnail: </span></a><figcaption>123</figcaption></figure>
+!! html/parsoid
+<figure typeof="mw:Error mw:File/Thumb" data-mw='{"attribs":[["manualthumb",{"txt":"Barfoo.jpg"}]],"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Foobar.jpg"><span class="mw-broken-media" resource="./File:Foobar.jpg">File:Foobar.jpg</span></a><figcaption>123</figcaption></figure>
+!! end
