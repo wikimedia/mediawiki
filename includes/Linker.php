@@ -26,6 +26,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
+use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
@@ -448,7 +449,7 @@ class Linker {
 			$thumb = false;
 		}
 
-		if ( !$thumb ) {
+		if ( !$thumb || ( !$enableLegacyMediaDOM && $thumb->isError() ) ) {
 			$rdfaType = 'mw:Error ' . $rdfaType;
 			$currentExists = $file && $file->exists();
 			if ( $enableLegacyMediaDOM ) {
@@ -456,8 +457,14 @@ class Linker {
 				// Parsoid stores in data-mw.  See T273014
 				$label = $frameParams['title'];
 			} else {
-				if ( $currentExists ) {
+				if ( $currentExists && !$thumb ) {
 					$label = wfMessage( 'thumbnail_error', '' )->text();
+				} elseif ( $thumb && $thumb->isError() ) {
+					Assert::invariant(
+						$thumb instanceof MediaTransformError,
+						'Unknown MediaTransformOutput: ' . get_class( $thumb )
+					);
+					$label = $thumb->toText();
 				} else {
 					$label = '';
 				}
@@ -732,12 +739,20 @@ class Linker {
 				$title, $label, '', '', '', (bool)$time, $handlerParams, false
 			);
 			$zoomIcon = '';
-		} elseif ( !$thumb ) {
+		} elseif ( !$thumb || ( !$enableLegacyMediaDOM && $thumb->isError() ) ) {
 			$rdfaType = 'mw:Error ' . $rdfaType;
 			if ( $enableLegacyMediaDOM ) {
 				$s .= wfMessage( 'thumbnail_error', '' )->escaped();
 			} else {
-				$label = wfMessage( 'thumbnail_error', '' )->text();
+				if ( $thumb && $thumb->isError() ) {
+					Assert::invariant(
+						$thumb instanceof MediaTransformError,
+						'Unknown MediaTransformOutput: ' . get_class( $thumb )
+					);
+					$label = $thumb->toText();
+				} else {
+					$label = wfMessage( 'thumbnail_error', '' )->text();
+				}
 				$s .= self::makeBrokenImageLinkObj(
 					$title, $label, '', '', '', (bool)$time, $handlerParams, true
 				);
