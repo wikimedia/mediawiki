@@ -49,6 +49,7 @@
 		"ralouphie/getallheaders": "3.0.3",
 		"symfony/polyfill-php80": "1.27.0",
 		"symfony/polyfill-php81": "1.27.0",
+		"symfony/polyfill-php82": "1.27.0",
 		"symfony/yaml": "5.4.17",
 		"wikimedia/assert": "0.5.1",
 		"wikimedia/at-ease": "2.1.0",
