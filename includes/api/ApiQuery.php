@@ -22,6 +22,7 @@
 
 use MediaWiki\Export\WikiExporterFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use Wikimedia\ObjectFactory\ObjectFactory;
@@ -663,11 +664,20 @@ class ApiQuery extends ApiBase {
 		$modules = $continuationManager->getRunModules();
 		'@phan-var ApiQueryBase[] $modules';
 
+		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+
 		if ( !$continuationManager->isGeneratorDone() ) {
 			// Query modules may optimize data requests through the $this->getPageSet()
 			// object by adding extra fields from the page table.
 			foreach ( $modules as $module ) {
+				$t = microtime( true );
 				$module->requestExtraData( $this->mPageSet );
+				$runTime = microtime( true ) - $t;
+
+				// Augment api-query.$module.executeTiming metric with timings for requestExtraData()
+				$stats->timing(
+					'api-query.' . $module->getModuleName() . '.extraDataTiming', 1000 * $runTime
+				);
 			}
 			// Populate page/revision information
 			$this->mPageSet->execute();
@@ -684,7 +694,16 @@ class ApiQuery extends ApiBase {
 			$params = $module->extractRequestParams();
 			$cacheMode = $this->mergeCacheMode(
 				$cacheMode, $module->getCacheMode( $params ) );
+
+			$t = microtime( true );
 			$module->execute();
+			$runTime = microtime( true ) - $t;
+
+			// Break down of the api.query.executeTiming metric by query module.
+			$stats->timing(
+				'api-query.' . $module->getModuleName() . '.executeTiming', 1000 * $runTime
+			);
+
 			$this->getHookRunner()->onAPIQueryAfterExecute( $module );
 		}
 
