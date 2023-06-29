@@ -6,10 +6,13 @@ PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 
 == MediaWiki 1.39.4 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.39 branch.
 
 === Changes since MediaWiki 1.39.3 ===
 * Localisation updates.
+* (T333990) composer.json: Explicitly pin psr/http-message to 1.0.1.
+* (T335203, CVE-2023-29197) SECURITY: Upgrading guzzlehttp/psr7
+  (2.4.0 => 2.4.5).
 * (T333776) {{ACTIVEUSERS}} wasn't being updated without updateSpecialPages.php.
 * (T258860) Prevent LogicCache exception from message cache during IO errors
   from memcache.
@@ -29,6 +32,8 @@ THIS IS NOT A RELEASE YET
   Linker::makeBrokenImageLinkObj.
 * (T334659) Handle thumb errors when !$enableLegacyMediaDOM.
 * A manualthumb that doesn't exist should be considered a thumb error.
+* (T313157) IndexPager: Also protect against $offset being 0.
+* (T335612, CVE-2023-36674) SECURITY: Move badFile lookup to Linker.
 
 == MediaWiki 1.39.3 ==
 
