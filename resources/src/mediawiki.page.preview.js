@@ -115,7 +115,7 @@
 		// in resources/src/mediawiki.action/mediawiki.action.edit.collapsibleFooter.js
 		var $list = $parent.find( 'ul' );
 		if ( $list.length === 0 ) {
-			$list = $( '<ul>' );
+			$list = $( '<ul>' ).addClass( [ 'mw-editfooter-list', 'mw-collapsible', 'mw-made-collapsible' ] );
 			$parent.append( $list );
 		}
 
@@ -128,10 +128,8 @@
 			return;
 		}
 
-		// Otherwise, fetch protection status of all templates.
+		// Fetch info about all templates, batched because API is limited to 50 at a time.
 		$parent.addClass( 'mw-preview-loading-elements-loading' );
-
-		// Batch titles because API is limited to 50 at a time.
 		var batchSize = 50;
 		var requests = [];
 		for ( var batch = 0; batch < templates.length; batch += batchSize ) {
@@ -153,8 +151,6 @@
 		$.when.apply( null, requests ).done( function () {
 			var templatesAllInfo = [];
 			// For the first batch, empty the list in preparation for either adding new items or not needing to.
-			// @todo Don't empty the list till the new list items are ready to be inserted.
-			$list.empty();
 			for ( var r = 0; r < arguments.length; r++ ) {
 				// Response is either the whole argument, or the 0th element of it.
 				var response = arguments[ r ][ 0 ] || arguments[ r ];
@@ -178,9 +174,12 @@
 				}
 			} );
 
-			// Add all templates to the list, and update the list header.
-			addItemToTemplateListPromise( $list, templatesAllInfo, 0 );
-
+			// Add new template list, and update the list header.
+			var $listNew = $( '<ul>' );
+			addItemToTemplateListPromise( $listNew, templatesAllInfo, 0 )
+				.then( function () {
+					$list.html( $listNew.html() );
+				} );
 			// The following messages can be used here:
 			// * templatesusedpreview
 			// * templatesusedsection
@@ -205,7 +204,7 @@
 	function addItemToTemplateListPromise( $list, templatesInfo, templateIndex ) {
 		return addItemToTemplateList( $list, templatesInfo[ templateIndex ] ).then( function () {
 			if ( templatesInfo[ templateIndex + 1 ] !== undefined ) {
-				addItemToTemplateListPromise( $list, templatesInfo, templateIndex + 1 );
+				return addItemToTemplateListPromise( $list, templatesInfo, templateIndex + 1 );
 			}
 		} );
 	}
