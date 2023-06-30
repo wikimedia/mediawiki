@@ -1375,7 +1375,7 @@ class MainConfigSchema {
 	 *
 	 * Each backend configuration has the following parameters:
 	 *  - name  : A unique name for the lock manager
-	 *  - class : The lock manger class to use
+	 *  - class : The lock manager class to use
 	 *
 	 * See LockManager::__construct() for more details.
 	 * Additional parameters are specific to the lock manager class used.
@@ -3868,7 +3868,7 @@ class MainConfigSchema {
 	 *   - multiPrimaryMode: Whether the portion of the dataset belonging to each tag/shard is
 	 *      replicated among one or more regions, with one "co-primary" server in each region.
 	 *      Queries are issued in a manner that provides Last-Write-Wins eventual consistency.
-	 *      This option requires the "server" or "servers" options. Only MySQL, with statment
+	 *      This option requires the "server" or "servers" options. Only MySQL, with statement
 	 *      based replication (log_bin='ON' and binlog_format='STATEMENT') is supported. Also,
 	 *      the `modtoken` column must exist on the `objectcache` table(s).
 	 *   - purgePeriod: The average number of object cache writes in between garbage collection
@@ -8975,7 +8975,7 @@ class MainConfigSchema {
 	/**
 	 * Allows authenticated cross-origin requests to the REST API with session cookies.
 	 *
-	 * With this option enabled, any orgin specified in $wgCrossSiteAJAXdomains may send session
+	 * With this option enabled, any origin specified in $wgCrossSiteAJAXdomains may send session
 	 * cookies for authorization in the REST API.
 	 *
 	 * There is a performance impact by enabling this option. Therefore, it should be left disabled
@@ -9495,7 +9495,7 @@ class MainConfigSchema {
 	 *   For requests that are not in the sampling,
 	 *   the 'class' option will be replaced with ProfilerStub.
 	 *   Default: `1`.
-	 * - 'threshold' (`float`): Only process the recorded data if the total ellapsed
+	 * - 'threshold' (`float`): Only process the recorded data if the total elapsed
 	 *   time for a request is more than this number of seconds.
 	 *   Default: `0.0`.
 	 * - 'output' (`string|string[]`):  ProfilerOutput subclass or subclasess to use.
