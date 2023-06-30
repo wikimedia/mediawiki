@@ -468,7 +468,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 *
 	 * @stable to override
 	 *
-	 * @param int|string $offset Index offset, inclusive
+	 * @param int|string|null $offset Index offset, inclusive
 	 * @param int $limit Exact query limit
 	 * @param bool $order IndexPager::QUERY_ASCENDING or IndexPager::QUERY_DESCENDING
 	 * @return array
@@ -495,7 +495,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 			$options['ORDER BY'] = $orderBy;
 			$operator = $this->mIncludeOffset ? '<=' : '<';
 		}
-		if ( $offset != '' ) {
+		if ( $offset ) {
 			$offsets = explode( '|', $offset, /* Limit to max of indices */ count( $indexColumns ) );
 
 			$conds[] = $this->buildOffsetConds(
