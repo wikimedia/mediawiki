@@ -84,8 +84,10 @@ class SkinComponentTempUserBanner implements SkinComponent {
 				)
 
 			) .
-			$this->createLoginLink() .
-			$this->createAccountLink()
+			HTML::rawElement( 'div', [ 'class' => 'mw-temp-user-banner-buttons' ],
+				$this->createLoginLink() .
+				$this->createAccountLink()
+			)
 		);
 	}
 
