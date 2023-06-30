@@ -391,6 +391,43 @@ var util = {
 	},
 
 	/**
+	 * Get the value for an array query parameter, combined according to similar rules as PHP uses.
+	 * Currently this does not handle associative or multi-dimensional arrays, but that may be
+	 * improved in the future.
+	 *
+	 *     mw.util.getArrayParam( 'foo', new URLSearchParams( '?foo[0]=a&foo[1]=b' ) ); // [ 'a', 'b' ]
+	 *     mw.util.getArrayParam( 'foo', new URLSearchParams( '?foo[]=a&foo[]=b' ) ); // [ 'a', 'b' ]
+	 *     mw.util.getArrayParam( 'foo', new URLSearchParams( '?foo=a' ) ); // null
+	 *
+	 * @param {string} param The parameter name.
+	 * @param {URLSearchParams} [params] Parsed URL parameters to search through, defaulting to the current browsing location.
+	 * @return {string[]|null} Parameter value, or null if parameter was not found.
+	 */
+	getArrayParam: function ( param, params ) {
+		// eslint-disable-next-line security/detect-non-literal-regexp
+		var paramRe = new RegExp( '^' + util.escapeRegExp( param ) + '\\[(\\d*)\\]$' );
+
+		if ( !params ) {
+			params = new URLSearchParams( location.search );
+		}
+
+		var arr = [];
+		params.forEach( function ( v, k ) {
+			var paramMatch = k.match( paramRe );
+			if ( paramMatch ) {
+				var i = paramMatch[ 1 ];
+				if ( i === '' ) {
+					// If no explicit index, append at the end
+					i = arr.length;
+				}
+				arr[ i ] = v;
+			}
+		} );
+
+		return arr.length ? arr : null;
+	},
+
+	/**
 	 * The content wrapper of the skin (e.g. `.mw-body`).
 	 *
 	 * Populated on document ready. To use this property,
