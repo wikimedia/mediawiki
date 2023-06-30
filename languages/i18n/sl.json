@@ -638,7 +638,6 @@
 	"showdiff": "Prikaži spremembe",
 	"temp-user-banner-description": "Uporabljate začasen račun",
 	"temp-user-banner-tooltip-title": "Začasni račun",
-	"temp-user-banner-tooltip-description": "Ta začasni račun je bil ustvarjen po urejanju brez računa v tem brskalniku in napravi. [[{{MediaWiki:tempuser-helppage}}|Več o tem]].<br/> Prijavite se ali si ustvarite račun, da se vam bodo priznala prihodnja urejanja in boste lahko dostopali do drugih funkcij.",
 	"blankarticle": "<strong>Opozorilo:</strong> Stran, ki jo ustvarjate, je prazna.\nČe znova kliknete »$1«, bomo stran ustvarili brez kakršne koli vsebine.",
 	"anoneditwarning": "<strong>Opozorilo:</strong> Niste prijavljeni. če boste opravili kakršno koli urejanje, bo vaš IP-naslov javno viden. Če se boste <strong>[$1 prijavili]</strong> ali če si boste <strong>[$2 ustvarili račun]</strong>, bodo poleg drugih prednosti vaša urejanja pripisana vašemu uporabniškemu imenu.",
 	"autocreate-edit-warning": "<strong>Opozorilo:</strong> Niste prijavljeni. Vaša urejanja bodo pripisana <strong>[[{{MediaWiki:tempuser-helppage}}|samodejno ustvarjenemu imenu]]</strong> tako, da bo v vaš brskalnik dodan piškotek. Uveljavljeni uporabniki bodo videli vaš IP-naslov. Če se boste <strong>[$1 prijavili]</strong> ali če si boste <strong>[$2 ustvarili račun]</strong>, bodo urejanja pripisana imenu, ki si ga boste izbrali, deležni pa boste tudi drugih prednosti.",

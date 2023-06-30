@@ -913,7 +913,7 @@
 	"showhideselectedversions": "Erausgesicht Versioune weisen/verstoppen",
 	"editundo": "réckgängeg maachen",
 	"diff-empty": "(Keen Ënnerscheed)",
-	"diff-multi-sameuser": "({{PLURAL:$1|Eng Tëscheversioun|$1 Tëscheversioune}} vun deemselwechte Benotzer net gewisen)",
+	"diff-multi-sameuser": "({{PLURAL:$1|Eng Tëscheversioun|$1 Tëscheversioune}} vun {{GENDER:$3|deem selwechte Benotzer|där selwechter Benotzerin}} {{PLURAL:$1|gëtt|ginn}} net gewisen)",
 	"diff-multi-otherusers": "({{PLURAL:$1|Eng Tëscheversioun|$1 Tëscheversioune}} vun {{PLURAL:$2|engem anere|$2}} Benotzer {{PLURAL:$1|gëtt|ginn}} net gewisen)",
 	"diff-multi-manyusers": "({{PLURAL:$1|Eng Tëscheversioun|$1 Tëscheversioune}} vu méi wéi $2 {{PLURAL:$2|Benotzer|Benotzer}} ginn net gewisen)",
 	"diff-paragraph-moved-tonew": "Den Abschnitt gouf geréckelt. Klickt fir op déi nei Plaz ze sprangen.",

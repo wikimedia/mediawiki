@@ -708,7 +708,6 @@
 	"showdiff": "Lihat perubahan",
 	"temp-user-banner-description": "Anda menggunakan akun sementara",
 	"temp-user-banner-tooltip-title": "Akun sementara",
-	"temp-user-banner-tooltip-description": "Akun sementara ini dibuat setelah pengeditan dilakukan tanpa akun di browser dan perangkat ini. [[{{MediaWiki:tempuser-helppage}}|Pelajari lebih lanjut]].<br/> Masuk atau buat akun untuk mendapatkan kredit untuk pengeditan selanjutnya dan mengakses fitur lainnya.",
 	"blankarticle": "<strong>Peringatan:</strong> Halaman yang akan Anda buat tidak berisi apa-apa.\nJika Anda mengklik \"$1\" sekali lagi, halaman ini akan dibuat tanpa ada isi.",
 	"anoneditwarning": "<strong>Peringatan:</strong> Anda sedang tidak masuk log. Alamat IP Anda akan terlihat oleh publik jika Anda melakukan suatu perubahan. Jika Anda <strong>[$1 masuk log]</strong> atau <strong>[$2 membuat akun]</strong>, suntingan Anda akan diatribusikan kepada nama pengguna Anda, beserta berbagai keuntungan lainnya.",
 	"autocreate-edit-warning": "<strong>Peringatan:</strong> Anda belum masuk log. Suntingan Anda akan tercatat ke <strong>[[{{MediaWiki:tempuser-helppage}}|nama yang diciptakan otomatis]]</strong> dengan menambahkan kuki ke peramban Anda. Alamat IP Anda akan terlihat oleh pengguna terpercaya. Bila Anda <strong>[$1 masuk log]</strong> atau <strong>[$2 membuat akun]</strong>, suntingan Anda akan tercatat ke nama yang Anda pilih, sekaligus berbagai manfaat lainnya.",

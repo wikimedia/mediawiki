@@ -659,7 +659,6 @@
 	"showdiff": "Dəyişiklikləri göstər",
 	"temp-user-banner-description": "Siz müvəqqəti hesabdan istifadə edirsiniz",
 	"temp-user-banner-tooltip-title": "Müvəqqəti hesab",
-	"temp-user-banner-tooltip-description": "Bu müvəqqəti hesab bu brauzerdə və cihazda hesab olmadan redaktə edildikdən sonra yaradılmışdır. [[{{MediaWiki:tempuser-helppage}}|Ətraflı məlumat]].<br/> Gələcək redaktələr üçün kredit əldə etmək və digər funksiyalara daxil olmaq üçün daxil olun və ya hesab yaradın.",
 	"blankarticle": "<strong>Xəbərdarlıq:</strong> Yaratdığınız səhifə boşdur. \nƏgər bir daha \"$1\" düyməsinə klikləsəniz, səhifə heç bir məzmun olmadan yaradılacaq.",
 	"anoneditwarning": "<strong>Diqqət:</strong> Siz sistemə daxil olmamısınız. Hər hansı dəyişiklik etsəniz, sizin IP-ünvanınız hamıya görünəcək. Əgər <strong>[$1 daxil olsanız]</strong> və ya <strong>[$2 hesab yaratsanız]</strong>, redaktələriniz sizin istifadəçi adınıza yazılacaq və digər üstünlüklər də qazanacaqsınız.",
 	"autocreate-edit-warning": "<strong>Xəbərdarlıq:</strong> Siz daxil olmamısınız. Sizin redaktəniz brauzerinizə kuki əlavə etməklə <strong>[[{{MediaWiki:tempuser-helppage}}|avtomatik yaradılan ada]]</strong> aid ediləcək. IP ünvanınız etibarlı istifadəçilərə görünəcək. Əgər <strong>[$1 daxil olsanız]</strong> və ya <strong>[$2 hesab yaratsanız]</strong> , redaktələriniz digər üstünlüklərlə birlikdə seçdiyiniz ada aid ediləcək.",

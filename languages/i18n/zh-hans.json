@@ -810,7 +810,6 @@
 	"showdiff": "显示更改",
 	"temp-user-banner-description": "您正在使用临时账户",
 	"temp-user-banner-tooltip-title": "临时账号",
-	"temp-user-banner-tooltip-description": "由于此浏览器及设备上在您做出编辑后没有登录任何账户，已自动为您创建临时账户。[[{{MediaWiki:tempuser-helppage}}|了解详细信息]]。<br />请登录或创建账户，这样一来之后的编辑将归于您的名下，且您将可以使用更多功能。",
 	"blankarticle": "<strong>警告</strong>：您创建的页面是空白的。\n如果您再次点击“$1”，您将真的创建没有任何内容的页面。",
 	"anoneditwarning": "<strong>警告：</strong>您没有登录。如果您做出任意编辑，您的IP地址将会公开可见。如果您<strong>[$1 登录]</strong>或<strong>[$2 创建]</strong>一个账户，您的编辑将归属于您的用户名，且将享受其他好处。",
 	"autocreate-edit-warning": "<strong>警告：</strong>您尚未登录。您的编辑将归于一个<strong>[[{{MediaWiki:tempuser-helppage}}|自动生成的名称]]</strong>（通过向您的浏览器添加一个Cookie）。您的IP地址将对受信任的用户可见。如果您<strong>[$1 登录]</strong> 或<strong>[$2 创建帐户]</strong>，您的编辑会归于您的用户名之下，此外还有其他益处。",
