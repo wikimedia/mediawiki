@@ -4414,4 +4414,10 @@ class MainConfigNames {
 	 */
 	public const ShowDiffToggleSwitch = 'ShowDiffToggleSwitch';
 
+	/**
+	 * Name constant for the EnableEditRecovery setting, for use with Config::get()
+	 * @see MainConfigSchema::EnableEditRecovery
+	 */
+	public const EnableEditRecovery = 'EnableEditRecovery';
+
 }
