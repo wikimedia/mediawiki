@@ -147,11 +147,14 @@ class CreateAndPromote extends Maintenance {
 			}
 		}
 
-		// Add groups before changing password, as the password policy for certain groups has
-		// stricter requirements.
-		$userGroupManager = $services->getUserGroupManager();
-		// Promote user
-		$userGroupManager->addUserToMultipleGroups( $user, $promotions );
+		if ( $promotions ) {
+			// Add groups before changing password, as the password policy for certain groups has
+			// stricter requirements.
+			$userGroupManager = $services->getUserGroupManager();
+			$userGroupManager->addUserToMultipleGroups( $user, $promotions );
+			$reason = $this->getOption( 'reason' ) ?: '';
+			$this->addLogEntry( $user, $inGroups, array_merge( $inGroups, $promotions ), $reason );
+		}
 
 		if ( $password ) {
 			# Try to set the password
@@ -172,13 +175,6 @@ class CreateAndPromote extends Maintenance {
 				$this->fatalError( 'Setting the password failed: ' . $pwe->getMessage() );
 			}
 		}
-
-		// Handle promotion and logging of promotions
-		$userGroupManager = $services->getUserGroupManager();
-		$oldGroups = $userGroupManager->getUserGroups( $user );
-		$userGroupManager->addUserToMultipleGroups( $user, $promotions );
-		$reason = $this->getOption( 'reason' ) ?: '';
-		$this->addLogEntry( $user, $oldGroups, array_merge( $oldGroups, $promotions ), $reason );
 
 		if ( !$exists ) {
 			# Increment site_stats.ss_users
