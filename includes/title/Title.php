@@ -3684,10 +3684,8 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			MediaWikiServices::getInstance()->getContentLanguage()->lcfirst( $this->getText() )
 		);
 
-		$message = wfMessage( $name )->inLanguage( $lang )->useDatabase( false );
-
-		if ( $message->exists() ) {
-			return $message;
+		if ( wfMessage( $name )->inLanguage( $lang )->useDatabase( false )->exists() ) {
+			return wfMessage( $name )->inLanguage( $lang );
 		} else {
 			return null;
 		}
