@@ -411,6 +411,9 @@ class UserGroupManager implements IDBAccessObject {
 		$promote = [];
 		// TODO: remove the need for the full user object
 		$userObj = User::newFromIdentity( $user );
+		if ( $userObj->isTemp() ) {
+			return [];
+		}
 		foreach ( $this->options->get( MainConfigNames::Autopromote ) as $group => $cond ) {
 			if ( $this->recCheckCondition( $cond, $userObj ) ) {
 				$promote[] = $group;
