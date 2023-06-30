@@ -2381,7 +2381,21 @@ return [
 			'user.options',
 		],
 	],
-
+	'mediawiki.tempUserBanner.styles' => [
+		'styles' => [
+			'resources/src/mediawiki.tempUserBanner/tempUserBanner.less',
+		]
+	],
+	'mediawiki.tempUserBanner' => [
+		'scripts' => [
+			'resources/src/mediawiki.tempUserBanner/tempUserBanner.js',
+		],
+		'messages' => [
+			'temp-user-banner-tooltip-title',
+			'temp-user-banner-tooltip-description-learn-more',
+			'temp-user-banner-tooltip-description-login'
+		]
+	],
 	/* MediaWiki Installer */
 
 	// Used in the web installer. Test it after modifying this definition!

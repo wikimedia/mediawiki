@@ -572,7 +572,6 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 					'elements' => true,
 					'normalize' => true,
 					'interface-core' => false,
-					'interface-temp-user-banner' => false,
 					'toc' => false,
 				],
 				[
