@@ -125,6 +125,7 @@ class DeleteAction extends FormAction {
 	protected function alterForm( HTMLForm $form ) {
 		$title = $this->getTitle();
 		$form
+			->setAction( $this->getFormAction() )
 			->setWrapperLegendMsg( $this->getFormMsg( self::MSG_LEGEND ) )
 			->setWrapperAttributes( [ 'id' => 'mw-delete-table' ] )
 			->suppressDefaultSubmit()
