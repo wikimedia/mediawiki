@@ -6,7 +6,7 @@ namespace MediaWiki\Interwiki\Hook;
  * This is a hook handler interface, see docs/Hooks.md.
  * Use the hook name "InterwikiLoadPrefix" to register handlers implementing this interface.
  *
- * @deprecated Does not support enumerating all valid prefixes; for testing
+ * @deprecated since 1.36, does not support enumerating all valid prefixes; for testing
  *    purposes (re)set $wgInterwikiCache instead.
  * @stable to implement
  * @ingroup Hooks

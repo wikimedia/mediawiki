@@ -54,6 +54,7 @@ class DeprecatedHooks {
 		'EmailUserPermissionsErrors' => [ 'deprecatedVersion' => '1.41' ],
 		'UserCanSendEmail' => [ 'deprecatedVersion' => '1.41', 'silent' => true ],
 		'EmailUser' => [ 'deprecatedVersion' => '1.41', 'silent' => true ],
+		'InterwikiLoadPrefix' => [ 'deprecatedVersion' => '1.36' ],
 	];
 
 	/**
