@@ -226,6 +226,7 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 		$conds['redirect'] = [
 			'rd_namespace' => $target->getNamespace(),
 			'rd_title' => $target->getDBkey(),
+			'rd_interwiki' => [ '', null ],
 		];
 		$conds['pagelinks'] = [
 			'pl_namespace' => $target->getNamespace(),
