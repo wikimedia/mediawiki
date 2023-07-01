@@ -125,7 +125,7 @@ class SpecialPage implements MessageLocalizer {
 	 * @since 1.21 $fragment parameter added
 	 *
 	 * @param string $name
-	 * @param string|false $subpage Subpage string, or false to not use a subpage
+	 * @param string|false|null $subpage Subpage string, or false/null to not use a subpage
 	 * @param string $fragment The link fragment (after the "#")
 	 * @return Title
 	 */
@@ -140,7 +140,7 @@ class SpecialPage implements MessageLocalizer {
 	 *
 	 * @since 1.28
 	 * @param string $name
-	 * @param string|false $subpage Subpage string, or false to not use a subpage
+	 * @param string|false|null $subpage Subpage string, or false/null to not use a subpage
 	 * @param string $fragment The link fragment (after the "#")
 	 * @return TitleValue
 	 */
@@ -809,7 +809,7 @@ class SpecialPage implements MessageLocalizer {
 	/**
 	 * Get a self-referential title object
 	 *
-	 * @param string|false $subpage
+	 * @param string|false|null $subpage
 	 * @return Title
 	 * @since 1.23
 	 */

@@ -1650,7 +1650,7 @@ class SpecialPageFactory {
 	 * Get the local name for a specified canonical name
 	 *
 	 * @param string $name
-	 * @param string|false $subpage
+	 * @param string|false|null $subpage
 	 * @return string
 	 */
 	public function getLocalNameFor( $name, $subpage = false ) {
