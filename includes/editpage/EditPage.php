@@ -3265,7 +3265,7 @@ class EditPage implements IEditObject {
 			$this->addExplainConflictHeader();
 			$this->editRevId = $this->page->getLatest();
 		} else {
-			if ( $this->section !== '' && $this->section !== 'new' && !$this->summary &&
+			if ( $this->section !== '' && $this->section !== 'new' && $this->summary === '' &&
 				!$this->preview && !$this->diff
 			) {
 				$sectionTitle = self::extractSectionTitle( $this->textbox1 ); // FIXME: use Content object

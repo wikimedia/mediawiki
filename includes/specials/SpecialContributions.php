@@ -727,16 +727,15 @@ class SpecialContributions extends IncludableSpecialPage {
 			];
 		}
 
-		$target = $this->opts['target'] ?? null;
+		$target = $this->opts['target'] ?? '';
 		$fields['target'] = [
 			'type' => 'user',
-			'default' => $target ?
-				str_replace( '_', ' ', $target ) : '',
+			'default' => str_replace( '_', ' ', $target ),
 			'label' => $this->msg( 'sp-contributions-username' )->text(),
 			'name' => 'target',
 			'id' => 'mw-target-user-or-ip',
 			'size' => 40,
-			'autofocus' => !$target,
+			'autofocus' => $target === '',
 			'section' => 'contribs-top',
 			'ipallowed' => true,
 			'iprange' => true,

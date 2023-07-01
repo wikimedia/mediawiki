@@ -143,7 +143,9 @@ class ApiQueryUserContribs extends ApiQueryBase {
 						->caller( $fname )
 						->limit( $limit )
 						->whereUserNamePrefix( $this->params['userprefix'] )
-						->where( $fromName ? $dbSecondary->buildComparison( $op, [ 'actor_name' => $fromName ] ) : [] )
+						->where( $fromName !== false
+							? $dbSecondary->buildComparison( $op, [ 'actor_name' => $fromName ] )
+							: [] )
 						->orderByName( $sort )
 						->fetchUserIdentities();
 

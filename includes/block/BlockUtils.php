@@ -143,7 +143,7 @@ class BlockUtils {
 		// This allows validateTarget() to return a "nosuchusershort" message,
 		// which is needed for Special:Block.
 		$canonicalName = $this->userNameUtils->getCanonical( $target );
-		if ( $canonicalName ) {
+		if ( $canonicalName !== false ) {
 			return [
 				new UserIdentityValue( 0, $canonicalName ),
 				AbstractBlock::TYPE_USER

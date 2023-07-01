@@ -88,11 +88,11 @@ class SpecialListFiles extends IncludableSpecialPage {
 		}
 		// Sanitize usernames to avoid symbols in the title of page.
 		$sanitizedUserName = $this->userNameUtils->getCanonical( $userName, UserRigorOptions::RIGOR_NONE );
-		if ( $sanitizedUserName ) {
+		if ( $sanitizedUserName !== false ) {
 			$userName = $sanitizedUserName;
 		}
 
-		if ( $userName ) {
+		if ( $userName !== '' ) {
 			$pageTitle = $this->msg( 'listfiles_subpage' )->plaintextParams( $userName );
 		} else {
 			$pageTitle = $this->msg( 'listfiles' );
