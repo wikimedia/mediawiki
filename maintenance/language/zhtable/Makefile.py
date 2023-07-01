@@ -295,7 +295,7 @@ def defaultWordsTable(src_wordlist, src_tomany, char_conv_table,
 
 
 def PHPArray(table):
-    lines = ['\'%s\' => \'%s\',' % (f, t) for (f, t) in table if f and t]
+    lines = ['\t\t\'%s\' => \'%s\',' % (f, t) for (f, t) in table if f and t]
     return '\n'.join(lines)
 
 
@@ -418,17 +418,17 @@ def main():
 namespace MediaWiki\Languages\Data;
 
 class ZhConversion {
-public static $zh2Hant = [\n'''
+	public static $zh2Hant = [\n'''
     php += PHPArray(toHant) \
-        + '\n];\n\npublic static $zh2Hans = [\n' \
+        + '\n\t];\n\n\tpublic static $zh2Hans = [\n' \
         + PHPArray(toHans) \
-        + '\n];\n\npublic static $zh2TW = [\n' \
+        + '\n\t];\n\n\tpublic static $zh2TW = [\n' \
         + PHPArray(toTW) \
-        + '\n];\n\npublic static $zh2HK = [\n' \
+        + '\n\t];\n\n\tpublic static $zh2HK = [\n' \
         + PHPArray(toHK) \
-        + '\n];\n\npublic static $zh2CN = [\n' \
+        + '\n\t];\n\n\tpublic static $zh2CN = [\n' \
         + PHPArray(toCN) \
-        + '\n];\n}\n'
+        + '\n\t];\n}\n'
 
     if pyversion[:1] in ['2']:
         f = open(os.path.join('..', '..', '..', 'includes', 'languages', 'data', 'ZhConversion.php'), 'wb', encoding='utf8')
