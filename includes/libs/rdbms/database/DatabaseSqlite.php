@@ -787,7 +787,6 @@ class DatabaseSqlite extends Database {
 			}
 		}
 
-		// @phan-suppress-next-line SecurityCheck-SQLInjection SQL is taken from database
 		$res = $this->query(
 			$sqlCreateTable,
 			$fname,

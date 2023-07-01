@@ -26,6 +26,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
+use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
@@ -428,14 +429,16 @@ class Linker {
 
 		$rdfaType = 'mw:File';
 
-		if ( $file && isset( $frameParams['frameless'] ) ) {
+		if ( isset( $frameParams['frameless'] ) ) {
 			$rdfaType .= '/Frameless';
-			$srcWidth = $file->getWidth( $page );
-			# For "frameless" option: do not present an image bigger than the
-			# source (for bitmap-style images). This is the same behavior as the
-			# "thumb" option does it already.
-			if ( $srcWidth && !$file->mustRender() && $handlerParams['width'] > $srcWidth ) {
-				$handlerParams['width'] = $srcWidth;
+			if ( $file ) {
+				$srcWidth = $file->getWidth( $page );
+				# For "frameless" option: do not present an image bigger than the
+				# source (for bitmap-style images). This is the same behavior as the
+				# "thumb" option does it already.
+				if ( $srcWidth && !$file->mustRender() && $handlerParams['width'] > $srcWidth ) {
+					$handlerParams['width'] = $srcWidth;
+				}
 			}
 		}
 
@@ -446,16 +449,31 @@ class Linker {
 			$thumb = false;
 		}
 
-		if ( !$thumb ) {
+		$isBadFile = $file && $thumb &&
+			$parser->getBadFileLookup()->isBadFile( $title->getDBkey(), $parser->getTitle() );
+
+		if ( !$thumb || ( !$enableLegacyMediaDOM && $thumb->isError() ) || $isBadFile ) {
 			$rdfaType = 'mw:Error ' . $rdfaType;
-			$label = '';
+			$currentExists = $file && $file->exists();
 			if ( $enableLegacyMediaDOM ) {
 				// This is the information for tooltips for inline images which
 				// Parsoid stores in data-mw.  See T273014
 				$label = $frameParams['title'];
+			} else {
+				if ( $currentExists && !$thumb ) {
+					$label = wfMessage( 'thumbnail_error', '' )->text();
+				} elseif ( $thumb && $thumb->isError() ) {
+					Assert::invariant(
+						$thumb instanceof MediaTransformError,
+						'Unknown MediaTransformOutput: ' . get_class( $thumb )
+					);
+					$label = $thumb->toText();
+				} else {
+					$label = '';
+				}
 			}
 			$s = self::makeBrokenImageLinkObj(
-				$title, $label, '', '', '', (bool)$time, $handlerParams
+				$title, $label, '', '', '', (bool)$time, $handlerParams, $currentExists
 			);
 		} else {
 			self::processResponsiveImages( $file, $thumb, $handlerParams );
@@ -637,9 +655,14 @@ class Linker {
 		$thumb = false;
 		$noscale = false;
 		$manualthumb = false;
+		$manual_title = '';
 		$rdfaType = 'mw:File/Thumb';
 
 		if ( !$exists ) {
+			// Same precedence as the $exists case
+			if ( !isset( $frameParams['manualthumb'] ) && isset( $frameParams['framed'] ) ) {
+				$rdfaType = 'mw:File/Frame';
+			}
 			$outerWidth = $handlerParams['width'] + 2;
 		} else {
 			if ( isset( $frameParams['manualthumb'] ) ) {
@@ -651,8 +674,6 @@ class Linker {
 					if ( $manual_img ) {
 						$thumb = $manual_img->getUnscaledThumb( $handlerParams );
 						$manualthumb = true;
-					} else {
-						$exists = false;
 					}
 				}
 			} elseif ( isset( $frameParams['framed'] ) ) {
@@ -713,18 +734,43 @@ class Linker {
 				. "<div class=\"thumbinner\" style=\"width:{$outerWidth}px;\">";
 		}
 
+		$isBadFile = $exists && $thumb && $parser &&
+			$parser->getBadFileLookup()->isBadFile(
+				$manualthumb ? $manual_title : $title->getDBkey(),
+				$parser->getTitle()
+			);
+
 		if ( !$exists ) {
+			$rdfaType = 'mw:Error ' . $rdfaType;
 			$label = '';
 			$s .= self::makeBrokenImageLinkObj(
-				$title, $label, '', '', '', (bool)$time, $handlerParams
+				$title, $label, '', '', '', (bool)$time, $handlerParams, false
 			);
 			$zoomIcon = '';
-		} elseif ( !$thumb ) {
+		} elseif ( !$thumb || ( !$enableLegacyMediaDOM && $thumb->isError() ) || $isBadFile ) {
+			$rdfaType = 'mw:Error ' . $rdfaType;
 			if ( $enableLegacyMediaDOM ) {
-				$s .= wfMessage( 'thumbnail_error', '' )->escaped();
+				if ( !$thumb ) {
+					$s .= wfMessage( 'thumbnail_error', '' )->escaped();
+				} else {
+					$s .= self::makeBrokenImageLinkObj(
+						$title, '', '', '', '', (bool)$time, $handlerParams, true
+					);
+				}
 			} else {
+				if ( $thumb && $thumb->isError() ) {
+					Assert::invariant(
+						$thumb instanceof MediaTransformError,
+						'Unknown MediaTransformOutput: ' . get_class( $thumb )
+					);
+					$label = $thumb->toText();
+				} elseif ( !$thumb ) {
+					$label = wfMessage( 'thumbnail_error', '' )->text();
+				} else {
+					$label = '';
+				}
 				$s .= self::makeBrokenImageLinkObj(
-					$title, '', '', '', '', (bool)$time, $handlerParams
+					$title, $label, '', '', '', (bool)$time, $handlerParams, true
 				);
 			}
 			$zoomIcon = '';
@@ -765,10 +811,6 @@ class Linker {
 		$s .= Html::rawElement(
 			'figcaption', [], $frameParams['caption'] ?? ''
 		);
-
-		if ( !$exists || !$thumb ) {
-			$rdfaType = 'mw:Error ' . $rdfaType;
-		}
 
 		$attribs = [
 			'class' => $classes,
@@ -822,11 +864,12 @@ class Linker {
 	 * @param string $unused2 Unused parameter kept for b/c
 	 * @param bool $time A file of a certain timestamp was requested
 	 * @param array $handlerParams @since 1.36
+	 * @param bool $currentExists
 	 * @return string
 	 */
 	public static function makeBrokenImageLinkObj(
 		$title, $label = '', $query = '', $unused1 = '', $unused2 = '',
-		$time = false, array $handlerParams = []
+		$time = false, array $handlerParams = [], bool $currentExists = false
 	) {
 		if ( !$title instanceof LinkTarget ) {
 			wfWarn( __METHOD__ . ': Requires $title to be a LinkTarget object.' );
@@ -855,8 +898,8 @@ class Linker {
 		}
 
 		$repoGroup = $services->getRepoGroup();
-		$currentExists = $time
-			&& $repoGroup->findFile( $title ) !== false;
+		$currentExists = $currentExists ||
+			( $time && $repoGroup->findFile( $title ) !== false );
 
 		if ( ( $uploadMissingFileUrl || $uploadNavigationUrl || $enableUploads )
 			&& !$currentExists

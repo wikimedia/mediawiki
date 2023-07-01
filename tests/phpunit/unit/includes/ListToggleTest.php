@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Tests\Unit\FakeQqxMessageLocalizer;
+
 /**
  * @covers ListToggle
  */
@@ -32,28 +34,7 @@ class ListToggleTest extends MediaWikiUnitTestCase {
 
 		$output = $this->createMock( OutputPage::class );
 		$output->method( 'msg' )
-			->willReturnCallback( static function ( $key ) {
-				return new class( $key ) extends Message {
-					protected function fetchMessage() {
-						return "($this->key$*)";
-					}
-
-					public function getLanguage() {
-						return new class() extends LanguageQqx {
-							public function __construct() {
-							}
-
-							public function getCode() {
-								return 'qqx';
-							}
-						};
-					}
-
-					protected function transformText( $string ) {
-						return $string;
-					}
-				};
-			} );
+			->willReturnCallback( [ new FakeQqxMessageLocalizer(), 'msg' ] );
 		$output->expects( $this->once() )
 			->method( 'getLanguage' )
 			->willReturn( $language );

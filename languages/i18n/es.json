@@ -237,7 +237,8 @@
 			"SpikeShroom",
 			"James",
 			"The Pro Gamer",
-			"No se"
+			"No se",
+			"María"
 		]
 	},
 	"tog-underline": "Subrayar enlaces:",
@@ -889,7 +890,7 @@
 	"userpage-userdoesnotexist": "El usuario «$1» no está registrado. Asegúrate de que realmente quieres crear o editar esta página.",
 	"userpage-userdoesnotexist-view": "El usuario «$1» no está registrado.",
 	"blocked-notice-logextract": "{{GENDER:$1|Este usuario|Esta usuaria|Esta cuenta}} se encuentra actualmente bloquead{{GENDER:$1|o|a|a}}.\nA continuación se muestra la última entrada del registro de bloqueos para más información:",
-	"clearyourcache": "<strong>Nota:</strong> Despues de publicar, quizás necesite actualizar la caché de su navegador para ver los cambios.\n* <strong>Firefox/Safari:</strong> Mantenga presionada la tecla <em>Shift</em> mientras pulsa el botón <em>Actualizar</em>, o presiona <em>Ctrl+F5</em> o <em>Ctrl+R</em> (<em>⌘+R</em> en Mac)\n* <strong>Google Chrome:</strong> presione <em>Ctrl+Shift+R</em> (<em>⌘+Mayús+R</em> en Mac)\n* <strong>Internet Explorer/Edge:</strong> mantenga presionada <em>Ctrl</em> mientras pulsa <em>Actualizar</em>, o presione <em>Ctrl+F5</em>\n* <strong>Opera:</strong> Presiona <em>Ctrl+F5</em>.",
+	"clearyourcache": "<strong>Nota:</strong> Después de publicar, quizás necesite actualizar la caché de su navegador para ver los cambios.\n* <strong>Firefox/Safari:</strong> Mantenga presionada la tecla <em>Shift</em> mientras pulsa el botón <em>Actualizar</em>, o presiona <em>Ctrl+F5</em> o <em>Ctrl+R</em> (<em>⌘+R</em> en Mac)\n* <strong>Google Chrome:</strong> presione <em>Ctrl+Shift+R</em> (<em>⌘+Shift+R</em> en Mac)\n* <strong>Internet Explorer/Edge:</strong> mantenga presionada <em>Ctrl</em> mientras pulsa <em>Actualizar</em>, o presione <em>Ctrl+F5</em>\n* <strong>Opera:</strong> Presiona <em>Ctrl+F5</em>.",
 	"usercssyoucanpreview": "<strong>Consejo:</strong> usa el botón «{{int:showpreview}}» para probar su código CSS nuevo antes de guardarlo.",
 	"userjsonyoucanpreview": "<strong>Consejo:</strong> usa el botón «{{int:showpreview}}» para probar el código JSON nuevo antes de guardarlo.",
 	"userjsyoucanpreview": "<strong>Consejo:</strong> Usa el botón «{{int:showpreview}}» para probar el código JavaScript nuevo antes de guardarlo.",
@@ -1393,7 +1394,7 @@
 	"userrights-lookup-user": "Selecciona una cuenta de usuario",
 	"userrights-user-editname": "Escribe un nombre de usuario:",
 	"editusergroup": "Cargar grupos de usuarios",
-	"editinguser": "Cambio de usuario de {{GENDER:$1|user}} <strong>[[User:$1|$1]]</strong> $2",
+	"editinguser": "Cambiar los grupos de{{GENDER:$1|l usuario|&nbsp;la usuaria}} <strong>[[User:$1|$1]]</strong> $2",
 	"viewinguserrights": "Visualizar los grupos {{GENDER:$1|del usuario|de la usuaria}} <strong>[[User:$1|$1]]</strong> $2",
 	"userrights-editusergroup": "Modificar grupos {{GENDER:$1|del usuario|de la usuaria}}",
 	"userrights-viewusergroup": "Ver grupos {{GENDER:$1|del usuario|de la usuaria}}",

@@ -120,7 +120,8 @@
 			"Ömer Berkay",
 			"İnternion",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"MrSchipunov"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çizme:",
@@ -2503,7 +2504,7 @@
 	"rollback-missingrevision": "Sürüm verisi yüklenemedi.",
 	"cantrollback": "Değişiklik geri alınamıyor.\nSon katkıda bulunan kişi bu sayfanın yalnızca yazarıdır.",
 	"alreadyrolled": "[[User:$2|$2]] ([[User talk:$2|mesaj]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) tarafından [[:$1]] sayfasında yapılmış son değişiklik geri döndürülemiyor.\nBaşka birisi sayfada değişiklik yaptı veya sayfayı geri döndürdü.\n\nSon değişikliği yapan: [[User:$3|$3]] ([[User talk:$3|mesaj]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "Değşiklik özeti şöyleydi: <em>$1</em>.",
+	"editcomment": "Değişiklik özeti şöyleydi: <em>$1</em>.",
 	"revertpage": "[[Special:Contributions/$2|$2]] ([[User talk:$2|mesaj]]) tarafından yapılan değişiklikler geri alınarak, [[User:$1|$1]] tarafından değiştirilmiş önceki sürüm geri getirildi",
 	"revertpage-anon": "[[Special:Contributions/$2|$2]] tarafından yapılan düzenlemeler [[User:$1|$1]] tarafından yapılan son düzeltmeye geri döndürüldü",
 	"revertpage-nouser": "Gizli bir kullanıcı tarafından yapılan değişiklikler geri alınarak {{GENDER:$1|[[User:$1|$1]]}} tarafından yapılan son revizyon geri getirildi",
@@ -3050,7 +3051,7 @@
 	"tooltip-p-personal": "Kullanıcı menüsü",
 	"tooltip-n-mainpage": "Anasayfayı ziyaret et",
 	"tooltip-n-mainpage-description": "Anasayfayı ziyaret et",
-	"tooltip-n-portal": "Proje hakkında, neler yapabilirsiniz, ne nerdedir",
+	"tooltip-n-portal": "Proje hakkında, neler yapabilirsiniz, ne nerededir",
 	"tooltip-n-currentevents": "Güncel olaylarla ilgili son bilgiler",
 	"tooltip-n-recentchanges": "Vikide yapılmış son değişikliklerin listesi",
 	"tooltip-n-randompage": "Rastgele bir sayfaya gidin",

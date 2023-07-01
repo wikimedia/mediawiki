@@ -26,7 +26,8 @@
 			"לערי ריינהארט",
 			"ديفيد",
 			"아라",
-			"Deni"
+			"Deni",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Podvlačenje linkova:",
@@ -3326,6 +3327,7 @@
 	"tags": "Oznake valjane izmjene",
 	"tag-filter": "Filtar [[Special:Tags|oznaka]]:",
 	"tag-filter-submit": "Filtar",
+	"tag-hidden": "$1 (sakrivena oznaka)",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|oznaka|oznake}}]]: $2",
 	"tag-mw-contentmodelchange": "izmjena sadržajnog modela",
 	"tag-mw-contentmodelchange-description": "Uređivanja što [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel mijenjaju sadržajni model] jedne stranice",

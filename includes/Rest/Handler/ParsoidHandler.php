@@ -769,7 +769,10 @@ abstract class ParsoidHandler extends Handler {
 				ParsoidFormatHelper::setContentType( $response, ParsoidFormatHelper::FORMAT_HTML,
 					$attribs['envOptions']['outputContentVersion'] );
 				$response->getBody()->write( $out );
+				// @phan-suppress-next-next-line PhanTypeArraySuspiciousNullable $headers can't be null after the
+				// method call, but the docblock of wikitext2html doesn't say that.
 				$response->setHeader( 'Content-Language', $headers['content-language'] );
+				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable Same.
 				$response->addHeader( 'Vary', $headers['vary'] );
 			}
 

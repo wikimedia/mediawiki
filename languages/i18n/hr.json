@@ -51,7 +51,8 @@
 			"Сербијана",
 			"לערי ריינהארט",
 			"아라",
-			"Eleassar"
+			"Eleassar",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Podcrtavanje poveznica",
@@ -232,7 +233,7 @@
 	"views": "Pogledi",
 	"toolbox": "Pomagala",
 	"cactions": "Više",
-	"tool-link-userrights": "Promijeni {{GENDER:$1|suradnikovu|suradničinu}} pripadnost skupinama",
+	"tool-link-userrights": "{{GENDER:$1|Suradnikova|Suradničina}} prava",
 	"tool-link-userrights-readonly": "Vidi {{GENDER:$1|suradnikovu|suradničinu|suradničku}} pripadnost skupinama",
 	"tool-link-emailuser": "Pošalji e-poruku {{GENDER:$1|suradniku|suradnici}}",
 	"imagepage": "Vidi stranicu datoteke",

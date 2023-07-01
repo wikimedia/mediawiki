@@ -60,7 +60,8 @@
 			"Yupik",
 			"לערי ריינהארט",
 			"아라",
-			"EdoAug"
+			"EdoAug",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Strek under lenker:",
@@ -508,7 +509,7 @@
 	"createacct-temp-warning": "Redigeringene du har gjort med den midlertidige kontoen din blir ikke overført til den permanente kontoen.",
 	"noname": "Du har ikke oppgitt et gyldig brukernavn.",
 	"loginsuccesstitle": "Logget inn",
-	"loginsuccess": "Du er nå logget inn på {{SITENAME}} som «$1».",
+	"loginsuccess": "<strong>Du er nå logget inn på {{SITENAME}} som «$1».</strong>",
 	"nosuchuser": "Det finnes ingen bruker ved navn «$1».\nMerk at det skilles mellom store og små bokstaver.\nSjekk stavemåten eller [[Special:CreateAccount|opprett en ny konto]].",
 	"nosuchusershort": "Det finnes ingen bruker ved navn «$1». Kontroller stavemåten.",
 	"nouserspecified": "Du må oppgi et brukernavn.",
@@ -2431,7 +2432,7 @@
 	"revertpage-nouser": "Tilbakestilte endringer av skjult bruker til siste versjon av\n{{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Tilbakestilte endringer av {{GENDER:$3|$1}}; endret til siste versjon av {{GENDER:$4|$2}}.",
 	"sessionfailure-title": "Sesjonsfeil",
-	"sessionfailure": "Det ser ut til å være et problem med innloggingen din, og handlingen ble avbrutt av sikkerhetshensyn. Vennlgist prøv å sende skjemaet en gang til.",
+	"sessionfailure": "Det ser ut til å være et problem med innloggingen din, og handlingen ble avbrutt av sikkerhetshensyn. Vennligst prøv å sende skjemaet en gang til.",
 	"changecontentmodel": "Endre innholdsmodellen til en side",
 	"changecontentmodel-legend": "Endre innholdsmodell",
 	"changecontentmodel-title-label": "Sidetittel:",
@@ -4010,7 +4011,7 @@
 	"specialmute-error-no-options": "Dempingsfunksjoner er ikke tilgjengelige. Dette kan være fordi du ikke har bekreftet epostadressen din, eller at wikiadministratoren har slått av epostfunksjoner og/eller svartelisting av eposter for denne wikien.",
 	"specialmute-email-footer": "Besøk <$1> for å behandle epostinnstillingene som gjelder brukeren {{BIDI:$2}}.",
 	"specialmute-login-required": "Logg inn for å endre dempingsinnstillingene dine.",
-	"mute-preferences": "Dempingsinnstillinger",
+	"mute-preferences": "Dempings&shy;innstillinger",
 	"revid": "sideversjon $1",
 	"pageid": "side-ID $1",
 	"rawhtml-notallowed": "&lt;html&gt;-tagger kan ikke brukes utenfor normale sider.",

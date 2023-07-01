@@ -593,6 +593,7 @@
 	"imgmultigo": "Bai!",
 	"img-lang-go": "Bai",
 	"table_pager_limit_submit": "Bai",
+	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|diskuson]])",
 	"redirect-submit": "Bai",
 	"redirect-user": "ID di uzuáriu",
 	"redirect-file": "Nomi di fixeru",

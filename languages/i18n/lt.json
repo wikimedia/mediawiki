@@ -45,7 +45,8 @@
 			"Zygimantus",
 			"לערי ריינהארט",
 			"아라",
-			"Nokeoo"
+			"Nokeoo",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Nuorodos pabraukimas:",
@@ -2401,7 +2402,7 @@
 	"rollbackfailed": "Atmetimas nepavyko",
 	"rollback-missingparam": "Trūksta būtinų parametrų pagal užklausą.",
 	"rollback-missingrevision": "Nepavyko įkelti versijos duomenų.",
-	"cantrollback": "Negalima atmesti redagavimo; paskutinis keitęs naudotojas yra šio puslapio autorius.",
+	"cantrollback": "Negalima atmesti keitimo. \nPaskutinis keitęs naudotojas yra šio puslapio autorius.",
 	"alreadyrolled": "Nepavyko atmesti paskutinio [[User:$2|$2]] ([[User talk:$2|Aptarimas]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) daryto puslapio [[:$1]] keitimo;\nkažkas jau pakeitė puslapį arba suspėjo pirmas atmesti keitimą.\n\nPaskutimas keitimas darytas naudotojo [[User:$3|$3]] ([[User talk:$3|Aptarimas]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 	"editcomment": "Pateiktas toks keitimo paaiškinimas: <em>$1</em>.",
 	"revertpage": "Atmestas [[Special:Contributions/$2|$2]] ([[User talk:$2|Aptarimas]]) pakeitimas; sugrąžinta [[User:$1|$1]] versija",
@@ -2541,6 +2542,7 @@
 	"contribsub2": "Naudotojas: {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "{{GENDER:$3|$1}}",
 	"contributions-userdoesnotexist": "Naudotojo paskyra „$1“ neužregistruota.",
+	"negative-namespace-not-supported": "Vardų sritys su neigiamomis reikšmėmis nepalaikomos.",
 	"nocontribs": "Jokie keitimai neatitiko šių kriterijų.",
 	"uctop": "dabartinis",
 	"month": "Nuo mėnesio (ir anksčiau):",
