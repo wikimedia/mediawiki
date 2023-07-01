@@ -299,6 +299,7 @@ class RefreshLinks extends Maintenance {
 		// scheduled by other updates).
 		$page->doSecondaryDataUpdates( [
 			'defer' => DeferredUpdates::POSTSEND,
+			'causeAction' => 'refresh-links-maintenance',
 			'recursive' => false,
 		] );
 		DeferredUpdates::doUpdates();
