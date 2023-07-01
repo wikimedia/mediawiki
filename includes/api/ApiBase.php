@@ -1248,12 +1248,12 @@ abstract class ApiBase extends ContextSource {
 	 * Turn an array of message keys or key+param arrays into a Status
 	 * @since 1.29
 	 * @param array $errors
-	 * @param User|null $user
+	 * @param Authority|null $performer
 	 * @return Status
 	 */
-	public function errorArrayToStatus( array $errors, User $user = null ) {
-		$user ??= $this->getUser();
-		$block = $user->getBlock();
+	public function errorArrayToStatus( array $errors, Authority $performer = null ) {
+		$performer ??= $this->getAuthority();
+		$block = $performer->getBlock();
 
 		$status = Status::newGood();
 		foreach ( $errors as $error ) {
