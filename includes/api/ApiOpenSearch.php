@@ -180,7 +180,7 @@ class ApiOpenSearch extends ApiBase {
 					->select( [ 'page_namespace', 'page_title', 'rd_namespace', 'rd_title' ] )
 					->from( 'page' )
 					->where( [
-						'rd_interwiki IS NULL OR rd_interwiki = ' . $db->addQuotes( '' ),
+						'rd_interwiki' => [ null, '' ],
 						$lb->constructSet( 'page', $db )
 					] )
 					->join( 'redirect', null, [ 'rd_from = page_id' ] )

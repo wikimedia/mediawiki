@@ -60,7 +60,7 @@ trait ApiQueryBlockInfoTrait {
 
 		// Don't show hidden names
 		if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
-			$this->addWhere( 'ipb_deleted = 0 OR ipb_deleted IS NULL' );
+			$this->addWhere( [ 'ipb_deleted' => [ 0, null ] ] );
 		}
 	}
 

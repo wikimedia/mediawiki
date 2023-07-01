@@ -295,7 +295,7 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 				"rd_from = $fromCol",
 				'rd_title' => $target->getDBkey(),
 				'rd_namespace' => $target->getNamespace(),
-				'rd_interwiki = ' . $dbr->addQuotes( '' ) . ' OR rd_interwiki IS NULL'
+				'rd_interwiki' => [ '', null ],
 			];
 			// Inner LIMIT is 2X in case of stale backlinks with wrong namespaces
 			$subQuery = $dbr->newSelectQueryBuilder()

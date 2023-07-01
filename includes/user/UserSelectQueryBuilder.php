@@ -175,7 +175,7 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 			$this->conds( [ 'ipb_deleted = 1' ] );
 		} else {
 			// filter out hidden users
-			$this->conds( [ 'ipb_deleted = 0 OR ipb_deleted IS NULL' ] );
+			$this->conds( [ 'ipb_deleted' => [ 0, null ] ] );
 		}
 		return $this;
 	}

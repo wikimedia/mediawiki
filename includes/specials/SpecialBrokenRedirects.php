@@ -96,7 +96,7 @@ class SpecialBrokenRedirects extends QueryPage {
 				// but aren't "broken" either.
 				// Special pages and interwiki links
 				'rd_namespace >= 0',
-				'rd_interwiki IS NULL OR rd_interwiki = ' . $dbr->addQuotes( '' ),
+				'rd_interwiki' => [ null, '' ],
 				'p2.page_namespace IS NULL',
 			],
 			'join_conds' => [

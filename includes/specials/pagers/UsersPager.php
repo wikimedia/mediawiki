@@ -167,7 +167,7 @@ class UsersPager extends AlphabeticPager {
 
 		// Don't show hidden names
 		if ( !$this->canSeeHideuser() ) {
-			$conds[] = 'ipb_deleted IS NULL OR ipb_deleted = 0';
+			$conds['ipb_deleted'] = [ null, 0 ];
 		}
 
 		$options = [];

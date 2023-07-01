@@ -76,7 +76,7 @@ class FixDoubleRedirects extends Maintenance {
 			'rd_namespace = pb.page_namespace',
 			'rd_title = pb.page_title',
 			// T42352
-			'rd_interwiki IS NULL OR rd_interwiki = ' . $dbr->addQuotes( '' ),
+			'rd_interwiki' => [ null, '' ],
 			'pb.page_is_redirect' => 1,
 		];
 

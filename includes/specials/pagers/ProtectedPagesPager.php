@@ -304,8 +304,7 @@ class ProtectedPagesPager extends TablePager {
 		}
 
 		if ( $this->indefonly ) {
-			$infinity = $dbr->addQuotes( $dbr->getInfinity() );
-			$conds[] = "pr_expiry = $infinity OR pr_expiry IS NULL";
+			$conds['pr_expiry'] = [ $dbr->getInfinity(), null ];
 		}
 		if ( $this->cascadeonly ) {
 			$conds[] = 'pr_cascade = 1';
