@@ -5,7 +5,8 @@
 			"Jon Harald Søby",
 			"Lloffiwr",
 			"Reedy",
-			"Shirayuki"
+			"Shirayuki",
+			"Mako001"
 		]
 	},
 	"exif-ycbcrcoefficients": "Colour space transformation matrix coefficients",
@@ -13,6 +14,7 @@
 	"exif-datetimedigitized": "Date and time of digitising",
 	"exif-subsectimedigitized": "DateTimeDigitised subseconds",
 	"exif-exposureprogram": "Exposure Programme",
+	"exif-meteringmode": "Metering mode",
 	"exif-licenseurl": "URL for copyright licence",
 	"exif-organisationinimage": "Organisation depicted",
 	"exif-exposureprogram-2": "Normal programme",

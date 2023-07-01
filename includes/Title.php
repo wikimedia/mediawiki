@@ -804,7 +804,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 				$r0 = $d0;
 			}
 			// Do the output
-			// @phan-suppress-next-line PhanPluginRedundantAssignmentInLoop Confusing, $r1 is set later
 			if ( $x0 !== '' && $x1 === '-' && $x2 !== '' ) {
 				// Range
 				if ( $ord2 > $ord0 ) {
@@ -821,6 +820,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 					$out .= "$r2-$r0";
 				}
 				// Reset state to the initial value
+				// @phan-suppress-next-line PhanPluginRedundantAssignmentInLoop
 				$x0 = $x1 = $d0 = $d1 = $r0 = $r1 = '';
 			} elseif ( $ord2 < 0x80 ) {
 				// ASCII character
@@ -2271,7 +2271,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 				$url = false;
 				$matches = [];
 
-				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
 				$articlePaths = PathRouter::getActionPaths( $wgActionPaths, $wgArticlePath );
 
 				if ( $articlePaths
@@ -2310,7 +2309,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 					if ( $query == '-' ) {
 						$query = '';
 					}
-					// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
 					$url = "{$wgScript}?title={$dbkey}&{$query}";
 				}
 			}
@@ -2340,7 +2338,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 */
 	public function getLinkURL( $query = '', $query2 = false, $proto = false ) {
 		if ( $this->isExternal() || $proto !== false ) {
-			// @phan-suppress-next-line PhanTypeMismatchArgument
 			$ret = $this->getFullURL( $query, $query2, $proto );
 		} elseif ( $this->getPrefixedText() === '' && $this->hasFragment() ) {
 			$ret = $this->getFragmentForURL();
@@ -4257,3 +4254,8 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	}
 
 }
+
+/**
+ * @since 1.40 (backported in 1.39.4)
+ */
+class_alias( Title::class, 'MediaWiki\\Title\\Title' );

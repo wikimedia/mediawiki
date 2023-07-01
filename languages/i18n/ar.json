@@ -105,7 +105,8 @@
 			"AA800",
 			"Karim185.3",
 			"Alshamiri1",
-			"MRidhaAJ"
+			"MRidhaAJ",
+			"أيوب"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -931,7 +932,7 @@
 	"history-feed-empty": "الصفحة المطلوبة غير موجودة.\nمن المحتمل أن تكون هذه الصفحة قد حذفت من الويكي، أو نقلت.\nحاول [[Special:Search|البحث في الويكي]] عن صفحات جديدة ذات صلة.",
 	"history-edit-tags": "عدّل وسوم المراجعات التي اخترتها",
 	"history-empty": "لم يتم العثور على التنقيحات المطابقة.",
-	"rev-deleted-comment": "(ملخص التعديل تمت إزالته)",
+	"rev-deleted-comment": "(أزيل ملخص التعديل)",
 	"rev-deleted-user": "(اسم المستخدم تمت إزالته)",
 	"rev-deleted-event": "(تفاصيل السجل تمت إزالتها)",
 	"rev-deleted-user-contribs": "[اسم المستخدم أو عنوان الأيبي تمت إزالته - التعديل مخفي من المساهمات]",
@@ -3586,7 +3587,7 @@
 	"specialpages-group-pages": "قوائم الصفحات",
 	"specialpages-group-pagetools": "أدوات الصفحات",
 	"specialpages-group-wiki": "البيانات والأدوات",
-	"specialpages-group-redirects": "صفحات خاصة تحول",
+	"specialpages-group-redirects": "التحويلات",
 	"specialpages-group-spam": "أدوات السبام",
 	"specialpages-group-developer": "أدوات المطورين",
 	"blankpage": "صفحة فارغة",
@@ -3742,7 +3743,7 @@
 	"protectpage": "حماية صفحة",
 	"specialprotectpage-page": "الصفحة المستهدفة",
 	"specialprotectpage-submit": "انتقل إلى الصفحة",
-	"purge": "تطهير",
+	"purge": "إفراغ الكاش",
 	"specialpurge-page": "الصفحة المستهدفة",
 	"specialpurge-submit": "انتقل إلى صفحة",
 	"dberr-problems": "عذرا! هذا الموقع يعاني من صعوبات تقنية.",

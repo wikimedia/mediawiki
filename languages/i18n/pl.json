@@ -112,7 +112,8 @@
 			"Kwiatek 123",
 			"SemanticPioneer",
 			"WarX",
-			"Base"
+			"Base",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Podkreślenie linków:",
@@ -2333,7 +2334,7 @@
 	"emailuser-title-target": "Wyślij e-mail do {{GENDER:$1|tego użytkownika|tej użytkowniczki|tego użytkownika}}",
 	"emailuser-title-notarget": "Wyślij wiadomość e‐mail",
 	"emailpagetext": "Możesz użyć poniższego formularza, aby wysłać wiadomość e‐mail do {{GENDER:$1|tego użytkownika|tej użytkowniczki}}.\nAdres e‐mailowy, który został przez Ciebie wprowadzony w [[Special:Preferences|Twoich preferencjach]], zostanie umieszczony w polu „Od”, dzięki czemu odbiorca będzie mógł Ci odpowiedzieć.",
-	"defemailsubject": "{{SITENAME}} – e‐mail od użytkownika „$1”",
+	"defemailsubject": "{{SITENAME}} – e‐mail od {{GENDER:$1|użytkownika|użytkowniczki}} „$1”",
 	"usermaildisabled": "E‐mail użytkownika jest wyłączony",
 	"usermaildisabledtext": "Nie możesz wysyłać e‐maili do innych użytkowników tej wiki",
 	"noemailtitle": "Brak adresu e‐mail",

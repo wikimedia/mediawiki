@@ -175,6 +175,14 @@ Bar foo</p>
 !! end
 
 !! test
+Bad images - manualthumb
+!! wikitext
+[[File:Foobar.jpg|thumb=Bad.jpg|Uh oh]]
+!! html/php
+<div class="thumb tright"><div class="thumbinner" style="width:322px;"><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg">File:Foobar.jpg</a>  <div class="thumbcaption">Uh oh</div></div></div>
+!! end
+
+!! test
 Bad images - in gallery
 !! wikitext
 <gallery>

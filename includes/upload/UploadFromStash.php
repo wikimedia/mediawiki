@@ -100,7 +100,6 @@ class UploadFromStash extends UploadBase {
 		 * an opaque key to the user agent.
 		 */
 		$metadata = $this->stash->getMetadata( $key );
-		// @phan-suppress-next-line SecurityCheck-PathTraversal
 		$this->initializePathInfo( $name,
 			$initTempFile ? $this->getRealPath( $metadata['us_path'] ) : false,
 			$metadata['us_size'],

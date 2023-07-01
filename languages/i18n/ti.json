@@ -853,6 +853,8 @@
 	"pageinfo-lastuser": "ናይ መወዳእታ ኣርታዒ",
 	"pageinfo-lasttime": "ዕለት ናይ መወዳእታ ኣርትዖት",
 	"pageinfo-edits": "ጠቕላላ ብዝሒ ኣርትዖታት",
+	"pageinfo-recent-edits": "ኣብ ቀረባ እዋን ቁጽሪ ኣርትዖታት (ኣብ ውሽጢ ዝሓለፉ $1)",
+	"pageinfo-recent-authors": "ኣብ ቀረባ እዋን ቁጽሪ ፍሉያት ደረስቲ",
 	"pageinfo-magic-words": "ሽሕራዊ {{PLURAL:$1|ቃል|ቃላት}} ($1)",
 	"pageinfo-hidden-categories": "ሕቡእ {{PLURAL:$1|መደብ|መደባት}} ($1)",
 	"pageinfo-toolboxlink": "ሓበሬታ ገጽ",

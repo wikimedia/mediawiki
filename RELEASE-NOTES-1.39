@@ -6,13 +6,34 @@ PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 
 == MediaWiki 1.39.4 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.39 branch.
 
 === Changes since MediaWiki 1.39.3 ===
 * Localisation updates.
-* (T333776) {{ACTIVEUSERS}} wasn't being updated without updateSpecialPages.php
+* (T333990) composer.json: Explicitly pin psr/http-message to 1.0.1.
+* (T335203, CVE-2023-29197) SECURITY: Upgrading guzzlehttp/psr7
+  (2.4.0 => 2.4.5).
+* (T333776) {{ACTIVEUSERS}} wasn't being updated without updateSpecialPages.php.
 * (T258860) Prevent LogicCache exception from message cache during IO errors
   from memcache.
+* (T336868) Improve idempotency of postgres index upgrades.
+* (T322944) Add Authorization to default $wgAllowedCorsHeaders.
+* (T332889, CVE-2023-36675) SECURITY: Fix escaping in BlockLogFormatter.
+* A fake MessageLocalizer for use in unit tests.
+* (T338114) Title: Add forward alias.
+* composer: Add symfony/polyfill-php81 like symfony/polyfill-php80.
+* (T330464) Work around argument corruption bug in XMLReader::open.
+* Fix frame and frameless rdfa depending on file existing.
+* Fixes for the phan upgrade, part 1.
+* Fixes for the phan upgrade, part 2.
+* (T298571) build: Update mediawiki/mediawiki-phan-config to 0.12.0.
+* build: Updating mediawiki/mediawiki-phan-config to 0.12.1.
+* (T329214) Pass whether current rev of file exists to
+  Linker::makeBrokenImageLinkObj.
+* (T334659) Handle thumb errors when !$enableLegacyMediaDOM.
+* A manualthumb that doesn't exist should be considered a thumb error.
+* (T313157) IndexPager: Also protect against $offset being 0.
+* (T335612, CVE-2023-36674) SECURITY: Move badFile lookup to Linker.
 
 == MediaWiki 1.39.3 ==
 
@@ -264,6 +285,7 @@ For notes on 1.38.x and older releases, see HISTORY.
 
 ==== New external libraries ====
 * Added Codex v0.1.1. This replaces the now deprecated wvui library.
+* Added symfony/polyfill-php81.
 
 ===== New development-only external libraries =====
 * Updated QUnit from 2.18.0 to 2.18.2.
@@ -293,6 +315,7 @@ For notes on 1.38.x and older releases, see HISTORY.
 * Updated composer/spdx-licenses from 1.5.5 to 1.5.7.
 * Updated doctrine/dbal for PHP < 7.3 from 2.13.6 to 2.13.9.
 * Updated doctrine/dbal for PHP >= 7.3 from 3.1.5 to 3.4.2.
+* Updated mediawiki/mediawiki-phan-config from 0.11.1 to 0.12.1.
 
 ==== Removed external libraries ====
 * Removed wikimedia/dodo (v0.4.0).

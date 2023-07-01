@@ -122,7 +122,6 @@ class UploadFromChunks extends UploadFromFile {
 		$this->getChunkStatus();
 
 		$metadata = $this->stash->getMetadata( $key );
-		// @phan-suppress-next-line SecurityCheckMulti,SecurityCheck-PathTraversal
 		$this->initializePathInfo( $name,
 			$this->getRealPath( $metadata['us_path'] ),
 			$metadata['us_size'],

@@ -124,7 +124,8 @@
 			"Amire80",
 			"Raimond Spekking",
 			"Ammarpad",
-			"Lukasaiko"
+			"Lukasaiko",
+			"Abcdefg"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -819,8 +820,8 @@
 	"templatesused": "{{PLURAL:$1|Die folgende Vorlage wird|Folgende Vorlagen werden}} auf dieser Seite verwendet:",
 	"templatesusedpreview": "{{PLURAL:$1|Die folgende Vorlage wird|Folgende Vorlagen werden}} von dieser Seitenvorschau verwendet:",
 	"templatesusedsection": "{{PLURAL:$1|Die folgende Vorlage wird|Folgende Vorlagen werden}} in diesem Abschnitt verwendet:",
-	"template-protected": "(schreibgeschützt)",
-	"template-semiprotected": "(schreibgeschützt für unangemeldete und neue Benutzer)",
+	"template-protected": "schreibgeschützt (nur Administratoren)",
+	"template-semiprotected": "schreibgeschützt (nur angemeldete, nicht neue Benutzer)",
 	"hiddencategories": "Diese Seite ist in {{PLURAL:$1|einer versteckten Kategorie|$1 versteckten Kategorien}} enthalten:",
 	"edittools": "<!-- Dieser Text wird unter dem „Bearbeiten“-Formular sowie dem „Hochladen“-Formular angezeigt. -->",
 	"nocreatetext": "Auf {{SITENAME}} wurde das Erstellen neuer Seiten eingeschränkt. Du kannst bestehende Seiten ändern oder dich [[Special:UserLogin|anmelden]].",
@@ -2570,8 +2571,8 @@
 	"restriction-move": "Verschieben",
 	"restriction-create": "Erstellen",
 	"restriction-upload": "Hochladen",
-	"restriction-level-sysop": "geschützt (nur Administratoren)",
-	"restriction-level-autoconfirmed": "geschützt (nur angemeldete, nicht neue Benutzer)",
+	"restriction-level-sysop": "schreibgeschützt (nur Administratoren)",
+	"restriction-level-autoconfirmed": "schreibgeschützt (nur angemeldete, nicht neue Benutzer)",
 	"restriction-level-all": "alle",
 	"undelete": "Gelöschte Seiten anzeigen",
 	"undeletepage": "Gelöschte Seiten anzeigen und wiederherstellen",

@@ -451,10 +451,12 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 				$status = Status::newFatal( new RawMessage( '$1', [ $status ] ) );
 			} elseif ( is_array( $status ) ) {
 				if ( is_string( reset( $status ) ) ) {
+					// @phan-suppress-next-line PhanParamTooFewUnpack
 					$status = Status::newFatal( ...$status );
 				} elseif ( is_array( reset( $status ) ) ) {
 					$ret = Status::newGood();
 					foreach ( $status as $message ) {
+						// @phan-suppress-next-line PhanParamTooFewUnpack
 						$ret->fatal( ...$message );
 					}
 					$status = $ret;
