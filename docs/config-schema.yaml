@@ -6883,7 +6883,7 @@ config-schema:
             htmlCacheUpdate: HTMLCacheUpdateJob
             sendMail: EmaillingJob
             enotifNotify: EnotifNotifyJob
-            fixDoubleRedirect: DoubleRedirectJob
+            fixDoubleRedirect: { class: DoubleRedirectJob, services: [RevisionLookup, MagicWordFactory, WikiPageFactory], needsPage: true }
             AssembleUploadChunks: AssembleUploadChunksJob
             PublishStashedFile: PublishStashedFileJob
             ThumbnailRender: ThumbnailRenderJob

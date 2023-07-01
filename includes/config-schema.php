@@ -2038,7 +2038,15 @@ return [
 				'htmlCacheUpdate' => 'HTMLCacheUpdateJob',
 				'sendMail' => 'EmaillingJob',
 				'enotifNotify' => 'EnotifNotifyJob',
-				'fixDoubleRedirect' => 'DoubleRedirectJob',
+				'fixDoubleRedirect' => [
+					'class' => 'DoubleRedirectJob',
+					'services' => [
+						0 => 'RevisionLookup',
+						1 => 'MagicWordFactory',
+						2 => 'WikiPageFactory',
+					],
+					'needsPage' => true,
+				],
 				'AssembleUploadChunks' => 'AssembleUploadChunksJob',
 				'PublishStashedFile' => 'PublishStashedFileJob',
 				'ThumbnailRender' => 'ThumbnailRenderJob',

@@ -22,6 +22,8 @@ use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
@@ -47,6 +49,15 @@ class DoubleRedirectJob extends Job {
 	/** @var User */
 	private static $user;
 
+	/** @var RevisionLookup */
+	private $revisionLookup;
+
+	/** @var MagicWordFactory */
+	private $magicWordFactory;
+
+	/** @var WikiPageFactory */
+	private $wikiPageFactory;
+
 	/**
 	 * @param PageReference $page
 	 * @param array $params Expected to contain these elements:
@@ -55,10 +66,22 @@ class DoubleRedirectJob extends Job {
 	 *   for the message keys "double-redirect-fixed-move" and
 	 *   "double-redirect-fixed-maintenance".
 	 * ]
+	 * @param RevisionLookup $revisionLookup
+	 * @param MagicWordFactory $magicWordFactory
+	 * @param WikiPageFactory $wikiPageFactory
 	 */
-	public function __construct( PageReference $page, array $params ) {
+	public function __construct(
+		PageReference $page,
+		array $params,
+		RevisionLookup $revisionLookup,
+		MagicWordFactory $magicWordFactory,
+		WikiPageFactory $wikiPageFactory
+	) {
 		parent::__construct( 'fixDoubleRedirect', $page, $params );
 		$this->redirTitle = Title::newFromText( $params['redirTitle'] );
+		$this->revisionLookup = $revisionLookup;
+		$this->magicWordFactory = $magicWordFactory;
+		$this->wikiPageFactory = $wikiPageFactory;
 	}
 
 	/**
@@ -70,7 +93,8 @@ class DoubleRedirectJob extends Job {
 	 */
 	public static function fixRedirects( $reason, $redirTitle ) {
 		# Need to use the primary DB to get the redirect table updated in the same transaction
-		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
+		$services = MediaWikiServices::getInstance();
+		$dbw = $services->getDBLoadBalancerFactory()->getPrimaryDatabase();
 		$res = $dbw->newSelectQueryBuilder()
 			->select( [ 'page_namespace', 'page_title' ] )
 			->from( 'redirect' )
@@ -81,19 +105,24 @@ class DoubleRedirectJob extends Job {
 			return;
 		}
 		$jobs = [];
-		$jobQueueGroup = MediaWikiServices::getInstance()->getJobQueueGroup();
+		$jobQueueGroup = $services->getJobQueueGroup();
 		foreach ( $res as $row ) {
 			$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
 			if ( !$title || !$title->canExist() ) {
 				continue;
 			}
 
-			$jobs[] = new self( $title, [
-				'reason' => $reason,
-				'redirTitle' => MediaWikiServices::getInstance()
-					->getTitleFormatter()
-					->getPrefixedDBkey( $redirTitle ),
-			] );
+			$jobs[] = new self(
+				$title,
+				[
+					'reason' => $reason,
+					'redirTitle' => $services->getTitleFormatter()
+						->getPrefixedDBkey( $redirTitle )
+				],
+				$services->getRevisionLookup(),
+				$services->getMagicWordFactory(),
+				$services->getWikiPageFactory()
+			);
 			# Avoid excessive memory usage
 			if ( count( $jobs ) > self::MAX_DR_JOBS_COUNTER ) {
 				$jobQueueGroup->push( $jobs );
@@ -120,8 +149,7 @@ class DoubleRedirectJob extends Job {
 			return false;
 		}
 
-		$services = MediaWikiServices::getInstance();
-		$targetRev = $services->getRevisionLookup()
+		$targetRev = $this->revisionLookup
 			->getRevisionByTitle( $this->title, 0, RevisionLookup::READ_LATEST );
 		if ( !$targetRev ) {
 			wfDebug( __METHOD__ . ": target redirect already deleted, ignoring" );
@@ -137,7 +165,7 @@ class DoubleRedirectJob extends Job {
 		}
 
 		// Check for a suppression tag (used e.g. in periodically archived discussions)
-		$mw = $services->getMagicWordFactory()->get( 'staticredirect' );
+		$mw = $this->magicWordFactory->get( 'staticredirect' );
 		if ( $content->matchMagicWord( $mw ) ) {
 			wfDebug( __METHOD__ . ": skipping: suppressed with __STATICREDIRECT__" );
 
@@ -183,7 +211,7 @@ class DoubleRedirectJob extends Job {
 		global $wgUser;
 		$oldUser = $wgUser;
 		$wgUser = $user;
-		$article = $services->getWikiPageFactory()->newFromTitle( $this->title );
+		$article = $this->wikiPageFactory->newFromTitle( $this->title );
 
 		// Messages: double-redirect-fixed-move, double-redirect-fixed-maintenance
 		$reason = wfMessage( 'double-redirect-fixed-' . $this->params['reason'],
