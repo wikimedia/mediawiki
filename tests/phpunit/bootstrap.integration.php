@@ -1,15 +1,16 @@
-#!/usr/bin/env php
 <?php
+
+use MediaWiki\MediaWikiServices;
+
 /**
- * Bootstrapping for MediaWiki PHPUnit tests
+ * Bootstrapping for MediaWiki PHPUnit tests that allows running integration tests.
+ * This file is included by phpunit and is NOT in the global scope.
  *
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
-use PHPUnit\TextUI\Command;
-
-class PHPUnitMaintClass {
+// phpcs:ignore MediaWiki.Files.ClassMatchesFilename.NotMatch
+class PHPUnitBootstrap {
 	public function setup() {
 		// Set a flag which can be used to detect when other scripts have been entered
 		// through this entry point or not.
@@ -76,7 +77,7 @@ class PHPUnitMaintClass {
 			}
 		}
 
-		require_once __DIR__ . '/../common/TestsAutoLoader.php';
+		TestSetup::requireOnceInGlobalScope( __DIR__ . '/../common/TestsAutoLoader.php' );
 
 		TestSetup::applyInitialConfig();
 
@@ -89,29 +90,8 @@ class PHPUnitMaintClass {
 		ob_start();
 
 		fwrite( STDERR, 'Using PHP ' . PHP_VERSION . "\n" );
-
-		$command = new Command();
-		$args = $_SERVER['argv'];
-		$knownOpts = getopt( 'c:', [ 'configuration:', 'bootstrap:' ] ) ?: [];
-		if ( !isset( $knownOpts['c'] ) && !isset( $knownOpts['configuration'] ) ) {
-			// XXX HAX: Use our default file. This is a temporary hack, to be removed when this file goes away
-			// or when T227900 is resolved.
-			$args[] = '--configuration=' . __DIR__ . '/suite.xml';
-		}
-		$args[] = '--bootstrap=' . __DIR__ . '/bootstrap.maintenance.php';
-		$command->run( $args, true );
 	}
 }
-
-$deprecationMsg = <<<EOT
-*******************************************************************************
-DEPRECATED: The tests/phpunit/phpunit.php entry point has been deprecated. Use
-            `composer phpunit:entrypoint` instead.
-*******************************************************************************
-
-EOT;
-
-fwrite( STDERR, $deprecationMsg );
 
 if ( defined( 'MEDIAWIKI' ) ) {
 	exit( 'Wrong entry point?' );
@@ -138,10 +118,14 @@ if ( getenv( 'PHPUNIT_WIKI' ) ) {
 // Define the MediaWiki entrypoint
 define( 'MEDIAWIKI', true );
 
+// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix
+global $IP;
 $IP = getenv( 'MW_INSTALL_PATH' );
 
-$wrapper = new PHPUnitMaintClass();
-$wrapper->setup();
+// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix
+global $_PHPUnitBootstrapper;
+$_PHPUnitBootstrapper = new PHPUnitBootstrap();
+$_PHPUnitBootstrapper->setup();
 
 require_once "$IP/includes/BootstrapHelperFunctions.php";
 
@@ -150,13 +134,13 @@ wfDetectLocalSettingsFile( $IP );
 
 function wfPHPUnitSetup() {
 	// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix
-	global $wrapper;
-	$wrapper->finalSetup();
+	global $_PHPUnitBootstrapper;
+	$_PHPUnitBootstrapper->finalSetup();
 }
 
 define( 'MW_SETUP_CALLBACK', 'wfPHPUnitSetup' );
 
-require_once "$IP/includes/Setup.php";
+TestSetup::requireOnceInGlobalScope( "$IP/includes/Setup.php" );
 // Deregister handler from MWExceptionHandler::installHandle so that PHPUnit's own handler
 // stays in tact. Needs to happen after including Setup.php, which calls MWExceptionHandler::installHandle().
 restore_error_handler();
@@ -168,4 +152,21 @@ if ( !getenv( 'MW_SKIP_EXTERNAL_DEPENDENCIES' ) ) {
 	$composerLockUpToDate->execute();
 }
 
-$wrapper->execute();
+$_PHPUnitBootstrapper->execute();
+
+// The TestRunner class will run each test suite and may call
+// exit() with an exit status code. As such, we cannot run code "after the last test"
+// by adding statements to PHPUnitMaintClass::execute.
+// Instead, we work around it by registering a shutdown callback from the bootstrap
+// file, which runs before PHPUnit starts.
+// @todo Once we use PHPUnit 8 or higher, use the 'AfterLastTestHook' feature.
+// https://phpunit.readthedocs.io/en/8.0/extending-phpunit.html#available-hook-interfaces
+register_shutdown_function( static function () {
+	// This will:
+	// - clear the temporary job queue.
+	// - allow extensions to delete any temporary tables they created.
+	// - restore ability to connect to the real database.
+	MediaWikiIntegrationTestCase::teardownTestDB();
+} );
+
+MediaWikiCliOptions::initialize();

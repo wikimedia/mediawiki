@@ -319,6 +319,9 @@ because of Phabricator reports.
   the handler are deprecated and will soon be removed. Deprecated ways to
   specify a hook handler include callables wrapped in an array. Handlers
   defined using a "HookHandlers" entry in extension.json are not affected.
+* The tests/phpunit/phpunit.php entrypoint has been deprecated. PHPUnit
+  tests should be run with composer, for example with the
+  `composer phpunit:entrypoint` command.
 * The jquery.cookie ResourceLoader module has been merged into the existing
   mediawiki.cookie module; jquery.cookie remains but is deprecated.
 * The Pingback class has been moved into the MediaWiki\Installer namespace.

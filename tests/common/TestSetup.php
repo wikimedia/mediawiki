@@ -152,31 +152,35 @@ class TestSetup {
 	 * @param string $fileName the file to include
 	 */
 	public static function requireOnceInGlobalScope( string $fileName ): void {
-		// Make a copy of the original $GLOBALS array so that later modifications to the
-		// $GLOBALS array are not seen by the code below. This only affects PHP < 8.1,
-		// see https://wiki.php.net/rfc/restrict_globals_usage
-		// We use a map so that the lookup is faster.
-		$originalGlobalsMap = [];
-		foreach ( $GLOBALS as $key => $_ ) {
-			$originalGlobalsMap[$key] = true;
-			// phpcs:ignore MediaWiki.VariableAnalysis.UnusedGlobalVariables.UnusedGlobal$key,MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix
-			global $$key;
-		}
-
-		require_once $fileName;
-
-		$localVars = [
+		$ignore = [
 			'fileName' => true,
 			'originalGlobalsMap' => true,
 			'key' => true,
 			'_' => true,
-			'localVars' => true,
+			'ignore' => true,
+			'wgAutoloadClasses' => true,
 		];
+
+		// Import $GLOBALS into local scope for the file.
+		// Modifications to these from te required file automatically affect the real global.
+		foreach ( $GLOBALS as $key => $_ ) {
+			$ignore[$key] = true;
+			// phpcs:ignore MediaWiki.VariableAnalysis.UnusedGlobalVariables,MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix
+			global $$key;
+		}
+
+		// Setup.php creates this variable, but we cannot wait for the below code to make it global,
+		// because Setup.php (and MW_SETUP_CALLBACK -> TestsAutoLoader.php) needs this to be a
+		// global during its execution (not just after).
+		// phpcs:ignore MediaWiki.VariableAnalysis.UnusedGlobalVariables
+		global $wgAutoloadClasses;
+
+		require_once $fileName;
+
+		// Create any new variables as actual globals.
 		foreach ( get_defined_vars() as $varName => $value ) {
-			if ( array_key_exists( $varName, $localVars ) ) {
-				continue;
-			}
-			if ( array_key_exists( $varName, $originalGlobalsMap ) ) {
+			// Skip our own internal variables, and variables that were already global.
+			if ( array_key_exists( $varName, $ignore ) ) {
 				continue;
 			}
 			$GLOBALS[$varName] = $value;

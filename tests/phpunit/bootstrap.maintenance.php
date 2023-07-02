@@ -1,7 +1,6 @@
 <?php
 /**
- * Bootstrapping for MediaWiki PHPUnit tests when called via the maintenance class tests runner.
- * This file is included by phpunit and is NOT in the global scope.
+ * DEPRECATED: This file only exists for BC with tests/phpunit/phpunit.php and will be removed together with it.
  *
  * @file
  */
