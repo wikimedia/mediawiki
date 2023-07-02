@@ -884,7 +884,7 @@
 	"apihelp-query+info-paramvalue-prop-associatedpage": "O título prefixado da [[:mw:Special:MyLanguage/Help:Associated_pages|página associada de conteúdo ou de discussão]].",
 	"apihelp-query+info-paramvalue-prop-url": "Fornece um URL completo, um URL de edição e o URL canónico, para cada página.",
 	"apihelp-query+info-paramvalue-prop-readable": "Indica se o utilizador pode ler esta página. Em vez deste parâmetro, use <kbd>intestactions=read</kbd>.",
-	"apihelp-query+info-paramvalue-prop-preload": "Fornece o texto devolvido por EditFormPreloadText.",
+	"apihelp-query+info-paramvalue-prop-preload": "Fornece o texto devolvido por EditFormPreloadText. Use antes <kbd>preloadcontent</kbd>, que também suporta outros tipos de texto pré-carregado.",
 	"apihelp-query+info-paramvalue-prop-displaytitle": "Fornece a forma como o título da página é apresentado.",
 	"apihelp-query+info-paramvalue-prop-varianttitles": "Fornece o título de apresentação em todas as variantes da língua de conteúdo da wiki.",
 	"apihelp-query+info-paramvalue-prop-linkclasses": "Fornece as classes CSS adicionais (por exemplo, a cor das hiperligações) usadas em hiperligações para esta página se estas aparecessem na página nomeada em <var>$1linkcontext</var>.",
