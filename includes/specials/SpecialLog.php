@@ -175,9 +175,9 @@ class SpecialLog extends SpecialPage {
 			} elseif ( $target && $target->getNamespace() === NS_USER
 				&& IPUtils::isValidRange( $target->getText() )
 			) {
-				$page = IPUtils::sanitizeRange( $target->getText() );
-				if ( $page !== $target->getText() ) {
-					$page = Title::makeTitleSafe( NS_USER, $page )->getPrefixedText();
+				$ipOrRange = IPUtils::sanitizeRange( $target->getText() );
+				if ( $ipOrRange !== $target->getText() ) {
+					$page = Title::makeTitleSafe( NS_USER, $ipOrRange )->getPrefixedText();
 				}
 			}
 			$opts->setValue( 'page', $page );
