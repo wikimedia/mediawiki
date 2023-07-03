@@ -191,30 +191,26 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		$linkTarget = MediaWikiServices::getInstance()->getLinkTargetLookup()->getLinkTargetId(
 			Title::makeTitle( NS_TEMPLATE, 'Multiple_issues' )
 		);
-		$this->assertSelect(
-			'pagelinks',
-			[ 'pl_namespace', 'pl_title' ],
-			[ 'pl_from' => $pageID ],
-			[ [ 0, 'Stuart_Little' ], [ NS_TEMPLATE, 'Multiple_issues' ] ]
-		);
-		$this->assertSelect(
-			'templatelinks',
-			[ 'tl_target_id' ],
-			[ 'tl_from' => $pageID ],
-			[ [ $linkTarget ] ]
-		);
-		$this->assertSelect(
-			'categorylinks',
-			'cl_to',
-			[ 'cl_from' => $pageID ],
-			[ [ 'Felis_catus' ] ]
-		);
-		$this->assertSelect(
-			'category',
-			'cat_pages',
-			[ 'cat_title' => 'Felis_catus' ],
-			[ [ 1 ] ]
-		);
+		$this->newSelectQueryBuilder()
+			->select( [ 'pl_namespace', 'pl_title' ] )
+			->from( 'pagelinks' )
+			->where( [ 'pl_from' => $pageID ] )
+			->assertResultSet( [ [ 0, 'Stuart_Little' ], [ NS_TEMPLATE, 'Multiple_issues' ] ] );
+		$this->newSelectQueryBuilder()
+			->select( 'tl_target_id' )
+			->from( 'templatelinks' )
+			->where( [ 'tl_from' => $pageID ] )
+			->assertFieldValue( $linkTarget );
+		$this->newSelectQueryBuilder()
+			->select( 'cl_to' )
+			->from( 'categorylinks' )
+			->where( [ 'cl_from' => $pageID ] )
+			->assertFieldValue( 'Felis_catus' );
+		$this->newSelectQueryBuilder()
+			->select( 'cat_pages' )
+			->from( 'category' )
+			->where( [ 'cat_title' => 'Felis_catus' ] )
+			->assertFieldValue( 1 );
 	}
 
 	private function assertPageLinksUpdate( int $pageID, bool $shouldRunJobs ): void {
@@ -222,30 +218,26 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 			$this->runJobs();
 		}
 
-		$this->assertSelect(
-			'pagelinks',
-			[ 'pl_namespace', 'pl_title' ],
-			[ 'pl_from' => $pageID ],
-			[]
-		);
-		$this->assertSelect(
-			'templatelinks',
-			[ 'tl_target_id' ],
-			[ 'tl_from' => $pageID ],
-			[]
-		);
-		$this->assertSelect(
-			'categorylinks',
-			'cl_to',
-			[ 'cl_from' => $pageID ],
-			[]
-		);
-		$this->assertSelect(
-			'category',
-			'cat_pages',
-			[ 'cat_title' => 'Felis_catus' ],
-			[]
-		);
+		$this->newSelectQueryBuilder()
+			->select( [ 'pl_namespace', 'pl_title' ] )
+			->from( 'pagelinks' )
+			->where( [ 'pl_from' => $pageID ] )
+			->assertEmptyResult();
+		$this->newSelectQueryBuilder()
+			->select( 'tl_target_id' )
+			->from( 'templatelinks' )
+			->where( [ 'tl_from' => $pageID ] )
+			->assertEmptyResult();
+		$this->newSelectQueryBuilder()
+			->select( 'cl_to' )
+			->from( 'categorylinks' )
+			->where( [ 'cl_from' => $pageID ] )
+			->assertEmptyResult();
+		$this->newSelectQueryBuilder()
+			->select( 'cat_pages' )
+			->from( 'category' )
+			->where( [ 'cat_title' => 'Felis_catus' ] )
+			->assertEmptyResult();
 	}
 
 	private function assertDeletionTags( int $logId, array $tags ): void {

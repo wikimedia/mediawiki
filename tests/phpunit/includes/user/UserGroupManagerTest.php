@@ -1101,18 +1101,17 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$manager->addUserToAutopromoteOnceGroups( $user, 'EVENT' );
 		$this->assertContains( 'autopromoteonce', $manager->getUserGroups( $user ) );
 		$this->assertTrue( $hookCalled );
-		$this->assertSelect(
-			'logging',
-			[ 'log_type', 'log_action', 'log_params' ],
-			[ 'log_type' => 'rights' ],
-			[ [ 'rights',
+		$this->newSelectQueryBuilder()
+			->select( [ 'log_type', 'log_action', 'log_params' ] )
+			->from( 'logging' )
+			->where( [ 'log_type' => 'rights' ] )
+			->assertResultSet( [ [ 'rights',
 				'autopromote',
 				LogEntryBase::makeParamBlob( [
 					'4::oldgroups' => [],
 					'5::newgroups' => [ 'autopromoteonce' ],
 				] )
-			] ]
-		);
+			] ] );
 	}
 
 	private const CHANGEABLE_GROUPS_TEST_CONFIG = [

@@ -2303,6 +2303,23 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * Get a SelectQueryBuilder with additional assert methods.
+	 *
+	 * This method requires database support, which can be enabled with
+	 * "@group Database", or by listing the tables under testing in
+	 * $this->tablesUsed, or by returning true from needsDB().
+	 *
+	 * @return TestSelectQueryBuilder
+	 */
+	protected function newSelectQueryBuilder() {
+		if ( !$this->needsDB() ) {
+			throw new LogicException( 'When testing database state, the test cases\'s needDB()' .
+				' method should return true. Use @group Database or $this->tablesUsed.' );
+		}
+		return new TestSelectQueryBuilder( $this->getDb() );
+	}
+
+	/**
 	 * Assert that an associative array contains the subset of an expected array.
 	 *
 	 * The internal key order does not matter.
@@ -2347,10 +2364,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * a pure indexed array.
 	 *
 	 * @since 1.20
+	 * @internal
 	 *
 	 * @param mixed &$r The array to remove string keys from.
 	 */
-	protected static function stripStringKeys( &$r ) {
+	public static function stripStringKeys( &$r ) {
 		if ( !is_array( $r ) ) {
 			return;
 		}

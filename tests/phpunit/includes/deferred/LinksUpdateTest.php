@@ -260,15 +260,14 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		);
 
 		// Check category count
-		$this->assertSelect(
-			'category',
-			[ 'cat_title', 'cat_pages' ],
-			[ 'cat_title' => [ 'Foo', 'Bar', 'Baz' ] ],
-			[
+		$this->newSelectQueryBuilder()
+			->select( [ 'cat_title', 'cat_pages' ] )
+			->from( 'category' )
+			->where( [ 'cat_title' => [ 'Foo', 'Bar', 'Baz' ] ] )
+			->assertResultSet( [
 				[ 'Bar', 1 ],
 				[ 'Foo', 1 ]
-			]
-		);
+			] );
 
 		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 		$po->addCategory( "Bar", "Bar" );
@@ -287,15 +286,14 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		);
 
 		// Check category count decrement
-		$this->assertSelect(
-			'category',
-			[ 'cat_title', 'cat_pages' ],
-			[ 'cat_title' => [ 'Foo', 'Bar', 'Baz' ] ],
-			[
+		$this->newSelectQueryBuilder()
+			->select( [ 'cat_title', 'cat_pages' ] )
+			->from( 'category' )
+			->where( [ 'cat_title' => [ 'Foo', 'Bar', 'Baz' ] ] )
+			->assertResultSet( [
 				[ 'Bar', 1 ],
 				[ 'Baz', 1 ],
-			]
-		);
+			] );
 	}
 
 	public function testOnAddingAndRemovingCategory_recentChangesRowIsAdded() {
@@ -404,15 +402,14 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		);
 
 		// Check category count
-		$this->assertSelect(
-			[ 'category' ],
-			[ 'cat_title', 'cat_pages' ],
-			[ 'cat_title' => [ 'Foo', 'Bar', 'Baz' ] ],
-			[
+		$this->newSelectQueryBuilder()
+			->select( [ 'cat_title', 'cat_pages' ] )
+			->from( 'category' )
+			->where( [ 'cat_title' => [ 'Foo', 'Bar', 'Baz' ] ] )
+			->assertResultSet( [
 				[ 'Bar', '1' ],
 				[ 'Foo', '1' ],
-			]
-		);
+			] );
 
 		/** @var ParserOutput $po */
 		[ $t, $po ] = $this->makeTitleAndParserOutput( "New", self::$testingPageId );
@@ -434,15 +431,14 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		);
 
 		// Check category count
-		$this->assertSelect(
-			[ 'category' ],
-			[ 'cat_title', 'cat_pages' ],
-			[ 'cat_title' => [ 'Foo', 'Bar', 'Baz' ] ],
-			[
+		$this->newSelectQueryBuilder()
+			->select( [ 'cat_title', 'cat_pages' ] )
+			->from( 'category' )
+			->where( [ 'cat_title' => [ 'Foo', 'Bar', 'Baz' ] ] )
+			->assertResultSet( [
 				[ 'Bar', '1' ],
 				[ 'Foo', '1' ],
-			]
-		);
+			] );
 
 		// A category changed on move
 		$po->setCategories( [
@@ -465,15 +461,14 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		);
 
 		// Check category count
-		$this->assertSelect(
-			[ 'category' ],
-			[ 'cat_title', 'cat_pages' ],
-			[ 'cat_title' => [ 'Foo', 'Bar', 'Baz' ] ],
-			[
+		$this->newSelectQueryBuilder()
+			->select( [ 'cat_title', 'cat_pages' ] )
+			->from( 'category' )
+			->where( [ 'cat_title' => [ 'Foo', 'Bar', 'Baz' ] ] )
+			->assertResultSet( [
 				[ 'Baz', '1' ],
 				[ 'Foo', '1' ],
-			]
-		);
+			] );
 	}
 
 	/**
@@ -772,17 +767,16 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	protected function assertRecentChangeByCategorization(
 		Title $categoryTitle, $expectedRows
 	) {
-		$this->assertSelect(
-			[ 'recentchanges', 'comment' ],
-			[ 'rc_title', 'comment_text' ],
-			[
+		$this->newSelectQueryBuilder()
+			->select( [ 'rc_title', 'comment_text' ] )
+			->from( 'recentchanges' )
+			->join( 'comment', null, 'comment_id = rc_comment_id' )
+			->where( [
 				'rc_type' => RC_CATEGORIZE,
 				'rc_namespace' => NS_CATEGORY,
 				'rc_title' => $categoryTitle->getDBkey(),
-				'comment_id = rc_comment_id',
-			],
-			$expectedRows
-		);
+			] )
+			->assertResultSet( $expectedRows );
 	}
 
 	private function runAllRelatedJobs() {
@@ -912,12 +906,11 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		$update->setStrictTestMode();
 		$update->doUpdate();
 
-		$this->assertSelect(
-			'category',
-			'cat_pages',
-			[ 'cat_title' => '123a' ],
-			[ [ '1' ] ]
-		);
+		$this->newSelectQueryBuilder()
+			->select( 'cat_pages' )
+			->from( 'category' )
+			->where( [ 'cat_title' => '123a' ] )
+			->assertFieldValue( '1' );
 	}
 
 	private function setTransactionTicket( LinksUpdate $update ) {

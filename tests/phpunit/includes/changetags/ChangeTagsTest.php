@@ -487,55 +487,47 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		$revId = 341;
 		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId, $revId );
 
-		$this->assertSelect(
-			'change_tag_def',
-			[ 'ctd_name', 'ctd_id', 'ctd_count' ],
-			'',
-			[
+		$this->newSelectQueryBuilder()
+			->select( [ 'ctd_name', 'ctd_id', 'ctd_count' ] )
+			->from( 'change_tag_def' )
+			->assertResultSet( [
 				// values of fields 'ctd_name', 'ctd_id', 'ctd_count'
 				[ 'tag1', 1, 1 ],
 				[ 'tag2', 2, 1 ],
-			]
-		);
-		$this->assertSelect(
-			'change_tag',
-			[ 'ct_tag_id', 'ct_rc_id', 'ct_rev_id' ],
-			'',
-			[
+			] );
+		$this->newSelectQueryBuilder()
+			->from( 'change_tag' )
+			->select( [ 'ct_tag_id', 'ct_rc_id', 'ct_rev_id' ] )
+			->assertResultSet( [
 				// values of fields 'ct_tag_id', 'ct_rc_id', 'ct_rev_id'
 				[ 1, 123, 341 ],
 				[ 2, 123, 341 ],
-			]
-		);
+			] );
 
 		$rcId = 124;
 		$revId = 342;
 		ChangeTags::updateTags( [ 'tag1' ], [], $rcId, $revId );
 		ChangeTags::updateTags( [ 'tag3' ], [], $rcId, $revId );
 
-		$this->assertSelect(
-			'change_tag_def',
-			[ 'ctd_name', 'ctd_id', 'ctd_count' ],
-			'',
-			[
+		$this->newSelectQueryBuilder()
+			->select( [ 'ctd_name', 'ctd_id', 'ctd_count' ] )
+			->from( 'change_tag_def' )
+			->assertResultSet( [
 				// values of fields 'ctd_name', 'ctd_id', 'ctd_count'
 				[ 'tag1', 1, 2 ],
 				[ 'tag2', 2, 1 ],
 				[ 'tag3', 3, 1 ],
-			]
-		);
-		$this->assertSelect(
-			'change_tag',
-			[ 'ct_tag_id', 'ct_rc_id', 'ct_rev_id' ],
-			'',
-			[
+			] );
+		$this->newSelectQueryBuilder()
+			->select( [ 'ct_tag_id', 'ct_rc_id', 'ct_rev_id' ] )
+			->from( 'change_tag' )
+			->assertResultSet( [
 				// values of fields 'ct_tag_id', 'ct_rc_id', 'ct_rev_id'
 				[ 1, 123, 341 ],
 				[ 1, 124, 342 ],
 				[ 2, 123, 341 ],
 				[ 3, 124, 342 ],
-			]
-		);
+			] );
 	}
 
 	public function testUpdateTagsSkipDuplicates() {
@@ -545,28 +537,24 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );
 		ChangeTags::updateTags( [ 'tag2', 'tag3' ], [], $rcId );
 
-		$this->assertSelect(
-			'change_tag_def',
-			[ 'ctd_name', 'ctd_id', 'ctd_count' ],
-			'',
-			[
+		$this->newSelectQueryBuilder()
+			->select( [ 'ctd_name', 'ctd_id', 'ctd_count' ] )
+			->from( 'change_tag_def' )
+			->assertResultSet( [
 				// values of fields 'ctd_name', 'ctd_id', 'ctd_count'
 				[ 'tag1', 1, 1 ],
 				[ 'tag2', 2, 1 ],
 				[ 'tag3', 3, 1 ],
-			]
-		);
-		$this->assertSelect(
-			'change_tag',
-			[ 'ct_tag_id', 'ct_rc_id' ],
-			'',
-			[
+			] );
+		$this->newSelectQueryBuilder()
+			->select( [ 'ct_tag_id', 'ct_rc_id' ] )
+			->from( 'change_tag' )
+			->assertResultSet( [
 				// values of fields 'ct_tag_id', 'ct_rc_id',
 				[ 1, 123 ],
 				[ 2, 123 ],
 				[ 3, 123 ],
-			]
-		);
+			] );
 	}
 
 	public function testUpdateTagsDoNothingOnRepeatedCall() {
@@ -577,26 +565,22 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		$res = ChangeTags::updateTags( [ 'tag2', 'tag1' ], [], $rcId );
 		$this->assertEquals( [ [], [], [ 'tag1', 'tag2' ] ], $res );
 
-		$this->assertSelect(
-			'change_tag_def',
-			[ 'ctd_name', 'ctd_id', 'ctd_count' ],
-			'',
-			[
+		$this->newSelectQueryBuilder()
+			->select( [ 'ctd_name', 'ctd_id', 'ctd_count' ] )
+			->from( 'change_tag_def' )
+			->assertResultSet( [
 				// values of fields 'ctd_name', 'ctd_id', 'ctd_count'
 				[ 'tag1', 1, 1 ],
 				[ 'tag2', 2, 1 ],
-			]
-		);
-		$this->assertSelect(
-			'change_tag',
-			[ 'ct_tag_id', 'ct_rc_id' ],
-			'',
-			[
+			] );
+		$this->newSelectQueryBuilder()
+			->select( [ 'ct_tag_id', 'ct_rc_id' ] )
+			->from( 'change_tag' )
+			->assertResultSet( [
 				// values of fields 'ct_tag_id', 'ct_rc_id',
 				[ 1, 123 ],
 				[ 2, 123 ],
-			]
-		);
+			] );
 	}
 
 	public function testDeleteTags() {
@@ -607,24 +591,20 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );
 		ChangeTags::updateTags( [], [ 'tag2' ], $rcId );
 
-		$this->assertSelect(
-			'change_tag_def',
-			[ 'ctd_name', 'ctd_id', 'ctd_count' ],
-			'',
-			[
+		$this->newSelectQueryBuilder()
+			->select( [ 'ctd_name', 'ctd_id', 'ctd_count' ] )
+			->from( 'change_tag_def' )
+			->assertResultSet( [
 				// values of fields 'ctd_name', 'ctd_id', 'ctd_count'
 				[ 'tag1', 1, 1 ],
-			]
-		);
-		$this->assertSelect(
-			'change_tag',
-			[ 'ct_tag_id', 'ct_rc_id' ],
-			'',
-			[
+			] );
+		$this->newSelectQueryBuilder()
+			->select( [ 'ct_tag_id', 'ct_rc_id' ] )
+			->from( 'change_tag' )
+			->assertResultSet( [
 				// values of fields 'ct_tag_id', 'ct_rc_id',
 				[ 1, 123 ],
-			]
-		);
+			] );
 	}
 
 	public static function provideTags() {
@@ -709,17 +689,14 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertEquals( [ 'tag2' ], ChangeTags::listExplicitlyDefinedTags() );
 
-		$this->assertSelect(
-			'change_tag_def',
-			[ 'ctd_name', 'ctd_user_defined' ],
-			'',
-			[
+		$this->newSelectQueryBuilder()
+			->select( [ 'ctd_name', 'ctd_user_defined' ] )
+			->from( 'change_tag_def' )
+			->assertResultSet( [
 				// values of fields 'ctd_name', 'ctd_user_defined'
 				[ 'tag1', 0 ],
 				[ 'tag2', 1 ],
-			],
-			[ 'ORDER BY' => 'ctd_name' ]
-		);
+			] );
 	}
 
 	public static function provideFormatSummaryRow() {

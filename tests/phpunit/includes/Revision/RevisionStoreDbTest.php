@@ -445,26 +445,23 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$numberOfSlots = count( $rev->getSlotRoles() );
 
 		// new schema is written
-		$this->assertSelect(
-			'slots',
-			[ 'count(*)' ],
-			[ 'slot_revision_id' => $rev->getId() ],
-			[ [ (string)$numberOfSlots ] ]
-		);
+		$this->newSelectQueryBuilder()
+			->select( 'count(*)' )
+			->from( 'slots' )
+			->where( [ 'slot_revision_id' => $rev->getId() ] )
+			->assertFieldValue( $numberOfSlots );
 
 		$store = $this->getServiceContainer()->getRevisionStore();
 		$revQuery = $store->getSlotsQueryInfo( [ 'content' ] );
 
-		$this->assertSelect(
-			$revQuery['tables'],
-			[ 'count(*)' ],
-			[
-				'slot_revision_id' => $rev->getId(),
-			],
-			[ [ (string)$numberOfSlots ] ],
-			[],
-			$revQuery['joins']
-		);
+		$this->newSelectQueryBuilder()
+			->queryInfo( [
+				'tables' => $revQuery['tables'],
+				'joins' => $revQuery['joins']
+			] )
+			->select( 'count(*)' )
+			->where( [ 'slot_revision_id' => $rev->getId() ] )
+			->assertFieldValue( $numberOfSlots );
 
 		$row = $this->revisionRecordToRow( $rev, [] );
 
@@ -491,14 +488,14 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		ksort( $fields );
 		ksort( $row );
 
-		$this->assertSelect(
-			$queryInfo['tables'],
-			$fields,
-			[ 'rev_id' => $rev->getId() ],
-			[ array_values( $row ) ],
-			[],
-			$queryInfo['joins']
-		);
+		$this->newSelectQueryBuilder()
+			->select( $fields )
+			->queryInfo( [
+				'tables' => $queryInfo['tables'],
+				'joins' => $queryInfo['joins']
+			] )
+			->where( [ 'rev_id' => $rev->getId() ] )
+			->assertResultSet( [ array_values( $row ) ] );
 	}
 
 	/**

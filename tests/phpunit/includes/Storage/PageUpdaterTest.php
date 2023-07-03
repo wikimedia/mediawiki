@@ -404,12 +404,11 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		// Retrieve the mw-rollback change tag and verify it
 		$newRevId = $updater->getNewRevision()->getId();
-		$this->assertSelect(
-			'change_tag',
-			'ct_params',
-			[ 'ct_rev_id' => $newRevId ],
-			[ [ FormatJson::encode( $editResult ) ] ]
-		);
+		$this->newSelectQueryBuilder()
+			->select( 'ct_params' )
+			->from( 'change_tag' )
+			->where( [ 'ct_rev_id' => $newRevId ] )
+			->assertFieldValue( FormatJson::encode( $editResult ) );
 	}
 
 	/**
@@ -913,12 +912,11 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$updater->saveRevision( $summary, EDIT_NEW );
 
 		$rev = $updater->getNewRevision();
-		$this->assertSelect(
-			'logging',
-			[ 'log_type', 'log_action' ],
-			[ 'log_page' => $rev->getPageId() ],
-			$expected
-		);
+		$this->newSelectQueryBuilder()
+			->select( [ 'log_type', 'log_action' ] )
+			->from( 'logging' )
+			->where( [ 'log_page' => $rev->getPageId() ] )
+			->assertResultSet( $expected );
 	}
 
 	public static function provideMagicWords() {
