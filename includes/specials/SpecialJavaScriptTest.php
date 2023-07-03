@@ -150,7 +150,12 @@ class SpecialJavaScriptTest extends SpecialPage {
 		$encModules = Xml::encodeJsVar( $modules );
 		$code .= ResourceLoader::makeInlineCodeWithModule( 'mediawiki.base', <<<JAVASCRIPT
 	var start = window.__karma__ ? window.__karma__.start : QUnit.start;
-	mw.loader.using( $encModules ).always( start );
+	// Wait for each module individually, so that partial failures wont break the page
+	// completely by rejecting the promise before all/ any modules are loaded.
+	var promises = $encModules.map( function( module ) {
+		return mw.loader.using( module ).promise();
+	} );
+	Promise.allSettled( promises ).then( start );
 	mw.trackSubscribe( 'resourceloader.exception', function ( topic, err ) {
 		// Things like "dependency missing" or "unknown module".
 		// Re-throw so that they are reported as global exceptions by QUnit and Karma.
