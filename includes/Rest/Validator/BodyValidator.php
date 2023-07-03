@@ -21,7 +21,7 @@ interface BodyValidator {
 	 * available to the handler via Handler::getValidatedBody().
 	 *
 	 * @param RequestInterface $request
-	 * @return mixed
+	 * @return mixed|null
 	 * @throws HttpException on validation failure
 	 */
 	public function validateBody( RequestInterface $request );

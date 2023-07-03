@@ -233,14 +233,14 @@ class HandlerTest extends \MediaWikiUnitTestCase {
 
 	public function testGetValidatedBody() {
 		$validator = $this->createMock( Validator::class );
-		$validator->method( 'validateBody' )->willReturn( 'VALIDATED BODY' );
+		$validator->method( 'validateBody' )->willReturn( [ 'VALIDATED BODY' ] );
 
 		$handler = $this->newHandler();
 		$this->initHandler( $handler, new RequestData() );
 		$handler->validate( $validator );
 
 		$body = $handler->getValidatedBody();
-		$this->assertSame( 'VALIDATED BODY', $body );
+		$this->assertSame( [ 'VALIDATED BODY' ], $body );
 	}
 
 	public function testGetRequest() {

@@ -132,8 +132,8 @@ class Validator {
 	 * available to the handler via Handler::getValidatedBody().
 	 *
 	 * @param RequestInterface $request
-	 * @param Handler $handler Used to call getBodyValidator()
-	 * @return mixed May be null
+	 * @param Handler $handler Used to call {@see Handler::getBodyValidator}
+	 * @return mixed|null Return value from {@see BodyValidator::validateBody}
 	 * @throws HttpException on validation failure
 	 */
 	public function validateBody( RequestInterface $request, Handler $handler ) {
