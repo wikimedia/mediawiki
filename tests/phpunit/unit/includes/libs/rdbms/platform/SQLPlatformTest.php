@@ -511,6 +511,16 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 			[
 				[
 					'table' => 'table',
+					'values' => [ 'field = other', 'field2' => 'text2' ],
+					'conds' => [ '*' ],
+				],
+				"UPDATE  table " .
+				"SET field = other" .
+				",field2 = 'text2'"
+			],
+			[
+				[
+					'table' => 'table',
 					'values' => [ 'field' => 'text', 'field2' => 'text2' ],
 					'conds' => null,
 				],
@@ -537,7 +547,7 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 				"UPDATE  table " .
 				"SET field = other" .
 				",field2 = 'text2'",
-			]
+			],
 		];
 	}
 
@@ -615,6 +625,14 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 				[
 					'table' => 'table',
 					'conds' => '*',
+				],
+				"DELETE FROM table",
+				"DELETE FROM table",
+			],
+			[
+				[
+					'table' => 'table',
+					'conds' => [ '*' ],
 				],
 				"DELETE FROM table",
 				"DELETE FROM table",

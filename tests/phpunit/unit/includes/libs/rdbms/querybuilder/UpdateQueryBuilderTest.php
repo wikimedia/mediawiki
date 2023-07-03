@@ -1,5 +1,6 @@
 <?php
 
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\Rdbms\UpdateQueryBuilder;
 
 /**
@@ -66,6 +67,14 @@ class UpdateQueryBuilderTest extends PHPUnit\Framework\TestCase {
 			->where( [ 'k' => 'v1' ] )
 			->andWhere( [ 'k' => 'v2' ] );
 		$this->assertSQL( 'UPDATE 1 SET a WHERE k = \'v1\' AND (k = \'v2\')', __METHOD__ );
+	}
+
+	public function testCondsAllRows() {
+		$this->uqb
+			->update( '1' )
+			->set( 'a' )
+			->where( ISQLPlatform::ALL_ROWS );
+		$this->assertSQL( 'UPDATE 1 SET a', __METHOD__ );
 	}
 
 	public function testIgnore() {

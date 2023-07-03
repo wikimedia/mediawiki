@@ -1,6 +1,7 @@
 <?php
 
 use Wikimedia\Rdbms\DeleteQueryBuilder;
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 /**
  * @covers \Wikimedia\Rdbms\DeleteQueryBuilder
@@ -42,6 +43,13 @@ class DeleteQueryBuilderTest extends PHPUnit\Framework\TestCase {
 			->where( [ 'k' => 'v1' ] )
 			->andWhere( [ 'k' => 'v2' ] );
 		$this->assertSQL( 'DELETE FROM 1 WHERE k = \'v1\' AND (k = \'v2\')', __METHOD__ );
+	}
+
+	public function testCondsAllRows() {
+		$this->dqb
+			->table( 'a' )
+			->where( ISQLPlatform::ALL_ROWS );
+		$this->assertSQL( 'DELETE FROM a', __METHOD__ );
 	}
 
 	public function testExecute() {
