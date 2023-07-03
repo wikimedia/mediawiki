@@ -234,17 +234,15 @@ class SpecialListGroupRights extends SpecialPage {
 			}
 
 			foreach ( $rights as $right ) {
-				$out->addHTML(
-					Html::rawElement( 'li', [], $this->msg(
-						'listgrouprights-right-display',
-						User::getRightDescription( $right ),
-						Html::element(
+				$out->addHTML( Html::rawElement( 'li', [],
+					$this->msg( 'listgrouprights-right-display' )
+						->params( User::getRightDescription( $right ) )
+						->rawParams( Html::element(
 							'span',
 							[ 'class' => 'mw-listgrouprights-right-name' ],
 							$right
-						)
-					)->parse() )
-				);
+						) )->parse()
+				) );
 			}
 
 			$out->addHTML(
@@ -272,17 +270,23 @@ class SpecialListGroupRights extends SpecialPage {
 		foreach ( $permissions as $permission ) {
 			// show as granted only if it isn't revoked to prevent duplicate display of permissions
 			if ( !isset( $revoke[$permission] ) || !$revoke[$permission] ) {
-				$r[] = $this->msg( 'listgrouprights-right-display',
-					User::getRightDescription( $permission ),
-					'<span class="mw-listgrouprights-right-name">' . $permission . '</span>'
-				)->parse();
+				$r[] = $this->msg( 'listgrouprights-right-display' )
+					->params( User::getRightDescription( $permission ) )
+					->rawParams( Html::element(
+						'span',
+						[ 'class' => 'mw-listgrouprights-right-name' ],
+						$permission
+					) )->parse();
 			}
 		}
 		foreach ( $revoke as $permission ) {
-			$r[] = $this->msg( 'listgrouprights-right-revoked',
-				User::getRightDescription( $permission ),
-				'<span class="mw-listgrouprights-right-name">' . $permission . '</span>'
-			)->parse();
+			$r[] = $this->msg( 'listgrouprights-right-revoked' )
+				->params( User::getRightDescription( $permission ) )
+				->rawParams( Html::element(
+					'span',
+					[ 'class' => 'mw-listgrouprights-right-name' ],
+					$permission
+				) )->parse();
 		}
 
 		sort( $r );
