@@ -227,7 +227,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$user = new User;
 		$user->setName( '*Unregistered 1234' );
 		$this->assertArrayEquals(
-			[ '*', 'user' ],
+			[ '*', 'temp' ],
 			$manager->getUserImplicitGroups( $user )
 		);
 	}
