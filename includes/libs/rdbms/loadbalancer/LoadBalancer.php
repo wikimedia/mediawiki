@@ -61,7 +61,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	/** @var DatabaseDomain Local DB domain ID and default for new connections */
 	private $localDomain;
 
-	/** @var Database[][][] Map of (connection pool => server index => Database[]) */
+	/** @var array<string,array<int,Database[]>> Map of (connection pool => server index => Database[]) */
 	private $conns;
 
 	/** @var string|null The name of the DB cluster */
@@ -1302,12 +1302,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		foreach ( $this->serverInfo->getStreamingReplicaIndexes() as $i ) {
 			$conn = $this->getAnyOpenConnection( $i );
 			$pos = $conn ? $conn->getReplicaPos() : false;
-			if ( !$pos ) {
-				continue; // no open connection or could not get position
-			}
-
-			$highestPos = $highestPos ?: $pos;
-			if ( $pos->hasReached( $highestPos ) ) {
+			if ( $pos && ( !$highestPos || $pos->hasReached( $highestPos ) ) ) {
 				$highestPos = $pos;
 			}
 		}
@@ -1494,7 +1489,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 					);
 				} elseif ( $time > 0 ) {
 					$timeMs = $time * 1000;
-					$humanTimeMs = $timeMs > 1 ? round( $timeMs ) : round( $timeMs, 3 );
+					$humanTimeMs = round( $timeMs, $timeMs > 1 ? 0 : 3 );
 					$this->logger->debug(
 						"Transaction spent {time_ms}ms in writes, under the {$maxWriteDuration}s limit",
 						[ 'time_ms' => $humanTimeMs ]
