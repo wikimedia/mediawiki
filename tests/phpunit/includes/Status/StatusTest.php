@@ -234,8 +234,8 @@ class StatusTest extends MediaWikiLangTestCase {
 
 	public static function provideMockMessageDetails() {
 		return [
-			[ [ 'key1' => [ 'foo' => 'bar' ] ] ],
-			[ [ 'key1' => [ 'foo' => 'bar' ], 'key2' => [ 'foo2' => 'bar2' ] ] ],
+			[ [ 'key1' => [ 'bar' ] ] ],
+			[ [ 'key1' => [ 'bar' ], 'key2' => [ 'bar2' ] ] ],
 		];
 	}
 

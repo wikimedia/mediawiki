@@ -200,30 +200,28 @@ class StatusValue {
 	 */
 	private function addError( array $newError ) {
 		if ( $newError[ 'message' ] instanceof MessageSpecifier ) {
-			$isEqual = static function ( $existingError ) use ( $newError ) {
-				if ( $existingError['message'] instanceof MessageSpecifier ) {
+			$isEqual = static function ( $key, $params ) use ( $newError ) {
+				if ( $key instanceof MessageSpecifier ) {
 					// compare attributes of both MessageSpecifiers
-					return $newError['message'] == $existingError['message'];
+					return $newError['message'] == $key;
 				} else {
-					return $newError['message']->getKey() === $existingError['message'] &&
-						$newError['message']->getParams() === $existingError['params'];
+					return $newError['message']->getKey() === $key &&
+						$newError['message']->getParams() === $params;
 				}
 			};
 		} else {
-			$isEqual = static function ( $existingError ) use ( $newError ) {
-				if ( $existingError['message'] instanceof MessageSpecifier ) {
-					return $newError['message'] === $existingError['message']->getKey() &&
-						$newError['params'] === $existingError['message']->getParams();
-				} else {
-					return $newError['message'] === $existingError['message'] &&
-						$newError['params'] === $existingError['params'];
+			$isEqual = static function ( $key, $params ) use ( $newError ) {
+				if ( $key instanceof MessageSpecifier ) {
+					$params = $key->getParams();
+					$key = $key->getKey();
 				}
+				return $newError['message'] === $key && $newError['params'] === $params;
 			};
 		}
-		foreach ( $this->errors as $index => $existingError ) {
-			if ( $isEqual( $existingError ) ) {
-				if ( $newError[ 'type' ] === 'error' && $existingError[ 'type' ] === 'warning' ) {
-					$this->errors[ $index ][ 'type' ] = 'error';
+		foreach ( $this->errors as [ 'type' => &$type, 'message' => $key, 'params' => $params ] ) {
+			if ( $isEqual( $key, $params ) ) {
+				if ( $type === 'warning' && $newError['type'] === 'error' ) {
+					$type = 'error';
 				}
 				return $this;
 			}
@@ -341,12 +339,10 @@ class StatusValue {
 			$message = $message->getKey();
 		}
 
-		foreach ( $this->errors as $error ) {
-			if ( $error['message'] instanceof MessageSpecifier
-				&& $error['message']->getKey() === $message
+		foreach ( $this->errors as [ 'message' => $key ] ) {
+			if ( $key instanceof MessageSpecifier && $key->getKey() === $message ||
+				$key === $message
 			) {
-				return true;
-			} elseif ( $error['message'] === $message ) {
 				return true;
 			}
 		}
@@ -370,13 +366,11 @@ class StatusValue {
 			$exceptedKeys[] = $message;
 		}
 
-		foreach ( $this->errors as $error ) {
-			if ( $error['message'] instanceof MessageSpecifier ) {
-				$actualKey = $error['message']->getKey();
-			} else {
-				$actualKey = $error['message'];
+		foreach ( $this->errors as [ 'message' => $key ] ) {
+			if ( $key instanceof MessageSpecifier ) {
+				$key = $key->getKey();
 			}
-			if ( !in_array( $actualKey, $exceptedKeys, true ) ) {
+			if ( !in_array( $key, $exceptedKeys, true ) ) {
 				return true;
 			}
 		}
@@ -401,13 +395,11 @@ class StatusValue {
 		$source = $this->normalizeMessage( $source );
 		$dest = $this->normalizeMessage( $dest );
 
-		foreach ( $this->errors as $index => $error ) {
-			if ( $error['message'] === $source ) {
-				$this->errors[$index]['message'] = $dest;
-				$replaced = true;
-			} elseif ( $error['message'] instanceof MessageSpecifier
-				&& $error['message']->getKey() === $source ) {
-				$this->errors[$index]['message'] = $dest;
+		foreach ( $this->errors as [ 'message' => &$message ] ) {
+			if ( $message === $source ||
+				$message instanceof MessageSpecifier && $message->getKey() === $source
+			) {
+				$message = $dest;
 				$replaced = true;
 			}
 		}
@@ -443,21 +435,13 @@ class StatusValue {
 		);
 		if ( count( $this->errors ) > 0 ) {
 			$hdr = sprintf( "+-%'-8s-+-%'-25s-+-%'-36s-+\n", "", "", "" );
-			$out .= "\n";
-			$out .= $hdr;
-			foreach ( $this->errors as $error ) {
-				if ( $error['message'] instanceof MessageSpecifier ) {
-					$key = $error['message']->getKey();
-					$params = $error['message']->getParams();
-				} elseif ( $error['params'] ) {
-					$key = $error['message'];
-					$params = $error['params'];
-				} else {
-					$key = $error['message'];
-					$params = [];
+			$out .= "\n" . $hdr;
+			foreach ( $this->errors as [ 'type' => $type, 'message' => $key, 'params' => $params ] ) {
+				if ( $key instanceof MessageSpecifier ) {
+					$params = $key->getParams();
+					$key = $key->getKey();
 				}
 
-				$type = $error['type'];
 				$keyChunks = mb_str_split( $key, 25 );
 				$paramsChunks = mb_str_split( $this->flattenParams( $params, " | " ), 36 );
 
@@ -512,16 +496,11 @@ class StatusValue {
 		$result = [];
 
 		foreach ( $this->getErrors() as $error ) {
-			if ( $type === false || $error['type'] === $type ) {
+			if ( !$type || $error['type'] === $type ) {
 				if ( $error['message'] instanceof MessageSpecifier ) {
-					$result[] = array_merge(
-						[ $error['message']->getKey() ],
-						$error['message']->getParams()
-					);
-				} elseif ( $error['params'] ) {
-					$result[] = array_merge( [ $error['message'] ], $error['params'] );
+					$result[] = [ $error['message']->getKey(), ...$error['message']->getParams() ];
 				} else {
-					$result[] = [ $error['message'] ];
+					$result[] = [ $error['message'], ...$error['params'] ];
 				}
 			}
 		}
