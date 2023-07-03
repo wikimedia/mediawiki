@@ -93,7 +93,7 @@
 			link.textContent = msg;
 		}
 
-		$link
+		$link.toggleClass( 'loading', state === 'loading' )
 			// The following messages can be used here:
 			// * tooltip-ca-watch
 			// * tooltip-ca-unwatch
@@ -103,21 +103,11 @@
 			.updateTooltipAccessKeys()
 			.attr( 'href', mw.util.getUrl( pageTitle, { action: action } ) );
 
-		if ( expiry === null || expiry === 'infinity' ) {
-			$li.removeClass( 'mw-watchlink-temp' );
-		} else {
-			$li.addClass( 'mw-watchlink-temp' );
-		}
+		$li.toggleClass( 'mw-watchlink-temp', expiry !== null && expiry !== 'infinity' );
 
-		if ( state === 'loading' ) {
-			$link.addClass( 'loading' );
-		} else {
-			$link.removeClass( 'loading' );
-
-			// Most common ID style
-			if ( $li.prop( 'id' ) === 'ca-' + otherAction ) {
-				$li.prop( 'id', 'ca-' + action );
-			}
+		// Most common ID style
+		if ( state !== 'loading' && $li.prop( 'id' ) === 'ca-' + otherAction ) {
+			$li.prop( 'id', 'ca-' + action );
 		}
 	}
 
@@ -347,11 +337,9 @@
 				.done( function ( watchResponse ) {
 					var isWatched = watchResponse.watched === true;
 
-					var message;
+					var message = isWatched ? 'addedwatchtext' : 'removedwatchtext';
 					if ( mwTitle.isTalkPage() ) {
-						message = isWatched ? 'addedwatchtext-talk' : 'removedwatchtext-talk';
-					} else {
-						message = isWatched ? 'addedwatchtext' : 'removedwatchtext';
+						message += '-talk';
 					}
 
 					var notifyPromise;
@@ -359,7 +347,6 @@
 					// @since 1.35 - pop up notification will be loaded with OOUI
 					// only if Watchlist Expiry is enabled
 					if ( isWatchlistExpiryEnabled ) {
-
 						if ( isWatched ) { // The message should include `infinite` watch period
 							message = mwTitle.isTalkPage() ? 'addedwatchindefinitelytext-talk' : 'addedwatchindefinitelytext';
 						}
@@ -408,7 +395,6 @@
 					// OOUI could cause a race condition and the link is updated before the popup
 					// actually is shown. See T263135
 					notifyPromise.always( function () {
-
 						// Update all watchstars associated with this title
 						watchstarsByTitle[ normalizedTitle ].forEach( function ( w ) {
 							w.update( isWatched );
