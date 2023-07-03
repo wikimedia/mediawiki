@@ -212,14 +212,34 @@ parsoid=html2wt
 Foo
 !! end
 
+## WikiContent::getRedirectTargetAndText() strips the redirect from text so,
+## in practice, the legacy parse never sees it from the source.  Hence, the
+## the differnce in output.
 !! test
 Redirect followed by block on the same line
 !! options
 parsoid=wt2html
 !! wikitext
 #REDIRECT [[Main Page]]<!-- haha -->==hi==
+!! html/php
+<ol><li>REDIRECT <a href="/wiki/Main_Page" title="Main Page">Main Page</a>==hi==</li></ol>
 !! html/parsoid
 <link rel="mw:PageProp/redirect" href="./Main_Page"/><!-- haha --><h2 id="hi">hi</h2>
+!! end
+
+## WikiContent::getRedirectTargetAndText() strips the redirect from text so,
+## in practice, the legacy parse never sees it from the source.  Hence, the
+## the differnce in output.
+!! test
+Redirect followed by horizontal rule on the same line
+!! options
+parsoid=wt2html
+!! wikitext
+#REDIRECT [[Main Page]]----
+!! html/php
+<ol><li>REDIRECT <a href="/wiki/Main_Page" title="Main Page">Main Page</a>----</li></ol>
+!! html/parsoid
+<link rel="mw:PageProp/redirect" href="./Main_Page"/><hr/>
 !! end
 
 !! test

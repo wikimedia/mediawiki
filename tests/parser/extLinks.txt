@@ -1313,3 +1313,19 @@ externallinktarget=_self
 <p><a target="_self" rel="nofollow" class="external autonumber" href="https://www.example.com">[1]</a>
 </p>
 !! end
+
+!! test
+Extlink in square brackets with entity
+!! wikitext
+[&nbsp;[http://test.com 123]&nbsp;]
+
+[http://test.com [123]
+!! html/php
+<p>[&#160;<a rel="nofollow" class="external text" href="http://test.com">123</a>&#160;]
+</p><p><a rel="nofollow" class="external text" href="http://test.com">[123</a>
+</p>
+!! html/parsoid
+<p>[<span typeof="mw:Entity"> </span><a rel="mw:ExtLink nofollow" href="http://test.com" class="external text">123</a><span typeof="mw:Entity"> </span>]</p>
+
+<p><a rel="mw:ExtLink nofollow" href="http://test.com" class="external text">[123</a></p>
+!! end
