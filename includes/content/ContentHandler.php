@@ -31,6 +31,7 @@ use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreloadTransformParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Content\ValidationParams;
+use MediaWiki\Diff\TextDiffer\ManifoldTextDiffer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
@@ -622,7 +623,13 @@ abstract class ContentHandler {
 	 * @since 1.32
 	 *
 	 * @param IContextSource $context
-	 * @param array $options of the slot diff renderer (optional)
+	 * @param array $options An associative array of options passed to the SlotDiffRenderer:
+	 *   - diff-type: (string) The text diff format
+	 *   - contentLanguage: (string) The language code of the content language,
+	 *     to be passed to the TextDiffer constructor. This is ignored if a
+	 *     TextDiffer object is provided.
+	 *   - textDiffer: (TextDiffer) A TextDiffer object to use for text
+	 *     comparison.
 	 * @return SlotDiffRenderer
 	 */
 	final public function getSlotDiffRenderer( IContextSource $context, array $options = [] ) {
@@ -660,7 +667,7 @@ abstract class ContentHandler {
 	 * @stable to override
 	 *
 	 * @param IContextSource $context
-	 * @param array $options
+	 * @param array $options See getSlotDiffRenderer()
 	 *
 	 * @return SlotDiffRenderer
 	 */
@@ -679,7 +686,7 @@ abstract class ContentHandler {
 	 *
 	 * @since 1.41
 	 *
-	 * @param array $options
+	 * @param array $options See getSlotDiffRenderer()
 	 * @return TextSlotDiffRenderer
 	 */
 	final protected function createTextSlotDiffRenderer( array $options = [] ): TextSlotDiffRenderer {
@@ -688,29 +695,34 @@ abstract class ContentHandler {
 		$services = MediaWikiServices::getInstance();
 		$statsdDataFactory = $services->getStatsdDataFactory();
 		$slotDiffRenderer->setStatsdDataFactory( $statsdDataFactory );
-		if ( isset( $options['contentLanguage'] ) ) {
-			$language = $services->getLanguageFactory()->getLanguage( $options['contentLanguage'] );
-		} else {
-			$language = $services->getContentLanguage();
-		}
-		$slotDiffRenderer->setLanguage( $language );
 		$slotDiffRenderer->setHookContainer( $services->getHookContainer() );
 		$slotDiffRenderer->setContentModel( $this->getModelID() );
 
-		$inline = ( $options['diff-type'] ?? '' ) === 'inline';
-		$engine = DifferenceEngine::getEngine();
-
-		if ( $engine === 'php' ) {
-			$slotDiffRenderer->setEngine( TextSlotDiffRenderer::ENGINE_PHP );
-		} elseif ( $engine === 'wikidiff2' ) {
-			if ( $inline ) {
-				$slotDiffRenderer->setEngine( TextSlotDiffRenderer::ENGINE_WIKIDIFF2_INLINE );
-			} else {
-				$slotDiffRenderer->setEngine( TextSlotDiffRenderer::ENGINE_WIKIDIFF2 );
-			}
+		if ( isset( $options['textDiffer'] ) ) {
+			$textDiffer = $options['textDiffer'];
 		} else {
-			$slotDiffRenderer->setEngine( TextSlotDiffRenderer::ENGINE_EXTERNAL, $engine );
+			if ( isset( $options['contentLanguage'] ) ) {
+				$language = $services->getLanguageFactory()->getLanguage( $options['contentLanguage'] );
+			} else {
+				$language = $services->getContentLanguage();
+			}
+			$config = $services->getMainConfig();
+			$textDiffer = new ManifoldTextDiffer(
+				RequestContext::getMain(),
+				$language,
+				$config->get( MainConfigNames::DiffEngine ),
+				$config->get( MainConfigNames::ExternalDiffEngine )
+			);
 		}
+		$format = $options['diff-type'] ?? 'table';
+		if ( !$textDiffer->hasFormat( $format ) ) {
+			// Maybe it would be better to throw an exception here, but at
+			// present, the value comes straight from user input without
+			// validation, so we have to fall back.
+			$format = 'table';
+		}
+		$slotDiffRenderer->setFormat( $format );
+		$slotDiffRenderer->setTextDiffer( $textDiffer );
 
 		return $slotDiffRenderer;
 	}

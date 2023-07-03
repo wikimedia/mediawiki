@@ -124,6 +124,7 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/includes/diff
 	'CustomDifferenceEngine' => "$testDir/phpunit/includes/diff/CustomDifferenceEngine.php",
+	'MediaWiki\Tests\Diff\TextDiffer\TextDifferData' => "$testDir/phpunit/includes/diff/TextDiffer/TextDifferData.php",
 
 	# tests/phpunit/includes/externalstore
 	'ExternalStoreForTesting' => "$testDir/phpunit/includes/externalstore/ExternalStoreForTesting.php",
