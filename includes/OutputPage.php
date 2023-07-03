@@ -234,7 +234,7 @@ class OutputPage extends ContextSource {
 	protected $mJsConfigVars = [];
 
 	/**
-	 * @var array
+	 * @var array<int,array<string,int>>
 	 * @deprecated since 1.38; will be made private (T301020)
 	 */
 	protected $mTemplateIds = [];
@@ -1942,7 +1942,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get the templates used on this page
 	 *
-	 * @return array (namespace => dbKey => revId)
+	 * @return array<int,array<string,int>> (namespace => dbKey => revId)
 	 * @since 1.18
 	 */
 	public function getTemplateIds() {
