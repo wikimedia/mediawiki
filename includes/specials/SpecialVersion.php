@@ -62,7 +62,13 @@ class SpecialVersion extends SpecialPage {
 	protected $tocData;
 
 	/** @var int */
-	protected $tocLength;
+	protected $tocIndex;
+
+	/** @var int */
+	protected $tocSection;
+
+	/** @var int */
+	protected $tocSubSection;
 
 	/** @var Parser */
 	private $parser;
@@ -206,7 +212,9 @@ class SpecialVersion extends SpecialPage {
 				$out->addHTML( $this->getMediaWikiCredits() );
 
 				$this->tocData = new TOCData();
-				$this->tocLength = 0;
+				$this->tocIndex = 0;
+				$this->tocSection = 0;
+				$this->tocSubSection = 0;
 
 				// Build the page contents (this also fills in TOCData)
 				$sections = [
@@ -240,19 +248,46 @@ class SpecialVersion extends SpecialPage {
 
 	/**
 	 * Add a section to the table of contents. This doesn't add the heading to the actual page.
-	 * Assumes that there are only level 2 headings and that the IDs don't use non-ASCII characters.
+	 * Assumes the IDs don't use non-ASCII characters.
 	 *
-	 * @param string $labelMsg
+	 * @param string $labelMsg Message key to use for the label
 	 * @param string $id
 	 */
 	private function addTocSection( $labelMsg, $id ) {
-		$this->tocLength++;
+		$this->tocIndex++;
+		$this->tocSection++;
+		$this->tocSubSection = 0;
 		$this->tocData->addSection( new SectionMetadata(
 			1,
 			2,
 			$this->msg( $labelMsg )->escaped(),
-			$this->getLanguage()->formatNum( $this->tocLength ),
-			(string)$this->tocLength,
+			$this->getLanguage()->formatNum( $this->tocSection ),
+			(string)$this->tocIndex,
+			null,
+			null,
+			$id,
+			$id
+		) );
+	}
+
+	/**
+	 * Add a sub-section to the table of contents. This doesn't add the heading to the actual page.
+	 * Assumes the IDs don't use non-ASCII characters.
+	 *
+	 * @param string $label Text of the label
+	 * @param string $id
+	 */
+	private function addTocSubSection( $label, $id ) {
+		$this->tocIndex++;
+		$this->tocSubSection++;
+		$this->tocData->addSection( new SectionMetadata(
+			2,
+			3,
+			htmlspecialchars( $label ),
+			// See Parser::localizeTOC
+			$this->getLanguage()->formatNum( $this->tocSection ) . '.' .
+				$this->getLanguage()->formatNum( $this->tocSubSection ),
+			(string)$this->tocIndex,
 			null,
 			null,
 			$id,
@@ -1149,6 +1184,10 @@ class SpecialVersion extends SpecialPage {
 			$out .= Html::rawElement( 'tr', [],
 				Html::element( 'th', $opt, $text )
 			);
+		}
+
+		if ( $name && $text !== null ) {
+			$this->addTocSubSection( $text, "sv-$name" );
 		}
 
 		$firstHeadingMsg = ( $name === 'credits-skin' )
