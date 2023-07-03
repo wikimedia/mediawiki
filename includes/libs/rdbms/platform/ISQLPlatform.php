@@ -325,9 +325,11 @@ interface ISQLPlatform {
 	 * not compatible with the MySQL syntax.
 	 * @param array $sqls SQL statements to combine
 	 * @param bool $all Either {@link IDatabase::UNION_ALL} or {@link IDatabase::UNION_DISTINCT}
+	 * @param array $options Query options
+	 *
 	 * @return string SQL fragment
 	 */
-	public function unionQueries( $sqls, $all );
+	public function unionQueries( $sqls, $all, $options = [] );
 
 	/**
 	 * Convert a timestamp in one of the formats accepted by {@link ConvertibleTimestamp}

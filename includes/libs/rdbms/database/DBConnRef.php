@@ -575,7 +575,7 @@ class DBConnRef implements IMaintainableDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function unionQueries( $sqls, $all ) {
+	public function unionQueries( $sqls, $all, $options = [] ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 

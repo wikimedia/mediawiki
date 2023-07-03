@@ -473,10 +473,21 @@ class SQLPlatform implements ISQLPlatform {
 	 * @inheritDoc
 	 * @stable to override
 	 */
-	public function unionQueries( $sqls, $all ) {
+	public function unionQueries( $sqls, $all, $options = [] ) {
 		$glue = $all ? ') UNION ALL (' : ') UNION (';
 
-		return '(' . implode( $glue, $sqls ) . ')';
+		$sql = '(' . implode( $glue, $sqls ) . ')';
+		if ( !$this->unionSupportsOrderAndLimit() ) {
+			return $sql;
+		}
+		$sql = $sql . $this->makeOrderBy( $options );
+		$limit = $options['LIMIT'] ?? null;
+		$offset = $options['OFFSET'] ?? false;
+		if ( $limit !== null ) {
+			$sql = $this->limitResult( $sql, $limit, $offset );
+		}
+
+		return $sql;
 	}
 
 	/**
