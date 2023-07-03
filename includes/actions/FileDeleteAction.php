@@ -33,6 +33,7 @@ use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Title\Title;
 use OldLocalFile;
 use PermissionsError;
+use User;
 
 /**
  * Handle file deletion
@@ -208,12 +209,12 @@ class FileDeleteAction extends DeleteAction {
 		return $this->getTitle()->getLocalURL( $q );
 	}
 
-	public function getRestriction() {
+	protected function checkCanExecute( User $user ) {
+		parent::checkCanExecute( $user );
+
 		if ( $this->getContext()->getConfig()->get( MainConfigNames::UploadMaintenance ) ) {
 			throw new ErrorPageError( 'filedelete-maintenance-title', 'filedelete-maintenance' );
 		}
-
-		return null;
 	}
 
 	/**
