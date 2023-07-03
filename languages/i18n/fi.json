@@ -701,6 +701,7 @@
 	"preview": "Esikatselu",
 	"showpreview": "Esikatsele",
 	"showdiff": "Näytä muutokset",
+	"temp-user-banner-tooltip-title": "Väliaikainen tunnus",
 	"blankarticle": "<strong>Varoitus:</strong> Sivu, jota olet luomassa on tyhjä.\nJos napsautat ”$1” uudelleen, sivu luodaan ilman sisältöä.",
 	"anoneditwarning": "<strong>Varoitus:</strong> Et ole kirjautunut sisään. IP-osoitteesi näkyy julkisesti kaikille, jos muokkaat. Jos <strong>[$1 kirjaudut sisään]</strong> tai <strong>[$2 luot tunnuksen]</strong>, muokkauksesi yhdistetään käyttäjänimeesi ja saat paremman käyttökokemuksen.",
 	"autocreate-edit-warning": "<strong>Varoitus:</strong> Et ole kirjautunut sisään. Muokkauksesi liitetään <strong>[[{{MediaWiki:tempuser-helppage}}|tietokoneen keksimään nimeen]]</strong> lähettämällä selaimeesi eväste. IP-osoitteesi tulee näkymään luotetuille käyttäjille. Jos <strong>[$1 kirjaudut sisään]</strong> tai <strong>[$2 luot tunnuksen]</strong>, muokkauksesi liitetään valitsemaasi nimeen ja saat muitakin etuja.",
