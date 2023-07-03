@@ -708,11 +708,10 @@ class SpecialVersion extends SpecialPage {
 				continue;
 			}
 			$authors = array_map( static function ( $arr ) {
-				// If a homepage is set, link to it
-				if ( isset( $arr['homepage'] ) ) {
-					return "[{$arr['homepage']} {$arr['name']}]";
-				}
-				return $arr['name'];
+				return new HtmlArmor( isset( $arr['homepage'] ) ?
+					Html::element( 'a', [ 'href' => $arr['homepage'] ], $arr['name'] ) :
+					htmlspecialchars( $arr['name'] )
+				);
 			}, $info['authors'] );
 			$authors = $this->listAuthors( $authors, false, "$IP/vendor/$name" );
 
@@ -1266,7 +1265,9 @@ class SpecialVersion extends SpecialPage {
 		// Otherwise, if we have an actual array that has more than one item,
 		// process each array item as usual
 		foreach ( $authors as $item ) {
-			if ( $item == '...' ) {
+			if ( $item instanceof HtmlArmor ) {
+				$list[] = HtmlArmor::getHtml( $item );
+			} elseif ( $item === '...' ) {
 				$hasOthers = true;
 
 				if ( $extName && ExtensionInfo::getAuthorsFileName( $extDir ) ) {
