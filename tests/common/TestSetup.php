@@ -152,22 +152,31 @@ class TestSetup {
 	 * @param string $fileName the file to include
 	 */
 	public static function requireOnceInGlobalScope( string $fileName ): void {
-		$originalGlobals = $GLOBALS;
-		foreach ( array_keys( $GLOBALS ) as $key ) {
-			if ( $key === 'fileName' || $key === 'originalGlobals' ) {
-				continue;
-			}
+		// Make a copy of the original $GLOBALS array so that later modifications to the
+		// $GLOBALS array are not seen by the code below. This only affects PHP < 8.1,
+		// see https://wiki.php.net/rfc/restrict_globals_usage
+		// We use a map so that the lookup is faster.
+		$originalGlobalsMap = [];
+		foreach ( $GLOBALS as $key => $_ ) {
+			$originalGlobalsMap[$key] = true;
 			// phpcs:ignore MediaWiki.VariableAnalysis.UnusedGlobalVariables.UnusedGlobal$key,MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix
 			global $$key;
 		}
 
 		require_once $fileName;
 
+		$localVars = [
+			'fileName' => true,
+			'originalGlobalsMap' => true,
+			'key' => true,
+			'_' => true,
+			'localVars' => true,
+		];
 		foreach ( get_defined_vars() as $varName => $value ) {
-			if ( $varName === 'fileName' || $varName === 'originalGlobals' || $varName === 'key' ) {
+			if ( array_key_exists( $varName, $localVars ) ) {
 				continue;
 			}
-			if ( array_key_exists( $varName, $originalGlobals ) ) {
+			if ( array_key_exists( $varName, $originalGlobalsMap ) ) {
 				continue;
 			}
 			$GLOBALS[$varName] = $value;
