@@ -110,6 +110,9 @@ class LogEventsList extends ContextSource {
 			'class' => HTMLUserTextField::class,
 			'label-message' => 'specialloguserlabel',
 			'name' => 'user',
+			'exists' => true,
+			'ipallowed' => true,
+			'iprange' => true,
 		];
 		$formDescriptor['page'] = [
 			'class' => HTMLTitleTextField::class,
