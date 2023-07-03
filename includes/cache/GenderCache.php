@@ -69,7 +69,7 @@ class GenderCache {
 	/**
 	 * Returns the gender for given username.
 	 * @param string|UserIdentity $username
-	 * @param string $caller The calling method
+	 * @param string|null $caller The calling method
 	 * @return string
 	 */
 	public function getGenderOf( $username, $caller = '' ) {
@@ -103,20 +103,16 @@ class GenderCache {
 	/**
 	 * Wrapper for doQuery that processes raw LinkBatch data.
 	 *
-	 * @param array $data
-	 * @param string $caller
+	 * @param array<int,array<string,mixed>> $data
+	 * @param string|null $caller
 	 */
-	public function doLinkBatch( $data, $caller = '' ) {
+	public function doLinkBatch( array $data, $caller = '' ) {
 		$users = [];
 		foreach ( $data as $ns => $pagenames ) {
-			if ( !$this->nsInfo->hasGenderDistinction( $ns ) ) {
-				continue;
-			}
-			foreach ( array_keys( $pagenames ) as $username ) {
-				$users[$username] = true;
+			if ( $this->nsInfo->hasGenderDistinction( $ns ) ) {
+				$users += $pagenames;
 			}
 		}
-
 		$this->doQuery( array_keys( $users ), $caller );
 	}
 
@@ -125,7 +121,7 @@ class GenderCache {
 	 *
 	 * @since 1.20
 	 * @param LinkTarget[] $titles
-	 * @param string $caller The calling method
+	 * @param string|null $caller The calling method
 	 */
 	public function doTitlesArray( $titles, $caller = '' ) {
 		$users = [];
@@ -140,7 +136,7 @@ class GenderCache {
 	/**
 	 * Preloads genders for given list of users.
 	 * @param string[]|string $users Usernames
-	 * @param string $caller The calling method
+	 * @param string|null $caller The calling method
 	 */
 	public function doQuery( $users, $caller = '' ) {
 		$default = $this->getDefault();
