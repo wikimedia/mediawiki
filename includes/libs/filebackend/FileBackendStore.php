@@ -1801,7 +1801,11 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param array $val Information to cache
 	 */
 	final protected function setContainerCache( $container, array $val ) {
-		$this->memCache->set( $this->containerCacheKey( $container ), $val, 14 * 86400 );
+		if ( !$this->memCache->set( $this->containerCacheKey( $container ), $val, 14 * 86400 ) ) {
+			$this->logger->warning( "Unable to set stat cache for container {container}.",
+				[ 'filebackend' => $this->name, 'container' => $container ]
+			);
+		}
 	}
 
 	/**
@@ -1896,7 +1900,11 @@ abstract class FileBackendStore extends FileBackend {
 		$ttl = $this->memCache->adaptiveTTL( $mtime, 7 * 86400, 300, 0.1 );
 		$key = $this->fileCacheKey( $path );
 		// Set the cache unless it is currently salted.
-		$this->memCache->set( $key, $val, $ttl );
+		if ( !$this->memCache->set( $key, $val, $ttl ) ) {
+			$this->logger->warning( "Unable to set stat cache for file {path}.",
+				[ 'filebackend' => $this->name, 'path' => $path ]
+			);
+		}
 	}
 
 	/**
