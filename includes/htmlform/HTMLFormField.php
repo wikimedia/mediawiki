@@ -814,7 +814,7 @@ abstract class HTMLFormField {
 	 */
 	protected function shouldInfuseOOUI() {
 		// Always infuse fields with popup help text, since the interface for it is nicer with JS
-		return $this->getHelpText() !== null && !$this->isHelpInline();
+		return !$this->isHelpInline() && $this->getHelpMessages();
 	}
 
 	/**
@@ -957,6 +957,18 @@ abstract class HTMLFormField {
 		return $this->getHelpTextHtmlDiv( $helptext );
 	}
 
+	private function getHelpMessages(): array {
+		if ( isset( $this->mParams['help-message'] ) ) {
+			return [ $this->mParams['help-message'] ];
+		} elseif ( isset( $this->mParams['help-messages'] ) ) {
+			return $this->mParams['help-messages'];
+		} elseif ( isset( $this->mParams['help'] ) ) {
+			return [ new HtmlArmor( $this->mParams['help'] ) ];
+		}
+
+		return [];
+	}
+
 	/**
 	 * Determine the help text to display
 	 * @stable to override
@@ -964,30 +976,20 @@ abstract class HTMLFormField {
 	 * @return string|null HTML
 	 */
 	public function getHelpText() {
-		$helptext = null;
+		$html = [];
 
-		if ( isset( $this->mParams['help-message'] ) ) {
-			$this->mParams['help-messages'] = [ $this->mParams['help-message'] ];
-		}
-
-		if ( isset( $this->mParams['help-messages'] ) ) {
-			foreach ( $this->mParams['help-messages'] as $msg ) {
+		foreach ( $this->getHelpMessages() as $msg ) {
+			if ( $msg instanceof HtmlArmor ) {
+				$html[] = HtmlArmor::getHtml( $msg );
+			} else {
 				$msg = $this->getMessage( $msg );
-
 				if ( $msg->exists() ) {
-					if ( $helptext === null ) {
-						$helptext = '';
-					} else {
-						$helptext .= $this->msg( 'word-separator' )->escaped(); // some space
-					}
-					$helptext .= $msg->parse(); // Append message
+					$html[] = $msg->parse();
 				}
 			}
-		} elseif ( isset( $this->mParams['help'] ) ) {
-			$helptext = $this->mParams['help'];
 		}
 
-		return $helptext;
+		return $html ? implode( $this->msg( 'word-separator' )->escaped(), $html ) : null;
 	}
 
 	/**
