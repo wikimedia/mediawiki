@@ -45,11 +45,6 @@ class LogEventsList extends ContextSource {
 	protected $showTagEditUI;
 
 	/**
-	 * @var array
-	 */
-	protected $allowedActions = null;
-
-	/**
 	 * @var LinkRenderer|null
 	 */
 	private $linkRenderer;
@@ -92,16 +87,15 @@ class LogEventsList extends ContextSource {
 	/**
 	 * Show options for the log list
 	 *
-	 * @param array $types
+	 * @param string $type Log type
 	 * @param int|string $year Use 0 to start with no year preselected.
 	 * @param int|string $month A month in the 1..12 range. Use 0 to start with no month
 	 *  preselected.
 	 * @param int|string $day A day in the 1..31 range. Use 0 to start with no month
 	 *  preselected.
-	 * @param string|null $action
 	 * @return bool Whether the options are valid
 	 */
-	public function showOptions( $types = [], $year = 0, $month = 0, $day = 0, $action = null ) {
+	public function showOptions( $type = '', $year = 0, $month = 0, $day = 0 ) {
 		$formDescriptor = [];
 
 		// Basic selectors
@@ -131,7 +125,7 @@ class LogEventsList extends ContextSource {
 		}
 
 		// Add extra inputs if any
-		$extraInputsDescriptor = $this->getExtraInputsDesc( $types );
+		$extraInputsDescriptor = $this->getExtraInputsDesc( $type );
 		if ( !empty( $extraInputsDescriptor ) ) {
 			$formDescriptor[ 'extra' ] = $extraInputsDescriptor;
 		}
@@ -157,17 +151,14 @@ class LogEventsList extends ContextSource {
 		];
 
 		// Filter checkboxes, when work on all logs
-		if ( count( $types ) === 0 ) {
+		if ( $type === '' ) {
 			$formDescriptor['filters'] = $this->getFiltersDesc();
 		}
 
 		// Action filter
-		if (
-			$action !== null &&
-			$this->allowedActions !== null &&
-			count( $this->allowedActions ) > 0
-		) {
-			$formDescriptor['subtype'] = $this->getActionSelectorDesc( $types );
+		$allowedActions = $this->getConfig()->get( MainConfigNames::ActionFilteredLogs );
+		if ( isset( $allowedActions[$type] ) ) {
+			$formDescriptor['subtype'] = $this->getActionSelectorDesc( $type, $allowedActions[$type] );
 		}
 
 		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
@@ -213,17 +204,15 @@ class LogEventsList extends ContextSource {
 	 * @return array Form descriptor
 	 */
 	private function getTypeMenuDesc() {
-		$typesByName = []; // Temporary array
-		// First pass to load the log names
+		$typesByName = [];
+		// Load the log names
 		foreach ( LogPage::validTypes() as $type ) {
 			$page = new LogPage( $type );
-			$restriction = $page->getRestriction();
-			if ( $this->getAuthority()->isAllowed( $restriction ) ) {
+			if ( $this->getAuthority()->isAllowed( $page->getRestriction() ) ) {
 				$typesByName[$type] = $page->getName()->text();
 			}
 		}
 
-		// Second pass to sort by name
 		asort( $typesByName );
 
 		// Always put "All public logs" on top
@@ -239,41 +228,37 @@ class LogEventsList extends ContextSource {
 	}
 
 	/**
-	 * @param array $types
+	 * @param string $type
 	 * @return array Form descriptor
 	 */
-	private function getExtraInputsDesc( $types ) {
-		if ( count( $types ) == 1 ) {
-			if ( $types[0] == 'suppress' ) {
-				return [
-					'type' => 'text',
-					'label-message' => 'revdelete-offender',
-					'name' => 'offender',
-				];
-			} else {
-				// Allow extensions to add an extra input into the descriptor array.
-				$unused = ''; // Deprecated since 1.32, removed in 1.41
-				$formDescriptor = [];
-				$this->hookRunner->onLogEventsListGetExtraInputs( $types[0], $this, $unused, $formDescriptor );
+	private function getExtraInputsDesc( $type ) {
+		if ( $type === 'suppress' ) {
+			return [
+				'type' => 'text',
+				'label-message' => 'revdelete-offender',
+				'name' => 'offender',
+			];
+		} else {
+			// Allow extensions to add an extra input into the descriptor array.
+			$unused = ''; // Deprecated since 1.32, removed in 1.41
+			$formDescriptor = [];
+			$this->hookRunner->onLogEventsListGetExtraInputs( $type, $this, $unused, $formDescriptor );
 
-				return $formDescriptor;
-			}
+			return $formDescriptor;
 		}
-
-		return [];
 	}
 
 	/**
 	 * Drop down menu for selection of actions that can be used to filter the log
-	 * @param array $types
+	 * @param string $type
+	 * @param array $actions
 	 * @return array Form descriptor
 	 */
-	private function getActionSelectorDesc( $types ) {
-		$actionOptions = [];
-		$actionOptions[ 'log-action-filter-all' ] = '';
+	private function getActionSelectorDesc( $type, $actions ) {
+		$actionOptions = [ 'log-action-filter-all' => '' ];
 
-		foreach ( $this->allowedActions as $value ) {
-			$msgKey = 'log-action-filter-' . $types[0] . '-' . $value;
+		foreach ( $actions as $value => $_ ) {
+			$msgKey = "log-action-filter-$type-$value";
 			$actionOptions[ $msgKey ] = $value;
 		}
 
@@ -281,18 +266,8 @@ class LogEventsList extends ContextSource {
 			'class' => HTMLSelectField::class,
 			'name' => 'subtype',
 			'options-messages' => $actionOptions,
-			'label' => $this->msg( 'log-action-filter-' . $types[0] )->text(),
+			'label-message' => 'log-action-filter-' . $type,
 		];
-	}
-
-	/**
-	 * Sets the action types allowed for log filtering
-	 * To one action type may correspond several log_actions
-	 * @param array $actions
-	 * @since 1.27
-	 */
-	public function setAllowedActions( $actions ) {
-		$this->allowedActions = $actions;
 	}
 
 	/**
