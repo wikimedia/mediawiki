@@ -20,7 +20,8 @@
 			"Yerpo",
 			"아라",
 			"Pinky sl",
-			"Amire80"
+			"Amire80",
+			"BadDog"
 		]
 	},
 	"tog-underline": "Podčrtovanje povezav:",
@@ -1441,7 +1442,7 @@
 	"enhancedrc-history": "zgodovina",
 	"recentchanges": "Zadnje spremembe",
 	"recentchanges-legend": "Možnosti zadnjih sprememb",
-	"recentchanges-summary": "Na tej strani lahko spremljate najnovejše spremembe vikija.",
+	"recentchanges-summary": "Na tej strani lahko spremljate najnovejše spremembe wikija.",
 	"recentchanges-noresult": "Tem merilom ne ustreza nobena sprememba v izbranem obdobju.",
 	"recentchanges-timeout": "Pretekel je najdaljši čas iskanja. Poskusite uporabiti drugačne parametre iskanja.",
 	"recentchanges-network": "Zaradi tehnične napake zadetkov ni bilo mogoče naložiti. Prosimo, poskusite osvežiti stran.",
@@ -1515,7 +1516,7 @@
 	"rcfilters-filtergroup-user-experience-level": "Prijavljenost in izkušnje uporabnikov",
 	"rcfilters-filter-user-experience-level-registered-label": "Registrirani",
 	"rcfilters-filter-user-experience-level-registered-description": "Prijavljeni uporabniki.",
-	"rcfilters-filter-user-experience-level-unregistered-label": "Neregistrirani",
+	"rcfilters-filter-user-experience-level-unregistered-label": "Neprijavljeni",
 	"rcfilters-filter-user-experience-level-unregistered-description": "Uporabniki, ki niso prijavljeni.",
 	"rcfilters-filter-user-experience-level-newcomer-label": "Novinci",
 	"rcfilters-filter-user-experience-level-newcomer-description": "Registrirani uporabniki, ki imajo manj kot 10 urejanj ali 4 dni dejavnosti.",

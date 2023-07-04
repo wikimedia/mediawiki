@@ -34,7 +34,8 @@
 			"Võrok",
 			"WikedKentaur",
 			"לערי ריינהארט",
-			"Kareyac"
+			"Kareyac",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Linkide allakriipsutus:",
@@ -3170,7 +3171,7 @@
 	"confirmemail_sendfailed": "Kinnitus-e-kirja ei õnnestunud saata.\nKontrolli aadressi õigsust.\n\nVeateade e-kirja saatmisel: $1",
 	"confirmemail_invalid": "Vigane kinnituskood, kinnituskood võib olla aegunud.",
 	"confirmemail_needlogin": "Pead oma e-posti aadressi kinnitamiseks $1.",
-	"confirmemail_success": "Sinu e-posti aadress on kinnitatud\nVõid nüüd [[Special:UserLogin|sisse logida]].",
+	"confirmemail_success": "Sinu e-posti aadress on kinnitatud.\nVõid nüüd [[Special:UserLogin|sisse logida]].",
 	"confirmemail_loggedin": "Sinu e-posti aadress on nüüd kinnitatud.",
 	"confirmemail_subject": "{{GRAMMAR:genitive|{{SITENAME}}}} e-posti aadressi kinnitamine",
 	"confirmemail_body": "Keegi IP-aadressilt $1, ilmselt sa ise,\nregistreeris selle e-posti aadressiga {{GRAMMAR:inessive|{{SITENAME}}}} konto \"$2\".\n\nKinnitamaks, et kasutajakonto tõepoolest kuulub sulle ning et aktiveerida e-posti teenused, ava brauseris järgmine link:\n\n$3\n\nKui sa *pole* kontot registreerinud, ava järgmine link,\net e-posti aadressi kinnitus tühistada:\n\n$5\n\nKinnituskoodi aegumistähtaeg: $4.",

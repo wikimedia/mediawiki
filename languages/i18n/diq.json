@@ -3437,6 +3437,7 @@
 	"tags": "Ravêrde vurnayışanê etiketa",
 	"tag-filter": "Parzûnê [[Special:Tags|etiketi]]:",
 	"tag-filter-submit": "Parzûn",
+	"tag-hidden": "$1 (etiketo nımıte)",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Etiket|Etiketi}}]]: $2",
 	"tag-mw-contentmodelchange": "vurnayışê modelê zerreki",
 	"tag-mw-contentmodelchange-description": "No vurnayış [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel modelê zerrekiya vurnayış]ê peleo.",

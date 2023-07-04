@@ -1534,7 +1534,7 @@
 	"emailuserfooter": "Энэ мэйл нь {{SITENAME}} дахь \"Энэ хэрэглэгчид мэйл илгээх\" функцийг ашиглан $1-с $2-д илгээгдсэн байна.",
 	"usermessage-summary": "Системийн мессеж үлдээв.",
 	"usermessage-editor": "Системийн мессежийг засварлагч",
-	"usermessage-template": "МедиаВики:ХэрэглэгчийнМэдээ",
+	"usermessage-template": "MediaWiki:ХэрэглэгчийнМэдээ",
 	"watchlist": "Хянах жагсаалт",
 	"mywatchlist": "Хяналтын хуудсын жагсаалт",
 	"watchlistfor2": "Хэрэглэгч: $1 $2",
