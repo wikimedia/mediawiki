@@ -99,7 +99,7 @@ module.exports = function ( grunt ) {
 		},
 		watch: {
 			files: [
-				'.{stylelintrc,eslintrc.json}',
+				'.{stylelintrc,eslintrc}.json',
 				'**/*',
 				'!{extensions,node_modules,skins,vendor}/**'
 			],
