@@ -18,15 +18,10 @@
 	 * @private
 	 * @param {jQuery} $formNode
 	 * @param {Object} response
-	 * @param {boolean} isDiff Whether this is diff view, where summary node should be hidden
 	 */
-	function showEditSummary( $formNode, response, isDiff ) {
+	function showEditSummary( $formNode, response ) {
 		var $summaryPreview = $formNode.find( '.mw-summary-preview' ).empty();
 		var parse = response.parse;
-
-		if ( isDiff ) {
-			return;
-		}
 
 		if ( !parse || !parse.parsedsummary ) {
 			return;
@@ -454,11 +449,11 @@
 			if ( mw.config.get( 'wgUserVariant' ) ) {
 				params.variant = mw.config.get( 'wgUserVariant' );
 			}
-			if ( section === 'new' ) {
-				params.section = 'new';
-				params.sectiontitle = params.summary;
-				delete params.summary;
-			}
+		}
+		if ( section === 'new' ) {
+			params.section = 'new';
+			params.sectiontitle = params.summary;
+			delete params.summary;
 		}
 
 		return api.post( params, { headers: { 'Promise-Non-Write-API-Action': 'true' } } );
@@ -643,7 +638,7 @@
 
 		return $.when( parseRequest, diffRequest )
 			.done( function ( parseResponse, diffResponse ) {
-				showEditSummary( config.$formNode, parseResponse[ 0 ], config.showDiff );
+				showEditSummary( config.$formNode, parseResponse[ 0 ] );
 
 				if ( config.showDiff ) {
 					handleDiffResponse( config, diffResponse );
