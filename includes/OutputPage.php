@@ -3075,6 +3075,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * @deprecated since 1.36. Use ::formatPermissionStatus instead
 	 * @param array $errors Array of arrays returned by PermissionManager::getPermissionErrors
+	 * @phan-param non-empty-array[] $errors
 	 * @param string|null $action Action that was denied or null if unknown
 	 * @return string The wikitext error-messages, formatted into a list.
 	 */
@@ -3101,6 +3102,7 @@ class OutputPage extends ContextSource {
 			$text .= '</ul>';
 		} else {
 			$text .= "<div class=\"permissions-errors\">\n" .
+					// @phan-suppress-next-line PhanParamTooFewUnpack Elements of $errors already annotated as non-empty
 					$this->msg( ...reset( $errors ) )->plain() .
 					"\n</div>";
 		}

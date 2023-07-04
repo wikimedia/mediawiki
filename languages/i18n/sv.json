@@ -93,7 +93,10 @@
 			"WikiPhoenix",
 			"לערי ריינהארט",
 			"아라",
-			"Adjoka"
+			"Adjoka",
+			"Cohan",
+			"Kitayama",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Stryk under länkar:",
@@ -3588,7 +3591,7 @@
 	"htmlform-int-toohigh": "Värdet du valde är över maximumet på $1",
 	"htmlform-multiselect-toomany": "Antalet objekt du angav är ovanför maxgränsen $1.",
 	"htmlform-required": "Det här värdet krävs",
-	"htmlform-submit": "Spara",
+	"htmlform-submit": "Skicka",
 	"htmlform-reset": "Ogör ändringar",
 	"htmlform-selectorother-other": "Andra",
 	"htmlform-no": "Nej",
@@ -3717,7 +3720,7 @@
 	"feedback-thanks-title": "Tack!",
 	"feedback-useragent": "Användaragent:",
 	"searchsuggest-search": "Sök på {{SITENAME}}",
-	"searchsuggest-containing": "Sökningar som innehåller",
+	"searchsuggest-containing": "Sök efter sidor som innehåller",
 	"search-match-redirect-label": "Omdirigera till exakta matchningar vid sökning",
 	"search-match-redirect-help": "Markera detta för att omdirigera till en sida när sidtiteln matchar det du har sökt efter",
 	"searchlimit-label": "Antal sökresultat att visa på varje sida:",

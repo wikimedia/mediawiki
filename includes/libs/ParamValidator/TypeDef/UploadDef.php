@@ -114,6 +114,7 @@ class UploadDef extends TypeDef {
 		} else {
 			$constant = '';
 			foreach ( get_defined_constants() as $c => $v ) {
+				// @phan-suppress-next-line PhanTypeComparisonFromArray
 				if ( $v === $err && substr( $c, 0, 11 ) === 'UPLOAD_ERR_' ) {
 					$constant = " ($c?)";
 				}

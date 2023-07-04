@@ -334,6 +334,7 @@ class PermissionManager {
 	 *   whose corresponding errors may be ignored.
 	 *
 	 * @return array[] Array of arrays of the arguments to wfMessage to explain permissions problems.
+	 * @phan-return non-empty-array[]
 	 */
 	public function getPermissionErrors(
 		$action,

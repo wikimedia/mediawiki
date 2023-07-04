@@ -76,7 +76,7 @@
 	"config-invalid-db-type": "ডেটাবেজের ধরন অগ্রহযোগ্য",
 	"config-missing-db-name": "আপনাকে অবশ্যই \"{{int:config-db-name}}\"-এর জন্য একটি মান প্রবেশ করাতে হবে।",
 	"config-missing-db-host": "আপনাকে অবশ্যই \"{{int:config-db-host}}\"-এর জন্য একটি মান প্রবেশ করাতে হবে।",
-	"config-connection-error": "$1।\n\n\nদয়া করে প্রস্তাবকারী, ব্যবহারকারী নাম ও পাসওয়ার্ড দেখুন এবং পুনরায় চেষ্টা করুন।",
+	"config-connection-error": "$1।\n\nহোস্ট, ব্যবহারকারী নাম ও পাসওয়ার্ড পরীক্ষা করুন এবং আবার চেষ্টা করুন। যদি ডাটাবেস হোস্ট হিসেবে \"localhost\" ব্যবহার করা হয়, তবে এর পরিবর্তে \"127.0.0.1\" ব্যবহার করার চেষ্টা করুন (বা তদ্বিপরীত)।",
 	"config-sqlite-readonly": "ফাইল <code>$1</code> লিখনযোগ্য নয়।",
 	"config-sqlite-cant-create-db": "ডাটাবেজ ফাইল <code>$1</code> তৈরি করা যায়নি।",
 	"config-regenerate": "LocalSettings.php পুনরূত্পাদিত করুন →",

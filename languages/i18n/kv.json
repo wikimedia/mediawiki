@@ -4,14 +4,15 @@
 			"Comp1089",
 			"Yufereff",
 			"ОйЛ",
-			"Enye Lav"
+			"Enye Lav",
+			"Merrahtar"
 		]
 	},
 	"tog-underline": "Ыстӧг визьйӧдлӧм:",
 	"sunday": "вежалун",
 	"monday": "выльлун",
 	"tuesday": "воторник",
-	"wednesday": "середа",
+	"wednesday": "шӧрлун",
 	"thursday": "четверг",
 	"friday": "пекнича",
 	"saturday": "субöта",
@@ -266,6 +267,7 @@
 	"movepagebtn": "Лист боклысь ним вежны",
 	"movereason": "Помка:",
 	"allmessages": "Система юӧртӧмъяс",
+	"allmessages-language": "Кыв:",
 	"tooltip-pt-userpage": "Пырысьлӧн лист бокӧй",
 	"tooltip-ca-talk": "Гижӧдлӧн сёрнитӧм лист бокӧй али Википедиялӧн дӧнъялӧм лист бокӧй",
 	"tooltip-ca-move": "Лист боклысь ним вежны",
@@ -280,6 +282,7 @@
 	"searchsuggest-search": "Корсьны {{grammar:prepositional|{{SITENAME}}}}ысь",
 	"searchsuggest-containing": "Корсьны лист бокъяс, кӧні эм",
 	"duration-days": "$1 {{PLURAL:$1|лун}}",
+	"pagelang-language": "Кыв",
 	"skin-action-protect": "Дорйыны",
 	"skin-action-move": "Ним вежны"
 }

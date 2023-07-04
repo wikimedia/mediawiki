@@ -33,7 +33,9 @@
 			"Zamwan",
 			"Zulfadli51",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Base",
+			"Hakimi97"
 		]
 	},
 	"tog-underline": "Garis bawah pautan:",
@@ -646,6 +648,7 @@
 	"showdiff": "Lihat perubahan",
 	"blankarticle": "<strong>Amaran:</strong> Laman yang anda sedang cipta adalah kosong.\nJika anda mengklik \"$1\" sekali lagi, laman ini akan dicipta tanpa sebarang kandungan.",
 	"anoneditwarning": "<strong>Amaran:</strong> Anda tidak log masuk. Alamat IP anda akan disiarkan kepada umum jika anda membuat sebarang suntingan. Jika anda <strong>[$1 log masuk]</strong> atau <strong>[$2 membuka akaun]</strong>, suntingan anda akan diatribusikan kepada nama pengguna anda di samping manfaat-manfaat lain.",
+	"autocreate-edit-warning": "<strong>Amaran:</strong> Anda belum log masuk. Suntingan anda akan dianggap daripada <strong>nama yang dijana automatik</strong> dengan menambah kuki kepada pelayar anda. Alamat IP anda akan dapat dilihat bagi pengguna yang dipercayai. Jika anda <strong>[$1 log masuk]</strong> atau <strong>[$2 buka akaun]</strong>, suntingan anda akan dianggap daripada nama yang anda pilih, bersama dengan manfaat yang lain.",
 	"anonpreviewwarning": "<em>Anda belum log masuk. Jika anda menerbitkan laman ini, alamat IP anda akan direkodkan dalam sejarah penyuntingan laman ini.</em>",
 	"missingsummary": "<strong>Peringatan:</strong> Anda tidak menyatakan ringkasan suntingan. Sekiranya anda mengklik \"$1\" sekali lagi, suntingan anda akan diterbitkan tanpa ringkasan suntingan.",
 	"selfredirect": "<strong>Amaran:</strong> Anda sedang melencongkan laman ini kepada dirinya sendiri.\nMungkin anda telah menyatakan sasaran yang salah untuk lencongan ini ataupun sedang tersalah menyunting halaman.\nJika anda mengklik \"$1\" semula, maka lencongan tetap akan dihasilkan.",
@@ -866,7 +869,7 @@
 	"rev-deleted-unhide-diff": "Salah satu semakan perbezaan ini telah '''dihapuskan'''.\nButiran lanjut boleh didapati dalam [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].\nAnda masih boleh [$1 melihat semakan ini] jika anda ingin teruskan.",
 	"rev-suppressed-unhide-diff": "Salah satu semakan perbezaan ini telah '''diselindungkan'''.\nButiran lanjut boleh didapati dalam [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penyelindungan].\nAnda masih boleh [$1 melihat perbezaan ini] jika anda ingin teruskan.",
 	"rev-deleted-diff-view": "Salah satu semakan perbezaan ini telah <strong>dihapuskan</strong>.\nAnda boleh melihat perbezaan ini; butiran boleh didapati di dalam [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
-	"rev-suppressed-diff-view": "Salah satu semakan perbezaan ini telah '''dipendam'''.\nAnda boleh melihat perbezaan ini; butiran boleh didapati di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penyelindungan].",
+	"rev-suppressed-diff-view": "Salah satu semakan perbezaan ini telah '''dipendam'''.\nAnda boleh melihat perbezaan ini; butiran boleh didapati di [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penyelindungan].",
 	"rev-delundel": "tunjukkan/sorokkan",
 	"rev-showdeleted": "tunjukkan",
 	"revisiondelete": "Hapus/nyahhapus semakan",

@@ -213,6 +213,10 @@ class HTMLForm extends ContextSource {
 	protected $mCancelTarget;
 
 	protected $mSubmitCallback;
+	/**
+	 * @var array[]
+	 * @phan-var non-empty-array[]
+	 */
 	protected $mValidationErrorMessage;
 
 	protected $mPre = '';
@@ -767,8 +771,9 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Set a message to display on a validation error.
 	 *
-	 * @param array $msg Array of valid inputs to wfMessage()
+	 * @param array[] $msg Array of valid inputs to wfMessage()
 	 *     (so each entry must itself be an array of arguments)
+	 * @phan-param non-empty-array[] $msg
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */

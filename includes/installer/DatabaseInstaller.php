@@ -229,7 +229,6 @@ abstract class DatabaseInstaller {
 		$this->db->setFlag( DBO_DDLMODE );
 		$this->db->begin( __METHOD__ );
 
-		// @phan-suppress-next-line SecurityCheck-PathTraversal False positive
 		$error = $this->db->sourceFile(
 			call_user_func( [ $this, $sourceFileMethod ], $this->db )
 		);

@@ -8,7 +8,8 @@
 			"Minggantu",
 			"Moon0319",
 			"Obonggi",
-			"Amire80"
+			"Amire80",
+			"Nikki"
 		]
 	},
 	"sunday": "barunggi xun",
@@ -306,7 +307,7 @@
 	"searchprofile-everything-tooltip": "Yooningga baktambun be baire (leolere afaha be kamcibure)",
 	"searchprofile-advanced-tooltip": "Gebu i ba i baimbi",
 	"search-result-size": "$1 ({{PLURAL:$2|1 gisun|$2 gisun}})",
-	"search-result-category-size": "{{PLURAL:$1|niyalma}} ({{PLURAL:$2|fejergi duwali}}, {{PLURAL:$3|dangse}})",
+	"search-result-category-size": "{{PLURAL:$1|$1 niyalma}} ({{PLURAL:$2|$2 fejergi duwali}}, {{PLURAL:$3|$3 dangse}})",
 	"search-redirect": "($1 ci bederehengge)",
 	"search-section": "(meyen $1)",
 	"search-file-match": "(dangse baktambun be acanambi)",

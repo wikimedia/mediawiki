@@ -19,7 +19,7 @@
 	"apihelp-query+imageinfo-paramvalue-prop-thumbmime": "Menambahkan jenis MIME thumbnail imej (memerlukan url dan param $1urlwidth).",
 	"apihelp-query+prefixsearch-param-offset": "Bilangan hasil untuk dilangkau.",
 	"apihelp-query+usercontribs-param-show": "Hanya paparkan item-item yang mematuhi kriteria ini, cth. suntingan selain yang kecil sahaja: $2show=!minor.\n\nJika ditetapkannya $2show=patrolled atau $2show=!patrolled, maka semakan-semakan yang lebih lama daripada [https://www.mediawiki.org/wiki/Manual:$wgRCMaxAge $wgRCMaxAge] ($1 saat) tidak akan dipaparkan.",
-	"apihelp-query+watchlist-paramvalue-type-new": "Penciptaan laman",
+	"apihelp-query+watchlist-paramvalue-type-new": "Penciptaan laman.",
 	"apihelp-userrights-param-userid": "ID pengguna.",
 	"apihelp-json-summary": "Data output dalam format JSON.",
 	"apihelp-json-param-utf8": "Jika dinyatakan, mengekodkan kenanyakan (tetapi bukan semua) aksara bukan ASCII sebagai UTF-8 daripada menggantikannya dengan jujukan lepasan perenambelasan.",

@@ -172,7 +172,6 @@ wgParserEnableLegacyMediaDOM=false
 <figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x"/></a><figcaption>one <i>two</i> <span typeof="mw:Entity">|</span> three</figcaption></figure>
 !! end
 
-## FIXME: Legacy output doesn't match Parsoid
 !! test
 Bad images - basic functionality
 !! config
@@ -180,13 +179,12 @@ wgParserEnableLegacyMediaDOM=false
 !! wikitext
 [[File:Bad.jpg]]
 !! html/php
-<p><a href="/wiki/File:Bad.jpg" title="File:Bad.jpg">File:Bad.jpg</a>
+<p><span class="mw-default-size" typeof="mw:Error mw:File"><a href="/wiki/File:Bad.jpg" title="File:Bad.jpg"><span class="mw-broken-media" data-width="320">File:Bad.jpg</span></a></span>
 </p>
 !! html/parsoid
 <p><span class="mw-default-size" typeof="mw:Error mw:File" data-mw='{"errors":[{"key":"apierror-badfile","message":"This image is on the bad file list."}]}'><a href="./Special:FilePath/Bad.jpg"><span class="mw-broken-media" resource="./File:Bad.jpg">File:Bad.jpg</span></a></span></p>
 !! end
 
-## FIXME: Legacy output doesn't match Parsoid
 !! test
 Bad images - T18039: text after bad image disappears
 !! config
@@ -197,13 +195,23 @@ Foo bar
 Bar foo
 !! html/php
 <p>Foo bar
-<a href="/wiki/File:Bad.jpg" title="File:Bad.jpg">File:Bad.jpg</a>
+<span class="mw-default-size" typeof="mw:Error mw:File"><a href="/wiki/File:Bad.jpg" title="File:Bad.jpg"><span class="mw-broken-media" data-width="320">File:Bad.jpg</span></a></span>
 Bar foo
 </p>
 !! html/parsoid
 <p>Foo bar
 <span class="mw-default-size" typeof="mw:Error mw:File" data-mw='{"errors":[{"key":"apierror-badfile","message":"This image is on the bad file list."}]}'><a href="./Special:FilePath/Bad.jpg"><span class="mw-broken-media" resource="./File:Bad.jpg">File:Bad.jpg</span></a></span>
 Bar foo</p>
+!! end
+
+!! test
+Bad images - manualthumb
+!! config
+wgParserEnableLegacyMediaDOM=false
+!! wikitext
+[[File:Foobar.jpg|thumb=Bad.jpg|Uh oh]]
+!! html/php
+<figure typeof="mw:Error mw:File/Thumb"><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg"><span class="mw-broken-media" data-width="180">File:Foobar.jpg</span></a><figcaption>Uh oh</figcaption></figure>
 !! end
 
 !! test
@@ -217,7 +225,7 @@ File:Bad.jpg
 !! html/php
 <ul class="gallery mw-gallery-traditional">
 		<li class="gallerybox" style="width: 155px">
-			<div class="thumb" style="height: 150px;"><span typeof="mw:Error mw:File"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Bad.jpg" class="new" title="File:Bad.jpg"><span class="mw-broken-media" data-width="120" data-height="120">File:Bad.jpg</span></a></span></div>
+			<div class="thumb" style="height: 150px;"><span typeof="mw:Error mw:File"><a href="/wiki/File:Bad.jpg" title="File:Bad.jpg"><span class="mw-broken-media" data-width="120" data-height="120">File:Bad.jpg</span></a></span></div>
 			<div class="gallerytext">
 			</div>
 		</li>
@@ -2469,7 +2477,7 @@ wgParserEnableLegacyMediaDOM=false
 !! wikitext
 [[Image:foobar.jpg|thumbnail= ]]
 !! html/php
-<figure typeof="mw:Error mw:File/Thumb"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Foobar.jpg" class="new" title="File:Foobar.jpg"><span class="mw-broken-media" data-width="180">File:Foobar.jpg</span></a><figcaption></figcaption></figure>
+<figure typeof="mw:Error mw:File/Thumb"><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg"><span class="mw-broken-media" data-width="180">Error creating thumbnail: </span></a><figcaption></figcaption></figure>
 !! html/parsoid
 <figure typeof="mw:Error mw:File/Thumb" data-parsoid='{"optList":[{"ck":"manualthumb","ak":"thumbnail= "}]}' data-mw='{"attribs":[["manualthumb",{"txt":""}]],"errors":[{"key":"apierror-invalidtitle","message":"Invalid thumbnail title.","params":{"name":""}}]}'><a href="./Special:FilePath/Foobar.jpg"><span class="mw-broken-media" resource="./File:Foobar.jpg" data-parsoid='{"a":{"resource":"./File:Foobar.jpg"},"sa":{"resource":"Image:foobar.jpg"}}'>File:Foobar.jpg</span></a><figcaption></figcaption></figure>
 !! end
@@ -4284,4 +4292,32 @@ File:Doesnotexist.jpg|thumb|456 - has an error noted in the rdfa
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x"/></a></span></div><div class="gallerytext">123</div></li>
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Error mw:File" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Doesnotexist.jpg"><span class="mw-broken-media" resource="./File:Doesnotexist.jpg" data-width="120" data-height="120">File:Doesnotexist.jpg</span></a></span></div><div class="gallerytext">456 - has an error noted in the rdfa</div></li>
 </ul>
+!! end
+
+!! test
+Broken media with frame and frameless formats
+!! config
+wgParserEnableLegacyMediaDOM=false
+!! wikitext
+[[File:Barfoo.jpg|frame|123]]
+[[File:Barfoo.jpg|frameless|123]]
+!! html/php
+<figure typeof="mw:Error mw:File/Frame"><a href="/wiki/File:Barfoo.jpg" class="mw-redirect" title="File:Barfoo.jpg"><span class="mw-broken-media" data-width="180">File:Barfoo.jpg</span></a><figcaption>123</figcaption></figure>
+<p><span class="mw-default-size" typeof="mw:Error mw:File/Frameless"><a href="/wiki/File:Barfoo.jpg" class="mw-redirect" title="File:Barfoo.jpg"><span class="mw-broken-media">File:Barfoo.jpg</span></a></span>
+</p>
+!! html/parsoid
+<figure typeof="mw:Error mw:File/Frame" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Barfoo.jpg"><span class="mw-broken-media" resource="./File:Barfoo.jpg">File:Barfoo.jpg</span></a><figcaption>123</figcaption></figure>
+<p><span class="mw-default-size" typeof="mw:Error mw:File/Frameless" data-mw='{"caption":"123","errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Barfoo.jpg"><span class="mw-broken-media" resource="./File:Barfoo.jpg" data-width="180">123</span></a></span></p>
+!! end
+
+!! test
+Media with broken manualthumb
+!! config
+wgParserEnableLegacyMediaDOM=false
+!! wikitext
+[[File:Foobar.jpg|thumbnail=Barfoo.jpg|123]]
+!! html/php
+<figure typeof="mw:Error mw:File/Thumb"><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg"><span class="mw-broken-media" data-width="180">Error creating thumbnail: </span></a><figcaption>123</figcaption></figure>
+!! html/parsoid
+<figure typeof="mw:Error mw:File/Thumb" data-mw='{"attribs":[["manualthumb",{"txt":"Barfoo.jpg"}]],"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Foobar.jpg"><span class="mw-broken-media" resource="./File:Foobar.jpg">File:Foobar.jpg</span></a><figcaption>123</figcaption></figure>
 !! end

@@ -4098,6 +4098,9 @@ class EditPage implements IEditObject {
 		$title = Title::castFromPageReference( $page );
 		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable $title is not null because $page isn't
 		Hooks::runner()->onEditPageCopyrightWarning( $title, $copywarnMsg );
+		if ( !$copywarnMsg ) {
+			return '';
+		}
 
 		$msg = $localizer->msg( ...$copywarnMsg )->page( $page );
 		return Html::rawElement( 'div', [ 'id' => 'editpage-copywarn' ], $msg->$format() );

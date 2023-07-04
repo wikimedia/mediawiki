@@ -43,7 +43,8 @@
 			"灰太狼Wolffy55",
 			"逆襲的天邪鬼",
 			"飞舞回堂前",
-			"아라"
+			"아라",
+			"Base"
 		]
 	},
 	"tog-underline": "以底線識鏈接：",
@@ -644,7 +645,7 @@
 	"rev-deleted-unhide-diff": "此審'''刪'''矣，\n詳見[{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}}誌刪]。\n有秩仍看者，[$1 看此審]也。",
 	"rev-suppressed-unhide-diff": "此審'''廢'''矣，\n詳見[{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}}誌廢]。\n有秩仍看者，[$1 看此審]也。",
 	"rev-deleted-diff-view": "此二孔之一審'''刪'''矣，惟有秩可見之，詳見[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 誌刪]。",
-	"rev-suppressed-diff-view": "此二孔之一審'''廢'''矣，惟有秩可見之，詳見[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 誌廢]。",
+	"rev-suppressed-diff-view": "此二孔之一審'''廢'''矣，惟有秩可見之，詳見[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 誌廢]。",
 	"rev-delundel": "見/藏",
 	"rev-showdeleted": "見",
 	"revisiondelete": "刪、還審",

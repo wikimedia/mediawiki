@@ -8,7 +8,8 @@
 			"Macofe",
 			"Stephanecbisson",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Таймураз"
 		]
 	},
 	"tog-underline": "Æрвитæнты бын хахх:",
@@ -921,7 +922,7 @@
 	"recentchangeslinked-feed": "Баст ивдтытæ",
 	"recentchangeslinked-toolbox": "Баст ивдтытæ",
 	"recentchangeslinked-title": "\"{{grammar:comitative|$1}}\" баст ивдтытæ",
-	"recentchangeslinked-summary": "Адон сты фæстаг рæстæджы ивдтытæ ахæм уацты, кæдонмæ æрвиты амынд фарс (кæнæ амынд категорийы уæнгтæ). [[Special:Watchlist|Дæ цæстдард фæрстæ]] сты '''бæзджынæй''' нысангонд.",
+	"recentchangeslinked-summary": "Фарсы ном бандадз, цæмæй цы фæрстæм æрвитæг кæны, кæнæ йыл цы фæрстæ æрвитæг кæнынц, уый фенай. (Категориты уæнгтæ фенынмæ, бандадз {{ns:category}}: Категорийы ном). [[Special:Watchlist|Дæ цæстдарыны номхыгъды]] ивддзинæдтæ сты бæзджынæй бæрæггонд.",
 	"recentchangeslinked-page": "Фарсы ном:",
 	"recentchangeslinked-to": "Уый бæсты равдисæт амынд фарсмæ æрвитгæ фæрсты ивдтытæ",
 	"upload": "Бавгæнын файл",
@@ -1573,6 +1574,7 @@
 	"compare-rev2": "Фæлтæр 2",
 	"compare-submit": "Абарын",
 	"deletepage": "Схаф фарс",
+	"htmlform-submit": "Афтæ уæд",
 	"htmlform-selectorother-other": "Æндæр",
 	"htmlform-no": "Нæ",
 	"htmlform-yes": "Гъо",
@@ -1591,7 +1593,7 @@
 	"feedback-thanks-title": "Бузныг!",
 	"feedback-useragent": "Браузер:",
 	"searchsuggest-search": "{{grammar:genitive|{{SITENAME}}}} агурын",
-	"searchsuggest-containing": "йæ мидæг ис...",
+	"searchsuggest-containing": "Агур фæрстæ, кæцыйы ис",
 	"api-clientside-error-timeout": "Сервер нæ радта дзуапп бадзырд рæстæгмæ.",
 	"api-error-stashfailed": "Мидæггаг рæдыд: Серверæн нæ рауадис рæстæгмæ файл фæдарын.",
 	"api-error-unknown-warning": "Нæзонгæ фæдзæхст: \"$1\".",

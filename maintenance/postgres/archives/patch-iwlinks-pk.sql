@@ -1,6 +1,6 @@
-DROP INDEX iwl_from;
-DROP INDEX iwl_prefix_title_from;
-DROP INDEX iwl_prefix_from_title;
+DROP INDEX IF EXISTS iwl_from;
+DROP INDEX IF EXISTS iwl_prefix_title_from;
+DROP INDEX IF EXISTS iwl_prefix_from_title;
 ALTER TABLE iwlinks
  ADD PRIMARY KEY (iwl_from, iwl_prefix, iwl_title);
 

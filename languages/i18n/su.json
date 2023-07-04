@@ -20,7 +20,10 @@
 			"Vlad5250",
 			"WikiKaruhun",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Akbar Soepadhi",
+			"Pijri Paijar",
+			"Veracious"
 		]
 	},
 	"tog-underline": "Gurat-handapan tutumbu",
@@ -575,7 +578,7 @@
 	"subject": "Subyék:",
 	"minoredit": "Ieu éditan minor",
 	"watchthis": "Awaskeun kaca ieu",
-	"savearticle": "Simpen",
+	"savearticle": "Simpen kaca",
 	"savechanges": "Simpen parobahan",
 	"publishpage": "Pedalkeun kaca",
 	"publishchanges": "Pedalkeun parobahan",
@@ -1342,7 +1345,7 @@
 	"rcshowhideliu": "$1 pamaké kadaptar",
 	"rcshowhideliu-show": "Témbongkeun",
 	"rcshowhideliu-hide": "Sumputkeun",
-	"rcshowhideanons": "$1 kontributor anonim",
+	"rcshowhideanons": "$1 pamaké anonim",
 	"rcshowhideanons-show": "Témbongkeun",
 	"rcshowhideanons-hide": "Sumputkeun",
 	"rcshowhidepatr": "$1 éditan karoris",
@@ -1569,7 +1572,7 @@
 	"filehist-thumb": "Miniatur",
 	"filehist-thumbtext": "'Thumbnail' pikeun vérsi mangsa $1",
 	"filehist-nothumb": "Taya miniatur",
-	"filehist-user": "Kontributor",
+	"filehist-user": "Pamaké",
 	"filehist-dimensions": "Ukuran",
 	"filehist-filesize": "Ukuran berkas",
 	"filehist-comment": "Kamandang",

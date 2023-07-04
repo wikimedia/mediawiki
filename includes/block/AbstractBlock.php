@@ -428,6 +428,7 @@ abstract class AbstractBlock implements Block {
 	 * @return array A message array: either a list of strings, the first of which
 	 *  is the message key and the remaining ones the parameters, or an array with
 	 *  a single MessageSpecifier object.
+	 * @phan-return non-empty-array
 	 */
 	public function getPermissionsError( IContextSource $context ) {
 		$message = MediaWikiServices::getInstance()

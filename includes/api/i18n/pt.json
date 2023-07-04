@@ -499,7 +499,7 @@
 	"apihelp-query+allimages-param-maxsize": "Limitar só às imagens com este número máximo de bytes.",
 	"apihelp-query+allimages-param-sha1": "Resumo criptográfico SHA1 da imagem. Tem precedência sobre $1sha1base36.",
 	"apihelp-query+allimages-param-sha1base36": "Resumo criptográfico SHA1 da imagem em base 36 (usado no MediaWiki).",
-	"apihelp-query+allimages-param-user": "Devolver só os ficheiros carregados por este utilizador. Só pode ser usado com $1sort=timestamp. Não pode ser usado em conjunto com $1filterbots.",
+	"apihelp-query+allimages-param-user": "Só devolver ficheiros cuja última versão tenha sido carregada por este utilizador. Só pode ser usado com $1sort=timestamp. Não pode ser usado em conjunto com $1filterbots.",
 	"apihelp-query+allimages-param-filterbots": "Como filtrar os ficheiros carregados por robôs. Só pode ser usado com $1sort=timestamp. Não pode ser usado em conjunto com $1user.",
 	"apihelp-query+allimages-param-mime": "Tipos MIME a procurar; por exemplo, <kbd>image/jpeg</kbd>.",
 	"apihelp-query+allimages-param-limit": "O número total de imagens a serem devolvidas.",

@@ -22,7 +22,8 @@
 			"The Polish",
 			"Vlad5250",
 			"Woytecr",
-			"Odder"
+			"Odder",
+			"MarMi wiki"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Dokumentacja]]\n* [[mw:Special:MyLanguage/API:Etiquette|Etykieta i wytyczne użytkowania]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Lista dyskusyjna]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ Ogłoszenia dotyczące API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Błędy i propozycje]\n</div>\n<strong>Stan:</strong> API MediaWiki jest ugruntowanym i stabilnym interfejsem, który jest aktywnie wspierany i ulepszany. Mimo iż staramy się tego unikać, czasami mogą mieć miejsce drastyczne zmiany; subskrybuj [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ listę dyskusyjną mediawiki-api-announce], aby być na bieżąco ze zmianami.\n\n<strong>Błędne żądania:</strong> Gdy zostanie wysłane błędne żądanie do API, zostanie wysłany w odpowiedzi nagłówek HTTP z kluczem „MediaWiki-API-Error” i zarówno jego wartość jak i wartość kodu błędu wysłanego w odpowiedzi będą miały taką samą wartość. Aby uzyskać więcej informacji, zobacz [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Błędy i ostrzeżenia]].\n\n<p class=\"mw-apisandbox-link\"><strong>Testowanie:</strong> Aby łatwo testować żądania API, zobacz [[Special:ApiSandbox]].</p>",
@@ -850,6 +851,7 @@
 	"api-help-authmanagerhelper-request": "Użyj tego żądania poświadczeń za pośrednictwem <samp>id</samp> od <kbd>[[Special:ApiHelp/query+authmanagerinfo|action=query&meta=authmanagerinfo]]</kbd> z <kbd>amirequestsfor=$1</kbd>.",
 	"api-help-authmanagerhelper-additional-params": "Ten moduł akceptuje dodatkowe parametry, w zależności od dostępnych żądań poświadczeń. Użyj <kbd>[[Special:ApiHelp/query+authmanagerinfo|action=query&meta=authmanagerinfo]]</kbd> z <kbd>amirequestsfor=$1</kbd> (lub poprzednią odpowiedzią tego modułu, jeśli dotyczy) aby określić dostępne żądania i pola, których używają.",
 	"apierror-articleexists": "Artykuł, który próbowałeś utworzyć, już został utworzony.",
+	"apierror-assertuserfailed": "Nie jesteś już zalogowany, więc akcja nie mogła zostać zakończona.",
 	"apierror-baddiff": "Różnicy wersji nie można odtworzyć. Jedna lub obie wersje nie istnieją, lub nie masz uprawnień do ich wyświetlenia.",
 	"apierror-badgenerator-unknown": "Nieznany <kbd>generator=$1</kbd>.",
 	"apierror-badip": "Parametr IP nie jest prawidłowy.",

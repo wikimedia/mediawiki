@@ -858,7 +858,7 @@
 	"prevn-title": "پيشتر $1 {{PLURAL:$1|نتيجه|نتيجةل}}",
 	"nextn-title": "Next $1 {{PLURAL:$1|result|results}}",
 	"shown-title": "نمایش$1 {{PLURAL:$1|نتیجه|نتایج}} وۀ هۀر وۀلگۀ",
-	"viewprevnext": "($3)($2 {{int:pipe-separator}} $1)نمایش",
+	"viewprevnext": "($3)($1 {{int:pipe-separator}} $2)نمایش",
 	"searchmenu-exists": " {{PLURAL:$2|0=|همچنین نتایج جستجوی دیگری را ببینید.}} '''صفحه‌ای با عنوان  \"[[:$1]]\" در این ویکی وجود دارد.'''",
 	"searchmenu-new": "<strong>صفحهٔ «[[:$1]]» را در این ویکی بسازید!</strong> {{PLURAL:$2|0=همچنین صفحهٔ یافت‌شده با جستجویتان را ببینید.|همچنین نتایج جستجوی یافت‌شده را ببینید.}}",
 	"searchprofile-articles": "وۀلگۀ محتوایی",

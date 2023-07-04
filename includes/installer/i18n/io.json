@@ -213,7 +213,7 @@
 	"config-upload-deleted": "Receveyo por efacita arkivi:",
 	"config-upload-deleted-help": "Selektez receveyo por efacita artikli. Prefereble, ol mustus acesesar per interreto.",
 	"config-personalization-settings": "Personalizo",
-	"config-logo-summary": "Por singla ek ca blanka spaci por plenigar, vu bezonos sendar imajo kun adequata grandeso, ed informar la URL en l'infra buxi. Vu povos uzar <code>$wgStylePath</code> o <code>$wgScriptPath</code> se vua *logotipo relatas a ca treki. Vu povas nekompletigar irga ek l'infra buxi.\n\nEn la suportita retonavigili, vu anke povas tranar arkivi di imaji de vua komputatoro* al eniro-buxi.",
+	"config-logo-summary": "Por singla ek ca blanka spaci por plenigar, vu bezonos sendar imajo kun adequata grandeso, ed informar la URL en la buxi adinfre. Vu povos uzar <code>$wgStylePath</code> o <code>$wgScriptPath</code> se vua *logotipo relatas a ca treki. Vu povas nekompletigar irga ek la buxi adinfra.",
 	"config-logo-preview-main": "Chefpagino",
 	"config-logo-icon": "Logotipo* (ikono):",
 	"config-logo-icon-help": "L'ikono di vua logotipo* mustas esar quadratra, havanta adminime 50px, od esar arkivo SVG.",

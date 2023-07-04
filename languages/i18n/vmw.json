@@ -295,7 +295,7 @@
 	"prevn-title": "Otthika {{PLURAL:$1 yoowattamela|sowaattamela}} $1 {{PLURAL:$1|mureerelo|mireerelo}}",
 	"nextn-title": "Otthika {{PLURAL:$1 yoowattamela|sowaattamela}} $1 {{PLURAL:$1|mureerelo|mireerelo}}",
 	"shown-title": "Wooniha$1 {{PLURAL:$1|result|results}} kula nikukhu",
-	"viewprevnext": "Woona ($1 {{int:pipe-evalaanyo}} $2) ($3)",
+	"viewprevnext": "Woona ($1 {{int:pipe-separator}} $2) ($3)",
 	"searchmenu-exists": "Wookhala opuro mmosa ni nsina \"[[:$1]]\" wa-{{SITENAME}}. {{PLURAL:$2|0=|Nwehe tho mireerelo ikina iphwanyuwe.}}",
 	"searchmenu-new": "<strong>Create the page \"[[:$1]]\" on this wiki!</strong> {{PLURAL:$2|0=|Nwehe tho opuro ophwanyiwe mmuthokoseryoni.|Nwehe tho mireerelo iphwanyiwe sa muthokoseryo.}}",
 	"searchprofile-articles": "Ipaphelo sa sin'himyaaya soolempwa",
