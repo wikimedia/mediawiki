@@ -21,12 +21,11 @@ interface LogEventsListGetExtraInputsHook {
 	 * @param string $type Log type being displayed
 	 * @param LogEventsList $logEventsList LogEventsList object for context
 	 *   and access to the WebRequest
-	 * @param string &$input HTML of an input element. Deprecated, use
-	 *   $formDescriptor instead.
+	 * @param string &$unused
 	 * @param array &$formDescriptor HTMLForm's form descriptor
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
-	public function onLogEventsListGetExtraInputs( $type, $logEventsList, &$input,
+	public function onLogEventsListGetExtraInputs( $type, $logEventsList, &$unused,
 		&$formDescriptor
 	);
 }

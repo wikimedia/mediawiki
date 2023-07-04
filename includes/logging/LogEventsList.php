@@ -131,22 +131,9 @@ class LogEventsList extends ContextSource {
 		}
 
 		// Add extra inputs if any
-		// This could either be a form descriptor array or a string with raw HTML.
-		// We need it to work in both cases and show a deprecation warning if it
-		// is a string. See T199495.
 		$extraInputsDescriptor = $this->getExtraInputsDesc( $types );
-		if (
-			is_array( $extraInputsDescriptor ) &&
-			!empty( $extraInputsDescriptor )
-		) {
+		if ( !empty( $extraInputsDescriptor ) ) {
 			$formDescriptor[ 'extra' ] = $extraInputsDescriptor;
-		} elseif (
-			is_string( $extraInputsDescriptor ) &&
-			$extraInputsDescriptor !== ''
-		) {
-			// We'll add this to the footer of the form later
-			$extraInputsString = $extraInputsDescriptor;
-			wfDeprecated( '$input in LogEventsListGetExtraInputs hook', '1.32' );
 		}
 
 		// Date menu
@@ -198,15 +185,6 @@ class LogEventsList extends ContextSource {
 				);
 				return true;
 			} );
-
-		// TODO This will should be removed at some point. See T199495.
-		if ( isset( $extraInputsString ) ) {
-			$htmlForm->addFooterText( Html::rawElement(
-				'div',
-				[],
-				$extraInputsString
-			) );
-		}
 
 		$result = $htmlForm->prepareForm()->trySubmit();
 		$htmlForm->displayForm( $result );
@@ -262,7 +240,7 @@ class LogEventsList extends ContextSource {
 
 	/**
 	 * @param array $types
-	 * @return array|string Form descriptor or string with HTML
+	 * @return array Form descriptor
 	 */
 	private function getExtraInputsDesc( $types ) {
 		if ( count( $types ) == 1 ) {
@@ -273,13 +251,12 @@ class LogEventsList extends ContextSource {
 					'name' => 'offender',
 				];
 			} else {
-				// Allow extensions to add their own extra inputs
-				// This could be an array or string. See T199495.
-				$input = ''; // Deprecated
+				// Allow extensions to add an extra input into the descriptor array.
+				$unused = ''; // Deprecated since 1.32, removed in 1.41
 				$formDescriptor = [];
-				$this->hookRunner->onLogEventsListGetExtraInputs( $types[0], $this, $input, $formDescriptor );
+				$this->hookRunner->onLogEventsListGetExtraInputs( $types[0], $this, $unused, $formDescriptor );
 
-				return empty( $formDescriptor ) ? $input : $formDescriptor;
+				return $formDescriptor;
 			}
 		}
 
