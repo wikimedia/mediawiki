@@ -122,6 +122,10 @@ class DeleteAction extends FormAction {
 		return $this->msg( 'delete-confirm', $title->getPrefixedText() );
 	}
 
+	public function getRestriction() {
+		return 'delete';
+	}
+
 	protected function alterForm( HTMLForm $form ) {
 		$title = $this->getTitle();
 		$form
