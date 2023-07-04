@@ -1330,7 +1330,6 @@
 	"userrights-expiry-in-past": "\"$1\" grubunun bitiş süresi geçmişte.",
 	"userrights-cannot-shorten-expiry": "Üyelik süresinin sona ermesini \"$1\" grubunda ileriye taşıyamazsınız. Yalnızca bu grubu ekleme ve kaldırma izni olan kullanıcılar, sürenin dolduğu süreyi getirebilir.",
 	"userrights-conflict": "Kullanıcı hakları değişikliklerinde çakışma! Lütfen değişikliklerinizi gözden geçirin ve onaylayın.",
-	"userrights-no-tempuser": "Geçici kullanıcılar gruplara eklenemez.",
 	"group": "Grup:",
 	"group-user": "Kullanıcılar",
 	"group-named": "Kayıtlı kullanıcılar",
