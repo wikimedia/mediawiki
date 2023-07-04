@@ -1296,7 +1296,6 @@
 	"userrights-expiry-in-past": "O prazo de expiração para o grupo \"$1\" está no passado.",
 	"userrights-cannot-shorten-expiry": "Não pode adiantar a data de expiração da associação ao grupo \"$1\". Só os utilizadores com permissões para adicionar e remover este grupo podem adiantar datas de expiração.",
 	"userrights-conflict": "Conflito entre alterações de privilégios de utilizador! Por favor, reveja e confirme as suas mudanças.",
-	"userrights-no-tempuser": "Os utilizadores temporários não podem ser adicionados a grupos.",
 	"group": "Grupo:",
 	"group-user": "Utilizadores",
 	"group-named": "Utilizadores registados",

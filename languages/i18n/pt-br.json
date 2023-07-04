@@ -1345,7 +1345,6 @@
 	"userrights-expiry-in-past": "O tempo de expiração para o grupo \"$1\" está no passado.",
 	"userrights-cannot-shorten-expiry": "Você não pode antecipar a expiração dos membros no grupo \"$1\". Somente usuários com permissão para adicionar e remover este grupo podem.",
 	"userrights-conflict": "Há um comflito de permissões de usuário! Por favor, revise e confirme as alterações novamente.",
-	"userrights-no-tempuser": "Temporário\n  os usuários não podem ser adicionados a grupos.",
 	"group": "Grupo:",
 	"group-user": "Usuários",
 	"group-named": "Usuários registrados",

@@ -1230,7 +1230,6 @@
 	"userrights-expiry-in-past": "Čas preteka skupine »$1« je v preteklosti.",
 	"userrights-cannot-shorten-expiry": "Časa preteka članstva v skupini »$1« ne morete prestaviti naprej. Čase preteka lahko prestavijo naprej samo uporabniki z dovoljenjem za dodajanje ali odstranitev te skupine.",
 	"userrights-conflict": "Navzkrižje sprememb uporabniških pravic! Preglejte in potrdite svoje spremembe.",
-	"userrights-no-tempuser": "Začasnih uporabnikov ni mogoče dodajati v skupine.",
 	"group": "Skupina:",
 	"group-user": "Uporabniki",
 	"group-named": "Registrirani uporabniki",

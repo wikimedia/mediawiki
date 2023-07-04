@@ -1406,7 +1406,6 @@
 	"userrights-expiry-in-past": "La date d’expiration pour le groupe « $1 » est passée.",
 	"userrights-cannot-shorten-expiry": "Vous ne pouvez pas raccourcir la durée d’expiration de l’appartenance au groupe « $1 ». Seuls les utilisateurs disposant de l’autorisation d’ajouter et de supprimer ce groupe peuvent raccourcir les durées d’expiration.",
 	"userrights-conflict": "Conflit de modification des droits utilisateur ! Veuillez relire et confirmer vos modifications.",
-	"userrights-no-tempuser": "Les utilisateurs temporaires ne peuvent pas être ajoutés à des groupes.",
 	"group": "Groupe :",
 	"group-user": "Utilisateurs",
 	"group-named": "Utilisateurs inscrits",

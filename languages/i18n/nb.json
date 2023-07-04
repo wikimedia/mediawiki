@@ -1269,7 +1269,6 @@
 	"userrights-expiry-in-past": "Utløpstiden for gruppa «$1» har vært.",
 	"userrights-cannot-shorten-expiry": "Du kan ikke forlenge utløpstiden til gruppemedlemskapet i «$1». Bare brukere med tillatelse til å legge til eller fjerne denne gruppa kan forlenge utløpstider.",
 	"userrights-conflict": "En konflikt med endringen av brukerrettigheter! Vær vennlig å sjekke og på nytt bekrefte endringene dine.",
-	"userrights-no-tempuser": "Midlertidige brukere kan ikke legges til grupper.",
 	"group": "Gruppe:",
 	"group-user": "Brukere",
 	"group-named": "Registrerte brukere",
