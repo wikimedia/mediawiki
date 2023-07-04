@@ -99,7 +99,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private $mCategories;
 
 	/**
-	 * @var string[] Page status indicators, usually displayed in top-right corner.
+	 * @var array<string,string> Page status indicators, usually displayed in top-right corner.
 	 */
 	private $mIndicators = [];
 
@@ -109,47 +109,46 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private $mTitleText;
 
 	/**
-	 * @var int[][] 2-D map of NS/DBK to ID for the links in the document.
+	 * @var array<int,array<string,int>> 2-D map of NS/DBK to ID for the links in the document.
 	 *  ID=zero for broken.
-	 * @phan-var array<int,array<string,int>>
 	 */
 	private $mLinks = [];
 
 	/**
-	 * @var array Keys are DBKs for the links to special pages in the document.
+	 * @var array<string,int> Keys are DBKs for the links to special pages in the document.
 	 * @since 1.35
 	 */
 	private $mLinksSpecial = [];
 
 	/**
-	 * @var array 2-D map of NS/DBK to ID for the template references.
+	 * @var array<int,array<string,int>> 2-D map of NS/DBK to ID for the template references.
 	 *  ID=zero for broken.
 	 */
 	private $mTemplates = [];
 
 	/**
-	 * @var array 2-D map of NS/DBK to rev ID for the template references.
+	 * @var array<int,array<string,int>> 2-D map of NS/DBK to rev ID for the template references.
 	 *  ID=zero for broken.
 	 */
 	private $mTemplateIds = [];
 
 	/**
-	 * @var array DB keys of the images used, in the array key only
+	 * @var array<string,int> DB keys of the images used, in the array key only
 	 */
 	private $mImages = [];
 
 	/**
-	 * @var array DB keys of the images used mapped to sha1 and MW timestamp.
+	 * @var array<string,array> DB keys of the images used mapped to sha1 and MW timestamp.
 	 */
 	private $mFileSearchOptions = [];
 
 	/**
-	 * @var array External link URLs, in the key only.
+	 * @var array<string,int> External link URLs, in the key only.
 	 */
 	private $mExternalLinks = [];
 
 	/**
-	 * @var array 2-D map of prefix/DBK (in keys only)
+	 * @var array<string,array<string,int>> 2-D map of prefix/DBK (in keys only)
 	 *  for the inline interwiki links in the document.
 	 */
 	private $mInterwikiLinks = [];
@@ -175,12 +174,12 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private $mHeadItems = [];
 
 	/**
-	 * @var array Modules to be loaded by ResourceLoader
+	 * @var string[] Modules to be loaded by ResourceLoader
 	 */
 	private $mModules = [];
 
 	/**
-	 * @var array Modules of which only the CSSS will be loaded by ResourceLoader.
+	 * @var string[] Modules of which only the CSS will be loaded by ResourceLoader.
 	 */
 	private $mModuleStyles = [];
 
@@ -190,12 +189,12 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private $mJsConfigVars = [];
 
 	/**
-	 * @var array Hook tags as per $wgParserOutputHooks.
+	 * @var array[] Hook tags as per $wgParserOutputHooks.
 	 */
 	private $mOutputHooks = [];
 
 	/**
-	 * @var array Warning text to be returned to the user.
+	 * @var array<string,int> Warning text to be returned to the user.
 	 *  Wikitext formatted, in the key only.
 	 */
 	private $mWarnings = [];
@@ -284,7 +283,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private $mExtraStyleSrcs = [];
 
 	/**
-	 * @var array Generic flags.
+	 * @var array<string,true> Generic flags.
 	 */
 	private $mFlags = [];
 
