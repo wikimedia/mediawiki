@@ -444,10 +444,13 @@ class UserGroupManager implements IDBAccessObject {
 		$promote = [];
 
 		if ( isset( $autopromoteOnce[$event] ) && count( $autopromoteOnce[$event] ) ) {
-			$currentGroups = $this->getUserGroups( $user );
-			$formerGroups = $this->getUserFormerGroups( $user );
 			// TODO: remove the need for the full user object
 			$userObj = User::newFromIdentity( $user );
+			if ( $userObj->isTemp() ) {
+				return [];
+			}
+			$currentGroups = $this->getUserGroups( $user );
+			$formerGroups = $this->getUserFormerGroups( $user );
 			foreach ( $autopromoteOnce[$event] as $group => $cond ) {
 				// Do not check if the user's already a member
 				if ( in_array( $group, $currentGroups ) ) {
@@ -629,7 +632,11 @@ class UserGroupManager implements IDBAccessObject {
 			__METHOD__ . " is not supported for foreign wikis: {$this->wikiId} used"
 		);
 
-		if ( $this->readOnlyMode->isReadOnly() || !$user->isRegistered() ) {
+		if (
+			$this->readOnlyMode->isReadOnly() ||
+			!$user->isRegistered() ||
+			$this->tempUserConfig->isTempName( $user->getName() )
+		) {
 			return [];
 		}
 
