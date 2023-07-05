@@ -592,7 +592,7 @@ class SiteConfiguration {
 				$this->cfgCache[$wiki] = [];
 			}
 			$result = Shell::makeScriptCommand(
-				MW_INSTALL_PATH . '/maintenance/getConfiguration.php',
+				'getConfiguration',
 				[
 					'--wiki', $wiki,
 					'--settings', implode( ' ', $settings ),
