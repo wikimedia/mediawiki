@@ -87,6 +87,7 @@ trait SearchApi {
 		if ( $isScrollable ) {
 			$params['offset'] = [
 				ParamValidator::PARAM_DEFAULT => 0,
+				IntegerDef::PARAM_MIN => 0,
 				ParamValidator::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			];
