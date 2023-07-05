@@ -15,6 +15,7 @@
 			"Wadorgurt",
 			"Zpizza",
 			"ОйЛ",
+			"Света Поторочина",
 			"לערי ריינהארט"
 		]
 	},
@@ -276,6 +277,7 @@
 	"badtitle": "Умойтэм ним",
 	"badtitletext": "Курем бам ним луэ мыдлань, буш либо кылъёс куспын яке викиос куспын нимыз умойтэм герӟамын.\nНимын, вылды, ярантэм символъёс вань.",
 	"viewsource": "Кодзэ учкыны",
+	"skin-action-viewsource": "Кылдонзэ эскерон",
 	"viewsource-title": "$1 бамлэсь кодзэ учкон",
 	"actionthrottled": "Уж дугдытэмын",
 	"actionthrottledtext": "Спамлы пумит нюръяськемен тӥ уд быгатӥське та ужез быдэсъяны укыр трос пол вакчи дыр куспын — но тӥ та лимитлэсь вылтӥ луиды.\nТауна, выльысь оскалтэ кӧня ке минут куспатыса.",
@@ -930,7 +932,7 @@
 	"logentry-upload-upload": "$1 {{GENDER:$2|понӥз}} $3",
 	"logentry-upload-overwrite": "$1 $3 бамлэсь выль версизэ {{GENDER:$2|тырем}}",
 	"searchsuggest-search": "Утчано {{SITENAME}}",
-	"searchsuggest-containing": "кудъёсаз вань...",
+	"searchsuggest-containing": " Утчано бамъёсты, кудъёсаз вань",
 	"duration-days": "$1 {{PLURAL:$1|нунал}}",
 	"expand_templates_preview": "Эскерон",
 	"mw-widgets-abandonedit-keep": "Тупатъянэз азьланьтоно",
