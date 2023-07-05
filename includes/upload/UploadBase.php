@@ -177,10 +177,14 @@ abstract class UploadBase {
 	/**
 	 * Returns true if the user has surpassed the upload rate limit, false otherwise.
 	 *
+	 * @deprecated since 1.41, use verifyTitlePermissions() instead.
+	 * Rate limit checks are now implicit in permission checks.
+	 *
 	 * @param User $user
 	 * @return bool
 	 */
 	public static function isThrottled( $user ) {
+		wfDeprecated( __METHOD__, '1.41' );
 		return $user->pingLimiter( 'upload' );
 	}
 
