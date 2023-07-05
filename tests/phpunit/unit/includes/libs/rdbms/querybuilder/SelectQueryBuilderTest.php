@@ -3,6 +3,7 @@
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Rdbms\Subquery;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \Wikimedia\Rdbms\SelectQueryBuilder
@@ -642,6 +643,26 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 					->limit( 1 )
 			);
 		$this->assertSQL( "SELECT a,c AS b,d FROM t,u JOIN v ON ((uu=vv)) WHERE a = '1' AND (a = '2') ORDER BY a LIMIT 1" );
+	}
+
+	public function testMergeCaller() {
+		$tsqb = TestingAccessWrapper::newFromObject( $this->sqb );
+		$this->sqb->caller( 'A' );
+		$this->assertSame( 'A', $tsqb->caller );
+
+		// Merging a builder which has the default caller of __CLASS__
+		// should not overwrite an explicit caller in the destination.
+		$this->sqb->merge( new SelectQueryBuilder( $this->db ) );
+		$this->assertSame( 'A', $tsqb->caller );
+
+		// However, by analogy with option merging, an explicitly set caller
+		// should be copied into the merge destination even when the destination
+		// already had a caller.
+		$this->sqb->merge(
+			( new SelectQueryBuilder( $this->db ) )
+				->caller( 'B' )
+		);
+		$this->assertSame( 'B', $tsqb->caller );
 	}
 
 	public function testAcquireRowLocks() {
