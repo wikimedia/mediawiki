@@ -113,7 +113,7 @@
 	// TODO: update variable name to match new token once it exists.
 	// Older versions of Less don't support using escape() on colors, so use %A instead
 	@escaped-color-black: %( '%A', @color-black );
-	@background-image-url: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="@{escaped-color-black}">@{param-icon}</svg>';
+	@background-image-url: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" fill="@{escaped-color-black}">@{param-icon}</svg>';
 
 	// Chrome requires the -webkit prefix, so we must use it in all @supports queries.
 	@supports not ( mask-image: none ) and ( -webkit-mask-image: none ) {
@@ -179,7 +179,7 @@
 
 	// Add default image.
 	& when not ( @param-is-button-icon ) {
-		background-image: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="@{escaped-hex-code}">@{default-icon}</svg>' );
+		background-image: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" fill="@{escaped-hex-code}">@{default-icon}</svg>' );
 	}
 	& when ( @param-is-button-icon ) {
 		.cdx-mixin-css-icon-button-icon-background-image( @default-icon );
@@ -212,7 +212,7 @@
 		&[ dir='rtl' ],
 		html[ dir='rtl' ] &:not( [ dir='ltr' ] ) {
 			& when not ( @param-is-button-icon ) {
-				background-image: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="@{escaped-hex-code}">@{rtl-icon}</svg>' );
+				background-image: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" fill="@{escaped-hex-code}">@{rtl-icon}</svg>' );
 			}
 			& when ( @param-is-button-icon ) {
 				.cdx-mixin-css-icon-button-icon-background-image( @rtl-icon );
@@ -234,7 +234,7 @@
 
 			&:lang( @{lang-code} ) {
 				& when not ( @param-is-button-icon ) {
-					background-image: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="@{escaped-hex-code}">@{lang-icon}</svg>' );
+					background-image: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" fill="@{escaped-hex-code}">@{lang-icon}</svg>' );
 				}
 				& when ( @param-is-button-icon ) {
 					.cdx-mixin-css-icon-button-icon-background-image( @lang-icon );
