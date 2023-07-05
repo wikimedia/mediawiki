@@ -1508,7 +1508,7 @@ class SQLPlatform implements ISQLPlatform {
 
 		$condsSql = '';
 		$cleanCondsSql = '';
-		if ( $conds !== self::ALL_ROWS ) {
+		if ( $conds !== self::ALL_ROWS && $conds !== [ self::ALL_ROWS ] ) {
 			$cleanCondsSql = ' WHERE ' . $this->scrubConditions( $conds );
 			if ( is_array( $conds ) ) {
 				$conds = $this->makeList( $conds, self::LIST_AND );
@@ -1541,7 +1541,7 @@ class SQLPlatform implements ISQLPlatform {
 		$opts = $this->makeUpdateOptions( $options );
 		$sql = "UPDATE $opts $table SET " . $this->makeList( $set, self::LIST_SET );
 
-		if ( $conds && $conds !== self::ALL_ROWS ) {
+		if ( $conds && $conds !== self::ALL_ROWS && $conds !== [ self::ALL_ROWS ] ) {
 			if ( is_array( $conds ) ) {
 				$conds = $this->makeList( $conds, self::LIST_AND );
 			}
