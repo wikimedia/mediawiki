@@ -1873,6 +1873,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		if ( $this->warmParsoidParserCache ) {
 			$cacheWarmingParams = $this->getCause();
 			$cacheWarmingParams['options'] = ParsoidOutputAccess::OPT_FORCE_PARSE;
+
 			$this->jobQueueGroup->lazyPush(
 				ParsoidCachePrewarmJob::newSpec(
 					$this->revision->getId(),

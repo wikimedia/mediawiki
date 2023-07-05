@@ -78,13 +78,28 @@ class ParsoidCachePrewarmJob extends Job {
 			throw new InvalidArgumentException(
 				'$page must be a int or a PageRecord object.' );
 		}
+
+		$pageId = is_int( $page ) ? $page : $page->getId();
+
 		$params += [ 'options' => 0 ];
+
+		$opts = [];
+		if ( $page instanceof PageRecord ) {
+			$pageTouched = $page->getTouched();
+			$params += self::newRootJobParams(
+				"parsoidCachePrewarm:$pageId:$revisionId:$pageTouched:{$params['options']}"
+			);
+			$params += [ 'page_touched' => $pageTouched ];
+			$opts = [ 'removeDuplicates' => true ];
+		}
+
 		return new JobSpecification(
 			'parsoidCachePrewarm',
 			[
 				'revId' => $revisionId,
-				'pageId' => is_int( $page ) ? $page : $page->getId(),
-			] + $params
+				'pageId' => $pageId,
+			] + $params,
+			$opts
 		);
 	}
 
