@@ -194,9 +194,9 @@ class DeleteQueryBuilder {
 	}
 
 	/**
-	 * Run the constructed DELETE query and return the result.
+	 * Run the constructed DELETE query.
 	 */
-	public function execute() {
+	public function execute(): void {
 		if ( !$this->conds ) {
 			throw new UnexpectedValueException(
 				__METHOD__ . ' expects at least one condition to be set' );
