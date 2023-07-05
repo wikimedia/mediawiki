@@ -335,6 +335,9 @@ class SpecialUserRights extends SpecialPage {
 	 * @return Status
 	 */
 	protected function saveUserGroups( $username, $reason, $user ) {
+		if ( $this->userNameUtils->isTemp( $user ) ) {
+			return Status::newFatal( 'userrights-no-tempuser' );
+		}
 		$allgroups = $this->userGroupManager->listAllGroups();
 		$addgroup = [];
 		$groupExpiries = []; // associative array of (group name => expiry)
@@ -644,6 +647,10 @@ class SpecialUserRights extends SpecialPage {
 
 		if ( !$user || $user->isAnon() ) {
 			return Status::newFatal( 'nosuchusershort', $username );
+		}
+
+		if ( $this->userNameUtils->isTemp( $user ) ) {
+			return Status::newFatal( 'userrights-no-group' );
 		}
 
 		if ( $user->getWikiId() === UserIdentity::LOCAL &&

@@ -769,10 +769,16 @@ class UserGroupManager implements IDBAccessObject {
 			return false;
 		}
 
+		$isTemp = $this->tempUserConfig->isTempName( $user->getName() );
 		if ( !$user->isRegistered() ) {
 			throw new InvalidArgumentException(
 				'UserGroupManager::addUserToGroup() needs a positive user ID. ' .
 				'Perhaps addUserToGroup() was called before the user was added to the database.'
+			);
+		}
+		if ( $isTemp ) {
+			throw new InvalidArgumentException(
+				'UserGroupManager::addUserToGroup() cannot be called on a temporary user.'
 			);
 		}
 
