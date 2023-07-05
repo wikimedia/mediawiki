@@ -82,13 +82,11 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 		}
 
 		if ( $query !== null && $query !== '' ) {
-			$protocol ??= 'http://';
-
 			// Normalize query to match the normalization applied for the externallinks table
-			$query = Parser::normalizeLinkUrl( $protocol . $query );
+			$query = Parser::normalizeLinkUrl( $query );
 
 			$conds = LinkFilter::getQueryConditions( $query, [
-				'protocol' => '',
+				'protocol' => $protocol,
 				'oneWildcard' => true,
 				'db' => $db
 			] );

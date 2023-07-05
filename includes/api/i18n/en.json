@@ -811,7 +811,7 @@
 
 	"apihelp-query+extlinks-summary": "Returns all external URLs (not interwikis) from the given pages.",
 	"apihelp-query+extlinks-param-limit": "How many links to return.",
-	"apihelp-query+extlinks-param-protocol": "Protocol of the URL. If empty and <var>$1query</var> is set, the protocol is <kbd>http</kbd>. Leave both this and <var>$1query</var> empty to list all external links.",
+	"apihelp-query+extlinks-param-protocol": "Protocol of the URL. If empty and <var>$1query</var> is set, the protocol is <kbd>http</kbd> and <kbd>https</kbd>. Leave both this and <var>$1query</var> empty to list all external links.",
 	"apihelp-query+extlinks-param-query": "Search string without protocol. Useful for checking whether a certain page contains a certain external url.",
 	"apihelp-query+extlinks-param-expandurl": "Expand protocol-relative URLs with the canonical protocol.",
 	"apihelp-query+extlinks-example-simple": "Get a list of external links on <kbd>Main Page</kbd>.",
@@ -821,7 +821,7 @@
 	"apihelp-query+exturlusage-paramvalue-prop-ids": "Adds the ID of page.",
 	"apihelp-query+exturlusage-paramvalue-prop-title": "Adds the title and namespace ID of the page.",
 	"apihelp-query+exturlusage-paramvalue-prop-url": "Adds the URL used in the page.",
-	"apihelp-query+exturlusage-param-protocol": "Protocol of the URL. If empty and <var>$1query</var> is set, the protocol is <kbd>http</kbd>. Leave both this and <var>$1query</var> empty to list all external links.",
+	"apihelp-query+exturlusage-param-protocol": "Protocol of the URL. If empty and <var>$1query</var> is set, the protocol is <kbd>http</kbd> and <kbd>https</kbd>. Leave both this and <var>$1query</var> empty to list all external links.",
 	"apihelp-query+exturlusage-param-query": "Search string without protocol. See [[Special:LinkSearch]]. Leave empty to list all external links.",
 	"apihelp-query+exturlusage-param-namespace": "The page namespaces to enumerate.",
 	"apihelp-query+exturlusage-param-limit": "How many pages to return.",
