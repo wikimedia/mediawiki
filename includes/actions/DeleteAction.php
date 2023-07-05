@@ -30,6 +30,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\RequestTimeout\TimeoutException;
 
@@ -83,6 +84,8 @@ class DeleteAction extends FormAction {
 	/** @var TitleFactory */
 	private $titleFactory;
 
+	private IConnectionProvider $dbProvider;
+
 	/**
 	 * @inheritDoc
 	 */
@@ -99,6 +102,7 @@ class DeleteAction extends FormAction {
 		$this->namespaceInfo = $services->getNamespaceInfo();
 		$this->titleFormatter = $services->getTitleFormatter();
 		$this->titleFactory = $services->getTitleFactory();
+		$this->dbProvider = $services->getDBLoadBalancerFactory();
 	}
 
 	public function getName() {
@@ -288,7 +292,7 @@ class DeleteAction extends FormAction {
 		// This, as a side-effect, also makes sure that the following query isn't being run for
 		// pages with a larger history, unless the user has the 'bigdelete' right
 		// (and is about to delete this page).
-		$revisions = (int)wfGetDB( DB_REPLICA )->newSelectQueryBuilder()
+		$revisions = (int)$this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
 			->select( 'COUNT(rev_page)' )
 			->from( 'revision' )
 			->where( [ 'rev_page' => $title->getArticleID() ] )

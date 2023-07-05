@@ -41,6 +41,7 @@ use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserOptionsLookup;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * DifferenceEngine is responsible for rendering the difference between two revisions as HTML.
@@ -246,6 +247,8 @@ class DifferenceEngine extends ContextSource {
 	/** @var CommentFormatter */
 	private $commentFormatter;
 
+	private IConnectionProvider $dbProvider;
+
 	/** @var Message[] */
 	private $revisionLoadErrors = [];
 
@@ -281,6 +284,7 @@ class DifferenceEngine extends ContextSource {
 		$this->wikiPageFactory = $services->getWikiPageFactory();
 		$this->userOptionsLookup = $services->getUserOptionsLookup();
 		$this->commentFormatter = $services->getCommentFormatter();
+		$this->dbProvider = $services->getDBLoadBalancerFactory();
 	}
 
 	/**
@@ -514,9 +518,8 @@ class DifferenceEngine extends ContextSource {
 	 */
 	public function deletedLink( $id ) {
 		if ( $this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
-			$dbr = wfGetDB( DB_REPLICA );
 			$arQuery = $this->revisionStore->getArchiveQueryInfo();
-			$row = $dbr->selectRow(
+			$row = $this->dbProvider->getReplicaDatabase()->selectRow(
 				$arQuery['tables'],
 				array_merge( $arQuery['fields'], [ 'ar_namespace', 'ar_title' ] ),
 				[ 'ar_rev_id' => $id ],
@@ -2140,7 +2143,7 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		// Load tags information for both revisions
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 		$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
 		if ( $this->mOldid !== false ) {
 			$tagIds = $dbr->selectFieldValues(

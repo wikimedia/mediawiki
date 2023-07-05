@@ -764,6 +764,7 @@ class SpecialPageFactory {
 			'services' => [
 				'Parser',
 				'UrlUtils',
+				'DBLoadBalancerFactory',
 			]
 		],
 		'Lockdb' => [
