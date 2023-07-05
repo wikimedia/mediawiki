@@ -1673,30 +1673,22 @@ class DifferenceEngine extends ContextSource {
 	 */
 	private function addLocalisedTitleTooltips( $text ) {
 		// Moved paragraph indicators.
-		$text = preg_replace_callback(
-			'/class="mw-diff-movedpara-(left|right)"/',
-			function ( array $matches ) {
-				$key = $matches[1] === 'right' ?
-					'diff-paragraph-moved-toold' :
-					'diff-paragraph-moved-tonew';
-				return $matches[0] . ' title="' . $this->msg( $key )->escaped() . '"';
-			},
-			$text
-		);
-
+		$replacements = [
+			'class="mw-diff-movedpara-right"' =>
+				'class="mw-diff-movedpara-right" title="' .
+				$this->msg( 'diff-paragraph-moved-toold' )->escaped() . '"',
+			'class="mw-diff-movedpara-left"' =>
+				'class="mw-diff-movedpara-left" title="' .
+				$this->msg( 'diff-paragraph-moved-tonew' )->escaped() . '"',
+		];
 		// For inline diffs, add tooltips to `<ins>` and `<del>`.
 		if ( isset( $this->slotDiffOptions['diff-type'] ) && $this->slotDiffOptions['diff-type'] == 'inline' ) {
-			$text = str_replace(
-				[ '<ins>', '<del>' ],
-				[
-					Html::openElement( 'ins', [ 'title' => $this->msg( 'diff-inline-tooltip-ins' )->plain() ] ),
-					Html::openElement( 'del', [ 'title' => $this->msg( 'diff-inline-tooltip-del' )->plain() ] ),
-				],
-				$text
-			);
+			$replacements['<ins>'] = Html::openElement( 'ins',
+				[ 'title' => $this->msg( 'diff-inline-tooltip-ins' )->plain() ] );
+			$replacements['<del>'] = Html::openElement( 'del',
+				[ 'title' => $this->msg( 'diff-inline-tooltip-del' )->plain() ] );
 		}
-
-		return $text;
+		return strtr( $text, $replacements );
 	}
 
 	/**
