@@ -322,6 +322,11 @@ class DBConnRef implements IMaintainableDatabase {
 		return new DeleteQueryBuilder( $this );
 	}
 
+	public function newInsertQueryBuilder(): InsertQueryBuilder {
+		// Use $this not $this->conn so that the domain is preserved (T326377)
+		return new InsertQueryBuilder( $this );
+	}
+
 	public function selectField(
 		$table, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
