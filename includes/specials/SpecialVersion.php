@@ -35,6 +35,7 @@ use MediaWiki\Utils\UrlUtils;
 use Symfony\Component\Yaml\Yaml;
 use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\Parsoid\Core\TOCData;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Give information about the version of MediaWiki, PHP, the DB and extensions
@@ -76,17 +77,22 @@ class SpecialVersion extends SpecialPage {
 	/** @var UrlUtils */
 	private $urlUtils;
 
+	private IConnectionProvider $dbProvider;
+
 	/**
 	 * @param Parser $parser
 	 * @param UrlUtils $urlUtils
+	 * @param IConnectionProvider $dbProvider
 	 */
 	public function __construct(
 		Parser $parser,
-		UrlUtils $urlUtils
+		UrlUtils $urlUtils,
+		IConnectionProvider $dbProvider
 	) {
 		parent::__construct( 'Version' );
 		$this->parser = $parser;
 		$this->urlUtils = $urlUtils;
+		$this->dbProvider = $dbProvider;
 	}
 
 	/**
@@ -363,7 +369,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return string[] Array of wikitext strings keyed by wikitext strings
 	 */
 	private function getSoftwareInformation() {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 
 		// Put the software in an array of form 'name' => 'version'. All messages should
 		// be loaded here, so feel free to use wfMessage in the 'name'. Wikitext

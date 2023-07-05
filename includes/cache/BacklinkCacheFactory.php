@@ -27,6 +27,7 @@ use BacklinkCache;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Page\PageReference;
 use WANObjectCache;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * @since 1.37
@@ -41,16 +42,20 @@ class BacklinkCacheFactory {
 	/** @var HookContainer */
 	private $hookContainer;
 
+	private IConnectionProvider $dbProvider;
+
 	/**
 	 * @param WANObjectCache $wanCache
 	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
 		WANObjectCache $wanCache,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		IConnectionProvider $dbProvider
 	) {
 		$this->wanCache = $wanCache;
 		$this->hookContainer = $hookContainer;
+		$this->dbProvider = $dbProvider;
 	}
 
 	/**
@@ -68,6 +73,7 @@ class BacklinkCacheFactory {
 			$this->latestBacklinkCache = new BacklinkCache(
 				$this->wanCache,
 				$this->hookContainer,
+				$this->dbProvider,
 				$page
 			);
 		}

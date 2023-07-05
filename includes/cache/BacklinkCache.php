@@ -38,6 +38,7 @@ use MediaWiki\Title\TitleArray;
 use MediaWiki\Title\TitleArrayFromResult;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\FakeResultWrapper;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -92,22 +93,26 @@ class BacklinkCache {
 	protected $page;
 
 	private const CACHE_EXPIRY = 3600;
+	private IConnectionProvider $dbProvider;
 
 	/**
 	 * Create a new BacklinkCache
 	 *
 	 * @param WANObjectCache $wanCache
 	 * @param HookContainer $hookContainer
+	 * @param IConnectionProvider $dbProvider
 	 * @param PageReference $page Page to create a backlink cache for
 	 */
 	public function __construct(
 		WANObjectCache $wanCache,
 		HookContainer $hookContainer,
+		IConnectionProvider $dbProvider,
 		PageReference $page
 	) {
 		$this->page = $page;
 		$this->wanCache = $wanCache;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->dbProvider = $dbProvider;
 	}
 
 	/**
@@ -141,7 +146,7 @@ class BacklinkCache {
 	 * @return IReadableDatabase
 	 */
 	protected function getDB() {
-		return wfGetDB( DB_REPLICA );
+		return $this->dbProvider->getReplicaDatabase();
 	}
 
 	/**

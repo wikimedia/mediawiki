@@ -2,6 +2,7 @@
 
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Page\PageReferenceValue;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * @group Cache
@@ -13,10 +14,12 @@ class BacklinkCacheFactoryTest extends MediaWikiUnitTestCase {
 	 */
 	public function testGetBacklinkCache() {
 		$wanCache = new WANObjectCache( [ 'cache' => new EmptyBagOStuff() ] );
+		$dbProvider = $this->createMock( IConnectionProvider::class );
 		$page = PageReferenceValue::localReference( NS_CATEGORY, "kittens" );
 		$factory = new BacklinkCacheFactory(
 			$wanCache,
-			$this->createHookContainer()
+			$this->createHookContainer(),
+			$dbProvider
 		);
 		$cache = $factory->getBacklinkCache( $page );
 		$this->assertTrue( $cache->getPage()->isSamePageAs( $page ) );
