@@ -84,6 +84,9 @@
 				}
 			}
 		},
+		"qrCode": {
+			"file": "../wikimediaui/images/icons/qrCode.svg"
+		},
 		"robot": {
 			"file": "../wikimediaui/images/icons/robot.svg"
 		},

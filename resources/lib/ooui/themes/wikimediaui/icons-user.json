@@ -52,10 +52,22 @@
 				"rtl": "images/icons/userGroup-rtl.svg"
 			}
 		},
+		"userRights": {
+			"file": {
+				"ltr": "images/icons/userRights-ltr.svg",
+				"rtl": "images/icons/userRights-rtl.svg"
+			}
+		},
 		"userTalk": {
 			"file": {
 				"ltr": "images/icons/userTalk-ltr.svg",
 				"rtl": "images/icons/userTalk-rtl.svg"
+			}
+		},
+		"userTemporary": {
+			"file": {
+				"ltr": "images/icons/userTemporary-ltr.svg",
+				"rtl": "images/icons/userTemporary-rtl.svg"
 			}
 		},
 		"watchlist": {

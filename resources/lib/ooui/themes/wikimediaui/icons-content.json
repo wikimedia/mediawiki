@@ -107,6 +107,9 @@
 				}
 			}
 		},
+		"qrCode": {
+			"file": "images/icons/qrCode.svg"
+		},
 		"robot": {
 			"file": "images/icons/robot.svg"
 		},

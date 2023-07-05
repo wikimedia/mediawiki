@@ -13,6 +13,7 @@
 			"Jdforrester",
 			"Jduranboger",
 			"Macofe",
+			"No se",
 			"PoLuX124",
 			"Ralgis",
 			"Thehelpfulone"
@@ -32,6 +33,7 @@
 	"ooui-dialog-process-dismiss": "Descartar",
 	"ooui-dialog-process-retry": "Intentar de nuevo",
 	"ooui-dialog-process-continue": "Continuar",
+	"ooui-combobox-button-label": "Alternar opciones",
 	"ooui-selectfile-button-select": "Selecciona un archivo",
 	"ooui-selectfile-button-select-multiple": "Seleccionar archivos",
 	"ooui-selectfile-not-supported": "No se admite la selección de archivos",

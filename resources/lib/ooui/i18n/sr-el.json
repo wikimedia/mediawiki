@@ -22,7 +22,8 @@
 	"ooui-selectfile-button-select": "Izaberite datoteku",
 	"ooui-selectfile-not-supported": "Izbor datoteke nije podržan",
 	"ooui-selectfile-placeholder": "Datoteka nije izabrana",
-	"ooui-selectfile-dragdrop-placeholder": "Ovde otpustite datoteku",
+	"ooui-selectfile-dragdrop-placeholder": "Otpustite datoteku ovde",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "Otpustite datoteke ovde",
 	"ooui-popup-widget-close-button-aria-label": "Zatvori",
 	"ooui-field-help": "Pomoć"
 }
