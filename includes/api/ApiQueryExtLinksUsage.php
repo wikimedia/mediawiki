@@ -123,7 +123,12 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 			}
 		}
 
-		$orderBy[] = 'el_id';
+		if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+			$orderBy[] = 'el_id';
+		} else {
+			// READ NEW doesn't need this complex continuation
+			$orderBy = [ 'el_id' ];
+		}
 
 		$this->addOption( 'ORDER BY', $orderBy );
 		$this->addFields( $orderBy ); // Make sure
