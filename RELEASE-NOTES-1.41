@@ -901,6 +901,9 @@ because of Phabricator reports.
 * MediaWikiServices::getConfiguredReadOnlyMode() is deprecated. Use
   ::getReadOnlyMode() instead. ReadOnlyMode::getConfiguredReason()
   and ::isConfiguredReadOnly() has been added to support that.
+* UploadBase::isThrottled() has been deprecated and is emitting deprecation
+  warnings. Rate limits are enforced by UploadBase::verifyTitlePermissions(),
+  since rate limit checks are now implicit in permission checks.
 * JobSpecification::toSerializableArray() now emits deprecation warnings.
 * The following skin methods were deprecated:
   - Skin::makeSpecialUrl (use Title or Special class instead)
