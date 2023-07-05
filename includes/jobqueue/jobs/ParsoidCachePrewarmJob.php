@@ -74,13 +74,25 @@ class ParsoidCachePrewarmJob extends Job {
 		PageRecord $page,
 		array $params = []
 	): JobSpecification {
+		$pageId = $page->getId();
+		$pageTouched = $page->getTouched();
+
 		$params += [ 'options' => 0 ];
+
+		$params += self::newRootJobParams(
+			"parsoidCachePrewarm:$pageId:$revisionId:$pageTouched:{$params['options']}"
+		);
+
+		$opts = [ 'removeDuplicates' => true ];
+
 		return new JobSpecification(
 			'parsoidCachePrewarm',
 			[
 				'revId' => $revisionId,
-				'pageId' => $page->getId(),
-			] + $params
+				'pageId' => $pageId,
+				'page_touched' => $pageTouched,
+			] + $params,
+			$opts
 		);
 	}
 
