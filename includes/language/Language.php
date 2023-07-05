@@ -2069,10 +2069,9 @@ class Language implements Bcp47Code {
 			$letters[] = "'";
 		} else {
 			$lastIndex = $preTransformLength - 1;
-			$letters[$lastIndex] = str_replace(
-				[ 'כ', 'מ', 'נ', 'פ', 'צ' ],
-				[ 'ך', 'ם', 'ן', 'ף', 'ץ' ],
-				$letters[$lastIndex]
+			$letters[$lastIndex] = strtr(
+				$letters[$lastIndex],
+				[ 'כ' => 'ך', 'מ' => 'ם', 'נ' => 'ן', 'פ' => 'ף', 'צ' => 'ץ' ]
 			);
 
 			// Add gershayim (double quote) to multiple-letter numbers,
@@ -2874,22 +2873,16 @@ class Language implements Bcp47Code {
 	 * range: ff00-ff5f ~= 0020-007f
 	 *
 	 * @param string $string
-	 *
 	 * @return string
 	 */
 	protected static function convertDoubleWidth( $string ) {
-		static $full = null;
-		static $half = null;
+		static $transTable = null;
+		$transTable ??= array_combine(
+			mb_str_split( '０１２３４５６７８９ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ' ),
+			str_split( '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz' )
+		);
 
-		if ( $full === null ) {
-			$fullWidth = "０１２３４５６７８９ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ";
-			$halfWidth = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-			$full = str_split( $fullWidth, 3 );
-			$half = str_split( $halfWidth );
-		}
-
-		$string = str_replace( $full, $half, $string );
-		return $string;
+		return strtr( $string, $transTable );
 	}
 
 	/**
