@@ -33,7 +33,6 @@ use Psr\Log\LoggerInterface;
 use RawAction;
 use RevertAction;
 use RollbackAction;
-use SpecialPageAction;
 use UnwatchAction;
 use WatchAction;
 use Wikimedia\ObjectFactory\ObjectFactory;
@@ -90,17 +89,6 @@ class ActionFactory {
 			'services' => [
 				'LinkRenderer',
 				'UserFactory',
-			],
-		],
-		'editchangetags' => [
-			'class' => SpecialPageAction::class,
-			'services' => [
-				'SpecialPageFactory',
-			],
-			'args' => [
-				// SpecialPageAction is used for both 'editchangetags' and 'revisiondelete'
-				// actions, tell it which one this is
-				'editchangetags',
 			],
 		],
 		'info' => [
@@ -165,17 +153,6 @@ class ActionFactory {
 			'services' => [
 				'ContentLanguage',
 				'RepoGroup',
-			],
-		],
-		'revisiondelete' => [
-			'class' => SpecialPageAction::class,
-			'services' => [
-				'SpecialPageFactory',
-			],
-			'args' => [
-				// SpecialPageAction is used for both 'editchangetags' and 'revisiondelete'
-				// actions, tell it which one this is
-				'revisiondelete',
 			],
 		],
 		'rollback' => [
@@ -351,18 +328,10 @@ class ActionFactory {
 			return 'nosuchaction';
 		}
 
-		// TODO: Remove legacy historysubmit handling for cached action=history
-		// after one week (Nov 2022, T314008).
 		if ( $actionName === 'historysubmit' ) {
-			// Workaround for T22966: inability of IE to provide an action dependent
-			// on which submit button is clicked.
-			if ( $request->getBool( 'revisiondelete' ) ) {
-				$actionName = 'revisiondelete';
-			} elseif ( $request->getBool( 'editchangetags' ) ) {
-				$actionName = 'editchangetags';
-			} else {
-				$actionName = 'view';
-			}
+			// Compatibility with old URLs for no-JS form submissions from action=history (T323338, T22966).
+			// (This is needed to handle diff links; other uses of 'historysubmit' are handled in MediaWiki.php.)
+			$actionName = 'view';
 		} elseif ( $actionName === 'editredlink' ) {
 			$actionName = 'edit';
 		}

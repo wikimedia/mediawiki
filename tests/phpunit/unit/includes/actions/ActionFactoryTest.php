@@ -2,7 +2,6 @@
 
 use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Request\FauxRequest;
-use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\LogLevel;
@@ -22,18 +21,11 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 	 * @return ActionFactory|MockObject
 	 */
 	private function getFactory( $overrides = [], $hooks = [] ) {
-		// ObjectFactory needs to provide the services used in creating
-		// SpecialPageAction because we create instances of that in testing
-		// the 'revisiondelete' and 'editchangetags' actions
-		$objectFactory = $this->getDummyObjectFactory( [
-			'SpecialPageFactory' => $this->createMock( SpecialPageFactory::class ),
-		] );
-
 		$mock = $this->getMockBuilder( ActionFactory::class )
 			->setConstructorArgs( [
 				$overrides['actions'] ?? [],
 				$overrides['logger'] ?? new NullLogger(),
-				$objectFactory,
+				$this->getDummyObjectFactory(),
 				$this->createHookContainer( $hooks )
 			] )
 			->onlyMethods( [ 'getArticle' ] )
@@ -204,44 +196,22 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 	public static function provideGetActionName() {
 		yield 'Disabled action' => [
 			'disabled',
-			true,
-			true,
 			'nosuchaction',
-		];
-		yield 'historysubmit workaround - revision deletion' => [
-			'historysubmit',
-			true,
-			false,
-			'revisiondelete',
-		];
-		yield 'historysubmit workaround - change tags' => [
-			'historysubmit',
-			false,
-			true,
-			'editchangetags',
 		];
 		yield 'historysubmit falls back to view' => [
 			'historysubmit',
-			false,
-			false,
 			'view',
 		];
 		yield 'editredlink maps to edit' => [
 			'editredlink',
-			false,
-			false,
 			'edit',
 		];
 		yield 'unrecognized action' => [
 			'missing',
-			false,
-			false,
 			'nosuchaction',
 		];
 		yield 'hook overriding action' => [
 			'edit',
-			false,
-			false,
 			'view',
 			[
 				'GetActionName' => static function ( $context, &$action ) {
@@ -252,8 +222,6 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 		];
 		yield 'hook overriding to an unrecognized action' => [
 			'edit',
-			false,
-			false,
 			'nosuchaction',
 			[
 				'GetActionName' => static function ( $context, &$action ) {
@@ -267,16 +235,12 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideGetActionName
 	 * @covers ::getActionName
-	 * @param string $requestAction action requesting in &action= in the url
-	 * @param bool $revDel whether &revisiondelete= is in the url
-	 * @param bool $editTags whether $editchangetags= is in the url
+	 * @param string $requestAction Action requested in &action= in the URL
 	 * @param string $expectedActionName
 	 * @param array $hooks hooks to register
 	 */
 	public function testGetActionName(
 		string $requestAction,
-		bool $revDel,
-		bool $editTags,
 		string $expectedActionName,
 		array $hooks = []
 	) {
@@ -285,8 +249,6 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 
 		$request = new FauxRequest( [
 			'action' => $requestAction,
-			'revisiondelete' => $revDel,
-			'editchangetags' => $editTags,
 		] );
 		$context->method( 'getRequest' )->willReturn( $request );
 

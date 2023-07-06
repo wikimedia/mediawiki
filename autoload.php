@@ -2612,7 +2612,6 @@ $wgAutoloadLocalClasses = [
 	'SpecialNewSection' => __DIR__ . '/includes/specials/SpecialNewSection.php',
 	'SpecialNewpages' => __DIR__ . '/includes/specials/SpecialNewpages.php',
 	'SpecialPage' => __DIR__ . '/includes/specialpage/SpecialPage.php',
-	'SpecialPageAction' => __DIR__ . '/includes/actions/SpecialPageAction.php',
 	'SpecialPageData' => __DIR__ . '/includes/specials/SpecialPageData.php',
 	'SpecialPageHistory' => __DIR__ . '/includes/specials/SpecialPageHistory.php',
 	'SpecialPageInfo' => __DIR__ . '/includes/specials/SpecialPageInfo.php',

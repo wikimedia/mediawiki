@@ -238,6 +238,22 @@ class MediaWikiTest extends MediaWikiIntegrationTestCase {
 				'query' => wfCgiToArray( '?search=foo' ),
 				'expected' => 'Special:Search',
 			],
+			"'action=revisiondelete' forces Special:RevisionDelete even with title" => [
+				'query' => wfCgiToArray( '?action=revisiondelete&title=Unused' ),
+				'expected' => 'Special:RevisionDelete',
+			],
+			"'action=historysubmit&revisiondelete=1' forces Special:RevisionDelete even with title" => [
+				'query' => wfCgiToArray( '?action=historysubmit&revisiondelete=1&title=Unused' ),
+				'expected' => 'Special:RevisionDelete',
+			],
+			"'action=editchangetags' forces Special:EditTags even with title" => [
+				'query' => wfCgiToArray( '?action=editchangetags&title=Unused' ),
+				'expected' => 'Special:EditTags',
+			],
+			"'action=historysubmit&editchangetags=1' forces Special:EditTags even with title" => [
+				'query' => wfCgiToArray( '?action=historysubmit&editchangetags=1&title=Unused' ),
+				'expected' => 'Special:EditTags',
+			],
 			"No title with 'action' still means main page" => [
 				'query' => wfCgiToArray( '?action=history' ),
 				'expected' => 'Main Page',

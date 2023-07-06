@@ -137,6 +137,22 @@ class MediaWiki {
 			$ret = SpecialPage::getTitleFor( 'Search' );
 		}
 
+		if ( $ret === null || !$ret->isSpecialPage() ) {
+			// Compatibility with old URLs for Special:RevisionDelete/Special:EditTags (T323338)
+			$actionName = $request->getRawVal( 'action' );
+			if (
+				$actionName === 'revisiondelete' ||
+				$actionName === 'historysubmit' && $request->getBool( 'revisiondelete' )
+			) {
+				$ret = SpecialPage::getTitleFor( 'Revisiondelete' );
+			} elseif (
+				$actionName === 'editchangetags' ||
+				$actionName === 'historysubmit' && $request->getBool( 'editchangetags' )
+			) {
+				$ret = SpecialPage::getTitleFor( 'EditTags' );
+			}
+		}
+
 		// Use the main page as default title if nothing else has been provided
 		if ( $ret === null
 			&& strval( $title ) === ''
