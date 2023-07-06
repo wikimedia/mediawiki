@@ -124,13 +124,25 @@ class SpecialShortPages extends QueryPage {
 			}
 		}
 
-		$uqb = $dbr->newUnionQueryBuilder();
+		$uqb = $dbr->newUnionQueryBuilder()->all();
 		foreach ( $namespaces as $namespace ) {
 			$nsSqb = clone $sqb;
 			$nsSqb->orderBy( $order );
 			$nsSqb->andWhere( [ 'page_namespace' => $namespace ] );
 			$uqb->add( $nsSqb );
 		}
+
+		if ( $limit !== false ) {
+			$uqb->limit( intval( $limit ) );
+		}
+		if ( $offset !== false ) {
+			$uqb->offset( intval( $offset ) );
+		}
+		$orderBy = 'value';
+		if ( $this->sortDescending() ) {
+			$orderBy .= ' DESC';
+		}
+		$uqb->orderBy( $orderBy );
 		return $uqb->caller( $fname )->fetchResultSet();
 	}
 

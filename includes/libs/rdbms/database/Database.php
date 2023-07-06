@@ -3632,8 +3632,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->platform->unionSupportsOrderAndLimit();
 	}
 
-	public function unionQueries( $sqls, $all ) {
-		return $this->platform->unionQueries( $sqls, $all );
+	public function unionQueries( $sqls, $all, $options = [] ) {
+		return $this->platform->unionQueries( $sqls, $all, $options );
 	}
 
 	public function conditional( $cond, $caseTrueExpression, $caseFalseExpression ) {

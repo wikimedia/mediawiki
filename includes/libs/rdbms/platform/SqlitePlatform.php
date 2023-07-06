@@ -47,9 +47,10 @@ class SqlitePlatform extends SQLPlatform {
 	/**
 	 * @param string[] $sqls
 	 * @param bool $all Whether to "UNION ALL" or not
+	 * @param array $options Query options, will be ignored in Sqlite
 	 * @return string
 	 */
-	public function unionQueries( $sqls, $all ) {
+	public function unionQueries( $sqls, $all, $options = [] ) {
 		$glue = $all ? ' UNION ALL ' : ' UNION ';
 
 		return implode( $glue, $sqls );
