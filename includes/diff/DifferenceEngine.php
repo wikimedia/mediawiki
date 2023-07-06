@@ -446,15 +446,25 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
-	 * Get the language of the difference engine, defaults to page content language
+	 * Get the language of the difference engine
 	 *
 	 * @return Language|StubUserLang
 	 */
 	public function getDiffLang() {
 		# Default language in which the diff text is written.
-		$this->mDiffLang ??= $this->getTitle()->getPageLanguage();
+		$this->mDiffLang ??= $this->getDefaultLanguage();
 
 		return $this->mDiffLang;
+	}
+
+	/**
+	 * Get the language to use if none has been set by setTextLanguage().
+	 * Wikibase overrides this to use the user language.
+	 *
+	 * @return Language|StubUserLang
+	 */
+	protected function getDefaultLanguage() {
+		return $this->getTitle()->getPageLanguage();
 	}
 
 	/**
