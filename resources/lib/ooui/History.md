@@ -1,5 +1,48 @@
 # OOUI Release History
 
+## v0.47.3 / 2023-07-06
+### Code
+* Revert "TextInputWidget: Use Custom Elements for #onElementAttach support" (Roan Kattouw)
+
+## v0.47.2 / 2023-07-05
+### Features
+* MessageWidget.php: Replace 'check' with 'success' icon (Daimona Eaytoy)
+* Match alignment of toolbar popups with the position of the tool (Ed Sanders)
+
+### Styles
+* icons: Add 'qrCode' icon to 'content' pack (MusikAnimal)
+* Icons: Add user rights icon to OOUI (LWatson)
+* Icons: Add user temporary icon to OOUI (LWatson)
+
+### Code
+* Remove @throws for OOUI\Exception (Daimona Eaytoy)
+* Rename itemWidget to item (Ed Sanders)
+* WindowManager: Use isModal instead of reading property directly (Ed Sanders)
+
+
+## v0.47.1 / 2023-05-30
+### Features
+* Ensure window managers are un-hidden when in use (Ed Sanders)
+* IndexLayout: Use zero dimensions for `hidden=until-found` instead of pointer-events:none (Ed Sanders)
+* SelectWidget: Fix dead `aria-activedescendant` code path (Thiemo Kreuz)
+* SelectWidget: Fix not firing `choose` event in multiselect mode (Thiemo Kreuz)
+* SelectWidget: Rewrite `unselectItem()` implementation (Thiemo Kreuz)
+* StackLayout: Don't automatically switch to disabled panels (Ed Sanders)
+* StackLayout: Implement `setContinuous`/`isContinuous` (Ed Sanders)
+* StackLayout: Use `forEach` loop (Ed Sanders)
+* Tabs: Fix hidden-until-found tabs blocking interactions with other tabs (Bartosz Dziewoński)
+* TextInputWidget: Use Custom Elements for #onElementAttach support (Bartosz Dziewoński)
+
+### Code
+* doc: Switch from jsduck to jsdoc (James D. Forrester)
+* doc: Document default values for all boolean method parameters (Thiemo Kreuz)
+* doc: TagMultiselectWidget: add `placeholder` cfg (Chlod Alejandro)
+* build: Upgrade eslint-config-wikimedia from 0.25.0 to 0.25.1 (James D. Forrester)
+* build: Upgrade grunt-banana-checker from 0.10.0 to 0.11.0 (James D. Forrester)
+* build: Upgrade grunt-tyops to 0.1.1 (James D. Forrester)
+* build: Upgrade stylelint-config-wikimedia from 0.14.0 to 0.15.0 (James D. Forrester)
+
+
 ## v0.47.0 / 2023-05-17
 ### Breaking changes
 * [BREAKING CHANGE] Drop support for ES5 clients (James D. Forrester)

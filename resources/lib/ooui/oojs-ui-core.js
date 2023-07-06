@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.47.0
+ * OOUI v0.47.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2023 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2023-05-18T02:15:42Z
+ * Date: 2023-07-06T18:04:41Z
  */
 ( function ( OO ) {
 
@@ -1812,7 +1812,7 @@ OO.ui.Widget.prototype.isDisabled = function () {
  *
  * When a widget is disabled, it cannot be used and its appearance is updated to reflect this state.
  *
- * @param {boolean} disabled Disable widget
+ * @param {boolean} [disabled=false] Disable widget
  * @chainable
  * @return {OO.ui.Widget} The widget, for chaining
  */
@@ -2454,7 +2454,7 @@ OO.ui.mixin.ButtonElement.prototype.toggleFramed = function ( framed ) {
  *  - {@link OO.ui.ButtonWidget ButtonWidget} when clicking the button would only refresh the page
  *
  * @protected
- * @param {boolean} value Make button active
+ * @param {boolean} [value=false] Make button active
  * @chainable
  * @return {OO.ui.Element} The element, for chaining
  */
@@ -2668,16 +2668,16 @@ OO.ui.mixin.GroupElement.prototype.insertItem = function ( item, index ) {
  * Insert elements into the group
  *
  * @private
- * @param {OO.ui.Element} itemWidget Item to insert
+ * @param {OO.ui.Element} item Item to insert
  * @param {number} index Insertion index
  */
-OO.ui.mixin.GroupElement.prototype.insertItemElements = function ( itemWidget, index ) {
+OO.ui.mixin.GroupElement.prototype.insertItemElements = function ( item, index ) {
 	if ( index === undefined || index < 0 || index >= this.items.length ) {
-		this.$group.append( itemWidget.$element );
+		this.$group.append( item.$element );
 	} else if ( index === 0 ) {
-		this.$group.prepend( itemWidget.$element );
+		this.$group.prepend( item.$element );
 	} else {
-		this.items[ index ].$element.before( itemWidget.$element );
+		this.items[ index ].$element.before( item.$element );
 	}
 };
 
@@ -2920,7 +2920,7 @@ OO.ui.mixin.LabelElement.prototype.setLabel = function ( label ) {
 /**
  * Set whether the label should be visually hidden (but still accessible to screen-readers).
  *
- * @param {boolean} invisibleLabel
+ * @param {boolean} [invisibleLabel=false]
  * @chainable
  * @return {OO.ui.Element} The element, for chaining
  */
@@ -4139,7 +4139,7 @@ OO.ui.ButtonWidget.prototype.setTarget = function ( target ) {
 /**
  * Set search engine traversal hint.
  *
- * @param {boolean} noFollow True if search engines should avoid traversing this hyperlink
+ * @param {boolean} [noFollow=true] True if search engines should avoid traversing this hyperlink
  * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.ButtonWidget.prototype.setNoFollow = function ( noFollow ) {
@@ -4607,7 +4607,7 @@ OO.ui.MessageWidget.static.iconMap = {
 /**
  * Set the inline state of the widget.
  *
- * @param {boolean} inline Widget is inline
+ * @param {boolean} [inline=false] Widget is inline
  */
 OO.ui.MessageWidget.prototype.setInline = function ( inline ) {
 	inline = !!inline;
@@ -6366,7 +6366,7 @@ OO.ui.PopupWidget.prototype.getPosition = function () {
 /**
  * Set popup auto-flipping.
  *
- * @param {boolean} autoFlip Whether to automatically switch the popup's position between
+ * @param {boolean} [autoFlip=false] Whether to automatically switch the popup's position between
  *  'above' and 'below', or between 'before' and 'after', if there is not enough space in the
  *  desired direction to display the popup without clipping
  */
@@ -6570,7 +6570,7 @@ OO.mixinClass( OO.ui.mixin.GroupWidget, OO.ui.mixin.GroupElement );
  *
  * This will also update the disabled state of child widgets.
  *
- * @param {boolean} disabled Disable widget
+ * @param {boolean} [disabled=false] Disable widget
  * @chainable
  * @return {OO.ui.Widget} The widget, for chaining
  */
@@ -7553,7 +7553,7 @@ OO.ui.SelectWidget.prototype.findHighlightedItem = function () {
  * has not yet let go of the mouse. The item may appear selected, but it will not be selected
  * until the user releases the mouse.
  *
- * @param {boolean} pressed An option is being pressed
+ * @param {boolean} [pressed] An option is being pressed, omit to toggle
  */
 OO.ui.SelectWidget.prototype.togglePressed = function ( pressed ) {
 	if ( pressed === undefined ) {
@@ -7688,23 +7688,21 @@ OO.ui.SelectWidget.prototype.selectItemByData = function ( data ) {
  * otherwise, no items will be selected.
  * If no item is given, all selected items will be unselected.
  *
- * @param {OO.ui.OptionWidget} [unselectedItem] Item to unselect
+ * @param {OO.ui.OptionWidget} [unselectedItem] Item to unselect, or nothing to unselect all
  * @fires select
  * @chainable
  * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.SelectWidget.prototype.unselectItem = function ( unselectedItem ) {
-	if ( unselectedItem ) {
-		unselectedItem.setSelected( false );
-	} else {
-		this.items.forEach( function ( item ) {
-			if ( item.isSelected() ) {
-				item.setSelected( false );
-			}
-		} );
+	if ( !unselectedItem ) {
+		// Unselect all
+		this.selectItem();
+	} else if ( unselectedItem.isSelected() ) {
+		unselectedItem.setSelected();
+		// Other items might still be selected in multiselect mode
+		this.emit( 'select', this.findSelectedItems() );
 	}
 
-	this.emit( 'select', this.findSelectedItems() );
 	return this;
 };
 
@@ -7724,6 +7722,7 @@ OO.ui.SelectWidget.prototype.selectItem = function ( item ) {
 		} else if ( this.multiselect ) {
 			// We don't care about the state of the other items when multiselect is allowed
 			item.setSelected( true );
+			this.emit( 'select', this.findSelectedItems() );
 			return this;
 		}
 	}
@@ -7744,13 +7743,11 @@ OO.ui.SelectWidget.prototype.selectItem = function ( item ) {
 	}
 
 	if ( changed ) {
-		// TODO: When should a non-highlightable element be selected?
-		if ( item && !item.constructor.static.highlightable ) {
-			if ( item ) {
-				this.$focusOwner.attr( 'aria-activedescendant', item.getElementId() );
-			} else {
-				this.$focusOwner.removeAttr( 'aria-activedescendant' );
-			}
+		// Fall back to the selected instead of the highlighted option (see #highlightItem) only
+		// when we know highlighting is disabled. Unfortunately we can't know without an item.
+		// Don't even try when an arbitrary number of options can be selected.
+		if ( !this.multiselect && item && !item.constructor.static.highlightable ) {
+			this.$focusOwner.attr( 'aria-activedescendant', item.getElementId() );
 		}
 		this.emit( 'select', this.findSelectedItems() );
 	}
@@ -8555,7 +8552,7 @@ OO.ui.MenuSelectWidget.prototype.clearItems = function () {
 /**
  * Toggle visibility of the menu for screen readers.
  *
- * @param {boolean} screenReaderMode
+ * @param {boolean} [screenReaderMode=false]
  */
 OO.ui.MenuSelectWidget.prototype.toggleScreenReaderMode = function ( screenReaderMode ) {
 	screenReaderMode = !!screenReaderMode;
@@ -10255,8 +10252,8 @@ OO.ui.CheckboxInputWidget.prototype.onEdit = function () {
 /**
  * Set selection state of this checkbox.
  *
- * @param {boolean} state Selected state
- * @param {boolean} internal Used for internal calls to suppress events
+ * @param {boolean} [state=false] Selected state
+ * @param {boolean} [internal=false] Used for internal calls to suppress events
  * @chainable
  * @return {OO.ui.CheckboxInputWidget} The widget, for chaining
  */
@@ -10298,8 +10295,8 @@ OO.ui.CheckboxInputWidget.prototype.isSelected = function () {
 /**
  * Set indeterminate state of this checkbox.
  *
- * @param {boolean} state Indeterminate state
- * @param {boolean} internal Used for internal calls to suppress events
+ * @param {boolean} [state=false] Indeterminate state
+ * @param {boolean} [internal=false] Used for internal calls to suppress events
  * @chainable
  * @return {OO.ui.CheckboxInputWidget} The widget, for chaining
  */
@@ -11509,7 +11506,7 @@ OO.ui.TextInputWidget.prototype.isReadOnly = function () {
 /**
  * Set the {@link #readOnly read-only} state of the input.
  *
- * @param {boolean} state Make input read-only
+ * @param {boolean} [state=false] Make input read-only
  * @chainable
  * @return {OO.ui.Widget} The widget, for chaining
  */

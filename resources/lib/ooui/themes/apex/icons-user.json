@@ -23,10 +23,22 @@
 				"rtl": "../wikimediaui/images/icons/userGroup-rtl.svg"
 			}
 		},
+		"userRights": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/userRights-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/userRights-rtl.svg"
+			}
+		},
 		"userTalk": {
 			"file": {
 				"ltr": "../wikimediaui/images/icons/userTalk-ltr.svg",
 				"rtl": "../wikimediaui/images/icons/userTalk-rtl.svg"
+			}
+		},
+		"userTemporary": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/userTemporary-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/userTemporary-rtl.svg"
 			}
 		},
 		"watchlist": {
