@@ -8,6 +8,7 @@
 			"Piwaiwaka",
 			"Sonia",
 			"Tok Pisin",
+			"Ultron90",
 			"Xð"
 		]
 	},
@@ -30,6 +31,8 @@
 	"october": "Whiringa-ā-nuku",
 	"november": "Whiringa-ā-rangi",
 	"december": "Hakihea",
+	"pagecategories": "{{PLURAL:$1|Rōpū|Ngā rōpū}}",
+	"hidden-categories": "{{PLURAL:$1|Rōpū matahuna|Ngā rōpū matahuna}}",
 	"cancel": "Whakakore",
 	"mytalk": "Kōrero",
 	"navigation": "Huarahi",
@@ -62,7 +65,7 @@
 	"showtoc": "Ewhakakite",
 	"hidetoc": "hunaia",
 	"nstab-main": "Tuhi Pānui",
-	"nstab-template": "Papa tauira",
+	"nstab-template": "Tātauira",
 	"nstab-help": "Āwhina",
 	"nstab-category": "Wāhanga",
 	"userlogout": "Whakarere",

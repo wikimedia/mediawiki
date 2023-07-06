@@ -3770,7 +3770,7 @@
 	"logentry-import-interwiki-details": "$1 {{GENDER:$2|zaimportował|zaimportowała|zaimportował(a)}} $3 z $5 ($4 {{PLURAL:$4|wersja|wersje|wersji}})",
 	"logentry-merge-merge": "$1 {{GENDER:$2|scalił|scaliła|scalił(a)}} stronę $3 do $4 (wersje do $5)",
 	"logentry-move-move": "$1 {{GENDER:$2|przeniósł|przeniosła|przeniósł(-osła)}} stronę $3 do $4",
-	"logentry-move-move-noredirect": "$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4, bez pozostawienia przekierowania pod starym tytułem",
+	"logentry-move-move-noredirect": "$1 {{GENDER:$2|przeniósł|przeniosła|przeniósł(-osła)}} stronę $3 do $4, bez pozostawienia przekierowania pod starym tytułem",
 	"logentry-move-move_redir": "$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4 w miejsce przekierowania",
 	"logentry-move-move_redir-noredirect": "$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4 w miejsce przekierowania i bez pozostawienia przekierowania pod starym tytułem",
 	"logentry-patrol-patrol": "$1 {{GENDER:$2|oznaczył|oznaczyła|oznaczył(a)}} wersję $4 strony $3 jako sprawdzoną",
