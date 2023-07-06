@@ -238,7 +238,6 @@ class HistoryPager extends ReverseChronologicalPager {
 				'id' => 'mw-history-compare'
 			] ) . "\n";
 			$s .= Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) . "\n";
-			$s .= Html::hidden( 'type', 'revision', [ 'form' => 'mw-history-revisionactions' ] ) . "\n";
 
 			$this->buttons .= Html::openElement(
 				'div', [ 'class' => 'mw-history-compareselectedversions' ] );
@@ -252,11 +251,11 @@ class HistoryPager extends ReverseChronologicalPager {
 			$actionButtons = '';
 			if ( $this->getAuthority()->isAllowed( 'deleterevision' ) ) {
 				$actionButtons .= $this->getRevisionButton(
-					'revisiondelete', 'showhideselectedversions' );
+					'Revisiondelete', 'showhideselectedversions', 'mw-history-revisiondelete-button' );
 			}
 			if ( $this->showTagEditUI ) {
 				$actionButtons .= $this->getRevisionButton(
-					'editchangetags', 'history-edit-tags' );
+					'EditTags', 'history-edit-tags', 'mw-history-editchangetags-button' );
 			}
 			if ( $actionButtons ) {
 				// Prepend a mini-form for changing visibility and editing tags.
@@ -268,7 +267,8 @@ class HistoryPager extends ReverseChronologicalPager {
 				$s = Html::rawElement( 'form', [
 					'action' => wfScript(),
 					'id' => 'mw-history-revisionactions',
-				], Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) ) . "\n" . $s;
+				] ) . "\n" . $s;
+				$s .= Html::hidden( 'type', 'revision', [ 'form' => 'mw-history-revisionactions' ] ) . "\n";
 
 				$this->buttons .= Xml::tags( 'div', [ 'class' =>
 					'mw-history-revisionactions' ], $actionButtons );
@@ -288,15 +288,15 @@ class HistoryPager extends ReverseChronologicalPager {
 		return $s;
 	}
 
-	private function getRevisionButton( $name, $msg ) {
+	private function getRevisionButton( $name, $msg, $class ) {
 		$this->preventClickjacking = true;
 		$element = Html::element(
 			'button',
 			[
 				'type' => 'submit',
-				'name' => 'action',
-				'value' => $name,
-				'class' => "historysubmit mw-history-$name-button mw-ui-button",
+				'name' => 'title',
+				'value' => SpecialPage::getTitleFor( $name )->getPrefixedDBkey(),
+				'class' => [ 'mw-ui-button', $class, 'historysubmit' ],
 				'form' => 'mw-history-revisionactions',
 			],
 			$this->msg( $msg )->text()

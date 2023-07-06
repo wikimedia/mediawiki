@@ -332,20 +332,7 @@ class SpecialLog extends SpecialPage {
 			'form',
 			[ 'action' => wfScript(), 'id' => 'mw-log-deleterevision-submit' ]
 		) . "\n";
-		$s .= Html::hidden( 'action', 'historysubmit' ) . "\n";
 		$s .= Html::hidden( 'type', 'logging' ) . "\n";
-
-		// If no title is set, the fallback is to use the main page, as defined
-		// by MediaWiki:Mainpage
-		// On wikis where the main page can be translated, MediaWiki:Mainpage
-		// is sometimes set to use Special:MyLanguage to redirect to the
-		// appropriate version. This is interpreted as a special page, and
-		// Action::getActionName forces the action to be 'view' if the title
-		// cannot be used as a WikiPage, which includes all pages in NS_SPECIAL.
-		// Set a dummy title to avoid this. The title provided is unused
-		// by the SpecialPageAction class and does not matter.
-		// See T205908
-		$s .= Html::hidden( 'title', 'Unused' ) . "\n";
 
 		$buttons = '';
 		if ( $canRevDelete ) {
@@ -353,8 +340,8 @@ class SpecialLog extends SpecialPage {
 				'button',
 				[
 					'type' => 'submit',
-					'name' => 'revisiondelete',
-					'value' => '1',
+					'name' => 'title',
+					'value' => SpecialPage::getTitleFor( 'Revisiondelete' )->getPrefixedDBkey(),
 					'class' => "deleterevision-log-submit mw-log-deleterevision-button mw-ui-button"
 				],
 				$this->msg( 'showhideselectedlogentries' )->text()
@@ -365,8 +352,8 @@ class SpecialLog extends SpecialPage {
 				'button',
 				[
 					'type' => 'submit',
-					'name' => 'editchangetags',
-					'value' => '1',
+					'name' => 'title',
+					'value' => SpecialPage::getTitleFor( 'EditTags' )->getPrefixedDBkey(),
 					'class' => "editchangetags-log-submit mw-log-editchangetags-button mw-ui-button"
 				],
 				$this->msg( 'log-edit-tags' )->text()
