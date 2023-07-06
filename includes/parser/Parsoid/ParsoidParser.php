@@ -126,6 +126,11 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 			);
 		}
 		$parserOutput = new ParserOutput();
+		// NOTE: This is useless until the time Parsoid uses the
+		// $options ParserOptions object. But if/when it does, this
+		// will ensure that we track used options correctly.
+		$options->registerWatcher( [ $parserOutput, 'recordOption' ] );
+
 		// T331148: This should be checked to be consistent with the
 		// REST interfaces for Parsoid output
 		$pageBundle = $this->parsoid->wikitext2html( $pageConfig, [
@@ -135,6 +140,9 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 			'outputContentVersion' => Parsoid::defaultHTMLVersion(),
 		], $headers, $parserOutput );
 		$parserOutput = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle, $parserOutput );
+		// Register a watcher again because the $parserOuptut arg
+		// and $parserOutput return value above are different objects!
+		$options->registerWatcher( [ $parserOutput, 'recordOption' ] );
 
 		# Copied from Parser.php::parse and should probably be abstracted
 		# into the parent base class (probably as part of T236809)

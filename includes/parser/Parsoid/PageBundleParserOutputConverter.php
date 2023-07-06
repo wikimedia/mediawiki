@@ -47,6 +47,7 @@ final class PageBundleParserOutputConverter {
 		if ( $originalParserOutput ) {
 			$parserOutput->mergeHtmlMetaDataFrom( $originalParserOutput );
 			$parserOutput->mergeTrackingMetaDataFrom( $originalParserOutput );
+			$parserOutput->mergeInternalMetaDataFrom( $originalParserOutput );
 		}
 
 		$parserOutput->setExtensionData(

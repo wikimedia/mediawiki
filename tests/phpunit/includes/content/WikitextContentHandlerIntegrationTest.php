@@ -19,7 +19,28 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 				],
 				'Sections' => [
 				],
+				'UsedOptions' => [
+					'useParsoid', 'suppressTOC', 'maxIncludeSize', 'maxPPNodeCount',
+					'targetLanguage', 'interfaceMessage', 'maxPPExpandDepth', 'disableTitleConversion',
+					'disableContentConversion', 'expensiveParserFunctionLimit', 'wrapclass'
+				],
 			],
+		];
+		yield 'Basic Parsoid render' => [
+			'title' => 'WikitextContentTest_testGetParserOutput',
+			'model' => CONTENT_MODEL_WIKITEXT,
+			'text' => "hello ''world''\n",
+			'expectedHtml' => "<div class=\"mw-parser-output\"><section data-mw-section-id=\"0\" id=\"mwAQ\"><p id=\"mwAg\">hello <i id=\"mwAw\">world</i></p>\n</section></div>",
+			'expectedFields' => [
+				'Links' => [
+				],
+				'Sections' => [
+				],
+				'UsedOptions' => [
+					'useParsoid', 'maxIncludeSize', 'interfaceMessage', 'wrapclass'
+				],
+			],
+			'options' => [ 'useParsoid' => true ]
 		];
 		yield 'Links' => [
 			'title' => 'WikitextContentTest_testGetParserOutput',
@@ -119,11 +140,18 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 	 * @covers WikitextContentHandler::fillParserOutput
 	 */
 	public function testGetParserOutput( $title, $model, $text, $expectedHtml,
-		$expectedFields = null
+		$expectedFields = null, $options = null
 	) {
+		$parserOptions = null;
+		if ( $options ) {
+			$parserOptions = ParserOptions::newFromAnon();
+			foreach ( $options as $key => $val ) {
+				$parserOptions->setOption( $key, $val );
+			}
+		}
 		$this->overrideConfigValue( MainConfigNames::FragmentMode, [ 'html5' ] );
 		parent::testGetParserOutput(
-			$title, $model, $text, $expectedHtml, $expectedFields
+			$title, $model, $text, $expectedHtml, $expectedFields, $parserOptions
 		);
 	}
 }

@@ -24,12 +24,12 @@ class TextContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 	 * @covers TextContentHandler::fillParserOutput
 	 */
 	public function testGetParserOutput( $title, $model, $text, $expectedHtml,
-		$expectedFields = null
+		$expectedFields = null, $parserOptions = null
 	) {
 		$title = Title::newFromText( $title );
 		$content = ContentHandler::makeContent( $text, $title, $model );
 		$contentRenderer = $this->getServiceContainer()->getContentRenderer();
-		$po = $contentRenderer->getParserOutput( $content, $title );
+		$po = $contentRenderer->getParserOutput( $content, $title, null, $parserOptions );
 
 		$html = $po->getText();
 		$html = preg_replace( '#<!--.*?-->#sm', '', $html ); // strip comments
