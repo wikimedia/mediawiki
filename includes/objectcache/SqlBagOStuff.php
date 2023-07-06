@@ -1516,7 +1516,10 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			try {
 				$db = $this->getConnection( $shardIndex );
 				for ( $i = 0; $i < $this->numTableShards; $i++ ) {
-					$db->delete( $this->getTableNameByShard( $i ), '*', __METHOD__ );
+					$db->newDeleteQueryBuilder()
+						->delete( $this->getTableNameByShard( $i ) )
+						->where( $db::ALL_ROWS )
+						->caller( __METHOD__ )->execute();
 				}
 			} catch ( DBError $e ) {
 				$this->handleDBError( $e, $shardIndex );
