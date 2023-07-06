@@ -77,10 +77,10 @@ class MediaWiki {
 	 * Parse the request to get the Title object
 	 *
 	 * @throws MalformedTitleException If a title has been provided by the user, but is invalid.
+	 * @param WebRequest $request
 	 * @return Title Title object to be $wgTitle
 	 */
-	private function parseTitle() {
-		$request = $this->context->getRequest();
+	private function parseTitle( $request ) {
 		$curid = $request->getInt( 'curid' );
 		$title = $request->getText( 'title' );
 
@@ -163,7 +163,7 @@ class MediaWiki {
 	public function getTitle() {
 		if ( !$this->context->hasTitle() ) {
 			try {
-				$this->context->setTitle( $this->parseTitle() );
+				$this->context->setTitle( $this->parseTitle( $this->context->getRequest() ) );
 			} catch ( MalformedTitleException $ex ) {
 				$this->context->setTitle( SpecialPage::getTitleFor( 'Badtitle' ) );
 			}
@@ -213,7 +213,7 @@ class MediaWiki {
 		) {
 			$this->context->setTitle( SpecialPage::getTitleFor( 'Badtitle' ) );
 			try {
-				$this->parseTitle();
+				$this->parseTitle( $request );
 			} catch ( MalformedTitleException $ex ) {
 				throw new BadTitleError( $ex );
 			}
@@ -260,7 +260,7 @@ class MediaWiki {
 			} else {
 				$this->context->setTitle( SpecialPage::getTitleFor( 'Badtitle' ) );
 				try {
-					$this->parseTitle();
+					$this->parseTitle( $request );
 				} catch ( MalformedTitleException $ex ) {
 					throw new BadTitleError( $ex );
 				}

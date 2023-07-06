@@ -191,6 +191,87 @@ class MediaWikiTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	public static function provideParseTitle() {
+		return [
+			"No title means main page" => [
+				'query' => [],
+				'expected' => 'Main Page',
+			],
+			"Empty title also means main page" => [
+				'query' => wfCgiToArray( '?title=' ),
+				'expected' => 'Main Page',
+			],
+			"Valid title" => [
+				'query' => wfCgiToArray( '?title=Foo' ),
+				'expected' => 'Foo',
+			],
+			"Invalid title" => [
+				'query' => wfCgiToArray( '?title=[INVALID]' ),
+				'expected' => false,
+			],
+			"Valid 'oldid'" => [
+				'query' => wfCgiToArray( '?oldid=1' ),
+				'expected' => 'UTPage',
+			],
+			"Valid 'diff'" => [
+				'query' => wfCgiToArray( '?diff=1' ),
+				'expected' => 'UTPage',
+			],
+			"Valid 'curid'" => [
+				'query' => wfCgiToArray( '?curid=1' ),
+				'expected' => 'UTPage',
+			],
+			"Invalid 'oldid'… means main page? (we show an error elsewhere)" => [
+				'query' => wfCgiToArray( '?oldid=9999999' ),
+				'expected' => 'Main Page',
+			],
+			"Invalid 'diff'… means main page? (we show an error elsewhere)" => [
+				'query' => wfCgiToArray( '?diff=9999999' ),
+				'expected' => 'Main Page',
+			],
+			"Invalid 'curid'" => [
+				'query' => wfCgiToArray( '?curid=9999999' ),
+				'expected' => false,
+			],
+			"'search' parameter with no title provided forces Special:Search" => [
+				'query' => wfCgiToArray( '?search=foo' ),
+				'expected' => 'Special:Search',
+			],
+			"No title with 'action' still means main page" => [
+				'query' => wfCgiToArray( '?action=history' ),
+				'expected' => 'Main Page',
+			],
+			"No title with 'action=delete' does not mean main page, because we want to discourage deleting it by accident :D" => [
+				'query' => wfCgiToArray( '?action=delete' ),
+				'expected' => false,
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideParseTitle
+	 * @covers MediaWiki::parseTitle
+	 */
+	public function testParseTitle( $query, $expected ) {
+		if ( $expected === false ) {
+			$this->expectException( MalformedTitleException::class );
+		}
+
+		$_POST = [];
+		$_GET = $query;
+		$req = new WebRequest();
+		$mw = new MediaWiki();
+
+		$method = new ReflectionMethod( $mw, 'parseTitle' );
+		$method->setAccessible( true );
+		$ret = $method->invoke( $mw, $req );
+
+		$this->assertEquals(
+			$expected,
+			$ret->getPrefixedText()
+		);
+	}
+
 	/**
 	 * Test a post-send job can not set cookies (T191537).
 	 * @coversNothing
