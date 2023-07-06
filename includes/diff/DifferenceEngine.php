@@ -314,7 +314,9 @@ class DifferenceEngine extends ContextSource {
 				$handler = ( $contents['new'] ?: $contents['old'] )->getContentHandler();
 				$this->slotDiffRenderers[$role] = $handler->getSlotDiffRenderer(
 					$this->getContext(),
-					$this->slotDiffOptions
+					$this->slotDiffOptions + [
+						'contentLanguage' => $this->getDiffLang()
+					]
 				);
 			}
 		}
