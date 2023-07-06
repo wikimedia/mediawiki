@@ -24,9 +24,9 @@ class ManifoldTextDifferTest extends MediaWikiIntegrationTestCase {
 
 	public function testGetFormats() {
 		if ( extension_loaded( 'wikidiff2' ) ) {
-			$formats = [ 'table', 'inline' ];
+			$formats = [ 'table', 'inline', 'unified' ];
 		} else {
-			$formats = [ 'table' ];
+			$formats = [ 'table', 'unified' ];
 		}
 		$this->assertSame(
 			$formats,
@@ -85,12 +85,14 @@ class ManifoldTextDifferTest extends MediaWikiIntegrationTestCase {
 		$differ = $this->createDiffer( [
 			'ExternalDiffEngine' => __DIR__ . '/externalDiffTest.sh'
 		] );
-		$result = $differ->renderBatch( 'foo', 'bar', [ 'table', 'inline', 'external' ] );
+		$result = $differ->renderBatch( 'foo', 'bar',
+			[ 'table', 'inline', 'external', 'unified' ] );
 		$this->assertSame(
 			[
 				'table' => TextDifferData::WIKIDIFF2_TABLE,
 				'inline' => TextDifferData::WIKIDIFF2_INLINE,
-				'external' => TextDifferData::EXTERNAL
+				'external' => TextDifferData::EXTERNAL,
+				'unified' => TextDifferData::PHP_UNIFIED
 			],
 			$result
 		);
@@ -100,6 +102,7 @@ class ManifoldTextDifferTest extends MediaWikiIntegrationTestCase {
 		return [
 			[ 'table', false ],
 			[ 'external', false ],
+			[ 'unified', true ]
 		];
 	}
 
@@ -114,7 +117,7 @@ class ManifoldTextDifferTest extends MediaWikiIntegrationTestCase {
 		] );
 		$result = $differ->addRowWrapper( $format, 'foo' );
 		if ( $isWrap ) {
-			$this->assertSame( '<tr><td colspan="4">foo</td></tr>', $result );
+			$this->assertSame( '<tr><td colspan="4"><pre>foo</pre></td></tr>', $result );
 		} else {
 			$this->assertSame( 'foo', $result );
 		}

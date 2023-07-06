@@ -10,6 +10,11 @@ class TextDifferData {
 <tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div><del class="diffchange diffchange-inline">foo</del></div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div><ins class="diffchange diffchange-inline">bar</ins></div></td></tr>
 ';
 
+	public const PHP_UNIFIED = '@@ -1,1 +1,1 @@
+-foo
++bar
+';
+
 	public const WIKIDIFF2_TABLE = '<tr>
   <td colspan="2" class="diff-lineno"><!--LINE 1--></td>
   <td colspan="2" class="diff-lineno"><!--LINE 1--></td>
