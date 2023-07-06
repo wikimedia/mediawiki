@@ -422,6 +422,8 @@ return [
 			'PageLanguageUseDB' => false,
 			'DiffEngine' => null,
 			'ExternalDiffEngine' => false,
+			'Wikidiff2Options' => [
+			],
 			'RequestTimeLimit' => null,
 			'TransactionalTimeLimit' => 120,
 			'CriticalSectionTimeLimit' => 180.0,
@@ -2621,6 +2623,7 @@ return [
 				0 => 'string',
 				1 => 'boolean',
 			],
+			'Wikidiff2Options' => 'object',
 			'RequestTimeLimit' => [
 				0 => 'integer',
 				1 => 'null',

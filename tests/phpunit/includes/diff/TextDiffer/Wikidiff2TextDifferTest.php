@@ -10,7 +10,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class Wikidiff2TextDifferTest extends MediaWikiIntegrationTestCase {
 	private function createDiffer() {
-		$differ = new Wikidiff2TextDiffer();
+		$differ = new Wikidiff2TextDiffer( [] );
 		$localizer = RequestContext::getMain();
 		$localizer->setLanguage( 'qqx' );
 		$differ->setLocalizer( $localizer );
@@ -18,13 +18,25 @@ class Wikidiff2TextDifferTest extends MediaWikiIntegrationTestCase {
 		return $differ;
 	}
 
+	public static function provideRenderBatch() {
+		return [
+			[ false ],
+			[ true ]
+		];
+	}
+
 	/**
 	 * @requires extension wikidiff2
+	 * @dataProvider provideRenderBatch
+	 * @param bool $useMultiFormat
 	 */
-	public function testRenderBatch() {
+	public function testRenderBatch( $useMultiFormat ) {
+		if ( !function_exists( 'wikidiff2_multi_format_diff' ) && $useMultiFormat ) {
+			$this->markTestSkipped( 'Need wikidiff2 1.14.0+' );
+		}
 		$oldText = 'foo';
 		$newText = 'bar';
-		$differ = new Wikidiff2TextDiffer();
+		$differ = new Wikidiff2TextDiffer( [ 'useMultiFormat' => $useMultiFormat ] );
 		// Should not need a MessageLocalizer
 		$result = $differ->renderBatch( $oldText, $newText, [ 'table', 'inline' ] );
 		$this->assertSame(
@@ -37,12 +49,12 @@ class Wikidiff2TextDifferTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetName() {
-		$differ = new Wikidiff2TextDiffer();
+		$differ = new Wikidiff2TextDiffer( [] );
 		$this->assertSame( 'wikidiff2', $differ->getName() );
 	}
 
 	public function testGetFormatContext() {
-		$differ = new Wikidiff2TextDiffer();
+		$differ = new Wikidiff2TextDiffer( [] );
 		$this->assertSame( TextDiffer::CONTEXT_ROW, $differ->getFormatContext( 'table' ) );
 	}
 

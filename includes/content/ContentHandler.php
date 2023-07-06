@@ -711,7 +711,8 @@ abstract class ContentHandler {
 				RequestContext::getMain(),
 				$language,
 				$config->get( MainConfigNames::DiffEngine ),
-				$config->get( MainConfigNames::ExternalDiffEngine )
+				$config->get( MainConfigNames::ExternalDiffEngine ),
+				$config->get( MainConfigNames::Wikidiff2Options )
 			);
 		}
 		$format = $options['diff-type'] ?? 'table';

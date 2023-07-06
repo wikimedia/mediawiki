@@ -45,3 +45,12 @@ function wikidiff2_inline_diff( $text1, $text2, $numContextLines ) {
  */
 function wikidiff2_inline_json_diff( $text1, $text2, $numContextLines ) {
 }
+
+/**
+ * @param string $text1
+ * @param string $text2
+ * @param array $options
+ * @return array
+ */
+function wikidiff2_multi_format_diff( $text1, $text2, $options ) {
+}

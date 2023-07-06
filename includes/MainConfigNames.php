@@ -1323,6 +1323,12 @@ class MainConfigNames {
 	public const ExternalDiffEngine = 'ExternalDiffEngine';
 
 	/**
+	 * Name constant for the Wikidiff2Options setting, for use with Config::get()
+	 * @see MainConfigSchema::Wikidiff2Options
+	 */
+	public const Wikidiff2Options = 'Wikidiff2Options';
+
+	/**
 	 * Name constant for the RequestTimeLimit setting, for use with Config::get()
 	 * @see MainConfigSchema::RequestTimeLimit
 	 */

@@ -27,6 +27,8 @@ class ManifoldTextDiffer implements TextDiffer {
 	private $differs;
 	/** @var TextDiffer[]|null The differ to use for each format */
 	private $differsByFormat;
+	/** @var array */
+	private $wikidiff2Options;
 
 	/**
 	 * @internal For use by DifferenceEngine, ContentHandler
@@ -35,17 +37,20 @@ class ManifoldTextDiffer implements TextDiffer {
 	 * @param Language|null $contentLanguage
 	 * @param string|null $diffEngine The DiffEngine config variable
 	 * @param string|false|null $externalPath The ExternalDiffEngine config variable
+	 * @param array $wikidiff2Options The Wikidiff2Options config variable
 	 */
 	public function __construct(
 		MessageLocalizer $localizer,
 		?Language $contentLanguage,
 		$diffEngine,
-		$externalPath
+		$externalPath,
+		$wikidiff2Options
 	) {
 		$this->localizer = $localizer;
 		$this->contentLanguage = $contentLanguage;
 		$this->diffEngine = $diffEngine;
 		$this->externalPath = $externalPath;
+		$this->wikidiff2Options = $wikidiff2Options;
 	}
 
 	public function getName(): string {
@@ -243,7 +248,9 @@ class ManifoldTextDiffer implements TextDiffer {
 
 			case 'wikidiff2':
 				if ( Wikidiff2TextDiffer::isInstalled() ) {
-					return new Wikidiff2TextDiffer;
+					return new Wikidiff2TextDiffer(
+						$this->wikidiff2Options
+					);
 				}
 				$failureReason = 'wikidiff2 is not available';
 				return null;
