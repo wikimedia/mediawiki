@@ -68,6 +68,9 @@ class OutputPage extends ContextSource {
 	// Extensions use the 'LateJSConfigVarNames' attribute instead.
 	private const CORE_LATE_JS_CONFIG_VAR_NAMES = [];
 
+	/** @var bool Whether setupOOUI() has been called */
+	private static $oouiSetupDone = false;
+
 	/** @var string[][] Should be private. Used with addMeta() which adds "<meta>" */
 	protected $mMetatags = [];
 
@@ -4632,16 +4635,34 @@ class OutputPage extends ContextSource {
 	 * Helper function to setup the PHP implementation of OOUI to use in this request.
 	 *
 	 * @since 1.26
-	 * @param string $skinName The Skin name to determine the correct OOUI theme
-	 * @param string $dir Language direction
+	 * @param string|null $skinName Ignored since 1.41
+	 * @param string|null $dir Ignored since 1.41
 	 */
-	public static function setupOOUI( $skinName = 'default', $dir = 'ltr' ) {
-		$themes = RL\OOUIFileModule::getSkinThemeMap();
-		$theme = $themes[$skinName] ?? $themes['default'];
-		// For example, 'OOUI\WikimediaUITheme'.
-		$themeClass = "OOUI\\{$theme}Theme";
-		OOUI\Theme::setSingleton( new $themeClass() );
-		OOUI\Element::setDefaultDir( $dir );
+	public static function setupOOUI( $skinName = null, $dir = null ) {
+		if ( !self::$oouiSetupDone ) {
+			self::$oouiSetupDone = true;
+			$context = RequestContext::getMain();
+			$skinName = $context->getSkinName();
+			$dir = $context->getLanguage()->getDir();
+			$themes = RL\OOUIFileModule::getSkinThemeMap();
+			$theme = $themes[$skinName] ?? $themes['default'];
+			// For example, 'OOUI\WikimediaUITheme'.
+			$themeClass = "OOUI\\{$theme}Theme";
+			OOUI\Theme::setSingleton( new $themeClass() );
+			OOUI\Element::setDefaultDir( $dir );
+		}
+	}
+
+	/**
+	 * Notify of a change in global skin or language which would necessitate
+	 * reinitialization of OOUI global static data.
+	 * @internal
+	 */
+	public static function resetOOUI() {
+		if ( self::$oouiSetupDone ) {
+			self::$oouiSetupDone = false;
+			self::setupOOUI();
+		}
 	}
 
 	/**
@@ -4651,10 +4672,7 @@ class OutputPage extends ContextSource {
 	 * @since 1.25
 	 */
 	public function enableOOUI() {
-		self::setupOOUI(
-			strtolower( $this->getSkin()->getSkinName() ),
-			$this->getLanguage()->getDir()
-		);
+		self::setupOOUI();
 		$this->addModuleStyles( [
 			'oojs-ui-core.styles',
 			'oojs-ui.styles.indicators',
