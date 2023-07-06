@@ -29,13 +29,22 @@
  */
 class LanguageZh extends LanguageZh_hans {
 	/**
-	 * this should give much better diff info
+	 * Add a formfeed character between each non-ASCII character, so that
+	 * "word-level" diffs will effectively operate on a character level. The FF
+	 * characters are stripped out by unsegmentForDiff().
+	 *
+	 * We use FF because it is the least used character that is matched by
+	 * PCRE's \s class.
+	 *
+	 * In the unlikely event that an FF character appears in the input, it will
+	 * be displayed in the diff as a replacement character.
 	 *
 	 * @param string $text
 	 * @return string
 	 */
 	public function segmentForDiff( $text ) {
-		return preg_replace( '/[\xc0-\xff][\x80-\xbf]*/', ' $0', $text );
+		$text = str_replace( "\x0c", "\u{FFFD}", $text );
+		return preg_replace( '/[\xc0-\xff][\x80-\xbf]*/', "\x0c$0", $text );
 	}
 
 	/**
@@ -43,7 +52,7 @@ class LanguageZh extends LanguageZh_hans {
 	 * @return string
 	 */
 	public function unsegmentForDiff( $text ) {
-		return preg_replace( '/ ([\xc0-\xff][\x80-\xbf]*)/', '$1', $text );
+		return str_replace( "\x0c", '', $text );
 	}
 
 	/**
