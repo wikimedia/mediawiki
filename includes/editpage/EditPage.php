@@ -1883,6 +1883,7 @@ class EditPage implements IEditObject {
 			case self::AS_END:
 			case self::AS_BLANK_ARTICLE:
 			case self::AS_SELF_REDIRECT:
+			case self::AS_REVISION_WAS_DELETED:
 				return true;
 
 			case self::AS_HOOK_ERROR:
@@ -2404,14 +2405,24 @@ class EditPage implements IEditObject {
 					new MissingCommentConstraint( $this->textbox1 )
 				);
 			} else {
+				$originalContent = $this->getOriginalContent( $authority );
+
+				if ( $originalContent === null ) {
+					// T301947: User loses access to revision after loading
+					// The error message, rev-deleted-text-permission, is not really in use currently.
+					// It's added for completeness and in case any code path wants to know the error.
+					$status = Status::newFatal( 'rev-deleted-text-permission' );
+					$status->value = self::AS_REVISION_WAS_DELETED;
+					return $status;
+				}
+
 				$constraintRunner->addConstraint(
 					new AutoSummaryMissingSummaryConstraint(
 						$this->summary,
 						$this->autoSumm,
 						$this->allowBlankSummary,
 						$content,
-						// @phan-suppress-next-line PhanTypeMismatchArgumentNullable FIXME T301947
-						$this->getOriginalContent( $authority )
+						$originalContent
 					)
 				);
 			}
