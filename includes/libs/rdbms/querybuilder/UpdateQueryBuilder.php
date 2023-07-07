@@ -302,9 +302,9 @@ class UpdateQueryBuilder {
 	}
 
 	/**
-	 * Run the constructed UPDATE query and return the result.
+	 * Run the constructed UPDATE query.
 	 */
-	public function execute() {
+	public function execute(): void {
 		if ( !$this->conds ) {
 			throw new UnexpectedValueException(
 				__METHOD__ . ' expects at least one condition to be set' );
