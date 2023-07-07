@@ -767,6 +767,11 @@ return [
 		]
 	],
 	'mediawiki.diff.styles' => [
+		'class' => LessVarFileModule::class,
+		'lessMessages' => [
+			'diff-line-deleted',
+			'diff-newline'
+		],
 		'styles' => [
 			'resources/src/mediawiki.diff.styles/diff.less',
 			'resources/src/mediawiki.diff.styles/mw.widgets.InlineToggleField.less',
