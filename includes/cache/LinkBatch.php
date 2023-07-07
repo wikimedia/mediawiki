@@ -41,7 +41,7 @@ use Wikimedia\Rdbms\Platform\ISQLPlatform;
  */
 class LinkBatch {
 	/**
-	 * @var array[] 2-d array, first index namespace, second index dbkey, value arbitrary
+	 * @var array<int,array<string,mixed>> 2-d array, first index namespace, second index dbkey, value arbitrary
 	 */
 	public $data = [];
 
@@ -177,7 +177,7 @@ class LinkBatch {
 	 * Set the link list to a given 2-d array
 	 * First key is the namespace, second is the DB key, value arbitrary
 	 *
-	 * @param array $array
+	 * @param array<int,array<string,mixed>> $array
 	 */
 	public function setArray( $array ) {
 		$this->data = $array;
