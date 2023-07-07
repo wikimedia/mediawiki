@@ -9,6 +9,7 @@ use HashConfig;
 use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use RecentChange;
+use WikiPage;
 
 /**
  * @covers \MediaWiki\Storage\RevertedTagUpdate
@@ -48,13 +49,13 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 	public function testWithJobQueue() {
 		$num = 5;
 
-		$pageTitle = $this->getExistingTestPage()->getTitle()->getDBkey();
-		$revisionIds = $this->setupEditsOnPage( $pageTitle, $num );
+		$page = $this->getExistingTestPage();
+		$revisionIds = $this->setupEditsOnPage( $page, $num );
 
 		// Make a manual revert to revision with content '0'
 		// The user HAS the 'autopatrol' right
 		$revertRevId = $this->editPage(
-			$pageTitle,
+			$page,
 			'0',
 			'',
 			NS_MAIN,
@@ -83,13 +84,13 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 	public function testDelayedJobExecutionWithPatrol() {
 		$num = 5;
 
-		$pageTitle = $this->getExistingTestPage()->getTitle()->getDBkey();
-		$revisionIds = $this->setupEditsOnPage( $pageTitle, $num );
+		$page = $this->getExistingTestPage();
+		$revisionIds = $this->setupEditsOnPage( $page, $num );
 
 		// Make a manual revert to revision with content '0'
 		// The user DOES NOT have the 'autopatrol' right
 		$revertRevId = $this->editPage(
-			$pageTitle,
+			$page,
 			'0',
 			'',
 			NS_MAIN,
@@ -130,13 +131,13 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 	public function testNoJobExecutionWhenRevertIsReverted() {
 		$num = 5;
 
-		$pageTitle = $this->getExistingTestPage()->getTitle()->getDBkey();
-		$revisionIds = $this->setupEditsOnPage( $pageTitle, $num );
+		$page = $this->getExistingTestPage();
+		$revisionIds = $this->setupEditsOnPage( $page, $num );
 
 		// Make a manual revert to revision with content '0'
 		// The user DOES NOT have the 'autopatrol' right
 		$revertId1 = $this->editPage(
-			$pageTitle,
+			$page,
 			'0',
 			'',
 			NS_MAIN,
@@ -154,7 +155,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		// now a sysop reverts the revert made by a regular user
 		$revertId2 = $this->editPage(
-			$pageTitle,
+			$page,
 			'5',
 			'',
 			NS_MAIN,
@@ -191,13 +192,13 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		// disable patrolling
 		$this->overrideMwServices( new HashConfig( [ MainConfigNames::UseRCPatrol => false ] ) );
 
-		$pageTitle = $this->getExistingTestPage()->getTitle()->getDBkey();
-		$revisionIds = $this->setupEditsOnPage( $pageTitle, $num );
+		$page = $this->getExistingTestPage();
+		$revisionIds = $this->setupEditsOnPage( $page, $num );
 
 		// Make a manual revert to revision with content '0'
 		// The user DOES NOT have the 'autopatrol' right, but that should not matter here
 		$revertRevId = $this->editPage(
-			$pageTitle,
+			$page,
 			'0',
 			'',
 			NS_MAIN,
@@ -228,8 +229,8 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 	public function testDelayedJobExecutionWithHook() {
 		$num = 5;
 
-		$pageTitle = $this->getExistingTestPage()->getTitle()->getDBkey();
-		$revisionIds = $this->setupEditsOnPage( $pageTitle, $num );
+		$page = $this->getExistingTestPage();
+		$revisionIds = $this->setupEditsOnPage( $page, $num );
 
 		$this->setTemporaryHook(
 			'BeforeRevertedTagUpdate',
@@ -253,7 +254,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		// Make a manual revert to revision with content '0'
 		// The user HAS the 'autopatrol' right, but that should be vetoed by the hook
 		$revertRevId = $this->editPage(
-			$pageTitle,
+			$page,
 			'0',
 			'',
 			NS_MAIN,
@@ -294,8 +295,8 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 	public function testNoDelayedJobExecutionWithHook() {
 		$num = 5;
 
-		$pageTitle = $this->getExistingTestPage()->getTitle()->getDBkey();
-		$revisionIds = $this->setupEditsOnPage( $pageTitle, $num );
+		$page = $this->getExistingTestPage();
+		$revisionIds = $this->setupEditsOnPage( $page, $num );
 
 		$this->setTemporaryHook(
 			'BeforeRevertedTagUpdate',
@@ -320,7 +321,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		// The user DOES NOT have the 'autopatrol' right, but that should be
 		// overridden by the hook.
 		$revertRevId = $this->editPage(
-			$pageTitle,
+			$page,
 			'0',
 			'',
 			NS_MAIN,
@@ -345,15 +346,15 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Sets up a set number of edits on a page.
 	 *
-	 * @param string $pageTitle DB key of the title of the page to set up
+	 * @param WikiPage $page the page to set up
 	 * @param int $editCount
 	 *
 	 * @return array
 	 */
-	private function setupEditsOnPage( string $pageTitle, int $editCount ): array {
+	private function setupEditsOnPage( WikiPage $page, int $editCount ): array {
 		$revIds = [];
 		for ( $i = 0; $i <= $editCount; $i++ ) {
-			$revIds[] = $this->editPage( $pageTitle, strval( $i ) )
+			$revIds[] = $this->editPage( $page, strval( $i ) )
 				->value['revision-record']->getId();
 		}
 
