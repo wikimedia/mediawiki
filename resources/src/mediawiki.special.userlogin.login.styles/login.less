@@ -1,5 +1,3 @@
-@import 'mediawiki.skin.variables.less';
-
 /* The login form invites users to create an account */
 #mw-createaccount-cta {
 	width: 20em;
@@ -9,23 +7,7 @@
 	font-weight: bold;
 }
 
-// Login Button, following 'Button (normal progressive)' from Codex.
-// mediawiki.ui does not provide normal progressive button styles.
-// HTML is an anchor `a`, which has also `.mw-ui-button` applied.
-#mw-createaccount-join {
-	color: @color-progressive;
-
-	&:hover {
-		border-color: @border-color-progressive--hover;
-	}
-
-	&:active {
-		background-color: @background-color-progressive-subtle;
-		color: @color-progressive--active;
-		border-color: @border-color-progressive--active;
-	}
-
-	&:focus {
-		border-color: @border-color-progressive--focus;
-	}
+.mw-htmlform-codex a.cdx-button {
+	align-items: center;
+	display: inline-flex;
 }
