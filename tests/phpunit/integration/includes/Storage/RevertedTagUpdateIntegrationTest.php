@@ -48,8 +48,8 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 	public function testWithJobQueue() {
 		$num = 5;
 
-		$revisionIds = $this->setupEditsOnPage( $num );
 		$pageTitle = $this->getExistingTestPage()->getTitle()->getDBkey();
+		$revisionIds = $this->setupEditsOnPage( $pageTitle, $num );
 
 		// Make a manual revert to revision with content '0'
 		// The user HAS the 'autopatrol' right
@@ -83,8 +83,8 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 	public function testDelayedJobExecutionWithPatrol() {
 		$num = 5;
 
-		$revisionIds = $this->setupEditsOnPage( $num );
 		$pageTitle = $this->getExistingTestPage()->getTitle()->getDBkey();
+		$revisionIds = $this->setupEditsOnPage( $pageTitle, $num );
 
 		// Make a manual revert to revision with content '0'
 		// The user DOES NOT have the 'autopatrol' right
@@ -130,8 +130,8 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 	public function testNoJobExecutionWhenRevertIsReverted() {
 		$num = 5;
 
-		$revisionIds = $this->setupEditsOnPage( $num );
 		$pageTitle = $this->getExistingTestPage()->getTitle()->getDBkey();
+		$revisionIds = $this->setupEditsOnPage( $pageTitle, $num );
 
 		// Make a manual revert to revision with content '0'
 		// The user DOES NOT have the 'autopatrol' right
@@ -191,8 +191,8 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		// disable patrolling
 		$this->overrideMwServices( new HashConfig( [ MainConfigNames::UseRCPatrol => false ] ) );
 
-		$revisionIds = $this->setupEditsOnPage( $num );
 		$pageTitle = $this->getExistingTestPage()->getTitle()->getDBkey();
+		$revisionIds = $this->setupEditsOnPage( $pageTitle, $num );
 
 		// Make a manual revert to revision with content '0'
 		// The user DOES NOT have the 'autopatrol' right, but that should not matter here
@@ -228,8 +228,8 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 	public function testDelayedJobExecutionWithHook() {
 		$num = 5;
 
-		$revisionIds = $this->setupEditsOnPage( $num );
 		$pageTitle = $this->getExistingTestPage()->getTitle()->getDBkey();
+		$revisionIds = $this->setupEditsOnPage( $pageTitle, $num );
 
 		$this->setTemporaryHook(
 			'BeforeRevertedTagUpdate',
@@ -294,8 +294,8 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 	public function testNoDelayedJobExecutionWithHook() {
 		$num = 5;
 
-		$revisionIds = $this->setupEditsOnPage( $num );
 		$pageTitle = $this->getExistingTestPage()->getTitle()->getDBkey();
+		$revisionIds = $this->setupEditsOnPage( $pageTitle, $num );
 
 		$this->setTemporaryHook(
 			'BeforeRevertedTagUpdate',
@@ -345,13 +345,12 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Sets up a set number of edits on a page.
 	 *
+	 * @param string $pageTitle DB key of the title of the page to set up
 	 * @param int $editCount
 	 *
 	 * @return array
 	 */
-	private function setupEditsOnPage( int $editCount ): array {
-		$wikiPage = $this->getExistingTestPage();
-		$pageTitle = $wikiPage->getTitle()->getDBkey();
+	private function setupEditsOnPage( string $pageTitle, int $editCount ): array {
 		$revIds = [];
 		for ( $i = 0; $i <= $editCount; $i++ ) {
 			$revIds[] = $this->editPage( $pageTitle, strval( $i ) )
