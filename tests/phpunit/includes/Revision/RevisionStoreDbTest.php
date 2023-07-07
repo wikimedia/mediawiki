@@ -34,7 +34,6 @@ use MediaWikiIntegrationTestCase;
 use MWTimestamp;
 use PHPUnit\Framework\MockObject\MockObject;
 use StatusValue;
-use TestUserRegistry;
 use TextContent;
 use User;
 use WANObjectCache;
@@ -662,7 +661,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::newNullRevision
 	 */
 	public function testNewNullRevision( Title $title, $revDetails, $comment, $minor = false ) {
-		$user = TestUserRegistry::getMutableTestUser( __METHOD__ )->getUser();
+		$user = $this->getMutableTestUser()->getUser();
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
 		if ( !$page->exists() ) {
@@ -726,7 +725,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			Title::newFromText( __METHOD__ . '.iDontExist!' ),
 			CommentStoreComment::newUnsavedComment( __METHOD__ . ' comment' ),
 			false,
-			TestUserRegistry::getMutableTestUser( __METHOD__ )->getUser()
+			$this->getMutableTestUser()->getUser()
 		);
 		$this->assertNull( $record );
 	}
