@@ -33,13 +33,11 @@ class TestUserRegistry {
 	 */
 	public static function getMutableTestUser( $testName, $groups = [] ) {
 		$id = self::getNextId();
-		$password = "password_for_test_user_id_{$id}";
 		$testUser = new TestUser(
 			"TestUser $testName $id",  // username
 			"Name $id",                // real name
 			"$id@mediawiki.test",      // e-mail
-			(array)$groups,            // groups
-			$password                  // password
+			(array)$groups
 		);
 		$testUser->getUser()->clearInstanceCache();
 		return $testUser;
@@ -72,17 +70,14 @@ class TestUserRegistry {
 			// is set up. See T136348.
 			if ( $groups === [ 'bureaucrat', 'sysop' ] ) {
 				$username = 'UTSysop';
-				$password = 'UTSysopPassword';
 			} else {
 				$username = "TestUser $id";
-				$password = "password_for_test_user_id_{$id}";
 			}
 			self::$testUsers[$key] = $testUser = new TestUser(
 				$username,            // username
 				"Name $id",           // real name
 				"$id@mediawiki.test", // e-mail
-				$groups,              // groups
-				$password             // password
+				$groups
 			);
 		}
 
