@@ -683,13 +683,18 @@ abstract class ContentHandler {
 	 * @return TextSlotDiffRenderer
 	 */
 	final protected function createTextSlotDiffRenderer( array $options = [] ): TextSlotDiffRenderer {
-		$contentLanguage = MediaWikiServices::getInstance()->getContentLanguage();
-		$statsdDataFactory = MediaWikiServices::getInstance()->getStatsdDataFactory();
 		$slotDiffRenderer = new TextSlotDiffRenderer();
+
+		$services = MediaWikiServices::getInstance();
+		$statsdDataFactory = $services->getStatsdDataFactory();
 		$slotDiffRenderer->setStatsdDataFactory( $statsdDataFactory );
-		// XXX using the page language would be better, but it's unclear how that should be injected
-		$slotDiffRenderer->setLanguage( $contentLanguage );
-		$slotDiffRenderer->setHookContainer( MediaWikiServices::getInstance()->getHookContainer() );
+		if ( isset( $options['contentLanguage'] ) ) {
+			$language = $services->getLanguageFactory()->getLanguage( $options['contentLanguage'] );
+		} else {
+			$language = $services->getContentLanguage();
+		}
+		$slotDiffRenderer->setLanguage( $language );
+		$slotDiffRenderer->setHookContainer( $services->getHookContainer() );
 		$slotDiffRenderer->setContentModel( $this->getModelID() );
 
 		$inline = ( $options['diff-type'] ?? '' ) === 'inline';

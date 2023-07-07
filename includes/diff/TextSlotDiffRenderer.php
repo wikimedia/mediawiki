@@ -112,7 +112,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	}
 
 	/**
-	 * @param Language $language
+	 * @param Language $language The language of the text being diffed, for word segmentation
 	 */
 	public function setLanguage( Language $language ) {
 		$this->language = $language;
