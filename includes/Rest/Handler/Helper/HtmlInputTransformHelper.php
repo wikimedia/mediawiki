@@ -21,7 +21,6 @@ namespace MediaWiki\Rest\Handler\Helper;
 
 use Content;
 use InvalidArgumentException;
-use Language;
 use LanguageCode;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Edit\ParsoidOutputStash;
@@ -43,6 +42,7 @@ use MWUnknownContentModelException;
 use ParserOptions;
 use ParserOutput;
 use Status;
+use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Parsoid\Core\ClientError;
@@ -281,7 +281,7 @@ class HtmlInputTransformHelper {
 	 * @param array|string $body Body structure, or an HTML string
 	 * @param array $parameters
 	 * @param RevisionRecord|null $originalRevision
-	 * @param Language|null $pageLanguage
+	 * @param Bcp47Code|null $pageLanguage
 	 *
 	 * @throws HttpException
 	 */
@@ -290,7 +290,7 @@ class HtmlInputTransformHelper {
 		$body,
 		array $parameters,
 		?RevisionRecord $originalRevision = null,
-		?Language $pageLanguage = null
+		?Bcp47Code $pageLanguage = null
 	) {
 		if ( is_string( $body ) ) {
 			$body = [ 'html' => $body ];

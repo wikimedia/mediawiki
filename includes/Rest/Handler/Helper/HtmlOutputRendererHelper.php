@@ -22,7 +22,6 @@ namespace MediaWiki\Rest\Handler\Helper;
 use Content;
 use HttpError;
 use IBufferingStatsdDataFactory;
-use Language;
 use LanguageCode;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
@@ -88,7 +87,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	/** @var RevisionRecord|int|null */
 	private $revisionOrId = null;
 
-	/** @var Language|null */
+	/** @var Bcp47Code|null */
 	private $pageLanguage = null;
 
 	/** @var ?string One of the flavors from OUTPUT_FLAVORS */
