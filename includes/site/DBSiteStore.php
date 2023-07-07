@@ -18,6 +18,7 @@
  * @file
  */
 
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -245,20 +246,22 @@ class DBSiteStore implements SiteStore {
 	 * Clears the list of sites stored in the database.
 	 *
 	 * @see SiteStore::clear()
-	 *
-	 * @return bool Success
 	 */
 	public function clear() {
 		$dbw = $this->dbLoadBalancer->getConnectionRef( DB_PRIMARY );
 
 		$dbw->startAtomic( __METHOD__ );
-		$ok = $dbw->delete( 'sites', '*', __METHOD__ );
-		$ok = $dbw->delete( 'site_identifiers', '*', __METHOD__ ) && $ok;
+		$dbw->newDeleteQueryBuilder()
+			->delete( 'sites' )
+			->where( IDatabase::ALL_ROWS )
+			->caller( __METHOD__ )->execute();
+		$dbw->newDeleteQueryBuilder()
+			->delete( 'site_identifiers' )
+			->where( IDatabase::ALL_ROWS )
+			->caller( __METHOD__ )->execute();
 		$dbw->endAtomic( __METHOD__ );
 
 		$this->reset();
-
-		return $ok;
 	}
 
 }
