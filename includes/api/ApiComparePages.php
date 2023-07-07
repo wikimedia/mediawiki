@@ -63,7 +63,8 @@ class ApiComparePages extends ApiBase {
 	/** @var UserFactory */
 	private $userFactory;
 
-	private bool $inlineSupported;
+	/** @var DifferenceEngine */
+	private $differenceEngine;
 
 	/**
 	 * @param ApiMain $mainModule
@@ -95,8 +96,7 @@ class ApiComparePages extends ApiBase {
 		$this->commentFormatter = $commentFormatter;
 		$this->tempUserCreator = $tempUserCreator;
 		$this->userFactory = $userFactory;
-		$this->inlineSupported = function_exists( 'wikidiff2_inline_diff' )
-			&& DifferenceEngine::getEngine() === 'wikidiff2';
+		$this->differenceEngine = new DifferenceEngine;
 	}
 
 	public function execute() {
@@ -222,24 +222,21 @@ class ApiComparePages extends ApiBase {
 				$context->setTitle( $guessedTitle );
 			}
 		}
-		$de = new DifferenceEngine( $context );
-		// Use the diff-type option if Wikidiff2 is installed.
-		if ( $this->inlineSupported ) {
-			$de->setSlotDiffOptions( [ 'diff-type' => $params['difftype'] ] );
-		}
-		$de->setRevisions( $fromRev, $toRev );
+		$this->differenceEngine->setContext( $context );
+		$this->differenceEngine->setSlotDiffOptions( [ 'diff-type' => $params['difftype'] ] );
+		$this->differenceEngine->setRevisions( $fromRev, $toRev );
 		if ( $params['slots'] === null ) {
-			$difftext = $de->getDiffBody();
+			$difftext = $this->differenceEngine->getDiffBody();
 			if ( $difftext === false ) {
 				$this->dieWithError( 'apierror-baddiff' );
 			}
 		} else {
 			$difftext = [];
 			foreach ( $params['slots'] as $role ) {
-				$difftext[$role] = $de->getDiffBodyForRole( $role );
+				$difftext[$role] = $this->differenceEngine->getDiffBodyForRole( $role );
 			}
 		}
-		foreach ( $de->getRevisionLoadErrors() as $msg ) {
+		foreach ( $this->differenceEngine->getRevisionLoadErrors() as $msg ) {
 			$this->addWarning( $msg );
 		}
 
@@ -811,13 +808,10 @@ class ApiComparePages extends ApiBase {
 			ParamValidator::PARAM_ALL => true,
 		];
 
-		// Expose the inline option if Wikidiff2 is installed.
-		if ( $this->inlineSupported ) {
-			$ret['difftype'] = [
-				ParamValidator::PARAM_TYPE => [ 'table', 'inline' ],
-				ParamValidator::PARAM_DEFAULT => 'table',
-			];
-		}
+		$ret['difftype'] = [
+			ParamValidator::PARAM_TYPE => $this->differenceEngine->getSupportedFormats(),
+			ParamValidator::PARAM_DEFAULT => 'table',
+		];
 
 		return $ret;
 	}
