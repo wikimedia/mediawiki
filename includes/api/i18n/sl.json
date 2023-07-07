@@ -143,6 +143,8 @@
 	"apihelp-query+embeddedin-example-simple": "Prikaže strani, ki prevključujejo <kbd>Template:Stub</kbd>.",
 	"apihelp-query+embeddedin-example-generator": "Pridobitev informacij o straneh, ki prevključujejo <kbd>Template:Stub</kbd>.",
 	"apihelp-query+extlinks-summary": "Vrnitev vseh zunanjih URL-jev (ne interwikije) s predloženih strani.",
+	"apihelp-query+extlinks-param-protocol": "Protokol URL-ja. Če je prazno in je nastavljeno <var>$1query</var>, je protokol <kbd>http</kbd> in <kbd>https</kbd>. Pustite to in <var>$1query</var> prazno, da prikažete vse zunanje povezave.",
+	"apihelp-query+exturlusage-param-protocol": "Protokol URL-ja. Če je prazno in je nastavljeno <var>$1query</var>, je protokol <kbd>http</kbd> in <kbd>https</kbd>. Pustite to in <var>$1query</var> prazno, da prikažete vse zunanje povezave.",
 	"apihelp-query+filerepoinfo-param-prop": "Katere lastnosti shrambe naj se pridobijo (razpoložljive lastnosti se lahko razlikujejo v drugih vikijih razlikujejo).",
 	"apihelp-query+filerepoinfo-paramvalue-prop-url": "URL-pot javnega območja.",
 	"apihelp-query+fileusage-param-prop": "Katere lastnosti naj se pridobijo:",
