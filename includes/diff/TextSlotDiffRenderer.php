@@ -92,14 +92,15 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	 * Convenience helper to use getTextDiff without an instance.
 	 * @param string $oldText
 	 * @param string $newText
+	 * @param array $options
 	 * @return string
 	 */
-	public static function diff( $oldText, $newText ) {
+	public static function diff( $oldText, $newText, $options = [] ) {
 		/** @var TextSlotDiffRenderer $slotDiffRenderer */
 		$slotDiffRenderer = MediaWikiServices::getInstance()
 			->getContentHandlerFactory()
 			->getContentHandler( CONTENT_MODEL_TEXT )
-			->getSlotDiffRenderer( RequestContext::getMain() );
+			->getSlotDiffRenderer( RequestContext::getMain(), $options );
 		'@phan-var TextSlotDiffRenderer $slotDiffRenderer';
 		return $slotDiffRenderer->getTextDiff( $oldText, $newText );
 	}
