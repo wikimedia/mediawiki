@@ -65,9 +65,8 @@ class VFormHTMLForm extends HTMLForm {
 	}
 
 	protected function getFormAttributes() {
-		$attribs = parent::getFormAttributes();
-		$attribs['class'] = [ 'mw-htmlform', 'mw-ui-vform', 'mw-ui-container' ];
-		return $attribs;
+		return [ 'class' => [ 'mw-htmlform', 'mw-ui-vform', 'mw-ui-container' ] ] +
+			parent::getFormAttributes();
 	}
 
 	public function wrapForm( $html ) {

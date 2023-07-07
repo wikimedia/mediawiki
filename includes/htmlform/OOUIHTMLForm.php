@@ -61,7 +61,14 @@ class OOUIHTMLForm extends HTMLForm {
 		$buttons = '';
 
 		if ( $this->mShowSubmit ) {
-			$attribs = [ 'infusable' => true ];
+			$attribs = [
+				'infusable' => true,
+				'classes' => [ 'mw-htmlform-submit' ],
+				'type' => 'submit',
+				'label' => $this->getSubmitText(),
+				'value' => $this->getSubmitText(),
+				'flags' => $this->mSubmitFlags,
+			];
 
 			if ( isset( $this->mSubmitID ) ) {
 				$attribs['id'] = $this->mSubmitID;
@@ -78,12 +85,6 @@ class OOUIHTMLForm extends HTMLForm {
 				];
 			}
 
-			$attribs['classes'] = [ 'mw-htmlform-submit' ];
-			$attribs['type'] = 'submit';
-			$attribs['label'] = $this->getSubmitText();
-			$attribs['value'] = $this->getSubmitText();
-			$attribs['flags'] = $this->mSubmitFlags;
-
 			$buttons .= new OOUI\ButtonInputWidget( $attribs );
 		}
 
@@ -95,10 +96,9 @@ class OOUIHTMLForm extends HTMLForm {
 		}
 
 		if ( $this->mShowCancel ) {
-			$target = $this->getCancelTargetURL();
 			$buttons .= new OOUI\ButtonWidget( [
 				'label' => $this->msg( 'cancel' )->text(),
-				'href' => $target,
+				'href' => $this->getCancelTargetURL(),
 			] );
 		}
 
@@ -189,7 +189,7 @@ class OOUIHTMLForm extends HTMLForm {
 		$html = implode( '', $fieldsHtml );
 
 		if ( $sectionName ) {
-			$html = Html::rawElement(
+			return Html::rawElement(
 				'div',
 				[ 'id' => Sanitizer::escapeIdForAttribute( $sectionName ) ],
 				$html
@@ -258,13 +258,11 @@ class OOUIHTMLForm extends HTMLForm {
 		if ( !( $this->mHeader || $this->oouiErrors || $this->oouiWarnings ) ) {
 			return '';
 		}
-		$classes = [ 'mw-htmlform-ooui-header' ];
-		if ( $this->oouiErrors ) {
-			$classes[] = 'mw-htmlform-ooui-header-errors';
-		}
-		if ( $this->oouiWarnings ) {
-			$classes[] = 'mw-htmlform-ooui-header-warnings';
-		}
+		$classes = [
+			'mw-htmlform-ooui-header',
+			...$this->oouiErrors ? [ 'mw-htmlform-ooui-header-errors' ] : [],
+			...$this->oouiWarnings ? [ 'mw-htmlform-ooui-header-warnings' ] : [],
+		];
 		// if there's no header, don't create an (empty) LabelWidget, simply use a placeholder
 		if ( $this->mHeader ) {
 			$element = new OOUI\LabelWidget( [ 'label' => new OOUI\HtmlSnippet( $this->mHeader ) ] );
@@ -283,9 +281,7 @@ class OOUIHTMLForm extends HTMLForm {
 	}
 
 	public function getBody() {
-		$html = parent::getBody();
-		$html = $this->formatFormHeader() . $html;
-		return $html;
+		return $this->formatFormHeader() . parent::getBody();
 	}
 
 	public function wrapForm( $html ) {
@@ -304,9 +300,8 @@ class OOUIHTMLForm extends HTMLForm {
 			$content = new OOUI\HtmlSnippet( $html );
 		}
 
-		$classes = [ 'mw-htmlform', 'mw-htmlform-ooui' ];
 		$form = new OOUI\FormLayout( $this->getFormAttributes() + [
-			'classes' => $classes,
+			'classes' => [ 'mw-htmlform', 'mw-htmlform-ooui' ],
 			'content' => $content,
 		] );
 
