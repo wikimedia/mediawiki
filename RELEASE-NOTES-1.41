@@ -223,6 +223,7 @@ because of Phabricator reports.
 * Public access to the DifferenceEngine properties mOldid, mNewid, mOldRev,
   mNewRev, mOldPage, mNewPage, mOldContent, mNewContent, mRevisionsLoaded,
   mTextLoaded and mCacheHit, deprecated in 1.32, was removed.
+* Title::newFromTitleValue(), deprecated since 1.34, has been removed.
 * …
 
 === Deprecations in 1.41 ===

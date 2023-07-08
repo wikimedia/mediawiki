@@ -170,20 +170,6 @@ class TitleTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Title\Title::newFromTitleValue
-	 * @dataProvider provideNewFromTitleValue
-	 */
-	public function testNewFromTitleValue( TitleValue $value ) {
-		$this->hideDeprecated( 'MediaWiki\Title\Title::newFromTitleValue' );
-		$title = Title::newFromTitleValue( $value );
-
-		$dbkey = str_replace( ' ', '_', $value->getText() );
-		$this->assertEquals( $dbkey, $title->getDBkey() );
-		$this->assertEquals( $value->getNamespace(), $title->getNamespace() );
-		$this->assertEquals( $value->getFragment(), $title->getFragment() );
-	}
-
-	/**
 	 * @covers MediaWiki\Title\Title::newFromLinkTarget
 	 * @dataProvider provideNewFromTitleValue
 	 */
