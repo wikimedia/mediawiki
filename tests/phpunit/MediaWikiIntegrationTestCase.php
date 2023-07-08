@@ -1461,8 +1461,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	private function restoreLoggers() {
 		$provider = LoggerFactory::getProvider();
-		foreach ( $this->loggers as $channel => $logger ) {
-			if ( $provider instanceof LegacySpi || $provider instanceof LogCapturingSpi ) {
+		if ( $provider instanceof LegacySpi || $provider instanceof LogCapturingSpi ) {
+			foreach ( $this->loggers as $channel => $logger ) {
 				// Replace override with original object or null
 				$provider->setLoggerForTest( $channel, $logger );
 			}
@@ -1976,19 +1976,15 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$this->dropMockTables( $db, $tablesToDrop );
 		}
 
+		$inputCallback = self::$useTemporaryTables
+			? static function ( $cmd ) {
+				return preg_replace( '/\bCREATE\s+TABLE\b/i', 'CREATE TEMPORARY TABLE', $cmd );
+			}
+			: null;
+
 		// Run schema override scripts.
 		foreach ( $overrides['scripts'] as $script ) {
-			$db->sourceFile(
-				$script,
-				null,
-				null,
-				__METHOD__,
-				self::$useTemporaryTables
-					? static function ( $cmd ) {
-						return preg_replace( '/\bCREATE\s+TABLE\b/i', 'CREATE TEMPORARY TABLE', $cmd );
-					}
-					: null
-			);
+			$db->sourceFile( $script, null, null, __METHOD__, $inputCallback );
 		}
 
 		$db->_schemaOverrides = $overrides;
