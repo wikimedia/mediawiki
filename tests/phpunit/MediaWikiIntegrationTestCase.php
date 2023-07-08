@@ -1103,9 +1103,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$newHookContainer = $this->localServices->getHookContainer();
 		if ( $newHookContainer !== $oldHookContainer ) {
 			// the same hook may be cleared and registered several times
-			foreach ( $this->temporaryHookHandlers as $tuple ) {
-				[ $name, $target ] = $tuple;
-
+			foreach ( $this->temporaryHookHandlers as [ $name, $target ] ) {
 				if ( !$target ) {
 					$newHookContainer->clear( $name );
 				} else {

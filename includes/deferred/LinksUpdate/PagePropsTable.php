@@ -192,8 +192,7 @@ class PagePropsTable extends LinksTable {
 	 */
 	public function getAssocArray( $setType ) {
 		$props = [];
-		foreach ( $this->getLinkIDs( $setType ) as $linkId ) {
-			[ $name, $value ] = $linkId;
+		foreach ( $this->getLinkIDs( $setType ) as [ $name, $value ] ) {
 			$props[$name] = $value;
 		}
 		return $props;

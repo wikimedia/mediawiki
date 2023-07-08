@@ -132,8 +132,7 @@ class ConfirmLinkSecondaryAuthenticationProvider extends AbstractSecondaryAuthen
 		}
 
 		$combinedStatus = \Status::newGood();
-		foreach ( $statuses as $data ) {
-			[ $req, $status ] = $data;
+		foreach ( $statuses as [ $req, $status ] ) {
 			$descriptionInfo = $req->describeCredentials();
 			$description = wfMessage(
 				'authprovider-confirmlink-option',

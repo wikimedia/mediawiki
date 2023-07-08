@@ -239,9 +239,7 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 	public function fetchAllFromEtcd() {
 		$servers = $this->dsd->getServers() ?: [ [ $this->host, $this->port ] ];
 
-		foreach ( $servers as $server ) {
-			[ $host, $port ] = $server;
-
+		foreach ( $servers as [ $host, $port ] ) {
 			// Try to load the config from this particular server
 			$response = $this->fetchAllFromEtcdServer( $host, $port );
 			if ( is_array( $response['config'] ) || $response['retry'] ) {
