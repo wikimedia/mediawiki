@@ -255,7 +255,7 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 		];
 		$dataMD = $data['metadata'];
 
-		foreach ( array_keys( $data['metadata'] ) as $key ) {
+		foreach ( $data['metadata'] as $key => $_ ) {
 			$data['metadata'] = $dataMD;
 			unset( $data['metadata'][$key] );
 			$info = new SessionInfo( SessionInfo::MIN_PRIORITY, $data );

@@ -48,7 +48,7 @@ trait MediaFileTrait {
 			'original' => null,
 		];
 
-		foreach ( array_keys( $transforms ) as $transformType ) {
+		foreach ( $transforms as $transformType => $_ ) {
 			$responseFile[$transformType] = null;
 		}
 

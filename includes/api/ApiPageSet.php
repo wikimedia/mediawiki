@@ -1084,7 +1084,7 @@ class ApiPageSet extends ApiBase {
 			if ( $processTitles ) {
 				// The remaining titles in $remaining are non-existent pages
 				foreach ( $remaining as $ns => $dbkeys ) {
-					foreach ( array_keys( $dbkeys ) as $dbkey ) {
+					foreach ( $dbkeys as $dbkey => $_ ) {
 						$title = $this->titleFactory->makeTitle( $ns, $dbkey );
 						$this->linkCache->addBadLinkObj( $title );
 						$this->mAllPages[$ns][$dbkey] = $this->mFakePageId;

@@ -129,7 +129,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	 */
 	public function getNumberedArguments() {
 		$arguments = [];
-		foreach ( array_keys( $this->numberedArgs ) as $key ) {
+		foreach ( $this->numberedArgs as $key => $_ ) {
 			$arguments[$key] = $this->getArgument( $key );
 		}
 		return $arguments;
@@ -140,7 +140,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	 */
 	public function getNamedArguments() {
 		$arguments = [];
-		foreach ( array_keys( $this->namedArgs ) as $key ) {
+		foreach ( $this->namedArgs as $key => $_ ) {
 			$arguments[$key] = $this->getArgument( $key );
 		}
 		return $arguments;

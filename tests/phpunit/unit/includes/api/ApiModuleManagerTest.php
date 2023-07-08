@@ -143,7 +143,7 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 		$moduleManager = $this->getModuleManager();
 		$moduleManager->addModules( $modules, $group );
 
-		foreach ( array_keys( $modules ) as $name ) {
+		foreach ( $modules as $name => $_ ) {
 			$this->assertTrue( $moduleManager->isDefined( $name, $group ), 'isDefined' );
 			$this->assertNotNull( $moduleManager->getModule( $name, $group, true ), 'getModule' );
 		}

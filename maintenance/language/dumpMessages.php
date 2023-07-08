@@ -43,7 +43,7 @@ class DumpMessages extends Maintenance {
 		$messages = [];
 		$localisationCache = MediaWikiServices::getInstance()->getLocalisationCache();
 		$localisationMessagesEn = $localisationCache->getItem( 'en', 'messages' );
-		foreach ( array_keys( $localisationMessagesEn ) as $key ) {
+		foreach ( $localisationMessagesEn as $key => $_ ) {
 			$messages[$key] = wfMessage( $key )->text();
 		}
 		$this->output( "MediaWiki " . MW_VERSION . " language file\n" );

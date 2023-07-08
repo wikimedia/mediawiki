@@ -41,7 +41,7 @@ class AllTrans extends Maintenance {
 	public function execute() {
 		$localisationCache = MediaWikiServices::getInstance()->getLocalisationCache();
 		$englishMessages = $localisationCache->getItem( 'en', 'messages' );
-		foreach ( array_keys( $englishMessages ) as $key ) {
+		foreach ( $englishMessages as $key => $_ ) {
 			$this->output( "$key\n" );
 		}
 	}

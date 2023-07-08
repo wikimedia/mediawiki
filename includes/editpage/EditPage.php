@@ -4208,7 +4208,7 @@ class EditPage implements IEditObject {
 				return $templates;
 			}
 			foreach ( $this->mParserOutput->getTemplates() as $ns => $template ) {
-				foreach ( array_keys( $template ) as $dbk ) {
+				foreach ( $template as $dbk => $_ ) {
 					$templates[] = Title::makeTitle( $ns, $dbk );
 				}
 			}

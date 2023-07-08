@@ -201,7 +201,7 @@ class ChangesList extends ContextSource {
 	public function recentChangesFlags( $flags, $nothing = "\u{00A0}" ) {
 		$f = '';
 		foreach (
-			array_keys( $this->getConfig()->get( MainConfigNames::RecentChangesFlags ) ) as $flag
+			$this->getConfig()->get( MainConfigNames::RecentChangesFlags ) as $flag => $_
 		) {
 			$f .= isset( $flags[$flag] ) && $flags[$flag]
 				? self::flag( $flag, $this->getContext() )

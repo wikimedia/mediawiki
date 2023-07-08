@@ -66,7 +66,7 @@ class ParserOutputSearchDataExtractor {
 		$outgoingLinks = [];
 
 		foreach ( $parserOutput->getLinks() as $linkedNamespace => $namespaceLinks ) {
-			foreach ( array_keys( $namespaceLinks ) as $linkedDbKey ) {
+			foreach ( $namespaceLinks as $linkedDbKey => $_ ) {
 				$outgoingLinks[] =
 					Title::makeTitle( $linkedNamespace, $linkedDbKey )->getPrefixedDBkey();
 			}
@@ -85,7 +85,7 @@ class ParserOutputSearchDataExtractor {
 		$templates = [];
 
 		foreach ( $parserOutput->getTemplates() as $tNS => $templatesInNS ) {
-			foreach ( array_keys( $templatesInNS ) as $tDbKey ) {
+			foreach ( $templatesInNS as $tDbKey => $_ ) {
 				$templateTitle = Title::makeTitle( $tNS, $tDbKey );
 				$templates[] = $templateTitle->getPrefixedText();
 			}

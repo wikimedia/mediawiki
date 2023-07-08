@@ -120,13 +120,13 @@ class SkinMustacheTest extends MediaWikiIntegrationTestCase {
 		$data = $skin->getTemplateData();
 
 		// Validate the default template data respects the naming rules
-		foreach ( array_keys( $data ) as $key ) {
+		foreach ( $data as $key => $_ ) {
 			$this->validateTemplateData( $data, $key );
 		}
 
 		// Validate search data
 		$searchData = $data['data-search-box'];
-		foreach ( array_keys( $searchData ) as $key ) {
+		foreach ( $searchData as $key => $_ ) {
 			$this->validateTemplateData( $searchData, $key );
 		}
 	}

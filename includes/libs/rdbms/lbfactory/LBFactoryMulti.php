@@ -157,7 +157,7 @@ class LBFactoryMulti extends LBFactory {
 			$this->loadMonitorConfig = [ 'class' => LoadMonitor::class ];
 		}
 
-		foreach ( array_keys( $this->externalLoadsByCluster ) as $cluster ) {
+		foreach ( $this->externalLoadsByCluster as $cluster => $_ ) {
 			if ( isset( $this->groupLoadsBySection[$cluster] ) ) {
 				throw new LogicException(
 					"External cluster '$cluster' has the same name as a main section/cluster"

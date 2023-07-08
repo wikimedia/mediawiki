@@ -3824,7 +3824,7 @@ class OutputPage extends ContextSource {
 			$lateVarNames =
 				array_fill_keys( self::CORE_LATE_JS_CONFIG_VAR_NAMES, true ) +
 				array_fill_keys( ExtensionRegistry::getInstance()->getAttribute( 'LateJSConfigVarNames' ), true );
-			foreach ( array_keys( $vars ) as $name ) {
+			foreach ( $vars as $name => $_ ) {
 				// If the variable's late flag doesn't match the requested late flag, unset it
 				if ( isset( $lateVarNames[ $name ] ) !== ( $flag === self::JS_VAR_LATE ) ) {
 					unset( $vars[ $name ] );

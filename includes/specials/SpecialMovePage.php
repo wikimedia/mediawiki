@@ -449,7 +449,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		// mediawiki.special.movePage module
 
 		$immovableNamespaces = [];
-		foreach ( array_keys( $this->getLanguage()->getNamespaces() ) as $nsId ) {
+		foreach ( $this->getLanguage()->getNamespaces() as $nsId => $_ ) {
 			if ( !$this->nsInfo->isMovable( $nsId ) ) {
 				$immovableNamespaces[] = $nsId;
 			}

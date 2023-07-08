@@ -117,7 +117,7 @@ class LBFactorySimple extends LBFactory {
 
 	public function getAllExternalLBs(): array {
 		$lbs = [];
-		foreach ( array_keys( $this->externalServersByCluster ) as $cluster ) {
+		foreach ( $this->externalServersByCluster as $cluster => $_ ) {
 			$lbs[$cluster] = $this->getExternalLB( $cluster );
 		}
 

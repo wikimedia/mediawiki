@@ -67,7 +67,7 @@ class OOUIIconPackModule extends OOUIImageModule {
 
 		// Filter out the data for all other icons, leaving only the ones we want for this module
 		$iconsNames = $this->getIcons();
-		foreach ( array_keys( $definition['images'] ) as $iconName ) {
+		foreach ( $definition['images'] as $iconName => $_ ) {
 			if ( !in_array( $iconName, $iconsNames ) ) {
 				unset( $definition['images'][$iconName] );
 			}

@@ -354,7 +354,7 @@ class LocalRepo extends FileRepo {
 
 		// Query image table
 		$imgNames = [];
-		foreach ( array_keys( $searchSet ) as $dbKey ) {
+		foreach ( $searchSet as $dbKey => $_ ) {
 			$imgNames[] = $this->getNameFromTitle( File::normalizeTitle( $dbKey ) );
 		}
 

@@ -2338,7 +2338,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 
 		$cache->getWithSetCallback( $key, 60, $callback );
 		$wrapper = TestingAccessWrapper::newFromObject( $bag );
-		foreach ( array_keys( $wrapper->bag ) as $bagKey ) {
+		foreach ( $wrapper->bag as $bagKey => $_ ) {
 			if ( $keyNeedle === null ) {
 				$this->assertDoesNotMatchRegularExpression( '/[#{}]/', $bagKey, 'Respects "coalesceKeys"' );
 			} else {

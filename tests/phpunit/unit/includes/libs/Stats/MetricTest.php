@@ -127,7 +127,7 @@ class MetricTest extends TestCase {
 	}
 
 	public function handleType( $type, $format ) {
-		foreach ( array_keys( self::TESTS ) as $test ) {
+		foreach ( self::TESTS as $test => $_ ) {
 			$this->handleTest( $test, $type, $format );
 		}
 	}
