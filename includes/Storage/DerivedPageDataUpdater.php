@@ -1876,7 +1876,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 			$this->jobQueueGroup->lazyPush(
 				ParsoidCachePrewarmJob::newSpec(
 					$this->revision->getId(),
-					$wikiPage->getId(),
+					$wikiPage->toPageRecord(),
 					$cacheWarmingParams
 				)
 			);

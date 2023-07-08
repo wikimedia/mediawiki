@@ -18,6 +18,8 @@ THIS IS NOT A RELEASE YET
 * Updated symfony/yaml from 5.4.17 to 5.4.23.
 * Updated wikimedia/timestamp from 4.1.0 to 4.1.1.
 * (T229992) LocalisationCache: Preserve fallback source language info [backport]
+* ParsoidCachePrewarmJob::newSpec() now requires a PageRecord as the second
+  parameter instead of a page ID.
 
 == MediaWiki 1.40.1 ==
 
