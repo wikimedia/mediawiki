@@ -24,30 +24,11 @@
 
 use MediaWiki\MainConfigSchema;
 
-if ( PHP_SAPI !== 'cli' ) {
-	die( 'This file is only meant to be executed indirectly by PHPUnit\'s bootstrap process!' );
-}
-
-define( 'MEDIAWIKI', true );
-define( 'MW_PHPUNIT_TEST', true );
-define( 'MW_ENTRY_POINT', 'cli' );
+require_once __DIR__ . '/bootstrap.common.php';
+$IP = $GLOBALS['IP'];
 
 /** @internal Should only be used in MediaWikiIntegrationTestCase::initializeForStandardPhpunitEntrypointIfNeeded() */
 define( 'MW_PHPUNIT_UNIT', true );
-
-$IP = realpath( __DIR__ . '/../../' );
-require_once "$IP/tests/common/TestSetup.php";
-
-// We don't use a settings file here but some code still assumes that one exists
-TestSetup::requireOnceInGlobalScope( "$IP/includes/BootstrapHelperFunctions.php" );
-
-$IP = wfDetectInstallPath(); // ensure MW_INSTALL_PATH is defined
-wfDetectLocalSettingsFile( $IP );
-
-// these variables must be defined before setup runs
-$GLOBALS['IP'] = $IP;
-
-TestSetup::snapshotGlobals();
 
 // Faking in lieu of Setup.php
 $GLOBALS['wgCommandLineMode'] = true;
