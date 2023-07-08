@@ -220,6 +220,8 @@ because of Phabricator reports.
 * The module mw.ui.anchor has been removed. Projects that need it should
   maintain a local copy or use the Codex link mixin. More information
   at T235961.
+* ParsoidCachePrewarmJob::newSpec() now requires a PageRecord as the second
+  parameter instead of a page ID.
 * Public access to the DifferenceEngine properties mOldid, mNewid, mOldRev,
   mNewRev, mOldPage, mNewPage, mOldContent, mNewContent, mRevisionsLoaded,
   mTextLoaded and mCacheHit, deprecated in 1.32, was removed.
