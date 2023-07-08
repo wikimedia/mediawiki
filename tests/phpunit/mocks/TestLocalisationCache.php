@@ -14,12 +14,13 @@ class TestLocalisationCache extends LocalisationCache {
 	 * localization to be recached between every test, which is unreasonably slow. As an
 	 * optimization, we cache our data in a static member for tests.
 	 *
-	 * @var array
+	 * @var array[]
 	 */
 	private static $testingCache = [];
 
 	private const PROPERTY_NAMES = [ 'data', 'sourceLanguage' ];
 
+	/** @var self */
 	private $selfAccess;
 
 	public function __construct() {
@@ -51,9 +52,9 @@ class TestLocalisationCache extends LocalisationCache {
 
 		parent::recache( $code );
 
-		if ( count( self::$testingCache ) > 4 ) {
-			// Don't store more than a few $data's, they can add up to a lot of memory if
-			// they're kept around for the whole test duration
+		// Limit the cache size (entries are approx. 1 MB each) but not too much. Critical for tests
+		// that use e.g. 5 different languages, and then the same 5 languages again, and again, …
+		if ( count( self::$testingCache ) > 16 ) {
 			array_pop( self::$testingCache );
 		}
 		$cache = [];
