@@ -10,8 +10,6 @@ use MediaWiki\Title\Title;
 use Message;
 use MessageLocalizer;
 use MWException;
-use SpecialPage;
-use User;
 
 /**
  * This program is free software; you can redistribute it and/or modify
@@ -34,12 +32,8 @@ use User;
 class SkinComponentSearch implements SkinComponent {
 	/** @var Config */
 	private $config;
-	/** @var User */
-	private $user;
 	/** @var MessageLocalizer */
 	private $localizer;
-	/** @var Title|null */
-	private $relevantTitle;
 	/** @var Title */
 	private $searchTitle;
 	/** @var array|null */
@@ -47,33 +41,18 @@ class SkinComponentSearch implements SkinComponent {
 
 	/**
 	 * @param Config $config
-	 * @param User $user
 	 * @param MessageLocalizer $localizer
-	 * @param Title|null $searchTitle
-	 * @param Title|null $relevantTitle
+	 * @param Title $searchTitle
 	 */
 	public function __construct(
 		Config $config,
-		User $user,
 		MessageLocalizer $localizer,
-		$searchTitle,
-		$relevantTitle
+		Title $searchTitle
 	) {
 		$this->config = $config;
-		$this->user = $user;
 		$this->localizer = $localizer;
-		$this->searchTitle = $searchTitle ?? SpecialPage::newSearchPage(
-			$user
-		);
-		$this->relevantTitle = $relevantTitle;
+		$this->searchTitle = $searchTitle;
 		$this->cachedData = null;
-	}
-
-	/**
-	 * @return Title|null
-	 */
-	private function getRelevantTitle() {
-		return $this->relevantTitle;
 	}
 
 	/**
@@ -96,13 +75,6 @@ class SkinComponentSearch implements SkinComponent {
 	 */
 	private function getConfig(): Config {
 		return $this->config;
-	}
-
-	/**
-	 * @return User
-	 */
-	private function getUser(): User {
-		return $this->user;
 	}
 
 	/**
@@ -136,10 +108,7 @@ class SkinComponentSearch implements SkinComponent {
 						"search-$mode",
 						[],
 						null,
-						$this->getMessageLocalizer(),
-						$this->getUser(),
-						$this->getConfig(),
-						$this->getRelevantTitle()
+						$this->getMessageLocalizer()
 					),
 					$attrs
 				);
@@ -172,10 +141,7 @@ class SkinComponentSearch implements SkinComponent {
 				'search',
 				[],
 				null,
-				$this->getMessageLocalizer(),
-				$this->getUser(),
-				$this->getConfig(),
-				$this->getRelevantTitle()
+				$this->getMessageLocalizer()
 			),
 			$attrs
 		);
@@ -205,8 +171,6 @@ class SkinComponentSearch implements SkinComponent {
 		}
 
 		$config = $this->getConfig();
-		$user = $this->getUser();
-		$relevantTitle = $this->getRelevantTitle();
 		$localizer = $this->getMessageLocalizer();
 		$searchButtonAttributes = [
 			'class' => 'searchButton'
@@ -227,10 +191,7 @@ class SkinComponentSearch implements SkinComponent {
 			'search-go',
 			[],
 			null,
-			$localizer,
-			$user,
-			$config,
-			$relevantTitle
+			$localizer
 		);
 		$fulltextButtonAttributes = $fallbackButtonAttributes + $buttonAttributes + [
 			'name' => 'fulltext'
@@ -238,10 +199,7 @@ class SkinComponentSearch implements SkinComponent {
 			'search-fulltext',
 			[],
 			null,
-			$localizer,
-			$user,
-			$config,
-			$relevantTitle
+			$localizer
 		);
 
 		$this->cachedData = [

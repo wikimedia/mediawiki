@@ -910,14 +910,27 @@ class SkinTemplate extends Skin {
 			$onPage && ( $isWatchMode || $action == 'unwatch' ) ? 'selected' : ''
 			);
 
-		$watchlistManager = MediaWikiServices::getInstance()->getWatchlistManager();
+		$services = MediaWikiServices::getInstance();
+		$watchlistManager = $services->getWatchlistManager();
 		$watchIcon = $watchlistManager->isWatched( $performer, $title ) ? 'unStar' : 'star';
-		// Add class identifying the page is temporarily watched, if applicable.
+		// Modify tooltip and add class identifying the page is temporarily watched, if applicable.
 		if ( $this->getConfig()->get( MainConfigNames::WatchlistExpiry ) &&
 			$watchlistManager->isTempWatched( $performer, $title )
 		) {
 			$class .= ' mw-watchlink-temp';
 			$watchIcon = 'halfStar';
+
+			$watchStore = $services->getWatchedItemStore();
+			$watchedItem = $watchStore->getWatchedItem( $performer->getUser(), $title );
+			$diffInDays = $watchedItem->getExpiryInDays();
+			if ( $diffInDays ) {
+				$msgParams = [ $diffInDays ];
+				// Resolves to tooltip-ca-unwatch-expiring message
+				$tooltip = 'ca-unwatch-expiring';
+			} else {
+				// Resolves to tooltip-ca-unwatch-expiring-hours message
+				$tooltip = 'ca-unwatch-expiring-hours';
+			}
 		}
 
 		return [
@@ -925,6 +938,8 @@ class SkinTemplate extends Skin {
 			'icon' => $watchIcon,
 			// uses 'watch' or 'unwatch' message
 			'text' => $this->msg( $mode )->text(),
+			'single-id' => $tooltip ?? null,
+			'tooltip-params' => $msgParams ?? null,
 			'href' => $title->getLocalURL( [ 'action' => $mode ] ),
 			// Set a data-mw=interface attribute, which the mediawiki.page.ajax
 			// module will look for to make sure it's a trusted link
@@ -1151,6 +1166,7 @@ class SkinTemplate extends Skin {
 						'text' => $this->getSkinNavOverrideableLabel(
 							"view-$msgKey"
 						),
+						'single-id' => "ca-$msgKey",
 						'href' => $title->getLocalURL( $this->editUrlOptions() ),
 						'primary' => !$isRemoteContent, // don't collapse this in vector
 					];
