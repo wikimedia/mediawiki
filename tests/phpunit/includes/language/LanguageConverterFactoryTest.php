@@ -470,14 +470,14 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 
 		$zh_variantfallbacks = [
 			'zh' => [ 'zh-hans', 'zh-hant', 'zh-cn', 'zh-tw', 'zh-hk', 'zh-sg', 'zh-mo', 'zh-my' ],
-			'zh-hans' => [ 'zh-cn', 'zh-sg', 'zh-my' ],
-			'zh-hant' => [ 'zh-tw', 'zh-hk', 'zh-mo' ],
-			'zh-cn' => [ 'zh-hans', 'zh-sg', 'zh-my' ],
-			'zh-sg' => [ 'zh-hans', 'zh-cn', 'zh-my' ],
-			'zh-my' => [ 'zh-hans', 'zh-sg', 'zh-cn' ],
-			'zh-tw' => [ 'zh-hant', 'zh-hk', 'zh-mo' ],
-			'zh-hk' => [ 'zh-hant', 'zh-mo', 'zh-tw' ],
-			'zh-mo' => [ 'zh-hant', 'zh-hk', 'zh-tw' ],
+			'zh-hans' => [ 'zh-cn', 'zh-sg', 'zh-my', 'zh' ],
+			'zh-hant' => [ 'zh-tw', 'zh-hk', 'zh-mo', 'zh' ],
+			'zh-cn' => [ 'zh-hans', 'zh-sg', 'zh-my', 'zh' ],
+			'zh-sg' => [ 'zh-my', 'zh-hans', 'zh-cn', 'zh' ],
+			'zh-my' => [ 'zh-sg', 'zh-hans', 'zh-cn', 'zh' ],
+			'zh-tw' => [ 'zh-hant', 'zh-hk', 'zh-mo', 'zh' ],
+			'zh-hk' => [ 'zh-mo', 'zh-hant', 'zh-tw', 'zh' ],
+			'zh-mo' => [ 'zh-hk', 'zh-hant', 'zh-tw', 'zh' ],
 		];
 		$zh_ml = [
 			'zh' => 'disable',
