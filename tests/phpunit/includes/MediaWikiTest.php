@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebResponse;
 use MediaWiki\Title\Title;
 use Wikimedia\TestingAccessWrapper;
@@ -257,9 +258,7 @@ class MediaWikiTest extends MediaWikiIntegrationTestCase {
 			$this->expectException( MalformedTitleException::class );
 		}
 
-		$_POST = [];
-		$_GET = $query;
-		$req = new WebRequest();
+		$req = new FauxRequest( $query );
 		$mw = new MediaWiki();
 
 		$method = new ReflectionMethod( $mw, 'parseTitle' );
