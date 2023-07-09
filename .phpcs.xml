@@ -79,8 +79,6 @@
 		<exclude-pattern>*/maintenance/storage/checkStorage\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/storage/recompressTracked\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/storage/trackBlobs\.php</exclude-pattern>
-		<!-- Skip violations in some tests for now -->
-		<exclude-pattern>*/tests/phpunit/maintenance/*</exclude-pattern>
 	</rule>
 	<rule ref="Generic.PHP.NoSilencedErrors.Discouraged">
 		<exclude-pattern>*/tests/*</exclude-pattern>
