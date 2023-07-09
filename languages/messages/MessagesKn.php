@@ -33,17 +33,28 @@ $namespaceNames = [
 	NS_TALK             => 'ಚರ್ಚೆಪುಟ',
 	NS_USER             => 'ಸದಸ್ಯ',
 	NS_USER_TALK        => 'ಸದಸ್ಯರ_ಚರ್ಚೆಪುಟ',
-	NS_PROJECT_TALK     => '$1_ಚರ್ಚೆ',
+	NS_PROJECT_TALK     => '$1_ಚರ್ಚೆಪುಟ',
 	NS_FILE             => 'ಚಿತ್ರ',
 	NS_FILE_TALK        => 'ಚಿತ್ರ_ಚರ್ಚೆಪುಟ',
 	NS_MEDIAWIKI        => 'ಮೀಡಿಯವಿಕಿ',
-	NS_MEDIAWIKI_TALK   => 'ಮೀಡೀಯವಿಕಿ_ಚರ್ಚೆ',
+	NS_MEDIAWIKI_TALK   => 'ಮೀಡಿಯವಿಕಿ_ಚರ್ಚೆಪುಟ',
 	NS_TEMPLATE         => 'ಟೆಂಪ್ಲೇಟು',
-	NS_TEMPLATE_TALK    => 'ಟೆಂಪ್ಲೇಟು_ಚರ್ಚೆ',
+	NS_TEMPLATE_TALK    => 'ಟೆಂಪ್ಲೇಟು_ಚರ್ಚೆಪುಟ',
 	NS_HELP             => 'ಸಹಾಯ',
-	NS_HELP_TALK        => 'ಸಹಾಯ_ಚರ್ಚೆ',
+	NS_HELP_TALK        => 'ಸಹಾಯ_ಚರ್ಚೆಪುಟ',
 	NS_CATEGORY         => 'ವರ್ಗ',
-	NS_CATEGORY_TALK    => 'ವರ್ಗ_ಚರ್ಚೆ',
+	NS_CATEGORY_TALK    => 'ವರ್ಗ_ಚರ್ಚೆಪುಟ',
+];
+
+$namespaceAliases = [
+	'ಚರ್ಚೆ' => NS_TALK,
+	'ಸದಸ್ಯರ_ಚರ್ಚೆ' => NS_USER_TALK,
+	'$1_ಚರ್ಚೆ' => NS_PROJECT_TALK,
+	'ಚಿತ್ರ_ಚರ್ಚೆ' => NS_FILE_TALK,
+	'ಮೀಡಿಯವಿಕಿ_ಚರ್ಚೆ' => NS_MEDIAWIKI_TALK,
+	'ಟೆಂಪ್ಲೇಟು_ಚರ್ಚೆ' => NS_TEMPLATE_TALK,
+	'ಸಹಾಯ_ಚರ್ಚೆ' => NS_HELP_TALK,
+	'ವರ್ಗ_ಚರ್ಚೆ' => NS_CATEGORY_TALK,
 ];
 
 $digitTransformTable = [
