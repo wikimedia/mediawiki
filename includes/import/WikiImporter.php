@@ -595,8 +595,9 @@ class WikiImporter {
 			if ( $this->reader->localName != 'mediawiki' ) {
 				// phpcs:ignore Generic.PHP.NoSilencedErrors
 				@libxml_disable_entity_loader( $oldDisable );
-				throw new MWException( "Expected <mediawiki> tag, got " .
-					$this->reader->localName );
+				throw new MWException(
+					"Expected '<mediawiki>' tag, got '<{$this->reader->localName}>' tag."
+				);
 			}
 			$this->debug( "<mediawiki> tag is correct." );
 
