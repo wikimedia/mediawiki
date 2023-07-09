@@ -9,31 +9,13 @@
 
 use MediaWiki\MediaWikiServices;
 
-function wfPHPUnitPrepareEnvironment() {
-	global $wgCommandLineMode;
-
-	# Disable the memory limit as it's not needed for tests.
-	ini_set( 'memory_limit', -1 );
-
-	# Set max execution time to 0 (no limit). PHP.net says that
-	# "When running PHP from the command line the default setting is 0."
-	# But sometimes this doesn't seem to be the case.
-	ini_set( 'max_execution_time', 0 );
-
-	$wgCommandLineMode = true;
-
-	# Turn off output buffering if it's on
-	while ( ob_get_level() > 0 ) {
-		ob_end_flush();
-	}
-}
-
 function wfPHPUnitFinalSetup() {
 	global $wgDBadminuser, $wgDBadminpassword;
 	global $wgDBuser, $wgDBpassword, $wgDBservers, $wgLBFactoryConf;
 
-	# Prepare environment again, things might have changed in the settings files
-	wfPHPUnitPrepareEnvironment();
+	// These are already set in suite.xml, but set them again in case they were changed in a settings file
+	ini_set( 'memory_limit', -1 );
+	ini_set( 'max_execution_time', 0 );
 
 	if ( isset( $wgDBadminuser ) ) {
 		$wgDBuser = $wgDBadminuser;
@@ -76,15 +58,6 @@ if ( getenv( 'PHPUNIT_WIKI' ) ) {
 	define( 'MW_WIKI_NAME', $wikiName );
 }
 
-// Send PHP warnings and errors to stderr instead of stdout.
-// This aids in diagnosing problems, while keeping messages
-// out of redirected output.
-if ( ini_get( 'display_errors' ) ) {
-	ini_set( 'display_errors', 'stderr' );
-}
-
-wfPHPUnitPrepareEnvironment();
-
 define( 'MW_SETUP_CALLBACK', 'wfPHPUnitFinalSetup' );
 
 TestSetup::requireOnceInGlobalScope( "$IP/includes/Setup.php" );
@@ -99,19 +72,7 @@ if ( !getenv( 'MW_SKIP_EXTERNAL_DEPENDENCIES' ) ) {
 	$composerLockUpToDate->execute();
 }
 
-// Start an output buffer to avoid headers being sent by constructors,
-// data providers, etc. (T206476)
-ob_start();
-
-fwrite( STDERR, 'Using PHP ' . PHP_VERSION . "\n" );
-
-// The TestRunner class will run each test suite and may call
-// exit() with an exit status code. As such, we cannot run code "after the last test"
-// by adding statements to PHPUnitMaintClass::execute.
-// Instead, we work around it by registering a shutdown callback from the bootstrap
-// file, which runs before PHPUnit starts.
-// @todo Once we use PHPUnit 8 or higher, use the 'AfterLastTestHook' feature.
-// https://phpunit.readthedocs.io/en/8.0/extending-phpunit.html#available-hook-interfaces
+// @todo Use PHPUnit hooks/events to run this code after the last test.
 register_shutdown_function( static function () {
 	// This will:
 	// - clear the temporary job queue.
@@ -119,5 +80,3 @@ register_shutdown_function( static function () {
 	// - restore ability to connect to the real database.
 	MediaWikiIntegrationTestCase::teardownTestDB();
 } );
-
-MediaWikiCliOptions::initialize();
