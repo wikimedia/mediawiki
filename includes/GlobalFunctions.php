@@ -1091,7 +1091,7 @@ function wfGetCaller( $level = 2 ) {
  * Return a string consisting of callers in the stack. Useful sometimes
  * for profiling specific points.
  *
- * @param int $limit The maximum depth of the stack frame to return, or false for the entire stack.
+ * @param int|false $limit The maximum depth of the stack frame to return, or false for the entire stack.
  * @return string
  */
 function wfGetAllCallers( $limit = 3 ) {
