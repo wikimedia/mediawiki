@@ -40,6 +40,7 @@
  *   - stream   : resource to stream the HTTP response body to
  * Request maps can use integer index 0 instead of 'method' and 1 instead of 'url'.
  *
+ * @deprecated since 1.41. Use MultiHttpClient instead.
  * @since 1.23
  */
 class VirtualRESTServiceClient {
