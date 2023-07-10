@@ -6,7 +6,6 @@ use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\TestingAccessWrapper;
@@ -1586,9 +1585,8 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		$translateNumerals, $langCode, $number, $noSeparators, $expected
 	) {
 		$this->hideDeprecated( 'Language::formatNum with a non-numeric string' );
-		$this->hideDeprecated( 'Language::factory' );
 		$this->overrideConfigValue( MainConfigNames::TranslateNumerals, $translateNumerals );
-		$lang = Language::factory( $langCode );
+		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( $langCode );
 		if ( $noSeparators ) {
 			$formattedNum = $lang->formatNumNoSeparators( $number );
 		} else {
@@ -1665,8 +1663,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 * @dataProvider parseFormattedNumberProvider
 	 */
 	public function testParseFormattedNumber( $langCode, $number ) {
-		$this->hideDeprecated( 'Language::factory' );
-		$lang = Language::factory( $langCode );
+		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( $langCode );
 
 		$localisedNum = $lang->formatNum( $number );
 		$normalisedNum = $lang->parseFormattedNumber( $localisedNum );
@@ -1744,8 +1741,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 * @covers LocalisationCache
 	 */
 	public function testGetNamespaceAliasesReal() {
-		$this->hideDeprecated( 'Language::factory' );
-		$language = Language::factory( 'zh' );
+		$language = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'zh' );
 		$aliases = $language->getNamespaceAliases();
 		$this->assertSame( NS_FILE, $aliases['文件'] );
 		$this->assertSame( NS_FILE, $aliases['檔案'] );
@@ -1767,7 +1763,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		] );
 		$this->setService( 'LanguageNameUtils', $langNameUtils );
 
-		$language = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'x-bar' );
+		$language = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'x-bar' );
 
 		$this->assertEquals(
 			[
@@ -1803,18 +1799,18 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 * @covers Language::equals
 	 */
 	public function testEquals() {
-		$this->hideDeprecated( 'Language::factory' );
-		$en1 = Language::factory( 'en' );
-		$en2 = Language::factory( 'en' );
+		$languageFactory = $this->getServiceContainer()->getLanguageFactory();
+		$en1 = $languageFactory->getLanguage( 'en' );
+		$en2 = $languageFactory->getLanguage( 'en' );
 		$en3 = $this->newLanguage();
 		$this->assertTrue( $en1->equals( $en2 ), 'en1 equals en2' );
 		$this->assertTrue( $en2->equals( $en3 ), 'en2 equals en3' );
 		$this->assertTrue( $en3->equals( $en1 ), 'en3 equals en1' );
 
-		$fr = Language::factory( 'fr' );
+		$fr = $languageFactory->getLanguage( 'fr' );
 		$this->assertFalse( $en1->equals( $fr ), 'en not equals fr' );
 
-		$ar1 = Language::factory( 'ar' );
+		$ar1 = $languageFactory->getLanguage( 'ar' );
 		$ar2 = $this->newLanguage( LanguageAr::class, 'ar' );
 		$this->assertTrue( $ar1->equals( $ar2 ), 'ar equals ar' );
 	}
