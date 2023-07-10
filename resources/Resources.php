@@ -565,6 +565,7 @@ return [
 		'dependencies' => [
 			'vue'
 		],
+		'deprecated' => 'No longer needed, use the "vue" module directly'
 	],
 
 	'vuex' => [
