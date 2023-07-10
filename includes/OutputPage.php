@@ -2192,8 +2192,7 @@ class OutputPage extends ContextSource {
 		// Deprecated! See T292321; should be done in the OutputPageParserOutput
 		// hook instead.
 		$parserOutputHooks = $this->getConfig()->get( MainConfigNames::ParserOutputHooks );
-		foreach ( $parserOutput->getOutputHooks() as $hookInfo ) {
-			[ $hookName, $data ] = $hookInfo;
+		foreach ( $parserOutput->getOutputHooks() as [ $hookName, $data ] ) {
 			if ( isset( $parserOutputHooks[$hookName] ) ) {
 				$parserOutputHooks[$hookName]( $this, $parserOutput, $data );
 			}

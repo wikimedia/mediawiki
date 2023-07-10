@@ -372,8 +372,7 @@ class Preprocessor_Hash extends Preprocessor {
 							// Dump all but the last comment to the accumulator
 							// $endPos includes the newline from the if above, want also eat that
 							[ $startPos, $endPos ] = array_pop( $comments );
-							foreach ( $comments as $com ) {
-								[ $cStartPos, $cEndPos ] = $com;
+							foreach ( $comments as [ $cStartPos, $cEndPos ] ) {
 								// $cEndPos is the next char, no +1 needed to get correct length between start/end
 								$inner = substr( $text, $cStartPos, $cEndPos - $cStartPos );
 								$accum[] = [ 'comment', [ $inner ] ];

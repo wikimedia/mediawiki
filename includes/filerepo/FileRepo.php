@@ -947,8 +947,7 @@ class FileRepo {
 
 		$operations = [];
 		// Validate each triplet and get the store operation...
-		foreach ( $triplets as $triplet ) {
-			[ $src, $dstZone, $dstRel ] = $triplet;
+		foreach ( $triplets as [ $src, $dstZone, $dstRel ] ) {
 			$srcPath = ( $src instanceof FSFile ) ? $src->getPath() : $src;
 			wfDebug( __METHOD__
 				. "( \$src='$srcPath', \$dstZone='$dstZone', \$dstRel='$dstRel' )"
