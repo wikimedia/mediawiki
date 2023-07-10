@@ -11,7 +11,7 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
-	public function getNewForm( $descriptor, $requestData ) {
+	public function getNewForm( $descriptor, $requestData = [] ) {
 		$requestData += [ 'wpEditToken' => 'ABC123' ];
 		$request = new FauxRequest( $requestData, true );
 		$context = new DerivativeContext( RequestContext::getMain() );
@@ -445,4 +445,119 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 		$this->assertArrayNotHasKey( 'notices', $configWithoutNotice );
 	}
 
+	/**
+	 * @dataProvider provideCallables
+	 */
+	public function testValidationCallbacks( callable $callable ) {
+		$field = new class( [
+			'parent' => $this->getNewForm( [] ),
+			'fieldname' => __FUNCTION__,
+			'validation-callback' => $callable
+		] ) extends HTMLFormField {
+			public function getInputHTML( $value ) {
+				return '';
+			}
+		};
+
+		$this->assertTrue( $field->validate( '', [] ) );
+	}
+
+	public static function provideCallables() {
+		$callable = new class() {
+			public function validate( $value, array $fields, HTMLForm $form ): bool {
+				return $value || $fields || $form->wasSubmitted();
+			}
+
+			public static function validateStatic( $value, array $fields, HTMLForm $form ): bool {
+				return $value || $fields || $form->wasSubmitted();
+			}
+
+			public function __invoke( ...$values ): bool {
+				return self::validateStatic( ...$values );
+			}
+		};
+
+		return [
+			'Closure (short)' => [
+				static fn ( $value, array $fields, HTMLForm $form ) => $value || $fields || $form->wasSubmitted()
+			],
+			'Closure (traditional)' => [
+				static function ( $value, array $fields, HTMLForm $form ) {
+					return $value || $fields || $form->wasSubmitted();
+				}
+			],
+			'Array' => [ [ $callable, 'validate' ] ],
+			'Array (static)' => [ [ get_class( $callable ), 'validateStatic' ] ],
+			'String' => [ get_class( $callable ) . '::validateStatic' ],
+			'Invokable' => [ $callable ]
+		];
+	}
+
+	/**
+	 * @dataProvider provideValidationResults
+	 */
+	public function testValidationCallbackResults( $callbackResult, $expected ) {
+		$field = new class( [
+			'parent' => $this->getNewForm( [] ),
+			'fieldname' => __FUNCTION__,
+			'validation-callback' => static fn () => $callbackResult
+		] ) extends HTMLFormField {
+			public function getInputHTML( $value ) {
+				return '';
+			}
+		};
+
+		$this->assertEquals( $expected, $field->validate( '', [] ) );
+	}
+
+	public static function provideValidationResults() {
+		$ok = ( new Status() )
+			->warning( 'test-warning' )
+			->setOK( true );
+
+		return [
+			'Ok Status' => [ $ok, "<p>⧼test-warning⧽\n</p>" ],
+			'Good Status' => [ Status::newGood(), true ],
+			'Fatal Status' => [ Status::newFatal( 'test-fatal' ), "<p>⧼test-fatal⧽\n</p>" ],
+			'Good StatusValue' => [ StatusValue::newGood(), true ],
+			'Fatal StatusValue' => [ Status::newFatal( 'test-fatal' ), "<p>⧼test-fatal⧽\n</p>" ],
+			'String' => [ '<strong>Invalid input</strong>', '<strong>Invalid input</strong>' ],
+			'True' => [ true, true ],
+			'False' => [ false, false ]
+		];
+	}
+
+	public function testValidationCallbackResultMessage() {
+		$message = $this->createMock( Message::class );
+
+		$this->testValidationCallbackResults( $message, $message );
+	}
+
+	/**
+	 * @dataProvider provideValues
+	 */
+	public function testValidateWithRequiredNotGiven( $value ) {
+		$field = new class( [
+			'parent' => $this->getNewForm( [] ),
+			'fieldname' => __FUNCTION__,
+			'required' => true
+		] ) extends HTMLFormField {
+			public function getInputHTML( $value ) {
+				return '';
+			}
+		};
+
+		$returnValue = $field->validate( $value, [ 'text' => $value ] );
+
+		$this->assertInstanceOf( Message::class, $returnValue );
+		$this->assertEquals( 'htmlform-required', $returnValue->getKey() );
+	}
+
+	public static function provideValues() {
+		return [
+			'Empty string' => [ '' ],
+			'False' => [ false ],
+			'Null' => [ null ]
+		];
+	}
 }

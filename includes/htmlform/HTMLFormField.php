@@ -13,6 +13,7 @@ abstract class HTMLFormField {
 	/** @var array|array[] */
 	public $mParams;
 
+	/** @var callable(mixed,array,HTMLForm):(Status|string|bool|Message) */
 	protected $mValidationCallback;
 	protected $mFilterCallback;
 	protected $mName;
@@ -401,11 +402,19 @@ abstract class HTMLFormField {
 			return $this->msg( 'htmlform-required' );
 		}
 
-		if ( isset( $this->mValidationCallback ) ) {
-			return ( $this->mValidationCallback )( $value, $alldata, $this->mParent );
+		if ( !isset( $this->mValidationCallback ) ) {
+			return true;
 		}
 
-		return true;
+		$p = ( $this->mValidationCallback )( $value, $alldata, $this->mParent );
+
+		if ( $p instanceof StatusValue ) {
+			$language = $this->mParent ? $this->mParent->getLanguage() : RequestContext::getMain()->getLanguage();
+
+			return $p->isGood() ? true : Status::wrap( $p )->getHTML( false, false, $language );
+		}
+
+		return $p;
 	}
 
 	/**
