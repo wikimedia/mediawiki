@@ -20,6 +20,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Page\PageLookup;
+use MediaWiki\Page\PageRecord;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
@@ -27,6 +28,8 @@ use Psr\Log\LoggerInterface;
 
 /**
  * @ingroup JobQueue
+ * @internal
+ * @since 1.40
  */
 class ParsoidCachePrewarmJob extends Job {
 	private LoggerInterface $logger;
@@ -57,7 +60,7 @@ class ParsoidCachePrewarmJob extends Job {
 
 	/**
 	 * @param int $revisionId
-	 * @param int $pageId
+	 * @param PageRecord $page
 	 * @param array $params Additional options for the job. Known keys:
 	 * - causeAction: Indicate what action caused the job to be scheduled. Used for monitoring.
 	 * - options: Flags to be passed to ParsoidOutputAccess:getParserOutput.
@@ -68,7 +71,7 @@ class ParsoidCachePrewarmJob extends Job {
 	 */
 	public static function newSpec(
 		int $revisionId,
-		int $pageId,
+		PageRecord $page,
 		array $params = []
 	): JobSpecification {
 		$params += [ 'options' => 0 ];
@@ -76,7 +79,7 @@ class ParsoidCachePrewarmJob extends Job {
 			'parsoidCachePrewarm',
 			[
 				'revId' => $revisionId,
-				'pageId' => $pageId
+				'pageId' => $page->getId(),
 			] + $params
 		);
 	}
