@@ -915,6 +915,11 @@ class MediaWiki {
 		}
 
 		$output = $this->context->getOutput();
+
+		// NOTE: HTMLFileCache::useFileCache() is not used in WMF production but is
+		//       here to provide third-party wikis with a way to enable caching for
+		//       "view" and "history" actions. It's triggered by the use of $wgUseFileCache
+		//       when set to true in LocalSettings.php.
 		if ( $title->canExist() && HTMLFileCache::useFileCache( $this->context ) ) {
 			// getAction() may trigger DB queries, so avoid eagerly initializing it if possible.
 			// This reduces the cost of requests that exit early due to tryNormaliseRedirect()
