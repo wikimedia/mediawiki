@@ -31,8 +31,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	protected function setUp(): void {
 		parent::setUp();
 		$this->database = new DatabaseTestHelper( __CLASS__, [ 'cliMode' => true ] );
-		MWDebug::clearDeprecationFilters();
-		MWDebug::clearLog();
 	}
 
 	protected function assertLastSql( $sqlText ) {

@@ -17,7 +17,6 @@ use MediaWiki\Revision\SuppressedDataException;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserIdentityValue;
 use MockTitleTrait;
-use MWDebug;
 
 /**
  * @covers \MediaWiki\Revision\RevisionRecord
@@ -47,7 +46,6 @@ trait RevisionRecordTests {
 	}
 
 	public function testGetIdTriggerDeprecatedWarning() {
-		MWDebug::clearDeprecationFilters();
 		$this->expectDeprecation();
 		$this->expectDeprecationMessageMatches( '/Deprecated cross-wiki access.*/' );
 		$revision = $this->newRevision( [ 'wikiId' => 'acmewiki', 'rev_id' => 5 ] );
@@ -66,7 +64,6 @@ trait RevisionRecordTests {
 	}
 
 	public function testGetPageIdTriggerDeprecatedWarning() {
-		MWDebug::clearDeprecationFilters();
 		$this->expectDeprecation();
 		$this->expectDeprecationMessageMatches( '/Deprecated cross-wiki access.*/' );
 		$revision = $this->newRevision( [ 'wikiId' => 'acmewiki', 'rev_page_id' => 17 ] );
@@ -85,7 +82,6 @@ trait RevisionRecordTests {
 	}
 
 	public function testGetParentIdTriggerDeprecatedWarning() {
-		MWDebug::clearDeprecationFilters();
 		$this->expectDeprecation();
 		$this->expectDeprecationMessageMatches( '/Deprecated cross-wiki access.*/' );
 		$revision = $this->newRevision( [ 'wikiId' => 'acmewiki', 'rev_parent_id' => 1 ] );
