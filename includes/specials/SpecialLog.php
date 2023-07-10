@@ -171,17 +171,20 @@ class SpecialLog extends SpecialPage {
 					$page = IPUtils::sanitizeRange( $target->getText() );
 				}
 				# User forgot to add 'User:', we are adding it for him
-				$page = Title::makeTitleSafe( NS_USER, $page )->getPrefixedText();
+				$target = Title::makeTitleSafe( NS_USER, $page );
 			} elseif ( $target && $target->getNamespace() === NS_USER
 				&& IPUtils::isValidRange( $target->getText() )
 			) {
 				$ipOrRange = IPUtils::sanitizeRange( $target->getText() );
 				if ( $ipOrRange !== $target->getText() ) {
-					$page = Title::makeTitleSafe( NS_USER, $ipOrRange )->getPrefixedText();
+					$target = Title::makeTitleSafe( NS_USER, $ipOrRange );
 				}
 			}
-			$opts->setValue( 'page', $page );
-			$this->getRequest()->setVal( 'page', $page );
+			if ( $target !== null ) {
+				$page = $target->getPrefixedText();
+				$opts->setValue( 'page', $page );
+				$this->getRequest()->setVal( 'page', $page );
+			}
 		}
 
 		$this->show( $opts, $qc );
