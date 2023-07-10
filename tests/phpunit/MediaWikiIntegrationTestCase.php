@@ -192,8 +192,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	private static function initializeForStandardPhpunitEntrypointIfNeeded() {
+		// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix
+		global $IP;
 		if ( defined( 'MW_PHPUNIT_UNIT' ) ) {
-			$IP = realpath( __DIR__ . '/../..' );
 			TestSetup::requireOnceInGlobalScope( "$IP/includes/Defines.php" );
 			TestSetup::requireOnceInGlobalScope( "$IP/includes/GlobalFunctions.php" );
 			TestSetup::requireOnceInGlobalScope( "$IP/includes/Setup.php" );

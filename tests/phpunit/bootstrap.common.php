@@ -12,6 +12,14 @@ define( 'MW_ENTRY_POINT', 'cli' );
 // through this entry point or not.
 define( 'MW_PHPUNIT_TEST', true );
 
+if ( getenv( 'PHPUNIT_WIKI' ) ) {
+	$wikiName = getenv( 'PHPUNIT_WIKI' );
+	$bits = explode( '-', $wikiName, 2 );
+	define( 'MW_DB', $bits[0] );
+	define( 'MW_PREFIX', $bits[1] ?? '' );
+	define( 'MW_WIKI_NAME', $wikiName );
+}
+
 require_once __DIR__ . '/../common/TestSetup.php';
 require_once __DIR__ . "/../../includes/BootstrapHelperFunctions.php";
 
