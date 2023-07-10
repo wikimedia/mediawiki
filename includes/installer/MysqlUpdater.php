@@ -20,7 +20,6 @@
  * @file
  * @ingroup Installer
  */
-use Wikimedia\Rdbms\MySQLField;
 
 /**
  * Mysql update list and mysql-specific update functions.
@@ -148,29 +147,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'runMaintenance', MigrateRevisionCommentTemp::class, 'maintenance/migrateRevisionCommentTemp.php' ],
 			[ 'dropTable', 'revision_comment_temp' ],
 		];
-	}
-
-	/**
-	 * MW 1.4 betas were missing the 'binary' marker from logging.log_title,
-	 * which caused a MySQL collation mismatch error.
-	 *
-	 * @param string $table Table name
-	 * @param string $field Field name to check
-	 * @param string $patchFile Path to the patch to correct the field
-	 * @return bool
-	 */
-	protected function checkBin( $table, $field, $patchFile ) {
-		if ( !$this->doTable( $table ) ) {
-			return true;
-		}
-
-		/** @var MySQLField $fieldInfo */
-		$fieldInfo = $this->db->fieldInfo( $table, $field );
-		if ( $fieldInfo->isBinary() ) {
-			$this->output( "...$table table has correct $field encoding.\n" );
-		} else {
-			$this->applyPatch( $patchFile, false, "Fixing $field encoding on $table table" );
-		}
 	}
 
 	/**
