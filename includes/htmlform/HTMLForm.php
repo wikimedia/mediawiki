@@ -412,7 +412,6 @@ class HTMLForm extends ContextSource {
 		$loadedDescriptor = [];
 
 		foreach ( $descriptor as $fieldname => $info ) {
-
 			$section = $info['section'] ?? '';
 
 			if ( isset( $info['type'] ) && $info['type'] === 'file' ) {
@@ -424,10 +423,7 @@ class HTMLForm extends ContextSource {
 			$setSection =& $loadedDescriptor;
 			if ( $section ) {
 				foreach ( explode( '/', $section ) as $newName ) {
-					if ( !isset( $setSection[$newName] ) ) {
-						$setSection[$newName] = [];
-					}
-
+					$setSection[$newName] ??= [];
 					$setSection =& $setSection[$newName];
 				}
 			}
@@ -904,9 +900,7 @@ class HTMLForm extends ContextSource {
 		if ( $section === null ) {
 			$this->mHeader .= $html;
 		} else {
-			if ( !isset( $this->mSectionHeaders[$section] ) ) {
-				$this->mSectionHeaders[$section] = '';
-			}
+			$this->mSectionHeaders[$section] ??= '';
 			$this->mSectionHeaders[$section] .= $html;
 		}
 
@@ -941,11 +935,7 @@ class HTMLForm extends ContextSource {
 	 * @return string HTML
 	 */
 	public function getHeaderHtml( $section = null ) {
-		if ( $section === null ) {
-			return $this->mHeader;
-		} else {
-			return $this->mSectionHeaders[$section] ?? '';
-		}
+		return $section ? $this->mSectionHeaders[$section] ?? '' : $this->mHeader;
 	}
 
 	/**
@@ -1001,9 +991,7 @@ class HTMLForm extends ContextSource {
 		if ( $section === null ) {
 			$this->mFooter .= $html;
 		} else {
-			if ( !isset( $this->mSectionFooters[$section] ) ) {
-				$this->mSectionFooters[$section] = '';
-			}
+			$this->mSectionFooters[$section] ??= '';
 			$this->mSectionFooters[$section] .= $html;
 		}
 
@@ -1037,11 +1025,7 @@ class HTMLForm extends ContextSource {
 	 * @return string
 	 */
 	public function getFooterHtml( $section = null ) {
-		if ( $section === null ) {
-			return $this->mFooter;
-		} else {
-			return $this->mSectionFooters[$section] ?? '';
-		}
+		return $section ? $this->mSectionFooters[$section] ?? '' : $this->mFooter;
 	}
 
 	/**
@@ -1316,8 +1300,7 @@ class HTMLForm extends ContextSource {
 			$this->getOutput()->addModules( 'jquery.makeCollapsible' );
 		}
 
-		$html = ''
-			. $this->getErrorsOrWarnings( $submitResult, 'error' )
+		$html = $this->getErrorsOrWarnings( $submitResult, 'error' )
 			. $this->getErrorsOrWarnings( $submitResult, 'warning' )
 			. $this->getHeaderText()
 			. $this->getHiddenTitle()
@@ -1326,9 +1309,7 @@ class HTMLForm extends ContextSource {
 			. $this->getButtons()
 			. $this->getFooterText();
 
-		$html = $this->wrapForm( $html );
-
-		return '' . $this->mPre . $html . $this->mPost;
+		return $this->mPre . $this->wrapForm( $html ) . $this->mPost;
 	}
 
 	/**
@@ -1517,7 +1498,7 @@ class HTMLForm extends ContextSource {
 			}
 
 			if ( $useMediaWikiUIEverywhere ) {
-				$attrs['class'] = isset( $attrs['class'] ) ? (array)$attrs['class'] : [];
+				$attrs['class'] = (array)( $attrs['class'] ?? [] );
 				$attrs['class'][] = 'mw-ui-button';
 			}
 
@@ -1602,9 +1583,7 @@ class HTMLForm extends ContextSource {
 			);
 		}
 
-		$errorstr = Html::rawElement( 'ul', [], $errorstr );
-
-		return $errorstr;
+		return Html::rawElement( 'ul', [], $errorstr );
 	}
 
 	/**
@@ -2052,13 +2031,8 @@ class HTMLForm extends ContextSource {
 			return $html;
 		}
 
-		$classes = [];
-
-		if ( !$anyFieldHasLabel ) { // Avoid strange spacing when no labels exist
-			$classes[] = 'mw-htmlform-nolabel';
-		}
-
-		$attribs = [ 'class' => $classes ];
+		// Avoid strange spacing when no labels exist
+		$attribs = $anyFieldHasLabel ? [] : [ 'class' => 'mw-htmlform-nolabel' ];
 
 		if ( $sectionName ) {
 			$attribs['id'] = Sanitizer::escapeIdForAttribute( $sectionName );

@@ -12,7 +12,7 @@ class CollapsibleFieldsetLayout extends OOUI\FieldsetLayout {
 		parent::__construct( $config );
 
 		$this->addClasses( [ 'mw-collapsibleFieldsetLayout', 'mw-collapsible' ] );
-		if ( isset( $config[ 'collapsed' ] ) && $config[ 'collapsed' ] ) {
+		if ( $config['collapsed'] ?? false ) {
 			$this->addClasses( [ 'mw-collapsed' ] );
 		}
 		$this->header->addClasses( [ 'mw-collapsible-toggle' ] );

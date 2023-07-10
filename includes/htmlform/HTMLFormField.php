@@ -343,11 +343,8 @@ abstract class HTMLFormField {
 	 * @return bool
 	 */
 	public function isHidden( $alldata ) {
-		if ( !( $this->mCondState && isset( $this->mCondState['hide'] ) ) ) {
-			return false;
-		}
-
-		return $this->checkStateRecurse( $alldata, $this->mCondState['hide'] );
+		return isset( $this->mCondState['hide'] ) &&
+			$this->checkStateRecurse( $alldata, $this->mCondState['hide'] );
 	}
 
 	/**
@@ -359,15 +356,10 @@ abstract class HTMLFormField {
 	 * @return bool
 	 */
 	public function isDisabled( $alldata ) {
-		if ( $this->mParams['disabled'] ?? false ) {
-			return true;
-		}
-		$hidden = $this->isHidden( $alldata );
-		if ( !$this->mCondState || !isset( $this->mCondState['disable'] ) ) {
-			return $hidden;
-		}
-
-		return $hidden || $this->checkStateRecurse( $alldata, $this->mCondState['disable'] );
+		return ( $this->mParams['disabled'] ?? false ) ||
+			$this->isHidden( $alldata ) ||
+			isset( $this->mCondState['disable'] ) &&
+			$this->checkStateRecurse( $alldata, $this->mCondState['disable'] );
 	}
 
 	/**
@@ -527,10 +519,7 @@ abstract class HTMLFormField {
 			$this->mLabel = $params['label-raw'];
 		}
 
-		$this->mName = "wp{$params['fieldname']}";
-		if ( isset( $params['name'] ) ) {
-			$this->mName = $params['name'];
-		}
+		$this->mName = $params['name'] ?? 'wp' . $params['fieldname'];
 
 		if ( isset( $params['dir'] ) ) {
 			$this->mDir = $params['dir'];
@@ -675,20 +664,19 @@ abstract class HTMLFormField {
 				$inputHtml . "\n$errors"
 			);
 		}
-		$divCssClasses = [ "mw-htmlform-field-$fieldType",
-			$this->mClass, $this->mVFormClass, $errorClass ];
 
-		$wrapperAttributes = [
-			'class' => $divCssClasses,
-		];
+		$wrapperAttributes = [ 'class' => [
+			"mw-htmlform-field-$fieldType",
+			$this->mClass,
+			$this->mVFormClass,
+			$errorClass,
+		] ];
 		if ( $this->mCondState ) {
 			$wrapperAttributes['data-cond-state'] = FormatJson::encode( $this->parseCondStateForClient() );
 			$wrapperAttributes['class'] = array_merge( $wrapperAttributes['class'], $this->mCondStateClass );
 		}
-		$html = Html::rawElement( 'div', $wrapperAttributes, $label . $field );
-		$html .= $helptext;
-
-		return $html;
+		return Html::rawElement( 'div', $wrapperAttributes, $label . $field ) .
+			$helptext;
 	}
 
 	/**
@@ -840,17 +828,10 @@ abstract class HTMLFormField {
 	 */
 	public function getRaw( $value ) {
 		[ $errors, ] = $this->getErrorsAndErrorClass( $value );
-		$inputHtml = $this->getInputHTML( $value );
-		$helptext = $this->getHelpTextHtmlRaw( $this->getHelpText() );
-		$cellAttributes = [];
-		$label = $this->getLabelHtml( $cellAttributes );
-
-		$html = "\n$errors";
-		$html .= $label;
-		$html .= $inputHtml;
-		$html .= $helptext;
-
-		return $html;
+		return "\n" . $errors .
+			$this->getLabelHtml() .
+			$this->getInputHTML( $value ) .
+			$this->getHelpTextHtmlRaw( $this->getHelpText() );
 	}
 
 	/**
@@ -877,17 +858,11 @@ abstract class HTMLFormField {
 	 */
 	public function getInline( $value ) {
 		[ $errors, ] = $this->getErrorsAndErrorClass( $value );
-		$inputHtml = $this->getInputHTML( $value );
-		$helptext = $this->getHelpTextHtmlDiv( $this->getHelpText() );
-		$cellAttributes = [];
-		$label = $this->getLabelHtml( $cellAttributes );
-
-		$html = "\n" . $errors .
-			$label . "\u{00A0}" .
-			$inputHtml .
-			$helptext;
-
-		return $html;
+		return "\n" . $errors .
+			$this->getLabelHtml() .
+			"\u{00A0}" .
+			$this->getInputHTML( $value ) .
+			$this->getHelpTextHtmlDiv( $this->getHelpText() );
 	}
 
 	/**
@@ -912,10 +887,9 @@ abstract class HTMLFormField {
 		if ( $this->mHelpClass !== false ) {
 			$tdClasses[] = $this->mHelpClass;
 		}
-		$row = Html::rawElement( 'td', [ 'colspan' => 2, 'class' => $tdClasses ], $helptext );
-		$row = Html::rawElement( 'tr', $rowAttributes, $row );
-
-		return $row;
+		return Html::rawElement( 'tr', $rowAttributes,
+			Html::rawElement( 'td', [ 'colspan' => 2, 'class' => $tdClasses ], $helptext )
+		);
 	}
 
 	/**
@@ -941,9 +915,7 @@ abstract class HTMLFormField {
 			$wrapperAttributes['data-cond-state'] = FormatJson::encode( $this->parseCondStateForClient() );
 			$wrapperAttributes['class'] = array_merge( $wrapperAttributes['class'], $this->mCondStateClass );
 		}
-		$div = Html::rawElement( 'div', $wrapperAttributes, $helptext );
-
-		return $div;
+		return Html::rawElement( 'div', $wrapperAttributes, $helptext );
 	}
 
 	/**
@@ -1020,14 +992,10 @@ abstract class HTMLFormField {
 		$errors = $this->validate( $value, $this->mParent->mFieldData );
 
 		if ( is_bool( $errors ) || !$this->mParent->wasSubmitted() ) {
-			$errors = '';
-			$errorClass = '';
-		} else {
-			$errors = self::formatErrors( $errors );
-			$errorClass = 'mw-htmlform-invalid-input';
+			return [ '', '' ];
 		}
 
-		return [ $errors, $errorClass ];
+		return [ self::formatErrors( $errors ), 'mw-htmlform-invalid-input' ];
 	}
 
 	/**
@@ -1041,7 +1009,7 @@ abstract class HTMLFormField {
 		$errors = $this->validate( $value, $this->mParent->mFieldData );
 
 		if ( is_bool( $errors ) || !$this->mParent->wasSubmitted() ) {
-			$errors = [];
+			return [];
 		}
 
 		if ( !is_array( $errors ) ) {
@@ -1073,39 +1041,29 @@ abstract class HTMLFormField {
 	public function getLabelHtml( $cellAttributes = [] ) {
 		# Don't output a for= attribute for labels with no associated input.
 		# Kind of hacky here, possibly we don't want these to be <label>s at all.
-		$for = [];
-
-		if ( $this->needsLabel() ) {
-			$for['for'] = $this->mID;
-		}
+		$for = $this->needsLabel() ? [ 'for' => $this->mID ] : [];
 
 		$labelValue = trim( $this->getLabel() );
-		$hasLabel = false;
-		if ( $labelValue !== "\u{00A0}" && $labelValue !== '&#160;' && $labelValue !== '' ) {
-			$hasLabel = true;
-		}
+		$hasLabel = $labelValue !== '' && $labelValue !== "\u{00A0}" && $labelValue !== '&#160;';
 
 		$displayFormat = $this->mParent->getDisplayFormat();
-		$html = '';
 		$horizontalLabel = $this->mParams['horizontal-label'] ?? false;
 
 		if ( $displayFormat === 'table' ) {
-			$html =
-				Html::rawElement( 'td',
+			return Html::rawElement( 'td',
 					[ 'class' => 'mw-label' ] + $cellAttributes,
 					Html::rawElement( 'label', $for, $labelValue ) );
 		} elseif ( $hasLabel || $this->mShowEmptyLabels ) {
 			if ( $displayFormat === 'div' && !$horizontalLabel ) {
-				$html =
-					Html::rawElement( 'div',
+				return Html::rawElement( 'div',
 						[ 'class' => 'mw-label' ] + $cellAttributes,
 						Html::rawElement( 'label', $for, $labelValue ) );
 			} else {
-				$html = Html::rawElement( 'label', $for, $labelValue );
+				return Html::rawElement( 'label', $for, $labelValue );
 			}
 		}
 
-		return $html;
+		return '';
 	}
 
 	/**
@@ -1288,20 +1246,14 @@ abstract class HTMLFormField {
 		}
 
 		if ( is_array( $errors ) ) {
-			$lines = [];
-			foreach ( $errors as $error ) {
-				if ( $error instanceof Message ) {
-					$lines[] = Html::rawElement( 'li', [], $error->parse() );
-				} else {
-					$lines[] = Html::rawElement( 'li', [], $error );
-				}
+			foreach ( $errors as &$error ) {
+				$error = Html::rawElement( 'li', [],
+					$error instanceof Message ? $error->parse() : $error
+				);
 			}
-
-			$errors = Html::rawElement( 'ul', [], implode( "\n", $lines ) );
-		} else {
-			if ( $errors instanceof Message ) {
-				$errors = $errors->parse();
-			}
+			$errors = Html::rawElement( 'ul', [], implode( "\n", $errors ) );
+		} elseif ( $errors instanceof Message ) {
+			$errors = $errors->parse();
 		}
 
 		return Html::errorBox( $errors );
@@ -1342,10 +1294,7 @@ abstract class HTMLFormField {
 	 * @since 1.29
 	 */
 	public function needsJSForHtml5FormValidation() {
-		if ( $this->mCondState ) {
-			// This is probably more restrictive than it needs to be, but better safe than sorry
-			return true;
-		}
-		return false;
+		// This is probably more restrictive than it needs to be, but better safe than sorry
+		return (bool)$this->mCondState;
 	}
 }
