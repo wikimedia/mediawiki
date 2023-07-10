@@ -2034,12 +2034,18 @@ class HTMLForm extends ContextSource {
 	 */
 	protected function formatField( HTMLFormField $field, $value ) {
 		$displayFormat = $this->getDisplayFormat();
-
-		// Conveniently, PHP method names are case-insensitive.
-		// For grep: this can call getDiv, getRaw, getInline, getVForm, getOOUI
-		$getFieldHtmlMethod = $displayFormat === 'table' ? 'getTableRow' : ( 'get' . $displayFormat );
-
-		return $field->$getFieldHtmlMethod( $value );
+		switch ( $displayFormat ) {
+			case 'table':
+				return $field->getTableRow( $value );
+			case 'div':
+				return $field->getDiv( $value );
+			case 'raw':
+				return $field->getRaw( $value );
+			case 'inline':
+				return $field->getInline( $value );
+			default:
+				throw new LogicException( 'Not implemented' );
+		}
 	}
 
 	/**

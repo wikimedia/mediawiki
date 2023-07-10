@@ -29,15 +29,8 @@ use MediaWiki\Html\Html;
  * @since 1.41
  */
 class CodexHTMLForm extends HTMLForm {
-	/**
-	 * Symbolic display format name.
-	 * Note this is `vform` rather than `div`
-	 * to avoid the div.mw-label wrapper
-	 * on labels.
-	 *
-	 * @var string
-	 */
-	protected $displayFormat = 'vform';
+
+	protected $displayFormat = 'codex';
 
 	public static function loadInputFromParameters( $fieldname, $descriptor,
 		HTMLForm $parent = null
@@ -53,6 +46,14 @@ class CodexHTMLForm extends HTMLForm {
 		] );
 
 		return parent::getHTML( $submitResult );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	protected function formatField( HTMLFormField $field, $value ) {
+		// The "cdx-..." classes are added magically in the Html class. :(
+		return $field->getVForm( $value );
 	}
 
 	protected function getFormAttributes() {

@@ -43,10 +43,6 @@ class OOUIHTMLForm extends HTMLForm {
 		$this->getOutput()->addModuleStyles( 'mediawiki.htmlform.ooui.styles' );
 	}
 
-	/**
-	 * Symbolic display format name.
-	 * @var string
-	 */
 	protected $displayFormat = 'ooui';
 
 	public static function loadInputFromParameters( $fieldname, $descriptor,
@@ -170,6 +166,14 @@ class OOUIHTMLForm extends HTMLForm {
 			] + $attributes )
 		);
 		return $layout;
+	}
+
+	/**
+	 * @inheritDoc
+	 * @return OOUI\FieldLayout HTML
+	 */
+	protected function formatField( HTMLFormField $field, $value ) {
+		return $field->getOOUI( $value );
 	}
 
 	/**
