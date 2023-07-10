@@ -602,8 +602,8 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 				'*.example.com/foobar',
 				[ 'oneWildcard' => true ],
 				[
-					'(el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' ) OR ' .
-					'(el_to_domain_index LIKE \'https://com.example.%\' ESCAPE \'`\' )',
+					'(el_to_domain_index = \'http://com.example.\') OR ' .
+					'(el_to_domain_index = \'https://com.example.\')',
 					'el_to_path LIKE \'/foobar%\' ESCAPE \'`\' ',
 				],
 			],

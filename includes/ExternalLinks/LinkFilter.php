@@ -367,7 +367,12 @@ class LinkFilter {
 				array_pop( $trimmedlikeDomain );
 			}
 			$index1 = implode( '', $trimmedlikeDomain );
-			$domainConditions[] = "el_to_domain_index" . $db->buildLike( $index1, $db->anyString() );
+			if ( $options['oneWildcard'] ) {
+				$domainConditions[] = 'el_to_domain_index = ' . $db->addQuotes( $index1 );
+			} else {
+				$domainConditions[] = "el_to_domain_index" . $db->buildLike( $index1, $db->anyString() );
+			}
+
 		}
 		if ( !$domainConditions ) {
 			return false;
