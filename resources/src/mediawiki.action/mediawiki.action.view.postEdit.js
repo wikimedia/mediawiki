@@ -6,7 +6,7 @@
 	 *
 	 * Does not fire for null edits.
 	 *
-	 * Code that fires the postEdit hook should first set `wgRevisionId` and `wgCurrentRevisionId`
+	 * Code that fires the postEdit hook should first set `wgRevisionId` and `wgCurRevisionId`
 	 * to the revision associated with the edit that triggered the postEdit hook, then fire
 	 * the postEdit hook, e.g.:
 	 *
@@ -15,7 +15,7 @@
 	 *        wgRevisionId: data.newrevid
 	 *     } );
 	 *     // Now fire the hook.
-	 *     mw.hook( 'postEdit' ).fire()
+	 *     mw.hook( 'postEdit' ).fire();
 	 *
 	 * @event postEdit
 	 * @member mw.hook
