@@ -2226,7 +2226,7 @@
 	"linksearch-pat": "Iskalni vzorec:",
 	"linksearch-ns": "Imenski prostor:",
 	"linksearch-ok": "Išči",
-	"linksearch-text": "Uporabljate lahko nadomestne znake, kot je »*.wikipedia.org«.<br />\n{{PLURAL:$2|Podprti protokol|Podprta protokola|Podprti protokoli}}: $1 (če protokol ni določen, se privzame http://).",
+	"linksearch-text": "Uporabljate lahko nadomestne znake, kot je »*.wikipedia.org«.<br />\n{{PLURAL:$2|Podprti protokol|Podprta protokola|Podprti protokoli}}: $1 (če protokol ni določen, se privzame http:// in https://).",
 	"linksearch-line": "$1 je povezano iz $2",
 	"linksearch-error": "Nadomestni znaki se lahko pojavijo samo na začetku imena gostiteljske domene.",
 	"listusersfrom": "Prikaži uporabnike, začenši z:",

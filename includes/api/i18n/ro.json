@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"ANDROBETA",
+			"Alesaru",
 			"NGC 54",
 			"Wintereu"
 		]
@@ -17,5 +18,7 @@
 	"apihelp-edit-example-edit": "Modifică o pagină.",
 	"apihelp-expandtemplates-param-title": "Titlul paginii.",
 	"apihelp-expandtemplates-param-text": "Wikitext de convertit.",
+	"apihelp-query+extlinks-param-protocol": "Protocolul URL-ului. Dacă <var>interogarea este goală și $1</var> este setată, protocolul este <kbd>http</kbd> și <kbd>https</kbd> . Lăsați atât aceasta, cât și <var>interogarea $1</var> goale pentru a lista toate linkurile externe.Google\nAveți nevoie de mai mult",
+	"apihelp-query+exturlusage-param-protocol": "\nProtocolul URL-ului. Dacă <var>interogarea este goală și $1</var> este setată, protocolul este <kbd>http</kbd> și <kbd>https</kbd> . Lăsați atât aceasta, cât și <var>interogarea $1</var> goale pentru a lista toate linkurile externe.",
 	"apierror-readonly": "Wiki-ul este în prezent în modul doar de citit."
 }

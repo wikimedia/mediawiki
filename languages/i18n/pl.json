@@ -2313,7 +2313,7 @@
 	"linksearch-pat": "Wzorzec wyszukiwania:",
 	"linksearch-ns": "Przestrzeń nazw:",
 	"linksearch-ok": "Szukaj",
-	"linksearch-text": "Można użyć symboli wieloznacznych, takich jak „*.wikipedia.org”.<br />\n{{PLURAL:$2|Obsługiwany protokół|Obsługiwane protokoły}}: $1 (jeśli nie podano, domyślny to http://).",
+	"linksearch-text": "Można użyć symboli wieloznacznych, takich jak „*.wikipedia.org”.<br />\n{{PLURAL:$2|Obsługiwany protokół|Obsługiwane protokoły}}: $1 (jeśli nie podano, domyślny to http:// oraz https://).",
 	"linksearch-line": "$1 link na stronie $2",
 	"linksearch-error": "Symbolu wieloznacznego można użyć wyłącznie na początku nazwy hosta.",
 	"listusersfrom": "Pokaż użytkowników zaczynając od:",

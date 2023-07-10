@@ -1353,6 +1353,7 @@
 	"group-suppress": "秘匿者",
 	"group-all": "(全員)",
 	"group-user-member": "{{GENDER:$1|登録利用者}}",
+	"group-named-member": "{{GENDER:$1|登録ユーザー}}",
 	"group-autoconfirmed-member": "{{GENDER:$1|自動承認された利用者}}",
 	"group-bot-member": "{{GENDER:$1|ボット}}",
 	"group-sysop-member": "{{GENDER:$1|管理者}}",

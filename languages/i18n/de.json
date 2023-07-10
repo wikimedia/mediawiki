@@ -2330,7 +2330,7 @@
 	"linksearch-pat": "Suchmuster:",
 	"linksearch-ns": "Namensraum:",
 	"linksearch-ok": "Suchen",
-	"linksearch-text": "Es können Platzhalter, wie beispielsweise <code>*.beispiel.de</code>, benutzt werden.<br>\n{{PLURAL:$2|Unterstütztes Protokoll|Unterstützte Protokolle}}: $1 (Standard ist http, falls kein Protokoll angegeben ist.)",
+	"linksearch-text": "Es können Platzhalter, wie beispielsweise <code>*.beispiel.de</code>, benutzt werden.<br>\n{{PLURAL:$2|Unterstütztes Protokoll|Unterstützte Protokolle}}: $1 (Standard ist http:// und https://, falls kein Protokoll angegeben ist.)",
 	"linksearch-line": "$1 ist verlinkt von $2",
 	"linksearch-error": "Wildcards können nur am Anfang der URL verwendet werden.",
 	"listusersfrom": "Zeige Benutzer ab:",
