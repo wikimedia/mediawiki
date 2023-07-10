@@ -11,7 +11,6 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->overrideConfigValue( MainConfigNames::UseMediaWikiUIEverywhere, false );
 		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, false );
 
 		$langFactory = $this->getServiceContainer()->getLanguageFactory();
@@ -830,6 +829,23 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 			$html = Html::inlineScript( $code );
 		}
 		$this->assertSame( $expected, $html );
+	}
+
+	public function testGetTextInputAttributes() {
+		$this->setMwGlobals( 'wgUseMediaWikiUIEverywhere', true );
+		$attrs = Html::getTextInputAttributes( [ 'class' => 'foo' ] );
+		$attrsNew = Html::getTextInputAttributes( [ 'class' => 'cdx-text-input__input' ] );
+		$attrsArray = Html::getTextInputAttributes( [
+			'class' => [ 'foo' ]
+		] );
+		$attrsArrayNew = Html::getTextInputAttributes( [
+			'class' => [ 'cdx-text-input__input', 'bar' ]
+		] );
+
+		$this->assertSame( [ 'foo', 'mw-ui-input' ], $attrs[ 'class' ] );
+		$this->assertSame( [ 'cdx-text-input__input' ], $attrsNew[ 'class' ] );
+		$this->assertSame( [ 'foo', 'mw-ui-input' ], $attrsArray[ 'class' ] );
+		$this->assertSame( [ 'cdx-text-input__input', 'bar' ], $attrsArrayNew[ 'class' ] );
 	}
 }
 

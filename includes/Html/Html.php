@@ -152,8 +152,9 @@ class Html {
 			if ( isset( $attrs['class'] ) ) {
 				$classAsArray = is_string( $attrs[ 'class' ] ) ? explode( ' ', $attrs[ 'class' ] ) : $attrs[ 'class' ];
 				if ( !in_array( $cdxInputClass, $classAsArray ) ) {
-					$attrs['class'][] = 'mw-ui-input';
+					$classAsArray[] = 'mw-ui-input';
 				}
+				$attrs['class'] = $classAsArray;
 			} else {
 				$attrs['class'] = 'mw-ui-input';
 			}
