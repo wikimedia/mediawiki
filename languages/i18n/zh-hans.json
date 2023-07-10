@@ -3039,7 +3039,7 @@
 	"importnofile": "没有上传导入文件。",
 	"importuploaderrorsize": "上传导入文件失败。\n该文件大于允许的上传大小。",
 	"importuploaderrorpartial": "上传导入文件失败。\n文件只有部分已经上传。",
-	"importuploaderrortemp": "上传导入文件失败。\n临时文件夹已遗失。",
+	"importuploaderrortemp": "上传导入文件失败。\n缺少临时文件夹。",
 	"import-parse-failure": "XML导入解析失败",
 	"import-noarticle": "没有页面导入！",
 	"import-nonewrevisions": "没有版本导入（所有都已存在或因错误跳过）。",

@@ -1906,7 +1906,7 @@
 	"emailuserfooter": "ई ई-मेल $1 {{GENDER:$1|द्वारा}} {{GENDER:$2|$2}}क भेजल गेल छल जेकर लेल \"{{int:emailuser}}\" कार्यके {{SITENAME}} पर प्रयोगमे लाबल गेल छल।",
 	"usermessage-summary": "प्रणाली सन्देश छोड़ि रहल अछि।",
 	"usermessage-editor": "प्रणालीक दूत",
-	"usermessage-template": "मीडियाविकी:प्रयोक्ता संदेश",
+	"usermessage-template": "MediaWiki:प्रयोक्ता संदेश",
 	"watchlist": "साकांक्षसूची",
 	"mywatchlist": "साकांक्ष-सूची",
 	"watchlistfor2": "$1 $2 लेल",

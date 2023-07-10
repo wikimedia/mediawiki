@@ -1748,7 +1748,7 @@
 	"apierror-promised-nonwrite-api": "כותר <code>Promise-Non-Write-API-Action</code> של HTTP אינו יכול להישלח למודולי API שפועלים במצב כתיבה.",
 	"apierror-protect-invalidaction": "סוג הגנה בלתי־תקין \"$1\".",
 	"apierror-protect-invalidlevel": "קמת הגנה בלתי־תקינה \"$1\".",
-	"apierror-ratelimited": "עברת את מכסת הקצב שלך. נא להמתין זמן־מה ונסות שוב.",
+	"apierror-ratelimited": "עברת את מכסת הקצב שלך. נא להמתין זמן־מה ולנסות שוב.",
 	"apierror-readapidenied": "יש צורך בהרשאת קריאה כדי להשתמש במודול הזה.",
 	"apierror-readonly": "הוויקי הזה במצב לקריאה בלבד עכשיו.",
 	"apierror-reauthenticate": "לא עברת אימות לאחרונה בהתחברות הזאת, נא להתאמת מחדש.",
