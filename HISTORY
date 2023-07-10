@@ -27,7 +27,9 @@ oldest supported upgrading version, MediaWiki 1.35.
 Some specific notes for MediaWiki 1.40 upgrades are below:
 * Maintenance scripts should now be executed using maintenance/run.php, e.g.
   maintenance/run.php update not maintenance/update.php as before.
-* Four extensions have now been bundled with MediaWiki:
+* Five extensions have now been bundled with MediaWiki:
+  * The DiscussionTools extension, which provides a forum-like editing
+    experience for wikitext-based discussion pages.
   * The Echo extension, which provides a system of user notifications.
   * The Linter extension, which warns about use of deprecated wikitext.
   * The LoginNotify extension, which warns users about failed attempted logins.
