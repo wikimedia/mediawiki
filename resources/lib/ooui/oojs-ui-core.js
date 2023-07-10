@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.47.3
+ * OOUI v0.47.4
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2023 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2023-07-06T18:04:41Z
+ * Date: 2023-07-10T16:09:12Z
  */
 ( function ( OO ) {
 
@@ -6813,7 +6813,7 @@ OO.ui.OptionWidget.prototype.setSelected = function ( state ) {
 		this.selected = !!state;
 		this.$element
 			.toggleClass( 'oo-ui-optionWidget-selected', state )
-			.attr( 'aria-selected', state.toString() );
+			.attr( 'aria-selected', this.selected.toString() );
 		if ( state && this.constructor.static.scrollIntoViewOnSelect ) {
 			this.scrollElementIntoView();
 		}
@@ -7698,7 +7698,7 @@ OO.ui.SelectWidget.prototype.unselectItem = function ( unselectedItem ) {
 		// Unselect all
 		this.selectItem();
 	} else if ( unselectedItem.isSelected() ) {
-		unselectedItem.setSelected();
+		unselectedItem.setSelected( false );
 		// Other items might still be selected in multiselect mode
 		this.emit( 'select', this.findSelectedItems() );
 	}
@@ -9006,7 +9006,7 @@ OO.ui.RadioOptionWidget.prototype.setSelected = function ( state ) {
 
 	this.radio.setSelected( state );
 	this.$element
-		.attr( 'aria-checked', state.toString() )
+		.attr( 'aria-checked', this.selected.toString() )
 		.removeAttr( 'aria-selected' );
 
 	return this;

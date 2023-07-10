@@ -1,5 +1,9 @@
 # OOUI Release History
 
+## v0.47.4 / 2023-07-10
+### Code
+* Fix TypeError in OptionWidget (Thiemo Kreuz)
+
 ## v0.47.3 / 2023-07-06
 ### Code
 * Revert "TextInputWidget: Use Custom Elements for #onElementAttach support" (Roan Kattouw)
