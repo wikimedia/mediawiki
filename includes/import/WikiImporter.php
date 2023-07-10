@@ -709,8 +709,9 @@ class WikiImporter {
 						'message' => $error->message,
 					] );
 				} else {
-					throw new MWException( "Expected <mediawiki> tag, got " .
-						$this->reader->localName );
+					throw new MWException(
+						"Expected '<mediawiki>' tag, got '<{$this->reader->localName}>' tag."
+					);
 				}
 			}
 			$this->debug( "<mediawiki> tag is correct." );
