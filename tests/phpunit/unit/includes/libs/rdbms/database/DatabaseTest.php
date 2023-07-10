@@ -715,7 +715,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 	public function testShouldRejectPersistentWriteQueryOnReplicaDatabaseConnection() {
 		$this->expectException( DBReadOnlyRoleError::class );
-		$this->expectDeprecationMessage( 'Server is configured as a read-only replica database.' );
+		$this->expectExceptionMessage( 'Server is configured as a read-only replica database.' );
 
 		$dbr = new DatabaseTestHelper(
 			__CLASS__ . '::' . $this->getName(),
@@ -750,7 +750,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 	public function testShouldRejectPseudoPermanentTemporaryTableOperationsOnReplicaDatabaseConnection() {
 		$this->expectException( DBReadOnlyRoleError::class );
-		$this->expectDeprecationMessage( 'Server is configured as a read-only replica database.' );
+		$this->expectExceptionMessage( 'Server is configured as a read-only replica database.' );
 
 		$dbr = new DatabaseTestHelper(
 			__CLASS__ . '::' . $this->getName(),
@@ -779,7 +779,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 	public function testShouldRejectWriteQueryOnPrimaryDatabaseConnectionWhenReplicaQueryRoleFlagIsSet() {
 		$this->expectException( DBReadOnlyRoleError::class );
-		$this->expectDeprecationMessage( 'Cannot write; target role is DB_REPLICA' );
+		$this->expectExceptionMessage( 'Cannot write; target role is DB_REPLICA' );
 
 		$dbr = new DatabaseTestHelper(
 			__CLASS__ . '::' . $this->getName(),
