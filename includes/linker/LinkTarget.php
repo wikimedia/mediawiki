@@ -21,6 +21,10 @@
 namespace MediaWiki\Linker;
 
 /**
+ * Represents the target of a wiki link.
+ *
+ * @see https://www.mediawiki.org/wiki/Manual:Modeling_pages
+ *
  * @since 1.27
  */
 interface LinkTarget {

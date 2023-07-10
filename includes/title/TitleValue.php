@@ -27,14 +27,14 @@ use Wikimedia\Assert\ParameterAssertionException;
 use Wikimedia\Assert\ParameterTypeException;
 
 /**
- * Represents a page (or page fragment) title within MediaWiki.
+ * Represents the target of a wiki link.
  *
  * @note In contrast to Title, this is designed to be a plain value object. That is,
  * it is immutable, does not use global state, and causes no side effects.
  *
  * @newable
  *
- * @see https://www.mediawiki.org/wiki/Requests_for_comment/TitleValue
+ * @see https://www.mediawiki.org/wiki/Manual:Modeling_pages
  * @since 1.23
  */
 class TitleValue implements LinkTarget {

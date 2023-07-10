@@ -35,6 +35,8 @@ use Wikimedia\Assert\PreconditionException;
  *       at different times. In the future, the contract of this interface is intended
  *       to be changed to disallow this.
  *
+ * @see https://www.mediawiki.org/wiki/Manual:Modeling_pages
+ *
  * @stable to type
  *
  * @since 1.36
