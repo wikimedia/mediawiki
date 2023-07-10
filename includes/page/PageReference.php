@@ -42,6 +42,8 @@ use MediaWiki\DAO\WikiAwareEntity;
  *   meaning of the "local" Wiki ID is preserved if the PageReference originated on
  *   another wiki.
  *
+ * @see https://www.mediawiki.org/wiki/Manual:Modeling_pages
+ *
  * @stable to type
  * @since 1.37
  * @ingroup Page

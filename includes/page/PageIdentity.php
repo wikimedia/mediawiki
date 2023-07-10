@@ -58,6 +58,8 @@ use Wikimedia\Assert\PreconditionException;
  *   meaning of the "local" Wiki ID is preserved if the PageIdentity originated on
  *   another wiki.
  *
+ * @see https://www.mediawiki.org/wiki/Manual:Modeling_pages
+ *
  * @stable to type
  * @since 1.36
  * @ingroup Page

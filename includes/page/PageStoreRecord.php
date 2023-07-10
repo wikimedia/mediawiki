@@ -29,6 +29,8 @@ use Wikimedia\Assert\Assert;
  *
  * Corresponds to a row in the page table.
  *
+ * @see https://www.mediawiki.org/wiki/Manual:Modeling_pages
+ *
  * @since 1.36
  */
 class PageStoreRecord extends PageIdentityValue implements ExistingPageRecord {
