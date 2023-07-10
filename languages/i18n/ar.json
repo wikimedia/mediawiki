@@ -105,7 +105,8 @@
 			"AA800",
 			"Karim185.3",
 			"MRidhaAJ",
-			"Alshamiri1"
+			"Alshamiri1",
+			"أيوب"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -3541,7 +3542,7 @@
 	"specialpages-group-pages": "قوائم الصفحات",
 	"specialpages-group-pagetools": "أدوات الصفحات",
 	"specialpages-group-wiki": "البيانات والأدوات",
-	"specialpages-group-redirects": "صفحات خاصة تحول",
+	"specialpages-group-redirects": "التحويلات",
 	"specialpages-group-spam": "أدوات السبام",
 	"specialpages-group-developer": "أدوات المطورين",
 	"blankpage": "صفحة فارغة",
@@ -3685,7 +3686,7 @@
 	"pagehistory": "تاريخ الصفحة",
 	"specialpagehistory-page": "الصفحة المستهدفة",
 	"specialpagehistory-submit": "انتقل إلى صفحة",
-	"purge": "تطهير",
+	"purge": "إفراغ الكاش",
 	"specialpurge-page": "الصفحة المستهدفة",
 	"specialpurge-submit": "انتقل إلى صفحة",
 	"dberr-problems": "عذرا! هذا الموقع يعاني من صعوبات تقنية.",

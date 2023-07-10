@@ -23,6 +23,7 @@
 	"exif-colorspace": "Koloro-spaco",
 	"exif-pixelxdimension": "Larjeso dil imajo",
 	"exif-pixelydimension": "Altajo dil imajo",
+	"exif-usercomment": "Komenti da uzeri",
 	"exif-datetimeoriginal": "Dio e horo di produktado di la datumaro",
 	"exif-datetimedigitized": "Dio e horo di la kopio kun \"scanner\"",
 	"exif-exposuretime": "Expozo-tempo en sekundi",
