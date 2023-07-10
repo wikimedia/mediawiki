@@ -7,6 +7,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Page\WikiPageFactory;
@@ -158,10 +159,13 @@ class PreloadedContentBuilder {
 				return $handler->makeEmptyContent();
 			}
 
-			return new WikitextContent( $msg
-				->params( $preloadParams )
-				->inContentLanguage()
-				->text()
+			return $this->transform(
+				new WikitextContent( $msg
+					->params( $preloadParams )
+					->inContentLanguage()
+					->plain()
+				),
+				$title
 			);
 		}
 
@@ -208,7 +212,14 @@ class PreloadedContentBuilder {
 
 			$content = $converted;
 		}
+		return $this->transform( $content, $title, $preloadParams );
+	}
 
+	private function transform(
+		Content $content,
+		PageReference $title,
+		array $preloadParams = []
+	) {
 		return $this->contentTransformer->preloadTransform(
 			$content,
 			$title,
