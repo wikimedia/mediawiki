@@ -41,7 +41,17 @@ You'll need to have Docker installed:
 [dc-binaries]: https://docs.docker.com/engine/install/binaries/
 [dc-non-root]: https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user
 
-### 2. Prepare `.env` file
+**Windows users**:
+
+We recommend [configuring Docker to use the Windows Subsystem for Linux (WSL)](https://docs.docker.com/desktop/wsl/#best-practices). This will result in performance improvements.
+
+### 2. Download MediaWiki files
+
+Download the latest MediaWiki files to your computer. One way to download the latest alpha version of MediaWiki is to [install git](https://git-scm.com/), open a shell, navigate to the directory where you want to save the files, then type `git clone https://gerrit.wikimedia.org/r/mediawiki/core.git mediawiki`.
+
+Optional: If you plan to submit patches to this repository, you will probably want to [create a Gerrit account](https://wikitech.wikimedia.org/wiki/Help:Create_a_Wikimedia_developer_account), then type `git remote set-url origin ssh://YOUR-GERRIT-USERNAME-HERE@gerrit.wikimedia.org:29418/mediawiki/core`, replacing YOUR-GERRIT-USERNAME-HERE with your Gerrit username. Please see the official [MediaWiki Gerrit tutorial](https://www.mediawiki.org/wiki/Gerrit/Tutorial) for more information.
+
+### 3. Prepare `.env` file
 
 Using a text editor, create a `.env` file in the root of the MediaWiki core
 repository, and copy these contents into that file:
@@ -75,7 +85,7 @@ services:
       - "host.docker.internal:host-gateway"
 ```
 
-### 3. Create the environment
+### 4. Create the environment
 
 * Start the containers:
   ```sh
