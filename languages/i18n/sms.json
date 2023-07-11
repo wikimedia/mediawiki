@@ -717,6 +717,8 @@
 	"tmp-create-error": "Kõskkpoddsaž teâttõõzz raajjmõš ij oʹnnstam.",
 	"uploadwarning": "Ruõkkâmvaartõs",
 	"savefile": "Ruõkk teâttõõzz",
+	"uploadscripted": "Tän teâttõõzzâst lij HTML- leʹbe skripttkoodd, koon neʹttlookki vuäitt puästtad tuʹlǩǩeed.",
+	"uploadvirus": "Teâttõõzzâst lij viirus!\nLââʹssteâđ: $1",
 	"upload-source": "Käivvteâttõs",
 	"sourcefilename": "Käivvteâttõõzz nõmm:",
 	"sourceurl": "Teâttkääiv URL-addrõs:",
