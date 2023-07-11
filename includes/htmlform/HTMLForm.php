@@ -1934,15 +1934,9 @@ class HTMLForm extends ContextSource {
 				. 'You probably called displayForm() without calling prepareForm() first.' );
 		}
 
-		$displayFormat = $this->getDisplayFormat();
-
 		$html = [];
 		$subsectionHtml = '';
 		$hasLabel = false;
-
-		// Conveniently, PHP method names are case-insensitive.
-		// For grep: this can call getDiv, getRaw, getInline, getVForm, getOOUI
-		$getFieldHtmlMethod = $displayFormat === 'table' ? 'getTableRow' : ( 'get' . $displayFormat );
 
 		foreach ( $fields as $key => $value ) {
 			if ( $value instanceof HTMLFormField ) {
@@ -1950,7 +1944,7 @@ class HTMLForm extends ContextSource {
 					? $this->mFieldData[$key]
 					: $value->getDefault();
 
-				$retval = $value->$getFieldHtmlMethod( $v ?? '' );
+				$retval = $this->formatField( $value, $v ?? '' );
 
 				// check, if the form field should be added to
 				// the output.
@@ -2010,9 +2004,27 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
+	 * Generate the HTML for an individual field in the current display format.
+	 * @since 1.41
+	 * @stable to override
+	 * @param HTMLFormField $field
+	 * @param mixed $value
+	 * @return string|Stringable HTML
+	 */
+	protected function formatField( HTMLFormField $field, $value ) {
+		$displayFormat = $this->getDisplayFormat();
+
+		// Conveniently, PHP method names are case-insensitive.
+		// For grep: this can call getDiv, getRaw, getInline, getVForm, getOOUI
+		$getFieldHtmlMethod = $displayFormat === 'table' ? 'getTableRow' : ( 'get' . $displayFormat );
+
+		return $field->$getFieldHtmlMethod( $value );
+	}
+
+	/**
 	 * Put a form section together from the individual fields' HTML, merging it and wrapping.
 	 * @stable to override
-	 * @param array $fieldsHtml
+	 * @param array $fieldsHtml Array of outputs from formatField()
 	 * @param string $sectionName
 	 * @param bool $anyFieldHasLabel
 	 * @return string HTML
