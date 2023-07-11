@@ -154,7 +154,7 @@ class Html {
 				if ( !in_array( $cdxInputClass, $classAsArray ) ) {
 					$classAsArray[] = 'mw-ui-input';
 				}
-				$attrs['class'] = $classAsArray;
+				$attrs['class'] = implode( ' ', $classAsArray );
 			} else {
 				$attrs['class'] = 'mw-ui-input';
 			}

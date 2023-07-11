@@ -842,10 +842,11 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 			'class' => [ 'cdx-text-input__input', 'bar' ]
 		] );
 
-		$this->assertSame( [ 'foo', 'mw-ui-input' ], $attrs[ 'class' ] );
-		$this->assertSame( [ 'cdx-text-input__input' ], $attrsNew[ 'class' ] );
-		$this->assertSame( [ 'foo', 'mw-ui-input' ], $attrsArray[ 'class' ] );
-		$this->assertSame( [ 'cdx-text-input__input', 'bar' ], $attrsArrayNew[ 'class' ] );
+		// TODO: use provider
+		$this->assertSame( 'foo mw-ui-input', $attrs[ 'class' ] );
+		$this->assertSame( 'cdx-text-input__input', $attrsNew[ 'class' ] );
+		$this->assertSame( 'foo mw-ui-input', $attrsArray[ 'class' ] );
+		$this->assertSame( 'cdx-text-input__input bar', $attrsArrayNew[ 'class' ] );
 	}
 }
 
