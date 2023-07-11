@@ -88,6 +88,7 @@ class Names {
 		'bcc' => 'جهلسری بلوچی', # Southern Balochi
 		'bci' => 'wawle', # Baoulé
 		'bcl' => 'Bikol Central', # Bikol: Central Bicolano language
+		'bdr' => 'Bajau Sama', # West Coast Bajau
 		'be' => 'беларуская', # Belarusian normative
 		'be-tarask' => 'беларуская (тарашкевіца)', # Belarusian in Taraskievica orthography
 		'be-x-old' => 'беларуская (тарашкевіца)', # (be-tarask compat)
