@@ -6483,6 +6483,18 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Temporary flag to stop shipping the styles for the legacy media HTML structure
+	 * that has been replaced when $wgParserEnableLegacyMediaDOM is `false`.  This is
+	 * configured separately to give time for templates and extensions that mimic the
+	 * the parser output to be migrated away.  See T318433
+	 *
+	 * @internal
+	 */
+	public const UseLegacyMediaStyles = [
+		'default' => false,
+	];
+
+	/**
 	 * Allow raw, unchecked HTML in "<html>...</html>" sections.
 	 *
 	 * THIS IS VERY DANGEROUS on a publicly editable site, so USE $wgGroupPermissions

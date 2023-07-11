@@ -145,11 +145,7 @@ class SkinModule extends LessVarFileModule {
 			// Reserves whitespace for the logo in a pseudo element.
 			'print' => [ 'resources/src/mediawiki.skinning/logo-print.less' ],
 		],
-		'content-media' => [
-			'all' => [ 'resources/src/mediawiki.skinning/content.thumbnails-common.less' ],
-			'screen' => [ 'resources/src/mediawiki.skinning/content.thumbnails-screen.less' ],
-			'print' => [ 'resources/src/mediawiki.skinning/content.thumbnails-print.less' ],
-		],
+		'content-media' => [],
 		'content-links' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/content.links.less' ]
 		],
@@ -413,25 +409,45 @@ class SkinModule extends LessVarFileModule {
 						);
 					}
 				}
-				if ( $feature === 'content-media' && (
-					!$this->getConfig()->get( MainConfigNames::ParserEnableLegacyMediaDOM ) ||
-					$this->getConfig()->get( MainConfigNames::UseContentMediaStyles )
-				) ) {
-					$featureFilePaths['all'][] = new FilePath(
-						'resources/src/mediawiki.skinning/content.media-common.less',
-						$defaultLocalBasePath,
-						$defaultRemoteBasePath
-					);
-					$featureFilePaths['screen'][] = new FilePath(
-						'resources/src/mediawiki.skinning/content.media-screen.less',
-						$defaultLocalBasePath,
-						$defaultRemoteBasePath
-					);
-					$featureFilePaths['print'][] = new FilePath(
-						'resources/src/mediawiki.skinning/content.media-print.less',
-						$defaultLocalBasePath,
-						$defaultRemoteBasePath
-					);
+
+				if ( $feature === 'content-media' ) {
+					if ( $this->getConfig()->get( MainConfigNames::UseLegacyMediaStyles ) ) {
+						$featureFilePaths['all'][] = new FilePath(
+							'resources/src/mediawiki.skinning/content.thumbnails-common.less',
+							$defaultLocalBasePath,
+							$defaultRemoteBasePath
+						);
+						$featureFilePaths['screen'][] = new FilePath(
+							'resources/src/mediawiki.skinning/content.thumbnails-screen.less',
+							$defaultLocalBasePath,
+							$defaultRemoteBasePath
+						);
+						$featureFilePaths['print'][] = new FilePath(
+							'resources/src/mediawiki.skinning/content.thumbnails-print.less',
+							$defaultLocalBasePath,
+							$defaultRemoteBasePath
+						);
+					}
+					if (
+						!$this->getConfig()->get( MainConfigNames::ParserEnableLegacyMediaDOM ) ||
+						$this->getConfig()->get( MainConfigNames::UseContentMediaStyles )
+					) {
+						$featureFilePaths['all'][] = new FilePath(
+							'resources/src/mediawiki.skinning/content.media-common.less',
+							$defaultLocalBasePath,
+							$defaultRemoteBasePath
+						);
+						$featureFilePaths['screen'][] = new FilePath(
+							'resources/src/mediawiki.skinning/content.media-screen.less',
+							$defaultLocalBasePath,
+							$defaultRemoteBasePath
+						);
+						$featureFilePaths['print'][] = new FilePath(
+							'resources/src/mediawiki.skinning/content.media-print.less',
+							$defaultLocalBasePath,
+							$defaultRemoteBasePath
+						);
+					}
 				}
 			}
 		}
