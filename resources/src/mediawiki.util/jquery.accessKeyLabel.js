@@ -1,7 +1,5 @@
 /**
  * jQuery plugin to update the tooltip to show the correct access key
- *
- * @class jQuery.plugin.accessKeyLabel
  */
 
 // Whether to use 'test-' instead of correct prefix (for unit tests)
@@ -174,7 +172,13 @@ function updateTooltip( element ) {
 /**
  * Update the titles for all elements in a jQuery selection.
  *
+ * @class updateTooltipAccessKeys
+ * @memberof jQuery.fn
  * @return {jQuery}
+ * @example
+ *   // Converts tooltip "[z]" to associated browser shortcut key e.g. "[ctrl-option-z]"
+ *   var $a = $('<a href="/wiki/Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main page</span></a>');
+ *   $a.updateTooltipAccessKeys();
  * @chainable
  */
 $.fn.updateTooltipAccessKeys = function () {
@@ -183,12 +187,6 @@ $.fn.updateTooltipAccessKeys = function () {
 	} );
 };
 
-/**
- * getAccessKeyLabel
- *
- * @method updateTooltipAccessKeys_getAccessKeyLabel
- * @inheritdoc #getAccessKeyLabel
- */
 $.fn.updateTooltipAccessKeys.getAccessKeyLabel = getAccessKeyLabel;
 
 /**
