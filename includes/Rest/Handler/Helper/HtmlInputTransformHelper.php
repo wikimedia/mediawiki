@@ -75,9 +75,6 @@ class HtmlInputTransformHelper {
 	/** @var StatsdDataFactoryInterface */
 	private $stats;
 
-	/** @var array|null */
-	private $parameters = null;
-
 	/**
 	 * @var HtmlToContentTransform
 	 */
@@ -299,7 +296,6 @@ class HtmlInputTransformHelper {
 		self::normalizeParameters( $body, $parameters );
 
 		$this->page = $page;
-		$this->parameters = $parameters;
 
 		if ( !isset( $body['html'] ) ) {
 			throw new HttpException( 'Expected `html` key in body' );
@@ -318,7 +314,7 @@ class HtmlInputTransformHelper {
 		// NOTE: Env::getContentModel will fall back to the page's recorded content model
 		//       if none is set here.
 		$this->transform->setOptions( [
-			'contentmodel' => $this->parameters['contentmodel'] ?? null,
+			'contentmodel' => $parameters['contentmodel'] ?? null,
 			'offsetType' => $body['offsetType'] ?? $this->envOptions['offsetType'],
 		] );
 
