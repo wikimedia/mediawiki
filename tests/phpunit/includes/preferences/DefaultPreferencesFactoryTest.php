@@ -230,6 +230,8 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 	 * @dataProvider emailAuthenticationProvider
 	 */
 	public function testEmailAuthentication( $user, $cssClass ) {
+		$this->overrideConfigValue( MainConfigNames::EmailAuthentication, true );
+
 		$prefs = $this->getPreferencesFactory()
 			->getFormDescriptor( $user, $this->context );
 		$this->assertArrayHasKey( 'cssclass', $prefs['emailauthentication'] );
