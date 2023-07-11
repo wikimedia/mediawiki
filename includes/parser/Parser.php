@@ -48,7 +48,6 @@ use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\SpecialPage\SpecialPageFactory;
-use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;
@@ -1143,7 +1142,7 @@ class Parser {
 
 	/**
 	 * Get a language object for use in parser functions such as {{FORMATNUM:}}
-	 * @return Language|StubUserLang
+	 * @return Language
 	 * @since 1.7
 	 * @deprecated since 1.40; use ::getTargetLanguage() instead.
 	 */
@@ -1158,7 +1157,7 @@ class Parser {
 	 *
 	 * @since 1.19
 	 *
-	 * @return Language|StubUserLang
+	 * @return Language
 	 */
 	public function getTargetLanguage() {
 		$target = $this->mOptions->getTargetLanguage();

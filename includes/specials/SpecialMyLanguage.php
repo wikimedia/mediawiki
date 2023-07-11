@@ -153,7 +153,6 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 		$baseLang = $base->getPageLanguage();
 
 		// T309329: Always use subpages for transclusion
-		// $baseLang can be StubUserLang, this order would pass the typehint on Language::equals - T326400
 		if ( !$forTransclusion && $baseLang->equals( $uiLang ) ) {
 			// Short circuit when the current UI language is the
 			// page's content language to avoid unnecessary page lookups.
