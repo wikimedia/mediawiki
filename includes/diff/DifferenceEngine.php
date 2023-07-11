@@ -38,7 +38,6 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\NameTableAccessException;
-use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -153,7 +152,7 @@ class DifferenceEngine extends ContextSource {
 	 */
 	private $mNewContent;
 
-	/** @var Language|StubUserLang */
+	/** @var Language */
 	protected $mDiffLang;
 
 	/** @var bool Have the revisions IDs been loaded */
@@ -448,14 +447,13 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
-	 * Get the language of the difference engine
+	 * Get the language in which the diff text is written
 	 *
-	 * @return Language|StubUserLang
+	 * @return Language
 	 */
 	public function getDiffLang() {
 		# Default language in which the diff text is written.
 		$this->mDiffLang ??= $this->getDefaultLanguage();
-
 		return $this->mDiffLang;
 	}
 
@@ -463,7 +461,7 @@ class DifferenceEngine extends ContextSource {
 	 * Get the language to use if none has been set by setTextLanguage().
 	 * Wikibase overrides this to use the user language.
 	 *
-	 * @return Language|StubUserLang
+	 * @return Language
 	 */
 	protected function getDefaultLanguage() {
 		return $this->getTitle()->getPageLanguage();

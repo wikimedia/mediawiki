@@ -54,12 +54,12 @@ use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Request\PathRouter;
 use MediaWiki\ResourceLoader\WikiModule;
-use MediaWiki\StubObject\StubUserLang;
 use MediaWikiTitleCodec;
 use Message;
 use MessageLocalizer;
 use MWException;
 use MWTimestamp;
+use RequestContext;
 use RuntimeException;
 use Sanitizer;
 use SpecialPage;
@@ -211,7 +211,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 
 	/**
 	 * Shorthand for getting a Language Converter for specific language
-	 * @param Language|StubUserLang $language Language of converter
+	 * @param Language $language Language of converter
 	 * @return ILanguageConverter
 	 */
 	private function getLanguageConverter( $language ): ILanguageConverter {
@@ -3795,13 +3795,13 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * e.g. $wgLang (such as special pages, which are in the user language).
 	 *
 	 * @since 1.18
-	 * @return Language|StubUserLang
+	 * @return Language
 	 */
 	public function getPageLanguage() {
-		global $wgLang, $wgLanguageCode;
+		global $wgLanguageCode;
 		if ( $this->isSpecialPage() ) {
 			// special pages are in the user language
-			return $wgLang;
+			return RequestContext::getMain()->getLanguage();
 		}
 
 		// Checking if DB language is set
@@ -3833,26 +3833,25 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/**
 	 * Get the language in which the content of this page is written when
 	 * viewed by user. Defaults to content language, but in certain cases it can be
-	 * e.g. $wgLang (such as special pages, which are in the user language).
+	 * e.g. the user language (such as special pages).
 	 *
 	 * @since 1.20
-	 * @return Language|StubUserLang
+	 * @return Language
 	 */
 	public function getPageViewLanguage() {
-		global $wgLang;
-
 		$services = MediaWikiServices::getInstance();
 
 		if ( $this->isSpecialPage() ) {
 			// If the user chooses a variant, the content is actually
 			// in a language whose code is the variant code.
-			$variant = $this->getLanguageConverter( $wgLang )->getPreferredVariant();
-			if ( $wgLang->getCode() !== $variant ) {
+			$userLang = RequestContext::getMain()->getLanguage();
+			$variant = $this->getLanguageConverter( $userLang )->getPreferredVariant();
+			if ( $userLang->getCode() !== $variant ) {
 				return $services->getLanguageFactory()
 					->getLanguage( $variant );
 			}
 
-			return $wgLang;
+			return $userLang;
 		}
 
 		// Checking if DB language is set

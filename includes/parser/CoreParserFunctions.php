@@ -30,7 +30,6 @@ use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SiteStats\SiteStats;
-use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\Title\Title;
 use Wikimedia\RemexHtml\Tokenizer\Attributes;
 use Wikimedia\RemexHtml\Tokenizer\PlainAttributes;
@@ -573,7 +572,7 @@ class CoreParserFunctions {
 	 *
 	 * @param int|float $num
 	 * @param ?string $raw
-	 * @param Language|StubUserLang $language
+	 * @param Language $language
 	 * @param MagicWordFactory|null $magicWordFactory To evaluate $raw
 	 * @return string
 	 */

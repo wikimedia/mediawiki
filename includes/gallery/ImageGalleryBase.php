@@ -23,7 +23,6 @@
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\Title\Title;
 
 /**
@@ -425,7 +424,7 @@ abstract class ImageGalleryBase extends ContextSource {
 
 	/**
 	 * Determines the correct language to be used for this image gallery
-	 * @return Language|StubUserLang
+	 * @return Language
 	 */
 	protected function getRenderLang() {
 		return $this->mParser
