@@ -3,14 +3,17 @@
 namespace MediaWiki\Tests\Integration\Context;
 
 use MediaWiki\Actions\ActionFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\User\UserOptionsLookup;
 use MediaWikiIntegrationTestCase;
 use RequestContext;
+use Skin;
 use User;
 
 /**
@@ -241,5 +244,64 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 		@$context->setTitle( $this->createMock( Title::class ) );
 		$this->assertSame( 'bbb', $context->getActionName(), 'second from factory' );
 		$this->assertSame( 'bbb', $context->getActionName(), 'cached second' );
+	}
+
+	private function registerTestSkin() {
+		$skin = $this->createMock( Skin::class );
+
+		$skinFactory = $this->getServiceContainer()->getSkinFactory();
+		$skinFactory->register( 'test', 'test',
+			static function () use ( $skin ) {
+				return $skin;
+			}
+		);
+		return $skin;
+	}
+
+	public function testGetSkinFromDefault() {
+		$this->overrideConfigValue( MainConfigNames::DefaultSkin, 'test' );
+		$skin = $this->registerTestSkin();
+		$context = new RequestContext();
+		$this->assertSame( $skin, $context->getSkin() );
+	}
+
+	public function testGetSkinFromPref() {
+		$optionsLookup = $this->createMock( UserOptionsLookup::class );
+		$optionsLookup
+			->expects( $this->once() )
+			->method( 'getOption' )
+			->with( $this->anything(), $this->equalTo( 'skin' ) )
+			->willReturn( 'test' );
+
+		$this->setService( 'UserOptionsLookup', $optionsLookup );
+
+		$skin = $this->registerTestSkin();
+
+		$context = new RequestContext();
+		$this->assertSame( $skin, $context->getSkin() );
+	}
+
+	public function testGetSkinFromStringHook() {
+		$skin = $this->registerTestSkin();
+		$this->setTemporaryHook(
+			'RequestContextCreateSkin',
+			static function ( $context, &$skin ) {
+				$skin = 'test';
+			}
+		);
+		$context = new RequestContext();
+		$this->assertSame( $skin, $context->getSkin() );
+	}
+
+	public function testGetSkinFromObjectHook() {
+		$skin = $this->createMock( Skin::class );
+		$this->setTemporaryHook(
+			'RequestContextCreateSkin',
+			static function ( $context, &$skinRes ) use ( $skin ) {
+				$skinRes = $skin;
+			}
+		);
+		$context = new RequestContext();
+		$this->assertSame( $skin, $context->getSkin() );
 	}
 }
