@@ -138,7 +138,7 @@ class Html {
 	/**
 	 * Modifies a set of attributes meant for text input elements
 	 * and apply a set of default attributes.
-	 * Removes size attribute when $wgUseMediaWikiUIEverywhere enabled.
+	 *
 	 * @param array $attrs An attribute array.
 	 * @return array Modified attributes array
 	 */
