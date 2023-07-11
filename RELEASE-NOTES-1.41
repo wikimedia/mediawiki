@@ -118,6 +118,7 @@ because of Phabricator reports.
 * (T333425) Added language support for Iraqi (Mesopotamian) Arabic (acm).
 * (T336919) Added language support for Crimean Tatar (Romania) (crh-ro).
 * (T338416) Added language support for Betawi (bew).
+* (T341545) Added language support for West Coast Bajau (a.k.a. Sama; bdr).
 * (T332118) Namespace translations for Angika (anp) were added
 
 === Breaking changes in 1.41 ===
