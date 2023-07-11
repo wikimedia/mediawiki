@@ -77,6 +77,21 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	/**
+	 * @covers Xml::input
+	 * @covers Html::getTextInputAttributes
+	 */
+	public function testInputWithMWUIEverywhere() {
+		$this->overrideConfigValues( [
+			MainConfigNames::UseMediaWikiUIEverywhere => true,
+		] );
+
+		$this->assertSame(
+			'<input name="name" class="foo mw-ui-input" />',
+			Xml::input( 'name', false, false, [ 'class' => 'foo' ] )
+		);
+	}
+
 	public function testOpenElement() {
 		$this->assertEquals(
 			'<element k="v">',
