@@ -118,6 +118,11 @@ services:
   ```
   Windows users: make sure you run the above command in PowerShell as it does not work in Bash.
 
+* Windows users: Make sure to set the SQLite directory to be writable.
+  ```sh
+  docker compose exec mediawiki chmod -R o+rwx cache/sqlite
+  ```
+
 Done! The wiki should now be available for you at <http://localhost:8080>.
 
 ## Usage
