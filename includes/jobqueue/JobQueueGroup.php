@@ -18,7 +18,6 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 use Wikimedia\UUID\GlobalIdGenerator;
@@ -37,8 +36,6 @@ class JobQueueGroup {
 	protected $domain;
 	/** @var ConfiguredReadOnlyMode Read only mode */
 	protected $readOnlyMode;
-	/** @var bool Whether the wiki is not recognized in configuration */
-	protected $invalidDomain = false;
 	/** @var array */
 	private $jobClasses;
 	/** @var array */
@@ -62,14 +59,11 @@ class JobQueueGroup {
 
 	private const PROC_CACHE_TTL = 15; // integer; seconds
 
-	private const CACHE_VERSION = 1; // integer; cache version
-
 	/**
 	 * @internal Use MediaWikiServices::getJobQueueGroupFactory
 	 *
 	 * @param string $domain Wiki domain ID
 	 * @param ConfiguredReadOnlyMode $readOnlyMode Read-only mode
-	 * @param bool $invalidDomain Whether the wiki is not recognized in configuration
 	 * @param array $jobClasses
 	 * @param array $jobTypeConfiguration
 	 * @param array $jobTypesExcludedFromDefaultQueue
@@ -80,7 +74,6 @@ class JobQueueGroup {
 	public function __construct(
 		$domain,
 		ConfiguredReadOnlyMode $readOnlyMode,
-		bool $invalidDomain,
 		array $jobClasses,
 		array $jobTypeConfiguration,
 		array $jobTypesExcludedFromDefaultQueue,
@@ -91,7 +84,6 @@ class JobQueueGroup {
 		$this->domain = $domain;
 		$this->readOnlyMode = $readOnlyMode;
 		$this->cache = new MapCacheLRU( 10 );
-		$this->invalidDomain = $invalidDomain;
 		$this->jobClasses = $jobClasses;
 		$this->jobTypeConfiguration = $jobTypeConfiguration;
 		$this->jobTypesExcludedFromDefaultQueue = $jobTypesExcludedFromDefaultQueue;
@@ -127,17 +119,9 @@ class JobQueueGroup {
 	 * and updates the aggregate job queue information cache as needed.
 	 *
 	 * @param IJobSpecification|IJobSpecification[] $jobs A single Job or a list of Jobs
-	 * @throws InvalidArgumentException
 	 * @return void
 	 */
 	public function push( $jobs ) {
-		if ( $this->invalidDomain ) {
-			// Do not enqueue job that cannot be run (T171371)
-			$e = new LogicException( "Domain '{$this->domain}' is not recognized." );
-			MWExceptionHandler::logException( $e );
-			return;
-		}
-
 		$jobs = is_array( $jobs ) ? $jobs : [ $jobs ];
 		if ( $jobs === [] ) {
 			return;
@@ -196,11 +180,6 @@ class JobQueueGroup {
 	 * @since 1.26
 	 */
 	public function lazyPush( $jobs ) {
-		if ( $this->invalidDomain ) {
-			// Do not enqueue job that cannot be run (T171371)
-			throw new LogicException( "Domain '{$this->domain}' is not recognized." );
-		}
-
 		if ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' ) {
 			$this->push( $jobs );
 			return;
@@ -224,6 +203,7 @@ class JobQueueGroup {
 	 * @param int $flags Bitfield of JobQueueGroup::USE_* constants
 	 * @param array $ignored List of job types to ignore
 	 * @return RunnableJob|false Returns false on failure
+	 * @throws JobQueueError
 	 */
 	public function pop( $qtype = self::TYPE_DEFAULT, $flags = 0, array $ignored = [] ) {
 		$job = false;
@@ -313,7 +293,7 @@ class JobQueueGroup {
 	 * @return string[]
 	 */
 	public function getQueueTypes() {
-		return array_keys( $this->getCachedConfigVar( 'wgJobClasses' ) );
+		return array_keys( $this->jobClasses );
 	}
 
 	/**
@@ -429,32 +409,6 @@ class JobQueueGroup {
 		}
 
 		return $this->coalescedQueues;
-	}
-
-	/**
-	 * @param string $name
-	 * @return mixed
-	 */
-	private function getCachedConfigVar( $name ) {
-		// @TODO: cleanup this whole method with a proper config system
-		if ( WikiMap::isCurrentWikiDbDomain( $this->domain ) ) {
-			return $GLOBALS[$name]; // common case
-		} else {
-			$wiki = WikiMap::getWikiIdFromDbDomain( $this->domain );
-			$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-			$value = $cache->getWithSetCallback(
-				$cache->makeGlobalKey( 'jobqueue', 'configvalue', $this->domain, $name ),
-				$cache::TTL_DAY + mt_rand( 0, $cache::TTL_DAY ),
-				static function () use ( $wiki, $name ) {
-					global $wgConf;
-					// @TODO: use the full domain ID here
-					return [ 'v' => $wgConf->getConfig( $wiki, $name ) ];
-				},
-				[ 'pcTTL' => WANObjectCache::TTL_PROC_LONG ]
-			);
-
-			return $value['v'];
-		}
 	}
 
 	/**

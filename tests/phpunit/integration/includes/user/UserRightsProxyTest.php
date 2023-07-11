@@ -6,6 +6,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
 use MediaWikiIntegrationTestCase;
+use SiteConfiguration;
 use UserRightsProxy;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -22,6 +23,10 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
+
+		$siteConfig = new SiteConfiguration();
+		$siteConfig->wikis = [ 'foowiki' ];
+		$this->setMwGlobals( 'wgConf', $siteConfig );
 
 		$this->overrideConfigValue( MainConfigNames::LocalDatabases, [ 'foowiki' ] );
 
