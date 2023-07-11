@@ -35,7 +35,8 @@
 			"아라",
 			"Bgo eiu",
 			"Jagseer S Sidhu",
-			"Base"
+			"Base",
+			"Kuldeepburjbhalaike"
 		]
 	},
 	"tog-underline": "ਲਿੰਕ ਹੇਠ-ਲਾਈਨ:",
@@ -777,7 +778,7 @@
 	"nextn-title": "{{PLURAL:$1|ਅਗਲਾ|ਅਗਲੇ}} $1 {{PLURAL:$1|ਨਤੀਜਾ|ਨਤੀਜੇ}}",
 	"shown-title": "ਪ੍ਰਤੀ ਸਫ਼ਾ $1 {{PLURAL:$1|ਨਤੀਜਾ|ਨਤੀਜੇ}} ਵਿਖਾਓ",
 	"viewprevnext": "ਵੇਖੋ ($1 {{int:pipe-separator}} $2) ($3)",
-	"searchmenu-exists": "{{SITENAME}} ਉੱਤੇ \"[[: $1 ]]\" ਨਾਂ ਦਾ ਇੱਕ ਪੰਨਾ ਹੈ। {{PLURAL:$2| 0=|ਮਿਲੇ ਹੋਏ ਹੋਰ ਖੋਜ ਨਤੀਜੇ ਵੀ ਦੇਖੋ।}}",
+	"searchmenu-exists": "{{SITENAME}} ਉੱਤੇ \"[[:$1]]\" ਨਾਂ ਦਾ ਇੱਕ ਪੰਨਾ ਹੈ। {{PLURAL:$2|0=|ਹੋਰ ਖੋਜ ਨਤੀਜੇ ਵੀ ਦੇਖੋ।}}",
 	"searchmenu-new": "ਇਸ ਵਿਕੀ ਉੱਤੇ ਸਫ਼ਾ \"[[:$1]]\" ਬਣਾਓ! {{PLURAL:$2|0=|ਇਸਦੇ ਨਾਲ ਖੋਜ ਦੇ ਨਤੀਜੇ ਵੀ ਦੇਖ ਲਵੋ।}}",
 	"searchprofile-articles": "ਸਮੱਗਰੀ ਸਫ਼ੇ",
 	"searchprofile-images": "ਮਲਟੀਮੀਡੀਆ",
@@ -2131,6 +2132,7 @@
 	"feedback-thanks-title": "ਧੰਨਵਾਦ!",
 	"feedback-useragent": "ਉਪਭੋਗੀ ਏਜੰਟ:",
 	"searchsuggest-search": "ਖੋਜ {{SITENAME}}",
+	"searchsuggest-containing": "ਵਾਲੇ ਪੰਨਿਆਂ ਦੀ ਖੋਜ ਕਰੋ",
 	"api-clientside-error-timeout": "ਸਰਵਰ ਨੇ ਉਮੀਦ ਦੇ ਸਮੇਂ ਦੇ ਵਿਚ-ਵਿਚ ਕੋਈ ਜੁਆਬ ਨਹੀਂ ਦਿੱਤਾ।",
 	"api-error-badtoken": "ਅੰਦਰੂਨੀ ਦੋਸ਼: ਗ਼ਲਤ ਟੋਕਨ",
 	"api-error-emptypage": "ਨਵੇਂ, ਖ਼ਾਲੀ ਸਫ਼ੇ ਬਣਾਉਣ ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ ਹੈ।",

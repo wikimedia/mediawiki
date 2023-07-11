@@ -60,7 +60,9 @@
 			"தமிழ்த்தம்பி",
 			"மதனாஹரன்",
 			"බිඟුවා",
-			"아라"
+			"아라",
+			"McDutchie",
+			"Sridhar G"
 		]
 	},
 	"tog-underline": "அடிக்கோடிட்டத்தை இணை:",
@@ -2892,7 +2894,7 @@
 	"revdelete-restricted": "நிர்வாகிகளுக்கு கட்டுப்பாடுகள் விதிக்கப்பட்டது",
 	"revdelete-unrestricted": "நிர்வாகிகளின் கட்டுப்பாடுகள் நீக்கப்பட்டது",
 	"logentry-block-block": "$1 $5 நேர அளவிற்கு {{GENDER:$4|$3}} {{GENDER:$2|தடைசெய்யப்பட்டார்}} $6",
-	"logentry-block-unblock": "$1-இன் {{GENDER:$2|தடைநீக்கப்பட்டது}} {{GENDER:$4|$3}}",
+	"logentry-block-unblock": "{{GENDER:$4|$3}}-இன் {{GENDER:$2|தடைநீக்கப்பட்டது}}--$1",
 	"logentry-block-reblock": "$1-இன் {{GENDER:$4|$3}}-இற்கான தடை அமைப்பு $5 கால அளவிற்கு {{GENDER:$2|மாற்றப்பட்டது}} $6",
 	"logentry-suppress-block": "$1 $5 நேர அளவிற்கு {{GENDER:$4|$3}} {{GENDER:$2|தடைசெய்யப்பட்டார்}} $6",
 	"logentry-suppress-reblock": "$1-இன் {{GENDER:$4|$3}}-இற்கான தடை அமைப்பு $5 கால அளவிற்கு {{GENDER:$2|மாற்றப்பட்டது}} $6",

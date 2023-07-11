@@ -8,7 +8,8 @@
 			"아라",
 			"Bebiezaza",
 			"Lookruk",
-			"Kimmie023"
+			"Kimmie023",
+			"沈澄心"
 		]
 	},
 	"tog-underline": "ການຂີດເສັ້ນກ້ອງລິງກ໌:",
@@ -909,6 +910,7 @@
 	"confirmemail_subject": "{{SITENAME}} ຢືນຢັນ ທີ່ຢູ່ ອີເມລ",
 	"recreate": "ສ້າງຄືນ",
 	"confirm_purge_button": "ຕົກລົງ",
+	"word-separator": "",
 	"imgmultipageprev": "← ໜ້າກ່ອນ",
 	"imgmultipagenext": "ໜ້າຕໍ່ໄປ →",
 	"imgmultigo": "ໄປ!",

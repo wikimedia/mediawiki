@@ -253,7 +253,8 @@
 			"Bgo eiu",
 			"Wangombe",
 			"MRidhaAJ",
-			"20kdc"
+			"20kdc",
+			"No se"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -614,7 +615,7 @@
 	"viewsource-title": "Page title shown when trying to edit a protected page. Parameters:\n* $1 - the name of the page",
 	"actionthrottled": "This is the title of an error page. Read it in combination with {{msg-mw|actionthrottledtext}}.",
 	"actionthrottledtext": "Used as error message. Read it in combination with {{msg-mw|actionthrottled}}.",
-	"protectedpagetext": "This message is displayed when trying to edit a page you can't edit because it has been protected.\n\nThe title for this message is {{msg-mw|Protectedpage}}.",
+	"protectedpagetext": "This message is displayed when trying to edit a page you can't edit because it has been protected.\n\nThe title for this message is {{msg-mw|Protectedpage}}. \n\nParameters:\n* $1 is the protection level (autoconfirmed or admin)\n* $2 is the restricted action (move or edit)",
 	"viewsourcetext": "The text shown when displaying the source of a page that the user has no permission to edit",
 	"viewyourtext": "Same as {{msg-mw|viewsourcetext}} but when showing the text submitted by the user, this happens e.g. when the user was blocked while he is editing the page",
 	"protectedinterface": "Message shown if a user without the \"editinterface\" right tries to edit a page in the MediaWiki namespace.\n\nSee also {{msg-mw|editinginterface}}. Parameters:\n* $1 - (Unused) the action the user attempted to perform",
@@ -707,7 +708,7 @@
 	"createacct-reason-ph": "Placeholder in vertical-layout create account form for reason field.\n\nSee example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]",
 	"createacct-reason-help": "Account creation API help message for the <code>reason</code> parameter.",
 	"createacct-reason-confirm": "Label in create account form that appears in the event that a logged in user inputs an email address into the reason field and clicks create account.\n\n\"Create account\" is {{msg-mw|Createacct-another-submit}}.",
-	"createacct-imgcaptcha-help": "{{Optional}} Optional help text in vertical-layout create account form for image CAPTCHA input field when repositioned by JavaScript.\n\nBlank by default.",
+	"createacct-imgcaptcha-help": "{{ignored}}\n\nHelp text in vertical-layout create account form for image CAPTCHA input field when repositioned by JavaScript.\n\nBlank by default.",
 	"createacct-submit": "Submit button on vertical-layout create account form.\n\nSee example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]",
 	"createacct-another-submit": "Submit button of  [[Special:CreateAccount]] when accessed by a registered user.\n\nThe original means \"create an account in addition to the one you already have\"; sometimes, but not always, it means you are going to \"Create the account on behalf of somebody else\" or \"Create account for another\".\n{{Identical|Create another account}}",
 	"createacct-continue-submit": "Submit button on create account form in second and later steps of a multistep account creation.",

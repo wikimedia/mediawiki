@@ -4008,7 +4008,7 @@
 	"rawhtml-notallowed": "As marcas &lt;html&gt; non poden usarse fóra das páxinas normais.",
 	"gotointerwiki": "Deixando {{SITENAME}}",
 	"gotointerwiki-invalid": "O título especificado non é válido.",
-	"gotointerwiki-external": "Vai sair de {{SITENAME}} para visitar [[$2]], que é un sitio web externo.\n\n'''[$1 Continuar en $1]'''",
+	"gotointerwiki-external": "Vas saír de {{SITENAME}} para visitar [[$2]], que é un sitio web externo.\n\n'''[$1 Continuar a $1]'''",
 	"undelete-cantedit": "Non pode anular o borrado desta páxina porque non ten permisos para editar esta páxina.",
 	"undelete-cantcreate": "Non pode anular o borrado desta páxina xa que non hai ningunha páxina con ese nome e non ten permisos para creala.",
 	"pagedata-title": "Datos da páxina",
