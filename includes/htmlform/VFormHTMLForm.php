@@ -35,10 +35,6 @@ class VFormHTMLForm extends HTMLForm {
 	 */
 	protected $mWrapperLegend = false;
 
-	/**
-	 * Symbolic display format name.
-	 * @var string
-	 */
 	protected $displayFormat = 'vform';
 
 	public static function loadInputFromParameters( $fieldname, $descriptor,
@@ -62,6 +58,13 @@ class VFormHTMLForm extends HTMLForm {
 		] );
 
 		return parent::getHTML( $submitResult );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	protected function formatField( HTMLFormField $field, $value ) {
+		return $field->getVForm( $value );
 	}
 
 	protected function getFormAttributes() {
