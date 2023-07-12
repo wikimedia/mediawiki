@@ -1057,7 +1057,7 @@ class SkinTemplate extends Skin {
 
 			// Adds namespace links
 			if ( $subjectId === 'user' ) {
-				$subjectMsg = wfMessage( 'nstab-user', $subjectPage->getRootText() );
+				$subjectMsg = $this->msg( 'nstab-user', $subjectPage->getRootText() );
 			} else {
 				// The following messages are used here:
 				// * nstab-main
