@@ -110,10 +110,7 @@ class ApiStructureTest extends MediaWikiIntegrationTestCase {
 		return $ret;
 	}
 
-	/**
-	 * @dataProvider provideParameters
-	 */
-	public function testParameters( string $path, array $params, string $name ): void {
+	private function doTestParameters( string $path, array $params, string $name ): void {
 		$main = self::getMain();
 
 		$dataName = $this->dataName();
@@ -156,6 +153,21 @@ class ApiStructureTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
+	/**
+	 * @dataProvider provideParameters
+	 */
+	public function testParameters( string $path, string $argset, array $args, ApiMain $main ): void {
+		$module = $main->getModuleFromPath( $path );
+		$params = $module->getFinalParams( ...$args );
+		if ( !$params ) {
+			$this->addToAssertionCount( 1 );
+			return;
+		}
+		foreach ( $params as $param => $_ ) {
+			$this->doTestParameters( $path, $params, $param );
+		}
+	}
+
 	public static function provideParameters(): Iterator {
 		$main = self::getMain();
 		$paths = self::getSubModulePaths( $main->getModuleManager() );
@@ -166,12 +178,10 @@ class ApiStructureTest extends MediaWikiIntegrationTestCase {
 		];
 
 		foreach ( $paths as $path ) {
-			$module = $main->getModuleFromPath( $path );
 			foreach ( $argsets as $argset => $args ) {
-				$params = $module->getFinalParams( ...$args );
-				foreach ( $params as $param => $dummy ) {
-					yield "Module $path, $argset, parameter $param" => [ $path, $params, $param ];
-				}
+				// NOTE: Retrieving the module parameters here may have side effects such as DB queries that
+				// should be avoided in data providers (T341731). So do that in the test method instead.
+				yield "Module $path, argset $argset" => [ $path, $argset, $args, $main ];
 			}
 		}
 	}
