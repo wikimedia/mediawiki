@@ -625,6 +625,8 @@ return [
 				0 => 'copyright',
 				1 => 'history_copyright',
 				2 => 'googlesearch',
+				3 => 'youhavenewmessagesmanyusers',
+				4 => 'youhavenewmessages',
 			],
 			'Localtimezone' => null,
 			'LocalTZoffset' => null,
