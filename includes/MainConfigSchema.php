@@ -4846,6 +4846,8 @@ class MainConfigSchema {
 			'copyright',
 			'history_copyright',
 			'googlesearch',
+			'youhavenewmessagesmanyusers',
+			'youhavenewmessages',
 		],
 		'type' => 'list',
 		'items' => [ 'type' => 'string', ],
