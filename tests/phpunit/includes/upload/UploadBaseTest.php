@@ -8,6 +8,9 @@ use MediaWiki\MainConfigNames;
  */
 class UploadBaseTest extends MediaWikiIntegrationTestCase {
 
+	/** @var string */
+	protected const UPLOAD_PATH = "/tests/phpunit/data/upload/";
+
 	/** @var UploadTestHandler */
 	protected $upload;
 
@@ -549,32 +552,32 @@ class UploadBaseTest extends MediaWikiIntegrationTestCase {
 		global $IP;
 		return [
 			[
-				"$IP/tests/phpunit/data/upload/buggynamespace-original.svg",
+				$IP . self::UPLOAD_PATH . "buggynamespace-original.svg",
 				false,
 				'SVG with a weird but valid namespace definition created by Adobe Illustrator'
 			],
 			[
-				"$IP/tests/phpunit/data/upload/buggynamespace-okay.svg",
+				$IP . self::UPLOAD_PATH . "buggynamespace-okay.svg",
 				false,
 				'SVG with a namespace definition created by Adobe Illustrator and mangled by Inkscape'
 			],
 			[
-				"$IP/tests/phpunit/data/upload/buggynamespace-okay2.svg",
+				$IP . self::UPLOAD_PATH . "buggynamespace-okay2.svg",
 				false,
 				'SVG with a namespace definition created by Adobe Illustrator and mangled by Inkscape (twice)'
 			],
 			[
-				"$IP/tests/phpunit/data/upload/inkscape-only-selected.svg",
+				$IP . self::UPLOAD_PATH . "inkscape-only-selected.svg",
 				false,
 				'SVG with an inkscape only-selected attribute'
 			],
 			[
-				"$IP/tests/phpunit/data/upload/buggynamespace-bad.svg",
+				$IP . self::UPLOAD_PATH . "buggynamespace-bad.svg",
 				[ 'uploadscriptednamespace', 'i' ],
 				'SVG with a namespace definition using an undefined entity'
 			],
 			[
-				"$IP/tests/phpunit/data/upload/buggynamespace-evilhtml.svg",
+				$IP . self::UPLOAD_PATH . "buggynamespace-evilhtml.svg",
 				[ 'uploadscriptednamespace', 'http://www.w3.org/1999/xhtml' ],
 				'SVG with an html namespace encoded as an entity'
 			],
@@ -613,25 +616,25 @@ class UploadBaseTest extends MediaWikiIntegrationTestCase {
 		global $IP;
 		return [
 			[
-				"$IP/tests/phpunit/data/upload/png-plain.png",
+				$IP . self::UPLOAD_PATH . "png-plain.png",
 				'image/png',
 				'png',
 				false,
-				'PNG with no suspicious things in it, should pass.'
+				'PNG with no suspicious things in it; should pass.'
 			],
 			[
-				"$IP/tests/phpunit/data/upload/png-embedded-breaks-ie5.png",
+				$IP . self::UPLOAD_PATH . "png-embedded-breaks-ie5.png",
 				'image/png',
 				'png',
 				true,
 				'PNG with embedded data that IE5/6 interprets as HTML; should be rejected.'
 			],
 			[
-				"$IP/tests/phpunit/data/upload/jpeg-a-href-in-metadata.jpg",
+				$IP . self::UPLOAD_PATH . "jpeg-a-href-in-metadata.jpg",
 				'image/jpeg',
 				'jpeg',
 				false,
-				'JPEG with innocuous HTML in metadata from a flickr photo; should pass (T27707).'
+				'JPEG with innocuous HTML in metadata from a flickr photo; should pass (T27707).',
 			],
 		];
 	}
