@@ -128,7 +128,7 @@ class SearchMySQL extends SearchDatabase {
 			wfDebug( __METHOD__ . ": Can't understand search query '{$filteredText}'" );
 		}
 
-		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 		$searchon = $dbr->addQuotes( $searchon );
 		$field = $this->getIndexField( $fulltext );
 		return [
@@ -191,7 +191,7 @@ class SearchMySQL extends SearchDatabase {
 
 		$filteredTerm = $this->filter( $term );
 		$query = $this->getQuery( $filteredTerm, $fulltext );
-		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 		$resultSet = $dbr->select(
 			$query['tables'], $query['fields'], $query['conds'],
 			__METHOD__, $query['options'], $query['joins']
@@ -230,7 +230,7 @@ class SearchMySQL extends SearchDatabase {
 	protected function queryFeatures( &$query ) {
 		foreach ( $this->features as $feature => $value ) {
 			if ( $feature === 'title-suffix-filter' && $value ) {
-				$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+				$dbr = $this->dbProvider->getReplicaDatabase();
 				$query['conds'][] = 'page_title' . $dbr->buildLike( $dbr->anyString(), $value );
 			}
 		}
@@ -346,8 +346,7 @@ class SearchMySQL extends SearchDatabase {
 	 * @param string $text
 	 */
 	public function update( $id, $title, $text ) {
-		$dbw = $this->lb->getConnectionRef( DB_PRIMARY );
-		$dbw->replace(
+		$this->dbProvider->getPrimaryDatabase()->replace(
 			'searchindex',
 			'si_page',
 			[
@@ -367,8 +366,7 @@ class SearchMySQL extends SearchDatabase {
 	 * @param string $title
 	 */
 	public function updateTitle( $id, $title ) {
-		$dbw = $this->lb->getConnectionRef( DB_PRIMARY );
-		$dbw->newUpdateQueryBuilder()
+		$this->dbProvider->getPrimaryDatabase()->newUpdateQueryBuilder()
 			->update( 'searchindex' )
 			->set( [ 'si_title' => $this->normalizeText( $title ) ] )
 			->where( [ 'si_page' => $id ] )
@@ -383,8 +381,7 @@ class SearchMySQL extends SearchDatabase {
 	 * @param string $title Title of page that was deleted
 	 */
 	public function delete( $id, $title ) {
-		$dbw = $this->lb->getConnectionRef( DB_PRIMARY );
-		$dbw->newDeleteQueryBuilder()
+		$this->dbProvider->getPrimaryDatabase()->newDeleteQueryBuilder()
 			->delete( 'searchindex' )
 			->where( [ 'si_page' => $id ] )
 			->caller( __METHOD__ )->execute();
@@ -451,7 +448,7 @@ class SearchMySQL extends SearchDatabase {
 		if ( self::$mMinSearchLength === null ) {
 			$sql = "SHOW GLOBAL VARIABLES LIKE 'ft\\_min\\_word\\_len'";
 
-			$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+			$dbr = $this->dbProvider->getReplicaDatabase();
 			// phpcs:ignore MediaWiki.Usage.DbrQueryUsage.DbrQueryFound
 			$result = $dbr->query( $sql, __METHOD__ );
 			$row = $result->fetchObject();

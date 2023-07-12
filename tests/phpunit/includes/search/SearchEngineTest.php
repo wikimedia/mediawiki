@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\MainConfigNames;
-use Wikimedia\Rdbms\LoadBalancerSingle;
 
 /**
  * @group Search
@@ -32,8 +31,9 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		if ( !$dbSupported ) {
 			$this->markTestSkipped( "MySQL or SQLite with FTS3 only" );
 		}
+		$dbProvider = $this->getServiceContainer()->getDBLoadBalancerFactory();
 
-		$searchType = SearchEngineFactory::getSearchEngineClass( $this->db );
+		$searchType = SearchEngineFactory::getSearchEngineClass( $dbProvider );
 		$this->overrideConfigValues( [
 			MainConfigNames::SearchType => $searchType,
 			MainConfigNames::CapitalLinks => true,
@@ -42,8 +42,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			],
 		] );
 
-		$lb = LoadBalancerSingle::newFromConnection( $this->db );
-		$this->search = new $searchType( $lb );
+		$this->search = new $searchType( $dbProvider );
 		$this->search->setHookContainer( $this->getServiceContainer()->getHookContainer() );
 	}
 

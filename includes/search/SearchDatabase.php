@@ -21,8 +21,7 @@
  * @ingroup Search
  */
 
-use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Base search engine base class for database-backed searches
@@ -31,23 +30,17 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * @since 1.23
  */
 abstract class SearchDatabase extends SearchEngine {
-	/** @var ILoadBalancer */
-	protected $lb;
-	/** @var IDatabase (backwards compatibility) */
-	protected $db;
-
 	/**
 	 * @var string[] search terms
 	 */
 	protected $searchTerms = [];
+	protected IConnectionProvider $dbProvider;
 
 	/**
-	 * @param ILoadBalancer $lb The load balancer for the DB cluster to search on
+	 * @param IConnectionProvider $dbProvider
 	 */
-	public function __construct( ILoadBalancer $lb ) {
-		$this->lb = $lb;
-		// @TODO: remove this deprecated field in 1.35
-		$this->db = $lb->getConnectionRef( DB_REPLICA ); // b/c
+	public function __construct( IConnectionProvider $dbProvider ) {
+		$this->dbProvider = $dbProvider;
 	}
 
 	/**

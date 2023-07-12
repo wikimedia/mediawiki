@@ -1857,7 +1857,7 @@ return [
 		return new SearchEngineFactory(
 			$services->getSearchEngineConfig(),
 			$services->getHookContainer(),
-			$services->getDBLoadBalancer()
+			$services->getDBLoadBalancerFactory()
 		);
 	},
 
