@@ -3025,7 +3025,7 @@ class OutputPage extends ContextSource {
 			$errors[$key] = (array)$error;
 		}
 
-		// For some action (read, edit, create and upload), display a "login to do this action"
+		// For some actions (read, edit, create and upload), display a "login to do this action"
 		// error if all of the following conditions are met:
 		// 1. the user is not logged in
 		// 2. the only error is insufficient permissions (i.e. no block or something else)
