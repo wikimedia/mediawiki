@@ -9338,6 +9338,8 @@ $wgRawHtmlMessages = [
 	'googlesearch',
 	'feedback-terms',
 	'feedback-termsofuse',
+	'youhavenewmessagesmanyusers',
+	'youhavenewmessages',
 ];
 
 /**
