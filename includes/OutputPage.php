@@ -3027,12 +3027,12 @@ class OutputPage extends ContextSource {
 
 		// For some actions (read, edit, create and upload), display a "login to do this action"
 		// error if all of the following conditions are met:
-		// 1. the user is not logged in
+		// 1. the user is not logged in as a named user, and so cannot be added to groups
 		// 2. the only error is insufficient permissions (i.e. no block or something else)
 		// 3. the error can be avoided simply by logging in
 
 		if ( in_array( $action, [ 'read', 'edit', 'createpage', 'createtalk', 'upload' ] )
-			&& $this->getUser()->isAnon() && count( $errors ) == 1 && isset( $errors[0][0] )
+			&& !$this->getUser()->isNamed() && count( $errors ) == 1 && isset( $errors[0][0] )
 			&& ( $errors[0][0] == 'badaccess-groups' || $errors[0][0] == 'badaccess-group0' )
 			&& ( $groupPermissionsLookup->groupHasPermission( 'user', $action )
 				|| $groupPermissionsLookup->groupHasPermission( 'autoconfirmed', $action ) )
