@@ -418,6 +418,30 @@ trait LanguageNameUtilsTestTrait {
 		);
 	}
 
+	/**
+	 * @covers MediaWiki\Languages\LanguageNameUtils::getLanguageNames
+	 * @covers MediaWiki\Languages\LanguageNameUtils::getLanguageNamesUncached
+	 * @covers MediaWiki\Languages\LanguageNameUtils::getLanguageName
+	 */
+	public function testGetLanguageNames_xss(): void {
+		// not supported if disabled
+		$this->assertGetLanguageNames(
+			[
+				MainConfigNames::UseXssLanguage => false,
+			],
+			'',
+			'x-xss'
+		);
+		// supported if enabled
+		$this->assertGetLanguageNames(
+			[
+				MainConfigNames::UseXssLanguage => true,
+			],
+			'fake xss language (see $wgUseXssLanguage)',
+			'x-xss'
+		);
+	}
+
 	abstract protected function getFileName( ...$args );
 
 	/**

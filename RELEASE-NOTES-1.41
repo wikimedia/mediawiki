@@ -103,6 +103,8 @@ For notes on 1.40.x and older releases, see HISTORY.
 * UserRegistrationLookup adds support for multiple kinds of registration dates
   Extensions providing support for wiki-farm can use this to provide a global
   registration date (across all wikis), for example.
+* When $wgUseXssLanguage is set to true, ?uselang=x-xss can be used
+  to easily test whether all messages are being escaped correctly.
 * …
 
 === External library changes in 1.41 ===

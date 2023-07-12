@@ -1880,6 +1880,12 @@ $wgDisabledVariants = null;
 $wgVariantArticlePath = null;
 
 /**
+ * Config variable stub for the UseXssLanguage setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::UseXssLanguage
+ */
+$wgUseXssLanguage = null;
+
+/**
  * Config variable stub for the LoginLanguageSelector setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::LoginLanguageSelector
  */

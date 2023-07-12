@@ -80,6 +80,7 @@ class LanguageNameUtils {
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::ExtraLanguageNames,
 		MainConfigNames::UsePigLatinVariant,
+		MainConfigNames::UseXssLanguage,
 	];
 
 	/** @var HookRunner */
@@ -233,6 +234,9 @@ class LanguageNameUtils {
 		if ( !$this->options->get( MainConfigNames::UsePigLatinVariant ) ) {
 			// Suppress Pig Latin unless explicitly enabled.
 			unset( $mwNames['en-x-piglatin'] );
+		}
+		if ( $this->options->get( MainConfigNames::UseXssLanguage ) ) {
+			$mwNames['x-xss'] = 'fake xss language (see $wgUseXssLanguage)';
 		}
 
 		foreach ( $mwNames as $mwCode => $mwName ) {

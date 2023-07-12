@@ -3062,6 +3062,20 @@ config-schema:
             A link to /wiki/ would be redirected to /sr/Главна_страна
             It is important that $wgArticlePath not overlap with possible values
             of $wgVariantArticlePath.
+    UseXssLanguage:
+        default: false
+        description: |-
+            Whether to enable the 'x-xss' language code, used for development.
+            When enabled, the language code 'x-xss' (e.g. via ?uselang=x-xss) can
+            be used to test correct message escaping at scale, to prevent
+            cross-site scripting. In this "language", every message becomes an HTML
+            snippet which attempts to alert the message key. Well-written code will
+            correctly escape all of these messages. If any alerts are actually
+            fired in the browser, the message is not being escaped correctly;
+            either the offending code should be fixed, or the message should be
+            added to {@link self::RawHtmlMessages}.
+            @see https://www.mediawiki.org/wiki/Special:MyLanguage/Cross-site_scripting
+            @since 1.41
     LoginLanguageSelector:
         default: false
         description: |-

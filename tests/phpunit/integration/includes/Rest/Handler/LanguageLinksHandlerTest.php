@@ -48,7 +48,11 @@ class LanguageLinksHandlerTest extends \MediaWikiIntegrationTestCase {
 		$languageNameUtils = new LanguageNameUtils(
 			new ServiceOptions(
 				LanguageNameUtils::CONSTRUCTOR_OPTIONS,
-				[ 'ExtraLanguageNames' => [], 'UsePigLatinVariant' => false ]
+				[
+					'ExtraLanguageNames' => [],
+					'UsePigLatinVariant' => false,
+					'UseXssLanguage' => false,
+				]
 			),
 			$this->getServiceContainer()->getHookContainer()
 		);
