@@ -2217,7 +2217,7 @@
 	"linksearch-pat": "Patrono a cercar:",
 	"linksearch-ns": "Spatio de nomines:",
 	"linksearch-ok": "Cercar",
-	"linksearch-text": "Es possibile usar metacharacteres como in \"*.wikipedia.org\".<br />\n{{PLURAL:$2|Le protocollo|Protocollos}} supportate: $1 (http:// es assumite si nulle protocollo es specificate).",
+	"linksearch-text": "Es possibile usar metacharacteres como in \"*.wikipedia.org\".<br />\n{{PLURAL:$2|Le protocollo|Protocollos}} supportate: $1 (http:// e https:// es assumite si nulle protocollo es specificate).",
 	"linksearch-line": "$1 ligate ab $2",
 	"linksearch-error": "Le metacharacteres pote apparer solmente al initio del nomine de host.",
 	"listusersfrom": "Monstrar usatores a partir de:",
