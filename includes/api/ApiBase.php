@@ -1344,7 +1344,7 @@ abstract class ApiBase extends ContextSource {
 			$max = max( $max, $row->max_id );
 		}
 		return array_filter( $ids, static function ( $id ) use ( $min, $max ) {
-			return ( is_int( $id ) && $id >= 0 || ctype_digit( $id ) )
+			return ( is_int( $id ) && $id >= 0 || ctype_digit( (string)$id ) )
 				&& $id >= $min && $id <= $max;
 		} );
 	}
