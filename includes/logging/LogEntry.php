@@ -57,8 +57,11 @@ interface LogEntry {
 
 	/**
 	 * Get the extra parameters stored for this message.
+	 * This will be in the same format as setParameters(), ie. the array keys
+	 * might include message formatting prefixes.
 	 *
 	 * @return array
+	 * @see ManualLogEntry::setParameters() for message formatting prefixes.
 	 */
 	public function getParameters();
 

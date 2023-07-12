@@ -157,7 +157,8 @@ class DatabaseLogEntry extends LogEntryBase {
 	}
 
 	/**
-	 * Returns whatever is stored in the database field.
+	 * Returns whatever is stored in the database field (typically a serialized
+	 * associative array but very old entries might have different formats).
 	 *
 	 * @return string
 	 */
