@@ -30,17 +30,6 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 				'disabled' => false,
 				'view' => true,
 				'edit' => true,
-				'revisiondelete' => [
-					'class' => SpecialPageAction::class,
-					'services' => [
-						'SpecialPageFactory',
-					],
-					'args' => [
-						// SpecialPageAction is used for both 'editchangetags' and
-						// 'revisiondelete' actions, tell it which one this is
-						'revisiondelete',
-					],
-				],
 				'dummy' => true,
 				'access' => 'ControlledAccessDummyAction',
 				'unblock' => 'RequiresUnblockDummyAction',
@@ -176,11 +165,9 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 			'null (value)' => [ null, 'view' ],
 			'false' => [ false, 'nosuchaction' ],
 
-			// See https://phabricator.wikimedia.org/T22966
+			// Compatibility with old URLs
 			'editredlink' => [ 'editredlink', 'edit' ],
-
-			// See https://phabricator.wikimedia.org/T22966
-			'historysubmit (no request params)' => [ 'historysubmit', 'view' ],
+			'historysubmit' => [ 'historysubmit', 'view' ],
 
 			'disabled not resolvable' => [ 'disabled', 'nosuchaction' ],
 		];
@@ -196,15 +183,6 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 			$this->getContext( $requestedAction )
 		);
 		$this->assertEquals( $expected, $actionName );
-	}
-
-	public function testGetActionName_revisiondeleteWorkaround() {
-		// See https://phabricator.wikimedia.org/T22966
-		$context = $this->getContext( 'historysubmit' );
-		$context->getRequest()->setVal( 'revisiondelete', true );
-		$actionName = Action::getActionName( $context );
-
-		$this->assertEquals( 'revisiondelete', $actionName );
 	}
 
 	public function testGetActionName_whenCanNotUseWikiPage_defaultsToView() {
