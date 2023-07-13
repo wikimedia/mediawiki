@@ -27,5 +27,3 @@ register_shutdown_function( static function () {
 	// - restore ability to connect to the real database.
 	MediaWikiIntegrationTestCase::teardownTestDB();
 } );
-
-MediaWikiCliOptions::initialize();

@@ -172,6 +172,13 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	];
 
 	/**
+	 * @var array|null
+	 * @todo Remove options for filebackend and jobqueue (they should have dedicated test subclasses), and simplify
+	 * once it's just one setting.
+	 */
+	private static ?array $additionalCliOptions;
+
+	/**
 	 * @stable to call
 	 * @param string|null $name
 	 * @param array $data
@@ -2225,13 +2232,22 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 	}
 
+	private static function maybeInitCliArgs(): void {
+		self::$additionalCliOptions ??= [
+			'use-normal-tables' => (bool)getenv( 'PHPUNIT_USE_NORMAL_TABLES' ),
+			'use-filebackend' => getenv( 'PHPUNIT_USE_FILEBACKEND' ) ?: null,
+			'use-jobqueue' => getenv( 'PHPUNIT_USE_JOBQUEUE' ) ?: null,
+		];
+	}
+
 	/**
 	 * @since 1.18
 	 * @param string $offset
 	 * @return mixed
 	 */
 	public function getCliArg( $offset ) {
-		return MediaWikiCliOptions::$additionalOptions[$offset] ?? null;
+		self::maybeInitCliArgs();
+		return self::$additionalCliOptions[$offset] ?? null;
 	}
 
 	/**
@@ -2240,7 +2256,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param mixed $value
 	 */
 	public function setCliArg( $offset, $value ) {
-		MediaWikiCliOptions::$additionalOptions[$offset] = $value;
+		self::maybeInitCliArgs();
+		self::$additionalCliOptions[$offset] = $value;
 	}
 
 	/**
