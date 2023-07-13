@@ -58,12 +58,3 @@ TestSetup::requireOnceInGlobalScope( "$IP/includes/Setup.php" );
 restore_error_handler();
 
 TestSetup::maybeCheckComposerLockUpToDate();
-
-// @todo Use PHPUnit hooks/events to run this code after the last test.
-register_shutdown_function( static function () {
-	// This will:
-	// - clear the temporary job queue.
-	// - allow extensions to delete any temporary tables they created.
-	// - restore ability to connect to the real database.
-	MediaWikiIntegrationTestCase::teardownTestDB();
-} );

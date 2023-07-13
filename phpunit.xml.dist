@@ -100,5 +100,6 @@
 	</listeners>
 	<extensions>
 		<extension class="MediaWikiLoggerPHPUnitExtension" />
+		<extension class="MediaWikiTeardownPHPUnitExtension" />
 	</extensions>
 </phpunit>
