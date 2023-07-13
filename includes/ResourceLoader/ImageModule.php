@@ -384,7 +384,7 @@ class ImageModule extends Module {
 	}
 
 	/**
-	 * Format the CSS declaration for the image (defaults to background-image property).
+	 * Format the CSS declaration for the image as a background-image property.
 	 *
 	 * @param string $primary Primary URI
 	 * @return string[] CSS declarations
