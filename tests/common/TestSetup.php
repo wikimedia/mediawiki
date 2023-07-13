@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Common code for test environment initialisation and teardown
  */
@@ -202,5 +204,55 @@ class TestSetup {
 			$composerLockUpToDate->loadParamsAndArgs( 'phpunit', [ 'quiet' => true ] );
 			$composerLockUpToDate->execute();
 		}
+	}
+
+	public static function loadSettingsFiles(): void {
+		// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.define
+		define( 'MW_SETUP_CALLBACK', [ self::class, 'setupCallback' ] );
+		self::requireOnceInGlobalScope( MW_INSTALL_PATH . "/includes/Setup.php" );
+		// Deregister handler from MWExceptionHandler::installHandle so that PHPUnit's own handler
+		// stays in tact. Needs to happen after including Setup.php, which calls MWExceptionHandler::installHandle().
+		restore_error_handler();
+	}
+
+	/**
+	 * @internal Should only be used in self::loadSettingsFiles
+	 */
+	public static function setupCallback() {
+		global $wgDBadminuser, $wgDBadminpassword;
+		global $wgDBuser, $wgDBpassword, $wgDBservers, $wgLBFactoryConf;
+
+		// These are already set in the PHPUnit config, but set them again in case they were changed in a settings file
+		ini_set( 'memory_limit', '-1' );
+		ini_set( 'max_execution_time', '0' );
+
+		if ( isset( $wgDBadminuser ) ) {
+			$wgDBuser = $wgDBadminuser;
+			$wgDBpassword = $wgDBadminpassword;
+
+			if ( $wgDBservers ) {
+				/**
+				 * @var array $wgDBservers
+				 */
+				foreach ( $wgDBservers as $i => $server ) {
+					$wgDBservers[$i]['user'] = $wgDBuser;
+					$wgDBservers[$i]['password'] = $wgDBpassword;
+				}
+			}
+			if ( isset( $wgLBFactoryConf['serverTemplate'] ) ) {
+				$wgLBFactoryConf['serverTemplate']['user'] = $wgDBuser;
+				$wgLBFactoryConf['serverTemplate']['password'] = $wgDBpassword;
+			}
+			$service = MediaWikiServices::getInstance()->peekService( 'DBLoadBalancerFactory' );
+			if ( $service ) {
+				$service->destroy();
+			}
+		}
+
+		self::requireOnceInGlobalScope( __DIR__ . '/TestsAutoLoader.php' );
+
+		self::applyInitialConfig();
+
+		ExtensionRegistry::getInstance()->setLoadTestClassesAndNamespaces( true );
 	}
 }

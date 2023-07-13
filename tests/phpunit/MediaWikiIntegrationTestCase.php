@@ -179,6 +179,12 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	private static ?array $additionalCliOptions;
 
 	/**
+	 * @var bool Whether the MW config files were already lazy-loaded if this test was invoked via the
+	 * "unit" entry point.
+	 */
+	private static bool $settingsLazyLoaded = false;
+
+	/**
 	 * @stable to call
 	 * @param string|null $name
 	 * @param array $data
@@ -192,14 +198,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	private static function initializeForStandardPhpunitEntrypointIfNeeded() {
-		// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix
-		global $IP;
-		if ( defined( 'MW_PHPUNIT_UNIT' ) ) {
-			TestSetup::requireOnceInGlobalScope( "$IP/includes/Defines.php" );
-			TestSetup::requireOnceInGlobalScope( "$IP/includes/GlobalFunctions.php" );
-			TestSetup::requireOnceInGlobalScope( "$IP/includes/Setup.php" );
-			TestSetup::requireOnceInGlobalScope( "$IP/tests/common/TestsAutoLoader.php" );
-			TestSetup::applyInitialConfig();
+		if ( defined( 'MW_PHPUNIT_UNIT' ) && !self::$settingsLazyLoaded ) {
+			TestSetup::loadSettingsFiles();
+			self::$settingsLazyLoaded = true;
 		}
 	}
 
