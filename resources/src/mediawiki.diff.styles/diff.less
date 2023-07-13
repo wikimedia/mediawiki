@@ -277,3 +277,40 @@
 	user-select: none;
 	cursor: text;
 }
+
+/*!
+ * Wikidiff2 rendering for new lines and deleted lines
+ */
+.mw-diff-inline-added.mw-diff-empty-line,
+.mw-diff-inline-deleted.mw-diff-empty-line,
+.mw-inline-diff-newline {
+	&::after {
+		font-family: @font-family-monospace;
+		font-size: 87.5%;
+		padding: 0 3px;
+		display: inline-block;
+		color: @color-base--subtle;
+	}
+}
+
+.mw-diff-inline-added.mw-diff-empty-line,
+.mw-inline-diff-newline {
+	&::after {
+		content: '@{msg-diff-newline}';
+		background: @diffInserted;
+	}
+}
+
+.mw-diff-inline-deleted.mw-diff-empty-line {
+	&::after {
+		content: '@{msg-diff-line-deleted}';
+		background: @diffDeleted;
+	}
+}
+
+.mw-diff-empty-line {
+	ins,
+	del {
+		display: none;
+	}
+}
