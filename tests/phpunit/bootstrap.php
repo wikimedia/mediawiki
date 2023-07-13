@@ -25,7 +25,6 @@
 use MediaWiki\MainConfigSchema;
 
 require_once __DIR__ . '/bootstrap.common.php';
-$IP = $GLOBALS['IP'];
 
 /** @internal Should only be used in MediaWikiIntegrationTestCase::initializeForStandardPhpunitEntrypointIfNeeded() */
 define( 'MW_PHPUNIT_UNIT', true );
@@ -34,10 +33,10 @@ define( 'MW_PHPUNIT_UNIT', true );
 $GLOBALS['wgAutoloadClasses'] = [];
 $GLOBALS['wgBaseDirectory'] = MW_INSTALL_PATH;
 
-TestSetup::requireOnceInGlobalScope( "$IP/includes/AutoLoader.php" );
-TestSetup::requireOnceInGlobalScope( "$IP/tests/common/TestsAutoLoader.php" );
-TestSetup::requireOnceInGlobalScope( "$IP/includes/Defines.php" );
-TestSetup::requireOnceInGlobalScope( "$IP/includes/GlobalFunctions.php" );
+TestSetup::requireOnceInGlobalScope( MW_INSTALL_PATH . "/includes/AutoLoader.php" );
+TestSetup::requireOnceInGlobalScope( MW_INSTALL_PATH . "/tests/common/TestsAutoLoader.php" );
+TestSetup::requireOnceInGlobalScope( MW_INSTALL_PATH . "/includes/Defines.php" );
+TestSetup::requireOnceInGlobalScope( MW_INSTALL_PATH . "/includes/GlobalFunctions.php" );
 
 // Extract the defaults into global variables.
 // NOTE: this does not apply any dynamic defaults.
@@ -45,14 +44,14 @@ foreach ( MainConfigSchema::listDefaultValues( 'wg' ) as $var => $value ) {
 	$GLOBALS[$var] = $value;
 }
 
-TestSetup::requireOnceInGlobalScope( "$IP/includes/DevelopmentSettings.php" );
+TestSetup::requireOnceInGlobalScope( MW_INSTALL_PATH . "/includes/DevelopmentSettings.php" );
 
 TestSetup::applyInitialConfig();
 
 // Since we do not load settings, expect to find extensions and skins
 // in their respective default locations.
-$GLOBALS['wgExtensionDirectory'] = "$IP/extensions";
-$GLOBALS['wgStyleDirectory'] = "$IP/skins";
+$GLOBALS['wgExtensionDirectory'] = MW_INSTALL_PATH . "/extensions";
+$GLOBALS['wgStyleDirectory'] = MW_INSTALL_PATH . "/skins";
 
 // Populate classes and namespaces from extensions and skins present in filesystem.
 $directoryToJsonMap = [
