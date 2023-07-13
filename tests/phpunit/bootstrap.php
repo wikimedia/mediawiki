@@ -48,24 +48,40 @@ TestSetup::requireOnceInGlobalScope( MW_INSTALL_PATH . "/includes/DevelopmentSet
 
 TestSetup::applyInitialConfig();
 
-// Since we do not load settings, expect to find extensions and skins
-// in their respective default locations.
-$GLOBALS['wgExtensionDirectory'] = MW_INSTALL_PATH . "/extensions";
-$GLOBALS['wgStyleDirectory'] = MW_INSTALL_PATH . "/skins";
+// Shell out to another script that will give us a list of loaded extensions and skins. We need to do that in another
+// process, not in this one, because loading setting files may have non-trivial side effects that could be hard
+// to undo. This sucks, but there doesn't seem to be a way to get a list of extensions and skins without loading
+// all of MediaWiki, which we don't want to do for unit tests.
+// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.proc_open
+$process = proc_open(
+	__DIR__ . '/getPHPUnitExtensionsAndSkins.php',
+	[
+		0 => [ 'pipe' ,'r' ],
+		1 => [ 'pipe', 'w' ],
+		2 => [ 'pipe', 'w' ]
+	],
+	$pipes
+);
 
-// Populate classes and namespaces from extensions and skins present in filesystem.
-$directoryToJsonMap = [
-	$GLOBALS['wgExtensionDirectory'] => 'extension*.json',
-	$GLOBALS['wgStyleDirectory'] => 'skin*.json'
-];
+$pathsToJsonFilesStr = stream_get_contents( $pipes[1] );
+fclose( $pipes[1] );
+$cmdErr = stream_get_contents( $pipes[2] );
+fclose( $pipes[2] );
+$exitCode = proc_close( $process );
+if ( $exitCode !== 0 ) {
+	echo "Cannot load list of extensions and skins. Output:\n$cmdErr\n";
+	exit( 1 );
+}
+
+$pathsToJsonFiles = explode( "\n", $pathsToJsonFilesStr );
+
+/** @internal For use in ExtensionsUnitTestSuite and SkinsUnitTestSuite only */
+define( 'MW_PHPUNIT_EXTENSIONS_PATHS', array_map( 'dirname', $pathsToJsonFiles ) );
 
 $extensionProcessor = new ExtensionProcessor();
 
-foreach ( $directoryToJsonMap as $directory => $jsonFilePattern ) {
-	foreach ( new GlobIterator( $directory . '/*/' . $jsonFilePattern ) as $iterator ) {
-		$jsonPath = $iterator->getPathname();
-		$extensionProcessor->extractInfoFromFile( $jsonPath );
-	}
+foreach ( $pathsToJsonFiles as $filePath ) {
+	$extensionProcessor->extractInfoFromFile( $filePath );
 }
 
 $autoload = $extensionProcessor->getExtractedAutoloadInfo( true );

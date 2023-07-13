@@ -27,10 +27,10 @@
 			<directory>tests/phpunit/unit</directory>
 		</testsuite>
 		<testsuite name="extensions:unit">
-			<directory>extensions/*/tests/phpunit/unit</directory>
+			<file>tests/phpunit/suites/ExtensionsUnitTestSuite.php</file>
 		</testsuite>
 		<testsuite name="skins:unit">
-			<directory>skins/*/tests/phpunit/unit</directory>
+			<file>tests/phpunit/suites/SkinsUnitTestSuite.php</file>
 		</testsuite>
 		<testsuite name="includes">
 			<directory>tests/phpunit/includes</directory>
