@@ -66,11 +66,7 @@ class EnhancedChangesList extends ChangesList {
 	 */
 	public function beginRecentChangesList() {
 		$this->getOutput()->addModuleStyles( [
-			'mediawiki.icon',
 			'mediawiki.special.changeslist.enhanced',
-		] );
-		$this->getOutput()->addModules( [
-			'jquery.makeCollapsible',
 		] );
 
 		parent::beginRecentChangesList();
@@ -155,7 +151,7 @@ class EnhancedChangesList extends ChangesList {
 		$recentChangesFlags = $this->getConfig()->get( MainConfigNames::RecentChangesFlags );
 
 		# Add the namespace and title of the block as part of the class
-		$tableClasses = [ 'mw-collapsible', 'mw-collapsed', 'mw-enhanced-rc', 'mw-changeslist-line' ];
+		$tableClasses = [ 'mw-enhanced-rc', 'mw-changeslist-line' ];
 		if ( $block[0]->mAttribs['rc_log_type'] ) {
 			# Log entry
 			$tableClasses[] = 'mw-changeslist-log';
@@ -320,6 +316,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		$templateParams = [
+			'checkboxId' => 'mw-checkbox-' . base64_encode( random_bytes( 3 ) ),
 			'articleLink' => $articleLink,
 			'charDifference' => $charDifference,
 			'collectedRcFlags' => $this->recentChangesFlags( $collectedRcFlags ),

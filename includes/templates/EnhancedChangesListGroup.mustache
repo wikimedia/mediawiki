@@ -1,3 +1,4 @@
+<input type="checkbox" class="mw-enhancedchanges-checkbox" id="{{ checkboxId }}">
 <table class="{{# tableClasses }}{{ . }} {{/ tableClasses }}" data-mw-ts="{{{ fullTimestamp }}}">
 	<tr class="mw-rcfilters-ui-highlights-enhanced-toplevel {{# filterClasses }}{{ . }} {{/ filterClasses }}">
 		<td>
@@ -11,7 +12,7 @@
 			</div>
 		</td>
 		<td>{{!
-			}}<span class="mw-collapsible-toggle mw-collapsible-arrow mw-enhancedchanges-arrow mw-enhancedchanges-arrow-space mw-collapsible-toggle-collapsed"></span>{{!
+			}}<label for="{{ checkboxId }}" class="mw-enhancedchanges-arrow mw-enhancedchanges-arrow-space"></label></span>{{!
 		}}</td>
 		<td class="mw-changeslist-line-prefix">{{{ prefix }}}</td>
 		<td class="mw-enhanced-rc" colspan="2">{{{ collectedRcFlags }}}&#160;{{ timestamp }}&#160;</td>
