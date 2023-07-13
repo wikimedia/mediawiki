@@ -805,6 +805,7 @@ return [
 			],
 			'ParserEnableLegacyMediaDOM' => false,
 			'UseContentMediaStyles' => false,
+			'UseLegacyMediaStyles' => false,
 			'RawHtml' => false,
 			'ExternalLinkTarget' => false,
 			'NoFollowLinks' => true,

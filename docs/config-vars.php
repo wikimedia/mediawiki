@@ -2342,6 +2342,12 @@ $wgParserEnableLegacyMediaDOM = null;
 $wgUseContentMediaStyles = null;
 
 /**
+ * Config variable stub for the UseLegacyMediaStyles setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::UseLegacyMediaStyles
+ */
+$wgUseLegacyMediaStyles = null;
+
+/**
  * Config variable stub for the RawHtml setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::RawHtml
  */
