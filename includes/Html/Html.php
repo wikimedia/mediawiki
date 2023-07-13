@@ -25,6 +25,7 @@
 
 namespace MediaWiki\Html;
 
+use FormatJson;
 use InvalidArgumentException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -1148,6 +1149,50 @@ class Html {
 		}
 
 		return implode( ", ", $candidates );
+	}
+
+	/**
+	 * Encode a variable of arbitrary type to JavaScript.
+	 * If the value is an HtmlJsCode object, pass through the object's value verbatim.
+	 *
+	 * @note Only use this function for generating JavaScript code. If generating output
+	 *       for a proper JSON parser, just call FormatJson::encode() directly.
+	 *
+	 * @since 1.41 (previously on {@link Xml})
+	 * @param mixed $value The value being encoded. Can be any type except a resource.
+	 * @param bool $pretty If true, add non-significant whitespace to improve readability.
+	 * @return string|false String if successful; false upon failure
+	 */
+	public static function encodeJsVar( $value, $pretty = false ) {
+		if ( $value instanceof HtmlJsCode ) {
+			return $value->value;
+		}
+		return FormatJson::encode( $value, $pretty, FormatJson::UTF8_OK );
+	}
+
+	/**
+	 * Create a call to a JavaScript function. The supplied arguments will be
+	 * encoded using Html::encodeJsVar().
+	 *
+	 * @since 1.41 (previously on {@link Xml} since 1.17)
+	 * @param string $name The name of the function to call, or a JavaScript expression
+	 *    which evaluates to a function object which is called.
+	 * @param array $args The arguments to pass to the function.
+	 * @param bool $pretty If true, add non-significant whitespace to improve readability.
+	 * @return string|false String if successful; false upon failure
+	 */
+	public static function encodeJsCall( $name, $args, $pretty = false ) {
+		foreach ( $args as &$arg ) {
+			$arg = self::encodeJsVar( $arg, $pretty );
+			if ( $arg === false ) {
+				return false;
+			}
+		}
+
+		return "$name(" . ( $pretty
+			? ( ' ' . implode( ', ', $args ) . ' ' )
+			: implode( ',', $args )
+		) . ");";
 	}
 }
 

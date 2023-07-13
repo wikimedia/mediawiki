@@ -6,6 +6,7 @@ use EmptyResourceLoader;
 use Exception;
 use ExtensionRegistry;
 use InvalidArgumentException;
+use MediaWiki\Html\HtmlJsCode;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\ResourceLoader\Context;
@@ -20,7 +21,6 @@ use ResourceLoaderTestModule;
 use RuntimeException;
 use UnexpectedValueException;
 use Wikimedia\TestingAccessWrapper;
-use XmlJsCode;
 
 /**
  * @covers \MediaWiki\ResourceLoader\ResourceLoader
@@ -564,7 +564,7 @@ END
 			'wrap' => true,
 			'styles' => [],
 			'templates' => [],
-			'messages' => new XmlJsCode( '{}' ),
+			'messages' => new HtmlJsCode( '{}' ),
 			'packageFiles' => [],
 		];
 		$rl = TestingAccessWrapper::newFromClass( ResourceLoader::class );
@@ -573,7 +573,7 @@ END
 			$rl->makeLoaderImplementScript(
 				$case['name'],
 				( $case['wrap'] && is_string( $case['scripts'] ) )
-					? new XmlJsCode( $case['scripts'] )
+					? new HtmlJsCode( $case['scripts'] )
 					: $case['scripts'],
 				$case['styles'],
 				$case['messages'],

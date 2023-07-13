@@ -35,6 +35,7 @@ use Less_Parser;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Html\Html;
+use MediaWiki\Html\HtmlJsCode;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Profiler\ProfilingContext;
@@ -66,7 +67,6 @@ use Wikimedia\ScopedCallback;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\WrappedString;
 use Xml;
-use XmlJsCode;
 
 /**
  * @defgroup ResourceLoader ResourceLoader
@@ -1154,14 +1154,14 @@ MESSAGE;
 									$scripts = self::filter( 'minify-js', $scripts ); // T107377
 								}
 							} else {
-								$scripts = new XmlJsCode( $scripts );
+								$scripts = new HtmlJsCode( $scripts );
 							}
 						}
 						$strContent = self::makeLoaderImplementScript(
 							$implementKey,
 							$scripts,
 							$content['styles'] ?? [],
-							isset( $content['messagesBlob'] ) ? new XmlJsCode( $content['messagesBlob'] ) : null,
+							isset( $content['messagesBlob'] ) ? new HtmlJsCode( $content['messagesBlob'] ) : null,
 							$content['templates'] ?? []
 						);
 						break;
@@ -1262,9 +1262,9 @@ MESSAGE;
 	 * Return JS code that calls mw.loader.implement with given module properties.
 	 *
 	 * @param string $name Module name used as implement key (format "`[name]@[version]`")
-	 * @param XmlJsCode|array|string|string[] $scripts
-	 *  - XmlJsCode: Concatenated scripts to be wrapped in a closure
-	 *  - array: Package files array containing XmlJsCode for individual JS files,
+	 * @param HtmlJsCode|array|string|string[] $scripts
+	 *  - HtmlJsCode: Concatenated scripts to be wrapped in a closure
+	 *  - array: Package files array containing HtmlJsCode for individual JS files,
 	 *    as produced by Module::getScript().
 	 *  - string: Script contents to eval in global scope (for site/user scripts).
 	 *  - string[]: List of URLs (for debug mode).
@@ -1272,19 +1272,19 @@ MESSAGE;
 	 *   Under optional key "css", there is a concatenated CSS string.
 	 *   Under optional key "url", there is an array by media type withs URLs to stylesheets (for debug mode).
 	 *   These come from Module::getStyles(), formatted by Module:buildContent().
-	 * @param XmlJsCode|null $messages An already JSON-encoded map from message keys to values,
-	 *   wrapped in an XmlJsCode object.
+	 * @param HtmlJsCode|null $messages An already JSON-encoded map from message keys to values,
+	 *   wrapped in an HtmlJsCode object.
 	 * @param array<string,string> $templates Map from template name to template source.
 	 * @return string JavaScript code
 	 */
 	private static function makeLoaderImplementScript(
 		$name, $scripts, $styles, $messages, $templates
 	) {
-		if ( $scripts instanceof XmlJsCode ) {
+		if ( $scripts instanceof HtmlJsCode ) {
 			if ( $scripts->value === '' ) {
 				$scripts = null;
 			} else {
-				$scripts = new XmlJsCode( "function ( $, jQuery, require, module ) {\n{$scripts->value}\n}" );
+				$scripts = new HtmlJsCode( "function ( $, jQuery, require, module ) {\n{$scripts->value}\n}" );
 			}
 		} elseif ( is_array( $scripts ) && isset( $scripts['files'] ) ) {
 			$files = $scripts['files'];
@@ -1298,14 +1298,14 @@ MESSAGE;
 					// Provide CJS `exports` (in addition to CJS2 `module.exports`) to package modules (T284511).
 					// $/jQuery are simply used as globals instead.
 					// TODO: Remove $/jQuery param from traditional module closure too (and bump caching)
-					$file = new XmlJsCode( "function ( require, module, exports ) {\n$content}" );
+					$file = new HtmlJsCode( "function ( require, module, exports ) {\n$content}" );
 				} else {
 					$file = $file['content'];
 				}
 			}
-			$scripts = XmlJsCode::encodeObject( [
+			$scripts = HtmlJsCode::encodeObject( [
 				'main' => $scripts['main'],
-				'files' => XmlJsCode::encodeObject( $files, true )
+				'files' => HtmlJsCode::encodeObject( $files, true )
 			], true );
 		} elseif ( !is_string( $scripts ) && !is_array( $scripts ) ) {
 			throw new InvalidArgumentException( 'Script must be a string or an array of URLs' );
@@ -1422,7 +1422,7 @@ MESSAGE;
 	 *
 	 * - null
 	 * - []
-	 * - new XmlJsCode( '{}' )
+	 * - new HtmlJsCode( '{}' )
 	 * - new stdClass()
 	 * - (object)[]
 	 *
@@ -1433,7 +1433,7 @@ MESSAGE;
 		while ( $i-- ) {
 			if ( $array[$i] === null
 				|| $array[$i] === []
-				|| ( $array[$i] instanceof XmlJsCode && $array[$i]->value === '{}' )
+				|| ( $array[$i] instanceof HtmlJsCode && $array[$i]->value === '{}' )
 				|| ( $array[$i] instanceof stdClass && self::isEmptyObject( $array[$i] ) )
 			) {
 				unset( $array[$i] );

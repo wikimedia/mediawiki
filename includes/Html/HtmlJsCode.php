@@ -18,26 +18,28 @@
  * @file
  */
 
+namespace MediaWiki\Html;
+
 /**
- * A wrapper class which causes Xml::encodeJsVar() and Xml::encodeJsCall() to
- * interpret a given string as being a JavaScript expression, instead of string
- * data.
+ * A wrapper class which causes Html::encodeJsVar() and Html::encodeJsCall()
+ * (as well as their Xml::* counterparts) to interpret a given string as being
+ * a JavaScript expression, instead of string data.
  *
  * @par Example:
  * @code
- *     Xml::encodeJsVar( new XmlJsCode( 'a + b' ) );
+ *     Html::encodeJsVar( new HtmlJsCode( 'a + b' ) );
  * @endcode
  *
  * This returns "a + b".
  *
- * @note As of 1.21, XmlJsCode objects cannot be nested inside objects or arrays. The sole
- *       exception is the $args argument to Xml::encodeJsCall() because Xml::encodeJsVar() is
+ * @note As of 1.21, HtmlJsCode objects cannot be nested inside objects or arrays. The sole
+ *       exception is the $args argument to Html::encodeJsCall() because Html::encodeJsVar() is
  *       called for each individual element in that array. If you need to encode an object or array
- *       containing XmlJsCode objects, use XmlJsCode::encodeObject() to re-encode it first.
+ *       containing HtmlJsCode objects, use HtmlJsCode::encodeObject() to re-encode it first.
  *
- * @since 1.17
+ * @since 1.41 (renamed from XmlJsCode, which existed since 1.17)
  */
-class XmlJsCode {
+class HtmlJsCode {
 	public $value;
 
 	public function __construct( $value ) {
@@ -45,25 +47,25 @@ class XmlJsCode {
 	}
 
 	/**
-	 * Encode an object containing XmlJsCode objects.
+	 * Encode an object containing HtmlJsCode objects.
 	 *
-	 * This takes an object or associative array where (some of) the values are XmlJsCode objects,
-	 * and re-encodes it as a single XmlJsCode object.
+	 * This takes an object or associative array where (some of) the values are HtmlJsCode objects,
+	 * and re-encodes it as a single HtmlJsCode object.
 	 *
 	 * @since 1.33
 	 * @phpcs:ignore MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
 	 * @param object|array $obj Object or associative array to encode
 	 * @param bool $pretty If true, add non-significant whitespace to improve readability.
-	 * @return XmlJsCode
+	 * @return HtmlJsCode
 	 */
 	public static function encodeObject( $obj, $pretty = false ) {
 		$parts = [];
 		foreach ( $obj as $key => $value ) {
 			$parts[] =
 				( $pretty ? '    ' : '' ) .
-				Xml::encodeJsVar( $key, $pretty ) .
+				Html::encodeJsVar( $key, $pretty ) .
 				( $pretty ? ': ' : ':' ) .
-				Xml::encodeJsVar( $value, $pretty );
+				Html::encodeJsVar( $value, $pretty );
 		}
 		return new self(
 			'{' .
@@ -74,3 +76,6 @@ class XmlJsCode {
 		);
 	}
 }
+
+/** @deprecated since 1.41 */
+class_alias( HtmlJsCode::class, 'XmlJsCode' );
