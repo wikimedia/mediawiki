@@ -43,7 +43,7 @@ class SearchPostgres extends SearchDatabase {
 	protected function doSearchTitleInDB( $term ) {
 		$q = $this->searchQuery( $term, 'titlevector' );
 		$olderror = error_reporting( E_ERROR );
-		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 		// phpcs:ignore MediaWiki.Usage.DbrQueryUsage.DbrQueryFound
 		$resultSet = $dbr->query( $q, 'SearchPostgres', IDatabase::QUERY_SILENCE_ERRORS );
 		error_reporting( $olderror );
@@ -53,7 +53,7 @@ class SearchPostgres extends SearchDatabase {
 	protected function doSearchTextInDB( $term ) {
 		$q = $this->searchQuery( $term, 'textvector' );
 		$olderror = error_reporting( E_ERROR );
-		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 		// phpcs:ignore MediaWiki.Usage.DbrQueryUsage.DbrQueryFound
 		$resultSet = $dbr->query( $q, 'SearchPostgres', IDatabase::QUERY_SILENCE_ERRORS );
 		error_reporting( $olderror );
@@ -116,7 +116,7 @@ class SearchPostgres extends SearchDatabase {
 		$searchstring = preg_replace( '/^[\'"](.*)[\'"]$/', "$1", $searchstring );
 
 		// Quote the whole thing
-		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 		$searchstring = $dbr->addQuotes( $searchstring );
 
 		wfDebug( "parseQuery returned: $searchstring" );
@@ -136,7 +136,7 @@ class SearchPostgres extends SearchDatabase {
 
 		// We need a separate query here so gin does not complain about empty searches
 		$sql = "SELECT to_tsquery($searchstring)";
-		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 		// phpcs:ignore MediaWiki.Usage.DbrQueryUsage.DbrQueryFound
 		$res = $dbr->query( $sql, __METHOD__ );
 		if ( !$res ) {
@@ -209,7 +209,7 @@ class SearchPostgres extends SearchDatabase {
 			" AND c.content_id = s.slot_content_id " .
 			" ORDER BY old_rev_text_id DESC OFFSET 1)";
 
-		$dbw = $this->lb->getConnectionRef( DB_PRIMARY );
+		$dbw = $this->dbProvider->getPrimaryDatabase();
 		$dbw->query( $sql, __METHOD__ );
 
 		return true;
