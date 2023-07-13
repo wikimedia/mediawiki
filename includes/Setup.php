@@ -321,7 +321,11 @@ MediaWikiServices::allowGlobalInstance();
 define( 'MW_SERVICE_BOOTSTRAP_COMPLETE', 1 );
 
 MWExceptionRenderer::setShowExceptionDetails( $wgShowExceptionDetails );
-MWExceptionHandler::installHandler( $wgLogExceptionBacktrace, $wgPropagateErrors );
+if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+	// Never install the handler in PHPUnit tests, otherwise PHPUnit's own handler will be unset and things
+	// like convertWarningsToExceptions won't work.
+	MWExceptionHandler::installHandler( $wgLogExceptionBacktrace, $wgPropagateErrors );
+}
 Profiler::init( $wgProfiler );
 
 // Non-trivial validation of: $wgServer

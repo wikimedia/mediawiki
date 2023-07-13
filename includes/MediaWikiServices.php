@@ -296,8 +296,12 @@ class MediaWikiServices extends ServiceContainer {
 	 * @return MediaWikiServices
 	 */
 	public static function getInstance(): self {
-		// TODO: in 1.37, getInstance() should fail if $globalInstanceAllowed is false! (T153256)
 		if ( !self::$globalInstanceAllowed ) {
+			if ( defined( 'MW_PHPUNIT_TEST' ) ) {
+				// Fail hard in PHPUnit tests only
+				throw new BadMethodCallException( 'Premature access to service container' );
+			}
+			// TODO: getInstance() should always fail if $globalInstanceAllowed is false! (T153256)
 			wfDeprecatedMsg( 'Premature access to service container', '1.36' );
 		}
 

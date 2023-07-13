@@ -210,9 +210,6 @@ class TestSetup {
 		// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.define
 		define( 'MW_SETUP_CALLBACK', [ self::class, 'setupCallback' ] );
 		self::requireOnceInGlobalScope( MW_INSTALL_PATH . "/includes/Setup.php" );
-		// Deregister handler from MWExceptionHandler::installHandle so that PHPUnit's own handler
-		// stays in tact. Needs to happen after including Setup.php, which calls MWExceptionHandler::installHandle().
-		restore_error_handler();
 	}
 
 	/**
