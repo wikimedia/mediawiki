@@ -3222,7 +3222,6 @@
 	"sunday-at": "Diumenge a les $1",
 	"yesterday-at": "Ahir a les $1",
 	"bad_image_list": "El format ha de ser el següent:\n\nNomés els elements de llista (les línies que comencin amb un *) es prenen en consideració. El primer enllaç de cada línia ha de ser el d'un fitxer dolent.\nLa resta d'enllaços de la línia són les excepcions, és a dir, les pàgines on es pot encabir el fitxer.",
-	"variantname-sr-ec": "sr-ec",
 	"variantname-uz": "uz",
 	"variantname-uz-latn": "uz-Latn",
 	"variantname-uz-cyrl": "uz-Cyrl",

@@ -464,7 +464,7 @@
 	"search-result-category-size": "{{PLURAL:$1|1 joukkneǩ|$1 joukkneeʹǩǩ|$1 joukkneʹǩǩed}} ({{PLURAL:$2|1 vueʹllkategoria|$2 vueʹllkategoria|$2 vueʹllkategoriad}}, {{PLURAL:$3|1 teâttõs|$3 teâttõõzz|$3 teâttõssâd}})",
 	"search-redirect": "(sirddum seeidast $1)",
 	"search-category": "(kategoria $1)",
-	"search-suggest": "Juʹrddiǩ-a ton $1?",
+	"search-suggest": "Juʹrddiǩ-a ton: $1",
 	"searchall": "puk",
 	"powersearch-legend": "Tääʹrǩab ooccmõš",
 	"powersearch-togglelabel": "Vaʹlljed:",
