@@ -15,14 +15,19 @@ class ExtensionsTestSuite extends TestSuite {
 	public function __construct() {
 		parent::__construct();
 
-		$paths = [];
-		// Autodiscover extension unit tests
-		$registry = ExtensionRegistry::getInstance();
-		foreach ( $registry->getAllThings() as $info ) {
-			$paths[] = dirname( $info['path'] ) . '/tests/phpunit';
+		if ( defined( 'MW_PHPUNIT_EXTENSIONS_TEST_PATHS' ) ) {
+			$paths = MW_PHPUNIT_EXTENSIONS_TEST_PATHS;
+		} else {
+			$paths = [];
+			// Autodiscover extension unit tests
+			$registry = ExtensionRegistry::getInstance();
+			foreach ( $registry->getAllThings() as $info ) {
+				$paths[] = dirname( $info['path'] ) . '/tests/phpunit';
+			}
+			// Extensions can return a list of files or directories
+			( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onUnitTestsList( $paths );
 		}
-		// Extensions can return a list of files or directories
-		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onUnitTestsList( $paths );
+
 		foreach ( array_unique( $paths ) as $path ) {
 			if ( is_dir( $path ) ) {
 				// If the path is a directory, search for test cases.
