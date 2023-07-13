@@ -106,7 +106,7 @@ class PHPUnitMaintClass {
 $deprecationMsg = <<<EOT
 *******************************************************************************
 DEPRECATED: The tests/phpunit/phpunit.php entry point has been deprecated. Use
-            `composer phpunit:entrypoint` instead.
+            `composer phpunit` instead.
 *******************************************************************************
 
 EOT;
@@ -137,6 +137,8 @@ if ( getenv( 'PHPUNIT_WIKI' ) ) {
 
 // Define the MediaWiki entrypoint
 define( 'MEDIAWIKI', true );
+
+define( 'PHPUNIT_LEGACY_ENTRYPOINT', true );
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 

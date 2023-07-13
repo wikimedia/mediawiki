@@ -5,6 +5,7 @@
  * This file is included by phpunit and is NOT in the global scope.
  *
  * @file
+ * @deprecated since 1.42 Use bootstrap.php instead
  */
 
 require_once __DIR__ . '/bootstrap.common.php';

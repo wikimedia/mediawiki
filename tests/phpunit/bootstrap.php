@@ -1,7 +1,10 @@
 <?php
 
 /**
- * PHPUnit bootstrap file.
+ * PHPUnit bootstrap file. This file loads MW classes, and optionally MW settings if integration tests
+ * are probably going to be run. Note that MW settings are not loaded for unit tests, but a settings
+ * file must still exist in order to determine what extensions should be loaded and to add any custom
+ * tests that they might add.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
