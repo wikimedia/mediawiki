@@ -32,6 +32,8 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 		$original->setExtensionData( 'test-key', 'test-data' );
 		$original->setOutputFlag( ParserOutputFlags::NO_GALLERY );
 		$original->setPageProperty( 'forcetoc', '' );
+		$original->recordOption( 'test1' );
+		$original->recordOption( 'test2' );
 
 		// This should preserve the metadata.
 		$output = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle, $original );
@@ -50,6 +52,7 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 'test-data', $output->getExtensionData( 'test-key' ) );
 		$this->assertSame( true, $output->getOutputFlag( ParserOutputFlags::NO_GALLERY ) );
 		$this->assertSame( '', $output->getPageProperty( 'forcetoc' ) );
+		$this->assertSame( [ 'test1', 'test2' ], $output->getUsedOptions() );
 
 		// Check that $original and $output can be modified independently of each other
 		$original->setText( 'new text version' );
