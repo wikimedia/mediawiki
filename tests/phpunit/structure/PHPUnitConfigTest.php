@@ -5,14 +5,17 @@
  * @group medium
  * @coversNothing
  */
-class SuiteDirectoryTest extends PHPUnit\Framework\TestCase {
+class PHPUnitConfigTest extends PHPUnit\Framework\TestCase {
 
-	public function testSuiteXmlDirectories() {
+	/**
+	 * @dataProvider provideConfigFiles
+	 */
+	public function testConfigDirectories( string $configPath ) {
 		// realpath() also normalizes directory separator on windows for prefix compares
-		$rootPath = realpath( __DIR__ . '/..' );
+		$testRootDir = realpath( __DIR__ . '/..' );
 
 		$dom = new DOMDocument();
-		$dom->load( "$rootPath/suite.xml" );
+		$dom->load( $configPath );
 		/** @var DOMElement $suites */
 		$suites = $dom->documentElement->getElementsByTagName( 'testsuites' )[0];
 
@@ -21,28 +24,28 @@ class SuiteDirectoryTest extends PHPUnit\Framework\TestCase {
 		foreach ( $suites->getElementsByTagName( 'testsuite' ) as $suite ) {
 			$generalDirs = [];
 			foreach ( $suite->getElementsByTagName( 'directory' ) as $dirNode ) {
-				$generalDirs[] = $dirNode->textContent;
+				$generalDirs[] = str_replace( 'tests/phpunit/', '', $dirNode->textContent );
 			}
 			$excludedDirs = [];
 			foreach ( $suite->getElementsByTagName( 'exclude' ) as $dirNode ) {
-				$excludedDirs[] = $dirNode->textContent;
+				$excludedDirs[] = str_replace( 'tests/phpunit/', '', $dirNode->textContent );
 			}
 			$suiteInfos[$suite->getAttribute( 'name' )] = [ $generalDirs, $excludedDirs ];
 		}
 
-		$directoriesFound = scandir( $rootPath, SCANDIR_SORT_ASCENDING );
+		$directoriesFound = scandir( $testRootDir, SCANDIR_SORT_ASCENDING );
 		if ( !$directoriesFound ) {
-			$this->fail( "Could not scan '$rootPath' directory" );
+			$this->fail( "Could not scan '$testRootDir' directory" );
 		}
 
 		$directoriesNeeded = array_values( array_diff(
 			array_filter(
 				$directoriesFound,
-				static function ( $name ) use ( $rootPath ) {
+				static function ( $name ) use ( $testRootDir ) {
 					return (
 						$name !== '.' &&
 						$name !== '..' &&
-						is_dir( "$rootPath/$name" )
+						is_dir( "$testRootDir/$name" )
 					);
 				}
 			),
@@ -67,6 +70,13 @@ class SuiteDirectoryTest extends PHPUnit\Framework\TestCase {
 			$directoriesIncluded,
 			"All suites included"
 		);
+	}
+
+	public static function provideConfigFiles(): array {
+		return [
+			'suite.xml' => [ __DIR__ . '/../suite.xml' ],
+			'phpunit.xml.dist' => [ __DIR__ . '/../../../phpunit.xml.dist' ],
+		];
 	}
 
 	private function isDirectoryIncluded( $dir, array $suiteInfos ) {
