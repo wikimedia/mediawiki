@@ -303,7 +303,7 @@ class ImageModuleTestable extends ImageModule {
 	 * Replace with a stub to make test cases easier to write.
 	 * @inheritDoc
 	 */
-	protected function getCssDeclarations( $primary, $fallback ): array {
+	protected function getCssDeclarations( $primary ): array {
 		return [ '...' ];
 	}
 }
