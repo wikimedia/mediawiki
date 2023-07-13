@@ -312,9 +312,9 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 			'test' => 'abc',
 			'option' => 'new'
 		];
-		$configMock = new HashConfig( [
-			MainConfigNames::HiddenPrefs => []
-		] );
+
+		$this->overrideConfigValue( MainConfigNames::HiddenPrefs, [] );
+
 		$form = $this->createMock( PreferencesFormOOUI::class );
 
 		$userMock = $this->createMock( User::class );
@@ -347,9 +347,6 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 
 		$form->method( 'getContext' )
 			->willReturn( $this->context );
-
-		$form->method( 'getConfig' )
-			->willReturn( $configMock );
 
 		$this->setTemporaryHook( 'PreferencesFormPreSave',
 			function ( $formData, $form, $user, &$result, $oldUserOptions )
