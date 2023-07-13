@@ -50,14 +50,6 @@ function wfPHPUnitFinalSetup() {
 require_once __DIR__ . '/bootstrap.common.php';
 $IP = $GLOBALS['IP'];
 
-if ( getenv( 'PHPUNIT_WIKI' ) ) {
-	$wikiName = getenv( 'PHPUNIT_WIKI' );
-	$bits = explode( '-', $wikiName, 2 );
-	define( 'MW_DB', $bits[0] );
-	define( 'MW_PREFIX', $bits[1] ?? '' );
-	define( 'MW_WIKI_NAME', $wikiName );
-}
-
 define( 'MW_SETUP_CALLBACK', 'wfPHPUnitFinalSetup' );
 
 TestSetup::requireOnceInGlobalScope( "$IP/includes/Setup.php" );
@@ -65,12 +57,7 @@ TestSetup::requireOnceInGlobalScope( "$IP/includes/Setup.php" );
 // stays in tact. Needs to happen after including Setup.php, which calls MWExceptionHandler::installHandle().
 restore_error_handler();
 
-// Check that composer dependencies are up-to-date
-if ( !getenv( 'MW_SKIP_EXTERNAL_DEPENDENCIES' ) ) {
-	$composerLockUpToDate = new CheckComposerLockUpToDate();
-	$composerLockUpToDate->loadParamsAndArgs( 'phpunit', [ 'quiet' => true ] );
-	$composerLockUpToDate->execute();
-}
+TestSetup::maybeCheckComposerLockUpToDate();
 
 // @todo Use PHPUnit hooks/events to run this code after the last test.
 register_shutdown_function( static function () {

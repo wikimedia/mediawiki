@@ -193,4 +193,14 @@ class TestSetup {
 		}
 	}
 
+	/**
+	 * Verifies that composer.lock is up to date, unless this check is disabled.
+	 */
+	public static function maybeCheckComposerLockUpToDate(): void {
+		if ( !getenv( 'MW_SKIP_EXTERNAL_DEPENDENCIES' ) ) {
+			$composerLockUpToDate = new CheckComposerLockUpToDate();
+			$composerLockUpToDate->loadParamsAndArgs( 'phpunit', [ 'quiet' => true ] );
+			$composerLockUpToDate->execute();
+		}
+	}
 }
