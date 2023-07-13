@@ -233,9 +233,11 @@ Bad images - manualthumb
 !! config
 wgParserEnableLegacyMediaDOM=false
 !! wikitext
-[[File:Foobar.jpg|thumb=Bad.jpg|Uh oh]]
+[[File:Foobar.jpg|thumbnail=Bad.jpg|Uh oh]]
 !! html/php
 <figure typeof="mw:Error mw:File/Thumb"><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg"><span class="mw-file-element mw-broken-media" data-width="180">File:Foobar.jpg</span></a><figcaption>Uh oh</figcaption></figure>
+!! html/parsoid
+<figure typeof="mw:Error mw:File/Thumb" data-mw='{"attribs":[["manualthumb",{"txt":"Bad.jpg"}]],"errors":[{"key":"apierror-badfile","message":"This image is on the bad file list."}]}'><a href="./Special:FilePath/Foobar.jpg"><span class="mw-file-element mw-broken-media" resource="./File:Foobar.jpg">File:Foobar.jpg</span></a><figcaption>Uh oh</figcaption></figure>
 !! end
 
 !! test

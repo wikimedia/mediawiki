@@ -870,7 +870,7 @@ Self-closed tag hooks
 <pre typeof="mw:Extension/pre" about="#mwt2" data-parsoid='{"stx":"html"}' data-mw='{"name":"pre","attrs":{}}'></pre>
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt5" data-mw='{"name":"gallery","attrs":{}}'>
 </ul>
-<p><link typeof="mw:Extension/indicator" about="#mwt7" data-mw='{"name":"indicator","attrs":{"name":"something"}}' /></p>
+<meta typeof="mw:Extension/indicator" about="#mwt6" data-mw='{"name":"indicator","attrs":{"name":"something"},"html":""}'/>
 !! end
 
 ###
@@ -12433,15 +12433,17 @@ showindicators
 !! metadata
 empty=
 name=
-!! html
+!! html/php
 <p><br />
 </p>
+!! html/parsoid
+<meta typeof="mw:Extension/indicator" about="#mwt2" data-mw='{"name":"indicator","attrs":{"name":"empty"},"html":""}'/>
+<meta typeof="mw:Extension/indicator" about="#mwt4" data-mw='{"name":"indicator","attrs":{"name":"name"},"body":{"extsrc":""},"html":""}'/>
 !! end
 
 !! test
 Page status indicators: Torture test
 !! options
-nohtml
 showindicators
 !! config
 wgParserEnableLegacyMediaDOM=false
@@ -12479,7 +12481,40 @@ paragraphs</indicator>
 10=<p>Two
 </p><p>paragraphs
 </p>
-!! html
+!! metadata/parsoid
+01=hello world
+02=<a rel="mw:WikiLink" href="./Main_Page" title="Main Page" data-parsoid='{"stx":"simple","a":{"href":"./Main_Page"},"sa":{"href":"Main Page"},"dsr":[66,79,2,2]}'>Main Page</a>
+03=<span typeof="mw:File" data-parsoid='{"optList":[{"ck":"width","ak":"25px"},{"ck":"link","ak":"link="}],"dsr":[113,143,null,null]}'><span data-parsoid="{}"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/25px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="3" width="25" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/38px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg 2x" class="mw-file-element" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"3","width":"25"},"sa":{"resource":"File:Foobar.jpg"}}'/></span></span>
+04=<span typeof="mw:File" data-parsoid='{"optList":[{"ck":"width","ak":"25px"}],"dsr":[177,201,null,null]}'><a href="./File:Foobar.jpg" class="mw-file-description" data-parsoid="{}"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/25px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="3" width="25" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/38px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg 2x" class="mw-file-element" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"3","width":"25"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></span>
+05=<ul data-parsoid='{"dsr":[235,244,0,0]}'><li data-parsoid='{"dsr":[235,239,1,0]}'>foo</li>
+<li data-parsoid='{"dsr":[240,244,1,0]}'>bar</li></ul>
+06=<span typeof="mw:Nowiki" data-parsoid='{"dsr":[278,298,8,9]}'>foo</span>
+07=<pre data-parsoid='{"dsr":[0,345,1,0]}'>Preformatted</pre>
+08=<div data-parsoid='{"stx":"html","autoInsertedEnd":true,"dsr":[379,394,5,0]}'>Broken tag</div>
+09=<table class="wikitable" data-parsoid='{"dsr":[428,455,18,2]}'>
+<tbody data-parsoid='{"dsr":[447,453,0,0]}'><tr data-parsoid='{"autoInsertedStart":true,"dsr":[447,452,0,0]}'><td data-parsoid='{"dsr":[447,452,1,0]}'>cell</td></tr>
+</tbody></table>
+10=<p data-parsoid='{"dsr":[489,492,0,0]}'>Two</p>
+
+<p data-parsoid='{"dsr":[494,504,0,0]}'>paragraphs</p>
+!! html/php
+<p><br />
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p>
+!! html/parsoid
+<meta typeof="mw:Extension/indicator" about="#mwt2" data-mw='{"name":"indicator","attrs":{"name":"01"},"body":{"extsrc":"hello world"},"html":"hello world"}'/>
+<meta typeof="mw:Extension/indicator" about="#mwt4" data-mw='{"name":"indicator","attrs":{"name":"02"},"body":{"extsrc":"[[Main Page]]"},"html":"&lt;a rel=\"mw:WikiLink\" href=\"./Main_Page\" title=\"Main Page\">Main Page&lt;/a>"}'/>
+<meta typeof="mw:Extension/indicator" about="#mwt6" data-mw='{"name":"indicator","attrs":{"name":"03"},"body":{"extsrc":"[[File:Foobar.jpg|25px|link=]]"},"html":"&lt;span typeof=\"mw:File\">&lt;span>&lt;img resource=\"./File:Foobar.jpg\" src=\"http://example.com/images/thumb/3/3a/Foobar.jpg/25px-Foobar.jpg\" decoding=\"async\" data-file-width=\"1941\" data-file-height=\"220\" data-file-type=\"bitmap\" height=\"3\" width=\"25\" srcset=\"http://example.com/images/thumb/3/3a/Foobar.jpg/38px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg 2x\" class=\"mw-file-element\"/>&lt;/span>&lt;/span>"}'/>
+<meta typeof="mw:Extension/indicator" about="#mwt8" data-mw='{"name":"indicator","attrs":{"name":"04"},"body":{"extsrc":"[[File:Foobar.jpg|25px]]"},"html":"&lt;span typeof=\"mw:File\">&lt;a href=\"./File:Foobar.jpg\" class=\"mw-file-description\">&lt;img resource=\"./File:Foobar.jpg\" src=\"http://example.com/images/thumb/3/3a/Foobar.jpg/25px-Foobar.jpg\" decoding=\"async\" data-file-width=\"1941\" data-file-height=\"220\" data-file-type=\"bitmap\" height=\"3\" width=\"25\" srcset=\"http://example.com/images/thumb/3/3a/Foobar.jpg/38px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg 2x\" class=\"mw-file-element\"/>&lt;/a>&lt;/span>"}'/>
+<meta typeof="mw:Extension/indicator" about="#mwt10" data-mw='{"name":"indicator","attrs":{"name":"05"},"body":{"extsrc":"*foo\n*bar"},"html":"&lt;ul>&lt;li>foo&lt;/li>\n&lt;li>bar&lt;/li>&lt;/ul>"}'/>
+<meta typeof="mw:Extension/indicator" about="#mwt13" data-mw='{"name":"indicator","attrs":{"name":"06"},"body":{"extsrc":"&lt;nowiki>foo&lt;/nowiki>"},"html":"&lt;span typeof=\"mw:Nowiki\">foo&lt;/span>"}'/>
+<meta typeof="mw:Extension/indicator" about="#mwt15" data-mw='{"name":"indicator","attrs":{"name":"07"},"body":{"extsrc":" Preformatted"},"html":"&lt;pre>Preformatted&lt;/pre>"}'/>
+<meta typeof="mw:Extension/indicator" about="#mwt17" data-mw='{"name":"indicator","attrs":{"name":"08"},"body":{"extsrc":"&lt;div>Broken tag"},"html":"&lt;div>Broken tag&lt;/div>"}'/>
+<meta typeof="mw:Extension/indicator" about="#mwt19" data-mw='{"name":"indicator","attrs":{"name":"09"},"body":{"extsrc":"{| class=wikitable\n|cell\n|}"},"html":"&lt;table class=\"wikitable\">\n&lt;tbody>&lt;tr>&lt;td>cell&lt;/td>&lt;/tr>\n&lt;/tbody>&lt;/table>"}'/>
+<meta typeof="mw:Extension/indicator" about="#mwt21" data-mw='{"name":"indicator","attrs":{"name":"10"},"body":{"extsrc":"Two\n\nparagraphs"},"html":"&lt;p>Two&lt;/p>\n\n&lt;p>paragraphs&lt;/p>"}'/>
 !! end
 
 !! test
@@ -16641,7 +16676,7 @@ showindicators
 1&2&3&amp;4&amp;amp;5=Indicator
 !! html/php
 !! html/parsoid
-<p><link typeof="mw:Extension/indicator" about="#mwt3" data-mw='{"name":"indicator","attrs":{"name":"1&amp;2&amp;3&amp;amp;4&amp;amp;amp;5"},"body":{"extsrc":"Indicator"}}' /></p>
+<meta typeof="mw:Extension/indicator" about="#mwt2" data-mw='{"name":"indicator","attrs":{"name":"1&amp;2&amp;3&amp;amp;4&amp;amp;amp;5"},"body":{"extsrc":"Indicator"},"html":"Indicator"}'/>
 !! end
 
 # this version of the test strips out the ambiguity so Parsoid rts cleanly
@@ -16655,7 +16690,7 @@ showindicators
 1&2&3&amp;4&amp;amp;5=Indicator
 !! html/php
 !! html/parsoid
-<p><link typeof="mw:Extension/indicator" about="#mwt3" data-mw='{"name":"indicator","attrs":{"name":"1&amp;2&amp;3&amp;amp;4&amp;amp;amp;5"},"body":{"extsrc":"Indicator"}}' /></p>
+<meta typeof="mw:Extension/indicator" about="#mwt2" data-mw='{"name":"indicator","attrs":{"name":"1&amp;2&amp;3&amp;amp;4&amp;amp;amp;5"},"body":{"extsrc":"Indicator"},"html":"Indicator"}'/>
 !! end
 
 # This fragment mode is what Parsoid supports.
