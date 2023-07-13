@@ -8,8 +8,9 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers MediaWiki\Http\HttpRequestFactory
+ * @todo Inject UrlUtils into MWHttpRequest and make this a unit test.
  */
-class HttpRequestFactoryTest extends MediaWikiUnitTestCase {
+class HttpRequestFactoryTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param array|null $options

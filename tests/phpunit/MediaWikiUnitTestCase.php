@@ -21,6 +21,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logger\NullSpi;
+use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\Exception;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\ObjectFactory\ObjectFactory;
@@ -101,6 +102,8 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		foreach ( self::$unitGlobals as $key => $value ) {
 			$GLOBALS[ $key ] = $value;
 		}
+
+		MediaWikiServices::disallowGlobalInstanceInUnitTests();
 	}
 
 	/**
@@ -154,6 +157,9 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		foreach ( self::$originalGlobals as $key => &$value ) {
 			$GLOBALS[ $key ] =& $value;
 		}
+		unset( $value );
+
+		MediaWikiServices::allowGlobalInstanceAfterUnitTests();
 	}
 
 }
