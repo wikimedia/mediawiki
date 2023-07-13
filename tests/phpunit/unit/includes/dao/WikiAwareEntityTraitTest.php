@@ -95,7 +95,7 @@ class WikiAwareEntityTraitTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideMismatchingWikis
 	 */
 	public function testDeprecateInvalidCrossWikiMismatch( $entityWiki, $assertWiki ) {
-		$this->expectDeprecation();
+		$this->expectDeprecationAndContinue( '/Deprecated cross-wiki access/' );
 		TestingAccessWrapper::newFromObject( $this->getEntityInstance( $entityWiki ) )
 			->deprecateInvalidCrossWiki( $assertWiki, '1.99' );
 	}

@@ -75,8 +75,8 @@ class StubGlobalUserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testMagicCall() {
-		$this->expectDeprecation();
-		$this->expectDeprecationMessage( 'Use of $wgUser was deprecated in MediaWiki 1.35' );
+		$this->expectDeprecationAndContinue( '/Use of \$wgUser was deprecated in MediaWiki 1\.35/' );
+		$this->expectDeprecationAndContinue( '/\$wgUser reassignment detected/' );
 
 		global $wgUser;
 		$this->assertInstanceOf(
@@ -97,8 +97,8 @@ class StubGlobalUserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetMagic() {
-		$this->expectDeprecation();
-		$this->expectDeprecationMessage( 'Use of $wgUser was deprecated in MediaWiki 1.35' );
+		$this->expectDeprecationAndContinue( '/Use of \$wgUser was deprecated in MediaWiki 1\.35/' );
+		$this->expectDeprecationAndContinue( '/\$wgUser reassignment detected/' );
 
 		global $wgUser;
 		$this->assertInstanceOf(
@@ -123,8 +123,8 @@ class StubGlobalUserTest extends MediaWikiIntegrationTestCase {
 		// and not try to detect and throw exceptions in unstub loops - for some reason it
 		// thinks this creates a loop.
 
-		$this->expectDeprecation();
-		$this->expectDeprecationMessage( 'Use of $wgUser was deprecated in MediaWiki 1.35' );
+		$this->expectDeprecationAndContinue( '/Use of \$wgUser was deprecated in MediaWiki 1\.35/' );
+		$this->expectDeprecationAndContinue( '/\$wgUser reassignment detected/' );
 
 		global $wgUser;
 		$this->assertInstanceOf(
@@ -146,7 +146,7 @@ class StubGlobalUserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testDeprecationEmittedWhenReassigned() {
-		$this->expectDeprecation();
+		$this->expectDeprecationAndContinue( '/\$wgUser reassignment detected/' );
 		global $wgUser;
 		$wgUser = new User;
 	}

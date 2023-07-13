@@ -46,8 +46,7 @@ trait RevisionRecordTests {
 	}
 
 	public function testGetIdTriggerDeprecatedWarning() {
-		$this->expectDeprecation();
-		$this->expectDeprecationMessageMatches( '/Deprecated cross-wiki access.*/' );
+		$this->expectDeprecationAndContinue( '/Deprecated cross-wiki access/' );
 		$revision = $this->newRevision( [ 'wikiId' => 'acmewiki', 'rev_id' => 5 ] );
 		$revision->getId();
 	}
@@ -64,8 +63,7 @@ trait RevisionRecordTests {
 	}
 
 	public function testGetPageIdTriggerDeprecatedWarning() {
-		$this->expectDeprecation();
-		$this->expectDeprecationMessageMatches( '/Deprecated cross-wiki access.*/' );
+		$this->expectDeprecationAndContinue( '/Deprecated cross-wiki access/' );
 		$revision = $this->newRevision( [ 'wikiId' => 'acmewiki', 'rev_page_id' => 17 ] );
 		$revision->getPageId();
 	}
@@ -82,8 +80,7 @@ trait RevisionRecordTests {
 	}
 
 	public function testGetParentIdTriggerDeprecatedWarning() {
-		$this->expectDeprecation();
-		$this->expectDeprecationMessageMatches( '/Deprecated cross-wiki access.*/' );
+		$this->expectDeprecationAndContinue( '/Deprecated cross-wiki access/' );
 		$revision = $this->newRevision( [ 'wikiId' => 'acmewiki', 'rev_parent_id' => 1 ] );
 		$revision->getParentId();
 	}
