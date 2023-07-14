@@ -36,25 +36,9 @@ class ExtensionsTestSuite extends TestSuite {
 				$this->addTestFile( $path );
 			}
 		}
-		if ( !$paths ) {
-			$this->addTest( new DummyExtensionsTest( 'testNothing' ) );
-		}
 	}
 
 	public static function suite() {
 		return new self;
-	}
-}
-
-/**
- * Needed to avoid warnings like 'No tests found in class "ExtensionsTestSuite".'
- * when no extensions with tests are used.
- */
-class DummyExtensionsTest extends MediaWikiIntegrationTestCase {
-	/**
-	 * @coversNothing
-	 */
-	public function testNothing() {
-		$this->assertTrue( true );
 	}
 }
