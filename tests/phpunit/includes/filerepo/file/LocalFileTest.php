@@ -650,7 +650,10 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $user->equals( $file->getUploader() ) );
 
 		// Make sure we were actually hitting the WAN cache
-		$dbw->delete( 'image', [ 'img_name' => 'Random-11m.png' ], __METHOD__ );
+		$dbw->newDeleteQueryBuilder()
+			->delete( 'image' )
+			->where( [ 'img_name' => 'Random-11m.png' ] )
+			->caller( __METHOD__ )->execute();
 		$file->invalidateCache();
 		$file = LocalFile::newFromTitle( $title, $repo );
 		$this->assertSame( false, $file->exists() );

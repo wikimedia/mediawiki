@@ -888,7 +888,10 @@ class ApiEditPageTest extends ApiTestCase {
 
 		// Make the middle revision disappear
 		$dbw = wfGetDB( DB_PRIMARY );
-		$dbw->delete( 'revision', [ 'rev_id' => $revId2 ], __METHOD__ );
+		$dbw->newDeleteQueryBuilder()
+			->delete( 'revision' )
+			->where( [ 'rev_id' => $revId2 ] )
+			->caller( __METHOD__ )->execute();
 		$dbw->update( 'revision', [ 'rev_parent_id' => $revId1 ],
 			[ 'rev_id' => $revId3 ], __METHOD__ );
 
