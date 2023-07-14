@@ -1112,6 +1112,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'section' => 'rendering/diffs',
 			'label-message' => 'tog-norollbackdiff',
 		];
+		$defaultPreferences['diff-type'] = [
+			'type' => 'api',
+		];
 
 		// Page Rendering
 		if ( $this->options->get( MainConfigNames::AllowUserCssPrefs ) ) {

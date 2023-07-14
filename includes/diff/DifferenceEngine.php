@@ -220,6 +220,11 @@ class DifferenceEngine extends ContextSource {
 	 */
 	private $slotDiffOptions = [];
 
+	/**
+	 * Extra query parameters to be appended to diff page links
+	 */
+	private $extraQueryParams = [];
+
 	/** @var ManifoldTextDiffer|null */
 	private $textDiffer;
 
@@ -708,7 +713,7 @@ class DifferenceEngine extends ContextSource {
 
 		$rollback = '';
 
-		$query = $this->slotDiffOptions;
+		$query = $this->extraQueryParams;
 		# Carry over 'diffonly' param via navigation links
 		if ( $diffOnly != MediaWikiServices::getInstance()
 			->getUserOptionsLookup()->getBoolOption( $user, 'diffonly' )
@@ -1506,6 +1511,17 @@ class DifferenceEngine extends ContextSource {
 			$validatedOptions['expand-url'] = true;
 		}
 		$this->slotDiffOptions = $validatedOptions;
+	}
+
+	/**
+	 * Set query parameters to append to diff page links
+	 *
+	 * @since 1.41
+	 *
+	 * @param array $params
+	 */
+	public function setExtraQueryParams( $params ) {
+		$this->extraQueryParams = $params;
 	}
 
 	/**
