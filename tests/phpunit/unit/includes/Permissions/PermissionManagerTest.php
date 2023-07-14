@@ -266,6 +266,10 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 		$title = $this->createMock( Title::class );
 
 		$restrictionStore = $this->createMock( RestrictionStore::class );
+		$restrictionStore->expects( $this->any() )
+			->method( 'listApplicableRestrictionTypes' )
+			->with( $title )
+			->willReturn( [ 'other-action', $action ] );
 		$restrictionStore->expects( $this->once() )
 			->method( 'getRestrictions' )
 			->with( $title, $action )

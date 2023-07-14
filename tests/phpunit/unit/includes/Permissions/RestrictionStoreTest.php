@@ -4,7 +4,10 @@ namespace MediaWiki\Tests\Unit\Permissions;
 
 use DatabaseTestHelper;
 use MediaWiki\Cache\LinkCache;
+use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\DAO\WikiAwareEntity;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
@@ -1012,6 +1015,35 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 		[ $sources, $restrictions ] = $obj->getCascadeProtectionSources( $page );
 		$this->assertCount( 0, $sources );
 		$this->assertCount( 0, $restrictions );
+	}
+
+	/**
+	 * @covers ::getRestrictions
+	 */
+	public function testShouldNotFetchProtectionSettingsIfActionCannotBeRestricted(): void {
+		$lb = $this->createMock( ILoadBalancer::class );
+		$lb->expects( $this->never() )
+			->method( $this->anything() );
+
+		$store = new RestrictionStore(
+			new ServiceOptions( RestrictionStore::CONSTRUCTOR_OPTIONS, [
+					MainConfigNames::NamespaceProtection => [],
+					MainConfigNames::RestrictionLevels => [ '', 'autoconfirmed', 'sysop' ],
+					MainConfigNames::RestrictionTypes => self::DEFAULT_RESTRICTION_TYPES,
+					MainConfigNames::SemiprotectedRestrictionLevels => [ 'autoconfirmed' ],
+				] ),
+			WANObjectCache::newEmpty(),
+			$lb,
+			$this->createMock( LinkCache::class ),
+			$this->createMock( LinksMigration::class ),
+			$this->createMock( CommentStore::class ),
+			$this->createMock( HookContainer::class ),
+			$this->createMock( PageStore::class )
+		);
+
+		$page = new PageIdentityValue( 1, NS_MAIN, 'Test', WikiAwareEntity::LOCAL );
+
+		$this->assertSame( [], $store->getRestrictions( $page, 'non-restrictable-action' ) );
 	}
 
 }

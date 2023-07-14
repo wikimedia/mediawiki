@@ -124,6 +124,15 @@ class RestrictionStore {
 	public function getRestrictions( PageIdentity $page, string $action ): array {
 		$page->assertWiki( PageIdentity::LOCAL );
 
+		// Optimization: Avoid repeatedly fetching page restrictions (from cache or DB)
+		// for repeated PermissionManager::userCan calls, if this action cannot be restricted
+		// in the first place. This is primarily to improve batch rendering on RecentChanges,
+		// where as of writing this will save 0.5s on a 8.0s response. (T341319)
+		$restrictionTypes = $this->listApplicableRestrictionTypes( $page );
+		if ( !in_array( $action, $restrictionTypes ) ) {
+			return [];
+		}
+
 		$restrictions = $this->getAllRestrictions( $page );
 		return $restrictions[$action] ?? [];
 	}
