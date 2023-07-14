@@ -766,7 +766,7 @@
 	"apihelp-query+embeddedin-example-generator": "Получить информацию о страницах, включающих <kbd>Template:Stub</kbd>.",
 	"apihelp-query+extlinks-summary": "Получение всех внешних ссылок (не интервик) для данной страницы.",
 	"apihelp-query+extlinks-param-limit": "Сколько ссылок вернуть.",
-	"apihelp-query+extlinks-param-protocol": "Протокол ссылки. Если оставлено пустым, а <var>$1query</var> задано, будут найдены ссылки с протоколом <kbd>http</kbd>. Оставьте пустым и <var>$1query</var>, и данный параметр, чтобы получить список всех внешних ссылок.",
+	"apihelp-query+extlinks-param-protocol": "Протокол ссылки. Если оставлено пустым, а <var>$1query</var> задано, будут найдены ссылки с протоколами <kbd>http</kbd> и <kbd>https</kbd>. Оставьте пустым и <var>$1query</var>, и данный параметр, чтобы получить список всех внешних ссылок.",
 	"apihelp-query+extlinks-param-query": "Поисковый запрос без протокола. Полезно для проверки, содержит ли определённая страница определённую внешнюю ссылку.",
 	"apihelp-query+extlinks-param-expandurl": "Раскрыть зависимые от протокола ссылки с каноничным протоколом.",
 	"apihelp-query+extlinks-example-simple": "Получить внешние ссылки на странице <kbd>Main Page</kbd>.",

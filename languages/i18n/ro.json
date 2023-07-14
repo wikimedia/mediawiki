@@ -3,6 +3,7 @@
 		"authors": [
 			"ANDROBETA",
 			"AdiJapan",
+			"Alesaru",
 			"Amire80",
 			"Andrei Stroe",
 			"Andreyyshore",
@@ -978,6 +979,8 @@
 	"diff-multi-manyusers": "({{PLURAL:$1|O versiune intermediară efectuată de|$1 (de) versiuni intermediare efectuate de peste}} $2 {{PLURAL:$2|utilizator|utilizatori}} {{PLURAL:$1|neafișată|neafișate}})",
 	"diff-paragraph-moved-tonew": "Paragraful a fost mutat. Clic pentru a ajunge la noua locație.",
 	"diff-paragraph-moved-toold": "Paragraful a fost mutat. Clic pentru a ajunge la vechea locație.",
+	"diff-line-deleted": "șterge",
+	"diff-newline": "↲ linie nouă",
 	"difference-missing-revision": "{{PLURAL:$2|O versiune a|$2 versiuni ale|$2 de versiuni ale}} acestei diferențe ($1) nu {{PLURAL:$2|a fost găsită|au fost găsite}}.\n\nAcest lucru se întâmplă de obicei atunci când se accesează o legătură expirată către istoricul unei pagini șterse.\nDetalii se pot găsi în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jurnalul ștergerilor].",
 	"searchresults": "Rezultatele căutării",
 	"search-filter-title-prefix": "Se caută doar în paginile al căror titlu începe cu „$1”",

@@ -1241,6 +1241,7 @@
 	"userrights-invalid-expiry": "Rühma \"$1\" aegumistähtaeg on vigane.",
 	"userrights-expiry-in-past": "Rühma \"$1\" aegumistähtaeg on minevikus.",
 	"userrights-cannot-shorten-expiry": "Rühma \"$1\" kuulumise aegumistähtaega ei saa varasemale ajale tuua. Ainult kasutajad, kellel on õigus seda rühma lisada ja eemaldada, saavad aegumistähtaegu varsemale ajale tuua.",
+	"userrights-no-tempuser": "Ajutisi kasutajaid ei saa rühmadesse lisada.",
 	"userrights-conflict": "Kasutajaõiguste muutmise konflikt! Palun vaata oma muudatused üle ja kinnita need.",
 	"group": "Rühm:",
 	"group-user": "Kasutajad",

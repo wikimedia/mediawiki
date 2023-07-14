@@ -1319,6 +1319,7 @@
 	"userrights-invalid-expiry": "De vervaltijd voor de groep \"$1\" is ongeldig.",
 	"userrights-expiry-in-past": "De vervaltijd voor de groep \"$1\" is in het verleden.",
 	"userrights-cannot-shorten-expiry": "U kunt de verlooptijd van het groepslidmaatschip van groep \"$1\" niet verkorten. Alleen gebruikers met het recht om deze groep toe te voegen of te verwijderen kunnen de verlooptijd verkorten.",
+	"userrights-no-tempuser": "Tijdelijke gebruikers kunnen niet aan een gebruikersgroep worden toegevoegd.",
 	"userrights-conflict": "Bewerkingsconflict bij het aanpassen van gebruikersrechten! Controleer en bevestig uw wijzigingen.",
 	"group": "Groep:",
 	"group-user": "gebruikers",

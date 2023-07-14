@@ -642,6 +642,8 @@
 	"diff-paragraph-moved-toold": "پیرا ٹور ݙتا ڳئے۔ پُراݨی جاہ تے ٹپ مار تے ون٘ڄݨ کیتے کلک کرو۔",
 	"diff-inline-format-label": "ان لائن",
 	"diff-table-format-label": "ٹیبل",
+	"diff-line-deleted": "⟵ مٹاؤ",
+	"diff-newline": "↲ نویں سطر",
 	"searchresults": "ڳولݨ دا چھاݨاں",
 	"search-filter-title-prefix-reset": "سارے ورقے ڳولو",
 	"searchresults-title": "\"$1\" دے ڳولݨ نتیجے",

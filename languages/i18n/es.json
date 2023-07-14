@@ -1191,6 +1191,7 @@
 	"diff-inline-tooltip-del": "Contenido eliminado",
 	"diff-inline-format-label": "En renglón",
 	"diff-table-format-label": "Tabla",
+	"diff-line-deleted": "⟵ eliminar",
 	"difference-missing-revision": "No se {{PLURAL:$2|ha encontrado una revisión|han encontrado $2 revisiones}} de la comparación solicitada ($1).\n\nLa causa de esto suele ser un enlace obsoleto hacia una edición de una página que ha sido borrada.\nPara más información, consulta el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
 	"difference-bad-old-revision": "Falta el contenido de la revisión anterior o este está dañado.",
 	"difference-bad-new-revision": "Falta el contenido de la revisión nueva o este está dañado.",
