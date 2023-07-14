@@ -193,12 +193,11 @@ class ApiStashEditTest extends ApiTestCase {
 
 		// Corrupt the database.  @todo Does the API really need to fail gracefully for this case?
 		$dbw = wfGetDB( DB_PRIMARY );
-		$dbw->update(
-			'page',
-			[ 'page_latest' => 0 ],
-			[ 'page_id' => $revRecord->getPageId() ],
-			__METHOD__
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'page' )
+			->set( [ 'page_latest' => 0 ] )
+			->where( [ 'page_id' => $revRecord->getPageId() ] )
+			->caller( __METHOD__ )->execute();
 
 		$this->doStash( [ 'title' => $name, 'baserevid' => $revRecord->getId() ] );
 	}

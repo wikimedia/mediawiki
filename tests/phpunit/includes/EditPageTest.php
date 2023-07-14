@@ -74,9 +74,11 @@ class EditPageTest extends MediaWikiLangTestCase {
 	protected function forceRevisionDate( WikiPage $page, $timestamp ) {
 		$dbw = wfGetDB( DB_PRIMARY );
 
-		$dbw->update( 'revision',
-			[ 'rev_timestamp' => $dbw->timestamp( $timestamp ) ],
-			[ 'rev_id' => $page->getLatest() ] );
+		$dbw->newUpdateQueryBuilder()
+			->update( 'revision' )
+			->set( [ 'rev_timestamp' => $dbw->timestamp( $timestamp ) ] )
+			->where( [ 'rev_id' => $page->getLatest() ] )
+			->execute();
 
 		$page->clear();
 	}

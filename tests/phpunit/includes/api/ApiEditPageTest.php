@@ -696,11 +696,13 @@ class ApiEditPageTest extends ApiTestCase {
 	 * @param string|int $timestamp
 	 */
 	protected function forceRevisionDate( WikiPage $page, $timestamp ) {
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 
-		$dbw->update( 'revision',
-			[ 'rev_timestamp' => $dbw->timestamp( $timestamp ) ],
-			[ 'rev_id' => $page->getLatest() ] );
+		$dbw->newUpdateQueryBuilder()
+			->update( 'revision' )
+			->set( [ 'rev_timestamp' => $dbw->timestamp( $timestamp ) ] )
+			->where( [ 'rev_id' => $page->getLatest() ] )
+			->caller( __METHOD__ )->execute();
 
 		$page->clear();
 	}
@@ -887,13 +889,16 @@ class ApiEditPageTest extends ApiTestCase {
 		$revId3 = $this->editPage( $page, '3' )->getNewRevision()->getId();
 
 		// Make the middle revision disappear
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 		$dbw->newDeleteQueryBuilder()
 			->delete( 'revision' )
 			->where( [ 'rev_id' => $revId2 ] )
 			->caller( __METHOD__ )->execute();
-		$dbw->update( 'revision', [ 'rev_parent_id' => $revId1 ],
-			[ 'rev_id' => $revId3 ], __METHOD__ );
+		$dbw->newUpdateQueryBuilder()
+			->update( 'revision' )
+			->set( [ 'rev_parent_id' => $revId1 ] )
+			->where( [ 'rev_id' => $revId3 ] )
+			->caller( __METHOD__ )->execute();
 
 		$this->expectApiErrorCode( 'nosuchrevid' );
 
@@ -954,13 +959,12 @@ class ApiEditPageTest extends ApiTestCase {
 		$revId1 = $this->editPage( $page, '1' )->getNewRevision()->getId();
 
 		// Now monkey with the timestamp
-		$dbw = wfGetDB( DB_PRIMARY );
-		$dbw->update(
-			'revision',
-			[ 'rev_timestamp' => $dbw->timestamp( time() - 86400 ) ],
-			[ 'rev_id' => $revId1 ],
-			__METHOD__
-		);
+		$dbw = $this->getDb();
+		$dbw->newUpdateQueryBuilder()
+			->update( 'revision' )
+			->set( [ 'rev_timestamp' => $dbw->timestamp( time() - 86400 ) ] )
+			->where( [ 'rev_id' => $revId1 ] )
+			->caller( __METHOD__ )->execute();
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
@@ -1565,8 +1569,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'tags' => 'custom tag',
 		] )[0]['edit']['newrevid'];
 
-		$dbw = wfGetDB( DB_PRIMARY );
-		$this->assertSame( 'custom tag', $dbw->selectField(
+		$this->assertSame( 'custom tag', $this->getDb()->selectField(
 			[ 'change_tag', 'change_tag_def' ],
 			'ctd_name',
 			[ 'ct_rev_id' => $revId ],

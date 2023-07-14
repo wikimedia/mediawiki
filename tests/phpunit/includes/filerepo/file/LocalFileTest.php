@@ -636,8 +636,11 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 
 		// Test cache by corrupting DB
 		// Don't wipe img_metadata though since that will be loaded by loadExtraFromDB()
-		$dbw->update( 'image', [ 'img_size' => 0 ],
-			[ 'img_name' => 'Random-11m.png' ], __METHOD__ );
+		$dbw->newUpdateQueryBuilder()
+			->update( 'image' )
+			->set( [ 'img_size' => 0 ] )
+			->where( [ 'img_name' => 'Random-11m.png' ] )
+			->caller( __METHOD__ )->execute();
 		$file = LocalFile::newFromTitle( $title, $repo );
 
 		$this->assertFileProperties( $expectedProps, $file );

@@ -190,12 +190,11 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 
 		$bp = TestingAccessWrapper::newFromObject( BotPassword::newFromCentralId( 42, 'BotPassword' ) );
 		$dbw = wfGetDB( DB_PRIMARY );
-		$dbw->update(
-			'bot_passwords',
-			[ 'bp_password' => 'garbage' ],
-			[ 'bp_user' => 42, 'bp_app_id' => 'BotPassword' ],
-			__METHOD__
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'bot_passwords' )
+			->set( [ 'bp_password' => 'garbage' ] )
+			->where( [ 'bp_user' => 42, 'bp_app_id' => 'BotPassword' ] )
+			->caller( __METHOD__ )->execute();
 		$password = $bp->getPassword();
 		$this->assertInstanceOf( InvalidPassword::class, $password );
 	}

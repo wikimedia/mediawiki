@@ -177,48 +177,42 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		$this->assertFalse( $provider->testUserCanAuthenticate( '<invalid>' ) );
 		$this->assertFalse( $provider->testUserCanAuthenticate( 'DoesNotExist' ) );
 
-		$dbw->update(
-			'user',
-			[
+		$dbw->newUpdateQueryBuilder()
+			->update( 'user' )
+			->set( [
 				'user_newpassword' => \PasswordFactory::newInvalidPassword()->toString(),
 				'user_newpass_time' => null,
-			],
-			[ 'user_id' => $user->getId() ]
-		);
+			] )
+			->where( [ 'user_id' => $user->getId() ] )
+			->execute();
 		$this->assertFalse( $provider->testUserCanAuthenticate( $user->getName() ) );
 
-		$dbw->update(
-			'user',
-			[
-				'user_newpassword' => $pwhash,
-				'user_newpass_time' => null,
-			],
-			[ 'user_id' => $user->getId() ]
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'user' )
+			->set( [ 'user_newpassword' => $pwhash, 'user_newpass_time' => null, ] )
+			->where( [ 'user_id' => $user->getId() ] )
+			->execute();
 		$this->assertTrue( $provider->testUserCanAuthenticate( $user->getName() ) );
 		$this->assertTrue( $provider->testUserCanAuthenticate( lcfirst( $user->getName() ) ) );
 
-		$dbw->update(
-			'user',
-			[
-				'user_newpassword' => $pwhash,
-				'user_newpass_time' => $dbw->timestamp( time() - 10 ),
-			],
-			[ 'user_id' => $user->getId() ]
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'user' )
+			->set( [ 'user_newpassword' => $pwhash, 'user_newpass_time' => $dbw->timestamp( time() - 10 ) ] )
+			->where( [ 'user_id' => $user->getId() ] )
+			->execute();
 		$providerPriv->newPasswordExpiry = 100;
 		$this->assertTrue( $provider->testUserCanAuthenticate( $user->getName() ) );
 		$providerPriv->newPasswordExpiry = 1;
 		$this->assertFalse( $provider->testUserCanAuthenticate( $user->getName() ) );
 
-		$dbw->update(
-			'user',
-			[
+		$dbw->newUpdateQueryBuilder()
+			->update( 'user' )
+			->set( [
 				'user_newpassword' => \PasswordFactory::newInvalidPassword()->toString(),
 				'user_newpass_time' => null,
-			],
-			[ 'user_id' => $user->getId() ]
-		);
+			] )
+			->where( [ 'user_id' => $user->getId() ] )
+			->execute();
 	}
 
 	/**
@@ -276,11 +270,11 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		$password = 'TemporaryPassword';
 		$hash = ':A:' . md5( $password );
 		$dbw = wfGetDB( DB_PRIMARY );
-		$dbw->update(
-			'user',
-			[ 'user_newpassword' => $hash, 'user_newpass_time' => $dbw->timestamp( time() - 10 ) ],
-			[ 'user_id' => $user->getId() ]
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'user' )
+			->set( [ 'user_newpassword' => $hash, 'user_newpass_time' => $dbw->timestamp( time() - 10 ) ] )
+			->where( [ 'user_id' => $user->getId() ] )
+			->execute();
 
 		$req = new PasswordAuthenticationRequest();
 		$req->action = AuthManager::ACTION_LOGIN;
@@ -454,15 +448,19 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		$dbw = wfGetDB( DB_PRIMARY );
 		$oldHash = $dbw->selectField( 'user', 'user_newpassword', [ 'user_name' => $cuser ] );
 		$cb = new ScopedCallback( static function () use ( $dbw, $cuser, $oldHash ) {
-			$dbw->update( 'user', [ 'user_newpassword' => $oldHash ], [ 'user_name' => $cuser ] );
+			$dbw->newUpdateQueryBuilder()
+				->update( 'user' )
+				->set( [ 'user_newpassword' => $oldHash ] )
+				->where( [ 'user_name' => $cuser ] )
+				->execute();
 		} );
 
 		$hash = ':A:' . md5( $oldpass );
-		$dbw->update(
-			'user',
-			[ 'user_newpassword' => $hash, 'user_newpass_time' => $dbw->timestamp( time() + 10 ) ],
-			[ 'user_name' => $cuser ]
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'user' )
+			->set( [ 'user_newpassword' => $hash, 'user_newpass_time' => $dbw->timestamp( time() + 10 ) ] )
+			->where( [ 'user_name' => $cuser ] )
+			->execute();
 
 		$provider = $this->getProvider();
 
@@ -543,11 +541,11 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		$user = self::getMutableTestUser()->getUser();
 
 		$dbw = wfGetDB( DB_PRIMARY );
-		$dbw->update(
-			'user',
-			[ 'user_newpass_time' => $dbw->timestamp( time() - 5 * 3600 ) ],
-			[ 'user_id' => $user->getId() ]
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'user' )
+			->set( [ 'user_newpass_time' => $dbw->timestamp( time() - 5 * 3600 ) ] )
+			->where( [ 'user_id' => $user->getId() ] )
+			->execute();
 
 		$req = TemporaryPasswordAuthenticationRequest::newRandom();
 		$req->username = $user->getName();
@@ -569,11 +567,11 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
 		$this->assertFalse( $status->hasMessage( 'throttled-mailpassword' ) );
 
-		$dbw->update(
-			'user',
-			[ 'user_newpass_time' => $dbw->timestamp( time() + 5 * 3600 ) ],
-			[ 'user_id' => $user->getId() ]
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'user' )
+			->set( [ 'user_newpass_time' => $dbw->timestamp( time() + 5 * 3600 ) ] )
+			->where( [ 'user_id' => $user->getId() ] )
+			->execute();
 		$provider = $this->getProvider( [
 			'emailEnabled' => true, 'passwordReminderResendTime' => 0
 		] );
