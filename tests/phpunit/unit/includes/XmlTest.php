@@ -23,7 +23,6 @@ namespace MediaWiki\Tests\Unit;
 
 use MediaWikiUnitTestCase;
 use Xml;
-use XmlJsCode;
 
 /**
  * Split from \XmlTest integration tests
@@ -53,49 +52,6 @@ class XmlTest extends MediaWikiUnitTestCase {
 	public function testEscapeTagsOnly() {
 		$this->assertEquals( '&quot;&gt;&lt;', Xml::escapeTagsOnly( '"><' ),
 			'replace " > and < with their HTML entitites'
-		);
-	}
-
-	public static function provideEncodeJsVar() {
-		// $expected, $input
-		yield 'boolean' => [ 'true', true ];
-		yield 'null' => [ 'null', null ];
-		yield 'array' => [ '["a",1]', [ 'a', 1 ] ];
-		yield 'associative arary' => [ '{"a":"a","b":1}', [ 'a' => 'a', 'b' => 1 ] ];
-		yield 'object' => [ '{"a":"a","b":1}', (object)[ 'a' => 'a', 'b' => 1 ] ];
-		yield 'int' => [ '123456', 123456 ];
-		yield 'float' => [ '1.5', 1.5 ];
-		yield 'int-like string' => [ '"123456"', '123456' ];
-
-		$code = 'function () { foo( 42 ); }';
-		yield 'code' => [ $code, new XmlJsCode( $code ) ];
-	}
-
-	/**
-	 * @covers Xml::encodeJsVar
-	 * @dataProvider provideEncodeJsVar
-	 */
-	public function testEncodeJsVar( string $expect, $input ) {
-		$this->assertEquals(
-			$expect,
-			Xml::encodeJsVar( $input )
-		);
-	}
-
-	/**
-	 * @covers Xml::encodeJsVar
-	 * @covers XmlJsCode::encodeObject
-	 */
-	public function testEncodeObject() {
-		$codeA = 'function () { foo( 42 ); }';
-		$codeB = 'function ( jQuery ) { bar( 142857 ); }';
-		$obj = XmlJsCode::encodeObject( [
-			'a' => new XmlJsCode( $codeA ),
-			'b' => new XmlJsCode( $codeB )
-		] );
-		$this->assertEquals(
-			"{\"a\":$codeA,\"b\":$codeB}",
-			Xml::encodeJsVar( $obj )
 		);
 	}
 

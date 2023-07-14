@@ -368,6 +368,11 @@ because of Phabricator reports.
 * ResourceLoader (T127268): The targets system is deprecated. Modules that
   have been marked as desktop or mobile only are no longer supported and
   will send deprecation warnings.
+* The static methods encodeJsVar() and encodeJsCall() have been moved from the
+  Xml class to the more appropriate MediaWiki\Html\Html one, and the old ones
+  are now deprecated.
+* The XmlJsCode wrapper class has been renamed to MediaWiki\Html\HtmlJsCode,
+  and the old name is now deprecated.
 * …
 
 === Other changes in 1.41 ===

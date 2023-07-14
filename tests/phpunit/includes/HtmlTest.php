@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Html\Html;
+use MediaWiki\Html\HtmlJsCode;
 use MediaWiki\MainConfigNames;
 
 /**
@@ -888,6 +889,49 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 			'classAttribute' => 'foo',
 			'expectedClassAttribute' => 'foo',
 		];
+	}
+
+	public static function provideEncodeJsVar() {
+		// $expected, $input
+		yield 'boolean' => [ 'true', true ];
+		yield 'null' => [ 'null', null ];
+		yield 'array' => [ '["a",1]', [ 'a', 1 ] ];
+		yield 'associative arary' => [ '{"a":"a","b":1}', [ 'a' => 'a', 'b' => 1 ] ];
+		yield 'object' => [ '{"a":"a","b":1}', (object)[ 'a' => 'a', 'b' => 1 ] ];
+		yield 'int' => [ '123456', 123456 ];
+		yield 'float' => [ '1.5', 1.5 ];
+		yield 'int-like string' => [ '"123456"', '123456' ];
+
+		$code = 'function () { foo( 42 ); }';
+		yield 'code' => [ $code, new HtmlJsCode( $code ) ];
+	}
+
+	/**
+	 * @covers \MediaWiki\Html\Html::encodeJsVar
+	 * @dataProvider provideEncodeJsVar
+	 */
+	public function testEncodeJsVar( string $expect, $input ) {
+		$this->assertEquals(
+			$expect,
+			Html::encodeJsVar( $input )
+		);
+	}
+
+	/**
+	 * @covers \MediaWiki\Html\Html::encodeJsVar
+	 * @covers \MediaWiki\Html\HtmlJsCode::encodeObject
+	 */
+	public function testEncodeObject() {
+		$codeA = 'function () { foo( 42 ); }';
+		$codeB = 'function ( jQuery ) { bar( 142857 ); }';
+		$obj = HtmlJsCode::encodeObject( [
+			'a' => new HtmlJsCode( $codeA ),
+			'b' => new HtmlJsCode( $codeB )
+		] );
+		$this->assertEquals(
+			"{\"a\":$codeA,\"b\":$codeB}",
+			Html::encodeJsVar( $obj )
+		);
 	}
 }
 
