@@ -32,10 +32,13 @@ use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutputFlags;
+use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use MediaWiki\WikiMap\WikiMap;
 use Psr\Log\NullLogger;
 use Wikimedia\Assert\Assert;
@@ -1236,11 +1239,11 @@ class ParserTestRunner {
 	 * Create a mutable rev record for test use.
 	 *
 	 * @param Title $title
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param array $revProps
 	 * @return RevisionRecord
 	 */
-	private function createRevRecord( Title $title, User $user, array $revProps ): RevisionRecord {
+	private function createRevRecord( Title $title, UserIdentity $user, array $revProps ): RevisionRecord {
 		$content = new WikitextContent( $revProps['wikitext'] );
 		$title = Title::newFromRow( (object)[
 			'page_id' => $revProps['pageid'],
@@ -2399,8 +2402,8 @@ class ParserTestRunner {
 		// in a MockFileBackend). Append teardown callback.
 		$teardown[] = $this->setupUploadBackend();
 
-		// Create a user
-		$user = User::createNew( 'WikiSysop' );
+		// Create a authority
+		$performer = new UltimateAuthority( new UserIdentityValue( 0, User::MAINTENANCE_SCRIPT_USER ) );
 
 		// Register the uploads in the database
 		$localRepo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
@@ -2413,7 +2416,7 @@ class ParserTestRunner {
 		$image->recordUpload3(
 			'',
 			'Upload of some lame file', 'Some lame file',
-			$user,
+			$performer,
 			[
 				'size' => 7881,
 				'width' => 1941,
@@ -2434,7 +2437,7 @@ class ParserTestRunner {
 			'',
 			'Upload of some lame thumbnail',
 			'Some lame thumbnail',
-			$user,
+			$performer,
 			[
 				'size' => 22589,
 				'width' => 135,
@@ -2454,7 +2457,7 @@ class ParserTestRunner {
 			'',
 			'Upload of some lame SVG',
 			'Some lame SVG',
-			$user,
+			$performer,
 			[
 				'size'        => 12345,
 				'width'       => 240,
@@ -2485,7 +2488,7 @@ class ParserTestRunner {
 			'',
 			'zomgnotcensored',
 			'Borderline image',
-			$user,
+			$performer,
 			[
 				'size' => 12345,
 				'width' => 320,
@@ -2505,7 +2508,7 @@ class ParserTestRunner {
 			'',
 			'A pretty movie',
 			'Will it play',
-			$user,
+			$performer,
 			[
 				'size' => 12345,
 				'width' => 320,
@@ -2525,7 +2528,7 @@ class ParserTestRunner {
 			'',
 			'An awesome hitsong',
 			'Will it play',
-			$user,
+			$performer,
 			[
 				'size' => 12345,
 				'width' => 0,
@@ -2557,7 +2560,7 @@ class ParserTestRunner {
 			'',
 			'Upload a DjVu',
 			'A DjVu',
-			$user,
+			$performer,
 			[
 				'size' => 3249,
 				'width' => 2480,
@@ -2725,14 +2728,14 @@ class ParserTestRunner {
 	public function cleanupArticles( $articles ) {
 		$this->checkSetupDone( 'setupDatabase' );
 		$this->checkSetupDone( 'staticSetup' );
-		$user = MediaWikiIntegrationTestCase::getTestSysop()->getUser();
+		$deleter = new UltimateAuthority( new UserIdentityValue( 0, User::MAINTENANCE_SCRIPT_USER ) );
 		$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
 		$delPageFactory = MediaWikiServices::getInstance()->getDeletePageFactory();
 		foreach ( $articles as $info ) {
 			$name = self::chomp( $info->title );
 			$title = Title::newFromText( $name );
 			$page = $wikiPageFactory->newFromTitle( $title );
-			$delPageFactory->newDeletePage( $page, $user )->deleteUnsafe( 'cleaning up' );
+			$delPageFactory->newDeletePage( $page, $deleter )->deleteUnsafe( 'cleaning up' );
 		}
 
 		// Clear the static cache that Title class maintains.
@@ -2769,7 +2772,7 @@ class ParserTestRunner {
 			throw new RuntimeException( "invalid title '$name' at $file:$line\n" );
 		}
 
-		$user = MediaWikiIntegrationTestCase::getTestSysop()->getUser();
+		$performer = new UltimateAuthority( new UserIdentityValue( 0, User::MAINTENANCE_SCRIPT_USER ) );
 
 		$newContent = ContentHandler::makeContent( $text, $title );
 
@@ -2814,7 +2817,7 @@ class ParserTestRunner {
 		try {
 			$status = $page->doUserEditContent(
 				$newContent,
-				$user,
+				$performer,
 				'',
 				EDIT_NEW | EDIT_SUPPRESS_RC | EDIT_INTERNAL
 			);
