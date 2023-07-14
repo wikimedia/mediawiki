@@ -7,7 +7,7 @@ describe( 'ExternalLinks', function testExternalLinks() {
 	const links = [
 		'http://example.org/search-me',
 		'http://www.example.org/some-page',
-		'ssh://example.org'
+		'ssh://example.org/'
 	];
 
 	let alice;
@@ -35,7 +35,7 @@ describe( 'ExternalLinks', function testExternalLinks() {
 	it( 'can be filtered by protocol', async () => {
 		const result = await alice.prop( 'extlinks', page, { elprotocol: 'ssh' } );
 		const fetchedLinks = result[ page ].extlinks.map( ( p ) => p[ '*' ] );
-		assert.sameMembers( fetchedLinks, [ 'ssh://example.org' ] );
+		assert.sameMembers( fetchedLinks, [ 'ssh://example.org/' ] );
 	} );
 
 	it( 'throws an error on invalid protocol', async () => {

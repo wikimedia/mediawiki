@@ -1983,7 +1983,7 @@ config-schema:
               - 1.39: Default has changed to SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
                 and support for SCHEMA_COMPAT_OLD is dropped.
     ExternalLinksSchemaMigrationStage:
-        default: 3
+        default: 769
         type: integer
         description: |-
             Externallinks table schema migration stage.
