@@ -2,6 +2,7 @@
 
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 /**
  * @covers ChangeTags
@@ -30,8 +31,14 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 
 	private function emptyChangeTagsTables() {
 		$dbw = wfGetDB( DB_PRIMARY );
-		$dbw->delete( 'change_tag', '*' );
-		$dbw->delete( 'change_tag_def', '*' );
+		$dbw->newDeleteQueryBuilder()
+			->delete( 'change_tag' )
+			->where( ISQLPlatform::ALL_ROWS )
+			->execute();
+		$dbw->newDeleteQueryBuilder()
+			->delete( 'change_tag_def' )
+			->where( ISQLPlatform::ALL_ROWS )
+			->execute();
 	}
 
 	// TODO most methods are not tested
