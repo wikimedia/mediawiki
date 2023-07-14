@@ -275,10 +275,10 @@ class CategoryChangesAsRdfTest extends MediaWikiLangTestCase {
 		ConvertibleTimestamp::setFakeTime( "2020-07-31T10:00:00" );
 		$l1 = Title::makeTitle( NS_CATEGORY, __CLASS__ . "_L1" );
 		$l2 = Title::makeTitle( NS_CATEGORY, __CLASS__ . "_L2" );
-		$pageInL2 = Title::makeTitle( NS_MAIN, __CLASS__ . "_Page" );
-		$this->editPage( $l1->getPrefixedText(), "", "", NS_CATEGORY );
-		$this->editPage( $l2->getPrefixedText(), "[[{$l1->getPrefixedText()}]]", "", NS_CATEGORY );
-		$this->editPage( $pageInL2->getPrefixedText(), "[[{$l2->getPrefixedText()}]]", "", NS_CATEGORY );
+		$pageInL2 = Title::makeTitle( NS_CATEGORY, __CLASS__ . "_Page" );
+		$this->editPage( $l1, "" );
+		$this->editPage( $l2, "[[{$l1->getPrefixedText()}]]" );
+		$this->editPage( $pageInL2, "[[{$l2->getPrefixedText()}]]" );
 
 		$output = fopen( "php://memory", "w+b" );
 
