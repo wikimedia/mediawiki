@@ -29,14 +29,15 @@
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\WikiMap\WikiMap;
@@ -144,9 +145,6 @@ class ParserTestRunner {
 	 * @var bool
 	 */
 	private $keepUploads;
-
-	/** @var Title|null */
-	private ?Title $defaultTitle;
 
 	/**
 	 * Did some Parsoid test pass where it was expected to fail?
@@ -266,11 +264,6 @@ class ParserTestRunner {
 		$this->runDisabled = (bool)$this->options['run-disabled'];
 		$this->disableSaveParse = (bool)$this->options['disable-save-parse'];
 		$this->uploadDir = $this->options['upload-dir'];
-	}
-
-	private function getDefaultTitle(): Title {
-		$this->defaultTitle ??= Title::newFromTextThrow( 'Parser test' );
-		return $this->defaultTitle;
 	}
 
 	/**
@@ -1241,19 +1234,19 @@ class ParserTestRunner {
 	/**
 	 * Create a mutable rev record for test use.
 	 *
-	 * @param Title $title
+	 * @param LinkTarget $target
 	 * @param UserIdentity $user
 	 * @param array $revProps
 	 * @return RevisionRecord
 	 */
-	private function createRevRecord( Title $title, UserIdentity $user, array $revProps ): RevisionRecord {
+	private function createRevRecord( LinkTarget $target, UserIdentity $user, array $revProps ): RevisionRecord {
 		$content = new WikitextContent( $revProps['wikitext'] );
-		$title = Title::newFromRow( (object)[
+		$title = MediaWikiServices::getInstance()->getTitleFactory()->newFromRow( (object)[
 			'page_id' => $revProps['pageid'],
 			'page_len' => $content->getSize(),
 			'page_latest' => $revProps['revid'],
-			'page_namespace' => $title->getNamespace(),
-			'page_title' => $title->getDBkey(),
+			'page_namespace' => $target->getNamespace(),
+			'page_title' => $target->getDBkey(),
 			'page_is_redirect' => 0
 		] );
 
@@ -1271,10 +1264,10 @@ class ParserTestRunner {
 	 * Shared code to initialize ParserOptions based on the $test object,
 	 * used by both the legacy Parser and the Parsoid parser.
 	 * @param ParserTest $test
-	 * @param callable $parserOptionsCallback A callback to create the
+	 * @param callable(IContextSource,LinkTarget,array):ParserOptions $parserOptionsCallback A callback to create the
 	 *   initial ParserOptions object.  This allows for some minor
 	 *   differences in how the legacy Parser and Parsoid create this.
-	 * @return array An array of Title, ParserOptions, and integer revId.
+	 * @return array<LinkTarget,ParserOptions,int> An array of LinkTarget, ParserOptions, and integer revId.
 	 */
 	private function setupParserOptions( ParserTest $test, callable $parserOptionsCallback ) {
 		$opts = $test->options;
@@ -1284,8 +1277,8 @@ class ParserTestRunner {
 		$revProps = $this->getRevRecordProperties( $wikitext );
 		$user = $context->getUser();
 		$title = isset( $opts['title'] )
-			? Title::newFromText( $opts['title'] )
-			: $this->getDefaultTitle();
+			? MediaWikiServices::getInstance()->getTitleParser()->parseTitle( $opts['title'] )
+			: new TitleValue( NS_MAIN, 'Parser test' );
 
 		$revRecord = null;
 		if ( isset( $opts['lastsavedrevision'] ) ) {
@@ -1305,11 +1298,11 @@ class ParserTestRunner {
 		if ( isset( $opts['lastsavedrevision'] ) ) {
 			$oldCallback = $options->getCurrentRevisionRecordCallback();
 			$options->setCurrentRevisionRecordCallback(
-				static function ( Title $t, $parser = null ) use ( $title, $revRecord, $oldCallback ) {
-					if ( $t->equals( $title ) ) {
+				static function ( LinkTarget $link, $parser = null ) use ( $title, $revRecord, $oldCallback ) {
+					if ( $link->isSameLinkAs( $title ) ) {
 						return $revRecord;
 					} else {
-						return $oldCallback( $t, $parser );
+						return $oldCallback( $link, $parser );
 					}
 				}
 			);
@@ -1428,12 +1421,13 @@ class ParserTestRunner {
 
 		$wikitext = $test->wikitext;
 		$output = null;
+		$pageReference = new PageReferenceValue( $title->getNamespace(), $title->getDBkey(), PageReferenceValue::LOCAL );
 		'@phan-var string $wikitext'; // assert that this is not null
 		if ( isset( $opts['pst'] ) ) {
-			$out = $parser->preSaveTransform( $wikitext, $title, $options->getUserIdentity(), $options );
+			$out = $parser->preSaveTransform( $wikitext, $pageReference, $options->getUserIdentity(), $options );
 			$output = $parser->getOutput();
 		} elseif ( isset( $opts['msg'] ) ) {
-			$out = $parser->transformMsg( $wikitext, $options, $title );
+			$out = $parser->transformMsg( $wikitext, $options, $pageReference );
 		} elseif ( isset( $opts['section'] ) ) {
 			$section = $opts['section'];
 			$out = $parser->getSection( $wikitext, $section );
@@ -1444,9 +1438,9 @@ class ParserTestRunner {
 		} elseif ( isset( $opts['comment'] ) ) {
 			$out = MediaWikiServices::getInstance()->getCommentFormatter()->format( $wikitext, $title, $local );
 		} elseif ( isset( $opts['preload'] ) ) {
-			$out = $parser->getPreloadText( $wikitext, $title, $options );
+			$out = $parser->getPreloadText( $wikitext, $pageReference, $options );
 		} else {
-			$output = $parser->parse( $wikitext, $title, $options, true, true, $revId );
+			$output = $parser->parse( $wikitext, $pageReference, $options, true, true, $revId );
 			if ( isset( $opts['nohtml'] ) ) {
 				$out = '';
 			} else {
@@ -1508,13 +1502,13 @@ class ParserTestRunner {
 	 * @param string &$out The "actual" parser output
 	 * @param ParserOutput $output The "actual" parser metadata
 	 * @param array $opts Test options
-	 * @param Title $title
+	 * @param LinkTarget $title
 	 * @param ?string $metadataExpected The contents of the !!metadata section,
 	 *   or null if it is missing
 	 * @param ?string &$metadataActual The "actual" metadata output
 	 */
 	private function addParserOutputInfo(
-		&$out, ParserOutput $output, array $opts, Title $title,
+		&$out, ParserOutput $output, array $opts, LinkTarget $title,
 		?string $metadataExpected, ?string &$metadataActual
 	) {
 		$before = [];
@@ -1524,7 +1518,7 @@ class ParserTestRunner {
 			if ( $output->getTitleText() ) {
 				$titleText = $output->getTitleText();
 			} else {
-				$titleText = $title->getPrefixedText();
+				$titleText = MediaWikiServices::getInstance()->getTitleFormatter()->getPrefixedText( $title );
 			}
 			$before[] = $titleText;
 		}
@@ -1735,9 +1729,10 @@ class ParserTestRunner {
 
 		$metadataExpected = self::getParsoidMetadataSection( $test );
 		$metadataActual = null;
+		$titleParser = MediaWikiServices::getInstance()->getTitleParser();
 		$this->addParserOutputInfo(
 			$origOut, $metadata, $test->options,
-			Title::newFromText( $pageConfig->getTitle() ),
+			$titleParser->parseTitle( $pageConfig->getTitle() ),
 			$metadataExpected, $metadataActual
 		);
 
@@ -2062,8 +2057,9 @@ class ParserTestRunner {
 					// So create a fake mutable on here.
 					$revRecord = $runner->createRevRecord( $title, $user, $revProps );
 				}
+				$page = MediaWikiServices::getInstance()->getTitleFactory()->newFromLinkTarget( $title );
 				$pageConfig = $pageConfigFactory->create(
-					$title, $user, $revRecord, null, null
+					$page, $user, $revRecord, null, null
 				);
 				return $pageConfig->getParserOptions();
 			} );
@@ -2411,7 +2407,7 @@ class ParserTestRunner {
 		// Register the uploads in the database
 		$localRepo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 
-		$image = $localRepo->newFile( Title::makeTitle( NS_FILE, 'Foobar.jpg' ) );
+		$image = $localRepo->newFile( new TitleValue( NS_FILE, 'Foobar.jpg' ) );
 		# note that the size/width/height/bits/etc of the file
 		# are actually set by inspecting the file itself; the arguments
 		# to recordUpload3 have no effect.  That said, we try to make things
@@ -2434,7 +2430,7 @@ class ParserTestRunner {
 			$this->db->timestamp( '20010115123500' )
 		);
 
-		$image = $localRepo->newFile( Title::makeTitle( NS_FILE, 'Thumb.png' ) );
+		$image = $localRepo->newFile( new TitleValue( NS_FILE, 'Thumb.png' ) );
 		# again, note that size/width/height below are ignored; see above.
 		$image->recordUpload3(
 			'',
@@ -2455,7 +2451,7 @@ class ParserTestRunner {
 			$this->db->timestamp( '20130225203040' )
 		);
 
-		$image = $localRepo->newFile( Title::makeTitle( NS_FILE, 'Foobar.svg' ) );
+		$image = $localRepo->newFile( new TitleValue( NS_FILE, 'Foobar.svg' ) );
 		$image->recordUpload3(
 			'',
 			'Upload of some lame SVG',
@@ -2486,7 +2482,7 @@ class ParserTestRunner {
 		);
 
 		# This image will be prohibited via the list in [[MediaWiki:Bad image list]]
-		$image = $localRepo->newFile( Title::makeTitle( NS_FILE, 'Bad.jpg' ) );
+		$image = $localRepo->newFile( new TitleValue( NS_FILE, 'Bad.jpg' ) );
 		$image->recordUpload3(
 			'',
 			'zomgnotcensored',
@@ -2506,7 +2502,7 @@ class ParserTestRunner {
 			$this->db->timestamp( '20010115123500' )
 		);
 
-		$image = $localRepo->newFile( Title::makeTitle( NS_FILE, 'Video.ogv' ) );
+		$image = $localRepo->newFile( new TitleValue( NS_FILE, 'Video.ogv' ) );
 		$image->recordUpload3(
 			'',
 			'A pretty movie',
@@ -2526,7 +2522,7 @@ class ParserTestRunner {
 			$this->db->timestamp( '20010115123500' )
 		);
 
-		$image = $localRepo->newFile( Title::makeTitle( NS_FILE, 'Audio.oga' ) );
+		$image = $localRepo->newFile( new TitleValue( NS_FILE, 'Audio.oga' ) );
 		$image->recordUpload3(
 			'',
 			'An awesome hitsong',
@@ -2547,7 +2543,7 @@ class ParserTestRunner {
 		);
 
 		# A DjVu file
-		$image = $localRepo->newFile( Title::makeTitle( NS_FILE, 'LoremIpsum.djvu' ) );
+		$image = $localRepo->newFile( new TitleValue( NS_FILE, 'LoremIpsum.djvu' ) );
 		$djvuMetadata = [
 			'data' => [
 				'pages' => [
@@ -2733,24 +2729,14 @@ class ParserTestRunner {
 		$this->checkSetupDone( 'staticSetup' );
 		$deleter = new UltimateAuthority( new UserIdentityValue( 0, User::MAINTENANCE_SCRIPT_USER ) );
 		$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
+		$titleParser = MediaWikiServices::getInstance()->getTitleParser();
 		$delPageFactory = MediaWikiServices::getInstance()->getDeletePageFactory();
 		foreach ( $articles as $info ) {
 			$name = self::chomp( $info->title );
-			$title = Title::newFromText( $name );
-			$page = $wikiPageFactory->newFromTitle( $title );
+			$title = $titleParser->parseTitle( $name );
+			$page = $wikiPageFactory->newFromLinkTarget( $title );
 			$delPageFactory->newDeletePage( $page, $deleter )->deleteUnsafe( 'cleaning up' );
 		}
-
-		// Clear the static cache that Title class maintains.
-		// This ensures that Parsoid test runs that follow legacy parser test runs
-		// don't reuse titles. This matters because it looks like legacy test run
-		// and Parsoid test run differ in the number of articles they create in the db.
-		// We need to investigate that separately, but given that they differ, titles
-		// will get different article and revision ids across test runs.
-		// While we could add this to resetTitleServices(), there is really
-		// no reason to clear this for every test. Sufficient to clear this
-		// once per test file.
-		Title::clearCaches();
 	}
 
 	/**
@@ -2768,7 +2754,9 @@ class ParserTestRunner {
 		$text = self::chomp( $text );
 		$name = self::chomp( $name );
 
-		$title = Title::newFromText( $name );
+		$services = MediaWikiServices::getInstance();
+
+		$title = $services->getTitleParser()->parseTitle( $name );
 		wfDebug( __METHOD__ . ": adding $name" );
 
 		if ( $title === null ) {
@@ -2777,12 +2765,9 @@ class ParserTestRunner {
 
 		$performer = new UltimateAuthority( new UserIdentityValue( 0, User::MAINTENANCE_SCRIPT_USER ) );
 
-		$newContent = ContentHandler::makeContent( $text, $title );
-
-		$services = MediaWikiServices::getInstance();
-
-		$page = $services->getWikiPageFactory()->newFromTitle( $title );
+		$page = $services->getWikiPageFactory()->newFromLinkTarget( $title );
 		$page->loadPageData( WikiPage::READ_LATEST );
+		$newContent = $page->getContentHandler()->unserializeContent( $text );
 
 		if ( $page->exists() ) {
 			$content = $page->getContent( RevisionRecord::RAW );
