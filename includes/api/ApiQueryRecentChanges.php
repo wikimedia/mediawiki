@@ -236,7 +236,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 			// Don't throw log entries out the window here
 			$this->addWhereIf(
-				'page_is_redirect = 0 OR page_is_redirect IS NULL',
+				[ 'page_is_redirect' => [ 0, null ] ],
 				isset( $show['!redirect'] )
 			);
 		}

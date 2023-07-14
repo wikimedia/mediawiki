@@ -261,7 +261,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * consider using addWhereIDsFld() instead.
 	 *
 	 * @param string $field Field name
-	 * @param int|string|string[]|int[] $value Value; ignored if null or empty array
+	 * @param int|string|(string|int|null)[] $value Value; ignored if null or empty array
 	 */
 	protected function addWhereFld( $field, $value ) {
 		if ( $value !== null && !( is_array( $value ) && !$value ) ) {

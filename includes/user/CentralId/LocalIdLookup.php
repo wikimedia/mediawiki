@@ -129,7 +129,7 @@ class LocalIdLookup extends CentralIdLookup {
 
 		if ( $audience && !$audience->isAllowed( 'hideuser' ) ) {
 			$queryBuilder->leftJoin( 'ipblocks', null, 'ipb_user=user_id' );
-			$queryBuilder->where( 'ipb_deleted = 0 OR ipb_deleted IS NULL' );
+			$queryBuilder->where( [ 'ipb_deleted' => [ 0, null ] ] );
 		}
 
 		$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();

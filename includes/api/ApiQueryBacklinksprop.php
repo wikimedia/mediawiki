@@ -114,7 +114,6 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		$db = $this->getDB();
 		$params = $this->extractRequestParams();
 		$prop = array_fill_keys( $params['prop'], true );
-		$emptyString = $db->addQuotes( '' );
 
 		$pageSet = $this->getPageSet();
 		$titles = $pageSet->getGoodAndMissingPages();
@@ -219,7 +218,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		$this->addWhere( "$bl_from = page_id" );
 
 		if ( $this->getModuleName() === 'redirects' ) {
-			$this->addWhere( "rd_interwiki = $emptyString OR rd_interwiki IS NULL" );
+			$this->addWhereFld( 'rd_interwiki', [ '', null ] );
 		}
 
 		$this->addFields( array_keys( $sortby ) );
@@ -264,9 +263,9 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 			) {
 				$this->dieWithError( 'apierror-show' );
 			}
-			$this->addWhereIf( "rd_fragment != $emptyString", isset( $show['fragment'] ) );
+			$this->addWhereIf( "rd_fragment != " . $db->addQuotes( '' ), isset( $show['fragment'] ) );
 			$this->addWhereIf(
-				"rd_fragment = $emptyString OR rd_fragment IS NULL",
+				[ 'rd_fragment' => [ '', null ] ],
 				isset( $show['!fragment'] )
 			);
 			$this->addWhereIf( [ 'page_is_redirect' => 1 ], isset( $show['redirect'] ) );

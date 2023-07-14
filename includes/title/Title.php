@@ -3640,7 +3640,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		if ( $this->isExternal() ) {
 			$where['rd_interwiki'] = $this->mInterwiki;
 		} else {
-			$where[] = 'rd_interwiki = ' . $dbr->addQuotes( '' ) . ' OR rd_interwiki IS NULL';
+			$where['rd_interwiki'] = [ '', null ];
 		}
 		if ( $ns !== null ) {
 			$where['page_namespace'] = $ns;

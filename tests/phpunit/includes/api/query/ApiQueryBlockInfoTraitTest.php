@@ -54,7 +54,7 @@ class ApiQueryBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 			[ [ false ], [
 				'tables' => [ 'blk' => [ 'ipblocks' ] ],
 				'fields' => [ 'ipb_deleted' ],
-				'where' => [ 'ipb_deleted = 0 OR ipb_deleted IS NULL' ],
+				'where' => [ 'ipb_deleted' => [ 0, null ] ],
 				'joins' => [
 					'blk' => [ 'LEFT JOIN', [ 'ipb_user=user_id', "ipb_expiry > $ts" ] ]
 				],
@@ -63,7 +63,7 @@ class ApiQueryBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 			[ [ true ], [
 				'tables' => [ 'blk' => $queryInfo['tables'] ],
 				'fields' => $queryInfo['fields'],
-				'where' => [ 'ipb_deleted = 0 OR ipb_deleted IS NULL' ],
+				'where' => [ 'ipb_deleted' => [ 0, null ] ],
 				'joins' => $queryInfo['joins'] + [
 					'blk' => [ 'LEFT JOIN', [ 'ipb_user=user_id', "ipb_expiry > $ts" ] ]
 				],

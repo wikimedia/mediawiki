@@ -117,7 +117,7 @@ class SpecialDoubleRedirects extends QueryPage {
 
 				// Need to check both NULL and "" for some reason,
 				// apparently either can be stored for non-iw entries.
-				'ra.rd_interwiki IS NULL OR ra.rd_interwiki = ' . $this->dbr->addQuotes( '' ),
+				'ra.rd_interwiki' => [ null, '' ],
 
 				'pb.page_namespace = ra.rd_namespace',
 				'pb.page_title = ra.rd_title',
