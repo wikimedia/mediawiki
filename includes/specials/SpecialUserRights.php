@@ -260,7 +260,6 @@ class SpecialUserRights extends SpecialPage {
 				) );
 			} else {
 				$status = $this->saveUserGroups(
-					$this->mTarget,
 					$request->getVal( 'user-reason' ),
 					$targetUser
 				);
@@ -329,13 +328,12 @@ class SpecialUserRights extends SpecialPage {
 	 * Save user groups changes in the database.
 	 * Data comes from the editUserGroupsForm() form function
 	 *
-	 * @param string $username Username to apply changes to.
 	 * @param string $reason Reason for group change
 	 * @param User|UserRightsProxy $user Target user object.
 	 * @return Status
 	 */
-	protected function saveUserGroups( $username, $reason, $user ) {
-		if ( $this->userNameUtils->isTemp( $username ) ) {
+	protected function saveUserGroups( $reason, $user ) {
+		if ( $this->userNameUtils->isTemp( $user->getName() ) ) {
 			return Status::newFatal( 'userrights-no-tempuser' );
 		}
 		$allgroups = $this->userGroupManager->listAllGroups();
@@ -639,6 +637,10 @@ class SpecialUserRights extends SpecialPage {
 			}
 		}
 
+		if ( $this->userNameUtils->isTemp( $name ) ) {
+			return Status::newFatal( 'userrights-no-group' );
+		}
+
 		if ( $dbDomain == '' ) {
 			$user = $this->userFactory->newFromName( $name );
 		} else {
@@ -647,10 +649,6 @@ class SpecialUserRights extends SpecialPage {
 
 		if ( !$user || $user->isAnon() ) {
 			return Status::newFatal( 'nosuchusershort', $username );
-		}
-
-		if ( $this->userNameUtils->isTemp( $username ) ) {
-			return Status::newFatal( 'userrights-no-group' );
 		}
 
 		if ( $user->getWikiId() === UserIdentity::LOCAL &&
