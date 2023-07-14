@@ -74,7 +74,7 @@ class ApiChangeContentModel extends ApiBase {
 		// Everything passed, make the conversion
 		$status = $changer->doContentModelChange(
 			$this->getContext(),
-			$params['summary'],
+			$params['summary'] ?? '',
 			$params['bot']
 		);
 
