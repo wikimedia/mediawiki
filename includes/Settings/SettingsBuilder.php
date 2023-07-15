@@ -21,6 +21,7 @@ use MediaWiki\Settings\Source\FileSource;
 use MediaWiki\Settings\Source\SettingsFileUtils;
 use MediaWiki\Settings\Source\SettingsIncludeLocator;
 use MediaWiki\Settings\Source\SettingsSource;
+use RuntimeException;
 use StatusValue;
 use function array_key_exists;
 
@@ -131,6 +132,8 @@ class SettingsBuilder {
 	/** @var string[] */
 	private $warnings = [];
 
+	private static bool $accessDisabledForUnitTests = false;
+
 	/**
 	 * Accessor for the global SettingsBuilder instance.
 	 *
@@ -142,6 +145,10 @@ class SettingsBuilder {
 	 */
 	public static function getInstance(): self {
 		static $instance = null;
+
+		if ( self::$accessDisabledForUnitTests ) {
+			throw new RuntimeException( 'Access is disabled in unit tests' );
+		}
 
 		if ( !$instance ) {
 			// NOTE: SettingsBuilder is used during bootstrap, before MediaWikiServices
@@ -158,6 +165,26 @@ class SettingsBuilder {
 		}
 
 		return $instance;
+	}
+
+	/**
+	 * @internal
+	 */
+	public static function disableAccessForUnitTests(): void {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new RuntimeException( 'Can only be called in tests' );
+		}
+		self::$accessDisabledForUnitTests = true;
+	}
+
+	/**
+	 * @internal
+	 */
+	public static function enableAccessAfterUnitTests(): void {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new RuntimeException( 'Can only be called in tests' );
+		}
+		self::$accessDisabledForUnitTests = false;
 	}
 
 	/**

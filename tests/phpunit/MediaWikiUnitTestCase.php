@@ -22,6 +22,7 @@
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logger\NullSpi;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Settings\SettingsBuilder;
 use PHPUnit\Framework\Exception;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\ObjectFactory\ObjectFactory;
@@ -107,6 +108,7 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		DeferredUpdates::setScopeStack( new DeferredUpdatesScopeStack() );
 		MediaWikiServices::disallowGlobalInstanceInUnitTests();
 		ExtensionRegistry::disableForTest();
+		SettingsBuilder::disableAccessForUnitTests();
 	}
 
 	/**
@@ -165,6 +167,7 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		MediaWikiServices::allowGlobalInstanceAfterUnitTests();
 		DeferredUpdates::setScopeStack( new DeferredUpdatesScopeMediaWikiStack() );
 		ExtensionRegistry::enableForTest();
+		SettingsBuilder::enableAccessAfterUnitTests();
 	}
 
 }
