@@ -111,7 +111,7 @@ class UndeletePageTest extends MediaWikiUnitTestCase {
 			$ret->method( 'hasArchivedRevisions' )->willReturn( $hasDeletedRevs );
 			return $ret;
 		};
-		$nsInfo = new NamespaceInfo( $this->createMock( ServiceOptions::class ), $this->createHookContainer() );
+		$nsInfo = new NamespaceInfo( $this->createMock( ServiceOptions::class ), $this->createHookContainer(), [], [] );
 
 		$talkPage = new PageIdentityValue( 42, NS_TALK, 'Test talk page', PageIdentity::LOCAL );
 		yield 'Talk page' => [

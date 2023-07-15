@@ -388,13 +388,6 @@ trait DummyServicesTrait {
 	 * @return NamespaceInfo
 	 */
 	private function getDummyNamespaceInfo( array $options = [] ): NamespaceInfo {
-		// Rather than trying to use a complicated mock, it turns out that almost
-		// all of the NamespaceInfo service works fine in unit tests. The only issue:
-		//   - in two places, NamespaceInfo tries to read extension attributes through
-		//     ExtensionRegistry::getInstance()->getAttribute() - this should work fine
-		//     in unit tests, it just won't include any extension info since those are
-		//     not loaded
-
 		// configuration is based on the defaults in MainConfigSchema
 		$serviceOptions = new ServiceOptions(
 			NamespaceInfo::CONSTRUCTOR_OPTIONS,
@@ -403,7 +396,9 @@ trait DummyServicesTrait {
 		);
 		return new NamespaceInfo(
 			$serviceOptions,
-			$options['hookContainer'] ?? $this->createHookContainer()
+			$options['hookContainer'] ?? $this->createHookContainer(),
+			[],
+			[]
 		);
 	}
 
