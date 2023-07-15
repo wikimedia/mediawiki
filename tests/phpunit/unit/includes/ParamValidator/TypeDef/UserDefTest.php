@@ -10,13 +10,12 @@ use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\SimpleCallbacks;
-use Wikimedia\ParamValidator\TypeDef\TypeDefTestCase;
 use Wikimedia\ParamValidator\ValidationException;
 
 /**
- * @covers MediaWiki\ParamValidator\TypeDef\UserDef
+ * @covers \MediaWiki\ParamValidator\TypeDef\UserDef
  */
-class UserDefTest extends TypeDefTestCase {
+class UserDefTest extends TypeDefUnitTestCase {
 	use DummyServicesTrait;
 
 	protected function getInstance( SimpleCallbacks $callbacks, array $options ) {
