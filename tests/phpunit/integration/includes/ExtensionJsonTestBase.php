@@ -205,6 +205,20 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 		}
 	}
 
+	/** @dataProvider provideSessionProviders */
+	public function testSessionProviders( string $providerName ): void {
+		$specification = $this->getExtensionJson()['SessionProviders'][$providerName];
+		$objectFactory = MediaWikiServices::getInstance()->getObjectFactory();
+		$objectFactory->createObject( $specification );
+		$this->assertTrue( true );
+	}
+
+	public function provideSessionProviders(): iterable {
+		foreach ( $this->getExtensionJson()['SessionProviders'] ?? [] as $providerName => $specification ) {
+			yield [ $providerName ];
+		}
+	}
+
 	/** @dataProvider provideServicesLists */
 	public function testServicesSorted( array $services ): void {
 		$sortedServices = $services;
@@ -259,6 +273,10 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 
 		foreach ( $this->provideAuthenticationProviders() as [ $providerType, $providerName, $providerClass ] ) {
 			yield "AuthManagerAutoConfig/$providerType/$providerName" => $this->getExtensionJson()['AuthManagerAutoConfig'][$providerType][$providerName];
+		}
+
+		foreach ( $this->provideSessionProviders() as [ $providerName ] ) {
+			yield "SessionProviders/$providerName" => $this->getExtensionJson()['SessionProviders'][$providerName];
 		}
 	}
 
