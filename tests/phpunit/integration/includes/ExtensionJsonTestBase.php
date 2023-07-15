@@ -9,6 +9,9 @@ use ApiQuery;
 use ApiTestContext;
 use ContentHandler;
 use FauxRequest;
+use MediaWiki\Auth\PreAuthenticationProvider;
+use MediaWiki\Auth\PrimaryAuthenticationProvider;
+use MediaWiki\Auth\SecondaryAuthenticationProvider;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
@@ -176,6 +179,32 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 		}
 	}
 
+	/** @dataProvider provideAuthenticationProviders */
+	public function testAuthenticationProviders( string $providerType, string $providerName, string $providerClass ): void {
+		$specification = $this->getExtensionJson()['AuthManagerAutoConfig'][$providerType][$providerName];
+		$objectFactory = MediaWikiServices::getInstance()->getObjectFactory();
+		$objectFactory->createObject( $specification, [
+			'assertClass' => $providerClass,
+		] );
+		$this->assertTrue( true );
+	}
+
+	public function provideAuthenticationProviders(): iterable {
+		$config = $this->getExtensionJson()['AuthManagerAutoConfig'] ?? [];
+
+		$types = [
+			'preauth'       => PreAuthenticationProvider::class,
+			'primaryauth'   => PrimaryAuthenticationProvider::class,
+			'secondaryauth' => SecondaryAuthenticationProvider::class,
+		];
+
+		foreach ( $types as $providerType => $providerClass ) {
+			foreach ( $config[$providerType] ?? [] as $providerName => $specification ) {
+				yield [ $providerType, $providerName, $providerClass ];
+			}
+		}
+	}
+
 	/** @dataProvider provideServicesLists */
 	public function testServicesSorted( array $services ): void {
 		$sortedServices = $services;
@@ -226,6 +255,10 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 
 		foreach ( $this->provideSpecialPageNames() as [ $specialPageName ] ) {
 			yield "SpecialPages/$specialPageName" => $this->getExtensionJson()['SpecialPages'][$specialPageName];
+		}
+
+		foreach ( $this->provideAuthenticationProviders() as [ $providerType, $providerName, $providerClass ] ) {
+			yield "AuthManagerAutoConfig/$providerType/$providerName" => $this->getExtensionJson()['AuthManagerAutoConfig'][$providerType][$providerName];
 		}
 	}
 
