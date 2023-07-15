@@ -103,8 +103,10 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 			$this->createMockOrOverride( LanguageConverterFactory::class, $serviceOverrides ),
 			$this->createMockOrOverride( LanguageNameUtils::class, $serviceOverrides ),
 			$this->createMockOrOverride( UrlUtils::class, $serviceOverrides ),
+			[],
 			$this->createMockOrOverride( Parser::class, $serviceOverrides ),
-			new HashConfig( $configOverrides )
+			new HashConfig( $configOverrides ),
+			false
 		);
 	}
 

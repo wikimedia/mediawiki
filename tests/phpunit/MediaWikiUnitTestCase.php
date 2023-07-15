@@ -106,6 +106,7 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		// Set DeferredUpdates into standalone mode
 		DeferredUpdates::setScopeStack( new DeferredUpdatesScopeStack() );
 		MediaWikiServices::disallowGlobalInstanceInUnitTests();
+		ExtensionRegistry::disableForTest();
 	}
 
 	/**
@@ -163,6 +164,7 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 
 		MediaWikiServices::allowGlobalInstanceAfterUnitTests();
 		DeferredUpdates::setScopeStack( new DeferredUpdatesScopeMediaWikiStack() );
+		ExtensionRegistry::enableForTest();
 	}
 
 }

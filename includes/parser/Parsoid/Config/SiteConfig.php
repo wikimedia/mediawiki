@@ -22,7 +22,6 @@
 namespace MediaWiki\Parser\Parsoid\Config;
 
 use Config;
-use ExtensionRegistry;
 use Language;
 use LanguageCode;
 use LanguageConverter;
@@ -160,6 +159,8 @@ class SiteConfig extends ISiteConfig {
 	/** @var array */
 	private $extensionTags;
 
+	private bool $isTimedMediaHandlerLoaded;
+
 	/**
 	 * @param ServiceOptions $config MediaWiki main configuration object
 	 * @param array $parsoidSettings Parsoid-specific options array from main configuration.
@@ -175,8 +176,10 @@ class SiteConfig extends ISiteConfig {
 	 * @param LanguageConverterFactory $languageConverterFactory
 	 * @param LanguageNameUtils $languageNameUtils
 	 * @param UrlUtils $urlUtils
+	 * @param array $extensionParsoidModules
 	 * @param Parser $parser
 	 * @param Config $mwConfig
+	 * @param bool $isTimedMediaHandlerLoaded
 	 */
 	public function __construct(
 		ServiceOptions $config,
@@ -193,9 +196,11 @@ class SiteConfig extends ISiteConfig {
 		LanguageConverterFactory $languageConverterFactory,
 		LanguageNameUtils $languageNameUtils,
 		UrlUtils $urlUtils,
+		array $extensionParsoidModules,
 		// $parser is temporary and may be removed once a better solution is found.
 		Parser $parser, // T268776
-		Config $mwConfig
+		Config $mwConfig,
+		bool $isTimedMediaHandlerLoaded
 	) {
 		parent::__construct();
 
@@ -219,7 +224,6 @@ class SiteConfig extends ISiteConfig {
 		$this->urlUtils = $urlUtils;
 
 		// Override parent default
-		// Override parent default
 		if ( isset( $this->parsoidSettings['linting'] ) ) {
 			// @todo: Add this setting to MW's MainConfigSchema
 			$this->linterEnabled = $this->parsoidSettings['linting'];
@@ -233,11 +237,11 @@ class SiteConfig extends ISiteConfig {
 		}
 
 		// Register extension modules
-		// TODO: inject this (T257586)
-		$parsoidModules = ExtensionRegistry::getInstance()->getAttribute( 'ParsoidModules' );
-		foreach ( $parsoidModules as $configOrSpec ) {
+		foreach ( $extensionParsoidModules as $configOrSpec ) {
 			$this->registerExtensionModule( $configOrSpec );
 		}
+
+		$this->isTimedMediaHandlerLoaded = $isTimedMediaHandlerLoaded;
 	}
 
 	/** @inheritDoc */
@@ -694,7 +698,7 @@ class SiteConfig extends ISiteConfig {
 		// in that method.
 		// Filter out timedmedia-* unless that extension is loaded, so Parsoid
 		// doesn't have a hard dependency on an extension.
-		if ( !ExtensionRegistry::getInstance()->isLoaded( 'TimedMediaHandler' ) ) {
+		if ( !$this->isTimedMediaHandlerLoaded ) {
 			$words = preg_grep( '/^timedmedia_/', $words, PREG_GREP_INVERT );
 		}
 		$words = $this->magicWordFactory->newArray( $words );
