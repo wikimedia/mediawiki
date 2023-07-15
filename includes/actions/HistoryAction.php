@@ -241,27 +241,33 @@ class HistoryAction extends FormlessAction {
 
 		// Add the general form.
 		$fields = [
-			[
+			'action' => [
 				'name' => 'action',
 				'type' => 'hidden',
 				'default' => 'history',
 			],
-			[
+			'date-range-to' => [
 				'type' => 'date',
 				'default' => $ts,
 				'label' => $this->msg( 'date-range-to' )->text(),
 				'name' => 'date-range-to',
 			],
-			[
+			'tagfilter' => [
 				'label-message' => 'tag-filter',
 				'type' => 'tagfilter',
 				'id' => 'tagfilter',
 				'name' => 'tagfilter',
 				'value' => $tagFilter,
-			]
+			],
+			'tagInvert' => [
+				'type' => 'check',
+				'name' => 'tagInvert',
+				'label-message' => 'invert',
+				'hide-if' => [ '===', 'tagfilter', '' ],
+			],
 		];
 		if ( $this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
-			$fields[] = [
+			$fields['deleted'] = [
 				'type' => 'check',
 				'label' => $this->msg( 'history-show-deleted' )->text(),
 				'default' => $request->getBool( 'deleted' ),
@@ -303,9 +309,10 @@ class HistoryAction extends FormlessAction {
 			$this,
 			$y,
 			$m,
-			$tagFilter,
-			$conds,
 			$d,
+			$tagFilter,
+			$request->getCheck( 'tagInvert' ),
+			$conds,
 			$services->getLinkBatchFactory(),
 			$watchlistManager,
 			$services->getCommentFormatter(),

@@ -149,7 +149,8 @@ class NewPagesPager extends ReverseChronologicalPager {
 			$info['conds'],
 			$info['join_conds'],
 			$info['options'],
-			$this->opts['tagfilter']
+			$this->opts['tagfilter'],
+			$this->opts['tagInvert']
 		);
 
 		return $info;
