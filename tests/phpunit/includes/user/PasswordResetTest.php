@@ -407,7 +407,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 			"Couldn't determine the performing user's IP" => [
 				'expectedError' => 'badipaddress',
 				'config' => $defaultConfig,
-				'performingUser' => $this->makePerformingUser( null, false ),
+				'performingUser' => $this->makePerformingUser( '', false ),
 				'authManager' => $this->makeAuthManager(),
 				'username' => 'User1',
 				'email' => '',
@@ -528,11 +528,11 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param string|null $ip
+	 * @param string $ip
 	 * @param bool $pingLimited
 	 * @return User
 	 */
-	private function makePerformingUser( $ip, $pingLimited ): User {
+	private function makePerformingUser( string $ip, $pingLimited ): User {
 		$request = $this->createMock( WebRequest::class );
 		$request->method( 'getIP' )
 			->willReturn( $ip );

@@ -1758,7 +1758,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * Get the user's name escaped by underscores.
 	 * @return string Username escaped by underscores.
 	 */
-	public function getTitleKey() {
+	public function getTitleKey(): string {
 		return str_replace( ' ', '_', $this->getName() );
 	}
 
@@ -2402,7 +2402,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 *
 	 * @return WebRequest
 	 */
-	public function getRequest() {
+	public function getRequest(): WebRequest {
 		return $this->mRequest ?? RequestContext::getMain()->getRequest();
 	}
 

@@ -379,6 +379,15 @@ because of Phabricator reports.
 * ExternalLinksLookup::getExternalLinksForPage() now exists to centralize
   logic of looking up externallinks rows.
 * The update script no longer accepts the --skip-compat-checks option.
+* Type hints were added to:
+   - The return value of WebRequest:: and DerivativeRequest::getSession()
+   - The return value of WebRequest:: and DerivativeRequest::getIP()
+   - The return value of User::getTitleKey()
+   - The return value of User::getRequest()
+   - The `$key` parameter to Skin::normalizeKey()
+  None of the methods whose return value was updated belongs to a class
+  stable to extend, and adding type hints to parameters is backwards
+  compatible. Therefore, this is not considered a breaking change.
 * The mergeMessageFileList script now only works for extensions and skins
   supporting extension registration (using extension.json or skin.json).
   It will no longer attempt to load PHP entry points.
