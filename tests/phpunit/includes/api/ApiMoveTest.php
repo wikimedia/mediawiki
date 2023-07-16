@@ -202,10 +202,11 @@ class ApiMoveTest extends ApiTestCase {
 	public function testMoveWhileBlocked() {
 		$this->assertNull( DatabaseBlock::newFromTarget( '127.0.0.1' ) );
 
+		$user = $this->getTestSysop()->getUser();
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$block = new DatabaseBlock( [
-			'address' => self::$users['sysop']->getUser()->getName(),
-			'by' => self::$users['sysop']->getUser(),
+			'address' => $user->getName(),
+			'by' => $user,
 			'reason' => 'Capriciousness',
 			'timestamp' => '19370101000000',
 			'expiry' => 'infinity',
@@ -228,7 +229,7 @@ class ApiMoveTest extends ApiTestCase {
 			$this->assertNotNull( DatabaseBlock::newFromTarget( '127.0.0.1' ), 'Autoblock spread' );
 		} finally {
 			$blockStore->deleteBlock( $block );
-			self::$users['sysop']->getUser()->clearInstanceCache();
+			$user->clearInstanceCache();
 			$this->assertSame( $id, Title::newFromText( $name )->getArticleID() );
 		}
 	}

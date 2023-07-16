@@ -19,7 +19,7 @@ class UploadFromUrlTest extends ApiTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->user = self::$users['sysop']->getUser();
+		$this->user = $this->getTestSysop()->getUser();
 
 		$this->overrideConfigValues( [
 			MainConfigNames::EnableUploads => true,

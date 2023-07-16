@@ -121,7 +121,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 			// if it doesn't exist. But that'll also change $contextUser, and the token won't match (T341953).
 			$sessionUser = clone $contextUser;
 		} else {
-			$contextUser = self::$users['sysop']->getUser();
+			$contextUser = $this->getTestSysop()->getUser();
 			$performer = $contextUser;
 			$sessionUser = $contextUser;
 		}

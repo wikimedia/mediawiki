@@ -90,7 +90,7 @@ class ApiBlockTest extends ApiTestCase {
 		$blocked = $this->getMutableTestUser( [ 'sysop' ] )->getUser();
 		$block = new DatabaseBlock( [
 			'address' => $blocked->getName(),
-			'by' => self::$users['sysop']->getUser(),
+			'by' => $this->getTestSysop()->getUser(),
 			'reason' => 'Capriciousness',
 			'timestamp' => '19370101000000',
 			'expiry' => 'infinity',
@@ -150,7 +150,7 @@ class ApiBlockTest extends ApiTestCase {
 	public function testBlockWithHide() {
 		$res = $this->doBlock(
 			[ 'hidename' => '' ],
-			new UltimateAuthority( self::$users['sysop']->getUser() )
+			new UltimateAuthority( $this->getTestSysop()->getUser() )
 		);
 
 		$this->assertSame( '1', $this->db->selectField(
@@ -292,7 +292,7 @@ class ApiBlockTest extends ApiTestCase {
 			],
 			null,
 			false,
-			self::$users['sysop']->getUser()
+			$this->getTestSysop()->getUser()
 		);
 	}
 
@@ -305,7 +305,7 @@ class ApiBlockTest extends ApiTestCase {
 				'reason' => 'Some reason',
 			],
 			null,
-			self::$users['sysop']->getUser()
+			$this->getTestSysop()->getUser()
 		);
 	}
 
@@ -320,7 +320,7 @@ class ApiBlockTest extends ApiTestCase {
 				'pagerestrictions' => 'One|Two|Three|Four|Five|Six|Seven|Eight|Nine|Ten|Eleven',
 			],
 			null,
-			self::$users['sysop']->getUser()
+			$this->getTestSysop()->getUser()
 		);
 	}
 

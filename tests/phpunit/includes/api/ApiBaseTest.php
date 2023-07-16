@@ -295,7 +295,7 @@ class ApiBaseTest extends ApiTestCase {
 		$parseLimits = $options['parseLimits'] ?? true;
 
 		if ( !empty( $options['apihighlimits'] ) ) {
-			$context->setUser( self::$users['sysop']->getUser() );
+			$context->setUser( $this->getTestSysop()->getUser() );
 		}
 
 		// If we're testing tags, set up some tags

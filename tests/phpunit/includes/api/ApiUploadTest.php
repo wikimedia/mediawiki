@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 
@@ -12,6 +13,8 @@ use MediaWiki\WikiMap\WikiMap;
  * @covers ApiUpload
  */
 class ApiUploadTest extends ApiUploadTestCase {
+	private ?Authority $uploader = null;
+
 	private function filePath( $fileName ) {
 		return __DIR__ . '/../../data/media/' . $fileName;
 	}
@@ -37,6 +40,7 @@ class ApiUploadTest extends ApiUploadTestCase {
 		) );
 
 		$this->overrideConfigValue( MainConfigNames::WatchlistExpiry, true );
+		$this->uploader = $this->getTestUser()->getAuthority();
 	}
 
 	public function testUploadRequiresToken() {
@@ -50,7 +54,7 @@ class ApiUploadTest extends ApiUploadTestCase {
 		$this->expectApiErrorCode( 'missingparam' );
 		$this->doApiRequestWithToken( [
 			'action' => 'upload',
-		], null, self::$users['uploader']->getUser() );
+		], null, $this->uploader );
 	}
 
 	public function testUploadWithWatch() {
@@ -58,7 +62,7 @@ class ApiUploadTest extends ApiUploadTestCase {
 		$mimeType = 'image/jpeg';
 		$filePath = $this->filePath( 'yuv420.jpg' );
 		$title = Title::newFromText( $fileName, NS_FILE );
-		$user = self::$users['uploader']->getUser();
+		$user = $this->uploader;
 
 		$this->fakeUploadFile( 'file', $fileName, $mimeType, $filePath );
 		[ $result ] = $this->doApiRequestWithToken( [
@@ -92,7 +96,7 @@ class ApiUploadTest extends ApiUploadTestCase {
 			'file' => 'dummy content',
 			'comment' => 'dummy comment',
 			'text' => "This is the page text for $fileName",
-		], null, self::$users['uploader']->getUser() );
+		], null, $this->uploader );
 	}
 
 	public function testUploadSameFileName() {
@@ -116,7 +120,7 @@ class ApiUploadTest extends ApiUploadTestCase {
 
 		$this->fakeUploadFile( 'file', $fileName, $mimeType, $filePaths[0] );
 		[ $result ] = $this->doApiRequestWithToken( $params, null,
-			self::$users['uploader']->getUser() );
+			$this->uploader );
 		$this->assertArrayHasKey( 'upload', $result );
 		$this->assertEquals( 'Success', $result['upload']['result'] );
 
@@ -124,7 +128,7 @@ class ApiUploadTest extends ApiUploadTestCase {
 
 		$this->fakeUploadFile( 'file', $fileName, $mimeType, $filePaths[1] );
 		[ $result ] = $this->doApiRequestWithToken( $params, null,
-			self::$users['uploader']->getUser() );
+			$this->uploader );
 		$this->assertArrayHasKey( 'upload', $result );
 		$this->assertEquals( 'Warning', $result['upload']['result'] );
 		$this->assertArrayHasKey( 'warnings', $result['upload'] );
@@ -144,19 +148,19 @@ class ApiUploadTest extends ApiUploadTestCase {
 			'file' => 'dummy content',
 			'comment' => 'dummy comment',
 			'text' => "This is the page text for {$fileNames[0]}",
-		], null, self::$users['uploader']->getUser() );
+		], null, $this->uploader );
 		$this->assertArrayHasKey( 'upload', $result );
 		$this->assertEquals( 'Success', $result['upload']['result'] );
 
 		// second upload with the same content (but different name)
 		$this->fakeUploadFile( 'file', $fileNames[1], $mimeType, $filePath );
 		[ $result ] = $this->doApiRequestWithToken( [
-				'action' => 'upload',
-				'filename' => $fileNames[1],
-				'file' => 'dummy content',
-				'comment' => 'dummy comment',
-				'text' => "This is the page text for {$fileNames[1]}",
-			], null, self::$users['uploader']->getUser() );
+			'action' => 'upload',
+			'filename' => $fileNames[1],
+			'file' => 'dummy content',
+			'comment' => 'dummy comment',
+			'text' => "This is the page text for {$fileNames[1]}",
+		], null, $this->uploader );
 
 		$this->assertArrayHasKey( 'upload', $result );
 		$this->assertEquals( 'Warning', $result['upload']['result'] );
@@ -179,7 +183,7 @@ class ApiUploadTest extends ApiUploadTestCase {
 			'file' => 'dummy content',
 			'comment' => 'dummy comment',
 			'text' => "This is the page text for $fileName",
-		], null, self::$users['uploader']->getUser() );
+		], null, $this->uploader );
 
 		$this->assertArrayHasKey( 'upload', $result );
 		$this->assertEquals( 'Success', $result['upload']['result'] );
@@ -200,7 +204,7 @@ class ApiUploadTest extends ApiUploadTestCase {
 			'filename' => $fileName,
 			'comment' => 'dummy comment',
 			'text' => "This is the page text for $fileName, altered",
-		], null, self::$users['uploader']->getUser() );
+		], null, $this->uploader );
 		$this->assertArrayHasKey( 'upload', $result );
 		$this->assertEquals( 'Success', $result['upload']['result'] );
 	}
@@ -234,7 +238,7 @@ class ApiUploadTest extends ApiUploadTestCase {
 			$this->fakeUploadChunk( 'chunk', 'blob', $mimeType, $chunkData );
 			if ( !$filekey ) {
 				[ $result ] = $this->doApiRequestWithToken( $params, null,
-					self::$users['uploader']->getUser() );
+					$this->uploader );
 				// Make sure we got a valid chunk continue:
 				$this->assertArrayHasKey( 'upload', $result );
 				$this->assertArrayHasKey( 'filekey', $result['upload'] );
@@ -253,7 +257,7 @@ class ApiUploadTest extends ApiUploadTestCase {
 				$this->assertEquals( $resultOffset, $params['offset'] );
 				// Upload current chunk
 				[ $result ] = $this->doApiRequestWithToken( $params, null,
-					self::$users['uploader']->getUser() );
+					$this->uploader );
 				// Make sure we got a valid chunk continue:
 				$this->assertArrayHasKey( 'upload', $result );
 				$this->assertArrayHasKey( 'filekey', $result['upload'] );
@@ -284,7 +288,7 @@ class ApiUploadTest extends ApiUploadTestCase {
 			'filename' => $fileName,
 			'comment' => 'dummy comment',
 			'text' => "This is the page text for $fileName, altered",
-		], null, self::$users['uploader']->getUser() );
+		], null, $this->uploader );
 		$this->assertArrayHasKey( 'upload', $result );
 		$this->assertEquals( 'Success', $result['upload']['result'] );
 	}

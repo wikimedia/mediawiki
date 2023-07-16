@@ -374,27 +374,19 @@ class ApiEditPageTest extends ApiTestCase {
 		$name = "Help:ApiEditPageTest_testEdit_redirect_$count";
 		$title = Title::newFromText( $name );
 		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
-		$page = $wikiPageFactory->newFromTitle( $title );
+		$page = $this->getExistingTestPage( $title );
+		$this->forceRevisionDate( $page, '20120101000000' );
 
 		$rname = "Help:ApiEditPageTest_testEdit_redirect_r$count";
 		$rtitle = Title::newFromText( $rname );
 		$rpage = $wikiPageFactory->newFromTitle( $rtitle );
 
-		// base edit for content
-		$page->doUserEditContent(
-			new WikitextContent( "Foo" ),
-			self::$users['sysop']->getUser(),
-			"testing 1",
-			EDIT_NEW,
-			false
-		);
-		$this->forceRevisionDate( $page, '20120101000000' );
 		$baseTime = $page->getRevisionRecord()->getTimestamp();
 
 		// base edit for redirect
 		$rpage->doUserEditContent(
 			new WikitextContent( "#REDIRECT [[$name]]" ),
-			self::$users['sysop']->getUser(),
+			$this->getTestSysop()->getUser(),
 			"testing 1",
 			EDIT_NEW,
 			false
@@ -404,7 +396,7 @@ class ApiEditPageTest extends ApiTestCase {
 		// conflicting edit to redirect
 		$rpage->doUserEditContent(
 			new WikitextContent( "#REDIRECT [[$name]]\n\n[[Category:Test]]" ),
-			self::$users['uploader']->getUser(),
+			$this->getTestUser()->getUser(),
 			"testing 2",
 			EDIT_UPDATE,
 			$page->getLatest()
@@ -436,27 +428,18 @@ class ApiEditPageTest extends ApiTestCase {
 		$name = "Help:ApiEditPageTest_testEdit_redirectText_$count";
 		$title = Title::newFromText( $name );
 		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
-		$page = $wikiPageFactory->newFromTitle( $title );
+		$page = $this->getExistingTestPage( $title );
+		$this->forceRevisionDate( $page, '20120101000000' );
+		$baseTime = $page->getRevisionRecord()->getTimestamp();
 
 		$rname = "Help:ApiEditPageTest_testEdit_redirectText_r$count";
 		$rtitle = Title::newFromText( $rname );
 		$rpage = $wikiPageFactory->newFromTitle( $rtitle );
 
-		// base edit for content
-		$page->doUserEditContent(
-			new WikitextContent( "Foo" ),
-			self::$users['sysop']->getUser(),
-			"testing 1",
-			EDIT_NEW,
-			false
-		);
-		$this->forceRevisionDate( $page, '20120101000000' );
-		$baseTime = $page->getRevisionRecord()->getTimestamp();
-
 		// base edit for redirect
 		$rpage->doUserEditContent(
 			new WikitextContent( "#REDIRECT [[$name]]" ),
-			self::$users['sysop']->getUser(),
+			$this->getTestSysop()->getUser(),
 			"testing 1",
 			EDIT_NEW,
 			false
@@ -466,7 +449,7 @@ class ApiEditPageTest extends ApiTestCase {
 		// conflicting edit to redirect
 		$rpage->doUserEditContent(
 			new WikitextContent( "#REDIRECT [[$name]]\n\n[[Category:Test]]" ),
-			self::$users['uploader']->getUser(),
+			$this->getTestUser()->getUser(),
 			"testing 2",
 			EDIT_UPDATE,
 			$page->getLatest()
@@ -502,7 +485,7 @@ class ApiEditPageTest extends ApiTestCase {
 		// base edit
 		$page->doUserEditContent(
 			new WikitextContent( "Foo" ),
-			self::$users['sysop']->getUser(),
+			$this->getTestSysop()->getUser(),
 			"testing 1",
 			EDIT_NEW,
 			false
@@ -513,7 +496,7 @@ class ApiEditPageTest extends ApiTestCase {
 		// conflicting edit
 		$page->doUserEditContent(
 			new WikitextContent( "Foo bar" ),
-			self::$users['uploader']->getUser(),
+			$this->getTestUser()->getUser(),
 			"testing 2",
 			EDIT_UPDATE,
 			$page->getLatest()
@@ -527,7 +510,7 @@ class ApiEditPageTest extends ApiTestCase {
 				'title' => $name,
 				'text' => 'nix bar!',
 				'baserevid' => $baseId,
-			], null, self::$users['sysop']->getUser() );
+			], null, $this->getTestSysop()->getUser() );
 
 			$this->fail( 'edit conflict expected' );
 		} catch ( ApiUsageException $ex ) {
@@ -548,7 +531,7 @@ class ApiEditPageTest extends ApiTestCase {
 		// base edit
 		$page->doUserEditContent(
 			new WikitextContent( "Foo" ),
-			self::$users['sysop']->getUser(),
+			$this->getTestSysop()->getUser(),
 			"testing 1",
 			EDIT_NEW,
 			false
@@ -559,7 +542,7 @@ class ApiEditPageTest extends ApiTestCase {
 		// conflicting edit
 		$page->doUserEditContent(
 			new WikitextContent( "Foo bar" ),
-			self::$users['uploader']->getUser(),
+			$this->getTestUser()->getUser(),
 			"testing 2",
 			EDIT_UPDATE,
 			$page->getLatest()
@@ -597,7 +580,7 @@ class ApiEditPageTest extends ApiTestCase {
 		// base edit
 		$page->doUserEditContent(
 			new WikitextContent( "Foo" ),
-			self::$users['sysop']->getUser(),
+			$this->getTestSysop()->getUser(),
 			"testing 1",
 			EDIT_NEW,
 			false
@@ -608,7 +591,7 @@ class ApiEditPageTest extends ApiTestCase {
 		// conflicting edit
 		$page->doUserEditContent(
 			new WikitextContent( "Foo bar" ),
-			self::$users['uploader']->getUser(),
+			$this->getTestUser()->getUser(),
 			"testing 2",
 			EDIT_UPDATE,
 			$page->getLatest()
@@ -642,26 +625,17 @@ class ApiEditPageTest extends ApiTestCase {
 		$name = "Help:ApiEditPageTest_testEditConflict_redirect_T43990_$count";
 		$title = Title::newFromText( $name );
 		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
-		$page = $wikiPageFactory->newFromTitle( $title );
+		$page = $this->getExistingTestPage( $title );
+		$this->forceRevisionDate( $page, '20120101000000' );
 
 		$rname = "Help:ApiEditPageTest_testEditConflict_redirect_T43990_r$count";
 		$rtitle = Title::newFromText( $rname );
 		$rpage = $wikiPageFactory->newFromTitle( $rtitle );
 
-		// base edit for content
-		$page->doUserEditContent(
-			new WikitextContent( "Foo" ),
-			self::$users['sysop']->getUser(),
-			"testing 1",
-			EDIT_NEW,
-			false
-		);
-		$this->forceRevisionDate( $page, '20120101000000' );
-
 		// base edit for redirect
 		$rpage->doUserEditContent(
 			new WikitextContent( "#REDIRECT [[$name]]" ),
-			self::$users['sysop']->getUser(),
+			$this->getTestSysop()->getUser(),
 			"testing 1",
 			EDIT_NEW,
 			false
@@ -671,7 +645,7 @@ class ApiEditPageTest extends ApiTestCase {
 		// new edit to content
 		$page->doUserEditContent(
 			new WikitextContent( "Foo bar" ),
-			self::$users['uploader']->getUser(),
+			$this->getTestUser()->getUser(),
 			"testing 2",
 			EDIT_UPDATE,
 			$page->getLatest()
@@ -752,8 +726,8 @@ class ApiEditPageTest extends ApiTestCase {
 	 */
 	public function testUndoAfterContentModelChange() {
 		$name = 'Help:' . __FUNCTION__;
-		$uploader = self::$users['uploader']->getUser();
-		$sysop = self::$users['sysop']->getUser();
+		$sysop = $this->getTestSysop()->getUser();
+		$otherUser = $this->getTestUser()->getUser();
 
 		$apiResult = $this->doApiRequestWithToken( [
 			'action' => 'edit',
@@ -775,7 +749,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'title' => $name,
 			'text' => '{}',
 			'contentmodel' => 'json',
-		], null, $uploader )[0];
+		], null, $otherUser )[0];
 
 		// Check success
 		$this->assertArrayHasKey( 'edit', $apiResult );
@@ -1518,7 +1492,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 	public function testEditWatch() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
-		$user = self::$users['sysop']->getUser();
+		$user = $this->getTestSysop()->getUser();
 		$watchlistManager = $this->getServiceContainer()->getWatchlistManager();
 
 		$this->doApiRequestWithToken( [
@@ -1537,7 +1511,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 	public function testEditUnwatch() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
-		$user = self::$users['sysop']->getUser();
+		$user = $this->getTestSysop()->getUser();
 		$titleObj = Title::newFromText( $name );
 
 		$watchlistManager = $this->getServiceContainer()->getWatchlistManager();
@@ -1651,9 +1625,10 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->assertNull( DatabaseBlock::newFromTarget( '127.0.0.1' ) );
 
+		$user = $this->getTestSysop()->getUser();
 		$block = new DatabaseBlock( [
-			'address' => self::$users['sysop']->getUser()->getName(),
-			'by' => self::$users['sysop']->getUser(),
+			'address' => $user->getName(),
+			'by' => $user,
 			'reason' => 'Capriciousness',
 			'timestamp' => '19370101000000',
 			'expiry' => 'infinity',
@@ -1674,7 +1649,7 @@ class ApiEditPageTest extends ApiTestCase {
 			$this->assertNotNull( DatabaseBlock::newFromTarget( '127.0.0.1' ), 'Autoblock spread' );
 		} finally {
 			$blockStore->deleteBlock( $block );
-			self::$users['sysop']->getUser()->clearInstanceCache();
+			$user->clearInstanceCache();
 		}
 	}
 
@@ -1788,7 +1763,7 @@ class ApiEditPageTest extends ApiTestCase {
 		// base edit, currently in Wikitext
 		$page->doUserEditContent(
 			new WikitextContent( "Foo" ),
-			self::$users['sysop']->getUser(),
+			$this->getTestSysop()->getUser(),
 			"testing 1",
 			EDIT_NEW,
 			false
@@ -1801,7 +1776,7 @@ class ApiEditPageTest extends ApiTestCase {
 		// before we save it was changed to Wikitext (base edit model).
 		$page->doUserEditContent(
 			new JavaScriptContent( "Bar" ),
-			self::$users['uploader']->getUser(),
+			$this->getTestUser()->getUser(),
 			"testing 2",
 			EDIT_UPDATE,
 			$page->getLatest()
