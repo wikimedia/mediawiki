@@ -614,10 +614,9 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			$request->setHeader( 'If-Modified-Since', $ifModifiedSince );
 		}
 
-		if ( !isset( $config['CacheEpoch'] ) ) {
-			// Make sure it's not too recent
-			$config['CacheEpoch'] = '20000101000000';
-		}
+		// Make sure it's not too recent
+		$config['CacheEpoch'] ??= '20000101000000';
+		$config['CachePages'] ??= true;
 
 		$op = $this->newInstance( $config, $request );
 
