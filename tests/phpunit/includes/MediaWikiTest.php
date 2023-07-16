@@ -31,6 +31,9 @@ class MediaWikiTest extends MediaWikiIntegrationTestCase {
 		$_SERVER = $this->oldServer;
 		$_GET = $this->oldGet;
 		$_POST = $this->oldPost;
+		// The MediaWiki class writes to $wgTitle. Revert any writes done in this test to make
+		// sure that they don't leak into other tests (T341951)
+		$GLOBALS['wgTitle'] = null;
 		parent::tearDown();
 	}
 
@@ -349,7 +352,7 @@ class MediaWikiTest extends MediaWikiIntegrationTestCase {
 		] );
 		$req->setRequestURL( $specialTitle->getFullUrl() );
 
-		$context = RequestContext::getMain();
+		$context = new RequestContext();
 		$context->setRequest( $req );
 		$context->setTitle( $specialTitle );
 
