@@ -3,7 +3,7 @@
  * @singleton
  */
 ( function () {
-	var userInfoPromise, pageviewRandomId;
+	var userInfoPromise, pageviewRandomId, sessionId;
 
 	/**
 	 * Get the current user's groups or rights
@@ -41,7 +41,7 @@
 		 * See https://en.wikipedia.org/wiki/Birthday_attack#Mathematics
 		 * n(p;H) = n(0.01,2^80)= sqrt (2 * 2^80 * ln(1/(1-0.01)))
 		 *
-		 * @return {string} 80 bit integer in hex format, padded
+		 * @return {string} 80 bit integer (20 characters) in hex format, padded
 		 */
 		generateRandomSessionId: function () {
 			var rnds, i,
@@ -171,15 +171,19 @@
 		 *
 		 * **Note:** Server-side code must never interpret or modify this value.
 		 *
-		 * @return {string} Random session ID
+		 * @return {string} Random session ID (20 hex characters)
 		 */
 		sessionId: function () {
-			var sessionId = mw.cookie.get( 'mwuser-sessionId' );
-			if ( sessionId === null ) {
-				sessionId = mw.user.generateRandomSessionId();
-				// Setting the `expires` field to `null` means that the cookie should
-				// persist (shared across windows and tabs) until the browser is closed.
-				mw.cookie.set( 'mwuser-sessionId', sessionId, { expires: null } );
+			if ( sessionId === undefined ) {
+				sessionId = mw.cookie.get( 'mwuser-sessionId' );
+				// Validate that the value is 20 hex characters, as it is user-controlled,
+				// and we also used different formats in the past (T283881)
+				if ( sessionId === null || !/^[0-9a-f]{20}$/.test( sessionId ) ) {
+					sessionId = mw.user.generateRandomSessionId();
+					// Setting the `expires` field to `null` means that the cookie should
+					// persist (shared across windows and tabs) until the browser is closed.
+					mw.cookie.set( 'mwuser-sessionId', sessionId, { expires: null } );
+				}
 			}
 			return sessionId;
 		},
