@@ -124,6 +124,10 @@ because of Phabricator reports.
   name "Basa Ugi", and the localization in the language code "bug" is now only
   in the Latin script. It's possible to add localization in the Lontara script
   in translatewiki under the code "bug-bugi".
+* (T341943) Main Page name translation was changed from "Leppa Indoë"
+  to "Watangpola". If you manage a wiki in this language, make sure that
+  links to the main page are correctly updated. See
+  https://translatewiki.net/w/i.php?title=Support&oldid=11723654#Change_MediaWiki:Mainpage/bug
 
 === Breaking changes in 1.41 ===
 * Article::doDelete(), deprecated since 1.37, has been removed.
