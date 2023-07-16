@@ -65,6 +65,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	/**
 	 * @var TestUser[]
 	 * @since 1.20
+	 * @deprecated since 1.41 Use Authority if possible, or call $this->getTestUser or getTestSysop directly.
 	 */
 	public static $users;
 

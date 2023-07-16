@@ -285,6 +285,8 @@ class ApiPageSetTest extends ApiTestCase {
 	 * something was requested which is not part of the cache. Than the test is failing.
 	 */
 	public function testGenderCaching() {
+		// Create the test user now so that the cache will be empty later
+		$this->getTestSysop()->getUser();
 		// Set up the user namespace to have gender aliases to trigger the gender cache
 		$this->overrideConfigValue(
 			MainConfigNames::ExtraGenderNamespaces,

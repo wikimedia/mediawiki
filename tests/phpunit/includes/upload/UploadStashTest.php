@@ -9,11 +9,6 @@ use MediaWiki\Request\FauxRequest;
  */
 class UploadStashTest extends MediaWikiIntegrationTestCase {
 	/**
-	 * @var TestUser[]
-	 */
-	public static $users;
-
-	/**
 	 * @var string
 	 */
 	private $tmpFile;
@@ -23,21 +18,6 @@ class UploadStashTest extends MediaWikiIntegrationTestCase {
 
 		$this->tmpFile = $this->getNewTempFile();
 		file_put_contents( $this->tmpFile, "\x00" );
-
-		self::$users = [
-			'sysop' => new TestUser(
-				'Uploadstashtestsysop',
-				'Upload Stash Test Sysop',
-				'upload_stash_test_sysop@example.com',
-				[ 'sysop' ]
-			),
-			'uploader' => new TestUser(
-				'Uploadstashtestuser',
-				'Upload Stash Test User',
-				'upload_stash_test_user@example.com',
-				[]
-			)
-		];
 	}
 
 	public static function provideInvalidRequests() {

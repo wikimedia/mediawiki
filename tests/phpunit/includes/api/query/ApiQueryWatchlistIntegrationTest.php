@@ -13,22 +13,26 @@ use MediaWiki\Title\Title;
  * @covers ApiQueryWatchlist
  */
 class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
+	// TODO: This test should use Authority, but can't due to User::saveSettings
+	private $loggedInUser;
+	private $notLoggedInUser;
 
 	protected function setUp(): void {
 		parent::setUp();
 		$this->tablesUsed = array_unique(
 			array_merge( $this->tablesUsed, [ 'watchlist', 'recentchanges', 'page' ] )
 		);
-		self::$users['ApiQueryWatchlistIntegrationTestUser'] = $this->getMutableTestUser();
-		self::$users['ApiQueryWatchlistIntegrationTestUser2'] = $this->getMutableTestUser();
+
+		$this->loggedInUser = $this->getMutableTestUser()->getUser();
+		$this->notLoggedInUser = $this->getMutableTestUser()->getUser();
 	}
 
-	private function getLoggedInTestUser() {
-		return self::$users['ApiQueryWatchlistIntegrationTestUser']->getUser();
+	private function getLoggedInTestUser(): User {
+		return $this->loggedInUser;
 	}
 
-	private function getNonLoggedInTestUser() {
-		return self::$users['ApiQueryWatchlistIntegrationTestUser2']->getUser();
+	private function getNonLoggedInTestUser(): User {
+		return $this->notLoggedInUser;
 	}
 
 	private function doPageEdit( Authority $performer, LinkTarget $target, $content, $summary ) {

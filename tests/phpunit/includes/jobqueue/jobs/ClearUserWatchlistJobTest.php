@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 
 /**
  * @covers ClearUserWatchlistJob
@@ -12,15 +14,8 @@ use MediaWiki\MainConfigNames;
  * @author Addshore
  */
 class ClearUserWatchlistJobTest extends MediaWikiIntegrationTestCase {
-
-	protected function setUp(): void {
-		parent::setUp();
-		self::$users['ClearUserWatchlistJobTestUser']
-			= new TestUser( 'ClearUserWatchlistJobTestUser' );
-	}
-
-	private function getUser() {
-		return self::$users['ClearUserWatchlistJobTestUser']->getUser();
+	private function getUser(): UserIdentity {
+		return new UserIdentityValue( 42, 'ClearUserWatchlistJobTestUser' );
 	}
 
 	private function getWatchedItemStore() {

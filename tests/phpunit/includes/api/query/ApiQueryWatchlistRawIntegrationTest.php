@@ -8,6 +8,9 @@
  * @covers ApiQueryWatchlistRaw
  */
 class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
+	// TODO: This test should use Authority, but can't due to User::saveSettings
+	private $loggedInUser;
+	private $notLoggedInUser;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -17,18 +20,16 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 			[ 'watchlist', 'watchlist_expiry' ]
 		);
 
-		self::$users['ApiQueryWatchlistRawIntegrationTestUser']
-			= $this->getMutableTestUser();
-		self::$users['ApiQueryWatchlistRawIntegrationTestUser2']
-			= $this->getMutableTestUser();
+		$this->loggedInUser = $this->getMutableTestUser()->getUser();
+		$this->notLoggedInUser = $this->getMutableTestUser()->getUser();
 	}
 
-	private function getLoggedInTestUser() {
-		return self::$users['ApiQueryWatchlistRawIntegrationTestUser']->getUser();
+	private function getLoggedInTestUser(): User {
+		return $this->loggedInUser;
 	}
 
-	private function getNotLoggedInTestUser() {
-		return self::$users['ApiQueryWatchlistRawIntegrationTestUser2']->getUser();
+	private function getNotLoggedInTestUser(): User {
+		return $this->notLoggedInUser;
 	}
 
 	private function getWatchedItemStore() {

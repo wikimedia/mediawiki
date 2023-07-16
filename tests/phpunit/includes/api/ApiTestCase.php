@@ -23,10 +23,45 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		parent::setUp();
 		self::$apiUrl = $wgServer . wfScript( 'api' );
 
-		self::$users = [
-			'sysop' => static::getTestSysop(),
-			'uploader' => static::getTestUser(),
+		// HACK: Avoid creating test users in the DB if the test may not need them.
+		$getters = [
+			'sysop' => fn () => $this->getTestSysop(),
+			'uploader' => fn () => $this->getTestUser(),
 		];
+		$fakeUserArray = new class ( $getters ) implements ArrayAccess {
+			private array $getters;
+			private array $extraUsers = [];
+
+			public function __construct( array $getters ) {
+				$this->getters = $getters;
+			}
+
+			public function offsetExists( $offset ): bool {
+				return isset( $this->getters[$offset] ) || isset( $this->extraUsers[$offset] );
+			}
+
+			#[\ReturnTypeWillChange]
+			public function offsetGet( $offset ) {
+				if ( isset( $this->getters[$offset] ) ) {
+					return ( $this->getters[$offset] )();
+				}
+				if ( isset( $this->extraUsers[$offset] ) ) {
+					return $this->extraUsers[$offset];
+				}
+				throw new LogicException( "Requested unknown user $offset" );
+			}
+
+			public function offsetSet( $offset, $value ): void {
+				$this->extraUsers[$offset] = $value;
+			}
+
+			public function offsetUnset( $offset ): void {
+				unset( $this->getters[$offset] );
+				unset( $this->extraUsers[$offset] );
+			}
+		};
+
+		self::$users = $fakeUserArray;
 
 		$this->setRequest( new FauxRequest( [] ) );
 

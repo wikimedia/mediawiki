@@ -2,6 +2,8 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -16,17 +18,14 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		self::$users['WatchedItemStoreIntegrationTestUser']
-			= new TestUser( 'WatchedItemStoreIntegrationTestUser' );
-
 		$this->overrideConfigValues( [
 			MainConfigNames::WatchlistExpiry => true,
 			MainConfigNames::WatchlistExpiryMaxDuration => '6 months',
 		] );
 	}
 
-	private function getUser() {
-		return self::$users['WatchedItemStoreIntegrationTestUser']->getUser();
+	private function getUser(): UserIdentity {
+		return new UserIdentityValue( 42, 'WatchedItemStoreIntegrationTestUser' );
 	}
 
 	public function testWatchAndUnWatchItem() {
@@ -242,7 +241,10 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	public function testUpdateResetAndSetNotificationTimestamp() {
 		$user = $this->getUser();
-		$otherUser = ( new TestUser( 'WatchedItemStoreIntegrationTestUser_otherUser' ) )->getUser();
+		$otherUser = new UserIdentityValue(
+			$user->getId() + 1,
+			$user->getName() . '_other'
+		);
 		$title = Title::makeTitle( NS_MAIN, 'WatchedItemStoreIntegrationTestPage' );
 		$store = $this->getServiceContainer()->getWatchedItemStore();
 		$store->addWatch( $user, $title );

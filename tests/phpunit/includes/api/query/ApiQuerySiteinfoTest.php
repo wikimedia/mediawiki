@@ -85,6 +85,8 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function testReadOnly() {
+		// Create the test user before making the DB readonly
+		$this->getTestSysop()->getUser();
 		$svc = $this->getServiceContainer()->getReadOnlyMode();
 		$svc->setReason( 'Need more donations' );
 		try {
@@ -255,6 +257,9 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		if ( !$showHostnames && $includeAll ) {
 			$this->expectApiErrorCode( 'includeAllDenied' );
 		}
+
+		// Force creation of the test user before mocking the database.
+		$this->getTestSysop()->getUser();
 
 		$mockLB = $this->createNoOpMock( LoadBalancer::class, [ 'getMaxLag', 'getLagTimes',
 			'getServerName', 'getLocalDomainID' ] );

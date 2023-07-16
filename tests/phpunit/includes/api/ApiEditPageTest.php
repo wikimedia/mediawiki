@@ -1681,6 +1681,8 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testEditWhileReadOnly() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
+		// Create the test user before making the DB readonly
+		$user = $this->getTestSysop()->getUser();
 		$this->expectApiErrorCode( 'readonly' );
 
 		$svc = $this->getServiceContainer()->getReadOnlyMode();
@@ -1691,7 +1693,7 @@ class ApiEditPageTest extends ApiTestCase {
 				'action' => 'edit',
 				'title' => $name,
 				'text' => 'Some text',
-			] );
+			], null, $user );
 		} finally {
 			$svc->setReason( false );
 		}
