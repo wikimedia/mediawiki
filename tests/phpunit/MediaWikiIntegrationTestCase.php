@@ -252,6 +252,13 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @return TestUser
 	 */
 	protected function getTestUser( $groups = [] ) {
+		if ( !$this->needsDB() ) {
+			throw new LogicException(
+				'Test users get persisted in the test database and can only be used in tests having ' .
+				'`@group Database`. Add this test to the Database group or, preferably, construct or ' .
+				'mock a UserIdentity/Authority if the test doesn\'t need a real user account.'
+			);
+		}
 		return TestUserRegistry::getImmutableTestUser( $groups );
 	}
 
@@ -264,6 +271,13 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @return TestUser
 	 */
 	protected function getMutableTestUser( $groups = [] ) {
+		if ( !$this->needsDB() ) {
+			throw new LogicException(
+				'Test users get persisted in the test database and can only be used in tests having ' .
+				'`@group Database`. Add this test to the Database group or, preferably, construct or ' .
+				'mock a UserIdentity/Authority if the test doesn\'t need a real user account.'
+			);
+		}
 		return TestUserRegistry::getMutableTestUser( __CLASS__, $groups );
 	}
 
