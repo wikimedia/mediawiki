@@ -8,6 +8,7 @@ use MediaWiki\User\UserOptionsManager;
 
 /**
  * @group SpecialPage
+ * @group Database
  * @covers MediaWiki\Specials\SpecialMute
  */
 class SpecialMuteTest extends SpecialPageTestBase {

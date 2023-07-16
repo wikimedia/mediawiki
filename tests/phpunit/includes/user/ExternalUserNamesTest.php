@@ -5,6 +5,7 @@ use MediaWiki\Title\Title;
 
 /**
  * @covers ExternalUserNames
+ * @group Database
  */
 class ExternalUserNamesTest extends MediaWikiIntegrationTestCase {
 	use DummyServicesTrait;

@@ -47,9 +47,6 @@ class SpecialDoubleRedirects extends QueryPage {
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
 
-	/** @var IDatabase */
-	private $dbr;
-
 	/**
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param LinkBatchFactory $linkBatchFactory
@@ -64,7 +61,6 @@ class SpecialDoubleRedirects extends QueryPage {
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->setDatabaseProvider( $dbProvider );
-		$this->dbr = $dbProvider->getReplicaDatabase();
 	}
 
 	public function isExpensive() {
@@ -162,7 +158,7 @@ class SpecialDoubleRedirects extends QueryPage {
 					$result->namespace,
 					$result->title
 				);
-				$deep = $this->dbr->selectRow(
+				$deep = $this->getDatabaseProvider()->getReplicaDatabase()->selectRow(
 					$qi['tables'],
 					$qi['fields'],
 					$qi['conds'],

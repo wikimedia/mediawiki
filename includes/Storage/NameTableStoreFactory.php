@@ -95,7 +95,7 @@ class NameTableStoreFactory {
 		if ( !isset( $infos[$tableName] ) ) {
 			throw new \InvalidArgumentException( "Invalid table name \$tableName" );
 		}
-		if ( $wiki === $this->lbFactory->getLocalDomainID() ) {
+		if ( $wiki !== false && $wiki === $this->lbFactory->getLocalDomainID() ) {
 			$wiki = false;
 		}
 

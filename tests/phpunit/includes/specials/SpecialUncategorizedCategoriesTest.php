@@ -4,6 +4,8 @@ use MediaWiki\Language\RawMessage;
 
 /**
  * Tests for Special:UncategorizedCategories
+ *
+ * @group Database
  */
 class SpecialUncategorizedCategoriesTest extends MediaWikiIntegrationTestCase {
 	/**
