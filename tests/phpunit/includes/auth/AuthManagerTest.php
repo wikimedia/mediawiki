@@ -1634,7 +1634,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->overrideConfigValues( [
 			MainConfigNames::EnableDnsBlacklist => true,
 			MainConfigNames::DnsBlacklistUrls => [
-				'local.wmftest.net', // This will resolve for every subdomain, which works to test "listed?"
+				'localhost',
 			],
 			MainConfigNames::ProxyWhitelist => [],
 		] );
