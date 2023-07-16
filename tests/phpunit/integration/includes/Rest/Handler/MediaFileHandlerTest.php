@@ -127,7 +127,7 @@ class MediaFileHandlerTest extends \MediaWikiLangTestCase {
 
 	public function testExecute_wrongNamespace() {
 		$title = Title::newFromText( 'User:' . __CLASS__ . '.jpg' );
-		$this->editPage( $title->getPrefixedDBkey(), 'First' );
+		$this->editPage( $title, 'First' );
 		$request = new RequestData( [ 'pathParams' => [ 'title' => $title->getPrefixedDBkey() ] ] );
 
 		$handler = $this->newHandler();

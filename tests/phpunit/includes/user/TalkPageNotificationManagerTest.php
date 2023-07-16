@@ -31,7 +31,7 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 		// it, and its easier than needing to depend on a full user object
 		$userTalk = Title::makeTitle( NS_USER_TALK, $user->getName() );
 		$status = $this->editPage(
-			$userTalk->getPrefixedText(),
+			$userTalk,
 			$text,
 			'',
 			NS_MAIN,
