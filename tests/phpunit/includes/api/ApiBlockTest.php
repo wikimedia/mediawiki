@@ -5,6 +5,8 @@ use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 
 /**
@@ -38,10 +40,10 @@ class ApiBlockTest extends ApiTestCase {
 
 	/**
 	 * @param array $extraParams Extra API parameters to pass to doApiRequest
-	 * @param User|null $blocker User to do the blocking, null to pick arbitrarily
+	 * @param Authority|null $blocker User to do the blocking, null to pick arbitrarily
 	 * @return array result of doApiRequest
 	 */
-	private function doBlock( array $extraParams = [], User $blocker = null ) {
+	private function doBlock( array $extraParams = [], Authority $blocker = null ) {
 		$this->assertNotNull( $this->mUser );
 
 		$params = [
@@ -146,15 +148,9 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	public function testBlockWithHide() {
-		global $wgGroupPermissions;
-		$newPermissions = $wgGroupPermissions['sysop'];
-		$newPermissions['hideuser'] = true;
-		$this->mergeMwGlobalArrayValue( 'wgGroupPermissions',
-			[ 'sysop' => $newPermissions ] );
-
 		$res = $this->doBlock(
 			[ 'hidename' => '' ],
-			self::$users['sysop']->getUser()
+			new UltimateAuthority( self::$users['sysop']->getUser() )
 		);
 
 		$this->assertSame( '1', $this->db->selectField(
@@ -166,9 +162,13 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	public function testBlockWithProhibitedHide() {
+		$performer = $this->mockUserAuthorityWithoutPermissions(
+			$this->getTestUser()->getUser(),
+			[ 'hideuser' ]
+		);
 		$this->expectApiErrorCode( 'permissiondenied' );
 
-		$this->doBlock( [ 'hidename' => '' ] );
+		$this->doBlock( [ 'hidename' => '' ], $performer );
 	}
 
 	public function testBlockWithEmailBlock() {
