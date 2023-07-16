@@ -117,12 +117,16 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		if ( $performer ) {
 			$legacyUser = $this->getServiceContainer()->getUserFactory()->newFromAuthority( $performer );
 			$contextUser = $legacyUser;
+			// Clone the user object, because something in Session code will replace its user with "Unknown user"
+			// if it doesn't exist. But that'll also change $contextUser, and the token won't match (T341953).
+			$sessionUser = clone $contextUser;
 		} else {
 			$contextUser = self::$users['sysop']->getUser();
 			$performer = $contextUser;
+			$sessionUser = $contextUser;
 		}
 
-		$sessionObj->setUser( $contextUser );
+		$sessionObj->setUser( $sessionUser );
 		if ( $tokenType !== null ) {
 			if ( $tokenType === 'auto' ) {
 				$tokenType = ( new ApiMain() )->getModuleManager()
