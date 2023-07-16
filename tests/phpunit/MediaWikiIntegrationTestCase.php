@@ -502,7 +502,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 					self::setupAllTestDBs(
 						$this->db, $this->dbPrefix(), $useTemporaryTables
 					);
-					$this->addCoreDBData();
+					if ( $this->needsDB() ) {
+						$this->addCoreDBData();
+					}
 				}
 
 				// TODO: the DB setup should be done in setUpBeforeClass(), so the test DB
@@ -1633,7 +1635,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		// Make 1 page with 1 revision
 		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( Title::makeTitle( NS_MAIN, 'UTPage' ) );
-		if ( $page->getId() == 0 ) {
+		if ( !$page->exists() ) {
 			$page->doUserEditContent(
 				new WikitextContent( 'UTContent' ),
 				$user,
@@ -2117,8 +2119,10 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			if ( array_intersect( $tablesUsed, $coreDBDataTables ) ) {
 				// Reset services that may contain information relating to the truncated tables
 				$this->overrideMwServices();
-				// Re-add core DB data that was deleted
-				$this->addCoreDBData();
+				if ( $this->needsDB() ) {
+					// Re-add core DB data that was deleted
+					$this->addCoreDBData();
+				}
 			}
 		}
 	}

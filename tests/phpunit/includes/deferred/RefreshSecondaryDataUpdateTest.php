@@ -8,6 +8,7 @@ use Wikimedia\ScopedCallback;
 
 /**
  * @covers RefreshSecondaryDataUpdate
+ * @group Database
  */
 class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 	public function testSuccess() {
@@ -206,7 +207,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 				return [ $goodUpdate ];
 			} );
 
-		$wikiPage = $services->getWikiPageFactory()->newFromTitle( Title::makeTitle( NS_MAIN, 'UTPage' ) );
+		$wikiPage = $this->getExistingTestPage();
 		$update = new RefreshSecondaryDataUpdate(
 			$lbFactory,
 			$user,

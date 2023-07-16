@@ -6,6 +6,9 @@ use MediaWiki\Request\WebResponse;
 use MediaWiki\Title\Title;
 use Wikimedia\TestingAccessWrapper;
 
+/**
+ * @group Database
+ */
 class MediaWikiTest extends MediaWikiIntegrationTestCase {
 	private $oldServer, $oldGet, $oldPost;
 
