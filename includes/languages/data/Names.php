@@ -110,7 +110,7 @@ class Names {
 		'bs' => 'bosanski', # Bosnian
 		'btm' => 'Batak Mandailing', # Batak Mandailing
 		'bto' => 'Iriga Bicolano', # Rinconada Bikol
-		'bug' => 'ᨅᨔ ᨕᨘᨁᨗ', # Buginese
+		'bug' => 'Basa Ugi', # Buginese
 		'bxr' => 'буряад', # Buryat (Russia)
 		'ca' => 'català', # Catalan
 		'cbk-zam' => 'Chavacano de Zamboanga', # Zamboanga Chavacano, T124657

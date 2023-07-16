@@ -120,6 +120,10 @@ because of Phabricator reports.
 * (T338416) Added language support for Betawi (bew).
 * (T341545) Added language support for West Coast Bajau (a.k.a. Sama; bdr).
 * (T332118) Namespace translations for Angika (anp) were added
+* (T341942) The autonym of the Buginese language is changed to the Latin-script
+  name "Basa Ugi", and the localization in the language code "bug" is now only
+  in the Latin script. It's possible to add localization in the Lontara script
+  in translatewiki under the code "bug-bugi".
 
 === Breaking changes in 1.41 ===
 * Article::doDelete(), deprecated since 1.37, has been removed.

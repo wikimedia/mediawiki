@@ -1,5 +1,5 @@
 <?php
-/** Buginese (ᨅᨔ ᨕᨘᨁᨗ)
+/** Buginese (Basa Ugi)
  *
  * @file
  * @ingroup Languages
