@@ -5,6 +5,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use Psr\Log\NullLogger;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @covers ApiStashEdit
@@ -12,6 +13,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group API
  * @group medium
  * @group Database
+ * @todo Expand tests for temporary users
  */
 class ApiStashEditTest extends ApiTestCase {
 	protected function setUp(): void {
@@ -348,6 +350,7 @@ class ApiStashEditTest extends ApiTestCase {
 	}
 
 	public function testCheckCacheAnon() {
+		$this->overrideConfigValue( 'AutoCreateTempUser', [ 'enabled' => false ] );
 		$user = User::newFromName( '174.5.4.6', false );
 
 		$this->doStash( [], $user );
@@ -365,21 +368,8 @@ class ApiStashEditTest extends ApiTestCase {
 	protected function doStashOld(
 		User $user, $text = 'Content', $howOld = PageEditStash::PRESUME_FRESH_TTL_SEC
 	) {
+		ConvertibleTimestamp::setFakeTime( ConvertibleTimestamp::now( TS_UNIX ) - $howOld - 1 );
 		$this->doStash( [ 'text' => $text ], $user );
-
-		// Monkey with the cache to make the edit look old.  @todo Is there a less fragile way to
-		// fake the time?
-		$key = $this->getStashKey( __CLASS__, $text, $user );
-
-		$editStash = TestingAccessWrapper::newFromObject(
-			$this->getServiceContainer()->getPageEditStash() );
-		$cache = $editStash->cache;
-
-		$editInfo = $editStash->unserializeStashInfo( $cache->get( $key ) );
-		$editInfo->output->setCacheTime( wfTimestamp( TS_MW,
-			wfTimestamp( TS_UNIX, $editInfo->output->getCacheTime() ) - $howOld - 1 ) );
-
-		$cache->set( $key, $editStash->serializeStashInfo( $editInfo ) );
 	}
 
 	public function testCheckCacheOldNoEdits() {
@@ -392,6 +382,7 @@ class ApiStashEditTest extends ApiTestCase {
 	}
 
 	public function testCheckCacheOldNoEditsAnon() {
+		$this->overrideConfigValue( 'AutoCreateTempUser', [ 'enabled' => false ] );
 		// Specify a made-up IP address to make sure no edits are lying around
 		$user = User::newFromName( '172.0.2.77', false );
 
