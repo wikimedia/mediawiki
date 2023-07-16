@@ -247,7 +247,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param string|string[] $groups Groups the test user should be in.
 	 * @return TestUser
 	 */
-	public static function getTestUser( $groups = [] ) {
+	protected function getTestUser( $groups = [] ) {
 		return TestUserRegistry::getImmutableTestUser( $groups );
 	}
 
@@ -259,7 +259,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param string|string[] $groups Groups the test user should be added in.
 	 * @return TestUser
 	 */
-	public static function getMutableTestUser( $groups = [] ) {
+	protected function getMutableTestUser( $groups = [] ) {
 		return TestUserRegistry::getMutableTestUser( __CLASS__, $groups );
 	}
 
@@ -270,8 +270,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 *
 	 * @return TestUser
 	 */
-	public static function getTestSysop() {
-		return static::getTestUser( [ 'sysop', 'bureaucrat' ] );
+	protected function getTestSysop() {
+		return $this->getTestUser( [ 'sysop', 'bureaucrat' ] );
 	}
 
 	/**
@@ -1631,7 +1631,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		SiteStatsInit::doPlaceholderInit();
 
 		// Make sysop user
-		$user = static::getTestSysop()->getUser();
+		$user = $this->getTestSysop()->getUser();
 
 		// Make 1 page with 1 revision
 		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( Title::makeTitle( NS_MAIN, 'UTPage' ) );
