@@ -3076,7 +3076,6 @@
 	"mcrundo-missingparam": "Beharrezko eskaera parametroak falta dira.",
 	"mcrundo-changed": "Diff-a ikusi zenuen azken alditik orrialdea aldatu egin da. Mesedez, aldaketak errebisatu.",
 	"mcrundo-parse-failed": "Errebisio berriaren analisia huts egin du: $1",
-	"word-separator": "&#32;",
 	"quotation-marks": "«$1»",
 	"imgmultipageprev": "← aurreko orrialdea",
 	"imgmultipagenext": "hurrengo orrialdea →",

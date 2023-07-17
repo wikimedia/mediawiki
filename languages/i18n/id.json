@@ -3347,7 +3347,6 @@
 	"semicolon-separator": ";&#32;",
 	"comma-separator": ",&#32;",
 	"colon-separator": ":&#32;",
-	"word-separator": "&#32;",
 	"ellipsis": "...",
 	"quotation-marks": "\"$1\"",
 	"formatnum-nan": "Bukan Angka",

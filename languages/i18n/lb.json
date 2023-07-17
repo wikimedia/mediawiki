@@ -1132,6 +1132,7 @@
 	"userrights-expiry": "Valabel bis:",
 	"userrights-expiry-othertime": "Aner Zäit:",
 	"userrights-expiry-options": "1 Dag:1 day,1 Woch:1 week,1 Mount:1 month,3 Méint:3 months,6 Méint:6 months,1 Joer:1 year",
+	"userrights-no-group": "Temporär Benotzer hu keng Gruppen.",
 	"userrights-conflict": "Konflikt bei de Benotzerrechter! Kuckt Är Ännerunge wgl. no a confirméiert se.",
 	"group": "Grupp:",
 	"group-user": "Benotzer",

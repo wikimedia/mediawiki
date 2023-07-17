@@ -3191,7 +3191,6 @@
 	"semicolon-separator": ";&#32;",
 	"comma-separator": ",&#32;",
 	"colon-separator": ":&#32;",
-	"word-separator": "&#32;",
 	"quotation-marks": "\"$1\"",
 	"formatnum-nan": "ไม่ใช่ตัวเลข",
 	"imgmultipageprev": "← หน้าก่อนหน้า",

@@ -22,7 +22,6 @@
 	"apihelp-query+backlinks-param-limit": "How many total pages to return. If <var>$1redirect</var> is enabled, limit applies to each level separately (which means up to 2 * <var>$1limit</var> results may be returned).",
 	"apihelp-query+blocks-param-ip": "Get all blocks applying to this IP or CIDR range, including range blocks.\nThis cannot be used together with <var>$3users</var>. CIDR ranges broader than IPv4/$1 or IPv6/$2 will not be not accepted.",
 	"apihelp-query+categorymembers-param-endhexsortkey": "Sortkey to end listing from, as returned by <kbd>$1prop=sortkey</kbd>. Can only be used with <kbd>$1sort=sortkey</kbd>.",
-	"apihelp-query+exturlusage-param-protocol": "Protocol of the URL. If empty and <var>$1query</var> set, the protocol is <kbd>http</kbd>. Leave both this and <var>$1query</var> empty to list all external links.",
 	"apihelp-query+info-paramvalue-prop-linkclasses": "Gives the additional CSS classes (e.g. link colours) used for links to this page if they were to appear on the page named by <var>$1linkcontext</var>.",
 	"apihelp-query+info-param-linkcontext": "The context title to use when determining extra CSS classes (e.g. link colours) when <var>$1prop</var> contains <var>linkclasses</var>.",
 	"apihelp-query+revisions+base-param-contentformat": "Serialisation format used for <var>$1difftotext</var> and expected for output of content.",

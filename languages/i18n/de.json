@@ -3393,8 +3393,6 @@
 	"autosumm-new": "Die Seite wurde neu angelegt: „$1“",
 	"autosumm-newblank": "Leere Seite erstellt",
 	"size-bytes": "$1 {{PLURAL:$1|Byte|Bytes}}",
-	"size-megabytes": "$1 MB",
-	"size-gigabytes": "$1 GB",
 	"size-pixel": "$1 {{PLURAL:$1|Pixel}}",
 	"lag-warn-normal": "Bearbeitungen der letzten {{PLURAL:$1|Sekunde|$1 Sekunden}} werden in dieser Liste noch nicht angezeigt.",
 	"lag-warn-high": "Aufgrund hoher Datenbankauslastung werden die Bearbeitungen der letzten {{PLURAL:$1|Sekunde|$1 Sekunden}} noch nicht in dieser Liste angezeigt.",

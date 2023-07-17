@@ -3308,7 +3308,6 @@
 	"autosumm-new": "založena nová stránka s textem „$1“",
 	"autosumm-newblank": "založena prázdná stránka",
 	"size-bytes": "$1 {{PLURAL:$1|bajt|bajty|bajtů}}",
-	"size-kilobytes": "$1 KB",
 	"size-pixel": "$1 {{PLURAL:$1|pixel|pixely|pixelů}}",
 	"lag-warn-normal": "Změny za {{PLURAL:$1|poslední sekundu|poslední $1 sekundy|posledních $1 sekund}} nemusí být v tomto seznamu zobrazeny.",
 	"lag-warn-high": "Protože je databázový server právě mimořádně vytížen, nemusí být změny za {{PLURAL:$1|poslední sekundu|poslední $1 sekundy|posledních $1 sekund}} v tomto seznamu zobrazeny.",
