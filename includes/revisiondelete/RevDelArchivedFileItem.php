@@ -20,7 +20,6 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Revision\RevisionRecord;
 
 /**
  * Item class for a filearchive table row
@@ -114,8 +113,8 @@ class RevDelArchivedFileItem extends RevDelFileItem {
 			'width' => $file->getWidth(),
 			'height' => $file->getHeight(),
 			'size' => $file->getSize(),
-			'userhidden' => (bool)$file->isDeleted( RevisionRecord::DELETED_USER ),
-			'commenthidden' => (bool)$file->isDeleted( RevisionRecord::DELETED_COMMENT ),
+			'userhidden' => (bool)$file->isDeleted( File::DELETED_USER ),
+			'commenthidden' => (bool)$file->isDeleted( File::DELETED_COMMENT ),
 			'contenthidden' => (bool)$this->isDeleted(),
 		];
 		if ( $this->canViewContent() ) {
