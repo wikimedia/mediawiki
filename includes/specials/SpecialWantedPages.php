@@ -78,7 +78,7 @@ class SpecialWantedPages extends WantedQueryPage {
 				'value' => 'COUNT(*)'
 			],
 			'conds' => [
-				'pg1.page_namespace IS NULL',
+				'pg1.page_namespace' => null,
 				'pl_namespace NOT IN (' . $dbr->makeList( [ NS_USER, NS_USER_TALK ] ) . ')',
 				'pg2.page_namespace != ' . $dbr->addQuotes( NS_MEDIAWIKI ),
 			],

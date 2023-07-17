@@ -579,7 +579,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 
 		$this->assertMatchesRegularExpression(
 			'/actor_user IS NULL OR '
-				. '\(\(user_editcount >= 500\) AND \(\(user_registration IS NULL\) OR '
+				. '\(\(user_editcount >= 500\) AND \(user_registration IS NULL OR '
 				. '\(user_registration <= \'[^\']+\'\)\)\)/',
 			reset( $conds ),
 			"rc conditions: userExpLevel=unregistered;experienced"

@@ -67,7 +67,7 @@ class SpecialWantedTemplates extends WantedQueryPage {
 				'value' => 'COUNT(*)'
 			],
 			'conds' => [
-				'page_title IS NULL',
+				'page_title' => null,
 				$ns => NS_TEMPLATE
 			],
 			'options' => [ 'GROUP BY' => [ $ns, $title ] ],

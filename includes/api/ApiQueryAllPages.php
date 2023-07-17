@@ -200,7 +200,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		if ( $params['filterlanglinks'] == 'withoutlanglinks' ) {
 			$this->addTables( 'langlinks' );
 			$this->addJoinConds( [ 'langlinks' => [ 'LEFT JOIN', 'page_id=ll_from' ] ] );
-			$this->addWhere( 'll_from IS NULL' );
+			$this->addWhere( [ 'll_from' => null ] );
 			$forceNameTitleIndex = false;
 		} elseif ( $params['filterlanglinks'] == 'withlanglinks' ) {
 			$this->addTables( 'langlinks' );

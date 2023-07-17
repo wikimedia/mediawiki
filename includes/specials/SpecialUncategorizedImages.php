@@ -69,7 +69,7 @@ class SpecialUncategorizedImages extends ImageQueryPage {
 				'title' => 'page_title',
 			],
 			'conds' => [
-				'cl_from IS NULL',
+				'cl_from' => null,
 				'page_namespace' => NS_FILE,
 				'page_is_redirect' => 0,
 			],

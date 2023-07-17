@@ -836,7 +836,7 @@ class ChangeTagsStore {
 						'LEFT JOIN',
 						[ $join_cond, self::DISPLAY_TABLE_ALIAS . '.ct_tag_id' => $filterTagIds ]
 					];
-					$conds[] = self::DISPLAY_TABLE_ALIAS . ".ct_tag_id IS NULL";
+					$conds[self::DISPLAY_TABLE_ALIAS . '.ct_tag_id'] = null;
 				}
 			} else {
 				$tables[self::DISPLAY_TABLE_ALIAS] = self::CHANGE_TAG;

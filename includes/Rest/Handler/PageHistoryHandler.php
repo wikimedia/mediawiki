@@ -227,7 +227,7 @@ class PageHistoryHandler extends SimpleHandler {
 					break;
 
 				case 'anonymous':
-					$cond[] = "actor_user IS NULL";
+					$cond['actor_user'] = null;
 					$bitmask = $this->getBitmask();
 					if ( $bitmask ) {
 						$cond[] = $dbr->bitAnd( 'rev_deleted', $bitmask ) . " != $bitmask";

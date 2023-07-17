@@ -366,7 +366,9 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			$this->addWhereFld( 'rev_id', array_keys( $revs ) );
 
 			if ( $params['continue'] !== null ) {
-				$this->addWhere( 'rev_id >= ' . (int)$params['continue'] );
+				$this->addWhere( $db->buildComparison( '>=', [
+					'rev_id' => (int)$params['continue']
+				] ) );
 			}
 			$this->addOption( 'ORDER BY', 'rev_id' );
 		} elseif ( $pageCount > 0 ) {

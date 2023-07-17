@@ -84,7 +84,7 @@ class SpecialUncategorizedPages extends PageQueryPage {
 			// default for page_namespace is all content namespaces (if requestedNamespace is false)
 			// otherwise, page_namespace is requestedNamespace
 			'conds' => [
-				'cl_from IS NULL',
+				'cl_from' => null,
 				'page_namespace' => $this->requestedNamespace !== false
 						? $this->requestedNamespace
 						: $this->namespaceInfo->getContentNamespaces(),

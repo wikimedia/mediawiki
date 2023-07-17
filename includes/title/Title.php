@@ -3031,7 +3031,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			->select( [ 'pl_namespace', 'pl_title' ] )
 			->from( 'pagelinks' )
 			->leftJoin( 'page', null, [ 'pl_namespace=page_namespace', 'pl_title=page_title' ] )
-			->where( [ 'pl_from' => $this->getArticleID(), 'page_namespace IS NULL' ] )
+			->where( [ 'pl_from' => $this->getArticleID(), 'page_namespace' => null ] )
 			->caller( __METHOD__ )->fetchResultSet();
 
 		$retVal = [];

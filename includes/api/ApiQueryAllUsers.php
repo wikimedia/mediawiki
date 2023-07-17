@@ -186,7 +186,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 					'ug1.ug_expiry IS NULL OR ug1.ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
 				], $exclude )
 			] ] );
-			$this->addWhere( 'ug1.ug_user IS NULL' );
+			$this->addWhere( [ 'ug1.ug_user' => null ] );
 		}
 
 		if ( $params['witheditsonly'] ) {

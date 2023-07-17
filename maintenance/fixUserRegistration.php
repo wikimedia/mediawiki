@@ -49,7 +49,7 @@ class FixUserRegistration extends Maintenance {
 				'user_id',
 				[
 					'user_id > ' . $dbw->addQuotes( $lastId ),
-					'user_registration IS NULL'
+					'user_registration' => null,
 				],
 				__METHOD__,
 				[

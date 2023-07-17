@@ -113,7 +113,7 @@ class SpecialWithoutInterwiki extends PageQueryPage {
 				'title' => 'page_title',
 			],
 			'conds' => [
-				'll_title IS NULL',
+				'll_title' => null,
 				'page_namespace' => $this->namespaceInfo->getContentNamespaces(),
 				'page_is_redirect' => 0
 			],

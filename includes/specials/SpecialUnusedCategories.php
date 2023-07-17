@@ -63,10 +63,10 @@ class SpecialUnusedCategories extends QueryPage {
 				'title' => 'page_title',
 			],
 			'conds' => [
-				'cl_from IS NULL',
+				'cl_from' => null,
 				'page_namespace' => NS_CATEGORY,
 				'page_is_redirect' => 0,
-				'pp_page IS NULL'
+				'pp_page' => null,
 			],
 			'join_conds' => [
 				'categorylinks' => [ 'LEFT JOIN', 'cl_to = page_title' ],

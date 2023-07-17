@@ -134,8 +134,8 @@ class RefreshLinks extends Maintenance {
 			# This entire code path is cut-and-pasted from below.  Hurrah.
 
 			$conds = [
-				"page_is_redirect=1",
-				"rd_from IS NULL",
+				'page_is_redirect' => 1,
+				'rd_from' => null,
 				self::intervalCond( $dbr, 'page_id', $start, $end ),
 			] + $this->namespaceCond();
 

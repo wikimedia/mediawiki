@@ -119,9 +119,9 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 					"$idCol >= $blockStart",
 					"$idCol <= $blockEnd",
 					$dbr->makeList( [
-						"{$prefix}_len IS NULL",
+						"{$prefix}_len" => null,
 						$dbr->makeList( [
-							"{$prefix}_len = 0",
+							"{$prefix}_len" => 0,
 							// sha1( "" )
 							"{$prefix}_sha1 != " . $dbr->addQuotes( 'phoiac9h4m842xq45sp7s6u21eteeq1' ),
 						], IDatabase::LIST_AND )

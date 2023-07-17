@@ -91,7 +91,7 @@ class SpecialUnusedTemplates extends QueryPage {
 			],
 			'conds' => [
 				'page_namespace' => NS_TEMPLATE,
-				'tl_from IS NULL',
+				'tl_from' => null,
 				'page_is_redirect' => 0
 			],
 			'join_conds' => array_merge( $joinConds, $queryInfo['joins'] )

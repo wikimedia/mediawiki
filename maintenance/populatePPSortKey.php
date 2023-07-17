@@ -45,7 +45,7 @@ class PopulatePPSortKey extends LoggedUpdateMaintenance {
 
 		$this->output( "Populating page_props.pp_sortkey...\n" );
 		while ( true ) {
-			$conditions = [ 'pp_sortkey IS NULL' ];
+			$conditions = [ 'pp_sortkey' => null ];
 			if ( $lastPageValue !== 0 ) {
 				$conditions[] = $dbw->buildComparison( '>', [
 					'pp_page' => $lastPageValue,

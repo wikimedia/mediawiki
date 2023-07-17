@@ -103,7 +103,7 @@ class NewFilesPager extends RangeChronologicalPager {
 
 			if ( count( $groupsWithBotPermission ) ) {
 				$tables[] = 'user_groups';
-				$conds[] = 'ug_group IS NULL';
+				$conds['ug_group'] = null;
 				$jconds['user_groups'] = [
 					'LEFT JOIN',
 					[
