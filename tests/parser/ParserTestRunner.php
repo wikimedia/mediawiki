@@ -145,8 +145,8 @@ class ParserTestRunner {
 	 */
 	private $keepUploads;
 
-	/** @var Title */
-	private $defaultTitle;
+	/** @var Title|null */
+	private ?Title $defaultTitle;
 
 	/**
 	 * Did some Parsoid test pass where it was expected to fail?
@@ -266,8 +266,11 @@ class ParserTestRunner {
 		$this->runDisabled = (bool)$this->options['run-disabled'];
 		$this->disableSaveParse = (bool)$this->options['disable-save-parse'];
 		$this->uploadDir = $this->options['upload-dir'];
+	}
 
-		$this->defaultTitle = Title::newFromText( 'Parser test' );
+	private function getDefaultTitle(): Title {
+		$this->defaultTitle ??= Title::newFromTextThrow( 'Parser test' );
+		return $this->defaultTitle;
 	}
 
 	/**
@@ -1282,7 +1285,7 @@ class ParserTestRunner {
 		$user = $context->getUser();
 		$title = isset( $opts['title'] )
 			? Title::newFromText( $opts['title'] )
-			: $this->defaultTitle;
+			: $this->getDefaultTitle();
 
 		$revRecord = null;
 		if ( isset( $opts['lastsavedrevision'] ) ) {
