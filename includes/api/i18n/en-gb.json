@@ -42,6 +42,7 @@
 	"api-help-license": "Licence: [[$1|$2]]",
 	"api-help-license-unknown": "Licence: <span class=\"apihelp-unknown\">unknown</span>",
 	"api-help-param-multi-separate": "Separate values with <kbd>|</kbd>.",
+	"apierror-unknownaction": "The action specified, <kbd>$1</kbd>, is not recognised.",
 	"apierror-unknownformat": "Unrecognised format \"$1\".",
 	"apierror-unrecognizedparams": "Unrecognised {{PLURAL:$2|parameter|parameters}}: $1.",
 	"apierror-unrecognizedvalue": "Unrecognised value for parameter <var>$1</var>: $2.",

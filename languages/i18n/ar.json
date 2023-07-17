@@ -3559,7 +3559,7 @@
 	"tag-mw-new-redirect-description": "التعديلات التي تنشيء تحويلة جديدة أو تغير صفحة لتحويلة",
 	"tag-mw-removed-redirect": "أزال التحويلة",
 	"tag-mw-removed-redirect-description": "التعديلات التي تغير تحويلة موجودة إلى غير تحويلة",
-	"tag-mw-changed-redirect-target": "هدف التحويلة تم تغييره",
+	"tag-mw-changed-redirect-target": "غُيَّر هدف التحويلة",
 	"tag-mw-changed-redirect-target-description": "التعديلات التي تغير هدف تحويلة",
 	"tag-mw-blank": "إفراغ",
 	"tag-mw-blank-description": "التعديلات التي تفرغ صفحة",

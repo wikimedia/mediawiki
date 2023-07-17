@@ -2492,7 +2492,7 @@
 	"unprotectedarticle-comment": "{{GENDER:$2|Usunięto}} zabezpieczenie z „[[$1]]”",
 	"protect-title": "Zmiana stopnia zabezpieczenia „$1”",
 	"protect-title-notallowed": "Podgląd stopnia zabezpieczenia „$1”",
-	"prot_1movedto2": "stronę [[$1]] przeniósł do [[$2]]",
+	"prot_1movedto2": "strona [[$1]] przniesiona na [[$2]]",
 	"protect-badnamespace-title": "Przestrzeń nazw, w której nie można zabezpieczać stron",
 	"protect-badnamespace-text": "Stron w tej przestrzeni nazw nie można zabezpieczać.",
 	"protect-norestrictiontypes-text": "Ta strona nie może być chroniona, gdyż nie ma dla niej żadnych dostępnych typów ograniczeń.",
