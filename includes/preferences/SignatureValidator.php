@@ -24,6 +24,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\ParserOutputFlags;
+use MediaWiki\Rest\HttpException;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserIdentity;
@@ -31,9 +32,7 @@ use MessageLocalizer;
 use MultiHttpClient;
 use ParserFactory;
 use ParserOptions;
-use ParsoidVirtualRESTService;
 use SpecialPage;
-use VirtualRESTServiceClient;
 
 /**
  * @since 1.35
@@ -238,6 +237,21 @@ class SignatureValidator {
 	}
 
 	/**
+	 * @param array $params Gotten from $wgVirtualRestConfig params
+	 *   url: Parsoid URL
+	 *   domain: wiki domain
+	 *
+	 * @return string URL to the Parsoid lint API
+	 * @throws HttpException
+	 */
+	private function getWikitext2LintUrl( array $params ): string {
+		if ( !isset( $params['url'] ) || !isset( $params['domain'] ) ) {
+			throw new HttpException( "Missing required 'url' or 'domain' parameter" );
+		}
+		return $params['url'] . $params['domain'] . '/v3/transform/wikitext/to/lint';
+	}
+
+	/**
 	 * @param string $signature Signature after PST
 	 * @return array Array of error objects returned by Parsoid's lint API (empty array for no errors)
 	 */
@@ -255,14 +269,12 @@ class SignatureValidator {
 			if ( isset( $vrsConfig['global'] ) ) {
 				$params = array_merge( $vrsConfig['global'], $params );
 			}
-			$parsoidVrs = new ParsoidVirtualRESTService( $params );
 
-			$vrsClient = new VirtualRESTServiceClient( new MultiHttpClient( [] ) );
-			$vrsClient->mount( '/parsoid/', $parsoidVrs );
+			$client = new MultiHttpClient( [] );
 
 			$request = [
 				'method' => 'POST',
-				'url' => '/parsoid/local/v3/transform/wikitext/to/lint',
+				'url' => $this->getWikitext2LintUrl( $params ),
 				'body' => [
 					'wikitext' => $signature,
 				],
@@ -273,7 +285,7 @@ class SignatureValidator {
 				],
 			];
 
-			$response = $vrsClient->run( $request );
+			$response = $client->run( $request );
 			if ( $response['code'] === 200 ) {
 				$json = json_decode( $response['body'], true );
 				// $json is an array of error objects
