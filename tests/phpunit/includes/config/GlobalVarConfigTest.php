@@ -37,7 +37,6 @@ class GlobalVarConfigTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers GlobalVarConfig::has
-	 * @covers GlobalVarConfig::hasWithPrefix
 	 */
 	public function testHas() {
 		$this->setMwGlobals( 'wgGlobalVarConfigTestHas', 'testvalue' );
@@ -70,7 +69,6 @@ class GlobalVarConfigTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideGet
 	 * @covers GlobalVarConfig::get
-	 * @covers GlobalVarConfig::getWithPrefix
 	 * @param string $name
 	 * @param string $prefix
 	 * @param string $expected
