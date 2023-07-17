@@ -435,9 +435,9 @@ CREATE INDEX pt_timestamp ON protected_titles (pt_timestamp);
 CREATE TABLE externallinks (
   el_id SERIAL NOT NULL,
   el_from INT DEFAULT 0 NOT NULL,
-  el_to TEXT NOT NULL,
-  el_index TEXT NOT NULL,
-  el_index_60 TEXT NOT NULL,
+  el_to TEXT DEFAULT '',
+  el_index TEXT DEFAULT '',
+  el_index_60 TEXT DEFAULT '' NOT NULL,
   el_to_domain_index TEXT DEFAULT '' NOT NULL,
   el_to_path TEXT DEFAULT NULL,
   PRIMARY KEY(el_id)
