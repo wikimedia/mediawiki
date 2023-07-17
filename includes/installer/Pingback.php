@@ -45,11 +45,35 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @since 1.28
  */
 class Pingback {
+
 	/**
-	 * @var int Revision ID of the JSON schema that describes the pingback payload.
-	 * The schema lives on Meta-Wiki, at <https://meta.wikimedia.org/wiki/Schema:MediaWikiPingback>.
+	 * @var string The name of the Legacy EventLogging schema that Pingback used to use.
 	 */
-	private const SCHEMA_REV = 20104427;
+	private const LEGACY_EVENTLOGGING_SCHEMA = 'MediaWikiPingback';
+
+	/**
+	 * @var string The versioned schema with which the Pingback events will be validated.
+	 *
+	 * All versions of the schema live at
+	 * {@link https://schema.wikimedia.org/#!//secondary/jsonschema/analytics/legacy/mediawikipingback}.
+	 */
+	private const EVENT_PLATFORM_SCHEMA_ID = '/analytics/legacy/mediawikipingback/1.0.0';
+
+	/**
+	 * @var string The name of the Event Platform stream to submit the event to.
+	 *
+	 * By convention, we derive the name of an Event Platform stream corresponding to a Legacy
+	 * EventLogging schema by prepending "eventlogging_" to it, i.e.
+	 * "FooSchema" -> "eventlogging_FooSchema". This convention is codified in
+	 * {@link https://gerrit.wikimedia.org/g/mediawiki/extensions/EventLogging/+/d47dbc10455bcb6dbc98a49fa169f75d6131c3da/includes/EventLogging.php#298}.
+	 *
+	 * @see Pingback::LEGACY_EVENTLOGGING_SCHEMA
+	 */
+	private const EVENT_PLATFORM_STREAM = 'eventlogging_MediaWikiPingback';
+
+	/** @var string */
+	private const EVENT_PLATFORM_EVENT_INTAKE_SERVICE_URI =
+		'https://intake-analytics.wikimedia.org/v1/events?hasty=true';
 
 	/** @var LoggerInterface */
 	protected $logger;
@@ -63,6 +87,8 @@ class Pingback {
 	protected $http;
 	/** @var string updatelog key (also used as cache/db lock key) */
 	protected $key;
+	/** @var string */
+	protected $eventIntakeUri;
 
 	/**
 	 * @param Config $config
@@ -76,7 +102,8 @@ class Pingback {
 		IConnectionProvider $dbProvider,
 		BagOStuff $cache,
 		HttpRequestFactory $http,
-		LoggerInterface $logger
+		LoggerInterface $logger,
+		string $eventIntakeUrl = self::EVENT_PLATFORM_EVENT_INTAKE_SERVICE_URI
 	) {
 		$this->config = $config;
 		$this->dbProvider = $dbProvider;
@@ -84,6 +111,7 @@ class Pingback {
 		$this->http = $http;
 		$this->logger = $logger;
 		$this->key = 'Pingback-' . MW_VERSION;
+		$this->eventIntakeUri = $eventIntakeUrl;
 	}
 
 	/**
@@ -172,17 +200,34 @@ class Pingback {
 	}
 
 	/**
-	 * Get the EventLogging packet to be sent to the server
+	 * Get the event to be sent to the server.
+	 *
+	 * Note well that, as well as the pingback data, only those fields required by the Event Platform are set (see
+	 * <https://wikitech.wikimedia.org/wiki/Event_Platform/Schemas/Guidelines#Required_fields>).
 	 *
 	 * @throws DBError If identifier insert fails
 	 * @return array
 	 */
 	protected function getData(): array {
+		$wiki = $this->fetchOrInsertId();
+
 		return [
-			'schema' => 'MediaWikiPingback',
-			'revision' => self::SCHEMA_REV,
-			'wiki' => $this->fetchOrInsertId(),
 			'event' => self::getSystemInfo( $this->config ),
+			'schema' => self::LEGACY_EVENTLOGGING_SCHEMA,
+			'wiki' => $wiki,
+
+			// This would be added by
+			// https://gerrit.wikimedia.org/g/mediawiki/extensions/EventLogging/+/d47dbc10455bcb6dbc98a49fa169f75d6131c3da/includes/EventLogging.php#274
+			// onwards.
+			'$schema' => self::EVENT_PLATFORM_SCHEMA_ID,
+			'client_dt' => ConvertibleTimestamp::now( TS_ISO_8601 ),
+
+			// This would be added by
+			// https://gerrit.wikimedia.org/r/plugins/gitiles/mediawiki/extensions/EventLogging/+/d47dbc10455bcb6dbc98a49fa169f75d6131c3da/includes/EventSubmitter/EventBusEventSubmitter.php#81
+			// onwards.
+			'meta' => [
+				'stream' => self::EVENT_PLATFORM_STREAM,
+			],
 		];
 	}
 
@@ -260,26 +305,28 @@ class Pingback {
 	}
 
 	/**
-	 * Serialize pingback data and send it to mediawiki.org via a POST request
-	 * to its EventLogging beacon endpoint.
-	 *
-	 * The data encoding conforms to the expectations of EventLogging as used by
-	 * Wikimedia Foundation for logging and processing analytic data.
+	 * Serialize the pingback data and submit it to the Event Platform (see
+	 * <https://wikitech.wikimedia.org/wiki/Event_Platform>).
 	 *
 	 * Compare:
-	 * <https://gerrit.wikimedia.org/g/mediawiki/extensions/EventLogging/+/7e5fe4f1ef/includes/EventLogging.php#L32>
+	 * <https://gerrit.wikimedia.org/r/plugins/gitiles/mediawiki/extensions/EventLogging/+/933b62f29d68f/includes/EventSubmitter/EventBusEventSubmitter.php#33>
 	 *
-	 * The schema for the data is located at:
-	 * <https://meta.wikimedia.org/wiki/Schema:MediaWikiPingback>
+	 * The schema for the event is located at:
+	 * <https://schema.wikimedia.org/repositories/secondary/jsonschema/analytics/legacy/mediawikipingback/1.0.0>
 	 *
 	 * @param array $data Pingback data as an associative array
 	 * @return bool
 	 */
 	private function postPingback( array $data ): bool {
-		$json = FormatJson::encode( $data );
-		$queryString = rawurlencode( str_replace( ' ', '\u0020', $json ) ) . ';';
-		$url = 'https://www.mediawiki.org/beacon/event?' . $queryString;
-		return $this->http->post( $url, [], __METHOD__ ) !== null;
+		$request = $this->http->create( $this->eventIntakeUri, [
+			'method' => 'POST',
+			'postData' => FormatJson::encode( $data ),
+		] );
+		$request->setHeader( 'Content-Type', 'application/json' );
+
+		$result = $request->execute();
+
+		return $result->isGood();
 	}
 }
 

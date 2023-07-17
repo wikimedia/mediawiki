@@ -4,6 +4,7 @@ use MediaWiki\Config\HashConfig;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Installer\Pingback;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Status\Status;
 use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
@@ -121,14 +122,27 @@ class PingbackTest extends MediaWikiUnitTestCase {
 			IDatabase::class,
 			[ 'selectField', 'lock', 'upsert', 'newSelectQueryBuilder', 'newInsertQueryBuilder' ]
 		);
-		$httpRequestFactory = $this->createNoOpMock( HttpRequestFactory::class, [ 'post' ] );
+		$httpRequestFactory = $this->createNoOpMock( HttpRequestFactory::class, [ 'create' ] );
+		$httpRequest = $this->createNoOpMock( MWHttpRequest::class, [ 'setHeader', 'execute' ] );
 
 		$database->expects( $this->once() )->method( 'selectField' )->willReturn( $priorPing );
 		$database->expects( $this->once() )->method( 'lock' )->willReturn( true );
+
 		$httpRequestFactory->expects( $this->once() )
-			->method( 'post' )
-			->with( 'https://www.mediawiki.org/beacon/event?%7B%22some%22%3A%22stuff%22%7D;' )
-			->willReturn( true );
+			->method( 'create' )
+			->with(
+				'https://intake-analytics.wikimedia.org/v1/events?hasty=true',
+				[
+					'method' => 'POST',
+					'postData' => '{"some":"stuff"}',
+				]
+			)
+			->willReturn( $httpRequest );
+
+		$httpRequest->expects( $this->once() )
+			->method( 'execute' )
+			->willReturn( Status::newGood() );
+
 		$database->expects( $this->once() )->method( 'upsert' );
 		$database->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn () => new SelectQueryBuilder( $database ) );
 		$database->method( 'newInsertQueryBuilder' )->willReturnCallback( static fn () => new InsertQueryBuilder( $database ) );
