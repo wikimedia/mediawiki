@@ -838,7 +838,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 		$classAttribute,
 		$expectedClassAttribute
 	) {
-		$this->setMwGlobals( 'wgUseMediaWikiUIEverywhere', $useMediaWikiUIEverywhere );
+		$this->overrideConfigValue( MainConfigNames::UseMediaWikiUIEverywhere, $useMediaWikiUIEverywhere );
 		$attrs = Html::getTextInputAttributes( [ 'class' => $classAttribute ] );
 		$this->assertSame( $expectedClassAttribute, $attrs['class'] );
 	}

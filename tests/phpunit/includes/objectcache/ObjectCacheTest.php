@@ -125,8 +125,8 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 		$this->setCacheConfig( [
 			'db-replicated' => MainConfigSchema::ObjectCaches['default']['db-replicated']
 		] );
-		$this->setMwGlobals( [
-			'wgMainCacheType' => $mainCacheType
+		$this->overrideConfigValues( [
+			MainConfigNames::MainCacheType => $mainCacheType
 		] );
 		$this->assertSame( $expected, ObjectCache::isDatabaseId( $id ) );
 	}

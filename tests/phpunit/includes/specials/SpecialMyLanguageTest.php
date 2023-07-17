@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Specials\SpecialMyLanguage;
 use MediaWiki\Title\Title;
 
@@ -60,7 +61,7 @@ class SpecialMyLanguageTest extends MediaWikiIntegrationTestCase {
 			$services->getRedirectLookup()
 		);
 		$special->getContext()->setLanguage( $userLang );
-		$this->setMwGlobals( 'wgPageLanguageUseDB', true );
+		$this->overrideConfigValue( MainConfigNames::PageLanguageUseDB, true );
 		// Test with subpages both enabled and disabled
 		$this->mergeMwGlobalArrayValue( 'wgNamespacesWithSubpages', [ NS_MAIN => true ] );
 		$this->assertTitle( $expected, $special->findTitle( $subpage ) );

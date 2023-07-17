@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\Handler\MediaLinksHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
@@ -43,7 +44,7 @@ class MediaLinksHandlerTest extends \MediaWikiIntegrationTestCase {
 
 		$user = RequestContext::getMain()->getUser();
 		$userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();
-		$this->setMwGlobals( 'wgImageLimits', [
+		$this->overrideConfigValue( MainConfigNames::ImageLimits, [
 			$userOptionsManager->getIntOption( $user, 'imagesize' ) => [ 100, 100 ],
 		] );
 
