@@ -586,12 +586,11 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		}
 		$dbr = wfGetDB( DB_REPLICA );
 
-		$res = $dbr->select(
-			'page',
-			self::getSelectFields(),
-			[ 'page_id' => $ids ],
-			__METHOD__
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( self::getSelectFields() )
+			->from( 'page' )
+			->where( [ 'page_id' => $ids ] )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		$titles = [];
 		foreach ( $res as $row ) {
@@ -2625,15 +2624,17 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		} else {
 			$dbr = wfGetDB( DB_REPLICA );
 
-			$n = $dbr->selectField( 'archive', 'COUNT(*)',
-				[ 'ar_namespace' => $this->mNamespace, 'ar_title' => $this->mDbkeyform ],
-				__METHOD__
-			);
+			$n = $dbr->newSelectQueryBuilder()
+				->select( 'COUNT(*)' )
+				->from( 'archive' )
+				->where( [ 'ar_namespace' => $this->mNamespace, 'ar_title' => $this->mDbkeyform ] )
+				->caller( __METHOD__ )->fetchField();
 			if ( $this->mNamespace === NS_FILE ) {
-				$n += $dbr->selectField( 'filearchive', 'COUNT(*)',
-					[ 'fa_name' => $this->mDbkeyform ],
-					__METHOD__
-				);
+				$n += $dbr->newSelectQueryBuilder()
+					->select( 'COUNT(*)' )
+					->from( 'filearchive' )
+					->where( [ 'fa_name' => $this->mDbkeyform ] )
+					->caller( __METHOD__ )->fetchField();
 			}
 		}
 		return (int)$n;
@@ -2660,15 +2661,17 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			return false;
 		}
 		$dbr = wfGetDB( DB_REPLICA );
-		$deleted = (bool)$dbr->selectField( 'archive', '1',
-			[ 'ar_namespace' => $this->mNamespace, 'ar_title' => $this->mDbkeyform ],
-			__METHOD__
-		);
+		$deleted = (bool)$dbr->newSelectQueryBuilder()
+			->select( '1' )
+			->from( 'archive' )
+			->where( [ 'ar_namespace' => $this->mNamespace, 'ar_title' => $this->mDbkeyform ] )
+			->caller( __METHOD__ )->fetchField();
 		if ( !$deleted && $this->mNamespace === NS_FILE ) {
-			$deleted = (bool)$dbr->selectField( 'filearchive', '1',
-				[ 'fa_name' => $this->mDbkeyform ],
-				__METHOD__
-			);
+			$deleted = (bool)$dbr->newSelectQueryBuilder()
+				->select( '1' )
+				->from( 'filearchive' )
+				->where( [ 'fa_name' => $this->mDbkeyform ] )
+				->caller( __METHOD__ )->fetchField();
 		}
 		return $deleted;
 	}
@@ -3024,21 +3027,12 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		}
 
 		$dbr = wfGetDB( DB_REPLICA );
-		$res = $dbr->select(
-			[ 'page', 'pagelinks' ],
-			[ 'pl_namespace', 'pl_title' ],
-			[
-				'pl_from' => $this->getArticleID(),
-				'page_namespace IS NULL'
-			],
-			__METHOD__, [],
-			[
-				'page' => [
-					'LEFT JOIN',
-					[ 'pl_namespace=page_namespace', 'pl_title=page_title' ]
-				]
-			]
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'pl_namespace', 'pl_title' ] )
+			->from( 'pagelinks' )
+			->leftJoin( 'page', null, [ 'pl_namespace=page_namespace', 'pl_title=page_title' ] )
+			->where( [ 'pl_from' => $this->getArticleID(), 'page_namespace IS NULL' ] )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		$retVal = [];
 		foreach ( $res as $row ) {
@@ -3079,24 +3073,21 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		$dbw->startAtomic( __METHOD__ );
 		$pageStore = MediaWikiServices::getInstance()->getPageStore();
 
-		$row = $dbw->selectRow(
-			'page',
-			$pageStore->getSelectFields(),
-			$this->pageCond(),
-			__METHOD__,
-			[ 'FOR UPDATE' ]
-		);
+		$row = $dbw->newSelectQueryBuilder()
+			->select( $pageStore->getSelectFields() )
+			->from( 'page' )
+			->where( $this->pageCond() )
+			->caller( __METHOD__ )->fetchRow();
 		// Update the cached fields
 		$this->loadFromRow( $row );
 
 		if ( $this->mRedirect && $this->mLatestID ) {
-			$isSingleRevRedirect = !$dbw->selectField(
-				'revision',
-				'1',
-				[ 'rev_page' => $this->mArticleID, 'rev_id != ' . (int)$this->mLatestID ],
-				__METHOD__,
-				[ 'FOR UPDATE' ]
-			);
+			$isSingleRevRedirect = !$dbw->newSelectQueryBuilder()
+				->select( '1' )
+				->forUpdate()
+				->from( 'revision' )
+				->where( [ 'rev_page' => $this->mArticleID, 'rev_id != ' . (int)$this->mLatestID ] )
+				->caller( __METHOD__ )->fetchField();
 		} else {
 			$isSingleRevRedirect = false;
 		}
@@ -3124,12 +3115,11 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 
 		$dbr = wfGetDB( DB_REPLICA );
 
-		$res = $dbr->select(
-			'categorylinks',
-			'cl_to',
-			[ 'cl_from' => $titleKey ],
-			__METHOD__
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( 'cl_to' )
+			->from( 'categorylinks' )
+			->where( [ 'cl_from' => $titleKey ] )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		if ( $res->numRows() > 0 ) {
 			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
@@ -3213,13 +3203,12 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		if ( $this->mIsBigDeletion === null ) {
 			$dbr = wfGetDB( DB_REPLICA );
 
-			$revCount = $dbr->selectRowCount(
-				'revision',
-				'1',
-				[ 'rev_page' => $this->getArticleID() ],
-				__METHOD__,
-				[ 'LIMIT' => $wgDeleteRevisionsLimit + 1 ]
-			);
+			$revCount = $dbr->newSelectQueryBuilder()
+				->select( '1' )
+				->from( 'revision' )
+				->where( [ 'rev_page' => $this->getArticleID() ] )
+				->limit( $wgDeleteRevisionsLimit + 1 )
+				->caller( __METHOD__ )->fetchRowCount();
 
 			$this->mIsBigDeletion = $revCount > $wgDeleteRevisionsLimit;
 		}
