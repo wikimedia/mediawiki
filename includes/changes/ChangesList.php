@@ -915,8 +915,7 @@ class ChangesList extends ContextSource {
 		 * significant amount of time.
 		 */
 		[ $tagSummary, $newClasses ] = $this->tagsCache->getWithSetCallback(
-			sprintf(
-				'%s:%s:%s',
+			$this->tagsCache->makeKey(
 				$rc->mAttribs['ts_tags'],
 				$this->getUser()->getName(),
 				$this->getLanguage()->getCode()

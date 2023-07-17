@@ -242,6 +242,20 @@ class MapCacheLRUTest extends PHPUnit\Framework\TestCase {
 		$cache->has( $key );
 	}
 
+	public static function provideMakeKey() {
+		yield [ 'foo', 'foo' ];
+		yield [ 'foo:bar:4:baz:qu%3Aux%2520', 'foo', 'bar', 4, 'baz', 'qu:ux%20' ];
+		yield [ 'qu%3Aux%2520:4', 'qu:ux%20', 4 ];
+	}
+
+	/**
+	 * @dataProvider provideMakeKey
+	 */
+	public function testMakeKey( $expected, ...$params ) {
+		$cache = new MapCacheLRU( 3 );
+		$this->assertSame( $expected, $cache->makeKey( ...$params ) );
+	}
+
 	/**
 	 * @dataProvider provideInvalidKeys
 	 */

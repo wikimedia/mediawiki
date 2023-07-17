@@ -42,12 +42,12 @@ class RCCacheEntryFactory {
 	/**
 	 * @var MapCacheLRU
 	 */
-	private MapCacheLRU $userLinks;
+	private MapCacheLRU $userLinkCache;
 
 	/**
 	 * @var MapCacheLRU
 	 */
-	private MapCacheLRU $userTalkLinks;
+	private MapCacheLRU $toolLinkCache;
 
 	/**
 	 * @param IContextSource $context
@@ -60,8 +60,8 @@ class RCCacheEntryFactory {
 		$this->context = $context;
 		$this->messages = $messages;
 		$this->linkRenderer = $linkRenderer;
-		$this->userLinks = new MapCacheLRU( 50 );
-		$this->userTalkLinks = new MapCacheLRU( 50 );
+		$this->userLinkCache = new MapCacheLRU( 50 );
+		$this->toolLinkCache = new MapCacheLRU( 50 );
 	}
 
 	/**
@@ -103,9 +103,8 @@ class RCCacheEntryFactory {
 			 * users will appear multiple times on same run of RecentChanges, and therefore it is
 			 * unnecessary to process it for each RC record separately.
 			 */
-			$cacheEntry->usertalklink = $this->userTalkLinks->getWithSetCallback(
-				sprintf(
-					'%s:%s:%s',
+			$cacheEntry->usertalklink = $this->toolLinkCache->getWithSetCallback(
+				$this->toolLinkCache->makeKey(
 					$cacheEntry->mAttribs['rc_user_text'],
 					$this->context->getUser()->getName(),
 					$this->context->getLanguage()->getCode()
@@ -323,9 +322,8 @@ class RCCacheEntryFactory {
 			 * up to significant amount of processing time.
 			 * @see RCCacheEntryFactory::newFromRecentChange
 			 */
-			$userLink = $this->userLinks->getWithSetCallback(
-				sprintf(
-					'%s:%s:%s',
+			$userLink = $this->userLinkCache->getWithSetCallback(
+				$this->userLinkCache->makeKey(
 					$cacheEntry->mAttribs['rc_user_text'],
 					$this->context->getUser()->getName(),
 					$this->context->getLanguage()->getCode()
