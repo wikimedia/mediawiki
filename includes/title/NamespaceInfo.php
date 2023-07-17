@@ -56,6 +56,10 @@ class NamespaceInfo {
 	/** @var HookRunner */
 	private $hookRunner;
 
+	private array $extensionNamespaces;
+
+	private array $extensionImmovableNamespaces;
+
 	/**
 	 * Definitions of the NS_ constants are in Defines.php
 	 *
@@ -100,11 +104,20 @@ class NamespaceInfo {
 	/**
 	 * @param ServiceOptions $options
 	 * @param HookContainer $hookContainer
+	 * @param array $extensionNamespaces
+	 * @param array $extensionImmovableNamespaces
 	 */
-	public function __construct( ServiceOptions $options, HookContainer $hookContainer ) {
+	public function __construct(
+		ServiceOptions $options,
+		HookContainer $hookContainer,
+		array $extensionNamespaces,
+		array $extensionImmovableNamespaces
+	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->extensionNamespaces = $extensionNamespaces;
+		$this->extensionImmovableNamespaces = $extensionImmovableNamespaces;
 	}
 
 	/**
@@ -158,10 +171,7 @@ class NamespaceInfo {
 	 * @return bool
 	 */
 	public function isMovable( $index ) {
-		$extensionRegistry = ExtensionRegistry::getInstance();
-		$extNamespaces = $extensionRegistry->getAttribute( 'ImmovableNamespaces' );
-
-		$result = $index >= NS_MAIN && !in_array( $index, $extNamespaces );
+		$result = $index >= NS_MAIN && !in_array( $index, $this->extensionImmovableNamespaces );
 
 		/**
 		 * @since 1.20
@@ -375,8 +385,7 @@ class NamespaceInfo {
 		if ( $this->canonicalNamespaces === null ) {
 			$this->canonicalNamespaces =
 				[ NS_MAIN => '' ] + $this->options->get( MainConfigNames::CanonicalNamespaceNames );
-			$this->canonicalNamespaces +=
-				ExtensionRegistry::getInstance()->getAttribute( 'ExtensionNamespaces' );
+			$this->canonicalNamespaces += $this->extensionNamespaces;
 			if ( is_array( $this->options->get( MainConfigNames::ExtraNamespaces ) ) ) {
 				$this->canonicalNamespaces += $this->options->get( MainConfigNames::ExtraNamespaces );
 			}

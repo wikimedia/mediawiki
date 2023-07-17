@@ -1960,7 +1960,9 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		];
 		$nsInfo = new NamespaceInfo(
 			new ServiceOptions( NamespaceInfo::CONSTRUCTOR_OPTIONS, $config, $services->getMainConfig() ),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			ExtensionRegistry::getInstance()->getAttribute( 'ExtensionNamespaces' ),
+			ExtensionRegistry::getInstance()->getAttribute( 'ImmovableNamespaces' )
 		);
 		/** @var Language $lang */
 		$lang = new $langClass(

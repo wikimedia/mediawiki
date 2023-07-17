@@ -9,31 +9,16 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Title\Title;
-use Wikimedia\ScopedCallback;
 
 class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 	use TestAllServiceOptionsUsed;
+
+	private const TEST_EXT_NAMESPACES = [ NS_MAIN => 'No effect', NS_TALK => 'No effect', 12345 => 'Extended' ];
 
 	/**********************************************************************************************
 	 * Shared code
 	 * %{
 	 */
-
-	/** @var ScopedCallback */
-	private $scopedCallback;
-
-	protected function setUp(): void {
-		parent::setUp();
-
-		$this->scopedCallback =
-			ExtensionRegistry::getInstance()->setAttributeForTest( 'ExtensionNamespaces', [] );
-	}
-
-	protected function tearDown(): void {
-		$this->scopedCallback = null;
-
-		parent::tearDown();
-	}
 
 	private const DEFAULT_OPTIONS = [
 		'CanonicalNamespaceNames' => [
@@ -64,14 +49,16 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 		return $this->getServiceContainer()->getHookContainer();
 	}
 
-	private function newObj( array $options = [] ): NamespaceInfo {
+	private function newObj( array $options = [], array $extensionNamespaces = [] ): NamespaceInfo {
 		return new NamespaceInfo(
 			new LoggedServiceOptions(
 				self::$serviceOptionsAccessLog,
 				NamespaceInfo::CONSTRUCTOR_OPTIONS,
 				$options, self::DEFAULT_OPTIONS
 			),
-			$this->getHookContainer()
+			$this->getHookContainer(),
+			$extensionNamespaces,
+			[]
 		);
 	}
 
@@ -93,7 +80,7 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 			$this->expectException( \Wikimedia\Assert\PreconditionException::class );
 			$this->expectExceptionMessage( $expectedExceptionText );
 		}
-		new NamespaceInfo( $options, $this->getHookContainer() );
+		new NamespaceInfo( $options, $this->getHookContainer(), [], [] );
 		$this->assertTrue( true );
 	}
 
@@ -945,23 +932,14 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 
 	// Test extension namespaces
 	// %{
-	private function setupExtensionNamespaces() {
-		$this->scopedCallback = null;
-		$this->scopedCallback = ExtensionRegistry::getInstance()->setAttributeForTest(
-			'ExtensionNamespaces',
-			[ NS_MAIN => 'No effect', NS_TALK => 'No effect', 12345 => 'Extended' ]
-		);
-	}
 
 	/**
 	 * @covers NamespaceInfo::getCanonicalNamespaces
 	 */
 	public function testGetCanonicalNamespaces_ExtensionNamespaces() {
-		$this->setupExtensionNamespaces();
-
 		$this->assertSame(
 			$this->getDefaultNamespaces() + [ 12345 => 'Extended' ],
-			$this->newObj()->getCanonicalNamespaces()
+			$this->newObj( [], self::TEST_EXT_NAMESPACES )->getCanonicalNamespaces()
 		);
 	}
 
@@ -969,8 +947,7 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 	 * @covers NamespaceInfo::getCanonicalName
 	 */
 	public function testGetCanonicalName_ExtensionNamespaces() {
-		$this->setupExtensionNamespaces();
-		$obj = $this->newObj();
+		$obj = $this->newObj( [], self::TEST_EXT_NAMESPACES );
 
 		$this->assertSame( '', $obj->getCanonicalName( NS_MAIN ) );
 		$this->assertSame( 'Talk', $obj->getCanonicalName( NS_TALK ) );
@@ -981,8 +958,7 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 	 * @covers NamespaceInfo::getCanonicalIndex
 	 */
 	public function testGetCanonicalIndex_ExtensionNamespaces() {
-		$this->setupExtensionNamespaces();
-		$obj = $this->newObj();
+		$obj = $this->newObj( [], self::TEST_EXT_NAMESPACES );
 
 		$this->assertSame( NS_MAIN, $obj->getCanonicalIndex( '' ) );
 		$this->assertSame( NS_TALK, $obj->getCanonicalIndex( 'talk' ) );
@@ -993,11 +969,9 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 	 * @covers NamespaceInfo::getValidNamespaces
 	 */
 	public function testGetValidNamespaces_ExtensionNamespaces() {
-		$this->setupExtensionNamespaces();
-
 		$this->assertSame(
 			[ NS_MAIN, NS_TALK, NS_USER, NS_USER_TALK, 12345 ],
-			$this->newObj()->getValidNamespaces()
+			$this->newObj( [], self::TEST_EXT_NAMESPACES )->getValidNamespaces()
 		);
 	}
 
@@ -1138,7 +1112,6 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 		$obj->getCanonicalNamespaces();
 
 		// Now try to alter them through nefarious means
-		$this->setupExtensionNamespaces();
 		$this->setupHookNamespaces();
 
 		// Should have no effect
@@ -1155,7 +1128,6 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 		$obj->getCanonicalName( NS_MAIN );
 
 		// Now try to alter them through nefarious means
-		$this->setupExtensionNamespaces();
 		$this->setupHookNamespaces();
 
 		// Should have no effect
@@ -1175,7 +1147,6 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 		$obj->getCanonicalIndex( '' );
 
 		// Now try to alter them through nefarious means
-		$this->setupExtensionNamespaces();
 		$this->setupHookNamespaces();
 
 		// Should have no effect
@@ -1195,7 +1166,6 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 		$obj->getValidNamespaces();
 
 		// Now try to alter through nefarious means
-		$this->setupExtensionNamespaces();
 		$this->setupHookNamespaces();
 
 		// Should have no effect
