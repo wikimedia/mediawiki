@@ -9,13 +9,12 @@ use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\SimpleCallbacks;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
-use Wikimedia\ParamValidator\TypeDef\TypeDefTestCase;
 use Wikimedia\ParamValidator\ValidationException;
 
 /**
- * @covers MediaWiki\ParamValidator\TypeDef\NamespaceDef
+ * @covers \MediaWiki\ParamValidator\TypeDef\NamespaceDef
  */
-class NamespaceDefTest extends TypeDefTestCase {
+class NamespaceDefTest extends TypeDefUnitTestCase {
 	use DummyServicesTrait;
 
 	private function getNamespaceInfo() {

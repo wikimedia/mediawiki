@@ -185,6 +185,9 @@ $wgAutoloadClasses += [
 	# tests/phpunit/includes/ParamValidator
 	'MediaWiki\ParamValidator\TypeDef\TypeDefIntegrationTestCase' => "$testDir/phpunit/includes/ParamValidator/TypeDef/TypeDefIntegrationTestCase.php",
 
+	# tests/phpunit/unit/includes/ParamValidator
+	'MediaWiki\ParamValidator\TypeDef\TypeDefUnitTestCase' => "$testDir/phpunit/unit/includes/ParamValidator/TypeDef/TypeDefUnitTestCase.php",
+
 	# tests/phpunit/maintenance
 	'MediaWiki\Tests\Maintenance\DumpAsserter' => "$testDir/phpunit/maintenance/DumpAsserter.php",
 	'MediaWiki\Tests\Maintenance\DumpTestCase' => "$testDir/phpunit/maintenance/DumpTestCase.php",
