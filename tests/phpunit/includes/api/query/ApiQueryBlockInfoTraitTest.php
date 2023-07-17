@@ -6,6 +6,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @covers ApiQueryBlockInfoTrait
+ * @group Database
  */
 class ApiQueryBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 

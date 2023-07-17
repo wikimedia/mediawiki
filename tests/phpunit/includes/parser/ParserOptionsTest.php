@@ -28,7 +28,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 	}
 
 	public function testNewCanonical() {
-		$user = $this->getMutableTestUser()->getUser();
+		$user = $this->createMock( User::class );
 		$userLang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'fr' );
 		$contLang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'qqx' );
 

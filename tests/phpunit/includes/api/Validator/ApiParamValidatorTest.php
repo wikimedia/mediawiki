@@ -8,6 +8,7 @@ use ApiMessage;
 use ApiTestCase;
 use ApiUsageException;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use Message;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\Message\MessageValue;
@@ -22,9 +23,10 @@ use Wikimedia\TestingAccessWrapper;
  * @group medium
  */
 class ApiParamValidatorTest extends ApiTestCase {
+	use MockAuthorityTrait;
 
 	private function getValidator( FauxRequest $request ): array {
-		$context = $this->apiContext->newTestContext( $request, $this->getTestUser()->getAuthority() );
+		$context = $this->apiContext->newTestContext( $request, $this->mockRegisteredUltimateAuthority() );
 		$main = new ApiMain( $context );
 		return [
 			new ApiParamValidator( $main, $this->getServiceContainer()->getObjectFactory() ),

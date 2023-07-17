@@ -3,6 +3,7 @@ use MediaWiki\Tests\Maintenance\MaintenanceBaseTestCase;
 
 /**
  * @covers DeleteUserEmail
+ * @group Database
  */
 class DeleteUserEmailTest extends MaintenanceBaseTestCase {
 	public function getMaintenanceClass() {
@@ -10,8 +11,8 @@ class DeleteUserEmailTest extends MaintenanceBaseTestCase {
 	}
 
 	public function testEmailDeletion() {
-		// Target test user 'UTSysop', make sure it has an email attached
-		$userName = 'UTSysop';
+		// Target an existing user with an email attached
+		$userName = $this->getTestSysop()->getUserIdentity()->getName();
 		$userFactory = $this->getServiceContainer()->getUserFactory();
 		$testUserBeforeExecution = $userFactory->newFromName( $userName );
 		$oldEmail = $testUserBeforeExecution->getEmail();

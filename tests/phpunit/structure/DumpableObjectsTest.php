@@ -22,7 +22,7 @@ class DumpableObjectsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testUser() {
-		$u = $this->getTestUser()->getUser();
+		$u = new User();
 		$u->isAllowed( 'read' );
 		$this->assertLessThan( 100000, $this->dumpSize( $u ) );
 	}

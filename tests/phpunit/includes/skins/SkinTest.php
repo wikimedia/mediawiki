@@ -9,6 +9,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
 
 /**
@@ -462,12 +463,24 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 			public function outputPage() {
 			}
 		};
-		$existingUser = $this->getTestSysop()->getUserIdentity();
+		$user = new UserIdentityValue( 42, 'foo' );
+		$userIdentityLookup = $this->createMock( UserIdentityLookup::class );
+		$userIdentityLookup->method( 'getUserIdentityByName' )
+			->willReturnCallback( function ( $name ) use ( $user ) {
+				if ( $name === $user->getName() ) {
+					return $user;
+				}
+				return $this->createMock( UserIdentity::class );
+			} );
+		$this->setService( 'UserIdentityLookup', $userIdentityLookup );
+		$blockManager = $this->createMock( BlockManager::class );
+		$blockManager->method( 'getUserBlock' )->willReturn( null );
+		$this->setService( 'BlockManager', $blockManager );
 		$skin->setRelevantTitle(
-			Title::makeTitle( NS_USER, $this->getTestSysop()->getUserIdentity()->getName() )
+			Title::makeTitle( NS_USER, $user->getName() )
 		);
-		$this->assertTrue( $existingUser->equals( $skin->getRelevantUser() ) );
-		$this->assertSame( $existingUser->getId(), $skin->getRelevantUser()->getId() );
+		$this->assertTrue( $user->equals( $skin->getRelevantUser() ) );
+		$this->assertSame( $user->getId(), $skin->getRelevantUser()->getId() );
 	}
 
 	public function testBuildSidebarCache() {

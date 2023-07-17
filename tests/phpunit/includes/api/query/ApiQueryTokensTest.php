@@ -16,9 +16,7 @@ class ApiQueryTokensTest extends ApiTestCase {
 			'type' => 'csrf',
 		];
 
-		$performer = $this->getTestUser()->getAuthority();
-
-		$apiResult = $this->doApiRequest( $params, null, false, $performer );
+		$apiResult = $this->doApiRequest( $params );
 		$this->assertArrayHasKey( 'query', $apiResult[0] );
 		$this->assertArrayHasKey( 'tokens', $apiResult[0]['query'] );
 		$this->assertArrayHasKey( 'csrftoken', $apiResult[0]['query']['tokens'] );
@@ -32,9 +30,7 @@ class ApiQueryTokensTest extends ApiTestCase {
 			'type' => '*',
 		];
 
-		$performer = $this->getTestUser()->getAuthority();
-
-		$apiResult = $this->doApiRequest( $params, null, false, $performer );
+		$apiResult = $this->doApiRequest( $params );
 		$this->assertArrayHasKey( 'query', $apiResult[0] );
 		$this->assertArrayHasKey( 'tokens', $apiResult[0]['query'] );
 

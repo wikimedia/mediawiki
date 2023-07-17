@@ -4,10 +4,13 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\Constraint\Constraint;
 
 abstract class ApiTestCase extends MediaWikiLangTestCase {
+	use MockAuthorityTrait;
+
 	protected static $apiUrl;
 
 	protected static $errorFormatter = null;
@@ -114,6 +117,9 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		}
 
 		// set up global environment
+		if ( !$performer && !$this->needsDB() ) {
+			$performer = $this->mockRegisteredUltimateAuthority();
+		}
 		if ( $performer ) {
 			$legacyUser = $this->getServiceContainer()->getUserFactory()->newFromAuthority( $performer );
 			$contextUser = $legacyUser;
