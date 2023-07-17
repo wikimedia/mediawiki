@@ -147,10 +147,8 @@ class MultiWriteBagOStuffTest extends MediaWikiIntegrationTestCase {
 				return $keyspace . ':short-one-way';
 			}
 
-			protected function convertGenericKey( $key ) {
-				$components = $this->componentsFromGenericKey( $key );
-				$keyspace = array_shift( $components );
-				return $this->makeKeyInternal( $keyspace, $components );
+			protected function requireConvertGenericKey(): bool {
+				return true;
 			}
 		};
 		$cache2 = new class extends HashBagOStuff {
@@ -158,12 +156,9 @@ class MultiWriteBagOStuffTest extends MediaWikiIntegrationTestCase {
 				return $keyspace . ':short-another-way';
 			}
 
-			protected function convertGenericKey( $key ) {
-				$components = $this->componentsFromGenericKey( $key );
-				$keyspace = array_shift( $components );
-				return $this->makeKeyInternal( $keyspace, $components );
+			protected function requireConvertGenericKey(): bool {
+				return true;
 			}
-
 		};
 
 		$cache = new MultiWriteBagOStuff( [

@@ -500,28 +500,51 @@ abstract class BagOStuff implements
 	}
 
 	/**
-	 * Make a cache key for the default keyspace and given components
+	 * Make a cache key from the given components, in the "global" keyspace
 	 *
-	 * @see IStoreKeyEncoder::makeGlobalKey()
+	 * Global keys are shared with and visible to all sites hosted in the same
+	 * infrastructure (e.g. cross-wiki within the same wiki farm). Others sites
+	 * may read the stored value from their requests, and they must be able to
+	 * correctly compute new values from their own request context.
 	 *
-	 * @param string $collection Key collection name component
+	 * @see BagOStuff::makeKeyInternal
+	 * @since 1.27
+	 * @param string $keygroup Key group component, should be under 48 characters.
 	 * @param string|int ...$components Additional, ordered, key components for entity IDs
 	 * @return string Colon-separated, keyspace-prepended, ordered list of encoded components
-	 * @since 1.27
 	 */
-	abstract public function makeGlobalKey( $collection, ...$components );
+	public function makeGlobalKey( $keygroup, ...$components ) {
+		return $this->makeKeyInternal( self::GLOBAL_KEYSPACE, func_get_args() );
+	}
 
 	/**
-	 * Make a cache key for the global keyspace and given components
+	 * Make a cache key from the given components, in the default keyspace
 	 *
-	 * @see IStoreKeyEncoder::makeKey()
+	 * The default keyspace is unique to a given site. Subsequent web requests
+	 * to the same site (e.g. local wiki, or same domain name) will interact
+	 * with the same keyspace.
 	 *
-	 * @param string $collection Key collection name component
+	 * Requests to other sites hosted on the same infrastructure (e.g. cross-wiki
+	 * or cross-domain), have their own keyspace that naturally avoids conflicts.
+	 *
+	 * As caller you are responsible for:
+	 * - Limit the key group (first component) to 48 characters
+	 *
+	 * Internally, the colon is used as delimiter (":"), and this is
+	 * automatically escaped in supplied components to avoid ambiguity or
+	 * key conflicts. BagOStuff subclasses are responsible for applying any
+	 * additional escaping or limits as-needed before sending commands over
+	 * the network.
+	 *
+	 * @see BagOStuff::makeKeyInternal
+	 * @since 1.27
+	 * @param string $keygroup Key group component, should be under 48 characters.
 	 * @param string|int ...$components Additional, ordered, key components for entity IDs
 	 * @return string Colon-separated, keyspace-prepended, ordered list of encoded components
-	 * @since 1.27
 	 */
-	abstract public function makeKey( $collection, ...$components );
+	public function makeKey( $keygroup, ...$components ) {
+		return $this->makeKeyInternal( $this->keyspace, func_get_args() );
+	}
 
 	/**
 	 * Check whether a cache key is in the global keyspace
@@ -617,55 +640,86 @@ abstract class BagOStuff implements
 	}
 
 	/**
-	 * At a minimum, there must be a keyspace and collection name component
+	 * Make a cache key for the given keyspace and components
 	 *
-	 * @param string|int ...$components Key components for keyspace, collection name, and IDs
-	 * @return string Keyspace-prepended list of encoded components as a colon-separated value
-	 * @since 1.35
+	 * Subclasses may override this method in order to apply different escaping,
+	 * or to deal with size constraints (such as MemcachedBagOStuff). For example
+	 * by converting long components into hashes.
+	 *
+	 * If you overrride this method, you MUST override ::requireConvertGenericKey()
+	 * to return true. This ensures that wrapping classes (e.g. MultiWriteBagOStuff)
+	 * know to re-encode keys before calling read/write methods. See also ::proxyCall().
+	 *
+	 * @see BagOStuff::proxyCall
+	 * @since 1.27
+	 * @param string $keyspace
+	 * @param string[]|int[] $components Key group and other components
+	 * @return string
 	 */
-	final protected function genericKeyFromComponents( ...$components ) {
-		if ( count( $components ) < 2 ) {
-			throw new InvalidArgumentException( "Missing keyspace or collection name" );
+	protected function makeKeyInternal( $keyspace, $components ) {
+		if ( count( $components ) < 1 ) {
+			throw new InvalidArgumentException( "Missing key group" );
 		}
 
-		$key = '';
+		$key = $keyspace;
 		foreach ( $components as $i => $component ) {
-			if ( $i > 0 ) {
-				$key .= ':';
-			}
 			// Escape delimiter (":") and escape ("%") characters
-			$key .= strtr( $component, [ '%' => '%25', ':' => '%3A' ] );
+			$key .= ':' . strtr( $component, [ '%' => '%25', ':' => '%3A' ] );
 		}
-
 		return $key;
 	}
 
 	/**
-	 * Extract the components from a "generic" reversible cache key
+	 * Whether ::proxyCall() must re-encode cache keys before calling read/write methods.
 	 *
-	 * @see BagOStuff::genericKeyFromComponents()
-	 *
-	 * @param string $key Keyspace-prepended list of encoded components as a colon-separated value
-	 * @return string[] Key components for keyspace, collection name, and IDs
-	 * @since 1.35
+	 * @stable to override
+	 * @see BagOStuff::makeKeyInternal
+	 * @see BagOStuff::proxyCall
+	 * @since 1.41
+	 * @return bool
 	 */
-	final protected function componentsFromGenericKey( $key ) {
-		// Note that the order of each corresponding search/replace pair matters
-		return str_replace( [ '%3A', '%25' ], [ ':', '%' ], explode( ':', $key ) );
+	protected function requireConvertGenericKey(): bool {
+		return false;
 	}
 
 	/**
-	 * Convert a "generic" reversible cache key into one for this cache
+	 * Convert a key from BagOStuff::makeKeyInternal into one for the current subclass
 	 *
-	 * @see BagOStuff::genericKeyFromComponents()
-	 *
-	 * @param string $key Keyspace-prepended list of encoded components as a colon-separated value
-	 * @return string Keyspace-prepended list of encoded components as a colon-separated value
+	 * @see BagOStuff::proxyCall
+	 * @param string $key Result from BagOStuff::makeKeyInternal
+	 * @return string Result from current subclass override of BagOStuff::makeKeyInternal
 	 */
-	abstract protected function convertGenericKey( $key );
+	private function convertGenericKey( $key ) {
+		if ( !$this->requireConvertGenericKey() ) {
+			// If subclass doesn't overwrite makeKeyInternal, no re-encoding is needed.
+			return $key;
+		}
+
+		// Extract the components from a "generic" key formatted by BagOStuff::makeKeyInternal()
+		// Note that the order of each corresponding search/replace pair matters!
+		$components = str_replace( [ '%3A', '%25' ], [ ':', '%' ], explode( ':', $key ) );
+		if ( count( $components ) < 2 ) {
+			// Legacy key, not even formatted by makeKey()/makeGlobalKey(). Keep as-is.
+			return $key;
+		}
+
+		$keyspace = array_shift( $components );
+
+		return $this->makeKeyInternal( $keyspace, $components );
+	}
 
 	/**
-	 * Call a method on behalf of wrapper BagOStuff instance that uses "generic" keys
+	 * Call a method on behalf of wrapper BagOStuff instance
+	 *
+	 * The "wrapper" BagOStuff subclass that calls proxyCall() MUST NOT override
+	 * the default makeKeyInternal() implementation, because proxyCall() needs
+	 * to turn the "generic" key back into an array, and re-format it according
+	 * to the backend-specific BagOStuff::makeKey implementation.
+	 *
+	 * For example, when using MultiWriteBagOStuff with Memcached as a backend,
+	 * writes will go via MemcachedBagOStuff::proxyCall(), which then reformats
+	 * the "generic" result of BagOStuff::makeKey (called as MultiWriteBagOStuff::makeKey)
+	 * using MemcachedBagOStuff::makeKeyInternal.
 	 *
 	 * @param string $method Name of a non-final public method that reads/changes keys
 	 * @param int $arg0Sig BagOStuff::ARG0_* constant describing argument 0
@@ -725,7 +779,7 @@ abstract class BagOStuff implements
 	}
 
 	/**
-	 * @param string $key Key generated by an IStoreKeyEncoder instance
+	 * @param string $key Key generated by BagOStuff::makeKeyInternal
 	 * @return string A stats prefix to describe this class of key (e.g. "objectcache.file")
 	 */
 	protected function determineKeyPrefixForStats( $key ) {
@@ -733,11 +787,11 @@ abstract class BagOStuff implements
 		// and thus has the format of "<scope>:<collection>[:<constant or variable>]..."
 		$components = explode( ':', $key, 3 );
 		// Handle legacy callers that fail to use the key building methods
-		$collection = $components[1] ?? 'UNKNOWN';
+		$keygroup = $components[1] ?? 'UNKNOWN';
 		$statsGroup = 'objectcache';
 
 		// Replace dots because they are special in StatsD (T232907)
-		return $statsGroup . '.' . strtr( $collection, '.', '_' );
+		return $statsGroup . '.' . strtr( $keygroup, '.', '_' );
 	}
 
 	/**

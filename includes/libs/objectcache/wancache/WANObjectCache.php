@@ -760,7 +760,7 @@ class WANObjectCache implements
 	 * @return bool Success
 	 */
 	final public function set( $key, $value, $ttl = self::TTL_INDEFINITE, array $opts = [] ) {
-		$kClass = $this->determineKeyClassForStats( $key );
+		$keygroup = $this->determineKeyGroupForStats( $key );
 
 		$ok = $this->setMainValue(
 			$key,
@@ -777,7 +777,7 @@ class WANObjectCache implements
 			$opts['creating'] ?? false
 		);
 
-		$this->stats->increment( "wanobjectcache.$kClass.set." . ( $ok ? 'ok' : 'error' ) );
+		$this->stats->increment( "wanobjectcache.$keygroup.set." . ( $ok ? 'ok' : 'error' ) );
 
 		return $ok;
 	}
@@ -1029,8 +1029,8 @@ class WANObjectCache implements
 			$ok = $this->relayVolatilePurge( $valueSisterKey, $purge, $ttl );
 		}
 
-		$kClass = $this->determineKeyClassForStats( $key );
-		$this->stats->increment( "wanobjectcache.$kClass.delete." . ( $ok ? 'ok' : 'error' ) );
+		$keygroup = $this->determineKeyGroupForStats( $key );
+		$this->stats->increment( "wanobjectcache.$keygroup.delete." . ( $ok ? 'ok' : 'error' ) );
 
 		return $ok;
 	}
@@ -1188,8 +1188,8 @@ class WANObjectCache implements
 		$purge = $this->makeCheckPurgeValue( $now, $holdoff );
 		$ok = $this->relayVolatilePurge( $checkSisterKey, $purge, self::CHECK_KEY_TTL );
 
-		$kClass = $this->determineKeyClassForStats( $key );
-		$this->stats->increment( "wanobjectcache.$kClass.ck_touch." . ( $ok ? 'ok' : 'error' ) );
+		$keygroup = $this->determineKeyGroupForStats( $key );
+		$this->stats->increment( "wanobjectcache.$keygroup.ck_touch." . ( $ok ? 'ok' : 'error' ) );
 
 		return $ok;
 	}
@@ -1225,8 +1225,8 @@ class WANObjectCache implements
 		$checkSisterKey = $this->makeSisterKey( $key, self::TYPE_TIMESTAMP );
 		$ok = $this->relayNonVolatilePurge( $checkSisterKey );
 
-		$kClass = $this->determineKeyClassForStats( $key );
-		$this->stats->increment( "wanobjectcache.$kClass.ck_reset." . ( $ok ? 'ok' : 'error' ) );
+		$keygroup = $this->determineKeyGroupForStats( $key );
+		$this->stats->increment( "wanobjectcache.$keygroup.ck_reset." . ( $ok ? 'ok' : 'error' ) );
 
 		return $ok;
 	}
@@ -1601,7 +1601,7 @@ class WANObjectCache implements
 		$touchedCb = $opts['touchedCallback'] ?? null;
 		$startTime = $this->getCurrentTime();
 
-		$kClass = $this->determineKeyClassForStats( $key );
+		$keygroup = $this->determineKeyGroupForStats( $key );
 
 		// Get the current key value and its metadata
 		$curState = $this->fetchKeys( [ $key ], $checkKeys, $touchedCb )[$key];
@@ -1610,7 +1610,7 @@ class WANObjectCache implements
 		if ( $this->isAcceptablyFreshValue( $curState, $graceTTL, $minAsOf ) ) {
 			if ( !$this->isLotteryRefreshDue( $curState, $lowTTL, $ageNew, $hotTTR, $startTime ) ) {
 				$this->stats->timing(
-					"wanobjectcache.$kClass.hit.good",
+					"wanobjectcache.$keygroup.hit.good",
 					1e3 * ( $this->getCurrentTime() - $startTime )
 				);
 
@@ -1618,7 +1618,7 @@ class WANObjectCache implements
 			} elseif ( $this->scheduleAsyncRefresh( $key, $ttl, $callback, $opts, $cbParams ) ) {
 				$this->logger->debug( "fetchOrRegenerate($key): hit with async refresh" );
 				$this->stats->timing(
-					"wanobjectcache.$kClass.hit.refresh",
+					"wanobjectcache.$keygroup.hit.refresh",
 					1e3 * ( $this->getCurrentTime() - $startTime )
 				);
 
@@ -1653,7 +1653,7 @@ class WANObjectCache implements
 		if ( $this->isExtremelyNewValue( $volState, $safeMinAsOf, $startTime ) ) {
 			$this->logger->debug( "fetchOrRegenerate($key): volatile hit" );
 			$this->stats->timing(
-				"wanobjectcache.$kClass.hit.volatile",
+				"wanobjectcache.$keygroup.hit.volatile",
 				1e3 * ( $this->getCurrentTime() - $startTime )
 			);
 
@@ -1696,7 +1696,7 @@ class WANObjectCache implements
 			if ( $this->isValid( $volValue, $volState[self::RES_AS_OF], $minAsOf ) ) {
 				$this->logger->debug( "fetchOrRegenerate($key): returning stale value" );
 				$this->stats->timing(
-					"wanobjectcache.$kClass.hit.stale",
+					"wanobjectcache.$keygroup.hit.stale",
 					1e3 * ( $this->getCurrentTime() - $startTime )
 				);
 
@@ -1705,7 +1705,7 @@ class WANObjectCache implements
 				$miss = is_infinite( $minAsOf ) ? 'renew' : 'miss';
 				$this->logger->debug( "fetchOrRegenerate($key): busy $miss" );
 				$this->stats->timing(
-					"wanobjectcache.$kClass.$miss.busy",
+					"wanobjectcache.$keygroup.$miss.busy",
 					1e3 * ( $this->getCurrentTime() - $startTime )
 				);
 				$placeholderValue = $this->resolveBusyValue( $busyValue );
@@ -1738,7 +1738,7 @@ class WANObjectCache implements
 
 		// How long it took to generate the value
 		$walltime = max( $postCallbackTime - $preCallbackTime, 0.0 );
-		$this->stats->timing( "wanobjectcache.$kClass.regen_walltime", 1e3 * $walltime );
+		$this->stats->timing( "wanobjectcache.$keygroup.regen_walltime", 1e3 * $walltime );
 
 		// Attempt to save the newly generated value if applicable
 		if (
@@ -1747,7 +1747,7 @@ class WANObjectCache implements
 			// Current thread was not raced out of a regeneration lock or key is tombstoned
 			( !$useRegenerationLock || $hasLock || $isKeyTombstoned )
 		) {
-			$this->stats->timing( "wanobjectcache.$kClass.regen_set_delay", 1e3 * $elapsed );
+			$this->stats->timing( "wanobjectcache.$keygroup.regen_set_delay", 1e3 * $elapsed );
 			// If the key is write-holed then use the (volatile) interim key as an alternative
 			if ( $isKeyTombstoned ) {
 				$this->setInterimValue(
@@ -1784,7 +1784,7 @@ class WANObjectCache implements
 		$miss = is_infinite( $minAsOf ) ? 'renew' : 'miss';
 		$this->logger->debug( "fetchOrRegenerate($key): $miss, new value computed" );
 		$this->stats->timing(
-			"wanobjectcache.$kClass.$miss.compute",
+			"wanobjectcache.$keygroup.$miss.compute",
 			1e3 * ( $this->getCurrentTime() - $startTime )
 		);
 
@@ -2211,31 +2211,25 @@ class WANObjectCache implements
 	}
 
 	/**
-	 * Make a cache key for the global keyspace and given components
-	 *
-	 * @see IStoreKeyEncoder::makeGlobalKey()
-	 *
-	 * @param string $collection Key collection name component
+	 * @see BagOStuff::makeGlobalKey()
+	 * @since 1.27
+	 * @param string $keygroup Key group component, should be under 48 characters.
 	 * @param string|int ...$components Additional, ordered, key components for entity IDs
 	 * @return string Colon-separated, keyspace-prepended, ordered list of encoded components
-	 * @since 1.27
 	 */
-	public function makeGlobalKey( $collection, ...$components ) {
+	public function makeGlobalKey( $keygroup, ...$components ) {
 		// @phan-suppress-next-line PhanParamTooFewUnpack Should infer non-emptiness
 		return $this->cache->makeGlobalKey( ...func_get_args() );
 	}
 
 	/**
-	 * Make a cache key using the "global" keyspace for the given components
-	 *
-	 * @see IStoreKeyEncoder::makeKey()
-	 *
-	 * @param string $collection Key collection name component
+	 * @see BagOStuff::makeKey()
+	 * @since 1.27
+	 * @param string $keygroup Key group component, should be under 48 characters.
 	 * @param string|int ...$components Additional, ordered, key components for entity IDs
 	 * @return string Colon-separated, keyspace-prepended, ordered list of encoded components
-	 * @since 1.27
 	 */
-	public function makeKey( $collection, ...$components ) {
+	public function makeKey( $keygroup, ...$components ) {
 		// @phan-suppress-next-line PhanParamTooFewUnpack Should infer non-emptiness
 		return $this->cache->makeKey( ...func_get_args() );
 	}
@@ -2879,10 +2873,11 @@ class WANObjectCache implements
 	}
 
 	/**
-	 * @param string $key String of the format <scope>:<collection>[:<constant or variable>]...
-	 * @return string A collection name to describe this class of key
+	 * @param string $key Cache key in the format `<keyspace>:<keygroup>[:<other components>]...`
+	 *  as formatted by WANObjectCache::makeKey() or ::makeKeyGlobal.
+	 * @return string The key group of this cache key
 	 */
-	private function determineKeyClassForStats( $key ) {
+	private function determineKeyGroupForStats( $key ) {
 		$parts = explode( ':', $key, 3 );
 		// Fallback in case the key was not made by makeKey.
 		// Replace dots because they are special in StatsD (T232907)
