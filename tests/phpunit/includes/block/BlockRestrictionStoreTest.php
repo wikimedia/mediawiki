@@ -225,11 +225,11 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 		] );
 
 		$db = wfGetDB( DB_REPLICA );
-		$result = $db->select(
-			[ 'ipblocks_restrictions' ],
-			[ '*' ],
-			[ 'ir_ipb_id' => $block->getId() ]
-		);
+		$result = $db->newSelectQueryBuilder()
+			->select( [ '*' ] )
+			->from( 'ipblocks_restrictions' )
+			->where( [ 'ir_ipb_id' => $block->getId() ] )
+			->fetchResultSet();
 
 		$this->assertEquals( 2, $result->numRows() );
 		$row = $result->fetchObject();
@@ -251,11 +251,11 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 		] );
 
 		$db = wfGetDB( DB_REPLICA );
-		$result = $db->select(
-			[ 'ipblocks_restrictions' ],
-			[ '*' ],
-			[ 'ir_ipb_id' => $block->getId() ]
-		);
+		$result = $db->newSelectQueryBuilder()
+			->select( [ '*' ] )
+			->from( 'ipblocks_restrictions' )
+			->where( [ 'ir_ipb_id' => $block->getId() ] )
+			->fetchResultSet();
 
 		$this->assertSame( 1, $result->numRows() );
 		$row = $result->fetchObject();
@@ -274,11 +274,11 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 		$this->blockRestrictionStore->update( [] );
 
 		$db = wfGetDB( DB_REPLICA );
-		$result = $db->select(
-			[ 'ipblocks_restrictions' ],
-			[ '*' ],
-			[ 'ir_ipb_id' => $block->getId() ]
-		);
+		$result = $db->newSelectQueryBuilder()
+			->select( [ '*' ] )
+			->from( 'ipblocks_restrictions' )
+			->where( [ 'ir_ipb_id' => $block->getId() ] )
+			->fetchResultSet();
 
 		$this->assertSame( 0, $result->numRows() );
 	}
@@ -300,11 +300,11 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 		] );
 
 		$db = wfGetDB( DB_REPLICA );
-		$result = $db->select(
-			[ 'ipblocks_restrictions' ],
-			[ '*' ],
-			[ 'ir_ipb_id' => $block->getId() ]
-		);
+		$result = $db->newSelectQueryBuilder()
+			->select( [ '*' ] )
+			->from( 'ipblocks_restrictions' )
+			->where( [ 'ir_ipb_id' => $block->getId() ] )
+			->fetchResultSet();
 
 		$this->assertSame( 1, $result->numRows() );
 		$row = $result->fetchObject();

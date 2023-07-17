@@ -210,12 +210,11 @@ class ApiBlockTest extends ApiTestCase {
 		$res = $this->doBlock( [ 'expiry' => '1 day' ] );
 
 		$dbw = wfGetDB( DB_PRIMARY );
-		$expiry = $dbw->selectField(
-			'ipblocks',
-			'ipb_expiry',
-			[ 'ipb_id' => $res[0]['block']['id'] ],
-			__METHOD__
-		);
+		$expiry = $dbw->newSelectQueryBuilder()
+			->select( 'ipb_expiry' )
+			->from( 'ipblocks' )
+			->where( [ 'ipb_id' => $res[0]['block']['id'] ] )
+			->caller( __METHOD__ )->fetchField();
 
 		$this->assertSame( (int)wfTimestamp( TS_UNIX, $expiry ), $fakeTime + 86400 );
 	}

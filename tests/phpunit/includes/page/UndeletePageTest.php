@@ -99,11 +99,19 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 			$this->assertEquals( $this->ipEditor, $row->ar_user_text );
 
 			// Should not be in revision
-			$row = $dbr->selectRow( 'revision', '1', [ 'rev_id' => $this->pages[$key]['revId'] ] );
+			$row = $dbr->newSelectQueryBuilder()
+				->select( '1' )
+				->from( 'revision' )
+				->where( [ 'rev_id' => $this->pages[$key]['revId'] ] )
+				->fetchRow();
 			$this->assertFalse( $row );
 
 			// Should not be in ip_changes
-			$row = $dbr->selectRow( 'ip_changes', '1', [ 'ipc_rev_id' => $this->pages[$key]['revId'] ] );
+			$row = $dbr->newSelectQueryBuilder()
+				->select( '1' )
+				->from( 'ip_changes' )
+				->where( [ 'ipc_rev_id' => $this->pages[$key]['revId'] ] )
+				->fetchRow();
 			$this->assertFalse( $row );
 		}
 
@@ -131,7 +139,11 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 			$this->assertEquals( $this->ipEditor, $row->rev_user_text );
 
 			// Should be back in ip_changes
-			$row = $dbr->selectRow( 'ip_changes', [ 'ipc_hex' ], [ 'ipc_rev_id' => $this->pages[$key]['revId'] ] );
+			$row = $dbr->newSelectQueryBuilder()
+				->select( [ 'ipc_hex' ] )
+				->from( 'ip_changes' )
+				->where( [ 'ipc_rev_id' => $this->pages[$key]['revId'] ] )
+				->fetchRow();
 			$this->assertNotFalse( $row, 'row exists in ip_changes table' );
 			$this->assertEquals( IPUtils::toHex( $this->ipEditor ), $row->ipc_hex );
 		}
