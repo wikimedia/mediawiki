@@ -2048,7 +2048,7 @@
 	"trackingcategories": "Tracking-Kategorien",
 	"trackingcategories-msg": "Tracking-Kategorie",
 	"trackingcategories-name": "Numm vum Message",
-	"restricted-displaytitle-ignored": "Säite mat ignoréierten Säitentitele fir unzeweisen",
+	"restricted-displaytitle-ignored": "Säite mat ignoréierten Display-Säitentitelen",
 	"noindex-category-desc": "D'Säit gëtt net vu Botten indexéiert, well dat magescht Wuert <code><nowiki>__NOINDEX__</nowiki></code> dran ass a well se an engem Nummraum ass, an deem déi Markéierung erlaabt ass.",
 	"index-category-desc": "D'Säit huet <code><nowiki>__INDEX__</nowiki></code> an ass an engem Nummraum, wou déi Markéierung erlaabt ass an dofir gëtt d'Säit vu Sichroboter indexéiert wou dat normalerweis net de Fall wier.",
 	"post-expand-template-inclusion-category-desc": "D'Säit ass méi grouss wéi <code>$wgMaxArticleSize</code> nom expandéiere vun alle Schablounen, dofir goufen e puer Schablounen net expandéiert.",
