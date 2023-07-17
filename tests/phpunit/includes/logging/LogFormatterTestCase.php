@@ -1,21 +1,102 @@
 <?php
 
+use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\ExistingPageRecord;
+use MediaWiki\Page\PageStore;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\User\UserFactory;
+use Wikimedia\IPUtils;
+use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @since 1.26
  */
 abstract class LogFormatterTestCase extends MediaWikiLangTestCase {
+	use MockAuthorityTrait;
 
 	public function doTestLogFormatter( $row, $extra, $userGroups = [] ) {
 		RequestContext::resetMain();
 		$row = $this->expandDatabaseRow( $row, $this->isLegacy( $extra ) );
 
+		$userGroups = (array)$userGroups;
+		$userRights = MediaWikiServices::getInstance()->getGroupPermissionsLookup()->getGroupPermissions( $userGroups );
 		$context = new RequestContext();
-		$context->setUser( $this->getTestUser( $userGroups )->getUser() );
+		$authority = $this->mockRegisteredAuthorityWithPermissions( $userRights );
+		$context->setAuthority( $authority );
+		$context->setLanguage( 'en' );
 
 		$formatter = LogFormatter::newFromRow( $row );
 		$formatter->setContext( $context );
+
+		// Create a LinkRenderer without LinkCache to avoid DB access
+		$services = $this->getServiceContainer();
+		$realLinkRenderer = new LinkRenderer(
+			$services->getTitleFormatter(),
+			$this->createMock( LinkCache::class ),
+			$services->getSpecialPageFactory(),
+			$services->getHookContainer(),
+			new ServiceOptions(
+				LinkRenderer::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig(),
+				[ 'renderForComment' => false ]
+			)
+		);
+		// Then create a mock LinkRenderer that proxies makeLink calls to the original LinkRenderer, but assumes
+		// that all links are known to bypass DB access in Title::exists().
+		$linkRenderer = $this->createMock( LinkRenderer::class );
+		$linkRenderer->method( 'makeLink' )
+			->willReturnCallback(
+				static function ( $target, $text = null, $extra = [], $query = [] ) use ( $realLinkRenderer ) {
+					return $realLinkRenderer->makeKnownLink( $target, $text, $extra, $query );
+				}
+			);
+		$formatter->setLinkRenderer( $linkRenderer );
+		$this->setService( 'LinkRenderer', $linkRenderer );
+
+		// Create a mock PageStore where all pages are existing, in case any calls to Title::exists are not
+		// caught by the mocks above.
+		$pageStore = $this->getMockBuilder( PageStore::class )
+			->onlyMethods( [ 'getPageByName' ] )
+			->setConstructorArgs( [
+				new ServiceOptions( PageStore::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+				$this->createNoOpMock( ILoadBalancer::class ),
+				$services->getNamespaceInfo(),
+				$services->getTitleParser(),
+				null,
+				null
+			] )
+			->getMock();
+		$pageStore->method( 'getPageByName' )
+			->willReturn( $this->createMock( ExistingPageRecord::class ) );
+		$this->setService( 'PageStore', $pageStore );
+
+		// Create a mock UserFactory where all registered users are created with ID and name and where loading of
+		// other fields is prevented, to avoid DB access.
+		$origUserFactory = $services->getUserFactory();
+		$userFactory = $this->createMock( UserFactory::class );
+		$userFactory->method( 'newFromName' )
+			->willReturnCallback( static function ( $name, $validation ) use ( $origUserFactory ) {
+				$ret = $origUserFactory->newFromName( $name, $validation );
+				if ( !$ret ) {
+					return $ret;
+				}
+				$userID = IPUtils::isIPAddress( $name ) ? 0 : 42;
+				$ret = TestingAccessWrapper::newFromObject( $ret );
+				$ret->mId = $userID;
+				$ret->mLoadedItems = true;
+				return $ret->object;
+			} );
+		$userFactory->method( 'newFromId' )->willReturnCallback( [ $origUserFactory, 'newFromId' ] );
+		$this->setService( 'UserFactory', $userFactory );
+
+		// Replace gender cache to avoid gender DB lookups
+		$genderCache = $this->createMock( GenderCache::class );
+		$genderCache->method( 'getGenderOf' )->willReturn( 'unknown' );
+		$this->setService( 'GenderCache', $genderCache );
 
 		$this->assertEquals(
 			$extra['text'],

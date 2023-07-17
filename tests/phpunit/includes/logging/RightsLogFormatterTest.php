@@ -1,9 +1,21 @@
 <?php
 
+use Wikimedia\Rdbms\LBFactory;
+
 /**
  * @covers RightsLogFormatter
  */
 class RightsLogFormatterTest extends LogFormatterTestCase {
+
+	protected function setUp(): void {
+		parent::setUp();
+
+		$db = $this->createNoOpMock( IDatabase::class, [ 'getInfinity' ] );
+		$db->method( 'getInfinity' )->willReturn( 'infinity' );
+		$lbFactory = $this->createMock( LBFactory::class );
+		$lbFactory->method( 'getReplicaDatabase' )->willReturn( $db );
+		$this->setService( 'DBLoadBalancerFactory', $lbFactory );
+	}
 
 	/**
 	 * Provide different rows from the logging table to test
