@@ -28,6 +28,10 @@ global $IP;
 $IP = wfDetectInstallPath();
 // Note: unit tests don't use a settings file but some code still assumes that one exists
 wfDetectLocalSettingsFile( $IP );
+if ( getenv( 'MW_INSTALL_PATH' ) === false ) {
+	// Set the env variable for BC with maintenance scripts and the like
+	putenv( 'MW_INSTALL_PATH=' . $IP );
+}
 
 TestSetup::snapshotGlobals();
 
