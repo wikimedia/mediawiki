@@ -398,7 +398,7 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function createSourceTable() {
-		$prefix = self::getTestPrefixFor( $this->db );
+		$prefix = self::dbPrefix();
 
 		$this->db->query( "DROP TABLE IF EXISTS ${prefix}tmp_src_tbl" );
 		$this->db->query(
@@ -415,7 +415,7 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function createDestTable() {
-		$prefix = self::getTestPrefixFor( $this->db );
+		$prefix = self::dbPrefix();
 
 		$this->db->query( "DROP TABLE IF EXISTS ${prefix}tmp_dst_tbl" );
 		$this->db->query(
@@ -432,13 +432,13 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function dropSourceTable() {
-		$prefix = self::getTestPrefixFor( $this->db );
+		$prefix = self::dbPrefix();
 
 		$this->db->query( "DROP TABLE IF EXISTS ${prefix}tmp_src_tbl" );
 	}
 
 	private function dropDestTable() {
-		$prefix = self::getTestPrefixFor( $this->db );
+		$prefix = self::dbPrefix();
 
 		$this->db->query( "DROP TABLE IF EXISTS ${prefix}tmp_dst_tbl" );
 	}

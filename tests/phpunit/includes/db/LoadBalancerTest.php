@@ -44,7 +44,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 			'port' => $wgDBport,
 			'serverName' => 'testhost',
 			'dbname' => $wgDBname,
-			'tablePrefix' => $this->dbPrefix(),
+			'tablePrefix' => self::dbPrefix(),
 			'user' => $wgDBuser,
 			'password' => $wgDBpassword,
 			'type' => $wgDBtype,
@@ -62,7 +62,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 			// Simulate web request with DBO_TRX
 			'servers' => [ $this->makeServerConfig( DBO_TRX ) ],
 			'logger' => MediaWiki\Logger\LoggerFactory::getInstance( 'rdbms' ),
-			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() ),
+			'localDomain' => new DatabaseDomain( $wgDBname, null, self::dbPrefix() ),
 			'chronologyCallback' => static function () use ( &$called ) {
 				$called = true;
 			},
@@ -76,7 +76,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 
 		$ld = DatabaseDomain::newFromId( $lb->getLocalDomainID() );
 		$this->assertSame( $wgDBname, $ld->getDatabase(), 'local domain DB set' );
-		$this->assertSame( $this->dbPrefix(), $ld->getTablePrefix(), 'local domain prefix set' );
+		$this->assertSame( self::dbPrefix(), $ld->getTablePrefix(), 'local domain prefix set' );
 		$this->assertSame( 'my_test_wiki', $lb->resolveDomainID( 'my_test_wiki' ) );
 		$this->assertSame( $ld->getId(), $lb->resolveDomainID( false ) );
 		$this->assertSame( $ld->getId(), $lb->resolveDomainID( $ld ) );
@@ -211,7 +211,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 
 		return new LoadBalancer( [
 			'servers' => [ $this->makeServerConfig() ],
-			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() ),
+			'localDomain' => new DatabaseDomain( $wgDBname, null, self::dbPrefix() ),
 			'cliMode' => false
 		] );
 	}
@@ -229,7 +229,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'host' => $wgDBserver,
 					'port' => $wgDBport,
 					'dbname' => $wgDBname,
-					'tablePrefix' => $this->dbPrefix(),
+					'tablePrefix' => self::dbPrefix(),
 					'user' => $wgDBuser,
 					'password' => $wgDBpassword,
 					'type' => $wgDBtype,
@@ -242,7 +242,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'host' => $wgDBserver,
 					'port' => $wgDBport,
 					'dbname' => $wgDBname,
-					'tablePrefix' => $this->dbPrefix(),
+					'tablePrefix' => self::dbPrefix(),
 					'user' => $wgDBuser,
 					'password' => $wgDBpassword,
 					'type' => $wgDBtype,
@@ -254,7 +254,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'host' => $wgDBserver,
 					'port' => $wgDBport,
 					'dbname' => $wgDBname,
-					'tablePrefix' => $this->dbPrefix(),
+					'tablePrefix' => self::dbPrefix(),
 					'user' => $wgDBuser,
 					'password' => $wgDBpassword,
 					'type' => $wgDBtype,
@@ -267,7 +267,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'host' => $wgDBserver,
 					'port' => $wgDBport,
 					'dbname' => $wgDBname,
-					'tablePrefix' => $this->dbPrefix(),
+					'tablePrefix' => self::dbPrefix(),
 					'user' => $wgDBuser,
 					'password' => $wgDBpassword,
 					'type' => $wgDBtype,
@@ -284,7 +284,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'host' => $wgDBserver,
 					'port' => $wgDBport,
 					'dbname' => $wgDBname,
-					'tablePrefix' => $this->dbPrefix(),
+					'tablePrefix' => self::dbPrefix(),
 					'user' => $wgDBuser,
 					'password' => $wgDBpassword,
 					'type' => $wgDBtype,
@@ -299,7 +299,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'host' => $wgDBserver,
 					'port' => $wgDBport,
 					'dbname' => $wgDBname,
-					'tablePrefix' => $this->dbPrefix(),
+					'tablePrefix' => self::dbPrefix(),
 					'user' => $wgDBuser,
 					'password' => $wgDBpassword,
 					'type' => $wgDBtype,
@@ -315,7 +315,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'host' => $wgDBserver,
 					'port' => $wgDBport,
 					'dbname' => $wgDBname,
-					'tablePrefix' => $this->dbPrefix(),
+					'tablePrefix' => self::dbPrefix(),
 					'user' => $wgDBuser,
 					'password' => $wgDBpassword,
 					'type' => $wgDBtype,
@@ -331,7 +331,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'host' => $wgDBserver,
 					'port' => $wgDBport,
 					'dbname' => $wgDBname,
-					'tablePrefix' => $this->dbPrefix(),
+					'tablePrefix' => self::dbPrefix(),
 					'user' => $wgDBuser,
 					'password' => $wgDBpassword,
 					'type' => $wgDBtype,
@@ -346,7 +346,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 
 		return new LoadBalancer( $lbExtra + [
 			'servers' => $servers,
-			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() ),
+			'localDomain' => new DatabaseDomain( $wgDBname, null, self::dbPrefix() ),
 			'logger' => MediaWiki\Logger\LoggerFactory::getInstance( 'rdbms' ),
 			'loadMonitor' => [ 'class' => LoadMonitorNull::class ],
 			'clusterName' => 'main-test-cluster'
@@ -533,7 +533,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 				'host' => $wgDBserver,
 				'port' => $wgDBport,
 				'dbname' => $wgDBname,
-				'tablePrefix' => $this->dbPrefix(),
+				'tablePrefix' => self::dbPrefix(),
 				'user' => $wgDBuser,
 				'password' => $wgDBpassword,
 				'type' => $wgDBtype,
@@ -545,7 +545,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 
 		$lb = new LoadBalancer( [
 			'servers' => $servers,
-			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() )
+			'localDomain' => new DatabaseDomain( $wgDBname, null, self::dbPrefix() )
 		] );
 		/** @var LoadBalancer $lbWrapper */
 		$lbWrapper = TestingAccessWrapper::newFromObject( $lb );
@@ -788,7 +788,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$lb1 = new LoadBalancer( [
 			'servers' => [ $this->makeServerConfig() ],
 			'logger' => MediaWiki\Logger\LoggerFactory::getInstance( 'rdbms' ),
-			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() ),
+			'localDomain' => new DatabaseDomain( $wgDBname, null, self::dbPrefix() ),
 			'chronologyCallback' => static function () use ( &$called ) {
 				$called = true;
 			},
@@ -799,7 +799,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$lb2 = new LoadBalancer( [
 			'servers' => [ $this->makeServerConfig() ],
 			'logger' => MediaWiki\Logger\LoggerFactory::getInstance( 'rdbms' ),
-			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() ),
+			'localDomain' => new DatabaseDomain( $wgDBname, null, self::dbPrefix() ),
 			'chronologyCallback' => static function () use ( &$called ) {
 				$called = true;
 			},

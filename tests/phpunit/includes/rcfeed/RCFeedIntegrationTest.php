@@ -22,7 +22,7 @@ class RCFeedIntegrationTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::Script => '/w/index.php',
 			MainConfigNames::ArticlePath => '/wiki/$1',
 			MainConfigNames::DBname => 'example',
-			MainConfigNames::DBprefix => $this->dbPrefix(),
+			MainConfigNames::DBprefix => self::dbPrefix(),
 			MainConfigNames::RCFeeds => [],
 			MainConfigNames::RCEngines => [],
 		] );
@@ -62,7 +62,7 @@ class RCFeedIntegrationTest extends MediaWikiIntegrationTestCase {
 						'server_url' => 'https://example.org',
 						'server_name' => 'example.org',
 						'server_script_path' => '/w',
-						'wiki' => 'example-' . $this->dbPrefix(),
+						'wiki' => 'example-' . self::dbPrefix(),
 					] ),
 					$line
 				);

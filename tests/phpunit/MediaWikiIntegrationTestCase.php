@@ -524,7 +524,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		try {
 			$this->overrideMwServices();
 
-			if ( $this->needsDB() && !$this->isTestInDatabaseGroup() ) {
+			if ( $this->needsDB() && !self::isTestInDatabaseGroup() ) {
 				throw new LogicException(
 					get_class( $this ) . ' apparently needsDB but is not in the Database group'
 				);
@@ -543,7 +543,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 				if ( !self::$dbSetup ) {
 					self::setupAllTestDBs(
-						$this->db, $this->dbPrefix(), $useTemporaryTables
+						$this->db, self::dbPrefix(), $useTemporaryTables
 					);
 					if ( $this->needsDB() ) {
 						$this->addCoreDBData();
@@ -877,8 +877,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		$this->stashMwGlobals( array_keys( $pairs ) );
 
-		foreach ( $pairs as $key => $value ) {
-			$GLOBALS[$key] = $value;
+		foreach ( $pairs as $key => $val ) {
+			$GLOBALS[$key] = $val;
 		}
 
 		$this->resetServices();
@@ -1566,16 +1566,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @return string
 	 * @since 1.18
 	 */
-	public function dbPrefix() {
-		return self::getTestPrefixFor( $this->db );
-	}
-
-	/**
-	 * @param IDatabase $db
-	 * @return string
-	 * @since 1.32
-	 */
-	public static function getTestPrefixFor( IDatabase $db ) {
+	final protected static function dbPrefix() {
 		return self::DB_PREFIX;
 	}
 
@@ -1585,7 +1576,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	public function needsDB() {
 		// If the test says it uses database tables, it needs the database
-		return $this->tablesUsed || $this->isTestInDatabaseGroup();
+		return $this->tablesUsed || self::isTestInDatabaseGroup();
 	}
 
 	/**
@@ -1753,7 +1744,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		IMaintainableDatabase $db,
 		$prefix = null
 	) {
-		$prefix ??= self::getTestPrefixFor( $db );
+		$prefix ??= self::dbPrefix();
 
 		if ( isset( $db->_originalTablePrefix ) ) {
 			return null;
@@ -1784,7 +1775,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		self::$oldTablePrefix = $wgDBprefix;
 
-		$testPrefix ??= self::getTestPrefixFor( $db );
+		$testPrefix ??= self::dbPrefix();
 
 		// switch to a temporary clone of the database
 		self::$useTemporaryTables = $useTemporaryTables ?? self::$useTemporaryTables;
@@ -1907,11 +1898,12 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param IDatabase $db
 	 * @since 1.31 this is no longer private.
 	 */
-	protected function ensureMockDatabaseConnection( IDatabase $db ) {
-		if ( $db->tablePrefix() !== $this->dbPrefix() ) {
+	protected static function ensureMockDatabaseConnection( IDatabase $db ) {
+		$testPrefix = self::dbPrefix();
+		if ( $db->tablePrefix() !== $testPrefix ) {
 			throw new LogicException(
 				"Trying to delete mock tables, but table prefix '{$db->tablePrefix()}' " .
-				"does not indicate a mock database (expected '{$this->dbPrefix()}')"
+				"does not indicate a mock database (expected '$testPrefix')"
 			);
 		}
 	}
@@ -1954,10 +1946,10 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param array $oldOverrides
 	 */
 	private function undoSchemaOverrides( IMaintainableDatabase $db, $oldOverrides ) {
-		$this->ensureMockDatabaseConnection( $db );
+		self::ensureMockDatabaseConnection( $db );
 
 		$oldOverrides = $oldOverrides + self::$schemaOverrideDefaults;
-		$originalTables = $this->listOriginalTables( $db );
+		$originalTables = self::listOriginalTables( $db );
 
 		// Drop tables that need to be restored or removed.
 		$tablesToDrop = array_merge( $oldOverrides['create'], $oldOverrides['alter'] );
@@ -1968,7 +1960,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$tablesToRestore = array_intersect( $originalTables, $tablesToRestore );
 
 		if ( $tablesToDrop ) {
-			$this->dropMockTables( $db, $tablesToDrop );
+			self::dropMockTables( $db, $tablesToDrop );
 		}
 
 		if ( $tablesToRestore ) {
@@ -2021,14 +2013,14 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			);
 		}
 
-		$this->ensureMockDatabaseConnection( $db );
+		self::ensureMockDatabaseConnection( $db );
 
 		// Drop the tables that will be created by the schema scripts.
-		$originalTables = $this->listOriginalTables( $db );
+		$originalTables = self::listOriginalTables( $db );
 		$tablesToDrop = array_intersect( $originalTables, $overrides['create'] );
 
 		if ( $tablesToDrop ) {
-			$this->dropMockTables( $db, $tablesToDrop );
+			self::dropMockTables( $db, $tablesToDrop );
 		}
 
 		$inputCallback = self::$useTemporaryTables
@@ -2051,8 +2043,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param IMaintainableDatabase $db
 	 * @param array $tables
 	 */
-	private function dropMockTables( IMaintainableDatabase $db, array $tables ) {
-		$this->ensureMockDatabaseConnection( $db );
+	private static function dropMockTables( IMaintainableDatabase $db, array $tables ) {
+		self::ensureMockDatabaseConnection( $db );
 
 		foreach ( $tables as $tbl ) {
 			$tbl = $db->tableName( $tbl );
@@ -2066,14 +2058,14 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param IMaintainableDatabase $db
 	 * @return array
 	 */
-	private function listOriginalTables( IMaintainableDatabase $db ) {
+	private static function listOriginalTables( IMaintainableDatabase $db ) {
 		if ( !isset( $db->_originalTablePrefix ) ) {
 			throw new LogicException( 'No original table prefix know, cannot list tables!' );
 		}
 
 		$originalTables = $db->listTables( $db->_originalTablePrefix, __METHOD__ );
 
-		$unittestPrefixRegex = '/^' . preg_quote( $this->dbPrefix(), '/' ) . '/';
+		$unittestPrefixRegex = '/^' . preg_quote( self::dbPrefix(), '/' ) . '/';
 		$originalPrefixRegex = '/^' . preg_quote( $db->_originalTablePrefix, '/' ) . '/';
 
 		$originalTables = array_filter(
@@ -2102,13 +2094,13 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param array $tables
 	 */
 	private function recloneMockTables( IMaintainableDatabase $db, array $tables ) {
-		$this->ensureMockDatabaseConnection( $db );
+		self::ensureMockDatabaseConnection( $db );
 
 		if ( !isset( $db->_originalTablePrefix ) ) {
 			throw new LogicException( 'No original table prefix know, cannot restore tables!' );
 		}
 
-		$originalTables = $this->listOriginalTables( $db );
+		$originalTables = self::listOriginalTables( $db );
 		$tables = array_intersect( $tables, $originalTables );
 
 		self::$dbClone = new CloneDatabase( $db, $tables, $db->tablePrefix(), $db->_originalTablePrefix );
@@ -2280,10 +2272,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 	}
 
-	/**
-	 * @since 1.18
-	 */
-	protected function checkDbIsSupported() {
+	private function checkDbIsSupported() {
 		if ( !in_array( $this->db->getType(), $this->supportedDBs ) ) {
 			throw new RuntimeException( $this->db->getType() . " is not currently supported for unit testing." );
 		}
