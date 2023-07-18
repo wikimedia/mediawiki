@@ -283,18 +283,14 @@ class TempUserCreator implements TempUserConfig {
 	 * Return a possible acquired and stashed username in a session.
 	 * Do not acquire or create the user.
 	 *
-	 * If this method is called with the same session ID as function acquireAndStashName
-	 * it returns the previously stashed username instead of a placeholder.
+	 * If this method is called with the same session ID as function acquireAndStashName(),
+	 * it returns the previously stashed username.
 	 *
 	 * @since 1.41
 	 * @param Session $session
-	 * @return string The username
+	 * @return ?string The username, if it was already acquired
 	 */
-	public function getStashedNameOrPlaceholder( Session $session ) {
-		$name = $session->get( 'TempUser:name' );
-		if ( $name !== null ) {
-			return $name;
-		}
-		return $this->getPlaceholderName();
+	public function getStashedName( Session $session ): ?string {
+		return $session->get( 'TempUser:name' );
 	}
 }

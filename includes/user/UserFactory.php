@@ -349,15 +349,15 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 	}
 
 	/**
-	 * Create an unsaved temporary user with a previously acquired name.
+	 * Create an unsaved temporary user with a previously acquired name or a placeholder name.
 	 *
 	 * @since 1.39
-	 * @param string $name
+	 * @param ?string $name If null, a placeholder name is used
 	 * @return User
 	 */
-	public function newUnsavedTempUser( string $name ) {
+	public function newUnsavedTempUser( ?string $name ) {
 		$user = new User();
-		$user->setName( $name );
+		$user->setName( $name ?? $this->userNameUtils->getTempPlaceholder() );
 		return $user;
 	}
 

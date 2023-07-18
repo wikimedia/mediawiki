@@ -194,7 +194,7 @@ class ApiParse extends ApiBase {
 		$user = $this->getUser();
 		if ( $this->tempUserCreator->shouldAutoCreate( $user, 'edit' ) ) {
 			return $this->userFactory->newUnsavedTempUser(
-				$this->tempUserCreator->getStashedNameOrPlaceholder( $this->getRequest()->getSession() )
+				$this->tempUserCreator->getStashedName( $this->getRequest()->getSession() )
 			);
 		}
 		return $user;
