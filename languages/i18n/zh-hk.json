@@ -219,6 +219,7 @@
 	"saveusergroups": "儲存{{GENDER:$1|用戶}}組",
 	"userrights-groups-help": "您可以更改{{GENDER:$1|此用戶}}所屬的用戶組：\n* 已勾選的核選方塊代表該用戶屬於該用戶組。\n* 未勾選的核選方塊代表該用戶不屬於該用戶組。\n* 有 * 號標示代表一旦加入該用戶組後便不能移除，反之亦然。\n* 有 # 號標示代表您只能延後此用戶組成員的期限，您無法將其提前。",
 	"userrights-expiry-options": "一日:1 day,一星期:1 week,一個月:1 month,三個月:3 months,六個月:6 months,一年:1 year",
+	"userrights-no-group": "臨時用戶不會有用戶組。",
 	"group-user": "用戶",
 	"group-autoconfirmed": "自動確認用戶",
 	"group-bot": "機械人",

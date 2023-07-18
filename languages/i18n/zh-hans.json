@@ -1404,6 +1404,7 @@
 	"userrights-expiry-in-past": "用户组“$1”的结束时间是在过去。",
 	"userrights-cannot-shorten-expiry": "您不能将用户组“$1”成员的结束时间提前。只有拥有添加或移除该组权限的用户可以将其提前。",
 	"userrights-no-tempuser": "无法将临时用户加入用户组。",
+	"userrights-no-group": "临时用户不会有用户组。",
 	"userrights-conflict": "用户权限的更改存在冲突！请检查并确认您的更改。",
 	"group": "用户组：",
 	"group-user": "用户",
