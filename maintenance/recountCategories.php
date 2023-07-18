@@ -174,10 +174,11 @@ TEXT
 
 		// Now, on master, find the correct counts for these categories.
 		$dbw = $this->getDB( DB_PRIMARY );
-		$res = $dbw->select( 'category',
-			[ 'cat_id', 'count' => "($countingSubquery)" ],
-			[ 'cat_id' => $idsToUpdate ],
-			__METHOD__ );
+		$res = $dbw->newSelectQueryBuilder()
+			->select( [ 'cat_id', 'count' => "($countingSubquery)" ] )
+			->from( 'category' )
+			->where( [ 'cat_id' => $idsToUpdate ] )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		// Update the category counts on the rows we just identified.
 		// This logic is equivalent to Category::refreshCounts, except here, we

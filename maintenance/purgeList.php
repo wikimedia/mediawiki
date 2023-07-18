@@ -133,16 +133,14 @@ class PurgeList extends Maintenance {
 			$conds = [ 'page_namespace' => $namespace ];
 		}
 		while ( true ) {
-			$res = $dbr->select( 'page',
-				[ 'page_id', 'page_namespace', 'page_title' ],
-				$conds + [ 'page_id > ' . $dbr->addQuotes( $startId ) ],
-				__METHOD__,
-				[
-					'LIMIT' => $this->getBatchSize(),
-					'ORDER BY' => 'page_id'
-
-				]
-			);
+			$res = $dbr->newSelectQueryBuilder()
+				->select( [ 'page_id', 'page_namespace', 'page_title' ] )
+				->from( 'page' )
+				->where( $conds )
+				->andWhere( [ 'page_id > ' . $dbr->addQuotes( $startId ) ] )
+				->orderBy( 'page_id' )
+				->limit( $this->getBatchSize() )
+				->caller( __METHOD__ )->fetchResultSet();
 			if ( !$res->numRows() ) {
 				break;
 			}

@@ -85,7 +85,10 @@ class MoveToExternal extends Maintenance {
 
 		$maxID = $this->getOption( 'end' );
 		if ( $maxID === null ) {
-			$maxID = $dbw->selectField( 'text', 'MAX(old_id)', '', __METHOD__ );
+			$maxID = $dbw->newSelectQueryBuilder()
+				->select( 'MAX(old_id)' )
+				->from( 'text' )
+				->caller( __METHOD__ )->fetchField();
 		}
 		$this->maxID = (int)$maxID;
 		$this->minID = (int)$this->getOption( 'start', 1 );
@@ -262,12 +265,11 @@ class MoveToExternal extends Maintenance {
 		$numResolved = 0;
 		$numTotal = 0;
 		foreach ( array_chunk( $stubIDs, $this->getBatchSize() ) as $stubBatch ) {
-			$res = $dbr->select(
-				'text',
-				[ 'old_id', 'old_flags', 'old_text' ],
-				[ 'old_id' => $stubBatch ],
-				__METHOD__
-			);
+			$res = $dbr->newSelectQueryBuilder()
+				->select( [ 'old_id', 'old_flags', 'old_text' ] )
+				->from( 'text' )
+				->where( [ 'old_id' => $stubBatch ] )
+				->caller( __METHOD__ )->fetchResultSet();
 			foreach ( $res as $row ) {
 				$numResolved += $this->resolveStubs->resolveStub( $row, $this->dryRun ) ? 1 : 0;
 				$numTotal++;

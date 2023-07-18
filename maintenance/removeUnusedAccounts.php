@@ -53,14 +53,11 @@ class RemoveUnusedAccounts extends Maintenance {
 		$delUser = [];
 		$delActor = [];
 		$dbr = $this->getDB( DB_REPLICA );
-		$res = $dbr->select(
-			[ 'user', 'actor' ],
-			[ 'user_id', 'user_name', 'user_touched', 'actor_id' ],
-			'',
-			__METHOD__,
-			[],
-			[ 'actor' => [ 'LEFT JOIN', 'user_id = actor_user' ] ]
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'user_id', 'user_name', 'user_touched', 'actor_id' ] )
+			->from( 'user' )
+			->leftJoin( 'actor', null, 'user_id = actor_user' )
+			->caller( __METHOD__ )->fetchResultSet();
 		if ( $this->hasOption( 'ignore-groups' ) ) {
 			$excludedGroups = explode( ',', $this->getOption( 'ignore-groups' ) );
 		} else {
@@ -98,9 +95,11 @@ class RemoveUnusedAccounts extends Maintenance {
 			$dbw = $this->getDB( DB_PRIMARY );
 			$dbw->delete( 'user', [ 'user_id' => $delUser ], __METHOD__ );
 			# Keep actor rows referenced from ipblocks
-			$keep = $dbw->selectFieldValues(
-				'ipblocks', 'ipb_by_actor', [ 'ipb_by_actor' => $delActor ], __METHOD__
-			);
+			$keep = $dbw->newSelectQueryBuilder()
+				->select( 'ipb_by_actor' )
+				->from( 'ipblocks' )
+				->where( [ 'ipb_by_actor' => $delActor ] )
+				->caller( __METHOD__ )->fetchFieldValues();
 			$del = array_diff( $delActor, $keep );
 			if ( $del ) {
 				$dbw->delete( 'actor', [ 'actor_id' => $del ], __METHOD__ );
@@ -115,7 +114,10 @@ class RemoveUnusedAccounts extends Maintenance {
 			$dbw->delete( 'recentchanges', [ 'rc_actor' => $delActor ], __METHOD__ );
 			$this->output( "done.\n" );
 			# Update the site_stats.ss_users field
-			$users = $dbw->selectField( 'user', 'COUNT(*)', [], __METHOD__ );
+			$users = $dbw->newSelectQueryBuilder()
+				->select( 'COUNT(*)' )
+				->from( 'user' )
+				->caller( __METHOD__ )->fetchField();
 			$dbw->update(
 				'site_stats',
 				[ 'ss_users' => $users ],
@@ -177,15 +179,11 @@ class RemoveUnusedAccounts extends Maintenance {
 			$actorQuery['joins']
 		);
 
-		$count += (int)$dbo->selectField(
-			[ 'logging' ],
-			'COUNT(*)',
-			[
-				'log_actor' => $actor,
-				'log_type != ' . $dbo->addQuotes( 'newusers' )
-			],
-			__METHOD__
-		);
+		$count += (int)$dbo->newSelectQueryBuilder()
+			->select( 'COUNT(*)' )
+			->from( 'logging' )
+			->where( [ 'log_actor' => $actor, 'log_type != ' . $dbo->addQuotes( 'newusers' ) ] )
+			->caller( __METHOD__ )->fetchField();
 
 		$this->commitTransaction( $dbo, __METHOD__ );
 

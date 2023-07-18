@@ -54,10 +54,11 @@ class FixExtLinksProtocolRelative extends LoggedUpdateMaintenance {
 			return false;
 		}
 		$this->output( "Fixing protocol-relative entries in the externallinks table...\n" );
-		$res = $db->select( 'externallinks', [ 'el_from', 'el_to', 'el_index' ],
-			[ 'el_index' . $db->buildLike( '//', $db->anyString() ) ],
-			__METHOD__
-		);
+		$res = $db->newSelectQueryBuilder()
+			->select( [ 'el_from', 'el_to', 'el_index' ] )
+			->from( 'externallinks' )
+			->where( [ 'el_index' . $db->buildLike( '//', $db->anyString() ) ] )
+			->caller( __METHOD__ )->fetchResultSet();
 		$count = 0;
 		foreach ( $res as $row ) {
 			$count++;

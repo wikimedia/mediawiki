@@ -125,15 +125,17 @@ class TableCleanup extends Maintenance {
 
 		$index = (array)$params['index'];
 		$indexConds = [];
-		$options = [
-			'ORDER BY' => implode( ',', $index ),
-			'LIMIT' => $this->getBatchSize()
-		];
 		$callback = [ $this, $params['callback'] ];
 
 		while ( true ) {
 			$conds = array_merge( $params['conds'], $indexConds );
-			$res = $dbr->select( $table, '*', $conds, __METHOD__, $options );
+			$res = $dbr->newSelectQueryBuilder()
+				->select( '*' )
+				->from( $table )
+				->where( $conds )
+				->orderBy( implode( ',', $index ) )
+				->limit( $this->getBatchSize() )
+				->caller( __METHOD__ )->fetchResultSet();
 			if ( !$res->numRows() ) {
 				// Done
 				break;

@@ -70,7 +70,10 @@ class CheckStorage extends Maintenance {
 		} else {
 			print "Checking...\n";
 		}
-		$maxRevId = $dbr->selectField( 'revision', 'MAX(rev_id)', '', __METHOD__ );
+		$maxRevId = $dbr->newSelectQueryBuilder()
+			->select( 'MAX(rev_id)' )
+			->from( 'revision' )
+			->caller( __METHOD__ )->fetchField();
 		$chunkSize = 1000;
 		$flagStats = [];
 		$objectStats = [];
@@ -91,14 +94,12 @@ class CheckStorage extends Maintenance {
 			$dbr->ping();
 
 			// Fetch revision rows
-			$res = $dbr->select(
-				[ 'slots', 'content' ],
-				[ 'slot_revision_id', 'content_address' ],
-				[ "slot_revision_id BETWEEN $chunkStart AND $chunkEnd" ],
-				__METHOD__,
-				[],
-				[ 'content' => [ 'INNER JOIN', [ 'content_id = slot_content_id' ] ] ]
-			);
+			$res = $dbr->newSelectQueryBuilder()
+				->select( [ 'slot_revision_id', 'content_address' ] )
+				->from( 'slots' )
+				->join( 'content', null, 'content_id = slot_content_id' )
+				->where( [ "slot_revision_id BETWEEN $chunkStart AND $chunkEnd" ] )
+				->caller( __METHOD__ )->fetchResultSet();
 			/** @var \MediaWiki\Storage\SqlBlobStore $blobStore */
 			$blobStore = MediaWikiServices::getInstance()->getBlobStore();
 			'@phan-var \MediaWiki\Storage\SqlBlobStore $blobStore';
@@ -121,12 +122,11 @@ class CheckStorage extends Maintenance {
 			$missingTextRows = $this->oldIdMap;
 			$externalRevs = [];
 			$objectRevs = [];
-			$res = $dbr->select(
-				'text',
-				[ 'old_id', 'old_flags' ],
-				[ 'old_id' => array_keys( $this->oldIdMap ) ],
-				__METHOD__
-			);
+			$res = $dbr->newSelectQueryBuilder()
+				->select( [ 'old_id', 'old_flags' ] )
+				->from( 'text' )
+				->where( [ 'old_id' => array_keys( $this->oldIdMap ) ] )
+				->caller( __METHOD__ )->fetchResultSet();
 			foreach ( $res as $row ) {
 				/**
 				 * @var int $flags
@@ -182,12 +182,11 @@ class CheckStorage extends Maintenance {
 			$externalConcatBlobs = [];
 			$externalNormalBlobs = [];
 			if ( count( $externalRevs ) ) {
-				$res = $dbr->select(
-					'text',
-					[ 'old_id', 'old_flags', 'old_text' ],
-					[ 'old_id' => $externalRevs ],
-					__METHOD__
-				);
+				$res = $dbr->newSelectQueryBuilder()
+					->select( [ 'old_id', 'old_flags', 'old_text' ] )
+					->from( 'text' )
+					->where( [ 'old_id' => $externalRevs ] )
+					->caller( __METHOD__ )->fetchResultSet();
 				foreach ( $res as $row ) {
 					$urlParts = explode( '://', $row->old_text, 2 );
 					if ( count( $urlParts ) !== 2 || $urlParts[1] == '' ) {
@@ -250,12 +249,11 @@ class CheckStorage extends Maintenance {
 			$curIds = [];
 			if ( count( $objectRevs ) ) {
 				$headerLength = 300;
-				$res = $dbr->select(
-					'text',
-					[ 'old_id', 'old_flags', "LEFT(old_text, $headerLength) AS header" ],
-					[ 'old_id' => $objectRevs ],
-					__METHOD__
-				);
+				$res = $dbr->newSelectQueryBuilder()
+					->select( [ 'old_id', 'old_flags', "LEFT(old_text, $headerLength) AS header" ] )
+					->from( 'text' )
+					->where( [ 'old_id' => $objectRevs ] )
+					->caller( __METHOD__ )->fetchResultSet();
 				foreach ( $res as $row ) {
 					$oldId = $row->old_id;
 					$matches = [];
@@ -308,12 +306,11 @@ class CheckStorage extends Maintenance {
 			$externalConcatBlobs = [];
 			if ( count( $concatBlobs ) ) {
 				$headerLength = 300;
-				$res = $dbr->select(
-					'text',
-					[ 'old_id', 'old_flags', "LEFT(old_text, $headerLength) AS header" ],
-					[ 'old_id' => array_keys( $concatBlobs ) ],
-					__METHOD__
-				);
+				$res = $dbr->newSelectQueryBuilder()
+					->select( [ 'old_id', 'old_flags', "LEFT(old_text, $headerLength) AS header" ] )
+					->from( 'text' )
+					->where( [ 'old_id' => array_keys( $concatBlobs ) ] )
+					->caller( __METHOD__ )->fetchResultSet();
 				foreach ( $res as $row ) {
 					$flags = explode( ',', $row->old_flags );
 					if ( in_array( 'external', $flags ) ) {
@@ -551,14 +548,12 @@ class CheckStorage extends Maintenance {
 
 		// Find text row again
 		$dbr = wfGetDB( DB_REPLICA );
-		$res = $dbr->selectRow(
-			[ 'slots', 'content' ],
-			[ 'content_address' ],
-			[ 'slot_revision_id' => $id ],
-			__METHOD__,
-			[],
-			[ 'content' => [ 'INNER JOIN', [ 'content_id = slot_content_id' ] ] ]
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'content_address' ] )
+			->from( 'slots' )
+			->join( 'content', null, 'content_id = slot_content_id' )
+			->where( [ 'slot_revision_id' => $id ] )
+			->caller( __METHOD__ )->fetchRow();
 
 		$blobStore = MediaWikiServices::getInstance()
 			->getBlobStoreFactory()

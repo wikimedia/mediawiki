@@ -144,13 +144,14 @@ class CompressOld extends Maintenance {
 		$this->output( "Starting from old_id $start...\n" );
 		$dbw = $this->getDB( DB_PRIMARY );
 		do {
-			$res = $dbw->select(
-				'text',
-				[ 'old_id', 'old_flags', 'old_text' ],
-				"old_id>=$start",
-				__METHOD__,
-				[ 'ORDER BY' => 'old_id', 'LIMIT' => $chunksize, 'FOR UPDATE' ]
-			);
+			$res = $dbw->newSelectQueryBuilder()
+				->select( [ 'old_id', 'old_flags', 'old_text' ] )
+				->forUpdate()
+				->from( 'text' )
+				->where( "old_id>=$start" )
+				->orderBy( 'old_id' )
+				->limit( $chunksize )
+				->caller( __METHOD__ )->fetchResultSet();
 
 			if ( $res->numRows() == 0 ) {
 				break;
@@ -244,7 +245,10 @@ class CompressOld extends Maintenance {
 
 		# Get all articles by page_id
 		if ( !$maxPageId ) {
-			$maxPageId = $dbr->selectField( 'page', 'max(page_id)', '', __METHOD__ );
+			$maxPageId = $dbr->newSelectQueryBuilder()
+				->select( 'max(page_id)' )
+				->from( 'page' )
+				->caller( __METHOD__ )->fetchField();
 		}
 		$this->output( "Starting from $startId of $maxPageId\n" );
 		$pageConds = [];
@@ -313,9 +317,12 @@ class CompressOld extends Maintenance {
 			$dbr->ping();
 
 			# Get the page row
-			$pageRes = $dbr->select( 'page',
-				[ 'page_id', 'page_namespace', 'page_title', 'page_latest' ],
-				$pageConds + [ 'page_id' => $pageId ], __METHOD__ );
+			$pageRes = $dbr->newSelectQueryBuilder()
+				->select( [ 'page_id', 'page_namespace', 'page_title', 'page_latest' ] )
+				->from( 'page' )
+				->where( $pageConds )
+				->andWhere( [ 'page_id' => $pageId ] )
+				->caller( __METHOD__ )->fetchResultSet();
 			if ( $pageRes->numRows() == 0 ) {
 				continue;
 			}

@@ -28,17 +28,16 @@ class RemoveInvalidEmails extends Maintenance {
 		$dbw = $this->getDB( DB_PRIMARY );
 		$lastId = 0;
 		do {
-			$rows = $dbr->select(
-				'user',
-				[ 'user_id', 'user_email' ],
-				[
+			$rows = $dbr->newSelectQueryBuilder()
+				->select( [ 'user_id', 'user_email' ] )
+				->from( 'user' )
+				->where( [
 					'user_id > ' . $dbr->addQuotes( $lastId ),
 					'user_email != ' . $dbr->addQuotes( '' ),
 					'user_email_authenticated IS NULL'
-				],
-				__METHOD__,
-				[ 'LIMIT' => $this->getBatchSize() ]
-			);
+				] )
+				->limit( $this->getBatchSize() )
+				->caller( __METHOD__ )->fetchResultSet();
 			$count = $rows->numRows();
 			$badIds = [];
 			foreach ( $rows as $row ) {

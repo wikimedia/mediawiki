@@ -91,8 +91,14 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 		$dbr = $this->getDB( DB_REPLICA );
 		$dbw = $this->getDB( DB_PRIMARY );
 		$batchSize = $this->getBatchSize();
-		$start = $dbw->selectField( $table, "MIN($idCol)", '', __METHOD__ );
-		$end = $dbw->selectField( $table, "MAX($idCol)", '', __METHOD__ );
+		$start = $dbw->newSelectQueryBuilder()
+			->select( "MIN($idCol)" )
+			->from( $table )
+			->caller( __METHOD__ )->fetchField();
+		$end = $dbw->newSelectQueryBuilder()
+			->select( "MAX($idCol)" )
+			->from( $table )
+			->caller( __METHOD__ )->fetchField();
 		if ( !$start || !$end ) {
 			$this->output( "...$table table seems to be empty.\n" );
 

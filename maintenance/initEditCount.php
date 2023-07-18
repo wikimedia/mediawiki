@@ -59,7 +59,10 @@ class InitEditCount extends Maintenance {
 
 			$dbr = $this->getDB( DB_REPLICA );
 			$chunkSize = 100;
-			$lastUser = $dbr->selectField( 'user', 'MAX(user_id)', '', __METHOD__ );
+			$lastUser = $dbr->newSelectQueryBuilder()
+				->select( 'MAX(user_id)' )
+				->from( 'user' )
+				->caller( __METHOD__ )->fetchField();
 
 			$start = microtime( true );
 			$migrated = 0;

@@ -94,12 +94,11 @@ class FixMergeHistoryCorruption extends Maintenance {
 
 			// Check if there are any revisions that have this $row->page_id as their
 			// rev_page and select the largest which should be the newest revision.
-			$revId = $dbr->selectField(
-				'revision',
-				'MAX(rev_id)',
-				[ 'rev_page' => $row->page_id ],
-				__METHOD__
-			);
+			$revId = $dbr->newSelectQueryBuilder()
+				->select( 'MAX(rev_id)' )
+				->from( 'revision' )
+				->where( [ 'rev_page' => $row->page_id ] )
+				->caller( __METHOD__ )->fetchField();
 
 			if ( !$revId ) {
 				if ( $dryRun ) {

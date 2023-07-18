@@ -46,6 +46,7 @@ class FindMissingFiles extends Maintenance {
 
 		$joinTables = [];
 		$joinConds = [];
+
 		if ( $mtime1 || $mtime2 ) {
 			$joinTables[] = 'page';
 			$joinConds['page'] = [ 'JOIN',
@@ -89,11 +90,11 @@ class FindMissingFiles extends Maintenance {
 
 			// Find all missing old versions of any of the files in this batch...
 			if ( count( $pathsByName ) ) {
-				$ores = $dbr->select( 'oldimage',
-					[ 'oi_name', 'oi_archive_name' ],
-					[ 'oi_name' => array_map( 'strval', array_keys( $pathsByName ) ) ],
-					__METHOD__
-				);
+				$ores = $dbr->newSelectQueryBuilder()
+					->select( [ 'oi_name', 'oi_archive_name' ] )
+					->from( 'oldimage' )
+					->where( [ 'oi_name' => array_map( 'strval', array_keys( $pathsByName ) ) ] )
+					->caller( __METHOD__ )->fetchResultSet();
 
 				$checkPaths = [];
 				foreach ( $ores as $row ) {

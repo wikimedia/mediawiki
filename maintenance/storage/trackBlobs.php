@@ -73,11 +73,13 @@ class TrackBlobs extends Maintenance {
 
 		// Scan for HistoryBlobStub objects in the text table (T22757)
 
-		$exists = (bool)$dbr->selectField( 'text', '1',
-			'old_flags LIKE \'%object%\' AND old_flags NOT LIKE \'%external%\' ' .
-			'AND LOWER(CONVERT(LEFT(old_text,22) USING latin1)) = \'o:15:"historyblobstub"\'',
-			__METHOD__
-		);
+		$exists = (bool)$dbr->newSelectQueryBuilder()
+			->select( '1' )
+			->from( 'text' )
+			->where(
+				'old_flags LIKE \'%object%\' AND old_flags NOT LIKE \'%external%\' ' .
+				'AND LOWER(CONVERT(LEFT(old_text,22) USING latin1)) = \'o:15:"historyblobstub"\'' )
+			->caller( __METHOD__ )->fetchField();
 
 		if ( $exists ) {
 			echo "Integrity check failed: found HistoryBlobStub objects in your text table.\n" .
@@ -134,7 +136,10 @@ class TrackBlobs extends Maintenance {
 
 		$textClause = $this->getTextClause();
 		$startId = 0;
-		$endId = (int)$dbr->selectField( 'revision', 'MAX(rev_id)', '', __METHOD__ );
+		$endId = (int)$dbr->newSelectQueryBuilder()
+			->select( 'MAX(rev_id)' )
+			->from( 'revision' )
+			->caller( __METHOD__ )->fetchField();
 		$batchesDone = 0;
 		$rowsInserted = 0;
 
@@ -224,7 +229,10 @@ class TrackBlobs extends Maintenance {
 
 		$textClause = $this->getTextClause();
 		$startId = 0;
-		$endId = (int)$dbr->selectField( 'text', 'MAX(old_id)', '', __METHOD__ );
+		$endId = (int)$dbr->newSelectQueryBuilder()
+			->select( 'MAX(old_id)' )
+			->from( 'text' )
+			->caller( __METHOD__ )->fetchField();
 		$rowsInserted = 0;
 		$batchesDone = 0;
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
@@ -233,21 +241,19 @@ class TrackBlobs extends Maintenance {
 
 		# Scan the text table for orphan text
 		while ( true ) {
-			$res = $dbr->select( [ 'text', 'blob_tracking' ],
-				[ 'old_id', 'old_flags', 'old_text' ],
-				[
+			$res = $dbr->newSelectQueryBuilder()
+				->select( [ 'old_id', 'old_flags', 'old_text' ] )
+				->from( 'text' )
+				->leftJoin( 'blob_tracking', null, 'bt_text_id=old_id' )
+				->where( [
 					'old_id>' . $dbr->addQuotes( $startId ),
 					$textClause,
 					'old_flags ' . $dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() ),
 					'bt_text_id IS NULL'
-				],
-				__METHOD__,
-				[
-					'ORDER BY' => 'old_id',
-					'LIMIT' => $this->batchSize
-				],
-				[ 'blob_tracking' => [ 'LEFT JOIN', 'bt_text_id=old_id' ] ]
-			);
+				] )
+				->orderBy( 'old_id' )
+				->limit( $this->batchSize )
+				->caller( __METHOD__ )->fetchResultSet();
 
 			if ( !$res->numRows() ) {
 				break;

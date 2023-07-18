@@ -104,11 +104,10 @@ The new option is NOT validated.' );
 
 		// We list user by user_id from one of the replica DBs
 		$dbr = wfGetDB( DB_REPLICA );
-		$result = $dbr->select( 'user',
-			[ 'user_id' ],
-			[],
-			__METHOD__
-		);
+		$result = $dbr->newSelectQueryBuilder()
+			->select( [ 'user_id' ] )
+			->from( 'user' )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		foreach ( $result as $id ) {
 			$user = User::newFromId( $id->user_id );
@@ -235,23 +234,18 @@ WARN
 		$rowsInThisBatch = -1;
 		$minUserId = $fromUserId;
 		while ( $rowsInThisBatch != 0 ) {
-			$conds = [
-				'up_property' => $option,
-				"up_user > $minUserId"
-			];
+			$queryBuilder = $dbr->newSelectQueryBuilder()
+				->select( 'up_user' )
+				->from( 'user_properties' )
+				->where( [ 'up_property' => $option, "up_user > $minUserId" ] );
 			if ( $toUserId ) {
-				$conds[] = "up_user < $toUserId";
+				$queryBuilder->andWhere( "up_user < $toUserId" );
 			}
 			if ( $old ) {
-				$conds['up_value'] = $old;
+				$queryBuilder->andWhere( [ 'up_value' => $old ] );
 			}
 
-			$userIds = $dbr->selectFieldValues(
-				'user_properties',
-				'up_user',
-				$conds,
-				__METHOD__
-			);
+			$userIds = $queryBuilder->caller( __METHOD__ )->fetchFieldValues();
 			if ( $userIds === [] ) {
 				// no rows left
 				break;

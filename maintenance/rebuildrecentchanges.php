@@ -103,15 +103,12 @@ class RebuildRecentchanges extends Maintenance {
 		}
 
 		$this->output( "Clearing recentchanges table for time range...\n" );
-		$rcids = $dbw->selectFieldValues(
-			'recentchanges',
-			'rc_id',
-			[
-				'rc_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ),
-				'rc_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) )
-			],
-			__METHOD__
-		);
+		$rcids = $dbw->newSelectQueryBuilder()
+			->select( 'rc_id' )
+			->from( 'recentchanges' )
+			->where( [ 'rc_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ) ] )
+			->andWhere( [ 'rc_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) ) ] )
+			->caller( __METHOD__ )->fetchFieldValues();
 		foreach ( array_chunk( $rcids, $this->getBatchSize() ) as $rcidBatch ) {
 			$dbw->delete( 'recentchanges', [ 'rc_id' => $rcidBatch ], __METHOD__ );
 			$this->waitForReplication();
@@ -192,16 +189,13 @@ class RebuildRecentchanges extends Maintenance {
 		$this->output( "Updating links and size differences...\n" );
 
 		# Fill in the rc_last_oldid field, which points to the previous edit
-		$res = $dbw->select(
-			'recentchanges',
-			[ 'rc_cur_id', 'rc_this_oldid', 'rc_timestamp' ],
-			[
-				"rc_timestamp > " . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ),
-				"rc_timestamp < " . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) )
-			],
-			__METHOD__,
-			[ 'ORDER BY' => [ 'rc_cur_id', 'rc_timestamp' ] ]
-		);
+		$res = $dbw->newSelectQueryBuilder()
+			->select( [ 'rc_cur_id', 'rc_this_oldid', 'rc_timestamp' ] )
+			->from( 'recentchanges' )
+			->where( [ "rc_timestamp > " . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ) ] )
+			->andWhere( [ "rc_timestamp < " . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) ) ] )
+			->orderBy( [ 'rc_cur_id', 'rc_timestamp' ] )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		$lastCurId = 0;
 		$lastOldId = 0;
@@ -215,13 +209,12 @@ class RebuildRecentchanges extends Maintenance {
 				$lastCurId = intval( $row->rc_cur_id );
 				$emit = $row->rc_timestamp;
 
-				$revRow = $dbw->selectRow(
-					'revision',
-					[ 'rev_id', 'rev_len' ],
-					[ 'rev_page' => $lastCurId, "rev_timestamp < " . $dbw->addQuotes( $emit ) ],
-					__METHOD__,
-					[ 'ORDER BY' => 'rev_timestamp DESC' ]
-				);
+				$revRow = $dbw->newSelectQueryBuilder()
+					->select( [ 'rev_id', 'rev_len' ] )
+					->from( 'revision' )
+					->where( [ 'rev_page' => $lastCurId, "rev_timestamp < " . $dbw->addQuotes( $emit ) ] )
+					->orderBy( 'rev_timestamp DESC' )
+					->caller( __METHOD__ )->fetchRow();
 				if ( $revRow ) {
 					$lastOldId = intval( $revRow->rev_id );
 					# Grab the last text size if available
@@ -238,12 +231,11 @@ class RebuildRecentchanges extends Maintenance {
 				$this->output( "Uhhh, something wrong? No curid\n" );
 			} else {
 				# Grab the entry's text size
-				$size = (int)$dbw->selectField(
-					'revision',
-					'rev_len',
-					[ 'rev_id' => $row->rc_this_oldid ],
-					__METHOD__
-				);
+				$size = (int)$dbw->newSelectQueryBuilder()
+					->select( 'rev_len' )
+					->from( 'revision' )
+					->where( [ 'rev_id' => $row->rc_this_oldid ] )
+					->caller( __METHOD__ )->fetchField();
 
 				$dbw->update(
 					'recentchanges',
@@ -371,21 +363,19 @@ class RebuildRecentchanges extends Maintenance {
 		if ( !count( $groups ) ) {
 			return [];
 		}
-		return $db->selectFieldValues(
-			[ 'recentchanges', 'actor', 'user_groups' ],
-			'rc_id',
-			$conds + [
+		return $db->newSelectQueryBuilder()
+			->select( 'rc_id' )
+			->distinct()
+			->from( 'recentchanges' )
+			->join( 'actor', null, 'actor_id=rc_actor' )
+			->join( 'user_groups', null, 'ug_user=actor_user' )
+			->where( $conds )
+			->andWhere( [
 				"rc_timestamp > " . $db->addQuotes( $db->timestamp( $this->cutoffFrom ) ),
 				"rc_timestamp < " . $db->addQuotes( $db->timestamp( $this->cutoffTo ) ),
 				'ug_group' => $groups
-			],
-			__METHOD__,
-			[ 'DISTINCT' ],
-			[
-				'actor' => [ 'JOIN', 'actor_id=rc_actor' ],
-				'user_groups' => [ 'JOIN', 'ug_user=actor_user' ]
-			]
-		);
+			] )
+			->caller( __METHOD__ )->fetchFieldValues();
 	}
 
 	/**
@@ -461,18 +451,17 @@ class RebuildRecentchanges extends Maintenance {
 
 		$this->output( "Removing duplicate revision and logging entries...\n" );
 
-		$res = $dbw->select(
-			[ 'logging', 'log_search' ],
-			[ 'ls_value', 'ls_log_id' ],
-			[
-				'ls_log_id = log_id',
+		$res = $dbw->newSelectQueryBuilder()
+			->select( [ 'ls_value', 'ls_log_id' ] )
+			->from( 'logging' )
+			->join( 'log_search', null, 'ls_log_id = log_id' )
+			->where( [
 				'ls_field' => 'associated_rev_id',
 				'log_type != ' . $dbw->addQuotes( 'create' ),
 				'log_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ),
 				'log_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) ),
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		$updates = 0;
 		foreach ( $res as $row ) {

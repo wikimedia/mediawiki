@@ -144,18 +144,17 @@ class PurgeChangedFiles extends Maintenance {
 		foreach ( self::$typeMappings[$type] as $logType => $logActions ) {
 			$this->verbose( "Scanning for {$logType}/" . implode( ',', $logActions ) . "\n" );
 
-			$res = $dbr->select(
-				'logging',
-				[ 'log_title', 'log_timestamp', 'log_params' ],
-				[
+			$res = $dbr->newSelectQueryBuilder()
+				->select( [ 'log_title', 'log_timestamp', 'log_params' ] )
+				->from( 'logging' )
+				->where( [
 					'log_namespace' => NS_FILE,
 					'log_type' => $logType,
 					'log_action' => $logActions,
-					'log_timestamp >= ' . $dbr->addQuotes( $this->startTimestamp ),
-					'log_timestamp <= ' . $dbr->addQuotes( $this->endTimestamp ),
-				],
-				__METHOD__
-			);
+					$dbr->buildComparison( '>=', [ 'log_timestamp' => $this->startTimestamp ] ),
+					$dbr->buildComparison( '<=', [ 'log_timestamp' => $this->endTimestamp ] ),
+				] )
+				->caller( __METHOD__ )->fetchResultSet();
 
 			$bSize = 0;
 			foreach ( $res as $row ) {
@@ -213,12 +212,11 @@ class PurgeChangedFiles extends Maintenance {
 
 	protected function purgeFromArchiveTable( LocalRepo $repo, LocalFile $file ) {
 		$dbr = $repo->getReplicaDB();
-		$res = $dbr->select(
-			'filearchive',
-			[ 'fa_archive_name' ],
-			[ 'fa_name' => $file->getName() ],
-			__METHOD__
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'fa_archive_name' ] )
+			->from( 'filearchive' )
+			->where( [ 'fa_name' => $file->getName() ] )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		foreach ( $res as $row ) {
 			if ( $row->fa_archive_name === null ) {

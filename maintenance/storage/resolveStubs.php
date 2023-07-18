@@ -46,7 +46,10 @@ class ResolveStubs extends Maintenance {
 	public function execute() {
 		$dbw = $this->getDB( DB_PRIMARY );
 		$dbr = $this->getDB( DB_REPLICA );
-		$maxID = $dbr->selectField( 'text', 'MAX(old_id)', '', __METHOD__ );
+		$maxID = $dbr->newSelectQueryBuilder()
+			->select( 'MAX(old_id)' )
+			->from( 'text' )
+			->caller( __METHOD__ )->fetchField();
 		$blockSize = $this->getBatchSize();
 		$dryRun = $this->getOption( 'dry-run' );
 		$this->setUndoLog( new UndoLog( $this->getOption( 'undo' ), $dbw ) );
@@ -114,12 +117,11 @@ class ResolveStubs extends Maintenance {
 		}
 
 		# Get the main text row
-		$mainTextRow = $dbr->selectRow(
-			'text',
-			[ 'old_text', 'old_flags' ],
-			[ 'old_id' => $mainId ],
-			__METHOD__
-		);
+		$mainTextRow = $dbr->newSelectQueryBuilder()
+			->select( [ 'old_text', 'old_flags' ] )
+			->from( 'text' )
+			->where( [ 'old_id' => $mainId ] )
+			->caller( __METHOD__ )->fetchRow();
 
 		if ( !$mainTextRow ) {
 			print "Error at old_id $id: can't find main text row old_id $mainId\n";

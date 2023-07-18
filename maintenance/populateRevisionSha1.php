@@ -84,8 +84,14 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 	protected function doSha1Updates( $revStore, $table, $idCol, $queryInfo, $prefix ) {
 		$db = $this->getDB( DB_PRIMARY );
 		$batchSize = $this->getBatchSize();
-		$start = $db->selectField( $table, "MIN($idCol)", '', __METHOD__ );
-		$end = $db->selectField( $table, "MAX($idCol)", '', __METHOD__ );
+		$start = $db->newSelectQueryBuilder()
+			->select( "MIN($idCol)" )
+			->from( $table )
+			->caller( __METHOD__ )->fetchField();
+		$end = $db->newSelectQueryBuilder()
+			->select( "MAX($idCol)" )
+			->from( $table )
+			->caller( __METHOD__ )->fetchField();
 		if ( !$start || !$end ) {
 			$this->output( "...$table table seems to be empty.\n" );
 

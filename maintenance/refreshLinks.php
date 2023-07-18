@@ -139,14 +139,12 @@ class RefreshLinks extends Maintenance {
 				self::intervalCond( $dbr, 'page_id', $start, $end ),
 			] + $this->namespaceCond();
 
-			$res = $dbr->select(
-				[ 'page', 'redirect' ],
-				'page_id',
-				$conds,
-				__METHOD__,
-				[],
-				[ 'redirect' => [ "LEFT JOIN", "page_id=rd_from" ] ]
-			);
+			$res = $dbr->newSelectQueryBuilder()
+				->select( 'page_id' )
+				->from( 'page' )
+				->leftJoin( 'redirect', null, "page_id=rd_from" )
+				->where( $conds )
+				->caller( __METHOD__ )->fetchResultSet();
 			$num = $res->numRows();
 			$this->output( "Refreshing $num old redirects from $start...\n" );
 
@@ -161,14 +159,12 @@ class RefreshLinks extends Maintenance {
 			}
 		} elseif ( $newOnly ) {
 			$this->output( "Refreshing $what from " );
-			$res = $dbr->select( 'page',
-				[ 'page_id' ],
-				[
-					'page_is_new' => 1,
-					self::intervalCond( $dbr, 'page_id', $start, $end ),
-				] + $this->namespaceCond(),
-				__METHOD__
-			);
+			$res = $dbr->newSelectQueryBuilder()
+				->select( [ 'page_id' ] )
+				->from( 'page' )
+				->where( [ 'page_is_new' => 1, self::intervalCond( $dbr, 'page_id', $start, $end ) ] )
+				->andWhere( $this->namespaceCond() )
+				->caller( __METHOD__ )->fetchResultSet();
 			$num = $res->numRows();
 			$this->output( "$num new articles...\n" );
 
@@ -186,8 +182,14 @@ class RefreshLinks extends Maintenance {
 			}
 		} else {
 			if ( !$end ) {
-				$maxPage = $dbr->selectField( 'page', 'max(page_id)', '', __METHOD__ );
-				$maxRD = $dbr->selectField( 'redirect', 'max(rd_from)', '', __METHOD__ );
+				$maxPage = $dbr->newSelectQueryBuilder()
+					->select( 'max(page_id)' )
+					->from( 'page' )
+					->caller( __METHOD__ )->fetchField();
+				$maxRD = $dbr->newSelectQueryBuilder()
+					->select( 'max(rd_from)' )
+					->from( 'redirect' )
+					->caller( __METHOD__ )->fetchField();
 				$end = max( $maxPage, $maxRD );
 			}
 			$this->output( "Refreshing redirects table.\n" );
@@ -325,14 +327,14 @@ class RefreshLinks extends Maintenance {
 		do {
 			// Find the start of the next chunk. This is based only
 			// on existent page_ids.
-			$nextStart = $dbr->selectField(
-				'page',
-				'page_id',
-				[ self::intervalCond( $dbr, 'page_id', $start, $end ) ]
-				+ $this->namespaceCond(),
-				__METHOD__,
-				[ 'ORDER BY' => 'page_id', 'OFFSET' => $chunkSize ]
-			);
+			$nextStart = $dbr->newSelectQueryBuilder()
+				->select( 'page_id' )
+				->from( 'page' )
+				->where( [ self::intervalCond( $dbr, 'page_id', $start, $end ) ] )
+				->andWhere( $this->namespaceCond() )
+				->orderBy( 'page_id' )
+				->offset( $chunkSize )
+				->caller( __METHOD__ )->fetchField();
 
 			if ( $nextStart !== false ) {
 				// To find the end of the current chunk, subtract one.
@@ -461,7 +463,6 @@ class RefreshLinks extends Maintenance {
 
 		$dbr = $this->getDB( DB_REPLICA );
 		$conds = [
-			'page_id=cl_from',
 			'cl_to' => $category->getDBkey(),
 		] + $this->namespaceCond();
 
@@ -474,15 +475,14 @@ class RefreshLinks extends Maintenance {
 				'cl_timestamp' => $timestamp,
 				'cl_from' => $lastId,
 			] );
-			$res = $dbr->select( [ 'page', 'categorylinks' ],
-				[ 'page_id', 'cl_timestamp' ],
-				$finalConds,
-				__METHOD__,
-				[
-					'ORDER BY' => [ 'cl_timestamp', 'cl_from' ],
-					'LIMIT' => $this->getBatchSize(),
-				]
-			);
+			$res = $dbr->newSelectQueryBuilder()
+				->select( [ 'page_id', 'cl_timestamp' ] )
+				->from( 'page' )
+				->join( 'categorylinks', null, 'page_id=cl_from' )
+				->where( $finalConds )
+				->orderBy( [ 'cl_timestamp', 'cl_from' ] )
+				->limit( $this->getBatchSize() )
+				->caller( __METHOD__ )->fetchResultSet();
 
 			if ( $this->hasOption( 'verbose' ) ) {
 				$this->output( "Refreshing links for {$res->numRows()} pages\n" );

@@ -609,37 +609,25 @@ SPARQL;
 				$parentCats[$row->rc_title] = true;
 			}
 
-			$joinConditions = [
-				'page_props' => [
-					'LEFT JOIN',
-					[ 'pp_propname' => 'hiddencat', 'pp_page = page_id' ],
-				],
-				'category' => [
-					'LEFT JOIN',
-					[ 'cat_title = page_title' ],
-				],
-			];
-
 			$pages = [];
 			$deleteUrls = [];
 
 			if ( $childPages ) {
 				// Load child rows by ID
-				$childRows = $dbr->select(
-					[ 'page', 'page_props', 'category' ],
-					[
+				$childRows = $dbr->newSelectQueryBuilder()
+					->select( [
 						'page_id',
 						'rc_title' => 'page_title',
 						'pp_propname',
 						'cat_pages',
 						'cat_subcats',
 						'cat_files',
-					],
-					[ 'page_namespace' => NS_CATEGORY, 'page_id' => array_keys( $childPages ) ],
-					__METHOD__,
-					[],
-					$joinConditions
-				);
+					] )
+					->from( 'page' )
+					->leftJoin( 'page_props', null, [ 'pp_propname' => 'hiddencat', 'pp_page = page_id' ] )
+					->leftJoin( 'category', null, [ 'cat_title = page_title' ] )
+					->where( [ 'page_namespace' => NS_CATEGORY, 'page_id' => array_keys( $childPages ) ] )
+					->caller( __METHOD__ )->fetchResultSet();
 				foreach ( $childRows as $row ) {
 					if ( isset( $this->processed[$row->page_id] ) ) {
 						// We already captured this one before
@@ -656,32 +644,20 @@ SPARQL;
 
 			if ( $parentCats ) {
 				// Load parent rows by title
-				$joinConditions = [
-					'page' => [
-						'LEFT JOIN',
-						[ 'page_title = cat_title', 'page_namespace' => NS_CATEGORY ],
-					],
-					'page_props' => [
-						'LEFT JOIN',
-						[ 'pp_propname' => 'hiddencat', 'pp_page = page_id' ],
-					],
-				];
-
-				$parentRows = $dbr->select(
-					[ 'category', 'page', 'page_props' ],
-					[
+				$parentRows = $dbr->newSelectQueryBuilder()
+					->select( [
 						'page_id',
 						'rc_title' => 'cat_title',
 						'pp_propname',
 						'cat_pages',
 						'cat_subcats',
 						'cat_files',
-					],
-					[ 'cat_title' => array_map( 'strval', array_keys( $parentCats ) ) ],
-					__METHOD__,
-					[],
-					$joinConditions
-				);
+					] )
+					->from( 'category' )
+					->leftJoin( 'page', null, [ 'page_title = cat_title', 'page_namespace' => NS_CATEGORY ] )
+					->leftJoin( 'page_props', null, [ 'pp_propname' => 'hiddencat', 'pp_page = page_id' ] )
+					->where( [ 'cat_title' => array_map( 'strval', array_keys( $parentCats ) ) ] )
+					->caller( __METHOD__ )->fetchResultSet();
 				foreach ( $parentRows as $row ) {
 					if ( $row->page_id && isset( $this->processed[$row->page_id] ) ) {
 						// We already captured this one before
