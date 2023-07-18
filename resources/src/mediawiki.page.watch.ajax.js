@@ -20,7 +20,9 @@
 	// The name of the page to watch or unwatch
 	var pageTitle = mw.config.get( 'wgRelevantPageName' ),
 		isWatchlistExpiryEnabled = require( './config.json' ).WatchlistExpiry,
-		watchstarsByTitle = {};
+		// Use Object.create( null ) instead of {} to get an Object without predefined properties.
+		// This avoids problems if the title is 'hasOwnPropery' or similar. Bug: T342137
+		watchstarsByTitle = Object.create( null );
 
 	/**
 	 * Update the link text, link href attribute and (if applicable)
