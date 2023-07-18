@@ -1567,8 +1567,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function update( $table, $set, $conds, $fname = __METHOD__, $options = [] ) {
-		$sql = $this->platform->updateSqlText( $table, $set, $conds, $options );
-		$query = new Query( $sql, self::QUERY_CHANGE_ROWS, 'UPDATE', $table );
+		$query = $this->platform->updateSqlText( $table, $set, $conds, $options );
 		$this->query( $query, $fname );
 
 		return true;

@@ -1520,7 +1520,7 @@ class SQLPlatform implements ISQLPlatform {
 		$condsSql = '';
 		$cleanCondsSql = '';
 		if ( $conds !== self::ALL_ROWS && $conds !== [ self::ALL_ROWS ] ) {
-			$cleanCondsSql = ' WHERE ' . $this->scrubConditions( $conds );
+			$cleanCondsSql = ' WHERE ' . $this->scrubArray( $conds );
 			if ( is_array( $conds ) ) {
 				$conds = $this->makeList( $conds, self::LIST_AND );
 			}
@@ -1535,31 +1535,39 @@ class SQLPlatform implements ISQLPlatform {
 		);
 	}
 
-	private function scrubConditions( $conds ) {
-		if ( is_array( $conds ) ) {
-			$newConds = [];
-			foreach ( $conds as $key => $value ) {
-				$newConds[$key] = '?';
+	private function scrubArray( $array, $listType = self::LIST_AND ) {
+		if ( is_array( $array ) ) {
+			$scrubbedArray = [];
+			foreach ( $array as $key => $value ) {
+				$scrubbedArray[$key] = '?';
 			}
-			return $this->makeList( $newConds, self::LIST_AND );
+			return $this->makeList( $scrubbedArray, $listType );
 		}
 		return '?';
 	}
 
 	public function updateSqlText( $table, $set, $conds, $options ) {
 		$this->assertConditionIsNotEmpty( $conds, __METHOD__, true );
-		$table = $this->tableName( $table );
+		$encTable = $this->tableName( $table );
 		$opts = $this->makeUpdateOptions( $options );
-		$sql = "UPDATE $opts $table SET " . $this->makeList( $set, self::LIST_SET );
+		$sql = "UPDATE $opts $encTable";
+		$condsSql = " SET " . $this->makeList( $set, self::LIST_SET );
+		$cleanCondsSql = " SET " . $this->scrubArray( $set, self::LIST_SET );
 
 		if ( $conds && $conds !== self::ALL_ROWS && $conds !== [ self::ALL_ROWS ] ) {
+			$cleanCondsSql .= ' WHERE ' . $this->scrubArray( $conds );
 			if ( is_array( $conds ) ) {
 				$conds = $this->makeList( $conds, self::LIST_AND );
 			}
-			$sql .= ' WHERE ' . $conds;
+			$condsSql .= ' WHERE ' . $conds;
 		}
-
-		return $sql;
+		return new Query(
+			$sql . $condsSql,
+			self::QUERY_CHANGE_ROWS,
+			'UPDATE',
+			$table,
+			$sql . $cleanCondsSql
+		);
 	}
 
 	/**
