@@ -42,7 +42,11 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 2, $this->db->affectedRows() );
 		$this->assertSame(
 			[ '1', '2', '3', '5' ],
-			$this->db->selectFieldValues( 'foo', 'i', [], __METHOD__, [ 'ORDER BY' => 'i' ] )
+			$this->db->newSelectQueryBuilder()
+				->select( 'i' )
+				->from( 'foo' )
+				->orderBy( 'i' )
+				->caller( __METHOD__ )->fetchFieldValues()
 		);
 		$this->db->rollback( __METHOD__ );
 
@@ -61,7 +65,11 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 		}
 		$this->assertSame(
 			[ '1', '2' ],
-			$this->db->selectFieldValues( 'foo', 'i', [], __METHOD__, [ 'ORDER BY' => 'i' ] )
+			$this->db->newSelectQueryBuilder()
+				->select( 'i' )
+				->from( 'foo' )
+				->orderBy( 'i' )
+				->caller( __METHOD__ )->fetchFieldValues()
 		);
 		$this->db->rollback( __METHOD__ );
 	}
@@ -127,7 +135,11 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 2, $this->db->affectedRows() );
 		$this->assertSame(
 			[ '1', '2', '3', '5' ],
-			$this->db->selectFieldValues( 'bar', 'i', [], __METHOD__, [ 'ORDER BY' => 'i' ] )
+			$this->db->newSelectQueryBuilder()
+				->select( 'i' )
+				->from( 'bar' )
+				->orderBy( 'i' )
+				->caller( __METHOD__ )->fetchFieldValues()
 		);
 		$this->db->rollback( __METHOD__ );
 
@@ -145,7 +157,11 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 		}
 		$this->assertSame(
 			[ '1', '2' ],
-			$this->db->selectFieldValues( 'bar', 'i', [], __METHOD__, [ 'ORDER BY' => 'i' ] )
+			$this->db->newSelectQueryBuilder()
+				->select( 'i' )
+				->from( 'bar' )
+				->orderBy( 'i' )
+				->caller( __METHOD__ )->fetchFieldValues()
 		);
 		$this->db->rollback( __METHOD__ );
 	}
@@ -207,7 +223,7 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $this->db->affectedRows() );
 		$this->assertSame( 1, $this->db->insertId() );
 
-		$this->assertSame( 1, (int)$this->db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertNWhereKEqualsLuca( 1, $dTable );
 		$this->assertSame( 1, $this->db->affectedRows() );
 
 		$this->dropDestTable();
@@ -225,13 +241,13 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 		$this->db->insert( $dTable, $rows, __METHOD__, 'IGNORE' );
 		$this->assertSame( 1, $this->db->affectedRows() );
 		$this->assertSame( 1, $this->db->insertId() );
-		$this->assertSame( 1, (int)$this->db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertNWhereKEqualsLuca( 1, $dTable );
 
 		$this->db->insert( $dTable, $rows, __METHOD__, 'IGNORE' );
 		$this->assertSame( 0, $this->db->affectedRows() );
 		$this->assertSame( 0, $this->db->insertId() );
 
-		$this->assertSame( 1, (int)$this->db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertNWhereKEqualsLuca( 1, $dTable );
 		$this->assertSame( 1, $this->db->affectedRows() );
 
 		$this->dropDestTable();
@@ -249,13 +265,13 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 		$this->db->replace( $dTable, 'k', $rows, __METHOD__ );
 		$this->assertSame( 1, $this->db->affectedRows() );
 		$this->assertSame( 1, $this->db->insertId() );
-		$this->assertSame( 1, (int)$this->db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertNWhereKEqualsLuca( 1, $dTable );
 
 		$this->db->replace( $dTable, 'k', $rows, __METHOD__ );
 		$this->assertSame( 1, $this->db->affectedRows() );
 		$this->assertSame( 2, $this->db->insertId() );
 
-		$this->assertSame( 2, (int)$this->db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertNWhereKEqualsLuca( 2, $dTable );
 		$this->assertSame( 1, $this->db->affectedRows() );
 
 		$this->dropDestTable();
@@ -277,13 +293,13 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 		$this->db->upsert( $dTable, $rows, 'k', $set, __METHOD__ );
 		$this->assertSame( 1, $this->db->affectedRows() );
 		$this->assertSame( 1, $this->db->insertId() );
-		$this->assertSame( 1, (int)$this->db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertNWhereKEqualsLuca( 1, $dTable );
 
 		$this->db->upsert( $dTable, $rows, 'k', $set, __METHOD__ );
 		$this->assertSame( 1, $this->db->affectedRows() );
 		$this->assertSame( 1, $this->db->insertId() );
 
-		$this->assertSame( 1, (int)$this->db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertNWhereKEqualsLuca( 1, $dTable );
 		$this->assertSame( 1, $this->db->affectedRows() );
 
 		$this->dropDestTable();
@@ -301,7 +317,11 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 		$this->db->insert( $sTable, $rows, __METHOD__, 'IGNORE' );
 		$this->assertSame( 1, $this->db->affectedRows() );
 		$this->assertSame( 1, $this->db->insertId() );
-		$this->assertSame( 1, (int)$this->db->selectField( $sTable, 'sn', [ 'sk' => 'Luca' ] ) );
+		$this->assertSame( 1, (int)$this->db->newSelectQueryBuilder()
+			->select( 'sn' )
+			->from( $sTable )
+			->where( [ 'sk' => 'Luca' ] )
+			->fetchField() );
 
 		$this->db->insertSelect(
 			$dTable,
@@ -314,7 +334,7 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $this->db->affectedRows() );
 		$this->assertSame( 1, $this->db->insertId() );
 
-		$this->assertSame( 1, (int)$this->db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertNWhereKEqualsLuca( 1, $dTable );
 		$this->assertSame( 1, $this->db->affectedRows() );
 
 		$this->dropSourceTable();
@@ -333,7 +353,11 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 		$this->db->insert( $sTable, $rows, __METHOD__, 'IGNORE' );
 		$this->assertSame( 1, $this->db->affectedRows() );
 		$this->assertSame( 1, $this->db->insertId() );
-		$this->assertSame( 1, (int)$this->db->selectField( $sTable, 'sn', [ 'sk' => 'Luca' ] ) );
+		$this->assertSame( 1, (int)$this->db->newSelectQueryBuilder()
+			->select( 'sn' )
+			->from( $sTable )
+			->where( [ 'sk' => 'Luca' ] )
+			->fetchField() );
 
 		$this->db->insertSelect(
 			$dTable,
@@ -345,7 +369,7 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 		);
 		$this->assertSame( 1, $this->db->affectedRows() );
 		$this->assertSame( 1, $this->db->insertId() );
-		$this->assertSame( 1, (int)$this->db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertNWhereKEqualsLuca( 1, $dTable );
 
 		$this->db->insertSelect(
 			$dTable,
@@ -358,11 +382,19 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 0, $this->db->affectedRows() );
 		$this->assertSame( 0, $this->db->insertId() );
 
-		$this->assertSame( 1, (int)$this->db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertNWhereKEqualsLuca( 1, $dTable );
 		$this->assertSame( 1, $this->db->affectedRows() );
 
 		$this->dropSourceTable();
 		$this->dropDestTable();
+	}
+
+	private function assertNWhereKEqualsLuca( $expected, $table ) {
+		$this->assertSame( $expected, (int)$this->db->newSelectQueryBuilder()
+			->select( 'n' )
+			->from( $table )
+			->where( [ 'k' => 'Luca' ] )
+			->fetchField() );
 	}
 
 	private function createSourceTable() {

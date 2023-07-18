@@ -159,7 +159,11 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 
 		$db->duplicateTableStructure( 'foo', 'bar' );
 		$this->assertEquals( 'CREATE TABLE "bar"(foo, barfoo)',
-			$db->selectField( 'sqlite_master', 'sql', [ 'name' => 'bar' ] ),
+			$db->newSelectQueryBuilder()
+				->select( 'sql' )
+				->from( 'sqlite_master' )
+				->where( [ 'name' => 'bar' ] )
+				->caller( __METHOD__ )->fetchField(),
 			'Normal table duplication'
 		);
 		$indexList = $db->query( 'PRAGMA INDEX_LIST("bar")' );
@@ -172,7 +176,11 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 
 		$db->duplicateTableStructure( 'foo', 'baz', true );
 		$this->assertEquals( 'CREATE TABLE "baz"(foo, barfoo)',
-			$db->selectField( 'sqlite_temp_master', 'sql', [ 'name' => 'baz' ] ),
+			$db->newSelectQueryBuilder()
+				->select( 'sql' )
+				->from( 'sqlite_temp_master' )
+				->where( [ 'name' => 'baz' ] )
+				->caller( __METHOD__ )->fetchField(),
 			'Creation of temporary duplicate'
 		);
 		$indexList = $db->query( 'PRAGMA INDEX_LIST("baz")' );
@@ -183,7 +191,11 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$this->assertEquals( 'baz_index2', $index->name );
 		$this->assertSame( '1', (string)$index->unique );
 		$this->assertSame( '0',
-			(string)$db->selectField( 'sqlite_master', 'COUNT(*)', [ 'name' => 'baz' ] ),
+			(string)$db->newSelectQueryBuilder()
+				->select( 'COUNT(*)' )
+				->from( 'sqlite_master' )
+				->where( [ 'name' => 'baz' ] )
+				->caller( __METHOD__ )->fetchField(),
 			'Create a temporary duplicate only'
 		);
 	}
@@ -200,13 +212,21 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 
 		$db->duplicateTableStructure( 'foo', 'bar' );
 		$this->assertEquals( 'CREATE VIRTUAL TABLE "bar" USING FTS3(foobar)',
-			$db->selectField( 'sqlite_master', 'sql', [ 'name' => 'bar' ] ),
+			$db->newSelectQueryBuilder()
+				->select( 'sql' )
+				->from( 'sqlite_master' )
+				->where( [ 'name' => 'bar' ] )
+				->caller( __METHOD__ )->fetchField(),
 			'Duplication of virtual tables'
 		);
 
 		$db->duplicateTableStructure( 'foo', 'baz', true );
 		$this->assertEquals( 'CREATE VIRTUAL TABLE "baz" USING FTS3(foobar)',
-			$db->selectField( 'sqlite_master', 'sql', [ 'name' => 'baz' ] ),
+			$db->newSelectQueryBuilder()
+				->select( 'sql' )
+				->from( 'sqlite_master' )
+				->where( [ 'name' => 'baz' ] )
+				->caller( __METHOD__ )->fetchField(),
 			"Can't create temporary virtual tables, should fall back to non-temporary duplication"
 		);
 	}
@@ -410,7 +430,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $db->affectedRows() );
 		$this->assertSame( 1, $db->insertId() );
 
-		$this->assertSame( 1, (int)$db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertNWhereKEqualsLuca( 1, $dTable, $db );
 		$this->assertSame( 0, $db->affectedRows() );
 		$this->assertSame( 0, $db->insertId() );
 	}
@@ -428,13 +448,13 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$db->insert( $dTable, $rows, __METHOD__, 'IGNORE' );
 		$this->assertSame( 1, $db->affectedRows() );
 		$this->assertSame( 1, $db->insertId() );
-		$this->assertSame( 1, (int)$db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertNWhereKEqualsLuca( 1, $dTable, $db );
 
 		$db->insert( $dTable, $rows, __METHOD__, 'IGNORE' );
 		$this->assertSame( 0, $db->affectedRows() );
 		$this->assertSame( 0, $db->insertId() );
 
-		$this->assertSame( 1, (int)$db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertNWhereKEqualsLuca( 1, $dTable, $db );
 		$this->assertSame( 0, $db->affectedRows() );
 		$this->assertSame( 0, $db->insertId() );
 	}
@@ -452,13 +472,13 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$db->replace( $dTable, 'k', $rows, __METHOD__ );
 		$this->assertSame( 1, $db->affectedRows() );
 		$this->assertSame( 1, $db->insertId() );
-		$this->assertSame( 1, (int)$db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertNWhereKEqualsLuca( 1, $dTable, $db );
 
 		$db->replace( $dTable, 'k', $rows, __METHOD__ );
 		$this->assertSame( 1, $db->affectedRows() );
 		$this->assertSame( 2, $db->insertId() );
 
-		$this->assertSame( 2, (int)$db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertNWhereKEqualsLuca( 2, $dTable, $db );
 		$this->assertSame( 0, $db->affectedRows() );
 		$this->assertSame( 0, $db->insertId() );
 	}
@@ -481,7 +501,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$db->upsert( $dTable, $rows, 'k', $set, __METHOD__ );
 		$this->assertSame( 1, $db->affectedRows() );
 		$this->assertSame( 1, $db->insertId() );
-		$this->assertSame( 1, (int)$db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertNWhereKEqualsLuca( 1, $dTable, $db );
 
 		$db->upsert( $dTable, $otherRows, 'k', $set, __METHOD__ );
 		$this->assertSame( 1, $db->affectedRows() );
@@ -491,7 +511,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $db->affectedRows() );
 		$this->assertSame( 1, $db->insertId() );
 
-		$this->assertSame( 1, (int)$db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertNWhereKEqualsLuca( 1, $dTable, $db );
 		$this->assertSame( 0, $db->affectedRows() );
 		$this->assertSame( 0, $db->insertId() );
 	}
@@ -509,7 +529,11 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$db->insert( $sTable, $rows, __METHOD__, 'IGNORE' );
 		$this->assertSame( 1, $db->affectedRows() );
 		$this->assertSame( 1, $db->insertId() );
-		$this->assertSame( 1, (int)$db->selectField( $sTable, 'sn', [ 'sk' => 'Luca' ] ) );
+		$this->assertSame( 1, (int)$db->newSelectQueryBuilder()
+			->select( 'sn' )
+			->from( $sTable )
+			->where( [ 'sk' => 'Luca' ] )
+			->fetchField() );
 
 		$db->insertSelect(
 			$dTable,
@@ -522,7 +546,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $db->affectedRows() );
 		$this->assertSame( 1, $db->insertId() );
 
-		$this->assertSame( 1, (int)$db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertNWhereKEqualsLuca( 1, $dTable, $db );
 		$this->assertSame( 0, $db->affectedRows() );
 		$this->assertSame( 0, $db->insertId() );
 	}
@@ -540,7 +564,11 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$db->insert( $sTable, $rows, __METHOD__, 'IGNORE' );
 		$this->assertSame( 1, $db->affectedRows() );
 		$this->assertSame( 1, $db->insertId() );
-		$this->assertSame( 1, (int)$db->selectField( $sTable, 'sn', [ 'sk' => 'Luca' ] ) );
+		$this->assertSame( 1, (int)$db->newSelectQueryBuilder()
+			->select( 'sn' )
+			->from( $sTable )
+			->where( [ 'sk' => 'Luca' ] )
+			->fetchField() );
 
 		$db->insertSelect(
 			$dTable,
@@ -552,7 +580,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		);
 		$this->assertSame( 1, $db->affectedRows() );
 		$this->assertSame( 1, $db->insertId() );
-		$this->assertSame( 1, (int)$db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertNWhereKEqualsLuca( 1, $dTable, $db );
 
 		$db->insertSelect(
 			$dTable,
@@ -565,7 +593,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( 0, $db->affectedRows() );
 		$this->assertSame( 0, $db->insertId() );
 
-		$this->assertSame( 1, (int)$db->selectField( $dTable, 'n', [ 'k' => 'Luca' ] ) );
+		$this->assertNWhereKEqualsLuca( 1, $dTable, $db );
 		$this->assertSame( 0, $db->affectedRows() );
 		$this->assertSame( 0, $db->insertId() );
 	}
@@ -598,5 +626,13 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$db->query( "CREATE UNIQUE INDEX tmp_dst_tbl_k ON tmp_dst_tbl (k)" );
 
 		return "tmp_dst_tbl";
+	}
+
+	private function assertNWhereKEqualsLuca( $expected, $table, $db ) {
+		$this->assertSame( $expected, (int)$db->newSelectQueryBuilder()
+			->select( 'n' )
+			->from( $table )
+			->where( [ 'k' => 'Luca' ] )
+			->fetchField() );
 	}
 }
