@@ -3586,7 +3586,7 @@
 	"limitreport-unstrip-size": "Ukruan unstrip pascapenglèbaran",
 	"limitreport-unstrip-size-value": "$1/$2 {{PLURAL:$2|bèt}}",
 	"expandtemplates": "Pembèntangan blatan",
-	"expand_templates_intro": "Ni halaman istimèwa ngambil tèks wiki èn ngebèntangin semua blatan bolak-bali.\nNi halaman juga' nglèbarin pungsi pemilah nyang didukung <code><nowiki>{{</nowiki>#language:…}}</code> èn perobah kaya' <code><nowiki>{{</nowiki>CURRENTDAY}}</code>. Malahan, ni nglèbarin banyak macem-macem hal nyang ada di dalem tenger kurung kurawang rangkep.",
+	"expand_templates_intro": "Ni halaman istimèwa ngambil tèks wiki èn ngebèntangin semua blatan bolak-bali.\nNi halaman juga' nglèbarin pungsi pemilah nyang didukung <code><nowiki>{{</nowiki>#language:…}}</code> èn perobah kaya' <code><nowiki>{{</nowiki>CURRENTDAY}}</code>. Malahan, ni nglèbarin banyak macem-macem hal nyang ada di dalem tenger kurung kurawal rangkep.",
 	"expand_templates_title": "Judul kontèks, bakal {{FULLPAGENAME}}, èns.:",
 	"expand_templates_input": "Masupin tèks wiki:",
 	"expand_templates_output": "Hasil",

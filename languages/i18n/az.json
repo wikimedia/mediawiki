@@ -2563,6 +2563,7 @@
 	"confirm-watch-label": "İzləmədə saxlama müddəti:",
 	"watchlist-expiry-options": "Həmişə:infinite,1 həftə:1 week,1 ay:1 month,3 ay:3 months,6 ay:6 months",
 	"watchlist-expires-in-aria-label": "Son izləmə siyahısı maddəsi",
+	"confirm-watch-button-expiry": "İzlə",
 	"confirm-unwatch-button": "OK",
 	"confirm-rollback-button": "Oldu",
 	"quotation-marks": "\"$1\"",
