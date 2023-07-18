@@ -15,7 +15,7 @@ class UserIdentityValueTest extends MediaWikiUnitTestCase {
 		$foreignWikiId = 'Foreign Wiki';
 		$user = new UserIdentityValue( 0, 'TestUserName', UserIdentityValue::LOCAL );
 
-		$this->expectDeprecation();
+		$this->expectDeprecationAndContinue( '/Use of MediaWiki\\\\User\\\\UserIdentityValue::getActorId was deprecated in MediaWiki 1\.36/' );
 		$this->assertSame( 0, $user->getActorId( $foreignWikiId ) );
 	}
 
@@ -25,7 +25,7 @@ class UserIdentityValueTest extends MediaWikiUnitTestCase {
 	public function testGetActorIdDeprecated() {
 		$user = new UserIdentityValue( 0, 'TestUserName' );
 
-		$this->expectDeprecation();
+		$this->expectDeprecationAndContinue( '/Use of MediaWiki\\\\User\\\\UserIdentityValue::getActorId was deprecated in MediaWiki 1\.36/' );
 		$this->assertSame( 0, $user->getActorId() );
 	}
 

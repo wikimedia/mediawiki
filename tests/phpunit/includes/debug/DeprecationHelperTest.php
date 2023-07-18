@@ -31,7 +31,8 @@ class DeprecationHelperTest extends MediaWikiIntegrationTestCase {
 			}, $expectedLevel, $expectedMessage );
 		} else {
 			$this->assertDeprecationWarningIssued( function () use ( $propName ) {
-				$this->assertSame( 1, $this->testClass->$propName );
+				$expectedValue = $propName === 'fallbackDeprecatedMethodName' ? 'FOO' : 1;
+				$this->assertSame( $expectedValue, $this->testClass->$propName );
 			}, $expectedMessage );
 		}
 	}
@@ -225,8 +226,7 @@ class DeprecationHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	protected function assertDeprecationWarningIssued( callable $callback, string $expectedMessage ) {
-		$this->expectDeprecation();
-		$this->expectDeprecationMessage( $expectedMessage );
+		$this->expectDeprecationAndContinue( '/' . preg_quote( $expectedMessage, '/' ) . '/' );
 		$callback();
 	}
 

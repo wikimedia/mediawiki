@@ -73,8 +73,7 @@ class DeprecatedGlobalTest extends MediaWikiUnitTestCase {
 		global $wgDummy1;
 
 		$wgDummy1 = new DeprecatedGlobal( 'wgDummy1', new HashBagOStuff(), '1.30' );
-		$this->expectDeprecation();
-		$this->expectDeprecationMessage( 'Use of $wgDummy1 was deprecated in MediaWiki 1.30' );
+		$this->expectDeprecationAndContinue( '/Use of \$wgDummy1 was deprecated in MediaWiki 1\.30/' );
 		$wgDummy1->get( 'foo' );
 		$this->assertInstanceOf( HashBagOStuff::class, $wgDummy1 );
 	}

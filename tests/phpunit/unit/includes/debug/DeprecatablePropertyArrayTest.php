@@ -13,8 +13,7 @@ class DeprecatablePropertyArrayTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideDeprecationWarning
 	 */
 	public function testDeprecationWarning( callable $callback, string $message ) {
-		$this->expectDeprecation();
-		$this->expectDeprecationMessage( $message );
+		$this->expectDeprecationAndContinue( '/' . preg_quote( $message, '/' ) . '/' );
 		$callback();
 	}
 

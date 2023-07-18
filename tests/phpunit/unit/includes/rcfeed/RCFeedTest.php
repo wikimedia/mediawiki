@@ -36,8 +36,8 @@ class RCFeedTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testFactoryCustomUriDeprecated() {
-		$this->expectDeprecation();
-		$this->expectDeprecationMessage( '$wgRCFeeds without class' );
+		$this->expectDeprecationAndContinue( '/\$wgRCFeeds without class/' );
+		$this->expectException( InvalidArgumentException::class );
 		$feed = RCFeed::factory( [ 'uri' => 'test://bogus' ] );
 	}
 

@@ -545,7 +545,7 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 	 * @dataProvider provideUpdateEmptyCondition
 	 */
 	public function testUpdateEmptyCondition( $sql ) {
-		$this->expectDeprecation();
+		$this->expectDeprecationAndContinue( '/Use of Wikimedia\\\\Rdbms\\\\Platform\\\\SQLPlatform::updateSqlText called with empty \$conds was deprecated in MediaWiki 1\.35/' );
 		$this->platform->updateSqlText(
 			$sql['table'],
 			$sql['values'],
