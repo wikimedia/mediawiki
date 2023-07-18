@@ -478,7 +478,7 @@
 	"copyrightpage": "{{doc-important|Do not change <nowiki>{{ns:project}}</nowiki>}}\n\n{{Identical|Copyright}}",
 	"currentevents": "Standard link in the sidebar, for news.\n\nSee also {{msg-mw|Currentevents-url}} for the link URL.\n\nSee also:\n* {{msg-mw|Currentevents}}\n* {{msg-mw|Accesskey-n-currentevents}}\n* {{msg-mw|Tooltip-n-currentevents}}",
 	"currentevents-url": "{{doc-important|Copy the word \"Project:\" as is to the translation, without translating it. This is the namespace prefix.}}\nTarget page of \"CurrentEvents\" in the sidebar.\n\nSee also:\n* {{msg-mw|Currentevents}}",
-	"disclaimers": "{{notranslate}}",
+	"disclaimers": "Used as display name for the link to [[{{MediaWiki:Disclaimerpage}}]] shown at the bottom of every page on the wiki. Example [[{{MediaWiki:Disclaimerpage}}|{{MediaWiki:Disclaimers}}]].\n{{Identical|Disclaimer}}",
 	"disclaimerpage": "{{doc-important|Do not change the <code>Project:</code> part.}}\nUsed as page for that contains the site disclaimer. Used at the bottom of every page on the wiki. Example: [[{{MediaWiki:Disclaimerpage}}|{{MediaWiki:Disclaimers}}]].",
 	"edithelp": "This is the text that appears on the editing help link that is near the bottom of the editing page",
 	"edithelppage": "The help page displayed when a user clicks on editing help link which is present on the right of Show changes button.\n{{doc-important|Do not change the \"<tt>Help:</tt>\" part.}}",
