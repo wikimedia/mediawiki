@@ -2151,6 +2151,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\User\\UserGroupManagerFactory' => __DIR__ . '/includes/user/UserGroupManagerFactory.php',
 	'MediaWiki\\User\\UserIdentity' => __DIR__ . '/includes/user/UserIdentity.php',
 	'MediaWiki\\User\\UserIdentityLookup' => __DIR__ . '/includes/user/UserIdentityLookup.php',
+	'MediaWiki\\User\\UserIdentityUtils' => __DIR__ . '/includes/user/UserIdentityUtils.php',
 	'MediaWiki\\User\\UserIdentityValue' => __DIR__ . '/includes/user/UserIdentityValue.php',
 	'MediaWiki\\User\\UserNamePrefixSearch' => __DIR__ . '/includes/user/UserNamePrefixSearch.php',
 	'MediaWiki\\User\\UserNameUtils' => __DIR__ . '/includes/user/UserNameUtils.php',

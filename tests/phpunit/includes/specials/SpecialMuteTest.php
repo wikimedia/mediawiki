@@ -30,7 +30,7 @@ class SpecialMuteTest extends SpecialPageTestBase {
 			$this->getServiceContainer()->getCentralIdLookupFactory()->getLookup( 'local' ),
 			$this->userOptionsManager,
 			$this->getServiceContainer()->getUserIdentityLookup(),
-			$this->getServiceContainer()->getUserNameUtils()
+			$this->getServiceContainer()->getUserIdentityUtils()
 		);
 	}
 
