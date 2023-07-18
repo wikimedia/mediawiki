@@ -3776,6 +3776,15 @@ class OutputPage extends ContextSource {
 			if ( $userNewMsgRevId ) {
 				$vars['wgUserNewMsgRevisionId'] = $userNewMsgRevId;
 			}
+		} else {
+			$tempUserCreator = $services->getTempUserCreator();
+			if ( $tempUserCreator->isEnabled() ) {
+				// For logged-out users only (without a temporary account): get the user name that will
+				// be used for their temporary account, if it has already been acquired.
+				// This may be used in previews.
+				$session = $this->getRequest()->getSession();
+				$vars['wgTempUserName'] = $tempUserCreator->getStashedName( $session );
+			}
 		}
 		$languageConverter = $services->getLanguageConverterFactory()
 			->getLanguageConverter( $title->getPageLanguage() );

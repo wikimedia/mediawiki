@@ -442,6 +442,12 @@ class ApiMain extends ApiBase {
 				'ContentModelChangeFactory',
 			]
 		],
+		'acquiretempusername' => [
+			'class' => ApiAcquireTempUserName::class,
+			'services' => [
+				'TempUserCreator',
+			]
+		],
 	];
 
 	/**

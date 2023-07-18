@@ -3,7 +3,7 @@
  * @singleton
  */
 ( function () {
-	var userInfoPromise, pageviewRandomId, sessionId;
+	var userInfoPromise, tempUserNamePromise, pageviewRandomId, sessionId;
 
 	/**
 	 * Get the current user's groups or rights
@@ -134,6 +134,44 @@
 		 */
 		getName: function () {
 			return mw.config.get( 'wgUserName' );
+		},
+
+		/**
+		 * Acquire a temporary user username and stash it in the current session, if temp account creation
+		 * is enabled and the current user is logged out. If a name has already been stashed, returns the
+		 * same name.
+		 *
+		 * If the user later performs an action that results in temp account creation, the stashed username
+		 * will be used for their account. It may also be used in previews. However, the account is not
+		 * created yet, and the name is not visible to other users.
+		 *
+		 * @return {jQuery.Promise} Promise resolved with the username if we succeeded,
+		 *   or resolved with `null` if we failed
+		 */
+		acquireTempUserName: function () {
+			if ( tempUserNamePromise !== undefined ) {
+				// Return the existing promise if we already tried. Do not retry even if we failed.
+				return tempUserNamePromise;
+			}
+
+			if ( mw.config.get( 'wgUserId' ) ) {
+				// User is logged in (or has a temporary account), nothing to do
+				tempUserNamePromise = $.Deferred().resolve( null );
+			} else if ( mw.config.get( 'wgTempUserName' ) ) {
+				// Temporary user username already acquired
+				tempUserNamePromise = $.Deferred().resolve( mw.config.get( 'wgTempUserName' ) );
+			} else {
+				var api = new mw.Api();
+				tempUserNamePromise = api.post( { action: 'acquiretempusername' } ).then( function ( resp ) {
+					mw.config.set( 'wgTempUserName', resp.acquiretempusername );
+					return resp.acquiretempusername;
+				} ).catch( function () {
+					// Ignore failures. The temp name should not be necessary for anything to work.
+					return null;
+				} );
+			}
+
+			return tempUserNamePromise;
 		},
 
 		/**
