@@ -502,8 +502,7 @@ class RequestContext implements IContextSource, MutableContext {
 				$this->skin = $factory->makeSkin( $normalized );
 			} else {
 				// No hook override, go through normal processing
-				if ( !in_array( 'skin',
-				$this->getConfig()->get( MainConfigNames::HiddenPrefs ) ) ) {
+				if ( !in_array( 'skin', $this->getConfig()->get( MainConfigNames::HiddenPrefs ) ) ) {
 					$userOptionsLookup = $services->getUserOptionsLookup();
 					$userSkin = $userOptionsLookup->getOption( $this->getUser(), 'skin' );
 					// Optimisation: Avoid slow getVal(), this isn't user-generated content.

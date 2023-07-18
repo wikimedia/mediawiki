@@ -2814,9 +2814,6 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param bool $return Set to true to get the result as a string rather than sending it
 	 * @return string|null
-	 * @throws Exception
-	 * @throws FatalError
-	 * @throws MWException
 	 */
 	public function output( $return = false ) {
 		if ( $this->mDoNothing ) {

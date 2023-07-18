@@ -25,6 +25,7 @@
 
 namespace MediaWiki\Request;
 
+use MediaWiki\Session\Session;
 use WebRequest;
 
 /**
@@ -66,7 +67,7 @@ class DerivativeRequest extends FauxRequest {
 		return $this->base->getAllHeaders();
 	}
 
-	public function getSession() {
+	public function getSession(): Session {
 		return $this->base->getSession();
 	}
 
@@ -82,7 +83,7 @@ class DerivativeRequest extends FauxRequest {
 		return $this->base->getAcceptLang();
 	}
 
-	public function getIP() {
+	public function getIP(): string {
 		return $this->ip ?: $this->base->getIP();
 	}
 

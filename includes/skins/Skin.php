@@ -206,7 +206,7 @@ abstract class Skin extends ContextSource {
 	 * @param string $key 'monobook', 'vector', etc.
 	 * @return string
 	 */
-	public static function normalizeKey( $key ) {
+	public static function normalizeKey( string $key ) {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$defaultSkin = $config->get( MainConfigNames::DefaultSkin );
 		$fallbackSkin = $config->get( MainConfigNames::FallbackSkin );

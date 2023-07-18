@@ -829,7 +829,7 @@ class WebRequest {
 	 *  much use of it instead of calling this method repeatedly.
 	 * @return Session
 	 */
-	public function getSession() {
+	public function getSession(): Session {
 		if ( $this->sessionId !== null ) {
 			$session = SessionManager::singleton()->getSessionById( (string)$this->sessionId, true, $this );
 			if ( $session ) {
@@ -1258,7 +1258,7 @@ class WebRequest {
 	 * @since 1.19
 	 * @return string
 	 */
-	public function getIP() {
+	public function getIP(): string {
 		global $wgUsePrivateIPs;
 
 		# Return cached result

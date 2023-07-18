@@ -7,10 +7,7 @@
  */
 
 use MediaWiki\MainConfigNames;
-use MediaWiki\MainConfigSchema;
-use MediaWiki\Request\FauxRequest;
-use MediaWiki\Title\Title;
-use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\User\UserOptionsManager;
 
 /**
  * @group Preferences
@@ -18,92 +15,48 @@ use MediaWiki\User\UserOptionsLookup;
  *
  * @covers SpecialPreferences
  */
-class SpecialPreferencesTest extends MediaWikiIntegrationTestCase {
+class SpecialPreferencesTest extends SpecialPageTestBase {
+	/**
+	 * HACK: use this variable to override UserOptionsManager for use in the special page. Ideally we'd just do
+	 * $this->setService, but that's super hard because some places that use UserOptionsManager read a lot from the
+	 * global state and a mock would need to be super-complex for all the various checks to work.
+	 */
+	private ?UserOptionsManager $userOptionsManager = null;
+
+	protected function tearDown(): void {
+		$this->userOptionsManager = null;
+		parent::tearDown();
+	}
+
+	protected function newSpecialPage() {
+		return new SpecialPreferences(
+			$this->getServiceContainer()->getPreferencesFactory(),
+			$this->userOptionsManager ?? $this->getServiceContainer()->getUserOptionsManager()
+		);
+	}
 
 	/**
-	 * Make sure a nickname which is longer than $wgMaxSigChars
-	 * is not throwing a fatal error.
-	 *
-	 * Test specifications by Alexandre "ialex" Emsenhuber.
-	 * @todo give this test a real name explaining what is being tested here
+	 * Make sure a username which is longer than $wgMaxSigChars
+	 * is not throwing a fatal error (T43337).
 	 */
-	public function testT43337() {
-		// Set a low limit
-		$this->overrideConfigValue( MainConfigNames::MaxSigChars, 2 );
+	public function testLongUsernameDoesNotFatal() {
+		$maxSigChars = 2;
+		$this->overrideConfigValue( MainConfigNames::MaxSigChars, $maxSigChars );
+		$nickname = str_repeat( 'x', $maxSigChars + 1 );
 		$user = $this->createMock( User::class );
-		$user->method( 'getTitleKey' )
-			->willReturn( __CLASS__ );
 		$user->method( 'isAnon' )
 			->willReturn( false );
 		$user->method( 'isNamed' )
 			->willReturn( true );
 
-		# The mocked user has a long nickname
-		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
-		$userOptionsLookup->method( 'getOption' )
-			->willReturnMap( [
-				[
-					$user,
-					'nickname',
-					null,
-					false,
-					UserOptionsLookup::READ_NORMAL,
-					'superlongnickname'
-				],
-				[
-					$user,
-					'language',
-					null,
-					false,
-					UserOptionsLookup::READ_NORMAL,
-					MainConfigSchema::LanguageCode['default']
-				],
-				[
-					$user,
-					'skin',
-					null,
-					false,
-					UserOptionsLookup::READ_NORMAL,
-					MainConfigSchema::DefaultSkin['default']
-				],
-				[
-					$user,
-					'timecorrection',
-					null,
-					false,
-					UserOptionsLookup::READ_NORMAL,
-					"System|-420"
-				],
-				// MessageCache::getParserOptions() uses the main context
-				[
-					RequestContext::getMain()->getUser(),
-					'language',
-					null,
-					false,
-					UserOptionsLookup::READ_NORMAL,
-					MainConfigSchema::LanguageCode['default']
-				],
-			] );
-		$this->setService( 'UserOptionsLookup', $userOptionsLookup );
+		$this->userOptionsManager = $this->createMock( UserOptionsManager::class );
+		$this->userOptionsManager->method( 'getOption' )
+			->with( $user, 'nickname' )
+			->willReturn( $nickname );
 
-		// isAnyAllowed used to return null from the mock,
-		// thus revoke it's permissions.
-		$this->overrideUserPermissions( $user, [] );
-
-		# Forge a request to call the special page
-		$context = new RequestContext();
-		$context->setRequest( new FauxRequest() );
-		$context->setUser( $user );
-		$context->setTitle( Title::makeTitle( NS_MAIN, 'Test' ) );
-
-		$services = $this->getServiceContainer();
-		# Do the call, should not spurt a fatal error.
-		$special = new SpecialPreferences(
-			$services->getPreferencesFactory(),
-			$services->getUserOptionsManager()
-		);
-		$special->setContext( $context );
-		$this->assertNull( $special->execute( [] ) );
+		$this->executeSpecialPage( '', null, null, $user );
+		// We assert that no error is thrown
+		$this->addToAssertionCount( 1 );
 	}
 
 }
