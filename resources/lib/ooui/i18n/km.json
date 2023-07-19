@@ -6,6 +6,7 @@
 			"គីមស៊្រុន"
 		]
 	},
+	"ooui-copytextlayout-copy": "ចម្លង",
 	"ooui-outline-control-move-down": "រុញ​ធាតុទៅ​ក្រោម",
 	"ooui-outline-control-move-up": "រុញធាតុទៅ​លើ",
 	"ooui-outline-control-remove": "ដកធាតុចេញ",
@@ -25,5 +26,6 @@
 	"ooui-selectfile-placeholder": "គ្មានឯកសារណាមួយត្រូវបានជ្រើសរើស",
 	"ooui-selectfile-dragdrop-placeholder": "ទម្លាក់ឯកសារនៅទីនេះ",
 	"ooui-selectfile-dragdrop-placeholder-multiple": "ទម្លាក់ឯកសារនៅទីនេះ",
+	"ooui-popup-widget-close-button-aria-label": "បិទ",
 	"ooui-field-help": "ជំនួយ"
 }
