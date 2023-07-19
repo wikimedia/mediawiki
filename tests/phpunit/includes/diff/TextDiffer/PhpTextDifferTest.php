@@ -39,6 +39,13 @@ class PhpTextDifferTest extends MediaWikiIntegrationTestCase {
 					'table' => TextDifferData::PHP_TABLE,
 				]
 			],
+			'multiple formats' => [
+				[ 'table', 'unified' ],
+				[
+					'table' => TextDifferData::PHP_TABLE,
+					'unified' => TextDifferData::PHP_UNIFIED,
+				]
+			],
 		];
 	}
 

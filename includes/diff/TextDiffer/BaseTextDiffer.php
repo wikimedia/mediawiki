@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Diff\TextDiffer;
 
+use MediaWiki\Html\Html;
 use MessageLocalizer;
 use OutputPage;
 
@@ -40,8 +41,13 @@ abstract class BaseTextDiffer implements TextDiffer {
 	}
 
 	public function addRowWrapper( string $format, string $diffText ): string {
-		if ( $this->getFormatContext( $format ) === self::CONTEXT_PLAIN ) {
+		$context = $this->getFormatContext( $format );
+		if ( $context === self::CONTEXT_PLAIN ) {
 			return "<tr><td colspan=\"4\">$diffText</td></tr>";
+		} elseif ( $context === self::CONTEXT_PRE ) {
+			return '<tr><td colspan="4">' .
+				Html::element( 'pre', [], $diffText ) .
+				'</td></tr>';
 		} else {
 			return $diffText;
 		}

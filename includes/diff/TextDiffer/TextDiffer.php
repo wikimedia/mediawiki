@@ -21,6 +21,11 @@ interface TextDiffer {
 	public const CONTEXT_ROW = 'row';
 
 	/**
+	 * The return value is plain text and should be wrapped in a <pre>
+	 */
+	public const CONTEXT_PRE = 'pre';
+
+	/**
 	 * Get a stable unique name to identify this differ in a cache key.
 	 */
 	public function getName(): string;

@@ -5,6 +5,7 @@ namespace MediaWiki\Diff\TextDiffer;
 use Language;
 use Wikimedia\Diff\Diff;
 use Wikimedia\Diff\TableDiffFormatter;
+use Wikimedia\Diff\UnifiedDiffFormatter;
 
 /**
  * @since 1.41
@@ -22,11 +23,11 @@ class PhpTextDiffer extends BaseTextDiffer {
 	}
 
 	public function getFormats(): array {
-		return [ 'table' ];
+		return [ 'table', 'unified' ];
 	}
 
 	public function getFormatContext( string $format ) {
-		return $format === 'table' ? self::CONTEXT_ROW : self::CONTEXT_PLAIN;
+		return $format === 'table' ? self::CONTEXT_ROW : self::CONTEXT_PRE;
 	}
 
 	protected function doRenderBatch( string $oldText, string $newText, array $formats ): array {
@@ -40,8 +41,12 @@ class PhpTextDiffer extends BaseTextDiffer {
 		$diff = new Diff( $oldLines, $newLines );
 		$result = [];
 		foreach ( $formats as $format ) {
-			// @phan-suppress-next-line PhanNoopSwitchCases -- rectified in followup commit
 			switch ( $format ) {
+				case 'unified':
+					$formatter = new UnifiedDiffFormatter();
+					$diffText = $formatter->format( $diff );
+					break;
+
 				default: // 'table':
 					$formatter = new TableDiffFormatter();
 					$diffText = $formatter->format( $diff );
