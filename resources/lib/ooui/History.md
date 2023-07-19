@@ -1,4 +1,10 @@
 # OOUI Release History
+## v0.47.5 / 2023-07-19
+### Code
+* ToggleSwitch: Display checked state correctly in RTL (Roan Kattouw)
+
+### Documentation
+* README: Document vendor and mediawiki stages of the release process (Roan Kattouw)
 
 ## v0.47.4 / 2023-07-10
 ### Code
