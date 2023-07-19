@@ -23,6 +23,7 @@
 
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Diff\TextDiffer\ManifoldTextDiffer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
@@ -74,7 +75,7 @@ class DifferenceEngine extends ContextSource {
 	 * fixes important bugs or such to force cached diff views to
 	 * clear.
 	 */
-	private const DIFF_VERSION = '1.12';
+	private const DIFF_VERSION = '1.41';
 
 	/**
 	 * Revision ID for the old revision. 0 for the revision previous to $mNewid, false
@@ -219,6 +220,9 @@ class DifferenceEngine extends ContextSource {
 	 */
 	private $slotDiffOptions = [];
 
+	/** @var ManifoldTextDiffer|null */
+	private $textDiffer;
+
 	/**
 	 * @var LinkRenderer
 	 */
@@ -314,7 +318,8 @@ class DifferenceEngine extends ContextSource {
 				$this->slotDiffRenderers[$role] = $handler->getSlotDiffRenderer(
 					$this->getContext(),
 					$this->slotDiffOptions + [
-						'contentLanguage' => $this->getDiffLang()->getCode()
+						'contentLanguage' => $this->getDiffLang()->getCode(),
+						'textDiffer' => $this->getTextDiffer()
 					]
 				);
 			}
@@ -931,8 +936,8 @@ class DifferenceEngine extends ContextSource {
 				$notice .= Html::warningBox( $msg->parse() );
 			}
 
-			// Check if wikidiff2 engine is installed
-			if ( $this->getEngine() === 'wikidiff2' ) {
+			// Check if inline switcher will be needed
+			if ( $this->getTextDiffer()->hasFormat( 'inline' ) ) {
 				$out->enableOOUI();
 			}
 
@@ -1433,26 +1438,21 @@ class DifferenceEngine extends ContextSource {
 			throw new BadMethodCallException( 'mOldid and mNewid must be set to get diff cache key.' );
 		}
 
-		$engine = $this->getEngine();
 		$params = [
 			'diff',
-			$engine === 'php' ? false : $engine, // Back compat
 			self::DIFF_VERSION,
 			"old-{$this->mOldid}",
 			"rev-{$this->mNewid}"
 		];
 
-		if ( $engine === 'wikidiff2' ) {
-			$params[] = phpversion( 'wikidiff2' );
-		}
-
+		$extraKeys = [];
 		if ( !$this->isSlotDiffRenderer ) {
 			foreach ( $this->getSlotDiffRenderers() as $slotDiffRenderer ) {
-				$params = array_merge( $params, $slotDiffRenderer->getExtraCacheKeys() );
+				$extraKeys = array_merge( $extraKeys, $slotDiffRenderer->getExtraCacheKeys() );
 			}
 		}
-
-		return $params;
+		ksort( $extraKeys );
+		return array_merge( $params, array_values( $extraKeys ) );
 	}
 
 	/**
@@ -1488,11 +1488,24 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
-	 * @param array $options for the difference engine.
-	 * Accepts keys 'diff-type' and 'expand-url'
+	 * @param array $options for the difference engine. Available options:
+	 *    - diff-type: The text diff format, e.g. "table" or "inline". If the
+	 *      specified format is not supported, the option will be ignored, so
+	 *      the site default format (table) will be used.
+	 *    - expand-url: If true, put full URLs in href attributes (for action=render)
+	 *      FIXME: expand-url is not a slot diff option, it is a DifferenceEngine option.
 	 */
 	public function setSlotDiffOptions( $options ) {
-		$this->slotDiffOptions = $options;
+		$validatedOptions = [];
+		if ( isset( $options['diff-type'] )
+			&& $this->getTextDiffer()->hasFormat( $options['diff-type'] )
+		) {
+			$validatedOptions['diff-type'] = $options['diff-type'];
+		}
+		if ( !empty( $options['expand-url'] ) ) {
+			$validatedOptions['expand-url'] = true;
+		}
+		$this->slotDiffOptions = $validatedOptions;
 	}
 
 	/**
@@ -1556,53 +1569,14 @@ class DifferenceEngine extends ContextSource {
 	 * @internal For use by this class and within Core only.
 	 */
 	public static function getEngine() {
-		$diffEngine = MediaWikiServices::getInstance()->getMainConfig()
-			->get( MainConfigNames::DiffEngine );
-		$externalDiffEngine = MediaWikiServices::getInstance()->getMainConfig()
-			->get( MainConfigNames::ExternalDiffEngine );
-
-		if ( $diffEngine === null ) {
-			$engines = [ 'external', 'wikidiff2', 'php' ];
+		$differenceEngine = new self;
+		$engine = $differenceEngine->getTextDiffer()->getEngineForFormat( 'table' );
+		if ( $engine === 'external' ) {
+			return MediaWikiServices::getInstance()->getMainConfig()
+				->get( MainConfigNames::ExternalDiffEngine );
 		} else {
-			$engines = [ $diffEngine ];
+			return $engine;
 		}
-
-		$failureReason = null;
-		foreach ( $engines as $engine ) {
-			switch ( $engine ) {
-				case 'external':
-					if ( is_string( $externalDiffEngine ) ) {
-						if ( is_executable( $externalDiffEngine ) ) {
-							return $externalDiffEngine;
-						}
-						$failureReason = 'ExternalDiffEngine config points to a non-executable';
-						if ( $diffEngine === null ) {
-							wfDebug( "$failureReason, ignoring" );
-						}
-					} else {
-						$failureReason = 'ExternalDiffEngine config is set to a non-string value';
-						if ( $diffEngine === null && $externalDiffEngine ) {
-							wfWarn( "$failureReason, ignoring" );
-						}
-					}
-					break;
-
-				case 'wikidiff2':
-					if ( function_exists( 'wikidiff2_do_diff' ) ) {
-						return 'wikidiff2';
-					}
-					$failureReason = 'wikidiff2 is not available';
-					break;
-
-				case 'php':
-					// Always available.
-					return 'php';
-
-				default:
-					throw new DomainException( 'Invalid value for $wgDiffEngine: ' . $engine );
-			}
-		}
-		throw new UnexpectedValueException( "Cannot use diff engine '$engine': $failureReason" );
 	}
 
 	/**
@@ -1649,59 +1623,7 @@ class DifferenceEngine extends ContextSource {
 	 * @return string
 	 */
 	private function localiseDiff( $text ) {
-		$text = $this->localiseLineNumbers( $text );
-		if ( $this->getEngine() === 'wikidiff2' &&
-			version_compare( phpversion( 'wikidiff2' ), '1.5.1', '>=' )
-		) {
-			$text = $this->addLocalisedTitleTooltips( $text );
-		}
-		return $text;
-	}
-
-	/**
-	 * Replace line numbers with the text in the user's language
-	 *
-	 * @param string $text
-	 *
-	 * @return string
-	 */
-	public function localiseLineNumbers( $text ) {
-		return preg_replace_callback(
-			'/<!--LINE (\d+)-->/',
-			function ( array $matches ) {
-				if ( $matches[1] === '1' && $this->mReducedLineNumbers ) {
-					return '';
-				}
-				return $this->msg( 'lineno' )->numParams( $matches[1] )->escaped();
-			},
-			$text
-		);
-	}
-
-	/**
-	 * Add title attributes for tooltips on various diff elements
-	 *
-	 * @param string $text
-	 * @return string
-	 */
-	private function addLocalisedTitleTooltips( $text ) {
-		// Moved paragraph indicators.
-		$replacements = [
-			'class="mw-diff-movedpara-right"' =>
-				'class="mw-diff-movedpara-right" title="' .
-				$this->msg( 'diff-paragraph-moved-toold' )->escaped() . '"',
-			'class="mw-diff-movedpara-left"' =>
-				'class="mw-diff-movedpara-left" title="' .
-				$this->msg( 'diff-paragraph-moved-tonew' )->escaped() . '"',
-		];
-		// For inline diffs, add tooltips to `<ins>` and `<del>`.
-		if ( isset( $this->slotDiffOptions['diff-type'] ) && $this->slotDiffOptions['diff-type'] == 'inline' ) {
-			$replacements['<ins>'] = Html::openElement( 'ins',
-				[ 'title' => $this->msg( 'diff-inline-tooltip-ins' )->plain() ] );
-			$replacements['<del>'] = Html::openElement( 'del',
-				[ 'title' => $this->msg( 'diff-inline-tooltip-del' )->plain() ] );
-		}
-		return strtr( $text, $replacements );
+		return $this->getTextDiffer()->localize( $this->getTextDiffFormat(), $text );
 	}
 
 	/**
@@ -2265,6 +2187,43 @@ class DifferenceEngine extends ContextSource {
 		$this->hookRunner->onDifferenceEngineAfterLoadNewText( $this );
 
 		return true;
+	}
+
+	/**
+	 * Get the TextDiffer which will be used for rendering text
+	 *
+	 * @return ManifoldTextDiffer
+	 */
+	protected function getTextDiffer() {
+		if ( $this->textDiffer === null ) {
+			$this->textDiffer = new ManifoldTextDiffer(
+				$this->getContext(),
+				$this->getDiffLang(),
+				$this->getConfig()->get( MainConfigNames::DiffEngine ),
+				$this->getConfig()->get( MainConfigNames::ExternalDiffEngine )
+			);
+		}
+		return $this->textDiffer;
+	}
+
+	/**
+	 * Get the list of supported text diff formats
+	 *
+	 * @since 1.41
+	 * @return array|string[]
+	 */
+	public function getSupportedFormats() {
+		return $this->getTextDiffer()->getFormats();
+	}
+
+	/**
+	 * Get the selected text diff format
+	 *
+	 * @since 1.41
+	 * @return string
+	 */
+	public function getTextDiffFormat() {
+		return $this->slotDiffOptions['diff-type'] ?? 'table';
 	}
 
 }

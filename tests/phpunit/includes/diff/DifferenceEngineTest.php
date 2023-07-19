@@ -7,7 +7,6 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
-use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers DifferenceEngine
@@ -199,33 +198,6 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $revs[2], $diffEngine->getNewid(), 'diff get new id' );
 	}
 
-	public static function provideLocaliseTitleTooltipsTestData() {
-		return [
-			'moved paragraph left shoud get new location title' => [
-				'<a class="mw-diff-movedpara-left">⚫</a>',
-				'<a class="mw-diff-movedpara-left" title="(diff-paragraph-moved-tonew)">⚫</a>',
-			],
-			'moved paragraph right shoud get old location title' => [
-				'<a class="mw-diff-movedpara-right">⚫</a>',
-				'<a class="mw-diff-movedpara-right" title="(diff-paragraph-moved-toold)">⚫</a>',
-			],
-			'nothing changed when key not hit' => [
-				'<a class="mw-diff-movedpara-rightis">⚫</a>',
-				'<a class="mw-diff-movedpara-rightis">⚫</a>',
-			],
-		];
-	}
-
-	/**
-	 * @dataProvider provideLocaliseTitleTooltipsTestData
-	 */
-	public function testAddLocalisedTitleTooltips( $input, $expected ) {
-		$this->setContentLang( 'qqx' );
-		/** @var DifferenceEngine $diffEngine */
-		$diffEngine = TestingAccessWrapper::newFromObject( new DifferenceEngine() );
-		$this->assertEquals( $expected, $diffEngine->addLocalisedTitleTooltips( $input ) );
-	}
-
 	/**
 	 * @dataProvider provideGenerateContentDiffBody
 	 */
@@ -292,7 +264,7 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideGetDiffBody
 	 */
 	public function testGetDiffBody(
-		?array $oldSlots, ?array $newSlots, $expectedDiff
+		?array $oldSlots, ?array $newSlots, $slotDiffOptions, $expectedDiff
 	) {
 		$oldRevision = $this->getRevisionRecord( $oldSlots );
 		$newRevision = $this->getRevisionRecord( $newSlots );
@@ -302,6 +274,9 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 		}
 		$differenceEngine = new DifferenceEngine();
 		$differenceEngine->setRevisions( $oldRevision, $newRevision );
+		if ( $slotDiffOptions !== null ) {
+			$differenceEngine->setSlotDiffOptions( $slotDiffOptions );
+		}
 		if ( $expectedDiff instanceof Exception ) {
 			return;
 		}
@@ -323,38 +298,51 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 			'revision vs. null' => [
 				null,
 				$main1 + $slot1,
+				null,
 				'',
 			],
 			'revision vs. itself' => [
 				$main1 + $slot1,
 				$main1 + $slot1,
+				null,
 				'',
 			],
 			'different text in one slot' => [
 				$main1 + $slot1,
 				$main1 + $slot2,
+				null,
 				"slotLine 1:\nLine 1:\n-aaa+bbb",
 			],
 			'different text in two slots' => [
 				$main1 + $slot1,
 				$main2 + $slot2,
+				null,
 				"Line 1:\nLine 1:\n-xxx+yyy\nslotLine 1:\nLine 1:\n-aaa+bbb",
 			],
 			'new slot' => [
 				$main1,
 				$main1 + $slot1,
+				null,
 				"slotLine 1:\nLine 1:\n- +aaa",
 			],
 			'ignored difference in derived slot' => [
 				$main1 + $slot3,
 				$main1 + $slot4,
+				null,
 				'',
 			],
 			'incompatible slot' => [
 				$main1 + $slot5,
 				$main2 + $slot1,
+				null,
 				"Line 1:\nLine 1:\n-xxx+yyy\nslotCannot compare content models \"testing\" and \"plain text\"",
 			],
+			'invalid diff-type' => [
+				$main1,
+				$main2,
+				[ 'diff-type' => 'invalid' ],
+				"Line 1:\nLine 1:\n-xxx+yyy",
+			]
 		];
 	}
 

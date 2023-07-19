@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Diff\TextDiffer\ManifoldTextDiffer;
+use MediaWiki\Diff\TextDiffer\Wikidiff2TextDiffer;
 use MediaWiki\MainConfigNames;
 use Wikimedia\Assert\ParameterTypeException;
 
@@ -8,13 +10,31 @@ use Wikimedia\Assert\ParameterTypeException;
  */
 class TextSlotDiffRendererTest extends MediaWikiIntegrationTestCase {
 
+	public function setUp(): void {
+		Wikidiff2TextDiffer::$fakeVersionForTesting = '1.14.1';
+	}
+
+	public function tearDown(): void {
+		Wikidiff2TextDiffer::$fakeVersionForTesting = null;
+	}
+
 	public function testGetExtraCacheKeys() {
 		$slotDiffRenderer = $this->getTextSlotDiffRenderer();
 		$key = $slotDiffRenderer->getExtraCacheKeys();
 		$slotDiffRenderer->setEngine( TextSlotDiffRenderer::ENGINE_WIKIDIFF2_INLINE );
 		$inlineKey = $slotDiffRenderer->getExtraCacheKeys();
-		$this->assertSame( [], $key );
-		$this->assertSame( $inlineKey, [ phpversion( 'wikidiff2' ), 'inline' ] );
+
+		ksort( $key );
+		ksort( $inlineKey );
+
+		$this->assertSame( [ '10-formats-and-engines' => 'php=table' ], $key );
+		$this->assertSame(
+			[
+				'10-formats-and-engines' => 'wikidiff2=inline',
+				'20-wikidiff2-version' => '1.14.1'
+			],
+			$inlineKey
+		);
 	}
 
 	/**
@@ -91,14 +111,24 @@ class TextSlotDiffRendererTest extends MediaWikiIntegrationTestCase {
 	// no separate test for getTextDiff() as getDiff() is just a thin wrapper around it
 
 	/**
+	 * @param string $langCode
 	 * @return TextSlotDiffRenderer
 	 */
-	private function getTextSlotDiffRenderer() {
+	private function getTextSlotDiffRenderer( $langCode = 'en' ) {
 		$slotDiffRenderer = new TextSlotDiffRenderer();
 		$slotDiffRenderer->setStatsdDataFactory( new NullStatsdDataFactory() );
-		$slotDiffRenderer->setLanguage(
-			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' ) );
-		$slotDiffRenderer->setEngine( TextSlotDiffRenderer::ENGINE_PHP );
+		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( $langCode );
+		$context = new RequestContext;
+		$context->setLanguage( $lang );
+		$differ = new ManifoldTextDiffer(
+			$context,
+			$lang,
+			'php',
+			null,
+			[]
+		);
+		$slotDiffRenderer->setTextDiffer( $differ );
+		$slotDiffRenderer->setFormat( 'table' );
 		return $slotDiffRenderer;
 	}
 
@@ -166,7 +196,7 @@ class TextSlotDiffRendererTest extends MediaWikiIntegrationTestCase {
 		OOUI\Theme::setSingleton( new OOUI\BlankTheme() );
 		$this->overrideConfigValue( MainConfigNames::ShowDiffToggleSwitch, true );
 
-		$slotDiffRenderer = $this->getTextSlotDiffRenderer();
+		$slotDiffRenderer = $this->getTextSlotDiffRenderer( 'qqx' );
 		$slotDiffRenderer->setHookContainer( $this->createHookContainer() );
 		$slotDiffRenderer->setEngine( $engine );
 

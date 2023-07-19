@@ -376,6 +376,10 @@ because of Phabricator reports.
 * ResourceLoader (T127268): The targets system is deprecated. Modules that
   have been marked as desktop or mobile only are no longer supported and
   will send deprecation warnings.
+* TextSlotDiffRenderer::setLanguage() is deprecated, and calling it will
+  have no effect. Use ContentHandler::getSlotDiffRenderer(), or in subclasses,
+  ContentHandler::createTextSlotDiffRenderer(), to correctly inject
+  dependencies into TextSlotDiffRenderer.
 * The static methods encodeJsVar() and encodeJsCall() have been moved from the
   Xml class to the more appropriate MediaWiki\Html\Html one, and the old ones
   are now deprecated.

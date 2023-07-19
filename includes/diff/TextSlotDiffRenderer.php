@@ -21,18 +21,16 @@
  * @ingroup DifferenceEngine
  */
 
- use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Diff\TextDiffer\ManifoldTextDiffer;
+use MediaWiki\Diff\TextDiffer\TextDiffer;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Shell\Shell;
 use MediaWiki\Title\Title;
 use OOUI\ButtonGroupWidget;
 use OOUI\ButtonWidget;
-use Wikimedia\Assert\Assert;
-use Wikimedia\Diff\Diff;
-use Wikimedia\Diff\TableDiffFormatter;
 
 /**
  * Renders a slot diff by doing a text diff on the native representation.
@@ -65,27 +63,21 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	/** @var IBufferingStatsdDataFactory|null */
 	private $statsdDataFactory;
 
-	/** @var Language|null The language this content is in. */
-	private $language;
-
 	/** @var HookRunner|null */
 	private $hookRunner;
 
-	/** @var string One of the ENGINE_* constants. */
-	private $engine = self::ENGINE_PHP;
-
-	/** @var string|null Path to an executable to be used as the diff engine. */
-	private $externalEngine;
+	/** @var string|null */
+	private $format;
 
 	/** @var string */
 	private $contentModel;
 
+	/** @var TextDiffer|null */
+	private $textDiffer;
+
 	/** @inheritDoc */
 	public function getExtraCacheKeys() {
-		// Tell DifferenceEngine this is a different variant from the standard wikidiff2 variant
-		return $this->engine === self::ENGINE_WIKIDIFF2_INLINE ? [
-			phpversion( 'wikidiff2' ), 'inline'
-		] : [];
+		return $this->textDiffer->getCacheKeys( [ $this->format ] );
 	}
 
 	/**
@@ -113,10 +105,13 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	}
 
 	/**
-	 * @param Language $language The language of the text being diffed, for word segmentation
+	 * This has no effect since MW 1.41. The language is now injected via setTextDiffer().
+	 *
+	 * @param Language $language
+	 * @deprecated since 1.41
 	 */
 	public function setLanguage( Language $language ) {
-		$this->language = $language;
+		wfDeprecated( __METHOD__, '1.41' );
 	}
 
 	/**
@@ -137,23 +132,72 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 
 	/**
 	 * Set which diff engine to use.
+	 *
 	 * @param string $type One of the ENGINE_* constants.
-	 * @param string|null $executable Path to an external executable, only when type is ENGINE_EXTERNAL.
+	 * @param null $executable Must be null since 1.41. Previously a path to execute.
 	 */
 	public function setEngine( $type, $executable = null ) {
-		$engines = [ self::ENGINE_PHP, self::ENGINE_WIKIDIFF2, self::ENGINE_EXTERNAL,
-			self::ENGINE_WIKIDIFF2_INLINE ];
-		Assert::parameter( in_array( $type, $engines, true ), '$type',
-			'must be one of the TextSlotDiffRenderer::ENGINE_* constants' );
-		if ( $type === self::ENGINE_EXTERNAL ) {
-			Assert::parameter( is_string( $executable ) && is_executable( $executable ), '$executable',
-				'must be a path to a valid executable' );
-		} else {
-			Assert::parameter( $executable === null, '$executable',
-				'must not be set unless $type is ENGINE_EXTERNAL' );
+		if ( $executable !== null ) {
+			throw new \InvalidArgumentException(
+				'The $executable parameter is no longer supported and must be null'
+			);
 		}
-		$this->engine = $type;
-		$this->externalEngine = $executable;
+		switch ( $type ) {
+			case self::ENGINE_PHP:
+				$engine = 'php';
+				$format = 'table';
+				break;
+
+			case self::ENGINE_WIKIDIFF2:
+				$engine = 'wikidiff2';
+				$format = 'table';
+				break;
+
+			case self::ENGINE_EXTERNAL:
+				$engine = 'external';
+				$format = 'external';
+				break;
+
+			case self::ENGINE_WIKIDIFF2_INLINE:
+				$engine = 'wikidiff2';
+				$format = 'inline';
+				break;
+
+			default:
+				throw new \InvalidArgumentException( '$type ' .
+					'must be one of the TextSlotDiffRenderer::ENGINE_* constants' );
+		}
+		if ( $this->textDiffer instanceof ManifoldTextDiffer ) {
+			$this->textDiffer->setEngine( $engine );
+		}
+		$this->setFormat( $format );
+	}
+
+	/**
+	 * Set the TextDiffer format
+	 *
+	 * @since 1.41
+	 * @param string $format
+	 */
+	public function setFormat( $format ) {
+		$this->format = $format;
+	}
+
+	/**
+	 * @param TextDiffer $textDiffer
+	 */
+	public function setTextDiffer( TextDiffer $textDiffer ) {
+		$this->textDiffer = $textDiffer;
+	}
+
+	/**
+	 * Get the current TextDiffer, or throw an exception if setTextDiffer() has
+	 * not been called.
+	 *
+	 * @return TextDiffer
+	 */
+	private function getTextDiffer(): TextDiffer {
+		return $this->textDiffer;
 	}
 
 	/**
@@ -180,56 +224,39 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	 * @inheritDoc
 	 */
 	public function getTablePrefix( IContextSource $context, Title $newTitle ): array {
-		$legend = null;
-		$inlineSwitcher = null;
+		$parts = $this->getTextDiffer()->getTablePrefixes( $this->format );
 
 		$showDiffToggleSwitch = $context->getConfig()->get( MainConfigNames::ShowDiffToggleSwitch );
-
-		// wikidiff2 inline type gets a legend to explain the highlighting colours and show an inline toggle
-		if ( $this->engine === self::ENGINE_WIKIDIFF2 ||
-			$this->engine === self::ENGINE_WIKIDIFF2_INLINE ) {
-			$ins = Html::element( 'span',
-				[ 'class' => 'mw-diff-inline-legend-ins' ],
-				$context->msg( 'diff-inline-tooltip-ins' )->plain()
+		// If we support the inline type, add a toggle switch
+		if ( $showDiffToggleSwitch && $this->getTextDiffer()->hasFormat( 'inline' ) ) {
+			$values = $context->getRequest()->getValues();
+			$isInlineDiffType = $this->format === 'inline';
+			unset( $values[ 'diff-type' ] );
+			unset( $values[ 'title' ] );
+			$parts[self::INLINE_SWITCHER_KEY] = Html::rawElement( 'div',
+				[ 'class' => 'mw-diffPage-inlineToggle-container' ],
+				// Will be replaced by a ButtonSelectWidget in JS
+				new ButtonGroupWidget( [
+					'items' => [
+						new ButtonWidget( [
+							'active' => $isInlineDiffType,
+							'label' => $context->msg( 'diff-inline-format-label' )->plain(),
+							'href' => $newTitle->getLocalURL( $values ) . '&diff-type=inline'
+						] ),
+						new ButtonWidget( [
+							'active' => !$isInlineDiffType,
+							'label' => $context->msg( 'diff-table-format-label' )->plain(),
+							'href' => $newTitle->getLocalURL( $values )
+						] )
+					]
+				] )
 			);
-			$del = Html::element( 'span',
-				[ 'class' => 'mw-diff-inline-legend-del' ],
-				$context->msg( 'diff-inline-tooltip-del' )->plain()
-			);
-			$hideDiffClass = $this->engine === self::ENGINE_WIKIDIFF2 ? 'oo-ui-element-hidden' : '';
-			$legend = Html::rawElement( 'div',
-				[ 'class' => 'mw-diff-inline-legend ' . $hideDiffClass ], "$ins $del"
-			);
-
-			if ( $showDiffToggleSwitch ) {
-				$values = $context->getRequest()->getValues();
-				$isInlineDiffType = isset( $values['diff-type'] ) && $values['diff-type'] === 'inline';
-				unset( $values[ 'diff-type' ] );
-				unset( $values[ 'title' ] );
-				$inlineSwitcher = Html::rawElement( 'div',
-					[ 'class' => 'mw-diffPage-inlineToggle-container' ],
-					// Will be replaced by a ButtonSelectWidget in JS
-					new ButtonGroupWidget( [
-						'items' => [
-							new ButtonWidget( [
-								'active' => $isInlineDiffType,
-								'label' => $context->msg( 'diff-inline-format-label' )->plain(),
-								'href' => $newTitle->getLocalURL( $values ) . '&diff-type=inline'
-							] ),
-							new ButtonWidget( [
-								'active' => !$isInlineDiffType,
-								'label' => $context->msg( 'diff-table-format-label' )->plain(),
-								'href' => $newTitle->getLocalURL( $values )
-							] )
-						]
-					] )
-				);
-			}
 		}
-		// Allow extensions to add other parts to this area (or modify the legend).
-		// An empty placeholder for the legend is added when it's not in use and other items have been added.
-		$parts = [ self::INLINE_LEGEND_KEY => $legend, self::INLINE_SWITCHER_KEY => $inlineSwitcher ];
+		// Add an empty placeholder for the legend is added when it's not in
+		// use and other items have been added.
+		$parts += [ self::INLINE_LEGEND_KEY => null, self::INLINE_SWITCHER_KEY => null ];
 
+		// Allow extensions to add other parts to this area (or modify the legend).
 		$this->hookRunner->onTextSlotDiffRendererTablePrefix( $this, $context, $parts );
 		if ( count( $parts ) > 1 && $parts[self::INLINE_LEGEND_KEY] === null ) {
 			$parts[self::INLINE_LEGEND_KEY] = Html::element( 'div' );
@@ -287,9 +314,6 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	 * @throws Exception
 	 */
 	protected function getTextDiffInternal( $oldText, $newText ) {
-		// TODO move most of this into three parallel implementations of a text diff generator
-		// class, choose which one to use via dependency injection
-
 		$oldText = str_replace( "\r\n", "\n", $oldText );
 		$newText = str_replace( "\r\n", "\n", $newText );
 
@@ -297,86 +321,9 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 			return '';
 		}
 
-		// Better external diff engine, the 2 may some day be dropped
-		// This one does the escaping and segmenting itself
-		if ( $this->engine === self::ENGINE_WIKIDIFF2 ) {
-			$wikidiff2Version = phpversion( 'wikidiff2' );
-			if (
-				$wikidiff2Version !== false &&
-				version_compare( $wikidiff2Version, '1.5.0', '>=' ) &&
-				version_compare( $wikidiff2Version, '1.8.0', '<' )
-			) {
-				$text = wikidiff2_do_diff(
-					$oldText,
-					$newText,
-					2,
-					0
-				);
-			} else {
-				// Don't pass the 4th parameter introduced in version 1.5.0 and removed in version 1.8.0
-				$text = wikidiff2_do_diff(
-					$oldText,
-					$newText,
-					2
-				);
-			}
-
-			return $text;
-		} elseif ( $this->engine === self::ENGINE_EXTERNAL ) {
-			# Diff via the shell
-			$tmpDir = wfTempDir();
-			$tempName1 = tempnam( $tmpDir, 'diff_' );
-			$tempName2 = tempnam( $tmpDir, 'diff_' );
-
-			$tempFile1 = fopen( $tempName1, "w" );
-			if ( !$tempFile1 ) {
-				throw new Exception( "Could not create temporary file $tempName1 for external diffing" );
-			}
-			$tempFile2 = fopen( $tempName2, "w" );
-			if ( !$tempFile2 ) {
-				throw new Exception( "Could not create temporary file $tempName2 for external diffing" );
-			}
-			fwrite( $tempFile1, $oldText );
-			fwrite( $tempFile2, $newText );
-			fclose( $tempFile1 );
-			fclose( $tempFile2 );
-			$cmd = [ $this->externalEngine, $tempName1, $tempName2 ];
-			$result = Shell::command( $cmd )
-				->execute();
-			$exitCode = $result->getExitCode();
-			if ( $exitCode !== 0 ) {
-				throw new Exception( "External diff command returned code {$exitCode}. Stderr: "
-					. wfEscapeWikiText( $result->getStderr() )
-				);
-			}
-			$difftext = $result->getStdout();
-			unlink( $tempName1 );
-			unlink( $tempName2 );
-
-			return $difftext;
-		} elseif ( $this->engine === self::ENGINE_PHP ) {
-			if ( $this->language ) {
-				$oldText = $this->language->segmentForDiff( $oldText );
-				$newText = $this->language->segmentForDiff( $newText );
-			}
-			$ota = explode( "\n", $oldText );
-			$nta = explode( "\n", $newText );
-			$diffs = new Diff( $ota, $nta );
-			$formatter = new TableDiffFormatter();
-			$difftext = $formatter->format( $diffs );
-			if ( $this->language ) {
-				$difftext = $this->language->unsegmentForDiff( $difftext );
-			}
-
-			return $difftext;
-		} elseif ( $this->engine === self::ENGINE_WIKIDIFF2_INLINE ) {
-			// Note wikidiff2_inline_diff returns an element sans table.
-			// Due to the way other diffs work (return a table with before and after), we need to wrap
-			// the output in a row that spans the 4 columns that are expected, so that our diff appears in
-			// the correct place!
-			return '<tr><td colspan="4">' . wikidiff2_inline_diff( $oldText, $newText, 2 ) . '</td></tr>';
-		}
-		throw new LogicException( 'Invalid engine: ' . $this->engine );
+		$textDiffer = $this->getTextDiffer();
+		$diffText = $textDiffer->render( $oldText, $newText, $this->format );
+		return $textDiffer->addRowWrapper( $this->format, $diffText );
 	}
 
 }
