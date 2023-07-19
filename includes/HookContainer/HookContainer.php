@@ -74,6 +74,12 @@ class HookContainer implements SalvageableService {
 	/** @var HookRegistry */
 	private $registry;
 
+	/**
+	 * Handlers registered by calling register().
+	 * @var array
+	 */
+	private $extraHandlers = [];
+
 	/** @var ObjectFactory */
 	private $objectFactory;
 
@@ -104,11 +110,12 @@ class HookContainer implements SalvageableService {
 	 */
 	public function salvage( SalvageableService $other ) {
 		Assert::parameterType( self::class, $other, '$other' );
-		if ( $this->handlers || $this->handlerObjects ) {
+		if ( $this->handlers || $this->handlerObjects || $this->extraHandlers ) {
 			throw new MWException( 'salvage() must be called immediately after construction' );
 		}
 		$this->handlerObjects = $other->handlerObjects;
 		$this->handlers = $other->handlers;
+		$this->extraHandlers = $other->extraHandlers;
 	}
 
 	/**
@@ -139,7 +146,7 @@ class HookContainer implements SalvageableService {
 		$abortable = $options['abortable'] ?? true;
 		foreach ( $this->getHandlers( $hook, $options ) as $handler ) {
 			if ( $checkDeprecation ) {
-				$this->checkDeprecation( $hook, $handler['functionName'], $options );
+				$this->checkDeprecation( $hook, $handler, $options );
 			}
 
 			// Compose callback arguments.
@@ -203,7 +210,7 @@ class HookContainer implements SalvageableService {
 			throw new InvalidArgumentException( 'Bad hook handler!' );
 		}
 
-		$this->checkDeprecation( $hook, $handler['functionName'] );
+		$this->checkDeprecation( $hook, $handler );
 
 		$id = 'TemporaryHook_' . $this->nextScopedRegisterId++;
 
@@ -417,12 +424,22 @@ class HookContainer implements SalvageableService {
 	 * @param string|array|callable $handler handler
 	 */
 	public function register( string $hook, $handler ) {
+		$this->checkDeprecation( $hook, $handler );
+
+		if ( !isset( $this->handlers[$hook] ) ) {
+			// Just remember the handler for later.
+			// NOTE: It would be nice to normalize immediately. But since some extensions make extensive
+			//       use of this method for registering hooks on every call, that could be a performance
+			//       issue. This is particularly true if the hook is declared in a way that would require
+			//       service objects to be instantiated.
+			$this->extraHandlers[$hook][] = $handler;
+			return;
+		}
+
 		$normalized = $this->normalizeHandler( $hook, $handler );
 		if ( !$normalized ) {
 			throw new InvalidArgumentException( 'Bad hook handler!' );
 		}
-
-		$this->checkDeprecation( $hook, $normalized['functionName'] );
 
 		$this->getHandlers( $hook );
 		$this->handlers[$hook][] = $normalized;
@@ -465,6 +482,7 @@ class HookContainer implements SalvageableService {
 	public function getHookNames(): array {
 		$names = array_merge(
 			array_keys( array_filter( $this->handlers ) ),
+			array_keys( array_filter( $this->extraHandlers ) ),
 			array_keys( array_filter( $this->registry->getGlobalHooks() ) ),
 			array_keys( array_filter( $this->registry->getExtensionHooks() ) )
 		);
@@ -488,7 +506,8 @@ class HookContainer implements SalvageableService {
 
 			$rawHandlers = array_merge(
 				$configuredHooks[ $hook ] ?? [],
-				$registeredHooks[ $hook ] ?? []
+				$registeredHooks[ $hook ] ?? [],
+				$this->extraHandlers[ $hook ] ?? [],
 			);
 
 			foreach ( $rawHandlers as $raw ) {
@@ -517,15 +536,17 @@ class HookContainer implements SalvageableService {
 	 */
 	public function getHandlerDescriptions( string $hook ): array {
 		$descriptions = [];
-		$registeredHooks = $this->registry->getExtensionHooks();
-		$configuredHooks = $this->registry->getGlobalHooks();
 
 		if ( isset( $this->handlers[ $hook ] ) ) {
 			$rawHandlers = $this->handlers[ $hook ];
 		} else {
+			$registeredHooks = $this->registry->getExtensionHooks();
+			$configuredHooks = $this->registry->getGlobalHooks();
+
 			$rawHandlers = array_merge(
 				$configuredHooks[ $hook ] ?? [],
-				$registeredHooks[ $hook ] ?? []
+				$registeredHooks[ $hook ] ?? [],
+				$this->extraHandlers[ $hook ] ?? [],
 			);
 		}
 
@@ -578,8 +599,9 @@ class HookContainer implements SalvageableService {
 	 */
 	public function emitDeprecationWarnings() {
 		$deprecatedHooks = $this->registry->getDeprecatedHooks();
-		$registeredHooks = $this->registry->getExtensionHooks();
-		foreach ( $registeredHooks as $name => $handlers ) {
+		$extensionHooks = $this->registry->getExtensionHooks();
+
+		foreach ( $extensionHooks as $name => $handlers ) {
 			if ( $deprecatedHooks->isHookDeprecated( $name ) ) {
 				$deprecationInfo = $deprecatedHooks->getDeprecationInfo( $name );
 				if ( !empty( $deprecationInfo['silent'] ) ) {
@@ -604,21 +626,22 @@ class HookContainer implements SalvageableService {
 	 * is not marked as silent.
 	 *
 	 * @param string $hook The name of the hook.
-	 * @param string $functionName The human-readable description of the handler
+	 * @param array|callable|string $handler A handler spec
 	 * @param array|null $deprecationInfo Deprecation info if the caller already knows it.
 	 *        If not given, it will be looked up from the hook registry.
 	 *
 	 * @return void
 	 */
-	private function checkDeprecation( string $hook, string $functionName, array $deprecationInfo = null ): void {
+	private function checkDeprecation( string $hook, $handler, array $deprecationInfo = null ): void {
 		if ( !$deprecationInfo ) {
 			$deprecatedHooks = $this->registry->getDeprecatedHooks();
 			$deprecationInfo = $deprecatedHooks->getDeprecationInfo( $hook );
 		}
 
 		if ( $deprecationInfo && empty( $deprecationInfo['silent'] ) ) {
+			$description = $this->describeHandler( $hook, $handler );
 			wfDeprecated(
-				"$hook hook (used in " . $functionName . ")",
+				"$hook hook (used in $description)",
 				$deprecationInfo['deprecatedVersion'] ?? false,
 				$deprecationInfo['component'] ?? false
 			);

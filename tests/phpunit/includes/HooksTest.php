@@ -155,9 +155,13 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 		$this->hideDeprecated( 'Hooks::run' );
 		$hookContainer = $this->getServiceContainer()->getHookContainer();
 
-		$this->expectException( InvalidArgumentException::class );
+		// NOTE: Currently, register() doesn't immediately normalize and check the hook.
+		//       Failure to normalize later, on run, is ignored silently. Should it trigger a warning?
 		$hookContainer->register( self::MOCK_HOOK_NAME, 'ThisFunctionDoesntExist' );
 		Hooks::run( self::MOCK_HOOK_NAME, [] );
+
+		// We assert that run() doesn't throw.
+		$this->addToAssertionCount( 1 );
 	}
 
 	/**
@@ -220,9 +224,14 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 	public function testCallHook_UnknownDatatype() {
 		$this->hideDeprecated( 'Hooks::run' );
 		$hookContainer = $this->getServiceContainer()->getHookContainer();
-		$this->expectException( InvalidArgumentException::class );
+
+		// NOTE: Currently, register() doesn't immediately normalize and check the hook.
+		//       Failure to normalize later, on run, is ignored silently. Should it trigger a warning?
 		$hookContainer->register( self::MOCK_HOOK_NAME, 12345 );
 		Hooks::run( self::MOCK_HOOK_NAME );
+
+		// We assert that run() doesn't throw.
+		$this->addToAssertionCount( 1 );
 	}
 
 	/**

@@ -437,9 +437,12 @@ namespace MediaWiki\HookContainer {
 		 * @dataProvider provideRunDeprecatedStyle
 		 */
 		public function testRegisterDeprecatedStyle( $handler ) {
-			$this->expectDeprecationAndContinue( '/Deprecated handler style for hook/' );
-
 			$hookContainer = $this->newHookContainer( [], [] );
+
+			// Force the handler list to be initialized, so register() will normalize the handler immediately.
+			$hookContainer->run( 'Increment' );
+
+			$this->expectDeprecationAndContinue( '/Deprecated handler style for hook/' );
 			$hookContainer->register( 'Increment', $handler );
 		}
 
@@ -820,6 +823,9 @@ namespace MediaWiki\HookContainer {
 		 */
 		public function testRegisterErrors( $badHandler ) {
 			$hookContainer = $this->newHookContainer();
+
+			// Force the handler list to be initialized, so register() will normalize the handler immediately.
+			$hookContainer->run( 'MWTestHook' );
 
 			$this->expectException( InvalidArgumentException::class );
 			$hookContainer->register( 'MWTestHook', $badHandler );
