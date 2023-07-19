@@ -220,6 +220,10 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 		return $this->getTextDiff( $oldText, $newText );
 	}
 
+	public function localizeDiff( $diff, $options = [] ) {
+		return $this->textDiffer->localize( $this->format, $diff, $options );
+	}
+
 	/**
 	 * @inheritDoc
 	 */

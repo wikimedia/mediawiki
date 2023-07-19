@@ -52,6 +52,20 @@ abstract class SlotDiffRenderer {
 	abstract public function getDiff( Content $oldContent = null, Content $newContent = null );
 
 	/**
+	 * Localize language-independent text returned by getDiff(), making it
+	 * suitable for display. Subclasses overriding this should arrange for
+	 * injection of a MessageLocalizer.
+	 *
+	 * @param string $diff
+	 * @param array $options Associative array of options:
+	 *   - reducedLineNumbers: If true, remove "line 1" but allow other line numbers
+	 * @return string
+	 */
+	public function localizeDiff( string $diff, array $options = [] ) {
+		return $diff;
+	}
+
+	/**
 	 * Get the content to add above the main diff table.
 	 *
 	 * @since 1.41
