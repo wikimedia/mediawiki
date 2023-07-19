@@ -74,7 +74,7 @@ class TableDiffFormatter extends DiffFormatter {
 	 */
 	protected function blockHeader( $xbeg, $xlen, $ybeg, $ylen ) {
 		// '<!--LINE \d+ -->' get replaced by a localised line number
-		// in DifferenceEngine::localiseLineNumbers
+		// in BaseTextDiffer::localizeLineNumbers
 		return $this->rawElement(
 			'tr',
 			[],
