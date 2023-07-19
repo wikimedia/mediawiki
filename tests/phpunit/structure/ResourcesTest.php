@@ -17,6 +17,7 @@ use Wikimedia\TestingAccessWrapper;
  * @copyright © 2012, Santhosh Thottingal
  *
  * @coversNothing
+ * @group Database
  */
 class ResourcesTest extends MediaWikiIntegrationTestCase {
 
