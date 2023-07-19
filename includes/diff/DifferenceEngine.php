@@ -1627,6 +1627,25 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
+	 * Replace a common convention for language-independent line numbers with
+	 * the text in the user's language.
+	 *
+	 * @param string $text
+	 *
+	 * @return string
+	 */
+	public function localiseLineNumbers( $text ) {
+		// TODO duplicate of BaseTextDiffer::localizeLineNumbers(), kept for compatibility
+		return preg_replace_callback( '/<!--LINE (\d+)-->/',
+			function ( array $matches ) {
+				if ( $matches[1] === '1' && $this->mReducedLineNumbers ) {
+					return '';
+				}
+				return $this->msg( 'lineno' )->numParams( $matches[1] )->escaped();
+			}, $text );
+	}
+
+	/**
 	 * If there are revisions between the ones being compared, return a note saying so.
 	 *
 	 * @return string
