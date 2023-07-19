@@ -9,6 +9,7 @@ use MediaWiki\Title\Title;
  * creating an instance of the action works
  *
  * @coversNothing
+ * @group Database
  */
 class ActionFactoryIntegrationTest extends MediaWikiIntegrationTestCase {
 

@@ -6,6 +6,7 @@ use Wikimedia\TestingAccessWrapper;
  * Test class for ReverseChronologicalPagerTest methods.
  *
  * @group Pager
+ * @group Database
  *
  * @author Geoffrey Mon <geofbot@gmail.com>
  */

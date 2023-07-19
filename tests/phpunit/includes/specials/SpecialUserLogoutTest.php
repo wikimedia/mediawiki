@@ -4,6 +4,7 @@ use MediaWiki\Request\FauxRequest;
 
 /**
  * @covers SpecialUserLogout
+ * @group Database
  */
 class SpecialUserLogoutTest extends SpecialPageTestBase {
 

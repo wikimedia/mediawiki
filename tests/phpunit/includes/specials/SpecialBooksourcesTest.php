@@ -41,7 +41,7 @@ class SpecialBooksourcesTest extends SpecialPageTestBase {
 		$services = $this->getServiceContainer();
 		return new SpecialBookSources(
 			$services->getRevisionLookup(),
-			$services->getContentLanguage()
+			$services->getTitleFactory()
 		);
 	}
 
@@ -49,6 +49,7 @@ class SpecialBooksourcesTest extends SpecialPageTestBase {
 	 * @covers MediaWiki\Specials\SpecialBookSources::execute
 	 */
 	public function testExecute() {
+		$this->setService( 'TitleFactory', $this->createMock( TitleFactory::class ) );
 		[ $html, ] = $this->executeSpecialPage( 'Invalid', null, 'qqx' );
 		$this->assertStringContainsString( '(booksources-invalid-isbn)', $html );
 		[ $html, ] = $this->executeSpecialPage( '0-7475-3269-9', null, 'qqx' );
