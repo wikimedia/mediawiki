@@ -27,14 +27,11 @@ class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 
 		parent::setUp();
 
-		// For the purpose of this test, make $wgHooks behave like a real global config array.
-		// The FauxGlobalHooksArray will be restored by the testing framework automatically.
-		$wgHooks = [];
-
 		$this->autoloaderState = AutoLoader::getState();
 
 		// Make sure to restore globals
 		$this->stashMwGlobals( [
+			'wgHooks',
 			'wgAutoloadClasses',
 			'wgNamespaceProtection',
 			'wgNamespaceModels',
@@ -42,6 +39,9 @@ class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 			'wgAuthManagerAutoConfig',
 			'wgGroupPermissions',
 		] );
+
+		// For the purpose of this test, make $wgHooks behave like a real global config array.
+		$wgHooks = [];
 	}
 
 	protected function tearDown(): void {
