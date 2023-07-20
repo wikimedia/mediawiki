@@ -30,17 +30,16 @@ class MagicVariableTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->overrideConfigValues( [
-			MainConfigNames::MiserMode => false,
-			MainConfigNames::ParserCacheExpireTime => 86400 * 7,
-		] );
-
 		$services = $this->getServiceContainer();
 		$contLang = $services->getLanguageFactory()->getLanguage( 'en' );
 		$this->setService( 'ContentLanguage', $contLang );
-		$this->overrideConfigValue( MainConfigNames::LanguageCode, $contLang->getCode() );
-		// NOTE: Europe/Stockholm DST applies Sun, Mar 26, 2023 2:00 - Sun, Oct 29, 2023 3:00AM
-		$this->overrideConfigValue( MainConfigNames::Localtimezone, 'Europe/Stockholm' );
+		$this->overrideConfigValues( [
+			MainConfigNames::LanguageCode => $contLang->getCode(),
+			// NOTE: Europe/Stockholm DST applies Sun, Mar 26, 2023 2:00 - Sun, Oct 29, 2023 3:00AM
+			MainConfigNames::Localtimezone => 'Europe/Stockholm',
+			MainConfigNames::MiserMode => false,
+			MainConfigNames::ParserCacheExpireTime => 86400 * 7,
+		] );
 
 		$this->testParser = $services->getParserFactory()->create();
 		$this->testParser->setOptions( ParserOptions::newFromUserAndLang( new User, $contLang ) );

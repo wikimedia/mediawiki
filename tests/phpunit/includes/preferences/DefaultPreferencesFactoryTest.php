@@ -61,11 +61,11 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$this->context = new RequestContext();
 		$this->context->setTitle( Title::newFromText( self::class ) );
 
-		$services = $this->getServiceContainer();
-
-		$this->overrideConfigValue( MainConfigNames::DisableLangConversion, false );
-		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, false );
-		$this->config = $services->getMainConfig();
+		$this->overrideConfigValues( [
+			MainConfigNames::DisableLangConversion => false,
+			MainConfigNames::UsePigLatinVariant => false,
+		] );
+		$this->config = $this->getServiceContainer()->getMainConfig();
 	}
 
 	/**

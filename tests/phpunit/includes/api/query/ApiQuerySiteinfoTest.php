@@ -172,6 +172,9 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	 */
 	public function testInterwikiMap( $filter ) {
 		$this->overrideConfigValues( [
+			MainConfigNames::ExtraInterlanguageLinkPrefixes => [ 'self' ],
+			MainConfigNames::ExtraLanguageNames => [ 'self' => 'Recursion' ],
+			MainConfigNames::LocalInterwikis => [ 'self' ],
 			MainConfigNames::Server => 'https://local.example',
 			MainConfigNames::ScriptPath => '/w',
 		] );
@@ -201,12 +204,6 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 			'IGNORE'
 		);
 		$this->tablesUsed[] = 'interwiki';
-
-		$this->overrideConfigValues( [
-			MainConfigNames::LocalInterwikis => [ 'self' ],
-			MainConfigNames::ExtraInterlanguageLinkPrefixes => [ 'self' ],
-			MainConfigNames::ExtraLanguageNames => [ 'self' => 'Recursion' ],
-		] );
 
 		$this->getServiceContainer()->getMessageCache()->enable();
 

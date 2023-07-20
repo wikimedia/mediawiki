@@ -1332,10 +1332,11 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideWhitelistRead
 	 */
 	public function testWhitelistRead( array $whitelist, string $title, bool $shouldAllow ) {
-		$this->overrideConfigValue( MainConfigNames::WhitelistRead, $whitelist );
+		$this->overrideConfigValues( [
+			MainConfigNames::LanguageCode => 'es',
+			MainConfigNames::WhitelistRead => $whitelist,
+		] );
 		$this->setGroupPermissions( '*', 'read', false );
-
-		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'es' );
 
 		$title = Title::newFromText( $title );
 		$pm = $this->getServiceContainer()->getPermissionManager();

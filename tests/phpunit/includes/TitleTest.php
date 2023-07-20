@@ -43,12 +43,11 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::ScriptPath => '/w',
 			MainConfigNames::Script => '/w/index.php',
 			MainConfigNames::ArticlePath => '/wiki/$1',
+			MainConfigNames::LanguageCode => 'en',
+			// For testSecureAndSplitValid, testSecureAndSplitInvalid
+			MainConfigNames::LocalInterwikis => [ 'localtestiw' ],
 		] );
 		$this->setUserLang( 'en' );
-		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'en' );
-
-		// For testSecureAndSplitValid, testSecureAndSplitInvalid
-		$this->overrideConfigValue( MainConfigNames::LocalInterwikis, [ 'localtestiw' ] );
 
 		// Define valid interwiki prefixes and their configuration
 		// DummyServicesTrait::getDummyInterwikiLookup
