@@ -20,6 +20,7 @@
  * @file
  * @author Daniel Kinzler
  */
+
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageReference;
@@ -101,7 +102,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	public function overrideCreateMalformedTitleExceptionCallback( callable $callback ) {
 		// @codeCoverageIgnoreStart
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			throw new RuntimeException( __METHOD__ . ' can only be used in tests' );
+			throw new LogicException( __METHOD__ . ' can only be used in tests' );
 		}
 		// @codeCoverageIgnoreEnd
 		$this->createMalformedTitleException = $callback;

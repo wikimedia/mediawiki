@@ -407,7 +407,7 @@ class MWDebug {
 		string $regex, ?callable $callback = null
 	): void {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
-			throw new RuntimeException( __METHOD__ . ' can only be used in tests' );
+			throw new LogicException( __METHOD__ . ' can only be used in tests' );
 		}
 		self::$deprecationFilters[$regex] = $callback;
 	}

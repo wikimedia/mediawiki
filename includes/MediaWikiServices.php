@@ -20,7 +20,6 @@
 
 namespace MediaWiki;
 
-use BadMethodCallException;
 use BagOStuff;
 use CentralIdLookup;
 use Config;
@@ -40,6 +39,7 @@ use Language;
 use LinkCache;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LocalisationCache;
+use LogicException;
 use MediaHandlerFactory;
 use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Auth\AuthManager;
@@ -299,7 +299,7 @@ class MediaWikiServices extends ServiceContainer {
 		if ( !self::$globalInstanceAllowed ) {
 			if ( defined( 'MW_PHPUNIT_TEST' ) ) {
 				// Fail hard in PHPUnit tests only
-				throw new BadMethodCallException( 'Premature access to service container' );
+				throw new LogicException( 'Premature access to service container' );
 			}
 			// TODO: getInstance() should always fail if $globalInstanceAllowed is false! (T153256)
 			wfDeprecatedMsg( 'Premature access to service container', '1.36' );
@@ -343,7 +343,7 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public static function forceGlobalInstance( MediaWikiServices $services ) {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
-			throw new BadMethodCallException( __METHOD__ . ' must not be used outside unit tests.' );
+			throw new LogicException( __METHOD__ . ' must not be used outside unit tests.' );
 		}
 
 		$old = self::getInstance();
@@ -607,7 +607,7 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function resetServiceForTesting( $name, $destroy = true ) {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
-			throw new BadMethodCallException( 'resetServiceForTesting() must not be used outside unit tests.' );
+			throw new LogicException( 'resetServiceForTesting() must not be used outside unit tests.' );
 		}
 
 		$this->resetService( $name, $destroy );
@@ -645,7 +645,7 @@ class MediaWikiServices extends ServiceContainer {
 			&& !defined( 'RUN_MAINTENANCE_IF_MAIN' )
 			&& defined( 'MW_SERVICE_BOOTSTRAP_COMPLETE' )
 		) {
-			throw new BadMethodCallException( $method . ' may only be called during bootstrapping and unit tests!' );
+			throw new LogicException( $method . ' may only be called during bootstrapping and unit tests!' );
 		}
 	}
 

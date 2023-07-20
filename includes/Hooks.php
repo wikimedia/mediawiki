@@ -67,7 +67,7 @@ class Hooks {
 	public static function clear( $name ) {
 		wfDeprecated( __METHOD__, '1.35' );
 		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
-			throw new BadMethodCallException( 'Cannot reset hooks in operation.' );
+			throw new LogicException( 'Cannot reset hooks in operation.' );
 		}
 		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 		$hookContainer->clear( $name );

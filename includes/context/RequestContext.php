@@ -568,8 +568,8 @@ class RequestContext implements IContextSource, MutableContext {
 	 * Resets singleton returned by getMain(). Should be called only from unit tests.
 	 */
 	public static function resetMain() {
-		if ( !( defined( 'MW_PHPUNIT_TEST' ) || defined( 'MW_PARSER_TEST' ) ) ) {
-			throw new BadMethodCallException( __METHOD__ . '() should be called only from unit tests!' );
+		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
+			throw new LogicException( __METHOD__ . '() should be called only from unit tests!' );
 		}
 		self::$instance = null;
 	}

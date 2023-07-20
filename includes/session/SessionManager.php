@@ -23,10 +23,10 @@
 
 namespace MediaWiki\Session;
 
-use BadMethodCallException;
 use BagOStuff;
 use CachedBagOStuff;
 use Config;
+use LogicException;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
@@ -1010,7 +1010,7 @@ class SessionManager implements SessionManagerInterface {
 	public static function resetCache() {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
 			// @codeCoverageIgnoreStart
-			throw new BadMethodCallException( __METHOD__ . ' may only be called from unit tests!' );
+			throw new LogicException( __METHOD__ . ' may only be called from unit tests!' );
 			// @codeCoverageIgnoreEnd
 		}
 

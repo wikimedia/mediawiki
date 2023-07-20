@@ -178,11 +178,10 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @see DeferredUpdates::addCallableUpdate for callback signiture
 	 *
 	 * @return ScopedCallback to reset the overridden value
-	 * @throws MWException
 	 */
 	public function overrideDeferredUpdatesAddCallableUpdateCallback( callable $callback ) {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			throw new MWException(
+			throw new LogicException(
 				'Cannot override DeferredUpdates::addCallableUpdate callback in operation.'
 			);
 		}

@@ -1323,7 +1323,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public static function clearCacheForTest(): void {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			throw new RuntimeException( 'Not allowed outside tests' );
+			throw new LogicException( 'Not allowed outside tests' );
 		}
 		self::$filterIDsCache = [];
 	}
