@@ -1050,6 +1050,7 @@ return [
 				'extendwatchlist' => 1,
 				'fancysig' => 0,
 				'forceeditsummary' => 0,
+				'forcesafemode' => 0,
 				'gender' => 'unknown',
 				'hidecategorization' => 1,
 				'hideminor' => 0,

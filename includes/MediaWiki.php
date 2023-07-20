@@ -221,6 +221,12 @@ class MediaWiki {
 		$user = $this->context->getUser();
 		$title = $this->context->getTitle();
 		$requestTitle = $title;
+		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+
+		if ( $userOptionsLookup->getBoolOption( $user, 'forcesafemode' ) ) {
+			$request->setVal( 'safemode', '1' );
+		}
+
 		$this->getHookRunner()->onBeforeInitialize( $title, null, $output, $user, $request, $this );
 
 		// Invalid titles. T23776: The interwikis must redirect even if the page name is empty.
