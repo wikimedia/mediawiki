@@ -45,7 +45,7 @@ class JsonContentHandler extends CodeContentHandler {
 	}
 
 	/**
-	 * @return string
+	 * @return class-string<JsonContent>
 	 */
 	protected function getContentClass() {
 		return JsonContent::class;

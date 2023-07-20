@@ -65,11 +65,7 @@ abstract class CodeContentHandler extends TextContentHandler {
 		return MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
 	}
 
-	/**
-	 * @stable to override
-	 *
-	 * @return string
-	 */
+	/** @inheritDoc */
 	protected function getContentClass() {
 		throw new LogicException( 'Subclass must override' );
 	}

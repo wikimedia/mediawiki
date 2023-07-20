@@ -33,7 +33,7 @@ class MaintenanceRunner {
 	/**
 	 * The class name of the script to execute.
 	 *
-	 * @var ?string
+	 * @var ?class-string<Maintenance>
 	 */
 	private $scriptClass = null;
 
@@ -366,6 +366,9 @@ class MaintenanceRunner {
 		// Preloading failed. Let findScriptClass() try to find the script later.
 	}
 
+	/**
+	 * @return class-string<Maintenance>
+	 */
 	protected function getScriptClass(): string {
 		if ( $this->scriptClass === null ) {
 			if ( $this->runFromWrapper ) {
@@ -386,7 +389,7 @@ class MaintenanceRunner {
 	 * @internal
 	 * @param string $script
 	 *
-	 * @return string
+	 * @return class-string<Maintenance>
 	 */
 	protected function findScriptClass( string $script ): string {
 		[ $extName, $scriptName ] = $this->splitScript( $script );
