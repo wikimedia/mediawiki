@@ -2478,9 +2478,7 @@ return [
 			'mw.widgets.ComplexTitleInputWidget.js',
 			'mw.widgets.TitleOptionWidget.js',
 		],
-		'styles' => [
-			'mw.widgets.CopyTextLayout.css',
-		],
+		'styles' => [],
 		'skinStyles' => [
 			'default' => [
 				'mw.widgets.TitleWidget.less',
@@ -2503,7 +2501,6 @@ return [
 			'blanknamespace',
 			'namespacesall',
 			// CopyTextLayout
-			'mw-widgets-copytextlayout-copy',
 			'mw-widgets-copytextlayout-copy-fail',
 			'mw-widgets-copytextlayout-copy-success',
 			// TitleInputWidget
@@ -2938,6 +2935,7 @@ return [
 			'oojs-ui-widgets.icons',
 		],
 		'messages' => [
+			'ooui-copytextlayout-copy',
 			'ooui-item-remove',
 			'ooui-outline-control-move-down',
 			'ooui-outline-control-move-up',
