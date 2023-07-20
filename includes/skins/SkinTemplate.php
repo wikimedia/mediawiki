@@ -738,7 +738,7 @@ class SkinTemplate extends Skin {
 		if ( $this->isTempUser ) {
 			$linkClasses[] = 'mw-userpage-tmp';
 			$linkClasses[] = 'mw-selflink';
-			$icon = 'userAnonymous';
+			$icon = 'userTemporary';
 			$href = '#';
 		}
 		return [
