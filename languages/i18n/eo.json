@@ -62,7 +62,8 @@
 			"Zciric",
 			"Александр Сигачёв",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Saturnow"
 		]
 	},
 	"tog-underline": "Substrekado de ligiloj:",
@@ -927,6 +928,8 @@
 	"revdelete-radio-same": "(ne ŝanĝi)",
 	"revdelete-radio-set": "Kaŝita",
 	"revdelete-radio-unset": "Videbla",
+	"revdelete-radio-set-suppress": "Subpremi",
+	"revdelete-radio-unset-suppress": "Malsubpremi",
 	"revdelete-suppress": "Subpremi datumojn de kaj administrantoj kaj aliaj",
 	"revdelete-unsuppress": "Forigi limigojn sur restarigitaj versioj",
 	"revdelete-log": "Kialo:",
@@ -994,6 +997,7 @@
 	"lineno": "Linio $1:",
 	"compareselectedversions": "Kompari la elektitajn versiojn",
 	"showhideselectedversions": "Montri/kaŝi elektitajn versiojn",
+	"showhideselectedfileversions": "Montri/kaŝi elektitajn versiojn",
 	"editundo": "malfari",
 	"diff-empty": "(Neniu diferenco)",
 	"diff-multi-sameuser": "({{PLURAL:$1|Unu meza versio|$1 mezaj versioj}} de la sama uzanto ne montriĝas)",

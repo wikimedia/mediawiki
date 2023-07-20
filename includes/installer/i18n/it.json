@@ -26,7 +26,8 @@
 			"Selven",
 			"The Polish",
 			"Tosky",
-			"아라"
+			"아라",
+			"Melos"
 		]
 	},
 	"config-desc": "Programma di installazione per MediaWiki",
@@ -73,6 +74,7 @@
 	"config-env-good": "L'ambiente è stato controllato.\nÈ possibile installare MediaWiki.",
 	"config-env-bad": "L'ambiente è stato controllato.\nNon è possibile installare MediaWiki.",
 	"config-env-php": "PHP $1 è installato.",
+	"config-env-icu": "ICU $1 è installato (supporta Unicode $2 ).",
 	"config-no-db": "Impossibile trovare un driver adatto per il database! È necessario installare un driver per PHP.\n{{PLURAL:$2|Il seguente formato di database è supportato|I seguenti formati di database sono supportati}}: $1.\n\nSe compili PHP autonomamente, riconfiguralo attivando un client database, per esempio utilizzando <code>./configure --with-mysqli</code>.\nQualora avessi installato PHP per mezzo di un pacchetto Debian o Ubuntu, allora devi installare anche il pacchetto <code>php-mysql</code>.",
 	"config-outdated-sqlite": "<strong>Attenzione</strong>: è presente SQLite $2 mentre è richiesta la versione $1, SQLite non sarà disponibile.",
 	"config-no-fts3": "'''Attenzione''': SQLite è compilato senza il [//sqlite.org/fts3.html modulo FTS3], le funzionalità di ricerca non saranno disponibili su questo backend.",

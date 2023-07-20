@@ -405,6 +405,7 @@
 	"exif-exposurelockused": "Gunakan kunci pajanan",
 	"exif-exposurelockused-true": "Ya",
 	"exif-exposurelockused-false": "Tidak",
+	"exif-poseheadingdegrees": "Kepala pose (derajat)",
 	"exif-initialhorizontalfovdegrees": "Ruang pandang awal (derajat horizontal)",
 	"exif-initialverticalfovdegrees": "Ruang pandang awal (derajat vertikal)",
 	"exif-sourcephotoscount": "Banyak foto sumber",
