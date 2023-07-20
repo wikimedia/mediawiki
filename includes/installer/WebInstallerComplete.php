@@ -19,6 +19,8 @@
  * @ingroup Installer
  */
 
+use MediaWiki\Html\Html;
+
 class WebInstallerComplete extends WebInstallerPage {
 
 	public function execute() {
@@ -30,7 +32,7 @@ class WebInstallerComplete extends WebInstallerPage {
 		) {
 			// JS appears to be the only method that works consistently with IE7+
 			$this->addHTML( "\n<script>jQuery( function () { location.href = " .
-				Xml::encodeJsVar( $lsUrl ) . "; } );</script>\n" );
+				Html::encodeJsVar( $lsUrl ) . "; } );</script>\n" );
 		} else {
 			$this->parent->request->response()->header( "Refresh: 0;url=$lsUrl" );
 		}

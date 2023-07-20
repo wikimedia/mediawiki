@@ -3319,7 +3319,7 @@ class OutputPage extends ContextSource {
 								// to the user, instead of letting it go to Html::inlineScript(),
 								// where it would be considered a server-side issue.
 								$content = new JavaScriptContent(
-									Xml::encodeJsCall( 'mw.log.error', [
+									Html::encodeJsCall( 'mw.log.error', [
 										"Cannot preview $title due to script-closing tag."
 									] )
 								);
