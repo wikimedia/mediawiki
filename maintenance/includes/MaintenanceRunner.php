@@ -580,12 +580,13 @@ class MaintenanceRunner {
 	public static function emulateConfig( SettingsBuilder $settings ) {
 		// NOTE: The config schema is already loaded at this point, so default values are known.
 
-		// Server must be set, but we don't care to what
-		$settings->overrideConfigValue( 'Server', 'https://unknown.invalid' );
-
-		// If InvalidateCacheOnLocalSettingsChange is enabled, filemtime( MW_CONFIG_FILE ),
-		// which will produce a warning if there is no settings file.
-		$settings->overrideConfigValue( 'InvalidateCacheOnLocalSettingsChange', false );
+		$settings->overrideConfigValues( [
+			// Server must be set, but we don't care to what
+			MainConfigNames::Server => 'https://unknown.invalid',
+			// If InvalidateCacheOnLocalSettingsChange is enabled, filemtime( MW_CONFIG_FILE ),
+			// which will produce a warning if there is no settings file.
+			MainConfigNames::InvalidateCacheOnLocalSettingsChange => false,
+		] );
 	}
 
 	/**

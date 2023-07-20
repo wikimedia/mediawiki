@@ -192,15 +192,10 @@ class ApiBlockTest extends ApiTestCase {
 		$this->overrideConfigValues( [
 			MainConfigNames::EnableEmail => true,
 			MainConfigNames::EnableUserEmail => true,
+			MainConfigNames::RevokePermissions => [ 'sysop' => [ 'blockemail' => true ] ],
 		] );
 
 		$this->expectApiErrorCode( 'cantblock-email' );
-
-		$this->overrideConfigValue(
-			MainConfigNames::RevokePermissions,
-			[ 'sysop' => [ 'blockemail' => true ] ]
-		);
-
 		$this->doBlock( [ 'noemail' => '' ] );
 	}
 

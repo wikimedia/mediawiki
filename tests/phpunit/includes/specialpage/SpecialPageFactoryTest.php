@@ -177,15 +177,15 @@ class SpecialPageFactoryTest extends MediaWikiIntegrationTestCase {
 		$lang = clone $this->getServiceContainer()->getContentLanguage();
 		$wrappedLang = TestingAccessWrapper::newFromObject( $lang );
 		$wrappedLang->mExtendedSpecialPageAliases = $aliasesList;
-		$this->overrideConfigValue(
-			MainConfigNames::SpecialPages,
+		$this->overrideConfigValues( [
+			MainConfigNames::DevelopmentWarnings => true,
+			MainConfigNames::SpecialPages =>
 				array_combine( array_keys( $aliasesList ), array_keys( $aliasesList ) )
-		);
+		] );
 		$this->setContentLang( $lang );
 
 		// Catch the warnings we expect to be raised
 		$warnings = [];
-		$this->overrideConfigValue( MainConfigNames::DevelopmentWarnings, true );
 		set_error_handler( static function ( $errno, $errstr ) use ( &$warnings ) {
 			if ( preg_match( '/First alias \'[^\']*\' for .*/', $errstr ) ||
 				preg_match( '/Did not find a usable alias for special page .*/', $errstr )

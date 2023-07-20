@@ -294,8 +294,10 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 	 * @param bool $expected
 	 */
 	public function testIsEnabled( $converter, $expected ) {
-		$this->overrideConfigValue( MainConfigNames::SVGConverter, $converter );
-		$this->overrideConfigValue( MainConfigNames::SVGNativeRendering, false );
+		$this->overrideConfigValues( [
+			MainConfigNames::SVGConverter => $converter,
+			MainConfigNames::SVGNativeRendering => false,
+		] );
 
 		$handler = new SvgHandler();
 		self::assertEquals( $expected, $handler->isEnabled() );
@@ -432,8 +434,10 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 	 */
 	public function testNativeSVGDataRendering( $filename, $svgEnabled, $filesizeLimit, $expected ) {
 		$this->filePath = __DIR__ . '/../../data/media/';
-		$this->overrideConfigValue( MainConfigNames::SVGNativeRendering, $svgEnabled );
-		$this->overrideConfigValue( MainConfigNames::SVGNativeRenderingSizeLimit, $filesizeLimit );
+		$this->overrideConfigValues( [
+			MainConfigNames::SVGNativeRendering => $svgEnabled,
+			MainConfigNames::SVGNativeRenderingSizeLimit => $filesizeLimit,
+		] );
 
 		$file = $this->dataFile( $filename, 'image/svg+xml' );
 		$handler = new SvgHandler();
