@@ -335,7 +335,7 @@ class SpecialUserRights extends SpecialPage {
 	 * @return Status
 	 */
 	protected function saveUserGroups( $username, $reason, $user ) {
-		if ( $this->userNameUtils->isTemp( $user ) ) {
+		if ( $this->userNameUtils->isTemp( $username ) ) {
 			return Status::newFatal( 'userrights-no-tempuser' );
 		}
 		$allgroups = $this->userGroupManager->listAllGroups();
@@ -649,7 +649,7 @@ class SpecialUserRights extends SpecialPage {
 			return Status::newFatal( 'nosuchusershort', $username );
 		}
 
-		if ( $this->userNameUtils->isTemp( $user ) ) {
+		if ( $this->userNameUtils->isTemp( $username ) ) {
 			return Status::newFatal( 'userrights-no-group' );
 		}
 
