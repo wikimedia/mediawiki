@@ -1,11 +1,13 @@
 <?php
 
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * @covers ExternalStoreAccess
  */
 class ExternalStoreAccessTest extends MediaWikiIntegrationTestCase {
+	use DummyServicesTrait;
 
 	public function testBasic() {
 		$active = [ 'memory' ];
@@ -42,7 +44,8 @@ class ExternalStoreAccessTest extends MediaWikiIntegrationTestCase {
 		$access = new ExternalStoreAccess( $esFactory );
 		$this->assertTrue( $access->isReadOnly() );
 
-		$this->expectExceptionObject( new ReadOnlyError() );
+		$this->setService( 'ReadOnlyMode', $this->getDummyReadOnlyMode( 'Some absurd reason' ) );
+		$this->expectException( ReadOnlyError::class );
 		$access->insert( 'Lorem Ipsum' );
 	}
 

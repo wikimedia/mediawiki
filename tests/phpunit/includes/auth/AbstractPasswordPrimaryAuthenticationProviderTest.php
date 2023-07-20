@@ -4,7 +4,9 @@ namespace MediaWiki\Auth;
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
+use MediaWiki\User\UserFactory;
 use MultiConfig;
+use User;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -114,10 +116,17 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 		$this->initProvider( $provider, $this->getServiceContainer()->getMainConfig() );
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 
-		$this->assertEquals( $uppStatus, $providerPriv->checkPasswordValidity( 'foo', 'bar' ) );
+		$username = '127.0.0.1';
+		$anon = new User();
+		$anon->setName( $username );
+		$userFactory = $this->createMock( UserFactory::class );
+		$userFactory->method( 'newFromName' )->with( $username )->willReturn( $anon );
+		$this->setService( 'UserFactory', $userFactory );
+
+		$this->assertEquals( $uppStatus, $providerPriv->checkPasswordValidity( $username, 'bar' ) );
 
 		$uppStatus->fatal( 'arbitrary-warning' );
-		$this->assertEquals( $uppStatus, $providerPriv->checkPasswordValidity( 'foo', 'bar' ) );
+		$this->assertEquals( $uppStatus, $providerPriv->checkPasswordValidity( $username, 'bar' ) );
 	}
 
 	public function testSetPasswordResetFlag() {

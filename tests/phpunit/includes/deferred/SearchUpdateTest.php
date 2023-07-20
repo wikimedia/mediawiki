@@ -1,6 +1,6 @@
 <?php
 
-use MediaWiki\Title\Title;
+use MediaWiki\Page\PageIdentityValue;
 
 /**
  * @group Search
@@ -14,7 +14,7 @@ class SearchUpdateTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$pageIdentity = Title::newMainPage()->toPageIdentity();
+		$pageIdentity = new PageIdentityValue( 42, NS_MAIN, 'Main_Page', PageIdentityValue::LOCAL );
 		$this->su = new SearchUpdate( 0, $pageIdentity );
 	}
 

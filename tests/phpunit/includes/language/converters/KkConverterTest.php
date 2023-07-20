@@ -43,6 +43,7 @@ class KkConverterTest extends MediaWikiIntegrationTestCase {
 		$old = "sample_link";
 		$newLink = $old;
 		$title = Title::makeTitle( NS_MAIN, "Same page for link" );
+		$title->resetArticleID( 42 );
 		$this->getLanguageConverter()->findVariantLink( $newLink, $title );
 		$this->assertSame( $old, $newLink, "inks should'n be changed" );
 	}

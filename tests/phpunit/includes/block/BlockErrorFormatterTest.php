@@ -4,6 +4,7 @@ use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\Request\FauxRequest;
+use Wikimedia\Rdbms\LBFactory;
 
 /**
  * @todo Can this be converted to unit tests?
@@ -12,6 +13,16 @@ use MediaWiki\Request\FauxRequest;
  * @coversDefaultClass \MediaWiki\Block\BlockErrorFormatter
  */
 class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
+	protected function setUp(): void {
+		parent::setUp();
+
+		$db = $this->createNoOpMock( IDatabase::class, [ 'getInfinity' ] );
+		$db->method( 'getInfinity' )->willReturn( 'infinity' );
+		$lbFactory = $this->createMock( LBFactory::class );
+		$lbFactory->method( 'getReplicaDatabase' )->willReturn( $db );
+		$this->setService( 'DBLoadBalancerFactory', $lbFactory );
+	}
+
 	/**
 	 * @dataProvider provideTestGetMessage
 	 * @covers ::getMessage

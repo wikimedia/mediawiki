@@ -5,6 +5,7 @@ namespace MediaWiki\Auth;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWiki\User\BotPasswordStore;
 use MediaWiki\User\UserNameUtils;
 use Wikimedia\TestingAccessWrapper;
 
@@ -105,7 +106,7 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiIntegra
 			$mwServices->getDBLoadBalancer(),
 			$mwServices->getContentLanguage(),
 			$mwServices->getLanguageConverterFactory(),
-			$mwServices->getBotPasswordStore(),
+			$this->createMock( BotPasswordStore::class ),
 			$mwServices->getUserFactory(),
 			$mwServices->getUserIdentityLookup(),
 			$mwServices->getUserOptionsManager()

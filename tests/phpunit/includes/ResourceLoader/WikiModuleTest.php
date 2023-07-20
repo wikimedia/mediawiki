@@ -31,6 +31,7 @@ use WikitextContent;
 
 /**
  * @covers \MediaWiki\ResourceLoader\WikiModule
+ * @group Database
  */
 class WikiModuleTest extends ResourceLoaderTestCase {
 	use LinkCacheTestTrait;

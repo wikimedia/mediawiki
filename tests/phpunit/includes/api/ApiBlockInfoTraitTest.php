@@ -2,12 +2,23 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
+use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers ApiBlockInfoTrait
  */
 class ApiBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
+	protected function setUp(): void {
+		parent::setUp();
+
+		$db = $this->createNoOpMock( IDatabase::class, [ 'getInfinity' ] );
+		$db->method( 'getInfinity' )->willReturn( 'infinity' );
+		$lbFactory = $this->createMock( LBFactory::class );
+		$lbFactory->method( 'getReplicaDatabase' )->willReturn( $db );
+		$this->setService( 'DBLoadBalancerFactory', $lbFactory );
+	}
+
 	/**
 	 * @dataProvider provideGetBlockDetails
 	 */

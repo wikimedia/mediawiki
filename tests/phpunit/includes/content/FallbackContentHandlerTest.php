@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Parser\ParserObserver;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
 
@@ -18,6 +19,7 @@ class FallbackContentHandlerTest extends MediaWikiLangTestCase {
 			'wgContentHandlers',
 			[ self::CONTENT_MODEL => FallbackContentHandler::class ]
 		);
+		$this->setService( '_ParserObserver', $this->createMock( ParserObserver::class ) );
 	}
 
 	/**

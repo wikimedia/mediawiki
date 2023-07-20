@@ -68,7 +68,10 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 	 * @covers \MediaWiki\Linker\LinkRenderer::makeKnownLink
 	 */
 	public function testMakeKnownLink( $target ) {
-		$linkRenderer = $this->factory->create();
+		$linkCache = $this->createMock( LinkCache::class );
+		$linkCache->method( 'addLinkObj' )->willReturn( 42 );
+		$this->setService( 'LinkCache', $linkCache );
+		$linkRenderer = $this->getServiceContainer()->getLinkRendererFactory()->create();
 
 		// Query added
 		$this->assertEquals(
