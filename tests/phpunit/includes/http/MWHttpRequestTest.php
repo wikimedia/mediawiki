@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Http\Telemetry;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
@@ -93,4 +94,35 @@ class MWHttpRequestTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( 'example.org', $req->reqHeaders['Host'] );
 	}
 
+	public function testItInjectsTelemetryHeaders() {
+		$telemetry = $this->createMock( Telemetry::class );
+		$telemetry->expects( $this->once() )
+			->method( 'getRequestId' )
+			->willReturn( 'request_identifier' );
+		$telemetry->expects( $this->once() )
+			->method( 'getTraceparent' )
+			->willReturn( 'traceparent_value' );
+		$telemetry->expects( $this->once() )
+			->method( 'getTracestate' )
+			->willReturn( 'tracestate_value' );
+
+		$httpRequest = $this->getMockForAbstractClass(
+			MWHttpRequest::class,
+			[
+				'http://localhost/test',
+				[
+					'timeout' => 30,
+					'connectTimeout' => 30
+				]
+			]
+		);
+		$httpRequest->addTelemetry( $telemetry );
+
+		$accessWrapper = TestingAccessWrapper::newFromObject( $httpRequest );
+		$requestHeaders = $accessWrapper->reqHeaders;
+
+		$this->assertEquals( 'request_identifier', $requestHeaders['X-Request-Id'] );
+		$this->assertEquals( 'tracestate_value', $requestHeaders['tracestate'] );
+		$this->assertEquals( 'traceparent_value', $requestHeaders['traceparent'] );
+	}
 }

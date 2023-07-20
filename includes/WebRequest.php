@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Http\Telemetry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
@@ -78,12 +79,6 @@ class WebRequest {
 	 * @since 1.26
 	 */
 	public const GETHEADER_LIST = 1;
-
-	/**
-	 * The unique request ID.
-	 * @var string
-	 */
-	private static $reqId;
 
 	/**
 	 * Lazy-init response object
@@ -340,32 +335,23 @@ class WebRequest {
 	 * environment variable, falling back to (process cached) randomly-generated string.
 	 *
 	 * @return string
+	 * @deprecated since 1.41 use Telemetry::getRequestId() instead
 	 * @since 1.27
 	 */
 	public static function getRequestId() {
-		// This method is called from various error handlers and MUST be kept simple and stateless.
-		if ( !self::$reqId ) {
-			global $wgAllowExternalReqID;
-			if ( $wgAllowExternalReqID ) {
-				$id = $_SERVER['HTTP_X_REQUEST_ID'] ?? $_SERVER['UNIQUE_ID'] ?? wfRandomString( 24 );
-			} else {
-				$id = $_SERVER['UNIQUE_ID'] ?? wfRandomString( 24 );
-			}
-			self::$reqId = $id;
-		}
-
-		return self::$reqId;
+		return Telemetry::getInstance()->getRequestId();
 	}
 
 	/**
 	 * Override the unique request ID. This is for sub-requests, such as jobs,
 	 * that wish to use the same id but are not part of the same execution context.
 	 *
-	 * @param string $id
+	 * @param string $newId
+	 * @deprecated since 1.41 use Telemetry::overrideRequestId() instead
 	 * @since 1.27
 	 */
-	public static function overrideRequestId( $id ) {
-		self::$reqId = $id;
+	public static function overrideRequestId( $newId ) {
+		Telemetry::getInstance()->overrideRequestId( $newId );
 	}
 
 	/**

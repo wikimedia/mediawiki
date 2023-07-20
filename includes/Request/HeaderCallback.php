@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Request;
 
+use MediaWiki\Http\Telemetry;
+
 /**
  * @since 1.29
  */
@@ -23,6 +25,7 @@ class HeaderCallback {
 		// it will have to be loaded at some point anyway.
 		// This can be removed once we require PHP 8.0+.
 		class_exists( \WebRequest::class );
+		class_exists( Telemetry::class );
 
 		header_register_callback( [ __CLASS__, 'callback' ] );
 	}
