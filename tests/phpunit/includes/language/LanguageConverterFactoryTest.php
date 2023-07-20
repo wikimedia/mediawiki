@@ -83,7 +83,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 			$lang,
 			'en',
 			'en',
-			'EnConverter',
+			EnConverter::class,
 			[ 'en', 'en-x-piglatin' ],
 			[],
 			[],
@@ -168,7 +168,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 			$lang,
 			'en',
 			'en',
-			'TrivialLanguageConverter',
+			TrivialLanguageConverter::class,
 			[ 'en' ],
 			[],
 			[],
@@ -189,9 +189,9 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		$flags,
 		$manualLevel
 	) {
-		$this->assertEquals( $type, get_class( $converter ) );
+		$this->assertInstanceOf( $type, $converter );
 
-		if ( is_a( $converter, LanguageConverter::class ) ) {
+		if ( $converter instanceof LanguageConverter ) {
 			$testConverter = TestingAccessWrapper::newFromObject( $converter );
 			$this->assertSame( $lang, $testConverter->mLangObj, "Language should be as provided" );
 
@@ -268,12 +268,12 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		];
 		foreach ( $trivialWithNothingElseCodes as $code ) {
 			# $langCode, $mainVariantCode, $type, $variants, $variantFallbacks, $variantNames, $flags, $manualLevel
-			yield $code => [ $code, $code, 'TrivialLanguageConverter', [], [], [], [], [] ];
+			yield $code => [ $code, $code, TrivialLanguageConverter::class, [], [], [], [], [] ];
 		}
 
 		// Languages with a type of than TrivialLanguageConverter or with variants/flags/manual level
 		yield 'ban' => [
-			'ban', 'ban', 'BanConverter',
+			'ban', 'ban', BanConverter::class,
 			[ 'ban', 'ban-bali', 'ban-x-dharma', 'ban-x-palmleaf', 'ban-x-pku' ],
 			[
 				'ban-bali' => 'ban',
@@ -290,7 +290,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		];
 
 		yield 'crh' => [
-			'crh', 'crh', 'CrhConverter',
+			'crh', 'crh', CrhConverter::class,
 			[ 'crh', 'crh-cyrl', 'crh-latn' ],
 			[
 				'crh' => 'crh-latn',
@@ -304,7 +304,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		];
 
 		yield 'gan' => [
-			'gan', 'gan', 'GanConverter',
+			'gan', 'gan', GanConverter::class,
 			[ 'gan', 'gan-hans', 'gan-hant' ],
 			[
 				'gan' => [ 'gan-hans', 'gan-hant' ],
@@ -318,7 +318,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		];
 
 		yield 'iu' => [
-			'iu', 'iu', 'IuConverter',
+			'iu', 'iu', IuConverter::class,
 			[ 'iu', 'ike-cans', 'ike-latn' ],
 			[
 				'iu' => 'ike-cans',
@@ -332,7 +332,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		];
 
 		yield 'kk' => [
-			'kk', 'kk', 'KkConverter',
+			'kk', 'kk', KkConverter::class,
 			[ 'kk', 'kk-cyrl', 'kk-latn', 'kk-arab', 'kk-kz', 'kk-tr', 'kk-cn' ],
 			[
 				'kk' => 'kk-cyrl',
@@ -354,7 +354,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		];
 
 		yield 'ku' => [
-			'ku', 'ku', 'KuConverter',
+			'ku', 'ku', KuConverter::class,
 			[ 'ku', 'ku-arab', 'ku-latn' ],
 			[
 				'ku' => 'ku-latn',
@@ -368,7 +368,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		];
 
 		yield 'sh' => [
-			'sh', 'sh-latn', 'ShConverter',
+			'sh', 'sh-latn', ShConverter::class,
 			[ 'sh-latn', 'sh-cyrl' ],
 			[ 'sh-cyrl' => 'sh-latn' ],
 			[], [], [
@@ -378,7 +378,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		];
 
 		yield 'shi' => [
-			'shi', 'shi', 'ShiConverter',
+			'shi', 'shi', ShiConverter::class,
 			[ 'shi', 'shi-tfng', 'shi-latn' ],
 			[
 				'shi' => [ 'shi-latn', 'shi-tfng' ],
@@ -392,7 +392,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		];
 
 		yield 'sr' => [
-			'sr', 'sr', 'SrConverter',
+			'sr', 'sr', SrConverter::class,
 			[ 'sr', 'sr-ec', 'sr-el' ],
 			[
 				'sr' => 'sr-ec',
@@ -415,7 +415,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		];
 
 		yield 'tg' => [
-			'tg', 'tg', 'TgConverter',
+			'tg', 'tg', TgConverter::class,
 			[ 'tg', 'tg-latn' ],
 			[], [], [], [
 				'tg' => 'bidirectional',
@@ -424,7 +424,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		];
 
 		yield 'tly' => [
-			'tly', 'tly', 'TlyConverter',
+			'tly', 'tly', TlyConverter::class,
 			[ 'tly', 'tly-cyrl' ],
 			[ 'tly-cyrl' => 'tly' ],
 			[],
@@ -439,7 +439,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		];
 
 		yield 'uz' => [
-			'uz', 'uz', 'UzConverter',
+			'uz', 'uz', UzConverter::class,
 			[ 'uz', 'uz-latn', 'uz-cyrl' ],
 			[
 				'uz' => 'uz-latn',
@@ -457,7 +457,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		];
 
 		yield 'wuu' => [
-			'wuu', 'wuu', 'WuuConverter',
+			'wuu', 'wuu', WuuConverter::class,
 			[ 'wuu', 'wuu-hans', 'wuu-hant' ],
 			[
 				'wuu' => [ 'wuu-hans', 'wuu-hant' ],
@@ -523,6 +523,6 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 			'zh-sg' => 'zh-sg',
 			'zh-tw' => 'zh-tw'
 		];
-		yield 'zh' => [ 'zh', 'zh', 'ZhConverter', $zh_variants, $zh_variantfallbacks,[], $zh_flags, $zh_ml ];
+		yield 'zh' => [ 'zh', 'zh', ZhConverter::class, $zh_variants, $zh_variantfallbacks,[], $zh_flags, $zh_ml ];
 	}
 }
