@@ -78,6 +78,11 @@ class ChangesList extends ContextSource {
 	protected $filterGroups;
 
 	/**
+	 * @var MapCacheLRU
+	 */
+	protected $tagsCache;
+
+	/**
 	 * @param IContextSource $context
 	 * @param ChangesListFilterGroup[] $filterGroups Array of ChangesListFilterGroup objects (currently optional)
 	 */
@@ -90,6 +95,7 @@ class ChangesList extends ContextSource {
 		$services = MediaWikiServices::getInstance();
 		$this->linkRenderer = $services->getLinkRenderer();
 		$this->commentFormatter = $services->getRowCommentFormatter();
+		$this->tagsCache = new MapCacheLRU( 50 );
 	}
 
 	/**
@@ -903,10 +909,23 @@ class ChangesList extends ContextSource {
 			return;
 		}
 
-		[ $tagSummary, $newClasses ] = ChangeTags::formatSummaryRow(
-			$rc->mAttribs['ts_tags'],
-			'changeslist',
-			$this->getContext()
+		/**
+		 * Tags are repeated for a lot of the records, so during single run of RecentChanges, we
+		 * should cache those that were already processed as doing that for each record takes
+		 * significant amount of time.
+		 */
+		[ $tagSummary, $newClasses ] = $this->tagsCache->getWithSetCallback(
+			sprintf(
+				'%s:%s:%s',
+				$rc->mAttribs['ts_tags'],
+				$this->getUser()->getName(),
+				$this->getLanguage()->getCode()
+			),
+			fn() => ChangeTags::formatSummaryRow(
+				$rc->mAttribs['ts_tags'],
+				'changeslist',
+				$this->getContext()
+			)
 		);
 		$classes = array_merge( $classes, $newClasses );
 		$s .= ' ' . $tagSummary;
