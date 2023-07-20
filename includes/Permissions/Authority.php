@@ -219,7 +219,7 @@ interface Authority {
 	 * @param PageIdentity $target
 	 * @param PermissionStatus|null $status aggregator for failures
 	 *
-	 * @return bool
+	 * @return bool If the user can perform the action
 	 * @see authorizeAction
 	 * @see authorizeWrite
 	 *
@@ -242,7 +242,7 @@ interface Authority {
 	 * @param PageIdentity $target
 	 * @param PermissionStatus|null $status aggregator for failures
 	 *
-	 * @return bool
+	 * @return bool If the user can perform the action
 	 * @see authorizeAction
 	 * @see authorizeRead
 	 *

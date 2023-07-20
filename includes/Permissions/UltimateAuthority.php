@@ -50,39 +50,22 @@ class UltimateAuthority implements Authority {
 		$this->isTemp = $isTemp;
 	}
 
-	/**
-	 * The user identity associated with this authority.
-	 *
-	 * @return UserIdentity
-	 */
+	/** @inheritDoc */
 	public function getUser(): UserIdentity {
 		return $this->actor;
 	}
 
-	/**
-	 * @param int $freshness
-	 *
-	 * @return ?Block always null
-	 * @since 1.37
-	 */
+	/** @inheritDoc */
 	public function getBlock( int $freshness = self::READ_NORMAL ): ?Block {
 		return null;
 	}
 
-	/**
-	 * @inheritDoc
-	 *
-	 * @return bool
-	 */
+	/** @inheritDoc */
 	public function isAllowed( string $permission, PermissionStatus $status = null ): bool {
 		return true;
 	}
 
-	/**
-	 * @inheritDoc
-	 *
-	 * @return bool
-	 */
+	/** @inheritDoc */
 	public function isAllowedAny( ...$permissions ): bool {
 		if ( !$permissions ) {
 			throw new InvalidArgumentException( 'At least one permission must be specified' );
@@ -91,11 +74,7 @@ class UltimateAuthority implements Authority {
 		return true;
 	}
 
-	/**
-	 * @inheritDoc
-	 *
-	 * @return bool
-	 */
+	/** @inheritDoc */
 	public function isAllowedAll( ...$permissions ): bool {
 		if ( !$permissions ) {
 			throw new InvalidArgumentException( 'At least one permission must be specified' );
@@ -104,15 +83,7 @@ class UltimateAuthority implements Authority {
 		return true;
 	}
 
-	/**
-	 * @inheritDoc
-	 *
-	 * @param string $action
-	 * @param PageIdentity $target
-	 * @param PermissionStatus|null $status
-	 *
-	 * @return bool
-	 */
+	/** @inheritDoc */
 	public function probablyCan(
 		string $action,
 		PageIdentity $target,
@@ -121,16 +92,7 @@ class UltimateAuthority implements Authority {
 		return true;
 	}
 
-	/**
-	 * @inheritDoc
-	 *
-	 * @since 1.40
-	 * @param string $action
-	 * @param PageIdentity $target
-	 * @param PermissionStatus|null $status
-	 *
-	 * @return bool
-	 */
+	/** @inheritDoc */
 	public function definitelyCan(
 		string $action,
 		PageIdentity $target,
@@ -139,39 +101,17 @@ class UltimateAuthority implements Authority {
 		return true;
 	}
 
-	/**
-	 * @inheritDoc
-	 *
-	 * @since 1.41
-	 * @param string $action
-	 * @param PermissionStatus|null $status
-	 * @return bool
-	 */
+	/** @inheritDoc */
 	public function isDefinitelyAllowed( string $action, PermissionStatus $status = null ): bool {
 		return true;
 	}
 
-	/**
-	 * @inheritDoc
-	 *
-	 * @since 1.41
-	 * @param string $action
-	 * @param PermissionStatus|null $status
-	 * @return bool
-	 */
+	/** @inheritDoc */
 	public function authorizeAction( string $action, PermissionStatus $status = null ): bool {
 		return true;
 	}
 
-	/**
-	 * @inheritDoc
-	 *
-	 * @param string $action
-	 * @param PageIdentity $target
-	 * @param PermissionStatus|null $status
-	 *
-	 * @return bool
-	 */
+	/** @inheritDoc */
 	public function authorizeRead(
 		string $action,
 		PageIdentity $target,
@@ -180,15 +120,7 @@ class UltimateAuthority implements Authority {
 		return true;
 	}
 
-	/**
-	 * @inheritDoc
-	 *
-	 * @param string $action
-	 * @param PageIdentity $target
-	 * @param PermissionStatus|null $status
-	 *
-	 * @return bool
-	 */
+	/** @inheritDoc */
 	public function authorizeWrite(
 		string $action,
 		PageIdentity $target,

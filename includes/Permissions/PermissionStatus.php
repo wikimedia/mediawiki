@@ -95,7 +95,7 @@ class PermissionStatus extends StatusValue {
 	 *
 	 * @see PermissionManager::getPermissionErrors()
 	 *
-	 * @return array
+	 * @return array[]
 	 */
 	public function toLegacyErrorArray(): array {
 		return $this->getStatusArray();
