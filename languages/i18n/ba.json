@@ -71,7 +71,7 @@
 	"tog-watchlisthideminor": "Әҙ үҙгәрештәрҙе күҙәтеү исемлегенән йәшерергә",
 	"tog-watchlisthideliu": "Танылған ҡулланыусыларҙың үҙгәртеүҙәрен күҙәтеү исемлегенән йәшерергә",
 	"tog-watchlistreloadautomatically": "Һөҙгөс үҙгәргән һайын күҙәтеү исемлеген автоматик рәүештә яңыртырға (JavaScript кәрәк)",
-	"tog-watchlistunwatchlinks": "Күҙәтеү исемлегенә индереү/алыу өсөн тура маркерҙар өҫтәгеҙ ({{int:Watchlist-unwatch}}/{{int:Watchlist-unwatch-undo}}) үҙгәртелгән биттәр өсөн (функцияларҙы күсереү өсөн JavaScript кәрәк)",
+	"tog-watchlistunwatchlinks": "Үҙгәртеүҙәр индерелгән күҙәтелгән биттәрҙе (функцияларҙы күсереү өсөн JavaScript кәрәк) күҙәтеү исемлегенә индереү/алыу өсөн тура маркерҙар өҫтәргә({{int:Watchlist-unwatch}}/{{int:Watchlist-unwatch-undo}})",
 	"tog-watchlisthideanons": "Аноним ҡулланыусыларҙың үҙгәртеүҙерен күҙәтеү исемлегенән йәшерергә",
 	"tog-watchlisthidepatrolled": "Тикшерелгән үҙгәртеүҙәрҙе күҙәтеү исемлегенән йәшерергә",
 	"tog-watchlisthidecategorization": "Биттәр категоризацияһын йәшереү",
