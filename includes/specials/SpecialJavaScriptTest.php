@@ -31,7 +31,6 @@ use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MultiConfig;
 use SpecialPage;
-use Xml;
 
 /**
  * @ingroup SpecialPage
@@ -145,9 +144,9 @@ class SpecialJavaScriptTest extends SpecialPage {
 				'user.options' => $rl->getModule( 'user.options' ),
 			] )
 			// Load all the test modules
-			. Xml::encodeJsCall( 'mw.loader.load', [ $modules ] )
+			. Html::encodeJsCall( 'mw.loader.load', [ $modules ] )
 		);
-		$encModules = Xml::encodeJsVar( $modules );
+		$encModules = Html::encodeJsVar( $modules );
 		$code .= ResourceLoader::makeInlineCodeWithModule( 'mediawiki.base', <<<JAVASCRIPT
 	var start = window.__karma__ ? window.__karma__.start : QUnit.start;
 	// Wait for each module individually, so that partial failures wont break the page

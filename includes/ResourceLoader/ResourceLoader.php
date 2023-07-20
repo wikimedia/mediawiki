@@ -66,7 +66,6 @@ use Wikimedia\RequestTimeout\TimeoutException;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\WrappedString;
-use Xml;
 
 /**
  * @defgroup ResourceLoader ResourceLoader
@@ -1325,7 +1324,7 @@ MESSAGE;
 
 		// We use pretty output unconditionally to make this method simpler.
 		// Minification is taken care of closer to the output.
-		return Xml::encodeJsCall( 'mw.loader.implement', $module, true );
+		return Html::encodeJsCall( 'mw.loader.implement', $module, true );
 	}
 
 	/**
