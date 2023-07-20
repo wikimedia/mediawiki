@@ -28,6 +28,12 @@ $namespaceAliases = [
 	'$1_আলাপ' => NS_PROJECT_TALK,
 	'চিত্র_আলাপ' => NS_FILE_TALK,
 	'MediaWiki_আলাপ' => NS_MEDIAWIKI_TALK,
+	'আলোচনা' => NS_TALK,
+	'মিডিয়াউইকি_আলাপ' => NS_MEDIAWIKI_TALK,
+	'টেমপ্লেট_আলাপ' => NS_TEMPLATE_TALK,
+	'সাহায্য_আলাপ' => NS_HELP_TALK,
+	'বিষয়শ্রেণী_আলাপ' => NS_CATEGORY_TALK,
+	'ব্যবহারকারী_আলোচনা' => NS_USER_TALK,
 ];
 
 $datePreferences = false;
