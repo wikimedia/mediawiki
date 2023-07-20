@@ -3,6 +3,7 @@
 use MediaWiki\Diff\TextDiffer\ManifoldTextDiffer;
 use MediaWiki\Diff\TextDiffer\Wikidiff2TextDiffer;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Tests\Diff\TextDiffer\TextDifferData;
 use Wikimedia\Assert\ParameterTypeException;
 
 /**
@@ -214,5 +215,13 @@ class TextSlotDiffRendererTest extends MediaWikiIntegrationTestCase {
 					"#$pattern#", $result[$key], "\$result[$key]" );
 			}
 		}
+	}
+
+	public function testLocalizeDiff() {
+		$slotDiffRenderer = $this->getTextSlotDiffRenderer( 'en' );
+		$slotDiffRenderer->setHookContainer( $this->createHookContainer() );
+		$slotDiffRenderer->setEngine( 'php' );
+		$result = $slotDiffRenderer->localizeDiff( TextDifferData::PHP_TABLE );
+		$this->assertStringContainsString( 'Line 1:', $result );
 	}
 }
