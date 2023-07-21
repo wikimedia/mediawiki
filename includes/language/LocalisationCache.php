@@ -147,6 +147,35 @@ class LocalisationCache {
 	];
 
 	/**
+	 * Keys for items that can only be set in the core message files,
+	 * not in extensions. Assignments to these keys in extension messages files
+	 * are silently ignored.
+	 *
+	 * @since 1.41
+	 */
+	private const CORE_ONLY_KEYS = [
+		'fallback', 'rtl', 'digitTransformTable', 'separatorTransformTable',
+		'minimumGroupingDigits', 'fallback8bitEncoding', 'linkPrefixExtension',
+		'linkTrail', 'linkPrefixCharset', 'datePreferences',
+		'datePreferenceMigrationMap', 'defaultDateFormat', 'digitGroupingPattern',
+	];
+
+	/**
+	 * ALL_KEYS - CORE_ONLY_KEYS. All of these can technically be set
+	 * both in core and in extension messages files,
+	 * though this is not necessarily useful for all these keys.
+	 * Some of these keys are mergeable too.
+	 *
+	 * @since 1.41
+	 */
+	private const ALL_EXCEPT_CORE_ONLY_KEYS = [
+		'namespaceNames', 'bookstoreList', 'magicWords', 'messages',
+		'namespaceAliases', 'dateFormats', 'specialPageAliases',
+		'imageFiles', 'preloadedMessages', 'namespaceGenderAliases',
+		'pluralRules', 'pluralRuleTypes', 'compiledPluralRules',
+	];
+
+	/**
 	 * Keys for items which consist of associative arrays, which may be merged
 	 * by a fallback sequence.
 	 */
@@ -619,10 +648,16 @@ class LocalisationCache {
 		include $_fileName;
 
 		$data = [];
-		if ( $_fileType == 'core' || $_fileType == 'extension' ) {
+		if ( $_fileType == 'core' ) {
 			foreach ( self::ALL_KEYS as $key ) {
 				// Not all keys are set in language files, so
 				// check they exist first
+				if ( isset( $$key ) ) {
+					$data[$key] = $$key;
+				}
+			}
+		} elseif ( $_fileType == 'extension' ) {
+			foreach ( self::ALL_EXCEPT_CORE_ONLY_KEYS as $key ) {
 				if ( isset( $$key ) ) {
 					$data[$key] = $$key;
 				}

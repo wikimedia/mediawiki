@@ -144,6 +144,10 @@ class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
 			$specialPageAliases['Activeusers'],
 			'specialPageAliases from extension/core files and fallback languages are merged'
 		);
+		$this->assertFalse(
+			$lc->getItem( 'de', 'rtl' ),
+			'rtl cannot be set in ExtensionMessagesFiles'
+		);
 	}
 
 	public function testShallowFallbackForInvalidCode(): void {
