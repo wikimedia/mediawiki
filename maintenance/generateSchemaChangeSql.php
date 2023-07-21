@@ -22,8 +22,6 @@
  * @ingroup Maintenance
  */
 
-use Doctrine\SqlFormatter\NullHighlighter;
-use Doctrine\SqlFormatter\SqlFormatter;
 use Wikimedia\Rdbms\DoctrineSchemaBuilderFactory;
 
 require_once __DIR__ . '/includes/SchemaMaintenance.php';
@@ -44,30 +42,11 @@ class GenerateSchemaChangeSql extends SchemaMaintenance {
 		$schemaChangeBuilder = ( new DoctrineSchemaBuilderFactory() )->getSchemaChangeBuilder( $platform );
 
 		$schemaChangeSqls = $schemaChangeBuilder->getSchemaChangeSql( $schema );
-
-		$sql = '';
-
-		if ( $schemaChangeSqls !== [] ) {
-			// Temporary
-			$sql .= implode( ";\n\n", $schemaChangeSqls ) . ';';
-			$sql = ( new SqlFormatter( new NullHighlighter() ) )->format( $sql );
-		} else {
+		if ( !$schemaChangeSqls ) {
 			$this->fatalError( 'No schema changes detected!' );
 		}
 
-		// Until the linting issue is resolved
-		// https://github.com/doctrine/sql-formatter/issues/53
-		$sql = str_replace( "\n/*_*/\n", " /*_*/", $sql );
-		$sql = str_replace( "; ", ";\n", $sql );
-		$sql = preg_replace( "/\n+? +?/", ' ', $sql );
-		$sql = str_replace( "/*_*/  ", "/*_*/", $sql );
-
-		// Sqlite hacks
-		if ( $platform === 'sqlite' ) {
-			// Doctrine prepends __temp__ to the table name and we set the table with the schema prefix causing invalid
-			// sqlite.
-			$sql = preg_replace( '/__temp__\s*\/\*_\*\//', '/*_*/__temp__', $sql );
-		}
+		$sql = $this->cleanupSqlArray( $platform, $schemaChangeSqls );
 
 		return $sql;
 	}

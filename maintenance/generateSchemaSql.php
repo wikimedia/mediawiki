@@ -22,8 +22,6 @@
  * @ingroup Maintenance
  */
 
-use Doctrine\SqlFormatter\NullHighlighter;
-use Doctrine\SqlFormatter\SqlFormatter;
 use Wikimedia\Rdbms\DoctrineSchemaBuilderFactory;
 
 require_once __DIR__ . '/includes/SchemaMaintenance.php';
@@ -46,43 +44,9 @@ class GenerateSchemaSql extends SchemaMaintenance {
 		foreach ( $schema as $table ) {
 			$schemaBuilder->addTable( $table );
 		}
-		$sql = '';
+		$tableSqls = $schemaBuilder->getSql();
 
-		$tables = $schemaBuilder->getSql();
-		if ( $tables !== [] ) {
-			// Temporary
-			$sql .= implode( ";\n\n", $tables ) . ';';
-			$sql = ( new SqlFormatter( new NullHighlighter() ) )->format( $sql );
-		}
-
-		// Postgres hacks
-		if ( $platform === 'postgres' ) {
-			// FIXME: Fix a lot of weird formatting issues caused by
-			// presence of partial index's WHERE clause, this should probably
-			// be done in some better way, but for now this can work temporarily
-			$sql = str_replace(
-				[ "WHERE\n ", "\n  /*_*/\n  ", "    ", "  );", "KEY(\n  " ],
-				[ "WHERE", ' ', "  ", ');', "KEY(\n    " ],
-				$sql
-			);
-		}
-
-		// Until the linting issue is resolved
-		// https://github.com/doctrine/sql-formatter/issues/53
-		$sql = str_replace( "\n/*_*/\n", " /*_*/", $sql );
-		$sql = str_replace( "; CREATE ", ";\n\nCREATE ", $sql );
-		$sql = str_replace( ";\n\nCREATE TABLE ", ";\n\n\nCREATE TABLE ", $sql );
-		$sql = str_replace(
-			"\n" . '/*$wgDBTableOptions*/' . ";",
-			' /*$wgDBTableOptions*/;',
-			$sql
-		);
-		$sql = str_replace(
-			"\n" . '/*$wgDBTableOptions*/' . "\n;",
-			' /*$wgDBTableOptions*/;',
-			$sql
-		);
-		$sql .= "\n";
+		$sql = $this->cleanupSqlArray( $platform, $tableSqls );
 
 		return $sql;
 	}
