@@ -1729,7 +1729,7 @@
 	"movepage-moved": "<strong>\"$1\" beti \"$2\" betine kóshirildi</strong>",
 	"movepage-moved-redirect": "Baǵdarlawshı silteme jaratıldı.",
 	"movepage-moved-noredirect": "Baǵdarlawshı silteme jaratıw toqtatıldı.",
-	"articleexists": "Bunday atamalı bet bar yamasa natuwrı atama sayladın'ız.\nBasqa atama saylan'",
+	"articleexists": "Bunday atamadaǵı bet bar ([[:$1]]) yamasa nadurıs atama sayladıńız.\nMárhámat basqa atama saylań.",
 	"movetalk": "Baylanıslı talqılaw betin kóshiriw",
 	"move-subpages": "Barlıq astbetlerin kóshiriw",
 	"move-talk-subpages": "Talqılaw betiniń barlıq astbetlerin kóshiriw",

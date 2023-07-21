@@ -3796,7 +3796,6 @@
 	"mw-widgets-abandonedit-discard": "Renunță la modificări",
 	"mw-widgets-abandonedit-keep": "Continuă editarea",
 	"mw-widgets-abandonedit-title": "Sunteți {{GENDER:|sigur|sigură}}?",
-	"mw-widgets-copytextlayout-copy": "Copiază",
 	"mw-widgets-copytextlayout-copy-fail": "Nu am putut copia în clipboard.",
 	"mw-widgets-copytextlayout-copy-success": "Copiat în clipboard.",
 	"mw-widgets-dateinput-no-date": "Nicio dată selectată",
