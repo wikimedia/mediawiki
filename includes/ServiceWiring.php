@@ -2135,7 +2135,8 @@ return [
 			$services->getHookContainer(),
 			$services->getWikiPageFactory(),
 			$services->getUserNameUtils(),
-			$services->getRepoGroup()
+			$services->getRepoGroup(),
+			$services->getTitleFactory()
 		);
 	},
 

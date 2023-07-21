@@ -7,6 +7,7 @@ use MediaWiki\Title\Title;
 
 /**
  * @covers \MediaWiki\Search\TitleMatcher
+ * @group Database
  */
 class TitleMatcherTest extends MediaWikiIntegrationTestCase {
 	use LinkCacheTestTrait;
@@ -87,7 +88,9 @@ class TitleMatcherTest extends MediaWikiIntegrationTestCase {
 			$services->getHookContainer(),
 			$services->getWikiPageFactory(),
 			$services->getUserNameUtils(),
-			$services->getRepoGroup() );
+			$services->getRepoGroup(),
+			$services->getTitleFactory()
+		);
 	}
 
 	/**

@@ -8,6 +8,7 @@ use MediaWiki\Title\Title;
  * @covers Skin
  * @covers SkinTemplate
  * @group Skin
+ * @group Database
  */
 class SideBarTest extends MediaWikiLangTestCase {
 	/** @var SkinTemplate */

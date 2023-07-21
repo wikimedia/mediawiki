@@ -9,6 +9,7 @@ use Wikimedia\ScopedCallback;
 
 /**
  * @covers ParserOptions
+ * @group Database
  */
 class ParserOptionsTest extends MediaWikiLangTestCase {
 

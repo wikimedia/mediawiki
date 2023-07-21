@@ -14,6 +14,7 @@ class SkinQuickTemplateTest extends QuickTemplate {
  * @covers SkinTemplate
  * @covers Skin
  * @group Skin
+ * @group Database
  * @author Bene* < benestar.wikimedia@gmail.com >
  */
 class SkinTemplateTest extends MediaWikiIntegrationTestCase {

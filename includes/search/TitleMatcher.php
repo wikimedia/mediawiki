@@ -11,6 +11,7 @@ use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserNameUtils;
 use RepoGroup;
 use SearchNearMatchResultSet;
@@ -65,6 +66,8 @@ class TitleMatcher {
 	 */
 	private $repoGroup;
 
+	private TitleFactory $titleFactory;
+
 	/**
 	 * @param ServiceOptions $options
 	 * @param Language $contentLanguage
@@ -73,6 +76,7 @@ class TitleMatcher {
 	 * @param WikiPageFactory $wikiPageFactory
 	 * @param UserNameUtils $userNameUtils
 	 * @param RepoGroup $repoGroup
+	 * @param TitleFactory $titleFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -81,7 +85,8 @@ class TitleMatcher {
 		HookContainer $hookContainer,
 		WikiPageFactory $wikiPageFactory,
 		UserNameUtils $userNameUtils,
-		RepoGroup $repoGroup
+		RepoGroup $repoGroup,
+		TitleFactory $titleFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
@@ -92,6 +97,7 @@ class TitleMatcher {
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->userNameUtils = $userNameUtils;
 		$this->repoGroup = $repoGroup;
+		$this->titleFactory = $titleFactory;
 	}
 
 	/**
@@ -148,7 +154,7 @@ class TitleMatcher {
 
 		foreach ( $allSearchTerms as $term ) {
 			# Exact match? No need to look further.
-			$title = Title::newFromText( $term );
+			$title = $this->titleFactory->newFromText( $term );
 			if ( $title === null ) {
 				return null;
 			}
@@ -175,25 +181,25 @@ class TitleMatcher {
 			}
 
 			# Now try all lower case (i.e. first letter capitalized)
-			$title = Title::newFromText( $this->language->lc( $term ) );
+			$title = $this->titleFactory->newFromText( $this->language->lc( $term ) );
 			if ( $title && $title->exists() ) {
 				return $title;
 			}
 
 			# Now try capitalized string
-			$title = Title::newFromText( $this->language->ucwords( $term ) );
+			$title = $this->titleFactory->newFromText( $this->language->ucwords( $term ) );
 			if ( $title && $title->exists() ) {
 				return $title;
 			}
 
 			# Now try all upper case
-			$title = Title::newFromText( $this->language->uc( $term ) );
+			$title = $this->titleFactory->newFromText( $this->language->uc( $term ) );
 			if ( $title && $title->exists() ) {
 				return $title;
 			}
 
 			# Now try Word-Caps-Breaking-At-Word-Breaks, for hyphenated names etc
-			$title = Title::newFromText( $this->language->ucwordbreaks( $term ) );
+			$title = $this->titleFactory->newFromText( $this->language->ucwordbreaks( $term ) );
 			if ( $title && $title->exists() ) {
 				return $title;
 			}
@@ -206,7 +212,7 @@ class TitleMatcher {
 			}
 		}
 
-		$title = Title::newFromText( $searchterm );
+		$title = $this->titleFactory->newFromTextThrow( $searchterm );
 
 		# Entering an IP address goes to the contributions page
 		if ( $this->options->get( MainConfigNames::EnableSearchContributorsByIP ) ) {

@@ -23,6 +23,7 @@ class ImagePageTest extends MediaWikiMediaTestCase {
 
 	public function getImagePage( $filename ) {
 		$title = Title::makeTitleSafe( NS_FILE, $filename );
+		$title->setContentModel( CONTENT_MODEL_WIKITEXT );
 		$file = $this->dataFile( $filename );
 		$iPage = new ImagePage( $title );
 		$iPage->setFile( $file );

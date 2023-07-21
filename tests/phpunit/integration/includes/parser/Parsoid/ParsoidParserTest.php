@@ -8,6 +8,7 @@ use ParserOptions;
 
 /**
  * @covers \MediaWiki\Parser\Parsoid\ParsoidParser::parse
+ * @group Database
  */
 class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 

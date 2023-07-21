@@ -8,6 +8,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 /**
  * @covers SkinMustache
  * @group Skin
+ * @group Database
  */
 class SkinMustacheTest extends MediaWikiIntegrationTestCase {
 

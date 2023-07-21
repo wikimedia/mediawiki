@@ -24,6 +24,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Preferences
+ * @group Database
  */
 class SignatureValidatorTest extends MediaWikiIntegrationTestCase {
 

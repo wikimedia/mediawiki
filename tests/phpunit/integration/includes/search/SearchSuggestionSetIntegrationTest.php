@@ -24,14 +24,22 @@ use MediaWiki\Title\Title;
 class SearchSuggestionSetIntegrationTest extends MediaWikiIntegrationTestCase {
 	/** @return iterable */
 	public static function provideTitles(): iterable {
-		yield 'Array of 1 Title with NS:0' => [ [ Title::makeTitle( 0, 'Title' ) ], 1 ];
+		$mainspaceTitle1 = Title::makeTitle( NS_MAIN, 'Title' );
+		$mainspaceTitle1->resetArticleID( 10 );
+		yield 'Array of 1 Title with NS:0' => [ [ $mainspaceTitle1 ], 1 ];
 
+		$mainspaceTitle2 = Title::makeTitle( NS_MAIN, 'Title1' );
+		$mainspaceTitle2->resetArticleID( 20 );
+		$mainspaceTitle3 = Title::makeTitle( NS_MAIN, 'Title2' );
+		$mainspaceTitle3->resetArticleID( 30 );
 		yield 'Array of 2 Titles with NS:0' => [
-			[ Title::makeTitle( 0, 'Title1' ), Title::makeTitle( 0, 'Title2' ) ],
+			[ $mainspaceTitle2, $mainspaceTitle3 ],
 			2
 		];
 
-		yield 'Array of another Title with NS:1' => [ [ Title::makeTitle( 1, 'Test' ) ], 1 ];
+		$talkTitle = Title::makeTitle( NS_TALK, 'Test' );
+		$talkTitle->resetArticleID( 40 );
+		yield 'Array of another Title with NS:1' => [ [ $talkTitle ], 1 ];
 	}
 
 	/**

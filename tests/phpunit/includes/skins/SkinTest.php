@@ -14,6 +14,7 @@ use MediaWiki\User\UserIdentityValue;
 
 /**
  * @covers Skin
+ * @group Database
  */
 class SkinTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;
