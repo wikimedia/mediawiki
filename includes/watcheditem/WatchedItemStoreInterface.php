@@ -347,6 +347,8 @@ interface WatchedItemStoreInterface {
 	 * @since 1.31
 	 *
 	 * @param UserIdentity $user
+	 * @return bool True on success, false if {@see clearUserWatchedItemsUsingJobQueue} must be used
+	 *  instead
 	 */
 	public function clearUserWatchedItems( UserIdentity $user );
 
