@@ -92,6 +92,7 @@
 	"config-db-prefix": "Database table prefix (no hyphens):",
 	"config-db-prefix-help": "If you need to share one database between multiple wikis, or between MediaWiki and another web application, you may choose to add a prefix to all the table names to avoid conflicts.\nDo not use spaces.\n\nThis field is usually left empty.",
 	"config-mysql-old": "MySQL $1 or later is required. You have $2.",
+	"config-mariadb-old": "MariaDB $1 or later is required. You have $2.",
 	"config-db-port": "Database port:",
 	"config-db-ssl": "Connect over SSL",
 	"config-db-schema": "Schema for MediaWiki (no hyphens):",
