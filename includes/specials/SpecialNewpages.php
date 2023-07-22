@@ -135,6 +135,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$opts->add( 'username', '' );
 		$opts->add( 'feed', '' );
 		$opts->add( 'tagfilter', '' );
+		$opts->add( 'tagInvert', false );
 		$opts->add( 'invert', false );
 		$opts->add( 'associated', false );
 		$opts->add( 'size-mode', 'max' );
@@ -306,6 +307,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$namespace = $this->opts->consumeValue( 'namespace' );
 		$username = $this->opts->consumeValue( 'username' );
 		$tagFilterVal = $this->opts->consumeValue( 'tagfilter' );
+		$tagInvertVal = $this->opts->consumeValue( 'tagInvert' );
 		$nsinvert = $this->opts->consumeValue( 'invert' );
 		$nsassociated = $this->opts->consumeValue( 'associated' );
 
@@ -342,6 +344,13 @@ class SpecialNewpages extends IncludableSpecialPage {
 				'name' => 'tagfilter',
 				'label-message' => 'tag-filter',
 				'default' => $tagFilterVal,
+			],
+			'tagInvert' => [
+				'type' => 'check',
+				'name' => 'tagInvert',
+				'label-message' => 'invert',
+				'hide-if' => [ '===', 'tagFilter', '' ],
+				'default' => $tagInvertVal,
 			],
 			'username' => [
 				'type' => 'user',

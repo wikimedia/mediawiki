@@ -58,6 +58,9 @@ class HistoryPager extends ReverseChronologicalPager {
 	/** @var string */
 	private $tagFilter;
 
+	/** @var bool */
+	private $tagInvert;
+
 	/** @var string|null|false */
 	private $notificationTimestamp;
 
@@ -90,9 +93,10 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @param HistoryAction $historyPage
 	 * @param int $year
 	 * @param int $month
-	 * @param string $tagFilter
-	 * @param array $conds
 	 * @param int $day
+	 * @param string $tagFilter
+	 * @param bool $tagInvert
+	 * @param array $conds
 	 * @param LinkBatchFactory|null $linkBatchFactory
 	 * @param WatchlistManager|null $watchlistManager
 	 * @param CommentFormatter|null $commentFormatter
@@ -102,9 +106,10 @@ class HistoryPager extends ReverseChronologicalPager {
 		HistoryAction $historyPage,
 		$year = 0,
 		$month = 0,
-		$tagFilter = '',
-		array $conds = [],
 		$day = 0,
+		$tagFilter = '',
+		$tagInvert = false,
+		array $conds = [],
 		LinkBatchFactory $linkBatchFactory = null,
 		WatchlistManager $watchlistManager = null,
 		CommentFormatter $commentFormatter = null,
@@ -113,6 +118,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		parent::__construct( $historyPage->getContext() );
 		$this->historyPage = $historyPage;
 		$this->tagFilter = $tagFilter;
+		$this->tagInvert = $tagInvert;
 		$this->getDateCond( $year, $month, $day );
 		$this->conds = $conds;
 		$this->showTagEditUI = ChangeTags::showTagEditingUI( $this->getAuthority() );
@@ -159,7 +165,8 @@ class HistoryPager extends ReverseChronologicalPager {
 			$queryInfo['conds'],
 			$queryInfo['join_conds'],
 			$queryInfo['options'],
-			$this->tagFilter
+			$this->tagFilter,
+			$this->tagInvert
 		);
 
 		$this->hookRunner->onPageHistoryPager__getQueryInfo( $this, $queryInfo );
