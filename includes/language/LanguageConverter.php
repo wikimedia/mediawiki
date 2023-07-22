@@ -95,8 +95,6 @@ abstract class LanguageConverter implements ILanguageConverter {
 	protected $mTables = [];
 	/** @var Language|StubUserLang */
 	private $mLangObj;
-	/** @var bool */
-	private $mUcfirst = false;
 	/** @var string|false */
 	private $mConvRuleTitle = false;
 	/** @var string|null */
@@ -116,7 +114,6 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @param Language|StubUserLang $langobj
 	 */
 	public function __construct( $langobj ) {
-		$this->deprecatePublicProperty( 'mUcfirst', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mConvRuleTitle', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mUserVariant', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mHeaderVariant', '1.35', __CLASS__ );
@@ -1321,12 +1318,6 @@ abstract class LanguageConverter implements ILanguageConverter {
 			foreach ( $sublinks as $link ) {
 				$s = $this->parseCachedTable( $code, $link, $recursive );
 				$ret = $s + $ret;
-			}
-		}
-
-		if ( $this->mUcfirst ) {
-			foreach ( $ret as $k => $v ) {
-				$ret[$this->mLangObj->ucfirst( $k )] = $this->mLangObj->ucfirst( $v );
 			}
 		}
 		return $ret;
