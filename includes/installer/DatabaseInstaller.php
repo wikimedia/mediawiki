@@ -80,11 +80,12 @@ abstract class DatabaseInstaller {
 	/**
 	 * Whether the provided version meets the necessary requirements for this type
 	 *
-	 * @param string $serverVersion Output of Database::getServerVersion()
+	 * @param IDatabase $conn
 	 * @return Status
 	 * @since 1.30
 	 */
-	public static function meetsMinimumRequirement( $serverVersion ) {
+	public static function meetsMinimumRequirement( IDatabase $conn ) {
+		$serverVersion = $conn->getServerVersion();
 		if ( version_compare( $serverVersion, static::$minimumVersion ) < 0 ) {
 			return Status::newFatal(
 				static::$notMinimumVersionMessage, static::$minimumVersion, $serverVersion
