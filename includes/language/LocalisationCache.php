@@ -835,19 +835,22 @@ class LocalisationCache {
 	}
 
 	/**
-	 * @param mixed &$value
-	 * @param mixed $fallbackValue
+	 * @param array &$value
+	 * @param array $fallbackValue
 	 */
-	protected function mergeMagicWords( &$value, $fallbackValue ) {
+	private function mergeMagicWords( array &$value, array $fallbackValue ): void {
 		foreach ( $fallbackValue as $magicName => $fallbackInfo ) {
 			if ( !isset( $value[$magicName] ) ) {
 				$value[$magicName] = $fallbackInfo;
 			} else {
-				$oldSynonyms = array_slice( $fallbackInfo, 1 );
-				$newSynonyms = array_slice( $value[$magicName], 1 );
-				$synonyms = array_values( array_unique( array_merge(
-					$newSynonyms, $oldSynonyms ) ) );
-				$value[$magicName] = array_merge( [ $fallbackInfo[0] ], $synonyms );
+				$value[$magicName] = [
+					$fallbackInfo[0],
+					...array_unique( [
+						// First value is 1 if the magic word is case-sensitive, 0 if not
+						...array_slice( $value[$magicName], 1 ),
+						...array_slice( $fallbackInfo, 1 ),
+					] )
+				];
 			}
 		}
 	}
