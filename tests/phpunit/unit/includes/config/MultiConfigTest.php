@@ -1,14 +1,12 @@
 <?php
 
+/**
+ * @covers MultiConfig
+ */
 class MultiConfigTest extends \MediaWikiUnitTestCase {
 
-	/**
-	 * Tests that settings are fetched in the right order
-	 *
-	 * @covers MultiConfig::__construct
-	 * @covers MultiConfig::get
-	 */
 	public function testGet() {
+		// Assert that settings are applied in the right order
 		$multi = new MultiConfig( [
 			new HashConfig( [ 'foo' => 'bar' ] ),
 			new HashConfig( [ 'foo' => 'baz', 'bar' => 'foo' ] ),
@@ -22,9 +20,6 @@ class MultiConfigTest extends \MediaWikiUnitTestCase {
 		$multi->get( 'notset' );
 	}
 
-	/**
-	 * @covers MultiConfig::has
-	 */
 	public function testHas() {
 		$conf = new MultiConfig( [
 			new HashConfig( [ 'foo' => 'foo' ] ),
