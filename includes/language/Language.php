@@ -4777,7 +4777,7 @@ class Language implements Bcp47Code {
 	/**
 	 * Get the compiled plural rules for the language
 	 * @since 1.20
-	 * @return array Associative array with plural form, and plural rule as key-value pairs
+	 * @return array<int,string> Associative array with plural form, and plural rule as key-value pairs
 	 */
 	public function getCompiledPluralRules() {
 		$pluralRules =
@@ -4798,7 +4798,7 @@ class Language implements Bcp47Code {
 	/**
 	 * Get the plural rules for the language
 	 * @since 1.20
-	 * @return array Associative array with plural form number and plural rule as key-value pairs
+	 * @return array<int,string> Associative array with plural form number and plural rule as key-value pairs
 	 */
 	public function getPluralRules() {
 		$pluralRules =
@@ -4819,7 +4819,7 @@ class Language implements Bcp47Code {
 	/**
 	 * Get the plural rule types for the language
 	 * @since 1.22
-	 * @return array Associative array with plural form number and plural rule type as key-value pairs
+	 * @return array<int,string> Associative array with plural form number and plural rule type as key-value pairs
 	 */
 	public function getPluralRuleTypes() {
 		$pluralRuleTypes =
