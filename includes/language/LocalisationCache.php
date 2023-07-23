@@ -128,7 +128,7 @@ class LocalisationCache {
 	/**
 	 * All item keys
 	 */
-	public static $allKeys = [
+	public const ALL_KEYS = [
 		'fallback', 'namespaceNames', 'bookstoreList',
 		'magicWords', 'messages', 'rtl',
 		'digitTransformTable', 'separatorTransformTable',
@@ -145,53 +145,48 @@ class LocalisationCache {
 	 * Keys for items which consist of associative arrays, which may be merged
 	 * by a fallback sequence.
 	 */
-	public static $mergeableMapKeys = [ 'messages', 'namespaceNames',
+	private const MERGEABLE_MAP_KEYS = [ 'messages', 'namespaceNames',
 		'namespaceAliases', 'dateFormats', 'imageFiles', 'preloadedMessages'
 	];
-
-	/**
-	 * Keys for items which are a numbered array.
-	 */
-	public static $mergeableListKeys = [];
 
 	/**
 	 * Keys for items which contain an array of arrays of equivalent aliases
 	 * for each subitem. The aliases may be merged by a fallback sequence.
 	 */
-	public static $mergeableAliasListKeys = [ 'specialPageAliases' ];
+	private const MERGEABLE_ALIAS_LIST_KEYS = [ 'specialPageAliases' ];
 
 	/**
 	 * Keys for items which contain an associative array, and may be merged if
 	 * the primary value contains the special array key "inherit". That array
 	 * key is removed after the first merge.
 	 */
-	public static $optionalMergeKeys = [ 'bookstoreList' ];
+	private const OPTIONAL_MERGE_KEYS = [ 'bookstoreList' ];
 
 	/**
 	 * Keys for items that are formatted like $magicWords
 	 */
-	public static $magicWordKeys = [ 'magicWords' ];
+	private const MAGIC_WORD_KEYS = [ 'magicWords' ];
 
 	/**
 	 * Keys for items where the subitems are stored in the backend separately.
 	 */
-	public static $splitKeys = [ 'messages' ];
+	private const SPLIT_KEYS = [ 'messages' ];
 
 	/**
 	 * Keys for items that will be prefixed with its source language code,
 	 * which should be stripped out when loading from cache.
 	 */
-	public static $sourcePrefixKeys = [ 'messages' ];
+	private const SOURCE_PREFIX_KEYS = [ 'messages' ];
 
 	/**
 	 * Separator for the source language prefix.
 	 */
-	protected const SOURCEPREFIX_SEPARATOR = ':';
+	private const SOURCEPREFIX_SEPARATOR = ':';
 
 	/**
 	 * Keys which are loaded automatically by initLanguage()
 	 */
-	public static $preloadedKeys = [ 'dateFormats', 'namespaceNames' ];
+	private const PRELOADED_KEYS = [ 'dateFormats', 'namespaceNames' ];
 
 	/**
 	 * Associative array of cached plural rules. The key is the language code,
@@ -302,11 +297,10 @@ class LocalisationCache {
 	public function isMergeableKey( $key ) {
 		if ( $this->mergeableKeys === null ) {
 			$this->mergeableKeys = array_fill_keys( array_merge(
-				self::$mergeableMapKeys,
-				self::$mergeableListKeys,
-				self::$mergeableAliasListKeys,
-				self::$optionalMergeKeys,
-				self::$magicWordKeys
+				self::MERGEABLE_MAP_KEYS,
+				self::MERGEABLE_ALIAS_LIST_KEYS,
+				self::OPTIONAL_MERGE_KEYS,
+				self::MAGIC_WORD_KEYS
 			), true );
 		}
 
@@ -376,7 +370,7 @@ class LocalisationCache {
 	 * Get the list of subitem keys for a given item.
 	 *
 	 * This is faster than array_keys($lc->getItem(...)) for the items listed in
-	 * self::$splitKeys.
+	 * self::SPLIT_KEYS.
 	 *
 	 * Will return null if the item is not found, or false if the item is not an
 	 * array.
@@ -385,7 +379,7 @@ class LocalisationCache {
 	 * @return bool|null|string|string[]
 	 */
 	public function getSubitemList( $code, $key ) {
-		if ( in_array( $key, self::$splitKeys ) ) {
+		if ( in_array( $key, self::SPLIT_KEYS ) ) {
 			return $this->getSubitem( $code, 'list', $key );
 		} else {
 			$item = $this->getItem( $code, $key );
@@ -418,7 +412,7 @@ class LocalisationCache {
 			return;
 		}
 
-		if ( in_array( $key, self::$splitKeys ) ) {
+		if ( in_array( $key, self::SPLIT_KEYS ) ) {
 			$subkeyList = $this->getSubitem( $code, 'list', $key );
 			foreach ( $subkeyList as $subkey ) {
 				if ( isset( $this->data[$code][$key][$subkey] ) ) {
@@ -440,7 +434,7 @@ class LocalisationCache {
 	 * @param string $subkey
 	 */
 	protected function loadSubitem( $code, $key, $subkey ) {
-		if ( !in_array( $key, self::$splitKeys ) ) {
+		if ( !in_array( $key, self::SPLIT_KEYS ) ) {
 			$this->loadItem( $code, $key );
 
 			return;
@@ -464,7 +458,7 @@ class LocalisationCache {
 		}
 
 		$value = $this->store->get( $code, "$key:$subkey" );
-		if ( $value !== null && in_array( $key, self::$sourcePrefixKeys ) ) {
+		if ( $value !== null && in_array( $key, self::SOURCE_PREFIX_KEYS ) ) {
 			[
 				$this->sourceLanguage[$code][$key][$subkey],
 				$this->data[$code][$key][$subkey]
@@ -565,7 +559,7 @@ class LocalisationCache {
 			}
 		}
 
-		foreach ( self::$sourcePrefixKeys as $key ) {
+		foreach ( self::SOURCE_PREFIX_KEYS as $key ) {
 			if ( !isset( $preload[$key] ) ) {
 				continue;
 			}
@@ -579,7 +573,7 @@ class LocalisationCache {
 
 		$this->data[$code] = $preload;
 		foreach ( $preload as $key => $item ) {
-			if ( in_array( $key, self::$splitKeys ) ) {
+			if ( in_array( $key, self::SPLIT_KEYS ) ) {
 				foreach ( $item as $subkey => $subitem ) {
 					$this->loadedSubitems[$code][$key][$subkey] = true;
 				}
@@ -614,7 +608,7 @@ class LocalisationCache {
 
 		$data = [];
 		if ( $_fileType == 'core' || $_fileType == 'extension' ) {
-			foreach ( self::$allKeys as $key ) {
+			foreach ( self::ALL_KEYS as $key ) {
 				// Not all keys are set in language files, so
 				// check they exist first
 				if ( isset( $$key ) ) {
@@ -813,19 +807,17 @@ class LocalisationCache {
 	protected function mergeItem( $key, &$value, $fallbackValue ) {
 		if ( $value !== null ) {
 			if ( $fallbackValue !== null ) {
-				if ( in_array( $key, self::$mergeableMapKeys ) ) {
+				if ( in_array( $key, self::MERGEABLE_MAP_KEYS ) ) {
 					$value += $fallbackValue;
-				} elseif ( in_array( $key, self::$mergeableListKeys ) ) {
-					$value = array_unique( array_merge( $fallbackValue, $value ) );
-				} elseif ( in_array( $key, self::$mergeableAliasListKeys ) ) {
+				} elseif ( in_array( $key, self::MERGEABLE_ALIAS_LIST_KEYS ) ) {
 					$value = array_merge_recursive( $value, $fallbackValue );
-				} elseif ( in_array( $key, self::$optionalMergeKeys ) ) {
+				} elseif ( in_array( $key, self::OPTIONAL_MERGE_KEYS ) ) {
 					if ( !empty( $value['inherit'] ) ) {
 						$value = array_merge( $fallbackValue, $value );
 					}
 
 					unset( $value['inherit'] );
-				} elseif ( in_array( $key, self::$magicWordKeys ) ) {
+				} elseif ( in_array( $key, self::MAGIC_WORD_KEYS ) ) {
 					$this->mergeMagicWords( $value, $fallbackValue );
 				}
 			}
@@ -888,7 +880,7 @@ class LocalisationCache {
 		$this->recachedLangs[ $code ] = true;
 
 		# Initial values
-		$initialData = array_fill_keys( self::$allKeys, null );
+		$initialData = array_fill_keys( self::ALL_KEYS, null );
 		$coreData = $initialData;
 		$deps = [];
 
@@ -943,7 +935,7 @@ class LocalisationCache {
 					if ( isset( $item[$csCode] ) ) {
 						// Keep the behaviour the same as for json messages.
 						// TODO: Consider deprecating using a PHP file for messages.
-						if ( in_array( $key, self::$sourcePrefixKeys ) ) {
+						if ( in_array( $key, self::SOURCE_PREFIX_KEYS ) ) {
 							foreach ( $item[$csCode] as $subkey => $_ ) {
 								$this->sourceLanguage[$code][$key][$subkey] ??= $csCode;
 							}
@@ -996,7 +988,7 @@ class LocalisationCache {
 				# avoid infinite cycles on cyclic fallbacks
 				$fbData = $this->readSourceFilesAndRegisterDeps( $csCode, $deps );
 				# Only merge the keys that make sense to merge
-				foreach ( self::$allKeys as $key ) {
+				foreach ( self::ALL_KEYS as $key ) {
 					if ( !isset( $fbData[ $key ] ) ) {
 						continue;
 					}
@@ -1015,7 +1007,7 @@ class LocalisationCache {
 			if ( $csCode === $code ) {
 				$allData = $csData;
 			} else {
-				foreach ( self::$allKeys as $key ) {
+				foreach ( self::ALL_KEYS as $key ) {
 					if ( !isset( $csData[$key] ) ) {
 						continue;
 					}
@@ -1061,7 +1053,7 @@ class LocalisationCache {
 
 		# Set the list keys
 		$allData['list'] = [];
-		foreach ( self::$splitKeys as $key ) {
+		foreach ( self::SPLIT_KEYS as $key ) {
 			$allData['list'][$key] = array_keys( $allData[$key] );
 		}
 		# Run hooks
@@ -1075,7 +1067,7 @@ class LocalisationCache {
 		}
 
 		# Prefix each item with its source language code before save
-		foreach ( self::$sourcePrefixKeys as $key ) {
+		foreach ( self::SOURCE_PREFIX_KEYS as $key ) {
 			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 			foreach ( $allData[$key] as $subKey => $value ) {
 				// The source language should have been set, but to avoid Phan error and be double sure.
@@ -1090,7 +1082,7 @@ class LocalisationCache {
 		# Save to the persistent cache
 		$this->store->startWrite( $code );
 		foreach ( $allData as $key => $value ) {
-			if ( in_array( $key, self::$splitKeys ) ) {
+			if ( in_array( $key, self::SPLIT_KEYS ) ) {
 				foreach ( $value as $subkey => $subvalue ) {
 					$this->store->set( "$key:$subkey", $subvalue );
 				}
@@ -1120,7 +1112,7 @@ class LocalisationCache {
 	 */
 	protected function buildPreload( $data ) {
 		$preload = [ 'messages' => [] ];
-		foreach ( self::$preloadedKeys as $key ) {
+		foreach ( self::PRELOADED_KEYS as $key ) {
 			$preload[$key] = $data[$key];
 		}
 

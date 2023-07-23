@@ -35,7 +35,7 @@ class MessagesStructureTest extends MediaWikiUnitTestCase {
 		$vars = $this->readFile( $path );
 		$unknownVars = array_diff(
 			array_keys( $vars ),
-			LocalisationCache::$allKeys
+			LocalisationCache::ALL_KEYS
 		);
 		$this->assertSame( [], $unknownVars, 'unknown variables' );
 
