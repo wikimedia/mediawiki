@@ -476,6 +476,10 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * @covers WikiPage::doDeleteArticleReal
 	 */
 	public function testDoDeleteArticleReal() {
+		$this->overrideConfigValues( [
+			MainConfigNames::RCWatchCategoryMembership => false,
+		] );
+
 		$page = $this->createPage(
 			__METHOD__,
 			"[[original text]] foo",
@@ -622,6 +626,10 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * @covers WikiPage::doDeleteUpdates
 	 */
 	public function testDoDeleteUpdates() {
+		$this->overrideConfigValues( [
+			MainConfigNames::RCWatchCategoryMembership => false,
+		] );
+
 		$this->hideDeprecated( 'WikiPage::doDeleteUpdates' );
 		$user = $this->getTestUser()->getUserIdentity();
 		$page = $this->createPage(
