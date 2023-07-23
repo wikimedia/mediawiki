@@ -45,6 +45,9 @@ class ManifoldTextDifferTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testHasFormatExternal() {
+		if ( wfIsWindows() ) {
+			$this->markTestSkipped( 'This test only works on non-Windows platforms' );
+		}
 		$differ = $this->createDiffer( [
 			'ExternalDiffEngine' => __DIR__ . '/externalDiffTest.sh'
 		] );
@@ -112,6 +115,9 @@ class ManifoldTextDifferTest extends MediaWikiIntegrationTestCase {
 	 * @param bool $isWrap
 	 */
 	public function testAddRowWrapper( $format, $isWrap ) {
+		if ( wfIsWindows() ) {
+			$this->markTestSkipped( 'This test only works on non-Windows platforms' );
+		}
 		$differ = $this->createDiffer( [
 			'ExternalDiffEngine' => __DIR__ . '/externalDiffTest.sh'
 		] );
