@@ -162,6 +162,7 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
 use MediaWiki\User\UserIdentityLookup;
+use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
@@ -2129,6 +2130,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getUserIdentityLookup(): UserIdentityLookup {
 		return $this->getService( 'UserIdentityLookup' );
+	}
+
+	/**
+	 * @since 1.41
+	 * @return UserIdentityUtils
+	 */
+	public function getUserIdentityUtils(): UserIdentityUtils {
+		return $this->getService( 'UserIdentityUtils' );
 	}
 
 	/**

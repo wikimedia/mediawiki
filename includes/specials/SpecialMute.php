@@ -29,7 +29,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Preferences\MultiUsernameFilter;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
-use MediaWiki\User\UserNameUtils;
+use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\User\UserOptionsManager;
 use User;
 
@@ -58,26 +58,26 @@ class SpecialMute extends FormSpecialPage {
 	/** @var UserIdentityLookup */
 	private $userIdentityLookup;
 
-	/** @var UserNameUtils */
-	private $userNameUtils;
+	/** @var UserIdentityUtils */
+	private $userIdentityUtils;
 
 	/**
 	 * @param CentralIdLookup $centralIdLookup
 	 * @param UserOptionsManager $userOptionsManager
 	 * @param UserIdentityLookup $userIdentityLookup
-	 * @param UserNameUtils $userNameUtils
+	 * @param UserIdentityUtils $userIdentityUtils
 	 */
 	public function __construct(
 		CentralIdLookup $centralIdLookup,
 		UserOptionsManager $userOptionsManager,
 		UserIdentityLookup $userIdentityLookup,
-		UserNameUtils $userNameUtils
+		UserIdentityUtils $userIdentityUtils
 	) {
 		parent::__construct( self::PAGE_NAME, '', false );
 		$this->centralIdLookup = $centralIdLookup;
 		$this->userOptionsManager = $userOptionsManager;
 		$this->userIdentityLookup = $userIdentityLookup;
-		$this->userNameUtils = $userNameUtils;
+		$this->userIdentityUtils = $userIdentityUtils;
 	}
 
 	/**
@@ -243,7 +243,7 @@ class SpecialMute extends FormSpecialPage {
 		if ( $username !== null ) {
 			$target = $this->userIdentityLookup->getUserIdentityByName( $username );
 		}
-		if ( !$target || !$target->isRegistered() || $this->userNameUtils->isTemp( $target->getName() ) ) {
+		if ( !$target || !$this->userIdentityUtils->isNamed( $target ) ) {
 			throw new ErrorPageError( 'specialmute', 'specialmute-error-invalid-user' );
 		} else {
 			$this->target = $target;

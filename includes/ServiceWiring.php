@@ -195,6 +195,7 @@ use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
+use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
@@ -329,7 +330,7 @@ return [
 		return new BlockErrorFormatter(
 			$services->getTitleFormatter(),
 			$services->getHookContainer(),
-			$services->getUserNameUtils()
+			$services->getUserIdentityUtils()
 		);
 	},
 
@@ -2233,6 +2234,12 @@ return [
 
 	'UserIdentityLookup' => static function ( MediaWikiServices $services ): UserIdentityLookup {
 		return $services->getActorStoreFactory()->getUserIdentityLookup();
+	},
+
+	'UserIdentityUtils' => static function ( MediaWikiServices $services ): UserIdentityUtils {
+		return new UserIdentityUtils(
+			$services->getTempUserConfig()
+		);
 	},
 
 	'UserNamePrefixSearch' => static function ( MediaWikiServices $services ): UserNamePrefixSearch {

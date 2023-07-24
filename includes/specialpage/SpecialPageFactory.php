@@ -1274,7 +1274,7 @@ class SpecialPageFactory {
 						'CentralIdLookup',
 						'UserOptionsManager',
 						'UserIdentityLookup',
-						'UserNameUtils',
+						'UserIdentityUtils',
 					]
 				];
 			}

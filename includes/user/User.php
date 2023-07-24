@@ -3579,8 +3579,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 */
 	public function isTemp(): bool {
 		if ( $this->isTemp === null ) {
-			$this->isTemp = MediaWikiServices::getInstance()->getUserNameUtils()
-				->isTemp( $this->getName() );
+			$this->isTemp = MediaWikiServices::getInstance()->getUserIdentityUtils()
+				->isTemp( $this );
 		}
 		return $this->isTemp;
 	}

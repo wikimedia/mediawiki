@@ -26,7 +26,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\User\UserNameUtils;
+use MediaWiki\User\UserIdentityUtils;
 use Message;
 use TitleFormatter;
 
@@ -45,23 +45,23 @@ class BlockErrorFormatter {
 	private $hookRunner;
 
 	/**
-	 * @var UserNameUtils
+	 * @var UserIdentityUtils
 	 */
-	private $userNameUtils;
+	private $userIdentityUtils;
 
 	/**
 	 * @param TitleFormatter $titleFormatter
 	 * @param HookContainer $hookContainer
-	 * @param UserNameUtils $userNameUtils
+	 * @param UserIdentityUtils $userIdentityUtils
 	 */
 	public function __construct(
 		TitleFormatter $titleFormatter,
 		HookContainer $hookContainer,
-		UserNameUtils $userNameUtils
+		UserIdentityUtils $userIdentityUtils
 	) {
 		$this->titleFormatter = $titleFormatter;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->userNameUtils = $userNameUtils;
+		$this->userIdentityUtils = $userIdentityUtils;
 	}
 
 	/**
@@ -192,7 +192,7 @@ class BlockErrorFormatter {
 	 * @return string Message key
 	 */
 	private function getBlockErrorMessageKey( Block $block, UserIdentity $user ) {
-		$isTempUser = $this->userNameUtils->isTemp( $user->getName() );
+		$isTempUser = $this->userIdentityUtils->isTemp( $user );
 		$key = $isTempUser ? 'blockedtext-tempuser' : 'blockedtext';
 		if ( $block instanceof DatabaseBlock ) {
 			if ( $block->getType() === Block::TYPE_AUTO ) {
