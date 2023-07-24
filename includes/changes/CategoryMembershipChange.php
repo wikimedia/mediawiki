@@ -93,7 +93,7 @@ class CategoryMembershipChange {
 	 */
 	public function overrideNewForCategorizationCallback( callable $callback ) {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			throw new BadMethodCallException( 'Cannot override newForCategorization callback in operation.' );
+			throw new LogicException( 'Cannot override newForCategorization callback in operation.' );
 		}
 		$this->newForCategorizationCallback = $callback;
 	}

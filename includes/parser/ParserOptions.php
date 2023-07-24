@@ -1147,7 +1147,7 @@ class ParserOptions {
 	 */
 	public static function clearStaticCache() {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
-			throw new RuntimeException( __METHOD__ . ' is just for testing' );
+			throw new LogicException( __METHOD__ . ' is just for testing' );
 		}
 		self::$defaults = null;
 		self::$lazyOptions = null;

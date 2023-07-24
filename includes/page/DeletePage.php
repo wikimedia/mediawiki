@@ -307,7 +307,7 @@ class DeletePage {
 	 */
 	public function setIsDeletePageUnitTest( bool $test ): void {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			throw new BadMethodCallException( __METHOD__ . ' can only be used in tests!' );
+			throw new LogicException( __METHOD__ . ' can only be used in tests!' );
 		}
 		$this->isDeletePageUnitTest = $test;
 	}

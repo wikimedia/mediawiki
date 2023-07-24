@@ -632,7 +632,7 @@ class ExtensionRegistry {
 	public function setAttributeForTest( $name, array $value ) {
 		// @codeCoverageIgnoreStart
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			throw new RuntimeException( __METHOD__ . ' can only be used in tests' );
+			throw new LogicException( __METHOD__ . ' can only be used in tests' );
 		}
 		// @codeCoverageIgnoreEnd
 		if ( isset( $this->testAttributes[$name] ) ) {

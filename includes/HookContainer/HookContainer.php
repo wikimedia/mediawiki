@@ -185,12 +185,11 @@ class HookContainer implements SalvageableService {
 	 * @param string $hook Name of hook to clear
 	 *
 	 * @internal For use by Hooks.php
-	 * @throws MWException If not in testing mode.
 	 * @codeCoverageIgnore
 	 */
 	public function clear( string $hook ): void {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
-			throw new MWException( 'Cannot reset hooks in operation.' );
+			throw new LogicException( 'Cannot reset hooks in operation.' );
 		}
 
 		$this->handlers[$hook] = [];

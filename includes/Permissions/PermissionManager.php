@@ -20,8 +20,8 @@
 namespace MediaWiki\Permissions;
 
 use Article;
-use BadMethodCallException;
 use InvalidArgumentException;
+use LogicException;
 use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\DatabaseBlock;
@@ -1627,7 +1627,6 @@ class PermissionManager {
 		// Remove any rights that aren't allowed to the global-session user,
 		// unless there are no sessions for this endpoint.
 		if ( !defined( 'MW_NO_SESSION' ) ) {
-
 			// XXX: think what could be done with the below
 			$allowedRights = SessionManager::getGlobalSession()->getAllowedUserRights();
 			if ( $allowedRights !== null && !in_array( $right, $allowedRights, true ) ) {
@@ -1810,7 +1809,7 @@ class PermissionManager {
 	 */
 	public function overrideUserRightsForTesting( $user, $rights = [] ) {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			throw new BadMethodCallException( __METHOD__ . ' can not be called outside of tests' );
+			throw new LogicException( __METHOD__ . ' can not be called outside of tests' );
 		}
 		$this->usersRights[ $this->getRightsCacheKey( $user ) ] =
 			is_array( $rights ) ? $rights : [ $rights ];
