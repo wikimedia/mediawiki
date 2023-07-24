@@ -804,7 +804,7 @@ class LogFormatter {
 				$user->getName()
 			);
 			if ( $this->linkFlood ) {
-				$editCount = $user->isRegistered()
+				$editCount = $user->getId()
 					? MediaWikiServices::getInstance()->getUserEditTracker()->getUserEditCount( $user )
 					: null;
 

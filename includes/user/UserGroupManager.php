@@ -572,7 +572,7 @@ class UserGroupManager implements IDBAccessObject {
 				if ( $reqEditCount <= 0 ) {
 					return true;
 				}
-				return $user->isRegistered() && $this->userEditTracker->getUserEditCount( $user ) >= $reqEditCount;
+				return (int)$this->userEditTracker->getUserEditCount( $user ) >= $reqEditCount;
 			case APCOND_AGE:
 				$reqAge = $cond[1] ?? $this->options->get( MainConfigNames::AutoConfirmAge );
 				$age = time() - (int)wfTimestampOrNull( TS_UNIX, $user->getRegistration() );

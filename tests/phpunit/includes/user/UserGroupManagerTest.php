@@ -676,8 +676,6 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 				->willReturn( $userEditCount );
 		} else {
 			$user = User::newFromName( 'UTUser1' );
-			$userEditTrackerMock->expects( $this->never() )
-				->method( 'getUserEditCount' );
 		}
 		$manager = $this->getManager(
 			[

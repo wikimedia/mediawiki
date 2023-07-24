@@ -508,9 +508,7 @@ class PageEditStash {
 			'pstContent' => $pstContent,
 			'output'     => $parserOutput,
 			'timestamp'  => $timestamp,
-			'edits'      => $user->isRegistered()
-				? $this->userEditTracker->getUserEditCount( $user )
-				: null,
+			'edits'      => $this->userEditTracker->getUserEditCount( $user ),
 		];
 		$serial = $this->serializeStashInfo( $stashInfo );
 		if ( $serial === false ) {
