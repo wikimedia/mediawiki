@@ -2226,7 +2226,9 @@ return [
 			LoggerFactory::getInstance( 'UserGroupManager' ),
 			$services->getTempUserConfig(),
 			[ static function ( UserIdentity $user ) use ( $services ) {
-				$services->getPermissionManager()->invalidateUsersRightsCache( $user );
+				if ( $user->getWikiId() === UserIdentity::LOCAL ) {
+					$services->getPermissionManager()->invalidateUsersRightsCache( $user );
+				}
 				$services->getUserFactory()->newFromUserIdentity( $user )->invalidateCache();
 			} ]
 		);
