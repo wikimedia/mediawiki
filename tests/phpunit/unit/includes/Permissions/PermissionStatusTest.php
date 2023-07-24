@@ -46,6 +46,16 @@ class PermissionStatusTest extends MediaWikiUnitTestCase {
 		$status->setBlock( $block );
 
 		$this->assertSame( $block, $status->getBlock() );
+		$this->assertFalse( $status->isOK() );
+	}
+
+	public function testRateLimitExceeded() {
+		$status = PermissionStatus::newEmpty();
+
+		$this->assertFalse( $status->isRateLimitExceeded() );
+
+		$status->setRateLimitExceeded();
+		$this->assertTrue( $status->isRateLimitExceeded() );
 	}
 
 }

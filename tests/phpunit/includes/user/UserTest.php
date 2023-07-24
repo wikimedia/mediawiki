@@ -1759,7 +1759,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	public function testPingLimiter() {
 		$user = $this->getTestUser()->getUser();
 
-		$limiter = $this->createNoOpMock( RateLimiter::class, [ 'limit' ] );
+		$limiter = $this->createNoOpMock( RateLimiter::class, [ 'limit', 'isLimitable' ] );
+		$limiter->method( 'isLimitable' )->willReturn( true );
 		$limiter->method( 'limit' )->willReturnCallback(
 			function ( RateLimitSubject $subject, $action ) use ( $user ) {
 				$this->assertSame( $user, $subject->getUser() );

@@ -248,7 +248,6 @@ class SpecialChangeContentModel extends FormSpecialPage {
 			return Status::newFatal( new RawMessage( '$1', [ $wikitext ] ) );
 		}
 
-		// Can also throw a ThrottledError, don't catch it
 		$status = $changer->doContentModelChange(
 			$this->getContext(),
 			$data['reason'],

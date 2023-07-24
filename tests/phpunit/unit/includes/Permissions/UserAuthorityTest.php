@@ -27,10 +27,11 @@ use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Permissions\RateLimiter;
+use MediaWiki\Permissions\RateLimitSubject;
 use MediaWiki\Permissions\UserAuthority;
 use MediaWikiUnitTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
-use Status;
 use User;
 
 /**
@@ -47,12 +48,29 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 	];
 
 	/**
+	 * @param bool $limited
+	 * @return RateLimiter
+	 */
+	private function newRateLimiter( $limited = false ): RateLimiter {
+		/** @var RateLimiter|MockObject $rateLimiter */
+		$rateLimiter = $this->createNoOpMock(
+			RateLimiter::class,
+			[ 'limit', 'isLimitable' ]
+		);
+
+		$rateLimiter->method( 'limit' )->willReturn( $limited );
+		$rateLimiter->method( 'isLimitable' )->willReturn( true );
+
+		return $rateLimiter;
+	}
+
+	/**
 	 * @param string[] $permissions
 	 * @return PermissionManager
 	 */
 	private function newPermissionsManager( array $permissions ): PermissionManager {
 		/** @var PermissionManager|MockObject $permissionManager */
-		$permissionManager = $this->createMock(
+		$permissionManager = $this->createNoOpMock(
 			PermissionManager::class,
 			[ 'userHasRight', 'userCan', 'getPermissionErrors', 'isBlockedFrom' ]
 		);
@@ -96,25 +114,31 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 		return $permissionManager;
 	}
 
-	private function newUser(): User {
+	private function newUser( Block $block = null ): User {
 		/** @var User|MockObject $actor */
-		$actor = $this->createNoOpMock( User::class, [ 'getBlock' ] );
-		$actor->method( 'getBlock' )->willReturn( null );
+		$actor = $this->createNoOpMock( User::class, [ 'getBlock', 'isNewbie', 'toRateLimitSubject' ] );
+		$actor->method( 'getBlock' )->willReturn( $block );
+		$actor->method( 'isNewbie' )->willReturn( false );
+
+		$subject = new RateLimitSubject( $actor, '::1', [] );
+		$actor->method( 'toRateLimitSubject' )->willReturn( $subject );
 		return $actor;
 	}
 
-	private function newAuthority( array $permissions, User $actor = null ): Authority {
+	private function newAuthority( array $permissions, $limited = false, User $actor = null ): Authority {
 		/** @var PermissionManager|MockObject $permissionManager */
 		$permissionManager = $this->newPermissionsManager( $permissions );
+		$rateLimiter = $this->newRateLimiter( $limited );
 		return new UserAuthority(
 			$actor ?? $this->newUser(),
-			$permissionManager
+			$permissionManager,
+			$rateLimiter
 		);
 	}
 
 	public function testGetUser() {
 		$user = $this->newUser();
-		$authority = $this->newAuthority( [], $user );
+		$authority = $this->newAuthority( [], false, $user );
 
 		$this->assertSame( $user, $authority->getUser() );
 	}
@@ -124,34 +148,110 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 		$this->assertNull( $authority->getBlock() );
 	}
 
-	/**
-	 * @param Block|null $block
-	 *
-	 * @return MockObject|User
-	 */
-	private function getBlockedUser( $block = null ) {
-		$block = $block ?: $this->createNoOpMock( Block::class );
-
-		$user = $this->createNoOpMock( User::class, [ 'getBlock' ] );
-		$user->method( 'getBlock' )
-			->willReturn( $block );
-
-		return $user;
-	}
-
 	public function testGetUserBlockWasBlocked() {
 		$block = $this->createNoOpMock( Block::class );
-		$user = $this->getBlockedUser( $block );
+		$user = $this->newUser( $block );
 
-		$authority = $this->newAuthority( [], $user );
+		$authority = $this->newAuthority( [], false, $user );
 		$this->assertSame( $block, $authority->getBlock() );
+	}
+
+	public function testRateLimitApplies() {
+		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
+		$authority = $this->newAuthority( [ 'edit' ], true );
+
+		$this->assertTrue( $authority->probablyCan( 'edit', $target ) );
+		$this->assertFalse( $authority->definitelyCan( 'edit', $target ) );
+		$this->assertFalse( $authority->authorizeRead( 'edit', $target ) );
+		$this->assertFalse( $authority->authorizeWrite( 'edit', $target ) );
+	}
+
+	public function testRateLimiterBypassedForReading() {
+		/** @var PermissionManager|MockObject $permissionManager */
+		$permissionManager = $this->newPermissionsManager( [ 'read' ] );
+
+		// Key assertion: limit() is not called.
+		$rateLimiter = $this->createNoOpMock( RateLimiter::class, [ 'isLimitable' ] );
+		$rateLimiter->method( 'isLimitable' )->willReturn( false );
+
+		// Key assertion: toRateLimitSubject() is not called.
+		$actor = $this->createNoOpMock( User::class, [ 'getBlock', 'isNewbie' ] );
+		$actor->method( 'getBlock' )->willReturn( null );
+		$actor->method( 'isNewbie' )->willReturn( false );
+
+		$authority = new UserAuthority(
+			$actor,
+			$permissionManager,
+			$rateLimiter
+		);
+
+		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
+		$this->assertTrue( $authority->authorizeRead( 'read', $target ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Permissions\UserAuthority::limit
+	 */
+	public function testPingLimiterCaching() {
+		$permissionManager = $this->newPermissionsManager( [] );
+		$rateLimiter = $this->createNoOpMock( RateLimiter::class, [ 'limit', 'isLimitable' ] );
+
+		$rateLimiter->method( 'isLimitable' )
+			->willReturn( true );
+
+		// We expect exactly five calls to go through to the RateLimiter,
+		// see the comments below.
+		$rateLimiter->expects( $this->exactly( 5 ) )
+			->method( 'limit' )
+			->willReturn( false );
+
+		$authority = new UserAuthority(
+			$this->newUser(),
+			$permissionManager,
+			$rateLimiter
+		);
+
+		// The rate limit cache is usually disabled during testing.
+		// Enable it so we can test it.
+		$authority->setUseLimitCache( true );
+
+		// The first call should go through to the RateLimiter (count 1).
+		$this->assertFalse( $authority->limit( 'edit', 0, null ) );
+
+		// The second call should also go through to the RateLimiter,
+		// because now we are incrementing, and before we were just peeking (count 2).
+		$this->assertFalse( $authority->limit( 'edit', 1, null ) );
+
+		// The third call should hit the cache
+		$this->assertFalse( $authority->limit( 'edit', 0, null ) );
+
+		// The forth call should hit the cache, even if incrementing.
+		// This makes sure we don't increment the same counter multiple times
+		// during a single request.
+		$this->assertFalse( $authority->limit( 'edit', 1, null ) );
+
+		// The fifth call should go to the RateLimiter again, because we are now
+		// incrementing by more than one (count 3).
+		$this->assertFalse( $authority->limit( 'edit', 5, null ) );
+
+		// The next calls should not go through, since we already hit 5
+		$this->assertFalse( $authority->limit( 'edit', 5, null ) );
+		$this->assertFalse( $authority->limit( 'edit', 2, null ) );
+		$this->assertFalse( $authority->limit( 'edit', 0, null ) );
+
+		// When limiting another action, we should not hit the cache (count 4).
+		$this->assertFalse( $authority->limit( 'move', 1, null ) );
+
+		// After disabling  the cache, we should get through to the RateLimiter again (count 5).
+		$authority->setUseLimitCache( false );
+		$this->assertFalse( $authority->limit( 'move', 1, null ) );
 	}
 
 	public function testBlockedUserCanRead() {
 		$block = $this->createNoOpMock( Block::class );
-		$user = $this->getBlockedUser( $block );
+		$user = $this->newUser( $block );
 
-		$authority = $this->newAuthority( [ 'read', 'edit' ], $user );
+		$authority = $this->newAuthority( [ 'read', 'edit' ], false, $user );
 
 		$status = PermissionStatus::newEmpty();
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
@@ -161,9 +261,9 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 
 	public function testBlockedUserCanNotWrite() {
 		$block = $this->createNoOpMock( Block::class );
-		$user = $this->getBlockedUser( $block );
+		$user = $this->newUser( $block );
 
-		$authority = $this->newAuthority( [ 'read', 'edit' ], $user );
+		$authority = $this->newAuthority( [ 'read', 'edit' ], false, $user );
 
 		$status = PermissionStatus::newEmpty();
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
@@ -267,16 +367,16 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 	public function testGetBlock_none() {
 		$actor = $this->newUser();
 
-		$authority = $this->newAuthority( [ 'foo', 'bar' ], $actor );
+		$authority = $this->newAuthority( [ 'foo', 'bar' ], false, $actor );
 
 		$this->assertNull( $authority->getBlock() );
 	}
 
 	public function testGetBlock_blocked() {
 		$block = $this->createNoOpMock( Block::class );
-		$actor = $this->getBlockedUser( $block );
+		$actor = $this->newUser( $block );
 
-		$authority = $this->newAuthority( [ 'foo', 'bar' ], $actor );
+		$authority = $this->newAuthority( [ 'foo', 'bar' ], false, $actor );
 
 		$this->assertSame( $block, $authority->getBlock() );
 	}
@@ -288,9 +388,9 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 	 */
 	public function testInternalCanWithPermissionStatusMessageFormatting() {
 		$block = $this->createNoOpMock( Block::class );
-		$user = $this->getBlockedUser( $block );
+		$user = $this->newUser( $block );
 
-		$authority = $this->newAuthority( [ 'read', 'edit' ], $user );
+		$authority = $this->newAuthority( [ 'read', 'edit' ], true, $user );
 
 		$permissionStatus = PermissionStatus::newEmpty();
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
@@ -301,11 +401,15 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 			$permissionStatus
 		);
 
+		$this->assertTrue( $permissionStatus->hasMessage( 'actionthrottledtext' ) );
+		$this->assertTrue( $permissionStatus->isRateLimitExceeded() );
+
 		$this->assertTrue( $permissionStatus->hasMessage( 'blockedtext-partial' ) );
+		$this->assertNotNull( $permissionStatus->getBlock() );
 
-		$status = Status::wrap( $permissionStatus );
+		$errors = $permissionStatus->getErrors();
 
-		$message = $status->getMessage();
+		$message = $errors[1]['message'];
 		$this->assertEquals( 'blockedtext-partial', $message->getKey() );
 		$this->assertArrayEquals(
 			self::FAKE_BLOCK_MESSAGE_PARAMS,

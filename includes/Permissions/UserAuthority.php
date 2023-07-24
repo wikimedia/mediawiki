@@ -54,6 +54,12 @@ class UserAuthority implements Authority {
 	private $permissionManager;
 
 	/**
+	 * @var RateLimiter
+	 * @noVarDump
+	 */
+	private $rateLimiter;
+
+	/**
 	 * @var User
 	 * @noVarDump
 	 */
@@ -67,15 +73,47 @@ class UserAuthority implements Authority {
 	private $userBlock = null;
 
 	/**
+	 * Cache for the outcomes of rate limit checks.
+	 * We cache the outcomes primarily so we don't bump the counter multiple times
+	 * per request.
+	 * @var array<string,array> Map of actions to [ int, bool ] pairs.
+	 *      The first element is the increment performed so far (typically 1).
+	 *      The second element is the cached outcome of the check (whether the limit was reached)
+	 */
+	private $limitCache = [];
+
+	/**
+	 * Whether the limit cache should be used. Generally, the limit cache should be used in web
+	 * requests, since we don't want to bump the same limit more than once per request. It
+	 * should not be used during testing, so limits can easily be tested without knowledge
+	 * about the caching mechanism.
+	 *
+	 * @var bool
+	 */
+	private $useLimitCache;
+
+	/**
 	 * @param User $user
 	 * @param PermissionManager $permissionManager
+	 * @param RateLimiter $rateLimiter
 	 */
 	public function __construct(
 		User $user,
-		PermissionManager $permissionManager
+		PermissionManager $permissionManager,
+		RateLimiter $rateLimiter
 	) {
 		$this->permissionManager = $permissionManager;
 		$this->actor = $user;
+		$this->rateLimiter = $rateLimiter;
+		$this->useLimitCache = !defined( 'MW_PHPUNIT_TEST' );
+	}
+
+	/**
+	 * @internal
+	 * @param bool $useLimitCache
+	 */
+	public function setUseLimitCache( bool $useLimitCache ) {
+		$this->useLimitCache = $useLimitCache;
 	}
 
 	/**
@@ -158,7 +196,8 @@ class UserAuthority implements Authority {
 			PermissionManager::RIGOR_QUICK,
 			$action,
 			$target,
-			$status
+			$status,
+			false // do not check the rate limit
 		);
 	}
 
@@ -183,7 +222,8 @@ class UserAuthority implements Authority {
 			PermissionManager::RIGOR_FULL,
 			$action,
 			$target,
-			$status
+			$status,
+			0 // only check the rate limit, don't count it as a hit
 		);
 	}
 
@@ -210,7 +250,8 @@ class UserAuthority implements Authority {
 			PermissionManager::RIGOR_FULL,
 			$action,
 			$target,
-			$status
+			$status,
+			1 // count a hit towards the rate limit
 		);
 	}
 
@@ -236,7 +277,8 @@ class UserAuthority implements Authority {
 			PermissionManager::RIGOR_SECURE,
 			$action,
 			$target,
-			$status
+			$status,
+			1 // count a hit towards the rate limit
 		);
 	}
 
@@ -244,7 +286,9 @@ class UserAuthority implements Authority {
 	 * @param string $rigor
 	 * @param string $action
 	 * @param PageIdentity $target
-	 * @param PermissionStatus|null $status
+	 * @param ?PermissionStatus $status
+	 * @param int|false $limitRate False means no check, 0 means check only,
+	 *        a non-zero values means check and increment
 	 *
 	 * @return bool
 	 */
@@ -252,8 +296,18 @@ class UserAuthority implements Authority {
 		string $rigor,
 		string $action,
 		PageIdentity $target,
-		PermissionStatus $status = null
+		?PermissionStatus $status,
+		$limitRate
 	): bool {
+		// Check and bump the rate limit.
+		if ( $limitRate !== false ) {
+			$isLimited = $this->limit( $action, $limitRate, $status );
+			if ( $isLimited && !$status ) {
+				// bail early if we don't have a status object
+				return false;
+			}
+		}
+
 		if ( !( $target instanceof LinkTarget ) ) {
 			// FIXME: PermissionManager should accept PageIdentity!
 			$target = TitleValue::newFromPage( $target );
@@ -294,6 +348,56 @@ class UserAuthority implements Authority {
 				$rigor
 			);
 		}
+	}
+
+	/**
+	 * Check whether a rate limit has been exceeded for the given action.
+	 *
+	 * @see RateLimiter::limit
+	 * @internal For use by User::pingLimiter only.
+	 *
+	 * @param string $action
+	 * @param int $incrBy
+	 * @param PermissionStatus|null $status
+	 *
+	 * @return bool
+	 */
+	public function limit( string $action, int $incrBy, ?PermissionStatus $status ): bool {
+		$isLimited = null;
+
+		if ( $this->useLimitCache && isset( $this->limitCache[ $action ] ) ) {
+			// subtract the increment that was already applied earlier
+			$incrRemaining = $incrBy - $this->limitCache[ $action ][ 0 ];
+
+			// if no increment is left to apply, return the cached outcome
+			if ( $incrRemaining < 1 ) {
+				$isLimited = $this->limitCache[ $action ][ 1 ];
+			}
+		} else {
+			$incrRemaining = $incrBy;
+		}
+
+		if ( $isLimited === null ) {
+			// NOTE: Avoid toRateLimitSubject() is possible, for performance
+			if ( $this->rateLimiter->isLimitable( $action ) ) {
+				$isLimited = $this->rateLimiter->limit(
+					$this->actor->toRateLimitSubject(),
+					$action,
+					$incrRemaining
+				);
+			} else {
+				$isLimited = false;
+			}
+
+			// Cache the outcome, so we don't bump the counter twice during the same request.
+			$this->limitCache[ $action ] = [ $incrBy, $isLimited ];
+		}
+
+		if ( $isLimited && $status ) {
+			$status->setRateLimitExceeded();
+		}
+
+		return $isLimited;
 	}
 
 	/**

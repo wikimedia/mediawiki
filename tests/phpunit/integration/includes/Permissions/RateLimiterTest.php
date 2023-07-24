@@ -52,6 +52,9 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testPingLimiterGlobal() {
 		$limits = [
+			'read' => [ // not limitable, will be ignored
+				'anon' => [ 1, 60 ],
+			],
 			'edit' => [
 				'anon' => [ 1, 60 ],
 			],
@@ -101,6 +104,9 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 		$karaY1 = $this->newFakeUser( 'Kara', '5.5.5.5', 200 );
 
 		// Test limits on wiki X
+		$this->assertFalse( $limiter->limit( $anon1, 'read' ), 'First anon read' );
+		$this->assertFalse( $limiter->limit( $anon2, 'read' ), 'Second anon read (should ignore any limits)' );
+
 		$this->assertFalse( $limiter->limit( $anon1, 'edit' ), 'First anon edit' );
 		$this->assertTrue( $limiter->limit( $anon2, 'edit' ), 'Second anon edit' );
 
@@ -267,6 +273,10 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 			$limiter->limit( $user, 'edit' ),
 			'Hooks can set $result to true'
 		);
+		$this->assertFalse(
+			$limiter->limit( $user, 'read' ),
+			'The "read" permission will bypass the hook'
+		);
 		$this->removeTemporaryHook( 'PingLimiter' );
 
 		// Unknown action
@@ -281,6 +291,38 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertStatsNotHasCount( 'test.RateLimiter.limit.edit.result.passed', $statsData );
 		$this->assertStatsNotHasCount( 'test.RateLimiter.limit.edit.result.tripped', $statsData );
+	}
+
+	/**
+	 * @covers ::isLimitable
+	 */
+	public function testIsLimitableAction() {
+		$limits = [
+			'read' => [ // will be ignored, because 'read' is non-limitable
+				'user' => [ 3, 60 ],
+			],
+			'edit' => [
+				'user' => [ 3, 60 ],
+			],
+		];
+
+		$limiter = $this->newRateLimiter( $limits, [] );
+
+		$this->assertTrue( $limiter->isLimitable( 'edit' ), 'edit should be limitable' );
+		$this->assertFalse( $limiter->isLimitable( 'read' ), 'read should be non-limitable' );
+		$this->assertFalse( $limiter->isLimitable( 'move' ), 'move should not be limited' );
+
+		// Set the hook!
+		$this->setTemporaryHook(
+			'PingLimiter',
+			static function () {
+				// no-op
+			}
+		);
+
+		$this->assertTrue( $limiter->isLimitable( 'edit' ), 'edit should be limitable' );
+		$this->assertFalse( $limiter->isLimitable( 'read' ), 'read should be non-limitable' );
+		$this->assertTrue( $limiter->isLimitable( 'move' ), 'move should be limitable because of hook' );
 	}
 
 	public static function provideIsExempt() {

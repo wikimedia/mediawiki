@@ -37,6 +37,9 @@ class PermissionStatus extends StatusValue {
 	/** @var ?Block */
 	private $block = null;
 
+	/** @var bool */
+	private $rateLimitExceeded = false;
+
 	/**
 	 * Returns the user block that contributed to permissions being denied,
 	 * if such a block was provided via setBlock().
@@ -59,6 +62,7 @@ class PermissionStatus extends StatusValue {
 	 */
 	public function setBlock( Block $block ): void {
 		$this->block = $block;
+		$this->setOK( false );
 	}
 
 	/**
@@ -77,6 +81,26 @@ class PermissionStatus extends StatusValue {
 	 */
 	public function toLegacyErrorArray(): array {
 		return $this->getStatusArray();
+	}
+
+	/**
+	 * Call this to indicate that the user is over the rate limit for some action.
+	 * @since 1.41
+	 * @internal
+	 * Will cause isRateLimited() to return true.
+	 */
+	public function setRateLimitExceeded() {
+		$this->rateLimitExceeded = true;
+		$this->fatal( 'actionthrottledtext' );
+	}
+
+	/**
+	 * Whether the user is over the rate limit for some action.
+	 * @since 1.41
+	 * @return bool True if setRateLimitExceeded() was called.
+	 */
+	public function isRateLimitExceeded(): bool {
+		return $this->rateLimitExceeded;
 	}
 
 }

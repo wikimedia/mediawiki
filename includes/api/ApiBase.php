@@ -247,12 +247,18 @@ abstract class ApiBase extends ContextSource {
 	private static $filterIDsCache = [];
 
 	/** @var array Map of web UI block messages which magically gain machine-readable block info */
-	private static $blockMsgMap = [
+	private const BLOCK_CODE_MAP = [
 		'blockedtext' => true,
 		'blockedtext-partial' => true,
 		'autoblockedtext' => true,
 		'systemblockedtext' => true,
 		'blockedtext-composite' => true,
+	];
+
+	/** @var array Map of web UI block messages to corresponding API messages and codes */
+	private const MESSAGE_CODE_MAP = [
+		'actionthrottled' => [ 'apierror-ratelimited', 'ratelimited' ],
+		'actionthrottledtext' => [ 'apierror-ratelimited', 'ratelimited' ],
 	];
 
 	/** @var ApiMain */
@@ -1245,9 +1251,13 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Turn an array of message keys or key+param arrays into a Status
+	 * Turn an array of messages into a Status.
+	 *
+	 * @see ApiMessage::create
+	 *
 	 * @since 1.29
-	 * @param array $errors
+	 * @param array $errors A list of message keys, MessageSpecifier objects,
+	 *        or arrays containing the message key and parameters.
 	 * @param Authority|null $performer
 	 * @return Status
 	 */
@@ -1260,12 +1270,19 @@ abstract class ApiBase extends ContextSource {
 			if ( !is_array( $error ) ) {
 				$error = [ $error ];
 			}
-			if ( is_string( $error[0] ) && isset( self::$blockMsgMap[$error[0]] ) && $block ) {
+
+			$head = reset( $error );
+			$key = ( $head instanceof MessageSpecifier ) ? $head->getKey() : (string)$head;
+
+			if ( isset( self::BLOCK_CODE_MAP[$key] ) && $block ) {
 				$status->fatal( ApiMessage::create(
 					$error,
 					$this->getBlockCode( $block ),
 					[ 'blockinfo' => $this->getBlockDetails( $block ) ]
 				) );
+			} elseif ( isset( self::MESSAGE_CODE_MAP[$key] ) ) {
+				[ $msg, $code ] = self::MESSAGE_CODE_MAP[$key];
+				$status->fatal( ApiMessage::create( $msg, $code ) );
 			} else {
 				// @phan-suppress-next-line PhanParamTooFewUnpack
 				$status->fatal( ...$error );
@@ -1294,8 +1311,7 @@ abstract class ApiBase extends ContextSource {
 				$msgKey = $error['message'] instanceof MessageSpecifier ?
 					$error['message']->getKey() :
 					$error['message'];
-
-				if ( isset( self::$blockMsgMap[$msgKey] ) ) {
+				if ( isset( self::BLOCK_CODE_MAP[$msgKey] ) ) {
 					$status->replaceMessage( $msgKey, ApiMessage::create(
 						$error,
 						$this->getBlockCode( $block ),
@@ -1525,6 +1541,18 @@ abstract class ApiBase extends ContextSource {
 			throw new LogicException( 'Successful status passed to ApiBase::dieStatus' );
 		}
 
+		foreach ( self::MESSAGE_CODE_MAP as $msg => [ $apiMsg, $code ] ) {
+			if ( $status->hasMessage( $msg ) ) {
+				$status->replaceMessage( $msg, ApiMessage::create( $apiMsg, $code ) );
+			}
+		}
+
+		if ( $status instanceof PermissionStatus ) {
+			if ( $status->isRateLimitExceeded() && !$status->hasMessage( 'apierror-ratelimited' ) ) {
+				$status->fatal( ApiMessage::create( 'apierror-ratelimited', 'ratelimited' ) );
+			}
+		}
+
 		// ApiUsageException needs a fatal status, but this method has
 		// historically accepted any non-good status. Convert it if necessary.
 		$status->setOK( false );
@@ -1540,6 +1568,7 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		$this->addBlockInfoToStatus( $status );
+
 		throw new ApiUsageException( $this, $status );
 	}
 

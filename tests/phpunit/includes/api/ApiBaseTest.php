@@ -4,6 +4,7 @@ use MediaWiki\Api\Validator\SubmoduleDef;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -1519,39 +1520,54 @@ class ApiBaseTest extends ApiTestCase {
 		$this->assertEquals( $expect, $test );
 	}
 
-	public function testDieStatus() {
-		$mock = new MockApi();
-
+	public static function provideDieStatus() {
 		$status = StatusValue::newGood();
 		$status->error( 'foo' );
 		$status->warning( 'bar' );
-		try {
-			$mock->dieStatus( $status );
-			$this->fail( 'Expected exception not thrown' );
-		} catch ( ApiUsageException $ex ) {
-			$this->assertTrue( ApiTestCase::apiExceptionHasCode( $ex, 'foo' ), 'Exception has "foo"' );
-			$this->assertFalse( ApiTestCase::apiExceptionHasCode( $ex, 'bar' ), 'Exception has "bar"' );
-		}
+		yield [ $status, [ 'foo' => true, 'bar' => false ] ];
 
 		$status = StatusValue::newGood();
 		$status->warning( 'foo' );
 		$status->warning( 'bar' );
-		try {
-			$mock->dieStatus( $status );
-			$this->fail( 'Expected exception not thrown' );
-		} catch ( ApiUsageException $ex ) {
-			$this->assertTrue( ApiTestCase::apiExceptionHasCode( $ex, 'foo' ), 'Exception has "foo"' );
-			$this->assertTrue( ApiTestCase::apiExceptionHasCode( $ex, 'bar' ), 'Exception has "bar"' );
-		}
+		yield [ $status, [ 'foo' => true, 'bar' => true ] ];
 
 		$status = StatusValue::newGood();
 		$status->setOK( false );
+		yield [ $status, [ 'unknownerror-nocode' => true ] ];
+
+		$status = PermissionStatus::newEmpty();
+		$status->setRateLimitExceeded();
+		yield [ $status, [ 'ratelimited' => true ] ];
+
+		$status = StatusValue::newFatal( 'actionthrottledtext' );
+		yield [ $status, [ 'ratelimited' => true ] ];
+
+		$status = StatusValue::newFatal( 'actionthrottled' );
+		yield [ $status, [ 'ratelimited' => true ] ];
+
+		$status = StatusValue::newFatal( 'blockedtext' );
+		yield [ $status, [ 'blocked' => true ] ];
+
+		$status = StatusValue::newFatal( 'autoblockedtext' );
+		yield [ $status, [ 'autoblocked' => true ] ];
+	}
+
+	/**
+	 * @dataProvider provideDieStatus
+	 *
+	 * @param StatusValue $status
+	 * @param array $expected
+	 */
+	public function testDieStatus( $status, $expected ) {
+		$mock = new MockApi();
+
 		try {
 			$mock->dieStatus( $status );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( ApiUsageException $ex ) {
-			$this->assertTrue( ApiTestCase::apiExceptionHasCode( $ex, 'unknownerror-nocode' ),
-				'Exception has "unknownerror-nocode"' );
+			foreach ( $expected as $key => $has ) {
+				$this->assertSame( $has, ApiTestCase::apiExceptionHasCode( $ex, $key ), "Exception has '$key'" );
+			}
 		}
 	}
 

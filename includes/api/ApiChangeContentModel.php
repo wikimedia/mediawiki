@@ -75,15 +75,11 @@ class ApiChangeContentModel extends ApiBase {
 		}
 
 		// Everything passed, make the conversion
-		try {
-			$status = $changer->doContentModelChange(
-				$this->getContext(),
-				$params['summary'],
-				$params['bot']
-			);
-		} catch ( ThrottledError $te ) {
-			$this->dieWithError( 'apierror-ratelimited' );
-		}
+		$status = $changer->doContentModelChange(
+			$this->getContext(),
+			$params['summary'],
+			$params['bot']
+		);
 
 		if ( !$status->isGood() ) {
 			// Failed

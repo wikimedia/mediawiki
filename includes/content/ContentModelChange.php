@@ -246,7 +246,6 @@ class ContentModelChange {
 	 * @param string $comment
 	 * @param bool $bot Mark as a bot edit if the user can
 	 * @return Status
-	 * @throws ThrottledError
 	 */
 	public function doContentModelChange(
 		IContextSource $context,
@@ -261,11 +260,6 @@ class ContentModelChange {
 		$page = $this->page;
 		$title = $page->getTitle();
 		$user = $this->userFactory->newFromAuthority( $this->performer );
-
-		// TODO: fold into authorizeChange
-		if ( $user->pingLimiter( 'editcontentmodel' ) ) {
-			throw new ThrottledError();
-		}
 
 		// Create log entry
 		$log = new ManualLogEntry( 'contentmodel', $this->logAction );
