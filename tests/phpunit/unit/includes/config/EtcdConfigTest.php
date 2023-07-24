@@ -2,6 +2,9 @@
 
 use Wikimedia\TestingAccessWrapper;
 
+/**
+ * @covers EtcdConfig
+ */
 class EtcdConfigTest extends MediaWikiUnitTestCase {
 
 	private function createConfigMock( array $options = [], ?array $methods = null ) {
@@ -42,9 +45,6 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 			->getMock();
 	}
 
-	/**
-	 * @covers EtcdConfig::has
-	 */
 	public function testHasKnown() {
 		$config = $this->createSimpleConfigMock( [
 			'known' => 'value'
@@ -52,10 +52,6 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 		$this->assertSame( true, $config->has( 'known' ) );
 	}
 
-	/**
-	 * @covers EtcdConfig::__construct
-	 * @covers EtcdConfig::get
-	 */
 	public function testGetKnown() {
 		$config = $this->createSimpleConfigMock( [
 			'known' => 'value'
@@ -63,9 +59,6 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 'value', $config->get( 'known' ) );
 	}
 
-	/**
-	 * @covers EtcdConfig::has
-	 */
 	public function testHasUnknown() {
 		$config = $this->createSimpleConfigMock( [
 			'known' => 'value'
@@ -73,9 +66,6 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 		$this->assertSame( false, $config->has( 'unknown' ) );
 	}
 
-	/**
-	 * @covers EtcdConfig::get
-	 */
 	public function testGetUnknown() {
 		$config = $this->createSimpleConfigMock( [
 			'known' => 'value'
@@ -84,9 +74,6 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 		$config->get( 'unknown' );
 	}
 
-	/**
-	 * @covers EtcdConfig::getModifiedIndex
-	 */
 	public function testGetModifiedIndex() {
 		$config = $this->createSimpleConfigMock(
 			[ 'some' => 'value' ],
@@ -95,9 +82,6 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 123, $config->getModifiedIndex() );
 	}
 
-	/**
-	 * @covers EtcdConfig::__construct
-	 */
 	public function testConstructCacheObj() {
 		$cache = $this->getMockBuilder( HashBagOStuff::class )
 			->onlyMethods( [ 'get' ] )
@@ -113,9 +97,6 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 'from-cache', $config->get( 'known' ) );
 	}
 
-	/**
-	 * @covers EtcdConfig::__construct
-	 */
 	public function testConstructCacheSpec() {
 		$config = $this->createConfigMock( [ 'cache' => [
 			'class' => HashBagOStuff::class
@@ -168,10 +149,6 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 	 *       Result: Fetched value
 	 *       > cache expired | gets lock | backend failure (allows retry)
 	 */
-
-	/**
-	 * @covers EtcdConfig::load
-	 */
 	public function testLoadCacheMiss() {
 		// Create cache mock
 		$cache = $this->getMockBuilder( HashBagOStuff::class )
@@ -195,9 +172,6 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 'from-fetch', $mock->get( 'known' ) );
 	}
 
-	/**
-	 * @covers EtcdConfig::load
-	 */
 	public function testLoadCacheMissBackendError() {
 		// Create cache mock
 		$cache = $this->getMockBuilder( HashBagOStuff::class )
@@ -221,9 +195,6 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 		$mock->get( 'key' );
 	}
 
-	/**
-	 * @covers EtcdConfig::load
-	 */
 	public function testLoadCacheMissWithoutLock() {
 		// Create cache mock
 		$cache = $this->getMockBuilder( HashBagOStuff::class )
@@ -253,9 +224,6 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 'from-cache', $mock->get( 'known' ) );
 	}
 
-	/**
-	 * @covers EtcdConfig::load
-	 */
 	public function testLoadCacheHit() {
 		// Create cache mock
 		$cache = $this->getMockBuilder( HashBagOStuff::class )
@@ -279,9 +247,6 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 'from-cache', $mock->get( 'known' ) );
 	}
 
-	/**
-	 * @covers EtcdConfig::load
-	 */
 	public function testLoadProcessCacheHit() {
 		// Create cache mock
 		$cache = $this->getMockBuilder( HashBagOStuff::class )
@@ -306,9 +271,6 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 'from-cache', $mock->get( 'known' ), 'Process cache hit' );
 	}
 
-	/**
-	 * @covers EtcdConfig::load
-	 */
 	public function testLoadCacheExpiredLockFetchSucceeded() {
 		// Create cache mock
 		$cache = $this->getMockBuilder( HashBagOStuff::class )
@@ -336,9 +298,6 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 'from-fetch', $mock->get( 'known' ) );
 	}
 
-	/**
-	 * @covers EtcdConfig::load
-	 */
 	public function testLoadCacheExpiredLockFetchFails() {
 		// Create cache mock
 		$cache = $this->getMockBuilder( HashBagOStuff::class )
@@ -366,9 +325,6 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 'from-cache-expired', $mock->get( 'known' ) );
 	}
 
-	/**
-	 * @covers EtcdConfig::load
-	 */
 	public function testLoadCacheExpiredNoLock() {
 		// Create cache mock
 		$cache = $this->getMockBuilder( HashBagOStuff::class )
@@ -596,10 +552,6 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers EtcdConfig::fetchAllFromEtcdServer
-	 * @covers EtcdConfig::unserialize
-	 * @covers EtcdConfig::parseResponse
-	 * @covers EtcdConfig::parseDirectory
 	 * @covers EtcdConfigParseError
 	 * @dataProvider provideFetchFromServer
 	 */
@@ -619,9 +571,6 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers EtcdConfig::fetchAllFromEtcdServer
-	 */
 	public function testFetchFromServerWithoutPort() {
 		$conf = $this->createMock( EtcdConfig::class );
 
@@ -650,9 +599,6 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 		$conf->fetchAllFromEtcdServer( 'etcd.example' );
 	}
 
-	/**
-	 * @covers EtcdConfig::fetchAllFromEtcdServer
-	 */
 	public function testFetchFromServerWithPort() {
 		$conf = $this->createMock( EtcdConfig::class );
 
@@ -681,9 +627,6 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 		$conf->fetchAllFromEtcdServer( 'etcd.example', 4001 );
 	}
 
-	/**
-	 * @covers EtcdConfig::fetchAllFromEtcd
-	 */
 	public function testServiceDiscovery() {
 		$conf = $this->createConfigMock(
 			[ 'host' => 'an.example' ],
@@ -714,9 +657,6 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 		$conf->fetchAllFromEtcd();
 	}
 
-	/**
-	 * @covers EtcdConfig::fetchAllFromEtcd
-	 */
 	public function testServiceDiscoverySrvRecordAsHost() {
 		$conf = $this->createConfigMock(
 			[ 'host' => '_etcd-client-ssl._tcp.an.example' ],
