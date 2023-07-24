@@ -35,7 +35,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Base",
-			"Hakimi97"
+			"Hakimi97",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Garis bawah pautan:",
@@ -1583,6 +1584,7 @@
 	"rcfilters-filter-previousrevision-description": "Semua perubahan yang bukan \"semakan terkini\".",
 	"rcfilters-filter-excluded": "Tidak dimasukkan",
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>bukan</strong> :$1",
+	"rcfilters-tag-prefix-tags-inverted": "<strong>bukan</strong> #$1",
 	"rcfilters-exclude-button-off": "Kecualikan yang terpilih",
 	"rcfilters-exclude-button-on": "Kecuali yang terpilih",
 	"rcfilters-view-tags": "Suntingan yang diteg",
@@ -2787,6 +2789,7 @@
 	"movereason": "Sebab:",
 	"moveotherreason": "Sebab lain/tambahan:",
 	"movereasonotherlist": "Sebab lain",
+	"movepage-edit-reasonlist": "Sunting sebab pindah",
 	"revertmove": "balik",
 	"delete_and_move_text": "==Penghapusan diperlukan==\n\nLaman destinasi \"[[:$1]]\" telah pun wujud. Adakah anda mahu menghapuskannya supaya laman ini dapat dipindahkan?",
 	"delete_and_move_confirm": "Ya, hapuskan laman ini",

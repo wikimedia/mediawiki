@@ -1019,7 +1019,7 @@
 	"deletepage-submit": "Sampôh laman",
 	"historywarning": "<strong>Peuneugah:</strong> Laman nyang keumeung neusampôh na riwayat ngön kureuëng leubèh $1 {{PLURAL:$1|geunantoë}}:",
 	"confirmdeletetext": "Droëneuh neuk neusampôh laman atawa beureukaih nyoë keu sabé. Meunan cit ban mandum riwayatjih nibak basis data. Neupeupaseuti meunyo Droëneuh cit keubiët meung neusampôh, neutupeuë ban mandum akébatjih, ngön peuë nyang neupeulaku nyoë nakeuh meunurôt [[{{MediaWiki:Policy-url}}|kebijakan{{SITENAME}}]].",
-	"actioncomplete": "Seuleusoë",
+	"actioncomplete": "Seuleusoe",
 	"actionfailed": "Hana meuhasé",
 	"deletedtext": "\"$1\" ka geusampôh. Eu $2 keu log paléng barô bak laman nyang ka geusampôh.",
 	"dellogpage": "Log seunampôh",
@@ -1351,5 +1351,6 @@
 	"blockedtext-reason-comment": "Alasan nyang geubri <em>$1</em>",
 	"blockedtext-start-time": "Mulai geutham: $1",
 	"blockedtext-expiration-time": "Akhé geutham: $1",
+	"blockedtext-intended-blockee": "Nyang keumeung geutham: $1",
 	"blockedtext-block-ip": "Alamat IP Droeneuh jinoe $1"
 }
