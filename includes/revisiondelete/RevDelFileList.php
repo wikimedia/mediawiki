@@ -29,6 +29,8 @@ use Wikimedia\Rdbms\LBFactory;
  */
 class RevDelFileList extends RevDelList {
 
+	protected const SUPPRESS_BIT = File::DELETED_RESTRICTED;
+
 	/** @var HtmlCacheUpdater */
 	private $htmlCacheUpdater;
 
@@ -160,7 +162,4 @@ class RevDelFileList extends RevDelList {
 		return Status::newGood();
 	}
 
-	public function getSuppressBit() {
-		return File::DELETED_RESTRICTED;
-	}
 }

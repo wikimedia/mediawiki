@@ -37,6 +37,9 @@ use Wikimedia\Rdbms\LBFactory;
  */
 abstract class RevDelList extends RevisionListBase {
 
+	/** Flag used for suppression, depending on the type of log */
+	protected const SUPPRESS_BIT = RevisionRecord::DELETED_RESTRICTED;
+
 	/** @var LBFactory */
 	private $lbFactory;
 
@@ -107,11 +110,9 @@ abstract class RevDelList extends RevisionListBase {
 	 * @return bool
 	 */
 	public function areAnySuppressed() {
-		$bit = $this->getSuppressBit();
-
 		/** @var RevDelItem $item */
 		foreach ( $this as $item ) {
-			if ( $item->getBits() & $bit ) {
+			if ( $item->getBits() & self::SUPPRESS_BIT ) {
 				return true;
 			}
 		}
@@ -219,7 +220,7 @@ abstract class RevDelList extends RevisionListBase {
 				$status->failCount++;
 				continue;
 			// Cannot just "hide from Sysops" without hiding any fields
-			} elseif ( $newBits == RevisionRecord::DELETED_RESTRICTED ) {
+			} elseif ( $newBits == self::SUPPRESS_BIT ) {
 				$itemStatus->warning(
 					'revdelete-only-restricted', $item->formatDate(), $item->formatTime() );
 				$status->failCount++;
@@ -232,7 +233,7 @@ abstract class RevDelList extends RevisionListBase {
 			if ( $ok ) {
 				$idsForLog[] = $item->getId();
 				// If any item field was suppressed or unsuppressed
-				if ( ( $oldBits | $newBits ) & $this->getSuppressBit() ) {
+				if ( ( $oldBits | $newBits ) & self::SUPPRESS_BIT ) {
 					$logType = 'suppress';
 				}
 				// Track which fields where (un)hidden for each item
@@ -434,8 +435,4 @@ abstract class RevDelList extends RevisionListBase {
 		return Status::newGood();
 	}
 
-	/**
-	 * Get the integer value of the flag used for suppression
-	 */
-	abstract public function getSuppressBit();
 }
