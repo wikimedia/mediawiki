@@ -1896,11 +1896,12 @@ function wfGetDB( $db, $groups = [], $wiki = false ) {
 }
 
 /**
- * Get the path to a specified script file, respecting file
- * extensions; this is a wrapper around $wgScriptPath etc.
- * except for 'index' and 'load' which use $wgScript/$wgLoadScript
+ * Get the URL path to a MediaWiki entry point.
  *
- * @param string $script Script filename, sans extension
+ * This is a wrapper to respect $wgScript and $wgLoadScript overrides.
+ *
+ * @see MW_ENTRY_POINT
+ * @param string $script Name of entrypoint, without `.php` extension.
  * @return string
  */
 function wfScript( $script = 'index' ) {

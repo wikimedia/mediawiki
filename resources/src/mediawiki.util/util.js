@@ -316,7 +316,7 @@ var util = {
 	},
 
 	/**
-	 * Get URL to a MediaWiki server entry point.
+	 * Get URL to a MediaWiki entry point.
 	 *
 	 * Similar to `wfScript()` in PHP.
 	 *
