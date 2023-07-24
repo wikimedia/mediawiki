@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
-			"Vlad5250"
+			"Winston Sung"
 		]
 	},
 	"rest-prefix-mismatch": "Tražena staza ($1) nije bila unutar REST korijenske priložničke staze ($2)",

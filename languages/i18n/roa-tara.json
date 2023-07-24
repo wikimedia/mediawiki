@@ -2365,6 +2365,7 @@
 	"autoblockid": "Autoblocche #$1",
 	"block": "Bluècche l'utende",
 	"unblock": "Sbluècche l'utende",
+	"changeblockip": "Cange 'u blocche",
 	"blockip": "Blocche {{GENDER:$1|l'utende}}",
 	"blockiptext": "Ause 'a schermata de sotte pe bloccà l'accesse in scritture de 'nu specifiche indirizze IP o utende.\nQuiste avessa essere fatte sulamende pe prevenìe 'u vandalisme e in accorde cu [[{{MediaWiki:Policy-url}}|le regole]].\nMitte pure 'nu mutive specifiche aqquà sotte (pe esembije, nnomene 'a pàgene addò è acchiate 'u vandalisme).\nPuè bloccà le indervalle de indirizze IP ausanne 'a sindasse [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]; 'u 'ndervalle cchiù larije ca se pò mettere jè /$1 pe IPv4 e /$2 pe IPv6.",
 	"ipaddressorusername": "Indirizze IP o nome de l'utende:",
