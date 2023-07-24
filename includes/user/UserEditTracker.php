@@ -16,7 +16,6 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * Track info about user edit counts and timings
  *
  * @since 1.35
- *
  * @author DannyS712
  */
 class UserEditTracker {
@@ -63,13 +62,12 @@ class UserEditTracker {
 	 * @return int|null Null for anonymous users
 	 */
 	public function getUserEditCount( UserIdentity $user ): ?int {
-		if ( !$user->isRegistered() ) {
+		$userId = $user->getId();
+		if ( !$userId ) {
 			return null;
 		}
 
-		$userId = $user->getId();
 		$cacheKey = 'u' . $userId;
-
 		if ( isset( $this->userEditCountCache[ $cacheKey ] ) ) {
 			return $this->userEditCountCache[ $cacheKey ];
 		}
@@ -124,8 +122,8 @@ class UserEditTracker {
 	 * @param UserIdentity $user
 	 */
 	public function incrementUserEditCount( UserIdentity $user ) {
-		if ( !$user->isRegistered() ) {
-			// Anonymous users don't have edit counts
+		if ( !$user->getId() ) {
+			// Can't store editcount without user row (i.e. unregistered)
 			return;
 		}
 
@@ -168,7 +166,7 @@ class UserEditTracker {
 	 * @return string|false Timestamp of edit, or false for non-existent/anonymous user accounts.
 	 */
 	private function getUserEditTimestamp( UserIdentity $user, int $type, int $flags = IDBAccessObject::READ_NORMAL ) {
-		if ( !$user->isRegistered() ) {
+		if ( !$user->getId() ) {
 			return false;
 		}
 		[ $index ] = DBAccessObjectUtils::getDBOptions( $flags );
@@ -198,13 +196,12 @@ class UserEditTracker {
 	 * @param UserIdentity $user
 	 */
 	public function clearUserEditCache( UserIdentity $user ) {
-		if ( !$user->isRegistered() ) {
+		$userId = $user->getId();
+		if ( !$userId ) {
 			return;
 		}
 
-		$userId = $user->getId();
 		$cacheKey = 'u' . $userId;
-
 		unset( $this->userEditCountCache[ $cacheKey ] );
 	}
 
@@ -215,13 +212,12 @@ class UserEditTracker {
 	 * @throws InvalidArgumentException If the user is not registered
 	 */
 	public function setCachedUserEditCount( UserIdentity $user, int $editCount ) {
-		if ( !$user->isRegistered() ) {
+		$userId = $user->getId();
+		if ( !$userId ) {
 			throw new InvalidArgumentException( __METHOD__ . ' with an anonymous user' );
 		}
 
-		$userId = $user->getId();
 		$cacheKey = 'u' . $userId;
-
 		$this->userEditCountCache[ $cacheKey ] = $editCount;
 	}
 

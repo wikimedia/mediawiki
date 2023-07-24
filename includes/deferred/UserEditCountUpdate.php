@@ -41,7 +41,7 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 	 * @param int $increment
 	 */
 	public function __construct( UserIdentity $user, $increment ) {
-		if ( !$user->isRegistered() ) {
+		if ( !$user->getId() ) {
 			throw new RuntimeException( "Got anonymous user" );
 		}
 		$this->infoByUser = [
