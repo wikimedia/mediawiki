@@ -133,6 +133,7 @@ return [
 	],
 	'mediawiki.base' => [
 		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.base',
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.base",
 		'packageFiles' => [
 			// This MUST be kept in sync with maintenance/jsduck/eg-iframe.html
 			'mediawiki.base.js',
@@ -620,7 +621,7 @@ return [
 		],
 		'dependencies' => [
 			'vue'
-		]
+		],
 	],
 
 	'@wikimedia/codex' => [

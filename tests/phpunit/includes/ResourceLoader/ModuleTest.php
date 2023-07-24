@@ -193,31 +193,24 @@ class ModuleTest extends ResourceLoaderTestCase {
 		return [
 			[
 				"mw.foo()",
-				"mw.foo()\n",
 			],
 			[
 				"mw.foo();",
-				"mw.foo();\n",
 			],
 			[
 				"mw.foo();\n",
-				"mw.foo();\n",
 			],
 			[
-				"mw.foo()\n",
 				"mw.foo()\n",
 			],
 			[
 				"mw.foo()\n// mw.bar();",
-				"mw.foo()\n// mw.bar();\n",
 			],
 			[
 				"mw.foo()\n// mw.bar()",
-				"mw.foo()\n// mw.bar()\n",
 			],
 			[
 				"mw.foo()// mw.bar();",
-				"mw.foo()// mw.bar();\n",
 			],
 		];
 	}
@@ -225,7 +218,7 @@ class ModuleTest extends ResourceLoaderTestCase {
 	/**
 	 * @dataProvider provideBuildContentScripts
 	 */
-	public function testBuildContentScripts( $raw, $build, $message = '' ) {
+	public function testBuildContentScripts( $raw, $message = '' ) {
 		$context = $this->getResourceLoaderContext();
 		$module = new ResourceLoaderTestModule( [
 			'script' => $raw
@@ -233,7 +226,7 @@ class ModuleTest extends ResourceLoaderTestCase {
 		$module->setName( "" );
 		$this->assertEquals( $raw, $module->getScript( $context ), 'Raw script' );
 		$this->assertEquals(
-			$build,
+			[ 'plainScripts' => [ [ 'content' => $raw ] ] ],
 			$module->getModuleContent( $context )[ 'scripts' ],
 			$message
 		);

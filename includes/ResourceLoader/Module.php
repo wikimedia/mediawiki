@@ -229,9 +229,8 @@ abstract class Module implements LoggerAwareInterface {
 	 * Get all JS for this module for a given language and skin.
 	 * Includes all relevant JS except loader scripts.
 	 *
-	 * For "plain" script modules, this should return a string with JS code. For multi-file modules
-	 * where require() is used to load one file from another file, this should return an array
-	 * structured as follows:
+	 * For multi-file modules where require() is used to load one file from
+	 * another file, this should return an array structured as follows:
 	 * [
 	 *     'files' => [
 	 *         'file1.js' => [ 'type' => 'script', 'content' => 'JS code' ],
@@ -241,9 +240,28 @@ abstract class Module implements LoggerAwareInterface {
 	 *     'main' => 'file1.js'
 	 * ]
 	 *
+	 * For plain concatenated scripts, this can either return a string, or an
+	 * associative array similar to the one used for package files:
+	 * [
+	 *     'plainScripts' => [
+	 *         [ 'content' => 'JS code' ],
+	 *         [ 'content' => 'JS code' ],
+	 *     ],
+	 * ]
+	 *
 	 * @stable to override
 	 * @param Context $context
-	 * @return string|array JavaScript code (string), or multi-file structure described above (array)
+	 * @return string|array JavaScript code (string), or multi-file array with the
+	 *   following keys:
+	 *     - files: An associative array mapping file name to file info structure
+	 *     - main: The name of the main script, a key in the files array
+	 *     - plainScripts: An array of file info structures to be concatenated and
+	 *       executed when the module is loaded.
+	 *   Each file info structure has the following keys:
+	 *     - type: May be "script", "script-vue" or "data". Optional, default "script".
+	 *     - content: The string content of the file
+	 *     - filePath: A FilePath object describing the location of the source file.
+	 *       This will be used to construct the source map during minification.
 	 */
 	public function getScript( Context $context ) {
 		// Stub, override expected
@@ -830,15 +848,8 @@ abstract class Module implements LoggerAwareInterface {
 			$scripts = $this->getScriptURLsForDebug( $context );
 		} else {
 			$scripts = $this->getScript( $context );
-			// Make the script safe to concatenate by making sure there is at least one
-			// trailing new line at the end of the content. Previously, this looked for
-			// a semi-colon instead, but that breaks concatenation if the semicolon
-			// is inside a comment like "// foo();". Instead, simply use a
-			// line break as separator which matches JavaScript native logic for implicitly
-			// ending statements even if a semi-colon is missing.
-			// Bugs: T29054, T162719.
 			if ( is_string( $scripts ) ) {
-				$scripts = ResourceLoader::ensureNewline( $scripts );
+				$scripts = [ 'plainScripts' => [ [ 'content' => $scripts ] ] ];
 			}
 		}
 		$content['scripts'] = $scripts;

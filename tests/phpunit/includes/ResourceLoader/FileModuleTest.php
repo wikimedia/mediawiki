@@ -121,32 +121,41 @@ class FileModuleTest extends ResourceLoaderTestCase {
 	}
 
 	public function testGetScript() {
+		$localBasePath = __DIR__ . '/../../data/resourceloader';
+		$remoteBasePath = '/w';
 		$module = new FileModule( [
-			'localBasePath' => __DIR__ . '/../../data/resourceloader',
+			'localBasePath' => $localBasePath,
+			'remoteBasePath' => $remoteBasePath,
 			'scripts' => [ 'script-nosemi.js', 'script-comment.js' ],
 		] );
 		$module->setName( 'testing' );
 		$ctx = $this->getResourceLoaderContext();
 		$this->assertEquals(
-			"/* eslint-disable */\nmw.foo()\n" .
-			"/* eslint-disable */\nmw.foo()\n// mw.bar();\n",
-			$module->getScript( $ctx ),
-			'scripts with newline at the end are concatenated without a newline'
-		);
-
-		$module = new FileModule( [
-			'localBasePath' => __DIR__ . '/../../data/resourceloader',
-			'scripts' => [ 'script-nosemi-nonl.js', 'script-comment-nonl.js' ],
-		] );
-		$module->setName( 'testing' );
-		$ctx = $this->getResourceLoaderContext();
-		$this->assertEquals(
-			"/* eslint-disable */\nmw.foo()" .
-			"\n" .
-			"/* eslint-disable */\nmw.foo()\n// mw.bar();" .
-			"\n",
-			$module->getScript( $ctx ),
-			'scripts without newline at the end are concatenated with a newline'
+			[
+				'plainScripts' => [
+					'script-nosemi.js' => [
+						'name' => 'script-nosemi.js',
+						'content' => "/* eslint-disable */\nmw.foo()\n",
+						'type' => 'script',
+						'filePath' => new FilePath(
+							'script-nosemi.js',
+							$localBasePath,
+							$remoteBasePath
+						)
+					],
+					'script-comment.js' => [
+						'name' => 'script-comment.js',
+						'content' => "/* eslint-disable */\nmw.foo()\n// mw.bar();\n",
+						'type' => 'script',
+						'filePath' => new FilePath(
+							'script-comment.js',
+							$localBasePath,
+							$remoteBasePath
+						)
+					]
+				]
+			],
+			$module->getScript( $ctx )
 		);
 	}
 
@@ -648,6 +657,7 @@ class FileModuleTest extends ResourceLoaderTestCase {
 						'foo.json' => [
 							'type' => 'data',
 							'content' => [ 'Hello' => 'world' ],
+							'virtualFilePath' => 'foo.json',
 						],
 						'sample.json' => [
 							'type' => 'data',
@@ -657,17 +667,20 @@ class FileModuleTest extends ResourceLoaderTestCase {
 						'bar.js' => [
 							'type' => 'script',
 							'content' => "console.log('Hello');",
+							'virtualFilePath' => 'bar.js',
 						],
 						'data.json' => [
 							'type' => 'data',
 							'content' => [ 'langCode' => 'fy', 'extra' => [ 'a' => 'b' ] ],
+							'virtualFilePath' => 'data.json',
 						],
 						'config.json' => [
 							'type' => 'data',
 							'content' => [
 								'Sitename' => $config->get( MainConfigNames::Sitename ),
 								'server' => $config->get( MainConfigNames::ServerName ),
-							]
+							],
+							'virtualFilePath' => 'config.json',
 						]
 					],
 					'main' => 'bar.js'
@@ -697,10 +710,12 @@ class FileModuleTest extends ResourceLoaderTestCase {
 						'bar.js' => [
 							'type' => 'script',
 							'content' => "console.log('Hello');",
+							'virtualFilePath' => 'bar.js',
 						],
 						'data.json' => [
 							'type' => 'data',
 							'content' => [ 'langCode' => 'fy', 'extra' => [ 'A', 'B' ] ],
+							'virtualFilePath' => 'data.json',
 						],
 					],
 					'main' => 'bar.js'
@@ -900,6 +915,10 @@ class FileModuleTest extends ResourceLoaderTestCase {
 			if ( isset( $file['filePath'] ) ) {
 				$this->assertInstanceOf( FilePath::class, $file['filePath'] );
 				$file['filePath'] = $file['filePath']->getPath();
+			}
+			if ( isset( $file['virtualFilePath'] ) ) {
+				$this->assertInstanceOf( FilePath::class, $file['virtualFilePath'] );
+				$file['virtualFilePath'] = $file['virtualFilePath']->getPath();
 			}
 		}
 		// Check the rest of the result

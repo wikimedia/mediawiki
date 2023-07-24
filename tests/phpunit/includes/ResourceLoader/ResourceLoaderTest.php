@@ -440,7 +440,6 @@ mw.example();
 
 				'expected' => 'mw.loader.impl(function(){return[ "test.example", function ( $, jQuery, require, module ) {
 mw.example();
-
 } ];});',
 			] ],
 			[ [
@@ -575,7 +574,7 @@ END
 			$rl->makeLoaderImplementScript(
 				$case['name'],
 				( $case['wrap'] && is_string( $case['scripts'] ) )
-					? new HtmlJsCode( $case['scripts'] )
+					? [ 'plainScripts' => [ [ 'content' => $case['scripts'] ] ] ]
 					: $case['scripts'],
 				$case['styles'],
 				$case['messages'],

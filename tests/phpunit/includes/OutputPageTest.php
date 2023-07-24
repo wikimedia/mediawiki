@@ -2599,7 +2599,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			[
 				[ 'test.quux', RL\Module::TYPE_COMBINED ],
 				"<script>(RLQ=window.RLQ||[]).push(function(){"
-					. "mw.loader.impl(function(){return[\"test.quux@1ev0i\",function($,jQuery,require,module){"
+					. "mw.loader.impl(function(){return[\"test.quux@1b4i1\",function($,jQuery,require,module){"
 					. "mw.test.baz({token:123});},{\"css\":[\".mw-icon{transition:none}"
 					. "\"]}];});});</script>"
 			],

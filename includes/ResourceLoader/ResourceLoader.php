@@ -1091,12 +1091,17 @@ MESSAGE;
 		switch ( $only ) {
 			case 'scripts':
 				$scripts = $content['scripts'];
-				if ( is_string( $scripts ) ) {
-					// Load scripts raw...
-					$strContent = $scripts;
-				} elseif ( is_array( $scripts ) ) {
-					// ...except when $scripts is an array of URLs or an associative array
-					$strContent = self::makeLoaderImplementScript(
+				if ( !is_array( $scripts ) ) {
+					// Formerly scripts was usually a string, but now it is
+					// normalized to an array by buildContent().
+					throw new InvalidArgumentException( 'scripts must be an array' );
+				}
+				if ( isset( $scripts['plainScripts'] ) ) {
+					// Add plain scripts
+					$strContent .= self::concatenatePlainScripts( $scripts['plainScripts'] );
+				} elseif ( isset( $scripts['files'] ) ) {
+					// Add implement call if any
+					$strContent .= self::makeLoaderImplementScript(
 						$implementKey,
 						$scripts,
 						[],
@@ -1115,20 +1120,19 @@ MESSAGE;
 				break;
 			default:
 				$scripts = $content['scripts'] ?? '';
-				if ( is_string( $scripts ) ) {
-					if ( $name === 'site' || $name === 'user' ) {
-						// Legacy scripts that run in the global scope without a closure.
-						// mw.loader.impl will use eval if scripts is a string.
-						// Minify manually here, because general response minification is
-						// not effective due it being a string literal, not a function.
-						if ( !$debug ) {
-							$scripts = self::filter( 'minify-js', $scripts ); // T107377
-						}
-					} else {
-						$scripts = new HtmlJsCode( $scripts );
+				if ( ( $name === 'site' || $name === 'user' )
+					&& isset( $scripts['plainScripts'] )
+				) {
+					// Legacy scripts that run in the global scope without a closure.
+					// mw.loader.impl will use eval if scripts is a string.
+					// Minify manually here, because general response minification is
+					// not effective due it being a string literal, not a function.
+					$scripts = self::concatenatePlainScripts( $scripts['plainScripts'] );
+					if ( !$debug ) {
+						$scripts = self::filter( 'minify-js', $scripts ); // T107377
 					}
 				}
-				$strContent = self::makeLoaderImplementScript(
+				$strContent .= self::makeLoaderImplementScript(
 					$implementKey,
 					$scripts,
 					$content['styles'] ?? [],
@@ -1194,9 +1198,8 @@ MESSAGE;
 	 * Return JS code that calls mw.loader.impl with given module properties.
 	 *
 	 * @param string $name Module name used as implement key (format "`[name]@[version]`")
-	 * @param HtmlJsCode|array|string|string[] $scripts
-	 *  - HtmlJsCode: Concatenated scripts to be wrapped in a closure
-	 *  - array: Package files array containing HtmlJsCode for individual JS files,
+	 * @param array|string|string[] $scripts
+	 *  - array: Package files array containing strings for individual JS files,
 	 *    as produced by Module::getScript().
 	 *  - string: Script contents to eval in global scope (for site/user scripts).
 	 *  - string[]: List of URLs (for debug mode).
@@ -1213,35 +1216,31 @@ MESSAGE;
 	private static function makeLoaderImplementScript(
 		$name, $scripts, $styles, $messages, $templates, $deprecationWarning
 	) {
-		if ( $scripts instanceof HtmlJsCode ) {
-			if ( $scripts->value === '' ) {
-				$scripts = null;
-			} else {
-				$scripts = new HtmlJsCode( "function ( $, jQuery, require, module ) {\n{$scripts->value}\n}" );
-			}
-		} elseif ( is_array( $scripts ) && isset( $scripts['files'] ) ) {
-			$files = $scripts['files'];
-			foreach ( $files as &$file ) {
-				// $file is changed (by reference) from a descriptor array to the content of the file
-				// All of these essentially do $file = $file['content'];, some just have wrapping around it
-				if ( $file['type'] === 'script' ) {
-					// Ensure that the script has a newline at the end to close any comment in the
-					// last line.
-					$content = self::ensureNewline( $file['content'] );
-					// Provide CJS `exports` (in addition to CJS2 `module.exports`) to package modules (T284511).
-					// $/jQuery are simply used as globals instead.
-					// TODO: Remove $/jQuery param from traditional module closure too (and bump caching)
-					$file = new HtmlJsCode( "function ( require, module, exports ) {\n$content}" );
+		if ( is_string( $scripts ) ) {
+			// user/site script
+		} elseif ( is_array( $scripts ) ) {
+			if ( isset( $scripts['files'] ) ) {
+				$files = self::encodeFiles( $scripts['files'] );
+				$scripts = HtmlJsCode::encodeObject( [
+					'main' => $scripts['main'],
+					'files' => HtmlJsCode::encodeObject( $files, true )
+				], true );
+			} elseif ( isset( $scripts['plainScripts'] ) ) {
+				$plainScripts = self::concatenatePlainScripts( $scripts['plainScripts'] );
+				if ( $plainScripts === '' ) {
+					$scripts = null;
 				} else {
-					$file = $file['content'];
+					$scripts = new HtmlJsCode(
+						"function ( $, jQuery, require, module ) {\n{$plainScripts}}" );
 				}
+			} elseif ( $scripts === [] || isset( $scripts[0] ) ) {
+				// Array of URLs
+			} else {
+				throw new InvalidArgumentException( 'Invalid script array: ' .
+					'must contain files, plainScripts or be an array of URLs' );
 			}
-			$scripts = HtmlJsCode::encodeObject( [
-				'main' => $scripts['main'],
-				'files' => HtmlJsCode::encodeObject( $files, true )
-			], true );
-		} elseif ( !is_string( $scripts ) && !is_array( $scripts ) ) {
-			throw new InvalidArgumentException( 'Script must be a string or an array of URLs' );
+		} else {
+			throw new InvalidArgumentException( 'Script must be a string or array' );
 		}
 
 		// mw.loader.impl requires 'styles', 'messages' and 'templates' to be objects (not
@@ -1263,6 +1262,52 @@ MESSAGE;
 		// defeating lazy compilation on Chrome. (T343407)
 		return 'mw.loader.impl(function(){return[' .
 			Html::encodeJsList( $module, true ) . '];});';
+	}
+
+	/**
+	 * Extract the contents of an array of package files, and convert it to an
+	 * array of data which can be passed to HtmlJsCode::encodeObject(), with any
+	 * JS code wrapped in HtmlJsCode objects.
+	 *
+	 * Package files can contain JSON data.
+	 *
+	 * @param array $files
+	 * @return array
+	 */
+	private static function encodeFiles( $files ) {
+		foreach ( $files as &$file ) {
+			// $file is changed (by reference) from a descriptor array to the content of the file
+			// All of these essentially do $file = $file['content'];, some just have wrapping around it
+			if ( $file['type'] === 'script' ) {
+				// Ensure that the script has a newline at the end to close any comment in the
+				// last line.
+				$content = self::ensureNewline( $file['content'] );
+				// Provide CJS `exports` (in addition to CJS2 `module.exports`) to package modules (T284511).
+				// $/jQuery are simply used as globals instead.
+				// TODO: Remove $/jQuery param from traditional module closure too (and bump caching)
+				$file = new HtmlJsCode( "function ( require, module, exports ) {\n$content}" );
+			} else {
+				$file = $file['content'];
+			}
+		}
+		return $files;
+	}
+
+	/**
+	 * Combine a plainScripts array like [ [ 'content' => '...' ] ] into a
+	 * single string.
+	 *
+	 * @param array[] $plainScripts
+	 * @return string
+	 */
+	private static function concatenatePlainScripts( $plainScripts ) {
+		$s = '';
+		foreach ( $plainScripts as $script ) {
+			// Make the script safe to concatenate by making sure there is at least one
+			// trailing new line at the end of the content (T29054, T162719)
+			$s .= self::ensureNewline( $script['content'] );
+		}
+		return $s;
 	}
 
 	/**
