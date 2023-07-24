@@ -162,7 +162,7 @@ class FileModule extends Module {
 	 *
 	 * @param array $options See $wgResourceModules for the available options.
 	 * @param string|null $localBasePath Base path to prepend to all local paths in $options.
-	 *     Defaults to $IP
+	 *     Defaults to MW_INSTALL_PATH
 	 * @param string|null $remoteBasePath Base path to prepend to all remote paths in $options.
 	 *     Defaults to $wgResourceBasePath
 	 */
@@ -266,7 +266,7 @@ class FileModule extends Module {
 	 *
 	 * @param array $options Module definition
 	 * @param string|null $localBasePath Path to use if not provided in module definition. Defaults
-	 *     to $IP
+	 *     to MW_INSTALL_PATH
 	 * @param string|null $remoteBasePath Path to use if not provided in module definition. Defaults
 	 *     to $wgResourceBasePath
 	 * @return string[] [ localBasePath, remoteBasePath ]
@@ -276,7 +276,6 @@ class FileModule extends Module {
 		$localBasePath = null,
 		$remoteBasePath = null
 	) {
-		global $IP;
 		// The different ways these checks are done, and their ordering, look very silly,
 		// but were preserved for backwards-compatibility just in case. Tread lightly.
 
@@ -317,7 +316,7 @@ class FileModule extends Module {
 			$remoteBasePath = '/';
 		}
 
-		return [ $localBasePath ?? $IP, $remoteBasePath ];
+		return [ $localBasePath ?? MW_INSTALL_PATH, $remoteBasePath ];
 	}
 
 	/**

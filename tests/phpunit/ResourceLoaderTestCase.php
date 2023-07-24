@@ -75,11 +75,13 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 			// For SkinModule
 			MainConfigNames::Logos => false,
 			MainConfigNames::Logo => '/logo.png',
-			MainConfigNames::BaseDirectory => MW_INSTALL_PATH,
 			MainConfigNames::ResourceBasePath => '/w',
 			MainConfigNames::ParserEnableLegacyMediaDOM => true,
 
-			// For  ResourceLoader::getSiteConfigSettings and StartUpModule
+			// For OutputPage::transformResourcePath (via SkinModule)
+			MainConfigNames::BaseDirectory => MW_INSTALL_PATH,
+
+			// For ResourceLoader::getSiteConfigSettings and StartUpModule
 			MainConfigNames::Server => 'https://example.org',
 			MainConfigNames::ScriptPath => '/w',
 			MainConfigNames::Script => '/w/index.php',

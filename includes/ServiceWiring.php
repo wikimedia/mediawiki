@@ -1724,15 +1724,14 @@ return [
 		$rl->addSource( $config->get( MainConfigNames::ResourceLoaderSources ) );
 
 		// Core modules, then extension/skin modules
-		$baseDir = $config->get( MainConfigNames::BaseDirectory );
-		$rl->register( include "$baseDir/resources/Resources.php" );
+		$rl->register( include MW_INSTALL_PATH . '/resources/Resources.php' );
 		$rl->register( $modules );
 		$hookRunner = new \MediaWiki\ResourceLoader\HookRunner( $services->getHookContainer() );
 		$hookRunner->onResourceLoaderRegisterModules( $rl );
 
 		$msgPosterAttrib = $extRegistry->getAttribute( 'MessagePosterModule' );
 		$rl->register( 'mediawiki.messagePoster', [
-			'localBasePath' => $baseDir,
+			'localBasePath' => MW_INSTALL_PATH,
 			'debugRaw' => false,
 			'scripts' => array_merge(
 				[
