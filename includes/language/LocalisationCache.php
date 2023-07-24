@@ -208,8 +208,6 @@ class LocalisationCache {
 	 */
 	private $pluralRuleTypes = null;
 
-	private $mergeableKeys = null;
-
 	/**
 	 * Return a suitable LCStore as specified by the given configuration.
 	 *
@@ -294,17 +292,15 @@ class LocalisationCache {
 	 * @param string $key
 	 * @return bool
 	 */
-	public function isMergeableKey( $key ) {
-		if ( $this->mergeableKeys === null ) {
-			$this->mergeableKeys = array_fill_keys( array_merge(
-				self::MERGEABLE_MAP_KEYS,
-				self::MERGEABLE_ALIAS_LIST_KEYS,
-				self::OPTIONAL_MERGE_KEYS,
-				self::MAGIC_WORD_KEYS
-			), true );
-		}
-
-		return isset( $this->mergeableKeys[$key] );
+	private function isMergeableKey( string $key ): bool {
+		static $mergeableKeys;
+		$mergeableKeys ??= array_fill_keys( [
+			...self::MERGEABLE_MAP_KEYS,
+			...self::MERGEABLE_ALIAS_LIST_KEYS,
+			...self::OPTIONAL_MERGE_KEYS,
+			...self::MAGIC_WORD_KEYS,
+		], true );
+		return isset( $mergeableKeys[$key] );
 	}
 
 	/**
