@@ -133,7 +133,7 @@ class UpdateMediaWiki extends Maintenance {
 		# Check to see whether the database server meets the minimum requirements
 		/** @var DatabaseInstaller $dbInstallerClass */
 		$dbInstallerClass = Installer::getDBInstallerClass( $db->getType() );
-		$status = $dbInstallerClass::meetsMinimumRequirement( $db->getServerVersion() );
+		$status = $dbInstallerClass::meetsMinimumRequirement( $db );
 		if ( !$status->isOK() ) {
 			// This might output some wikitext like <strong> but it should be comprehensible
 			$text = $status->getWikiText();
