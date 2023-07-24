@@ -652,6 +652,7 @@ abstract class Module implements LoggerAwareInterface {
 	 * @since 1.27
 	 * @param Context $context
 	 * @return string|null JSON blob or null if module has no messages
+	 * @return-taint none -- do not propagate taint from $context->getLanguage()
 	 */
 	protected function getMessageBlob( Context $context ) {
 		if ( !$this->getMessages() ) {
