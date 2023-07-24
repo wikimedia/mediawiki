@@ -306,7 +306,8 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 			$bag,
 			[
 				'ip' => '127.0.0.1',
-				'agent' => "Totally-Not-FireFox"
+				'agent' => 'Totally-Not-Firefox',
+				'clientId' => 'random_id',
 			],
 			null
 		);
@@ -348,7 +349,8 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 			$bag,
 			[
 				'ip' => '127.0.0.1',
-				'agent' => "Totally-Not-FireFox"
+				'agent' => 'Totally-Not-Firefox',
+				'clientId' => 'random_id',
 			],
 			$cpIndex
 		);
@@ -368,7 +370,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $m2Pos->__toString(), $sPos2->__toString() );
 		$this->assertNull( $cpIndex, "CP write index retained" );
 
-		$this->assertEquals( '45e93a9c215c031d38b7c42d8e4700ca', $cp->getClientId() );
+		$this->assertEquals( 'random_id', $cp->getClientId() );
 	}
 
 	private function newLBFactoryMulti( array $baseOverride = [], array $serverOverride = [] ) {
