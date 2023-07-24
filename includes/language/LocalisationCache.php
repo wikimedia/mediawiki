@@ -188,11 +188,18 @@ class LocalisationCache {
 	 */
 	private const PRELOADED_KEYS = [ 'dateFormats', 'namespaceNames' ];
 
+	private const PLURAL_FILES = [
+		// Load CLDR plural rules
+		MW_INSTALL_PATH . '/languages/data/plurals.xml',
+		// Override or extend with MW-specific rules
+		MW_INSTALL_PATH . '/languages/data/plurals-mediawiki.xml',
+	];
+
 	/**
 	 * Associative array of cached plural rules. The key is the language code,
 	 * the value is an array of plural rules for that language.
 	 */
-	private $pluralRules = null;
+	private static $pluralRules = null;
 
 	/**
 	 * Associative array of cached plural rule types. The key is the language
@@ -206,7 +213,7 @@ class LocalisationCache {
 	 * example, {{plural:count|wordform1|wordform2|wordform3}}, rather than
 	 * {{plural:count|one=wordform1|two=wordform2|many=wordform3}}.
 	 */
-	private $pluralRuleTypes = null;
+	private static $pluralRuleTypes = null;
 
 	private $mergeableKeys = null;
 
@@ -688,10 +695,10 @@ class LocalisationCache {
 	 * @return array|null
 	 */
 	public function getPluralRules( $code ) {
-		if ( $this->pluralRules === null ) {
-			$this->loadPluralFiles();
+		if ( self::$pluralRules === null ) {
+			self::loadPluralFiles();
 		}
-		return $this->pluralRules[$code] ?? null;
+		return self::$pluralRules[$code] ?? null;
 	}
 
 	/**
@@ -702,29 +709,19 @@ class LocalisationCache {
 	 * @return array|null
 	 */
 	public function getPluralRuleTypes( $code ) {
-		if ( $this->pluralRuleTypes === null ) {
-			$this->loadPluralFiles();
+		if ( self::$pluralRuleTypes === null ) {
+			self::loadPluralFiles();
 		}
-		return $this->pluralRuleTypes[$code] ?? null;
+		return self::$pluralRuleTypes[$code] ?? null;
 	}
 
 	/**
 	 * Load the plural XML files.
 	 */
-	protected function loadPluralFiles() {
-		foreach ( $this->getPluralFiles() as $fileName ) {
-			$this->loadPluralFile( $fileName );
+	private static function loadPluralFiles() {
+		foreach ( self::PLURAL_FILES as $fileName ) {
+			self::loadPluralFile( $fileName );
 		}
-	}
-
-	private function getPluralFiles(): array {
-		global $IP;
-		return [
-			// Load CLDR plural rules
-			"$IP/languages/data/plurals.xml",
-			// Override or extend with MW-specific rules
-			"$IP/languages/data/plurals-mediawiki.xml",
-		];
 	}
 
 	/**
@@ -734,7 +731,7 @@ class LocalisationCache {
 	 * @param string $fileName
 	 * @throws MWException
 	 */
-	protected function loadPluralFile( $fileName ) {
+	private static function loadPluralFile( $fileName ) {
 		// Use file_get_contents instead of DOMDocument::load (T58439)
 		$xml = file_get_contents( $fileName );
 		if ( !$xml ) {
@@ -758,8 +755,8 @@ class LocalisationCache {
 				$ruleTypes[] = $ruleType;
 			}
 			foreach ( explode( ' ', $codes ) as $code ) {
-				$this->pluralRules[$code] = $rules;
-				$this->pluralRuleTypes[$code] = $ruleTypes;
+				self::$pluralRules[$code] = $rules;
+				self::$pluralRuleTypes[$code] = $ruleTypes;
 			}
 		}
 	}
@@ -790,7 +787,7 @@ class LocalisationCache {
 		// Load plural rule types
 		$data['pluralRuleTypes'] = $this->getPluralRuleTypes( $code );
 
-		foreach ( $this->getPluralFiles() as $fileName ) {
+		foreach ( self::PLURAL_FILES as $fileName ) {
 			$deps[] = new FileDependency( $fileName );
 		}
 
