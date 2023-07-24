@@ -63,7 +63,7 @@ class SpecialWantedCategories extends WantedQueryPage {
 				'title' => 'cl_to',
 				'value' => 'COUNT(*)'
 			],
-			'conds' => [ 'page_title IS NULL' ],
+			'conds' => [ 'page_title' => null ],
 			'options' => [ 'GROUP BY' => 'cl_to' ],
 			'join_conds' => [ 'page' => [ 'LEFT JOIN',
 				[ 'page_title = cl_to',

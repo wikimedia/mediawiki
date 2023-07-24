@@ -261,7 +261,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			) {
 				if ( $selectedValues === [ 'seen' ] ) {
 					$conds[] = $dbr->makeList( [
-						'wl_notificationtimestamp IS NULL',
+						'wl_notificationtimestamp' => null,
 						'rc_timestamp < wl_notificationtimestamp'
 					], LIST_OR );
 				} elseif ( $selectedValues === [ 'unseen' ] ) {

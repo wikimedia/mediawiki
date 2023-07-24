@@ -305,10 +305,7 @@ class BacklinkCache {
 				$queryBuilder->where( [
 					"{$prefix}_namespace" => $this->page->getNamespace(),
 					"{$prefix}_title" => $this->page->getDBkey(),
-					$this->getDB()->makeList( [
-						"{$prefix}_interwiki" => '',
-						"{$prefix}_interwiki IS NULL",
-					], LIST_OR ),
+					"{$prefix}_interwiki" => [ '', null ],
 				] );
 				break;
 			case 'imagelinks':

@@ -100,7 +100,7 @@ class SpecialUnwatchedPages extends QueryPage {
 				'value' => 'page_namespace'
 			],
 			'conds' => [
-				'wl_title IS NULL',
+				'wl_title' => null,
 				'page_is_redirect' => 0,
 				'page_namespace != ' . $dbr->addQuotes( NS_MEDIAWIKI ),
 			],

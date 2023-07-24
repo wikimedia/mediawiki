@@ -59,7 +59,7 @@ class SpecialUnusedImages extends ImageQueryPage {
 				'title' => 'img_name',
 				'value' => 'img_timestamp',
 			],
-			'conds' => [ 'il_to IS NULL' ],
+			'conds' => [ 'il_to' => null ],
 			'join_conds' => [ 'imagelinks' => [ 'LEFT JOIN', 'il_to = img_name' ] ]
 		];
 
@@ -68,7 +68,7 @@ class SpecialUnusedImages extends ImageQueryPage {
 			$retval['tables'] = [ 'image', 'page', 'categorylinks',
 				'imagelinks' ];
 			$retval['conds']['page_namespace'] = NS_FILE;
-			$retval['conds'][] = 'cl_from IS NULL';
+			$retval['conds']['cl_from'] = null;
 			$retval['conds'][] = 'img_name = page_title';
 			$retval['join_conds']['categorylinks'] = [
 				'LEFT JOIN', 'cl_from = page_id' ];

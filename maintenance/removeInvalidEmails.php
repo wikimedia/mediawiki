@@ -34,7 +34,7 @@ class RemoveInvalidEmails extends Maintenance {
 				->where( [
 					'user_id > ' . $dbr->addQuotes( $lastId ),
 					'user_email != ' . $dbr->addQuotes( '' ),
-					'user_email_authenticated IS NULL'
+					'user_email_authenticated' => null,
 				] )
 				->limit( $this->getBatchSize() )
 				->caller( __METHOD__ )->fetchResultSet();

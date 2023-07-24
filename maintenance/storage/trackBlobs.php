@@ -249,7 +249,7 @@ class TrackBlobs extends Maintenance {
 					'old_id>' . $dbr->addQuotes( $startId ),
 					$textClause,
 					'old_flags ' . $dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() ),
-					'bt_text_id IS NULL'
+					'bt_text_id' => null,
 				] )
 				->orderBy( 'old_id' )
 				->limit( $this->batchSize )

@@ -514,7 +514,7 @@ class RecompressTracked {
 					'bt_page' => $pageId,
 					'bt_text_id > ' . $dbr->addQuotes( $startId ),
 					'bt_moved' => 0,
-					'bt_new_url IS NULL',
+					'bt_new_url' => null,
 				] )
 				->orderBy( 'bt_text_id' )
 				->limit( $this->batchSize )

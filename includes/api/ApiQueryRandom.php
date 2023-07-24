@@ -92,7 +92,7 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 			}
 		}
 		if ( $end !== null ) {
-			$this->addWhere( 'page_random < ' . $this->getDB()->addQuotes( $end ) );
+			$this->addWhere( $this->getDB()->buildComparison( '<', [ 'page_random' => $end ] ) );
 		}
 		$this->addOption( 'ORDER BY', [ 'page_random', 'page_id' ] );
 

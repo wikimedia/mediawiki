@@ -444,9 +444,9 @@ class PageHistoryCountHandler extends SimpleHandler {
 			->join( 'actor', null, 'rev_actor = actor_id' )
 			->where( [
 				'rev_page' => $pageId,
-				'actor_user IS NULL',
+				'actor_user' => null,
 				$dbr->bitAnd( 'rev_deleted',
-					RevisionRecord::DELETED_TEXT | RevisionRecord::DELETED_USER ) . " = 0"
+					RevisionRecord::DELETED_TEXT | RevisionRecord::DELETED_USER ) => 0,
 			] )
 			->limit( self::COUNT_LIMITS['anonymous'] + 1 ); // extra to detect truncation
 
@@ -471,9 +471,9 @@ class PageHistoryCountHandler extends SimpleHandler {
 		$revQuery = $this->actorMigration->getJoin( 'rev_user' );
 
 		$cond = [
-			'rev_page=' . intval( $pageId ),
+			'rev_page' => intval( $pageId ),
 			$dbr->bitAnd( 'rev_deleted',
-				RevisionRecord::DELETED_TEXT | RevisionRecord::DELETED_USER ) . " = 0",
+				RevisionRecord::DELETED_TEXT | RevisionRecord::DELETED_USER ) => 0,
 			'EXISTS(' .
 				$dbr->selectSQLText(
 					'user_groups',

@@ -32,7 +32,7 @@ class SpecialUncategorizedCategoriesTest extends MediaWikiIntegrationTestCase {
 				'title' => 'page_title',
 			],
 			'conds' => [
-				0 => 'cl_from IS NULL',
+				'cl_from' => null,
 				'page_namespace' => 14,
 				'page_is_redirect' => 0,
 			] + $expected,
@@ -49,22 +49,22 @@ class SpecialUncategorizedCategoriesTest extends MediaWikiIntegrationTestCase {
 		return [
 			[
 				"* Stubs\n* Test\n* *\n* * test123",
-				[ 1 => "page_title not in ( 'Stubs','Test','*','*_test123' )" ]
+				[ 0 => "page_title not in ( 'Stubs','Test','*','*_test123' )" ]
 			],
 			[
 				"Stubs\n* Test\n* *\n* * test123",
-				[ 1 => "page_title not in ( 'Test','*','*_test123' )" ]
+				[ 0 => "page_title not in ( 'Test','*','*_test123' )" ]
 			],
 			[
 				"* StubsTest\n* *\n* * test123",
-				[ 1 => "page_title not in ( 'StubsTest','*','*_test123' )" ]
+				[ 0 => "page_title not in ( 'StubsTest','*','*_test123' )" ]
 			],
 			[ "", [] ],
 			[ "\n\n\n", [] ],
 			[ "\n", [] ],
-			[ "Test\n*Test2", [ 1 => "page_title not in ( 'Test2' )" ] ],
+			[ "Test\n*Test2", [ 0 => "page_title not in ( 'Test2' )" ] ],
 			[ "Test", [] ],
-			[ "*Test\nTest2", [ 1 => "page_title not in ( 'Test' )" ] ],
+			[ "*Test\nTest2", [ 0 => "page_title not in ( 'Test' )" ] ],
 			[ "Test\nTest2", [] ],
 		];
 	}

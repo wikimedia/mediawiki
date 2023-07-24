@@ -1818,7 +1818,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			[
 				'user_editcount >= ' . intval( $config->get( MainConfigNames::LearnerEdits ) ),
 				$dbr->makeList( [
-					'user_registration IS NULL',
+					'user_registration' => null,
 					'user_registration <= ' . $dbr->addQuotes( $dbr->timestamp( $learnerCutoff ) ),
 				], IReadableDatabase::LIST_OR ),
 			],
@@ -1829,7 +1829,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			[
 				'user_editcount >= ' . intval( $config->get( MainConfigNames::ExperiencedUserEdits ) ),
 				$dbr->makeList( [
-					'user_registration IS NULL',
+					'user_registration' => null,
 					'user_registration <= ' .
 						$dbr->addQuotes( $dbr->timestamp( $experiencedUserCutoff ) ),
 				], IReadableDatabase::LIST_OR ),

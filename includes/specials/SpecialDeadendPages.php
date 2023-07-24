@@ -90,7 +90,7 @@ class SpecialDeadendPages extends PageQueryPage {
 				'title' => 'page_title',
 			],
 			'conds' => [
-				'pl_from IS NULL',
+				'pl_from' => null,
 				'page_namespace' => $this->namespaceInfo->getContentNamespaces(),
 				'page_is_redirect' => 0
 			],

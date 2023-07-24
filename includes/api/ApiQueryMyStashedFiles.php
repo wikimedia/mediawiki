@@ -55,8 +55,9 @@ class ApiQueryMyStashedFiles extends ApiQueryBase {
 
 		if ( $params['continue'] !== null ) {
 			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'int' ] );
-			$cont_from = (int)$cont[0];
-			$this->addWhere( "us_id >= $cont_from" );
+			$this->addWhere( $this->getDB()->buildComparison( '>=', [
+				'us_id' => (int)$cont[0],
+			] ) );
 		}
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
