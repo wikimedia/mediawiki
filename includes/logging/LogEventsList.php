@@ -441,7 +441,7 @@ class LogEventsList extends ContextSource {
 	 * field of this log row, if it's marked as deleted and/or restricted log type.
 	 *
 	 * @param stdClass $row
-	 * @param int $field
+	 * @param int $field One of LogPage::DELETED_ACTION, ::DELETED_COMMENT, ::DELETED_USER, ::DELETED_RESTRICTED
 	 * @param Authority $performer User to check
 	 * @return bool
 	 */
@@ -455,7 +455,7 @@ class LogEventsList extends ContextSource {
 	 * field of this log row, if it's marked as deleted.
 	 *
 	 * @param int $bitfield Current field
-	 * @param int $field
+	 * @param int $field One of LogPage::DELETED_ACTION, ::DELETED_COMMENT, ::DELETED_USER, ::DELETED_RESTRICTED
 	 * @param Authority $performer User to check
 	 * @return bool
 	 */
@@ -489,7 +489,7 @@ class LogEventsList extends ContextSource {
 
 	/**
 	 * @param stdClass $row
-	 * @param int $field One of DELETED_* bitfield constants
+	 * @param int $field One of LogPage::DELETED_ACTION, ::DELETED_COMMENT, ::DELETED_USER, ::DELETED_RESTRICTED
 	 * @return bool
 	 */
 	public static function isDeleted( $row, $field ) {
