@@ -722,10 +722,10 @@ class MediaWiki {
 		$request->getSession()->save(); // T214471
 		wfDebug( __METHOD__ . ': session changes committed' );
 
-		// Subsequent requests by the client should see the DB replication positions written
-		// during the shutdown() call below, even if the position store itself has asynchronous
-		// replication. Setting the cpPosIndex cookie is normally enough. However, this might not
-		// work for cross-domain redirects to foreign wikis, so set the ?cpPoxIndex in that case.
+		// Subsequent requests by the client should see the DB replication positions, as written
+		// to ChronologyProtector during the shutdown() call below.
+		// Setting the cpPosIndex cookie is normally enough. However, this will not work for
+		// cross-wiki redirects within the same wiki farm, so set the ?cpPoxIndex in that case.
 		$isCrossWikiRedirect = (
 			$output->getRedirect() &&
 			$lbFactory->hasOrMadeRecentPrimaryChanges( INF ) &&
