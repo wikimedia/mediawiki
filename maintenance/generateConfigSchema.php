@@ -73,6 +73,10 @@ class GenerateConfigSchema extends Maintenance {
 		);
 	}
 
+	public function canExecuteWithoutLocalSettings(): bool {
+		return true;
+	}
+
 	public function getDbType() {
 		return self::DB_NONE;
 	}
