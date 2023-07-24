@@ -284,8 +284,8 @@ class WikiMapTest extends MediaWikiLangTestCase {
 	public static function provideIsCurrentWikiId() {
 		return [
 			[ 'db', 'db', null, '' ],
-			[ 'db-schema-','db', 'schema', '' ],
-			[ 'db','db', 'mediawiki', '' ], // common b/c case
+			[ 'db-schema-', 'db', 'schema', '' ],
+			[ 'db', 'db', 'mediawiki', '' ], // common b/c case
 			[ 'db-prefix_', 'db', null, 'prefix_' ],
 			[ 'db-schema-prefix_', 'db', 'schema', 'prefix_' ],
 			[ 'db-prefix_', 'db', 'mediawiki', 'prefix_' ], // common b/c case
