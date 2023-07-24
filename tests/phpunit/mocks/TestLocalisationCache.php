@@ -13,10 +13,8 @@ class TestLocalisationCache extends LocalisationCache {
 	 * A cache of the parsed data for tests. Services are reset between every test, which forces
 	 * localization to be recached between every test, which is unreasonably slow. As an
 	 * optimization, we cache our data in a static member for tests.
-	 *
-	 * @var array[]
 	 */
-	private static $testingCache = [];
+	private static MapCacheLRU $testingCache;
 
 	private const PROPERTY_NAMES = [ 'data', 'sourceLanguage' ];
 
@@ -25,6 +23,10 @@ class TestLocalisationCache extends LocalisationCache {
 
 	public function __construct() {
 		parent::__construct( ...func_get_args() );
+
+		// Limit the cache size (entries are approx. 1 MB each) but not too much. Critical for tests
+		// that use e.g. 5 different languages, and then the same 5 languages again, and again, …
+		self::$testingCache ??= new MapCacheLRU( 16 );
 		$this->selfAccess = TestingAccessWrapper::newFromObject( $this );
 	}
 
@@ -38,12 +40,13 @@ class TestLocalisationCache extends LocalisationCache {
 			$hookContainer->getHandlerDescriptions( 'LocalisationCacheRecacheFallback' ),
 			$hookContainer->getHandlerDescriptions( 'LocalisationCacheRecache' ),
 		] ) );
-		if ( isset( self::$testingCache[$cacheKey] ) ) {
+		$cache = self::$testingCache->get( $cacheKey );
+		if ( $cache ) {
 			foreach ( self::PROPERTY_NAMES as $prop ) {
-				$this->$prop[$code] = self::$testingCache[$cacheKey][$prop];
+				$this->$prop[$code] = $cache[$prop];
 			}
 			$loadedItems = $this->selfAccess->loadedItems;
-			foreach ( self::$testingCache[$cacheKey]['data'] as $key => $item ) {
+			foreach ( $cache['data'] as $key => $_ ) {
 				$loadedItems[$code][$key] = true;
 			}
 			$this->selfAccess->loadedItems = $loadedItems;
@@ -52,16 +55,10 @@ class TestLocalisationCache extends LocalisationCache {
 
 		parent::recache( $code );
 
-		// Limit the cache size (entries are approx. 1 MB each) but not too much. Critical for tests
-		// that use e.g. 5 different languages, and then the same 5 languages again, and again, …
-		if ( count( self::$testingCache ) > 16 ) {
-			array_pop( self::$testingCache );
-		}
 		$cache = [];
 		foreach ( self::PROPERTY_NAMES as $prop ) {
 			$cache[$prop] = $this->$prop[$code];
 		}
-		// Put the new one in front
-		self::$testingCache = array_merge( [ $cacheKey => $cache ], self::$testingCache );
+		self::$testingCache->set( $cacheKey, $cache );
 	}
 }
