@@ -147,6 +147,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'runMaintenance', MigrateRevisionCommentTemp::class, 'maintenance/migrateRevisionCommentTemp.php' ],
 			[ 'dropTable', 'revision_comment_temp' ],
 			[ 'runMaintenance', MigrateExternallinks::class, 'maintenance/migrateExternallinks.php' ],
+			[ 'modifyField', 'externallinks', 'el_to', 'patch-externallinks-el_to_default.sql' ],
 		];
 	}
 

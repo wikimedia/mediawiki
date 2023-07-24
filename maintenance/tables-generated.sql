@@ -385,9 +385,9 @@ CREATE TABLE /*_*/protected_titles (
 CREATE TABLE /*_*/externallinks (
   el_id INT UNSIGNED AUTO_INCREMENT NOT NULL,
   el_from INT UNSIGNED DEFAULT 0 NOT NULL,
-  el_to BLOB NOT NULL,
-  el_index BLOB NOT NULL,
-  el_index_60 VARBINARY(60) NOT NULL,
+  el_to BLOB DEFAULT NULL,
+  el_index BLOB DEFAULT NULL,
+  el_index_60 VARBINARY(60) DEFAULT '' NOT NULL,
   el_to_domain_index VARBINARY(255) DEFAULT '' NOT NULL,
   el_to_path BLOB DEFAULT NULL,
   INDEX el_from (el_from),
