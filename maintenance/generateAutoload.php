@@ -7,7 +7,7 @@ class GenerateAutoload extends Maintenance {
 		return true;
 	}
 
-	public function getDBType(): int {
+	public function getDbType() {
 		return self::DB_NONE;
 	}
 
