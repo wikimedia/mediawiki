@@ -27,7 +27,7 @@ class LinkTargetStoreTest extends MediaWikiIntegrationTestCase {
 		$db = $this->getServiceContainer()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$id = $linkTargetStore->acquireLinkTargetId( $target, $db );
 		$row = $db->newSelectQueryBuilder()
-			->select( [ 'lt_id','lt_namespace','lt_title' ] )
+			->select( [ 'lt_id', 'lt_namespace', 'lt_title' ] )
 			->from( 'linktarget' )
 			->where( [ 'lt_namespace' => $target->getNamespace(), 'lt_title' => $target->getDBkey() ] )
 			->fetchRow();

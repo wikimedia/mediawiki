@@ -65,7 +65,7 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->newDeleteQueryBuilder()
 			->delete( 'bot_passwords' )
-			->where( [ 'bp_user' => [ 42,43 ], 'bp_app_id' => 'BotPassword' ] )
+			->where( [ 'bp_user' => [ 42, 43 ], 'bp_app_id' => 'BotPassword' ] )
 			->caller( __METHOD__ )->execute();
 		$dbw->insert(
 			'bot_passwords',

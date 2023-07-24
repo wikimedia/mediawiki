@@ -523,6 +523,6 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 			'zh-sg' => 'zh-sg',
 			'zh-tw' => 'zh-tw'
 		];
-		yield 'zh' => [ 'zh', 'zh', ZhConverter::class, $zh_variants, $zh_variantfallbacks,[], $zh_flags, $zh_ml ];
+		yield 'zh' => [ 'zh', 'zh', ZhConverter::class, $zh_variants, $zh_variantfallbacks, [], $zh_flags, $zh_ml ];
 	}
 }

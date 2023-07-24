@@ -143,7 +143,7 @@ TEXT
 		$joinConds = [];
 		$tables = [ $table ];
 		if ( isset( $linksMigration::$mapping[$table] ) ) {
-			[ $nsField,$titleField ] = $linksMigration->getTitleFields( $table );
+			[ $nsField, $titleField ] = $linksMigration->getTitleFields( $table );
 			$joinConds = $linksMigration->getQueryInfo( $table )['joins'];
 			$tables = $linksMigration->getQueryInfo( $table )['tables'];
 		}
