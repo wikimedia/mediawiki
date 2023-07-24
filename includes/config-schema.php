@@ -618,8 +618,6 @@ return [
 				0 => 'copyright',
 				1 => 'history_copyright',
 				2 => 'googlesearch',
-				3 => 'feedback-terms',
-				4 => 'feedback-termsofuse',
 			],
 			'Localtimezone' => null,
 			'LocalTZoffset' => null,

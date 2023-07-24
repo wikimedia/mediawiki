@@ -789,6 +789,7 @@ return [
 		],
 		'styles' => 'feedback.less',
 		'dependencies' => [
+			'mediawiki.jqueryMsg',
 			'mediawiki.messagePoster',
 			'mediawiki.Title',
 			'oojs-ui-core',

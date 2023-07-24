@@ -3044,8 +3044,6 @@ config-schema:
             - copyright
             - history_copyright
             - googlesearch
-            - feedback-terms
-            - feedback-termsofuse
         type: array
         items:
             type: string

@@ -4893,8 +4893,6 @@ class MainConfigSchema {
 			'copyright',
 			'history_copyright',
 			'googlesearch',
-			'feedback-terms',
-			'feedback-termsofuse',
 		],
 		'type' => 'list',
 		'items' => [ 'type' => 'string', ],
