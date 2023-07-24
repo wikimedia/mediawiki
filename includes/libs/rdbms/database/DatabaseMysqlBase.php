@@ -463,19 +463,10 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return string
 	 */
 	public function getServerVersion() {
-		$cache = $this->srvCache;
-		$fname = __METHOD__;
-
-		return $cache->getWithSetCallback(
-			$cache->makeGlobalKey( 'mysql-server-version', $this->getServerName() ),
-			$cache::TTL_HOUR,
-			function () use ( $fname ) {
-				// Not using mysql_get_server_info() or similar for consistency: in the handshake,
-				// MariaDB 10 adds the prefix "5.5.5-", and only some newer client libraries strip
-				// it off (see RPL_VERSION_HACK in include/mysql_com.h).
-				return $this->selectField( '', 'VERSION()', '', $fname );
-			}
-		);
+		// Not using mysql_get_server_info() or similar for consistency: in the handshake,
+		// MariaDB 10 adds the prefix "5.5.5-", and only some newer client libraries strip
+		// it off (see RPL_VERSION_HACK in include/mysql_com.h).
+		return $this->selectField( '', 'VERSION()', '', __METHOD__ );
 	}
 
 	/**

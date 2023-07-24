@@ -19,7 +19,6 @@
  */
 namespace Wikimedia\Rdbms;
 
-use BagOStuff;
 use InvalidArgumentException;
 use LogicException;
 use Psr\Log\LoggerAwareInterface;
@@ -43,8 +42,6 @@ use Wikimedia\ScopedCallback;
  * @since 1.28
  */
 abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAwareInterface {
-	/** @var BagOStuff APC cache */
-	protected $srvCache;
 	/** @var CriticalSectionProvider|null */
 	protected $csProvider;
 	/** @var LoggerInterface */
@@ -228,7 +225,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->serverName = $params['serverName'];
 		$this->nonNativeInsertSelectBatchSize = $params['nonNativeInsertSelectBatchSize'] ?? 10000;
 
-		$this->srvCache = $params['srvCache'];
 		$this->profiler = is_callable( $params['profiler'] ) ? $params['profiler'] : null;
 		$this->errorLogger = $params['errorLogger'];
 		$this->deprecationLogger = $params['deprecationLogger'];
