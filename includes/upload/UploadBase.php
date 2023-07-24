@@ -359,8 +359,8 @@ abstract class UploadBase {
 	 * - 'details': set to error details if the file type is valid but contents are corrupt
 	 * - 'filtered': set to the sanitized file name if the requested file name is invalid
 	 * - 'finalExt': set to the file's file extension if it is not an allowed file extension
-	 * - 'blacklistedExt': set to the list of blacklisted file extensions if the current file extension
-	 *    is not allowed for uploads and the blacklist is not empty
+	 * - 'blacklistedExt': set to the list of disallowed file extensions if the current file extension
+	 *    is not allowed for uploads and the list is not empty
 	 *
 	 * @stable to override
 	 * @return mixed[] array representing the result of the verification
@@ -522,10 +522,10 @@ abstract class UploadBase {
 	/**
 	 * A verification routine suitable for partial files
 	 *
-	 * Runs the blacklist checks, but not any checks that may
+	 * Runs the deny list checks, but not any checks that may
 	 * assume the entire file is present.
 	 *
-	 * @return array|true True if the file is valid, else an array with error message key.
+	 * @return array|true True, if the file is valid, else an array with error message key.
 	 * @phan-return non-empty-array|true
 	 */
 	protected function verifyPartialFile() {
@@ -1001,8 +1001,8 @@ abstract class UploadBase {
 		$this->mFilteredName = $nt->getDBkey();
 
 		/**
-		 * We'll want to blacklist against *any* 'extension', and use
-		 * only the final one for the whitelist.
+		 * We'll want to prevent against *any* 'extension', and use
+		 * only the final one for the allow list.
 		 */
 		[ $partname, $ext ] = self::splitExtensions( $this->mFilteredName );
 
@@ -1040,7 +1040,7 @@ abstract class UploadBase {
 		$fileExtensions = $config->get( MainConfigNames::FileExtensions );
 		$prohibitedFileExtensions = $config->get( MainConfigNames::ProhibitedFileExtensions );
 
-		$blackListedExtensions = self::checkFileExtensionList( $ext, $prohibitedFileExtensions );
+		$badList = self::checkFileExtensionList( $ext, $prohibitedFileExtensions );
 
 		if ( $this->mFinalExtension == '' ) {
 			$this->mTitleError = self::FILETYPE_MISSING;
@@ -1049,10 +1049,10 @@ abstract class UploadBase {
 			return $this->mTitle;
 		}
 
-		if ( $blackListedExtensions ||
+		if ( $badList ||
 			( $checkFileExtensions && $strictFileExtensions &&
 				!self::checkFileExtension( $this->mFinalExtension, $fileExtensions ) ) ) {
-			$this->mBlackListedExtensions = $blackListedExtensions;
+			$this->mBlackListedExtensions = $badList;
 			$this->mTitleError = self::FILETYPE_BADTYPE;
 			$this->mTitle = null;
 
@@ -1192,7 +1192,7 @@ abstract class UploadBase {
 	 * Split a file into a base name and all dot-delimited 'extensions'
 	 * on the end. Some web server configurations will fall back to
 	 * earlier pseudo-'extensions' to determine type and execute
-	 * scripts, so the blacklist needs to check them all.
+	 * scripts, so we need to check them all.
 	 *
 	 * @param string $filename
 	 * @return array [ string, string[] ]
@@ -1395,7 +1395,7 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Check a whitelist of xml encodings that are known not to be interpreted differently
+	 * Check an allowed list of xml encodings that are known not to be interpreted differently
 	 * by the server's xml parser (expat) and some common browsers.
 	 *
 	 * @param string $file Pathname to the temporary upload file
@@ -1429,7 +1429,7 @@ abstract class UploadBase {
 		}
 
 		// It's possible the file is encoded with multi-byte encoding, so re-encode attempt to
-		// detect the encoding in case is specifies an encoding not whitelisted in self::$safeXmlEncodings
+		// detect the encoding in case it specifies an encoding not allowed in self::$safeXmlEncodings
 		$attemptEncodings = [ 'UTF-16', 'UTF-16BE', 'UTF-32', 'UTF-32BE' ];
 		foreach ( $attemptEncodings as $encoding ) {
 			AtEase::suppressWarnings();
@@ -1534,7 +1534,7 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * @todo Replace this with a whitelist filter!
+	 * @todo Replace this with a allow list filter!
 	 * @param string $element
 	 * @param array $attribs
 	 * @param string|null $data
@@ -1683,7 +1683,7 @@ abstract class UploadBase {
 				$parameters = '(?>;[a-zA-Z0-9\!#$&\'*+.^_`{|}~-]+=(?>[a-zA-Z0-9\!#$&\'*+.^_`{|}~-]+|"(?>[\0-\x0c\x0e-\x21\x23-\x5b\x5d-\x7f]+|\\\\[\0-\x7f])*"))*(?:;base64)?';
 
 				if ( !preg_match( "!^data:\s*image/(gif|jpeg|jpg|png)$parameters,!i", $value ) ) {
-					wfDebug( __METHOD__ . ": Found href to unwhitelisted data: uri "
+					wfDebug( __METHOD__ . ": Found href to allow listed data: uri "
 						. "\"<$strippedElement '$attrib'='$value'...\" in uploaded file." );
 					return [ 'uploaded-href-unsafe-target-svg', $strippedElement, $attrib, $value ];
 				}
@@ -2118,7 +2118,7 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Get a list of blacklisted filename prefixes from [[MediaWiki:Filename-prefix-blacklist]]
+	 * Get a list of disallowed filename prefixes from [[MediaWiki:Filename-prefix-blacklist]]
 	 *
 	 * @return string[] List of prefixes
 	 */
