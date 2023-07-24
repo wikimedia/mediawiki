@@ -34,7 +34,7 @@ You'll need to have Docker installed:
 **Linux users**:
 
 * We recommend installing `docker-ce`, `docker-ce-cli`, `containerd.io`, and `docker-compose-plugin` by [downloading the server
-  releases][dc-release] for your distribution rather than Docker Desktop. You can also install the [binaries][dc-binaries]. 
+  releases][dc-release] for your distribution rather than Docker Desktop. You can also install the [binaries][dc-binaries].
 * Follow the instructions to ["Manage Docker as a non-root user"][dc-non-root]
 
 [dc-release]: https://docs.docker.com/engine/install/
@@ -143,7 +143,7 @@ Run a single PHPUnit file or directory:
 ```sh
 docker compose exec mediawiki bash
 instance:/w$ cd tests/phpunit
-instance:/w/tests/phpunit$ php phpunit.php path/to/my/test/
+instance:/w/tests/phpunit$ composer phpunit -- path/to/my/test/
 ```
 
 See [PHPUnit on mediawiki.org][phpunit-testing] for more examples.

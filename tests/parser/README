@@ -4,9 +4,8 @@ options.
 
 To run parser tests via PHPUnit:
 
- $ cd tests/phpunit
- ./phpunit.php --testsuite parsertests
+ $ composer phpunit -- --testsuite parsertests
 
 You can optionally filter by title using --filter, e.g.
 
- ./phpunit.php --testsuite parsertests --filter="T6400"
+ composer phpunit -- --testsuite parsertests --filter="T6400"
