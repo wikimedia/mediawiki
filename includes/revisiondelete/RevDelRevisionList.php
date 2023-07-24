@@ -223,10 +223,6 @@ class RevDelRevisionList extends RevDelList {
 		return $this->currentRevId;
 	}
 
-	public function getSuppressBit() {
-		return RevisionRecord::DELETED_RESTRICTED;
-	}
-
 	public function doPreCommitUpdates() {
 		Title::newFromPageIdentity( $this->page )->invalidateCache();
 		return Status::newGood();

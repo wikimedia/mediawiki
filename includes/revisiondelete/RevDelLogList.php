@@ -21,7 +21,6 @@
 
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Page\PageIdentity;
-use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactory;
@@ -30,6 +29,8 @@ use Wikimedia\Rdbms\LBFactory;
  * List for logging table items
  */
 class RevDelLogList extends RevDelList {
+
+	protected const SUPPRESS_BIT = LogPage::DELETED_RESTRICTED;
 
 	/** @var CommentStore */
 	private $commentStore;
@@ -137,10 +138,6 @@ class RevDelLogList extends RevDelList {
 
 	public function newItem( $row ) {
 		return new RevDelLogItem( $this, $row, $this->commentStore );
-	}
-
-	public function getSuppressBit() {
-		return RevisionRecord::DELETED_RESTRICTED;
 	}
 
 	public function getLogAction() {
