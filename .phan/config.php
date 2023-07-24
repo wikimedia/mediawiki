@@ -67,7 +67,7 @@ if ( PHP_VERSION_ID >= 80000 ) {
 }
 
 $cfg['autoload_internal_extension_signatures'] = [
-	'excimer' => '.phan/internal_stubs/excimer.php',
+	'excimer' => '.phan/internal_stubs/excimer.phan_php',
 	'imagick' => '.phan/internal_stubs/imagick.phan_php',
 	'memcached' => '.phan/internal_stubs/memcached.phan_php',
 	'pcntl' => '.phan/internal_stubs/pcntl.phan_php',
