@@ -12,9 +12,8 @@ class SkinQuickTemplateTest extends QuickTemplate {
 
 /**
  * @covers SkinTemplate
- *
- * @group Output
- *
+ * @covers Skin
+ * @group Skin
  * @author Bene* < benestar.wikimedia@gmail.com >
  */
 class SkinTemplateTest extends MediaWikiIntegrationTestCase {
@@ -164,7 +163,6 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers SkinTemplate::getFooterIcons
 	 * @dataProvider provideGetFooterIcons
 	 */
 	public function testGetFooterIcons( $globals, $expected, $msg ) {
@@ -176,7 +174,6 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Skin::getDefaultModules
 	 * @dataProvider provideGetDefaultModules
 	 */
 	public function testgetDefaultModules( $isSyndicated, $html, array $expectedModuleStyles ) {
@@ -195,9 +192,7 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers SkinTemplate::injectLegacyMenusIntoPersonalTools
 	 * @dataProvider provideContentNavigation
-	 *
 	 * @param array $contentNavigation
 	 * @param array $expected
 	 */
@@ -310,10 +305,6 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @covers SkinTemplate::prepareQuickTemplate
-	 * @covers SkinTemplate::generateHTML
-	 */
 	public function testGenerateHTML() {
 		$wrapper = TestingAccessWrapper::newFromObject(
 			new SkinTemplate( [ 'template' => 'SkinQuickTemplateTest', 'name' => 'test' ] )

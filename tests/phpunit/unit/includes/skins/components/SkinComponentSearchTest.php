@@ -4,16 +4,11 @@ use MediaWiki\Skin\SkinComponentSearch;
 
 /**
  * @covers \MediaWiki\Skin\SkinComponentSearch
- *
- * @group Output
- *
+ * @group Skin
  */
 class SkinComponentSearchTest extends MediaWikiUnitTestCase {
 	use MockTitleTrait;
 
-	/**
-	 * @covers \MediaWiki\Skin\SkinComponentSearch::getTemplateData
-	 */
 	public function testGetTemplateData() {
 		$config = new HashConfig( [
 			MainConfigNames::Script => '/w/index.php',

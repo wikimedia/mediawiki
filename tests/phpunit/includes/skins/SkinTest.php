@@ -27,9 +27,6 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( 'testname', $skin->getSkinName(), 'Constructor argument' );
 	}
 
-	/**
-	 * @covers Skin::getDefaultModules
-	 */
 	public function testGetDefaultModules() {
 		$skin = $this->getMockBuilder( Skin::class )
 			->onlyMethods( [ 'outputPage' ] )
@@ -53,7 +50,6 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideGetDefaultModulesWatchWrite
-	 * @covers Skin::getDefaultModules
 	 */
 	public function testGetDefaultModulesWatchWrite( Authority $authority, bool $hasModule ) {
 		$skin = new class extends Skin {
@@ -115,7 +111,6 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider providGetPageClasses
-	 * @covers Skin::getPageClasses
 	 */
 	public function testGetPageClasses(
 		LinkTarget $title,
@@ -140,8 +135,6 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Skin::isResponsive
-	 *
 	 * @dataProvider provideSkinResponsiveOptions
 	 */
 	public function testIsResponsive( array $options, bool $expected ) {
@@ -193,9 +186,6 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @covers Skin::makeLink
-	 */
 	public static function provideMakeLink() {
 		return [
 			'Empty href with link class' => [
@@ -297,7 +287,6 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Skin::makeLink
 	 * @dataProvider provideMakeLink
 	 * @param array $data
 	 * @param array $options
@@ -374,7 +363,6 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Skin::getPersonalToolsForMakeListItem
 	 * @dataProvider provideGetPersonalToolsForMakeListItem
 	 * @param array $urls
 	 * @param bool $applyClassesToListItems
@@ -395,10 +383,6 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers Skin::setRelevantUser
-	 * @covers Skin::getRelevantUser
-	 */
 	public function testGetRelevantUser_get_set() {
 		$skin = new class extends Skin {
 			public function outputPage() {
@@ -455,7 +439,6 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideGetRelevantUser_load_from_title
-	 * @covers Skin::getRelevantUser
 	 */
 	public function testGetRelevantUser_load_from_title(
 		PageReferenceValue $relevantPage,
@@ -474,9 +457,6 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	/**
-	 * @covers Skin::getRelevantUser
-	 */
 	public function testGetRelevantUser_load_existing() {
 		$skin = new class extends Skin {
 			public function outputPage() {
