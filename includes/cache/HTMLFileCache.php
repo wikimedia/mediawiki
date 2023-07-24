@@ -39,30 +39,25 @@ class HTMLFileCache extends FileCacheBase {
 	public const MODE_OUTAGE = 1; // fallback cache for DB outages
 	public const MODE_REBUILD = 2; // background cache rebuild mode
 
+	private const CACHEABLE_ACTIONS = [
+		'view',
+		'history',
+	];
+
 	/**
 	 * @param PageIdentity|string $page PageIdentity object or prefixed DB key string
 	 * @param string $action
-	 *
-	 * @throws InvalidArgumentException
 	 */
 	public function __construct( $page, $action ) {
 		parent::__construct();
 
-		if ( !in_array( $action, self::cacheablePageActions() ) ) {
+		if ( !in_array( $action, self::CACHEABLE_ACTIONS ) ) {
 			throw new InvalidArgumentException( 'Invalid file cache type given.' );
 		}
 
 		$this->mKey = CacheKeyHelper::getKeyForPage( $page );
 		$this->mType = (string)$action;
 		$this->mExt = 'html';
-	}
-
-	/**
-	 * Cacheable actions
-	 * @return array
-	 */
-	protected static function cacheablePageActions() {
-		return [ 'view', 'history' ];
 	}
 
 	/**
@@ -107,7 +102,7 @@ class HTMLFileCache extends FileCacheBase {
 			if ( $query === 'title' || $query === 'curid' ) {
 				continue; // note: curid sets title
 			// Normal page view in query form can have action=view.
-			} elseif ( $query === 'action' && in_array( $val, self::cacheablePageActions() ) ) {
+			} elseif ( $query === 'action' && in_array( $val, self::CACHEABLE_ACTIONS ) ) {
 				continue;
 			// Below are header setting params
 			} elseif ( $query === 'maxage' || $query === 'smaxage' ) {
@@ -233,7 +228,7 @@ class HTMLFileCache extends FileCacheBase {
 			return false;
 		}
 
-		foreach ( self::cacheablePageActions() as $type ) {
+		foreach ( self::CACHEABLE_ACTIONS as $type ) {
 			$fc = new self( $page, $type );
 			$fc->clearCache();
 		}
