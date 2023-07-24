@@ -1101,7 +1101,7 @@ __INDEXATTR__;
 		$flags = self::QUERY_CHANGE_LOCKS | self::QUERY_NO_RETRY;
 
 		// https://www.postgresql.org/docs/9.1/functions-admin.html
-		$sql = "pg_advisory_unlock_all()";
+		$sql = "SELECT pg_advisory_unlock_all()";
 		$query = new Query( $sql, $flags, 'UNLOCK' );
 		$qs = $this->executeQuery( $query, __METHOD__, $flags );
 		if ( $qs->res === false ) {
