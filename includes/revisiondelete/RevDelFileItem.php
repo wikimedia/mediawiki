@@ -22,7 +22,6 @@
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Revision\RevisionRecord;
 
 /**
  * Item class for an oldimage table row
@@ -226,8 +225,8 @@ class RevDelFileItem extends RevDelItem {
 			'width' => $file->getWidth(),
 			'height' => $file->getHeight(),
 			'size' => $file->getSize(),
-			'userhidden' => (bool)$file->isDeleted( RevisionRecord::DELETED_USER ),
-			'commenthidden' => (bool)$file->isDeleted( RevisionRecord::DELETED_COMMENT ),
+			'userhidden' => (bool)$file->isDeleted( File::DELETED_USER ),
+			'commenthidden' => (bool)$file->isDeleted( File::DELETED_COMMENT ),
 			'contenthidden' => (bool)$this->isDeleted(),
 		];
 		if ( !$this->isDeleted() ) {

@@ -20,7 +20,6 @@
  */
 
 use MediaWiki\CommentStore\CommentStore;
-use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 
 /**
@@ -67,7 +66,7 @@ class RevDelLogItem extends RevDelItem {
 
 	public function canView() {
 		return LogEventsList::userCan(
-			$this->row, RevisionRecord::DELETED_RESTRICTED, $this->list->getAuthority()
+			$this->row, LogPage::DELETED_RESTRICTED, $this->list->getAuthority()
 		);
 	}
 
