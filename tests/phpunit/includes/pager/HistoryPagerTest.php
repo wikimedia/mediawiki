@@ -4,6 +4,7 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\FakeResultWrapper;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -12,6 +13,10 @@ use Wikimedia\TestingAccessWrapper;
  * @group Pager
  */
 class HistoryPagerTest extends MediaWikiLangTestCase {
+	protected function setUp(): void {
+		parent::setUp();
+		$this->setService( 'DBLoadBalancer', $this->createMock( ILoadBalancer::class ) );
+	}
 
 	/**
 	 * @param array $results for passing to FakeResultWrapper and deriving

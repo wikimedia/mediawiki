@@ -31,6 +31,7 @@ use WikitextContent;
 
 /**
  * @covers \MediaWiki\Revision\RevisionRenderer
+ * @group Database
  */
 class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;

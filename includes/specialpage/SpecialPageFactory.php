@@ -962,6 +962,7 @@ class SpecialPageFactory {
 			'class' => SpecialBookSources::class,
 			'services' => [
 				'RevisionLookup',
+				'TitleFactory',
 			]
 		],
 

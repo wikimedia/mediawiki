@@ -4,6 +4,7 @@
  * Test class for RangeChronologicalPagerTest logic.
  *
  * @group Pager
+ * @group Database
  *
  * @author Geoffrey Mon <geofbot@gmail.com>
  */
