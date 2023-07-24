@@ -343,12 +343,6 @@ class WANObjectCache implements
 		$this->asyncHandler = $params['asyncHandler'] ?? null;
 
 		$this->missLog = array_fill( 0, 10, [ '', 0.0 ] );
-
-		$this->cache->registerWrapperInfoForStats(
-			'WANCache',
-			'wanobjectcache',
-			[ __CLASS__, 'getCollectionFromSisterKey' ]
-		);
 	}
 
 	/**
@@ -1861,26 +1855,6 @@ class WANObjectCache implements
 		}
 
 		return $sisterKey;
-	}
-
-	/**
-	 * @param string $sisterKey Sister key from makeSisterKey()
-	 * @return string Key collection name
-	 * @internal For use by WANObjectCache/BagOStuff only
-	 * @since 1.36
-	 */
-	public static function getCollectionFromSisterKey( string $sisterKey ) {
-		if ( substr( $sisterKey, -4 ) === '|#|v' ) {
-			// Key style: "WANCache:<base key>|#|<character>"
-			$collection = substr( $sisterKey, 9, strcspn( $sisterKey, ':|', 9 ) );
-		} elseif ( substr( $sisterKey, -3 ) === '}:v' ) {
-			// Key style: "WANCache:{<base key>}:<character>"
-			$collection = substr( $sisterKey, 10, strcspn( $sisterKey, ':}', 10 ) );
-		} else {
-			$collection = 'internal';
-		}
-
-		return $collection;
 	}
 
 	/**

@@ -91,11 +91,6 @@ abstract class BagOStuff implements
 	protected $asyncHandler;
 	/** @var int[] Map of (BagOStuff:ATTR_* constant => BagOStuff:QOS_* constant) */
 	protected $attrMap = [];
-	/**
-	 * @var array<string,array> Cache key processing callbacks and info for metrics
-	 * @phan-var array<string,array{0:string,1:callable}>
-	 */
-	protected $wrapperInfoByPrefix = [];
 
 	/** @var string Default keyspace; used by makeKey() */
 	protected $keyspace;
@@ -153,11 +148,6 @@ abstract class BagOStuff implements
 	protected const RES_KEYMAP = 0;
 	/** @var int Item does not involve any keys */
 	protected const RES_NONKEY = 1;
-
-	/** Key to the metric group to use for the relevant cache wrapper */
-	private const WRAPPER_STATS_GROUP = 0;
-	/** Key to the callback that extracts collection names from cache wrapper keys */
-	private const WRAPPER_COLLECTION_CALLBACK = 1;
 
 	/**
 	 * @stable to call
@@ -639,39 +629,6 @@ abstract class BagOStuff implements
 	}
 
 	/**
-	 * Register info about a caching layer class that uses BagOStuff as a backing store
-	 *
-	 * Object cache wrappers are classes that implement generic caching/storage functionality,
-	 * use a BagOStuff instance as the backing store, and implement IStoreKeyEncoder with the
-	 * same "generic" style key encoding as BagOStuff. Such wrappers transform keys before
-	 * passing them to BagOStuff methods; a wrapper-specific prefix component will be prepended
-	 * along with other possible additions. Transformed keys still use the "generic" BagOStuff
-	 * encoding.
-	 *
-	 * The provided callback takes a transformed key, having the specified prefix component,
-	 * and extracts the key collection name. The callback must be able to handle
-	 * keys that bear the prefix (by coincidence) but do not originate from the wrapper class.
-	 *
-	 * Calls to this method should be idempotent.
-	 *
-	 * @param string $prefixComponent Key prefix component used by the wrapper
-	 * @param string $statsGroup Stats group to use for metrics from this wrapper
-	 * @param callable $collectionCallback Static callback that gets the key collection name
-	 * @internal For use with BagOStuff and WANObjectCache only
-	 * @since 1.36
-	 */
-	public function registerWrapperInfoForStats(
-		string $prefixComponent,
-		string $statsGroup,
-		callable $collectionCallback
-	) {
-		$this->wrapperInfoByPrefix[$prefixComponent] = [
-			self::WRAPPER_STATS_GROUP => $statsGroup,
-			self::WRAPPER_COLLECTION_CALLBACK => $collectionCallback
-		];
-	}
-
-	/**
 	 * At a minimum, there must be a keyspace and collection name component
 	 *
 	 * @param string|int ...$components Key components for keyspace, collection name, and IDs
@@ -784,21 +741,12 @@ abstract class BagOStuff implements
 	 * @return string A stats prefix to describe this class of key (e.g. "objectcache.file")
 	 */
 	protected function determineKeyPrefixForStats( $key ) {
-		$firstComponent = substr( $key, 0, strcspn( $key, ':' ) );
-
-		$wrapperInfo = $this->wrapperInfoByPrefix[$firstComponent] ?? null;
-		if ( $wrapperInfo ) {
-			// Key has the prefix of a cache wrapper class that wraps BagOStuff
-			$collection = $wrapperInfo[self::WRAPPER_COLLECTION_CALLBACK]( $key );
-			$statsGroup = $wrapperInfo[self::WRAPPER_STATS_GROUP];
-		} else {
-			// Key came directly from BagOStuff::makeKey() or BagOStuff::makeGlobalKey()
-			// and thus has the format of "<scope>:<collection>[:<constant or variable>]..."
-			$components = explode( ':', $key, 3 );
-			// Handle legacy callers that fail to use the key building methods
-			$collection = $components[1] ?? 'UNKNOWN';
-			$statsGroup = 'objectcache';
-		}
+		// Key came directly from BagOStuff::makeKey() or BagOStuff::makeGlobalKey()
+		// and thus has the format of "<scope>:<collection>[:<constant or variable>]..."
+		$components = explode( ':', $key, 3 );
+		// Handle legacy callers that fail to use the key building methods
+		$collection = $components[1] ?? 'UNKNOWN';
+		$statsGroup = 'objectcache';
 
 		// Replace dots because they are special in StatsD (T232907)
 		return $statsGroup . '.' . strtr( $collection, '.', '_' );

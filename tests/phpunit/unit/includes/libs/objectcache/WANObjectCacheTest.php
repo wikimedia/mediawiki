@@ -2352,29 +2352,6 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @param string $key
-	 * @param string $expectedCollection
-	 * @dataProvider provideCollectionKeys
-	 */
-	public function testgetCollectionFromSisterKey( $key, $expectedCollection ) {
-		$this->assertSame(
-			$expectedCollection,
-			WANObjectCache::getCollectionFromSisterKey( $key ),
-			'Correct key collection name'
-		);
-	}
-
-	public static function provideCollectionKeys() {
-		return [
-			[ 'WANCache:collection:a:b|#|v', 'collection' ],
-			[ 'WANCache:{collection:a:b}:v', 'collection' ],
-			[ 'WANCache:collection:a:b|#|t', 'internal' ],
-			[ 'WANCache:{collection:a:b}:t', 'internal' ],
-			[ 'WANCache:improper-key', 'internal' ],
-		];
-	}
-
-	/**
 	 * @dataProvider provideCoalesceAndMcrouterSettings
 	 * @param array $params
 	 * @param string|null $keyNeedle
