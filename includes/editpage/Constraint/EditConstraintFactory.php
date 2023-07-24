@@ -228,4 +228,23 @@ class EditConstraintFactory {
 		);
 	}
 
+	/**
+	 * @param User $performer
+	 * @param Title $title
+	 * @param bool $new
+	 * @return EditRightConstraint
+	 */
+	public function newEditRightConstraint(
+		User $performer,
+		Title $title,
+		bool $new
+	): EditRightConstraint {
+		return new EditRightConstraint(
+			$performer,
+			$this->permissionManager,
+			$title,
+			$new
+		);
+	}
+
 }

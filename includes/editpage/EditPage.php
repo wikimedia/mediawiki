@@ -41,12 +41,10 @@ use MediaWiki\EditPage\Constraint\AccidentalRecreationConstraint;
 use MediaWiki\EditPage\Constraint\AutoSummaryMissingSummaryConstraint;
 use MediaWiki\EditPage\Constraint\ChangeTagsConstraint;
 use MediaWiki\EditPage\Constraint\ContentModelChangeConstraint;
-use MediaWiki\EditPage\Constraint\CreationPermissionConstraint;
 use MediaWiki\EditPage\Constraint\DefaultTextConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraintFactory;
 use MediaWiki\EditPage\Constraint\EditConstraintRunner;
 use MediaWiki\EditPage\Constraint\EditFilterMergedContentHookConstraint;
-use MediaWiki\EditPage\Constraint\EditRightConstraint;
 use MediaWiki\EditPage\Constraint\IEditConstraint;
 use MediaWiki\EditPage\Constraint\ImageRedirectConstraint;
 use MediaWiki\EditPage\Constraint\MissingCommentConstraint;
@@ -2115,9 +2113,6 @@ class EditPage implements IEditObject {
 			)
 		);
 		$constraintRunner->addConstraint(
-			new EditRightConstraint( $authority )
-		);
-		$constraintRunner->addConstraint(
 			new ImageRedirectConstraint(
 				$textbox_content,
 				$this->mTitle,
@@ -2162,6 +2157,16 @@ class EditPage implements IEditObject {
 			)
 		);
 
+		// Load the page data from the primary DB. If anything changes in the meantime,
+		// we detect it by using page_latest like a token in a 1 try compare-and-swap.
+		$this->page->loadPageData( WikiPage::READ_LATEST );
+		$new = !$this->page->exists();
+
+		// We do this last, as some of the other constraints are more specific
+		$constraintRunner->addConstraint(
+			$constraintFactory->newEditRightConstraint( $this->getUserForPermissions(), $this->mTitle, $new )
+		);
+
 		// Check the constraints
 		if ( !$constraintRunner->checkConstraints() ) {
 			$failed = $constraintRunner->getFailedConstraint();
@@ -2177,11 +2182,6 @@ class EditPage implements IEditObject {
 			return Status::wrap( $failed->getLegacyStatus() );
 		}
 		// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
-
-		// Load the page data from the primary DB. If anything changes in the meantime,
-		// we detect it by using page_latest like a token in a 1 try compare-and-swap.
-		$this->page->loadPageData( WikiPage::READ_LATEST );
-		$new = !$this->page->exists();
 
 		$flags = EDIT_AUTOSUMMARY |
 			( $new ? EDIT_NEW : EDIT_UPDATE ) |
@@ -2208,10 +2208,6 @@ class EditPage implements IEditObject {
 			// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
 			// Create a new runner to avoid rechecking the prior constraints, use the same factory
 			$constraintRunner = new EditConstraintRunner();
-			// Late check for create permission, just in case *PARANOIA*
-			$constraintRunner->addConstraint(
-				new CreationPermissionConstraint( $authority, $this->mTitle )
-			);
 
 			// Don't save a new page if it's blank or if it's a MediaWiki:
 			// message with content equivalent to default (allow empty pages
