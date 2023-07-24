@@ -793,18 +793,13 @@ class PermissionManager {
 			$errors[] = [ 'confirmedittext' ];
 		}
 
-		switch ( $rigor ) {
-			case self::RIGOR_SECURE:
-				$blockInfoFreshness = Authority::READ_LATEST;
-				$useReplica = false;
-				break;
-			case self::RIGOR_FULL:
-				$blockInfoFreshness = Authority::READ_NORMAL;
-				$useReplica = true;
-				break;
-			default:
-				$useReplica = true;
-				$blockInfoFreshness = Authority::READ_NORMAL;
+		if ( $rigor === self::RIGOR_SECURE ) {
+			$blockInfoFreshness = Authority::READ_LATEST;
+			$useReplica = false;
+		} else {
+			// RIGOR_FULL, RIGOR_QUICK
+			$blockInfoFreshness = Authority::READ_NORMAL;
+			$useReplica = true;
 		}
 
 		$block = $user->getBlock( $blockInfoFreshness );
