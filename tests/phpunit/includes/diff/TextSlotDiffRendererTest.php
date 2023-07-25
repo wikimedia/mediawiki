@@ -200,6 +200,7 @@ class TextSlotDiffRendererTest extends MediaWikiIntegrationTestCase {
 		$slotDiffRenderer = $this->getTextSlotDiffRenderer( 'qqx' );
 		$slotDiffRenderer->setHookContainer( $this->createHookContainer() );
 		$slotDiffRenderer->setEngine( $engine );
+		$slotDiffRenderer->setInlineToggleEnabled();
 
 		$context = new RequestContext;
 		$context->setLanguage( 'qqx' );

@@ -964,7 +964,8 @@ class Article implements Page {
 
 		$de->setSlotDiffOptions( [
 			'diff-type' => $diffType,
-			'expand-url' => $this->viewIsRenderAction
+			'expand-url' => $this->viewIsRenderAction,
+			'inline-toggle' => true,
 		] );
 		$de->showDiffPage( $this->isDiffOnlyView() );
 

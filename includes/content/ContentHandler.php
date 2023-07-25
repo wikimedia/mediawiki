@@ -723,6 +723,9 @@ abstract class ContentHandler {
 		}
 		$slotDiffRenderer->setFormat( $format );
 		$slotDiffRenderer->setTextDiffer( $textDiffer );
+		if ( $options['inline-toggle'] ?? false ) {
+			$slotDiffRenderer->setInlineToggleEnabled();
+		}
 
 		return $slotDiffRenderer;
 	}
