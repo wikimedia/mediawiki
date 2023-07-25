@@ -2,6 +2,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Parser\ParserOutputStrings;
 use MediaWiki\Tests\Parser\ParserCacheSerializationTestCases;
 use MediaWiki\Title\Title;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
@@ -1246,6 +1247,29 @@ EOF
 		$this->assertEquals( [ 'foo.com', 'bar.com' ], $po->getExtraCSPScriptSrcs(), 'Script' );
 		$this->assertEquals( [ 'baz.com' ], $po->getExtraCSPDefaultSrcs(), 'Default' );
 		$this->assertEquals( [ 'fred.com', 'xyzzy.com' ], $po->getExtraCSPStyleSrcs(), 'Style' );
+	}
+
+	public function testOutputStrings() {
+		$po = new ParserOutput;
+
+		$this->assertEquals( [], $po->getOutputString( ParserOutputStrings::EXTRA_CSP_SCRIPT_SRC ), 'empty Script' );
+		$this->assertEquals( [], $po->getOutputString( ParserOutputStrings::EXTRA_CSP_STYLE_SRC ), 'empty Style' );
+		$this->assertEquals( [], $po->getOutputString( ParserOutputStrings::EXTRA_CSP_DEFAULT_SRC ), 'empty Default' );
+
+		$po->appendOutputString( ParserOutputStrings::EXTRA_CSP_SCRIPT_SRC, [ 'foo.com', 'bar.com' ] );
+		$po->appendOutputString( ParserOutputStrings::EXTRA_CSP_DEFAULT_SRC, [ 'baz.com' ] );
+		$po->appendOutputString( ParserOutputStrings::EXTRA_CSP_STYLE_SRC, [ 'fred.com' ] );
+		$po->appendOutputString( ParserOutputStrings::EXTRA_CSP_STYLE_SRC, [ 'xyzzy.com' ] );
+
+		$this->assertEquals( [ 'foo.com', 'bar.com' ], $po->getExtraCSPScriptSrcs(), 'Script (getSrc)' );
+		$this->assertEquals( [ 'foo.com', 'bar.com' ],
+			$po->getOutputString( ParserOutputStrings::EXTRA_CSP_SCRIPT_SRC ), 'Script (getString)' );
+		$this->assertEquals( [ 'baz.com' ], $po->getExtraCSPDefaultSrcs(), 'Default (getSrc)' );
+		$this->assertEquals( [ 'baz.com' ],
+			$po->getOutputString( ParserOutputStrings::EXTRA_CSP_DEFAULT_SRC ), 'Default (getString)' );
+		$this->assertEquals( [ 'fred.com', 'xyzzy.com' ], $po->getExtraCSPStyleSrcs(), 'Style (getSrc)' );
+		$this->assertEquals( [ 'fred.com', 'xyzzy.com' ],
+			$po->getOutputString( ParserOutputStrings::EXTRA_CSP_STYLE_SRC ), 'Style (getString)' );
 	}
 
 	/**

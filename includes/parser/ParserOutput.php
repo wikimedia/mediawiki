@@ -13,6 +13,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOutputFlags;
+use MediaWiki\Parser\ParserOutputStrings;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Title\Title;
 use Wikimedia\Bcp47Code\Bcp47Code;
@@ -1746,6 +1747,70 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		default:
 			return $this->getFlag( $name );
 
+		}
+	}
+
+	/**
+	 * Provides a uniform interface to various string sets stored
+	 * in the ParserOutput.  String sets internal to MediaWiki core should
+	 * have names which are constants in ParserOutputStrings.  Extensions
+	 * should use ::appendExtensionData() rather than creating new string sets
+	 * with ::appendOutputString() in order to prevent namespace conflicts.
+	 *
+	 * @note for now, only a small subset of CSP-related string sets is
+	 * implemented. Other keys throw an exception
+	 *
+	 * @param string $name A string set name
+	 * @param string[] $value
+	 * @since 1.41
+	 */
+	public function appendOutputString( string $name, array $value ): void {
+		switch ( $name ) {
+			case ParserOutputStrings::EXTRA_CSP_DEFAULT_SRC:
+				foreach ( $value as $v ) {
+					$this->addExtraCSPDefaultSrc( $v );
+				}
+				break;
+			case ParserOutputStrings::EXTRA_CSP_SCRIPT_SRC:
+				foreach ( $value as $v ) {
+					$this->addExtraCSPScriptSrc( $v );
+				}
+				break;
+			case ParserOutputStrings::EXTRA_CSP_STYLE_SRC:
+				foreach ( $value as $v ) {
+					$this->addExtraCSPStyleSrc( $v );
+				}
+				break;
+			default:
+				throw new UnexpectedValueException( "Unknown output string set name $name" );
+		}
+	}
+
+	/**
+	 * Provides a uniform interface to various boolean string sets stored
+	 * in the ParserOutput.  String sets internal to MediaWiki core should
+	 * have names which are constants in ParserOutputFlags.  Extensions
+	 * should only use ::getOutputString() to query string sets defined in
+	 * ParserOutputFlags in core; they should use ::getExtensionData()
+	 * to define their own string sets.
+	 *
+	 * @note for now, only a small subset of CSP-related string sets is
+	 * implemented. Other keys throw an exception.
+	 *
+	 * @param string $name A string set name
+	 * @return string[] The string set value
+	 * @since 1.41
+	 */
+	public function getOutputString( string $name ): array {
+		switch ( $name ) {
+			case ParserOutputStrings::EXTRA_CSP_DEFAULT_SRC:
+				return $this->getExtraCSPDefaultSrcs();
+			case ParserOutputStrings::EXTRA_CSP_SCRIPT_SRC:
+				return $this->getExtraCSPScriptSrcs();
+			case ParserOutputStrings::EXTRA_CSP_STYLE_SRC:
+				return $this->getExtraCSPStyleSrcs();
+			default:
+				throw new UnexpectedValueException( "Unknown output string set name $name" );
 		}
 	}
 
