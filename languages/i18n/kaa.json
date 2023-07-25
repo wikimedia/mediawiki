@@ -754,6 +754,7 @@
 	"search-result-category-size": "{{PLURAL:$1|1 aǵza|$1 aǵzalar}} ({{PLURAL:$2|1 tómengi kategoriya|$2 tómengi kategoriyalar}}, {{PLURAL:$3|1 fayl|$3 fayllar}})",
 	"search-redirect": "($1 degennen baǵdarlanǵan)",
 	"search-section": "(bólim $1)",
+	"search-category": "($1 kategoriyası)",
 	"search-file-match": "(fayl quramına sáykes keledi)",
 	"search-suggest": "Bálkim, siz bunı názerde tutqan shiǵarsız: $1",
 	"search-rewritten": "$1 ushın nátiyje kórsetilmekte. $2 ushın nátiyje tabılmadı.",

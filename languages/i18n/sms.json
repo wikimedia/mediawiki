@@ -1091,7 +1091,7 @@
 	"import-interwiki-history": "Kopiââʹst puk tän seeid versioid",
 	"import-upload-filename": "Teâttõsnõmm:",
 	"import-comment": "Kommeʹntt:",
-	"import-revision-count": "$1 {{PLURAL:$1|versio|versio|versiod}}",
+	"import-revision-count": "{{PLURAL:$1|$1 versiod|0=Ni õhtt versio|1=1 versio|2=2 versio|3=3 versio|4=4 versio|5=5 versio|6=6 versio}}",
 	"importbadinterwiki": "Interwiki-liiŋk lij vââǥǥlaž",
 	"tooltip-pt-preferences": "{{GENDER:|Jiiʹjjes asetõõzz}}",
 	"tooltip-pt-logout": "Ǩeeʹrjtõõđ åålǥas",

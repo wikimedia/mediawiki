@@ -98,6 +98,7 @@
 	"config-db-prefix": "Predpona tabele podatkovne zbirke (brez vezajev):",
 	"config-db-prefix-help": "Če morate deliti eno podatkovno zbirko med več vikiji ali med MediaWikijem in drugo spletno aplikacijo, se lahko odločite, da dodate vsem imenom tabel predpono, da se izognete navzkrižjem.\nNe uporabljajte presledkov.\n\nTo polje običajno ostane prazno.",
 	"config-mysql-old": "Potreben je MySQL $1 ali novejši; vi imate $2.",
+	"config-mariadb-old": "Potreben je MariaDB $1 ali novejši. Vi imate $2.",
 	"config-db-port": "Vrata podatkovne zbirke:",
 	"config-db-ssl": "Povezava prek SSL-ja",
 	"config-db-schema": "Shema MediaWiki (brez vezajev)",
