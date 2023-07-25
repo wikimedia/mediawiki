@@ -65,7 +65,7 @@ use StringUtils;
 class MagicWord {
 	/** #@- */
 
-	/** @var string */
+	/** @var string|null Potentially null for a short time before {@see load} is called */
 	public $mId;
 
 	/** @var string[] */
