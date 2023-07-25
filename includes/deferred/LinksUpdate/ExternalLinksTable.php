@@ -33,6 +33,13 @@ class ExternalLinksTable extends LinksTable {
 	}
 
 	public function setParserOutput( ParserOutput $parserOutput ) {
+		if ( !( $this->migrationStage & SCHEMA_COMPAT_WRITE_OLD ) ) {
+			$links = LinkFilter::getIndexedUrlsNonReversed( array_keys( $parserOutput->getExternalLinks() ) );
+			foreach ( $links as $link ) {
+				$this->newLinks[$link] = true;
+			}
+			return;
+		}
 		$this->newLinks = $parserOutput->getExternalLinks();
 	}
 
@@ -45,6 +52,9 @@ class ExternalLinksTable extends LinksTable {
 	}
 
 	protected function getExistingFields() {
+		if ( !( $this->migrationStage & SCHEMA_COMPAT_WRITE_OLD ) ) {
+			return [ 'el_to_domain_index', 'el_to_path' ];
+		}
 		return [ 'el_to' ];
 	}
 
@@ -58,7 +68,12 @@ class ExternalLinksTable extends LinksTable {
 		if ( $this->existingLinks === null ) {
 			$this->existingLinks = [];
 			foreach ( $this->fetchExistingRows() as $row ) {
-				$this->existingLinks[$row->el_to] = true;
+				if ( !( $this->migrationStage & SCHEMA_COMPAT_WRITE_OLD ) ) {
+					$link = LinkFilter::reverseIndexe( $row->el_to_domain_index ) . $row->el_to_path;
+				} else {
+					$link = $row->el_to;
+				}
+				$this->existingLinks[$link] = true;
 			}
 		}
 		return $this->existingLinks;
@@ -86,8 +101,9 @@ class ExternalLinksTable extends LinksTable {
 
 	protected function insertLink( $linkId ) {
 		foreach ( LinkFilter::makeIndexes( $linkId ) as $index ) {
-			$params = [ 'el_to' => $linkId ];
+			$params = [];
 			if ( $this->migrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
+				$params['el_to'] = $linkId;
 				$params['el_index'] = implode( '', $index );
 				$params['el_index_60'] = substr( implode( '', $index ), 0, 60 );
 			}
@@ -100,7 +116,16 @@ class ExternalLinksTable extends LinksTable {
 	}
 
 	protected function deleteLink( $linkId ) {
-		$this->deleteRow( [ 'el_to' => $linkId ] );
+		if ( !( $this->migrationStage & SCHEMA_COMPAT_WRITE_OLD ) ) {
+			foreach ( LinkFilter::makeIndexes( $linkId ) as $index ) {
+				$this->deleteRow( [
+					'el_to_domain_index' => substr( $index[0], 0, 255 ),
+					'el_to_path' => $index[1]
+				] );
+			}
+		} else {
+			$this->deleteRow( [ 'el_to' => $linkId ] );
+		}
 	}
 
 	/**
