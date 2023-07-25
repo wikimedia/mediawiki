@@ -754,4 +754,8 @@ class ApiComparePages extends ApiBase {
 	private function getContentHandlerFactory(): IContentHandlerFactory {
 		return $this->contentHandlerFactory;
 	}
+
+	public function getHelpUrls() {
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Compare';
+	}
 }
