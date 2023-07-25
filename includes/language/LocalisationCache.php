@@ -408,7 +408,7 @@ class LocalisationCache {
 	 * @param string $code
 	 * @param string $key
 	 */
-	protected function loadItem( $code, $key ) {
+	private function loadItem( $code, $key ) {
 		if ( !isset( $this->initialisedLangs[$code] ) ) {
 			$this->initLanguage( $code );
 		}
@@ -445,7 +445,7 @@ class LocalisationCache {
 	 * @param string $key
 	 * @param string $subkey
 	 */
-	protected function loadSubitem( $code, $key, $subkey ) {
+	private function loadSubitem( $code, $key, $subkey ) {
 		if ( !in_array( $key, self::SPLIT_KEYS ) ) {
 			$this->loadItem( $code, $key );
 
@@ -527,7 +527,7 @@ class LocalisationCache {
 	 * @param string $code
 	 * @throws MWException
 	 */
-	protected function initLanguage( $code ) {
+	private function initLanguage( $code ) {
 		if ( isset( $this->initialisedLangs[$code] ) ) {
 			return;
 		}
@@ -601,7 +601,7 @@ class LocalisationCache {
 	 * @param string $primaryCode
 	 * @param string $fallbackCode
 	 */
-	public function initShallowFallback( $primaryCode, $fallbackCode ) {
+	private function initShallowFallback( $primaryCode, $fallbackCode ) {
 		$this->data[$primaryCode] =& $this->data[$fallbackCode];
 		$this->loadedItems[$primaryCode] =& $this->loadedItems[$fallbackCode];
 		$this->loadedSubitems[$primaryCode] =& $this->loadedSubitems[$fallbackCode];
@@ -645,7 +645,7 @@ class LocalisationCache {
 	 * @throws MWException If there is a syntax error in the JSON file
 	 * @return array Array with a 'messages' key, or empty array if the file doesn't exist
 	 */
-	public function readJSONFile( $fileName ) {
+	private function readJSONFile( $fileName ) {
 		if ( !is_readable( $fileName ) ) {
 			return [];
 		}
@@ -676,7 +676,7 @@ class LocalisationCache {
 	 * @param string $code
 	 * @return array<int,string>|null
 	 */
-	public function getCompiledPluralRules( $code ) {
+	private function getCompiledPluralRules( $code ) {
 		$rules = $this->getPluralRules( $code );
 		if ( $rules === null ) {
 			return null;
@@ -699,7 +699,7 @@ class LocalisationCache {
 	 * @param string $code
 	 * @return array<int,string>|null
 	 */
-	public function getPluralRules( $code ) {
+	private function getPluralRules( $code ) {
 		if ( self::$pluralRules === null ) {
 			self::loadPluralFiles();
 		}
@@ -713,7 +713,7 @@ class LocalisationCache {
 	 * @param string $code
 	 * @return array<int,string>|null
 	 */
-	public function getPluralRuleTypes( $code ) {
+	private function getPluralRuleTypes( $code ) {
 		if ( self::$pluralRuleTypes === null ) {
 			self::loadPluralFiles();
 		}
@@ -775,7 +775,7 @@ class LocalisationCache {
 	 * @param array &$deps
 	 * @return array
 	 */
-	protected function readSourceFilesAndRegisterDeps( $code, &$deps ) {
+	private function readSourceFilesAndRegisterDeps( $code, &$deps ) {
 		// This reads in the PHP i18n file with non-messages l10n data
 		$fileName = $this->langNameUtils->getMessagesFileName( $code );
 		if ( !is_file( $fileName ) ) {
@@ -806,7 +806,7 @@ class LocalisationCache {
 	 * @param mixed &$value
 	 * @param mixed $fallbackValue
 	 */
-	protected function mergeItem( $key, &$value, $fallbackValue ) {
+	private function mergeItem( $key, &$value, $fallbackValue ) {
 		if ( $value !== null ) {
 			if ( $fallbackValue !== null ) {
 				if ( in_array( $key, self::MERGEABLE_MAP_KEYS ) ) {
@@ -1112,7 +1112,7 @@ class LocalisationCache {
 	 * @param array $data
 	 * @return array
 	 */
-	protected function buildPreload( $data ) {
+	private function buildPreload( $data ) {
 		$preload = [ 'messages' => [] ];
 		foreach ( self::PRELOADED_KEYS as $key ) {
 			$preload[$key] = $data[$key];
