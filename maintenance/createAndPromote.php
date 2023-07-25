@@ -188,7 +188,7 @@ class CreateAndPromote extends Maintenance {
 	/**
 	 * Add a rights log entry for an action.
 	 *
-	 * @param User|UserRightsProxy $user
+	 * @param User $user
 	 * @param array $oldGroups
 	 * @param array $newGroups
 	 * @param string $reason
