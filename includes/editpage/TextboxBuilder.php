@@ -45,8 +45,7 @@ class TextboxBuilder {
 			// is awkward.
 			// But don't add a newline if the text is empty, or Firefox in XHTML
 			// mode will show an extra newline. A bit annoying.
-			$wikitext .= "\n";
-			return $wikitext;
+			return $wikitext . "\n";
 		}
 		return $wikitext;
 	}
@@ -105,14 +104,14 @@ class TextboxBuilder {
 		$name, array $customAttribs, UserIdentity $user, PageIdentity $page
 	) {
 		$attribs = $customAttribs + [
-				'accesskey' => ',',
-				'id' => $name,
-				'cols' => 80,
-				'rows' => 25,
-				// Avoid PHP notices when appending preferences
-				// (appending allows customAttribs['style'] to still work).
-				'style' => ''
-			];
+			'accesskey' => ',',
+			'id' => $name,
+			'cols' => 80,
+			'rows' => 25,
+			// Avoid PHP notices when appending preferences
+			// (appending allows customAttribs['style'] to still work).
+			'style' => ''
+		];
 
 		// The following classes can be used here:
 		// * mw-editfont-monospace
