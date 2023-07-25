@@ -1102,89 +1102,12 @@ MESSAGE;
 		}
 
 		$only = $context->getOnly();
-		$filter = $only === 'styles' ? 'minify-css' : 'minify-js';
 		$debug = (bool)$context->getDebug();
 
 		$out = '';
 		foreach ( $modules as $name => $module ) {
 			try {
-				$content = $module->getModuleContent( $context );
-				$implementKey = $name . '@' . $module->getVersionHash( $context );
-				$strContent = '';
-
-				if ( isset( $content['headers'] ) ) {
-					$this->extraHeaders = array_merge( $this->extraHeaders, $content['headers'] );
-				}
-
-				// Append output
-				switch ( $only ) {
-					case 'scripts':
-						$scripts = $content['scripts'];
-						if ( is_string( $scripts ) ) {
-							// Load scripts raw...
-							$strContent = $scripts;
-						} elseif ( is_array( $scripts ) ) {
-							// ...except when $scripts is an array of URLs or an associative array
-							$strContent = self::makeLoaderImplementScript(
-								$implementKey,
-								$scripts,
-								[],
-								null,
-								[]
-							);
-						}
-						break;
-					case 'styles':
-						$styles = $content['styles'];
-						// We no longer separate into media, they are all combined now with
-						// custom media type groups into @media .. {} sections as part of the css string.
-						// Module returns either an empty array or a numerical array with css strings.
-						$strContent = isset( $styles['css'] ) ? implode( '', $styles['css'] ) : '';
-						break;
-					default:
-						$scripts = $content['scripts'] ?? '';
-						if ( is_string( $scripts ) ) {
-							if ( $name === 'site' || $name === 'user' ) {
-								// Legacy scripts that run in the global scope without a closure.
-								// mw.loader.implement will use eval if scripts is a string.
-								// Minify manually here, because general response minification is
-								// not effective due it being a string literal, not a function.
-								if ( !$debug ) {
-									$scripts = self::filter( 'minify-js', $scripts ); // T107377
-								}
-							} else {
-								$scripts = new HtmlJsCode( $scripts );
-							}
-						}
-						$strContent = self::makeLoaderImplementScript(
-							$implementKey,
-							$scripts,
-							$content['styles'] ?? [],
-							isset( $content['messagesBlob'] ) ? new HtmlJsCode( $content['messagesBlob'] ) : null,
-							$content['templates'] ?? []
-						);
-						break;
-				}
-
-				if ( $debug ) {
-					// In debug mode, separate each response by a new line.
-					// For example, between 'mw.loader.implement();' statements.
-					$strContent = self::ensureNewline( $strContent );
-				} else {
-					$strContent = self::filter( $filter, $strContent, [
-						// Important: Do not cache minifications of embedded modules
-						// This is especially for the private 'user.options' module,
-						// which varies on every pageview and would explode the cache (T84960)
-						'cache' => !$module->shouldEmbedModule( $context )
-					] );
-				}
-
-				if ( $only === 'scripts' ) {
-					// Use a linebreak between module scripts (T162719)
-					$out .= self::ensureNewline( $strContent );
-				} else {
-					$out .= $strContent;
-				}
+				$out .= $this->getOneModuleResponse( $context, $name, $module );
 			} catch ( TimeoutException $e ) {
 				throw $e;
 			} catch ( Exception $e ) {
@@ -1224,6 +1147,96 @@ MESSAGE;
 		}
 
 		return $out;
+	}
+
+	/**
+	 * Get the response of a single module
+	 *
+	 * @param Context $context
+	 * @param string $name
+	 * @param Module $module
+	 * @return string
+	 */
+	private function getOneModuleResponse( Context $context, $name, Module $module ) {
+		$only = $context->getOnly();
+		$filter = $only === 'styles' ? 'minify-css' : 'minify-js';
+		$debug = (bool)$context->getDebug();
+		$content = $module->getModuleContent( $context );
+		$implementKey = $name . '@' . $module->getVersionHash( $context );
+		$strContent = '';
+
+		if ( isset( $content['headers'] ) ) {
+			$this->extraHeaders = array_merge( $this->extraHeaders, $content['headers'] );
+		}
+
+		// Append output
+		switch ( $only ) {
+			case 'scripts':
+				$scripts = $content['scripts'];
+				if ( is_string( $scripts ) ) {
+					// Load scripts raw...
+					$strContent = $scripts;
+				} elseif ( is_array( $scripts ) ) {
+					// ...except when $scripts is an array of URLs or an associative array
+					$strContent = self::makeLoaderImplementScript(
+						$implementKey,
+						$scripts,
+						[],
+						null,
+						[]
+					);
+				}
+				break;
+			case 'styles':
+				$styles = $content['styles'];
+				// We no longer separate into media, they are all combined now with
+				// custom media type groups into @media .. {} sections as part of the css string.
+				// Module returns either an empty array or a numerical array with css strings.
+				$strContent = isset( $styles['css'] ) ? implode( '', $styles['css'] ) : '';
+				break;
+			default:
+				$scripts = $content['scripts'] ?? '';
+				if ( is_string( $scripts ) ) {
+					if ( $name === 'site' || $name === 'user' ) {
+						// Legacy scripts that run in the global scope without a closure.
+						// mw.loader.implement will use eval if scripts is a string.
+						// Minify manually here, because general response minification is
+						// not effective due it being a string literal, not a function.
+						if ( !$debug ) {
+							$scripts = self::filter( 'minify-js', $scripts ); // T107377
+						}
+					} else {
+						$scripts = new HtmlJsCode( $scripts );
+					}
+				}
+				$strContent = self::makeLoaderImplementScript(
+					$implementKey,
+					$scripts,
+					$content['styles'] ?? [],
+					isset( $content['messagesBlob'] ) ? new HtmlJsCode( $content['messagesBlob'] ) : null,
+					$content['templates'] ?? []
+				);
+				break;
+		}
+
+		if ( $debug ) {
+			// In debug mode, separate each response by a new line.
+			// For example, between 'mw.loader.implement();' statements.
+			$strContent = self::ensureNewline( $strContent );
+		} else {
+			$strContent = self::filter( $filter, $strContent, [
+				// Important: Do not cache minifications of embedded modules
+				// This is especially for the private 'user.options' module,
+				// which varies on every pageview and would explode the cache (T84960)
+				'cache' => !$module->shouldEmbedModule( $context )
+			] );
+		}
+
+		if ( $only === 'scripts' ) {
+			// Use a linebreak between module scripts (T162719)
+			$strContent = self::ensureNewline( $strContent );
+		}
+		return $strContent;
 	}
 
 	/**
