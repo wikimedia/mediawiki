@@ -554,15 +554,12 @@ class RequestContext implements IContextSource, MutableContext {
 	public function getSkin() {
 		if ( $this->skin === null ) {
 			$skinFromHook = $this->getSkinFromHook();
-			$skinName = null;
-			if ( is_string( $skinFromHook ) ) {
-				$skinName = Skin::normalizeKey( $skinFromHook );
-			} elseif ( $skinFromHook ) {
+			if ( $skinFromHook instanceof Skin ) {
 				$this->skin = $skinFromHook;
 			} else {
-				$skinName = $this->getSkinName();
-			}
-			if ( $skinName !== null ) {
+				$skinName = is_string( $skinFromHook )
+					? Skin::normalizeKey( $skinFromHook )
+					: $this->getSkinName();
 				$factory = MediaWikiServices::getInstance()->getSkinFactory();
 				$this->skin = $factory->makeSkin( $skinName );
 			}
