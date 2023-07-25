@@ -65,7 +65,11 @@ class ApiFormatPhp extends ApiFormatBase {
 				ParamValidator::PARAM_TYPE => [ '1', '2', 'latest' ],
 				ParamValidator::PARAM_DEFAULT => '1',
 				ApiBase::PARAM_HELP_MSG => 'apihelp-php-param-formatversion',
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [
+					'1' => 'apihelp-php-paramvalue-formatversion-1',
+					'2' => 'apihelp-php-paramvalue-formatversion-2',
+					'latest' => 'apihelp-php-paramvalue-formatversion-latest',
+				],
 			],
 		];
 	}
