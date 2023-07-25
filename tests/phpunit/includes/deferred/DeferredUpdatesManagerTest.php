@@ -7,6 +7,7 @@ use MediaWiki\MediaWikiServices;
  * Based on DeferredUpdatesTest but calling the corresponding
  * service methods instead
  *
+ * @group Database
  * @coversDefaultClass \MediaWiki\Deferred\DeferredUpdatesManager
  */
 class DeferredUpdatesManagerTest extends MediaWikiIntegrationTestCase {

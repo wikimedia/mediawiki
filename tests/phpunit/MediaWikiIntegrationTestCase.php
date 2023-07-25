@@ -237,6 +237,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @since 1.39
 	 */
 	protected function getDb() {
+		if ( !$this->needsDB() ) {
+			throw new LogicException( 'This test does not need DB but tried to access it anyway' );
+		}
 		return MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 	}
 
