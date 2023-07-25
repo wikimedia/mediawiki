@@ -822,4 +822,8 @@ class ApiComparePages extends ApiBase {
 				=> 'apihelp-compare-example-1',
 		];
 	}
+
+	public function getHelpUrls() {
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Compare';
+	}
 }
