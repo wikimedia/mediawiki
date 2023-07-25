@@ -520,6 +520,12 @@
 				"type": "integer",
 				"comment": "Namespace for pl_from page",
 				"options": { "notnull": true, "default": 0 }
+			},
+			{
+				"name": "pl_target_id",
+				"type": "bigint",
+				"comment": "Foreign key to linktarget.lt_id",
+				"options": { "notnull": false, "unsigned": true }
 			}
 		],
 		"indexes": [
@@ -532,6 +538,18 @@
 			{
 				"name": "pl_backlinks_namespace",
 				"columns": [ "pl_from_namespace", "pl_namespace", "pl_title", "pl_from" ],
+				"comment": "Index for Special:Whatlinkshere with namespace filter",
+				"unique": false
+			},
+			{
+				"name": "pl_target_id",
+				"columns": [ "pl_target_id", "pl_from" ],
+				"comment": "Reverse index, for Special:Whatlinkshere",
+				"unique": false
+			},
+			{
+				"name": "pl_backlinks_namespace_target_id",
+				"columns": [ "pl_from_namespace", "pl_target_id", "pl_from" ],
 				"comment": "Index for Special:Whatlinkshere with namespace filter",
 				"unique": false
 			}
