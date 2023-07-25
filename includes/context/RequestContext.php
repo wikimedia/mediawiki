@@ -113,6 +113,15 @@ class RequestContext implements IContextSource, MutableContext {
 	 */
 	private $languageRecursion = false;
 
+	/** @var Skin|string|null */
+	private $skinFromHook;
+
+	/** @var bool */
+	private $skinHookCalled = false;
+
+	/** @var string|null */
+	private $skinName;
+
 	/**
 	 * @param Config $config
 	 */
@@ -415,6 +424,7 @@ class RequestContext implements IContextSource, MutableContext {
 			$obj = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $language );
 			$this->lang = $obj;
 		}
+		OutputPage::resetOOUI();
 	}
 
 	/**
@@ -480,6 +490,62 @@ class RequestContext implements IContextSource, MutableContext {
 	public function setSkin( Skin $skin ) {
 		$this->skin = clone $skin;
 		$this->skin->setContext( $this );
+		$this->skinName = $skin->getSkinName();
+		OutputPage::resetOOUI();
+	}
+
+	/**
+	 * Get the name of the skin
+	 *
+	 * @since 1.41
+	 * @return string
+	 */
+	public function getSkinName() {
+		if ( $this->skinName === null ) {
+			$this->skinName = $this->fetchSkinName();
+		}
+		return $this->skinName;
+	}
+
+	/**
+	 * Get the name of the skin, without caching
+	 *
+	 * @return string
+	 */
+	private function fetchSkinName() {
+		$skinFromHook = $this->getSkinFromHook();
+		if ( $skinFromHook instanceof Skin ) {
+			// The hook provided a skin object
+			return $skinFromHook->getSkinName();
+		} elseif ( is_string( $skinFromHook ) ) {
+			// The hook provided a skin name
+			// Normalize the key, just in case the hook did something weird.
+			return Skin::normalizeKey( $skinFromHook );
+		}
+
+		// No hook override, go through normal processing
+		if ( !in_array( 'skin', $this->getConfig()->get( MainConfigNames::HiddenPrefs ) ) ) {
+			$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+			$userSkin = $userOptionsLookup->getOption( $this->getUser(), 'skin' );
+			// Optimisation: Avoid slow getVal(), this isn't user-generated content.
+			return $this->getRequest()->getRawVal( 'useskin', $userSkin );
+		} else {
+			return $this->getConfig()->get( MainConfigNames::DefaultSkin );
+		}
+	}
+
+	/**
+	 * Get the skin set by the RequestContextCreateSkin hook, if there is any.
+	 *
+	 * @return Skin|string|null
+	 */
+	private function getSkinFromHook() {
+		if ( !$this->skinHookCalled ) {
+			$this->skinHookCalled = true;
+			( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+				->onRequestContextCreateSkin( $this, $this->skinFromHook );
+		}
+		return $this->skinFromHook;
 	}
 
 	/**
@@ -487,41 +553,21 @@ class RequestContext implements IContextSource, MutableContext {
 	 */
 	public function getSkin() {
 		if ( $this->skin === null ) {
-			$skin = null;
-			$services = MediaWikiServices::getInstance();
-			( new HookRunner( $services->getHookContainer() ) )->onRequestContextCreateSkin( $this, $skin );
-			$factory = $services->getSkinFactory();
-
-			if ( $skin instanceof Skin ) {
-				// The hook provided a skin object
-				$this->skin = $skin;
-			} elseif ( is_string( $skin ) ) {
-				// The hook provided a skin name
-				// Normalize the key, just in case the hook did something weird.
-				$normalized = Skin::normalizeKey( $skin );
-				$this->skin = $factory->makeSkin( $normalized );
+			$skinFromHook = $this->getSkinFromHook();
+			$skinName = null;
+			if ( is_string( $skinFromHook ) ) {
+				$skinName = Skin::normalizeKey( $skinFromHook );
+			} elseif ( $skinFromHook ) {
+				$this->skin = $skinFromHook;
 			} else {
-				// No hook override, go through normal processing
-				if ( !in_array( 'skin', $this->getConfig()->get( MainConfigNames::HiddenPrefs ) ) ) {
-					$userOptionsLookup = $services->getUserOptionsLookup();
-					$userSkin = $userOptionsLookup->getOption( $this->getUser(), 'skin' );
-					// Optimisation: Avoid slow getVal(), this isn't user-generated content.
-					$userSkin = $this->getRequest()->getRawVal( 'useskin', $userSkin );
-				} else {
-					$userSkin = $this->getConfig()->get( MainConfigNames::DefaultSkin );
-				}
-
-				// Normalize the key in case the user is passing gibberish query params
-				// or has old user preferences (T71566).
-				// Skin::normalizeKey will also validate it, so makeSkin() won't throw.
-				$normalized = Skin::normalizeKey( $userSkin );
-				$this->skin = $factory->makeSkin( $normalized );
+				$skinName = $this->getSkinName();
 			}
-
-			// After all that set a context on whatever skin got created
+			if ( $skinName !== null ) {
+				$factory = MediaWikiServices::getInstance()->getSkinFactory();
+				$this->skin = $factory->makeSkin( $skinName );
+			}
 			$this->skin->setContext( $this );
 		}
-
 		return $this->skin;
 	}
 
