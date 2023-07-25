@@ -1359,6 +1359,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return new DeleteQueryBuilder( $this );
 	}
 
+	/**
+	 * Get a InsertQueryBuilder bound to this connection. This is overridden by
+	 * DBConnRef.
+	 *
+	 * @return InsertQueryBuilder
+	 */
+	public function newInsertQueryBuilder(): InsertQueryBuilder {
+		return new InsertQueryBuilder( $this );
+	}
+
 	public function selectField(
 		$table, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {

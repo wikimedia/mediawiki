@@ -157,15 +157,11 @@ class LinkTargetStore implements LinkTargetLookup {
 		$ns = $linkTarget->getNamespace();
 		$title = $linkTarget->getDBkey();
 
-		$dbw->insert(
-			'linktarget',
-			[
-				'lt_namespace' => $ns,
-				'lt_title' => $title,
-			],
-			__METHOD__,
-			[ 'IGNORE' ]
-		);
+		$dbw->newInsertQueryBuilder()
+			->insert( 'linktarget' )
+			->ignore()
+			->row( [ 'lt_namespace' => $ns, 'lt_title' => $title ] )
+			->caller( __METHOD__ )->execute();
 
 		if ( $dbw->affectedRows() ) {
 			$linkTargetId = $dbw->insertId();
