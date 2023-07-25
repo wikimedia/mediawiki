@@ -207,13 +207,12 @@ class BotPassword implements IDBAccessObject {
 	private function getPassword() {
 		[ $index, $options ] = DBAccessObjectUtils::getDBOptions( $this->flags );
 		$db = self::getDB( $index );
-		$password = $db->selectField(
-			'bot_passwords',
-			'bp_password',
-			[ 'bp_user' => $this->centralId, 'bp_app_id' => $this->appId ],
-			__METHOD__,
-			$options
-		);
+		$password = $db->newSelectQueryBuilder()
+			->select( 'bp_password' )
+			->from( 'bot_passwords' )
+			->where( [ 'bp_user' => $this->centralId, 'bp_app_id' => $this->appId ] )
+			->options( $options )
+			->caller( __METHOD__ )->fetchField();
 		if ( $password === false ) {
 			return PasswordFactory::newInvalidPassword();
 		}

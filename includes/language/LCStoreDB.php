@@ -58,12 +58,11 @@ class LCStoreDB implements LCStore {
 			$db = wfGetDB( DB_REPLICA );
 		}
 
-		$value = $db->selectField(
-			'l10n_cache',
-			'lc_value',
-			[ 'lc_lang' => $code, 'lc_key' => $key ],
-			__METHOD__
-		);
+		$value = $db->newSelectQueryBuilder()
+			->select( 'lc_value' )
+			->from( 'l10n_cache' )
+			->where( [ 'lc_lang' => $code, 'lc_key' => $key ] )
+			->caller( __METHOD__ )->fetchField();
 
 		return ( $value !== false ) ? unserialize( $db->decodeBlob( $value ) ) : null;
 	}

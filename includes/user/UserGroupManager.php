@@ -848,10 +848,11 @@ class UserGroupManager implements IDBAccessObject {
 		$fname = __METHOD__;
 		DeferredUpdates::addCallableUpdate( function () use ( $fname ) {
 			$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA, [], $this->wikiId );
-			$hasExpiredRow = (bool)$dbr->selectField( 'user_groups', '1',
-				[ 'ug_expiry < ' . $dbr->addQuotes( $dbr->timestamp() ) ],
-				$fname
-			);
+			$hasExpiredRow = (bool)$dbr->newSelectQueryBuilder()
+				->select( '1' )
+				->from( 'user_groups' )
+				->where( [ 'ug_expiry < ' . $dbr->addQuotes( $dbr->timestamp() ) ] )
+				->caller( $fname )->fetchField();
 			if ( $hasExpiredRow ) {
 				$this->jobQueueGroup->push( new UserGroupExpiryJob( [] ) );
 			}

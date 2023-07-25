@@ -347,13 +347,13 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 * @param string $name
 	 * @param IReadableDatabase $db The database connection to operate on.
 	 *        The database must correspond to ActorStore's wiki ID.
-	 * @param array $queryOptions
+	 * @param bool $lockInShareMode
 	 * @return int|null
 	 */
 	private function findActorIdInternal(
 		string $name,
 		IReadableDatabase $db,
-		array $queryOptions = []
+		bool $lockInShareMode = false
 	): ?int {
 		// Note: UserIdentity::getActorId will be deprecated and removed,
 		// and this is the replacement for it. Can't call User::getActorId, cause
@@ -365,13 +365,15 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			return $cachedValue;
 		}
 
-		$row = $db->selectRow(
-			'actor',
-			[ 'actor_user', 'actor_name', 'actor_id' ],
-			[ 'actor_name' => $name ],
-			__METHOD__,
-			$queryOptions
-		);
+		$queryBuilder = $db->newSelectQueryBuilder()
+			->select( [ 'actor_user', 'actor_name', 'actor_id' ] )
+			->from( 'actor' )
+			->where( [ 'actor_name' => $name ] );
+		if ( $lockInShareMode ) {
+			$queryBuilder->lockInShareMode();
+		}
+
+		$row = $queryBuilder->caller( __METHOD__ )->fetchRow();
 
 		if ( !$row || !$row->actor_id ) {
 			return null;
@@ -422,11 +424,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		} else {
 			// Outdated cache?
 			// Use LOCK IN SHARE MODE to bypass any MySQL REPEATABLE-READ snapshot.
-			$actorId = $this->findActorIdInternal(
-				$userName,
-				$dbw,
-				[ 'LOCK IN SHARE MODE' ]
-			);
+			$actorId = $this->findActorIdInternal( $userName, $dbw, true );
 			if ( !$actorId ) {
 				throw new CannotCreateActorException(
 					"Failed to create actor ID for " .

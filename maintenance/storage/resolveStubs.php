@@ -66,12 +66,16 @@ class ResolveStubs extends Maintenance {
 			$start = $blockSize * $b + 1;
 			$end = $blockSize * ( $b + 1 );
 
-			$res = $dbr->select( 'text', [ 'old_id', 'old_text', 'old_flags' ],
-				"old_id>=$start AND old_id<=$end " .
-				"AND old_flags LIKE '%object%' AND old_flags NOT LIKE '%external%' " .
-				// LOWER() doesn't work on binary text, need to convert
-				'AND LOWER(CONVERT(LEFT(old_text,22) USING latin1)) = \'o:15:"historyblobstub"\'',
-				__METHOD__ );
+			$res = $dbr->newSelectQueryBuilder()
+				->select( [ 'old_id', 'old_text', 'old_flags' ] )
+				->from( 'text' )
+				->where(
+					"old_id>=$start AND old_id<=$end " .
+					"AND old_flags LIKE '%object%' AND old_flags NOT LIKE '%external%' " .
+					// LOWER() doesn't work on binary text, need to convert
+					'AND LOWER(CONVERT(LEFT(old_text,22) USING latin1)) = \'o:15:"historyblobstub"\''
+				)
+				->caller( __METHOD__ )->fetchResultSet();
 			foreach ( $res as $row ) {
 				$numResolved += $this->resolveStub( $row, $dryRun ) ? 1 : 0;
 				$numTotal++;

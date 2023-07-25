@@ -149,15 +149,11 @@ class ForeignDBFile extends LocalFile {
 	 */
 	public function getDescriptionShortUrl() {
 		$dbr = $this->repo->getReplicaDB();
-		$pageId = $dbr->selectField(
-			'page',
-			'page_id',
-			[
-				'page_namespace' => NS_FILE,
-				'page_title' => $this->title->getDBkey()
-			],
-			__METHOD__
-		);
+		$pageId = $dbr->newSelectQueryBuilder()
+			->select( 'page_id' )
+			->from( 'page' )
+			->where( [ 'page_namespace' => NS_FILE, 'page_title' => $this->title->getDBkey() ] )
+			->caller( __METHOD__ )->fetchField();
 
 		if ( $pageId !== false ) {
 			$url = $this->repo->makeUrl( [ 'curid' => $pageId ] );

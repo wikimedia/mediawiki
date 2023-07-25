@@ -106,20 +106,15 @@ class EditResultCache {
 		// not found in stash, try change tags
 		if ( !$result ) {
 			$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-			$result = $dbr->selectField(
-				[ 'change_tag', 'change_tag_def' ],
-				'ct_params',
-				[
+			$result = $dbr->newSelectQueryBuilder()
+				->select( 'ct_params' )
+				->from( 'change_tag' )
+				->join( 'change_tag_def', null, 'ctd_id = ct_tag_id' )
+				->where( [
 					'ct_rev_id' => $revisionId,
-					'ctd_id = ct_tag_id',
-					'ctd_name' => [
-						'mw-rollback',
-						'mw-undo',
-						'mw-manual-revert'
-					]
-				],
-				__METHOD__
-			);
+					'ctd_name' => [ 'mw-rollback', 'mw-undo', 'mw-manual-revert' ]
+				] )
+				->caller( __METHOD__ )->fetchField();
 		}
 
 		if ( !$result ) {

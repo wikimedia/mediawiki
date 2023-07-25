@@ -108,15 +108,17 @@ class FileBackendDBRepoWrapper extends FileBackend {
 			if ( $container === "{$this->repoName}-public" ) {
 				$name = basename( $path );
 				if ( str_contains( $path, '!' ) ) {
-					$sha1 = $db->selectField( 'oldimage', 'oi_sha1',
-						[ 'oi_archive_name' => $name ],
-						__METHOD__
-					);
+					$sha1 = $db->newSelectQueryBuilder()
+						->select( 'oi_sha1' )
+						->from( 'oldimage' )
+						->where( [ 'oi_archive_name' => $name ] )
+						->caller( __METHOD__ )->fetchField();
 				} else {
-					$sha1 = $db->selectField( 'image', 'img_sha1',
-						[ 'img_name' => $name ],
-						__METHOD__
-					);
+					$sha1 = $db->newSelectQueryBuilder()
+						->select( 'img_sha1' )
+						->from( 'image' )
+						->where( [ 'img_name' => $name ] )
+						->caller( __METHOD__ )->fetchField();
 				}
 				if ( $sha1 === null || !strlen( $sha1 ) ) {
 					$resolved[$i] = $path; // give up

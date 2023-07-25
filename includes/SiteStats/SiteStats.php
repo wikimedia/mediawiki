@@ -209,12 +209,11 @@ class SiteStats {
 				$dbr = self::getLB()->getConnectionRef( DB_REPLICA );
 				$setOpts += Database::getCacheSetOptions( $dbr );
 
-				return (int)$dbr->selectField(
-					'page',
-					'COUNT(*)',
-					[ 'page_namespace' => $ns ],
-					$fname
-				);
+				return (int)$dbr->newSelectQueryBuilder()
+					->select( 'COUNT(*)' )
+					->from( 'page' )
+					->where( [ 'page_namespace' => $ns ] )
+					->caller( $fname )->fetchField();
 			},
 			[ 'pcTTL' => $cache::TTL_PROC_LONG ]
 		);

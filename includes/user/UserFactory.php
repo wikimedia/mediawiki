@@ -291,16 +291,13 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 
 		$db = $this->loadBalancer->getConnectionRef( $index );
 
-		$id = $db->selectField(
-			'user',
-			'user_id',
-			[
-				'user_email_token' => md5( $confirmationCode ),
-				'user_email_token_expires > ' . $db->addQuotes( $db->timestamp() ),
-			],
-			__METHOD__,
-			$options
-		);
+		$id = $db->newSelectQueryBuilder()
+			->select( 'user_id' )
+			->from( 'user' )
+			->where( [ 'user_email_token' => md5( $confirmationCode ) ] )
+			->andWhere( $db->buildComparison( '>', [ 'user_email_token_expires' => $db->timestamp() ] ) )
+			->options( $options )
+			->caller( __METHOD__ )->fetchField();
 
 		if ( !$id ) {
 			return null;

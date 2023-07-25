@@ -538,13 +538,12 @@ class UserOptionsManager extends UserOptionsLookup {
 		if ( $prefetchedOptions === null ) {
 			$this->logger->debug( 'Loading options from database', [ 'user_id' => $user->getId() ] );
 			[ $dbr, $options ] = $this->getDBAndOptionsForQueryFlags( $queryFlags );
-			$res = $dbr->select(
-				'user_properties',
-				[ 'up_property', 'up_value' ],
-				[ 'up_user' => $user->getId() ],
-				__METHOD__,
-				$options
-			);
+			$res = $dbr->newSelectQueryBuilder()
+				->select( [ 'up_property', 'up_value' ] )
+				->from( 'user_properties' )
+				->where( [ 'up_user' => $user->getId() ] )
+				->options( $options )
+				->caller( __METHOD__ )->fetchResultSet();
 		} else {
 			$res = [];
 			foreach ( $prefetchedOptions as $name => $value ) {

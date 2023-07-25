@@ -10,6 +10,7 @@ use UserRightsProxy;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Rdbms\UpdateQueryBuilder;
 
 /**
@@ -31,6 +32,7 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 			'user_id' => 12345,
 		];
 		$dbMock->method( 'selectRow' )->willReturn( $row );
+		$dbMock->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $dbMock ) );
 
 		$lbMock = $this->createMock( ILoadBalancer::class );
 		$lbMock->method( 'getMaintenanceConnectionRef' )->willReturn( $dbMock );
@@ -190,6 +192,7 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 		$dbMock->method( 'selectRow' )->willReturn( $row );
 		$dbMock->method( 'timestamp' )->willReturn( 'timestamp' );
 		$dbMock->method( 'getDomainID' )->willReturn( 'foowiki' );
+		$dbMock->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $dbMock ) );
 
 		$dbMock->expects( $this->once() )
 			->method( 'replace' )
