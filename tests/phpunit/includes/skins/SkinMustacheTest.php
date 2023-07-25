@@ -7,8 +7,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * @covers SkinMustache
- *
- * @group Output
+ * @group Skin
  */
 class SkinMustacheTest extends MediaWikiIntegrationTestCase {
 
@@ -96,11 +95,11 @@ class SkinMustacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Skin::getTemplateData
-	 * @covers MediaWiki\Skin\SkinComponentLogo::getTemplateData
-	 * @covers MediaWiki\Skin\SkinComponentSearch::getTemplateData
-	 * @covers MediaWiki\Skin\SkinComponentTableOfContents::getTemplateData
-	 * @covers MediaWiki\Skin\SkinComponentFooter::getTemplateData
+	 * @covers Skin
+	 * @covers MediaWiki\Skin\SkinComponentLogo
+	 * @covers MediaWiki\Skin\SkinComponentSearch
+	 * @covers MediaWiki\Skin\SkinComponentTableOfContents
+	 * @covers MediaWiki\Skin\SkinComponentFooter
 	 */
 	public function testGetTemplateData() {
 		$config = $this->getServiceContainer()->getMainConfig();
