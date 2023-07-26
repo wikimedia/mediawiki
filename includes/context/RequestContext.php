@@ -528,7 +528,8 @@ class RequestContext implements IContextSource, MutableContext {
 			$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
 			$userSkin = $userOptionsLookup->getOption( $this->getUser(), 'skin' );
 			// Optimisation: Avoid slow getVal(), this isn't user-generated content.
-			return $this->getRequest()->getRawVal( 'useskin', $userSkin );
+			$skinName = $this->getRequest()->getRawVal( 'useskin', $userSkin );
+			return Skin::normalizeKey( $skinName );
 		} else {
 			return $this->getConfig()->get( MainConfigNames::DefaultSkin );
 		}
