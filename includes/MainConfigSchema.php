@@ -12595,16 +12595,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Specifies if users should see the inline switch in diff pages
-	 * This is a temporary feature flag
-	 *
-	 */
-	public const ShowDiffToggleSwitch = [
-		'default' => false,
-		'type' => 'boolean',
-	];
-
-	/**
 	 * Whether to enable the client-side edit recovery feature.
 	 * This is a temporary feature flag.
 	 */

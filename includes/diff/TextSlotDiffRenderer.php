@@ -26,7 +26,6 @@ use MediaWiki\Diff\TextDiffer\TextDiffer;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
-use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
@@ -243,9 +242,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	public function getTablePrefix( IContextSource $context, Title $newTitle ): array {
 		$parts = $this->getTextDiffer()->getTablePrefixes( $this->format );
 
-		$showDiffToggleSwitch = $this->inlineToggleEnabled
-			&& $context->getConfig()->get( MainConfigNames::ShowDiffToggleSwitch )
-			&& $this->getTextDiffer()->hasFormat( 'inline' );
+		$showDiffToggleSwitch = $this->inlineToggleEnabled && $this->getTextDiffer()->hasFormat( 'inline' );
 		// If we support the inline type, add a toggle switch
 		if ( $showDiffToggleSwitch ) {
 			$values = $context->getRequest()->getValues();

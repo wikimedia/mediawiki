@@ -2466,7 +2466,6 @@ return [
 			],
 			'SpecialContributeSkinsEnabled' => [
 			],
-			'ShowDiffToggleSwitch' => false,
 			'EnableEditRecovery' => false,
 		],
 		'type' => [
@@ -2933,7 +2932,6 @@ return [
 			'FeaturePolicyReportOnly' => 'array',
 			'SkinsPreferred' => 'array',
 			'SpecialContributeSkinsEnabled' => 'array',
-			'ShowDiffToggleSwitch' => 'boolean',
 			'EnableEditRecovery' => 'boolean',
 		],
 		'mergeStrategy' => [

@@ -4416,12 +4416,6 @@ $wgSkinsPreferred = null;
 $wgSpecialContributeSkinsEnabled = null;
 
 /**
- * Config variable stub for the ShowDiffToggleSwitch setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::ShowDiffToggleSwitch
- */
-$wgShowDiffToggleSwitch = null;
-
-/**
  * Config variable stub for the EnableEditRecovery setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::EnableEditRecovery
  */
