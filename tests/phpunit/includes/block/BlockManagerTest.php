@@ -788,9 +788,165 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @dataProvider provideGetXffBlocks
+	 */
+	public function testGetXffBlocks(
+		$applyIpBlocksToXff,
+		$proxyWhiteList,
+		$isAnon,
+		$expected
+	) {
+		$xff = '1.2.3.4, 5.6.7.8, 9.10.11.12';
+		$ip = '1.2.3.4';
+
+		$blockManagerConfig = [
+			MainConfigNames::ApplyIpBlocksToXff => $applyIpBlocksToXff,
+			MainConfigNames::ProxyWhitelist => $proxyWhiteList,
+		];
+
+		$blockManagerMock = $this->getMockBuilder( BlockManager::class )
+			->setConstructorArgs( $this->getBlockManagerConstructorArgs( $blockManagerConfig ) )
+			->onlyMethods( [ 'getBlocksForIPList' ] )
+			->getMock();
+		$blockManagerMock->method( 'getBlocksForIPList' )
+			->willReturnCallback( function () use ( $isAnon ) {
+				if ( $isAnon ) {
+					return [ $this->createMock( DatabaseBlock::class ) ];
+				} else {
+					return [];
+				}
+			} );
+
+		/** @var BlockManager $blockManager */
+		$blockManager = TestingAccessWrapper::newFromObject( $blockManagerMock );
+
+		$this->assertSame(
+			$expected,
+			(bool)$blockManager->getXffBlocks( $ip, $xff, $isAnon, false )
+		);
+	}
+
+	public static function provideGetXffBlocks() {
+		return [
+			'ApplyIpBlocksToXff config is false' => [
+				'applyIpBlocksToXff' => false,
+				'proxyWhiteList' => [],
+				'isAnon' => true,
+				false,
+			],
+			'IP is in ProxyWhiteList' => [
+				'applyIpBlocksToXff' => true,
+				'proxyWhiteList' => [ '1.2.3.4' ],
+				'isAnon' => true,
+				false,
+			],
+			'User is logged in' => [
+				'applyIpBlocksToXff' => true,
+				'proxyWhiteList' => [],
+				'isAnon' => false,
+				false,
+			],
+			'IP is in XFF list but not in ProxyWhiteList' => [
+				'applyIpBlocksToXff' => true,
+				'proxyWhiteList' => [],
+				'isAnon' => true,
+				true,
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetSystemIpBlocks
+	 */
+	public function testGetSystemIpBlocks(
+		$proxyWhitelist,
+		$softBlockRanges,
+		$isLocallyBlockedProxy,
+		$isDnsBlacklisted,
+		$isAnon,
+		$expected
+	) {
+		$ip = '1.2.3.4';
+
+		$blockManagerConfig = [
+			MainConfigNames::ProxyWhitelist => $proxyWhitelist,
+			MainConfigNames::SoftBlockRanges => $softBlockRanges,
+			MainConfigNames::ProxyList => ( $isLocallyBlockedProxy ? [ $ip ] : [] ),
+		];
+
+		$blockManagerMock = $this->getMockBuilder( BlockManager::class )
+			->setConstructorArgs( $this->getBlockManagerConstructorArgs( $blockManagerConfig ) )
+			->onlyMethods( [ 'isDnsBlacklisted' ] )
+			->getMock();
+		$blockManagerMock->method( 'isDnsBlacklisted' )
+			->willReturn( $isDnsBlacklisted );
+
+		/** @var BlockManager $blockManager */
+		$blockManager = TestingAccessWrapper::newFromObject( $blockManagerMock );
+
+		$this->assertSame(
+			$expected,
+			(bool)$blockManager->getSystemIpBlocks( $ip, $isAnon )
+		);
+	}
+
+	public static function provideGetSystemIpBlocks() {
+		return [
+			'IP is in ProxyWhiteList' => [
+				'proxyWhitelist' => [ '1.2.3.4' ],
+				'softBlockRanges' => [],
+				'isLocallyBlockedProxy' => true,
+				'isDnsBlacklisted' => true,
+				'isAnon' => true,
+				false,
+			],
+			'IP is locally blocked proxy only' => [
+				'proxyWhitelist' => [],
+				'softBlockRanges' => [],
+				'isLocallyBlockedProxy' => true,
+				'isDnsBlacklisted' => false,
+				'isAnon' => false,
+				true,
+			],
+			'IP is DNS blacklisted only, anon' => [
+				'proxyWhitelist' => [],
+				'softBlockRanges' => [],
+				'isLocallyBlockedProxy' => false,
+				'isDnsBlacklisted' => true,
+				'isAnon' => true,
+				true,
+			],
+			'IP is DNS blacklisted only, logged in' => [
+				'proxyWhitelist' => [],
+				'softBlockRanges' => [],
+				'isLocallyBlockedProxy' => false,
+				'isDnsBlacklisted' => true,
+				'isAnon' => false,
+				false,
+			],
+			'IP is in SoftBlockRanges and ProxyWhiteList, anon' => [
+				'proxyWhitelist' => [ '1.2.3.4' ],
+				'softBlockRanges' => [ '1.2.3.4' ],
+				'isLocallyBlockedProxy' => false,
+				'isDnsBlacklisted' => false,
+				'isAnon' => true,
+				true,
+			],
+			'IP is in SoftBlockRanges and ProxyWhiteList, logged in' => [
+				'proxyWhitelist' => [ '1.2.3.4' ],
+				'softBlockRanges' => [ '1.2.3.4' ],
+				'isLocallyBlockedProxy' => false,
+				'isDnsBlacklisted' => false,
+				'isAnon' => false,
+				false,
+			],
+		];
+	}
+
+	/**
 	 * @coversNothing
 	 */
 	public function testAllServiceOptionsUsed() {
-		$this->assertAllServiceOptionsUsed( [ 'ApplyIpBlocksToXff', 'SoftBlockRanges' ] );
+		$this->assertAllServiceOptionsUsed();
 	}
 }
