@@ -13,7 +13,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Blocking
  * @group Database
- * @coversDefaultClass \MediaWiki\Block\BlockManager
+ * @covers \MediaWiki\Block\BlockManager
  */
 class BlockManagerTest extends MediaWikiIntegrationTestCase {
 	use TestAllServiceOptionsUsed;
@@ -68,9 +68,6 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @covers ::getUserBlock
-	 */
 	public function testGetBlock() {
 		// Reset so that hooks are called
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
@@ -123,8 +120,6 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideBlocksForShouldApplyCookieBlock
-	 * @covers ::getBlockFromCookieValue
-	 * @covers ::shouldApplyCookieBlock
 	 */
 	public function testGetBlockFromCookieValue( $options, $expected ) {
 		/** @var BlockManager $blockManager */
@@ -155,8 +150,6 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideBlocksForShouldApplyCookieBlock
-	 * @covers ::trackBlockWithCookie
-	 * @covers ::shouldApplyCookieBlock
 	 */
 	public function testTrackBlockWithCookieRemovesBlocks( $options, $expectKeepCookie ) {
 		/** @var BlockManager $blockManager */
@@ -251,7 +244,6 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideIsLocallyBlockedProxy
-	 * @covers ::isLocallyBlockedProxy
 	 */
 	public function testIsLocallyBlockedProxy( $proxyList, $expected ) {
 		/** @var BlockManager $blockManager */
@@ -276,8 +268,6 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideIsDnsBlacklisted
-	 * @covers ::isDnsBlacklisted
-	 * @covers ::inDnsBlacklist
 	 */
 	public function testIsDnsBlacklisted( $options, $expected ) {
 		$blockManagerConfig = [
@@ -386,9 +376,6 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @covers ::getUniqueBlocks
-	 */
 	public function testGetUniqueBlocks() {
 		$blockId = 100;
 
@@ -416,7 +403,6 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideTrackBlockWithCookie
-	 * @covers ::trackBlockWithCookie
 	 */
 	public function testTrackBlockWithCookie( $options, $expected ) {
 		$this->overrideConfigValue( MainConfigNames::CookiePrefix, '' );
@@ -538,7 +524,6 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideSetBlockCookie
-	 * @covers ::setBlockCookie
 	 */
 	public function testSetBlockCookie( $expiryDelta, $expectedExpiryDelta ) {
 		$this->overrideConfigValue( MainConfigNames::CookiePrefix, '' );
@@ -589,9 +574,6 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @covers ::shouldTrackBlockWithCookie
-	 */
 	public function testShouldTrackBlockWithCookieSystemBlock() {
 		/** @var BlockManager $blockManager */
 		$blockManager = TestingAccessWrapper::newFromObject( $this->getBlockManager( [] ) );
@@ -603,7 +585,6 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideShouldTrackBlockWithCookie
-	 * @covers ::shouldTrackBlockWithCookie
 	 */
 	public function testShouldTrackBlockWithCookie( $options, $expected ) {
 		$block = $this->getMockBuilder( DatabaseBlock::class )
@@ -708,9 +689,6 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @covers ::clearBlockCookie
-	 */
 	public function testClearBlockCookie() {
 		$this->overrideConfigValue( MainConfigNames::CookiePrefix, '' );
 
@@ -725,7 +703,6 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideGetIdFromCookieValue
-	 * @covers ::getIdFromCookieValue
 	 */
 	public function testGetIdFromCookieValue( $options, $expected ) {
 		$blockManager = $this->getBlockManager( [
@@ -771,7 +748,6 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideGetCookieValue
-	 * @covers ::getCookieValue
 	 */
 	public function testGetCookieValue( $options, $expected ) {
 		$blockManager = $this->getBlockManager( [
