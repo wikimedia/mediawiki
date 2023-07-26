@@ -65,7 +65,7 @@ interface UserIdentity extends WikiAwareEntity {
 	/**
 	 * This must be equivalent to getId() != 0 and is provided for code readability. There is no
 	 * equivalent utility for checking whether a user is temporary, since that would introduce a
-	 * service dependency. Use UserNameUtils::isTemp instead.
+	 * service dependency. Use UserIdentityUtils::isTemp (or UserNameUtils::isTemp) instead.
 	 *
 	 * @since 1.34
 	 *
