@@ -1499,6 +1499,9 @@ class DifferenceEngine extends ContextSource {
 	 *      the site default format (table) will be used.
 	 *    - expand-url: If true, put full URLs in href attributes (for action=render)
 	 *      FIXME: expand-url is not a slot diff option, it is a DifferenceEngine option.
+	 *    - inline-toggle: If true, and the inline format is supported and
+	 *      $wgShowDiffToggleSwitch is true, a format selector toggle switch
+	 *      will be shown.
 	 */
 	public function setSlotDiffOptions( $options ) {
 		$validatedOptions = [];
@@ -1509,6 +1512,9 @@ class DifferenceEngine extends ContextSource {
 		}
 		if ( !empty( $options['expand-url'] ) ) {
 			$validatedOptions['expand-url'] = true;
+		}
+		if ( !empty( $options['inline-toggle'] ) ) {
+			$validatedOptions['inline-toggle'] = true;
 		}
 		$this->slotDiffOptions = $validatedOptions;
 	}

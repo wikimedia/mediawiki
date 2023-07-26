@@ -75,6 +75,9 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	/** @var TextDiffer|null */
 	private $textDiffer;
 
+	/** @var bool */
+	private $inlineToggleEnabled = false;
+
 	/** @inheritDoc */
 	public function getExtraCacheKeys() {
 		return $this->textDiffer->getCacheKeys( [ $this->format ] );
@@ -201,6 +204,16 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	}
 
 	/**
+	 * Set a flag indicating whether the inline toggle switch is shown.
+	 *
+	 * @since 1.41
+	 * @param bool $enabled
+	 */
+	public function setInlineToggleEnabled( $enabled = true ) {
+		$this->inlineToggleEnabled = $enabled;
+	}
+
+	/**
 	 * Get the content model ID that this renderer acts on
 	 *
 	 * @since 1.41
@@ -230,9 +243,11 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	public function getTablePrefix( IContextSource $context, Title $newTitle ): array {
 		$parts = $this->getTextDiffer()->getTablePrefixes( $this->format );
 
-		$showDiffToggleSwitch = $context->getConfig()->get( MainConfigNames::ShowDiffToggleSwitch );
+		$showDiffToggleSwitch = $this->inlineToggleEnabled
+			&& $context->getConfig()->get( MainConfigNames::ShowDiffToggleSwitch )
+			&& $this->getTextDiffer()->hasFormat( 'inline' );
 		// If we support the inline type, add a toggle switch
-		if ( $showDiffToggleSwitch && $this->getTextDiffer()->hasFormat( 'inline' ) ) {
+		if ( $showDiffToggleSwitch ) {
 			$values = $context->getRequest()->getValues();
 			$isInlineDiffType = $this->format === 'inline';
 			unset( $values[ 'diff-type' ] );
