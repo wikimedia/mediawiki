@@ -583,7 +583,6 @@ class SpecialPageFactory {
 				'UserNameUtils',
 				'UserNamePrefixSearch',
 				'UserFactory',
-				'ActorStoreFactory',
 			]
 		],
 		'EditWatchlist' => [

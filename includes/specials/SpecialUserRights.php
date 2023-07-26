@@ -32,21 +32,21 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
-use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
-use MediaWiki\User\UserRigorOptions;
 use MediaWiki\WikiMap\WikiMap;
 use OutputPage;
 use PermissionsError;
 use SpecialPage;
 use Status;
+use User;
 use UserBlockedError;
 use UserGroupMembership;
+use UserRightsProxy;
 use Xml;
 use XmlSelect;
 
@@ -84,22 +84,17 @@ class SpecialUserRights extends SpecialPage {
 	/** @var UserFactory */
 	private $userFactory;
 
-	/** @var ActorStoreFactory */
-	private $actorStoreFactory;
-
 	/**
 	 * @param UserGroupManagerFactory|null $userGroupManagerFactory
 	 * @param UserNameUtils|null $userNameUtils
 	 * @param UserNamePrefixSearch|null $userNamePrefixSearch
 	 * @param UserFactory|null $userFactory
-	 * @param ActorStoreFactory|null $actorStoreFactory
 	 */
 	public function __construct(
 		UserGroupManagerFactory $userGroupManagerFactory = null,
 		UserNameUtils $userNameUtils = null,
 		UserNamePrefixSearch $userNamePrefixSearch = null,
-		UserFactory $userFactory = null,
-		ActorStoreFactory $actorStoreFactory = null
+		UserFactory $userFactory = null
 	) {
 		parent::__construct( 'Userrights' );
 		$services = MediaWikiServices::getInstance();
@@ -108,7 +103,6 @@ class SpecialUserRights extends SpecialPage {
 		$this->userNamePrefixSearch = $userNamePrefixSearch ?? $services->getUserNamePrefixSearch();
 		$this->userFactory = $userFactory ?? $services->getUserFactory();
 		$this->userGroupManagerFactory = $userGroupManagerFactory ?? $services->getUserGroupManagerFactory();
-		$this->actorStoreFactory = $actorStoreFactory ?? $services->getActorStoreFactory();
 	}
 
 	public function doesWrites() {
@@ -132,7 +126,7 @@ class SpecialUserRights extends SpecialPage {
 		$userGroupManager = $this->userGroupManagerFactory
 			->getUserGroupManager( $targetUser->getWikiId() );
 		$available = $userGroupManager->getGroupsChangeableBy( $this->getAuthority() );
-		if ( !$targetUser->isRegistered() ) {
+		if ( $targetUser->getId() === 0 ) {
 			return false;
 		}
 
@@ -335,7 +329,7 @@ class SpecialUserRights extends SpecialPage {
 	 * Data comes from the editUserGroupsForm() form function
 	 *
 	 * @param string $reason Reason for group change
-	 * @param UserIdentity $user
+	 * @param User|UserRightsProxy $user Target user object.
 	 * @return Status
 	 */
 	protected function saveUserGroups( $reason, $user ) {
@@ -407,7 +401,7 @@ class SpecialUserRights extends SpecialPage {
 	 *
 	 * This function can be used without submitting the special page
 	 *
-	 * @param UserIdentity $user
+	 * @param User|UserRightsProxy $user
 	 * @param array $add Array of groups to add
 	 * @param array $remove Array of groups to remove
 	 * @param string $reason Reason for group change
@@ -454,16 +448,7 @@ class SpecialUserRights extends SpecialPage {
 				return !in_array( $group, $groups ) || array_key_exists( $group, $groupExpiries );
 			} );
 
-		if ( $user->getWikiId() === UserIdentity::LOCAL ) {
-			$legacyUser = $this->userFactory->newFromUserIdentity( $user );
-		} else {
-			// This removes the wiki reference, but hook is documented to take User object, which is always local
-			$legacyUser = $this->userFactory->newFromName( $user->getName(), UserRigorOptions::RIGOR_NONE );
-			if ( $legacyUser === null ) {
-				throw new \LogicException( 'UserFactory does not provide legacy user' );
-			}
-		}
-		$this->getHookRunner()->onChangeUserGroups( $this->getUser(), $legacyUser, $add, $remove );
+		$this->getHookRunner()->onChangeUserGroups( $this->getUser(), $user, $add, $remove );
 
 		$oldGroups = $groups;
 		$oldUGMs = $userGroupManager->getUserGroupMemberships( $user );
@@ -494,7 +479,7 @@ class SpecialUserRights extends SpecialPage {
 		$this->userFactory->invalidateCache( $user );
 
 		// update groups in external authentication database
-		$this->getHookRunner()->onUserGroupsChanged( $legacyUser, $add, $remove,
+		$this->getHookRunner()->onUserGroupsChanged( $user, $add, $remove,
 			$this->getUser(), $reason, $oldUGMs, $newUGMs );
 
 		wfDebug( 'oldGroups: ' . print_r( $oldGroups, true ) );
@@ -596,7 +581,7 @@ class SpecialUserRights extends SpecialPage {
 
 	/**
 	 * Normalize the input username, which may be local or remote, and
-	 * return a user identity object, use it on other services for manipulating rights
+	 * return a user (or proxy) object for manipulating it.
 	 *
 	 * Side effects: error output for invalid access
 	 * @param string $username
@@ -608,21 +593,20 @@ class SpecialUserRights extends SpecialPage {
 			$username );
 		if ( count( $parts ) < 2 ) {
 			$name = trim( $username );
-			$wikiId = UserIdentity::LOCAL;
+			$dbDomain = '';
 		} else {
-			[ $name, $wikiId ] = array_map( 'trim', $parts );
+			[ $name, $dbDomain ] = array_map( 'trim', $parts );
 
-			if ( WikiMap::isCurrentWikiId( $wikiId ) ) {
-				$wikiId = UserIdentity::LOCAL;
+			if ( WikiMap::isCurrentWikiId( $dbDomain ) ) {
+				$dbDomain = '';
 			} else {
 				if ( $writing &&
 					!$this->getAuthority()->isAllowed( 'userrights-interwiki' )
 				) {
 					return Status::newFatal( 'userrights-no-interwiki' );
 				}
-				$localDatabases = $this->getConfig()->get( MainConfigNames::LocalDatabases );
-				if ( !in_array( $wikiId, $localDatabases ) ) {
-					return Status::newFatal( 'userrights-nodatabase', $wikiId );
+				if ( !UserRightsProxy::validDatabase( $dbDomain ) ) {
+					return Status::newFatal( 'userrights-nodatabase', $dbDomain );
 				}
 			}
 		}
@@ -631,31 +615,39 @@ class SpecialUserRights extends SpecialPage {
 			return Status::newFatal( 'nouserspecified' );
 		}
 
-		$userIdentityLookup = $this->actorStoreFactory->getUserIdentityLookup( $wikiId );
 		if ( $name[0] == '#' ) {
 			// Numeric ID can be specified...
+			// We'll do a lookup for the name internally.
 			$id = intval( substr( $name, 1 ) );
 
-			$user = $userIdentityLookup->getUserIdentityByUserId( $id );
-			if ( !$user ) {
-				// Different error message for compatibility
+			if ( $dbDomain == '' ) {
+				$name = User::whoIs( $id );
+			} else {
+				$name = UserRightsProxy::whoIs( $dbDomain, $id );
+			}
+
+			if ( !$name ) {
 				return Status::newFatal( 'noname' );
 			}
-			$name = $user->getName();
 		} else {
 			$name = $this->userNameUtils->getCanonical( $name );
 			if ( $name === false ) {
 				// invalid name
 				return Status::newFatal( 'nosuchusershort', $username );
 			}
-			$user = $userIdentityLookup->getUserIdentityByName( $name );
 		}
 
 		if ( $this->userNameUtils->isTemp( $name ) ) {
 			return Status::newFatal( 'userrights-no-group' );
 		}
 
-		if ( !$user || !$user->isRegistered() ) {
+		if ( $dbDomain == '' ) {
+			$user = $this->userFactory->newFromName( $name );
+		} else {
+			$user = UserRightsProxy::newFromName( $dbDomain, $name );
+		}
+
+		if ( !$user || $user->isAnon() ) {
 			return Status::newFatal( 'nosuchusershort', $username );
 		}
 
@@ -802,7 +794,7 @@ class SpecialUserRights extends SpecialPage {
 		// Only add an email link if the user is not a system user
 		$flags = $systemUser ? 0 : Linker::TOOL_LINKS_EMAIL;
 		$userToolLinks = Linker::userToolLinks(
-			$user->getId( $user->getWikiId() ),
+			$user->getId(),
 			$user->getName(),
 			false, /* default for redContribsWhenNoEdits */
 			$flags
