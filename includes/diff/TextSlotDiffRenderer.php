@@ -243,6 +243,8 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 				new ButtonGroupWidget( [
 					'items' => [
 						new ButtonWidget( [
+							'id' => 'mw-diffPage-inline-button',
+							'infusable' => true,
 							'active' => $isInlineDiffType,
 							'label' => $context->msg( 'diff-inline-format-label' )->plain(),
 							'href' => $newTitle->getLocalURL( $values ) . '&diff-type=inline'
@@ -250,7 +252,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 						new ButtonWidget( [
 							'active' => !$isInlineDiffType,
 							'label' => $context->msg( 'diff-table-format-label' )->plain(),
-							'href' => $newTitle->getLocalURL( $values )
+							'href' => $newTitle->getLocalURL( $values ) . '&diff-type=table'
 						] )
 					]
 				] )

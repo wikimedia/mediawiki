@@ -5,9 +5,18 @@
 	var $wikitextDiffContainer, $wikitextDiffHeader, $wikitextDiffBody,
 		$wikitextDiffBodyInline, $wikitextDiffBodyTable,
 		url = new URL( location.href ),
-		initDiffType = url.searchParams.get( 'diff-type' ) || 'table',
-		$inlineLegendContainer = $( '.mw-diff-inline-legend' ),
-		inlineToggleField = new mw.widgets.InlineToggleField( initDiffType ),
+		api = new mw.Api(),
+		$inlineLegendContainer = $( '.mw-diff-inline-legend' );
+
+	var initDiffType;
+	var $inlineButton = $( '#mw-diffPage-inline-button' );
+	if ( $inlineButton.length ) {
+		initDiffType = OO.ui.ButtonWidget.static.infuse( $inlineButton ).active ? 'inline' : 'table';
+	} else {
+		initDiffType = 'table';
+	}
+
+	var inlineToggleField = new mw.widgets.InlineToggleField( initDiffType ),
 		inlineToggleSwitch = inlineToggleField.inlineToggleSwitch;
 
 	$( '.mw-diffPage-inlineToggle-container' ).empty().append( inlineToggleField.$element );
@@ -44,6 +53,38 @@
 			( !isInline && typeof $wikitextDiffBodyTable === 'undefined' ) ) {
 			fetchDiff( isInline );
 		}
+
+		api.saveOption( 'diff-type', isInline ? 'inline' : 'table' )
+			.fail( function ( error ) {
+				if ( error === 'notloggedin' ) {
+					// Can't save preference, so use query parameter stickiness
+					switchQueryParams( isInline );
+				}
+			} );
+	}
+
+	/**
+	 * Change the query parameters to maintain the new diff type.
+	 * This is used for anonymous users.
+	 *
+	 * @param {boolean} isInline
+	 */
+	function switchQueryParams( isInline ) {
+		$( '#differences-prevlink, #differences-nextlink' )
+			.each( function () {
+				var linkUrl;
+				try {
+					linkUrl = new URL( this.href );
+				} catch ( e ) {
+					return;
+				}
+				if ( isInline ) {
+					linkUrl.searchParams.set( 'diff-type', 'inline' );
+				} else {
+					linkUrl.searchParams.delete( 'diff-type' );
+				}
+				this.href = linkUrl.toString();
+			} );
 	}
 
 	/**
@@ -68,8 +109,7 @@
 		var apiParams, oldPageName, newPageName,
 			diffType = isInline ? 'inline' : 'table',
 			oldRevId = mw.config.get( 'wgDiffOldId' ),
-			newRevId = mw.config.get( 'wgDiffNewId' ),
-			api = new mw.Api();
+			newRevId = mw.config.get( 'wgDiffNewId' );
 
 		if ( mw.config.get( 'wgCanonicalSpecialPageName' ) !== 'ComparePages' ) {
 			oldPageName = newPageName = mw.config.get( 'wgRelevantPageName' );

@@ -937,7 +937,9 @@ class Article implements Page {
 			}
 		}
 
-		$contentHandler = MediaWikiServices::getInstance()
+		$services = MediaWikiServices::getInstance();
+
+		$contentHandler = $services
 			->getContentHandlerFactory()
 			->getContentHandler(
 				$rev->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )->getModel()
@@ -950,8 +952,18 @@ class Article implements Page {
 			$purge,
 			$unhide
 		);
+
+		$diffType = $request->getVal( 'diff-type' );
+
+		if ( $diffType === null ) {
+			$diffType = $this->userOptionsLookup
+				->getOption( $context->getUser(), 'diff-type' );
+		} else {
+			$de->setExtraQueryParams( [ 'diff-type' => $diffType ] );
+		}
+
 		$de->setSlotDiffOptions( [
-			'diff-type' => $request->getVal( 'diff-type' ),
+			'diff-type' => $diffType,
 			'expand-url' => $this->viewIsRenderAction
 		] );
 		$de->showDiffPage( $this->isDiffOnlyView() );
