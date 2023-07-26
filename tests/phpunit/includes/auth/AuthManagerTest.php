@@ -503,12 +503,14 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 				$this->exactly( 2 )
 			)
 				->with(
-					$this->anything(),
-					$this->anything(),
-					$this->callback( static function ( $s ) use ( $session ) {
+					/* $status */ $this->anything(),
+					/* $operation */ $this->anything(),
+					/* $session */ $this->callback( static function ( $s ) use ( $session ) {
 						return $s->getId() === $session->getId();
 					} ),
-					$mutableSession ? $this->equalTo( 500, 1 ) : $this->equalTo( -1 )
+					/* $timeSinceAuth*/ $mutableSession
+						? $this->equalToWithDelta( 500, 2 )
+						: $this->equalTo( -1 )
 				)
 				->willReturnCallback( static function ( &$v ) use ( $hook ) {
 					$v = $hook;
