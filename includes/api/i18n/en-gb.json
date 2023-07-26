@@ -9,9 +9,12 @@
 			"Samwilson"
 		]
 	},
+	"apihelp-main-param-errorsuselocal": "If given, error texts will use locally-customised messages from the {{ns:MediaWiki}} namespace.",
 	"apihelp-block-param-watchuser": "Watch the user and talk pages of the user or IP address.",
 	"apihelp-compare-summary": "Get the difference between 2 pages.",
 	"apihelp-compare-extended-description": "A revision number, a page title, or a page ID for both \"from\" and \"to\" must be passed.",
+	"apihelp-compare-param-fromcontentformat-{slot}": "Content serialisation format of <var>fromtext-&#x7B;slot}</var>.",
+	"apihelp-compare-param-tocontentformat-{slot}": "Content serialisation format of <var>totext-&#x7B;slot}</var>.",
 	"apihelp-delete-example-simple": "Delete <kbd>Main Page</kbd>.",
 	"apihelp-delete-example-reason": "Delete <kbd>Main Page</kbd> with the reason <kbd>Preparing for move</kbd>.",
 	"apihelp-edit-param-contentformat": "Content serialisation format used for the input text.",
@@ -29,6 +32,7 @@
 	"apihelp-query+siteinfo-paramvalue-prop-rightsinfo": "Returns wiki rights (licence) information if available.",
 	"apihelp-query+watchlist-example-simple": "List the top revision for recently changed pages on the watchlist of the current user.",
 	"apihelp-query+watchlistraw-example-simple": "List pages on the watchlist of the current user.",
+	"apihelp-stashedit-param-contentformat": "Content serialisation format used for the input text.",
 	"apihelp-php-summary": "Output data in serialised PHP format.",
 	"apihelp-phpfm-summary": "Output data in serialised PHP format (pretty-print in HTML).",
 	"api-help-license": "Licence: [[$1|$2]]",

@@ -316,6 +316,8 @@
 	"laggedreplicamode": "<strong>FUOM!</strong> Siiddus eai veaje leat ođđaseamos rievdadusat.",
 	"readonly": "Diehtuvuođđu lea giddejuvvon",
 	"enterlockreason": "Buvtte ákka lássejupmái, ja goas árvvoštallojuvvo fas ráhppot",
+	"readonlytext": "Diehtovuođđu lea juste dál giddejuvvon ođđa sátnevuoruide ja eará váidudemiide, jáhkkimis diehtovuođu dábálaš divodeami geažil. Maŋŋil lea fas dábálaš dilis.\n\nVuogádaga hálddašeaddjis guhte giddii dan lea čuovvovaš čilgehus: $1",
+	"missing-article": "Diehtovuođđu ii gávdnan teavstta man lei galgat gávdnat, nammaduvvon \"$1\" $2.\n\nDábálaččat lea dan sivas go čuovvu boarásnuvvan erohusa dahje historihkkaliŋka mii lea sihkkojuvvon.\n\nJus ii leat dan sivas, don soaittát gávdnan meattáhusa prográmmagálvvus.\nDieđit áinnas dán [[Special:ListUsers/sysop|administrator]] ja dieđit URL.",
 	"missingarticle-rev": "(versionummir: $1)",
 	"missingarticle-diff": "(Erohus: $1, $2)",
 	"timeouterror": "Server ádjánii beare guhka ",
