@@ -2634,8 +2634,12 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		[ $index, $options ] = DBAccessObjectUtils::getDBOptions( $flags );
 		$db = wfGetDB( $index );
 
-		$id = $db->selectField( 'user',
-			'user_id', [ 'user_name' => $s ], __METHOD__, $options );
+		$id = $db->newSelectQueryBuilder()
+			->select( 'user_id' )
+			->from( 'user' )
+			->where( [ 'user_name' => $s ] )
+			->options( $options )
+			->caller( __METHOD__ )->fetchField();
 
 		return (int)$id;
 	}
@@ -2779,13 +2783,12 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			);
 			if ( !$dbw->affectedRows() ) {
 				// Use locking reads to bypass any REPEATABLE-READ snapshot.
-				$this->mId = $dbw->selectField(
-					'user',
-					'user_id',
-					[ 'user_name' => $this->mName ],
-					$fname,
-					[ 'LOCK IN SHARE MODE' ]
-				);
+				$this->mId = $dbw->newSelectQueryBuilder()
+					->select( 'user_id' )
+					->lockInShareMode()
+					->from( 'user' )
+					->where( [ 'user_name' => $this->mName ] )
+					->caller( $fname )->fetchField();
 				$loaded = false;
 				if ( $this->mId && $this->loadFromDatabase( IDBAccessObject::READ_LOCKING ) ) {
 					$loaded = true;

@@ -213,12 +213,11 @@ class RevDelRevisionList extends RevDelList {
 	public function getCurrent() {
 		if ( $this->currentRevId === null ) {
 			$dbw = $this->lbFactory->getPrimaryDatabase();
-			$this->currentRevId = $dbw->selectField(
-				'page',
-				'page_latest',
-				[ 'page_namespace' => $this->page->getNamespace(), 'page_title' => $this->page->getDBkey() ],
-				__METHOD__
-			);
+			$this->currentRevId = $dbw->newSelectQueryBuilder()
+				->select( 'page_latest' )
+				->from( 'page' )
+				->where( [ 'page_namespace' => $this->page->getNamespace(), 'page_title' => $this->page->getDBkey() ] )
+				->caller( __METHOD__ )->fetchField();
 		}
 		return $this->currentRevId;
 	}

@@ -51,7 +51,11 @@ class HistoryBlobCurStub {
 	 */
 	public function getText() {
 		$dbr = wfGetDB( DB_REPLICA );
-		$row = $dbr->selectRow( 'cur', [ 'cur_text' ], [ 'cur_id' => $this->mCurId ], __METHOD__ );
+		$row = $dbr->newSelectQueryBuilder()
+			->select( [ 'cur_text' ] )
+			->from( 'cur' )
+			->where( [ 'cur_id' => $this->mCurId ] )
+			->caller( __METHOD__ )->fetchRow();
 		return $row ? $row->cur_text : false;
 	}
 }

@@ -1833,13 +1833,11 @@ class LocalFile extends File {
 		$reupload = ( $dbw->affectedRows() == 0 );
 
 		if ( $reupload ) {
-			$row = $dbw->selectRow(
-				'image',
-				[ 'img_timestamp', 'img_sha1' ],
-				[ 'img_name' => $this->getName() ],
-				__METHOD__,
-				[ 'LOCK IN SHARE MODE' ]
-			);
+			$row = $dbw->newSelectQueryBuilder()
+				->select( [ 'img_timestamp', 'img_sha1' ] )
+				->from( 'image' )
+				->where( [ 'img_name' => $this->getName() ] )
+				->caller( __METHOD__ )->fetchRow();
 
 			if ( $row && $row->img_sha1 === $this->sha1 ) {
 				$dbw->endAtomic( __METHOD__ );

@@ -218,12 +218,11 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 			$this->options->get( MainConfigNames::InterwikiExpiry ),
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $prefix, $fname ) {
 				$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-				$row = $dbr->selectRow(
-					'interwiki',
-					self::selectFields(),
-					[ 'iw_prefix' => $prefix ],
-					$fname
-				);
+				$row = $dbr->newSelectQueryBuilder()
+					->select( self::selectFields() )
+					->from( 'interwiki' )
+					->where( [ 'iw_prefix' => $prefix ] )
+					->caller( $fname )->fetchRow();
 
 				return $row ? (array)$row : '!NONEXISTENT';
 			}
@@ -360,10 +359,12 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 		}
 
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		$res = $dbr->select( 'interwiki',
-			self::selectFields(),
-			$where, __METHOD__, [ 'ORDER BY' => 'iw_prefix' ]
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( self::selectFields() )
+			->from( 'interwiki' )
+			->where( $where )
+			->orderBy( 'iw_prefix' )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		$retval = [];
 		foreach ( $res as $row ) {

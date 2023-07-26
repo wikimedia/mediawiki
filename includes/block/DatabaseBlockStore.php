@@ -36,6 +36,7 @@ use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\ReadOnlyMode;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * @since 1.36
@@ -139,14 +140,13 @@ class DatabaseBlockStore {
 			$dbw,
 			__METHOD__,
 			static function ( IDatabase $dbw, $fname ) use ( $store, $limit ) {
-				$ids = $dbw->selectFieldValues(
-					'ipblocks',
-					'ipb_id',
-					[ 'ipb_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ],
-					$fname,
+				$ids = $dbw->newSelectQueryBuilder()
+					->select( 'ipb_id' )
+					->from( 'ipblocks' )
+					->where( $dbw->buildComparison( '<', [ 'ipb_expiry' => $dbw->timestamp() ] ) )
 					// Set a limit to avoid causing read-only mode (T301742)
-					[ 'LIMIT' => $limit ]
-				);
+					->limit( $limit )
+					->caller( $fname )->fetchFieldValues();
 				if ( $ids ) {
 					$ids = array_map( 'intval', $ids );
 					$store->deleteByBlockId( $ids );
@@ -237,16 +237,12 @@ class DatabaseBlockStore {
 		if ( !$affected ) {
 			// T96428: The ipb_address index uses a prefix on a field, so
 			// use a standard SELECT + DELETE to avoid annoying gap locks.
-			$ids = $dbw->selectFieldValues(
-				'ipblocks',
-				'ipb_id',
-				[
-					'ipb_address' => $row['ipb_address'],
-					'ipb_user' => $row['ipb_user'],
-					'ipb_expiry < ' . $dbw->addQuotes( $dbw->timestamp() )
-				],
-				__METHOD__
-			);
+			$ids = $dbw->newSelectQueryBuilder()
+				->select( 'ipb_id' )
+				->from( 'ipblocks' )
+				->where( [ 'ipb_address' => $row['ipb_address'], 'ipb_user' => $row['ipb_user'] ] )
+				->andWhere( $dbw->buildComparison( '<', [ 'ipb_expiry' => $dbw->timestamp() ] ) )
+				->caller( __METHOD__ )->fetchFieldValues();
 			if ( $ids ) {
 				$ids = array_map( 'intval', $ids );
 				$dbw->newDeleteQueryBuilder()
@@ -552,13 +548,12 @@ class DatabaseBlockStore {
 			return [];
 		}
 
-		$rcIp = $dbr->selectField(
-			[ 'recentchanges' ],
-			'rc_ip',
-			[ 'rc_actor' => $actor ],
-			__METHOD__,
-			[ 'ORDER BY' => 'rc_timestamp DESC' ]
-		);
+		$rcIp = $dbr->newSelectQueryBuilder()
+			->select( 'rc_ip' )
+			->from( 'recentchanges' )
+			->where( [ 'rc_actor' => $actor ] )
+			->orderBy( 'rc_timestamp', SelectQueryBuilder::SORT_DESC )
+			->caller( __METHOD__ )->fetchField();
 
 		if ( !$rcIp ) {
 			$this->logger->debug( 'No IP found to retroactively autoblock' );

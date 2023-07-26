@@ -11,6 +11,7 @@ use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\DeleteQueryBuilder;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -291,6 +292,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 					'up_property' => 'test_option',
 				]
 			] ) );
+		$mockDb->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $mockDb ) );
 		$mockDbProvider = $this->createMock( IConnectionProvider::class );
 		$mockDbProvider
 			->method( 'getPrimaryDatabase' )
@@ -324,6 +326,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 			] ) );
 		$mockDb->expects( $this->never() ) // This is critical what we are testing
 			->method( 'delete' );
+		$mockDb->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $mockDb ) );
 		$mockDbProvider = $this->createMock( IConnectionProvider::class );
 		$mockDbProvider
 			->method( 'getPrimaryDatabase' )
@@ -380,6 +383,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 					'up_property' => [ 'set_default', 'set_default_null', 'set_default_not_null' ]
 				]
 			);
+		$mockDb->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $mockDb ) );
 		$mockDbProvider = $this->createMock( IConnectionProvider::class );
 		$mockDbProvider
 			->method( 'getPrimaryDatabase' )

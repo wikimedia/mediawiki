@@ -185,12 +185,14 @@ class LocalRepo extends FileRepo {
 	 * @return bool File with this key is in use
 	 */
 	protected function deletedFileHasKey( $key, $lock = null ) {
-		$dbw = $this->getPrimaryDB();
-		return (bool)$dbw->selectField( 'filearchive', '1',
-			[ 'fa_storage_group' => 'deleted', 'fa_storage_key' => $key ],
-			__METHOD__,
-			$lock === 'lock' ? [ 'FOR UPDATE' ] : []
-		);
+		$queryBuilder = $this->getPrimaryDB()->newSelectQueryBuilder()
+			->select( '1' )
+			->from( 'filearchive' )
+			->where( [ 'fa_storage_group' => 'deleted', 'fa_storage_key' => $key ] );
+		if ( $lock === 'lock' ) {
+			$queryBuilder->forUpdate();
+		}
+		return (bool)$queryBuilder->caller( __METHOD__ )->fetchField();
 	}
 
 	/**
@@ -205,15 +207,19 @@ class LocalRepo extends FileRepo {
 		$ext = File::normalizeExtension( substr( $key, strcspn( $key, '.' ) + 1 ) );
 
 		$dbw = $this->getPrimaryDB();
-		return (bool)$dbw->selectField( 'oldimage', '1',
-			[
+		$queryBuilder = $dbw->newSelectQueryBuilder()
+			->select( '1' )
+			->from( 'oldimage' )
+			->where( [
 				'oi_sha1' => $sha1,
 				'oi_archive_name ' . $dbw->buildLike( $dbw->anyString(), ".$ext" ),
 				$dbw->bitAnd( 'oi_deleted', File::DELETED_FILE ) => File::DELETED_FILE,
-			],
-			__METHOD__,
-			$lock === 'lock' ? [ 'FOR UPDATE' ] : []
-		);
+			] );
+		if ( $lock === 'lock' ) {
+			$queryBuilder->forUpdate();
+		}
+
+		return (bool)$queryBuilder->caller( __METHOD__ )->fetchField();
 	}
 
 	/**
@@ -256,16 +262,12 @@ class LocalRepo extends FileRepo {
 
 				$setOpts += Database::getCacheSetOptions( $dbr );
 
-				$row = $dbr->selectRow(
-					[ 'page', 'redirect' ],
-					[ 'rd_namespace', 'rd_title' ],
-					[
-						'page_namespace' => $title->getNamespace(),
-						'page_title' => $title->getDBkey(),
-						'rd_from = page_id'
-					],
-					$method
-				);
+				$row = $dbr->newSelectQueryBuilder()
+					->select( [ 'rd_namespace', 'rd_title' ] )
+					->from( 'page' )
+					->join( 'redirect', null, 'rd_from = page_id' )
+					->where( [ 'page_namespace' => $title->getNamespace(), 'page_title' => $title->getDBkey() ] )
+					->caller( $method )->fetchRow();
 
 				return ( $row && $row->rd_namespace == NS_FILE )
 					? Title::makeTitle( $row->rd_namespace, $row->rd_title )->getDBkey()

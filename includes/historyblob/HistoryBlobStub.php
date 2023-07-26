@@ -98,12 +98,11 @@ class HistoryBlobStub {
 			$obj = self::$blobCache[$this->mOldId];
 		} else {
 			$dbr = wfGetDB( DB_REPLICA );
-			$row = $dbr->selectRow(
-				'text',
-				[ 'old_flags', 'old_text' ],
-				[ 'old_id' => $this->mOldId ],
-				__METHOD__
-			);
+			$row = $dbr->newSelectQueryBuilder()
+				->select( [ 'old_flags', 'old_text' ] )
+				->from( 'text' )
+				->where( [ 'old_id' => $this->mOldId ] )
+				->caller( __METHOD__ )->fetchRow();
 
 			if ( !$row ) {
 				return false;

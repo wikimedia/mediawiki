@@ -11,6 +11,7 @@ use MediaWiki\Storage\EditResultCache;
 use MediaWikiUnitTestCase;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * @covers \MediaWiki\Storage\EditResultCache
@@ -115,6 +116,7 @@ class EditResultCacheTest extends MediaWikiUnitTestCase {
 		$dbr->expects( $this->once() )
 			->method( 'selectField' )
 			->willReturn( FormatJson::encode( $editResult ) );
+		$dbr->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $dbr ) );
 		$loadBalancer = $this->createMock( ILoadBalancer::class );
 		$loadBalancer->expects( $this->once() )
 			->method( 'getConnectionRef' )
@@ -150,6 +152,7 @@ class EditResultCacheTest extends MediaWikiUnitTestCase {
 		$dbr->expects( $this->once() )
 			->method( 'selectField' )
 			->willReturn( false );
+		$dbr->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $dbr ) );
 		$loadBalancer = $this->createMock( ILoadBalancer::class );
 		$loadBalancer->expects( $this->once() )
 			->method( 'getConnectionRef' )

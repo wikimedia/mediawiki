@@ -143,13 +143,12 @@ class BotPasswordStore implements IDBAccessObject {
 
 		[ $index, $options ] = DBAccessObjectUtils::getDBOptions( $flags );
 		$db = $this->getDatabase( $index );
-		$row = $db->selectRow(
-			'bot_passwords',
-			[ 'bp_user', 'bp_app_id', 'bp_token', 'bp_restrictions', 'bp_grants' ],
-			[ 'bp_user' => $centralId, 'bp_app_id' => $appId ],
-			__METHOD__,
-			$options
-		);
+		$row = $db->newSelectQueryBuilder()
+			->select( [ 'bp_user', 'bp_app_id', 'bp_token', 'bp_restrictions', 'bp_grants' ] )
+			->from( 'bot_passwords' )
+			->where( [ 'bp_user' => $centralId, 'bp_app_id' => $appId ] )
+			->options( $options )
+			->caller( __METHOD__ )->fetchRow();
 		return $row ? new BotPassword( $row, true, $flags ) : null;
 	}
 
@@ -256,15 +255,11 @@ class BotPasswordStore implements IDBAccessObject {
 
 		$ok = (bool)$dbw->affectedRows();
 		if ( $ok ) {
-			$token = $dbw->selectField(
-				'bot_passwords',
-				'bp_token',
-				[
-					'bp_user' => $botPassword->getUserCentralId(),
-					'bp_app_id' => $botPassword->getAppId(),
-				],
-				__METHOD__
-			);
+			$token = $dbw->newSelectQueryBuilder()
+				->select( 'bp_token' )
+				->from( 'bot_passwords' )
+				->where( [ 'bp_user' => $botPassword->getUserCentralId(), 'bp_app_id' => $botPassword->getAppId(), ] )
+				->caller( __METHOD__ )->fetchField();
 			return StatusValue::newGood( $token );
 		}
 		return StatusValue::newFatal( 'botpasswords-insert-failed', $botPassword->getAppId() );
@@ -310,12 +305,11 @@ class BotPasswordStore implements IDBAccessObject {
 
 		$ok = (bool)$dbw->affectedRows();
 		if ( $ok ) {
-			$token = $dbw->selectField(
-				'bot_passwords',
-				'bp_token',
-				$conds,
-				__METHOD__
-			);
+			$token = $dbw->newSelectQueryBuilder()
+				->select( 'bp_token' )
+				->from( 'bot_passwords' )
+				->where( $conds )
+				->caller( __METHOD__ )->fetchField();
 			return StatusValue::newGood( $token );
 		}
 		return StatusValue::newFatal( 'botpasswords-update-failed', $botPassword->getAppId() );

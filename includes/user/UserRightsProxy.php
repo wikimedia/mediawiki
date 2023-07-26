@@ -146,10 +146,11 @@ class UserRightsProxy implements UserIdentity {
 		$db = self::getDB( $dbDomain, $ignoreInvalidDB );
 
 		if ( $db && $userdb ) {
-			$row = $userdb->selectRow( 'user',
-				[ 'user_id', 'user_name' ],
-				[ $field => $value ],
-				__METHOD__ );
+			$row = $userdb->newSelectQueryBuilder()
+				->select( [ 'user_id', 'user_name' ] )
+				->from( 'user' )
+				->where( [ $field => $value ] )
+				->caller( __METHOD__ )->fetchRow();
 
 			if ( $row !== false ) {
 				return new UserRightsProxy(
