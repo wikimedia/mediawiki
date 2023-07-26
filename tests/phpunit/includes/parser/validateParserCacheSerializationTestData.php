@@ -6,11 +6,14 @@ use CacheTime;
 use Maintenance;
 use MediaWiki\Logger\ConsoleLogger;
 use ParserOutput;
+use Wikimedia\Tests\SerializationTestUtils;
+
+define( 'MW_AUTOLOAD_TEST_CLASSES', true );
+define( 'MW_PHPUNIT_TEST', true );
 
 require_once __DIR__ . '/../../../../maintenance/Maintenance.php';
-require __DIR__ . '/ParserCacheSerializationTestCases.php';
-require __DIR__ . '/../libs/serialization/SerializationTestUtils.php';
 
+// phpcs:disable MediaWiki.Files.ClassMatchesFilename.WrongCase
 class ValidateParserCacheSerializationTestData extends Maintenance {
 
 	public function __construct() {
@@ -55,7 +58,7 @@ class ValidateParserCacheSerializationTestData extends Maintenance {
 	public function validateSerialization( string $className, array $testInstances ) {
 		$supportedFormats = ParserCacheSerializationTestCases::getSupportedSerializationFormats( $className );
 		foreach ( $supportedFormats as $serializationFormat ) {
-			$serializationUtils = new \Wikimedia\Tests\SerializationTestUtils(
+			$serializationUtils = new SerializationTestUtils(
 				$this->getArg( 1 ) ?: __DIR__ . '/../../data/ParserCache',
 				$testInstances,
 				$serializationFormat['ext'],
@@ -100,5 +103,4 @@ class ValidateParserCacheSerializationTestData extends Maintenance {
 	}
 }
 
-$maintClass = ValidateParserCacheSerializationTestData::class;
-require_once RUN_MAINTENANCE_IF_MAIN;
+return ValidateParserCacheSerializationTestData::class;
