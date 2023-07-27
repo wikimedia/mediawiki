@@ -1494,50 +1494,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
-	 * Sets a page property to be stored in the page_props database table.
-	 * @param string $name
-	 * @param int|float|string|bool|null $value
-	 * @deprecated since 1.38, renamed to ::setPageProperty()
-	 */
-	public function setProperty( $name, $value ): void {
-		wfDeprecated( __METHOD__, '1.38' );
-		$this->setPageProperty( $name, $value );
-	}
-
-	/**
-	 * @param string $name The property name to look up.
-	 *
-	 * @return mixed|bool The value previously set using setPageProperty(). False if null or no value
-	 * was set for the given property name.
-	 *
-	 * @note You need to use getPageProperties() to check for boolean and null properties.
-	 * @deprecated since 1.38, renamed to ::getPageProperty() and returns `null`
-	 *  if no value was set.
-	 */
-	public function getProperty( $name ) {
-		wfDeprecated( __METHOD__, '1.38' );
-		return $this->getPageProperty( $name ) ?? false;
-	}
-
-	/**
-	 * @param string $name
-	 * @deprecated since 1.38, renamed to ::unsetPageProperty()
-	 */
-	public function unsetProperty( $name ): void {
-		wfDeprecated( __METHOD__, '1.38' );
-		$this->unsetPageProperty( $name );
-	}
-
-	/**
-	 * @return array
-	 * @deprecated since 1.38, renamed to ::getPageProperties()
-	 */
-	public function getProperties() {
-		wfDeprecated( __METHOD__, '1.38' );
-		return $this->getPageProperties();
-	}
-
-	/**
 	 * Set a page property to be stored in the page_props database table.
 	 *
 	 * page_props is a key value store indexed by the page ID. This allows
