@@ -9,11 +9,12 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Title\Title;
+use MediaWiki\User\StaticUserOptionsLookup;
 use MediaWiki\User\UserIdentityValue;
-use MediaWiki\User\UserOptionsLookup;
 use MediaWikiIntegrationTestCase;
 use RequestContext;
 use Skin;
+use SkinFallback;
 use User;
 
 /**
@@ -266,13 +267,7 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetSkinFromPref() {
-		$optionsLookup = $this->createMock( UserOptionsLookup::class );
-		$optionsLookup
-			->expects( $this->once() )
-			->method( 'getOption' )
-			->with( $this->anything(), $this->equalTo( 'skin' ) )
-			->willReturn( 'test' );
-
+		$optionsLookup = new StaticUserOptionsLookup( [], [ 'skin' => 'test' ] );
 		$this->setService( 'UserOptionsLookup', $optionsLookup );
 
 		$skin = $this->registerTestSkin();
@@ -308,17 +303,20 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 	public function testGetSkinFromBadPrefs() {
 		// T342733
 		$this->overrideConfigValue( MainConfigNames::DefaultSkin, 'test' );
-		$optionsLookup = $this->createMock( UserOptionsLookup::class );
-		$optionsLookup
-			->expects( $this->once() )
-			->method( 'getOption' )
-			->with( $this->anything(), $this->equalTo( 'skin' ) )
-			->willReturn( '' );
-
+		$optionsLookup = new StaticUserOptionsLookup( [], [ 'skin' => '' ] );
 		$this->setService( 'UserOptionsLookup', $optionsLookup );
 		$skin = $this->registerTestSkin();
 
 		$context = new RequestContext();
 		$this->assertSame( $skin, $context->getSkin() );
+	}
+
+	public function testGetSkinFromBadDefault() {
+		$this->overrideConfigValues( [
+			MainConfigNames::DefaultSkin => 'nonexistent',
+			MainConfigNames::HiddenPrefs => [ 'skin' ]
+		] );
+		$context = new RequestContext();
+		$this->assertInstanceOf( SkinFallback::class, $context->getSkin() );
 	}
 }
