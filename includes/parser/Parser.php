@@ -4119,7 +4119,7 @@ class Parser {
 	}
 
 	/**
-	 * @see ParserOutput::addTrackingCategory()
+	 * @see TrackingCategories::addTrackingCategory()
 	 * @param string $msg Message key
 	 * @return bool Whether the addition was successful
 	 * @since 1.19 method is public

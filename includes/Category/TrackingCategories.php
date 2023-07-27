@@ -33,8 +33,9 @@ use Psr\Log\LoggerInterface;
 use TitleParser;
 
 /**
- * This class performs some operations related to tracking categories, such as creating
- * a list of all such categories.
+ * This class performs some operations related to tracking categories, such as
+ * adding a tracking category to a ParserOutput, and creating a list of all
+ * such categories.
  * @since 1.29
  */
 class TrackingCategories {
@@ -236,12 +237,21 @@ class TrackingCategories {
 	}
 
 	/**
-	 * Add a tracking category to a ParserOutput.
-	 * @param ParserOutput $parserOutput
+	 * Add a tracking category to a ParserOutput, getting the title from a
+	 * system message.
+	 *
+	 * Any message used with this function should be registered so it will
+	 * show up on [[Special:TrackingCategories]].  Core messages should be
+	 * added to TrackingCategories::CORE_TRACKING_CATEGORIES, and extensions
+	 * should add to "TrackingCategories" in their extension.json.
+	 *
+	 * @param ParserOutput $parserOutput The target ParserOutput which will
+	 *  store the new category
 	 * @param string $msg Message key
 	 * @param ?PageReference $contextPage Context page title
 	 * @return bool Whether the addition was successful
 	 * @since 1.38
+	 * @see Parser::addTrackingCategory
 	 */
 	public function addTrackingCategory( ParserOutput $parserOutput, string $msg, ?PageReference $contextPage ): bool {
 		$categoryPage = $this->resolveTrackingCategory( $msg, $contextPage );

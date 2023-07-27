@@ -12,7 +12,6 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
-use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\ParserOutputStringSets;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
@@ -1361,29 +1360,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			$this->mJsConfigVars, $out->getJsConfigVars()
 		);
 		$this->mHeadItems = array_merge( $this->mHeadItems, $out->getHeadItemsArray() );
-	}
-
-	/**
-	 * Add a tracking category, getting the title from a system message,
-	 * or print a debug message if the title is invalid.
-	 *
-	 * Any message used with this function should be registered so it will
-	 * show up on Special:TrackingCategories. Core messages should be added
-	 * to TrackingCategories::CORE_TRACKING_CATEGORIES, and extensions
-	 * should add to "TrackingCategories" in their extension.json.
-	 *
-	 * @param string $msg Message key
-	 * @param PageReference $page the page which is being tracked
-	 *        (used to require a Title until 1.38)
-	 * @return bool Whether the addition was successful
-	 * @since 1.25
-	 * @deprecated since 1.38, use Parser::addTrackingCategory or
-	 *   TrackingCategories::addTrackingCategory() instead
-	 */
-	public function addTrackingCategory( $msg, PageReference $page ): bool {
-		wfDeprecated( __METHOD__, '1.38' );
-		$trackingCategories = MediaWikiServices::getInstance()->getTrackingCategories();
-		return $trackingCategories->addTrackingCategory( $this, $msg, $page );
 	}
 
 	/**
