@@ -190,11 +190,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private $mJsConfigVars = [];
 
 	/**
-	 * @var array[] Hook tags as per $wgParserOutputHooks.
-	 */
-	private $mOutputHooks = [];
-
-	/**
 	 * @var array<string,int> Warning text to be returned to the user.
 	 *  Wikitext formatted, in the key only.
 	 */
@@ -837,15 +832,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		return $result;
 	}
 
-	/**
-	 * @return array
-	 * @deprecated since 1.38; should be done in the OutputPageParserOutput
-	 * hook (T292321).
-	 */
-	public function getOutputHooks(): array {
-		return (array)$this->mOutputHooks;
-	}
-
 	public function getWarnings(): array {
 		return array_keys( $this->mWarnings );
 	}
@@ -1066,17 +1052,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			->inContentLanguage() // because this ends up in cache
 			->text();
 		$this->mWarnings[$s] = 1;
-	}
-
-	/**
-	 * @param callable $hook
-	 * @param mixed $data
-	 * @deprecated since 1.38; should be done in the OutputPageParserOutput
-	 * hook (T292321).
-	 */
-	public function addOutputHook( $hook, $data = false ): void {
-		wfDeprecated( __METHOD__, '1.38' );
-		$this->mOutputHooks[] = [ $hook, $data ];
 	}
 
 	public function setNewSection( $value ): void {
@@ -2203,7 +2178,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @param ParserOutput $source
 	 */
 	public function mergeInternalMetaDataFrom( ParserOutput $source ): void {
-		$this->mOutputHooks = self::mergeList( $this->mOutputHooks, $source->getOutputHooks() );
 		$this->mWarnings = self::mergeMap( $this->mWarnings, $source->mWarnings ); // don't use getter
 		$this->mTimestamp = $this->useMaxValue( $this->mTimestamp, $source->getTimestamp() );
 
@@ -2613,7 +2587,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'Modules' => $this->mModules,
 			'ModuleStyles' => $this->mModuleStyles,
 			'JsConfigVars' => $this->mJsConfigVars,
-			'OutputHooks' => $this->mOutputHooks,
 			'Warnings' => $this->mWarnings,
 			'Sections' => $this->getSections(),
 			'Properties' => self::detectAndEncodeBinary( $this->mProperties ),
@@ -2703,7 +2676,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->mModules = $jsonData['Modules'];
 		$this->mModuleStyles = $jsonData['ModuleStyles'];
 		$this->mJsConfigVars = $jsonData['JsConfigVars'];
-		$this->mOutputHooks = $jsonData['OutputHooks'];
 		$this->mWarnings = $jsonData['Warnings'];
 		$this->mFlags = $jsonData['Flags'];
 		if (

@@ -465,7 +465,6 @@ class ApiParse extends ApiBase {
 			// Enabling the skin via 'useskin', 'subtitle', 'headhtml', or 'categorieshtml'
 			// gets OutputPage and Skin involved, which (among others) applies
 			// these hooks:
-			// - ParserOutputHooks
 			// - Hook: LanguageLinks
 			// - Hook: SkinSubPageSubtitle
 			// - Hook: OutputPageParserOutput

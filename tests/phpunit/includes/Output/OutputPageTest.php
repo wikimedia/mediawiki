@@ -1598,7 +1598,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			'getIndicators',
 			'getSections',
 			'getLanguageLinks',
-			'getOutputHooks',
 			'getTemplateIds',
 			'getExtraCSPDefaultSrcs',
 			'getExtraCSPStyleSrcs',
@@ -1853,55 +1852,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $op->mNoGallery );
 		// Note that flags are OR'ed together, and not reset.
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::NO_GALLERY ) );
-	}
-
-	private static $parserOutputHookCalled;
-
-	public function testParserOutputHooks() {
-		$op = $this->newInstance();
-		$pOut = $this->createParserOutputStub( 'getOutputHooks', [
-			[ 'myhook', 'banana' ],
-			[ 'yourhook', 'kumquat' ],
-			[ 'theirhook', 'hippopotamus' ],
-		] );
-
-		self::$parserOutputHookCalled = [];
-
-		$this->overrideConfigValue( MainConfigNames::ParserOutputHooks, [
-			'myhook' => function ( OutputPage $innerOp, ParserOutput $innerPOut, $data )
-			use ( $op, $pOut ) {
-				$this->assertSame( $op, $innerOp );
-				$this->assertSame( $pOut, $innerPOut );
-				$this->assertSame( 'banana', $data );
-				self::$parserOutputHookCalled[] = 'closure';
-			},
-			'yourhook' => [ $this, 'parserOutputHookCallback' ],
-			'theirhook' => [ __CLASS__, 'parserOutputHookCallbackStatic' ],
-			'uncalled' => function () {
-				$this->fail();
-			},
-		] );
-
-		$op->addParserOutputMetadata( $pOut );
-
-		$this->assertSame( [ 'closure', 'callback', 'static' ], self::$parserOutputHookCalled );
-	}
-
-	public function parserOutputHookCallback(
-		OutputPage $op, ParserOutput $pOut, $data
-	) {
-		$this->assertSame( 'kumquat', $data );
-
-		self::$parserOutputHookCalled[] = 'callback';
-	}
-
-	public static function parserOutputHookCallbackStatic(
-		OutputPage $op, ParserOutput $pOut, $data
-	) {
-		// All the assert methods are actually static, who knew!
-		self::assertSame( 'hippopotamus', $data );
-
-		self::$parserOutputHookCalled[] = 'static';
 	}
 
 	// @todo Make sure to test the following in addParserOutputMetadata() as well when we add tests

@@ -2040,8 +2040,6 @@ return [
 			],
 			'ExtensionEntryPointListFiles' => [
 			],
-			'ParserOutputHooks' => [
-			],
 			'EnableParserLimitReporting' => true,
 			'ValidSkinNames' => [
 			],
@@ -2874,7 +2872,6 @@ return [
 			'ExtensionMessagesFiles' => 'object',
 			'MessagesDirs' => 'object',
 			'ExtensionEntryPointListFiles' => 'object',
-			'ParserOutputHooks' => 'object',
 			'ValidSkinNames' => 'object',
 			'SpecialPages' => 'object',
 			'ExtensionCredits' => 'object',

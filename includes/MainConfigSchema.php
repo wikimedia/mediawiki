@@ -10990,27 +10990,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Parser output hooks.
-	 *
-	 * This is an associative array where the key is an extension-defined tag
-	 * (typically the extension name), and the value is a PHP callback.
-	 * These will be called as an OutputPageParserOutput hook, if the relevant
-	 * tag has been registered with the parser output object.
-	 *
-	 * Registration is done with $pout->addOutputHook( $tag, $data ).
-	 *
-	 * The callback has the form:
-	 *
-	 * ```
-	 * function outputHook( $outputPage, $parserOutput, $data ) { ... }
-	 * ```
-	 */
-	public const ParserOutputHooks = [
-		'default' => [],
-		'type' => 'map',
-	];
-
-	/**
 	 * Whether to include the NewPP limit report as a HTML comment
 	 */
 	public const EnableParserLimitReporting = [
