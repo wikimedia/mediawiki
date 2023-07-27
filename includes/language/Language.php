@@ -3253,14 +3253,18 @@ class Language implements Bcp47Code {
 			// NumberFormatter is yet to support minimumGroupingDigits, ICU has it as experimental feature.
 			// The attribute value is used by adding it to the grouping separator value. If
 			// the input number has fewer integer digits, the grouping separator is suppressed.
-			$minimumGroupingDigits = $this->minimumGroupingDigits() ?? 0;
+			$minimumGroupingDigits = $this->minimumGroupingDigits();
 			// Minimum length of a number to do digit grouping on.
 			// http://unicode.org/reports/tr35/tr35-numbers.html#Examples_of_minimumGroupingDigits
 			$minimumLength = $minimumGroupingDigits + $fmt->getAttribute( NumberFormatter::GROUPING_SIZE );
-			if ( $minimumGroupingDigits && !preg_match( '/^\-?\d{' . $minimumLength . '}/', $number ) ) {
-				// Even if number does not need commafy, do decimal
-				// separator transformation.  For example 1234.56 becomes
-				// 1234,56 in pl with $minimumGroupingDigits = 2
+			if ( $minimumGroupingDigits > 1
+				&& !preg_match( '/^\-?\d{' . $minimumLength . '}/', $number )
+			) {
+				// This number does not need commas inserted (even if
+				// NumberFormatter thinks it does) because it's not long
+				// enough.  We still need to do decimal separator
+				// transformation, though. For example 1234.56 becomes 1234,56
+				// in pl with $minimumGroupingDigits = 2.
 				if ( !$noTranslate ) {
 					$number = strtr( $number, $separatorTransformTable ?: [] );
 				}
@@ -3405,10 +3409,17 @@ class Language implements Bcp47Code {
 	}
 
 	/**
-	 * @return int|null
+	 * The minimum number of digits a number must have, in addition to the grouping
+	 * size, before grouping separators are added.
+	 *
+	 * For example, Polish has minimumGroupingDigits = 2, which with a grouping
+	 * size of 3 causes 4-digit numbers to be written like 9999, but 5-digit
+	 * numbers are written like "10 000".
+	 *
+	 * @return int
 	 */
-	public function minimumGroupingDigits() {
-		return $this->localisationCache->getItem( $this->mCode, 'minimumGroupingDigits' );
+	public function minimumGroupingDigits(): int {
+		return $this->localisationCache->getItem( $this->mCode, 'minimumGroupingDigits' ) ?? 1;
 	}
 
 	/**

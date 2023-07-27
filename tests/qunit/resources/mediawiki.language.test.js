@@ -32,7 +32,7 @@
 		mw.language.setData( 'en', 'digitGroupingPattern', null );
 		mw.language.setData( 'en', 'digitTransformTable', null );
 		mw.language.setData( 'en', 'separatorTransformTable', { ',': '.', '.': ',' } );
-		mw.language.setData( 'en', 'minimumGroupingDigits', null );
+		mw.language.setData( 'en', 'minimumGroupingDigits', 1 );
 		mw.config.set( 'wgUserLanguage', 'en' );
 		mw.config.set( 'wgTranslateNumerals', true );
 
