@@ -2943,5 +2943,6 @@
 	"renameuser-page-moved": "$1 $2 səhifəsinə köçürülüb.",
 	"renameuser-page-unmoved": "$1 $2 səhifəsinə köçürülə bilinmir.",
 	"log-name-renameuser": "İstifadəçi adı dəyişiklikləri jurnalı",
+	"renameuser-move-log": "\"[[User:$1|$1]]\" istifadəçisinin adını \"[[User:$2|$2]]\" olaraq dəyişərkən avtomatik olaraq səhifənin adı dəyişdirildi",
 	"right-renameuser": "İstifadəçilərin adını dəyiş"
 }

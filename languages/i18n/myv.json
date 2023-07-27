@@ -17,6 +17,7 @@
 			"Urhixidur",
 			"Vlad5250",
 			"Игорь Бродский",
+			"Сантяй",
 			"아라"
 		]
 	},
@@ -603,6 +604,8 @@
 	"compareselectedversions": "Аравтомс кочказь версиятнень карадо-каршо",
 	"editundo": "Велявтомс мекев мезе витнинь-петнинь",
 	"diff-empty": "(А явови)",
+	"diff-multi-sameuser": "({{PLURAL невтезь\n:$1|ютконь версия|$1 невтезь ютконь версият}} теке совицянть {{GENDER:$3|апак невте}})",
+	"diff-multi-otherusers": "(апак {{PLURAL:$1|невте $1 ютконь версия|невтезь $1 ютконь версият|невтезь $1 ютконь версият}} {{PLURAL:$2|$2 совиця|$2 совицят}})",
 	"searchresults": "Мезе муевсь",
 	"search-filter-title-prefix-reset": "Вешнемс весе лопатнева",
 	"searchresults-title": "Мезе муевсь \"$1\" вешнемасо",
@@ -639,6 +642,7 @@
 	"search-relatedarticle": "Малавикс",
 	"searchrelated": "малавикс",
 	"searchall": "весе",
+	"search-showingresults": "{{PLURAL:$4|Цётамот <strong>$1</strong> of <strong>$3</strong>|Results <strong>$1 – $2</strong> of <strong>$3</strong>}}",
 	"search-nonefound": "Те вешнема лангс мезеяк эзь муеве.",
 	"powersearch-legend": "Седе келейстэ вешнема",
 	"powersearch-ns": "Вешнемс не лемпотмотнестэ:",
@@ -1745,6 +1749,8 @@
 	"skin-action-undelete": "Вельмевтемс нардазенть",
 	"skin-action-delete": "Нардамс",
 	"skin-action-move": "Печтевтемс",
+	"blockedtext-made-by": "Кардамонть теизе ветицясь $1.",
+	"blockedtext-reason-comment": "Кардамонь тувтал: $1",
 	"blockedtext-block-ip": "Неень IP-адрес-эть — $1.",
 	"renameusernew": "Од лемесь:",
 	"renameuserreserve": "Озавтомс ташто совицянь лементь саймес, тевс илязо нолдаво седе тов",
