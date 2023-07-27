@@ -1338,7 +1338,10 @@ class SQLPlatform implements ISQLPlatform {
 		$encTable = $this->tableName( $table );
 		[ $sqlColumns, $sqlTuples ] = $this->makeInsertLists( $rows );
 
-		return "INSERT INTO $encTable ($sqlColumns) VALUES $sqlTuples";
+		return [
+			"INSERT INTO $encTable ($sqlColumns) VALUES $sqlTuples",
+			"INSERT INTO $encTable ($sqlColumns) VALUES '?'"
+		];
 	}
 
 	/**
@@ -1392,7 +1395,10 @@ class SQLPlatform implements ISQLPlatform {
 		[ $sqlColumns, $sqlTuples ] = $this->makeInsertLists( $rows );
 		[ $sqlVerb, $sqlOpts ] = $this->makeInsertNonConflictingVerbAndOptions();
 
-		return rtrim( "$sqlVerb $encTable ($sqlColumns) VALUES $sqlTuples $sqlOpts" );
+		return [
+			rtrim( "$sqlVerb $encTable ($sqlColumns) VALUES $sqlTuples $sqlOpts" ),
+			rtrim( "$sqlVerb $encTable ($sqlColumns) VALUES '?' $sqlOpts" )
+		];
 	}
 
 	/**
@@ -1740,10 +1746,11 @@ class SQLPlatform implements ISQLPlatform {
 
 		$options = $this->normalizeOptions( $options );
 		if ( $this->isFlagInOptions( 'IGNORE', $options ) ) {
-			return $this->insertNonConflictingSqlText( $table, $rows );
+			[ $sql, $cleanSql ] = $this->insertNonConflictingSqlText( $table, $rows );
 		} else {
-			return $this->insertSqlText( $table, $rows );
+			[ $sql, $cleanSql ] = $this->insertSqlText( $table, $rows );
 		}
+		return new Query( $sql, self::QUERY_CHANGE_ROWS, 'INSERT', $table, $cleanSql );
 	}
 
 	/**

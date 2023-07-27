@@ -1562,11 +1562,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function insert( $table, $rows, $fname = __METHOD__, $options = [] ) {
-		$sql = $this->platform->dispatchingInsertSqlText( $table, $rows, $options );
-		if ( !$sql ) {
+		$query = $this->platform->dispatchingInsertSqlText( $table, $rows, $options );
+		if ( !$query ) {
 			return true;
 		}
-		$query = new Query( $sql, self::QUERY_CHANGE_ROWS, 'INSERT', $table );
 		$this->query( $query, $fname );
 
 		return true;
@@ -1676,12 +1675,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				);
 				$this->query( $query, $fname );
 				// Insert the new row
-				$query = new Query(
-					$this->platform->dispatchingInsertSqlText( $table, $row, [] ),
-					self::QUERY_CHANGE_ROWS,
-					'INSERT',
-					$table
-				);
+				$query = $this->platform->dispatchingInsertSqlText( $table, $row, [] );
 				$this->query( $query, $fname );
 				$affectedRowCount += $this->lastQueryAffectedRows;
 				$insertId = $insertId ?: $this->lastQueryInsertId;
@@ -1974,12 +1968,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				// Avoid inserts that are too huge
 				$rowBatches = array_chunk( $rows, $this->nonNativeInsertSelectBatchSize );
 				foreach ( $rowBatches as $rows ) {
-					$query = new Query(
-						$this->platform->dispatchingInsertSqlText( $destTable, $rows, $insertOptions ),
-						self::QUERY_CHANGE_ROWS,
-						'INSERT',
-						$destTable
-					);
+					$query = $this->platform->dispatchingInsertSqlText( $destTable, $rows, $insertOptions );
 					$this->query( $query, $fname );
 					$affectedRowCount += $this->lastQueryAffectedRows;
 					$insertId = $insertId ?: $this->lastQueryInsertId;
