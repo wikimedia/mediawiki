@@ -2,7 +2,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReferenceValue;
-use MediaWiki\Parser\ParserOutputStrings;
+use MediaWiki\Parser\ParserOutputStringSets;
 use MediaWiki\Tests\Parser\ParserCacheSerializationTestCases;
 use MediaWiki\Title\Title;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
@@ -1252,24 +1252,39 @@ EOF
 	public function testOutputStrings() {
 		$po = new ParserOutput;
 
-		$this->assertEquals( [], $po->getOutputString( ParserOutputStrings::EXTRA_CSP_SCRIPT_SRC ), 'empty Script' );
-		$this->assertEquals( [], $po->getOutputString( ParserOutputStrings::EXTRA_CSP_STYLE_SRC ), 'empty Style' );
-		$this->assertEquals( [], $po->getOutputString( ParserOutputStrings::EXTRA_CSP_DEFAULT_SRC ), 'empty Default' );
+		$this->assertEquals( [], $po->getOutputStrings( ParserOutputStringSets::MODULE ) );
+		$this->assertEquals( [], $po->getOutputStrings( ParserOutputStringSets::MODULE_STYLE ) );
+		$this->assertEquals( [], $po->getOutputStrings( ParserOutputStringSets::EXTRA_CSP_SCRIPT_SRC ) );
+		$this->assertEquals( [], $po->getOutputStrings( ParserOutputStringSets::EXTRA_CSP_STYLE_SRC ) );
+		$this->assertEquals( [], $po->getOutputStrings( ParserOutputStringSets::EXTRA_CSP_DEFAULT_SRC ) );
 
-		$po->appendOutputString( ParserOutputStrings::EXTRA_CSP_SCRIPT_SRC, [ 'foo.com', 'bar.com' ] );
-		$po->appendOutputString( ParserOutputStrings::EXTRA_CSP_DEFAULT_SRC, [ 'baz.com' ] );
-		$po->appendOutputString( ParserOutputStrings::EXTRA_CSP_STYLE_SRC, [ 'fred.com' ] );
-		$po->appendOutputString( ParserOutputStrings::EXTRA_CSP_STYLE_SRC, [ 'xyzzy.com' ] );
+		$this->assertEquals( [], $po->getModules() );
+		$this->assertEquals( [], $po->getModuleStyles() );
+		$this->assertEquals( [], $po->getExtraCSPScriptSrcs() );
+		$this->assertEquals( [], $po->getExtraCSPStyleSrcs() );
+		$this->assertEquals( [], $po->getExtraCSPDefaultSrcs() );
 
-		$this->assertEquals( [ 'foo.com', 'bar.com' ], $po->getExtraCSPScriptSrcs(), 'Script (getSrc)' );
+		$po->appendOutputStrings( ParserOutputStringSets::MODULE, [ 'a' ] );
+		$po->appendOutputStrings( ParserOutputStringSets::MODULE_STYLE, [ 'b' ] );
+		$po->appendOutputStrings( ParserOutputStringSets::EXTRA_CSP_SCRIPT_SRC, [ 'foo.com', 'bar.com' ] );
+		$po->appendOutputStrings( ParserOutputStringSets::EXTRA_CSP_DEFAULT_SRC, [ 'baz.com' ] );
+		$po->appendOutputStrings( ParserOutputStringSets::EXTRA_CSP_STYLE_SRC, [ 'fred.com' ] );
+		$po->appendOutputStrings( ParserOutputStringSets::EXTRA_CSP_STYLE_SRC, [ 'xyzzy.com' ] );
+
+		$this->assertEquals( [ 'a' ], $po->getOutputStrings( ParserOutputStringSets::MODULE ) );
+		$this->assertEquals( [ 'b' ], $po->getOutputStrings( ParserOutputStringSets::MODULE_STYLE ) );
 		$this->assertEquals( [ 'foo.com', 'bar.com' ],
-			$po->getOutputString( ParserOutputStrings::EXTRA_CSP_SCRIPT_SRC ), 'Script (getString)' );
-		$this->assertEquals( [ 'baz.com' ], $po->getExtraCSPDefaultSrcs(), 'Default (getSrc)' );
+			$po->getOutputStrings( ParserOutputStringSets::EXTRA_CSP_SCRIPT_SRC ) );
 		$this->assertEquals( [ 'baz.com' ],
-			$po->getOutputString( ParserOutputStrings::EXTRA_CSP_DEFAULT_SRC ), 'Default (getString)' );
-		$this->assertEquals( [ 'fred.com', 'xyzzy.com' ], $po->getExtraCSPStyleSrcs(), 'Style (getSrc)' );
+			$po->getOutputStrings( ParserOutputStringSets::EXTRA_CSP_DEFAULT_SRC ) );
 		$this->assertEquals( [ 'fred.com', 'xyzzy.com' ],
-			$po->getOutputString( ParserOutputStrings::EXTRA_CSP_STYLE_SRC ), 'Style (getString)' );
+			$po->getOutputStrings( ParserOutputStringSets::EXTRA_CSP_STYLE_SRC ) );
+
+		$this->assertEquals( [ 'a' ], $po->getModules() );
+		$this->assertEquals( [ 'b' ], $po->getModuleStyles() );
+		$this->assertEquals( [ 'foo.com', 'bar.com' ], $po->getExtraCSPScriptSrcs() );
+		$this->assertEquals( [ 'baz.com' ], $po->getExtraCSPDefaultSrcs() );
+		$this->assertEquals( [ 'fred.com', 'xyzzy.com' ], $po->getExtraCSPStyleSrcs() );
 	}
 
 	/**
