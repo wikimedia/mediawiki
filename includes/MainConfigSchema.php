@@ -12522,6 +12522,16 @@ class MainConfigSchema {
 		'default' => false,
 		'type' => 'boolean',
 	];
+
+	/**
+	 * Whether to enable the client-side edit recovery feature.
+	 * This is a temporary feature flag.
+	 */
+	public const EnableEditRecovery = [
+		'default' => false,
+		'type' => 'boolean',
+	];
+
 	// endregion -- End Miscellaneous
 
 }

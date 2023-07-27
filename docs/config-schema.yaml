@@ -7799,3 +7799,9 @@ config-schema:
         description: |
             Specifies if users should see the inline switch in diff pages
             This is a temporary feature flag
+    EnableEditRecovery:
+        default: false
+        type: boolean
+        description: |-
+            Whether to enable the client-side edit recovery feature.
+            This is a temporary feature flag.

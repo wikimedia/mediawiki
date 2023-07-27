@@ -1344,6 +1344,23 @@ return [
 		'dependencies' => 'mediawiki.action.view.filepage',
 	],
 
+	'mediawiki.editRecovery.postEdit' => [
+		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.editRecovery",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.editRecovery",
+		'packageFiles' => [
+			'postEdit.js',
+			'storage.js',
+		],
+	],
+	'mediawiki.editRecovery.edit' => [
+		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.editRecovery",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.editRecovery",
+		'packageFiles' => [
+			'edit.js',
+			'storage.js',
+		],
+	],
+
 	'mediawiki.action.view.postEdit' => [
 		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.action",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.action",

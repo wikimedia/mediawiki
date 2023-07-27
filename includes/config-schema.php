@@ -2457,6 +2457,7 @@ return [
 			'SpecialContributeSkinsEnabled' => [
 			],
 			'ShowDiffToggleSwitch' => false,
+			'EnableEditRecovery' => false,
 		],
 		'type' => [
 			'ConfigRegistry' => 'object',
@@ -2919,6 +2920,7 @@ return [
 			'SkinsPreferred' => 'array',
 			'SpecialContributeSkinsEnabled' => 'array',
 			'ShowDiffToggleSwitch' => 'boolean',
+			'EnableEditRecovery' => 'boolean',
 		],
 		'mergeStrategy' => [
 			'TiffThumbnailType' => 'replace',

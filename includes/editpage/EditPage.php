@@ -2790,6 +2790,10 @@ class EditPage implements IEditObject {
 			$out->addModules( 'mediawiki.action.edit.editWarning' );
 		}
 
+		if ( $this->context->getConfig()->get( MainConfigNames::EnableEditRecovery ) ) {
+			$out->addModules( 'mediawiki.editRecovery.edit' );
+		}
+
 		# Enabled article-related sidebar, toplinks, etc.
 		$out->setArticleRelated( true );
 
@@ -2827,7 +2831,7 @@ class EditPage implements IEditObject {
 
 		# Transmit the name of the message to JavaScript. This was added for live preview.
 		# Live preview doesn't use this anymore. The variable is still transmitted because
-		# other scripts uses this variable.
+		# Edit Recovery and user scripts use it.
 		$out->addJsConfigVars( [
 			'wgEditMessage' => $msg,
 		] );
