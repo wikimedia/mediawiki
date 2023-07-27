@@ -36,6 +36,7 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use MWTimestamp;
 use RequestContext;
+use SiteConfiguration;
 use TestLogger;
 use User;
 use WebRequest;
@@ -1047,6 +1048,12 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\User\UserGroupManager::addUserToAutopromoteOnceGroups
 	 */
 	public function testAddUserToAutopromoteOnceGroupsForeignDomain() {
+		$siteConfig = new SiteConfiguration();
+		$siteConfig->wikis = [ 'TEST_DOMAIN' ];
+		$this->setMwGlobals( 'wgConf', $siteConfig );
+
+		$this->overrideConfigValue( MainConfigNames::LocalDatabases, [ 'TEST_DOMAIN' ] );
+
 		$manager = $this->getServiceContainer()
 			->getUserGroupManagerFactory()
 			->getUserGroupManager( 'TEST_DOMAIN' );
