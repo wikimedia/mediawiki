@@ -1081,15 +1081,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->mHideNewSection = $value;
 	}
 
-	/**
-	 * @param bool $value Hide the new section link?
-	 * @deprecated since 1.38 use ::setHideNewSection()
-	 */
-	public function hideNewSection( $value ): void {
-		wfDeprecated( __METHOD__, '1.38' );
-		$this->setHideNewSection( (bool)$value );
-	}
-
 	public function getHideNewSection(): bool {
 		return (bool)$this->mHideNewSection;
 	}
