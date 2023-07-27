@@ -100,7 +100,8 @@ class ChronologyProtectorTest extends PHPUnit\Framework\TestCase {
 
 		$client = [
 			'ip' => '127.0.0.1',
-			'agent' => "Burninator"
+			'agent' => "Burninator",
+			'clientId' => 'random id'
 		];
 
 		$secret = '0815';

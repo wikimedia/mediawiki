@@ -448,6 +448,15 @@ class ChronologyProtector implements LoggerAwareInterface {
 		}
 
 		$this->startupTimestamp = $this->getCurrentTime();
+
+		// There wasn't a client id in the cookie so we built one
+		// There is no point in looking it up.
+		if ( $this->hasImplicitClientId ) {
+			$this->startupPositionsByPrimary = [];
+			$this->startupTimestampsByCluster = [];
+			return;
+		}
+
 		$this->logger->debug( 'ChronologyProtector using store ' . get_class( $this->store ) );
 		$this->logger->debug( "ChronologyProtector fetching positions for {$this->clientId}" );
 
@@ -480,21 +489,6 @@ class ChronologyProtector implements LoggerAwareInterface {
 		} else {
 			if ( $indexReached ) {
 				$this->logger->debug( 'found position data with index {indexReached}', [
-					'indexReached' => $indexReached
-				] + $this->clientLogInfo );
-			}
-		}
-
-		if ( $indexReached && $this->hasImplicitClientId ) {
-			$isWithinPossibleCookieTTL = false;
-			foreach ( $this->startupTimestampsByCluster as $timestamp ) {
-				if ( ( $this->startupTimestamp - $timestamp ) < self::POSITION_COOKIE_TTL ) {
-					$isWithinPossibleCookieTTL = true;
-					break;
-				}
-			}
-			if ( $isWithinPossibleCookieTTL ) {
-				$this->logger->warning( 'found position data under a presumed clientId (T314434)', [
 					'indexReached' => $indexReached
 				] + $this->clientLogInfo );
 			}
