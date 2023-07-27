@@ -587,7 +587,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				'a',
 				[
 					'href' => $this->options->get( MainConfigNames::ScriptPath ) .
-						'/api.php?action=query&meta=userinfo&uiprop=*',
+						'/api.php?action=query&meta=userinfo&uiprop=*&formatversion=2',
 				],
 				$context->msg( 'prefs-user-downloaddata-info' )->text()
 			),
