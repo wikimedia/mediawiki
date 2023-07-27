@@ -53,40 +53,36 @@ class LocalisationCache {
 	 * True if recaching should only be done on an explicit call to recache().
 	 * Setting this reduces the overhead of cache freshness checking, which
 	 * requires doing a stat() for every extension i18n file.
+	 *
+	 * @var bool
 	 */
 	private $manualRecache;
 
 	/**
-	 * The cache data. 3-d array, where the first key is the language code,
-	 * the second key is the item key e.g. 'messages', and the third key is
+	 * The cache data. 2/3-d array, where the first key is the language code,
+	 * the second key is the item key e.g. 'messages', and the optional third key is
 	 * an item specific subkey index. Some items are not arrays and so for those
 	 * items, there are no subkeys.
+	 *
+	 * @var array<string,array>
 	 */
 	protected $data = [];
 
 	/**
 	 * The source language of cached data items. Only supports messages for now.
+	 *
+	 * @var array<string,array<string,array<string,string>>>
 	 */
 	protected $sourceLanguage = [];
 
-	/**
-	 * The persistent store object. An instance of LCStore.
-	 *
-	 * @var LCStore
-	 */
+	/** @var LCStore */
 	private $store;
-
-	/**
-	 * @var LoggerInterface
-	 */
+	/** @var LoggerInterface */
 	private $logger;
-
 	/** @var HookRunner */
 	private $hookRunner;
-
 	/** @var callable[] See comment for parameter in constructor */
 	private $clearStoreCallbacks;
-
 	/** @var LanguageNameUtils */
 	private $langNameUtils;
 
@@ -97,12 +93,15 @@ class LocalisationCache {
 	 * For split items, if set, this indicates that all of the subitems have been
 	 * loaded.
 	 *
+	 * @var array<string,array<string,true>>
 	 */
 	private $loadedItems = [];
 
 	/**
 	 * A 3-d associative array, code/key/subkey, where presence indicates that
 	 * the subitem is loaded. Only used for the split items, i.e. messages.
+	 *
+	 * @var array<string,array<string,array<string,true>>>
 	 */
 	private $loadedSubitems = [];
 
@@ -110,6 +109,8 @@ class LocalisationCache {
 	 * An array where presence of a key indicates that that language has been
 	 * initialised. Initialisation includes checking for cache expiry and doing
 	 * any necessary updates.
+	 *
+	 * @var array<string,true>
 	 */
 	private $initialisedLangs = [];
 
@@ -117,11 +118,15 @@ class LocalisationCache {
 	 * An array mapping non-existent pseudo-languages to fallback languages. This
 	 * is filled by initShallowFallback() when data is requested from a language
 	 * that lacks a Messages*.php file.
+	 *
+	 * @var array<string,string>
 	 */
 	private $shallowFallbacks = [];
 
 	/**
 	 * An array where the keys are codes that have been recached by this instance.
+	 *
+	 * @var array<string,true>
 	 */
 	private $recachedLangs = [];
 
@@ -198,6 +203,8 @@ class LocalisationCache {
 	/**
 	 * Associative array of cached plural rules. The key is the language code,
 	 * the value is an array of plural rules for that language.
+	 *
+	 * @var array<string,array<int,string>>|null
 	 */
 	private static $pluralRules = null;
 
@@ -212,6 +219,8 @@ class LocalisationCache {
 	 * explicit numeric parameter), not based on the name of the rule type. For
 	 * example, {{plural:count|wordform1|wordform2|wordform3}}, rather than
 	 * {{plural:count|one=wordform1|two=wordform2|many=wordform3}}.
+	 *
+	 * @var array<string,array<int,string>>|null
 	 */
 	private static $pluralRuleTypes = null;
 
@@ -665,7 +674,7 @@ class LocalisationCache {
 	 * Get the compiled plural rules for a given language from the XML files.
 	 * @since 1.20
 	 * @param string $code
-	 * @return array|null
+	 * @return array<int,string>|null
 	 */
 	public function getCompiledPluralRules( $code ) {
 		$rules = $this->getPluralRules( $code );
@@ -688,7 +697,7 @@ class LocalisationCache {
 	 * Cached.
 	 * @since 1.20
 	 * @param string $code
-	 * @return array|null
+	 * @return array<int,string>|null
 	 */
 	public function getPluralRules( $code ) {
 		if ( self::$pluralRules === null ) {
@@ -702,7 +711,7 @@ class LocalisationCache {
 	 * Cached.
 	 * @since 1.22
 	 * @param string $code
-	 * @return array|null
+	 * @return array<int,string>|null
 	 */
 	public function getPluralRuleTypes( $code ) {
 		if ( self::$pluralRuleTypes === null ) {
