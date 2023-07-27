@@ -519,20 +519,18 @@ class RequestContext implements IContextSource, MutableContext {
 			return $skinFromHook->getSkinName();
 		} elseif ( is_string( $skinFromHook ) ) {
 			// The hook provided a skin name
-			// Normalize the key, just in case the hook did something weird.
-			return Skin::normalizeKey( $skinFromHook );
-		}
-
-		// No hook override, go through normal processing
-		if ( !in_array( 'skin', $this->getConfig()->get( MainConfigNames::HiddenPrefs ) ) ) {
+			$skinName = $skinFromHook;
+		} elseif ( !in_array( 'skin', $this->getConfig()->get( MainConfigNames::HiddenPrefs ) ) ) {
+			// The normal case
 			$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
 			$userSkin = $userOptionsLookup->getOption( $this->getUser(), 'skin' );
 			// Optimisation: Avoid slow getVal(), this isn't user-generated content.
 			$skinName = $this->getRequest()->getRawVal( 'useskin', $userSkin );
-			return Skin::normalizeKey( $skinName );
 		} else {
-			return $this->getConfig()->get( MainConfigNames::DefaultSkin );
+			// User preference disabled
+			$skinName = $this->getConfig()->get( MainConfigNames::DefaultSkin );
 		}
+		return Skin::normalizeKey( $skinName );
 	}
 
 	/**
