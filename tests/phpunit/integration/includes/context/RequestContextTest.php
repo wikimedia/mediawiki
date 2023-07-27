@@ -304,4 +304,21 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 		$context = new RequestContext();
 		$this->assertSame( $skin, $context->getSkin() );
 	}
+
+	public function testGetSkinFromBadPrefs() {
+		// T342733
+		$this->overrideConfigValue( MainConfigNames::DefaultSkin, 'test' );
+		$optionsLookup = $this->createMock( UserOptionsLookup::class );
+		$optionsLookup
+			->expects( $this->once() )
+			->method( 'getOption' )
+			->with( $this->anything(), $this->equalTo( 'skin' ) )
+			->willReturn( '' );
+
+		$this->setService( 'UserOptionsLookup', $optionsLookup );
+		$skin = $this->registerTestSkin();
+
+		$context = new RequestContext();
+		$this->assertSame( $skin, $context->getSkin() );
+	}
 }
