@@ -56,7 +56,7 @@ $separatorTransformTable = [
 	',' => "\u{00A0}", # nbsp
 	'.' => ','
 ];
-$minimumGroupingDigits = 2; // As per CLDR 31, this value is 1 (T262500)
+$minimumGroupingDigits = 2; // intentional deviation from CLDR (T262500)
 
 $fallback8bitEncoding = 'windows-1251';
 $linkPrefixExtension = true;
