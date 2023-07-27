@@ -982,8 +982,8 @@ EOF
 		$a->addWarningMsg( 'duplicate-args-warning', 'A', 'B', 'C' );
 		$a->addWarningMsg( 'template-loop-warning', 'D' );
 
-		$a->setFlag( 'foo' );
-		$a->setFlag( 'bar' );
+		$a->setOutputFlag( 'foo' );
+		$a->setOutputFlag( 'bar' );
 
 		$a->recordOption( 'Foo' );
 		$a->recordOption( 'Bar' );
@@ -995,8 +995,8 @@ EOF
 		$this->hideDeprecated( 'ParserOutput::addWarning' );
 		$b->addWarning( 'Old School' ); // test the deprecated ::addWarning()
 
-		$b->setFlag( 'zoo' );
-		$b->setFlag( 'bar' );
+		$b->setOutputFlag( 'zoo' );
+		$b->setOutputFlag( 'bar' );
 
 		$b->recordOption( 'Zoo' );
 		$b->recordOption( 'Bar' );

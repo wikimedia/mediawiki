@@ -1483,6 +1483,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @deprecated since 1.38; use ::setOutputFlag()
 	 */
 	public function setFlag( $flag ): void {
+		wfDeprecated( __METHOD__, '1.38' );
 		$this->mFlags[$flag] = true;
 	}
 
@@ -1492,6 +1493,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @deprecated since 1.38; use ::getOutputFlag()
 	 */
 	public function getFlag( $flag ): bool {
+		wfDeprecated( __METHOD__, '1.38' );
 		return isset( $this->mFlags[$flag] );
 	}
 
@@ -1745,7 +1747,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			return $this->getPreventClickjacking();
 
 		default:
-			return $this->getFlag( $name );
+			return isset( $this->mFlags[$name] );
 
 		}
 	}
