@@ -1035,14 +1035,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
-	 * @deprecated since 1.38; use ::addWarningMsg() instead
-	 */
-	public function addWarning( $s ): void {
-		wfDeprecated( __METHOD__, '1.38' );
-		$this->mWarnings[$s] = 1;
-	}
-
-	/**
 	 * Add a warning to the output for this page.
 	 * @param string $msg The localization message key for the warning
 	 * @param mixed ...$args Optional arguments for the message

@@ -992,8 +992,6 @@ EOF
 
 		$b->addWarningMsg( 'template-equals-warning' );
 		$b->addWarningMsg( 'template-loop-warning', 'D' );
-		$this->hideDeprecated( 'ParserOutput::addWarning' );
-		$b->addWarning( 'Old School' ); // test the deprecated ::addWarning()
 
 		$b->setOutputFlag( 'zoo' );
 		$b->setOutputFlag( 'bar' );
@@ -1006,7 +1004,6 @@ EOF
 				wfMessage( 'duplicate-args-warning', 'A', 'B', 'C' )->text(),
 				wfMessage( 'template-loop-warning', 'D' )->text(),
 				wfMessage( 'template-equals-warning' )->text(),
-				'Old School',
 			],
 			'$mFlags' => [ 'foo' => true, 'bar' => true, 'zoo' => true ],
 			'getUsedOptions' => [ 'Foo', 'Bar', 'Zoo' ],

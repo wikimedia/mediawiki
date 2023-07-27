@@ -10,6 +10,7 @@ use MediaWikiIntegrationTestCase;
 use MWDebug;
 use MWTimestamp;
 use ParserOutput;
+use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Tests\SerializationTestUtils;
 
 /**
@@ -230,7 +231,7 @@ abstract class ParserCacheSerializationTestCases {
 		$parserOutputWithMetadata->addModuleStyles( [ 'module_style1' ] );
 		$parserOutputWithMetadata->setJsConfigVar( 'key1', 'value1' );
 		$parserOutputWithMetadata->addOutputHook( 'hook1', self::MOCK_EXT_DATA );
-		$parserOutputWithMetadata->addWarning( 'warning1' );
+		$parserOutputWithMetadata->addWarningMsg( 'rawmessage', 'warning1' );
 		$parserOutputWithMetadata->setIndexPolicy( 'noindex' );
 		$parserOutputWithMetadata->setTOCHTML( 'tochtml1' );
 		$parserOutputWithMetadata->setTimestamp( MWTimestamp::convert( TS_MW, 987654321 ) );
@@ -239,6 +240,14 @@ abstract class ParserCacheSerializationTestCases {
 		$parserOutputWithMetadata->setHideNewSection( true );
 		$parserOutputWithMetadata->setNewSection( true );
 		$parserOutputWithMetadata->setOutputFlag( 'test' );
+
+		// For compatibility with older serialized objects, clear out the
+		// $mWarningMsgs array, which is not currently stored.
+		// See T343050 for the steps required to remove this workaround in
+		// the future.
+		TestingAccessWrapper::newFromObject(
+			$parserOutputWithMetadata
+		)->mWarningMsgs = [];
 
 		$parserOutputWithSections = new ParserOutput( '' );
 		$parserOutputWithSections->setSections( self::SECTIONS );
