@@ -2701,6 +2701,8 @@ class ParserTestRunner {
 		// Wipe WANObjectCache process cache, which is invalidated by article insertion
 		// due to T144706
 		$services->getMainWANObjectCache()->clearProcessCache();
+		// Avoid reuse of lazy-loaded Title::mArticleId after page creation
+		Title::clearCaches();
 
 		// Reset the service so that any "MediaWiki:bad image list" articles
 		// added get fetched
