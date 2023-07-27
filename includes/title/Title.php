@@ -2785,6 +2785,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		$this->mDbPageLanguage = false;
 		$this->mIsBigDeletion = null;
 
+		$this->uncache();
 		MediaWikiServices::getInstance()->getLinkCache()->clearLink( $this );
 		MediaWikiServices::getInstance()->getRestrictionStore()->flushRestrictions( $this );
 	}
