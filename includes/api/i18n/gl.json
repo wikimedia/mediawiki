@@ -1357,7 +1357,7 @@
 	"apihelp-userrights-param-user": "Usuario.",
 	"apihelp-userrights-param-userid": "ID de usuario.",
 	"apihelp-userrights-param-add": "Engadir o usuario a estes grupos, ou se xa é membro, actualizar a caducidade da súa afiliación.",
-	"apihelp-userrights-param-expiry": "Marcas de tempo de caducidade. Poden ser relativas (por exemplo, <kbd>5 meses</kbd> ou <kbd>2 semanas</kbd>) ou absolutas (por exemplo, <kbd>2014-09-18T12:34:56Z</kbd>). Se só se fixa unha marca de tempo, utilizarase para tódolos grupos que se pasen ó parámetro <var>$1add</var>. Use <kbd>infinite</kbd>, <kbd>indefinite</kbd>, <kbd>infinity</kbd>, ou <kbd>never</kbd> para que a pertenza ó grupo non teña data de caducidade.",
+	"apihelp-userrights-param-expiry": "Marcas de tempo de caducidade. Poden ser relativas (por exemplo, <kbd>5 months</kbd> ou <kbd>2 weeks</kbd>) ou absolutas (por exemplo, <kbd>2014-09-18T12:34:56Z</kbd>). Se só se fixa unha marca de tempo, utilizarase para tódolos grupos que se pasen ó parámetro <var>$1add</var>. Use <kbd>infinite</kbd>, <kbd>indefinite</kbd>, <kbd>infinity</kbd>, ou <kbd>never</kbd> para que a pertenza ó grupo non teña data de caducidade.",
 	"apihelp-userrights-param-remove": "Eliminar o usuario destes grupos.",
 	"apihelp-userrights-param-reason": "Motivo para o cambio.",
 	"apihelp-userrights-param-tags": "Cambia as etiquetas a aplicar á entrada do rexistro de dereitos de usuario.",
