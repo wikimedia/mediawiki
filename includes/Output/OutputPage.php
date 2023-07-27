@@ -2641,32 +2641,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Set a flag which will cause an X-Frame-Options header appropriate for
-	 * edit pages to be sent. The header value is controlled by
-	 * $wgEditPageFrameOptions.
-	 *
-	 * This is the default for special pages. If you display a CSRF-protected
-	 * form on an ordinary view page, then you need to call this function.
-	 *
-	 * @param bool $enable
-	 * @deprecated since 1.38, use ::setPreventClickjacking( true )
-	 */
-	public function preventClickjacking( $enable = true ) {
-		$this->mPreventClickjacking = $enable;
-	}
-
-	/**
-	 * Turn off frame-breaking. Alias for $this->preventClickjacking(false).
-	 * This can be called from pages which do not contain any CSRF-protected
-	 * HTML form.
-	 *
-	 * @deprecated since 1.38, use ::setPreventClickjacking( false )
-	 */
-	public function allowClickjacking() {
-		$this->mPreventClickjacking = false;
-	}
-
-	/**
 	 * Set the prevent-clickjacking flag.
 	 *
 	 * If true, will cause an X-Frame-Options header appropriate for
