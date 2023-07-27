@@ -315,6 +315,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetHtmlWithVariant() {
+		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, true );
 		$page = $this->getExistingTestPage( __METHOD__ );
 
 		$helper = $this->newHelper();
@@ -1021,6 +1022,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider providePutHeaders
 	 */
 	public function testPutHeaders( ?string $targetLanguage, bool $setContentLanguageHeader ) {
+		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, true );
 		$page = $this->getExistingTestPage( __METHOD__ );
 		$expectedCalls = [];
 

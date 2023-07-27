@@ -437,6 +437,7 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		string $expectedContentLanguage,
 		string $expectedVaryHeader
 	) {
+		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, true );
 		$page = $this->getNonexistingTestPage( __METHOD__ );
 		$this->editPage( $page, '<p>test language conversion</p>', 'Edited a page' );
 		$revRecord = $page->getRevisionRecord();

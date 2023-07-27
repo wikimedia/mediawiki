@@ -10,9 +10,11 @@ use MediaWiki\Auth\Hook\SecuritySensitiveOperationStatusHook;
 use MediaWiki\Auth\Hook\UserLoggedInHook;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionInfo;
@@ -218,7 +220,22 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$this->readOnlyMode = $this->getServiceContainer()->getReadOnlyMode();
 		}
 		if ( $regen || !$this->blockManager ) {
-			$this->blockManager = $this->getServiceContainer()->getBlockManager();
+			// Override BlockManager::checkHost. Formerly testAuthorizeCreateAccount_DNSBlacklist
+			// required *.localhost to resolve as 127.0.0.1, but that is system-dependent.
+			$this->blockManager = new class(
+				new ServiceOptions(
+					BlockManager::CONSTRUCTOR_OPTIONS,
+					$this->getServiceContainer()->getMainConfig()
+				),
+				$this->getServiceContainer()->getPermissionManager(),
+				$this->getServiceContainer()->getUserFactory(),
+				LoggerFactory::getInstance( 'BlockManager' ),
+				$this->getServiceContainer()->getHookContainer()
+			) extends BlockManager {
+				protected function checkHost( $hostname ) {
+					return '127.0.0.1';
+				}
+			};
 		}
 		if ( $regen || !$this->watchlistManager ) {
 			$this->watchlistManager = $this->getServiceContainer()->getWatchlistManager();
@@ -1641,10 +1658,16 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			MainConfigNames::ProxyWhitelist => [],
 		] );
 		$this->initializeManager( true );
+
+		// For User::getBlockedStatus()
+		$this->setService( 'BlockManager', $this->blockManager );
+
 		$status = $this->manager->authorizeCreateAccount( new \User );
 		$this->assertStatusError( 'sorbs_create_account_reason', $status );
+
 		$this->overrideConfigValue( MainConfigNames::ProxyWhitelist, [ '127.0.0.1' ] );
 		$this->initializeManager( true );
+		$this->setService( 'BlockManager', $this->blockManager );
 		$status = $this->manager->authorizeCreateAccount( new \User );
 		$this->assertStatusGood( $status );
 	}

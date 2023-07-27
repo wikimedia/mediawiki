@@ -187,6 +187,7 @@ class ApiPageSetTest extends ApiTestCase {
 	 * @dataProvider provideConversionWithRedirects
 	 */
 	public function testHandleConversionWithRedirects( $pages, $params, $expectedConversion, $expectedRedirects ) {
+		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, true );
 		foreach ( $pages as $title => $content ) {
 			$this->editPage( $title, $content );
 		}
