@@ -2,7 +2,9 @@
 
 use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Page\File\BadFileLookup;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
@@ -27,46 +29,42 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 			array_fill_keys( Parser::CONSTRUCTOR_OPTIONS, null )
 		);
 
+		$contLang = $this->createMock( Language::class );
+		$mw = new MagicWord( null, [], true, $contLang );
+
 		// Stub out a MagicWordFactory so the Parser can initialize its
 		// function hooks when it is created.
-		$mwFactory = $this->getMockBuilder( MagicWordFactory::class )
-			->disableOriginalConstructor()
-			->onlyMethods( [ 'get', 'getVariableIDs' ] )
-			->getMock();
-		$mwFactory
-			->method( 'get' )->willReturnCallback( function ( $arg ) {
-				$mw = $this->getMockBuilder( MagicWord::class )
-					->disableOriginalConstructor()
-					->onlyMethods( [ 'getSynonyms' ] )
-					->getMock();
-				$mw->method( 'getSynonyms' )->willReturn( [] );
-				return $mw;
-			} );
-		$mwFactory
-			->method( 'getVariableIDs' )->willReturn( [] );
+		$mwFactory = $this->createNoOpMock( MagicWordFactory::class,
+			[ 'get', 'getVariableIDs', 'getSubstIDs', 'newArray' ] );
+		$mwFactory->method( 'get' )->willReturn( $mw );
+		$mwFactory->method( 'getVariableIDs' )->willReturn( [] );
+		$mwFactory->method( 'getSubstIDs' )->willReturn( [] );
+
+		$urlUtils = $this->createNoOpMock( UrlUtils::class, [ 'validProtocols' ] );
+		$urlUtils->method( 'validProtocols' )->willReturn( '' );
 
 		return [
 			$options,
 			$mwFactory,
-			$this->createMock( Language::class ),
-			$this->createMock( ParserFactory::class ),
-			$this->createMock( UrlUtils::class ),
-			$this->createMock( MediaWiki\SpecialPage\SpecialPageFactory::class ),
-			$this->createMock( MediaWiki\Linker\LinkRendererFactory::class ),
-			$this->createMock( NamespaceInfo::class ),
+			$contLang,
+			$this->createNoOpMock( ParserFactory::class ),
+			$urlUtils,
+			$this->createNoOpMock( MediaWiki\SpecialPage\SpecialPageFactory::class ),
+			$this->createNoOpMock( MediaWiki\Linker\LinkRendererFactory::class ),
+			$this->createNoOpMock( NamespaceInfo::class ),
 			new Psr\Log\NullLogger(),
-			$this->createMock( BadFileLookup::class ),
-			$this->createMock( MediaWiki\Languages\LanguageConverterFactory::class ),
-			$this->createMock( MediaWiki\HookContainer\HookContainer::class ),
-			$this->createMock( MediaWiki\Tidy\TidyDriverBase::class ),
-			$this->createMock( WANObjectCache::class ),
-			$this->createMock( MediaWiki\User\UserOptionsLookup::class ),
-			$this->createMock( MediaWiki\User\UserFactory::class ),
-			$this->createMock( TitleFormatter::class ),
-			$this->createMock( HttpRequestFactory::class ),
-			$this->createMock( TrackingCategories::class ),
-			$this->createMock( SignatureValidatorFactory::class ),
-			$this->createMock( UserNameUtils::class )
+			$this->createNoOpMock( BadFileLookup::class ),
+			$this->createNoOpMock( LanguageConverterFactory::class, [ 'isConversionDisabled' ] ),
+			$this->createNoOpMock( HookContainer::class, [ 'run' ] ),
+			$this->createNoOpMock( MediaWiki\Tidy\TidyDriverBase::class ),
+			$this->createNoOpMock( WANObjectCache::class ),
+			$this->createNoOpMock( MediaWiki\User\UserOptionsLookup::class ),
+			$this->createNoOpMock( MediaWiki\User\UserFactory::class ),
+			$this->createNoOpMock( TitleFormatter::class ),
+			$this->createNoOpMock( HttpRequestFactory::class ),
+			$this->createNoOpMock( TrackingCategories::class ),
+			$this->createNoOpMock( SignatureValidatorFactory::class ),
+			$this->createNoOpMock( UserNameUtils::class )
 		];
 	}
 
