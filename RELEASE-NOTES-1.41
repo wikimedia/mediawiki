@@ -245,6 +245,8 @@ because of Phabricator reports.
 * Title::newFromTitleValue(), deprecated since 1.34, has been removed.
 * SpecialPageAction has been removed without deprecation. There were no known
   uses outside of core.
+* Many LocalisationCache constants, properties and methods that have no known
+  usage outside of the class have been made private without deprecation.
 * …
 
 === Deprecations in 1.41 ===
