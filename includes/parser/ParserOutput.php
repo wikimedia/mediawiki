@@ -2127,17 +2127,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
-	 * @see ParserOutput::hasReducedExpiry
-	 * @return bool
-	 * @since 1.25
-	 * @deprecated since 1.38: use ::hasReducedExpiry()
-	 */
-	public function hasDynamicContent(): bool {
-		wfDeprecated( __METHOD__, '1.38' );
-		return $this->hasReducedExpiry();
-	}
-
-	/**
 	 * Set the prevent-clickjacking flag.  If set this will cause an
 	 * `X-Frame-Options` header appropriate for edit pages to be sent.
 	 * The header value is controlled by `$wgEditPageFrameOptions`.

@@ -360,6 +360,7 @@ because of Phabricator reports.
 * The following methods in the ParserOutput class, deprecated since 1.38, have
   been removed:
   - ::addWarning()
+  - ::hasDynamicContent()
   - ::hideNewSection()
   - ::preventClickjacking()
 * OutputPage::allowClickjacking() and ::preventClickjacking(), deprecated
