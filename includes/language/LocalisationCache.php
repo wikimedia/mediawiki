@@ -308,7 +308,7 @@ class LocalisationCache {
 	 * @param string $key
 	 * @return bool
 	 */
-	private function isMergeableKey( string $key ): bool {
+	private static function isMergeableKey( string $key ): bool {
 		static $mergeableKeys;
 		$mergeableKeys ??= array_fill_keys( [
 			...self::MERGEABLE_MAP_KEYS,
@@ -995,7 +995,7 @@ class LocalisationCache {
 						continue;
 					}
 
-					if ( ( $coreData[ $key ] ) === null || $this->isMergeableKey( $key ) ) {
+					if ( ( $coreData[ $key ] ) === null || self::isMergeableKey( $key ) ) {
 						$this->mergeItem( $key, $csData[ $key ], $fbData[ $key ] );
 					}
 				}
@@ -1015,7 +1015,7 @@ class LocalisationCache {
 					}
 
 					// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
-					if ( $allData[$key] === null || $this->isMergeableKey( $key ) ) {
+					if ( $allData[$key] === null || self::isMergeableKey( $key ) ) {
 						$this->mergeItem( $key, $allData[$key], $csData[$key] );
 					}
 				}
