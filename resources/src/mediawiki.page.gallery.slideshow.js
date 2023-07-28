@@ -278,6 +278,9 @@
 		$imageLi.addClass( 'slideshow-current' );
 
 		this.$thumbnail = $imageLi.find( 'img' );
+
+		this.$video = $imageLi.find( 'video' );
+
 		if ( this.$thumbnail.length ) {
 			// 2. Create and show thumbnail
 			this.$img = $( '<img>' ).attr( {
@@ -290,6 +293,14 @@
 				.append( this.$img );
 
 			this.$imgContainer.empty().append( $imgLink );
+		} else if (this.$video.length) {
+
+			const clonedVideo = this.$video.clone();
+
+			clonedVideo.width('auto');
+			clonedVideo.height('auto');
+
+			this.$imgContainer.empty().append( clonedVideo );
 		} else {
 			// 2b. No image found (e.g. file doesn't exist)
 			this.$imgContainer.text( $imageLi.find( '.thumb' ).text() );
@@ -368,11 +379,20 @@
 		if ( this.imageInfoCache[ imageSrc ] === undefined ) {
 			const api = new mw.Api();
 			// TODO: This supports only gallery of images
-			const title = mw.Title.newFromImg( $img );
+			let title = mw.Title.newFromImg( $img );
+
+			title = title.toString();
+
+			if ($img.data('image-name')) {
+				title = 'File:' + $img.data('image-name');
+			} else if ($img.data('video-name')) {
+				title = 'File:' + $img.data('video-name');
+			}
+
 			const params = {
 				action: 'query',
 				formatversion: 2,
-				titles: title.toString(),
+				titles: title,
 				prop: 'imageinfo',
 				iiprop: 'url'
 			};
