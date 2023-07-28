@@ -2107,6 +2107,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			$text .= "\n<!-- $this->mCacheMessage\n -->\n";
 		}
 
+		$parsoidVersion = $this->getExtensionData( 'core:parsoid-version' );
+		if ( $parsoidVersion ) {
+			$text .= "\n<!--Parsoid $parsoidVersion-->\n";
+		}
+
 		return $text;
 	}
 
