@@ -15,9 +15,10 @@ class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param array $hooks Hook overrides
+	 * @param array $options Service options (see {@link LocalisationCache::CONSTRUCTOR_OPTIONS})
 	 * @return LocalisationCache
 	 */
-	protected function getMockLocalisationCache( $hooks = [] ) {
+	protected function getMockLocalisationCache( $hooks = [], $options = [] ) {
 		global $IP;
 
 		$hookContainer = $this->createHookContainer( $hooks );
@@ -27,14 +28,16 @@ class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
 			[ 'hookContainer' => $hookContainer ]
 		);
 
+		$options += [
+			'forceRecache' => false,
+			'manualRecache' => false,
+			'ExtensionMessagesFiles' => [],
+			'MessagesDirs' => [],
+		];
+
 		$lc = $this->getMockBuilder( LocalisationCache::class )
 			->setConstructorArgs( [
-				new ServiceOptions( LocalisationCache::CONSTRUCTOR_OPTIONS, [
-					'forceRecache' => false,
-					'manualRecache' => false,
-					'ExtensionMessagesFiles' => [],
-					'MessagesDirs' => [],
-				] ),
+				new ServiceOptions( LocalisationCache::CONSTRUCTOR_OPTIONS, $options ),
 				new LCStoreDB( [] ),
 				new NullLogger,
 				[],
@@ -119,5 +122,35 @@ class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
 			$lc->getItem( 'ba', 'messages' ),
 			'Updates provided by hooks follow the normal fallback order.'
 		);
+	}
+
+	public function testRecacheExtensionMessagesFiles(): void {
+		global $IP;
+
+		$lc = $this->getMockLocalisationCache( [], [
+			'ExtensionMessagesFiles' => [
+				__METHOD__ => "$IP/tests/phpunit/data/localisationcache/ExtensionMessagesFiles.php",
+			]
+		] );
+		$lc->recache( 'de' );
+		$specialPageAliases = $lc->getItem( 'de', 'specialPageAliases' );
+		$this->assertSame(
+			[ 'LokalisierungsPufferTest' ],
+			$specialPageAliases['LocalisationCacheTest'],
+			'specialPageAliases can be set in ExtensionMessagesFiles'
+		);
+		$this->assertSame(
+			[ 'Aktive_Benutzer*innen', 'Aktive_Benutzer', 'ActiveFolx', 'ActiveUsers' ],
+			$specialPageAliases['Activeusers'],
+			'specialPageAliases from extension/core files and fallback languages are merged'
+		);
+	}
+
+	public function testShallowFallbackForInvalidCode(): void {
+		$lc = $this->getMockLocalisationCache();
+		$invalidCode = '!invalid!';
+
+		$this->assertSame( false, $lc->getItem( $invalidCode, 'rtl' ) );
+		$this->assertSame( 'windows-1252', $lc->getItem( $invalidCode, 'fallback8bitEncoding' ) );
 	}
 }
