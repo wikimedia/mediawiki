@@ -13,7 +13,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOutputFlags;
-use MediaWiki\Parser\ParserOutputStrings;
+use MediaWiki\Parser\ParserOutputStringSets;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Title\Title;
 use Wikimedia\Bcp47Code\Bcp47Code;
@@ -1753,30 +1753,33 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * Provides a uniform interface to various string sets stored
 	 * in the ParserOutput.  String sets internal to MediaWiki core should
-	 * have names which are constants in ParserOutputStrings.  Extensions
+	 * have names which are constants in ParserOutputStringSets.  Extensions
 	 * should use ::appendExtensionData() rather than creating new string sets
-	 * with ::appendOutputString() in order to prevent namespace conflicts.
-	 *
-	 * @note for now, only a small subset of CSP-related string sets is
-	 * implemented. Other keys throw an exception
+	 * with ::appendOutputStrings() in order to prevent namespace conflicts.
 	 *
 	 * @param string $name A string set name
 	 * @param string[] $value
 	 * @since 1.41
 	 */
-	public function appendOutputString( string $name, array $value ): void {
+	public function appendOutputStrings( string $name, array $value ): void {
 		switch ( $name ) {
-			case ParserOutputStrings::EXTRA_CSP_DEFAULT_SRC:
+			case ParserOutputStringSets::MODULE:
+				$this->addModules( $value );
+				break;
+			case ParserOutputStringSets::MODULE_STYLE:
+				$this->addModuleStyles( $value );
+				break;
+			case ParserOutputStringSets::EXTRA_CSP_DEFAULT_SRC:
 				foreach ( $value as $v ) {
 					$this->addExtraCSPDefaultSrc( $v );
 				}
 				break;
-			case ParserOutputStrings::EXTRA_CSP_SCRIPT_SRC:
+			case ParserOutputStringSets::EXTRA_CSP_SCRIPT_SRC:
 				foreach ( $value as $v ) {
 					$this->addExtraCSPScriptSrc( $v );
 				}
 				break;
-			case ParserOutputStrings::EXTRA_CSP_STYLE_SRC:
+			case ParserOutputStringSets::EXTRA_CSP_STYLE_SRC:
 				foreach ( $value as $v ) {
 					$this->addExtraCSPStyleSrc( $v );
 				}
@@ -1789,25 +1792,26 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * Provides a uniform interface to various boolean string sets stored
 	 * in the ParserOutput.  String sets internal to MediaWiki core should
-	 * have names which are constants in ParserOutputFlags.  Extensions
-	 * should only use ::getOutputString() to query string sets defined in
-	 * ParserOutputFlags in core; they should use ::getExtensionData()
+	 * have names which are constants in ParserOutputStringSets.  Extensions
+	 * should only use ::getOutputStrings() to query string sets defined in
+	 * ParserOutputStringSets in core; they should use ::appendExtensionData()
 	 * to define their own string sets.
-	 *
-	 * @note for now, only a small subset of CSP-related string sets is
-	 * implemented. Other keys throw an exception.
 	 *
 	 * @param string $name A string set name
 	 * @return string[] The string set value
 	 * @since 1.41
 	 */
-	public function getOutputString( string $name ): array {
+	public function getOutputStrings( string $name ): array {
 		switch ( $name ) {
-			case ParserOutputStrings::EXTRA_CSP_DEFAULT_SRC:
+			case ParserOutputStringSets::MODULE:
+				return $this->getModules();
+			case ParserOutputStringSets::MODULE_STYLE:
+				return $this->getModuleStyles();
+			case ParserOutputStringSets::EXTRA_CSP_DEFAULT_SRC:
 				return $this->getExtraCSPDefaultSrcs();
-			case ParserOutputStrings::EXTRA_CSP_SCRIPT_SRC:
+			case ParserOutputStringSets::EXTRA_CSP_SCRIPT_SRC:
 				return $this->getExtraCSPScriptSrcs();
-			case ParserOutputStrings::EXTRA_CSP_STYLE_SRC:
+			case ParserOutputStringSets::EXTRA_CSP_STYLE_SRC:
 				return $this->getExtraCSPStyleSrcs();
 			default:
 				throw new UnexpectedValueException( "Unknown output string set name $name" );
@@ -2433,14 +2437,30 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				$metadata->setOutputFlag( $name );
 			}
 		}
-		// @todo: Accumulators should also be handled uniformly
+
+		// This method_exists test can go away once ::appendOutputStrings()
+		// is added to the ContentMetadataCollector interface.
+		if ( method_exists( $metadata, 'appendOutputStrings' ) ) {
+			// Uniform handling of string sets: they are unioned.
+			// (This includes modules, style modes, and CSP src.)
+			foreach ( ParserOutputStringSets::cases() as $name ) {
+				// @phan-suppress-next-line PhanUndeclaredMethod protected by method_exists
+				$metadata->appendOutputStrings(
+					$name, $this->getOutputStrings( $name )
+				);
+			}
+		} else {
+			// Back-compat
+			$metadata->addModules( $this->mModules );
+			$metadata->addModuleStyles( $this->mModuleStyles );
+		}
+
 		foreach ( $this->mCategories as $cat => $key ) {
 			// Numeric category strings are going to come out of the
 			// `mCategories` array as ints; cast back to string.
 			$metadata->addCategory( (string)$cat, $key );
 		}
-		$metadata->addModules( $this->mModules );
-		$metadata->addModuleStyles( $this->mModuleStyles );
+
 		foreach ( $this->mJsConfigVars as $key => $value ) {
 			if ( is_array( $value ) && isset( $value[self::MW_MERGE_STRATEGY_KEY] ) ) {
 				$strategy = $value[self::MW_MERGE_STRATEGY_KEY];
