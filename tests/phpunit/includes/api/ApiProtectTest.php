@@ -28,14 +28,13 @@ class ApiProtectTest extends ApiTestCase {
 	 * @covers ApiProtect::execute()
 	 */
 	public function testProtectWithWatch(): void {
-		$name = ucfirst( __FUNCTION__ );
-		$title = Title::newFromText( $name );
+		$title = Title::makeTitle( NS_MAIN, 'TestProtectWithWatch' );
 
-		$this->editPage( $name, 'Some text' );
+		$this->editPage( $title, 'Some text' );
 
 		$apiResult = $this->doApiRequestWithToken( [
 			'action' => 'protect',
-			'title' => $name,
+			'title' => $title->getPrefixedText(),
 			'protections' => 'edit=sysop',
 			'expiry' => '55550123000000',
 			'watchlist' => 'watch',
@@ -43,7 +42,7 @@ class ApiProtectTest extends ApiTestCase {
 		] )[0];
 
 		$this->assertArrayHasKey( 'protect', $apiResult );
-		$this->assertSame( $name, $apiResult['protect']['title'] );
+		$this->assertSame( $title->getPrefixedText(), $apiResult['protect']['title'] );
 		$this->assertTrue( $this->getServiceContainer()->getRestrictionStore()->isProtected( $title, 'edit' ) );
 		$this->assertTrue( $this->getServiceContainer()->getWatchlistManager()->isTempWatched(
 			$this->getTestSysop()->getUser(),

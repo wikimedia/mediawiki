@@ -58,19 +58,18 @@ class ApiUploadTest extends ApiUploadTestCase {
 	}
 
 	public function testUploadWithWatch() {
-		$fileName = 'TestUpload.jpg';
 		$mimeType = 'image/jpeg';
 		$filePath = $this->filePath( 'yuv420.jpg' );
-		$title = Title::newFromText( $fileName, NS_FILE );
+		$title = Title::makeTitle( NS_FILE, 'TestUpload.jpg' );
 		$user = $this->uploader;
 
-		$this->fakeUploadFile( 'file', $fileName, $mimeType, $filePath );
+		$this->fakeUploadFile( 'file', $title->getText(), $mimeType, $filePath );
 		[ $result ] = $this->doApiRequestWithToken( [
 			'action' => 'upload',
-			'filename' => $fileName,
+			'filename' => $title->getText(),
 			'file' => 'dummy content',
 			'comment' => 'dummy comment',
-			'text' => "This is the page text for $fileName",
+			'text' => "This is the page text for {$title->getText()}",
 			'watchlist' => 'watch',
 			'watchlistexpiry' => '99990123000000',
 		], null, $user );

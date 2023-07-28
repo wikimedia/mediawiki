@@ -26,23 +26,22 @@ class ApiRollbackTest extends ApiTestCase {
 	}
 
 	public function testProtectWithWatch(): void {
-		$name = ucfirst( __FUNCTION__ );
-		$title = Title::newFromText( $name );
+		$title = Title::makeTitle( NS_MAIN, 'TestProtectWithWatch' );
 		$revisionStore = $this->getServiceContainer()->getRevisionStore();
 
 		$user = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 
 		// Create page as sysop.
-		$this->editPage( $name, 'Some text', '', NS_MAIN, $sysop );
+		$this->editPage( $title, 'Some text', '', NS_MAIN, $sysop );
 
 		// Edit as non-sysop.
-		$this->editPage( $name, 'Vandalism', '', NS_MAIN, $user );
+		$this->editPage( $title, 'Vandalism', '', NS_MAIN, $user );
 
 		// Rollback as sysop.
 		$apiResult = $this->doApiRequestWithToken( [
 			'action' => 'rollback',
-			'title' => $name,
+			'title' => $title->getPrefixedText(),
 			'user' => $user->getName(),
 			'watchlist' => 'watch',
 			'watchlistexpiry' => '99990123000000',
@@ -57,7 +56,7 @@ class ApiRollbackTest extends ApiTestCase {
 
 		// Make sure the API response looks good.
 		$this->assertArrayHasKey( 'rollback', $apiResult );
-		$this->assertSame( $name, $apiResult['rollback']['title'] );
+		$this->assertSame( $title->getPrefixedText(), $apiResult['rollback']['title'] );
 
 		// And that the page was temporarily watched.
 		$this->assertTrue( $this->getServiceContainer()->getWatchlistManager()->isTempWatched( $sysop, $title ) );
@@ -69,27 +68,27 @@ class ApiRollbackTest extends ApiTestCase {
 
 	public function testRollbackMarkAsBot() {
 		$revisionStore = $this->getServiceContainer()->getRevisionStore();
-		$title = Title::newFromText( __METHOD__ );
+		$title = Title::makeTitle( NS_MAIN, 'ApiRollbackTest::testRollbackMarkAsBot' );
 
 		$user = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 
 		// Create page as sysop.
-		$this->editPage( __METHOD__, 'Some text', '', NS_MAIN, $sysop );
+		$this->editPage( $title, 'Some text', '', NS_MAIN, $sysop );
 
 		// Edit as non-sysop.
-		$this->editPage( __METHOD__, 'Vandalism', '', NS_MAIN, $user );
+		$this->editPage( $title, 'Vandalism', '', NS_MAIN, $user );
 
 		// Rollback as sysop.
 		$apiResult = $this->doApiRequestWithToken( [
 			'action' => 'rollback',
-			'title' => __METHOD__,
+			'title' => $title->getPrefixedText(),
 			'user' => $user->getName(),
 			'markbot' => true
 		] )[0];
 		// Make sure the API response looks good.
 		$this->assertArrayHasKey( 'rollback', $apiResult );
-		$this->assertSame( __METHOD__, $apiResult['rollback']['title'] );
+		$this->assertSame( $title->getPrefixedText(), $apiResult['rollback']['title'] );
 
 		$recentChange = $revisionStore->getRecentChange( $revisionStore->getRevisionByTitle( $title ) );
 		$this->assertSame( '1', $recentChange->getAttribute( 'rc_bot' ) );
@@ -99,16 +98,17 @@ class ApiRollbackTest extends ApiTestCase {
 		$user = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 
+		$title = Title::makeTitle( NS_MAIN, 'ApiRollbackTest::testRollbackNoToken' );
 		// Create page as sysop.
-		$this->editPage( __METHOD__, 'Some text', '', NS_MAIN, $sysop );
+		$this->editPage( $title, 'Some text', '', NS_MAIN, $sysop );
 
 		// Edit as non-sysop.
-		$this->editPage( __METHOD__, 'Vandalism', '', NS_MAIN, $user );
+		$this->editPage( $title, 'Vandalism', '', NS_MAIN, $user );
 
 		$this->expectException( ApiUsageException::class );
 		$this->doApiRequest( [
 			'action' => 'rollback',
-			'title' => __METHOD__,
+			'title' => $title->getPrefixedText(),
 			'user' => $user->getName(),
 		] )[0];
 	}

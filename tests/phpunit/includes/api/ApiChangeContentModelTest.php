@@ -42,10 +42,10 @@ class ApiChangeContentModelTest extends ApiTestCase {
 	}
 
 	public function testTitleMustExist() {
-		$name = __METHOD__;
+		$title = Title::makeTitle( NS_MAIN, 'ApiChangeContentModelTest::TestTitleMustExist' );
 
 		$this->assertFalse(
-			Title::newFromText( $name )->exists(),
+			$title->exists(),
 			'Check that title does not exist already'
 		);
 
@@ -53,7 +53,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 
 		$this->doApiRequestWithToken( [
 			'action' => 'changecontentmodel',
-			'title' => $name,
+			'title' => $title->getPrefixedText(),
 			'model' => 'text'
 		] );
 	}
