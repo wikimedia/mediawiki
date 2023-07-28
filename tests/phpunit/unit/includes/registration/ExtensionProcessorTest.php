@@ -249,6 +249,58 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 		$this->assertArrayNotHasKey( 123456, $extracted['globals']['wgNamespacesWithSubpages'] );
 	}
 
+	public function testRateLimits() {
+		$processor = new ExtensionProcessor();
+		$processor->extractInfo(
+			'',
+			[
+				'name' => 'Foo',
+				'RateLimits' => [
+					'test1' => [
+						"user" => [ 1, 7200 ]
+					],
+					'test2' => [
+						"user" => [ 2, 7200 ]
+					],
+				],
+				'AvailableRights' => [
+					'test2',
+				]
+			] + self::$default,
+			2
+		);
+
+		$processor->extractInfo(
+			'Bar',
+			[
+				'name' => 'Bar',
+				'RateLimits' => [
+					'test3' => [
+						"user" => [ 1, 7200 ]
+					],
+				],
+			] + self::$default,
+			2
+		);
+
+		$extracted = $processor->getExtractedInfo();
+
+		$this->assertArrayHasKey( 'wgRateLimits', $extracted['globals'] );
+		$this->assertArrayHasKey( 'wgImplicitRights', $extracted['globals'] );
+		$this->assertArrayHasKey( 'wgAvailableRights', $extracted['globals'] );
+
+		$this->assertArrayHasKey( 'test1', $extracted['globals']['wgRateLimits'] );
+		$this->assertArrayHasKey( 'test2', $extracted['globals']['wgRateLimits'] );
+		$this->assertArrayHasKey( 'test3', $extracted['globals']['wgRateLimits'] );
+
+		$this->assertContains( 'test2', $extracted['globals']['wgAvailableRights'] );
+		$this->assertNotContains( 'test1', $extracted['globals']['wgAvailableRights'] );
+
+		$this->assertContains( 'test1', $extracted['globals']['wgImplicitRights'] );
+		$this->assertContains( 'test3', $extracted['globals']['wgImplicitRights'] );
+		$this->assertNotContains( 'test2', $extracted['globals']['wgImplicitRights'] );
+	}
+
 	public function provideMixedStyleHooks() {
 		// Format:
 		// Content in extension.json

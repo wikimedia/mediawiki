@@ -1336,6 +1336,8 @@ return [
 			],
 			'AvailableRights' => [
 			],
+			'ImplicitRights' => [
+			],
 			'DeleteRevisionsLimit' => 0,
 			'DeleteRevisionsBatchSize' => 1000,
 			'HideUserContribLimit' => 1000,
@@ -2765,6 +2767,7 @@ return [
 			'AddGroups' => 'object',
 			'RemoveGroups' => 'object',
 			'AvailableRights' => 'array',
+			'ImplicitRights' => 'array',
 			'AccountCreationThrottle' => [
 				0 => 'integer',
 				1 => 'array',
@@ -3259,6 +3262,16 @@ return [
 		],
 		'GroupInheritsPermissions' => [
 			'additionalProperties' => [
+				'type' => 'string',
+			],
+		],
+		'AvailableRights' => [
+			'items' => [
+				'type' => 'string',
+			],
+		],
+		'ImplicitRights' => [
+			'items' => [
 				'type' => 'string',
 			],
 		],

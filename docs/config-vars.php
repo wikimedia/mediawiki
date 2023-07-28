@@ -2850,6 +2850,12 @@ $wgRemoveGroups = null;
 $wgAvailableRights = null;
 
 /**
+ * Config variable stub for the ImplicitRights setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::ImplicitRights
+ */
+$wgImplicitRights = null;
+
+/**
  * Config variable stub for the DeleteRevisionsLimit setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::DeleteRevisionsLimit
  */

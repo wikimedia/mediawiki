@@ -2865,6 +2865,12 @@ class MainConfigNames {
 	public const AvailableRights = 'AvailableRights';
 
 	/**
+	 * Name constant for the ImplicitRights setting, for use with Config::get()
+	 * @see MainConfigSchema::ImplicitRights
+	 */
+	public const ImplicitRights = 'ImplicitRights';
+
+	/**
 	 * Name constant for the DeleteRevisionsLimit setting, for use with Config::get()
 	 * @see MainConfigSchema::DeleteRevisionsLimit
 	 */

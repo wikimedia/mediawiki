@@ -8254,12 +8254,37 @@ class MainConfigSchema {
 
 	/**
 	 * A list of available rights, in addition to the ones defined by the core.
+	 * Rights in this list are denied unless explicitly granted, typically
+	 * using GroupPermissions.
 	 *
 	 * For extensions only.
+	 *
+	 * @see self::GroupPermissions
+	 * @see self::ImplicitRights
 	 */
 	public const AvailableRights = [
 		'default' => [],
 		'type' => 'list',
+		'items' => [ 'type' => 'string', ],
+	];
+
+	/**
+	 * A list of implicit rights, in addition to the ones defined by the core.
+	 * Rights in this list are granted implicitly to all users, but rate limits
+	 * may apply to them.
+	 *
+	 * Extensions that define rate limits should add the corresponding right to
+	 * either ImplicitRights or AvailableRights, depending on whether the right
+	 * should be granted to everyone.
+	 *
+	 * @since 1.41
+	 * @see self::RateLimits
+	 * @see self::AvailableRights
+	 */
+	public const ImplicitRights = [
+		'default' => [],
+		'type' => 'list',
+		'items' => [ 'type' => 'string', ]
 	];
 
 	/**
@@ -8470,6 +8495,7 @@ class MainConfigSchema {
 	 * ];
 	 * ```
 	 *
+	 * @see self::ImplicitRights
 	 * @warning Requires that $wgMainCacheType is set to something persistent
 	 */
 	public const RateLimits = [

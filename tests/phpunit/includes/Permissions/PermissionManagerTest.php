@@ -58,6 +58,9 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$this->overrideConfigValues( [
 			MainConfigNames::Localtimezone => $localZone,
 			MainConfigNames::LocalTZoffset => $localOffset,
+			MainConfigNames::ImplicitRights => [
+				'limitabletest'
+			],
 			MainConfigNames::RevokePermissions => [
 				'formertesters' => [
 					'runtest' => true
@@ -1070,19 +1073,37 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			$this->getTestUser( 'unittesters' )->getUser(),
 			'test'
 		);
-		$this->assertTrue( $result );
+		$this->assertTrue( $result, 'right was granted to group, so should be allowed' );
+
+		$result = $permissionManager->userHasRight(
+			$this->getTestUser( 'unittesters' )->getUser(),
+			'limitabletest'
+		);
+		$this->assertTrue( $result, 'not granted, but listed as implicit' );
+
+		$result = $permissionManager->userHasRight(
+			$this->getTestUser( 'unittesters' )->getUser(),
+			'mailpassword'
+		);
+		$this->assertTrue( $result, 'not granted, but has a limit, so should be allowed' );
+
+		$result = $permissionManager->userHasRight(
+			$this->getTestUser( 'unittesters' )->getUser(),
+			'rollback'
+		);
+		$this->assertFalse( $result, 'not granted, has a limit but is listed as available, so should not be allowed' );
 
 		$result = $permissionManager->userHasRight(
 			$this->getTestUser( 'formertesters' )->getUser(),
 			'runtest'
 		);
-		$this->assertFalse( $result );
+		$this->assertFalse( $result, 'not granted, should not be allowed' );
 
 		$result = $permissionManager->userHasRight(
 			$this->getTestUser( 'formertesters' )->getUser(),
 			''
 		);
-		$this->assertTrue( $result );
+		$this->assertTrue( $result, 'empty action should always be granted' );
 	}
 
 	public function testGroupHasPermission() {
