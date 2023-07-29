@@ -2,7 +2,6 @@
 
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\Authority;
-use MediaWiki\Title\Title;
 
 /**
  * @group API
@@ -22,7 +21,7 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 		return $this->getTestUser()->getUser();
 	}
 
-	private function doPageEdit( Authority $performer, LinkTarget $target, $summary ) {
+	private function doPageEdit( Authority $performer, $target, $summary ) {
 		static $i = 0;
 
 		$this->editPage(
@@ -35,10 +34,9 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 	}
 
 	private function doMinorPageEdit( User $user, LinkTarget $target, $summary ) {
-		$title = Title::newFromLinkTarget( $target );
-		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromLinkTarget( $target );
 		$page->doUserEditContent(
-			ContentHandler::makeContent( __CLASS__, $title ),
+			$page->getContentHandler()->unserializeContent( __CLASS__ ),
 			$user,
 			$summary,
 			EDIT_MINOR
@@ -46,10 +44,9 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 	}
 
 	private function doBotPageEdit( User $user, LinkTarget $target, $summary ) {
-		$title = Title::newFromLinkTarget( $target );
-		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromLinkTarget( $target );
 		$page->doUserEditContent(
-			ContentHandler::makeContent( __CLASS__, $title ),
+			$page->getContentHandler()->unserializeContent( __CLASS__ ),
 			$user,
 			$summary,
 			EDIT_FORCE_BOT
@@ -57,11 +54,10 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 	}
 
 	private function doAnonPageEdit( LinkTarget $target, $summary ) {
-		$title = Title::newFromLinkTarget( $target );
-		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromLinkTarget( $target );
 		$page->doUserEditContent(
-			ContentHandler::makeContent( __CLASS__, $title ),
-			User::newFromId( 0 ),
+			$page->getContentHandler()->unserializeContent( __CLASS__ ),
+			$this->getServiceContainer()->getUserFactory()->newAnonymous(),
 			$summary
 		);
 	}
@@ -394,11 +390,11 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 	}
 
 	private function createPageAndDeleteIt( LinkTarget $target ) {
+		$wikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromLinkTarget( $target );
 		$this->doPageEdit( $this->getLoggedInTestUser(),
-			$target,
+			$wikiPage,
 			'Create the page that will be deleted'
 		);
-		$wikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromLinkTarget( $target );
 		$this->deletePage( $wikiPage, 'Important Reason' );
 	}
 
@@ -567,7 +563,7 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 	}
 
 	private function getExternalRC( LinkTarget $target ) {
-		$title = Title::newFromLinkTarget( $target );
+		$title = $this->getServiceContainer()->getTitleFactory()->newFromLinkTarget( $target );
 
 		$rc = new RecentChange;
 		$rc->mAttribs = [
@@ -648,7 +644,8 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 				],
 			]
 		);
-		$title = Title::newFromLinkTarget( $subjectTarget );
+		$titleFactory = $this->getServiceContainer()->getTitleFactory();
+		$title = $titleFactory->newFromLinkTarget( $subjectTarget );
 		$revision = $this->getServiceContainer()
 			->getRevisionLookup()
 			->getRevisionByTitle( $title );
@@ -656,7 +653,7 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 		$comment = $revision->getComment();
 		$rc = RecentChange::newForCategorization(
 			$revision->getTimestamp(),
-			Title::newFromLinkTarget( $categoryTarget ),
+			$titleFactory->newFromLinkTarget( $categoryTarget ),
 			$user,
 			$comment ? $comment->text : '',
 			$title,

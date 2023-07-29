@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\User\UserRigorOptions;
+
 /**
  * @group API
  * @group Database
@@ -8,14 +10,15 @@
  */
 class ApiQueryUserContribsTest extends ApiTestCase {
 	public function addDBDataOnce() {
+		$userFactory = $this->getServiceContainer()->getUserFactory();
 		$users = [
-			User::newFromName( '192.168.2.2', false ),
-			User::newFromName( '192.168.2.1', false ),
-			User::newFromName( '192.168.2.3', false ),
+			$userFactory->newFromName( '192.168.2.2', UserRigorOptions::RIGOR_NONE ),
+			$userFactory->newFromName( '192.168.2.1', UserRigorOptions::RIGOR_NONE ),
+			$userFactory->newFromName( '192.168.2.3', UserRigorOptions::RIGOR_NONE ),
 			User::createNew( __CLASS__ . ' B' ),
 			User::createNew( __CLASS__ . ' A' ),
 			User::createNew( __CLASS__ . ' C' ),
-			User::newFromName( 'IW>' . __CLASS__, false ),
+			$userFactory->newFromName( 'IW>' . __CLASS__, UserRigorOptions::RIGOR_NONE ),
 		];
 
 		$page = $this->getServiceContainer()->getWikiPageFactory()

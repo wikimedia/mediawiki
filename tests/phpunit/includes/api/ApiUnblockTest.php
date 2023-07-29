@@ -43,7 +43,9 @@ class ApiUnblockTest extends ApiTestCase {
 			return DatabaseBlock::newFromTarget( $params['user'] );
 		}
 		if ( array_key_exists( 'userid', $params ) ) {
-			return DatabaseBlock::newFromTarget( User::newFromId( $params['userid'] ) );
+			return DatabaseBlock::newFromTarget(
+				$this->getServiceContainer()->getUserFactory()->newFromId( $params['userid'] )
+			);
 		}
 		return DatabaseBlock::newFromID( $params['id'] );
 	}
@@ -115,7 +117,7 @@ class ApiUnblockTest extends ApiTestCase {
 	}
 
 	public function testUnblockWithTagNewBackend() {
-		ChangeTags::defineTag( 'custom tag' );
+		$this->getServiceContainer()->getChangeTagsStore()->defineTag( 'custom tag' );
 
 		$this->doUnblock( [ 'tags' => 'custom tag' ] );
 
@@ -136,7 +138,7 @@ class ApiUnblockTest extends ApiTestCase {
 	public function testUnblockWithProhibitedTag() {
 		$this->expectApiErrorCode( 'tags-apply-no-permission' );
 
-		ChangeTags::defineTag( 'custom tag' );
+		$this->getServiceContainer()->getChangeTagsStore()->defineTag( 'custom tag' );
 
 		$this->setGroupPermissions( 'user', 'applychangetags', false );
 

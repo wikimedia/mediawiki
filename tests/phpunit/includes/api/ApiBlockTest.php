@@ -8,6 +8,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\User\UserRigorOptions;
 
 /**
  * @group API
@@ -110,13 +111,13 @@ class ApiBlockTest extends ApiTestCase {
 		$id = 948206325;
 		$this->expectApiErrorCode( 'nosuchuserid' );
 
-		$this->assertFalse( User::whoIs( $id ) );
+		$this->assertNull( $this->getServiceContainer()->getUserIdentityLookup()->getUserIdentityByUserId( $id ) );
 
 		$this->doBlock( [ 'userid' => $id ] );
 	}
 
 	public function testBlockWithTag() {
-		ChangeTags::defineTag( 'custom tag' );
+		$this->getServiceContainer()->getChangeTagsStore()->defineTag( 'custom tag' );
 
 		$this->doBlock( [ 'tags' => 'custom tag' ] );
 
@@ -137,7 +138,7 @@ class ApiBlockTest extends ApiTestCase {
 	public function testBlockWithProhibitedTag() {
 		$this->expectApiErrorCode( 'tags-apply-no-permission' );
 
-		ChangeTags::defineTag( 'custom tag' );
+		$this->getServiceContainer()->getChangeTagsStore()->defineTag( 'custom tag' );
 
 		$this->overrideConfigValue(
 			MainConfigNames::RevokePermissions,
@@ -325,12 +326,12 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	public function testRangeBlock() {
-		$this->mUser = User::newFromName( '128.0.0.0/16', false );
+		$this->mUser = $this->getServiceContainer()->getUserFactory()->newFromName( '128.0.0.0/16', UserRigorOptions::RIGOR_NONE );
 		$this->doBlock();
 	}
 
 	public function testVeryLargeRangeBlock() {
-		$this->mUser = User::newFromName( '128.0.0.0/1', false );
+		$this->mUser = $this->getServiceContainer()->getUserFactory()->newFromName( '128.0.0.0/1', UserRigorOptions::RIGOR_NONE );
 		$this->expectApiErrorCode( 'ip_range_toolarge' );
 		$this->doBlock();
 	}

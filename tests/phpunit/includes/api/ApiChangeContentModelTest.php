@@ -101,7 +101,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 		$wikipage = $this->getExistingTestPage( 'PageWithTextThatIsNotValidJSON' );
 		$invalidJSON = 'Foo\nBar\nEaster egg\nT22281';
 		$wikipage->doUserEditContent(
-			ContentHandler::makeContent( $invalidJSON, $wikipage->getTitle() ),
+			$wikipage->getContentHandler()->unserializeContent( $invalidJSON ),
 			$this->getTestSysop()->getAuthority(),
 			'EditSummaryForThisTest',
 			EDIT_UPDATE | EDIT_SUPPRESS_RC
@@ -212,7 +212,9 @@ class ApiChangeContentModelTest extends ApiTestCase {
 	public function testNoDirectEditing() {
 		$title = Title::newFromText( 'Dummy:NoDirectEditing' );
 
-		$dummyContent = ContentHandler::getForModelID( 'testing' )->makeEmptyContent();
+		$dummyContent = $this->getServiceContainer()
+			->getContentHandlerFactory()
+			->getContentHandler( 'testing' )->makeEmptyContent();
 		$this->editPage(
 			$title,
 			$dummyContent,
@@ -240,7 +242,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 	}
 
 	public function testCannotApplyTags() {
-		ChangeTags::defineTag( 'api edit content model tag' );
+		$this->getServiceContainer()->getChangeTagsStore()->defineTag( 'api edit content model tag' );
 		$this->expectApiErrorCode( 'tags-apply-no-permission' );
 
 		$this->doApiRequestWithToken( [
@@ -268,7 +270,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 			'`ExistingPage` should be wikitext'
 		);
 
-		ChangeTags::defineTag( 'api edit content model tag' );
+		$this->getServiceContainer()->getChangeTagsStore()->defineTag( 'api edit content model tag' );
 
 		$data = $this->doApiRequestWithToken( [
 			'action' => 'changecontentmodel',

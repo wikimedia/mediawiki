@@ -135,7 +135,7 @@ class ApiDeleteTest extends ApiTestCase {
 	public function testDeleteWithTag() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
-		ChangeTags::defineTag( 'custom tag' );
+		$this->getServiceContainer()->getChangeTagsStore()->defineTag( 'custom tag' );
 
 		$this->editPage( $name, 'Some text' );
 
@@ -169,7 +169,7 @@ class ApiDeleteTest extends ApiTestCase {
 
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
-		ChangeTags::defineTag( 'custom tag' );
+		$this->getServiceContainer()->getChangeTagsStore()->defineTag( 'custom tag' );
 		$this->overrideConfigValue(
 			MainConfigNames::RevokePermissions,
 			[ 'user' => [ 'applychangetags' => true ] ]

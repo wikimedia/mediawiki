@@ -1,8 +1,10 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Storage\PageEditStash;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserRigorOptions;
 use Psr\Log\NullLogger;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
@@ -350,8 +352,8 @@ class ApiStashEditTest extends ApiTestCase {
 	}
 
 	public function testCheckCacheAnon() {
-		$this->overrideConfigValue( 'AutoCreateTempUser', [ 'enabled' => false ] );
-		$user = User::newFromName( '174.5.4.6', false );
+		$this->overrideConfigValue( MainConfigNames::AutoCreateTempUser, [ 'enabled' => false ] );
+		$user = $this->getServiceContainer()->getUserFactory()->newFromName( '174.5.4.6', UserRigorOptions::RIGOR_NONE );
 
 		$this->doStash( [], $user );
 
@@ -382,9 +384,9 @@ class ApiStashEditTest extends ApiTestCase {
 	}
 
 	public function testCheckCacheOldNoEditsAnon() {
-		$this->overrideConfigValue( 'AutoCreateTempUser', [ 'enabled' => false ] );
+		$this->overrideConfigValue( MainConfigNames::AutoCreateTempUser, [ 'enabled' => false ] );
 		// Specify a made-up IP address to make sure no edits are lying around
-		$user = User::newFromName( '172.0.2.77', false );
+		$user = $this->getServiceContainer()->getUserFactory()->newFromName( '172.0.2.77', UserRigorOptions::RIGOR_NONE );
 
 		$this->doStashOld( $user );
 

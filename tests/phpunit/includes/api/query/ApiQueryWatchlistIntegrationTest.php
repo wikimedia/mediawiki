@@ -3,7 +3,6 @@
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\Title\Title;
 
 /**
  * @group medium
@@ -35,7 +34,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		return $this->notLoggedInUser;
 	}
 
-	private function doPageEdit( Authority $performer, LinkTarget $target, $content, $summary ) {
+	private function doPageEdit( Authority $performer, $target, $content, $summary ) {
 		$this->editPage(
 			$target,
 			$content,
@@ -46,10 +45,9 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	private function doMinorPageEdit( User $user, LinkTarget $target, $content, $summary ) {
-		$title = Title::newFromLinkTarget( $target );
-		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromLinkTarget( $target );
 		$page->doUserEditContent(
-			ContentHandler::makeContent( $content, $title ),
+			$page->getContentHandler()->unserializeContent( $content ),
 			$user,
 			$summary,
 			EDIT_MINOR
@@ -57,10 +55,9 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	private function doBotPageEdit( User $user, LinkTarget $target, $content, $summary ) {
-		$title = Title::newFromLinkTarget( $target );
-		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromLinkTarget( $target );
 		$page->doUserEditContent(
-			ContentHandler::makeContent( $content, $title ),
+			$page->getContentHandler()->unserializeContent( $content ),
 			$user,
 			$summary,
 			EDIT_FORCE_BOT
@@ -84,12 +81,11 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		$summary,
 		User $patrollingUser
 	) {
-		$title = Title::newFromLinkTarget( $target );
 		$summary = CommentStoreComment::newUnsavedComment( trim( $summary ) );
-		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromLinkTarget( $target );
 
 		$updater = $page->newPageUpdater( $user );
-		$updater->setContent( SlotRecord::MAIN, ContentHandler::makeContent( $content, $title ) );
+		$updater->setContent( SlotRecord::MAIN, $page->getContentHandler()->unserializeContent( $content ) );
 		$rev = $updater->saveRevision( $summary );
 
 		$rc = $this->getServiceContainer()->getRevisionStore()->getRecentChange( $rev );
@@ -414,7 +410,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 				[
 					'type' => 'new',
 					'anon' => true,
-					'user' => User::newFromId( 0 )->getName(),
+					'user' => $this->getServiceContainer()->getUserFactory()->newAnonymous()->getName(),
 				],
 				[
 					'type' => 'new',
@@ -621,13 +617,13 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	private function createPageAndDeleteIt( LinkTarget $target ) {
+		$wikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromLinkTarget( $target );
 		$this->doPageEdit(
 			$this->getLoggedInTestUser(),
-			$target,
+			$wikiPage,
 			'Some Content',
 			'Create the page that will be deleted'
 		);
-		$wikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromLinkTarget( $target );
 		$this->deletePage( $wikiPage, 'Important Reason' );
 	}
 
@@ -1048,7 +1044,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	private function getExternalRC( LinkTarget $target ) {
-		$title = Title::newFromLinkTarget( $target );
+		$title = $this->getServiceContainer()->getTitleFactory()->newFromLinkTarget( $target );
 
 		$rc = new RecentChange;
 		$rc->mAttribs = [
@@ -1144,7 +1140,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 				],
 			]
 		);
-		$title = Title::newFromLinkTarget( $subjectTarget );
+		$title = $this->getServiceContainer()->getTitleFactory()->newFromLinkTarget( $subjectTarget );
 		$revision = $this->getServiceContainer()
 			->getRevisionLookup()
 			->getRevisionByTitle( $title );
@@ -1152,7 +1148,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		$comment = $revision->getComment();
 		$rc = RecentChange::newForCategorization(
 			$revision->getTimestamp(),
-			Title::newFromLinkTarget( $categoryTarget ),
+			$this->getServiceContainer()->getTitleFactory()->newFromLinkTarget( $categoryTarget ),
 			$user,
 			$comment ? $comment->text : '',
 			$title,
@@ -1470,7 +1466,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 
 		$this->watchPages( $otherUser, [ $target ] );
 
-		$reloadedUser = User::newFromName( $otherUser->getName() );
+		$reloadedUser = $this->getServiceContainer()->getUserFactory()->newFromName( $otherUser->getName() );
 		$option = $userOptionsManager->getOption( $reloadedUser, 'watchlisttoken' );
 		$this->assertSame( '1234567890', $option );
 
