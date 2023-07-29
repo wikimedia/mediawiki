@@ -1089,6 +1089,10 @@ because of Phabricator reports.
 * The mergeMessageFileList script now only works for extensions and skins
   supporting extension registration (using extension.json or skin.json).
   It will no longer attempt to load PHP entry points.
+* Parser will no longer fall back to $wgTitle if a null is provided as a
+  Title or PageReference. To change the relevant title used for methods
+  that do not offer an option to set the page, call Parser::setPage.
+  This affects the methods cleanSig, getSection and replaceSection.
 * …
 
 == Compatibility ==
