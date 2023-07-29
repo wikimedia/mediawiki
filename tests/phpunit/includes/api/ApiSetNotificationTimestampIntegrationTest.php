@@ -40,8 +40,8 @@ class ApiSetNotificationTimestampIntegrationTest extends ApiTestCase {
 			[
 				'batchcomplete' => true,
 				'setnotificationtimestamp' => [
-					[ 'ns' => 0, 'title' => 'UTPage', 'notificationtimestamp' => '2016-01-01T02:02:02Z' ],
-					[ 'ns' => 0, 'title' => 'UTPageNotWatched', 'notwatched' => true ]
+					[ 'ns' => NS_MAIN, 'title' => 'UTPage', 'notificationtimestamp' => '2016-01-01T02:02:02Z' ],
+					[ 'ns' => NS_MAIN, 'title' => 'UTPageNotWatched', 'notwatched' => true ]
 				],
 			],
 			$result[0]

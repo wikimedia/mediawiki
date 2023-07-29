@@ -29,8 +29,8 @@ class ApiPurgeTest extends ApiTestCase {
 
 		$this->assertEquals(
 			[
-				'UTPage' => [ 'purged' => true, 'ns' => 0 ],
-				'UTPage-NotFound' => [ 'missing' => true, 'ns' => 0 ],
+				'UTPage' => [ 'purged' => true, 'ns' => NS_MAIN ],
+				'UTPage-NotFound' => [ 'missing' => true, 'ns' => NS_MAIN ],
 				'%5D' => [ 'invalid' => true ],
 			],
 			$resultByTitle,
