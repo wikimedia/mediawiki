@@ -56,7 +56,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	private Language $contentLanguage;
 	private NamespaceInfo $namespaceInfo;
 	private InterwikiLookup $interwikiLookup;
-	private Parser $parser;
+	private ParserFactory $parserFactory;
 	private MagicWordFactory $magicWordFactory;
 	private SpecialPageFactory $specialPageFactory;
 	private SkinFactory $skinFactory;
@@ -75,7 +75,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	 * @param Language $contentLanguage
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param InterwikiLookup $interwikiLookup
-	 * @param Parser $parser
+	 * @param ParserFactory $parserFactory
 	 * @param MagicWordFactory $magicWordFactory
 	 * @param SpecialPageFactory $specialPageFactory
 	 * @param SkinFactory $skinFactory
@@ -94,7 +94,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		Language $contentLanguage,
 		NamespaceInfo $namespaceInfo,
 		InterwikiLookup $interwikiLookup,
-		Parser $parser,
+		ParserFactory $parserFactory,
 		MagicWordFactory $magicWordFactory,
 		SpecialPageFactory $specialPageFactory,
 		SkinFactory $skinFactory,
@@ -111,7 +111,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$this->contentLanguage = $contentLanguage;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->interwikiLookup = $interwikiLookup;
-		$this->parser = $parser;
+		$this->parserFactory = $parserFactory;
 		$this->magicWordFactory = $magicWordFactory;
 		$this->specialPageFactory = $specialPageFactory;
 		$this->skinFactory = $skinFactory;
@@ -940,7 +940,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			static function ( $item ) {
 				return "<$item>";
 			},
-			$this->parser->getTags()
+			$this->parserFactory->getMainInstance()->getTags()
 		);
 		ApiResult::setArrayType( $tags, 'BCarray' );
 		ApiResult::setIndexedTagName( $tags, 't' );
@@ -949,7 +949,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	public function appendFunctionHooks( $property ) {
-		$hooks = $this->parser->getFunctionHooks();
+		$hooks = $this->parserFactory->getMainInstance()->getFunctionHooks();
 		ApiResult::setArrayType( $hooks, 'BCarray' );
 		ApiResult::setIndexedTagName( $hooks, 'h' );
 
