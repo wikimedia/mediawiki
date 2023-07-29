@@ -400,6 +400,11 @@ class ParserTestRunner {
 		$setup['wgNoFollowDomainExceptions'] = [ 'no-nofollow.org' ];
 		$setup['wgExternalLinkTarget'] = false;
 		$setup['wgLocaltimezone'] = 'UTC';
+		$reset = static function () {
+			MediaWikiServices::getInstance()->resetServiceForTesting( 'UrlUtils' );
+		};
+		$setup[] = $reset;
+		$teardown[] = $reset;
 
 		// Language and variant settings
 		$setup['wgLanguageCode'] = 'en';

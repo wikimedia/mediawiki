@@ -121,8 +121,8 @@ class MessageCache implements LoggerAwareInterface {
 	 * @var ParserOptions
 	 */
 	private $parserOptions;
-	/** @var Parser */
-	private $parser;
+	/** @var ?Parser Lazy-created via self::getParser() */
+	private $parser = null;
 
 	/**
 	 * @var bool
@@ -151,6 +151,8 @@ class MessageCache implements LoggerAwareInterface {
 	private $languageFallback;
 	/** @var HookRunner */
 	private $hookRunner;
+	/** @var ParserFactory */
+	private $parserFactory;
 
 	/** @var (string|callable)[]|null */
 	private $messageKeyOverrides;
@@ -191,6 +193,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param LanguageNameUtils $languageNameUtils
 	 * @param LanguageFallback $languageFallback
 	 * @param HookContainer $hookContainer
+	 * @param ParserFactory $parserFactory
 	 */
 	public function __construct(
 		WANObjectCache $wanCache,
@@ -204,7 +207,8 @@ class MessageCache implements LoggerAwareInterface {
 		LocalisationCache $localisationCache,
 		LanguageNameUtils $languageNameUtils,
 		LanguageFallback $languageFallback,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		ParserFactory $parserFactory
 	) {
 		$this->wanCache = $wanCache;
 		$this->clusterCache = $clusterCache;
@@ -218,6 +222,7 @@ class MessageCache implements LoggerAwareInterface {
 		$this->languageNameUtils = $languageNameUtils;
 		$this->languageFallback = $languageFallback;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->parserFactory = $parserFactory;
 
 		// limit size
 		$this->cache = new MapCacheLRU( self::MAX_REQUEST_LANGUAGES );
@@ -1408,17 +1413,15 @@ class MessageCache implements LoggerAwareInterface {
 		}
 
 		$parser = $this->getParser();
-		if ( $parser ) {
-			$popts = $this->getParserOptions();
-			$popts->setInterfaceMessage( $interface );
-			$popts->setTargetLanguage( $language );
+		$popts = $this->getParserOptions();
+		$popts->setInterfaceMessage( $interface );
+		$popts->setTargetLanguage( $language );
 
-			$userlang = $popts->setUserLang( $language );
-			$this->inParser = true;
-			$message = $parser->transformMsg( $message, $popts, $page );
-			$this->inParser = false;
-			$popts->setUserLang( $userlang );
-		}
+		$userlang = $popts->setUserLang( $language );
+		$this->inParser = true;
+		$message = $parser->transformMsg( $message, $popts, $page );
+		$this->inParser = false;
+		$popts->setUserLang( $userlang );
 
 		return $message;
 	}
@@ -1428,9 +1431,7 @@ class MessageCache implements LoggerAwareInterface {
 	 */
 	public function getParser() {
 		if ( !$this->parser ) {
-			$parser = MediaWikiServices::getInstance()->getParser();
-			// Clone it and store it
-			$this->parser = clone $parser;
+			$this->parser = $this->parserFactory->create();
 		}
 
 		return $this->parser;

@@ -1163,7 +1163,8 @@ return [
 			$services->getLocalisationCache(),
 			$services->getLanguageNameUtils(),
 			$services->getLanguageFallback(),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getParserFactory()
 		);
 	},
 
