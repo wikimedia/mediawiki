@@ -1562,7 +1562,7 @@ return [
 			ExtensionRegistry::getInstance()->getAttribute( 'ParsoidModules' ),
 			// These arguments are temporary and will be removed once
 			// better solutions are found.
-			$services->getParser(), // T268776
+			$services->getParserFactory(), // T268776
 			$mainConfig, // T268777
 			ExtensionRegistry::getInstance()->isLoaded( 'TimedMediaHandler' )
 		);

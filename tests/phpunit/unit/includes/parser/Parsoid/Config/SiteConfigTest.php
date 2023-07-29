@@ -24,6 +24,7 @@ use MessageCache;
 use MWException;
 use NullStatsdDataFactory;
 use Parser;
+use ParserFactory;
 use UnexpectedValueException;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\TestingAccessWrapper;
@@ -104,7 +105,7 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 			$this->createMockOrOverride( LanguageNameUtils::class, $serviceOverrides ),
 			$this->createMockOrOverride( UrlUtils::class, $serviceOverrides ),
 			[],
-			$this->createMockOrOverride( Parser::class, $serviceOverrides ),
+			$this->createMockOrOverride( ParserFactory::class, $serviceOverrides ),
 			new HashConfig( $configOverrides ),
 			false
 		);
@@ -285,14 +286,14 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 			MagicWordFactory::class, 'getVariableIDs', [], [ 'blabla' ], 'getVariableIDs', [ 'blabla' ]
 		];
 		yield 'getFunctionSynonyms' => [
-			Parser::class, 'getFunctionSynonyms', [], [ 0 => [ 'blabla' ], 1 => [ 'blabla' ] ],
+			[ ParserFactory::class, 'getMainInstance' ], [ Parser::class, 'getFunctionSynonyms' ], [], [ 0 => [ 'blabla' ], 1 => [ 'blabla' ] ],
 			'getFunctionSynonyms', [ 0 => [ 'blabla' ], 1 => [ 'blabla' ] ]
 		];
 		yield 'getMagicWords' => [
 			Language::class, 'getMagicWords', [], [ 'blabla' ], 'getMagicWords', [ 'blabla' ]
 		];
 		yield 'getNonNativeExtensionTags' => [
-			Parser::class, 'getTags', [], [ 'blabla' ], 'getNonNativeExtensionTags', [ 'blabla' => true ]
+			[ ParserFactory::class, 'getMainInstance' ], [ Parser::class, 'getTags' ], [], [ 'blabla' ], 'getNonNativeExtensionTags', [ 'blabla' => true ]
 		];
 	}
 
@@ -313,24 +314,36 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::getFunctionSynonyms
 	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::getMagicWords
 	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::getNonNativeExtensionTags
-	 * @param string $serviceClass
-	 * @param ?string $serviceMethod
+	 * @param string|array $serviceClassSpec
+	 * @param ?string|array $serviceMethodSpec
 	 * @param array $arguments
 	 * @param mixed $returnValue
 	 * @param string $method
 	 * @param mixed $expectedValue
 	 */
 	public function testServiceMethodProxied(
-		string $serviceClass,
-		?string $serviceMethod,
+		$serviceClassSpec,
+		$serviceMethodSpec,
 		array $arguments,
 		$returnValue,
 		string $method,
 		$expectedValue
 	) {
+		$serviceClass = is_array( $serviceClassSpec ) ? $serviceClassSpec[0] : $serviceClassSpec;
 		$serviceMock = $this->createMock( $serviceClass );
-		if ( $serviceMethod ) {
-			$serviceMock
+		if ( $serviceMethodSpec ) {
+			if ( is_array( $serviceMethodSpec ) ) {
+				// Service mock is a factory, create a object and let the factory return that object
+				$mock = $this->createMock( $serviceMethodSpec[0] );
+				$serviceMock->method( $serviceClassSpec[1] )->willReturn( $mock );
+				$serviceMethod = $serviceMethodSpec[1];
+			} else {
+				// No factory, use the service mock directly
+				$mock = $serviceMock;
+				$serviceMethod = $serviceMethodSpec;
+			}
+			// Let the mock return the expected arguments
+			$mock
 				->expects( $this->once() )
 				->method( $serviceMethod )
 				->with( ...$arguments )

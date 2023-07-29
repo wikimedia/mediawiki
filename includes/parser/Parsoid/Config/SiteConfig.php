@@ -43,7 +43,7 @@ use MediaWiki\Utils\UrlUtils;
 use MediaWiki\WikiMap\WikiMap;
 use MutableConfig;
 use MWException;
-use Parser;
+use ParserFactory;
 use ParserOutput;
 use PrefixingStatsdDataFactoryProxy;
 use Psr\Log\LoggerInterface;
@@ -123,8 +123,8 @@ class SiteConfig extends ISiteConfig {
 	/** @var InterwikiLookup */
 	private $interwikiLookup;
 
-	/** @var Parser */
-	private $parser;
+	/** @var ParserFactory */
+	private $parserFactory;
 
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
@@ -177,7 +177,7 @@ class SiteConfig extends ISiteConfig {
 	 * @param LanguageNameUtils $languageNameUtils
 	 * @param UrlUtils $urlUtils
 	 * @param array $extensionParsoidModules
-	 * @param Parser $parser
+	 * @param ParserFactory $parserFactory
 	 * @param Config $mwConfig
 	 * @param bool $isTimedMediaHandlerLoaded
 	 */
@@ -197,8 +197,8 @@ class SiteConfig extends ISiteConfig {
 		LanguageNameUtils $languageNameUtils,
 		UrlUtils $urlUtils,
 		array $extensionParsoidModules,
-		// $parser is temporary and may be removed once a better solution is found.
-		Parser $parser, // T268776
+		// $parserFactory is temporary and may be removed once a better solution is found.
+		ParserFactory $parserFactory, // T268776
 		Config $mwConfig,
 		bool $isTimedMediaHandlerLoaded
 	) {
@@ -216,7 +216,7 @@ class SiteConfig extends ISiteConfig {
 		$this->namespaceInfo = $namespaceInfo;
 		$this->specialPageFactory = $specialPageFactory;
 		$this->interwikiLookup = $interwikiLookup;
-		$this->parser = $parser;
+		$this->parserFactory = $parserFactory;
 		$this->userOptionsLookup = $userOptionsLookup;
 		$this->languageFactory = $languageFactory;
 		$this->languageConverterFactory = $languageConverterFactory;
@@ -678,7 +678,7 @@ class SiteConfig extends ISiteConfig {
 
 	/** @inheritDoc */
 	protected function getFunctionSynonyms(): array {
-		return $this->parser->getFunctionSynonyms();
+		return $this->parserFactory->getMainInstance()->getFunctionSynonyms();
 	}
 
 	/** @inheritDoc */
@@ -713,7 +713,7 @@ class SiteConfig extends ISiteConfig {
 	}
 
 	private function populateExtensionTags(): void {
-		$this->extensionTags = array_fill_keys( $this->parser->getTags(), true );
+		$this->extensionTags = array_fill_keys( $this->parserFactory->getMainInstance()->getTags(), true );
 	}
 
 	/** @inheritDoc */

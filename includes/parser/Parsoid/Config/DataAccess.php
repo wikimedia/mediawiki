@@ -64,8 +64,11 @@ class DataAccess extends IDataAccess {
 	/** @var ContentTransformer */
 	private $contentTransformer;
 
-	/** @var Parser */
-	private $parser;
+	/** @var ParserFactory */
+	private $parserFactory;
+
+	/** @var ?Parser Lazy-created via self::prepareParser() */
+	private $parser = null;
 
 	/** @var \PPFrame */
 	private $ppFrame;
@@ -119,9 +122,7 @@ class DataAccess extends IDataAccess {
 
 		$this->hookRunner = new HookRunner( $hookContainer );
 
-		// Use the same legacy parser object for all calls to extension tag
-		// processing, for greater compatibility.
-		$this->parser = $parserFactory->create();
+		$this->parserFactory = $parserFactory;
 		$this->previousPageConfig = null; // ensure we initialize parser options
 	}
 
@@ -327,6 +328,9 @@ class DataAccess extends IDataAccess {
 		// be retained. This should also provide better compatibility with extension tags.
 		$clearState = $this->previousPageConfig !== $pageConfig;
 		$this->previousPageConfig = $pageConfig;
+		// Use the same legacy parser object for all calls to extension tag
+		// processing, for greater compatibility.
+		$this->parser ??= $this->parserFactory->create();
 		$this->parser->startExternalParse(
 			Title::newFromText( $pageConfig->getTitle() ), $pageConfig->getParserOptions(),
 			$outputType, $clearState, $pageConfig->getRevisionId() );
