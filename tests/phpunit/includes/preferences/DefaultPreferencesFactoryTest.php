@@ -98,7 +98,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		// Switch the UserOptionsLookup to a UserOptionsManager
 		$params[9] = $this->createMock( UserOptionsManager::class );
 		$params[] = $this->createMock( LanguageConverterFactory::class );
-		$params[] = $this->createMock( Parser::class );
+		$params[] = $this->createMock( ParserFactory::class );
 		$params[] = $this->createMock( SkinFactory::class );
 		$params[] = $this->createMock( UserGroupManager::class );
 		$params[] = $this->createMock( SignatureValidatorFactory::class );
@@ -168,7 +168,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 			$services->getHookContainer(),
 			$userOptionsManager,
 			$services->getLanguageConverterFactory(),
-			$services->getParser(),
+			$services->getParserFactory(),
 			$services->getSkinFactory(),
 			$userGroupManager,
 			$services->getSignatureValidatorFactory(),

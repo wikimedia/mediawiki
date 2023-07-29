@@ -1628,7 +1628,7 @@ return [
 			$services->getHookContainer(),
 			$services->getUserOptionsManager(),
 			$services->getLanguageConverterFactory(),
-			$services->getParser(),
+			$services->getParserFactory(),
 			$services->getSkinFactory(),
 			$services->getUserGroupManager(),
 			$services->getSignatureValidatorFactory(),

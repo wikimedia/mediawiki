@@ -51,6 +51,7 @@ use MWException;
 use NamespaceInfo;
 use OutputPage;
 use Parser;
+use ParserFactory;
 use ParserOptions;
 use PreferencesFormOOUI;
 use Psr\Log\LoggerAwareTrait;
@@ -102,8 +103,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	/** @var LanguageConverterFactory */
 	private $languageConverterFactory;
 
-	/** @var Parser */
-	private $parser;
+	/** @var ParserFactory */
+	private $parserFactory;
 
 	/** @var SkinFactory */
 	private $skinFactory;
@@ -163,7 +164,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param HookContainer $hookContainer
 	 * @param UserOptionsLookup $userOptionsLookup Should be an instance of UserOptionsManager
 	 * @param LanguageConverterFactory|null $languageConverterFactory
-	 * @param Parser|null $parser
+	 * @param ParserFactory|null $parserFactory
 	 * @param SkinFactory|null $skinFactory
 	 * @param UserGroupManager|null $userGroupManager
 	 * @param SignatureValidatorFactory|null $signatureValidatorFactory
@@ -181,7 +182,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		HookContainer $hookContainer,
 		UserOptionsLookup $userOptionsLookup,
 		LanguageConverterFactory $languageConverterFactory = null,
-		Parser $parser = null,
+		ParserFactory $parserFactory = null,
 		SkinFactory $skinFactory = null,
 		UserGroupManager $userGroupManager = null,
 		SignatureValidatorFactory $signatureValidatorFactory = null,
@@ -216,7 +217,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			: $services()->getUserOptionsManager();
 		$this->languageConverterFactory = $languageConverterFactory ?? $services()->getLanguageConverterFactory();
 
-		$this->parser = $parser ?? $services()->getParser();
+		$this->parserFactory = $parserFactory ?? $services()->getParserFactory();
 		$this->skinFactory = $skinFactory ?? $services()->getSkinFactory();
 		$this->userGroupManager = $userGroupManager ?? $services()->getUserGroupManager();
 		$this->signatureValidatorFactory = $signatureValidatorFactory
@@ -691,7 +692,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		}
 
 		// show a preview of the old signature first
-		$oldsigWikiText = $this->parser->preSaveTransform(
+		$oldsigWikiText = $this->parserFactory->getInstance()->preSaveTransform(
 			'~~~',
 			$context->getTitle(),
 			$user,
@@ -1829,7 +1830,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		// Quick check for mismatched HTML tags in the input.
 		// Note that this is easily fooled by wikitext templates or bold/italic markup.
 		// We're only keeping this until Parsoid is integrated and guaranteed to be available.
-		if ( $this->parser->validateSig( $signature ) === false ) {
+		if ( $this->parserFactory->getInstance()->validateSig( $signature ) === false ) {
 			return $form->msg( 'badsig' )->escaped();
 		}
 
@@ -1844,7 +1845,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 */
 	protected function cleanSignature( $signature, $alldata, HTMLForm $form ) {
 		if ( isset( $alldata['fancysig'] ) && $alldata['fancysig'] ) {
-			$signature = $this->parser->cleanSig( $signature );
+			$signature = $this->parserFactory->getInstance()->cleanSig( $signature );
 		} else {
 			// When no fancy sig used, make sure ~{3,5} get removed.
 			$signature = Parser::cleanSigInSig( $signature );
