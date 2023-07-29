@@ -71,8 +71,8 @@ class SpecialVersion extends SpecialPage {
 	/** @var int */
 	protected $tocSubSection;
 
-	/** @var Parser */
-	private $parser;
+	/** @var ParserFactory */
+	private $parserFactory;
 
 	/** @var UrlUtils */
 	private $urlUtils;
@@ -80,17 +80,17 @@ class SpecialVersion extends SpecialPage {
 	private IConnectionProvider $dbProvider;
 
 	/**
-	 * @param Parser $parser
+	 * @param ParserFactory $parserFactory
 	 * @param UrlUtils $urlUtils
 	 * @param IConnectionProvider $dbProvider
 	 */
 	public function __construct(
-		Parser $parser,
+		ParserFactory $parserFactory,
 		UrlUtils $urlUtils,
 		IConnectionProvider $dbProvider
 	) {
 		parent::__construct( 'Version' );
-		$this->parser = $parser;
+		$this->parserFactory = $parserFactory;
 		$this->urlUtils = $urlUtils;
 		$this->dbProvider = $dbProvider;
 	}
@@ -829,7 +829,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return string HTML output
 	 */
 	protected function getParserTags() {
-		$tags = $this->parser->getTags();
+		$tags = $this->parserFactory->getMainInstance()->getTags();
 		if ( !$tags ) {
 			return '';
 		}
@@ -872,7 +872,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return string HTML output
 	 */
 	protected function getParserFunctionHooks() {
-		$funcHooks = $this->parser->getFunctionHooks();
+		$funcHooks = $this->parserFactory->getMainInstance()->getFunctionHooks();
 		if ( !$funcHooks ) {
 			return '';
 		}

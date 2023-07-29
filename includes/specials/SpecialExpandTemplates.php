@@ -31,6 +31,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserOptionsLookup;
 use OutputPage;
 use Parser;
+use ParserFactory;
 use ParserOptions;
 use ParserOutput;
 use SpecialPage;
@@ -48,8 +49,8 @@ class SpecialExpandTemplates extends SpecialPage {
 	/** @var int Maximum size in bytes to include. 50 MB allows fixing those huge pages */
 	private const MAX_INCLUDE_SIZE = 50000000;
 
-	/** @var Parser */
-	private $parser;
+	/** @var ParserFactory */
+	private $parserFactory;
 
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
@@ -58,17 +59,17 @@ class SpecialExpandTemplates extends SpecialPage {
 	private $tidy;
 
 	/**
-	 * @param Parser $parser
+	 * @param ParserFactory $parserFactory
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param TidyDriverBase $tidy
 	 */
 	public function __construct(
-		Parser $parser,
+		ParserFactory $parserFactory,
 		UserOptionsLookup $userOptionsLookup,
 		TidyDriverBase $tidy
 	) {
 		parent::__construct( 'ExpandTemplates' );
-		$this->parser = $parser;
+		$this->parserFactory = $parserFactory;
 		$this->userOptionsLookup = $userOptionsLookup;
 		$this->tidy = $tidy;
 	}
@@ -101,9 +102,10 @@ class SpecialExpandTemplates extends SpecialPage {
 				$options->setTargetLanguage( $this->getContentLanguage() );
 			}
 
+			$parser = $this->parserFactory->getInstance();
 			if ( $generateXML ) {
-				$this->parser->startExternalParse( $title, $options, Parser::OT_PREPROCESS );
-				$dom = $this->parser->preprocessToDom( $input );
+				$parser->startExternalParse( $title, $options, Parser::OT_PREPROCESS );
+				$dom = $parser->preprocessToDom( $input );
 
 				if ( method_exists( $dom, 'saveXML' ) ) {
 					// @phan-suppress-next-line PhanUndeclaredMethod
@@ -114,7 +116,7 @@ class SpecialExpandTemplates extends SpecialPage {
 				}
 			}
 
-			$output = $this->parser->preprocess( $input, $title, $options );
+			$output = $parser->preprocess( $input, $title, $options );
 			$this->makeForm();
 
 			$out = $this->getOutput();
@@ -137,7 +139,7 @@ class SpecialExpandTemplates extends SpecialPage {
 
 			$out->addHTML( $tmp );
 
-			$pout = $this->parser->parse( $output, $title, $options );
+			$pout = $parser->parse( $output, $title, $options );
 			$rawhtml = $pout->getText( [ 'enableSectionEditLinks' => false ] );
 			if ( $generateRawHtml && strlen( $rawhtml ) > 0 ) {
 				// @phan-suppress-next-line SecurityCheck-DoubleEscaped Wanted here to display the html
