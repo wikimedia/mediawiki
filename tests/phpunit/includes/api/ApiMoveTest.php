@@ -274,7 +274,7 @@ class ApiMoveTest extends ApiTestCase {
 
 		$name = ucfirst( __FUNCTION__ );
 
-		ChangeTags::defineTag( 'custom tag' );
+		$this->getServiceContainer()->getChangeTagsStore()->defineTag( 'custom tag' );
 
 		$this->setGroupPermissions( 'user', 'applychangetags', false );
 

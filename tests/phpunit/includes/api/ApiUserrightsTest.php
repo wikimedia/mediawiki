@@ -208,7 +208,7 @@ class ApiUserrightsTest extends ApiTestCase {
 	}
 
 	public function testWithTag() {
-		ChangeTags::defineTag( 'custom tag' );
+		$this->getServiceContainer()->getChangeTagsStore()->defineTag( 'custom tag' );
 
 		$user = $this->getMutableTestUser()->getUser();
 
@@ -232,7 +232,7 @@ class ApiUserrightsTest extends ApiTestCase {
 	}
 
 	public function testWithoutTagPermission() {
-		ChangeTags::defineTag( 'custom tag' );
+		$this->getServiceContainer()->getChangeTagsStore()->defineTag( 'custom tag' );
 
 		$this->setGroupPermissions( 'user', 'applychangetags', false );
 

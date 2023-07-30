@@ -174,7 +174,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$text = "==section 1==\ncontent 1\n==section 2==\ncontent2";
 		// Preload the page with some text
 		$page->doUserEditContent(
-			ContentHandler::makeContent( $text, $page->getTitle() ),
+			$page->getContentHandler()->unserializeContent( $text ),
 			$this->getTestSysop()->getAuthority(),
 			'summary'
 		);
@@ -1534,7 +1534,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testEditWithTag() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
-		ChangeTags::defineTag( 'custom tag' );
+		$this->getServiceContainer()->getChangeTagsStore()->defineTag( 'custom tag' );
 
 		$revId = $this->doApiRequestWithToken( [
 			'action' => 'edit',
@@ -1560,7 +1560,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->assertFalse( Title::newFromText( $name )->exists() );
 
-		ChangeTags::defineTag( 'custom tag' );
+		$this->getServiceContainer()->getChangeTagsStore()->defineTag( 'custom tag' );
 		$this->overrideConfigValue(
 			MainConfigNames::RevokePermissions,
 			[ 'user' => [ 'applychangetags' => true ] ]

@@ -302,8 +302,9 @@ class ApiBaseTest extends ApiTestCase {
 		if ( isset( $paramSettings[ParamValidator::PARAM_TYPE] ) &&
 			$paramSettings[ParamValidator::PARAM_TYPE] === 'tags'
 		) {
-			ChangeTags::defineTag( 'tag1' );
-			ChangeTags::defineTag( 'tag2' );
+			$changeTagStore = $this->getServiceContainer()->getChangeTagsStore();
+			$changeTagStore->defineTag( 'tag1' );
+			$changeTagStore->defineTag( 'tag2' );
 		}
 
 		if ( $expected instanceof Exception ) {
