@@ -89,7 +89,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/**
 	 * Title::newFromText maintains a cache to avoid expensive re-normalization of
 	 * commonly used titles. On a batch operation this can become a memory leak
-	 * if not bounded. After hitting this many titles reset the cache.
+	 * if not bounded.
 	 */
 	private const CACHE_MAX = 1000;
 
