@@ -227,10 +227,10 @@ class ApiPageSetTest extends ApiTestCase {
 		$this->assertEquals( [
 		], $pageSet->getRedirectTitlesAsResult() );
 		$this->assertEquals( [
-			[ 'ns' => -1, 'title' => 'Special:MyContributions', 'special' => true ],
-			[ 'ns' => -1, 'title' => 'Special:MyPage', 'special' => true ],
-			[ 'ns' => -1, 'title' => 'Special:MyTalk/subpage', 'special' => true ],
-			[ 'ns' => -1, 'title' => 'Special:MyLanguage/UTApiPageSet', 'special' => true ],
+			[ 'ns' => NS_SPECIAL, 'title' => 'Special:MyContributions', 'special' => true ],
+			[ 'ns' => NS_SPECIAL, 'title' => 'Special:MyPage', 'special' => true ],
+			[ 'ns' => NS_SPECIAL, 'title' => 'Special:MyTalk/subpage', 'special' => true ],
+			[ 'ns' => NS_SPECIAL, 'title' => 'Special:MyLanguage/UTApiPageSet', 'special' => true ],
 		], $pageSet->getInvalidTitlesAndRevisions() );
 		$this->assertEquals( [
 		], $pageSet->getAllTitlesByNamespace() );
@@ -246,14 +246,14 @@ class ApiPageSetTest extends ApiTestCase {
 			[ 'from' => 'Special:MyLanguage/UTApiPageSet', 'to' => 'UTApiPageSet' ],
 		], $pageSet->getRedirectTitlesAsResult() );
 		$this->assertEquals( [
-			[ 'ns' => -1, 'title' => 'Special:MyContributions', 'special' => true ],
-			[ 'ns' => 2, 'title' => "User:$userName", 'missing' => true ],
-			[ 'ns' => 3, 'title' => "User talk:$userName/subpage", 'missing' => true ],
+			[ 'ns' => NS_SPECIAL, 'title' => 'Special:MyContributions', 'special' => true ],
+			[ 'ns' => NS_USER, 'title' => "User:$userName", 'missing' => true ],
+			[ 'ns' => NS_USER_TALK, 'title' => "User talk:$userName/subpage", 'missing' => true ],
 		], $pageSet->getInvalidTitlesAndRevisions() );
 		$this->assertEquals( [
-			0 => [ 'UTApiPageSet' => $id1 ],
-			2 => [ $userDbkey => -2 ],
-			3 => [ "$userDbkey/subpage" => -3 ],
+			NS_MAIN => [ 'UTApiPageSet' => $id1 ],
+			NS_USER => [ $userDbkey => -2 ],
+			NS_USER_TALK => [ "$userDbkey/subpage" => -3 ],
 		], $pageSet->getAllTitlesByNamespace() );
 
 		$context->setLanguage( 'de' );
@@ -267,14 +267,14 @@ class ApiPageSetTest extends ApiTestCase {
 			[ 'from' => 'Special:MyLanguage/UTApiPageSet', 'to' => 'UTApiPageSet/de' ],
 		], $pageSet->getRedirectTitlesAsResult() );
 		$this->assertEquals( [
-			[ 'ns' => -1, 'title' => 'Special:MyContributions', 'special' => true ],
-			[ 'ns' => 2, 'title' => "User:$userName", 'missing' => true ],
-			[ 'ns' => 3, 'title' => "User talk:$userName/subpage", 'missing' => true ],
+			[ 'ns' => NS_SPECIAL, 'title' => 'Special:MyContributions', 'special' => true ],
+			[ 'ns' => NS_USER, 'title' => "User:$userName", 'missing' => true ],
+			[ 'ns' => NS_USER_TALK, 'title' => "User talk:$userName/subpage", 'missing' => true ],
 		], $pageSet->getInvalidTitlesAndRevisions() );
 		$this->assertEquals( [
-			0 => [ 'UTApiPageSet/de' => $id2 ],
-			2 => [ $userDbkey => -2 ],
-			3 => [ "$userDbkey/subpage" => -3 ],
+			NS_MAIN => [ 'UTApiPageSet/de' => $id2 ],
+			NS_USER => [ $userDbkey => -2 ],
+			NS_USER_TALK => [ "$userDbkey/subpage" => -3 ],
 		], $pageSet->getAllTitlesByNamespace() );
 	}
 

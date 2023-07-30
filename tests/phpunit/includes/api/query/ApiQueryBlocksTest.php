@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\MainConfigNames;
@@ -135,7 +136,8 @@ class ApiQueryBlocksTest extends ApiTestCase {
 		// Action (upload)
 		$this->db->insert( 'ipblocks_restrictions', [
 			'ir_ipb_id' => $block->getId(),
-			'ir_type' => 3,
+			'ir_type' => ActionRestriction::TYPE_ID,
+			// Value 1 = BlockActionInfo::ACTION_UPLOAD
 			'ir_value' => 1,
 		] );
 
@@ -167,7 +169,7 @@ class ApiQueryBlocksTest extends ApiTestCase {
 				'pages' => [
 					[
 						'id' => $pageId,
-						'ns' => 0,
+						'ns' => NS_MAIN,
 						'title' => $title,
 					],
 				],
