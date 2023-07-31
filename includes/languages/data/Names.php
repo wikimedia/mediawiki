@@ -153,6 +153,7 @@ class Names {
 		'dv' => 'ދިވެހިބަސް', # Dhivehi
 		'dz' => 'ཇོང་ཁ', # Dzongkha (Bhutan)
 		'ee' => 'eʋegbe', # Éwé
+		'efi' => 'Efịk', # Efik
 		'egl' => 'Emiliàn', # Emilian
 		'el' => 'Ελληνικά', # Greek
 		'eml' => 'emiliàn e rumagnòl', # Emiliano-Romagnolo / Sammarinese
