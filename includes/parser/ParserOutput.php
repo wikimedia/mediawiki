@@ -2440,7 +2440,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			// Uniform handling of string sets: they are unioned.
 			// (This includes modules, style modes, and CSP src.)
 			foreach ( ParserOutputStringSets::cases() as $name ) {
-				// @phan-suppress-next-line PhanUndeclaredMethod protected by method_exists
 				$metadata->appendOutputStrings(
 					$name, $this->getOutputStrings( $name )
 				);

@@ -163,7 +163,6 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 			// until I3d3caabd959c1ba16f4dc702c2eae38d5d4dcb14 is released in
 			// wikimedia/parsoid.
 			$parserOutput->setExtensionData(
-				// @phan-suppress-next-line PhanUndeclaredStaticMethod
 				'core:parsoid-version', Parsoid::version()
 			);
 		}

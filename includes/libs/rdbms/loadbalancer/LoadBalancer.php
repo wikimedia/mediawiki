@@ -1290,26 +1290,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 	}
 
-	public function getReplicaResumePos() {
-		// Get the position of any existing primary DB server connection
-		$primaryConn = $this->getAnyOpenConnection( ServerInfo::WRITER_INDEX );
-		if ( $primaryConn ) {
-			return $primaryConn->getPrimaryPos();
-		}
-
-		// Get the highest position of any existing replica server connection
-		$highestPos = false;
-		foreach ( $this->serverInfo->getStreamingReplicaIndexes() as $i ) {
-			$conn = $this->getAnyOpenConnection( $i );
-			$pos = $conn ? $conn->getReplicaPos() : false;
-			if ( $pos && ( !$highestPos || $pos->hasReached( $highestPos ) ) ) {
-				$highestPos = $pos;
-			}
-		}
-
-		return $highestPos;
-	}
-
 	/**
 	 * Apply updated configuration.
 	 *

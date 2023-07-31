@@ -87,16 +87,18 @@ class ChronologyProtectorTest extends PHPUnit\Framework\TestCase {
 		$replicationPos = '1-2-3';
 		$time = 100;
 
+		$db = $this->createMock( IDatabase::class );
+		$db->method( 'getPrimaryPos' )->willReturnCallback(
+			static function () use ( &$replicationPos, &$time ) {
+				return new MySQLPrimaryPos( $replicationPos, $time );
+			}
+		);
 		$lb = $this->createMock( ILoadBalancer::class );
 		$lb->method( 'getClusterName' )->willReturn( 'test' );
 		$lb->method( 'getServerName' )->willReturn( 'primary' );
 		$lb->method( 'hasOrMadeRecentPrimaryChanges' )->willReturn( true );
 		$lb->method( 'hasStreamingReplicaServers' )->willReturn( true );
-		$lb->method( 'getReplicaResumePos' )->willReturnCallback(
-			static function () use ( &$replicationPos, &$time ) {
-				return new MySQLPrimaryPos( $replicationPos, $time );
-			}
-		);
+		$lb->method( 'getAnyOpenConnection' )->willReturn( $db );
 
 		$client = [
 			'ip' => '127.0.0.1',

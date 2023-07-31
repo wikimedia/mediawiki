@@ -470,24 +470,6 @@ interface ILoadBalancer {
 	public function getPrimaryPos();
 
 	/**
-	 * Get the highest DB replication position for chronology control purposes
-	 *
-	 * If there is only a primary server then this returns false. If replication is present
-	 * and correctly configured, then this returns the highest replication position of any
-	 * server with an open connection. That position can later be passed to waitFor() on a
-	 * new load balancer instance to make sure that queries on the new connections see data
-	 * at least as up-to-date as queries (prior to this method call) on the old connections.
-	 *
-	 * This can be useful for implementing session consistency, where the session
-	 * will be resumed across multiple HTTP requests or CLI script instances.
-	 *
-	 * @internal For use by Rdbms classes only
-	 * @return DBPrimaryPos|false Replication position or false if not applicable
-	 * @since 1.34
-	 */
-	public function getReplicaResumePos();
-
-	/**
 	 * Close a connection
 	 *
 	 * Using this function makes sure the LoadBalancer knows the connection is closed.
