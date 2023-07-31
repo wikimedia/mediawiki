@@ -260,6 +260,9 @@ because of Phabricator reports.
   - ::redefineLocalDomain()
   - ::hasPrimaryConnection()
   - ::setIndexAliases()
+* LBFactory::makeCookieValueFromCPIndex() and ::getCPInfoFromCookieValue()
+  has been moved to ChronologyProtector class without backward compatability
+  as they are not supposed to be used outside of core.
 * …
 
 === Deprecations in 1.41 ===

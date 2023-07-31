@@ -750,7 +750,7 @@ class MediaWiki {
 			if ( $allowHeaders ) {
 				$expires = $now + ChronologyProtector::POSITION_COOKIE_TTL;
 				$options = [ 'prefix' => '' ];
-				$value = $lbFactory::makeCookieValueFromCPIndex( $cpIndex, $now, $cpClientId );
+				$value = ChronologyProtector::makeCookieValueFromCPIndex( $cpIndex, $now, $cpClientId );
 				$request->response()->setCookie( 'cpPosIndex', $value, $expires, $options );
 			}
 

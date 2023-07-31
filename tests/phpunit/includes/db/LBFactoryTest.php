@@ -28,7 +28,6 @@ use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
-use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\LBFactoryMulti;
 use Wikimedia\Rdbms\LBFactorySimple;
 use Wikimedia\Rdbms\LoadBalancer;
@@ -652,71 +651,6 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		} else {
 			return $db->addIdentifierQuotes( $table );
 		}
-	}
-
-	public function testCPPosIndexCookieValues() {
-		$time = 1526522031;
-		$agentId = md5( 'Ramsey\'s Loyal Presa Canario' );
-
-		$this->assertEquals(
-			'3@542#c47dcfb0566e7d7bc110a6128a45c93a',
-			LBFactory::makeCookieValueFromCPIndex( 3, 542, $agentId )
-		);
-
-		$lbFactory = $this->newLBFactoryMulti();
-		$lbFactory->setRequestInfo( [ 'IPAddress' => '10.64.24.52', 'UserAgent' => 'meow' ] );
-		$this->assertEquals(
-			'1@542#c47dcfb0566e7d7bc110a6128a45c93a',
-			LBFactory::makeCookieValueFromCPIndex( 1, 542, $agentId )
-		);
-
-		$this->assertSame(
-			null,
-			LBFactory::getCPInfoFromCookieValue( "5#$agentId", $time - 10 )['index'],
-			'No time set'
-		);
-		$this->assertSame(
-			null,
-			LBFactory::getCPInfoFromCookieValue( "5@$time", $time - 10 )['index'],
-			'No agent set'
-		);
-		$this->assertSame(
-			null,
-			LBFactory::getCPInfoFromCookieValue( "0@$time#$agentId", $time - 10 )['index'],
-			'Bad index'
-		);
-
-		$this->assertSame(
-			2,
-			LBFactory::getCPInfoFromCookieValue( "2@$time#$agentId", $time - 10 )['index'],
-			'Fresh'
-		);
-		$this->assertSame(
-			2,
-			LBFactory::getCPInfoFromCookieValue( "2@$time#$agentId", $time + 9 - 10 )['index'],
-			'Almost stale'
-		);
-		$this->assertSame(
-			null,
-			LBFactory::getCPInfoFromCookieValue( "0@$time#$agentId", $time + 9 - 10 )['index'],
-			'Almost stale; bad index'
-		);
-		$this->assertSame(
-			null,
-			LBFactory::getCPInfoFromCookieValue( "2@$time#$agentId", $time + 11 - 10 )['index'],
-			'Stale'
-		);
-
-		$this->assertSame(
-			$agentId,
-			LBFactory::getCPInfoFromCookieValue( "5@$time#$agentId", $time - 10 )['clientId'],
-			'Live (client ID)'
-		);
-		$this->assertSame(
-			null,
-			LBFactory::getCPInfoFromCookieValue( "5@$time#$agentId", $time + 11 - 10 )['clientId'],
-			'Stale (client ID)'
-		);
 	}
 
 	public function testGetChronologyProtectorTouched() {

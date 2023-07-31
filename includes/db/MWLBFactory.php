@@ -30,7 +30,6 @@ use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILBFactory;
-use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 
 /**
@@ -429,7 +428,7 @@ class MWLBFactory {
 
 		// Set user IP/agent information for agent session consistency purposes
 		$reqStart = (int)( $_SERVER['REQUEST_TIME_FLOAT'] ?? time() );
-		$cpPosInfo = LBFactory::getCPInfoFromCookieValue(
+		$cpPosInfo = ChronologyProtector::getCPInfoFromCookieValue(
 			// The cookie has no prefix and is set by MediaWiki::preOutputCommit()
 			$req->getCookie( 'cpPosIndex', '' ),
 			// Mitigate broken client-side cookie expiration handling (T190082)
