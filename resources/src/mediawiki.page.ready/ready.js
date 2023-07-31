@@ -45,6 +45,9 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 			}
 		} );
 	}
+	if ( $content[ 0 ].isConnected === false ) {
+		mw.log.warn( 'wikipage.content hook should not be fired on unattached content' );
+	}
 
 	checkboxShift( $content.find( 'input[type="checkbox"]:not(.noshiftselect)' ) );
 } );
@@ -94,11 +97,9 @@ $( function () {
 	// do not display any content (T259577).
 	if ( $content.length ) {
 		/**
-		 * Fired when wiki content is being added to the DOM
+		 * Fired when wiki content has been added to the DOM.
 		 *
-		 * It is encouraged to fire it before the main DOM is changed (when $content
-		 * is still detached).  However, this order is not defined either way, so you
-		 * should only rely on $content itself.
+		 * This should only be fired after $content has been attached.
 		 *
 		 * This includes the ready event on a page load (including post-edit loads)
 		 * and when content has been previewed with LivePreview.
