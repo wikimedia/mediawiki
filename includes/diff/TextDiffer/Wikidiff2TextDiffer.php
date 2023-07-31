@@ -14,7 +14,26 @@ class Wikidiff2TextDiffer extends BaseTextDiffer {
 	/** @var bool */
 	private $haveMoveSupport;
 	/** @var bool */
+	private $haveMultiFormatSupport;
+	/** @var bool */
 	private $haveCutoffParameter;
+	/** @var bool */
+	private $useMultiFormat;
+	/** @var array */
+	private $defaultOptions;
+	/** @var array[] */
+	private $formatOptions;
+
+	private const OPT_NAMES = [
+		'numContextLines',
+		'changeThreshold',
+		'movedLineThreshold',
+		'maxMovedLines',
+		'maxWordLevelDiffComplexity',
+		'maxSplitSize',
+		'initialSplitThreshold',
+		'finalSplitThreshold',
+	];
 
 	/**
 	 * Fake wikidiff2 extension version for PHPUnit testing
@@ -32,11 +51,23 @@ class Wikidiff2TextDiffer extends BaseTextDiffer {
 			|| function_exists( 'wikidiff2_do_diff' );
 	}
 
-	public function __construct() {
+	/**
+	 * @param array $options
+	 */
+	public function __construct( $options ) {
 		$this->version = self::$fakeVersionForTesting ?? phpversion( 'wikidiff2' );
 		$this->haveMoveSupport = version_compare( $this->version, '1.5.0', '>=' );
+		$this->haveMultiFormatSupport = version_compare( $this->version, '1.14.0', '>=' );
 		$this->haveCutoffParameter = $this->haveMoveSupport
 			&& version_compare( $this->version, '1.8.0', '<' );
+
+		$this->useMultiFormat = $this->haveMultiFormatSupport && !empty( $options['useMultiFormat'] );
+		$validOpts = array_fill_keys( self::OPT_NAMES, true );
+		$this->defaultOptions = array_intersect_key( $options, $validOpts );
+		$this->formatOptions = [];
+		foreach ( $options['formatOptions'] ?? [] as $format => $formatOptions ) {
+			$this->formatOptions[$format] = array_intersect_key( $formatOptions, $validOpts );
+		}
 	}
 
 	public function getName(): string {
@@ -52,16 +83,38 @@ class Wikidiff2TextDiffer extends BaseTextDiffer {
 	}
 
 	public function doRenderBatch( string $oldText, string $newText, array $formats ): array {
-		$result = [];
-		foreach ( $formats as $format ) {
-			switch ( $format ) {
-				case 'table':
-					$result['table'] = $this->doTableFormat( $oldText, $newText );
-					break;
+		if ( $this->useMultiFormat ) {
+			if ( !$this->formatOptions ) {
+				/** @var array $result */
+				$result = wikidiff2_multi_format_diff(
+					$oldText,
+					$newText,
+					[ 'formats' => $formats ] + $this->defaultOptions
+				);
+			} else {
+				$result = [];
+				foreach ( $formats as $format ) {
+					$result[$format] = wikidiff2_multi_format_diff(
+						$oldText,
+						$newText,
+						[ 'formats' => $formats ]
+						+ ( $this->formatOptions[$format] ?? [] )
+						+ $this->defaultOptions
+					);
+				}
+			}
+		} else {
+			$result = [];
+			foreach ( $formats as $format ) {
+				switch ( $format ) {
+					case 'table':
+						$result['table'] = $this->doTableFormat( $oldText, $newText );
+						break;
 
-				case 'inline':
-					$result['inline'] = $this->doInlineFormat( $oldText, $newText );
-					break;
+					case 'inline':
+						$result['inline'] = $this->doInlineFormat( $oldText, $newText );
+						break;
+				}
 			}
 		}
 		return $result;
@@ -162,4 +215,11 @@ class Wikidiff2TextDiffer extends BaseTextDiffer {
 		return strtr( $text, $replacements );
 	}
 
+	public function getPreferredFormatBatch( string $format ): array {
+		if ( $this->formatOptions ) {
+			return [ $format ];
+		} else {
+			return [ 'table', 'inline' ];
+		}
+	}
 }

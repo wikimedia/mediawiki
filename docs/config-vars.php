@@ -1308,6 +1308,12 @@ $wgDiffEngine = null;
 $wgExternalDiffEngine = null;
 
 /**
+ * Config variable stub for the Wikidiff2Options setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::Wikidiff2Options
+ */
+$wgWikidiff2Options = null;
+
+/**
  * Config variable stub for the RequestTimeLimit setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::RequestTimeLimit
  */

@@ -3467,6 +3467,35 @@ class MainConfigSchema {
 		'type' => 'string|false',
 	];
 
+	/**
+	 * Options for wikidiff2:
+	 *   - useMultiFormat: (bool) Whether to use wikidiff2_multi_format_diff()
+	 *     if it is available. This temporarily defaults to false, during
+	 *     migration to the new code. It is available in wikidiff2 1.14.0+.
+	 *
+	 * The following options are only effective if wikidiff2_multi_format_diff()
+	 * is enabled. See README.md in wikidiff2 for details:
+	 *
+	 *   - numContextLines
+	 *   - changeThreshold
+	 *   - movedLineThreshold
+	 *   - maxMovedLines
+	 *   - maxWordLevelDiffComplexity
+	 *   - maxSplitSize
+	 *   - initialSplitThreshold
+	 *   - finalSplitThreshold
+	 *
+	 * Also:
+	 *   - formatOptions: An array of format-specific overrides. The key may
+	 *     be "inline" or "table" and the value is an array with keys
+	 *     numContextLines, changeThreshold, etc.
+	 * @since 1.41
+	 */
+	public const Wikidiff2Options = [
+		'default' => [],
+		'type' => 'map'
+	];
+
 	// endregion -- end of Content handlers and storage
 
 	/***************************************************************************/

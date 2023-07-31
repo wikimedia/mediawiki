@@ -2125,6 +2125,29 @@ config-schema:
             - string
             - boolean
         description: 'Name of the external diff engine to use.'
+    Wikidiff2Options:
+        default: {  }
+        type: object
+        description: |-
+            Options for wikidiff2:
+              - useMultiFormat: (bool) Whether to use wikidiff2_multi_format_diff()
+                if it is available. This temporarily defaults to false, during
+                migration to the new code. It is available in wikidiff2 1.14.0+.
+            The following options are only effective if wikidiff2_multi_format_diff()
+            is enabled. See README.md in wikidiff2 for details:
+              - numContextLines
+              - changeThreshold
+              - movedLineThreshold
+              - maxMovedLines
+              - maxWordLevelDiffComplexity
+              - maxSplitSize
+              - initialSplitThreshold
+              - finalSplitThreshold
+            Also:
+              - formatOptions: An array of format-specific overrides. The key may
+                be "inline" or "table" and the value is an array with keys
+                numContextLines, changeThreshold, etc.
+            @since 1.41
     RequestTimeLimit:
         default: null
         type:

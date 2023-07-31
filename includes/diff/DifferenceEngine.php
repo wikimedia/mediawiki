@@ -2241,7 +2241,8 @@ class DifferenceEngine extends ContextSource {
 				$this->getContext(),
 				$this->getDiffLang(),
 				$this->getConfig()->get( MainConfigNames::DiffEngine ),
-				$this->getConfig()->get( MainConfigNames::ExternalDiffEngine )
+				$this->getConfig()->get( MainConfigNames::ExternalDiffEngine ),
+				$this->getConfig()->get( MainConfigNames::Wikidiff2Options )
 			);
 		}
 		return $this->textDiffer;

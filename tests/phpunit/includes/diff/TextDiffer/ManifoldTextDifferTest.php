@@ -14,7 +14,8 @@ class ManifoldTextDifferTest extends MediaWikiIntegrationTestCase {
 			RequestContext::getMain(),
 			$services->getLanguageFactory()->getLanguage( 'en' ),
 			$configVars['DiffEngine'] ?? null,
-			$configVars['ExternalDiffEngine'] ?? null
+			$configVars['ExternalDiffEngine'] ?? null,
+			$configVars['Wikidiff2Options'] ?? []
 		);
 	}
 
