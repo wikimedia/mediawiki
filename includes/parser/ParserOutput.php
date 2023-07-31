@@ -1219,26 +1219,16 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @see OutputPage::addModules
 	 * @param string[] $modules
 	 */
-	public function addModules( $modules ): void {
-		if ( !is_array( $modules ) ) {
-			// This method used to take string|array as an argument, but
-			// we're trying to simplify the API.
-			wfDeprecated( __METHOD__ . ' with non-array argument', '1.38' );
-		}
-		$this->mModules = array_merge( $this->mModules, (array)$modules );
+	public function addModules( array $modules ): void {
+		$this->mModules = array_merge( $this->mModules, $modules );
 	}
 
 	/**
 	 * @see OutputPage::addModuleStyles
 	 * @param string[] $modules
 	 */
-	public function addModuleStyles( $modules ): void {
-		if ( !is_array( $modules ) ) {
-			// This method used to take string|array as an argument, but
-			// we're trying to simplify the API.
-			wfDeprecated( __METHOD__ . ' with non-array argument', '1.38' );
-		}
-		$this->mModuleStyles = array_merge( $this->mModuleStyles, (array)$modules );
+	public function addModuleStyles( array $modules ): void {
+		$this->mModuleStyles = array_merge( $this->mModuleStyles, $modules );
 	}
 
 	/**
