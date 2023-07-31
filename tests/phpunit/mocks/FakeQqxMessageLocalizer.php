@@ -44,6 +44,10 @@ class FakeQqxMessageLocalizer implements MessageLocalizer {
 				};
 			}
 
+			public function inContentLanguage(): Message {
+				return $this;
+			}
+
 			protected function transformText( $string ): string {
 				return $string;
 			}
