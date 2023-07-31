@@ -103,7 +103,7 @@ class TextContentHandler extends ContentHandler {
 	 *
 	 * @since 1.24
 	 *
-	 * @return string
+	 * @return class-string<TextContent>
 	 */
 	protected function getContentClass() {
 		return TextContent::class;

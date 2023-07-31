@@ -44,6 +44,9 @@ class CssContentHandler extends CodeContentHandler {
 		parent::__construct( $modelId, [ CONTENT_FORMAT_CSS ] );
 	}
 
+	/**
+	 * @return class-string<CssContent>
+	 */
 	protected function getContentClass() {
 		return CssContent::class;
 	}

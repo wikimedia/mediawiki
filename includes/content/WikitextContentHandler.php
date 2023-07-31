@@ -88,6 +88,9 @@ class WikitextContentHandler extends TextContentHandler {
 		$this->parsoidParserFactory = $parsoidParserFactory;
 	}
 
+	/**
+	 * @return class-string<WikitextContent>
+	 */
 	protected function getContentClass() {
 		return WikitextContent::class;
 	}
