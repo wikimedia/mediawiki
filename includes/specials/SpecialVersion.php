@@ -569,14 +569,6 @@ class SpecialVersion extends SpecialPage {
 	 * @return string HTML
 	 */
 	private function getExtensionCredits( array $credits ) {
-		if (
-			!$credits ||
-			// Skins are displayed separately, see getSkinCredits()
-			( count( $credits ) === 1 && isset( $credits['skin'] ) )
-		) {
-			return '';
-		}
-
 		$extensionTypes = self::getExtensionTypes();
 
 		$this->addTocSection( 'version-extensions', 'mw-version-ext' );
@@ -585,13 +577,27 @@ class SpecialVersion extends SpecialPage {
 				'h2',
 				[ 'id' => 'mw-version-ext' ],
 				$this->msg( 'version-extensions' )->text()
-			) .
-			Xml::openElement( 'table', [ 'class' => 'wikitable plainlinks', 'id' => 'sv-ext' ] );
+		);
+
+		if (
+			!$credits ||
+				// Skins are displayed separately, see getSkinCredits()
+				( count( $credits ) === 1 && isset( $credits['skin'] ) )
+		) {
+			$out .= Xml::element(
+					'p',
+					[],
+					$this->msg( 'version-extensions-no-ext' )->text()
+			);
+
+			return $out;
+		}
 
 		// Make sure the 'other' type is set to an array.
 		if ( !array_key_exists( 'other', $credits ) ) {
 			$credits['other'] = [];
 		}
+		$out .= Xml::openElement( 'table', [ 'class' => 'wikitable plainlinks', 'id' => 'sv-ext' ] );
 
 		// Find all extensions that do not have a valid type and give them the type 'other'.
 		foreach ( $credits as $type => $extensions ) {
@@ -624,18 +630,24 @@ class SpecialVersion extends SpecialPage {
 	 * @return string HTML
 	 */
 	private function getSkinCredits( array $credits ) {
-		if ( !isset( $credits['skin'] ) || !$credits['skin'] ) {
-			return '';
-		}
-
 		$this->addTocSection( 'version-skins', 'mw-version-skin' );
 
 		$out = Html::element(
 				'h2',
 				[ 'id' => 'mw-version-skin' ],
 				$this->msg( 'version-skins' )->text()
-			) .
-			Html::openElement( 'table', [ 'class' => 'wikitable plainlinks', 'id' => 'sv-skin' ] );
+		);
+
+		if ( !isset( $credits['skin'] ) || !$credits['skin'] ) {
+			$out .= Html::element(
+				'p',
+				[],
+				$this->msg( 'version-skins-no-skin' )->text()
+			);
+
+			return $out;
+		}
+		$out .= Html::openElement( 'table', [ 'class' => 'wikitable plainlinks', 'id' => 'sv-skin' ] );
 
 		$this->firstExtOpened = false;
 		$out .= $this->getExtensionCategory( 'skin', null, $credits['skin'] );
