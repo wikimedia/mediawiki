@@ -643,7 +643,7 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::langConverterEnabled
+	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::langConverterEnabledBcp47
 	 */
 	public function testLangConverterEnabled_exception() {
 		$langFactoryMock = $this->createMock( LanguageFactory::class );
@@ -659,31 +659,67 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 			LanguageFactory::class => $langFactoryMock,
 			LanguageConverterFactory::class => $langConverterFactoryMock,
 		] );
-		$this->assertFalse( $config->langConverterEnabled( 'zh' ) );
+		$this->assertFalse( $config->langConverterEnabledBcp47( new Bcp47CodeValue( 'zh' ) ) );
 	}
 
 	/**
-	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::variants
+	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::variantsFor
 	 */
-	public function testVariants_disabled() {
-		$langConverterFactoryMock = $this->createMock( LanguageConverterFactory::class );
-		$langConverterFactoryMock
-			->method( 'isConversionDisabled' )
-			->willReturn( true );
-		$config = $this->createSiteConfig( [], [], [
-			LanguageConverterFactory::class => $langConverterFactoryMock,
-		] );
-		$this->assertSame( [], $config->variants() );
-	}
-
-	/**
-	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::variants
-	 */
-	public function testVariants() {
+	public function testVariantsFor_disabled() {
 		$langFactoryMock = $this->createMock( LanguageFactory::class );
 		$langFactoryMock
 			->method( 'getLanguage' )
 			->willReturnCallback( function ( $code ) {
+				if ( !is_string( $code ) ) {
+					$code = strtolower( $code->toBcp47Code() );
+				}
+				$langMock = $this->createMock( Language::class );
+				$langMock->method( 'getCode' )
+					->willReturn( $code );
+				return $langMock;
+			} );
+		$converterMock = $this->createMock( ILanguageConverter::class );
+		$converterMock
+			->method( 'hasVariants' )
+			->willReturn( true );
+		$converterMock
+			->method( 'getVariants' )
+			->willReturn( [ 'zh-hans' ] );
+		$converterMock
+			->method( 'getVariantFallbacks' )
+			->willReturn( 'zh-fallback' );
+		$langConverterFactoryMock = $this->createMock( LanguageConverterFactory::class );
+		$langConverterFactoryMock
+			->method( 'isConversionDisabled' )
+			->willReturn( true );
+		$langConverterFactoryMock
+			->method( 'getLanguageConverter' )
+			->willReturnCallback( function ( $l ) use ( $converterMock ) {
+				if ( $l->getCode() === 'zh' ) {
+					return $converterMock;
+				}
+				return $this->createMock( ILanguageConverter::class );
+			} );
+		$config = $this->createSiteConfig( [], [], [
+			LanguageFactory::class => $langFactoryMock,
+			LanguageConverterFactory::class => $langConverterFactoryMock,
+		] );
+		$this->assertNull(
+						$config->variantsFor( new Bcp47CodeValue( 'zh-Hans' ) )
+		);
+	}
+
+	/**
+	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::variantsFor
+	 */
+	public function testVariantsFor() {
+		$langFactoryMock = $this->createMock( LanguageFactory::class );
+		$langFactoryMock
+			->method( 'getLanguage' )
+			->willReturnCallback( function ( $code ) {
+				if ( !is_string( $code ) ) {
+					$code = strtolower( $code->toBcp47Code() );
+				}
 				$langMock = $this->createMock( Language::class );
 				$langMock->method( 'getCode' )
 					->willReturn( $code );
@@ -715,10 +751,15 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 			LanguageFactory::class => $langFactoryMock,
 			LanguageConverterFactory::class => $langConverterFactoryMock
 		] );
-		$this->assertSame(
-			[ 'zh-hans' => [ 'base' => 'zh', 'fallbacks' => [ 'zh-fallback' ] ] ],
-			$config->variants()
-		);
+		$variantsForZh = $config->variantsFor( new Bcp47CodeValue( 'zh-Hans' ) );
+		$this->assertIsArray( $variantsForZh );
+		$this->assertArrayHasKey( 'base', $variantsForZh );
+		$this->assertEquals( 'zh', $variantsForZh['base']->getCode() );
+		$this->assertArrayHasKey( 'fallbacks', $variantsForZh );
+		$fallbacks = $variantsForZh['fallbacks'];
+		$this->assertIsArray( $fallbacks );
+		$this->assertCount( 1, $fallbacks );
+		$this->assertEquals( 'zh-fallback', $fallbacks[0]->getCode() );
 	}
 
 	/**
