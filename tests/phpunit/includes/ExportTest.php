@@ -3,7 +3,6 @@
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
-use MediaWiki\Title\Title;
 
 /**
  * Test class for Export methods.
@@ -23,13 +22,11 @@ class ExportTest extends MediaWikiLangTestCase {
 	 * @covers WikiExporter::pageByTitle
 	 */
 	public function testPageByTitle() {
-		$pageTitle = 'UTPage';
-
 		$services = $this->getServiceContainer();
 
-		$title = Title::newFromText( $pageTitle );
+		$page = $this->getExistingTestPage();
 
-		$xmlObject = $this->getXmlDumpForPage( $title );
+		$xmlObject = $this->getXmlDumpForPage( $page );
 
 		/**
 		 * Check namespaces match xml
@@ -46,7 +43,7 @@ class ExportTest extends MediaWikiLangTestCase {
 
 		// Check xml page title correct
 		$xmlTitle = (array)$xmlObject->page->title;
-		$this->assertEquals( $pageTitle, $xmlTitle[0] );
+		$this->assertEquals( $page->getTitle()->getPrefixedText(), $xmlTitle[0] );
 
 		// Check xml page text is not empty
 		$text = (array)$xmlObject->page->revision->text;
