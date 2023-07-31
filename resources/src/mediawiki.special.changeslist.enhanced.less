@@ -19,7 +19,7 @@
 	z-index: @z-index-bottom;
 
 	// Hide the nested changes if the checkbox is not checked.
-	&:not( :checked ) + table .mw-rcfilters-ui-highlights-enhanced-nested {
+	&:not( :checked ) + * .mw-rcfilters-ui-highlights-enhanced-nested {
 		display: none;
 	}
 }
@@ -54,17 +54,17 @@ td.mw-enhanced-rc {
 	background-repeat: no-repeat;
 	cursor: pointer;
 
-	.mw-enhancedchanges-checkbox:not( :checked ) + table & {
+	.mw-enhancedchanges-checkbox:not( :checked ) + * & {
 		background-image: url( mediawiki.icon/images/arrow-collapsed-ltr.svg );
 	}
 
-	.mw-enhancedchanges-checkbox:checked + table & {
+	.mw-enhancedchanges-checkbox:checked + * & {
 		background-image: url( mediawiki.icon/images/arrow-expanded.svg );
 	}
 
 	// Show a focus ring around the label when focusing the invisible checkbox.
 	// This simulates that the label is in focus.
-	.mw-enhancedchanges-checkbox:focus + table & {
+	.mw-enhancedchanges-checkbox:focus + * & {
 		outline: auto;
 	}
 }
