@@ -14,3 +14,6 @@ $specialPageAliases['de'] = [
 $specialPageAliases['en'] = [
 	'Activeusers' => [ 'ActiveFolx' ],
 ];
+
+// $rtl cannot be set
+$rtl['de'] = true;
