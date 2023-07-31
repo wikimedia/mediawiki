@@ -4,6 +4,7 @@
 			"Amire80",
 			"Khun Kt",
 			"Ninjastrikers",
+			"ခွန်ဖန်ဒွဲ့",
 			"လွိုင်ႏအာထင်ႏထိုထဲင်း",
 			"咽頭べさ"
 		]
@@ -308,6 +309,7 @@
 	"querypage-no-updates": "မွဉ်းဖျင်လိတ်မဲ့ငါယိုဖုံႏနဝ်ꩻ ယိုခါပေ့ꩻခါꩻဒျာႏသွူ။ ဒေတာကအဝ်ႏဒါႏ ခင်ႏလမ်းယိုကိုဖိုင်ႏနဝ်ꩻ အီႏဆန်ꩻတသာငါ မွေးတဝ်းသွူ။",
 	"querypage-updates-periodical": "မွဉ်းဖျင်လိတ်မဲ့ငါယိုဖိုင်ႏတာႏ အဝ်ႏမာꩻဖေႏဒျာႏ ရော့ꩻရာꩻအခိန်ႏကိုသွူ။",
 	"viewsource": "ထွားအရွီးအခိုႏ",
+	"skin-action-viewsource": "ထွားအရွီးအခိုႏ",
 	"viewsource-title": "ထွား $1 ရွီးခိုႏ",
 	"protectedpagetext": "ရဲးကမ်းခါꩻ ဖေႏကမာꩻနွောင်ꩻမွုန်း လိတ်မဲ့ငါယို ခြပ်ချော်ꩻမုꩻတောမ်ႏ ခွုမ်မာꩻမုꩻအလင်ဖိုင်ႏ။",
 	"viewsourcetext": "နွို့ထွား လိတ်မဲ့ငါယို ရွီးခိုႏတဲင် ထူႏဗိုန်နွောင်ꩻဒျာႏသွူ။",
@@ -550,7 +552,7 @@
 	"noarticletext": "ယိုခါကျာꩻ လိတ်မဲ့ငါကိုယိုနဝ်ꩻ လိတ်ယာႏမုဲင်ꩻမုဲင်ꩻ အဝ်ႏတဝ်း။\nလိတ်မဲ့ငါအလင်ဖုံႏကို [[Special:Search/{{PAGENAME}}|ထိုမ်ႏထွားနွောင်ꩻဒျာႏ လိတ်မဲ့ငါယို ကတူႏစဲဉ်ႏ]]၊ <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ဆွိုက်စပ်ဒါႏမတ်တန်ꩻဖုံႏလဲ့]၊ ထိုမ်ႏနွောင်ꩻဒျာႏသွူ၊ တဝ်းလဲ့ ဖန်ဆင်ꩻနွောင်ꩻဒျာႏ [{{fullurl:{{FULLPAGENAME}}|action=edit}} လိတ်မဲ့ငါယိုသွူ]</span>။",
 	"noarticletext-nopermission": "လိတ်မဲ့ငါကိုယိုနဝ်ꩻ ယိုခါ လိတ်ယာႏတမုဲင်ꩻမုဲင်ꩻ အဝ်ႏတဝ်းသွူ။\nနာꩻထိုမ်ႏထွားနွောင်ꩻဒျာႏ လိတ်မဲ့ငါယိုကတူႏစဲဉ်ႏ [[Special:Search/{{PAGENAME}}|လိတ်မဲ့ငါအလင်ဖုံႏကို]]သွူ၊ တဝ်းလဲ့  <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ထိုမ်ႏနွောင်ꩻဒျာႏ ဆွိုက်စပ်ရာꩻ]</span>။ မတ်တန်ꩻဖုံႏသွူ။ ကွဲႏတွော့ꩻ အီႏဖန်ဆင်ꩻ လိတ်မဲ့ငါယိုတာႏနဝ်ꩻ အခွင်ꩻရေꩻအဝ်ႏတဝ်းသွူ။",
 	"userpage-userdoesnotexist": "ကေားသုင်ꩻသားအကောက် \"$1\" နဝ်ꩻ လꩻဒင်ႏဗာႏဒွိုန်း မတ်ပိုင်တိဉ်သွူ။ \nအီႏဖန်ဆင်ꩻ/ခြပ်ချော်ꩻ လိတ်မဲ့ငါယိုတာႏ စဲစ်ထွားဖေႏသွော့သြ။",
-	"userpage-userdoesnotexist-view": "ကေားသုင်ꩻသားအကောက် \"$1\" နဝ်ꩻ ဒင်ႏခါꩻတဝ်းမတ်ပုံတိဉ်သွူ။",
+	"userpage-userdoesnotexist-view": "ကေားသုင်ꩻသားအကောက် \"$1\" နဝ်ꩻ ဒင်ႏခါꩻတဝ်းမတ်ပုံတိဉ် ဝီခီကိုသွူ။",
 	"blocked-notice-logextract": "ယိုခါ ပေ့ꩻခါꩻဒျာႏ {{GENDER:$1|ကေားသုင်ꩻ}}သားယိုသွူ။\nဖေႏကအာႏကွိုꩻနွောင်ꩻ အဆုဲင်ꩻသွတ်ꩻပေ့ꩻထိုꩻမုꩻ မုဲင်တန်ꩻတာႏ အွောန်ႏနယ်ခါꩻဖေႏ လ့နဝ်ꩻသွူ။",
 	"clearyourcache": "<strong>တောင်ꩻသေꩻ။ </strong> ဒင်ႏထင်ႏထွူသွူခါ ဖေႏကထီႏနွောင်ꩻ ပြောင်ꩻလုဲင်ႏမုꩻဖုံႏတာႏ နာꩻအနေႏ အဝ်ႏလိုႏကာႏနွောင်ꩻ ဗရောင်သာ cache နဝ်ꩻသွူ။\n*အဝ်ႏနျꩻ  <strong>Firefox / Safari:</strong> <em>Reload</em> ယိုကျာꩻ တေက်ꩻခါꩻပါသွော့ <em>Shift</em>  သြ၊ မွေးတဝ်းလဲ့ နျꩻသွော့  <em>Ctrl-F5</em> တဝ်းလဲ့ <em>Ctrl-R</em> (Mac နဝ်ꩻ <em>⌘-R</em>) ယိုသြ။\n* <strong>Google Chrome:</strong> <em>Ctrl-Shift-R</em> (Mac နဝ်ꩻ   <em>⌘-Shift-R</em>) ယိုသြ။\n* <strong>Internet Explorer / Edge:</strong> <em>Refresh</em> ယိုကျာꩻ တေက်ꩻခါꩻပါသွော့  <em>Ctrl</em>  သြ၊ မွေးတဝ်းလဲ့ နျꩻသွော့  <em>Ctrl-F5</em> ယိုသြ။\n* <strong>Opera:</strong> <em>Menu → Settings</em> (Mac နဝ်ꩻ <em>Opera → Preferences</em>) ကိုတဲင် မာꩻပါသွော့  <em>Privacy & security → Clear browsing data → Cached images and files</em> ယိုသြ။",
 	"usercssyoucanpreview": "<strong>ဖေႏကျံႏညဏ်ႏချက်:</strong> ခလားကဒင်ႏထင်ႏ နာꩻ CSS အတသာ စံꩻထွားဖေႏကလꩻ သုင်ꩻအီသွော့ \"{{int:showpreview}}\" ခလိုတ်သြ။",
@@ -750,7 +752,7 @@
 	"shown-title": "လိတ်မဲ့ငါတဗာႏတာႏ အွဉ်ႏနယ် လꩻလဒ် $1 {{PLURAL:$1|ဗာႏ|ဗာႏဖုံႏ}}",
 	"viewprevnext": "ထွားတွိုႏ ($1 {{int:pipe-separator}} $2) လꩻလဒ်ခါႏ ($3)ဗာႏ",
 	"searchmenu-exists": "'''ဝီခီယိုနဝ်ꩻ တောမ်ႏ \"[[:$1]]\" {{PLURAL:$2|0=|မိဉ်ꩻ လိတ်မဲ့ငါအဝ်ႏတဗာႏသွူ}}။'''",
-	"searchmenu-new": "<strong>ဖန်ဆင်ꩻသွော့ \"[[:$1]]\" လိတ်မဲ့ငါ ဝီခီကိုယို!</strong> {{PLURAL:$2|0=|ထွားပါသွော့ နာꩻထိုမ်ႏထွားထာꩻတွမ်ႏ မော့ꩻဒါႏလိတ်မဲ့ငါဖုံႏ|ထွားပါသွော့  ကမော့ꩻဒါႏ ထိုမ်ႏထွားမုꩻအဖြေႏဖုံႏ}}",
+	"searchmenu-new": "<strong>ဖန်ဆင်ꩻသွော့ \"[[:$1]]\" လိတ်မဲ့ငါ ဝီခီကိုယို!</strong> {{PLURAL:$2|0=|ထွားပါသွော့ နာꩻထိုမ်ႏထွားထာꩻတွမ်ႏ မော့ꩻဒါႏလိတ်မဲ့ငါဖုံႏ|ထွားပါသွော့  ကမော့ꩻဒါႏ ထိုမ်ႏထွားအဖြေႏဖုံႏ}}",
 	"searchprofile-articles": "ဟော်ꩻထွားရီးတာႏ လိတ်မဲ့ငါဖုံႏ",
 	"searchprofile-images": "မီဒီယာစွုမ်ႏ",
 	"searchprofile-everything": "ကားကအဝ်ႏ",
@@ -2232,6 +2234,7 @@
 	"revdelete-content-hid": "ပလို့ꩻ အကျောင်ꩻခရာႏ",
 	"logentry-protect-protect": "$1 {{GENDER:$2|ရဲးကမ်းခါꩻလဲဉ်း}} $3 သွူ $4",
 	"searchsuggest-search": "ထိုမ်ႏထွား {{SITENAME}}ကို",
+	"searchsuggest-containing": "ထိုမ်ႏထွား ကနွို့ပါဒါႏ လိတ်မဲ့ငါဖိုင်ႏတာႏ",
 	"duration-days": "$1 {{PLURAL:$1|မွူး|မွူးဖုံႏ}}",
 	"mw-widgets-dateinput-no-date": "လွိုက်ခါꩻတဝ်းမွူးနီꩻ",
 	"mw-widgets-titleinput-description-new-page": "လိတ်မဲ့ငါ တအဝ်ႏတဝ်းဒွိုန်း",
@@ -2243,5 +2246,12 @@
 	"skin-action-protect": "ရဲးကမ်း",
 	"skin-action-undelete": "ယားကုဲင်တဝ်းဒုမ်",
 	"skin-action-delete": "ယားကုဲင်",
-	"skin-action-move": "ခြုဲင်း"
+	"skin-action-move": "ခြုဲင်း",
+	"blockedtext-made-by": "ဒိုꩻ့ပေ့ꩻယို ခွုမ်မာꩻ တောမ်ႏ $1။",
+	"blockedtext-reason-comment": "ကဖေႏ အခရာႏအွဥ်ႏနယ်နဝ်ꩻ ထွာဒျာႏ <em>$1</em> သွူ။",
+	"blockedtext-start-time": "ကဒို့ꩻပေ့ꩻ ကောႏစ $1",
+	"blockedtext-expiration-time": "ကဒိုꩻ့ပေ့ꩻယို သက်အုံလို့ခိင်ႏ $1",
+	"blockedtext-intended-blockee": "အင်းမိုးခါꩻဒါႏ ဒိုꩻ့ပေ့ꩻထာꩻမာꩻဖုံႏ- $1",
+	"blockedtext-contact-blocker-admin": "ဒို့ꩻပေ့ꩻရဲးယို  နာꩻနဝ်ꩻ အိုမ်ကိုမ်သွော့ꩻ $1 နဝ်ꩻတဝ်းလဲ့ꩻ အလင် [[{{MediaWiki:Grouppage-sysop}}|ကေားခြပ်ဖန်းဖြယ်]] ယို သွုပ်ဆွိုင်ꩻနွောင်ꩻဒျာႏသွူ။",
+	"blockedtext-block-ip": "နာꩻ IP လိပ်သာ ယိုခါနဝ်ꩻ ထွာဒျာႏ $1 သွူ။"
 }

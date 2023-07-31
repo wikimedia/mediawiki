@@ -2340,7 +2340,7 @@
 	"linksearch-pat": "検索パターン:",
 	"linksearch-ns": "名前空間:",
 	"linksearch-ok": "検索",
-	"linksearch-text": "「*.wikipedia.org」のようにワイルドカードを使用できます。<br />\n対応{{PLURAL:$2|プロトコル}}：$1 (プロトコルを省略した場合の既定値は http:// )。",
+	"linksearch-text": "「*.wikipedia.org」のようにワイルドカードを使用できます。<br />\n対応{{PLURAL:$2|プロトコル}}：$1 (プロトコルを省略した場合の既定値は http:// および https://)。",
 	"linksearch-line": "$1 が $2 からリンクされています",
 	"linksearch-error": "ワイルドカードはホスト名の先頭でのみ使用できます。",
 	"listusersfrom": "最初に表示する利用者:",

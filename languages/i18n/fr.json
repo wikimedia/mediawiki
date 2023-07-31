@@ -4405,7 +4405,7 @@
 	"renameuser-error-request": "Un problème existe avec la réception de la requête.\nVeuillez revenir en arrière et essayer à nouveau.",
 	"renameuser-error-same-user": "Vous ne pouvez pas renommer un utilisateur avec le même nom qu’auparavant.",
 	"renameuser-error-temp-user": "Vous ne pouvez pas renommer le compte temporaire « $1 ».",
-	"renameuser-error-temp-user-reserved": "Vous ne pouvez pas utiliser « $1 ». Il est réservé aux comptes temporaires.",
+	"renameuser-error-temp-user-reserved": "Vous ne pouvez pas utiliser « $1 ». Il est réservé pour les comptes temporaires.",
 	"renameusersuccess": "L’utilisat{{GENDER:$1|eur|rice}} « <nowiki>$1</nowiki> » a été renommé{{GENDER:$1||e}} en « <nowiki>$2</nowiki> ».",
 	"renameuser-page-exists": "La page $1 existe déjà et ne peut pas être automatiquement remplacée.",
 	"renameuser-page-moved": "La page $1 a été déplacée vers $2.",

@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Baloch Afghanistan",
+			"Moshtank",
 			"Mostafadaneshvar",
 			"Sultanselim baloch"
 		]
@@ -62,7 +63,7 @@
 	"exif-maxaperturevalue": "آهری حد پیش بیگ سطح",
 	"exif-subjectdistance": "فاصله شی",
 	"exif-meteringmode": "مدل متر گنگ",
-	"exif-lightsource": "منبع نور",
+	"exif-lightsource": "رُژنءِ سرچممگ",
 	"exif-flash": "فلاش",
 	"exif-focallength": "طول کانونی لنز",
 	"exif-focallength-format": "$1م.م",
@@ -74,7 +75,7 @@
 	"exif-subjectlocation": "جاگاه شی",
 	"exif-exposureindex": "ایندکس دته معرض بوگ",
 	"exif-sensingmethod": "روش حس کتن",
-	"exif-filesource": "منبع فایل",
+	"exif-filesource": "پایلءِ سرچممگ",
 	"exif-scenetype": "نوع صحنه",
 	"exif-customrendered": "پردازش عکس سنت",
 	"exif-exposuremode": "مدل پچ بوگ دیافراگم",
@@ -191,7 +192,7 @@
 	"exif-lightsource-22": "ی57",
 	"exif-lightsource-23": "د50",
 	"exif-lightsource-24": "ایزو استدیو تنگستن",
-	"exif-lightsource-255": "دگ منبع نور",
+	"exif-lightsource-255": "دگہ رُژنءِ سرچممگ",
 	"exif-flash-fired-0": "بی فلاش جنگ",
 	"exif-flash-fired-1": "فلاش جنت",
 	"exif-flash-return-0": "بی عملگر درگیزگ نور انعکاسی",
@@ -242,7 +243,7 @@
 	"exif-subjectdistancerange-2": "نزیک گندگ",
 	"exif-subjectdistancerange-3": "دورین گندگ",
 	"exif-gpslatitude-n": "عرض شمالی",
-	"exif-gpslatitude-s": "عرض جنوبی",
+	"exif-gpslatitude-s": "زرباری دراجی",
 	"exif-gpslongitude-e": "طول شرقی",
 	"exif-gpslongitude-w": "طول غربی",
 	"exif-gpsstatus-a": "اندازه گرگ ته جریاننت",

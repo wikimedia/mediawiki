@@ -1826,7 +1826,7 @@
 	"block": "ورتُو تے پابندی لاؤ۔",
 	"unblock": "ورتُو تے پابندی ہٹاؤ",
 	"blockip": "{{GENDER:$1|ورتݨ آلا}}تے پابندی لاؤ",
-	"ipaddressorusername": "آئی پی پتہ یا ورتݨ آلا ناں:",
+	"ipaddressorusername": "آئی پی پتہ، ورتݨ آلا ناں یا بلاک آئی ڈی:",
 	"ipbreason": "سبب:",
 	"ipbcreateaccount": "کھاتہ سازی",
 	"ipbemailban": "ای میل بھیڄݨ",

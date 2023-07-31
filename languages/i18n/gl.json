@@ -3455,7 +3455,7 @@
 	"blankpage": "Baleirar a páxina",
 	"intentionallyblankpage": "Esta páxina foi baleirada intencionadamente",
 	"disabledspecialpage-disabled": "Un administrador do sistema deshabilitou esta páxina.",
-	"external_image_whitelist": " #Deixe esta liña tal e como está<pre>\n#Poña embaixo fragmentos de expresións regulares (tan só a parte que vai entre //)\n#Isto coincidirá cos enderezos URL das imaxes externas (hotlinked)\n#Aquelas que coincidan amosaranse como imaxes, senón, só se amosará unha ligazón cara a esta\n#As liñas que comecen por \"#\" son comentarios\n#Non diferencia entre maiúsculas e minúsculas\n\n#Poña todos os fragmentos por riba desta liña. Deixe esta liña tal e como está</pre>",
+	"external_image_whitelist": " #Deixe esta liña tal e como está<pre>\n#Poña embaixo fragmentos de expresións regulares (tan só a parte que vai entre //)\n#Isto coincidirá cos enderezos URL das imaxes externas (hotlinked)\n#Aquelas que coincidan amosaranse como imaxes, se non, só se amosará unha ligazón cara a esta\n#As liñas que comecen por \"#\" son comentarios\n#Non diferencia entre maiúsculas e minúsculas\n\n#Poña todos os fragmentos por riba desta liña. Deixe esta liña tal e como está</pre>",
 	"tags": "Etiquetas de cambios válidas",
 	"tag-filter": "Filtrar as [[Special:Tags|etiquetas]]:",
 	"tag-filter-submit": "Filtro",

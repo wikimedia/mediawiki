@@ -855,7 +855,7 @@
 	"permissionserrorstext": "因為以下{{PLURAL:$1|原因}}，您無權這樣做：",
 	"permissionserrorstext-withaction": "由於以下{{PLURAL:$1|原因}}，您無權$2：",
 	"contentmodelediterror": "您無法編輯此修訂，因為它的內容模型為<code>$1</code>，與目前使用的頁面內容模型<code>$2</code>不同。",
-	"recreate-moveddeleted-warn": "<strong>警告：您正重新建立先前已刪除的頁面。</strong>\n\n您應考慮是否繼續編輯此頁。\n在此提供刪除與移動日誌方便作為參考：",
+	"recreate-moveddeleted-warn": "<strong>警告：您正重新建立先前已刪除的頁面。</strong>\n\n您應考慮是否繼續編輯此頁。在此提供刪除與移動日誌方便作為參考：",
 	"moveddeleted-notice": "此頁面不存在。請參考下方關於此頁面的刪除、保護和移動日誌。",
 	"moveddeleted-notice-recent": "對不起，此頁面剛剛被刪除（在最近24小時內）。頁面的刪除、保護和移動日誌在下方提供以供參考。",
 	"log-fulllog": "檢視完整日誌",

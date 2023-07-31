@@ -4005,7 +4005,7 @@
 	"version-extensions": "Header on [[Special:Version]].",
 	"version-skins": "Header on [[Special:Version]].\n\nSee also:\n* {{msg-mw|Version-software}}\n* {{msg-mw|Version-extensions}}\n\n{{Identical|Skin}}",
 	"version-specialpages": "Part of [[Special:Version]].\n{{Identical|Special page}}",
-	"version-parserhooks": "This message is a heading at [[Special:Version]] for extensions that modifies the parser of wikitext.",
+	"version-parserhooks": "This message is a heading for a table at [[Special:Version]] that lists extensions that add capabilities to the wikitext parser, such as XML-like tags or magic words.",
 	"version-variables": "{{Identical|Variable}}",
 	"version-editors": "Part of [[Special:Version]].\nThis message is followed by the list of installed extensions that provide an editor or enhance editing functionality.\n{{Identical|Editor}}",
 	"version-antispam": "Part of [[Special:Version]].\nThis message is followed by the list of SPAM prevention extensions.",
