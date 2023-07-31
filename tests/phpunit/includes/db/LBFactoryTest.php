@@ -82,8 +82,6 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 			$dbr::ROLE_STREAMING_MASTER, $dbw->getTopologyRole(), 'replica shows as replica' );
 
 		$this->assertSame( 'DEFAULT', $lb->getClusterName() );
-		$this->assertSame( 'my_test_wiki', $factory->resolveDomainID( 'my_test_wiki' ) );
-		$this->assertSame( $factory->getLocalDomainID(), $factory->resolveDomainID( false ) );
 
 		$factory->shutdown();
 	}
@@ -719,22 +717,6 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 			LBFactory::getCPInfoFromCookieValue( "5@$time#$agentId", $time + 11 - 10 )['clientId'],
 			'Stale (client ID)'
 		);
-	}
-
-	public function testSetDomainAliases() {
-		$lb = $this->newLBFactoryMulti();
-		$origDomain = $lb->getLocalDomainID();
-
-		$this->assertEquals( $origDomain, $lb->resolveDomainID( false ) );
-		$this->assertEquals( "db-prefix_", $lb->resolveDomainID( "db-prefix_" ) );
-
-		$lb->setDomainAliases( [
-			'alias-db' => 'realdb',
-			'alias-db-prefix_' => 'realdb-realprefix_'
-		] );
-
-		$this->assertEquals( 'realdb', $lb->resolveDomainID( 'alias-db' ) );
-		$this->assertEquals( "realdb-realprefix_", $lb->resolveDomainID( "alias-db-prefix_" ) );
 	}
 
 	public function testGetChronologyProtectorTouched() {

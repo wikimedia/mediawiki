@@ -463,9 +463,7 @@ abstract class LinksTable {
 				->where( $db->factorConds( $chunk ) )
 				->caller( __METHOD__ )->execute();
 			if ( count( $deleteBatches ) > 1 ) {
-				$this->lbFactory->commitAndWaitForReplication(
-					__METHOD__, $ticket, [ 'domain' => $domainId ]
-				);
+				$this->lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
 			}
 		}
 
@@ -473,9 +471,7 @@ abstract class LinksTable {
 		foreach ( $insertBatches as $insertBatch ) {
 			$db->insert( $table, $insertBatch, __METHOD__, $this->getInsertOptions() );
 			if ( count( $insertBatches ) > 1 ) {
-				$this->lbFactory->commitAndWaitForReplication(
-					__METHOD__, $ticket, [ 'domain' => $domainId ]
-				);
+				$this->lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
 			}
 		}
 	}

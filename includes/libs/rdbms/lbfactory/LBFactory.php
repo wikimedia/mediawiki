@@ -82,7 +82,7 @@ abstract class LBFactory implements ILBFactory {
 	/** @var string[] Map of (index alias => index) */
 	private $indexAliases = [];
 	/** @var DatabaseDomain[]|string[] Map of (domain alias => DB domain) */
-	private $domainAliases = [];
+	protected $domainAliases = [];
 	/** @var callable[] */
 	private $replicationWaitCallbacks = [];
 
@@ -100,9 +100,6 @@ abstract class LBFactory implements ILBFactory {
 
 	/** @var string|null */
 	private $defaultGroup = null;
-
-	/** @var DatabaseDomain[] Map of (domain ID => domain instance) */
-	private $nonLocalDomainCache = [];
 
 	private const ROUND_CURSORY = 'cursory';
 	private const ROUND_BEGINNING = 'within-begin';
@@ -238,37 +235,6 @@ abstract class LBFactory implements ILBFactory {
 
 	public function getLocalDomainID() {
 		return $this->localDomain->getId();
-	}
-
-	public function resolveDomainID( $domain ) {
-		return $this->resolveDomainInstance( $domain )->getId();
-	}
-
-	/**
-	 * @param DatabaseDomain|string|false $domain
-	 * @return DatabaseDomain
-	 */
-	final protected function resolveDomainInstance( $domain ) {
-		if ( $domain instanceof DatabaseDomain ) {
-			return $domain; // already a domain instance
-		} elseif ( $domain === false || $domain === $this->localDomain->getId() ) {
-			return $this->localDomain;
-		} elseif ( isset( $this->domainAliases[$domain] ) ) {
-			// This array acts as both the original map and as instance cache.
-			// Instances pass-through DatabaseDomain::newFromId as-is.
-			$this->domainAliases[$domain] =
-				DatabaseDomain::newFromId( $this->domainAliases[$domain] );
-
-			return $this->domainAliases[$domain];
-		}
-
-		$cachedDomain = $this->nonLocalDomainCache[$domain] ?? null;
-		if ( $cachedDomain === null ) {
-			$cachedDomain = DatabaseDomain::newFromId( $domain );
-			$this->nonLocalDomainCache = [ $domain => $cachedDomain ];
-		}
-
-		return $cachedDomain;
 	}
 
 	public function shutdown(
@@ -487,30 +453,16 @@ abstract class LBFactory implements ILBFactory {
 
 	public function waitForReplication( array $opts = [] ) {
 		$opts += [
-			'domain' => false,
-			'cluster' => false,
 			'timeout' => $this->replicationWaitTimeout,
 			'ifWritesSince' => null
 		];
 
-		if ( $opts['domain'] === false && isset( $opts['wiki'] ) ) {
-			$opts['domain'] = $opts['wiki']; // b/c
-		}
-
-		// Figure out which clusters need to be checked
-		/** @var ILoadBalancer[] $lbs */
 		$lbs = [];
-		if ( $opts['cluster'] !== false ) {
-			$lbs[] = $this->getExternalLB( $opts['cluster'] );
-		} elseif ( $opts['domain'] !== false ) {
-			$lbs[] = $this->getMainLB( $opts['domain'] );
-		} else {
-			foreach ( $this->getAllLBs() as $lb ) {
-				$lbs[] = $lb;
-			}
-			if ( !$lbs ) {
-				return true; // nothing actually used
-			}
+		foreach ( $this->getLBsForOwner() as $lb ) {
+			$lbs[] = $lb;
+		}
+		if ( !$lbs ) {
+			return true; // nothing actually used
 		}
 
 		// Get all the primary DB positions of applicable DBs right now.

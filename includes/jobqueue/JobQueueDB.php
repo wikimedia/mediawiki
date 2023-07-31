@@ -580,10 +580,7 @@ class JobQueueDB extends JobQueue {
 		}
 
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$lbFactory->waitForReplication( [
-			'domain' => $this->domain,
-			'cluster' => is_string( $this->cluster ) ? $this->cluster : false
-		] );
+		$lbFactory->waitForReplication();
 	}
 
 	/**

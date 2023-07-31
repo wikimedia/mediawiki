@@ -181,14 +181,6 @@ interface ILoadBalancer {
 	public function resolveDomainID( $domain ): string;
 
 	/**
-	 * Close all connection and redefine the local domain for testing or schema creation
-	 *
-	 * @param DatabaseDomain|string $domain
-	 * @since 1.33
-	 */
-	public function redefineLocalDomain( $domain );
-
-	/**
 	 * Indicate whether the tables on this domain are only temporary tables for testing
 	 *
 	 * In "temporary tables mode", the CONN_TRX_AUTOCOMMIT flag is ignored
@@ -214,21 +206,6 @@ interface ILoadBalancer {
 	 * @return int|false Specific server index, or false if no DB handle can be obtained
 	 */
 	public function getReaderIndex( $group = false );
-
-	/**
-	 * Set the primary position to reach before the next generic group DB query
-	 *
-	 * If a generic replica DB connection is already open then this immediately waits
-	 * for that DB to catch up to the specified replication position. Otherwise, it will
-	 * do so once such a connection is opened.
-	 *
-	 * If a timeout happens when waiting, then laggedReplicaUsed()
-	 * will return true. This is useful for discouraging clients from taking further actions
-	 * if session consistency could not be maintained with respect to their last actions.
-	 *
-	 * @param DBPrimaryPos $pos Primary position
-	 */
-	public function waitFor( DBPrimaryPos $pos );
 
 	/**
 	 * Set the primary wait position and wait for ALL replica DBs to catch up to it
@@ -470,22 +447,6 @@ interface ILoadBalancer {
 	public function getPrimaryPos();
 
 	/**
-	 * Close a connection
-	 *
-	 * Using this function makes sure the LoadBalancer knows the connection is closed.
-	 * If you use $conn->close() directly, the load balancer won't update its state.
-	 *
-	 * @param IDatabase $conn
-	 */
-	public function closeConnection( IDatabase $conn );
-
-	/**
-	 * @return bool Whether a primary connection is already open
-	 * @since 1.37
-	 */
-	public function hasPrimaryConnection();
-
-	/**
 	 * Whether there are pending changes or callbacks in a transaction by this thread
 	 * @return bool
 	 * @since 1.37
@@ -594,20 +555,6 @@ interface ILoadBalancer {
 	 * @param array[] $aliases Map of (table => (dbname, schema, prefix) map)
 	 */
 	public function setTableAliases( array $aliases );
-
-	/**
-	 * Convert certain index names to alternative names before querying the DB
-	 *
-	 * Note that this applies to indexes regardless of the table they belong to.
-	 *
-	 * This can be employed when an index was renamed X => Y in code, but the new Y-named
-	 * indexes were not yet built on all DBs. After all the Y-named ones are added by the DBA,
-	 * the aliases can be removed, and then the old X-named indexes dropped.
-	 *
-	 * @param string[] $aliases
-	 * @since 1.31
-	 */
-	public function setIndexAliases( array $aliases );
 
 	/**
 	 * Convert certain database domains to alternative ones.

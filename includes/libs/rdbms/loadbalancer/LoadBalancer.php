@@ -576,27 +576,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		return $i;
 	}
 
-	public function waitFor( DBPrimaryPos $pos ) {
-		$oldPos = $this->waitForPos;
-		try {
-			$this->waitForPos = $pos;
-
-			$genericIndex = $this->getExistingReaderIndex( self::GROUP_GENERIC );
-			// If a generic reader connection was already established, then wait now.
-			// Otherwise, wait until a connection is established in getReaderIndex().
-			if ( $genericIndex !== self::READER_INDEX_NONE ) {
-				if ( !$this->awaitSessionPrimaryPos( $genericIndex ) ) {
-					$this->setLaggedReplicaMode();
-				}
-			}
-		} finally {
-			// Restore the older position if it was higher since this is used for lag-protection
-			if ( $oldPos ) {
-				$this->setSessionPrimaryPosIfHigher( $oldPos );
-			}
-		}
-	}
-
 	public function waitForAll( DBPrimaryPos $pos, $timeout = null ) {
 		$timeout = $timeout ?: self::MAX_WAIT_DEFAULT;
 
@@ -1373,7 +1352,15 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		$this->conns = self::newTrackedConnectionsArray();
 	}
 
-	public function closeConnection( IDatabase $conn ) {
+	/**
+	 * Close a connection
+	 *
+	 * Using this function makes sure the LoadBalancer knows the connection is closed.
+	 * If you use $conn->close() directly, the load balancer won't update its state.
+	 *
+	 * @param IDatabase $conn
+	 */
+	private function closeConnection( IDatabase $conn ) {
 		if ( $conn instanceof DBConnRef ) {
 			// Avoid calling close() but still leaving the handle in the pool
 			throw new RuntimeException( 'Cannot close DBConnRef instance; it must be shareable' );

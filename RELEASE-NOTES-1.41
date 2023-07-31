@@ -248,6 +248,18 @@ because of Phabricator reports.
 * ParserOutput::hideNewSection(), deprecated since 1.38, has been removed.
 * Many LocalisationCache constants, properties and methods that have no known
   usage outside of the class have been made private without deprecation.
+* ILoadBalancer::closeConnection() has been made removed and
+  LoadBalancer::closeConnection() has been made private as they are not used
+  anywhere.
+* ILoadBalancer::waitFor has been removed without deprecation as it's not used
+  anywhere.
+* ILBFactory::resolveDomainID() has been removed without deprecation as it's
+  not used anywhere.
+* The following methods have been moved from ILoadBalancer to
+  ILoadBalancerForOwner:
+  - ::redefineLocalDomain()
+  - ::hasPrimaryConnection()
+  - ::setIndexAliases()
 * …
 
 === Deprecations in 1.41 ===

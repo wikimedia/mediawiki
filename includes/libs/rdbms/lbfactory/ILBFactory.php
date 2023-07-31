@@ -99,13 +99,6 @@ interface ILBFactory extends IConnectionProvider {
 	public function getLocalDomainID();
 
 	/**
-	 * @param DatabaseDomain|string|false $domain Database domain
-	 * @return string Value of $domain if provided or the local domain otherwise
-	 * @since 1.32
-	 */
-	public function resolveDomainID( $domain );
-
-	/**
 	 * Close all connections and redefine the local database domain
 	 *
 	 * This only applies to the tracked load balancer instances.
@@ -341,9 +334,7 @@ interface ILBFactory extends IConnectionProvider {
 	 * By default this waits on all DB clusters actually used in this request.
 	 * This makes sense when lag being waiting on is caused by the code that does this check.
 	 * In that case, setting "ifWritesSince" can avoid the overhead of waiting for clusters
-	 * that were not changed since the last wait check. To forcefully wait on a specific cluster
-	 * for a given domain, use the 'domain' parameter. To forcefully wait on an "external" cluster,
-	 * use the "cluster" parameter.
+	 * that were not changed since the last wait check.
 	 *
 	 * Never call this function after a large DB write that is *still* in a transaction.
 	 * It only makes sense to call this after the possible lag inducing changes were committed.
@@ -351,8 +342,6 @@ interface ILBFactory extends IConnectionProvider {
 	 * This only applies to the instantiated tracked load balancer instances.
 	 *
 	 * @param array $opts Optional fields that include:
-	 *   - domain: Wait on the load balancer DBs that handles the given domain ID.
-	 *   - cluster: Wait on the given external load balancer DBs.
 	 *   - timeout: Max wait time. Default: 60 seconds for CLI, 1 second for web.
 	 *   - ifWritesSince: Only wait if writes were done since this UNIX timestamp.
 	 * @return bool True on success, false if a timeout or error occurred while waiting

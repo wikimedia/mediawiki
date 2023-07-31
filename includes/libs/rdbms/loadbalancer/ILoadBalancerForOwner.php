@@ -218,4 +218,32 @@ interface ILoadBalancerForOwner extends ILoadBalancer {
 	 *        the one passed to the LoadBalancer's constructor.
 	 */
 	public function reconfigure( array $conf );
+
+	/**
+	 * Close all connection and redefine the local domain for testing or schema creation
+	 *
+	 * @param DatabaseDomain|string $domain
+	 * @since 1.33
+	 */
+	public function redefineLocalDomain( $domain );
+
+	/**
+	 * @return bool Whether a primary connection is already open
+	 * @since 1.37
+	 */
+	public function hasPrimaryConnection();
+
+	/**
+	 * Convert certain index names to alternative names before querying the DB
+	 *
+	 * Note that this applies to indexes regardless of the table they belong to.
+	 *
+	 * This can be employed when an index was renamed X => Y in code, but the new Y-named
+	 * indexes were not yet built on all DBs. After all the Y-named ones are added by the DBA,
+	 * the aliases can be removed, and then the old X-named indexes dropped.
+	 *
+	 * @param string[] $aliases
+	 * @since 1.31
+	 */
+	public function setIndexAliases( array $aliases );
 }
