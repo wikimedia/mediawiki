@@ -71,6 +71,16 @@ $( function () {
 				field.addEventListener( 'change', fieldChangeHandler );
 			}
 		} );
+
+		/**
+		 * Fired after EditRecovery has loaded any recovery data, added event handlers, etc.
+		 *
+		 * @event editRecovery_loadEnd
+		 * @member mw.hook
+		 * @param {Object} editRecovery
+		 * @param {Function} editRecovery.fieldChangeHandler
+		 */
+		mw.hook( 'editRecovery.loadEnd' ).fire( { fieldChangeHandler: fieldChangeHandler } );
 	}
 
 	function loadData( pageData ) {
