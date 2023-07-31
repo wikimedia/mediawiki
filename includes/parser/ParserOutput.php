@@ -684,16 +684,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 	/**
 	 * Return the names of the categories on this page.
-	 * @return array<string>
-	 * @deprecated since 1.38, use ::getCategoryNames() instead.
-	 */
-	public function getCategoryLinks() {
-		wfDeprecated( __METHOD__, '1.38' );
-		return $this->getCategoryNames();
-	}
-
-	/**
-	 * Return the names of the categories on this page.
 	 * Unlike ::getCategories(), sort keys are *not* included in the
 	 * return value.
 	 * @return array<string> The names of the categories
@@ -925,14 +915,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 	public function setLanguageLinks( $ll ) {
 		return wfSetVar( $this->mLanguageLinks, $ll );
-	}
-
-	/**
-	 * @deprecated since 1.38, use ::setCategories() instead.
-	 */
-	public function setCategoryLinks( $cl ) {
-		wfDeprecated( __METHOD__, '1.38' );
-		return wfSetVar( $this->mCategories, $cl );
 	}
 
 	public function setTitleText( $t ) {
