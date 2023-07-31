@@ -1655,6 +1655,14 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			[ false, 'ar', "1234.5", false, "1٬234٫5" ],
 			[ true, 'ar', "1", false, "١" ],
 			[ true, 'ar', "1234.5", false, "١٬٢٣٤٫٥" ],
+
+			// Test minimumGroupingDigits > 1
+			[ false, 'pl', 1, false, '1' ],
+			[ false, 'pl', 100, false, '100' ],
+			[ false, 'pl', 1000, false, '1000' ],
+			[ false, 'pl', 10000, false, "10\u{00A0}000" ],
+			[ false, 'pl', 1000000, false, "1\u{00A0}000\u{00A0}000" ],
+			[ false, 'pl', '1000.1', false, "1000,1" ],
 		];
 	}
 

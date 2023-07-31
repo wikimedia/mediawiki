@@ -31,6 +31,16 @@ $digitTransformTable = null;
 $separatorTransformTable = null;
 
 /**
+ * The minimum number of digits a number must have, in addition to the grouping
+ * size, before grouping separators are added.
+ *
+ * For example, Polish has minimumGroupingDigits = 2, which with a grouping
+ * size of 3 causes 4-digit numbers to be written like 9999, but 5-digit
+ * numbers are written like "10 000".
+ */
+$minimumGroupingDigits = 1;
+
+/**
  * URLs do not specify their encoding. UTF-8 is used by default, but if the
  * URL is not a valid UTF-8 sequence, we have to try to guess what the real
  * encoding is. The encoding used in this case is defined below, and must be
