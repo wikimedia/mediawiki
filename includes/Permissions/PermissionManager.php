@@ -461,8 +461,8 @@ class PermissionManager {
 
 		// With RIGOR_QUICK we can assume automatic account creation will
 		// occur. At a higher rigor level, the caller is required to opt
-		// in by either setting the create intent or actually creating
-		// the account.
+		// in by either passing in a temp placeholder user or by actually
+		// creating the account.
 		if ( $rigor === self::RIGOR_QUICK
 			&& !$user->isRegistered()
 			&& $this->tempUserConfig->isAutoCreateAction( $action )
