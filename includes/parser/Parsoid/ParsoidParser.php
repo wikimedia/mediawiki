@@ -159,11 +159,10 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 		// us to use the onRejectParserCacheValue hook to selectively
 		// expire "bad" generated content in the event of a rollback.
 		if ( method_exists( Parsoid::class, 'version' ) ) {
-			// The method_exists wrapper (and @phan-suppress) is just temporary
+			// The method_exists wrapper is just temporary
 			// until I3d3caabd959c1ba16f4dc702c2eae38d5d4dcb14 is released in
 			// wikimedia/parsoid.
 			$parserOutput->setExtensionData(
-				// @phan-suppress-next-line PhanUndeclaredStaticMethod
 				'core:parsoid-version', Parsoid::version()
 			);
 		}
