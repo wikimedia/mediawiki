@@ -236,7 +236,9 @@
 			"Raos10",
 			"SpikeShroom",
 			"James",
-			"The Pro Gamer"
+			"The Pro Gamer",
+			"María",
+			"No se"
 		]
 	},
 	"tog-underline": "Subrayar enlaces:",
@@ -3198,9 +3200,9 @@
 	"anonusers": "{{PLURAL:$2|el usuario anónimo|los usuarios anónimos}} $1 de {{SITENAME}}",
 	"creditspage": "Créditos de la página",
 	"nocredits": "No hay información de créditos en esta página.",
-	"spamprotectiontitle": "Filtro de protección contra spam",
+	"spamprotectiontitle": "Lista negra de spam",
 	"spamprotectiontext": "La página que quería guardar fue bloqueada por el filtro de spam.\nEsto podría estar causado por un enlace a un sitio externo incluido en la lista negra.",
-	"spamprotectionmatch": "El siguiente texto es el que activó nuestro filtro de spam: $1",
+	"spamprotectionmatch": "El siguiente texto es el que activó nuestra lista negra de spam: $1",
 	"spambot_username": "Limpieza de spam de MediaWiki",
 	"spam_reverting": "Revirtiendo a la última versión que no contenga enlaces a $1",
 	"spam_blanking": "Todas las revisiones contienen enlaces a $1, blanqueando",

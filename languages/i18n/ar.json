@@ -106,7 +106,8 @@
 			"Karim185.3",
 			"MRidhaAJ",
 			"Alshamiri1",
-			"أيوب"
+			"أيوب",
+			"أبو هشام"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -2442,7 +2443,7 @@
 	"deletionlog": "سجل الحذف",
 	"log-name-create": "سجل إنشاء الصفحات",
 	"log-description-create": "فيما يلي قائمة بأحدث عمليات إنشاء الصفحات.",
-	"logentry-create-create": "$1 {{GENDER:$2|أنشأ|أنشأت}} صفحة $3",
+	"logentry-create-create": "{{GENDER:$2|أنشأ|أنشأت}} $1 صفحة $3",
 	"reverted": "استرجع لنسخة أقدم",
 	"deletecomment": "السبب:",
 	"deleteotherreason": "سبب آخر/إضافي:",
