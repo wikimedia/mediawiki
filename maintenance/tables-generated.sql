@@ -158,10 +158,16 @@ CREATE TABLE /*_*/pagelinks (
   pl_namespace INT DEFAULT 0 NOT NULL,
   pl_title VARBINARY(255) DEFAULT '' NOT NULL,
   pl_from_namespace INT DEFAULT 0 NOT NULL,
+  pl_target_id BIGINT UNSIGNED DEFAULT NULL,
   INDEX pl_namespace (pl_namespace, pl_title, pl_from),
   INDEX pl_backlinks_namespace (
     pl_from_namespace, pl_namespace,
     pl_title, pl_from
+  ),
+  INDEX pl_target_id (pl_target_id, pl_from),
+  INDEX pl_backlinks_namespace_target_id (
+    pl_from_namespace, pl_target_id,
+    pl_from
   ),
   PRIMARY KEY(pl_from, pl_namespace, pl_title)
 ) /*$wgDBTableOptions*/;

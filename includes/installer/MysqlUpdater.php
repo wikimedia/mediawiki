@@ -148,6 +148,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'dropTable', 'revision_comment_temp' ],
 			[ 'runMaintenance', MigrateExternallinks::class, 'maintenance/migrateExternallinks.php' ],
 			[ 'modifyField', 'externallinks', 'el_to', 'patch-externallinks-el_to_default.sql' ],
+			[ 'addField', 'pagelinks', 'pl_target_id', 'patch-pagelinks-target_id.sql' ],
 		];
 	}
 

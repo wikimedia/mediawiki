@@ -1,0 +1,107 @@
+{
+	"comment": "Add tl_target_id on pagelinks (T299947)",
+	"before": {
+		"name": "pagelinks",
+		"comment": "Track page-to-page hyperlinks within the wiki. The target page may or may not exist, and due to renames and deletions may refer to different page records as time goes by.",
+		"columns": [
+			{
+				"name": "pl_from",
+				"comment": "Key to the page_id of the page containing the link.",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "pl_namespace",
+				"type": "integer",
+				"options": { "notnull": true, "default": 0 }
+			},
+			{
+				"name": "pl_title",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255, "default": "" }
+			},
+			{
+				"name": "pl_from_namespace",
+				"type": "integer",
+				"comment": "Namespace for pl_from page",
+				"options": { "notnull": true, "default": 0 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "pl_namespace",
+				"columns": [ "pl_namespace", "pl_title", "pl_from" ],
+				"comment": "Reverse index, for Special:Whatlinkshere",
+				"unique": false
+			},
+			{
+				"name": "pl_backlinks_namespace",
+				"columns": [ "pl_from_namespace", "pl_namespace", "pl_title", "pl_from" ],
+				"comment": "Index for Special:Whatlinkshere with namespace filter",
+				"unique": false
+			}
+		],
+		"pk": [ "pl_from", "pl_namespace", "pl_title" ]
+	},
+	"after": {
+		"name": "pagelinks",
+		"comment": "Track page-to-page hyperlinks within the wiki. The target page may or may not exist, and due to renames and deletions may refer to different page records as time goes by.",
+		"columns": [
+			{
+				"name": "pl_from",
+				"comment": "Key to the page_id of the page containing the link.",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "pl_namespace",
+				"type": "integer",
+				"options": { "notnull": true, "default": 0 }
+			},
+			{
+				"name": "pl_title",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255, "default": "" }
+			},
+			{
+				"name": "pl_from_namespace",
+				"type": "integer",
+				"comment": "Namespace for pl_from page",
+				"options": { "notnull": true, "default": 0 }
+			},
+			{
+				"name": "pl_target_id",
+				"type": "bigint",
+				"comment": "Foreign key to linktarget.lt_id",
+				"options": { "notnull": false, "unsigned": true }
+			}
+		],
+		"indexes": [
+			{
+				"name": "pl_namespace",
+				"columns": [ "pl_namespace", "pl_title", "pl_from" ],
+				"comment": "Reverse index, for Special:Whatlinkshere",
+				"unique": false
+			},
+			{
+				"name": "pl_backlinks_namespace",
+				"columns": [ "pl_from_namespace", "pl_namespace", "pl_title", "pl_from" ],
+				"comment": "Index for Special:Whatlinkshere with namespace filter",
+				"unique": false
+			},
+			{
+				"name": "pl_target_id",
+				"columns": [ "pl_target_id", "pl_from" ],
+				"comment": "Reverse index, for Special:Whatlinkshere",
+				"unique": false
+			},
+			{
+				"name": "pl_backlinks_namespace_target_id",
+				"columns": [ "pl_from_namespace", "pl_target_id", "pl_from" ],
+				"comment": "Index for Special:Whatlinkshere with namespace filter",
+				"unique": false
+			}
+		],
+		"pk": [ "pl_from", "pl_namespace", "pl_title" ]
+	}
+}
