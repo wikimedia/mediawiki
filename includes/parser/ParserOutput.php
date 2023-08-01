@@ -2434,20 +2434,12 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			}
 		}
 
-		// This method_exists test can go away once ::appendOutputStrings()
-		// is added to the ContentMetadataCollector interface.
-		if ( method_exists( $metadata, 'appendOutputStrings' ) ) {
-			// Uniform handling of string sets: they are unioned.
-			// (This includes modules, style modes, and CSP src.)
-			foreach ( ParserOutputStringSets::cases() as $name ) {
-				$metadata->appendOutputStrings(
-					$name, $this->getOutputStrings( $name )
-				);
-			}
-		} else {
-			// Back-compat
-			$metadata->addModules( $this->mModules );
-			$metadata->addModuleStyles( $this->mModuleStyles );
+		// Uniform handling of string sets: they are unioned.
+		// (This includes modules, style modes, and CSP src.)
+		foreach ( ParserOutputStringSets::cases() as $name ) {
+			$metadata->appendOutputStrings(
+				$name, $this->getOutputStrings( $name )
+			);
 		}
 
 		foreach ( $this->mCategories as $cat => $key ) {
