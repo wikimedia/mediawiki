@@ -121,7 +121,6 @@ class RefreshLinksJob extends Job {
 			if ( !isset( $this->params['range'] ) ) {
 				$lbFactory = $services->getDBLoadBalancerFactory();
 				if ( !$lbFactory->waitForReplication( [
-					'domain'  => $lbFactory->getLocalDomainID(),
 					'timeout' => self::LAG_WAIT_TIMEOUT
 				] ) ) {
 					// only try so hard, keep going with what we have

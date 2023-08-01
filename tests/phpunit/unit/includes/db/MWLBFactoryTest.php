@@ -87,7 +87,7 @@ class MWLBFactoryTest extends MediaWikiUnitTestCase {
 		$rawDomain = rtrim( "$dbname-$prefix", '-' );
 		$this->assertEquals(
 			$expectedDomain,
-			$lbFactory->resolveDomainID( $rawDomain ),
+			$lbFactory->getMainLB()->resolveDomainID( $rawDomain ),
 			'Domain aliases set'
 		);
 	}

@@ -301,8 +301,7 @@ class CategoryLinksTable extends TitleLinksTable {
 		$lbf = $this->getLBFactory();
 		$size = $this->getBatchSize();
 		// T163801: try to release any row locks to reduce contention
-		$lbf->commitAndWaitForReplication(
-			__METHOD__, $this->getTransactionTicket(), [ 'domain' => $domainId ] );
+		$lbf->commitAndWaitForReplication( __METHOD__, $this->getTransactionTicket() );
 
 		if ( count( $insertedLinks ) + count( $deletedLinks ) < $size ) {
 			$wp->updateCategoryCounts(
@@ -310,15 +309,13 @@ class CategoryLinksTable extends TitleLinksTable {
 				$deletedLinks,
 				$this->getSourcePageId()
 			);
-			$lbf->commitAndWaitForReplication(
-				__METHOD__, $this->getTransactionTicket(), [ 'domain' => $domainId ] );
+			$lbf->commitAndWaitForReplication( __METHOD__, $this->getTransactionTicket() );
 		} else {
 			$addedChunks = array_chunk( $insertedLinks, $size );
 			foreach ( $addedChunks as $chunk ) {
 				$wp->updateCategoryCounts( $chunk, [], $this->getSourcePageId() );
 				if ( count( $addedChunks ) > 1 ) {
-					$lbf->commitAndWaitForReplication(
-						__METHOD__, $this->getTransactionTicket(), [ 'domain' => $domainId ] );
+					$lbf->commitAndWaitForReplication( __METHOD__, $this->getTransactionTicket() );
 				}
 			}
 
@@ -326,8 +323,7 @@ class CategoryLinksTable extends TitleLinksTable {
 			foreach ( $deletedChunks as $chunk ) {
 				$wp->updateCategoryCounts( [], $chunk, $this->getSourcePageId() );
 				if ( count( $deletedChunks ) > 1 ) {
-					$lbf->commitAndWaitForReplication(
-						__METHOD__, $this->getTransactionTicket(), [ 'domain' => $domainId ] );
+					$lbf->commitAndWaitForReplication( __METHOD__, $this->getTransactionTicket() );
 				}
 			}
 

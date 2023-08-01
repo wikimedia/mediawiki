@@ -1346,9 +1346,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 							->caller( $fname )->execute();
 
 						if ( count( $wlIdsChunks ) > 1 ) {
-							$this->lbFactory->commitAndWaitForReplication(
-								$fname, $ticket, [ 'domain' => $dbw->getDomainID() ]
-							);
+							$this->lbFactory->commitAndWaitForReplication( $fname, $ticket );
 						}
 					}
 					$this->uncacheLinkTarget( $target );
