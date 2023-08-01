@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentity;
@@ -243,18 +244,12 @@ class LocalFileDeleteBatch {
 		}
 
 		if ( count( $oldRels ) ) {
-			$fileQuery = OldLocalFile::getQueryInfo();
-			$res = $dbw->select(
-				$fileQuery['tables'],
-				$fileQuery['fields'],
-				[
-					'oi_name' => $this->file->getName(),
-					'oi_archive_name' => array_map( 'strval', array_keys( $oldRels ) )
-				],
-				__METHOD__,
-				[ 'FOR UPDATE' ],
-				$fileQuery['joins']
-			);
+			$queryBuilder = FileSelectQueryBuilder::newForOldFile( $dbw );
+			$queryBuilder
+				->forUpdate()
+				->where( [ 'oi_name' => $this->file->getName() ] )
+				->andWhere( [ 'oi_archive_name' => array_map( 'strval', array_keys( $oldRels ) ) ] );
+			$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 			$rowsInsert = [];
 			if ( $res->numRows() ) {
 				$reason = $commentStore->createComment( $dbw, $this->reason );

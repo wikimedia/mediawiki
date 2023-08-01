@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
@@ -361,9 +362,8 @@ class LocalRepo extends FileRepo {
 		}
 
 		if ( count( $imgNames ) ) {
-			$fileQuery = LocalFile::getQueryInfo();
-			$res = $dbr->select( $fileQuery['tables'], $fileQuery['fields'], [ 'img_name' => $imgNames ],
-				__METHOD__, [], $fileQuery['joins'] );
+			$queryBuilder = FileSelectQueryBuilder::newForFile( $dbr );
+			$res = $queryBuilder->where( [ 'img_name' => $imgNames ] )->caller( __METHOD__ )->fetchResultSet();
 			$applyMatchingFiles( $res, $searchSet, $finalFiles );
 		}
 
@@ -382,10 +382,10 @@ class LocalRepo extends FileRepo {
 		}
 
 		if ( count( $oiConds ) ) {
-			$fileQuery = OldLocalFile::getQueryInfo();
-			$res = $dbr->select( $fileQuery['tables'], $fileQuery['fields'],
-				$dbr->makeList( $oiConds, LIST_OR ),
-				__METHOD__, [], $fileQuery['joins'] );
+			$queryBuilder = FileSelectQueryBuilder::newForOldFile( $dbr );
+
+			$res = $queryBuilder->where( $dbr->makeList( $oiConds, LIST_OR ) )
+				->caller( __METHOD__ )->fetchResultSet();
 			$applyMatchingFiles( $res, $searchSet, $finalFiles );
 		}
 
@@ -425,16 +425,10 @@ class LocalRepo extends FileRepo {
 	 * @return LocalFile[]
 	 */
 	public function findBySha1( $hash ) {
-		$dbr = $this->getReplicaDB();
-		$fileQuery = LocalFile::getQueryInfo();
-		$res = $dbr->select(
-			$fileQuery['tables'],
-			$fileQuery['fields'],
-			[ 'img_sha1' => $hash ],
-			__METHOD__,
-			[ 'ORDER BY' => 'img_name' ],
-			$fileQuery['joins']
-		);
+		$queryBuilder = FileSelectQueryBuilder::newForFile( $this->getReplicaDB() );
+		$res = $queryBuilder->where( [ 'img_sha1' => $hash ] )
+			->orderBy( 'img_name' )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		$result = [];
 		foreach ( $res as $row ) {
@@ -460,15 +454,11 @@ class LocalRepo extends FileRepo {
 		}
 
 		$dbr = $this->getReplicaDB();
-		$fileQuery = LocalFile::getQueryInfo();
-		$res = $dbr->select(
-			$fileQuery['tables'],
-			$fileQuery['fields'],
-			[ 'img_sha1' => $hashes ],
-			__METHOD__,
-			[ 'ORDER BY' => 'img_name' ],
-			$fileQuery['joins']
-		);
+		$queryBuilder = FileSelectQueryBuilder::newForFile( $dbr );
+
+		$queryBuilder->where( [ 'img_sha1' => $hashes ] )
+			->orderBy( 'img_name' );
+		$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 
 		$result = [];
 		foreach ( $res as $row ) {
@@ -488,19 +478,13 @@ class LocalRepo extends FileRepo {
 	 * @return LocalFile[]
 	 */
 	public function findFilesByPrefix( $prefix, $limit ) {
-		$selectOptions = [ 'ORDER BY' => 'img_name', 'LIMIT' => intval( $limit ) ];
-
-		// Query database
 		$dbr = $this->getReplicaDB();
-		$fileQuery = LocalFile::getQueryInfo();
-		$res = $dbr->select(
-			$fileQuery['tables'],
-			$fileQuery['fields'],
-			'img_name ' . $dbr->buildLike( $prefix, $dbr->anyString() ),
-			__METHOD__,
-			$selectOptions,
-			$fileQuery['joins']
-		);
+		$queryBuilder = FileSelectQueryBuilder::newForFile( $dbr );
+
+		$queryBuilder->where( 'img_name ' . $dbr->buildLike( $prefix, $dbr->anyString() ) )
+			->orderBy( 'img_name' )
+			->limit( intval( $limit ) );
+		$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 
 		// Build file objects
 		$files = [];

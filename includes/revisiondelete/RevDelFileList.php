@@ -19,10 +19,12 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 use MediaWiki\Page\PageIdentity;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * List for oldimage table items
@@ -93,18 +95,11 @@ class RevDelFileList extends RevDelList {
 			$archiveNames[] = $timestamp . '!' . $this->page->getDBkey();
 		}
 
-		$oiQuery = OldLocalFile::getQueryInfo();
-		return $db->select(
-			$oiQuery['tables'],
-			$oiQuery['fields'],
-			[
-				'oi_name' => $this->page->getDBkey(),
-				'oi_archive_name' => $archiveNames
-			],
-			__METHOD__,
-			[ 'ORDER BY' => 'oi_timestamp DESC' ],
-			$oiQuery['joins']
-		);
+		$queryBuilder = FileSelectQueryBuilder::newForOldFile( $db );
+		$queryBuilder
+			->where( [ 'oi_name' => $this->page->getDBkey(), 'oi_archive_name' => $archiveNames ] )
+			->orderBy( 'oi_timestamp', SelectQueryBuilder::SORT_DESC );
+		return $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 	}
 
 	public function newItem( $row ) {
