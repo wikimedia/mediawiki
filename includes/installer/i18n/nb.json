@@ -105,6 +105,7 @@
 	"config-db-prefix": "Databasetabellprefiks (ingen bindestreker):",
 	"config-db-prefix-help": "Hvis du trenger å dele en database mellom flere wikier, eller mellom MediaWiki og andre nettapplikasjoner, kan du velge å legge til et prefiks til alle tabellnavnene for å unngå konflikter.\nIkke bruk mellomrom.\n\nDette feltet er vanligvis tomt.",
 	"config-mysql-old": "MySQL $1 eller senere kreves, du har $2.",
+	"config-mariadb-old": "MariaDB $1 eller senere kreves. Du har $2.",
 	"config-db-port": "Databaseport:",
 	"config-db-schema": "Skjema for MediaWiki (ingen bindestreker):",
 	"config-db-schema-help": "Dette skjemaet er som regel riktig.\nBare endre det hvis du vet at du trenger det.",

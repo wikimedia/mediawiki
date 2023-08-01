@@ -1128,6 +1128,7 @@
 	"userrights-user-editname": "İstifadəçi adınızı yazın:",
 	"editusergroup": "İstifadəçi qruplarını yüklə",
 	"editinguser": "İstifadəçi <strong>[[User:$1|$1]]</strong> $2 üçün istifadəçi hüquqları dəyişdirilir",
+	"viewinguserrights": "<strong>[[User:$1|$1]]</strong> $2 adlı istifadəçinin qruplarına baxılır",
 	"userrights-editusergroup": "İstifadəçinin qruplarını redaktə et",
 	"userrights-viewusergroup": "{{GENDER:$1|İstifadəçi}} qruplarına bax",
 	"saveusergroups": "{{GENDER:$1|İstifadəçi}} qruplarını yadda saxla",

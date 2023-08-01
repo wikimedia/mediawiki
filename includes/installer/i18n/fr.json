@@ -127,6 +127,7 @@
 	"config-db-prefix": "Préfixe des tables de la base de données (sans tirets) :",
 	"config-db-prefix-help": "Si vous avez besoin de partager une base de données entre plusieurs wikis, ou entre MediaWiki et une autre application Web, vous pouvez choisir d’ajouter un préfixe à tous les noms de table pour éviter les conflits.\nNe pas utiliser d’espaces.\n\nCe champ est généralement laissé vide.",
 	"config-mysql-old": "MySQL $1 ou version ultérieure est requis. Vous avez $2.",
+	"config-mariadb-old": "MariaDB $1 ou ultérieur est obligatoire. Vous avez $2.",
 	"config-db-port": "Port de la base de données :",
 	"config-db-schema": "Schéma pour MediaWiki (sans tirets) :",
 	"config-db-schema-help": "Ce schéma est généralement correct.\nNe le changez que si vous êtes sûr que c’est nécessaire.",

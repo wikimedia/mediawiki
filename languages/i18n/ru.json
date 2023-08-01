@@ -178,7 +178,8 @@
 			"Anonim.one",
 			"DR",
 			"Run Li",
-			"Merrahtar"
+			"Merrahtar",
+			"Colt browning"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -395,7 +396,7 @@
 	"disclaimers": "Отказ от ответственности",
 	"disclaimerpage": "Project:Отказ от ответственности",
 	"edithelp": "Справка по редактированию",
-	"helppage-top-gethelp": "Помощь",
+	"helppage-top-gethelp": "Справка",
 	"mainpage": "Заглавная страница",
 	"mainpage-description": "Заглавная страница",
 	"policy-url": "Project:Правила",
@@ -634,7 +635,7 @@
 	"login-userblocked": "Участник заблокирован. Вход в систему запрещён.",
 	"wrongpassword": "Введены неверные имя участника или пароль.\nПопробуйте ещё раз.",
 	"wrongpasswordempty": "Пожалуйста, введите непустой пароль.",
-	"passwordtooshort": "Пароль должен состоять не менее, чем из $1 {{PLURAL:$1|символа|символов}}.",
+	"passwordtooshort": "Пароль должен состоять из как минимум $1 {{PLURAL:$1|символа|символов}}.",
 	"passwordtoolong": "Пароль не может содержать более {{PLURAL:$1|1=$1 символа|$1 символов}}.",
 	"passwordincommonlist": "Введённый пароль является одним из часто используемых. Пожалуйста, выберите другой.",
 	"password-name-match": "Введённый пароль должен отличаться от имени участника.",

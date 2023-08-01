@@ -1185,7 +1185,7 @@
 	"apihelp-query+siteinfo-paramvalue-prop-languagevariants": "מחזיר רשימת קודי שפה שמופעל עבורם ממיר שפה ([[mw:Special:MyLanguage/LanguageConverter|LanguageConverter]]), וההגוונים הנתמכים עבור כל אחת מהן.",
 	"apihelp-query+siteinfo-paramvalue-prop-skins": "החזרת רשימת כל העיצובים הזמינים (זה יכול להיות מותאם מקומית באמצעות <var>$1inlanguagecode</var>, אחרת זה יהיה בשפת התוכן).",
 	"apihelp-query+siteinfo-paramvalue-prop-extensiontags": "החזרת רשימת תגי הרחבת מפענח.",
-	"apihelp-query+siteinfo-paramvalue-prop-functionhooks": "החזרת hook־ים של הרחבות מפענח.",
+	"apihelp-query+siteinfo-paramvalue-prop-functionhooks": "החזרת רשימת hook־ים של הרחבות מפענח.",
 	"apihelp-query+siteinfo-paramvalue-prop-showhooks": "החזרת כל ה־hook־ים המנויים (תוכן של <var>[[mw:Special:MyLanguage/Manual:$wgHooks|$wgHooks]]</var>).",
 	"apihelp-query+siteinfo-paramvalue-prop-variables": "החזרת מזהי משתנים.",
 	"apihelp-query+siteinfo-paramvalue-prop-protocols": "החזרת רשימת הפרוטוקולים המותרים בקישורים חיצוניים.",
