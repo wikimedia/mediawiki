@@ -54,7 +54,7 @@
 	}
 
 	&:focus {
-		outline: @border-style-base @border-width-thick @color-progressive--focus;
+		outline: @border-style-base @border-width-thick @outline-color-progressive--focus;
 	}
 
 	.cdx-icon:last-child {
@@ -76,7 +76,7 @@
 }
 
 .cdx-mixin-link-red() {
-	color: @color-destructive;
+	color: @color-link-red;
 
 	&:visited {
 		color: @color-link-red--visited;
@@ -87,17 +87,17 @@
 	}
 
 	&:hover {
-		color: @color-destructive--hover;
+		color: @color-link-red--hover;
 		text-decoration: @text-decoration-underline;
 	}
 
 	&:active {
-		color: @color-destructive--active;
+		color: @color-link-red--active;
 		text-decoration: @text-decoration-underline;
 	}
 
 	&:focus {
-		outline-color: @color-progressive--focus;
+		outline-color: @outline-color-progressive--focus;
 	}
 }
 
