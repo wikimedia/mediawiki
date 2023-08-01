@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Widget\UserInputWidget;
 use Wikimedia\IPUtils;
 
@@ -48,7 +49,7 @@ class HTMLUserTextField extends HTMLTextField {
 		}
 
 		// check if the input is a valid username
-		$user = User::newFromName( $value );
+		$user = MediaWikiServices::getInstance()->getUserFactory()->newFromName( $value );
 		if ( $user ) {
 			// check if the user exists, if requested
 			if ( $this->mParams['exists'] && !(

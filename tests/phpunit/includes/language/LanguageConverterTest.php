@@ -5,6 +5,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Title\Title;
+use MediaWiki\User\UserOptionsLookup;
 
 /**
  * @group Language
@@ -104,13 +105,16 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 			$optionName = 'variant-tg';
 		}
 
-		$userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();
-
 		$user = new User;
 		$user->load(); // from 'defaults'
 		$user->mId = 1;
 		$user->mDataLoaded = true;
-		$userOptionsManager->setOption( $user, $optionName, $optionVal );
+
+		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
+		$userOptionsLookup->method( 'getOption' )
+			->with( $user, $optionName )
+			->willReturn( $optionVal );
+		$this->setService( 'UserOptionsLookup', $userOptionsLookup );
 
 		$this->setContextUser( $user );
 
@@ -137,13 +141,15 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$this->setContentLang( 'tg-latn' );
 		$wgRequest->setVal( 'variant', 'tg' );
 
-		$userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();
-
 		$user = User::newFromId( "admin" );
 		$user->setId( 1 );
 		$user->mFrom = 'defaults';
 		// The user's data is ignored because the variant is set in the URL.
-		$userOptionsManager->setOption( $user, 'variant', 'tg-latn' );
+		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
+		$userOptionsLookup->method( 'getOption' )
+			->with( $user, 'variant' )
+			->willReturn( 'tg-latn' );
+		$this->setService( 'UserOptionsLookup', $userOptionsLookup );
 
 		$this->setContextUser( $user );
 

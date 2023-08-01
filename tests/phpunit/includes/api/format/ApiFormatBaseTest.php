@@ -7,6 +7,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group API
+ * @group Database
  * @covers ApiFormatBase
  */
 class ApiFormatBaseTest extends ApiFormatTestBase {

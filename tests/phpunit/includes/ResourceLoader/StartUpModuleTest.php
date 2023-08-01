@@ -7,11 +7,17 @@ use MediaWiki\ResourceLoader\Module;
 use MediaWiki\ResourceLoader\StartUpModule;
 use ResourceLoaderTestCase;
 use ResourceLoaderTestModule;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * @covers \MediaWiki\ResourceLoader\StartUpModule
  */
 class StartUpModuleTest extends ResourceLoaderTestCase {
+
+	protected function setUp(): void {
+		parent::setUp();
+		$this->setService( 'DBLoadBalancer', $this->createMock( ILoadBalancer::class ) );
+	}
 
 	protected static function expandPlaceholders( $text ) {
 		return strtr( $text, [

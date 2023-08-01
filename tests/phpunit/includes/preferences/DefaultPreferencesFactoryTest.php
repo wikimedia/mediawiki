@@ -44,6 +44,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Preferences
+ * @group Database
  * @coversDefaultClass MediaWiki\Preferences\DefaultPreferencesFactory
  */
 class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
@@ -59,7 +60,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 		$this->context = new RequestContext();
-		$this->context->setTitle( Title::newFromText( self::class ) );
+		$this->context->setTitle( Title::makeTitle( NS_MAIN, self::class ) );
 
 		$this->overrideConfigValues( [
 			MainConfigNames::DisableLangConversion => false,

@@ -96,7 +96,7 @@ class PageDataRequestHandler {
 		}
 
 		try {
-			$title = Title::newFromTextThrow( $title );
+			$title = MediaWikiServices::getInstance()->getTitleFactory()->newFromTextThrow( $title );
 		} catch ( MalformedTitleException $ex ) {
 			throw new HttpError( 400, wfMessage( 'pagedata-bad-title', $title ) );
 		}

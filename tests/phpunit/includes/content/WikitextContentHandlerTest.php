@@ -6,6 +6,7 @@ use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * See also unit tests at \MediaWiki\Tests\Unit\WikitextContentHandlerTest
@@ -273,6 +274,11 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$mockEngine = $this->createMock( SearchEngine::class );
 		$title = Title::makeTitle( NS_FILE, 'Somefile.jpg' );
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
+		// Mark the page as not existent to avoid DB queries.
+		$pageWrapper = TestingAccessWrapper::newFromObject( $page );
+		$pageWrapper->mLatest = null;
+		$pageWrapper->mId = 0;
+		$pageWrapper->mDataLoadedFrom = WikiPage::READ_NORMAL;
 
 		$fileHandler = $this->getMockBuilder( FileContentHandler::class )
 			->disableOriginalConstructor()
@@ -299,11 +305,20 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	 */
 	public function testHadSignature() {
 		$services = $this->getServiceContainer();
+
+		$pageObj = PageReferenceValue::localReference( NS_MAIN, __CLASS__ );
+		// Force a content model in the converted Title to avoid DB queries.
+		$title = $services->getTitleFactory()->newFromPageReference( $pageObj );
+		$title->setContentModel( CONTENT_MODEL_WIKITEXT );
+		$titleFactory = $this->createMock( TitleFactory::class );
+		$titleFactory->method( 'newFromPageReference' )
+			->with( $pageObj )
+			->willReturn( $title );
+		$this->setService( 'TitleFactory', $titleFactory );
+
 		$contentTransformer = $services->getContentTransformer();
 		$contentRenderer = $services->getContentRenderer();
 		$this->hideDeprecated( 'AbstractContent::preSaveTransform' );
-
-		$pageObj = PageReferenceValue::localReference( NS_MAIN, __CLASS__ );
 
 		$content = new WikitextContent( '~~~~' );
 		$pstContent = $contentTransformer->preSaveTransform(

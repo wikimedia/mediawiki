@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Tests\Structure;
 
+use HashBagOStuff;
+use IDatabase;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
@@ -9,6 +11,8 @@ use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\DerivativeContext;
 use MediaWiki\ResourceLoader\Module;
 use MediaWikiIntegrationTestCase;
+use Wikimedia\DependencyStore\KeyValueDependencyStore;
+use Wikimedia\Rdbms\LBFactory;
 
 /**
  * Compare bundle sizes from each skin/extension bundlesize.config.json with ResourceLoader output.
@@ -17,6 +21,14 @@ use MediaWikiIntegrationTestCase;
  * file. This allows one to run that test suite by its own, for faster CLI feedback.
  */
 abstract class BundleSizeTest extends MediaWikiIntegrationTestCase {
+	protected function setUp(): void {
+		parent::setUp();
+		$db = $this->createMock( IDatabase::class );
+		$db->method( 'getSessionLagStatus' )->willReturn( [ 'lag' => 0, 'since' => 0 ] );
+		$lbFactory = $this->createMock( LBFactory::class );
+		$lbFactory->method( 'getReplicaDatabase' )->willReturn( $db );
+		$this->setService( 'DBLoadBalancerFactory', $lbFactory );
+	}
 
 	public function provideBundleSize() {
 		foreach ( json_decode( file_get_contents( $this->getBundleSizeConfig() ), true ) as $testCase ) {
@@ -41,6 +53,7 @@ abstract class BundleSizeTest extends MediaWikiIntegrationTestCase {
 			}
 		}
 		$resourceLoader = MediaWikiServices::getInstance()->getResourceLoader();
+		$resourceLoader->setDependencyStore( new KeyValueDependencyStore( new HashBagOStuff() ) );
 		$request = new FauxRequest(
 			[
 				'lang' => 'en',

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Title\Title;
 
 class CdnCacheUpdateTest extends MediaWikiIntegrationTestCase {
@@ -9,6 +10,7 @@ class CdnCacheUpdateTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testPurgeMergeWeb() {
 		$this->setMwGlobals( 'wgCommandLineMode', false );
+		$this->setService( 'LinkBatchFactory', $this->createMock( LinkBatchFactory::class ) );
 
 		$title = Title::newMainPage();
 

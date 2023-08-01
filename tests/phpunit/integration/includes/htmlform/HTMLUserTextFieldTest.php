@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\User\UserFactory;
+
 /**
  * @covers HTMLUserTextFieldTest
  */
@@ -9,6 +11,17 @@ class HTMLUserTextFieldTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideInputs
 	 */
 	public function testInputs( array $config, string $value, $expected ) {
+		$origUserFactory = $this->getServiceContainer()->getUserFactory();
+		$userFactory = $this->createMock( UserFactory::class );
+		$userFactory->method( 'newFromName' )->willReturnCallback( static function () use ( $origUserFactory ) {
+			$user = $origUserFactory->newFromName( ...func_get_args() );
+			if ( $user ) {
+				$user->mId = 0;
+				$user->setItemLoaded( 'id' );
+			}
+			return $user;
+		} );
+		$this->setService( 'UserFactory', $userFactory );
 		$htmlForm = $this->createMock( HTMLForm::class );
 		$htmlForm->method( 'msg' )->willReturnCallback( 'wfMessage' );
 

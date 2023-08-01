@@ -3,6 +3,7 @@
 use MediaWiki\Title\Title;
 
 /**
+ * @group Database
  * @covers WikiTextStructure
  */
 class WikitextStructureTest extends MediaWikiLangTestCase {

@@ -30,6 +30,7 @@ use WikitextContent;
 use WikitextContentHandler;
 
 /**
+ * @group Database
  * @covers \MediaWiki\Rest\Handler\UpdateHandler
  */
 class UpdateHandlerTest extends \MediaWikiLangTestCase {

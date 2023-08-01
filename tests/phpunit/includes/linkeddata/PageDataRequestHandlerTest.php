@@ -25,6 +25,8 @@ class PageDataRequestHandlerTest extends \MediaWikiLangTestCase {
 		parent::setUp();
 
 		$this->interfaceTitle = Title::newFromText( __CLASS__ );
+		// Force the content model to avoid DB queries.
+		$this->interfaceTitle->setContentModel( CONTENT_MODEL_WIKITEXT );
 		$this->obLevel = ob_get_level();
 
 		$this->overrideConfigValue( MainConfigNames::ArticlePath, '/wiki/$1' );
@@ -219,6 +221,14 @@ class PageDataRequestHandlerTest extends \MediaWikiLangTestCase {
 		$expectedStatusCode = 200,
 		array $expectedHeaders = []
 	) {
+		$titleFactory = $this->createMock( TitleFactory::class );
+		$titleFactory->method( 'newFromTextThrow' )->willReturnCallback( static function ( $text, $ns ) {
+			// Force the content model to avoid DB queries.
+			$ret = Title::newFromTextThrow( $text, $ns );
+			$ret->setContentModel( CONTENT_MODEL_WIKITEXT );
+			return $ret;
+		} );
+		$this->setService( 'TitleFactory', $titleFactory );
 		$output = $this->makeOutputPage( $params, $headers );
 		$request = $output->getRequest();
 
@@ -260,6 +270,8 @@ class PageDataRequestHandlerTest extends \MediaWikiLangTestCase {
 
 	public static function provideHttpContentNegotiation() {
 		$helsinki = Title::makeTitle( NS_MAIN, 'Helsinki' );
+		// Force the content model to avoid DB queries.
+		$helsinki->setContentModel( CONTENT_MODEL_WIKITEXT );
 		return [
 			'Accept Header of HTML' => [
 				$helsinki,

@@ -13,6 +13,14 @@ class HTMLTitleTextFieldTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testInterwiki( array $config, string $value, $expected ) {
 		$this->setupInterwikiTable();
+		$titleFactory = $this->createMock( TitleFactory::class );
+		$titleFactory->method( 'newFromTextThrow' )->willReturnCallback( static function ( $text, $ns ) {
+			$ret = Title::newFromTextThrow( $text, $ns );
+			// Mark the title as nonexistent to avoid DB queries.
+			$ret->resetArticleID( 0 );
+			return $ret;
+		} );
+		$this->setService( 'TitleFactory', $titleFactory );
 		$htmlForm = $this->createMock( HTMLForm::class );
 		$htmlForm->method( 'msg' )->willReturnCallback( 'wfMessage' );
 
