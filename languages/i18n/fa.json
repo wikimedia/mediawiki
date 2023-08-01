@@ -1008,7 +1008,7 @@
 	"mergehistory-go": "نمایش تاریخچه قابل ادغام",
 	"mergehistory-submit": "ادغام نسخه‌ها",
 	"mergehistory-empty": "هیچ‌یک از نسخه‌ها قابل ادغام نیستند.",
-	"mergehistory-done": "$4 {{PLURAL:$4|نسخه}} از $1 در [[:$2]] ادغام {{PLURAL:$4|شد|شد}}.\n$3.",
+	"mergehistory-done": "$4 {{PLURAL:$4|نسخه}} از $1 در [[:$2]] ادغام {{PLURAL:$4|شد}}.\n$3",
 	"mergehistory-fail": "ادغام تاریخچه ممکن نیست، لطفاً گزینه‌های صفحه و زمان را بازبینی کنید.",
 	"mergehistory-fail-bad-timestamp": "برچسب زمانی نامعتبر است.",
 	"mergehistory-fail-invalid-source": "صفحه مبدا نامعتبر است.",
