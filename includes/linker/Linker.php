@@ -22,7 +22,6 @@
 
 namespace MediaWiki\Linker;
 
-use Config;
 use ContextSource;
 use DerivativeContext;
 use ExternalUserNames;
@@ -47,7 +46,6 @@ use RequestContext;
 use SpecialPage;
 use TitleValue;
 use User;
-use WatchedItem;
 use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
 use Wikimedia\Parsoid\Core\TOCData;
@@ -2355,53 +2353,6 @@ class Linker {
 	}
 
 	/**
-	 * Updates the tooltip message and its parameters if watchlist expiry is enabled.
-	 *
-	 * @param string &$tooltip the default tooltip
-	 * @param array &$msgParams the tooltip message parameters.
-	 * @param Config|null $config Only needed for generating tooltip for watchlist expiry.
-	 * @param User|null $user Only needed for generating tooltip for watchlist expiry.
-	 * @param Title|null $relevantTitle Only needed for generating tooltip for watchlist expiry.
-	 *
-	 * @return void
-	 */
-	private static function updateWatchstarTooltipMessage(
-		string &$tooltip, array &$msgParams, $config, $user, $relevantTitle
-	): void {
-		if ( !$config || !$user || !$relevantTitle ) {
-			$mainContext = self::getContextFromMain();
-			if ( !$config ) {
-				$config = $mainContext->getConfig();
-			}
-			if ( !$user ) {
-				$user = $mainContext->getUser();
-			}
-			if ( !$relevantTitle ) {
-				$relevantTitle = $mainContext->getSkin()->getRelevantTitle();
-			}
-		}
-
-		$isWatchlistExpiryEnabled = $config->get( MainConfigNames::WatchlistExpiry );
-		if ( !$isWatchlistExpiryEnabled || !$relevantTitle || !$relevantTitle->canExist() ) {
-			return;
-		}
-
-		$watchStore = MediaWikiServices::getInstance()->getWatchedItemStore();
-		$watchedItem = $watchStore->getWatchedItem( $user, $relevantTitle );
-		if ( $watchedItem instanceof WatchedItem && $watchedItem->getExpiry() !== null ) {
-			$diffInDays = $watchedItem->getExpiryInDays();
-
-			if ( $diffInDays ) {
-				$msgParams = [ $diffInDays ];
-				// Resolves to tooltip-ca-unwatch-expiring message
-				$tooltip = 'ca-unwatch-expiring';
-			} else { // Resolves to tooltip-ca-unwatch-expiring-hours message
-				$tooltip = 'ca-unwatch-expiring-hours';
-			}
-		}
-	}
-
-	/**
 	 * Returns the attributes for the tooltip and access key.
 	 *
 	 * @since 1.16.3. $msgParams introduced in 1.27
@@ -2409,9 +2360,6 @@ class Linker {
 	 * @param array $msgParams Params for constructing the message
 	 * @param string|array|null $options Options to be passed to titleAttrib.
 	 * @param MessageLocalizer|null $localizer
-	 * @param User|null $user Only needed for generating tooltip for watchlist expiry.
-	 * @param Config|null $config Only needed for generating tooltip for watchlist expiry.
-	 * @param Title|null $relevantTitle Only needed for generating tooltip for watchlist expiry.
 	 *
 	 * @see Linker::titleAttrib for what options could be passed to $options.
 	 *
@@ -2421,27 +2369,18 @@ class Linker {
 		$name,
 		array $msgParams = [],
 		$options = null,
-		$localizer = null,
-		$user = null,
-		$config = null,
-		$relevantTitle = null
+		$localizer = null
 	) {
 		$options = (array)$options;
 		$options[] = 'withaccess';
-		$tooltipTitle = $name;
 
 		// Get optional parameters from global context if any missing.
 		if ( !$localizer ) {
 			$localizer = self::getContextFromMain();
 		}
 
-		// @since 1.35 - add a WatchlistExpiry feature flag to show new watchstar tooltip message
-		if ( $name === 'ca-unwatch' ) {
-			self::updateWatchstarTooltipMessage( $tooltipTitle, $msgParams, $config, $user, $relevantTitle );
-		}
-
 		$attribs = [
-			'title' => self::titleAttrib( $tooltipTitle, $options, $msgParams, $localizer ),
+			'title' => self::titleAttrib( $name, $options, $msgParams, $localizer ),
 			'accesskey' => self::accesskey( $name, $localizer )
 		];
 		if ( $attribs['title'] === false ) {

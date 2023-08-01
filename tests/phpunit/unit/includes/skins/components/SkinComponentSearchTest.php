@@ -15,7 +15,6 @@ class SkinComponentSearchTest extends MediaWikiUnitTestCase {
 			MainConfigNames::CapitalLinks => true,
 			MainConfigNames::WatchlistExpiry => false,
 		] );
-		$user = new User();
 		$msg = $this->createMock( Message::class );
 		$msg->method( 'isDisabled' )->willReturn( false );
 		$msg->method( 'text' )->willReturn( 'text' );
@@ -28,9 +27,8 @@ class SkinComponentSearchTest extends MediaWikiUnitTestCase {
 			$msg
 		);
 		$searchTitle = $this->makeMockTitle( 'Special:Search' );
-		$relevantTitle = $this->makeMockTitle( 'RelevantTitle' );
 		$component = new SkinComponentSearch(
-			$config, $user, $localizer, $searchTitle, $relevantTitle
+			$config, $localizer, $searchTitle
 		);
 
 		$data = $component->getTemplateData();
