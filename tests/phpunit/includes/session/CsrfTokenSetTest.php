@@ -11,6 +11,7 @@ use WebRequest;
 /**
  * @covers \MediaWiki\Session\CsrfTokenSet
  * @package MediaWiki\Tests\Unit\Session
+ * @group Database
  */
 class CsrfTokenSetTest extends MediaWikiIntegrationTestCase {
 

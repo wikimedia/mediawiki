@@ -1,8 +1,10 @@
 <?php
 
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Title\Title;
+use MediaWiki\User\UserIdentity;
 
 /**
  * See also unit tests at \MediaWiki\Tests\Unit\WikitextContentHandlerTest
@@ -22,33 +24,30 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideMakeRedirectContent
-	 * @param Title|string $title Title object or string for Title::newFromText()
+	 * @param LinkTarget $target
 	 * @param string $expected Serialized form of the content object built
 	 * @covers WikitextContentHandler::makeRedirectContent
 	 */
-	public function testMakeRedirectContent( $title, $expected ) {
+	public function testMakeRedirectContent( LinkTarget $target, $expected ) {
 		$this->getServiceContainer()->resetServiceForTesting( 'ContentLanguage' );
 		$this->getServiceContainer()->resetServiceForTesting( 'MagicWordFactory' );
 
-		if ( is_string( $title ) ) {
-			$title = Title::newFromText( $title );
-		}
-		$content = $this->handler->makeRedirectContent( $title );
+		$content = $this->handler->makeRedirectContent( Title::newFromLinkTarget( $target ) );
 		$this->assertEquals( $expected, $content->serialize() );
 	}
 
 	public static function provideMakeRedirectContent() {
 		return [
-			[ 'Hello', '#REDIRECT [[Hello]]' ],
-			[ 'Template:Hello', '#REDIRECT [[Template:Hello]]' ],
-			[ 'Hello#section', '#REDIRECT [[Hello#section]]' ],
-			[ 'user:john_doe#section', '#REDIRECT [[User:John doe#section]]' ],
-			[ 'MEDIAWIKI:FOOBAR', '#REDIRECT [[MediaWiki:FOOBAR]]' ],
-			[ 'Category:Foo', '#REDIRECT [[:Category:Foo]]' ],
-			[ Title::makeTitle( NS_MAIN, 'en:Foo' ), '#REDIRECT [[en:Foo]]' ],
-			[ Title::makeTitle( NS_MAIN, 'Foo', '', 'en' ), '#REDIRECT [[:en:Foo]]' ],
+			[ new TitleValue( NS_MAIN, 'Hello' ), '#REDIRECT [[Hello]]' ],
+			[ new TitleValue( NS_TEMPLATE, 'Hello' ), '#REDIRECT [[Template:Hello]]' ],
+			[ new TitleValue( NS_MAIN, 'Hello', 'section' ), '#REDIRECT [[Hello#section]]' ],
+			[ new TitleValue( NS_USER, 'John doe', 'section' ), '#REDIRECT [[User:John doe#section]]' ],
+			[ new TitleValue( NS_MEDIAWIKI, 'FOOBAR' ), '#REDIRECT [[MediaWiki:FOOBAR]]' ],
+			[ new TitleValue( NS_CATEGORY, 'Foo' ), '#REDIRECT [[:Category:Foo]]' ],
+			[ new TitleValue( NS_MAIN, 'en:Foo' ), '#REDIRECT [[en:Foo]]' ],
+			[ new TitleValue( NS_MAIN, 'Foo', '', 'en' ), '#REDIRECT [[:en:Foo]]' ],
 			[
-				Title::makeTitle( NS_MAIN, 'Bar', 'fragment', 'google' ),
+				new TitleValue( NS_MAIN, 'Bar', 'fragment', 'google' ),
 				'#REDIRECT [[google:Bar#fragment]]'
 			],
 		];
@@ -309,7 +308,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$pstContent = $contentTransformer->preSaveTransform(
 			$content,
 			$pageObj,
-			$this->getTestUser()->getUser(),
+			$this->createMock( UserIdentity::class ),
 			ParserOptions::newFromAnon()
 		);
 

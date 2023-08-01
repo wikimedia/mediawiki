@@ -2,19 +2,16 @@
 
 namespace MediaWiki\ParamValidator\TypeDef;
 
-use CommentStoreComment;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use TitleValue;
-use User;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\SimpleCallbacks;
-use WikitextContent;
 
 /**
  * @covers \MediaWiki\ParamValidator\TypeDef\TitleDef
+ * @group Database
  */
 class TitleDefTest extends TypeDefIntegrationTestCase {
 	protected function getInstance( SimpleCallbacks $callbacks, array $options ) {
@@ -33,12 +30,8 @@ class TitleDefTest extends TypeDefIntegrationTestCase {
 		$value, $expect, array $settings = [], array $options = [], array $expectConds = []
 	) {
 		if ( $this->dataName() === 'must exist (success)' ) {
-			$updater = MediaWikiServices::getInstance()->getWikiPageFactory()
-				->newFromTitle( Title::makeTitle( NS_MAIN, 'Exists' ) )
-				->newPageUpdater( new User )
-				->setContent( SlotRecord::MAIN, new WikitextContent( 'exists' ) );
-			$updater->saveRevision( CommentStoreComment::newUnsavedComment( 'test' ) );
-			$this->assertTrue( $updater->getStatus()->isOK() );
+			$status = $this->editPage( Title::makeTitle( NS_MAIN, 'Exists' ), 'exists' );
+			$this->assertTrue( $status->isOK() );
 		}
 		parent::testValidate( $value, $expect, $settings, $options, $expectConds );
 	}

@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use DumpCategoriesAsRdf;
+use IMaintainableDatabase;
 use MediaWiki\MainConfigNames;
 use MediaWikiLangTestCase;
 
@@ -64,9 +65,11 @@ class CategoriesRdfTest extends MediaWikiLangTestCase {
 
 		$dumpScript =
 			$this->getMockBuilder( DumpCategoriesAsRdf::class )
-				->onlyMethods( [ 'getCategoryIterator', 'getCategoryLinksIterator' ] )
+				->onlyMethods( [ 'getDB', 'getCategoryIterator', 'getCategoryLinksIterator' ] )
 				->getMock();
 
+		$dumpScript->method( 'getDB' )
+			->willReturn( $this->createNoOpMock( IMaintainableDatabase::class ) );
 		$dumpScript->expects( $this->once() )
 			->method( 'getCategoryIterator' )
 			->willReturn( $this->getCategoryIterator() );

@@ -5,6 +5,7 @@ use MediaWiki\User\UserFactory;
 
 /**
  * @covers SpecialConfirmEmail
+ * @group Database
  */
 class SpecialConfirmEmailTest extends SpecialPageTestBase {
 	protected function newSpecialPage() {

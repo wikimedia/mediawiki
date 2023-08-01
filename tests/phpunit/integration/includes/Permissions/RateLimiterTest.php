@@ -21,6 +21,7 @@ use Wikimedia\WRStats\WRStatsFactory;
 
 /**
  * @coversDefaultClass \MediaWiki\Permissions\RateLimiter
+ * @group Database
  */
 class RateLimiterTest extends MediaWikiIntegrationTestCase {
 
