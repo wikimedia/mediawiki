@@ -612,7 +612,12 @@ class LocalisationCache {
 			}
 		}
 
-		$this->data[$code] = $preload;
+		if ( isset( $this->data[$code] ) ) {
+			// @phan-suppress-next-line PhanTypeMismatchProperty
+			$this->data[$code] += $preload;
+		} else {
+			$this->data[$code] = $preload;
+		}
 		foreach ( $preload as $key => $item ) {
 			if ( in_array( $key, self::SPLIT_KEYS ) ) {
 				foreach ( $item as $subkey => $subitem ) {
@@ -1099,6 +1104,8 @@ class LocalisationCache {
 
 		# Save to the process cache and register the items loaded
 		$this->data[$code] = $allData;
+		$this->loadedItems[$code] = [];
+		$this->loadedSubitems[$code] = [];
 		foreach ( $allData as $key => $item ) {
 			$this->loadedItems[$code][$key] = true;
 		}
