@@ -195,7 +195,6 @@ class SkinTemplate extends Skin {
 
 		$tpl->set( 'title', $out->getPageTitle() );
 		$tpl->set( 'pagetitle', $out->getHTMLTitle() );
-		$tpl->set( 'displaytitle', $out->mPageLinkTitle );
 
 		$tpl->set( 'thispage', $this->thispage );
 		$tpl->set( 'titleprefixeddbkey', $this->thispage );
