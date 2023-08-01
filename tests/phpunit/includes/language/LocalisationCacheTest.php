@@ -3,6 +3,7 @@
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use Psr\Log\NullLogger;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Database
@@ -148,6 +149,18 @@ class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
 			$lc->getItem( 'de', 'rtl' ),
 			'rtl cannot be set in ExtensionMessagesFiles'
 		);
+	}
+
+	public function testLoadCoreDataAvoidsInitLanguage(): void {
+		$lc = $this->getMockLocalisationCache();
+
+		$lc->getItem( 'de', 'fallback' );
+		$lc->getItem( 'de', 'rtl' );
+		$lc->getItem( 'de', 'fallbackSequence' );
+		$lc->getItem( 'de', 'originalFallbackSequence' );
+
+		$this->assertArrayNotHasKey( 'de',
+			TestingAccessWrapper::newFromObject( $lc )->initialisedLangs );
 	}
 
 	public function testShallowFallbackForInvalidCode(): void {

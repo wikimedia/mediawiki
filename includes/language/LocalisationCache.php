@@ -131,6 +131,18 @@ class LocalisationCache {
 	private $recachedLangs = [];
 
 	/**
+	 * An array indicating whether core data for a language has been loaded.
+	 * If the entry for a language code $code is true,
+	 * then {@link self::$data} is guaranteed to contain an array for $code,
+	 * with at least an entry (possibly null) for each of the {@link self::CORE_ONLY_KEYS},
+	 * and all the core-only keys will be marked as loaded in {@link self::$loadedItems} too.
+	 * Additionally, there will be a 'deps' entry for $code with the dependencies tracked so far.
+	 *
+	 * @var array<string,bool>
+	 */
+	private $coreDataLoaded = [];
+
+	/**
 	 * All item keys
 	 */
 	public const ALL_KEYS = [
@@ -438,13 +450,29 @@ class LocalisationCache {
 	 * @param string $key
 	 */
 	private function loadItem( $code, $key ) {
-		if ( !isset( $this->initialisedLangs[$code] ) ) {
-			$this->initLanguage( $code );
-		}
-
-		// Check to see if initLanguage() loaded it for us
 		if ( isset( $this->loadedItems[$code][$key] ) ) {
 			return;
+		}
+
+		if (
+			in_array( $key, self::CORE_ONLY_KEYS, true ) ||
+			// "synthetic" keys added by loadCoreData based on "fallback"
+			$key === 'fallbackSequence' ||
+			$key === 'originalFallbackSequence'
+		) {
+			if ( $this->langNameUtils->isValidBuiltInCode( $code ) ) {
+				$this->loadCoreData( $code );
+				return;
+			}
+		}
+
+		if ( !isset( $this->initialisedLangs[$code] ) ) {
+			$this->initLanguage( $code );
+
+			// Check to see if initLanguage() loaded it for us
+			if ( isset( $this->loadedItems[$code][$key] ) ) {
+				return;
+			}
 		}
 
 		if ( isset( $this->shallowFallbacks[$code] ) ) {
@@ -640,6 +668,7 @@ class LocalisationCache {
 		$this->loadedItems[$primaryCode] =& $this->loadedItems[$fallbackCode];
 		$this->loadedSubitems[$primaryCode] =& $this->loadedSubitems[$fallbackCode];
 		$this->shallowFallbacks[$primaryCode] = $fallbackCode;
+		$this->coreDataLoaded[$primaryCode] =& $this->coreDataLoaded[$fallbackCode];
 	}
 
 	/**
@@ -808,8 +837,7 @@ class LocalisationCache {
 
 	/**
 	 * Read the data from the source files for a given language, and register
-	 * the relevant dependencies in the $deps array. If the localisation
-	 * exists, the data array is returned, otherwise false is returned.
+	 * the relevant dependencies in the $deps array.
 	 *
 	 * @param string $code
 	 * @param array &$deps
@@ -825,12 +853,26 @@ class LocalisationCache {
 			$data = $this->readPHPFile( $fileName, 'core' );
 		}
 
-		// Load CLDR plural rules for JavaScript
-		$data['pluralRules'] = $this->getPluralRules( $code );
-		// And for PHP
-		$data['compiledPluralRules'] = $this->getCompiledPluralRules( $code );
-		// Load plural rule types
-		$data['pluralRuleTypes'] = $this->getPluralRuleTypes( $code );
+		return $data;
+	}
+
+	/**
+	 * Read and compile the plural data for a given language,
+	 * and register the relevant dependencies in the $deps array.
+	 *
+	 * @param string $code
+	 * @param array &$deps
+	 * @return array
+	 */
+	private function readPluralFilesAndRegisterDeps( $code, &$deps ) {
+		$data = [
+			// Load CLDR plural rules for JavaScript
+			'pluralRules' => $this->getPluralRules( $code ),
+			// And for PHP
+			'compiledPluralRules' => $this->getCompiledPluralRules( $code ),
+			// Load plural rule types
+			'pluralRuleTypes' => $this->getPluralRuleTypes( $code ),
+		];
 
 		foreach ( self::PLURAL_FILES as $fileName ) {
 			$deps[] = new FileDependency( $fileName );
@@ -910,20 +952,24 @@ class LocalisationCache {
 	}
 
 	/**
-	 * Load localisation data for a given language for both core and extensions
-	 * and save it to the persistent cache store and the process cache
-	 * @param string $code
-	 * @throws MWException
+	 * Load the core localisation data for a given language code,
+	 * without extensions, using only the process cache.
+	 * See {@link self::$coreDataLoaded} for what this guarantees.
+	 *
+	 * In addition to the core-only keys,
+	 * {@link self::$data} may contain additional entries for $code,
+	 * but those must not be used outside of {@link self::recache()}
+	 * (and accordingly, they are not marked as loaded yet).
 	 */
-	public function recache( $code ) {
+	private function loadCoreData( string $code ) {
 		if ( !$code ) {
 			throw new MWException( "Invalid language code requested" );
 		}
-		$this->recachedLangs[ $code ] = true;
+		if ( $this->coreDataLoaded[$code] ?? false ) {
+			return;
+		}
 
-		# Initial values
-		$initialData = array_fill_keys( self::ALL_KEYS, null );
-		$coreData = $initialData;
+		$coreData = array_fill_keys( self::CORE_ONLY_KEYS, null );
 		$deps = [];
 
 		# Load the primary localisation from the source file
@@ -957,6 +1003,63 @@ class LocalisationCache {
 				$coreData['fallbackSequence'][] = 'en';
 			}
 		}
+
+		foreach ( $coreData['fallbackSequence'] as $fbCode ) {
+			// load core fallback data
+			$fbData = $this->readSourceFilesAndRegisterDeps( $fbCode, $deps );
+			foreach ( self::CORE_ONLY_KEYS as $key ) {
+				// core-only keys are not mergeable, only set if not present in core data yet
+				if ( isset( $fbData[$key] ) && !isset( $coreData[$key] ) ) {
+					$coreData[$key] = $fbData[$key];
+				}
+			}
+		}
+
+		$coreData['deps'] = $deps;
+		foreach ( $coreData as $key => $item ) {
+			$this->data[$code][$key] ??= null;
+			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable -- we just set a default null
+			$this->mergeItem( $key, $this->data[$code][$key], $item );
+			if (
+				in_array( $key, self::CORE_ONLY_KEYS, true ) ||
+				// "synthetic" keys based on "fallback" (see above)
+				$key === 'fallbackSequence' ||
+				$key === 'originalFallbackSequence'
+			) {
+				// only mark core-only keys as loaded;
+				// we may have loaded additional ones from the source file,
+				// but they are not fully loaded yet, since recache()
+				// may have to merge in additional values from fallback languages
+				$this->loadedItems[$code][$key] = true;
+			}
+		}
+
+		$this->coreDataLoaded[$code] = true;
+	}
+
+	/**
+	 * Load localisation data for a given language for both core and extensions
+	 * and save it to the persistent cache store and the process cache
+	 * @param string $code
+	 * @throws MWException
+	 */
+	public function recache( $code ) {
+		if ( !$code ) {
+			throw new MWException( "Invalid language code requested" );
+		}
+		$this->recachedLangs[ $code ] = true;
+
+		# Initial values
+		$initialData = array_fill_keys( self::ALL_KEYS, null );
+		$this->data[$code] = [];
+		$this->loadedItems[$code] = [];
+		$this->loadedSubitems[$code] = [];
+		$this->coreDataLoaded[$code] = false;
+		$this->loadCoreData( $code );
+		$coreData = $this->data[$code];
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable -- guaranteed by loadCoreData()
+		$deps = $coreData['deps'];
+		$coreData += $this->readPluralFilesAndRegisterDeps( $code, $deps );
 
 		$codeSequence = array_merge( [ $code ], $coreData['fallbackSequence'] );
 		$messageDirs = $this->getMessagesDirs();
@@ -1029,13 +1132,14 @@ class LocalisationCache {
 				# Load the secondary localisation from the source file to
 				# avoid infinite cycles on cyclic fallbacks
 				$fbData = $this->readSourceFilesAndRegisterDeps( $csCode, $deps );
+				$fbData += $this->readPluralFilesAndRegisterDeps( $csCode, $deps );
 				# Only merge the keys that make sense to merge
 				foreach ( self::ALL_KEYS as $key ) {
 					if ( !isset( $fbData[ $key ] ) ) {
 						continue;
 					}
 
-					if ( ( $coreData[ $key ] ) === null || self::isMergeableKey( $key ) ) {
+					if ( !isset( $coreData[ $key ] ) || self::isMergeableKey( $key ) ) {
 						$this->mergeItem( $key, $csData[ $key ], $fbData[ $key ] );
 					}
 				}
@@ -1180,6 +1284,7 @@ class LocalisationCache {
 		unset( $this->initialisedLangs[$code] );
 		unset( $this->shallowFallbacks[$code] );
 		unset( $this->sourceLanguage[$code] );
+		unset( $this->coreDataLoaded[$code] );
 
 		foreach ( $this->shallowFallbacks as $shallowCode => $fbCode ) {
 			if ( $fbCode === $code ) {
