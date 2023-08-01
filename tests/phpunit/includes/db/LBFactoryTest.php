@@ -276,8 +276,6 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 				return $hasChangesFunc( $mockDB1 );
 			}
 		);
-		$lb1->method( 'getPrimaryPos' )->willReturn( $m1Pos );
-		$lb1->method( 'getReplicaResumePos' )->willReturn( $m1Pos );
 		$lb1->method( 'getServerName' )->with( 0 )->willReturn( 'master1' );
 		// Primary DB 2
 		/** @var IDatabase|\PHPUnit\Framework\MockObject\MockObject $mockDB2 */
@@ -297,8 +295,6 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 				return $hasChangesFunc( $mockDB2 );
 			}
 		);
-		$lb2->method( 'getPrimaryPos' )->willReturn( $m2Pos );
-		$lb2->method( 'getReplicaResumePos' )->willReturn( $m2Pos );
 		$lb2->method( 'getServerName' )->with( 0 )->willReturn( 'master2' );
 
 		$bag = new HashBagOStuff();
