@@ -1685,6 +1685,7 @@ return [
 			'mediawiki.jqueryMsg',
 			'mediawiki.language',
 			'mediawiki.util',
+			'mediawiki.user',
 			'jquery.makeCollapsible',
 			'jquery.textSelection',
 			'oojs-ui-core',

@@ -20,6 +20,7 @@ $wgAutoloadLocalClasses = [
 	'AllTrans' => __DIR__ . '/maintenance/language/alltrans.php',
 	'AlphabeticPager' => __DIR__ . '/includes/pager/AlphabeticPager.php',
 	'ApiAMCreateAccount' => __DIR__ . '/includes/api/ApiAMCreateAccount.php',
+	'ApiAcquireTempUserName' => __DIR__ . '/includes/api/ApiAcquireTempUserName.php',
 	'ApiAuthManagerHelper' => __DIR__ . '/includes/api/ApiAuthManagerHelper.php',
 	'ApiBase' => __DIR__ . '/includes/api/ApiBase.php',
 	'ApiBlock' => __DIR__ . '/includes/api/ApiBlock.php',

@@ -32,6 +32,9 @@
 	"apihelp-main-param-errorlang": "Language to use for warnings and errors. <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd> with <kbd>siprop=languages</kbd> returns a list of language codes, or specify <kbd>content</kbd> to use this wiki's content language, or specify <kbd>uselang</kbd> to use the same value as the <var>uselang</var> parameter.",
 	"apihelp-main-param-errorsuselocal": "If given, error texts will use locally-customized messages from the {{ns:MediaWiki}} namespace.",
 
+	"apihelp-acquiretempusername-summary": "Acquire a temporary user username and stash it in the current session, if temp account creation is enabled and the current user is logged out. If a name has already been stashed, returns the same name.",
+	"apihelp-acquiretempusername-extended-description": "If the user later performs an action that results in temp account creation, the stashed username will be used for their account. It may also be used in previews. However, the account is not created yet, and the name is not visible to other users.",
+
 	"apihelp-block-summary": "Block a user.",
 	"apihelp-block-param-user": "User to block.",
 	"apihelp-block-param-userid": "Specify <kbd>$1user=#<var>ID</var></kbd> instead.",
@@ -1730,6 +1733,7 @@
 
 	"apierror-allimages-redirect": "Use <kbd>gaifilterredir=nonredirects</kbd> instead of <var>redirects</var> when using <kbd>allimages</kbd> as a generator.",
 	"apierror-allpages-generator-redirects": "Use <kbd>gapfilterredir=nonredirects</kbd> instead of <var>redirects</var> when using <kbd>allpages</kbd> as a generator.",
+	"apierror-alreadyregistered": "You already have a user account.",
 	"apierror-appendnotsupported": "Can't append to pages using content model $1.",
 	"apierror-articleexists": "The article you tried to create has been created already.",
 	"apierror-assertanonfailed": "You are no longer logged out, so the action could not be completed.",
@@ -1935,6 +1939,7 @@
 	"apierror-stashwrongowner": "Wrong owner: $1",
 	"apierror-stashzerolength": "File is of zero length, and could not be stored in the stash: $1.",
 	"apierror-systemblocked": "You have been blocked automatically by MediaWiki.",
+	"apierror-tempuserdisabled": "Temporary user account creation is disabled.",
 	"apierror-templateexpansion-notwikitext": "Template expansion is only supported for wikitext content. $1 uses content model $2.",
 	"apierror-toofewexpiries": "$1 expiry {{PLURAL:$1|timestamp was|timestamps were}} provided where $2 {{PLURAL:$2|was|were}} needed.",
 	"apierror-toomanyvalues": "Too many values supplied for parameter <var>$1</var>. The limit is $2.",

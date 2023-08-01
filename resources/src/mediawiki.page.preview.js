@@ -571,8 +571,15 @@
 		var $loadingElements = $( config.loadingSelectors.join( ',' ) );
 		$loadingElements.addClass( [ 'mw-preview-loading-elements', 'mw-preview-loading-elements-loading' ] );
 
-		var parseRequest = getParseRequest( config, section ),
-			diffRequest = null;
+		// Acquire a temporary user username before previewing or diffing, so that signatures and
+		// user-related magic words display the temp user instead of IP user in the preview. (T331397)
+		var tempUserNamePromise = mw.user.acquireTempUserName();
+
+		var parseRequest, diffRequest;
+
+		parseRequest = tempUserNamePromise.then( function () {
+			return getParseRequest( config, section );
+		} );
 
 		if ( config.showDiff ) {
 			config.$previewNode.hide();
@@ -629,7 +636,9 @@
 			}
 
 			if ( contents !== '' ) {
-				diffRequest = api.post( diffPar );
+				diffRequest = tempUserNamePromise.then( function () {
+					return api.post( diffPar );
+				} );
 			}
 
 		} else if ( config.$diffNode ) {
