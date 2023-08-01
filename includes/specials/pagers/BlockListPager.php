@@ -457,13 +457,11 @@ class BlockListPager extends TablePager {
 	 */
 	public function getTotalAutoblocks() {
 		$dbr = $this->getDatabase();
-		return (int)$dbr->selectField( 'ipblocks', 'COUNT(*)',
-			[
-				'ipb_auto' => '1',
-				'ipb_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() ),
-			],
-			__METHOD__
-		);
+		return (int)$dbr->newSelectQueryBuilder()
+			->select( 'COUNT(*)' )
+			->from( 'ipblocks' )
+			->where( [ 'ipb_auto' => '1', 'ipb_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() ), ] )
+			->caller( __METHOD__ )->fetchField();
 	}
 
 	protected function getTableClass() {

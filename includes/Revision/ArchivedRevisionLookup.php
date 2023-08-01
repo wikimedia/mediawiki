@@ -169,31 +169,30 @@ class ArchivedRevisionLookup {
 		$dbr = $this->dbProvider->getReplicaDatabase();
 
 		// Check the previous deleted revision...
-		$row = $dbr->selectRow( 'archive',
-			[ 'ar_rev_id', 'ar_timestamp' ],
-			[ 'ar_namespace' => $page->getNamespace(),
+		$row = $dbr->newSelectQueryBuilder()
+			->select( [ 'ar_rev_id', 'ar_timestamp' ] )
+			->from( 'archive' )
+			->where( [
+				'ar_namespace' => $page->getNamespace(),
 				'ar_title' => $page->getDBkey(),
-				'ar_timestamp < ' .
-				$dbr->addQuotes( $dbr->timestamp( $timestamp ) ) ],
-			__METHOD__,
-			[
-				'ORDER BY' => 'ar_timestamp DESC',
-			] );
+				'ar_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $timestamp ) )
+			] )
+			->orderBy( 'ar_timestamp DESC' )
+			->caller( __METHOD__ )->fetchRow();
 		$prevDeleted = $row ? wfTimestamp( TS_MW, $row->ar_timestamp ) : false;
 		$prevDeletedId = $row ? intval( $row->ar_rev_id ) : null;
 
-		$row = $dbr->selectRow( [ 'page', 'revision' ],
-			[ 'rev_id', 'rev_timestamp' ],
-			[
+		$row = $dbr->newSelectQueryBuilder()
+			->select( [ 'rev_id', 'rev_timestamp' ] )
+			->from( 'page' )
+			->join( 'revision', null, 'page_id = rev_page' )
+			->where( [
 				'page_namespace' => $page->getNamespace(),
 				'page_title' => $page->getDBkey(),
-				'page_id = rev_page',
-				'rev_timestamp < ' .
-				$dbr->addQuotes( $dbr->timestamp( $timestamp ) ) ],
-			__METHOD__,
-			[
-				'ORDER BY' => 'rev_timestamp DESC',
-			] );
+				'rev_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $timestamp ) )
+			] )
+			->orderBy( 'rev_timestamp DESC' )
+			->caller( __METHOD__ )->fetchRow();
 		$prevLive = $row ? wfTimestamp( TS_MW, $row->rev_timestamp ) : false;
 		$prevLiveId = $row ? intval( $row->rev_id ) : null;
 

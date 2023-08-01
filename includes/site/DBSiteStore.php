@@ -65,9 +65,8 @@ class DBSiteStore implements SiteStore {
 
 		$dbr = $this->dbLoadBalancer->getConnectionRef( DB_REPLICA );
 
-		$res = $dbr->select(
-			'sites',
-			[
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [
 				'site_id',
 				'site_global_key',
 				'site_type',
@@ -79,11 +78,10 @@ class DBSiteStore implements SiteStore {
 				'site_data',
 				'site_forward',
 				'site_config',
-			],
-			'',
-			__METHOD__,
-			[ 'ORDER BY' => 'site_global_key' ]
-		);
+			] )
+			->from( 'sites' )
+			->orderBy( 'site_global_key' )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		foreach ( $res as $row ) {
 			$site = Site::newForType( $row->site_type );
@@ -102,16 +100,10 @@ class DBSiteStore implements SiteStore {
 		}
 
 		// Batch load the local site identifiers.
-		$ids = $dbr->select(
-			'site_identifiers',
-			[
-				'si_site',
-				'si_type',
-				'si_key',
-			],
-			[],
-			__METHOD__
-		);
+		$ids = $dbr->newSelectQueryBuilder()
+			->select( [ 'si_site', 'si_type', 'si_key', ] )
+			->from( 'site_identifiers' )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		foreach ( $ids as $id ) {
 			if ( $this->sites->hasInternalId( $id->si_site ) ) {

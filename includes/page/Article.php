@@ -1256,13 +1256,12 @@ class Article implements Page {
 		}
 
 		$dbr = wfGetDB( DB_REPLICA );
-		$oldestRevisionRow = $dbr->selectRow(
-			'revision',
-			[ 'rev_id', 'rev_timestamp' ],
-			[ 'rev_page' => $title->getArticleID() ],
-			__METHOD__,
-			[ 'ORDER BY' => [ 'rev_timestamp', 'rev_id' ] ]
-		);
+		$oldestRevisionRow = $dbr->newSelectQueryBuilder()
+			->select( [ 'rev_id', 'rev_timestamp' ] )
+			->from( 'revision' )
+			->where( [ 'rev_page' => $title->getArticleID() ] )
+			->orderBy( [ 'rev_timestamp', 'rev_id' ] )
+			->caller( __METHOD__ )->fetchRow();
 		$oldestRevisionTimestamp = $oldestRevisionRow ? $oldestRevisionRow->rev_timestamp : false;
 
 		// New page patrol: Get the timestamp of the oldest revision which
@@ -1297,12 +1296,11 @@ class Article implements Page {
 		if ( ( !$rc || $rc->getAttribute( 'rc_patrolled' ) ) && $useFilePatrol
 			&& $title->getNamespace() === NS_FILE ) {
 			// Retrieve timestamp from the current file (lastest upload)
-			$newestUploadTimestamp = $dbr->selectField(
-				'image',
-				'img_timestamp',
-				[ 'img_name' => $title->getDBkey() ],
-				__METHOD__
-			);
+			$newestUploadTimestamp = $dbr->newSelectQueryBuilder()
+				->select( 'img_timestamp' )
+				->from( 'image' )
+				->where( [ 'img_name' => $title->getDBkey() ] )
+				->caller( __METHOD__ )->fetchField();
 			if ( $newestUploadTimestamp
 				&& RecentChange::isInRCLifespan( $newestUploadTimestamp, 21600 )
 			) {

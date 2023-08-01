@@ -817,7 +817,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 */
 	public function checkLastModified() {
 		$dbr = $this->getDB();
-		$lastmod = $dbr->selectField( 'recentchanges', 'MAX(rc_timestamp)', '', __METHOD__ );
+		$lastmod = $dbr->newSelectQueryBuilder()
+			->select( 'MAX(rc_timestamp)' )
+			->from( 'recentchanges' )
+			->caller( __METHOD__ )->fetchField();
 
 		return $lastmod;
 	}

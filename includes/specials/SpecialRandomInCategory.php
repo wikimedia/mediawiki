@@ -268,17 +268,11 @@ class SpecialRandomInCategory extends FormSpecialPage {
 	 */
 	protected function getMinAndMaxForCat() {
 		$dbr = $this->dbProvider->getReplicaDatabase();
-		$res = $dbr->selectRow(
-			'categorylinks',
-			[
-				'low' => 'MIN( cl_timestamp )',
-				'high' => 'MAX( cl_timestamp )'
-			],
-			[
-				'cl_to' => $this->category->getDBkey(),
-			],
-			__METHOD__
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'low' => 'MIN( cl_timestamp )', 'high' => 'MAX( cl_timestamp )' ] )
+			->from( 'categorylinks' )
+			->where( [ 'cl_to' => $this->category->getDBkey(), ] )
+			->caller( __METHOD__ )->fetchRow();
 		if ( !$res ) {
 			return null;
 		}

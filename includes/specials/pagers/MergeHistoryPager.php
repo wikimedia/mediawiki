@@ -73,12 +73,11 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		$this->articleID = $source->getId();
 
 		$dbr = $dbProvider->getReplicaDatabase();
-		$maxtimestamp = $dbr->selectField(
-			'revision',
-			'MIN(rev_timestamp)',
-			[ 'rev_page' => $dest->getId() ],
-			__METHOD__
-		);
+		$maxtimestamp = $dbr->newSelectQueryBuilder()
+			->select( 'MIN(rev_timestamp)' )
+			->from( 'revision' )
+			->where( [ 'rev_page' => $dest->getId() ] )
+			->caller( __METHOD__ )->fetchField();
 		$this->maxTimestamp = $maxtimestamp;
 
 		// Set database before parent constructor to avoid setting it there with wfGetDB

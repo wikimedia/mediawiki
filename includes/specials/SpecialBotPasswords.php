@@ -223,12 +223,11 @@ class SpecialBotPasswords extends FormSpecialPage {
 			$linkRenderer = $this->getLinkRenderer();
 
 			$dbr = BotPassword::getDB( DB_REPLICA );
-			$res = $dbr->select(
-				'bot_passwords',
-				[ 'bp_app_id', 'bp_password' ],
-				[ 'bp_user' => $this->userId ],
-				__METHOD__
-			);
+			$res = $dbr->newSelectQueryBuilder()
+				->select( [ 'bp_app_id', 'bp_password' ] )
+				->from( 'bot_passwords' )
+				->where( [ 'bp_user' => $this->userId ] )
+				->caller( __METHOD__ )->fetchResultSet();
 			foreach ( $res as $row ) {
 				try {
 					$password = $this->passwordFactory->newFromCiphertext( $row->bp_password );

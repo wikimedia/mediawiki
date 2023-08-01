@@ -819,12 +819,11 @@ class SpecialUndelete extends SpecialPage {
 		$minor = $revRecord->isMinor() ? ChangesList::flag( 'minor' ) : '';
 
 		$dbr = $this->dbProvider->getReplicaDatabase();
-		$tagIds = $dbr->selectFieldValues(
-			'change_tag',
-			'ct_tag_id',
-			[ 'ct_rev_id' => $revRecord->getId() ],
-			__METHOD__
-		);
+		$tagIds = $dbr->newSelectQueryBuilder()
+			->select( 'ct_tag_id' )
+			->from( 'change_tag' )
+			->where( [ 'ct_rev_id' => $revRecord->getId() ] )
+			->caller( __METHOD__ )->fetchFieldValues();
 		$tags = [];
 		foreach ( $tagIds as $tagId ) {
 			try {

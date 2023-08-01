@@ -234,12 +234,12 @@ class ActiveUsersPager extends UsersPager {
 		// Although the first query already hits the block table for un-privileged, this
 		// is done in two queries to avoid huge quicksorts and to make COUNT(*) correct.
 		$dbr = $this->getDatabase();
-		$res = $dbr->select( 'ipblocks',
-			[ 'ipb_user', 'deleted' => 'MAX(ipb_deleted)', 'sitewide' => 'MAX(ipb_sitewide)' ],
-			[ 'ipb_user' => $uids ],
-			__METHOD__,
-			[ 'GROUP BY' => [ 'ipb_user' ] ]
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'ipb_user', 'deleted' => 'MAX(ipb_deleted)', 'sitewide' => 'MAX(ipb_sitewide)' ] )
+			->from( 'ipblocks' )
+			->where( [ 'ipb_user' => $uids ] )
+			->groupBy( [ 'ipb_user' ] )
+			->caller( __METHOD__ )->fetchResultSet();
 		$this->blockStatusByUid = [];
 		foreach ( $res as $row ) {
 			$this->blockStatusByUid[$row->ipb_user] = [

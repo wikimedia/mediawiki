@@ -235,20 +235,12 @@ class WikiFilePage extends WikiPage {
 		$repo = $file->getRepo();
 		$dbr = $repo->getReplicaDB();
 
-		$res = $dbr->select(
-			[ 'page', 'categorylinks' ],
-			[
-				'page_title' => 'cl_to',
-				'page_namespace' => NS_CATEGORY,
-			],
-			[
-				'page_namespace' => $title->getNamespace(),
-				'page_title' => $title->getDBkey(),
-			],
-			__METHOD__,
-			[],
-			[ 'categorylinks' => [ 'JOIN', 'page_id = cl_from' ] ]
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'page_title' => 'cl_to', 'page_namespace' => (string)NS_CATEGORY ] )
+			->from( 'page' )
+			->join( 'categorylinks', null, 'page_id = cl_from' )
+			->where( [ 'page_namespace' => $title->getNamespace(), 'page_title' => $title->getDBkey(), ] )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		return TitleArray::newFromResult( $res );
 	}

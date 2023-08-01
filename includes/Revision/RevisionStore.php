@@ -1034,13 +1034,12 @@ class RevisionStore
 		// T51581: Lock the page table row to ensure no other process
 		// is adding a revision to the page at the same time.
 		// Avoid locking extra tables, compare T191892.
-		$pageLatest = $dbw->selectField(
-			'page',
-			'page_latest',
-			[ 'page_id' => $pageId ],
-			__METHOD__,
-			[ 'FOR UPDATE' ]
-		);
+		$pageLatest = $dbw->newSelectQueryBuilder()
+			->select( 'page_latest' )
+			->forUpdate()
+			->from( 'page' )
+			->where( [ 'page_id' => $pageId ] )
+			->caller( __METHOD__ )->fetchField();
 
 		if ( !$pageLatest ) {
 			$msg = 'T235589: Failed to select table row during null revision creation' .
@@ -2651,12 +2650,11 @@ class RevisionStore
 			return $revLens; // empty
 		}
 
-		$res = $dbr->select(
-			'revision',
-			[ 'rev_id', 'rev_len' ],
-			[ 'rev_id' => $revIds ],
-			__METHOD__
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'rev_id', 'rev_len' ] )
+			->from( 'revision' )
+			->where( [ 'rev_id' => $revIds ] )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		foreach ( $res as $row ) {
 			$revLens[$row->rev_id] = intval( $row->rev_len );
@@ -2695,8 +2693,11 @@ class RevisionStore
 		$ts = $rev->getTimestamp() ?? $this->getTimestampFromId( $revisionIdValue, $flags );
 		if ( $ts === false ) {
 			// XXX Should this be moved into getTimestampFromId?
-			$ts = $db->selectField( 'archive', 'ar_timestamp',
-				[ 'ar_rev_id' => $revisionIdValue ], __METHOD__ );
+			$ts = $db->newSelectQueryBuilder()
+				->select( 'ar_timestamp' )
+				->from( 'archive' )
+				->where( [ 'ar_rev_id' => $revisionIdValue ] )
+				->caller( __METHOD__ )->fetchField();
 			if ( $ts === false ) {
 				// XXX Is this reachable? How can we have a page id but no timestamp?
 				return null;
@@ -2777,18 +2778,19 @@ class RevisionStore
 		}
 		# Use page_latest if ID is not given
 		if ( !$rev->getId( $this->wikiId ) ) {
-			$prevId = $db->selectField(
-				'page', 'page_latest',
-				[ 'page_id' => $rev->getPageId( $this->wikiId ) ],
-				__METHOD__
-			);
+			$prevId = $db->newSelectQueryBuilder()
+				->select( 'page_latest' )
+				->from( 'page' )
+				->where( [ 'page_id' => $rev->getPageId( $this->wikiId ) ] )
+				->caller( __METHOD__ )->fetchField();
 		} else {
-			$prevId = $db->selectField(
-				'revision', 'rev_id',
-				[ 'rev_page' => $rev->getPageId( $this->wikiId ), 'rev_id < ' . $rev->getId( $this->wikiId ) ],
-				__METHOD__,
-				[ 'ORDER BY' => 'rev_id DESC' ]
-			);
+			$prevId = $db->newSelectQueryBuilder()
+				->select( 'rev_id' )
+				->from( 'revision' )
+				->where( [ 'rev_page' => $rev->getPageId( $this->wikiId ) ] )
+				->andWhere( 'rev_id < ' . $rev->getId( $this->wikiId ) )
+				->orderBy( 'rev_id DESC' )
+				->caller( __METHOD__ )->fetchField();
 		}
 		return intval( $prevId );
 	}
@@ -2824,7 +2826,11 @@ class RevisionStore
 		$db = $this->getDBConnectionRefForQueryFlags( $flags );
 
 		$timestamp =
-			$db->selectField( 'revision', 'rev_timestamp', [ 'rev_id' => $id ], __METHOD__ );
+			$db->newSelectQueryBuilder()
+				->select( 'rev_timestamp' )
+				->from( 'revision' )
+				->where( [ 'rev_id' => $id ] )
+				->caller( __METHOD__ )->fetchField();
 
 		return ( $timestamp !== false ) ? MWTimestamp::convert( TS_MW, $timestamp ) : false;
 	}
@@ -2841,11 +2847,11 @@ class RevisionStore
 	public function countRevisionsByPageId( IReadableDatabase $db, $id ) {
 		$this->checkDatabaseDomain( $db );
 
-		$row = $db->selectRow( 'revision',
-			[ 'revCount' => 'COUNT(*)' ],
-			[ 'rev_page' => $id ],
-			__METHOD__
-		);
+		$row = $db->newSelectQueryBuilder()
+			->select( [ 'revCount' => 'COUNT(*)' ] )
+			->from( 'revision' )
+			->where( [ 'rev_page' => $id ] )
+			->caller( __METHOD__ )->fetchRow();
 		if ( $row ) {
 			return intval( $row->revCount );
 		}
@@ -3164,29 +3170,24 @@ class RevisionStore
 		}
 
 		$db = $this->getDBConnectionRefForQueryFlags( $flags );
-		$conds = array_merge(
-			[
+		$queryBuilder = $db->newSelectQueryBuilder()
+			->select( 'rev_id' )
+			->from( 'revision' )
+			->where( [
 				'rev_page' => $pageId,
 				$db->bitAnd( 'rev_deleted', RevisionRecord::DELETED_TEXT ) . ' = 0'
-			],
-			$this->getRevisionLimitConditions( $db, $old, $new, $options )
-		);
+			] )
+			->andWhere( $this->getRevisionLimitConditions( $db, $old, $new, $options ) );
 
-		$queryOptions = [];
 		if ( $order !== null ) {
-			$queryOptions['ORDER BY'] = [ "rev_timestamp $order", "rev_id $order" ];
+			$queryBuilder->orderBy( [ 'rev_timestamp', 'rev_id' ], $order );
 		}
 		if ( $max !== null ) {
-			$queryOptions['LIMIT'] = $max + 1; // extra to detect truncation
+			// extra to detect truncation
+			$queryBuilder->limit( $max + 1 );
 		}
 
-		$values = $db->selectFieldValues(
-			'revision',
-			'rev_id',
-			$conds,
-			__METHOD__,
-			$queryOptions
-		);
+		$values = $queryBuilder->caller( __METHOD__ )->fetchFieldValues();
 		return array_map( 'intval', $values );
 	}
 
@@ -3354,7 +3355,11 @@ class RevisionStore
 				[ 'LIMIT' => $max + 1 ] // extra to detect truncation
 			);
 		} else {
-			return (int)$dbr->selectField( 'revision', 'count(*)', $conds, __METHOD__ );
+			return (int)$dbr->newSelectQueryBuilder()
+				->select( 'count(*)' )
+				->from( 'revision' )
+				->where( $conds )
+				->caller( __METHOD__ )->fetchField();
 		}
 	}
 
@@ -3395,12 +3400,11 @@ class RevisionStore
 		);
 
 		// selectRow effectively uses LIMIT 1 clause, returning only the first result
-		$revisionRow = $db->selectRow(
-			[ 'recent_revs' => $subquery ],
-			'*',
-			[ 'rev_sha1' => $revision->getSha1() ],
-			__METHOD__
-		);
+		$revisionRow = $db->newSelectQueryBuilder()
+			->select( '*' )
+			->from( $subquery, 'recent_revs' )
+			->where( [ 'rev_sha1' => $revision->getSha1() ] )
+			->caller( __METHOD__ )->fetchRow();
 
 		return $revisionRow ? $this->newRevisionFromRow( $revisionRow ) : null;
 	}
