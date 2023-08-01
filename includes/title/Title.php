@@ -3620,27 +3620,22 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	public function getRedirectsHere( $ns = null ) {
 		$redirs = [];
 
-		$dbr = wfGetDB( DB_REPLICA );
-		$where = [
-			'rd_namespace' => $this->mNamespace,
-			'rd_title' => $this->mDbkeyform,
-			'rd_from = page_id'
-		];
+		$queryBuilder = wfGetDB( DB_REPLICA )->newSelectQueryBuilder()
+			->select( [ 'page_namespace', 'page_title' ] )
+			->from( 'redirect' )
+			->join( 'page', null, 'rd_from = page_id' )
+			->where( [ 'rd_namespace' => $this->mNamespace, 'rd_title' => $this->mDbkeyform ] );
+
 		if ( $this->isExternal() ) {
-			$where['rd_interwiki'] = $this->mInterwiki;
+			$queryBuilder->andWhere( [ 'rd_interwiki' => $this->mInterwiki ] );
 		} else {
-			$where['rd_interwiki'] = [ '', null ];
+			$queryBuilder->andWhere( [ 'rd_interwiki' => [ '', null ] ] );
 		}
 		if ( $ns !== null ) {
-			$where['page_namespace'] = $ns;
+			$queryBuilder->andWhere( [ 'page_namespace' => $ns ] );
 		}
 
-		$res = $dbr->select(
-			[ 'redirect', 'page' ],
-			[ 'page_namespace', 'page_title' ],
-			$where,
-			__METHOD__
-		);
+		$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 
 		foreach ( $res as $row ) {
 			$redirs[] = self::newFromRow( $row );

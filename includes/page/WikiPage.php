@@ -995,11 +995,11 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 
 		// Query the redirect table
 		$dbr = wfGetDB( DB_REPLICA );
-		$row = $dbr->selectRow( 'redirect',
-			[ 'rd_namespace', 'rd_title', 'rd_fragment', 'rd_interwiki' ],
-			[ 'rd_from' => $this->getId() ],
-			__METHOD__
-		);
+		$row = $dbr->newSelectQueryBuilder()
+			->select( [ 'rd_namespace', 'rd_title', 'rd_fragment', 'rd_interwiki' ] )
+			->from( 'redirect' )
+			->where( [ 'rd_from' => $this->getId() ] )
+			->caller( __METHOD__ )->fetchRow();
 
 		// rd_fragment and rd_interwiki were added later, populate them if empty
 		if ( $row && $row->rd_fragment !== null && $row->rd_interwiki !== null ) {
@@ -2253,15 +2253,11 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			// On MySQL and derivatives, unconditionally deleting by page ID (pr_page) would.
 			// place a gap lock if there are no matching rows. This can deadlock when another
 			// thread modifies protection settings for page IDs in the same gap.
-			$existingProtectionIds = $dbw->selectFieldValues(
-				'page_restrictions',
-				'pr_id',
-				[
-					'pr_page' => $id,
-					'pr_type' => array_map( 'strval', array_keys( $limit ) )
-				],
-				__METHOD__
-			);
+			$existingProtectionIds = $dbw->newSelectQueryBuilder()
+				->select( 'pr_id' )
+				->from( 'page_restrictions' )
+				->where( [ 'pr_page' => $id, 'pr_type' => array_map( 'strval', array_keys( $limit ) ) ] )
+				->caller( __METHOD__ )->fetchFieldValues();
 
 			if ( $existingProtectionIds ) {
 				$dbw->newDeleteQueryBuilder()
@@ -2921,11 +2917,11 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		}
 
 		$dbr = wfGetDB( DB_REPLICA );
-		$res = $dbr->select( 'categorylinks',
-			[ 'page_title' => 'cl_to', 'page_namespace' => NS_CATEGORY ],
-			[ 'cl_from' => $id ],
-			__METHOD__
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'page_title' => 'cl_to', 'page_namespace' => (string)NS_CATEGORY ] )
+			->from( 'categorylinks' )
+			->where( [ 'cl_from' => $id ] )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		return TitleArray::newFromResult( $res );
 	}

@@ -183,12 +183,10 @@ class RevisionRenderer {
 
 		$db = $this->loadBalancer->getConnectionRef( $dbIndex, [], $this->dbDomain, $flags );
 
-		return 1 + (int)$db->selectField(
-			'revision',
-			'MAX(rev_id)',
-			[],
-			__METHOD__
-		);
+		return 1 + (int)$db->newSelectQueryBuilder()
+			->select( 'MAX(rev_id)' )
+			->from( 'revision' )
+			->caller( __METHOD__ )->fetchField();
 	}
 
 	private function getSpeculativePageId( $dbIndex ) {
@@ -198,12 +196,10 @@ class RevisionRenderer {
 
 		$db = $this->loadBalancer->getConnectionRef( $dbIndex, [], $this->dbDomain, $flags );
 
-		return 1 + (int)$db->selectField(
-			'page',
-			'MAX(page_id)',
-			[],
-			__METHOD__
-		);
+		return 1 + (int)$db->newSelectQueryBuilder()
+			->select( 'MAX(page_id)' )
+			->from( 'page' )
+			->caller( __METHOD__ )->fetchField();
 	}
 
 	/**

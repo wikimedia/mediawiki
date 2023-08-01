@@ -52,6 +52,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * This is a class for doing query pages; since they're almost all the same,
@@ -612,35 +613,27 @@ abstract class QueryPage extends SpecialPage {
 	 */
 	public function fetchFromCache( $limit, $offset = false ) {
 		$dbr = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_REPLICA );
-		$options = [];
+		$queryBuilder = $dbr->newSelectQueryBuilder()
+			->select( [ 'qc_type', 'namespace' => 'qc_namespace', 'title' => 'qc_title', 'value' => 'qc_value' ] )
+			->from( 'querycache' )
+			->where( [ 'qc_type' => $this->getName() ] );
 
 		if ( $limit !== false ) {
-			$options['LIMIT'] = intval( $limit );
+			$queryBuilder->limit( intval( $limit ) );
 		}
 
 		if ( $offset !== false ) {
-			$options['OFFSET'] = intval( $offset );
+			$queryBuilder->offset( intval( $offset ) );
 		}
 
 		$order = $this->getCacheOrderFields();
 		if ( $this->sortDescending() ) {
-			foreach ( $order as &$field ) {
-				$field .= " DESC";
-			}
-		}
-		if ( $order ) {
-			$options['ORDER BY'] = $order;
+			$queryBuilder->orderBy( $order, SelectQueryBuilder::SORT_DESC );
+		} else {
+			$queryBuilder->orderBy( $order );
 		}
 
-		return $dbr->select( 'querycache',
-				[ 'qc_type',
-				'namespace' => 'qc_namespace',
-				'title' => 'qc_title',
-				'value' => 'qc_value' ],
-				[ 'qc_type' => $this->getName() ],
-				__METHOD__,
-				$options
-		);
+		return $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 	}
 
 	/**
@@ -661,8 +654,11 @@ abstract class QueryPage extends SpecialPage {
 		if ( $this->cachedTimestamp === null ) {
 			$dbr = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_REPLICA );
 			$fname = static::class . '::getCachedTimestamp';
-			$this->cachedTimestamp = $dbr->selectField( 'querycache_info', 'qci_timestamp',
-				[ 'qci_type' => $this->getName() ], $fname );
+			$this->cachedTimestamp = $dbr->newSelectQueryBuilder()
+				->select( 'qci_timestamp' )
+				->from( 'querycache_info' )
+				->where( [ 'qci_type' => $this->getName() ] )
+				->caller( $fname )->fetchField();
 		}
 		return $this->cachedTimestamp;
 	}

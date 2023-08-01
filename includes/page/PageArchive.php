@@ -134,21 +134,14 @@ class PageArchive {
 	 * @return IResultWrapper
 	 */
 	protected static function listPages( IReadableDatabase $dbr, $condition ) {
-		return $dbr->select(
-			[ 'archive' ],
-			[
-				'ar_namespace',
-				'ar_title',
-				'count' => 'COUNT(*)'
-			],
-			$condition,
-			__METHOD__,
-			[
-				'GROUP BY' => [ 'ar_namespace', 'ar_title' ],
-				'ORDER BY' => [ 'ar_namespace', 'ar_title' ],
-				'LIMIT' => 100,
-			]
-		);
+		return $dbr->newSelectQueryBuilder()
+			->select( [ 'ar_namespace', 'ar_title', 'count' => 'COUNT(*)' ] )
+			->from( 'archive' )
+			->where( $condition )
+			->groupBy( [ 'ar_namespace', 'ar_title' ] )
+			->orderBy( [ 'ar_namespace', 'ar_title' ] )
+			->limit( 100 )
+			->caller( __METHOD__ )->fetchResultSet();
 	}
 
 	/**

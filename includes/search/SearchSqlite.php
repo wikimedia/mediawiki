@@ -35,12 +35,11 @@ class SearchSqlite extends SearchDatabase {
 	 */
 	private function fulltextSearchSupported() {
 		$dbr = $this->dbProvider->getReplicaDatabase();
-		$sql = (string)$dbr->selectField(
-			$dbr->addIdentifierQuotes( 'sqlite_master' ),
-			'sql',
-			[ 'tbl_name' => $dbr->tableName( 'searchindex', 'raw' ) ],
-			__METHOD__
-		);
+		$sql = (string)$dbr->newSelectQueryBuilder()
+			->select( 'sql' )
+			->from( $dbr->addIdentifierQuotes( 'sqlite_master' ) )
+			->where( [ 'tbl_name' => $dbr->tableName( 'searchindex', 'raw' ) ] )
+			->caller( __METHOD__ )->fetchField();
 
 		return ( stristr( $sql, 'fts' ) !== false );
 	}

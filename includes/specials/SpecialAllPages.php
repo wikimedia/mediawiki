@@ -34,6 +34,7 @@ use MediaWiki\Title\Title;
 use SearchEngineFactory;
 use TitleValue;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * Implements Special:Allpages
@@ -276,24 +277,23 @@ class SpecialAllPages extends IncludableSpecialPage {
 				# Get the first title from previous chunk
 				$prevConds = $filterConds;
 				$prevConds[] = 'page_title < ' . $dbr->addQuotes( $fromKey );
-				$prevKey = $dbr->selectField(
-					'page',
-					'page_title',
-					$prevConds,
-					__METHOD__,
-					[ 'ORDER BY' => 'page_title DESC', 'OFFSET' => $this->maxPerPage - 1 ]
-				);
+				$prevKey = $dbr->newSelectQueryBuilder()
+					->select( 'page_title' )
+					->from( 'page' )
+					->where( $prevConds )
+					->orderBy( 'page_title', SelectQueryBuilder::SORT_DESC )
+					->offset( $this->maxPerPage - 1 )
+					->caller( __METHOD__ )->fetchField();
 
 				if ( $prevKey === false ) {
 					# The previous chunk is not complete, need to link to the very first title
 					# available in the database
-					$prevKey = $dbr->selectField(
-						'page',
-						'page_title',
-						$prevConds,
-						__METHOD__,
-						[ 'ORDER BY' => 'page_title' ]
-					);
+					$prevKey = $dbr->newSelectQueryBuilder()
+						->select( 'page_title' )
+						->from( 'page' )
+						->where( $prevConds )
+						->orderBy( 'page_title' )
+						->caller( __METHOD__ )->fetchField();
 				}
 
 				if ( $prevKey !== false ) {

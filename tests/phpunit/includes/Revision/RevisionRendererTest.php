@@ -27,6 +27,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 use WikitextContent;
 
 /**
@@ -60,6 +61,7 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 					);
 				}
 			);
+		$db->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $db ) );
 
 		return $db;
 	}
@@ -107,7 +109,7 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function selectFieldCallback( $table, $fields, $cond, $maxRev ) {
-		if ( [ $table, $fields, $cond ] === [ 'revision', 'MAX(rev_id)', [] ] ) {
+		if ( [ $table, $fields, $cond ] === [ [ 'revision' ], 'MAX(rev_id)', [] ] ) {
 			return $maxRev;
 		}
 

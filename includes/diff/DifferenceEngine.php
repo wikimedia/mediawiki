@@ -2119,12 +2119,11 @@ class DifferenceEngine extends ContextSource {
 		$dbr = $this->dbProvider->getReplicaDatabase();
 		$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
 		if ( $this->mOldid !== false ) {
-			$tagIds = $dbr->selectFieldValues(
-				'change_tag',
-				'ct_tag_id',
-				[ 'ct_rev_id' => $this->mOldid ],
-				__METHOD__
-			);
+			$tagIds = $dbr->newSelectQueryBuilder()
+				->select( 'ct_tag_id' )
+				->from( 'change_tag' )
+				->where( [ 'ct_rev_id' => $this->mOldid ] )
+				->caller( __METHOD__ )->fetchFieldValues();
 			$tags = [];
 			foreach ( $tagIds as $tagId ) {
 				try {
@@ -2138,12 +2137,11 @@ class DifferenceEngine extends ContextSource {
 			$this->mOldTags = false;
 		}
 
-		$tagIds = $dbr->selectFieldValues(
-			'change_tag',
-			'ct_tag_id',
-			[ 'ct_rev_id' => $this->mNewid ],
-			__METHOD__
-		);
+		$tagIds = $dbr->newSelectQueryBuilder()
+			->select( 'ct_tag_id' )
+			->from( 'change_tag' )
+			->where( [ 'ct_rev_id' => $this->mNewid ] )
+			->caller( __METHOD__ )->fetchFieldValues();
 		$tags = [];
 		foreach ( $tagIds as $tagId ) {
 			try {

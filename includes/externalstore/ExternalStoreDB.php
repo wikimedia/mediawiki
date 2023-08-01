@@ -298,24 +298,22 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		$this->logger->debug( __METHOD__ . ": cache miss on $cacheID" );
 
 		$dbr = $this->getReplica( $cluster );
-		$ret = $dbr->selectField(
-			$this->getTable( $dbr, $cluster ),
-			'blob_text',
-			[ 'blob_id' => $id ],
-			__METHOD__
-		);
+		$ret = $dbr->newSelectQueryBuilder()
+			->select( 'blob_text' )
+			->from( $this->getTable( $dbr, $cluster ) )
+			->where( [ 'blob_id' => $id ] )
+			->caller( __METHOD__ )->fetchField();
 		if ( $ret === false ) {
 			// Try the primary DB
 			$this->logger->warning( __METHOD__ . ": primary DB fallback on $cacheID" );
 			$trxProfiler = $this->lbFactory->getTransactionProfiler();
 			$scope = $trxProfiler->silenceForScope( $trxProfiler::EXPECTATION_REPLICAS_ONLY );
 			$dbw = $this->getPrimary( $cluster );
-			$ret = $dbw->selectField(
-				$this->getTable( $dbw, $cluster ),
-				'blob_text',
-				[ 'blob_id' => $id ],
-				__METHOD__
-			);
+			$ret = $dbw->newSelectQueryBuilder()
+				->select( 'blob_text' )
+				->from( $this->getTable( $dbw, $cluster ) )
+				->where( [ 'blob_id' => $id ] )
+				->caller( __METHOD__ )->fetchField();
 			ScopedCallback::consume( $scope );
 			if ( $ret === false ) {
 				$this->logger->warning( __METHOD__ . ": primary DB failed to find $cacheID" );
