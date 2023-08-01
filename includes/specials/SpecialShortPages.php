@@ -111,10 +111,14 @@ class SpecialShortPages extends QueryPage {
 			->options( isset( $query['options'] ) ? (array)$query['options'] : [] )
 			->joinConds( isset( $query['join_conds'] ) ? (array)$query['join_conds'] : [] );
 		if ( $limit !== false ) {
-			$sqb->limit( intval( $limit ) );
-		}
-		if ( $offset !== false ) {
-			$sqb->offset( intval( $offset ) );
+			if ( $offset !== false ) {
+				// We need to increase the limit by the offset rather than
+				// using the offset directly, otherwise it'll skip incorrectly
+				// in the subqueries.
+				$sqb->limit( intval( $limit ) + intval( $offset ) );
+			} else {
+				$sqb->limit( intval( $limit ) );
+			}
 		}
 
 		$order = $this->getOrderFields();
