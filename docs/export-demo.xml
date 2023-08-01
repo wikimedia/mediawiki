@@ -1,5 +1,5 @@
-<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.10/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.10/ http://www.mediawiki.org/xml/export-0.10.xsd" version="0.10" xml:lang="en">
-  
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.11/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.11/ http://www.mediawiki.org/xml/export-0.11.xsd" version="0.11" xml:lang="en">
+
   <!-- Optional global configuration info -->
   <siteinfo>
     <!-- Site name, as set in $wgSitename -->
@@ -7,17 +7,17 @@
 
     <!-- Database name, as set in $wgDBname -->
     <dbname>demowiki</dbname>
-    
+
     <!-- Forgot where you got this set? -->
     <base>http://example.com/wiki/Main_Page</base>
-    
+
     <!-- Source software version -->
     <generator>MediaWiki 1.24</generator>
-    
+
     <!-- Title case sensitivity options of the wiki this data came from -->
     <!-- May be 'first-letter', 'case-sensitive', or 'case-insensitive' -->
     <case>first-letter</case>
-    
+
     <!-- Defined namespace keys on the source wiki. -->
     <namespaces>
       <namespace key="-2" case="first-letter">Media</namespace>
@@ -40,30 +40,30 @@
       <namespace key="15" case="first-letter">Category talk</namespace>
     </namespaces>
   </siteinfo>
-  
+
   <!-- The rest of the data will be a series of page records -->
   <page>
     <!-- Titles are listed here in text form, with namespace prefix   -->
     <!-- if any, and spaces rather than the underscores used in URLs. -->
     <title>Page title</title>
-    
+
     <!-- Namespace in canonical form -->
     <ns>0</ns>
-    
+
     <!-- The page's immutable page_id number in the source database.  -->
     <!-- Page ID numbers are kept across page moves, but may change   -->
     <!-- if a page is deleted and recreated.                          -->
     <id>1</id>
-    
+
     <!-- Tag whether this article is a redirect and its target -->
     <!-- This corresponds to the page_is_redirect in the page table -->
     <redirect title="Target" />
-    
+
     <!-- If restricted, the ACL is listed here raw. -->
     <restrictions>edit=sysop:move=sysop</restrictions>
-    
+
     <!-- With a series of revision records... -->
-    
+
     <!-- Remember this is XML; if you must use a regex-based extractor -->
     <!-- in place of a standard XML parser, be very careful.           -->
     <!-- * Don't forget to decode character entities!                  -->
@@ -82,12 +82,13 @@
       </contributor>
       <minor />
       <comment>I have just one thing to say!</comment>
+      <origin>100</origin>
       <model>wikitext</model>
       <format>text/x-wiki</format>
       <text xml:space="preserve" bytes="25">A bunch of [[text]] here.</text>
       <sha1>5x0ux8iwjrbmfzgv6pkketxgkcnpr7h</sha1>
     </revision>
-    
+
     <revision>
       <id>99</id>
       <timestamp>2001-01-15T13:10:27Z</timestamp>
@@ -95,13 +96,14 @@
         <ip>10.0.0.2</ip>
       </contributor>
       <comment>new!</comment>
+      <origin>99</origin>
       <model>wikitext</model>
       <format>text/x-wiki</format>
       <text xml:space="preserve" bytes="24">An earlier [[revision]].</text>
       <sha1>etaxt3shcge6igz1biwy3d4um2pnle4</sha1>
     </revision>
   </page>
-  
+
   <page>
     <title>Talk:Page title</title>
     <ns>1</ns>
@@ -111,13 +113,14 @@
       <timestamp>2001-01-15T14:03:00Z</timestamp>
       <contributor><ip>10.0.0.2</ip></contributor>
       <comment>hey</comment>
+      <origin>101</origin>
       <model>wikitext</model>
       <format>text/x-wiki</format>
       <text xml:space="preserve" bytes="47">WHYD YOU LOCK PAGE??!!! i was editing that jerk</text>
       <sha1>ml80vmyjlixdstnywwihx003exfzq9j</sha1>
     </revision>
   </page>
-  
+
   <page>
     <title>File:Some image.jpg</title>
     <ns>6</ns>
@@ -127,6 +130,7 @@
       <timestamp>2001-01-15T20:34:12Z</timestamp>
       <contributor><username>Foobar</username><id>42</id></contributor>
       <comment>My awesomeest image!</comment>
+      <origin>102</origin>
       <model>wikitext</model>
       <format>text/x-wiki</format>
       <text xml:space="preserve" bytes="52">This is an awesome little imgae. I lurves it. {{PD}}</text>
@@ -141,7 +145,7 @@
       <size>12345</size>
     </upload>
   </page>
-  
+
   <!-- or a series of logitem records, but normaly page and logitem never exist both in one file -->
   <logitem>
     <id>15</id>
@@ -156,5 +160,5 @@
     <logtitle>Silly page name</logtitle>
     <params xml:space="preserve" />
   </logitem>
-  
+
 </mediawiki>

@@ -55,6 +55,9 @@
 		<testsuite name="integration">
 			<directory>integration</directory>
 		</testsuite>
+		<testsuite name="docs">
+			<directory>docs</directory>
+		</testsuite>
 	</testsuites>
 	<groups>
 		<exclude>

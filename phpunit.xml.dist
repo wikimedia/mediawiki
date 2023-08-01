@@ -61,6 +61,9 @@
 		<testsuite name="integration">
 			<directory>tests/phpunit/integration</directory>
 		</testsuite>
+		<testsuite name="docs">
+			<directory>tests/phpunit/docs</directory>
+		</testsuite>
 	</testsuites>
 	<groups>
 		<exclude>
