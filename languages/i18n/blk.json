@@ -5,7 +5,8 @@
 			"Khun Kt",
 			"Ninjastrikers",
 			"လွိုင်ႏအာထင်ႏထိုထဲင်း",
-			"咽頭べさ"
+			"咽頭べさ",
+			"ခွန်ဖန်ဒွဲ့"
 		]
 	},
 	"tog-underline": "လိဉ့် ကဲက်ꩻခါꩻဒါႏသီး ပုင်ႏစံႏ:",
@@ -2250,6 +2251,7 @@
 	"revdelete-content-hid": "ပလို့ꩻ အကျောင်ꩻခရာႏ",
 	"logentry-protect-protect": "$1 {{GENDER:$2|ရဲးကမ်းခါꩻလဲဉ်း}} $3 သွူ $4",
 	"searchsuggest-search": "ထိုမ်ႏထွား {{SITENAME}}ကို",
+	"searchsuggest-containing": "ထိုမ်ႏထွား ကနွို့ပါဒါႏ လိတ်မဲ့ငါဖိုင်ႏတာႏ",
 	"duration-days": "$1 {{PLURAL:$1|မွူး|မွူးဖုံႏ}}",
 	"mw-widgets-dateinput-no-date": "လွိုက်ခါꩻတဝ်းမွူးနီꩻ",
 	"mw-widgets-titleinput-description-new-page": "လိတ်မဲ့ငါ တအဝ်ႏတဝ်းဒွိုန်း",
