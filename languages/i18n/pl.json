@@ -2764,7 +2764,7 @@
 	"empty-username": "(nazwa użytkownika niedostępna)",
 	"contribslink": "edycje",
 	"emaillink": "wyślij e‐mail",
-	"autoblocker": "Zablokowano Cię automatycznie, ponieważ twój adres IP był ostatnio używany przez „[[User:$1|$1]]”.\nPrzyczyna blokady $1 to: „$2”",
+	"autoblocker": "Zablokowano Cię automatycznie, ponieważ Twój adres IP był ostatnio używany przez użytkownika „[[User:$1|$1]]”.\nPrzyczyna blokady $1 to: „$2”",
 	"blocklogpage": "Rejestr blokad",
 	"blocklog-showlog": "{{GENDER:$1|Ten użytkownik był|Ta użytkowniczka była}} już wcześniej {{GENDER:$1|blokowany|blokowana}}.\nPoniżej znajduje się rejestr blokad:",
 	"blocklog-showsuppresslog": "{{GENDER:$1|Ten użytkownik był|Ta użytkowniczka była}} już wcześniej {{GENDER:$1|blokowany oraz ukrywany|blokowana oraz ukrywana}}. Poniżej znajduje się rejestr ukrywania:",

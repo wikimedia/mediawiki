@@ -27,7 +27,8 @@
 			"Xiplus",
 			"蘭斯特",
 			"아라",
-			"Willy1018"
+			"Willy1018",
+			"列维劳德"
 		]
 	},
 	"config-desc": "MediaWiki 安裝程式",
@@ -121,6 +122,7 @@
 	"config-db-prefix": "資料庫資料表名稱的字首（不帶連字號）：",
 	"config-db-prefix-help": "如果您需要讓多個 Wiki 共用同一個資料庫，或者與其他網頁應用程式共用一個資料庫，您也許會需要在所有資料表的名稱前面加上字首，可以避免資料表名稱的衝突。\n請勿使用空格。\n\n此欄位可不填。",
 	"config-mysql-old": "需要使用 MySQL $1 或更新的版本，您的版本為 $2。",
+	"config-mariadb-old": "需要使用 MariaDB $1 或更新的版本，您的版本為 $2。",
 	"config-db-port": "資料庫埠號：",
 	"config-db-schema": "MediaWiki 的資料庫架構（不帶連字號）：",
 	"config-db-schema-help": "資料庫 Schema 通常不需更動。\n只在有特殊需求時才需修改。",

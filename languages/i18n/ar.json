@@ -106,7 +106,8 @@
 			"Karim185.3",
 			"Alshamiri1",
 			"MRidhaAJ",
-			"أيوب"
+			"أيوب",
+			"أبو هشام"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -941,7 +942,7 @@
 	"rev-suppressed-text-permission": "هذه النسخة قد <strong>أخفيت</strong>. \nيمكنك العثور على التفاصيل في [{{fullurl:{{#Special:Log}}/suppress|page=$1}} سجل الإخفاء].",
 	"rev-deleted-text-unhide": "<strong>حُذِفت</strong> مراجعة الصفحة هذه.\nيمكن العثور على التفاصيل في [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].\nمازال بإمكانك [$1 رؤية هذه المراجعة] إذا أردت المتابعة.",
 	"rev-suppressed-text-unhide": "<strong>أُخفيت</strong> مراجعة الصفحة هذه.\nيمكنك العثور على التفاصيل في [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل الإخفاء].\nبإمكانك [$1 رؤية هذه المراجعة] إذا أردت المتابعة.",
-	"rev-deleted-text-view": "<strong>حُذِفت</strong> مراجعة هذه الصفحة.\nيمكنك رؤيتها؛ ويمكنك العثور على التفاصيل في [{{fullurl:{{#Special:Log}}/delete|page=$1}} سجل الحذف].",
+	"rev-deleted-text-view": "أزيل هذا التعديل من الأرشيف العام. التفاصيل حول الإزالة في [{{fullurl:{{#Special:Log}}/delete|page=$1}} سجل الحذف لهذه الصفحة].",
 	"rev-suppressed-text-view": "<strong>أُخفيت</strong> مراجعة الصفحة هذه.\nيمكنك رؤيتها؛ ويمكنك العثور على التفاصيل في [{{fullurl:{{#Special:Log}}/suppress|page=$1}} سجل الإخفاء].",
 	"rev-deleted-no-diff": "لا يمكنك رؤية هذا الفرق لأن إحدى المراجعات <strong>حُذِفت</strong>.\nيمكنك العثور على التفاصيل في [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].",
 	"rev-suppressed-no-diff": "ليس بإمكانك مشاهدة هذا الفرق لأن إحدى المراجعات <strong>حذفت</strong>.",
