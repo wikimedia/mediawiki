@@ -3180,6 +3180,9 @@ return [
 		'UploadStashScalerBaseUrl' => [
 			'deprecated' => 'since 1.36 Use thumbProxyUrl in $wgLocalFileRepo',
 		],
+		'IllegalFileChars' => [
+			'deprecated' => 'since 1.41; no longer customizable',
+		],
 		'ThumbnailNamespaces' => [
 			'items' => [
 				'type' => 'integer',
@@ -3205,6 +3208,9 @@ return [
 			'items' => [
 				'type' => 'string',
 			],
+		],
+		'LegalTitleChars' => [
+			'deprecated' => 'since 1.41; use Extension:TitleBlacklist to customize',
 		],
 		'AllowImageTag' => [
 			'deprecated' => 'since 1.35; register an extension tag named <img> instead.',

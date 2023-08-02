@@ -424,11 +424,13 @@ config-schema:
         description: 'To disable file delete/restore temporarily'
     IllegalFileChars:
         default: ':\/\\'
+        deprecated: 'since 1.41; no longer customizable'
         description: |-
             Additional characters that are not allowed in filenames. They are replaced with '-' when
             uploading. Like $wgLegalTitleChars, this is a regexp character class.
             Slashes and backslashes are disallowed regardless of this setting, but included here for
             completeness.
+            @deprecated since 1.41; no longer customizable
     DeletedDirectory:
         default: false
         dynamicDefault:
@@ -3861,6 +3863,7 @@ config-schema:
             including those defined by other means.
     LegalTitleChars:
         default: ' %!"$&''()*,\-.\/0-9:;=?@A-Z\\^_`a-z~\x80-\xFF+'
+        deprecated: 'since 1.41; use Extension:TitleBlacklist to customize'
         description: |-
             Allowed title characters -- regex character class
             Don't change this unless you know what you're doing
@@ -3880,6 +3883,8 @@ config-schema:
             passed in the query string rather than the path. This is a minor security issue
             because articles can be created such that they are hard to view or edit.
             In some rare cases you may wish to remove + for compatibility with old links.
+            @deprecated since 1.41; use Extension:TitleBlacklist or (soon)
+            Extension:AbuseFilter to customize this set.
     CapitalLinks:
         default: true
         description: |-

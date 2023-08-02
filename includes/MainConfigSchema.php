@@ -901,9 +901,12 @@ class MainConfigSchema {
 	 *
 	 * Slashes and backslashes are disallowed regardless of this setting, but included here for
 	 * completeness.
+	 *
+	 * @deprecated since 1.41; no longer customizable
 	 */
 	public const IllegalFileChars = [
 		'default' => ':\\/\\\\',
+		'deprecated' => 'since 1.41; no longer customizable',
 	];
 
 	/**
@@ -6093,9 +6096,12 @@ class MainConfigSchema {
 	 * because articles can be created such that they are hard to view or edit.
 	 *
 	 * In some rare cases you may wish to remove + for compatibility with old links.
+	 * @deprecated since 1.41; use Extension:TitleBlacklist or (soon)
+	 * Extension:AbuseFilter to customize this set.
 	 */
 	public const LegalTitleChars = [
 		'default' => ' %!"$&\'()*,\\-.\\/0-9:;=?@A-Z\\\\^_`a-z~\\x80-\\xFF+',
+		'deprecated' => 'since 1.41; use Extension:TitleBlacklist to customize',
 	];
 
 	/**

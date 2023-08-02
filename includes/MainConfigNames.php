@@ -268,6 +268,7 @@ class MainConfigNames {
 	/**
 	 * Name constant for the IllegalFileChars setting, for use with Config::get()
 	 * @see MainConfigSchema::IllegalFileChars
+	 * @deprecated since 1.41; no longer customizable
 	 */
 	public const IllegalFileChars = 'IllegalFileChars';
 
@@ -2178,6 +2179,7 @@ class MainConfigNames {
 	/**
 	 * Name constant for the LegalTitleChars setting, for use with Config::get()
 	 * @see MainConfigSchema::LegalTitleChars
+	 * @deprecated since 1.41; use Extension:TitleBlacklist to customize
 	 */
 	public const LegalTitleChars = 'LegalTitleChars';
 

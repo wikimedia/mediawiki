@@ -253,6 +253,7 @@ $wgUploadMaintenance = null;
 /**
  * Config variable stub for the IllegalFileChars setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::IllegalFileChars
+ * @deprecated since 1.41; no longer customizable
  */
 $wgIllegalFileChars = null;
 
@@ -2163,6 +2164,7 @@ $wgNamespaceAliases = null;
 /**
  * Config variable stub for the LegalTitleChars setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::LegalTitleChars
+ * @deprecated since 1.41; use Extension:TitleBlacklist to customize
  */
 $wgLegalTitleChars = null;
 
