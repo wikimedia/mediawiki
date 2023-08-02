@@ -144,10 +144,10 @@ codex:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
   authors: Design Systems team, Wikimedia Foundation
-  version: 0.15.0
+  version: 0.16.1
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-0.15.0.tgz
-  integrity: sha384-qUPMQk/5Wo5tzVjHZ/fYlQVKB286yGvo3/U1c8uQyd32c9pOpVxwzLVdCmBMSHJB
+  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-0.16.1.tgz
+  integrity: sha384-SVXohFOf9Q0TC81IbNYZBVFlGdKLznqXNeIsMATnqzLH4jbtfLtLFPI4EZdQ713h
   dest:
     package/dist/codex.mjs:
     package/dist/codex.umd.js:
@@ -163,10 +163,10 @@ codex-design-tokens:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
   authors: Design Systems team, Wikimedia Foundation
-  version: 0.15.0
+  version: 0.16.1
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-0.15.0.tgz
-  integrity: sha384-A0iyRUGgBdSIz1GrkMPmfV9Ad5raVPnkpaBtQgz2cj82NlgQLKGAoS2xP1P/VWEo
+  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-0.16.1.tgz
+  integrity: sha384-NQO09ZDOgSVFm/LANigfjof0odwZU/F3iNIAab1jr2/uD2pT+MXx8SDJSv/+ggGu
   dest:
     package/dist/theme-wikimedia-ui.less:
     package/dist/theme-wikimedia-ui-legacy.less:
@@ -177,10 +177,10 @@ codex-icons:
   license: MIT
   homepage: https://doc.wikimedia.org/codex/
   authors: Design Systems team, Wikimedia Foundation
-  version: 0.15.0
+  version: 0.16.1
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-0.15.0.tgz
-  integrity: sha384-Ye7o7jjLckyXBjUmjNHQXhUsKc8wTBHd3d/H61GQavgv9Yn1D2IDQ1tXTO6jDx+A
+  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-0.16.1.tgz
+  integrity: sha384-J906WoKttlmsQ7IQf7alSgUW3Q4tzCPIruiRs67WGQZBxRicKyjgoPgQo1gRrmyT
   dest:
     package/dist/codex-icons.json:
     package/dist/codex-icon-paths.less:
@@ -191,10 +191,10 @@ codex-search:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
   authors: Design Systems team, Wikimedia Foundation
-  version: 0.15.0
+  version: 0.16.1
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-search/-/codex-search-0.15.0.tgz
-  integrity: sha384-zM5EVelOgQ9jlF6jVGMGgGvu6vwgO386Pc24ghqL+hfC4NhSTncBLt3/PaNmoKrG
+  src: https://registry.npmjs.org/@wikimedia/codex-search/-/codex-search-0.16.1.tgz
+  integrity: sha384-+xhANfSp3mkAAfLiBO93LL0jLK9ow6NhF6TmiaSucpKU/gFnN/h3eJPiOHIliC4J
   dest:
     package/dist/codex-search.mjs:
     package/dist/codex-search.umd.js:
