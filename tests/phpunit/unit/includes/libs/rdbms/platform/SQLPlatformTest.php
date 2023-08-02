@@ -542,6 +542,64 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * @dataProvider provideInsert
+	 */
+	public function testInsert( $sql, $sqlText, $clean ) {
+		$this->hideDeprecated( 'Wikimedia\Rdbms\Platform\SQLPlatform::insertSqlText' );
+		$actual = $this->platform->dispatchingInsertSqlText(
+			$sql['table'],
+			$sql['rows'],
+			$sql['options']
+		);
+		$this->assertSame( $sqlText, $actual->getSQL() );
+		$this->assertSame( $clean, $actual->getCleanedSql() );
+	}
+
+	public static function provideInsert() {
+		return [
+			[
+				[
+					'table' => 'table',
+					'rows' => [ [ 'field' => 'text', 'field2' => 'text2' ] ],
+					'options' => [],
+				],
+				"INSERT INTO table (field,field2) VALUES ('text','text2')",
+				"INSERT INTO table (field,field2) VALUES '?'",
+			],
+			[
+				[
+					'table' => 'table',
+					'rows' => [ [ 'field' => 'text', 'field2' => 'text2' ] ],
+					'options' => [ 'IGNORE' ],
+				],
+				"INSERT IGNORE INTO table (field,field2) VALUES ('text','text2')",
+				"INSERT IGNORE INTO table (field,field2) VALUES '?'",
+			],
+			[
+				[
+					'table' => 'table',
+					'rows' => [
+						[ 'field' => 'text', 'field2' => 'text2' ],
+						[ 'field' => 'text', 'field2' => 'text2' ],
+					],
+					'options' => [],
+				],
+				"INSERT INTO table (field,field2) VALUES ('text','text2'),('text','text2')",
+				"INSERT INTO table (field,field2) VALUES '?'",
+			],
+			[
+				[
+					'table' => 'table',
+					'rows' => [ [ 'field' => 'text', 'field2' => 'text2' ] ],
+					'options' => [ 'IGNORE' ],
+				],
+				"INSERT IGNORE INTO table (field,field2) VALUES ('text','text2')",
+				"INSERT IGNORE INTO table (field,field2) VALUES '?'",
+			],
+		];
+	}
+
+	/**
 	 * @dataProvider provideUpdateEmptyCondition
 	 */
 	public function testUpdateEmptyCondition( $sql ) {
