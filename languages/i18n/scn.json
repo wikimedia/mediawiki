@@ -664,7 +664,6 @@
 	"slot-name-main": "Principali",
 	"content-model-wikitext": "wikitestu",
 	"content-model-text": "testu sìmplici",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Oggettu vacanti",
 	"content-json-empty-array": "Vitturi vacanti",
 	"duplicate-args-warning": "<strong>Accura:</strong> [[:$1]] sta chiamannu [[:$2]] cu cchiossai dûn valuri comu paràmitru \"$3\". E' adupiratu sulu l'ùrtimu valuri spicificatu.",

@@ -609,7 +609,6 @@
 	"invalid-content-data": "Data di kontni pa valid",
 	"content-model-wikitext": "wikitèks",
 	"content-model-text": "tègs groso",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Lòbjè vid",
 	"content-json-empty-array": "Tablo vid",
 	"undo-failure": "Sa modifikasyon pa pouvé fika défè : sa-a té ké rantré an konfli ké modifikasyon entèrmédjèr-ya.",

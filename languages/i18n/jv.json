@@ -681,8 +681,6 @@
 	"slot-name-main": "Pokok",
 	"content-model-wikitext": "tulisan wiki",
 	"content-model-text": "tulisan barès",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Obyèk kosong",
 	"expensive-parserfunction-warning": "Pènget: Kaca iki ngandhut kakèhan panggunan fungsi ''parser'' kang larang.\n\nSajatiné kuduné duwé kurang saka {{PLURAL:$2|panggilan|panggilan}}, saiki ana {{PLURAL:$1|$1 panggilan|$1 panggilan}}.",
 	"expensive-parserfunction-category": "Kaca-kaca mawa panggunan fungsi ''parser'' kang kakèhan",

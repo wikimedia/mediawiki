@@ -788,7 +788,6 @@
 	"slot-name-main": "Төп",
 	"content-model-wikitext": "викитекст",
 	"content-model-text": "гади текст",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Буш объект",
 	"content-json-empty-array": "Буш массив",
 	"unsupported-content-model": "<strong>Игътибар:</strong> $1 эчтәлек моделе бу викида эшләми.",

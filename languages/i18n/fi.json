@@ -832,8 +832,6 @@
 	"slot-name-main": "Pääsivu",
 	"content-model-wikitext": "wikiteksti",
 	"content-model-text": "pelkkä teksti",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Tyhjä objekti",
 	"content-json-empty-array": "Tyhjä array",
 	"unsupported-content-model": "<strong>Varoitus:</strong> Sisältömallia $1 ei tueta tässä wikissä.",

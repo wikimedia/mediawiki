@@ -752,8 +752,6 @@
 	"slot-name-main": "Prinsipal",
 	"content-model-wikitext": "test wiki",
 	"content-model-text": "mach test",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Oget veuid",
 	"content-json-empty-array": "Tàula veuida",
 	"unsupported-content-model": "<strong>Atension:</strong> Ël model ëd contnù $1 a l'é nen mantnù su costa wiki.",

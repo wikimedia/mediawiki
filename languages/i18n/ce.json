@@ -674,8 +674,6 @@
 	"slot-name-main": "Коьрта",
 	"content-model-wikitext": "вики-йоза",
 	"content-model-text": "цхьалхе йоза",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Йаьсса объект",
 	"content-json-empty-array": "Йаьсса меттиг",
 	"unsupported-content-model": "<strong>Терго йе:</strong> $1 чулацаман модуль хӀокху викехь ловш йац.",

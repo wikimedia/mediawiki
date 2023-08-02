@@ -761,7 +761,6 @@
 	"slot-name-main": "Precipua",
 	"content-model-wikitext": "texto Wiki",
 	"content-model-text": "simpla texto",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "vakua objekto",
 	"content-json-empty-array": "vakua tabelo",
 	"unsupported-content-model": "<strong>Atences:</strong> La modelo $1 ne suportesas en ca wiki.",

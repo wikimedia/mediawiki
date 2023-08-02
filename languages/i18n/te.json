@@ -780,7 +780,6 @@
 	"content-model-wikitext": "వికీపాఠ్యం",
 	"content-model-text": "సాదా పాఠ్యం",
 	"content-model-javascript": "జావాస్క్రిప్ట్",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "ఖాళీ అంశం",
 	"content-json-empty-array": "ఖాళీ అరే",
 	"unsupported-content-model": "<strong>హెచ్చరిక:</strong> ఈ వికీలో $1 కంటెంటు మోడలుకు మద్దతు లేదు.",

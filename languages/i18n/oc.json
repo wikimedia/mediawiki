@@ -735,8 +735,6 @@
 	"slot-name-main": "Principal",
 	"content-model-wikitext": "wikitèxte",
 	"content-model-text": "tèxte brut",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Objècte void",
 	"content-json-empty-array": "Tablèu void",
 	"duplicate-args-warning": "<strong>Attention:</strong> [[:$1]] crida [[:$2]] amb mai d'una valor pel paramètre \"$3\". S'emplegarà solament  la darrièra valor provesida.",

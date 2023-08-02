@@ -638,8 +638,6 @@
 	"slot-name-main": "Tchindji",
 	"content-model-wikitext": "wiki floua",
 	"content-model-text": "ndè mma kléhi'n",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Liké nga ôti ngbin",
 	"content-json-empty-array": "Tableau nga liké fi nouman noun",
 	"unsupported-content-model": "<strong>Afôtouè:</strong> Bé kloua yéman $1 i noun ndè modèli i wiki nga sou.",

@@ -675,7 +675,6 @@
 	"content-model-wikitext": "Wikkitäx",
 	"content-model-text": "Eijnfache Tex",
 	"content-model-javascript": "JavaSkrepp",
-	"content-model-css": "CSS",
 	"content-model-json": "<i lang=\"en\" xml:lang=\"en\" title=\"JavaScript Object Notation\">JSON</i>",
 	"content-json-empty-object": "Nix dren",
 	"content-json-empty-array": "Nix dren",

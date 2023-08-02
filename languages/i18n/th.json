@@ -789,7 +789,6 @@
 	"content-model-wikitext": "ข้อความวิกิ",
 	"content-model-text": "ข้อความธรรมดา",
 	"content-model-javascript": "จาวาสคริปต์",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "วัตถุเปล่า",
 	"content-json-empty-array": "แถวเปล่า",
 	"unsupported-content-model": "<strong>คำเตือน:</strong> วิกินี้ไม่รองรับรูปแบบเนื้อหา $1",

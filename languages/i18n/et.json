@@ -785,8 +785,6 @@
 	"slot-name-main": "Peamine",
 	"content-model-wikitext": "vikitekst",
 	"content-model-text": "lihttekst",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Tühi objekt",
 	"content-json-empty-array": "Tühi massiiv",
 	"unsupported-content-model": "<strong>Hoiatus:</strong> Selles vikis puudub sisumudeli $1 tugi.",

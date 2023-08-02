@@ -463,7 +463,6 @@
 	"slot-name-main": "Principal",
 	"content-model-wikitext": "wikicode",
 	"content-model-text": "texte brut",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Objet vide",
 	"content-json-empty-array": "Tableau vide",
 	"unsupported-content-model": "<strong>Attention :</strong> le modèle de contenu $1 n’est pas pris en charge sus ce wiki.",

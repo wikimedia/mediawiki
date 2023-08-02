@@ -603,7 +603,6 @@
 	"content-model-wikitext": "вики-матн",
 	"content-model-text": "матни содда",
 	"content-model-javascript": "ҶаваСкрипт",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Ашёи холӣ",
 	"content-json-empty-array": "Массиви холӣ",
 	"post-expand-template-inclusion-warning": "<strong>Огоҳӣ:</strong> Шаблони дар баргирифта хеле калон аст. Баъзе аз шаблонҳо дар бар гирифта намешавад.",

@@ -634,8 +634,6 @@
 	"editpage-notsupportedcontentformat-text": "Gundekuna takari $1 ši koy ne gundekuna takari $2 bande.",
 	"content-model-wikitext": "wikihantum",
 	"content-model-text": "hantum kaaray",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"duplicate-args-category": "Moɲey kaŋyaŋ ga goy nda yeddiyaŋ leeti ciyarey ra",
 	"duplicate-args-category-desc": "Moɲoo goo nda leeti ciyariyaŋ kaŋ ga goy nda yeddi fillayaŋ, sanda <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> wala code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "<strong>Yaamar:</strong> Moɲoo woo goo nda fesu-fesu goyjinay alhaali booboyaŋ.\n\nA ši hima ka bara nda {{PLURAL:$2|ciyari}} $2, {{PLURAL:$1| ciyari $1 sohõ}}.",

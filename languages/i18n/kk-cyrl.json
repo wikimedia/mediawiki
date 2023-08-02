@@ -775,8 +775,6 @@
 	"slot-name-main": "Басты",
 	"content-model-wikitext": "уикимәтін",
 	"content-model-text": "қалыпты мәтін",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Бос нысан",
 	"content-json-empty-array": "Бос массив",
 	"unsupported-content-model": "<strong>Ескерту:</strong> бұл уики $1 мазмұн моделін қолдамайды.",

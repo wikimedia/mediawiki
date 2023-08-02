@@ -770,8 +770,6 @@
 	"slot-name-main": "Ser",
 	"content-model-wikitext": "wikimetin",
 	"content-model-text": "metno pan",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Çiyo veng",
 	"content-json-empty-array": "Rêza venge",
 	"unsupported-content-model": "<strong>Tembe :</strong> Zerrekê modeli $1 rê na wiki de desteg nêdano.",

@@ -756,8 +756,6 @@
 	"slot-name-main": "Aðal",
 	"content-model-wikitext": "wiki-texti",
 	"content-model-text": "hreinn texti",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-model-json": "JSON",
 	"content-json-empty-object": "Tómur hlutur",
 	"content-json-empty-array": "Tómt fylki",

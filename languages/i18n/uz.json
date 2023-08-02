@@ -544,8 +544,6 @@
 	"slot-name-main": "Asosiy",
 	"content-model-wikitext": "vikimatn",
 	"content-model-text": "quruq matn",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"post-expand-template-inclusion-warning": "'''Diqqat:''' Qo'llanilayotgan andozalarning jami hajmi juda katta.\nAyrim andozalar qo'shilmaydi.",
 	"post-expand-template-inclusion-category": "Qo'llaniladigan andozalarning mumkin bo'lgan miqdoridan oshgan sahifalar",
 	"post-expand-template-argument-category": "Andozalarning toʻldirilmagan oʻzgaruvchilariga ega sahifalar",

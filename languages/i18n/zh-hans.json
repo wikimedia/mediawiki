@@ -944,8 +944,6 @@
 	"slot-name-main": "主",
 	"content-model-wikitext": "wikitext",
 	"content-model-text": "纯文本",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "空对象",
 	"content-json-empty-array": "空数组",
 	"unsupported-content-model": "<strong>警告：</strong>内容模型$1在此wiki上不支持。",

@@ -641,7 +641,6 @@
 	"content-model-wikitext": "વિકિલખાણ",
 	"content-model-text": "સાદું લખાણ",
 	"content-model-javascript": "જાવાસ્ક્રિપ્ટ",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "ખાલી ઓબ્જેક્ટ",
 	"content-json-empty-array": "ખાલી એરે",
 	"expensive-parserfunction-warning": "'''ચેતવણી:''' આ પાનું ખૂબ ખર્ચાળ પદચ્છેદ સૂત્ર ધરાવે છે.\n\nતેમાં $2 કરતા ઓછાં{{PLURAL:$2|પૃછા|પૃછાઓ}}હોવા જોઇએ, અત્યારે તેમાં  {{PLURAL:$1|$1 પૃછા| $1 પૃછાઓ }} છે.",

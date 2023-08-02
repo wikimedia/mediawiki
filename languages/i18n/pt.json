@@ -839,8 +839,6 @@
 	"slot-name-main": "Principal",
 	"content-model-wikitext": "texto wiki",
 	"content-model-text": "texto simples",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Objeto vazio",
 	"content-json-empty-array": "Matriz vazia",
 	"unsupported-content-model": "<strong>Aviso:</strong> O modelo de conteúdo $1 não é suportado nesta wiki.",

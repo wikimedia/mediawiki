@@ -776,8 +776,6 @@
 	"slot-name-main": "თარი",
 	"content-model-wikitext": "ვიკიტექსტი",
 	"content-model-text": "რჩქვანელობური ტექსტი",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "ცაიორი ობიექტი",
 	"content-json-empty-array": "ცაიორი ტაბლო",
 	"unsupported-content-model": "<strong>ხვილაფა:</strong> კონტენტიშ $1 მოდელი თე ვიკის ვა რე ხუჯდოკინელი.",

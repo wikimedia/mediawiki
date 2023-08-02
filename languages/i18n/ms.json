@@ -785,8 +785,6 @@
 	"slot-name-main": "Utama",
 	"content-model-wikitext": "wikiteks",
 	"content-model-text": "teks biasa",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Objek kosong",
 	"content-json-empty-array": "Tatasusunan kosong",
 	"unsupported-content-model": "<strong> Amaran:</strong> Model kandungan $1 tidak disokong di wiki ini.",

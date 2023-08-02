@@ -617,8 +617,6 @@
 	"confirmleave-warning": "Ku tu vê rûpelê bigirî, dibe guhartinên te winda bin.",
 	"content-model-wikitext": "wîkînivîs",
 	"content-model-text": "nivîsa sade",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Objeya vala",
 	"content-json-empty-array": "Rêza vala",
 	"undo-success": "Ev guhartin dikare were şûndekirin.\nJi kerema xwe ferqa piştî tomarkirinê bibîne, bê ka tu dixwazî vê guhwrtoyê biweşînî an na. Ger te xeletiyem kir, ji kerema xwe derkeve.",

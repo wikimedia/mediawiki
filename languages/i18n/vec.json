@@ -707,8 +707,6 @@
 	"slot-name-main": "Prinçipałe",
 	"content-model-wikitext": "wikitesto",
 	"content-model-text": "testo normal",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Ojeto vodo",
 	"content-json-empty-array": "Array vodo",
 	"expensive-parserfunction-warning": "<strong>Òcio:</strong> Sta pàgina ƚa contien de ƚe chiamate de funsion al parser masa onerose.\n\nDovarìa èsarghe manco de $2 {{PLURAL:$2|chiamata|chiamate}}, {{PLURAL:$1|ghe ne xe}} $1.",

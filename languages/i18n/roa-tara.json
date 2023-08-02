@@ -738,8 +738,6 @@
 	"slot-name-main": "Prengepàle",
 	"content-model-wikitext": "Uicchiteste",
 	"content-model-text": "teste semblice",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Oggette vacande",
 	"content-json-empty-array": "Matrice vacande",
 	"unsupported-content-model": "<strong>Attenziò:</strong> 'u modelle de condenute $1 non g'è supportate jndr'à sta uicchi.",

@@ -840,8 +840,6 @@
 	"slot-name-main": "Huvud",
 	"content-model-wikitext": "wikitext",
 	"content-model-text": "oformaterad text",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Tomt objekt",
 	"content-json-empty-array": "Tomt fält",
 	"unsupported-content-model": "<strong>Varning:</strong> Innehållsmodellen $1 saknar stöd på denna wiki.",

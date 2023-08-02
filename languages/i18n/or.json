@@ -665,7 +665,6 @@
 	"content-model-wikitext": "ଉଇକିଟେକ୍ସଟ",
 	"content-model-text": "ଖାଲି ଲେଖା",
 	"content-model-javascript": "ଜାଭାସ୍କ୍ରିପ୍ଟ",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "ଖାଲି ଅବଜେକ୍ଟ",
 	"content-json-empty-array": "ଖାଲି ଆରେ",
 	"expensive-parserfunction-warning": "'''ଚେତାବନୀ:''' ଏହି ପୃଷ୍ଠାରେ ଅନେକ ଗୁଡ଼ିଏ ମୂଲ୍ୟବାନ ପାର୍ସର ଫଙ୍କସନ କଲ ଅଛି ।\n\nଏଥିରେ ଅତି କମରେ $2 ଗୋଟି {{PLURAL:$2|କଲ|କଲ}} ଥିବା ଲୋଡ଼ା, ଏବେ ଏଥିରେ {{PLURAL:$1|$1 ଗୋଟି କଲ ଅଛି|$1 ଗୋଟି କଲ ଅଛି}} ।",

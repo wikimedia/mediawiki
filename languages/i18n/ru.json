@@ -930,8 +930,6 @@
 	"slot-name-main": "Основное",
 	"content-model-wikitext": "вики-текст",
 	"content-model-text": "обычный текст",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Пустой объект",
 	"content-json-empty-array": "Пустой массив",
 	"unsupported-content-model": "<strong>Внимание:</strong> Модель содержимого $1 не поддерживается на этой вики.",

@@ -337,8 +337,6 @@
 	"defaultmessagetext": "Dating teksto ka mensahe",
 	"content-model-wikitext": "wikiteksto",
 	"content-model-text": "simpleng teksto",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"currentrev-asof": "Pagbabag-o poon ku $1",
 	"revisionasof": "Pagbabago poon ku $1",
 	"previousrevision": "← Mas luma",

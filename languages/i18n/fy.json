@@ -567,7 +567,6 @@
 	"defaultmessagetext": "Standert berjochttekst",
 	"content-model-wikitext": "wikitekst",
 	"content-model-text": "tekst sûnder opmaak",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Leech objekt",
 	"content-json-empty-array": "Lege rige",
 	"expensive-parserfunction-warning": "<strong>Warskôging:</strong> Dizze side brûkt tefolle kostbere ferwurkingsfunksjes.\n\nWylst it minder as $2 {{PLURAL:$2|ferwurkingsfunksje|ferwurkingsfunksjes}} wêze moat, {{PLURAL:$1|is it der no $1|binne it der no $1}}.",

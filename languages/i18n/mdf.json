@@ -12,6 +12,7 @@
 			"Macofe",
 			"Numulunj pilgae",
 			"Vlad5250",
+			"Валгриш",
 			"아라"
 		]
 	},
@@ -250,7 +251,7 @@
 	"sort-descending": "Арафтомс алу",
 	"sort-ascending": "Арафтомс вяри",
 	"nstab-main": "Лопа",
-	"nstab-user": "Тиить лопась",
+	"nstab-user": "{{GENDER:$1|Лопань тиись}}",
 	"nstab-media": "Медиа лопась",
 	"nstab-special": "Башка лопа",
 	"nstab-project": "Проектонь лопа",
@@ -1700,6 +1701,7 @@
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|таг|такт}}]]: $2",
 	"diff-form": "'''форм'''",
 	"deletepage": "Нардамс лопать",
+	"htmlform-submit": "Кучемс",
 	"revdelete-restricted": "нолдаф тевс кардафксне системонь вятиксненди",
 	"revdelete-unrestricted": "системонь вятиксненди кардафксне валхтфт",
 	"rightsnone": "(аш)",

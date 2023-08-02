@@ -696,8 +696,6 @@
 	"slot-name-main": "Prinċipali",
 	"content-model-wikitext": "test tal-wiki",
 	"content-model-text": "test normali",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Oġġett vojt",
 	"duplicate-args-category": "Paġni li jużaw argumenti dduplikati fis-sejħiet għal mudell",
 	"expensive-parserfunction-warning": "'''Twissija:''' Din il-paġna għandha ħafna sejħiet għall-funzjonijiet parser.\n\nSuppost irid ikollha inqas minn $2, bħalissa hemm {{PLURAL:$1|waħda|$1}}.",

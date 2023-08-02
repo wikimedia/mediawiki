@@ -755,7 +755,6 @@
 	"slot-name-main": "Prinçipâ",
 	"content-model-wikitext": "wikitèsto",
 	"content-model-text": "testo normale",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Ogetto veuo",
 	"content-json-empty-array": "Array veuo",
 	"unsupported-content-model": "<strong>Atençion:</strong> o modello de contegnuo $1 o no l'è suportou inte sto wiki chie.",

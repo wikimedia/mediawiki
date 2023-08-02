@@ -736,7 +736,6 @@
 	"content-model-wikitext": "ვიკიტექსტი",
 	"content-model-text": "ჩვეულებრივი ტექსტი",
 	"content-model-javascript": "ჯავასკრიპტი",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "ცარიელი ობიექტი",
 	"content-json-empty-array": "ცარიელი ტაბლო",
 	"duplicate-args-warning": "<strong>გაფრთხილება:</strong> [[:$1]] იძახებს [[:$2]]-ის \"$3\" პარამეტრის ერთზე მეტ მნიშვნელობას. აისახება მხოლოდ ბოლოს გამოყენებული მნიშვნელობა.",

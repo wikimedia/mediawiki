@@ -894,7 +894,6 @@
 	"content-model-wikitext": "wikitexto",
 	"content-model-text": "texto simples",
 	"content-model-javascript": "Javascript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Objeto vazio",
 	"content-json-empty-array": "Array vazia",
 	"unsupported-content-model": "<strong>Aviso:</strong> O modelo de conteúdo $1 não é suportado nessa wiki.",

@@ -739,7 +739,6 @@
 	"content-model-wikitext": "wikitestenn",
 	"content-model-text": "testenn blaen",
 	"content-model-javascript": "Javascript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Elfenn goullo",
 	"content-json-empty-array": "Taolenn c'houllo",
 	"duplicate-args-warning": "<strong>Taolit evezh : Emañ </strong> [[:$1]] o c'hervel [[:$2]] gant muioc'h eget un talvoud evit an arventenn \"$3\". N'eus nemet an talvoud pourchaset da ziwezhañ a vo implijet.",

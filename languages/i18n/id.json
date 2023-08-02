@@ -841,8 +841,6 @@
 	"slot-name-main": "Utama",
 	"content-model-wikitext": "teks wiki",
 	"content-model-text": "teks polos",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Objek kosong",
 	"content-json-empty-array": "Larik kosong",
 	"unsupported-content-model": "<strong> Peringatan: </strong> Model konten $1 tidak didukung di wiki ini.",

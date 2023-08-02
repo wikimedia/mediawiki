@@ -766,8 +766,6 @@
 	"slot-name-main": "Utama",
 	"content-model-wikitext": "sesuratan wiki",
 	"content-model-text": "tulisan polos",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Objék puyung",
 	"content-json-empty-array": "Larik puyung",
 	"unsupported-content-model": "<strong> Paingetan: </strong> Model konten $1 nénten kadukung ring wiki puniki.",

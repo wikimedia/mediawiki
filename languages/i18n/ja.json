@@ -889,8 +889,6 @@
 	"slot-name-main": "メイン",
 	"content-model-wikitext": "ウィキテキスト",
 	"content-model-text": "プレーンテキスト",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "空のオブジェクト",
 	"content-json-empty-array": "空の配列",
 	"unsupported-content-model": "<strong>警告:</strong> コンテンツモデル$1はこのウィキではサポートしていません。",

@@ -484,8 +484,6 @@
 	"edit-no-change": "Redakam olik penedemon, bi vödemivotükams nonik pedunons.",
 	"postedit-confirmation-saved": "Redakam olik pedakipolon.",
 	"edit-already-exists": "No kanoy jafön padi nulik.\nOn ya dabinon.",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"expensive-parserfunction-warning": "Nuned: Pad at vokon „parser“-sekätis tusuvo.\n\nMuton labön {{PLURAL:$2|voki|vokis}} läs $2, ab labon anu {{PLURAL:$1|voki|vokis}} $1.",
 	"expensive-parserfunction-category": "Pads, kels vokons tusuvo „parser“-sekätis jerik",
 	"post-expand-template-inclusion-warning": "Nuned: Gretot samafomotas ninükabik binon tuik.\nSamafomots anik no poninükons.",

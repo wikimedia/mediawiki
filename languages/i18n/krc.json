@@ -761,8 +761,6 @@
 	"slot-name-main": "Баш",
 	"content-model-wikitext": "вики-текст",
 	"content-model-text": "тюз текст",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Бош объект",
 	"content-json-empty-array": "Бош тизим",
 	"unsupported-content-model": "<strong>Эсгертиу:</strong> Контент модель бу викиде $1 дагъан болмайды",

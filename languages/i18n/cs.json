@@ -808,8 +808,6 @@
 	"slot-name-main": "Hlavní",
 	"content-model-wikitext": "wikitext",
 	"content-model-text": "čistý text",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Prázdný objekt",
 	"content-json-empty-array": "Prázdné pole",
 	"unsupported-content-model": "<strong>Varování:</strong> Model obsahu $1 není na této wiki podporován.",

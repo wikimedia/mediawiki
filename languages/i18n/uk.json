@@ -840,8 +840,6 @@
 	"slot-name-main": "Головна",
 	"content-model-wikitext": "вікітекст",
 	"content-model-text": "звичайний текст",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Порожній об'єкт",
 	"content-json-empty-array": "Порожній масив",
 	"unsupported-content-model": "<strong>Увага:</strong> Модель вмісту $1 не підтримується у цій вікі.",

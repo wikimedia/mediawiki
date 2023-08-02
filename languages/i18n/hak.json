@@ -549,8 +549,6 @@
 	"invalid-content-data": "無效嘅數據內容",
 	"content-model-wikitext": "Wki ngî-fap",
 	"content-model-text": "sùn vùn-sṳ",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"post-expand-template-inclusion-warning": "警告: 包含模板大小過大。\n一兜模板將毋會包含。",
 	"post-expand-template-inclusion-category": "模板包含上限已經超過嘅頁面",
 	"post-expand-template-argument-warning": "警告: 邇隻頁面有最少一隻模參數有過大擴展大細。\n邇兜參數會分略過。",

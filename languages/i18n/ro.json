@@ -784,8 +784,6 @@
 	"slot-name-main": "Principal",
 	"content-model-wikitext": "wikitext",
 	"content-model-text": "text simplu",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Obiect vid",
 	"content-json-empty-array": "Matrice vidă",
 	"unsupported-content-model": "<strong>Atenție:</strong> Tipul de conținut $1 nu este suportat pe acest wiki.",

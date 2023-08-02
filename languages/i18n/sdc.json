@@ -579,7 +579,6 @@
 	"slot-name-main": "Prinzipari",
 	"content-model-wikitext": "wikitext",
 	"content-model-text": "testhu noimmali",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Ogghjettu bòiddu",
 	"unsupported-content-diff": "Mudifiggà migga pussìbiri pai li pàgini di lu mudellu di cuntinuddu $1.",
 	"undo-success": "Chistha mudìfigga pò assé annulladda. Verifiggà lu sighenti cuntrasthu prisintaddu pa s'azzirthà chi lu cuntinuddu curripundi a cantu disizaddu e dunca pubbricà li mudìfigghi pa cumprità la procedura di annullamentu.",

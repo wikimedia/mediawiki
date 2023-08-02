@@ -791,8 +791,6 @@
 	"slot-name-main": "Pagrindinis",
 	"content-model-wikitext": "vikitekstas",
 	"content-model-text": "paprastasis tekstas",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Tuščias objektas",
 	"content-json-empty-array": "Tuščias masyvas",
 	"unsupported-content-model": "<strong>Įspėjimas:</strong> Turinio modelis $1 šiame „vikyje“ nėra palaikomas.",

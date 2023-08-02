@@ -763,8 +763,6 @@
 	"slot-name-main": "Nagusia",
 	"content-model-wikitext": "wikitestua",
 	"content-model-text": "testu laua",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Objetu hustua",
 	"content-json-empty-array": "Matrize hutsa",
 	"unsupported-content-model": "<strong>Abisua:</strong> $1 eduki-eredua ez da onartzen wiki honetan.",

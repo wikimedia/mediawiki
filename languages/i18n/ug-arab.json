@@ -668,8 +668,6 @@
 	"editpage-notsupportedcontentformat-text": "مەزمۇن قېلىپى $2 نى مەزمۇن ئەندىزىسى $1 نى قوللىمىدى.",
 	"content-model-wikitext": "ۋىكىتېكىست",
 	"content-model-text": "ساپ تېكىست",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "قۇرۇق ئوبېكىت",
 	"content-json-empty-array": "قۇرۇق سانلار گۇرۇپپىسى",
 	"expensive-parserfunction-warning": "'''ئاگاھلاندۇرۇش:''' بۇ بەت ناھايىتى كۆپ يۇقىرى سەرپىياتتىكى گىرامماتىكىلىق ئىقتىدارنى چاقىرغان.\\n\n\\n\nئۇ {{PLURAL:$2|قېتىم|قېتىم}} دىن ئاز چاقىرىشى لازىم، ھازىر {{PLURAL:$1| $1 قېتىم| $1 قېتىم}}  چاقىرىلغان.",

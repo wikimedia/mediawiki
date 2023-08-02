@@ -571,8 +571,6 @@
 	"slot-name-main": "Printzipale",
 	"content-model-wikitext": "wikitestu",
 	"content-model-text": "testu normale",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Ogetu bòidu",
 	"post-expand-template-inclusion-category": "Pàginas in is cale sa dimensione templates inclùdidos propassat su lìmite cunsentidu",
 	"post-expand-template-argument-category": "Pàginas cuntenentes templates cun argumentos fartados",

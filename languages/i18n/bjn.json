@@ -637,8 +637,6 @@
 	"slot-name-main": "Utama",
 	"content-model-wikitext": "teks wiki",
 	"content-model-text": "teks polos",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Objék puang",
 	"content-json-empty-array": "Larik puang",
 	"unsupported-content-model": "<strong> Paringatan: </strong> Mudil kontén $1 kada didukung di wiki ngini.",

@@ -819,8 +819,6 @@
 	"slot-name-main": "Hoved",
 	"content-model-wikitext": "wikitekst",
 	"content-model-text": "almindelig tekst",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Tomt objekt",
 	"content-json-empty-array": "Tomt matrix",
 	"duplicate-args-warning": "<strong>Advarsel</strong>: [[:$1]] kalder [[:$2]] med mere end en værdi for \"$3\"-parameteren. Kun den sidst angivne værdi vil blive brugt.",

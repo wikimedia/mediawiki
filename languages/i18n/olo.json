@@ -466,7 +466,6 @@
 	"edit-already-exists": "Ei voi luadie uuttu sivuu. Se on jo olemas.",
 	"content-model-wikitext": "wikitekstu",
 	"content-model-text": "perustekstu",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Tyhjy objektu",
 	"viewpagelogs": "Ozuta tämän sivun lougat",
 	"nohistory": "Täl sivul ei ole kohendushistoriedu.",

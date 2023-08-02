@@ -673,8 +673,6 @@
 	"editpage-notsupportedcontentformat-text": "Chan eil modail na susbaint \"$2\" a' cur taic ri fòrmat na susbaint \"$1\".",
 	"content-model-wikitext": "wikitext",
 	"content-model-text": "teacsa lom",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Oibseact falamh",
 	"content-json-empty-array": "Arraigh fhalamh",
 	"duplicate-args-category": "Duilleagan a chleachdas argamaidean dùblaichte ann an gairm teamplaid",

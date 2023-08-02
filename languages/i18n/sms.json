@@ -388,8 +388,6 @@
 	"invalid-json-data": "Vââǥǥlaž JSON: $1",
 	"content-model-wikitext": "wikiteʹkstt",
 	"content-model-text": "tåʹlǩ teʹkstt",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Kuâras objeʹktt",
 	"undo-summary": "Õõʹnni [[Special:Contributions/$2|$2]] ([[User talk:$2|saǥstõõllmõš]]) muuttâs [[Special:Diff/$1|$1]] lij kååʹmtum",
 	"undo-summary-anon": "Õõʹnni [[Special:Contributions/$2|$2]] muuttâs [[Special:Diff/$1|$1]] lij kååʹmtum",

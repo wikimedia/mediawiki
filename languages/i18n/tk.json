@@ -686,8 +686,6 @@
 	"slot-name-main": "Esas",
 	"content-model-wikitext": "wikitekst",
 	"content-model-text": "ýönekeý tekst",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Boş obýekt",
 	"content-json-empty-array": "Boş massiw",
 	"unsupported-content-model": "<strong>Duýduryş:</strong> Mazmun modeli $1 bu wikide goldanylmaýar.",
