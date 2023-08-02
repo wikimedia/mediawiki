@@ -141,6 +141,53 @@ class MultiWriteBagOStuffTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'generic:a:b', $cache->makeKey( 'a', 'b' ) );
 	}
 
+	public function testConvertGenericKey() {
+		$cache1 = new class extends HashBagOStuff {
+			protected function makeKeyInternal( $keyspace, $components ) {
+				return $keyspace . ':short-one-way';
+			}
+
+			protected function convertGenericKey( $key ) {
+				$components = $this->componentsFromGenericKey( $key );
+				$keyspace = array_shift( $components );
+				return $this->makeKeyInternal( $keyspace, $components );
+			}
+		};
+		$cache2 = new class extends HashBagOStuff {
+			protected function makeKeyInternal( $keyspace, $components ) {
+				return $keyspace . ':short-another-way';
+			}
+
+			protected function convertGenericKey( $key ) {
+				$components = $this->componentsFromGenericKey( $key );
+				$keyspace = array_shift( $components );
+				return $this->makeKeyInternal( $keyspace, $components );
+			}
+
+		};
+
+		$cache = new MultiWriteBagOStuff( [
+			'caches' => [ $cache1, $cache2 ]
+		] );
+		$key = $cache->makeKey( 'a', 'b' );
+		$cache->set( $key, 'my_value' );
+
+		$this->assertSame(
+			'local:a:b',
+			$key
+		);
+		$this->assertSame(
+			[ 'local:short-one-way' ],
+			array_keys( TestingAccessWrapper::newFromObject( $cache1 )->bag ),
+			'key gets re-encoded for first backend'
+		);
+		$this->assertSame(
+			[ 'local:short-another-way' ],
+			array_keys( TestingAccessWrapper::newFromObject( $cache2 )->bag ),
+			'key gets re-encoded for second backend'
+		);
+	}
+
 	public function testMakeGlobalKey() {
 		$cache1 = $this->getMockBuilder( HashBagOStuff::class )
 			->onlyMethods( [ 'makeGlobalKey' ] )->getMock();
