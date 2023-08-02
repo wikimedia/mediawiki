@@ -167,6 +167,10 @@ class TempUserCreator implements TempUserConfig {
 		return $this->config->getPlaceholderName();
 	}
 
+	public function getMatchPattern(): Pattern {
+		return $this->config->getMatchPattern();
+	}
+
 	/**
 	 * Acquire a new username and return it. Permanently reserve the ID in
 	 * the database.

@@ -21,6 +21,7 @@
 namespace MediaWiki\User;
 
 use Iterator;
+use MediaWiki\User\TempUser\TempUserConfig;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -30,15 +31,23 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 
 	/** @var ActorStore */
 	private $actorStore;
+	private TempUserConfig $tempUserConfig;
 
 	/**
 	 * @internal
 	 * @param IReadableDatabase $db
 	 * @param ActorStore $actorStore
+	 * @param TempUserConfig $tempUserConfig
 	 */
-	public function __construct( IReadableDatabase $db, ActorStore $actorStore ) {
+	public function __construct(
+		IReadableDatabase $db,
+		ActorStore $actorStore,
+		TempUserConfig $tempUserConfig
+	) {
 		parent::__construct( $db );
+
 		$this->actorStore = $actorStore;
+		$this->tempUserConfig = $tempUserConfig;
 		$this->table( 'actor' );
 	}
 
@@ -158,6 +167,42 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 	 */
 	public function anon(): self {
 		$this->conds( [ 'actor_user' => null ] );
+		return $this;
+	}
+
+	/**
+	 * Only return named users.
+	 *
+	 * @return UserSelectQueryBuilder
+	 */
+	public function named(): self {
+		if ( !$this->tempUserConfig->isEnabled() ) {
+			// nothing to do: getMatchPattern throws if temp accounts aren't enabled
+			return $this;
+		}
+
+		$this->conds( [
+			'actor_name NOT ' . $this->tempUserConfig->getMatchPattern()
+				->buildLike( $this->db )
+		] );
+		return $this;
+	}
+
+	/**
+	 * Only return temp users
+	 *
+	 * @return UserSelectQueryBuilder
+	 */
+	public function temp(): self {
+		if ( !$this->tempUserConfig->isEnabled() ) {
+			// nothing to do: getMatchPattern throws if temp accounts aren't enabled
+			return $this;
+		}
+
+		$this->conds( [
+			'actor_name ' . $this->tempUserConfig->getMatchPattern()
+				->buildLike( $this->db )
+		] );
 		return $this;
 	}
 

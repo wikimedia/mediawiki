@@ -7,6 +7,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\ActorStoreFactory;
+use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNameUtils;
 use MediaWikiUnitTestCase;
@@ -65,6 +66,7 @@ class ActorStoreFactoryTest extends MediaWikiUnitTestCase {
 			new ServiceOptions( ActorStoreFactory::CONSTRUCTOR_OPTIONS, $config ),
 			$this->getMockLoadBalancerFactory( $expectedDomain ),
 			$this->createNoOpMock( UserNameUtils::class ),
+			$this->createNoOpMock( TempUserConfig::class ),
 			new NullLogger()
 		);
 		$notFromCache = $factory->getActorStore( $domain );
@@ -80,6 +82,7 @@ class ActorStoreFactoryTest extends MediaWikiUnitTestCase {
 			new ServiceOptions( ActorStoreFactory::CONSTRUCTOR_OPTIONS, $config ),
 			$this->getMockLoadBalancerFactory( $expectedDomain ),
 			$this->createNoOpMock( UserNameUtils::class ),
+			$this->createNoOpMock( TempUserConfig::class ),
 			new NullLogger()
 		);
 		$notFromCache = $factory->getActorNormalization( $domain );
@@ -95,6 +98,7 @@ class ActorStoreFactoryTest extends MediaWikiUnitTestCase {
 			new ServiceOptions( ActorStoreFactory::CONSTRUCTOR_OPTIONS, $config ),
 			$this->getMockLoadBalancerFactory( $expectedDomain ),
 			$this->createNoOpMock( UserNameUtils::class ),
+			$this->createNoOpMock( TempUserConfig::class ),
 			new NullLogger()
 		);
 		$notFromCache = $factory->getUserIdentityLookup( $domain );

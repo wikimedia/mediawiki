@@ -25,6 +25,7 @@ use DBAccessObjectUtils;
 use ExternalUserNames;
 use InvalidArgumentException;
 use MediaWiki\DAO\WikiAwareEntity;
+use MediaWiki\User\TempUser\TempUserConfig;
 use Psr\Log\LoggerInterface;
 use stdClass;
 use User;
@@ -52,6 +53,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 
 	/** @var UserNameUtils */
 	private $userNameUtils;
+	private TempUserConfig $tempUserConfig;
 
 	/** @var LoggerInterface */
 	private $logger;
@@ -65,12 +67,14 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	/**
 	 * @param ILoadBalancer $loadBalancer
 	 * @param UserNameUtils $userNameUtils
+	 * @param TempUserConfig $tempUserConfig
 	 * @param LoggerInterface $logger
 	 * @param string|false $wikiId
 	 */
 	public function __construct(
 		ILoadBalancer $loadBalancer,
 		UserNameUtils $userNameUtils,
+		TempUserConfig $tempUserConfig,
 		LoggerInterface $logger,
 		$wikiId = WikiAwareEntity::LOCAL
 	) {
@@ -78,6 +82,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 
 		$this->loadBalancer = $loadBalancer;
 		$this->userNameUtils = $userNameUtils;
+		$this->tempUserConfig = $tempUserConfig;
 		$this->logger = $logger;
 		$this->wikiId = $wikiId;
 
@@ -718,7 +723,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			[ $db, $options ] = $this->getDBConnectionRefForQueryFlags( $dbOrQueryFlags );
 		}
 
-		return ( new UserSelectQueryBuilder( $db, $this ) )->options( $options );
+		return ( new UserSelectQueryBuilder( $db, $this, $this->tempUserConfig ) )->options( $options );
 	}
 
 	/**

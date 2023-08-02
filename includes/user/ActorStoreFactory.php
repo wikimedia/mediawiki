@@ -23,6 +23,7 @@ namespace MediaWiki\User;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\MainConfigNames;
+use MediaWiki\User\TempUser\TempUserConfig;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -46,6 +47,7 @@ class ActorStoreFactory {
 
 	/** @var UserNameUtils */
 	private $userNameUtils;
+	private TempUserConfig $tempUserConfig;
 
 	/** @var LoggerInterface */
 	private $logger;
@@ -63,12 +65,14 @@ class ActorStoreFactory {
 	 * @param ServiceOptions $options
 	 * @param ILBFactory $loadBalancerFactory
 	 * @param UserNameUtils $userNameUtils
+	 * @param TempUserConfig $tempUserConfig
 	 * @param LoggerInterface $logger
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		ILBFactory $loadBalancerFactory,
 		UserNameUtils $userNameUtils,
+		TempUserConfig $tempUserConfig,
 		LoggerInterface $logger
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -76,6 +80,7 @@ class ActorStoreFactory {
 		$this->sharedDB = $options->get( MainConfigNames::SharedDB );
 		$this->sharedTables = $options->get( MainConfigNames::SharedTables );
 		$this->userNameUtils = $userNameUtils;
+		$this->tempUserConfig = $tempUserConfig;
 		$this->logger = $logger;
 	}
 
@@ -104,6 +109,7 @@ class ActorStoreFactory {
 			$this->storeCache[$storeCacheKey] = new ActorStore(
 				$this->getLoadBalancerForTable( 'actor', $wikiId ),
 				$this->userNameUtils,
+				$this->tempUserConfig,
 				$this->logger,
 				$wikiId
 			);
