@@ -925,6 +925,11 @@
 			}
 		};
 
+		// Emit deprecation warnings
+		if ( registry[ module ].deprecationWarning ) {
+			mw.log.warn( registry[ module ].deprecationWarning );
+		}
+
 		// Add localizations to message system
 		if ( registry[ module ].messages ) {
 			mw.messages.set( registry[ module ].messages );
@@ -1506,8 +1511,9 @@
 		 * @private
 		 * @param {Object} [messages] List of key/value pairs to be added to mw#messages.
 		 * @param {Object} [templates] List of key/value pairs to be added to mw#templates.
+		 * @param {String|null} [deprecationWarning] Deprecation warning if any
 		 */
-		implement: function ( module, script, style, messages, templates ) {
+		implement: function ( module, script, style, messages, templates, deprecationWarning ) {
 			var split = splitModuleKey( module ),
 				name = split.name,
 				version = split.version;
@@ -1529,6 +1535,7 @@
 			registry[ name ].style = style || null;
 			registry[ name ].messages = messages || null;
 			registry[ name ].templates = templates || null;
+			registry[ name ].deprecationWarning = deprecationWarning || null;
 			// The module may already have been marked as erroneous
 			if ( registry[ name ].state !== 'error' && registry[ name ].state !== 'missing' ) {
 				setAndPropagate( name, 'loaded' );
@@ -1907,7 +1914,7 @@
 				// Partial descriptor
 				// (e.g. skipped module, or style module with state=ready)
 				[ descriptor.script, descriptor.style, descriptor.messages,
-					descriptor.templates ].indexOf( undefined ) !== -1
+					descriptor.templates, descriptor.deprecationWarning ].indexOf( undefined ) !== -1
 			) {
 				// Decline to store
 				return;
@@ -1942,7 +1949,8 @@
 					encodedScript,
 					JSON.stringify( descriptor.style ),
 					JSON.stringify( descriptor.messages ),
-					JSON.stringify( descriptor.templates )
+					JSON.stringify( descriptor.templates ),
+					JSON.stringify( descriptor.deprecationWarning )
 				];
 			} catch ( e ) {
 				mw.trackError( 'resourceloader.exception', {

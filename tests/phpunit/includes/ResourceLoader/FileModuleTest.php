@@ -46,13 +46,6 @@ class FileModuleTest extends ResourceLoaderTestCase {
 		return [
 			'noTemplateModule' => [],
 
-			'deprecatedModule' => $base + [
-				'deprecated' => true,
-			],
-			'deprecatedTomorrow' => $base + [
-				'deprecated' => 'Will be removed tomorrow.'
-			],
-
 			'htmlTemplateModule' => $base + [
 				'templates' => [
 					'templates/template.html',
@@ -125,33 +118,6 @@ class FileModuleTest extends ResourceLoaderTestCase {
 		$rl = new FileModule( $module );
 		$rl->setName( 'testing' );
 		$this->assertEquals( $expected, $rl->getDependencies() );
-	}
-
-	public static function providerDeprecatedModules() {
-		return [
-			[
-				'deprecatedModule',
-				'mw.log.warn("This page is using the deprecated ResourceLoader module \"deprecatedModule\".");',
-			],
-			[
-				'deprecatedTomorrow',
-				'mw.log.warn(' .
-					'"This page is using the deprecated ResourceLoader module \"deprecatedTomorrow\".\\n' .
-					"Will be removed tomorrow." .
-					'");'
-			]
-		];
-	}
-
-	/**
-	 * @dataProvider providerDeprecatedModules
-	 */
-	public function testDeprecatedModules( $name, $expected ) {
-		$modules = self::getModules();
-		$module = new FileModule( $modules[$name] );
-		$module->setName( $name );
-		$ctx = $this->getResourceLoaderContext();
-		$this->assertEquals( $expected, $module->getScript( $ctx ) );
 	}
 
 	public function testGetScript() {
@@ -633,35 +599,6 @@ class FileModuleTest extends ResourceLoaderTestCase {
 						]
 					],
 					'main' => 'script-comment.js'
-				]
-			],
-			'deprecated package' => [
-				$base + [
-					'packageFiles' => [
-						'script-comment.js',
-						[ 'name' => 'script-nosemi.js', 'main' => true ]
-					],
-					'deprecated' => 'Deprecation test',
-					'name' => 'test-deprecated'
-				],
-				[
-					'files' => [
-						'script-comment.js' => [
-							'type' => 'script',
-							'content' => $commentScript,
-							'filePath' => 'script-comment.js',
-						],
-						'script-nosemi.js' => [
-							'type' => 'script',
-							'content' => 'mw.log.warn(' .
-								'"This page is using the deprecated ResourceLoader module \"test-deprecated\".\\n' .
-								"Deprecation test" .
-								'");' .
-								$nosemiScript,
-							'filePath' => 'script-nosemi.js',
-						]
-					],
-					'main' => 'script-nosemi.js'
 				]
 			],
 			'explicit main file' => [
