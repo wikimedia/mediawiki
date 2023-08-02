@@ -35,7 +35,8 @@
 			"아라",
 			"McDutchie",
 			"Base",
-			"Hakimi97"
+			"Hakimi97",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Garis bawah pautan:",
@@ -1012,7 +1013,7 @@
 	"showingresultsinrange": "Yang berikut adalah {{PLURAL:$1|<strong>satu</strong> hasil|sebanyak <strong>$1</strong> hasil}} dalam julat #<strong>$2</strong> hingga #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Hasil <strong>$1</strong> / <strong>$3</strong>|Hasil <strong>$1 – $2</strong> / <strong>$3</strong>}}",
 	"search-nonefound": "Tiada hasil yang sepadan dengan pertanyaan.",
-	"search-nonefound-thiswiki": "Tiada hasil yang sepadan dengan pertanyaan di tapak ini.",
+	"search-nonefound-thiswiki": "Tiada hasil yang sepadan dengan pertanyaan pada tapak ini.",
 	"powersearch-legend": "Carian lanjutan",
 	"powersearch-ns": "Cari dalam ruang nama:",
 	"powersearch-togglelabel": "Pilih:",
@@ -3584,6 +3585,7 @@
 	"limitreport-templateargumentsize-value": "$1/$2 {{PLURAL:$2|bait}}",
 	"limitreport-expansiondepth": "Kedalaman peluasan terjauh",
 	"limitreport-expensivefunctioncount": "Kiraan fungsi penghurai muatan tinggi",
+	"limitreport-unstrip-size-value": "$1/$2 {{PLURAL:$2|bait}}",
 	"expandtemplates": "Kembangkan templat",
 	"expand_templates_intro": "Halaman khas ini mengambil teks dan mengembangkan semua templat di dalamnya secara rekursif.\nIa juga mengembangkan fungsi-fungsi penghurai seperti\n<code><nowiki>{{</nowiki>#language:…}}</code>, dan pembolehubah-pembolehubah seperti\n<code><nowiki>{{</nowiki>CURRENTDAY}}</code>.\nSebenarnya, ia mengembangkan segalanya dalam tanda kurung panah berganda.",
 	"expand_templates_title": "Tajuk konteks, untuk {{FULLPAGENAME}} dan sebagainya:",
@@ -3741,5 +3743,6 @@
 	"passwordpolicies-policyflag-forcechange": "mesti ubah di log masuk",
 	"userlogout-continue": "Adakah anda mahu log keluar?",
 	"paramvalidator-help-type-user-subtype-name": "nama pengguna",
-	"paramvalidator-help-type-user-subtype-ip": "IP"
+	"paramvalidator-help-type-user-subtype-ip": "IP",
+	"paramvalidator-help-type-user-subtype-id": "ID pengguna (contohnya \"#12345\")"
 }
