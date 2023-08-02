@@ -352,6 +352,7 @@
 	"readonly_lag": "База података је аутоматски закључана док се помоћни сервери базе не ускладе с главним.",
 	"nonwrite-api-promise-error": "HTTP заглавље „Promise-Non-Write-API-Action” је послато, али је упућено записном модулу API-а.",
 	"timeouterror": "Истекло време за одазив сервера",
+	"timeouterror-text": "Прекорачено максимално време захтева ($1 {{PLURAL:$1|секунди}}).",
 	"internalerror": "Унутрашња грешка",
 	"internalerror_info": "Унутрашња грешка: $1",
 	"internalerror-fatal-exception": "Грешка необрађеног изузетка врсте „$1”",
