@@ -3,6 +3,7 @@
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 
@@ -312,6 +313,8 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 			ParserOptions::newFromAnon()
 		);
 
-		$this->assertTrue( $contentRenderer->getParserOutput( $pstContent, $pageObj )->getFlag( 'user-signature' ) );
+		$this->assertTrue( $contentRenderer->getParserOutput( $pstContent, $pageObj )->getOutputFlag(
+			ParserOutputFlags::USER_SIGNATURE
+		) );
 	}
 }

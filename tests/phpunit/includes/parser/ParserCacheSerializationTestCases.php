@@ -238,7 +238,7 @@ abstract class ParserCacheSerializationTestCases {
 		$parserOutputWithMetadata->setEnableOOUI( true );
 		$parserOutputWithMetadata->setHideNewSection( true );
 		$parserOutputWithMetadata->setNewSection( true );
-		$parserOutputWithMetadata->setFlag( 'test' );
+		$parserOutputWithMetadata->setOutputFlag( 'test' );
 
 		$parserOutputWithSections = new ParserOutput( '' );
 		$parserOutputWithSections->setSections( self::SECTIONS );
@@ -306,7 +306,7 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertFalse( $object->getHideNewSection() );
 					$testCase->assertFalse( $object->getNewSection() );
 					$testCase->assertFalse( $object->getDisplayTitle() );
-					$testCase->assertFalse( $object->getFlag( 'test' ) );
+					$testCase->assertFalse( $object->getOutputFlag( 'test' ) );
 					$testCase->assertArrayEquals( [], $object->getAllFlags() );
 					$testCase->assertNull( $object->getPageProperty( 'test_prop' ) );
 					$testCase->assertArrayEquals( [], $object->getPageProperties() );
@@ -421,7 +421,7 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertTrue( $object->getEnableOOUI() );
 					$testCase->assertTrue( $object->getHideNewSection() );
 					$testCase->assertTrue( $object->getNewSection() );
-					$testCase->assertTrue( $object->getFlag( 'test' ) );
+					$testCase->assertTrue( $object->getOutputFlag( 'test' ) );
 					$testCase->assertArrayEquals( [ 'test' ], $object->getAllFlags() );
 				}
 			],
