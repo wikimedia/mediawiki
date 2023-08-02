@@ -343,11 +343,19 @@ class DatabaseBlockStore {
 			}
 		} else {
 			// autoblock no longer required, delete corresponding autoblock(s)
-			$this->blockRestrictionStore->deleteByParentBlockId( $blockId );
-			$dbw->newDeleteQueryBuilder()
-				->delete( 'ipblocks' )
+			$ids = $dbw->newSelectQueryBuilder()
+				->select( 'ipb_id' )
+				->from( 'ipblocks' )
 				->where( [ 'ipb_parent_block_id' => $blockId ] )
-				->caller( __METHOD__ )->execute();
+				->caller( __METHOD__ )->fetchFieldValues();
+			if ( $ids ) {
+				$ids = array_map( 'intval', $ids );
+				$this->blockRestrictionStore->deleteByBlockId( $ids );
+				$dbw->newDeleteQueryBuilder()
+					->delete( 'ipblocks' )
+					->where( [ 'ipb_id' => $ids ] )
+					->caller( __METHOD__ )->execute();
+			}
 		}
 
 		$dbw->endAtomic( __METHOD__ );
@@ -381,17 +389,18 @@ class DatabaseBlockStore {
 			);
 		}
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY, [], $this->wikiId );
-
-		$this->blockRestrictionStore->deleteByParentBlockId( $blockId );
-		$dbw->newDeleteQueryBuilder()
-			->delete( 'ipblocks' )
+		$ids = $dbw->newSelectQueryBuilder()
+			->select( 'ipb_id' )
+			->from( 'ipblocks' )
 			->where( [ 'ipb_parent_block_id' => $blockId ] )
-			->caller( __METHOD__ )->execute();
+			->caller( __METHOD__ )->fetchFieldValues();
+		$ids = array_map( 'intval', $ids );
+		$ids[] = $blockId;
 
-		$this->blockRestrictionStore->deleteByBlockId( $blockId );
+		$this->blockRestrictionStore->deleteByBlockId( $ids );
 		$dbw->newDeleteQueryBuilder()
 			->delete( 'ipblocks' )
-			->where( [ 'ipb_id' => $blockId ] )
+			->where( [ 'ipb_id' => $ids ] )
 			->caller( __METHOD__ )->execute();
 
 		return $dbw->affectedRows() > 0;
