@@ -1268,7 +1268,7 @@
 	/**
 	 * @private
 	 * @param {string} module
-	 * @param {string|number} [version]
+	 * @param {string} [version]
 	 * @param {string[]} [dependencies]
 	 * @param {string} [group]
 	 * @param {string} [source]
@@ -1287,7 +1287,7 @@
 			},
 			// module.export objects for each package file inside this module
 			packageExports: {},
-			version: String( version || '' ),
+			version: version || '',
 			dependencies: dependencies || [],
 			group: typeof group === 'undefined' ? null : group,
 			source: typeof source === 'string' ? source : 'local',
@@ -1439,8 +1439,7 @@
 		 *
 		 * @param {string|Array} modules Module name or array of arrays, each containing
 		 *  a list of arguments compatible with this method
-		 * @param {string|number} [version] Module version hash (falls backs to empty string)
-		 *  Can also be a number (timestamp) for compatibility with MediaWiki 1.25 and earlier.
+		 * @param {string} [version] Module version hash (falls backs to empty string)
 		 * @param {string[]} [dependencies] Array of module names on which this module depends.
 		 * @param {string} [group=null] Group which the module is in
 		 * @param {string} [source='local'] Name of the source
@@ -1489,7 +1488,6 @@
 		 * @param {string} module Name of module and current module version. Formatted
 		 *  as '`[name]@[version]`". This version should match the requested version
 		 *  (from #batchRequest and #registry). This avoids race conditions (T117587).
-		 *  For back-compat with MediaWiki 1.27 and earlier, the version may be omitted.
 		 * @param {Function|Array|string|Object} [script] Module code. This can be a function,
 		 *  a list of URLs to load via `<script src>`, a string for `domEval()`, or an
 		 *  object like {"files": {"foo.js":function, "bar.js": function, ...}, "main": "foo.js"}.
@@ -1521,13 +1519,11 @@
 			if ( registry[ name ].script !== undefined ) {
 				throw new Error( 'module already implemented: ' + name );
 			}
-			if ( version ) {
-				// Without this reset, if there is a version mismatch between the
-				// requested and received module version, then mw.loader.store would
-				// cache the response under the requested key. Thus poisoning the cache
-				// indefinitely with a stale value. (T117587)
-				registry[ name ].version = version;
-			}
+			// Without this reset, if there is a version mismatch between the
+			// requested and received module version, then mw.loader.store would
+			// cache the response under the requested key. Thus poisoning the cache
+			// indefinitely with a stale value. (T117587)
+			registry[ name ].version = version;
 			// Attach components
 			registry[ name ].script = script || null;
 			registry[ name ].style = style || null;

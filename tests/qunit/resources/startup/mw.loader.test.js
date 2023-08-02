@@ -964,42 +964,6 @@
 			} );
 	} );
 
-	QUnit.test( 'Stale response caching - backcompat', function ( assert ) {
-		var script = 0;
-		// Enable store and stub timeout/idle scheduling
-		this.sandbox.stub( mw.loader.store, 'enabled', true );
-		this.sandbox.stub( window, 'setTimeout', function ( fn ) {
-			fn();
-		} );
-		this.sandbox.stub( mw, 'requestIdleCallback', function ( fn ) {
-			fn();
-		} );
-
-		mw.loader.register( 'test.stalebc', 'v2' );
-		assert.strictEqual( mw.loader.store.get( 'test.stalebc' ), false, 'Not in store' );
-
-		mw.loader.implement( 'test.stalebc', function () {
-			script++;
-		} );
-
-		return mw.loader.using( 'test.stalebc' )
-			.then( function () {
-				assert.strictEqual( script, 1, 'module script ran' );
-				assert.strictEqual( mw.loader.getState( 'test.stalebc' ), 'ready' );
-				assert.strictEqual( typeof mw.loader.store.get( 'test.stalebc' ), 'string', 'In store' );
-			} )
-			.then( function () {
-				// Reset run time, but keep mw.loader.store
-				mw.loader.moduleRegistry[ 'test.stalebc' ].script = undefined;
-				mw.loader.moduleRegistry[ 'test.stalebc' ].state = 'registered';
-				mw.loader.moduleRegistry[ 'test.stalebc' ].version = 'v2';
-
-				// Legacy behaviour is storing under the expected version,
-				// which woudl lead to whitewashing and stale values (T117587).
-				assert.strictEqual( typeof mw.loader.store.get( 'test.stalebc' ), 'string', 'In store' );
-			} );
-	} );
-
 	QUnit.test( 'No storing of group=private responses', function ( assert ) {
 		var name = 'test.group.priv';
 
