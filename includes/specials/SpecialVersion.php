@@ -573,7 +573,7 @@ class SpecialVersion extends SpecialPage {
 
 		$this->addTocSection( 'version-extensions', 'mw-version-ext' );
 
-		$out = Xml::element(
+		$out = Html::element(
 				'h2',
 				[ 'id' => 'mw-version-ext' ],
 				$this->msg( 'version-extensions' )->text()
@@ -584,7 +584,7 @@ class SpecialVersion extends SpecialPage {
 				// Skins are displayed separately, see getSkinCredits()
 				( count( $credits ) === 1 && isset( $credits['skin'] ) )
 		) {
-			$out .= Xml::element(
+			$out .= Html::element(
 					'p',
 					[],
 					$this->msg( 'version-extensions-no-ext' )->text()
@@ -597,7 +597,7 @@ class SpecialVersion extends SpecialPage {
 		if ( !array_key_exists( 'other', $credits ) ) {
 			$credits['other'] = [];
 		}
-		$out .= Xml::openElement( 'table', [ 'class' => 'wikitable plainlinks', 'id' => 'sv-ext' ] );
+		$out .= Html::openElement( 'table', [ 'class' => 'wikitable plainlinks', 'id' => 'sv-ext' ] );
 
 		// Find all extensions that do not have a valid type and give them the type 'other'.
 		foreach ( $credits as $type => $extensions ) {
@@ -618,7 +618,7 @@ class SpecialVersion extends SpecialPage {
 		// We want the 'other' type to be last in the list.
 		$out .= $this->getExtensionCategory( 'other', $extensionTypes['other'], $credits['other'] );
 
-		$out .= Xml::closeElement( 'table' );
+		$out .= Html::closeElement( 'table' );
 
 		return $out;
 	}
