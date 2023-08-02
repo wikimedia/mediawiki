@@ -500,18 +500,6 @@ abstract class BagOStuff implements
 	}
 
 	/**
-	 * Let a callback be run to avoid wasting time on special blocking calls
-	 *
-	 * This is hard-deprecated and non-functional since 1.39. The callback
-	 * will not be called.
-	 *
-	 * @param callable $workCallback
-	 * @since 1.28
-	 * @deprecated since 1.39
-	 */
-	abstract public function addBusyCallback( callable $workCallback );
-
-	/**
 	 * Make a cache key for the default keyspace and given components
 	 *
 	 * @see IStoreKeyEncoder::makeGlobalKey()

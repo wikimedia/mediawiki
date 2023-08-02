@@ -276,10 +276,6 @@ class ReplicatedBagOStuff extends BagOStuff {
 		return $key;
 	}
 
-	public function addBusyCallback( callable $workCallback ) {
-		return $this->writeStore->addBusyCallback( $workCallback );
-	}
-
 	public function setMockTime( &$time ) {
 		parent::setMockTime( $time );
 		$this->writeStore->setMockTime( $time );
