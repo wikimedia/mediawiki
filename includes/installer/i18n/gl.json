@@ -101,6 +101,7 @@
 	"config-db-prefix": "Prefixo das táboas da base de datos (sen guións):",
 	"config-db-prefix-help": "Se necesita compartir unha base de datos entre varios wikis ou entre MediaWiki e outra aplicación web, pode optar por engadir un prefixo a todos os nomes da táboa para evitar conflitos.\nNon utilice espazos.\n\nO normal é que este campo quede baleiro.",
 	"config-mysql-old": "Necesítase MySQL $1 ou posterior. Vostede ten a versión $2.",
+	"config-mariadb-old": "Necesítase MariaDB $1 ou posterior. Vostede ten a versión $2.",
 	"config-db-port": "Porto da base de datos:",
 	"config-db-schema": "Esquema para MediaWiki (sen guións):",
 	"config-db-schema-help": "O normal é que este esquema sexa correcto.\nCámbieo soamente se sabe que é necesario.",

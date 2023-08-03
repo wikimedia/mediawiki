@@ -116,6 +116,7 @@
 	"config-db-prefix": "Databasetabelvoorvoegsel (zonder koppeltekens):",
 	"config-db-prefix-help": "Als u een database moet gebruiken voor meerdere wiki's, of voor MediaWiki en een andere toepassing, dan kunt u ervoor kiezen om een voorvoegsel toe te voegen aan de tabelnamen om conflicten te voorkomen.\nGebruik geen spaties.\n\nDit veld wordt meestal leeg gelaten.",
 	"config-mysql-old": "U moet MySQL $1 of later gebruiken.\nU gebruikt $2.",
+	"config-mariadb-old": "U moet MariaDB $1 of later gebruiken.\nU gebruikt $2.",
 	"config-db-port": "Databasepoort:",
 	"config-db-schema": "Schema voor MediaWiki (zonder koppeltekens):",
 	"config-db-schema-help": "Dit schema klopt meestal.\nWijzig het alleen als u weet dat dit nodig is.",
