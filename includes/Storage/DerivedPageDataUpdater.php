@@ -317,9 +317,6 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 	/** @var bool */
 	private $warmParsoidParserCache;
 
-	/** @var ParsoidOutputAccess */
-	private $parsoidOutputAccess;
-
 	/**
 	 * @param ServiceOptions $options
 	 * @param WikiPage $wikiPage
@@ -327,7 +324,6 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 	 * @param RevisionRenderer $revisionRenderer
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param ParserCache $parserCache
-	 * @param ParsoidOutputAccess $parsoidOutputAccess
 	 * @param JobQueueGroup $jobQueueGroup
 	 * @param MessageCache $messageCache
 	 * @param Language $contLang
@@ -349,7 +345,6 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		RevisionRenderer $revisionRenderer,
 		SlotRoleRegistry $slotRoleRegistry,
 		ParserCache $parserCache,
-		ParsoidOutputAccess $parsoidOutputAccess,
 		JobQueueGroup $jobQueueGroup,
 		MessageCache $messageCache,
 		Language $contLang,
@@ -389,7 +384,6 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		$this->logger = new NullLogger();
 		$this->warmParsoidParserCache = $options
 			->get( MainConfigNames::ParsoidCacheConfig )['WarmParsoidParserCache'];
-		$this->parsoidOutputAccess = $parsoidOutputAccess;
 	}
 
 	public function setLogger( LoggerInterface $logger ) {

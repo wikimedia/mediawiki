@@ -1343,7 +1343,6 @@ return [
 			$services->getRevisionRenderer(),
 			$services->getSlotRoleRegistry(),
 			$services->getParserCache(),
-			$services->getParsoidOutputAccess(),
 			$services->getJobQueueGroup(),
 			$services->getMessageCache(),
 			$services->getContentLanguage(),
