@@ -1236,6 +1236,12 @@ $wgTemplateLinksSchemaMigrationStage = null;
 $wgPageLinksSchemaMigrationStage = null;
 
 /**
+ * Config variable stub for the ExternalLinksDomainGaps setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::ExternalLinksDomainGaps
+ */
+$wgExternalLinksDomainGaps = null;
+
+/**
  * Config variable stub for the ContentHandlers setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ContentHandlers
  */

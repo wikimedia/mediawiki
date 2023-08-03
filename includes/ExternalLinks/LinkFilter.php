@@ -325,6 +325,9 @@ class LinkFilter {
 			'oneWildcard' => false,
 			'db' => null,
 		];
+		$domainGaps = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::ExternalLinksDomainGaps
+		);
 
 		if ( is_string( $options['protocol'] ) ) {
 			$options['protocol'] = [ $options['protocol'] ];
@@ -345,11 +348,19 @@ class LinkFilter {
 				array_pop( $trimmedlikeDomain );
 			}
 			$index1 = implode( '', $trimmedlikeDomain );
+			$thisDomainConditions = [];
 			if ( $options['oneWildcard'] && $likePath[0] != '/' ) {
-				$domainConditions[] = 'el_to_domain_index = ' . $db->addQuotes( $index1 );
+				$thisDomainConditions[] = 'el_to_domain_index = ' . $db->addQuotes( $index1 );
 			} else {
-				$domainConditions[] = "el_to_domain_index" . $db->buildLike( $index1, $db->anyString() );
+				$thisDomainConditions[] = "el_to_domain_index" . $db->buildLike( $index1, $db->anyString() );
 			}
+			foreach ( $domainGaps[$index1] ?? [] as $from => $to ) {
+				$thisDomainConditions[] = $db->makeList( [
+					$db->buildComparison( '<', [ 'el_id' => $from ] ),
+					$db->buildComparison( '>', [ 'el_id' => $to ] ),
+				], ISQLPlatform::LIST_OR );
+			}
+			$domainConditions[] = $db->makeList( $thisDomainConditions, ISQLPlatform::LIST_AND );
 
 		}
 		if ( !$domainConditions ) {

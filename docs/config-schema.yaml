@@ -1994,6 +1994,23 @@ config-schema:
               - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
             History:
               - 1.41: Added
+    ExternalLinksDomainGaps:
+        default: {  }
+        type: object
+        description: |-
+            Gaps in the externallinks table for certain domains.
+            If you have identified certain domains for which externallinks searches are slow,
+            you can use this setting to make MediaWiki skip large el_id ranges,
+            rather than having the database scan through them fruitlessly.
+            Each key in the array is a domain name in el_to_domain_index form,
+            e.g. 'https://com.example.'.
+            The value is an array with integer keys and values,
+            where each entry is a range (from => to, both inclusive)
+            of el_id values where this domain is known to have no entries.
+            (Subdomains are included, i.e., configuring an entry here guarantees to MediaWiki
+            that there are no rows where the el_to_domain_index starts with this value.)
+            History:
+              - 1.41: Added
     ContentHandlers:
         default:
             wikitext: { class: WikitextContentHandler, services: [TitleFactory, ParserFactory, GlobalIdGenerator, LanguageNameUtils, MagicWordFactory, ParsoidParserFactory] }
