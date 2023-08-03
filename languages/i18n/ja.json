@@ -3078,6 +3078,7 @@
 	"tooltip-pt-createaccount": "アカウントを作成してログインすることをお勧めしますが、必須ではありません",
 	"tooltip-ca-talk": "本文ページについての議論",
 	"tooltip-ca-edit": "このページを編集",
+	"tooltip-ca-create": "このページを作成",
 	"tooltip-ca-addsection": "新しい節を開始する",
 	"tooltip-ca-viewsource": "このページは保護されています。\nページのソースを閲覧できます。",
 	"tooltip-ca-history": "このページの過去の版",

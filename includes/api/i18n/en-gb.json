@@ -30,6 +30,7 @@
 	"apihelp-query+revisions+base-param-contentformat": "Serialisation format used for <var>$1difftotext</var> and expected for output of content.",
 	"apihelp-query+search-example-generator": "Get page information about the pages returned for a search for <kbd>meaning</kbd>.",
 	"apihelp-query+siteinfo-paramvalue-prop-rightsinfo": "Returns wiki rights (licence) information if available.",
+	"apihelp-query+siteinfo-paramvalue-prop-uploaddialog": "Returns the upload dialogue configuration.",
 	"apihelp-query+watchlist-example-simple": "List the top revision for recently changed pages on the watchlist of the current user.",
 	"apihelp-query+watchlistraw-example-simple": "List pages on the watchlist of the current user.",
 	"apihelp-stashedit-param-contentformat": "Content serialisation format used for the input text.",
@@ -37,9 +38,13 @@
 	"apihelp-phpfm-summary": "Output data in serialised PHP format (pretty-print in HTML).",
 	"api-help-license": "Licence: [[$1|$2]]",
 	"api-help-license-unknown": "Licence: <span class=\"apihelp-unknown\">unknown</span>",
+	"api-help-datatypes-top": "Input to MediaWiki should be NFC-normalised UTF-8. MediaWiki may attempt to convert other input, but this may cause some operations (such as [[Special:ApiHelp/edit|edits]] with MD5 checks) to fail.\n\nParameters that take multiple values are normally submitted with the values separated using the pipe character, e.g. <kbd>param=value1|value2</kbd> or <kbd>param=value1%7Cvalue2</kbd>. If a value must contain the pipe character, use U+001F (Unit Separator) as the separator ''and'' prefix the value with U+001F, e.g. <kbd>param=%1Fvalue1%1Fvalue2</kbd>.\n\nSome parameter types in API requests need further explanation:",
+	"apierror-contentserializationexception": "Content serialisation failed: $1",
 	"apierror-unknownaction": "The action specified, <kbd>$1</kbd>, is not recognised.",
 	"apierror-unknownformat": "Unrecognised format \"$1\".",
 	"apierror-unrecognizedparams": "Unrecognised {{PLURAL:$2|parameter|parameters}}: $1.",
 	"apierror-unrecognizedvalue": "Unrecognised value for parameter <var>$1</var>: $2.",
+	"apierror-urlparamnormal": "Could not normalise image parameters for $1.",
+	"apiwarn-badutf8": "The value passed for <var>$1</var> contains invalid or non-normalised data. Textual data should be valid, NFC-normalised Unicode without C0 control characters other than HT (\\t), LF (\\n), and CR (\\r).",
 	"apiwarn-unrecognizedvalues": "Unrecognised {{PLURAL:$3|value|values}} for parameter <var>$1</var>: $2."
 }
