@@ -2,7 +2,7 @@
 
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseFactory;
-use Wikimedia\Rdbms\DatabaseMysqli;
+use Wikimedia\Rdbms\DatabaseMysqlBase;
 use Wikimedia\Rdbms\DatabasePostgres;
 use Wikimedia\Rdbms\DatabaseSqlite;
 
@@ -24,9 +24,9 @@ class DatabaseFactoryTest extends PHPUnit\Framework\TestCase {
 			'dbname' => 'i'
 		];
 
-		$this->assertInstanceOf( DatabaseMysqli::class, $factory->create( 'mysql', $p, $m ) );
-		$this->assertInstanceOf( DatabaseMysqli::class, $factory->create( 'MySql', $p, $m ) );
-		$this->assertInstanceOf( DatabaseMysqli::class, $factory->create( 'MySQL', $p, $m ) );
+		$this->assertInstanceOf( DatabaseMysqlBase::class, $factory->create( 'mysql', $p, $m ) );
+		$this->assertInstanceOf( DatabaseMysqlBase::class, $factory->create( 'MySql', $p, $m ) );
+		$this->assertInstanceOf( DatabaseMysqlBase::class, $factory->create( 'MySQL', $p, $m ) );
 		$this->assertInstanceOf( DatabasePostgres::class, $factory->create( 'postgres', $p, $m ) );
 		$this->assertInstanceOf( DatabasePostgres::class, $factory->create( 'Postgres', $p, $m ) );
 
