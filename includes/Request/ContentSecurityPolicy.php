@@ -115,7 +115,7 @@ class ContentSecurityPolicy {
 		// This would help in old browsers that didn't support nonces, and
 		// also assist for varnish-cached pages which repeat nonces.
 		// However, this is incompatible with how resource loader storage works
-		// via mw.domEval() so it was removed.
+		// via globalEval() so it was removed.
 	}
 
 	/**
