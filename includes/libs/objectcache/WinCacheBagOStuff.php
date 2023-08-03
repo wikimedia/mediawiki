@@ -142,6 +142,10 @@ class WinCacheBagOStuff extends MediumSpecificBagOStuff {
 		return $keyspace . ':' . implode( ':', $components );
 	}
 
+	protected function requireConvertGenericKey(): bool {
+		return true;
+	}
+
 	public function doIncrWithInit( $key, $exptime, $step, $init, $flags ) {
 		// optimize with FIFO lock
 		if ( !wincache_lock( $key ) ) {

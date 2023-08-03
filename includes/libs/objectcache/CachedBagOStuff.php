@@ -203,23 +203,6 @@ class CachedBagOStuff extends BagOStuff {
 		);
 	}
 
-	protected function makeKeyInternal( $keyspace, $components ) {
-		return $this->genericKeyFromComponents( $keyspace, ...$components );
-	}
-
-	public function makeKey( $collection, ...$components ) {
-		return $this->genericKeyFromComponents( $this->keyspace, $collection, ...$components );
-	}
-
-	public function makeGlobalKey( $collection, ...$components ) {
-		return $this->genericKeyFromComponents( self::GLOBAL_KEYSPACE, $collection, ...$components );
-	}
-
-	protected function convertGenericKey( $key ) {
-		// short-circuit; already uses "generic" keys
-		return $key;
-	}
-
 	public function setMulti( array $valueByKey, $exptime = 0, $flags = 0 ) {
 		$this->procCache->setMulti( $valueByKey, $exptime, $flags );
 

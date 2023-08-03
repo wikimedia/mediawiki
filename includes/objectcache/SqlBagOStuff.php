@@ -1593,6 +1593,10 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		return $keyspace . ':' . implode( ':', $components );
 	}
 
+	protected function requireConvertGenericKey(): bool {
+		return true;
+	}
+
 	protected function serialize( $value ) {
 		if ( is_int( $value ) ) {
 			return $value;

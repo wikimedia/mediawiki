@@ -60,13 +60,4 @@ class EmptyBagOStuff extends MediumSpecificBagOStuff {
 		// faster
 		return true;
 	}
-
-	protected function makeKeyInternal( $keyspace, $components ) {
-		return $this->genericKeyFromComponents( $keyspace, ...$components );
-	}
-
-	protected function convertGenericKey( $key ) {
-		// short-circuit; already uses "generic" keys
-		return $key;
-	}
 }

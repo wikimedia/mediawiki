@@ -2194,7 +2194,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 			'cache' => new HashBagOStuff
 		] ) );
 
-		$this->assertSame( $class, $wanCache->determineKeyClassForStats( $key ) );
+		$this->assertSame( $class, $wanCache->determineKeyGroupForStats( $key ) );
 	}
 
 	/**

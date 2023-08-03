@@ -556,13 +556,4 @@ LUA;
 	public function logRequest( $op, $keys, $server, $e = null ) {
 		$this->debug( "$op($keys) on $server: " . ( $e ? "failure" : "success" ) );
 	}
-
-	protected function makeKeyInternal( $keyspace, $components ) {
-		return $this->genericKeyFromComponents( $keyspace, ...$components );
-	}
-
-	protected function convertGenericKey( $key ) {
-		// short-circuit; already uses "generic" keys
-		return $key;
-	}
 }

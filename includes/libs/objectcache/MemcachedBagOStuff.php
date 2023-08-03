@@ -50,11 +50,12 @@ abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	/**
-	 * Construct a cache key.
+	 * Format a cache key.
 	 *
 	 * @since 1.27
+	 * @see BagOStuff::makeKeyInternal
 	 * @param string $keyspace
-	 * @param array $components
+	 * @param string[]|int[] $components
 	 * @return string
 	 */
 	protected function makeKeyInternal( $keyspace, $components ) {
@@ -89,6 +90,10 @@ abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		return $keyspace . ':' . implode( ':', $components );
+	}
+
+	protected function requireConvertGenericKey(): bool {
+		return true;
 	}
 
 	/**
