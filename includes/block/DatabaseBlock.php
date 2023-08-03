@@ -103,7 +103,7 @@ class DatabaseBlock extends AbstractBlock {
 
 		$options += $defaults;
 
-		if ( $options['by'] && $options['by'] instanceof UserIdentity ) {
+		if ( $options['by'] instanceof UserIdentity ) {
 			$this->setBlocker( $options['by'] );
 		}
 

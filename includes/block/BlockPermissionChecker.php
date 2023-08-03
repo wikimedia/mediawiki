@@ -43,11 +43,6 @@ class BlockPermissionChecker {
 	private $target;
 
 	/**
-	 * @var int|null One of AbstractBlock::TYPE_* constants, or null when unknown
-	 */
-	private $targetType = null;
-
-	/**
 	 * @var Authority Block performer
 	 */
 	private $performer;
@@ -76,7 +71,7 @@ class BlockPermissionChecker {
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
-		[ $this->target, $this->targetType ] = $blockUtils->parseBlockTarget( $target );
+		[ $this->target, ] = $blockUtils->parseBlockTarget( $target );
 		$this->performer = $performer;
 	}
 

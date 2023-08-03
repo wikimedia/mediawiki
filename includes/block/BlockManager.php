@@ -682,8 +682,6 @@ class BlockManager {
 			return $id;
 		}
 		$hmac = MWCryptHash::hmac( $id, $this->options->get( MainConfigNames::SecretKey ), false );
-		$cookieValue = $id . '!' . $hmac;
-		return $cookieValue;
+		return $id . '!' . $hmac;
 	}
-
 }
