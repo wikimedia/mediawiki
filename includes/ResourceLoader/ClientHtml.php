@@ -159,7 +159,7 @@ class ClientHtml {
 				//   url to the client that has the 'user' and 'version' parameters
 				//   filled in. Without this, the client would wrongly use the static
 				//   version hash, per T64602.
-				// - For shouldEmbed=true:  Embed via mw.loader.implement, per T36907.
+				// - For shouldEmbed=true:  Embed via mw.loader.impl, per T36907.
 				$data['embed']['general'][] = $name;
 				// Avoid duplicate request from mw.loader
 				$data['states'][$name] = 'loading';

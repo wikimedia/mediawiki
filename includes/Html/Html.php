@@ -1175,17 +1175,34 @@ class Html {
 	 * @return string|false String if successful; false upon failure
 	 */
 	public static function encodeJsCall( $name, $args, $pretty = false ) {
+		$encodedArgs = self::encodeJsList( $args, $pretty );
+		if ( $encodedArgs === false ) {
+			return false;
+		}
+		return "$name($encodedArgs);";
+	}
+
+	/**
+	 * Encode a JavaScript comma-separated list. The supplied items will be encoded using
+	 * Html::encodeJsVar().
+	 *
+	 * @since 1.41.
+	 * @param array $args The elements of the list.
+	 * @param bool $pretty If true, add non-significant whitespace to improve readability.
+	 * @return false|string String if successful; false upon failure
+	 */
+	public static function encodeJsList( $args, $pretty = false ) {
 		foreach ( $args as &$arg ) {
 			$arg = self::encodeJsVar( $arg, $pretty );
 			if ( $arg === false ) {
 				return false;
 			}
 		}
-
-		return "$name(" . ( $pretty
-			? ( ' ' . implode( ', ', $args ) . ' ' )
-			: implode( ',', $args )
-		) . ");";
+		if ( $pretty ) {
+			return ' ' . implode( ', ', $args ) . ' ';
+		} else {
+			return implode( ',', $args );
+		}
 	}
 }
 

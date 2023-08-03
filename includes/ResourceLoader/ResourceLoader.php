@@ -1123,13 +1123,13 @@ MESSAGE;
 		if ( $context->shouldIncludeScripts() && !$context->getRaw() ) {
 			if ( $modules && $only === 'scripts' ) {
 				// Set the state of modules loaded as only scripts to ready as
-				// they don't have an mw.loader.implement wrapper that sets the state
+				// they don't have an mw.loader.impl wrapper that sets the state
 				foreach ( $modules as $name => $module ) {
 					$states[$name] = 'ready';
 				}
 			}
 
-			// Set the state of modules we didn't respond to with mw.loader.implement
+			// Set the state of modules we didn't respond to with mw.loader.impl
 			if ( $states ) {
 				$stateScript = self::makeLoaderStateScript( $context, $states );
 				if ( !$debug ) {
@@ -1200,7 +1200,7 @@ MESSAGE;
 				if ( is_string( $scripts ) ) {
 					if ( $name === 'site' || $name === 'user' ) {
 						// Legacy scripts that run in the global scope without a closure.
-						// mw.loader.implement will use eval if scripts is a string.
+						// mw.loader.impl will use eval if scripts is a string.
 						// Minify manually here, because general response minification is
 						// not effective due it being a string literal, not a function.
 						if ( !$debug ) {
@@ -1223,7 +1223,7 @@ MESSAGE;
 
 		if ( $debug ) {
 			// In debug mode, separate each response by a new line.
-			// For example, between 'mw.loader.implement();' statements.
+			// For example, between 'mw.loader.impl();' statements.
 			$strContent = self::ensureNewline( $strContent );
 		} else {
 			$strContent = self::filter( $filter, $strContent, [
@@ -1273,7 +1273,7 @@ MESSAGE;
 	}
 
 	/**
-	 * Return JS code that calls mw.loader.implement with given module properties.
+	 * Return JS code that calls mw.loader.impl with given module properties.
 	 *
 	 * @param string $name Module name used as implement key (format "`[name]@[version]`")
 	 * @param HtmlJsCode|array|string|string[] $scripts
@@ -1326,7 +1326,7 @@ MESSAGE;
 			throw new InvalidArgumentException( 'Script must be a string or an array of URLs' );
 		}
 
-		// mw.loader.implement requires 'styles', 'messages' and 'templates' to be objects (not
+		// mw.loader.impl requires 'styles', 'messages' and 'templates' to be objects (not
 		// arrays). json_encode considers empty arrays to be numerical and outputs "[]" instead
 		// of "{}". Force them to objects.
 		$module = [
@@ -1341,7 +1341,10 @@ MESSAGE;
 
 		// We use pretty output unconditionally to make this method simpler.
 		// Minification is taken care of closer to the output.
-		return Html::encodeJsCall( 'mw.loader.implement', $module, true );
+		// Plain functions are used instead of arrow functions to avoid
+		// defeating lazy compilation on Chrome. (T343407)
+		return 'mw.loader.impl(function(){return[' .
+			Html::encodeJsList( $module, true ) . '];});';
 	}
 
 	/**

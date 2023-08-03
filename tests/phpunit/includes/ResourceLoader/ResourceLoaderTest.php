@@ -410,7 +410,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 				'messages' => [ 'example' => '' ],
 				'templates' => [],
 
-				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery, require, module ) {
+				'expected' => 'mw.loader.impl(function(){return[ "test.example", function ( $, jQuery, require, module ) {
 mw.example();
 }, {
     "css": [
@@ -418,7 +418,7 @@ mw.example();
     ]
 }, {
     "example": ""
-} );',
+} ];});',
 			] ],
 			[ [
 				'title' => 'Implement scripts',
@@ -427,9 +427,9 @@ mw.example();
 				'scripts' => 'mw.example();',
 				'styles' => [],
 
-				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery, require, module ) {
+				'expected' => 'mw.loader.impl(function(){return[ "test.example", function ( $, jQuery, require, module ) {
 mw.example();
-} );',
+} ];});',
 			] ],
 			[ [
 				'title' => 'Implement scripts with newline at end',
@@ -438,10 +438,10 @@ mw.example();
 				'scripts' => "mw.example();\n",
 				'styles' => [],
 
-				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery, require, module ) {
+				'expected' => 'mw.loader.impl(function(){return[ "test.example", function ( $, jQuery, require, module ) {
 mw.example();
 
-} );',
+} ];});',
 			] ],
 			[ [
 				'title' => 'Implement scripts with comment at end',
@@ -450,9 +450,9 @@ mw.example();
 				'scripts' => "mw.example();//Foo",
 				'styles' => [],
 
-				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery, require, module ) {
+				'expected' => 'mw.loader.impl(function(){return[ "test.example", function ( $, jQuery, require, module ) {
 mw.example();//Foo
-} );',
+} ];});',
 			] ],
 			[ [
 				'title' => 'Implement styles',
@@ -461,11 +461,11 @@ mw.example();//Foo
 				'scripts' => [],
 				'styles' => [ 'css' => [ '.mw-example {}' ] ],
 
-				'expected' => 'mw.loader.implement( "test.example", [], {
+				'expected' => 'mw.loader.impl(function(){return[ "test.example", [], {
     "css": [
         ".mw-example {}"
     ]
-} );',
+} ];});',
 			] ],
 			[ [
 				'title' => 'Implement scripts and messages',
@@ -474,11 +474,11 @@ mw.example();//Foo
 				'scripts' => 'mw.example();',
 				'messages' => [ 'example' => '' ],
 
-				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery, require, module ) {
+				'expected' => 'mw.loader.impl(function(){return[ "test.example", function ( $, jQuery, require, module ) {
 mw.example();
 }, {}, {
     "example": ""
-} );',
+} ];});',
 			] ],
 			[ [
 				'title' => 'Implement scripts and templates',
@@ -487,11 +487,11 @@ mw.example();
 				'scripts' => 'mw.example();',
 				'templates' => [ 'example.html' => '' ],
 
-				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery, require, module ) {
+				'expected' => 'mw.loader.impl(function(){return[ "test.example", function ( $, jQuery, require, module ) {
 mw.example();
 }, {}, {}, {
     "example.html": ""
-} );',
+} ];});',
 			] ],
 			[ [
 				'title' => 'Implement unwrapped user script',
@@ -500,7 +500,7 @@ mw.example();
 				'scripts' => 'mw.example( 1 );',
 				'wrap' => false,
 
-				'expected' => 'mw.loader.implement( "user", "mw.example( 1 );" );',
+				'expected' => 'mw.loader.impl(function(){return[ "user", "mw.example( 1 );" ];});',
 			] ],
 			[ [
 				'title' => 'Implement multi-file script',
@@ -533,7 +533,7 @@ mw.example();
 				],
 
 				'expected' => <<<END
-mw.loader.implement( "test.multifile", {
+mw.loader.impl(function(){return[ "test.multifile", {
     "main": "five.js",
     "files": {
     "one.js": function ( require, module, exports ) {
@@ -552,7 +552,7 @@ mw.example( 4 );
 mw.example( 5 );
 }
 }
-} );
+} ];});
 END
 			] ],
 		];

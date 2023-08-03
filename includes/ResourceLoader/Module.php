@@ -855,7 +855,7 @@ abstract class Module implements LoggerAwareInterface {
 					'url' => $this->getStyleURLsForDebug( $context )
 				];
 			} else {
-				// Minify CSS before embedding in mw.loader.implement call
+				// Minify CSS before embedding in mw.loader.impl call
 				// (unless in debug mode)
 				if ( !$context->getDebug() ) {
 					foreach ( $stylePairs as $media => $style ) {
