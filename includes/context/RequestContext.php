@@ -372,8 +372,9 @@ class RequestContext implements IContextSource, MutableContext {
 		$this->authority = $authority;
 		// If needed, a User object is constructed from this authority
 		$this->user = null;
-		// Invalidate cached user interface language
+		// Invalidate cached user interface language and skin
 		$this->lang = null;
+		$this->skin = null;
 	}
 
 	/**
