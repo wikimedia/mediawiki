@@ -165,12 +165,11 @@ class SiteStatsInit {
 		$dbw = self::getDB( DB_PRIMARY );
 		$exists = (bool)$dbw->selectField( 'site_stats', '1', [ 'ss_row_id' => 1 ], __METHOD__ );
 		if ( !$exists ) {
-			$dbw->insert(
-				'site_stats',
-				[ 'ss_row_id' => 1 ] + array_fill_keys( SiteStats::selectFields(), 0 ),
-				__METHOD__,
-				[ 'IGNORE' ]
-			);
+			$dbw->newInsertQueryBuilder()
+				->insert( 'site_stats' )
+				->ignore()
+				->row( [ 'ss_row_id' => 1 ] + array_fill_keys( SiteStats::selectFields(), 0 ) )
+				->caller( __METHOD__ )->execute();
 		}
 	}
 

@@ -462,7 +462,10 @@ class RecentChange implements Taggable {
 		unset( $row['rc_id'] );
 
 		# Insert new row
-		$dbw->insert( 'recentchanges', $row, __METHOD__ );
+		$dbw->newInsertQueryBuilder()
+			->insert( 'recentchanges' )
+			->row( $row )
+			->caller( __METHOD__ )->execute();
 
 		# Set the ID
 		$this->mAttribs['rc_id'] = $dbw->insertId();

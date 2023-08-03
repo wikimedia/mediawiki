@@ -113,12 +113,11 @@ class BlockRestrictionStore {
 
 		$dbw = $this->dbProvider->getPrimaryDatabase( $this->wikiId );
 
-		$dbw->insert(
-			'ipblocks_restrictions',
-			$rows,
-			__METHOD__,
-			[ 'IGNORE' ]
-		);
+		$dbw->newInsertQueryBuilder()
+			->insert( 'ipblocks_restrictions' )
+			->ignore()
+			->rows( $rows )
+			->caller( __METHOD__ )->execute();
 
 		return true;
 	}

@@ -231,11 +231,10 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 
 		$dbw = $this->getDBConnection( DB_PRIMARY );
 
-		$dbw->insert(
-			'text',
-			[ 'old_text' => $data, 'old_flags' => $flags ],
-			__METHOD__
-		);
+		$dbw->newInsertQueryBuilder()
+			->insert( 'text' )
+			->row( [ 'old_text' => $data, 'old_flags' => $flags ] )
+			->caller( __METHOD__ )->execute();
 
 		$textId = $dbw->insertId();
 

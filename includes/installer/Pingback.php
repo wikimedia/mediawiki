@@ -252,11 +252,10 @@ class Pingback {
 		}
 
 		$id = MWCryptRand::generateHex( 32 );
-		$dbw->insert(
-			'updatelog',
-			[ 'ul_key' => 'PingBack', 'ul_value' => $id ],
-			__METHOD__
-		);
+		$dbw->newInsertQueryBuilder()
+			->insert( 'updatelog' )
+			->row( [ 'ul_key' => 'PingBack', 'ul_value' => $id ] )
+			->caller( __METHOD__ )->execute();
 		return $id;
 	}
 

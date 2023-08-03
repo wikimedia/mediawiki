@@ -807,16 +807,15 @@ class UserGroupManager implements IDBAccessObject {
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY, [], $this->wikiId );
 
 		$dbw->startAtomic( __METHOD__ );
-		$dbw->insert(
-			'user_groups',
-			[
+		$dbw->newInsertQueryBuilder()
+			->insert( 'user_groups' )
+			->ignore()
+			->row( [
 				'ug_user' => $user->getId( $this->wikiId ),
 				'ug_group' => $group,
 				'ug_expiry' => $expiry ? $dbw->timestamp( $expiry ) : null,
-			],
-			__METHOD__,
-			[ 'IGNORE' ]
-		);
+			] )
+			->caller( __METHOD__ )->execute();
 
 		$affected = $dbw->affectedRows();
 		if ( !$affected ) {
@@ -944,12 +943,11 @@ class UserGroupManager implements IDBAccessObject {
 			return false;
 		}
 		// Remember that the user was in this group
-		$dbw->insert(
-			'user_former_groups',
-			[ 'ufg_user' => $user->getId( $this->wikiId ), 'ufg_group' => $group ],
-			__METHOD__,
-			[ 'IGNORE' ]
-		);
+		$dbw->newInsertQueryBuilder()
+			->insert( 'user_former_groups' )
+			->ignore()
+			->row( [ 'ufg_user' => $user->getId( $this->wikiId ), 'ufg_group' => $group ] )
+			->caller( __METHOD__ )->execute();
 
 		unset( $oldUgms[$group] );
 		$userKey = $this->getCacheKey( $user );
@@ -1028,12 +1026,11 @@ class UserGroupManager implements IDBAccessObject {
 					->where( $dbw->makeList( $deleteCond, $dbw::LIST_OR ) )
 					->caller( __METHOD__ )->execute();
 				// Push the groups to user_former_groups
-				$dbw->insert(
-					'user_former_groups',
-					$insertData,
-					__METHOD__,
-					[ 'IGNORE' ]
-				);
+				$dbw->newInsertQueryBuilder()
+					->insert( 'user_former_groups' )
+					->ignore()
+					->rows( $insertData )
+					->caller( __METHOD__ )->execute();
 				// Count how many rows were purged
 				$purgedRows += $res->numRows();
 			}

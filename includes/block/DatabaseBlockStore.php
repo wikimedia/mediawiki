@@ -221,7 +221,11 @@ class DatabaseBlockStore {
 		$dbw = $database ?: $this->loadBalancer->getConnectionRef( DB_PRIMARY, [], $this->wikiId );
 		$row = $this->getArrayForDatabaseBlock( $block, $dbw );
 
-		$dbw->insert( 'ipblocks', $row, __METHOD__, [ 'IGNORE' ] );
+		$dbw->newInsertQueryBuilder()
+			->insert( 'ipblocks' )
+			->ignore()
+			->row( $row )
+			->caller( __METHOD__ )->execute();
 		$affected = $dbw->affectedRows();
 
 		if ( $affected ) {
@@ -250,7 +254,11 @@ class DatabaseBlockStore {
 					->where( [ 'ipb_id' => $ids ] )
 					->caller( __METHOD__ )->execute();
 				$this->blockRestrictionStore->deleteByBlockId( $ids );
-				$dbw->insert( 'ipblocks', $row, __METHOD__, [ 'IGNORE' ] );
+				$dbw->newInsertQueryBuilder()
+					->insert( 'ipblocks' )
+					->ignore()
+					->row( $row )
+					->caller( __METHOD__ )->execute();
 				$affected = $dbw->affectedRows();
 				if ( $affected ) {
 					$block->setId( $dbw->insertId() );

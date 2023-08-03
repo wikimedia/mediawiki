@@ -236,22 +236,20 @@ class BotPasswordStore implements IDBAccessObject {
 		if ( $password === null ) {
 			$password = PasswordFactory::newInvalidPassword();
 		}
-		$fields = [
-			'bp_user' => $botPassword->getUserCentralId(),
-			'bp_app_id' => $botPassword->getAppId(),
-			'bp_token' => MWCryptRand::generateHex( User::TOKEN_LENGTH ),
-			'bp_restrictions' => $botPassword->getRestrictions()->toJson(),
-			'bp_grants' => FormatJson::encode( $botPassword->getGrants() ),
-			'bp_password' => $password->toString(),
-		];
 
 		$dbw = $this->getDatabase( DB_PRIMARY );
-		$dbw->insert(
-			'bot_passwords',
-			$fields,
-			__METHOD__,
-			[ 'IGNORE' ]
-		);
+		$dbw->newInsertQueryBuilder()
+			->insert( 'bot_passwords' )
+			->ignore()
+			->row( [
+				'bp_user' => $botPassword->getUserCentralId(),
+				'bp_app_id' => $botPassword->getAppId(),
+				'bp_token' => MWCryptRand::generateHex( User::TOKEN_LENGTH ),
+				'bp_restrictions' => $botPassword->getRestrictions()->toJson(),
+				'bp_grants' => FormatJson::encode( $botPassword->getGrants() ),
+				'bp_password' => $password->toString(),
+			] )
+			->caller( __METHOD__ )->execute();
 
 		$ok = (bool)$dbw->affectedRows();
 		if ( $ok ) {

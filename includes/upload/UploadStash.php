@@ -312,11 +312,10 @@ class UploadStash {
 			'us_status' => 'finished'
 		];
 
-		$dbw->insert(
-			'uploadstash',
-			$insertRow,
-			__METHOD__
-		);
+		$dbw->newInsertQueryBuilder()
+			->insert( 'uploadstash' )
+			->row( $insertRow )
+			->caller( __METHOD__ )->execute();
 
 		// store the insertid in the class variable so immediate retrieval
 		// (possibly laggy) isn't necessary.

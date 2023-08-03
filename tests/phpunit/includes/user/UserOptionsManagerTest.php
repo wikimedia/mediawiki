@@ -11,6 +11,7 @@ use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\DeleteQueryBuilder;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\InsertQueryBuilder;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -293,6 +294,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 				]
 			] ) );
 		$mockDb->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $mockDb ) );
+		$mockDb->method( 'newInsertQueryBuilder' )->willReturnCallback( fn() => new InsertQueryBuilder( $mockDb ) );
 		$mockDbProvider = $this->createMock( IConnectionProvider::class );
 		$mockDbProvider
 			->method( 'getPrimaryDatabase' )

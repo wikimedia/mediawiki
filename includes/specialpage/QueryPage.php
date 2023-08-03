@@ -448,7 +448,10 @@ abstract class QueryPage extends SpecialPage {
 							->caller( $fname )->execute();
 						// Save results into the querycache table on the primary DB
 						if ( count( $vals ) ) {
-							$dbw->insert( 'querycache', $vals, $fname );
+							$dbw->newInsertQueryBuilder()
+								->insert( 'querycache' )
+								->rows( $vals )
+								->caller( $fname )->execute();
 						}
 						// Update the querycache_info record for the page
 						$dbw->upsert(

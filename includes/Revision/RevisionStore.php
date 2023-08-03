@@ -737,12 +737,15 @@ class RevisionStore
 		$revisionId
 	) {
 		if ( !$user->isRegistered() && IPUtils::isValid( $user->getName() ) ) {
-			$ipcRow = [
-				'ipc_rev_id'        => $revisionId,
-				'ipc_rev_timestamp' => $dbw->timestamp( $rev->getTimestamp() ),
-				'ipc_hex'           => IPUtils::toHex( $user->getName() ),
-			];
-			$dbw->insert( 'ip_changes', $ipcRow, __METHOD__ );
+			$dbw->newInsertQueryBuilder()
+				->insert( 'ip_changes' )
+				->row( [
+					'ipc_rev_id'        => $revisionId,
+					'ipc_rev_timestamp' => $dbw->timestamp( $rev->getTimestamp() ),
+					'ipc_hex'           => IPUtils::toHex( $user->getName() ),
+				] )
+				->caller( __METHOD__ )->execute();
+
 		}
 	}
 
@@ -777,7 +780,10 @@ class RevisionStore
 			);
 		$revisionRow += $actorFields;
 
-		$dbw->insert( 'revision', $revisionRow, __METHOD__ );
+		$dbw->newInsertQueryBuilder()
+			->insert( 'revision' )
+			->row( $revisionRow )
+			->caller( __METHOD__ )->execute();
 
 		if ( !isset( $revisionRow['rev_id'] ) ) {
 			// only if auto-increment was used
@@ -853,7 +859,10 @@ class RevisionStore
 					// transactions will throw a duplicate key error here. It doesn't seem worth trying
 					// to avoid that.
 					$revisionRow['rev_id'] = $maxRevId + 1;
-					$dbw->insert( 'revision', $revisionRow, __METHOD__ );
+					$dbw->newInsertQueryBuilder()
+						->insert( 'revision' )
+						->row( $revisionRow )
+						->caller( __METHOD__ )->execute();
 				}
 			}
 		}
@@ -937,15 +946,17 @@ class RevisionStore
 	 * @param int $contentId
 	 */
 	private function insertSlotRowOn( SlotRecord $slot, IDatabase $dbw, $revisionId, $contentId ) {
-		$slotRow = [
-			'slot_revision_id' => $revisionId,
-			'slot_role_id' => $this->slotRoleStore->acquireId( $slot->getRole() ),
-			'slot_content_id' => $contentId,
-			// If the slot has a specific origin use that ID, otherwise use the ID of the revision
-			// that we just inserted.
-			'slot_origin' => $slot->hasOrigin() ? $slot->getOrigin() : $revisionId,
-		];
-		$dbw->insert( 'slots', $slotRow, __METHOD__ );
+		$dbw->newInsertQueryBuilder()
+			->insert( 'slots' )
+			->row( [
+				'slot_revision_id' => $revisionId,
+				'slot_role_id' => $this->slotRoleStore->acquireId( $slot->getRole() ),
+				'slot_content_id' => $contentId,
+				// If the slot has a specific origin use that ID, otherwise use the ID of the revision
+				// that we just inserted.
+				'slot_origin' => $slot->hasOrigin() ? $slot->getOrigin() : $revisionId,
+			] )
+			->caller( __METHOD__ )->execute();
 	}
 
 	/**
@@ -955,13 +966,15 @@ class RevisionStore
 	 * @return int content row ID
 	 */
 	private function insertContentRowOn( SlotRecord $slot, IDatabase $dbw, $blobAddress ) {
-		$contentRow = [
-			'content_size' => $slot->getSize(),
-			'content_sha1' => $slot->getSha1(),
-			'content_model' => $this->contentModelStore->acquireId( $slot->getModel() ),
-			'content_address' => $blobAddress,
-		];
-		$dbw->insert( 'content', $contentRow, __METHOD__ );
+		$dbw->newInsertQueryBuilder()
+			->insert( 'content' )
+			->row( [
+				'content_size' => $slot->getSize(),
+				'content_sha1' => $slot->getSha1(),
+				'content_model' => $this->contentModelStore->acquireId( $slot->getModel() ),
+				'content_address' => $blobAddress,
+			] )
+			->caller( __METHOD__ )->execute();
 		return intval( $dbw->insertId() );
 	}
 

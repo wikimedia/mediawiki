@@ -97,7 +97,10 @@ class LCStoreDB implements LCStore {
 				->where( [ 'lc_lang' => $this->code ] )
 				->caller( __METHOD__ )->execute();
 			foreach ( array_chunk( $this->batch, 500 ) as $rows ) {
-				$dbw->insert( 'l10n_cache', $rows, __METHOD__ );
+				$dbw->newInsertQueryBuilder()
+					->insert( 'l10n_cache' )
+					->rows( $rows )
+					->caller( __METHOD__ )->execute();
 			}
 			$this->writesDone = true;
 		} catch ( DBQueryError $e ) {
