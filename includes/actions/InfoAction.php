@@ -422,7 +422,8 @@ class InfoAction extends FormlessAction {
 		if ( $config->get( MainConfigNames::PageLanguageUseDB )
 			&& $this->getAuthority()->probablyCan( 'pagelang', $title )
 		) {
-			$pageLangHtml .= ' ' . $this->msg( 'parentheses' )->rawParams( $linkRenderer->makeLink(
+			$pageLangHtml .= $this->msg( 'word-separator' )->escaped();
+			$pageLangHtml .= $this->msg( 'parentheses' )->rawParams( $linkRenderer->makeLink(
 				SpecialPage::getTitleValueFor( 'PageLanguage', $title->getPrefixedText() ),
 				$this->msg( 'pageinfo-language-change' )->text()
 			) )->escaped();
@@ -437,7 +438,8 @@ class InfoAction extends FormlessAction {
 		$modelHtml = htmlspecialchars( ContentHandler::getLocalizedName( $title->getContentModel() ) );
 		// If the user can change it, add a link to Special:ChangeContentModel
 		if ( $this->getAuthority()->probablyCan( 'editcontentmodel', $title ) ) {
-			$modelHtml .= ' ' . $this->msg( 'parentheses' )->rawParams( $linkRenderer->makeLink(
+			$modelHtml .= $this->msg( 'word-separator' )->escaped();
+			$modelHtml .= $this->msg( 'parentheses' )->rawParams( $linkRenderer->makeLink(
 				SpecialPage::getTitleValueFor( 'ChangeContentModel', $title->getPrefixedText() ),
 				$this->msg( 'pageinfo-content-model-change' )->text()
 			) )->escaped();
