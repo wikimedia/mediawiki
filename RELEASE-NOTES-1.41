@@ -144,6 +144,9 @@ because of Phabricator reports.
   Query object as argument instead of a raw SQL string.
 * Database::unionConditionPermutations(), unused, has been removed without
   deprecation.
+* Database::factory(), deprecated in 1.39, has been removed.
+* Calling IDatabase::delete() or IDatabase::update() with empty conditions
+  has been deprecated since 1.35. This now throws an error.
 * The following DatabasePostgres methods were unused and have been removed:
   - ::currentSequenceValue()
   - ::triggerExists()
@@ -156,6 +159,7 @@ because of Phabricator reports.
   has been removed.
 * SelectQueryBuilder::lockForUpdate(), deprecated in 1.40 and unused,
   has been removed without hard deprecation.
+* TransactionProfiler::setSilenced() deprecated in 1.40, has been removed.
 * ILoadBalancer::closeConnection, unused, has been removed without deprecation.
 * ILoadBalancer::waitFor, unused, has been removed without deprecation.
 * ILBFactory::resolveDomainID, unused, has been removed without deprecation.
