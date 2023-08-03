@@ -129,7 +129,11 @@ class ApiFormatJson extends ApiFormatBase {
 				ParamValidator::PARAM_TYPE => [ '1', '2', 'latest' ],
 				ParamValidator::PARAM_DEFAULT => '1',
 				ApiBase::PARAM_HELP_MSG => 'apihelp-json-param-formatversion',
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [
+					'1' => 'apihelp-json-paramvalue-formatversion-1',
+					'2' => 'apihelp-json-paramvalue-formatversion-2',
+					'latest' => 'apihelp-json-paramvalue-formatversion-latest',
+				],
 			],
 		];
 	}
