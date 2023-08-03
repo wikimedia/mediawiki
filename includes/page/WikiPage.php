@@ -1326,6 +1326,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			MediaWikiServices::getInstance()->getMessageCache()
 				->updateMessageOverride( $this->mTitle, $this->getContent() );
 		}
+		InfoAction::invalidateCache( $this->mTitle, $this->getLatest() );
 
 		return true;
 	}
