@@ -290,8 +290,6 @@ abstract class AbstractBlock implements Block {
 				$res = $this->isSitewide();
 				break;
 			case 'read':
-				$res = false;
-				break;
 			case 'purge':
 				$res = false;
 				break;
