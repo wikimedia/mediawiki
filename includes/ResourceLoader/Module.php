@@ -193,21 +193,36 @@ abstract class Module implements LoggerAwareInterface {
 	/**
 	 * Get JS representing deprecation information for the current module if available
 	 *
+	 * @deprecated since 1.41 use getDeprecationWarning()
+	 *
 	 * @param Context $context
 	 * @return string JavaScript code
 	 */
 	public function getDeprecationInformation( Context $context ) {
-		$deprecationInfo = $this->deprecated;
-		if ( !$deprecationInfo ) {
+		wfDeprecated( __METHOD__, '1.41' );
+		$warning = $this->getDeprecationWarning();
+		if ( $warning === null ) {
 			return '';
 		}
+		return 'mw.log.warn(' . $context->encodeJson( $warning ) . ');';
+	}
 
+	/**
+	 * Get the deprecation warning, if any
+	 *
+	 * @since 1.41
+	 * @return string|null
+	 */
+	public function getDeprecationWarning() {
+		if ( !$this->deprecated ) {
+			return null;
+		}
 		$name = $this->getName();
 		$warning = 'This page is using the deprecated ResourceLoader module "' . $name . '".';
-		if ( is_string( $deprecationInfo ) ) {
-			$warning .= "\n" . $deprecationInfo;
+		if ( is_string( $this->deprecated ) ) {
+			$warning .= "\n" . $this->deprecated;
 		}
-		return 'mw.log.warn(' . $context->encodeJson( $warning ) . ');';
+		return $warning;
 	}
 
 	/**
@@ -880,6 +895,11 @@ abstract class Module implements LoggerAwareInterface {
 		$headers = $this->getHeaders( $context );
 		if ( $headers ) {
 			$content['headers'] = $headers;
+		}
+
+		$deprecationWarning = $this->getDeprecationWarning();
+		if ( $deprecationWarning !== null ) {
+			$content['deprecationWarning'] = $deprecationWarning;
 		}
 
 		$statTiming = microtime( true ) - $statStart;

@@ -135,7 +135,7 @@ class ClientHtml {
 				'styles' => [],
 				'general' => [],
 			],
-			// Deprecations for style-only modules
+			// Deprecation warnings for style-only modules
 			'styleDeprecations' => [],
 		];
 
@@ -222,7 +222,7 @@ class ClientHtml {
 				// Load from load.php?only=styles via <link rel=stylesheet>
 				$data['styles'][] = $name;
 			}
-			$deprecation = $module->getDeprecationInformation( $context );
+			$deprecation = $module->getDeprecationWarning();
 			if ( $deprecation ) {
 				$data['styleDeprecations'][] = $deprecation;
 			}
@@ -386,10 +386,11 @@ RLPAGEMODULES = {$pageModulesJson};
 
 		// Deprecations for only=styles modules
 		if ( $data['styleDeprecations'] ) {
-			$chunks[] = ResourceLoader::makeInlineScript(
-				implode( '', $data['styleDeprecations'] ),
-				$this->options['nonce']
-			);
+			$calls = '';
+			foreach ( $data['styleDeprecations'] as $warning ) {
+				$calls .= Html::encodeJsCall( 'mw.log.warn', [ $warning ] );
+			}
+			$chunks[] = ResourceLoader::makeInlineScript( $calls, $this->options['nonce'] );
 		}
 
 		return WrappedString::join( "\n", $chunks );

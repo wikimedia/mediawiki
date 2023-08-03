@@ -304,4 +304,47 @@ class ModuleTest extends ResourceLoaderTestCase {
 			'Preload two resources'
 		);
 	}
+
+	public static function provideGetDeprecationWarning() {
+		return [
+			[
+				null,
+				'normalModule',
+				null,
+			],
+			[
+				true,
+				'deprecatedModule',
+				'This page is using the deprecated ResourceLoader module "deprecatedModule".',
+			],
+			[
+				'Will be removed tomorrow.',
+				'deprecatedTomorrow',
+				"This page is using the deprecated ResourceLoader module \"deprecatedTomorrow\".\n" .
+				"Will be removed tomorrow.",
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetDeprecationWarning
+	 *
+	 * @param string|bool|null $deprecated
+	 * @param string $name
+	 * @param string $expected
+	 */
+	public function testGetDeprecationWarning( $deprecated, $name, $expected ) {
+		$module = new ResourceLoaderTestModule( [ 'deprecated' => $deprecated ] );
+		$module->setName( $name );
+		$this->assertSame( $expected, $module->getDeprecationWarning() );
+
+		$this->hideDeprecated( 'MediaWiki\ResourceLoader\Module::getDeprecationInformation' );
+		$info = $module->getDeprecationInformation( $this->getResourceLoaderContext() );
+		if ( !$expected ) {
+			$this->assertSame( '', $info );
+		} else {
+			$this->assertSame( 'mw.log.warn(' . json_encode( $expected ) . ');', $info );
+		}
+	}
+
 }

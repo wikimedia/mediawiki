@@ -1183,7 +1183,8 @@ MESSAGE;
 						$scripts,
 						[],
 						null,
-						[]
+						[],
+						$content['deprecationWarning'] ?? null
 					);
 				}
 				break;
@@ -1214,7 +1215,8 @@ MESSAGE;
 					$scripts,
 					$content['styles'] ?? [],
 					isset( $content['messagesBlob'] ) ? new HtmlJsCode( $content['messagesBlob'] ) : null,
-					$content['templates'] ?? []
+					$content['templates'] ?? [],
+					$content['deprecationWarning'] ?? null
 				);
 				break;
 		}
@@ -1287,10 +1289,11 @@ MESSAGE;
 	 * @param HtmlJsCode|null $messages An already JSON-encoded map from message keys to values,
 	 *   wrapped in an HtmlJsCode object.
 	 * @param array<string,string> $templates Map from template name to template source.
+	 * @param string|null $deprecationWarning
 	 * @return string JavaScript code
 	 */
 	private static function makeLoaderImplementScript(
-		$name, $scripts, $styles, $messages, $templates
+		$name, $scripts, $styles, $messages, $templates, $deprecationWarning
 	) {
 		if ( $scripts instanceof HtmlJsCode ) {
 			if ( $scripts->value === '' ) {
@@ -1331,7 +1334,8 @@ MESSAGE;
 			$scripts,
 			(object)$styles,
 			$messages ?? (object)[],
-			(object)$templates
+			(object)$templates,
+			$deprecationWarning
 		];
 		self::trimArray( $module );
 

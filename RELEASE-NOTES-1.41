@@ -402,6 +402,8 @@ because of Phabricator reports.
   are now deprecated.
 * The XmlJsCode wrapper class has been renamed to MediaWiki\Html\HtmlJsCode,
   and the old name is now deprecated.
+* MediaWiki\ResourceLoader\Module::getDeprecationInformation() is deprecated.
+  Use ::getDeprecationWarning() instead.
 * …
 
 === Other changes in 1.41 ===

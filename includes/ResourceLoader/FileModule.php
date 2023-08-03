@@ -326,7 +326,6 @@ class FileModule extends Module {
 	 * @return string|array JavaScript code for $context, or package files data structure
 	 */
 	public function getScript( Context $context ) {
-		$deprecationScript = $this->getDeprecationInformation( $context );
 		$packageFiles = $this->getPackageFiles( $context );
 		if ( $packageFiles !== null ) {
 			foreach ( $packageFiles['files'] as &$file ) {
@@ -335,15 +334,11 @@ class FileModule extends Module {
 					$file['type'] = 'script';
 				}
 			}
-			if ( $deprecationScript ) {
-				$mainFile =& $packageFiles['files'][$packageFiles['main']];
-				$mainFile['content'] = $deprecationScript . $mainFile['content'];
-			}
 			return $packageFiles;
 		}
 
 		$files = $this->getScriptFiles( $context );
-		return $deprecationScript . $this->readScriptFiles( $context, $files );
+		return $this->readScriptFiles( $context, $files );
 	}
 
 	/**
