@@ -616,17 +616,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		return false;
 	}
 
-	/**
-	 * Update the session "waitForPos" if the given position is newer
-	 *
-	 * @param DBPrimaryPos $pos
-	 */
-	private function setSessionPrimaryPosIfHigher( DBPrimaryPos $pos ) {
-		if ( !$this->waitForPos || $pos->hasReached( $this->waitForPos ) ) {
-			$this->waitForPos = $pos;
-		}
-	}
-
 	public function getAnyOpenConnection( $i, $flags = 0 ) {
 		$i = ( $i === self::DB_PRIMARY ) ? ServerInfo::WRITER_INDEX : $i;
 
@@ -869,7 +858,9 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 
 		$domain = $this->resolveDomainID( $domain );
-		$role = $this->getRoleFromIndex( $i );
+		$role = ( $i === self::DB_PRIMARY || $i === ServerInfo::WRITER_INDEX )
+			? self::DB_PRIMARY
+			: self::DB_REPLICA;
 
 		return new DBConnRef( $this, [ $i, $groups, $domain, $flags ], $role, $this->modcount );
 	}
@@ -887,19 +878,11 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 
 		$domain = $this->resolveDomainID( $domain );
-		$role = $this->getRoleFromIndex( $i );
-
-		return new DBConnRef( $this, [ $i, $groups, $domain, $flags ], $role, $this->modcount );
-	}
-
-	/**
-	 * @param int $i Server index or DB_PRIMARY/DB_REPLICA
-	 * @return int One of DB_PRIMARY/DB_REPLICA
-	 */
-	private function getRoleFromIndex( $i ) {
-		return ( $i === self::DB_PRIMARY || $i === ServerInfo::WRITER_INDEX )
+		$role = ( $i === self::DB_PRIMARY || $i === ServerInfo::WRITER_INDEX )
 			? self::DB_PRIMARY
 			: self::DB_REPLICA;
+
+		return new DBConnRef( $this, [ $i, $groups, $domain, $flags ], $role, $this->modcount );
 	}
 
 	/**
@@ -1058,11 +1041,19 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			$server['flags'] ??= IDatabase::DBO_DEFAULT;
 		}
 
+		if ( !empty( $server['is static'] ) ) {
+			$topologyRole = IDatabase::ROLE_STATIC_CLONE;
+		} else {
+			$topologyRole = ( $i === ServerInfo::WRITER_INDEX )
+				? IDatabase::ROLE_STREAMING_MASTER
+				: IDatabase::ROLE_STREAMING_REPLICA;
+		}
+
 		$conn = $this->databaseFactory->create(
 			$server['type'],
 			array_merge( $server, [
 				// Basic replication role information
-				'topologyRole' => $this->getTopologyRole( $i, $server ),
+				'topologyRole' => $topologyRole,
 				// Use the database specified in $domain (null means "none or entrypoint DB");
 				// fallback to the $server default if the RDBMs is an embedded library using a
 				// file on disk since there would be nothing to access to without a DB/file name.
@@ -1139,21 +1130,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	/**
-	 * @param int $i Specific server index
-	 * @param array $server Server config map
-	 * @return string IDatabase::ROLE_* constant
-	 */
-	private function getTopologyRole( $i, array $server ) {
-		if ( !empty( $server['is static'] ) ) {
-			return IDatabase::ROLE_STATIC_CLONE;
-		}
-
-		return ( $i === ServerInfo::WRITER_INDEX )
-			? IDatabase::ROLE_STREAMING_MASTER
-			: IDatabase::ROLE_STREAMING_REPLICA;
-	}
-
-	/**
 	 * Make sure that any "waitForPos" replication positions are loaded and available
 	 *
 	 * Each load balancer cluster has up to one replication position for the session.
@@ -1168,7 +1144,9 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			$pos = ( $this->chronologyCallback )( $this );
 			$this->logger->debug( __METHOD__ . ': executed chronology callback.' );
 			if ( $pos ) {
-				$this->setSessionPrimaryPosIfHigher( $pos );
+				if ( !$this->waitForPos || $pos->hasReached( $this->waitForPos ) ) {
+					$this->waitForPos = $pos;
+				}
 			}
 		}
 	}
@@ -1722,8 +1700,15 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	public function flushReplicaSnapshots( $fname = __METHOD__ ) {
-		foreach ( $this->getOpenReplicaConnections() as $conn ) {
-			$conn->flushSnapshot( $fname );
+		foreach ( $this->conns as $poolConnsByServer ) {
+			foreach ( $poolConnsByServer as $serverIndex => $serverConns ) {
+				if ( $serverIndex === ServerInfo::WRITER_INDEX ) {
+					continue; // skip primary
+				}
+				foreach ( $serverConns as $conn ) {
+					$conn->flushSnapshot( $fname );
+				}
+			}
 		}
 	}
 
@@ -1875,23 +1860,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			/** @var IDatabase $conn */
 			foreach ( ( $poolConnsByServer[ServerInfo::WRITER_INDEX] ?? [] ) as $conn ) {
 				yield $conn;
-			}
-		}
-	}
-
-	/**
-	 * Get open replica connections
-	 * @return \Generator|Database[]
-	 */
-	private function getOpenReplicaConnections() {
-		foreach ( $this->conns as $poolConnsByServer ) {
-			foreach ( $poolConnsByServer as $serverIndex => $serverConns ) {
-				if ( $serverIndex === ServerInfo::WRITER_INDEX ) {
-					continue; // skip primary
-				}
-				foreach ( $serverConns as $conn ) {
-					yield $conn;
-				}
 			}
 		}
 	}

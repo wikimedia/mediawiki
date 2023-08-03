@@ -325,7 +325,13 @@ class LBFactoryMulti extends LBFactory {
 		if ( !$groupLoads[ILoadBalancer::GROUP_GENERIC] ) {
 			throw new UnexpectedValueException( "Empty generic load array; no primary DB defined." );
 		}
-		$groupLoadsByServerName = $this->reindexGroupLoadsByServerName( $groupLoads );
+		$groupLoadsByServerName = [];
+		foreach ( $groupLoads as $group => $loadByServerName ) {
+			foreach ( $loadByServerName as $serverName => $load ) {
+				$groupLoadsByServerName[$serverName][$group] = $load;
+			}
+		}
+
 		// Get the ordered map of (server name => load); the primary DB server is first
 		$genericLoads = $groupLoads[ILoadBalancer::GROUP_GENERIC];
 		// Implicitly append any hosts that only appear in custom load groups
@@ -346,23 +352,6 @@ class LBFactoryMulti extends LBFactory {
 		}
 
 		return $servers;
-	}
-
-	/**
-	 * Take a group load array indexed by (group,server) and reindex it by (server,group)
-	 *
-	 * @param int[][] $groupLoads Map of (group => server name => load)
-	 * @return int[][] Map of (server name => group => load)
-	 */
-	private function reindexGroupLoadsByServerName( array $groupLoads ) {
-		$groupLoadsByServerName = [];
-		foreach ( $groupLoads as $group => $loadByServerName ) {
-			foreach ( $loadByServerName as $serverName => $load ) {
-				$groupLoadsByServerName[$serverName][$group] = $load;
-			}
-		}
-
-		return $groupLoadsByServerName;
 	}
 
 	/**

@@ -248,7 +248,12 @@ abstract class LBFactory implements ILBFactory {
 
 		$chronProt = $this->getChronologyProtector();
 		if ( ( $flags & self::SHUTDOWN_NO_CHRONPROT ) != self::SHUTDOWN_NO_CHRONPROT ) {
-			$this->shutdownChronologyProtector( $chronProt, $cpIndex );
+			// Remark all of the relevant DB primary positions
+			foreach ( $this->getLBsForOwner() as $lb ) {
+				$chronProt->stageSessionPrimaryPos( $lb );
+			}
+			// Write the positions to the persistent stash
+			$chronProt->persistSessionReplicationPositions( $cpIndex );
 			$this->logger->debug( __METHOD__ . ': finished ChronologyProtector shutdown' );
 		}
 		$cpClientId = $chronProt->getClientId();
@@ -616,23 +621,6 @@ abstract class LBFactory implements ILBFactory {
 		);
 
 		return $this->chronProt;
-	}
-
-	/**
-	 * Get and record all of the staged DB positions into persistent memory storage
-	 *
-	 * @param ChronologyProtector $cp
-	 * @param int|null &$cpIndex DB position key write counter; incremented on update [returned]
-	 */
-	protected function shutdownChronologyProtector(
-		ChronologyProtector $cp, &$cpIndex = null
-	) {
-		// Remark all of the relevant DB primary positions
-		foreach ( $this->getLBsForOwner() as $lb ) {
-			$cp->stageSessionPrimaryPos( $lb );
-		}
-		// Write the positions to the persistent stash
-		$cp->persistSessionReplicationPositions( $cpIndex );
 	}
 
 	/**
