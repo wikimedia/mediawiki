@@ -18,11 +18,6 @@ class AbstractAuthenticationProviderTest extends \MediaWikiUnitTestCase {
 	use AuthenticationProviderTestTrait;
 
 	public function testAbstractAuthenticationProvider() {
-		$this->hideDeprecated( 'MediaWiki\Auth\AbstractAuthenticationProvider::setConfig' );
-		$this->hideDeprecated( 'MediaWiki\Auth\AbstractAuthenticationProvider::setLogger' );
-		$this->hideDeprecated( 'MediaWiki\Auth\AbstractAuthenticationProvider::setManager' );
-		$this->hideDeprecated( 'MediaWiki\Auth\AbstractAuthenticationProvider::setHookContainer' );
-
 		$provider = $this->getMockForAbstractClass( AbstractAuthenticationProvider::class );
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 
@@ -38,26 +33,6 @@ class AbstractAuthenticationProviderTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( $hookContainer, $providerPriv->hookContainer );
 		$this->assertSame( $config, $providerPriv->config );
 		$this->assertSame( $userNameUtils, $providerPriv->userNameUtils );
-
-		// test AbstractAuthenticationProvider::setLogger
-		$obj = $this->getMockForAbstractClass( LoggerInterface::class );
-		$provider->setLogger( $obj );
-		$this->assertSame( $obj, $providerPriv->logger, 'setLogger' );
-
-		// test AbstractAuthenticationProvider::setManager
-		$obj = $this->createMock( AuthManager::class );
-		$provider->setManager( $obj );
-		$this->assertSame( $obj, $providerPriv->manager, 'setManager' );
-
-		// test AbstractAuthenticationProvider::setConfig
-		$obj = new HashConfig();
-		$provider->setConfig( $obj );
-		$this->assertSame( $obj, $providerPriv->config, 'setConfig' );
-
-		// test AbstractAuthenticationProvider::setHookContainer
-		$obj = $this->createHookContainer();
-		$provider->setHookContainer( $obj );
-		$this->assertSame( $obj, $providerPriv->hookContainer, 'setHookContainer' );
 
 		// test AbstractAuthenticationProvider::getUniqueId
 		$this->assertIsString( $provider->getUniqueId(), 'getUniqueId' );

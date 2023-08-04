@@ -93,60 +93,6 @@ abstract class AbstractAuthenticationProvider implements AuthenticationProvider 
 	}
 
 	/**
-	 * @deprecated since 1.37. For extension-defined authentication providers
-	 * that were using this method to trigger other work, please override
-	 * AbstractAuthenticationProvider::postInitSetup instead. If your extension
-	 * was using this to explicitly change the logger of an existing
-	 * AuthenticationProvider object, please file a report on phabricator -
-	 * there is no non-deprecated way to do this anymore.
-	 */
-	public function setLogger( LoggerInterface $logger ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$this->logger = $logger;
-	}
-
-	/**
-	 * @deprecated since 1.37. For extension-defined authentication providers
-	 * that were using this method to trigger other work, please override
-	 * AbstractAuthenticationProvider::postInitSetup instead. If your extension
-	 * was using this to explicitly change the AuthManager of an existing
-	 * AuthenticationProvider object, please file a report on phabricator -
-	 * there is no non-deprecated way to do this anymore.
-	 */
-	public function setManager( AuthManager $manager ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$this->manager = $manager;
-	}
-
-	/**
-	 * @deprecated since 1.37. For extension-defined authentication providers
-	 * that were using this method to trigger other work, please override
-	 * AbstractAuthenticationProvider::postInitSetup instead. If your extension
-	 * was using this to explicitly change the Config of an existing
-	 * AuthenticationProvider object, please file a report on phabricator -
-	 * there is no non-deprecated way to do this anymore.
-	 * @param Config $config
-	 */
-	public function setConfig( Config $config ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$this->config = $config;
-	}
-
-	/**
-	 * @deprecated since 1.37. For extension-defined authentication providers
-	 * that were using this method to trigger other work, please override
-	 * AbstractAuthenticationProvider::postInitSetup instead. If your extension
-	 * was using this to explicitly change the HookContainer of an existing
-	 * AuthenticationProvider object, please file a report on phabricator -
-	 * there is no non-deprecated way to do this anymore.
-	 */
-	public function setHookContainer( HookContainer $hookContainer ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$this->hookContainer = $hookContainer;
-		$this->hookRunner = new HookRunner( $hookContainer );
-	}
-
-	/**
 	 * @inheritDoc
 	 * @note Override this if it makes sense to support more than one instance
 	 */
