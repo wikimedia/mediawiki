@@ -613,8 +613,10 @@ class LocalisationCache {
 		}
 
 		if ( isset( $this->data[$code] ) ) {
-			// @phan-suppress-next-line PhanTypeMismatchProperty
-			$this->data[$code] += $preload;
+			foreach ( $preload as $key => $value ) {
+				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable -- see isset() above
+				$this->mergeItem( $key, $this->data[$code][$key], $value );
+			}
 		} else {
 			$this->data[$code] = $preload;
 		}
