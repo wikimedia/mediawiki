@@ -525,7 +525,7 @@
 	"last": "oovd.",
 	"page_first": "vuosmuš siijđo",
 	"page_last": "majemuš siijđo",
-	"histlegend": "Iäruttâsâi valjim: Merkkii tiei versioi valjimriggeid, maid halijdah viärdádâllâđ, já teddil enter teikâ vyellin leijee puálu.<br />\nČielgiittâs: '''({{int:cur}})'' = Iäruttâsah  uđđâsumos version, '''({{int:last}})'' = Iäruttâsah ovdebáá version, '''{{int:minoreditletter}}''' = uccâ nubástus.",
+	"histlegend": "Iäruttâsâi valjim: Merkkii tiei versioi valjimriggeid, maid halijdah viärdádâllâđ, já teddil ''enter'' teikâ vyellin leijee puálu.<br />\nČielgiittâs: <strong>({{int:cur}})</strong> = Iäruttâsah uđđâsumos version, <strong>({{int:last}})</strong> = Iäruttâsah ovdebáá version, <strong>{{int:minoreditletter}}</strong> = uccâ nubástus.",
 	"history-fieldset-title": "Sillii versioid",
 	"history-show-deleted": "Tuše sikkum versioh",
 	"histfirst": "puárásumoseh",
