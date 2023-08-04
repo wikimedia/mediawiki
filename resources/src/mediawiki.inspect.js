@@ -53,28 +53,6 @@
 		return bytes.toFixed( i > 0 ? 1 : 0 ) + units[ i ];
 	}
 
-	function serializeModuleScript( script ) {
-		// Based on mw.loader.store.set in startup/mediawiki.js
-		if ( typeof script === 'function' ) {
-			// Classic script
-			return String( script );
-		}
-		if ( $.isPlainObject( script ) ) {
-			// Package files object
-			return '{' +
-				'main:' + JSON.stringify( script.main ) + ',' +
-				'files:{' +
-				Object.keys( script.files ).map( function ( file ) {
-					var value = script.files[ file ];
-					return JSON.stringify( file ) + ':' +
-						( typeof value === 'function' ? value : JSON.stringify( value ) );
-				} ).join( ',' ) +
-				'}}';
-		}
-		// Array of urls, or null.
-		return JSON.stringify( script );
-	}
-
 	/**
 	 * Return a map of all dependency relationships between loaded modules.
 	 *
@@ -110,40 +88,21 @@
 	 * @return {number|null} Module size in bytes or null
 	 */
 	inspect.getModuleSize = function ( moduleName ) {
-		// Approximate the size of this module as originally received from the server.
-		//
 		// We typically receive them from the server through batches from load.php,
 		// or embedded as inline scripts (handled in PHP by ResourceLoader::makeModuleResponse
 		// and ResourceLoader\ClientHtml respectively).
 		//
-		// Each module is bundled by ResourceLoader::makeLoaderImplementScript in PHP,
-		// and might look as follows:
-		//
-		//     mw.loader.implement("example",function(){},{"css":[".x{color:red}"]});
-		//
-		// These parameters are stored by mw.loader.implement in the registry,
-		// and below we'll measure the size of each.
+		// The module declarator function is stored by mw.loader.implement(), allowing easy
+		// computation of the exact size.
 		var module = mw.loader.moduleRegistry[ moduleName ];
 
 		if ( module.state !== 'ready' ) {
 			return null;
 		}
-		if ( !module.style && !module.script ) {
+		if ( !module.declarator ) {
 			return 0;
 		}
-
-		var size = 0;
-		size += byteLength( JSON.stringify( moduleName ) );
-		size += byteLength( serializeModuleScript( module.script ) );
-
-		// The last three parameters are optional. The server omits these when they
-		// are empty (handled via ResourceLoader::trimArray), which is reflected
-		// in the registry as a default null value. Count such nulls as zero instead
-		// of as an actual `null` argument, since they were not actually in the bundle.
-		size += module.style ? byteLength( JSON.stringify( module.style ) ) : 0;
-		size += module.messages ? byteLength( JSON.stringify( module.messages ) ) : 0;
-		size += module.templates ? byteLength( JSON.stringify( module.templates ) ) : 0;
-		return size;
+		return byteLength( module.declarator.toString() );
 	};
 
 	/**

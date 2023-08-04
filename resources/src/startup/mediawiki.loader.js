@@ -96,7 +96,7 @@
 	 *             // Set from execute() or mw.loader.state()
 	 *             'state': 'registered', 'loading', 'loaded', 'executing', 'ready', 'error', or 'missing'
 	 *
-	 *             // Optionally added at run-time by mw.loader.implement()
+	 *             // Optionally added at run-time by mw.loader.impl()
 	 *             'script': closure, array of urls, or string
 	 *             'style': { ... } (see #execute)
 	 *             'messages': { 'key': 'value', ... }
@@ -349,7 +349,7 @@
 	 *   module from mw.loader.using() should be called.
 	 * - When a module reaches the 'ready' state from #execute(), consider
 	 *   executing dependent modules now having their dependencies satisfied.
-	 * - When a module reaches the 'loaded' state from mw.loader.implement,
+	 * - When a module reaches the 'loaded' state from mw.loader.impl,
 	 *   consider executing it, if it has no unsatisfied dependencies.
 	 *
 	 * @private
@@ -454,7 +454,7 @@
 		}
 		willPropagate = true;
 		// Yield for two reasons:
-		// * Allow successive calls to mw.loader.implement() from the same
+		// * Allow successive calls to mw.loader.impl() from the same
 		//   load.php response, or from the same asyncEval() to be in the
 		//   propagation batch.
 		// * Allow the browser to breathe between the reception of
@@ -990,7 +990,7 @@
 			};
 		};
 
-		// Process styles (see also mw.loader.implement)
+		// Process styles (see also mw.loader.impl)
 		// * { "css": [css, ..] }
 		// * { "url": { <media>: [url, ..] } }
 		var style = registry[ module ].style;
@@ -1241,7 +1241,7 @@
 	/**
 	 * @private
 	 * @param {string[]} implementations Array containing pieces of JavaScript code in the
-	 *  form of calls to mw.loader#implement().
+	 *  form of calls to mw.loader#impl().
 	 * @param {Function} cb Callback in case of failure
 	 * @param {Error} cb.err
 	 * @param {number} [offset] Integer offset into implementations to start at
@@ -1328,7 +1328,7 @@
 		}
 
 		registry[ module ] = {
-			// Exposed to execute() for mw.loader.implement() closures.
+			// Exposed to execute() for mw.loader.impl() closures.
 			// Import happens via require().
 			module: {
 				exports: {}
@@ -1429,10 +1429,10 @@
 			queue = [];
 
 			asyncEval( storedImplementations, function ( err ) {
-				// Not good, the cached mw.loader.implement calls failed! This should
+				// Not good, the cached mw.loader.impl calls failed! This should
 				// never happen, barring ResourceLoader bugs, browser bugs and PEBKACs.
 				// Depending on how corrupt the string is, it is likely that some
-				// modules' implement() succeeded while the ones after the error will
+				// modules' impl() succeeded while the ones after the error will
 				// never run and leave their modules in the 'loading' state forever.
 				store.stats.failed++;
 
@@ -1528,30 +1528,18 @@
 		},
 
 		/**
-		 * Implement a module given the components that make up the module.
+		 * Implement a module given the components of the module.
 		 *
-		 * When #load() or #using() requests one or more modules, the server
-		 * response contain calls to this function.
+		 * See #impl for a full description of the parameters.
 		 *
-		 * @param {string} module Name of module and current module version. Formatted
-		 *  as '`[name]@[version]`". This version should match the requested version
-		 *  (from #batchRequest and #registry). This avoids race conditions (T117587).
-		 * @param {Function|Array|string|Object} [script] Module code. This can be a function,
-		 *  a list of URLs to load via `<script src>`, a string for `globalEval()`, or an
-		 *  object like {"files": {"foo.js":function, "bar.js": function, ...}, "main": "foo.js"}.
-		 *  If an object is provided, the main file will be executed immediately, and the other
-		 *  files will only be executed if loaded via require(). If a function or string is
-		 *  provided, it will be executed/evaluated immediately. If an array is provided, all
-		 *  URLs in the array will be loaded immediately, and executed as soon as they arrive.
-		 * @param {Object} [style] Should follow one of the following patterns:
+		 * Prior to MW 1.41, this was used internally, but now it is only kept
+		 * for backwards compatibility.
 		 *
-		 *     { "css": [css, ..] }
-		 *     { "url": { <media>: [url, ..] } }
+		 * Does not support mw.loader.store caching.
 		 *
-		 * The reason css strings are not concatenated anymore is T33676. We now check
-		 * whether it's safe to extend the stylesheet.
-		 *
-		 * @private
+		 * @param {string} module
+		 * @param {Function|Array|string|Object} [script]
+		 * @param {Object} [style]
 		 * @param {Object} [messages] List of key/value pairs to be added to mw#messages.
 		 * @param {Object} [templates] List of key/value pairs to be added to mw#templates.
 		 * @param {string|null} [deprecationWarning] Deprecation warning if any
@@ -1560,6 +1548,76 @@
 			var split = splitModuleKey( module ),
 				name = split.name,
 				version = split.version;
+
+			// Automatically register module
+			if ( !( name in registry ) ) {
+				mw.loader.register( name );
+			}
+			// Check for duplicate implementation
+			if ( registry[ name ].script !== undefined ) {
+				throw new Error( 'module already implemented: ' + name );
+			}
+			registry[ name ].version = version;
+			registry[ name ].declarator = null; // not supported
+			registry[ name ].script = script;
+			registry[ name ].style = style;
+			registry[ name ].messages = messages;
+			registry[ name ].templates = templates;
+			registry[ name ].deprecationWarning = deprecationWarning;
+			// The module may already have been marked as erroneous
+			if ( registry[ name ].state !== 'error' && registry[ name ].state !== 'missing' ) {
+				setAndPropagate( name, 'loaded' );
+			}
+		},
+
+		/**
+		 * Implement a module given a function which returns the components of the module
+		 *
+		 * @param {Function} declarator
+		 *
+		 * The declarator should return an array with the following keys:
+		 *
+		 *  - 0. {string} module Name of module and current module version. Formatted
+		 *    as '`[name]@[version]`". This version should match the requested version
+		 *    (from #batchRequest and #registry). This avoids race conditions (T117587).
+		 *
+		 *  - 1. {Function|Array|string|Object} [script] Module code. This can be a function,
+		 *    a list of URLs to load via `<script src>`, a string for `globalEval()`, or an
+		 *    object like {"files": {"foo.js":function, "bar.js": function, ...}, "main": "foo.js"}.
+		 *    If an object is provided, the main file will be executed immediately, and the other
+		 *    files will only be executed if loaded via require(). If a function or string is
+		 *    provided, it will be executed/evaluated immediately. If an array is provided, all
+		 *    URLs in the array will be loaded immediately, and executed as soon as they arrive.
+		 *
+		 *  - 2. {Object} [style] Should follow one of the following patterns:
+		 *
+		 *     { "css": [css, ..] }
+		 *     { "url": { (media): [url, ..] } }
+		 *
+		 *    The reason css strings are not concatenated anymore is T33676. We now check
+		 *    whether it's safe to extend the stylesheet.
+		 *
+		 *  - 3. {Object} [messages] List of key/value pairs to be added to mw#messages.
+		 *  - 4. {Object} [templates] List of key/value pairs to be added to mw#templates.
+		 *  - 5. {String|null} [deprecationWarning] Deprecation warning if any
+		 *
+		 * The declarator must not use any scope variables, since it will be serialized with
+		 * Function.prototype.toString() and later restored and executed in the global scope.
+		 *
+		 * The elements are all optional except the name.
+		 */
+		impl: function ( declarator ) {
+			var data = declarator(),
+				module = data[ 0 ],
+				script = data[ 1 ] || null,
+				style = data[ 2 ] || null,
+				messages = data[ 3 ] || null,
+				templates = data[ 4 ] || null,
+				deprecationWarning = data[ 5 ] || null,
+				split = splitModuleKey( module ),
+				name = split.name,
+				version = split.version;
+
 			// Automatically register module
 			if ( !( name in registry ) ) {
 				mw.loader.register( name );
@@ -1574,24 +1632,16 @@
 			// indefinitely with a stale value. (T117587)
 			registry[ name ].version = version;
 			// Attach components
-			registry[ name ].script = script || null;
-			registry[ name ].style = style || null;
-			registry[ name ].messages = messages || null;
-			registry[ name ].templates = templates || null;
-			registry[ name ].deprecationWarning = deprecationWarning || null;
+			registry[ name ].declarator = declarator;
+			registry[ name ].script = script;
+			registry[ name ].style = style;
+			registry[ name ].messages = messages;
+			registry[ name ].templates = templates;
+			registry[ name ].deprecationWarning = deprecationWarning;
 			// The module may already have been marked as erroneous
 			if ( registry[ name ].state !== 'error' && registry[ name ].state !== 'missing' ) {
 				setAndPropagate( name, 'loaded' );
 			}
-		},
-
-		/**
-		 * New implement function for forwards-compatibility (deployment rollback support).
-		 *
-		 * @param {Function} declarator
-		 */
-		impl: function ( declarator ) {
-			this.implement.apply( this, declarator() );
 		},
 
 		/**
@@ -1948,9 +1998,7 @@
 		 * @param {string} module Module name
 		 */
 		set: function ( module ) {
-			var args,
-				encodedScript,
-				descriptor = registry[ module ],
+			var descriptor = registry[ module ],
 				key = getModuleKey( module );
 
 			if (
@@ -1963,56 +2011,13 @@
 				!descriptor.version ||
 				descriptor.group === $VARS.groupPrivate ||
 				descriptor.group === $VARS.groupUser ||
-				// Partial descriptor
-				// (e.g. skipped module, or style module with state=ready)
-				[ descriptor.script, descriptor.style, descriptor.messages,
-					descriptor.templates, descriptor.deprecationWarning ].indexOf( undefined ) !== -1
+				// Legacy descriptor (MediaWiki 1.41)
+				!descriptor.declarator
 			) {
 				// Decline to store
 				return;
 			}
-
-			try {
-				if ( typeof descriptor.script === 'function' ) {
-					// Function literal: cast to string
-					encodedScript = String( descriptor.script );
-				} else if (
-					// Plain object: serialise as object literal (not JSON),
-					// making sure to preserve the functions.
-					typeof descriptor.script === 'object' &&
-					descriptor.script &&
-					!Array.isArray( descriptor.script )
-				) {
-					encodedScript = '{' +
-						'main:' + JSON.stringify( descriptor.script.main ) + ',' +
-						'files:{' +
-						Object.keys( descriptor.script.files ).map( function ( file ) {
-							var value = descriptor.script.files[ file ];
-							return JSON.stringify( file ) + ':' +
-								( typeof value === 'function' ? value : JSON.stringify( value ) );
-						} ).join( ',' ) +
-						'}}';
-				} else {
-					// Array of urls, or null.
-					encodedScript = JSON.stringify( descriptor.script );
-				}
-				args = [
-					JSON.stringify( key ),
-					encodedScript,
-					JSON.stringify( descriptor.style ),
-					JSON.stringify( descriptor.messages ),
-					JSON.stringify( descriptor.templates ),
-					JSON.stringify( descriptor.deprecationWarning )
-				];
-			} catch ( e ) {
-				mw.trackError( 'resourceloader.exception', {
-					exception: e,
-					source: 'store-localstorage-json'
-				} );
-				return;
-			}
-
-			var src = 'mw.loader.implement(' + args.join( ',' ) + ');';
+			var src = 'mw.loader.impl(\n' + String( descriptor.declarator ) + '\n);';
 
 			// Modules whose serialised form exceeds 100 kB won't be stored (T66721).
 			if ( src.length > 1e5 ) {

@@ -940,8 +940,13 @@
 		mw.loader.register( 'test.stale', 'v2' );
 		assert.strictEqual( mw.loader.store.get( 'test.stale' ), false, 'Not in store' );
 
-		mw.loader.implement( 'test.stale@v1', function () {
-			count++;
+		mw.loader.impl( function () {
+			return [
+				'test.stale@v1',
+				function () {
+					count++;
+				}
+			];
 		} );
 
 		return mw.loader.using( 'test.stale' )
