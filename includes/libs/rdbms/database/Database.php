@@ -284,66 +284,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	abstract protected function open( $server, $user, $password, $db, $schema, $tablePrefix );
 
 	/**
-	 * Construct a Database subclass instance given a database type and parameters
-	 *
-	 * This also connects to the database immediately upon object construction
-	 *
-	 * @param string $type A possible DB type (sqlite, mysql, postgres,...)
-	 * @param array $params Parameter map with keys:
-	 *   - host : The hostname or IP address of the database server
-	 *   - user : The name of the database user the client operates under
-	 *   - password : The password for the database user
-	 *   - dbname : The name of the database to use where queries do not specify one.
-	 *      The database must exist or an error might be thrown. Setting this to an empty string
-	 *      will avoid any such errors and make the handle have no implicit database scope. This is
-	 *      useful for queries like SHOW STATUS, CREATE DATABASE, or DROP DATABASE. Note that a
-	 *      "database" in Postgres is roughly equivalent to an entire MySQL server. This the domain
-	 *      in which user names and such are defined, e.g. users are database-specific in Postgres.
-	 *   - schema : The database schema to use (if supported). A "schema" in Postgres is roughly
-	 *      equivalent to a "database" in MySQL. Note that MySQL and SQLite do not use schemas.
-	 *   - tablePrefix : Optional table prefix that is implicitly added on to all table names
-	 *      recognized in queries. This can be used in place of schemas for handle site farms.
-	 *   - flags : Optional bit field of DBO_* constants that define connection, protocol,
-	 *      buffering, and transaction behavior. It is STRONGLY advised to leave the DBO_DEFAULT
-	 *      flag in place UNLESS this database simply acts as a key/value store.
-	 *   - ssl : Whether to use TLS connections.
-	 *   - driver: Optional name of a specific DB client driver. For MySQL, there is only the
-	 *      'mysqli' driver; the old one 'mysql' has been removed.
-	 *   - variables: Optional map of session variables to set after connecting. This can be
-	 *      used to adjust lock timeouts or encoding modes and the like.
-	 *   - serverName : Optional readable name for the database server.
-	 *   - topologyRole: Optional IDatabase::ROLE_* constant that defines the replication role
-	 *     that this server plays within the parent database cluster.
-	 *   - lbInfo: Optional map of field/values for the managing load balancer instance.
-	 *      The "master" and "replica" fields are used to flag the replication role of this
-	 *      database server and whether methods like getLag() should actually issue queries.
-	 *   - connectTimeout: Optional timeout, in seconds, for connection attempts.
-	 *   - receiveTimeout: Optional timeout, in seconds, for receiving query results.
-	 *   - logger: Optional PSR-3 logger interface instance.
-	 *   - profiler : Optional callback that takes a section name argument and returns
-	 *      a ScopedCallback instance that ends the profile section in its destructor.
-	 *      These will be called in query(), using a simplified version of the SQL that
-	 *      also includes the agent as a SQL comment.
-	 *   - trxProfiler: Optional TransactionProfiler instance.
-	 *   - errorLogger: Optional callback that takes an Exception and logs it.
-	 *   - deprecationLogger: Optional callback that takes a string and logs it.
-	 *   - cliMode: Whether to consider the execution context that of a CLI script.
-	 *   - agent: Optional name used to identify the end-user in query profiling/logging.
-	 *   - srvCache: Optional BagOStuff instance to an APC-style cache.
-	 *   - nonNativeInsertSelectBatchSize: Optional batch size for non-native INSERT SELECT.
-	 *   - criticalSectionProvider: Optional CriticalSectionProvider instance.
-	 * @param int $connect One of the class constants (NEW_CONNECTED, NEW_UNCONNECTED) [optional]
-	 * @return Database|null If the database driver or extension cannot be found
-	 * @throws InvalidArgumentException If the database driver or extension cannot be found
-	 * @deprecated since 1.39, use DatabaseFactory::create instead
-	 * @since 1.18
-	 */
-	final public static function factory( $type, $params = [], $connect = self::NEW_CONNECTED ) {
-		wfDeprecated( __METHOD__, '1.39' );
-		return ( new DatabaseFactory() )->create( $type, $params, $connect );
-	}
-
-	/**
 	 * @stable to override
 	 * @return array Map of (Database::ATTR_* constant => value)
 	 * @since 1.31

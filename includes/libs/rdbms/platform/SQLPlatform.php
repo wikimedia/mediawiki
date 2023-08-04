@@ -1518,7 +1518,10 @@ class SQLPlatform implements ISQLPlatform {
 	 * @return Query
 	 */
 	public function deleteSqlText( $table, $conds ) {
-		$this->assertConditionIsNotEmpty( $conds, __METHOD__, false );
+		$isCondValid = ( is_string( $conds ) || is_array( $conds ) ) && $conds;
+		if ( !$isCondValid ) {
+			throw new DBLanguageError( __METHOD__ . ' called with empty conditions' );
+		}
 
 		$encTable = $this->tableName( $table );
 		$sql = "DELETE FROM $encTable";
@@ -1553,7 +1556,10 @@ class SQLPlatform implements ISQLPlatform {
 	}
 
 	public function updateSqlText( $table, $set, $conds, $options ) {
-		$this->assertConditionIsNotEmpty( $conds, __METHOD__, true );
+		$isCondValid = ( is_string( $conds ) || is_array( $conds ) ) && $conds;
+		if ( !$isCondValid ) {
+			throw new DBLanguageError( __METHOD__ . ' called with empty conditions' );
+		}
 		$encTable = $this->tableName( $table );
 		$opts = $this->makeUpdateOptions( $options );
 		$sql = "UPDATE $opts $encTable";
@@ -1574,30 +1580,6 @@ class SQLPlatform implements ISQLPlatform {
 			$table,
 			$sql . $cleanCondsSql
 		);
-	}
-
-	/**
-	 * Check type and bounds conditions parameters for update
-	 *
-	 * In order to prevent possible performance or replication issues,
-	 * empty condition for 'update' and 'delete' queries isn't allowed
-	 *
-	 * @param array|string $conds conditions to be validated on emptiness
-	 * @param string $fname caller's function name to be passed to exception
-	 * @param bool $deprecate define the assertion type. If true then
-	 *   wfDeprecated will be called, otherwise DBUnexpectedError will be
-	 *   raised.
-	 * @since 1.35, moved to SQLPlatform in 1.39
-	 */
-	protected function assertConditionIsNotEmpty( $conds, string $fname, bool $deprecate ) {
-		$isCondValid = ( is_string( $conds ) || is_array( $conds ) ) && $conds;
-		if ( !$isCondValid ) {
-			if ( $deprecate ) {
-				wfDeprecated( $fname . ' called with empty $conds', '1.35', false, 4 );
-			} else {
-				throw new DBLanguageError( $fname . ' called with empty conditions' );
-			}
-		}
 	}
 
 	/**

@@ -2,6 +2,7 @@
 
 use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
 use MediaWiki\Tests\Unit\Libs\Rdbms\SQLPlatformTestHelper;
+use Wikimedia\Rdbms\DBLanguageError;
 use Wikimedia\Rdbms\LikeMatch;
 
 /**
@@ -453,7 +454,6 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 	 * @dataProvider provideUpdate
 	 */
 	public function testUpdate( $sql, $sqlText, $clean ) {
-		$this->hideDeprecated( 'Wikimedia\Rdbms\Platform\SQLPlatform::updateSqlText' );
 		$actual = $this->platform->updateSqlText(
 			$sql['table'],
 			$sql['values'],
@@ -511,33 +511,6 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 				"UPDATE  table SET field = other,field2 = 'text2'",
 				"UPDATE  table SET ?,field2 = '?'",
 			],
-			[
-				[
-					'table' => 'table',
-					'values' => [ 'field' => 'text', 'field2' => 'text2' ],
-					'conds' => null,
-				],
-				"UPDATE  table SET field = 'text',field2 = 'text2'",
-				"UPDATE  table SET field = '?',field2 = '?'",
-			],
-			[
-				[
-					'table' => 'table',
-					'values' => [ 'field = other', 'field2' => 'text2' ],
-					'conds' => [],
-				],
-				"UPDATE  table SET field = other,field2 = 'text2'",
-				"UPDATE  table SET ?,field2 = '?'",
-			],
-			[
-				[
-					'table' => 'table',
-					'values' => [ 'field = other', 'field2' => 'text2' ],
-					'conds' => '',
-				],
-				"UPDATE  table SET field = other,field2 = 'text2'",
-				"UPDATE  table SET ?,field2 = '?'",
-			]
 		];
 	}
 
@@ -603,7 +576,9 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 	 * @dataProvider provideUpdateEmptyCondition
 	 */
 	public function testUpdateEmptyCondition( $sql ) {
-		$this->expectDeprecationAndContinue( '/Use of Wikimedia\\\\Rdbms\\\\Platform\\\\SQLPlatform::updateSqlText called with empty \$conds was deprecated in MediaWiki 1\.35/' );
+		$this->expectException( DBLanguageError::class );
+		$this->expectExceptionMessage( 'called with empty conditions' );
+
 		$this->platform->updateSqlText(
 			$sql['table'],
 			$sql['values'],

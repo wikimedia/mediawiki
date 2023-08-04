@@ -134,23 +134,6 @@ class TransactionProfiler implements LoggerAwareInterface, StatsdAwareInterface 
 	}
 
 	/**
-	 * @param bool $value
-	 * @return bool Old value
-	 * @since 1.28
-	 * @deprecated Since 1.40
-	 */
-	public function setSilenced( bool $value ) {
-		wfDeprecated( __METHOD__, '1.40' );
-
-		$delta = $value ? 1 : -1;
-		foreach ( self::EVENT_NAMES as $event ) {
-			$this->silenced[$event] += $delta;
-		}
-
-		return false;
-	}
-
-	/**
 	 * Temporarily ignore expectations until the returned object goes out of scope
 	 *
 	 * During this time, violation of expectations will not be logged and counters
