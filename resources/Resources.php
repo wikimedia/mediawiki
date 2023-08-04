@@ -756,7 +756,8 @@ return [
 			'resources/src/mediawiki.diff/inlineFormatToggle.js',
 		],
 		'dependencies' => [
-			'oojs-ui'
+			'oojs-ui',
+			'mediawiki.api',
 		],
 		'messages' => [
 			'diff-inline-format-label',
