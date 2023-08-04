@@ -263,6 +263,18 @@ class ApiParamValidator {
 					}
 					$this->checkSettingsMessage( $module, "PARAM_HELP_MSG_PER_VALUE[$k]", $v, $ret );
 				}
+				foreach ( $settings[ParamValidator::PARAM_TYPE] as $p ) {
+					if ( array_key_exists( $p, $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE] ) ) {
+						continue;
+					}
+					$path = $module->getModulePath();
+					$this->checkSettingsMessage(
+						$module,
+						"PARAM_HELP_MSG_PER_VALUE[$p]",
+						"apihelp-$path-paramvalue-$name-$p",
+						$ret
+					);
+				}
 			}
 		}
 
