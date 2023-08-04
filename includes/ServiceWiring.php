@@ -255,6 +255,7 @@ return [
 			new ServiceOptions( ActorStoreFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getDBLoadBalancerFactory(),
 			$services->getUserNameUtils(),
+			$services->getTempUserConfig(),
 			LoggerFactory::getInstance( 'ActorStore' )
 		);
 	},

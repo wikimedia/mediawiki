@@ -65,4 +65,13 @@ interface TempUserConfig {
 	 * @return string
 	 */
 	public function getPlaceholderName(): string;
+
+	/**
+	 * Get a Pattern indicating how temporary account can be detected
+	 *
+	 * Used to avoid selecting a temp account via select queries.
+	 *
+	 * @return Pattern
+	 */
+	public function getMatchPattern(): Pattern;
 }

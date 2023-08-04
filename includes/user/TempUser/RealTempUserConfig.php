@@ -96,6 +96,14 @@ class RealTempUserConfig implements TempUserConfig {
 		}
 	}
 
+	public function getMatchPattern(): Pattern {
+		if ( $this->enabled ) {
+			return $this->matchPattern;
+		} else {
+			throw new BadMethodCallException( __METHOD__ . ' is disabled' );
+		}
+	}
+
 	/**
 	 * @internal For TempUserCreator only
 	 * @return Pattern
