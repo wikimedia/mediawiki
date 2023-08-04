@@ -4451,6 +4451,8 @@ class EditPage implements IEditObject {
 			'label' => $this->context->msg( 'showpreview' )->text(),
 			'infusable' => true,
 			'type' => 'submit',
+			// Allow previewing even when the form is in invalid state (T343585)
+			'formNoValidate' => true,
 			// Message used: tooltip-preview
 			'title' => Linker::titleAttrib( 'preview' ),
 			// Message used: accesskey-preview
@@ -4467,6 +4469,8 @@ class EditPage implements IEditObject {
 			'label' => $this->context->msg( 'showdiff' )->text(),
 			'infusable' => true,
 			'type' => 'submit',
+			// Allow previewing even when the form is in invalid state (T343585)
+			'formNoValidate' => true,
 			// Message used: tooltip-diff
 			'title' => Linker::titleAttrib( 'diff' ),
 			// Message used: accesskey-diff
