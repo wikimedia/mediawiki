@@ -2429,7 +2429,6 @@ $wgAutoloadLocalClasses = [
 	'ResetPageRandom' => __DIR__ . '/maintenance/resetPageRandom.php',
 	'ResetUserEmail' => __DIR__ . '/maintenance/resetUserEmail.php',
 	'ResolveStubs' => __DIR__ . '/maintenance/storage/resolveStubs.php',
-	'ResourceFileCache' => __DIR__ . '/includes/cache/ResourceFileCache.php',
 	'ResourceLoader' => __DIR__ . '/includes/ResourceLoader/ResourceLoader.php',
 	'ResourceLoaderCircularDependencyError' => __DIR__ . '/includes/ResourceLoader/CircularDependencyError.php',
 	'ResourceLoaderClientHtml' => __DIR__ . '/includes/ResourceLoader/ClientHtml.php',

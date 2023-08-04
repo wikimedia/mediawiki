@@ -34,6 +34,7 @@ For notes on 1.40.x and older releases, see HISTORY.
   LocalPasswordPrimaryAuthenticationProvider and
   EmailNotificationSecondaryAuthenticationProvider now require
   DBLoadBalancerFactory, not DBLoadBalancer, as a service.
+* $wgUseFileCache is no longer used for ResourceLoader module caching.
 * …
 
 ==== Removed configuration ====
@@ -321,6 +322,8 @@ because of Phabricator reports.
   been removed:
   - ::addWarning()
   - ::hideNewSection()
+* ResourceFileCache has been removed without deprecation. There were no known
+  uses outside of core.
 * Many LocalisationCache constants, properties and methods that have no known
   usage outside of the class have been made private without deprecation.
 * …

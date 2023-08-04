@@ -51,7 +51,6 @@ use OutputPage;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use ResourceFileCache;
 use RuntimeException;
 use stdClass;
 use Throwable;
@@ -61,7 +60,6 @@ use Wikimedia\DependencyStore\DependencyStore;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\Minify\CSSMin;
 use Wikimedia\Minify\JavaScriptMinifier;
-use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\RequestTimeout\TimeoutException;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
@@ -121,8 +119,6 @@ class ResourceLoader implements LoggerAwareInterface {
 	private $maxageVersioned;
 	/** @var int */
 	private $maxageUnversioned;
-	/** @var bool */
-	private $useFileCache;
 
 	/** @var Module[] Map of (module name => Module) */
 	private $modules = [];
@@ -166,9 +162,6 @@ class ResourceLoader implements LoggerAwareInterface {
 	 *    controls how quickly changes (in the module registry, dependency tree, or module content)
 	 *    will propagate to clients.
 	 *    Default: 5 minutes.
-	 *  - useFileCache: Enable use of MediaWiki's FileCache feature.
-	 *    See also $wgUseFileCache and ResourceFileCache.
-	 *    Default: `false`.
 	 */
 	public function __construct(
 		Config $config,
@@ -179,7 +172,6 @@ class ResourceLoader implements LoggerAwareInterface {
 		$this->loadScript = $params['loadScript'] ?? '/load.php';
 		$this->maxageVersioned = $params['maxageVersioned'] ?? 30 * 24 * 60 * 60;
 		$this->maxageUnversioned = $params['maxageUnversioned'] ?? 5 * 60;
-		$this->useFileCache = $params['useFileCache'] ?? false;
 
 		$this->config = $config;
 		$this->logger = $logger ?: new NullLogger();
@@ -793,16 +785,6 @@ class ResourceLoader implements LoggerAwareInterface {
 			return; // output handled (buffers cleared)
 		}
 
-		// Use file cache if enabled and available...
-		if ( $this->useFileCache ) {
-			$fileCache = ResourceFileCache::newFromContext( $context );
-			if ( $this->tryRespondFromFileCache( $fileCache, $context, $etag ) ) {
-				return; // output handled
-			}
-		} else {
-			$fileCache = null;
-		}
-
 		// Generate a response
 		$response = $this->makeModuleResponse( $context, $modules, $missing );
 
@@ -812,17 +794,6 @@ class ResourceLoader implements LoggerAwareInterface {
 			$warnings = ob_get_contents();
 			if ( strlen( $warnings ) ) {
 				$this->errors[] = $warnings;
-			}
-		}
-
-		// Consider saving the response to file cache (unless there are errors).
-		if ( $fileCache && !$this->errors && $missing === [] &&
-			ResourceFileCache::useFileCache( $context ) ) {
-			if ( $fileCache->isCacheWorthy() ) {
-				// There were enough hits, save the response to the cache
-				$fileCache->saveText( $response );
-			} else {
-				$fileCache->incrMissesRecent( $context->getRequest() );
 			}
 		}
 
@@ -969,59 +940,6 @@ class ResourceLoader implements LoggerAwareInterface {
 			return true;
 		}
 		return false;
-	}
-
-	/**
-	 * Send out code for a response from file cache if possible.
-	 *
-	 * @param ResourceFileCache $fileCache Cache object for this request URL
-	 * @param Context $context Context in which to generate a response
-	 * @param string $etag ETag header value
-	 * @return bool If this found a cache file and handled the response
-	 */
-	protected function tryRespondFromFileCache(
-		ResourceFileCache $fileCache,
-		Context $context,
-		$etag
-	) {
-		// Buffer output to catch warnings.
-		ob_start();
-		// Get the maximum age the cache can be
-		$maxage = $context->getVersion() === null
-			? $this->maxageUnversioned
-			: $this->maxageVersioned;
-		// Minimum timestamp the cache file must have
-		$minTime = time() - $maxage;
-		$good = $fileCache->isCacheGood( ConvertibleTimestamp::convert( TS_MW, $minTime ) );
-		if ( !$good ) {
-			try { // RL always hits the DB on file cache miss...
-				wfGetDB( DB_REPLICA );
-			} catch ( DBConnectionError $e ) { // ...check if we need to fallback to cache
-				$good = $fileCache->isCacheGood(); // cache existence check
-			}
-		}
-		if ( $good ) {
-			$ts = $fileCache->cacheTimestamp();
-			// Send content type and cache headers
-			$this->sendResponseHeaders( $context, $etag, false );
-			$response = $fileCache->fetchText();
-			// Capture any PHP warnings from the output buffer and append them to the
-			// response in a comment if we're in debug mode.
-			if ( $context->getDebug() ) {
-				$warnings = ob_get_contents();
-				if ( strlen( $warnings ) ) {
-					$response = self::makeComment( $warnings ) . $response;
-				}
-			}
-			// Remove the output buffer and output the response
-			ob_end_clean();
-			echo $response . "\n/* Cached {$ts} */";
-			return true; // cache hit
-		}
-		// Clear buffer
-		ob_end_clean();
-
-		return false; // cache miss
 	}
 
 	/**

@@ -1713,7 +1713,6 @@ return [
 				'loadScript' => $config->get( MainConfigNames::LoadScript ),
 				'maxageVersioned' => $maxage['versioned'] ?? null,
 				'maxageUnversioned' => $maxage['unversioned'] ?? null,
-				'useFileCache' => $config->get( MainConfigNames::UseFileCache ),
 			]
 		);
 
