@@ -2,6 +2,7 @@
 	const Vue = require( '../../lib/vue/vue.js' );
 	const errorLogger = require( './errorLogger.js' );
 	const i18n = require( './i18n.js' );
+	const teleportTarget = require( 'mediawiki.page.teleportTarget' );
 
 	/**
 	 * Replace the given DOM element with its children.
@@ -43,6 +44,7 @@
 		const app = Vue.createApp( options, ...otherArgs );
 		app.use( errorLogger );
 		app.use( i18n );
+		app.provide( 'CdxTeleportTarget', teleportTarget );
 
 		if ( options.store ) {
 			// Provide backwards compatibility for callers expecting Vuex 3
