@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group Database
+ */
 class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 
 	/**
@@ -362,7 +365,7 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 		DeferredUpdates::tryOpportunisticExecute();
 		$this->assertEquals( [], $calls );
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 		$dbw->onTransactionCommitOrIdle( function () use ( &$calls, $callback2 ) {
 			DeferredUpdates::addCallableUpdate( $callback2 );
 			$this->assertEquals( [], $calls );

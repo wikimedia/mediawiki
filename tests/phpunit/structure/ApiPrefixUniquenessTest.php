@@ -6,6 +6,7 @@ use MediaWiki\Request\FauxRequest;
  * Checks that all API query modules, core and extensions, have unique prefixes.
  *
  * @group API
+ * @group Database
  * @coversNothing
  */
 class ApiPrefixUniquenessTest extends MediaWikiIntegrationTestCase {

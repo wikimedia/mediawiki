@@ -32,6 +32,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		parent::setUp();
 
 		$this->overrideConfigValue( MainConfigNames::ShowExceptionDetails, true );
+		$this->setService( 'DBLoadBalancer', $this->createMock( ILoadBalancer::class ) );
 	}
 
 	/**
@@ -940,7 +941,6 @@ END
 	 * startup module response. See T152266.
 	 */
 	public function testMakeModuleResponseStartupError() {
-		$this->setService( 'DBLoadBalancer', $this->createMock( ILoadBalancer::class ) );
 		// This is an integration test that uses a lot of MediaWiki state,
 		// provide the full Config object here.
 		$rl = new EmptyResourceLoader( $this->getServiceContainer()->getMainConfig() );
@@ -1079,7 +1079,6 @@ END
 	}
 
 	public function testRespondSimple() {
-		$this->setService( 'DBLoadBalancer', $this->createMock( ILoadBalancer::class ) );
 		$module = new ResourceLoaderTestModule( [ 'script' => 'foo();' ] );
 		$rl = $this->getMockBuilder( EmptyResourceLoader::class )
 			->onlyMethods( [

@@ -50,7 +50,7 @@ class ApiQueryTokensTest extends ApiTestCase {
 		] );
 
 		$this->assertSame(
-			wfMessage( 'apiwarn-truncatedresult', Message::numParam( $size ) )
+			$this->apiContext->msg( 'apiwarn-truncatedresult', Message::numParam( $size ) )
 				->text(),
 			$result['warnings']['result']['warnings']
 		);

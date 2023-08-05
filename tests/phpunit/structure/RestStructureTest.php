@@ -26,6 +26,7 @@ use Wikimedia\TestingAccessWrapper;
  * - do not have inconsistencies in the parameter definitions
  *
  * @coversNothing
+ * @group Database
  */
 class RestStructureTest extends MediaWikiIntegrationTestCase {
 	use DummyServicesTrait;

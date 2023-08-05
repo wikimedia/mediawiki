@@ -478,6 +478,14 @@ class ProtectLogFormatterTest extends LogFormatterTestCase {
 		$context->setLanguage( 'en' );
 		$formatter = LogFormatter::newFromRow( $row );
 		$formatter->setContext( $context );
+		$titleFactory = $this->createMock( TitleFactory::class );
+		$titleFactory->method( 'makeTitle' )->willReturnCallback( static function () {
+			$ret = Title::makeTitle( ...func_get_args() );
+			$ret->resetArticleID( 0 );
+			return $ret;
+		} );
+		$this->setService( 'TitleFactory', $titleFactory );
+		$this->setService( 'LinkCache', $this->createMock( LinkCache::class ) );
 		if ( $shouldMatch ) {
 			$this->assertStringMatchesFormat(
 				'%Aaction=protect%A', $formatter->getActionLinks() );

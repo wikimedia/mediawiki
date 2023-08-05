@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\ResourceLoader;
 use LogicException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\ResourceLoader\FileModule;
+use MediaWiki\ResourceLoader\MessageBlobStore;
 use MediaWiki\ResourceLoader\Module;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use ReflectionMethod;
@@ -19,6 +20,9 @@ class ModuleTest extends ResourceLoaderTestCase {
 
 	public function testGetVersionHash() {
 		$context = $this->getResourceLoaderContext( [ 'debug' => 'false' ] );
+		$msgBlobStore = $this->createMock( MessageBlobStore::class );
+		$msgBlobStore->method( 'getBlob' )->willReturn( '{}' );
+		$context->getResourceLoader()->setMessageBlobStore( $msgBlobStore );
 
 		$baseParams = [
 			'scripts' => [ 'foo.js', 'bar.js' ],

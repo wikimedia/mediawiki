@@ -25,7 +25,6 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IDatabase;
@@ -234,7 +233,7 @@ class DatabaseLogEntry extends LogEntryBase {
 	public function getTarget() {
 		$namespace = $this->row->log_namespace;
 		$page = $this->row->log_title;
-		return Title::makeTitle( $namespace, $page );
+		return MediaWikiServices::getInstance()->getTitleFactory()->makeTitle( $namespace, $page );
 	}
 
 	public function getTimestamp() {

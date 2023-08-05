@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Title\Title;
 
 /**
@@ -8,6 +9,18 @@ use MediaWiki\Title\Title;
  * @covers ApiQuerySearch
  */
 class ApiQuerySearchTest extends ApiTestCase {
+
+	protected function setUp(): void {
+		parent::setUp();
+		MockSearchEngine::clearMockResults();
+		$this->registerMockSearchEngine();
+		$this->setService( 'RevisionLookup', $this->createMock( RevisionLookup::class ) );
+	}
+
+	private function registerMockSearchEngine() {
+		$this->overrideConfigValue( MainConfigNames::SearchType, MockSearchEngine::class );
+	}
+
 	public function provideSearchResults() {
 		return [
 			'empty search result' => [ [], [] ],
@@ -93,16 +106,6 @@ class ApiQuerySearchTest extends ApiTestCase {
 		$this->assertEquals( $expect, $results );
 	}
 
-	protected function setUp(): void {
-		parent::setUp();
-		MockSearchEngine::clearMockResults();
-		$this->registerMockSearchEngine();
-	}
-
-	private function registerMockSearchEngine() {
-		$this->overrideConfigValue( MainConfigNames::SearchType, MockSearchEngine::class );
-	}
-
 	/**
 	 * Returns a closure that evaluates to a MockSearchResult, to be resolved by
 	 * MockSearchEngine::addMockResults() or MockresultSet::extractResults().
@@ -111,13 +114,15 @@ class ApiQuerySearchTest extends ApiTestCase {
 	 * since they load revisions. This would hit the "real" database instead of the mock
 	 * database, which in turn may cause cache pollution and other inconsistencies, see T202641.
 	 *
-	 * @param string $title
+	 * @param string $titleText
 	 * @param array $setters
 	 * @return callable function(): MockSearchResult
 	 */
-	private function mockResultClosure( $title, $setters = [] ) {
-		return static function () use ( $title, $setters ){
-			$result = new MockSearchResult( Title::newFromText( $title ) );
+	private function mockResultClosure( $titleText, $setters = [] ) {
+		return static function () use ( $titleText, $setters ) {
+			$title = Title::newFromText( $titleText );
+			$title->resetArticleID( 0 );
+			$result = new MockSearchResult( $title );
 
 			foreach ( $setters as $method => $param ) {
 				$result->$method( $param );

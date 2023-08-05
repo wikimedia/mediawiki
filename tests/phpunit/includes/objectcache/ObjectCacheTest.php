@@ -6,6 +6,7 @@ use MediaWiki\MainConfigSchema;
 /**
  * @covers ObjectCache
  * @group BagOStuff
+ * @group Database
  */
 class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 
