@@ -1586,6 +1586,8 @@
 	"api-help-param-disabled-in-miser-mode": "{{doc-apihelp-param|description=any parameter that is disabled when [[mw:Manual:$wgMiserMode|$wgMiserMode]] is set.|noseealso=1}}",
 	"api-help-param-limited-in-miser-mode": "{{doc-apihelp-param|description=additional text for any parameter that may cause the module to return few results when [[mw:Manual:$wgMiserMode|$wgMiserMode]] is set.|noseealso=1}}",
 	"api-help-param-direction": "{{doc-apihelp-param|description=any standard \"dir\" parameter|noseealso=1}}",
+	"api-help-paramvalue-direction-newer": "{{doc-apihelp-paramvalue|description=any standard \"dir\" parameter|noseealso=1}}",
+	"api-help-paramvalue-direction-older": "{{doc-apihelp-paramvalue|description=any standard \"dir\" parameter|noseealso=1}}",
 	"api-help-param-continue": "{{doc-apihelp-param|description=any standard \"continue\" parameter, or other parameter with the same semantics|noseealso=1}}",
 	"api-help-param-no-description": "Displayed on API parameters that lack any description",
 	"api-help-examples": "Label for the API help examples section\n\nParameters:\n* $1 - Number of examples to be displayed\n{{Identical|Example}}",
