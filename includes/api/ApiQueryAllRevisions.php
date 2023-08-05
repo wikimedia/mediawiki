@@ -312,6 +312,10 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 				],
 				ParamValidator::PARAM_DEFAULT => 'older',
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-direction',
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [
+					'newer' => 'api-help-paramvalue-direction-newer',
+					'older' => 'api-help-paramvalue-direction-older',
+				],
 			],
 			'excludeuser' => [
 				ParamValidator::PARAM_TYPE => 'user',
