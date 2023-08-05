@@ -121,17 +121,21 @@ class ExtensionJsonValidator {
 			}
 		}
 		if ( isset( $data->url ) && is_string( $data->url ) ) {
-			$parsed = wfParseUrl( $data->url );
+			$parsed = parse_url( $data->url );
 			$mwoUrl = false;
-			if ( $parsed['host'] === 'www.mediawiki.org' ) {
-				$mwoUrl = true;
-			} elseif ( $parsed['host'] === 'mediawiki.org' ) {
-				$mwoUrl = true;
-				$extraErrors[] = '[url] Should use www.mediawiki.org domain';
-			}
+			if ( !$parsed || !isset( $parsed['host'] ) || !isset( $parsed['scheme'] ) ) {
+				$extraErrors[] = '[url] URL cannot be parsed';
+			} else {
+				if ( $parsed['host'] === 'www.mediawiki.org' ) {
+					$mwoUrl = true;
+				} elseif ( $parsed['host'] === 'mediawiki.org' ) {
+					$mwoUrl = true;
+					$extraErrors[] = '[url] Should use www.mediawiki.org domain';
+				}
 
-			if ( $mwoUrl && $parsed['scheme'] !== 'https' ) {
-				$extraErrors[] = '[url] Should use HTTPS for www.mediawiki.org URLs';
+				if ( $mwoUrl && $parsed['scheme'] !== 'https' ) {
+					$extraErrors[] = '[url] Should use HTTPS for www.mediawiki.org URLs';
+				}
 			}
 		}
 

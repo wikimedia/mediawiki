@@ -296,7 +296,7 @@ class SiteConfig extends ISiteConfig {
 		}
 		$url = substr( $url, 0, -2 );
 
-		$bits = wfParseUrl( $url );
+		$bits = $this->urlUtils->parse( $url );
 		if ( !$bits ) {
 			throw new UnexpectedValueException( "Failed to parse article path '$url'" );
 		}

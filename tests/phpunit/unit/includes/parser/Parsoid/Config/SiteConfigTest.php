@@ -358,9 +358,15 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 	 */
 	public function testArticlePath_exception( string $articlePath ) {
 		$this->expectException( UnexpectedValueException::class );
-		$config = $this->createSiteConfig( [
-			MainConfigNames::ArticlePath => $articlePath
-		] );
+		$config = $this->createSiteConfig(
+			[
+				MainConfigNames::ArticlePath => $articlePath
+			],
+			[],
+			[
+				UrlUtils::class => $this->createMock( UrlUtils::class )
+			]
+		);
 		$config->baseURI();
 	}
 
@@ -370,10 +376,16 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::relativeLinkPrefix
 	 */
 	public function testArticlePath_nopath() {
-		$config = $this->createSiteConfig( [
-			MainConfigNames::ArticlePath => '$1',
-			MainConfigNames::Server => 'https://localhost'
-		] );
+		$config = $this->createSiteConfig(
+			[
+				MainConfigNames::ArticlePath => '$1',
+				MainConfigNames::Server => 'https://localhost'
+			],
+			[],
+			[
+				UrlUtils::class => new UrlUtils()
+			]
+		);
 		$this->assertSame( 'https://localhost/', $config->baseURI() );
 		$this->assertSame( './', $config->relativeLinkPrefix() );
 	}
@@ -384,10 +396,16 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::relativeLinkPrefix
 	 */
 	public function testArticlePath() {
-		$config = $this->createSiteConfig( [
-			MainConfigNames::ArticlePath => '/wiki/$1',
-			MainConfigNames::Server => 'https://localhost'
-		] );
+		$config = $this->createSiteConfig(
+			[
+				MainConfigNames::ArticlePath => '/wiki/$1',
+				MainConfigNames::Server => 'https://localhost'
+			],
+			[],
+			[
+				UrlUtils::class => new UrlUtils()
+			]
+		);
 		$this->assertSame( './', $config->relativeLinkPrefix() );
 		$this->assertSame( 'https://localhost/wiki/', $config->baseURI() );
 	}

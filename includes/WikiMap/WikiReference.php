@@ -48,9 +48,9 @@ class WikiReference {
 	 * @return string
 	 */
 	public function getDisplayName() {
-		$parsed = wfParseUrl( $this->mCanonicalServer );
-		if ( $parsed ) {
-			return $parsed['host'];
+		$host = parse_url( $this->mCanonicalServer,  PHP_URL_HOST );
+		if ( $host ) {
+			return $host;
 		} else {
 			// Invalid server spec.
 			// There's no sensible thing to do here, so just return the canonical server name in full.
