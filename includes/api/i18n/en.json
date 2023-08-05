@@ -303,7 +303,11 @@
 	"apihelp-logout-example-logout": "Log the current user out.",
 
 	"apihelp-managetags-summary": "Perform management tasks relating to change tags.",
-	"apihelp-managetags-param-operation": "Which operation to perform:\n;create:Create a new change tag for manual use.\n;delete:Remove a change tag from the database, including removing the tag from all revisions, recent change entries and log entries on which it is used.\n;activate:Activate a change tag, allowing users to apply it manually.\n;deactivate:Deactivate a change tag, preventing users from applying it manually.",
+	"apihelp-managetags-param-operation": "Which operation to perform:",
+	"apihelp-managetags-paramvalue-operation-create": "Create a new change tag for manual use.",
+	"apihelp-managetags-paramvalue-operation-delete": "Remove a change tag from the database, including removing the tag from all revisions, recent change entries and log entries on which it is used.",
+	"apihelp-managetags-paramvalue-operation-activate": "Activate a change tag, allowing users to apply it manually.",
+	"apihelp-managetags-paramvalue-operation-deactivate": "Deactivate a change tag, preventing users from applying it manually.",
 	"apihelp-managetags-param-tag": "Tag to create, delete, activate or deactivate. For tag creation, the tag must not exist. For tag deletion, the tag must exist. For tag activation, the tag must exist and not be in use by an extension. For tag deactivation, the tag must be currently active and manually defined.",
 	"apihelp-managetags-param-reason": "An optional reason for creating, deleting, activating or deactivating the tag.",
 	"apihelp-managetags-param-ignorewarnings": "Whether to ignore any warnings that are issued during the operation.",
