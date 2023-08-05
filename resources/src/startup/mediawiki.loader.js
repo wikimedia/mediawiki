@@ -1511,7 +1511,7 @@
 		 * @private
 		 * @param {Object} [messages] List of key/value pairs to be added to mw#messages.
 		 * @param {Object} [templates] List of key/value pairs to be added to mw#templates.
-		 * @param {String|null} [deprecationWarning] Deprecation warning if any
+		 * @param {string|null} [deprecationWarning] Deprecation warning if any
 		 */
 		implement: function ( module, script, style, messages, templates, deprecationWarning ) {
 			var split = splitModuleKey( module ),

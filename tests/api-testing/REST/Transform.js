@@ -1108,6 +1108,7 @@ describe( '/transform/ endpoint', function () {
 	} ); // end wt2html
 
 	const getTextFromFile = function ( name ) {
+		// eslint-disable-next-line security/detect-non-literal-fs-filename
 		return fs.readFileSync( __dirname + '/../data/Transform/' + name, 'utf-8' ).trim();
 	};
 

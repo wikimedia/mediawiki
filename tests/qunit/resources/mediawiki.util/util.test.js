@@ -639,6 +639,7 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		].join( '' );
 
 		specials.forEach( function ( str ) {
+			// eslint-disable-next-line security/detect-non-literal-regexp
 			assert.propEqual( str.match( new RegExp( mw.util.escapeRegExp( str ) ) ), [ str ], 'Match ' + str );
 		} );
 
