@@ -182,11 +182,11 @@
 	<complexType name="RevisionType">
 		<sequence>
 			<element name="id" type="positiveInteger" />
-			<element name="parentid" type="positiveInteger" minOccurs="0" maxOccurs="1"/>
+			<element name="parentid" type="positiveInteger" minOccurs="0" maxOccurs="1" />
 			<element name="timestamp" type="dateTime" />
 			<element name="contributor" type="mw:ContributorType" />
-			<element name="minor" minOccurs="0" maxOccurs="1"/>
-			<element name="comment" type="mw:CommentType"/>
+			<element name="minor" minOccurs="0" maxOccurs="1" />
+			<element name="comment" type="mw:CommentType" minOccurs="0" maxOccurs="1" />
 			<!-- corresponds to slot origin for the main slot -->
 			<element name="origin" type="positiveInteger" />
 			<!-- the main slot's content model -->
