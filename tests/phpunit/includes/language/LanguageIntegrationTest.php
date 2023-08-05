@@ -6,6 +6,7 @@ use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\TestingAccessWrapper;
@@ -1713,33 +1714,6 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	}
 
 	/**
-	 * @dataProvider provideGetParentLanguage
-	 * @covers Language::getParentLanguage
-	 */
-	public function testGetParentLanguage( $code, $expected, $comment ) {
-		$this->hideDeprecated( 'Language::factory' );
-		$this->hideDeprecated( 'Language::getParentLanguage' );
-		$lang = Language::factory( $code );
-		if ( $expected === null ) {
-			$this->assertNull( $lang->getParentLanguage(), $comment );
-		} else {
-			$this->assertEquals( $expected, $lang->getParentLanguage()->getCode(), $comment );
-		}
-	}
-
-	public static function provideGetParentLanguage() {
-		return [
-			[ 'zh-cn', 'zh', 'zh is the parent language of zh-cn' ],
-			[ 'zh', 'zh', 'zh is defined as the parent language of zh, '
-				. 'because zh converter can convert zh-cn to zh' ],
-			[ 'zh-invalid', null, 'do not be fooled by arbitrarily composed language codes' ],
-			[ 'de-formal', null, 'de does not have converter' ],
-			[ 'de', null, 'de does not have converter' ],
-			[ 'ike-cans', 'iu', 'do not simply strip out the subcode' ],
-		];
-	}
-
-	/**
 	 * Example of the real localisation files being loaded.
 	 *
 	 * This might be a bit cumbersome to maintain long-term,
@@ -1786,21 +1760,6 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			],
 			$language->getNamespaceAliases()
 		);
-	}
-
-	/**
-	 * @covers Language::hasVariant
-	 */
-	public function testHasVariant() {
-		$this->hideDeprecated( 'Language::hasVariant' );
-		$this->hideDeprecated( 'Language::factory' );
-		// See LanguageSrTest::testHasVariant() for additional tests
-		$en = Language::factory( 'en' );
-		$this->assertTrue( $en->hasVariant( 'en' ), 'base is always a variant' );
-		$this->assertFalse( $en->hasVariant( 'en-bogus' ), 'bogus en variant' );
-
-		$bogus = Language::factory( 'bogus' );
-		$this->assertTrue( $bogus->hasVariant( 'bogus' ), 'base is always a variant' );
 	}
 
 	/**
@@ -1853,23 +1812,19 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	// The following methods are for LanguageNameUtilsTestTrait
 
 	private function isSupportedLanguage( $code ) {
-		$this->hideDeprecated( 'Language::isSupportedLanguage' );
-		return Language::isSupportedLanguage( $code );
+		return $this->getServiceContainer()->getLanguageNameUtils()->isSupportedLanguage( $code );
 	}
 
 	private function isValidCode( $code ) {
-		$this->hideDeprecated( 'Language::isValidCode' );
-		return Language::isValidCode( $code );
+		return $this->getServiceContainer()->getLanguageNameUtils()->isValidCode( $code );
 	}
 
 	private function isValidBuiltInCode( $code ) {
-		$this->hideDeprecated( 'Language::isValidBuiltInCode' );
-		return Language::isValidBuiltInCode( $code );
+		return $this->getServiceContainer()->getLanguageNameUtils()->isValidBuiltInCode( $code );
 	}
 
 	private function isKnownLanguageTag( $code ) {
-		$this->hideDeprecated( 'Language::isKnownLanguageTag' );
-		return Language::isKnownLanguageTag( $code );
+		return $this->getServiceContainer()->getLanguageNameUtils()->isKnownLanguageTag( $code );
 	}
 
 	protected function setLanguageTemporaryHook( string $hookName, $handler ): void {
@@ -1893,57 +1848,49 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			$this->overrideConfigValues( $options );
 		}
 
-		$this->hideDeprecated( 'Language::fetchLanguageName' );
-		$this->hideDeprecated( 'Language::fetchLanguageNames' );
+		$langNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
 		$this->assertSame( $expected,
-			Language::fetchLanguageNames( ...$otherArgs )[strtolower( $code )] ?? '' );
-		$this->assertSame( $expected, Language::fetchLanguageName( $code, ...$otherArgs ) );
+			$langNameUtils->getLanguageNames( ...$otherArgs )[strtolower( $code )] ?? '' );
+		$this->assertSame( $expected, $langNameUtils->getLanguageName( $code, ...$otherArgs ) );
 	}
 
 	private function getLanguageNames( ...$args ) {
-		$this->hideDeprecated( 'Language::fetchLanguageNames' );
-		return Language::fetchLanguageNames( ...$args );
+		return MediaWikiServices::getInstance()->getLanguageNameUtils()->getLanguageNames( ...$args );
 	}
 
 	private function getLanguageName( ...$args ) {
-		$this->hideDeprecated( 'Language::fetchLanguageName' );
-		return Language::fetchLanguageName( ...$args );
+		return MediaWikiServices::getInstance()->getLanguageNameUtils()->getLanguageName( ...$args );
 	}
 
 	private function getFileName( ...$args ) {
-		$this->hideDeprecated( 'Language::getFileName' );
-		return Language::getFileName( ...$args );
+		return MediaWikiServices::getInstance()->getLanguageNameUtils()->getFileName( ...$args );
 	}
 
 	private function getMessagesFileName( $code ) {
-		$this->hideDeprecated( 'Language::getMessagesFileName' );
-		return Language::getMessagesFileName( $code );
+		return MediaWikiServices::getInstance()->getLanguageNameUtils()->getMessagesFileName( $code );
 	}
 
 	private function getJsonMessagesFileName( $code ) {
-		$this->hideDeprecated( 'Language::getJsonMessagesFileName' );
-		return Language::getJsonMessagesFileName( $code );
+		return MediaWikiServices::getInstance()->getLanguageNameUtils()->getJsonMessagesFileName( $code );
 	}
 
 	/**
 	 * @todo This really belongs in the cldr extension's tests.
 	 *
 	 * @covers MediaWiki\Languages\LanguageNameUtils::isKnownLanguageTag
-	 * @covers Language::isKnownLanguageTag
 	 */
 	public function testCldr() {
 		if ( !ExtensionRegistry::getInstance()->isLoaded( 'CLDR' ) ) {
 			$this->markTestSkipped( 'The CLDR extension is not installed.' );
 		}
 
-		$this->hideDeprecated( 'Language::isKnownLanguageTag' );
-		$this->hideDeprecated( 'Language::fetchLanguageName' );
+		$languageNameUtils = $this->getServiceContainer()->getLanguageNameUtils();
 
 		// "pal" is an ancient language, which probably will not appear in Names.php, but appears in
 		// CLDR in English
-		$this->assertTrue( Language::isKnownLanguageTag( 'pal' ) );
+		$this->assertTrue( $languageNameUtils->isKnownLanguageTag( 'pal' ) );
 
-		$this->assertSame( 'allemand', Language::fetchLanguageName( 'de', 'fr' ) );
+		$this->assertSame( 'allemand', $languageNameUtils->fetchLanguageName( 'de', 'fr' ) );
 	}
 
 	/**
