@@ -433,6 +433,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 			$ret['show'] = [
 				ParamValidator::PARAM_TYPE => $show,
 				ParamValidator::PARAM_ISMULTI => true,
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			];
 		} else {
 			unset( $ret['show'] );
