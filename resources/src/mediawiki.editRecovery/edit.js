@@ -15,9 +15,9 @@ $( function () {
 	// Number of miliseconds to debounce form input.
 	const debounceTime = 5000;
 
-	mw.hook( 'wikipage.editform' ).add( onloadHandler );
+	mw.hook( 'wikipage.editform' ).add( onLoadHandler );
 
-	function onloadHandler( $editForm ) {
+	function onLoadHandler( $editForm ) {
 		// Monitor all text-entry inputs for changes/typing.
 		const inputsToMonitorSelector = 'textarea, select, input:not([type="hidden"], [type="submit"])';
 		const $inputsToMonitor = $editForm.find( inputsToMonitorSelector );
