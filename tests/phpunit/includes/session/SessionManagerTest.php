@@ -1544,7 +1544,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$request->setIP( $ip );
 		$request->setCookie( 'mwuser-sessionId', $mwuser );
 
-		$proxyLookup = $this->createMock( \ProxyLookup::class );
+		$proxyLookup = $this->createMock( \MediaWiki\Request\ProxyLookup::class );
 		$proxyLookup->method( 'isConfiguredProxy' )->willReturnCallback( static function ( $ip ) {
 			return $ip === '11.22.33.44';
 		} );

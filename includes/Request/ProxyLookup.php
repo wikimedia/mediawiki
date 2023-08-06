@@ -19,6 +19,8 @@
  * @file
  */
 
+namespace MediaWiki\Request;
+
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use Wikimedia\IPSet;
@@ -88,3 +90,5 @@ class ProxyLookup {
 		return $trusted;
 	}
 }
+
+class_alias( ProxyLookup::class, 'ProxyLookup' );

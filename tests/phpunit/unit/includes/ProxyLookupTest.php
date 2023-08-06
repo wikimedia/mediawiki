@@ -21,13 +21,13 @@
 namespace MediaWiki\Tests\Unit;
 
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Request\ProxyLookup;
 use MediaWikiUnitTestCase;
-use ProxyLookup;
 
 /**
  * @author DannyS712
  *
- * @coversDefaultClass \ProxyLookup
+ * @coversDefaultClass \MediaWiki\Request\ProxyLookup
  */
 class ProxyLookupTest extends MediaWikiUnitTestCase {
 
