@@ -22,19 +22,19 @@ class ConfirmLinkSecondaryAuthenticationProvider extends AbstractSecondaryAuthen
 	}
 
 	public function beginSecondaryAuthentication( $user, array $reqs ) {
-		return $this->beginLinkAttempt( $user, 'AuthManager::authnState' );
+		return $this->beginLinkAttempt( $user, AuthManager::AUTHN_STATE );
 	}
 
 	public function continueSecondaryAuthentication( $user, array $reqs ) {
-		return $this->continueLinkAttempt( $user, 'AuthManager::authnState', $reqs );
+		return $this->continueLinkAttempt( $user, AuthManager::AUTHN_STATE, $reqs );
 	}
 
 	public function beginSecondaryAccountCreation( $user, $creator, array $reqs ) {
-		return $this->beginLinkAttempt( $user, 'AuthManager::accountCreationState' );
+		return $this->beginLinkAttempt( $user, AuthManager::ACCOUNT_CREATION_STATE );
 	}
 
 	public function continueSecondaryAccountCreation( $user, $creator, array $reqs ) {
-		return $this->continueLinkAttempt( $user, 'AuthManager::accountCreationState', $reqs );
+		return $this->continueLinkAttempt( $user, AuthManager::ACCOUNT_CREATION_STATE, $reqs );
 	}
 
 	/**

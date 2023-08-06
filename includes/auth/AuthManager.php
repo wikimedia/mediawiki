@@ -104,6 +104,31 @@ use Wikimedia\ScopedCallback;
  * @see https://www.mediawiki.org/wiki/Manual:SessionManager_and_AuthManager
  */
 class AuthManager implements LoggerAwareInterface {
+	/**
+	 * @internal
+	 * Key in the user's session data for storing login state.
+	 */
+	public const AUTHN_STATE = 'AuthManager::authnState';
+
+	/**
+	 * @internal
+	 * Key in the user's session data for storing account creation state.
+	 */
+	public const ACCOUNT_CREATION_STATE = 'AuthManager::accountCreationState';
+
+	/**
+	 * @internal
+	 * Key in the user's session data for storing account linking state.
+	 */
+	public const ACCOUNT_LINK_STATE = 'AuthManager::accountLinkState';
+
+	/**
+	 * @internal
+	 * Key in the user's session data for storing autocreation failures,
+	 * to avoid re-attempting expensive autocreation checks on every request.
+	 */
+	public const AUTOCREATE_BLOCKLIST = 'AuthManager::AutoCreateBlacklist';
+
 	/** Log in with an existing (not necessarily local) user */
 	public const ACTION_LOGIN = 'login';
 	/** Continue a login process that was interrupted by the need for user input or communication
@@ -297,9 +322,9 @@ class AuthManager implements LoggerAwareInterface {
 				$this->primaryAuthenticationProviders
 			);
 			$session = $this->request->getSession();
-			$session->remove( 'AuthManager::authnState' );
-			$session->remove( 'AuthManager::accountCreationState' );
-			$session->remove( 'AuthManager::accountLinkState' );
+			$session->remove( self::AUTHN_STATE );
+			$session->remove( self::ACCOUNT_CREATION_STATE );
+			$session->remove( self::ACCOUNT_LINK_STATE );
 			$this->createdAccountAuthenticationRequests = [];
 		}
 
@@ -363,7 +388,7 @@ class AuthManager implements LoggerAwareInterface {
 		$session = $this->request->getSession();
 		if ( !$session->canSetUser() ) {
 			// Caller should have called canAuthenticateNow()
-			$session->remove( 'AuthManager::authnState' );
+			$session->remove( self::AUTHN_STATE );
 			throw new \LogicException( 'Authentication is not possible now' );
 		}
 
@@ -413,7 +438,7 @@ class AuthManager implements LoggerAwareInterface {
 			$ret = AuthenticationResponse::newPass( $user->getName() );
 			$this->setSessionDataForUser( $user );
 			$this->callMethodOnProviders( 7, 'postAuthentication', [ $user, $ret ] );
-			$session->remove( 'AuthManager::authnState' );
+			$session->remove( self::AUTHN_STATE );
 			$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
 				$ret, $user, $user->getName(), [] );
 			return $ret;
@@ -456,7 +481,7 @@ class AuthManager implements LoggerAwareInterface {
 		}
 
 		$session = $this->request->getSession();
-		$session->setSecret( 'AuthManager::authnState', $state );
+		$session->setSecret( self::AUTHN_STATE, $state );
 		$session->persist();
 
 		return $this->continueAuthentication( $reqs );
@@ -494,7 +519,7 @@ class AuthManager implements LoggerAwareInterface {
 				// @codeCoverageIgnoreEnd
 			}
 
-			$state = $session->getSecret( 'AuthManager::authnState' );
+			$state = $session->getSecret( self::AUTHN_STATE );
 			if ( !is_array( $state ) ) {
 				return AuthenticationResponse::newFail(
 					wfMessage( 'authmanager-authn-not-in-progress' )
@@ -551,7 +576,7 @@ class AuthManager implements LoggerAwareInterface {
 									$res
 								]
 							);
-							$session->remove( 'AuthManager::authnState' );
+							$session->remove( self::AUTHN_STATE );
 							$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
 								$res, null, $guessUserName, [] );
 							return $res;
@@ -564,7 +589,7 @@ class AuthManager implements LoggerAwareInterface {
 							$this->fillRequests( $res->neededRequests, self::ACTION_LOGIN, $guessUserName );
 							$state['primary'] = $id;
 							$state['continueRequests'] = $res->neededRequests;
-							$session->setSecret( 'AuthManager::authnState', $state );
+							$session->setSecret( self::AUTHN_STATE, $state );
 							return $res;
 
 							// @codeCoverageIgnoreStart
@@ -584,7 +609,7 @@ class AuthManager implements LoggerAwareInterface {
 					$this->callMethodOnProviders( 7, 'postAuthentication',
 						[ $this->userFactory->newFromName( (string)$guessUserName ), $ret ]
 					);
-					$session->remove( 'AuthManager::authnState' );
+					$session->remove( self::AUTHN_STATE );
 					return $ret;
 				}
 			} elseif ( $state['primaryResponse'] === null ) {
@@ -598,7 +623,7 @@ class AuthManager implements LoggerAwareInterface {
 					$this->callMethodOnProviders( 7, 'postAuthentication',
 						[ $this->userFactory->newFromName( (string)$guessUserName ), $ret ]
 					);
-					$session->remove( 'AuthManager::authnState' );
+					$session->remove( self::AUTHN_STATE );
 					return $ret;
 					// @codeCoverageIgnoreEnd
 				}
@@ -619,7 +644,7 @@ class AuthManager implements LoggerAwareInterface {
 						$this->callMethodOnProviders( 7, 'postAuthentication',
 							[ $this->userFactory->newFromName( (string)$guessUserName ), $res ]
 						);
-						$session->remove( 'AuthManager::authnState' );
+						$session->remove( self::AUTHN_STATE );
 						$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
 							$res, null, $guessUserName, [] );
 						return $res;
@@ -628,7 +653,7 @@ class AuthManager implements LoggerAwareInterface {
 						$this->logger->debug( "Primary login with $id returned $res->status" );
 						$this->fillRequests( $res->neededRequests, self::ACTION_LOGIN, $guessUserName );
 						$state['continueRequests'] = $res->neededRequests;
-						$session->setSecret( 'AuthManager::authnState', $state );
+						$session->setSecret( self::AUTHN_STATE, $state );
 						return $res;
 					default:
 						throw new \DomainException(
@@ -650,7 +675,7 @@ class AuthManager implements LoggerAwareInterface {
 					$this->callMethodOnProviders( 7, 'postAuthentication',
 						[ $this->userFactory->newFromName( (string)$guessUserName ), $ret ]
 					);
-					$session->remove( 'AuthManager::authnState' );
+					$session->remove( self::AUTHN_STATE );
 					return $ret;
 					// @codeCoverageIgnoreEnd
 				}
@@ -681,7 +706,7 @@ class AuthManager implements LoggerAwareInterface {
 					$ret->neededRequests[] = $ret->createRequest;
 				}
 				$this->fillRequests( $ret->neededRequests, self::ACTION_LOGIN, null, true );
-				$session->setSecret( 'AuthManager::authnState', [
+				$session->setSecret( self::AUTHN_STATE, [
 					'reqs' => [], // Will be filled in later
 					'primary' => null,
 					'primaryResponse' => null,
@@ -715,7 +740,7 @@ class AuthManager implements LoggerAwareInterface {
 						Status::wrap( $status )->getMessage( 'authmanager-authn-autocreate-failed' )
 					);
 					$this->callMethodOnProviders( 7, 'postAuthentication', [ $user, $ret ] );
-					$session->remove( 'AuthManager::authnState' );
+					$session->remove( self::AUTHN_STATE );
 					$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
 						$ret, $user, $user->getName(), [] );
 					return $ret;
@@ -749,7 +774,7 @@ class AuthManager implements LoggerAwareInterface {
 					case AuthenticationResponse::FAIL:
 						$this->logger->debug( "Login failed in secondary authentication by $id" );
 						$this->callMethodOnProviders( 7, 'postAuthentication', [ $user, $res ] );
-						$session->remove( 'AuthManager::authnState' );
+						$session->remove( self::AUTHN_STATE );
 						$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
 							$res, $user, $user->getName(), [] );
 						return $res;
@@ -759,7 +784,7 @@ class AuthManager implements LoggerAwareInterface {
 						$this->fillRequests( $res->neededRequests, self::ACTION_LOGIN, $user->getName() );
 						$state['secondary'][$id] = false;
 						$state['continueRequests'] = $res->neededRequests;
-						$session->setSecret( 'AuthManager::authnState', $state );
+						$session->setSecret( self::AUTHN_STATE, $state );
 						return $res;
 
 						// @codeCoverageIgnoreStart
@@ -793,13 +818,13 @@ class AuthManager implements LoggerAwareInterface {
 			$this->setSessionDataForUser( $user, $rememberMe );
 			$ret = AuthenticationResponse::newPass( $user->getName() );
 			$this->callMethodOnProviders( 7, 'postAuthentication', [ $user, $ret ] );
-			$session->remove( 'AuthManager::authnState' );
+			$session->remove( self::AUTHN_STATE );
 			$this->removeAuthenticationSessionData( null );
 			$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
 				$ret, $user, $user->getName(), [] );
 			return $ret;
 		} catch ( \Exception $ex ) {
-			$session->remove( 'AuthManager::authnState' );
+			$session->remove( self::AUTHN_STATE );
 			throw $ex;
 		}
 	}
@@ -1197,7 +1222,7 @@ class AuthManager implements LoggerAwareInterface {
 		$session = $this->request->getSession();
 		if ( !$this->canCreateAccounts() ) {
 			// Caller should have called canCreateAccounts()
-			$session->remove( 'AuthManager::accountCreationState' );
+			$session->remove( self::ACCOUNT_CREATION_STATE );
 			throw new \LogicException( 'Account creation is not possible' );
 		}
 
@@ -1243,7 +1268,7 @@ class AuthManager implements LoggerAwareInterface {
 				$status = $req->populateUser( $user );
 				if ( !$status->isGood() ) {
 					$status = Status::wrap( $status );
-					$session->remove( 'AuthManager::accountCreationState' );
+					$session->remove( self::ACCOUNT_CREATION_STATE );
 					$this->logger->debug( __METHOD__ . ': UserData is invalid: {reason}', [
 						'user' => $user->getName(),
 						'creator' => $creator->getUser()->getName(),
@@ -1284,7 +1309,7 @@ class AuthManager implements LoggerAwareInterface {
 			}
 		}
 
-		$session->setSecret( 'AuthManager::accountCreationState', $state );
+		$session->setSecret( self::ACCOUNT_CREATION_STATE, $state );
 		$session->persist();
 
 		return $this->continueAccountCreation( $reqs );
@@ -1300,11 +1325,11 @@ class AuthManager implements LoggerAwareInterface {
 		try {
 			if ( !$this->canCreateAccounts() ) {
 				// Caller should have called canCreateAccounts()
-				$session->remove( 'AuthManager::accountCreationState' );
+				$session->remove( self::ACCOUNT_CREATION_STATE );
 				throw new \LogicException( 'Account creation is not possible' );
 			}
 
-			$state = $session->getSecret( 'AuthManager::accountCreationState' );
+			$state = $session->getSecret( self::ACCOUNT_CREATION_STATE );
 			if ( !is_array( $state ) ) {
 				return AuthenticationResponse::newFail(
 					wfMessage( 'authmanager-create-not-in-progress' )
@@ -1319,7 +1344,7 @@ class AuthManager implements LoggerAwareInterface {
 				UserRigorOptions::RIGOR_CREATABLE
 			);
 			if ( !is_object( $user ) ) {
-				$session->remove( 'AuthManager::accountCreationState' );
+				$session->remove( self::ACCOUNT_CREATION_STATE );
 				$this->logger->debug( __METHOD__ . ': Invalid username', [
 					'user' => $state['username'],
 				] );
@@ -1356,7 +1381,7 @@ class AuthManager implements LoggerAwareInterface {
 				] );
 				$ret = AuthenticationResponse::newFail( $status->getMessage() );
 				$this->callMethodOnProviders( 7, 'postAccountCreation', [ $user, $creator, $ret ] );
-				$session->remove( 'AuthManager::accountCreationState' );
+				$session->remove( self::ACCOUNT_CREATION_STATE );
 				return $ret;
 			}
 
@@ -1371,7 +1396,7 @@ class AuthManager implements LoggerAwareInterface {
 					] );
 					$ret = AuthenticationResponse::newFail( wfMessage( 'userexists' ) );
 					$this->callMethodOnProviders( 7, 'postAccountCreation', [ $user, $creator, $ret ] );
-					$session->remove( 'AuthManager::accountCreationState' );
+					$session->remove( self::ACCOUNT_CREATION_STATE );
 					return $ret;
 				}
 			} else {
@@ -1411,7 +1436,7 @@ class AuthManager implements LoggerAwareInterface {
 						] );
 						$ret = AuthenticationResponse::newFail( $status->getMessage() );
 						$this->callMethodOnProviders( 7, 'postAccountCreation', [ $user, $creator, $ret ] );
-						$session->remove( 'AuthManager::accountCreationState' );
+						$session->remove( self::ACCOUNT_CREATION_STATE );
 						return $ret;
 					}
 				}
@@ -1438,7 +1463,7 @@ class AuthManager implements LoggerAwareInterface {
 							Status::wrap( $status )->getMessage()
 						);
 						$this->callMethodOnProviders( 7, 'postAccountCreation', [ $user, $creator, $ret ] );
-						$session->remove( 'AuthManager::accountCreationState' );
+						$session->remove( self::ACCOUNT_CREATION_STATE );
 						return $ret;
 					}
 				}
@@ -1470,7 +1495,7 @@ class AuthManager implements LoggerAwareInterface {
 								'creator' => $creator->getName(),
 							] );
 							$this->callMethodOnProviders( 7, 'postAccountCreation', [ $user, $creator, $res ] );
-							$session->remove( 'AuthManager::accountCreationState' );
+							$session->remove( self::ACCOUNT_CREATION_STATE );
 							return $res;
 						case AuthenticationResponse::ABSTAIN:
 							// Continue loop
@@ -1484,7 +1509,7 @@ class AuthManager implements LoggerAwareInterface {
 							$this->fillRequests( $res->neededRequests, self::ACTION_CREATE, null );
 							$state['primary'] = $id;
 							$state['continueRequests'] = $res->neededRequests;
-							$session->setSecret( 'AuthManager::accountCreationState', $state );
+							$session->setSecret( self::ACCOUNT_CREATION_STATE, $state );
 							return $res;
 
 							// @codeCoverageIgnoreStart
@@ -1505,7 +1530,7 @@ class AuthManager implements LoggerAwareInterface {
 						wfMessage( 'authmanager-create-no-primary' )
 					);
 					$this->callMethodOnProviders( 7, 'postAccountCreation', [ $user, $creator, $ret ] );
-					$session->remove( 'AuthManager::accountCreationState' );
+					$session->remove( self::ACCOUNT_CREATION_STATE );
 					return $ret;
 				}
 			} elseif ( $state['primaryResponse'] === null ) {
@@ -1517,7 +1542,7 @@ class AuthManager implements LoggerAwareInterface {
 						wfMessage( 'authmanager-create-not-in-progress' )
 					);
 					$this->callMethodOnProviders( 7, 'postAccountCreation', [ $user, $creator, $ret ] );
-					$session->remove( 'AuthManager::accountCreationState' );
+					$session->remove( self::ACCOUNT_CREATION_STATE );
 					return $ret;
 					// @codeCoverageIgnoreEnd
 				}
@@ -1537,7 +1562,7 @@ class AuthManager implements LoggerAwareInterface {
 							'creator' => $creator->getName(),
 						] );
 						$this->callMethodOnProviders( 7, 'postAccountCreation', [ $user, $creator, $res ] );
-						$session->remove( 'AuthManager::accountCreationState' );
+						$session->remove( self::ACCOUNT_CREATION_STATE );
 						return $res;
 					case AuthenticationResponse::REDIRECT:
 					case AuthenticationResponse::UI:
@@ -1547,7 +1572,7 @@ class AuthManager implements LoggerAwareInterface {
 						] );
 						$this->fillRequests( $res->neededRequests, self::ACTION_CREATE, null );
 						$state['continueRequests'] = $res->neededRequests;
-						$session->setSecret( 'AuthManager::accountCreationState', $state );
+						$session->setSecret( self::ACCOUNT_CREATION_STATE, $state );
 						return $res;
 					default:
 						throw new \DomainException(
@@ -1569,7 +1594,7 @@ class AuthManager implements LoggerAwareInterface {
 					// @codeCoverageIgnoreStart
 					$ret = AuthenticationResponse::newFail( $status->getMessage() );
 					$this->callMethodOnProviders( 7, 'postAccountCreation', [ $user, $creator, $ret ] );
-					$session->remove( 'AuthManager::accountCreationState' );
+					$session->remove( self::ACCOUNT_CREATION_STATE );
 					return $ret;
 					// @codeCoverageIgnoreEnd
 				}
@@ -1647,7 +1672,7 @@ class AuthManager implements LoggerAwareInterface {
 						$this->fillRequests( $res->neededRequests, self::ACTION_CREATE, null );
 						$state['secondary'][$id] = false;
 						$state['continueRequests'] = $res->neededRequests;
-						$session->setSecret( 'AuthManager::accountCreationState', $state );
+						$session->setSecret( self::ACCOUNT_CREATION_STATE, $state );
 						return $res;
 					case AuthenticationResponse::FAIL:
 						throw new \DomainException(
@@ -1677,11 +1702,11 @@ class AuthManager implements LoggerAwareInterface {
 			] );
 
 			$this->callMethodOnProviders( 7, 'postAccountCreation', [ $user, $creator, $ret ] );
-			$session->remove( 'AuthManager::accountCreationState' );
+			$session->remove( self::ACCOUNT_CREATION_STATE );
 			$this->removeAuthenticationSessionData( null );
 			return $ret;
 		} catch ( \Exception $ex ) {
-			$session->remove( 'AuthManager::accountCreationState' );
+			$session->remove( self::ACCOUNT_CREATION_STATE );
 			throw $ex;
 		}
 	}
@@ -1769,14 +1794,14 @@ class AuthManager implements LoggerAwareInterface {
 		// Check the session, if we tried to create this user already there's
 		// no point in retrying.
 		$session = $this->request->getSession();
-		if ( $session->get( 'AuthManager::AutoCreateBlacklist' ) ) {
+		if ( $session->get( self::AUTOCREATE_BLOCKLIST ) ) {
 			$this->logger->debug( __METHOD__ . ': blacklisted in session {sessionid}', [
 				'username' => $username,
 				'sessionid' => $session->getId(),
 			] );
 			$user->setId( 0 );
 			$user->loadFromId();
-			$reason = $session->get( 'AuthManager::AutoCreateBlacklist' );
+			$reason = $session->get( self::AUTOCREATE_BLOCKLIST );
 			if ( $reason instanceof StatusValue ) {
 				return Status::wrap( $reason );
 			} else {
@@ -1790,7 +1815,7 @@ class AuthManager implements LoggerAwareInterface {
 			$this->logger->debug( __METHOD__ . ': name "{username}" is not valid', [
 				'username' => $username,
 			] );
-			$session->set( 'AuthManager::AutoCreateBlacklist', 'noname' );
+			$session->set( self::AUTOCREATE_BLOCKLIST, 'noname' );
 			$user->setId( 0 );
 			$user->loadFromId();
 			return Status::newFatal( 'noname' );
@@ -1805,7 +1830,7 @@ class AuthManager implements LoggerAwareInterface {
 				'username' => $username,
 				'clientip' => $anon->getName(),
 			] );
-			$session->set( 'AuthManager::AutoCreateBlacklist', 'authmanager-autocreate-noperm' );
+			$session->set( self::AUTOCREATE_BLOCKLIST, 'authmanager-autocreate-noperm' );
 			$session->persist();
 			$user->setId( 0 );
 			$user->loadFromId();
@@ -1840,7 +1865,7 @@ class AuthManager implements LoggerAwareInterface {
 					'username' => $username,
 					'reason' => $ret->getWikiText( false, false, 'en' ),
 				] );
-				$session->set( 'AuthManager::AutoCreateBlacklist', $status );
+				$session->set( self::AUTOCREATE_BLOCKLIST, $status );
 				$user->setId( 0 );
 				$user->loadFromId();
 				return $ret;
@@ -1970,7 +1995,7 @@ class AuthManager implements LoggerAwareInterface {
 	 */
 	public function beginAccountLink( User $user, array $reqs, $returnToUrl ) {
 		$session = $this->request->getSession();
-		$session->remove( 'AuthManager::accountLinkState' );
+		$session->remove( self::ACCOUNT_LINK_STATE );
 
 		if ( !$this->canLinkAccounts() ) {
 			// Caller should have called canLinkAccounts()
@@ -2049,7 +2074,7 @@ class AuthManager implements LoggerAwareInterface {
 					$this->fillRequests( $res->neededRequests, self::ACTION_LINK, $user->getName() );
 					$state['primary'] = $id;
 					$state['continueRequests'] = $res->neededRequests;
-					$session->setSecret( 'AuthManager::accountLinkState', $state );
+					$session->setSecret( self::ACCOUNT_LINK_STATE, $state );
 					$session->persist();
 					return $res;
 
@@ -2082,11 +2107,11 @@ class AuthManager implements LoggerAwareInterface {
 		try {
 			if ( !$this->canLinkAccounts() ) {
 				// Caller should have called canLinkAccounts()
-				$session->remove( 'AuthManager::accountLinkState' );
+				$session->remove( self::ACCOUNT_LINK_STATE );
 				throw new \LogicException( 'Account linking is not possible' );
 			}
 
-			$state = $session->getSecret( 'AuthManager::accountLinkState' );
+			$state = $session->getSecret( self::ACCOUNT_LINK_STATE );
 			if ( !is_array( $state ) ) {
 				return AuthenticationResponse::newFail(
 					wfMessage( 'authmanager-link-not-in-progress' )
@@ -2101,7 +2126,7 @@ class AuthManager implements LoggerAwareInterface {
 				UserRigorOptions::RIGOR_USABLE
 			);
 			if ( !is_object( $user ) ) {
-				$session->remove( 'AuthManager::accountLinkState' );
+				$session->remove( self::ACCOUNT_LINK_STATE );
 				return AuthenticationResponse::newFail( wfMessage( 'noname' ) );
 			}
 			if ( $user->getId() !== $state['userid'] ) {
@@ -2126,7 +2151,7 @@ class AuthManager implements LoggerAwareInterface {
 					wfMessage( 'authmanager-link-not-in-progress' )
 				);
 				$this->callMethodOnProviders( 3, 'postAccountLink', [ $user, $ret ] );
-				$session->remove( 'AuthManager::accountLinkState' );
+				$session->remove( self::ACCOUNT_LINK_STATE );
 				return $ret;
 				// @codeCoverageIgnoreEnd
 			}
@@ -2138,14 +2163,14 @@ class AuthManager implements LoggerAwareInterface {
 						'user' => $user->getName(),
 					] );
 					$this->callMethodOnProviders( 3, 'postAccountLink', [ $user, $res ] );
-					$session->remove( 'AuthManager::accountLinkState' );
+					$session->remove( self::ACCOUNT_LINK_STATE );
 					return $res;
 				case AuthenticationResponse::FAIL:
 					$this->logger->debug( __METHOD__ . ": Account linking failed by $id", [
 						'user' => $user->getName(),
 					] );
 					$this->callMethodOnProviders( 3, 'postAccountLink', [ $user, $res ] );
-					$session->remove( 'AuthManager::accountLinkState' );
+					$session->remove( self::ACCOUNT_LINK_STATE );
 					return $res;
 				case AuthenticationResponse::REDIRECT:
 				case AuthenticationResponse::UI:
@@ -2154,7 +2179,7 @@ class AuthManager implements LoggerAwareInterface {
 					] );
 					$this->fillRequests( $res->neededRequests, self::ACTION_LINK, $user->getName() );
 					$state['continueRequests'] = $res->neededRequests;
-					$session->setSecret( 'AuthManager::accountLinkState', $state );
+					$session->setSecret( self::ACCOUNT_LINK_STATE, $state );
 					return $res;
 				default:
 					throw new \DomainException(
@@ -2162,7 +2187,7 @@ class AuthManager implements LoggerAwareInterface {
 					);
 			}
 		} catch ( \Exception $ex ) {
-			$session->remove( 'AuthManager::accountLinkState' );
+			$session->remove( self::ACCOUNT_LINK_STATE );
 			throw $ex;
 		}
 	}
@@ -2205,11 +2230,11 @@ class AuthManager implements LoggerAwareInterface {
 				break;
 
 			case self::ACTION_LOGIN_CONTINUE:
-				$state = $this->request->getSession()->getSecret( 'AuthManager::authnState' );
+				$state = $this->request->getSession()->getSecret( self::AUTHN_STATE );
 				return is_array( $state ) ? $state['continueRequests'] : [];
 
 			case self::ACTION_CREATE_CONTINUE:
-				$state = $this->request->getSession()->getSecret( 'AuthManager::accountCreationState' );
+				$state = $this->request->getSession()->getSecret( self::ACCOUNT_CREATION_STATE );
 				return is_array( $state ) ? $state['continueRequests'] : [];
 
 			case self::ACTION_LINK:
@@ -2234,7 +2259,7 @@ class AuthManager implements LoggerAwareInterface {
 				break;
 
 			case self::ACTION_LINK_CONTINUE:
-				$state = $this->request->getSession()->getSecret( 'AuthManager::accountLinkState' );
+				$state = $this->request->getSession()->getSecret( self::ACCOUNT_LINK_STATE );
 				return is_array( $state ) ? $state['continueRequests'] : [];
 
 			case self::ACTION_CHANGE:

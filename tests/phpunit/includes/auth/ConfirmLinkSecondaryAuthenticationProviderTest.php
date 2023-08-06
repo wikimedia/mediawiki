@@ -45,7 +45,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			->onlyMethods( [ 'beginLinkAttempt', 'continueLinkAttempt' ] )
 			->getMock();
 		$mock->expects( $this->once() )->method( 'beginLinkAttempt' )
-			->with( $this->identicalTo( $user ), $this->identicalTo( 'AuthManager::authnState' ) )
+			->with( $this->identicalTo( $user ), $this->identicalTo( AuthManager::AUTHN_STATE ) )
 			->willReturn( $obj );
 		$mock->expects( $this->never() )->method( 'continueLinkAttempt' );
 
@@ -64,7 +64,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$mock->expects( $this->once() )->method( 'continueLinkAttempt' )
 			->with(
 				$this->identicalTo( $user ),
-				$this->identicalTo( 'AuthManager::authnState' ),
+				$this->identicalTo( AuthManager::AUTHN_STATE ),
 				$this->identicalTo( $reqs )
 			)
 			->willReturn( $obj );
@@ -80,7 +80,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			->onlyMethods( [ 'beginLinkAttempt', 'continueLinkAttempt' ] )
 			->getMock();
 		$mock->expects( $this->once() )->method( 'beginLinkAttempt' )
-			->with( $this->identicalTo( $user ), $this->identicalTo( 'AuthManager::accountCreationState' ) )
+			->with( $this->identicalTo( $user ), $this->identicalTo( AuthManager::ACCOUNT_CREATION_STATE ) )
 			->willReturn( $obj );
 		$mock->expects( $this->never() )->method( 'continueLinkAttempt' );
 
@@ -99,7 +99,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$mock->expects( $this->once() )->method( 'continueLinkAttempt' )
 			->with(
 				$this->identicalTo( $user ),
-				$this->identicalTo( 'AuthManager::accountCreationState' ),
+				$this->identicalTo( AuthManager::ACCOUNT_CREATION_STATE ),
 				$this->identicalTo( $reqs )
 			)
 			->willReturn( $obj );
