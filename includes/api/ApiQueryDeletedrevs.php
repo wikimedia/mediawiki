@@ -31,6 +31,7 @@ use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\EnumDef;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
 /**
@@ -524,7 +525,11 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					'token',
 					'tags'
 				],
-				ParamValidator::PARAM_ISMULTI => true
+				ParamValidator::PARAM_ISMULTI => true,
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+				EnumDef::PARAM_DEPRECATED_VALUES => [
+					'token' => true,
+				],
 			],
 			'limit' => [
 				ParamValidator::PARAM_DEFAULT => 10,
