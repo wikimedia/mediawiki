@@ -36,6 +36,7 @@ use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Title\Title;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\Parsoid\Core\TOCData;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\RelPath;
@@ -2436,7 +2437,7 @@ class OutputPage extends ContextSource {
 	 * @since 1.28
 	 */
 	public function adaptCdnTTL( $mtime, $minTTL = 0, $maxTTL = 0 ) {
-		$minTTL = $minTTL ?: IExpiringStore::TTL_MINUTE;
+		$minTTL = $minTTL ?: ExpirationAwareness::TTL_MINUTE;
 		$maxTTL = $maxTTL ?: $this->getConfig()->get( MainConfigNames::CdnMaxAge );
 
 		if ( $mtime === null || $mtime === false ) {

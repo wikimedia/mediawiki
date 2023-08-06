@@ -37,6 +37,7 @@ use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\Title\Title;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
+use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\RequestTimeout\TimeoutException;
@@ -80,7 +81,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * Lifetime for cache, for keys stored in $wanCache, in seconds.
 	 * @var int
 	 */
-	private const WAN_TTL = IExpiringStore::TTL_DAY;
+	private const WAN_TTL = ExpirationAwareness::TTL_DAY;
 
 	/** @var LoggerInterface */
 	private $logger;

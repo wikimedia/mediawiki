@@ -43,6 +43,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\IPUtils;
+use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 
 /**
@@ -570,7 +571,7 @@ class Article implements Page {
 
 		# Use adaptive TTLs for CDN so delayed/failed purges are noticed less often.
 		# This could use getTouched(), but that could be scary for major template edits.
-		$outputPage->adaptCdnTTL( $this->mPage->getTimestamp(), IExpiringStore::TTL_DAY );
+		$outputPage->adaptCdnTTL( $this->mPage->getTimestamp(), ExpirationAwareness::TTL_DAY );
 
 		$this->showViewFooter();
 		$this->mPage->doViewUpdates( $authority, $oldid, $this->fetchRevisionRecord() );

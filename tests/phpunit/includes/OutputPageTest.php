@@ -17,6 +17,7 @@ use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
+use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\TestingAccessWrapper;
 
@@ -2116,22 +2117,22 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		self::$fakeTime = $now;
 		return [
 			'Five minutes ago' => [ [ $now - 300 ], 270 ],
-			'Now' => [ [ +0 ], IExpiringStore::TTL_MINUTE ],
-			'Five minutes from now' => [ [ $now + 300 ], IExpiringStore::TTL_MINUTE ],
+			'Now' => [ [ +0 ], ExpirationAwareness::TTL_MINUTE ],
+			'Five minutes from now' => [ [ $now + 300 ], ExpirationAwareness::TTL_MINUTE ],
 			'Five minutes ago, initial maxage four minutes' =>
 				[ [ $now - 300 ], 270, [ 'initialMaxage' => 240 ] ],
 			'A very long time ago' => [ [ $now - 1000000000 ], $wgCdnMaxAge ],
 			'Initial maxage zero' => [ [ $now - 300 ], 270, [ 'initialMaxage' => 0 ] ],
 
-			'false' => [ [ false ], IExpiringStore::TTL_MINUTE ],
-			'null' => [ [ null ], IExpiringStore::TTL_MINUTE ],
-			"'0'" => [ [ '0' ], IExpiringStore::TTL_MINUTE ],
-			'Empty string' => [ [ '' ], IExpiringStore::TTL_MINUTE ],
+			'false' => [ [ false ], ExpirationAwareness::TTL_MINUTE ],
+			'null' => [ [ null ], ExpirationAwareness::TTL_MINUTE ],
+			"'0'" => [ [ '0' ], ExpirationAwareness::TTL_MINUTE ],
+			'Empty string' => [ [ '' ], ExpirationAwareness::TTL_MINUTE ],
 			// @todo These give incorrect results due to timezones, how to test?
-			//"'now'" => [ [ 'now' ], IExpiringStore::TTL_MINUTE ],
-			//"'parse error'" => [ [ 'parse error' ], IExpiringStore::TTL_MINUTE ],
+			//"'now'" => [ [ 'now' ], ExpirationAwareness::TTL_MINUTE ],
+			//"'parse error'" => [ [ 'parse error' ], ExpirationAwareness::TTL_MINUTE ],
 
-			'Now, minTTL 0' => [ [ $now, 0 ], IExpiringStore::TTL_MINUTE ],
+			'Now, minTTL 0' => [ [ $now, 0 ], ExpirationAwareness::TTL_MINUTE ],
 			'Now, minTTL 0.000001' => [ [ $now, 0.000001 ], 0 ],
 			'A very long time ago, maxTTL even longer' =>
 				[ [ $now - 1000000000, 0, 1000000001 ], 900000000 ],
