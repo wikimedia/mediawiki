@@ -1,6 +1,7 @@
 /**
  * Behavior related to the temporary user banner, specifically
  * the tooltip. Design: https://phabricator.wikimedia.org/T330510
+ *
  * @ignore
  */
 

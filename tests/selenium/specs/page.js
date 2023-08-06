@@ -75,6 +75,7 @@ describe( 'Page', function () {
 
 		// check
 		assert.strictEqual( await EditPage.heading.getText(), name );
+		// eslint-disable-next-line security/detect-non-literal-regexp
 		assert.match( await EditPage.displayedContent.getText(), new RegExp( editContent ) );
 	} );
 
@@ -97,6 +98,7 @@ describe( 'Page', function () {
 		await DeletePage.delete( name, 'delete reason' );
 
 		// check
+		// eslint-disable-next-line security/detect-non-literal-regexp
 		assert.match( await DeletePage.displayedContent.getText(), new RegExp( `"${name}" has been deleted.` ) );
 	} );
 
