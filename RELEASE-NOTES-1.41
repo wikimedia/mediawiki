@@ -256,6 +256,11 @@ because of Phabricator reports.
 * SearchDatabase::db, deprecated since 1.38, has been removed.
 * SearchDatabase::lb has been removed without deprecation, use ::dbProvider
   instead.
+* AbstractAuthenticationProvider::setLogger(), ::setManager(), ::setConfig()
+  and ::setHookContainer() have been removed and also from it's related
+  interface, AuthenticationProvider. The corresponding properties are set in
+  AbstractAuthenticationProvider::init(). For side effects, you can override
+  AbstractAuthenticationProvider::postInitSetup().
 * Title::newFromTitleValue(), deprecated since 1.34, has been removed.
 * SpecialPageAction has been removed without deprecation. There were no known
   uses outside of core.
