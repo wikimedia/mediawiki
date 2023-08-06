@@ -779,6 +779,19 @@
 	}
 
 	/**
+	 * @private
+	 * @param {string} code JavaScript code
+	 */
+	function globalEval( code ) {
+		if ( mw.config.get( 'wgCSPNonce' ) !== false ) {
+			domEval( code );
+		} else {
+			// eslint-disable-next-line no-new-func
+			( new Function( code ) )();
+		}
+	}
+
+	/**
 	 * Add one or more modules to the module load queue.
 	 *
 	 * See also #work().
@@ -1230,7 +1243,7 @@
 		}
 		mw.requestIdleCallback( function () {
 			try {
-				domEval( implementations.join( ';' ) );
+				globalEval( implementations.join( ';' ) );
 			} catch ( err ) {
 				cb( err );
 			}
