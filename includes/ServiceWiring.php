@@ -2413,7 +2413,8 @@ return [
 			new ServiceOptions( DefaultOptionsLookup::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getContentLanguage(),
 			$services->getHookContainer(),
-			$services->getNamespaceInfo()
+			$services->getNamespaceInfo(),
+			defined( 'MW_PHPUNIT_TEST' ) && $services->isStorageDisabled()
 		);
 	},
 

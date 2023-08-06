@@ -50,7 +50,8 @@ abstract class UserOptionsLookupTest extends MediaWikiIntegrationTestCase {
 			),
 			$lang,
 			$this->getServiceContainer()->getHookContainer(),
-			$this->getServiceContainer()->getNamespaceInfo()
+			$this->getServiceContainer()->getNamespaceInfo(),
+			!$this->needsDB()
 		);
 	}
 
