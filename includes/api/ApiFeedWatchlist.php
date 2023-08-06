@@ -281,32 +281,26 @@ class ApiFeedWatchlist extends ApiBase {
 			'type' => 'wltype',
 			'excludeuser' => 'wlexcludeuser',
 		];
-		if ( $flags ) {
-			// @phan-suppress-next-line PhanParamTooMany
-			$wlparams = $this->getWatchlistModule()->getAllowedParams( $flags );
-			foreach ( $copyParams as $from => $to ) {
-				$p = $wlparams[$from];
-				if ( !is_array( $p ) ) {
-					$p = [ ParamValidator::PARAM_DEFAULT => $p ];
-				}
-				if ( !isset( $p[ApiBase::PARAM_HELP_MSG] ) ) {
-					$p[ApiBase::PARAM_HELP_MSG] = "apihelp-query+watchlist-param-$from";
-				}
-				if ( isset( $p[ParamValidator::PARAM_TYPE] ) && is_array( $p[ParamValidator::PARAM_TYPE] ) &&
-					isset( $p[ApiBase::PARAM_HELP_MSG_PER_VALUE] )
-				) {
-					foreach ( $p[ParamValidator::PARAM_TYPE] as $v ) {
-						if ( !isset( $p[ApiBase::PARAM_HELP_MSG_PER_VALUE][$v] ) ) {
-							$p[ApiBase::PARAM_HELP_MSG_PER_VALUE][$v] = "apihelp-query+watchlist-paramvalue-$from-$v";
-						}
+		// @phan-suppress-next-line PhanParamTooMany
+		$wlparams = $this->getWatchlistModule()->getAllowedParams( $flags );
+		foreach ( $copyParams as $from => $to ) {
+			$p = $wlparams[$from];
+			if ( !is_array( $p ) ) {
+				$p = [ ParamValidator::PARAM_DEFAULT => $p ];
+			}
+			if ( !isset( $p[ApiBase::PARAM_HELP_MSG] ) ) {
+				$p[ApiBase::PARAM_HELP_MSG] = "apihelp-query+watchlist-param-$from";
+			}
+			if ( isset( $p[ParamValidator::PARAM_TYPE] ) && is_array( $p[ParamValidator::PARAM_TYPE] ) &&
+				isset( $p[ApiBase::PARAM_HELP_MSG_PER_VALUE] )
+			) {
+				foreach ( $p[ParamValidator::PARAM_TYPE] as $v ) {
+					if ( !isset( $p[ApiBase::PARAM_HELP_MSG_PER_VALUE][$v] ) ) {
+						$p[ApiBase::PARAM_HELP_MSG_PER_VALUE][$v] = "apihelp-query+watchlist-paramvalue-$from-$v";
 					}
 				}
-				$ret[$to] = $p;
 			}
-		} else {
-			foreach ( $copyParams as $to ) {
-				$ret[$to] = null;
-			}
+			$ret[$to] = $p;
 		}
 
 		return $ret;

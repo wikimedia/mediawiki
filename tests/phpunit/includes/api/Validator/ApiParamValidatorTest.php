@@ -187,7 +187,9 @@ class ApiParamValidatorTest extends ApiTestCase {
 				[
 					'issues' => [ 'X' ],
 					'allowedKeys' => $keys,
-					'messages' => [],
+					'messages' => [
+						MessageValue::new( 'apihelp-query+allpages-param-test' ),
+					],
 				]
 			],
 			'Message mapping' => [
@@ -209,6 +211,7 @@ class ApiParamValidatorTest extends ApiTestCase {
 							->params( 'p1', 'p2' ),
 						DataMessageValue::new( 'ddd', [], 'bogus', [ '💩' => 'back-compat' ] )
 							->plaintextParams( 'p1', 'p2' ),
+						MessageValue::new( 'apihelp-query+allpages-param-test' ),
 					],
 				]
 			],
@@ -317,6 +320,7 @@ class ApiParamValidatorTest extends ApiTestCase {
 					],
 					'allowedKeys' => $keys,
 					'messages' => [
+						MessageValue::new( 'apihelp-query+allpages-param-test' ),
 						MessageValue::new( 'foo' ),
 						MessageValue::new( 'bar', [ 'p1', 'p2' ] ),
 						MessageValue::new( 'baz' )->numParams( 123 ),
@@ -339,6 +343,7 @@ class ApiParamValidatorTest extends ApiTestCase {
 					],
 					'allowedKeys' => $keys,
 					'messages' => [
+						MessageValue::new( 'apihelp-query+allpages-param-test' ),
 						MessageValue::new( 'apihelp-query+allpages-paraminfo-foo' ),
 						MessageValue::new( 'apihelp-query+allpages-paraminfo-bar', [ 'p1', 'p2' ] ),
 					],
@@ -357,7 +362,9 @@ class ApiParamValidatorTest extends ApiTestCase {
 							=> 'PARAM_HELP_MSG_PER_VALUE can only be used with PARAM_TYPE as an array',
 					],
 					'allowedKeys' => $keys,
-					'messages' => [],
+					'messages' => [
+						MessageValue::new( 'apihelp-query+allpages-param-test' ),
+					],
 				]
 			],
 			'PARAM_HELP_MSG_PER_VALUE' => [
@@ -380,6 +387,7 @@ class ApiParamValidatorTest extends ApiTestCase {
 					],
 					'allowedKeys' => $keys,
 					'messages' => [
+						MessageValue::new( 'apihelp-query+allpages-param-test' ),
 						MessageValue::new( 'bbb' ),
 						MessageValue::new( 'ccc', [ 'p1', 'p2' ] ),
 						MessageValue::new( 'ddd' )->numParams( 123 ),
@@ -396,7 +404,9 @@ class ApiParamValidatorTest extends ApiTestCase {
 						"Parameter name may not contain '{' or '}' without PARAM_TEMPLATE_VARS",
 					],
 					'allowedKeys' => $keys,
-					'messages' => [],
+					'messages' => [
+						MessageValue::new( 'apihelp-query+allpages-param-test{x}' ),
+					],
 				]
 			],
 			'PARAM_TEMPLATE_VARS cannot be empty' => [
@@ -410,7 +420,9 @@ class ApiParamValidatorTest extends ApiTestCase {
 						ApiBase::PARAM_TEMPLATE_VARS => 'PARAM_TEMPLATE_VARS cannot be the empty array',
 					],
 					'allowedKeys' => $keys,
-					'messages' => [],
+					'messages' => [
+						MessageValue::new( 'apihelp-query+allpages-param-test{x}' ),
+					],
 				]
 			],
 			'PARAM_TEMPLATE_VARS, ok' => [
@@ -435,7 +447,9 @@ class ApiParamValidatorTest extends ApiTestCase {
 				[
 					'issues' => [ 'X' ],
 					'allowedKeys' => $keys,
-					'messages' => [],
+					'messages' => [
+						MessageValue::new( 'apihelp-query+allpages-param-test-{a}-{b}' ),
+					],
 				]
 			],
 			'PARAM_TEMPLATE_VARS simple errors' => [
@@ -465,7 +479,9 @@ class ApiParamValidatorTest extends ApiTestCase {
 						'PARAM_TEMPLATE_VARS[c] target parameter "not-multi" must have PARAM_ISMULTI = true',
 					],
 					'allowedKeys' => $keys,
-					'messages' => [],
+					'messages' => [
+						MessageValue::new( 'apihelp-query+allpages-param-test-{a}-{b}-{c}' ),
+					],
 				]
 			],
 			'PARAM_TEMPLATE_VARS no recursion' => [
@@ -484,7 +500,9 @@ class ApiParamValidatorTest extends ApiTestCase {
 						'PARAM_TEMPLATE_VARS[a] cannot target the parameter itself'
 					],
 					'allowedKeys' => $keys,
-					'messages' => [],
+					'messages' => [
+						MessageValue::new( 'apihelp-query+allpages-param-test-{a}' ),
+					],
 				]
 			],
 			'PARAM_TEMPLATE_VARS targeting another template, target must be a subset' => [
@@ -510,7 +528,9 @@ class ApiParamValidatorTest extends ApiTestCase {
 						'PARAM_TEMPLATE_VARS[a]: Target\'s PARAM_TEMPLATE_VARS must be a subset of the original',
 					],
 					'allowedKeys' => $keys,
-					'messages' => [],
+					'messages' => [
+						MessageValue::new( 'apihelp-query+allpages-param-test1-{a}' ),
+					],
 				]
 			],
 		];

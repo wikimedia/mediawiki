@@ -211,11 +211,10 @@ class ApiParamValidator {
 				. gettype( $settings[ApiBase::PARAM_RANGE_ENFORCE] );
 		}
 
-		if ( isset( $settings[ApiBase::PARAM_HELP_MSG] ) ) {
-			$this->checkSettingsMessage(
-				$module, 'PARAM_HELP_MSG', $settings[ApiBase::PARAM_HELP_MSG], $ret
-			);
-		}
+		$path = $module->getModulePath();
+		$this->checkSettingsMessage(
+			$module, 'PARAM_HELP_MSG', $settings[ApiBase::PARAM_HELP_MSG] ?? "apihelp-$path-param-$name", $ret
+		);
 
 		if ( isset( $settings[ApiBase::PARAM_HELP_MSG_APPEND] ) ) {
 			if ( !is_array( $settings[ApiBase::PARAM_HELP_MSG_APPEND] ) ) {
@@ -233,7 +232,6 @@ class ApiParamValidator {
 				$ret['issues'][ApiBase::PARAM_HELP_MSG_INFO] = 'PARAM_HELP_MSG_INFO must be an array, got '
 					. gettype( $settings[ApiBase::PARAM_HELP_MSG_INFO] );
 			} else {
-				$path = $module->getModulePath();
 				foreach ( $settings[ApiBase::PARAM_HELP_MSG_INFO] as $k => $v ) {
 					if ( !is_array( $v ) ) {
 						$ret['issues'][] = "PARAM_HELP_MSG_INFO[$k] must be an array, got " . gettype( $v );
