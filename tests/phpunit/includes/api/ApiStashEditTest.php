@@ -315,7 +315,7 @@ class ApiStashEditTest extends ApiTestCase {
 	 */
 	protected function doCheckCache( UserIdentity $user, $text = 'Content' ) {
 		return $this->getServiceContainer()->getPageEditStash()->checkCache(
-			Title::newFromText( __CLASS__ ),
+			Title::makeTitle( NS_MAIN, 'ApiStashEditTest' ),
 			new WikitextContent( $text ),
 			$user
 		);

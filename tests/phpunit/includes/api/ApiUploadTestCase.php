@@ -55,12 +55,9 @@ abstract class ApiUploadTestCase extends ApiTestCase {
 
 			$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 			$this->deletePage( $page, "removing for test" );
-
-			// see if it now doesn't exist; reload
-			$title = Title::newFromText( $title->getText(), NS_FILE );
 		}
 
-		return !( $title && $title instanceof Title && $title->exists() );
+		return !( $title && $title instanceof Title && $title->exists( Title::READ_LATEST ) );
 	}
 
 	/**

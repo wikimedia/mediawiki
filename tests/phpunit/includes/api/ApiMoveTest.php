@@ -26,28 +26,24 @@ class ApiMoveTest extends ApiTestCase {
 	}
 
 	/**
-	 * @param string $from Prefixed name of source
-	 * @param string $to Prefixed name of destination
+	 * @param Title $fromTitle
+	 * @param Title $toTitle
 	 * @param string $id Page id of the page to move
 	 * @param array|string|null $opts Options: 'noredirect' to expect no redirect
 	 */
-	protected function assertMoved( $from, $to, $id, $opts = null ) {
+	protected function assertMoved( $fromTitle, $toTitle, $id, $opts = null ) {
 		$opts = (array)$opts;
 
-		Title::clearCaches();
-		$fromTitle = Title::newFromText( $from );
-		$toTitle = Title::newFromText( $to );
-
-		$this->assertTrue( $toTitle->exists(),
+		$this->assertTrue( $toTitle->exists( Title::READ_LATEST ),
 			"Destination {$toTitle->getPrefixedText()} does not exist" );
 
 		if ( in_array( 'noredirect', $opts ) ) {
-			$this->assertFalse( $fromTitle->exists(),
+			$this->assertFalse( $fromTitle->exists( Title::READ_LATEST ),
 				"Source {$fromTitle->getPrefixedText()} exists" );
 		} else {
-			$this->assertTrue( $fromTitle->exists(),
+			$this->assertTrue( $fromTitle->exists( Title::READ_LATEST ),
 				"Source {$fromTitle->getPrefixedText()} does not exist" );
-			$this->assertTrue( $fromTitle->isRedirect(),
+			$this->assertTrue( $fromTitle->isRedirect( Title::READ_LATEST ),
 				"Source {$fromTitle->getPrefixedText()} is not a redirect" );
 
 			$target = $this->getServiceContainer()
@@ -58,13 +54,13 @@ class ApiMoveTest extends ApiTestCase {
 			$this->assertSame( $toTitle->getPrefixedText(), $target->getPrefixedText() );
 		}
 
-		$this->assertSame( $id, $toTitle->getArticleID() );
+		$this->assertSame( $id, $toTitle->getArticleID( Title::READ_LATEST ) );
 	}
 
 	/**
 	 * Shortcut function to create a page and return its id.
 	 *
-	 * @param string $name Page to create
+	 * @param Title $name Page to create
 	 * @return int ID of created page
 	 */
 	protected function createPage( $name ) {
@@ -83,49 +79,50 @@ class ApiMoveTest extends ApiTestCase {
 	}
 
 	public function testMove() {
-		$name = ucfirst( __FUNCTION__ );
+		$title = Title::makeTitle( NS_MAIN, 'TestMove' );
+		$title2 = Title::makeTitle( NS_MAIN, 'TestMove 2' );
 
-		$id = $this->createPage( $name );
+		$id = $this->createPage( $title );
 
 		$res = $this->doApiRequestWithToken( [
 			'action' => 'move',
-			'from' => $name,
-			'to' => "$name 2",
+			'from' => $title->getPrefixedText(),
+			'to' => $title2->getPrefixedText(),
 		] );
 
-		$this->assertMoved( $name, "$name 2", $id );
+		$this->assertMoved( $title, $title2, $id );
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );
 	}
 
 	public function testMoveById() {
-		$name = ucfirst( __FUNCTION__ );
+		$title = Title::makeTitle( NS_MAIN, 'TestMoveById' );
+		$title2 = Title::makeTitle( NS_MAIN, 'TestMoveById 2' );
 
-		$id = $this->createPage( $name );
+		$id = $this->createPage( $title );
 
 		$res = $this->doApiRequestWithToken( [
 			'action' => 'move',
 			'fromid' => $id,
-			'to' => "$name 2",
+			'to' => $title2->getPrefixedText(),
 		] );
 
-		$this->assertMoved( $name, "$name 2", $id );
+		$this->assertMoved( $title, $title2, $id );
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );
 	}
 
 	public function testMoveAndWatch(): void {
-		$name = ucfirst( __FUNCTION__ );
-		$this->createPage( $name );
+		$title = Title::makeTitle( NS_MAIN, 'TestMoveAndWatch' );
+		$title2 = Title::makeTitle( NS_MAIN, 'TestMoveAndWatch 2' );
+		$this->createPage( $title );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'move',
-			'from' => $name,
-			'to' => "$name 2",
+			'from' => $title->getPrefixedText(),
+			'to' => $title2->getPrefixedText(),
 			'watchlist' => 'watch',
 			'watchlistexpiry' => '99990123000000',
 		] );
 
-		$title = Title::newFromText( $name );
-		$title2 = Title::newFromText( "$name 2" );
 		$user = $this->getTestSysop()->getUser();
 		$watchlistManager = $this->getServiceContainer()->getWatchlistManager();
 		$this->assertTrue( $watchlistManager->isTempWatched( $user, $title ) );
@@ -133,16 +130,15 @@ class ApiMoveTest extends ApiTestCase {
 	}
 
 	public function testMoveWithWatchUnchanged(): void {
-		$name = ucfirst( __FUNCTION__ );
-		$this->createPage( $name );
-		$title = Title::newFromText( $name );
-		$title2 = Title::newFromText( "$name 2" );
+		$title = Title::makeTitle( NS_MAIN, 'TestMoveWithWatchUnchanged' );
+		$this->createPage( $title );
+		$title2 = Title::makeTitle( NS_MAIN, 'TestMoveWithWatchUnchanged 2' );
 		$user = $this->getTestSysop()->getUser();
 
 		// Temporarily watch the page.
 		$this->doApiRequestWithToken( [
 			'action' => 'watch',
-			'titles' => $name,
+			'titles' => $title->getDBkey(),
 			'expiry' => '99990123000000',
 		] );
 
@@ -185,17 +181,17 @@ class ApiMoveTest extends ApiTestCase {
 	public function testMoveToInvalidPageName() {
 		$this->expectApiErrorCode( 'invalidtitle' );
 
-		$name = ucfirst( __FUNCTION__ );
-		$id = $this->createPage( $name );
+		$title = Title::makeTitle( NS_MAIN, 'TestMoveToInvalidPageName' );
+		$id = $this->createPage( $title );
 
 		try {
 			$this->doApiRequestWithToken( [
 				'action' => 'move',
-				'from' => $name,
+				'from' => $title->getPrefixedText(),
 				'to' => '[',
 			] );
 		} finally {
-			$this->assertSame( $id, Title::newFromText( $name )->getArticleID() );
+			$this->assertSame( $id, $title->getArticleID( Title::READ_LATEST ) );
 		}
 	}
 
@@ -214,14 +210,15 @@ class ApiMoveTest extends ApiTestCase {
 		] );
 		$blockStore->insertBlock( $block );
 
-		$name = ucfirst( __FUNCTION__ );
-		$id = $this->createPage( $name );
+		$title = Title::makeTitle( NS_MAIN, 'TestMoveWhileBlocked' );
+		$title2 = Title::makeTitle( NS_MAIN, 'TestMoveWhileBlocked 2' );
+		$id = $this->createPage( $title );
 
 		try {
 			$this->doApiRequestWithToken( [
 				'action' => 'move',
-				'from' => $name,
-				'to' => "$name 2",
+				'from' => $title->getPrefixedText(),
+				'to' => $title2->getPrefixedText(),
 			] );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( ApiUsageException $ex ) {
@@ -230,7 +227,7 @@ class ApiMoveTest extends ApiTestCase {
 		} finally {
 			$blockStore->deleteBlock( $block );
 			$user->clearInstanceCache();
-			$this->assertSame( $id, Title::newFromText( $name )->getArticleID() );
+			$this->assertSame( $id, $title->getArticleID( Title::READ_LATEST ) );
 		}
 	}
 
@@ -239,114 +236,123 @@ class ApiMoveTest extends ApiTestCase {
 	public function testPingLimiter() {
 		$this->expectApiErrorCode( 'ratelimited' );
 
-		$name = ucfirst( __FUNCTION__ );
+		$title = Title::makeTitle( NS_MAIN, 'TestPingLimiter' );
+		$title2 = Title::makeTitle( NS_MAIN, 'TestPingLimiter 2' );
 
 		$this->overrideConfigValue( MainConfigNames::RateLimits,
 			[ 'move' => [ '&can-bypass' => false, 'user' => [ 1, 60 ] ] ]
 		);
 
-		$id = $this->createPage( $name );
+		$id = $this->createPage( $title );
 
 		$res = $this->doApiRequestWithToken( [
 			'action' => 'move',
-			'from' => $name,
-			'to' => "$name 2",
+			'from' => $title->getPrefixedText(),
+			'to' => $title2->getPrefixedText(),
 		] );
 
-		$this->assertMoved( $name, "$name 2", $id );
+		$this->assertMoved( $title, $title2, $id );
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );
 
+		$title3 = Title::makeTitle( NS_MAIN, 'TestPingLimiter 3' );
 		try {
 			$this->doApiRequestWithToken( [
 				'action' => 'move',
-				'from' => "$name 2",
-				'to' => "$name 3",
+				'from' => $title2->getPrefixedText(),
+				'to' => $title3->getPrefixedText(),
 			] );
 		} finally {
-			$this->assertSame( $id, Title::newFromText( "$name 2" )->getArticleID() );
-			$this->assertFalse( Title::newFromText( "$name 3" )->exists(),
-				"\"$name 3\" should not exist" );
+			$this->assertSame( $id, $title2->getArticleID( Title::READ_LATEST ) );
+			$this->assertFalse( $title3->exists( Title::READ_LATEST ),
+				"\"{$title3->getPrefixedText()}\" should not exist" );
 		}
 	}
 
 	public function testTagsNoPermission() {
 		$this->expectApiErrorCode( 'tags-apply-no-permission' );
 
-		$name = ucfirst( __FUNCTION__ );
+		$title = Title::makeTitle( NS_MAIN, 'TestTagsNoPermission' );
+		$title2 = Title::makeTitle( NS_MAIN, 'TestTagsNoPermission 2' );
 
 		$this->getServiceContainer()->getChangeTagsStore()->defineTag( 'custom tag' );
 
 		$this->setGroupPermissions( 'user', 'applychangetags', false );
 
-		$id = $this->createPage( $name );
+		$id = $this->createPage( $title );
 
 		try {
 			$this->doApiRequestWithToken( [
 				'action' => 'move',
-				'from' => $name,
-				'to' => "$name 2",
+				'from' => $title->getPrefixedText(),
+				'to' => $title2->getPrefixedText(),
 				'tags' => 'custom tag',
 			] );
 		} finally {
-			$this->assertSame( $id, Title::newFromText( $name )->getArticleID() );
-			$this->assertFalse( Title::newFromText( "$name 2" )->exists(),
-				"\"$name 2\" should not exist" );
+			$this->assertSame( $id, $title->getArticleID( Title::READ_LATEST ) );
+			$this->assertFalse( $title2->exists( Title::READ_LATEST ),
+				"\"{$title2->getPrefixedText()}\" should not exist" );
 		}
 	}
 
 	public function testSelfMove() {
 		$this->expectApiErrorCode( 'selfmove' );
 
-		$name = ucfirst( __FUNCTION__ );
-		$this->createPage( $name );
+		$title = Title::makeTitle( NS_MAIN, 'TestSelfMove' );
+		$this->createPage( $title );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'move',
-			'from' => $name,
-			'to' => $name,
+			'from' => $title->getPrefixedText(),
+			'to' => $title->getPrefixedText(),
 		] );
 	}
 
 	public function testMoveTalk() {
-		$name = ucfirst( __FUNCTION__ );
+		$title = Title::makeTitle( NS_MAIN, 'TestMoveTalk' );
+		$title2 = Title::makeTitle( NS_MAIN, 'TestMoveTalk 2' );
+		$talkTitle = $title->getTalkPageIfDefined();
+		$talkTitle2 = $title2->getTalkPageIfDefined();
 
-		$id = $this->createPage( $name );
-		$talkId = $this->createPage( "Talk:$name" );
+		$id = $this->createPage( $title );
+		$talkId = $this->createPage( $talkTitle );
 
 		$res = $this->doApiRequestWithToken( [
 			'action' => 'move',
-			'from' => $name,
-			'to' => "$name 2",
+			'from' => $title->getPrefixedText(),
+			'to' => $title2->getPrefixedText(),
 			'movetalk' => '',
 		] );
 
-		$this->assertMoved( $name, "$name 2", $id );
-		$this->assertMoved( "Talk:$name", "Talk:$name 2", $talkId );
+		$this->assertMoved( $title, $title2, $id );
+		$this->assertMoved( $talkTitle, $talkTitle2, $talkId );
 
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );
 	}
 
 	public function testMoveTalkFailed() {
-		$name = ucfirst( __FUNCTION__ );
+		$title = Title::makeTitle( NS_MAIN, 'TestMoveTalkFailed' );
+		$title2 = Title::makeTitle( NS_MAIN, 'TestMoveTalkFailed 2' );
+		$talkTitle = $title->getTalkPageIfDefined();
+		$talkDestinationTitle = $title2->getTalkPageIfDefined();
 
-		$id = $this->createPage( $name );
-		$talkId = $this->createPage( "Talk:$name" );
-		$talkDestinationId = $this->createPage( "Talk:$name 2" );
+		$id = $this->createPage( $title );
+		$talkId = $this->createPage( $talkTitle );
+		$talkDestinationId = $this->createPage( $talkDestinationTitle );
 
 		$res = $this->doApiRequestWithToken( [
 			'action' => 'move',
-			'from' => $name,
-			'to' => "$name 2",
+			'from' => $title->getPrefixedText(),
+			'to' => $title2->getPrefixedText(),
 			'movetalk' => '',
 		] );
 
-		$this->assertMoved( $name, "$name 2", $id );
-		$this->assertSame( $talkId, Title::newFromText( "Talk:$name" )->getArticleID() );
+		$this->assertMoved( $title, $title2, $id );
+		$this->assertSame( $talkId, $talkTitle->getArticleID( Title::READ_LATEST ) );
 		$this->assertSame( $talkDestinationId,
-			Title::newFromText( "Talk:$name 2" )->getArticleID() );
+			$talkDestinationTitle->getArticleID( Title::READ_LATEST ) );
 		$this->assertSame( [ [
 			'message' => 'articleexists',
-			'params' => [ "Talk:$name 2" ],
+			'params' => [ $talkDestinationTitle->getPrefixedText() ],
 			'code' => 'articleexists',
 			'type' => 'error',
 		] ], $res[0]['move']['talkmove-errors'] );
@@ -355,44 +361,57 @@ class ApiMoveTest extends ApiTestCase {
 	}
 
 	public function testMoveSubpages() {
-		$name = ucfirst( __FUNCTION__ );
+		$title = Title::makeTitle( NS_MAIN, 'TestMoveSubpages' );
+		$title2 = Title::makeTitle( NS_MAIN, 'TestMoveSubpages 2' );
 
 		$this->mergeMwGlobalArrayValue( 'wgNamespacesWithSubpages', [ NS_MAIN => true ] );
 
-		$pages = [ $name, "$name/1", "$name/2", "Talk:$name", "Talk:$name/1", "Talk:$name/3" ];
+		$titleError = Title::makeTitle( NS_MAIN, 'TestMoveSubpages/error' );
+		$idError = $this->createPage( $titleError );
+		$title2Error = Title::makeTitle( NS_MAIN, 'TestMoveSubpages 2/error' );
+		$id2Error = $this->createPage( $title2Error );
+
+		$titles = [
+			[ $title, $title2 ],
+			[ $title->getTalkPageIfDefined(), $title2->getTalkPageIfDefined() ],
+			[ Title::makeTitle( NS_MAIN, 'TestMoveSubpages/1' ), Title::makeTitle( NS_MAIN, 'TestMoveSubpages 2/1' ) ],
+			[ Title::makeTitle( NS_MAIN, 'TestMoveSubpages/2' ), Title::makeTitle( NS_MAIN, 'TestMoveSubpages 2/2' ) ],
+			[ Title::makeTitle( NS_TALK, 'TestMoveSubpages/1' ), Title::makeTitle( NS_TALK, 'TestMoveSubpages 2/1' ) ],
+			[ Title::makeTitle( NS_TALK, 'TestMoveSubpages/3' ), Title::makeTitle( NS_TALK, 'TestMoveSubpages 2/3' ) ],
+		];
 		$ids = [];
-		foreach ( array_merge( $pages, [ "$name/error", "$name 2/error" ] ) as $page ) {
-			$ids[$page] = $this->createPage( $page );
+		$mapTitles = [];
+		foreach ( $titles as [ $from, $to ] ) {
+			$ids[$from->getPrefixedText()] = $this->createPage( $from );
+			$mapTitles[$from->getPrefixedText()] = $to->getPrefixedText();
 		}
 
 		$res = $this->doApiRequestWithToken( [
 			'action' => 'move',
-			'from' => $name,
-			'to' => "$name 2",
+			'from' => $title->getPrefixedText(),
+			'to' => $title2->getPrefixedText(),
 			'movetalk' => '',
 			'movesubpages' => '',
 		] );
 
-		foreach ( $pages as $page ) {
-			$this->assertMoved( $page, str_replace( $name, "$name 2", $page ), $ids[$page] );
+		foreach ( $titles as [ $from, $to ] ) {
+			$this->assertMoved( $from, $to, $ids[$from->getPrefixedText()] );
 		}
 
-		$this->assertSame( $ids["$name/error"],
-			Title::newFromText( "$name/error" )->getArticleID() );
-		$this->assertSame( $ids["$name 2/error"],
-			Title::newFromText( "$name 2/error" )->getArticleID() );
+		$this->assertSame( $idError, $titleError->getArticleID( Title::READ_LATEST ) );
+		$this->assertSame( $id2Error, $title2Error->getArticleID( Title::READ_LATEST ) );
 
 		$results = array_merge( $res[0]['move']['subpages'], $res[0]['move']['subpages-talk'] );
 		foreach ( $results as $arr ) {
-			if ( $arr['from'] === "$name/error" ) {
+			if ( $arr['from'] === $titleError->getPrefixedText() ) {
 				$this->assertSame( [ [
 					'message' => 'articleexists',
-					'params' => [ "$name 2/error" ],
+					'params' => [ $title2Error->getPrefixedText() ],
 					'code' => 'articleexists',
 					'type' => 'error'
 				] ], $arr['errors'] );
 			} else {
-				$this->assertSame( str_replace( $name, "$name 2", $arr['from'] ), $arr['to'] );
+				$this->assertSame( $mapTitles[$arr['from']], $arr['to'] );
 			}
 			$this->assertCount( 2, $arr );
 		}
@@ -401,80 +420,86 @@ class ApiMoveTest extends ApiTestCase {
 	}
 
 	public function testMoveNoPermission() {
-		$name = ucfirst( __FUNCTION__ );
+		$title = Title::makeTitle( NS_MAIN, 'TestMoveNoPermission' );
+		$title2 = Title::makeTitle( NS_MAIN, 'TestMoveNoPermission 2' );
 
-		$id = $this->createPage( $name );
+		$id = $this->createPage( $title );
 
 		$user = new User();
 
 		try {
 			$this->doApiRequestWithToken( [
 				'action' => 'move',
-				'from' => $name,
-				'to' => "$name 2",
+				'from' => $title->getPrefixedText(),
+				'to' => $title2->getPrefixedText(),
 			], null, $user );
 		} catch ( ApiUsageException $ex ) {
 			// This one has two errors! So weird
 			$this->assertTrue( ApiTestCase::apiExceptionHasCode( $ex, 'cantmove-anon' ) );
 			$this->assertTrue( ApiTestCase::apiExceptionHasCode( $ex, 'cantmove' ) );
 		} finally {
-			$this->assertSame( $id, Title::newFromText( "$name" )->getArticleID() );
-			$this->assertFalse( Title::newFromText( "$name 2" )->exists(),
-				"\"$name 2\" should not exist" );
+			$this->assertSame( $id, $title->getArticleID( Title::READ_LATEST ) );
+			$this->assertFalse( $title2->exists( Title::READ_LATEST ),
+				"\"{$title2->getPrefixedText()}\" should not exist" );
 		}
 	}
 
 	public function testSuppressRedirect() {
-		$name = ucfirst( __FUNCTION__ );
+		$title = Title::makeTitle( NS_MAIN, 'TestSuppressRedirect' );
+		$title2 = Title::makeTitle( NS_MAIN, 'TestSuppressRedirect 2' );
 
-		$id = $this->createPage( $name );
+		$id = $this->createPage( $title );
 
 		$res = $this->doApiRequestWithToken( [
 			'action' => 'move',
-			'from' => $name,
-			'to' => "$name 2",
+			'from' => $title->getPrefixedText(),
+			'to' => $title2->getPrefixedText(),
 			'noredirect' => '',
 		] );
 
-		$this->assertMoved( $name, "$name 2", $id, 'noredirect' );
+		$this->assertMoved( $title, $title2, $id, 'noredirect' );
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );
 	}
 
 	public function testSuppressRedirectNoPermission() {
-		$name = ucfirst( __FUNCTION__ );
+		$title = Title::makeTitle( NS_MAIN, 'TestSuppressRedirectNoPermission' );
+		$title2 = Title::makeTitle( NS_MAIN, 'TestSuppressRedirectNoPermission 2' );
 
 		$this->setGroupPermissions( 'sysop', 'suppressredirect', false );
-		$id = $this->createPage( $name );
+		$id = $this->createPage( $title );
 
 		$res = $this->doApiRequestWithToken( [
 			'action' => 'move',
-			'from' => $name,
-			'to' => "$name 2",
+			'from' => $title->getPrefixedText(),
+			'to' => $title2->getPrefixedText(),
 			'noredirect' => '',
 		] );
 
-		$this->assertMoved( $name, "$name 2", $id );
+		$this->assertMoved( $title, $title2, $id );
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );
 	}
 
 	public function testMoveSubpagesError() {
-		$name = ucfirst( __FUNCTION__ );
+		$title = Title::makeTitle( NS_MAIN, 'TestMoveSubpagesError' );
+		$titleBase = $title->getTalkPageIfDefined();
+		$titleSub = Title::makeTitle( NS_MAIN, 'TestMoveSubpagesError/1' );
+		$talkTitleSub = $titleSub->getTalkPageIfDefined();
 
 		// Subpages are allowed in talk but not main
-		$idBase = $this->createPage( "Talk:$name" );
-		$idSub = $this->createPage( "Talk:$name/1" );
+		$idBase = $this->createPage( $titleBase );
+		$idSub = $this->createPage( $talkTitleSub );
 
 		$res = $this->doApiRequestWithToken( [
 			'action' => 'move',
-			'from' => "Talk:$name",
-			'to' => $name,
+			'from' => $titleBase->getPrefixedText(),
+			'to' => $title->getPrefixedText(),
 			'movesubpages' => '',
 		] );
 
-		$this->assertMoved( "Talk:$name", $name, $idBase );
-		$this->assertSame( $idSub, Title::newFromText( "Talk:$name/1" )->getArticleID() );
-		$this->assertFalse( Title::newFromText( "$name/1" )->exists(),
-			"\"$name/1\" should not exist" );
+		$this->assertMoved( $titleBase, $title, $idBase );
+		$this->assertSame( $idSub, $talkTitleSub->getArticleID( Title::READ_LATEST ) );
+		$this->assertFalse( $titleSub->exists( Title::READ_LATEST ),
+			"\"{$titleSub->getPrefixedText()}\" should not exist" );
 
 		$this->assertSame( [ 'errors' => [ [
 			'message' => 'namespace-nosubpages',
