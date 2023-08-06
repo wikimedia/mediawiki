@@ -38,6 +38,7 @@ use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\WikiMap\WikiMap;
@@ -2700,6 +2701,8 @@ class ParserTestRunner {
 		// Wipe WANObjectCache process cache, which is invalidated by article insertion
 		// due to T144706
 		$services->getMainWANObjectCache()->clearProcessCache();
+		// Avoid reuse of lazy-loaded Title::mArticleId after page creation
+		Title::clearCaches();
 
 		// Reset the service so that any "MediaWiki:bad image list" articles
 		// added get fetched
@@ -2737,6 +2740,18 @@ class ParserTestRunner {
 			$page = $wikiPageFactory->newFromLinkTarget( $title );
 			$delPageFactory->newDeletePage( $page, $deleter )->deleteUnsafe( 'cleaning up' );
 		}
+
+		// Clear the static cache that Title class maintains.
+		// This ensures that Parsoid test runs that follow legacy parser test runs
+		// don't reuse titles. This matters because it looks like legacy test run
+		// and Parsoid test run differ in the number of articles they create in the db.
+		// We need to investigate that separately, but given that they differ, titles
+		// will get different article and revision ids across test runs.
+		// While we could add this to resetTitleServices(), there is really
+		// no reason to clear this for every test. Sufficient to clear this
+		// once per test file.
+		// Also the LinkCache is cleared which holds some information about titles
+		Title::clearCaches();
 	}
 
 	/**
