@@ -7,8 +7,6 @@ $( function () {
 
 	const storage = require( './storage.js' );
 
-	var $inputsToMonitor = null;
-	var $inputsToSave = null;
 	const inputFields = {};
 	const fieldNamePrefix = 'field_';
 
@@ -22,7 +20,7 @@ $( function () {
 	function onloadHandler( $editForm ) {
 		// Monitor all text-entry inputs for changes/typing.
 		const inputsToMonitorSelector = 'textarea, select, input:not([type="hidden"], [type="submit"])';
-		$inputsToMonitor = $editForm.find( inputsToMonitorSelector );
+		const $inputsToMonitor = $editForm.find( inputsToMonitorSelector );
 		$inputsToMonitor.each( function ( _i, field ) {
 			if ( field.classList.contains( 'oo-ui-inputWidget-input' ) ) {
 				try {
@@ -36,7 +34,7 @@ $( function () {
 		} );
 		// Save the contents of all of those, as well as the following hidden inputs.
 		const inputsToSaveNames = [ 'wpSection', 'editRevId', 'oldid', 'parentRevId', 'format', 'model', 'mode' ];
-		$inputsToSave = $editForm.find( '[name="' + inputsToSaveNames.join( '"], [name="' ) + '"]' );
+		const $inputsToSave = $editForm.find( '[name="' + inputsToSaveNames.join( '"], [name="' ) + '"]' );
 		$inputsToSave.each( function ( _i, field ) {
 			inputFields[ field.name ] = field;
 		} );
