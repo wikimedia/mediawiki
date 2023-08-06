@@ -985,7 +985,7 @@ function wfHostname() {
  * hostname of the server handling the request.
  *
  * @deprecated since 1.40
- * @param string|null $nonce Value from OutputPage->getCSP()->getNonce()
+ * @param string|null $nonce Unused
  * @return string|WrappedString HTML
  */
 function wfReportTime( $nonce = null ) {
@@ -1001,8 +1001,7 @@ function wfReportTime( $nonce = null ) {
 
 	return (
 		ResourceLoader::makeInlineScript(
-			ResourceLoader::makeConfigSetScript( $reportVars ),
-			$nonce
+			ResourceLoader::makeConfigSetScript( $reportVars )
 		)
 	);
 }

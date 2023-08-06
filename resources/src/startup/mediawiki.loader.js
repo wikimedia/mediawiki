@@ -775,9 +775,6 @@
 	 */
 	function globalEval( code ) {
 		var script = document.createElement( 'script' );
-		if ( mw.config.get( 'wgCSPNonce' ) !== false ) {
-			script.nonce = mw.config.get( 'wgCSPNonce' );
-		}
 		script.text = code;
 		document.head.appendChild( script );
 		script.parentNode.removeChild( script );
@@ -798,12 +795,8 @@
 	 * @param {string} code JavaScript code
 	 */
 	function fnEval( code ) {
-		if ( mw.config.get( 'wgCSPNonce' ) !== false ) {
-			globalEval( code );
-		} else {
-			// eslint-disable-next-line no-new-func
-			( new Function( code ) )();
-		}
+		// eslint-disable-next-line no-new-func
+		( new Function( code ) )();
 	}
 
 	/**

@@ -1568,25 +1568,14 @@ MESSAGE;
 	 * startup module if the client has adequate support for MediaWiki JavaScript code.
 	 *
 	 * @param string $script JavaScript code
-	 * @param string|null $nonce Content-Security-Policy nonce
-	 *  (from `OutputPage->getCSP()->getNonce()`)
+	 * @param string|null $nonce Unused
 	 * @return string|WrappedString HTML
 	 */
 	public static function makeInlineScript( $script, $nonce = null ) {
 		$js = self::makeLoaderConditionalScript( $script );
-		$escNonce = '';
-		if ( $nonce === null ) {
-			wfWarn( __METHOD__ . " did not get nonce. Will break CSP" );
-		} elseif ( $nonce !== false ) {
-			// If it was false, CSP is disabled, so no nonce attribute.
-			// Nonce should be only base64 characters, so should be safe,
-			// but better to be safely escaped than sorry.
-			$escNonce = ' nonce="' . htmlspecialchars( $nonce ) . '"';
-		}
-
 		return new WrappedString(
-			Html::inlineScript( $js, $nonce ),
-			"<script$escNonce>(RLQ=window.RLQ||[]).push(function(){",
+			Html::inlineScript( $js ),
+			"<script>(RLQ=window.RLQ||[]).push(function(){",
 			'});</script>'
 		);
 	}

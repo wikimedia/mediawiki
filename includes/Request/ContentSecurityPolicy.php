@@ -1,11 +1,5 @@
 <?php
 /**
- * Handle sending Content-Security-Policy headers
- *
- * @see https://www.w3.org/TR/CSP2/
- *
- * Copyright © 2015–2018 Brian Wolff
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,26 +15,29 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @since 1.32
  * @file
  */
 
 namespace MediaWiki\Request;
 
 use Config;
-use LogicException;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use UnexpectedValueException;
 
+/**
+ * Handle sending Content-Security-Policy headers
+ *
+ * @author Copyright 2015–2018 Brian Wolff
+ * @see https://www.w3.org/TR/CSP2/
+ * @since 1.32
+ */
 class ContentSecurityPolicy {
 	public const REPORT_ONLY_MODE = 1;
 	public const FULL_MODE = 2;
 
-	/** @var string The nonce to use for inline scripts (from OutputPage) */
-	private $nonce;
 	/** @var Config The site configuration object */
 	private $mwConfig;
 	/** @var WebResponse */
@@ -113,9 +110,9 @@ class ContentSecurityPolicy {
 		// https://blogs.dropbox.com/tech/2015/09/unsafe-inline-and-nonce-deployment/
 		// The goal was to prevent nonce from working after the page hit onready,
 		// This would help in old browsers that didn't support nonces, and
-		// also assist for varnish-cached pages which repeat nonces.
-		// However, this is incompatible with how resource loader storage works
-		// via globalEval() so it was removed.
+		// also assist for Varnish-cached pages which repeat nonces.
+		// However, this is incompatible with how ResourceLoader runs code
+		// from mw.loader.store, so it was removed.
 	}
 
 	/**
@@ -154,29 +151,22 @@ class ContentSecurityPolicy {
 		$mwConfig = $this->mwConfig;
 
 		if (
-			!self::isNonceRequired( $mwConfig ) &&
+			self::isNonceRequired( $mwConfig ) ||
 			self::isNonceRequiredArray( [ $policyConfig ] )
 		) {
-			// If the current policy requires a nonce, but the global state
-			// does not, that's bad. Throw an exception. This should never happen.
-			throw new LogicException( "Nonce requirement mismatch" );
+			wfDeprecated( 'wgCSPHeader "useNonces" option', '1.41' );
 		}
 
 		$additionalSelfUrls = $this->getAdditionalSelfUrls();
 		$additionalSelfUrlsScript = $this->getAdditionalSelfUrlsScript();
 
-		// If no default-src is sent at all, it
-		// seems browsers (or at least some), interpret
-		// that as allow anything, but the spec seems
-		// to imply that data: and blob: should be
-		// blocked.
+		// If no default-src is sent at all, it seems browsers (or at least some),
+		// interpret that as allow anything, but the spec seems to imply that
+		// "data:" and "blob:" should be blocked.
 		$defaultSrc = [ '*', 'data:', 'blob:' ];
 
 		$imgSrc = false;
 		$scriptSrc = [ "'unsafe-eval'", "blob:", "'self'" ];
-		if ( $policyConfig['useNonces'] ?? true ) {
-			$scriptSrc[] = "'nonce-" . $this->getNonce() . "'";
-		}
 
 		$scriptSrc = array_merge( $scriptSrc, $additionalSelfUrlsScript );
 		if ( isset( $policyConfig['script-src'] )
@@ -188,15 +178,13 @@ class ContentSecurityPolicy {
 		}
 		// Note: default on if unspecified.
 		if ( $policyConfig['unsafeFallback'] ?? true ) {
-			// unsafe-inline should be ignored on browsers
-			// that support 'nonce-foo' sources.
-			// Some older versions of firefox don't follow this
-			// rule, but new browsers do. (Should be for at least
-			// firefox 40+).
+			// unsafe-inline should be ignored on browsers that support 'nonce-foo' sources.
+			// Some older versions of firefox don't follow this rule, but new browsers do.
+			// (Should be for at least Firefox 40+).
 			$scriptSrc[] = "'unsafe-inline'";
 		}
-		// If default source option set to true or
-		// an array of urls, set a restrictive default-src.
+		// If default source option set to true or an array of urls,
+		// set a restrictive default-src.
 		// If set to false, we send a lenient default-src,
 		// see the code above where $defaultSrc is set initially.
 		if ( isset( $policyConfig['default-src'] )
@@ -505,7 +493,7 @@ class ContentSecurityPolicy {
 	/**
 	 * Does this browser give false positive reports?
 	 *
-	 * Some versions of firefox (40-42) incorrectly report a csp
+	 * Some versions of firefox (40-42) incorrectly report a CSP
 	 * violation for nonce sources, despite allowing them.
 	 *
 	 * @see https://bugzilla.mozilla.org/show_bug.cgi?id=1026520
@@ -539,12 +527,9 @@ class ContentSecurityPolicy {
 	private static function isNonceRequiredArray( array $configs ) {
 		foreach ( $configs as $headerConfig ) {
 			if (
-				$headerConfig === true ||
-				( is_array( $headerConfig ) &&
-				!isset( $headerConfig['useNonces'] ) ) ||
-				( is_array( $headerConfig ) &&
+				is_array( $headerConfig ) &&
 				isset( $headerConfig['useNonces'] ) &&
-				$headerConfig['useNonces'] )
+				$headerConfig['useNonces']
 			) {
 				return true;
 			}
@@ -555,16 +540,13 @@ class ContentSecurityPolicy {
 	/**
 	 * Get the nonce if nonce is in use
 	 *
+	 * Not currently supported or implemented.
+	 *
 	 * @since 1.35
-	 * @return bool|string A random (base64) string or false if not used.
+	 * @return false
 	 */
 	public function getNonce() {
-		if ( !self::isNonceRequired( $this->mwConfig ) ) {
-			return false;
-		}
-		$this->nonce ??= base64_encode( random_bytes( 15 ) );
-
-		return $this->nonce;
+		return false;
 	}
 
 	/**

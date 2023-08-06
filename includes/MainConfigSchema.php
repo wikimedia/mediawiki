@@ -8960,7 +8960,7 @@ class MainConfigSchema {
 	 *
 	 * @see https://www.w3.org/TR/CSP2/
 	 * @since 1.32
-	 * @warning May cause slowness on windows due to slow random number generator.
+	 * @warning May cause slowness on Windows due to slow random number generator.
 	 */
 	public const CSPHeader = [
 		'default' => false,

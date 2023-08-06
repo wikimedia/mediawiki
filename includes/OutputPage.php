@@ -547,7 +547,7 @@ class OutputPage extends ContextSource {
 	 * @param string|null $unused Previously used to change the cache-busting query parameter
 	 */
 	public function addScriptFile( $file, $unused = null ) {
-		$this->addScript( Html::linkedScript( $file, $this->CSP->getNonce() ) );
+		$this->addScript( Html::linkedScript( $file ) );
 	}
 
 	/**
@@ -557,7 +557,7 @@ class OutputPage extends ContextSource {
 	 * @param string $script JavaScript text, no script tags
 	 */
 	public function addInlineScript( $script ) {
-		$this->mScripts .= Html::inlineScript( "\n$script\n", $this->CSP->getNonce() ) . "\n";
+		$this->mScripts .= Html::inlineScript( "\n$script\n" ) . "\n";
 	}
 
 	/**
@@ -3408,7 +3408,6 @@ class OutputPage extends ContextSource {
 
 			$rlClient = new RL\ClientHtml( $context, [
 				'target' => $this->getTarget(),
-				'nonce' => $this->CSP->getNonce(),
 				// When 'safemode', disallowUserJs(), or reduceAllowedModules() is used
 				// to only restrict modules to ORIGIN_CORE (ie. disallow ORIGIN_USER), the list of
 				// modules enqueued for loading on this page is filtered to just those.
@@ -3554,8 +3553,7 @@ class OutputPage extends ContextSource {
 			$this->getRlClientContext(),
 			$modules,
 			$only,
-			$extraQuery,
-			$this->CSP->getNonce()
+			$extraQuery
 		);
 	}
 
@@ -3606,8 +3604,7 @@ class OutputPage extends ContextSource {
 
 		$rlContext = $this->getRlClientContext();
 		$chunks[] = ResourceLoader::makeInlineScript(
-			'mw.config.set(' . $rlContext->encodeJson( $vars ) . ');',
-			$this->CSP->getNonce()
+			'mw.config.set(' . $rlContext->encodeJson( $vars ) . ');'
 		);
 
 		$chunks = [ self::combineWrappedStrings( $chunks ) ];
@@ -3728,9 +3725,6 @@ class OutputPage extends ContextSource {
 
 			// @internal For debugging purposes
 			'wgRequestId' => WebRequest::getRequestId(),
-
-			// @internal For mw.loader
-			'wgCSPNonce' => $this->CSP->getNonce(),
 		];
 
 		// Start of supported and stable config vars (for use by extensions/gadgets).
@@ -4695,6 +4689,7 @@ class OutputPage extends ContextSource {
 	 * @deprecated Since 1.35 use getCSP()->getNonce() instead
 	 */
 	public function getCSPNonce() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->CSP->getNonce();
 	}
 
