@@ -765,10 +765,15 @@
 	}
 
 	/**
+	 * Evaluate in the global scope.
+	 *
+	 * This is used by MediaWiki user scripts, where it is (for example)
+	 * important that `var` makes a global variable.
+	 *
 	 * @private
 	 * @param {string} code JavaScript code
 	 */
-	function domEval( code ) {
+	function globalEval( code ) {
 		var script = document.createElement( 'script' );
 		if ( mw.config.get( 'wgCSPNonce' ) !== false ) {
 			script.nonce = mw.config.get( 'wgCSPNonce' );
@@ -779,12 +784,22 @@
 	}
 
 	/**
+	 * Evaluate in function scope.
+	 *
+	 * This is used by mw.loader.store. It is important that we protect the
+	 * integrity of mw.loader's private variables (from accidental clashes
+	 * or re-assignment), which means we can't use regular `eval()`.
+	 *
+	 * Optimization: This exists separately from globalEval(), because that
+	 * involves slow DOM overhead, and callers to fnEval() don't actually
+	 * require running in the global scope.
+	 *
 	 * @private
 	 * @param {string} code JavaScript code
 	 */
-	function globalEval( code ) {
+	function fnEval( code ) {
 		if ( mw.config.get( 'wgCSPNonce' ) !== false ) {
-			domEval( code );
+			globalEval( code );
 		} else {
 			// eslint-disable-next-line no-new-func
 			( new Function( code ) )();
@@ -918,7 +933,7 @@
 					// Site and user modules are legacy scripts that run in the global scope.
 					// This is transported as a string instead of a function to avoid needing
 					// to use string manipulation to undo the function wrapper.
-					domEval( script );
+					globalEval( script );
 					markModuleReady();
 
 				} else {
@@ -1243,7 +1258,7 @@
 		}
 		mw.requestIdleCallback( function () {
 			try {
-				globalEval( implementations.join( ';' ) );
+				fnEval( implementations.join( ';' ) );
 			} catch ( err ) {
 				cb( err );
 			}
@@ -1507,7 +1522,7 @@
 		 *  as '`[name]@[version]`". This version should match the requested version
 		 *  (from #batchRequest and #registry). This avoids race conditions (T117587).
 		 * @param {Function|Array|string|Object} [script] Module code. This can be a function,
-		 *  a list of URLs to load via `<script src>`, a string for `domEval()`, or an
+		 *  a list of URLs to load via `<script src>`, a string for `globalEval()`, or an
 		 *  object like {"files": {"foo.js":function, "bar.js": function, ...}, "main": "foo.js"}.
 		 *  If an object is provided, the main file will be executed immediately, and the other
 		 *  files will only be executed if loaded via require(). If a function or string is
