@@ -264,6 +264,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 	public function testFormatComment(
 		$expected, $comment, $title = false, $local = false, $wikiId = null
 	) {
+		$this->hideDeprecated( 'MediaWiki\Linker\Linker::formatComment' );
 		$conf = new SiteConfiguration();
 		$conf->settings = [
 			'wgServer' => [
@@ -484,6 +485,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideCasesForFormatLinksInComment
 	 */
 	public function testFormatLinksInComment( $expected, $input, $wiki ) {
+		$this->hideDeprecated( 'MediaWiki\Linker\Linker::formatLinksInComment' );
 		$conf = new SiteConfiguration();
 		$conf->settings = [
 			'wgServer' => [
@@ -658,6 +660,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 	public function testCommentBlock(
 		$expected, $comment, $title = null, $local = false, $wikiId = null, $useParentheses = true
 	) {
+		$this->hideDeprecated( 'MediaWiki\Linker\Linker::commentBlock' );
 		$conf = new SiteConfiguration();
 		$conf->settings = [
 			'wgServer' => [
@@ -740,6 +743,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 		bool $useParentheses = true,
 		?string $comment = 'Some comment!'
 	) {
+		$this->hideDeprecated( 'MediaWiki\Linker\Linker::revComment' );
 		$pageData = $this->insertPage( 'RevCommentTestPage' );
 		$revisionRecord = new MutableRevisionRecord( $pageData['title'] );
 		if ( $comment ) {
