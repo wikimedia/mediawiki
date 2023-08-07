@@ -97,15 +97,28 @@ function deleteData( pageName ) {
 		if ( db === null ) {
 			reject( 'DB not opened' );
 		}
-		// The full page has a section name of '' (empty string), and sections have numeric string IDs.
-		// The range of '' to max-integer encompases all of these.
-		const bound = IDBKeyRange.bound( [ pageName, '' ], [ pageName, Number.MAX_SAFE_INTEGER.toString() ] );
-		const deleteRequest = db.transaction( objectStoreName, 'readwrite' )
-			.objectStore( objectStoreName )
-			.delete( bound );
-		deleteRequest.addEventListener( 'success', function () {
-			resolve();
-		} );
+
+		const transaction = db.transaction( objectStoreName, 'readwrite' );
+		const store = transaction.objectStore( objectStoreName );
+
+		const request = store.openCursor();
+
+		request.onsuccess = function ( event ) {
+			const cursor = event.target.result;
+			if ( cursor ) {
+				const key = cursor.key;
+				if ( key[ 0 ] === pageName ) {
+					store.delete( key );
+				}
+				cursor.continue();
+			} else {
+				resolve();
+			}
+		};
+
+		request.onerror = function () {
+			reject( 'Error opening cursor' );
+		};
 	} );
 }
 
