@@ -260,6 +260,9 @@ because of Phabricator reports.
   ::getMutableTestUser() have been made protected and non-static.
 * MediaWikiIntegrationTestCase::$supportedDBs has been changed to a private
   constant.
+* MediaWikiIntegrationTestCase::addCoreDBData() has been deprecated. The method
+  is now a no-op and is no longer called. Tests should create the fixtures
+  they need.
 * Saving preferences for a temporary user now throws an error (e.g. via
   UserOptionsManager::saveOptions)
 * ApiQuery::getNamedDB() and ApiQueryBase::selectNamedDB(), deprecated in

@@ -2761,8 +2761,7 @@ class ParserTestRunner {
 	/**
 	 * Insert a temporary test article
 	 *
-	 * @see MediaWikiIntegrationTestCase::addCoreDBData()
-	 * @todo Refactor to share more code w/ ::addCoreDBData() or ::editPage
+	 * @todo Refactor to share more code w/ ::editPage
 	 *
 	 * @param string $name The title, including any prefix
 	 * @param string $text The article text

@@ -29,6 +29,7 @@ use Wikimedia\TestingAccessWrapper;
  * @coversNothing
  */
 class ContentHandlerFunctionalTest extends MediaWikiIntegrationTestCase {
+	protected $tablesUsed = [ 'page' ];
 
 	public function testMakeEmptyContent() {
 		$contentHandlerFactory = MediaWikiServices::getInstance()->getContentHandlerFactory();
