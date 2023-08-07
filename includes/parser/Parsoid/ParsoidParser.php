@@ -3,6 +3,7 @@
 namespace MediaWiki\Parser\Parsoid;
 
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -133,10 +134,13 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 
 		// T331148: This should be checked to be consistent with the
 		// REST interfaces for Parsoid output
+		$preferredVariant = MediaWikiServices::getInstance()
+				->getLanguageFactory()
+				->getLanguage( $langConv->getPreferredVariant() );
 		$pageBundle = $this->parsoid->wikitext2html( $pageConfig, [
 			'pageBundle' => true,
 			'wrapSections' => true,
-			'htmlVariantLanguage' => $langConv->getPreferredVariant(),
+			'htmlVariantLanguage' => $preferredVariant,
 			'outputContentVersion' => Parsoid::defaultHTMLVersion(),
 		], $headers, $parserOutput );
 		$parserOutput = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle, $parserOutput );
