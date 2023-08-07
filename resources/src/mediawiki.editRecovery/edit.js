@@ -89,15 +89,15 @@ $( function () {
 			const field = inputFields[ fieldName ];
 			const $field = $( field );
 			// Set the field value depending on what type of field it is.
-			if ( !( field instanceof OO.ui.Widget ) && field.nodeName !== undefined && field.nodeName === 'TEXTAREA' ) {
-				// Text areas.
-				$field.textSelection( 'setContents', pageData[ fieldNamePrefix + fieldName ] );
-			} else if ( field instanceof OO.ui.CheckboxInputWidget ) {
+			if ( field instanceof OO.ui.CheckboxInputWidget ) {
 				// OOUI checkbox widgets.
 				field.setSelected( pageData[ fieldNamePrefix + fieldName ] );
 			} else if ( field instanceof OO.ui.Widget ) {
 				// Other OOUI widgets.
 				field.setValue( pageData[ fieldNamePrefix + fieldName ], field );
+			} else if ( field.nodeName === 'TEXTAREA' ) {
+				// Text areas.
+				$field.textSelection( 'setContents', pageData[ fieldNamePrefix + fieldName ] );
 			} else {
 				// Anything else.
 				field.value = pageData[ fieldNamePrefix + fieldName ];
