@@ -221,7 +221,7 @@ class ApiBlock extends ApiBase {
 		$res['nocreate'] = $params['nocreate'];
 		$res['autoblock'] = $params['autoblock'];
 		$res['noemail'] = $params['noemail'];
-		$res['hidename'] = $params['hidename'];
+		$res['hidename'] = $block->getHideName();
 		$res['allowusertalk'] = $params['allowusertalk'];
 		$res['watchuser'] = $params['watchuser'];
 		if ( $watchlistExpiry ) {
