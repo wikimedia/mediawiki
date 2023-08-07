@@ -22,7 +22,8 @@
 			"Nura A Sani",
 			"Omar Ali",
 			"Bello Na'im",
-			"Khalilulahi"
+			"Khalilulahi",
+			"El-hussain14"
 		]
 	},
 	"tog-underline": "Zana layin link:",
@@ -756,6 +757,7 @@
 	"pageinfo-toolboxlink": "Bayanin shafi",
 	"previousdiff": "Sauyin baya",
 	"nextdiff": "Gyaran gaba →",
+	"widthheightpage": "$1 ×$2, $3 {{{{PLURAL:$3|feji|fejina}}",
 	"file-info-size": "pikisal $1 × $2, girman fayil: $3, irin MIME: $4",
 	"file-nohires": "Babu wata babbar saƙa.",
 	"svg-long-desc": "Fayil kin SVG, saƙar fikisal $1 x $2, girman fayil: $3",

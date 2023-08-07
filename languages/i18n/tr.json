@@ -4071,7 +4071,7 @@
 	"pagedata-not-acceptable": "Eşleşen biçim bulunamadı. Desteklenen MIME türleri: $1",
 	"pagedata-bad-title": "Geçersiz başlık: $1.",
 	"unregistered-user-config": "Güvenlik nedeniyle, kayıt dışı kullanıcılar için JavaScript, CSS ve JSON kullanıcı alt sayfaları yüklenemez.",
-	"passwordpolicies": "Parola politikaları",
+	"passwordpolicies": "Parola ilkeleri",
 	"passwordpolicies-summary": "Bu vikide tanımlanan kullanıcı grupları için etkili parola ilkelerinin bir listesidir.",
 	"passwordpolicies-group": "Grup",
 	"passwordpolicies-policies": "Politikalar",
