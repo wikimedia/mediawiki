@@ -201,6 +201,8 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 			+ MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidCacheConfig )
 		);
 		$title = $this->getExistingTestPage()->getTitle();
+		// Run any jobs enqueued by the creation of the test page
+		$this->runJobs( [ 'minJobs' => 0 ] );
 
 		$parserOutputAccess = $this->createNoOpMock(
 			ParserOutputAccess::class,

@@ -216,18 +216,6 @@ class MediaWikiTest extends MediaWikiIntegrationTestCase {
 				'query' => wfCgiToArray( '?title=[INVALID]' ),
 				'expected' => false,
 			],
-			"Valid 'oldid'" => [
-				'query' => wfCgiToArray( '?oldid=1' ),
-				'expected' => 'UTPage',
-			],
-			"Valid 'diff'" => [
-				'query' => wfCgiToArray( '?diff=1' ),
-				'expected' => 'UTPage',
-			],
-			"Valid 'curid'" => [
-				'query' => wfCgiToArray( '?curid=1' ),
-				'expected' => 'UTPage',
-			],
 			"Invalid 'oldid'… means main page? (we show an error elsewhere)" => [
 				'query' => wfCgiToArray( '?oldid=9999999' ),
 				'expected' => 'Main Page',
@@ -271,11 +259,7 @@ class MediaWikiTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @dataProvider provideParseTitle
-	 * @covers MediaWiki::parseTitle
-	 */
-	public function testParseTitle( $query, $expected ) {
+	private function doTestParseTitle( array $query, $expected ): void {
 		if ( $expected === false ) {
 			$this->expectException( MalformedTitleException::class );
 		}
@@ -291,6 +275,39 @@ class MediaWikiTest extends MediaWikiIntegrationTestCase {
 			$expected,
 			$ret->getPrefixedText()
 		);
+	}
+
+	/**
+	 * @dataProvider provideParseTitle
+	 * @covers MediaWiki::parseTitle
+	 */
+	public function testParseTitle( $query, $expected ) {
+		$this->doTestParseTitle( $query, $expected );
+	}
+
+	public static function provideParseTitleExistingPage(): array {
+		return [
+			"Valid 'oldid'" => [
+				fn ( WikiPage $page ): array => wfCgiToArray( '?oldid=' . $page->getRevisionRecord()->getId() ),
+			],
+			"Valid 'diff'" => [
+				fn ( WikiPage $page ): array => wfCgiToArray( '?diff=' . $page->getRevisionRecord()->getId() ),
+			],
+			"Valid 'curid'" => [
+				fn ( WikiPage $page ): array => wfCgiToArray( '?curid=' . $page->getId() ),
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideParseTitleExistingPage
+	 * @covers MediaWiki::parseTitle
+	 */
+	public function testParseTitle__existingPage( callable $queryBuildCallback ) {
+		$pageTitle = 'TestParseTitle test page';
+		$page = $this->getExistingTestPage( $pageTitle );
+		$query = $queryBuildCallback( $page );
+		$this->doTestParseTitle( $query, $pageTitle );
 	}
 
 	/**

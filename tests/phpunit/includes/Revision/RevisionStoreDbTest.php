@@ -1636,7 +1636,9 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::wrapPage
 	 */
 	public function testNewRevisionFromRow_noPage_crossWiki() {
-		// Make TitleFactory always fail, since it should not be used for the cross-wiki case.
+		$page = $this->getExistingTestPage();
+		// Make TitleFactory always fail, since it should not be used for the cross-wiki case. Note, it's important
+		// to do this *after* the test page has been created.
 		$noOpTitleFactory = $this->createNoOpMock( TitleFactory::class );
 		$this->setService( 'TitleFactory', $noOpTitleFactory );
 
@@ -1644,8 +1646,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$wikiId = $this->getDb()->getDomainID();
 		$store = $this->getServiceContainer()->getRevisionStoreFactory()
 			->getRevisionStore( $wikiId );
-
-		$page = $this->getExistingTestPage();
 
 		$info = $store->getQueryInfo();
 		$row = $this->getDb()->selectRow(

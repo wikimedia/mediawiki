@@ -55,6 +55,8 @@ use WikitextContent;
 class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 	use RestTestTrait;
 
+	protected $tablesUsed = [ 'page' ];
+
 	/**
 	 * Default request attributes, see ParsoidHandler::getRequestAttributes()
 	 */
@@ -1532,6 +1534,8 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$expectedWikitext,
 		Language $expectedLanguage
 	) {
+		// Create a page, if needed, to test with oldid
+		$this->getExistingTestPage();
 		$pageConfig = $this->newParsoidHandler()->tryToCreatePageConfig( $attribs, $wikitext, $html2WtMode );
 
 		$this->assertSame(
