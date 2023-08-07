@@ -1634,7 +1634,7 @@
 	"rcfilters-state-message-subset": "Bu filtrenin etkisi yok çünkü sonuçları aşağıdaki, daha geniş {{PLURAL:$2|filtreye|filtrelere}} dahil edilmiştir (ayırt etmek için vurgulamayı deneyin): $1",
 	"rcfilters-state-message-fullcoverage": "Bu gruptaki tüm filtreleri seçmek, hiçbirini seçmemekle aynıdır; bu nedenle bu filtrenin etkisi yoktur. Grup şunları içerir: $1",
 	"rcfilters-filtergroup-authorship": "Katkı sahipliği",
-	"rcfilters-filter-editsbyself-label": "Sizin değişikliklerinize göre",
+	"rcfilters-filter-editsbyself-label": "Sizin değişiklikleriniz",
 	"rcfilters-filter-editsbyself-description": "Kendi katkılarınız.",
 	"rcfilters-filter-editsbyother-label": "Başkalarının değişiklileri",
 	"rcfilters-filter-editsbyother-description": "Kendi düzenlemeleriniz hariç bütün değişiklikler.",

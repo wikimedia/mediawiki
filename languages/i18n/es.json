@@ -1520,7 +1520,7 @@
 	"right-editcontentmodel": "Editar el modelo de contenido de una página",
 	"right-editinterface": "Editar la interfaz de usuario",
 	"right-editusercss": "Editar las páginas de CSS de otros usuarios",
-	"right-edituserjson": "Editar archivos JSON de otros usuarios",
+	"right-edituserjson": "Editar las páginas de JSON de otros usuarios",
 	"right-edituserjs": "Editar las páginas de JavaScript de otros usuarios",
 	"right-editsitecss": "Editar CSS global del sitio",
 	"right-editsitejson": "Editar JSON global del sitio",

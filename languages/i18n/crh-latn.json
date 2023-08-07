@@ -1000,7 +1000,7 @@
 	"filehist-filesize": "Fayl büyükligi",
 	"filehist-comment": "İzaat",
 	"filehist-missing": "Fayl yoq",
-	"imagelinks": "Fayl qullanuvı",
+	"imagelinks": "Fayl qullanıluvı",
 	"linkstoimage": "Bu {{PLURAL:$1|saife qullana|$1 saifeler qullana}} bu fayldı:",
 	"linkstoimage-more": "Bar yoq $1 {{PLURAL:$1|saife}} bu fayldı qullana. Mına cedvel köstere qaysı {{PLURAL:$1|birinci saife|birinci saifeler}} sadece bu fayldı qullana. [[Special:WhatLinksHere/$2|Episinide]] köstergeni tapıla.",
 	"nolinkstoimage": "Bu faylnı qullanğan saife yoq.",
