@@ -2538,6 +2538,7 @@ return [
 			$services->getUserEditTracker(),
 			LoggerFactory::getInstance( 'BlockManager' ),
 			$services->getTitleFactory(),
+			$services->getTempUserConfig(),
 			$services->getBlockActionInfo()
 		);
 	},
