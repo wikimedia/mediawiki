@@ -317,16 +317,16 @@ class CompressOld extends Maintenance {
 			$dbr->ping();
 
 			# Get the page row
-			$pageRes = $dbr->newSelectQueryBuilder()
-				->select( [ 'page_id', 'page_namespace', 'page_title', 'page_latest' ] )
+			$pageRow = $dbr->newSelectQueryBuilder()
+				->select( [ 'page_id', 'page_namespace', 'page_title', 'rev_timestamp' ] )
 				->from( 'page' )
+				->straightJoin( 'revision', null, 'page_latest = rev_id' )
 				->where( $pageConds )
 				->andWhere( [ 'page_id' => $pageId ] )
-				->caller( __METHOD__ )->fetchResultSet();
-			if ( $pageRes->numRows() == 0 ) {
+				->caller( __METHOD__ )->fetchRow();
+			if ( $pageRow === false ) {
 				continue;
 			}
-			$pageRow = $pageRes->fetchObject();
 
 			# Display progress
 			$titleObj = Title::makeTitle( $pageRow->page_namespace, $pageRow->page_title );
@@ -339,7 +339,7 @@ class CompressOld extends Maintenance {
 					# Don't operate on the current revision
 					# Use < instead of <> in case the current revision has changed
 					# since the page select, which wasn't locking
-					'rev_id < ' . (int)$pageRow->page_latest
+					'rev_timestamp < ' . (int)$pageRow->rev_timestamp
 				], $conds ),
 				__METHOD__,
 				$revLoadOptions
