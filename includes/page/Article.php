@@ -690,7 +690,7 @@ class Article implements Page {
 		}
 
 		# Ensure that UI elements requiring revision ID have
-		# the correct version information.
+		# the correct version information. (This may be overwritten after creation of ParserOutput)
 		$outputPage->setRevisionId( $this->getRevIdFetched() );
 		$outputPage->setRevisionIsCurrent( $rev->isCurrent() );
 		# Preload timestamp to avoid a DB hit
@@ -860,6 +860,13 @@ class Article implements Page {
 				: $context->msg( 'view-pool-timeout' );
 			$outputPage->addHTML( "<!-- parser cache is expired, " .
 				"sending anyway due to $staleReason-->\n" );
+
+			// Ensure OutputPage knowns the id from the dirty cache, but keep the current flag (T341013)
+			$cachedId = $pOutput->getCacheRevisionId();
+			if ( $cachedId !== null ) {
+				$outputPage->setRevisionId( $cachedId );
+				$outputPage->setRevisionTimestamp( $pOutput->getTimestamp() );
+			}
 		}
 
 		if ( !$renderStatus->isOK() ) {
