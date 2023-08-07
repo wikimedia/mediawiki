@@ -30,7 +30,10 @@ $datePreferenceMigrationMap = [
 $defaultDateFormat = 'dmy';
 
 $dateFormats = [
-	'walloon short time' => 'H:i'
+	# See LanguageWa.php for specification
+	'walloon short time' => 'H:i',
+	'walloon short date' => 'd/m/Y',
+	'walloon short both' => 'd/m/Y a H:i',
 ];
 
 $namespaceNames = [
