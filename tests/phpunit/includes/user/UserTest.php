@@ -615,6 +615,17 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertInstanceOf( SystemBlock::class, $block );
 		$this->assertSame( 'wgSoftBlockRanges', $block->getSystemBlockType() );
 
+		// IP is in $wgSoftBlockRanges and user is temporary
+		$this->enableAutoCreateTempUser();
+		$user = ( new TestUser( '*Unregistered 1' ) )->getUser();
+		$request = new FauxRequest();
+		$request->setIP( '10.20.30.40' );
+		$this->setSessionUser( $user, $request );
+		$block = $user->getBlock();
+		$this->assertTrue( $user->isTemp() );
+		$this->assertInstanceOf( SystemBlock::class, $block );
+		$this->assertSame( 'wgSoftBlockRanges', $block->getSystemBlockType() );
+
 		// Make sure the block is really soft
 		$request = new FauxRequest();
 		$request->setIP( '10.20.30.40' );
