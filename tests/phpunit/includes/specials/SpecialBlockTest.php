@@ -9,6 +9,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Specials\SpecialBlock;
 use MediaWiki\Status\Status;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\TestingAccessWrapper;
 
@@ -18,6 +19,8 @@ use Wikimedia\TestingAccessWrapper;
  * @coversDefaultClass \MediaWiki\Specials\SpecialBlock
  */
 class SpecialBlockTest extends SpecialPageTestBase {
+	use MockAuthorityTrait;
+
 	private $blockStore;
 
 	/**
@@ -41,11 +44,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	protected function setUp(): void {
 		parent::setUp();
 		$this->blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-	}
-
-	protected function tearDown(): void {
-		$this->resetTables();
-		parent::tearDown();
 	}
 
 	/**
@@ -766,9 +764,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	public function testProcessFormErrorsHideUserProlific() {
 		$this->overrideConfigValue( MainConfigNames::HideUserContribLimit, 0 );
 
-		$performer = $this->getTestSysop()->getUser();
-		$this->overrideUserPermissions( $performer, [ 'block', 'hideuser' ] );
-
+		$performer = $this->mockRegisteredUltimateAuthority();
 		$userToBlock = $this->getTestUser()->getUser();
 		$pageSaturn = $this->getExistingTestPage( 'Saturn' );
 		$pageSaturn->doUserEditContent(
@@ -778,7 +774,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		);
 
 		$context = new DerivativeContext( RequestContext::getMain() );
-		$context->setUser( $performer );
+		$context->setAuthority( $performer );
 
 		$result = $this->newSpecialPage()->processForm(
 			[
@@ -882,11 +878,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->blockStore->insertBlock( $block );
 
 		return $block;
-	}
-
-	protected function resetTables() {
-		$this->db->delete( 'ipblocks', '*', __METHOD__ );
-		$this->db->delete( 'ipblocks_restrictions', '*', __METHOD__ );
 	}
 
 	/**

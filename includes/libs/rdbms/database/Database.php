@@ -703,6 +703,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$isPermWrite = false;
 		if ( $sql->isWriteQuery() ) {
+			ChangedTablesTracker::recordQuery( $sql );
 			$pseudoPermanent = $this->flagsHolder::contains( $sql->getFlags(), self::QUERY_PSEUDO_PERMANENT );
 			$tempTableChanges = $this->getTempTableWrites( $sql, $pseudoPermanent );
 			$isPermWrite = !$tempTableChanges;

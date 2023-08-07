@@ -104,6 +104,8 @@ because of Phabricator reports.
 * OutputPage::addParserOutputText has been marked @internal since there are no
   known users of it. Its old behavior has been deprecated and will change
   in the future without further notice.
+* MediaWikiIntegrationTestCase::$tablesUsed has been deprecated. The framework
+  now detects these automatically.
 * …
 
 === Deprecations in 1.42 ===

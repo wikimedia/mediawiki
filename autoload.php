@@ -3054,6 +3054,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\AndExpressionGroup' => __DIR__ . '/includes/libs/rdbms/expression/AndExpressionGroup.php',
 	'Wikimedia\\Rdbms\\AtomicSectionIdentifier' => __DIR__ . '/includes/libs/rdbms/database/utils/AtomicSectionIdentifier.php',
 	'Wikimedia\\Rdbms\\Blob' => __DIR__ . '/includes/libs/rdbms/encasing/Blob.php',
+	'Wikimedia\\Rdbms\\ChangedTablesTracker' => __DIR__ . '/includes/libs/rdbms/ChangedTablesTracker.php',
 	'Wikimedia\\Rdbms\\ChronologyProtector' => __DIR__ . '/includes/libs/rdbms/ChronologyProtector.php',
 	'Wikimedia\\Rdbms\\ConfiguredReadOnlyMode' => __DIR__ . '/includes/libs/rdbms/ConfiguredReadOnlyMode.php',
 	'Wikimedia\\Rdbms\\ConnectionManager' => __DIR__ . '/includes/libs/rdbms/connectionmanager/ConnectionManager.php',

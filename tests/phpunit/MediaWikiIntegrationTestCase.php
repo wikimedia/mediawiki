@@ -29,6 +29,7 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Wikimedia\Rdbms\ChangedTablesTracker;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -96,6 +97,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	/**
 	 * @var array
 	 * @since 1.19
+	 * @deprecated since 1.41 Tables used are now detected automatically.
 	 */
 	protected $tablesUsed = []; // tables with data
 
@@ -189,6 +191,12 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	private static bool $settingsLazyLoaded = false;
 
 	/**
+	 * @var string[] Used to store tables changed in the subclass addDBDataOnce method. These are only cleared in the
+	 * tearDownAfterClass method.
+	 */
+	private static array $dbDataOnceTables = [];
+
+	/**
 	 * @stable to call
 	 * @param string|null $name
 	 * @param array $data
@@ -227,6 +235,17 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		// Get the original service locator
 		if ( !self::$originalServices ) {
 			self::$originalServices = MediaWikiServices::getInstance();
+		}
+	}
+
+	/**
+	 * The annotation causes this to be called immediately after tearDownAfterClass()
+	 * @afterClass
+	 */
+	final public static function mediaWikiTearDownAfterClass(): void {
+		if ( static::$dbDataOnceTables ) {
+			$db = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
+			self::resetDB( $db, self::$dbDataOnceTables );
 		}
 	}
 
@@ -671,10 +690,12 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		// This would also remove the need for the HACK that is oncePerClass().
 		if ( self::oncePerClass( $this->db ) ) {
 			$this->setUpSchema( $this->db );
-			self::resetDB( $this->db, $this->tablesUsed );
+			ChangedTablesTracker::startTracking();
 			$this->addDBDataOnce();
+			static::$dbDataOnceTables = ChangedTablesTracker::getTablesAndStop();
 		}
 
+		ChangedTablesTracker::startTracking();
 		$this->addDBData();
 	}
 
@@ -755,7 +776,10 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$this->temporaryHookHandlers = [];
 
 		if ( self::needsDB() ) {
-			self::resetDB( $this->db, $this->tablesUsed );
+			$tablesUsed = ChangedTablesTracker::getTablesAndStop();
+			// Do not clear tables written by addDBDataOnce, otherwise the data would need to be added again every time.
+			$tablesUsed = array_diff( $tablesUsed, static::$dbDataOnceTables );
+			self::resetDB( $this->db, $tablesUsed );
 		}
 
 		self::restoreMwServices();
@@ -1620,8 +1644,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * implement this method and do so. This method is called once per test suite
 	 * (once per class).
 	 *
-	 * Note data added by this method may be removed by resetDB() depending on
-	 * the contents of $tablesUsed.
+	 * All tables touched by this method will not be cleared until the end of the test class.
 	 *
 	 * To add additional data between test function runs, override addDBData().
 	 *
@@ -2083,29 +2106,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	private static function resetDB( IDatabase $db, array $tablesUsed ) {
 		if ( !$tablesUsed ) {
 			return;
-		}
-		// some groups of tables are connected such that if any is used, all should be cleared
-		$extraTables = [
-			'user' => [ 'user', 'user_groups', 'user_properties', 'actor' ],
-			'page' => [ 'page', 'revision', 'ip_changes', 'comment', 'archive',
-				'slots', 'content', 'content_models', 'slot_roles', 'redirect', 'change_tag' ],
-			'logging' => [ 'logging', 'log_search', 'change_tag' ],
-		];
-
-		foreach ( $extraTables as $i => $group ) {
-			if ( !array_intersect( $tablesUsed, $group ) ) {
-				unset( $extraTables[$i] );
-			}
-		}
-		$extraTables = array_values( $extraTables );
-		$tablesUsed = array_unique( array_merge( $tablesUsed, ...$extraTables ) );
-		// special case: if revision/logging is used, clear the recentchanges table
-		// (but not necessarily logging/revision, unless that is also used)
-		if (
-			array_intersect( $tablesUsed, [ 'revision', 'logging' ] ) &&
-			!in_array( 'recentchanges', $tablesUsed, true )
-		) {
-			$tablesUsed[] = 'recentchanges';
 		}
 
 		if ( in_array( 'user', $tablesUsed ) ) {

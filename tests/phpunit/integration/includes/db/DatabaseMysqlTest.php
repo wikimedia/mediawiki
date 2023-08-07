@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ChangedTablesTracker;
 use Wikimedia\Rdbms\DatabaseMySQL;
 use Wikimedia\Rdbms\DBQueryDisconnectedError;
 use Wikimedia\Rdbms\DBQueryError;
@@ -30,11 +31,14 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		}
 
 		$this->conn = $this->newConnection();
+		// FIXME: Tables used by this test aren't parsed correctly, see T344510.
+		ChangedTablesTracker::getTablesAndStop();
 	}
 
 	protected function tearDown(): void {
 		if ( $this->conn ) {
 			$this->conn->close( __METHOD__ );
+			ChangedTablesTracker::startTracking();
 		}
 
 		parent::tearDown();
