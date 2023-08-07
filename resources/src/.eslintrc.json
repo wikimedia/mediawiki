@@ -11,6 +11,7 @@
 		"module": "readonly"
 	},
 	"rules": {
+		"es-x/no-promise-prototype-finally": "off",
 		"max-len": "off",
 		"no-var": "off",
 		"no-jquery/no-global-selector": "off"
