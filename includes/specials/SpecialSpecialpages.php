@@ -124,9 +124,8 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 
 			$legend = Html::rawElement(
 				'div',
-				[ 'class' => [ 'mw-changeslist-legend', 'mw-collapsible', 'mw-specialpages-notes' ] ],
-				$legendHeading .
-					Html::rawElement( 'div', [ 'class' => 'mw-collapsible-content' ], implode( "\n", $notes ) )
+				[ 'class' => 'mw-changeslist-legend mw-specialpages-notes' ],
+				$legendHeading . implode( "\n", $notes )
 			);
 
 			$out->addHTML( $legend );
