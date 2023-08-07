@@ -346,8 +346,6 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 				->method( 'pb2pb' );
 		}
 
-		$mock->method( 'implementsLanguageConversion' )
-			->willReturn( true );
 		$mock->method( 'implementsLanguageConversionBcp47' )
 			->willReturn( true );
 
