@@ -1354,6 +1354,9 @@ return [
 			'edit.js',
 			'storage.js',
 		],
+		'dependencies' => [
+			'mediawiki.widgets.AbandonEditDialog'
+		]
 	],
 
 	'mediawiki.action.view.postEdit' => [
