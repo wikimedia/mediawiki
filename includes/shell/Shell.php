@@ -198,7 +198,9 @@ class Shell {
 
 		return self::command( $cmd )
 			->params( $parameters )
-			->restrict( self::RESTRICT_DEFAULT & ~self::NO_LOCALSETTINGS );
+			// Not much point in trying to sandbox maintenance scripts when they run unsandboxed
+			// most of the time, and doing so can cause permission problems.
+			->disableSandbox();
 	}
 
 }
