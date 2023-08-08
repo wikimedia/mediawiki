@@ -18,7 +18,9 @@
  * @file
  */
 
+use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -126,21 +128,15 @@ class LocalFileRestoreBatch {
 
 		// Fetch all or selected archived revisions for the file,
 		// sorted from the most recent to the oldest.
-		$conditions = [ 'fa_name' => $this->file->getName() ];
+		$arQueryBuilder = FileSelectQueryBuilder::newForArchivedFile( $dbw );
+		$arQueryBuilder->where( [ 'fa_name' => $this->file->getName() ] )
+			->orderBy( 'fa_timestamp', SelectQueryBuilder::SORT_DESC );
 
 		if ( !$this->all ) {
-			$conditions['fa_id'] = $this->ids;
+			$arQueryBuilder->andWhere( [ 'fa_id' => $this->ids ] );
 		}
 
-		$arFileQuery = ArchivedFile::getQueryInfo();
-		$result = $dbw->select(
-			$arFileQuery['tables'],
-			$arFileQuery['fields'],
-			$conditions,
-			__METHOD__,
-			[ 'ORDER BY' => 'fa_timestamp DESC' ],
-			$arFileQuery['joins']
-		);
+		$result = $arQueryBuilder->caller( __METHOD__ )->fetchResultSet();
 
 		$idsPresent = [];
 		$storeBatch = [];

@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\UndeletePage;
 use MediaWiki\Revision\RevisionRecord;
@@ -25,6 +26,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * Used to show archived pages and eventually restore them.
@@ -169,17 +171,11 @@ class PageArchive {
 			return null;
 		}
 
-		$loadBalancer = MediaWikiServices::getInstance()->getDBLoadBalancer();
-		$dbr = $loadBalancer->getConnectionRef( DB_REPLICA );
-		$fileQuery = ArchivedFile::getQueryInfo();
-		return $dbr->select(
-			$fileQuery['tables'],
-			$fileQuery['fields'],
-			[ 'fa_name' => $this->title->getDBkey() ],
-			__METHOD__,
-			[ 'ORDER BY' => 'fa_timestamp DESC' ],
-			$fileQuery['joins']
-		);
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+		$queryBuilder = FileSelectQueryBuilder::newForArchivedFile( $dbr );
+		$queryBuilder->where( [ 'fa_name' => $this->title->getDBkey() ] )
+			->orderBy( 'fa_timestamp', SelectQueryBuilder::SORT_DESC );
+		return $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 	}
 
 	/**

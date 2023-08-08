@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
@@ -25,6 +26,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * Deleted file in the 'filearchive' table.
@@ -233,15 +235,10 @@ class ArchivedFile {
 		if ( !$this->title || $this->title->getNamespace() === NS_FILE ) {
 			$this->dataLoaded = true; // set it here, to have also true on miss
 			$dbr = wfGetDB( DB_REPLICA );
-			$fileQuery = self::getQueryInfo();
-			$row = $dbr->selectRow(
-				$fileQuery['tables'],
-				$fileQuery['fields'],
-				$conds,
-				__METHOD__,
-				[ 'ORDER BY' => 'fa_timestamp DESC' ],
-				$fileQuery['joins']
-			);
+			$queryBuilder = FileSelectQueryBuilder::newForArchivedFile( $dbr );
+			$row = $queryBuilder->where( $conds )
+				->orderBy( 'fa_timestamp', SelectQueryBuilder::SORT_DESC )
+				->caller( __METHOD__ )->fetchRow();
 			if ( !$row ) {
 				// this revision does not exist?
 				return null;
@@ -281,6 +278,7 @@ class ArchivedFile {
 	 *
 	 * @since 1.31
 	 * @stable to override
+	 * @deprecated since 1.41 use FileSelectQueryBuilder instead
 	 * @return array[] With three keys:
 	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()` or `SelectQueryBuilder::tables`
 	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()` or `SelectQueryBuilder::fields`
@@ -288,37 +286,12 @@ class ArchivedFile {
 	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
 	public static function getQueryInfo() {
-		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'fa_description' );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+		$queryInfo = ( FileSelectQueryBuilder::newForArchivedFile( $dbr ) )->getQueryInfo();
 		return [
-			'tables' => [
-				'filearchive',
-				'filearchive_actor' => 'actor'
-			] + $commentQuery['tables'],
-			'fields' => [
-				'fa_id',
-				'fa_name',
-				'fa_archive_name',
-				'fa_storage_key',
-				'fa_storage_group',
-				'fa_size',
-				'fa_bits',
-				'fa_width',
-				'fa_height',
-				'fa_metadata',
-				'fa_media_type',
-				'fa_major_mime',
-				'fa_minor_mime',
-				'fa_timestamp',
-				'fa_deleted',
-				'fa_deleted_timestamp', /* Used by LocalFileRestoreBatch */
-				'fa_sha1',
-				'fa_actor',
-				'fa_user' => 'filearchive_actor.actor_user',
-				'fa_user_text' => 'filearchive_actor.actor_name'
-			] + $commentQuery['fields'],
-			'joins' => [
-				'filearchive_actor' => [ 'JOIN', 'actor_id=fa_actor' ]
-			] + $commentQuery['joins'],
+			'tables' => $queryInfo['tables'],
+			'fields' => $queryInfo['fields'],
+			'joins' => $queryInfo['join_conds'],
 		];
 	}
 

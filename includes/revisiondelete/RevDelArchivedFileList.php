@@ -19,10 +19,12 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 use MediaWiki\Page\PageIdentity;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * List for filearchive table items
@@ -74,18 +76,11 @@ class RevDelArchivedFileList extends RevDelFileList {
 	public function doQuery( $db ) {
 		$ids = array_map( 'intval', $this->ids );
 
-		$fileQuery = ArchivedFile::getQueryInfo();
-		return $db->select(
-			$fileQuery['tables'],
-			$fileQuery['fields'],
-			[
-				'fa_name' => $this->page->getDBkey(),
-				'fa_id' => $ids
-			],
-			__METHOD__,
-			[ 'ORDER BY' => 'fa_id DESC' ],
-			$fileQuery['joins']
-		);
+		$queryBuilder = FileSelectQueryBuilder::newForArchivedFile( $db );
+		$queryBuilder->where( [ 'fa_name' => $this->page->getDBkey(), 'fa_id' => $ids ] )
+			->orderBy( 'fa_id', SelectQueryBuilder::SORT_DESC );
+
+		return $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 	}
 
 	public function newItem( $row ) {

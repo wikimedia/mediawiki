@@ -29,9 +29,11 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * Maintenance script to refresh image metadata fields.
@@ -119,48 +121,38 @@ class RefreshImageMetadata extends Maintenance {
 		$sleep = (int)$this->getOption( 'sleep', 0 );
 		$reserialize = $this->hasOption( 'convert-to-json' );
 		$oldimage = $this->hasOption( 'oldimage' );
+
+		$dbw = $this->getDB( DB_PRIMARY );
 		if ( $oldimage ) {
 			$fieldPrefix = 'oi_';
-			$fileQuery = OldLocalFile::getQueryInfo();
+			$queryBuilderTemplate  = FileSelectQueryBuilder::newForOldFile( $dbw );
 		} else {
 			$fieldPrefix = 'img_';
-			$fileQuery = LocalFile::getQueryInfo();
+			$queryBuilderTemplate  = FileSelectQueryBuilder::newForFile( $dbw );
 		}
 
 		$upgraded = 0;
 		$leftAlone = 0;
 		$error = 0;
-
-		$dbw = $this->getDB( DB_PRIMARY );
-		$batchSize = $this->getBatchSize();
+		$batchSize = intval( $this->getBatchSize() );
 		if ( $batchSize <= 0 ) {
 			$this->fatalError( "Batch size is too low...", 12 );
 		}
-
 		$repo = $this->newLocalRepo( $force, $brokenOnly, $reserialize, $split );
-		$conds = $this->getConditions( $dbw, $fieldPrefix );
+		$this->setConditions( $dbw, $queryBuilderTemplate, $fieldPrefix );
+		$queryBuilderTemplate
+			->orderBy( $fieldPrefix . 'name', SelectQueryBuilder::SORT_ASC )
+			->limit( $batchSize );
 
+		$batchCondition = [];
 		// For the WHERE img_name > 'foo' condition that comes after doing a batch
-		$conds2 = [];
 		if ( $start !== false ) {
-			$conds2[] = $fieldPrefix . 'name >= ' . $dbw->addQuotes( $start );
+			$batchCondition[] = $fieldPrefix . 'name >= ' . $dbw->addQuotes( $start );
 		}
-
-		$options = [
-			'LIMIT' => $batchSize,
-			'ORDER BY' => $fieldPrefix . 'name ASC',
-		];
-
 		do {
-			$res = $dbw->select(
-				$fileQuery['tables'],
-				$fileQuery['fields'],
-				array_merge( $conds, $conds2 ),
-				__METHOD__,
-				$options,
-				$fileQuery['joins']
-			);
-
+			$queryBuilder = clone $queryBuilderTemplate;
+			$res = $queryBuilder->andWhere( $batchCondition )
+				->caller( __METHOD__ )->fetchResultSet();
 			$nameField = $fieldPrefix . 'name';
 			if ( $res->numRows() > 0 ) {
 				$row1 = $res->current();
@@ -196,7 +188,7 @@ class RefreshImageMetadata extends Maintenance {
 			}
 			if ( $res->numRows() > 0 ) {
 				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable rows contains at least one item
-				$conds2 = [ $fieldPrefix . 'name > ' . $dbw->addQuotes( $row->$nameField ) ];
+				$batchCondition = [ $fieldPrefix . 'name > ' . $dbw->addQuotes( $row->$nameField ) ];
 			}
 			$this->waitForReplication();
 			if ( $sleep ) {
@@ -217,36 +209,35 @@ class RefreshImageMetadata extends Maintenance {
 	}
 
 	/**
-	 * @param IDatabase $dbw
+	 * @param IReadableDatabase $dbw
+	 * @param SelectQueryBuilder $queryBuilder
 	 * @param string $fieldPrefix like img_ or oi_
-	 * @return array
+	 * @return void
 	 */
-	private function getConditions( $dbw, $fieldPrefix ) {
-		$conds = [];
-
+	private function setConditions( IReadableDatabase $dbw, SelectQueryBuilder $queryBuilder, $fieldPrefix ) {
 		$end = $this->getOption( 'end', false );
 		$mime = $this->getOption( 'mime', false );
 		$mediatype = $this->getOption( 'mediatype', false );
 		$like = $this->getOption( 'metadata-contains', false );
 
 		if ( $end !== false ) {
-			$conds[] = $fieldPrefix . 'name <= ' . $dbw->addQuotes( $end );
+			$queryBuilder->andWhere( $fieldPrefix . 'name <= ' . $dbw->addQuotes( $end ) );
 		}
 		if ( $mime !== false ) {
 			[ $major, $minor ] = File::splitMime( $mime );
-			$conds[$fieldPrefix . 'major_mime'] = $major;
+			$queryBuilder->andWhere( [ $fieldPrefix . 'major_mime' => $major ] );
 			if ( $minor !== '*' ) {
-				$conds[$fieldPrefix . 'minor_mime'] = $minor;
+				$queryBuilder->andWhere( [ $fieldPrefix . 'minor_mime' => $minor ] );
 			}
 		}
 		if ( $mediatype !== false ) {
-			$conds[$fieldPrefix . 'media_type'] = $mediatype;
+			$queryBuilder->andWhere( [ $fieldPrefix . 'media_type' => $mediatype ] );
 		}
 		if ( $like ) {
-			$conds[] = $fieldPrefix . 'metadata ' . $dbw->buildLike( $dbw->anyString(), $like, $dbw->anyString() );
+			$queryBuilder->andWhere(
+				$fieldPrefix . 'metadata ' . $dbw->buildLike( $dbw->anyString(), $like, $dbw->anyString() )
+			);
 		}
-
-		return $conds;
 	}
 
 	/**
