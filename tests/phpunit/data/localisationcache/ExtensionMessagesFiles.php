@@ -15,5 +15,15 @@ $specialPageAliases['en'] = [
 	'Activeusers' => [ 'ActiveFolx' ],
 ];
 
+// $namespaceNames can be set
+$namespaceNames['en'] = [
+	98 => 'LocalisationCacheTest',
+	99 => 'LocalisationCacheTest_talk',
+];
+$namespaceNames['de'] = [
+	98 => 'LokalisierungsPufferTest',
+	99 => 'LokalisierungsPufferTest_Diskussion',
+];
+
 // $rtl cannot be set
 $rtl['de'] = true;
