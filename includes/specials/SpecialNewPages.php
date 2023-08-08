@@ -438,7 +438,7 @@ class SpecialNewPages extends IncludableSpecialPage {
 	}
 
 	protected function feedTitle() {
-		$desc = $this->getDescription();
+		$desc = $this->getDescription()->text();
 		$code = $this->getConfig()->get( MainConfigNames::LanguageCode );
 		$sitename = $this->getConfig()->get( MainConfigNames::Sitename );
 

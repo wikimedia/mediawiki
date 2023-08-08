@@ -73,7 +73,7 @@ class SpecialUserLogin extends LoginSignupSpecialPage {
 	}
 
 	public function getDescription() {
-		return $this->msg( 'login' )->text();
+		return $this->msg( 'login' );
 	}
 
 	public function setHeaders() {

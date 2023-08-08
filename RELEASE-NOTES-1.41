@@ -866,6 +866,8 @@ because of Phabricator reports.
   Use ::setPageTitleMsg() instead (which escapes HTML metacharacters).
 * Returning a string from Action::getPageTitle() is deprecated;
   return a Message instead, which will be formatted using FORMAT_ESCAPED.
+* Returning a string from SpecialPage::getDescription() is deprecated;
+  return a Message instead, which will be formatted using FORMAT_ESCAPED.
 * MediaWiki\Block\AbstractBlock::getReason(), deprecated since 1.35, now emits
   deprecation warnings. Use ::getReasonComment() instead.
 * User::getGroups(), ::addGroup(), ::removeGroup(), ::getGroupMemberships(),
