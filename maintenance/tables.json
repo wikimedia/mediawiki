@@ -2475,7 +2475,7 @@
 			},
 			{
 				"name": "ipb_anon_only",
-				"comment": "If set to 1, block applies only to logged-out users",
+				"comment": "If set to 1, block applies only to logged-out users and temporary users.",
 				"type": "mwtinyint",
 				"options": {
 					"notnull": true,
