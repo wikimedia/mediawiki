@@ -4474,7 +4474,8 @@ class EditPage implements IEditObject {
 	 */
 	private function noSuchSectionPage(): void {
 		$out = $this->context->getOutput();
-		$out->prepareErrorPage( $this->context->msg( 'nosuchsectiontitle' ) );
+		$out->prepareErrorPage();
+		$out->setPageTitleMsg( $this->context->msg( 'nosuchsectiontitle' ) );
 
 		$res = $this->context->msg( 'nosuchsectiontext', $this->section )->parseAsBlock();
 
@@ -4493,7 +4494,8 @@ class EditPage implements IEditObject {
 		$this->textbox2 = $this->textbox1;
 
 		$out = $this->context->getOutput();
-		$out->prepareErrorPage( $this->context->msg( 'spamprotectiontitle' ) );
+		$out->prepareErrorPage();
+		$out->setPageTitleMsg( $this->context->msg( 'spamprotectiontitle' ) );
 
 		$spamText = $this->context->msg( 'spamprotectiontext' )->parseAsBlock();
 
