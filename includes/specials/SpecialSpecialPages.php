@@ -74,9 +74,8 @@ class SpecialSpecialPages extends UnlistedSpecialPage {
 		foreach ( $pages as $page ) {
 			$group = $page->getFinalGroupName();
 			$desc = $page->getDescription();
-			if ( is_string( $desc ) ) {
-				// T343849: returning a string from ::getDescription() is
-				// deprecated and we'll emit a warning here in a future release.
+			if ( is_string( $desc ) ) { // T343849
+				wfDeprecated( 'string return from SpecialPage::getDescription()', '1.41' );
 				$desc = ( new RawMessage( '$1' ) )->rawParams( $desc );
 			}
 			$groups[$group][$desc->text()] = [
