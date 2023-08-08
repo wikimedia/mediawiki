@@ -75,12 +75,12 @@ class SkinComponentTempUserBanner implements SkinComponent {
 				Html::element( 'span', [ 'class' => 'mw-temp-user-banner-username' ], $this->username )
 			) .
 			HTML::rawElement( 'div', [ 'class' => 'mw-temp-user-banner-tooltip' ],
-				HTML::rawElement( 'div', [
+				HTML::rawElement( 'button', [
 					'id' => 'mw-temp-user-banner-tooltip-button',
-					'class' => 'mw-temp-user-banner-tooltip-summary cdx-button cdx-button--fake-button '
+					'class' => 'mw-temp-user-banner-tooltip-summary cdx-button '
 						. 'cdx-button--icon-only cdx-button--weight-quiet'
 					],
-					HTML::element( 'span', [ 'class' => 'mw-temp-user-banner-tooltip-icon cdx-button__icon ' ] )
+					HTML::element( 'span', [ 'class' => 'mw-temp-user-banner-tooltip-icon ' ] )
 				)
 
 			) .

@@ -29,13 +29,14 @@
 
 .mw-temp-user-banner-tooltip {
 	position: relative;
-	color: @color-base;
-	z-index: 300;
 
 	.mw-temp-user-banner-tooltip-icon {
-		.cdx-mixin-css-icon(@cdx-icon-info, @param-is-button-icon: true);
-		background-color: @color-inverted;
-		cursor: pointer;
+		.cdx-mixin-css-icon(@cdx-icon-info, @color-inverted);
+	}
+
+	& .oo-ui-widget {
+		color: @color-base;
+		z-index: @z-index-off-canvas-backdrop;
 	}
 }
 
