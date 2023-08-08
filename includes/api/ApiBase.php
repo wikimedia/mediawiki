@@ -1651,6 +1651,7 @@ abstract class ApiBase extends ContextSource {
 	 * @param array $options Additional options
 	 *  - user: (User) User to use rather than $this->getUser().
 	 *  - autoblock: (bool, default false) Whether to spread autoblocks.
+	 * @phan-param array{user?:User,autoblock?:bool} $options
 	 *
 	 * @throws ApiUsageException if the user doesn't have all the necessary rights.
 	 *
@@ -1668,12 +1669,13 @@ abstract class ApiBase extends ContextSource {
 				'1.36' );
 			$pageIdentity = Title::newFromLinkTarget( $pageIdentity );
 		}
+		$authority = $options['user'] ?? $this->getAuthority();
 		$status = new PermissionStatus();
 		foreach ( (array)$actions as $action ) {
 			if ( $this->isWriteMode() ) {
-				$this->getAuthority()->authorizeWrite( $action, $pageIdentity, $status );
+				$authority->authorizeWrite( $action, $pageIdentity, $status );
 			} else {
-				$this->getAuthority()->authorizeRead( $action, $pageIdentity, $status );
+				$authority->authorizeRead( $action, $pageIdentity, $status );
 			}
 		}
 		if ( !$status->isGood() ) {
