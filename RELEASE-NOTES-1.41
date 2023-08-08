@@ -353,6 +353,8 @@ because of Phabricator reports.
   - ::getMessageFor()
   - ::getMessageKeysFor()
   - ::getConvRuleTitle()
+* The parameter noSeparators to Language::formatNum, deprecated since 1.36,
+  has beed removed. Use Language::formatNumNoSeparators instead.
 * The following methods in the ParserOutput class, deprecated since 1.38, have
   been removed:
   - ::addWarning()

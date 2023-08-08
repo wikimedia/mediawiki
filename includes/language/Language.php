@@ -2991,23 +2991,14 @@ class Language implements Bcp47Code {
 	 *
 	 * @param string|int|float $number Expected to be a pre-formatted (e.g. leading zeros, number
 	 *  of decimal places) numeric string. Any non-string will be cast to string.
-	 * @param bool|null $noSeparators Set to true for special numbers like dates
-	 *     (deprecated: use ::formatNumNoSeparators instead of this param)
 	 * @return string
 	 */
-	public function formatNum( $number, $noSeparators = null ) {
-		if ( $noSeparators !== null ) {
-			wfDeprecated( __METHOD__ . ' with $noSeparators parameter', '1.36' );
-		} else {
-			// The legacy default value.
-			$noSeparators = false;
-		}
-		return $this->formatNumInternal( (string)$number, false, $noSeparators );
+	public function formatNum( $number ) {
+		return $this->formatNumInternal( (string)$number, false, false );
 	}
 
 	/**
-	 * Internal implementation function, shared between commafy, formatNum,
-	 * and formatNumNoSeparators.
+	 * Internal implementation function, shared between formatNum and formatNumNoSeparators.
 	 *
 	 * @param string $number The stringification of a valid PHP number
 	 * @param bool $noTranslate Whether to translate digits and separators
