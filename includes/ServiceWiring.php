@@ -1909,10 +1909,14 @@ return [
 				SignatureValidator::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig()
 			),
-			// Use a closure for ParserFactory to avoid a circular dependency
+			// Use closures for these to avoid a circular dependency on Parser
 			static function () use ( $services ) {
 				return $services->getParserFactory();
 			},
+			static function () use ( $services ) {
+				return $services->get( '_Parsoid' );
+			},
+			$services->getParsoidPageConfigFactory(),
 			$services->getSpecialPageFactory(),
 			$services->getTitleFactory()
 		);
