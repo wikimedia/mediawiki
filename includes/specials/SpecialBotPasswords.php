@@ -402,17 +402,17 @@ class SpecialBotPasswords extends FormSpecialPage {
 		$username = $this->getUser()->getName();
 		switch ( $this->operation ) {
 			case 'insert':
-				$out->setPageTitle( $this->msg( 'botpasswords-created-title' )->text() );
+				$out->setPageTitleMsg( $this->msg( 'botpasswords-created-title' ) );
 				$out->addWikiMsg( 'botpasswords-created-body', $this->par, $username );
 				break;
 
 			case 'update':
-				$out->setPageTitle( $this->msg( 'botpasswords-updated-title' )->text() );
+				$out->setPageTitleMsg( $this->msg( 'botpasswords-updated-title' ) );
 				$out->addWikiMsg( 'botpasswords-updated-body', $this->par, $username );
 				break;
 
 			case 'delete':
-				$out->setPageTitle( $this->msg( 'botpasswords-deleted-title' )->text() );
+				$out->setPageTitleMsg( $this->msg( 'botpasswords-deleted-title' ) );
 				$out->addWikiMsg( 'botpasswords-deleted-body', $this->par, $username );
 				$this->password = null;
 				break;
