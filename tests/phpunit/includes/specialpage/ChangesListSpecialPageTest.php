@@ -20,6 +20,11 @@ use Wikimedia\TestingAccessWrapper;
  */
 class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase {
 
+	protected function setUp(): void {
+		parent::setUp();
+		$this->clearHooks();
+	}
+
 	/**
 	 * @return ChangesListSpecialPage
 	 */
