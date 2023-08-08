@@ -35,10 +35,10 @@
 	Version 0.11 introduced <content> tag.
 
 	The canonical URL to the schema document is:
-	http://www.mediawiki.org/xml/export-0.11.xsd
+	https://www.mediawiki.org/xml/export-0.11.xsd
 
 	Use the namespace:
-	http://www.mediawiki.org/xml/export-0.11/
+	https://www.mediawiki.org/xml/export-0.11/
 -->
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
 		xmlns:mw="http://www.mediawiki.org/xml/export-0.11/"
