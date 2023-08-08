@@ -122,6 +122,8 @@ because of Phabricator reports.
   - preSaveTransform()
   - preloadTransform()
   - prepareSave()
+* User::blockedFor() and AbstractBlock::getReason(), deprecated in 1.35, have
+  been removed. Use AbstractBlock::getReasonComment() instead.
 * ParserOutput::setFlag() and ::getFlag(), deprecated in 1.38, were removed. You
   should use ::setOutputFlag() and ::getOutputFlag() instead.
 * PostgresUpdater::addPgEnumValue() unused everywhere, have been removed

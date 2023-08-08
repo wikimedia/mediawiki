@@ -30,7 +30,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use Message;
-use RequestContext;
 
 /**
  * @note Extensions should not subclass this, as MediaWiki currently does not
@@ -141,22 +140,6 @@ abstract class AbstractBlock implements Block {
 	public function getId( $wikiId = self::LOCAL ): ?int {
 		$this->assertWiki( $wikiId );
 		return null;
-	}
-
-	/**
-	 * Get the reason given for creating the block, as a string.
-	 *
-	 * Deprecated, since this gives the caller no control over the language
-	 * or format, and no access to the comment's data.
-	 *
-	 * @deprecated since 1.35. Use getReasonComment instead.
-	 * @since 1.33
-	 * @return string
-	 */
-	public function getReason() {
-		wfDeprecated( __METHOD__, '1.35' );
-		$language = RequestContext::getMain()->getLanguage();
-		return $this->reason->message->inLanguage( $language )->plain();
 	}
 
 	/**

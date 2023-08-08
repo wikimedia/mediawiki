@@ -343,18 +343,6 @@ class DatabaseBlock extends AbstractBlock {
 
 	/**
 	 * @inheritDoc
-	 * @deprecated since 1.35. Use getReasonComment instead.
-	 */
-	public function getReason() {
-		wfDeprecated( __METHOD__, '1.35' );
-		if ( $this->getType() === self::TYPE_AUTO ) {
-			return $this->reason->message->inContentLanguage()->plain();
-		}
-		return $this->reason->text;
-	}
-
-	/**
-	 * @inheritDoc
 	 */
 	public function getId( $wikiId = self::LOCAL ): ?int {
 		$this->assertWiki( $wikiId );

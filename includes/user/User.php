@@ -35,7 +35,6 @@ use MediaWiki\Auth\AuthManager;
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\SystemBlock;
-use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
@@ -1471,19 +1470,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		wfDeprecated( __METHOD__, '1.33' );
 		return MediaWikiServices::getInstance()->getPermissionManager()
 			->isBlockedFrom( $this, $title, $fromReplica );
-	}
-
-	/**
-	 * If user is blocked, return the specified reason for the block.
-	 *
-	 * @deprecated since 1.35 Use AbstractBlock::getReasonComment instead
-	 * Hard deprecated since 1.39.
-	 * @return CommentStoreComment Blocking reason
-	 */
-	public function blockedFor() {
-		wfDeprecated( __METHOD__, '1.35' );
-		$block = $this->getBlock();
-		return $block ? $block->getReasonComment() : CommentStoreComment::newUnsavedComment( '' );
 	}
 
 	/**
