@@ -50,6 +50,9 @@ For notes on 1.40.x and older releases, see HISTORY.
 === New features for sysadmins in 1.41 ===
 * $wgDBssl can now enabled in the installer when the database type is
   Postgres or MariaDB/MySQL (T335828).
+* MWHttpRequest will forward 'tracestate' and/or 'traceparent' headers when
+  those are present in the original request and $wgAllowExternalReqID is set
+  to true.
 * …
 
 === New developer features in 1.41 ===
@@ -449,6 +452,8 @@ because of Phabricator reports.
 * The static methods encodeJsVar() and encodeJsCall() have been moved from the
   Xml class to the more appropriate MediaWiki\Html\Html one, and the old ones
   are now deprecated.
+* The WebRequest::getRequestId() and WebRequest::overrideRequestId() are
+  deprecated. Use methods from MediaWiki\Http\Telemetry class instead.
 * The XmlJsCode wrapper class has been renamed to MediaWiki\Html\HtmlJsCode,
   and the old name is now deprecated.
 * MediaWiki\ResourceLoader\Module::getDeprecationInformation() is deprecated.

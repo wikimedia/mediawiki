@@ -7672,9 +7672,11 @@ config-schema:
     AllowExternalReqID:
         default: false
         description: |-
-            Whether to respect/honour the request ID provided by the incoming request
-            via the `X-Request-Id` header. Set to `true` if the entity sitting in front
-            of Mediawiki sanitises external requests. Default: `false`.
+            Whether to respect/honour
+             - request ID provided by the incoming request via the `X-Request-Id`
+             - trace context provided by the incoming request via the `tracestate` and `traceparent`
+            Set to `true` if the entity sitting in front of Mediawiki sanitises external requests.
+            Default: `false`.
     JobRunRate:
         default: 1
         description: |-

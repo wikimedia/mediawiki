@@ -89,6 +89,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Http\Telemetry;
 use MediaWiki\Installer\Pingback;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Interwiki\InterwikiLookup;
@@ -855,7 +856,8 @@ return [
 				HttpRequestFactory::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig()
 			),
-			LoggerFactory::getInstance( 'http' )
+			LoggerFactory::getInstance( 'http' ),
+			Telemetry::getInstance()
 		);
 	},
 

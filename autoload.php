@@ -1463,6 +1463,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Html\\TemplateParser' => __DIR__ . '/includes/Html/TemplateParser.php',
 	'MediaWiki\\Http\\HttpRequestFactory' => __DIR__ . '/includes/http/HttpRequestFactory.php',
 	'MediaWiki\\Http\\MwHttpRequestToResponseInterfaceAdapter' => __DIR__ . '/includes/http/MwHttpRequestToResponseInterfaceAdapter.php',
+	'MediaWiki\\Http\\Telemetry' => __DIR__ . '/includes/http/Telemetry.php',
 	'MediaWiki\\Installer\\Hook\\LoadExtensionSchemaUpdatesHook' => __DIR__ . '/includes/installer/Hook/LoadExtensionSchemaUpdatesHook.php',
 	'MediaWiki\\Installer\\InstallException' => __DIR__ . '/includes/installer/InstallException.php',
 	'MediaWiki\\Installer\\Pingback' => __DIR__ . '/includes/installer/Pingback.php',

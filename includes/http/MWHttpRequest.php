@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Http\Telemetry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
@@ -143,8 +144,6 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 			$this->setOriginalRequest( $options['originalRequest'] );
 		}
 
-		$this->setHeader( 'X-Request-Id', WebRequest::getRequestId() );
-
 		$members = [ "postData", "proxy", "noProxy", "sslVerifyHost", "caInfo",
 				"method", "followRedirects", "maxRedirects", "sslVerifyCert", "callback" ];
 
@@ -202,6 +201,24 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 */
 	public function setData( array $args ) {
 		$this->postData = $args;
+	}
+
+	/**
+	 * Add Telemetry information to the request
+	 *
+	 * @param Telemetry $telemetry
+	 * @return void
+	 */
+	public function addTelemetry( Telemetry $telemetry ): void {
+		$this->setHeader( 'X-Request-Id', $telemetry->getRequestId() );
+		$tracestate = $telemetry->getTracestate();
+		if ( $tracestate !== null ) {
+			$this->setHeader( 'tracestate', $tracestate );
+		}
+		$traceparent = $telemetry->getTraceparent();
+		if ( $traceparent !== null ) {
+			$this->setHeader( 'traceparent', $traceparent );
+		}
 	}
 
 	/**

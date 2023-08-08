@@ -32,12 +32,15 @@ use Status;
 
 /**
  * Factory creating MWHttpRequest objects.
+ * @internal
  */
 class HttpRequestFactory {
 	/** @var ServiceOptions */
 	private $options;
 	/** @var LoggerInterface */
 	private $logger;
+	/** @var Telemetry|null */
+	private $telemetry;
 
 	/**
 	 * @internal For use by ServiceWiring
@@ -51,10 +54,15 @@ class HttpRequestFactory {
 		MainConfigNames::LocalHTTPProxy,
 	];
 
-	public function __construct( ServiceOptions $options, LoggerInterface $logger ) {
+	public function __construct(
+		ServiceOptions $options,
+		LoggerInterface $logger,
+		Telemetry $telemetry = null
+	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->logger = $logger;
+		$this->telemetry = $telemetry;
 	}
 
 	/**
@@ -108,8 +116,11 @@ class HttpRequestFactory {
 			$this->options->get( MainConfigNames::HTTPConnectTimeout ),
 			$this->options->get( MainConfigNames::HTTPMaxConnectTimeout ) ?: INF
 		);
-
-		return new GuzzleHttpRequest( $url, $options, $caller, Profiler::instance() );
+		$client = new GuzzleHttpRequest( $url, $options, $caller, Profiler::instance() );
+		if ( $this->telemetry ) {
+			$client->addTelemetry( $this->telemetry );
+		}
+		return $client;
 	}
 
 	/**
