@@ -1947,6 +1947,7 @@
 	"years": "{{PLURAL:$1|$1 jıl|$1 jıl}}",
 	"just-now": "házir ǵana",
 	"hours-ago": "$1 {{PLURAL:$1|saat|saat}} burın",
+	"minutes-ago": "$1 {{PLURAL:$1|minut|minut}} burın",
 	"bad_image_list": "Formatı to'mendegishe:\n\nTek dizim elementleri (* menen baslanatug'ın qatarlar) esaplanadi.\nQatardın' birinshi siltewi natuwrı faylg'a siltewi sha'rt.\nSol qatardag'ı keyingi ha'r bir siltewler tısqarı qabıl etiledi, mısalı qatar ishindegi ushırasatug'ın faylı bar betler.",
 	"metadata": "Metamaǵlıwmat",
 	"metadata-help": "Usı faylda ádette sanlı kamera yamasa skaner arqalı qosılatuǵın qosımsha maǵlıwmat bar.\nEger fayl jaratılǵanınan keyin ózgertilgen bolsa, geybir parametrleri ózgertilgen faylǵa tuwra kelmewi múmkin.",

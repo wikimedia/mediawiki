@@ -305,7 +305,7 @@
 	"skin-view-create": "建立",
 	"create-local": "新增本地描述",
 	"delete": "刪除",
-	"undelete_short": "還原 $1 筆修訂",
+	"undelete_short": "還原 {{PLURAL:$1|$1 筆修訂}}",
 	"viewdeleted_short": "檢視{{PLURAL:$1| $1 項已刪除的修訂}}",
 	"protect": "保護",
 	"protect_change": "變更",

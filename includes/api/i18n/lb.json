@@ -112,6 +112,8 @@
 	"apihelp-query+filearchive-paramvalue-prop-dimensions": "Alias fir Gréisst.",
 	"apihelp-query+filearchive-example-simple": "Eng Lëscht vun alle geläschte Fichiere weisen",
 	"apihelp-query+fileusage-paramvalue-prop-title": "Titel vun all Säit.",
+	"apihelp-query+fileusage-paramvalue-show-redirect": "Nëmme Viruleedunge weisen.",
+	"apihelp-query+fileusage-paramvalue-show-!redirect": "Nëmmen Net-Viruleedunge weisen.",
 	"apihelp-query+imageinfo-paramvalue-prop-user": "Setzt fir all Versioun vum Fichier de Benotzer dobäi deen en eropgelueden huet.",
 	"apihelp-query+imageinfo-paramvalue-prop-comment": "Bemierkung iwwert d'Versioun.",
 	"apihelp-query+imageinfo-paramvalue-prop-dimensions": "Alias fir Gréisst.",
