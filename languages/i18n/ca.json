@@ -884,7 +884,7 @@
 	"tooltip-last": "Diferència amb la revisió precedent",
 	"page_first": "primera",
 	"page_last": "última",
-	"histlegend": "Selecció de diferències: Marqueu els botons corresponents de les revisions per comparar i premeu Intro o el botó inferior.\nLlegenda: ({{int:cur}}) = diferències amb la revisió actual, ({{int:dura}}) = diferències amb revisió anterior, {{int:minoreditletter}} = edició menor.<br>",
+	"histlegend": "Selecció de diferències: Marqueu els botons corresponents de les revisions per comparar i premeu Intro o el botó inferior.\nLlegenda: ({{int:cur}}) = diferències amb la revisió actual, ({{int:last}}) = diferències amb revisió anterior, {{int:minoreditletter}} = edició menor.<br>",
 	"history-fieldset-title": "Filtra les revisions",
 	"history-show-deleted": "Només revisions suprimides",
 	"histfirst": "les més antigues",

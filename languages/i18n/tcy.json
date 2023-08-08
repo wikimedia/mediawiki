@@ -1869,7 +1869,7 @@
 	"whatlinkshere-hideredirs": "$1 ಪಿರನಿರ್ದೇಶನೊಲು",
 	"whatlinkshere-hidetrans": "$1 ಸೇರಾವುನವು",
 	"whatlinkshere-hidelinks": "$1 ಕೊಂಡಿಲು",
-	"whatlinkshere-hideimages": "$1 ಕಡತ ಕೊಂಡಿಲು",
+	"whatlinkshere-hideimages": "ಕಡತೊದ ಕೊಂಡಿಲೆನು ಆಡೆಂಗಳೆ",
 	"whatlinkshere-submit": "ಪೋಲೆ",
 	"blockip": "ತಡೆಪುಲೆ {{GENDER:$1|ಬಳಕೆದಾರೆ}}",
 	"ipbreason": "ಕಾರಣೊ:",

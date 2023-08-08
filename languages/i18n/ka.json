@@ -37,7 +37,8 @@
 			"Გიო ოქრო",
 			"Იო ოქრო",
 			"아라",
-			"ჯეო"
+			"ჯეო",
+			"Amire80"
 		]
 	},
 	"tog-underline": "ბმულების ხაზგასმა:",
@@ -191,6 +192,7 @@
 	"history_small": "ისტორია",
 	"updatedmarker": "განახლდა თქვენი ბოლო შემოსვლის შემდეგ",
 	"printableversion": "დასაბეჭდი ვერსია",
+	"printableversion-deprecated-warning": "დასაბეჭდი ვერსია აღარ არის მხარდაჭერილი და შეიძლება ჰქონდეს რენდერის შეცდომები. გთხოვთ, განაახლოთ თქვენი ბრაუზერის სანიშნეები და გამოიყენეთ ბრაუზერის თავისი ბეჭდვის ფუნქცია.",
 	"permalink": "მუდმივი ბმული",
 	"print": "ამობეჭდე",
 	"view": "იხილე",
@@ -2111,7 +2113,7 @@
 	"usermessage-template": "MediaWiki:მომხმარებლის შეტყობინება",
 	"watchlist": "კონტროლის სია",
 	"mywatchlist": "კონტროლის სია",
-	"watchlistfor2": "$1 ($2) თვის",
+	"watchlistfor2": "$1-სთვის",
 	"nowatchlist": "თქვენი კონტროლის სია ცარიელია.",
 	"watchlistanontext": "იხილეთ ან რედაქტირება გაუკეთეთ თქვენი კონტროლის სიაში შეტანილ ერთეულებს:",
 	"watchnologin": "რეგისტრაცია ვერ შესრულდა",
@@ -2378,7 +2380,7 @@
 	"whatlinkshere-hideredirs": "დაფარული გადამისამართება",
 	"whatlinkshere-hidetrans": "ჩანართების დამალვა",
 	"whatlinkshere-hidelinks": "ბმულების დამალვა",
-	"whatlinkshere-hideimages": "$1 სურათის ბმულები",
+	"whatlinkshere-hideimages": "დამალეთ ფაილის ბმულები",
 	"whatlinkshere-submit": "წინ",
 	"autoblockid": "ავტომატური ბლოკირება #$1",
 	"block": "მომხმარებლის დაბლოკვა",

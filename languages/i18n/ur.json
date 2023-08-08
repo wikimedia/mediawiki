@@ -43,7 +43,8 @@
 			"محمد افضل",
 			"පසිඳු කාවින්ද",
 			"아라",
-			"TheAafi"
+			"TheAafi",
+			"Kaleem Bhatti"
 		]
 	},
 	"tog-underline": "ربط کی خط کشیدگی:",
@@ -728,6 +729,7 @@
 	"postedit-confirmation-restored": "صفحہ بحال کر دیا گیا۔",
 	"postedit-confirmation-saved": "آپ کی ترمیم محفوظ ہوگئی۔",
 	"postedit-confirmation-published": "آپ کی ترمیم شائع کر دی گئی۔",
+	"postedit-temp-created-label": "عارضی کھاتا",
 	"edit-already-exists": "نیا صفحہ تخلیق نہیں کیا جاسکتا.\nیہ پہلے سے موجود ہے.",
 	"defaultmessagetext": "طے شدہ پیغام کا متن",
 	"content-failed-to-parse": "ماڈل $1 کے $2 مواد کے تجزیہ میں ناکامی: $3",

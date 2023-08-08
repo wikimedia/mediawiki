@@ -42,7 +42,8 @@
 			"아라",
 			"Lookruk",
 			"Ekminarin",
-			"Kaoavi"
+			"Kaoavi",
+			"Amire80"
 		]
 	},
 	"tog-underline": "การขีดเส้นใต้ลิงก์:",
@@ -1053,7 +1054,7 @@
 	"prefs-labs": "คุณสมบัติทดลอง",
 	"prefs-user-pages": "หน้าผู้ใช้",
 	"prefs-personal": "โปรไฟล์ผู้ใช้",
-	"prefs-rc": "เปลี่ยนแปลงล่าสุด",
+	"prefs-rc": "ปรับปรุงล่าสุด",
 	"prefs-watchlist": "รายการเฝ้าดู",
 	"prefs-editwatchlist": "แก้ไขรายการเฝ้าดู",
 	"prefs-editwatchlist-label": "แก้ไขหน่วยในรายการเฝ้าดูของคุณ:",
@@ -1457,7 +1458,7 @@
 	"ntimes": "×$1",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|ตั้งแต่การเยี่ยมชมครั้งสุดท้าย}}",
 	"enhancedrc-history": "ประวัติ",
-	"recentchanges": "เปลี่ยนแปลงล่าสุด",
+	"recentchanges": "ปรับปรุงล่าสุด",
 	"recentchanges-legend": "ตัวเลือกการเปลี่ยนแปลงล่าสุด",
 	"recentchanges-summary": "ติดตามการเปลี่ยนแปลงล่าสุดบนวิกินี้ได้ทางหน้านี้",
 	"recentchanges-noresult": "ไม่มีการเปลี่ยนแปลงในช่วงที่กำหนดซึ่งตรงกับเกณฑ์เหล่านี้",
