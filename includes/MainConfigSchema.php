@@ -5914,6 +5914,16 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Whether to include source map URL comments in ResourceLoader responses
+	 * for JavaScript modules.
+	 *
+	 * @since 1.41
+	 */
+	public const ResourceLoaderEnableSourceMapLinks = [
+		'default' => false,
+	];
+
+	/**
 	 * Whether to allow site-wide CSS (MediaWiki:Common.css and friends) on
 	 * restricted pages like Special:UserLogin or Special:Preferences where
 	 * JavaScript is disabled for security reasons. As it is possible to

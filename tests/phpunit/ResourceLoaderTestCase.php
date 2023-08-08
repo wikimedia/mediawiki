@@ -41,6 +41,7 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 			'modules' => 'startup',
 			'only' => 'scripts',
 			'safemode' => null,
+			'sourcemap' => null,
 		];
 		$resourceLoader = $rl ?: new ResourceLoader(
 			MediaWikiServices::getInstance()->getMainConfig(),
@@ -57,6 +58,7 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 			'only' => $options['only'],
 			'safemode' => $options['safemode'],
 			'skin' => $options['skin'],
+			'sourcemap' => $options['sourcemap'],
 			'target' => 'phpunit',
 		] );
 		$ctx = $this->getMockBuilder( Context::class )
@@ -69,6 +71,9 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 
 	public static function getSettings() {
 		return [
+			// For ResourceLoader::respond
+			MainConfigNames::ResourceLoaderEnableSourceMapLinks => false,
+
 			// For Module
 			MainConfigNames::ResourceLoaderValidateJS => false,
 

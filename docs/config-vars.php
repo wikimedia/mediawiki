@@ -2108,6 +2108,12 @@ $wgResourceLoaderStorageEnabled = null;
 $wgResourceLoaderStorageVersion = null;
 
 /**
+ * Config variable stub for the ResourceLoaderEnableSourceMapLinks setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::ResourceLoaderEnableSourceMapLinks
+ */
+$wgResourceLoaderEnableSourceMapLinks = null;
+
+/**
  * Config variable stub for the AllowSiteCSSOnRestrictedPages setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::AllowSiteCSSOnRestrictedPages
  */

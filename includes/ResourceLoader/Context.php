@@ -79,6 +79,8 @@ class Context implements MessageLocalizer {
 	protected $version;
 	/** @var bool */
 	protected $raw;
+	/** @var bool */
+	protected $sourcemap;
 	/** @var string|null */
 	protected $image;
 	/** @var string|null */
@@ -119,6 +121,7 @@ class Context implements MessageLocalizer {
 		$this->only = $request->getRawVal( 'only' );
 		$this->version = $request->getRawVal( 'version' );
 		$this->raw = $request->getFuzzyBool( 'raw' );
+		$this->sourcemap = $request->getFuzzyBool( 'sourcemap' );
 
 		// Image requests
 		$this->image = $request->getRawVal( 'image' );
@@ -331,6 +334,14 @@ class Context implements MessageLocalizer {
 
 	public function getRaw(): bool {
 		return $this->raw;
+	}
+
+	/**
+	 * @since 1.41
+	 * @return bool
+	 */
+	public function isSourceMap(): bool {
+		return $this->sourcemap;
 	}
 
 	/**
