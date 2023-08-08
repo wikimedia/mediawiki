@@ -299,26 +299,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Test User::editCount
-	 * @group medium
-	 * @covers User::incEditCount
-	 */
-	public function testIncEditCount() {
-		$this->hideDeprecated( 'User::incEditCount' );
-		$user = $this->getMutableTestUser()->getUser();
-		$user->incEditCount();
-
-		$reloadedUser = User::newFromId( $user->getId() );
-		$reloadedUser->incEditCount();
-
-		$this->assertSame(
-			2,
-			$reloadedUser->getEditCount(),
-			'Increasing the edit count after a fresh load leaves the object up to date.'
-		);
-	}
-
-	/**
 	 * Test password validity checks. There are 3 checks in core,
 	 *	- ensure the password meets the minimal length
 	 *	- ensure the password is not the same as the username
