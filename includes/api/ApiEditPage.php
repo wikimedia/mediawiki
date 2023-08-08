@@ -31,6 +31,8 @@ use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
+use MediaWiki\User\TempUser\TempUserCreator;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -73,6 +75,12 @@ class ApiEditPage extends ApiBase {
 	/** @var RedirectLookup */
 	private $redirectLookup;
 
+	/** @var TempUserCreator */
+	private $tempUserCreator;
+
+	/** @var UserFactory */
+	private $userFactory;
+
 	/**
 	 * Sends a cookie so anons get talk message notifications, mirroring SubmitAction (T295910)
 	 */
@@ -90,6 +98,8 @@ class ApiEditPage extends ApiBase {
 	 * @param WatchlistManager|null $watchlistManager
 	 * @param UserOptionsLookup|null $userOptionsLookup
 	 * @param RedirectLookup|null $redirectLookup
+	 * @param TempUserCreator|null $tempUserCreator
+	 * @param UserFactory|null $userFactory
 	 */
 	public function __construct(
 		ApiMain $mainModule,
@@ -100,7 +110,9 @@ class ApiEditPage extends ApiBase {
 		WikiPageFactory $wikiPageFactory = null,
 		WatchlistManager $watchlistManager = null,
 		UserOptionsLookup $userOptionsLookup = null,
-		RedirectLookup $redirectLookup = null
+		RedirectLookup $redirectLookup = null,
+		TempUserCreator $tempUserCreator = null,
+		UserFactory $userFactory = null
 	) {
 		parent::__construct( $mainModule, $moduleName );
 
@@ -118,6 +130,22 @@ class ApiEditPage extends ApiBase {
 		$this->watchlistManager = $watchlistManager ?? $services->getWatchlistManager();
 		$this->userOptionsLookup = $userOptionsLookup ?? $services->getUserOptionsLookup();
 		$this->redirectLookup = $redirectLookup ?? $services->getRedirectLookup();
+		$this->tempUserCreator = $tempUserCreator ?? $services->getTempUserCreator();
+		$this->userFactory = $userFactory ?? $services->getUserFactory();
+	}
+
+	/**
+	 * @see EditPage::getUserForPermissions
+	 * @return User
+	 */
+	private function getUserForPermissions() {
+		$user = $this->getUser();
+		if ( $this->tempUserCreator->shouldAutoCreate( $user, 'edit' ) ) {
+			return $this->userFactory->newUnsavedTempUser(
+				$this->tempUserCreator->getStashedName( $this->getRequest()->getSession() )
+			);
+		}
+		return $user;
 	}
 
 	public function execute() {
@@ -207,7 +235,7 @@ class ApiEditPage extends ApiBase {
 		$this->checkTitleUserPermissions(
 			$titleObj,
 			'edit',
-			[ 'autoblock' => true ]
+			[ 'autoblock' => true, 'user' => $this->getUserForPermissions() ]
 		);
 
 		$toMD5 = $params['text'];

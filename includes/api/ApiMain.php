@@ -343,6 +343,8 @@ class ApiMain extends ApiBase {
 				'WatchlistManager',
 				'UserOptionsLookup',
 				'RedirectLookup',
+				'TempUserCreator',
+				'UserFactory',
 			]
 		],
 		'upload' => [
