@@ -19,7 +19,11 @@
  */
 namespace Wikimedia\Rdbms;
 
+use mysqli;
+use mysqli_result;
 use RuntimeException;
+use Wikimedia\AtEase\AtEase;
+use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\Platform\MySQLPlatform;
 use Wikimedia\Rdbms\Platform\SQLPlatform;
 use Wikimedia\Rdbms\Replication\MysqlReplicationReporter;
@@ -29,38 +33,35 @@ use Wikimedia\Rdbms\Replication\MysqlReplicationReporter;
  *
  * Defines methods independent of the used MySQL extension.
  *
- * TODO: This could probably be merged with DatabaseMysqli.
- * The classees were split to support a transition from the old "mysql" extension
- * to mysqli, and there may be an argument for retaining it in order to support
- * some future transition to something else, but it's complexity and YAGNI.
- *
  * @ingroup Database
  * @since 1.22
  * @see Database
  */
-abstract class DatabaseMysqlBase extends Database {
+class DatabaseMysqlBase extends Database {
 	/** @var string|null */
-	protected $sslKeyPath;
+	private $sslKeyPath;
 	/** @var string|null */
-	protected $sslCertPath;
+	private $sslCertPath;
 	/** @var string|null */
-	protected $sslCAFile;
+	private $sslCAFile;
 	/** @var string|null */
-	protected $sslCAPath;
+	private $sslCAPath;
 	/**
 	 * Open SSL cipher list string
 	 * @see https://www.openssl.org/docs/man1.0.2/man1/ciphers.html
 	 * @var string|null
 	 */
-	protected $sslCiphers;
+	private $sslCiphers;
 	/** @var bool Use experimental UTF-8 transmission encoding */
-	protected $utf8Mode;
+	private $utf8Mode;
 
 	/** @var SQLPlatform */
 	protected $platform;
 
 	/** @var MysqlReplicationReporter */
 	protected $replicationReporter;
+	/** @var int Last implicit row ID for the session (0 if none) */
+	private $sessionLastAutoRowId;
 
 	/**
 	 * Additional $params include:
@@ -211,18 +212,6 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	/**
-	 * Open a connection to a MySQL server
-	 *
-	 * @param string|null $server
-	 * @param string|null $user
-	 * @param string|null $password
-	 * @param string|null $db
-	 * @return mixed|null Driver connection handle
-	 * @throws DBConnectionError
-	 */
-	abstract protected function mysqlConnect( $server, $user, $password, $db );
-
-	/**
 	 * @return string
 	 */
 	public function lastError() {
@@ -238,14 +227,6 @@ abstract class DatabaseMysqlBase extends Database {
 
 		return $error;
 	}
-
-	/**
-	 * Returns the text of the error message from previous MySQL operation
-	 *
-	 * @param resource|null $conn Raw connection
-	 * @return string
-	 */
-	abstract protected function mysqlError( $conn = null );
 
 	protected function isInsertSelectSafe( array $insertOptions, array $selectOptions ) {
 		$row = $this->replicationReporter->getReplicationSafetyInfo( $this );
@@ -407,14 +388,6 @@ abstract class DatabaseMysqlBase extends Database {
 		return $this->mysqlRealEscapeString( $s );
 	}
 
-	/**
-	 * Escape special characters in a string for use in an SQL statement
-	 *
-	 * @param string $s
-	 * @return mixed
-	 */
-	abstract protected function mysqlRealEscapeString( $s );
-
 	public function serverIsReadOnly() {
 		// Avoid SHOW to avoid internal temporary tables
 		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
@@ -440,7 +413,7 @@ abstract class DatabaseMysqlBase extends Database {
 	/**
 	 * @return string[] (one of ("MariaDB","MySQL"), x.y.z version string)
 	 */
-	protected function getMySqlServerVariant() {
+	private function getMySqlServerVariant() {
 		$version = $this->getServerVersion();
 
 		// MariaDB includes its name in its version string; this is how MariaDB's version of
@@ -752,9 +725,174 @@ abstract class DatabaseMysqlBase extends Database {
 
 		return $sql;
 	}
+
+	protected function doSingleStatementQuery( string $sql ): QueryStatus {
+		$conn = $this->getBindingHandle();
+
+		// Hide packet warnings caused by things like dropped connections
+		AtEase::suppressWarnings();
+		$res = $conn->query( $sql );
+		AtEase::restoreWarnings();
+		// Note that mysqli::insert_id only reflects the last query statement
+		$insertId = (int)$conn->insert_id;
+		$this->lastQueryInsertId = $insertId;
+		$this->sessionLastAutoRowId = $insertId ?: $this->sessionLastAutoRowId;
+
+		return new QueryStatus(
+			$res instanceof mysqli_result ? new MysqliResultWrapper( $this, $res ) : $res,
+			$conn->affected_rows,
+			$conn->error,
+			$conn->errno
+		);
+	}
+
+	/**
+	 * @param string|null $server
+	 * @param string|null $user
+	 * @param string|null $password
+	 * @param string|null $db
+	 * @return mysqli|null
+	 * @throws DBConnectionError
+	 */
+	private function mysqlConnect( $server, $user, $password, $db ) {
+		if ( !function_exists( 'mysqli_init' ) ) {
+			throw $this->newExceptionAfterConnectError(
+				"MySQLi functions missing, have you compiled PHP with the --with-mysqli option?"
+			);
+		}
+
+		// PHP 8.1.0+ throws exceptions by default. Turn that off for consistency.
+		mysqli_report( MYSQLI_REPORT_OFF );
+
+		// Other than mysql_connect, mysqli_real_connect expects an explicit port number
+		// e.g. "localhost:1234" or "127.0.0.1:1234"
+		// or Unix domain socket path
+		// e.g. "localhost:/socket_path" or "localhost:/foo/bar:bar:bar"
+		// colons are known to be used by Google AppEngine,
+		// see <https://cloud.google.com/sql/docs/mysql/connect-app-engine>
+		//
+		// We need to parse the port or socket path out of $realServer
+		$port = null;
+		$socket = null;
+		$hostAndPort = IPUtils::splitHostAndPort( $server );
+		if ( $hostAndPort ) {
+			$realServer = $hostAndPort[0];
+			if ( $hostAndPort[1] ) {
+				$port = $hostAndPort[1];
+			}
+		} elseif ( substr_count( $server, ':/' ) == 1 ) {
+			// If we have a colon slash instead of a colon and a port number
+			// after the ip or hostname, assume it's the Unix domain socket path
+			[ $realServer, $socket ] = explode( ':', $server, 2 );
+		} else {
+			$realServer = $server;
+		}
+
+		$mysqli = mysqli_init();
+		// Make affectedRows() for UPDATE reflect the number of matching rows, regardless
+		// of whether any column values changed. This is what callers want to know and is
+		// consistent with what Postgres and SQLite return.
+		$flags = MYSQLI_CLIENT_FOUND_ROWS;
+		if ( $this->ssl ) {
+			$flags |= MYSQLI_CLIENT_SSL;
+			$mysqli->ssl_set(
+				$this->sslKeyPath,
+				$this->sslCertPath,
+				$this->sslCAFile,
+				$this->sslCAPath,
+				$this->sslCiphers
+			);
+		}
+		if ( $this->getFlag( self::DBO_COMPRESS ) ) {
+			$flags |= MYSQLI_CLIENT_COMPRESS;
+		}
+		if ( $this->getFlag( self::DBO_PERSISTENT ) ) {
+			$realServer = 'p:' . $realServer;
+		}
+
+		if ( $this->utf8Mode ) {
+			// Tell the server we're communicating with it in UTF-8.
+			// This may engage various charset conversions.
+			$mysqli->options( MYSQLI_SET_CHARSET_NAME, 'utf8' );
+		} else {
+			$mysqli->options( MYSQLI_SET_CHARSET_NAME, 'binary' );
+		}
+
+		$mysqli->options( MYSQLI_OPT_CONNECT_TIMEOUT, $this->connectTimeout ?: 3 );
+		if ( $this->receiveTimeout ) {
+			$mysqli->options( MYSQLI_OPT_READ_TIMEOUT, $this->receiveTimeout );
+		}
+
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal socket seems set when used
+		$ok = $mysqli->real_connect( $realServer, $user, $password, $db, $port, $socket, $flags );
+
+		return $ok ? $mysqli : null;
+	}
+
+	protected function closeConnection() {
+		return ( $this->conn instanceof mysqli ) ? mysqli_close( $this->conn ) : true;
+	}
+
+	protected function lastInsertId() {
+		return $this->sessionLastAutoRowId;
+	}
+
+	protected function doHandleSessionLossPreconnect() {
+		// https://mariadb.com/kb/en/last_insert_id/
+		$this->sessionLastAutoRowId = 0;
+	}
+
+	public function insertId() {
+		if ( $this->lastEmulatedInsertId === null ) {
+			$conn = $this->getBindingHandle();
+			// Note that mysqli::insert_id only reflects the last query statement
+			$this->lastEmulatedInsertId = (int)$conn->insert_id;
+		}
+
+		return $this->lastEmulatedInsertId;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function lastErrno() {
+		if ( $this->conn instanceof mysqli ) {
+			return $this->conn->errno;
+		} else {
+			return mysqli_connect_errno();
+		}
+	}
+
+	/**
+	 * @param mysqli|null $conn Optional connection object
+	 * @return string
+	 */
+	private function mysqlError( $conn = null ) {
+		if ( $conn === null ) {
+			return (string)mysqli_connect_error();
+		} else {
+			return $conn->error;
+		}
+	}
+
+	private function mysqlRealEscapeString( $s ) {
+		$conn = $this->getBindingHandle();
+
+		return $conn->real_escape_string( (string)$s );
+	}
 }
 
 /**
  * @deprecated since 1.29
  */
 class_alias( DatabaseMysqlBase::class, 'DatabaseMysqlBase' );
+
+/**
+ * @deprecated since 1.29
+ */
+class_alias( DatabaseMysqlBase::class, 'DatabaseMysqli' );
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( DatabaseMysqlBase::class, 'Wikimedia\\Rdbms\\DatabaseMysqli' );

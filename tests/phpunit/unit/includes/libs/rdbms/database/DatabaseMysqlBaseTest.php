@@ -26,7 +26,6 @@
 use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DatabaseMysqlBase;
-use Wikimedia\Rdbms\DatabaseMysqli;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -43,7 +42,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	use MediaWikiCoversValidator;
 
 	private function getMockForViews(): IMaintainableDatabase {
-		$db = $this->getMockBuilder( DatabaseMysqli::class )
+		$db = $this->getMockBuilder( DatabaseMysqlBase::class )
 			->disableOriginalConstructor()
 			->onlyMethods( [ 'query', 'getDBname' ] )
 			->getMock();
@@ -459,7 +458,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testBuildIntegerCast() {
-		$db = $this->createPartialMock( DatabaseMysqli::class, [] );
+		$db = $this->createPartialMock( DatabaseMysqlBase::class, [] );
 		TestingAccessWrapper::newFromObject( $db )->platform = new MySQLPlatform( new AddQuoterMock() );
 
 		/** @var IDatabase $db */
@@ -490,7 +489,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	 * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform
 	 */
 	public function testNormalizeJoinTypeSqb() {
-		$db = $this->createPartialMock( DatabaseMysqli::class, [] );
+		$db = $this->createPartialMock( DatabaseMysqlBase::class, [] );
 
 		TestingAccessWrapper::newFromObject( $db )->currentDomain =
 			new DatabaseDomain( null, null, '' );
@@ -515,11 +514,11 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	 * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform
 	 */
 	public function testIndexAliases() {
-		$db = $this->getMockBuilder( DatabaseMysqli::class )
+		$db = $this->getMockBuilder( DatabaseMysqlBase::class )
 			->disableOriginalConstructor()
-			->onlyMethods( [ 'mysqlRealEscapeString', 'dbSchema', 'tablePrefix' ] )
+			->onlyMethods( [ 'strencode', 'dbSchema', 'tablePrefix' ] )
 			->getMock();
-		$db->method( 'mysqlRealEscapeString' )->willReturnCallback(
+		$db->method( 'strencode' )->willReturnCallback(
 			static function ( $s ) {
 				return str_replace( "'", "\\'", $s );
 			}
@@ -553,11 +552,11 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	 * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform
 	 */
 	public function testTableAliases() {
-		$db = $this->getMockBuilder( DatabaseMysqli::class )
+		$db = $this->getMockBuilder( DatabaseMysqlBase::class )
 			->disableOriginalConstructor()
-			->onlyMethods( [ 'mysqlRealEscapeString', 'dbSchema', 'tablePrefix' ] )
+			->onlyMethods( [ 'strencode', 'dbSchema', 'tablePrefix' ] )
 			->getMock();
-		$db->method( 'mysqlRealEscapeString' )->willReturnCallback(
+		$db->method( 'strencode' )->willReturnCallback(
 			static function ( $s ) {
 				return str_replace( "'", "\\'", $s );
 			}
@@ -591,16 +590,16 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	 * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform
 	 */
 	public function testMaxExecutionTime() {
-		$db = $this->getMockBuilder( DatabaseMysqli::class )
+		$db = $this->getMockBuilder( DatabaseMysqlBase::class )
 			->disableOriginalConstructor()
-			->onlyMethods( [ 'getMySqlServerVariant', 'dbSchema', 'tablePrefix' ] )
+			->onlyMethods( [ 'getServerVersion', 'dbSchema', 'tablePrefix' ] )
 			->getMock();
-		$db->method( 'getMySqlServerVariant' )->willReturn( [ 'MariaDB', '10.4.21' ] );
-		TestingAccessWrapper::newFromObject( $db )->platform =
-			new MySQLPlatform( new AddQuoterMock() );
+		$db->method( 'getServerVersion' )->willReturn( '10.4.28-MariaDB-log' );
+		$wdb = TestingAccessWrapper::newFromObject( $db );
+		$wdb->platform = new MySQLPlatform( new AddQuoterMock() );
 
 		/** @var IDatabase $db */
-		$sql = $db->selectSQLText( 'image',
+		$sql = $wdb->selectSQLText( 'image',
 			'img_metadata',
 			'*',
 			'',
