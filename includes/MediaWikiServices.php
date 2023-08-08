@@ -2173,6 +2173,7 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @deprecated since 1.41, Use MultiHttpClient instead.
 	 * @since 1.28
 	 * @return VirtualRESTServiceClient
 	 */

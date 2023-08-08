@@ -20,6 +20,7 @@
 
 /**
  * Virtual REST service for RESTBase
+ * @deprecated since 1.41, Use MultiHttpClient from the HttpRequestFactory.
  * @since 1.25
  */
 class RestbaseVirtualRESTService extends VirtualRESTService {

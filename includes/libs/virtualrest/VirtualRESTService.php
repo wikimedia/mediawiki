@@ -42,6 +42,10 @@ abstract class VirtualRESTService {
 	 * @param array $params Key/value map
 	 */
 	public function __construct( array $params ) {
+		wfDeprecated(
+			get_class( $this ) .
+			' is deprecated since 1.41. Use MultiHttpClient from the HttpRequestFactory.'
+		);
 		$this->params = $params;
 	}
 

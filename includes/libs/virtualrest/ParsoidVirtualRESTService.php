@@ -20,6 +20,7 @@
 
 /**
  * Virtual REST service for Parsoid
+ * @deprecated since 1.41, Use MultiHttpClient from the HttpRequestFactory.
  * @since 1.25
  */
 class ParsoidVirtualRESTService extends VirtualRESTService {

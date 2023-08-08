@@ -433,6 +433,10 @@ because of Phabricator reports.
   and also emit deprecation warnings.
 * Hooks::isRegistered(), ::getHandlers(), ::run() and ::runWithoutAbort(),
   deprecated in 1.35, now emit deprecation warnings.
+* VirtualRESTService class and its subclasses now emit deprecation warnings
+  in 1.41 and as a replacement we can use MultiHttpClient.
+* Calling the getVirtualRESTServiceClient() which creates the VRSC now
+  emits deprecation warnings.
 * Language::getMessage and Language::getAllMessages are deprecated. Use
   LocalisationCache or MessageCache as appropriate.
 * VirtualRESTService class is deprecated in 1.41 and as a replacement
