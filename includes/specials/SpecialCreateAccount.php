@@ -157,7 +157,8 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 		$this->getHookRunner()->onBeforeWelcomeCreation( $welcome_creation_msg, $injected_html );
 
 		$this->showSuccessPage( 'signup',
-			$this->msg( 'welcomeuser', $this->getUser()->getName() )->escaped(),
+			// T308471: ensure username is plaintext (aka escaped)
+			$this->msg( 'welcomeuser' )->plaintextParams( $this->getUser()->getName() ),
 			$welcome_creation_msg, $injected_html, $extraMessages );
 	}
 
