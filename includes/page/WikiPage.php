@@ -2270,17 +2270,16 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			foreach ( $limit as $action => $restrictions ) {
 				if ( $restrictions != '' ) {
 					$cascadeValue = ( $cascade && $action == 'edit' ) ? 1 : 0;
-					$dbw->insert(
-						'page_restrictions',
-						[
+					$dbw->newInsertQueryBuilder()
+						->insert( 'page_restrictions' )
+						->row( [
 							'pr_page' => $id,
 							'pr_type' => $action,
 							'pr_level' => $restrictions,
 							'pr_cascade' => $cascadeValue,
 							'pr_expiry' => $dbw->encodeExpiry( $expiry[$action] )
-						],
-						__METHOD__
-					);
+						] )
+						->caller( __METHOD__ )->execute();
 					$logRelationsValues[] = $dbw->insertId();
 					$logParamsDetails[] = [
 						'type' => $action,

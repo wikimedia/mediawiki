@@ -116,11 +116,10 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 */
 	public function store( $location, $data ) {
 		$dbw = $this->getPrimary( $location );
-		$dbw->insert(
-			$this->getTable( $dbw, $location ),
-			[ 'blob_text' => $data ],
-			__METHOD__
-		);
+		$dbw->newInsertQueryBuilder()
+			->insert( $this->getTable( $dbw, $location ) )
+			->row( [ 'blob_text' => $data ] )
+			->caller( __METHOD__ )->execute();
 		$id = $dbw->insertId();
 		if ( !$id ) {
 			throw new ExternalStoreException( __METHOD__ . ': no insert ID' );

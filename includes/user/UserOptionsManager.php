@@ -473,7 +473,11 @@ class UserOptionsManager extends UserOptionsLookup {
 		}
 		if ( $rowsToInsert ) {
 			// Insert the new preference rows
-			$dbw->insert( 'user_properties', $rowsToInsert, __METHOD__, [ 'IGNORE' ] );
+			$dbw->newInsertQueryBuilder()
+				->insert( 'user_properties' )
+				->ignore()
+				->rows( $rowsToInsert )
+				->caller( __METHOD__ )->execute();
 		}
 
 		// It's pretty cheap to recalculate new original later

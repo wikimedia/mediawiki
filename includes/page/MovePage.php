@@ -733,7 +733,11 @@ class MovePage {
 					'pr_expiry' => $row->pr_expiry
 				];
 			}
-			$dbw->insert( 'page_restrictions', $rowsInsert, __METHOD__, [ 'IGNORE' ] );
+			$dbw->newInsertQueryBuilder()
+				->insert( 'page_restrictions' )
+				->ignore()
+				->rows( $rowsInsert )
+				->caller( __METHOD__ )->execute();
 
 			// Build comment for log
 			$comment = wfMessage(

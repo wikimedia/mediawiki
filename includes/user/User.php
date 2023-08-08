@@ -2709,7 +2709,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		}
 
 		return $dbw->doAtomicSection( __METHOD__, function ( IDatabase $dbw, $fname ) use ( $fields, $insertActor ) {
-			$dbw->insert( 'user', $fields, $fname, [ 'IGNORE' ] );
+			$dbw->newInsertQueryBuilder()
+				->insert( 'user' )
+				->ignore()
+				->row( $fields )
+				->caller( $fname )->execute();
 			if ( $dbw->affectedRows() ) {
 				$newUser = self::newFromId( $dbw->insertId() );
 				$newUser->mName = $fields['user_name'];
@@ -2766,8 +2770,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		$dbw = wfGetDB( DB_PRIMARY );
 		$status = $dbw->doAtomicSection( __METHOD__, function ( IDatabase $dbw, $fname ) {
 			$noPass = PasswordFactory::newInvalidPassword()->toString();
-			$dbw->insert( 'user',
-				[
+			$dbw->newInsertQueryBuilder()
+				->insert( 'user' )
+				->ignore()
+				->row( [
 					'user_name' => $this->mName,
 					'user_password' => $noPass,
 					'user_newpassword' => $noPass,
@@ -2778,9 +2784,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 					'user_registration' => $dbw->timestamp( $this->mRegistration ),
 					'user_editcount' => 0,
 					'user_touched' => $dbw->timestamp( $this->mTouched ),
-				], $fname,
-				[ 'IGNORE' ]
-			);
+				] )
+				->caller( $fname )->execute();
 			if ( !$dbw->affectedRows() ) {
 				// Use locking reads to bypass any REPEATABLE-READ snapshot.
 				$this->mId = $dbw->newSelectQueryBuilder()

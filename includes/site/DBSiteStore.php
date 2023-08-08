@@ -188,7 +188,10 @@ class DBSiteStore implements SiteStore {
 					->where( [ 'site_id' => $rowId ] )
 					->caller( __METHOD__ )->execute();
 			} else {
-				$dbw->insert( 'sites', $fields, __METHOD__ );
+				$dbw->newInsertQueryBuilder()
+					->insert( 'sites' )
+					->row( $fields )
+					->caller( __METHOD__ )->execute();
 				$rowId = $dbw->insertId();
 			}
 
@@ -207,15 +210,10 @@ class DBSiteStore implements SiteStore {
 		}
 
 		foreach ( $localIds as $localId ) {
-			$dbw->insert(
-				'site_identifiers',
-				[
-					'si_site' => $localId[0],
-					'si_type' => $localId[1],
-					'si_key' => $localId[2],
-				],
-				__METHOD__
-			);
+			$dbw->newInsertQueryBuilder()
+				->insert( 'site_identifiers' )
+				->row( [ 'si_site' => $localId[0], 'si_type' => $localId[1], 'si_key' => $localId[2] ] )
+				->caller( __METHOD__ )->execute();
 		}
 
 		$dbw->endAtomic( __METHOD__ );

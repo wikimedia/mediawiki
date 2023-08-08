@@ -414,15 +414,11 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			return $existingActorId;
 		}
 
-		$dbw->insert(
-			'actor',
-			[
-				'actor_user' => $userId,
-				'actor_name' => $userName,
-			],
-			__METHOD__,
-			[ 'IGNORE' ]
-		);
+		$dbw->newInsertQueryBuilder()
+			->insert( 'actor' )
+			->ignore()
+			->row( [ 'actor_user' => $userId, 'actor_name' => $userName ] )
+			->caller( __METHOD__ )->execute();
 
 		if ( $dbw->affectedRows() ) {
 			$actorId = $dbw->insertId();
@@ -464,14 +460,10 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		[ $userId, $userName ] = $this->validateActorForInsertion( $user );
 
 		try {
-			$dbw->insert(
-				'actor',
-				[
-					'actor_user' => $userId,
-					'actor_name' => $userName,
-				],
-				__METHOD__
-			);
+			$dbw->newInsertQueryBuilder()
+				->insert( 'actor' )
+				->row( [ 'actor_user' => $userId, 'actor_name' => $userName ] )
+				->caller( __METHOD__ )->execute();
 		} catch ( DBQueryError $e ) {
 			// We rely on the database to crash on unique actor_name constraint.
 			throw new CannotCreateActorException( $e->getMessage() );

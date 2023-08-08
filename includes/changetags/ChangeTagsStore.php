@@ -663,7 +663,11 @@ class ChangeTagsStore {
 
 			}
 
-			$dbw->insert( self::CHANGE_TAG, $tagsRows, __METHOD__, [ 'IGNORE' ] );
+			$dbw->newInsertQueryBuilder()
+				->insert( self::CHANGE_TAG )
+				->ignore()
+				->rows( $tagsRows )
+				->caller( __METHOD__ )->execute();
 		}
 
 		// delete from change_tag

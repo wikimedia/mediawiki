@@ -283,7 +283,10 @@ class LocalFileDeleteBatch {
 				}
 			}
 
-			$dbw->insert( 'filearchive', $rowsInsert, __METHOD__ );
+			$dbw->newInsertQueryBuilder()
+				->insert( 'filearchive' )
+				->rows( $rowsInsert )
+				->caller( __METHOD__ )->execute();
 		}
 	}
 

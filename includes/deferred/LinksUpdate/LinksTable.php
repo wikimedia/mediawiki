@@ -469,7 +469,10 @@ abstract class LinksTable {
 
 		$insertBatches = array_chunk( $this->rowsToInsert, $batchSize );
 		foreach ( $insertBatches as $insertBatch ) {
-			$db->insert( $table, $insertBatch, __METHOD__, $this->getInsertOptions() );
+			$db->newInsertQueryBuilder()
+				->insert( $table )
+				->rows( $insertBatch )
+				->caller( __METHOD__ )->execute();
 			if ( count( $insertBatches ) > 1 ) {
 				$this->lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
 			}

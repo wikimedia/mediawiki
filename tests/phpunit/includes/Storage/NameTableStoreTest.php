@@ -13,6 +13,7 @@ use Psr\Log\NullLogger;
 use RuntimeException;
 use WANObjectCache;
 use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\InsertQueryBuilder;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\TestingAccessWrapper;
@@ -85,6 +86,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 				} );
 		}
 		$mock->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $mock ) );
+		$mock->method( 'newInsertQueryBuilder' )->willReturnCallback( fn() => new InsertQueryBuilder( $mock ) );
 		return $mock;
 	}
 
@@ -391,6 +393,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 
 				return true;
 			} );
+		$db->method( 'newInsertQueryBuilder' )->willReturnCallback( fn() => new InsertQueryBuilder( $db ) );
 
 		$lb = $this->createMock( LoadBalancer::class );
 		$lb->method( 'getConnection' )

@@ -315,11 +315,17 @@ class LocalFileRestoreBatch {
 		// public zone.
 		// This is not ideal, which is why it's important to lock the image row.
 		if ( $insertCurrent ) {
-			$dbw->insert( 'image', $insertCurrent, __METHOD__ );
+			$dbw->newInsertQueryBuilder()
+				->insert( 'image' )
+				->row( $insertCurrent )
+				->caller( __METHOD__ )->execute();
 		}
 
 		if ( $insertBatch ) {
-			$dbw->insert( 'oldimage', $insertBatch, __METHOD__ );
+			$dbw->newInsertQueryBuilder()
+				->insert( 'oldimage' )
+				->rows( $insertBatch )
+				->caller( __METHOD__ )->execute();
 		}
 
 		if ( $deleteIds ) {

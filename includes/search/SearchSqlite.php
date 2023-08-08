@@ -302,12 +302,10 @@ class SearchSqlite extends SearchDatabase {
 			->delete( 'searchindex' )
 			->where( [ 'rowid' => $id ] )
 			->caller( __METHOD__ )->execute();
-		$dbw->insert( 'searchindex',
-			[
-				'rowid' => $id,
-				'si_title' => $title,
-				'si_text' => $text
-			], __METHOD__ );
+		$dbw->newInsertQueryBuilder()
+			->insert( 'searchindex' )
+			->row( [ 'rowid' => $id, 'si_title' => $title, 'si_text' => $text ] )
+			->caller( __METHOD__ )->execute();
 	}
 
 	/**

@@ -424,8 +424,9 @@ class OldLocalFile extends LocalFile {
 			->insert( $dbw, 'oi_description', $comment );
 		$actorId = $services->getActorNormalization()
 			->acquireActorId( $user, $dbw );
-		$dbw->insert( 'oldimage',
-			[
+		$dbw->newInsertQueryBuilder()
+			->insert( 'oldimage' )
+			->row( [
 				'oi_name' => $this->getName(),
 				'oi_archive_name' => $archiveName,
 				'oi_size' => $props['size'],
@@ -439,8 +440,8 @@ class OldLocalFile extends LocalFile {
 				'oi_major_mime' => $props['major_mime'],
 				'oi_minor_mime' => $props['minor_mime'],
 				'oi_sha1' => $props['sha1'],
-			] + $commentFields, __METHOD__
-		);
+			] + $commentFields )
+			->caller( __METHOD__ )->execute();
 		$dbw->endAtomic( __METHOD__ );
 
 		return true;

@@ -1753,8 +1753,10 @@ class LocalFile extends File {
 		$commentStore = MediaWikiServices::getInstance()->getCommentStore();
 		$commentFields = $commentStore->insert( $dbw, 'img_description', $comment );
 		$actorFields = [ 'img_actor' => $actorId ];
-		$dbw->insert( 'image',
-			[
+		$dbw->newInsertQueryBuilder()
+			->insert( 'image' )
+			->ignore()
+			->row( [
 				'img_name' => $this->getName(),
 				'img_size' => $this->size,
 				'img_width' => intval( $this->width ),
@@ -1766,10 +1768,8 @@ class LocalFile extends File {
 				'img_timestamp' => $dbw->timestamp( $timestamp ),
 				'img_metadata' => $this->getMetadataForDb( $dbw ),
 				'img_sha1' => $this->sha1
-			] + $commentFields + $actorFields,
-			__METHOD__,
-			[ 'IGNORE' ]
-		);
+			] + $commentFields + $actorFields )
+			->caller( __METHOD__ )->execute();
 		$reupload = ( $dbw->affectedRows() == 0 );
 
 		if ( $reupload ) {

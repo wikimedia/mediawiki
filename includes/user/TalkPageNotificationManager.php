@@ -300,15 +300,11 @@ class TalkPageNotificationManager {
 		// Mark the user as having new messages since this revision
 		$dbw = $this->dbProvider->getPrimaryDatabase();
 		[ $field, $id ] = $this->getQueryFieldAndId( $user );
-		$dbw->insert(
-			'user_newtalk',
-			[
-				$field => $id,
-				'user_last_timestamp' => $dbw->timestampOrNull( $ts )
-			],
-			__METHOD__,
-			[ 'IGNORE' ]
-		);
+		$dbw->newInsertQueryBuilder()
+			->insert( 'user_newtalk' )
+			->ignore()
+			->row( [ $field => $id, 'user_last_timestamp' => $dbw->timestampOrNull( $ts ) ] )
+			->caller( __METHOD__ )->execute();
 		return (bool)$dbw->affectedRows();
 	}
 

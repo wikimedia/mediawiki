@@ -810,7 +810,10 @@ class DeletePage {
 
 		if ( count( $revids ) > 0 ) {
 			// Copy them into the archive table
-			$dbw->insert( 'archive', $rowsInsert, __METHOD__ );
+			$dbw->newInsertQueryBuilder()
+				->insert( 'archive' )
+				->rows( $rowsInsert )
+				->caller( __METHOD__ )->execute();
 
 			$dbw->newDeleteQueryBuilder()
 				->delete( 'revision' )

@@ -278,7 +278,10 @@ class JobQueueDB extends JobQueue {
 			$rows = array_merge( $rowList, array_values( $rowSet ) );
 			// Insert the job rows in chunks to avoid replica DB lag...
 			foreach ( array_chunk( $rows, 50 ) as $rowBatch ) {
-				$dbw->insert( 'job', $rowBatch, $method );
+				$dbw->newInsertQueryBuilder()
+					->insert( 'job' )
+					->rows( $rowBatch )
+					->caller( $method )->execute();
 			}
 			$this->incrStats( 'inserts', $this->type, count( $rows ) );
 			$this->incrStats( 'dupe_inserts', $this->type,
