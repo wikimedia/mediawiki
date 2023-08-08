@@ -61,6 +61,9 @@ class HTMLRadioField extends HTMLFormField {
 	public function getInputOOUI( $value ) {
 		$options = [];
 		foreach ( $this->getOptions() as $label => $data ) {
+			if ( is_int( $label ) ) {
+				$label = strval( $label );
+			}
 			$options[] = [
 				'data' => $data,
 				// @phan-suppress-next-line SecurityCheck-XSS Labels are raw when not from message

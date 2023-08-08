@@ -4,9 +4,10 @@
 @import 'mediawiki.skin.variables.less';
 @import 'mediawiki.mixins.less';
 
-/* Special:AllMessages */
+/* Special:AllMessages & Special:ListFiles */
 /* Visually hide repeating text, but leave in for better form navigation on screen readers */
-.mw-special-Allmessages .mw-htmlform-ooui .oo-ui-fieldsetLayout:first-child .oo-ui-fieldsetLayout-header {
+.mw-special-Allmessages .mw-htmlform-ooui .oo-ui-fieldsetLayout:first-child .oo-ui-fieldsetLayout-header,
+.mw-special-Listfiles .mw-htmlform-ooui .oo-ui-fieldsetLayout:first-child .oo-ui-fieldsetLayout-header {
 	.mixin-screen-reader-text();
 }
 
