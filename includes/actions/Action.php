@@ -400,7 +400,7 @@ abstract class Action implements MessageLocalizer {
 	 * Returns the name that goes in the `<h1>` page title.
 	 *
 	 * @stable to override
-	 * @return string
+	 * @return string|Message
 	 */
 	protected function getPageTitle() {
 		return $this->getTitle()->getPrefixedText();
