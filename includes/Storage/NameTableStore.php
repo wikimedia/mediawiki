@@ -21,10 +21,10 @@
 namespace MediaWiki\Storage;
 
 use Exception;
-use IExpiringStore;
 use Psr\Log\LoggerInterface;
 use WANObjectCache;
 use Wikimedia\Assert\Assert;
+use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -102,7 +102,7 @@ class NameTableStore {
 		$this->nameField = $nameField;
 		$this->normalizationCallback = $normalizationCallback;
 		$this->domain = $dbDomain;
-		$this->cacheTTL = IExpiringStore::TTL_MONTH;
+		$this->cacheTTL = ExpirationAwareness::TTL_MONTH;
 		$this->insertCallback = $insertCallback;
 	}
 

@@ -138,6 +138,8 @@ because of Phabricator reports.
 * Article::getRedirectHeaderHtml() no longer accepts an array as $target.
   Passing an array was deprecated in 1.39.
 * BagOStuff::addBusyCallback(), deprecated since 1.39, has been removed.
+* IExpiringStore has been removed, use either ExpirationAwareness or
+  StorageAwareness constants instead.
 * IDatabase::wasErrorReissuable(), deprecated since 1.40, has been removed.
 * IDatabase::lastQuery and IReadableDatabase::lastQuery, deprecated in 1.40,
   have been removed.
