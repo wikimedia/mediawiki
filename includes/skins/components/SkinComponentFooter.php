@@ -315,7 +315,7 @@ class SkinComponentFooter implements SkinComponent {
 			}
 		}
 
-		return $dataIcons->getTemplateData();
+		return $dataIcons ? $dataIcons->getTemplateData() : [];
 	}
 
 	/**
@@ -338,7 +338,7 @@ class SkinComponentFooter implements SkinComponent {
 			unset( $item['html-before-portal'] );
 			unset( $item['label'] );
 			unset( $item['class'] );
-			foreach ( $item['array-items'] as $index => $arrayItem ) {
+			foreach ( $item['array-items'] ?? [] as $index => $arrayItem ) {
 				unset( $item['array-items'][$index]['html-item'] );
 			}
 			$formattedData[$key] = $item;
