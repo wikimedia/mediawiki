@@ -298,8 +298,7 @@ class BlockManager {
 		) {
 			$xff = array_map( 'trim', explode( ',', $xff ) );
 			$xff = array_diff( $xff, [ $ip ] );
-			// TODO: remove dependency on DatabaseBlock (T221075)
-			$xffblocks = DatabaseBlock::getBlocksForIPList( $xff, $isAnon, $fromPrimary );
+			$xffblocks = $this->getBlocksForIPList( $xff, $isAnon, $fromPrimary );
 
 			// (T285159) Exclude autoblocks from XFF headers to prevent spoofed
 			// headers uncovering the IPs of autoblocked users
@@ -311,6 +310,19 @@ class BlockManager {
 		}
 
 		return [];
+	}
+
+	/**
+	 * Wrapper for mocking in tests.
+	 *
+	 * @param array $xff
+	 * @param bool $isAnon
+	 * @param bool $fromPrimary
+	 * @return DatabaseBlock[]
+	 */
+	protected function getBlocksForIPList( array $xff, bool $isAnon, bool $fromPrimary ) {
+		// TODO: remove dependency on DatabaseBlock (T221075)
+		return DatabaseBlock::getBlocksForIPList( $xff, $isAnon, $fromPrimary );
 	}
 
 	/**
