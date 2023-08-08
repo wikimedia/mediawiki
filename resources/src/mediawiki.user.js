@@ -4,6 +4,10 @@
  */
 ( function () {
 	var userInfoPromise, tempUserNamePromise, pageviewRandomId, sessionId;
+	var COOKIE_NAME = 'mwclientpreferences',
+		FEATURE_SUFFIX = '-clientpref-',
+		FEATURE_DELIMITER = '!',
+		KEY_VALUE_DELIMITER = '~';
 
 	/**
 	 * Get the current user's groups or rights
@@ -16,6 +20,50 @@
 			userInfoPromise = new mw.Api().getUserInfo();
 		}
 		return userInfoPromise;
+	}
+
+	/**
+	 * Updates the existing client preferences stored in cookies along with a newly set
+	 * feature/value pair
+	 *
+	 * @param {string} feature that was just modified.
+	 * @param {string} value of newly modified feature
+	 */
+	function syncHTMLWithCookie( feature, value ) {
+		var existingCookie = mw.cookie.get( COOKIE_NAME );
+		var storeFromCookie = {};
+		if ( existingCookie ) {
+			existingCookie.split( FEATURE_DELIMITER ).forEach( function ( keyValuePair ) {
+				var kV = keyValuePair.split( KEY_VALUE_DELIMITER );
+				storeFromCookie[ kV[ 0 ] ] = kV[ 1 ];
+			} );
+		}
+		storeFromCookie[ feature ] = value;
+		var cookieValue = Object.keys( storeFromCookie ).map( function ( key ) {
+			return key + KEY_VALUE_DELIMITER + storeFromCookie[ key ];
+		} ).join( FEATURE_DELIMITER );
+		mw.cookie.set( COOKIE_NAME, cookieValue );
+	}
+
+	/**
+	 * Checks if the feature is composed of valid characters.
+	 * A valid feature name can contain letters, numbers of "-" character.
+	 *
+	 * @param {string} value
+	 * @return {boolean}
+	 */
+	function isValidFeatureName( value ) {
+		return value.match( /^[a-zA-Z0-9-]+$/ ) !== null;
+	}
+
+	/**
+	 * Checks if the value is composed of valid characters.
+	 *
+	 * @param {string} value
+	 * @return {boolean}
+	 */
+	function isValidFeatureValue( value ) {
+		return value.match( /^[a-zA-Z0-9]+$/ ) !== null;
 	}
 
 	// mw.user with the properties options and tokens gets defined in mediawiki.base.js.
@@ -261,6 +309,63 @@
 				function ( userInfo ) { return userInfo.rights; },
 				function () { return []; }
 			).then( callback );
+		},
+
+		/**
+		 * Client preferences store's management
+		 */
+		clientPrefs: {
+			/**
+			 * Change the class of the document element, and set feature value in clientPreferencesStore
+			 *
+			 * @param {string} feature
+			 * @param {string} value
+			 * @return {boolean} true if feature was stored successfully, false if the value
+			 *   uses a forbidden character or the feature is not recognised
+			 *   e.g. an appropriate class has not been defined on the body.
+			 */
+			set: function ( feature, value ) {
+				if ( !isValidFeatureName( feature ) || !isValidFeatureValue( value ) ) {
+					return false;
+				}
+				var currentValue = this.get( feature );
+				// the feature is not recognized
+				if ( !currentValue ) {
+					return false;
+				}
+				var oldFeatureClass = feature + FEATURE_SUFFIX + currentValue;
+				var newFeatureClass = feature + FEATURE_SUFFIX + value;
+				// The following classes are removed here:
+				// * feature-name-clientpref-<old-feature-value>
+				// * e.g. vector-font-size--clientpref-small
+				document.documentElement.classList.remove( oldFeatureClass );
+				// The following classes are added here:
+				// * feature-name-clientpref-<feature-value>
+				// * e.g. vector-font-size--clientpref-xlarge
+				document.documentElement.classList.add( newFeatureClass );
+				syncHTMLWithCookie( feature, value );
+				return true;
+			},
+
+			/**
+			 * Retrieve the current value of the feature from the HTML element
+			 *
+			 * @param {string} feature
+			 * @return {string|boolean} returns boolean if the feature is not recognized
+			 *  returns string if a feature was found.
+			 */
+			get: function ( feature ) {
+				var featurePrefix = feature + FEATURE_SUFFIX;
+				var docClass = document.documentElement.classList.toString();
+				var featureRegEx = new RegExp(
+					'(^| )' + mw.util.escapeRegExp( featurePrefix ) + '([a-zA-Z0-9]+)( |$)'
+				);
+				var match = docClass.match( featureRegEx );
+
+				// check no further matches if we replaced this occurance.
+				var isAmbiguous = docClass.replace( featureRegEx, '$1$3' ).match( featureRegEx ) !== null;
+				return !isAmbiguous && match ? match[ 2 ] : false;
+			}
 		}
 	} );
 
