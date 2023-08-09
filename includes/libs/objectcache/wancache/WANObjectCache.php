@@ -912,7 +912,7 @@ class WANObjectCache implements
 		}
 
 		// Wrap that value with time/TTL/version metadata
-		$wrapped = $this->wrap( $value, $logicalTTL ?: $ttl, $version, $now, $walltime );
+		$wrapped = $this->wrap( $value, $logicalTTL ?: $ttl, $version, $now );
 		$storeTTL = $ttl + $staleTTL;
 
 		$flags = $this->cache::WRITE_BACKGROUND;
@@ -1755,7 +1755,6 @@ class WANObjectCache implements
 					$value,
 					$lockTSE,
 					$version,
-					$walltime,
 					$segmentable
 				);
 			} else {
@@ -1915,7 +1914,6 @@ class WANObjectCache implements
 	 * @param mixed $value
 	 * @param int|float $ttl
 	 * @param int|null $version Value version number
-	 * @param float $walltime How long it took to generate the value in seconds
 	 * @param bool $segmentable
 	 * @return bool Success
 	 */
@@ -1924,14 +1922,13 @@ class WANObjectCache implements
 		$value,
 		$ttl,
 		?int $version,
-		float $walltime,
 		bool $segmentable
 	) {
 		$now = $this->getCurrentTime();
 		$ttl = max( self::INTERIM_KEY_TTL, (int)$ttl );
 
 		// Wrap that value with time/TTL/version metadata
-		$wrapped = $this->wrap( $value, $ttl, $version, $now, $walltime );
+		$wrapped = $this->wrap( $value, $ttl, $version, $now );
 
 		$flags = $this->cache::WRITE_BACKGROUND;
 		if ( $segmentable ) {
@@ -2790,10 +2787,9 @@ class WANObjectCache implements
 	 * @param int $ttl Seconds to live or zero for "indefinite"
 	 * @param int|null $version Value version number or null if not versioned
 	 * @param float $now Unix Current timestamp just before calling set()
-	 * @param float|null $walltime How long it took to generate the value in seconds
 	 * @return array
 	 */
-	private function wrap( $value, $ttl, $version, $now, $walltime ) {
+	private function wrap( $value, $ttl, $version, $now ) {
 		// Returns keys in ascending integer order for PHP7 array packing:
 		// https://nikic.github.io/2014/12/22/PHPs-new-hashtable-implementation.html
 		$wrapped = [
