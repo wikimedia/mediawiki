@@ -17,6 +17,14 @@ class TelemetryTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( $newId, $sut->getRequestId() );
 	}
 
+	public function testRegenerationProvidesNewId() {
+		$sut = new Telemetry( [], false );
+		$firstId = $sut->getRequestId();
+		$sut->regenerateRequestId();
+		$secondId = $sut->getRequestId();
+		$this->assertNotSame( $firstId, $secondId );
+	}
+
 	public function testItReturnsOpenTelemetryProperties() {
 		$sut = new Telemetry( [
 			'HTTP_TRACESTATE' => 'val1',

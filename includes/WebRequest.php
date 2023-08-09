@@ -346,12 +346,17 @@ class WebRequest {
 	 * Override the unique request ID. This is for sub-requests, such as jobs,
 	 * that wish to use the same id but are not part of the same execution context.
 	 *
-	 * @param string $newId
+	 * @param string|null $newId
 	 * @deprecated since 1.41 use Telemetry::overrideRequestId() instead
 	 * @since 1.27
 	 */
 	public static function overrideRequestId( $newId ) {
-		Telemetry::getInstance()->overrideRequestId( $newId );
+		$telemetry = Telemetry::getInstance();
+		if ( $newId === null ) {
+			$telemetry->regenerateRequestId();
+		} else {
+			$telemetry->overrideRequestId( $newId );
+		}
 	}
 
 	/**
