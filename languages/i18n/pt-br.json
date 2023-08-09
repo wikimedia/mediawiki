@@ -142,7 +142,9 @@
 			"Yves Marques Junqueira",
 			"לערי ריינהארט",
 			"아라",
-			555
+			555,
+			"Glaucia Japui Gonçalves",
+			"Saturnow"
 		]
 	},
 	"tog-underline": "Sublinhar links:",
@@ -1514,7 +1516,7 @@
 	"action-delete-redirect": "sobrescrever redirecionamentos com uma única revisão",
 	"action-deleterevision": "eliminar ou restaurar revisões específicas de páginas",
 	"action-deletelogentry": "eliminar ou restaurar entradas de registro específicas",
-	"action-deletedhistory": "ver o histórico de edições eliminadas de uma página",
+	"action-deletedhistory": "ver metadados das edições de histórico eliminadas",
 	"action-deletedtext": "ver o texto de uma revisão eliminada ou mudanças entre revisões eliminadas",
 	"action-browsearchive": "pesquisar páginas eliminadas",
 	"action-undelete": "restaurar páginas",

@@ -1,0 +1,33 @@
+{
+	"@metadata": {
+		"authors": [
+			"Vlad5250",
+			"Winston Sung"
+		]
+	},
+	"rest-prefix-mismatch": "Tražena staza ($1) nije bila unutar REST korijenske priložničke staze ($2)",
+	"rest-wrong-method": "Metoda zahtjeva ($1) {{PLURAL:$3|nije dopuštena za ovaj put|nije jedna od dopuštenih za ovaj put}} ($2)",
+	"rest-no-match": "Traženi relativni put ($1) ne odgovara poznatom rukovatelju",
+	"rest-nonexistent-title": "Navedeni naslov ($1) ne postoji",
+	"rest-nonexistent-title-revision": "Navedena izmjena ($1) ne postoji za navedenu stranicu ($2)",
+	"rest-nonexistent-revision": "Navedena izmjena ($1) ne postoji",
+	"rest-nonexistent-user": "Navedeni korisnik ($1) ne postoji",
+	"rest-invalid-user": "Navedeno korisničko ime ($1) ne postoji",
+	"rest-permission-denied-anon": "Nedostupno anonimnom korisniku",
+	"rest-permission-denied-title": "Korisnik nema pravo čitati naslov ($1)",
+	"rest-permission-denied-revision": "Korisnik nema pristup traženoj izmjeni ($1).",
+	"rest-resource-limit-exceeded": "Obrada zahtjeva premašila je ograničenje resursa.",
+	"rest-pagehistory-incompatible-params": "Ne mogu se navesti oba parametra \"older_than\" i \"newer_than\"",
+	"rest-pagehistory-param-range-error": "Naznaka izmjene mora biti veća od 0",
+	"rest-pagehistory-timestamp-error": "Nije moguće dohvatiti vremensku oznaku za navedenu izmjenu ($1)",
+	"rest-compare-permission-denied": "Korisnik nema pristup zatraženim izmjenama",
+	"rest-compare-wrong-content": "$1 mjesto izmjene koja je naznačena parametrom $2 ima tip sadržaja što se ne može pretvoriti u tekst.",
+	"rest-bad-json-body": "Neispravno tijelo zahtjeva. Mora biti JSON objekt.",
+	"rest-json-body-parse-error": "Raščlanjivanje tijela zahtjeva u formatu JSON nije uspjelo: $1",
+	"rest-bad-content-model": "Loš model sadržaja: $1",
+	"rest-update-cannot-create-page": "Stranica \"$1\" ne može se napraviti jer već postoji. Za podnoviti postojeću stranicu, navedite naznaku osnovne izmjene u strukturi sadržaja ispod ključa \"najnovije\" u tijelu zahtjeva.",
+	"rest-extraneous-csrf-token": "Pronađen suvišni CSRF žeton. Ovakvi žetoni ne smiju se koristiti pri korištenju mehanizama autentikacije kao OAuth koji su sigurni od CSRF napada.",
+	"rest-cannot-load-file": "Datoteka kod naslova \"$1\" ne može se učitati.",
+	"rest-cross-origin-anon-write": "Anonimni zahtjevi za pisanje iz različitih izvora nisu dopušteni",
+	"rest-requires-safe-against-csrf": "Ova završnica zahtijeva CSRF-sigurnog pružatelja sesije."
+}
