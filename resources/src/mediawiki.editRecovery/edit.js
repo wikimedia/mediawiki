@@ -15,6 +15,9 @@ const debounceTime = 5000;
 
 mw.hook( 'wikipage.editform' ).add( onLoadHandler );
 
+const windowManager = OO.ui.getWindowManager();
+windowManager.addWindows( [ new mw.widgets.AbandonEditDialog() ] );
+
 function onLoadHandler( $editForm ) {
 	// Monitor all text-entry inputs for changes/typing.
 	const inputsToMonitorSelector = 'textarea, select, input:not([type="hidden"], [type="submit"])';
@@ -45,8 +48,18 @@ function onLoadHandler( $editForm ) {
 	} );
 
 	// Set up cancel handler to delete data.
-	$editForm.find( '#mw-editform-cancel' ).on( 'click', function () {
-		storage.deleteData( pageName, section );
+	const cancelButton = OO.ui.infuse( $editForm.find( '#mw-editform-cancel' )[ 0 ] );
+	cancelButton.on( 'click', function () {
+		windowManager.openWindow( 'abandonedit' ).closed.then( function ( data ) {
+			if ( data && data.action === 'discard' ) {
+				storage.deleteData( pageName, section ).finally( function () {
+					// Release the beforeunload handler from mediawiki.action.edit.editWarning,
+					// per the documentation there
+					$( window ).off( 'beforeunload.editwarning' );
+					location.href = cancelButton.getHref();
+				} );
+			}
+		} );
 	} );
 }
 
