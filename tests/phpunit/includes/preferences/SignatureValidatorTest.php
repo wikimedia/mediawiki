@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Preferences\SignatureValidator;
 use Wikimedia\TestingAccessWrapper;
 
@@ -32,6 +33,7 @@ class SignatureValidatorTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
+		$this->overrideConfigValue( MainConfigNames::ParsoidSettings, [ 'linting' => true ] );
 		$this->validator = $this->getSignatureValidator();
 	}
 
@@ -100,6 +102,32 @@ class SignatureValidatorTest extends MediaWikiIntegrationTestCase {
 			'Link to subpage only' =>
 				[ '[[User:SignatureValidatorTest/blah|Signature]]', false ],
 		];
+	}
+
+	/**
+	 * @covers MediaWiki\Preferences\SignatureValidator::checkLintErrors()
+	 * @dataProvider provideCheckLintErrors
+	 */
+	public function testCheckLintErrors( $signature, $expected ) {
+		$errors = $this->validator->checkLintErrors( $signature );
+		$this->assertSame( $expected, $errors );
+	}
+
+	public static function provideCheckLintErrors() {
+			yield 'Perfect' => [ '<strong>Foo</strong>', [] ];
+			yield 'Unclosed tag' => [
+				'<strong>Foo',
+				[
+					[
+						'type' => 'missing-end-tag',
+						'dsr' => [ 0, 11, 8, 0 ],
+						'params' => [
+							'name' => 'strong',
+							'inTable' => false,
+						]
+					]
+				]
+			];
 	}
 
 	/**
