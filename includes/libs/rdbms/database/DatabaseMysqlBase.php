@@ -436,10 +436,16 @@ class DatabaseMysqlBase extends Database {
 	 * @return string
 	 */
 	public function getServerVersion() {
-		// Not using mysql_get_server_info() or similar for consistency: in the handshake,
 		// MariaDB 10 adds the prefix "5.5.5-", and only some newer client libraries strip
 		// it off (see RPL_VERSION_HACK in include/mysql_com.h).
-		return $this->selectField( '', 'VERSION()', '', __METHOD__ );
+		$version = $this->conn->server_info;
+		if (
+			str_starts_with( $version, '5.5.5-' ) &&
+			( str_contains( $version, 'MariaDB' ) || str_contains( $version, '-maria-' ) )
+		) {
+			$version = substr( $version, strlen( '5.5.5-' ) );
+		}
+		return $version;
 	}
 
 	/**
