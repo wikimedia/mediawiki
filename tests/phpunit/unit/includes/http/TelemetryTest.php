@@ -14,7 +14,7 @@ class TelemetryTest extends MediaWikiUnitTestCase {
 		$newId = 'new_id';
 		$sut = new Telemetry( [ 'UNIQUE_ID' => 'test' ], false );
 		$sut->overrideRequestId( $newId );
-		$this->assertEquals( $newId, $sut->getRequestId() );
+		$this->assertSame( $newId, $sut->getRequestId() );
 	}
 
 	public function testItReturnsOpenTelemetryProperties() {
@@ -23,8 +23,8 @@ class TelemetryTest extends MediaWikiUnitTestCase {
 			'HTTP_TRACEPARENT' => 'val2'
 		], true );
 
-		$this->assertEquals( 'val1', $sut->getTracestate() );
-		$this->assertEquals( 'val2', $sut->getTraceparent() );
+		$this->assertSame( 'val1', $sut->getTracestate() );
+		$this->assertSame( 'val2', $sut->getTraceparent() );
 	}
 
 	public function testOpenTelemetryPropertiesAreSkippedWhenAllowExternalReqIDIsSetToFalse() {
@@ -43,7 +43,7 @@ class TelemetryTest extends MediaWikiUnitTestCase {
 	public function testItHandlesRequestIdHeaders( $allowExternalReqId, $server, $expected ) {
 		$sut = new Telemetry( $server, $allowExternalReqId );
 
-		$this->assertEquals( $expected, $sut->getRequestId() );
+		$this->assertSame( $expected, $sut->getRequestId() );
 	}
 
 	public function testItGeneratesRequestIdWhenHeadersNotPresentAndExternalReqIdIsSet() {
