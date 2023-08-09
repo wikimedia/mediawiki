@@ -37,7 +37,8 @@
 			"Zabe",
 			"SaldırganSincap",
 			"ThisCarthing",
-			"Wnme"
+			"Wnme",
+			"Brettchenweber"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -306,7 +307,7 @@
 	"resettokens-watchlist-token": "Token für den Webfeed (Atom/RSS) der [[Special:Watchlist|Änderungen an Seiten auf ihrer Beobachtungsliste]]",
 	"savearticle": "Seite speichern",
 	"blankarticle": "<strong>Warnung:</strong> Die Seite, die Sie erstellen, ist leer.\nWenn Sie erneut auf „$1“ klicken, wird die Seite ohne Inhalt erstellt.",
-	"anoneditwarning": "<strong>Warnung:</strong> Sie sind nicht angemeldet. Ihre IP-Adresse wird öffentlich sichtbar, falls Sie Bearbeitungen durchführst. Sofern Sie sich <strong>[$1 anmelden]</strong> oder <strong>[$2 ein Benutzerkonto erstellen]</strong>, werden Ihre Bearbeitungen zusammen mit anderen Beiträgen Ihrem Benutzernamen zugeordnet.",
+	"anoneditwarning": "<strong>Warnung:</strong> Sie sind nicht angemeldet. Ihre IP-Adresse wird öffentlich sichtbar, falls Sie Bearbeitungen durchführen. Sofern Sie sich <strong>[$1 anmelden]</strong> oder <strong>[$2 ein Benutzerkonto erstellen]</strong>, werden Ihre Bearbeitungen zusammen mit anderen Beiträgen Ihrem Benutzernamen zugeordnet.",
 	"anonpreviewwarning": "<em>Sie sind nicht angemeldet. Beim Speichern wird Ihre IP-Adresse in der Versionsgeschichte aufgezeichnet.</em>",
 	"missingsummary": "<strong>Hinweis:</strong> Sie haben keine Zusammenfassung angegeben. Wenn Sie erneut auf „$1“ klicken, wird Ihre Änderung ohne Zusammenfassung übernommen.",
 	"selfredirect": "<strong>Warnung:</strong> Sie leiten auf diese Seite selbst weiter.\nSie haben vermutlich das falsche Weiterleitungsziel angegeben oder Sie bearbeiten die falsche Seite.\nWenn Sie erneut auf „$1“ klicken, wird die Weiterleitung dennoch erstellt.",

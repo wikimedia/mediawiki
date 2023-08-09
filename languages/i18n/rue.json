@@ -18,7 +18,8 @@
 			"아라",
 			"Gramo6",
 			"McDutchie",
-			"1233qwer1234qwer4"
+			"1233qwer1234qwer4",
+			"Gramo Džukić"
 		]
 	},
 	"tog-underline": "Підкреслёвати одказы:",
@@ -261,6 +262,8 @@
 	"hidetoc": "сховати",
 	"collapsible-collapse": "Згорнути",
 	"collapsible-expand": "Розгорнути",
+	"confirmable-yes": "Айно",
+	"confirmable-no": "Ньит",
 	"thisisdeleted": "Перегляднути ці обновити $1?",
 	"viewdeleted": "Зобразити $1?",
 	"restorelink": "{{PLURAL:$1|змазанов едітаціёв|$1 змазаны едітації|$1 змазаных едітацій}}",

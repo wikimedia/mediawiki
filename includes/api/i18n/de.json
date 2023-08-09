@@ -297,6 +297,7 @@
 	"apihelp-managetags-example-deactivate": "Deaktiviert eine Markierung namens <kbd>spam</kbd> mit der Begründung <kbd>No longer required</kbd> (nicht mehr benötigt).",
 	"apihelp-mergehistory-summary": "Führt Versionsgeschichten von Seiten zusammen.",
 	"apihelp-mergehistory-param-from": "Titel der Seite, von der aus der Verlauf zusammengeführt wird. Kann nicht zusammen mit <var>$1fromid</var> verwendet werden.",
+	"apihelp-mergehistory-param-fromid": "Seiten-ID der Seite, von der aus die Versionsgeschichte zusammengeführt wird. Kann nicht zusammen mit <var>$1from</var> verwendet werden.",
 	"apihelp-mergehistory-param-reason": "Grund für die Zusammenführung der Versionsgeschichten",
 	"apihelp-mergehistory-example-merge": "Fügt alle Versionen von <kbd>Oldpage</kbd> der Versionsgeschichte von <kbd>Newpage</kbd> hinzu.",
 	"apihelp-move-summary": "Eine Seite verschieben.",

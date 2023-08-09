@@ -1275,7 +1275,7 @@
 	"userrights-groupsmember": "Mitglied von:",
 	"userrights-groupsmember-auto": "Automatisch Mitglied von:",
 	"userrights-groupsmember-type": "$2",
-	"userrights-systemuser": "{{GENDER:$1|Dieser Benutzer|Diese Benutzerin}} ist ein System-Benutzer",
+	"userrights-systemuser": "{{GENDER:$1|Dieser Benutzer|Diese Benutzerin}} ist ein System-Benutzer.",
 	"userrights-groups-help": "Du kannst die Gruppenzugehörigkeit {{GENDER:$1|dieses Benutzers|dieser Benutzerin}} ändern:\n* Ein markiertes Kästchen bedeutet, dass {{GENDER:$1|der Benutzer|die Benutzerin}} Mitglied dieser Gruppe ist.\n* Ein nicht markiertes Kästchen bedeutet, dass {{GENDER:$1|der Benutzer|die Benutzerin}} nicht dieser Gruppe angehört.\n* Ein * bedeutet, dass du das Benutzerrecht nach Erteilung nicht wieder zurücknehmen kannst, oder umgekehrt.\n* Ein # bedeutet, dass du den Zeitpunkt des Ablaufs dieser Gruppenzugehörigkeit nur nach hinten verlegen kannst. Du kannst ihn nicht vorverlegen.",
 	"userrights-reason": "Grund:",
 	"userrights-no-interwiki": "Du hast nicht die erforderliche Berechtigung, um Benutzerrechte in anderen Wikis ändern zu können.",
