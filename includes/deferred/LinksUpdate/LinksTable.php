@@ -470,6 +470,7 @@ abstract class LinksTable {
 		$insertBatches = array_chunk( $this->rowsToInsert, $batchSize );
 		foreach ( $insertBatches as $insertBatch ) {
 			$db->newInsertQueryBuilder()
+				->options( $this->getInsertOptions() )
 				->insert( $table )
 				->rows( $insertBatch )
 				->caller( __METHOD__ )->execute();
