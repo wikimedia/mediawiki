@@ -12,6 +12,7 @@ use Psr\Log\NullLogger;
  * @group Database
  */
 class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {
+	protected $tablesUsed = [ 'page' ];
 
 	/**
 	 * @param LoggerInterface|null $logger

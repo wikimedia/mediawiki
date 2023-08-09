@@ -682,7 +682,9 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$services = $this->getServiceContainer();
 		$parserOutputAccess = $services->getParsoidOutputAccess();
 
-		$page = $this->getExistingTestPage();
+		$content = 'Test content for ' . __METHOD__;
+		$page = Title::makeTitle( NS_MAIN, 'TestGetParserOutputWithLanguageOverride' );
+		$this->editPage( $page, $content );
 
 		$status = $parserOutputAccess->getParserOutput( $page, $parserOptions );
 
@@ -690,7 +692,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 		// assert dummy content in parsoid output HTML
 		$html = $status->getValue()->getRawText();
-		$this->assertStringContainsString( 'UTContent', $html );
+		$this->assertStringContainsString( $content, $html );
 
 		if ( $parserOptions->getTargetLanguage() !== null ) {
 			$targetLanguage = $parserOptions->getTargetLanguage()->getCode();

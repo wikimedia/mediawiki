@@ -308,24 +308,34 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				' method should return true. Use @group Database or $this->tablesUsed.' );
 		}
 
-		$title = ( $title === null ) ? 'UTPage' : $title;
-		$title = is_string( $title ) ? Title::newFromText( $title ) : $title;
+		$caller = $this->getCallerName();
+		if ( !$title instanceof Title ) {
+			if ( $title === null ) {
+				static $counter;
+				$counter = $counter === null ? random_int( 10, 1000 ) : ++$counter;
+				$title = "Test page $counter $caller";
+			}
+			$title = Title::newFromText( $title );
+		}
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
 		if ( !$page->exists() ) {
 			$user = static::getTestSysop()->getUser();
-			$page->doUserEditContent(
+			$status = $page->doUserEditContent(
 				ContentHandler::makeContent(
-					'UTContent',
+					"Test content for $caller",
 					$title,
 					// Regardless of how the wiki is configure or what extensions are present,
 					// force this page to be a wikitext one.
 					CONTENT_MODEL_WIKITEXT
 				),
 				$user,
-				'UTPageSummary',
+				"Summary for $caller",
 				EDIT_NEW | EDIT_SUPPRESS_RC
 			);
+			if ( !$status->isGood() ) {
+				throw new RuntimeException( "Could not create test page: $status" );
+			}
 		}
 
 		return $page;
@@ -347,16 +357,31 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				' method should return true. Use @group Database or $this->tablesUsed.' );
 		}
 
-		$title = ( $title === null ) ? 'UTPage-' . rand( 0, 100000 ) : $title;
-		$title = is_string( $title ) ? Title::newFromText( $title ) : $title;
+		$caller = $this->getCallerName();
+		if ( !$title instanceof Title ) {
+			if ( $title === null ) {
+				$title = 'Test page ' . $caller . ' ' . wfRandomString();
+			}
+			$title = Title::newFromText( $title );
+		}
 		$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
 		$page = $wikiPageFactory->newFromTitle( $title );
 
 		if ( $page->exists() ) {
-			$this->deletePage( $page );
+			$this->deletePage( $page, "Deleting for $caller" );
 		}
 
 		return $page;
+	}
+
+	/**
+	 * Retuns the calling method, in a format suitable for page titles etc.
+	 *
+	 * @return string
+	 */
+	private function getCallerName(): string {
+		$classWithoutNamespace = ( new ReflectionClass( $this ) )->getShortName();
+		return $classWithoutNamespace . '-' . debug_backtrace()[2]['function'];
 	}
 
 	/**

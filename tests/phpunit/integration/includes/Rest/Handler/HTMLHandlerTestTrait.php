@@ -7,6 +7,7 @@ use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Edit\SimpleParsoidOutputStash;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
 use MediaWiki\Rest\RequestData;
+use WikiPage;
 
 /**
  * This trait is used in PageHTMLHandlerTest.php & RevisionHTMLHandlerTest.php
@@ -25,7 +26,7 @@ trait HTMLHandlerTestTrait {
 	}
 
 	/**
-	 * @param string $page
+	 * @param WikiPage $page
 	 * @param array $queryParams
 	 * @param array $config
 	 *
@@ -33,13 +34,13 @@ trait HTMLHandlerTestTrait {
 	 * @throws \Exception
 	 */
 	private function executePageHTMLRequest(
-		string $page,
+		WikiPage $page,
 		array $queryParams = [],
 		array $config = []
 	): array {
 		$handler = $this->newHandler();
 		$request = new RequestData( [
-			'pathParams' => [ 'title' => $page ],
+			'pathParams' => [ 'title' => $page->getTitle()->getPrefixedDBkey() ],
 			'queryParams' => $queryParams,
 		] );
 		$result = $this->executeHandler( $handler,

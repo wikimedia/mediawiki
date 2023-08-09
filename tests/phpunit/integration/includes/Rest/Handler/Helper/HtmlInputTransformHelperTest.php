@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Rest\Handler\Helper;
 use BufferingStatsdDataFactory;
 use Exception;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
+use LogicException;
 use MediaWiki\Edit\SelserContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
@@ -28,6 +29,7 @@ use NullStatsdDataFactory;
 use ParserOptions;
 use ParserOutput;
 use PHPUnit\Framework\MockObject\MockObject;
+use TextContent;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\PageBundle;
@@ -285,7 +287,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		yield 'should use selser, return original wikitext because the HTML didn\'t change' => [
 			$body,
 			$params,
-			[ 'UTContent' ], // Returns original wikitext, because HTML didn't change.
+			null, // Returns original wikitext, because HTML didn't change.
 		];
 
 		// Should fall back to non-selective serialization. //////////////////
@@ -674,6 +676,10 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @param array $body
+	 * @param array $params
+	 * @param string|string[]|null $expectedText Null means use the original content.
+	 * @param array $expectedHeaders
 	 * @dataProvider provideRequests()
 	 * @covers \MediaWiki\Rest\Handler\Helper\HtmlInputTransformHelper
 	 * @covers \MediaWiki\Parser\Parsoid\HtmlToContentTransform
@@ -681,10 +687,14 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 	public function testResponse( $body, $params, $expectedText, array $expectedHeaders = [] ) {
 		if ( !empty( $params['oldid'] ) ) {
 			// If an oldid is set, run the test with an actual existing revision ID
-			$page = $this->getExistingTestPage()->getTitle();
+			$originalContent = __METHOD__ . ' original content';
+			$page = $this->getNonexistingTestPage();
+			$this->editPage( $page, new WikitextContent( $originalContent ) );
+			$page = $page->getTitle();
 			$params['oldid'] = $page->getLatestRevID();
 		} else {
 			$page = PageIdentityValue::localIdentity( 7, NS_MAIN, $body['pageName'] ?? 'HtmlInputTransformHelperTest' );
+			$originalContent = '';
 		}
 
 		$stats = new BufferingStatsdDataFactory( '' );
@@ -704,6 +714,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		$body->rewind();
 		$text = $body->getContents();
 
+		$expectedText ??= $originalContent;
 		foreach ( (array)$expectedText as $exp ) {
 			$this->assertStringContainsString( $exp, $text );
 		}
@@ -761,7 +772,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 			$selserContext,
 			1, // will be replaced by the actual revid
 			$unchangedPB, // Expect selser, since HTML didn't change.
-			'UTContent', // Loaded from default test page revision. Selser should preserve it.
+			null, // Selser should preserve the original content.
 		];
 
 		// should use wikitext from fake revision ////////////////////
@@ -791,7 +802,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 	 * @param SelserContext|null $stashed
 	 * @param RevisionRecord|int|null $rev
 	 * @param ParsoidRenderID|PageBundle|ParserOutput|null $originalRendering
-	 * @param string|string[] $expectedText
+	 * @param string|string[]|null $expectedText Null means use the original content
 	 *
 	 * @throws HttpException
 	 * @throws \MWException
@@ -800,13 +811,22 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 	public function testSetOriginal( ?SelserContext $stashed, $rev, $originalRendering, $expectedText ) {
 		if ( is_int( $rev ) && $rev > 0 ) {
 			// If a revision ID is given, run the test with an actual existing revision ID
-			$page = $this->getExistingTestPage();
+			$originalContent = __METHOD__ . ' original content';
+			$page = $this->getNonexistingTestPage();
+			$this->editPage( $page, new WikitextContent( $originalContent ) );
 			$page = $page->getTitle();
 			$revId = $page->getLatestRevID() ?: 0;
+			$rev = $revId;
 		} elseif ( $rev instanceof RevisionRecord ) {
+			$originalContentObj = $rev->getContent( SlotRecord::MAIN );
+			if ( !$originalContentObj instanceof TextContent ) {
+				throw new LogicException( 'Not implemented' );
+			}
+			$originalContent = $originalContentObj->getText();
 			$page = $rev->getPage();
 			$revId = $rev->getId() ?: 0;
 		} else {
+			$originalContent = '';
 			$page = PageIdentityValue::localIdentity( 7, NS_MAIN, 'HtmlInputTransformHelperTest' );
 			$revId = 0;
 		}
@@ -838,6 +858,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		$body->rewind();
 		$text = $body->getContents();
 
+		$expectedText ??= $originalContent;
 		foreach ( (array)$expectedText as $exp ) {
 			$this->assertStringContainsString( $exp, $text );
 		}
