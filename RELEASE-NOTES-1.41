@@ -311,7 +311,10 @@ because of Phabricator reports.
   - ::getMessageFor()
   - ::getMessageKeysFor()
   - ::getConvRuleTitle()
-* ParserOutput::hideNewSection(), deprecated since 1.38, has been removed.
+* The following methods in the ParserOutput class, deprecated since 1.38, have
+  been removed:
+  - ::addWarning()
+  - ::hideNewSection()
 * Many LocalisationCache constants, properties and methods that have no known
   usage outside of the class have been made private without deprecation.
 * …
