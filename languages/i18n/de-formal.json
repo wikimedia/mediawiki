@@ -37,7 +37,8 @@
 			"Urhixidur",
 			"Vogone",
 			"Wnme",
-			"Zabe"
+			"Zabe",
+			"Brettchenweber"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -291,7 +292,7 @@
 	"resettokens-watchlist-token": "Token für den Webfeed (Atom/RSS) der [[Special:Watchlist|Änderungen an Seiten auf ihrer Beobachtungsliste]]",
 	"savearticle": "Seite speichern",
 	"blankarticle": "<strong>Warnung:</strong> Die Seite, die Sie erstellen, ist leer.\nWenn Sie erneut auf „$1“ klicken, wird die Seite ohne Inhalt erstellt.",
-	"anoneditwarning": "<strong>Warnung:</strong> Sie sind nicht angemeldet. Ihre IP-Adresse wird öffentlich sichtbar, falls Sie Bearbeitungen durchführst. Sofern Sie sich <strong>[$1 anmelden]</strong> oder <strong>[$2 ein Benutzerkonto erstellen]</strong>, werden Ihre Bearbeitungen zusammen mit anderen Beiträgen Ihrem Benutzernamen zugeordnet.",
+	"anoneditwarning": "<strong>Warnung:</strong> Sie sind nicht angemeldet. Ihre IP-Adresse wird öffentlich sichtbar, falls Sie Bearbeitungen durchführen. Sofern Sie sich <strong>[$1 anmelden]</strong> oder <strong>[$2 ein Benutzerkonto erstellen]</strong>, werden Ihre Bearbeitungen zusammen mit anderen Beiträgen Ihrem Benutzernamen zugeordnet.",
 	"autocreate-edit-warning": "<strong>Warnung:</strong> Sie sind nicht angemeldet. Ihre Eingabe wird einem <strong>automatisch generierten Namen</strong> zugeordnet, indem ein Cookie in Ihrem Browser gespeichert wird. Ihre IP-Adresse wird für vertrauenswürdige Benutzer sichtbar sein. Wenn Sie sich <strong>[$1 anmelden]</strong> oder <strong>[$2 ein Konto erstellen]</strong>, werden Ihre Bearbeitungen einem von Ihnen gewählten Namen zugeordnet; dies hat auch weitere Vorzüge.",
 	"anonpreviewwarning": "<em>Sie sind nicht angemeldet. Beim Veröffentlichen wird Ihre IP-Adresse in der Versionsgeschichte aufgezeichnet.</em>",
 	"autocreate-preview-warning": "<em>Sie sind nicht angemeldet. Ihr Beitrag wird einem automatisch generierten Namen zugeordnet und Ihre IP-Adresse ist für die Administratoren sichtbar.</em>",

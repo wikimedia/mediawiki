@@ -109,6 +109,7 @@
 	"config-db-prefix": "Prefix databázových tabulek (bez spojovníků):",
 	"config-db-prefix-help": "Pokud potřebujete sdílet jednu databázi mezi vícero wiki, případně mezi MediaWiki a další webovou aplikací, můžete přidat k názvu každé tabulky prefix, abyste se vyhnuli konfliktům.\nNepoužívejte mezery.\n\nToto pole se zpravidla ponechává prázdné.",
 	"config-mysql-old": "Je vyžadováno MySQL $1 nebo novější. Vy máte $2.",
+	"config-mariadb-old": "Je vyžadováno MariaDB $1 nebo novější. Vy máte $2.",
 	"config-db-port": "Databázový port:",
 	"config-db-schema": "Schéma pro MediaWiki (bez spojovníků):",
 	"config-db-schema-help": "Toto schéma zpravidla stačí.\nMěňte ho, jen pokud víte, že je to potřeba.",

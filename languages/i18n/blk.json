@@ -621,6 +621,7 @@
 	"editpage-notsupportedcontentformat-text": "ဟော်ꩻထွားရီးတာႏမော်ဒယ် $1 နဝ်ꩻ တစွဲးကမ်းခါꩻတဝ်း ဟော်ꩻထွားရီးတာႏပုင်ႏစံႏ $2 သွူ။",
 	"slot-name-main": "ဗဟိုႏ",
 	"content-model-wikitext": "ဝီခီလိတ်ယာႏ",
+	"content-model-text": "ဖျင်ယို လိတ်ယာႏ",
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
 	"content-model-json": "JSON",

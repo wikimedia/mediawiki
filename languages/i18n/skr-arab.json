@@ -1555,7 +1555,7 @@
 	"listgrouprights-group": "گروپ:",
 	"listgrouprights-rights": "حق",
 	"listgrouprights-helppage": "Help: گروپ حقوق",
-	"listgrouprights-members": "(رکناں دی لسٹ)",
+	"listgrouprights-members": "(رکناں دی تندیر)",
 	"listgrouprights-addgroup": "{{PLURAL:$2|گروپ}} شامل کرو: $1",
 	"listgrouprights-removegroup": "{{PLURAL:$2|گروپ}} ہٹاؤ: $1",
 	"listgrouprights-addgroup-all": "سارے گروپ شامل کرو",

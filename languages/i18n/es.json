@@ -238,7 +238,8 @@
 			"James",
 			"The Pro Gamer",
 			"No se",
-			"María"
+			"María",
+			"Nelthal"
 		]
 	},
 	"tog-underline": "Subrayar enlaces:",
@@ -1492,7 +1493,7 @@
 	"right-editcontentmodel": "Editar el modelo de contenido de una página",
 	"right-editinterface": "Editar la interfaz de usuario",
 	"right-editusercss": "Editar las páginas de CSS de otros usuarios",
-	"right-edituserjson": "Editar archivos JSON de otros usuarios",
+	"right-edituserjson": "Editar las páginas de JSON de otros usuarios",
 	"right-edituserjs": "Editar las páginas de JavaScript de otros usuarios",
 	"right-editsitecss": "Editar CSS global del sitio",
 	"right-editsitejson": "Editar JSON global del sitio",
@@ -3223,9 +3224,9 @@
 	"anonusers": "{{PLURAL:$2|el usuario anónimo|los usuarios anónimos}} $1 de {{SITENAME}}",
 	"creditspage": "Créditos de la página",
 	"nocredits": "No hay información de créditos en esta página.",
-	"spamprotectiontitle": "Lista negra de spam",
-	"spamprotectiontext": "El texto que intentas publicar contiene algún enlace externo prohibido por la lista negra de spam, por lo que ha sido bloqueado.",
-	"spamprotectionmatch": "El siguiente texto es el que activó nuestra lista negra de spam: $1",
+	"spamprotectiontitle": "Filtro de protección de spam",
+	"spamprotectiontext": "El texto que intentas publicar contiene algún enlace externo prohibido por el filtro de spam, por lo que ha sido bloqueado.",
+	"spamprotectionmatch": "El siguiente texto es el que activó nuestro filtro de spam: $1",
 	"spambot_username": "Limpieza de spam de MediaWiki",
 	"spam_reverting": "Revirtiendo a la última versión que no contenga enlaces a $1",
 	"spam_blanking": "Todas las revisiones contienen enlaces a $1, blanqueando",
