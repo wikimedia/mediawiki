@@ -345,6 +345,7 @@ return [
 			),
 			$services->getPermissionManager(),
 			$services->getUserFactory(),
+			$services->getUserIdentityUtils(),
 			LoggerFactory::getInstance( 'BlockManager' ),
 			$services->getHookContainer()
 		);

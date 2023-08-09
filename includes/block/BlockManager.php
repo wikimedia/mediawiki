@@ -29,6 +29,7 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Request\WebResponse;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityUtils;
 use Message;
 use MWCryptHash;
 use Psr\Log\LoggerInterface;
@@ -49,6 +50,9 @@ class BlockManager {
 
 	/** @var UserFactory */
 	private $userFactory;
+
+	/* UserIdentityUtils */
+	private $userIdentityUtils;
 
 	/** @var ServiceOptions */
 	private $options;
@@ -78,6 +82,7 @@ class BlockManager {
 	 * @param ServiceOptions $options
 	 * @param PermissionManager $permissionManager
 	 * @param UserFactory $userFactory
+	 * @param UserIdentityUtils $userIdentityUtils
 	 * @param LoggerInterface $logger
 	 * @param HookContainer $hookContainer
 	 */
@@ -85,6 +90,7 @@ class BlockManager {
 		ServiceOptions $options,
 		PermissionManager $permissionManager,
 		UserFactory $userFactory,
+		UserIdentityUtils $userIdentityUtils,
 		LoggerInterface $logger,
 		HookContainer $hookContainer
 	) {
@@ -92,6 +98,7 @@ class BlockManager {
 		$this->options = $options;
 		$this->permissionManager = $permissionManager;
 		$this->userFactory = $userFactory;
+		$this->userIdentityUtils = $userIdentityUtils;
 		$this->logger = $logger;
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
@@ -153,13 +160,14 @@ class BlockManager {
 			// Case #1: checking the global user, including IP blocks
 			$ip = $request->getIP();
 			$isAnon = !$user->isRegistered();
+			$applySoftBlocks = $this->applySoftBlockToUser( $user );
 
 			$xff = $request->getHeader( 'X-Forwarded-For' );
 
 			// TODO: remove dependency on DatabaseBlock (T221075)
 			$blocks = array_merge(
 				DatabaseBlock::newListFromTarget( $user, $ip, $fromPrimary ),
-				$this->getSystemIpBlocks( $ip, $isAnon ),
+				$this->getSystemIpBlocks( $ip, $applySoftBlocks ),
 				$this->getXffBlocks( $ip, $xff, $isAnon, $fromPrimary ),
 				$this->getCookieBlock( $user, $request )
 			);
@@ -179,6 +187,17 @@ class BlockManager {
 		$this->hookRunner->onGetUserBlock( clone $legacyUser, $ip, $block );
 
 		return $block;
+	}
+
+	/**
+	 * For soft blocks, i.e. blocks that don't block logged-in users,
+	 * temporary users are treated as anon users, and are blocked.
+	 *
+	 * @param UserIdentity $user
+	 * @return bool
+	 */
+	private function applySoftBlockToUser( UserIdentity $user ): bool {
+		return !$this->userIdentityUtils->isNamed( $user );
 	}
 
 	/**
@@ -242,10 +261,10 @@ class BlockManager {
 	 * Get any system blocks against the IP address.
 	 *
 	 * @param string $ip
-	 * @param bool $isAnon Whether the user accessing the wiki from the IP address is logged out
+	 * @param bool $applySoftBlocks
 	 * @return AbstractBlock[]
 	 */
-	private function getSystemIpBlocks( string $ip, bool $isAnon ): array {
+	private function getSystemIpBlocks( string $ip, bool $applySoftBlocks ): array {
 		$blocks = [];
 
 		// Proxy blocking
@@ -257,7 +276,7 @@ class BlockManager {
 					'address' => $ip,
 					'systemBlock' => 'proxy',
 				] );
-			} elseif ( $isAnon && $this->isDnsBlacklisted( $ip ) ) {
+			} elseif ( $applySoftBlocks && $this->isDnsBlacklisted( $ip ) ) {
 				$blocks[] = new SystemBlock( [
 					'reason' => new Message( 'sorbsreason' ),
 					'address' => $ip,
@@ -268,7 +287,7 @@ class BlockManager {
 		}
 
 		// Soft blocking
-		if ( $isAnon && IPUtils::isInRanges( $ip, $this->options->get( MainConfigNames::SoftBlockRanges ) ) ) {
+		if ( $applySoftBlocks && IPUtils::isInRanges( $ip, $this->options->get( MainConfigNames::SoftBlockRanges ) ) ) {
 			$blocks[] = new SystemBlock( [
 				'address' => $ip,
 				'reason' => new Message( 'softblockrangesreason', [ $ip ] ),
