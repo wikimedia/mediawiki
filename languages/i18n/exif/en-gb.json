@@ -17,6 +17,7 @@
 	"exif-meteringmode": "Metering mode",
 	"exif-licenseurl": "URL for copyright licence",
 	"exif-organisationinimage": "Organisation depicted",
+	"exif-photometricinterpretation-32803": "Colour Filter Array",
 	"exif-exposureprogram-2": "Normal programme",
 	"exif-exposureprogram-5": "Creative programme (biased toward depth of field)",
 	"exif-exposureprogram-6": "Action programme (biased toward fast shutter speed)",
