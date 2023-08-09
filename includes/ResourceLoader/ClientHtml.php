@@ -262,42 +262,13 @@ class ClientHtml {
 		// item is an <html> class following the pattern "<key>-clientpref-<value>" (T339268)
 		if ( $this->options['clientPrefEnabled'] ) {
 			$cookiePrefix = $this->options['clientPrefCookiePrefix'];
-			$script = <<<JS
-// Like startup.js, this script tag is intended to be ES3-syntax compatible and degrade gracefully.
-// Use of ES5 (forEach) or ES6 methods is safe after the cookie check.
-( function () {
-	var className = {$jsClassJson};
-	var cookie = document.cookie.match( /(?:^|; ){$cookiePrefix}mwclientpreferences=([^;]+)/ );
-	if ( cookie ) {
-		// The comma is escaped by mw.cookie.set
-		cookie[ 1 ].split( '%2C' ).forEach( function ( pref ) {
-			// To avoid misuse and allow for quick emergency shut-off, only change classes that
-			// exist in the HTML. For new features, the default class must be set a couple of weeks
-			// before the toggle is deployed, to give time for the CDN/HTML cache to roll over.
-			//
-			// Regex explanation:
-			// 1. `\w+`, match the "-value" suffix, this is equivalent to [a-zA-Z0-9_].
-			//     This is stripped from the desired class to create a match for a current class.
-			// 2. `[^\w-]`, any non-alphanumeric characters. This should never match but is
-			//     stripped to ensure regex safety by keeping it simple (no need to escape).
-			// 3. Match an existing class name as follows:
-			//    * (^| ) = start of string or space
-			//    * -clientpref- = enforce present of this literal string
-			//    * ( |$) = end of string or space
-			//
-			// Replacement examples:
-			// * vector-feature-foo-clientpref-2 -> vector-feature-foo-clientpref-4
-			// * mw-foo-clientpref-enabled       -> mw-foo-clientpref-disabled
-			// * mw-display-clientpref-dark      -> mw-display-clientpref-light
-			className = className.replace(
-				new RegExp( '(^| )' + pref.replace( /-clientpref-\w+$|[^\w-]+/g, '' ) + '-clientpref-\\\\w+( |$)' ),
-				'$1' + pref + '$2'
+			$script = strtr(
+				file_get_contents( MW_INSTALL_PATH . '/resources/src/startup/clientprefs.js' ),
+				[
+					'$VARS.jsClass' => $jsClassJson,
+					'__COOKIE_PREFIX__' => $cookiePrefix,
+				]
 			);
-		} );
-	}
-	document.documentElement.className = className;
-}() );
-JS;
 		} else {
 			$script = "document.documentElement.className = {$jsClassJson};";
 		}

@@ -49,6 +49,18 @@ return [
 			'tests/qunit/resources/startup/mw.loader.test.js',
 			'tests/qunit/resources/startup/mw.requestIdleCallback.test.js',
 			'tests/qunit/resources/startup/jscompat.test.js',
+			[
+				'name' => 'tests/qunit/resources/startup/clientprefs.js',
+				'callback' => static function () {
+					return 'mw.clientprefs = function ( document, $VARS ) { '
+						. strtr(
+							file_get_contents( MW_INSTALL_PATH . '/resources/src/startup/clientprefs.js' ),
+							[ '__COOKIE_PREFIX__' => '' ]
+						)
+						. '};';
+				}
+			],
+			'tests/qunit/resources/startup/clientprefs.test.js',
 			'tests/qunit/resources/jquery.color.test.js',
 			'tests/qunit/resources/jquery.colorUtil.test.js',
 			'tests/qunit/resources/jquery.highlightText.test.js',
