@@ -1940,7 +1940,8 @@ abstract class ApiBase extends ContextSource {
 				$settings = [];
 			}
 
-			$msg = $settings[self::PARAM_HELP_MSG] ?? $this->msg( "apihelp-$path-param-$param" );
+			$msg = $settings[self::PARAM_HELP_MSG]
+				?? $this->msg( [ "apihelp-$path-param-$param", 'api-help-param-no-description' ] );
 			$msg = self::makeMessage( $msg, $this->getContext(),
 				[ $prefix, $param, $name, $path ] );
 			if ( !$msg ) {
