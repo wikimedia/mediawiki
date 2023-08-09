@@ -508,13 +508,7 @@ class MediaWiki {
 
 						$article = $rarticle;
 						// NOTE: This also clears any action cache
-						//
-						// Temporarily silence "Unexpected clearActionName after getActionName"
-						// warnings until FlaggedRevs is fixed to not rely on computed
-						// RequestContext::getActionName (T323254).
-						//
-						// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-						@$this->context->setTitle( $target );
+						$this->context->setTitle( $target );
 						$this->context->setWikiPage( $article->getPage() );
 					}
 				}
