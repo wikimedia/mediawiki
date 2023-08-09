@@ -177,9 +177,12 @@ class SkinFactory {
 	/**
 	 * Return options provided for a given skin name
 	 *
+	 * For documentation about keys you can expect to exist,
+	 * and their default values, refer to the Skin constructor.
+	 *
 	 * @since 1.38
 	 * @param string $name Name of the skin you want options from
-	 * @return array Skin options passed into constructor
+	 * @return array
 	 */
 	public function getSkinOptions( string $name ): array {
 		$skin = $this->makeSkin( $name );

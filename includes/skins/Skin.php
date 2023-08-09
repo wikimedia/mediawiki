@@ -60,7 +60,7 @@ abstract class Skin extends ContextSource {
 	/**
 	 * @var array link options used in Skin::makeLink. Can be set by skin option `link`.
 	 */
-	private $defaultLinkOptions = [];
+	private $defaultLinkOptions;
 
 	/**
 	 * @var string|null
@@ -256,7 +256,8 @@ abstract class Skin extends ContextSource {
 	 * @param string|array|null $options Options for the skin can be an array (since 1.35).
 	 *  When a string is passed, it's the skinname.
 	 *  When an array is passed:
-	 *  - `name`: Internal skin name, generally in lowercase to comply with conventions
+	 *
+	 *  - `name`: Required. Internal skin name, generally in lowercase to comply with conventions
 	 *     for interface message keys and CSS class names which embed this value.
 	 *
 	 *  - `styles`: ResourceLoader style modules to load on all pages. Default: `[]`
@@ -290,10 +291,31 @@ abstract class Skin extends ContextSource {
 	 *  - `responsive`: Whether the skin supports responsive behaviour and wants a viewport meta
 	 *     tag to be added to the HTML head. Note, users can disable this feature via a user
 	 *     preference.
-	 *  - `link`: An array of link options that will be used in Skin::makeLink calls.
-	 *  - `toc`: Whether a table of contents is included in the main article content
-	 *     area.  It defaults to `true`, but if your skins wants to place a table of
-	 *     contents elsewhere (for example, in a sidebar), set `toc` to `false`.
+	 *
+	 *     Default: `false`
+	 *
+	 *  - `link`: An array of link option overriddes. See Skin::makeLink for the available options.
+	 *
+	 *     Default: `[]`
+	 *
+	 *  - `tempUserBanner`: Whether to display a banner on page views by in temporary user sessions.
+	 *     This will prepend SkinComponentTempUserBanner to the `<body>` above everything else.
+	 *     See also MediaWiki\MainConfigSchema::AutoCreateTempUser and User::isTemp.
+	 *
+	 *     Default: `false`
+	 *
+	 *  - `menus`: Which menus the skin supports, to allow features like SpecialWatchlist
+	 *     and SpecialContribute to render their own navigation in the skins that don't
+	 *     support certain menus.
+	 *
+	 *     Default: `['namespaces', 'views', 'actions', 'variants']`
+	 *
+	 *     Opt-in menus:
+	 *     - `associated-page`
+	 *     - `notification`
+	 *     - `user-interface-preferences`
+	 *     - `user-page`
+	 *     - `user-menu`
 	 */
 	public function __construct( $options = null ) {
 		if ( is_string( $options ) ) {
@@ -305,13 +327,11 @@ abstract class Skin extends ContextSource {
 				throw new SkinException( 'Skin name must be specified' );
 			}
 
-			if ( isset( $options['link'] ) ) {
-				$this->defaultLinkOptions = $options['link'];
-			}
 			// Defaults are set in Skin::getOptions()
 			$this->options = $options;
 			$this->skinname = $name;
 		}
+		$this->defaultLinkOptions = $this->getOptions()['link'];
 		$this->componentRegistry = new SkinComponentRegistry(
 			new SkinComponentRegistryContext( $this )
 		);
@@ -334,7 +354,7 @@ abstract class Skin extends ContextSource {
 	 * @return bool
 	 */
 	public function isResponsive() {
-		$isSkinResponsiveCapable = $this->options['responsive'] ?? false;
+		$isSkinResponsiveCapable = $this->getOptions()['responsive'];
 		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
 
 		return $isSkinResponsiveCapable &&
@@ -405,7 +425,7 @@ abstract class Skin extends ContextSource {
 			// Unlike other keys in $modules, this is an associative array
 			// where each key is its own group pointing to a list of modules
 			'styles' => [
-				'skin' => $this->options['styles'] ?? [],
+				'skin' => $this->getOptions()['styles'],
 				'core' => [],
 				'content' => [],
 				'syndicate' => [],
@@ -420,7 +440,7 @@ abstract class Skin extends ContextSource {
 			// modules relating to search functionality
 			'search' => [],
 			// Skins can register their own scripts
-			'skin' => $this->options['scripts'] ?? [],
+			'skin' => $this->getOptions()['scripts'],
 			// modules relating to functionality relating to watching an article
 			'watch' => [],
 			// modules which relate to the current users preferences
@@ -2354,22 +2374,19 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Returns skin options
-	 * Recommended to use SkinFactory::getSkinOptions instead
+	 * Get current skin's options
 	 *
-	 * @internal
-	 * @return array Skin options passed into constructor
+	 * For documentation about supported options, refer to the Skin constructor.
+	 *
+	 * @internal Please call SkinFactory::getSkinOptions instead
+	 * @return array
 	 */
 	final public function getOptions(): array {
 		return $this->options + [
-			// Whether the table of contents will be inserted on page views
-			// See ParserOutput::getText() for the implementation logic
+			'styles' => [],
+			'scripts' => [],
 			'toc' => true,
-			// An array of classes to be added to the skin body tag.
 			'bodyClasses' => [],
-			// For SkinTemplate based skins, whether the skin is in charge of generating
-			// the <html>, <head> and <body> tags. For SkinMustache this is always true and
-			// ignored.
 			'bodyOnly' => false,
 			'clientPrefEnabled' => false,
 			'responsive' => false,
@@ -2395,7 +2412,7 @@ abstract class Skin extends ContextSource {
 	 * Does the skin support the named menu?
 	 *
 	 * @since 1.39
-	 * @param string $menu See Skin::getOptions for menu names.
+	 * @param string $menu See Skin::__construct for menu names.
 	 * @return bool
 	 */
 	public function supportsMenu( string $menu ): bool {
