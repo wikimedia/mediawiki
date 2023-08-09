@@ -991,7 +991,7 @@ class UserGroupManager implements IDBAccessObject {
 		}
 
 		$ticket = $this->loadBalancerFactory->getEmptyTransactionTicket( __METHOD__ );
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY, [], $this->wikiId );
 
 		$lockKey = "{$dbw->getDomainID()}:UserGroupManager:purge"; // per-wiki
 		$scopedLock = $dbw->getScopedLockAndFlush( $lockKey, __METHOD__, 0 );
