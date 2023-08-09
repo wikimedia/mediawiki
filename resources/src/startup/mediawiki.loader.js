@@ -1251,18 +1251,40 @@
 	 *  form of calls to mw.loader#implement().
 	 * @param {Function} cb Callback in case of failure
 	 * @param {Error} cb.err
+	 * @param {number} [offset] Integer offset into implementations to start at
 	 */
-	function asyncEval( implementations, cb ) {
+	function asyncEval( implementations, cb, offset ) {
 		if ( !implementations.length ) {
 			return;
 		}
-		mw.requestIdleCallback( function () {
+		offset = offset || 0;
+		mw.requestIdleCallback( function ( deadline ) {
+			asyncEvalTask( deadline, implementations, cb, offset );
+		} );
+	}
+
+	/**
+	 * Idle callback for asyncEval
+	 *
+	 * @private
+	 * @param {IdleDeadline} deadline
+	 * @param {string[]} implementations
+	 * @param {Function} cb
+	 * @param {Error} cb.err
+	 * @param {number} offset
+	 */
+	function asyncEvalTask( deadline, implementations, cb, offset ) {
+		for ( var i = offset; i < implementations.length; i++ ) {
+			if ( deadline.timeRemaining() <= 0 ) {
+				asyncEval( implementations, cb, i );
+				return;
+			}
 			try {
-				fnEval( implementations.join( ';' ) );
+				fnEval( implementations[ i ] );
 			} catch ( err ) {
 				cb( err );
 			}
-		} );
+		}
 	}
 
 	/**
