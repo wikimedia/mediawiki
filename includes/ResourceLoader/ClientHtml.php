@@ -60,8 +60,8 @@ class ClientHtml {
 	 * @param array $options [optional] Array of options
 	 *  - 'target': Parameter for modules=startup request, see StartUpModule.
 	 *  - 'safemode': Parameter for modules=startup request, see StartUpModule.
-	 *  - 'clientPrefEnabled': See $wgResourceLoaderClientPreferences.
-	 *  - 'clientPrefCookiePrefix': See $wgResourceLoaderClientPreferences.
+	 *  - 'clientPrefEnabled': See Skin options.
+	 *  - 'clientPrefCookiePrefix': See $wgCookiePrefix.
 	 */
 	public function __construct( Context $context, array $options = [] ) {
 		$this->context = $context;

@@ -257,8 +257,35 @@ abstract class Skin extends ContextSource {
 	 *  When an array is passed:
 	 *  - `name`: Internal skin name, generally in lowercase to comply with conventions
 	 *     for interface message keys and CSS class names which embed this value.
-	 *  - `scripts`: An array of ResourceLoader script modules.
-	 *  - `styles`: An array of ResourceLoader style modules to load on all pages.
+	 *
+	 *  - `styles`: ResourceLoader style modules to load on all pages. Default: `[]`
+	 *
+	 *  - `scripts`: ResourceLoader script modules to load on all pages. Default: `[]`
+	 *
+	 *  - `toc`: Whether a table of contents is included in the main article content
+	 *     area. If your skin has place a table of contents elsewhere (for example, the sidebar),
+	 *     set this to `false`.
+	 *
+	 *     See ParserOutput::getText() for the implementation logic.
+	 *
+	 *     Default: `true`
+	 *
+	 *  - `bodyClasses`: An array of extra class names to add to the HTML `<body>` element.
+	 *     Default: `[]`
+	 *
+	 *  - `bodyOnly`: Whether the skin is takes control of generating the `<html>`, `<head>` and
+	 *    `<body>` elements. This is for SkinTemplate subclasses only. For SkinMustache, this is
+	 *     always true and ignored.
+	 *
+	 *     Default: `false`
+	 *
+	 *  - `clientPrefEnabled`: Enable support for mw.user.clientPrefs.
+	 *     This instructs OutputPage and ResourceLoader\ClientHtml to include an inline script
+	 *     in web responses for unregistered users to switch HTML classes as needed.
+	 *
+	 *     Since: MW 1.41
+	 *     Default: `false`
+	 *
 	 *  - `responsive`: Whether the skin supports responsive behaviour and wants a viewport meta
 	 *     tag to be added to the HTML head. Note, users can disable this feature via a user
 	 *     preference.
@@ -2343,8 +2370,9 @@ abstract class Skin extends ContextSource {
 			// the <html>, <head> and <body> tags. For SkinMustache this is always true and
 			// ignored.
 			'bodyOnly' => false,
-			// Does the skin support the temporary user banner?
-			// If it does the temporary user banner is displayed at the top of the page.
+			'clientPrefEnabled' => false,
+			'responsive' => false,
+			'link' => [],
 			'tempUserBanner' => false,
 			'menus' => [
 				// Legacy keys that are enabled by default for backwards compatibility

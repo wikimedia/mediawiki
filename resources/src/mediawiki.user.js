@@ -24,6 +24,7 @@
 	/**
 	 * Save the feature value to the client preferences cookie.
 	 *
+	 * @private
 	 * @param {string} feature
 	 * @param {string} value
 	 */
@@ -45,9 +46,11 @@
 	}
 
 	/**
-	 * Checks if the feature name is composed of valid characters.
+	 * Check if the feature name is composed of valid characters.
+	 *
 	 * A valid feature name may contain letters, numbers, and "-" characters.
 	 *
+	 * @private
 	 * @param {string} value
 	 * @return {boolean}
 	 */
@@ -56,8 +59,9 @@
 	}
 
 	/**
-	 * Checks if the value is composed of valid characters.
+	 * Check if the value is composed of valid characters.
 	 *
+	 * @private
 	 * @param {string} value
 	 * @return {boolean}
 	 */
@@ -311,7 +315,27 @@
 		},
 
 		/**
-		 * Client preferences store's management
+		 * Manage client preferences
+		 *
+		 * For skins that enable the `clientPrefEnabled` option (see Skin class in PHP),
+		 * this feature allows you to store preferences in the browser session that will
+		 * switch one or more the classes on the HTML document.
+		 *
+		 * This is only supported for unregistered users. For registered users, skins
+		 * and extensions must use user preferences (e.g. hidden or API-only options)
+		 * and swap class names server-side through the Skin interface.
+		 *
+		 * This feature is limited to page views by unregistered users. For logged-in requests,
+		 * store preferences in the database instead, via UserOptionsManager or mw.Api#saveOption
+		 * (may be hidden or API-only to exclude from Special:Preferences), and then include the
+		 * desired classes directly in Skin::getHtmlElementAttributes.
+		 *
+		 * Classes toggled by this feature must be named as `<feature>-clientpref-<value>`,
+		 * where `value` contains only alphanumerical characters (a-zA-Z0-9), and `feature`
+		 * can also include hyphens.
+		 *
+		 * @class mw.user.clientPrefs
+		 * @singleton
 		 */
 		clientPrefs: {
 			/**

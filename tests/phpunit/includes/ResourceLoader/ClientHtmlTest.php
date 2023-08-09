@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\ResourceLoader;
 
 use HashConfig;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\ResourceLoader\ClientHtml;
 use MediaWiki\ResourceLoader\Context;
@@ -347,9 +346,7 @@ class ClientHtmlTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	private static function makeContext( $extraQuery = [] ) {
-		$conf = new HashConfig( [
-			MainConfigNames::ResourceLoaderClientPreferences => false
-		] );
+		$conf = new HashConfig( [] );
 		return new Context(
 			new ResourceLoader( $conf, null, null, [
 				'loadScript' => '/w/load.php',
