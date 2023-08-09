@@ -605,7 +605,7 @@ class SiteConfiguration {
 
 			$data = trim( $result->getStdout() );
 			if ( $result->getExitCode() || $data === '' ) {
-				throw new RuntimeException( "Failed to run getConfiguration.php: {$result->getStdout()}" );
+				throw new RuntimeException( "Failed to run getConfiguration.php: {$result->getStderr()}" );
 			}
 			$res = unserialize( $data );
 			if ( !is_array( $res ) ) {
