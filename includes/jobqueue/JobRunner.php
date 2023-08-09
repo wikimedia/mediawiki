@@ -23,6 +23,7 @@
 
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Http\Telemetry;
 use MediaWiki\MainConfigNames;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\DBConnectionError;
@@ -315,16 +316,25 @@ class JobRunner {
 	 * @since 1.35
 	 */
 	public function executeJob( RunnableJob $job ) {
-		$oldRequestId = WebRequest::getRequestId();
-		// Temporarily inherit the original ID of the web request that spawned this job
-		WebRequest::overrideRequestId( $job->getRequestId() );
+		$telemetry = Telemetry::getInstance();
+		$oldRequestId = $telemetry->getRequestId();
+
+		if ( $job->getRequestId() !== null ) {
+			// Temporarily inherit the original ID of the web request that spawned this job
+			$telemetry->overrideRequestId( $job->getRequestId() );
+		} else {
+			// TODO: do we need to regenerate if job doesn't have the request id?
+			// If JobRunner was called with X-Request-ID header, regeneration will generate the
+			// same value
+			$telemetry->regenerateRequestId();
+		}
 		// Use an appropriate timeout to balance lag avoidance and job progress
 		$oldTimeout = $this->lbFactory->setDefaultReplicationWaitTimeout( self::SYNC_TIMEOUT );
 		try {
 			return $this->doExecuteJob( $job );
 		} finally {
 			$this->lbFactory->setDefaultReplicationWaitTimeout( $oldTimeout );
-			WebRequest::overrideRequestId( $oldRequestId );
+			$telemetry->overrideRequestId( $oldRequestId );
 		}
 	}
 

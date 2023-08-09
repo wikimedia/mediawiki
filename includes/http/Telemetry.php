@@ -98,6 +98,15 @@ class Telemetry {
 	}
 
 	/**
+	 * Regenerate the request id by setting it to null, next call to `getRequestId`
+	 * will refetch the request id from header/UNIQUE_ID or regenerate it.
+	 * @return void
+	 */
+	public function regenerateRequestId() {
+		$this->reqId = null;
+	}
+
+	/**
 	 * Get the OpenTelemetry tracestate info
 	 * Returns null when not present or AllowExternalReqID is set to false
 	 *
