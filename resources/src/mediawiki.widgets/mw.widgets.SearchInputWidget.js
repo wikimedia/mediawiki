@@ -146,6 +146,12 @@
 			promise,
 			self = this;
 
+		// While the name is, for historical reasons, 'session-start', this indicates
+		// a new backend request is being performed.
+		mw.track( 'mw.widgets.SearchInputWidget', {
+			action: 'session-start'
+		} );
+
 		// reuse the searchSuggest function from mw.searchSuggest
 		promise = mw.searchSuggest.request( api, this.getQueryValue(), function () {}, this.limit, this.getNamespace() );
 
