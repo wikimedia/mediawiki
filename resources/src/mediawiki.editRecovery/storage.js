@@ -37,7 +37,7 @@ function upgradeDatabase( versionChangeEvent ) {
  */
 function loadData( pageName, section ) {
 	return new Promise( function ( resolve, reject ) {
-		if ( db === null ) {
+		if ( !db ) {
 			reject( 'DB not opened' );
 		}
 		const transaction = db.transaction( objectStoreName, 'readonly' );
@@ -57,7 +57,7 @@ function loadData( pageName, section ) {
  */
 function saveData( pageName, section, pageData ) {
 	return new Promise( function ( resolve, reject ) {
-		if ( db === null ) {
+		if ( !db ) {
 			reject( 'DB not opened' );
 		}
 
@@ -94,7 +94,7 @@ function saveData( pageName, section, pageData ) {
 
 function deleteData( pageName ) {
 	return new Promise( function ( resolve, reject ) {
-		if ( db === null ) {
+		if ( !db ) {
 			reject( 'DB not opened' );
 		}
 
@@ -123,7 +123,9 @@ function deleteData( pageName ) {
 }
 
 function closeDatabase() {
-	db.close();
+	if ( db ) {
+		db.close();
+	}
 }
 
 module.exports = {
