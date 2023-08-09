@@ -88,7 +88,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			return $this->testPageTitle;
 		}
 
-		$this->testPageTitle = Title::newFromText( 'UTPage-' . __CLASS__ );
+		$this->testPageTitle = Title::newFromText( 'TestPage-' . __CLASS__ );
 		return $this->testPageTitle;
 	}
 
@@ -102,21 +102,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$title = $pageTitle === null ? $this->getTestPageTitle() : Title::newFromText( $pageTitle );
-		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
-
-		if ( !$page->exists() ) {
-			// Make sure we don't write to the live db.
-			$this->ensureMockDatabaseConnection( wfGetDB( DB_PRIMARY ) );
-
-			$user = static::getTestSysop()->getUser();
-
-			$page->doUserEditContent(
-				new WikitextContent( 'UTContent-' . __CLASS__ ),
-				$user,
-				'UTPageSummary-' . __CLASS__,
-				EDIT_NEW | EDIT_SUPPRESS_RC
-			);
-		}
+		$page = $this->getExistingTestPage( $title );
 
 		if ( $pageTitle === null ) {
 			$this->testPage = $page;
@@ -633,19 +619,19 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideNewNullRevision() {
 		yield [
-			Title::newFromText( 'UTPage_notAutoCreated' ),
+			Title::newFromText( 'NewNullRevision_notAutoCreated' ),
 			[ 'content' => [ SlotRecord::MAIN => new WikitextContent( 'Flubber1' ) ] ],
 			CommentStoreComment::newUnsavedComment( __METHOD__ . ' comment1' ),
 			true,
 		];
 		yield [
-			Title::newFromText( 'UTPage_notAutoCreated' ),
+			Title::newFromText( 'NewNullRevision_notAutoCreated' ),
 			[ 'content' => [ SlotRecord::MAIN => new WikitextContent( 'Flubber2' ) ] ],
 			CommentStoreComment::newUnsavedComment( __METHOD__ . ' comment2', [ 'a' => 1 ] ),
 			false,
 		];
 		yield [
-			Title::newFromText( 'UTPage_notAutoCreated' ),
+			Title::newFromText( 'NewNullRevision_notAutoCreated' ),
 			[
 				'content' => [
 					SlotRecord::MAIN => new WikitextContent( 'Chicken' ),

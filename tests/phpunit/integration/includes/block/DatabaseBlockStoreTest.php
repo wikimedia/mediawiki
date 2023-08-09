@@ -423,7 +423,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function addDBDataOnce() {
 		$this->editPage(
-			'UTPage', // Added in addCoreDBData
+			'DatabaseBlockStoreTest test page',
 			'an edit',
 			'a summary',
 			NS_MAIN,
@@ -440,7 +440,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	public function addDBData() {
 		$this->sysop = $this->getTestSysop()->getUser();
 
-		// Get a comment ID. One was added in addCoreDBData.
+		// Get a comment ID. One was added in addDBDataOnce.
 		$commentId = $this->db->select(
 			'comment',
 			'comment_id'

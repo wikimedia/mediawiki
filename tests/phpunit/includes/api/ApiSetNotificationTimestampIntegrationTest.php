@@ -14,14 +14,16 @@ class ApiSetNotificationTimestampIntegrationTest extends ApiTestCase {
 
 		$this->tablesUsed = array_merge(
 			$this->tablesUsed,
-			[ 'watchlist', 'watchlist_expiry' ]
+			[ 'page', 'watchlist', 'watchlist_expiry' ]
 		);
 	}
 
 	public function testStuff() {
 		$user = $this->getTestUser()->getUser();
-		$pageWatched = $this->getExistingTestPage( 'UTPage' );
-		$pageNotWatched = $this->getExistingTestPage( 'UTPageNotWatched' );
+		$watchedPageTitle = 'PageWatched';
+		$pageWatched = $this->getExistingTestPage( $watchedPageTitle );
+		$notWatchedPageTitle = 'PageNotWatched';
+		$pageNotWatched = $this->getExistingTestPage( $notWatchedPageTitle );
 
 		$watchlistManager = $this->getServiceContainer()->getWatchlistManager();
 		$watchlistManager->addWatch( $user, $pageWatched );
@@ -30,26 +32,32 @@ class ApiSetNotificationTimestampIntegrationTest extends ApiTestCase {
 			[
 				'action' => 'setnotificationtimestamp',
 				'timestamp' => '20160101020202',
-				'titles' => 'UTPage|UTPageNotWatched',
+				'titles' => "$watchedPageTitle|$notWatchedPageTitle",
 			],
 			null,
 			$user
 		);
 
-		$this->assertEquals(
+		$this->assertTrue( $result[0]['batchcomplete'] );
+		$this->assertArrayEquals(
 			[
-				'batchcomplete' => true,
-				'setnotificationtimestamp' => [
-					[ 'ns' => NS_MAIN, 'title' => 'UTPage', 'notificationtimestamp' => '2016-01-01T02:02:02Z' ],
-					[ 'ns' => NS_MAIN, 'title' => 'UTPageNotWatched', 'notwatched' => true ]
+				[
+					'ns' => NS_MAIN,
+					'title' => $watchedPageTitle,
+					'notificationtimestamp' => '2016-01-01T02:02:02Z'
+				],
+				[
+					'ns' => NS_MAIN,
+					'title' => $notWatchedPageTitle,
+					'notwatched' => true
 				],
 			],
-			$result[0]
+			$result[0]['setnotificationtimestamp']
 		);
 
 		$watchedItemStore = $this->getServiceContainer()->getWatchedItemStore();
 		$this->assertEquals(
-			[ [ 'UTPage' => '20160101020202', 'UTPageNotWatched' => false, ] ],
+			[ [ $watchedPageTitle => '20160101020202', $notWatchedPageTitle => false, ] ],
 			$watchedItemStore->getNotificationTimestampsBatch(
 				$user, [ $pageWatched->getTitle(), $pageNotWatched->getTitle() ] )
 		);

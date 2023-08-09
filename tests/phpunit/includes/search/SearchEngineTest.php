@@ -403,8 +403,8 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			if ( $i % 2 == 0 ) {
 				$this->editPage(
 					$title,
-					new WikitextContent( 'UTContent' ),
-					'UTPageSummary',
+					new WikitextContent( 'TestFiltersMissing content' ),
+					'TestFiltersMissing summary',
 					NS_MAIN,
 					$user
 				);

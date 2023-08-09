@@ -96,10 +96,12 @@ class ApiPageSetTest extends ApiTestCase {
 	}
 
 	public function testRedirectMergePolicyRedirectLoop() {
-		$this->editPage( 'UTPageRedirectOne', '#REDIRECT [[UTPageRedirectTwo]]' );
-		$this->editPage( 'UTPageRedirectTwo', '#REDIRECT [[UTPageRedirectOne]]' );
+		$redirectOneTitle = 'ApiPageSetTestRedirectOne';
+		$redirectTwoTitle = 'ApiPageSetTestRedirectTwo';
+		$this->editPage( $redirectOneTitle, "#REDIRECT [[$redirectTwoTitle]]" );
+		$this->editPage( $redirectTwoTitle, "#REDIRECT [[$redirectOneTitle]]" );
 		[ $target, $pageSet ] = $this->createPageSetWithRedirect(
-			'#REDIRECT [[UTPageRedirectOne]]'
+			"#REDIRECT [[$redirectOneTitle]]"
 		);
 		$pageSet->setRedirectMergePolicy( static function ( $cur, $new ) {
 			throw new \RuntimeException( 'unreachable, no merge when target is redirect loop' );
@@ -113,7 +115,7 @@ class ApiPageSetTest extends ApiTestCase {
 		$this->assertEqualsCanonicalizing(
 			[
 				'UTRedirectSourceA', 'UTRedirectSourceB', 'UTRedirectTarget',
-				'UTPageRedirectOne', 'UTPageRedirectTwo',
+				$redirectOneTitle, $redirectTwoTitle,
 			],
 			array_map( static function ( $x ) {
 				return $x->getPrefixedText();

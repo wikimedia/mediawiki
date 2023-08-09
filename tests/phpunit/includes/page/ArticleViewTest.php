@@ -747,8 +747,8 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 				// Force this page to be wikitext
 				CONTENT_MODEL_WIKITEXT
 			),
-			static::getTestSysop()->getUser(),
-			'UTPageSummary',
+			$this->getTestSysop()->getUser(),
+			'TestUseParsoid Summary',
 			EDIT_SUPPRESS_RC
 		);
 		$article->view();

@@ -10,12 +10,14 @@
 class ApiPurgeTest extends ApiTestCase {
 
 	public function testPurgePage() {
-		$this->getExistingTestPage( 'UTPage' );
-		$this->getNonexistingTestPage( 'UTPage-NotFound' );
+		$existingPageTitle = 'TestPurgePageExists';
+		$this->getExistingTestPage( $existingPageTitle );
+		$nonexistingPageTitle = 'TestPurgePageDoesNotExists';
+		$this->getNonexistingTestPage( $nonexistingPageTitle );
 
 		[ $data ] = $this->doApiRequest( [
 			'action' => 'purge',
-			'titles' => 'UTPage|UTPage-NotFound|%5D'
+			'titles' => "$existingPageTitle|$nonexistingPageTitle|%5D"
 		] );
 
 		$resultByTitle = [];
@@ -29,8 +31,8 @@ class ApiPurgeTest extends ApiTestCase {
 
 		$this->assertEquals(
 			[
-				'UTPage' => [ 'purged' => true, 'ns' => NS_MAIN ],
-				'UTPage-NotFound' => [ 'missing' => true, 'ns' => NS_MAIN ],
+				$existingPageTitle => [ 'purged' => true, 'ns' => NS_MAIN ],
+				$nonexistingPageTitle => [ 'missing' => true, 'ns' => NS_MAIN ],
 				'%5D' => [ 'invalid' => true ],
 			],
 			$resultByTitle,

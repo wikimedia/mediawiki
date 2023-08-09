@@ -1022,8 +1022,8 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideIsAlwaysKnown() {
 		return [
-			[ 'Some nonexistent page', false ],
-			[ 'UTPage', false ],
+			[ 'Some nonexistent page' . wfRandomString(), false ],
+			[ 'Some existent page', false, true ],
 			[ '#test', true ],
 			[ 'Special:BlankPage', true ],
 			[ 'Special:SomeNonexistentSpecialPage', false ],
@@ -1037,8 +1037,12 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideIsAlwaysKnown
 	 * @param string $page
 	 * @param bool $isKnown
+	 * @param bool $createIfNotExists
 	 */
-	public function testIsAlwaysKnown( $page, $isKnown ) {
+	public function testIsAlwaysKnown( $page, $isKnown, bool $createIfNotExists = false ) {
+		if ( $createIfNotExists ) {
+			$this->getExistingTestPage( $page );
+		}
 		$title = Title::newFromText( $page );
 		$this->assertEquals( $isKnown, $title->isAlwaysKnown() );
 	}
