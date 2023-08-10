@@ -376,11 +376,11 @@ class ParserOutputAccess {
 		int $options
 	): PoolCounterWork {
 		$useCache = $this->shouldUseCache( $page, $revision );
-		$primaryCache = $this->getPrimaryCache( $parserOptions );
 
 		switch ( $useCache ) {
 			case self::CACHE_PRIMARY:
 				$this->statsDataFactory->increment( 'ParserOutputAccess.PoolWork.Current' );
+				$primaryCache = $this->getPrimaryCache( $parserOptions );
 				$parserCacheMetadata = $primaryCache->getMetadata( $page );
 				$cacheKey = $primaryCache->makeParserOutputKey( $page, $parserOptions,
 					$parserCacheMetadata ? $parserCacheMetadata->getUsedOptions() : null
