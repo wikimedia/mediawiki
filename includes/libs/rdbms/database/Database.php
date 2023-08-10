@@ -1588,21 +1588,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function replace( $table, $uniqueKeys, $rows, $fname = __METHOD__ ) {
 		$identityKey = $this->platform->normalizeUpsertParams( $uniqueKeys, $rows );
-		if ( $rows ) {
-			$this->doReplace( $table, $identityKey, $rows, $fname );
+		if ( !$rows ) {
+			return;
 		}
-	}
-
-	/**
-	 * @param string $table
-	 * @param string[] $identityKey List of columns defining a unique key
-	 * @param array $rows Non-empty list of rows
-	 * @param string $fname
-	 * @see Database::replace()
-	 * @stable to override
-	 * @since 1.35
-	 */
-	protected function doReplace( $table, array $identityKey, array $rows, $fname ) {
 		$affectedRowCount = 0;
 		$insertId = null;
 		$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
@@ -1631,36 +1619,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function upsert( $table, array $rows, $uniqueKeys, array $set, $fname = __METHOD__ ) {
 		$identityKey = $this->platform->normalizeUpsertParams( $uniqueKeys, $rows );
-		if ( $rows ) {
-			$this->platform->assertValidUpsertSetArray( $set, $identityKey, $rows );
-			$this->doUpsert( $table, $rows, $identityKey, $set, $fname );
+		if ( !$rows ) {
+			return true;
 		}
+		$this->platform->assertValidUpsertSetArray( $set, $identityKey, $rows );
 
-		return true;
-	}
-
-	/**
-	 * Perform an UPSERT query
-	 *
-	 * @see Database::upsert()
-	 * @see Database::buildExcludedValue()
-	 *
-	 * @stable to override
-	 *
-	 * @param string $table Table name
-	 * @param array[] $rows Non-empty list of rows to insert
-	 * @param string[] $identityKey Columns of the (unique) identity key to UPSERT upon
-	 * @param string[] $set Non-empty map of (column name => SQL expression or literal)
-	 * @param string $fname
-	 * @since 1.35
-	 */
-	protected function doUpsert(
-		string $table,
-		array $rows,
-		array $identityKey,
-		array $set,
-		string $fname
-	) {
 		$encTable = $this->tableName( $table );
 		$sqlColumnAssignments = $this->makeList( $set, self::LIST_SET );
 		// Get any AUTO_INCREMENT/SERIAL column for this table so we can set insertId()
@@ -1732,6 +1695,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 		$this->lastEmulatedAffectedRows = $affectedRowCount;
 		$this->lastEmulatedInsertId = $insertId;
+		return true;
 	}
 
 	/**

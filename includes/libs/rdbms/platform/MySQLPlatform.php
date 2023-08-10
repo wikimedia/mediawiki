@@ -109,7 +109,7 @@ class MySQLPlatform extends SQLPlatform {
 	}
 
 	public function buildExcludedValue( $column ) {
-		/* @see DatabaseMysqlBase::doUpsert() */
+		/* @see DatabaseMysqlBase::upsert() */
 		// Within "INSERT INTO ON DUPLICATE KEY UPDATE" statements:
 		//   - MySQL>= 8.0.20 supports and prefers "VALUES ... AS".
 		//   - MariaDB >= 10.3.3 supports and prefers VALUE().

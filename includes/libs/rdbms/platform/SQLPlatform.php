@@ -1699,7 +1699,7 @@ class SQLPlatform implements ISQLPlatform {
 	}
 
 	public function buildExcludedValue( $column ) {
-		/* @see Database::doUpsert() */
+		/* @see Database::upsert() */
 		// This can be treated like a single value since __VALS is a single row table
 		return "(SELECT __$column FROM __VALS)";
 	}
