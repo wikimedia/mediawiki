@@ -780,22 +780,23 @@
 	}
 
 	/**
-	 * Evaluate in function scope.
+	 * Evaluate JS code using indirect eval().
 	 *
 	 * This is used by mw.loader.store. It is important that we protect the
 	 * integrity of mw.loader's private variables (from accidental clashes
 	 * or re-assignment), which means we can't use regular `eval()`.
 	 *
 	 * Optimization: This exists separately from globalEval(), because that
-	 * involves slow DOM overhead, and callers to fnEval() don't actually
-	 * require running in the global scope.
+	 * involves slow DOM overhead.
 	 *
 	 * @private
 	 * @param {string} code JavaScript code
 	 */
-	function fnEval( code ) {
-		// eslint-disable-next-line no-new-func
-		( new Function( code ) )();
+	function indirectEval( code ) {
+		// See http://perfectionkills.com/global-eval-what-are-the-options/
+		// for an explanation of this syntax.
+		// eslint-disable-next-line no-eval
+		( 1, eval )( code );
 	}
 
 	/**
@@ -1272,7 +1273,7 @@
 				return;
 			}
 			try {
-				fnEval( implementations[ i ] );
+				indirectEval( implementations[ i ] );
 			} catch ( err ) {
 				cb( err );
 			}
@@ -2010,19 +2011,50 @@
 				!descriptor.version ||
 				descriptor.group === $VARS.groupPrivate ||
 				descriptor.group === $VARS.groupUser ||
-				// Legacy descriptor (MediaWiki 1.41)
+				// Legacy descriptor, registered with mw.loader.implement
 				!descriptor.declarator
 			) {
 				// Decline to store
 				return;
 			}
-			var src = 'mw.loader.impl(\n' + String( descriptor.declarator ) + '\n);';
 
+			var script = String( descriptor.declarator );
 			// Modules whose serialised form exceeds 100 kB won't be stored (T66721).
-			if ( src.length > 1e5 ) {
+			if ( script.length > 1e5 ) {
 				return;
 			}
-			this.items[ key ] = src;
+
+			var srcParts = [
+				'mw.loader.impl(',
+				script,
+				');\n'
+			];
+			if ( $VARS.sourceMapLinks ) {
+				srcParts.push( '// Saved in localStorage at ', ( new Date() ).toISOString(), '\n' );
+				var sourceLoadScript = sources[ descriptor.source ];
+				var query = Object.create( $VARS.reqBase );
+				query.modules = module;
+				query.version = getCombinedVersion( [ module ] );
+				query = sortQuery( query );
+				srcParts.push(
+					'//# sourceURL=',
+					// Use absolute URL so that Firefox console stack trace links will work
+					( new URL( sourceLoadScript, location ) ).href,
+					'?',
+					makeQueryString( query ),
+					'\n'
+				);
+
+				query.sourcemap = '1';
+				query = sortQuery( query );
+				srcParts.push(
+					'//# sourceMappingURL=',
+					sourceLoadScript,
+					'?',
+					makeQueryString( query )
+				);
+			}
+			this.items[ key ] = srcParts.join( '' );
 		},
 
 		/**
