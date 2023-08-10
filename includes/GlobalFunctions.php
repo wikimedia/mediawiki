@@ -543,7 +543,7 @@ function wfGetServerUrl( $proto ) {
  * @return string URL assembled from its component parts
  */
 function wfAssembleUrl( $urlParts ) {
-	return wfGetUrlUtils()->assemble( (array)$urlParts );
+	return UrlUtils::assemble( (array)$urlParts );
 }
 
 /**
@@ -551,14 +551,13 @@ function wfAssembleUrl( $urlParts ) {
  * '/a/./b/../c/' becomes '/a/c/'.  For details on the algorithm, please see
  * RFC3986 section 5.2.4.
  *
- * @since 1.19
- *
  * @deprecated since 1.39, use UrlUtils::removeDotSegments()
+ * @since 1.19
  * @param string $urlPath URL path, potentially containing dot-segments
  * @return string URL path with all dot-segments removed
  */
 function wfRemoveDotSegments( $urlPath ) {
-	return wfGetUrlUtils()->removeDotSegments( (string)$urlPath );
+	return UrlUtils::removeDotSegments( (string)$urlPath );
 }
 
 /**
