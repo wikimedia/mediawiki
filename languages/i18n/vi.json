@@ -64,7 +64,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Amire80",
-			"Flyplanevn27"
+			"Flyplanevn27",
+			"I am Vietnam"
 		]
 	},
 	"tog-underline": "Gạch chân liên kết:",
@@ -1433,9 +1434,9 @@
 	"action-delete": "xóa trang này",
 	"action-delete-redirect": "ghi đè các đổi hướng phiên bản đơn lẻ",
 	"action-deleterevision": "xóa hoặc phục hồi phiên bản cụ thể của trang",
-	"action-deletelogentry": "xóa mục nhật trình",
-	"action-deletedhistory": "xem các phiên bản đã bị xóa của trang",
-	"action-deletedtext": "xem văn bản của phiên bản đã xóa",
+	"action-deletelogentry": "xóa hoặc phục hồi mục nhật trình cụ thể",
+	"action-deletedhistory": "xem siêu dữ liệu của mục lịch sử đã xoá",
+	"action-deletedtext": "xem văn bản đã xóa hoặc thay đổi giữa các phiên bản đã xóa",
 	"action-browsearchive": "tìm kiếm trang đã bị xóa",
 	"action-undelete": "phục hồi trang",
 	"action-suppressrevision": "xem và phục hồi các phiên bản đã ẩn",
