@@ -1042,7 +1042,7 @@ class InfoAction extends FormlessAction {
 	 * @return string
 	 */
 	protected function getPageTitle() {
-		return $this->msg( 'pageinfo-title', $this->getTitle()->getPrefixedText() )->text();
+		return $this->msg( 'pageinfo-title' )->plaintextParams( $this->getTitle()->getPrefixedText() );
 	}
 
 	/**

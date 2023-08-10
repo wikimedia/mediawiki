@@ -21,6 +21,7 @@
 
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Language\RawMessage;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\Authority;
@@ -394,13 +395,20 @@ abstract class Action implements MessageLocalizer {
 	protected function setHeaders() {
 		$out = $this->getOutput();
 		$out->setRobotPolicy( 'noindex,nofollow' );
-		$out->setPageTitle( $this->getPageTitle() );
+		$title = $this->getPageTitle();
+		if ( is_string( $title ) ) {
+			// T343849: deprecated
+			$title = ( new RawMessage( '$1' ) )->rawParams( $title );
+		}
+		$out->setPageTitleMsg( $title );
 		$out->setSubtitle( $this->getDescription() );
 		$out->setArticleRelated( true );
 	}
 
 	/**
 	 * Returns the name that goes in the `<h1>` page title.
+	 *
+	 * Since 1.41, returning a string from this method has been deprecated.
 	 *
 	 * @stable to override
 	 * @return string|Message

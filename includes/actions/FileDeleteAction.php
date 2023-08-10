@@ -66,7 +66,7 @@ class FileDeleteAction extends DeleteAction {
 
 	protected function getPageTitle() {
 		$title = $this->getTitle();
-		return $this->msg( 'filedelete', $title->getText() );
+		return $this->msg( 'filedelete' )->plaintextParams( $title->getText() );
 	}
 
 	protected function tempDelete() {

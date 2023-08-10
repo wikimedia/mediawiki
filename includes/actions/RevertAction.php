@@ -192,7 +192,7 @@ class RevertAction extends FormAction {
 	}
 
 	protected function getPageTitle() {
-		return $this->msg( 'filerevert', $this->getTitle()->getText() )->text();
+		return $this->msg( 'filerevert' )->plaintextParams( $this->getTitle()->getText() );
 	}
 
 	protected function getDescription() {
