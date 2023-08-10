@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Title\Title;
 
 /**
@@ -103,25 +102,6 @@ class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideCasesForGetLinks
-	 * @covers BacklinkCache::getNumLinks
-	 */
-	public function testGetLinks(
-		array $expectedTitles, string $title, string $table, $startId = false, $endId = false, $max = INF
-	) {
-		$this->hideDeprecated( 'BacklinkCache::getLinks' );
-		$startId = $startId ? Title::newFromText( $startId )->getId() : false;
-		$endId = $endId ? Title::newFromText( $endId )->getId() : false;
-		$blcFactory = $this->getServiceContainer()->getBacklinkCacheFactory();
-		$backlinkCache = $blcFactory->getBacklinkCache( Title::newFromText( $title ) );
-		$titlesArray = iterator_to_array( $backlinkCache->getLinks( $table, $startId, $endId, $max ) );
-		$this->assertSame( count( $expectedTitles ), count( $titlesArray ) );
-		for ( $i = 0; $i < count( $titlesArray ); $i++ ) {
-			$this->assertEquals( $expectedTitles[$i], $titlesArray[$i]->getDbKey() );
-		}
-	}
-
-	/**
-	 * @dataProvider provideCasesForGetLinks
 	 * @covers BacklinkCache::getLinkPages
 	 */
 	public function testGetLinkPages(
@@ -164,41 +144,6 @@ class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
 			[ 56892, 56893 ],
 			[ 56894, false ]
 		], $partition );
-	}
-
-	/**
-	 * @covers BacklinkCache::getCascadeProtectedLinks
-	 */
-	public function testGetCascadeProtectedLinks() {
-		$this->hideDeprecated( 'BacklinkCache::getCascadeProtectedLinks' );
-		$blcFactory = $this->getServiceContainer()->getBacklinkCacheFactory();
-		$backlinkCache = $blcFactory->getBacklinkCache( Title::makeTitle( NS_TEMPLATE, 'BacklinkCacheTestA' ) );
-		$iterator = $backlinkCache->getCascadeProtectedLinks();
-		$array = iterator_to_array( $iterator );
-		$this->assertCount( 1, $array );
-		$this->assertTrue( self::$backlinkCacheTest['title']->isSamePageAs( $array[0] ) );
-	}
-
-	/**
-	 * @covers BacklinkCache::getCascadeProtectedLinkPages
-	 */
-	public function testGetCascadeProtectedLinkPages() {
-		$blcFactory = $this->getServiceContainer()->getBacklinkCacheFactory();
-		$backlinkCache = $blcFactory->getBacklinkCache( Title::makeTitle( NS_TEMPLATE, 'BacklinkCacheTestA' ) );
-		$iterator = $backlinkCache->getCascadeProtectedLinkPages();
-		$array = iterator_to_array( $iterator );
-		$this->assertCount( 1, $array );
-		$this->assertTrue( self::$backlinkCacheTest['title']->isSamePageAs( $array[0] ) );
-	}
-
-	/**
-	 * @covers BacklinkCache::get
-	 */
-	public function testGet() {
-		$this->hideDeprecated( 'BacklinkCache::get' );
-		$page = PageReferenceValue::localReference( NS_CATEGORY, "kittens" );
-		$cache = BacklinkCache::get( $page );
-		$this->assertTrue( $cache->getPage()->isSamePageAs( $page ) );
 	}
 
 }

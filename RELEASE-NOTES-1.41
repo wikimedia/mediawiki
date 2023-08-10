@@ -271,6 +271,8 @@ because of Phabricator reports.
   uses outside of core.
 * ConfigRepository::getValueOf() has been removed without deprecation. This
   method was introduced and never used for a long time now.
+* BacklinkCache::get(), ::getLinks(), ::getCascadeProtectedLinks() which
+  emitted deprecation warnings has no usage left. It has been removed.
 * The following constants and methods in the Language class, hard deprecated
   since 1.40, have been removed:
   - ::ALL

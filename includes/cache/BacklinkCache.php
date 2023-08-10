@@ -34,10 +34,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Title\Title;
-use MediaWiki\Title\TitleArray;
-use MediaWiki\Title\TitleArrayFromResult;
 use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -116,23 +113,6 @@ class BacklinkCache {
 	}
 
 	/**
-	 * Create a new BacklinkCache or reuse any existing one.
-	 * Currently, only one cache instance can exist; callers that
-	 * need multiple backlink cache objects should keep them in scope.
-	 *
-	 * @deprecated since 1.37 Use BacklinkCacheFactory::getBacklinkCache() instead. Hard deprecated in 1.40.
-	 *
-	 * @param PageReference $page Page to get a backlink cache for
-	 * @return BacklinkCache
-	 */
-	public static function get( PageReference $page ): self {
-		wfDeprecated( __METHOD__, '1.37' );
-		$backlinkCacheFactory = MediaWikiServices::getInstance()->getBacklinkCacheFactory();
-
-		return $backlinkCacheFactory->getBacklinkCache( $page );
-	}
-
-	/**
 	 * @since 1.37
 	 * @return PageReference
 	 */
@@ -165,21 +145,6 @@ class BacklinkCache {
 			yield PageIdentityValue::localIdentity(
 				$row->page_id, $row->page_namespace, $row->page_title );
 		}
-	}
-
-	/**
-	 * Get the backlinks for a given table. Cached in process memory only.
-	 *
-	 * @deprecated in 1.37, use getLinkPages(). Hard deprecated in 1.40.
-	 * @param string $table
-	 * @param int|bool $startId
-	 * @param int|bool $endId
-	 * @param int|float $max Integer, or INF for no max
-	 * @return TitleArrayFromResult
-	 */
-	public function getLinks( $table, $startId = false, $endId = false, $max = INF ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return TitleArray::newFromResult( $this->queryLinks( $table, $startId, $endId, $max ) );
 	}
 
 	/**
@@ -527,19 +492,6 @@ class BacklinkCache {
 			yield PageIdentityValue::localIdentity(
 				$row->page_id, $row->page_namespace, $row->page_title );
 		}
-	}
-
-	/**
-	 * Get a Title iterator for cascade-protected template/file use backlinks
-	 *
-	 * @deprecated since 1.37, use getCascadeProtectedLinkPages(). Hard deprecated in 1.40.
-	 * @return TitleArray
-	 * @since 1.25
-	 */
-	public function getCascadeProtectedLinks() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return TitleArray::newFromResult(
-			new FakeResultWrapper( $this->getCascadeProtectedLinksInternal() ) );
 	}
 
 	/**
