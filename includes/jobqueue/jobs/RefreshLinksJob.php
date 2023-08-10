@@ -292,6 +292,23 @@ class RefreshLinksJob extends Job {
 	}
 
 	/**
+	 * @see DerivedPageDataUpdater::shouldGenerateHTMLOnEdit
+	 * @return bool true if at least one of slots require rendering HTML on edit, false otherwise.
+	 *              This is needed for example in populating ParserCache.
+	 */
+	private function shouldGenerateHTMLOnEdit( RevisionRecord $revision ): bool {
+		$services = MediaWikiServices::getInstance();
+		foreach ( $revision->getSlots()->getSlotRoles() as $role ) {
+			$slot = $revision->getSlots()->getSlot( $role );
+			$contentHandler = $services->getContentHandlerFactory()->getContentHandler( $slot->getModel() );
+			if ( $contentHandler->generateHTMLOnEdit() ) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Get the parser output if the page is unchanged from what was loaded in $page
 	 *
 	 * @param RevisionRenderer $renderer
@@ -326,7 +343,10 @@ class RefreshLinksJob extends Job {
 		);
 
 		$parseTimestamp = wfTimestampNow(); // timestamp that parsing started
-		$output = $renderedRevision->getRevisionParserOutput( [ 'generate-html' => false ] );
+		$output = $renderedRevision->getRevisionParserOutput( [
+			// To avoid duplicate parses, this must match DerivedPageDataUpdater::shouldGenerateHTMLOnEdit() (T301309)
+			'generate-html' => $this->shouldGenerateHTMLOnEdit( $revision )
+		] );
 		$output->setCacheTime( $parseTimestamp ); // notify LinksUpdate::doUpdate()
 
 		return $output;
