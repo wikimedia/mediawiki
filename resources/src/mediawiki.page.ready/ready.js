@@ -45,7 +45,7 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 			}
 		} );
 	}
-	if ( $content[ 0 ].isConnected === false ) {
+	if ( $content[ 0 ] && $content[ 0 ].isConnected === false ) {
 		mw.log.warn( 'wikipage.content hook should not be fired on unattached content' );
 	}
 
