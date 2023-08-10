@@ -188,7 +188,7 @@ class RollbackAction extends FormAction {
 		}
 
 		if ( $rollbackResult->hasMessage( 'alreadyrolled' ) || $rollbackResult->hasMessage( 'cantrollback' ) ) {
-			$this->getOutput()->setPageTitle( $this->msg( 'rollbackfailed' ) );
+			$this->getOutput()->setPageTitleMsg( $this->msg( 'rollbackfailed' ) );
 			$errArray = $rollbackResult->getErrors()[0];
 			$this->getOutput()->addWikiMsgArray( $errArray['message'], $errArray['params'] );
 
@@ -225,7 +225,7 @@ class RollbackAction extends FormAction {
 		$current = $data['current-revision-record'];
 		$target = $data['target-revision-record'];
 		$newId = $data['newid'];
-		$this->getOutput()->setPageTitle( $this->msg( 'actioncomplete' ) );
+		$this->getOutput()->setPageTitleMsg( $this->msg( 'actioncomplete' ) );
 		$this->getOutput()->setRobotPolicy( 'noindex,nofollow' );
 
 		$old = Linker::revUserTools( $current );

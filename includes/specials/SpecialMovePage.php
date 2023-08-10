@@ -246,7 +246,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		$this->getSkin()->setRelevantTitle( $this->oldTitle );
 
 		$out = $this->getOutput();
-		$out->setPageTitle( $this->msg( 'move-page', $this->oldTitle->getPrefixedText() ) );
+		$out->setPageTitleMsg( $this->msg( 'move-page' )->plaintextParams( $this->oldTitle->getPrefixedText() ) );
 		$out->addModuleStyles( [
 			'mediawiki.special',
 			'mediawiki.interface.helpers.styles'
@@ -790,7 +790,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		}
 
 		$out = $this->getOutput();
-		$out->setPageTitle( $this->msg( 'pagemovedsub' ) );
+		$out->setPageTitleMsg( $this->msg( 'pagemovedsub' ) );
 
 		$linkRenderer = $this->getLinkRenderer();
 		$oldLink = $linkRenderer->makeLink(

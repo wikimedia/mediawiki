@@ -145,7 +145,7 @@ class ApiHelp extends ApiBase {
 			'mediawiki.hlist',
 			'mediawiki.apipretty',
 		] );
-		$out->setPageTitle( $context->msg( 'api-help-title' ) );
+		$out->setPageTitleMsg( $context->msg( 'api-help-title' ) );
 
 		$services = MediaWikiServices::getInstance();
 		$cache = $services->getMainWANObjectCache();

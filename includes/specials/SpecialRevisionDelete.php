@@ -691,7 +691,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	protected function success() {
 		// Messages: revdelete-success, logdelete-success
 		$out = $this->getOutput();
-		$out->setPageTitle( $this->msg( 'actioncomplete' ) );
+		$out->setPageTitleMsg( $this->msg( 'actioncomplete' ) );
 		$out->addHTML(
 			Html::successBox(
 				$out->msg( $this->typeLabels['success'] )->parse()
@@ -709,7 +709,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	protected function failure( $status ) {
 		// Messages: revdelete-failure, logdelete-failure
 		$out = $this->getOutput();
-		$out->setPageTitle( $this->msg( 'actionfailed' ) );
+		$out->setPageTitleMsg( $this->msg( 'actionfailed' ) );
 		$out->addHTML(
 			Html::errorBox(
 				$out->parseAsContent(

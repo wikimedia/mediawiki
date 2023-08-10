@@ -86,7 +86,7 @@ class SpecialTags extends SpecialPage {
 
 	private function showTagList() {
 		$out = $this->getOutput();
-		$out->setPageTitle( $this->msg( 'tags-title' ) );
+		$out->setPageTitleMsg( $this->msg( 'tags-title' ) );
 		$out->wrapWikiMsg( "<div class='mw-tags-intro'>\n$1\n</div>", 'tags-intro' );
 
 		$authority = $this->getAuthority();
@@ -344,7 +344,7 @@ class SpecialTags extends SpecialPage {
 		}
 
 		$out = $this->getOutput();
-		$out->setPageTitle( $this->msg( 'tags-delete-title' ) );
+		$out->setPageTitleMsg( $this->msg( 'tags-delete-title' ) );
 		$out->addBacklinkSubtitle( $this->getPageTitle() );
 
 		// is the tag actually able to be deleted?
@@ -405,7 +405,7 @@ class SpecialTags extends SpecialPage {
 
 		$out = $this->getOutput();
 		// tags-activate-title, tags-deactivate-title
-		$out->setPageTitle( $this->msg( "tags-$actionStr-title" ) );
+		$out->setPageTitleMsg( $this->msg( "tags-$actionStr-title" ) );
 		$out->addBacklinkSubtitle( $this->getPageTitle() );
 
 		// is it possible to do this?

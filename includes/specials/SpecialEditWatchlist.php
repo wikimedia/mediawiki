@@ -168,7 +168,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				$out->redirect( $title->getLocalURL() );
 				break;
 			case self::EDIT_RAW:
-				$out->setPageTitle( $this->msg( 'watchlistedit-raw-title' ) );
+				$out->setPageTitleMsg( $this->msg( 'watchlistedit-raw-title' ) );
 				$form = $this->getRawForm();
 				if ( $form->show() ) {
 					$out->addHTML( $this->successMessage );
@@ -176,7 +176,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				}
 				break;
 			case self::EDIT_CLEAR:
-				$out->setPageTitle( $this->msg( 'watchlistedit-clear-title' ) );
+				$out->setPageTitleMsg( $this->msg( 'watchlistedit-clear-title' ) );
 				$form = $this->getClearForm();
 				if ( $form->show() ) {
 					$out->addHTML( $this->successMessage );
@@ -239,7 +239,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 */
 	protected function executeViewEditWatchlist() {
 		$out = $this->getOutput();
-		$out->setPageTitle( $this->msg( 'watchlistedit-normal-title' ) );
+		$out->setPageTitleMsg( $this->msg( 'watchlistedit-normal-title' ) );
 
 		$form = $this->getNormalForm();
 		$form->prepareForm();

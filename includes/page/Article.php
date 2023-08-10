@@ -935,7 +935,7 @@ class Article implements Page {
 				// Do nothing here.
 				// The $rev will later be used to create standard diff elements however.
 			} else {
-				$context->getOutput()->setPageTitle( $context->msg( 'errorpagetitle' ) );
+				$context->getOutput()->setPageTitleMsg( $context->msg( 'errorpagetitle' ) );
 				$msg = $context->msg( 'difference-missing-revision' )
 					->params( $oldid )
 					->numParams( 1 )
@@ -1581,7 +1581,7 @@ class Article implements Page {
 	 */
 	private function showViewError( string $errortext ) {
 		$outputPage = $this->getContext()->getOutput();
-		$outputPage->setPageTitle( $this->getContext()->msg( 'errorpagetitle' ) );
+		$outputPage->setPageTitleMsg( $this->getContext()->msg( 'errorpagetitle' ) );
 		$outputPage->disableClientCache();
 		$outputPage->setRobotPolicy( 'noindex,nofollow' );
 		$outputPage->clearHTML();

@@ -1004,8 +1004,9 @@ class EditPage implements IEditObject {
 		$this->getHookRunner()->onEditPage__showReadOnlyForm_initial( $this, $out );
 
 		$out->setRobotPolicy( 'noindex,nofollow' );
-		$out->setPageTitle( $this->context->msg(
-			'viewsource-title',
+		$out->setPageTitleMsg( $this->context->msg(
+			'viewsource-title'
+		)->plaintextParams(
 			$this->getContextTitle()->getPrefixedText()
 		) );
 		$out->addBacklinkSubtitle( $this->getContextTitle() );
@@ -2794,10 +2795,13 @@ class EditPage implements IEditObject {
 
 		# Use the title defined by DISPLAYTITLE magic word when present
 		# NOTE: getDisplayTitle() returns HTML while getPrefixedText() returns plain text.
-		#       setPageTitle() treats the input as wikitext, which should be safe in either case.
+		#       Escape ::getPrefixedText() so that we have HTML in all cases,
+		#       and pass as a "raw" parameter to ::setPageTitleMsg().
 		$displayTitle = isset( $this->mParserOutput ) ? $this->mParserOutput->getDisplayTitle() : false;
 		if ( $displayTitle === false ) {
-			$displayTitle = $contextTitle->getPrefixedText();
+			$displayTitle = htmlspecialchars(
+				$contextTitle->getPrefixedText(), ENT_QUOTES, 'UTF-8', false
+			);
 		} else {
 			$out->setDisplayTitle( $displayTitle );
 		}
@@ -2806,7 +2810,7 @@ class EditPage implements IEditObject {
 		// preview of the display title.
 		$displayTitle = Html::rawElement( 'span', [ 'id' => 'firstHeadingTitle' ], $displayTitle );
 
-		$out->setPageTitle( $this->context->msg( $msg, $displayTitle ) );
+		$out->setPageTitleMsg( $this->context->msg( $msg )->rawParams( $displayTitle ) );
 
 		$config = $this->context->getConfig();
 

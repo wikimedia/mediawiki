@@ -293,8 +293,9 @@ class ProtectionForm {
 		if ( $this->mApplicableTypes === [] ) {
 			// No restriction types available for the current title
 			// this might happen if an extension alters the available types
-			$out->setPageTitle( $this->mContext->msg(
-				'protect-norestrictiontypes-title',
+			$out->setPageTitleMsg( $this->mContext->msg(
+				'protect-norestrictiontypes-title'
+			)->plaintextParams(
 				$this->mTitle->getPrefixedText()
 			) );
 			$out->addWikiTextAsInterface(
@@ -326,16 +327,15 @@ class ProtectionForm {
 		# Show an appropriate message if the user isn't allowed or able to change
 		# the protection settings at this time
 		if ( $this->disabled ) {
-			$out->setPageTitle(
-				$this->mContext->msg( 'protect-title-notallowed',
-					$this->mTitle->getPrefixedText() )
+			$out->setPageTitleMsg(
+				$this->mContext->msg( 'protect-title-notallowed' )->plaintextParams( $this->mTitle->getPrefixedText() )
 			);
 			$out->addWikiTextAsInterface(
 				$out->formatPermissionStatus( $this->mPermStatus, 'protect' )
 			);
 		} else {
-			$out->setPageTitle(
-				$this->mContext->msg( 'protect-title', $this->mTitle->getPrefixedText() )
+			$out->setPageTitleMsg(
+				$this->mContext->msg( 'protect-title' )->plaintextParams( $this->mTitle->getPrefixedText() )
 			);
 			$out->addWikiMsg( 'protect-text',
 				wfEscapeWikiText( $this->mTitle->getPrefixedText() ) );

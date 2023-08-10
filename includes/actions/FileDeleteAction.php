@@ -131,7 +131,7 @@ class FileDeleteAction extends DeleteAction {
 			);
 		}
 		if ( $status->isOK() ) {
-			$outputPage->setPageTitle( $context->msg( 'actioncomplete' ) );
+			$outputPage->setPageTitleMsg( $context->msg( 'actioncomplete' ) );
 			$outputPage->addHTML( $this->prepareMessage( 'filedelete-success' ) );
 			// Return to the main page if we just deleted all versions of the
 			// file, otherwise go back to the description page

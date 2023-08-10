@@ -102,7 +102,7 @@ class SpecialUnblock extends SpecialPage {
 		$this->addHelpLink( 'Help:Blocking users' );
 
 		$out = $this->getOutput();
-		$out->setPageTitle( $this->msg( 'unblockip' ) );
+		$out->setPageTitleMsg( $this->msg( 'unblockip' ) );
 		$out->addModules( [ 'mediawiki.userSuggest', 'mediawiki.special.block' ] );
 
 		$form = HTMLForm::factory( 'ooui', $this->getFields(), $this->getContext() )

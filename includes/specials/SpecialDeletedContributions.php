@@ -153,7 +153,7 @@ class SpecialDeletedContributions extends SpecialPage {
 		$target = $userObj->getName();
 
 		$out->addSubtitle( $this->getSubTitle( $userObj ) );
-		$out->setPageTitle( $this->msg( 'deletedcontributions-title', $target ) );
+		$out->setPageTitleMsg( $this->msg( 'deletedcontributions-title' )->plaintextParams( $target ) );
 
 		$this->getForm();
 

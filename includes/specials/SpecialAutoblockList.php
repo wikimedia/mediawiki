@@ -87,7 +87,7 @@ class SpecialAutoblockList extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 		$out = $this->getOutput();
-		$out->setPageTitle( $this->msg( 'autoblocklist' ) );
+		$out->setPageTitleMsg( $this->msg( 'autoblocklist' ) );
 		$this->addHelpLink( 'Autoblock' );
 		$out->addModuleStyles( [ 'mediawiki.special' ] );
 

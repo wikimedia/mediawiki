@@ -305,7 +305,7 @@ class SpecialLog extends SpecialPage {
 			return;
 		}
 
-		$this->getOutput()->setPageTitle(
+		$this->getOutput()->setPageTitleMsg(
 			( new LogPage( $opts->getValue( 'type' ) ) )->getName()
 		);
 

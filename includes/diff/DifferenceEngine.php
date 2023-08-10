@@ -562,7 +562,7 @@ class DifferenceEngine extends ContextSource {
 			$missing[] = $this->deletedIdMarker( $this->mNewid );
 		}
 
-		$out->setPageTitle( $this->msg( 'errorpagetitle' ) );
+		$out->setPageTitleMsg( $this->msg( 'errorpagetitle' ) );
 		$msg = $this->msg( 'difference-missing-revision' )
 			->params( $this->getLanguage()->listToText( $missing ) )
 			->numParams( count( $missing ) )
@@ -711,7 +711,9 @@ class DifferenceEngine extends ContextSource {
 		# is the first version of that article. In that case, V' does not exist.
 		if ( $this->mOldRevisionRecord === false ) {
 			if ( $this->mNewPage ) {
-				$out->setPageTitle( $this->msg( 'difference-title', $this->mNewPage->getPrefixedText() ) );
+				$out->setPageTitleMsg(
+					$this->msg( 'difference-title' )->plaintextParams( $this->mNewPage->getPrefixedText() )
+				);
 			}
 			$samePage = true;
 			$oldHeader = '';
@@ -724,10 +726,12 @@ class DifferenceEngine extends ContextSource {
 				// XXX say something to the user?
 				$samePage = false;
 			} elseif ( $this->mNewPage->equals( $this->mOldPage ) ) {
-				$out->setPageTitle( $this->msg( 'difference-title', $this->mNewPage->getPrefixedText() ) );
+				$out->setPageTitleMsg(
+					$this->msg( 'difference-title' )->plaintextParams( $this->mNewPage->getPrefixedText() )
+				);
 				$samePage = true;
 			} else {
-				$out->setPageTitle( $this->msg( 'difference-title-multipage',
+				$out->setPageTitleMsg( $this->msg( 'difference-title-multipage' )->plaintextParams(
 					$this->mOldPage->getPrefixedText(), $this->mNewPage->getPrefixedText() ) );
 				$out->addSubtitle( $this->msg( 'difference-multipage' ) );
 				$samePage = false;
