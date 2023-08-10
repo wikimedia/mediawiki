@@ -611,23 +611,16 @@ class Html {
 	 * a warning is logged server-side.
 	 *
 	 * @param string $contents JavaScript
-	 * @param string|null $nonce Nonce for CSP header, from OutputPage->getCSP()->getNonce()
+	 * @param string|null $nonce Unused
 	 * @return string Raw HTML
 	 */
 	public static function inlineScript( $contents, $nonce = null ) {
-		$attrs = [];
-		if ( $nonce !== null ) {
-			$attrs['nonce'] = $nonce;
-		} elseif ( ContentSecurityPolicy::isNonceRequired( MediaWikiServices::getInstance()->getMainConfig() ) ) {
-			wfWarn( "no nonce set on script. CSP will break it" );
-		}
-
 		if ( preg_match( '/<\/?script/i', $contents ) ) {
 			wfLogWarning( __METHOD__ . ': Illegal character sequence found in inline script.' );
 			$contents = '/* ERROR: Invalid script */';
 		}
 
-		return self::rawElement( 'script', $attrs, $contents );
+		return self::rawElement( 'script', [], $contents );
 	}
 
 	/**

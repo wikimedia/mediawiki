@@ -60,7 +60,6 @@ class ClientHtml {
 	 * @param array $options [optional] Array of options
 	 *  - 'target': Parameter for modules=startup request, see StartUpModule.
 	 *  - 'safemode': Parameter for modules=startup request, see StartUpModule.
-	 *  - 'nonce': From OutputPage->getCSP->getNonce().
 	 *  - 'clientPrefEnabled': See $wgResourceLoaderClientPreferences.
 	 *  - 'clientPrefCookiePrefix': See $wgResourceLoaderClientPreferences.
 	 */
@@ -70,7 +69,6 @@ class ClientHtml {
 		$this->options = $options + [
 			'target' => null,
 			'safemode' => null,
-			'nonce' => null,
 			'clientPrefEnabled' => false,
 			'clientPrefCookiePrefix' => '',
 		];
@@ -355,7 +353,7 @@ RLPAGEMODULES = {$pageModulesJson};
 		}
 
 		$chunks = [];
-		$chunks[] = Html::inlineScript( $script, $this->options['nonce'] );
+		$chunks[] = Html::inlineScript( $script );
 
 		// Inline RLQ: Embedded modules
 		if ( $data['embed']['general'] ) {
@@ -411,7 +409,7 @@ RLPAGEMODULES = {$pageModulesJson};
 			foreach ( $data['styleDeprecations'] as $warning ) {
 				$calls .= Html::encodeJsCall( 'mw.log.warn', [ $warning ] );
 			}
-			$chunks[] = ResourceLoader::makeInlineScript( $calls, $this->options['nonce'] );
+			$chunks[] = ResourceLoader::makeInlineScript( $calls );
 		}
 
 		return WrappedString::join( "\n", $chunks );
@@ -422,8 +420,7 @@ RLPAGEMODULES = {$pageModulesJson};
 	}
 
 	private function getLoad( $modules, $only, array $extraQuery = [] ) {
-		$nonce = $this->options['nonce'];
-		return self::makeLoad( $this->context, (array)$modules, $only, $extraQuery, $nonce );
+		return self::makeLoad( $this->context, (array)$modules, $only, $extraQuery );
 	}
 
 	private static function makeContext( Context $mainContext, $group, $type,
@@ -450,12 +447,10 @@ RLPAGEMODULES = {$pageModulesJson};
 	 * @param string[] $modules One or more module names
 	 * @param string $only Module TYPE_ class constant
 	 * @param array $extraQuery [optional] Array with extra query parameters for the request
-	 * @param string|null $nonce [optional] Content-Security-Policy nonce
-	 *  (from OutputPage->getCSP->getNonce())
 	 * @return string|WrappedStringList HTML
 	 */
 	public static function makeLoad( Context $mainContext, array $modules, $only,
-		array $extraQuery = [], $nonce = null
+		array $extraQuery = []
 	) {
 		$rl = $mainContext->getResourceLoader();
 		$chunks = [];
@@ -466,7 +461,7 @@ RLPAGEMODULES = {$pageModulesJson};
 		if ( $mainContext->getDebug() && count( $modules ) > 1 ) {
 			// Recursively call us for every item
 			foreach ( $modules as $name ) {
-				$chunks[] = self::makeLoad( $mainContext, [ $name ], $only, $extraQuery, $nonce );
+				$chunks[] = self::makeLoad( $mainContext, [ $name ], $only, $extraQuery );
 			}
 			return new WrappedStringList( "\n", $chunks );
 		}
@@ -507,10 +502,7 @@ RLPAGEMODULES = {$pageModulesJson};
 						if ( $only == Module::TYPE_STYLES ) {
 							$chunks[] = Html::inlineStyle( $response );
 						} else {
-							$chunks[] = ResourceLoader::makeInlineScript(
-								$response,
-								$nonce
-							);
+							$chunks[] = ResourceLoader::makeInlineScript( $response );
 						}
 					} else {
 						// Not embedded
@@ -541,8 +533,7 @@ RLPAGEMODULES = {$pageModulesJson};
 							] );
 						} else {
 							$chunk = ResourceLoader::makeInlineScript(
-								'mw.loader.load(' . $mainContext->encodeJson( $url ) . ');',
-								$nonce
+								'mw.loader.load(' . $mainContext->encodeJson( $url ) . ');'
 							);
 						}
 

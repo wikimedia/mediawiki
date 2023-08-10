@@ -476,8 +476,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op->addScriptFile( '//example.com/somescript.js' );
 
 		$this->assertStringContainsString(
-			"\n" . Html::linkedScript( '/somescript.js', $op->getCSP()->getNonce() ) .
-				Html::linkedScript( '//example.com/somescript.js', $op->getCSP()->getNonce() ) . "\n",
+			"\n" . Html::linkedScript( '/somescript.js' ) .
+				Html::linkedScript( '//example.com/somescript.js' ) . "\n",
 			"\n" . $op->getBottomScripts() . "\n"
 		);
 	}
@@ -488,8 +488,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op->addInlineScript( 'alert( foo );' );
 
 		$this->assertStringContainsString(
-			"\n" . Html::inlineScript( "\nlet foo = \"bar\";\n", $op->getCSP()->getNonce() ) . "\n" .
-				Html::inlineScript( "\nalert( foo );\n", $op->getCSP()->getNonce() ) . "\n",
+			"\n" . Html::inlineScript( "\nlet foo = \"bar\";\n" ) . "\n" .
+				Html::inlineScript( "\nalert( foo );\n" ) . "\n",
 			"\n" . $op->getBottomScripts() . "\n"
 		);
 	}
@@ -2526,9 +2526,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$ctx->setLanguage( 'en' );
 		$out = new OutputPage( $ctx );
 		$reflectCSP = new ReflectionClass( ContentSecurityPolicy::class );
-		$nonce = $reflectCSP->getProperty( 'nonce' );
-		$nonce->setAccessible( true );
-		$nonce->setValue( $out->getCSP(), 'secret' );
 		$rl = $out->getResourceLoader();
 		$rl->setMessageBlobStore( $this->createMock( RL\MessageBlobStore::class ) );
 		$rl->setDependencyStore( $this->createMock( KeyValueDependencyStore::class ) );
@@ -2580,7 +2577,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			// Single only=scripts load
 			[
 				[ 'test.foo', RL\Module::TYPE_SCRIPTS ],
-				"<script nonce=\"secret\">(RLQ=window.RLQ||[]).push(function(){"
+				"<script>(RLQ=window.RLQ||[]).push(function(){"
 					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?lang=en\u0026modules=test.foo\u0026only=scripts");'
 					. "});</script>"
 			],
@@ -2593,14 +2590,14 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			// Private embed (only=scripts)
 			[
 				[ 'test.quux', RL\Module::TYPE_SCRIPTS ],
-				"<script nonce=\"secret\">(RLQ=window.RLQ||[]).push(function(){"
+				"<script>(RLQ=window.RLQ||[]).push(function(){"
 					. "mw.test.baz({token:123});\nmw.loader.state({\"test.quux\":\"ready\"});"
 					. "});</script>"
 			],
 			// Load private module (combined)
 			[
 				[ 'test.quux', RL\Module::TYPE_COMBINED ],
-				"<script nonce=\"secret\">(RLQ=window.RLQ||[]).push(function(){"
+				"<script>(RLQ=window.RLQ||[]).push(function(){"
 					. "mw.loader.implement(\"test.quux@1ev0i\",function($,jQuery,require,module){"
 					. "mw.test.baz({token:123});},{\"css\":[\".mw-icon{transition:none}"
 					. "\"]});});</script>"
@@ -2618,7 +2615,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			// Load two modules in separate groups
 			[
 				[ [ 'test.group.foo', 'test.group.bar' ], RL\Module::TYPE_COMBINED ],
-				"<script nonce=\"secret\">(RLQ=window.RLQ||[]).push(function(){"
+				"<script>(RLQ=window.RLQ||[]).push(function(){"
 					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?lang=en\u0026modules=test.group.bar");'
 					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?lang=en\u0026modules=test.group.foo");'
 					. "});</script>"

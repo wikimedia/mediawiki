@@ -20,9 +20,6 @@ class SkinMustacheTest extends MediaWikiIntegrationTestCase {
 	private function getMockOutputPage( $html, $title ) {
 		$mockContentSecurityPolicy = $this->createMock( ContentSecurityPolicy::class );
 
-		$mockContentSecurityPolicy->method( 'getNonce' )
-			->willReturn( 'secret' );
-
 		$mock = $this->createMock( OutputPage::class );
 		$mock->method( 'getHTML' )
 			->willReturn( $html );
@@ -38,8 +35,6 @@ class SkinMustacheTest extends MediaWikiIntegrationTestCase {
 			->willReturn( [ '' ] );
 		$mock->method( 'getLanguageLinks' )
 			->willReturn( [] );
-		$mock->method( 'getCSP' )
-			->willReturn( $mockContentSecurityPolicy );
 		$mock->method( 'isTOCEnabled' )
 			->willReturn( true );
 		$mock->method( 'getTOCData' )

@@ -114,7 +114,7 @@ if ( !isCompatible() ) {
 
 		$CODE.registrations();
 
-		// First set page-specific config needed by mw.loader (wgCSPNonce, wgUserName)
+		// First set page-specific config needed by mw.loader (wgUserName)
 		mw.config.set( window.RLCONF || {} );
 		mw.loader.state( window.RLSTATE || {} );
 		mw.loader.load( window.RLPAGEMODULES || [] );

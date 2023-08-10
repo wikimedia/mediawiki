@@ -98,9 +98,7 @@ class ClientHtmlTest extends \PHPUnit\Framework\TestCase {
 		$context = self::makeContext();
 		$context->getResourceLoader()->register( self::makeSampleModules() );
 
-		$client = new ClientHtml( $context, [
-			'nonce' => false,
-		] );
+		$client = new ClientHtml( $context );
 		$client->setConfig( [ 'key' => 'value' ] );
 		$client->setModules( [
 			'test',
@@ -181,7 +179,7 @@ class ClientHtmlTest extends \PHPUnit\Framework\TestCase {
 		$context = self::makeContext();
 		$context->getResourceLoader()->register( self::makeSampleModules() );
 
-		$client = new ClientHtml( $context, [ 'nonce' => false ] );
+		$client = new ClientHtml( $context );
 		$client->setConfig( [ 'key' => 'value' ] );
 		$client->setModules( [
 			'test',
