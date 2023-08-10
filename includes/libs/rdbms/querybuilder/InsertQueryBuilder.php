@@ -35,6 +35,21 @@ class InsertQueryBuilder {
 	private $caller = __CLASS__;
 
 	/**
+	 * @var bool whether this is an upsert or not
+	 */
+	private $upsert = false;
+
+	/**
+	 * @var array The set values to be passed to IDatabase::upsert()
+	 */
+	private $set = [];
+
+	/**
+	 * @var string[] The unique keys to be passed to IDatabase::upsert()
+	 */
+	private $uniqueIndexFields = [];
+
+	/**
 	 * @var array The options to be passed to IDatabase::insert()
 	 */
 	protected $options = [];
@@ -92,6 +107,15 @@ class InsertQueryBuilder {
 		}
 		if ( isset( $info['options'] ) ) {
 			$this->options( (array)$info['options'] );
+		}
+		if ( isset( $info['upsert'] ) ) {
+			$this->onDuplicateKeyUpdate();
+		}
+		if ( isset( $info['uniqueIndexFields'] ) ) {
+			$this->uniqueIndexFields( (array)$info['uniqueIndexFields'] );
+		}
+		if ( isset( $info['set'] ) ) {
+			$this->set( (array)$info['set'] );
 		}
 		return $this;
 	}
@@ -188,6 +212,76 @@ class InsertQueryBuilder {
 	}
 
 	/**
+	 * Do an update instead of insert
+	 *
+	 * @return $this
+	 */
+	public function onDuplicateKeyUpdate() {
+		$this->upsert = true;
+		return $this;
+	}
+
+	/**
+	 * Set the unique index fields
+	 *
+	 * @param string|string[] $uniqueIndexFields
+	 * @return $this
+	 */
+	public function uniqueIndexFields( $uniqueIndexFields ) {
+		if ( is_string( $uniqueIndexFields ) ) {
+			$uniqueIndexFields = [ $uniqueIndexFields ];
+		}
+		$this->uniqueIndexFields = $uniqueIndexFields;
+		return $this;
+	}
+
+	/**
+	 * Add SET part to the query. It takes an array containing arrays of column names map to
+	 * the set values.
+	 *
+	 * @param string|array $set
+	 *
+	 * Combination map/list where each string-keyed entry maps a column
+	 * to a literal assigned value and each integer-keyed value is a SQL expression in the
+	 * format of a column assignment within UPDATE...SET. The (column => value) entries are
+	 * convenient due to automatic value quoting and conversion of null to NULL. The SQL
+	 * assignment format is useful for updates like "column = column + X". All assignments
+	 * have no defined execution order, so they should not depend on each other. Do not
+	 * modify AUTOINCREMENT or UUID columns in assignments.
+	 *
+	 * Untrusted user input is safe in the values of string keys, however untrusted
+	 * input must not be used in the array key names or in the values of numeric keys.
+	 * Escaping of untrusted input used in values of numeric keys should be done via
+	 * IDatabase::addQuotes()
+	 *
+	 * @return $this
+	 */
+	public function set( $set ) {
+		if ( is_array( $set ) ) {
+			foreach ( $set as $key => $value ) {
+				if ( is_int( $key ) ) {
+					$this->set[] = $value;
+				} else {
+					$this->set[$key] = $value;
+				}
+			}
+		} else {
+			$this->set[] = $set;
+		}
+		return $this;
+	}
+
+	/**
+	 * Add set values to the query. Alias for set().
+	 *
+	 * @param string|array $set
+	 * @return $this
+	 */
+	public function andSet( $set ) {
+		return $this->set( $set );
+	}
+
+	/**
 	 * Set the method name to be included in an SQL comment.
 	 *
 	 * @param string $fname
@@ -210,6 +304,18 @@ class InsertQueryBuilder {
 			throw new UnexpectedValueException(
 				__METHOD__ . ' expects table not to be empty' );
 		}
+		if ( $this->upsert && ( !$this->set || !$this->uniqueIndexFields ) ) {
+			throw new UnexpectedValueException(
+				__METHOD__ . ' called with upsert but no set value or unique key has been provided' );
+		}
+		if ( !$this->upsert && ( $this->set || $this->uniqueIndexFields ) ) {
+			throw new UnexpectedValueException(
+				__METHOD__ . ' is not called with upsert but set value or unique key has been provided' );
+		}
+		if ( $this->upsert ) {
+			$this->db->upsert( $this->table, $this->rows, [ $this->uniqueIndexFields ], $this->set, $this->caller );
+			return;
+		}
 		$this->db->insert( $this->table, $this->rows, $this->caller, $this->options );
 	}
 
@@ -226,6 +332,9 @@ class InsertQueryBuilder {
 		return [
 			'table' => $this->table,
 			'rows' => $this->rows,
+			'upsert' => $this->upsert,
+			'set' => $this->set,
+			'uniqueIndexFields' => $this->uniqueIndexFields,
 			'options' => $this->options,
 		];
 	}
