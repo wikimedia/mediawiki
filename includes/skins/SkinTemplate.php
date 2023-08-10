@@ -719,7 +719,7 @@ class SkinTemplate extends Skin {
 	 * @param string $idSuffix Something to add to the IDs to make them unique
 	 */
 	private function addPersonalPageItem( &$links, $idSuffix ) {
-		if ( $this->loggedin ) {
+		if ( $this->isNamedUser ) { // T340152
 			$links['userpage'] = $this->buildPersonalPageItem( 'pt-userpage' . $idSuffix );
 		}
 	}
@@ -732,14 +732,10 @@ class SkinTemplate extends Skin {
 	 */
 	protected function buildPersonalPageItem( $id = 'pt-userpage' ): array {
 		$linkClasses = $this->userpageUrlDetails['exists'] ? [] : [ 'new' ];
-		$icon = 'userAvatar';
+		// T335440 Temp accounts dont show a user page link
+		// But we still need to update the user icon, as its used by other UI elements
+		$icon = $this->isTempUser ? 'userTemporary' : 'userAvatar';
 		$href = &$this->userpageUrlDetails['href'];
-		if ( $this->isTempUser ) {
-			$linkClasses[] = 'mw-userpage-tmp';
-			$linkClasses[] = 'mw-selflink';
-			$icon = 'userTemporary';
-			$href = '#';
-		}
 		return [
 			'id' => $id,
 			'single-id' => 'pt-userpage',

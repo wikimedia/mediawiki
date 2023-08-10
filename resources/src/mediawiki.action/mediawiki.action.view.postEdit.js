@@ -48,15 +48,15 @@
 			contLangMessages[ 'tempuser-helppage' ]
 		).parseDom();
 
-		var $usernameLink = $( '.mw-userpage-tmp' );
-		if ( $usernameLink.length ) {
-			// If supported by the skin, display a popup anchored to the username
+		var $username = $( '.mw-temp-user-banner-username' );
+		if ( $username.length ) {
+			// If supported by the skin, display a popup anchored to the username in the banner
 			var popup = new OO.ui.PopupWidget( {
 				padded: true,
 				head: true,
 				label: title,
 				$content: $content,
-				$floatableContainer: $usernameLink,
+				$floatableContainer: $username,
 				classes: [ 'postedit-tempuserpopup' ],
 				// Work around T307062
 				position: 'below',
