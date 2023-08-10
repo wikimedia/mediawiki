@@ -4228,7 +4228,7 @@
 	"renameuser-warning-currentblock": "此使用者[$1 目前被封鎖]。",
 	"log-name-renameuser": "使用者名稱變更日誌",
 	"log-description-renameuser": "此頁面為使用者名稱修改日誌。",
-	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|重新命名}}使用者 $4（已編輯 {{PLURAL:$6|$6 次}}）為 {{GENDER:$7|$5}}",
+	"logentry-renameuser-renameuser": "「$1」已將使用者「$4」（已編輯 {{PLURAL:$6|$6 次}}）{{GENDER:$2|重新命名}}為「{{GENDER:$7|$5}}」",
 	"logentry-renameuser-renameuser-legacier": "$1{{GENDER:$2|重新命名}}使用者$4為{{GENDER:$7|$5}}",
 	"renameuser-move-log": "重新命名{{GENDER:$2|使用者}}「[[User:$1|$1]]」為「[[User:$2|$2]]」時已自動移動頁面",
 	"action-renameuser": "重新命名使用者",
