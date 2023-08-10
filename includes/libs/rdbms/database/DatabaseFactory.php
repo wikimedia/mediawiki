@@ -197,7 +197,7 @@ class DatabaseFactory {
 		// we auto-detect the first available driver. For types without built-in support,
 		// a class named "Database<Type>" is used, eg. DatabaseFoo for type 'foo'.
 		static $builtinTypes = [
-			'mysql' => [ 'mysqli' => DatabaseMysqlBase::class ],
+			'mysql' => [ 'mysqli' => DatabaseMySQL::class ],
 			'sqlite' => DatabaseSqlite::class,
 			'postgres' => DatabasePostgres::class,
 		];

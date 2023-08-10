@@ -37,7 +37,7 @@ use Wikimedia\Rdbms\Replication\MysqlReplicationReporter;
  * @since 1.22
  * @see Database
  */
-class DatabaseMysqlBase extends Database {
+class DatabaseMySQL extends Database {
 	/** @var string|null */
 	private $sslKeyPath;
 	/** @var string|null */
@@ -894,6 +894,21 @@ class DatabaseMysqlBase extends Database {
 }
 
 /**
- * @deprecated since 1.41
+ * @deprecated since 1.29
  */
-class_alias( DatabaseMysqlBase::class, 'Wikimedia\\Rdbms\\DatabaseMysqli' );
+class_alias( DatabaseMySQL::class, 'DatabaseMysqlBase' );
+
+/**
+ * @deprecated since 1.29
+ */
+class_alias( DatabaseMySQL::class, 'DatabaseMysqli' );
+
+/**
+ * @deprecated and never released; to drop before 1.41
+ */
+class_alias( DatabaseMySQL::class, 'Wikimedia\\Rdbms\\DatabaseMysqli' );
+
+/**
+ * @deprecated and never released; to drop before 1.41
+ */
+class_alias( DatabaseMySQL::class, 'Wikimedia\\Rdbms\\DatabaseMysqlBase' );

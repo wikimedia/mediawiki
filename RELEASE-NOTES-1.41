@@ -452,8 +452,8 @@ because of Phabricator reports.
    - DBConnRef (use Wikimedia\Rdbms\DBConnRef)
    - Database (use Wikimedia\Rdbms\Database)
    - DatabaseBase (use Wikimedia\Rdbms\Database)
-   - DatabaseMysqlBase (use Wikimedia\Rdbms\DatabaseMysqlBase)
-   - DatabaseMysqli (use Wikimedia\Rdbms\DatabaseMysqlBase)
+   - DatabaseMysqlBase (use Wikimedia\Rdbms\DatabaseMySQL)
+   - DatabaseMysqli (use Wikimedia\Rdbms\DatabaseMySQL)
    - DatabasePostgres (use Wikimedia\Rdbms\DatabasePostgres)
    - DatabaseSqlite (use Wikimedia\Rdbms\DatabaseSqlite)
    - IDatabase (use Wikimedia\Rdbms\IDatabase)
@@ -738,6 +738,8 @@ because of Phabricator reports.
   - IReadableDatabase::estimateRowCount() Use SelectQueryBuilder instead.
   - IReadableDatabase::selectRowCount() Use SelectQueryBuilder instead.
   - ISQLPlatform::unionQueries() Use UnionQueryBuilder instead.
+* The core Wikimedia\Rdbms\DatabaseMysqlBase class has been renamed to reflect
+  the earlier merger of Mysqli into it; it's now Wikimedia\Rdbms\DatabaseMySQL.
 * The following methods, previously deprecated, now emit deprecation warnings:
   - ConfigFactory::getDefaultInstance(), deprecated since 1.27
   - AbstractContent::getNativeData(), deprecated since 1.33

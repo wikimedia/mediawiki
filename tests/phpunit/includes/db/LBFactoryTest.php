@@ -39,7 +39,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Database
  * @covers \Wikimedia\Rdbms\ChronologyProtector
- * @covers \Wikimedia\Rdbms\DatabaseMysqlBase
+ * @covers \Wikimedia\Rdbms\DatabaseMySQL
  * @covers \Wikimedia\Rdbms\DatabasePostgres
  * @covers \Wikimedia\Rdbms\DatabaseSqlite
  * @covers \Wikimedia\Rdbms\LBFactory

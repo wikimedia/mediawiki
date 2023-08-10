@@ -237,7 +237,7 @@ class BatchRowUpdateTest extends MediaWikiIntegrationTestCase {
 	protected function mockDb( $methods = [] ) {
 		// @TODO: mock from Database
 		// FIXME: the constructor normally sets mAtomicLevels and mSrvCache, and platform
-		$databaseMysql = $this->getMockBuilder( Wikimedia\Rdbms\DatabaseMysqlBase::class )
+		$databaseMysql = $this->getMockBuilder( Wikimedia\Rdbms\DatabaseMySQL::class )
 			->disableOriginalConstructor()
 			->onlyMethods( array_merge( [ 'isOpen' ], $methods ) )
 			->getMock();

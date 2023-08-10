@@ -1,7 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\DatabaseMysqlBase;
+use Wikimedia\Rdbms\DatabaseMySQL;
 use Wikimedia\Rdbms\DBQueryDisconnectedError;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\DBQueryTimeoutError;
@@ -18,7 +18,7 @@ use Wikimedia\Rdbms\TransactionManager;
  * @requires extension mysqli
  */
 class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
-	/** @var DatabaseMysqlBase */
+	/** @var DatabaseMySQL */
 	protected $conn;
 
 	protected function setUp(): void {
@@ -244,12 +244,12 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @return DatabaseMysqlBase
+	 * @return DatabaseMySQL
 	 */
 	private function newConnection() {
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 		$dbFactory = MediaWikiServices::getInstance()->getDatabaseFactory();
-		/** @var DatabaseMysqlBase $conn */
+		/** @var DatabaseMySQL $conn */
 		$conn = $dbFactory->create(
 			'mysql',
 			array_merge(
