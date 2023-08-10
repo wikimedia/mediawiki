@@ -129,10 +129,13 @@ module.exports = function ( grunt ) {
 				crossOriginAttribute: false
 			},
 			main: {
-				browsers: [ 'ChromeCustom' ]
+				browsers: [ 'FirefoxHeadless' ]
 			},
 			firefox: {
 				browsers: [ 'FirefoxHeadless' ]
+			},
+			chrome: {
+				browsers: [ 'ChromeCustom' ]
 			}
 		}
 	} );
@@ -145,7 +148,9 @@ module.exports = function ( grunt ) {
 			);
 			ok = false;
 		}
-		if ( !process.env.MW_SCRIPT_PATH ) {
+		// MW_SCRIPT_PATH= empty string is valid, e.g. for docroot installs
+		// This includes "composer serve" (Quickstart)
+		if ( process.env.MW_SCRIPT_PATH === undefined ) {
 			grunt.log.error( 'Environment variable MW_SCRIPT_PATH must be set.\n' +
 				'Set this like $wgScriptPath, e.g. "/w"' );
 			ok = false;
@@ -154,5 +159,5 @@ module.exports = function ( grunt ) {
 	} );
 
 	grunt.registerTask( 'lint', [ 'eslint', 'banana', 'stylelint' ] );
-	grunt.registerTask( 'qunit', [ 'assert-mw-env', 'karma:main' ] );
+	grunt.registerTask( 'qunit', [ 'assert-mw-env', 'karma:firefox' ] );
 };
