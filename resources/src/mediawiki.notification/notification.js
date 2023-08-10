@@ -7,8 +7,7 @@
 		// Number of open notification boxes at any time
 		openNotificationCount = 0,
 		isPageReady = false,
-		preReadyNotifQueue = [],
-		rAF = window.requestAnimationFrame || setTimeout;
+		preReadyNotifQueue = [];
 
 	/**
 	 * A Notification object for 1 message.
@@ -172,9 +171,9 @@
 				.addClass( 'mw-notification-visible' );
 		} else {
 			$area.append( $notification );
-			rAF( function () {
+			requestAnimationFrame( function () {
 				// This frame renders the element in the area (invisible)
-				rAF( function () {
+				requestAnimationFrame( function () {
 					$notification.addClass( 'mw-notification-visible' );
 				} );
 			} );
@@ -251,7 +250,7 @@
 		// notification that has now become one of the first {autoHideLimit} notifications.
 		notification.resume();
 
-		rAF( function () {
+		requestAnimationFrame( function () {
 			notif.$notification.removeClass( 'mw-notification-visible' );
 
 			setTimeout( function () {
@@ -347,7 +346,7 @@
 		// Read from the DOM:
 		// Must be in the next frame to avoid synchronous layout
 		// computation from offset()/getBoundingClientRect().
-		rAF( function () {
+		requestAnimationFrame( function () {
 			var notif;
 
 			offset = $area.offset();

@@ -14,7 +14,6 @@
 		// recorded on the Vector skin.
 		shouldTestSearch = !!( mw.config.get( 'skin' ) === 'vector' &&
 			window.performance &&
-			window.requestAnimationFrame &&
 			performance.mark &&
 			performance.measure &&
 			performance.getEntriesByName &&
