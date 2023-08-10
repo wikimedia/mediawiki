@@ -1126,8 +1126,8 @@ class OutputPage extends ContextSource {
 	 */
 	public function setPageTitle( $name ) {
 		if ( $name instanceof Message ) {
-			// T343849: passing a Message is deprecated and a warning will
-			// eventually be emitted here.
+			// T343994: use ::setPageTitleMsg() instead (which uses ::escaped())
+			wfDeprecated( __METHOD__ . ' with Message argument', '1.41' );
 			$name = $name->setContext( $this->getContext() )->text();
 		}
 		$this->setPageTitleInternal( $name );

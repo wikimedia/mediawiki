@@ -880,7 +880,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		// Test set to message (deprecated unescaped)
 		$text = $this->getMsgText( $op, 'mainpage' );
 
-		$op->setPageTitle( $op->msg( 'mainpage' )->inContentLanguage() );
+		$op->setPageTitleMsg( $op->msg( 'mainpage' )->inContentLanguage() );
 		$this->assertSame( $text, $op->getPageTitle() );
 		$this->assertSame( $this->getMsgText( $op, 'pagetitle', $text ), $op->getHTMLTitle() );
 
@@ -888,16 +888,18 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$msg = ( new RawMessage( 'nope:<span>$1 yes:$2' ) )
 			->plaintextParams( '</span>' )
 			->rawParams( '<span>!</span>' );
-		// deprecated ::setPageTitle(Message), doesn't escape either
-		// the localized message or the plaintext parameters
-		$op->setPageTitle( $msg );
-		$this->assertSame( "nope:<span></span> yes:<span>!</span>", $op->getPageTitle() );
 		// preferred ::setPageTitleMsg(Msg)
 		$op->setPageTitleMsg( $msg );
 		$this->assertSame( 'nope:&lt;span&gt;&lt;/span&gt; yes:<span>!</span>', $op->getPageTitle() );
 		// Note that HTML title is unescaped plaintext, it is expected to be
 		// HTML escaped before becoming the <title> element.
 		$this->assertSame( $this->getMsgText( $op, 'pagetitle', 'nope:<span></span> yes:!' ), $op->getHTMLTitle() );
+
+		// deprecated ::setPageTitle(Message), doesn't escape either
+		// the localized message or the plaintext parameters
+		$this->filterDeprecated( '/OutputPage::setPageTitle with Message argument/' );
+		$op->setPageTitle( $msg );
+		$this->assertSame( "nope:<span></span> yes:<span>!</span>", $op->getPageTitle() );
 	}
 
 	public function testSetTitle() {

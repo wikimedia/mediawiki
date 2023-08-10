@@ -334,6 +334,8 @@ because of Phabricator reports.
   - ContentHandler::getForContent(), deprecated since 1.35
   - ContentHandler::getForModelID(), deprecated since 1.35
   - ContentHandler::getContentText(), deprecated since 1.37
+* Passing a Message argument to OutputPage::setPageTitle(), which was
+  deprecated in 1.41, now emits warnings.
 * OutputPage::showFatalError() is deprecated, use showErrorPage() instead.
 * LoadBalancer::getConnectionRef(), deprecated since 1.39, now emits deprecation
   warnings. Use ::getConnection() instead.
