@@ -63,7 +63,8 @@
 			"Александр Сигачёв",
 			"לערי ריינהארט",
 			"아라",
-			"Saturnow"
+			"Saturnow",
+			"נדב ס"
 		]
 	},
 	"tog-underline": "Substrekado de ligiloj:",
@@ -4085,6 +4086,12 @@
 	"skin-action-undelete": "Malforigi",
 	"skin-action-delete": "Forigi",
 	"skin-action-move": "Alinomi",
+	"blockedtext-made-by": "La baron metis $1.",
+	"blockedtext-reason-comment": "La donita kialo estas <em>$1</em>",
+	"blockedtext-start-time": "Komenco de forbaro: $1",
+	"blockedtext-expiration-time": "Findato de forbaro: $1",
+	"blockedtext-intended-blockee": "Celito: $1",
+	"blockedtext-contact-blocker-admin": "Vi rajtas kontakti kun $1 aŭ alia [[{{MediaWiki:Grouppage-sysop}}|administranto]] por diskuti la forbaron.",
 	"renameuser": "Alinomi uzanton",
 	"renameuser-linkoncontribs": "alinomi {{GENDER:$1|uzanton}}",
 	"renameuser-linkoncontribs-text": "Alinomi ĉi tiun {{GENDER:$1|uzanton}}",
