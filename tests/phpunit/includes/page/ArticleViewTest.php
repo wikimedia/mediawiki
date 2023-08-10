@@ -316,6 +316,39 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( 'id="mw-revision-nav"', $output->getSubtitle() );
 	}
 
+	public function testViewOfCurrentRevisionDirty() {
+		$this->overrideConfigValue(
+			MainConfigNames::PoolCounterConf,
+			[
+				'ArticleView' => [
+					'class' => MockPoolCounterFailing::class,
+				]
+			]
+		);
+
+		$revisions = [];
+		$page = $this->getPage( __METHOD__, [ 1 => 'Test A' ], $revisions );
+		$idA = $revisions[1]->getId();
+
+		// Do the next edit without ParserCache produce an outdated cache entry
+		$parserCacheFactory = $this->getServiceContainer()->getParserCacheFactory();
+		$this->overrideConfigValue( MainConfigNames::ParserCacheType, CACHE_NONE );
+		$latestEditStatus = $this->editPage( $page, 'Test B' );
+		// Restore the old cache instance with the now outdated cache entry
+		$this->setService( 'ParserCacheFactory', $parserCacheFactory );
+
+		// Request the article for the latest
+		$article = new Article( $page->getTitle() );
+		$article->getContext()->getOutput()->setTitle( $page->getTitle() );
+		$article->view();
+
+		// Expected the old values to return
+		$output = $article->getContext()->getOutput();
+		$this->assertStringContainsString( 'Test A', $this->getHtml( $output ) );
+		$this->assertSame( $idA, $output->getRevisionId() );
+		$this->assertSame( $revisions[1]->getTimestamp(), $output->getRevisionTimestamp() );
+	}
+
 	public function testViewOfMissingRevision() {
 		$revisions = [];
 		$page = $this->getPage( __METHOD__, [ 1 => 'Test A' ], $revisions );
