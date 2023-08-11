@@ -6,6 +6,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use PHPUnit\Framework\AssertionFailedError;
+use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\ReadOnlyMode;
@@ -54,19 +55,26 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideExistingKeysAndNewValues
 	 *
 	 * @covers MediaWikiIntegrationTestCase::setMwGlobals
-	 * @covers MediaWikiIntegrationTestCase::tearDown
+	 * @covers MediaWikiIntegrationTestCase::mediaWikiTearDown
 	 */
-	public function testSetGlobalsAreRestoredOnTearDown( $globalKey, $newValue ) {
+	public function testSetGlobalsAreRestoredOnTearDown__before( $globalKey, $newValue ) {
 		$this->setMwGlobals( $globalKey, $newValue );
 		$this->assertEquals(
 			$newValue,
 			$GLOBALS[$globalKey],
 			'Global failed to correctly set'
 		);
+	}
 
-		$this->mediaWikiTearDown();
-
-		$this->assertEquals(
+	/**
+	 * @note This cannot use depends because the other test also uses a data provider.
+	 * @dataProvider provideExistingKeysAndNewValues
+	 *
+	 * @covers MediaWikiIntegrationTestCase::setMwGlobals
+	 * @covers MediaWikiIntegrationTestCase::mediaWikiTearDown
+	 */
+	public function testSetGlobalsAreRestoredOnTearDown__after( $globalKey ) {
+		$this->assertSame(
 			self::$startGlobals[$globalKey],
 			$GLOBALS[$globalKey],
 			'Global failed to be restored on tearDown'
@@ -89,18 +97,24 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers MediaWikiIntegrationTestCase::setMwGlobals
-	 * @covers MediaWikiIntegrationTestCase::tearDown
+	 * @covers MediaWikiIntegrationTestCase::mediaWikiTearDown
 	 */
-	public function testSetNonExistentGlobalsAreUnsetOnTearDown() {
+	public function testSetNonExistentGlobalsAreUnsetOnTearDown__before() {
 		$globalKey = 'abcdefg1234567';
 		$this->setMwGlobals( $globalKey, true );
 		$this->assertTrue(
 			$GLOBALS[$globalKey],
 			'Global failed to correctly set'
 		);
+		return $globalKey;
+	}
 
-		$this->mediaWikiTearDown();
-
+	/**
+	 * @depends testSetNonExistentGlobalsAreUnsetOnTearDown__before
+	 * @covers MediaWikiIntegrationTestCase::setMwGlobals
+	 * @covers MediaWikiIntegrationTestCase::mediaWikiTearDown
+	 */
+	public function testSetNonExistentGlobalsAreUnsetOnTearDown__after( string $globalKey ) {
 		$this->assertFalse(
 			isset( $GLOBALS[$globalKey] ),
 			'Global failed to be correctly unset'
@@ -111,7 +125,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 	 * @covers MediaWikiIntegrationTestCase::overrideConfigValue
 	 * @covers MediaWikiIntegrationTestCase::overrideConfigValues
 	 */
-	public function testOverrideConfigValues() {
+	public function testOverrideConfigValues__before() {
 		$nsInfo1 = $this->getServiceContainer()->getNamespaceInfo();
 
 		$oldSitename = $this->getServiceContainer()->getMainConfig()->get( 'Sitename' );
@@ -126,14 +140,27 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotSame( $nsInfo2, $nsInfo3, 'Service instances should have been reset' );
 
 		$config = $this->getServiceContainer()->getMainConfig();
+		$fakeConfigKey = 'TestDummyConfig4556';
 		$this->assertSame( 'TestingSitenameOverride', $config->get( MainConfigNames::Sitename ) );
-		$this->assertSame( 'TestDummyConfigOverride', $config->get( 'TestDummyConfig4556' ) );
+		$this->assertSame( 'TestDummyConfigOverride', $config->get( $fakeConfigKey ) );
 
-		$this->mediaWikiTearDown();
+		return [ $oldSitename, $fakeConfigKey ];
+	}
 
+	/**
+	 * @depends testOverrideConfigValues__before
+	 * @covers MediaWikiIntegrationTestCase::overrideConfigValue
+	 * @covers MediaWikiIntegrationTestCase::overrideConfigValues
+	 */
+	public function testOverrideConfigValues__after( array $data ) {
+		[ $oldSitename, $fakeConfigKey ] = $data;
 		$config = $this->getServiceContainer()->getMainConfig();
-		$this->assertSame( $oldSitename, $config->get( MainConfigNames::Sitename ), 'Config variable should have been restored' );
-		$this->assertFalse( $config->has( 'TestDummyConfig4556' ), 'Config variable should have been unset' );
+		$this->assertSame(
+			$oldSitename,
+			$config->get( MainConfigNames::Sitename ),
+			'Config variable should have been restored'
+		);
+		$this->assertFalse( $config->has( $fakeConfigKey ), 'Config variable should have been unset' );
 	}
 
 	/**
@@ -232,55 +259,89 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 	 * @covers MediaWikiIntegrationTestCase::setLogger
 	 * @covers MediaWikiIntegrationTestCase::restoreLoggers
 	 */
-	public function testLoggersAreRestoredOnTearDown_replacingExistingLogger() {
-		$logger1 = LoggerFactory::getInstance( 'foo' );
-		$this->setLogger( 'foo', $this->createMock( LoggerInterface::class ) );
-		$logger2 = LoggerFactory::getInstance( 'foo' );
-		$this->mediaWikiTearDown();
-		$logger3 = LoggerFactory::getInstance( 'foo' );
+	public function testLoggersAreRestoredOnTearDown_replacingExistingLogger__before() {
+		$oldLogger = LoggerFactory::getInstance( 'foo' );
+		$mockLogger = $this->createMock( LoggerInterface::class );
+		$this->setLogger( 'foo', $mockLogger );
+		$overriddenLogger = LoggerFactory::getInstance( 'foo' );
+		$this->assertSame( $mockLogger, $overriddenLogger );
+		$this->assertNotSame( $oldLogger, $overriddenLogger );
+		return $oldLogger;
+	}
 
-		$this->assertSame( $logger1, $logger3 );
-		$this->assertNotSame( $logger1, $logger2 );
+	/**
+	 * @depends testLoggersAreRestoredOnTearDown_replacingExistingLogger__before
+	 * @covers MediaWikiIntegrationTestCase::setLogger
+	 * @covers MediaWikiIntegrationTestCase::restoreLoggers
+	 */
+	public function testLoggersAreRestoredOnTearDown_replacingExistingLogger__after( LoggerInterface $mockLogger ) {
+		$curLogger = LoggerFactory::getInstance( 'foo' );
+		$this->assertNotSame( $mockLogger, $curLogger );
 	}
 
 	/**
 	 * @covers MediaWikiIntegrationTestCase::setLogger
 	 * @covers MediaWikiIntegrationTestCase::restoreLoggers
 	 */
-	public function testLoggersAreRestoredOnTearDown_replacingNonExistingLogger() {
-		$this->setLogger( 'foo', $this->createMock( LoggerInterface::class ) );
-		$logger1 = LoggerFactory::getInstance( 'foo' );
-		$this->mediaWikiTearDown();
-		$logger2 = LoggerFactory::getInstance( 'foo' );
+	public function testLoggersAreRestoredOnTearDown_replacingNonExistingLogger__before() {
+		$loggerMock = $this->createMock( LoggerInterface::class );
+		$this->setLogger( 'foo', $loggerMock );
+		$overriddenLogger = LoggerFactory::getInstance( 'foo' );
+		$this->assertSame( $loggerMock, $overriddenLogger );
+		return $overriddenLogger;
+	}
 
-		$this->assertNotSame( $logger1, $logger2 );
-		$this->assertInstanceOf( \Psr\Log\LoggerInterface::class, $logger2 );
+	/**
+	 * @depends testLoggersAreRestoredOnTearDown_replacingNonExistingLogger__before
+	 * @covers MediaWikiIntegrationTestCase::setLogger
+	 * @covers MediaWikiIntegrationTestCase::restoreLoggers
+	 */
+	public function testLoggersAreRestoredOnTearDown_replacingNonExistingLogger__after(
+		LoggerInterface $overriddenLogger
+	) {
+		$curLogger = LoggerFactory::getInstance( 'foo' );
+
+		$this->assertNotSame( $overriddenLogger, $curLogger );
+		$this->assertInstanceOf( \Psr\Log\LoggerInterface::class, $curLogger );
 	}
 
 	/**
 	 * @covers MediaWikiIntegrationTestCase::setLogger
 	 * @covers MediaWikiIntegrationTestCase::restoreLoggers
+	 * @doesNotPerformAssertions
 	 */
-	public function testLoggersAreRestoredOnTearDown_replacingSameLoggerTwice() {
-		$logger1 = LoggerFactory::getInstance( 'baz' );
+	public function testLoggersAreRestoredOnTearDown_replacingSameLoggerTwice__before() {
+		LoggerFactory::getInstance( 'baz' );
 		$this->setLogger( 'foo', $this->createMock( LoggerInterface::class ) );
 		$this->setLogger( 'foo', $this->createMock( LoggerInterface::class ) );
-		$this->mediaWikiTearDown();
-		$logger2 = LoggerFactory::getInstance( 'baz' );
+	}
 
-		$this->assertSame( $logger1, $logger2 );
+	/**
+	 * @depends testLoggersAreRestoredOnTearDown_replacingSameLoggerTwice__before
+	 * @covers MediaWikiIntegrationTestCase::setLogger
+	 * @covers MediaWikiIntegrationTestCase::restoreLoggers
+	 */
+	public function testLoggersAreRestoredOnTearDown_replacingSameLoggerTwice__after() {
+		$curLogger = LoggerFactory::getInstance( 'baz' );
+		$this->assertNotInstanceOf( MockObject::class, $curLogger );
 	}
 
 	/**
 	 * @covers MediaWikiIntegrationTestCase::setNullLogger
 	 * @covers MediaWikiIntegrationTestCase::restoreLoggers
 	 */
-	public function testNullLogger_createAndRemove() {
+	public function testNullLogger_createAndRemove__before() {
 		$this->setNullLogger( 'tocreate' );
 		$logger = LoggerFactory::getInstance( 'tocreate' );
 		$this->assertInstanceOf( \Psr\Log\NullLogger::class, $logger );
+	}
 
-		$this->mediaWikiTearDown();
+	/**
+	 * @depends testNullLogger_createAndRemove__before
+	 * @covers MediaWikiIntegrationTestCase::setNullLogger
+	 * @covers MediaWikiIntegrationTestCase::restoreLoggers
+	 */
+	public function testNullLogger_createAndRemove__after() {
 		$logger = LoggerFactory::getInstance( 'tocreate' );
 		// Unwrap from LogCapturingSpi
 		$inner = TestingAccessWrapper::newFromObject( $logger )->logger;
@@ -291,7 +352,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 	 * @covers MediaWikiIntegrationTestCase::setNullLogger
 	 * @covers MediaWikiIntegrationTestCase::restoreLoggers
 	 */
-	public function testNullLogger_mutateAndRestore() {
+	public function testNullLogger_mutateAndRestore__before() {
 		// Don't rely on the $wgDebugLogGroups and $wgDebugLogFile settings in
 		// WMF CI to make LEVEL_DEBUG (100) the default. Control this in the test.
 		$this->overrideConfigValue( MainConfigNames::DebugToolbar, true );
@@ -312,8 +373,15 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 			TestingAccessWrapper::newFromObject( $inner )->minimumLevel,
 			'changed minimumLevel'
 		);
+		return $inner;
+	}
 
-		$this->mediaWikiTearDown();
+	/**
+	 * @depends testNullLogger_mutateAndRestore__before
+	 * @covers MediaWikiIntegrationTestCase::setNullLogger
+	 * @covers MediaWikiIntegrationTestCase::restoreLoggers
+	 */
+	public function testNullLogger_mutateAndRestore__after( LoggerInterface $inner ) {
 		$this->assertSame(
 			100,
 			TestingAccessWrapper::newFromObject( $inner )->minimumLevel,

@@ -21,7 +21,6 @@ use MediaWiki\Storage\PageUpdateStatus;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
-use PHPUnit\Framework\TestResult;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\Database;
@@ -514,75 +513,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		TestUserRegistry::clear();
 	}
 
-	public function run( TestResult $result = null ): TestResult {
-		$result ??= $this->createResult();
-
-		try {
-			$this->overrideMwServices();
-
-			if ( !self::needsDB() ) {
-				$this->getServiceContainer()->disableStorage();
-				// ReadOnlyMode calls ILoadBalancer::getReadOnlyReason(), which would throw an exception. However,
-				// very few tests actually need a real ReadOnlyMode, and those are probably already using a mock,
-				// so override the service here.
-				$this->setService( 'ReadOnlyMode', $this->getDummyReadOnlyMode( false ) );
-				$this->db = null;
-			} else {
-				// Set up a DB connection for this test to use
-				$useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
-
-				$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-				// Need a Database where the DB domain changes during table cloning
-				$this->db = $lb->getConnectionInternal( DB_PRIMARY );
-
-				$this->checkDbIsSupported();
-
-				if ( !self::$dbSetup ) {
-					self::setupAllTestDBs(
-						$this->db, self::dbPrefix(), $useTemporaryTables
-					);
-					$this->addCoreDBData();
-				}
-
-				// TODO: the DB setup should be done in setUpBeforeClass(), so the test DB
-				// is available in subclass's setUpBeforeClass() and setUp() methods.
-				// This would also remove the need for the HACK that is oncePerClass().
-				if ( $this->oncePerClass() ) {
-					$this->setUpSchema( $this->db );
-					$this->resetDB( $this->db, $this->tablesUsed );
-					$this->addDBDataOnce();
-				}
-
-				$this->addDBData();
-			}
-		} catch ( Throwable $e ) {
-			$result->stop();
-			$result->addError( $this, $e, 0 );
-
-			return $result;
-		}
-
-		parent::run( $result );
-
-		try {
-			// We don't mind if we override already-overridden services during cleanup
-			$this->overriddenServices = [];
-			$this->temporaryHookHandlers = [];
-
-			if ( self::needsDB() ) {
-				$this->resetDB( $this->db, $this->tablesUsed );
-			}
-
-			self::restoreMwServices();
-			$this->localServices = null;
-		} catch ( Throwable $e ) {
-			$result->stop();
-			$result->addError( $this, $e, 0 );
-		}
-
-		return $result;
-	}
-
 	/**
 	 * @return bool
 	 */
@@ -674,6 +604,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			);
 		}
 
+		$this->overrideMwServices();
+		$this->maybeSetupDB();
+
 		$this->overriddenServices = [];
 		$this->temporaryHookHandlers = [];
 
@@ -703,6 +636,44 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			}
 		);
 		ob_start( 'MediaWikiIntegrationTestCase::wfResetOutputBuffersBarrier' );
+	}
+
+	private function maybeSetupDB(): void {
+		if ( !self::needsDB() ) {
+			$this->getServiceContainer()->disableStorage();
+			// ReadOnlyMode calls ILoadBalancer::getReadOnlyReason(), which would throw an exception. However,
+			// very few tests actually need a real ReadOnlyMode, and those are probably already using a mock,
+			// so override the service here.
+			$this->setService( 'ReadOnlyMode', $this->getDummyReadOnlyMode( false ) );
+			$this->db = null;
+			return;
+		}
+		// Set up a DB connection for this test to use
+		$useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
+
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		// Need a Database where the DB domain changes during table cloning
+		$this->db = $lb->getConnectionInternal( DB_PRIMARY );
+
+		$this->checkDbIsSupported();
+
+		if ( !self::$dbSetup ) {
+			self::setupAllTestDBs(
+				$this->db, self::dbPrefix(), $useTemporaryTables
+			);
+			$this->addCoreDBData();
+		}
+
+		// TODO: the DB setup should be done in setUpBeforeClass(), so the test DB
+		// is available in subclass's setUpBeforeClass() and setUp() methods.
+		// This would also remove the need for the HACK that is oncePerClass().
+		if ( $this->oncePerClass() ) {
+			$this->setUpSchema( $this->db );
+			$this->resetDB( $this->db, $this->tablesUsed );
+			$this->addDBDataOnce();
+		}
+
+		$this->addDBData();
 	}
 
 	protected function addTmpFiles( $files ) {
@@ -776,6 +747,17 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		MediaWikiServices::getInstance()->resetServiceForTesting(
 			'SpecialPageFactory'
 		);
+
+		// We don't mind if we override already-overridden services during cleanup
+		$this->overriddenServices = [];
+		$this->temporaryHookHandlers = [];
+
+		if ( self::needsDB() ) {
+			$this->resetDB( $this->db, $this->tablesUsed );
+		}
+
+		self::restoreMwServices();
+		$this->localServices = null;
 	}
 
 	/**
