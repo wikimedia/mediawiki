@@ -187,8 +187,7 @@
 		marker = document.querySelector( 'meta[name="ResourceLoaderDynamicStyles"]' ),
 
 		// For #addEmbeddedCSS()
-		lastCssBuffer,
-		rAF = window.requestAnimationFrame || setTimeout;
+		lastCssBuffer;
 
 	/**
 	 * Append an HTML element to `document.head` or before a specified node.
@@ -270,7 +269,7 @@
 				cssText: '',
 				callbacks: []
 			};
-			rAF( flushCssBuffer.bind( null, lastCssBuffer ) );
+			requestAnimationFrame( flushCssBuffer.bind( null, lastCssBuffer ) );
 		}
 
 		// Linebreak for somewhat distinguishable sections
@@ -976,7 +975,7 @@
 					// Paranoia:
 					// This callback is exposed to addEmbeddedCSS, which is outside the execute()
 					// function and is not concerned with state-machine integrity. In turn,
-					// addEmbeddedCSS() actually exposes stuff further into the browser (rAF).
+					// addEmbeddedCSS() actually exposes stuff further via requestAnimationFrame.
 					// If increment and decrement callbacks happen in the wrong order, or start
 					// again afterwards, then this branch could be reached multiple times.
 					// To protect the integrity of the state-machine, prevent that from happening
