@@ -162,6 +162,8 @@ because of Phabricator reports.
 * Database::getTempTableWrites(), previously protected, is now private.
 * DatabasePostgres class parameter "keywordTableMap", deprecated since 1.37,
   has been removed.
+* Database::doUpsert() and ::doReplace() have been removed without deprecation.
+  Subclasses should override ::upsert() or ::replace() respectively.
 * SelectQueryBuilder::lockForUpdate(), deprecated in 1.40 and unused,
   has been removed without hard deprecation.
 * TransactionProfiler::setSilenced() deprecated in 1.40, has been removed.

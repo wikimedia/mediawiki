@@ -535,13 +535,13 @@ class DatabaseMysqlBase extends Database {
 		}
 	}
 
-	protected function doUpsert(
-		string $table,
-		array $rows,
-		array $identityKey,
-		array $set,
-		string $fname
-	) {
+	public function upsert( $table, array $rows, $uniqueKeys, array $set, $fname = __METHOD__ ) {
+		$identityKey = $this->platform->normalizeUpsertParams( $uniqueKeys, $rows );
+		if ( !$rows ) {
+			return true;
+		}
+		$this->platform->assertValidUpsertSetArray( $set, $identityKey, $rows );
+
 		$encTable = $this->tableName( $table );
 		[ $sqlColumns, $sqlTuples ] = $this->platform->makeInsertLists( $rows );
 		$sqlColumnAssignments = $this->makeList( $set, self::LIST_SET );
@@ -557,9 +557,14 @@ class DatabaseMysqlBase extends Database {
 		$this->query( $query, $fname );
 		// Count updates of conflicting rows and row inserts equally toward the change count
 		$this->lastQueryAffectedRows = min( $this->lastQueryAffectedRows, count( $rows ) );
+		return true;
 	}
 
-	protected function doReplace( $table, array $identityKey, array $rows, $fname ) {
+	public function replace( $table, $uniqueKeys, $rows, $fname = __METHOD__ ) {
+		$this->platform->normalizeUpsertParams( $uniqueKeys, $rows );
+		if ( !$rows ) {
+			return;
+		}
 		$encTable = $this->tableName( $table );
 		[ $sqlColumns, $sqlTuples ] = $this->platform->makeInsertLists( $rows );
 		// https://dev.mysql.com/doc/refman/8.0/en/replace.html

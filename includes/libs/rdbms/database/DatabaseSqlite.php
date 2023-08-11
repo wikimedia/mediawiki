@@ -523,7 +523,11 @@ class DatabaseSqlite extends Database {
 		return in_array( 'UNIQUE', $options );
 	}
 
-	protected function doReplace( $table, array $identityKey, array $rows, $fname ) {
+	public function replace( $table, $uniqueKeys, $rows, $fname = __METHOD__ ) {
+		$this->platform->normalizeUpsertParams( $uniqueKeys, $rows );
+		if ( !$rows ) {
+			return;
+		}
 		$encTable = $this->tableName( $table );
 		[ $sqlColumns, $sqlTuples ] = $this->platform->makeInsertLists( $rows );
 		// https://sqlite.org/lang_insert.html
