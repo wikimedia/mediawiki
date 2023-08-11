@@ -761,6 +761,7 @@
 	"postedit-confirmation-saved": "Rhoddwyd eich golygiad ar gadw.",
 	"postedit-confirmation-published": "Cyhoeddwyd eich gwaith.",
 	"postedit-temp-created-label": "Cyfrif dros dro",
+	"postedit-temp-created": "Mae [[$2|cyfrif a gynhyrchwyd yn awtomatig]] wedi'i greu i chi trwy ychwanegu cwcis i'ch porwr. Er mwyn dewis enw a chael mwy o nodweddion, dylech chi [$1 greu cyfrif].",
 	"edit-already-exists": "Ni ellid creu tudalen newydd.\nMae ar gael yn barod.",
 	"defaultmessagetext": "Y testun rhagosodedig",
 	"content-failed-to-parse": "Ni lwyddwyd i ddosrannu'r cynnwys sydd ar ffurf $2 yn ôl y model $1: $3",

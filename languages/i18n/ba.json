@@ -3044,7 +3044,7 @@
 	"lastmodifiedatby": "Был бит һуңғы тапҡыр $1 $2 $3 тарафынан үҙгәртелгән.",
 	"othercontribs": "Мөхәррирләүҙә ҡатнаштылар: $1.",
 	"others": "башҡалар",
-	"siteusers": "{{PLURAL:$2|1={{GENDER:$1|ҡатнашыусы}}|ҡатнашыусылар}} {{grammar:genitive|{{SITENAME}}}} $1",
+	"siteusers": "{{SITENAME}} мөхәррирләүҙә $1{{PLURAL:$2|{{GENDER:$1|ҡатнашыусы}}|ҡатнашыусылар}}",
 	"anonusers": "{{PLURAL:$2|1=аноним ҡатнашыусы|аноним ҡатнашыусылар}} {{grammar:genitive|{{SITENAME}}}} $1",
 	"creditspage": "Рәхмәт белдереүҙәр",
 	"nocredits": "Был мәҡәләне мөхәррирләүҙә ҡатнашыусылар исемлеге юҡ.",
