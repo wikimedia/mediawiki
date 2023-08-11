@@ -258,6 +258,8 @@ because of Phabricator reports.
   instead of two rows, one for HTTP and one for HTTPS.
 * MediaWikiIntegrationTestCase::getTestUser(), ::getTestSysop(), and
   ::getMutableTestUser() have been made protected and non-static.
+* MediaWikiIntegrationTestCase::$supportedDBs has been changed to a private
+  constant.
 * Saving preferences for a temporary user now throws an error (e.g. via
   UserOptionsManager::saveOptions)
 * ApiQuery::getNamedDB() and ApiQueryBase::selectNamedDB(), deprecated in
