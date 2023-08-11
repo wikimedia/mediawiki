@@ -1586,6 +1586,15 @@
 		},
 
 		/**
+		 * New implement function for forwards-compatibility (deployment rollback support).
+		 *
+		 * @param {Function} declarator
+		 */
+		impl: function ( declarator ) {
+			this.implement.apply( this, declarator() );
+		},
+
+		/**
 		 * Load an external script or one or more modules.
 		 *
 		 * This method takes a list of unrelated modules. Use cases:
