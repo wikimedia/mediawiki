@@ -133,6 +133,7 @@ For notes on 1.40.x and older releases, see HISTORY.
 * Updated Mustache from 3.0.1 to 4.2.0.
 * Updated OOjs from 6.0.0 to 7.0.1.
 * Updated OOUI from v0.46.3 to v0.48.1.
+* Updated pear/mail from 1.5.0 to 1.5.1.
 * Updated symfony/polyfill-php82 from v1.27.0 to v1.28.0.
 * Updated symfony/yaml from v5.4.17 to v5.4.23.
 * Updated wikimedia/bcp-47-code from 1.0.0 to 2.0.0.
