@@ -249,55 +249,57 @@ class ClientHtml {
 		//
 		// See also Skin:getHtmlElementAttributes() and startup/startup.js.
 		//
-		// Optimisation: Produce shorter and faster JS by only writing to DOM. Avoid reading
-		// HTMLElement.className and executing JS regexes by doing the string replace in PHP.
+		// Optimisation: Produce shorter and faster JS by only writing to DOM.
 		// This is possible because Skin informs RL about the final value of <html class>, and
 		// because RL already controls the first element in HTML <head> for performance reasons.
+		// - Avoid reading HTMLElement.className
+		// - Avoid executing JS regexes in the common case, by doing the string replace in PHP.
 		$nojsClass ??= $this->getDocumentAttributes()['class'];
 		$jsClass = preg_replace( '/(^|\s)client-nojs(\s|$)/', '$1client-js$2', $nojsClass );
 		$jsClassJson = $this->context->encodeJson( $jsClass );
-		$script = "
-document.documentElement.className = {$jsClassJson};
-";
 
+		// Apply client preferences stored by mw.user.clientPrefs as "class1,class2", where each
+		// item is an <html> class following the pattern "<key>-clientpref-<value>" (T339268)
 		if ( $this->options['clientPrefEnabled'] ) {
 			$cookiePrefix = $this->options['clientPrefCookiePrefix'];
-			// ( T339268 ) Add/Modify client preference classes to documentElement from cookie
-			// this is done to have preferences available before the DOM, so it renders as intended
-			$script .= <<<JS
+			$script = <<<JS
+// Like startup.js, this script tag is intended to be ES3-syntax compatible and degrade gracefully.
+// Use of ES5 (forEach) or ES6 methods is safe after the cookie check.
 ( function () {
+	var className = {$jsClassJson};
 	var cookie = document.cookie.match( /(?:^|; ){$cookiePrefix}mwclientpreferences=([^;]+)/ );
-	// cookie match is a ! separated pairs with the pair separator ~ "key1~value1!key2~value2"
-	var prefArray = cookie && cookie[ 1 ] ? cookie[ 1 ].split( '!' ) : [];
-	var clientPreferences = {};
-	for ( var i = 0; i < prefArray.length; i++ ) {
-		var pair = prefArray[i].split( '~' );
-		clientPreferences[ pair[ 0 ] ] = pair[ 1 ];
+	if ( cookie ) {
+		// The comma is escaped by mw.cookie.set
+		cookie[ 1 ].split( '%2C' ).forEach( function ( pref ) {
+			// To avoid misuse and allow for quick emergency shut-off, only change classes that
+			// exist in the HTML. For new features, the default class must be set a couple of weeks
+			// before the toggle is deployed, to give time for the CDN/HTML cache to roll over.
+			//
+			// Regex explanation:
+			// 1. `\w+`, match the "-value" suffix, this is equivalent to [a-zA-Z0-9_].
+			//     This is stripped from the desired class to create a match for a current class.
+			// 2. `[^\w-]`, any non-alphanumeric characters. This should never match but is
+			//     stripped to ensure regex safety by keeping it simple (no need to escape).
+			// 3. Match an existing class name as follows:
+			//    * (^| ) = start of string or space
+			//    * -clientpref- = enforce present of this literal string
+			//    * ( |$) = end of string or space
+			//
+			// Replacement examples:
+			// * vector-feature-foo-clientpref-2 -> vector-feature-foo-clientpref-4
+			// * mw-foo-clientpref-enabled       -> mw-foo-clientpref-disabled
+			// * mw-display-clientpref-dark      -> mw-display-clientpref-light
+			className = className.replace(
+				new RegExp( '(^| )' + pref.replace( /-clientpref-\w+$|[^\w-]+/g, '' ) + '-clientpref-\\\\w+( |$)' ),
+				'$1' + pref + '$2'
+			);
+		} );
 	}
-	// Only uses existing classes, for maintainability
-	// for new feature, add the new class a couple of weeks before the feature is deployed
-	// so that the feature class is already in the cache when the feature is deployed
-	// regex explanation:
-	// (^| ) = start of string or space
-	// ([^ ]+) = one or more non-space characters
-	// -clientpref- = literal string
-	// [a-zA-Z0-9]+ = one or more alphanumeric characters
-	// ( |$) = end of string or space
-	// Regex replace examples:
-	// "vector-feature-foo-clientpref-0" -> "vector-feature-foo-clientpref-1"
-	// "mw-pref-bar-clientpref-2" -> "mw-pref-bar-clientpref-4"
-	// "mw-pref-bar-display-clientpref-dark" -> "mw-pref-bar-display-clientpref-light"
-	document.documentElement.className = document.documentElement.className.replace(
-		/(^| )([^ ]+)-clientpref-[a-zA-Z0-9]+( |$)/g,
-		function ( match, before, key, after ) {
-			if ( clientPreferences.hasOwnProperty( key ) ) {
-				return before + key + '-clientpref-' + clientPreferences[ key ] + after;
-			}
-			return match;
-		}
-	);
-} () );
+	document.documentElement.className = className;
+}() );
 JS;
+		} else {
+			$script = "document.documentElement.className = {$jsClassJson};";
 		}
 
 		return $script;

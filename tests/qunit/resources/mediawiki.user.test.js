@@ -178,9 +178,8 @@
 		const mwclientpreferences = mw.cookie.get( CLIENT_PREF_COOKIE_NAME );
 		assert.true(
 			mwclientpreferences &&
-			mwclientpreferences.includes( 'limited-width~0' ) &&
-			mwclientpreferences.includes( 'font-size~10' ) &&
-			mwclientpreferences.includes( '!' ),
+			mwclientpreferences.includes( 'limited-width-clientpref-0' ) &&
+				mwclientpreferences.includes( 'font-size-clientpref-10' ),
 			'cookie was set correctly'
 		);
 	} );
@@ -220,9 +219,9 @@
 			'the class was modified'
 		);
 		let mwclientpreferences = mw.cookie.get( CLIENT_PREF_COOKIE_NAME );
-		assert.true(
-			mwclientpreferences &&
-				mwclientpreferences.includes( 'dark-mode~disabled' ),
+		assert.strictEqual(
+			mwclientpreferences,
+			'dark-mode-clientpref-disabled',
 			'it was stored to a cookie'
 		);
 		result = mw.user.clientPrefs.set( 'dark-mode', 'enabled' );
@@ -235,7 +234,7 @@
 		mwclientpreferences = mw.cookie.get( CLIENT_PREF_COOKIE_NAME );
 		assert.strictEqual(
 			mwclientpreferences,
-			'dark-mode~enabled',
+			'dark-mode-clientpref-enabled',
 			'always store even if it matches default as we have no knowledge of what the default could be'
 		);
 	} );
@@ -247,7 +246,7 @@
 		const mwclientpreferences = mw.cookie.get( CLIENT_PREF_COOKIE_NAME );
 		assert.strictEqual(
 			mwclientpreferences,
-			'dark-mode~enabled',
+			'dark-mode-clientpref-enabled',
 			'always store even if it matches default as we have no knowledge of what the default could be'
 		);
 	} );
