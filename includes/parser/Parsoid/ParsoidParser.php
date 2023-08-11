@@ -86,22 +86,15 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 		Assert::invariant( $clearState, '$clearState=false is not yet supported' );
 		$title = Title::newFromPageReference( $page );
 		$lang = $options->getTargetLanguage();
-		if ( $lang === null ) {
-			if ( $options->getInterfaceMessage() ) {
-				$lang = $options->getUserLangObj();
-			} else {
-				$lang = $title->getPageLanguage();
-			}
+		if ( $lang === null && $options->getInterfaceMessage() ) {
+			$lang = $options->getUserLangObj();
 		}
-		$langConv = $this->languageConverterFactory->getLanguageConverter(
-			$lang
-		);
 		$pageConfig = $revId === null ? null : $this->pageConfigFactory->create(
 			$title,
 			$options->getUserIdentity(),
 			$revId,
 			null, // unused
-			$lang
+			$lang // defaults to title page language if null
 		);
 		if ( !( $pageConfig && $pageConfig->getPageMainContent() === $text ) ) {
 			// This is a bit awkward! But we really need to parse $text, which
@@ -123,25 +116,38 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 				$options->getUserIdentity(),
 				$revisionRecord,
 				null, // unused
-				$lang
+				$lang // defaults to title page language if null
 			);
 		}
+
+		// FIXME: Right now, ParsoidOutputAccess uses $lang and does not compute a
+		// $preferredVariant for $lang. So, when switching over to ParserOutputAccess,
+		// we need to reconcile that difference.
+		//
+		// The REST interfaces will disable content conversion here
+		// via ParserOptions.  The enable/disable logic here matches
+		// that in Parser::internalParseHalfParsed(), although
+		// __NOCONTENTCONVERT__ is handled internal to Parsoid.
+		$preferredVariant = null;
+		if ( !( $options->getDisableContentConversion() || $options->getInterfaceMessage() ) ) {
+			$langFactory = MediaWikiServices::getInstance()->getLanguageFactory();
+			$lang = $langFactory->getLanguage( $pageConfig->getPageLanguageBcp47() );
+			$langConv = $this->languageConverterFactory->getLanguageConverter( $lang );
+			$preferredVariant = $langFactory->getLanguage( $langConv->getPreferredVariant() );
+		}
+
 		$parserOutput = new ParserOutput();
 		// NOTE: This is useless until the time Parsoid uses the
 		// $options ParserOptions object. But if/when it does, this
 		// will ensure that we track used options correctly.
 		$options->registerWatcher( [ $parserOutput, 'recordOption' ] );
 
-		// T331148: This should be checked to be consistent with the
-		// REST interfaces for Parsoid output
-		$preferredVariant = MediaWikiServices::getInstance()
-				->getLanguageFactory()
-				->getLanguage( $langConv->getPreferredVariant() );
 		$pageBundle = $this->parsoid->wikitext2html( $pageConfig, [
 			'pageBundle' => true,
 			'wrapSections' => true,
 			'htmlVariantLanguage' => $preferredVariant,
 			'outputContentVersion' => Parsoid::defaultHTMLVersion(),
+			'logLinterData' => true
 		], $headers, $parserOutput );
 		$parserOutput = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle, $parserOutput );
 		// Register a watcher again because the $parserOuptut arg

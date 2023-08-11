@@ -350,6 +350,10 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	}
 
 	/**
+	 * This is equivalent of 'pageLanguageOverride' in PageConfigFactory
+	 * For example, when clients call the REST API with the 'content-language'
+	 * header to effect language variant conversion.
+	 *
 	 * @param Bcp47Code|string $pageLanguage the page language, as a Bcp47Code
 	 *   or a BCP-47 string.
 	 */
@@ -376,6 +380,8 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		array $parameters,
 		User $user,
 		$revision = null,
+		// FIXME: This is not set anywhere except in tests?
+		// Should we remove this?
 		?Bcp47Code $pageLanguage = null
 	) {
 		$this->page = $page;
@@ -736,7 +742,6 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			// We are not really interested in lint data for old revisions, but
 			// we don't have a good way to tell at this point.
 			$flags = $this->parsoidOutputAccessOptions | ParsoidOutputAccess::OPT_LOG_LINT_DATA;
-
 			$status = $this->parsoidOutputAccess->getParserOutput(
 				$this->page,
 				$parserOptions,

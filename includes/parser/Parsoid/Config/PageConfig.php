@@ -50,7 +50,7 @@ class PageConfig extends IPageConfig {
 	/** @var ?RevisionRecord */
 	private $revision;
 
-	/** @var Bcp47Code|null */
+	/** @var Bcp47Code */
 	private $pageLanguage;
 
 	/** @var string */

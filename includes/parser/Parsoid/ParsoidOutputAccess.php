@@ -285,8 +285,12 @@ class ParsoidOutputAccess {
 	): Status {
 		$defaultOptions = [
 			'pageBundle' => true,
-			'prefix' => $this->parsoidWikiId,
-			'pageName' => $pageConfig->getTitle(),
+			'wrapSections' => true,
+			// Defaults to page title language unless the REST API
+			// sets a target language in ParserOptions which it does if:
+			// (a) a content-language header is passed in which is usually
+			//     a language variant conversion request
+			// (b) user language (for interface messages)
 			'htmlVariantLanguage' => $pageConfig->getPageLanguageBcp47(),
 			'outputContentVersion' => Parsoid::defaultHTMLVersion(),
 		];
