@@ -41,10 +41,6 @@ class PageRestrictionTest extends RestrictionTestCase {
 		$title->mArticleID = 2;
 		$restriction->setTitle( $title );
 		$this->assertSame( $title, $restriction->getTitle() );
-
-		$restriction = new $class( 1, 1 );
-		$title = Title::newFromID( 1 );
-		$this->assertEquals( $title->getArticleID(), $restriction->getTitle()->getArticleID() );
 	}
 
 	public function testNewFromRow() {

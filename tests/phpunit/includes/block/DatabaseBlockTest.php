@@ -22,16 +22,73 @@ use Wikimedia\Rdbms\LBFactory;
  */
 class DatabaseBlockTest extends MediaWikiLangTestCase {
 
+	public function addDBDataOnce() {
+		$blockList = [
+			[ 'target' => '70.2.0.0/16',
+				'type' => DatabaseBlock::TYPE_RANGE,
+				'desc' => 'Range Hardblock',
+				'ACDisable' => false,
+				'isHardblock' => true,
+				'isAutoBlocking' => false,
+			],
+			[ 'target' => '2001:4860:4001::/48',
+				'type' => DatabaseBlock::TYPE_RANGE,
+				'desc' => 'Range6 Hardblock',
+				'ACDisable' => false,
+				'isHardblock' => true,
+				'isAutoBlocking' => false,
+			],
+			[ 'target' => '60.2.0.0/16',
+				'type' => DatabaseBlock::TYPE_RANGE,
+				'desc' => 'Range Softblock with AC Disabled',
+				'ACDisable' => true,
+				'isHardblock' => false,
+				'isAutoBlocking' => false,
+			],
+			[ 'target' => '50.2.0.0/16',
+				'type' => DatabaseBlock::TYPE_RANGE,
+				'desc' => 'Range Softblock',
+				'ACDisable' => false,
+				'isHardblock' => false,
+				'isAutoBlocking' => false,
+			],
+			[ 'target' => '50.1.1.1',
+				'type' => DatabaseBlock::TYPE_IP,
+				'desc' => 'Exact Softblock',
+				'ACDisable' => false,
+				'isHardblock' => false,
+				'isAutoBlocking' => false,
+			],
+		];
+
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$blocker = $this->getTestUser()->getUser();
+		foreach ( $blockList as $insBlock ) {
+			$target = $insBlock['target'];
+
+			if ( $insBlock['type'] === DatabaseBlock::TYPE_IP ) {
+				$target = User::newFromName( IPUtils::sanitizeIP( $target ), false )->getName();
+			} elseif ( $insBlock['type'] === DatabaseBlock::TYPE_RANGE ) {
+				$target = IPUtils::sanitizeRange( $target );
+			}
+
+			$block = new DatabaseBlock();
+			$block->setTarget( $target );
+			$block->setBlocker( $blocker );
+			$block->setReason( $insBlock['desc'] );
+			$block->setExpiry( 'infinity' );
+			$block->isCreateAccountBlocked( $insBlock['ACDisable'] );
+			$block->isHardblock( $insBlock['isHardblock'] );
+			$block->isAutoblocking( $insBlock['isAutoBlocking'] );
+			$blockStore->insertBlock( $block );
+		}
+	}
+
 	/**
 	 * @return UserIdentity
 	 */
 	private function getUserForBlocking() {
-		$testUser = $this->getMutableTestUser();
-		$user = $testUser->getUser();
-		$user->addToDatabase();
-		TestUser::setPasswordForUser( $user, 'UTBlockeePassword' );
-		$user->saveSettings();
-		return $testUser->getUserIdentity();
+		return $this->getTestUser()->getUserIdentity();
 	}
 
 	/**
@@ -64,8 +121,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		if ( !$block->getId() ) {
 			throw new RuntimeException( "Failed to insert block for BlockTest; old leftover block remaining?" );
 		}
-
-		$this->addXffBlocks();
 
 		return $block;
 	}
@@ -336,76 +391,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 			'Correct blocker name' );
 		$this->assertEquals( 'm>MetaWikiUser', $block->getByName(), 'Correct blocker name' );
 		$this->assertSame( 0, $block->getBy(), 'Correct blocker id' );
-	}
-
-	protected function addXffBlocks() {
-		static $inited = false;
-
-		if ( $inited ) {
-			return;
-		}
-
-		$inited = true;
-
-		$blockList = [
-			[ 'target' => '70.2.0.0/16',
-				'type' => DatabaseBlock::TYPE_RANGE,
-				'desc' => 'Range Hardblock',
-				'ACDisable' => false,
-				'isHardblock' => true,
-				'isAutoBlocking' => false,
-			],
-			[ 'target' => '2001:4860:4001::/48',
-				'type' => DatabaseBlock::TYPE_RANGE,
-				'desc' => 'Range6 Hardblock',
-				'ACDisable' => false,
-				'isHardblock' => true,
-				'isAutoBlocking' => false,
-			],
-			[ 'target' => '60.2.0.0/16',
-				'type' => DatabaseBlock::TYPE_RANGE,
-				'desc' => 'Range Softblock with AC Disabled',
-				'ACDisable' => true,
-				'isHardblock' => false,
-				'isAutoBlocking' => false,
-			],
-			[ 'target' => '50.2.0.0/16',
-				'type' => DatabaseBlock::TYPE_RANGE,
-				'desc' => 'Range Softblock',
-				'ACDisable' => false,
-				'isHardblock' => false,
-				'isAutoBlocking' => false,
-			],
-			[ 'target' => '50.1.1.1',
-				'type' => DatabaseBlock::TYPE_IP,
-				'desc' => 'Exact Softblock',
-				'ACDisable' => false,
-				'isHardblock' => false,
-				'isAutoBlocking' => false,
-			],
-		];
-
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-		$blocker = $this->getTestUser()->getUser();
-		foreach ( $blockList as $insBlock ) {
-			$target = $insBlock['target'];
-
-			if ( $insBlock['type'] === DatabaseBlock::TYPE_IP ) {
-				$target = User::newFromName( IPUtils::sanitizeIP( $target ), false )->getName();
-			} elseif ( $insBlock['type'] === DatabaseBlock::TYPE_RANGE ) {
-				$target = IPUtils::sanitizeRange( $target );
-			}
-
-			$block = new DatabaseBlock();
-			$block->setTarget( $target );
-			$block->setBlocker( $blocker );
-			$block->setReason( $insBlock['desc'] );
-			$block->setExpiry( 'infinity' );
-			$block->isCreateAccountBlocked( $insBlock['ACDisable'] );
-			$block->isHardblock( $insBlock['isHardblock'] );
-			$block->isAutoblocking( $insBlock['isAutoBlocking'] );
-			$blockStore->insertBlock( $block );
-		}
 	}
 
 	public static function providerXff() {

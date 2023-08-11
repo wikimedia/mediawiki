@@ -103,6 +103,7 @@ class DBSiteStoreTest extends MediaWikiIntegrationTestCase {
 	 * @covers DBSiteStore::reset
 	 */
 	public function testReset() {
+		TestSites::insertIntoDb();
 		$store1 = $this->newDBSiteStore();
 		$store2 = $this->newDBSiteStore();
 

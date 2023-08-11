@@ -25,13 +25,9 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	use DummyServicesTrait;
 	use MockAuthorityTrait;
 
-	/** @var WikiPage[] */
-	private $pagesToDelete;
-
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->pagesToDelete = [];
 		$this->tablesUsed = array_merge(
 			$this->tablesUsed,
 			[
@@ -52,6 +48,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 				'logging',
 
 				'page_props',
+				'page_restrictions',
 				'pagelinks',
 				'categorylinks',
 				'langlinks',
@@ -64,11 +61,6 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	}
 
 	protected function tearDown(): void {
-		foreach ( $this->pagesToDelete as $p ) {
-			if ( $p->exists() ) {
-				$this->deletePage( $p, "testing done." );
-			}
-		}
 		ParserOptions::clearStaticCache();
 		parent::tearDown();
 	}
@@ -84,11 +76,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			$title = Title::newFromText( $title, $ns );
 		}
 
-		$p = new WikiPage( $title );
-
-		$this->pagesToDelete[] = $p;
-
-		return $p;
+		return new WikiPage( $title );
 	}
 
 	/**
@@ -1788,7 +1776,7 @@ more stuff
 		if ( $pageExists ) {
 			$page = $this->createPage( __METHOD__, 'ABC' );
 		} else {
-			$page = new WikiPage( Title::newFromText( __METHOD__ . '-nonexist' ) );
+			$page = $this->getNonexistingTestPage( Title::newFromText( __METHOD__ . '-nonexist' ) );
 		}
 		$user = $this->getTestSysop()->getUser();
 		$userIdentity = $this->getTestSysop()->getUserIdentity();

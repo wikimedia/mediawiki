@@ -12,17 +12,19 @@ use MediaWiki\User\UserRigorOptions;
  * @group Database
  */
 class UserEditTrackerTest extends MediaWikiIntegrationTestCase {
+	/** @inheritDoc */
+	protected $tablesUsed = [ 'page' ];
+
 	/**
 	 * Do an edit
 	 *
 	 * @param UserIdentity $user
 	 * @param string $timestamp
-	 * @param bool $create
 	 */
-	private function editTrackerDoEdit( $user, $timestamp, $create ) {
+	private function editTrackerDoEdit( $user, $timestamp ) {
 		$title = Title::newFromText( __FUNCTION__ );
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
-		if ( $create ) {
+		if ( !$page->exists() ) {
 			$page->insertOn( $this->db );
 		}
 
@@ -81,7 +83,7 @@ class UserEditTrackerTest extends MediaWikiIntegrationTestCase {
 
 	public function testInitializeUserEditCount() {
 		$user = $this->getMutableTestUser()->getUser();
-		$this->editTrackerDoEdit( $user, '20200101000000', true );
+		$this->editTrackerDoEdit( $user, '20200101000000' );
 		$tracker = $this->getServiceContainer()->getUserEditTracker();
 		$tracker->initializeUserEditCount( $user );
 		$this->runJobs();
@@ -97,9 +99,9 @@ class UserEditTrackerTest extends MediaWikiIntegrationTestCase {
 		$ts1 = '20010101000000';
 		$ts2 = '20020101000000';
 		$ts3 = '20030101000000';
-		$this->editTrackerDoEdit( $user, $ts3, false );
-		$this->editTrackerDoEdit( $user, $ts2, false );
-		$this->editTrackerDoEdit( $user, $ts1, true );
+		$this->editTrackerDoEdit( $user, $ts3 );
+		$this->editTrackerDoEdit( $user, $ts2 );
+		$this->editTrackerDoEdit( $user, $ts1 );
 
 		$this->assertSame( $ts1, $tracker->getFirstEditTimestamp( $user ) );
 		$this->assertSame( $ts3, $tracker->getLatestEditTimestamp( $user ) );
@@ -109,7 +111,7 @@ class UserEditTrackerTest extends MediaWikiIntegrationTestCase {
 		$user = $this->getServiceContainer()->getUserFactory()
 			->newFromName( '127.0.0.1', UserRigorOptions::RIGOR_NONE );
 		$tracker = $this->getServiceContainer()->getUserEditTracker();
-		$this->editTrackerDoEdit( $user, '20200101000000', true );
+		$this->editTrackerDoEdit( $user, '20200101000000' );
 		$this->assertFalse( $tracker->getFirstEditTimestamp( $user ) );
 		$this->assertFalse( $tracker->getLatestEditTimestamp( $user ) );
 	}
