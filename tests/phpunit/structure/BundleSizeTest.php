@@ -30,6 +30,14 @@ abstract class BundleSizeTest extends MediaWikiIntegrationTestCase {
 		$this->setService( 'DBLoadBalancerFactory', $lbFactory );
 	}
 
+	/**
+	 * Adjustments for bundle size increases caused by core, to avoid breaking
+	 * previously introduced extension tests.
+	 */
+	private const CORE_SIZE_ADJUSTMENTS = [
+		'mw.loader.impl' => 17
+	];
+
 	public function provideBundleSize() {
 		foreach ( json_decode( file_get_contents( $this->getBundleSizeConfig() ), true ) as $testCase ) {
 			yield $testCase['resourceModule'] => [ $testCase ];
@@ -72,6 +80,7 @@ abstract class BundleSizeTest extends MediaWikiIntegrationTestCase {
 		);
 		$content = $resourceLoader->makeModuleResponse( $context, [ $moduleName => $module ] );
 		$contentTransferSize = strlen( gzencode( $content, 9 ) );
+		$contentTransferSize -= array_sum( self::CORE_SIZE_ADJUSTMENTS );
 		$message = $projectName ?
 			"$projectName: $moduleName is less than $maxSize" :
 			"$moduleName is less than $maxSize";

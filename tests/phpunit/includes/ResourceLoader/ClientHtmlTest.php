@@ -119,7 +119,7 @@ class ClientHtmlTest extends \PHPUnit\Framework\TestCase {
 			. 'RLPAGEMODULES=["test"];'
 			. '</script>' . "\n"
 			. '<script>(RLQ=window.RLQ||[]).push(function(){'
-			. 'mw.loader.implement("test.private@{blankVer}",null,{"css":[]});'
+			. 'mw.loader.impl(function(){return["test.private@{blankVer}",null,{"css":[]}];});'
 			. '});</script>' . "\n"
 			. '<link rel="stylesheet" href="/w/load.php?lang=nl&amp;modules=test.styles.deprecated%2Cpure&amp;only=styles">' . "\n"
 			. '<style>.private{}</style>' . "\n"
@@ -217,7 +217,7 @@ class ClientHtmlTest extends \PHPUnit\Framework\TestCase {
 				'modules' => [ 'test.private' ],
 				'only' => Module::TYPE_COMBINED,
 				'extra' => [],
-				'output' => '<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.implement("test.private@{blankVer}",null,{"css":[]});});</script>',
+				'output' => '<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["test.private@{blankVer}",null,{"css":[]}];});});</script>',
 			],
 			[
 				'context' => [],
@@ -268,7 +268,7 @@ class ClientHtmlTest extends \PHPUnit\Framework\TestCase {
 				'modules' => [ 'test.shouldembed' ],
 				'only' => Module::TYPE_COMBINED,
 				'extra' => [],
-				'output' => '<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.implement("test.shouldembed@{blankVer}",null,{"css":[]});});</script>',
+				'output' => '<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["test.shouldembed@{blankVer}",null,{"css":[]}];});});</script>',
 			],
 			[
 				'context' => [],
@@ -289,7 +289,7 @@ class ClientHtmlTest extends \PHPUnit\Framework\TestCase {
 				'modules' => [ 'test', 'test.shouldembed' ],
 				'only' => Module::TYPE_COMBINED,
 				'extra' => [],
-				'output' => '<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?lang=nl\u0026modules=test");mw.loader.implement("test.shouldembed@{blankVer}",null,{"css":[]});});</script>',
+				'output' => '<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?lang=nl\u0026modules=test");mw.loader.impl(function(){return["test.shouldembed@{blankVer}",null,{"css":[]}];});});</script>',
 			],
 			[
 				'context' => [],

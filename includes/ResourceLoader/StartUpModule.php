@@ -47,6 +47,12 @@ use Wikimedia\RequestTimeout\TimeoutException;
  */
 class StartUpModule extends Module {
 
+	/**
+	 * Cache version for client-side ResourceLoader module storage.
+	 * Like ResourceLoaderStorageVersion but not configurable.
+	 */
+	private const STORAGE_VERSION = '1.41';
+
 	private $groupIds = [
 		// These reserved numbers MUST start at 0 and not skip any. These are preset
 		// for forward compatibility so that they can be safely referenced by mediawiki.js,
@@ -344,6 +350,7 @@ class StartUpModule extends Module {
 	private function getStoreVary( Context $context ): string {
 		return implode( ':', [
 			$context->getSkin(),
+			self::STORAGE_VERSION,
 			$this->getConfig()->get( MainConfigNames::ResourceLoaderStorageVersion ),
 			$context->getLanguage(),
 		] );
