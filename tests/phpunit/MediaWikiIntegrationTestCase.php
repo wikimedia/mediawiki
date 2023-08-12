@@ -664,7 +664,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		// This would also remove the need for the HACK that is oncePerClass().
 		if ( self::oncePerClass( $this->db ) ) {
 			$this->setUpSchema( $this->db );
-			$this->resetDB( $this->db, $this->tablesUsed );
+			self::resetDB( $this->db, $this->tablesUsed );
 			$this->addDBDataOnce();
 		}
 
@@ -748,7 +748,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$this->temporaryHookHandlers = [];
 
 		if ( self::needsDB() ) {
-			$this->resetDB( $this->db, $this->tablesUsed );
+			self::resetDB( $this->db, $this->tablesUsed );
 		}
 
 		self::restoreMwServices();
@@ -2055,50 +2055,51 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	/**
 	 * Empty all tables so they can be repopulated for tests
 	 *
-	 * @param IDatabase|null $db Database to reset
+	 * @param IDatabase $db Database to reset
 	 * @param string[] $tablesUsed Tables to reset
 	 */
-	private function resetDB( ?IDatabase $db, array $tablesUsed ) {
-		if ( $db ) {
-			// some groups of tables are connected such that if any is used, all should be cleared
-			$extraTables = [
-				'user' => [ 'user', 'user_groups', 'user_properties', 'actor' ],
-				'page' => [ 'page', 'revision', 'ip_changes', 'comment', 'archive',
-					'slots', 'content', 'content_models', 'slot_roles', 'redirect', 'change_tag' ],
-				'logging' => [ 'logging', 'log_search', 'change_tag' ],
-			];
-
-			foreach ( $extraTables as $i => $group ) {
-				if ( !array_intersect( $tablesUsed, $group ) ) {
-					unset( $extraTables[$i] );
-				}
-			}
-			$extraTables = array_values( $extraTables );
-			$tablesUsed = array_unique( array_merge( $tablesUsed, ...$extraTables ) );
-			// special case: if revision/logging is used, clear recentchanges
-			// (but not necessarily logging/revision, unless that is also used)
-			if (
-				array_intersect( $tablesUsed, [ 'revision', 'logging' ] ) &&
-				!in_array( 'recentchanges', $tablesUsed, true )
-			) {
-				$tablesUsed[] = 'recentchanges';
-			}
-
-			if ( in_array( 'user', $tablesUsed ) ) {
-				TestUserRegistry::clear();
-
-				// Reset context user, which is probably 127.0.0.1, as its loaded
-				// data is probably not valid. This used to manipulate $wgUser but
-				// since that is deprecated tests are more likely to be relying on
-				// RequestContext::getMain() instead.
-				// @todo Should we start setting the user to something nondeterministic
-				//  to encourage tests to be updated to not depend on it?
-				$user = RequestContext::getMain()->getUser();
-				$user->clearInstanceCache( $user->mFrom );
-			}
-
-			self::truncateTables( $tablesUsed, $db );
+	private static function resetDB( IDatabase $db, array $tablesUsed ) {
+		if ( !$tablesUsed ) {
+			return;
 		}
+		// some groups of tables are connected such that if any is used, all should be cleared
+		$extraTables = [
+			'user' => [ 'user', 'user_groups', 'user_properties', 'actor' ],
+			'page' => [ 'page', 'revision', 'ip_changes', 'comment', 'archive',
+				'slots', 'content', 'content_models', 'slot_roles', 'redirect', 'change_tag' ],
+			'logging' => [ 'logging', 'log_search', 'change_tag' ],
+		];
+
+		foreach ( $extraTables as $i => $group ) {
+			if ( !array_intersect( $tablesUsed, $group ) ) {
+				unset( $extraTables[$i] );
+			}
+		}
+		$extraTables = array_values( $extraTables );
+		$tablesUsed = array_unique( array_merge( $tablesUsed, ...$extraTables ) );
+		// special case: if revision/logging is used, clear recentchanges
+		// (but not necessarily logging/revision, unless that is also used)
+		if (
+			array_intersect( $tablesUsed, [ 'revision', 'logging' ] ) &&
+			!in_array( 'recentchanges', $tablesUsed, true )
+		) {
+			$tablesUsed[] = 'recentchanges';
+		}
+
+		if ( in_array( 'user', $tablesUsed ) ) {
+			TestUserRegistry::clear();
+
+			// Reset context user, which is probably 127.0.0.1, as its loaded
+			// data is probably not valid. This used to manipulate $wgUser but
+			// since that is deprecated tests are more likely to be relying on
+			// RequestContext::getMain() instead.
+			// @todo Should we start setting the user to something nondeterministic
+			//  to encourage tests to be updated to not depend on it?
+			$user = RequestContext::getMain()->getUser();
+			$user->clearInstanceCache( $user->mFrom );
+		}
+
+		self::truncateTables( $tablesUsed, $db );
 	}
 
 	protected function truncateTable( $table, IDatabase $db = null ) {
