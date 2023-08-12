@@ -33,8 +33,8 @@ class SpecialMyLanguageTest extends MediaWikiIntegrationTestCase {
 		foreach ( $titles as $title ) {
 			$this->editPage(
 				$title,
-				new WikitextContent( $pageContent[$title] ?? 'UTContent' ),
-				'UTPageSummary',
+				new WikitextContent( $pageContent[$title] ?? 'SpecialMyLanguageTest content' ),
+				'SpecialMyLanguageTest Summary',
 				NS_MAIN,
 				$user
 			);
