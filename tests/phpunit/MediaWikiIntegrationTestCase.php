@@ -2118,6 +2118,14 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			}
 			$extraTables = array_values( $extraTables );
 			$tablesUsed = array_unique( array_merge( $tablesUsed, ...$extraTables ) );
+			// special case: if revision/logging is used, clear recentchanges
+			// (but not necessarily logging/revision, unless that is also used)
+			if (
+				array_intersect( $tablesUsed, [ 'revision', 'logging' ] ) &&
+				!in_array( 'recentchanges', $tablesUsed, true )
+			) {
+				$tablesUsed[] = 'recentchanges';
+			}
 
 			if ( in_array( 'user', $tablesUsed ) ) {
 				TestUserRegistry::clear();
