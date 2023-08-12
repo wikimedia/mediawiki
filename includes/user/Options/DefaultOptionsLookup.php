@@ -58,25 +58,18 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 	private HookRunner $hookRunner;
 
 	/**
-	 * @var bool Whether a database-less test is being executed.
-	 */
-	private bool $isDatabaselessTest;
-
-	/**
 	 * @param ServiceOptions $options
 	 * @param Language $contentLang
 	 * @param HookContainer $hookContainer
 	 * @param NamespaceInfo $nsInfo
 	 * @param ConditionalDefaultsLookup $conditionalUserOptionsDefaultsLookup
-	 * @param bool $isDatabaselessTest
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		Language $contentLang,
 		HookContainer $hookContainer,
 		NamespaceInfo $nsInfo,
-		ConditionalDefaultsLookup $conditionalUserOptionsDefaultsLookup,
-		bool $isDatabaselessTest
+		ConditionalDefaultsLookup $conditionalUserOptionsDefaultsLookup
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->serviceOptions = $options;
@@ -84,7 +77,6 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->nsInfo = $nsInfo;
 		$this->conditionalDefaultsLookup = $conditionalUserOptionsDefaultsLookup;
-		$this->isDatabaselessTest = $isDatabaselessTest;
 	}
 
 	/**
@@ -193,7 +185,7 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 	 * @param string $fname
 	 */
 	private function verifyUsable( UserIdentity $user, string $fname ) {
-		if ( $this->isDatabaselessTest || defined( 'MEDIAWIKI_INSTALL' ) ) {
+		if ( defined( 'MEDIAWIKI_INSTALL' ) ) {
 			return;
 		}
 		Assert::precondition( !$user->isRegistered(), "$fname called on a registered user" );

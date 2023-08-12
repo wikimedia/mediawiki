@@ -171,6 +171,7 @@ use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\Options\UserOptionsManager;
 use MediaWiki\User\PasswordReset;
 use MediaWiki\User\Registration\UserRegistrationLookup;
+use MediaWiki\User\StaticUserOptionsLookup;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\TempUser\RealTempUserConfig;
 use MediaWiki\User\TempUser\TempUserCreator;
@@ -550,7 +551,10 @@ class MediaWikiServices extends ServiceContainer {
 		$this->redefineService(
 			'UserOptionsLookup',
 			static function ( self $services ) {
-				return $services->get( '_DefaultOptionsLookup' );
+				return new StaticUserOptionsLookup(
+					[],
+					$services->getMainConfig()->get( MainConfigNames::DefaultUserOptions )
+				);
 			}
 		);
 

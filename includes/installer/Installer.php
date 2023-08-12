@@ -55,6 +55,7 @@ use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Status\Status;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
+use MediaWiki\User\StaticUserOptionsLookup;
 use MediaWiki\User\User;
 use MWCryptRand;
 use ParserOptions;
@@ -510,7 +511,10 @@ abstract class Installer {
 
 				// Disable user options database fetching, only rely on default options.
 				'UserOptionsLookup' => static function ( MediaWikiServices $services ) {
-					return $services->get( '_DefaultOptionsLookup' );
+					return new StaticUserOptionsLookup(
+						[],
+						$services->getMainConfig()->get( MainConfigNames::DefaultUserOptions )
+					);
 				},
 
 				// Restore to default wiring, in case it was overwritten by disableStorage()
