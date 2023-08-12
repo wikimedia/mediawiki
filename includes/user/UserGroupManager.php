@@ -42,9 +42,8 @@ use UserGroupMembership;
 use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
-use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\ILBFactory;
-use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -78,11 +77,8 @@ class UserGroupManager implements IDBAccessObject {
 	/** @var ServiceOptions */
 	private $options;
 
-	/** @var ILBFactory */
-	private $loadBalancerFactory;
-
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var HookContainer */
 	private $hookContainer;
@@ -155,7 +151,7 @@ class UserGroupManager implements IDBAccessObject {
 	/**
 	 * @param ServiceOptions $options
 	 * @param ConfiguredReadOnlyMode $configuredReadOnlyMode
-	 * @param ILBFactory $loadBalancerFactory
+	 * @param ILBFactory $lbFactory
 	 * @param HookContainer $hookContainer
 	 * @param UserEditTracker $userEditTracker
 	 * @param GroupPermissionsLookup $groupPermissionsLookup
@@ -168,7 +164,7 @@ class UserGroupManager implements IDBAccessObject {
 	public function __construct(
 		ServiceOptions $options,
 		ConfiguredReadOnlyMode $configuredReadOnlyMode,
-		ILBFactory $loadBalancerFactory,
+		ILBFactory $lbFactory,
 		HookContainer $hookContainer,
 		UserEditTracker $userEditTracker,
 		GroupPermissionsLookup $groupPermissionsLookup,
@@ -180,8 +176,7 @@ class UserGroupManager implements IDBAccessObject {
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
-		$this->loadBalancerFactory = $loadBalancerFactory;
-		$this->loadBalancer = $loadBalancerFactory->getMainLB( $wikiId );
+		$this->dbProvider = $lbFactory;
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->userEditTracker = $userEditTracker;
@@ -189,8 +184,8 @@ class UserGroupManager implements IDBAccessObject {
 		$this->jobQueueGroup = $jobQueueGroup;
 		$this->logger = $logger;
 		$this->tempUserConfig = $tempUserConfig;
-		// Can't just inject ROM since we LB can be for foreign wiki
-		$this->readOnlyMode = new ReadOnlyMode( $configuredReadOnlyMode, $this->loadBalancer );
+		// Can't inject ReadOnlyMode service, this can be a foreign wiki (T343917)
+		$this->readOnlyMode = new ReadOnlyMode( $configuredReadOnlyMode, $lbFactory->getMainLB( $wikiId ) );
 		$this->clearCacheCallbacks = $clearCacheCallbacks;
 		$this->wikiId = $wikiId;
 	}
@@ -804,7 +799,7 @@ class UserGroupManager implements IDBAccessObject {
 		}
 
 		$oldUgms = $this->getUserGroupMemberships( $user, self::READ_LATEST );
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY, [], $this->wikiId );
+		$dbw = $this->dbProvider->getPrimaryDatabase( $this->wikiId );
 
 		$dbw->startAtomic( __METHOD__ );
 		$dbw->newInsertQueryBuilder()
@@ -846,7 +841,7 @@ class UserGroupManager implements IDBAccessObject {
 		// Purge old, expired memberships from the DB
 		$fname = __METHOD__;
 		DeferredUpdates::addCallableUpdate( function () use ( $fname ) {
-			$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA, [], $this->wikiId );
+			$dbr = $this->dbProvider->getReplicaDatabase( $this->wikiId );
 			$hasExpiredRow = (bool)$dbr->newSelectQueryBuilder()
 				->select( '1' )
 				->from( 'user_groups' )
@@ -933,7 +928,7 @@ class UserGroupManager implements IDBAccessObject {
 
 		$oldUgms = $this->getUserGroupMemberships( $user, self::READ_LATEST );
 		$oldFormerGroups = $this->getUserFormerGroups( $user, self::READ_LATEST );
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY, [], $this->wikiId );
+		$dbw = $this->dbProvider->getPrimaryDatabase( $this->wikiId );
 		$dbw->newDeleteQueryBuilder()
 			->delete( 'user_groups' )
 			->where( [ 'ug_user' => $user->getId( $this->wikiId ), 'ug_group' => $group ] )
@@ -990,8 +985,8 @@ class UserGroupManager implements IDBAccessObject {
 			return false;
 		}
 
-		$ticket = $this->loadBalancerFactory->getEmptyTransactionTicket( __METHOD__ );
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY, [], $this->wikiId );
+		$ticket = $this->dbProvider->getEmptyTransactionTicket( __METHOD__ );
+		$dbw = $this->dbProvider->getPrimaryDatabase( $this->wikiId );
 
 		$lockKey = "{$dbw->getDomainID()}:UserGroupManager:purge"; // per-wiki
 		$scopedLock = $dbw->getScopedLockAndFlush( $lockKey, __METHOD__, 0 );
@@ -1037,7 +1032,7 @@ class UserGroupManager implements IDBAccessObject {
 
 			$dbw->endAtomic( __METHOD__ );
 
-			$this->loadBalancerFactory->commitAndWaitForReplication( __METHOD__, $ticket );
+			$this->dbProvider->commitAndWaitForReplication( __METHOD__, $ticket );
 		} while ( $res->numRows() > 0 );
 		return $purgedRows;
 	}
@@ -1179,11 +1174,15 @@ class UserGroupManager implements IDBAccessObject {
 
 	/**
 	 * @param int $queryFlags a bit field composed of READ_XXX flags
-	 * @return DBConnRef
+	 * @return IReadableDatabase
 	 */
-	private function getDBConnectionRefForQueryFlags( int $queryFlags ): DBConnRef {
+	private function getDBConnectionRefForQueryFlags( int $queryFlags ): IReadableDatabase {
 		[ $mode, ] = DBAccessObjectUtils::getDBOptions( $queryFlags );
-		return $this->loadBalancer->getConnectionRef( $mode, [], $this->wikiId );
+		if ( $mode === DB_PRIMARY ) {
+			return $this->dbProvider->getPrimaryDatabase( $this->wikiId );
+		} else {
+			return $this->dbProvider->getReplicaDatabase( $this->wikiId );
+		}
 	}
 
 	/**
