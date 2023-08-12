@@ -1351,29 +1351,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers User::idFromName
-	 */
-	public function testExistingIdFromName() {
-		$this->hideDeprecated( 'User::idFromName' );
-		$this->assertSame(
-			$this->user->getId(), User::idFromName( $this->user->getName() ),
-			'Id is correctly retrieved from the cache.'
-		);
-		$this->assertSame(
-			$this->user->getId(), User::idFromName( $this->user->getName(), User::READ_LATEST ),
-			'Id is correctly retrieved from the database.'
-		);
-	}
-
-	/**
-	 * @covers User::idFromName
-	 */
-	public function testNonExistingIdFromName() {
-		$this->hideDeprecated( 'User::idFromName' );
-		$this->assertNull( User::idFromName( 'NotExisitngUser' ) );
-	}
-
-	/**
 	 * @covers User::isSystemUser
 	 */
 	public function testIsSystemUser() {
