@@ -517,14 +517,28 @@ class ImageListPager extends TablePager {
 		}
 	}
 
+	/**
+	 * Escape the options list
+	 * @return array
+	 */
+	private function getEscapedLimitSelectList(): array {
+		$list = $this->getLimitSelectList();
+		$result = [];
+		foreach ( $list as $key => $value ) {
+			$result[htmlspecialchars( $key )] = $value;
+		}
+		return $result;
+	}
+
 	public function getForm() {
 		$formDescriptor = [];
 		$formDescriptor['limit'] = [
-			'type' => 'select',
+			'type' => 'radio',
 			'name' => 'limit',
 			'label-message' => 'table_pager_limit_label',
-			'options' => $this->getLimitSelectList(),
-			'default' => $this->mLimit,
+			'options' => $this->getEscapedLimitSelectList(),
+			'flatlist' => true,
+			'default' => $this->mLimit
 		];
 
 		$formDescriptor['user'] = [
@@ -556,7 +570,7 @@ class ImageListPager extends TablePager {
 			->setMethod( 'get' )
 			->setId( 'mw-listfiles-form' )
 			->setTitle( $this->getTitle() )
-			->setSubmitTextMsg( 'table_pager_limit_submit' )
+			->setSubmitTextMsg( 'listfiles-pager-submit' )
 			->setWrapperLegendMsg( 'listfiles' )
 			->addHiddenFields( $query )
 			->prepareForm()

@@ -2236,6 +2236,7 @@
 	"listfiles-delete": "Text of the delete links next to the entries on [[Special:ListFiles]], surrounded by parentheses.\n{{Identical|Delete}}",
 	"listfiles-summary": "This message is displayed at the top of [[Special:ImageList]] to explain how to use that special page.",
 	"listfiles-userdoesnotexist": "This message is displayed on [[Special:ListFiles]] when a invalid username is entered.",
+	"listfiles-pager-submit": "Used as submit button on [[Special:ListFiles]]",
 	"imgfile": "Used in a table on Special:ListFiles. This is a link to the actual file on the files server. It is shown in parentheses after a link to the file description on the wiki.\n{{Identical|File}}",
 	"listfiles": "Page title and grouping label for the form displayed on [[Special:ListFiles]].\n{{Identical|List}}",
 	"listfiles_subpage": "Page title and grouping label for the form displayed on [[Special:ListFiles]].\n\nParameters:\n* $1 - username\n\n{{Identical|List}} when a username is selected.",

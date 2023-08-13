@@ -1983,6 +1983,7 @@
 	"listfiles-delete": "delete",
 	"listfiles-summary": "This special page shows all uploaded files.",
 	"listfiles-userdoesnotexist": "User account \"$1\" is not registered.",
+	"listfiles-pager-submit": "Show file list",
 	"imgfile": "file",
 	"listfiles": "File list",
 	"listfiles_subpage": "Uploads by $1",
