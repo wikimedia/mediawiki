@@ -1299,6 +1299,7 @@
 	"upload-too-many-redirects": "Naglalaman ng napakaraming panlipat ng pupuntahan ang URL",
 	"upload-http-error": "Naganap ang isang kamaliang pang-HTTP: $1",
 	"upload-copy-upload-invalid-domain": "Hindi makakakuha ng mga pagkakarga ng kopya mula sa nasasakupang ito.",
+	"upload-form-label-infoform-categories": "Mga kategorya",
 	"backend-fail-stream": "Hindi mapadaloy ang talaksang $1.",
 	"backend-fail-backup": "Hindi na makatigan ng kopya ang talaksang $1.",
 	"backend-fail-notexists": "Hindi umiiral ang talaksang $1.",

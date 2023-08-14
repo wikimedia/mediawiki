@@ -1374,7 +1374,7 @@
 	"group-suppress-member": "{{GENDER:$1|秘匿者}}",
 	"grouppage-user": "{{ns:project}}:登録利用者",
 	"grouppage-named": "{{ns:project}}:登録された利用者",
-	"grouppage-temp": "{{ns:project}}：臨時利用者",
+	"grouppage-temp": "{{ns:project}}:臨時使用者",
 	"grouppage-autoconfirmed": "{{ns:project}}:自動承認された利用者",
 	"grouppage-bot": "{{ns:project}}:ボット",
 	"grouppage-sysop": "{{ns:project}}:管理者",

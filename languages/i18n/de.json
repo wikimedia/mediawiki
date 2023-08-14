@@ -2011,6 +2011,7 @@
 	"listfiles-delete": "löschen",
 	"listfiles-summary": "Diese Spezialseite listet alle hochgeladenen Dateien auf.",
 	"listfiles-userdoesnotexist": "Das Benutzerkonto „$1“ ist nicht registriert.",
+	"listfiles-pager-submit": "Dateiliste anzeigen",
 	"imgfile": "Datei",
 	"listfiles": "Dateiliste",
 	"listfiles_subpage": "Von $1 hochgeladene Dateien",
