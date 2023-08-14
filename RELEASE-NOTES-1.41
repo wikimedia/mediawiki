@@ -478,6 +478,8 @@ because of Phabricator reports.
   deprecated. Use methods from MediaWiki\Http\Telemetry class instead.
 * The XmlJsCode wrapper class has been renamed to MediaWiki\Html\HtmlJsCode,
   and the old name is now deprecated.
+* The use of non-serializable arguments to ParserOutput::addWarningMsg() has
+  been deprecated and will emit deprecation warnings.
 * MediaWiki\ResourceLoader\Module::getDeprecationInformation() is deprecated.
   Use ::getDeprecationWarning() instead.
 * …

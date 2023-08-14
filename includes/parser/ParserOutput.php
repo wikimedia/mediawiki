@@ -1037,12 +1037,24 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * Add a warning to the output for this page.
 	 * @param string $msg The localization message key for the warning
-	 * @param mixed ...$args Optional arguments for the message
+	 * @param mixed|JsonUnserializable ...$args Optional arguments for the
+	 *   message. These arguments must be serializable/unserializable with
+	 *   JsonCodec; see the @note on ParserOutput::setExtensionData()
 	 * @since 1.38
 	 */
 	public function addWarningMsg( string $msg, ...$args ): void {
 		// preserve original arguments in $mWarningMsgs to allow merge
-		// @todo: these aren't serialized/unserialized
+		// @todo: these aren't serialized/unserialized yet -- before we
+		// turn on serialization of $this->mWarningMsgs we need to ensure
+		// callers aren't passing nonserializable arguments: T343048.
+		$jsonCodec = MediaWikiServices::getInstance()->getJsonCodec();
+		$path = $jsonCodec->detectNonSerializableData( $args, true );
+		if ( $path !== null ) {
+			wfDeprecatedMsg(
+				"ParserOutput::addWarningMsg() called with nonserializable arguments: $path",
+				'1.41'
+			);
+		}
 		$this->mWarningMsgs[$msg] = $args;
 		$s = wfMessage( $msg, ...$args )
 			// some callers set the title here?
