@@ -36,7 +36,8 @@
 			"MinecraftAustralia",
 			"MuratTheTurkish",
 			"Winstonza",
-			"Rooiratel"
+			"Rooiratel",
+			"Hentie"
 		]
 	},
 	"tog-underline": "Onderstreep skakels:",
@@ -361,8 +362,10 @@
 	"badtitle": "Ongeldige titel",
 	"badtitletext": "Die bladsytitel waarvoor gevra is, is ongeldig, leeg, of\n'n verkeerd geskakelde tussen-taal of tussen-wiki titel.",
 	"title-invalid": "Die gevraagde bladsytitel is ongeldig",
+	"title-invalid-empty": "Die blasytitel wat aangevra is, is of nie ingevoeg nie of bevat net fir naam van 'n naamspasie.",
 	"title-invalid-utf8": "Die gevraagde bladsytitel bevat 'n ongeldige UTF-8-reeks.",
 	"title-invalid-interwiki": "Die gevraagde bladsytitel bevat 'n interwiki-skakel wat nie in titels gebruik kan word nie.",
+	"title-invalid-talk-namespace": "Die sangevraagde bladsytitel verwys na 'n praat bladsy wat nie kan bestsan nie.",
 	"title-invalid-characters": "Die gevraagde bladsytitel bevat ongeldige karakters: \"$1\".",
 	"title-invalid-leading-colon": "Die gevraagde bladsytitel bevat 'n ongeldige dubbelpunt aan die begin.",
 	"perfcached": "Die volgende inligting is gekas en mag dalk nie op datum wees nie. 'n Maksimum van {{PLURAL:$1|een resultaat|$1 resultate}} is in die kas beskikbaar.",

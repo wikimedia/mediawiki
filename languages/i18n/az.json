@@ -1825,6 +1825,7 @@
 	"trackingcategories-name": "Mesaj adı",
 	"restricted-displaytitle-ignored": "İmtina edilmiş görüntü başlıqlarına malik səhifələr",
 	"mailnologin": "Ünvan yoxdur",
+	"mailnologintext": "Digər istifadəçilərə e-poçt göndərmək üçün [[Special:UserLogin|daxil olmalı]] və [[Special:Preferences|nizamlamalarda]] təsdiqlənmiş e-poçt ünvanına sahib olmalısınız.",
 	"emailuser": "İstifadəçiyə e-məktub göndər",
 	"emailuser-title-target": "Bu {{GENDER:$1|istifadəçiyə}} e-məktub göndər",
 	"emailuser-title-notarget": "İstifadəçi e-maili",
