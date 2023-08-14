@@ -1184,11 +1184,11 @@ class HookRunner implements
 	}
 
 	public function onContentGetParserOutput( $content, $title, $revId, $options,
-		$generateHtml, &$output
+		$generateHtml, &$parserOutput
 	) {
 		return $this->container->run(
 			'ContentGetParserOutput',
-			[ $content, $title, $revId, $options, $generateHtml, &$output ]
+			[ $content, $title, $revId, $options, $generateHtml, &$parserOutput ]
 		);
 	}
 
