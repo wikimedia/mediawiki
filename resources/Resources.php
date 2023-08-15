@@ -2416,6 +2416,9 @@ return [
 		'scripts' => [
 			'resources/src/mediawiki.tempUserBanner/tempUserBanner.js',
 		],
+		'dependencies' => [
+			'mediawiki.jqueryMsg',
+		],
 		'messages' => [
 			'temp-user-banner-tooltip-title',
 			'temp-user-banner-tooltip-description-learn-more',
