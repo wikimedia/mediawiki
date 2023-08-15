@@ -491,10 +491,14 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::EnableSidebarCache => true,
 			MainConfigNames::SidebarCacheExpiry => 3600,
 		] );
+		// Mock time (T344191)
+		$clock = 1301644800.0;
+		$this->getServiceContainer()->getMainWANObjectCache()->setMockTime( $clock );
 		$id = 0;
 		$this->setTemporaryHook( 'SkinBuildSidebar',
-			static function ( Skin $skin, array &$bar ) use ( &$id ) {
+			static function ( Skin $skin, array &$bar ) use ( &$id, &$clock ) {
 				$id++;
+				$clock += 1.0;
 				if ( $skin->getSkinName() === 'foo' ) {
 					$bar['myhook'] = "foo $id";
 				}
@@ -520,6 +524,7 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 		$foo2->setContext( $context );
 		$bar->setContext( $context );
 		$this->assertArrayContains( [ 'myhook' => 'foo 1' ], $foo1->buildSidebar(), 'fresh' );
+		$clock += 0.01;
 		$this->assertArrayContains( [ 'myhook' => 'foo 1' ], $foo2->buildSidebar(), 'cache hit' );
 		$this->assertArrayContains( [ 'myhook' => 'bar 2' ], $bar->buildSidebar(), 'cache miss' );
 	}
