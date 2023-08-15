@@ -6,6 +6,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserNameUtils;
+use Status;
+use StatusValue;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -379,14 +381,16 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 	/**
 	 * @dataProvider provideProviderAllowsAuthenticationDataChange
 	 * @param string $type
-	 * @param string $user
+	 * @param callable $usernameGetter Function that takes the username of a sysop user and returns the username to
+	 * use for testing.
 	 * @param \Status $validity Result of the password validity check
 	 * @param \StatusValue $expect1 Expected result with $checkData = false
 	 * @param \StatusValue $expect2 Expected result with $checkData = true
 	 */
-	public function testProviderAllowsAuthenticationDataChange( $type, $user, \Status $validity,
+	public function testProviderAllowsAuthenticationDataChange( $type, callable $usernameGetter, \Status $validity,
 		\StatusValue $expect1, \StatusValue $expect2
 	) {
+		$user = $usernameGetter( $this->getTestSysop()->getUserIdentity()->getName() );
 		if ( $type === PasswordAuthenticationRequest::class ) {
 			$req = new $type();
 		} elseif ( $type === PasswordDomainAuthenticationRequest::class ) {
@@ -423,24 +427,59 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 	}
 
 	public static function provideProviderAllowsAuthenticationDataChange() {
-		$err = \StatusValue::newGood();
+		$err = StatusValue::newGood();
 		$err->error( 'arbitrary-warning' );
 
 		return [
-			[ AuthenticationRequest::class, 'UTSysop', \Status::newGood(),
-				\StatusValue::newGood( 'ignored' ), \StatusValue::newGood( 'ignored' ) ],
-			[ PasswordAuthenticationRequest::class, 'UTSysop', \Status::newGood(),
-				\StatusValue::newGood(), \StatusValue::newGood() ],
-			[ PasswordAuthenticationRequest::class, 'uTSysop', \Status::newGood(),
-				\StatusValue::newGood(), \StatusValue::newGood() ],
-			[ PasswordAuthenticationRequest::class, 'UTSysop', \Status::wrap( $err ),
-				\StatusValue::newGood(), $err ],
-			[ PasswordAuthenticationRequest::class, 'UTSysop', \Status::newFatal( 'arbitrary-error' ),
-				\StatusValue::newGood(), \StatusValue::newFatal( 'arbitrary-error' ) ],
-			[ PasswordAuthenticationRequest::class, 'DoesNotExist', \Status::newGood(),
-				\StatusValue::newGood(), \StatusValue::newGood( 'ignored' ) ],
-			[ PasswordDomainAuthenticationRequest::class, 'UTSysop', \Status::newGood(),
-				\StatusValue::newGood( 'ignored' ), \StatusValue::newGood( 'ignored' ) ],
+			[
+				AuthenticationRequest::class,
+				fn ( $sysopUsername ) => $sysopUsername,
+				Status::newGood(),
+				StatusValue::newGood( 'ignored' ),
+				StatusValue::newGood( 'ignored' )
+			],
+			[
+				PasswordAuthenticationRequest::class,
+				fn ( $sysopUsername ) => $sysopUsername,
+				Status::newGood(),
+				StatusValue::newGood(),
+				StatusValue::newGood()
+			],
+			[
+				PasswordAuthenticationRequest::class,
+				fn ( $sysopUsername ) => lcfirst( $sysopUsername ),
+				Status::newGood(),
+				StatusValue::newGood(),
+				StatusValue::newGood()
+			],
+			[
+				PasswordAuthenticationRequest::class,
+				fn ( $sysopUsername ) => $sysopUsername,
+				Status::wrap( $err ),
+				StatusValue::newGood(),
+				$err
+			],
+			[
+				PasswordAuthenticationRequest::class,
+				fn ( $sysopUsername ) => $sysopUsername,
+				Status::newFatal( 'arbitrary-error' ),
+				StatusValue::newGood(),
+				StatusValue::newFatal( 'arbitrary-error' )
+			],
+			[
+				PasswordAuthenticationRequest::class,
+				fn () => 'DoesNotExist',
+				Status::newGood(),
+				StatusValue::newGood(),
+				StatusValue::newGood( 'ignored' )
+			],
+			[
+				PasswordDomainAuthenticationRequest::class,
+				fn ( $sysopUsername ) => $sysopUsername,
+				Status::newGood(),
+				StatusValue::newGood( 'ignored' ),
+				StatusValue::newGood( 'ignored' )
+			],
 		];
 	}
 
@@ -672,10 +711,10 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$expect->createRequest->username = 'Foo';
 		$this->assertEquals( $expect, $provider->beginPrimaryAccountCreation( $user, $user, $reqs ) );
 
-		$user = \User::newFromName( 'UTSysop' );
+		$user = $this->getTestSysop()->getUser();
 		$req->username = $user->getName();
 		$req->password = 'NewPassword';
-		$expect = AuthenticationResponse::newPass( 'UTSysop' );
+		$expect = AuthenticationResponse::newPass( $user->getName() );
 		$expect->createRequest = $req;
 
 		$res2 = $provider->beginPrimaryAccountCreation( $user, $user, $reqs );

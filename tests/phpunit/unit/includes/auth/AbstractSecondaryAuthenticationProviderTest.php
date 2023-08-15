@@ -62,6 +62,7 @@ class AbstractSecondaryAuthenticationProviderTest extends \MediaWikiUnitTestCase
 		for ( $i = 0; $i < 3; $i++ ) {
 			$reqs[$i] = $this->createMock( AuthenticationRequest::class );
 		}
+		$userName = 'TestProviderRevokeAccessForUser';
 
 		$provider = $this->getMockBuilder( AbstractSecondaryAuthenticationProvider::class )
 			->onlyMethods( [ 'providerChangeAuthenticationData' ] )
@@ -69,15 +70,15 @@ class AbstractSecondaryAuthenticationProviderTest extends \MediaWikiUnitTestCase
 		$provider->expects( $this->once() )->method( 'getAuthenticationRequests' )
 			->with(
 				$this->identicalTo( AuthManager::ACTION_REMOVE ),
-				$this->identicalTo( [ 'username' => 'UTSysop' ] )
+				$this->identicalTo( [ 'username' => $userName ] )
 			)
 			->willReturn( $reqs );
 		$provider->expects( $this->exactly( 3 ) )->method( 'providerChangeAuthenticationData' )
-			->willReturnCallback( function ( $req ) {
-				$this->assertSame( 'UTSysop', $req->username );
+			->willReturnCallback( function ( $req ) use ( $userName ) {
+				$this->assertSame( $userName, $req->username );
 			} );
 
-		$provider->providerRevokeAccessForUser( 'UTSysop' );
+		$provider->providerRevokeAccessForUser( $userName );
 
 		foreach ( $reqs as $i => $req ) {
 			$this->assertNotNull( $req->username, "#$i" );

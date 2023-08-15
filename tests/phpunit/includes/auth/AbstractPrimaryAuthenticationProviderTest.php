@@ -4,6 +4,7 @@ namespace MediaWiki\Auth;
 
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use User;
 
 /**
  * @group AuthManager
@@ -14,7 +15,7 @@ class AbstractPrimaryAuthenticationProviderTest extends \MediaWikiIntegrationTes
 	use AuthenticationProviderTestTrait;
 
 	public function testAbstractPrimaryAuthenticationProvider() {
-		$user = \User::newFromName( 'UTSysop' );
+		$user = $this->createMock( User::class );
 
 		$provider = $this->getMockForAbstractClass( AbstractPrimaryAuthenticationProvider::class );
 
@@ -66,20 +67,21 @@ class AbstractPrimaryAuthenticationProviderTest extends \MediaWikiIntegrationTes
 		for ( $i = 0; $i < 3; $i++ ) {
 			$reqs[$i] = $this->createMock( AuthenticationRequest::class );
 		}
+		$username = 'TestProviderRevokeAccessForUser';
 
 		$provider = $this->getMockForAbstractClass( AbstractPrimaryAuthenticationProvider::class );
 		$provider->expects( $this->once() )->method( 'getAuthenticationRequests' )
 			->with(
 				$this->identicalTo( AuthManager::ACTION_REMOVE ),
-				$this->identicalTo( [ 'username' => 'UTSysop' ] )
+				$this->identicalTo( [ 'username' => $username ] )
 			)
 			->willReturn( $reqs );
 		$provider->expects( $this->exactly( 3 ) )->method( 'providerChangeAuthenticationData' )
-			->willReturnCallback( function ( $req ) {
-				$this->assertSame( 'UTSysop', $req->username );
+			->willReturnCallback( function ( $req ) use ( $username ) {
+				$this->assertSame( $username, $req->username );
 			} );
 
-		$provider->providerRevokeAccessForUser( 'UTSysop' );
+		$provider->providerRevokeAccessForUser( $username );
 
 		foreach ( $reqs as $i => $req ) {
 			$this->assertNotNull( $req->username, "#$i" );

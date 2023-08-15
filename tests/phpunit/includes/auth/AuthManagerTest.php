@@ -3,6 +3,7 @@
 namespace MediaWiki\Auth;
 
 use Config;
+use Exception;
 use Language;
 use MediaWiki\Auth\Hook\AuthManagerLoginAuthenticateAuditHook;
 use MediaWiki\Auth\Hook\LocalUserCreatedHook;
@@ -33,6 +34,7 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use Status;
 use StatusValue;
+use User;
 use WebRequest;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -399,7 +401,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	 */
 	public function testSecuritySensitiveOperationStatus( $mutableSession ) {
 		$this->logger = new \Psr\Log\NullLogger();
-		$user = \User::newFromName( 'UTSysop' );
+		$user = $this->getTestSysop()->getUser();
 		$provideUser = null;
 		$reauth = $mutableSession ? AuthManager::SEC_REAUTH : AuthManager::SEC_FAIL;
 
@@ -561,22 +563,23 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	 * @param bool $expect
 	 */
 	public function testUserCanAuthenticate( $primary1Can, $primary2Can, $expect ) {
+		$userName = 'TestUserCanAuthenticate';
 		$mock1 = $this->createMock( AbstractPrimaryAuthenticationProvider::class );
 		$mock1->method( 'getUniqueId' )
 			->willReturn( 'primary1' );
 		$mock1->method( 'testUserCanAuthenticate' )
-			->with( 'UTSysop' )
+			->with( $userName )
 			->willReturn( $primary1Can );
 		$mock2 = $this->createMock( AbstractPrimaryAuthenticationProvider::class );
 		$mock2->method( 'getUniqueId' )
 			->willReturn( 'primary2' );
 		$mock2->method( 'testUserCanAuthenticate' )
-			->with( 'UTSysop' )
+			->with( $userName )
 			->willReturn( $primary2Can );
 		$this->primaryauthMocks = [ $mock1, $mock2 ];
 
 		$this->initializeManager( true );
-		$this->assertSame( $expect, $this->manager->userCanAuthenticate( 'UTSysop' ) );
+		$this->assertSame( $expect, $this->manager->userCanAuthenticate( $userName ) );
 	}
 
 	public static function provideUserCanAuthenticate() {
@@ -589,19 +592,20 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testRevokeAccessForUser() {
+		$userName = 'TestRevokeAccessForUser';
 		$this->initializeManager();
 
 		$mock = $this->createMock( AbstractPrimaryAuthenticationProvider::class );
 		$mock->method( 'getUniqueId' )
 			->willReturn( 'primary' );
 		$mock->expects( $this->once() )->method( 'providerRevokeAccessForUser' )
-			->with( 'UTSysop' );
+			->with( $userName );
 		$this->primaryauthMocks = [ $mock ];
 
 		$this->initializeManager( true );
 		$this->logger->setCollect( true );
 
-		$this->manager->revokeAccessForUser( 'UTSysop' );
+		$this->manager->revokeAccessForUser( $userName );
 
 		$this->assertSame( [
 			[ LogLevel::INFO, 'Revoking access for {user}' ],
@@ -866,7 +870,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->initializeManager( true );
 
 		// CreatedAccountAuthenticationRequest
-		$user = \User::newFromName( 'UTSysop' );
+		$user = $this->getTestSysop()->getUser();
 		$reqs = [
 			new CreatedAccountAuthenticationRequest( $user->getId(), $user->getName() )
 		];
@@ -915,7 +919,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testCreateFromLogin() {
-		$user = \User::newFromName( 'UTSysop' );
+		$user = $this->getTestSysop()->getUser();
 		$req1 = $this->createMock( AuthenticationRequest::class );
 		$req2 = $this->createMock( AuthenticationRequest::class );
 		$req3 = $this->createMock( AuthenticationRequest::class );
@@ -997,9 +1001,9 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideAuthentication
 	 * @param StatusValue $preResponse
-	 * @param array $primaryResponses
-	 * @param array $secondaryResponses
-	 * @param array $managerResponses
+	 * @param array<AuthenticationResponse|Exception> $primaryResponses
+	 * @param array<AuthenticationResponse|Exception> $secondaryResponses
+	 * @param array<AuthenticationResponse|Exception> $managerResponses
 	 * @param bool $link Whether the primary authentication provider is a "link" provider
 	 */
 	public function testAuthentication(
@@ -1007,9 +1011,19 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		array $managerResponses, $link = false
 	) {
 		$this->initializeManager();
-		$user = \User::newFromName( 'UTSysop' );
+		$user = $this->getTestSysop()->getUser();
 		$id = $user->getId();
 		$name = $user->getName();
+		// Hack: replace placeholder usernames with that of the test user. A better solution would be to instantiate
+		// all responses here, only providing constructor arguments (like the status) from the data provider.
+		$responseArrays = [ $primaryResponses, $secondaryResponses, $managerResponses ];
+		foreach ( $responseArrays as $respArray ) {
+			foreach ( $respArray as $resp ) {
+				if ( $resp instanceof AuthenticationResponse && $resp->username === 'PLACEHOLDER' ) {
+					$resp->username = $name;
+				}
+			}
+		}
 
 		// Set up lots of mocks...
 		$req = new RememberMeAuthenticationRequest;
@@ -1111,10 +1125,10 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		foreach ( $providers as $p ) {
 			$p->postCalled = false;
 			$p->expects( $this->atMost( 1 ) )->method( 'postAuthentication' )
-				->willReturnCallback( function ( $user, $response ) use ( $constraint, $p ) {
-					if ( $user !== null ) {
-						$this->assertInstanceOf( \User::class, $user );
-						$this->assertSame( 'UTSysop', $user->getName() );
+				->willReturnCallback( function ( $userArg, $response ) use ( $user, $constraint, $p ) {
+					if ( $userArg !== null ) {
+						$this->assertInstanceOf( \User::class, $userArg );
+						$this->assertSame( $user->getName(), $userArg->getName() );
 					}
 					$this->assertInstanceOf( AuthenticationResponse::class, $response );
 					$this->assertThat( $response->status, $constraint );
@@ -1253,7 +1267,8 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$restartResponse2->createRequest->action = AuthManager::ACTION_LOGIN;
 		$restartResponse2->neededRequests = [ $rememberReq, $restartResponse2->createRequest ];
 
-		$userName = 'UTSysop';
+		// Hack: use a placeholder that will be replaced with the actual username in the test method.
+		$userNamePlaceholder = 'PLACEHOLDER';
 
 		return [
 			'Failure in pre-auth' => [
@@ -1351,7 +1366,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			'Secondary fail' => [
 				StatusValue::newGood(),
 				[
-					AuthenticationResponse::newPass( $userName ),
+					AuthenticationResponse::newPass( $userNamePlaceholder ),
 				],
 				$tmp = [
 					AuthenticationResponse::newFail( $this->message( 'fail-in-secondary' ) ),
@@ -1361,7 +1376,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			'Secondary UI, then abstain' => [
 				StatusValue::newGood(),
 				[
-					AuthenticationResponse::newPass( $userName ),
+					AuthenticationResponse::newPass( $userNamePlaceholder ),
 				],
 				[
 					$tmp = AuthenticationResponse::newUI( [ $req ], $this->message( '...' ) ),
@@ -1369,19 +1384,19 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 				],
 				[
 					$tmp,
-					AuthenticationResponse::newPass( $userName ),
+					AuthenticationResponse::newPass( $userNamePlaceholder ),
 				]
 			],
 			'Secondary pass' => [
 				StatusValue::newGood(),
 				[
-					AuthenticationResponse::newPass( $userName ),
+					AuthenticationResponse::newPass( $userNamePlaceholder ),
 				],
 				[
 					AuthenticationResponse::newPass()
 				],
 				[
-					AuthenticationResponse::newPass( $userName ),
+					AuthenticationResponse::newPass( $userNamePlaceholder ),
 				]
 			],
 		];
@@ -1394,22 +1409,23 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	 * @param bool $expect
 	 */
 	public function testUserExists( $primary1Exists, $primary2Exists, $expect ) {
+		$userName = 'TestUserExists';
 		$mock1 = $this->createMock( AbstractPrimaryAuthenticationProvider::class );
 		$mock1->method( 'getUniqueId' )
 			->willReturn( 'primary1' );
 		$mock1->method( 'testUserExists' )
-			->with( 'UTSysop' )
+			->with( $userName )
 			->willReturn( $primary1Exists );
 		$mock2 = $this->createMock( AbstractPrimaryAuthenticationProvider::class );
 		$mock2->method( 'getUniqueId' )
 			->willReturn( 'primary2' );
 		$mock2->method( 'testUserExists' )
-			->with( 'UTSysop' )
+			->with( $userName )
 			->willReturn( $primary2Exists );
 		$this->primaryauthMocks = [ $mock1, $mock2 ];
 
 		$this->initializeManager( true );
-		$this->assertSame( $expect, $this->manager->userExists( 'UTSysop' ) );
+		$this->assertSame( $expect, $this->manager->userExists( $userName ) );
 	}
 
 	public static function provideUserExists() {
@@ -1509,7 +1525,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 
 	public function testChangeAuthenticationData() {
 		$req = $this->getMockForAbstractClass( AuthenticationRequest::class );
-		$req->username = 'UTSysop';
+		$req->username = 'TestChangeAuthenticationData';
 
 		$mock1 = $this->createMock( AbstractPrimaryAuthenticationProvider::class );
 		$mock1->method( 'getUniqueId' )->willReturn( '1' );
@@ -1766,9 +1782,10 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$this->manager->canCreateAccount( $username . '<>' )
 		);
 
+		$existingUserName = $this->getTestSysop()->getUserIdentity()->getName();
 		$this->assertEquals(
 			Status::newFatal( 'userexists' ),
-			$this->manager->canCreateAccount( 'UTSysop' )
+			$this->manager->canCreateAccount( $existingUserName )
 		);
 
 		$this->assertEquals(
@@ -1793,7 +1810,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testBeginAccountCreation() {
-		$creator = \User::newFromName( 'UTSysop' );
+		$creator = $this->getTestSysop()->getUser();
 		$userReq = new UsernameAuthenticationRequest;
 		$this->logger = new \TestLogger( false, static function ( $message, $level ) {
 			return $level === LogLevel::DEBUG ? null : $message;
@@ -1942,7 +1959,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testContinueAccountCreation() {
-		$creator = \User::newFromName( 'UTSysop' );
+		$creator = $this->getTestSysop()->getUser();
 		$username = self::usernameForCreation();
 		$this->logger = new \TestLogger( false, static function ( $message, $level ) {
 			return $level === LogLevel::DEBUG ? null : $message;
@@ -2096,7 +2113,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		StatusValue $preTest, $primaryTest, $secondaryTest,
 		array $primaryResponses, array $secondaryResponses, array $managerResponses
 	) {
-		$creator = \User::newFromName( 'UTSysop' );
+		$creator = $this->getTestSysop()->getUser();
 		$username = self::usernameForCreation();
 
 		$this->initializeManager();
@@ -2153,9 +2170,9 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$mocks['primary']->method( 'testUserExists' )
 			->willReturn( false );
 		$ct = count( $req->primary );
-		$callback = $this->returnCallback( function ( $user, $creator, $reqs ) use ( $username, $req ) {
+		$callback = $this->returnCallback( function ( $user, $creatorArg, $reqs ) use ( $creator, $username, $req ) {
 			$this->assertSame( $username, $user->getName() );
-			$this->assertSame( 'UTSysop', $creator->getName() );
+			$this->assertSame( $creator->getName(), $creatorArg->getName() );
 			$foundReq = false;
 			foreach ( $reqs as $r ) {
 				$this->assertSame( $username, $r->username );
@@ -2172,9 +2189,9 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			->will( $callback );
 
 		$ct = count( $req->secondary );
-		$callback = $this->returnCallback( function ( $user, $creator, $reqs ) use ( $username, $req ) {
+		$callback = $this->returnCallback( function ( $user, $creatorArg, $reqs ) use ( $creator, $username, $req ) {
 			$this->assertSame( $username, $user->getName() );
-			$this->assertSame( 'UTSysop', $creator->getName() );
+			$this->assertSame( $creator->getName(), $creatorArg->getName() );
 			$foundReq = false;
 			foreach ( $reqs as $r ) {
 				$this->assertSame( $username, $r->username );
@@ -2235,12 +2252,12 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		foreach ( $providers as $p ) {
 			$p->postCalled = false;
 			$p->expects( $this->atMost( 1 ) )->method( 'postAccountCreation' )
-				->willReturnCallback( function ( $user, $creator, $response )
-					use ( $constraint, $p, $username )
+				->willReturnCallback( function ( $user, $creatorArg, $response )
+					use ( $creator, $constraint, $p, $username )
 				{
 					$this->assertInstanceOf( \User::class, $user );
 					$this->assertSame( $username, $user->getName() );
-					$this->assertSame( 'UTSysop', $creator->getName() );
+					$this->assertSame( $creator->getName(), $creatorArg->getName() );
 					$this->assertInstanceOf( AuthenticationResponse::class, $response );
 					$this->assertThat( $response->status, $constraint );
 					$p->postCalled = $response->status;
@@ -2491,7 +2508,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	 * @param string|null $logSubtype
 	 */
 	public function testAccountCreationLogging( $isAnon, $logSubtype ) {
-		$creator = $isAnon ? new \User : \User::newFromName( 'UTSysop' );
+		$creator = $isAnon ? new \User : $this->getTestSysop()->getUser();
 		$username = self::usernameForCreation();
 
 		$this->initializeManager();
@@ -2664,8 +2681,8 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->manager->setLogger( $logger );
 
 		try {
-			$user = \User::newFromName( 'UTSysop' );
-			$this->manager->autoCreateUser( $user, 'InvalidSource', true, true );
+			$userMock = $this->createMock( User::class );
+			$this->manager->autoCreateUser( $userMock, 'InvalidSource', true, true );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( \InvalidArgumentException $ex ) {
 			$this->assertSame( 'Unknown auto-creation source: InvalidSource', $ex->getMessage() );
@@ -2673,23 +2690,22 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 
 		// First, check an existing user
 		$session->clear();
-		$user = \User::newFromName( 'UTSysop' );
+		$existingUser = $this->getTestSysop()->getUser();
 		$this->hook( 'LocalUserCreated', LocalUserCreatedHook::class, $this->never() );
-		$ret = $this->manager->autoCreateUser( $user, AuthManager::AUTOCREATE_SOURCE_SESSION, true, true );
+		$ret = $this->manager->autoCreateUser( $existingUser, AuthManager::AUTOCREATE_SOURCE_SESSION, true, true );
 		$this->unhook( 'LocalUserCreated' );
 		$expect = Status::newGood();
 		$expect->warning( 'userexists' );
 		$this->assertEquals( $expect, $ret );
-		$this->assertNotEquals( 0, $user->getId() );
-		$this->assertSame( 'UTSysop', $user->getName() );
-		$this->assertEquals( $user->getId(), $session->getUser()->getId() );
+		$this->assertNotEquals( 0, $existingUser->getId() );
+		$this->assertEquals( $existingUser->getId(), $session->getUser()->getId() );
 		$this->assertSame( [
 			[ LogLevel::DEBUG, '{username} already exists locally' ],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		$session->clear();
-		$user = \User::newFromName( 'UTSysop' );
+		$user = $this->getTestSysop()->getUser();
 		$this->hook( 'LocalUserCreated', LocalUserCreatedHook::class, $this->never() );
 		$ret = $this->manager->autoCreateUser( $user, AuthManager::AUTOCREATE_SOURCE_SESSION, false, true );
 		$this->unhook( 'LocalUserCreated' );
@@ -2697,7 +2713,6 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$expect->warning( 'userexists' );
 		$this->assertEquals( $expect, $ret );
 		$this->assertNotEquals( 0, $user->getId() );
-		$this->assertSame( 'UTSysop', $user->getName() );
 		$this->assertSame( 0, $session->getUser()->getId() );
 		$this->assertSame( [
 			[ LogLevel::DEBUG, '{username} already exists locally' ],
@@ -3190,7 +3205,8 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$expectReqs[] = $req;
 			usort( $expectReqs, $cmpReqs );
 
-			$actual = $this->manager->getAuthenticationRequests( $action, \User::newFromName( 'UTSysop' ) );
+			$user = $this->getTestSysop()->getUser();
+			$actual = $this->manager->getAuthenticationRequests( $action, $user );
 			foreach ( $actual as $req ) {
 				// Don't test this here.
 				$req->required = AuthenticationRequest::REQUIRED;
@@ -3527,7 +3543,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testBeginAccountLink() {
-		$user = \User::newFromName( 'UTSysop' );
+		$user = $this->getTestSysop()->getUser();
 		$this->initializeManager();
 
 		$this->request->getSession()->setSecret( AuthManager::ACCOUNT_LINK_STATE, 'test' );
@@ -3558,7 +3574,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testContinueAccountLink() {
-		$user = \User::newFromName( 'UTSysop' );
+		$user = $this->getTestSysop()->getUser();
 		$this->initializeManager();
 
 		$session = [
@@ -3616,7 +3632,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	public function testAccountLink(
 		StatusValue $preTest, array $primaryResponses, array $managerResponses
 	) {
-		$user = \User::newFromName( 'UTSysop' );
+		$user = $this->getTestSysop()->getUser();
 
 		$this->initializeManager();
 
@@ -3703,9 +3719,9 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		foreach ( $providers as $p ) {
 			$p->postCalled = false;
 			$p->expects( $this->atMost( 1 ) )->method( 'postAccountLink' )
-				->willReturnCallback( function ( $user, $response ) use ( $constraint, $p ) {
-					$this->assertInstanceOf( \User::class, $user );
-					$this->assertSame( 'UTSysop', $user->getName() );
+				->willReturnCallback( function ( $userArg, $response ) use ( $user, $constraint, $p ) {
+					$this->assertInstanceOf( \User::class, $userArg );
+					$this->assertSame( $user->getName(), $userArg->getName() );
 					$this->assertInstanceOf( AuthenticationResponse::class, $response );
 					$this->assertThat( $response->status, $constraint );
 					$p->postCalled = $response->status;

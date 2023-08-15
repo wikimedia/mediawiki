@@ -123,9 +123,10 @@ class PasswordAuthenticationRequestTest extends AuthenticationRequestTestCase {
 	}
 
 	public function testDescribeCredentials() {
+		$username = 'TestDescribeCredentials';
 		$req = new PasswordAuthenticationRequest;
 		$req->action = AuthManager::ACTION_LOGIN;
-		$req->username = 'UTSysop';
+		$req->username = $username;
 		$ret = $req->describeCredentials();
 		$this->assertIsArray( $ret );
 		$this->assertArrayHasKey( 'provider', $ret );
@@ -133,6 +134,6 @@ class PasswordAuthenticationRequestTest extends AuthenticationRequestTestCase {
 		$this->assertSame( 'authmanager-provider-password', $ret['provider']->getKey() );
 		$this->assertArrayHasKey( 'account', $ret );
 		$this->assertInstanceOf( \Message::class, $ret['account'] );
-		$this->assertSame( [ 'UTSysop' ], $ret['account']->getParams() );
+		$this->assertSame( [ $username ], $ret['account']->getParams() );
 	}
 }
