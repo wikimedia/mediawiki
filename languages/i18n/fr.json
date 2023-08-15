@@ -2081,6 +2081,7 @@
 	"listfiles-delete": "supprimer",
 	"listfiles-summary": "Cette page spéciale permet de lister tous les fichiers téléversés.",
 	"listfiles-userdoesnotexist": "Le compte utilisateur « $1 » n’est pas enregistré.",
+	"listfiles-pager-submit": "Afficher la liste des fichiers",
 	"imgfile": "fichier",
 	"listfiles": "Liste de fichiers",
 	"listfiles_subpage": "Téléversements par $1",

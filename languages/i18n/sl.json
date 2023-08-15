@@ -1905,6 +1905,7 @@
 	"listfiles-delete": "izbriši",
 	"listfiles-summary": "Ta posebna stran prikazuje vse naložene datoteke.",
 	"listfiles-userdoesnotexist": "Uporabniški račun »$1« ni registriran.",
+	"listfiles-pager-submit": "Pokaži seznam datotek",
 	"imgfile": "dat.",
 	"listfiles": "Seznam datotek",
 	"listfiles_subpage": "Naložitve {{GENDER:$1|sodelavca|sodelavke}} $1",

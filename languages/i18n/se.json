@@ -2247,7 +2247,7 @@
 	"redirect-not-exists": "Árvu ii gávdnon",
 	"fileduplicatesearch-filename": "Fiilanamma:",
 	"fileduplicatesearch-submit": "Oza",
-	"fileduplicatesearch-noresults": "Ii gávdnon mihkkige fiila namain \"$1\".",
+	"fileduplicatesearch-noresults": "Ii gávdnon oktage fiila namain \"$1\".",
 	"specialpages": "Doaibmasiiddut",
 	"specialpages-note-restricted": "* Dábálaččat doaibmasiiddut.\n* <span class=\"mw-specialpagerestricted\">Ráddjejuvvon doaibmasiiddut.</span>",
 	"specialpages-group-other": "Eará doaibmasiiddut",

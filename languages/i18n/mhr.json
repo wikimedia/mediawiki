@@ -1896,6 +1896,7 @@
 	"listfiles-delete": "кораҥдаш",
 	"listfiles-summary": "Тиде служебный велыж чыла вераҥдыме файлым ончыкта.",
 	"listfiles-userdoesnotexist": "«$1» аккаунт регистрацийым эртен огыл.",
+	"listfiles-pager-submit": "Файл спискым ончыкташ",
 	"imgfile": "файл",
 	"listfiles": "Файл списке",
 	"listfiles_subpage": "$1 ушнышын вераҥдымашыже",

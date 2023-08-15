@@ -2017,6 +2017,7 @@
 	"listfiles-delete": "刪除",
 	"listfiles-summary": "此特殊頁面顯示所有已上傳的檔案。",
 	"listfiles-userdoesnotexist": "使用者帳號「$1」尚未註冊。",
+	"listfiles-pager-submit": "顯示檔案清單",
 	"imgfile": "檔案",
 	"listfiles": "檔案清單",
 	"listfiles_subpage": "$1上傳的檔案",

@@ -1936,6 +1936,7 @@
 	"listfiles-delete": "מחיקה",
 	"listfiles-summary": "דף מיוחד זה מציג את כל הקבצים שהועלו.",
 	"listfiles-userdoesnotexist": "חשבון המשתמש \"$1\" אינו רשום.",
+	"listfiles-pager-submit": "הצגת רשימת קבצים",
 	"imgfile": "קובץ",
 	"listfiles": "רשימת קבצים",
 	"listfiles_subpage": "העלאות של $1",

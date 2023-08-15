@@ -1722,6 +1722,7 @@
 	"listfiles-delete": "läschen",
 	"listfiles-summary": "Op dëser Spezialsäit stinn all déi eropgeluede Fichieren.",
 	"listfiles-userdoesnotexist": "De Benotzerkont \"$1\" ass net registréiert.",
+	"listfiles-pager-submit": "Fichierslëscht weisen",
 	"imgfile": "Fichier",
 	"listfiles": "Lëscht vun de Fichieren",
 	"listfiles_subpage": "Vum $1 eropgeluede Fichieren",

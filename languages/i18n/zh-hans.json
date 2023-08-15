@@ -2077,6 +2077,7 @@
 	"listfiles-delete": "删除",
 	"listfiles-summary": "本特殊页面展示所有上传的文件。",
 	"listfiles-userdoesnotexist": "用户账号“$1”尚未注册。",
+	"listfiles-pager-submit": "显示文件列表",
 	"imgfile": "文件",
 	"listfiles": "文件列表",
 	"listfiles_subpage": "$1上传的文件",

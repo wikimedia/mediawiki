@@ -3,6 +3,7 @@
 		"authors": [
 			"Amire80",
 			"Brahim-essaidi",
+			"Caden000",
 			"Hakim1bal",
 			"Moha",
 			"Mohamed Belarhzali",
@@ -193,7 +194,7 @@
 	"createaccountmail": "ⵙ ⵓⵎⵢⴰⵣⴰⵏ ⴰⵍⵉⴽⵜⵔⵓⵏⵉ",
 	"createacct-reason": "ⴰⵙⵔⴰⴳ",
 	"loginerror": "ⴰⵣⴳⵍ ⴳ ⵓⴽⵛⵛⵓⵎ",
-	"mailmypassword": "ⵜⴰⵡⴰⵍⵜ ⵓⵙⵉⴽⵍ ⵏ E-mail",
+	"mailmypassword": "ⴰⵍⵙ ⵜⴰⵡⴰⵍⵜ ⵓⵙⵉⴽⵍ",
 	"loginlanguagelabel": "Tutlayt: $1",
 	"pt-login": "Kcem",
 	"pt-login-button": "Kcem",

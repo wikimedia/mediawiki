@@ -2005,6 +2005,7 @@
 	"listfiles-delete": "sil",
 	"listfiles-summary": "Bu özel sayfa yüklenen tüm dosyaları gösterir.",
 	"listfiles-userdoesnotexist": "\"$1\" kullanıcı hesabı kayıtlı değil.",
+	"listfiles-pager-submit": "Dosya listesini göster",
 	"imgfile": "dosya",
 	"listfiles": "Dosya listesi",
 	"listfiles_subpage": "$1 tarafından yüklenenler",
