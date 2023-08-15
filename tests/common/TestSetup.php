@@ -165,7 +165,6 @@ class TestSetup {
 			'_' => true,
 			'ignore' => true,
 			'wgAutoloadClasses' => true,
-			'wgWikimediaJenkinsCI' => true,
 		];
 
 		// Import $GLOBALS into local scope for the file.
@@ -176,16 +175,11 @@ class TestSetup {
 			global $$key;
 		}
 
-		// phpcs:disable MediaWiki.VariableAnalysis.UnusedGlobalVariables
 		// Setup.php creates this variable, but we cannot wait for the below code to make it global,
 		// because Setup.php (and MW_SETUP_CALLBACK -> TestsAutoLoader.php) needs this to be a
 		// global during its execution (not just after).
+		// phpcs:ignore MediaWiki.VariableAnalysis.UnusedGlobalVariables
 		global $wgAutoloadClasses;
-		// $wgWikimediaJenkinsCI is not a config variable and is therefore not made explicitly global
-		// in Setup.php when checking wgScopeTest. Do that here instead, as the variable might be
-		// read in an extension before the code below is executed (T341731).
-		global $wgWikimediaJenkinsCI;
-		// phpcs:enable MediaWiki.VariableAnalysis.UnusedGlobalVariables
 
 		require_once $fileName;
 
