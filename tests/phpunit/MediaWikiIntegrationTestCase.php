@@ -237,7 +237,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @since 1.39
 	 */
 	protected function getDb() {
-		if ( !$this->needsDB() ) {
+		if ( !self::needsDB() ) {
 			throw new LogicException( 'This test does not need DB but tried to access it anyway' );
 		}
 		return MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
@@ -252,7 +252,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @return TestUser
 	 */
 	protected function getTestUser( $groups = [] ) {
-		if ( !$this->needsDB() ) {
+		if ( !self::needsDB() ) {
 			throw new LogicException(
 				'Test users get persisted in the test database and can only be used in tests having ' .
 				'`@group Database`. Add this test to the Database group or, preferably, construct or ' .
@@ -271,7 +271,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @return TestUser
 	 */
 	protected function getMutableTestUser( $groups = [] ) {
-		if ( !$this->needsDB() ) {
+		if ( !self::needsDB() ) {
 			throw new LogicException(
 				'Test users get persisted in the test database and can only be used in tests having ' .
 				'`@group Database`. Add this test to the Database group or, preferably, construct or ' .
@@ -294,8 +294,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * Returns a WikiPage representing an existing page. This method requires database support, which can be enabled
-	 * with "@group Database", or by listing the tables under testing in $this->tablesUsed, or by returning
-	 * true from needsDB().
+	 * with "@group Database".
 	 *
 	 * @since 1.32
 	 *
@@ -303,9 +302,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @return WikiPage
 	 */
 	protected function getExistingTestPage( $title = null ) {
-		if ( !$this->needsDB() ) {
-			throw new LogicException( 'When testing with pages, the test cases\'s needsDB()' .
-				' method should return true. Use @group Database or $this->tablesUsed.' );
+		if ( !self::needsDB() ) {
+			throw new LogicException( 'When testing with pages, the test must use @group Database' );
 		}
 
 		$caller = $this->getCallerName();
@@ -343,8 +341,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * Returns a WikiPage representing a non-existing page. This method requires database support, which can be enabled
-	 * with "@group Database", or by listing the tables under testing in $this->tablesUsed, or by returning
-	 * true from needsDB().
+	 * with "@group Database".
 	 *
 	 * @since 1.32
 	 *
@@ -352,9 +349,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @return WikiPage
 	 */
 	protected function getNonexistingTestPage( $title = null ) {
-		if ( !$this->needsDB() ) {
-			throw new LogicException( 'When testing with pages, the test cases\'s needsDB()' .
-				' method should return true. Use @group Database or $this->tablesUsed.' );
+		if ( !self::needsDB() ) {
+			throw new LogicException( 'When testing with pages, the test must use @group Database.' );
 		}
 
 		$caller = $this->getCallerName();
@@ -524,14 +520,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		try {
 			$this->overrideMwServices();
 
-			if ( $this->needsDB() && !self::isTestInDatabaseGroup() ) {
-				throw new LogicException(
-					get_class( $this ) . ' apparently needsDB but is not in the Database group'
-				);
-			}
-
 			$needsResetDB = false;
-			if ( !self::$dbSetup || $this->needsDB() ) {
+			if ( !self::$dbSetup || self::needsDB() ) {
 				// Set up a DB connection for this test to use
 				$useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
 
@@ -545,7 +535,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 					self::setupAllTestDBs(
 						$this->db, self::dbPrefix(), $useTemporaryTables
 					);
-					if ( $this->needsDB() ) {
+					if ( self::needsDB() ) {
 						$this->addCoreDBData();
 					}
 				}
@@ -675,6 +665,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		if ( strpos( $reflection->getFileName(), '/unit/' ) !== false ) {
 			$this->fail( 'This integration test should not be in "tests/phpunit/unit" !' );
 		}
+		if ( $this->tablesUsed && !self::isTestInDatabaseGroup() ) {
+			throw new LogicException(
+				get_class( $this ) . ' defines $tablesUsed but is not in the Database group'
+			);
+		}
 
 		$this->overriddenServices = [];
 		$this->temporaryHookHandlers = [];
@@ -688,7 +683,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			}
 		}
 
-		if ( $this->needsDB() && $this->db ) {
+		if ( self::needsDB() && $this->db ) {
 			// Clean up open transactions
 			while ( $this->db->trxLevel() > 0 ) {
 				$this->db->rollback( __METHOD__, 'flush' );
@@ -725,7 +720,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			ob_end_flush();
 		}
 
-		if ( $this->needsDB() && $this->db ) {
+		if ( self::needsDB() && $this->db ) {
 			// Clean up open transactions
 			while ( $this->db->trxLevel() > 0 ) {
 				$this->db->rollback( __METHOD__, 'flush' );
@@ -1574,14 +1569,12 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @return bool
 	 * @since 1.18
 	 */
-	public function needsDB() {
-		// If the test says it uses database tables, it needs the database
-		return $this->tablesUsed || self::isTestInDatabaseGroup();
+	final protected static function needsDB() {
+		return self::isTestInDatabaseGroup();
 	}
 
 	/**
-	 * Insert a new page. This method requires database support, which can be enabled with "@group Database", or by
-	 * listing the tables under testing in $this->tablesUsed, or by returning true from needsDB().
+	 * Insert a new page. This method requires database support, which can be enabled with "@group Database".
 	 *
 	 * Should be called from addDBData().
 	 *
@@ -1598,9 +1591,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$namespace = null,
 		User $user = null
 	) {
-		if ( !$this->needsDB() ) {
-			throw new RuntimeException( 'When testing with pages, the test cases\'s needsDB()' .
-				' method should return true. Use @group Database or $this->tablesUsed.' );
+		if ( !self::needsDB() ) {
+			throw new RuntimeException( 'When testing with pages, the test must use @group Database.' );
 		}
 
 		if ( is_string( $pageName ) ) {
@@ -2162,7 +2154,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			if ( array_intersect( $tablesUsed, $coreDBDataTables ) ) {
 				// Reset services that may contain information relating to the truncated tables
 				$this->overrideMwServices();
-				if ( $this->needsDB() ) {
+				if ( self::needsDB() ) {
 					// Re-add core DB data that was deleted
 					$this->addCoreDBData();
 				}
@@ -2312,8 +2304,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * the values given in the order of the columns in the $fields parameter.
 	 * Note that the rows are sorted by the columns given in $fields.
 	 *
-	 * This method requires database support, which can be enabled with "@group Database", or by listing the tables
-	 * under testing in $this->tablesUsed, or by returning true from needsDB().
+	 * This method requires database support, which can be enabled with "@group Database".
 	 *
 	 * @since 1.20
 	 *
@@ -2327,9 +2318,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	protected function assertSelect(
 		$table, $fields, $condition, array $expectedRows, array $options = [], array $join_conds = []
 	) {
-		if ( !$this->needsDB() ) {
-			throw new LogicException( 'When testing database state, the test cases\'s needDB()' .
-				' method should return true. Use @group Database or $this->tablesUsed.' );
+		if ( !self::needsDB() ) {
+			throw new LogicException( 'When testing database state, the test must use @group Database.' );
 		}
 
 		$db = wfGetDB( DB_REPLICA );
@@ -2365,16 +2355,13 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	/**
 	 * Get a SelectQueryBuilder with additional assert methods.
 	 *
-	 * This method requires database support, which can be enabled with
-	 * "@group Database", or by listing the tables under testing in
-	 * $this->tablesUsed, or by returning true from needsDB().
+	 * This method requires database support, which can be enabled with "@group Database".
 	 *
 	 * @return TestSelectQueryBuilder
 	 */
 	protected function newSelectQueryBuilder() {
-		if ( !$this->needsDB() ) {
-			throw new LogicException( 'When testing database state, the test cases\'s needDB()' .
-				' method should return true. Use @group Database or $this->tablesUsed.' );
+		if ( !self::needsDB() ) {
+			throw new LogicException( 'When testing database state, the test mut use @group Database.' );
 		}
 		return new TestSelectQueryBuilder( $this->getDb() );
 	}
@@ -2625,8 +2612,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * Edits or creates a page/revision. This method requires database support, which can be enabled with
-	 * "@group Database", or by listing the tables under testing in $this->tablesUsed, or by returning true
-	 * from needsDB().
+	 * "@group Database".
 	 *
 	 * @param string|PageIdentity|LinkTarget|WikiPage $page the page to edit
 	 * @param string|Content $content the new content of the page
@@ -2642,9 +2628,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$defaultNs = NS_MAIN,
 		Authority $performer = null
 	) {
-		if ( !$this->needsDB() ) {
-			throw new LogicException( 'When testing with pages, the test cases\'s needsDB()' .
-				' method should return true. Use @group Database or $this->tablesUsed.' );
+		if ( !self::needsDB() ) {
+			throw new LogicException( 'When testing with pages, the test must use @group Database.' );
 		}
 
 		$services = $this->getServiceContainer();
