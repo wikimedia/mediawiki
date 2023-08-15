@@ -102,13 +102,6 @@ class PageConfig extends IPageConfig {
 		}
 	}
 
-	public function hasLintableContentModel(): bool {
-		// @todo Check just the main slot, or all slots, or what?
-		$content = $this->getRevisionContent();
-		$model = $content ? $content->getModel( SlotRecord::MAIN ) : null;
-		return $content && ( $model === CONTENT_MODEL_WIKITEXT || $model === 'proofread-page' );
-	}
-
 	/** @inheritDoc */
 	public function getTitle(): string {
 		return $this->title->getPrefixedText();
