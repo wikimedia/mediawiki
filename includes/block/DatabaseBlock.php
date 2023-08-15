@@ -753,6 +753,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * @deprecated since 1.35. Use getReasonComment instead.
 	 */
 	public function getReason() {
+		wfDeprecated( __METHOD__, '1.35' );
 		if ( $this->getType() === self::TYPE_AUTO ) {
 			return $this->reason->message->inContentLanguage()->plain();
 		}
