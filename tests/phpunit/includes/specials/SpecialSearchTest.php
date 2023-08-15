@@ -334,7 +334,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 
 		$userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();
 
-		$user = User::newFromName( 'UTSysop' );
+		$user = $this->getTestSysop()->getUser();
 		$userOptionsManager->setOption( $user, 'searchlimit', $optionValue );
 		$user->saveSettings();
 

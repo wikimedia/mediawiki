@@ -6,7 +6,6 @@ use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\NullLogger;
 use TestLogger;
-use User;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -200,7 +199,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 		];
 
 		$sessionId = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
-		$user = User::newFromName( 'UTSysop' );
+		$user = $this->getTestSysop()->getUser();
 		$this->assertSame( $forceHTTPS, $user->requiresHTTPS() );
 
 		$backend = new SessionBackend(

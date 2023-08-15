@@ -6,7 +6,6 @@ use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
-use User;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -306,7 +305,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			'provider' => $provider1,
 			'id' => ( $id1 = $manager->generateSessionId() ),
 			'persisted' => true,
-			'userInfo' => UserInfo::newFromName( 'UTSysop', false ),
+			'userInfo' => UserInfo::newFromName( 'TestGetSessionForRequest', false ),
 			'idIsSafe' => true,
 		] );
 		$request->info2 = new SessionInfo( SessionInfo::MIN_PRIORITY, [
@@ -334,7 +333,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			'provider' => $provider2,
 			'id' => ( $id2 = $manager->generateSessionId() ),
 			'persisted' => true,
-			'userInfo' => UserInfo::newFromName( 'UTSysop', false ),
+			'userInfo' => UserInfo::newFromName( 'TestGetSessionForRequest', false ),
 			'idIsSafe' => true,
 		] );
 		$session = $manager->getSessionForRequest( $request );
@@ -350,7 +349,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			'provider' => $provider1,
 			'id' => ( $id1 = $manager->generateSessionId() ),
 			'persisted' => false,
-			'userInfo' => UserInfo::newFromName( 'UTSysop', true ),
+			'userInfo' => UserInfo::newFromName( 'TestGetSessionForRequest', true ),
 			'idIsSafe' => true,
 		] );
 		$request->info2 = null;
@@ -381,8 +380,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$id = $manager->generateSessionId();
 		$this->assertNull( $manager->getSessionById( $id, false ) );
 
-		$userIdentity = $this->getServiceContainer()->getUserIdentityLookup()
-			->getUserIdentityByName( 'UTSysop' );
+		$userIdentity = $this->getTestSysop()->getUserIdentity();
 		// Known but unloadable session ID
 		$this->logger->setCollect( true );
 		$id = $manager->generateSessionId();
@@ -661,7 +659,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testInvalidateSessionsForUser() {
-		$user = User::newFromName( 'UTSysop' );
+		$user = $this->getTestSysop()->getUser();
 		$manager = $this->getManager();
 
 		$providerBuilder = $this->getMockBuilder( \DummySessionProvider::class )
@@ -816,7 +814,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			'provider' => $manager->getProvider( 'DummySessionProvider' ),
 			'id' => $id,
 			'persisted' => true,
-			'userInfo' => UserInfo::newFromName( 'UTSysop', true ),
+			'userInfo' => UserInfo::newFromName( 'TestGetSessionFromInfo', true ),
 			'idIsSafe' => true,
 		] );
 		TestingAccessWrapper::newFromObject( $info )->idIsSafe = true;
@@ -892,9 +890,10 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$providerBuilder = $this->getMockBuilder( \DummySessionProvider::class )
 			->onlyMethods( [ 'preventSessionsForUser', '__toString' ] );
 
+		$username = 'TestPreventSessionsForUser';
 		$provider1 = $providerBuilder->getMock();
 		$provider1->expects( $this->once() )->method( 'preventSessionsForUser' )
-			->with( 'UTSysop' );
+			->with( $username );
 		$provider1->method( '__toString' )
 			->willReturn( 'MockProvider1' );
 
@@ -902,9 +901,9 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			$this->objectCacheDef( $provider1 ),
 		] );
 
-		$this->assertFalse( $manager->isUserSessionPrevented( 'UTSysop' ) );
-		$manager->preventSessionsForUser( 'UTSysop' );
-		$this->assertTrue( $manager->isUserSessionPrevented( 'UTSysop' ) );
+		$this->assertFalse( $manager->isUserSessionPrevented( $username ) );
+		$manager->preventSessionsForUser( $username );
+		$this->assertTrue( $manager->isUserSessionPrevented( $username ) );
 	}
 
 	public function testLoadSessionInfoFromStore() {
@@ -921,8 +920,9 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			return $rMethod->invokeArgs( $manager, [ &$info, $request ] );
 		};
 
-		$userInfo = UserInfo::newFromName( 'UTSysop', true );
-		$unverifiedUserInfo = UserInfo::newFromName( 'UTSysop', false );
+		$username = $this->getTestSysop()->getUserIdentity()->getName();
+		$userInfo = UserInfo::newFromName( $username, true );
+		$unverifiedUserInfo = UserInfo::newFromName( $username, false );
 
 		$id = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
 		$metadata = [
@@ -1266,7 +1266,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 
 		// Lookup user by name
 		$this->store->setSessionMeta(
-			$id, [ 'userId' => 0, 'userName' => 'UTSysop', 'userToken' => null ] + $metadata
+			$id, [ 'userId' => 0, 'userName' => $username, 'userToken' => null ] + $metadata
 		);
 		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
@@ -1552,7 +1552,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 
 		$session = $this->createMock( Session::class );
 		$session->method( 'isPersistent' )->willReturn( true );
-		$session->method( 'getUser' )->willReturn( User::newFromName( 'UTSysop' ) );
+		$session->method( 'getUser' )->willReturn( $this->getTestSysop()->getUser() );
 		$session->method( 'getRequest' )->willReturn( $request );
 		$session->method( 'getProvider' )->willReturn(
 			$this->createMock( CookieSessionProvider::class ) );

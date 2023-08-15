@@ -14,8 +14,9 @@ class SessionInfoTest extends MediaWikiIntegrationTestCase {
 
 	public function testBasics() {
 		$anonInfo = UserInfo::newAnonymous();
-		$userInfo = UserInfo::newFromName( 'UTSysop', true );
-		$unverifiedUserInfo = UserInfo::newFromName( 'UTSysop', false );
+		$username = 'SessionInfoTestTestBasics';
+		$userInfo = UserInfo::newFromName( $username, true );
+		$unverifiedUserInfo = UserInfo::newFromName( $username, false );
 
 		try {
 			new SessionInfo( SessionInfo::MIN_PRIORITY - 1, [] );
@@ -327,7 +328,7 @@ class SessionInfoTest extends MediaWikiIntegrationTestCase {
 			'userInfo' => $userInfo
 		] );
 		$this->assertSame(
-			'[' . SessionInfo::MIN_PRIORITY . "]Mock<+:{$userInfo->getId()}:UTSysop>$id",
+			'[' . SessionInfo::MIN_PRIORITY . "]Mock<+:{$userInfo->getId()}:$username>$id",
 			(string)$info,
 			'toString'
 		);
@@ -339,7 +340,7 @@ class SessionInfoTest extends MediaWikiIntegrationTestCase {
 			'userInfo' => $unverifiedUserInfo
 		] );
 		$this->assertSame(
-			'[' . SessionInfo::MIN_PRIORITY . "]Mock<-:{$userInfo->getId()}:UTSysop>$id",
+			'[' . SessionInfo::MIN_PRIORITY . "]Mock<-:{$userInfo->getId()}:$username>$id",
 			(string)$info,
 			'toString'
 		);
