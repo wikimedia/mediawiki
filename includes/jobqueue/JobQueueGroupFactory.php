@@ -89,39 +89,6 @@ class JobQueueGroupFactory {
 	}
 
 	/**
-	 * @param string $domain
-	 * @return mixed
-	 */
-	private function getCachedJobClasses( $domain ) {
-		$name = MainConfigNames::JobClasses;
-		if ( WikiMap::isCurrentWikiDbDomain( $domain ) ) {
-			return $this->options->get( $name ); // common case
-		} else {
-			$configName = 'wg' . $name;
-			$wiki = WikiMap::getWikiIdFromDbDomain( $domain );
-			$value = $this->wanCache->getWithSetCallback(
-				$this->wanCache->makeGlobalKey(
-					'jobqueue',
-					'configvalue',
-					$domain,
-					$configName
-				),
-				$this->wanCache::TTL_DAY + mt_rand( 0, $this->wanCache::TTL_DAY ),
-				static function () use ( $wiki, $configName ) {
-					global $wgConf;
-					// @TODO: use the full domain ID here
-					// NOTE: The 'wg' config is needed here by ::getConfig(). SiteConfiguration
-					//       will have to be refactored to use our config system.
-					return [ 'v' => $wgConf->getConfig( $wiki, $configName ) ];
-				},
-				[ 'pcTTL' => $this->wanCache::TTL_PROC_LONG ]
-			);
-
-			return $value['v'];
-		}
-	}
-
-	/**
 	 * @since 1.37
 	 *
 	 * @param false|string $domain Wiki domain ID. False uses the current wiki domain ID
@@ -132,22 +99,26 @@ class JobQueueGroupFactory {
 			$domain = WikiMap::getCurrentWikiDbDomain()->getId();
 		}
 
-		if ( !isset( $this->instances[$domain] ) ) {
-			// Make sure jobs are not getting pushed to bogus wikis. This can confuse
-			// the job runner system into spawning endless RPC requests that fail (T171371).
-			$wikiId = WikiMap::getWikiIdFromDbDomain( $domain );
-			if (
-				!WikiMap::isCurrentWikiDbDomain( $domain ) &&
-				!in_array( $wikiId, $this->options->get( MainConfigNames::LocalDatabases ) )
-			) {
-				// Do not enqueue job that cannot be run (T171371)
-				throw new LogicException( "Domain '{$domain}' is not recognized." );
-			}
+		// Make sure jobs are not getting pushed to bogus wikis. This can confuse
+		// the job runner system into spawning endless RPC requests that fail (T171371).
+		$wikiId = WikiMap::getWikiIdFromDbDomain( $domain );
+		if (
+			!WikiMap::isCurrentWikiDbDomain( $domain ) &&
+			!in_array( $wikiId, $this->options->get( MainConfigNames::LocalDatabases ) )
+		) {
+			// Do not enqueue job that cannot be run (T171371)
+			throw new LogicException( "Domain '{$domain}' is not recognized." );
+		}
 
+		$localJobClasses = WikiMap::isCurrentWikiDbDomain( $domain )
+			? $this->options->get( MainConfigNames::JobClasses )
+			: null;
+
+		if ( !isset( $this->instances[$domain] ) ) {
 			$this->instances[$domain] = new JobQueueGroup(
 				$domain,
 				$this->readOnlyMode,
-				$this->getCachedJobClasses( $domain ),
+				$localJobClasses,
 				$this->options->get( MainConfigNames::JobTypeConf ),
 				$this->options->get( MainConfigNames::JobTypesExcludedFromDefaultQueue ),
 				$this->statsdDataFactory,

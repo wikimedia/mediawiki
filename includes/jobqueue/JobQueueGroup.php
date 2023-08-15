@@ -18,12 +18,15 @@
  * @file
  */
 
-use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
  * Handle enqueueing of background jobs.
+ *
+ * @warning This service class supports queuing jobs to foreign wikis via JobQueueGroupFactory,
+ * but other operations may be called for the local wiki only. Exceptions may be thrown if you
+ * attempt to inspect, pop, or execute a foreign wiki's job queue.
  *
  * @ingroup JobQueue
  * @since 1.21
@@ -36,8 +39,8 @@ class JobQueueGroup {
 	protected $domain;
 	/** @var ConfiguredReadOnlyMode Read only mode */
 	protected $readOnlyMode;
-	/** @var array */
-	private $jobClasses;
+	/** @var array|null */
+	private $localJobClasses;
 	/** @var array */
 	private $jobTypeConfiguration;
 	/** @var array */
@@ -64,7 +67,7 @@ class JobQueueGroup {
 	 *
 	 * @param string $domain Wiki domain ID
 	 * @param ConfiguredReadOnlyMode $readOnlyMode Read-only mode
-	 * @param array $jobClasses
+	 * @param array|null $localJobClasses
 	 * @param array $jobTypeConfiguration
 	 * @param array $jobTypesExcludedFromDefaultQueue
 	 * @param IBufferingStatsdDataFactory $statsdDataFactory
@@ -74,7 +77,7 @@ class JobQueueGroup {
 	public function __construct(
 		$domain,
 		ConfiguredReadOnlyMode $readOnlyMode,
-		array $jobClasses,
+		?array $localJobClasses,
 		array $jobTypeConfiguration,
 		array $jobTypesExcludedFromDefaultQueue,
 		IBufferingStatsdDataFactory $statsdDataFactory,
@@ -84,7 +87,7 @@ class JobQueueGroup {
 		$this->domain = $domain;
 		$this->readOnlyMode = $readOnlyMode;
 		$this->cache = new MapCacheLRU( 10 );
-		$this->jobClasses = $jobClasses;
+		$this->localJobClasses = $localJobClasses;
 		$this->jobTypeConfiguration = $jobTypeConfiguration;
 		$this->jobTypesExcludedFromDefaultQueue = $jobTypesExcludedFromDefaultQueue;
 		$this->statsdDataFactory = $statsdDataFactory;
@@ -194,7 +197,9 @@ class JobQueueGroup {
 	}
 
 	/**
-	 * Pop a job off one of the job queues
+	 * Pop one job off a job queue
+	 *
+	 * @warning May not be called on foreign wikis!
 	 *
 	 * This pops a job off a queue as specified by $wgJobTypeConf and
 	 * updates the aggregate job queue information cache as needed.
@@ -208,10 +213,11 @@ class JobQueueGroup {
 	public function pop( $qtype = self::TYPE_DEFAULT, $flags = 0, array $ignored = [] ) {
 		$job = false;
 
-		if ( !WikiMap::isCurrentWikiDbDomain( $this->domain ) ) {
+		if ( !$this->localJobClasses ) {
 			throw new JobQueueError(
 				"Cannot pop '{$qtype}' job off foreign '{$this->domain}' wiki queue." );
-		} elseif ( is_string( $qtype ) && !isset( $this->jobClasses[$qtype] ) ) {
+		}
+		if ( is_string( $qtype ) && !isset( $this->localJobClasses[$qtype] ) ) {
 			// Do not pop jobs if there is no class for the queue type
 			throw new JobQueueError( "Unrecognized job type '$qtype'." );
 		}
@@ -290,14 +296,21 @@ class JobQueueGroup {
 	/**
 	 * Get the list of queue types
 	 *
+	 * @warning May not be called on foreign wikis!
+	 *
 	 * @return string[]
 	 */
 	public function getQueueTypes() {
-		return array_keys( $this->jobClasses );
+		if ( !$this->localJobClasses ) {
+			throw new JobQueueError( 'Cannot inspect job queue from foreign wiki' );
+		}
+		return array_keys( $this->localJobClasses );
 	}
 
 	/**
 	 * Get the list of default queue types
+	 *
+	 * @warning May not be called on foreign wikis!
 	 *
 	 * @return string[]
 	 */
@@ -308,9 +321,11 @@ class JobQueueGroup {
 	/**
 	 * Check if there are any queues with jobs (this is cached)
 	 *
+	 * @warning May not be called on foreign wikis!
+	 *
+	 * @since 1.23
 	 * @param int $type JobQueueGroup::TYPE_* constant
 	 * @return bool
-	 * @since 1.23
 	 */
 	public function queuesHaveJobs( $type = self::TYPE_ANY ) {
 		$cache = ObjectCache::getLocalClusterInstance();
@@ -331,6 +346,8 @@ class JobQueueGroup {
 
 	/**
 	 * Get the list of job types that have non-empty queues
+	 *
+	 * @warning May not be called on foreign wikis!
 	 *
 	 * @return string[] List of job types that have non-empty queues
 	 */
@@ -356,6 +373,8 @@ class JobQueueGroup {
 
 	/**
 	 * Get the size of the queues for a list of job types
+	 *
+	 * @warning May not be called on foreign wikis!
 	 *
 	 * @return int[] Map of (job type => size)
 	 */
