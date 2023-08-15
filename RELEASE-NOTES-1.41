@@ -328,6 +328,8 @@ because of Phabricator reports.
   usage outside of the class have been made private without deprecation.
 * User::idFromName(), deprecated in 1.37, has been removed. Instead, you should
   use UserIdentityLookup::getUserIdentityByName().
+* User::incEditCount(), deprecated in 1.37, has been removed. Instead, use
+  UserEditTracker::incrementUserEditCount().
 * …
 
 === Deprecations in 1.41 ===
