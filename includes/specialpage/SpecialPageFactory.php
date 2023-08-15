@@ -763,7 +763,7 @@ class SpecialPageFactory {
 		'Version' => [
 			'class' => \SpecialVersion::class,
 			'services' => [
-				'Parser',
+				'ParserFactory',
 				'UrlUtils',
 				'DBLoadBalancerFactory',
 			]
@@ -941,7 +941,7 @@ class SpecialPageFactory {
 		'ExpandTemplates' => [
 			'class' => SpecialExpandTemplates::class,
 			'services' => [
-				'Parser',
+				'ParserFactory',
 				'UserOptionsLookup',
 				'Tidy',
 			],
