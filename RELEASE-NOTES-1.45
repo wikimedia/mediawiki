@@ -109,6 +109,9 @@ MediaWiki supports over 350 languages. Many localisations are updated regularly.
 Below only new and removed languages are listed, as well as changes to languages
 because of Phabricator reports.
 
+* (T314476) Make Perso-Arabic the primary writing system for Kashmiri,
+  under the language code "ks". "ks-arab" and "ks-deva" are preserved for
+  backwards compatibility. "ks-deva" may be removed in a future release.
 * …
 
 === Breaking changes in 1.45 ===
