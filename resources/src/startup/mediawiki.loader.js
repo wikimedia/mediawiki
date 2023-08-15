@@ -93,7 +93,8 @@
 	 *             'skip': 'return !!window.Example;', (or) null, (or) boolean result of skip
 	 *             'module': export Object
 	 *
-	 *             // Set from execute() or mw.loader.state()
+	 *             // Set by execute() or mw.loader.state()
+	 *             // See mw.loader.getState() for documentation of the state machine
 	 *             'state': 'registered', 'loading', 'loaded', 'executing', 'ready', 'error', or 'missing'
 	 *
 	 *             // Optionally added at run-time by mw.loader.impl()
@@ -102,30 +103,6 @@
 	 *             'messages': { 'key': 'value', ... }
 	 *         }
 	 *     }
-	 *
-	 * State machine:
-	 *
-	 * - `registered`:
-	 *    The module is known to the system but not yet required.
-	 *    Meta data is registered via mw.loader#register. Calls to that method are
-	 *    generated server-side by the startup module.
-	 * - `loading`:
-	 *    The module was required through mw.loader (either directly or as dependency of
-	 *    another module). The client will fetch module contents from the server.
-	 *    The contents are then stashed in the registry via mw.loader#implement.
-	 * - `loaded`:
-	 *    The module has been loaded from the server and stashed via mw.loader#implement.
-	 *    Once the module has no more dependencies in-flight, the module will be executed,
-	 *    controlled via #setAndPropagate and #doPropagation.
-	 * - `executing`:
-	 *    The module is being executed.
-	 * - `ready`:
-	 *    The module has been successfully executed.
-	 * - `error`:
-	 *    The module (or one of its dependencies) produced an error during execution.
-	 * - `missing`:
-	 *    The module was registered client-side and requested, but the server denied knowledge
-	 *    of the module's existence.
 	 *
 	 * @property {Object}
 	 * @private
@@ -1707,16 +1684,39 @@
 		/**
 		 * Get the state of a module.
 		 *
-		 * Possible states are:
-		 * - `registered`: the module is available for loading but no caller requested it yet.
-		 * - `loading`, `loaded`, `executing`: the module was required through mw.loader (either
-		 *    directly or as dependency of another module), but isn't fully loaded yet.
-		 * - `ready`: the module was required through mw.loader and has been fully loaded.
-		 * - `error`: the module was required through mw.loader, but loading it has failed
-		 *    (most likely because the module or one of its dependencies produced an error during
-		 *    execution).
-		 * - `missing`: the module was registered client-side and requested, but the server
-		 *    denied knowledge of the module's existence.
+		 * Possible states for the public API:
+		 *
+		 * - `registered`: The module is available for loading but not yet requested.
+		 * - `loading`, `loaded`, or `executing`: The module is currently being loaded.
+		 * - `ready`: The module was succesfully and fully loaded.
+		 * - `error`: The module or one its dependencies has failed to load, e.g. due to
+		 *    uncaught error from the module's script files.
+		 * - `missing`: The module was requested but is not defined according to the server.
+		 *
+		 * Internal mw.loader state machine:
+		 *
+		 * - `registered`:
+		 *    The module is known to the system but not yet required.
+		 *    Meta data is stored by mw.loader#register.
+		 *    Calls to that method are generated server-side by StartupModule.
+		 * - `loading`:
+		 *    The module was required through mw.loader (either directly or as dependency of
+		 *    another module). The client will fetch module contents from mw.loader.store
+		 *    or from the server. The contents should later be received by mw.loader#implement.
+		 * - `loaded`:
+		 *    The module has been received by mw.loader#implement.
+		 *    Once the module has no more dependencies in-flight, the module will be executed,
+		 *    controlled via #setAndPropagate and #doPropagation.
+		 * - `executing`:
+		 *    The module is being executed (apply messages and stylesheets, execute scripts)
+		 *    by mw.loader#execute.
+		 * - `ready`:
+		 *    The module has been successfully executed.
+		 * - `error`:
+		 *    The module (or one of its dependencies) produced an uncaught error during execution.
+		 * - `missing`:
+		 *    The module was registered client-side and requested, but the server denied knowledge
+		 *    of the module's existence.
 		 *
 		 * @param {string} module Name of module
 		 * @return {string|null} The state, or null if the module (or its state) is not
