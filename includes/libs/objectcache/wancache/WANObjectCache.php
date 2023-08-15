@@ -661,7 +661,8 @@ class WANObjectCache implements
 				: null;
 
 			if ( $purge === null ) {
-				$wrapped = $this->makeCheckPurgeValue( $now, self::HOLDOFF_TTL, $purge );
+				// No holdoff when lazy creating a check key, use cache right away (T344191)
+				$wrapped = $this->makeCheckPurgeValue( $now, self::HOLDOFF_TTL_NONE, $purge );
 				$this->cache->add(
 					$timeKey,
 					$wrapped,
@@ -1133,7 +1134,7 @@ class WANObjectCache implements
 		foreach ( $checkSisterKeysByKey as $key => $checkSisterKey ) {
 			$purge = $this->parsePurgeValue( $wrappedBySisterKey[$checkSisterKey] );
 			if ( $purge === null ) {
-				$wrapped = $this->makeCheckPurgeValue( $now, self::HOLDOFF_TTL, $purge );
+				$wrapped = $this->makeCheckPurgeValue( $now, self::HOLDOFF_TTL_NONE, $purge );
 				$this->cache->add(
 					$checkSisterKey,
 					$wrapped,
