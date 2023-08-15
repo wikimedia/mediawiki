@@ -1442,169 +1442,339 @@ class Sanitizer {
 			'bgcolor', # deprecated
 		];
 
-		# Numbers refer to sections in HTML 4.01 standard describing the element.
+		# HTML 5 section numbers refer to sections in HTML 5 standard describing the element.
+		# Current revision: 2024-03-13 commit a187fec
+		# See: https://html.spec.whatwg.org/multipage/
+		# See: https://github.com/whatwg/html/commits
+		#
+		# HTML 4.01 section numbers refer to sections in HTML 4.01 standard describing the element.
 		# See: https://www.w3.org/TR/html4/
 		$allowed = [
-			# 7.5.4
-			'div'        => $block,
-			'center'     => $common, # deprecated
-			'span'       => $common,
+			# HTML 5 section 4.2 Document metadata
+			# https://html.spec.whatwg.org/multipage/semantics.html#document-metadata
 
-			# 7.5.5
-			'h1'         => $block,
-			'h2'         => $block,
-			'h3'         => $block,
-			'h4'         => $block,
-			'h5'         => $block,
-			'h6'         => $block,
-
-			# 7.5.6
-			# address
-
-			# 8.2.4
-			'bdo'        => $common,
-
-			# 9.2.1
-			'em'         => $common,
-			'strong'     => $common,
-			'cite'       => $common,
-			'dfn'        => $common,
-			'code'       => $common,
-			'samp'       => $common,
-			'kbd'        => $common,
-			'var'        => $common,
-			'abbr'       => $common,
-			# acronym
-
-			# 9.2.2
-			'blockquote' => $merge( $common, [ 'cite' ] ),
-			'q'          => $merge( $common, [ 'cite' ] ),
-
-			# 9.2.3
-			'sub'        => $common,
-			'sup'        => $common,
-
-			# 9.3.1
-			'p'          => $block,
-
-			# 9.3.2
-			'br'         => $merge( $common, [ 'clear' ] ),
-
-			# https://www.w3.org/TR/html5/text-level-semantics.html#the-wbr-element
-			'wbr'        => $common,
-
-			# 9.3.4
-			'pre'        => $merge( $common, [ 'width' ] ),
-
-			# 9.4
-			'ins'        => $merge( $common, [ 'cite', 'datetime' ] ),
-			'del'        => $merge( $common, [ 'cite', 'datetime' ] ),
-
-			# 10.2
-			'ul'         => $merge( $common, [ 'type' ] ),
-			'ol'         => $merge( $common, [ 'type', 'start', 'reversed' ] ),
-			'li'         => $merge( $common, [ 'type', 'value' ] ),
-
-			# 10.3
-			'dl'         => $common,
-			'dd'         => $common,
-			'dt'         => $common,
-
-			# 11.2.1
-			'table'      => $merge( $common,
-								[ 'summary', 'width', 'border', 'frame',
-										'rules', 'cellspacing', 'cellpadding',
-										'align', 'bgcolor',
-								] ),
-
-			# 11.2.2
-			'caption'    => $block,
-
-			# 11.2.3
-			'thead'      => $common,
-			'tfoot'      => $common,
-			'tbody'      => $common,
-
-			# 11.2.4
-			'colgroup'   => $merge( $common, [ 'span' ] ),
-			'col'        => $merge( $common, [ 'span' ] ),
-
-			# 11.2.5
-			'tr'         => $merge( $common, [ 'bgcolor' ], $tablealign ),
-
-			# 11.2.6
-			'td'         => $merge( $common, $tablecell, $tablealign ),
-			'th'         => $merge( $common, $tablecell, $tablealign ),
-
-			# 12.2
-			# NOTE: <a> is not allowed directly, but this list of allowed
-			# attributes is used from the Parser object
-			'a'          => $merge( $common, [ 'href', 'rel', 'rev' ] ), # rel/rev esp. for RDFa
-
-			# 13.2
-			# Not usually allowed, but may be used for extension-style hooks
-			# such as <math> when it is rasterized
-			'img'        => $merge( $common, [ 'alt', 'src', 'width', 'height', 'srcset' ] ),
-			# Attributes for A/V tags added in T163583 / T133673
-			'audio'      => $merge( $common, [ 'controls', 'preload', 'width', 'height' ] ),
-			'video'      => $merge( $common, [ 'poster', 'controls', 'preload', 'width', 'height' ] ),
-			'source'     => $merge( $common, [ 'type', 'src' ] ),
-			'track'      => $merge( $common, [ 'type', 'src', 'srclang', 'kind', 'label' ] ),
-
-			# 15.2.1
-			'tt'         => $common,
-			'b'          => $common,
-			'i'          => $common,
-			'big'        => $common,
-			'small'      => $common,
-			'strike'     => $common,
-			's'          => $common,
-			'u'          => $common,
-
-			# 15.2.2
-			'font'       => $merge( $common, [ 'size', 'color', 'face' ] ),
-			# basefont
-
-			# 15.3
-			'hr'         => $merge( $common, [ 'width' ] ),
-
-			# HTML Ruby annotation text module, simple ruby only.
-			# https://www.w3.org/TR/html5/text-level-semantics.html#the-ruby-element
-			'ruby'       => $common,
-			# rbc
-			'rb'         => $common,
-			'rp'         => $common,
-			'rt'         => $common, # $merge( $common, [ 'rbspan' ] ),
-			'rtc'        => $common,
-
-			# MathML root element, where used for extensions
-			# 'title' may not be 100% valid here; it's XHTML
-			# https://www.w3.org/TR/REC-MathML/
-			'math'       => $merge( [], [ 'class', 'style', 'id', 'title' ] ),
-
-			// HTML 5 section 4.5
-			'figure'     => $common,
-			'figcaption' => $common,
-
-			# HTML 5 section 4.6
-			'bdi' => $common,
-
-			# HTML5 elements, defined by:
-			# https://html.spec.whatwg.org/multipage/semantics.html#the-data-element
-			'data' => $merge( $common, [ 'value' ] ),
-			'time' => $merge( $common, [ 'datetime' ] ),
-			'mark' => $common,
-
-			// meta and link are only permitted by internalRemoveHtmlTags when Microdata
-			// is enabled so we don't bother adding a conditional to hide these
-			// Also meta and link are only valid in WikiText as Microdata elements
-			// (ie: validateTag rejects tags missing the attributes needed for Microdata)
-			// So we don't bother including $common attributes that have no purpose.
+			# HTML 5 section 4.2.5, 4.2.4
+			# meta and link are only permitted by internalRemoveHtmlTags when Microdata
+			# is enabled so we don't bother adding a conditional to hide these.
+			# Also meta and link are only valid in wikitext as Microdata elements
+			# (ie: validateTag rejects tags missing the attributes needed for Microdata)
+			# So we don't bother including $common attributes that have no purpose.
 			'meta' => $merge( [], [ 'itemprop', 'content' ] ),
 			'link' => $merge( [], [ 'itemprop', 'href', 'title' ] ),
 
-			# HTML 5 section 4.3.5
+			# HTML 5 section 4.3 Sections
+			# https://html.spec.whatwg.org/multipage/sections.html
+
+			# HTML 5 section 4.3.2, 4.3.3, 4.3.4, 4.3.5
+			# 'article' => $common,
+			# 'section' => $common,
+			# 'nav' => $common,
 			'aside' => $common,
+
+			# HTML 5 section 4.3.6
+			# HTML 4.01 section 7.5.5
+			'h1' => $block,
+			'h2' => $block,
+			'h3' => $block,
+			'h4' => $block,
+			'h5' => $block,
+			'h6' => $block,
+
+			# HTML 5 section 4.3.7
+			# 'hgroup' => $common,
+
+			# HTML 5 section 4.3.8, 4.3.9
+			# 'header' => $common,
+			# 'footer' => $common,
+
+			# HTML 5 section 4.3.10
+			# HTML 4.01 section 7.5.6
+			# 'address' => $common,
+
+			# HTML 5 section 4.4 Grouping content
+			# https://html.spec.whatwg.org/multipage/grouping-content.html
+
+			# HTML 5 section 4.4.1
+			# HTML 4.01 section 9.3.1
+			'p' => $block,
+
+			# HTML 5 section 4.4.2
+			# HTML 4.01 section 15.3
+			'hr' => $merge( $common, [ 'width' ] ),
+
+			# HTML 5 section 4.4.3
+			# HTML 4.01 section 9.3.4
+			'pre' => $merge( $common, [ 'width' ] ),
+
+			# HTML 5 section 4.4.4
+			# HTML 4.01 section 9.2.2
+			'blockquote' => $merge( $common, [ 'cite' ] ),
+
+			# HTML 5 section 4.4.5, 4.4.6
+			# HTML 4.01 section 10.2
+			'ol' => $merge( $common, [ 'type', 'start', 'reversed' ] ),
+			'ul' => $merge( $common, [ 'type' ] ),
+
+			# HTML 5 section 4.4.7
+			# 'menu' => $merge( $common, [ 'type' ] ),
+
+			# HTML 5 section 4.4.8
+			# HTML 4.01 section 10.2
+			'li' => $merge( $common, [ 'type', 'value' ] ),
+
+			# HTML 5 section 4.4.9, 4.4.10, 4.4.11
+			# HTML 4.01 section 10.3
+			'dl' => $common,
+			'dt' => $common,
+			'dd' => $common,
+
+			# HTML 5 section 4.4.12, 4.4.13 (was section 4.5)
+			'figure' => $common,
+			'figcaption' => $common,
+
+			# HTML 5 section 4.4.14
+			# 'main' => $common,
+
+			# HTML 5 section 4.4.15
+			# 'search'
+
+			# HTML 5 section 4.4.16
+			# HTML 4.01 section 7.5.4
+			'div' => $block,
+
+			# HTML 5 section 4.5 Text-level semantics
+			# https://html.spec.whatwg.org/multipage/text-level-semantics.html
+
+			# HTML 5 section 4.5.1
+			# HTML 4.01 section 12.2
+			# NOTE: <a> is not allowed directly, but this list of allowed
+			# attributes is used from the Parser object
+			# See: HTML 5 section 4.6 Links
+			# https://html.spec.whatwg.org/multipage/links.html
+			'a' => $merge( $common, [ 'href', 'rel', 'rev' ] ), # rel/rev esp. for RDFa
+
+			# HTML 5 section 4.5.2, 4.5.3
+			# HTML 4.01 section 9.2.1
+			'em' => $common,
+			'strong' => $common,
+
+			# HTML 5 section 4.5.4
+			# HTML 4.01 section 15.2.1
+			'small' => $common,
+
+			# HTML 5 section 4.5.5
+			# HTML 4.01 section 15.2.1
+			's' => $common,
+
+			# HTML 5 section 4.5.6
+			# HTML 4.01 section 9.2.1
+			'cite' => $common,
+
+			# HTML 5 section 4.5.7
+			# HTML 4.01 section 9.2.2
+			'q' => $merge( $common, [ 'cite' ] ),
+
+			# HTML 5 section 4.5.8, 4.5.9
+			# HTML 4.01 section 9.2.1
+			'dfn' => $common,
+			'abbr' => $common,
+
+			# HTML 5 section 4.5.10, 4.5.11, 4.5.12
+			# HTML Ruby annotation text module, simple ruby only.
+			# https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-ruby-element
+			'ruby' => $common,
+			'rt' => $common, # $merge( $common, [ 'rbspan' ] ),
+			'rp' => $common,
+
+			# HTML 5 section 4.5.13, 4.5.14
+			'data' => $merge( $common, [ 'value' ] ),
+			'time' => $merge( $common, [ 'datetime' ] ),
+
+			# HTML 5 section 4.5.15, 4.5.16, 4.5.17, 4.5.18
+			# HTML 4.01 section 9.2.1
+			'code' => $common,
+			'var' => $common,
+			'samp' => $common,
+			'kbd' => $common,
+
+			# HTML 5 section 4.5.19
+			# HTML 4.01 section 9.2.3
+			'sub' => $common,
+			'sup' => $common,
+
+			# HTML 5 section 4.5.20, 4.5.21, 4.5.22, 4.5.23
+			# HTML 4.01 section 15.2.1
+			'i' => $common,
+			'b' => $common,
+			'u' => $common,
+			'mark' => $common,
+
+			# HTML 5 section 4.5.24 (was section 4.6)
+			'bdi' => $common,
+
+			# HTML 5 section 4.5.25
+			# HTML 4.01 section 8.2.4
+			'bdo' => $common,
+
+			# HTML 5 section 4.5.26
+			# HTML 4.01 section 7.5.4
+			'span' => $common,
+
+			# HTML 5 section 4.5.27
+			# HTML 4.01 section 9.3.2
+			'br' => $merge( $common, [ 'clear' ] ),
+
+			# HTML 5 section 4.5.28
+			'wbr' => $common,
+
+			# HTML 5 section 4.7 Edits
+			# https://html.spec.whatwg.org/multipage/edits.html
+
+			# HTML 5 section 4.7.1, 4.7.2
+			# HTML 4.01 section 9.4
+			'ins' => $merge( $common, [ 'cite', 'datetime' ] ),
+			'del' => $merge( $common, [ 'cite', 'datetime' ] ),
+
+			# HTML 5 section 4.8 Embedded content
+			# https://html.spec.whatwg.org/multipage/embedded-content.html
+
+			# HTML 5 section 4.8.1
+			# 'picture'
+
+			# HTML 5 section 4.8.2, 4.8.3, 4.8.8, 4.8.9, 4.8.10
+			# HTML 4.01 section 13.2
+			# Not usually allowed, but may be used for extension-style hooks
+			# such as <math> when it is rasterized
+			'source' => $merge( $common, [ 'type', 'src' ] ),
+			'img' => $merge( $common, [ 'alt', 'src', 'width', 'height', 'srcset' ] ),
+			# Attributes for A/V tags added in T163583 / T133673
+			'video' => $merge( $common, [ 'poster', 'controls', 'preload', 'width', 'height' ] ),
+			'audio' => $merge( $common, [ 'controls', 'preload', 'width', 'height' ] ),
+			'track' => $merge( $common, [ 'type', 'src', 'srclang', 'kind', 'label' ] ),
+
+			# HTML 5 section 4.8.12, 4.8.13
+			# 'map'
+			# 'area'
+
+			# HTML 5 section 4.8.15
+			# MathML root element, where used for extensions
+			# 'title' may not be 100% valid here; it's XHTML
+			# https://www.w3.org/TR/REC-MathML/
+			'math' => $merge( [], [ 'class', 'style', 'id', 'title' ] ),
+
+			# HTML 5 section 4.8.16
+			# 'svg'
+
+			# HTML 5 section 4.9 Tabular data
+			# https://html.spec.whatwg.org/multipage/tables.html
+
+			# HTML 5 section 4.9.1
+			# HTML 4.01 section 11.2.1
+			'table' => $merge(
+				$common,
+				[
+					'summary', 'width', 'border', 'frame',
+					'rules', 'cellspacing', 'cellpadding',
+					'align', 'bgcolor',
+				]
+			),
+
+			# HTML 5 section 4.9.2
+			# HTML 4.01 section 11.2.2
+			'caption' => $block,
+
+			# HTML 5 section 4.9.3, 4.9.4
+			# HTML 4.01 section 11.2.4
+			'colgroup' => $merge( $common, [ 'span' ] ),
+			'col' => $merge( $common, [ 'span' ] ),
+
+			# HTML 5 section 4.9.5, 4.9.6, 4.9.7
+			# HTML 4.01 section 11.2.3
+			'tbody' => $common,
+			'thead' => $common,
+			'tfoot' => $common,
+
+			# HTML 5 section 4.9.8
+			# HTML 4.01 section 11.2.5
+			'tr' => $merge( $common, [ 'bgcolor' ], $tablealign ),
+
+			# HTML 5 section 4.9.9, 4.9.10
+			# HTML 4.01 section 11.2.6
+			'td' => $merge( $common, $tablecell, $tablealign ),
+			'th' => $merge( $common, $tablecell, $tablealign ),
+
+			# HTML 5 section 4.10 Forms
+			# https://html.spec.whatwg.org/multipage/forms.html
+			# https://html.spec.whatwg.org/multipage/input.html
+			# https://html.spec.whatwg.org/multipage/form-elements.html
+			# https://html.spec.whatwg.org/multipage/form-control-infrastructure.html
+
+			# HTML 5 section 4.10.3, 4.10.4
+			# 'form'
+			# 'label'
+
+			# HTML 5 section 4.10.5
+			# 'input'
+
+			# HTML 5 section 4.10.6, 4.10.7, 4.10.8, 4.10.9, 4.10.10, 4.10.11, 4.10.12
+			# 'button'
+			# 'select'
+			# 'datalist'
+			# 'optgroup'
+			# 'option'
+			# 'textarea'
+			# 'output'
+
+			# HTML 5 section 4.10.13, 4.10.14
+			# 'progress' => $merge( $common, [ 'value', 'max' ] ),
+			# 'meter' => $merge( $common, [ 'value', 'min', 'max', 'low', 'high', 'optimum' ] ),
+
+			# HTML 5 section 4.10.15, 4.10.14
+			# 'fieldset'
+			# 'legend'
+
+			# HTML 5 section 4.11 Interactive elements
+			# https://html.spec.whatwg.org/multipage/interactive-elements.html
+			# 4.11.1, 4.11.2
+			# 'details' => $merge( $common, [ 'name', 'open' ] ),
+			# 'summary' => $common,
+
+			# HTML 5 section 16 Obsolete features
+			# https://html.spec.whatwg.org/multipage/obsolete.html#rb
+
+			# HTML 5 section 16.2 Non-conforming features
+			# Elements that are entirely obsolete, and must not be used by authors
+
+			# HTML 4.01 section 9.2.1
+			# Use 'abbr' instead.
+			# 'acronym'
+
+			# HTML Ruby annotation text module, simple ruby only.
+			# https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-ruby-element
+			# Providing the ruby base directly inside the ruby element or using nested ruby elements
+			# is sufficient.
+			# 'rbc'
+			'rb' => $common,
+			'rtc' => $common,
+
+			# HTML 4.01 section 15.2.1
+			# Use del instead if the element is marking an edit, otherwise use s instead.
+			'strike' => $common,
+
+			# HTML 4.01 section 15.2.2
+			# basefont
+
+			# HTML 4.01 section 15.2.1
+			'big' => $common,
+
+			# HTML 4.01 section 7.5.4
+			'center' => $common, # deprecated
+
+			# HTML 4.01 section 15.2.2
+			'font' => $merge( $common, [ 'size', 'color', 'face' ] ),
+
+			# HTML 4.01 section 15.2.1
+			'tt' => $common,
 		];
 
 		return $allowed;
