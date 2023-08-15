@@ -847,18 +847,22 @@ class Article implements Page {
 		array $textOptions
 	) {
 		$context = $this->getContext();
-		$cdnMaxageStale = $context->getConfig()->get( MainConfigNames::CdnMaxageStale );
-		$ok = $renderStatus->isOK();
+		if ( !$renderStatus->isOK() ) {
+			$this->showViewError( $renderStatus->getWikiText(
+				false, 'view-pool-error', $context->getLanguage()
+			) );
+			return;
+		}
 
-		$pOutput = $ok ? $renderStatus->getValue() : null;
+		$pOutput = $renderStatus->getValue();
 
 		// Cache stale ParserOutput object with a short expiry
-		if ( $ok && $renderStatus->hasMessage( 'view-pool-dirty-output' ) ) {
-			$outputPage->setCdnMaxage( $cdnMaxageStale );
+		if ( $renderStatus->hasMessage( 'view-pool-dirty-output' ) ) {
+			$outputPage->setCdnMaxage( $context->getConfig()->get( MainConfigNames::CdnMaxageStale ) );
 			$outputPage->setLastModified( $pOutput->getCacheTime() );
 			$staleReason = $renderStatus->hasMessage( 'view-pool-contention' )
-				? $context->msg( 'view-pool-contention' )
-				: $context->msg( 'view-pool-timeout' );
+				? $context->msg( 'view-pool-contention' )->escaped()
+				: $context->msg( 'view-pool-timeout' )->escaped();
 			$outputPage->addHTML( "<!-- parser cache is expired, " .
 				"sending anyway due to $staleReason-->\n" );
 
@@ -870,16 +874,7 @@ class Article implements Page {
 			}
 		}
 
-		if ( !$renderStatus->isOK() ) {
-			$this->showViewError( $renderStatus->getWikiText(
-				false, 'view-pool-error', $context->getLanguage()
-			) );
-			return;
-		}
-
-		if ( $pOutput ) {
-			$outputPage->addParserOutput( $pOutput, $textOptions );
-		}
+		$outputPage->addParserOutput( $pOutput, $textOptions );
 
 		if ( $this->getRevisionRedirectTarget( $rev ) ) {
 			$outputPage->addSubtitle( "<span id=\"redirectsub\">" .
