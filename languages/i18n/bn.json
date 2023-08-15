@@ -3933,7 +3933,7 @@
 	"log-action-filter-delete-delete_redir2": "পুনর্নির্দেশ উপরিলিখন",
 	"log-action-filter-delete-restore": "পাতা পুনঃরুদ্ধার",
 	"log-action-filter-delete-event": "লগ অপসারণ",
-	"log-action-filter-delete-revision": "সংশোধন অপসারণ",
+	"log-action-filter-delete-revision": "সংস্করণ অপসারণ",
 	"log-action-filter-import-interwiki": "আন্তঃউইকি আমদানি",
 	"log-action-filter-import-upload": "XML আপলোড কর্তৃক আমদানি",
 	"log-action-filter-managetags-create": "ট্যাগ সৃষ্টিকরণ",

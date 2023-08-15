@@ -279,7 +279,7 @@
 	"confirmable-confirm": "{{GENDER:$1|დარწუმებული}} რეთო?",
 	"confirmable-yes": "ქო",
 	"confirmable-no": "ვარი",
-	"thisisdeleted": "$1-იშ ძირაფა დო ვარი კჷნე აკონწყუალა?",
+	"thisisdeleted": "$1-შ ძირაფა დო ვარი კონი აკონწყუალა?",
 	"viewdeleted": "ქოძირი $1?",
 	"restorelink": "{{PLURAL:$1|ართი ლასირი რედაქტირაფა|$1 ლასირი რედაქტირაფა}}",
 	"feed-invalid": "ჩილათირი არხი დინაჭარალო.",
