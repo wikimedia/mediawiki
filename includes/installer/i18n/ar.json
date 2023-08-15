@@ -20,7 +20,10 @@
 			"روخو",
 			"محمد أحمد عبد الفتاح",
 			"NEHAOUA",
-			"Michel Bakni"
+			"Michel Bakni",
+			"Alshamiri1",
+			"Dr-Taher",
+			"Hubaishan"
 		]
 	},
 	"config-desc": "مثبت برمجيات ميدياويكي",
@@ -45,13 +48,13 @@
 	"config-page-language": "اللغة",
 	"config-page-welcome": "مرحبًا في ميدياويكي!",
 	"config-page-dbconnect": "الاتصال بقاعدة البيانات",
-	"config-page-upgrade": "قم بترقية التثبيت الموجود",
+	"config-page-upgrade": "رقِ التثبيت الحالي",
 	"config-page-dbsettings": "إعدادات قاعدة البيانات",
 	"config-page-name": "الاسم",
 	"config-page-options": "خيارات",
 	"config-page-install": "تنصيب",
 	"config-page-complete": "اكتمل!",
-	"config-page-restart": "قم بإعادة تشغيل التثبيت",
+	"config-page-restart": "إعادة تشغيل التثبيت",
 	"config-page-releasenotes": "ملاحظات الإصدار",
 	"config-page-copying": "نسخ",
 	"config-page-upgradedoc": "ترقية",
