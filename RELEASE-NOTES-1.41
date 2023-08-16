@@ -339,6 +339,8 @@ because of Phabricator reports.
   use BacklinkCacheFactory::getBacklinkCache().
 * Title::newFromIDs and TitleFactory::newFromIDs, deprecated in 1.38, have been
   dropped; use a PageStore QueryBuilder instead.
+* Title::getSelectFields(), deprecated since 1.36, has been dropped. You can use
+  PageStore::newSelectQueryBuilder() instead.
 * …
 
 === Deprecations in 1.41 ===
