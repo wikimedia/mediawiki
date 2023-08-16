@@ -535,7 +535,7 @@
 	"apihelp-query+search-summary": "Eseguire una ricerca di testo completa.",
 	"apihelp-query+search-param-what": "Quale tipo di ricerca effettuare.",
 	"apihelp-query+search-param-info": "Quali metadati restituire.",
-	"apihelp-query+search-param-prop": "Quali proprietà restituire.",
+	"apihelp-query+search-param-prop": "Quali proprietà restituire:",
 	"apihelp-query+search-paramvalue-prop-size": "Aggiungi la dimensione della pagina in byte.",
 	"apihelp-query+search-paramvalue-prop-wordcount": "Aggiungi il conteggio delle parole nella pagina.",
 	"apihelp-query+search-paramvalue-prop-timestamp": "Aggiungi il timestamp di quando la pagina è stata modificata l'ultima volta.",
