@@ -1990,7 +1990,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Title\Title::getBacklinkCache
+	 * @coversNothing
 	 */
 	public function testGetBacklinkCache() {
 		$blcFactory = $this->getServiceContainer()->getBacklinkCacheFactory();

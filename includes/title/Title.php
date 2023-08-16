@@ -26,7 +26,6 @@ namespace MediaWiki\Title;
 
 use AtomicSectionUpdate;
 use AutoCommitUpdate;
-use BacklinkCache;
 use ContentHandler;
 use DBAccessObjectUtils;
 use DeferredUpdates;
@@ -3625,19 +3624,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		}
 
 		return $this->isValid();
-	}
-
-	/**
-	 * Get a backlink cache object.
-	 *
-	 * @deprecated since 1.37, use BacklinkCacheFactory::getBacklinkCache()
-	 *
-	 * @return BacklinkCache
-	 */
-	public function getBacklinkCache(): BacklinkCache {
-		wfDeprecated( __METHOD__, '1.37' );
-		return MediaWikiServices::getInstance()->getBacklinkCacheFactory()
-			->getBacklinkCache( $this );
 	}
 
 	/**
