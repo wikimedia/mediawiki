@@ -351,6 +351,9 @@ because of Phabricator reports.
   dropped; use a PageStore QueryBuilder instead.
 * Title::getSelectFields(), deprecated since 1.36, has been dropped. You can use
   PageStore::newSelectQueryBuilder() instead.
+* Title::getTouched() will now trigger an error if you pass it an instance of
+  IDatabase rather than a READ_XXX constant. This legacy behaviour has been
+  deprecated since 1.38.
 * …
 
 === Deprecations in 1.41 ===
