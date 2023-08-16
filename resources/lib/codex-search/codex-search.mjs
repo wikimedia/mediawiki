@@ -1,53 +1,53 @@
-var Ke = Object.defineProperty, Ae = Object.defineProperties;
-var Re = Object.getOwnPropertyDescriptors;
-var ie = Object.getOwnPropertySymbols;
-var _e = Object.prototype.hasOwnProperty, Se = Object.prototype.propertyIsEnumerable;
-var Ie = (e, t, n) => t in e ? Ke(e, t, { enumerable: !0, configurable: !0, writable: !0, value: n }) : e[t] = n, we = (e, t) => {
+var Re = Object.defineProperty, De = Object.defineProperties;
+var Ee = Object.getOwnPropertyDescriptors;
+var re = Object.getOwnPropertySymbols;
+var we = Object.prototype.hasOwnProperty, xe = Object.prototype.propertyIsEnumerable;
+var Se = (e, t, n) => t in e ? Re(e, t, { enumerable: !0, configurable: !0, writable: !0, value: n }) : e[t] = n, ke = (e, t) => {
   for (var n in t || (t = {}))
-    _e.call(t, n) && Ie(e, n, t[n]);
-  if (ie)
-    for (var n of ie(t))
-      Se.call(t, n) && Ie(e, n, t[n]);
+    we.call(t, n) && Se(e, n, t[n]);
+  if (re)
+    for (var n of re(t))
+      xe.call(t, n) && Se(e, n, t[n]);
   return e;
-}, xe = (e, t) => Ae(e, Re(t));
-var Y = (e, t) => {
+}, Me = (e, t) => De(e, Ee(t));
+var Z = (e, t) => {
   var n = {};
-  for (var a in e)
-    _e.call(e, a) && t.indexOf(a) < 0 && (n[a] = e[a]);
-  if (e != null && ie)
-    for (var a of ie(e))
-      t.indexOf(a) < 0 && Se.call(e, a) && (n[a] = e[a]);
+  for (var l in e)
+    we.call(e, l) && t.indexOf(l) < 0 && (n[l] = e[l]);
+  if (e != null && re)
+    for (var l of re(e))
+      t.indexOf(l) < 0 && xe.call(e, l) && (n[l] = e[l]);
   return n;
 };
-var pe = (e, t, n) => new Promise((a, o) => {
-  var u = (l) => {
+var ve = (e, t, n) => new Promise((l, s) => {
+  var r = (o) => {
     try {
-      i(n.next(l));
-    } catch (r) {
-      o(r);
+      u(n.next(o));
+    } catch (d) {
+      s(d);
     }
-  }, s = (l) => {
+  }, i = (o) => {
     try {
-      i(n.throw(l));
-    } catch (r) {
-      o(r);
+      u(n.throw(o));
+    } catch (d) {
+      s(d);
     }
-  }, i = (l) => l.done ? a(l.value) : Promise.resolve(l.value).then(u, s);
-  i((n = n.apply(e, t)).next());
+  }, u = (o) => o.done ? l(o.value) : Promise.resolve(o.value).then(r, i);
+  u((n = n.apply(e, t)).next());
 });
-import { ref as y, onMounted as W, defineComponent as D, computed as h, openBlock as f, createElementBlock as v, normalizeClass as K, toDisplayString as V, createCommentVNode as w, resolveComponent as B, createVNode as j, Transition as De, withCtx as q, normalizeStyle as te, createElementVNode as I, createTextVNode as ee, withModifiers as Ce, renderSlot as R, createBlock as L, resolveDynamicComponent as Ee, Fragment as ve, getCurrentInstance as Ne, onUnmounted as ke, watch as Z, toRef as z, nextTick as ue, withDirectives as Me, mergeProps as P, renderList as Fe, vShow as Oe, Comment as qe, warn as ze, withKeys as ye, inject as re, vModelDynamic as He } from "vue";
-const Ue = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', Qe = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0zm5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', je = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', Pe = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8z"/>', We = Ue, Ge = Qe, Je = je, Xe = Pe;
-function Ye(e, t, n) {
+import { ref as v, onMounted as W, defineComponent as R, computed as h, openBlock as f, createElementBlock as g, normalizeClass as L, toDisplayString as T, createCommentVNode as w, resolveComponent as B, createVNode as j, Transition as Ne, withCtx as O, normalizeStyle as ne, createElementVNode as _, createTextVNode as te, withModifiers as _e, renderSlot as A, createBlock as V, resolveDynamicComponent as Fe, Fragment as Ce, getCurrentInstance as Oe, onUnmounted as Te, watch as ee, toRef as q, nextTick as de, withDirectives as Be, mergeProps as P, renderList as qe, vShow as ze, Comment as He, warn as Ue, withKeys as $e, inject as ce, vModelDynamic as Qe } from "vue";
+const je = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', Pe = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0zm5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', We = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', Ge = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8z"/>', Je = je, Xe = Pe, Ye = We, Ze = Ge;
+function et(e, t, n) {
   if (typeof e == "string" || "path" in e)
     return e;
   if ("shouldFlip" in e)
     return e.ltr;
   if ("rtl" in e)
     return n === "rtl" ? e.rtl : e.ltr;
-  const a = t in e.langCodeMap ? e.langCodeMap[t] : e.default;
-  return typeof a == "string" || "path" in a ? a : a.ltr;
+  const l = t in e.langCodeMap ? e.langCodeMap[t] : e.default;
+  return typeof l == "string" || "path" in l ? l : l.ltr;
 }
-function Ze(e, t) {
+function tt(e, t) {
   if (typeof e == "string")
     return !1;
   if ("langCodeMap" in e) {
@@ -62,15 +62,15 @@ function Ze(e, t) {
   }
   return "shouldFlip" in e ? e.shouldFlip : !1;
 }
-function et(e) {
-  const t = y(null);
+function nt(e) {
+  const t = v(null);
   return W(() => {
     const n = window.getComputedStyle(e.value).direction;
     t.value = n === "ltr" || n === "rtl" ? n : null;
   }), t;
 }
-function tt(e) {
-  const t = y("");
+function at(e) {
+  const t = v("");
   return W(() => {
     let n = e.value;
     for (; n && n.lang === ""; )
@@ -78,25 +78,25 @@ function tt(e) {
     t.value = n ? n.lang : null;
   }), t;
 }
-function U(e) {
+function z(e) {
   return (t) => typeof t == "string" && e.indexOf(t) !== -1;
 }
-const me = "cdx", nt = [
+const ye = "cdx", lt = [
   "default",
   "progressive",
   "destructive"
-], at = [
+], ot = [
   "normal",
   "primary",
   "quiet"
-], lt = [
+], st = [
   "medium",
   "large"
-], ot = [
+], it = [
   "x-small",
   "small",
   "medium"
-], st = [
+], ut = [
   "text",
   "search",
   "number",
@@ -109,10 +109,10 @@ const me = "cdx", nt = [
   "date",
   "datetime-local",
   "time"
-], Te = [
+], Ve = [
   "default",
   "error"
-], it = 120, ut = 500, Q = "cdx-menu-footer-item", rt = Symbol("CdxId"), dt = Symbol("CdxDescriptionId"), ct = Symbol("CdxStatus"), ht = Symbol("CdxDisabled"), ft = U(ot), pt = D({
+], rt = 120, dt = 500, Q = "cdx-menu-footer-item", ct = Symbol("CdxId"), ht = Symbol("CdxDescriptionId"), ft = Symbol("CdxStatus"), pt = Symbol("CdxDisabled"), mt = z(it), gt = R({
   name: "CdxIcon",
   props: {
     /** The SVG path or an object containing that path plus other data. */
@@ -156,36 +156,36 @@ const me = "cdx", nt = [
     size: {
       type: String,
       default: "medium",
-      validator: ft
+      validator: mt
     }
   },
   setup(e) {
-    const t = y(), n = et(t), a = tt(t), o = h(() => e.dir || n.value), u = h(() => e.lang || a.value), s = h(() => ({
-      "cdx-icon--flipped": o.value === "rtl" && u.value !== null && Ze(e.icon, u.value),
+    const t = v(), n = nt(t), l = at(t), s = h(() => e.dir || n.value), r = h(() => e.lang || l.value), i = h(() => ({
+      "cdx-icon--flipped": s.value === "rtl" && r.value !== null && tt(e.icon, r.value),
       [`cdx-icon--${e.size}`]: !0
-    })), i = h(
-      () => Ye(e.icon, u.value || "", o.value || "ltr")
-    ), l = h(() => typeof i.value == "string" ? i.value : ""), r = h(() => typeof i.value != "string" ? i.value.path : "");
+    })), u = h(
+      () => et(e.icon, r.value || "", s.value || "ltr")
+    ), o = h(() => typeof u.value == "string" ? u.value : ""), d = h(() => typeof u.value != "string" ? u.value.path : "");
     return {
       rootElement: t,
-      rootClasses: s,
-      iconSvg: l,
-      iconPath: r
+      rootClasses: i,
+      iconSvg: o,
+      iconPath: d
     };
   }
 });
-const E = (e, t) => {
+const D = (e, t) => {
   const n = e.__vccOpts || e;
-  for (const [a, o] of t)
-    n[a] = o;
+  for (const [l, s] of t)
+    n[l] = s;
   return n;
-}, mt = ["aria-hidden"], gt = { key: 0 }, vt = ["innerHTML"], yt = ["d"];
-function bt(e, t, n, a, o, u) {
-  return f(), v("span", {
+}, vt = ["aria-hidden"], yt = { key: 0 }, bt = ["innerHTML"], Ct = ["d"];
+function $t(e, t, n, l, s, r) {
+  return f(), g("span", {
     ref: "rootElement",
-    class: K(["cdx-icon", e.rootClasses])
+    class: L(["cdx-icon", e.rootClasses])
   }, [
-    (f(), v("svg", {
+    (f(), g("svg", {
       xmlns: "http://www.w3.org/2000/svg",
       "xmlns:xlink": "http://www.w3.org/1999/xlink",
       width: "20",
@@ -193,20 +193,20 @@ function bt(e, t, n, a, o, u) {
       viewBox: "0 0 20 20",
       "aria-hidden": e.iconLabel ? void 0 : !0
     }, [
-      e.iconLabel ? (f(), v("title", gt, V(e.iconLabel), 1)) : w("", !0),
-      e.iconSvg ? (f(), v("g", {
+      e.iconLabel ? (f(), g("title", yt, T(e.iconLabel), 1)) : w("", !0),
+      e.iconSvg ? (f(), g("g", {
         key: 1,
         innerHTML: e.iconSvg
-      }, null, 8, vt)) : (f(), v("path", {
+      }, null, 8, bt)) : (f(), g("path", {
         key: 2,
         d: e.iconPath
-      }, null, 8, yt))
-    ], 8, mt))
+      }, null, 8, Ct))
+    ], 8, vt))
   ], 2);
 }
-const ne = /* @__PURE__ */ E(pt, [["render", bt]]), Ct = D({
+const ae = /* @__PURE__ */ D(gt, [["render", $t]]), It = R({
   name: "CdxThumbnail",
-  components: { CdxIcon: ne },
+  components: { CdxIcon: ae },
   props: {
     /**
      * Thumbnail data.
@@ -220,45 +220,45 @@ const ne = /* @__PURE__ */ E(pt, [["render", bt]]), Ct = D({
      */
     placeholderIcon: {
       type: [String, Object],
-      default: Je
+      default: Ye
     }
   },
   setup: (e) => {
-    const t = y(!1), n = y({}), a = (o) => {
-      const u = o.replace(/([\\"\n])/g, "\\$1"), s = new Image();
-      s.onload = () => {
-        n.value = { backgroundImage: `url("${u}")` }, t.value = !0;
-      }, s.onerror = () => {
+    const t = v(!1), n = v({}), l = (s) => {
+      const r = s.replace(/([\\"\n])/g, "\\$1"), i = new Image();
+      i.onload = () => {
+        n.value = { backgroundImage: `url("${r}")` }, t.value = !0;
+      }, i.onerror = () => {
         t.value = !1;
-      }, s.src = u;
+      }, i.src = r;
     };
     return W(() => {
-      var o;
-      (o = e.thumbnail) != null && o.url && a(e.thumbnail.url);
+      var s;
+      (s = e.thumbnail) != null && s.url && l(e.thumbnail.url);
     }), {
       thumbnailStyle: n,
       thumbnailLoaded: t
     };
   }
 });
-const $t = { class: "cdx-thumbnail" }, It = {
+const _t = { class: "cdx-thumbnail" }, St = {
   key: 0,
   class: "cdx-thumbnail__placeholder"
 };
-function _t(e, t, n, a, o, u) {
-  const s = B("cdx-icon");
-  return f(), v("span", $t, [
-    e.thumbnailLoaded ? w("", !0) : (f(), v("span", It, [
-      j(s, {
+function wt(e, t, n, l, s, r) {
+  const i = B("cdx-icon");
+  return f(), g("span", _t, [
+    e.thumbnailLoaded ? w("", !0) : (f(), g("span", St, [
+      j(i, {
         icon: e.placeholderIcon,
         class: "cdx-thumbnail__placeholder__icon--vue"
       }, null, 8, ["icon"])
     ])),
-    j(De, { name: "cdx-thumbnail__image" }, {
-      default: q(() => [
-        e.thumbnailLoaded ? (f(), v("span", {
+    j(Ne, { name: "cdx-thumbnail__image" }, {
+      default: O(() => [
+        e.thumbnailLoaded ? (f(), g("span", {
           key: 0,
-          style: te(e.thumbnailStyle),
+          style: ne(e.thumbnailStyle),
           class: "cdx-thumbnail__image"
         }, null, 4)) : w("", !0)
       ]),
@@ -266,27 +266,27 @@ function _t(e, t, n, a, o, u) {
     })
   ]);
 }
-const St = /* @__PURE__ */ E(Ct, [["render", _t]]);
-function wt(e) {
+const xt = /* @__PURE__ */ D(It, [["render", wt]]);
+function kt(e) {
   return e.replace(/([\\{}()|.?*+\-^$[\]])/g, "\\$1");
 }
-const xt = "[̀-ͯ҃-҉֑-ׇֽֿׁׂׅׄؐ-ًؚ-ٰٟۖ-ۜ۟-۪ۤۧۨ-ܑۭܰ-݊ަ-ް߫-߽߳ࠖ-࠙ࠛ-ࠣࠥ-ࠧࠩ-࡙࠭-࡛࣓-ࣣ࣡-ःऺ-़ा-ॏ॑-ॗॢॣঁ-ঃ়া-ৄেৈো-্ৗৢৣ৾ਁ-ਃ਼ਾ-ੂੇੈੋ-੍ੑੰੱੵઁ-ઃ઼ા-ૅે-ૉો-્ૢૣૺ-૿ଁ-ଃ଼ା-ୄେୈୋ-୍ୖୗୢୣஂா-ூெ-ைொ-்ௗఀ-ఄా-ౄె-ైొ-్ౕౖౢౣಁ-ಃ಼ಾ-ೄೆ-ೈೊ-್ೕೖೢೣഀ-ഃ഻഼ാ-ൄെ-ൈൊ-്ൗൢൣංඃ්ා-ුූෘ-ෟෲෳัิ-ฺ็-๎ັິ-ູົຼ່-ໍ༹༘༙༵༷༾༿ཱ-྄྆྇ྍ-ྗྙ-ྼ࿆ါ-ှၖ-ၙၞ-ၠၢ-ၤၧ-ၭၱ-ၴႂ-ႍႏႚ-ႝ፝-፟ᜒ-᜔ᜲ-᜴ᝒᝓᝲᝳ឴-៓៝᠋-᠍ᢅᢆᢩᤠ-ᤫᤰ-᤻ᨗ-ᨛᩕ-ᩞ᩠-᩿᩼᪰-᪾ᬀ-ᬄ᬴-᭄᭫-᭳ᮀ-ᮂᮡ-ᮭ᯦-᯳ᰤ-᰷᳐-᳔᳒-᳨᳭ᳲ-᳴᳷-᳹᷀-᷹᷻-᷿⃐-⃰⳯-⵿⳱ⷠ-〪ⷿ-゙゚〯꙯-꙲ꙴ-꙽ꚞꚟ꛰꛱ꠂ꠆ꠋꠣ-ꠧꢀꢁꢴ-ꣅ꣠-꣱ꣿꤦ-꤭ꥇ-꥓ꦀ-ꦃ꦳-꧀ꧥꨩ-ꨶꩃꩌꩍꩻ-ꩽꪰꪲ-ꪴꪷꪸꪾ꪿꫁ꫫ-ꫯꫵ꫶ꯣ-ꯪ꯬꯭ﬞ︀-️︠-︯]";
-function kt(e, t) {
+const Mt = "[̀-ͯ҃-҉֑-ׇֽֿׁׂׅׄؐ-ًؚ-ٰٟۖ-ۜ۟-۪ۤۧۨ-ܑۭܰ-݊ަ-ް߫-߽߳ࠖ-࠙ࠛ-ࠣࠥ-ࠧࠩ-࡙࠭-࡛࣓-ࣣ࣡-ःऺ-़ा-ॏ॑-ॗॢॣঁ-ঃ়া-ৄেৈো-্ৗৢৣ৾ਁ-ਃ਼ਾ-ੂੇੈੋ-੍ੑੰੱੵઁ-ઃ઼ા-ૅે-ૉો-્ૢૣૺ-૿ଁ-ଃ଼ା-ୄେୈୋ-୍ୖୗୢୣஂா-ூெ-ைொ-்ௗఀ-ఄా-ౄె-ైొ-్ౕౖౢౣಁ-ಃ಼ಾ-ೄೆ-ೈೊ-್ೕೖೢೣഀ-ഃ഻഼ാ-ൄെ-ൈൊ-്ൗൢൣංඃ්ා-ුූෘ-ෟෲෳัิ-ฺ็-๎ັິ-ູົຼ່-ໍ༹༘༙༵༷༾༿ཱ-྄྆྇ྍ-ྗྙ-ྼ࿆ါ-ှၖ-ၙၞ-ၠၢ-ၤၧ-ၭၱ-ၴႂ-ႍႏႚ-ႝ፝-፟ᜒ-᜔ᜲ-᜴ᝒᝓᝲᝳ឴-៓៝᠋-᠍ᢅᢆᢩᤠ-ᤫᤰ-᤻ᨗ-ᨛᩕ-ᩞ᩠-᩿᩼᪰-᪾ᬀ-ᬄ᬴-᭄᭫-᭳ᮀ-ᮂᮡ-ᮭ᯦-᯳ᰤ-᰷᳐-᳔᳒-᳨᳭ᳲ-᳴᳷-᳹᷀-᷹᷻-᷿⃐-⃰⳯-⵿⳱ⷠ-〪ⷿ-゙゚〯꙯-꙲ꙴ-꙽ꚞꚟ꛰꛱ꠂ꠆ꠋꠣ-ꠧꢀꢁꢴ-ꣅ꣠-꣱ꣿꤦ-꤭ꥇ-꥓ꦀ-ꦃ꦳-꧀ꧥꨩ-ꨶꩃꩌꩍꩻ-ꩽꪰꪲ-ꪴꪷꪸꪾ꪿꫁ꫫ-ꫯꫵ꫶ꯣ-ꯪ꯬꯭ﬞ︀-️︠-︯]";
+function Tt(e, t) {
   if (!e)
     return [t, "", ""];
-  const n = wt(e), a = new RegExp(
+  const n = kt(e), l = new RegExp(
     // Per https://www.regular-expressions.info/unicode.html, "any code point that is not a
     // combining mark can be followed by any number of combining marks." See also the
     // discussion in https://phabricator.wikimedia.org/T35242.
-    n + xt + "*",
+    n + Mt + "*",
     "i"
   ).exec(t);
-  if (!a || a.index === void 0)
+  if (!l || l.index === void 0)
     return [t, "", ""];
-  const o = a.index, u = o + a[0].length, s = t.slice(o, u), i = t.slice(0, o), l = t.slice(u, t.length);
-  return [i, s, l];
+  const s = l.index, r = s + l[0].length, i = t.slice(s, r), u = t.slice(0, s), o = t.slice(r, t.length);
+  return [u, i, o];
 }
-const Mt = D({
+const Bt = R({
   name: "CdxSearchResultTitle",
   props: {
     /**
@@ -305,22 +305,22 @@ const Mt = D({
     }
   },
   setup: (e) => ({
-    titleChunks: h(() => kt(e.searchQuery, String(e.title)))
+    titleChunks: h(() => Tt(e.searchQuery, String(e.title)))
   })
 });
-const Tt = { class: "cdx-search-result-title" }, Vt = { class: "cdx-search-result-title__match" };
-function Bt(e, t, n, a, o, u) {
-  return f(), v("span", Tt, [
-    I("bdi", null, [
-      ee(V(e.titleChunks[0]), 1),
-      I("span", Vt, V(e.titleChunks[1]), 1),
-      ee(V(e.titleChunks[2]), 1)
+const Vt = { class: "cdx-search-result-title" }, Lt = { class: "cdx-search-result-title__match" };
+function Kt(e, t, n, l, s, r) {
+  return f(), g("span", Vt, [
+    _("bdi", null, [
+      te(T(e.titleChunks[0]), 1),
+      _("span", Lt, T(e.titleChunks[1]), 1),
+      te(T(e.titleChunks[2]), 1)
     ])
   ]);
 }
-const Lt = /* @__PURE__ */ E(Mt, [["render", Bt]]), Kt = D({
+const At = /* @__PURE__ */ D(Bt, [["render", Kt]]), Rt = R({
   name: "CdxMenuItem",
-  components: { CdxIcon: ne, CdxThumbnail: St, CdxSearchResultTitle: Lt },
+  components: { CdxIcon: ae, CdxThumbnail: xt, CdxSearchResultTitle: At },
   props: {
     /**
      * ID for HTML `id` attribute.
@@ -468,13 +468,13 @@ const Lt = /* @__PURE__ */ E(Mt, [["render", Bt]]), Kt = D({
   setup: (e, { emit: t }) => {
     const n = () => {
       e.highlighted || t("change", "highlighted", !0);
-    }, a = () => {
+    }, l = () => {
       t("change", "highlighted", !1);
-    }, o = (m) => {
-      m.button === 0 && t("change", "active", !0);
-    }, u = () => {
+    }, s = (y) => {
+      y.button === 0 && t("change", "active", !0);
+    }, r = () => {
       t("change", "selected", !0);
-    }, s = h(() => e.searchQuery.length > 0), i = h(() => ({
+    }, i = h(() => e.searchQuery.length > 0), u = h(() => ({
       "cdx-menu-item--selected": e.selected,
       // Only show the active visual state when the menu item is both active and
       // highlighted. This means, on mousedown -> mouseleave, the menu item is still
@@ -486,107 +486,107 @@ const Lt = /* @__PURE__ */ E(Mt, [["render", Bt]]), Kt = D({
       "cdx-menu-item--highlighted": e.highlighted,
       "cdx-menu-item--enabled": !e.disabled,
       "cdx-menu-item--disabled": e.disabled,
-      "cdx-menu-item--highlight-query": s.value,
+      "cdx-menu-item--highlight-query": i.value,
       "cdx-menu-item--bold-label": e.boldLabel,
       "cdx-menu-item--has-description": !!e.description,
       "cdx-menu-item--hide-description-overflow": e.hideDescriptionOverflow
-    })), l = h(() => e.url ? "a" : "span"), r = h(() => e.label || String(e.value));
+    })), o = h(() => e.url ? "a" : "span"), d = h(() => e.label || String(e.value));
     return {
       onMouseMove: n,
-      onMouseLeave: a,
-      onMouseDown: o,
-      onClick: u,
-      highlightQuery: s,
-      rootClasses: i,
-      contentTag: l,
-      title: r
+      onMouseLeave: l,
+      onMouseDown: s,
+      onClick: r,
+      highlightQuery: i,
+      rootClasses: u,
+      contentTag: o,
+      title: d
     };
   }
 });
-const At = ["id", "aria-disabled", "aria-selected"], Rt = { class: "cdx-menu-item__text" }, Dt = ["lang"], Et = ["lang"], Nt = ["lang"], Ft = ["lang"];
-function Ot(e, t, n, a, o, u) {
-  const s = B("cdx-thumbnail"), i = B("cdx-icon"), l = B("cdx-search-result-title");
-  return f(), v("li", {
+const Dt = ["id", "aria-disabled", "aria-selected"], Et = { class: "cdx-menu-item__text" }, Nt = ["lang"], Ft = ["lang"], Ot = ["lang"], qt = ["lang"];
+function zt(e, t, n, l, s, r) {
+  const i = B("cdx-thumbnail"), u = B("cdx-icon"), o = B("cdx-search-result-title");
+  return f(), g("li", {
     id: e.id,
     role: "option",
-    class: K(["cdx-menu-item", e.rootClasses]),
+    class: L(["cdx-menu-item", e.rootClasses]),
     "aria-disabled": e.disabled,
     "aria-selected": e.selected,
-    onMousemove: t[0] || (t[0] = (...r) => e.onMouseMove && e.onMouseMove(...r)),
-    onMouseleave: t[1] || (t[1] = (...r) => e.onMouseLeave && e.onMouseLeave(...r)),
-    onMousedown: t[2] || (t[2] = Ce((...r) => e.onMouseDown && e.onMouseDown(...r), ["prevent"])),
-    onClick: t[3] || (t[3] = (...r) => e.onClick && e.onClick(...r))
+    onMousemove: t[0] || (t[0] = (...d) => e.onMouseMove && e.onMouseMove(...d)),
+    onMouseleave: t[1] || (t[1] = (...d) => e.onMouseLeave && e.onMouseLeave(...d)),
+    onMousedown: t[2] || (t[2] = _e((...d) => e.onMouseDown && e.onMouseDown(...d), ["prevent"])),
+    onClick: t[3] || (t[3] = (...d) => e.onClick && e.onClick(...d))
   }, [
-    R(e.$slots, "default", {}, () => [
-      (f(), L(Ee(e.contentTag), {
+    A(e.$slots, "default", {}, () => [
+      (f(), V(Fe(e.contentTag), {
         href: e.url ? e.url : void 0,
         class: "cdx-menu-item__content"
       }, {
-        default: q(() => {
-          var r, m, $, b, x, k;
+        default: O(() => {
+          var d, y, I, b, S, C;
           return [
-            e.showThumbnail ? (f(), L(s, {
+            e.showThumbnail ? (f(), V(i, {
               key: 0,
               thumbnail: e.thumbnail,
               class: "cdx-menu-item__thumbnail"
-            }, null, 8, ["thumbnail"])) : e.icon ? (f(), L(i, {
+            }, null, 8, ["thumbnail"])) : e.icon ? (f(), V(u, {
               key: 1,
               icon: e.icon,
               class: "cdx-menu-item__icon"
             }, null, 8, ["icon"])) : w("", !0),
-            I("span", Rt, [
-              e.highlightQuery ? (f(), L(l, {
+            _("span", Et, [
+              e.highlightQuery ? (f(), V(o, {
                 key: 0,
                 title: e.title,
                 "search-query": e.searchQuery,
-                lang: (r = e.language) == null ? void 0 : r.label
-              }, null, 8, ["title", "search-query", "lang"])) : (f(), v("span", {
+                lang: (d = e.language) == null ? void 0 : d.label
+              }, null, 8, ["title", "search-query", "lang"])) : (f(), g("span", {
                 key: 1,
                 class: "cdx-menu-item__text__label",
-                lang: (m = e.language) == null ? void 0 : m.label
+                lang: (y = e.language) == null ? void 0 : y.label
               }, [
-                I("bdi", null, V(e.title), 1)
-              ], 8, Dt)),
-              e.match ? (f(), v(ve, { key: 2 }, [
-                ee(V(" ") + " "),
-                e.highlightQuery ? (f(), L(l, {
+                _("bdi", null, T(e.title), 1)
+              ], 8, Nt)),
+              e.match ? (f(), g(Ce, { key: 2 }, [
+                te(T(" ") + " "),
+                e.highlightQuery ? (f(), V(o, {
                   key: 0,
                   title: e.match,
                   "search-query": e.searchQuery,
-                  lang: ($ = e.language) == null ? void 0 : $.match
-                }, null, 8, ["title", "search-query", "lang"])) : (f(), v("span", {
+                  lang: (I = e.language) == null ? void 0 : I.match
+                }, null, 8, ["title", "search-query", "lang"])) : (f(), g("span", {
                   key: 1,
                   class: "cdx-menu-item__text__match",
                   lang: (b = e.language) == null ? void 0 : b.match
                 }, [
-                  I("bdi", null, V(e.match), 1)
-                ], 8, Et))
+                  _("bdi", null, T(e.match), 1)
+                ], 8, Ft))
               ], 64)) : w("", !0),
-              e.supportingText ? (f(), v(ve, { key: 3 }, [
-                ee(V(" ") + " "),
-                I("span", {
+              e.supportingText ? (f(), g(Ce, { key: 3 }, [
+                te(T(" ") + " "),
+                _("span", {
                   class: "cdx-menu-item__text__supporting-text",
-                  lang: (x = e.language) == null ? void 0 : x.supportingText
+                  lang: (S = e.language) == null ? void 0 : S.supportingText
                 }, [
-                  I("bdi", null, V(e.supportingText), 1)
-                ], 8, Nt)
+                  _("bdi", null, T(e.supportingText), 1)
+                ], 8, Ot)
               ], 64)) : w("", !0),
-              e.description ? (f(), v("span", {
+              e.description ? (f(), g("span", {
                 key: 4,
                 class: "cdx-menu-item__text__description",
-                lang: (k = e.language) == null ? void 0 : k.description
+                lang: (C = e.language) == null ? void 0 : C.description
               }, [
-                I("bdi", null, V(e.description), 1)
-              ], 8, Ft)) : w("", !0)
+                _("bdi", null, T(e.description), 1)
+              ], 8, qt)) : w("", !0)
             ])
           ];
         }),
         _: 1
       }, 8, ["href"]))
     ])
-  ], 42, At);
+  ], 42, Dt);
 }
-const qt = /* @__PURE__ */ E(Kt, [["render", Ot]]), zt = D({
+const Ht = /* @__PURE__ */ D(Rt, [["render", zt]]), Ut = R({
   name: "CdxProgressBar",
   props: {
     /**
@@ -615,68 +615,68 @@ const qt = /* @__PURE__ */ E(Kt, [["render", Ot]]), zt = D({
     };
   }
 });
-const Ht = ["aria-disabled"], Ut = /* @__PURE__ */ I("div", { class: "cdx-progress-bar__bar" }, null, -1), Qt = [
-  Ut
+const Qt = ["aria-disabled"], jt = /* @__PURE__ */ _("div", { class: "cdx-progress-bar__bar" }, null, -1), Pt = [
+  jt
 ];
-function jt(e, t, n, a, o, u) {
-  return f(), v("div", {
-    class: K(["cdx-progress-bar", e.rootClasses]),
+function Wt(e, t, n, l, s, r) {
+  return f(), g("div", {
+    class: L(["cdx-progress-bar", e.rootClasses]),
     role: "progressbar",
     "aria-disabled": e.disabled,
     "aria-valuemin": "0",
     "aria-valuemax": "100"
-  }, Qt, 10, Ht);
+  }, Pt, 10, Qt);
 }
-const Pt = /* @__PURE__ */ E(zt, [["render", jt]]);
-let ge = 0;
-function Ve(e) {
-  const t = Ne(), n = (t == null ? void 0 : t.props.id) || (t == null ? void 0 : t.attrs.id);
-  return e ? `${me}-${e}-${ge++}` : n ? `${me}-${n}-${ge++}` : `${me}-${ge++}`;
+const Gt = /* @__PURE__ */ D(Ut, [["render", Wt]]);
+let be = 0;
+function Le(e) {
+  const t = Oe(), n = (t == null ? void 0 : t.props.id) || (t == null ? void 0 : t.attrs.id);
+  return e ? `${ye}-${e}-${be++}` : n ? `${ye}-${n}-${be++}` : `${ye}-${be++}`;
 }
-function Wt(e, t) {
-  const n = y(!1);
-  let a = !1;
+function Jt(e, t) {
+  const n = v(!1);
+  let l = !1;
   if (typeof window != "object" || !("IntersectionObserver" in window && "IntersectionObserverEntry" in window && "intersectionRatio" in window.IntersectionObserverEntry.prototype))
     return n;
-  const o = new window.IntersectionObserver(
-    (u) => {
-      const s = u[0];
-      s && (n.value = s.isIntersecting);
+  const s = new window.IntersectionObserver(
+    (r) => {
+      const i = r[0];
+      i && (n.value = i.isIntersecting);
     },
     t
   );
   return W(() => {
-    a = !0, e.value && o.observe(e.value);
-  }), ke(() => {
-    a = !1, o.disconnect();
-  }), Z(e, (u) => {
-    a && (o.disconnect(), n.value = !1, u && o.observe(u));
+    l = !0, e.value && s.observe(e.value);
+  }), Te(() => {
+    l = !1, s.disconnect();
+  }), ee(e, (r) => {
+    l && (s.disconnect(), n.value = !1, r && s.observe(r));
   }), n;
 }
-function de(e, t = h(() => ({}))) {
+function he(e, t = h(() => ({}))) {
   const n = h(() => {
-    const u = Y(t.value, []);
-    return e.class && e.class.split(" ").forEach((i) => {
-      u[i] = !0;
-    }), u;
-  }), a = h(() => {
+    const r = Z(t.value, []);
+    return e.class && e.class.split(" ").forEach((u) => {
+      r[u] = !0;
+    }), r;
+  }), l = h(() => {
     if ("style" in e)
       return e.style;
-  }), o = h(() => {
-    const l = e, { class: u, style: s } = l;
-    return Y(l, ["class", "style"]);
+  }), s = h(() => {
+    const o = e, { class: r, style: i } = o;
+    return Z(o, ["class", "style"]);
   });
   return {
     rootClasses: n,
-    rootStyle: a,
-    otherAttrs: o
+    rootStyle: l,
+    otherAttrs: s
   };
 }
-const Gt = D({
+const Xt = R({
   name: "CdxMenu",
   components: {
-    CdxMenuItem: qt,
-    CdxProgressBar: Pt
+    CdxMenuItem: Ht,
+    CdxProgressBar: Gt
   },
   /**
    * Attributes, besides class and style, will be passed to the <ul> element.
@@ -835,175 +835,204 @@ const Gt = D({
     "getHighlightedViaKeyboard",
     "delegateKeyNavigation"
   ],
-  setup(e, { emit: t, slots: n, attrs: a }) {
-    const o = h(() => (e.footer && e.menuItems ? [...e.menuItems, e.footer] : e.menuItems).map((p) => xe(we({}, p), {
-      id: Ve("menu-item")
-    }))), u = h(() => n["no-results"] ? e.showNoResultsSlot !== null ? e.showNoResultsSlot : o.value.length === 0 : !1), s = y(null), i = y(!1), l = y(null);
-    function r() {
-      return o.value.find(
-        (d) => d.value === e.selected
-      );
+  setup(e, { emit: t, slots: n, attrs: l }) {
+    const s = h(() => (e.footer && e.menuItems ? [...e.menuItems, e.footer] : e.menuItems).map((c) => Me(ke({}, c), {
+      id: Le("menu-item")
+    }))), r = h(() => n["no-results"] ? e.showNoResultsSlot !== null ? e.showNoResultsSlot : s.value.length === 0 : !1), i = v(null), u = v(!1), o = v(null);
+    let d = "", y = null;
+    function I() {
+      d = "", y !== null && (clearTimeout(y), y = null);
     }
-    function m(d, p) {
-      var C;
-      if (!(p && p.disabled))
-        switch (d) {
+    function b() {
+      y !== null && clearTimeout(y), y = setTimeout(I, 1500);
+    }
+    function S() {
+      return s.value.find(
+        (a) => a.value === e.selected
+      ) || null;
+    }
+    function C(a, c) {
+      var p;
+      if (!(c && c.disabled))
+        switch (a) {
           case "selected":
-            t("update:selected", (C = p == null ? void 0 : p.value) != null ? C : null), t("update:expanded", !1), l.value = null;
+            t("update:selected", (p = c == null ? void 0 : c.value) != null ? p : null), t("update:expanded", !1), o.value = null;
             break;
           case "highlighted":
-            s.value = p || null, i.value = !1;
+            i.value = c || null, u.value = !1;
             break;
           case "highlightedViaKeyboard":
-            s.value = p || null, i.value = !0;
+            i.value = c || null, u.value = !0;
             break;
           case "active":
-            l.value = p || null;
+            o.value = c || null;
             break;
         }
     }
-    const $ = h(() => {
-      if (s.value !== null)
-        return o.value.findIndex(
-          (d) => (
+    const k = h(() => {
+      if (i.value !== null)
+        return s.value.findIndex(
+          (a) => (
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            d.value === s.value.value
+            a.value === i.value.value
           )
         );
     });
-    function b(d) {
-      d && (m("highlightedViaKeyboard", d), t("menu-item-keyboard-navigation", d));
+    function x(a) {
+      a && (C("highlightedViaKeyboard", a), t("menu-item-keyboard-navigation", a));
     }
-    function x(d) {
-      var _;
-      const p = (X) => {
-        for (let c = X - 1; c >= 0; c--)
-          if (!o.value[c].disabled)
-            return o.value[c];
+    function G(a) {
+      var $;
+      const c = (U) => {
+        for (let M = U - 1; M >= 0; M--)
+          if (!s.value[M].disabled)
+            return s.value[M];
       };
-      d = d || o.value.length;
-      const C = (_ = p(d)) != null ? _ : p(o.value.length);
-      b(C);
+      a = a || s.value.length;
+      const p = ($ = c(a)) != null ? $ : c(s.value.length);
+      x(p);
     }
-    function k(d) {
-      const p = (_) => o.value.find((X, c) => !X.disabled && c > _);
-      d = d != null ? d : -1;
-      const C = p(d) || p(-1);
-      b(C);
+    function J(a) {
+      const c = ($) => s.value.find((U, M) => !U.disabled && M > $);
+      a = a != null ? a : -1;
+      const p = c(a) || c(-1);
+      x(p);
     }
-    function G(d, p = !0) {
-      function C() {
-        t("update:expanded", !0), m("highlighted", r());
+    function le(a) {
+      if (a.key === "Clear")
+        return I(), !0;
+      if (a.key === "Backspace")
+        return d = d.slice(0, -1), b(), !0;
+      if (a.key.length === 1 && !a.metaKey && !a.ctrlKey && !a.altKey) {
+        e.expanded || t("update:expanded", !0), d += a.key.toLowerCase();
+        const c = d.length > 1 && d.split("").every((M) => M === d[0]);
+        let p = s.value, $ = d;
+        c && k.value !== void 0 && (p = p.slice(k.value + 1).concat(p.slice(0, k.value)), $ = d[0]);
+        const U = p.find(
+          (M) => !M.disabled && String(M.label || M.value).toLowerCase().indexOf($) === 0
+        );
+        return U && (C("highlightedViaKeyboard", U), K()), b(), !0;
       }
-      function _() {
-        p && (d.preventDefault(), d.stopPropagation());
+      return !1;
+    }
+    function oe(a, { prevent: c = !0, characterNavigation: p = !1 } = {}) {
+      if (p) {
+        if (le(a))
+          return !0;
+        I();
       }
-      switch (d.key) {
+      function $() {
+        c && (a.preventDefault(), a.stopPropagation());
+      }
+      switch (a.key) {
         case "Enter":
         case " ":
-          return _(), e.expanded ? (s.value && i.value && t("update:selected", s.value.value), t("update:expanded", !1)) : C(), !0;
+          return $(), e.expanded ? (i.value && u.value && t("update:selected", i.value.value), t("update:expanded", !1)) : t("update:expanded", !0), !0;
         case "Tab":
-          return e.expanded && (s.value && i.value && t("update:selected", s.value.value), t("update:expanded", !1)), !0;
+          return e.expanded && (i.value && u.value && t("update:selected", i.value.value), t("update:expanded", !1)), !0;
         case "ArrowUp":
-          return _(), e.expanded ? (s.value === null && m("highlightedViaKeyboard", r()), x($.value)) : C(), N(), !0;
+          return $(), e.expanded ? (i.value === null && C("highlightedViaKeyboard", S()), G(k.value)) : t("update:expanded", !0), K(), !0;
         case "ArrowDown":
-          return _(), e.expanded ? (s.value === null && m("highlightedViaKeyboard", r()), k($.value)) : C(), N(), !0;
+          return $(), e.expanded ? (i.value === null && C("highlightedViaKeyboard", S()), J(k.value)) : t("update:expanded", !0), K(), !0;
         case "Home":
-          return _(), e.expanded ? (s.value === null && m("highlightedViaKeyboard", r()), k()) : C(), N(), !0;
+          return $(), e.expanded ? (i.value === null && C("highlightedViaKeyboard", S()), J()) : t("update:expanded", !0), K(), !0;
         case "End":
-          return _(), e.expanded ? (s.value === null && m("highlightedViaKeyboard", r()), x()) : C(), N(), !0;
+          return $(), e.expanded ? (i.value === null && C("highlightedViaKeyboard", S()), G()) : t("update:expanded", !0), K(), !0;
         case "Escape":
-          return _(), t("update:expanded", !1), !0;
+          return $(), t("update:expanded", !1), !0;
         default:
           return !1;
       }
     }
-    function M() {
-      m("active");
+    function X() {
+      C("active", null);
     }
-    const T = [], J = y(void 0), ae = Wt(
-      J,
+    const m = [], Y = v(void 0), E = Jt(
+      Y,
       { threshold: 0.8 }
     );
-    Z(ae, (d) => {
-      d && t("load-more");
+    ee(E, (a) => {
+      a && t("load-more");
     });
-    function le(d, p) {
-      if (d) {
-        T[p] = d.$el;
-        const C = e.visibleItemLimit;
-        if (!C || e.menuItems.length < C)
+    function N(a, c) {
+      if (a) {
+        m[c] = a.$el;
+        const p = e.visibleItemLimit;
+        if (!p || e.menuItems.length < p)
           return;
-        const _ = Math.min(
-          C,
+        const $ = Math.min(
+          p,
           Math.max(2, Math.floor(0.2 * e.menuItems.length))
         );
-        p === e.menuItems.length - _ && (J.value = d.$el);
+        c === e.menuItems.length - $ && (Y.value = a.$el);
       }
     }
-    function N() {
-      if (!e.visibleItemLimit || e.visibleItemLimit > e.menuItems.length || $.value === void 0)
+    function K() {
+      if (!e.visibleItemLimit || e.visibleItemLimit > e.menuItems.length || k.value === void 0)
         return;
-      const d = $.value >= 0 ? $.value : 0;
-      T[d].scrollIntoView({
+      const a = k.value >= 0 ? k.value : 0;
+      m[a].scrollIntoView({
         behavior: "smooth",
         block: "nearest"
       });
     }
-    const g = y(null), H = y(null);
-    function A() {
-      if (H.value = null, !e.visibleItemLimit || T.length <= e.visibleItemLimit) {
-        g.value = null;
+    const F = v(null), H = v(null);
+    function se() {
+      if (H.value = null, !e.visibleItemLimit || m.length <= e.visibleItemLimit) {
+        F.value = null;
         return;
       }
-      const d = T[0], p = T[e.visibleItemLimit];
-      if (g.value = F(
-        d,
-        p
+      const a = m[0], c = m[e.visibleItemLimit];
+      if (F.value = ie(
+        a,
+        c
       ), e.footer) {
-        const C = T[T.length - 1];
-        H.value = C.scrollHeight;
+        const p = m[m.length - 1];
+        H.value = p.scrollHeight;
       }
     }
-    function F(d, p) {
-      const C = d.getBoundingClientRect().top;
-      return p.getBoundingClientRect().top - C + 2;
+    function ie(a, c) {
+      const p = a.getBoundingClientRect().top;
+      return c.getBoundingClientRect().top - p + 2;
     }
     W(() => {
-      document.addEventListener("mouseup", M);
-    }), ke(() => {
-      document.removeEventListener("mouseup", M);
-    }), Z(z(e, "expanded"), (d) => pe(this, null, function* () {
-      const p = r();
-      !d && s.value && p === void 0 && m("highlighted"), d && p !== void 0 && m("highlighted", p), d && (yield ue(), A(), yield ue(), N());
-    })), Z(z(e, "menuItems"), (d) => pe(this, null, function* () {
-      d.length < T.length && (T.length = d.length), e.expanded && (yield ue(), A(), yield ue(), N());
+      document.addEventListener("mouseup", X);
+    }), Te(() => {
+      document.removeEventListener("mouseup", X);
+    }), ee(q(e, "expanded"), (a) => ve(this, null, function* () {
+      if (a) {
+        const c = S();
+        c && !i.value && C("highlighted", c), yield de(), se(), yield de(), K();
+      } else
+        C("highlighted", null);
+    })), ee(q(e, "menuItems"), (a) => ve(this, null, function* () {
+      a.length < m.length && (m.length = a.length), e.expanded && (yield de(), se(), yield de(), K());
     }), { deep: !0 });
-    const oe = h(() => ({
-      "max-height": g.value ? `${g.value}px` : void 0,
-      "overflow-y": g.value ? "scroll" : void 0,
+    const ue = h(() => ({
+      "max-height": F.value ? `${F.value}px` : void 0,
+      "overflow-y": F.value ? "scroll" : void 0,
       "margin-bottom": H.value ? `${H.value}px` : void 0
-    })), ce = h(() => ({
+    })), fe = h(() => ({
       "cdx-menu--has-footer": !!e.footer,
-      "cdx-menu--has-sticky-footer": !!e.footer && !!g.value
+      "cdx-menu--has-sticky-footer": !!e.footer && !!F.value
     })), {
-      rootClasses: he,
-      rootStyle: fe,
-      otherAttrs: se
-    } = de(a, ce);
+      rootClasses: pe,
+      rootStyle: me,
+      otherAttrs: ge
+    } = he(l, fe);
     return {
-      listBoxStyle: oe,
-      rootClasses: he,
-      rootStyle: fe,
-      otherAttrs: se,
-      assignTemplateRef: le,
-      computedMenuItems: o,
-      computedShowNoResultsSlot: u,
-      highlightedMenuItem: s,
-      highlightedViaKeyboard: i,
-      activeMenuItem: l,
-      handleMenuItemChange: m,
-      handleKeyNavigation: G
+      listBoxStyle: ue,
+      rootClasses: pe,
+      rootStyle: me,
+      otherAttrs: ge,
+      assignTemplateRef: N,
+      computedMenuItems: s,
+      computedShowNoResultsSlot: r,
+      highlightedMenuItem: i,
+      highlightedViaKeyboard: u,
+      activeMenuItem: o,
+      handleMenuItemChange: C,
+      handleKeyNavigation: oe
     };
   },
   // Public methods
@@ -1013,12 +1042,16 @@ const Gt = D({
     /**
      * Get the highlighted menu item, if any.
      *
+     * The parent component should set `aria-activedescendant` to the `.id` property of the
+     * object returned by this method. If this method returns null, `aria-activedescendant`
+     * should not be set.
+     *
      * @public
      * @return {MenuItemDataWithId|null} The highlighted menu item,
-     *   or null if no item is highlighted.
+     *   or null if no item is highlighted or if the menu is closed.
      */
     getHighlightedMenuItem() {
-      return this.highlightedMenuItem;
+      return this.expanded ? this.highlightedMenuItem : null;
     },
     /**
      * Get whether the last highlighted item was highlighted via the keyboard.
@@ -1035,7 +1068,7 @@ const Gt = D({
      * @public
      */
     clearActive() {
-      this.handleMenuItemChange("active");
+      this.handleMenuItemChange("active", null);
     },
     /**
      * Handles all necessary keyboard navigation.
@@ -1047,98 +1080,101 @@ const Gt = D({
      *
      * @public
      * @param event {KeyboardEvent} Keydown event object
-     * @param prevent {boolean} If false, do not call e.preventDefault() or e.stopPropagation()
+     * @param options
+     * @param options.prevent {boolean} If false, do not call e.preventDefault() or
+     *   e.stopPropagation()
+     * @param options.characterNavigation {boolean}
      * @return Whether the event was handled
      */
-    delegateKeyNavigation(e, t = !0) {
-      return this.handleKeyNavigation(e, t);
+    delegateKeyNavigation(e, { prevent: t = !0, characterNavigation: n = !1 } = {}) {
+      return this.handleKeyNavigation(e, { prevent: t, characterNavigation: n });
     }
   }
 });
-const Jt = {
+const Yt = {
   key: 0,
   class: "cdx-menu__pending cdx-menu-item"
-}, Xt = {
+}, Zt = {
   key: 1,
   class: "cdx-menu__no-results cdx-menu-item"
 };
-function Yt(e, t, n, a, o, u) {
-  const s = B("cdx-menu-item"), i = B("cdx-progress-bar");
-  return Me((f(), v("div", {
-    class: K(["cdx-menu", e.rootClasses]),
-    style: te(e.rootStyle)
+function en(e, t, n, l, s, r) {
+  const i = B("cdx-menu-item"), u = B("cdx-progress-bar");
+  return Be((f(), g("div", {
+    class: L(["cdx-menu", e.rootClasses]),
+    style: ne(e.rootStyle)
   }, [
-    I("ul", P({
+    _("ul", P({
       class: "cdx-menu__listbox",
       role: "listbox",
       style: e.listBoxStyle
     }, e.otherAttrs), [
-      e.showPending && e.computedMenuItems.length === 0 && e.$slots.pending ? (f(), v("li", Jt, [
-        R(e.$slots, "pending")
+      e.showPending && e.computedMenuItems.length === 0 && e.$slots.pending ? (f(), g("li", Yt, [
+        A(e.$slots, "pending")
       ])) : w("", !0),
-      e.computedShowNoResultsSlot ? (f(), v("li", Xt, [
-        R(e.$slots, "no-results")
+      e.computedShowNoResultsSlot ? (f(), g("li", Zt, [
+        A(e.$slots, "no-results")
       ])) : w("", !0),
-      (f(!0), v(ve, null, Fe(e.computedMenuItems, (l, r) => {
-        var m, $;
-        return f(), L(s, P({
-          key: l.value,
+      (f(!0), g(Ce, null, qe(e.computedMenuItems, (o, d) => {
+        var y, I;
+        return f(), V(i, P({
+          key: o.value,
           ref_for: !0,
-          ref: (b) => e.assignTemplateRef(b, r)
-        }, l, {
-          selected: l.value === e.selected,
-          active: l.value === ((m = e.activeMenuItem) == null ? void 0 : m.value),
-          highlighted: l.value === (($ = e.highlightedMenuItem) == null ? void 0 : $.value),
+          ref: (b) => e.assignTemplateRef(b, d)
+        }, o, {
+          selected: o.value === e.selected,
+          active: o.value === ((y = e.activeMenuItem) == null ? void 0 : y.value),
+          highlighted: o.value === ((I = e.highlightedMenuItem) == null ? void 0 : I.value),
           "show-thumbnail": e.showThumbnail,
           "bold-label": e.boldLabel,
           "hide-description-overflow": e.hideDescriptionOverflow,
           "search-query": e.searchQuery,
-          onChange: (b, x) => e.handleMenuItemChange(b, x && l),
-          onClick: (b) => e.$emit("menu-item-click", l)
+          onChange: (b, S) => e.handleMenuItemChange(b, S ? o : null),
+          onClick: (b) => e.$emit("menu-item-click", o)
         }), {
-          default: q(() => {
-            var b, x;
+          default: O(() => {
+            var b, S;
             return [
-              R(e.$slots, "default", {
-                menuItem: l,
-                active: l.value === ((b = e.activeMenuItem) == null ? void 0 : b.value) && l.value === ((x = e.highlightedMenuItem) == null ? void 0 : x.value)
+              A(e.$slots, "default", {
+                menuItem: o,
+                active: o.value === ((b = e.activeMenuItem) == null ? void 0 : b.value) && o.value === ((S = e.highlightedMenuItem) == null ? void 0 : S.value)
               })
             ];
           }),
           _: 2
         }, 1040, ["selected", "active", "highlighted", "show-thumbnail", "bold-label", "hide-description-overflow", "search-query", "onChange", "onClick"]);
       }), 128)),
-      e.showPending ? (f(), L(i, {
+      e.showPending ? (f(), V(u, {
         key: 2,
         class: "cdx-menu__progress-bar",
         inline: !0
       })) : w("", !0)
     ], 16)
   ], 6)), [
-    [Oe, e.expanded]
+    [ze, e.expanded]
   ]);
 }
-const Zt = /* @__PURE__ */ E(Gt, [["render", Yt]]), en = U(nt), tn = U(at), nn = U(lt), an = (e) => {
-  !e["aria-label"] && !e["aria-hidden"] && ze(`CdxButton: Icon-only buttons require one of the following attribute: aria-label or aria-hidden.
+const tn = /* @__PURE__ */ D(Xt, [["render", en]]), nn = z(lt), an = z(ot), ln = z(st), on = (e) => {
+  !e["aria-label"] && !e["aria-hidden"] && Ue(`CdxButton: Icon-only buttons require one of the following attribute: aria-label or aria-hidden.
 		See documentation on https://doc.wikimedia.org/codex/latest/components/demos/button.html#icon-only-button-1`);
 };
-function be(e) {
+function Ie(e) {
   const t = [];
   for (const n of e)
-    typeof n == "string" && n.trim() !== "" ? t.push(n) : Array.isArray(n) ? t.push(...be(n)) : typeof n == "object" && n && (// HTML tag
+    typeof n == "string" && n.trim() !== "" ? t.push(n) : Array.isArray(n) ? t.push(...Ie(n)) : typeof n == "object" && n && (// HTML tag
     typeof n.type == "string" || // Component
-    typeof n.type == "object" ? t.push(n) : n.type !== qe && (typeof n.children == "string" && n.children.trim() !== "" ? t.push(n.children) : Array.isArray(n.children) && t.push(...be(n.children))));
+    typeof n.type == "object" ? t.push(n) : n.type !== He && (typeof n.children == "string" && n.children.trim() !== "" ? t.push(n.children) : Array.isArray(n.children) && t.push(...Ie(n.children))));
   return t;
 }
-const ln = (e, t) => {
+const sn = (e, t) => {
   if (!e)
     return !1;
-  const n = be(e);
+  const n = Ie(e);
   if (n.length !== 1)
     return !1;
-  const a = n[0], o = typeof a == "object" && typeof a.type == "object" && "name" in a.type && a.type.name === ne.name, u = typeof a == "object" && a.type === "svg";
-  return o || u ? (an(t), !0) : !1;
-}, on = D({
+  const l = n[0], s = typeof l == "object" && typeof l.type == "object" && "name" in l.type && l.type.name === ae.name, r = typeof l == "object" && l.type === "svg";
+  return s || r ? (on(t), !0) : !1;
+}, un = R({
   name: "CdxButton",
   props: {
     /**
@@ -1149,7 +1185,7 @@ const ln = (e, t) => {
     action: {
       type: String,
       default: "default",
-      validator: en
+      validator: nn
     },
     /**
      * Visual prominence of the button.
@@ -1159,7 +1195,7 @@ const ln = (e, t) => {
     weight: {
       type: String,
       default: "normal",
-      validator: tn
+      validator: an
     },
     /**
      * Button size.
@@ -1172,69 +1208,69 @@ const ln = (e, t) => {
     size: {
       type: String,
       default: "medium",
-      validator: nn
+      validator: ln
     }
   },
   emits: ["click"],
-  setup(e, { emit: t, slots: n, attrs: a }) {
-    const o = y(!1);
+  setup(e, { emit: t, slots: n, attrs: l }) {
+    const s = v(!1);
     return {
       rootClasses: h(() => {
-        var l;
+        var o;
         return {
           [`cdx-button--action-${e.action}`]: !0,
           [`cdx-button--weight-${e.weight}`]: !0,
           [`cdx-button--size-${e.size}`]: !0,
           "cdx-button--framed": e.weight !== "quiet",
-          "cdx-button--icon-only": ln((l = n.default) == null ? void 0 : l.call(n), a),
-          "cdx-button--is-active": o.value
+          "cdx-button--icon-only": sn((o = n.default) == null ? void 0 : o.call(n), l),
+          "cdx-button--is-active": s.value
         };
       }),
-      onClick: (l) => {
-        t("click", l);
+      onClick: (o) => {
+        t("click", o);
       },
-      setActive: (l) => {
-        o.value = l;
+      setActive: (o) => {
+        s.value = o;
       }
     };
   }
 });
-function sn(e, t, n, a, o, u) {
-  return f(), v("button", {
-    class: K(["cdx-button", e.rootClasses]),
-    onClick: t[0] || (t[0] = (...s) => e.onClick && e.onClick(...s)),
-    onKeydown: t[1] || (t[1] = ye((s) => e.setActive(!0), ["space", "enter"])),
-    onKeyup: t[2] || (t[2] = ye((s) => e.setActive(!1), ["space", "enter"]))
+function rn(e, t, n, l, s, r) {
+  return f(), g("button", {
+    class: L(["cdx-button", e.rootClasses]),
+    onClick: t[0] || (t[0] = (...i) => e.onClick && e.onClick(...i)),
+    onKeydown: t[1] || (t[1] = $e((i) => e.setActive(!0), ["space", "enter"])),
+    onKeyup: t[2] || (t[2] = $e((i) => e.setActive(!1), ["space", "enter"]))
   }, [
-    R(e.$slots, "default")
+    A(e.$slots, "default")
   ], 34);
 }
-const un = /* @__PURE__ */ E(on, [["render", sn]]);
-function Be(e, t, n) {
+const dn = /* @__PURE__ */ D(un, [["render", rn]]);
+function Ke(e, t, n) {
   return h({
     get: () => e.value,
-    set: (a) => (
+    set: (l) => (
       // If eventName is undefined, then 'update:modelValue' must be a valid EventName,
       // but TypeScript's type analysis isn't clever enough to realize that
-      t(n || "update:modelValue", a)
+      t(n || "update:modelValue", l)
     )
   });
 }
-function rn(e) {
-  const t = re(ht, y(!1));
+function cn(e) {
+  const t = ce(pt, v(!1));
   return h(() => t.value || e.value);
 }
-function Le(e, t, n) {
-  const a = rn(e), o = re(ct, y("default")), u = h(() => t != null && t.value && t.value !== "default" ? t.value : o.value), s = re(rt, void 0), i = h(() => s || n);
+function Ae(e, t, n) {
+  const l = cn(e), s = ce(ft, v("default")), r = h(() => t != null && t.value && t.value !== "default" ? t.value : s.value), i = ce(ct, void 0), u = h(() => i || n);
   return {
-    computedDisabled: a,
-    computedStatus: u,
-    computedInputId: i
+    computedDisabled: l,
+    computedStatus: r,
+    computedInputId: u
   };
 }
-const dn = U(st), cn = U(Te), hn = D({
+const hn = z(ut), fn = z(Ve), pn = R({
   name: "CdxTextInput",
-  components: { CdxIcon: ne },
+  components: { CdxIcon: ae },
   /**
    * We want the input to inherit attributes, not the root element.
    */
@@ -1262,7 +1298,7 @@ const dn = U(st), cn = U(Te), hn = D({
     inputType: {
       type: String,
       default: "text",
-      validator: dn
+      validator: hn
     },
     /**
      * `status` attribute of the input.
@@ -1272,7 +1308,7 @@ const dn = U(st), cn = U(Te), hn = D({
     status: {
       type: String,
       default: "default",
-      validator: cn
+      validator: fn
     },
     /**
      * Whether the input is disabled.
@@ -1354,58 +1390,58 @@ const dn = U(st), cn = U(Te), hn = D({
     "clear"
   ],
   setup(e, { emit: t, attrs: n }) {
-    const a = n.id, {
-      computedDisabled: o,
-      computedStatus: u,
-      computedInputId: s
-    } = Le(
-      z(e, "disabled"),
-      z(e, "status"),
-      a
-    ), i = re(dt, void 0), l = Be(z(e, "modelValue"), t), r = h(() => e.clearable && !!l.value && !o.value), m = h(() => ({
+    const l = n.id, {
+      computedDisabled: s,
+      computedStatus: r,
+      computedInputId: i
+    } = Ae(
+      q(e, "disabled"),
+      q(e, "status"),
+      l
+    ), u = ce(ht, void 0), o = Ke(q(e, "modelValue"), t), d = h(() => e.clearable && !!o.value && !s.value), y = h(() => ({
       "cdx-text-input--has-start-icon": !!e.startIcon,
       "cdx-text-input--has-end-icon": !!e.endIcon,
-      "cdx-text-input--clearable": r.value,
-      [`cdx-text-input--status-${u.value}`]: !0
+      "cdx-text-input--clearable": d.value,
+      [`cdx-text-input--status-${r.value}`]: !0
     })), {
-      rootClasses: $,
+      rootClasses: I,
       rootStyle: b,
-      otherAttrs: x
-    } = de(n, m), k = h(() => {
-      const A = x.value, { id: g } = A;
-      return Y(A, ["id"]);
-    }), G = h(() => ({
-      "cdx-text-input__input--has-value": !!l.value
+      otherAttrs: S
+    } = he(n, y), C = h(() => {
+      const E = S.value, { id: m } = E;
+      return Z(E, ["id"]);
+    }), k = h(() => ({
+      "cdx-text-input__input--has-value": !!o.value
     }));
     return {
-      computedInputId: s,
-      descriptionId: i,
-      wrappedModel: l,
-      isClearable: r,
-      rootClasses: $,
+      computedInputId: i,
+      descriptionId: u,
+      wrappedModel: o,
+      isClearable: d,
+      rootClasses: I,
       rootStyle: b,
-      otherAttrsMinusId: k,
-      inputClasses: G,
-      computedDisabled: o,
-      onClear: (g) => {
-        l.value = "", t("clear", g);
+      otherAttrsMinusId: C,
+      inputClasses: k,
+      computedDisabled: s,
+      onClear: (m) => {
+        o.value = "", t("clear", m);
       },
-      onInput: (g) => {
-        t("input", g);
+      onInput: (m) => {
+        t("input", m);
       },
-      onChange: (g) => {
-        t("change", g);
+      onChange: (m) => {
+        t("change", m);
       },
-      onKeydown: (g) => {
-        (g.key === "Home" || g.key === "End") && !g.ctrlKey && !g.metaKey || t("keydown", g);
+      onKeydown: (m) => {
+        (m.key === "Home" || m.key === "End") && !m.ctrlKey && !m.metaKey || t("keydown", m);
       },
-      onFocus: (g) => {
-        t("focus", g);
+      onFocus: (m) => {
+        t("focus", m);
       },
-      onBlur: (g) => {
-        t("blur", g);
+      onBlur: (m) => {
+        t("blur", m);
       },
-      cdxIconClear: Ge
+      cdxIconClear: Xe
     };
   },
   // Public methods
@@ -1430,55 +1466,55 @@ const dn = U(st), cn = U(Te), hn = D({
     }
   }
 });
-const fn = ["id", "type", "aria-describedby", "disabled"];
-function pn(e, t, n, a, o, u) {
-  const s = B("cdx-icon");
-  return f(), v("div", {
-    class: K(["cdx-text-input", e.rootClasses]),
-    style: te(e.rootStyle)
+const mn = ["id", "type", "aria-describedby", "disabled"];
+function gn(e, t, n, l, s, r) {
+  const i = B("cdx-icon");
+  return f(), g("div", {
+    class: L(["cdx-text-input", e.rootClasses]),
+    style: ne(e.rootStyle)
   }, [
-    Me(I("input", P({
+    Be(_("input", P({
       id: e.computedInputId,
       ref: "input",
-      "onUpdate:modelValue": t[0] || (t[0] = (i) => e.wrappedModel = i),
+      "onUpdate:modelValue": t[0] || (t[0] = (u) => e.wrappedModel = u),
       class: ["cdx-text-input__input", e.inputClasses]
     }, e.otherAttrsMinusId, {
       type: e.inputType,
       "aria-describedby": e.descriptionId,
       disabled: e.computedDisabled,
-      onInput: t[1] || (t[1] = (...i) => e.onInput && e.onInput(...i)),
-      onChange: t[2] || (t[2] = (...i) => e.onChange && e.onChange(...i)),
-      onFocus: t[3] || (t[3] = (...i) => e.onFocus && e.onFocus(...i)),
-      onBlur: t[4] || (t[4] = (...i) => e.onBlur && e.onBlur(...i)),
-      onKeydown: t[5] || (t[5] = (...i) => e.onKeydown && e.onKeydown(...i))
-    }), null, 16, fn), [
-      [He, e.wrappedModel]
+      onInput: t[1] || (t[1] = (...u) => e.onInput && e.onInput(...u)),
+      onChange: t[2] || (t[2] = (...u) => e.onChange && e.onChange(...u)),
+      onFocus: t[3] || (t[3] = (...u) => e.onFocus && e.onFocus(...u)),
+      onBlur: t[4] || (t[4] = (...u) => e.onBlur && e.onBlur(...u)),
+      onKeydown: t[5] || (t[5] = (...u) => e.onKeydown && e.onKeydown(...u))
+    }), null, 16, mn), [
+      [Qe, e.wrappedModel]
     ]),
-    e.startIcon ? (f(), L(s, {
+    e.startIcon ? (f(), V(i, {
       key: 0,
       icon: e.startIcon,
       class: "cdx-text-input__icon-vue cdx-text-input__start-icon"
     }, null, 8, ["icon"])) : w("", !0),
-    e.endIcon ? (f(), L(s, {
+    e.endIcon ? (f(), V(i, {
       key: 1,
       icon: e.endIcon,
       class: "cdx-text-input__icon-vue cdx-text-input__end-icon"
     }, null, 8, ["icon"])) : w("", !0),
-    e.isClearable ? (f(), L(s, {
+    e.isClearable ? (f(), V(i, {
       key: 2,
       icon: e.cdxIconClear,
       class: "cdx-text-input__icon-vue cdx-text-input__clear-icon",
-      onMousedown: t[6] || (t[6] = Ce(() => {
+      onMousedown: t[6] || (t[6] = _e(() => {
       }, ["prevent"])),
       onClick: e.onClear
     }, null, 8, ["icon", "onClick"])) : w("", !0)
   ], 6);
 }
-const mn = /* @__PURE__ */ E(hn, [["render", pn]]), gn = U(Te), vn = D({
+const vn = /* @__PURE__ */ D(pn, [["render", gn]]), yn = z(Ve), bn = R({
   name: "CdxSearchInput",
   components: {
-    CdxButton: un,
-    CdxTextInput: mn
+    CdxButton: dn,
+    CdxTextInput: vn
   },
   /**
    * Attributes, besides class, will be passed to the TextInput's input element.
@@ -1516,7 +1552,7 @@ const mn = /* @__PURE__ */ E(hn, [["render", pn]]), gn = U(Te), vn = D({
     status: {
       type: String,
       default: "default",
-      validator: gn
+      validator: yn
     }
   },
   emits: [
@@ -1558,23 +1594,23 @@ const mn = /* @__PURE__ */ E(hn, [["render", pn]]), gn = U(Te), vn = D({
     "blur"
   ],
   setup(e, { emit: t, attrs: n }) {
-    const a = Be(z(e, "modelValue"), t), { computedDisabled: o } = Le(z(e, "disabled")), u = h(() => ({
+    const l = Ke(q(e, "modelValue"), t), { computedDisabled: s } = Ae(q(e, "disabled")), r = h(() => ({
       "cdx-search-input--has-end-button": !!e.buttonLabel
     })), {
-      rootClasses: s,
-      rootStyle: i,
-      otherAttrs: l
-    } = de(n, u);
+      rootClasses: i,
+      rootStyle: u,
+      otherAttrs: o
+    } = he(n, r);
     return {
-      wrappedModel: a,
-      computedDisabled: o,
-      rootClasses: s,
-      rootStyle: i,
-      otherAttrs: l,
+      wrappedModel: l,
+      computedDisabled: s,
+      rootClasses: i,
+      rootStyle: u,
+      otherAttrs: o,
       handleSubmit: () => {
-        t("submit-click", a.value);
+        t("submit-click", l.value);
       },
-      searchIcon: Xe
+      searchIcon: Ze
     };
   },
   methods: {
@@ -1588,51 +1624,51 @@ const mn = /* @__PURE__ */ E(hn, [["render", pn]]), gn = U(Te), vn = D({
     }
   }
 });
-const yn = { class: "cdx-search-input__input-wrapper" };
-function bn(e, t, n, a, o, u) {
-  const s = B("cdx-text-input"), i = B("cdx-button");
-  return f(), v("div", {
-    class: K(["cdx-search-input", e.rootClasses]),
-    style: te(e.rootStyle)
+const Cn = { class: "cdx-search-input__input-wrapper" };
+function $n(e, t, n, l, s, r) {
+  const i = B("cdx-text-input"), u = B("cdx-button");
+  return f(), g("div", {
+    class: L(["cdx-search-input", e.rootClasses]),
+    style: ne(e.rootStyle)
   }, [
-    I("div", yn, [
-      j(s, P({
+    _("div", Cn, [
+      j(i, P({
         ref: "textInput",
         modelValue: e.wrappedModel,
-        "onUpdate:modelValue": t[0] || (t[0] = (l) => e.wrappedModel = l),
+        "onUpdate:modelValue": t[0] || (t[0] = (o) => e.wrappedModel = o),
         class: "cdx-search-input__text-input",
         "input-type": "search",
         "start-icon": e.searchIcon,
         disabled: e.computedDisabled,
         status: e.status
       }, e.otherAttrs, {
-        onKeydown: ye(e.handleSubmit, ["enter"]),
-        onInput: t[1] || (t[1] = (l) => e.$emit("input", l)),
-        onChange: t[2] || (t[2] = (l) => e.$emit("change", l)),
-        onFocus: t[3] || (t[3] = (l) => e.$emit("focus", l)),
-        onBlur: t[4] || (t[4] = (l) => e.$emit("blur", l))
+        onKeydown: $e(e.handleSubmit, ["enter"]),
+        onInput: t[1] || (t[1] = (o) => e.$emit("input", o)),
+        onChange: t[2] || (t[2] = (o) => e.$emit("change", o)),
+        onFocus: t[3] || (t[3] = (o) => e.$emit("focus", o)),
+        onBlur: t[4] || (t[4] = (o) => e.$emit("blur", o))
       }), null, 16, ["modelValue", "start-icon", "disabled", "status", "onKeydown"]),
-      R(e.$slots, "default")
+      A(e.$slots, "default")
     ]),
-    e.buttonLabel ? (f(), L(i, {
+    e.buttonLabel ? (f(), V(u, {
       key: 0,
       class: "cdx-search-input__end-button",
       disabled: e.computedDisabled,
       onClick: e.handleSubmit
     }, {
-      default: q(() => [
-        ee(V(e.buttonLabel), 1)
+      default: O(() => [
+        te(T(e.buttonLabel), 1)
       ]),
       _: 1
     }, 8, ["disabled", "onClick"])) : w("", !0)
   ], 6);
 }
-const Cn = /* @__PURE__ */ E(vn, [["render", bn]]), $n = D({
+const In = /* @__PURE__ */ D(bn, [["render", $n]]), _n = R({
   name: "CdxTypeaheadSearch",
   components: {
-    CdxIcon: ne,
-    CdxMenu: Zt,
-    CdxSearchInput: Cn
+    CdxIcon: ae,
+    CdxMenu: tn,
+    CdxSearchInput: In
   },
   /**
    * Attributes, besides class, will be passed to the TextInput's input element.
@@ -1699,7 +1735,7 @@ const Cn = /* @__PURE__ */ E(vn, [["render", bn]]), $n = D({
      */
     debounceInterval: {
       type: Number,
-      default: it
+      default: rt
     },
     /**
      * Whether the search query should be highlighted within a search result's title.
@@ -1764,65 +1800,65 @@ const Cn = /* @__PURE__ */ E(vn, [["render", bn]]), $n = D({
      */
     "load-more"
   ],
-  setup(e, { attrs: t, emit: n, slots: a }) {
-    const o = y(), u = y(), s = Ve("typeahead-search-menu"), i = y(!1), l = y(!1), r = y(!1), m = y(!1), $ = y(e.initialInputValue), b = y(""), x = h(() => {
-      var c, S;
-      return (S = (c = u.value) == null ? void 0 : c.getHighlightedMenuItem()) == null ? void 0 : S.id;
-    }), k = y(null), G = h(() => ({
+  setup(e, { attrs: t, emit: n, slots: l }) {
+    const s = v(), r = v(), i = Le("typeahead-search-menu"), u = v(!1), o = v(!1), d = v(!1), y = v(!1), I = v(e.initialInputValue), b = v(""), S = h(() => {
+      var a, c;
+      return (c = (a = r.value) == null ? void 0 : a.getHighlightedMenuItem()) == null ? void 0 : c.id;
+    }), C = v(null), k = h(() => ({
       "cdx-typeahead-search__menu-message--has-thumbnail": e.showThumbnail
-    })), M = h(
+    })), x = h(
       () => e.searchResults.find(
-        (c) => c.value === k.value
+        (a) => a.value === C.value
       )
-    ), T = h(
+    ), G = h(
       () => e.searchFooterUrl ? { value: Q, url: e.searchFooterUrl } : void 0
     ), J = h(() => ({
       "cdx-typeahead-search--show-thumbnail": e.showThumbnail,
-      "cdx-typeahead-search--expanded": i.value,
+      "cdx-typeahead-search--expanded": u.value,
       "cdx-typeahead-search--auto-expand-width": e.showThumbnail && e.autoExpandWidth
     })), {
-      rootClasses: ae,
-      rootStyle: le,
-      otherAttrs: N
-    } = de(t, J);
-    function g(c) {
-      return c;
+      rootClasses: le,
+      rootStyle: oe,
+      otherAttrs: X
+    } = he(t, J);
+    function m(a) {
+      return a;
     }
-    const H = h(() => ({
+    const Y = h(() => ({
       visibleItemLimit: e.visibleItemLimit,
       showThumbnail: e.showThumbnail,
       // In case search queries aren't highlighted, default to a bold label.
       boldLabel: !0,
       hideDescriptionOverflow: !0
     }));
-    let A, F;
-    function oe(c, S = !1) {
-      M.value && M.value.label !== c && M.value.value !== c && (k.value = null), F !== void 0 && (clearTimeout(F), F = void 0), c === "" ? i.value = !1 : (l.value = !0, a["search-results-pending"] && (F = setTimeout(() => {
-        m.value && (i.value = !0), r.value = !0;
-      }, ut))), A !== void 0 && (clearTimeout(A), A = void 0);
-      const O = () => {
-        n("input", c);
+    let E, N;
+    function K(a, c = !1) {
+      x.value && x.value.label !== a && x.value.value !== a && (C.value = null), N !== void 0 && (clearTimeout(N), N = void 0), a === "" ? u.value = !1 : (o.value = !0, l["search-results-pending"] && (N = setTimeout(() => {
+        y.value && (u.value = !0), d.value = !0;
+      }, dt))), E !== void 0 && (clearTimeout(E), E = void 0);
+      const p = () => {
+        n("input", a);
       };
-      S ? O() : A = setTimeout(() => {
-        O();
+      c ? p() : E = setTimeout(() => {
+        p();
       }, e.debounceInterval);
     }
-    function ce(c) {
-      if (c === Q) {
-        k.value = null, $.value = b.value;
+    function F(a) {
+      if (a === Q) {
+        C.value = null, I.value = b.value;
         return;
       }
-      k.value = c, c !== null && ($.value = M.value ? M.value.label || String(M.value.value) : "");
+      C.value = a, a !== null && (I.value = x.value ? x.value.label || String(x.value.value) : "");
     }
-    function he() {
-      m.value = !0, (b.value || r.value) && (i.value = !0);
+    function H() {
+      y.value = !0, (b.value || d.value) && (u.value = !0);
     }
-    function fe() {
-      m.value = !1, i.value = !1;
+    function se() {
+      y.value = !1, u.value = !1;
     }
-    function se(c) {
-      const $e = c, { id: S } = $e, O = Y($e, ["id"]);
-      if (O.value === Q) {
+    function ie(a) {
+      const $ = a, { id: c } = $, p = Z($, ["id"]);
+      if (p.value === Q) {
         n("search-result-click", {
           searchResult: null,
           index: e.searchResults.length,
@@ -1830,89 +1866,89 @@ const Cn = /* @__PURE__ */ E(vn, [["render", bn]]), $n = D({
         });
         return;
       }
-      d(O);
+      ue(p);
     }
-    function d(c) {
-      const S = {
-        searchResult: c,
+    function ue(a) {
+      const c = {
+        searchResult: a,
         index: e.searchResults.findIndex(
-          (O) => O.value === c.value
+          (p) => p.value === a.value
         ),
         numberOfResults: e.searchResults.length
       };
-      n("search-result-click", S);
+      n("search-result-click", c);
     }
-    function p(c) {
-      if (c.value === Q) {
-        $.value = b.value;
+    function fe(a) {
+      if (a.value === Q) {
+        I.value = b.value;
         return;
       }
-      $.value = c.value ? c.label || String(c.value) : "";
+      I.value = a.value ? a.label || String(a.value) : "";
     }
-    function C(c) {
-      var S;
-      i.value = !1, (S = u.value) == null || S.clearActive(), se(c);
+    function pe(a) {
+      var c;
+      u.value = !1, (c = r.value) == null || c.clearActive(), ie(a);
     }
-    function _(c) {
-      if (M.value)
-        d(M.value), c.stopPropagation(), window.location.assign(M.value.url), c.preventDefault();
+    function me(a) {
+      if (x.value)
+        ue(x.value), a.stopPropagation(), window.location.assign(x.value.url), a.preventDefault();
       else {
-        const S = {
+        const c = {
           searchResult: null,
           index: -1,
           numberOfResults: e.searchResults.length
         };
-        n("submit", S);
+        n("submit", c);
       }
     }
-    function X(c) {
-      if (!u.value || !b.value || c.key === " ")
+    function ge(a) {
+      if (!r.value || !b.value || a.key === " ")
         return;
-      const S = u.value.getHighlightedMenuItem(), O = u.value.getHighlightedViaKeyboard();
-      switch (c.key) {
+      const c = r.value.getHighlightedMenuItem(), p = r.value.getHighlightedViaKeyboard();
+      switch (a.key) {
         case "Enter":
-          S && (S.value === Q && O ? window.location.assign(e.searchFooterUrl) : u.value.delegateKeyNavigation(c, !1)), i.value = !1;
+          c && (c.value === Q && p ? window.location.assign(e.searchFooterUrl) : r.value.delegateKeyNavigation(a, { prevent: !1 })), u.value = !1;
           break;
         case "Tab":
-          i.value = !1;
+          u.value = !1;
           break;
         default:
-          u.value.delegateKeyNavigation(c);
+          r.value.delegateKeyNavigation(a);
           break;
       }
     }
     return W(() => {
-      e.initialInputValue && oe(e.initialInputValue, !0);
-    }), Z(z(e, "searchResults"), () => {
-      b.value = $.value.trim(), m.value && l.value && b.value.length > 0 && (i.value = !0), F !== void 0 && (clearTimeout(F), F = void 0), l.value = !1, r.value = !1;
+      e.initialInputValue && K(e.initialInputValue, !0);
+    }), ee(q(e, "searchResults"), () => {
+      b.value = I.value.trim(), y.value && o.value && b.value.length > 0 && (u.value = !0), N !== void 0 && (clearTimeout(N), N = void 0), o.value = !1, d.value = !1;
     }), {
-      form: o,
-      menu: u,
-      menuId: s,
-      highlightedId: x,
-      selection: k,
-      menuMessageClass: G,
-      footer: T,
-      asSearchResult: g,
-      inputValue: $,
+      form: s,
+      menu: r,
+      menuId: i,
+      highlightedId: S,
+      selection: C,
+      menuMessageClass: k,
+      footer: G,
+      asSearchResult: m,
+      inputValue: I,
       searchQuery: b,
-      expanded: i,
-      showPending: r,
-      rootClasses: ae,
-      rootStyle: le,
-      otherAttrs: N,
-      menuConfig: H,
-      onUpdateInputValue: oe,
-      onUpdateMenuSelection: ce,
-      onFocus: he,
-      onBlur: fe,
-      onSearchResultClick: se,
-      onSearchResultKeyboardNavigation: p,
-      onSearchFooterClick: C,
-      onSubmit: _,
-      onKeydown: X,
+      expanded: u,
+      showPending: d,
+      rootClasses: le,
+      rootStyle: oe,
+      otherAttrs: X,
+      menuConfig: Y,
+      onUpdateInputValue: K,
+      onUpdateMenuSelection: F,
+      onFocus: H,
+      onBlur: se,
+      onSearchResultClick: ie,
+      onSearchResultKeyboardNavigation: fe,
+      onSearchFooterClick: pe,
+      onSubmit: me,
+      onKeydown: ge,
       MenuFooterValue: Q,
-      articleIcon: We
+      articleIcon: Je
     };
   },
   methods: {
@@ -1926,24 +1962,24 @@ const Cn = /* @__PURE__ */ E(vn, [["render", bn]]), $n = D({
     }
   }
 });
-const In = ["id", "action"], _n = { class: "cdx-typeahead-search__menu-message__text" }, Sn = { class: "cdx-typeahead-search__menu-message__text" }, wn = ["href", "onClickCapture"], xn = { class: "cdx-menu-item__text cdx-typeahead-search__search-footer__text" }, kn = { class: "cdx-typeahead-search__search-footer__query" };
-function Mn(e, t, n, a, o, u) {
-  const s = B("cdx-icon"), i = B("cdx-menu"), l = B("cdx-search-input");
-  return f(), v("div", {
-    class: K(["cdx-typeahead-search", e.rootClasses]),
-    style: te(e.rootStyle)
+const Sn = ["id", "action"], wn = { class: "cdx-typeahead-search__menu-message__text" }, xn = { class: "cdx-typeahead-search__menu-message__text" }, kn = ["href", "onClickCapture"], Mn = { class: "cdx-menu-item__text cdx-typeahead-search__search-footer__text" }, Tn = { class: "cdx-typeahead-search__search-footer__query" };
+function Bn(e, t, n, l, s, r) {
+  const i = B("cdx-icon"), u = B("cdx-menu"), o = B("cdx-search-input");
+  return f(), g("div", {
+    class: L(["cdx-typeahead-search", e.rootClasses]),
+    style: ne(e.rootStyle)
   }, [
-    I("form", {
+    _("form", {
       id: e.id,
       ref: "form",
       class: "cdx-typeahead-search__form",
       action: e.formAction,
-      onSubmit: t[4] || (t[4] = (...r) => e.onSubmit && e.onSubmit(...r))
+      onSubmit: t[4] || (t[4] = (...d) => e.onSubmit && e.onSubmit(...d))
     }, [
-      j(l, P({
+      j(o, P({
         ref: "searchInput",
         modelValue: e.inputValue,
-        "onUpdate:modelValue": t[3] || (t[3] = (r) => e.inputValue = r),
+        "onUpdate:modelValue": t[3] || (t[3] = (d) => e.inputValue = d),
         "button-label": e.buttonLabel
       }, e.otherAttrs, {
         class: "cdx-typeahead-search__input",
@@ -1959,12 +1995,12 @@ function Mn(e, t, n, a, o, u) {
         onBlur: e.onBlur,
         onKeydown: e.onKeydown
       }), {
-        default: q(() => [
-          j(i, P({
+        default: O(() => [
+          j(u, P({
             id: e.menuId,
             ref: "menu",
             expanded: e.expanded,
-            "onUpdate:expanded": t[0] || (t[0] = (r) => e.expanded = r),
+            "onUpdate:expanded": t[0] || (t[0] = (d) => e.expanded = d),
             "show-pending": e.showPending,
             selected: e.selection,
             "menu-items": e.searchResults,
@@ -1974,58 +2010,58 @@ function Mn(e, t, n, a, o, u) {
           }, e.menuConfig, {
             "aria-label": e.searchResultsLabel,
             "onUpdate:selected": e.onUpdateMenuSelection,
-            onMenuItemClick: t[1] || (t[1] = (r) => e.onSearchResultClick(e.asSearchResult(r))),
+            onMenuItemClick: t[1] || (t[1] = (d) => e.onSearchResultClick(e.asSearchResult(d))),
             onMenuItemKeyboardNavigation: e.onSearchResultKeyboardNavigation,
-            onLoadMore: t[2] || (t[2] = (r) => e.$emit("load-more"))
+            onLoadMore: t[2] || (t[2] = (d) => e.$emit("load-more"))
           }), {
-            pending: q(() => [
-              I("div", {
-                class: K(["cdx-menu-item__content cdx-typeahead-search__menu-message", e.menuMessageClass])
+            pending: O(() => [
+              _("div", {
+                class: L(["cdx-menu-item__content cdx-typeahead-search__menu-message", e.menuMessageClass])
               }, [
-                I("span", _n, [
-                  R(e.$slots, "search-results-pending")
+                _("span", wn, [
+                  A(e.$slots, "search-results-pending")
                 ])
               ], 2)
             ]),
-            "no-results": q(() => [
-              I("div", {
-                class: K(["cdx-menu-item__content cdx-typeahead-search__menu-message", e.menuMessageClass])
+            "no-results": O(() => [
+              _("div", {
+                class: L(["cdx-menu-item__content cdx-typeahead-search__menu-message", e.menuMessageClass])
               }, [
-                I("span", Sn, [
-                  R(e.$slots, "search-no-results-text")
+                _("span", xn, [
+                  A(e.$slots, "search-no-results-text")
                 ])
               ], 2)
             ]),
-            default: q(({ menuItem: r, active: m }) => [
-              r.value === e.MenuFooterValue ? (f(), v("a", {
+            default: O(({ menuItem: d, active: y }) => [
+              d.value === e.MenuFooterValue ? (f(), g("a", {
                 key: 0,
-                class: K(["cdx-menu-item__content cdx-typeahead-search__search-footer", {
-                  "cdx-typeahead-search__search-footer__active": m
+                class: L(["cdx-menu-item__content cdx-typeahead-search__search-footer", {
+                  "cdx-typeahead-search__search-footer__active": y
                 }]),
-                href: e.asSearchResult(r).url,
-                onClickCapture: Ce(($) => e.onSearchFooterClick(e.asSearchResult(r)), ["stop"])
+                href: e.asSearchResult(d).url,
+                onClickCapture: _e((I) => e.onSearchFooterClick(e.asSearchResult(d)), ["stop"])
               }, [
-                j(s, {
+                j(i, {
                   class: "cdx-menu-item__thumbnail cdx-typeahead-search__search-footer__icon",
                   icon: e.articleIcon
                 }, null, 8, ["icon"]),
-                I("span", xn, [
-                  R(e.$slots, "search-footer-text", { searchQuery: e.searchQuery }, () => [
-                    I("strong", kn, V(e.searchQuery), 1)
+                _("span", Mn, [
+                  A(e.$slots, "search-footer-text", { searchQuery: e.searchQuery }, () => [
+                    _("strong", Tn, T(e.searchQuery), 1)
                   ])
                 ])
-              ], 42, wn)) : w("", !0)
+              ], 42, kn)) : w("", !0)
             ]),
             _: 3
           }, 16, ["id", "expanded", "show-pending", "selected", "menu-items", "footer", "search-query", "show-no-results-slot", "aria-label", "onUpdate:selected", "onMenuItemKeyboardNavigation"])
         ]),
         _: 3
       }, 16, ["modelValue", "button-label", "aria-controls", "aria-expanded", "aria-activedescendant", "onUpdate:modelValue", "onFocus", "onBlur", "onKeydown"]),
-      R(e.$slots, "default")
-    ], 40, In)
+      A(e.$slots, "default")
+    ], 40, Sn)
   ], 6);
 }
-const Bn = /* @__PURE__ */ E($n, [["render", Mn]]);
+const Kn = /* @__PURE__ */ D(_n, [["render", Bn]]);
 export {
-  Bn as CdxTypeaheadSearch
+  Kn as CdxTypeaheadSearch
 };
