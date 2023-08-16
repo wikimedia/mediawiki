@@ -98,18 +98,6 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expectedModelId, ContentHandler::getDefaultModelFor( $title ) );
 	}
 
-	/**
-	 * @dataProvider dataGetDefaultModelFor
-	 * @covers ContentHandler::getForTitle
-	 */
-	public function testGetForTitle( $title, $expectedContentModel ) {
-		$this->hideDeprecated( 'ContentHandler::getForTitle' );
-		$title = Title::newFromText( $title );
-		$this->getServiceContainer()->getLinkCache()->addBadLinkObj( $title );
-		$handler = ContentHandler::getForTitle( $title );
-		$this->assertEquals( $expectedContentModel, $handler->getModelID() );
-	}
-
 	public static function dataGetLocalizedName() {
 		return [
 			[ null, null ],
