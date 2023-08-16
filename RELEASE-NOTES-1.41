@@ -512,6 +512,8 @@ because of Phabricator reports.
   Use ::getDeprecationWarning() instead.
 * MediaWiki\Block\AbstractBlock::getReason(), deprecated since 1.35, now emits
   deprecation warnings. Use ::getReasonComment() instead.
+* The global function wfReportTime(), deprecated since 1.40, now emits
+  deprecation warnings. The SkinTemplate parameter 'reporttime' is deprecated.
 * …
 
 === Other changes in 1.41 ===
