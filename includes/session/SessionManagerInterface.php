@@ -92,7 +92,7 @@ interface SessionManagerInterface extends LoggerAwareInterface {
 	 * The return value is such that someone could theoretically do this:
 	 * @code
 	 * foreach ( $provider->getVaryHeaders() as $header => $options ) {
-	 *   $outputPage->addVaryHeader( $header, $options );
+	 *   $outputPage->addVaryHeader( $header );
 	 * }
 	 * @endcode
 	 *
