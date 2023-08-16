@@ -322,10 +322,6 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'sidebar', $this->buildSidebar() );
 		$tpl->set( 'nav_urls', $this->buildNavUrls() );
 
-		// Do this last in case hooks above add bottom scripts
-		$tpl->set( 'bottomscripts', $this->bottomScripts( false ) );
-		$tpl->deprecate( 'bottomscripts', '1.39' );
-
 		// Set the head scripts near the end, in case the above actions resulted in added scripts
 		$tpl->set( 'headelement', $out->headElement( $this ) );
 		$tpl->deprecate( 'headelement', '1.39' );
