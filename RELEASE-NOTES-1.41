@@ -334,6 +334,8 @@ because of Phabricator reports.
   Title::getInternalURL(), or Title::getCanonicalURL(), each deprecated in 1.19,
   is now not supported. Pass it as a key,value pair in the first parameter array
   instead.
+* Title::getBacklinkCache(), deprecated since 1.37, has been dropped. Instead,
+  use BacklinkCacheFactory::getBacklinkCache().
 * …
 
 === Deprecations in 1.41 ===
