@@ -3474,22 +3474,10 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/**
 	 * Get the last touched timestamp
 	 *
-	 * @param int $flags one of the READ_XXX constants. For historical reasons, an IDatabase
-	 *        instance is also accepted here. If an IDatabase is passed, a deprecation warning
-	 *        is triggered, caches will be bypassed, and the primary database connection will be
-	 *        used. However, the IDatabase instance itself will be ignored.
+	 * @param int $flags one of the READ_XXX constants.
 	 * @return string|false Last-touched timestamp
 	 */
-	public function getTouched( $flags = self::READ_NORMAL ) {
-		if ( is_object( $flags ) ) {
-			wfDeprecatedMsg(
-				__METHOD__ . ' was called with a ' . get_class( $flags )
-				. ' instance instead of an integer!',
-				'1.38'
-			);
-			$flags = self::READ_LATEST;
-		}
-
+	public function getTouched( int $flags = self::READ_NORMAL ) {
 		$touched = $this->getFieldFromPageStore( 'page_touched', $flags );
 		return $touched ? MWTimestamp::convert( TS_MW, $touched ) : false;
 	}
