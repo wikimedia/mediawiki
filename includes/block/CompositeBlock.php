@@ -111,6 +111,20 @@ class CompositeBlock extends AbstractBlock {
 	/**
 	 * @inheritDoc
 	 */
+	public function getTimestamp(): string {
+		$minStart = null;
+		foreach ( $this->originalBlocks as $block ) {
+			$startTime = $block->getTimestamp();
+			if ( $minStart === null || $startTime === '' || $startTime < $minStart ) {
+				$minStart = $startTime;
+			}
+		}
+		return $minStart ?? '';
+	}
+
+	/**
+	 * @inheritDoc
+	 */
 	public function getExpiry(): string {
 		$maxExpiry = null;
 		foreach ( $this->originalBlocks as $block ) {

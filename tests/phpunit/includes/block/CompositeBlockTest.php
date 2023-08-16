@@ -246,6 +246,27 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 		];
 	}
 
+	public function testTimestamp() {
+		$timestamp = 20000101000000;
+
+		$firstBlock = $this->createMock( DatabaseBlock::class );
+		$firstBlock->method( 'getTimestamp' )
+			->willReturn( (string)$timestamp );
+
+		$secondBlock = $this->createMock( DatabaseBlock::class );
+		$secondBlock->method( 'getTimestamp' )
+			->willReturn( (string)( $timestamp + 10 ) );
+
+		$thirdBlock = $this->createMock( DatabaseBlock::class );
+		$thirdBlock->method( 'getTimestamp' )
+			->willReturn( (string)( $timestamp + 100 ) );
+
+		$block = new CompositeBlock( [
+			'originalBlocks' => [ $thirdBlock, $firstBlock, $secondBlock ],
+		] );
+		$this->assertSame( (string)$timestamp, $block->getTimestamp() );
+	}
+
 	/**
 	 * Get an instance of BlockRestrictionStore
 	 *
