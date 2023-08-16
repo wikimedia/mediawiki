@@ -441,6 +441,8 @@ because of Phabricator reports.
   deprecation warnings.
 * UserGroupMembership::getLink() has been deprecated in favour of
   ::getLinkHTML() and ::getLinkWiki().
+* Linker::formatComment(), ::formatLinksInComment(), ::commentBlock() and
+  revComment(), deprecated in 1.38, now emit deprecation warnings.
 * SearchResultThumbnail::getSize() has been deprecated to be dropped in the
   future as it is resource intensive and degrades performance.
 * The EmailUserPermissionsErrors and UserCanSendEmail hooks have been

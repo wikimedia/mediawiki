@@ -1523,7 +1523,7 @@ class Linker {
 	 * This method produces HTML that can require CSS styles in mediawiki.interface.helpers.styles.
 	 *
 	 * @since 1.16.3. $wikiId added in 1.26
-	 * @deprecated since 1.38 use CommentFormatter
+	 * @deprecated since 1.38 use CommentFormatter, hard-deprecated in 1.41
 	 *
 	 * @param string $comment
 	 * @param LinkTarget|null $title LinkTarget object (to generate link to the section in
@@ -1537,6 +1537,7 @@ class Linker {
 	public static function formatComment(
 		$comment, $title = null, $local = false, $wikiId = null
 	) {
+		wfDeprecated( __METHOD__, '1.41' );
 		$formatter = MediaWikiServices::getInstance()->getCommentFormatter();
 		return $formatter->format( $comment, $title, $local, $wikiId );
 	}
@@ -1546,7 +1547,7 @@ class Linker {
 	 * is ignored
 	 *
 	 * @since 1.16.3. $wikiId added in 1.26
-	 * @deprecated since 1.38 use CommentFormatter
+	 * @deprecated since 1.38 use CommentFormatter, hard-deprecated in 1.41
 	 *
 	 * @param string $comment Text to format links in. WARNING! Since the output of this
 	 * 	function is html, $comment must be sanitized for use as html. You probably want
@@ -1563,6 +1564,7 @@ class Linker {
 	public static function formatLinksInComment(
 		$comment, $title = null, $local = false, $wikiId = null
 	) {
+		wfDeprecated( __METHOD__, '1.41' );
 		$formatter = MediaWikiServices::getInstance()->getCommentFormatter();
 		return $formatter->formatLinksUnsafe( $comment, $title, $local, $wikiId );
 	}
@@ -1658,7 +1660,7 @@ class Linker {
 	 * This method produces HTML that requires CSS styles in mediawiki.interface.helpers.styles.
 	 *
 	 * @since 1.16.3. $wikiId added in 1.26
-	 * @deprecated since 1.38 use CommentFormatter
+	 * @deprecated since 1.38 use CommentFormatter, hard-deprecated in 1.41
 	 *
 	 * @param string $comment
 	 * @param LinkTarget|null $title LinkTarget object (to generate link to section in autocomment)
@@ -1673,6 +1675,7 @@ class Linker {
 	public static function commentBlock(
 		$comment, $title = null, $local = false, $wikiId = null, $useParentheses = true
 	) {
+		wfDeprecated( __METHOD__, '1.41' );
 		return MediaWikiServices::getInstance()->getCommentFormatter()
 			->formatBlock( $comment, $title, $local, $wikiId, $useParentheses );
 	}
@@ -1684,7 +1687,7 @@ class Linker {
 	 * This method produces HTML that requires CSS styles in mediawiki.interface.helpers.styles.
 	 *
 	 * @since 1.16.3
-	 * @deprecated since 1.38 use CommentFormatter
+	 * @deprecated since 1.38 use CommentFormatter, hard-deprecated in 1.41
 	 * @param RevisionRecord $revRecord (Switched from the old Revision class to RevisionRecord
 	 *    since 1.35)
 	 * @param bool $local Whether section links should refer to local page
@@ -1698,6 +1701,7 @@ class Linker {
 		$isPublic = false,
 		$useParentheses = true
 	) {
+		wfDeprecated( __METHOD__, '1.41' );
 		$authority = RequestContext::getMain()->getAuthority();
 		$formatter = MediaWikiServices::getInstance()->getCommentFormatter();
 		return $formatter->formatRevision( $revRecord, $authority, $local, $isPublic, $useParentheses );
