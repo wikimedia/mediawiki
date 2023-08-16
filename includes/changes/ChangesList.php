@@ -783,7 +783,12 @@ class ChangesList extends ContextSource {
 		}
 
 		return $this->watchMsgCache->getWithSetCallback(
-			"watching-users-msg:$count",
+			$this->watchMsgCache->makeKey(
+				'watching-users-msg',
+				strval( $count ),
+				$this->getUser()->getName(),
+				$this->getLanguage()->getCode()
+			),
 			function () use ( $count ) {
 				return $this->msg( 'number-of-watching-users-for-recent-changes' )
 					->numParams( $count )->escaped();
