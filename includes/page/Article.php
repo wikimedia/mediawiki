@@ -2061,14 +2061,4 @@ class Article implements Page {
 	public function getActionOverrides() {
 		return $this->mPage->getActionOverrides();
 	}
-
-	/**
-	 * @deprecated since 1.35, use WikiPage::getTimestamp instead
-	 * @see WikiPage::getTimestamp
-	 * @return string
-	 */
-	public function getTimestamp() {
-		wfDeprecated( __METHOD__, '1.35' );
-		return $this->mPage->getTimestamp();
-	}
 }
