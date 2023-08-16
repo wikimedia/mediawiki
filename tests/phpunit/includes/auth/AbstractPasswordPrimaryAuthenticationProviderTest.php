@@ -58,6 +58,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 	}
 
 	public function testGetNewPasswordExpiry() {
+		$userName = 'TestGetNewPasswordExpiry';
 		$config = new \HashConfig;
 		$provider = $this->getMockForAbstractClass(
 			AbstractPasswordPrimaryAuthenticationProvider::class
@@ -66,12 +67,12 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 
 		$config->set( MainConfigNames::PasswordExpirationDays, 0 );
-		$this->assertNull( $providerPriv->getNewPasswordExpiry( 'UTSysop' ) );
+		$this->assertNull( $providerPriv->getNewPasswordExpiry( $userName ) );
 
 		$config->set( MainConfigNames::PasswordExpirationDays, 5 );
 		$this->assertEqualsWithDelta(
 			time() + 5 * 86400,
-			wfTimestamp( TS_UNIX, $providerPriv->getNewPasswordExpiry( 'UTSysop' ) ),
+			wfTimestamp( TS_UNIX, $providerPriv->getNewPasswordExpiry( $userName ) ),
 			2 /* Fuzz */
 		);
 
@@ -81,13 +82,13 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 			null,
 			null,
 			$this->createHookContainer( [
-				'ResetPasswordExpiration' => function ( $user, &$expires ) {
-					$this->assertSame( 'UTSysop', $user->getName() );
+				'ResetPasswordExpiration' => function ( $user, &$expires ) use ( $userName ) {
+					$this->assertSame( $userName, $user->getName() );
 					$expires = '30001231235959';
 				}
 			] )
 		);
-		$this->assertSame( '30001231235959', $providerPriv->getNewPasswordExpiry( 'UTSysop' ) );
+		$this->assertSame( '30001231235959', $providerPriv->getNewPasswordExpiry( $userName ) );
 	}
 
 	public function testCheckPasswordValidity() {

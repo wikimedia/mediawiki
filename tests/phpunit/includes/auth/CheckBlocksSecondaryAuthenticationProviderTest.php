@@ -42,7 +42,7 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 
 	public function testBasics() {
 		$provider = new CheckBlocksSecondaryAuthenticationProvider();
-		$user = \User::newFromName( 'UTSysop' );
+		$user = $this->getTestSysop()->getUser();
 
 		$this->assertEquals(
 			AuthenticationResponse::newAbstain(),

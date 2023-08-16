@@ -7,6 +7,7 @@ use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\BotPasswordStore;
 use MediaWiki\User\UserNameUtils;
+use User;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -39,7 +40,7 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiIntegra
 	}
 
 	public function testBasics() {
-		$user = \User::newFromName( 'UTSysop' );
+		$user = $this->createMock( User::class );
 		$user2 = new \User;
 		$obj = new \stdClass;
 		$reqs = [ new \stdClass ];
@@ -63,7 +64,8 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiIntegra
 	}
 
 	public function testTryReset() {
-		$user = \User::newFromName( 'UTSysop' );
+		$username = 'TestTryReset';
+		$user = \User::newFromName( $username );
 
 		$provider = $this->getMockBuilder(
 			ResetPasswordSecondaryAuthenticationProvider::class
@@ -73,13 +75,13 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiIntegra
 			] )
 			->getMock();
 		$provider->method( 'providerAllowsAuthenticationDataChange' )
-			->willReturnCallback( function ( $req ) {
-				$this->assertSame( 'UTSysop', $req->username );
+			->willReturnCallback( function ( $req ) use ( $username ) {
+				$this->assertSame( $username, $req->username );
 				return $req->allow;
 			} );
 		$provider->method( 'providerChangeAuthenticationData' )
-			->willReturnCallback( function ( $req ) {
-				$this->assertSame( 'UTSysop', $req->username );
+			->willReturnCallback( function ( $req ) use ( $username ) {
+				$this->assertSame( $username, $req->username );
 				$req->done = true;
 			} );
 		$config = new \HashConfig( [

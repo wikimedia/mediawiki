@@ -142,9 +142,10 @@ class PasswordDomainAuthenticationRequestTest extends AuthenticationRequestTestC
 	}
 
 	public function testDescribeCredentials() {
+		$username = 'TestDescribeCredentials';
 		$req = new PasswordDomainAuthenticationRequest( [ 'd1', 'd2' ] );
 		$req->action = AuthManager::ACTION_LOGIN;
-		$req->username = 'UTSysop';
+		$req->username = $username;
 		$req->domain = 'd2';
 		$ret = $req->describeCredentials();
 		$this->assertIsArray( $ret );
@@ -154,6 +155,6 @@ class PasswordDomainAuthenticationRequestTest extends AuthenticationRequestTestC
 		$this->assertArrayHasKey( 'account', $ret );
 		$this->assertInstanceOf( \Message::class, $ret['account'] );
 		$this->assertSame( 'authmanager-account-password-domain', $ret['account']->getKey() );
-		$this->assertSame( [ 'UTSysop', 'd2' ], $ret['account']->getParams() );
+		$this->assertSame( [ $username, 'd2' ], $ret['account']->getParams() );
 	}
 }

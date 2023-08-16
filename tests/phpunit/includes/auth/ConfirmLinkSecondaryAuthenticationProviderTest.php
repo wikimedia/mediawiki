@@ -6,6 +6,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserNameUtils;
+use User;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -38,7 +39,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 	}
 
 	public function testBeginSecondaryAuthentication() {
-		$user = \User::newFromName( 'UTSysop' );
+		$user = $this->createMock( User::class );
 		$obj = new \stdClass;
 
 		$mock = $this->getMockBuilder( ConfirmLinkSecondaryAuthenticationProvider::class )
@@ -53,7 +54,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 	}
 
 	public function testContinueSecondaryAuthentication() {
-		$user = \User::newFromName( 'UTSysop' );
+		$user = $this->createMock( User::class );
 		$obj = new \stdClass;
 		$reqs = [ new \stdClass ];
 
@@ -73,7 +74,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 	}
 
 	public function testBeginSecondaryAccountCreation() {
-		$user = \User::newFromName( 'UTSysop' );
+		$user = $this->createMock( User::class );
 		$obj = new \stdClass;
 
 		$mock = $this->getMockBuilder( ConfirmLinkSecondaryAuthenticationProvider::class )
@@ -88,7 +89,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 	}
 
 	public function testContinueSecondaryAccountCreation() {
-		$user = \User::newFromName( 'UTSysop' );
+		$user = $this->createMock( User::class );
 		$obj = new \stdClass;
 		$reqs = [ new \stdClass ];
 
@@ -134,7 +135,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$badReq->method( 'getUniqueId' )
 			->willReturn( "BadReq" );
 
-		$user = \User::newFromName( 'UTSysop' );
+		$user = $this->createMock( User::class );
 		$provider = new ConfirmLinkSecondaryAuthenticationProvider;
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 		$request = new \MediaWiki\Request\FauxRequest();
@@ -201,7 +202,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 	}
 
 	public function testContinueLinkAttempt() {
-		$user = \User::newFromName( 'UTSysop' );
+		$user = $this->createMock( User::class );
 		$obj = new \stdClass;
 		$reqs = $this->getLinkRequests();
 

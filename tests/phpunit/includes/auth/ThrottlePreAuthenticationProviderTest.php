@@ -114,11 +114,11 @@ class ThrottlePreAuthenticationProviderTest extends MediaWikiIntegrationTestCase
 
 	/**
 	 * @dataProvider provideTestForAccountCreation
-	 * @param string $creatorname
+	 * @param bool $creatorIsSysop
 	 * @param bool $succeed
 	 * @param bool $hook
 	 */
-	public function testTestForAccountCreation( $creatorname, $succeed, $hook ) {
+	public function testTestForAccountCreation( bool $creatorIsSysop, $succeed, $hook ) {
 		if ( $hook ) {
 			$mock = $this->getMockBuilder( stdClass::class )
 				->addMethods( [ 'onExemptFromAccountCreationThrottle' ] )
@@ -144,7 +144,7 @@ class ThrottlePreAuthenticationProviderTest extends MediaWikiIntegrationTestCase
 		);
 
 		$user = \User::newFromName( 'RandomUser' );
-		$creator = \User::newFromName( $creatorname );
+		$creator = $creatorIsSysop ? $this->getTestSysop()->getUser() : $this->getTestUser()->getUser();
 
 		$this->assertTrue(
 
@@ -165,9 +165,9 @@ class ThrottlePreAuthenticationProviderTest extends MediaWikiIntegrationTestCase
 
 	public static function provideTestForAccountCreation() {
 		return [
-			'Normal user' => [ 'NormalUser', false, false ],
-			'Sysop' => [ 'UTSysop', true, false ],
-			'Normal user with hook' => [ 'NormalUser', true, true ],
+			'Normal user' => [ false, false, false ],
+			'Sysop' => [ true, true, false ],
+			'Normal user with hook' => [ false, true, true ],
 		];
 	}
 
