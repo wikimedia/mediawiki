@@ -212,6 +212,7 @@ because of Phabricator reports.
   - ::isSemiProtected()
   - ::loadRestrictionsFromRows()
 * Global function wfShowingResults, deprecated in 1.40, has been removed.
+* Global function wfClearOutputBuffers, deprecated in 1.36, has been removed.
 * LinkBatch::__construct() now requires that all parameters be passed. The
   fallback to MediaWikiServices emitted deprecation notices since 1.35.
 * The methods IndexPager::getPagingLinks(), IndexPager::getLimitLinks() and
