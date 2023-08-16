@@ -276,28 +276,4 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers ::actionExists
-	 */
-	public function testActionExists() {
-		$this->hideDeprecated( ActionFactory::class . '::actionExists' );
-		$factory = $this->getFactory( [
-			'actions' => [
-				'extra' => true
-			]
-		] );
-		$this->assertTrue(
-			$factory->actionExists( 'VIEW' ),
-			'`view` is built into core, action name is normalized to lowercase'
-		);
-		$this->assertTrue(
-			$factory->actionExists( 'extra' ),
-			'`extra` is added via configuration'
-		);
-		$this->assertFalse(
-			$factory->actionExists( 'missing' ),
-			'`missing` action is not defined'
-		);
-	}
-
 }
