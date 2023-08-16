@@ -331,6 +331,10 @@ because of Phabricator reports.
   use UserIdentityLookup::getUserIdentityByName().
 * User::incEditCount(), deprecated in 1.37, has been removed. Instead, use
   UserEditTracker::incrementUserEditCount().
+* Passing a second query parameter to Title::getFullURL(), Title::getLocalURL(),
+  Title::getInternalURL(), or Title::getCanonicalURL(), each deprecated in 1.19,
+  is now not supported. Pass it as a key,value pair in the first parameter array
+  instead.
 * …
 
 === Deprecations in 1.41 ===

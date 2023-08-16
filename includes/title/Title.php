@@ -2167,60 +2167,20 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	}
 
 	/**
-	 * Helper to fix up the get{Canonical,Full,Link,Local,Internal}URL args
-	 * get{Canonical,Full,Link,Local,Internal}URL methods accepted an optional
-	 * second argument named variant. This was deprecated in favor
-	 * of passing an array of option with a "variant" key
-	 * Once $query2 is removed for good, this helper can be dropped
-	 * and the wfArrayToCgi moved to getLocalURL();
-	 *
-	 * @since 1.19 (r105919)
-	 * @param array|string $query
-	 * @param string|string[]|false $query2
-	 * @return string
-	 */
-	private static function fixUrlQueryArgs( $query, $query2 = false ) {
-		if ( $query2 !== false ) {
-			wfDeprecatedMsg( "Title::get{Canonical,Full,Link,Local,Internal}URL " .
-				"method called with a second parameter is deprecated since MediaWiki 1.19. " .
-				"Add your parameter to an array passed as the first parameter.", "1.19" );
-		}
-		if ( is_array( $query ) ) {
-			$query = wfArrayToCgi( $query );
-		}
-		if ( $query2 ) {
-			if ( is_string( $query2 ) ) {
-				// $query2 is a string, we will consider this to be
-				// a deprecated $variant argument and add it to the query
-				$query2 = wfArrayToCgi( [ 'variant' => $query2 ] );
-			} else {
-				$query2 = wfArrayToCgi( $query2 );
-			}
-			// If we have $query content add a & to it first
-			if ( $query ) {
-				$query .= '&';
-			}
-			// Now append the queries together
-			$query .= $query2;
-		}
-		return $query;
-	}
-
-	/**
 	 * Get a real URL referring to this title, with interwiki link and
 	 * fragment
 	 *
 	 * @see self::getLocalURL for the arguments.
 	 * @see \MediaWiki\Utils\UrlUtils::expand()
 	 * @param string|array $query
-	 * @param string|string[]|false $query2
+	 * @param false $query2 deprecated since MW 1.19; ignored since MW 1.41
 	 * @param string|int|null $proto Protocol type to use in URL
 	 * @return string The URL
 	 */
 	public function getFullURL( $query = '', $query2 = false, $proto = PROTO_RELATIVE ) {
 		$services = MediaWikiServices::getInstance();
 
-		$query = self::fixUrlQueryArgs( $query, $query2 );
+		$query = is_array( $query ) ? wfArrayToCgi( $query ) : $query;
 
 		# Hand off all the decisions on urls to getLocalURL
 		$url = $this->getLocalURL( $query );
@@ -2277,19 +2237,13 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *   not used for interwiki links. Can be specified as an associative array as well,
 	 *   e.g., [ 'action' => 'edit' ] (keys and values will be URL-escaped).
 	 *   Some query patterns will trigger various shorturl path replacements.
-	 * @param string|string[]|false $query2 An optional secondary query array. This one MUST
-	 *   be an array. If a string is passed it will be interpreted as a deprecated
-	 *   variant argument and urlencoded into a variant= argument.
-	 *   This second query argument will be added to the $query
-	 *   The second parameter is deprecated since 1.19. Pass it as a key,value
-	 *   pair in the first parameter array instead.
 	 *
 	 * @return string
 	 */
-	public function getLocalURL( $query = '', $query2 = false ) {
+	public function getLocalURL( $query = '' ) {
 		global $wgArticlePath, $wgScript, $wgMainPageIsDomainRoot;
 
-		$query = self::fixUrlQueryArgs( $query, $query2 );
+		$query = is_array( $query ) ? wfArrayToCgi( $query ) : $query;
 
 		$services = MediaWikiServices::getInstance();
 		$hookRunner = new HookRunner( $services->getHookContainer() );
@@ -2375,7 +2329,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * HTML-escaped if it's being output in HTML.
 	 *
 	 * @param string|array $query
-	 * @param string|string[]|false $query2
+	 * @param string|string[]|false $query2 deprecated since MW 1.19; ignored since MW 1.41
 	 * @param string|int|false $proto A PROTO_* constant on how the URL should be expanded,
 	 *                               or false (default) for no expansion
 	 * @see self::getLocalURL for the arguments.
@@ -2383,11 +2337,11 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 */
 	public function getLinkURL( $query = '', $query2 = false, $proto = false ) {
 		if ( $this->isExternal() || $proto !== false ) {
-			$ret = $this->getFullURL( $query, $query2, $proto );
+			$ret = $this->getFullURL( $query, false, $proto );
 		} elseif ( $this->getPrefixedText() === '' && $this->hasFragment() ) {
 			$ret = $this->getFragmentForURL();
 		} else {
-			$ret = $this->getLocalURL( $query, $query2 ) . $this->getFragmentForURL();
+			$ret = $this->getLocalURL( $query ) . $this->getFragmentForURL();
 		}
 		return $ret;
 	}
@@ -2403,14 +2357,14 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *
 	 * @see self::getLocalURL for the arguments.
 	 * @param string|array $query
-	 * @param string|false $query2 Deprecated
 	 * @return string The URL
 	 */
-	public function getInternalURL( $query = '', $query2 = false ) {
+	public function getInternalURL( $query = '' ) {
 		global $wgInternalServer, $wgServer;
 		$services = MediaWikiServices::getInstance();
 
-		$query = self::fixUrlQueryArgs( $query, $query2 );
+		$query = is_array( $query ) ? wfArrayToCgi( $query ) : $query;
+
 		$server = $wgInternalServer !== false ? $wgInternalServer : $wgServer;
 		$url = (string)$services->getUrlUtils()->expand( $server . $this->getLocalURL( $query ), PROTO_HTTP );
 		( new HookRunner( $services->getHookContainer() ) )
@@ -2427,14 +2381,14 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *
 	 * @see self::getLocalURL for the arguments.
 	 * @param string|array $query
-	 * @param string|false $query2 Deprecated
 	 * @return string The URL
 	 * @since 1.18
 	 */
-	public function getCanonicalURL( $query = '', $query2 = false ) {
+	public function getCanonicalURL( $query = '' ) {
 		$services = MediaWikiServices::getInstance();
 
-		$query = self::fixUrlQueryArgs( $query, $query2 );
+		$query = is_array( $query ) ? wfArrayToCgi( $query ) : $query;
+
 		$url = (string)$services->getUrlUtils()->expand(
 			$this->getLocalURL( $query ) . $this->getFragmentForURL(),
 			PROTO_CANONICAL
