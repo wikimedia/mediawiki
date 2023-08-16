@@ -347,6 +347,8 @@ because of Phabricator reports.
   instead.
 * Title::getBacklinkCache(), deprecated since 1.37, has been dropped. Instead,
   use BacklinkCacheFactory::getBacklinkCache().
+* Title::newFromIDs and TitleFactory::newFromIDs, deprecated in 1.38, have been
+  dropped; use a PageStore QueryBuilder instead.
 * …
 
 === Deprecations in 1.41 ===
