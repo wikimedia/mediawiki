@@ -1913,6 +1913,7 @@
 	"listfiles-delete": "юйырға",
 	"listfiles-summary": "Был махсус бит бөтә тейәлгән файлдарҙы күрһәтә.",
 	"listfiles-userdoesnotexist": "\"$1\" иҫәп яҙмаһы теркәлмәгән.",
+	"listfiles-pager-submit": "Файлдар исемлеген күрһәтергә",
 	"imgfile": "файл",
 	"listfiles": "Файлдар исемлеге",
 	"listfiles_subpage": "$1 йөкләүҙәре",

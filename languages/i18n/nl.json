@@ -1994,6 +1994,7 @@
 	"listfiles-delete": "verwijderen",
 	"listfiles-summary": "Op deze speciale pagina zijn alle toegevoegde bestanden te bekijken.",
 	"listfiles-userdoesnotexist": "Gebruikersaccount \"$1\" bestaat niet.",
+	"listfiles-pager-submit": "Bestandslijst tonen",
 	"imgfile": "bestand",
 	"listfiles": "Bestandslijst",
 	"listfiles_subpage": "Geplaatst door $1",

@@ -1915,6 +1915,7 @@
 	"listfiles-delete": "избриши",
 	"listfiles-summary": "Оваа службена страница ги прикажува сите подигнати податотеки.",
 	"listfiles-userdoesnotexist": "Корисничката сметка „$1“ не е создадена.",
+	"listfiles-pager-submit": "Прикажи список на податотеки",
 	"imgfile": "податотека",
 	"listfiles": "Список на податотеки",
 	"listfiles_subpage": "Подигања на $1",
