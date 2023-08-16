@@ -102,38 +102,4 @@ class LockManagerGroup {
 
 		return [ 'class' => $class ] + $this->managers[$name]['config'];
 	}
-
-	/**
-	 * Get the default lock manager configured for the site.
-	 * Returns NullLockManager if no lock manager could be found.
-	 *
-	 * @codeCoverageIgnore
-	 * @deprecated since 1.35, seemingly unused, just call get() and catch any exception instead
-	 * @return LockManager
-	 */
-	public function getDefault() {
-		wfDeprecated( __METHOD__, '1.35' );
-
-		return isset( $this->managers['default'] )
-			? $this->get( 'default' )
-			: new NullLockManager( [] );
-	}
-
-	/**
-	 * Get the default lock manager configured for the site
-	 * or at least some other effective configured lock manager.
-	 * Throws an exception if no lock manager could be found.
-	 *
-	 * @codeCoverageIgnore
-	 * @deprecated since 1.35, seemingly unused, just call get() and catch any exception instead
-	 * @return LockManager
-	 * @throws Exception
-	 */
-	public function getAny() {
-		wfDeprecated( __METHOD__, '1.35' );
-
-		return isset( $this->managers['default'] )
-			? $this->get( 'default' )
-			: $this->get( 'fsLockManager' );
-	}
 }

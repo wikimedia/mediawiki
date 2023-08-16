@@ -1,7 +1,6 @@
 <?php
 
 use Wikimedia\Rdbms\LBFactory;
-use Wikimedia\TestingAccessWrapper;
 
 /**
  * Since this is a unit test, we don't test the singleton() or destroySingletons() methods. We also
@@ -62,29 +61,5 @@ class LockManagerGroupTest extends MediaWikiUnitTestCase {
 			[ 'class' => 'b', 'name' => 'a', 'foo' => 'c', 'domain' => 'domain' ],
 			$lmg->config( 'a' )
 		);
-	}
-
-	public function testGetDefaultNull() {
-		$this->hideDeprecated( 'LockManagerGroup::getDefault' );
-
-		$lmg = new LockManagerGroup( 'domain', [], $this->getMockLBFactory() );
-		$expected = new NullLockManager( [] );
-		$actual = $lmg->getDefault();
-		// Have to get rid of the $sessions for equality check to work
-		TestingAccessWrapper::newFromObject( $actual )->session = null;
-		TestingAccessWrapper::newFromObject( $expected )->session = null;
-		$this->assertEquals( $expected, $actual );
-	}
-
-	public function testGetAnyException() {
-		$this->hideDeprecated( 'LockManagerGroup::getAny' );
-
-		// XXX Isn't the name 'getAny' misleading if we don't get whatever's available?
-		$this->expectException( Exception::class );
-		$this->expectExceptionMessage( 'No lock manager defined with the name `fsLockManager`.' );
-
-		$lmg = new LockManagerGroup( 'domain', [ [ 'name' => 'a', 'class' => 'b' ] ],
-			$this->getMockLBFactory() );
-		$lmg->getAny();
 	}
 }
