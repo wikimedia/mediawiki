@@ -530,20 +530,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	}
 
 	/**
-	 * Returns a list of fields that are to be selected for initializing Title
-	 * objects.
-	 *
-	 * @deprecated since 1.36, use PageStore::newSelectQueryBuilder() instead.
-	 *   Hard deprecated in 1.39, remove in 1.40
-	 *
-	 * @return array
-	 */
-	protected static function getSelectFields() {
-		wfDeprecated( __METHOD__, '1.36' );
-		return MediaWikiServices::getInstance()->getPageStore()->getSelectFields();
-	}
-
-	/**
 	 * Create a new Title from an article ID
 	 *
 	 * @param int $id The page_id corresponding to the Title to create
