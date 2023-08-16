@@ -49,33 +49,6 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	/**
-	 * Create an array of common toolbox items from the data in the quicktemplate
-	 * stored by SkinTemplate and items added by hook to the 'toolbox' section.
-	 * The resulting array is built according to a format intended to be passed
-	 * through makeListItem to generate the html.
-	 *
-	 * @deprecated since 1.35. To add items to the toolbox, use SidebarBeforeOutput
-	 * hook. To get the toolbox only use $this->data['sidebar']['TOOLBOX'], if you are
-	 * extending this class.
-	 * @return array
-	 */
-	public function getToolbox() {
-		wfDeprecated( __METHOD__, '1.35' );
-
-		$toolbox = $this->getSkin()->makeToolbox(
-			$this->data['nav_urls'],
-			$this->data['feeds']
-		);
-
-		// Merge content that might be added to the toolbox section by hook
-		if ( isset( $this->data['sidebar']['TOOLBOX'] ) ) {
-			$toolbox = array_merge( $toolbox, $this->data['sidebar']['TOOLBOX'] ?? [] );
-		}
-
-		return $toolbox;
-	}
-
-	/**
 	 * @return array
 	 */
 	public function getPersonalTools() {
@@ -91,6 +64,7 @@ abstract class BaseTemplate extends QuickTemplate {
 		// Force the rendering of the following portals
 		$sidebar = $this->data['sidebar'];
 		if ( !isset( $sidebar['SEARCH'] ) ) {
+			// @phan-suppress-next-line PhanTypeMismatchDimAssignment False positive
 			$sidebar['SEARCH'] = true;
 		}
 		if ( !isset( $sidebar['TOOLBOX'] ) ) {
