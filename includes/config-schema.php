@@ -2380,7 +2380,6 @@ return [
 				0 => 'MIMEsearch',
 				1 => 'LinkSearch',
 			],
-			'AjaxUploadDestCheck' => true,
 			'AjaxLicensePreview' => true,
 			'CrossSiteAJAXdomains' => [
 			],
