@@ -311,9 +311,10 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			if ( $title === null ) {
 				static $counter;
 				$counter = $counter === null ? random_int( 10, 1000 ) : ++$counter;
-				$title = "Test page $counter $caller";
+				$title = Title::newFromText( "Test page $counter $caller", $this->getDefaultWikitextNS( $title, NS_MAIN ) );
+			} else {
+				$title = Title::newFromText( $title );
 			}
-			$title = Title::newFromText( $title );
 		}
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
@@ -322,10 +323,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$status = $page->doUserEditContent(
 				ContentHandler::makeContent(
 					"Test content for $caller",
-					$title,
-					// Regardless of how the wiki is configure or what extensions are present,
-					// force this page to be a wikitext one.
-					CONTENT_MODEL_WIKITEXT
+					$title
 				),
 				$user,
 				"Summary for $caller",
