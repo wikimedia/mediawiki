@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\MainConfigNames;
@@ -122,27 +121,6 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 			// disabled action exists but cannot be created
 			[ 'disabled', false ],
 		];
-	}
-
-	/**
-	 * @dataProvider provideActions
-	 * @param string $requestedAction
-	 * @param string|false|null $expected
-	 */
-	public function testActionExists( string $requestedAction, $expected ) {
-		$this->hideDeprecated( ActionFactory::class . '::actionExists' );
-		$this->hideDeprecated( Action::class . '::exists' );
-		$exists = Action::exists( $requestedAction );
-
-		$this->assertSame( $expected !== null, $exists );
-	}
-
-	public function testActionExists_doesNotRequireInstantiation() {
-		$this->hideDeprecated( ActionFactory::class . '::actionExists' );
-		$this->hideDeprecated( Action::class . '::exists' );
-		// The method is not supposed to check if the action can be instantiated.
-		$exists = Action::exists( 'declared' );
-		$this->assertTrue( $exists );
 	}
 
 	public static function provideGetActionName() {

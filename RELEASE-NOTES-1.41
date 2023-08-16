@@ -333,6 +333,8 @@ because of Phabricator reports.
   UserEditTracker::incrementUserEditCount().
 * Article::getTimestamp(), deprecated in 1.35, has been removed. Use WikiPage's
   or RevisionRecord's version of this method instead.
+* ActionFactory::actionExists(), deprecated since 1.38, has been dropped.
+* Action::exists(), deprecated since 1.38, has been dropped.
 * Passing a second query parameter to Title::getFullURL(), Title::getLocalURL(),
   Title::getInternalURL(), or Title::getCanonicalURL(), each deprecated in 1.19,
   is now not supported. Pass it as a key,value pair in the first parameter array

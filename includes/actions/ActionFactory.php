@@ -355,20 +355,6 @@ class ActionFactory {
 	}
 
 	/**
-	 * @deprecated since 1.38
-	 * @param string $actionName
-	 * @return bool
-	 */
-	public function actionExists( string $actionName ): bool {
-		wfDeprecated( __METHOD__, '1.38' );
-		// Normalize to lowercase
-		$actionName = strtolower( $actionName );
-
-		// Null means no such action
-		return ( $this->getActionSpec( $actionName ) !== null );
-	}
-
-	/**
 	 * Protected to allow overriding with a partial mock in unit tests
 	 *
 	 * @codeCoverageIgnore
