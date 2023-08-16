@@ -92,7 +92,7 @@ class SpecialPageTest extends MediaWikiIntegrationTestCase {
 	public function testRequireLoginNotAnon() {
 		$specialPage = new SpecialPage( 'Watchlist', 'viewmywatchlist' );
 
-		$user = User::newFromName( "UTSysop" );
+		$user = $this->getTestSysop()->getUser();
 		$specialPage->getContext()->setUser( $user );
 
 		$specialPage->requireLogin();

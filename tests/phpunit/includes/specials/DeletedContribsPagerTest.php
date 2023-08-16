@@ -5,7 +5,6 @@ use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Revision\RevisionStore;
-use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * @group Database
@@ -16,9 +15,6 @@ class DeletedContribsPagerTest extends MediaWikiIntegrationTestCase {
 
 	/** @var HookContainer */
 	private $hookContainer;
-
-	/** @var ILoadBalancer */
-	private $loadBalancer;
 
 	/** @var LinkRenderer */
 	private $linkRenderer;
@@ -45,7 +41,7 @@ class DeletedContribsPagerTest extends MediaWikiIntegrationTestCase {
 		$this->pager = $this->getDeletedContribsPager();
 	}
 
-	private function getDeletedContribsPager( $target = 'UTSysop', $namespace = 0 ) {
+	private function getDeletedContribsPager( $target = 'Some test user', $namespace = 0 ) {
 		return new DeletedContribsPager(
 			RequestContext::getMain(),
 			$this->hookContainer,

@@ -34,7 +34,7 @@ class UserInfoTest extends MediaWikiIntegrationTestCase {
 			$this->assertSame( 'Invalid ID', $ex->getMessage() );
 		}
 
-		$user = User::newFromName( 'UTSysop' );
+		$user = $this->getTestSysop()->getUser();
 		$userinfo = UserInfo::newFromId( $user->getId() );
 		$this->assertFalse( $userinfo->isAnon() );
 		$this->assertFalse( $userinfo->isVerified() );
@@ -69,7 +69,7 @@ class UserInfoTest extends MediaWikiIntegrationTestCase {
 		}
 
 		// User name that exists
-		$user = User::newFromName( 'UTSysop' );
+		$user = $this->getTestSysop()->getUser();
 		$userinfo = UserInfo::newFromName( $user->getName() );
 		$this->assertFalse( $userinfo->isAnon() );
 		$this->assertFalse( $userinfo->isVerified() );
@@ -124,7 +124,7 @@ class UserInfoTest extends MediaWikiIntegrationTestCase {
 
 	public function testNewFromUser() {
 		// User that exists
-		$user = User::newFromName( 'UTSysop' );
+		$user = $this->getTestSysop()->getUser();
 		$userinfo = UserInfo::newFromUser( $user );
 		$this->assertFalse( $userinfo->isAnon() );
 		$this->assertFalse( $userinfo->isVerified() );

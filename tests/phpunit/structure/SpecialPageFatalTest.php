@@ -8,7 +8,7 @@ use MediaWiki\User\UserIdentityValue;
  * Test that runs against all registered special pages to make sure that regular
  * execution of the special page does not cause a fatal error.
  *
- * UTSysop is used to run as much of the special page code as possible without
+ * UltimateAuthority is used to run as much of the special page code as possible without
  * actually knowing the details of the special page.
  *
  * @since 1.32
@@ -35,7 +35,7 @@ class SpecialPageFatalTest extends MediaWikiIntegrationTestCase {
 			}
 
 			$executor = new SpecialPageExecutor();
-			$authority = new UltimateAuthority( new UserIdentityValue( 0, 'UTSysop' ) );
+			$authority = new UltimateAuthority( new UserIdentityValue( 42, 'SpecialPageTester' ) );
 
 			try {
 				$executor->executeSpecialPage( $page, '', null, 'qqx', $authority );
