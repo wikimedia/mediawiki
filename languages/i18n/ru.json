@@ -2061,6 +2061,7 @@
 	"listfiles-delete": "удалить",
 	"listfiles-summary": "Эта служебная страница показывает все загруженные файлы.",
 	"listfiles-userdoesnotexist": "Учётная запись «$1» не зарегистрирована.",
+	"listfiles-pager-submit": "Показать список файлов",
 	"imgfile": "файл",
 	"listfiles": "Список файлов",
 	"listfiles_subpage": "Загрузки $1",

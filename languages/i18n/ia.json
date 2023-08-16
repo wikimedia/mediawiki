@@ -1898,6 +1898,7 @@
 	"listfiles-delete": "deler",
 	"listfiles-summary": "Iste pagina special monstra tote le files incargate.",
 	"listfiles-userdoesnotexist": "Le conto de usator \"$1\" non es registrate.",
+	"listfiles-pager-submit": "Monstrar lista de files",
 	"imgfile": "file",
 	"listfiles": "Lista de files",
 	"listfiles_subpage": "Files incargate per $1",
