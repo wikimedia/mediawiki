@@ -721,10 +721,9 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers MediaWiki\Title\Title::newFromID
-	 * @covers MediaWiki\Title\Title::newFromIDs
 	 * @covers MediaWiki\Title\Title::newFromRow
 	 */
-	public function testNewFromIds() {
+	public function testNewFromId() {
 		// First id
 		$existingPage1 = $this->getExistingTestPage( 'UTest1' );
 		$existingTitle1 = $existingPage1->getTitle();
@@ -752,19 +751,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			$newFromId2->equals( $existingTitle2 ),
 			'newFromID returns the correct title'
 		);
-
-		$this->filterDeprecated( '/newFromIDs/' );
-		// newFromIDs using both
-		$titles = Title::newFromIDs( [ $existingId1, $existingId2 ] );
-		$this->assertCount( 2, $titles );
-		$this->assertTrue(
-			$titles[0]->equals( $existingTitle1 ) &&
-				$titles[1]->equals( $existingTitle2 ),
-			'newFromIDs returns an array that matches the correct titles'
-		);
-
-		// newFromIds early return for an empty array of ids
-		$this->assertSame( [], Title::newFromIDs( [] ) );
 	}
 
 	/**

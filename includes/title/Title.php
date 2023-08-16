@@ -571,34 +571,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	}
 
 	/**
-	 * Make an array of titles from an array of IDs
-	 *
-	 * @param int[] $ids Array of IDs
-	 * @return Title[] Array of Titles
-	 * @deprecated since 1.38 use a PageStore QueryBuilder instead
-	 */
-	public static function newFromIDs( $ids ) {
-		wfDeprecated( __METHOD__, '1.38' );
-
-		if ( !count( $ids ) ) {
-			return [];
-		}
-		$dbr = wfGetDB( DB_REPLICA );
-
-		$res = $dbr->newSelectQueryBuilder()
-			->select( self::getSelectFields() )
-			->from( 'page' )
-			->where( [ 'page_id' => $ids ] )
-			->caller( __METHOD__ )->fetchResultSet();
-
-		$titles = [];
-		foreach ( $res as $row ) {
-			$titles[] = self::newFromRow( $row );
-		}
-		return $titles;
-	}
-
-	/**
 	 * Make a Title object from a DB row
 	 *
 	 * @param stdClass $row Object database row (needs at least page_title,page_namespace)
