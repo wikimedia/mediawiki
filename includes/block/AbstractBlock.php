@@ -149,6 +149,7 @@ abstract class AbstractBlock implements Block {
 	 * @return string
 	 */
 	public function getReason() {
+		wfDeprecated( __METHOD__, '1.35' );
 		$language = RequestContext::getMain()->getLanguage();
 		return $this->reason->message->inLanguage( $language )->plain();
 	}

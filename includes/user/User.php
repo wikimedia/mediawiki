@@ -26,6 +26,7 @@ use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
@@ -211,7 +212,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/**
 	 * TODO: This should be removed when User::blockedFor
 	 * and AbstractBlock::getReason are hard deprecated.
-	 * @var string
+	 * @var CommentStoreComment
 	 */
 	protected $mBlockreason;
 	/** @var AbstractBlock */
@@ -1417,12 +1418,12 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		if ( $block ) {
 			$this->mBlock = $block;
 			$this->mBlockedby = $block->getByName();
-			$this->mBlockreason = $block->getReason();
+			$this->mBlockreason = $block->getReasonComment();
 			$this->mHideName = $block->getHideName();
 		} else {
 			$this->mBlock = null;
 			$this->mBlockedby = '';
-			$this->mBlockreason = '';
+			$this->mBlockreason = CommentStoreComment::newUnsavedComment( '' );
 			$this->mHideName = false;
 		}
 	}
@@ -1533,7 +1534,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 *
 	 * @deprecated since 1.35 Use AbstractBlock::getReasonComment instead
 	 * Hard deprecated since 1.39.
-	 * @return string Blocking reason
+	 * @return CommentStoreComment Blocking reason
 	 */
 	public function blockedFor() {
 		wfDeprecated( __METHOD__, '1.35' );

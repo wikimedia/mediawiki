@@ -487,6 +487,8 @@ because of Phabricator reports.
   been deprecated and will emit deprecation warnings.
 * MediaWiki\ResourceLoader\Module::getDeprecationInformation() is deprecated.
   Use ::getDeprecationWarning() instead.
+* MediaWiki\Block\AbstractBlock::getReason(), deprecated since 1.35, now emits
+  deprecation warnings. Use ::getReasonComment() instead.
 * …
 
 === Other changes in 1.41 ===
