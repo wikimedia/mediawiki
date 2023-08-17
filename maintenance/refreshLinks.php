@@ -43,6 +43,7 @@ class RefreshLinks extends Maintenance {
 		$this->addOption( 'new-only', 'Only affect articles with just a single edit' );
 		$this->addOption( 'redirects-only', 'Only fix redirects, not all links' );
 		$this->addOption( 'old-redirects-only', 'Only fix redirects with no redirect table entry' );
+		$this->addOption( 'touched-only', 'Only fix pages that has been touched after last update' );
 		$this->addOption( 'e', 'Last page id to refresh', false, true );
 		$this->addOption( 'dfn-chunk-size', 'Maximum number of existent IDs to check per ' .
 			'query, default 100000', false, true );
@@ -100,6 +101,7 @@ class RefreshLinks extends Maintenance {
 			$new = $this->hasOption( 'new-only' );
 			$redir = $this->hasOption( 'redirects-only' );
 			$oldRedir = $this->hasOption( 'old-redirects-only' );
+			$touched = $this->hasOption( 'touched-only' );
 			$what = $redir ? 'redirects' : 'links';
 			if ( $oldRedir ) {
 				$builder->leftJoin( 'redirect', null, 'page_id=rd_from' )
@@ -112,6 +114,11 @@ class RefreshLinks extends Maintenance {
 				$builder->andWhere( [ 'page_is_new' => 1 ] );
 				$this->output( "Refreshing $what from new pages...\n" );
 			} else {
+				if ( $touched ) {
+					$builder->andWhere( [
+						'page_touched > page_links_updated OR page_links_updated IS NULL',
+					] );
+				}
 				$this->output( "Refreshing $what from pages...\n" );
 			}
 			$this->doRefreshLinks( $builder, $redir || $oldRedir );
