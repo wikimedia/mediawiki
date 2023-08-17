@@ -2120,6 +2120,7 @@
 	"listfiles-delete": "borrar",
 	"listfiles-summary": "Esta página especial muestra todos los archivos subidos.",
 	"listfiles-userdoesnotexist": "La cuenta de usuario «$1» no está registrada.",
+	"listfiles-pager-submit": "Mostrar lista de archivos",
 	"imgfile": "archivo",
 	"listfiles": "Lista de archivos",
 	"listfiles_subpage": "Subidas por $1",

@@ -1882,6 +1882,7 @@
 	"listfiles-delete": "јоголтор",
 	"listfiles-summary": "Бу аҥылу бӱкте ончо салынган файлдар кӧргӱзилет.",
 	"listfiles-userdoesnotexist": "\"$1\" атту аккаунт регистрациязы јок.",
+	"listfiles-pager-submit": "Файлдарлу тизимди кӧргӱзер",
 	"imgfile": "файл",
 	"listfiles": "Файлдардыҥ тизими",
 	"listfiles_subpage": "$1 туружаачыныҥ салганы",

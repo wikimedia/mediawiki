@@ -14,6 +14,7 @@
 			"Mormegil",
 			"Patriccck",
 			"Patrik L.",
+			"Pavreh",
 			"Utar",
 			"YjM"
 		]
@@ -274,6 +275,7 @@
 	"api-help-permissions-granted-to": "Uděleno {{PLURAL:$1|skupině|skupinám}}: $2",
 	"api-help-right-apihighlimits": "Používání vyšších limitů v API dotazech (pomalé dotazy: $1, rychlé dotazy: $2). Limity pro pomalé dotazy se vztahují i na vícehodnotové parametry.",
 	"api-help-open-in-apisandbox": "<small>[otevřít v pískovišti]</small>",
+	"apierror-assertnameduserfailed": "Již nejste přihlášen jako „$1“, takže akci nelze dokončit.",
 	"apierror-blocked": "Byla vám zablokována možnost editace.",
 	"apierror-mustbeloggedin": "Abyste mohli $1, musíte být přihlášeni.",
 	"apierror-nosuchrcid": "Žádná nedávná změna nemá ID $1.",
