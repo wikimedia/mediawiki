@@ -2560,7 +2560,7 @@ class OutputPage extends ContextSource {
 			$this->addVaryHeader( 'Cookie' );
 		}
 
-		foreach ( SessionManager::singleton()->getVaryHeaders() as $header => $options ) {
+		foreach ( SessionManager::singleton()->getVaryHeaders() as $header ) {
 			$this->addVaryHeader( $header );
 		}
 		return 'Vary: ' . implode( ', ', array_keys( $this->mVaryHeader ) );

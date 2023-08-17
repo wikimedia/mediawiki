@@ -528,13 +528,10 @@ abstract class SessionProvider implements SessionProviderInterface {
 	 *
 	 * The return value is such that someone could theoretically do this:
 	 * @code
-	 * foreach ( $provider->getVaryHeaders() as $header => $options ) {
+	 * foreach ( $provider->getVaryHeaders() as $header ) {
 	 *   $outputPage->addVaryHeader( $header );
 	 * }
 	 * @endcode
-	 *
-	 * Note that the $options parameter to addVaryHeader has been deprecated
-	 * since 1.34, and should be `null` or an empty array.
 	 *
 	 * @stable to override
 	 * @note For use by \MediaWiki\Session\SessionManager only
