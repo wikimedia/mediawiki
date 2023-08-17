@@ -206,7 +206,7 @@ class SpecialUserRights extends SpecialPage {
 					Html::element(
 						'p',
 						[],
-						$this->msg( 'savedrights', $this->mFetchedUser->getName() )->text()
+						$this->msg( 'savedrights', $this->getDisplayUsername( $this->mFetchedUser ) )->text()
 					),
 					'mw-notify-success'
 				)
@@ -552,7 +552,7 @@ class SpecialUserRights extends SpecialPage {
 
 		$logEntry = new ManualLogEntry( 'rights', 'rights' );
 		$logEntry->setPerformer( $this->getUser() );
-		$logEntry->setTarget( Title::makeTitle( NS_USER, $user->getName() ) );
+		$logEntry->setTarget( Title::makeTitle( NS_USER, $this->getDisplayUsername( $user ) ) );
 		$logEntry->setComment( is_string( $reason ) ? $reason : "" );
 		$logEntry->setParameters( [
 			'4::oldgroups' => $oldGroups,
@@ -803,7 +803,7 @@ class SpecialUserRights extends SpecialPage {
 		$flags = $systemUser ? 0 : Linker::TOOL_LINKS_EMAIL;
 		$userToolLinks = Linker::userToolLinks(
 			$user->getId( $user->getWikiId() ),
-			$user->getName(),
+			$this->getDisplayUsername( $user ),
 			false, /* default for redContribsWhenNoEdits */
 			$flags
 		);
@@ -837,7 +837,7 @@ class SpecialUserRights extends SpecialPage {
 			) .
 			$this->msg(
 				$canChangeAny ? 'editinguser' : 'viewinguserrights'
-			)->params( wfEscapeWikiText( $user->getName() ) )
+			)->params( wfEscapeWikiText( $this->getDisplayUsername( $user ) ) )
 				->rawParams( $userToolLinks )->parse()
 		);
 		if ( $canChangeAny ) {
@@ -1117,6 +1117,23 @@ class SpecialUserRights extends SpecialPage {
 	}
 
 	/**
+	 * Get a display user name. This includes the {@}domain part for interwiki users.
+	 * Use UserIdentity::getName for {{GENDER:}} in messages and
+	 * use the "display user name" for visible user names in logs or messages
+	 *
+	 * @param UserIdentity $user
+	 * @return string
+	 */
+	private function getDisplayUsername( UserIdentity $user ) {
+		$userName = $user->getName();
+		if ( $user->getWikiId() !== UserIdentity::LOCAL ) {
+			$userName .= $this->getConfig()->get( MainConfigNames::UserrightsInterwikiDelimiter )
+				. $user->getWikiId();
+		}
+		return $userName;
+	}
+
+	/**
 	 * Show a rights log fragment for the specified user
 	 *
 	 * @param UserIdentity $user User to show log for
@@ -1125,7 +1142,8 @@ class SpecialUserRights extends SpecialPage {
 	protected function showLogFragment( $user, $output ) {
 		$rightsLogPage = new LogPage( 'rights' );
 		$output->addHTML( Xml::element( 'h2', null, $rightsLogPage->getName()->text() ) );
-		LogEventsList::showLogExtract( $output, 'rights', Title::makeTitle( NS_USER, $user->getName() ) );
+		LogEventsList::showLogExtract( $output, 'rights',
+			Title::makeTitle( NS_USER, $this->getDisplayUsername( $user ) ) );
 	}
 
 	/**
