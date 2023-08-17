@@ -331,7 +331,8 @@ class SkinTemplate extends Skin {
 
 		$tpl->set( 'debug', '' );
 		$tpl->set( 'debughtml', MWDebug::getHTMLDebugLog() );
-		$tpl->set( 'reporttime', wfReportTime() );
+		$tpl->set( 'reporttime', wfReportTime( null, false ) );
+		$tpl->deprecate( 'reporttime', '1.41' );
 
 		// Set the bodytext to another key so that skins can just output it on its own
 		// and output printfooter and debughtml separately

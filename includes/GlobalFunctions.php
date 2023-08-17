@@ -985,11 +985,15 @@ function wfHostname() {
  *
  * @deprecated since 1.40
  * @param string|null $nonce Unused
+ * @param bool $triggerWarnings introduced in 1.41 whether to trigger deprecation notice.
  * @return string|WrappedString HTML
  */
-function wfReportTime( $nonce = null ) {
+function wfReportTime( $nonce = null, $triggerWarnings = true ) {
 	global $wgShowHostnames;
 
+	if ( $triggerWarnings ) {
+		wfDeprecated( __FUNCTION__, '1.40' );
+	}
 	$elapsed = ( microtime( true ) - $_SERVER['REQUEST_TIME_FLOAT'] );
 	// seconds to milliseconds
 	$responseTime = round( $elapsed * 1000 );
