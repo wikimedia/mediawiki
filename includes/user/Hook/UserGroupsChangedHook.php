@@ -2,6 +2,7 @@
 
 namespace MediaWiki\User\Hook;
 
+use MediaWiki\User\UserIdentity;
 use User;
 use UserGroupMembership;
 
@@ -18,7 +19,8 @@ interface UserGroupsChangedHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param User $user User whose groups changed
+	 * @param User|UserIdentity $user User whose groups changed, for local group changes this is a
+	 *   User class, for interwiki group changes this was a UserRightsProxy until 1.40 and is a UserIdentity since 1.41
 	 * @param string[] $added Groups added
 	 * @param string[] $removed Groups removed
 	 * @param User|false $performer User who performed the change, false if via autopromotion
