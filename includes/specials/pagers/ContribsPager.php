@@ -150,6 +150,9 @@ class ContribsPager extends RangeChronologicalPager {
 	/** @var RevisionRecord[] Cached revisions by ID */
 	private $revisions = [];
 
+	/** @var MapCacheLRU */
+	private $tagsCache;
+
 	/**
 	 * FIXME List services first T266484 / T290405
 	 * @param IContextSource $context
@@ -250,6 +253,7 @@ class ContribsPager extends RangeChronologicalPager {
 		$this->revisionStore = $revisionStore ?? $services->getRevisionStore();
 		$this->namespaceInfo = $namespaceInfo ?? $services->getNamespaceInfo();
 		$this->commentFormatter = $commentFormatter ?? $services->getCommentFormatter();
+		$this->tagsCache = new MapCacheLRU( 50 );
 	}
 
 	public function getDefaultQuery() {
@@ -809,11 +813,18 @@ class ContribsPager extends RangeChronologicalPager {
 				Html::rawElement( 'span', [], $histlink )
 			);
 
-			# Tags, if any.
-			[ $tagSummary, $newClasses ] = ChangeTags::formatSummaryRow(
-				$row->ts_tags,
-				null,
-				$this->getContext()
+			# Tags, if any. Save some time using a cache.
+			[ $tagSummary, $newClasses ] = $this->tagsCache->getWithSetCallback(
+				$this->tagsCache->makeKey(
+					$row->ts_tags ?? '',
+					$this->getUser()->getName(),
+					$lang->getCode()
+				),
+				fn() => ChangeTags::formatSummaryRow(
+					$row->ts_tags,
+					null,
+					$this->getContext()
+				)
 			);
 			$classes = array_merge( $classes, $newClasses );
 
