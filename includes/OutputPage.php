@@ -2538,20 +2538,11 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Add an HTTP header that will influence on the cache
+	 * Add an HTTP header that will have an influence on the cache
 	 *
 	 * @param string $header Header name
-	 * @param string[]|null $option Deprecated; formerly options for the
-	 *  Key header, deprecated in 1.32 and removed in 1.34. See
-	 *   https://datatracker.ietf.org/doc/draft-fielding-http-key/
-	 *   for the list of formerly-valid options.
 	 */
-	public function addVaryHeader( $header, array $option = null ) {
-		if ( $option !== null && count( $option ) > 0 ) {
-			wfDeprecatedMsg(
-				'The $option parameter to addVaryHeader is ignored since MediaWiki 1.34',
-				'1.34' );
-		}
+	public function addVaryHeader( $header ) {
 		if ( !array_key_exists( $header, $this->mVaryHeader ) ) {
 			$this->mVaryHeader[$header] = null;
 		}
@@ -2570,7 +2561,7 @@ class OutputPage extends ContextSource {
 		}
 
 		foreach ( SessionManager::singleton()->getVaryHeaders() as $header => $options ) {
-			$this->addVaryHeader( $header, $options );
+			$this->addVaryHeader( $header );
 		}
 		return 'Vary: ' . implode( ', ', array_keys( $this->mVaryHeader ) );
 	}
