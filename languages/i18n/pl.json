@@ -1994,6 +1994,7 @@
 	"listfiles-delete": "usuń",
 	"listfiles-summary": "Na tej stronie specjalnej prezentowane są wszystkie przesłane pliki.",
 	"listfiles-userdoesnotexist": "Konto użytkownika „$1” nie jest zarejestrowane.",
+	"listfiles-pager-submit": "Pokaż listę plików",
 	"imgfile": "plik",
 	"listfiles": "Lista plików",
 	"listfiles_subpage": "Przesłane przez $1",
