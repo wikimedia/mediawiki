@@ -269,6 +269,9 @@ return [
 	],
 	'jquery.textSelection' => [
 		'scripts' => 'resources/src/jquery/jquery.textSelection.js',
+		'dependencies' => [
+			'jquery.client',
+		]
 	],
 
 	/* jQuery UI */

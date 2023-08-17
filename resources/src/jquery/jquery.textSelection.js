@@ -64,7 +64,16 @@
 		function execInsertText( field, content, fallback ) {
 			var inserted = false;
 
-			if ( supportsInsertText() ) {
+			if (
+				supportsInsertText() &&
+				!(
+					// Support: Chrome, Safari
+					// Inserting multiple lines is very slow in Chrome/Safari (T343795)
+					// If this is ever fixed, remove the dependency on jquery.client
+					$.client.profile().layout === 'webkit' &&
+					content.split( '\n' ).length > 100
+				)
+			) {
 				field.focus();
 				try {
 					if (
