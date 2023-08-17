@@ -9,7 +9,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @param array $params
-	 * @return array [ WANObjectCache, HashBagOStuff ]
+	 * @return array{WANObjectCache,HashBagOStuff}
 	 */
 	private function newWanCache( array $params = [] ) {
 		if ( isset( $params['broadcastRoutingPrefix'] ) ) {
@@ -396,7 +396,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		$curTTL = null;
 		$v = $cache->get( $key, $curTTL, [ $cKey1, $cKey2 ] );
 		$this->assertSame( $value, $v, "Value returned" );
-		$this->assertLessThanOrEqual( 0, $curTTL, "Value has current TTL < 0 due to check keys" );
+		$this->assertGreaterThan( 0, $curTTL, "Value has current TTL > 0 due to T344191" );
 
 		$wasSet = 0;
 		$key = wfRandomString();
@@ -569,7 +569,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		];
 	}
 
-	public function testPreemtiveRefresh() {
+	public function testPreemptiveRefresh() {
 		$value = 'KatCafe';
 		$wasSet = 0;
 		$func = static function ( $old, &$ttl, &$opts, $asOf ) use ( &$wasSet, &$value )
@@ -733,6 +733,9 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 0, $cache->getWarmupKeyMisses(), "Keys warmed in warmup cache" );
 
 		$mockWallClock += 1;
+
+		$cache->touchCheckKey( $cKey1 );
+		$cache->touchCheckKey( $cKey2 );
 
 		$wasSet = 0;
 		$keyedIds = new ArrayIterator( [ $keyB => 'efef' ] );
@@ -1029,7 +1032,26 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		$curTTL = null;
 		$v = $cache->get( 'keyC', $curTTL, [ 'check1', 'check2' ] );
 		$this->assertSame( '@cat$', $v, 'Value returned' );
+		$this->assertGreaterThan( 0, $curTTL, 'No hold-off for new check key (T344191)' );
+
+		// Touch one of the check keys so that we have a hold-off period
+		$mockWallClock += 1;
+		$cache->touchCheckKey( 'check1' );
+		$mockWallClock += 1;
+		$wasSet = 0;
+		$v = $cache->getMultiWithUnionSetCallback(
+			new ArrayIterator( [ 'keyC' => 'cat' ] ),
+			30,
+			$genFunc,
+			[ 'checkKeys' => [ 'check1', 'check2' ] ] + $extOpts
+		);
+		$this->assertSame( '@cat$', $v['keyC'], 'Value returned' );
+		$this->assertSame( 1, $wasSet, 'Value regenerated due to cache miss' );
+		$curTTL = null;
+		$v = $cache->get( 'keyC', $curTTL, [ 'check1', 'check2' ] );
+		$this->assertSame( '@cat$', $v, 'Value returned' );
 		$this->assertLessThanOrEqual( 0, $curTTL, 'Value is expired during hold-off from new check key' );
+
 		// While the newly-generated value is considered expired on arrival during the
 		// hold-off from the check key, it may still be used as valid for a second, until
 		// the hold-off period is over.
@@ -1480,16 +1502,19 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 
 		$mockWallClock += 1;
 
+		$cache->touchCheckKey( $cKey1 );
+		$cache->touchCheckKey( $cKey2 );
+		$t1 = $cache->getCheckKeyTime( $cKey1 );
+		$this->assertSame( $mockWallClock, $t1, 'Check key 1 generated' );
+		$t2 = $cache->getCheckKeyTime( $cKey2 );
+		$this->assertSame( $mockWallClock, $t2, 'Check key 2 generated' );
+
 		$curTTLs = [];
 		$this->assertSame(
 			[ $key1 => $value1, $key2 => $value2 ],
 			$cache->getMulti( [ $key1, $key2, $key3 ], $curTTLs, [ $cKey1, $cKey2 ] ),
 			"Result array populated even with new check keys"
 		);
-		$t1 = $cache->getCheckKeyTime( $cKey1 );
-		$this->assertGreaterThanOrEqual( $priorTime, $t1, 'Check key 1 generated on miss' );
-		$t2 = $cache->getCheckKeyTime( $cKey2 );
-		$this->assertGreaterThanOrEqual( $priorTime, $t2, 'Check key 2 generated on miss' );
 		$this->assertCount( 2, $curTTLs, "Current TTLs array set" );
 		$this->assertLessThanOrEqual( 0, $curTTLs[$key1], 'Key 1 has current TTL <= 0' );
 		$this->assertLessThanOrEqual( 0, $curTTLs[$key2], 'Key 2 has current TTL <= 0' );
@@ -1586,38 +1611,6 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		);
 		$this->assertLessThan( 0, $curTTLs['key1'], 'key1 expired by checkAll' );
 		$this->assertLessThan( 0, $curTTLs['key2'], 'key2 expired by checkAll' );
-	}
-
-	/**
-	 */
-	public function testCheckKeyInitHoldoff() {
-		/** @var WANObjectCache $cache */
-		[ $cache ] = $this->newWanCache();
-
-		for ( $i = 0; $i < 500; ++$i ) {
-			$key = wfRandomString();
-			$checkKey = wfRandomString();
-			// miss, set, hit
-			$cache->get( $key, $curTTL, [ $checkKey ] );
-			$cache->set( $key, 'val', 10 );
-			$curTTL = null;
-			$v = $cache->get( $key, $curTTL, [ $checkKey ] );
-
-			$this->assertSame( 'val', $v );
-			$this->assertLessThan( 0, $curTTL, "Step $i: CTL < 0 (miss/set/hit)" );
-		}
-
-		for ( $i = 0; $i < 500; ++$i ) {
-			$key = wfRandomString();
-			$checkKey = wfRandomString();
-			// set, hit
-			$cache->set( $key, 'val', 10 );
-			$curTTL = null;
-			$v = $cache->get( $key, $curTTL, [ $checkKey ] );
-
-			$this->assertSame( 'val', $v );
-			$this->assertLessThan( 0, $curTTL, "Step $i: CTL < 0 (set/hit)" );
-		}
 	}
 
 	/**
