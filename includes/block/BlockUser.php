@@ -194,7 +194,7 @@ class BlockUser {
 	 *    Valid options:
 	 *    - isCreateAccountBlocked      : Are account creations prevented?
 	 *    - isEmailBlocked              : Is emailing other users prevented?
-	 *    - isHardBlock                 : Are registered users prevented from editing?
+	 *    - isHardBlock                 : Are named (non-temporary) users prevented from editing?
 	 *    - isAutoblocking              : Should this block spread to others to
 	 *                                    limit block evasion?
 	 *    - isUserTalkEditBlocked       : Is editing blocked user's own talkpage allowed?

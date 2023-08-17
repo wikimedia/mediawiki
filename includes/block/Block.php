@@ -156,9 +156,12 @@ interface Block extends WikiAwareEntity {
 	public function isCreateAccountBlocked(): bool;
 
 	/**
-	 * Returns whether the block is a hardblock (affects logged-in users on a given IP/range)
+	 * Returns whether the block is a hardblock (affects logged-in users on a given IP/range).
 	 *
-	 * Note that users are always hardblocked, since they're logged in by definition.
+	 * Note that temporary users are not considered logged-in here - they are always blocked
+	 * by IP-address blocks.
+	 *
+	 * Note that user blocks are always hardblocks, since the target is logged in by definition.
 	 *
 	 * @return bool
 	 */

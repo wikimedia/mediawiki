@@ -159,7 +159,6 @@ class BlockManager {
 
 			// Case #1: checking the global user, including IP blocks
 			$ip = $request->getIP();
-			$isAnon = !$user->isRegistered();
 			$applySoftBlocks = $this->applySoftBlockToUser( $user );
 
 			$xff = $request->getHeader( 'X-Forwarded-For' );
@@ -168,7 +167,7 @@ class BlockManager {
 			$blocks = array_merge(
 				DatabaseBlock::newListFromTarget( $user, $ip, $fromPrimary ),
 				$this->getSystemIpBlocks( $ip, $applySoftBlocks ),
-				$this->getXffBlocks( $ip, $xff, $isAnon, $fromPrimary ),
+				$this->getXffBlocks( $ip, $xff, $applySoftBlocks, $fromPrimary ),
 				$this->getCookieBlock( $user, $request )
 			);
 		} else {
@@ -306,18 +305,23 @@ class BlockManager {
 	 *
 	 * @param string $ip
 	 * @param string $xff
-	 * @param bool $isAnon
+	 * @param bool $applySoftBlocks
 	 * @param bool $fromPrimary
 	 * @return AbstractBlock[]
 	 */
-	private function getXffBlocks( string $ip, string $xff, bool $isAnon, bool $fromPrimary ): array {
+	private function getXffBlocks(
+		string $ip,
+		string $xff,
+		bool $applySoftBlocks,
+		bool $fromPrimary
+	): array {
 		// (T25343) Apply IP blocks to the contents of XFF headers, if enabled
 		if ( $this->options->get( MainConfigNames::ApplyIpBlocksToXff )
 			&& !in_array( $ip, $this->options->get( MainConfigNames::ProxyWhitelist ) )
 		) {
 			$xff = array_map( 'trim', explode( ',', $xff ) );
 			$xff = array_diff( $xff, [ $ip ] );
-			$xffblocks = $this->getBlocksForIPList( $xff, $isAnon, $fromPrimary );
+			$xffblocks = $this->getBlocksForIPList( $xff, $applySoftBlocks, $fromPrimary );
 
 			// (T285159) Exclude autoblocks from XFF headers to prevent spoofed
 			// headers uncovering the IPs of autoblocked users

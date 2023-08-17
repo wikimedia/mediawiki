@@ -241,8 +241,12 @@ class DatabaseBlock extends AbstractBlock {
 	) {
 		$db = wfGetDB( $fromPrimary ? DB_PRIMARY : DB_REPLICA );
 
+		$specificTarget = $specificTarget instanceof UserIdentity ?
+			$specificTarget->getName() :
+			(string)$specificTarget;
+
 		if ( $specificType !== null ) {
-			$conds = [ 'ipb_address' => [ (string)$specificTarget ] ];
+			$conds = [ 'ipb_address' => [ $specificTarget ] ];
 		} else {
 			$conds = [ 'ipb_address' => [] ];
 		}
@@ -301,7 +305,13 @@ class DatabaseBlock extends AbstractBlock {
 			}
 
 			# Don't use anon only blocks on users
-			if ( $specificType == self::TYPE_USER && !$block->isHardblock() ) {
+			if (
+				$specificType == self::TYPE_USER &&
+				!$block->isHardblock() &&
+				!MediaWikiServices::getInstance()
+					->getTempUserConfig()
+					->isTempName( $specificTarget )
+			) {
 				continue;
 			}
 
@@ -929,12 +939,13 @@ class DatabaseBlock extends AbstractBlock {
 	 *
 	 * @param array $ipChain List of IPs (strings), usually retrieved from the
 	 *     X-Forwarded-For header of the request
-	 * @param bool $isAnon Exclude anonymous-only blocks if false
+	 * @param bool $applySoftBlocks Include soft blocks (anonymous-only blocks). These
+	 *     should only block anonymous and temporary users.
 	 * @param bool $fromPrimary Whether to query the primary or replica DB
 	 * @return self[]
 	 * @since 1.22
 	 */
-	public static function getBlocksForIPList( array $ipChain, $isAnon, $fromPrimary = false ) {
+	public static function getBlocksForIPList( array $ipChain, $applySoftBlocks, $fromPrimary = false ) {
 		if ( $ipChain === [] ) {
 			return [];
 		}
@@ -970,7 +981,7 @@ class DatabaseBlock extends AbstractBlock {
 			$db = wfGetDB( DB_REPLICA );
 		}
 		$conds = $db->makeList( $conds, LIST_OR );
-		if ( !$isAnon ) {
+		if ( !$applySoftBlocks ) {
 			$conds = [ $conds, 'ipb_anon_only' => 0 ];
 		}
 		$blockQuery = self::getQueryInfo();

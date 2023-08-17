@@ -89,6 +89,8 @@ abstract class AbstractBlock implements Block {
 	 *  - reason: (string|Message|CommentStoreComment) Reason for the block
 	 *  - timestamp: (string) The time at which the block comes into effect
 	 *  - hideName: (bool) Hide the target user name
+	 *  - anonOnly: (bool) Used if the target is an IP address. The block only applies to anon and
+	 *    temporary users using this IP address, and not to logged-in users.
 	 */
 	public function __construct( array $options = [] ) {
 		$defaults = [
@@ -247,9 +249,12 @@ abstract class AbstractBlock implements Block {
 	}
 
 	/**
-	 * Get/set whether the block is a hardblock (affects logged-in users on a given IP/range)
+	 * Get/set whether the block is a hardblock (affects logged-in users on a given IP/range).
 	 *
-	 * Note that users are always hardblocked, since they're logged in by definition.
+	 * Note that temporary users are not considered logged-in here - they are always blocked
+	 * by IP-address blocks.
+	 *
+	 * Note that user blocks are always hardblocks, since the target is logged in by definition.
 	 *
 	 * @since 1.36 Moved up from DatabaseBlock
 	 * @param bool|null $x

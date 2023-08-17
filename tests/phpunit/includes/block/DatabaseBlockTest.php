@@ -128,6 +128,50 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	/**
 	 * @covers ::newFromTarget
 	 */
+	public function testHardBlocks() {
+		// Set up temp user config
+		$this->overrideConfigValue(
+			MainConfigNames::AutoCreateTempUser,
+			[
+				'enabled' => true,
+				'actions' => [ 'edit' ],
+				'genPattern' => '*Unregistered $1',
+				'matchPattern' => '*$1',
+				'serialProvider' => [ 'type' => 'local' ],
+				'serialMapping' => [ 'type' => 'plain-numeric' ],
+			]
+		);
+
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$blocker = $this->getTestUser()->getUser();
+
+		$block = new DatabaseBlock();
+		$block->setTarget( '1.2.3.4' );
+		$block->setBlocker( $blocker );
+		$block->setReason( 'test' );
+		$block->setExpiry( 'infinity' );
+		$block->isHardblock( false );
+		$blockStore->insertBlock( $block );
+
+		$this->assertFalse(
+			(bool)DatabaseBlock::newFromTarget( '*Unregistered 1' ),
+			'Temporary user is not blocked directly'
+		);
+		$this->assertTrue(
+			(bool)DatabaseBlock::newFromTarget( '*Unregistered 1', '1.2.3.4' ),
+			'Temporary user is blocked by soft block'
+		);
+		$this->assertFalse(
+			(bool)DatabaseBlock::newFromTarget( $blocker, '1.2.3.4' ),
+			'Logged-in user is not blocked by soft block'
+		);
+
+		$blockStore->deleteBlock( $block );
+	}
+
+	/**
+	 * @covers ::newFromTarget
+	 */
 	public function testINewFromTargetReturnsCorrectBlock() {
 		$user = $this->getUserForBlocking();
 		$block = $this->addBlockForUser( $user );

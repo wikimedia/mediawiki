@@ -100,7 +100,7 @@ class BlockUsers extends Maintenance {
 
 		$this->addOption(
 			'disable-hardblock',
-			'Don\'t block logged in accounts from a blocked IP address',
+			'Don\'t block logged in accounts from a blocked IP address (will still block temporary accounts)',
 			false
 		);
 
