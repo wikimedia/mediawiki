@@ -85,11 +85,7 @@ class RefreshLinks extends Maintenance {
 			}
 			$this->refreshCategory( $title );
 		} elseif ( $this->hasOption( 'tracking-category' ) ) {
-			$category = $this->getOption( 'tracking-category' );
-			$title = Title::makeTitleSafe( NS_CATEGORY, $category );
-			if ( !$title ) {
-				$this->fatalError( "'$category' is an invalid category name!\n" );
-			}
+			// See TrackingCategories::CORE_TRACKING_CATEGORIES for tracking category keys defined by core
 			$this->refreshTrackingCategory( $this->getOption( 'tracking-category' ) );
 		} elseif ( !$this->hasOption( 'dfn-only' ) ) {
 			$new = $this->hasOption( 'new-only' );
