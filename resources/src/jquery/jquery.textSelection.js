@@ -62,33 +62,25 @@
 		 * @param {Function} fallback To execute as a fallback.
 		 */
 		function execInsertText( field, content, fallback ) {
-			// try to insert text
-			var pasted = true;
-			if ( !supportsInsertText() ) {
-				pasted = false;
-			} else {
+			var inserted = false;
+
+			if ( supportsInsertText() ) {
 				field.focus();
 				try {
 					if (
 						// Ensure the field was focused, otherwise we can't use execCommand() to change it.
 						// focus() can fail if e.g. the field is disabled, or its container is inert.
-						document.activeElement !== field ||
+						document.activeElement === field &&
 						// Try to insert
-						!document.execCommand( 'insertText', false, content )
+						document.execCommand( 'insertText', false, content )
 					) {
-						pasted = false;
+						inserted = true;
 					}
-				} catch ( e ) {
-					pasted = false;
-				}
+				} catch ( e ) {}
 			}
-			// fallback
-			if ( !pasted ) {
-				if ( typeof fallback === 'function' ) {
-					fallback.call( field, content );
-				} else {
-					throw new Error( 'paste unsuccessful, execCommand not supported' );
-				}
+			// Fallback
+			if ( !inserted ) {
+				fallback.call( field, content );
 			}
 		}
 
