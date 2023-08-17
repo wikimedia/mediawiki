@@ -35,9 +35,6 @@ require_once __DIR__ . '/Maintenance.php';
 class RefreshLinks extends Maintenance {
 	private const REPORTING_INTERVAL = 100;
 
-	/** @var int|false */
-	protected $namespace = false;
-
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Refresh link tables' );
@@ -67,13 +64,6 @@ class RefreshLinks extends Maintenance {
 		$end = (int)$this->getOption( 'e' ) ?: null;
 		$dfnChunkSize = (int)$this->getOption( 'dfn-chunk-size', 100000 );
 
-		$ns = $this->getOption( 'namespace' );
-		if ( $ns === null ) {
-			$this->namespace = false;
-		} else {
-			$this->namespace = (int)$ns;
-		}
-
 		if ( $this->hasOption( 'dfn-only' ) ) {
 			$this->deleteLinksFromNonexistent( $start, $end, $this->getBatchSize(), $dfnChunkSize );
 			return;
@@ -82,9 +72,12 @@ class RefreshLinks extends Maintenance {
 		$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
 		$builder = $dbr->newSelectQueryBuilder()
 			->from( 'page' )
-			->where( $this->namespaceCond() )
-			->andWhere( self::intervalCond( $dbr, 'page_id', $start, $end ) )
+			->where( self::intervalCond( $dbr, 'page_id', $start, $end ) )
 			->limit( $this->getBatchSize() );
+
+		if ( $this->hasOption( 'namespace' ) ) {
+			$builder->andWhere( [ 'page_namespace' => (int)$this->getOption( 'namespace' ) ] );
+		}
 
 		if ( $this->hasOption( 'before-timestamp' ) ) {
 			$timeCond = $dbr->buildComparison( '<', [
@@ -122,14 +115,10 @@ class RefreshLinks extends Maintenance {
 				$this->output( "Refreshing $what from pages...\n" );
 			}
 			$this->doRefreshLinks( $builder, $redir || $oldRedir );
-			$this->deleteLinksFromNonexistent( $start, $end, $this->getBatchSize(), $dfnChunkSize );
+			if ( !$this->hasOption( 'namespace' ) ) {
+				$this->deleteLinksFromNonexistent( $start, $end, $this->getBatchSize(), $dfnChunkSize );
+			}
 		}
-	}
-
-	private function namespaceCond() {
-		return $this->namespace !== false
-			? [ 'page_namespace' => $this->namespace ]
-			: [];
 	}
 
 	/**
@@ -277,7 +266,6 @@ class RefreshLinks extends Maintenance {
 				->select( 'page_id' )
 				->from( 'page' )
 				->where( [ self::intervalCond( $dbr, 'page_id', $start, $end ) ] )
-				->andWhere( $this->namespaceCond() )
 				->orderBy( 'page_id' )
 				->offset( $chunkSize )
 				->caller( __METHOD__ )->fetchField();
