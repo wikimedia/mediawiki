@@ -1160,8 +1160,6 @@ return [
 					'createpage' => true,
 					'createtalk' => true,
 					'writeapi' => true,
-					'viewmywatchlist' => true,
-					'editmywatchlist' => true,
 					'viewmyprivateinfo' => true,
 					'editmyprivateinfo' => true,
 					'editmyoptions' => true,
@@ -1190,6 +1188,8 @@ return [
 					'applychangetags' => true,
 					'changetags' => true,
 					'editcontentmodel' => true,
+					'viewmywatchlist' => true,
+					'editmywatchlist' => true,
 				],
 				'autoconfirmed' => [
 					'autoconfirmed' => true,

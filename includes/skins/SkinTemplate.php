@@ -439,10 +439,10 @@ class SkinTemplate extends Skin {
 					'active' => ( $href == $pageurl ),
 					'icon' => 'settings',
 				];
+			}
 
-				if ( $authority->isAllowed( 'viewmywatchlist' ) ) {
-					$personal_urls['watchlist'] = self::buildWatchlistData();
-				}
+			if ( $authority->isAllowed( 'viewmywatchlist' ) ) {
+				$personal_urls['watchlist'] = self::buildWatchlistData();
 			}
 
 			# We need to do an explicit check for Special:Contributions, as we
@@ -1267,7 +1267,7 @@ class SkinTemplate extends Skin {
 					];
 				}
 
-				if ( $this->isNamedUser && $this->getAuthority()
+				if ( $this->loggedin && $this->getAuthority()
 						->isAllowedAll( 'viewmywatchlist', 'editmywatchlist' )
 				) {
 					/**
