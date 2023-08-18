@@ -3393,7 +3393,7 @@ class OutputPage extends ContextSource {
 
 			$config = $this->getConfig();
 			$clientPrefEnabled = (
-				$config->get( MainConfigNames::ResourceLoaderClientPreferences ) &&
+				$this->getSkin()->getOptions()['clientPrefEnabled'] &&
 				!$this->getUser()->isRegistered()
 			);
 			$clientPrefCookiePrefix = $config->get( MainConfigNames::CookiePrefix );

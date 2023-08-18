@@ -28,6 +28,7 @@
 					"mw.storage",
 					"mw.storage.session",
 					"mw.user",
+					"mw.user.clientPrefs",
 					"mw.util",
 					"mw.plugin.*",
 					"mw.cookie",

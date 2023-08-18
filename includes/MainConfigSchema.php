@@ -5164,21 +5164,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Enable client-side preferences for unregistered users.
-	 *
-	 * This is only supported for unregistered users. For registered users, skins
-	 * and extensions must use user preferences (e.g. hidden or API-only options)
-	 * and swap class names server-side through the Skin interface.
-	 *
-	 * @warning EXPERIMENTAL!
-	 * @since 1.40
-	 * @see \MediaWiki\ResourceLoader\ClientHtml
-	 */
-	public const ResourceLoaderClientPreferences = [
-		'default' => false,
-	];
-
-	/**
 	 * Disable output compression (enabled by default if zlib is available)
 	 */
 	public const DisableOutputCompression = [
