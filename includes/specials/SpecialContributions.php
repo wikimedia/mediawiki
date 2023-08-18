@@ -535,15 +535,28 @@ class SpecialContributions extends IncludableSpecialPage {
 			. ' ' . $links
 		);
 
-		// Second subheading. "A user with 37,208 edits."
+		// Second subheading. "A user with 37,208 edits. Account created on 2008-09-17."
 		if ( $talk && $registeredAndVisible ) {
 			$editCount = $userObj->getEditCount();
-			$userInfo = $this->msg( 'contributions-editor-info' )
+			$userInfo = $this->msg( 'contributions-edit-count' )
 				->params( $userName )
 				->numParams( $editCount )
 				->escaped();
-			$subHeadingsHtml .= Html::rawElement( 'div', [ 'class' => 'mw-contributions-editor-info' ],
-				$userInfo );
+
+			$accountCreationDate = $userObj->getRegistration();
+			if ( $accountCreationDate ) {
+				$userInfo .= $this->msg( 'word-separator' )
+					->escaped();
+				$userInfo .= $this->msg( 'contributions-account-creation-date' )
+					->dateParams( $accountCreationDate )
+					->escaped();
+			}
+
+			$subHeadingsHtml .= Html::rawElement(
+				'div',
+				[ 'class' => 'mw-contributions-editor-info' ],
+				$userInfo
+			);
 		}
 
 		return $subHeadingsHtml;
