@@ -271,6 +271,26 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @internal Should only be used in MediaWikiUnitTestCase
+	 */
+	public static function disallowGlobalInstanceInUnitTests(): void {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new LogicException( 'Can only be called in tests' );
+		}
+		self::$globalInstanceAllowed = false;
+	}
+
+	/**
+	 * @internal Should only be used in MediaWikiUnitTestCase
+	 */
+	public static function allowGlobalInstanceAfterUnitTests(): void {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new LogicException( 'Can only be called in tests' );
+		}
+		self::$globalInstanceAllowed = true;
+	}
+
+	/**
 	 * Returns true if an instance has already been initialized. This can be used to avoid accessing
 	 * services if it's not safe, such as in unit tests or early setup.
 	 *
