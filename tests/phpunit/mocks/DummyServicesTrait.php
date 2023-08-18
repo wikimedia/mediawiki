@@ -514,6 +514,7 @@ trait DummyServicesTrait {
 				'actions' => [ 'edit' ],
 				'serialProvider' => [ 'type' => 'local' ],
 				'serialMapping' => [ 'type' => 'plain-numeric' ],
+				'reservedPattern' => '!$1',
 				'matchPattern' => '*$1',
 				'genPattern' => '*Unregistered $1'
 			] )

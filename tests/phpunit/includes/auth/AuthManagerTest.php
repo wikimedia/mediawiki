@@ -2779,7 +2779,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->assertNotEquals( $username . "\u{0080}", $user->getId() );
 		$this->assertSame( 0, $session->getUser()->getId() );
 		$this->assertSame( [
-			[ LogLevel::DEBUG, 'name "{username}" is not valid' ],
+			[ LogLevel::DEBUG, 'name "{username}" is not usable' ],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
 		$this->assertSame( 'noname', $session->get( AuthManager::AUTOCREATE_BLOCKLIST ) );
