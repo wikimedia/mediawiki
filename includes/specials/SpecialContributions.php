@@ -528,10 +528,25 @@ class SpecialContributions extends IncludableSpecialPage {
 			}
 		}
 
-		return Html::rawElement( 'div', [ 'class' => 'mw-contributions-user-tools' ],
-			$this->msg( 'contributions-subtitle' )->rawParams( $user )->params( $userObj->getName() )
+		// First subheading. "For Username (talk | block log | logs | etc.)"
+		$userName = $userObj->getName();
+		$subHeadingsHtml = Html::rawElement( 'div', [ 'class' => 'mw-contributions-user-tools' ],
+			$this->msg( 'contributions-subtitle' )->rawParams( $user )->params( $userName )
 			. ' ' . $links
 		);
+
+		// Second subheading. "A user with 37,208 edits."
+		if ( $talk && $registeredAndVisible ) {
+			$editCount = $userObj->getEditCount();
+			$userInfo = $this->msg( 'contributions-editor-info' )
+				->params( $userName )
+				->numParams( $editCount )
+				->escaped();
+			$subHeadingsHtml .= Html::rawElement( 'div', [ 'class' => 'mw-contributions-editor-info' ],
+				$userInfo );
+		}
+
+		return $subHeadingsHtml;
 	}
 
 	/**

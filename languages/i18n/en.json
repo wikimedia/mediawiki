@@ -2719,6 +2719,7 @@
 	"contribute": "Contribute",
 	"contribsub2": "For {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "For {{GENDER:$2|$1}}",
+	"contributions-editor-info": "A {{GENDER:$1|user}} with $2 {{PLURAL:$2|edit|edits}}.",
 	"contributions-userdoesnotexist": "User account \"$1\" is not registered.",
 	"negative-namespace-not-supported": "Namespaces with negative values are not supported.",
 	"nocontribs": "No changes were found matching these criteria.",
