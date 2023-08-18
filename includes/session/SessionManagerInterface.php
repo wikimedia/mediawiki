@@ -91,13 +91,10 @@ interface SessionManagerInterface extends LoggerAwareInterface {
 	 *
 	 * The return value is such that someone could theoretically do this:
 	 * @code
-	 * foreach ( $provider->getVaryHeaders() as $header => $options ) {
+	 * foreach ( $provider->getVaryHeaders() as $header ) {
 	 *   $outputPage->addVaryHeader( $header );
 	 * }
 	 * @endcode
-	 *
-	 * Note that the $options argument to OutputPage::addVaryHeader() has
-	 * been deprecated and should always be null.
 	 *
 	 * @return array
 	 */
