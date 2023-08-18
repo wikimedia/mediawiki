@@ -53,7 +53,7 @@
 	"apihelp-block-param-userid": "יש לציין <kbd>$1user=#<var>ID</var></kbd> במקום.",
 	"apihelp-block-param-expiry": "זמן תפוגה. יכול להיות יחסי (למשל <kbd>5 months</kbd> או <kbd>2 weeks</kbd>) או מוחלט (למשל <kbd>2014-09-18T12:34:56Z</kbd>). אם זה מוגדר ל־<kbd>infinite</kbd>‏, <kbd>indefinite</kbd>, או <kbd>never</kbd>, החסימה לא תפוג לעולם.",
 	"apihelp-block-param-reason": "סיבה לחסימה.",
-	"apihelp-block-param-anononly": "לחסום משתמשים אלמוניים בלבד (דהיינו, השבתת עריכות אלמוניות מכתובת ה־IP הזאת)",
+	"apihelp-block-param-anononly": "לחסום משתמשים אלמוניים בלבד (דהיינו, השבתת עריכות אלמוניות מכתובת ה־IP הזאת, כולל עריכות של חשבונות זמניים).",
 	"apihelp-block-param-nocreate": "מניעת יצירת חשבונות",
 	"apihelp-block-param-autoblock": "חסימה אוטומטית גם של כתובת ה־IP האחרונה שהשתמש בה ושל כל כתובת IP שינסה להשתמש בה בעתיד.",
 	"apihelp-block-param-noemail": "למנוע ממשתמש לשלוח דואר אלקטרוני דרך הוויקי. (דורש את ההרשאה <code>blockemail</code>).",

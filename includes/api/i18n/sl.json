@@ -24,6 +24,7 @@
 	"apihelp-main-param-errorsuselocal": "Če je podano, bodo besedila o napakah uporabljala lokalno prilagojena sporočila iz imenskega prostora {{ns:MediaWiki}}.",
 	"apihelp-acquiretempusername-summary": "Pridobite začasno uporabniško ime in ga shranite v trenutno sejo, če je omogočeno ustvarjanje začasnega računa in je trenutni uporabnik odjavljen. Če je bilo ime že shranjeno, vrne isto ime.",
 	"apihelp-acquiretempusername-extended-description": "Če uporabnik pozneje izvede dejanje, ki povzroči ustvaritev začasnega računa, bo za njegov račun uporabljeno skrito uporabniško ime. To se lahko uporablja tudi v predogledih. Vendar račun še ni ustvarjen in ime ni vidno drugim uporabnikom.",
+	"apihelp-block-param-anononly": "Blokiranje samo anonimnih uporabnikov (tj. onemogočenje anonimnega urejanja za ta IP-naslov, vključno z začasnim urejanjem računa).",
 	"apihelp-block-param-reblock": "Če je uporabnik že blokiran, prepiše obstoječo blokado.",
 	"apihelp-block-param-partial": "Blokira uporabnika na posameznih straneh ali v posameznih imenskih prostorih in ne v vsem spletišču.",
 	"apihelp-block-param-pagerestrictions": "Seznam naslovo, na katerih naj bo uporabniku preprečeno urejanje. Velja samo, kadar je <var>partial</var> nastavljeno na pravilno.",
