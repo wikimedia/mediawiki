@@ -7,6 +7,7 @@ use BagOStuff;
 use ChangeTags;
 use Content;
 use DeferrableUpdate;
+use DeferredUpdates;
 use DeletePageJob;
 use Exception;
 use JobQueueGroup;
@@ -15,7 +16,6 @@ use ManualLogEntry;
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Deferred\DeferredUpdatesManager;
 use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\HookContainer\HookContainer;
@@ -91,8 +91,6 @@ class DeletePage {
 	private $namespaceInfo;
 	/** @var ITextFormatter */
 	private $contLangMsgTextFormatter;
-	/** @var DeferredUpdatesManager */
-	private DeferredUpdatesManager $deferredUpdatesManager;
 
 	/** @var bool */
 	private $isDeletePageUnitTest = false;
@@ -147,7 +145,6 @@ class DeletePage {
 	 * @param BacklinkCacheFactory $backlinkCacheFactory
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param ITextFormatter $contLangMsgTextFormatter
-	 * @param DeferredUpdatesManager $deferredUpdatesManager
 	 * @param ProperPageIdentity $page
 	 * @param Authority $deleter
 	 */
@@ -166,7 +163,6 @@ class DeletePage {
 		BacklinkCacheFactory $backlinkCacheFactory,
 		NamespaceInfo $namespaceInfo,
 		ITextFormatter $contLangMsgTextFormatter,
-		DeferredUpdatesManager $deferredUpdatesManager,
 		ProperPageIdentity $page,
 		Authority $deleter
 	) {
@@ -185,7 +181,6 @@ class DeletePage {
 		$this->backlinkCacheFactory = $backlinkCacheFactory;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->contLangMsgTextFormatter = $contLangMsgTextFormatter;
-		$this->deferredUpdatesManager = $deferredUpdatesManager;
 
 		$this->page = $wikiPageFactory->newFromTitle( $page );
 		$this->deleter = $deleter;
@@ -852,14 +847,14 @@ class DeletePage {
 		}
 
 		// Update site status
-		$this->deferredUpdatesManager->addUpdate( SiteStatsUpdate::factory(
+		DeferredUpdates::addUpdate( SiteStatsUpdate::factory(
 			[ 'edits' => 1, 'articles' => $countable ? -1 : 0, 'pages' => -1 ]
 		) );
 
 		// Delete pagelinks, update secondary indexes, etc
 		$updates = $this->getDeletionUpdates( $page, $revRecord );
 		foreach ( $updates as $update ) {
-			$this->deferredUpdatesManager->addUpdate( $update );
+			DeferredUpdates::addUpdate( $update );
 		}
 
 		// Reparse any pages transcluding this page
@@ -898,7 +893,7 @@ class DeletePage {
 		$page->loadFromRow( false, WikiPage::READ_LATEST );
 
 		// Search engine
-		$this->deferredUpdatesManager->addUpdate( new SearchUpdate( $page->getId(), $page->getTitle() ) );
+		DeferredUpdates::addUpdate( new SearchUpdate( $page->getId(), $page->getTitle() ) );
 	}
 
 	/**

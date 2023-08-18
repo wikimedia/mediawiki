@@ -1029,7 +1029,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\DB\\AbstractSchemaValidationError' => __DIR__ . '/includes/db/AbstractSchemaValidationError.php',
 	'MediaWiki\\DB\\AbstractSchemaValidator' => __DIR__ . '/includes/db/AbstractSchemaValidator.php',
 	'MediaWiki\\Debug\\DeprecatablePropertyArray' => __DIR__ . '/includes/debug/DeprecatablePropertyArray.php',
-	'MediaWiki\\Deferred\\DeferredUpdatesManager' => __DIR__ . '/includes/deferred/DeferredUpdatesManager.php',
 	'MediaWiki\\Deferred\\LinksUpdate\\CategoryLinksTable' => __DIR__ . '/includes/deferred/LinksUpdate/CategoryLinksTable.php',
 	'MediaWiki\\Deferred\\LinksUpdate\\ExternalLinksTable' => __DIR__ . '/includes/deferred/LinksUpdate/ExternalLinksTable.php',
 	'MediaWiki\\Deferred\\LinksUpdate\\GenericPageLinksTable' => __DIR__ . '/includes/deferred/LinksUpdate/GenericPageLinksTable.php',
