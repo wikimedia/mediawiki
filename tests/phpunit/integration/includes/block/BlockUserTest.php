@@ -3,6 +3,7 @@
 use MediaWiki\Block\BlockUserFactory;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 
 /**
@@ -67,6 +68,38 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 		$this->assertInstanceOf( DatabaseBlock::class, $block );
 		$this->assertSame( 'test hideuser', $block->getReasonComment()->text );
 		$this->assertTrue( $block->getHideName() );
+	}
+
+	/**
+	 * @covers MediaWiki\Block\BlockUser::placeBlock
+	 */
+	public function testHideUserTemp() {
+		// Set up temp user config
+		$this->overrideConfigValue(
+			MainConfigNames::AutoCreateTempUser,
+			[
+				'enabled' => true,
+				'actions' => [ 'edit' ],
+				'genPattern' => '*Unregistered $1',
+				'matchPattern' => '*$1',
+				'serialProvider' => [ 'type' => 'local' ],
+				'serialMapping' => [ 'type' => 'plain-numeric' ],
+			]
+		);
+
+		$target = User::createNew( '*Unregistered 1' );
+		$this->getServiceContainer()->getBlockUserFactory()->newBlockUser(
+			$target,
+			$this->getTestUser( [ 'sysop', 'suppress' ] )->getUser(),
+			'infinity',
+			'test hideuser',
+			[
+				'isHideUser' => true
+			]
+		)->placeBlock();
+		$block = DatabaseBlock::newFromTarget( $target );
+		$this->assertInstanceOf( DatabaseBlock::class, $block );
+		$this->assertFalse( $block->getHideName() );
 	}
 
 	/**
