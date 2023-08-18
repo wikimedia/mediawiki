@@ -19,7 +19,7 @@ $( function () {
 	 * @param {jQuery} $buttonEl
 	 */
 	function initTempUserBannerTooltip( $bannerEl, $tooltipEl, $buttonEl ) {
-		if ( !$bannerEl || !$tooltipEl || !$buttonEl ) {
+		if ( !$bannerEl.length || !$tooltipEl.length || !$buttonEl.length ) {
 			return;
 		}
 
@@ -38,7 +38,7 @@ $( function () {
 					icon: 'clock',
 					padded: true,
 					head: true,
-					label: mw.message( 'temp-user-banner-tooltip-title' ).text(),
+					label: mw.msg( 'temp-user-banner-tooltip-title' ),
 					$content: $tooltipContent,
 					autoClose: true,
 					$autoCloseIgnore: $buttonEl,
@@ -55,7 +55,8 @@ $( function () {
 				'codex-search-styles',
 				'oojs-ui-core',
 				'oojs-ui-widgets',
-				'oojs-ui.styles.icons-interactions' ] )
+				'oojs-ui.styles.icons-interactions'
+			] )
 				.then( showTooltip );
 		} );
 	}
