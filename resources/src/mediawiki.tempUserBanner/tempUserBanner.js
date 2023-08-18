@@ -52,7 +52,6 @@ $( function () {
 
 		$buttonEl.on( 'click', function () {
 			mw.loader.using( [
-				'mediawiki.jqueryMsg',
 				'codex-search-styles',
 				'oojs-ui-core',
 				'oojs-ui-widgets',
