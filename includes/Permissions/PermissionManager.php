@@ -23,6 +23,7 @@ use IContextSource;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Actions\ActionFactory;
+use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Config\ServiceOptions;
@@ -31,6 +32,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -831,21 +833,64 @@ class PermissionManager {
 		$short,
 		LinkTarget $page
 	): array {
+		if ( $action === 'edit'
+			&& $this->options->get( MainConfigNames::EmailConfirmToEdit )
+			&& !$user->isEmailConfirmed()
+		) {
+			$errors[] = [ 'confirmedittext' ];
+		}
+
+		$block = $this->getApplicableBlock(
+			$action,
+			$user,
+			$rigor,
+			$page
+		);
+
+		if ( $block ) {
+			// @todo FIXME: Pass the relevant context into this function.
+			$context = RequestContext::getMain();
+			$message = $this->blockErrorFormatter->getMessage(
+				$block,
+				$user,
+				$context->getLanguage(),
+				$context->getRequest()->getIP()
+			);
+
+			$errors[] = array_merge( [ $message->getKey() ], $message->getParams() );
+		}
+
+		return $errors;
+	}
+
+	/**
+	 * Return the Block object applicable for the given permission check, if any.
+	 *
+	 * @internal for use by UserAuthority only
+	 *
+	 * @param string $action The action to check
+	 * @param User $user User to check
+	 * @param string $rigor One of PermissionManager::RIGOR_ constants
+	 *   - RIGOR_QUICK  : does cheap permission checks from replica DBs (usable for GUI creation)
+	 *   - RIGOR_FULL   : does cheap and expensive checks possibly from a replica DB
+	 *   - RIGOR_SECURE : does cheap and expensive checks, using the primary DB as needed
+	 * @param LinkTarget|PageReference|null $page
+	 * @return ?Block
+	 */
+	public function getApplicableBlock(
+		string $action,
+		User $user,
+		string $rigor,
+		$page
+	): ?Block {
 		// Unblocking handled in SpecialUnblock
 		if ( $rigor === self::RIGOR_QUICK || in_array( $action, [ 'unblock' ] ) ) {
-			return $errors;
+			return null;
 		}
 
 		// Optimize for a very common case
 		if ( $action === 'read' && !$this->options->get( MainConfigNames::BlockDisablesLogin ) ) {
-			return $errors;
-		}
-
-		if ( $this->options->get( MainConfigNames::EmailConfirmToEdit )
-			&& !$user->isEmailConfirmed()
-			&& $action === 'edit'
-		) {
-			$errors[] = [ 'confirmedittext' ];
+			return null;
 		}
 
 		if ( $rigor === self::RIGOR_SECURE ) {
@@ -876,67 +921,55 @@ class PermissionManager {
 					$applicableBlock = $ipBlock;
 				}
 			}
-			// @todo FIXME: Pass the relevant context into this function.
 			if ( $applicableBlock ) {
-				$context = RequestContext::getMain();
-				$message = $this->blockErrorFormatter->getMessage(
-					$applicableBlock,
-					$context->getUser(),
-					$context->getLanguage(),
-					$context->getRequest()->getIP()
-				);
-				$errors[] = array_merge( [ $message->getKey() ], $message->getParams() );
-				return $errors;
+				return $applicableBlock;
 			}
 		}
 
 		// If the user does not have a block, or the block they do have explicitly
 		// allows the action (like "read" or "upload").
 		if ( !$block || $block->appliesToRight( $action ) === false ) {
-			return $errors;
+			return null;
 		}
 
 		// Determine if the user is blocked from this action on this page.
+		$actionTarget = null;
+		if ( $page ) {
+			$actionTarget = $page instanceof PageReference ?
+				Title::castFromPageReference( $page ) :
+				Title::castFromLinkTarget( $page );
+
+			if ( !$actionTarget->canExist() ) {
+				$actionTarget = null;
+			}
+		}
+
 		// What gets passed into this method is a user right, not an action name.
 		// There is no way to instantiate an action by restriction. However, this
 		// will get the action where the restriction is the same. This may result
 		// in actions being blocked that shouldn't be.
-		$actionInfo = null;
-		$title = Title::newFromLinkTarget( $page, 'clone' );
-		if ( $title->canExist() ) {
-			$actionInfo = $this->actionFactory->getActionInfo(
-				$action,
-				$title
-			);
-			// Ensure that the retrieved action matches the restriction.
-			if ( $actionInfo && $actionInfo->getRestriction() !== $action ) {
-				$actionInfo = null;
-			}
+		$actionInfo = $this->actionFactory->getActionInfo( $action, $actionTarget );
+
+		// Ensure that the retrieved action matches the restriction.
+		if ( $actionInfo && $actionInfo->getRestriction() !== $action ) {
+			$actionInfo = null;
 		}
 
 		// If no ActionInfo is returned, assume that the action requires unblock
 		// which is the default.
 		if ( !$actionInfo || $actionInfo->requiresUnblock() ) {
 			if (
-				$this->isBlockedFrom( $user, $page, $useReplica ) ||
+				( !$page || $this->isBlockedFrom( $user, $page, $useReplica ) ) ||
 				(
 					$this->options->get( MainConfigNames::EnablePartialActionBlocks ) &&
 					$block->appliesToRight( $action )
 				)
 			) {
-				// @todo FIXME: Pass the relevant context into this function.
-				$context = RequestContext::getMain();
-				$message = $this->blockErrorFormatter->getMessage(
-					$block,
-					$context->getUser(),
-					$context->getLanguage(),
-					$context->getRequest()->getIP()
-				);
-				$errors[] = array_merge( [ $message->getKey() ], $message->getParams() );
+				return $block;
 			}
 		}
 
-		return $errors;
+		return null;
 	}
 
 	/**
