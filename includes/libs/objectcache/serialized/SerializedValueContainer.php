@@ -16,10 +16,12 @@ class SerializedValueContainer {
 	public const SEGMENTED_HASHES = '__hashes__';
 
 	/**
+	 * @deprecated since 1.41
 	 * @param string $serialized
 	 * @return stdClass
 	 */
 	public static function newUnified( $serialized ) {
+		wfDeprecated( __METHOD__, '1.41' );
 		return (object)[
 			self::SCHEMA => self::SCHEMA_UNIFIED,
 			self::UNIFIED_DATA => $serialized

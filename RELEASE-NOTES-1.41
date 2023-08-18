@@ -363,6 +363,8 @@ because of Phabricator reports.
   ParserModifyImageHTML to ParserModifyImageHTMLHook,
   the old name is deprecated.
 * (T178356) The es6-polyfills module is deprecated and is now a no-op.
+* SerializedValueContainer::newUnified() is unused and now emits deprecation
+  warnings.
 * The following classes are now namespaced under MediaWiki\Specials; the old
   class names are now deprecated aliases:
   - SpecialActiveUsers
