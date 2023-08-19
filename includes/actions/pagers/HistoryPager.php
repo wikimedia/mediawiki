@@ -455,12 +455,12 @@ class HistoryPager extends ReverseChronologicalPager {
 		$s2 = $this->formattedComments[$resultOffset];
 
 		if ( $s2 === '' ) {
-			$defaultComment = $this->msg( 'changeslist-nocomment' )->escaped();
+			$defaultComment = $this->historyPage->message['changeslist-nocomment'];
 			$s2 = "<span class=\"comment mw-comment-none\">$defaultComment</span>";
 		}
 
 		if ( $this->notificationTimestamp && $row->rev_timestamp >= $this->notificationTimestamp ) {
-			$s2 .= ' <span class="updatedmarker">' . $this->msg( 'updatedmarker' )->escaped() . '</span>';
+			$s2 .= ' <span class="updatedmarker">' . $this->historyPage->message['updatedmarker'] . '</span>';
 			$classes[] = 'mw-history-line-updated';
 		}
 

@@ -191,7 +191,7 @@ class ChangesList extends ContextSource {
 			$this->message = [];
 			foreach ( [
 				'cur', 'diff', 'hist', 'enhancedrc-history', 'last', 'blocklink', 'history',
-				'semicolon-separator', 'pipe-separator' ] as $msg
+				'semicolon-separator', 'pipe-separator', 'word-separator' ] as $msg
 			) {
 				$this->message[$msg] = $this->msg( $msg )->escaped();
 			}
@@ -736,7 +736,7 @@ class ChangesList extends ContextSource {
 			. $formatter->getActionText()
 			. " $mark"
 			. $formatter->getComment()
-			. $this->msg( 'word-separator' )->escaped()
+			. $this->message['word-separator']
 			. $formatter->getActionLinks()
 			. Html::closeElement( 'span' );
 	}
