@@ -54,6 +54,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::Server => 'http://example.org',
 			MainConfigNames::CanonicalServer => 'https://www.example.org',
 		] );
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'en' );
 	}
 
 	protected function tearDown(): void {
