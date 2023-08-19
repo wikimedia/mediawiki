@@ -22,12 +22,19 @@
  * @author Tyler Romeo, 2012
  */
 
+namespace MediaWiki\Utils;
+
+use DateInterval;
+use Language;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserTimeCorrection;
+use Message;
+use RequestContext;
+use User;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -58,9 +65,7 @@ class MWTimestamp extends ConvertibleTimestamp {
 	 * @return DateInterval Offset that was applied to the timestamp
 	 */
 	public function offsetForUser( UserIdentity $user ) {
-		$option = MediaWikiServices::getInstance()
-			->getUserOptionsLookup()
-			->getOption( $user, 'timecorrection' );
+		$option = MediaWikiServices::getInstance()->getUserOptionsLookup()->getOption( $user, 'timecorrection' );
 
 		$value = new UserTimeCorrection(
 			$option,
@@ -102,11 +107,15 @@ class MWTimestamp extends ConvertibleTimestamp {
 
 		$user = User::newFromIdentity( $user ); // For compatibility with the hook signature
 		if ( ( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onGetRelativeTimestamp(
-			$ts, $diff, $this, $relativeTo, $user, $lang )
-		) {
+			$ts,
+			$diff,
+			$this,
+			$relativeTo,
+			$user,
+			$lang
+		) ) {
 			$seconds = ( ( ( $diff->days * 24 + $diff->h ) * 60 + $diff->i ) * 60 + $diff->s );
-			$ts = wfMessage( 'ago', $lang->formatDuration( $seconds, $chosenIntervals ) )
-				->inLanguage( $lang )->text();
+			$ts = wfMessage( 'ago', $lang->formatDuration( $seconds, $chosenIntervals ) )->inLanguage( $lang )->text();
 		}
 
 		return $ts;
@@ -146,3 +155,5 @@ class MWTimestamp extends ConvertibleTimestamp {
 		return $timestamp;
 	}
 }
+
+class_alias( MWTimestamp::class, 'MWTimestamp' );

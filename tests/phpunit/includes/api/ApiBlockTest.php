@@ -9,6 +9,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserRigorOptions;
+use MediaWiki\Utils\MWTimestamp;
 
 /**
  * @group API

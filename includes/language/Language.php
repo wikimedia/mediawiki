@@ -42,6 +42,7 @@ use MediaWiki\Parser\MagicWord;
 use MediaWiki\Specials\SpecialBlock;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserTimeCorrection;
+use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Bcp47Code\Bcp47Code;

@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Utils\MWTimestamp;
 
 /**
  * File reversion user interface

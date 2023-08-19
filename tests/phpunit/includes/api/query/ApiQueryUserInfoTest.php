@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Utils\MWTimestamp;
+
 /**
  * @group API
  * @group Database

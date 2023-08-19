@@ -27,6 +27,7 @@ use MediaWiki\Json\JsonUnserializer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserCacheMetadata;
+use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Reflection\GhostFieldAccessTrait;
 
 /**

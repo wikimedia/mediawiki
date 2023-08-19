@@ -20,7 +20,7 @@
 
 namespace MediaWiki\Page;
 
-use MWTimestamp;
+use MediaWiki\Utils\MWTimestamp;
 use stdClass;
 use Wikimedia\Assert\Assert;
 

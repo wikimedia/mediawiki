@@ -10,6 +10,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\Utils\MWTimestamp;
 use PHPUnit\Framework\AssertionFailedError;
 
 /**

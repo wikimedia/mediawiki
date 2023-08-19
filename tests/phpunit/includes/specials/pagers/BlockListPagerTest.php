@@ -11,6 +11,7 @@ use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPageFactory;
+use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\TestingAccessWrapper;

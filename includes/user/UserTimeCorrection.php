@@ -26,7 +26,7 @@ use DateInterval;
 use DateTime;
 use DateTimeZone;
 use Exception;
-use MWTimestamp;
+use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**

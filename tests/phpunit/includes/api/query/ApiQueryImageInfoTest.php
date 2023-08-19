@@ -2,6 +2,7 @@
 
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\Utils\MWTimestamp;
 
 /**
  * @covers ApiQueryImageInfo

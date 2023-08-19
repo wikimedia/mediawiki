@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Html\Html;
+use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Timestamp\TimestampException;
 
 /**

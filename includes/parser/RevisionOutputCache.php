@@ -28,7 +28,7 @@ use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Revision\RevisionRecord;
-use MWTimestamp;
+use MediaWiki\Utils\MWTimestamp;
 use ParserOptions;
 use ParserOutput;
 use Psr\Log\LoggerInterface;

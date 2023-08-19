@@ -1535,7 +1535,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 	public function testLogPotentialSessionLeakage(
 		$ip, $mwuser, $sessionData, $expectedSessionData, $expectedLogLevel
 	) {
-		\MWTimestamp::setFakeTime( 1234567 );
+		\MediaWiki\Utils\MWTimestamp::setFakeTime( 1234567 );
 		$this->overrideConfigValue( MainConfigNames::SuspiciousIpExpiry, 600 );
 		$manager = new SessionManager();
 		$logger = $this->createMock( LoggerInterface::class );

@@ -22,6 +22,7 @@
  * @author Russ Nelson
  */
 
+use MediaWiki\Utils\MWTimestamp;
 use Psr\Log\LoggerInterface;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\RequestTimeout\TimeoutException;

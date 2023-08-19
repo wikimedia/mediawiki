@@ -24,6 +24,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Utils\MWTimestamp;
 
 /**
  * Module of static functions for generating XML

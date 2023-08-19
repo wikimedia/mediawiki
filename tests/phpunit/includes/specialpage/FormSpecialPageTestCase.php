@@ -3,6 +3,7 @@
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\DAO\WikiAwareEntity;
+use MediaWiki\Utils\MWTimestamp;
 
 /**
  * Factory for handling the special page list and generating SpecialPage objects.

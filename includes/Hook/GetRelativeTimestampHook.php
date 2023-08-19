@@ -4,7 +4,7 @@ namespace MediaWiki\Hook;
 
 use DateInterval;
 use Language;
-use MWTimestamp;
+use MediaWiki\Utils\MWTimestamp;
 use User;
 
 /**
