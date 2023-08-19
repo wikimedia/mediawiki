@@ -451,16 +451,20 @@ class HistoryPager extends ReverseChronologicalPager {
 			$s .= ' <span class="mw-changeslist-separator"></span> ' . "$fSize $sDiff";
 		}
 
-		# Text following the character difference is added just before running hooks
-		$s2 = $this->formattedComments[$resultOffset];
+		# Include separator between character difference and following text
+		$s .= ' <span class="mw-changeslist-separator"></span> ';
 
-		if ( $s2 === '' ) {
+		# Text following the character difference is added just before running hooks
+		$comment = $this->formattedComments[$resultOffset];
+
+		if ( $comment === '' ) {
 			$defaultComment = $this->historyPage->message['changeslist-nocomment'];
-			$s2 = "<span class=\"comment mw-comment-none\">$defaultComment</span>";
+			$comment = "<span class=\"comment mw-comment-none\">$defaultComment</span>";
 		}
+		$s .= $comment;
 
 		if ( $this->notificationTimestamp && $row->rev_timestamp >= $this->notificationTimestamp ) {
-			$s2 .= ' <span class="updatedmarker">' . $this->historyPage->message['updatedmarker'] . '</span>';
+			$s .= ' <span class="updatedmarker">' . $this->historyPage->message['updatedmarker'] . '</span>';
 			$classes[] = 'mw-history-line-updated';
 		}
 
@@ -476,7 +480,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		if ( $pagerTools->shouldPreventClickjacking() ) {
 			$this->preventClickjacking = true;
 		}
-		$s2 .= $pagerTools->toHTML();
+		$s .= $pagerTools->toHTML();
 
 		# Tags
 		[ $tagSummary, $newClasses ] = ChangeTags::formatSummaryRow(
@@ -486,11 +490,8 @@ class HistoryPager extends ReverseChronologicalPager {
 		);
 		$classes = array_merge( $classes, $newClasses );
 		if ( $tagSummary !== '' ) {
-			$s2 .= " $tagSummary";
+			$s .= " $tagSummary";
 		}
-
-		# Include separator between character difference and following text
-		$s .= ' <span class="mw-changeslist-separator"></span> ' . $s2;
 
 		$attribs = [ 'data-mw-revid' => $revRecord->getId() ];
 
