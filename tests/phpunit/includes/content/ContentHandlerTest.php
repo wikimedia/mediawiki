@@ -449,6 +449,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->setTemporaryHook( 'GetContentModels', static function ( &$models ) {
 			$models[] = 'Ferrari';
 		} );
+		$this->hideDeprecated( 'ContentHandler::getContentModels' );
 		$this->assertContains( 'Ferrari', ContentHandler::getContentModels() );
 	}
 

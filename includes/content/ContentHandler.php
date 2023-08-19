@@ -171,13 +171,14 @@ abstract class ContentHandler {
 	 *
 	 * @since 1.21
 	 * @deprecated since 1.33, use SlotRoleHandler::getDefaultModel() together with
-	 * SlotRoleRegistry::getRoleHandler().
+	 *   SlotRoleRegistry::getRoleHandler(). Hard deprecated since 1.43.
 	 *
 	 * @param Title $title
 	 *
 	 * @return string Default model name for the page given by $title
 	 */
 	public static function getDefaultModelFor( Title $title ) {
+		wfDeprecated( __METHOD__, '1.33' );
 		$slotRoleregistry = MediaWikiServices::getInstance()->getSlotRoleRegistry();
 		$mainSlotHandler = $slotRoleregistry->getRoleHandler( 'main' );
 		return $mainSlotHandler->getDefaultModel( $title );
@@ -188,7 +189,8 @@ abstract class ContentHandler {
 	 * object.
 	 *
 	 * @deprecated since 1.35, instead use
-	 *  ContentHandlerFactory::getContentHandler( $content->getModel() ).
+	 *   ContentHandlerFactory::getContentHandler( $content->getModel() ).
+	 *   Hard deprecated since 1.43.
 	 *
 	 * @since 1.21
 	 *
@@ -198,6 +200,7 @@ abstract class ContentHandler {
 	 * @throws MWUnknownContentModelException
 	 */
 	public static function getForContent( Content $content ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()
 			->getContentHandlerFactory()
 			->getContentHandler( $content->getModel() );
@@ -223,6 +226,7 @@ abstract class ContentHandler {
 	 * @since 1.21
 	 *
 	 * @deprecated since 1.35, use ContentHandlerFactory::getContentHandler
+	 *   Hard deprecated since 1.43.
 	 * @see  ContentHandlerFactory::getContentHandler()
 	 *
 	 * @param string $modelId The ID of the content model for which to get a
@@ -232,6 +236,7 @@ abstract class ContentHandler {
 	 * @return ContentHandler The ContentHandler singleton for handling the model given by the ID.
 	 */
 	public static function getForModelID( $modelId ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()
 			->getContentHandlerFactory()
 			->getContentHandler( $modelId );
@@ -265,11 +270,13 @@ abstract class ContentHandler {
 
 	/**
 	 * @deprecated since 1.35, use ContentHandlerFactory::getContentModels
+	 *   Hard deprecated since 1.43.
 	 * @see ContentHandlerFactory::getContentModels
 	 *
 	 * @return string[]
 	 */
 	public static function getContentModels() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()->getContentHandlerFactory()->getContentModels();
 	}
 
@@ -277,9 +284,11 @@ abstract class ContentHandler {
 	 * @return string[]
 	 *
 	 * @deprecated since 1.35, use ContentHandlerFactory::getAllContentFormats
+	 *   Hard deprecated since 1.43.
 	 * @see ContentHandlerFactory::getAllContentFormats
 	 */
 	public static function getAllContentFormats() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()->getContentHandlerFactory()->getAllContentFormats();
 	}
 

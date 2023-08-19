@@ -133,8 +133,13 @@ because of Phabricator reports.
 * ISQLPlatform::tableNamesN() is now deprecated.
 * The implementation in SQLPlatform of ISQLPlatform::tableNames(), deprecated in
   MediaWiki 1.39, now emits deprecation warnings.
-* ContentHandler::getContentText(), deprecated in 1.37, now emits deprecation
-  warnings.
+* The following methods, previously deprecated, now emit deprecation warnings:
+  - ContentHandler::getDefaultModelFor(), deprecated since 1.33
+  - ContentHandler::getAllContentFormats(), deprecated since 1.35
+  - ContentHandler::getContentModels(), deprecated since 1.35
+  - ContentHandler::getForContent(), deprecated since 1.35
+  - ContentHandler::getForModelID(), deprecated since 1.35
+  - ContentHandler::getContentText(), deprecated since 1.37
 * OutputPage::showFatalError() is deprecated, use showErrorPage() instead.
 * IDatabase::lockForUpdate is deprecated, use
   SelectQueryBuilder::acquireRowLocks instead.
