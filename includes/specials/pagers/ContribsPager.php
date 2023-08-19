@@ -226,7 +226,8 @@ class ContribsPager extends RangeChronologicalPager {
 			'diff',
 			'hist',
 			'pipe-separator',
-			'uctop'
+			'uctop',
+			'changeslist-nocomment',
 		];
 
 		foreach ( $msgs as $msg ) {
@@ -760,7 +761,7 @@ class ContribsPager extends RangeChronologicalPager {
 			$comment = $this->formattedComments[$row->rev_id];
 
 			if ( $comment === '' ) {
-				$defaultComment = $this->msg( 'changeslist-nocomment' )->escaped();
+				$defaultComment = $this->messages['changeslist-nocomment'];
 				$comment = "<span class=\"comment mw-comment-none\">$defaultComment</span>";
 			}
 
