@@ -156,7 +156,7 @@ TEXT;
 		$json = json_decode(
 			MWExceptionHandler::jsonSerializeException( new $exClass() )
 		);
-		$this->assertObjectHasAttribute( $key, $json );
+		$this->assertObjectHasProperty( $key, $json );
 		$this->assertSame( $expectedKeyType, gettype( $json->$key ), "Type of the '$key' key" );
 	}
 
@@ -187,7 +187,7 @@ TEXT;
 		$json = json_decode(
 			MWExceptionHandler::jsonSerializeException( new Exception() )
 		);
-		$this->assertObjectHasAttribute( 'backtrace', $json );
+		$this->assertObjectHasProperty( 'backtrace', $json );
 	}
 
 	/**
@@ -202,7 +202,7 @@ TEXT;
 		$json = json_decode(
 			MWExceptionHandler::jsonSerializeException( new Exception() )
 		);
-		$this->assertObjectNotHasAttribute( 'backtrace', $json );
+		$this->assertObjectNotHasProperty( 'backtrace', $json );
 	}
 
 	/**

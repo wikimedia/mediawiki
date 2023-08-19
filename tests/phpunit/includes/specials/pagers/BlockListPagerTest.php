@@ -288,7 +288,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		$pager = $this->getBlockListPager();
 		$pager->preprocessResults( new FakeResultWrapper( [ $row ] ) );
 
-		$this->assertObjectNotHasAttribute( 'ipb_restrictions', $row );
+		$this->assertObjectNotHasProperty( 'ipb_restrictions', $row );
 
 		$page = $this->getExistingTestPage( 'Victor Frankenstein' );
 		$title = $page->getTitle();

@@ -448,4 +448,29 @@ trait MediaWikiTestCaseTrait {
 
 		$this->assertEquals( $expected, $actual, $msg );
 	}
+
+	/**
+	 * Forward-compatibility method to replace assertObjectHasAttribute in PHPUnit 9. This can be removed when
+	 * upgrading to PHPUnit 10, which introduces this method upstream.
+	 */
+	protected function assertObjectHasProperty( string $propertyName, object $object, string $message = '' ): void {
+		$this->assertTrue(
+			( new ReflectionObject( $object ) )->hasProperty( $propertyName ),
+			$message ?: 'Failed asserting that object of class "' . get_class( $object ) .
+					"\" has property \"$propertyName\""
+		);
+	}
+
+	/**
+	 * Forward-compatibility method to replace assertObjectNotHasAttribute in PHPUnit 9. This can be removed when
+	 * upgrading to PHPUnit 10, which introduces this method upstream.
+	 */
+	protected function assertObjectNotHasProperty( string $propertyName, object $object, string $message = '' ): void {
+		$this->assertFalse(
+			( new ReflectionObject( $object ) )->hasProperty( $propertyName ),
+			$message ?: 'Failed asserting that object of class "' . get_class( $object ) .
+				"\" does not have property \"$propertyName\""
+		);
+	}
+
 }
