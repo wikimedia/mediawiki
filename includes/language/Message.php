@@ -1044,7 +1044,8 @@ class Message implements MessageSpecifier, Serializable {
 	}
 
 	/**
-	 * Returns the message text. {{-transformation is done.
+	 * Returns the message text. {{-transformation occurs (substituting the template
+	 * with its parsed result).
 	 *
 	 * @since 1.17
 	 *
@@ -1077,12 +1078,12 @@ class Message implements MessageSpecifier, Serializable {
 	}
 
 	/**
-	 * Returns the message text. {{-transformation is done and the result
-	 * is escaped excluding any raw parameters.
+	 * Returns the message text. {{-transformation (substituting the template with its
+	 * parsed result) is done and the result is HTML escaped excluding any raw parameters.
 	 *
 	 * @since 1.17
 	 *
-	 * @return string Escaped message text.
+	 * @return string HTML escaped message text.
 	 */
 	public function escaped() {
 		return $this->format( self::FORMAT_ESCAPED );
@@ -1443,13 +1444,14 @@ class Message implements MessageSpecifier, Serializable {
 	}
 
 	/**
-	 * Wrapper for what ever method we use to {{-transform wikitext.
+	 * Wrapper for what ever method we use to {{-transform wikitext (substituting the
+	 * template with its parsed result).
 	 *
 	 * @since 1.17
 	 *
 	 * @param string $string Wikitext message contents.
 	 *
-	 * @return string Wikitext with {{-constructs replaced with their values.
+	 * @return string Wikitext with {{-constructs substituted with its parsed result.
 	 */
 	protected function transformText( $string ) {
 		return MediaWikiServices::getInstance()->getMessageCache()->transform(
