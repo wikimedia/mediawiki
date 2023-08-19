@@ -18,7 +18,6 @@
  * @file
  */
 
-use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
@@ -957,15 +956,5 @@ abstract class IndexPager extends ContextSource implements Pager {
 			$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		}
 		return $this->linkRenderer;
-	}
-
-	/**
-	 * @since 1.35 (moved from trait to class in 1.40)
-	 * @deprecated and emits warnings since 1.40 Inject a HookContainer instead
-	 * @return HookContainer
-	 */
-	protected function getHookContainer() {
-		wfDeprecated( __METHOD__, '1.40' );
-		return MediaWikiServices::getInstance()->getHookContainer();
 	}
 }
