@@ -184,8 +184,9 @@ abstract class AbstractContent implements Content {
 	 * @stable to override
 	 * @since 1.21
 	 *
-	 * @deprecated since 1.33 use getText() for TextContent instances.
+	 * @deprecated since 1.33. Use getText() for TextContent instances.
 	 *             For other content models, use specialized getters.
+	 *             Emitting deprecation warnings since 1.41.
 	 *
 	 * @return mixed The native representation of the content. Could be a
 	 *    string, a nested array structure, an object, a binary blob...
@@ -195,6 +196,7 @@ abstract class AbstractContent implements Content {
 	 * @note Caller must be aware of content model!
 	 */
 	public function getNativeData() {
+		wfDeprecated( __METHOD__, '1.33' );
 		throw new LogicException( __METHOD__ . ': not implemented' );
 	}
 
