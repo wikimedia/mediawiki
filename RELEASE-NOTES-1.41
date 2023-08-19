@@ -522,6 +522,7 @@ because of Phabricator reports.
 * The following methods, previously deprecated, now emit deprecation warnings:
   - ConfigFactory::getDefaultInstance(), deprecated since 1.27
   - AbstractContent::getNativeData(), deprecated since 1.33
+  - TablePager::getBody(), deprecated since 1.24
 * …
 
 === Other changes in 1.41 ===
