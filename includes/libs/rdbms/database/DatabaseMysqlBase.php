@@ -894,16 +894,6 @@ class DatabaseMysqlBase extends Database {
 }
 
 /**
- * @deprecated since 1.29
- */
-class_alias( DatabaseMysqlBase::class, 'DatabaseMysqlBase' );
-
-/**
- * @deprecated since 1.29
- */
-class_alias( DatabaseMysqlBase::class, 'DatabaseMysqli' );
-
-/**
  * @deprecated since 1.41
  */
 class_alias( DatabaseMysqlBase::class, 'Wikimedia\\Rdbms\\DatabaseMysqli' );

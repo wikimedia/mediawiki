@@ -932,8 +932,3 @@ class DatabaseSqlite extends Database {
 		return null;
 	}
 }
-
-/**
- * @deprecated since 1.29
- */
-class_alias( DatabaseSqlite::class, 'DatabaseSqlite' );

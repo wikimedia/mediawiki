@@ -9,6 +9,7 @@ use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\DBQueryError;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
@@ -1002,7 +1003,7 @@ class ApiMainTest extends ApiTestCase {
 		)->inLanguage( 'en' )->useDatabase( false )->text();
 
 		$dbex = new DBQueryError(
-			$this->createMock( \Wikimedia\Rdbms\IDatabase::class ),
+			$this->createMock( IDatabase::class ),
 			'error', 1234, 'SELECT 1', __METHOD__ );
 		$dbtrace = wfMessage( 'api-exception-trace',
 			get_class( $dbex ),

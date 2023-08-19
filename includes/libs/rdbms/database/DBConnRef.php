@@ -905,9 +905,3 @@ class DBConnRef implements IMaintainableDatabase {
 		return ( $i === ILoadBalancer::DB_PRIMARY ) ? $this->lb->getWriterIndex() : $i;
 	}
 }
-
-/**
- * @since 1.22
- * @deprecated since 1.29
- */
-class_alias( DBConnRef::class, 'DBConnRef' );
