@@ -20,13 +20,13 @@
  * @file
  */
 
-use MediaWiki\ExtensionInfo;
 use MediaWiki\Html\Html;
 use MediaWiki\Html\HtmlHelper;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
+use MediaWiki\Utils\ExtensionInfo;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Parsoid\Core\TOCData;
 use Wikimedia\RemexHtml\Serializer\SerializerNode;

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki;
+namespace MediaWiki\Utils;
 
 /**
  * @since 1.35
@@ -62,3 +62,5 @@ class ExtensionInfo {
 		return $licenseFiles;
 	}
 }
+
+class_alias( ExtensionInfo::class, 'MediaWiki\\ExtensionInfo' );

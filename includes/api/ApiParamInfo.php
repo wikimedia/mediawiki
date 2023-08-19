@@ -20,8 +20,8 @@
  * @file
  */
 
-use MediaWiki\ExtensionInfo;
 use MediaWiki\User\UserFactory;
+use MediaWiki\Utils\ExtensionInfo;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**

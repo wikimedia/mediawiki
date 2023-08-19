@@ -23,7 +23,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\ExtensionInfo;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\RawMessage;
@@ -31,6 +30,7 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutputFlags;
+use MediaWiki\Utils\ExtensionInfo;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\Utils\UrlUtils;
 use Symfony\Component\Yaml\Yaml;
