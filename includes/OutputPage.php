@@ -35,6 +35,7 @@ use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Title\Title;
+use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\Parsoid\Core\TOCData;

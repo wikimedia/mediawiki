@@ -5,6 +5,7 @@ use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\ParserOutputStringSets;
 use MediaWiki\Tests\Parser\ParserCacheSerializationTestCases;
 use MediaWiki\Title\Title;
+use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\Parsoid\Core\TOCData;

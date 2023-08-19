@@ -8,6 +8,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Assert\Assert;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\Rdbms\IDatabase;

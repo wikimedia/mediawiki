@@ -37,7 +37,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\UserIdentityLookup;
-use MWTimestamp;
+use MediaWiki\Utils\MWTimestamp;
 use PermissionsError;
 use SpecialPage;
 use Wikimedia\IPUtils;

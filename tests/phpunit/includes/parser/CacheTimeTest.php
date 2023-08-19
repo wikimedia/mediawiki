@@ -4,8 +4,8 @@ namespace MediaWiki\Tests\Parser;
 
 use CacheTime;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
-use MWTimestamp;
 use ParserOptions;
 use Wikimedia\Tests\SerializationTestTrait;
 

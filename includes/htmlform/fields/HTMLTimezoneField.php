@@ -3,6 +3,7 @@
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserTimeCorrection;
+use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
 

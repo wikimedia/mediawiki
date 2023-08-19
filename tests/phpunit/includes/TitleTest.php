@@ -7,6 +7,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\Title;
+use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Assert\PreconditionException;
 
 /**

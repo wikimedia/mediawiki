@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Session\Token;
+use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**

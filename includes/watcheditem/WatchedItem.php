@@ -22,6 +22,7 @@
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 

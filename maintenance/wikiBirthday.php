@@ -25,6 +25,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Utils\MWTimestamp;
 
 require_once __DIR__ . '/Maintenance.php';
 

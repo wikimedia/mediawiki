@@ -22,6 +22,7 @@ use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
+use MediaWiki\Utils\MWTimestamp;
 
 /**
  * @ingroup API

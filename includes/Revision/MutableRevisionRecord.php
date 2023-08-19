@@ -28,7 +28,7 @@ use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\User\UserIdentity;
-use MWTimestamp;
+use MediaWiki\Utils\MWTimestamp;
 
 /**
  * Mutable RevisionRecord implementation, for building new revision entries programmatically.

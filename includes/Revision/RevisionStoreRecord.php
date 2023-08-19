@@ -27,7 +27,7 @@ use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;
-use MWTimestamp;
+use MediaWiki\Utils\MWTimestamp;
 
 /**
  * A RevisionRecord representing an existing revision persisted in the revision table.

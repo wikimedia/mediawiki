@@ -2,6 +2,7 @@
 
 use MediaWiki\User\StaticUserOptionsLookup;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\Utils\MWTimestamp;
 
 /**
  * @covers MWTimestamp

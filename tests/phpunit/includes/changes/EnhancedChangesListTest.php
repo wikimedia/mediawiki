@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Title\Title;
+use MediaWiki\Utils\MWTimestamp;
 
 /**
  * @covers EnhancedChangesList

@@ -15,6 +15,7 @@ use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
+use MediaWiki\Utils\MWTimestamp;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
