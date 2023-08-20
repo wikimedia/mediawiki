@@ -22,6 +22,7 @@
  */
 
 use Wikimedia\Rdbms\ChronologyProtector;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\MySQLPrimaryPos;
 

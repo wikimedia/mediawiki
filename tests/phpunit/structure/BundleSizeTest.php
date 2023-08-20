@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Structure;
 
 use HashBagOStuff;
-use IDatabase;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
@@ -12,6 +11,7 @@ use MediaWiki\ResourceLoader\DerivativeContext;
 use MediaWiki\ResourceLoader\Module;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LBFactory;
 
 /**

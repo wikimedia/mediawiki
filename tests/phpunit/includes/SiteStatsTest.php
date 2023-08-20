@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\SiteStats\SiteStats;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * @group Database

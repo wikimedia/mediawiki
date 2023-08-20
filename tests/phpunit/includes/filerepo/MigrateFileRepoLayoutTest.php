@@ -2,6 +2,7 @@
 
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\FakeResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * @covers MigrateFileRepoLayout
@@ -31,7 +32,7 @@ class MigrateFileRepoLayoutTest extends MediaWikiIntegrationTestCase {
 			]
 		] );
 
-		$dbMock = $this->createMock( Wikimedia\Rdbms\IDatabase::class );
+		$dbMock = $this->createMock( IDatabase::class );
 
 		$imageRow = (object)[
 			'img_name' => $filename,
