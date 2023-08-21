@@ -462,7 +462,7 @@ abstract class Maintenance {
 		// This is sometimes called very early, before Setup.php is included.
 		if ( defined( 'MW_SERVICE_BOOTSTRAP_COMPLETE' ) ) {
 			// Flush stats periodically in long-running CLI scripts to avoid OOM (T181385)
-			$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+			$stats = $this->getServiceContainer()->getStatsdDataFactory();
 			if ( $stats->getDataCount() > 1000 ) {
 				MediaWiki::emitBufferedStatsdData( $stats, $this->getConfig() );
 			}
@@ -620,7 +620,7 @@ abstract class Maintenance {
 	 */
 	public function getConfig() {
 		if ( $this->config === null ) {
-			$this->config = MediaWikiServices::getInstance()->getMainConfig();
+			$this->config = $this->getServiceContainer()->getMainConfig();
 		}
 
 		return $this->config;
@@ -632,7 +632,7 @@ abstract class Maintenance {
 	 * @since 1.40
 	 * @return MediaWikiServices
 	 */
-	public function getServiceContainer() {
+	protected function getServiceContainer() {
 		return MediaWikiServices::getInstance();
 	}
 
@@ -915,7 +915,7 @@ abstract class Maintenance {
 			// we can remove this line. This method is called before Setup.php,
 			// so it would be guaranteed DBLoadBalancerFactory is not yet initialized.
 			if ( MediaWikiServices::hasInstance() ) {
-				$service = MediaWikiServices::getInstance()->peekService( 'DBLoadBalancerFactory' );
+				$service = $this->getServiceContainer()->peekService( 'DBLoadBalancerFactory' );
 				if ( $service ) {
 					$service->destroy();
 				}
@@ -948,7 +948,7 @@ abstract class Maintenance {
 			// we can remove this line. This method is called before Setup.php,
 			// so it would be guaranteed DBLoadBalancerFactory is not yet initialized.
 			if ( MediaWikiServices::hasInstance() ) {
-				$service = MediaWikiServices::getInstance()->peekService( 'DBLoadBalancerFactory' );
+				$service = $this->getServiceContainer()->peekService( 'DBLoadBalancerFactory' );
 				if ( $service ) {
 					$service->destroy();
 				}
@@ -985,9 +985,9 @@ abstract class Maintenance {
 		if (
 			$this->getDbType() !== self::DB_NONE &&
 			// Service might be disabled, e.g. when running install.php
-			!MediaWikiServices::getInstance()->isServiceDisabled( 'DBLoadBalancerFactory' )
+			!$this->getServiceContainer()->isServiceDisabled( 'DBLoadBalancerFactory' )
 		) {
-			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+			$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 			if ( $lbFactory->isReadyForRoundOperations() ) {
 				$lbFactory->commitPrimaryChanges( get_class( $this ) );
 			}
@@ -1002,7 +1002,7 @@ abstract class Maintenance {
 		$profiler->logDataPageOutputOnly();
 
 		MediaWiki::emitBufferedStatsdData(
-			MediaWikiServices::getInstance()->getStatsdDataFactory(),
+			$this->getServiceContainer()->getStatsdDataFactory(),
 			$this->getConfig()
 		);
 
@@ -1027,7 +1027,7 @@ abstract class Maintenance {
 		$cur = [];
 		$this->output( 'Searching for active text records via contents table...' );
 		$res = $dbw->select( 'content', 'content_address', [], __METHOD__, [ 'DISTINCT' ] );
-		$blobStore = MediaWikiServices::getInstance()->getBlobStore();
+		$blobStore = $this->getServiceContainer()->getBlobStore();
 		foreach ( $res as $row ) {
 			// @phan-suppress-next-line PhanUndeclaredMethod
 			$textId = $blobStore->getTextIdFromAddress( $row->content_address );
@@ -1085,7 +1085,7 @@ abstract class Maintenance {
 	 */
 	protected function getDB( $db, $groups = [], $dbDomain = false ) {
 		if ( $this->mDb === null ) {
-			return MediaWikiServices::getInstance()
+			return $this->getServiceContainer()
 				->getDBLoadBalancerFactory()
 				->getMainLB( $dbDomain )
 				->getMaintenanceConnectionRef( $db, $groups, $dbDomain );
@@ -1143,7 +1143,7 @@ abstract class Maintenance {
 	 * @since 1.36
 	 */
 	protected function waitForReplication() {
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 		$waitSucceeded = $lbFactory->waitForReplication(
 			[ 'timeout' => 30, 'ifWritesSince' => $this->lastReplicationWait ]
 		);
@@ -1343,7 +1343,7 @@ abstract class Maintenance {
 	 */
 	protected function getHookContainer() {
 		if ( !$this->hookContainer ) {
-			$this->hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+			$this->hookContainer = $this->getServiceContainer()->getHookContainer();
 		}
 		return $this->hookContainer;
 	}
