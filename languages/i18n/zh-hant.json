@@ -3464,7 +3464,7 @@
 	"tag-mw-new-redirect-description": "建立新重新導向或更改頁面為重新導向的編輯",
 	"tag-mw-removed-redirect": "移除重新導向",
 	"tag-mw-removed-redirect-description": "將現有重新導向更改為非重新導向的編輯",
-	"tag-mw-changed-redirect-target": "重新導向目標變更",
+	"tag-mw-changed-redirect-target": "已變更重新導向目標",
 	"tag-mw-changed-redirect-target-description": "變更重新導向目標的編輯",
 	"tag-mw-blank": "清空",
 	"tag-mw-blank-description": "清空頁面的編輯",

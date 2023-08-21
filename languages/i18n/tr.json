@@ -1440,7 +1440,7 @@
 	"rightslog": "Kullanıcı hakları günlüğü",
 	"rightslogtext": "Bu, kullanıcı hakları değişiklikleri için bir günlüktür.",
 	"action-read": "bu sayfayı okuma",
-	"action-edit": "bu sayfayı değiştir",
+	"action-edit": "bu sayfayı değiştirmeye",
 	"action-createpage": "bu sayfayı oluşturma",
 	"action-createtalk": "bu tartışma sayfasını oluştur",
 	"action-createaccount": "bu kullanıcı hesabını oluştur",

@@ -93,14 +93,15 @@
 			"Roozbeh",
 			"Mskf1383",
 			"Af420",
-			"0PAWN0"
+			"0PAWN0",
+			"Darknessswamp8"
 		]
 	},
 	"tog-underline": "خط کشیدن زیر پیوندها:",
 	"tog-hideminor": "ویرایش‌های جزئی از تغییرات اخیر پنهان شود",
 	"tog-hidepatrolled": "ویرایش‌های گشت‌خورده از تغییرات اخیر پنهان شود",
 	"tog-newpageshidepatrolled": "صفحه‌های گشت‌خورده از فهرست صفحه‌های تازه پنهان شود",
-	"tog-hidecategorization": "نهفتن رده‌بندی صفحه‌ها",
+	"tog-hidecategorization": "رده‌بندی صفحه‌ها پنهان شود",
 	"tog-extendwatchlist": "گسترش فهرست پیگیری‌ برای نمایش همهٔ تغییرات، نه فقط جدیدترین‌ها",
 	"tog-usenewrc": "در تغییرات اخیر و فهرست پیگیری تغییرات بر پایهٔ صفحه‌ گروه‌بندی شود",
 	"tog-numberheadings": "شماره‌گذاری خودکار عنوان‌ها",
