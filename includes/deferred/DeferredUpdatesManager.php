@@ -22,23 +22,18 @@
 
 namespace MediaWiki\Deferred;
 
-use DataUpdate;
 use DeferrableCallback;
 use DeferrableUpdate;
+use DeferredUpdates;
 use DeferredUpdatesScopeStack;
 use EnqueueableDataUpdate;
-use ErrorPageError;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
-use LogicException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\JobQueue\JobQueueGroupFactory;
 use MWCallableUpdate;
 use MWExceptionHandler;
 use Psr\Log\LoggerInterface;
-use RequestContext;
 use Throwable;
-use TransactionRoundAwareUpdate;
-use Wikimedia\Rdbms\DBTransactionError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\ScopedCallback;
@@ -90,6 +85,7 @@ use Wikimedia\ScopedCallback;
  * Updates that work through this system will be more likely to complete by the time the
  * client makes their next request after this request than with the JobQueue system.
  *
+ * @deprecated since 1.41, going back to DeferredUpdates
  * @since 1.41 as a replacement for \DeferredUpdates
  */
 class DeferredUpdatesManager {
@@ -109,9 +105,6 @@ class DeferredUpdatesManager {
 
 	/** @var int[] List of "defer until" queue stages that can be reached */
 	public const STAGES = [ self::PRESEND, self::POSTSEND ];
-
-	/** @var int Queue size threshold for converting updates into jobs */
-	private const BIG_QUEUE_SIZE = 100;
 
 	/** @internal For use by ServiceWiring */
 	public const CONSTRUCTOR_OPTIONS = [
@@ -175,15 +168,7 @@ class DeferredUpdatesManager {
 	 * @param int $stage One of (DeferredUpdatesManager::PRESEND, ::POSTSEND)
 	 */
 	public function addUpdate( DeferrableUpdate $update, $stage = self::POSTSEND ) {
-		$this->getScopeStack()->current()->addUpdate( $update, $stage );
-		// If CLI mode is active and no RDBMs transaction round is in the way, then run all
-		// the pending updates now. This is needed for scripts that never, or rarely, use the
-		// RDBMs layer, but that do modify systems via deferred updates. This logic avoids
-		// excessive pending update queue sizes when long-running scripts never trigger the
-		// basic RDBMs hooks for running pending updates.
-		if ( $this->options->get( 'CommandLineMode' ) ) {
-			$this->tryOpportunisticExecute();
-		}
+		DeferredUpdates::addUpdate( $update, $stage );
 	}
 
 	/**
@@ -197,7 +182,7 @@ class DeferredUpdatesManager {
 	 * @param IDatabase|IDatabase[]|null $dbw Abort if this DB is rolled back [optional]
 	 */
 	public function addCallableUpdate( $callable, $stage = self::POSTSEND, $dbw = null ) {
-		$this->addUpdate( new MWCallableUpdate( $callable, wfGetCaller(), $dbw ), $stage );
+		DeferredUpdates::addCallableUpdate( $callable, $stage, $dbw );
 	}
 
 	/**
@@ -219,78 +204,7 @@ class DeferredUpdatesManager {
 	 *  (DeferredUpdatesManager::PRESEND, ::POSTSEND, ::ALL)
 	 */
 	public function doUpdates( $stage = self::ALL ) {
-		$httpMethod = $this->options->get( 'CommandLineMode' )
-			? 'cli'
-			: strtolower( RequestContext::getMain()->getRequest()->getMethod() );
-
-		/** @var ErrorPageError $guiError First presentable client-level error thrown */
-		$guiError = null;
-		/** @var Throwable $exception First of any error thrown */
-		$exception = null;
-
-		$scope = $this->getScopeStack()->current();
-
-		// T249069: recursion is not possible once explicit transaction rounds are involved
-		$activeUpdate = $scope->getActiveUpdate();
-		if ( $activeUpdate ) {
-			$class = get_class( $activeUpdate );
-			if ( !( $activeUpdate instanceof TransactionRoundAwareUpdate ) ) {
-				throw new LogicException(
-					__METHOD__ . ": reached from $class, which is not TransactionRoundAwareUpdate"
-				);
-			}
-			if ( $activeUpdate->getTransactionRoundRequirement() !== $activeUpdate::TRX_ROUND_ABSENT ) {
-				throw new LogicException(
-					__METHOD__ . ": reached from $class, which does not specify TRX_ROUND_ABSENT"
-				);
-			}
-		}
-
-		$scope->processUpdates(
-			$stage,
-			function ( DeferrableUpdate $update, $activeStage )
-				use ( $httpMethod, &$guiError, &$exception )
-			{
-				$scopeStack = $this->getScopeStack();
-				$childScope = $scopeStack->descend( $activeStage, $update );
-				try {
-					$e = $this->run( $update, $httpMethod );
-					$guiError = $guiError ?: ( $e instanceof ErrorPageError ? $e : null );
-					$exception = $exception ?: $e;
-					// Any addUpdate() calls between descend() and ascend() used the sub-queue.
-					// In rare cases, DeferrableUpdate::doUpdates() will process them by calling
-					// doUpdates() itself. In any case, process remaining updates in the subqueue.
-					// them, enqueueing them, or transferring them to the parent scope
-					// queues as appropriate...
-					$childScope->processUpdates(
-						$activeStage,
-						function ( DeferrableUpdate $subUpdate )
-							use ( $httpMethod, &$guiError, &$exception )
-						{
-							$e = $this->run( $subUpdate, $httpMethod );
-							$guiError = $guiError ?: ( $e instanceof ErrorPageError ? $e : null );
-							$exception = $exception ?: $e;
-						}
-					);
-				} finally {
-					$scopeStack->ascend();
-				}
-			}
-		);
-
-		// VW-style hack to work around T190178, so we can make sure
-		// PageMetaDataUpdater doesn't throw exceptions.
-		if ( $exception && defined( 'MW_PHPUNIT_TEST' ) ) {
-			throw $exception;
-		}
-
-		// Throw the first of any GUI errors as long as the context is HTTP pre-send. However,
-		// callers should check permissions *before* enqueueing updates. If the main transaction
-		// round actions succeed but some deferred updates fail due to permissions errors then
-		// there is a risk that some secondary data was not properly updated.
-		if ( $guiError && $stage === self::PRESEND && !headers_sent() ) {
-			throw $guiError;
-		}
+		DeferredUpdates::doUpdates( $stage );
 	}
 
 	/**
@@ -310,38 +224,7 @@ class DeferredUpdatesManager {
 	 * @return bool Whether updates were allowed to run
 	 */
 	public function tryOpportunisticExecute(): bool {
-		// Leave execution up to the current loop if an update is already in progress
-		// or if updates are explicitly disabled
-		if ( self::getRecursiveExecutionStackDepth()
-			|| $this->preventOpportunisticUpdates
-		) {
-			return false;
-		}
-
-		// Run the updates for this context if they will have outer transaction scope
-		if ( !$this->areDatabaseTransactionsActive() ) {
-			$this->doUpdates( self::ALL );
-
-			return true;
-		}
-
-		if ( $this->pendingUpdatesCount() >= self::BIG_QUEUE_SIZE ) {
-			// There are a large number of pending updates and none of them can run yet.
-			// The odds of losing updates due to an error increase when executing long queues
-			// and when large amounts of time pass while tasks are queued. Mitigate this by
-			// trying to migrate updates to the job queue system (where applicable).
-			$this->getScopeStack()->current()->consumeMatchingUpdates(
-				self::ALL,
-				EnqueueableDataUpdate::class,
-				function ( EnqueueableDataUpdate $update ) {
-					$spec = $update->getAsJobSpecification();
-					$this->jobQueueGroupFactory
-						->makeJobQueueGroup( $spec['domain'] )->push( $spec['job'] );
-				}
-			);
-		}
-
-		return false;
+		return DeferredUpdates::tryOpportunisticExecute();
 	}
 
 	/**
@@ -366,7 +249,7 @@ class DeferredUpdatesManager {
 	 * @return int
 	 */
 	public function pendingUpdatesCount() {
-		return $this->getScopeStack()->current()->pendingUpdatesCount();
+		return DeferredUpdates::pendingUpdatesCount();
 	}
 
 	/**
@@ -381,7 +264,7 @@ class DeferredUpdatesManager {
 	 * @internal This method should only be used for unit tests
 	 */
 	public function getPendingUpdates( $stage = self::ALL ) {
-		return $this->getScopeStack()->current()->getPendingUpdates( $stage );
+		return DeferredUpdates::getPendingUpdates( $stage );
 	}
 
 	/**
@@ -393,7 +276,7 @@ class DeferredUpdatesManager {
 	 * @internal This method should only be used for unit tests
 	 */
 	public function clearPendingUpdates() {
-		$this->getScopeStack()->current()->clearPendingUpdates();
+		DeferredUpdates::clearPendingUpdates();
 	}
 
 	/**
@@ -403,7 +286,7 @@ class DeferredUpdatesManager {
 	 * @internal This method should only be used for unit tests
 	 */
 	public function getRecursiveExecutionStackDepth() {
-		return $this->getScopeStack()->getRecursiveDepth();
+		return DeferredUpdates::getRecursiveExecutionStackDepth();
 	}
 
 	/**
@@ -477,35 +360,7 @@ class DeferredUpdatesManager {
 	 * @param ILBFactory $lbFactory
 	 */
 	public function attemptUpdate( DeferrableUpdate $update, ILBFactory $lbFactory ) {
-		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
-		if ( !$ticket || $lbFactory->hasTransactionRound() ) {
-			throw new DBTransactionError( null, "A database transaction round is pending." );
-		}
-
-		if ( $update instanceof DataUpdate ) {
-			$update->setTransactionTicket( $ticket );
-		}
-
-		// Designate $update::doUpdate() as the write round owner
-		$fnameTrxOwner = ( $update instanceof DeferrableCallback )
-			? $update->getOrigin()
-			: get_class( $update ) . '::doUpdate';
-		// Determine whether the write round will be explicit or implicit
-		$useExplicitTrxRound = !(
-			$update instanceof TransactionRoundAwareUpdate &&
-			$update->getTransactionRoundRequirement() == $update::TRX_ROUND_ABSENT
-		);
-
-		// Flush any pending changes left over from an implicit transaction round
-		if ( $useExplicitTrxRound ) {
-			$lbFactory->beginPrimaryChanges( $fnameTrxOwner ); // new explicit round
-		} else {
-			$lbFactory->commitPrimaryChanges( $fnameTrxOwner ); // new implicit round
-		}
-		// Run the update after any stale primary DB view snapshots have been flushed
-		$update->doUpdate();
-		// Commit any pending changes from the explicit or implicit transaction round
-		$lbFactory->commitPrimaryChanges( $fnameTrxOwner );
+		DeferredUpdates::attemptUpdate( $update, $lbFactory );
 	}
 
 	/**
