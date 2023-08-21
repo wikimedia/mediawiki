@@ -2199,7 +2199,7 @@
 	"linksearch-pat": "Šema pretrage:",
 	"linksearch-ns": "Imenski prostor:",
 	"linksearch-ok": "Traži",
-	"linksearch-text": "Možete koristiti džoker znakove poput \"*.wikipedia.org\".<br />\nPodržani {{PLURAL:$2|protokol|protokoli}}: $1 (default je http:// ako nijedan protokol nije naveden).",
+	"linksearch-text": "Možete koristiti džoker znakove poput \"*.wikipedia.org\".<br />\n{{PLURAL:$2|1=Podržan protokol|Podržani protokoli}}: $1 (zadaje http:// i https:// ako nijedan protokol nije naveden).",
 	"linksearch-line": "$1 je povezan od $2",
 	"linksearch-error": "Džokeri se mogu pojavljivati samo na početku naziva servera.",
 	"listusersfrom": "Prikaži korisnike počev od:",
@@ -3630,6 +3630,8 @@
 	"feedback-message": "Poruka:",
 	"feedback-subject": "Tema:",
 	"feedback-submit": "Unesi",
+	"feedback-terms": "Shvatam da moje informacije korisničkog vršilaca sadrže informacije o tačnoj verziji preglednika i operativnog sistema i da će javno biti podijeljene zajedno s mojim povratnim informacijama.",
+	"feedback-termsofuse": "Slažem se da ću pružati povratne informacije u skladu s Uslovima korištenja.",
 	"feedback-thanks": "Hvala! Vaša povratna informacija je postavljena na stranicu „[$2 $1]“.",
 	"feedback-thanks-title": "Hvala vam!",
 	"feedback-useragent": "Korisnički vršilac:",
@@ -3963,6 +3965,7 @@
 	"userlogout-continue": "Želite se odjaviti?",
 	"userlogout-temp": "Jeste li sigurni da se želite odjaviti? Neće biti načina da se ponovno prijavite na privremeni račun.",
 	"paramvalidator-baduser": "Nevažeća vrijednost „$2” za korisnički parametar <var>$1</var>.",
+	"paramvalidator-help-type-user": "Tip: {{PLURAL:$1|1=korisnik|2=spisak korisnika}}, {{PLURAL:$3|po}}: $2",
 	"paramvalidator-help-type-user-subtype-name": "korisničko ime",
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "IP opseg",
@@ -4017,9 +4020,10 @@
 	"log-name-renameuser": "Evidencija preimenovanja",
 	"log-description-renameuser": "Ovo je evidencija izmjena preimenovanja korisnika.",
 	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|preimenuje}} korisnika $4 ({{PLURAL:$6|$6 izmjena|$6 izmjene|$6 izmjena}}) na {{GENDER:$7|$5}}",
-	"logentry-renameuser-renameuser-legacier": "$1 preimenovao je korisnika $4 na {{GENDER:$7|$5}}",
+	"logentry-renameuser-renameuser-legacier": "$1 {{GENDER:$2|preimenovao|preimenovala}} je korisnika $4 na {{GENDER:$7|$5}}",
 	"renameuser-move-log": "Automatski premeštena stranica zbog preimenovanja {{GENDER:$2|korisnika}} \"[[User:$1|$1]]\" u \"[[User:$2|$2]]\"",
 	"action-renameuser": "preimenovanje korisnika",
 	"right-renameuser": "Preimenovanje korisnika",
-	"renameuser-renamed-notice": "Ovom korisniku je promenjeno ime.\nEvidencija promena imena je priložena ispod, kao informacija."
+	"renameuser-renamed-notice": "Ovom korisniku je promenjeno ime.\nEvidencija promena imena je priložena ispod, kao informacija.",
+	"log-unknown-action": "izvršio(la) je nepoznatu radnju \"$2\" na [[$1]]"
 }

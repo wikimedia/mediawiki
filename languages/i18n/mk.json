@@ -2582,6 +2582,7 @@
 	"contribute": "Придонесувајте",
 	"contribsub2": "За {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "За {{GENDER:$2|$1}}",
+	"contributions-edit-count": "{{GENDER:$1|Корисник|Корисничка}} со $2 {{PLURAL:$2|уредување|уредувања}}.",
 	"contributions-userdoesnotexist": "Корисничката сметка „$1“ не е создадена.",
 	"negative-namespace-not-supported": "Не се поддржани именски простори со негативни вредности.",
 	"nocontribs": "Не се пронајдени промени што одговараат на овој критериум.",

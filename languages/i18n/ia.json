@@ -2562,6 +2562,8 @@
 	"contribute": "Contribuer",
 	"contribsub2": "Pro {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "Pro {{GENDER:$2|$1}}",
+	"contributions-edit-count": "Un usat{{GENDER:$1|or|rice}} con $2 modification{{PLURAL:$2||es}}.",
+	"contributions-account-creation-date": "Conto create sur $1.",
 	"contributions-userdoesnotexist": "Le conto de usator \"$1\" non es registrate.",
 	"negative-namespace-not-supported": "Le spatios de nomines con valores negative non es supportate.",
 	"nocontribs": "Nulle modification correspondente a iste criterios ha essite trovate.",

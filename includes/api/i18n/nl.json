@@ -50,7 +50,7 @@
 	"apihelp-block-param-userid": "Geef in plaats hiervan <kbd>$1user=#<var>ID</var></kbd> op.",
 	"apihelp-block-param-expiry": "Vervaldatum. Kan relatief zijn (bijv. <kbd>5 months</kbd> of <kbd>2 weeks</kbd>) of absoluut (bijv. <kbd>2014-09-18T12:34:56Z</kbd>). Indien ingesteld op <kbd>infinite</kbd>, <kbd>indefinite</kbd> of <kbd>never</kbd> zal de blokkade nooit verlopen.",
 	"apihelp-block-param-reason": "Reden voor blokkade.",
-	"apihelp-block-param-anononly": "Alleen anonieme gebruikers blokkeren (d.w.z. anonieme bewerkingen via dit IP-adres uitschakelen).",
+	"apihelp-block-param-anononly": "Alleen anonieme gebruikers blokkeren (d.w.z. anonieme bewerkingen via dit IP-adres onmogelijk maken, waaronder bewerkingen van tijdelijke accounts).",
 	"apihelp-block-param-nocreate": "Het aanmaken van accounts verhinderen.",
 	"apihelp-block-param-autoblock": "Automatisch het laatst gebruikte IP-adres blokkeren, en tevens ieder volgend IP-adres waar vanaf de gebruiker probeert aan te melden.",
 	"apihelp-block-param-noemail": "Het sturen van e-mail via wiki verhinderen. (Vereist het <code>blockemail</code>-recht.)",
