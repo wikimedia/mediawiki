@@ -12,22 +12,21 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers MediaWiki\Deferred\LinksUpdate\LinksUpdate
- * @covers \MediaWiki\Deferred\LinksUpdate\CategoryLinksTable
- * @covers \MediaWiki\Deferred\LinksUpdate\ExternalLinksTable
- * @covers \MediaWiki\Deferred\LinksUpdate\GenericPageLinksTable
- * @covers \MediaWiki\Deferred\LinksUpdate\ImageLinksTable
- * @covers \MediaWiki\Deferred\LinksUpdate\InterwikiLinksTable
- * @covers \MediaWiki\Deferred\LinksUpdate\LangLinksTable
- * @covers \MediaWiki\Deferred\LinksUpdate\LinksTable
- * @covers \MediaWiki\Deferred\LinksUpdate\LinksTableGroup
- * @covers \MediaWiki\Deferred\LinksUpdate\PageLinksTable
- * @covers \MediaWiki\Deferred\LinksUpdate\PagePropsTable
- * @covers \MediaWiki\Deferred\LinksUpdate\TemplateLinksTable
- * @covers \MediaWiki\Deferred\LinksUpdate\TitleLinksTable
+ * @covers MediaWiki\Deferred\LinksUpdate\CategoryLinksTable
+ * @covers MediaWiki\Deferred\LinksUpdate\ExternalLinksTable
+ * @covers MediaWiki\Deferred\LinksUpdate\GenericPageLinksTable
+ * @covers MediaWiki\Deferred\LinksUpdate\ImageLinksTable
+ * @covers MediaWiki\Deferred\LinksUpdate\InterwikiLinksTable
+ * @covers MediaWiki\Deferred\LinksUpdate\LangLinksTable
+ * @covers MediaWiki\Deferred\LinksUpdate\LinksTable
+ * @covers MediaWiki\Deferred\LinksUpdate\LinksTableGroup
+ * @covers MediaWiki\Deferred\LinksUpdate\PageLinksTable
+ * @covers MediaWiki\Deferred\LinksUpdate\PagePropsTable
+ * @covers MediaWiki\Deferred\LinksUpdate\TemplateLinksTable
+ * @covers MediaWiki\Deferred\LinksUpdate\TitleLinksTable
  *
  * @group LinksUpdate
  * @group Database
- * ^--- make sure temporary tables are used.
  */
 class LinksUpdateTest extends MediaWikiLangTestCase {
 	protected static $testingPageId;
@@ -184,8 +183,6 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @covers ParserOutput::addExternalLink
-	 * @covers MediaWiki\Deferred\LinksUpdate\LinksUpdate::getAddedExternalLinks
-	 * @covers MediaWiki\Deferred\LinksUpdate\LinksUpdate::getRemovedExternalLinks
 	 */
 	public function testUpdate_externallinks() {
 		/** @var ParserOutput $po */

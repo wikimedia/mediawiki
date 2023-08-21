@@ -3,11 +3,11 @@
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Title\Title;
 
+/**
+ * @covers CdnCacheUpdate
+ */
 class CdnCacheUpdateTest extends MediaWikiIntegrationTestCase {
 
-	/**
-	 * @covers CdnCacheUpdate::merge
-	 */
 	public function testPurgeMergeWeb() {
 		$this->setMwGlobals( 'wgCommandLineMode', false );
 		$this->setService( 'LinkBatchFactory', $this->createMock( LinkBatchFactory::class ) );
