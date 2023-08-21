@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Utils\GitInfo;
 
 /**
  * @covers GitInfo

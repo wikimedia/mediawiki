@@ -31,6 +31,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Utils\ExtensionInfo;
+use MediaWiki\Utils\GitInfo;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\Utils\UrlUtils;
 use Symfony\Component\Yaml\Yaml;
