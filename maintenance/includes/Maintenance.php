@@ -22,7 +22,6 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\MaintenanceParameters;
-use MediaWiki\Maintenance\MaintenanceRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Shell\Shell;
@@ -51,12 +50,11 @@ require_once __DIR__ . '/MaintenanceParameters.php';
  * bar is the option value of the option for param foo
  * baz is the arg value at index 0 in the arg list
  *
- * WARNING: the constructor, shouldExecute(), setup(), finalSetup(), getName()
- * and loadSettings() are called before Setup.php is complete, which means most of the
- * common infrastructure, like logging or autoloading, is not available. Be
- * careful when changing these methods or the ones called from them. Likewise,
- * be careful with the constructor when subclassing. MediaWikiServices instance
- * is not yet available at this point.
+ * WARNING: the constructor, MaintenanceRunner::shouldExecute(), setup(), finalSetup(),
+ * and getName() are called before Setup.php is complete, which means most of the common
+ * infrastructure, like logging or autoloading, is not available. Be careful when changing
+ * these methods or the ones called from them. Likewise, be careful with the constructor
+ * when subclassing. MediaWikiServices instance is not yet available at this point.
  *
  * @stable to extend
  *
@@ -91,13 +89,6 @@ abstract class Maintenance {
 	 * @phan-var array<string,array{desc:string,require:bool,withArg:string,shortName:string,multiOccurrence:bool}>
 	 */
 	protected $mParams = [];
-
-	/**
-	 * Empty.
-	 * @var array Desired/allowed args
-	 * @deprecated since 1.39, use $this->parameters instead.
-	 */
-	protected $mArgList = [];
 
 	/**
 	 * @var array This is the list of options that were actually passed
@@ -206,14 +197,6 @@ abstract class Maintenance {
 	 */
 	public function getParameters() {
 		return $this->parameters;
-	}
-
-	/**
-	 * @deprecated since 1.39, use MaintenanceRunner::shouldExecute().
-	 * @return bool
-	 */
-	public static function shouldExecute() {
-		return MaintenanceRunner::shouldExecute();
 	}
 
 	/**
@@ -701,19 +684,6 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * This method used to be for internal use by doMaintenance.php to apply
-	 * some optional global state to LBFactory for debugging purposes.
-	 *
-	 * This is now handled lazily by ServiceWiring.
-	 *
-	 * @deprecated since 1.37 No longer needed.
-	 * @since 1.28
-	 */
-	public function setAgentAndTriggers() {
-		wfDeprecated( __METHOD__, '1.37' );
-	}
-
-	/**
 	 * Run a child maintenance script. Pass all of the current arguments
 	 * to it.
 	 * @param string $maintClass A name of a child maintenance class
@@ -765,28 +735,6 @@ abstract class Maintenance {
 	 */
 	public function memoryLimit() {
 		return 'max';
-	}
-
-	/**
-	 * Adjusts PHP's memory limit to better suit our needs, if needed.
-	 * @deprecated since 1.39, now controlled by MaintenanceRunner
-	 */
-	protected function adjustMemoryLimit() {
-		wfDeprecated( __METHOD__, '1.39' );
-
-		if ( $this->parameters->hasOption( 'memory-limit' ) ) {
-			$limit = $this->parameters->getOption( 'memory-limit' );
-			$limit = trim( $limit, "\" '" ); // trim quotes in case someone misunderstood
-		} else {
-			$limit = $this->memoryLimit();
-		}
-
-		if ( $limit == 'max' ) {
-			$limit = -1; // no memory limit
-		}
-		if ( $limit != 'default' ) {
-			ini_set( 'memory_limit', $limit );
-		}
 	}
 
 	/**
@@ -1024,18 +972,6 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Potentially debug globals. Originally a feature only
-	 * for refreshLinks
-	 * @deprecated since 1.39, now controlled by MaintenanceRunner.
-	 */
-	public function globals() {
-		wfDeprecated( __METHOD__, '1.39' );
-		if ( $this->hasOption( 'globals' ) ) {
-			print_r( $GLOBALS );
-		}
-	}
-
-	/**
 	 * Call before exiting CLI process for the last DB commit, and flush
 	 * any remaining buffers and other deferred work.
 	 *
@@ -1075,15 +1011,6 @@ abstract class Maintenance {
 				$lbFactory->shutdown( $lbFactory::SHUTDOWN_NO_CHRONPROT );
 			}
 		}
-	}
-
-	/**
-	 * @deprecated since 1.39. Does nothing. Unused.
-	 * @return string
-	 */
-	public function loadSettings() {
-		// noop
-		return MW_CONFIG_FILE;
 	}
 
 	/**
