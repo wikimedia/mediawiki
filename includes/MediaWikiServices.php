@@ -67,7 +67,6 @@ use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
-use MediaWiki\Deferred\DeferredUpdatesManager;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\EditPage\IntroMessageBuilder;
 use MediaWiki\EditPage\PreloadedContentBuilder;
@@ -1084,14 +1083,6 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getDBLoadBalancerFactoryConfigBuilder(): MWLBFactory {
 		return $this->getService( 'DBLoadBalancerFactoryConfigBuilder' );
-	}
-
-	/**
-	 * @since 1.41
-	 * @return DeferredUpdatesManager
-	 */
-	public function getDeferredUpdatesManager(): DeferredUpdatesManager {
-		return $this->getService( 'DeferredUpdatesManager' );
 	}
 
 	/**
