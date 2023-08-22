@@ -304,13 +304,13 @@ class SwiftFileBackend extends FileBackendStore {
 
 		$method = __METHOD__;
 		$handler = function ( array $request, StatusValue $status ) use ( $method, $params ) {
-			[ $rcode, $rdesc, , , $rerr ] = $request['response'];
+			[ $rcode, $rdesc, , $rbody, $rerr ] = $request['response'];
 			if ( $rcode === 201 || $rcode === 202 ) {
 				// good
 			} elseif ( $rcode === 412 ) {
 				$status->fatal( 'backend-fail-contenttype', $params['dst'] );
 			} else {
-				$this->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
+				$this->onError( $status, $method, $params, $rerr, $rcode, $rdesc, $rbody );
 			}
 
 			return SwiftFileOpHandle::CONTINUE_IF_OK;
@@ -391,13 +391,13 @@ class SwiftFileBackend extends FileBackendStore {
 
 		$method = __METHOD__;
 		$handler = function ( array $request, StatusValue $status ) use ( $method, $params ) {
-			[ $rcode, $rdesc, , , $rerr ] = $request['response'];
+			[ $rcode, $rdesc, , $rbody, $rerr ] = $request['response'];
 			if ( $rcode === 201 || $rcode === 202 ) {
 				// good
 			} elseif ( $rcode === 412 ) {
 				$status->fatal( 'backend-fail-contenttype', $params['dst'] );
 			} else {
-				$this->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
+				$this->onError( $status, $method, $params, $rerr, $rcode, $rdesc, $rbody );
 			}
 
 			return SwiftFileOpHandle::CONTINUE_IF_OK;
@@ -446,7 +446,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 		$method = __METHOD__;
 		$handler = function ( array $request, StatusValue $status ) use ( $method, $params ) {
-			[ $rcode, $rdesc, , , $rerr ] = $request['response'];
+			[ $rcode, $rdesc, , $rbody, $rerr ] = $request['response'];
 			if ( $rcode === 201 ) {
 				// good
 			} elseif ( $rcode === 404 ) {
@@ -454,7 +454,7 @@ class SwiftFileBackend extends FileBackendStore {
 					$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
 				}
 			} else {
-				$this->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
+				$this->onError( $status, $method, $params, $rerr, $rcode, $rdesc, $rbody );
 			}
 
 			return SwiftFileOpHandle::CONTINUE_IF_OK;
@@ -508,7 +508,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 		$method = __METHOD__;
 		$handler = function ( array $request, StatusValue $status ) use ( $method, $params ) {
-			[ $rcode, $rdesc, , , $rerr ] = $request['response'];
+			[ $rcode, $rdesc, , $rbody, $rerr ] = $request['response'];
 			if ( $request['method'] === 'PUT' && $rcode === 201 ) {
 				// good
 			} elseif ( $request['method'] === 'DELETE' && $rcode === 204 ) {
@@ -521,7 +521,7 @@ class SwiftFileBackend extends FileBackendStore {
 					return SwiftFileOpHandle::CONTINUE_NO;
 				}
 			} else {
-				$this->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
+				$this->onError( $status, $method, $params, $rerr, $rcode, $rdesc, $rbody );
 			}
 
 			return SwiftFileOpHandle::CONTINUE_IF_OK;
@@ -555,7 +555,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 		$method = __METHOD__;
 		$handler = function ( array $request, StatusValue $status ) use ( $method, $params ) {
-			[ $rcode, $rdesc, , , $rerr ] = $request['response'];
+			[ $rcode, $rdesc, , $rbody, $rerr ] = $request['response'];
 			if ( $rcode === 204 ) {
 				// good
 			} elseif ( $rcode === 404 ) {
@@ -563,7 +563,7 @@ class SwiftFileBackend extends FileBackendStore {
 					$status->fatal( 'backend-fail-delete', $params['src'] );
 				}
 			} else {
-				$this->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
+				$this->onError( $status, $method, $params, $rerr, $rcode, $rdesc, $rbody );
 			}
 
 			return SwiftFileOpHandle::CONTINUE_IF_OK;
@@ -618,13 +618,13 @@ class SwiftFileBackend extends FileBackendStore {
 
 		$method = __METHOD__;
 		$handler = function ( array $request, StatusValue $status ) use ( $method, $params ) {
-			[ $rcode, $rdesc, , , $rerr ] = $request['response'];
+			[ $rcode, $rdesc, , $rbody, $rerr ] = $request['response'];
 			if ( $rcode === 202 ) {
 				// good
 			} elseif ( $rcode === 404 ) {
 				$status->fatal( 'backend-fail-describe', $params['src'] );
 			} else {
-				$this->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
+				$this->onError( $status, $method, $params, $rerr, $rcode, $rdesc, $rbody );
 			}
 		};
 
@@ -858,7 +858,7 @@ class SwiftFileBackend extends FileBackendStore {
 		] + self::DEFAULT_HTTP_OPTIONS;
 		$reqs = $this->http->runMulti( $reqs, $opts );
 		foreach ( $reqs as $path => $op ) {
-			[ $rcode, $rdesc, $rhdrs, , $rerr ] = $op['response'];
+			[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $op['response'];
 			if ( $rcode >= 200 && $rcode <= 299 ) {
 				rewind( $op['stream'] ); // start from the beginning
 				$content = (string)stream_get_contents( $op['stream'] );
@@ -877,7 +877,7 @@ class SwiftFileBackend extends FileBackendStore {
 			} else {
 				$contents[$path] = self::$RES_ERROR;
 				$this->onError( null, __METHOD__,
-					[ 'src' => $path ] + $ep, $rerr, $rcode, $rdesc );
+					[ 'src' => $path ] + $ep, $rerr, $rcode, $rdesc, $rbody );
 			}
 			fclose( $op['stream'] ); // close open handle
 		}
@@ -1169,7 +1169,7 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 
 		$handle = fopen( 'php://output', 'wb' );
-		[ $rcode, $rdesc, , , $rerr ] = $this->http->run( [
+		[ $rcode, $rdesc, , $rbody, $rerr ] = $this->http->run( [
 			'method' => 'GET',
 			'url' => $this->storageUrl( $auth, $srcCont, $srcRel ),
 			'headers' => $this->authTokenHeaders( $auth )
@@ -1188,7 +1188,7 @@ class SwiftFileBackend extends FileBackendStore {
 			$this->clearCache( [ $params['src'] ] );
 			$this->deleteFileCache( $params['src'] );
 		} else {
-			$this->onError( $status, __METHOD__, $params, $rerr, $rcode, $rdesc );
+			$this->onError( $status, __METHOD__, $params, $rerr, $rcode, $rdesc, $rbody );
 		}
 
 		return $status;
@@ -1234,7 +1234,7 @@ class SwiftFileBackend extends FileBackendStore {
 		] + self::DEFAULT_HTTP_OPTIONS;
 		$reqs = $this->http->runMulti( $reqs, $opts );
 		foreach ( $reqs as $path => $op ) {
-			[ $rcode, $rdesc, $rhdrs, , $rerr ] = $op['response'];
+			[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $op['response'];
 			fclose( $op['stream'] ); // close open handle
 			if ( $rcode >= 200 && $rcode <= 299 ) {
 				/** @var TempFSFile $tmpFile */
@@ -1261,7 +1261,7 @@ class SwiftFileBackend extends FileBackendStore {
 			} else {
 				$tmpFiles[$path] = self::$RES_ERROR;
 				$this->onError( null, __METHOD__,
-					[ 'src' => $path ] + $ep, $rerr, $rcode, $rdesc );
+					[ 'src' => $path ] + $ep, $rerr, $rcode, $rdesc, $rbody );
 			}
 		}
 
@@ -1474,7 +1474,7 @@ class SwiftFileBackend extends FileBackendStore {
 				return self::$RES_ERROR;
 			}
 
-			[ $rcode, $rdesc, $rhdrs, , $rerr ] = $this->http->run( [
+			[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $this->http->run( [
 				'method' => 'HEAD',
 				'url' => $this->storageUrl( $auth, $container ),
 				'headers' => $this->authTokenHeaders( $auth )
@@ -1495,7 +1495,7 @@ class SwiftFileBackend extends FileBackendStore {
 				return self::$RES_ABSENT;
 			} else {
 				$this->onError( null, __METHOD__,
-					[ 'cont' => $container ], $rerr, $rcode, $rdesc );
+					[ 'cont' => $container ], $rerr, $rcode, $rdesc, $rbody );
 
 				return self::$RES_ERROR;
 			}
@@ -1532,7 +1532,7 @@ class SwiftFileBackend extends FileBackendStore {
 			$writeUsers = array_merge( $this->secureWriteUsers, [ $this->swiftUser ] );
 		}
 
-		[ $rcode, $rdesc, , , $rerr ] = $this->http->run( [
+		[ $rcode, $rdesc, , $rbody, $rerr ] = $this->http->run( [
 			'method' => 'PUT',
 			'url' => $this->storageUrl( $auth, $container ),
 			'headers' => $this->authTokenHeaders( $auth ) + [
@@ -1546,7 +1546,7 @@ class SwiftFileBackend extends FileBackendStore {
 		} elseif ( $rcode === 202 ) { // already there
 			// this shouldn't really happen, but is OK
 		} else {
-			$this->onError( $status, __METHOD__, $params, $rerr, $rcode, $rdesc );
+			$this->onError( $status, __METHOD__, $params, $rerr, $rcode, $rdesc, $rbody );
 		}
 
 		return $status;
@@ -1569,7 +1569,7 @@ class SwiftFileBackend extends FileBackendStore {
 			return $status;
 		}
 
-		[ $rcode, $rdesc, , , $rerr ] = $this->http->run( [
+		[ $rcode, $rdesc, , $rbody, $rerr ] = $this->http->run( [
 			'method' => 'DELETE',
 			'url' => $this->storageUrl( $auth, $container ),
 			'headers' => $this->authTokenHeaders( $auth )
@@ -1582,8 +1582,7 @@ class SwiftFileBackend extends FileBackendStore {
 		} elseif ( $rcode === 409 ) { // not empty
 			$this->onError( $status, __METHOD__, $params, $rerr, $rcode, $rdesc ); // race?
 		} else {
-			// @phan-suppress-previous-line PhanPluginDuplicateIfStatements
-			$this->onError( $status, __METHOD__, $params, $rerr, $rcode, $rdesc );
+			$this->onError( $status, __METHOD__, $params, $rerr, $rcode, $rdesc, $rbody );
 		}
 
 		return $status;
@@ -1646,7 +1645,7 @@ class SwiftFileBackend extends FileBackendStore {
 		} elseif ( $rcode === 404 ) {
 			$status->value = []; // no container
 		} else {
-			$this->onError( $status, __METHOD__, $params, $rerr, $rcode, $rdesc );
+			$this->onError( $status, __METHOD__, $params, $rerr, $rcode, $rdesc, $rbody );
 		}
 
 		return $status;
@@ -1694,7 +1693,7 @@ class SwiftFileBackend extends FileBackendStore {
 		] + self::DEFAULT_HTTP_OPTIONS;
 		$reqs = $this->http->runMulti( $reqs, $opts );
 		foreach ( $reqs as $path => $op ) {
-			[ $rcode, $rdesc, $rhdrs, , $rerr ] = $op['response'];
+			[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $op['response'];
 			if ( $rcode === 200 || $rcode === 204 ) {
 				// Update the object if it is missing some headers
 				if ( !empty( $params['requireSHA1'] ) ) {
@@ -1709,7 +1708,7 @@ class SwiftFileBackend extends FileBackendStore {
 				$stat = self::$RES_ABSENT;
 			} else {
 				$stat = self::$RES_ERROR;
-				$this->onError( null, __METHOD__, $params, $rerr, $rcode, $rdesc );
+				$this->onError( null, __METHOD__, $params, $rerr, $rcode, $rdesc, $rbody );
 			}
 			$stats[$path] = $stat;
 		}
@@ -1763,7 +1762,7 @@ class SwiftFileBackend extends FileBackendStore {
 				// Skew the timestamp for worst case to avoid using stale credentials
 				$this->authSessionTimestamp = time() - (int)ceil( $this->authTTL / 2 );
 			} else { // cache miss
-				[ $rcode, , $rhdrs, , ] = $this->http->run( [
+				[ $rcode, , $rhdrs, $rbody, ] = $this->http->run( [
 					'method' => 'GET',
 					'url' => "{$this->swiftAuthUrl}/v1.0",
 					'headers' => [
@@ -1786,7 +1785,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 					return null;
 				} else {
-					$this->onError( null, __METHOD__, [], "HTTP return code: $rcode", $rcode );
+					$this->onError( null, __METHOD__, [], "HTTP return code: $rcode", $rcode, $rbody );
 					$this->authErrorTimestamp = time();
 
 					return null;
@@ -1847,8 +1846,9 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @param string $err Error string
 	 * @param int $code HTTP status
 	 * @param string $desc HTTP StatusValue description
+	 * @param string $body HTTP body
 	 */
-	public function onError( $status, $func, array $params, $err = '', $code = 0, $desc = '' ) {
+	public function onError( $status, $func, array $params, $err = '', $code = 0, $desc = '', $body = '' ) {
 		if ( $status instanceof StatusValue ) {
 			$status->fatal( 'backend-fail-internal', $this->name );
 		}
@@ -1865,6 +1865,10 @@ class SwiftFileBackend extends FileBackendStore {
 		if ( $err ) {
 			$msg .= ': {err}';
 			$msgParams['err'] = $err;
+		}
+		if ( $code == 502 ) {
+			$msg .= ' ({truncatedBody})';
+			$msgParams['truncatedBody'] = substr( strip_tags( $body ), 0, 100 );
 		}
 		$this->logger->error( $msg, $msgParams );
 	}
