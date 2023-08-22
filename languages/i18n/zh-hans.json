@@ -3592,7 +3592,7 @@
 	"tag-mw-new-redirect-description": "创建新重定向或更改页面为重定向的编辑",
 	"tag-mw-removed-redirect": "移除重定向",
 	"tag-mw-removed-redirect-description": "将现有重定向更改为非重定向的编辑",
-	"tag-mw-changed-redirect-target": "重定向目标更改",
+	"tag-mw-changed-redirect-target": "已更改重定向目标",
 	"tag-mw-changed-redirect-target-description": "更改重定向目标的编辑",
 	"tag-mw-blank": "清空",
 	"tag-mw-blank-description": "清空页面的编辑",
