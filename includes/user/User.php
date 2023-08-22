@@ -2691,7 +2691,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			$fields["user_$name"] = $value;
 		}
 
-		return $dbw->doAtomicSection( __METHOD__, function ( IDatabase $dbw, $fname ) use ( $fields, $insertActor ) {
+		return $dbw->doAtomicSection( __METHOD__, static function ( IDatabase $dbw, $fname )
+			use ( $fields, $insertActor )
+		{
 			$dbw->newInsertQueryBuilder()
 				->insert( 'user' )
 				->ignore()

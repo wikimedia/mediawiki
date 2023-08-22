@@ -422,56 +422,56 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		return [
 			[
 				AuthenticationRequest::class,
-				fn ( $sysopUsername ) => $sysopUsername,
+				static fn ( $sysopUsername ) => $sysopUsername,
 				Status::newGood(),
 				StatusValue::newGood( 'ignored' ),
 				StatusValue::newGood( 'ignored' )
 			],
 			[
 				PasswordAuthenticationRequest::class,
-				fn ( $sysopUsername ) => $sysopUsername,
+				static fn ( $sysopUsername ) => $sysopUsername,
 				Status::newGood(),
 				StatusValue::newGood( 'ignored' ),
 				StatusValue::newGood( 'ignored' )
 			],
 			[
 				TemporaryPasswordAuthenticationRequest::class,
-				fn ( $sysopUsername ) => $sysopUsername,
+				static fn ( $sysopUsername ) => $sysopUsername,
 				Status::newGood(),
 				StatusValue::newGood(),
 				StatusValue::newGood()
 			],
 			[
 				TemporaryPasswordAuthenticationRequest::class,
-				fn ( $sysopUsername ) => lcfirst( $sysopUsername ),
+				static fn ( $sysopUsername ) => lcfirst( $sysopUsername ),
 				Status::newGood(),
 				StatusValue::newGood(),
 				StatusValue::newGood()
 			],
 			[
 				TemporaryPasswordAuthenticationRequest::class,
-				fn ( $sysopUsername ) => $sysopUsername,
+				static fn ( $sysopUsername ) => $sysopUsername,
 				Status::wrap( $err ),
 				StatusValue::newGood(),
 				$err
 			],
 			[
 				TemporaryPasswordAuthenticationRequest::class,
-				fn ( $sysopUsername ) => $sysopUsername,
+				static fn ( $sysopUsername ) => $sysopUsername,
 				Status::newFatal( 'arbitrary-error' ),
 				StatusValue::newGood(),
 				StatusValue::newFatal( 'arbitrary-error' )
 			],
 			[
 				TemporaryPasswordAuthenticationRequest::class,
-				fn () => 'DoesNotExist',
+				static fn () => 'DoesNotExist',
 				Status::newGood(),
 				StatusValue::newGood(),
 				StatusValue::newGood( 'ignored' )
 			],
 			[
 				TemporaryPasswordAuthenticationRequest::class,
-				fn () => '<invalid>',
+				static fn () => '<invalid>',
 				Status::newGood(),
 				StatusValue::newGood(),
 				StatusValue::newGood( 'ignored' )

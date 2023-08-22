@@ -39,7 +39,7 @@ class BatchRowUpdateTest extends MediaWikiIntegrationTestCase {
 
 	public function testReaderBasicIterate() {
 		$batchSize = 2;
-		$response = $this->genSelectResult( $batchSize, /*numRows*/ 5, function () {
+		$response = $this->genSelectResult( $batchSize, /*numRows*/ 5, static function () {
 			static $i = 0;
 			return [ 'id_field' => ++$i ];
 		} );
@@ -173,7 +173,7 @@ class BatchRowUpdateTest extends MediaWikiIntegrationTestCase {
 	public function testReaderSelectConditionsMultiplePrimaryKeys(
 		$message, $expectedSecondIteration, $primaryKeys, $batchSize = 3
 	) {
-		$results = $this->genSelectResult( $batchSize, $batchSize * 3, function () {
+		$results = $this->genSelectResult( $batchSize, $batchSize * 3, static function () {
 			static $i = 0, $j = 100, $k = 1000;
 			return [ 'id_field' => ++$i, 'foo' => ++$j, 'bar' => ++$k ];
 		} );

@@ -61,7 +61,7 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 					);
 				}
 			);
-		$db->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $db ) );
+		$db->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn() => new SelectQueryBuilder( $db ) );
 
 		return $db;
 	}

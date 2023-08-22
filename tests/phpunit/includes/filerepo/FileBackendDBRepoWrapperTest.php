@@ -24,7 +24,7 @@ class FileBackendDBRepoWrapperTest extends MediaWikiIntegrationTestCase {
 		$dbMock->expects( $dbReadsExpected )
 			->method( 'selectField' )
 			->willReturn( $dbReturnValue );
-		$dbMock->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $dbMock ) );
+		$dbMock->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn() => new SelectQueryBuilder( $dbMock ) );
 
 		$newPaths = $wrapperMock->getBackendPaths( [ $originalPath ], $latest );
 
@@ -101,7 +101,7 @@ class FileBackendDBRepoWrapperTest extends MediaWikiIntegrationTestCase {
 		$dbMock->expects( $this->once() )
 			->method( 'selectField' )
 			->willReturn( '96246614d75ba1703bdfd5d7660bb57407aaf5d9' );
-		$dbMock->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $dbMock ) );
+		$dbMock->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn() => new SelectQueryBuilder( $dbMock ) );
 
 		$backendMock->expects( $this->once() )
 			->method( 'getFileContentsMulti' )
@@ -121,7 +121,7 @@ class FileBackendDBRepoWrapperTest extends MediaWikiIntegrationTestCase {
 			->disableOriginalClone()
 			->disableOriginalConstructor()
 			->getMock();
-		$dbMock->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $dbMock ) );
+		$dbMock->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn() => new SelectQueryBuilder( $dbMock ) );
 
 		$backendMock = $this->getMockBuilder( FSFileBackend::class )
 			->setConstructorArgs( [ [

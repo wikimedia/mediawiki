@@ -194,7 +194,7 @@ class WikiMap {
 		return $cache->getWithSetCallback(
 			$cache->makeGlobalKey( 'wikimap', 'canonical-urls' ),
 			$cache::TTL_DAY,
-			function () {
+			static function () {
 				global $wgLocalDatabases, $wgCanonicalServer;
 
 				$infoMap = [];

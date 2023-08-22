@@ -293,8 +293,8 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 					'up_property' => 'test_option',
 				]
 			] ) );
-		$mockDb->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $mockDb ) );
-		$mockDb->method( 'newInsertQueryBuilder' )->willReturnCallback( fn() => new InsertQueryBuilder( $mockDb ) );
+		$mockDb->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn() => new SelectQueryBuilder( $mockDb ) );
+		$mockDb->method( 'newInsertQueryBuilder' )->willReturnCallback( static fn() => new InsertQueryBuilder( $mockDb ) );
 		$mockDbProvider = $this->createMock( IConnectionProvider::class );
 		$mockDbProvider
 			->method( 'getPrimaryDatabase' )
@@ -328,7 +328,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 			] ) );
 		$mockDb->expects( $this->never() ) // This is critical what we are testing
 			->method( 'delete' );
-		$mockDb->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $mockDb ) );
+		$mockDb->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn() => new SelectQueryBuilder( $mockDb ) );
 		$mockDbProvider = $this->createMock( IConnectionProvider::class );
 		$mockDbProvider
 			->method( 'getPrimaryDatabase' )
@@ -355,7 +355,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 		$mockDb = $this->createMock( DBConnRef::class );
 		$mockDb
 			->method( 'newDeleteQueryBuilder' )
-			->willReturnCallback( fn() => new DeleteQueryBuilder( $mockDb ) );
+			->willReturnCallback( static fn() => new DeleteQueryBuilder( $mockDb ) );
 		$mockDb->expects( $this->once() )
 			->method( 'select' )
 			->willReturn( new FakeResultWrapper( [
@@ -385,7 +385,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 					'up_property' => [ 'set_default', 'set_default_null', 'set_default_not_null' ]
 				]
 			);
-		$mockDb->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $mockDb ) );
+		$mockDb->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn() => new SelectQueryBuilder( $mockDb ) );
 		$mockDbProvider = $this->createMock( IConnectionProvider::class );
 		$mockDbProvider
 			->method( 'getPrimaryDatabase' )

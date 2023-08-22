@@ -284,7 +284,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		$mock = $this->createNoOpMock( ActorStore::class, [ 'findActorId' ] );
 
 		$mock->method( 'findActorId' )
-			->willReturnCallback( function ( UserIdentity $user ) {
+			->willReturnCallback( static function ( UserIdentity $user ) {
 				$row = self::findRow( self::ACTORS, 1, $user->getName() );
 				return $row ? $row[2] : null;
 			} );

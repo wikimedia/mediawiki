@@ -270,7 +270,7 @@ abstract class ParserCacheSerializationTestCases {
 		return [
 			'empty' => [
 				'instance' => new ParserOutput( '' ),
-				'assertions' => function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
+				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
 					// Empty CacheTime assertions
 					self::getCacheTimeTestCases()['empty']['assertions']( $testCase, $object );
 					// Empty string text is counted as having text.

@@ -288,13 +288,13 @@ class MediaWikiTest extends MediaWikiIntegrationTestCase {
 	public static function provideParseTitleExistingPage(): array {
 		return [
 			"Valid 'oldid'" => [
-				fn ( WikiPage $page ): array => wfCgiToArray( '?oldid=' . $page->getRevisionRecord()->getId() ),
+				static fn ( WikiPage $page ): array => wfCgiToArray( '?oldid=' . $page->getRevisionRecord()->getId() ),
 			],
 			"Valid 'diff'" => [
-				fn ( WikiPage $page ): array => wfCgiToArray( '?diff=' . $page->getRevisionRecord()->getId() ),
+				static fn ( WikiPage $page ): array => wfCgiToArray( '?diff=' . $page->getRevisionRecord()->getId() ),
 			],
 			"Valid 'curid'" => [
-				fn ( WikiPage $page ): array => wfCgiToArray( '?curid=' . $page->getId() ),
+				static fn ( WikiPage $page ): array => wfCgiToArray( '?curid=' . $page->getId() ),
 			],
 		];
 	}
