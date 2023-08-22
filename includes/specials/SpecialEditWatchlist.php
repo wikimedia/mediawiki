@@ -55,6 +55,7 @@ use Status;
 use TitleParser;
 use TitleValue;
 use UnlistedSpecialPage;
+use UserNotLoggedIn;
 use WatchedItemStore;
 use WatchedItemStoreInterface;
 use WebRequest;
@@ -152,8 +153,12 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	public function execute( $mode ) {
 		$this->setHeaders();
 
-		# Anons don't get a watchlist
-		$this->requireNamedUser( 'watchlistanontext' );
+		$user = $this->getUser();
+		if ( !$user->isRegistered()
+			|| ( $user->isTemp() && !$user->isAllowed( 'editmywatchlist' ) )
+		) {
+			throw new UserNotLoggedIn( 'watchlistanontext' );
+		}
 
 		$out = $this->getOutput();
 

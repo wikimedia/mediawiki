@@ -425,12 +425,7 @@
 		} );
 	}
 
-	// IP masked users cannot watch pages (T330518)
-	// Given this module can be imported as a library, it's insufficient to
-	// rely on this module being absent from the page.
-	if ( mw.user.isNamed() ) {
-		$( init );
-	}
+	$( init );
 
 	// Expose public methods.
 	module.exports = {
