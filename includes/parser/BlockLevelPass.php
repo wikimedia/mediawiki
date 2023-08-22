@@ -598,7 +598,6 @@ class BlockLevelPass {
 				__METHOD__ . ": Invalid input; not enough close tags " .
 				"(level $ltLevel/$lcLevel, state $state)"
 			);
-			return false;
 		}
 		return false;
 	}

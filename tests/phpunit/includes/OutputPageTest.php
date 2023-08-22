@@ -3181,13 +3181,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 				string $permission,
 				PageIdentity $page
 			) {
-				if ( $permission === 'edit' | $permission === 'create' ) {
-					if ( $page->getDBkey() === 'RelevantTitle' ) {
-						return true;
-					}
-					return false;
-				}
-				return false;
+				return ( $permission === 'edit' || $permission === 'create' ) && $page->getDBkey() === 'RelevantTitle';
 			} ),
 			'expectedEditableConfig' => [
 				'wgIsProbablyEditable' => false,
