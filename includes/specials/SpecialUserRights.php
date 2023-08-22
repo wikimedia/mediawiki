@@ -39,7 +39,6 @@ use MediaWiki\User\UserGroupManagerFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
-use MediaWiki\User\UserRigorOptions;
 use MediaWiki\WikiMap\WikiMap;
 use OutputPage;
 use PermissionsError;
@@ -455,15 +454,13 @@ class SpecialUserRights extends SpecialPage {
 			} );
 
 		if ( $user->getWikiId() === UserIdentity::LOCAL ) {
-			$legacyUser = $this->userFactory->newFromUserIdentity( $user );
+			// For compatibility local changes are provided as User object to the hook
+			$hookUser = $this->userFactory->newFromUserIdentity( $user );
 		} else {
-			// This removes the wiki reference, but hook is documented to take User object, which is always local
-			$legacyUser = $this->userFactory->newFromName( $user->getName(), UserRigorOptions::RIGOR_NONE );
-			if ( $legacyUser === null ) {
-				throw new \LogicException( 'UserFactory does not provide legacy user' );
-			}
+			// Interwiki changes are provided as UserIdentity since 1.41, was UserRightsProxy before
+			$hookUser = $user;
 		}
-		$this->getHookRunner()->onChangeUserGroups( $this->getUser(), $legacyUser, $add, $remove );
+		$this->getHookRunner()->onChangeUserGroups( $this->getUser(), $hookUser, $add, $remove );
 
 		$oldGroups = $groups;
 		$oldUGMs = $userGroupManager->getUserGroupMemberships( $user );
@@ -494,7 +491,7 @@ class SpecialUserRights extends SpecialPage {
 		$this->userFactory->invalidateCache( $user );
 
 		// update groups in external authentication database
-		$this->getHookRunner()->onUserGroupsChanged( $legacyUser, $add, $remove,
+		$this->getHookRunner()->onUserGroupsChanged( $hookUser, $add, $remove,
 			$this->getUser(), $reason, $oldUGMs, $newUGMs );
 
 		wfDebug( 'oldGroups: ' . print_r( $oldGroups, true ) );
