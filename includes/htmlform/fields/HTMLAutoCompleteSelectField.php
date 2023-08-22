@@ -95,9 +95,10 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 
 		$validOptions = HTMLFormField::flattenOptions( $this->getOptions() ?: [] );
 
-		if ( in_array( strval( $value ), $validOptions, true ) ) {
-			return true;
-		} elseif ( in_array( strval( $value ), $this->autocompleteData, true ) ) {
+		if (
+			in_array( strval( $value ), $validOptions, true ) ||
+			in_array( strval( $value ), $this->autocompleteData, true )
+		) {
 			return true;
 		} elseif ( $this->mParams['require-match'] ) {
 			return $this->msg( 'htmlform-select-badoption' );
