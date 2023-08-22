@@ -476,8 +476,7 @@ class LogEventsList extends ContextSource {
 	 */
 	public static function userCanViewLogType( $type, Authority $performer ) {
 		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::LogRestrictions );
-		if ( isset( $logRestrictions[$type] ) && !$performer->isAllowed( $logRestrictions[$type] )
-		) {
+		if ( isset( $logRestrictions[$type] ) && !$performer->isAllowed( $logRestrictions[$type] ) ) {
 			return false;
 		}
 		return true;
@@ -728,8 +727,7 @@ class LogEventsList extends ContextSource {
 
 		// Don't show private logs to unprivileged users
 		foreach ( $logRestrictions as $logType => $right ) {
-			if ( $audience == 'public' || !$performer->isAllowed( $right )
-			) {
+			if ( $audience == 'public' || !$performer->isAllowed( $right ) ) {
 				$hiddenLogs[] = $logType;
 			}
 		}

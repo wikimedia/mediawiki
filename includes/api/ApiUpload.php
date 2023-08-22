@@ -162,8 +162,7 @@ class ApiUpload extends ApiBase {
 		}
 
 		// Check throttle after we've handled warnings
-		if ( UploadBase::isThrottled( $this->getUser() )
-		) {
+		if ( UploadBase::isThrottled( $this->getUser() ) ) {
 			$this->dieWithError( 'apierror-ratelimited' );
 		}
 
