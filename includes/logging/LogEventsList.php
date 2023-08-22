@@ -53,10 +53,6 @@ class LogEventsList extends ContextSource {
 	private $hookRunner;
 
 	/**
-	 * @stable to call. As of the 1.36 release, there is no factory for this class, and it is
-	 *         instantiated directly by several extensions. The constructor needs to retain
-	 *         backwards compatibility until a factory has been introduced.
-	 *
 	 * @param IContextSource $context
 	 * @param LinkRenderer|null $linkRenderer
 	 * @param int $flags Can be a combination of self::NO_ACTION_LINK,
