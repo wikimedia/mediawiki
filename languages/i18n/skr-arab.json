@@ -1788,6 +1788,7 @@
 	"contribute": "حصہ پاؤ",
 	"contribsub2": "{{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "{{GENDER:$2|$1}} کیتے",
+	"contributions-account-creation-date": "کھاتہ $1 کوں تخلیق تھیا۔",
 	"contributions-userdoesnotexist": "صارف کھاتہ \"$1\" رجسٹرڈ کائنی۔",
 	"nocontribs": "ایں معیار دے مطابق کوئی تبدیلی نی لبھی۔",
 	"uctop": "موجودہ",

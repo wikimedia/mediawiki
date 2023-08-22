@@ -74,7 +74,7 @@
 	"apihelp-block-param-userid": "Spécifier plutôt <kbd>$1user=#<var>ID</var></kbd>.",
 	"apihelp-block-param-expiry": "Durée d’expiration (exprimée en anglais). Peut être relative (par ex. <kbd>5 months</kbd> ou <kbd>2 weeks</kbd>) ou absolue (par ex. <kbd>2014-09-18T12:34:56Z</kbd>). Si elle est indiquée comme  <kbd>infinite</kbd>, <kbd>indefinite</kbd> ou <kbd>never</kbd>, le blocage n’expirera jamais.",
 	"apihelp-block-param-reason": "Motif du blocage.",
-	"apihelp-block-param-anononly": "Bloquer uniquement les utilisateurs anonymes (c’est-à-dire désactiver les modifications anonymes pour cette adresse IP).",
+	"apihelp-block-param-anononly": "Bloquer uniquement les utilisateurs anonymes (c’est-à-dire désactiver les modifications anonymes pour cette adresse IP, y compris les modifications de compte temporaires).",
 	"apihelp-block-param-nocreate": "Empêcher la création de compte.",
 	"apihelp-block-param-autoblock": "Bloquer automatiquement la dernière adresse IP utilisée et toute les adresses IP subséquentes depuis lesquelles ils ont essayé de se connecter.",
 	"apihelp-block-param-noemail": "Empêcher l’utilisateur d’envoyer des courriels via le wiki (nécessite le droit <code>blockemail</code>).",

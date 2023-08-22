@@ -1723,7 +1723,7 @@
 	"apierror-missingrev-title": "沒有標題為$1的目前修訂。",
 	"apierror-missingtitle-createonly": "遺失標題不能以 <kbd>create</kbd> 來保護。",
 	"apierror-missingtitle": "您所指定的頁面不存在。",
-	"apierror-missingtitle-byname": "頁面$1不存在。",
+	"apierror-missingtitle-byname": "頁面「$1」不存在。",
 	"apierror-moduledisabled": "模組 <kbd>$1</kbd> 已停用。",
 	"apierror-multival-only-one-of": "參數 <var>$1</var> 僅允許$2{{PLURAL:$3||其一}}。",
 	"apierror-multpages": "<var>$1</var> 僅能以單一頁面使用。",

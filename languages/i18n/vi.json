@@ -2232,7 +2232,7 @@
 	"magiclink-tracking-isbn": "Trang sử dụng liên kết tự động ISBN",
 	"magiclink-tracking-isbn-desc": "Trang sử dụng liên kết tự động ISBN. Xem thông tin về cách chuyển đổi tại [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org].",
 	"specialloguserlabel": "Người thực hiện:",
-	"speciallogtitlelabel": "Mục tiêu (tiêu đề hoặc {{ns:user}}:tên-người-dùng đối với người dùng):",
+	"speciallogtitlelabel": "Mục tiêu (tiêu đề hoặc {{ns:user}}:tennguoidung đối với thành viên):",
 	"log": "Nhật trình",
 	"logeventslist-submit": "Xem",
 	"logeventslist-more-filters": "Hiện thêm nhật trình:",
