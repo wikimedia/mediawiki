@@ -23,6 +23,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -36,9 +37,6 @@ class RefreshLinks extends Maintenance {
 
 	/** @var int|false */
 	protected $namespace = false;
-
-	/** @var string|false */
-	protected $beforeTimestamp = false;
 
 	public function __construct() {
 		parent::__construct();
@@ -75,7 +73,25 @@ class RefreshLinks extends Maintenance {
 		} else {
 			$this->namespace = (int)$ns;
 		}
-		$this->beforeTimestamp = $this->getOption( 'before-timestamp', false );
+
+		if ( $this->hasOption( 'dfn-only' ) ) {
+			$this->deleteLinksFromNonexistent( $start, $end, $this->getBatchSize(), $dfnChunkSize );
+			return;
+		}
+
+		$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
+		$builder = $dbr->newSelectQueryBuilder()
+			->from( 'page' )
+			->where( $this->namespaceCond() )
+			->andWhere( self::intervalCond( $dbr, 'page_id', $start, $end ) )
+			->limit( $this->getBatchSize() );
+
+		if ( $this->hasOption( 'before-timestamp' ) ) {
+			$timeCond = $dbr->buildComparison( '<', [
+				'page_links_updated' => $this->getOption( 'before-timestamp' )
+			] );
+			$builder->andWhere( [ "$timeCond OR page_links_updated IS NULL" ] );
+		}
 
 		if ( $this->hasOption( 'category' ) ) {
 			$category = $this->getOption( 'category' );
@@ -83,17 +99,29 @@ class RefreshLinks extends Maintenance {
 			if ( !$title ) {
 				$this->fatalError( "'$category' is an invalid category name!\n" );
 			}
-			$this->refreshCategory( $title );
+			$this->refreshCategory( $builder, $title );
 		} elseif ( $this->hasOption( 'tracking-category' ) ) {
 			// See TrackingCategories::CORE_TRACKING_CATEGORIES for tracking category keys defined by core
-			$this->refreshTrackingCategory( $this->getOption( 'tracking-category' ) );
-		} elseif ( !$this->hasOption( 'dfn-only' ) ) {
+			$this->refreshTrackingCategory( $builder, $this->getOption( 'tracking-category' ) );
+		} else {
 			$new = $this->hasOption( 'new-only' );
 			$redir = $this->hasOption( 'redirects-only' );
 			$oldRedir = $this->hasOption( 'old-redirects-only' );
-			$this->doRefreshLinks( $start, $new, $end, $redir, $oldRedir );
-			$this->deleteLinksFromNonexistent( null, null, $this->getBatchSize(), $dfnChunkSize );
-		} else {
+			$what = $redir ? 'redirects' : 'links';
+			if ( $oldRedir ) {
+				$builder->leftJoin( 'redirect', null, 'page_id=rd_from' )
+					->andWhere( [
+						'page_is_redirect' => 1,
+						'rd_from' => null,
+					] );
+				$this->output( "Refreshing old redirects from $start...\n" );
+			} elseif ( $new ) {
+				$builder->andWhere( [ 'page_is_new' => 1 ] );
+				$this->output( "Refreshing $what from new pages...\n" );
+			} else {
+				$this->output( "Refreshing $what from pages...\n" );
+			}
+			$this->doRefreshLinks( $builder, $redir || $oldRedir );
 			$this->deleteLinksFromNonexistent( $start, $end, $this->getBatchSize(), $dfnChunkSize );
 		}
 	}
@@ -106,112 +134,57 @@ class RefreshLinks extends Maintenance {
 
 	/**
 	 * Do the actual link refreshing.
-	 * @param int|null $start Page_id to start from
-	 * @param bool $newOnly Only do pages with 1 edit
-	 * @param int|null $end Page_id to stop at
+	 * @param SelectQueryBuilder $builder
 	 * @param bool $redirectsOnly Only fix redirects
-	 * @param bool $oldRedirectsOnly Only fix redirects without redirect entries
+	 * @param array $indexFields
 	 */
-	private function doRefreshLinks( $start, $newOnly = false,
-		$end = null, $redirectsOnly = false, $oldRedirectsOnly = false
+	private function doRefreshLinks(
+		SelectQueryBuilder $builder,
+		bool $redirectsOnly = false,
+		array $indexFields = [ 'page_id' ]
 	) {
-		$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
-
-		if ( $start === null ) {
-			$start = 1;
-		}
-
 		// Give extensions a chance to optimize settings
 		$this->getHookRunner()->onMaintenanceRefreshLinksInit( $this );
 
-		$what = $redirectsOnly ? "redirects" : "links";
+		$estimateCount = $builder->estimateRowCount();
+		$this->output( "Estimated page count: $estimateCount\n" );
 
-		if ( $oldRedirectsOnly ) {
-			# This entire code path is cut-and-pasted from below.  Hurrah.
-
-			$conds = [
-				'page_is_redirect' => 1,
-				'rd_from' => null,
-				self::intervalCond( $dbr, 'page_id', $start, $end ),
-			] + $this->namespaceCond();
-
-			$res = $dbr->newSelectQueryBuilder()
-				->select( 'page_id' )
-				->from( 'page' )
-				->leftJoin( 'redirect', null, "page_id=rd_from" )
-				->where( $conds )
+		$i = 0;
+		$lastIndexes = array_fill_keys( $indexFields, 0 );
+		$verbose = $this->hasOption( 'verbose' );
+		$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
+		do {
+			$batchCond = $dbr->buildComparison( '>', $lastIndexes );
+			$res = ( clone $builder )->select( $indexFields )
+				->andWhere( [ $batchCond ] )
+				->orderBy( $indexFields )
 				->caller( __METHOD__ )->fetchResultSet();
-			$num = $res->numRows();
-			$this->output( "Refreshing $num old redirects from $start...\n" );
 
-			$i = 0;
+			if ( $verbose ) {
+				$this->output( "Refreshing links for {$res->numRows()} pages\n" );
+			}
 
 			foreach ( $res as $row ) {
 				if ( !( ++$i % self::REPORTING_INTERVAL ) ) {
 					$this->output( "$i\n" );
 					$this->waitForReplication();
+				}
+				if ( $verbose ) {
+					$this->output( "Refreshing links for page ID {$row->page_id}\n" );
 				}
 				$this->fixRedirect( $row->page_id );
-			}
-		} elseif ( $newOnly ) {
-			$this->output( "Refreshing $what from " );
-			$res = $dbr->newSelectQueryBuilder()
-				->select( [ 'page_id' ] )
-				->from( 'page' )
-				->where( [ 'page_is_new' => 1, self::intervalCond( $dbr, 'page_id', $start, $end ) ] )
-				->andWhere( $this->namespaceCond() )
-				->caller( __METHOD__ )->fetchResultSet();
-			$num = $res->numRows();
-			$this->output( "$num new articles...\n" );
-
-			$i = 0;
-			foreach ( $res as $row ) {
-				if ( !( ++$i % self::REPORTING_INTERVAL ) ) {
-					$this->output( "$i\n" );
-					$this->waitForReplication();
-				}
-				if ( $redirectsOnly ) {
-					$this->fixRedirect( $row->page_id );
-				} else {
-					self::fixLinksFromArticle( $row->page_id, $this->namespace, $this->beforeTimestamp );
+				if ( !$redirectsOnly ) {
+					self::fixLinksFromArticle( $row->page_id );
 				}
 			}
-		} else {
-			if ( !$end ) {
-				$maxPage = $dbr->newSelectQueryBuilder()
-					->select( 'max(page_id)' )
-					->from( 'page' )
-					->caller( __METHOD__ )->fetchField();
-				$maxRD = $dbr->newSelectQueryBuilder()
-					->select( 'max(rd_from)' )
-					->from( 'redirect' )
-					->caller( __METHOD__ )->fetchField();
-				$end = max( $maxPage, $maxRD );
-			}
-			$this->output( "Refreshing redirects table.\n" );
-			$this->output( "Starting from page_id $start of $end.\n" );
-
-			for ( $id = $start; $id <= $end; $id++ ) {
-				if ( !( $id % self::REPORTING_INTERVAL ) ) {
-					$this->output( "$id\n" );
-					$this->waitForReplication();
-				}
-				$this->fixRedirect( $id );
-			}
-
-			if ( !$redirectsOnly ) {
-				$this->output( "Refreshing links tables.\n" );
-				$this->output( "Starting from page_id $start of $end.\n" );
-
-				for ( $id = $start; $id <= $end; $id++ ) {
-					if ( !( $id % self::REPORTING_INTERVAL ) ) {
-						$this->output( "$id\n" );
-						$this->waitForReplication();
-					}
-					self::fixLinksFromArticle( $id, $this->namespace, $this->beforeTimestamp );
+			if ( $res->numRows() ) {
+				$res->seek( $res->numRows() - 1 );
+				foreach ( $indexFields as $field ) {
+					$lastIndexes[$field] = $res->current()->$field;
 				}
 			}
-		}
+
+		} while ( $res->numRows() == $this->getBatchSize() );
 	}
 
 	/**
@@ -228,22 +201,9 @@ class RefreshLinks extends Maintenance {
 	 */
 	private function fixRedirect( $id ) {
 		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromID( $id );
-		$dbw = $this->getDB( DB_PRIMARY );
 
+		// In case the page just got deleted.
 		if ( $page === null ) {
-			// This page doesn't exist (any more)
-			// Delete any redirect table entry for it
-			$dbw->delete( 'redirect', [ 'rd_from' => $id ],
-				__METHOD__ );
-
-			return;
-		} elseif ( $this->namespace !== false
-			&& !$page->getTitle()->inNamespace( $this->namespace )
-		) {
-			return;
-		} elseif ( $this->beforeTimestamp !== false
-			&& $page->getLinksTimestamp() >= $this->beforeTimestamp
-		) {
 			return;
 		}
 
@@ -253,6 +213,7 @@ class RefreshLinks extends Maintenance {
 			$rt = $content->getRedirectTarget();
 		}
 
+		$dbw = $this->getDB( DB_PRIMARY );
 		if ( $rt === null ) {
 			// The page is not a redirect
 			// Delete any redirect table entry for it
@@ -271,24 +232,13 @@ class RefreshLinks extends Maintenance {
 	/**
 	 * Run LinksUpdate for all links on a given page_id
 	 * @param int $id The page_id
-	 * @param int|bool $ns Only fix links if it is in this namespace
-	 * @param string|false $beforeTimestamp Only fix links if it was last updated before this timestamp
 	 */
-	public static function fixLinksFromArticle( $id, $ns = false, $beforeTimestamp = false ) {
+	public static function fixLinksFromArticle( $id ) {
 		$services = MediaWikiServices::getInstance();
 		$page = $services->getWikiPageFactory()->newFromID( $id );
 
-		$services->getLinkCache()->clear();
-
+		// In case the page just got deleted.
 		if ( $page === null ) {
-			return;
-		} elseif ( $ns !== false
-			&& !$page->getTitle()->inNamespace( $ns )
-		) {
-			return;
-		} elseif ( $beforeTimestamp !== false
-			&& $page->getLinksTimestamp() >= $beforeTimestamp
-		) {
 			return;
 		}
 
@@ -434,70 +384,34 @@ class RefreshLinks extends Maintenance {
 	/**
 	 * Refershes links for pages in a tracking category
 	 *
+	 * @param SelectQueryBuilder $builder
 	 * @param string $category Category key
 	 */
-	private function refreshTrackingCategory( $category ) {
+	private function refreshTrackingCategory( SelectQueryBuilder $builder, $category ) {
 		$cats = $this->getPossibleCategories( $category );
 
 		if ( !$cats ) {
 			$this->error( "Tracking category '$category' is disabled\n" );
-			// Output to stderr but don't bail out,
+			// Output to stderr but don't bail out.
 		}
 
 		foreach ( $cats as $cat ) {
-			$this->refreshCategory( Title::newFromLinkTarget( $cat ) );
+			$this->refreshCategory( clone $builder, $cat );
 		}
 	}
 
 	/**
 	 * Refreshes links to a category
 	 *
-	 * @param Title $category
+	 * @param SelectQueryBuilder $builder
+	 * @param LinkTarget $category
 	 */
-	private function refreshCategory( Title $category ) {
+	private function refreshCategory( SelectQueryBuilder $builder, LinkTarget $category ) {
 		$this->output( "Refreshing pages in category '{$category->getText()}'...\n" );
 
-		$dbr = $this->getDB( DB_REPLICA );
-		$conds = [
-			'cl_to' => $category->getDBkey(),
-		] + $this->namespaceCond();
-
-		$i = 0;
-		$timestamp = '';
-		$lastId = 0;
-		do {
-			$finalConds = $conds;
-			$finalConds[] = $dbr->buildComparison( '>', [
-				'cl_timestamp' => $timestamp,
-				'cl_from' => $lastId,
-			] );
-			$res = $dbr->newSelectQueryBuilder()
-				->select( [ 'page_id', 'cl_timestamp' ] )
-				->from( 'page' )
-				->join( 'categorylinks', null, 'page_id=cl_from' )
-				->where( $finalConds )
-				->orderBy( [ 'cl_timestamp', 'cl_from' ] )
-				->limit( $this->getBatchSize() )
-				->caller( __METHOD__ )->fetchResultSet();
-
-			if ( $this->hasOption( 'verbose' ) ) {
-				$this->output( "Refreshing links for {$res->numRows()} pages\n" );
-			}
-
-			foreach ( $res as $row ) {
-				if ( !( ++$i % self::REPORTING_INTERVAL ) ) {
-					$this->output( "$i\n" );
-					$this->waitForReplication();
-				}
-				$lastId = $row->page_id;
-				$timestamp = $row->cl_timestamp;
-				if ( $this->hasOption( 'verbose' ) ) {
-					$this->output( "Refreshing links for page ID {$row->page_id}\n" );
-				}
-				self::fixLinksFromArticle( $row->page_id, false, $this->beforeTimestamp );
-			}
-
-		} while ( $res->numRows() == $this->getBatchSize() );
+		$builder->join( 'categorylinks', null, 'page_id=cl_from' )
+			->andWhere( [ 'cl_to' => $category->getDBkey() ] );
+		$this->doRefreshLinks( $builder, false, [ 'cl_timestamp', 'cl_from' ] );
 	}
 
 	/**
