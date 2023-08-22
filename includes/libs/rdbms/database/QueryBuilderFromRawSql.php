@@ -24,7 +24,9 @@ use Wikimedia\Rdbms\Platform\SQLPlatform;
 /**
  * This is to contain any regex on SQL work and get rid of them eventually
  *
- * This is a radioactive swamp that we need to get rid of as soon as possible.
+ * This is a radioactive swamp and an extremely flawed and buggy last resort
+ * for when the information has not been provided via Query object.
+ * Bugs are to be expected in the regexes here.
  *
  * @ingroup Database
  * @internal
