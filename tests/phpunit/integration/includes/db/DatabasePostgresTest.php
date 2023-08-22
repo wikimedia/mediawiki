@@ -400,9 +400,9 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 	private function createSourceTable() {
 		$prefix = self::dbPrefix();
 
-		$this->db->query( "DROP TABLE IF EXISTS ${prefix}tmp_src_tbl" );
+		$this->db->query( "DROP TABLE IF EXISTS {$prefix}tmp_src_tbl" );
 		$this->db->query(
-			"CREATE TEMPORARY TABLE ${prefix}tmp_src_tbl (" .
+			"CREATE TEMPORARY TABLE {$prefix}tmp_src_tbl (" .
 			"sn serial not null, " .
 			"sk text unique, " .
 			"sv integer, " .
@@ -417,9 +417,9 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 	private function createDestTable() {
 		$prefix = self::dbPrefix();
 
-		$this->db->query( "DROP TABLE IF EXISTS ${prefix}tmp_dst_tbl" );
+		$this->db->query( "DROP TABLE IF EXISTS {$prefix}tmp_dst_tbl" );
 		$this->db->query(
-			"CREATE TEMPORARY TABLE ${prefix}tmp_dst_tbl (" .
+			"CREATE TEMPORARY TABLE {$prefix}tmp_dst_tbl (" .
 				"n serial not null, " .
 				"k text unique, " .
 				"v integer, " .
@@ -434,12 +434,12 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 	private function dropSourceTable() {
 		$prefix = self::dbPrefix();
 
-		$this->db->query( "DROP TABLE IF EXISTS ${prefix}tmp_src_tbl" );
+		$this->db->query( "DROP TABLE IF EXISTS {$prefix}tmp_src_tbl" );
 	}
 
 	private function dropDestTable() {
 		$prefix = self::dbPrefix();
 
-		$this->db->query( "DROP TABLE IF EXISTS ${prefix}tmp_dst_tbl" );
+		$this->db->query( "DROP TABLE IF EXISTS {$prefix}tmp_dst_tbl" );
 	}
 }
