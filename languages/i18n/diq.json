@@ -35,7 +35,8 @@
 			"Velg",
 			"Xoser",
 			"ديفيد",
-			"아라"
+			"아라",
+			"Tacsipacsi"
 		]
 	},
 	"tog-underline": "Bınê gıreyi de xete bance:",
@@ -727,7 +728,7 @@
 	"templatesusedsection": "{{PLURAL:$1|Şablono ke na qısım de gureyniyeno|Şablonê}} ke na qısım de gureyniyenê:",
 	"template-protected": "(şeveknaye)",
 	"template-semiprotected": "(nêm-şeveknaye)",
-	"hiddencategories": "Ena per de {{PLURAL:$1|1 kategoriyo nımıte|$1 kategoriyê nımıtey}} muhtewa benê:",
+	"hiddencategories": "Ena pele de {{PLURAL:$1|1 kategoriyo nımıte|$1 kategoriyê nımıteyi}} muhtewa benê:",
 	"edittools": "<!-- Beno ke no metın bınê formanê vurnayışi û barkerdışi de bımocniyo. -->",
 	"edittools-upload": "-",
 	"nocreatetext": "{{SITENAME}}, vıraştışê pelanê neweyan rê destur çıniyo.\nŞıma şenê tepiya şorê u eke şıma qeydbiyayeyê, [[Special:UserLogin|şıma şenê yew hesab akerê]], eke şıma niyê [[Special:UserLogin|şıma şenê qeyd bıbê]].",
@@ -831,7 +832,7 @@
 	"last": "verên",
 	"page_first": "verên",
 	"page_last": "peyên",
-	"histlegend": "Ferqê weçinayışi: Qutiya versiyonan qandê têversanayış işaret kerê u dest be ''enter''i ya zi gocega cêrêne rone.<br />\nCetwel: <strong>({{int:ferq}})</strong> = ferqê versiyonê peyêni, <strong>({{int:peyên}})</strong> = ferqê versiyonê verêni, <strong>{{int:q}}</strong> = vırnayışo werdiyo.",
+	"histlegend": "Ferqê weçinayışi: Qutiya versiyonan qandê têversanayış işaret kerê u dest be ''enter''i ya zi gocega cêrêne rone.<br />\nCetwel: <strong>({{int:cur}})</strong> = ferqê versiyonê peyêni, <strong>({{int:last}})</strong> = ferqê versiyonê verêni, <strong>{{int:minoreditletter}}</strong> = vırnayışo werdiyo.",
 	"history-fieldset-title": "Çımraviyarnayışan parzûn kerê",
 	"history-show-deleted": "Tenya çımraviyarnayışanê esterıteyan bımocne",
 	"histfirst": "Verênêr",
@@ -2946,7 +2947,7 @@
 	"tooltip-publish": "Vurnayışê xo qeyd ke",
 	"tooltip-preview": "Vurnayışanê xo çım ra bıviyarne. Qeydkerdış ra ver bıgurene.",
 	"tooltip-diff": "Kamci vırnayışê ke şıma nuştey sero kerdê, inan bıvênê.",
-	"tooltip-compareselectedversions": "Ena per de ferqê rewziyonan de dı weçinaya bıvinê",
+	"tooltip-compareselectedversions": "Ena pele de miyanê dı çımraviyarnayışanê weçinıtan ra ferqan bıvênên",
 	"tooltip-watch": "Ena pele lista xoya seyrkerdışi ke",
 	"tooltip-watchlist-expiry": "Ena pela ravêrde lista pelanê seyrkerdışi tede kerê",
 	"tooltip-watchlistedit-normal-submit": "Sernuşteyan wedare",

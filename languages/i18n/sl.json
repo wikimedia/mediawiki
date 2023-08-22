@@ -2110,7 +2110,7 @@
 	"apisandbox-submit": "Izvedi zahtevek",
 	"apisandbox-reset": "Počisti",
 	"apisandbox-retry": "Poskusi znova",
-	"apisandbox-loading": "Nalaganje informacij o modulu API »$1« ...",
+	"apisandbox-loading": "Nalaganje informacij o API-modulu »$1« ...",
 	"apisandbox-load-error": "Pri nalaganju podatkov za API-modul »$1« je prišlo do napake: $2",
 	"apisandbox-no-parameters": "Ta API-modul nima parametrov.",
 	"apisandbox-helpurls": "Povezave pomoči",
