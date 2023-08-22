@@ -32,7 +32,8 @@ class TextSlotDiffRendererTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame(
 			[
 				'10-formats-and-engines' => 'wikidiff2=inline',
-				'20-wikidiff2-version' => '1.14.1'
+				'20-wikidiff2-version' => '1.14.1',
+				'21-wikidiff2-options' => 'bc2a06be',
 			],
 			$inlineKey
 		);

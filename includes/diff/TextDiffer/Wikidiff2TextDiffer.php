@@ -23,6 +23,8 @@ class Wikidiff2TextDiffer extends BaseTextDiffer {
 	private $defaultOptions;
 	/** @var array[] */
 	private $formatOptions;
+	/** @var string */
+	private $optionsHash;
 
 	private const OPT_NAMES = [
 		'numContextLines',
@@ -79,7 +81,30 @@ class Wikidiff2TextDiffer extends BaseTextDiffer {
 	}
 
 	public function getCacheKeys( array $formats ): array {
-		return [ '20-wikidiff2-version' => $this->version ];
+		return [
+			'20-wikidiff2-version' => $this->version,
+			'21-wikidiff2-options' => $this->getOptionsHash(),
+		];
+	}
+
+	/**
+	 * Get a hash of the cache-varying constructor options
+	 *
+	 * @return string
+	 */
+	private function getOptionsHash() {
+		if ( $this->optionsHash === null ) {
+			$json = json_encode(
+				[
+					$this->useMultiFormat,
+					$this->defaultOptions,
+					$this->formatOptions,
+				],
+				JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+			);
+			$this->optionsHash = substr( md5( $json ), 0, 8 );
+		}
+		return $this->optionsHash;
 	}
 
 	public function doRenderBatch( string $oldText, string $newText, array $formats ): array {
