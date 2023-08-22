@@ -223,7 +223,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 	public static function codeProvider() {
 		$trivialWithNothingElseCodes = [
 			'aa', 'ab', 'abs', 'ace', 'ady', 'ady-cyrl', 'aeb', 'aeb-arab', 'aeb-latn',
-			'af', 'ak', 'aln', 'als', 'am', 'an', 'ang', 'anp', 'ar', 'arc', 'arn',
+			'af', 'aln', 'als', 'am', 'an', 'ang', 'anp', 'ar', 'arc', 'arn',
 			'arq', 'ary', 'arz', 'as', 'ase', 'ast', 'atj', 'av', 'avk', 'awa', 'ay',
 			'az', 'azb', 'ba', 'ban-bali', 'bar', 'bat-smg', 'bbc', 'bbc-latn', 'bcc',
 			'bcl', 'be', 'be-tarask', 'be-x-old', 'bg', 'bgn', 'bh', 'bho', 'bi', 'bjn',

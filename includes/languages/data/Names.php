@@ -52,7 +52,6 @@ class Names {
 		'aeb-arab' => 'تونسي', # Tunisian Arabic (Arabic Script)
 		'aeb-latn' => 'Tûnsî', # Tunisian Arabic (Latin Script)
 		'af' => 'Afrikaans', # Afrikaans
-		'ak' => 'Akan', # Akan
 		'aln' => 'Gegë', # Gheg Albanian
 		'als' => 'Alemannisch', # Alemannic -- not a valid code, for compatibility. See gsw.
 		'alt' => 'алтай тил', # Altai, T254854
