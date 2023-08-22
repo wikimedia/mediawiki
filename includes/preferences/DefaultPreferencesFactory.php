@@ -1928,8 +1928,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$hiddenPrefs = $this->options->get( MainConfigNames::HiddenPrefs );
 		$result = true;
 
-		if ( !$user->isAllowedAny( 'editmyprivateinfo', 'editmyoptions' )
-		) {
+		if ( !$user->isAllowedAny( 'editmyprivateinfo', 'editmyoptions' ) ) {
 			return Status::newFatal( 'mypreferencesprotected' );
 		}
 

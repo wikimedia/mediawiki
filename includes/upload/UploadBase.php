@@ -1976,8 +1976,7 @@ abstract class UploadBase {
 		 * RepoGroup::findFile finds a file, it exists in a shared repository.
 		 */
 		$file = $services->getRepoGroup()->findFile( $this->getTitle(), [ 'latest' => true ] );
-		if ( $file && !$performer->isAllowed( 'reupload-shared' )
-		) {
+		if ( $file && !$performer->isAllowed( 'reupload-shared' ) ) {
 			return [ 'fileexists-shared-forbidden', $file->getName() ];
 		}
 

@@ -50,8 +50,7 @@ class UploadFromUrl extends UploadBase {
 	 * @return bool|string
 	 */
 	public static function isAllowed( Authority $performer ) {
-		if ( !$performer->isAllowed( 'upload_by_url' )
-		) {
+		if ( !$performer->isAllowed( 'upload_by_url' ) ) {
 			return 'upload_by_url';
 		}
 

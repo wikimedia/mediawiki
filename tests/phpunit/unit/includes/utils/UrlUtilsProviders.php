@@ -168,8 +168,7 @@ class UrlUtilsProviders {
 	}
 
 	public static function provideGetServer(): Generator {
-		foreach ( self::provideExpand() as $desc => [ $input, $options, $defaultProto, $expected ]
-		) {
+		foreach ( self::provideExpand() as $desc => [ $input, $options, $defaultProto, $expected ] ) {
 			if ( $input !== '/wiki/FooBar' ) {
 				continue;
 			}
