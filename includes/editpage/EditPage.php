@@ -2956,13 +2956,8 @@ class EditPage implements IEditObject {
 
 	/**
 	 * Send the edit form and related headers to OutputPage
-	 * @param callable|null $formCallback That takes an OutputPage parameter; will be called
-	 *     during form output near the top, for captchas and the like.
-	 *
-	 * The $formCallback parameter is deprecated since MediaWiki 1.25 and hard-deprecated since
-	 * 1.38. Please use the EditPage::showEditForm:fields hook instead.
 	 */
-	public function showEditForm( $formCallback = null ) {
+	public function showEditForm() {
 		# need to parse the preview early so that we know which templates are used,
 		# otherwise users with "show preview after edit box" will get a blank list
 		# we parse this near the beginning so that setHeaders can do the title
@@ -3025,11 +3020,6 @@ class EditPage implements IEditObject {
 				'enctype' => 'multipart/form-data'
 			]
 		) );
-
-		if ( is_callable( $formCallback ) ) {
-			wfDeprecated( 'The $formCallback parameter to ' . __METHOD__, '1.25' );
-			call_user_func_array( $formCallback, [ &$out ] );
-		}
 
 		// Add a check for Unicode support
 		$out->addHTML( Html::hidden( 'wpUnicodeCheck', self::UNICODE_CHECK ) );

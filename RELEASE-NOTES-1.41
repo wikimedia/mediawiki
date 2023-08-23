@@ -351,6 +351,8 @@ because of Phabricator reports.
   with a fallback; it will now have unspecified behaviour.
 * RecentChange::getEngine(), deprecated since 1.29, has been removed. Use
   RCFeed::factory() instead.
+* EditPage::showEditForm() no longer respects the $formCallback parameter, which
+  was deprecated in 1.25. Use the EditPage::showEditForm:fields hook instead.
 * Passing a second query parameter to Title::getFullURL(), Title::getLocalURL(),
   Title::getInternalURL(), or Title::getCanonicalURL(), each deprecated in 1.19,
   is now not supported. Pass it as a key,value pair in the first parameter array
