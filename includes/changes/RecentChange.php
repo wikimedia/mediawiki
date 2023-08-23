@@ -588,31 +588,6 @@ class RecentChange implements Taggable {
 	}
 
 	/**
-	 * @since 1.22
-	 * @codeCoverageIgnore
-	 * @deprecated since 1.29 Use RCFeed::factory() instead. Hard deprecated since 1.38.
-	 * @param string $uri URI to get the engine object for
-	 * @param array $params
-	 * @return FormattedRCFeed
-	 */
-	public static function getEngine( $uri, $params = [] ) {
-		wfDeprecated( __METHOD__, '1.29' );
-		$rcEngines =
-			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::RCEngines );
-		$scheme = parse_url( $uri, PHP_URL_SCHEME );
-		if ( !$scheme ) {
-			throw new InvalidArgumentException( "Invalid RCFeed uri: '$uri'" );
-		}
-		if ( !isset( $rcEngines[$scheme] ) ) {
-			throw new InvalidArgumentException( "Unknown RCFeed engine: '$scheme'" );
-		}
-		if ( defined( 'MW_PHPUNIT_TEST' ) && is_object( $rcEngines[$scheme] ) ) {
-			return $rcEngines[$scheme];
-		}
-		return new $rcEngines[$scheme]( $params );
-	}
-
-	/**
 	 * Mark this RecentChange as patrolled
 	 *
 	 * NOTE: Can also return 'rcpatroldisabled', 'hookaborted' and
