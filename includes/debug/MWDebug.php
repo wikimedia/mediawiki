@@ -23,6 +23,7 @@
 use MediaWiki\Html\Html;
 use MediaWiki\Logger\LegacyLogger;
 use MediaWiki\ResourceLoader\ResourceLoader;
+use MediaWiki\Utils\GitInfo;
 use Wikimedia\WrappedString;
 use Wikimedia\WrappedStringList;
 

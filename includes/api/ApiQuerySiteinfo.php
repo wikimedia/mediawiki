@@ -34,6 +34,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Utils\ExtensionInfo;
+use MediaWiki\Utils\GitInfo;
 use MediaWiki\Utils\UrlUtils;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\ParamValidator\ParamValidator;

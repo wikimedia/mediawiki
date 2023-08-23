@@ -23,6 +23,9 @@
  * @file
  */
 
+namespace MediaWiki\Utils;
+
+use FormatJson;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
@@ -30,6 +33,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 use Psr\Log\LoggerInterface;
+use RuntimeException;
 use Wikimedia\AtEase\AtEase;
 
 /**
@@ -97,8 +101,7 @@ class GitInfo {
 		$this->repoDir = $repoDir;
 		$services = MediaWikiServices::getInstance();
 		$this->options = new ServiceOptions(
-			self::CONSTRUCTOR_OPTIONS,
-			$services->getMainConfig()
+			self::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
 		);
 		$this->options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		// $this->options must be set before using getCacheFilePath()
@@ -467,3 +470,5 @@ class GitInfo {
 		return self::$viewers;
 	}
 }
+
+class_alias( GitInfo::class, 'GitInfo' );
