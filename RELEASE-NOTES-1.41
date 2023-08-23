@@ -369,6 +369,8 @@ because of Phabricator reports.
   you should use Title::getNamespaceKey().
 * The AddNewAccount hook, deprecated since 1.27, will now trigger deprecation
   warnings. You should use the LocalUserCreated hook instead.
+* The PrefixSearchBackend hook, deprecated since 1.27, will now trigger
+  deprecation warnings. Override SearchEngine::completionSearchBackend instead.
 * PrefixSearch::validateNamespaces(), completely unused everywhere, has been
   removed without deprecation.
 * Passing a second query parameter to Title::getFullURL(), Title::getLocalURL(),

@@ -347,6 +347,7 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 	 * @covers PrefixSearch::searchBackend
 	 */
 	public function testSearchBackend( array $case ) {
+		$this->filterDeprecated( '/Use of PrefixSearchBackend hook/' );
 		$this->searchProvision( $case['provision'] );
 		$searcher = new StringPrefixSearch;
 		$results = $searcher->search( $case['query'], 3 );
