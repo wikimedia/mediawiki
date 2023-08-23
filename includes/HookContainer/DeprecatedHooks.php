@@ -34,7 +34,7 @@ class DeprecatedHooks {
 	 *  - silent (bool, optional) If true, no deprecation warning will be raised
 	 */
 	private $deprecatedHooks = [
-		'AddNewAccount' => [ 'deprecatedVersion' => '1.27', 'silent' => true ],
+		'AddNewAccount' => [ 'deprecatedVersion' => '1.27' ],
 		'EditPageBeforeEditToolbar' => [ 'deprecatedVersion' => '1.36' ],
 		'LocalFile::getHistory' => [ 'deprecatedVersion' => '1.37' ],
 		'MagicWordwgVariableIDs' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
