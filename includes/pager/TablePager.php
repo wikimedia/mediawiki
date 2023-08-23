@@ -73,9 +73,11 @@ abstract class TablePager extends IndexPager {
 	 * rather than mysteriously render things wrong.
 	 *
 	 * @deprecated since 1.24, use getBodyOutput() or getFullOutput() instead
+	 *   Emitting deprecation warnings since 1.41.
 	 * @return string
 	 */
 	final public function getBody() {
+		wfDeprecated( __METHOD__, '1.24' );
 		return parent::getBody();
 	}
 
