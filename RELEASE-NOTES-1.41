@@ -94,6 +94,7 @@ For notes on 1.40.x and older releases, see HISTORY.
 * Updated wikimedia/minify from 2.3.0 to 2.5.0.
 * Updated wikimedia/less.php from 4.0.0 to 4.1.1.
 * Updated OOUI from v0.46.3 to v0.47.5.
+* Updated wikimedia/html-formatter from 3.0.1 to 4.0.3.
 * …
 
 ===== Changed development-only external libraries =====
