@@ -25,7 +25,6 @@ use ContentHandler;
 use IBufferingStatsdDataFactory;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Html\Html;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MWUnknownContentModelException;
 use OutputPage;
@@ -89,23 +88,19 @@ class TextConflictHelper {
 	 * @param OutputPage $out
 	 * @param IBufferingStatsdDataFactory $stats
 	 * @param string $submitLabel
-	 * @param IContentHandlerFactory|null $contentHandlerFactory Required param with legacy support
+	 * @param IContentHandlerFactory $contentHandlerFactory Required param with legacy support
 	 *
 	 * @throws MWUnknownContentModelException
 	 */
-	public function __construct( Title $title, OutputPage $out, IBufferingStatsdDataFactory $stats,
-		$submitLabel, ?IContentHandlerFactory $contentHandlerFactory = null
+	public function __construct(
+		Title $title, OutputPage $out, IBufferingStatsdDataFactory $stats, $submitLabel,
+		IContentHandlerFactory $contentHandlerFactory
 	) {
 		$this->title = $title;
 		$this->out = $out;
 		$this->stats = $stats;
 		$this->submitLabel = $submitLabel;
 		$this->contentModel = $title->getContentModel();
-
-		if ( !$contentHandlerFactory ) {
-			wfDeprecated( __METHOD__ . ' without $contentHandlerFactory parameter', '1.35' );
-			$contentHandlerFactory = MediaWikiServices::getInstance()->getContentHandlerFactory();
-		}
 		$this->contentHandlerFactory = $contentHandlerFactory;
 
 		$this->contentFormat = $this->contentHandlerFactory
