@@ -44,37 +44,14 @@ use Wikimedia\UUID\GlobalIdGenerator;
  */
 class WikitextContentHandler extends TextContentHandler {
 
-	/** @var TitleFactory */
-	private $titleFactory;
+	private TitleFactory $titleFactory;
+	private ParserFactory $parserFactory;
+	private GlobalIdGenerator $globalIdGenerator;
+	private LanguageNameUtils $languageNameUtils;
+	private LinkRenderer $linkRenderer;
+	private MagicWordFactory $magicWordFactory;
+	private ParsoidParserFactory $parsoidParserFactory;
 
-	/** @var ParserFactory */
-	private $parserFactory;
-
-	/** @var GlobalIdGenerator */
-	private $globalIdGenerator;
-
-	/** @var LanguageNameUtils */
-	private $languageNameUtils;
-
-	/** @var LinkRenderer */
-	private $linkRenderer;
-
-	/** @var MagicWordFactory */
-	private $magicWordFactory;
-
-	/** @var ParsoidParserFactory */
-	private $parsoidParserFactory;
-
-	/**
-	 * @param string $modelId
-	 * @param TitleFactory $titleFactory
-	 * @param ParserFactory $parserFactory
-	 * @param GlobalIdGenerator $globalIdGenerator
-	 * @param LanguageNameUtils $languageNameUtils
-	 * @param LinkRenderer $linkRenderer
-	 * @param MagicWordFactory $magicWordFactory
-	 * @param ParsoidParserFactory $parsoidParserFactory
-	 */
 	public function __construct(
 		string $modelId,
 		TitleFactory $titleFactory,
@@ -121,9 +98,9 @@ class WikitextContentHandler extends TextContentHandler {
 		} else {
 			$iw = $destination->getInterwiki();
 			if ( $iw && $this->languageNameUtils->getLanguageName( $iw,
-						LanguageNameUtils::AUTONYMS,
-						LanguageNameUtils::DEFINED )
-			) {
+				LanguageNameUtils::AUTONYMS,
+				LanguageNameUtils::DEFINED
+			) ) {
 				$optionalColon = ':';
 			}
 		}
@@ -212,10 +189,8 @@ class WikitextContentHandler extends TextContentHandler {
 		$fields['opening_text']->setFlag(
 			SearchIndexField::FLAG_SCORING | SearchIndexField::FLAG_NO_HIGHLIGHT
 		);
-		// Until we have full first-class content handler for files, we invoke it explicitly here
-		$fields = array_merge( $fields, $this->getFileHandler()->getFieldsForSearchIndex( $engine ) );
-
-		return $fields;
+		// Until we have the full first-class content handler for files, we invoke it explicitly here
+		return array_merge( $fields, $this->getFileHandler()->getFieldsForSearchIndex( $engine ) );
 	}
 
 	public function getDataForSearchIndex(
@@ -235,10 +210,12 @@ class WikitextContentHandler extends TextContentHandler {
 		$fields['defaultsort'] = $structure->getDefaultSort();
 		$fields['file_text'] = null;
 
-		// Until we have full first-class content handler for files, we invoke it explicitly here
+		// Until we have the full first-class content handler for files, we invoke it explicitly here
 		if ( $page->getTitle()->getNamespace() === NS_FILE ) {
-			$fields = array_merge( $fields,
-					$this->getFileHandler()->getDataForSearchIndex( $page, $parserOutput, $engine, $revision ) );
+			$fields = array_merge(
+				$fields,
+				$this->getFileHandler()->getDataForSearchIndex( $page, $parserOutput, $engine, $revision )
+			);
 		}
 		return $fields;
 	}
@@ -304,13 +281,12 @@ class WikitextContentHandler extends TextContentHandler {
 		'@phan-var WikitextContent $content';
 		$text = $content->getText();
 
-		$plt = $this->parserFactory->getInstance()
-			->getPreloadText(
-				$text,
-				$pltParams->getPage(),
-				$pltParams->getParserOptions(),
-				$pltParams->getParams()
-			);
+		$plt = $this->parserFactory->getInstance()->getPreloadText(
+			$text,
+			$pltParams->getPage(),
+			$pltParams->getParserOptions(),
+			$pltParams->getParams()
+		);
 
 		$contentClass = $this->getContentClass();
 		return new $contentClass( $plt );
