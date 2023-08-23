@@ -978,12 +978,13 @@ var util = {
 	},
 
 	/**
-	 * This functionality has been adapted from \Wikimedia\IPUtils::sanitizeIP()
-	 *
 	 * Convert an IP into a verbose, uppercase, normalized form.
+	 *
 	 * Both IPv4 and IPv6 addresses are trimmed. Additionally,
 	 * IPv6 addresses in octet notation are expanded to 8 words;
 	 * IPv4 addresses have leading zeros, in each octet, removed.
+	 *
+	 * This functionality has been adapted from \Wikimedia\IPUtils::sanitizeIP()
 	 *
 	 * @param {string} ip IP address in quad or octet form (CIDR or not).
 	 * @return {string|null}
@@ -1029,10 +1030,11 @@ var util = {
 	},
 
 	/**
-	 * This functionality has been adapted from \Wikimedia\IPUtils::prettifyIP()
-	 *
 	 * Prettify an IP for display to end users.
+	 *
 	 * This will make it more compact and lower-case.
+	 *
+	 * This functionality has been adapted from \Wikimedia\IPUtils::prettifyIP()
 	 *
 	 * @param {string} ip IP address in quad or octet form (CIDR or not).
 	 * @return {string|null}
@@ -1071,9 +1073,9 @@ var util = {
 	},
 
 	/**
-	 * This functionality has been adapted from MediaWiki\User\TempUser\Pattern::isMatch()
+	 * Does given username match $wgAutoCreateTempUser?
 	 *
-	 * Checks if the pattern matches the given username
+	 * This functionality has been adapted from MediaWiki\User\TempUser\Pattern::isMatch()
 	 *
 	 * @param {string} username
 	 * @return {boolean}
@@ -1097,7 +1099,7 @@ var util = {
 			match = ( username.indexOf( prefix ) === 0 );
 		}
 		if ( match && suffix !== '' ) {
-			match = ( username.indexOf( suffix, username.length - suffix.length ) !== -1 ) &&
+			match = ( username.slice( -suffix.length ) === suffix ) &&
 				( username.length >= prefix.length + suffix.length );
 		}
 		return match;

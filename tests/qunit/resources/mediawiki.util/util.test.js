@@ -769,74 +769,65 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		assert.strictEqual( mw.util.$content.length, 1, 'length' );
 	} );
 
-	QUnit.test( 'sanitizeIP', function ( assert ) {
-		var IPaddress = [
-			[ 'FC:0:0:0:0:0:0:100', 'fc::100', 'IPv6 with "::" and 2 words' ],
-			[ 'FC:0:0:0:0:0:100:A', 'fc::100:a', 'IPv6 with "::" and 3 words' ],
-			[ 'FC:0:0:0:0:100:A:D', 'fc::100:a:d', 'IPv6 with "::" and 4 words' ],
-			[ 'FC:0:0:0:100:A:D:1', 'fc::100:a:d:1', 'IPv6 with "::" and 5 words' ],
-			[ 'FC:0:0:100:A:D:1:E', 'fc::100:a:d:1:e', 'IPv6 with "::" and 6 words' ],
-			[ 'FC:0:100:A:D:1:E:AC', 'fc::100:a:d:1:e:ac', 'IPv6 with "::" and 7 words' ],
-			[ '2001:0:0:0:0:0:0:DF', '2001::df', 'IPv6 with "::" and 2 words' ],
-			[ '2001:5C0:1400:A:0:0:0:DF', '2001:5c0:1400:a::df', 'IPv6 with "::" and 5 words' ],
-			[ '2001:5C0:1400:A:0:0:DF:2', '2001:5c0:1400:a::df:2', 'IPv6 with "::" and 6 words' ],
-			[ '2001:DB8:A:0:0:0:0:123/64', '2001:db8:a::123/64', 'IPv6 with "::" and 6 words' ],
-			[ '1.24.52.13', '1.24.52.13', 'IPv4 no change' ],
-			[ '1.24.52.13', '01.024.052.013', 'IPv4 strip leading 0s' ],
-			[ '1.2.5.1', '001.002.005.001', 'IPv4 strip multiple leading 0s' ],
-			[ '100.240.52.130', '100.240.52.130', 'IPv4 don\'t strip meaningful trailing 0s' ],
-			[ '0.0.52.0', '00.000.52.00', 'IPv4 strip meaningless multiple 0s' ],
-			[ '0.0.52.0/32', '00.000.52.00/32', 'IPv4 range strip meaningless multiple 0s' ],
-			[ 'not an IP', 'not an IP', 'Not an IP' ],
-			[ null, ' ', 'Empty string' ],
-			[ '1.24.52.13', ' 1.24.52.13 ', 'IPv4 trim whitespace from start and end of the string' ],
-			[ '0:0:0:0:0:0:0:1', '::1', 'IPv6 starts with ::' ],
-			[ '2001:DB8:0:0:0:FF00:42:8329', '2001:0db8:0000:0000:0000:ff00:0042:8329', 'IPv6 remove leading zeros from each block.' ],
-			[ 'FE80:0:0:0:0:0:0:0/10', 'fe80::/10', 'IPv6 :: at the end' ],
-			[ 'UserName', 'UserName', 'Non-IP string' ],
-			[ null, null, 'Non-string' ]
-		];
-		IPaddress.forEach( function ( ipCase ) {
-			assert.strictEqual( util.sanitizeIP( ipCase[ 1 ] ), ipCase[ 0 ], ipCase[ 2 ] );
-		} );
+	QUnit.test.each( 'sanitizeIP', {
+		'IPv6 with "::" and 2 words': [ 'FC:0:0:0:0:0:0:100', 'fc::100' ],
+		'IPv6 with "::" and 3 words': [ 'FC:0:0:0:0:0:100:A', 'fc::100:a' ],
+		'IPv6 with "::" and 4 words': [ 'FC:0:0:0:0:100:A:D', 'fc::100:a:d' ],
+		'IPv6 with "::" and 5 words': [ 'FC:0:0:0:100:A:D:1', 'fc::100:a:d:1' ],
+		'IPv6 with "::" and 6 words': [ 'FC:0:0:100:A:D:1:E', 'fc::100:a:d:1:e' ],
+		'IPv6 with "::" and 7 words': [ 'FC:0:100:A:D:1:E:AC', 'fc::100:a:d:1:e:ac' ],
+		// https://www.apnic.net/get-ip/faqs/what-is-an-ip-address/ipv6-address-types/
+		'IPv6 with "::" and 2 words (Teredo)': [ '2001:0:0:0:0:0:0:DF', '2001::df' ],
+		'IPv6 with "::" and 5 words (Teredo)': [ '2001:5C0:1400:A:0:0:0:DF', '2001:5c0:1400:a::df' ],
+		'IPv6 with "::" and 6 words (Teredo)': [ '2001:5C0:1400:A:0:0:DF:2', '2001:5c0:1400:a::df:2' ],
+		'IPv6 range with "::" and 6 words (Teredo)': [ '2001:DB8:A:0:0:0:0:123/64', '2001:db8:a::123/64' ],
+		'IPv4 no change': [ '1.24.52.13', '1.24.52.13' ],
+		'IPv4 strip leading 0s': [ '1.24.52.13', '01.024.052.013' ],
+		'IPv4 strip multiple leading 0s': [ '1.2.5.1', '001.002.005.001' ],
+		'IPv4 don\'t strip meaningful trailing 0s': [ '100.240.52.130', '100.240.52.130' ],
+		'IPv4 strip meaningless multiple 0s': [ '0.0.52.0', '00.000.52.00' ],
+		'IPv4 range strip meaningless multiple 0s': [ '0.0.52.0/32', '00.000.52.00/32' ],
+		'Not an IP': [ 'not an IP', 'not an IP' ],
+		'Empty string': [ null, ' ' ],
+		'IPv4 trim whitespace from start and end of the string': [ '1.24.52.13', ' 1.24.52.13 ' ],
+		'IPv6 starts with ::': [ '0:0:0:0:0:0:0:1', '::1' ],
+		'IPv6 remove leading zeros from each block.': [ '2001:DB8:0:0:0:FF00:42:8329', '2001:0db8:0000:0000:0000:ff00:0042:8329' ],
+		'IPv6 :: at the end': [ 'FE80:0:0:0:0:0:0:0/10', 'fe80::/10' ],
+		'Non-IP string': [ 'UserName', 'UserName' ],
+		'Non-string': [ null, null ]
+	}, function ( assert, [ expected, input ] ) {
+		assert.strictEqual( util.sanitizeIP( input ), expected );
 	} );
 
-	QUnit.test( 'prettifyIP', function ( assert ) {
-		var IPaddress = [
-			[ 'fc::100', 'FC::100', 'IPv6 change to lowercase' ],
-			[ '1.24.52.13', '1.24.52.13', 'IPv4 no change' ],
-			[ '0.0.52.0/32', '00.000.52.00/32', 'IPv4 range strip meaningless multiple 0s' ],
-			[ null, ' ', 'Empty string' ],
-			[ '2001:db8:a::123/64', '2001:db8:a:0000:0000:0000:0000:123/64', 'IPv6 range Replace consecutive zeros with :: ' ],
-			[ '2001:db8::ff00:42:8329', '2001:DB8:0:0:0:FF00:42:8329', 'IPv6 Replace consecutive zeros with ::' ],
-			[ '2001::15:0:0:1a2b', '2001:0000:0000:0000:0015:0000:0000:1a2b', 'IPv6 only replace longest consecutive zeros with ::' ],
-			[ '2001:0:0:15::1a2b', '2001:0000:0000:0015:0000:0000:0000:1a2b', 'IPv6 only replace longest consecutive zeros with ::' ],
-			[ '2001::15:0:0:3:1a2b', '2001:0000:0000:0015:0000:0000:0003:1a2b', 'IPv6 replace first match of longest consecutive zeros with ::' ]
-		];
-		IPaddress.forEach( function ( ipCase ) {
-			assert.strictEqual( util.prettifyIP( ipCase[ 1 ] ), ipCase[ 0 ], ipCase[ 2 ] );
-		} );
-
+	QUnit.test.each( 'prettifyIP', {
+		'IPv6 change to lowercase': [ 'fc::100', 'FC::100' ],
+		'IPv4 no change': [ '1.24.52.13', '1.24.52.13' ],
+		'IPv4 range strip meaningless multiple 0s': [ '0.0.52.0/32', '00.000.52.00/32' ],
+		'Empty string': [ null, ' ' ],
+		'IPv6 range Replace consecutive zeros with :: ': [ '2001:db8:a::123/64', '2001:db8:a:0000:0000:0000:0000:123/64' ],
+		'IPv6 middle only consecutive zeros with ::': [ '2001:db8::ff00:42:8329', '2001:DB8:0:0:0:FF00:42:8329' ],
+		'IPv6 first longer consecutive zeros with ::': [ '2001::15:0:0:1a2b', '2001:0000:0000:0000:0015:0000:0000:1a2b' ],
+		'IPv6 last longer consecutive zeros with ::': [ '2001:0:0:15::1a2b', '2001:0000:0000:0015:0000:0000:0000:1a2b' ],
+		'IPv6 first of equal length consecutive zeros with ::': [ '2001::15:0:0:3:1a2b', '2001:0000:0000:0015:0000:0000:0003:1a2b' ]
+	}, function ( assert, [ expected, input ] ) {
+		assert.strictEqual( util.prettifyIP( input ), expected );
 	} );
 
-	QUnit.test( 'isTemporaryUser', function ( assert ) {
-		var usernames = [
-			[ '*$1', 'Test', false, true, 'prefix mismatch' ],
-			[ '*$1', '*Some user', true, true, 'prefix match' ],
-			[ '$1*', 'Some user*', true, true, 'suffix only match' ],
-			[ '$1*', 'Some user', false, true, 'suffix only mismatch' ],
-			[ '*$1*', '*Unregistered 123*', true, true, 'prefix and suffix match' ],
-			[ '*$1*', 'Unregistered 123*', false, true, 'prefix and suffix mismatch' ],
-			[ '*$1*', '**', true, true, 'prefix and suffix zero length match' ],
-			[ '*$1*', '*', false, true, 'prefix and suffix overlapping' ],
-			[ '*$1*', '*', false, false, 'Auto create temporary user disabled' ]
-		];
-		usernames.forEach( function ( username ) {
-			mw.util.setOptionsForTest( {
-				AutoCreateTempUser: { enabled: username[ 3 ], matchPattern: username[ 0 ] }
-			} );
-
-			assert.strictEqual( util.isTemporaryUser( username[ 1 ] ), username[ 2 ], username[ 4 ] );
+	QUnit.test.each( 'isTemporaryUser', {
+		'prefix mismatch': [ '*$1', 'Test', false, true ],
+		'prefix match': [ '*$1', '*Some user', true, true ],
+		'suffix only match': [ '$1*', 'Some user*', true, true ],
+		'suffix only mismatch': [ '$1*', 'Some user', false, true ],
+		'prefix and suffix match': [ '*$1*', '*Unregistered 123*', true, true ],
+		'prefix and suffix mismatch': [ '*$1*', 'Unregistered 123*', false, true ],
+		'prefix and suffix zero length match': [ '*$1*', '**', true, true ],
+		'prefix and suffix overlapping': [ '*$1*', '*', false, true ],
+		'Auto create temporary user disabled': [ '*$1*', '*', false, false ]
+	}, function ( assert, username ) {
+		mw.util.setOptionsForTest( {
+			AutoCreateTempUser: { enabled: username[ 3 ], matchPattern: username[ 0 ] }
 		} );
+
+		assert.strictEqual( util.isTemporaryUser( username[ 1 ] ), username[ 2 ] );
 	} );
 } );
