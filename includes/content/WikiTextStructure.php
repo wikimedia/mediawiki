@@ -165,7 +165,7 @@ class WikiTextStructure {
 			return;
 		}
 
-		$this->openingText = $this->extractHeadingBeforeFirstHeading( $text );
+		$this->openingText = $this->extractTextBeforeFirstHeading( $text );
 
 		$formatter = new HtmlFormatter( $text );
 
@@ -190,7 +190,7 @@ class WikiTextStructure {
 	 * @param string $text
 	 * @return string|null
 	 */
-	private function extractHeadingBeforeFirstHeading( $text ) {
+	private function extractTextBeforeFirstHeading( $text ) {
 		$matches = [];
 		if ( !preg_match( '/<h[123456]>/', $text, $matches, PREG_OFFSET_CAPTURE ) ) {
 			// There isn't a first heading so we interpret this as the article
