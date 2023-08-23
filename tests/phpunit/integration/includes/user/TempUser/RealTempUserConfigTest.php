@@ -14,6 +14,7 @@ class RealTempUserConfigTest extends \MediaWikiIntegrationTestCase {
 	/** This is meant to be the default config from MainConfigSchema */
 	private const DEFAULTS = [
 		'enabled' => false,
+		'expireAfterDays' => null,
 		'actions' => [ 'edit' ],
 		'genPattern' => '*Unregistered $1',
 		'matchPattern' => '*$1',

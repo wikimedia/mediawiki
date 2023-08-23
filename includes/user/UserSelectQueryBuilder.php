@@ -35,6 +35,8 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 	private $actorStore;
 	private TempUserConfig $tempUserConfig;
 
+	private bool $userJoined = false;
+
 	/**
 	 * @internal
 	 * @param IReadableDatabase $db
@@ -130,6 +132,26 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 	 */
 	public function userNamePrefix( string $prefix ): self {
 		return $this->whereUserNamePrefix( $prefix );
+	}
+
+	/**
+	 * Find registered users who registered
+	 *
+	 * @param string $timestamp
+	 * @param bool $direction Direction flag (if true, user_registration must be before $timestamp)
+	 * @since 1.42
+	 * @return UserSelectQueryBuilder
+	 */
+	public function whereRegisteredTimestamp( string $timestamp, bool $direction ): self {
+		if ( !$this->userJoined ) {
+			$this->join( 'user', null, [ "actor_user=user_id" ] );
+			$this->userJoined = true;
+		}
+
+		$this->conds( 'user_registration ' .
+			( $direction ? '< ' : '> ' ) .
+			$this->db->addQuotes( $this->db->timestamp( $timestamp ) ) );
+		return $this;
 	}
 
 	/**

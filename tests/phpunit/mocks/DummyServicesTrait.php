@@ -514,6 +514,7 @@ trait DummyServicesTrait {
 			$options['hookContainer'] ?? $this->createHookContainer(),
 			new RealTempUserConfig( [
 				'enabled' => true,
+				'expireAfterDays' => null,
 				'actions' => [ 'edit' ],
 				'serialProvider' => [ 'type' => 'local' ],
 				'serialMapping' => [ 'type' => 'plain-numeric' ],

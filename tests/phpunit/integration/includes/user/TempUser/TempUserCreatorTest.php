@@ -24,6 +24,7 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 	/** This is meant to be the default config from MainConfigSchema */
 	private const DEFAULTS = [
 		'enabled' => false,
+		'expireAfterDays' => null,
 		'actions' => [ 'edit' ],
 		'genPattern' => '*Unregistered $1',
 		'matchPattern' => '*$1',
@@ -39,6 +40,7 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 			MainConfigNames::AutoCreateTempUser,
 			[
 				'enabled' => true,
+				'expireAfterDays' => null,
 				'actions' => [ 'edit' ],
 				'genPattern' => '*Unregistered $1',
 				'matchPattern' => '*$1',

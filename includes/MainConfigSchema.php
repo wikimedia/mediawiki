@@ -7669,6 +7669,9 @@ class MainConfigSchema {
 	 *         be zero-based array indexes.
 	 *       - uppercase: (bool) With "filtered-radix", whether to use uppercase
 	 *         letters, default false.
+	 *    - expireAfterDays: (int|null, default null) If set, how many days should the temporary
+	 *      accounts expire? Require expireTemporaryAccounts.php to be periodically executed in
+	 *      order to work.
 	 *
 	 * @since 1.39
 	 */
@@ -7680,7 +7683,8 @@ class MainConfigSchema {
 			'matchPattern' => [ 'type' => 'string', 'default' => '*$1' ],
 			'reservedPattern' => [ 'type' => 'string|null', 'default' => null ],
 			'serialProvider' => [ 'type' => 'object', 'default' => [ 'type' => 'local' ] ],
-			'serialMapping' => [ 'type' => 'object', 'default' => [ 'type' => 'plain-numeric' ] ]
+			'serialMapping' => [ 'type' => 'object', 'default' => [ 'type' => 'plain-numeric' ] ],
+			'expireAfterDays' => [ 'type' => 'int|null', 'default' => null ],
 		],
 		'type' => 'object',
 	];

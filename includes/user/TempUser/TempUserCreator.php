@@ -154,6 +154,10 @@ class TempUserCreator implements TempUserConfig {
 		return $this->config->getMatchPattern();
 	}
 
+	public function getExpireAfterDays(): ?int {
+		return $this->config->getExpireAfterDays();
+	}
+
 	/**
 	 * Acquire a new username and return it. Permanently reserve the ID in
 	 * the database.

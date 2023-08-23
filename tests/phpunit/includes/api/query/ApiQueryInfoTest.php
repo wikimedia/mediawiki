@@ -137,6 +137,7 @@ class ApiQueryInfoTest extends ApiTestCase {
 		$this->setGroupPermissions( '*', 'createaccount', true );
 		$this->overrideConfigValue( MainConfigNames::AutoCreateTempUser, [
 			'enabled' => true,
+			'expireAfterDays' => null,
 			'actions' => [ 'edit' ],
 			'genPattern' => 'Unregistered $1',
 			'serialProvider' => [],

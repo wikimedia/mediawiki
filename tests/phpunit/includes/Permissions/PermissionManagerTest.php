@@ -427,6 +427,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$this->overrideConfigValues( [
 			MainConfigNames::AutoCreateTempUser => [
 				'enabled' => true,
+				'expireAfterDays' => null,
 				'actions' => [ 'edit' ],
 				'serialProvider' => [ 'type' => 'local' ],
 				'serialMapping' => [ 'type' => 'plain-numeric' ],

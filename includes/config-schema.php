@@ -1160,6 +1160,7 @@ return [
 				'serialMapping' => [
 					'type' => 'plain-numeric',
 				],
+				'expireAfterDays' => null,
 			],
 			'AutoblockExpiry' => 86400,
 			'BlockAllowsUTEdit' => true,

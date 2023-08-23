@@ -4855,6 +4855,7 @@ config-schema:
             reservedPattern: { type: [string, 'null'], default: null }
             serialProvider: { type: object, default: { type: local } }
             serialMapping: { type: object, default: { type: plain-numeric } }
+            expireAfterDays: { type: [integer, 'null'], default: null }
         type: object
         description: |-
             Configuration for automatic creation of temporary accounts on page save.
@@ -4901,6 +4902,9 @@ config-schema:
                     be zero-based array indexes.
                   - uppercase: (bool) With "filtered-radix", whether to use uppercase
                     letters, default false.
+               - expireAfterDays: (int|null, default null) If set, how many days should the temporary
+                 accounts expire? Require expireTemporaryAccounts.php to be periodically executed in
+                 order to work.
             @since 1.39
         default: null
     AutoblockExpiry:

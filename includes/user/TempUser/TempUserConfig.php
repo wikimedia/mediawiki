@@ -74,4 +74,14 @@ interface TempUserConfig {
 	 * @return Pattern
 	 */
 	public function getMatchPattern(): Pattern;
+
+	/**
+	 * After how many days do temporary users expire?
+	 *
+	 * @note expireTemporaryAccounts.php maintenance script needs to be periodically executed for
+	 * temp account expiry to work.
+	 * @since 1.42
+	 * @return int|null Null if temp accounts should never expire
+	 */
+	public function getExpireAfterDays(): ?int;
 }

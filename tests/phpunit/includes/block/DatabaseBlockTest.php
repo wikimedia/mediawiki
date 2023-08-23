@@ -134,6 +134,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 			MainConfigNames::AutoCreateTempUser,
 			[
 				'enabled' => true,
+				'expireAfterDays' => null,
 				'actions' => [ 'edit' ],
 				'genPattern' => '*Unregistered $1',
 				'matchPattern' => '*$1',

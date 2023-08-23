@@ -195,6 +195,7 @@ class UserFactoryTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::AutoCreateTempUser,
 			[
 				'enabled' => true,
+				'expireAfterDays' => null,
 				'actions' => [ 'edit' ],
 				'genPattern' => '*Unregistered $1',
 				'matchPattern' => '*$1',
@@ -214,6 +215,7 @@ class UserFactoryTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::AutoCreateTempUser,
 			[
 				'enabled' => true,
+				'expireAfterDays' => null,
 				'actions' => [ 'edit' ],
 				'genPattern' => '*Unregistered $1',
 				'matchPattern' => '*$1',

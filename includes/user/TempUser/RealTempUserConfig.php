@@ -32,6 +32,9 @@ class RealTempUserConfig implements TempUserConfig {
 	/** @var Pattern|null */
 	private $reservedPattern;
 
+	/** @var int|null */
+	private $expireAfterDays;
+
 	/**
 	 * @param array $config See the documentation of $wgAutoCreateTempUser.
 	 *   - enabled: bool
@@ -41,6 +44,7 @@ class RealTempUserConfig implements TempUserConfig {
 	 *   - reservedPattern: string, optional
 	 *   - serialProvider: array
 	 *   - serialMapping: array
+	 *   - expireAfterDays: int, optional
 	 */
 	public function __construct( $config ) {
 		if ( $config['enabled'] ?? false ) {
@@ -54,6 +58,7 @@ class RealTempUserConfig implements TempUserConfig {
 			}
 			$this->serialProviderConfig = $config['serialProvider'];
 			$this->serialMappingConfig = $config['serialMapping'];
+			$this->expireAfterDays = $config['expireAfterDays'];
 		}
 		if ( isset( $config['reservedPattern'] ) ) {
 			$this->reservedPattern = new Pattern( 'reservedPattern', $config['reservedPattern'] );
@@ -102,6 +107,10 @@ class RealTempUserConfig implements TempUserConfig {
 		} else {
 			throw new BadMethodCallException( __METHOD__ . ' is disabled' );
 		}
+	}
+
+	public function getExpireAfterDays(): ?int {
+		return $this->expireAfterDays;
 	}
 
 	/**

@@ -443,6 +443,7 @@ $wgAutoloadLocalClasses = [
 	'ExecutableFinder' => __DIR__ . '/includes/utils/ExecutableFinder.php',
 	'Exif' => __DIR__ . '/includes/media/Exif.php',
 	'ExifBitmapHandler' => __DIR__ . '/includes/media/ExifBitmapHandler.php',
+	'ExpireTemporaryAccounts' => __DIR__ . '/maintenance/expireTemporaryAccounts.php',
 	'ExplodeIterator' => __DIR__ . '/includes/libs/ExplodeIterator.php',
 	'ExportProgressFilter' => __DIR__ . '/includes/export/ExportProgressFilter.php',
 	'ExportSites' => __DIR__ . '/maintenance/exportSites.php',

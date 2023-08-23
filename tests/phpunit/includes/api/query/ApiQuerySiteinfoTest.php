@@ -377,6 +377,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 
 		$config = [
 			'enabled' => true,
+			'expireAfterDays' => null,
 			'actions' => [ 'edit' ],
 			'genPattern' => 'Unregistered $1',
 			'reservedPattern' => null,
