@@ -328,16 +328,16 @@ class RefreshLinks extends Maintenance {
 			$tableStart = $start;
 			$counter = 0;
 			do {
-				$ids = $dbr->selectFieldValues(
-					$table,
-					$field,
-					[
-						self::intervalCond( $dbr, $field, $tableStart, $end ),
-						"$field NOT IN ({$dbr->selectSQLText( 'page', 'page_id', [], __METHOD__ )})",
-					],
-					__METHOD__,
-					[ 'DISTINCT', 'ORDER BY' => $field, 'LIMIT' => $batchSize ]
-				);
+				$ids = $dbr->newSelectQueryBuilder()
+					->select( $field )
+					->distinct()
+					->from( $table )
+					->leftJoin( 'page', null, "$field = page_id" )
+					->where( self::intervalCond( $dbr, $field, $tableStart, $end ) )
+					->andWhere( [ 'page_id' => null ] )
+					->orderBy( $field )
+					->limit( $batchSize )
+					->caller( __METHOD__ )->fetchFieldValues();
 
 				$numIds = count( $ids );
 				if ( $numIds ) {
