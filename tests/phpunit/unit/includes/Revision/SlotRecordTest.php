@@ -297,7 +297,7 @@ class SlotRecordTest extends MediaWikiUnitTestCase {
 	}
 
 	public function provideHasSameContent() {
-		$fail = function () {
+		$fail = static function () {
 			self::fail( 'There should be no need to actually load the content.' );
 		};
 

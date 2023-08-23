@@ -1926,7 +1926,7 @@ MESSAGE;
 		$result = $cache->getWithSetCallback(
 			$key,
 			BagOStuff::TTL_DAY,
-			function () use ( $filter, $data, &$incKey ) {
+			static function () use ( $filter, $data, &$incKey ) {
 				$incKey = "resourceloader_cache.$filter.miss";
 				return self::applyFilter( $filter, $data );
 			}

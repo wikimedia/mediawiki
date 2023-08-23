@@ -85,7 +85,7 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 				$joinConds
 			)
 			->willReturn( $result );
-		$database->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $database ) );
+		$database->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn() => new SelectQueryBuilder( $database ) );
 
 		$dbProvider = $this->createMock( IConnectionProvider::class );
 		$dbProvider->expects( $this->once() )

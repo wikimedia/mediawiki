@@ -65,7 +65,7 @@ class PingbackTest extends MediaWikiUnitTestCase {
 		// - cache lock is unavailable
 		$database = $this->createNoOpMock( DBConnRef::class, [ 'selectField', 'newSelectQueryBuilder' ] );
 		$database->expects( $this->once() )->method( 'selectField' )->willReturn( false );
-		$database->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $database ) );
+		$database->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn() => new SelectQueryBuilder( $database ) );
 
 		$cache = $this->createMock( BagOStuff::class );
 		$cache->method( 'add' )->willReturn( false );
@@ -93,7 +93,7 @@ class PingbackTest extends MediaWikiUnitTestCase {
 		$database = $this->createNoOpMock( DBConnRef::class, [ 'selectField', 'lock', 'newSelectQueryBuilder' ] );
 		$database->expects( $this->once() )->method( 'selectField' )->willReturn( false );
 		$database->expects( $this->once() )->method( 'lock' )->willReturn( false );
-		$database->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $database ) );
+		$database->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn() => new SelectQueryBuilder( $database ) );
 
 		$pingback = $this->makePingback(
 			$database,
@@ -125,7 +125,7 @@ class PingbackTest extends MediaWikiUnitTestCase {
 			->with( 'https://www.mediawiki.org/beacon/event?%7B%22some%22%3A%22stuff%22%7D;' )
 			->willReturn( true );
 		$database->expects( $this->once() )->method( 'upsert' );
-		$database->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $database ) );
+		$database->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn() => new SelectQueryBuilder( $database ) );
 
 		$pingback = $this->makePingback(
 			$database,
@@ -154,7 +154,7 @@ class PingbackTest extends MediaWikiUnitTestCase {
 		$database->expects( $this->once() )->method( 'selectField' )->willReturn(
 			ConvertibleTimestamp::convert( TS_UNIX, '20110401080000' )
 		);
-		$database->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $database ) );
+		$database->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn() => new SelectQueryBuilder( $database ) );
 
 		$pingback = $this->makePingback(
 			$database,

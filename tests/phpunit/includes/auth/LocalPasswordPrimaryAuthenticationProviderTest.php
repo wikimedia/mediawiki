@@ -433,49 +433,49 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		return [
 			[
 				AuthenticationRequest::class,
-				fn ( $sysopUsername ) => $sysopUsername,
+				static fn ( $sysopUsername ) => $sysopUsername,
 				Status::newGood(),
 				StatusValue::newGood( 'ignored' ),
 				StatusValue::newGood( 'ignored' )
 			],
 			[
 				PasswordAuthenticationRequest::class,
-				fn ( $sysopUsername ) => $sysopUsername,
+				static fn ( $sysopUsername ) => $sysopUsername,
 				Status::newGood(),
 				StatusValue::newGood(),
 				StatusValue::newGood()
 			],
 			[
 				PasswordAuthenticationRequest::class,
-				fn ( $sysopUsername ) => lcfirst( $sysopUsername ),
+				static fn ( $sysopUsername ) => lcfirst( $sysopUsername ),
 				Status::newGood(),
 				StatusValue::newGood(),
 				StatusValue::newGood()
 			],
 			[
 				PasswordAuthenticationRequest::class,
-				fn ( $sysopUsername ) => $sysopUsername,
+				static fn ( $sysopUsername ) => $sysopUsername,
 				Status::wrap( $err ),
 				StatusValue::newGood(),
 				$err
 			],
 			[
 				PasswordAuthenticationRequest::class,
-				fn ( $sysopUsername ) => $sysopUsername,
+				static fn ( $sysopUsername ) => $sysopUsername,
 				Status::newFatal( 'arbitrary-error' ),
 				StatusValue::newGood(),
 				StatusValue::newFatal( 'arbitrary-error' )
 			],
 			[
 				PasswordAuthenticationRequest::class,
-				fn () => 'DoesNotExist',
+				static fn () => 'DoesNotExist',
 				Status::newGood(),
 				StatusValue::newGood(),
 				StatusValue::newGood( 'ignored' )
 			],
 			[
 				PasswordDomainAuthenticationRequest::class,
-				fn ( $sysopUsername ) => $sysopUsername,
+				static fn ( $sysopUsername ) => $sysopUsername,
 				Status::newGood(),
 				StatusValue::newGood( 'ignored' ),
 				StatusValue::newGood( 'ignored' )

@@ -134,7 +134,7 @@ trait FileBackendGroupTestTrait {
 		return [
 			'domainId with neither wikiId nor domainId set' => [
 				'domainId',
-				function () {
+				static function () {
 					return self::getWikiID();
 				},
 			],

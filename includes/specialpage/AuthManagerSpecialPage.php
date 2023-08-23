@@ -747,7 +747,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 		foreach ( $formDescriptor as &$field ) {
 			$field['__index'] = $i++;
 		}
-		uasort( $formDescriptor, function ( $first, $second ) {
+		uasort( $formDescriptor, static function ( $first, $second ) {
 			return self::getField( $first, 'weight', 0 ) <=> self::getField( $second, 'weight', 0 )
 				?: $first['__index'] <=> $second['__index'];
 		} );

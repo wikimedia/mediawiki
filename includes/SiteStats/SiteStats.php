@@ -153,7 +153,7 @@ class SiteStats {
 		return $cache->getWithSetCallback(
 			$cache->makeKey( 'SiteStats', 'groupcounts', $group ),
 			$cache::TTL_HOUR,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $group, $fname ) {
+			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $group, $fname ) {
 				$dbr = self::getLB()->getConnectionRef( DB_REPLICA );
 				$setOpts += Database::getCacheSetOptions( $dbr );
 				return (int)$dbr->newSelectQueryBuilder()
@@ -205,7 +205,7 @@ class SiteStats {
 		return $cache->getWithSetCallback(
 			$cache->makeKey( 'SiteStats', 'page-in-namespace', $ns ),
 			$cache::TTL_HOUR,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $ns, $fname ) {
+			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $ns, $fname ) {
 				$dbr = self::getLB()->getConnectionRef( DB_REPLICA );
 				$setOpts += Database::getCacheSetOptions( $dbr );
 

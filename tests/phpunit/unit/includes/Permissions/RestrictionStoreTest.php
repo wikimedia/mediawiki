@@ -797,7 +797,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 			'Hook' => [
 				[ 'move', 'liquify' ],
 				PageIdentityValue::localIdentity( 1, NS_MAIN, 'X' ),
-				[ 'hookFn' => function ( Title $title, array &$types ): bool {
+				[ 'hookFn' => static function ( Title $title, array &$types ): bool {
 					self::assertEquals( Title::castFromPageIdentity(
 						PageIdentityValue::localIdentity( 1, NS_MAIN, 'X' ) ), $title );
 					self::assertSame( [ 'edit', 'move' ], $types );

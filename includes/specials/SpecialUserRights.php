@@ -536,12 +536,12 @@ class SpecialUserRights extends SpecialPage {
 	) {
 		// make sure $oldUGMs and $newUGMs are in the same order, and serialise
 		// each UGM object to a simplified array
-		$oldUGMs = array_map( function ( $group ) use ( $oldUGMs ) {
+		$oldUGMs = array_map( static function ( $group ) use ( $oldUGMs ) {
 			return isset( $oldUGMs[$group] ) ?
 				self::serialiseUgmForLog( $oldUGMs[$group] ) :
 				null;
 		}, $oldGroups );
-		$newUGMs = array_map( function ( $group ) use ( $newUGMs ) {
+		$newUGMs = array_map( static function ( $group ) use ( $newUGMs ) {
 			return isset( $newUGMs[$group] ) ?
 				self::serialiseUgmForLog( $newUGMs[$group] ) :
 				null;

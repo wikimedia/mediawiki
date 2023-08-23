@@ -116,7 +116,7 @@ class EditResultCacheTest extends MediaWikiUnitTestCase {
 		$dbr->expects( $this->once() )
 			->method( 'selectField' )
 			->willReturn( FormatJson::encode( $editResult ) );
-		$dbr->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $dbr ) );
+		$dbr->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn() => new SelectQueryBuilder( $dbr ) );
 		$loadBalancer = $this->createMock( ILoadBalancer::class );
 		$loadBalancer->expects( $this->once() )
 			->method( 'getConnectionRef' )
@@ -152,7 +152,7 @@ class EditResultCacheTest extends MediaWikiUnitTestCase {
 		$dbr->expects( $this->once() )
 			->method( 'selectField' )
 			->willReturn( false );
-		$dbr->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $dbr ) );
+		$dbr->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn() => new SelectQueryBuilder( $dbr ) );
 		$loadBalancer = $this->createMock( ILoadBalancer::class );
 		$loadBalancer->expects( $this->once() )
 			->method( 'getConnectionRef' )
