@@ -63,7 +63,9 @@ class ApiWatch extends ApiBase {
 
 	public function execute() {
 		$user = $this->getUser();
-		if ( !$user->isNamed() ) {
+		if ( !$user->isRegistered()
+			|| ( $user->isTemp() && !$user->isAllowed( 'editmywatchlist' ) )
+		) {
 			$this->dieWithError( 'watchlistanontext', 'notloggedin' );
 		}
 

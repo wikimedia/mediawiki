@@ -94,8 +94,15 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 * @param string|null $subpage
 	 */
 	public function execute( $subpage ) {
-		// Anons don't get a watchlist
-		$this->requireNamedUser( 'watchlistanontext' );
+		$user = $this->getUser();
+		if (
+			// Anons don't get a watchlist
+			!$user->isRegistered()
+			// Redirect temp users to login if they're not allowed
+			|| ( $user->isTemp() && !$user->isAllowed( 'viewmywatchlist' ) )
+		) {
+			throw new UserNotLoggedIn( 'watchlistanontext' );
+		}
 
 		$output = $this->getOutput();
 		$request = $this->getRequest();
@@ -122,7 +129,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		$this->checkPermissions();
 
-		$user = $this->getUser();
 		$opts = $this->getOptions();
 
 		$config = $this->getConfig();

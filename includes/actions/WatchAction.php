@@ -95,11 +95,17 @@ class WatchAction extends FormAction {
 	}
 
 	protected function checkCanExecute( User $user ) {
-		if ( !$user->isNamed() ) {
+		if ( !$user->isRegistered()
+			|| ( $user->isTemp() && !$user->isAllowed( 'editmywatchlist' ) )
+		) {
 			throw new UserNotLoggedIn( 'watchlistanontext', 'watchnologin' );
 		}
 
 		parent::checkCanExecute( $user );
+	}
+
+	public function getRestriction() {
+		return 'editmywatchlist';
 	}
 
 	protected function usesOOUI() {
