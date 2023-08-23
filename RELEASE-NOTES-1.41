@@ -355,6 +355,8 @@ because of Phabricator reports.
   was deprecated in 1.25. Use the EditPage::showEditForm:fields hook instead.
 * AuthManager::checkAccountCreatePermissions(), deprecated in 1.39, has been
   removed. Use authorizeCreateAccount() or probablyCanCreateAccount() instead.
+* LinkCache::addGoodLinkObj(), deprecated in 1.37, has been removed. You should
+  use ::addGoodLinkObjFromRow().
 * Passing a second query parameter to Title::getFullURL(), Title::getLocalURL(),
   Title::getInternalURL(), or Title::getCanonicalURL(), each deprecated in 1.19,
   is now not supported. Pass it as a key,value pair in the first parameter array
