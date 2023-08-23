@@ -1186,20 +1186,6 @@ class AuthManager implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Basic permissions checks on whether a user can create accounts
-	 *
-	 * @deprecated since 1.39, use ::authorizeCreateAccount or
-	 *   ::probablyCanCreateAccount instead
-	 *
-	 * @param Authority $creator User doing the account creation
-	 * @return StatusValue
-	 */
-	public function checkAccountCreatePermissions( Authority $creator ): StatusValue {
-		wfDeprecated( __METHOD__, '1.39' );
-		return Status::wrap( $this->authorizeCreateAccount( $creator ) );
-	}
-
-	/**
 	 * Start an account creation flow
 	 *
 	 * In addition to the AuthenticationRequests returned by
