@@ -18,6 +18,7 @@
 	"apihelp-block-param-user": "Naudotojas blokavimui.",
 	"apihelp-block-param-userid": "Vietoj to nurodykite <kbd>$1user=#<var>ID</var></kbd>.",
 	"apihelp-block-param-reason": "Blokavimo priežastis.",
+	"apihelp-block-param-anononly": "Blokuoti tik anoniminius naudotojus (t. y. išjungti šio IP adreso anoniminius keitimus, įskaitant laikinų paskyrų keitimus).",
 	"apihelp-block-param-nocreate": "Neleisti kurti paskyrų.",
 	"apihelp-compare-param-fromtitle": "Pirmas pavadinimas palyginimui.",
 	"apihelp-compare-param-fromid": "Pirmojo lyginamo puslapio ID.",

@@ -2574,6 +2574,7 @@
 	"contribute": "Prisidėti",
 	"contribsub2": "Naudotojas: {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "{{GENDER:$2|$1}}",
+	"contributions-account-creation-date": "Paskyra sukurta $1.",
 	"contributions-userdoesnotexist": "Naudotojo paskyra „$1“ neužregistruota.",
 	"negative-namespace-not-supported": "Vardų sritys su neigiamomis reikšmėmis nepalaikomos.",
 	"nocontribs": "Jokie keitimai neatitiko šių kriterijų.",
