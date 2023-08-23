@@ -380,8 +380,6 @@ class ParserTestRunner {
 
 		$teardown[] = $this->markSetupDone( 'staticSetup' );
 
-		$mwServices = MediaWikiServices::getInstance();
-
 		// Some settings which influence HTML output
 		$setup['wgSitename'] = 'MediaWiki';
 		$setup['wgMetaNamespace'] = "TestWiki";
