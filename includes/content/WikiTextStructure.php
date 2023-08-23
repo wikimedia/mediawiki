@@ -133,10 +133,6 @@ class WikiTextStructure {
 		if ( $ignoredHeadings === null ) {
 			$ignoredHeadings = [];
 			$source = wfMessage( 'search-ignored-headings' )->inContentLanguage();
-			if ( $source->isBlank() ) {
-				// Try the old version too, just in case
-				$source = wfMessage( 'cirrussearch-ignored-headings' )->inContentLanguage();
-			}
 			if ( !$source->isDisabled() ) {
 				$lines = self::parseSettingsInMessage( $source->plain() );
 				// Now we just have headings!
