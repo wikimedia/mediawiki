@@ -238,15 +238,6 @@ class ExtensionProcessor implements Processor {
 			throw new RuntimeException( "Failed to load JSON data from $path" );
 		}
 
-		if ( !isset( $info['manifest_version'] ) ) {
-			wfDeprecatedMsg(
-				"{$info['name']}'s extension.json or skin.json does not have manifest_version, " .
-				'this is deprecated since MediaWiki 1.29',
-				'1.29', false, false
-			);
-			$info['manifest_version'] = 1;
-		}
-
 		$this->extractInfo( $path, $info, $info['manifest_version'] );
 	}
 

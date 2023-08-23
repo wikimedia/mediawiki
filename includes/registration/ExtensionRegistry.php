@@ -407,16 +407,6 @@ class ExtensionRegistry {
 				throw new Exception( "$path is not a valid JSON file." );
 			}
 
-			if ( !isset( $info['manifest_version'] ) ) {
-				wfDeprecatedMsg(
-					"{$info['name']}'s extension.json or skin.json does not have manifest_version, " .
-					'this is deprecated since MediaWiki 1.29',
-					'1.29', false, false
-				);
-				$warnings = true;
-				// For backwards-compatibility, assume a version of 1
-				$info['manifest_version'] = 1;
-			}
 			$version = $info['manifest_version'];
 			if ( $version < self::OLDEST_MANIFEST_VERSION || $version > self::MANIFEST_VERSION ) {
 				throw new Exception( "$path: unsupported manifest_version: {$version}" );
