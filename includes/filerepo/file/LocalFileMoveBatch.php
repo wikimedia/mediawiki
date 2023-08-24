@@ -119,12 +119,12 @@ class LocalFileMoveBatch {
 		$this->oldCount = 0;
 		$archiveNames = [];
 
-		$result = $this->db->select( 'oldimage',
-			[ 'oi_archive_name', 'oi_deleted' ],
-			[ 'oi_name' => $this->oldName ],
-			__METHOD__,
-			[ 'FOR UPDATE' ] // ignore snapshot
-		);
+		$result = $this->db->newSelectQueryBuilder()
+			->select( [ 'oi_archive_name', 'oi_deleted' ] )
+			->forUpdate() // ignore snapshot
+			->from( 'oldimage' )
+			->where( [ 'oi_name' => $this->oldName ] )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		foreach ( $result as $row ) {
 			$archiveNames[] = $row->oi_archive_name;

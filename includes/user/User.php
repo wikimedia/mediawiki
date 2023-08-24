@@ -923,27 +923,19 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		if ( $groups === [] ) {
 			return UserArrayFromResult::newFromIDs( [] );
 		}
+		$queryBuilder = wfGetDB( DB_REPLICA )->newSelectQueryBuilder()
+			->select( 'ug_user' )
+			->distinct()
+			->from( 'user_groups' )
+			->where( [ 'ug_group' => array_unique( (array)$groups ) ] )
+			->orderBy( 'ug_user' )
+			->limit( min( 5000, $limit ) );
 
-		$groups = array_unique( (array)$groups );
-		$limit = min( 5000, $limit );
-
-		$conds = [ 'ug_group' => $groups ];
 		if ( $after !== null ) {
-			$conds[] = 'ug_user > ' . (int)$after;
+			$queryBuilder->andWhere( 'ug_user > ' . (int)$after );
 		}
 
-		$dbr = wfGetDB( DB_REPLICA );
-		$ids = $dbr->selectFieldValues(
-			'user_groups',
-			'ug_user',
-			$conds,
-			__METHOD__,
-			[
-				'DISTINCT' => true,
-				'ORDER BY' => 'ug_user',
-				'LIMIT' => $limit,
-			]
-		) ?: [];
+		$ids = $queryBuilder->caller( __METHOD__ )->fetchFieldValues() ?: [];
 		return UserArray::newFromIDs( $ids );
 	}
 

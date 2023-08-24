@@ -163,18 +163,17 @@ class GenderCache {
 			return;
 		}
 
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		$table = [ 'user', 'user_properties' ];
-		$fields = [ 'user_name', 'up_value' ];
-		$conds = [ 'user_name' => $usersToCheck ];
-		$joins = [ 'user_properties' =>
-			[ 'LEFT JOIN', [ 'user_id = up_user', 'up_property' => 'gender' ] ] ];
+		$queryBuilder = $this->loadBalancer->getConnection( DB_REPLICA )->newSelectQueryBuilder()
+			->select( [ 'user_name', 'up_value' ] )
+			->from( 'user' )
+			->leftJoin( 'user_properties', null, [ 'user_id = up_user', 'up_property' => 'gender' ] )
+			->where( [ 'user_name' => $usersToCheck ] );
 
 		$comment = __METHOD__;
 		if ( strval( $caller ) !== '' ) {
 			$comment .= "/$caller";
 		}
-		$res = $dbr->select( $table, $fields, $conds, $comment, [], $joins );
+		$res = $queryBuilder->caller( $comment )->fetchResultSet();
 
 		foreach ( $res as $row ) {
 			$this->cache[$row->user_name] = $row->up_value ?: $default;

@@ -280,16 +280,14 @@ abstract class PrefixSearch {
 			$conds[] = $dbr->makeList( $condition, LIST_AND );
 		}
 
-		$table = 'page';
-		$fields = [ 'page_id', 'page_namespace', 'page_title' ];
-		$conds = $dbr->makeList( $conds, LIST_OR );
-		$options = [
-			'LIMIT' => $limit,
-			'ORDER BY' => [ 'page_title', 'page_namespace' ],
-			'OFFSET' => $offset
-		];
-
-		$res = $dbr->select( $table, $fields, $conds, __METHOD__, $options );
+		$queryBuilder = $dbr->newSelectQueryBuilder()
+			->select( [ 'page_id', 'page_namespace', 'page_title' ] )
+			->from( 'page' )
+			->where( $dbr->makeList( $conds, LIST_OR ) )
+			->orderBy( [ 'page_title', 'page_namespace' ] )
+			->limit( $limit )
+			->offset( $offset );
+		$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 
 		return iterator_to_array( TitleArray::newFromResult( $res ) );
 	}

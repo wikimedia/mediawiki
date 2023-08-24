@@ -1155,13 +1155,12 @@ abstract class DatabaseUpdater {
 	 */
 	protected function doCollationUpdate() {
 		global $wgCategoryCollation;
-		if ( $this->db->selectField(
-				'categorylinks',
-				'COUNT(*)',
-				'cl_collation != ' . $this->db->addQuotes( $wgCategoryCollation ),
-				__METHOD__
-			) == 0
-		) {
+		$collationNeeded = $this->db->newSelectQueryBuilder()
+			->select( 'COUNT(*)' )
+			->from( 'categorylinks' )
+			->where( 'cl_collation != ' . $this->db->addQuotes( $wgCategoryCollation ) )
+			->caller( __METHOD__ )->fetchField();
+		if ( $collationNeeded == 0 ) {
 			$this->output( "...collations up-to-date.\n" );
 
 			return;
