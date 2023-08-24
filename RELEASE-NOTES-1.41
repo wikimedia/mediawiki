@@ -499,6 +499,8 @@ because of Phabricator reports.
   hook.
 * The InterwikiLoadPrefix hook now emits deprecation warnings. Resetting the
   $wgInterwikiCache setting instead.
+* SiteConfiguration::getConfig() now emits deprecation warnings, Use ::get()
+  instead.
 * SiteConfiguration::extractVar() and ::extractGlobal() have been deprecated
   and also emit deprecation warnings.
 * JobQueueGroup::waitForBackups() is deprecated. JobQueue::waitForBackups()
