@@ -284,9 +284,12 @@ class JobQueueGroup {
 	 *
 	 * This does nothing for certain queue classes.
 	 *
+	 * @deprecated since 1.41, use JobQueue::waitForBackups() instead.
+	 *
 	 * @return void
 	 */
 	public function waitForBackups() {
+		wfDeprecated( __METHOD__, '1.41' );
 		// Try to avoid doing this more than once per queue storage medium
 		foreach ( $this->jobTypeConfiguration as $type => $conf ) {
 			$this->get( $type )->waitForBackups();
