@@ -87,6 +87,8 @@
 	 *     useful in cases where the expanded calendar is larger than its container. The specified
 	 *     overlay layer is usually on top of the container and has a larger area. By default, the
 	 *     calendar uses relative positioning.
+	 * @cfg {Object} [calendar] Configuration options for the this input's
+	 *     {@link mw.widgets.CalendarWidget CalendarWidget}.
 	 */
 	mw.widgets.DateInputWidget = function MWWDateInputWidget( config ) {
 		var placeholderDateFormat, mustBeAfter, mustBeBefore, $overlay;
@@ -124,12 +126,12 @@
 			placeholder: placeholderDateFormat,
 			validate: this.validateDate.bind( this )
 		} );
-		this.calendar = new mw.widgets.CalendarWidget( {
+		this.calendar = new mw.widgets.CalendarWidget( $.extend( {
 			lazyInitOnToggle: true,
 			// Can't pass `$floatableContainer: this.$element` here, the latter is not set yet.
 			// Instead we call setFloatableContainer() below.
 			precision: config.precision
-		} );
+		}, config.calendar ) );
 		this.inCalendar = 0;
 		this.inTextInput = 0;
 		this.closing = false;
