@@ -849,20 +849,6 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$helper->getHtml();
 	}
 
-	/**
-	 * Mock the language class based on a language code.
-	 *
-	 * @param string $langCode
-	 *
-	 * @return Language|Language&MockObject|MockObject
-	 */
-	private function getLanguageMock( string $langCode ) {
-		$language = $this->createMock( Language::class );
-		$language->method( 'getCode' )->willReturn( $langCode );
-
-		return $language;
-	}
-
 	public function testGetParserOutputWithLanguageOverride() {
 		$helper = $this->newHelper();
 
