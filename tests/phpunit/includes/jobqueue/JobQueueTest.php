@@ -70,22 +70,6 @@ class JobQueueTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provider_queueLists
 	 */
-	public function testGetWiki( $queue, $recycles, $desc ) {
-		$this->hideDeprecated( 'JobQueue::getWiki' );
-		$queue = $this->$queue;
-		if ( !$queue ) {
-			$this->markTestSkipped( $desc );
-		}
-		$this->assertEquals( WikiMap::getCurrentWikiId(), $queue->getWiki(), "Proper wiki ID ($desc)" );
-		$this->assertEquals(
-			WikiMap::getCurrentWikiDbDomain()->getId(),
-			$queue->getDomain(),
-			"Proper wiki ID ($desc)" );
-	}
-
-	/**
-	 * @dataProvider provider_queueLists
-	 */
 	public function testGetType( $queue, $recycles, $desc ) {
 		$queue = $this->$queue;
 		if ( !$queue ) {

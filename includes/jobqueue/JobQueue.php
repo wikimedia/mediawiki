@@ -23,7 +23,6 @@
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\JobQueue\JobFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\RequestTimeout\TimeoutException;
 use Wikimedia\UUID\GlobalIdGenerator;
 
@@ -160,15 +159,6 @@ abstract class JobQueue {
 	 */
 	final public function getDomain() {
 		return $this->domain;
-	}
-
-	/**
-	 * @return string Wiki ID
-	 * @deprecated since 1.33 (hard deprecated since 1.37)
-	 */
-	final public function getWiki() {
-		wfDeprecated( __METHOD__, '1.33' );
-		return WikiMap::getWikiIdFromDbDomain( $this->domain );
 	}
 
 	/**
