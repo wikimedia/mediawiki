@@ -15,7 +15,8 @@
 			"Patriccck",
 			"Patrik L.",
 			"Utar",
-			"YjM"
+			"YjM",
+			"Pavreh"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Dokumentace]]\n* [[mw:Special:MyLanguage/API:Etiquette|Etiketa & pokyny k používání]]\n* [[mw:Special:MyLanguage/API:FAQ|Otázky a odpovědi]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api E-mailová konference]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Oznámení k API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Chyby a požadavky]\n</div>\n<strong>Stav:</strong> Všechny funkce uvedené na této stránce by měly fungovat, ale API se stále aktivně vyvíjí a může se kdykoli změnit. Upozornění na změny získáte přihlášením se k [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ e-mailové konferenci mediawiki-api-announce].\n\n<strong>Chybné požadavky:</strong> Pokud jsou do API zaslány chybné požadavky, bude vrácena HTTP hlavička s klíčem „MediaWiki-API-Error“ a hodnota této hlavičky a chybový kód budou nastaveny na stejnou hodnotu. Více informací najdete [[mw:Special:MyLanguage/API:Errors_and_warnings|v dokumentaci]].\n\n<p class=\"mw-apisandbox-link\"><strong>Testování:</strong> Pro jednoduché testování požadavků na API zkuste [[Special:ApiSandbox]].</p>",
@@ -274,6 +275,7 @@
 	"api-help-permissions-granted-to": "Uděleno {{PLURAL:$1|skupině|skupinám}}: $2",
 	"api-help-right-apihighlimits": "Používání vyšších limitů v API dotazech (pomalé dotazy: $1, rychlé dotazy: $2). Limity pro pomalé dotazy se vztahují i na vícehodnotové parametry.",
 	"api-help-open-in-apisandbox": "<small>[otevřít v pískovišti]</small>",
+	"apierror-assertnameduserfailed": "Již nejste přihlášen jako „$1“, takže akci nelze dokončit.",
 	"apierror-blocked": "Byla vám zablokována možnost editace.",
 	"apierror-mustbeloggedin": "Abyste mohli $1, musíte být přihlášeni.",
 	"apierror-nosuchrcid": "Žádná nedávná změna nemá ID $1.",

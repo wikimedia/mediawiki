@@ -1452,7 +1452,7 @@
 	"enotif_lastvisited": "自子出簿，有易見$1。",
 	"enotif_lastdiff": "欲閱此易，見$1。",
 	"enotif_anon_editor": "過客$1",
-	"enotif_body": "$WATCHINGUSERNAME鈞鑑\n\n$PAGEEDITDATE{{SITENAME}}簿$PAGEEDITOR$CHANGEDORCREATED$PAGETITLE，閱審之見$PAGETITLE_URL。\n\n$NEWPAGE\n\n纂者彙：$PAGESUMMARY $PAGEMINOREDIT\n遣書（$PAGEEDITOR_EMAIL）或訪齋（$PAGEEDITOR_WIKI）聯繫之。\n\n如不訪頁，哨報止也。可赴哨所令復之。\n\n{{SITENAME}}敬上\n\n--\n欲更哨令，惠訪{{canonicalurl:{{#special:EditWatchlist}}}}\n\n欲刪之頁，惠訪$UNWATCHURL\n\n饋助之，惠訪$HELPPAGE",
+	"enotif_body": "$WATCHINGUSERNAME鈞鑑\n\n$PAGEINTRO $NEWPAGE\n\n纂者彙：$PAGESUMMARY $PAGEMINOREDIT\n遣書（$PAGEEDITOR_EMAIL）或訪齋（$PAGEEDITOR_WIKI）聯繫之。\n\n如不訪頁，哨報止也。可赴哨所令復之。\n\n{{SITENAME}}敬上\n\n--\n欲更哨令，惠訪{{canonicalurl:{{#special:EditWatchlist}}}}\n\n欲刪之頁，惠訪$UNWATCHURL\n\n饋助之，惠訪$HELPPAGE",
 	"created": "撰",
 	"changed": "易",
 	"deletepage-submit": "刪頁",

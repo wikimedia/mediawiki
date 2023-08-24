@@ -20,7 +20,8 @@
 			"Timpul",
 			"ToBeFree",
 			"Äberlausitzer",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Verknipfonga unterstreeicha:",
@@ -1070,7 +1071,7 @@
 	"enotif_lastvisited": "Olle Änderunga uff a'n Blick: $1",
 	"enotif_lastdiff": "Siehe $1 noach dieser Änderung.",
 	"enotif_anon_editor": "Anonymer Nutzer $1",
-	"enotif_body": "Hallo $WATCHINGUSERNAME,\n\nde {{SITENAME}}-Seite „$PAGETITLE“ wurde vu $PAGEEDITOR oam $PAGEEDITDATE im $PAGEEDITTIME Seeger $CHANGEDORCREATED.\n\nAktuelle Version: $PAGETITLE_URL\n\n$NEWPAGE\n\nZusommafassung des Beoarbeeters: $PAGESUMMARY $PAGEMINOREDIT\n\nKuntakt zum Bearbeeter:\nE-Mail: $PAGEEDITOR_EMAIL\nWiki: $PAGEEDITOR_WIKI\n\nIs waan sulange kenne wettera Benachrichtigungs-E-Mails gesendet, bis du de Seite wieder besucht host. Uff denner Beobachtungsliste koast du olle Benachrichtigungsmarker zusomma zerrickesetza.\n\n             Dei freindliches {{SITENAME}}-Benoachrichtigungssystem \n\n--\nIm de Einstellunga denner Beobachtungsliste oazupoaßa, besuche: {{canonicalurl:{{#special:EditWatchlist}}}}\n\nRickmeldungen und wettere Hilfe: $HELPPAGE",
+	"enotif_body": "Hallo $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nZusommafassung des Beoarbeeters: $PAGESUMMARY $PAGEMINOREDIT\n\nKuntakt zum Bearbeeter:\nE-Mail: $PAGEEDITOR_EMAIL\nWiki: $PAGEEDITOR_WIKI\n\nIs waan sulange kenne wettera Benachrichtigungs-E-Mails gesendet, bis du de Seite wieder besucht host. Uff denner Beobachtungsliste koast du olle Benachrichtigungsmarker zusomma zerrickesetza.\n\n             Dei freindliches {{SITENAME}}-Benoachrichtigungssystem \n\n--\nIm de Einstellunga denner Beobachtungsliste oazupoaßa, besuche: {{canonicalurl:{{#special:EditWatchlist}}}}\n\nRickmeldungen und wettere Hilfe: $HELPPAGE",
 	"created": "erzeugt",
 	"deletepage-submit": "Seite läscha",
 	"confirm": "Bestätiga",
