@@ -223,26 +223,6 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	}
 
 	/**
-	 * Set change tags for the log entry.
-	 *
-	 * Passing `null` means the same as empty array,
-	 * for compatibility with WikiPage::doUpdateRestrictions().
-	 *
-	 * @since 1.27
-	 * @param string|string[]|null $tags
-	 * @deprecated since 1.33 Please use addTags() instead.
-	 *  Hard deprecated since 1.39.
-	 */
-	public function setTags( $tags ) {
-		wfDeprecated( __METHOD__, '1.33' );
-		if ( $this->tags ) {
-			wfDebug( 'Overwriting existing ManualLogEntry tags' );
-		}
-		$this->tags = [];
-		$this->addTags( $tags );
-	}
-
-	/**
 	 * Add change tags for the log entry
 	 *
 	 * @since 1.33
