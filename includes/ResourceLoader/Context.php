@@ -22,7 +22,6 @@
 
 namespace MediaWiki\ResourceLoader;
 
-use Config;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReferenceValue;
@@ -180,17 +179,6 @@ class Context implements MessageLocalizer {
 
 	public function getResourceLoader(): ResourceLoader {
 		return $this->resourceLoader;
-	}
-
-	/**
-	 * @deprecated since 1.34 Use Module::getConfig instead inside module
-	 *   methods. Use ResourceLoader::getConfig elsewhere.
-	 * @return Config
-	 * @codeCoverageIgnore
-	 */
-	public function getConfig() {
-		wfDeprecated( __METHOD__, '1.34' );
-		return $this->getResourceLoader()->getConfig();
 	}
 
 	public function getRequest(): WebRequest {
