@@ -75,4 +75,48 @@ class DeferredUpdatesScopeStack {
 	public function getRecursiveDepth() {
 		return count( $this->stack ) - 1;
 	}
+
+	/**
+	 * Whether DeferredUpdates::addUpdate() may run the update right away
+	 *
+	 * @return bool
+	 */
+	public function allowOpportunisticUpdates(): bool {
+		// Overridden in DeferredUpdatesScopeMediaWikiStack::allowOpportunisticUpdates
+		return false;
+	}
+
+	/**
+	 * Queue an EnqueueableDataUpdate as a job instead
+	 *
+	 * @see JobQueueGroup::push
+	 * @param EnqueueableDataUpdate $update
+	 */
+	public function queueDataUpdate( EnqueueableDataUpdate $update ): void {
+		throw new LogicException( 'Cannot queue jobs from DeferredUpdates in standalone mode' );
+	}
+
+	/**
+	 * @param DeferrableUpdate $update
+	 */
+	public function onRunUpdateStart( DeferrableUpdate $update ): void {
+		// No-op
+		// Overridden in DeferredUpdatesScopeMediaWikiStack::onRunUpdateStart
+	}
+
+	/**
+	 * @param DeferrableUpdate $update
+	 */
+	public function onRunUpdateEnd( DeferrableUpdate $update ): void {
+		// No-op
+		// Overridden in DeferredUpdatesScopeMediaWikiStack::onRunUpdateEnd
+	}
+
+	/**
+	 * @param DeferrableUpdate $update
+	 */
+	public function onRunUpdateFailed( DeferrableUpdate $update ): void {
+		// No-op
+		// Overridden in DeferredUpdatesScopeMediaWikiStack::onRunUpdateFailed
+	}
 }

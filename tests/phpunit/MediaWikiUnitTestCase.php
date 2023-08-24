@@ -103,6 +103,8 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 			$GLOBALS[ $key ] = $value;
 		}
 
+		// Set DeferredUpdates into standalone mode
+		DeferredUpdates::setScopeStack( new DeferredUpdatesScopeStack() );
 		MediaWikiServices::disallowGlobalInstanceInUnitTests();
 	}
 
@@ -160,6 +162,7 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		unset( $value );
 
 		MediaWikiServices::allowGlobalInstanceAfterUnitTests();
+		DeferredUpdates::setScopeStack( new DeferredUpdatesScopeMediaWikiStack() );
 	}
 
 }

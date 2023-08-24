@@ -344,6 +344,7 @@ $wgAutoloadLocalClasses = [
 	'DeferrableUpdate' => __DIR__ . '/includes/deferred/DeferrableUpdate.php',
 	'DeferredUpdates' => __DIR__ . '/includes/deferred/DeferredUpdates.php',
 	'DeferredUpdatesScope' => __DIR__ . '/includes/deferred/DeferredUpdatesScope.php',
+	'DeferredUpdatesScopeMediaWikiStack' => __DIR__ . '/includes/deferred/DeferredUpdatesScopeMediaWikiStack.php',
 	'DeferredUpdatesScopeStack' => __DIR__ . '/includes/deferred/DeferredUpdatesScopeStack.php',
 	'Deflate' => __DIR__ . '/includes/libs/Deflate.php',
 	'DeleteAction' => __DIR__ . '/includes/actions/DeleteAction.php',

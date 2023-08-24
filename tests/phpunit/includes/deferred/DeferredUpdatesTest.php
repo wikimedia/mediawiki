@@ -356,8 +356,7 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 					$called = true;
 				},
 				$fname
-			),
-			$lbFactory
+			)
 		);
 
 		$this->assertTrue( $called, "Callback ran" );

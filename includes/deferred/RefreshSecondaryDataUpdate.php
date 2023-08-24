@@ -100,7 +100,7 @@ class RefreshSecondaryDataUpdate extends DataUpdate
 		$e = null;
 		foreach ( $updates as $update ) {
 			try {
-				DeferredUpdates::attemptUpdate( $update, $this->lbFactory );
+				DeferredUpdates::attemptUpdate( $update );
 			} catch ( Exception $e ) {
 				// Try as many updates as possible on the first pass
 				MWExceptionHandler::rollbackPrimaryChangesAndLog( $e );
