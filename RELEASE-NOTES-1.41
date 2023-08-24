@@ -365,6 +365,8 @@ because of Phabricator reports.
 * ResourceLoader\Context::getConfig(), deprecated in 1.34, has been removed.
 * When creating a SearchUpdate instance, passing a non-Content string or Boolean
   as the $c parameter, deprecated since 1.34, will now trigger type errors.
+* SkinTemplate::getNameSpaceKey(), deprecated in 1.35, has been dropped. Instead
+  you should use Title::getNamespaceKey().
 * The AddNewAccount hook, deprecated since 1.27, will now trigger deprecation
   warnings. You should use the LocalUserCreated hook instead.
 * PrefixSearch::validateNamespaces(), completely unused everywhere, has been

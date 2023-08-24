@@ -1486,16 +1486,6 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
-	 * Generate strings used for xml 'id' names
-	 * @deprecated since 1.35, use Title::getNamespaceKey() instead. Hard deprecated since 1.39.
-	 * @return string
-	 */
-	protected function getNameSpaceKey() {
-		wfDeprecated( __METHOD__, '1.35' );
-		return $this->getTitle()->getNamespaceKey();
-	}
-
-	/**
 	 * Insert legacy menu items from content navigation into the personal toolbar.
 	 *
 	 * @internal
