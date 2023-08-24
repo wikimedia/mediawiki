@@ -23,7 +23,8 @@
 			"Timpul",
 			"Uostofchuodnego",
 			"Vlad5250",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Podkreślynie linkōw:",
@@ -1323,7 +1324,7 @@
 	"enotif_lastvisited": "Uobejřij na zajće $1 wšyjstke půmjyńańo uod Twojej uostatńij wizyty.",
 	"enotif_lastdiff": "Uobejřij na zajće $1 te pomjyńeńe.",
 	"enotif_anon_editor": "užytkowńik anůnimowy $1",
-	"enotif_body": "Drogi/o $WATCHINGUSERNAME,\n\nzajta $PAGETITLE we {{GRAMMAR:MS.lp|{{SITENAME}}}} zostoua $CHANGEDORCREATED $PAGEEDITDATE bez užytkowńika $PAGEEDITOR. Uobejřij na zajće $PAGETITLE_URL aktualno wersja.\n\n$NEWPAGE\n\nOpis pomjyńeńa: $PAGESUMMARY $PAGEMINOREDIT\n\nSkůntaktuj śe s autorym:\ne-brif: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nW připadku kolejnych půmjyńań nowe powjadůmjyńo ńy bydům wysuane, dopůki ńy uodwjydziš tyi zajty.\nMožeš tyž zresetować wšyjstke flagi powjadůmjyń na swojej liśće zajtůw, na kere dowoš pozůr.\n\n\tWjadůmość systymu powjadůmjyń {{GRAMMAR:D.lp|{{SITENAME}}}}\n\n--\nKejbyś chćou půmjyńić štalowańo swojej listy zajtůw, na kere dowoš pozůr, uodwjydź\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nPomoc:\n$HELPPAGE",
+	"enotif_body": "Drogi/o $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nOpis pomjyńeńa: $PAGESUMMARY $PAGEMINOREDIT\n\nSkůntaktuj śe s autorym:\ne-brif: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nW připadku kolejnych půmjyńań nowe powjadůmjyńo ńy bydům wysuane, dopůki ńy uodwjydziš tyi zajty.\nMožeš tyž zresetować wšyjstke flagi powjadůmjyń na swojej liśće zajtůw, na kere dowoš pozůr.\n\nWjadůmość systymu powjadůmjyń {{GRAMMAR:D.lp|{{SITENAME}}}}\n\n--\nKejbyś chćou půmjyńić štalowańo swojej listy zajtůw, na kere dowoš pozůr, uodwjydź\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nPomoc:\n$HELPPAGE",
 	"created": "utwořono",
 	"changed": "pomjyńono",
 	"deletepage-submit": "Skasuj artykuł",

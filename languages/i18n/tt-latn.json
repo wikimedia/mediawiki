@@ -16,7 +16,8 @@
 			"Ерней",
 			"לערי ריינהארט",
 			"아라",
-			"TayfunEt."
+			"TayfunEt.",
+			"Zolgoyo"
 		]
 	},
 	"tog-underline": "Sıltamalarnıñ astına sızu:",
@@ -1038,7 +1039,7 @@
 	"unwatching": "Küzätü isemlegemnän çığaruı…",
 	"enotif_impersonal_salutation": "{{SITENAME}} qullanuçı",
 	"enotif_lastvisited": "Soñğı kerüegezdän soñ bulğan barlıq üzgärtülärne kürer öçen, bu sıltama aşa uzığız: $1",
-	"enotif_body": "Xörmätle $WATCHINGUSERNAME,\n\n«{{SITENAME}}» proyektınıñ «$PAGETITLE» bite  $PAGEEDITOR  tarafınnan  $PAGEEDITDATE  könne  $CHANGEDORCREATED. Bitne qarar öçen $PAGETITLE_URL  buyınça uzığız.\n\n$NEWPAGE\n\nÜzgärtüneñ qısqa eçtälege: $PAGESUMMARY $PAGEMINOREDIT\n\nÜzgärtüçegä yazu:\nel. poçta $PAGEEDITOR_EMAIL\nwiki $PAGEEDITOR_WIKI\n\nBu bitkä kermäsägez, anıñ başqa üzgärtüläre turında xat cibärelmäyäçäk. Şulay uq sez küzätü isemlegegezdä bulğan bitlär öçen xäbär birü flağın alıp quya alasız.\n\n             {{SITENAME}} xäbär birü sisteması\n\n--\nKüzätü isemlege köyläwlären üzgärtü:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nBitne sezneñ küzätü isemlegezdän beterü:\n$UNWATCHURL\n\nElemtä häm yärdäm:\n$HELPPAGE",
+	"enotif_body": "Xörmätle $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nÜzgärtüneñ qısqa eçtälege: $PAGESUMMARY $PAGEMINOREDIT\n\nÜzgärtüçegä yazu:\nel. poçta $PAGEEDITOR_EMAIL\nwiki $PAGEEDITOR_WIKI\n\nBu bitkä kermäsägez, anıñ başqa üzgärtüläre turında xat cibärelmäyäçäk. Şulay uq sez küzätü isemlegegezdä bulğan bitlär öçen xäbär birü flağın alıp quya alasız.\n\n{{SITENAME}} xäbär birü sisteması\n\n--\nKüzätü isemlege köyläwlären üzgärtü:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nBitne sezneñ küzätü isemlegezdän beterü:\n$UNWATCHURL\n\nElemtä häm yärdäm:\n$HELPPAGE",
 	"created": "tözergän",
 	"changed": "üzgärtelde",
 	"deletepage-submit": "Bitne beterü",

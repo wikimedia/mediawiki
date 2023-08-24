@@ -6,7 +6,8 @@
 			"Kaztrans",
 			"Macofe",
 			"Vlad5250",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "سىلتەمەنىڭ استىن سىز:",
@@ -911,7 +912,7 @@
 	"enotif_lastvisited": "سوڭعى كەلىپ-كەتۋىڭىزدەن بەرى بولعان وزگەرىستەر ٴۇشىن $1 دەگەندى قاراڭىز.",
 	"enotif_lastdiff": "وسى وزگەرىس ٴۇشىن $1 دەگەندى قاراڭىز.",
 	"enotif_anon_editor": "تىركەلگىسىز قاتىسۋشى $1",
-	"enotif_body": "قادىرلى $WATCHINGUSERNAME,\n\n\n{{SITENAME}} جوباسىنىڭ $PAGETITLE اتاۋلى بەتتى $PAGEEDITDATE كەزىندە $PAGEEDITOR دەگەن $CHANGEDORCREATED, اعىمدىق نۇسقاسى ٴۇشىن $PAGETITLE_URL قاراڭىز.\n\n$NEWPAGE\n\nوڭدەۋشى كەلتىرگەن قىسقاشا مازمۇنداماسى: $PAGESUMMARY $PAGEMINOREDIT\n\nوڭدەۋشىمەن قاتىناسۋ:\nە-پوشتا: $PAGEEDITOR_EMAIL\nۋىيكىي: $PAGEEDITOR_WIKI\n\nبىلايعى وزگەرىستەر بولعاندا دا وسى بەتكە كەلىپ-كەتۋىڭىزگەنشە دەيىن ەشقانداي باسقا ەسكەرتۋ حاتتار جىبەرىلمەيدى.\nسونىمەن قاتار باقىلاۋ تىزىمىڭىزدەگى بەت ەسكەرتپەلىك بەلگىسىن قايتا قويىڭىز.\n\n             ٴسىزدىڭ دوستىق {{SITENAME}} جوباسىنىڭ ەسكەرتۋ قىزمەتى\n\n----\nباقىلاۋ ٴتىزىمىڭىزدىڭ باپتاۋلىرىن وزگەرتۋ ٴۇشىن, مىندا كەلىپ-كەتىڭىز:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nسىن-پىكىر بەرۋ جانە بىلايعى جاردەم الۋ ٴۇشىن:\n{{canonicalurl:{{{{ns:mediawiki}}:Helppage}}}}",
+	"enotif_body": "قادىرلى $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nوڭدەۋشى كەلتىرگەن قىسقاشا مازمۇنداماسى: $PAGESUMMARY $PAGEMINOREDIT\n\nوڭدەۋشىمەن قاتىناسۋ:\nە-پوشتا: $PAGEEDITOR_EMAIL\nۋىيكىي: $PAGEEDITOR_WIKI\n\nبىلايعى وزگەرىستەر بولعاندا دا وسى بەتكە كەلىپ-كەتۋىڭىزگەنشە دەيىن ەشقانداي باسقا ەسكەرتۋ حاتتار جىبەرىلمەيدى.\nسونىمەن قاتار باقىلاۋ تىزىمىڭىزدەگى بەت ەسكەرتپەلىك بەلگىسىن قايتا قويىڭىز.\n\n             ٴسىزدىڭ دوستىق {{SITENAME}} جوباسىنىڭ ەسكەرتۋ قىزمەتى\n\n----\nباقىلاۋ ٴتىزىمىڭىزدىڭ باپتاۋلىرىن وزگەرتۋ ٴۇشىن, مىندا كەلىپ-كەتىڭىز:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nسىن-پىكىر بەرۋ جانە بىلايعى جاردەم الۋ ٴۇشىن:\n{{canonicalurl:{{{{ns:mediawiki}}:Helppage}}}}",
 	"created": "باستادى",
 	"changed": "وزگەرتتى",
 	"deletepage-submit": "بەتتى جويۋ",

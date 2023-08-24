@@ -26,7 +26,8 @@
 			"Vlad5250",
 			"Yannos",
 			"ZaDiak",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Ὑπογραμμίζειν συνδέσμους:",
@@ -1214,7 +1215,7 @@
 	"enotif_lastvisited": "Ἴδε $1 διὰ ἁπάσας τὰς ἀλλαγὰς ἐκ τῆς ὑστάτης ἐπισκέψεώς σου.",
 	"enotif_lastdiff": "Ἴδε $1 διὰ τὸ ὁρᾶν τήνδε τὴν ἀλλαγήν.",
 	"enotif_anon_editor": "ἀνώνυμος χρώμενος $1",
-	"enotif_body": "Φίλτατε  $WATCHINGUSERNAME,\n\n\nἩ τοῦ {{SITENAME}} δέλτος $PAGETITLE $CHANGEDORCREATED ἐστὶ τῇ $PAGEEDITDATE ὑπὸ τοῦ $PAGEEDITOR, $PAGETITLE_URL.\n\n$NEWPAGE\n\nΣύνοψις: $PAGESUMMARY $PAGEMINOREDIT\n\nΚοινωνῆσαι τὸν μεταγραφέα:\nἠλ.-ταχυδρομεῖον: $PAGEEDITOR_EMAIL\nβίκι: $PAGEEDITOR_WIKI\n\nΟὐχ ὑπάρξουσιν ἕτεραι εἰδήσεις ἐν περιπτώσει περαιτέρω ἀλλαγαὶ προκύψουσι εἰ μὴ σὺ ἐπισκεφθεὶς τὴν δέλτον ᾖς. Δύνασαι ἐπἴσης ἀναρρυθμίσειν τὰ σήματα εἰδήσεως διὰ ἅπασας τὰς ἐφορωμένας ὑπἐσοῦ δέλτους\n\n             Τοῦ φιλικοῦ σου {{SITENAME}} τὸ σύστημα εἰδήσεως\n\n--\nΔιὰ τὸ ἀλλάξειν τὰς ῥυθμίσεις τὴς ἐφοροδιαλογῆς σου, ἐπίσκεψαι τὸ\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nἈνάδρασις καὶ περαιτέρω βοήθεια:\n$HELPPAGE",
+	"enotif_body": "Φίλτατε $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nΣύνοψις: $PAGESUMMARY $PAGEMINOREDIT\n\nΚοινωνῆσαι τὸν μεταγραφέα:\nἠλ.-ταχυδρομεῖον: $PAGEEDITOR_EMAIL\nβίκι: $PAGEEDITOR_WIKI\n\nΟὐχ ὑπάρξουσιν ἕτεραι εἰδήσεις ἐν περιπτώσει περαιτέρω ἀλλαγαὶ προκύψουσι εἰ μὴ σὺ ἐπισκεφθεὶς τὴν δέλτον ᾖς. Δύνασαι ἐπἴσης ἀναρρυθμίσειν τὰ σήματα εἰδήσεως διὰ ἅπασας τὰς ἐφορωμένας ὑπἐσοῦ δέλτους\n\n             Τοῦ φιλικοῦ σου {{SITENAME}} τὸ σύστημα εἰδήσεως\n\n--\nΔιὰ τὸ ἀλλάξειν τὰς ῥυθμίσεις τὴς ἐφοροδιαλογῆς σου, ἐπίσκεψαι τὸ\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nἈνάδρασις καὶ περαιτέρω βοήθεια:\n$HELPPAGE",
 	"created": "ποιηθέν",
 	"changed": "ἠλλαγμένη",
 	"deletepage-submit": "Διαγράφειν τὴν δέλτον",
