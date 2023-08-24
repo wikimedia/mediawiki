@@ -43,6 +43,7 @@ use MediaWiki\Rest\ResponseException;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Revision\SuppressedDataException;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 use MobileContext;
@@ -604,6 +605,8 @@ abstract class ParsoidHandler extends Handler {
 				$title, $user, $revisionRecord ?? $revision, null, $pagelanguageOverride,
 				$this->parsoidSettings, $ensureAccessibleContent
 			);
+		} catch ( SuppressedDataException $e ) {
+			throw new HttpException( $e->getMessage(), 403 );
 		} catch ( RevisionAccessException $e ) {
 			throw new HttpException( $e->getMessage(), 404 );
 		}
