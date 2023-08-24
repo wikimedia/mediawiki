@@ -759,7 +759,6 @@ return [
 	'mediawiki.diff' => [
 		'scripts' => [
 			'resources/src/mediawiki.diff/diff.js',
-			'resources/src/mediawiki.diff/mw.widgets.InlineToggleField.js',
 			'resources/src/mediawiki.diff/inlineFormatToggle.js',
 		],
 		'dependencies' => [
@@ -778,7 +777,6 @@ return [
 		],
 		'styles' => [
 			'resources/src/mediawiki.diff.styles/diff.less',
-			'resources/src/mediawiki.diff.styles/mw.widgets.InlineToggleField.less',
 			'resources/src/mediawiki.diff.styles/print.css' => [
 				'media' => 'print'
 			],
