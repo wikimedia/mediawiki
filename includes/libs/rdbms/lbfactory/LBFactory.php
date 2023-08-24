@@ -125,7 +125,6 @@ abstract class LBFactory implements ILBFactory {
 			'IPAddress' => $_SERVER['REMOTE_ADDR'] ?? '',
 			'UserAgent' => $_SERVER['HTTP_USER_AGENT'] ?? '',
 			// Headers application can inject via LBFactory::setRequestInfo()
-			'ChronologyProtection' => null,
 			'ChronologyClientId' => null, // prior $cpClientId value from LBFactory::shutdown()
 			'ChronologyPositionIndex' => null // prior $cpIndex value from LBFactory::shutdown()
 		];
@@ -605,10 +604,6 @@ abstract class LBFactory implements ILBFactory {
 
 		if ( $this->cliMode ) {
 			$this->chronProt->setEnabled( false );
-		} elseif ( $this->requestInfo['ChronologyProtection'] === 'false' ) {
-			// Request opted out of using position wait logic. This is useful for requests
-			// done by the job queue or background ETL that do not have a meaningful session.
-			$this->chronProt->setWaitEnabled( false );
 		} elseif ( $this->cpStash instanceof EmptyBagOStuff ) {
 			// No where to store any DB positions and wait for them to appear
 			$this->chronProt->setEnabled( false );

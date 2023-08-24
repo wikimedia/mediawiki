@@ -146,8 +146,6 @@ class ChronologyProtector implements LoggerAwareInterface {
 
 	/** @var bool Whether reading/writing session consistency replication positions is enabled */
 	protected $enabled = true;
-	/** @var bool Whether waiting on DB servers to reach replication positions is enabled */
-	protected $positionWaitsEnabled = true;
 	/** @var float|null UNIX timestamp when the client data was loaded */
 	protected $startupTimestamp;
 
@@ -253,14 +251,6 @@ class ChronologyProtector implements LoggerAwareInterface {
 	}
 
 	/**
-	 * @param bool $enabled Whether session replication position wait barriers are enable
-	 * @since 1.27
-	 */
-	public function setWaitEnabled( $enabled ) {
-		$this->positionWaitsEnabled = $enabled;
-	}
-
-	/**
 	 * Yield client "session consistency" replication position for a new ILoadBalancer
 	 *
 	 * If the stash has a previous primary position recorded, this will try to make
@@ -274,7 +264,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 	 * @return DBPrimaryPos|null
 	 */
 	public function yieldSessionPrimaryPos( ILoadBalancer $lb ) {
-		if ( !$this->enabled || !$this->positionWaitsEnabled ) {
+		if ( !$this->enabled ) {
 			return null;
 		}
 
@@ -478,7 +468,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 		// 2. The older value will have expired by now and thus treated as non-existing,
 		//    which means we wouldn't even "see" it here.
 		$indexReached = is_array( $data ) ? $data[self::FLD_WRITE_INDEX] : null;
-		if ( $this->positionWaitsEnabled && $this->waitForPosIndex > 0 ) {
+		if ( $this->waitForPosIndex > 0 ) {
 			if ( $indexReached >= $this->waitForPosIndex ) {
 				$this->logger->debug( 'expected and found position index {cpPosIndex}', [
 					'cpPosIndex' => $this->waitForPosIndex,
