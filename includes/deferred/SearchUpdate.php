@@ -53,18 +53,9 @@ class SearchUpdate implements DeferrableUpdate {
 	 * @param PageIdentity $page Page to update
 	 * @param Content|null $c Content of the page to update.
 	 */
-	public function __construct( $id, $page, $c = null ) {
+	public function __construct( $id, $page, ?Content $c = null ) {
 		$this->page = $page;
-
 		$this->id = $id;
-		// is_string() check is back-compat for ApprovedRevs
-		if ( is_string( $c ) ) {
-			wfDeprecated( __METHOD__ . " with a string for the content", '1.34' );
-			$c = new TextContent( $c );
-		} elseif ( is_bool( $c ) ) {
-			wfDeprecated( __METHOD__ . " with a boolean for the content", '1.34' );
-			$c = null;
-		}
 		$this->content = $c;
 	}
 
