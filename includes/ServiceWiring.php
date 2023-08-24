@@ -1917,7 +1917,7 @@ return [
 	},
 
 	'SiteStore' => static function ( MediaWikiServices $services ): SiteStore {
-		$rawSiteStore = new DBSiteStore( $services->getDBLoadBalancer() );
+		$rawSiteStore = new DBSiteStore( $services->getDBLoadBalancerFactory() );
 
 		$cache = $services->getLocalServerObjectCache();
 		if ( $cache instanceof EmptyBagOStuff ) {

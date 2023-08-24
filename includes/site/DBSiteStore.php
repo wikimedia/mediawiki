@@ -18,8 +18,8 @@
  * @file
  */
 
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Holds a list of sites stored in the database.
@@ -32,15 +32,15 @@ use Wikimedia\Rdbms\ILoadBalancer;
 class DBSiteStore implements SiteStore {
 	/** @var SiteList|null */
 	protected $sites = null;
-	/** @var ILoadBalancer */
-	private $dbLoadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/**
 	 * @since 1.27
-	 * @param ILoadBalancer $dbLoadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 */
-	public function __construct( ILoadBalancer $dbLoadBalancer ) {
-		$this->dbLoadBalancer = $dbLoadBalancer;
+	public function __construct( IConnectionProvider $dbProvider ) {
+		$this->dbProvider = $dbProvider;
 	}
 
 	/**
@@ -63,7 +63,7 @@ class DBSiteStore implements SiteStore {
 	protected function loadSites() {
 		$this->sites = new SiteList();
 
-		$dbr = $this->dbLoadBalancer->getConnectionRef( DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 
 		$res = $dbr->newSelectQueryBuilder()
 			->select( [
@@ -152,7 +152,7 @@ class DBSiteStore implements SiteStore {
 			return true;
 		}
 
-		$dbw = $this->dbLoadBalancer->getConnectionRef( DB_PRIMARY );
+		$dbw = $this->dbProvider->getPrimaryDatabase();
 
 		$dbw->startAtomic( __METHOD__ );
 
@@ -238,7 +238,7 @@ class DBSiteStore implements SiteStore {
 	 * @see SiteStore::clear()
 	 */
 	public function clear() {
-		$dbw = $this->dbLoadBalancer->getConnectionRef( DB_PRIMARY );
+		$dbw = $this->dbProvider->getPrimaryDatabase();
 
 		$dbw->startAtomic( __METHOD__ );
 		$dbw->newDeleteQueryBuilder()
