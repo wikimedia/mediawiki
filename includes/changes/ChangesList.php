@@ -83,6 +83,11 @@ class ChangesList extends ContextSource {
 	protected $tagsCache;
 
 	/**
+	 * @var MapCacheLRU
+	 */
+	protected $userLinkCache;
+
+	/**
 	 * @param IContextSource $context
 	 * @param ChangesListFilterGroup[] $filterGroups Array of ChangesListFilterGroup objects (currently optional)
 	 */
@@ -96,6 +101,7 @@ class ChangesList extends ContextSource {
 		$this->linkRenderer = $services->getLinkRenderer();
 		$this->commentFormatter = $services->getRowCommentFormatter();
 		$this->tagsCache = new MapCacheLRU( 50 );
+		$this->userLinkCache = new MapCacheLRU( 50 );
 	}
 
 	/**
@@ -704,18 +710,25 @@ class ChangesList extends ContextSource {
 			$s .= ' <span class="' . $deletedClass . '">' .
 				$this->msg( 'rev-deleted-user' )->escaped() . '</span>';
 		} else {
-			$s .= $this->getLanguage()->getDirMark() . Linker::userLink(
-				$rc->mAttribs['rc_user'],
-				$rc->mAttribs['rc_user_text'],
-				false,
-				[ 'data-mw-revid' => $rc->mAttribs['rc_this_oldid'] ]
-			);
-			$s .= Linker::userToolLinks(
-				$rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'],
-				false, 0, null,
-				// The text content of tools is not wrapped with parentheses or "piped".
-				// This will be handled in CSS (T205581).
-				false
+			$s .= $this->getLanguage()->getDirMark();
+			$s .= $this->userLinkCache->getWithSetCallback(
+				$this->userLinkCache->makeKey(
+					$rc->mAttribs['rc_user_text'],
+					$this->getUser()->getName(),
+					$this->getLanguage()->getCode()
+				),
+				static function () use ( $rc ) {
+					return Linker::userLink(
+						$rc->mAttribs['rc_user'],
+						$rc->mAttribs['rc_user_text']
+					) . Linker::userToolLinks(
+						$rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'],
+						false, 0, null,
+						// The text content of tools is not wrapped with parentheses or "piped".
+						// This will be handled in CSS (T205581).
+						false
+					);
+				}
 			);
 		}
 	}
