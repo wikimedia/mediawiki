@@ -604,6 +604,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			"Archived content should be null after the page was suppressed for individual users"
 		);
 
+		$this->hideDeprecated( 'ContentHandler::getSlotDiffRendererInternal' );
 		$this->assertNull(
 			$archivedRev->getContent( SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER, $user ),
 			"Archived content should be null after the page was suppressed even for a sysop"
