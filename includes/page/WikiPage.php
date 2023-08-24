@@ -35,7 +35,6 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Permissions\Authority;
-use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
@@ -60,7 +59,6 @@ use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
-use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
  * @defgroup Page Page
@@ -3134,54 +3132,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 				}
 			}
 		}
-	}
-
-	/**
-	 * Returns a list of updates to be performed when this page is deleted. The
-	 * updates should remove any information about this page from secondary data
-	 * stores such as links tables.
-	 *
-	 * @deprecated since 1.37 With no replacement.
-	 *
-	 * @param RevisionRecord|Content|null $rev The revision being deleted. Also accepts a Content
-	 *       object for backwards compatibility.
-	 * @return DeferrableUpdate[]
-	 */
-	public function getDeletionUpdates( $rev = null ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$user = new UserIdentityValue( 0, 'Legacy code hater' );
-		$services = MediaWikiServices::getInstance();
-		$deletePage = $services->getDeletePageFactory()->newDeletePage(
-			$this,
-			$services->getUserFactory()->newFromUserIdentity( $user )
-		);
-
-		if ( !$rev ) {
-			wfDeprecated( __METHOD__ . ' without a RevisionRecord', '1.32' );
-
-			try {
-				$rev = $this->getRevisionRecord();
-			} catch ( TimeoutException $e ) {
-				throw $e;
-			} catch ( Exception $ex ) {
-				// If we can't load the content, something is wrong. Perhaps that's why
-				// the user is trying to delete the page, so let's not fail in that case.
-				// Note that doDeleteArticleReal() will already have logged an issue with
-				// loading the content.
-				wfDebug( __METHOD__ . ' failed to load current revision of page ' . $this->getId() );
-			}
-		}
-		if ( !$rev ) {
-			// Use an empty RevisionRecord
-			$newRev = new MutableRevisionRecord( $this );
-		} elseif ( $rev instanceof Content ) {
-			wfDeprecated( __METHOD__ . ' with a Content object instead of a RevisionRecord', '1.32' );
-			$newRev = new MutableRevisionRecord( $this );
-			$newRev->setSlot( SlotRecord::newUnsaved( SlotRecord::MAIN, $rev ) );
-		} else {
-			$newRev = $rev;
-		}
-		return $deletePage->getDeletionUpdates( $this, $newRev );
 	}
 
 	/**

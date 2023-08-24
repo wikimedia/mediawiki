@@ -361,6 +361,7 @@ because of Phabricator reports.
   since 1.35, will now trigger a type error.
 * JobQueue::getWiki(), deprecated in 1.33, has been removed.
 * ManualLogEntry::setTags(), deprecated in 1.33, has been removed.
+* WikiPage::getDeletionUpdates(), deprecated in 1.37, has been removed.
 * The AddNewAccount hook, deprecated since 1.27, will now trigger deprecation
   warnings. You should use the LocalUserCreated hook instead.
 * PrefixSearch::validateNamespaces(), completely unused everywhere, has been

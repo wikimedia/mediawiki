@@ -2,7 +2,6 @@
 
 use MediaWiki\Category\Category;
 use MediaWiki\Content\Renderer\ContentRenderer;
-use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
@@ -660,16 +659,13 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$handler = $this->getMockBuilder( TextContentHandler::class )
 			->setConstructorArgs( [ $name ] )
 			->onlyMethods(
-				[ 'getSecondaryDataUpdates', 'getDeletionUpdates', 'unserializeContent' ]
+				[ 'getSecondaryDataUpdates', 'unserializeContent' ]
 			)
 			->getMock();
 
 		$dataUpdate = new MWCallableUpdate( 'time', "$name data update" );
 
-		$deletionUpdate = new MWCallableUpdate( 'time', "$name deletion update" );
-
 		$handler->method( 'getSecondaryDataUpdates' )->willReturn( [ $dataUpdate ] );
-		$handler->method( 'getDeletionUpdates' )->willReturn( [ $deletionUpdate ] );
 		$handler->method( 'unserializeContent' )->willReturnCallback(
 			function ( $text ) use ( $handler ) {
 				return $this->createMockContent( $handler, $text );
@@ -704,29 +700,6 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$content->method( 'getContentHandler' )->willReturn( $handler );
 
 		return $content;
-	}
-
-	public function testGetDeletionUpdates() {
-		$this->hideDeprecated( 'WikiPage::getDeletionUpdates' );
-		$m1 = $this->defineMockContentModelForUpdateTesting( 'M1' );
-
-		$mainContent1 = $this->createMockContent( $m1, 'main 1' );
-
-		$page = new WikiPage( Title::newFromText( __METHOD__ ) );
-		$page = $this->createPage(
-			$page,
-			[ SlotRecord::MAIN => $mainContent1 ]
-		);
-
-		$dataUpdates = $page->getDeletionUpdates( $page->getRevisionRecord() );
-		$this->assertNotEmpty( $dataUpdates );
-
-		$updateNames = array_map( static function ( $du ) {
-			return $du instanceof MWCallableUpdate ? $du->getOrigin() : get_class( $du );
-		}, $dataUpdates );
-
-		$this->assertContains( LinksDeletionUpdate::class, $updateNames );
-		$this->assertContains( 'M1 deletion update', $updateNames );
 	}
 
 	/**
