@@ -88,12 +88,11 @@ class SpecialWantedCategories extends WantedQueryPage {
 			$allCategories[] = $row->title;
 		}
 
-		$categoryRes = $db->select(
-			'category',
-			[ 'cat_title', 'cat_pages' ],
-			[ 'cat_title' => $allCategories ],
-			__METHOD__
-		);
+		$categoryRes = $db->newSelectQueryBuilder()
+			->select( [ 'cat_title', 'cat_pages' ] )
+			->from( 'category' )
+			->where( [ 'cat_title' => $allCategories ] )
+			->caller( __METHOD__ )->fetchResultSet();
 		foreach ( $categoryRes as $row ) {
 			$this->currentCategoryCounts[$row->cat_title] = intval( $row->cat_pages );
 		}

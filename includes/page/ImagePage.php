@@ -865,15 +865,14 @@ EOT
 	 * @return IResultWrapper
 	 */
 	protected function queryImageLinks( $target, $limit ) {
-		$dbr = wfGetDB( DB_REPLICA );
-
-		return $dbr->select(
-			[ 'imagelinks', 'page' ],
-			[ 'page_namespace', 'page_title', 'il_to' ],
-			[ 'il_to' => $target, 'il_from = page_id' ],
-			__METHOD__,
-			[ 'LIMIT' => $limit + 1, 'ORDER BY' => 'il_from', ]
-		);
+		return wfGetDB( DB_REPLICA )->newSelectQueryBuilder()
+			->select( [ 'page_namespace', 'page_title', 'il_to' ] )
+			->from( 'imagelinks' )
+			->join( 'page', null, 'il_from = page_id' )
+			->where( [ 'il_to' => $target ] )
+			->orderBy( 'il_from' )
+			->limit( $limit + 1 )
+			->caller( __METHOD__ )->fetchResultSet();
 	}
 
 	protected function imageLinks() {

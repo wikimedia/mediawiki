@@ -2940,12 +2940,13 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			return [];
 		}
 
-		$dbr = wfGetDB( DB_REPLICA );
-		$res = $dbr->select( [ 'categorylinks', 'page_props', 'page' ],
-			[ 'cl_to' ],
-			[ 'cl_from' => $id, 'pp_page=page_id', 'pp_propname' => 'hiddencat',
-				'page_namespace' => NS_CATEGORY, 'page_title=cl_to' ],
-			__METHOD__ );
+		$res = wfGetDB( DB_REPLICA )->newSelectQueryBuilder()
+			->select( [ 'cl_to' ] )
+			->from( 'categorylinks' )
+			->join( 'page', null, 'page_title=cl_to' )
+			->join( 'page_props', null, 'pp_page=page_id' )
+			->where( [ 'cl_from' => $id, 'pp_propname' => 'hiddencat', 'page_namespace' => NS_CATEGORY ] )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		if ( $res !== false ) {
 			foreach ( $res as $row ) {

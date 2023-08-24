@@ -105,8 +105,11 @@ class ApiTag extends ApiBase {
 	}
 
 	protected function validateLogId( $logid ) {
-		$result = $this->dbr->selectField( 'logging', 'log_id', [ 'log_id' => $logid ],
-			__METHOD__ );
+		$result = $this->dbr->newSelectQueryBuilder()
+			->select( 'log_id' )
+			->from( 'logging' )
+			->where( [ 'log_id' => $logid ] )
+			->caller( __METHOD__ )->fetchField();
 		return (bool)$result;
 	}
 
