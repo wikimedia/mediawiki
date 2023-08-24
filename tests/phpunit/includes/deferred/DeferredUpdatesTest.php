@@ -337,11 +337,17 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( [ 'oti', 1, 2 ], $calls );
 	}
 
+	/**
+	 * @covers MWCallableUpdate
+	 */
 	public function testCallbackUpdateRounds() {
 		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 
 		$fname = __METHOD__;
 		$called = false;
+		// This confirms that DeferredUpdates sets the transaction owner in LBFactory
+		// based on MWCallableUpdate::getOrigin, thus allowing the callback to control
+		// over the transaction and e.g. perform a commit.
 		DeferredUpdates::attemptUpdate(
 			new MWCallableUpdate(
 				static function () use ( $lbFactory, $fname, &$called ) {
