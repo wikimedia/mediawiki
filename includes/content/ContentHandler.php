@@ -196,8 +196,6 @@ abstract class ContentHandler {
 	 *
 	 * If none of the above applies, the wikitext model is used.
 	 *
-	 * Note: this is used by, and may thus not use, Title::getContentModel()
-	 *
 	 * @since 1.21
 	 * @deprecated since 1.33, use SlotRoleHandler::getDefaultModel() together with
 	 * SlotRoleRegistry::getRoleHandler().

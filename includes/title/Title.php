@@ -26,7 +26,6 @@ namespace MediaWiki\Title;
 
 use AtomicSectionUpdate;
 use AutoCommitUpdate;
-use ContentHandler;
 use DBAccessObjectUtils;
 use DeferredUpdates;
 use DeprecationHelper;
@@ -1097,7 +1096,9 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		}
 
 		if ( !$this->mContentModel ) {
-			$this->lazyFillContentModel( ContentHandler::getDefaultModelFor( $this ) );
+			$slotRoleregistry = MediaWikiServices::getInstance()->getSlotRoleRegistry();
+			$mainSlotHandler = $slotRoleregistry->getRoleHandler( 'main' );
+			$this->lazyFillContentModel( $mainSlotHandler->getDefaultModel( $this ) );
 		}
 
 		return $this->mContentModel;
