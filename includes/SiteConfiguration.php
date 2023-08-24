@@ -561,12 +561,15 @@ class SiteConfiguration {
 	 * For foreign wikis, this is expensive, and only works if maintenance
 	 * scripts are setup to handle the --wiki parameter such as in wiki farms.
 	 *
+	 * @deprecated since 1.41. Use SiteConfiguration::get() instead.
+	 *
 	 * @param string $wiki
 	 * @param string|string[] $settings A setting name or array of setting names
 	 * @return mixed|mixed[] Array if $settings is an array, otherwise the value
 	 * @since 1.21
 	 */
 	public function getConfig( $wiki, $settings ) {
+		wfDeprecated( __METHOD__, '1.41' );
 		$multi = is_array( $settings );
 		$settings = (array)$settings;
 		if ( WikiMap::isCurrentWikiId( $wiki ) ) { // $wiki is this wiki
