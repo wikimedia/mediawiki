@@ -1560,26 +1560,6 @@ more stuff
 		$this->assertRedirectTableCountForPageId( $page->getId(), [] );
 	}
 
-	private function getRow( array $overrides = [] ) {
-		$row = [
-			'page_id' => '44',
-			'page_len' => '76',
-			'page_is_redirect' => '1',
-			'page_is_new' => '1',
-			'page_latest' => '99',
-			'page_namespace' => '3',
-			'page_title' => 'JaJaTitle',
-			'page_touched' => '20120101020202',
-			'page_links_updated' => '20140101020202',
-			'page_lang' => 'it',
-			'page_content_model' => CONTENT_MODEL_WIKITEXT,
-		];
-		foreach ( $overrides as $key => $value ) {
-			$row[$key] = $value;
-		}
-		return (object)$row;
-	}
-
 	/**
 	 * @covers WikiPage::updateRevisionOn
 	 */

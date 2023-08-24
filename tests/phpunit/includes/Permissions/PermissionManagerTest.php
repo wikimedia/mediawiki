@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Integration\Permissions;
 
 use Action;
-use ContentHandler;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
@@ -13,8 +12,6 @@ use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Request\FauxRequest;
-use MediaWiki\Revision\MutableRevisionRecord;
-use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\TestUtils;
 use MediaWiki\Title\Title;
@@ -1144,38 +1141,6 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			$this->assertTrue( $permissionManager->userHasRight( $this->user, 'move' ) );
 		} )();
 		$this->assertFalse( $permissionManager->userHasRight( $this->user, 'move' ) );
-	}
-
-	/**
-	 * Create a RevisionRecord with a single Javascript main slot.
-	 * @param Title $title
-	 * @param User $user
-	 * @param string $text
-	 * @return MutableRevisionRecord
-	 */
-	private function getJavascriptRevision( Title $title, User $user, $text ) {
-		$content = ContentHandler::makeContent( $text, $title, CONTENT_MODEL_JAVASCRIPT );
-		$revision = new MutableRevisionRecord( $title );
-		$revision->setContent( SlotRecord::MAIN, $content );
-		return $revision;
-	}
-
-	/**
-	 * Create a RevisionRecord with a single Javascript redirect main slot.
-	 * @param Title $title
-	 * @param Title $redirectTargetTitle
-	 * @param User $user
-	 * @return MutableRevisionRecord
-	 */
-	private function getJavascriptRedirectRevision(
-		Title $title, Title $redirectTargetTitle, User $user
-	) {
-		$content = $this->getServiceContainer()->getContentHandlerFactory()
-			->getContentHandler( CONTENT_MODEL_JAVASCRIPT )
-			->makeRedirectContent( $redirectTargetTitle );
-		$revision = new MutableRevisionRecord( $title );
-		$revision->setContent( SlotRecord::MAIN, $content );
-		return $revision;
 	}
 
 	public static function provideGetRestrictionLevels() {
