@@ -3,7 +3,9 @@
 use Wikimedia\Rdbms\IDatabase;
 
 /**
- * Deferrable Update for closure/callback
+ * DeferrableUpdate for closure/callable
+ *
+ * @internal Use DeferredUpdates::addCallableUpdate instead
  */
 class MWCallableUpdate
 	implements DeferrableUpdate, DeferrableCallback, TransactionRoundAwareUpdate
@@ -18,8 +20,8 @@ class MWCallableUpdate
 	/**
 	 * @param callable $callback
 	 * @param string $fname Calling method
-	 * @param IDatabase|IDatabase[]|null $dbws Abort if any of the specified DB handles have
-	 *   a currently pending transaction which later gets rolled back [optional] (since 1.28)
+	 * @param IDatabase|IDatabase[]|null $dbws Cancel the update if a DB transaction
+	 *  is rolled back [optional] (since 1.28)
 	 */
 	public function __construct( callable $callback, $fname = 'unknown', $dbws = [] ) {
 		$this->callback = $callback;
