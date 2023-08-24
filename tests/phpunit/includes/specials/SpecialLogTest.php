@@ -25,7 +25,8 @@ class SpecialLogTest extends SpecialPageTestBase {
 			$services->getLinkBatchFactory(),
 			$services->getDBLoadBalancerFactory(),
 			$services->getActorNormalization(),
-			$services->getUserIdentityLookup()
+			$services->getUserIdentityLookup(),
+			$services->getUserNameUtils()
 		);
 	}
 
