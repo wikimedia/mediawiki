@@ -291,28 +291,4 @@ abstract class PrefixSearch {
 
 		return iterator_to_array( TitleArray::newFromResult( $res ) );
 	}
-
-	/**
-	 * Validate an array of numerical namespace indexes
-	 *
-	 * @param array $namespaces
-	 * @return array (default: contains only NS_MAIN)
-	 */
-	protected function validateNamespaces( $namespaces ) {
-		// We will look at each given namespace against content language namespaces
-		$validNamespaces = MediaWikiServices::getInstance()->getContentLanguage()->getNamespaces();
-		if ( is_array( $namespaces ) && count( $namespaces ) > 0 ) {
-			$valid = [];
-			foreach ( $namespaces as $ns ) {
-				if ( is_numeric( $ns ) && array_key_exists( $ns, $validNamespaces ) ) {
-					$valid[] = $ns;
-				}
-			}
-			if ( count( $valid ) > 0 ) {
-				return $valid;
-			}
-		}
-
-		return [ NS_MAIN ];
-	}
 }
