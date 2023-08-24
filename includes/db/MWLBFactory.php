@@ -437,10 +437,8 @@ class MWLBFactory {
 		$lbFactory->setRequestInfo( [
 			'IPAddress' => $req->getIP(),
 			'UserAgent' => $req->getHeader( 'User-Agent' ),
-			'ChronologyProtection' => $req->getHeader( 'MediaWiki-Chronology-Protection' ),
 			'ChronologyPositionIndex' => $req->getInt( 'cpPosIndex', $cpPosInfo['index'] ),
-			'ChronologyClientId' => $cpPosInfo['clientId']
-				?? $req->getHeader( 'MediaWiki-Chronology-Client-Id' )
+			'ChronologyClientId' => $cpPosInfo['clientId'] ?? null,
 		] );
 
 		if ( $config->get( 'CommandLineMode' ) ) {
