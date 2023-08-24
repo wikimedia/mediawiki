@@ -622,6 +622,7 @@ class SpecialPageFactory {
 				'DBLoadBalancerFactory',
 				'ActorNormalization',
 				'UserIdentityLookup',
+				'UserNameUtils',
 			]
 		],
 		'Watchlist' => [

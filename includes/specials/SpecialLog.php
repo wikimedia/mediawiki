@@ -37,6 +37,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\UserIdentityLookup;
+use MediaWiki\User\UserNameUtils;
 use MediaWiki\Utils\MWTimestamp;
 use PermissionsError;
 use SpecialPage;
@@ -51,35 +52,36 @@ use Wikimedia\Timestamp\TimestampException;
  */
 class SpecialLog extends SpecialPage {
 
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
+	private LinkBatchFactory $linkBatchFactory;
 
-	/** @var IConnectionProvider */
-	private $dbProvider;
+	private IConnectionProvider $dbProvider;
 
-	/** @var ActorNormalization */
-	private $actorNormalization;
+	private ActorNormalization $actorNormalization;
 
-	/** @var UserIdentityLookup */
-	private $userIdentityLookup;
+	private UserIdentityLookup $userIdentityLookup;
+
+	private UserNameUtils $userNameUtils;
 
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param IConnectionProvider $dbProvider
 	 * @param ActorNormalization $actorNormalization
 	 * @param UserIdentityLookup $userIdentityLookup
+	 * @param UserNameUtils $userNameUtils
 	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		IConnectionProvider $dbProvider,
 		ActorNormalization $actorNormalization,
-		UserIdentityLookup $userIdentityLookup
+		UserIdentityLookup $userIdentityLookup,
+		UserNameUtils $userNameUtils
 	) {
 		parent::__construct( 'Log' );
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->dbProvider = $dbProvider;
 		$this->actorNormalization = $actorNormalization;
 		$this->userIdentityLookup = $userIdentityLookup;
+		$this->userNameUtils = $userNameUtils;
 	}
 
 	public function execute( $par ) {
@@ -283,7 +285,11 @@ class SpecialLog extends SpecialPage {
 		$performer = $pager->getPerformer();
 		if ( $performer ) {
 			$performerUser = $this->userIdentityLookup->getUserIdentityByName( $performer );
-			if ( $performerUser ) {
+			// Only set valid local user as the relevant user (T344886)
+			// Uses the same condition as the SpecialContributions class did
+			if ( $performerUser && !IPUtils::isValidRange( $performer ) &&
+				( $this->userNameUtils->isIP( $performer ) || $performerUser->isRegistered() )
+			) {
 				$this->getSkin()->setRelevantUser( $performerUser );
 			}
 		}
