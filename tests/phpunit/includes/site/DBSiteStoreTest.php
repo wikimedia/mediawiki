@@ -33,10 +33,7 @@ class DBSiteStoreTest extends MediaWikiIntegrationTestCase {
 	 * @return DBSiteStore
 	 */
 	private function newDBSiteStore() {
-		// NOTE: Use the real DB load balancer for now. Eventually, the test framework should
-		// provide a LoadBalancer that is safe to use in unit tests.
-		$lb = $this->getServiceContainer()->getDBLoadBalancer();
-		return new DBSiteStore( $lb );
+		return new DBSiteStore( $this->getServiceContainer()->getDBLoadBalancerFactory() );
 	}
 
 	/**
