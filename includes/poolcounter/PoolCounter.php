@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Status\Status;
+
 /**
  * Semaphore semantics to restrict how many workers may concurrently perform a task.
  *

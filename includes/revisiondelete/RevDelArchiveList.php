@@ -22,6 +22,7 @@
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Status\Status;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactory;

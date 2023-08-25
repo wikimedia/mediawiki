@@ -29,10 +29,10 @@ use ManualLogEntry;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\DeletePage;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MWException;
-use Status;
 
 /**
  * File deletion user interface

@@ -2,6 +2,7 @@
 
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Status\Status;
 use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\TestingAccessWrapper;

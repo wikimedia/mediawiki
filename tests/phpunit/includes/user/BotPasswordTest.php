@@ -3,6 +3,7 @@
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\Status\Status;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 

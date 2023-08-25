@@ -2,6 +2,7 @@
 
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
+use MediaWiki\Status\Status;
 
 /**
  * The parent class to generate form fields.  Any field type should

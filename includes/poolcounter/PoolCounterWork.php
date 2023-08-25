@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Status\Status;
 
 /**
  * Class for dealing with PoolCounters using class members

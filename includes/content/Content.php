@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Parser\MagicWord;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 
 /**

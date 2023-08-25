@@ -23,6 +23,7 @@
 
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Status\Status;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseFactory;
 use Wikimedia\Rdbms\DBConnectionError;

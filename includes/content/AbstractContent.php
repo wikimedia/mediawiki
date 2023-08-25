@@ -34,6 +34,7 @@ use MediaWiki\Content\ValidationParams;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\MagicWord;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 
 /**

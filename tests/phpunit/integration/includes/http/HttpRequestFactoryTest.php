@@ -3,6 +3,7 @@
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Status\Status;
 use Psr\Log\NullLogger;
 use Wikimedia\TestingAccessWrapper;
 

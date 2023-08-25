@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Language\RawMessage;
+use MediaWiki\Status\Status;
 use Wikimedia\TestingAccessWrapper;
 
 /**

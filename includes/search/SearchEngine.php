@@ -29,6 +29,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Search\TitleMatcher;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 
 /**

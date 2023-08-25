@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Status\Status;
+
 /**
  * @group Database
  * @covers UserPasswordPolicy

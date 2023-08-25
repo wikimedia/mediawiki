@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Status\Status;
+
 /**
  * A class for reading ZIP file directories, for the purposes of upload
  * verification.

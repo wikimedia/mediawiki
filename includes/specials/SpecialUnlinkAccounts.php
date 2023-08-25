@@ -4,6 +4,7 @@ use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\Status\Status;
 
 class SpecialUnlinkAccounts extends AuthManagerSpecialPage {
 	protected static $allowedActions = [ AuthManager::ACTION_UNLINK ];

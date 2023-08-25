@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Status\Status;
 
 /**
  * Special page for requesting a password reset email.

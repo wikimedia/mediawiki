@@ -24,6 +24,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Status\Status;
 
 /**
  * Base class for the output of MediaHandler::doTransform() and File::transform().

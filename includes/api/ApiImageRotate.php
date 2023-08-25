@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\TitleFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 

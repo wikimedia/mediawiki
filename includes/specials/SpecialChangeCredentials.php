@@ -11,9 +11,9 @@ use MediaWiki\Auth\PasswordAuthenticationRequest;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use Message;
-use Status;
 
 /**
  * Special change to change credentials (such as the password).

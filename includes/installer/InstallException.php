@@ -28,23 +28,23 @@ use Throwable;
  */
 class InstallException extends \MWException {
 	/**
-	 * @var \Status State when an exception occurs
+	 * @var \MediaWiki\Status\Status State when an exception occurs
 	 */
 	private $status;
 
 	/**
-	 * @param \Status $status State when an exception occurs
+	 * @param \MediaWiki\Status\Status $status State when an exception occurs
 	 * @param string $message The Exception message to throw
 	 * @param int $code The Exception code
 	 * @param Throwable|null $previous The previous throwable used for the exception chaining
 	 */
-	public function __construct( \Status $status, $message = '', $code = 0,
+	public function __construct( \MediaWiki\Status\Status $status, $message = '', $code = 0,
 		Throwable $previous = null ) {
 		parent::__construct( $message, $code, $previous );
 		$this->status = $status;
 	}
 
-	public function getStatus(): \Status {
+	public function getStatus(): \MediaWiki\Status\Status {
 		return $this->status;
 	}
 }

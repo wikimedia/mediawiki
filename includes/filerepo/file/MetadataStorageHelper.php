@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Status\Status;
 use MediaWiki\Storage\BlobStore;
 
 /**

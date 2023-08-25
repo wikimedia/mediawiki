@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Status\Status;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\CommonPasswords\CommonPasswords;
 

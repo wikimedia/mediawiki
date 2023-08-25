@@ -21,6 +21,7 @@
 
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Status\Status;
 
 /**
  * Generic list for change tagging.

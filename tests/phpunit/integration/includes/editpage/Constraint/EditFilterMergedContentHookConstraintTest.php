@@ -21,6 +21,7 @@
 use MediaWiki\EditPage\Constraint\EditFilterMergedContentHookConstraint;
 use MediaWiki\EditPage\Constraint\IEditConstraint;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Status\Status;
 use Wikimedia\TestingAccessWrapper;
 
 /**

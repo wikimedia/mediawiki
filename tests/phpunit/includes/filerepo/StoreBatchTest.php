@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Status\Status;
 use MediaWiki\WikiMap\WikiMap;
 
 /**

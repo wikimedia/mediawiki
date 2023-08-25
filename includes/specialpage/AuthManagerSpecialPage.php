@@ -7,6 +7,7 @@ use MediaWiki\Language\RawMessage;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\Session\Token;
+use MediaWiki\Status\Status;
 
 /**
  * A special page subclass for authentication-related special pages. It generates a form from

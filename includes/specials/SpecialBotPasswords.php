@@ -35,10 +35,10 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
+use MediaWiki\Status\Status;
 use PasswordError;
 use PasswordFactory;
 use Psr\Log\LoggerInterface;
-use Status;
 use User;
 
 /**

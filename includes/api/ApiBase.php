@@ -33,6 +33,7 @@ use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserRigorOptions;
 use Wikimedia\ParamValidator\ParamValidator;

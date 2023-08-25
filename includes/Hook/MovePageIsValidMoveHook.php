@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Hook;
 
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use Status;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

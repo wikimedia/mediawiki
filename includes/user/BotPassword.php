@@ -25,6 +25,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\BotPasswordSessionProvider;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\Status\Status;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IDatabase;
 

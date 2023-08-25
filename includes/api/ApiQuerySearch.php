@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Search\TitleMatcher;
+use MediaWiki\Status\Status;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
 

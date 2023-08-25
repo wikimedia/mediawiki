@@ -4,6 +4,7 @@ use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Status\Status;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 

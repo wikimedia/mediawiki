@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Status\Status;
+
 /**
  * A default PoolCounter, which provides no locking.
  *

@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Status\Status;
+
 /**
  * Implements Special:Userlogout
  *

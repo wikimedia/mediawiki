@@ -2,7 +2,7 @@
 
 namespace MediaWiki\ChangeTags\Hook;
 
-use Status;
+use MediaWiki\Status\Status;
 use User;
 
 /**

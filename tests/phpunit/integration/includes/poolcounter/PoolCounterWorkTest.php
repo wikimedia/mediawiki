@@ -21,6 +21,7 @@
  * @file
  */
 
+use MediaWiki\Status\Status;
 use Psr\Log\LoggerInterface;
 use Wikimedia\TestingAccessWrapper;
 

@@ -2,7 +2,7 @@
 
 namespace MediaWiki\User\TempUser;
 
-use Status;
+use MediaWiki\Status\Status;
 use User;
 
 /**

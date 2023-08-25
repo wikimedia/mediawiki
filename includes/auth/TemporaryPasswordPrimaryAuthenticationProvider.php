@@ -422,13 +422,13 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 	 * @param User $user The new user account
 	 * @param User $creatingUser The user who created the account (can be anonymous)
 	 * @param string $password The temporary password
-	 * @return \Status
+	 * @return \MediaWiki\Status\Status
 	 */
 	protected function sendNewAccountEmail( User $user, User $creatingUser, $password ) {
 		$ip = $creatingUser->getRequest()->getIP();
 		// @codeCoverageIgnoreStart
 		if ( !$ip ) {
-			return \Status::newFatal( 'badipaddress' );
+			return \MediaWiki\Status\Status::newFatal( 'badipaddress' );
 		}
 		// @codeCoverageIgnoreEnd
 
@@ -456,12 +456,12 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 
 	/**
 	 * @param TemporaryPasswordAuthenticationRequest $req
-	 * @return \Status
+	 * @return \MediaWiki\Status\Status
 	 */
 	protected function sendPasswordResetEmail( TemporaryPasswordAuthenticationRequest $req ) {
 		$user = User::newFromName( $req->username );
 		if ( !$user ) {
-			return \Status::newFatal( 'noname' );
+			return \MediaWiki\Status\Status::newFatal( 'noname' );
 		}
 		$userLanguage = $this->userOptionsLookup->getOption( $user, 'language' );
 		$callerIsAnon = IPUtils::isValid( $req->caller );

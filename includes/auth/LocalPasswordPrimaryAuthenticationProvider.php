@@ -72,12 +72,12 @@ class LocalPasswordPrimaryAuthenticationProvider
 		if ( (int)$expiration + $grace < $now ) {
 			$data = [
 				'hard' => true,
-				'msg' => \Status::newFatal( 'resetpass-expired' )->getMessage(),
+				'msg' => \MediaWiki\Status\Status::newFatal( 'resetpass-expired' )->getMessage(),
 			];
 		} else {
 			$data = [
 				'hard' => false,
-				'msg' => \Status::newFatal( 'resetpass-expired-soft' )->getMessage(),
+				'msg' => \MediaWiki\Status\Status::newFatal( 'resetpass-expired-soft' )->getMessage(),
 			];
 		}
 

@@ -119,14 +119,14 @@ class EmailNotificationSecondaryAuthenticationProviderTest extends \MediaWikiInt
 		$userWithEmailError->method( 'getEmail' )->willReturn( 'foo@bar.baz' );
 		$userWithEmailError->method( 'getInstanceForUpdate' )->willReturnSelf();
 		$userWithEmailError->method( 'sendConfirmationMail' )
-			->willReturn( \Status::newFatal( 'fail' ) );
+			->willReturn( \MediaWiki\Status\Status::newFatal( 'fail' ) );
 		$userExpectsConfirmation = $this->createMock( \User::class );
 		$userExpectsConfirmation->method( 'getEmail' )
 			->willReturn( 'foo@bar.baz' );
 		$userExpectsConfirmation->method( 'getInstanceForUpdate' )
 			->willReturnSelf();
 		$userExpectsConfirmation->expects( $this->once() )->method( 'sendConfirmationMail' )
-			->willReturn( \Status::newGood() );
+			->willReturn( \MediaWiki\Status\Status::newGood() );
 		$userNotExpectsConfirmation = $this->createMock( \User::class );
 		$userNotExpectsConfirmation->method( 'getEmail' )
 			->willReturn( 'foo@bar.baz' );

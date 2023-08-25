@@ -23,6 +23,7 @@ use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
+use MediaWiki\Status\Status;
 use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Rdbms\ILBFactory;
 

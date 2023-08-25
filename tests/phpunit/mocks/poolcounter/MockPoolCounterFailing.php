@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\Status\Status;
+
 /**
  * Fake PoolCounter that always fails with PoolCounter::QUEUE_FULL
  *
