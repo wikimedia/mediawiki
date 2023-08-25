@@ -26,6 +26,7 @@
 namespace MediaWiki\HookContainer;
 
 use Closure;
+use Error;
 use InvalidArgumentException;
 use LogicException;
 use MWDebug;
@@ -268,7 +269,7 @@ class HookContainer implements SalvageableService {
 	 *
 	 * @param string $hook Hook name
 	 * @param string|array|callable $handler Executable handler function. See register() for supported structures.
-	 * @param array $options
+	 * @param array $options see makeExtensionHandlerCallback()
 	 *
 	 * @return array|false
 	 *  - callback: (callable) Executable handler function
@@ -318,7 +319,7 @@ class HookContainer implements SalvageableService {
 		}
 
 		// Plain callback
-		if ( is_callable( $handler ) ) {
+		if ( self::mayBeCallable( $handler ) ) {
 			return [
 				'callback' => $handler,
 				'functionName' => self::callableToString( $handler ),
@@ -383,7 +384,7 @@ class HookContainer implements SalvageableService {
 			wfDeprecatedMsg( "Deprecated handler style for hook '$hook': function wrapped in array ($msg)" );
 		}
 
-		if ( !is_callable( $callback ) ) {
+		if ( !self::mayBeCallable( $callback ) ) {
 			return false;
 		}
 
@@ -418,6 +419,17 @@ class HookContainer implements SalvageableService {
 	 *
 	 * Several other forms are supported for backwards compatibility, but
 	 * should not be used when calling this method directly.
+	 *
+	 * @note This method accepts "broken callables", that is, callable
+	 * structures that reference classes that could not be found or could
+	 * not be loaded, e.g. because they implement an interface that cannot
+	 * be loaded. This situation may legitimately arise when implementing
+	 * hooks defined by extensions that are not present.
+	 * In that case, the hook will never fire and registering the "broken"
+	 * handlers is harmless. If a broken hook handler is registered for a
+	 * hook that is indeed called, it will cause an error. This is
+	 * intentional: we don't want to silently ignore mistakes like mistyped
+	 * class names in a hook handler registration.
 	 *
 	 * @param string $hook Name of hook
 	 * @param string|array|callable $handler handler
@@ -687,5 +699,35 @@ class HookContainer implements SalvageableService {
 	private function getHookMethodName( string $hook ): string {
 		$hook = strtr( $hook, ':\\-', '___' );
 		return "on$hook";
+	}
+
+	/**
+	 * Replacement for is_callable that will also return true when the callable uses a class
+	 * that cannot be loaded.
+	 *
+	 * This may legitimately happen when a hook handler uses a hook interfaces that is defined
+	 * in another extension. In that case, the hook itself is also defined in the other extension,
+	 * so the hook will never be called and no problem arises.
+	 *
+	 * However, it is entirely possible to register broken handlers for hooks that will indeed
+	 * be called, causing an error. This is intentional: we don't want to silently ignore
+	 * mistakes like mistyped class names in a hook handler registration.
+	 *
+	 * @param mixed $v
+	 *
+	 * @return bool
+	 */
+	private static function mayBeCallable( $v ): bool {
+		try {
+			return is_callable( $v );
+		} catch ( Error $error ) {
+			// If the callable uses a class that can't be loaded because it extends an unknown base class.
+			// Continue as if is_callable had returned true, to allow the handler to be registered.
+			if ( preg_match( '/Class.*not found/', $error->getMessage() ) ) {
+				return true;
+			}
+
+			throw $error;
+		}
 	}
 }
