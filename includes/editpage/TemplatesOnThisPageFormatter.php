@@ -214,4 +214,7 @@ class TemplatesOnThisPageFormatter {
 
 }
 
+/**
+ * @deprecated since 1.40
+ */
 class_alias( TemplatesOnThisPageFormatter::class, 'TemplatesOnThisPageFormatter' );
