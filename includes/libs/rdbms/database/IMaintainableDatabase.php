@@ -209,4 +209,7 @@ interface IMaintainableDatabase extends IDatabase {
 	public function tableExists( $table, $fname = __METHOD__ );
 }
 
+/**
+ * @deprecated since 1.29
+ */
 class_alias( IMaintainableDatabase::class, 'IMaintainableDatabase' );
