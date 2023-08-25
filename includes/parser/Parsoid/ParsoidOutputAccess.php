@@ -416,6 +416,13 @@ class ParsoidOutputAccess {
 		$output->updateCacheExpiry( 0 );
 		// The render ID is required for rendering of dummy output: T311728.
 		$output->setExtensionData( self::RENDER_ID_KEY, '0/dummy-output' );
+		// Required in HtmlOutputRendererHelper::putHeaders when $forHtml
+		$output->setExtensionData(
+			PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY,
+			[
+				'headers' => [ 'content-language' => 'en' ],
+			]
+		);
 
 		return Status::newGood( $output );
 	}
