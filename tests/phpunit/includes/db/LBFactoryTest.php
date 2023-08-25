@@ -309,8 +309,8 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$mockDB2->expects( $this->once() )->method( 'lastDoneWrites' );
 
 		// Nothing to wait for on first HTTP request start
-		$sPos1 = $cp->yieldSessionPrimaryPos( $lb1 );
-		$sPos2 = $cp->yieldSessionPrimaryPos( $lb2 );
+		$sPos1 = $cp->getSessionPrimaryPos( $lb1 );
+		$sPos2 = $cp->getSessionPrimaryPos( $lb2 );
 		// Record positions in stash on first HTTP request end
 		$cp->stageSessionPrimaryPos( $lb1 );
 		$cp->stageSessionPrimaryPos( $lb2 );
@@ -346,8 +346,8 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		// Get last positions to be reached on second HTTP request start
-		$sPos1 = $cp->yieldSessionPrimaryPos( $lb1 );
-		$sPos2 = $cp->yieldSessionPrimaryPos( $lb2 );
+		$sPos1 = $cp->getSessionPrimaryPos( $lb1 );
+		$sPos2 = $cp->getSessionPrimaryPos( $lb2 );
 		// Shutdown (nothing to record)
 		$cp->stageSessionPrimaryPos( $lb1 );
 		$cp->stageSessionPrimaryPos( $lb2 );

@@ -596,7 +596,7 @@ abstract class LBFactory implements ILBFactory {
 			'chronologyCallback' => function ( ILoadBalancer $lb ) {
 				// Defer ChronologyProtector construction in case setRequestInfo() ends up
 				// being called later (but before the first connection attempt) (T192611)
-				return $this->chronologyProtector->yieldSessionPrimaryPos( $lb );
+				return $this->chronologyProtector->getSessionPrimaryPos( $lb );
 			},
 			'roundStage' => $initStage,
 			'criticalSectionProvider' => $this->csProvider

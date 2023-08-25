@@ -307,7 +307,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 	 * @param ILoadBalancer $lb
 	 * @return DBPrimaryPos|null
 	 */
-	public function yieldSessionPrimaryPos( ILoadBalancer $lb ) {
+	public function getSessionPrimaryPos( ILoadBalancer $lb ) {
 		$this->load();
 		if ( !$this->enabled ) {
 			return null;

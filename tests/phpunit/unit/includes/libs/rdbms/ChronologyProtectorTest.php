@@ -125,7 +125,7 @@ class ChronologyProtectorTest extends PHPUnit\Framework\TestCase {
 		$cp->stageSessionPrimaryPos( $lb );
 		$cp->persistSessionReplicationPositions( $clientPostIndex );
 
-		$waitForPos = $cp->yieldSessionPrimaryPos( $lb );
+		$waitForPos = $cp->getSessionPrimaryPos( $lb );
 		$this->assertNotNull( $waitForPos );
 		$this->assertSame( $time, $waitForPos->asOfTime() );
 		$this->assertSame( "$replicationPos", "$waitForPos" );
