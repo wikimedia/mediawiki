@@ -12,7 +12,7 @@ use MediaWiki\Request\FauxRequest;
 /**
  * @group Database
  * @group Blocking
- * @coversDefaultClass \MediaWiki\Block\CompositeBlock
+ * @covers \MediaWiki\Block\CompositeBlock
  */
 class CompositeBlockTest extends MediaWikiLangTestCase {
 	private function getPartialBlocks() {
@@ -47,7 +47,6 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers ::__construct
 	 * @dataProvider provideTestStrictestParametersApplied
 	 */
 	public function testStrictestParametersApplied( $blocks, $expected ) {
@@ -148,9 +147,6 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 		];
 	}
 
-	/**
-	 * @covers ::appliesToTitle
-	 */
 	public function testBlockAppliesToTitle() {
 		$this->overrideConfigValue( MainConfigNames::BlockDisablesLogin, false );
 
@@ -174,11 +170,6 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 		$this->deleteBlocks( $blocks );
 	}
 
-	/**
-	 * @covers ::appliesToUsertalk
-	 * @covers ::appliesToPage
-	 * @covers ::appliesToNamespace
-	 */
 	public function testBlockAppliesToUsertalk() {
 		$this->overrideConfigValues( [
 			MainConfigNames::BlockAllowsUTEdit => true,
@@ -207,7 +198,6 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers ::appliesToRight
 	 * @dataProvider provideTestBlockAppliesToRight
 	 */
 	public function testBlockAppliesToRight( $applies, $expected ) {
@@ -260,8 +250,6 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 	/**
 	 * AbstractBlock::getPermissionsError is deprecated. Block errors are tested
 	 * properly in BlockErrorFormatterTest::testGetMessage.
-	 *
-	 * @covers ::getPermissionsError
 	 */
 	public function testGetPermissionsError() {
 		$timestamp = '20000101000000';
