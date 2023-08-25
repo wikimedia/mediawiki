@@ -14,4 +14,7 @@ interface Emptiable {
 
 }
 
+/**
+ * @deprecated since 1.41
+ */
 class_alias( Emptiable::class, 'MediaWiki\\Emptiable' );
