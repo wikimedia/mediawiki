@@ -137,4 +137,7 @@ class CategoriesRdf {
 
 }
 
+/**
+ * @deprecated since 1.40
+ */
 class_alias( CategoriesRdf::class, 'CategoriesRdf' );
