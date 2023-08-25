@@ -174,4 +174,7 @@ class FileDeleteForm {
 	}
 }
 
+/**
+ * @deprecated since 1.40
+ */
 class_alias( FileDeleteForm::class, 'FileDeleteForm' );

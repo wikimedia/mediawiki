@@ -604,4 +604,7 @@ class MergeHistory {
 	}
 }
 
+/**
+ * @deprecated since 1.40
+ */
 class_alias( MergeHistory::class, 'MergeHistory' );

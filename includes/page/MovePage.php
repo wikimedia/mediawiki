@@ -1048,4 +1048,7 @@ class MovePage {
 	}
 }
 
+/**
+ * @deprecated since 1.40
+ */
 class_alias( MovePage::class, 'MovePage' );

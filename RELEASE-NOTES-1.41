@@ -565,6 +565,11 @@ because of Phabricator reports.
   - ListToggle -> MediaWiki\Html\ListToggle
   - TemplateParser -> MediaWiki\Html\TemplateParser
   - RawMessage -> MediaWiki\Language\RawMessage
+  - FileDeleteForm -> MediaWiki\Page\File\FileDeleteForm
+  - MergeHistory -> MediaWiki\Page\File\MergeHistory
+  - MovePage -> MediaWiki\Page\File\MovePage
+  - ProtectionForm -> MediaWiki\Page\File\ProtectionForm
+  - MediaWiki\BadFileLookup -> MediaWiki\Page\File\BadFileLookup
   From 1.39:
   - ResourceLoader -> MediaWiki\ResourceLoader\ResourceLoader
   From 1.29:
