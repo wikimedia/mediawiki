@@ -24,7 +24,8 @@
 		"resources/src/es6-polyfills",
 		"resources/src/vue",
 		"resources/src/codex",
-		"resources/src/codex-search"
+		"resources/src/codex-search",
+		"resources/src/mediawiki.page.teleportTarget.js"
 	],
 	"--": [
 		"maintenance/jsduck/external.js",

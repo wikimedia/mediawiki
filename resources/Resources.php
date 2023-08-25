@@ -554,6 +554,9 @@ return [
 			],
 
 		],
+		'dependencies' => [
+			'mediawiki.page.teleportTarget'
+		]
 	],
 
 	// Alias for 'vue', for backwards compatibility
@@ -1720,6 +1723,16 @@ return [
 	],
 	'mediawiki.page.media' => [
 		'scripts' => 'resources/src/mediawiki.page.media.js',
+	],
+	'mediawiki.page.teleportTarget' => [
+		'localBasePath' => MW_INSTALL_PATH . '/resources/src',
+		'remoteBasePath' => "$wgResourceBasePath/resources/src",
+		'packageFiles' => [
+			'mediawiki.page.teleportTarget.js',
+		],
+		'skinStyles' => [
+			'default' => 'mediawiki.page.teleportTarget.less'
+		]
 	],
 
 	/* MediaWiki Special pages */
