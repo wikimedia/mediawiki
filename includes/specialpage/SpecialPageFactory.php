@@ -584,6 +584,7 @@ class SpecialPageFactory {
 				'UserNamePrefixSearch',
 				'UserFactory',
 				'ActorStoreFactory',
+				'WatchlistManager',
 			]
 		],
 		'EditWatchlist' => [

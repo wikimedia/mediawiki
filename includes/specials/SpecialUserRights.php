@@ -40,6 +40,7 @@ use MediaWiki\User\UserGroupManagerFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
+use MediaWiki\Watchlist\WatchlistManager;
 use MediaWiki\WikiMap\WikiMap;
 use OutputPage;
 use PermissionsError;
@@ -86,19 +87,24 @@ class SpecialUserRights extends SpecialPage {
 	/** @var ActorStoreFactory */
 	private $actorStoreFactory;
 
+	/** @var WatchlistManager */
+	private $watchlistManager;
+
 	/**
 	 * @param UserGroupManagerFactory|null $userGroupManagerFactory
 	 * @param UserNameUtils|null $userNameUtils
 	 * @param UserNamePrefixSearch|null $userNamePrefixSearch
 	 * @param UserFactory|null $userFactory
 	 * @param ActorStoreFactory|null $actorStoreFactory
+	 * @param WatchlistManager|null $watchlistManager
 	 */
 	public function __construct(
 		UserGroupManagerFactory $userGroupManagerFactory = null,
 		UserNameUtils $userNameUtils = null,
 		UserNamePrefixSearch $userNamePrefixSearch = null,
 		UserFactory $userFactory = null,
-		ActorStoreFactory $actorStoreFactory = null
+		ActorStoreFactory $actorStoreFactory = null,
+		WatchlistManager $watchlistManager = null
 	) {
 		parent::__construct( 'Userrights' );
 		$services = MediaWikiServices::getInstance();
@@ -108,6 +114,7 @@ class SpecialUserRights extends SpecialPage {
 		$this->userFactory = $userFactory ?? $services->getUserFactory();
 		$this->userGroupManagerFactory = $userGroupManagerFactory ?? $services->getUserGroupManagerFactory();
 		$this->actorStoreFactory = $actorStoreFactory ?? $services->getActorStoreFactory();
+		$this->watchlistManager = $watchlistManager ?? $services->getWatchlistManager();
 	}
 
 	public function doesWrites() {
@@ -396,6 +403,13 @@ class SpecialUserRights extends SpecialPage {
 		}
 
 		$this->doSaveUserGroups( $user, $addgroup, $removegroup, $reason, [], $groupExpiries );
+
+		if ( $user->getWikiId() === UserIdentity::LOCAL && $this->getRequest()->getCheck( 'wpWatch' ) ) {
+			$this->watchlistManager->addWatchIgnoringRights(
+				$this->getUser(),
+				Title::makeTitle( NS_USER, $user->getName() )
+			);
+		}
 
 		return Status::newGood();
 	}
@@ -864,6 +878,12 @@ class SpecialUserRights extends SpecialPage {
 								[ 'name' => 'saveusergroups' ] +
 									Linker::tooltipAndAccesskeyAttribs( 'userrights-set' )
 							) .
+						"</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td class='mw-input'>" .
+							Xml::checkLabel( $this->msg( 'userrights-watchuser' )->text(), 'wpWatch', 'wpWatch' ) .
 						"</td>
 					</tr>" .
 				Xml::closeElement( 'table' ) . "\n"

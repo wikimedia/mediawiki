@@ -2373,7 +2373,17 @@ return [
 		],
 	],
 	'mediawiki.special.userrights' => [
-		'scripts' => 'resources/src/mediawiki.special.userrights.js',
+		'localBasePath' => MW_INSTALL_PATH . '/resources/src',
+		'remoteBasePath' => "$wgResourceBasePath/resources/src",
+		'packageFiles' => [
+			'mediawiki.special.userrights.js',
+			[
+				'name' => 'config.json',
+				'config' => [
+					MainConfigNames::UserrightsInterwikiDelimiter
+				],
+			],
+		],
 		'dependencies' => [
 			'mediawiki.notification.convertmessagebox',
 			'jquery.lengthLimit',
