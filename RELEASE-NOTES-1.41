@@ -616,6 +616,8 @@ because of Phabricator reports.
   - EventRelayer -> Wikimedia\EventRelayer\EventRelayer
   - EventRelayerNull -> Wikimedia\EventRelayer\EventRelayerNull
   - EventRelayerGroup -> Wikimedia\EventRelayer\EventRelayerGroup
+  - ConfiguredReadOnlyMode -> Wikimedia\Rdbms\ConfiguredReadOnlyMode
+  - ReadOnlyMode -> Wikimedia\Rdbms\ReadOnlyMode
 * The following methods, previously deprecated, now emit deprecation warnings:
   - ConfigFactory::getDefaultInstance(), deprecated since 1.27
   - AbstractContent::getNativeData(), deprecated since 1.33
