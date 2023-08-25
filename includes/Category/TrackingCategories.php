@@ -256,4 +256,7 @@ class TrackingCategories {
 	}
 }
 
+/**
+ * @deprecated since 1.40
+ */
 class_alias( TrackingCategories::class, 'TrackingCategories' );
