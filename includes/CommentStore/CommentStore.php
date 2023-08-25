@@ -41,4 +41,7 @@ namespace MediaWiki\CommentStore;
 class CommentStore extends CommentStoreBase {
 }
 
+/**
+ * @deprecated since 1.40
+ */
 class_alias( CommentStore::class, 'CommentStore' );
