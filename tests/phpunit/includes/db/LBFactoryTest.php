@@ -26,6 +26,7 @@ use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\LBFactoryMulti;
@@ -295,15 +296,12 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$lb2->method( 'getServerName' )->with( 0 )->willReturn( 'master2' );
 
 		$bag = new HashBagOStuff();
-		$cp = new ChronologyProtector(
-			$bag,
-			[
-				'ip' => '127.0.0.1',
-				'agent' => 'Totally-Not-Firefox',
-				'clientId' => 'random_id',
-			],
-			null
-		);
+		$cp = new ChronologyProtector( $bag, null, false );
+		$cp->setRequestInfo( [
+			'IPAddress' => '127.0.0.1',
+			'UserAgent' => 'Totally-Not-Firefox',
+			'ChronologyClientId' => 'random_id',
+		] );
 
 		$mockDB1->expects( $this->once() )->method( 'writesOrCallbacksPending' );
 		$mockDB1->expects( $this->once() )->method( 'lastDoneWrites' );
@@ -338,15 +336,14 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$lb2->method( 'hasStreamingReplicaServers' )->willReturn( true );
 		$lb2->method( 'getServerName' )->with( 0 )->willReturn( 'master2' );
 
-		$cp = new ChronologyProtector(
-			$bag,
-			[
-				'ip' => '127.0.0.1',
-				'agent' => 'Totally-Not-Firefox',
-				'clientId' => 'random_id',
-			],
-			$cpIndex
-		);
+		$cp = new ChronologyProtector( $bag, null, false );
+		$cp->setRequestInfo(
+		[
+			'IPAddress' => '127.0.0.1',
+			'UserAgent' => 'Totally-Not-Firefox',
+			'ChronologyClientId' => 'random_id',
+			'ChronologyPositionIndex' => $cpIndex
+		] );
 
 		// Get last positions to be reached on second HTTP request start
 		$sPos1 = $cp->yieldSessionPrimaryPos( $lb1 );
@@ -655,31 +652,26 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 
 	public function testGetChronologyProtectorTouched() {
 		$store = new HashBagOStuff;
-		$lbFactory = $this->newLBFactoryMulti( [
-			'cpStash' => $store,
-			'cliMode' => false
-		] );
-		$lbFactory->setRequestInfo( [ 'ChronologyClientId' => 'ii' ] );
+		$chronologyProtector = new ChronologyProtector( $store, '', false );
+		$chronologyProtector->setRequestInfo( [ 'ChronologyClientId' => 'ii' ] );
 
 		// 2019-02-05T05:03:20Z
 		$mockWallClock = 1549343000.0;
 		$priorTime = $mockWallClock; // reference time
-		$lbFactory->setMockTime( $mockWallClock );
+		$chronologyProtector->setMockTime( $mockWallClock );
 
-		$lbWrap = TestingAccessWrapper::newFromObject( $lbFactory );
-		$cpWrap = TestingAccessWrapper::newFromObject( $lbWrap->getChronologyProtector() );
+		$cpWrap = TestingAccessWrapper::newFromObject( $chronologyProtector );
 		$cpWrap->store->set(
 			$cpWrap->key,
 			$cpWrap->mergePositions(
 				false,
 				[],
-				[
-					$lbFactory::CLUSTER_MAIN_DEFAULT => $priorTime
-				]
+				[ ILBFactory::CLUSTER_MAIN_DEFAULT => $priorTime ]
 			),
 			3600
 		);
 
+		$lbFactory = $this->newLBFactoryMulti( [ 'chronologyProtector' => $chronologyProtector ] );
 		$mockWallClock += 1.0;
 		$touched = $lbFactory->getChronologyProtectorTouched();
 		$this->assertEquals( $priorTime, $touched );

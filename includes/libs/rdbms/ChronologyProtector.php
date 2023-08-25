@@ -20,6 +20,8 @@
 namespace Wikimedia\Rdbms;
 
 use BagOStuff;
+use EmptyBagOStuff;
+use LogicException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -130,8 +132,13 @@ use Psr\Log\NullLogger;
  * @internal
  */
 class ChronologyProtector implements LoggerAwareInterface {
+	/** @var array Web request information about the client */
+	private $requestInfo;
+	/** @var string Secret string for HMAC hashing */
+	private string $secret;
+	private bool $cliMode;
 	/** @var BagOStuff */
-	protected $store;
+	private $store;
 	/** @var LoggerInterface */
 	protected $logger;
 
@@ -196,41 +203,77 @@ class ChronologyProtector implements LoggerAwareInterface {
 	private const FLD_WRITE_INDEX = 'writeIndex';
 
 	/**
-	 * @param BagOStuff $store
-	 * @param array $client Map of (ip: <IP>, agent: <user-agent> [, clientId: <hash>] )
-	 * @param int|null $clientPosIndex Write counter index of replication positions for this client
-	 * @param string $secret Secret string for HMAC hashing [optional]
+	 * @param BagOStuff|null $cpStash
+	 * @param string|null $secret Secret string for HMAC hashing [optional]
+	 * @param bool|null $cliMode Whether the context is CLI or not, setting it to true would disable CP
+	 * @param LoggerInterface|null $logger
 	 * @since 1.27
 	 */
-	public function __construct(
-		BagOStuff $store,
-		array $client,
-		?int $clientPosIndex,
-		string $secret = ''
-	) {
-		$this->store = $store;
+	public function __construct( $cpStash = null, $secret = null, $cliMode = null, $logger = null ) {
+		$this->requestInfo = [
+			'IPAddress' => $_SERVER['REMOTE_ADDR'] ?? '',
+			'UserAgent' => $_SERVER['HTTP_USER_AGENT'] ?? '',
+			// Headers application can inject via LBFactory::setRequestInfo()
+			'ChronologyClientId' => null, // prior $cpClientId value from LBFactory::shutdown()
+			'ChronologyPositionIndex' => null // prior $cpIndex value from LBFactory::shutdown()
+		];
+		$this->store = $cpStash ?? new EmptyBagOStuff();
+		$this->secret = $secret ?? '';
+		$this->logger = $logger ?? new NullLogger();
+		$this->cliMode = $cliMode ?? ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
+	}
+
+	private function load() {
+		// Not enabled or already loaded, short-circuit.
+		if ( !$this->enabled || $this->clientId ) {
+			return;
+		}
+		$client = [
+			'ip' => $this->requestInfo['IPAddress'],
+			'agent' => $this->requestInfo['UserAgent'],
+			'clientId' => $this->requestInfo['ChronologyClientId'] ?: null
+		];
+		if ( $this->cliMode ) {
+			$this->setEnabled( false );
+		} elseif ( $this->store instanceof EmptyBagOStuff ) {
+			// No where to store any DB positions and wait for them to appear
+			$this->setEnabled( false );
+			$this->logger->debug( 'Cannot use ChronologyProtector with EmptyBagOStuff' );
+		}
+
+		$this->logger->debug(
+			__METHOD__ . ': request info ' .
+			json_encode( $this->requestInfo, JSON_PRETTY_PRINT )
+		);
 
 		if ( isset( $client['clientId'] ) ) {
 			$this->clientId = $client['clientId'];
 		} else {
 			$this->hasImplicitClientId = true;
-			$this->clientId = ( $secret != '' )
-				? hash_hmac( 'md5', $client['ip'] . "\n" . $client['agent'], $secret )
+			$this->clientId = ( $this->secret != '' )
+				? hash_hmac( 'md5', $client['ip'] . "\n" . $client['agent'], $this->secret )
 				: md5( $client['ip'] . "\n" . $client['agent'] );
 		}
-		$this->key = $store->makeGlobalKey( __CLASS__, $this->clientId, 'v4' );
-		$this->waitForPosIndex = $clientPosIndex;
+		$this->key = $this->store->makeGlobalKey( __CLASS__, $this->clientId, 'v4' );
+		$this->waitForPosIndex = $this->requestInfo['ChronologyPositionIndex'];
 
 		$this->clientLogInfo = [
 			'clientIP' => $client['ip'],
 			'clientAgent' => $client['agent'],
 			'clientId' => $client['clientId'] ?? null
 		];
+	}
 
-		$this->logger = new NullLogger();
+	public function setRequestInfo( array $info ) {
+		if ( $this->clientId ) {
+			throw new LogicException( 'ChronologyProtector already initialized' );
+		}
+
+		$this->requestInfo = $info + $this->requestInfo;
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
+		$this->load();
 		$this->logger = $logger;
 	}
 
@@ -239,6 +282,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 	 * @since 1.32
 	 */
 	public function getClientId() {
+		$this->load();
 		return $this->clientId;
 	}
 
@@ -264,6 +308,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 	 * @return DBPrimaryPos|null
 	 */
 	public function yieldSessionPrimaryPos( ILoadBalancer $lb ) {
+		$this->load();
 		if ( !$this->enabled ) {
 			return null;
 		}
@@ -293,6 +338,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 	 * @return void
 	 */
 	public function stageSessionPrimaryPos( ILoadBalancer $lb ) {
+		$this->load();
 		if ( !$this->enabled || !$lb->hasOrMadeRecentPrimaryChanges( INF ) ) {
 			return;
 		}
@@ -329,6 +375,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 	 * @return DBPrimaryPos[] Empty on success; map of (db name => unsaved position) on failure
 	 */
 	public function persistSessionReplicationPositions( &$clientPosIndex = null ) {
+		$this->load();
 		if ( !$this->enabled ) {
 			return [];
 		}
@@ -388,6 +435,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 	 * @since 1.35
 	 */
 	public function getTouched( ILoadBalancer $lb ) {
+		$this->load();
 		if ( !$this->enabled ) {
 			return false;
 		}
@@ -560,6 +608,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 	 * @codeCoverageIgnore
 	 */
 	public function setMockTime( &$time ) {
+		$this->load();
 		$this->wallClockOverride =& $time;
 	}
 

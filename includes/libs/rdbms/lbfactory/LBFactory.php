@@ -24,7 +24,6 @@ use EmptyBagOStuff;
 use Exception;
 use Generator;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
-use LogicException;
 use NullStatsdDataFactory;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -39,8 +38,6 @@ use Wikimedia\ScopedCallback;
  * @ingroup Database
  */
 abstract class LBFactory implements ILBFactory {
-	/** @var ChronologyProtector */
-	private $chronProt;
 	/** @var CriticalSectionProvider|null */
 	private $csProvider;
 	/**
@@ -59,8 +56,8 @@ abstract class LBFactory implements ILBFactory {
 	/** @var callable Deprecation logger */
 	private $deprecationLogger;
 
-	/** @var BagOStuff */
-	protected $cpStash;
+	/** @var ChronologyProtector */
+	protected $chronologyProtector;
 	/** @var BagOStuff */
 	protected $srvCache;
 	/** @var WANObjectCache */
@@ -68,14 +65,10 @@ abstract class LBFactory implements ILBFactory {
 	/** @var DatabaseDomain Local domain */
 	protected $localDomain;
 
-	/** @var array Web request information about the client */
-	private $requestInfo;
 	/** @var bool Whether this PHP instance is for a CLI script */
 	private $cliMode;
 	/** @var string Agent name for query profiling */
 	private $agent;
-	/** @var string Secret string for HMAC hashing */
-	private $secret;
 
 	/** @var array[] $aliases Map of (table => (dbname, schema, prefix) map) */
 	private $tableAliases = [];
@@ -120,14 +113,6 @@ abstract class LBFactory implements ILBFactory {
 		if ( isset( $conf['configCallback'] ) ) {
 			$this->configCallback = $conf['configCallback'];
 		}
-
-		$this->requestInfo = [
-			'IPAddress' => $_SERVER['REMOTE_ADDR'] ?? '',
-			'UserAgent' => $_SERVER['HTTP_USER_AGENT'] ?? '',
-			// Headers application can inject via LBFactory::setRequestInfo()
-			'ChronologyClientId' => null, // prior $cpClientId value from LBFactory::shutdown()
-			'ChronologyPositionIndex' => null // prior $cpIndex value from LBFactory::shutdown()
-		];
 	}
 
 	/**
@@ -143,7 +128,12 @@ abstract class LBFactory implements ILBFactory {
 			$this->readOnlyReason = $conf['readOnlyReason'];
 		}
 
-		$this->cpStash = $conf['cpStash'] ?? new EmptyBagOStuff();
+		$this->chronologyProtector = $conf['chronologyProtector'] ?? new ChronologyProtector(
+			$conf['cpStash'] ?? null,
+			$conf['secret'] ?? null,
+			$conf['cliMode'] ?? null,
+			$conf['logger'] ?? null,
+		);
 		$this->srvCache = $conf['srvCache'] ?? new EmptyBagOStuff();
 		$this->wanCache = $conf['wanCache'] ?? WANObjectCache::newEmpty();
 
@@ -164,7 +154,6 @@ abstract class LBFactory implements ILBFactory {
 		$this->cliMode = $conf['cliMode'] ?? ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
 		$this->agent = $conf['agent'] ?? '';
 		$this->defaultGroup = $conf['defaultGroup'] ?? null;
-		$this->secret = $conf['secret'] ?? '';
 		$this->replicationWaitTimeout = $this->cliMode ? 60 : 1;
 
 		static $nextTicket;
@@ -245,17 +234,16 @@ abstract class LBFactory implements ILBFactory {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = ScopedCallback::newScopedIgnoreUserAbort();
 
-		$chronProt = $this->getChronologyProtector();
 		if ( ( $flags & self::SHUTDOWN_NO_CHRONPROT ) != self::SHUTDOWN_NO_CHRONPROT ) {
 			// Remark all of the relevant DB primary positions
 			foreach ( $this->getLBsForOwner() as $lb ) {
-				$chronProt->stageSessionPrimaryPos( $lb );
+				$this->chronologyProtector->stageSessionPrimaryPos( $lb );
 			}
 			// Write the positions to the persistent stash
-			$chronProt->persistSessionReplicationPositions( $cpIndex );
+			$this->chronologyProtector->persistSessionReplicationPositions( $cpIndex );
 			$this->logger->debug( __METHOD__ . ': finished ChronologyProtector shutdown' );
 		}
-		$cpClientId = $chronProt->getClientId();
+		$cpClientId = $this->chronologyProtector->getClientId();
 
 		$this->commitPrimaryChanges( __METHOD__ );
 
@@ -575,47 +563,11 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	public function getChronologyProtectorTouched( $domain = false ) {
-		return $this->getChronologyProtector()->getTouched( $this->getMainLB( $domain ) );
+		return $this->chronologyProtector->getTouched( $this->getMainLB( $domain ) );
 	}
 
 	public function disableChronologyProtection() {
-		$this->getChronologyProtector()->setEnabled( false );
-	}
-
-	/**
-	 * @return ChronologyProtector
-	 */
-	protected function getChronologyProtector() {
-		if ( $this->chronProt ) {
-			return $this->chronProt;
-		}
-
-		$this->chronProt = new ChronologyProtector(
-			$this->cpStash,
-			[
-				'ip' => $this->requestInfo['IPAddress'],
-				'agent' => $this->requestInfo['UserAgent'],
-				'clientId' => $this->requestInfo['ChronologyClientId'] ?: null
-			],
-			$this->requestInfo['ChronologyPositionIndex'],
-			$this->secret
-		);
-		$this->chronProt->setLogger( $this->logger );
-
-		if ( $this->cliMode ) {
-			$this->chronProt->setEnabled( false );
-		} elseif ( $this->cpStash instanceof EmptyBagOStuff ) {
-			// No where to store any DB positions and wait for them to appear
-			$this->chronProt->setEnabled( false );
-			$this->logger->debug( 'Cannot use ChronologyProtector with EmptyBagOStuff' );
-		}
-
-		$this->logger->debug(
-			__METHOD__ . ': request info ' .
-			json_encode( $this->requestInfo, JSON_PRETTY_PRINT )
-		);
-
-		return $this->chronProt;
+		$this->chronologyProtector->setEnabled( false );
 	}
 
 	/**
@@ -649,7 +601,7 @@ abstract class LBFactory implements ILBFactory {
 			'chronologyCallback' => function ( ILoadBalancer $lb ) {
 				// Defer ChronologyProtector construction in case setRequestInfo() ends up
 				// being called later (but before the first connection attempt) (T192611)
-				return $this->getChronologyProtector()->yieldSessionPrimaryPos( $lb );
+				return $this->chronologyProtector->yieldSessionPrimaryPos( $lb );
 			},
 			'roundStage' => $initStage,
 			'criticalSectionProvider' => $this->csProvider
@@ -731,11 +683,7 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	public function setRequestInfo( array $info ) {
-		if ( $this->chronProt ) {
-			throw new LogicException( 'ChronologyProtector already initialized' );
-		}
-
-		$this->requestInfo = $info + $this->requestInfo;
+		$this->chronologyProtector->setRequestInfo( $info );
 	}
 
 	public function setDefaultReplicationWaitTimeout( $seconds ) {
@@ -762,6 +710,6 @@ abstract class LBFactory implements ILBFactory {
 	 * @codeCoverageIgnore
 	 */
 	public function setMockTime( &$time ) {
-		$this->getChronologyProtector()->setMockTime( $time );
+		$this->chronologyProtector->setMockTime( $time );
 	}
 }
