@@ -38,6 +38,7 @@
 	"rest-bad-json-body": "Bad request body, must be a JSON object.",
 	"rest-json-body-parse-error": "Parsing request body as JSON failed: $1",
 	"rest-missing-body-field": "Mandatory field \"$1\" missing from request body.",
+	"rest-extraneous-body-fields": "Extraneous fields found in request body: $1",
 	"rest-bad-content-model": "Bad content model: $1",
 	"rest-update-cannot-create-page": "The page \"$1\" cannot be created since it already exists. To update the existing page, provide the base revision ID in the structure under \"latest\" key in the request body.",
 	"rest-extraneous-csrf-token": "Extraneous CSRF token found. CSRF tokens must not be used when using authentication mechanisms such as OAuth that are safe against CSRF attacks.",

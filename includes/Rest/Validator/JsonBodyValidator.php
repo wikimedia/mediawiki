@@ -5,6 +5,8 @@ namespace MediaWiki\Rest\Validator;
 use FormatJson;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestInterface;
+use Wikimedia\Message\ListParam;
+use Wikimedia\Message\ListType;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -42,6 +44,7 @@ class JsonBodyValidator implements BodyValidator {
 			throw new LocalizedHttpException( new MessageValue( 'rest-bad-json-body' ), 400 );
 		}
 
+		$uncheckedBodyKeys = array_fill_keys( array_keys( $data ), true );
 		foreach ( $this->bodyParamSettings as $name => $settings ) {
 			if ( !empty( $settings[ParamValidator::PARAM_REQUIRED] ) && !isset( $data[$name] ) ) {
 				throw new LocalizedHttpException(
@@ -53,7 +56,17 @@ class JsonBodyValidator implements BodyValidator {
 				$data[$name] = $settings[ParamValidator::PARAM_DEFAULT] ?? null;
 			}
 
+			unset( $uncheckedBodyKeys[$name] );
 			// TODO: use a ParamValidator to check field value, etc!
+		}
+		if ( $uncheckedBodyKeys ) {
+			throw new LocalizedHttpException(
+				new MessageValue(
+					'rest-extraneous-body-fields',
+					[ new ListParam( ListType::COMMA, array_keys( $uncheckedBodyKeys ) ) ]
+				),
+				400
+			);
 		}
 
 		return $data;

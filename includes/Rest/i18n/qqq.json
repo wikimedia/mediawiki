@@ -42,6 +42,7 @@
 	"rest-bad-json-body": "Error message for REST API debugging, shown when request body did not contain a JSON encoded object.",
 	"rest-json-body-parse-error": "Error message for REST API debugging, shown when parsing the JSON body failed. Parameters:\n* $1: the error message from the JSON parser.",
 	"rest-missing-body-field": "Error message for REST API debugging, shown when there is a mandatory field missing from the request body. Parameters:\n* $1: The field name",
+	"rest-extraneous-body-fields": "Error message for REST API debugging, shown when there are extraneous fields in the request body. Parameters:\n* $1: A comma-separated list of unrecognized fields",
 	"rest-bad-content-model": "Error message for REST API debugging, shown when an unknown content model is specified. Parameters:\n* $1: The content model name",
 	"rest-update-cannot-create-page": "Error message for REST API debugging, shown when creation of a page was requested via a PUT with no base revision ID, but the page already exists. Parameters:\n* $1: The title of the page",
 	"rest-extraneous-csrf-token": "Error message for REST API debugging, shown when an CSRF token was provided by the client, even though the authentication mechanisms used is safe against CSRF attacks.",
