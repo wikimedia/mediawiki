@@ -65,4 +65,7 @@ class EventRelayerGroup {
 	}
 }
 
+/**
+ * @deprecated since 1.41
+ */
 class_alias( EventRelayerGroup::class, 'EventRelayerGroup' );
