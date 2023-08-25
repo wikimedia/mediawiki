@@ -24,6 +24,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\DeletePage;
 use MediaWiki\Page\DeletePageFactory;
 use MediaWiki\Page\File\FileDeleteForm;
+use MediaWiki\Status\Status;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\ParamValidator\ParamValidator;

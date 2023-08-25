@@ -4,6 +4,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 
 /**

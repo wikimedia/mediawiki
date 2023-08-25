@@ -20,6 +20,7 @@
 
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Status\Status;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\ScopedCallback;
 

@@ -21,6 +21,7 @@
  * @ingroup Search
  */
 
+use MediaWiki\Status\Status;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

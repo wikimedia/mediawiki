@@ -29,10 +29,10 @@ use HTMLForm;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Html\Html;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use PermissionsError;
 use Sanitizer;
-use Status;
 use User;
 
 /**

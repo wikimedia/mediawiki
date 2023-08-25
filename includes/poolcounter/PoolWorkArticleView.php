@@ -21,6 +21,7 @@
 use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
+use MediaWiki\Status\Status;
 
 /**
  * PoolCounter protected work wrapping RenderedRevision->getRevisionParserOutput.

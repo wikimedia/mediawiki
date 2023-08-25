@@ -20,8 +20,8 @@
 
 namespace MediaWiki\PoolCounter;
 
+use MediaWiki\Status\Status;
 use MWException;
-use Status;
 
 /**
  * Helper for \MediaWiki\PoolCounter\PoolCounterClient.

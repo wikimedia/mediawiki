@@ -20,6 +20,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IDatabase;

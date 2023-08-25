@@ -25,13 +25,13 @@ namespace MediaWiki\Specials;
 
 use HTMLForm;
 use MediaWiki\Language\RawMessage;
+use MediaWiki\Status\Status;
 use MediaWiki\User\UserFactory;
 use PermissionsError;
 use Profiler;
 use ReadOnlyError;
 use Sanitizer;
 use SpecialPage;
-use Status;
 use UnlistedSpecialPage;
 use User;
 use UserNotLoggedIn;

@@ -93,7 +93,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 
 	public function testCheckPasswordValidity() {
 		$uppCalled = 0;
-		$uppStatus = \Status::newGood( [] );
+		$uppStatus = \MediaWiki\Status\Status::newGood( [] );
 		$this->overrideConfigValue(
 			MainConfigNames::PasswordPolicy,
 			[
@@ -161,12 +161,12 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 
 		$manager->removeAuthenticationSessionData( null );
-		$status = \Status::newGood();
+		$status = \MediaWiki\Status\Status::newGood();
 		$providerPriv->setPasswordResetFlag( 'Foo', $status );
 		$this->assertNull( $manager->getAuthenticationSessionData( 'reset-pass' ) );
 
 		$manager->removeAuthenticationSessionData( null );
-		$status = \Status::newGood( [ 'suggestChangeOnLogin' => true ] );
+		$status = \MediaWiki\Status\Status::newGood( [ 'suggestChangeOnLogin' => true ] );
 		$status->error( 'testing' );
 		$providerPriv->setPasswordResetFlag( 'Foo', $status );
 		$ret = $manager->getAuthenticationSessionData( 'reset-pass' );

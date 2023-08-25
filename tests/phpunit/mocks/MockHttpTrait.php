@@ -19,6 +19,7 @@
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Status\Status;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;

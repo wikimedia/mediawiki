@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Status\Status;
+
 /**
  * Exception used to abort API execution with an error
  *

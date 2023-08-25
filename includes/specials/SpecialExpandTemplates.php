@@ -26,6 +26,7 @@ namespace MediaWiki\Specials;
 use HTMLForm;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Status\Status;
 use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserOptionsLookup;
@@ -35,7 +36,6 @@ use ParserFactory;
 use ParserOptions;
 use ParserOutput;
 use SpecialPage;
-use Status;
 use Xml;
 
 /**

@@ -27,6 +27,7 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 
 /**

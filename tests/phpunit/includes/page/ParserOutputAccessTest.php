@@ -12,6 +12,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Status\Status;
 use MediaWiki\Utils\MWTimestamp;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\LoggerInterface;

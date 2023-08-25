@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use Wikimedia\TestingAccessWrapper;
 

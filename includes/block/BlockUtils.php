@@ -23,11 +23,11 @@ namespace MediaWiki\Block;
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Status\Status;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserNameUtils;
-use Status;
 use Wikimedia\IPUtils;
 
 /**

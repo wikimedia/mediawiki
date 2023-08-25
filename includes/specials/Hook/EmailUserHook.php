@@ -3,8 +3,8 @@
 namespace MediaWiki\Hook;
 
 use MailAddress;
+use MediaWiki\Status\Status;
 use MessageSpecifier;
-use Status;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

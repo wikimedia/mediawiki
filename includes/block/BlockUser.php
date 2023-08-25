@@ -33,6 +33,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\TempUser\TempUserConfig;
@@ -42,7 +43,6 @@ use MediaWiki\User\UserIdentity;
 use Message;
 use Psr\Log\LoggerInterface;
 use RevisionDeleteUser;
-use Status;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**

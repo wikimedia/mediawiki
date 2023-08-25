@@ -17,6 +17,8 @@
  *
  * @file
  */
+
+use MediaWiki\Status\Status;
 use Psr\Log\LoggerInterface;
 
 /**

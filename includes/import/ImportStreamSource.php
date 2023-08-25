@@ -26,6 +26,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Status\Status;
 use Wikimedia\AtEase\AtEase;
 
 /**

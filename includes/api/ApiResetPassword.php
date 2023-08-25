@@ -22,6 +22,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
+use MediaWiki\Status\Status;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**

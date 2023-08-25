@@ -23,6 +23,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\MessageFormatter;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Request;
+use MediaWiki\Status\Status;
 use Psr\Http\Message\RequestInterface;
 use Psr\Log\NullLogger;
 

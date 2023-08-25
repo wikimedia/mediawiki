@@ -9,6 +9,7 @@
  */
 
 use MediaWiki\Html\Html;
+use MediaWiki\Status\Status;
 
 /**
  * JSON text content that can be viewed and edit directly by users.

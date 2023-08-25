@@ -31,6 +31,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Status\Status;
 
 class LogEventsList extends ContextSource {
 	public const NO_ACTION_LINK = 1;

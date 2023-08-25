@@ -131,7 +131,7 @@ class ConfirmLinkSecondaryAuthenticationProvider extends AbstractSecondaryAuthen
 			return AuthenticationResponse::newPass();
 		}
 
-		$combinedStatus = \Status::newGood();
+		$combinedStatus = \MediaWiki\Status\Status::newGood();
 		foreach ( $statuses as [ $req, $status ] ) {
 			$descriptionInfo = $req->describeCredentials();
 			$description = wfMessage(

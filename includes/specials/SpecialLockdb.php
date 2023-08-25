@@ -27,7 +27,7 @@ use ErrorPageError;
 use FormSpecialPage;
 use HTMLForm;
 use MediaWiki\MainConfigNames;
-use Status;
+use MediaWiki\Status\Status;
 use User;
 use Wikimedia\AtEase\AtEase;
 

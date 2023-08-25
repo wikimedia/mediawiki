@@ -32,6 +32,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
+use MediaWiki\Status\Status;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
 use Wikimedia\AtEase\AtEase;

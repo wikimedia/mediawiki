@@ -21,7 +21,7 @@
 namespace MediaWiki\Storage;
 
 use MediaWiki\Revision\RevisionRecord;
-use Status;
+use MediaWiki\Status\Status;
 
 /**
  * Status object representing the outcome of a page update.

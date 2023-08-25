@@ -6,6 +6,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;

@@ -34,10 +34,10 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\Page\MergeHistoryFactory;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MergeHistoryPager;
 use SpecialPage;
-use Status;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Xml;
 

@@ -17,9 +17,9 @@ use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use SearchEngineFactory;
-use Status;
 use Xml;
 
 class SpecialChangeContentModel extends FormSpecialPage {

@@ -5,6 +5,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Status\Status;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;

@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Request\DerivativeRequest;
+use MediaWiki\Status\Status;
 
 /**
  * Special page which uses an HTMLForm to handle processing.  This is mostly a

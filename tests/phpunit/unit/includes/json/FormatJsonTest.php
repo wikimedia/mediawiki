@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Status\Status;
+
 /**
  * @covers FormatJson
  */

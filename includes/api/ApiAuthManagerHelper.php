@@ -27,6 +27,7 @@ use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\CreateFromLoginAuthenticationRequest;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Status\Status;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**

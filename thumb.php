@@ -29,6 +29,7 @@
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Profiler\ProfilingContext;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use Wikimedia\AtEase\AtEase;
 
@@ -625,7 +626,7 @@ function wfExtractThumbParams( $file, $params ) {
 
 	// As a last ditch fallback, use the traditional common parameters
 	if ( preg_match( '!^(page(\d*)-)*(\d*)px-[^/]*$!', $thumbname, $matches ) ) {
-		list( /* all */, /* pagefull */, $pagenum, $size ) = $matches;
+		[ /* all */, /* pagefull */, $pagenum, $size ] = $matches;
 		$params['width'] = $size;
 		if ( $pagenum ) {
 			$params['page'] = $pagenum;

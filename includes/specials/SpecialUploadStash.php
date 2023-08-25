@@ -23,6 +23,7 @@
 use MediaWiki\Html\Html;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Status\Status;
 use MediaWiki\Utils\UrlUtils;
 use Wikimedia\RequestTimeout\TimeoutException;
 

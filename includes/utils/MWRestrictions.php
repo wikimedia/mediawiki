@@ -18,6 +18,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+use MediaWiki\Status\Status;
 use Wikimedia\IPSet;
 use Wikimedia\IPUtils;
 

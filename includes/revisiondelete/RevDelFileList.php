@@ -21,6 +21,7 @@
 
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Status\Status;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactory;

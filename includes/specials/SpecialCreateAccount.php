@@ -27,8 +27,8 @@ use ErrorPageError;
 use LoginSignupSpecialPage;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use Status;
 use StatusValue;
 
 /**

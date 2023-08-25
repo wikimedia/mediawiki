@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Status\Status;
 use PHPUnit\Framework\Constraint\IsType;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;

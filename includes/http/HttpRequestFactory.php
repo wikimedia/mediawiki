@@ -24,11 +24,11 @@ use GuzzleHttpRequest;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Status\Status;
 use MultiHttpClient;
 use MWHttpRequest;
 use Profiler;
 use Psr\Log\LoggerInterface;
-use Status;
 
 /**
  * Factory creating MWHttpRequest objects.

@@ -21,6 +21,7 @@
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Status\Status;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\ScopedCallback;
 

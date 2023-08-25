@@ -22,6 +22,7 @@ use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
+use MediaWiki\Status\Status;
 
 /**
  * PoolWorkArticleView for an old revision of a page, using a simple cache.

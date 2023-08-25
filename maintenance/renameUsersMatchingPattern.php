@@ -3,6 +3,7 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\RenameUser\RenameuserSQL;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\TempUser\Pattern;
 use MediaWiki\User\UserFactory;

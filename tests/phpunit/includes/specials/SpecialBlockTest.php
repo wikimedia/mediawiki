@@ -8,6 +8,7 @@ use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Specials\SpecialBlock;
+use MediaWiki\Status\Status;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\TestingAccessWrapper;
 

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Status\Status;
+
 /**
  * @group sqlite
  * @group medium

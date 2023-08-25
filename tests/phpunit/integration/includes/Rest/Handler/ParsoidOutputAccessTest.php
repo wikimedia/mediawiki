@@ -14,6 +14,7 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Status\Status;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\NullLogger;
 use Wikimedia\Parsoid\Config\PageConfig;

@@ -20,8 +20,8 @@
 
 namespace MediaWiki\PoolCounter;
 
+use MediaWiki\Status\Status;
 use PoolCounter;
-use Status;
 
 /**
  * @since 1.16

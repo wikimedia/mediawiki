@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use Wikimedia\ScopedCallback;
 

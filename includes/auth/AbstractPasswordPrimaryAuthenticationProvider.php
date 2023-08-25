@@ -22,9 +22,9 @@
 namespace MediaWiki\Auth;
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Status\Status;
 use Password;
 use PasswordFactory;
-use Status;
 
 /**
  * Basic framework for a primary authentication provider that uses passwords

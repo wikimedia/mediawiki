@@ -26,6 +26,7 @@ use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Status\Status;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 

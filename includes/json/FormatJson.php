@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Status\Status;
+
 /**
  * JSON formatter wrapper class
  */

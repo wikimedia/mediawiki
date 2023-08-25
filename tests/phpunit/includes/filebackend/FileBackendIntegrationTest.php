@@ -2,6 +2,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Status\Status;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\TestingAccessWrapper;
 

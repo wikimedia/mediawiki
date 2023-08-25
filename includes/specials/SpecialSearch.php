@@ -36,6 +36,7 @@ use MediaWiki\Search\SearchWidgets\InterwikiSearchResultWidget;
 use MediaWiki\Search\SearchWidgets\SimpleSearchResultSetWidget;
 use MediaWiki\Search\SearchWidgets\SimpleSearchResultWidget;
 use MediaWiki\Search\TitleMatcher;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserOptionsManager;
 use Wikimedia\Rdbms\ReadOnlyMode;

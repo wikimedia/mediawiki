@@ -21,6 +21,7 @@
 
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Status\Status;
 
 /**
  * @defgroup Media Media

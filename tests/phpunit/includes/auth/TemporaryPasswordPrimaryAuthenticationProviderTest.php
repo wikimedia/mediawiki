@@ -3,11 +3,11 @@
 namespace MediaWiki\Auth;
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Status\Status;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserNameUtils;
 use PasswordFactory;
-use Status;
 use StatusValue;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
@@ -70,7 +70,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 				$mwServices->getUserOptionsManager()
 			);
 		}
-		$this->validity = \Status::newGood();
+		$this->validity = \MediaWiki\Status\Status::newGood();
 
 		$mockedMethods[] = 'checkPasswordValidity';
 		$provider = $this->getMockBuilder( TemporaryPasswordPrimaryAuthenticationProvider::class )
@@ -328,7 +328,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		// Validation failure
 		$req->username = $user->getName();
 		$req->password = $password;
-		$this->validity = \Status::newFatal( 'arbitrary-failure' );
+		$this->validity = \MediaWiki\Status\Status::newFatal( 'arbitrary-failure' );
 		$ret = $provider->beginPrimaryAuthentication( $reqs );
 		$this->assertEquals(
 			AuthenticationResponse::FAIL,
@@ -341,7 +341,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 
 		// Successful auth
 		$this->manager->removeAuthenticationSessionData( null );
-		$this->validity = \Status::newGood();
+		$this->validity = \MediaWiki\Status\Status::newGood();
 		$this->assertEquals(
 			AuthenticationResponse::newPass( $user->getName() ),
 			$provider->beginPrimaryAuthentication( $reqs )
@@ -349,7 +349,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		$this->assertNotNull( $this->manager->getAuthenticationSessionData( 'reset-pass' ) );
 
 		$this->manager->removeAuthenticationSessionData( null );
-		$this->validity = \Status::newGood();
+		$this->validity = \MediaWiki\Status\Status::newGood();
 		$req->username = lcfirst( $user->getName() );
 		$this->assertEquals(
 			AuthenticationResponse::newPass( $user->getName() ),
@@ -372,7 +372,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 
 		// Bad password
 		$providerPriv->newPasswordExpiry = 100;
-		$this->validity = \Status::newGood();
+		$this->validity = \MediaWiki\Status\Status::newGood();
 		$req->password = 'Wrong';
 		$ret = $provider->beginPrimaryAuthentication( $reqs );
 		$this->assertEquals(
@@ -390,11 +390,11 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 	 * @param string $type
 	 * @param callable $usernameGetter Function that takes the username of a sysop user and returns the username to
 	 *  use for testing.
-	 * @param \Status $validity Result of the password validity check
+	 * @param \MediaWiki\Status\Status $validity Result of the password validity check
 	 * @param \StatusValue $expect1 Expected result with $checkData = false
 	 * @param \StatusValue $expect2 Expected result with $checkData = true
 	 */
-	public function testProviderAllowsAuthenticationDataChange( $type, callable $usernameGetter, \Status $validity,
+	public function testProviderAllowsAuthenticationDataChange( $type, callable $usernameGetter, \MediaWiki\Status\Status $validity,
 		\StatusValue $expect1, \StatusValue $expect2
 	) {
 		$user = $usernameGetter( $this->getTestSysop()->getUserIdentity()->getName() );
@@ -660,7 +660,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		$priv = TestingAccessWrapper::newFromObject( $provider );
 		$req->username = '<invalid>';
 		$status = $priv->sendPasswordResetEmail( $req );
-		$this->assertEquals( \Status::newFatal( 'noname' ), $status );
+		$this->assertEquals( \MediaWiki\Status\Status::newFatal( 'noname' ), $status );
 	}
 
 	public function testTestForAccountCreation() {

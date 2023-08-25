@@ -23,6 +23,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Status\Status;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;

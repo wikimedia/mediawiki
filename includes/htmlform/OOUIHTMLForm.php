@@ -23,6 +23,7 @@
 
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
+use MediaWiki\Status\Status;
 
 /**
  * Compact stacked vertical format for forms, implemented using OOUI widgets.

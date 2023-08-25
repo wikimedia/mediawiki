@@ -20,6 +20,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\UserInfo;
+use MediaWiki\Status\Status;
 use MediaWiki\User\BotPasswordStore;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityLookup;
@@ -32,7 +33,6 @@ use PHPUnit\Framework\MockObject\Rule\InvocationOrder;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
-use Status;
 use StatusValue;
 use User;
 use WebRequest;
@@ -2936,7 +2936,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$user = $this->getMockBuilder( \User::class )
 			->onlyMethods( [ 'addToDatabase' ] )->getMock();
 		$user->expects( $this->once() )->method( 'addToDatabase' )
-			->willReturn( \Status::newFatal( 'because' ) );
+			->willReturn( \MediaWiki\Status\Status::newFatal( 'because' ) );
 		$user->setName( $username );
 		$ret = $this->manager->autoCreateUser( $user, AuthManager::AUTOCREATE_SOURCE_SESSION, true, true );
 		$this->assertEquals( Status::newFatal( 'because' ), $ret );

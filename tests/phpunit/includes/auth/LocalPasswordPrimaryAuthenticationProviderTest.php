@@ -3,10 +3,10 @@
 namespace MediaWiki\Auth;
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Status\Status;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserNameUtils;
-use Status;
 use StatusValue;
 use Wikimedia\TestingAccessWrapper;
 
@@ -67,7 +67,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 				$mwServices->getUserOptionsManager()
 			);
 		}
-		$this->validity = \Status::newGood();
+		$this->validity = \MediaWiki\Status\Status::newGood();
 		$provider = $this->getMockBuilder( LocalPasswordPrimaryAuthenticationProvider::class )
 			->onlyMethods( [ 'checkPasswordValidity' ] )
 			->setConstructorArgs( [
@@ -179,12 +179,12 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 
 		$this->manager->removeAuthenticationSessionData( null );
 		$row->user_password_expires = wfTimestamp( TS_MW, time() + 200 );
-		$providerPriv->setPasswordResetFlag( $userName, \Status::newGood(), $row );
+		$providerPriv->setPasswordResetFlag( $userName, \MediaWiki\Status\Status::newGood(), $row );
 		$this->assertNull( $this->manager->getAuthenticationSessionData( 'reset-pass' ) );
 
 		$this->manager->removeAuthenticationSessionData( null );
 		$row->user_password_expires = wfTimestamp( TS_MW, time() - 200 );
-		$providerPriv->setPasswordResetFlag( $userName, \Status::newGood(), $row );
+		$providerPriv->setPasswordResetFlag( $userName, \MediaWiki\Status\Status::newGood(), $row );
 		$ret = $this->manager->getAuthenticationSessionData( 'reset-pass' );
 		$this->assertNotNull( $ret );
 		$this->assertSame( 'resetpass-expired', $ret->msg->getKey() );
@@ -192,7 +192,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 
 		$this->manager->removeAuthenticationSessionData( null );
 		$row->user_password_expires = wfTimestamp( TS_MW, time() - 1 );
-		$providerPriv->setPasswordResetFlag( $userName, \Status::newGood(), $row );
+		$providerPriv->setPasswordResetFlag( $userName, \MediaWiki\Status\Status::newGood(), $row );
 		$ret = $this->manager->getAuthenticationSessionData( 'reset-pass' );
 		$this->assertNotNull( $ret );
 		$this->assertSame( 'resetpass-expired-soft', $ret->msg->getKey() );
@@ -200,7 +200,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 
 		$this->manager->removeAuthenticationSessionData( null );
 		$row->user_password_expires = null;
-		$status = \Status::newGood( [ 'suggestChangeOnLogin' => true ] );
+		$status = \MediaWiki\Status\Status::newGood( [ 'suggestChangeOnLogin' => true ] );
 		$status->error( 'testing' );
 		$providerPriv->setPasswordResetFlag( $userName, $status, $row );
 		$ret = $this->manager->getAuthenticationSessionData( 'reset-pass' );
@@ -210,7 +210,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 
 		$this->manager->removeAuthenticationSessionData( null );
 		$row->user_password_expires = null;
-		$status = \Status::newGood( [ 'forceChange' => true ] );
+		$status = \MediaWiki\Status\Status::newGood( [ 'forceChange' => true ] );
 		$status->error( 'testing' );
 		$providerPriv->setPasswordResetFlag( $userName, $status, $row );
 		$ret = $this->manager->getAuthenticationSessionData( 'reset-pass' );
@@ -220,7 +220,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 
 		$this->manager->removeAuthenticationSessionData( null );
 		$row->user_password_expires = null;
-		$status = \Status::newGood( [ 'suggestChangeOnLogin' => false, ] );
+		$status = \MediaWiki\Status\Status::newGood( [ 'suggestChangeOnLogin' => false, ] );
 		$status->error( 'testing' );
 		$providerPriv->setPasswordResetFlag( $userName, $status, $row );
 		$ret = $this->manager->getAuthenticationSessionData( 'reset-pass' );
@@ -283,7 +283,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		// Validation failure
 		$req->username = $userName;
 		$req->password = $testUser->getPassword();
-		$this->validity = \Status::newFatal( 'arbitrary-failure' );
+		$this->validity = \MediaWiki\Status\Status::newFatal( 'arbitrary-failure' );
 		$ret = $provider->beginPrimaryAuthentication( $reqs );
 		$this->assertEquals(
 			AuthenticationResponse::FAIL,
@@ -296,7 +296,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 
 		// Successful auth
 		$this->manager->removeAuthenticationSessionData( null );
-		$this->validity = \Status::newGood();
+		$this->validity = \MediaWiki\Status\Status::newGood();
 		$this->assertEquals(
 			AuthenticationResponse::newPass( $userName ),
 			$provider->beginPrimaryAuthentication( $reqs )
@@ -305,7 +305,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 
 		// Successful auth after normalizing name
 		$this->manager->removeAuthenticationSessionData( null );
-		$this->validity = \Status::newGood();
+		$this->validity = \MediaWiki\Status\Status::newGood();
 		$req->username = mb_strtolower( $userName[0] ) . substr( $userName, 1 );
 		$this->assertEquals(
 			AuthenticationResponse::newPass( $userName ),
@@ -316,7 +316,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 
 		// Successful auth with reset
 		$this->manager->removeAuthenticationSessionData( null );
-		$this->validity = \Status::newGood( [ 'suggestChangeOnLogin' => true ] );
+		$this->validity = \MediaWiki\Status\Status::newGood( [ 'suggestChangeOnLogin' => true ] );
 		$this->validity->error( 'arbitrary-warning' );
 		$this->assertEquals(
 			AuthenticationResponse::newPass( $userName ),
@@ -325,7 +325,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$this->assertNotNull( $this->manager->getAuthenticationSessionData( 'reset-pass' ) );
 
 		// Wrong password
-		$this->validity = \Status::newGood();
+		$this->validity = \MediaWiki\Status\Status::newGood();
 		$req->password = 'Wrong';
 		$ret = $provider->beginPrimaryAuthentication( $reqs );
 		$this->assertEquals(
@@ -383,11 +383,11 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 	 * @param string $type
 	 * @param callable $usernameGetter Function that takes the username of a sysop user and returns the username to
 	 * use for testing.
-	 * @param \Status $validity Result of the password validity check
+	 * @param \MediaWiki\Status\Status $validity Result of the password validity check
 	 * @param \StatusValue $expect1 Expected result with $checkData = false
 	 * @param \StatusValue $expect2 Expected result with $checkData = true
 	 */
-	public function testProviderAllowsAuthenticationDataChange( $type, callable $usernameGetter, \Status $validity,
+	public function testProviderAllowsAuthenticationDataChange( $type, callable $usernameGetter, \MediaWiki\Status\Status $validity,
 		\StatusValue $expect1, \StatusValue $expect2
 	) {
 		$user = $usernameGetter( $this->getTestSysop()->getUserIdentity()->getName() );

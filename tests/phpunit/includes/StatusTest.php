@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Language\RawMessage;
+use MediaWiki\Status\Status;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\TestingAccessWrapper;
 
@@ -368,11 +369,11 @@ class StatusTest extends MediaWikiLangTestCase {
 
 		$testCases['GoodStatus'] = [
 			new Status(),
-			"Internal error: Status::getWikiText called for a good result, this is incorrect\n",
-			"(wrap-short: (internalerror_info: Status::getWikiText called for a good result, " .
+			"Internal error: MediaWiki\Status\Status::getWikiText called for a good result, this is incorrect\n",
+			"(wrap-short: (internalerror_info: MediaWiki\Status\Status::getWikiText called for a good result, " .
 				"this is incorrect\n))",
-			"<p>Internal error: Status::getWikiText called for a good result, this is incorrect\n</p>",
-			"<p>(wrap-short: (internalerror_info: Status::getWikiText called for a good result, " .
+			"<p>Internal error: MediaWiki\Status\Status::getWikiText called for a good result, this is incorrect\n</p>",
+			"<p>(wrap-short: (internalerror_info: MediaWiki\Status\Status::getWikiText called for a good result, " .
 				"this is incorrect\n))\n</p>",
 		];
 
@@ -380,11 +381,11 @@ class StatusTest extends MediaWikiLangTestCase {
 		$status->setOK( false );
 		$testCases['GoodButNoError'] = [
 			$status,
-			"Internal error: Status::getWikiText: Invalid result object: no error text but not OK\n",
-			"(wrap-short: (internalerror_info: Status::getWikiText: Invalid result object: " .
+			"Internal error: MediaWiki\Status\Status::getWikiText: Invalid result object: no error text but not OK\n",
+			"(wrap-short: (internalerror_info: MediaWiki\Status\Status::getWikiText: Invalid result object: " .
 				"no error text but not OK\n))",
-			"<p>Internal error: Status::getWikiText: Invalid result object: no error text but not OK\n</p>",
-			"<p>(wrap-short: (internalerror_info: Status::getWikiText: Invalid result object: " .
+			"<p>Internal error: MediaWiki\Status\Status::getWikiText: Invalid result object: no error text but not OK\n</p>",
+			"<p>(wrap-short: (internalerror_info: MediaWiki\Status\Status::getWikiText: Invalid result object: " .
 				"no error text but not OK\n))\n</p>",
 		];
 
@@ -485,7 +486,7 @@ class StatusTest extends MediaWikiLangTestCase {
 
 		$testCases['GoodStatus'] = [
 			new Status(),
-			[ "Status::getMessage called for a good result, this is incorrect\n" ],
+			[ "MediaWiki\Status\Status::getMessage called for a good result, this is incorrect\n" ],
 			'internalerror_info',
 			'wrapper-short'
 		];
@@ -494,7 +495,7 @@ class StatusTest extends MediaWikiLangTestCase {
 		$status->setOK( false );
 		$testCases['GoodButNoError'] = [
 			$status,
-			[ "Status::getMessage: Invalid result object: no error text but not OK\n" ],
+			[ "MediaWiki\Status\Status::getMessage: Invalid result object: no error text but not OK\n" ],
 			'internalerror_info',
 			'wrapper-short'
 		];
@@ -575,7 +576,7 @@ class StatusTest extends MediaWikiLangTestCase {
 			// parameters to Status::error() calls as array of arrays; expected message; expected context
 			'no errors' => [
 				[],
-				"Internal error: Status::getWikiText called for a good result, this is incorrect\n",
+				"Internal error: MediaWiki\Status\Status::getWikiText called for a good result, this is incorrect\n",
 				[],
 			],
 			// make sure that the rawmessage_2 hack works as the following tests rely on it

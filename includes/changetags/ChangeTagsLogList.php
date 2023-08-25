@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Status\Status;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
