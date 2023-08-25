@@ -10,7 +10,7 @@ use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SuppressedDataException;
-use Parser;
+use ParserFactory;
 use TextContent;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -19,8 +19,8 @@ class CompareHandler extends Handler {
 	/** @var RevisionLookup */
 	private $revisionLookup;
 
-	/** @var Parser */
-	private $parser;
+	/** @var ParserFactory */
+	private $parserFactory;
 
 	/** @var RevisionRecord[] */
 	private $revisions = [];
@@ -30,10 +30,10 @@ class CompareHandler extends Handler {
 
 	public function __construct(
 		RevisionLookup $revisionLookup,
-		Parser $parser
+		ParserFactory $parserFactory
 	) {
 		$this->revisionLookup = $revisionLookup;
-		$this->parser = $parser;
+		$this->parserFactory = $parserFactory;
 	}
 
 	public function execute() {
@@ -168,7 +168,7 @@ class CompareHandler extends Handler {
 	 */
 	private function getSectionInfo( $paramName ) {
 		$text = $this->getRevisionText( $paramName );
-		$parserSections = $this->parser->getFlatSectionInfo( $text );
+		$parserSections = $this->parserFactory->getInstance()->getFlatSectionInfo( $text );
 		$sections = [];
 		foreach ( $parserSections as $i => $parserSection ) {
 			// Skip section zero, which comes before the first heading, since

@@ -31,7 +31,7 @@
 		"class": "MediaWiki\\Rest\\Handler\\CompareHandler",
 		"services": [
 			"RevisionLookup",
-			"Parser"
+			"ParserFactory"
 		]
 	},
 	{
