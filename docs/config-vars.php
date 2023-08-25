@@ -4162,12 +4162,6 @@ $wgAPICacheHelpTimeout = null;
 $wgAPIUselessQueryPages = null;
 
 /**
- * Config variable stub for the AjaxUploadDestCheck setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::AjaxUploadDestCheck
- */
-$wgAjaxUploadDestCheck = null;
-
-/**
  * Config variable stub for the AjaxLicensePreview setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::AjaxLicensePreview
  */

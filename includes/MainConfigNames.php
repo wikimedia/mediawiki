@@ -4177,12 +4177,6 @@ class MainConfigNames {
 	public const APIUselessQueryPages = 'APIUselessQueryPages';
 
 	/**
-	 * Name constant for the AjaxUploadDestCheck setting, for use with Config::get()
-	 * @see MainConfigSchema::AjaxUploadDestCheck
-	 */
-	public const AjaxUploadDestCheck = 'AjaxUploadDestCheck';
-
-	/**
 	 * Name constant for the AjaxLicensePreview setting, for use with Config::get()
 	 * @see MainConfigSchema::AjaxLicensePreview
 	 */

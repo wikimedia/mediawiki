@@ -11974,13 +11974,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Enable AJAX check for file overwrite, pre-upload
-	 */
-	public const AjaxUploadDestCheck = [
-		'default' => true,
-	];
-
-	/**
 	 * Enable previewing licences via AJAX.
 	 */
 	public const AjaxLicensePreview = [

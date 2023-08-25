@@ -7463,9 +7463,6 @@ config-schema:
         description: |-
             The ApiQueryQueryPages module should skip pages that are redundant to true
             API queries.
-    AjaxUploadDestCheck:
-        default: true
-        description: 'Enable AJAX check for file overwrite, pre-upload'
     AjaxLicensePreview:
         default: true
         description: 'Enable previewing licences via AJAX.'
