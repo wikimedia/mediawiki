@@ -1538,6 +1538,8 @@
 	"apihelp-userrights-param-remove": "{{doc-apihelp-param|userrights|remove}}",
 	"apihelp-userrights-param-reason": "{{doc-apihelp-param|userrights|reason}}",
 	"apihelp-userrights-param-tags": "{{doc-apihelp-param|userrights|tags}}",
+	"apihelp-userrights-param-watchuser": "{{doc-apihelp-param|userrights|watchuser}}",
+	"apihelp-userrights-param-watchlistexpiry": "{{doc-apihelp-param|userrights|watchlistexpiry}}",
 	"apihelp-userrights-example-user": "{{doc-apihelp-example|userrights}}",
 	"apihelp-userrights-example-userid": "{{doc-apihelp-example|userrights}}",
 	"apihelp-userrights-example-expiry": "{{doc-apihelp-example|userrights}}",
