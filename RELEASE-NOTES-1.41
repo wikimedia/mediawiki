@@ -570,6 +570,7 @@ because of Phabricator reports.
   - MovePage -> MediaWiki\Page\File\MovePage
   - ProtectionForm -> MediaWiki\Page\File\ProtectionForm
   - MediaWiki\BadFileLookup -> MediaWiki\Page\File\BadFileLookup
+  - PageProps -> MediaWiki\Page\PageProps
   From 1.39:
   - ResourceLoader -> MediaWiki\ResourceLoader\ResourceLoader
   From 1.29:

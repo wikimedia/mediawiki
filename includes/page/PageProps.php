@@ -285,4 +285,7 @@ class PageProps {
 	}
 }
 
+/**
+ * @deprecated since 1.40
+ */
 class_alias( PageProps::class, 'PageProps' );
