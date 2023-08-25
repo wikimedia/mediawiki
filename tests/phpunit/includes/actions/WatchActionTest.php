@@ -2,6 +2,7 @@
 
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Status\Status;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
@@ -160,6 +161,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	 * @covers WatchAction::checkCanExecute()
 	 */
 	public function testShowUserLoggedInNoException() {
+		$this->setService( 'PermissionManager', $this->createMock( PermissionManager::class ) );
 		$registeredUser = $this->createMock( User::class );
 		$registeredUser->method( 'isRegistered' )->willReturn( true );
 		$registeredUser->method( 'isNamed' )->willReturn( true );
