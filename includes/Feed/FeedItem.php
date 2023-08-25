@@ -232,4 +232,7 @@ class FeedItem {
 	/** #@- */
 }
 
+/**
+ * @deprecated since 1.40
+ */
 class_alias( FeedItem::class, 'FeedItem' );
