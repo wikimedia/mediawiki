@@ -128,12 +128,7 @@ abstract class LBFactory implements ILBFactory {
 			$this->readOnlyReason = $conf['readOnlyReason'];
 		}
 
-		$this->chronologyProtector = $conf['chronologyProtector'] ?? new ChronologyProtector(
-			$conf['cpStash'] ?? null,
-			$conf['secret'] ?? null,
-			$conf['cliMode'] ?? null,
-			$conf['logger'] ?? null,
-		);
+		$this->chronologyProtector = $conf['chronologyProtector'] ?? new ChronologyProtector();
 		$this->srvCache = $conf['srvCache'] ?? new EmptyBagOStuff();
 		$this->wanCache = $conf['wanCache'] ?? WANObjectCache::newEmpty();
 
@@ -703,13 +698,5 @@ abstract class LBFactory implements ILBFactory {
 				"Transaction round stage must be '$stage' (not '{$this->trxRoundStage}')"
 			);
 		}
-	}
-
-	/**
-	 * @param float|null &$time Mock UNIX timestamp for testing
-	 * @codeCoverageIgnore
-	 */
-	public function setMockTime( &$time ) {
-		$this->chronologyProtector->setMockTime( $time );
 	}
 }

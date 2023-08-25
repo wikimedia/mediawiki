@@ -4071,6 +4071,16 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Secret string for HMAC hashing in ChronologyProtector [optional]
+	 *
+	 * @since 1.41
+	 */
+	public const ChronologyProtectorSecret = [
+		'default' => '',
+		'type' => 'string',
+	];
+
+	/**
 	 * The expiry time for the parser cache, in seconds.
 	 *
 	 * The default is 86400 (one day).

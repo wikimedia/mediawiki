@@ -1516,6 +1516,12 @@ class MainConfigNames {
 	public const ChronologyProtectorStash = 'ChronologyProtectorStash';
 
 	/**
+	 * Name constant for the ChronologyProtectorSecret setting, for use with Config::get()
+	 * @see MainConfigSchema::ChronologyProtectorSecret
+	 */
+	public const ChronologyProtectorSecret = 'ChronologyProtectorSecret';
+
+	/**
 	 * Name constant for the ParserCacheExpireTime setting, for use with Config::get()
 	 * @see MainConfigSchema::ParserCacheExpireTime
 	 */
