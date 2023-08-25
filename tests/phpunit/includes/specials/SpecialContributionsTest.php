@@ -130,7 +130,6 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 			$services->getLinkBatchFactory(),
 			$services->getPermissionManager(),
 			$services->getDBLoadBalancerFactory(),
-			$services->getActorMigration(),
 			$services->getRevisionStore(),
 			$services->getNamespaceInfo(),
 			$services->getUserNameUtils(),

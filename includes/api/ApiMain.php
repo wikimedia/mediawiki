@@ -190,7 +190,6 @@ class ApiMain extends ApiBase {
 				'HookContainer',
 				'DBLoadBalancerFactory',
 				'NamespaceInfo',
-				'ActorMigration',
 				'UserFactory',
 				'CommentFormatter',
 			]

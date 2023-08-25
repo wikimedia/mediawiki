@@ -32,7 +32,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Title\Title;
-use MediaWiki\User\ActorMigration;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserRigorOptions;
 use Wikimedia\IPUtils;
@@ -126,9 +125,6 @@ class ContribsPager extends RangeChronologicalPager {
 	 */
 	private $templateParser;
 
-	/** @var ActorMigration */
-	private $actorMigration;
-
 	/** @var CommentFormatter */
 	private $commentFormatter;
 
@@ -161,7 +157,6 @@ class ContribsPager extends RangeChronologicalPager {
 	 * @param LinkBatchFactory|null $linkBatchFactory
 	 * @param HookContainer|null $hookContainer
 	 * @param IConnectionProvider|null $dbProvider
-	 * @param ActorMigration|null $actorMigration
 	 * @param RevisionStore|null $revisionStore
 	 * @param NamespaceInfo|null $namespaceInfo
 	 * @param UserIdentity|null $targetUser
@@ -174,7 +169,6 @@ class ContribsPager extends RangeChronologicalPager {
 		LinkBatchFactory $linkBatchFactory = null,
 		HookContainer $hookContainer = null,
 		IConnectionProvider $dbProvider = null,
-		ActorMigration $actorMigration = null,
 		RevisionStore $revisionStore = null,
 		NamespaceInfo $namespaceInfo = null,
 		UserIdentity $targetUser = null,
@@ -221,8 +215,6 @@ class ContribsPager extends RangeChronologicalPager {
 		$this->hideMinor = !empty( $options['hideMinor'] );
 		$this->revisionsOnly = !empty( $options['revisionsOnly'] );
 
-		// Needed by call to getIndexField -> getTargetTable from parent constructor
-		$this->actorMigration = $actorMigration ?? $services->getActorMigration();
 		parent::__construct( $context, $linkRenderer ?? $services->getLinkRenderer() );
 
 		$msgs = [
@@ -383,13 +375,9 @@ class ContribsPager extends RangeChronologicalPager {
 			];
 			$queryInfo['conds'][] = $ipRangeConds;
 		} else {
-			// tables and joins are already handled by RevisionStore::getQueryInfo()
-			$conds = $this->actorMigration->getWhere( $dbr, 'rev_user', $this->targetUser );
-			$queryInfo['conds'][] = $conds['conds'];
+			$queryInfo['conds']['actor_name'] = $this->targetUser->getName();
 			// Force the appropriate index to avoid bad query plans (T307295)
-			if ( isset( $conds['orconds']['newactor'] ) ) {
-				$queryInfo['options']['USE INDEX']['revision'] = 'rev_actor_timestamp';
-			}
+			$queryInfo['options']['USE INDEX']['revision'] = 'rev_actor_timestamp';
 		}
 
 		if ( $this->deletedOnly ) {

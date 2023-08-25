@@ -33,7 +33,6 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
-use MediaWiki\User\ActorMigration;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserRigorOptions;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -65,9 +64,6 @@ class ApiFeedContributions extends ApiBase {
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
 
-	/** @var ActorMigration */
-	private $actorMigration;
-
 	/** @var UserFactory */
 	private $userFactory;
 
@@ -87,7 +83,6 @@ class ApiFeedContributions extends ApiBase {
 	 * @param HookContainer $hookContainer
 	 * @param IConnectionProvider $dbProvider
 	 * @param NamespaceInfo $namespaceInfo
-	 * @param ActorMigration $actorMigration
 	 * @param UserFactory $userFactory
 	 * @param CommentFormatter $commentFormatter
 	 */
@@ -101,7 +96,6 @@ class ApiFeedContributions extends ApiBase {
 		HookContainer $hookContainer,
 		IConnectionProvider $dbProvider,
 		NamespaceInfo $namespaceInfo,
-		ActorMigration $actorMigration,
 		UserFactory $userFactory,
 		CommentFormatter $commentFormatter
 	) {
@@ -113,7 +107,6 @@ class ApiFeedContributions extends ApiBase {
 		$this->hookContainer = $hookContainer;
 		$this->dbProvider = $dbProvider;
 		$this->namespaceInfo = $namespaceInfo;
-		$this->actorMigration = $actorMigration;
 		$this->userFactory = $userFactory;
 		$this->commentFormatter = $commentFormatter;
 
@@ -188,7 +181,6 @@ class ApiFeedContributions extends ApiBase {
 			$this->linkBatchFactory,
 			$this->hookContainer,
 			$this->dbProvider,
-			$this->actorMigration,
 			$this->revisionStore,
 			$this->namespaceInfo,
 			$targetUser,

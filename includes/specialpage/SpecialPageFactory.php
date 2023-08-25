@@ -536,7 +536,6 @@ class SpecialPageFactory {
 				'LinkBatchFactory',
 				'PermissionManager',
 				'DBLoadBalancerFactory',
-				'ActorMigration',
 				'RevisionStore',
 				'NamespaceInfo',
 				'UserNameUtils',
