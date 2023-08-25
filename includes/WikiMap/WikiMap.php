@@ -1,7 +1,5 @@
 <?php
 /**
- * Tools for dealing with other locally-hosted wikis.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -28,7 +26,7 @@ use MediaWikiSite;
 use Wikimedia\Rdbms\DatabaseDomain;
 
 /**
- * Helper tools for dealing with other locally-hosted wikis.
+ * Tools for dealing with other locally-hosted wikis.
  */
 class WikiMap {
 
@@ -192,7 +190,7 @@ class WikiMap {
 		$cache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
 
 		return $cache->getWithSetCallback(
-			$cache->makeGlobalKey( 'wikimap', 'canonical-urls' ),
+			$cache->makeGlobalKey( 'wikimap-canonical-urls' ),
 			$cache::TTL_DAY,
 			static function () {
 				global $wgLocalDatabases, $wgCanonicalServer;
