@@ -147,11 +147,13 @@ class RefreshLinks extends Maintenance {
 
 		$i = 0;
 		$lastIndexes = array_fill_keys( $indexFields, 0 );
+		$selectFields = in_array( 'page_id', $indexFields )
+			? $indexFields : [ 'page_id', ...$indexFields ];
 		$verbose = $this->hasOption( 'verbose' );
 		$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
 		do {
 			$batchCond = $dbr->buildComparison( '>', $lastIndexes );
-			$res = ( clone $builder )->select( $indexFields )
+			$res = ( clone $builder )->select( $selectFields )
 				->andWhere( [ $batchCond ] )
 				->orderBy( $indexFields )
 				->caller( __METHOD__ )->fetchResultSet();
