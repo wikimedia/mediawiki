@@ -461,7 +461,7 @@ class ContribsPager extends RangeChronologicalPager {
 	 */
 	private function getIpRangeConds( $db, $ip ) {
 		// First make sure it is a valid range and they are not outside the CIDR limit
-		if ( !$this->isQueryableRange( $ip ) ) {
+		if ( !self::isQueryableRange( $ip, $this->getConfig() ) ) {
 			return false;
 		}
 
@@ -473,12 +473,14 @@ class ContribsPager extends RangeChronologicalPager {
 	/**
 	 * Is the given IP a range and within the CIDR limit?
 	 *
+	 * @internal Public only for SpecialContributions
 	 * @param string $ipRange
+	 * @param Config $config
 	 * @return bool True if it is valid
 	 * @since 1.30
 	 */
-	public function isQueryableRange( $ipRange ) {
-		$limits = $this->getConfig()->get( MainConfigNames::RangeContributionsCIDRLimit );
+	public static function isQueryableRange( $ipRange, $config ) {
+		$limits = $config->get( MainConfigNames::RangeContributionsCIDRLimit );
 
 		$bits = IPUtils::parseCIDR( $ipRange )[1];
 		if (
@@ -571,7 +573,7 @@ class ContribsPager extends RangeChronologicalPager {
 		$this->mParentLens = [];
 		$revisions = [];
 		$linkBatch = $this->linkBatchFactory->newLinkBatch();
-		$isIpRange = $this->isQueryableRange( $this->target );
+		$isIpRange = self::isQueryableRange( $this->target, $this->getConfig() );
 		# Give some pointers to make (last) links
 		foreach ( $this->mResult as $row ) {
 			if ( isset( $row->rev_parent_id ) && $row->rev_parent_id ) {
@@ -767,7 +769,7 @@ class ContribsPager extends RangeChronologicalPager {
 			$revUser = $revRecord->getUser();
 			$revUserId = $revUser ? $revUser->getId() : 0;
 			$revUserText = $revUser ? $revUser->getName() : '';
-			if ( $this->isQueryableRange( $this->target ) ) {
+			if ( self::isQueryableRange( $this->target, $this->getConfig() ) ) {
 				$userlink = ' <span class="mw-changeslist-separator"></span> '
 					. $lang->getDirMark()
 					. Linker::userLink( $revUserId, $revUserText );
