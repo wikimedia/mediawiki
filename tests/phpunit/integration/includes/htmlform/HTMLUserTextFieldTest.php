@@ -41,10 +41,15 @@ class HTMLUserTextFieldTest extends MediaWikiIntegrationTestCase {
 				'SomeUser',
 				true
 			],
-			'invalid username' => [
+			'external username when not allowed' => [
 				[],
-				'<SomeUser>',
+				'imported>SomeUser',
 				'htmlform-user-not-valid'
+			],
+			'external username when allowed' => [
+				[ 'external' => true ],
+				'imported>SomeUser',
+				true
 			],
 			'valid IP' => [
 				[ 'ipallowed' => true ],

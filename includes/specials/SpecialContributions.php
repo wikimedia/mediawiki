@@ -42,6 +42,8 @@ use MediaWiki\Specials\Contribute\ContributeFactory;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
@@ -72,9 +74,8 @@ class SpecialContributions extends IncludableSpecialPage {
 	private UserOptionsLookup $userOptionsLookup;
 	private CommentFormatter $commentFormatter;
 	private UserFactory $userFactory;
-
-	/** @var ContribsPager|null */
-	private $pager = null;
+	private UserIdentityLookup $userIdentityLookup;
+	private ?ContribsPager $pager = null;
 
 	/**
 	 * @param LinkBatchFactory|null $linkBatchFactory
@@ -87,6 +88,7 @@ class SpecialContributions extends IncludableSpecialPage {
 	 * @param UserOptionsLookup|null $userOptionsLookup
 	 * @param CommentFormatter|null $commentFormatter
 	 * @param UserFactory|null $userFactory
+	 * @param UserIdentityLookup|null $userIdentityLookup
 	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory = null,
@@ -98,7 +100,8 @@ class SpecialContributions extends IncludableSpecialPage {
 		UserNamePrefixSearch $userNamePrefixSearch = null,
 		UserOptionsLookup $userOptionsLookup = null,
 		CommentFormatter $commentFormatter = null,
-		UserFactory $userFactory = null
+		UserFactory $userFactory = null,
+		UserIdentityLookup $userIdentityLookup = null
 	) {
 		parent::__construct( 'Contributions' );
 		// This class is extended and therefore falls back to global state - T269521
@@ -113,6 +116,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		$this->userOptionsLookup = $userOptionsLookup ?? $services->getUserOptionsLookup();
 		$this->commentFormatter = $commentFormatter ?? $services->getCommentFormatter();
 		$this->userFactory = $userFactory ?? $services->getUserFactory();
+		$this->userIdentityLookup = $userIdentityLookup ?? $services->getUserIdentityLookup();
 	}
 
 	public function execute( $par ) {
@@ -293,7 +297,11 @@ class SpecialContributions extends IncludableSpecialPage {
 			if ( !$this->including() ) {
 				$out->addHTML( $this->getForm( $this->opts ) );
 			}
-			$pager = $this->getPager( $userObj );
+			// We want a pure UserIdentity for imported actors, so the first letter
+			// of them is in lowercase and queryable.
+			$userIdentity = $notExternal ? $userObj :
+				$this->userIdentityLookup->getUserIdentityByName( $target ) ?? $userObj;
+			$pager = $this->getPager( $userIdentity );
 			if ( IPUtils::isValidRange( $target ) &&
 				!ContribsPager::isQueryableRange( $target, $this->getConfig() )
 			) {
@@ -723,6 +731,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			'section' => 'contribs-top',
 			'ipallowed' => true,
 			'iprange' => true,
+			'external' => true,
 		];
 
 		$ns = $this->opts['namespace'] ?? null;
@@ -891,7 +900,7 @@ class SpecialContributions extends IncludableSpecialPage {
 	}
 
 	/**
-	 * @param User $targetUser The normalized target user
+	 * @param UserIdentity $targetUser The normalized target user identity
 	 * @return ContribsPager
 	 */
 	private function getPager( $targetUser ) {
