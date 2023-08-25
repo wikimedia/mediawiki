@@ -3,6 +3,8 @@
  */
 ( function () {
 	var nav = require( './nav.js' );
+	nav.insertHints( mw.msg( 'prefs-sections-navigation-hint' ) );
+
 	// Define a window manager to control the dialogs
 	var dialogFactory = new OO.Factory();
 	var windowManager = new OO.ui.WindowManager( { factory: dialogFactory } );

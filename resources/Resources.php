@@ -2251,6 +2251,7 @@ return [
 		],
 		'messages' => [
 			'prefs-tabs-navigation-hint',
+			'prefs-sections-navigation-hint',
 			'prefs-signature-highlight-error',
 			'prefs-back-title',
 			'searchprefs-noresults',

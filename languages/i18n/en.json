@@ -1259,6 +1259,7 @@
 	"prefs-diffs": "Diffs",
 	"prefs-help-prefershttps": "This preference will take effect on your next login.",
 	"prefs-tabs-navigation-hint": "Tip: You can use the left and right arrow keys to navigate between the tabs in the tabs list.",
+	"prefs-sections-navigation-hint": "Tip: You can use the Tab and Shift + Tab keys to navigate between the preference sections.",
 	"userrights": "User rights",
 	"userrights-summary": "",
 	"userrights-lookup-user": "Select a user",

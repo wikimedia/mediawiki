@@ -10,12 +10,14 @@
 		 * Make sure the accessibility tip is focussable so that keyboard users take notice,
 		 * but hide it by default to reduce visual clutter.
 		 * Make sure it becomes visible when focused.
+		 *
+		 * @param {string} hintMsg the layout-specific navigation hint message
 		 */
-		insertHints: function () {
+		insertHints: function ( hintMsg ) {
 			$( '<div>' ).addClass( 'mw-navigation-hint' )
-				.text( mw.msg( 'prefs-sections-navigation-hint' ) )
+				.text( hintMsg )
 				.attr( {
-					sectionIndex: 0
+					tabIndex: 0
 				} )
 				.insertBefore( '.mw-htmlform-ooui-wrapper' );
 		},
