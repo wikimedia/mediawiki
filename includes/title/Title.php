@@ -4007,4 +4007,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 
 }
 
+/**
+ * @deprecated since 1.40
+ */
 class_alias( Title::class, 'Title' );
