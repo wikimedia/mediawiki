@@ -612,6 +612,9 @@ because of Phabricator reports.
 * The following classes are now namespaced; the old class names are left as
   deprecated aliases:
   - Status -> MediaWiki\Status\Status
+  - StatusValue -> MediaWiki\Status\StatusValue
+  - EventRelayer -> Wikimedia\EventRelayer\EventRelayer
+  - EventRelayerNull -> Wikimedia\EventRelayer\EventRelayerNull
   - EventRelayerGroup -> Wikimedia\EventRelayer\EventRelayerGroup
 * The following methods, previously deprecated, now emit deprecation warnings:
   - ConfigFactory::getDefaultInstance(), deprecated since 1.27
