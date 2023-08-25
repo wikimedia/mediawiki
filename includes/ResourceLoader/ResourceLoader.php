@@ -2074,4 +2074,7 @@ MESSAGE;
 	}
 }
 
+/**
+ * @deprecated since 1.39
+ */
 class_alias( ResourceLoader::class, 'ResourceLoader' );

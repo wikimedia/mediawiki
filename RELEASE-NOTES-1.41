@@ -565,6 +565,8 @@ because of Phabricator reports.
   - ListToggle -> MediaWiki\Html\ListToggle
   - TemplateParser -> MediaWiki\Html\TemplateParser
   - RawMessage -> MediaWiki\Language\RawMessage
+  From 1.39:
+  - ResourceLoader -> MediaWiki\ResourceLoader\ResourceLoader
   From 1.29:
   - IMaintainableDatabase -> Wikimedia\Rdbms\IMaintainableDatabase
 * The WebRequest::getRequestId() and WebRequest::overrideRequestId() are
