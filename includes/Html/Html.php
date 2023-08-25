@@ -1206,4 +1206,7 @@ class Html {
 	}
 }
 
+/**
+ * @deprecated since 1.40
+ */
 class_alias( Html::class, 'Html' );
