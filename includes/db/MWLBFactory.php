@@ -419,25 +419,23 @@ class MWLBFactory {
 		IBufferingStatsdDataFactory $stats
 	): void {
 		if ( $config->get( 'CommandLineMode' ) ) {
-			// Disable buffering and delaying of DeferredUpdates and stats
-			// for maintenance scripts and PHPUnit tests.
-			// Hook into period lag checks which often happen in long-running scripts
-			$lbFactory->setWaitForReplicationListener(
+			$lbFactory->getMainLB()->setTransactionListener(
 				__METHOD__,
-				static function () use ( $stats, $config ) {
-					DeferredUpdates::tryOpportunisticExecute();
+				static function ( $trigger ) use ( $stats, $config ) {
+					// During maintenance scripts and PHPUnit integration tests, we let
+					// DeferredUpdates run immediately from addUpdate(), unless a transaction
+					// is active. Notify DeferredUpdates after any commit to try now.
+					// See DeferredUpdates::tryOpportunisticExecute for why.
+					if ( $trigger === IDatabase::TRIGGER_COMMIT ) {
+						DeferredUpdates::tryOpportunisticExecute();
+					}
 					// Flush stats periodically in long-running CLI scripts to avoid OOM (T181385)
 					MediaWiki::emitBufferedStatsdData( $stats, $config );
 				}
 			);
-			// Check for other windows to run them. A script may read or do a few writes
-			// to the primary DB but mostly be writing to something else, like a file store.
-			$lbFactory->getMainLB()->setTransactionListener(
+			$lbFactory->setWaitForReplicationListener(
 				__METHOD__,
-				static function ( $trigger ) use ( $stats, $config ) {
-					if ( $trigger === IDatabase::TRIGGER_COMMIT ) {
-						DeferredUpdates::tryOpportunisticExecute();
-					}
+				static function () use ( $stats, $config ) {
 					// Flush stats periodically in long-running CLI scripts to avoid OOM (T181385)
 					MediaWiki::emitBufferedStatsdData( $stats, $config );
 				}
