@@ -424,6 +424,8 @@ because of Phabricator reports.
    - IDatabase (use Wikimedia\Rdbms\IDatabase)
    - FakeResultWrapper (use Wikimedia\Rdbms\FakeResultWrapper)
    - ResultWrapper (use Wikimedia\Rdbms\ResultWrapper)
+* $CHANGEDORCREATED argument of 'enotif_body' message was removed.
+  It wasn't used in the default messages since 1.21.
 * …
 
 === Deprecations in 1.41 ===
