@@ -7,7 +7,6 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Title\Title;
-use MediaWiki\User\ActorMigration;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\FakeResultWrapper;
@@ -36,9 +35,6 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
-	/** @var ActorMigration */
-	private $actorMigration;
-
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
 
@@ -54,7 +50,6 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 		$this->linkBatchFactory = $services->getLinkBatchFactory();
 		$this->hookContainer = $services->getHookContainer();
 		$this->dbProvider = $services->getDBLoadBalancerFactory();
-		$this->actorMigration = $services->getActorMigration();
 		$this->namespaceInfo = $services->getNamespaceInfo();
 		$this->commentFormatter = $services->getCommentFormatter();
 		$this->pager = $this->getContribsPager( [
@@ -71,7 +66,6 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 			$this->linkBatchFactory,
 			$this->hookContainer,
 			$this->dbProvider,
-			$this->actorMigration,
 			$this->revisionStore,
 			$this->namespaceInfo,
 			$targetUser,

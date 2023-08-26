@@ -41,7 +41,6 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Specials\Contribute\ContributeFactory;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use MediaWiki\User\ActorMigration;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
@@ -72,9 +71,6 @@ class SpecialContributions extends IncludableSpecialPage {
 	/** @var IConnectionProvider */
 	private $dbProvider;
 
-	/** @var ActorMigration */
-	private $actorMigration;
-
 	/** @var RevisionStore */
 	private $revisionStore;
 
@@ -103,7 +99,6 @@ class SpecialContributions extends IncludableSpecialPage {
 	 * @param LinkBatchFactory|null $linkBatchFactory
 	 * @param PermissionManager|null $permissionManager
 	 * @param IConnectionProvider|null $dbProvider
-	 * @param ActorMigration|null $actorMigration
 	 * @param RevisionStore|null $revisionStore
 	 * @param NamespaceInfo|null $namespaceInfo
 	 * @param UserNameUtils|null $userNameUtils
@@ -116,7 +111,6 @@ class SpecialContributions extends IncludableSpecialPage {
 		LinkBatchFactory $linkBatchFactory = null,
 		PermissionManager $permissionManager = null,
 		IConnectionProvider $dbProvider = null,
-		ActorMigration $actorMigration = null,
 		RevisionStore $revisionStore = null,
 		NamespaceInfo $namespaceInfo = null,
 		UserNameUtils $userNameUtils = null,
@@ -131,7 +125,6 @@ class SpecialContributions extends IncludableSpecialPage {
 		$this->linkBatchFactory = $linkBatchFactory ?? $services->getLinkBatchFactory();
 		$this->permissionManager = $permissionManager ?? $services->getPermissionManager();
 		$this->dbProvider = $dbProvider ?? $services->getDBLoadBalancerFactory();
-		$this->actorMigration = $actorMigration ?? $services->getActorMigration();
 		$this->revisionStore = $revisionStore ?? $services->getRevisionStore();
 		$this->namespaceInfo = $namespaceInfo ?? $services->getNamespaceInfo();
 		$this->userNameUtils = $userNameUtils ?? $services->getUserNameUtils();
@@ -949,7 +942,6 @@ class SpecialContributions extends IncludableSpecialPage {
 				$this->linkBatchFactory,
 				$this->getHookContainer(),
 				$this->dbProvider,
-				$this->actorMigration,
 				$this->revisionStore,
 				$this->namespaceInfo,
 				$targetUser,

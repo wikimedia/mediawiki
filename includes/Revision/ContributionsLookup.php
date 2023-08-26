@@ -11,7 +11,6 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\FauxRequest;
-use MediaWiki\User\ActorMigration;
 use MediaWiki\User\UserIdentity;
 use Message;
 use NamespaceInfo;
@@ -38,9 +37,6 @@ class ContributionsLookup {
 	/** @var IConnectionProvider */
 	private $dbProvider;
 
-	/** @var ActorMigration */
-	private $actorMigration;
-
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
 
@@ -53,7 +49,6 @@ class ContributionsLookup {
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param HookContainer $hookContainer
 	 * @param IConnectionProvider $dbProvider
-	 * @param ActorMigration $actorMigration
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param CommentFormatter $commentFormatter
 	 */
@@ -63,7 +58,6 @@ class ContributionsLookup {
 		LinkBatchFactory $linkBatchFactory,
 		HookContainer $hookContainer,
 		IConnectionProvider $dbProvider,
-		ActorMigration $actorMigration,
 		NamespaceInfo $namespaceInfo,
 		CommentFormatter $commentFormatter
 	) {
@@ -72,7 +66,6 @@ class ContributionsLookup {
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->hookContainer = $hookContainer;
 		$this->dbProvider = $dbProvider;
-		$this->actorMigration = $actorMigration;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->commentFormatter = $commentFormatter;
 	}
@@ -275,7 +268,6 @@ class ContributionsLookup {
 			$this->linkBatchFactory,
 			$this->hookContainer,
 			$this->dbProvider,
-			$this->actorMigration,
 			$this->revisionStore,
 			$this->namespaceInfo,
 			$targetUser,

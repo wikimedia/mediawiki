@@ -533,7 +533,6 @@ return [
 			$services->getLinkBatchFactory(),
 			$services->getHookContainer(),
 			$services->getDBLoadBalancerFactory(),
-			$services->getActorMigration(),
 			$services->getNamespaceInfo(),
 			$services->getCommentFormatter()
 		);
