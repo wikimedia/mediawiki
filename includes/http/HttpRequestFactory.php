@@ -21,6 +21,7 @@ namespace MediaWiki\Http;
 
 use GuzzleHttp\Client;
 use GuzzleHttpRequest;
+use InvalidArgumentException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
@@ -136,23 +137,19 @@ class HttpRequestFactory {
 	private function normalizeTimeout( $parameter, $maxParameter, $default, $maxConfigured ) {
 		if ( $parameter === 'default' || $parameter === null ) {
 			if ( !is_numeric( $default ) ) {
-				throw new \InvalidArgumentException(
+				throw new InvalidArgumentException(
 					'$wgHTTPTimeout and $wgHTTPConnectTimeout must be set to a number' );
 			}
 			$value = $default;
 		} else {
 			$value = $parameter;
 		}
-		if ( $maxParameter !== null ) {
-			$max = $maxParameter;
-		} else {
-			$max = $maxConfigured;
-		}
+		$max = $maxParameter ?? $maxConfigured;
 		if ( $max && $value > $max ) {
 			return $max;
-		} else {
-			return $value;
 		}
+
+		return $value;
 	}
 
 	/**
@@ -195,7 +192,7 @@ class HttpRequestFactory {
 	}
 
 	/**
-	 * Simple wrapper for request( 'GET' ), parameters have same meaning as for request()
+	 * Simple wrapper for `request( 'GET' )`, parameters have the same meaning as for `request()`
 	 *
 	 * @since 1.34
 	 * @param string $url
@@ -208,7 +205,7 @@ class HttpRequestFactory {
 	}
 
 	/**
-	 * Simple wrapper for request( 'POST' ), parameters have same meaning as for request()
+	 * Simple wrapper for `request( 'POST' )`, parameters have the same meaning as for `request()`
 	 *
 	 * @since 1.34
 	 * @param string $url
