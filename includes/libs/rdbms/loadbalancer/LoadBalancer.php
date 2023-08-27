@@ -1991,7 +1991,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 	/**
 	 * @param IDatabase $conn
-	 * @return string Desciption of a connection handle for log messages
+	 * @return string Description of a connection handle for log messages
 	 * @throws InvalidArgumentException
 	 */
 	private function stringifyConn( IDatabase $conn ) {

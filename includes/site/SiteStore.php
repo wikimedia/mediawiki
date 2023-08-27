@@ -19,7 +19,7 @@
  */
 
 /**
- * Interface for storing and retreiving Site objects.
+ * Interface for storing and retrieving Site objects.
  *
  * Default implementation is DBSiteStore.
  *

@@ -665,7 +665,7 @@ class PermissionManager {
 			$allowed = true;
 		} elseif ( is_array( $whiteListRead ) && count( $whiteListRead ) ) {
 			// Time to check the whitelist
-			// Only do these checks is there's something to check against
+			// Only do these checks if there's something to check against
 			$name = $title->getPrefixedText();
 			$dbName = $title->getPrefixedDBkey();
 

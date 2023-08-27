@@ -19,7 +19,7 @@
  */
 
 /**
- * Interface to retreive Site objects, for implementation by service classes.
+ * Interface to retrieve Site objects, for implementation by service classes.
  *
  * Default implementation is DBSiteStore.
  *

@@ -49,7 +49,7 @@ use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
- * Managers user groups.
+ * Manages user groups.
  * @since 1.35
  */
 class UserGroupManager implements IDBAccessObject {

@@ -322,7 +322,7 @@ class CoreMagicVariables {
 	 *
 	 * @param Parser $parser
 	 * @param ConvertibleTimestamp $ts Current timestamp with the display timezone
-	 * @param string $unit The unit the timestamp is expressed in; one of ("D", "H", "I")
+	 * @param string $unit The unit the timestamp is expressed in; one of ("Y", "M", "D", "H")
 	 */
 	private static function applyUnitTimestampDeadline(
 		Parser $parser,

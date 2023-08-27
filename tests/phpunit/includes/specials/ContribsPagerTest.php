@@ -324,7 +324,7 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Flow uses ContribsPager::reallyDoQuery hook to provide something other then
-	 * stdClass as a row, and then manually formats it's own row in ContributionsLineEnding.
+	 * stdClass as a row, and then manually formats its own row in ContributionsLineEnding.
 	 * Emulate this behaviour and check that it works.
 	 *
 	 * @covers ContribsPager::formatRow

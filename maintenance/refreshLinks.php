@@ -43,7 +43,7 @@ class RefreshLinks extends Maintenance {
 		$this->addOption( 'new-only', 'Only affect articles with just a single edit' );
 		$this->addOption( 'redirects-only', 'Only fix redirects, not all links' );
 		$this->addOption( 'old-redirects-only', 'Only fix redirects with no redirect table entry' );
-		$this->addOption( 'touched-only', 'Only fix pages that has been touched after last update' );
+		$this->addOption( 'touched-only', 'Only fix pages that have been touched after last update' );
 		$this->addOption( 'e', 'Last page id to refresh', false, true );
 		$this->addOption( 'dfn-chunk-size', 'Maximum number of existent IDs to check per ' .
 			'query, default 100000', false, true );

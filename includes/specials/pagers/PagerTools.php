@@ -17,7 +17,7 @@ class PagerTools {
 
 	/**
 	 * Generate a set of tools for a revision.
-	 * Will performs permission checks where necessary.
+	 * Will perform permission checks where necessary.
 	 * @param RevisionRecord $revRecord The revision to generate tools for.
 	 * @param RevisionRecord|null $previousRevRecord The previous revision (if any). Optional.
 	 *   Used to produce undo links.

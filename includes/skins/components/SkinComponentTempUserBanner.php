@@ -12,7 +12,7 @@ use User;
  * NOTE: This class is currently *not registered* via the SkinComponentRegistry
  * and cannot be called via Skin::getComponent.
  * Because of it's unsuitability for rendering via mustache templates
- * (it renders it's own HTML and returns no data),
+ * (it renders its own HTML and returns no data),
  * it is appended directly to skin data in Skin::getTemplateData.
  * @unstable
  */

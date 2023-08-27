@@ -57,7 +57,7 @@ class DeletedContribsPagerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Flow uses DeletedContribsPager::reallyDoQuery hook to provide something other then
-	 * stdClass as a row, and then manually formats it's own row in ContributionsLineEnding.
+	 * stdClass as a row, and then manually formats its own row in ContributionsLineEnding.
 	 * Emulate this behaviour and check that it works.
 	 *
 	 * @covers DeletedContribsPager::formatRow
