@@ -494,10 +494,13 @@ class UserMailer {
 		$charset = str_replace( 'ISO-8859', 'ISO8859', $charset ); // ?
 
 		$illegal = '\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\xff=';
-		$replace = $illegal . '\t ?_';
 		if ( !preg_match( "/[$illegal]/", $string ) ) {
 			return $string;
 		}
+
+		// T344912: Add period '.' char
+		$replace = $illegal . '.\t ?_';
+
 		$out = "=?$charset?Q?";
 		$out .= preg_replace_callback( "/([$replace])/",
 			function ( $matches ) {
