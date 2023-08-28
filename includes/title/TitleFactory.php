@@ -191,4 +191,7 @@ class TitleFactory {
 
 }
 
+/**
+ * @deprecated since 1.41
+ */
 class_alias( TitleFactory::class, 'TitleFactory' );

@@ -583,6 +583,9 @@ because of Phabricator reports.
   - WebResponse -> MediaWiki\Request\WebResponse
   - MediaWiki\HeaderCallback -> MediaWiki\Request\HeaderCallback
   - Title -> MediaWiki\Title\Title
+  - TitleArray -> MediaWiki\Title\TitleArray
+  - TitleArrayFromResult -> MediaWiki\Title\TitleArrayFromResult
+  - TitleFactory -> MediaWiki\Title\TitleFactory
   From 1.39:
   - ResourceLoader -> MediaWiki\ResourceLoader\ResourceLoader
   From 1.29:

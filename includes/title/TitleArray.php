@@ -61,4 +61,7 @@ abstract class TitleArray implements Iterator {
 	abstract public function key(): int;
 }
 
+/**
+ * @deprecated since 1.41
+ */
 class_alias( TitleArray::class, 'TitleArray' );

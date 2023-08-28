@@ -102,4 +102,7 @@ class TitleArrayFromResult extends TitleArray implements Countable {
 	}
 }
 
+/**
+ * @deprecated since 1.41
+ */
 class_alias( TitleArrayFromResult::class, 'TitleArrayFromResult' );
