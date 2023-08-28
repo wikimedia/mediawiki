@@ -2,7 +2,7 @@
 	const Vue = require( '../../lib/vue/vue.js' );
 	const errorLogger = require( './errorLogger.js' );
 	const i18n = require( './i18n.js' );
-	const teleportTarget = require( 'mediawiki.page.teleportTarget' );
+	const teleportTarget = require( 'mediawiki.page.ready' ).teleportTarget;
 
 	/**
 	 * Replace the given DOM element with its children.
