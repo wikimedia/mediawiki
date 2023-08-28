@@ -7,7 +7,7 @@ const storage = require( './storage.js' );
 
 const inputFields = {};
 const fieldNamePrefix = 'field_';
-
+var hasLoaded = false;
 var changeDebounceTimer = null;
 
 // Number of miliseconds to debounce form input.
@@ -19,6 +19,10 @@ const windowManager = OO.ui.getWindowManager();
 windowManager.addWindows( [ new mw.widgets.AbandonEditDialog() ] );
 
 function onLoadHandler( $editForm ) {
+	if ( hasLoaded ) {
+		return;
+	}
+	hasLoaded = true;
 	// Monitor all text-entry inputs for changes/typing.
 	const inputsToMonitorSelector = 'textarea, select, input:not([type="hidden"], [type="submit"])';
 	const $inputsToMonitor = $editForm.find( inputsToMonitorSelector );
