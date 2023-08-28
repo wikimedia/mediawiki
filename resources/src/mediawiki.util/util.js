@@ -572,7 +572,7 @@ var util = {
 	 *
 	 *     var node = mw.util.addPortletLink(
 	 *         'p-tb',
-	 *         new mw.Title( 'Special:Example' ).getUrl(),
+	 *         mw.util.getUrl( 'Special:Example' ),
 	 *         'Example'
 	 *     );
 	 *     $( node ).on( 'click', function ( e ) {
