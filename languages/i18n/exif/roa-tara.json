@@ -184,7 +184,6 @@
 	"exif-originalimageheight": "Altezze de l'immaggine apprime ca avenève retagghiate",
 	"exif-originalimagewidth": "Larghezze de l'immaggine apprime ca avenève retagghiate",
 	"exif-contact-value": "$1\n\n$2\n<div class=\"adr\">\n$3\n\n$4, $5, $6 $7\n</div>\n$8",
-	"exif-subjectnewscode-value": "$2 ($1)",
 	"exif-compression-1": "No combresse",
 	"exif-compression-2": "Gruppe CCITT 3 Decodifeche de Esecuzione d'a lunghezze 1-Dimenzionale Cangiate de Huffman",
 	"exif-compression-3": "Gruppe CCITT 3 de decodifeche d'u fax",

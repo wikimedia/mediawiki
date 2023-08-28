@@ -2544,6 +2544,8 @@
 	"anoncontribs": "Contribuții",
 	"contribsub2": "Pentru {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "Pentru {{GENDER:$2|$1}}",
+	"contributions-edit-count": "{{GENDER:$1|Un utilizator|O utilizatoare|Un utilizator}} cu $2 {{PLURAL:$2|modificare|modificări}}.",
+	"contributions-account-creation-date": "Cont creat în $1.",
 	"contributions-userdoesnotexist": "Contul de utilizator „$1” nu este înregistrat.",
 	"negative-namespace-not-supported": "Spațiile de nume cu valori negative nu sunt permise.",
 	"nocontribs": "Nu a fost găsită nici o modificare care să satisfacă acest criteriu.",

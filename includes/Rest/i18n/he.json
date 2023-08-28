@@ -39,6 +39,7 @@
 	"rest-bad-json-body": "גוף בקשה גרוע, חייב להיות עצם JSON.",
 	"rest-json-body-parse-error": "פענוח גוף הבקשה בתור JSON נכשל: $1",
 	"rest-missing-body-field": "שדה החובה \"$1\" חסר מגוף הבקשה.",
+	"rest-extraneous-body-fields": "שדות מיותרים נמצאו בגוף הבקשה: $1",
 	"rest-bad-content-model": "מודל תוכן גרוע: $1",
 	"rest-update-cannot-create-page": "לא ניתן ליצור את הדף \"$1\" כי הוא כבר קיים. כדי לעדכן דף קיים, נא לספק את מזהה גרסת הבסיס במבנה תחת המפתח \"latest\" בגוף הבקשה.",
 	"rest-extraneous-csrf-token": "נמצאו אסימוני CSRF חיצוניים. אסימוני CSRF לא צריכים לשמש בעת שימוש במנגנוני אימות כגון OAuth, שחסינים מפני תקיפות CSRF.",

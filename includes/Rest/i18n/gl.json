@@ -38,6 +38,7 @@
 	"rest-bad-json-body": "O corpo da solicitude é incorrecto, debe ser un obxecto JSON.",
 	"rest-json-body-parse-error": "Produciuse un erro ao analizar o corpo da solicitude como JSON: $1",
 	"rest-missing-body-field": "Falta o campo obrigatorio \"$1\" no corpo da solicitude.",
+	"rest-extraneous-body-fields": "Atopáronse campos estraños no corpo da solicitude: $1",
 	"rest-bad-content-model": "Modelo de contido incorrecto: $1",
 	"rest-update-cannot-create-page": "Non se pode crear a páxina \"$1\" porque xa existe. Para actualizar a páxina existente, proporciona o identificador de revisión base na estrutura baixo a clave \"latest\" no corpo da solicitude.",
 	"rest-extraneous-csrf-token": "Atopouse un token CSRF estraño. Os tokens CSRF non se deben empregar cando se usan mecanismos de autenticación como OAuth que son seguros contra ataques CSRF.",

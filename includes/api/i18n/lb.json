@@ -191,6 +191,7 @@
 	"apihelp-userrights-param-user": "Benotzer.",
 	"apihelp-userrights-param-userid": "Benotzer Id.",
 	"apihelp-userrights-param-reason": "Grond fir d'Ännerung.",
+	"apihelp-userrights-param-watchuser": "Dem Benotzer seng Benotzer- an Diskussiounssäiten iwwerwaachen.",
 	"apihelp-validatepassword-param-password": "Passwuert fir ze validéieren.",
 	"apihelp-validatepassword-example-1": "Validéiert d'Passwuert <kbd>foobar</kbd> fir den aktuelle Benotzer.",
 	"apihelp-watch-example-watch": "D'Säit <kbd>Main Page</kbd> iwwerwaachen.",

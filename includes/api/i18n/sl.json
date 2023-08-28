@@ -315,6 +315,8 @@
 	"apihelp-upload-example-url": "Naložitev iz URL-ja",
 	"apihelp-upload-example-filekey": "Dokonča nalaganje, ki ni uspelo zaradi opozoril.",
 	"apihelp-userrights-param-user": "Uporabnik.",
+	"apihelp-userrights-param-watchuser": "Opazuj uporabnikovo uporabniško in pogovorno stran",
+	"apihelp-userrights-param-watchlistexpiry": "Časovni žig preteka opazovanja. Da ostane trenutni pretek nespremenjen, ta parameter v celoti izpustite.",
 	"apihelp-userrights-example-expiry": "Dodajanje uporabnika <kbd>SometimeSysop</kbd> v skupino <kbd>sysop</kbd> za 1 mesec.",
 	"apihelp-watch-summary": "Dodatek ali odstranitev strani s spiska nadzora",
 	"apihelp-watch-example-watch": "Opazuj stran <kbd>Main Page</kbd>.",

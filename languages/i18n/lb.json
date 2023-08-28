@@ -1121,6 +1121,7 @@
 	"userrights-systemuser": "{{GENDER:$1|Dëse Benotzer|Dës Benotzerin}} ass e Systembenotzer",
 	"userrights-groups-help": "Dir kënnt d'Gruppen zu deenen {{GENDER:$1|dëse Benotzer|dës Benotzerin}} gehéiert änneren.\n* Een ugekräizt Haische bedeit, datt de Benotzer Member vun dëser Grupp ass.\n* Een net ugekräizt Haische bedeit, datt de Benotzer net Member vun dëser Grupp ass.\n* E Stärchen (*) bedeit datt Dir d'Grupp net méi ewechhuele kënnt wann e bis eemol dobäigesat ass oder gouf.\n* Eng Raut (#) gëtt un Datt Dir d'Oflafzäit als Member vun dëser Grupp just zrécksetze kënnt; Dir kënnt se net no vir setzen.",
 	"userrights-reason": "Grond:",
+	"userrights-watchuser": "Dësem Benotzer seng Benotzer- an Diskussiounssäiten iwwerwaachen",
 	"userrights-no-interwiki": "Dir hutt net déi néideg Rechter, fir d'Rechter vu Benoutzer op anere Wikien z'änneren.",
 	"userrights-nodatabase": "D'Datebank $1 gëtt et net oder se ass net lokal.",
 	"userrights-changeable-col": "Gruppen déi Dir ännere kënnt",

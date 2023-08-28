@@ -38,6 +38,7 @@
 	"rest-bad-json-body": "Neustrezno telo zahtevke, biti mora objekt JSON.",
 	"rest-json-body-parse-error": "Razčlenjevanje telesa zahtevka kot JSON ni uspelo: $1",
 	"rest-missing-body-field": "Telesu zahtevka manjka obvezno polje »$1«.",
+	"rest-extraneous-body-fields": "Dodatna polja v telesu zahtevka: $1",
 	"rest-bad-content-model": "Neustrezen vsebinski model: $1",
 	"rest-update-cannot-create-page": "Strani »$1« ni mogoče ustvariti, ker že obstaja. Za posodobitev obstoječe strani navedite ID osnovne redakcije v strukturi v telesu zahtevka pod ključem »latest« (najnovejše).",
 	"rest-extraneous-csrf-token": "Najden je bil odvečen žeton CSRF. Žetoni CSRF se pri uporabi avtentikacijskih mehanizmov, kot je OAuth, ki so varni pred napadi CSRF, ne smejo uporabljati.",

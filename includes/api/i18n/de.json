@@ -1196,6 +1196,7 @@
 	"apihelp-userrights-param-remove": "Entfernt den Benutzer aus diesen Gruppen.",
 	"apihelp-userrights-param-reason": "Grund für die Änderung.",
 	"apihelp-userrights-param-tags": "Auf den Eintrag im Benutzerrechte-Logbuch anzuwendende Änderungsmarkierungen.",
+	"apihelp-userrights-param-watchuser": "Beobachten der Benutzer- und Diskussionseiten dieses Benutzters",
 	"apihelp-validatepassword-summary": "Validiert ein Passwort gegen die Passwortrichtlinien des Wikis.",
 	"apihelp-validatepassword-extended-description": "Die Validität wird als <samp>Good</samp> gemeldet, falls das Passwort akzeptabel ist, <samp>Change</samp>, falls das Passwort zur Anmeldung verwendet werden kann, jedoch geändert werden muss oder <samp>Invalid</samp>, falls das Passwort nicht verwendbar ist.",
 	"apihelp-validatepassword-param-password": "Zu validierendes Passwort.",

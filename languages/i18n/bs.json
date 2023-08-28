@@ -2389,6 +2389,8 @@
 	"anoncontribs": "Doprinosi",
 	"contribsub2": "Za {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "Za {{GENDER:$2|$1}}",
+	"contributions-edit-count": "{{GENDER:$1|Ukupno}} {{PLURAL:$2|izmjena}}: $2.",
+	"contributions-account-creation-date": "Datum registracije: $1.",
 	"contributions-userdoesnotexist": "Korisnički račun \"$1\" nije registriran.",
 	"negative-namespace-not-supported": "Imenski prostori s negativnim vrijednostima nisu podržani.",
 	"nocontribs": "Nema izmjena koje odgovaraju navedenim kriterijima.",

@@ -782,6 +782,7 @@
 	"apihelp-userrights-param-expiry": "Sygnatury czasowe wygaśnięcia. Mogą być względne (np. <kbd>5 months</kbd> lub <kbd>2 weeks</kbd>) lub bezwzględne (np. <kbd>2014-09-18T12:34:56Z</kbd>). Jeśli ustawiona jest tylko jedna sygnatura, to zostanie zastosowana do wszystkich grup podanych w parametrze <var>$1add</var>. Użyj <kbd>infinite</kbd>, <kbd>indefinite</kbd>, <kbd>infinity</kbd> lub <kbd>never</kbd> aby grupa nigdy nie wygasła.",
 	"apihelp-userrights-param-remove": "Usuń użytkownika z tych grup.",
 	"apihelp-userrights-param-reason": "Powód zmiany.",
+	"apihelp-userrights-param-watchuser": "Obserwuj strony osobiste i strony dyskusji tego użytkownika.",
 	"apihelp-validatepassword-param-password": "Hasło do walidacji.",
 	"apihelp-watch-summary": "Dodaj strony do listy obserwowanych obecnego użytkownika lub usuń je z niej.",
 	"apihelp-watch-param-unwatch": "Po ustawieniu strona będzie usuwana z listy obserwowanych a nie dodawana.",

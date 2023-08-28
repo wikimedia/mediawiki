@@ -38,6 +38,7 @@
 	"rest-bad-json-body": "Schlechter Hauptteil der Anfrage, muss ein JSON-Objekt sein.",
 	"rest-json-body-parse-error": "Parsen des Hauptteils der Anfrage als JSON fehlgeschlagen: $1",
 	"rest-missing-body-field": "Pflichtfeld „$1“ fehlt im Hauptteil der Anfrage.",
+	"rest-extraneous-body-fields": "Zusätzliche Felder im Anfragetext gefunden: $1",
 	"rest-bad-content-model": "Schlechtes Inhaltsmodell: $1",
 	"rest-update-cannot-create-page": "Die Seite „$1“ kann nicht erstellt werden, da sie bereits existiert. Um die bestehende Seite zu aktualisieren, gib die Basis-Versions-ID in der Struktur unter dem Schlüssel „latest“ im Hauptteil der Anfrage an.",
 	"rest-extraneous-csrf-token": "Fremdes CSRF-Token gefunden. CSRF-Token dürfen nicht verwendet werden, wenn Authentifizierungsmechanismen wie OAuth verwendet werden, die gegen CSRF-Angriffe sicher sind.",

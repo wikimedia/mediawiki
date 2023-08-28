@@ -1517,6 +1517,8 @@
 	"apihelp-userrights-param-remove": "Remover le usator de iste gruppos.",
 	"apihelp-userrights-param-reason": "Motivo del cambiamento.",
 	"apihelp-userrights-param-tags": "Etiquettas de cambiamento a applicar al entrata in le registro de derectos de usator.",
+	"apihelp-userrights-param-watchuser": "Observar le paginas de usator e de discussion del usator.",
+	"apihelp-userrights-param-watchlistexpiry": "Data e hora de expiration del observatorio. Omitte totalmente iste parametro pro lassar le expiration actual intacte.",
 	"apihelp-userrights-example-user": "Adder le usator <kbd>FooBot</kbd> al gruppo <kbd>bot</kbd>, e remover del gruppos <kbd>sysop</kbd> e <kbd>bureaucrat</kbd>.",
 	"apihelp-userrights-example-userid": "Adder le usator con ID <kbd>123</kbd> al gruppo <kbd>bot</kbd>, e remover del gruppos <kbd>sysop</kbd> e <kbd>bureaucrat</kbd>.",
 	"apihelp-userrights-example-expiry": "Adder le usator <kbd>SometimeSysop</kbd> al gruppo <kbd>sysop</kbd> pro 1 mense.",

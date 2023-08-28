@@ -68,7 +68,6 @@
 	"exif-usageterms": "Gebrûksbetingsten",
 	"exif-disclaimer": "Foarbehâld",
 	"exif-contact-value": "$1\n\n$2\n<div class=\"adr\">\n$3\n\n$4, $5, $6 $7\n</div>\n$8",
-	"exif-subjectnewscode-value": "$2 ($1)",
 	"exif-unknowndate": "Datum ûnbekend",
 	"exif-orientation-1": "Normaal",
 	"exif-componentsconfiguration-0": "bestiet net",

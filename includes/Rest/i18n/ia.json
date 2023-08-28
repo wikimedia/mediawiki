@@ -37,6 +37,7 @@
 	"rest-bad-json-body": "Mal corpore de requesta, debe esser un objecto JSON.",
 	"rest-json-body-parse-error": "Le analyse syntactic del corpore del requesta como JSON ha fallite: $1",
 	"rest-missing-body-field": "Le campo obligatori \"$1\" manca in le corpore del requesta.",
+	"rest-extraneous-body-fields": "Campos extranee trovate in le corpore del requesta: $1",
 	"rest-bad-content-model": "Mal modello de contento: $1",
 	"rest-update-cannot-create-page": "Le pagina \"$1\" non pote esser create perque illo jam existe. Pro actualisar le pagina existente, forni le ID del version de base in le structura sub le clave \"latest\" in le corpore del requesta.",
 	"rest-extraneous-csrf-token": "Un token CSRF superflue ha essite trovate. Le tokens CSRF non debe esser usate quando se usa mechanismos de authentication como OAuth que es secur contra attaccos CSRF.",

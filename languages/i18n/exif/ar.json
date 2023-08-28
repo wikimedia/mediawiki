@@ -193,7 +193,6 @@
 	"exif-personinimage": "الشخص في الصورة",
 	"exif-originalimageheight": "ارتفاع الصورة قبل أن تقتطع",
 	"exif-originalimagewidth": "عرض الصورة قبل أن تقتطع",
-	"exif-subjectnewscode-value": "$2 ($1)",
 	"exif-compression-1": "غير مضغوط",
 	"exif-compression-2": "CCITT المجموعة 3 -1 تعديل طول تشغيل ترميز هوفمان البعدي",
 	"exif-compression-3": "ترميز فاكس المجموعة 3 CCITT",

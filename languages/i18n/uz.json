@@ -1547,6 +1547,8 @@
 	"anoncontribs": "Qoʻshilgan hissa",
 	"contribsub2": "{{GENDER:$3|$1}} ($2) amalga oshirgan tahrirlar",
 	"contributions-subtitle": "{{GENDER:$2|$1}}",
+	"contributions-edit-count": "$2 {{PLURAL:$2|ta tahrirga}} sohib {{GENDER:$1|foydalanuvchi}}.",
+	"contributions-account-creation-date": "Hisob $1da yaratilgan.",
 	"nocontribs": "Belgilangan shartlarga muvofiq oʻzgarishlar topilmadi.",
 	"uctop": "joriy",
 	"month": "Oydan (va avvalroq)",

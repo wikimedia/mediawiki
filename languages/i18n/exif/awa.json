@@ -185,7 +185,6 @@
 	"exif-originalimageheight": "छोट करे कय पहिले चित्र कय उचाई",
 	"exif-originalimagewidth": "छोट करे कय पहिले चित्र कय चौडाई",
 	"exif-contact-value": "$1\n\n$2\n<div class=\"adr\">\n$3\n\n$4, $5, $6 $7\n</div>\n$8",
-	"exif-subjectnewscode-value": "$2 ($1)",
 	"exif-compression-1": "अनकॉम्प्रेस्स्ड",
 	"exif-compression-2": "CCITT समूह 3 1-Dimensional Modified Huffman संचालन इन्कोडिङ्ग",
 	"exif-compression-3": "CCITT ग्रुप 3 फ़ैक्स एनकोडिंग",

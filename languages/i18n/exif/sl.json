@@ -186,7 +186,6 @@
 	"exif-originalimageheight": "Višina slike, preden je bila obrezana",
 	"exif-originalimagewidth": "Širina slike, preden je bila obrezana",
 	"exif-contact-value": "$1\n\n$2\n<div class=\"adr\">\n$3\n\n$4, $5, $6 $7\n</div>\n$8",
-	"exif-subjectnewscode-value": "$2 ($1)",
 	"exif-compression-1": "Nestisnjeno",
 	"exif-compression-2": "Kodiranje CCITT skupina 3 1-razsežnostna spremenjena dolžina teka Huffman",
 	"exif-compression-3": "Kodiranje CCITT skupina 3 faks",

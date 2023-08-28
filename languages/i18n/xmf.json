@@ -259,7 +259,6 @@
 	"versionrequired": "საჭიროა მედიავიკის ვერსია $1",
 	"versionrequiredtext": "მოჩამილი ხასჷლაშ გჷმარინაფალო ოხვილური რე მედიავიკიშ ვერსია $1. ქოძირით [[Special:Version|სპეციალური:ვერსია]]",
 	"ok": "ჯგირი",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"backlinksubtitle": "← $1",
 	"retrievedfrom": "გორილი რე \"$1\"-შე",
 	"youhavenewmessages": "{{PLURAL:$3|თქვა გიღჷნა}} $1 ($2).",

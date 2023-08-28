@@ -184,7 +184,6 @@
 	"exif-originalimageheight": "Biyoo kayyanoo nd'a mana kosu",
 	"exif-originalimagewidth": "Biyoo hayroo nd'a mana kosu",
 	"exif-contact-value": "$1\n\n$2\n<div class=\"adr\">\n$3\n\n$4, $5, $6 $7\n</div>\n$8",
-	"exif-subjectnewscode-value": "$2 ($1)",
 	"exif-compression-1": "Mana kankamandi",
 	"exif-compression-2": "CCITT Kuray 3 1-Zimamari Huffman barmante diray kuuyan harfu-hawyan",
 	"exif-compression-3": "CCITT Kuray 3 faksu harfu-hawyan",
