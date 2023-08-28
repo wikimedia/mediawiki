@@ -471,4 +471,7 @@ class GitInfo {
 	}
 }
 
+/**
+ * @deprecated since 1.41
+ */
 class_alias( GitInfo::class, 'GitInfo' );

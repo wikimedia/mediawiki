@@ -626,6 +626,7 @@ because of Phabricator reports.
   - SiteStats -> MediaWiki\SiteStats\SiteStats
   - SiteStatsInit -> MediaWiki\SiteStats\SiteStatsInit
   - MediaWiki\ExtensionInfo -> MediaWiki\Utils\ExtensionInfo
+  - GitInfo -> MediaWiki\Utils\GitInfo
 * The following methods, previously deprecated, now emit deprecation warnings:
   - ConfigFactory::getDefaultInstance(), deprecated since 1.27
   - AbstractContent::getNativeData(), deprecated since 1.33
