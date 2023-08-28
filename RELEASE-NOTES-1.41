@@ -574,6 +574,11 @@ because of Phabricator reports.
   - Linker -> MediaWiki\Linker\Linker
   - DummyLinker -> MediaWiki\Linker\DummyLinker
   - ContentSecurityPolicy -> MediaWiki\Request\ContentSecurityPolicy
+  - DerivativeRequest -> MediaWiki\Request\DerivativeRequest
+  - FauxRequest -> MediaWiki\Request\FauxRequest
+  - FauxRequestUpload -> MediaWiki\Request\FauxRequestUpload
+  - PathRouter -> MediaWiki\Request\PathRouter
+  - WebRequestUpload -> MediaWiki\Request\WebRequestUpload
   - Title -> MediaWiki\Title\Title
   From 1.39:
   - ResourceLoader -> MediaWiki\ResourceLoader\ResourceLoader

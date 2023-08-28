@@ -445,4 +445,7 @@ class PathRouter {
 	}
 }
 
+/**
+ * @deprecated since 1.40
+ */
 class_alias( PathRouter::class, 'PathRouter' );
