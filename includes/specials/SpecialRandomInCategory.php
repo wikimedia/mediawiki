@@ -62,8 +62,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 	/** @var int|null */
 	private $minTimestamp = null;
 
-	/** @var IConnectionProvider */
-	private $dbProvider;
+	private IConnectionProvider $dbProvider;
 
 	/**
 	 * @param IConnectionProvider $dbProvider

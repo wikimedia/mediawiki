@@ -69,26 +69,16 @@ class SpecialUserRights extends SpecialPage {
 	protected $mFetchedUser = null;
 	protected $isself = false;
 
-	/** @var UserGroupManagerFactory */
-	private $userGroupManagerFactory;
+	private UserGroupManagerFactory $userGroupManagerFactory;
 
 	/** @var UserGroupManager|null The UserGroupManager of the target username or null */
 	private $userGroupManager = null;
 
-	/** @var UserNameUtils */
-	private $userNameUtils;
-
-	/** @var UserNamePrefixSearch */
-	private $userNamePrefixSearch;
-
-	/** @var UserFactory */
-	private $userFactory;
-
-	/** @var ActorStoreFactory */
-	private $actorStoreFactory;
-
-	/** @var WatchlistManager */
-	private $watchlistManager;
+	private UserNameUtils $userNameUtils;
+	private UserNamePrefixSearch $userNamePrefixSearch;
+	private UserFactory $userFactory;
+	private ActorStoreFactory $actorStoreFactory;
+	private WatchlistManager $watchlistManager;
 
 	/**
 	 * @param UserGroupManagerFactory|null $userGroupManagerFactory

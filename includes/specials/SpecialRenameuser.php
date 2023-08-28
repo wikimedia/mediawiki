@@ -17,29 +17,14 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * user accounts
  */
 class SpecialRenameuser extends SpecialPage {
-	/** @var IConnectionProvider */
-	private $dbConns;
-
-	/** @var Language */
-	private $contentLanguage;
-
-	/** @var MovePageFactory */
-	private $movePageFactory;
-
-	/** @var PermissionManager */
-	private $permissionManager;
-
-	/** @var TitleFactory */
-	private $titleFactory;
-
-	/** @var UserFactory */
-	private $userFactory;
-
-	/** @var UserNamePrefixSearch */
-	private $userNamePrefixSearch;
-
-	/** @var UserNameUtils */
-	private $userNameUtils;
+	private IConnectionProvider $dbConns;
+	private Language $contentLanguage;
+	private MovePageFactory $movePageFactory;
+	private PermissionManager $permissionManager;
+	private TitleFactory $titleFactory;
+	private UserFactory $userFactory;
+	private UserNamePrefixSearch $userNamePrefixSearch;
+	private UserNameUtils $userNameUtils;
 
 	/**
 	 * @param IConnectionProvider $dbConns

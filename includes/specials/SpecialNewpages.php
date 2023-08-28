@@ -55,29 +55,14 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 	protected $showNavigation = false;
 
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var CommentStore */
-	private $commentStore;
-
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
-
-	/** @var GroupPermissionsLookup */
-	private $groupPermissionsLookup;
-
-	/** @var RevisionLookup */
-	private $revisionLookup;
-
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
-
-	/** @var UserOptionsLookup */
-	private $userOptionsLookup;
-
-	/** @var CommentFormatter */
-	private $commentFormatter;
+	private LinkBatchFactory $linkBatchFactory;
+	private CommentStore $commentStore;
+	private IContentHandlerFactory $contentHandlerFactory;
+	private GroupPermissionsLookup $groupPermissionsLookup;
+	private RevisionLookup $revisionLookup;
+	private NamespaceInfo $namespaceInfo;
+	private UserOptionsLookup $userOptionsLookup;
+	private CommentFormatter $commentFormatter;
 	private ChangeTagsStore $changeTagsStore;
 
 	/**

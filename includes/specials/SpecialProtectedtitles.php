@@ -37,11 +37,8 @@ class SpecialProtectedtitles extends SpecialPage {
 	protected $IdLevel = 'level';
 	protected $IdType = 'type';
 
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var IConnectionProvider */
-	private $dbProvider;
+	private LinkBatchFactory $linkBatchFactory;
+	private IConnectionProvider $dbProvider;
 
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory

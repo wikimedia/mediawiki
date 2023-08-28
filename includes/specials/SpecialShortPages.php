@@ -38,8 +38,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class SpecialShortPages extends QueryPage {
 
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
+	private NamespaceInfo $namespaceInfo;
 
 	/**
 	 * @param NamespaceInfo $namespaceInfo

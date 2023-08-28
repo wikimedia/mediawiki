@@ -52,11 +52,8 @@ class SpecialRedirect extends FormSpecialPage {
 	 */
 	protected $mValue;
 
-	/** @var RepoGroup */
-	private $repoGroup;
-
-	/** @var UserFactory */
-	private $userFactory;
+	private RepoGroup $repoGroup;
+	private UserFactory $userFactory;
 
 	/**
 	 * @param RepoGroup $repoGroup

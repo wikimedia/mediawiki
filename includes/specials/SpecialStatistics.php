@@ -37,8 +37,7 @@ class SpecialStatistics extends SpecialPage {
 	private $edits, $good, $images, $total, $users,
 		$activeUsers = 0;
 
-	/** @var UserGroupManager */
-	private $userGroupManager;
+	private UserGroupManager $userGroupManager;
 
 	/**
 	 * @param UserGroupManager $userGroupManager

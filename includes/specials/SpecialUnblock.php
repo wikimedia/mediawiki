@@ -46,20 +46,11 @@ class SpecialUnblock extends SpecialPage {
 
 	protected $block;
 
-	/** @var UnblockUserFactory */
-	private $unblockUserFactory;
-
-	/** @var BlockUtils */
-	private $blockUtils;
-
-	/** @var UserNameUtils */
-	private $userNameUtils;
-
-	/** @var UserNamePrefixSearch */
-	private $userNamePrefixSearch;
-
-	/** @var WatchlistManager */
-	private $watchlistManager;
+	private UnblockUserFactory $unblockUserFactory;
+	private BlockUtils $blockUtils;
+	private UserNameUtils $userNameUtils;
+	private UserNamePrefixSearch $userNamePrefixSearch;
+	private WatchlistManager $watchlistManager;
 
 	/**
 	 * @param UnblockUserFactory $unblockUserFactory

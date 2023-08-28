@@ -41,14 +41,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 	private $watchlistFilterGroupDefinition;
 
-	/** @var WatchedItemStoreInterface */
-	private $watchedItemStore;
-
-	/** @var MessageCache */
-	private $messageCache;
-
-	/** @var UserOptionsLookup */
-	private $userOptionsLookup;
+	private WatchedItemStoreInterface $watchedItemStore;
+	private MessageCache $messageCache;
+	private UserOptionsLookup $userOptionsLookup;
 
 	/** @var int */
 	public $denseRcSizeThreshold = 10000;

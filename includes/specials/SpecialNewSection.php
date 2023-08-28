@@ -26,8 +26,7 @@ use MediaWiki\Title\Title;
  */
 class SpecialNewSection extends RedirectSpecialPage {
 
-	/** @var SearchEngineFactory */
-	private $searchEngineFactory;
+	private SearchEngineFactory $searchEngineFactory;
 
 	/**
 	 * @param SearchEngineFactory $searchEngineFactory

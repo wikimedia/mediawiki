@@ -37,11 +37,8 @@ use MediaWiki\Html\Html;
 
 class SpecialTrackingCategories extends SpecialPage {
 
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var TrackingCategories */
-	private $trackingCategories;
+	private LinkBatchFactory $linkBatchFactory;
+	private TrackingCategories $trackingCategories;
 
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory

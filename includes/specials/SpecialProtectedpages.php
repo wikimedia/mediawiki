@@ -37,23 +37,12 @@ class SpecialProtectedpages extends SpecialPage {
 	protected $IdLevel = 'level';
 	protected $IdType = 'type';
 
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var CommentStore */
-	private $commentStore;
-
-	/** @var UserCache */
-	private $userCache;
-
-	/** @var RowCommentFormatter */
-	private $rowCommentFormatter;
-
-	/** @var RestrictionStore */
-	private $restrictionStore;
+	private LinkBatchFactory $linkBatchFactory;
+	private IConnectionProvider $dbProvider;
+	private CommentStore $commentStore;
+	private UserCache $userCache;
+	private RowCommentFormatter $rowCommentFormatter;
+	private RestrictionStore $restrictionStore;
 
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory

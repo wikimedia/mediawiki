@@ -39,17 +39,10 @@ use MediaWiki\Watchlist\WatchlistManager;
  */
 class SpecialUpload extends SpecialPage {
 
-	/** @var LocalRepo */
-	private $localRepo;
-
-	/** @var UserOptionsLookup */
-	private $userOptionsLookup;
-
-	/** @var NamespaceInfo */
-	private $nsInfo;
-
-	/** @var WatchlistManager */
-	private $watchlistManager;
+	private LocalRepo $localRepo;
+	private UserOptionsLookup $userOptionsLookup;
+	private NamespaceInfo $nsInfo;
+	private WatchlistManager $watchlistManager;
 
 	/**
 	 * @param RepoGroup|null $repoGroup

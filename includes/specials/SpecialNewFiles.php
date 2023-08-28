@@ -35,14 +35,9 @@ class SpecialNewFiles extends IncludableSpecialPage {
 	/** @var string[] */
 	protected $mediaTypes;
 
-	/** @var GroupPermissionsLookup */
-	private $groupPermissionsLookup;
-
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
+	private GroupPermissionsLookup $groupPermissionsLookup;
+	private IConnectionProvider $dbProvider;
+	private LinkBatchFactory $linkBatchFactory;
 
 	/**
 	 * @param MimeAnalyzer $mimeAnalyzer

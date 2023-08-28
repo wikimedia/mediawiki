@@ -35,8 +35,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
 class SpecialWithoutInterwiki extends PageQueryPage {
 	private $prefix = '';
 
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
+	private NamespaceInfo $namespaceInfo;
 
 	/**
 	 * @param NamespaceInfo $namespaceInfo

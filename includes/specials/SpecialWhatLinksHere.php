@@ -44,26 +44,13 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 	/** @var Title */
 	protected $target;
 
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
-
-	/** @var SearchEngineFactory */
-	private $searchEngineFactory;
-
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
-
-	/** @var TitleFactory */
-	private $titleFactory;
-
-	/** @var LinksMigration */
-	private $linksMigration;
+	private IConnectionProvider $dbProvider;
+	private LinkBatchFactory $linkBatchFactory;
+	private IContentHandlerFactory $contentHandlerFactory;
+	private SearchEngineFactory $searchEngineFactory;
+	private NamespaceInfo $namespaceInfo;
+	private TitleFactory $titleFactory;
+	private LinksMigration $linksMigration;
 
 	protected $limits = [ 20, 50, 100, 250, 500 ];
 

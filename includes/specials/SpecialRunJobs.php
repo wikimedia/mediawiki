@@ -31,11 +31,8 @@ use Wikimedia\Rdbms\ReadOnlyMode;
  */
 class SpecialRunJobs extends UnlistedSpecialPage {
 
-	/** @var JobRunner */
-	private $jobRunner;
-
-	/** @var ReadOnlyMode */
-	private $readOnlyMode;
+	private JobRunner $jobRunner;
+	private ReadOnlyMode $readOnlyMode;
 
 	/**
 	 * @param JobRunner $jobRunner

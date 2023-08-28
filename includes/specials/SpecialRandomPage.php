@@ -36,8 +36,7 @@ class SpecialRandomPage extends SpecialPage {
 	protected $isRedir = false; // should the result be a redirect?
 	protected $extra = []; // Extra SQL statements
 
-	/** @var IConnectionProvider */
-	private $dbProvider;
+	private IConnectionProvider $dbProvider;
 
 	/**
 	 * @param IConnectionProvider|string|null $dbProvider

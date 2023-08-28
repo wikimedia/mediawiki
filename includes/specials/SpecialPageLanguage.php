@@ -44,17 +44,10 @@ class SpecialPageLanguage extends FormSpecialPage {
 	 */
 	private $goToUrl;
 
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
-
-	/** @var LanguageNameUtils */
-	private $languageNameUtils;
-
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var SearchEngineFactory */
-	private $searchEngineFactory;
+	private IContentHandlerFactory $contentHandlerFactory;
+	private LanguageNameUtils $languageNameUtils;
+	private IConnectionProvider $dbProvider;
+	private SearchEngineFactory $searchEngineFactory;
 
 	/**
 	 * @param IContentHandlerFactory $contentHandlerFactory

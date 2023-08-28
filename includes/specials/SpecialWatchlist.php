@@ -49,14 +49,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		'Special:EditWatchlist/clear'
 	];
 
-	/** @var WatchedItemStoreInterface */
-	private $watchedItemStore;
-
-	/** @var WatchlistManager */
-	private $watchlistManager;
-
-	/** @var UserOptionsLookup */
-	private $userOptionsLookup;
+	private WatchedItemStoreInterface $watchedItemStore;
+	private WatchlistManager $watchlistManager;
+	private UserOptionsLookup $userOptionsLookup;
 
 	/**
 	 * @var int|false where the value is one of the SpecialEditWatchlist:EDIT_ prefixed

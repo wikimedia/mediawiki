@@ -73,12 +73,8 @@ class SpecialVersion extends SpecialPage {
 	/** @var int */
 	protected $tocSubSection;
 
-	/** @var ParserFactory */
-	private $parserFactory;
-
-	/** @var UrlUtils */
-	private $urlUtils;
-
+	private ParserFactory $parserFactory;
+	private UrlUtils $urlUtils;
 	private IConnectionProvider $dbProvider;
 
 	/**

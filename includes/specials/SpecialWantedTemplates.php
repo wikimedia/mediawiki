@@ -37,8 +37,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialWantedTemplates extends WantedQueryPage {
 
-	/** @var LinksMigration */
-	private $linksMigration;
+	private LinksMigration $linksMigration;
 
 	/**
 	 * @param IConnectionProvider $dbProvider

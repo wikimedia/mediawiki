@@ -102,33 +102,15 @@ class SpecialSearch extends SpecialPage {
 	 */
 	protected $searchConfig;
 
-	/** @var SearchEngineFactory */
-	private $searchEngineFactory;
-
-	/** @var NamespaceInfo */
-	private $nsInfo;
-
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
-
-	/** @var InterwikiLookup */
-	private $interwikiLookup;
-
-	/** @var ReadOnlyMode */
-	private $readOnlyMode;
-
-	/** @var UserOptionsManager */
-	private $userOptionsManager;
-
-	/** @var LanguageConverterFactory */
-	private $languageConverterFactory;
-
-	/** @var RepoGroup */
-	private $repoGroup;
-
-	/** @var SearchResultThumbnailProvider */
-	private $thumbnailProvider;
-
+	private SearchEngineFactory $searchEngineFactory;
+	private NamespaceInfo $nsInfo;
+	private IContentHandlerFactory $contentHandlerFactory;
+	private InterwikiLookup $interwikiLookup;
+	private ReadOnlyMode $readOnlyMode;
+	private UserOptionsManager $userOptionsManager;
+	private LanguageConverterFactory $languageConverterFactory;
+	private RepoGroup $repoGroup;
+	private SearchResultThumbnailProvider $thumbnailProvider;
 	private TitleMatcher $titleMatcher;
 
 	/**

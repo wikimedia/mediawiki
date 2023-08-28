@@ -39,8 +39,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 	/** @var bool|Title */
 	protected $rclTargetTitle;
 
-	/** @var SearchEngineFactory */
-	private $searchEngineFactory;
+	private SearchEngineFactory $searchEngineFactory;
 	private ChangeTagsStore $changeTagsStore;
 
 	/**

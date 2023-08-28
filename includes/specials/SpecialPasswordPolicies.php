@@ -35,8 +35,7 @@ use MediaWiki\User\UserGroupManager;
  */
 class SpecialPasswordPolicies extends SpecialPage {
 
-	/** @var UserGroupManager */
-	private $userGroupManager;
+	private UserGroupManager $userGroupManager;
 
 	/**
 	 * @param UserGroupManager $userGroupManager

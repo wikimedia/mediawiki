@@ -40,11 +40,8 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class SpecialUnwatchedPages extends QueryPage {
 
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var ILanguageConverter */
-	private $languageConverter;
+	private LinkBatchFactory $linkBatchFactory;
+	private ILanguageConverter $languageConverter;
 
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory

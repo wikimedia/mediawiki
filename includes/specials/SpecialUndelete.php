@@ -96,47 +96,20 @@ class SpecialUndelete extends SpecialPage {
 	 */
 	private $mSearchPrefix;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
-	/** @var RevisionStore */
-	private $revisionStore;
-
-	/** @var RevisionRenderer */
-	private $revisionRenderer;
-
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
-
-	/** @var NameTableStore */
-	private $changeTagDefStore;
-
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var LocalRepo */
-	private $localRepo;
-
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var UserOptionsLookup */
-	private $userOptionsLookup;
-
-	/** @var WikiPageFactory */
-	private $wikiPageFactory;
-
-	/** @var SearchEngineFactory */
-	private $searchEngineFactory;
-
-	/** @var UndeletePageFactory */
-	private $undeletePageFactory;
-
-	/** @var ArchivedRevisionLookup */
-	private $archivedRevisionLookup;
-
-	/** @var CommentFormatter */
-	private $commentFormatter;
+	private PermissionManager $permissionManager;
+	private RevisionStore $revisionStore;
+	private RevisionRenderer $revisionRenderer;
+	private IContentHandlerFactory $contentHandlerFactory;
+	private NameTableStore $changeTagDefStore;
+	private LinkBatchFactory $linkBatchFactory;
+	private LocalRepo $localRepo;
+	private IConnectionProvider $dbProvider;
+	private UserOptionsLookup $userOptionsLookup;
+	private WikiPageFactory $wikiPageFactory;
+	private SearchEngineFactory $searchEngineFactory;
+	private UndeletePageFactory $undeletePageFactory;
+	private ArchivedRevisionLookup $archivedRevisionLookup;
+	private CommentFormatter $commentFormatter;
 
 	/**
 	 * @param PermissionManager $permissionManager

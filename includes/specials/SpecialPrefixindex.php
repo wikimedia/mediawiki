@@ -43,11 +43,8 @@ class SpecialPrefixindex extends SpecialAllPages {
 
 	// Inherit $maxPerPage
 
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var LinkCache */
-	private $linkCache;
+	private IConnectionProvider $dbProvider;
+	private LinkCache $linkCache;
 
 	/**
 	 * @param IConnectionProvider $dbProvider

@@ -71,11 +71,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	/** @var string */
 	private $otherReason;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
-	/** @var RepoGroup */
-	private $repoGroup;
+	private PermissionManager $permissionManager;
+	private RepoGroup $repoGroup;
 
 	/**
 	 * UI labels for each type.

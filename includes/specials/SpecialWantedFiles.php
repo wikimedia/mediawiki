@@ -40,8 +40,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialWantedFiles extends WantedQueryPage {
 
-	/** @var RepoGroup */
-	private $repoGroup;
+	private RepoGroup $repoGroup;
 
 	/**
 	 * @param RepoGroup $repoGroup

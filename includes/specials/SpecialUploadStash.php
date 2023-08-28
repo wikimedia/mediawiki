@@ -44,14 +44,9 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	/** @var UploadStash|null */
 	private $stash;
 
-	/** @var LocalRepo */
-	private $localRepo;
-
-	/** @var HttpRequestFactory */
-	private $httpRequestFactory;
-
-	/** @var UrlUtils */
-	private $urlUtils;
+	private LocalRepo $localRepo;
+	private HttpRequestFactory $httpRequestFactory;
+	private UrlUtils $urlUtils;
 
 	/**
 	 * Since we are directly writing the file to STDOUT,

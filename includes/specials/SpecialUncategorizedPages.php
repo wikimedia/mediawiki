@@ -35,8 +35,7 @@ class SpecialUncategorizedPages extends PageQueryPage {
 	/** @var int|false */
 	protected $requestedNamespace = false;
 
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
+	private NamespaceInfo $namespaceInfo;
 
 	/**
 	 * @param NamespaceInfo $namespaceInfo

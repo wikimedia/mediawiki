@@ -33,11 +33,8 @@ use MediaWiki\User\UserOptionsManager;
  */
 class SpecialPreferences extends SpecialPage {
 
-	/** @var PreferencesFactory */
-	private $preferencesFactory;
-
-	/** @var UserOptionsManager */
-	private $userOptionsManager;
+	private PreferencesFactory $preferencesFactory;
+	private UserOptionsManager $userOptionsManager;
 
 	/**
 	 * @param PreferencesFactory|null $preferencesFactory
