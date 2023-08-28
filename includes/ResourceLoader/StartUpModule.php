@@ -402,6 +402,9 @@ class StartUpModule extends Module {
 			'$VARS.storeVary' => $context->encodeJson( $this->getStoreVary( $context ) ),
 			'$VARS.groupUser' => $context->encodeJson( $this->getGroupId( self::GROUP_USER ) ),
 			'$VARS.groupPrivate' => $context->encodeJson( $this->getGroupId( self::GROUP_PRIVATE ) ),
+			'$VARS.sourceMapLinks' => $context->encodeJson(
+				$conf->get( MainConfigNames::ResourceLoaderEnableSourceMapLinks )
+			),
 		];
 		$profilerStubs = [
 			'$CODE.profileExecuteStart();' => 'mw.loader.profiler.onExecuteStart( module );',
