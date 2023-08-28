@@ -124,4 +124,7 @@ class WikiReference {
 	}
 }
 
+/**
+ * @deprecated since 1.40
+ */
 class_alias( WikiReference::class, 'WikiReference' );

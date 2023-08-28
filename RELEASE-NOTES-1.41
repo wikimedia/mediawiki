@@ -591,6 +591,8 @@ because of Phabricator reports.
   - TitleFactory -> MediaWiki\Title\TitleFactory
   - ActorMigration -> MediaWiki\User\ActorMigration
   - ActorMigrationBase -> MediaWiki\User\ActorMigrationBase
+  - WikiMap -> MediaWiki\WikiMap\WikiMap
+  - WikiReference -> MediaWiki\WikiMap\WikiReference
   From 1.39:
   - ResourceLoader -> MediaWiki\ResourceLoader\ResourceLoader
   From 1.29:
