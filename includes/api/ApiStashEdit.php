@@ -42,26 +42,13 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiStashEdit extends ApiBase {
 
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
-
-	/** @var PageEditStash */
-	private $pageEditStash;
-
-	/** @var RevisionLookup */
-	private $revisionLookup;
-
-	/** @var IBufferingStatsdDataFactory */
-	private $statsdDataFactory;
-
-	/** @var WikiPageFactory */
-	private $wikiPageFactory;
-
-	/** @var TempUserCreator */
-	private $tempUserCreator;
-
-	/** @var UserFactory */
-	private $userFactory;
+	private IContentHandlerFactory $contentHandlerFactory;
+	private PageEditStash $pageEditStash;
+	private RevisionLookup $revisionLookup;
+	private IBufferingStatsdDataFactory $statsdDataFactory;
+	private WikiPageFactory $wikiPageFactory;
+	private TempUserCreator $tempUserCreator;
+	private UserFactory $userFactory;
 
 	/**
 	 * @param ApiMain $main

@@ -37,11 +37,8 @@ class ApiUndelete extends ApiBase {
 
 	use ApiWatchlistTrait;
 
-	/** @var UndeletePageFactory */
-	private $undeletePageFactory;
-
-	/** @var WikiPageFactory */
-	private $wikiPageFactory;
+	private UndeletePageFactory $undeletePageFactory;
+	private WikiPageFactory $wikiPageFactory;
 
 	/**
 	 * @param ApiMain $mainModule

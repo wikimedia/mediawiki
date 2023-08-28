@@ -32,8 +32,7 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiResetPassword extends ApiBase {
 
-	/** @var PasswordReset */
-	private $passwordReset;
+	private PasswordReset $passwordReset;
 
 	/**
 	 * @param ApiMain $main

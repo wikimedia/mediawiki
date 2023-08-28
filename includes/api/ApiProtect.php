@@ -33,8 +33,7 @@ class ApiProtect extends ApiBase {
 
 	use ApiWatchlistTrait;
 
-	/** @var RestrictionStore */
-	private $restrictionStore;
+	private RestrictionStore $restrictionStore;
 
 	/**
 	 * @param ApiMain $mainModule

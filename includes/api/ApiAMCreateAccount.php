@@ -30,8 +30,7 @@ use MediaWiki\Auth\AuthManager;
  */
 class ApiAMCreateAccount extends ApiBase {
 
-	/** @var AuthManager */
-	private $authManager;
+	private AuthManager $authManager;
 
 	/**
 	 * @param ApiMain $main

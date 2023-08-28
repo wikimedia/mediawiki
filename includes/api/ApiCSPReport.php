@@ -33,8 +33,7 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiCSPReport extends ApiBase {
 
-	/** @var LoggerInterface */
-	private $log;
+	private LoggerInterface $log;
 
 	/**
 	 * These reports should be small. Ignore super big reports out of paranoia

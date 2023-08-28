@@ -57,26 +57,13 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 class ApiEditPage extends ApiBase {
 	use ApiWatchlistTrait;
 
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
-
-	/** @var RevisionLookup */
-	private $revisionLookup;
-
-	/** @var WatchedItemStoreInterface */
-	private $watchedItemStore;
-
-	/** @var WikiPageFactory */
-	private $wikiPageFactory;
-
-	/** @var RedirectLookup */
-	private $redirectLookup;
-
-	/** @var TempUserCreator */
-	private $tempUserCreator;
-
-	/** @var UserFactory */
-	private $userFactory;
+	private IContentHandlerFactory $contentHandlerFactory;
+	private RevisionLookup $revisionLookup;
+	private WatchedItemStoreInterface $watchedItemStore;
+	private WikiPageFactory $wikiPageFactory;
+	private RedirectLookup $redirectLookup;
+	private TempUserCreator $tempUserCreator;
+	private UserFactory $userFactory;
 
 	/**
 	 * Sends a cookie so anons get talk message notifications, mirroring SubmitAction (T295910)

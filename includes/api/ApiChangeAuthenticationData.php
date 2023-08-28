@@ -29,8 +29,7 @@ use MediaWiki\MainConfigNames;
  * @ingroup API
  */
 class ApiChangeAuthenticationData extends ApiBase {
-	/** @var AuthManager */
-	private $authManager;
+	private AuthManager $authManager;
 
 	/**
 	 * @param ApiMain $main

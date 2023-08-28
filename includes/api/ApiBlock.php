@@ -52,26 +52,13 @@ class ApiBlock extends ApiBase {
 	use ApiBlockInfoTrait;
 	use ApiWatchlistTrait;
 
-	/** @var BlockPermissionCheckerFactory */
-	private $blockPermissionCheckerFactory;
-
-	/** @var BlockUserFactory */
-	private $blockUserFactory;
-
-	/** @var TitleFactory */
-	private $titleFactory;
-
-	/** @var UserIdentityLookup */
-	private $userIdentityLookup;
-
-	/** @var WatchedItemStoreInterface */
-	private $watchedItemStore;
-
-	/** @var BlockUtils */
-	private $blockUtils;
-
-	/** @var BlockActionInfo */
-	private $blockActionInfo;
+	private BlockPermissionCheckerFactory $blockPermissionCheckerFactory;
+	private BlockUserFactory $blockUserFactory;
+	private TitleFactory $titleFactory;
+	private UserIdentityLookup $userIdentityLookup;
+	private WatchedItemStoreInterface $watchedItemStore;
+	private BlockUtils $blockUtils;
+	private BlockActionInfo $blockActionInfo;
 
 	/**
 	 * @param ApiMain $main

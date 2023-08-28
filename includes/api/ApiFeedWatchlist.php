@@ -39,8 +39,7 @@ class ApiFeedWatchlist extends ApiBase {
 	private $watchlistModule = null;
 	private $linkToSections = false;
 
-	/** @var Parser */
-	private $parser;
+	private Parser $parser;
 
 	/**
 	 * @param ApiMain $main

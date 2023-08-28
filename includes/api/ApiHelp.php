@@ -38,8 +38,7 @@ use Wikimedia\RemexHtml\Serializer\SerializerNode;
  * @ingroup API
  */
 class ApiHelp extends ApiBase {
-	/** @var SkinFactory */
-	private $skinFactory;
+	private SkinFactory $skinFactory;
 
 	/**
 	 * @param ApiMain $main

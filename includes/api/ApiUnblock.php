@@ -43,17 +43,10 @@ class ApiUnblock extends ApiBase {
 	use ApiBlockInfoTrait;
 	use ApiWatchlistTrait;
 
-	/** @var BlockPermissionCheckerFactory */
-	private $permissionCheckerFactory;
-
-	/** @var UnblockUserFactory */
-	private $unblockUserFactory;
-
-	/** @var UserIdentityLookup */
-	private $userIdentityLookup;
-
-	/** @var WatchedItemStoreInterface */
-	private $watchedItemStore;
+	private BlockPermissionCheckerFactory $permissionCheckerFactory;
+	private UnblockUserFactory $unblockUserFactory;
+	private UserIdentityLookup $userIdentityLookup;
+	private WatchedItemStoreInterface $watchedItemStore;
 
 	public function __construct(
 		ApiMain $main,

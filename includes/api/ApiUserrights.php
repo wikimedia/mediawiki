@@ -45,11 +45,8 @@ class ApiUserrights extends ApiBase {
 	/** @var UserIdentity|null */
 	private $mUser = null;
 
-	/** @var UserGroupManager */
-	private $userGroupManager;
-
-	/** @var WatchedItemStoreInterface */
-	private $watchedItemStore;
+	private UserGroupManager $userGroupManager;
+	private WatchedItemStoreInterface $watchedItemStore;
 
 	/**
 	 * @param ApiMain $mainModule

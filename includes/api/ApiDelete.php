@@ -39,11 +39,8 @@ class ApiDelete extends ApiBase {
 
 	use ApiWatchlistTrait;
 
-	/** @var RepoGroup */
-	private $repoGroup;
-
-	/** @var DeletePageFactory */
-	private $deletePageFactory;
+	private RepoGroup $repoGroup;
+	private DeletePageFactory $deletePageFactory;
 
 	/**
 	 * @param ApiMain $mainModule

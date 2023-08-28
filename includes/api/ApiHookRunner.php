@@ -56,8 +56,7 @@ class ApiHookRunner implements
 	\MediaWiki\Hook\UserLogoutCompleteHook,
 	\MediaWiki\SpecialPage\Hook\ChangeAuthenticationDataAuditHook
 {
-	/** @var HookContainer */
-	private $container;
+	private HookContainer $container;
 
 	public function __construct( HookContainer $container ) {
 		$this->container = $container;

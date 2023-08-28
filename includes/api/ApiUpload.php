@@ -40,8 +40,7 @@ class ApiUpload extends ApiBase {
 
 	protected $mParams;
 
-	/** @var JobQueueGroup */
-	private $jobQueueGroup;
+	private JobQueueGroup $jobQueueGroup;
 
 	/**
 	 * @param ApiMain $mainModule

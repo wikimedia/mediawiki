@@ -33,11 +33,8 @@ class ApiTag extends ApiBase {
 
 	use ApiBlockInfoTrait;
 
-	/** @var IDatabase */
-	private $dbr;
-
-	/** @var RevisionStore */
-	private $revisionStore;
+	private IDatabase $dbr;
+	private RevisionStore $revisionStore;
 	private ChangeTagsStore $changeTagsStore;
 
 	/**

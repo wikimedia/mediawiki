@@ -35,8 +35,7 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiLogin extends ApiBase {
 
-	/** @var AuthManager */
-	private $authManager;
+	private AuthManager $authManager;
 
 	/**
 	 * @param ApiMain $main

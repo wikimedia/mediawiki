@@ -32,11 +32,8 @@ use Wikimedia\ParamValidator\ParamValidator;
  * @ingroup API
  */
 class ApiExpandTemplates extends ApiBase {
-	/** @var RevisionStore */
-	private $revisionStore;
-
-	/** @var Parser */
-	private $parser;
+	private RevisionStore $revisionStore;
+	private Parser $parser;
 
 	/**
 	 * @param ApiMain $main

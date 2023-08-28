@@ -60,50 +60,21 @@ class ApiParse extends ApiBase {
 	/** @var bool */
 	private $contentIsDeleted = false, $contentIsSuppressed = false;
 
-	/** @var RevisionLookup */
-	private $revisionLookup;
-
-	/** @var SkinFactory */
-	private $skinFactory;
-
-	/** @var LanguageNameUtils */
-	private $languageNameUtils;
-
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var LinkCache */
-	private $linkCache;
-
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
-
-	/** @var Parser */
-	private $parser;
-
-	/** @var WikiPageFactory */
-	private $wikiPageFactory;
-
-	/** @var ContentTransformer */
-	private $contentTransformer;
-
-	/** @var CommentFormatter */
-	private $commentFormatter;
-
-	/** @var ContentRenderer */
-	private $contentRenderer;
-
-	/** @var TempUserCreator */
-	private $tempUserCreator;
-
-	/** @var UserFactory */
-	private $userFactory;
-
-	/** @var UrlUtils */
-	private $urlUtils;
-
-	/** @var TitleFormatter */
-	private $titleFormatter;
+	private RevisionLookup $revisionLookup;
+	private SkinFactory $skinFactory;
+	private LanguageNameUtils $languageNameUtils;
+	private LinkBatchFactory $linkBatchFactory;
+	private LinkCache $linkCache;
+	private IContentHandlerFactory $contentHandlerFactory;
+	private Parser $parser;
+	private WikiPageFactory $wikiPageFactory;
+	private ContentTransformer $contentTransformer;
+	private CommentFormatter $commentFormatter;
+	private ContentRenderer $contentRenderer;
+	private TempUserCreator $tempUserCreator;
+	private UserFactory $userFactory;
+	private UrlUtils $urlUtils;
+	private TitleFormatter $titleFormatter;
 
 	/**
 	 * @param ApiMain $main

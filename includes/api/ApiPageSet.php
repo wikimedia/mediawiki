@@ -159,32 +159,15 @@ class ApiPageSet extends ApiBase {
 	/** @var string[]|null see getGenerators() */
 	private static $generators = null;
 
-	/** @var Language */
-	private $contentLanguage;
-
-	/** @var LinkCache */
-	private $linkCache;
-
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
-
-	/** @var GenderCache */
-	private $genderCache;
-
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var TitleFactory */
-	private $titleFactory;
-
-	/** @var ILanguageConverter */
-	private $languageConverter;
-
-	/** @var SpecialPageFactory */
-	private $specialPageFactory;
-
-	/** @var WikiPageFactory */
-	private $wikiPageFactory;
+	private Language $contentLanguage;
+	private LinkCache $linkCache;
+	private NamespaceInfo $namespaceInfo;
+	private GenderCache $genderCache;
+	private LinkBatchFactory $linkBatchFactory;
+	private TitleFactory $titleFactory;
+	private ILanguageConverter $languageConverter;
+	private SpecialPageFactory $specialPageFactory;
+	private WikiPageFactory $wikiPageFactory;
 
 	/**
 	 * Add all items from $values into the result

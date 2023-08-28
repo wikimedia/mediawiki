@@ -38,33 +38,19 @@ use Wikimedia\RequestTimeout\TimeoutException;
  */
 class ApiComparePages extends ApiBase {
 
-	/** @var RevisionStore */
-	private $revisionStore;
-
-	/** @var SlotRoleRegistry */
-	private $slotRoleRegistry;
+	private RevisionStore $revisionStore;
+	private SlotRoleRegistry $slotRoleRegistry;
 
 	/** @var Title|null|false */
 	private $guessedTitle = false;
 	private $props;
 
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
-
-	/** @var ContentTransformer */
-	private $contentTransformer;
-
-	/** @var CommentFormatter */
-	private $commentFormatter;
-
-	/** @var TempUserCreator */
-	private $tempUserCreator;
-
-	/** @var UserFactory */
-	private $userFactory;
-
-	/** @var DifferenceEngine */
-	private $differenceEngine;
+	private IContentHandlerFactory $contentHandlerFactory;
+	private ContentTransformer $contentTransformer;
+	private CommentFormatter $commentFormatter;
+	private TempUserCreator $tempUserCreator;
+	private UserFactory $userFactory;
+	private DifferenceEngine $differenceEngine;
 
 	/**
 	 * @param ApiMain $mainModule

@@ -30,8 +30,7 @@ use Wikimedia\ParamValidator\ParamValidator;
  * @ingroup API
  */
 class ApiPatrol extends ApiBase {
-	/** @var RevisionStore */
-	private $revisionStore;
+	private RevisionStore $revisionStore;
 
 	/**
 	 * @param ApiMain $main

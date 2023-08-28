@@ -37,20 +37,11 @@ class ApiSetNotificationTimestamp extends ApiBase {
 
 	private $mPageSet = null;
 
-	/** @var RevisionStore */
-	private $revisionStore;
-
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var WatchedItemStoreInterface */
-	private $watchedItemStore;
-
-	/** @var TitleFormatter */
-	private $titleFormatter;
-
-	/** @var TitleFactory */
-	private $titleFactory;
+	private RevisionStore $revisionStore;
+	private IConnectionProvider $dbProvider;
+	private WatchedItemStoreInterface $watchedItemStore;
+	private TitleFormatter $titleFormatter;
+	private TitleFactory $titleFactory;
 
 	/**
 	 * @param ApiMain $main

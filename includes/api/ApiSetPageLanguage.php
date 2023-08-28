@@ -34,11 +34,8 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class ApiSetPageLanguage extends ApiBase {
 
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var LanguageNameUtils */
-	private $languageNameUtils;
+	private IConnectionProvider $dbProvider;
+	private LanguageNameUtils $languageNameUtils;
 
 	/**
 	 * @param ApiMain $mainModule

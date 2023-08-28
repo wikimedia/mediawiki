@@ -16,11 +16,8 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiChangeContentModel extends ApiBase {
 
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
-
-	/** @var ContentModelChangeFactory */
-	private $contentModelChangeFactory;
+	private IContentHandlerFactory $contentHandlerFactory;
+	private ContentModelChangeFactory $contentModelChangeFactory;
 
 	/**
 	 * @param ApiMain $main

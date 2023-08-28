@@ -29,11 +29,8 @@ class ApiPurge extends ApiBase {
 	/** @var ApiPageSet|null */
 	private $mPageSet = null;
 
-	/** @var WikiPageFactory */
-	private $wikiPageFactory;
-
-	/** @var TitleFormatter */
-	private $titleFormatter;
+	private WikiPageFactory $wikiPageFactory;
+	private TitleFormatter $titleFormatter;
 
 	/**
 	 * @param ApiMain $mainModule

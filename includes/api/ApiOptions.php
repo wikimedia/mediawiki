@@ -37,11 +37,8 @@ class ApiOptions extends ApiBase {
 	/** @var User User account to modify */
 	private $userForUpdates;
 
-	/** @var UserOptionsManager */
-	private $userOptionsManager;
-
-	/** @var PreferencesFactory */
-	private $preferencesFactory;
+	private UserOptionsManager $userOptionsManager;
+	private PreferencesFactory $preferencesFactory;
 
 	/**
 	 * @param ApiMain $main

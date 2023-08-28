@@ -31,8 +31,7 @@ use MediaWiki\Auth\CreateFromLoginAuthenticationRequest;
  */
 class ApiClientLogin extends ApiBase {
 
-	/** @var AuthManager */
-	private $authManager;
+	private AuthManager $authManager;
 
 	/**
 	 * @param ApiMain $main

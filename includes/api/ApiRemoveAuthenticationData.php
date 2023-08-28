@@ -34,8 +34,7 @@ class ApiRemoveAuthenticationData extends ApiBase {
 	private $authAction;
 	private $operation;
 
-	/** @var AuthManager */
-	private $authManager;
+	private AuthManager $authManager;
 
 	/**
 	 * @param ApiMain $main

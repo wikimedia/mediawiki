@@ -44,8 +44,7 @@ class ApiAuthManagerHelper {
 	/** @var string Message output format */
 	private $messageFormat;
 
-	/** @var AuthManager */
-	private $authManager;
+	private AuthManager $authManager;
 
 	/**
 	 * @param ApiBase $module API module, for context and parameters

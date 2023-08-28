@@ -41,11 +41,8 @@ class ApiOpenSearch extends ApiBase {
 	/** @var array list of api allowed params */
 	private $allowedParams = null;
 
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var UrlUtils */
-	private $urlUtils;
+	private LinkBatchFactory $linkBatchFactory;
+	private UrlUtils $urlUtils;
 
 	/**
 	 * @param ApiMain $mainModule

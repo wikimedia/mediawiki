@@ -29,14 +29,9 @@ use Wikimedia\ParamValidator\ParamValidator;
 class ApiImageRotate extends ApiBase {
 	private $mPageSet = null;
 
-	/** @var RepoGroup */
-	private $repoGroup;
-
-	/** @var TempFSFileFactory */
-	private $tempFSFileFactory;
-
-	/** @var TitleFactory */
-	private $titleFactory;
+	private RepoGroup $repoGroup;
+	private TempFSFileFactory $tempFSFileFactory;
+	private TitleFactory $titleFactory;
 
 	/**
 	 * @param ApiMain $mainModule

@@ -11,11 +11,8 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiValidatePassword extends ApiBase {
 
-	/** @var AuthManager */
-	private $authManager;
-
-	/** @var UserFactory */
-	private $userFactory;
+	private AuthManager $authManager;
+	private UserFactory $userFactory;
 
 	/**
 	 * @param ApiMain $mainModule

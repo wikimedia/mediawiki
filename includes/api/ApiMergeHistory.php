@@ -32,8 +32,7 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiMergeHistory extends ApiBase {
 
-	/** @var MergeHistoryFactory */
-	private $mergeHistoryFactory;
+	private MergeHistoryFactory $mergeHistoryFactory;
 
 	/**
 	 * @param ApiMain $mainModule

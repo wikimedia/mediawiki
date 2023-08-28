@@ -30,8 +30,7 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiImport extends ApiBase {
 
-	/** @var WikiImporterFactory */
-	private $wikiImporterFactory;
+	private WikiImporterFactory $wikiImporterFactory;
 
 	/**
 	 * @param ApiMain $main

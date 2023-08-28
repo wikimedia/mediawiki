@@ -36,11 +36,8 @@ class ApiMove extends ApiBase {
 
 	use ApiWatchlistTrait;
 
-	/** @var MovePageFactory */
-	private $movePageFactory;
-
-	/** @var RepoGroup */
-	private $repoGroup;
+	private MovePageFactory $movePageFactory;
+	private RepoGroup $repoGroup;
 
 	public function __construct(
 		ApiMain $mainModule,

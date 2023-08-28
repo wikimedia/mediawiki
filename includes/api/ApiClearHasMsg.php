@@ -29,8 +29,7 @@ use MediaWiki\User\TalkPageNotificationManager;
  */
 class ApiClearHasMsg extends ApiBase {
 
-	/** @var TalkPageNotificationManager */
-	private $talkPageNotificationManager;
+	private TalkPageNotificationManager $talkPageNotificationManager;
 
 	/**
 	 * @param ApiMain $main

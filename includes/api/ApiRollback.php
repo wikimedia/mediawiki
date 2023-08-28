@@ -36,8 +36,7 @@ class ApiRollback extends ApiBase {
 
 	use ApiWatchlistTrait;
 
-	/** @var RollbackPageFactory */
-	private $rollbackPageFactory;
+	private RollbackPageFactory $rollbackPageFactory;
 
 	public function __construct(
 		ApiMain $mainModule,

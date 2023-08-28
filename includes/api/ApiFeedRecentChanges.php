@@ -36,8 +36,7 @@ class ApiFeedRecentChanges extends ApiBase {
 
 	private $params;
 
-	/** @var SpecialPageFactory */
-	private $specialPageFactory;
+	private SpecialPageFactory $specialPageFactory;
 
 	/**
 	 * @param ApiMain $mainModule

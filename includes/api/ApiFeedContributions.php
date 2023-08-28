@@ -43,35 +43,16 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class ApiFeedContributions extends ApiBase {
 
-	/** @var RevisionStore */
-	private $revisionStore;
-
-	/** @var TitleParser */
-	private $titleParser;
-
-	/** @var LinkRenderer */
-	private $linkRenderer;
-
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var HookContainer */
-	private $hookContainer;
-
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
-
-	/** @var UserFactory */
-	private $userFactory;
-
-	/** @var CommentFormatter */
-	private $commentFormatter;
-
-	/** @var ApiHookRunner */
-	private $hookRunner;
+	private RevisionStore $revisionStore;
+	private TitleParser $titleParser;
+	private LinkRenderer $linkRenderer;
+	private LinkBatchFactory $linkBatchFactory;
+	private HookContainer $hookContainer;
+	private IConnectionProvider $dbProvider;
+	private NamespaceInfo $namespaceInfo;
+	private UserFactory $userFactory;
+	private CommentFormatter $commentFormatter;
+	private ApiHookRunner $hookRunner;
 
 	/**
 	 * @param ApiMain $main
