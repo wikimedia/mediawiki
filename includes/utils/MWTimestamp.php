@@ -156,4 +156,7 @@ class MWTimestamp extends ConvertibleTimestamp {
 	}
 }
 
+/**
+ * @deprecated since 1.41
+ */
 class_alias( MWTimestamp::class, 'MWTimestamp' );
