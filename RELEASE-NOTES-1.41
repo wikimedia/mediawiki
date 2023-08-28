@@ -581,6 +581,7 @@ because of Phabricator reports.
   - WebRequestUpload -> MediaWiki\Request\WebRequestUpload
   - FauxResponse -> MediaWiki\Request\FauxResponse
   - WebResponse -> MediaWiki\Request\WebResponse
+  - MediaWiki\HeaderCallback -> MediaWiki\Request\HeaderCallback
   - Title -> MediaWiki\Title\Title
   From 1.39:
   - ResourceLoader -> MediaWiki\ResourceLoader\ResourceLoader

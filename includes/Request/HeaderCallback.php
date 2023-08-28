@@ -117,4 +117,7 @@ class HeaderCallback {
 	}
 }
 
+/**
+ * @deprecated since 1.40
+ */
 class_alias( HeaderCallback::class, 'MediaWiki\\HeaderCallback' );
