@@ -186,6 +186,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				break;
 			}
 
+			$exists = $row->fa_archive_name !== '';
 			$canViewFile = RevisionRecord::userCanBitfield( $row->fa_deleted, File::DELETED_FILE, $user );
 
 			$file = [];
@@ -210,13 +211,16 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				$file['userid'] = (int)$row->fa_user;
 				$file['user'] = $row->fa_user_text;
 			}
-			if ( $fld_sha1 && $canViewFile ) {
+			if ( !$exists ) {
+				$file['filemissing'] = true;
+			}
+			if ( $fld_sha1 && $canViewFile && $exists ) {
 				$file['sha1'] = Wikimedia\base_convert( $row->fa_sha1, 36, 16, 40 );
 			}
 			if ( $fld_timestamp ) {
 				$file['timestamp'] = wfTimestamp( TS_ISO_8601, $row->fa_timestamp );
 			}
-			if ( ( $fld_size || $fld_dimensions ) && $canViewFile ) {
+			if ( ( $fld_size || $fld_dimensions ) && $canViewFile && $exists ) {
 				$file['size'] = $row->fa_size;
 
 				$pageCount = ArchivedFile::newFromRow( $row )->pageCount();
@@ -227,19 +231,19 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				$file['height'] = $row->fa_height;
 				$file['width'] = $row->fa_width;
 			}
-			if ( $fld_mediatype && $canViewFile ) {
+			if ( $fld_mediatype && $canViewFile && $exists ) {
 				$file['mediatype'] = $row->fa_media_type;
 			}
-			if ( $fld_metadata && $canViewFile ) {
+			if ( $fld_metadata && $canViewFile && $exists ) {
 				$metadataArray = ArchivedFile::newFromRow( $row )->getMetadataArray();
 				$file['metadata'] = $row->fa_metadata
 					? ApiQueryImageInfo::processMetaData( $metadataArray, $result )
 					: null;
 			}
-			if ( $fld_bitdepth && $canViewFile ) {
+			if ( $fld_bitdepth && $canViewFile && $exists ) {
 				$file['bitdepth'] = $row->fa_bits;
 			}
-			if ( $fld_mime && $canViewFile ) {
+			if ( $fld_mime && $canViewFile && $exists ) {
 				$file['mime'] = "$row->fa_major_mime/$row->fa_minor_mime";
 			}
 			if ( $fld_archivename && $row->fa_archive_name !== null ) {

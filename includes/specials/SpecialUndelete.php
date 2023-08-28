@@ -1430,16 +1430,20 @@ class SpecialUndelete extends SpecialPage {
 			);
 		}
 
-		$link = $this->getLinkRenderer()->makeKnownLink(
-			$titleObj,
-			$time,
-			[],
-			[
-				'target' => $this->mTargetObj->getPrefixedText(),
-				'file' => $key,
-				'token' => $user->getEditToken( $key )
-			]
-		);
+		if ( $file->exists() ) {
+			$link = $this->getLinkRenderer()->makeKnownLink(
+				$titleObj,
+				$time,
+				[],
+				[
+					'target' => $this->mTargetObj->getPrefixedText(),
+					'file' => $key,
+					'token' => $user->getEditToken( $key )
+				]
+			);
+		} else {
+			$link = htmlspecialchars( $time );
+		}
 
 		if ( $file->isDeleted( File::DELETED_FILE ) ) {
 			$link = '<span class="history-deleted">' . $link . '</span>';

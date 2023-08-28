@@ -232,7 +232,7 @@ class LocalFileRestoreBatch {
 			} else {
 				$archiveName = $row->fa_archive_name;
 
-				if ( $archiveName == '' ) {
+				if ( $archiveName === null ) {
 					// This was originally a current version; we
 					// have to devise a new archive name for it.
 					// Format is <timestamp of archiving>!<name>

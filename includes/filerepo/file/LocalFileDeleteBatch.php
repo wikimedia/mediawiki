@@ -144,6 +144,11 @@ class LocalFileDeleteBatch {
 			);
 
 			foreach ( $res as $row ) {
+				if ( $row->oi_archive_name === '' ) {
+					// File lost, the check simulates OldLocalFile::exists
+					$hashes[$row->oi_archive_name] = false;
+					continue;
+				}
 				if ( rtrim( $row->oi_sha1, "\0" ) === '' ) {
 					// Get the hash from the file
 					$oldUrl = $this->file->getArchiveVirtualUrl( $row->oi_archive_name );

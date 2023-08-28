@@ -249,7 +249,6 @@ class ArchivedFile {
 		} else {
 			throw new MWException( 'This title does not correspond to an image page.' );
 		}
-		$this->exists = true;
 
 		return true;
 	}
@@ -333,6 +332,7 @@ class ArchivedFile {
 		if ( !$this->title ) {
 			$this->title = Title::makeTitleSafe( NS_FILE, $row->fa_name );
 		}
+		$this->exists = $row->fa_archive_name !== '';
 	}
 
 	/**
