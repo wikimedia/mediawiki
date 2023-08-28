@@ -555,7 +555,7 @@ return [
 
 		],
 		'dependencies' => [
-			'mediawiki.page.teleportTarget'
+			'mediawiki.page.ready'
 		]
 	],
 
@@ -1626,6 +1626,7 @@ return [
 			'ready.js',
 			'checkboxShift.js',
 			'checkboxHack.js',
+			'teleportTarget.js',
 			[ 'name' => 'config.json', 'callback' => static function (
 				Context $context,
 				Config $config
@@ -1648,6 +1649,9 @@ return [
 		],
 		'messages' => [
 			'logging-out-notify'
+		],
+		'skinStyles' => [
+			'default' => 'teleportTarget.less'
 		]
 	],
 	'mediawiki.page.watch.ajax' => [
@@ -1723,16 +1727,6 @@ return [
 	],
 	'mediawiki.page.media' => [
 		'scripts' => 'resources/src/mediawiki.page.media.js',
-	],
-	'mediawiki.page.teleportTarget' => [
-		'localBasePath' => MW_INSTALL_PATH . '/resources/src',
-		'remoteBasePath' => "$wgResourceBasePath/resources/src",
-		'packageFiles' => [
-			'mediawiki.page.teleportTarget.js',
-		],
-		'skinStyles' => [
-			'default' => 'mediawiki.page.teleportTarget.less'
-		]
 	],
 
 	/* MediaWiki Special pages */
