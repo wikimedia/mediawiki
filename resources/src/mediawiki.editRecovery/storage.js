@@ -13,13 +13,16 @@ var db = null;
  * @return {jQuery.Promise} Promise which resolves on success
  */
 function openDatabaseLocal() {
-	return new Promise( function ( resolve ) {
+	return new Promise( function ( resolve, reject ) {
 		const schemaNumber = 1;
 		const openRequest = window.indexedDB.open( dbName, schemaNumber );
 		openRequest.addEventListener( 'upgradeneeded', upgradeDatabase );
 		openRequest.addEventListener( 'success', function ( event ) {
 			db = event.target.result;
 			resolve();
+		} );
+		openRequest.addEventListener( 'error', function ( event ) {
+			reject( 'EditRecovery error: ' + event.target.error );
 		} );
 	} );
 }
