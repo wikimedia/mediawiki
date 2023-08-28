@@ -221,4 +221,7 @@ class ForkController {
 	}
 }
 
+/**
+ * @deprecated since 1.40
+ */
 class_alias( ForkController::class, 'ForkController' );

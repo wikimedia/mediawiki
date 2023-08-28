@@ -576,6 +576,7 @@ because of Phabricator reports.
   - MagicWordFactory -> MediaWiki\Parser\MagicWordFactory
   - Linker -> MediaWiki\Linker\Linker
   - DummyLinker -> MediaWiki\Linker\DummyLinker
+  - ForkController -> MediaWiki\Maintenance\ForkController
   - ContentSecurityPolicy -> MediaWiki\Request\ContentSecurityPolicy
   - DerivativeRequest -> MediaWiki\Request\DerivativeRequest
   - FauxRequest -> MediaWiki\Request\FauxRequest
