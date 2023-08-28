@@ -36,12 +36,6 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	/** @var array list of api allowed params */
 	private $allowedParams;
 
-	/** @var SearchEngineConfig */
-	private $searchEngineConfig;
-
-	/** @var SearchEngineFactory */
-	private $searchEngineFactory;
-
 	private TitleMatcher $titleMatcher;
 
 	/**
