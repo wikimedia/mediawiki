@@ -145,15 +145,9 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 		$archive->undeleteAsUser( [], $this->getTestSysop()->getUser() );
 
 		// Should be back in revision
-		$revQuery = $revisionStore->getQueryInfo();
-		$row = $dbr->selectRow(
-			$revQuery['tables'],
-			$revQuery['fields'],
-			[ 'rev_id' => $this->ipRev->getId() ],
-			__METHOD__,
-			[],
-			$revQuery['joins']
-		);
+		$row = $revisionStore->newSelectQueryBuilder( $dbr )
+			->where( [ 'rev_id' => $this->ipRev->getId() ] )
+			->caller( __METHOD__ )->fetchRow();
 		$this->assertNotFalse( $row, 'row exists in revision table' );
 		$this->assertEquals( $this->ipEditor, $row->rev_user_text );
 

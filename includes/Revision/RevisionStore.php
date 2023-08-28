@@ -77,6 +77,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * Service for looking up page revisions.
@@ -1608,7 +1609,7 @@ class RevisionStore
 	 *
 	 * MCR migration note: this replaced Revision::newFromRow
 	 *
-	 * @param \stdClass $row A database row generated from a query based on getQueryInfo()
+	 * @param \stdClass $row A database row generated from a query based on RevisionSelectQueryBuilder
 	 * @param int $queryFlags
 	 * @param PageIdentity|null $page Preloaded page object
 	 * @param bool $fromCache if true, the returned RevisionRecord will ensure that no stale
@@ -1703,7 +1704,7 @@ class RevisionStore
 	/**
 	 * @see newFromRevisionRow()
 	 *
-	 * @param stdClass $row A database row generated from a query based on getQueryInfo()
+	 * @param stdClass $row A database row generated from a query based on RevisionSelectQueryBuilder
 	 * @param null|stdClass[]|RevisionSlots $slots
 	 *  - Database rows generated from a query based on getSlotsQueryInfo
 	 *    with the 'content' flag set. Or
@@ -1908,7 +1909,7 @@ class RevisionStore
 	/**
 	 * Construct a RevisionRecord instance for each row in $rows,
 	 * and return them as an associative array indexed by revision ID.
-	 * Use getQueryInfo() or getArchiveQueryInfo() to construct the
+	 * Use RevisionSelectQueryBuilder or getArchiveQueryInfo() to construct the
 	 * query that produces the rows.
 	 *
 	 * @param IResultWrapper|\stdClass[] $rows the rows to construct revision records from
@@ -2408,18 +2409,16 @@ class RevisionStore
 	) {
 		$this->checkDatabaseDomain( $db );
 
-		$revQuery = $this->getQueryInfo( [ 'page', 'user' ] );
+		$queryBuilder = $this->newSelectQueryBuilder( $db )
+			->joinComment()
+			->joinPage()
+			->joinUser()
+			->where( $conditions )
+			->options( $options );
 		if ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING ) {
-			$options[] = 'FOR UPDATE';
+			$queryBuilder->forUpdate();
 		}
-		return $db->selectRow(
-			$revQuery['tables'],
-			$revQuery['fields'],
-			$conditions,
-			__METHOD__,
-			$options,
-			$revQuery['joins']
-		);
+		return $queryBuilder->caller( __METHOD__ )->fetchRow();
 	}
 
 	/**
@@ -2432,6 +2431,7 @@ class RevisionStore
 	 * self::getRevisionRowCacheKey should be updated.
 	 *
 	 * @since 1.31
+	 * @deprecated since 1.41 use RevisionStore::newSelectQueryBuilder() instead.
 	 *
 	 * @param array $options Any combination of the following strings
 	 *  - 'page': Join with the page table, and select fields to identify the page
@@ -2501,6 +2501,13 @@ class RevisionStore
 		}
 
 		return $ret;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function newSelectQueryBuilder( IReadableDatabase $dbr ): RevisionSelectQueryBuilder {
+		return new RevisionSelectQueryBuilder( $dbr );
 	}
 
 	/**
@@ -2913,20 +2920,14 @@ class RevisionStore
 			return false;
 		}
 
-		$revQuery = $this->getQueryInfo();
-		$res = $db->select(
-			$revQuery['tables'],
-			[
-				'rev_user' => $revQuery['fields']['rev_user'],
-			],
-			[
+		$queryBuilder = $this->newSelectQueryBuilder( $db )
+			->where( [
 				'rev_page' => $pageId,
 				'rev_timestamp > ' . $db->addQuotes( $db->timestamp( $since ) )
-			],
-			__METHOD__,
-			[ 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 50 ],
-			$revQuery['joins']
-		);
+			] )
+			->orderBy( 'rev_timestamp', SelectQueryBuilder::SORT_ASC )
+			->limit( 50 );
+		$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 		foreach ( $res as $row ) {
 			if ( $row->rev_user != $userId ) {
 				return false;

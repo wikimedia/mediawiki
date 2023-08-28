@@ -1833,6 +1833,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Revision\\RevisionLookup' => __DIR__ . '/includes/Revision/RevisionLookup.php',
 	'MediaWiki\\Revision\\RevisionRecord' => __DIR__ . '/includes/Revision/RevisionRecord.php',
 	'MediaWiki\\Revision\\RevisionRenderer' => __DIR__ . '/includes/Revision/RevisionRenderer.php',
+	'MediaWiki\\Revision\\RevisionSelectQueryBuilder' => __DIR__ . '/includes/Revision/RevisionSelectQueryBuilder.php',
 	'MediaWiki\\Revision\\RevisionSlots' => __DIR__ . '/includes/Revision/RevisionSlots.php',
 	'MediaWiki\\Revision\\RevisionStore' => __DIR__ . '/includes/Revision/RevisionStore.php',
 	'MediaWiki\\Revision\\RevisionStoreCacheRecord' => __DIR__ . '/includes/Revision/RevisionStoreCacheRecord.php',

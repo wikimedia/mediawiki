@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 class RevisionList extends RevisionListBase {
 	/** @inheritDoc */
@@ -30,21 +31,16 @@ class RevisionList extends RevisionListBase {
 
 	/** @inheritDoc */
 	public function doQuery( $db ) {
-		$conds = [ 'rev_page' => $this->page->getId() ];
+		$queryBuilder = MediaWikiServices::getInstance()->getRevisionStore()->newSelectQueryBuilder( $db )
+			->joinComment()
+			->joinPage()
+			->joinUser()
+			->where( [ 'rev_page' => $this->page->getId() ] )
+			->orderBy( 'rev_id', SelectQueryBuilder::SORT_DESC );
 		if ( $this->ids !== null ) {
-			$conds['rev_id'] = array_map( 'intval', $this->ids );
+			$queryBuilder->andWhere( [ 'rev_id' => array_map( 'intval', $this->ids ) ] );
 		}
-		$revQuery = MediaWikiServices::getInstance()
-			->getRevisionStore()
-			->getQueryInfo( [ 'page', 'user' ] );
-		return $db->select(
-			$revQuery['tables'],
-			$revQuery['fields'],
-			$conds,
-			__METHOD__,
-			[ 'ORDER BY' => 'rev_id DESC' ],
-			$revQuery['joins']
-		);
+		return $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 	}
 
 	/** @inheritDoc */

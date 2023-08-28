@@ -87,22 +87,17 @@ class RebuildTextIndex extends Maintenance {
 		$n = 0;
 
 		$revStore = $this->getServiceContainer()->getRevisionStore();
-		$revQuery = $revStore->getQueryInfo( [ 'page' ] );
+		$queryBuilderTemplate = $revStore->newSelectQueryBuilder( $dbw )
+			->joinPage();
 
 		while ( $n < $count ) {
 			if ( $n ) {
 				$this->output( $n . "\n" );
 			}
 			$end = $n + self::RTI_CHUNK_SIZE - 1;
-
-			$res = $dbw->select(
-				$revQuery['tables'],
-				$revQuery['fields'],
-				[ "page_id BETWEEN $n AND $end", 'page_latest = rev_id' ],
-				__METHOD__,
-				[],
-				$revQuery['joins']
-			);
+			$queryBuilder = clone $queryBuilderTemplate;
+			$res = $queryBuilder->where( [ "page_id BETWEEN $n AND $end", 'page_latest = rev_id' ] )
+				->caller( __METHOD__ )->fetchResultSet();
 
 			foreach ( $res as $s ) {
 

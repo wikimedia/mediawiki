@@ -150,21 +150,17 @@ class CategoryMembershipChangeJob extends Job {
 		// Find revisions to this page made around and after this revision which lack category
 		// notifications in recent changes. This lets jobs pick up were the last one left off.
 		$revisionStore = $services->getRevisionStore();
-		$revQuery = $revisionStore->getQueryInfo();
-		$res = $dbr->select(
-			$revQuery['tables'],
-			$revQuery['fields'],
-			[
+		$res = $revisionStore->newSelectQueryBuilder( $dbr )
+			->joinComment()
+			->where( [
 				'rev_page' => $page->getId(),
 				$dbr->buildComparison( '>', [
 					'rev_timestamp' => $dbr->timestamp( $cutoffUnix ),
 					'rev_id' => $lastRevId,
 				] )
-			],
-			__METHOD__,
-			[ 'ORDER BY' => [ 'rev_timestamp ASC', 'rev_id ASC' ] ],
-			$revQuery['joins']
-		);
+			] )
+			->orderBy( [ 'rev_timestamp', 'rev_id' ], SelectQueryBuilder::SORT_ASC )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		// Apply all category updates in revision timestamp order
 		foreach ( $res as $row ) {

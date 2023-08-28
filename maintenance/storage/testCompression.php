@@ -60,19 +60,16 @@ class TestCompression extends Maintenance {
 		$dbr = $this->getDB( DB_REPLICA );
 
 		$revStore = $this->getServiceContainer()->getRevisionStore();
-		$revQuery = $revStore->getQueryInfo( [ 'page' ] );
-		$res = $dbr->select(
-			$revQuery['tables'],
-			$revQuery['fields'],
-			[
+		$res = $revStore->newSelectQueryBuilder( $dbr )
+			->joinComment()
+			->joinPage()
+			->where( [
 				'page_namespace' => $title->getNamespace(),
 				'page_title' => $title->getDBkey(),
 				'rev_timestamp > ' . $dbr->addQuotes( $dbr->timestamp( $start ) ),
-			],
-			__FILE__,
-			[ 'LIMIT' => $limit ],
-			$revQuery['joins']
-		);
+			] )
+			->limit( $limit )
+			->caller( __FILE__ )->fetchResultSet();
 
 		$blob = new $type;
 		$hashes = [];

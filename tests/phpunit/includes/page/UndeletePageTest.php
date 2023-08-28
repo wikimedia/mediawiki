@@ -124,17 +124,12 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 		$status = $undeletePage->setUndeleteAssociatedTalk( true )->undeleteUnsafe( '' );
 		$this->assertEquals( 2, $status->value[UndeletePage::REVISIONS_RESTORED] );
 
-		$revQuery = $revisionStore->getQueryInfo();
 		// check subject page and talk page are both back in the revision table
 		foreach ( [ 0, 1 ] as $key ) {
-			$row = $dbr->selectRow(
-				$revQuery['tables'],
-				$revQuery['fields'],
-				[ 'rev_id' => $this->pages[$key]['revId'] ],
-				__METHOD__,
-				[],
-				$revQuery['joins']
-			);
+			$row = $revisionStore->newSelectQueryBuilder( $dbr )
+				->where( [ 'rev_id' => $this->pages[$key]['revId'] ] )
+				->caller( __METHOD__ )->fetchRow();
+
 			$this->assertNotFalse( $row, 'row exists in revision table' );
 			$this->assertEquals( $this->ipEditor, $row->rev_user_text );
 

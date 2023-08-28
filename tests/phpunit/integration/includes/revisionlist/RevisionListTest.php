@@ -2,8 +2,6 @@
 
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
-use Wikimedia\Rdbms\FakeResultWrapper;
-use Wikimedia\Rdbms\IDatabase;
 
 /**
  * @covers RevisionList
@@ -37,66 +35,17 @@ class RevisionListTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @dataProvider provideTestDoQuery
-	 */
-	public function testDoQuery( $filterIds ) {
-		$context = new RequestContext();
-
-		$page = new PageIdentityValue( 123, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
-		$revisionList = new RevisionList( $context, $page );
-
-		$conds = [ 'rev_page' => 123 ];
-		if ( $filterIds !== false ) {
-			$revisionList->filterByIds( $filterIds );
-			$conds['rev_id'] = $filterIds;
-		}
-
-		$revQuery = $this->getServiceContainer()
-			->getRevisionStore()
-			->getQueryInfo( [ 'page', 'user' ] );
-
-		$db = $this->createMock( IDatabase::class );
-		$db->expects( $this->once() )
-			->method( 'select' )
-			->with(
-				$revQuery['tables'],
-				$revQuery['fields'],
-				$conds,
-				'RevisionList::doQuery',
-				[ 'ORDER BY' => 'rev_id DESC' ],
-				$revQuery['joins']
-			)
-			->willReturn(
-				new FakeResultWrapper( [] )
-			);
-
-		$revisionList->doQuery( $db );
-	}
-
-	public static function provideTestDoQuery() {
-		return [
-			'no filter' => [ false ],
-			'with filter' => [ [ 1, 2, 91 ] ],
-		];
-	}
-
 	public function testNewItem() {
 		// Need a row that is valid for RevisionFactory::newRevisionFromRow
 		$wikiPage = $this->getExistingTestPage( __METHOD__ );
 		$currentRevId = $wikiPage->getRevisionRecord()->getId();
 
-		$revQuery = $this->getServiceContainer()
-			->getRevisionStore()
-			->getQueryInfo( [ 'page', 'user' ] );
-		$row = $this->db->selectRow(
-			$revQuery['tables'],
-			$revQuery['fields'],
-			[ 'rev_id' => $currentRevId ],
-			__METHOD__,
-			[],
-			$revQuery['joins']
-		);
+		$queryBuilder = $this->getServiceContainer()->getRevisionStore()->newSelectQueryBuilder( $this->db )
+			->joinComment()
+			->joinPage()
+			->joinUser()
+			->where( [ 'rev_id' => $currentRevId ] );
+		$row = $queryBuilder->caller( __METHOD__ )->fetchRow();
 
 		$context = new RequestContext();
 		$context->setUser( $this->getTestSysop()->getUser() );

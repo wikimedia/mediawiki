@@ -374,7 +374,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		$this->resetQueryParams();
 		$db = $this->getDB();
 
-		$revQuery = $this->revisionStore->getQueryInfo( [ 'page' ] );
+		$queryBuilder = $this->revisionStore->newSelectQueryBuilder( $db )->joinComment()->joinPage();
 		$revWhere = $this->actorMigration->getWhere( $db, 'rev_user', $users );
 
 		$orderUserField = 'rev_actor';
@@ -382,9 +382,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		$tsField = 'rev_timestamp';
 		$idField = 'rev_id';
 
-		$this->addTables( $revQuery['tables'] );
-		$this->addJoinConds( $revQuery['joins'] );
-		$this->addFields( $revQuery['fields'] );
+		$this->getQueryBuilder()->merge( $queryBuilder );
 		$this->addWhere( $revWhere['conds'] );
 		// Force the appropriate index to avoid bad query plans (T307815 and T307295)
 		if ( isset( $revWhere['orconds']['newactor'] ) ) {

@@ -11,6 +11,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * @since 1.31
@@ -143,20 +144,15 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		// Select previous version to make size diffs correct
 		// @todo This assumes that multiple revisions of the same page are imported
 		// in order from oldest to newest.
-		$qi = $this->revisionStore->getQueryInfo();
-		$prevRevRow = $dbw->selectRow( $qi['tables'], $qi['fields'],
-			[
-				'rev_page' => $pageId,
-				'rev_timestamp <= ' . $dbw->addQuotes( $dbw->timestamp( $importableRevision->getTimestamp() ) ),
-			],
-			__METHOD__,
-			[ 'ORDER BY' => [
-				'rev_timestamp DESC',
-				'rev_id DESC', // timestamp is not unique per page
-			]
-			],
-			$qi['joins']
-		);
+		$queryBuilder = $this->revisionStore->newSelectQueryBuilder( $dbw )
+			->joinComment()
+			->where( [ 'rev_page' => $pageId ] )
+			->andWhere( $dbw->buildComparison(
+				'<=',
+				[ 'rev_timestamp' => $dbw->timestamp( $importableRevision->getTimestamp() ) ]
+			) )
+			->orderBy( [ 'rev_timestamp', 'rev_id' ], SelectQueryBuilder::SORT_DESC );
+		$prevRevRow = $queryBuilder->caller( __METHOD__ )->fetchRow();
 
 		# @todo FIXME: Use original rev_id optionally (better for backups)
 		# Insert the row

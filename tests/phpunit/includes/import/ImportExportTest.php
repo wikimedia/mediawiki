@@ -3,6 +3,7 @@
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Tests\Maintenance\DumpAsserter;
 use MediaWiki\Title\Title;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * Import/export round trip test.
@@ -122,19 +123,12 @@ class ImportExportTest extends MediaWikiLangTestCase {
 	 */
 	private function getRevisions( Title $title ) {
 		$store = $this->getServiceContainer()->getRevisionStore();
-		$qi = $store->getQueryInfo();
+		$queryBuilder = $store->newSelectQueryBuilder( $this->db )
+			->joinComment()
+			->where( [ 'rev_page' => $title->getArticleID() ] )
+			->orderBy( 'rev_id', SelectQueryBuilder::SORT_ASC );
 
-		$conds = [ 'rev_page' => $title->getArticleID() ];
-		$opt = [ 'ORDER BY' => 'rev_id ASC' ];
-
-		$rows = $this->db->select(
-			$qi['tables'],
-			$qi['fields'],
-			$conds,
-			__METHOD__,
-			$opt,
-			$qi['joins']
-		);
+		$rows = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 
 		$status = $store->newRevisionsFromBatch( $rows );
 		return $status->getValue();

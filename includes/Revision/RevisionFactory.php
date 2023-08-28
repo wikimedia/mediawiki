@@ -24,6 +24,7 @@ namespace MediaWiki\Revision;
 
 use IDBAccessObject;
 use MediaWiki\Page\PageIdentity;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * Service for constructing RevisionRecord objects.
@@ -106,6 +107,7 @@ interface RevisionFactory extends IDBAccessObject {
 	 * self::getRevisionRowCacheKey should be updated.
 	 *
 	 * @since 1.37, since 1.31 on RevisionStore
+	 * @deprecated since 1.41 use RevisionStore::newSelectQueryBuilder() instead.
 	 *
 	 * @param array $options Any combination of the following strings
 	 *  - 'page': Join with the page table, and select fields to identify the page
@@ -118,6 +120,17 @@ interface RevisionFactory extends IDBAccessObject {
 	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
 	public function getQueryInfo( $options = [] );
+
+	/**
+	 * Return a SelectQueryBuilder to allow querying revision store
+	 *
+	 * @since 1.41
+	 *
+	 * @param IReadableDatabase $dbr A db object to do the query on.
+	 *
+	 * @return RevisionSelectQueryBuilder
+	 */
+	public function newSelectQueryBuilder( IReadableDatabase $dbr ): RevisionSelectQueryBuilder;
 
 	/**
 	 * Determine whether the parameter is a row containing all the fields

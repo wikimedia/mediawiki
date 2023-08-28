@@ -160,14 +160,13 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		$useIndex = [];
 		if ( $resultPageSet === null ) {
 			$this->parseParameters( $params );
-			$opts = [ 'page' ];
+			$queryBuilder = $this->revisionStore->newSelectQueryBuilder( $db )
+				->joinComment()
+				->joinPage();
 			if ( $this->fld_user ) {
-				$opts[] = 'user';
+				$queryBuilder->joinUser();
 			}
-			$revQuery = $this->revisionStore->getQueryInfo( $opts );
-			$this->addTables( $revQuery['tables'] );
-			$this->addFields( $revQuery['fields'] );
-			$this->addJoinConds( $revQuery['joins'] );
+			$this->getQueryBuilder()->merge( $queryBuilder );
 		} else {
 			$this->limit = $this->getParameter( 'limit' ) ?: 10;
 			// Always join 'page' so orphaned revisions are filtered out

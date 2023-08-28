@@ -285,30 +285,18 @@ EOF
 		$importer->doImport();
 
 		$db = wfGetDB( DB_PRIMARY );
-		$revQuery = $services->getRevisionStore()->getQueryInfo();
-
-		$row = $db->selectRow(
-			$revQuery['tables'],
-			$revQuery['fields'],
-			[ 'rev_timestamp' => $db->timestamp( "201601010{$n}0000" ) ],
-			__METHOD__,
-			[],
-			$revQuery['joins']
-		);
+		$row = $services->getRevisionStore()->newSelectQueryBuilder( $db )
+			->where( [ 'rev_timestamp' => $db->timestamp( "201601010{$n}0000" ) ] )
+			->caller( __METHOD__ )->fetchRow();
 		$this->assertSame(
 			$assign && $create ? 'UserDoesNotExist' : 'Xxx>UserDoesNotExist',
 			$row->rev_user_text
 		);
 		$this->assertSame( $assign && $create ? $hookId : 0, (int)$row->rev_user );
 
-		$row = $db->selectRow(
-			$revQuery['tables'],
-			$revQuery['fields'],
-			[ 'rev_timestamp' => $db->timestamp( "201601010{$n}0001" ) ],
-			__METHOD__,
-			[],
-			$revQuery['joins']
-		);
+		$row = $services->getRevisionStore()->newSelectQueryBuilder( $db )
+			->where( [ 'rev_timestamp' => $db->timestamp( "201601010{$n}0001" ) ] )
+			->caller( __METHOD__ )->fetchRow();
 		$this->assertSame( ( $assign ? '' : 'Xxx>' ) . $user->getName(), $row->rev_user_text );
 		$this->assertSame( $assign ? $user->getId() : 0, (int)$row->rev_user );
 	}

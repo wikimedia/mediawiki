@@ -364,10 +364,8 @@ class HistoryAction extends FormlessAction {
 
 		$page_id = $this->getWikiPage()->getId();
 
-		$revQuery = MediaWikiServices::getInstance()->getRevisionStore()->getQueryInfo();
-
-		$res = $dbr->newSelectQueryBuilder()
-			->queryInfo( $revQuery )
+		$res = MediaWikiServices::getInstance()->getRevisionStore()->newSelectQueryBuilder( $dbr )
+			->joinComment()
 			->where( [ 'rev_page' => $page_id ] )
 			->andWhere( $offsets )
 			->useIndex( [ 'revision' => 'rev_page_timestamp' ] )

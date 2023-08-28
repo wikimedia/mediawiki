@@ -2017,17 +2017,12 @@ class Linker {
 		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
 
 		// Up to the value of $wgShowRollbackEditCount revisions are counted
-		$revQuery = MediaWikiServices::getInstance()->getRevisionStore()->getQueryInfo();
-		$res = $dbr->newSelectQueryBuilder()
-			->select( [ 'rev_user_text' => $revQuery['fields']['rev_user_text'], 'rev_deleted' ] )
-			->tables( $revQuery['tables'] )
-			->where( [ 'rev_page' => $revRecord->getPageId() ] )
-			->joinConds( $revQuery['joins'] )
+		$queryBuilder = MediaWikiServices::getInstance()->getRevisionStore()->newSelectQueryBuilder( $dbr );
+		$res = $queryBuilder->where( [ 'rev_page' => $revRecord->getPageId() ] )
 			->useIndex( [ 'revision' => 'rev_page_timestamp' ] )
 			->orderBy( [ 'rev_timestamp', 'rev_id' ], SelectQueryBuilder::SORT_DESC )
 			->limit( $showRollbackEditCount + 1 )
-			->caller( __METHOD__ )
-			->fetchResultSet();
+			->caller( __METHOD__ )->fetchResultSet();
 
 		$revUser = $revRecord->getUser( RevisionRecord::RAW );
 		$revUserText = $revUser ? $revUser->getName() : '';

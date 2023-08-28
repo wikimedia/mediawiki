@@ -259,21 +259,17 @@ class FindBadBlobs extends Maintenance {
 	 * @return RevisionStoreRecord[]
 	 */
 	private function loadRevisionsByTimestamp( int $afterId, string $fromTimestamp, $batchSize ) {
-		$db = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		$queryInfo = $this->revisionStore->getQueryInfo();
-		$rows = $db->newSelectQueryBuilder()
-			->select( $queryInfo['fields'] )
-			->tables( $queryInfo['tables'] )
+		$db = $this->lbFactory->getReplicaDatabase();
+		$queryBuilder = $this->revisionStore->newSelectQueryBuilder( $db );
+		$rows = $queryBuilder->joinComment()
 			->where( $db->buildComparison( '>', [
 				'rev_timestamp' => $fromTimestamp,
 				'rev_id' => $afterId,
 			] ) )
-			->joinConds( $queryInfo['joins'] )
 			->useIndex( [ 'revision' => 'rev_timestamp' ] )
 			->orderBy( [ 'rev_timestamp', 'rev_id' ] )
 			->limit( $batchSize )
-			->caller( __METHOD__ )
-			->fetchResultSet();
+			->caller( __METHOD__ )->fetchResultSet();
 		$result = $this->revisionStore->newRevisionsFromBatch( $rows, [ 'slots' => true ] );
 		$this->handleStatus( $result );
 
@@ -371,16 +367,13 @@ class FindBadBlobs extends Maintenance {
 	 * @return RevisionRecord[]
 	 */
 	private function loadRevisionsById( array $ids ) {
-		$db = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		$queryInfo = $this->revisionStore->getQueryInfo();
+		$db = $this->lbFactory->getReplicaDatabase();
+		$queryBuilder = $this->revisionStore->newSelectQueryBuilder( $db );
 
-		$rows = $db->newSelectQueryBuilder()
-			->select( $queryInfo['fields'] )
-			->tables( $queryInfo['tables'] )
+		$rows = $queryBuilder
+			->joinComment()
 			->where( [ 'rev_id' => $ids ] )
-			->joinConds( $queryInfo['joins'] )
-			->caller( __METHOD__ )
-			->fetchResultSet();
+			->caller( __METHOD__ )->fetchResultSet();
 
 		$result = $this->revisionStore->newRevisionsFromBatch( $rows, [ 'slots' => true ] );
 

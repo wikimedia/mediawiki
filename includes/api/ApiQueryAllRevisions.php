@@ -131,37 +131,30 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 
 		if ( $resultPageSet === null ) {
 			$this->parseParameters( $params );
-			$revQuery = $this->revisionStore->getQueryInfo( [ 'page' ] );
+			$queryBuilder = $this->revisionStore->newSelectQueryBuilder( $db )
+				->joinComment()
+				->joinPage();
+			$this->getQueryBuilder()->merge( $queryBuilder );
 		} else {
 			$this->limit = $this->getParameter( 'limit' ) ?: 10;
-			$revQuery = [
-				'tables' => [ 'revision' ],
-				'fields' => [ 'rev_timestamp', 'rev_id' ],
-				'joins' => [],
-			];
+			$this->addTables( [ 'revision' ] );
+			$this->addFields( [ 'rev_timestamp', 'rev_id' ] );
 
 			if ( $params['generatetitles'] ) {
-				$revQuery['fields'][] = 'rev_page';
+				$this->addFields( [ 'rev_page' ] );
 			}
 
 			if ( $params['user'] !== null || $params['excludeuser'] !== null ) {
-				$actorQuery = $this->actorMigration->getJoin( 'rev_user' );
-				$revQuery['tables'] += $actorQuery['tables'];
-				$revQuery['joins'] += $actorQuery['joins'];
+				$this->getQueryBuilder()->join( 'actor', 'actor_rev_user', 'actor_rev_user.actor_id = rev_actor' );
 			}
 
 			if ( $needPageTable ) {
-				$revQuery['tables'][] = 'page';
-				$revQuery['joins']['page'] = [ 'JOIN', [ "$pageField = page_id" ] ];
+				$this->getQueryBuilder()->join( 'page', null, [ "$pageField = page_id" ] );
 				if ( (bool)$miser_ns ) {
-					$revQuery['fields'][] = 'page_namespace';
+					$this->addFields( [ 'page_namespace' ] );
 				}
 			}
 		}
-
-		$this->addTables( $revQuery['tables'] );
-		$this->addFields( $revQuery['fields'] );
-		$this->addJoinConds( $revQuery['joins'] );
 
 		// Seems to be needed to avoid a planner bug (T113901)
 		$this->addOption( 'STRAIGHT_JOIN' );
