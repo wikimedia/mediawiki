@@ -7,7 +7,6 @@ use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Request\FauxRequest;
 
 /**
  * @group Database
@@ -245,57 +244,6 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 				null,
 			],
 		];
-	}
-
-	/**
-	 * AbstractBlock::getPermissionsError is deprecated. Block errors are tested
-	 * properly in BlockErrorFormatterTest::testGetMessage.
-	 */
-	public function testGetPermissionsError() {
-		$timestamp = '20000101000000';
-
-		$compositeBlock = new CompositeBlock( [
-			'timestamp' => $timestamp,
-			'originalBlocks' => [
-				new SystemBlock( [
-					'systemBlock' => 'test1',
-				] ),
-				new SystemBlock( [
-					'systemBlock' => 'test2',
-				] )
-			]
-		] );
-
-		$context = new DerivativeContext( RequestContext::getMain() );
-		$request = $this->getMockBuilder( FauxRequest::class )
-			->onlyMethods( [ 'getIP' ] )
-			->getMock();
-		$request->method( 'getIP' )
-			->willReturn( '1.2.3.4' );
-		$context->setRequest( $request );
-
-		$formatter = $this->getServiceContainer()->getBlockErrorFormatter();
-		$message = $formatter->getMessage(
-			$compositeBlock,
-			$context->getUser(),
-			$context->getLanguage(),
-			$context->getRequest()->getIP()
-		);
-
-		$this->assertSame( 'blockedtext-composite', $message->getKey() );
-		$this->assertSame(
-			[
-				'',
-				'no reason given',
-				'1.2.3.4',
-				'',
-				'Your IP address appears in multiple blocklists',
-				'infinite',
-				'',
-				'00:00, 1 January 2000',
-			],
-			$message->getParams()
-		);
 	}
 
 	/**
