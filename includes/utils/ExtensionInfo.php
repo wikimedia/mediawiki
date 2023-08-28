@@ -63,4 +63,7 @@ class ExtensionInfo {
 	}
 }
 
+/**
+ * @deprecated since 1.41
+ */
 class_alias( ExtensionInfo::class, 'MediaWiki\\ExtensionInfo' );
