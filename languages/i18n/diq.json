@@ -35,7 +35,8 @@
 			"Xoser",
 			"ديفيد",
 			"아라",
-			"Ghybu"
+			"Ghybu",
+			"Tacsipacsi"
 		]
 	},
 	"tog-underline": "Bınê gıreyi de xete bance:",
@@ -160,7 +161,7 @@
 	"category-media-header": "Medyay kategoriya \"$1\"",
 	"category-empty": "<em>Ena kategoriye de hewna qet nuşteyi ya zi medya çıniyê.</em>",
 	"hidden-categories": "{{PLURAL:$1|Kategoriya nımıtiye|Kategoriyê nımıteyi}}",
-	"hidden-category-category": "Kategoriyê nımıtey",
+	"hidden-category-category": "Kategoriyê nımıteyi",
 	"category-subcat-count": "{{PLURAL:$2|Na kategoriye de tenya na bınkategoriye esta.|Na kategoriye de, $2 ra pêro piya, {{PLURAL:$1|bınkategoriye esta|$1 bınkategoriyi estê}}.}}",
 	"category-subcat-count-limited": "Na kategoriye de {{PLURAL:$1|na kategoriya bınêne esta|nê $1 kategoriyê bınêni estê}}.",
 	"category-article-count": "{{PLURAL:$2|Na kategoriye de tenya pela cêrêne esta.|Pêro piya $2 pelan ra {{PLURAL:$1|pele na kategoriye de esta|$1 peli na kategoriye de estê}}.}}",
@@ -2946,7 +2947,7 @@
 	"tooltip-publish": "Vurnayışê xo qeyd ke",
 	"tooltip-preview": "Vurnayışanê xo çım ra bıviyarne. Qeydkerdış ra ver bıgurene.",
 	"tooltip-diff": "Kamci vırnayışê ke şıma nuştey sero kerdê, inan bıvênê.",
-	"tooltip-compareselectedversions": "Ena per de ferqê rewziyonan de dı weçinaya bıvinê",
+	"tooltip-compareselectedversions": "Ena pele de miyanê dı çımraviyarnayışanê weçinıtan ra ferqan bıvênên",
 	"tooltip-watch": "Ena pele lista xoya seyrkerdışi ke",
 	"tooltip-watchlist-expiry": "Ena pela ravêrde lista pelanê seyrkerdışi tede kerê",
 	"tooltip-watchlistedit-normal-submit": "Sernuşteyan wedare",
@@ -3016,7 +3017,7 @@
 	"pageinfo-recent-edits": "Amarê vurnayışanê peyênan ($1 ra nat)",
 	"pageinfo-recent-authors": "Amarê nuştekaranê ferqınan pêro",
 	"pageinfo-magic-words": "{{PLURAL:$1|Çekuya|Çekuyê}} ($1) sihırini",
-	"pageinfo-hidden-categories": "{{PLURAL:$1|Kategoriya nımıtiye|Kategoriyê nımıtey}} ($1)",
+	"pageinfo-hidden-categories": "{{PLURAL:$1|Kategoriya nımıtiye|Kategoriyê nımıteyi}} ($1)",
 	"pageinfo-templates": "{{PLURAL:$1|Şablono|Şablonê}} ke mocniyenê ($1)",
 	"pageinfo-transclusions": "{{PLURAL:$1|1 Pele|$1 Pelan}} de bestiya pıra",
 	"pageinfo-toolboxlink": "Melumatê pele",

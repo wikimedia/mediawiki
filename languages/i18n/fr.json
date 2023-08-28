@@ -2080,7 +2080,7 @@
 	"duplicatesoffile": "{{PLURAL:$1|Le fichier suivant est un doublon|Les $1 fichiers suivants sont des doublons}} de celui-ci ([[Special:FileDuplicateSearch/$2|plus de détails]]) :",
 	"sharedupload": "Ce fichier provient de $1 et peut être utilisé par d’autres projets.",
 	"sharedupload-desc-there": "Ce fichier provient de $1 et peut être utilisé par d’autres projets.\nVeuillez consulter [$2 sa page de description] pour plus d’informations.",
-	"sharedupload-desc-here": "Ce fichier provient de $1. Il peut être utilisé par d'autres projets.\nSa description sur sa [$2 page de description] est affichée ci-dessous.",
+	"sharedupload-desc-here": "Ce fichier provient de $1 et peut être utilisé par d'autres projets.\nSa description sur sa [$2 page de description] est affichée ci-dessous.",
 	"sharedupload-desc-edit": "Ce fichier provient de $1 et peut être utilisé par d’autres projets.\nVous voulez peut-être en modifier la description sur [$2 sa page de description].",
 	"sharedupload-desc-create": "Ce fichier provient de $1 et peut être utilisé par d’autres projets.\nVous voulez peut-être en modifier la description sur [$2 sa page de description].",
 	"filepage-nofile": "Aucun fichier de ce nom n’existe.",
