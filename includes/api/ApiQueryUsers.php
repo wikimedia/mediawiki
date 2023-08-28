@@ -37,20 +37,11 @@ class ApiQueryUsers extends ApiQueryBase {
 
 	private $prop;
 
-	/** @var UserNameUtils */
-	private $userNameUtils;
-
-	/** @var UserFactory */
-	private $userFactory;
-
-	/** @var UserGroupManager */
-	private $userGroupManager;
-
-	/** @var GenderCache */
-	private $genderCache;
-
-	/** @var AuthManager */
-	private $authManager;
+	private UserNameUtils $userNameUtils;
+	private UserFactory $userFactory;
+	private UserGroupManager $userGroupManager;
+	private GenderCache $genderCache;
+	private AuthManager $authManager;
 
 	/**
 	 * Properties whose contents does not depend on who is looking at them. If the usprops field

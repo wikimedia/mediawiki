@@ -38,14 +38,9 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class ApiQueryBlocks extends ApiQueryBase {
 
-	/** @var BlockActionInfo */
-	private $blockActionInfo;
-
-	/** @var BlockRestrictionStore */
-	private $blockRestrictionStore;
-
-	/** @var CommentStore */
-	private $commentStore;
+	private BlockActionInfo $blockActionInfo;
+	private BlockRestrictionStore $blockRestrictionStore;
+	private CommentStore $commentStore;
 
 	/**
 	 * @param ApiQuery $query

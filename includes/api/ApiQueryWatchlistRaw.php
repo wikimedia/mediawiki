@@ -33,17 +33,10 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 
-	/** @var WatchedItemQueryService */
-	private $watchedItemQueryService;
-
-	/** @var Language */
-	private $contentLanguage;
-
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
-
-	/** @var GenderCache */
-	private $genderCache;
+	private WatchedItemQueryService $watchedItemQueryService;
+	private Language $contentLanguage;
+	private NamespaceInfo $namespaceInfo;
+	private GenderCache $genderCache;
 
 	/**
 	 * @param ApiQuery $query

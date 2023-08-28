@@ -39,14 +39,9 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiQueryLogEvents extends ApiQueryBase {
 
-	/** @var CommentStore */
-	private $commentStore;
-
-	/** @var CommentFormatter */
-	private $commentFormatter;
-
-	/** @var NameTableStore */
-	private $changeTagDefStore;
+	private CommentStore $commentStore;
+	private CommentFormatter $commentFormatter;
+	private NameTableStore $changeTagDefStore;
 
 	/** @var string[]|null */
 	private $formattedComments;

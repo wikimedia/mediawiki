@@ -33,14 +33,9 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiQueryAllPages extends ApiQueryGeneratorBase {
 
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
-
-	/** @var GenderCache */
-	private $genderCache;
-
-	/** @var RestrictionStore */
-	private $restrictionStore;
+	private NamespaceInfo $namespaceInfo;
+	private GenderCache $genderCache;
+	private RestrictionStore $restrictionStore;
 
 	/**
 	 * @param ApiQuery $query

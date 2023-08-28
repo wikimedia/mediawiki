@@ -38,10 +38,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 	 */
 	private $queryPages;
 
-	/**
-	 * @var SpecialPageFactory
-	 */
-	private $specialPageFactory;
+	private SpecialPageFactory $specialPageFactory;
 
 	/**
 	 * @param ApiQuery $query

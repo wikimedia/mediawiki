@@ -48,50 +48,21 @@ use Wikimedia\Rdbms\ReadOnlyMode;
  */
 class ApiQuerySiteinfo extends ApiQueryBase {
 
-	/** @var UserOptionsLookup */
-	private $userOptionsLookup;
-
-	/** @var UserGroupManager */
-	private $userGroupManager;
-
-	/** @var LanguageConverterFactory */
-	private $languageConverterFactory;
-
-	/** @var LanguageFactory */
-	private $languageFactory;
-
-	/** @var LanguageNameUtils */
-	private $languageNameUtils;
-
-	/** @var Language */
-	private $contentLanguage;
-
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
-
-	/** @var InterwikiLookup */
-	private $interwikiLookup;
-
-	/** @var Parser */
-	private $parser;
-
-	/** @var MagicWordFactory */
-	private $magicWordFactory;
-
-	/** @var SpecialPageFactory */
-	private $specialPageFactory;
-
-	/** @var SkinFactory */
-	private $skinFactory;
-
-	/** @var ILoadBalancer */
-	private $loadBalancer;
-
-	/** @var ReadOnlyMode */
-	private $readOnlyMode;
-
-	/** @var UrlUtils */
-	private $urlUtils;
+	private UserOptionsLookup $userOptionsLookup;
+	private UserGroupManager $userGroupManager;
+	private LanguageConverterFactory $languageConverterFactory;
+	private LanguageFactory $languageFactory;
+	private LanguageNameUtils $languageNameUtils;
+	private Language $contentLanguage;
+	private NamespaceInfo $namespaceInfo;
+	private InterwikiLookup $interwikiLookup;
+	private Parser $parser;
+	private MagicWordFactory $magicWordFactory;
+	private SpecialPageFactory $specialPageFactory;
+	private SkinFactory $skinFactory;
+	private ILoadBalancer $loadBalancer;
+	private ReadOnlyMode $readOnlyMode;
+	private UrlUtils $urlUtils;
 
 	/**
 	 * @param ApiQuery $query

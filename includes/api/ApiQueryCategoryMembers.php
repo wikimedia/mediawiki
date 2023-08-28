@@ -33,8 +33,7 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
-	/** @var Collation */
-	private $collation;
+	private Collation $collation;
 
 	/**
 	 * @param ApiQuery $query

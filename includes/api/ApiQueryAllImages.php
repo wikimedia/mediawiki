@@ -44,8 +44,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 	 */
 	protected $mRepo;
 
-	/** @var GroupPermissionsLookup */
-	private $groupPermissionsLookup;
+	private GroupPermissionsLookup $groupPermissionsLookup;
 
 	/**
 	 * @param ApiQuery $query

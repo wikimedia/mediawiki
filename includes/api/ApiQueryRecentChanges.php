@@ -41,20 +41,11 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
-	/** @var CommentStore */
-	private $commentStore;
-
-	/** @var RowCommentFormatter */
-	private $commentFormatter;
-
-	/** @var NameTableStore */
-	private $changeTagDefStore;
-
-	/** @var NameTableStore */
-	private $slotRoleStore;
-
-	/** @var SlotRoleRegistry */
-	private $slotRoleRegistry;
+	private CommentStore $commentStore;
+	private RowCommentFormatter $commentFormatter;
+	private NameTableStore $changeTagDefStore;
+	private NameTableStore $slotRoleStore;
+	private SlotRoleRegistry $slotRoleRegistry;
 
 	private $formattedComments = [];
 

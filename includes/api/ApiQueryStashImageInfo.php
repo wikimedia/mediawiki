@@ -30,8 +30,7 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 
-	/** @var RepoGroup */
-	private $repoGroup;
+	private RepoGroup $repoGroup;
 
 	/**
 	 * @param ApiQuery $query

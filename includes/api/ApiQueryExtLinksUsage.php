@@ -33,8 +33,7 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 
-	/** @var UrlUtils */
-	private $urlUtils;
+	private UrlUtils $urlUtils;
 
 	/**
 	 * @param ApiQuery $query

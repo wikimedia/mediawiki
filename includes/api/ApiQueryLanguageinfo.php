@@ -43,17 +43,10 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 	 */
 	private const MAX_EXECUTE_SECONDS = 3;
 
-	/** @var LanguageFactory */
-	private $languageFactory;
-
-	/** @var LanguageNameUtils */
-	private $languageNameUtils;
-
-	/** @var LanguageFallback */
-	private $languageFallback;
-
-	/** @var LanguageConverterFactory */
-	private $languageConverterFactory;
+	private LanguageFactory $languageFactory;
+	private LanguageNameUtils $languageNameUtils;
+	private LanguageFallback $languageFallback;
+	private LanguageConverterFactory $languageConverterFactory;
 
 	/**
 	 * @param ApiQuery $queryModule

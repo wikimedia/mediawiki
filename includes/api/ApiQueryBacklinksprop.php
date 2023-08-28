@@ -80,8 +80,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		],
 	];
 
-	/** @var LinksMigration */
-	private $linksMigration;
+	private LinksMigration $linksMigration;
 
 	/**
 	 * @param ApiQuery $query

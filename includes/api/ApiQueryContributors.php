@@ -44,17 +44,10 @@ class ApiQueryContributors extends ApiQueryBase {
 	 */
 	private const MAX_PAGES = 100;
 
-	/** @var RevisionStore */
-	private $revisionStore;
-
-	/** @var ActorMigration */
-	private $actorMigration;
-
-	/** @var UserGroupManager */
-	private $userGroupManager;
-
-	/** @var GroupPermissionsLookup */
-	private $groupPermissionsLookup;
+	private RevisionStore $revisionStore;
+	private ActorMigration $actorMigration;
+	private UserGroupManager $userGroupManager;
+	private GroupPermissionsLookup $groupPermissionsLookup;
 
 	/**
 	 * @param ApiQuery $query

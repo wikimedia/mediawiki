@@ -30,8 +30,7 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiQueryPageProps extends ApiQueryBase {
 
-	/** @var PageProps */
-	private $pageProps;
+	private PageProps $pageProps;
 
 	/**
 	 * @param ApiQuery $query

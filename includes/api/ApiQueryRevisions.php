@@ -47,14 +47,9 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiQueryRevisions extends ApiQueryRevisionsBase {
 
-	/** @var RevisionStore */
-	private $revisionStore;
-
-	/** @var NameTableStore */
-	private $changeTagDefStore;
-
-	/** @var ActorMigration */
-	private $actorMigration;
+	private RevisionStore $revisionStore;
+	private NameTableStore $changeTagDefStore;
+	private ActorMigration $actorMigration;
 
 	/**
 	 * @param ApiQuery $query

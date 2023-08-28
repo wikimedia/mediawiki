@@ -37,23 +37,12 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
-	/** @var CommentStore */
-	private $commentStore;
-
-	/** @var WatchedItemQueryService */
-	private $watchedItemQueryService;
-
-	/** @var Language */
-	private $contentLanguage;
-
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
-
-	/** @var GenderCache */
-	private $genderCache;
-
-	/** @var CommentFormatter */
-	private $commentFormatter;
+	private CommentStore $commentStore;
+	private WatchedItemQueryService $watchedItemQueryService;
+	private Language $contentLanguage;
+	private NamespaceInfo $namespaceInfo;
+	private GenderCache $genderCache;
+	private CommentFormatter $commentFormatter;
 
 	/**
 	 * @param ApiQuery $query

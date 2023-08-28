@@ -37,14 +37,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	public const TRANSFORM_LIMIT = 50;
 	private static $transformCount = 0;
 
-	/** @var RepoGroup */
-	private $repoGroup;
-
-	/** @var Language */
-	private $contentLanguage;
-
-	/** @var BadFileLookup */
-	private $badFileLookup;
+	private RepoGroup $repoGroup;
+	private Language $contentLanguage;
+	private BadFileLookup $badFileLookup;
 
 	/**
 	 * @param ApiQuery $query

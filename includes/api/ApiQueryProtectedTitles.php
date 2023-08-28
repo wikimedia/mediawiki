@@ -34,11 +34,8 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 
-	/** @var CommentStore */
-	private $commentStore;
-
-	/** @var RowCommentFormatter */
-	private $commentFormatter;
+	private CommentStore $commentStore;
+	private RowCommentFormatter $commentFormatter;
 
 	/**
 	 * @param ApiQuery $query

@@ -74,32 +74,15 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	 */
 	private $numUncachedDiffs = 0;
 
-	/** @var RevisionStore */
-	private $revisionStore;
-
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
-
-	/** @var ParserFactory */
-	private $parserFactory;
-
-	/** @var SlotRoleRegistry */
-	private $slotRoleRegistry;
-
-	/** @var ContentRenderer */
-	private $contentRenderer;
-
-	/** @var ContentTransformer */
-	private $contentTransformer;
-
-	/** @var CommentFormatter */
-	private $commentFormatter;
-
-	/** @var TempUserCreator */
-	private $tempUserCreator;
-
-	/** @var UserFactory */
-	private $userFactory;
+	private RevisionStore $revisionStore;
+	private IContentHandlerFactory $contentHandlerFactory;
+	private ParserFactory $parserFactory;
+	private SlotRoleRegistry $slotRoleRegistry;
+	private ContentRenderer $contentRenderer;
+	private ContentTransformer $contentTransformer;
+	private CommentFormatter $commentFormatter;
+	private TempUserCreator $tempUserCreator;
+	private UserFactory $userFactory;
 
 	/**
 	 * @since 1.37 Support injection of services

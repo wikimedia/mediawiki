@@ -556,14 +556,9 @@ class ApiQuery extends ApiBase {
 	private $mParams;
 	private $mModuleMgr;
 
-	/** @var WikiExporterFactory */
-	private $wikiExporterFactory;
-
-	/** @var TitleFormatter */
-	private $titleFormatter;
-
-	/** @var TitleFactory */
-	private $titleFactory;
+	private WikiExporterFactory $wikiExporterFactory;
+	private TitleFormatter $titleFormatter;
+	private TitleFactory $titleFactory;
 
 	/**
 	 * @param ApiMain $main

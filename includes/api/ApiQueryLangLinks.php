@@ -34,14 +34,9 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiQueryLangLinks extends ApiQueryBase {
 
-	/** @var LanguageNameUtils */
-	private $languageNameUtils;
-
-	/** @var Language */
-	private $contentLanguage;
-
-	/** @var UrlUtils */
-	private $urlUtils;
+	private LanguageNameUtils $languageNameUtils;
+	private Language $contentLanguage;
+	private UrlUtils $urlUtils;
 
 	public function __construct(
 		ApiQuery $query,

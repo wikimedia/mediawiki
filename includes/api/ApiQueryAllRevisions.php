@@ -43,14 +43,9 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 
-	/** @var RevisionStore */
-	private $revisionStore;
-
-	/** @var ActorMigration */
-	private $actorMigration;
-
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
+	private RevisionStore $revisionStore;
+	private ActorMigration $actorMigration;
+	private NamespaceInfo $namespaceInfo;
 
 	/**
 	 * @param ApiQuery $query

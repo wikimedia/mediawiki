@@ -32,8 +32,7 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiQueryAuthManagerInfo extends ApiQueryBase {
 
-	/** @var AuthManager */
-	private $authManager;
+	private AuthManager $authManager;
 
 	/**
 	 * @param ApiQuery $query

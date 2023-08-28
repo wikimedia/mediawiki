@@ -40,14 +40,9 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 	private $useIndex = null;
 	private $props = [];
 
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
-
-	/** @var GenderCache */
-	private $genderCache;
-
-	/** @var LinksMigration */
-	private $linksMigration;
+	private NamespaceInfo $namespaceInfo;
+	private GenderCache $genderCache;
+	private LinksMigration $linksMigration;
 
 	/**
 	 * @param ApiQuery $query

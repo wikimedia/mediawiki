@@ -36,17 +36,10 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 class ApiQueryAllUsers extends ApiQueryBase {
 	use ApiQueryBlockInfoTrait;
 
-	/** @var UserFactory */
-	private $userFactory;
-
-	/** @var UserGroupManager */
-	private $userGroupManager;
-
-	/** @var GroupPermissionsLookup */
-	private $groupPermissionsLookup;
-
-	/** @var Language */
-	private $contentLanguage;
+	private UserFactory $userFactory;
+	private UserGroupManager $userGroupManager;
+	private GroupPermissionsLookup $groupPermissionsLookup;
+	private Language $contentLanguage;
 
 	/**
 	 * @param ApiQuery $query

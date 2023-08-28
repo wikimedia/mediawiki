@@ -39,11 +39,8 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 
 	private $table, $prefix, $titlesParam, $helpUrl;
 
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var LinksMigration */
-	private $linksMigration;
+	private LinkBatchFactory $linkBatchFactory;
+	private LinksMigration $linksMigration;
 
 	/**
 	 * @param ApiQuery $query

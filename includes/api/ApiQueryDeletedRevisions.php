@@ -46,14 +46,9 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 
-	/** @var RevisionStore */
-	private $revisionStore;
-
-	/** @var NameTableStore */
-	private $changeTagDefStore;
-
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
+	private RevisionStore $revisionStore;
+	private NameTableStore $changeTagDefStore;
+	private LinkBatchFactory $linkBatchFactory;
 
 	/**
 	 * @param ApiQuery $query

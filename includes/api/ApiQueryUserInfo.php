@@ -48,28 +48,11 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	/** @var array */
 	private $prop = [];
 
-	/**
-	 * @var TalkPageNotificationManager
-	 */
-	private $talkPageNotificationManager;
-
-	/**
-	 * @var WatchedItemStore
-	 */
-	private $watchedItemStore;
-
-	/**
-	 * @var UserEditTracker
-	 */
-	private $userEditTracker;
-
-	/**
-	 * @var UserOptionsLookup
-	 */
-	private $userOptionsLookup;
-
-	/** @var UserGroupManager */
-	private $userGroupManager;
+	private TalkPageNotificationManager $talkPageNotificationManager;
+	private WatchedItemStore $watchedItemStore;
+	private UserEditTracker $userEditTracker;
+	private UserOptionsLookup $userOptionsLookup;
+	private UserGroupManager $userGroupManager;
 
 	/**
 	 * @param ApiQuery $query

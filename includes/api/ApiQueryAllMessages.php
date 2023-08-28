@@ -32,20 +32,11 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiQueryAllMessages extends ApiQueryBase {
 
-	/** @var Language */
-	private $contentLanguage;
-
-	/** @var LanguageFactory */
-	private $languageFactory;
-
-	/** @var LanguageNameUtils */
-	private $languageNameUtils;
-
-	/** @var LocalisationCache */
-	private $localisationCache;
-
-	/** @var MessageCache */
-	private $messageCache;
+	private Language $contentLanguage;
+	private LanguageFactory $languageFactory;
+	private LanguageNameUtils $languageNameUtils;
+	private LocalisationCache $localisationCache;
+	private MessageCache $messageCache;
 
 	/**
 	 * @param ApiQuery $query

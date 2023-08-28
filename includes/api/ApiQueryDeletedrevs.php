@@ -42,20 +42,11 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiQueryDeletedrevs extends ApiQueryBase {
 
-	/** @var CommentStore */
-	private $commentStore;
-
-	/** @var RowCommentFormatter */
-	private $commentFormatter;
-
-	/** @var RevisionStore */
-	private $revisionStore;
-
-	/** @var NameTableStore */
-	private $changeTagDefStore;
-
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
+	private CommentStore $commentStore;
+	private RowCommentFormatter $commentFormatter;
+	private RevisionStore $revisionStore;
+	private NameTableStore $changeTagDefStore;
+	private LinkBatchFactory $linkBatchFactory;
 
 	/**
 	 * @param ApiQuery $query

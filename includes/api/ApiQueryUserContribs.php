@@ -46,26 +46,13 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  */
 class ApiQueryUserContribs extends ApiQueryBase {
 
-	/** @var CommentStore */
-	private $commentStore;
-
-	/** @var UserIdentityLookup */
-	private $userIdentityLookup;
-
-	/** @var UserNameUtils */
-	private $userNameUtils;
-
-	/** @var RevisionStore */
-	private $revisionStore;
-
-	/** @var NameTableStore */
-	private $changeTagDefStore;
-
-	/** @var ActorMigration */
-	private $actorMigration;
-
-	/** @var CommentFormatter */
-	private $commentFormatter;
+	private CommentStore $commentStore;
+	private UserIdentityLookup $userIdentityLookup;
+	private UserNameUtils $userNameUtils;
+	private RevisionStore $revisionStore;
+	private NameTableStore $changeTagDefStore;
+	private ActorMigration $actorMigration;
+	private CommentFormatter $commentFormatter;
 
 	/**
 	 * @param ApiQuery $query

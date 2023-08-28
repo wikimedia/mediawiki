@@ -46,32 +46,19 @@ use Wikimedia\ParamValidator\TypeDef\EnumDef;
  */
 class ApiQueryInfo extends ApiQueryBase {
 
-	/** @var ILanguageConverter */
-	private $languageConverter;
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
-	/** @var TitleFactory */
-	private $titleFactory;
-	/** @var TitleFormatter */
-	private $titleFormatter;
-	/** @var WatchedItemStore */
-	private $watchedItemStore;
-	/** @var RestrictionStore */
-	private $restrictionStore;
-	/** @var LinksMigration */
-	private $linksMigration;
-	/** @var TempUserCreator */
-	private $tempUserCreator;
-	/** @var IntroMessageBuilder */
-	private $introMessageBuilder;
-	/** @var PreloadedContentBuilder */
-	private $preloadedContentBuilder;
-	/** @var RevisionLookup */
-	private $revisionLookup;
-	/** @var UrlUtils */
-	private $urlUtils;
+	private ILanguageConverter $languageConverter;
+	private LinkBatchFactory $linkBatchFactory;
+	private NamespaceInfo $namespaceInfo;
+	private TitleFactory $titleFactory;
+	private TitleFormatter $titleFormatter;
+	private WatchedItemStore $watchedItemStore;
+	private RestrictionStore $restrictionStore;
+	private LinksMigration $linksMigration;
+	private TempUserCreator $tempUserCreator;
+	private IntroMessageBuilder $introMessageBuilder;
+	private PreloadedContentBuilder $preloadedContentBuilder;
+	private RevisionLookup $revisionLookup;
+	private UrlUtils $urlUtils;
 
 	private $fld_protection = false, $fld_talkid = false,
 		$fld_subjectid = false, $fld_url = false,

@@ -39,11 +39,8 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiQueryFilearchive extends ApiQueryBase {
 
-	/** @var CommentStore */
-	private $commentStore;
-
-	/** @var CommentFormatter */
-	private $commentFormatter;
+	private CommentStore $commentStore;
+	private CommentFormatter $commentFormatter;
 
 	/**
 	 * @param ApiQuery $query

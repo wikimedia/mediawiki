@@ -32,8 +32,7 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiQueryFileRepoInfo extends ApiQueryBase {
 
-	/** @var RepoGroup */
-	private $repoGroup;
+	private RepoGroup $repoGroup;
 
 	/**
 	 * @param ApiQuery $query
