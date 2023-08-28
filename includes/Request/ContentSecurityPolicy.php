@@ -589,4 +589,7 @@ class ContentSecurityPolicy {
 	}
 }
 
+/**
+ * @deprecated since 1.40
+ */
 class_alias( ContentSecurityPolicy::class, 'ContentSecurityPolicy' );

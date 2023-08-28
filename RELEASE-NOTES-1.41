@@ -573,6 +573,7 @@ because of Phabricator reports.
   - PageProps -> MediaWiki\Page\PageProps
   - Linker -> MediaWiki\Linker\Linker
   - DummyLinker -> MediaWiki\Linker\DummyLinker
+  - ContentSecurityPolicy -> MediaWiki\Request\ContentSecurityPolicy
   - Title -> MediaWiki\Title\Title
   From 1.39:
   - ResourceLoader -> MediaWiki\ResourceLoader\ResourceLoader
