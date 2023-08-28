@@ -62,4 +62,7 @@ class DeprecatedGlobal extends StubObject {
 	}
 }
 
+/**
+ * @deprecated since 1.40
+ */
 class_alias( DeprecatedGlobal::class, 'DeprecatedGlobal' );

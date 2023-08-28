@@ -588,6 +588,10 @@ because of Phabricator reports.
   - FauxResponse -> MediaWiki\Request\FauxResponse
   - WebResponse -> MediaWiki\Request\WebResponse
   - MediaWiki\HeaderCallback -> MediaWiki\Request\HeaderCallback
+  - StubObject -> MediaWiki\StubObject\StubObject
+  - DeprecatedGlobal -> MediaWiki\StubObject\DeprecatedGlobal
+  - StubGlobalUser -> MediaWiki\StubObject\StubGlobalUser
+  - StubUserLang -> MediaWiki\StubObject\StubUserLang
   - Title -> MediaWiki\Title\Title
   - TitleArray -> MediaWiki\Title\TitleArray
   - TitleArrayFromResult -> MediaWiki\Title\TitleArrayFromResult
