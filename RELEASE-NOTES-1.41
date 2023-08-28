@@ -571,6 +571,9 @@ because of Phabricator reports.
   - ProtectionForm -> MediaWiki\Page\File\ProtectionForm
   - MediaWiki\BadFileLookup -> MediaWiki\Page\File\BadFileLookup
   - PageProps -> MediaWiki\Page\PageProps
+  - MagicWord -> MediaWiki\Parser\MagicWord
+  - MagicWordArray -> MediaWiki\Parser\MagicWordArray
+  - MagicWordFactory -> MediaWiki\Parser\MagicWordFactory
   - Linker -> MediaWiki\Linker\Linker
   - DummyLinker -> MediaWiki\Linker\DummyLinker
   - ContentSecurityPolicy -> MediaWiki\Request\ContentSecurityPolicy

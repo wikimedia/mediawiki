@@ -469,4 +469,7 @@ class MagicWord {
 	}
 }
 
+/**
+ * @deprecated since 1.40
+ */
 class_alias( MagicWord::class, 'MagicWord' );
