@@ -571,6 +571,8 @@ because of Phabricator reports.
   - ProtectionForm -> MediaWiki\Page\File\ProtectionForm
   - MediaWiki\BadFileLookup -> MediaWiki\Page\File\BadFileLookup
   - PageProps -> MediaWiki\Page\PageProps
+  - Linker -> MediaWiki\Linker\Linker
+  - DummyLinker -> MediaWiki\Linker\DummyLinker
   - Title -> MediaWiki\Title\Title
   From 1.39:
   - ResourceLoader -> MediaWiki\ResourceLoader\ResourceLoader
