@@ -69,9 +69,6 @@ class ApiEditPage extends ApiBase {
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
 
-	/** @var UserOptionsLookup */
-	private $userOptionsLookup;
-
 	/** @var RedirectLookup */
 	private $redirectLookup;
 
