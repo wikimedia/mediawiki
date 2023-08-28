@@ -540,6 +540,31 @@ because of Phabricator reports.
 * The static methods encodeJsVar() and encodeJsCall() have been moved from the
   Xml class to the more appropriate MediaWiki\Html\Html one, and the old ones
   are now deprecated.
+* Some work to rename classes was done in previous releases, but the renaming
+  was not noted at the time. The old aliases work for now but are deprecated;
+  this is now explicitly noted:
+  From 1.40:
+  - Category -> MediaWiki\Category\Category
+  - CategoriesRdf -> MediaWiki\Category\CategoriesRdf
+  - CategoryViewer -> MediaWiki\Category\CategoryViewer
+  - TrackingCategories -> MediaWiki\Category\TrackingCategories
+  - CommentStore -> MediaWiki\CommentStore\CommentStore
+  - CommentStoreComment -> MediaWiki\CommentStore\CommentStoreComment
+  - EditPage -> MediaWiki\EditPage\EditPage
+  - TemplatesOnThisPageFormatter
+    -> MediaWiki\EditPage\TemplatesOnThisPageFormatter
+  - LinkFilter -> MediaWiki\ExternalLinks\LinkFilter
+  - AtomFeed -> MediaWiki\Feed\AtomFeed
+  - ChannelFeed -> MediaWiki\Feed\ChannelFeed
+  - FeedItem -> MediaWiki\Feed\FeedItem
+  - FeedUtils -> MediaWiki\Feed\FeedUtils
+  - RSSFeed -> MediaWiki\Feed\RSSFeed
+  - Html -> MediaWiki\Html\Html
+  - FormOptions -> MediaWiki\Html\FormOptions
+  - HtmlHelper -> MediaWiki\Html\HtmlHelper
+  - ListToggle -> MediaWiki\Html\ListToggle
+  - TemplateParser -> MediaWiki\Html\TemplateParser
+  - RawMessage -> MediaWiki\Language\RawMessage
 * The WebRequest::getRequestId() and WebRequest::overrideRequestId() are
   deprecated. Use methods from MediaWiki\Http\Telemetry class instead.
 * The XmlJsCode wrapper class has been renamed to MediaWiki\Html\HtmlJsCode,
