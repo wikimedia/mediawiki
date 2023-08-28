@@ -3740,6 +3740,12 @@ config-schema:
             Cache version for client-side ResourceLoader module storage. You can trigger
             invalidation of the contents of the module store by incrementing this value.
             @since 1.23
+    ResourceLoaderEnableSourceMapLinks:
+        default: false
+        description: |-
+            Whether to include source map URL comments in ResourceLoader responses
+            for JavaScript modules.
+            @since 1.41
     AllowSiteCSSOnRestrictedPages:
         default: false
         description: |-

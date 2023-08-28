@@ -2123,6 +2123,12 @@ class MainConfigNames {
 	public const ResourceLoaderStorageVersion = 'ResourceLoaderStorageVersion';
 
 	/**
+	 * Name constant for the ResourceLoaderEnableSourceMapLinks setting, for use with Config::get()
+	 * @see MainConfigSchema::ResourceLoaderEnableSourceMapLinks
+	 */
+	public const ResourceLoaderEnableSourceMapLinks = 'ResourceLoaderEnableSourceMapLinks';
+
+	/**
 	 * Name constant for the AllowSiteCSSOnRestrictedPages setting, for use with Config::get()
 	 * @see MainConfigSchema::AllowSiteCSSOnRestrictedPages
 	 */

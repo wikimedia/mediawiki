@@ -682,6 +682,7 @@ return [
 			'ResourceLoaderEnableJSProfiler' => false,
 			'ResourceLoaderStorageEnabled' => true,
 			'ResourceLoaderStorageVersion' => 1,
+			'ResourceLoaderEnableSourceMapLinks' => false,
 			'AllowSiteCSSOnRestrictedPages' => false,
 			'VueDevelopmentMode' => false,
 			'MetaNamespace' => false,

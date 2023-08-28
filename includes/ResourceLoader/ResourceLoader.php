@@ -29,6 +29,7 @@ use Exception;
 use ExtensionRegistry;
 use HashBagOStuff;
 use HttpStatus;
+use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
 use Less_Environment;
 use Less_Parser;
@@ -59,7 +60,13 @@ use WebRequest;
 use Wikimedia\DependencyStore\DependencyStore;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\Minify\CSSMin;
+use Wikimedia\Minify\IdentityMinifierState;
+use Wikimedia\Minify\IndexMap;
+use Wikimedia\Minify\IndexMapOffset;
+use Wikimedia\Minify\JavaScriptMapperState;
 use Wikimedia\Minify\JavaScriptMinifier;
+use Wikimedia\Minify\JavaScriptMinifierState;
+use Wikimedia\Minify\MinifierState;
 use Wikimedia\RequestTimeout\TimeoutException;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
@@ -113,6 +120,10 @@ class ResourceLoader implements LoggerAwareInterface {
 	private $hookContainer;
 	/** @var HookRunner */
 	private $hookRunner;
+	/** @var BagOStuff */
+	private $srvCache;
+	/** @var IBufferingStatsdDataFactory */
+	private $stats;
 	/** @var string */
 	private $loadScript;
 	/** @var int */
@@ -179,6 +190,9 @@ class ResourceLoader implements LoggerAwareInterface {
 		$services = MediaWikiServices::getInstance();
 		$this->hookContainer = $services->getHookContainer();
 		$this->hookRunner = new HookRunner( $this->hookContainer );
+
+		$this->srvCache = $services->getLocalServerObjectCache();
+		$this->stats = $services->getStatsdDataFactory();
 
 		// Add 'local' source first
 		$this->addSource( 'local', $this->loadScript );
@@ -673,9 +687,10 @@ class ResourceLoader implements LoggerAwareInterface {
 		if ( !$moduleNames ) {
 			return '';
 		}
-		$hashes = array_map( function ( $module ) use ( $context ) {
+		$hashes = [];
+		foreach ( $moduleNames as $module ) {
 			try {
-				return $this->getModule( $module )->getVersionHash( $context );
+				$hash = $this->getModule( $module )->getVersionHash( $context );
 			} catch ( TimeoutException $e ) {
 				throw $e;
 			} catch ( Exception $e ) {
@@ -687,9 +702,10 @@ class ResourceLoader implements LoggerAwareInterface {
 						'module' => $module,
 					]
 				);
-				return '';
+				$hash = '';
 			}
-		}, $moduleNames );
+			$hashes[] = $hash;
+		}
 		return self::makeHash( implode( '', $hashes ) );
 	}
 
@@ -785,8 +801,39 @@ class ResourceLoader implements LoggerAwareInterface {
 			return; // output handled (buffers cleared)
 		}
 
+		if ( $context->isSourceMap() ) {
+			// In source map mode, a version mismatch should be a 404
+			if ( $context->getVersion() !== null && $versionHash !== $context->getVersion() ) {
+				ob_end_clean();
+				$this->sendSourceMapVersionMismatch( $versionHash );
+				return;
+			}
+			// Can't generate a source map for image or only=styles requests, or in
+			// debug mode
+			if ( $context->getImage()
+				|| $context->getOnly() === 'styles'
+				|| $context->getDebug()
+			) {
+				ob_end_clean();
+				$this->sendSourceMapTypeNotImplemented();
+				return;
+			}
+		}
+
 		// Generate a response
 		$response = $this->makeModuleResponse( $context, $modules, $missing );
+
+		// Determine the source map link URL while we still have an output buffer
+		if ( $this->config->get( MainConfigNames::ResourceLoaderEnableSourceMapLinks )
+			&& !$context->getImageObj()
+			&& !$context->isSourceMap()
+			&& $context->shouldIncludeScripts()
+			&& !$context->getDebug()
+		) {
+			$sourceMapLinkUrl = $this->getSourceMapUrl( $context, $versionHash );
+		} else {
+			$sourceMapLinkUrl = null;
+		}
 
 		// Capture any PHP warnings from the output buffer and append them to the
 		// error list if we're in debug mode.
@@ -812,10 +859,19 @@ class ResourceLoader implements LoggerAwareInterface {
 				$errorResponse .= 'if (window.console && console.error) { console.error('
 					. $context->encodeJson( $errorText )
 					. "); }\n";
+				// Append the error info to the response
+				// We used to prepend it, but that would corrupt the source map
+				$response .= $errorResponse;
+			} else {
+				// For styles we can still prepend
+				$response = $errorResponse . $response;
 			}
+		}
 
-			// Prepend error info to the response
-			$response = $errorResponse . $response;
+		// Add source map link
+		if ( $sourceMapLinkUrl !== null ) {
+			$response = self::ensureNewline( $response );
+			$response .= "//# sourceMappingURL=$sourceMapLinkUrl";
 		}
 
 		// @phan-suppress-next-line SecurityCheck-XSS
@@ -828,10 +884,9 @@ class ResourceLoader implements LoggerAwareInterface {
 	 */
 	protected function measureResponseTime() {
 		$statStart = $_SERVER['REQUEST_TIME_FLOAT'];
-		return new ScopedCallback( static function () use ( $statStart ) {
+		return new ScopedCallback( function () use ( $statStart ) {
 			$statTiming = microtime( true ) - $statStart;
-			$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
-			$stats->timing( 'resourceloader.responseTime', $statTiming * 1000 );
+			$this->stats->timing( 'resourceloader.responseTime', $statTiming * 1000 );
 		} );
 	}
 
@@ -879,6 +934,8 @@ class ResourceLoader implements LoggerAwareInterface {
 			} else {
 				$context->getImageObj()->sendResponseHeaders( $context );
 			}
+		} elseif ( $context->isSourceMap() ) {
+			header( 'Content-Type: application/json' );
 		} elseif ( $context->getOnly() === 'styles' ) {
 			header( 'Content-Type: text/css; charset=utf-8' );
 			header( 'Access-Control-Allow-Origin: *' );
@@ -940,6 +997,44 @@ class ResourceLoader implements LoggerAwareInterface {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * Get the URL which will deliver the source map for the current response.
+	 *
+	 * @param Context $context
+	 * @param string $version The combined version hash
+	 * @return string
+	 */
+	private function getSourceMapUrl( Context $context, $version ) {
+		return $this->createLoaderURL( 'local', $context, [
+			'sourcemap' => '1',
+			'version' => $version
+		] );
+	}
+
+	/**
+	 * Send an error page for a source map version mismatch
+	 *
+	 * @param string $currentVersion
+	 */
+	private function sendSourceMapVersionMismatch( $currentVersion ) {
+		HttpStatus::header( 404 );
+		header( 'Content-Type: text/plain; charset=utf-8' );
+		header( 'X-Content-Type-Options: nosniff' );
+		echo "Can't deliver a source map for the requested version " .
+			"since the version is now '$currentVersion'\n";
+	}
+
+	/**
+	 * Send an error page when a source map is requested but there is no
+	 * support for the specified content type
+	 */
+	private function sendSourceMapTypeNotImplemented() {
+		HttpStatus::header( 404 );
+		header( 'Content-Type: text/plain; charset=utf-8' );
+		header( 'X-Content-Type-Options: nosniff' );
+		echo "Can't make a source map for this content type\n";
 	}
 
 	/**
@@ -1021,11 +1116,21 @@ MESSAGE;
 
 		$only = $context->getOnly();
 		$debug = (bool)$context->getDebug();
+		if ( $context->isSourceMap() && count( $modules ) > 1 ) {
+			$indexMap = new IndexMap;
+		} else {
+			$indexMap = null;
+		}
 
 		$out = '';
 		foreach ( $modules as $name => $module ) {
 			try {
-				$out .= $this->getOneModuleResponse( $context, $name, $module );
+				[ $response, $offset ] = $this->getOneModuleResponse( $context, $name, $module );
+				if ( $indexMap ) {
+					$indexMap->addEncodedMap( $response, $offset );
+				} else {
+					$out .= $response;
+				}
 			} catch ( TimeoutException $e ) {
 				throw $e;
 			} catch ( Exception $e ) {
@@ -1048,7 +1153,7 @@ MESSAGE;
 			}
 
 			// Set the state of modules we didn't respond to with mw.loader.impl
-			if ( $states ) {
+			if ( $states && !$context->isSourceMap() ) {
 				$stateScript = self::makeLoaderStateScript( $context, $states );
 				if ( !$debug ) {
 					$stateScript = self::filter( 'minify-js', $stateScript );
@@ -1064,7 +1169,11 @@ MESSAGE;
 				. @$context->encodeJson( $states );
 		}
 
-		return $out;
+		if ( $indexMap ) {
+			return $indexMap->getMap();
+		} else {
+			return $out;
+		}
 	}
 
 	/**
@@ -1073,18 +1182,101 @@ MESSAGE;
 	 * @param Context $context
 	 * @param string $name
 	 * @param Module $module
-	 * @return string
+	 * @return array{string,IndexMapOffset|null}
 	 */
 	private function getOneModuleResponse( Context $context, $name, Module $module ) {
 		$only = $context->getOnly();
-		$filter = $only === 'styles' ? 'minify-css' : 'minify-js';
+		// Important: Do not cache minifications of embedded modules
+		// This is especially for the private 'user.options' module,
+		// which varies on every pageview and would explode the cache (T84960)
+		$shouldCache = !$module->shouldEmbedModule( $context );
+		if ( $only === 'styles' ) {
+			$minifier = new IdentityMinifierState;
+			$this->addOneModuleResponse( $context, $minifier, $name, $module, $this->extraHeaders );
+			return [
+				self::filter( 'minify-css', $minifier->getMinifiedOutput(),
+					[ 'cache' => $shouldCache ] ),
+				null
+			];
+		}
+
+		$minifier = new IdentityMinifierState;
+		$this->addOneModuleResponse( $context, $minifier, $name, $module, $this->extraHeaders );
+		$plainContent = $minifier->getMinifiedOutput();
+		if ( $context->getDebug() ) {
+			return [ $plainContent, null ];
+		}
+
+		$isHit = true;
+		$callback = function () use ( $context, $name, $module, &$isHit ) {
+			$isHit = false;
+			if ( $context->isSourceMap() ) {
+				$minifier = ( new JavaScriptMapperState )
+					->outputFile( $this->createLoaderURL( 'local', $context, [
+						'modules' => self::makePackedModulesString( $context->getModules() ),
+						'only' => $context->getOnly()
+					] ) );
+			} else {
+				$minifier = new JavaScriptMinifierState;
+			}
+			// We only need to add one set of headers, and we did that for the identity response
+			$discardedHeaders = null;
+			$this->addOneModuleResponse( $context, $minifier, $name, $module, $discardedHeaders );
+			if ( $context->isSourceMap() ) {
+				$sourceMap = $minifier->getRawSourceMap();
+				$generated = $minifier->getMinifiedOutput();
+				$offset = IndexMapOffset::newFromText( $generated );
+				return [ $sourceMap, $offset->toArray() ];
+			} else {
+				return [ $minifier->getMinifiedOutput(), null ];
+			}
+		};
+
+		if ( $shouldCache ) {
+			[ $response, $offsetArray ] = $this->srvCache->getWithSetCallback(
+				$this->srvCache->makeGlobalKey(
+					'resourceloader-mapped',
+					self::CACHE_VERSION,
+					$name,
+					$context->isSourceMap() ? '1' : '0',
+					md5( $plainContent )
+				),
+				BagOStuff::TTL_DAY,
+				$callback
+			);
+			$this->stats->increment( implode( '.', [
+				"resourceloader_cache",
+				$context->isSourceMap() ? 'map-js' : 'minify-js',
+				$isHit ? 'hit' : 'miss'
+			] ) );
+		} else {
+			[ $response, $offsetArray ] = $callback();
+		}
+		$offset = $offsetArray ? IndexMapOffset::newFromArray( $offsetArray ) : null;
+
+		return [ $response, $offset ];
+	}
+
+	/**
+	 * Add the response of a single module to the MinifierState
+	 *
+	 * @param Context $context
+	 * @param MinifierState $minifier
+	 * @param string $name
+	 * @param Module $module
+	 * @param array|null &$headers Array of headers. If it is not null, the
+	 *   module's headers will be appended to this array.
+	 */
+	private function addOneModuleResponse(
+		Context $context, MinifierState $minifier, $name, Module $module, &$headers
+	) {
+		$only = $context->getOnly();
 		$debug = (bool)$context->getDebug();
 		$content = $module->getModuleContent( $context );
-		$implementKey = $name . '@' . $module->getVersionHash( $context );
-		$strContent = '';
+		$version = $module->getVersionHash( $context );
 
-		if ( isset( $content['headers'] ) ) {
-			$this->extraHeaders = array_merge( $this->extraHeaders, $content['headers'] );
+		if ( $headers !== null && isset( $content['headers'] ) ) {
+			$headers = array_merge( $headers, $content['headers'] );
 		}
 
 		// Append output
@@ -1098,11 +1290,13 @@ MESSAGE;
 				}
 				if ( isset( $scripts['plainScripts'] ) ) {
 					// Add plain scripts
-					$strContent .= self::concatenatePlainScripts( $scripts['plainScripts'] );
+					$this->addPlainScripts( $minifier, $name, $scripts['plainScripts'] );
 				} elseif ( isset( $scripts['files'] ) ) {
 					// Add implement call if any
-					$strContent .= self::makeLoaderImplementScript(
-						$implementKey,
+					$this->addImplementScript(
+						$minifier,
+						$name,
+						$version,
 						$scripts,
 						[],
 						null,
@@ -1116,7 +1310,9 @@ MESSAGE;
 				// We no longer separate into media, they are all combined now with
 				// custom media type groups into @media .. {} sections as part of the css string.
 				// Module returns either an empty array or a numerical array with css strings.
-				$strContent = isset( $styles['css'] ) ? implode( '', $styles['css'] ) : '';
+				if ( isset( $styles['css'] ) ) {
+					$minifier->addOutput( implode( '', $styles['css'] ) );
+				}
 				break;
 			default:
 				$scripts = $content['scripts'] ?? '';
@@ -1132,8 +1328,10 @@ MESSAGE;
 						$scripts = self::filter( 'minify-js', $scripts ); // T107377
 					}
 				}
-				$strContent .= self::makeLoaderImplementScript(
-					$implementKey,
+				$this->addImplementScript(
+					$minifier,
+					$name,
+					$version,
 					$scripts,
 					$content['styles'] ?? [],
 					isset( $content['messagesBlob'] ) ? new HtmlJsCode( $content['messagesBlob'] ) : null,
@@ -1142,25 +1340,7 @@ MESSAGE;
 				);
 				break;
 		}
-
-		if ( $debug ) {
-			// In debug mode, separate each response by a new line.
-			// For example, between 'mw.loader.impl();' statements.
-			$strContent = self::ensureNewline( $strContent );
-		} else {
-			$strContent = self::filter( $filter, $strContent, [
-				// Important: Do not cache minifications of embedded modules
-				// This is especially for the private 'user.options' module,
-				// which varies on every pageview and would explode the cache (T84960)
-				'cache' => !$module->shouldEmbedModule( $context )
-			] );
-		}
-
-		if ( $only === 'scripts' ) {
-			// Use a linebreak between module scripts (T162719)
-			$strContent = self::ensureNewline( $strContent );
-		}
-		return $strContent;
+		$minifier->ensureNewline();
 	}
 
 	/**
@@ -1195,9 +1375,12 @@ MESSAGE;
 	}
 
 	/**
-	 * Return JS code that calls mw.loader.impl with given module properties.
+	 * Generate JS code that calls mw.loader.impl with given module properties
+	 * and add it to the MinifierState.
 	 *
-	 * @param string $name Module name used as implement key (format "`[name]@[version]`")
+	 * @param MinifierState $minifier The minifier to which output should be appended
+	 * @param string $moduleName The module name
+	 * @param string $version The module version hash
 	 * @param array|string|string[] $scripts
 	 *  - array: Package files array containing strings for individual JS files,
 	 *    as produced by Module::getScript().
@@ -1211,30 +1394,39 @@ MESSAGE;
 	 *   wrapped in an HtmlJsCode object.
 	 * @param array<string,string> $templates Map from template name to template source.
 	 * @param string|null $deprecationWarning
-	 * @return string JavaScript code
 	 */
-	private static function makeLoaderImplementScript(
-		$name, $scripts, $styles, $messages, $templates, $deprecationWarning
+	private function addImplementScript( MinifierState $minifier,
+		$moduleName, $version, $scripts, $styles, $messages, $templates, $deprecationWarning
 	) {
+		$implementKey = "$moduleName@$version";
+		// Plain functions are used instead of arrow functions to avoid
+		// defeating lazy compilation on Chrome. (T343407)
+		$minifier->addOutput( "mw.loader.impl(function(){return[" .
+			Html::encodeJsVar( $implementKey ) . "," );
+
+		// Scripts
 		if ( is_string( $scripts ) ) {
 			// user/site script
+			$minifier->addOutput( Html::encodeJsVar( $scripts ) );
 		} elseif ( is_array( $scripts ) ) {
 			if ( isset( $scripts['files'] ) ) {
-				$files = self::encodeFiles( $scripts['files'] );
-				$scripts = HtmlJsCode::encodeObject( [
-					'main' => $scripts['main'],
-					'files' => HtmlJsCode::encodeObject( $files, true )
-				], true );
+				$minifier->addOutput(
+					"{\"main\":" .
+					Html::encodeJsVar( $scripts['main'] ) .
+					",\"files\":" );
+				$this->addFiles( $minifier, $moduleName, $scripts['files'] );
+				$minifier->addOutput( "}" );
 			} elseif ( isset( $scripts['plainScripts'] ) ) {
-				$plainScripts = self::concatenatePlainScripts( $scripts['plainScripts'] );
-				if ( $plainScripts === '' ) {
-					$scripts = null;
+				if ( $this->isEmptyFileInfos( $scripts['plainScripts'] ) ) {
+					$minifier->addOutput( 'null' );
 				} else {
-					$scripts = new HtmlJsCode(
-						"function ( $, jQuery, require, module ) {\n{$plainScripts}}" );
+					$minifier->addOutput( "function($,jQuery,require,module){" );
+					$this->addPlainScripts( $minifier, $moduleName, $scripts['plainScripts'] );
+					$minifier->addOutput( "}" );
 				}
 			} elseif ( $scripts === [] || isset( $scripts[0] ) ) {
 				// Array of URLs
+				$minifier->addOutput( Html::encodeJsVar( $scripts ) );
 			} else {
 				throw new InvalidArgumentException( 'Invalid script array: ' .
 					'must contain files, plainScripts or be an array of URLs' );
@@ -1246,51 +1438,85 @@ MESSAGE;
 		// mw.loader.impl requires 'styles', 'messages' and 'templates' to be objects (not
 		// arrays). json_encode considers empty arrays to be numerical and outputs "[]" instead
 		// of "{}". Force them to objects.
-		$module = [
-			$name,
-			$scripts,
+		$extraArgs = [
 			(object)$styles,
 			$messages ?? (object)[],
 			(object)$templates,
 			$deprecationWarning
 		];
-		self::trimArray( $module );
-
-		// We use pretty output unconditionally to make this method simpler.
-		// Minification is taken care of closer to the output.
-		// Plain functions are used instead of arrow functions to avoid
-		// defeating lazy compilation on Chrome. (T343407)
-		return 'mw.loader.impl(function(){return[' .
-			Html::encodeJsList( $module, true ) . '];});';
+		self::trimArray( $extraArgs );
+		foreach ( $extraArgs as $arg ) {
+			$minifier->addOutput( ',' . Html::encodeJsVar( $arg ) );
+		}
+		$minifier->addOutput( "];});" );
 	}
 
 	/**
-	 * Extract the contents of an array of package files, and convert it to an
-	 * array of data which can be passed to HtmlJsCode::encodeObject(), with any
-	 * JS code wrapped in HtmlJsCode objects.
+	 * Extract the contents of an array of package files, and convert it to a
+	 * JavaScript array. Add the array to the minifier state.
 	 *
 	 * Package files can contain JSON data.
 	 *
+	 * @param MinifierState $minifier
+	 * @param string $moduleName
 	 * @param array $files
-	 * @return array
 	 */
-	private static function encodeFiles( $files ) {
-		foreach ( $files as &$file ) {
-			// $file is changed (by reference) from a descriptor array to the content of the file
-			// All of these essentially do $file = $file['content'];, some just have wrapping around it
-			if ( $file['type'] === 'script' ) {
-				// Ensure that the script has a newline at the end to close any comment in the
-				// last line.
-				$content = self::ensureNewline( $file['content'] );
+	private function addFiles( MinifierState $minifier, $moduleName, $files ) {
+		$first = true;
+		$minifier->addOutput( "{" );
+		foreach ( $files as $fileName => $file ) {
+			if ( $first ) {
+				$first = false;
+			} else {
+				$minifier->addOutput( "," );
+			}
+			$minifier->addOutput( Html::encodeJsVar( $fileName ) . ':' );
+			$this->addFileContent( $minifier, $moduleName, 'packageFile', $fileName, $file );
+		}
+		$minifier->addOutput( "}" );
+	}
+
+	/**
+	 * Add a package file to a MinifierState
+	 *
+	 * @param MinifierState $minifier
+	 * @param string $moduleName
+	 * @param string $sourceType
+	 * @param string|int $sourceIndex
+	 * @param array $file The expanded file info array
+	 */
+	private function addFileContent( MinifierState $minifier,
+		$moduleName, $sourceType, $sourceIndex, array $file
+	) {
+		$isScript = ( $file['type'] ?? 'script' ) === 'script';
+		/** @var FilePath|null $filePath */
+		$filePath = $file['filePath'] ?? $file['virtualFilePath'] ?? null;
+		if ( $filePath !== null && $filePath->getRemoteBasePath() !== null ) {
+			$url = $filePath->getRemotePath();
+		} else {
+			$ext = $isScript ? 'js' : 'json';
+			$scriptPath = $this->config->has( MainConfigNames::ScriptPath )
+				? $this->config->get( MainConfigNames::ScriptPath ) : '';
+			$url = "$scriptPath/virtual-resource/$moduleName-$sourceType-$sourceIndex.$ext";
+		}
+		$content = $file['content'];
+		if ( $isScript ) {
+			if ( $sourceType === 'packageFile' ) {
 				// Provide CJS `exports` (in addition to CJS2 `module.exports`) to package modules (T284511).
 				// $/jQuery are simply used as globals instead.
 				// TODO: Remove $/jQuery param from traditional module closure too (and bump caching)
-				$file = new HtmlJsCode( "function ( require, module, exports ) {\n$content}" );
+				$minifier->addOutput( "function(require,module,exports){" );
+				$minifier->addSourceFile( $url, $content, true );
+				$minifier->ensureNewline();
+				$minifier->addOutput( "}" );
 			} else {
-				$file = $file['content'];
+				$minifier->addSourceFile( $url, $content, true );
+				$minifier->ensureNewline();
 			}
+		} else {
+			$content = Html::encodeJsVar( $content, true );
+			$minifier->addSourceFile( $url, $content, true );
 		}
-		return $files;
 	}
 
 	/**
@@ -1308,6 +1534,34 @@ MESSAGE;
 			$s .= self::ensureNewline( $script['content'] );
 		}
 		return $s;
+	}
+
+	/**
+	 * Add contents from a plainScripts array like [ [ 'content' => '...' ]
+	 * to a MinifierState
+	 *
+	 * @param MinifierState $minifier
+	 * @param string $moduleName
+	 * @param array[] $plainScripts
+	 */
+	private function addPlainScripts( MinifierState $minifier, $moduleName, $plainScripts ) {
+		foreach ( $plainScripts as $index => $file ) {
+			$this->addFileContent( $minifier, $moduleName, 'script', $index, $file );
+		}
+	}
+
+	/**
+	 * Determine whether an array of file info arrays has empty content
+	 *
+	 * @param array $infos
+	 * @return bool
+	 */
+	private function isEmptyFileInfos( $infos ) {
+		$len = 0;
+		foreach ( $infos as $info ) {
+			$len += strlen( $info['content'] ?? '' );
+		}
+		return $len === 0;
 	}
 
 	/**
@@ -1764,7 +2018,9 @@ MESSAGE;
 		if ( $printable ) {
 			$query['printable'] = 1;
 		}
-		$query += $extraQuery;
+		foreach ( $extraQuery as $name => $value ) {
+			$query[$name] = $value;
+		}
 
 		// Make queries uniform in order
 		ksort( $query );
