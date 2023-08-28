@@ -609,6 +609,9 @@ because of Phabricator reports.
   deprecation warnings. Use ::getReasonComment() instead.
 * The global function wfReportTime(), deprecated since 1.40, now emits
   deprecation warnings. The SkinTemplate parameter 'reporttime' is deprecated.
+* The following classes are now namespaced; the old class names are left as
+  deprecated aliases:
+  - Status -> MediaWiki\Status\Status
 * The following methods, previously deprecated, now emit deprecation warnings:
   - ConfigFactory::getDefaultInstance(), deprecated since 1.27
   - AbstractContent::getNativeData(), deprecated since 1.33

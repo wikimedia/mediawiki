@@ -497,4 +497,7 @@ class Status extends StatusValue {
 	}
 }
 
+/**
+ * @deprecated since 1.41
+ */
 class_alias( Status::class, 'Status' );
