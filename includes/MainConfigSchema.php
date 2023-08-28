@@ -6483,9 +6483,11 @@ class MainConfigSchema {
 	 * https://www.mediawiki.org/wiki/Parsing/Media_structure
 	 *
 	 * @since 1.36
+	 * @deprecated since 1.41
 	 */
 	public const ParserEnableLegacyMediaDOM = [
 		'default' => false,
+		'deprecated' => 'since 1.41',
 	];
 
 	/**
@@ -6495,9 +6497,11 @@ class MainConfigSchema {
 	 * but still in the cache.
 	 *
 	 * @internal
+	 * @deprecated since 1.41
 	 */
 	public const UseContentMediaStyles = [
 		'default' => false,
+		'deprecated' => 'since 1.41',
 	];
 
 	/**

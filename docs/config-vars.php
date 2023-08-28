@@ -2334,12 +2334,14 @@ $wgParsoidSettings = null;
 /**
  * Config variable stub for the ParserEnableLegacyMediaDOM setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ParserEnableLegacyMediaDOM
+ * @deprecated since 1.41
  */
 $wgParserEnableLegacyMediaDOM = null;
 
 /**
  * Config variable stub for the UseContentMediaStyles setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::UseContentMediaStyles
+ * @deprecated since 1.41
  */
 $wgUseContentMediaStyles = null;
 
