@@ -43,14 +43,9 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class SpecialListRedirects extends QueryPage {
 
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var WikiPageFactory */
-	private $wikiPageFactory;
-
-	/** @var RedirectLookup */
-	private $redirectLookup;
+	private LinkBatchFactory $linkBatchFactory;
+	private WikiPageFactory $wikiPageFactory;
+	private RedirectLookup $redirectLookup;
 
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory

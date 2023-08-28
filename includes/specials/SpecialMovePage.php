@@ -94,41 +94,18 @@ class SpecialMovePage extends UnlistedSpecialPage {
 
 	private $watch = false;
 
-	/** @var MovePageFactory */
-	private $movePageFactory;
-
-	/** @var PermissionManager */
-	private $permManager;
-
-	/** @var UserOptionsLookup */
-	private $userOptionsLookup;
-
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
-
-	/** @var NamespaceInfo */
-	private $nsInfo;
-
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var RepoGroup */
-	private $repoGroup;
-
-	/** @var WikiPageFactory */
-	private $wikiPageFactory;
-
-	/** @var SearchEngineFactory */
-	private $searchEngineFactory;
-
-	/** @var WatchlistManager */
-	private $watchlistManager;
-
-	/** @var RestrictionStore */
-	private $restrictionStore;
+	private MovePageFactory $movePageFactory;
+	private PermissionManager $permManager;
+	private UserOptionsLookup $userOptionsLookup;
+	private IConnectionProvider $dbProvider;
+	private IContentHandlerFactory $contentHandlerFactory;
+	private NamespaceInfo $nsInfo;
+	private LinkBatchFactory $linkBatchFactory;
+	private RepoGroup $repoGroup;
+	private WikiPageFactory $wikiPageFactory;
+	private SearchEngineFactory $searchEngineFactory;
+	private WatchlistManager $watchlistManager;
+	private RestrictionStore $restrictionStore;
 
 	/**
 	 * @param MovePageFactory $movePageFactory

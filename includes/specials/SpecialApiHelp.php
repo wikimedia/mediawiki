@@ -38,8 +38,7 @@ use UnlistedSpecialPage;
  */
 class SpecialApiHelp extends UnlistedSpecialPage {
 
-	/** @var UrlUtils */
-	private $urlUtils;
+	private UrlUtils $urlUtils;
 
 	/**
 	 * @param UrlUtils $urlUtils

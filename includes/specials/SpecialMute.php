@@ -49,17 +49,10 @@ class SpecialMute extends FormSpecialPage {
 	/** @var int */
 	private $targetCentralId;
 
-	/** @var CentralIdLookup */
-	private $centralIdLookup;
-
-	/** @var UserOptionsManager */
-	private $userOptionsManager;
-
-	/** @var UserIdentityLookup */
-	private $userIdentityLookup;
-
-	/** @var UserIdentityUtils */
-	private $userIdentityUtils;
+	private CentralIdLookup $centralIdLookup;
+	private UserOptionsManager $userOptionsManager;
+	private UserIdentityLookup $userIdentityLookup;
+	private UserIdentityUtils $userIdentityUtils;
 
 	/**
 	 * @param CentralIdLookup $centralIdLookup

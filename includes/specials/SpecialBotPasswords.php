@@ -60,20 +60,11 @@ class SpecialBotPasswords extends FormSpecialPage {
 	/** @var string|null New password set, for communication between onSubmit() and onSuccess() */
 	private $password = null;
 
-	/** @var LoggerInterface */
-	private $logger;
-
-	/** @var PasswordFactory */
-	private $passwordFactory;
-
-	/** @var CentralIdLookup */
-	private $centralIdLookup;
-
-	/** @var GrantsInfo */
-	private $grantsInfo;
-
-	/** @var GrantsLocalization */
-	private $grantsLocalization;
+	private LoggerInterface $logger;
+	private PasswordFactory $passwordFactory;
+	private CentralIdLookup $centralIdLookup;
+	private GrantsInfo $grantsInfo;
+	private GrantsLocalization $grantsLocalization;
 
 	/**
 	 * @param PasswordFactory $passwordFactory

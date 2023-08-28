@@ -40,17 +40,10 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialListUsers extends IncludableSpecialPage {
 
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var UserGroupManager */
-	private $userGroupManager;
-
-	/** @var UserIdentityLookup */
-	private $userIdentityLookup;
+	private LinkBatchFactory $linkBatchFactory;
+	private IConnectionProvider $dbProvider;
+	private UserGroupManager $userGroupManager;
+	private UserIdentityLookup $userIdentityLookup;
 
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory

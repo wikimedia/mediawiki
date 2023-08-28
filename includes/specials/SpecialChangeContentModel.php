@@ -24,23 +24,12 @@ use Xml;
 
 class SpecialChangeContentModel extends FormSpecialPage {
 
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
-
-	/** @var ContentModelChangeFactory */
-	private $contentModelChangeFactory;
-
-	/** @var SpamChecker */
-	private $spamChecker;
-
-	/** @var RevisionLookup */
-	private $revisionLookup;
-
-	/** @var WikiPageFactory */
-	private $wikiPageFactory;
-
-	/** @var SearchEngineFactory */
-	private $searchEngineFactory;
+	private IContentHandlerFactory $contentHandlerFactory;
+	private ContentModelChangeFactory $contentModelChangeFactory;
+	private SpamChecker $spamChecker;
+	private RevisionLookup $revisionLookup;
+	private WikiPageFactory $wikiPageFactory;
+	private SearchEngineFactory $searchEngineFactory;
 
 	/**
 	 * @param IContentHandlerFactory $contentHandlerFactory

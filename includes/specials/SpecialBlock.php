@@ -72,26 +72,13 @@ use XmlSelect;
  */
 class SpecialBlock extends FormSpecialPage {
 
-	/** @var BlockUtils */
-	private $blockUtils;
-
-	/** @var BlockPermissionCheckerFactory */
-	private $blockPermissionCheckerFactory;
-
-	/** @var BlockUserFactory */
-	private $blockUserFactory;
-
-	/** @var UserNameUtils */
-	private $userNameUtils;
-
-	/** @var UserNamePrefixSearch */
-	private $userNamePrefixSearch;
-
-	/** @var BlockActionInfo */
-	private $blockActionInfo;
-
-	/** @var TitleFormatter */
-	private $titleFormatter;
+	private BlockUtils $blockUtils;
+	private BlockPermissionCheckerFactory $blockPermissionCheckerFactory;
+	private BlockUserFactory $blockUserFactory;
+	private UserNameUtils $userNameUtils;
+	private UserNamePrefixSearch $userNamePrefixSearch;
+	private BlockActionInfo $blockActionInfo;
+	private TitleFormatter $titleFormatter;
 
 	/** @var UserIdentity|string|null User to be blocked, as passed either by parameter
 	 * (url?wpTarget=Foo) or as subpage (Special:Block/Foo)
@@ -116,8 +103,7 @@ class SpecialBlock extends FormSpecialPage {
 	 */
 	protected $preErrors = [];
 
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
+	private NamespaceInfo $namespaceInfo;
 
 	/**
 	 * @param BlockUtils $blockUtils

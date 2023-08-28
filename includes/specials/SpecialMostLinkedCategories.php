@@ -47,8 +47,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class SpecialMostLinkedCategories extends QueryPage {
 
-	/** @var ILanguageConverter */
-	private $languageConverter;
+	private ILanguageConverter $languageConverter;
 
 	/**
 	 * @param IConnectionProvider $dbProvider

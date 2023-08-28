@@ -45,8 +45,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class SpecialMostLinkedTemplates extends QueryPage {
 
-	/** @var LinksMigration */
-	private $linksMigration;
+	private LinksMigration $linksMigration;
 
 	/**
 	 * @param IConnectionProvider $dbProvider

@@ -58,17 +58,10 @@ class SpecialFileDuplicateSearch extends SpecialPage {
 	 */
 	private $file = null;
 
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var RepoGroup */
-	private $repoGroup;
-
-	/** @var SearchEngineFactory */
-	private $searchEngineFactory;
-
-	/** @var ILanguageConverter */
-	private $languageConverter;
+	private LinkBatchFactory $linkBatchFactory;
+	private RepoGroup $repoGroup;
+	private SearchEngineFactory $searchEngineFactory;
+	private ILanguageConverter $languageConverter;
 
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory

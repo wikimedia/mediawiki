@@ -53,8 +53,7 @@ class SpecialLinkSearch extends QueryPage {
 	/** @var string|null */
 	private $mProt;
 
-	/** @var UrlUtils */
-	private $urlUtils;
+	private UrlUtils $urlUtils;
 
 	private function setParams( $params ) {
 		$this->mQuery = $params['query'];

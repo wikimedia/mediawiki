@@ -47,8 +47,7 @@ use Wikimedia\ScopedCallback;
  */
 class SpecialConfirmEmail extends UnlistedSpecialPage {
 
-	/** @var UserFactory */
-	private $userFactory;
+	private UserFactory $userFactory;
 
 	/**
 	 * @param UserFactory $userFactory

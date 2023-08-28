@@ -49,14 +49,9 @@ class SpecialExpandTemplates extends SpecialPage {
 	/** @var int Maximum size in bytes to include. 50 MB allows fixing those huge pages */
 	private const MAX_INCLUDE_SIZE = 50000000;
 
-	/** @var ParserFactory */
-	private $parserFactory;
-
-	/** @var UserOptionsLookup */
-	private $userOptionsLookup;
-
-	/** @var TidyDriverBase */
-	private $tidy;
+	private ParserFactory $parserFactory;
+	private UserOptionsLookup $userOptionsLookup;
+	private TidyDriverBase $tidy;
 
 	/**
 	 * @param ParserFactory $parserFactory

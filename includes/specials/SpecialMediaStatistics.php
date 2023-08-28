@@ -61,8 +61,7 @@ class SpecialMediaStatistics extends QueryPage {
 	 */
 	protected $totalSize = 0;
 
-	/** @var MimeAnalyzer */
-	private $mimeAnalyzer;
+	private MimeAnalyzer $mimeAnalyzer;
 
 	/**
 	 * @param MimeAnalyzer $mimeAnalyzer

@@ -41,11 +41,8 @@ use RedirectSpecialArticle;
  */
 class SpecialMyLanguage extends RedirectSpecialArticle {
 
-	/** @var LanguageNameUtils */
-	private $languageNameUtils;
-
-	/** @var RedirectLookup */
-	private $redirectLookup;
+	private LanguageNameUtils $languageNameUtils;
+	private RedirectLookup $redirectLookup;
 
 	/**
 	 * @param LanguageNameUtils $languageNameUtils

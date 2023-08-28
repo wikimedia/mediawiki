@@ -54,19 +54,10 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 */
 	protected $mTargetObj;
 
-	/** @var UserNameUtils */
-	private $userNameUtils;
-
-	/** @var UserNamePrefixSearch */
-	private $userNamePrefixSearch;
-
-	/** @var UserOptionsLookup */
-	private $userOptionsLookup;
-
-	/** @var EmailUserFactory */
+	private UserNameUtils $userNameUtils;
+	private UserNamePrefixSearch $userNamePrefixSearch;
+	private UserOptionsLookup $userOptionsLookup;
 	private EmailUserFactory $emailUserFactory;
-
-	/** @var UserFactory */
 	private UserFactory $userFactory;
 
 	/**

@@ -62,35 +62,16 @@ use Wikimedia\Rdbms\IConnectionProvider;
 class SpecialContributions extends IncludableSpecialPage {
 	protected $opts;
 
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var PermissionManager */
-	private $permissionManager;
-
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var RevisionStore */
-	private $revisionStore;
-
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
-
-	/** @var UserNameUtils */
-	private $userNameUtils;
-
-	/** @var UserNamePrefixSearch */
-	private $userNamePrefixSearch;
-
-	/** @var UserOptionsLookup */
-	private $userOptionsLookup;
-
-	/** @var CommentFormatter */
-	private $commentFormatter;
-
-	/** @var UserFactory */
-	private $userFactory;
+	private LinkBatchFactory $linkBatchFactory;
+	private PermissionManager $permissionManager;
+	private IConnectionProvider $dbProvider;
+	private RevisionStore $revisionStore;
+	private NamespaceInfo $namespaceInfo;
+	private UserNameUtils $userNameUtils;
+	private UserNamePrefixSearch $userNamePrefixSearch;
+	private UserOptionsLookup $userOptionsLookup;
+	private CommentFormatter $commentFormatter;
+	private UserFactory $userFactory;
 
 	/** @var ContribsPager|null */
 	private $pager = null;

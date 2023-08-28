@@ -46,17 +46,10 @@ use Xml;
  */
 class SpecialListGroupRights extends SpecialPage {
 
-	/** @var NamespaceInfo */
-	private $nsInfo;
-
-	/** @var UserGroupManager */
-	private $userGroupManager;
-
-	/** @var ILanguageConverter */
-	private $languageConverter;
-
-	/** @var GroupPermissionsLookup */
-	private $groupPermissionsLookup;
+	private NamespaceInfo $nsInfo;
+	private UserGroupManager $userGroupManager;
+	private ILanguageConverter $languageConverter;
+	private GroupPermissionsLookup $groupPermissionsLookup;
 
 	/**
 	 * @param NamespaceInfo $nsInfo

@@ -84,20 +84,11 @@ class SpecialMergeHistory extends SpecialPage {
 	/** @var int[] */
 	public $prevId;
 
-	/** @var MergeHistoryFactory */
-	private $mergeHistoryFactory;
-
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var RevisionStore */
-	private $revisionStore;
-
-	/** @var CommentFormatter */
-	private $commentFormatter;
+	private MergeHistoryFactory $mergeHistoryFactory;
+	private LinkBatchFactory $linkBatchFactory;
+	private IConnectionProvider $dbProvider;
+	private RevisionStore $revisionStore;
+	private CommentFormatter $commentFormatter;
 
 	/** @var Status */
 	private $mStatus;

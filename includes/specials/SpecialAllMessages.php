@@ -41,17 +41,10 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialAllMessages extends SpecialPage {
 
-	/** @var LanguageFactory */
-	private $languageFactory;
-
-	/** @var LanguageNameUtils */
-	private $languageNameUtils;
-
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var LocalisationCache */
-	private $localisationCache;
+	private LanguageFactory $languageFactory;
+	private LanguageNameUtils $languageNameUtils;
+	private IConnectionProvider $dbProvider;
+	private LocalisationCache $localisationCache;
 
 	/**
 	 * @param LanguageFactory $languageFactory

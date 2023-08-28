@@ -34,11 +34,8 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialCategories extends SpecialPage {
 
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var IConnectionProvider */
-	private $dbProvider;
+	private LinkBatchFactory $linkBatchFactory;
+	private IConnectionProvider $dbProvider;
 
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory

@@ -36,8 +36,7 @@ use User;
  * @ingroup SpecialPage
  */
 class SpecialListGrants extends SpecialPage {
-	/** @var GrantsLocalization */
-	private $grantsLocalization;
+	private GrantsLocalization $grantsLocalization;
 
 	public function __construct( GrantsLocalization $grantsLocalization ) {
 		parent::__construct( 'Listgrants' );

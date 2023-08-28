@@ -36,8 +36,7 @@ use Wikimedia\ScopedCallback;
  */
 class SpecialEmailInvalidate extends UnlistedSpecialPage {
 
-	/** @var UserFactory */
-	private $userFactory;
+	private UserFactory $userFactory;
 
 	/**
 	 * @param UserFactory $userFactory

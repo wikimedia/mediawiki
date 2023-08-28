@@ -45,17 +45,10 @@ use Wikimedia\Rdbms\IConnectionProvider;
 class SpecialExport extends SpecialPage {
 	protected $curonly, $doExport, $pageLinkDepth, $templates;
 
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var WikiExporterFactory */
-	private $wikiExporterFactory;
-
-	/** @var TitleFormatter */
-	private $titleFormatter;
-
-	/** @var LinksMigration */
-	private $linksMigration;
+	private IConnectionProvider $dbProvider;
+	private WikiExporterFactory $wikiExporterFactory;
+	private TitleFormatter $titleFormatter;
+	private LinksMigration $linksMigration;
 
 	/**
 	 * @param IConnectionProvider $dbProvider

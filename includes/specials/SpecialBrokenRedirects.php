@@ -40,8 +40,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class SpecialBrokenRedirects extends QueryPage {
 
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
+	private IContentHandlerFactory $contentHandlerFactory;
 
 	/**
 	 * @param IContentHandlerFactory $contentHandlerFactory

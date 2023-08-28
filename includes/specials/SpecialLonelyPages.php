@@ -38,11 +38,8 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialLonelyPages extends PageQueryPage {
 
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
-
-	/** @var LinksMigration */
-	private $linksMigration;
+	private NamespaceInfo $namespaceInfo;
+	private LinksMigration $linksMigration;
 
 	/**
 	 * @param NamespaceInfo $namespaceInfo

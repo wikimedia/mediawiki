@@ -35,8 +35,7 @@ use SpecialPage;
  */
 class SpecialFilepath extends RedirectSpecialPage {
 
-	/** @var SearchEngineFactory */
-	private $searchEngineFactory;
+	private SearchEngineFactory $searchEngineFactory;
 
 	/**
 	 * @param SearchEngineFactory $searchEngineFactory

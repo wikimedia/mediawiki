@@ -41,8 +41,7 @@ use UnexpectedValueException;
  */
 class SpecialBookSources extends SpecialPage {
 
-	/** @var RevisionLookup */
-	private $revisionLookup;
+	private RevisionLookup $revisionLookup;
 	private TitleFactory $titleFactory;
 
 	/**

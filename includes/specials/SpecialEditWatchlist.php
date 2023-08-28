@@ -87,26 +87,13 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 	private $badItems = [];
 
-	/** @var TitleParser */
-	private $titleParser;
-
-	/** @var WatchedItemStoreInterface */
-	private $watchedItemStore;
-
-	/** @var GenderCache */
-	private $genderCache;
-
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var NamespaceInfo */
-	private $nsInfo;
-
-	/** @var WikiPageFactory */
-	private $wikiPageFactory;
-
-	/** @var WatchlistManager */
-	private $watchlistManager;
+	private TitleParser $titleParser;
+	private WatchedItemStoreInterface $watchedItemStore;
+	private GenderCache $genderCache;
+	private LinkBatchFactory $linkBatchFactory;
+	private NamespaceInfo $nsInfo;
+	private WikiPageFactory $wikiPageFactory;
+	private WatchlistManager $watchlistManager;
 
 	/** @var int|false where the value is one of the EDIT_ prefixed constants (e.g. EDIT_NORMAL) */
 	private $currentMode;

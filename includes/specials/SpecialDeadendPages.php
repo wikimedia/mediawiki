@@ -36,8 +36,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialDeadendPages extends PageQueryPage {
 
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
+	private NamespaceInfo $namespaceInfo;
 
 	/**
 	 * @param NamespaceInfo $namespaceInfo

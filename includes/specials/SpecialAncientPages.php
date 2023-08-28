@@ -40,11 +40,8 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialAncientPages extends QueryPage {
 
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
-
-	/** @var ILanguageConverter */
-	private $languageConverter;
+	private NamespaceInfo $namespaceInfo;
+	private ILanguageConverter $languageConverter;
 
 	/**
 	 * @param NamespaceInfo $namespaceInfo

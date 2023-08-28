@@ -41,11 +41,8 @@ use SpecialPage;
  */
 class SpecialComparePages extends SpecialPage {
 
-	/** @var RevisionLookup */
-	private $revisionLookup;
-
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
+	private RevisionLookup $revisionLookup;
+	private IContentHandlerFactory $contentHandlerFactory;
 
 	/** @var DifferenceEngine */
 	private $differenceEngine;

@@ -43,26 +43,13 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialAutoblockList extends SpecialPage {
 
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var BlockRestrictionStore */
-	private $blockRestrictionStore;
-
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var CommentStore */
-	private $commentStore;
-
-	/** @var BlockUtils */
-	private $blockUtils;
-
-	/** @var BlockActionInfo */
-	private $blockActionInfo;
-
-	/** @var RowCommentFormatter */
-	private $rowCommentFormatter;
+	private LinkBatchFactory $linkBatchFactory;
+	private BlockRestrictionStore $blockRestrictionStore;
+	private IConnectionProvider $dbProvider;
+	private CommentStore $commentStore;
+	private BlockUtils $blockUtils;
+	private BlockActionInfo $blockActionInfo;
+	private RowCommentFormatter $rowCommentFormatter;
 
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory

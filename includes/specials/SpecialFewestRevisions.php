@@ -46,11 +46,8 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class SpecialFewestRevisions extends QueryPage {
 
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
-
-	/** @var ILanguageConverter */
-	private $languageConverter;
+	private NamespaceInfo $namespaceInfo;
+	private ILanguageConverter $languageConverter;
 
 	/**
 	 * @param NamespaceInfo $namespaceInfo

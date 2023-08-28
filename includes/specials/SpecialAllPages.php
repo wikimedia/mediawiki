@@ -58,14 +58,9 @@ class SpecialAllPages extends IncludableSpecialPage {
 	 */
 	protected $nsfromMsg = 'allpagesfrom';
 
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var SearchEngineFactory */
-	private $searchEngineFactory;
-
-	/** @var PageStore */
-	private $pageStore;
+	private IConnectionProvider $dbProvider;
+	private SearchEngineFactory $searchEngineFactory;
+	private PageStore $pageStore;
 
 	public function __construct(
 		IConnectionProvider $dbProvider = null,

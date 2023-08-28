@@ -41,11 +41,8 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class SpecialDoubleRedirects extends QueryPage {
 
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
-
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
+	private IContentHandlerFactory $contentHandlerFactory;
+	private LinkBatchFactory $linkBatchFactory;
 
 	/**
 	 * @param IContentHandlerFactory $contentHandlerFactory

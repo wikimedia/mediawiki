@@ -45,8 +45,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class SpecialMostCategories extends QueryPage {
 
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
+	private NamespaceInfo $namespaceInfo;
 
 	/**
 	 * @param NamespaceInfo $namespaceInfo

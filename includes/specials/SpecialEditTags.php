@@ -67,12 +67,8 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	/** @var string */
 	private $reason;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-	/**
-	 * @var ChangeTagsStore
-	 */
-	private $changeTagsStore;
+	private PermissionManager $permissionManager;
+	private ChangeTagsStore $changeTagsStore;
 
 	/**
 	 * @inheritDoc

@@ -36,26 +36,13 @@ use Wikimedia\Rdbms\IConnectionProvider;
 
 class SpecialListFiles extends IncludableSpecialPage {
 
-	/** @var RepoGroup */
-	private $repoGroup;
-
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var CommentStore */
-	private $commentStore;
-
-	/** @var UserNameUtils */
-	private $userNameUtils;
-
-	/** @var UserNamePrefixSearch */
-	private $userNamePrefixSearch;
-
-	/** @var UserCache */
-	private $userCache;
-
-	/** @var CommentFormatter */
-	private $commentFormatter;
+	private RepoGroup $repoGroup;
+	private IConnectionProvider $dbProvider;
+	private CommentStore $commentStore;
+	private UserNameUtils $userNameUtils;
+	private UserNamePrefixSearch $userNamePrefixSearch;
+	private UserCache $userCache;
+	private CommentFormatter $commentFormatter;
 
 	/**
 	 * @param RepoGroup $repoGroup

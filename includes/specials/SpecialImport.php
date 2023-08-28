@@ -48,11 +48,8 @@ class SpecialImport extends SpecialPage {
 	/** @var array */
 	private $importSources;
 
-	/** @var PermissionManager */
-	private $permManager;
-
-	/** @var WikiImporterFactory */
-	private $wikiImporterFactory;
+	private PermissionManager $permManager;
+	private WikiImporterFactory $wikiImporterFactory;
 
 	/**
 	 * @param PermissionManager $permManager

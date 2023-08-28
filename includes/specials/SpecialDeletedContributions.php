@@ -51,32 +51,15 @@ class SpecialDeletedContributions extends SpecialPage {
 	/** @var FormOptions */
 	protected $mOpts;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var RevisionFactory */
-	private $revisionFactory;
-
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
-
-	/** @var UserFactory */
-	private $userFactory;
-
-	/** @var UserNameUtils */
-	private $userNameUtils;
-
-	/** @var UserNamePrefixSearch */
-	private $userNamePrefixSearch;
-
-	/** @var CommentFormatter */
-	private $commentFormatter;
-
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
+	private PermissionManager $permissionManager;
+	private IConnectionProvider $dbProvider;
+	private RevisionFactory $revisionFactory;
+	private NamespaceInfo $namespaceInfo;
+	private UserFactory $userFactory;
+	private UserNameUtils $userNameUtils;
+	private UserNamePrefixSearch $userNamePrefixSearch;
+	private CommentFormatter $commentFormatter;
+	private LinkBatchFactory $linkBatchFactory;
 
 	/**
 	 * @param PermissionManager $permissionManager
