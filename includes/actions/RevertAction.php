@@ -36,11 +36,8 @@ use MediaWiki\Utils\MWTimestamp;
  */
 class RevertAction extends FormAction {
 
-	/** @var Language */
-	private $contentLanguage;
-
-	/** @var RepoGroup */
-	private $repoGroup;
+	private Language $contentLanguage;
+	private RepoGroup $repoGroup;
 
 	/**
 	 * @param Article $article

@@ -55,35 +55,16 @@ class DeleteAction extends FormAction {
 	protected const MSG_EDIT_REASONS = 'edit-reasons';
 	protected const MSG_EDIT_REASONS_SUPPRESS = 'edit-reasons-suppress';
 
-	/** @var WatchlistManager */
-	protected $watchlistManager;
-
-	/** @var LinkRenderer */
-	protected $linkRenderer;
-
-	/** @var BacklinkCacheFactory */
-	private $backlinkCacheFactory;
-
-	/** @var ReadOnlyMode */
-	protected $readOnlyMode;
-
-	/** @var UserOptionsLookup */
-	protected $userOptionsLookup;
-
-	/** @var DeletePageFactory */
-	private $deletePageFactory;
-
-	/** @var int */
-	private $deleteRevisionsLimit;
-
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
-
-	/** @var TitleFormatter */
-	private $titleFormatter;
-
-	/** @var TitleFactory */
-	private $titleFactory;
+	protected WatchlistManager $watchlistManager;
+	protected LinkRenderer $linkRenderer;
+	private BacklinkCacheFactory $backlinkCacheFactory;
+	protected ReadOnlyMode $readOnlyMode;
+	protected UserOptionsLookup $userOptionsLookup;
+	private DeletePageFactory $deletePageFactory;
+	private int $deleteRevisionsLimit;
+	private NamespaceInfo $namespaceInfo;
+	private TitleFormatter $titleFormatter;
+	private TitleFactory $titleFactory;
 
 	private IConnectionProvider $dbProvider;
 

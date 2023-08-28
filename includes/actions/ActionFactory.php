@@ -49,17 +49,10 @@ class ActionFactory {
 	 */
 	private $actionsConfig;
 
-	/** @var LoggerInterface */
-	private $logger;
-
-	/** @var ObjectFactory */
-	private $objectFactory;
-
-	/** @var HookContainer */
-	private $hookContainer;
-
-	/** @var HookRunner */
-	private $hookRunner;
+	private LoggerInterface $logger;
+	private ObjectFactory $objectFactory;
+	private HookContainer $hookContainer;
+	private HookRunner $hookRunner;
 
 	/**
 	 * Core default action specifications

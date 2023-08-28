@@ -38,20 +38,11 @@ use MediaWiki\Watchlist\WatchlistManager;
  */
 class RollbackAction extends FormAction {
 
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
-
-	/** @var RollbackPageFactory */
-	private $rollbackPageFactory;
-
-	/** @var UserOptionsLookup */
-	private $userOptionsLookup;
-
-	/** @var WatchlistManager */
-	private $watchlistManager;
-
-	/** @var CommentFormatter */
-	private $commentFormatter;
+	private IContentHandlerFactory $contentHandlerFactory;
+	private RollbackPageFactory $rollbackPageFactory;
+	private UserOptionsLookup $userOptionsLookup;
+	private WatchlistManager $watchlistManager;
+	private CommentFormatter $commentFormatter;
 
 	/**
 	 * @param Article $article

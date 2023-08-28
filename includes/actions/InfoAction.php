@@ -51,50 +51,21 @@ use Wikimedia\Rdbms\ILoadBalancer;
 class InfoAction extends FormlessAction {
 	private const VERSION = 1;
 
-	/** @var Language */
-	private $contentLanguage;
-
-	/** @var LanguageNameUtils */
-	private $languageNameUtils;
-
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var LinkRenderer */
-	private $linkRenderer;
-
-	/** @var ILoadBalancer */
-	private $loadBalancer;
-
-	/** @var MagicWordFactory */
-	private $magicWordFactory;
-
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
-
-	/** @var PageProps */
-	private $pageProps;
-
-	/** @var RepoGroup */
-	private $repoGroup;
-
-	/** @var RevisionLookup */
-	private $revisionLookup;
-
-	/** @var WANObjectCache */
-	private $wanObjectCache;
-
-	/** @var WatchedItemStoreInterface */
-	private $watchedItemStore;
-
-	/** @var RedirectLookup */
-	private $redirectLookup;
-
-	/** @var RestrictionStore */
-	private $restrictionStore;
-
-	/** @var LinksMigration */
-	private $linksMigration;
+	private Language $contentLanguage;
+	private LanguageNameUtils $languageNameUtils;
+	private LinkBatchFactory $linkBatchFactory;
+	private LinkRenderer $linkRenderer;
+	private ILoadBalancer $loadBalancer;
+	private MagicWordFactory $magicWordFactory;
+	private NamespaceInfo $namespaceInfo;
+	private PageProps $pageProps;
+	private RepoGroup $repoGroup;
+	private RevisionLookup $revisionLookup;
+	private WANObjectCache $wanObjectCache;
+	private WatchedItemStoreInterface $watchedItemStore;
+	private RedirectLookup $redirectLookup;
+	private RestrictionStore $restrictionStore;
+	private LinksMigration $linksMigration;
 
 	/**
 	 * @param Article $article

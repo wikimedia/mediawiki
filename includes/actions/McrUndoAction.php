@@ -43,20 +43,11 @@ class McrUndoAction extends FormAction {
 	/** @var RevisionRecord|null */
 	protected $curRev = null;
 
-	/** @var ReadOnlyMode */
-	private $readOnlyMode;
-
-	/** @var RevisionLookup */
-	private $revisionLookup;
-
-	/** @var RevisionRenderer */
-	private $revisionRenderer;
-
-	/** @var CommentFormatter */
-	private $commentFormatter;
-
-	/** @var bool */
-	private $useRCPatrol;
+	private ReadOnlyMode $readOnlyMode;
+	private RevisionLookup $revisionLookup;
+	private RevisionRenderer $revisionRenderer;
+	private CommentFormatter $commentFormatter;
+	private bool $useRCPatrol;
 
 	/**
 	 * @param Article $article

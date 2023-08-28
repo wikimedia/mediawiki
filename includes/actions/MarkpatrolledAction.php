@@ -29,8 +29,7 @@ use MediaWiki\Linker\LinkRenderer;
  */
 class MarkpatrolledAction extends FormAction {
 
-	/** @var LinkRenderer */
-	private $linkRenderer;
+	private LinkRenderer $linkRenderer;
 
 	/**
 	 * @param Article $article

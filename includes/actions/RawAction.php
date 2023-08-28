@@ -41,17 +41,10 @@ use MediaWiki\Revision\SlotRecord;
  */
 class RawAction extends FormlessAction {
 
-	/** @var Parser */
-	private $parser;
-
-	/** @var PermissionManager */
-	private $permissionManager;
-
-	/** @var RevisionLookup */
-	private $revisionLookup;
-
-	/** @var RestrictionStore */
-	private $restrictionStore;
+	private Parser $parser;
+	private PermissionManager $permissionManager;
+	private RevisionLookup $revisionLookup;
+	private RestrictionStore $restrictionStore;
 
 	/**
 	 * @param Article $article

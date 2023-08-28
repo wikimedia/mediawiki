@@ -35,11 +35,8 @@ use MediaWiki\User\UserRigorOptions;
  */
 class CreditsAction extends FormlessAction {
 
-	/** @var LinkRenderer */
-	private $linkRenderer;
-
-	/** @var UserFactory */
-	private $userFactory;
+	private LinkRenderer $linkRenderer;
+	private UserFactory $userFactory;
 
 	/**
 	 * @param Article $article
