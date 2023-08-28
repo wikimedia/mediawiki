@@ -42,7 +42,7 @@ function onLoadHandler( $editForm ) {
 
 	// Open indexedDB database and load any saved data that might be there.
 	const pageName = mw.config.get( 'wgPageName' );
-	const section = inputFields.wpSection.value !== undefined ? inputFields.wpSection.value : null;
+	const section = inputFields.wpSection.value || null;
 	storage.openDatabase().then( function () {
 		storage.loadData( pageName, section ).then( onLoadData );
 	} );

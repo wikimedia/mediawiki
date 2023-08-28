@@ -7,6 +7,11 @@ const objectStoreName = 'unsaved-page-data';
 
 var db = null;
 
+// TODO: Document Promise objects as native promises, not jQuery ones.
+
+/**
+ * @return {jQuery.Promise} Promise which resolves on success
+ */
 function openDatabaseLocal() {
 	return new Promise( function ( resolve ) {
 		const schemaNumber = 1;
@@ -32,8 +37,11 @@ function upgradeDatabase( versionChangeEvent ) {
 }
 
 /**
- * @param {string} pageName
- * @param {string} section
+ * Load data relating to a specific page and section
+ *
+ * @param {string} pageName The current page name (with underscores)
+ * @param {string|null} section The section ID, or null if the whole page is being edited
+ * @return {jQuery.Promise} Promise which resolves with the page data on success, or rejects with an error message.
  */
 function loadData( pageName, section ) {
 	return new Promise( function ( resolve, reject ) {
@@ -41,9 +49,10 @@ function loadData( pageName, section ) {
 			reject( 'DB not opened' );
 		}
 		const transaction = db.transaction( objectStoreName, 'readonly' );
+		const key = [ pageName, section || '' ];
 		const findExisting = transaction
 			.objectStore( objectStoreName )
-			.get( [ pageName, section ] );
+			.get( key );
 		findExisting.addEventListener( 'success', function () {
 			resolve( findExisting.result );
 		} );
@@ -51,9 +60,12 @@ function loadData( pageName, section ) {
 }
 
 /**
- * @param {string} pageName The current page name (with underscores).
- * @param {string} section The section number or null if the whole page is being edited.
- * @param {Object} pageData The page data to save.
+ * Save data for a specific page and section
+ *
+ * @param {string} pageName The current page name (with underscores)
+ * @param {string|null} section The section ID, or null if the whole page is being edited
+ * @param {Object} pageData The page data to save
+ * @return {jQuery.Promise} Promise which resolves on success, or rejects with an error message.
  */
 function saveData( pageName, section, pageData ) {
 	return new Promise( function ( resolve, reject ) {
@@ -68,13 +80,14 @@ function saveData( pageName, section, pageData ) {
 
 		const transaction = db.transaction( objectStoreName, 'readwrite' );
 		const objectStore = transaction.objectStore( objectStoreName );
+		const key = [ pageName, section || '' ];
 
 		// See if there's an existing row.
-		const requestExisting = objectStore.get( [ pageName, section ] );
+		const requestExisting = objectStore.get( key );
 		requestExisting.addEventListener( 'success', function () {
 			if ( requestExisting.result !== undefined ) {
 				// Existing record found, so delete it and then add.
-				const requestDelete = objectStore.delete( [ pageName, section ] );
+				const requestDelete = objectStore.delete( key );
 				requestDelete.addEventListener( 'success', function () {
 					const requestAdd = objectStore.add( pageData );
 					requestAdd.addEventListener( 'success', function ( event ) {
@@ -92,6 +105,12 @@ function saveData( pageName, section, pageData ) {
 	} );
 }
 
+/**
+ * Delete data relating to a specific page
+ *
+ * @param {string} pageName The current page name (with underscores)
+ * @return {jQuery.Promise} Promise which resolves on success, or rejects with an error message.
+ */
 function deleteData( pageName ) {
 	return new Promise( function ( resolve, reject ) {
 		if ( !db ) {
@@ -99,16 +118,16 @@ function deleteData( pageName ) {
 		}
 
 		const transaction = db.transaction( objectStoreName, 'readwrite' );
-		const store = transaction.objectStore( objectStoreName );
+		const objectStore = transaction.objectStore( objectStoreName );
 
-		const request = store.openCursor();
+		const request = objectStore.openCursor();
 
 		request.onsuccess = function ( event ) {
 			const cursor = event.target.result;
 			if ( cursor ) {
 				const key = cursor.key;
 				if ( key[ 0 ] === pageName ) {
-					store.delete( key );
+					objectStore.delete( key );
 				}
 				cursor.continue();
 			} else {
@@ -122,6 +141,9 @@ function deleteData( pageName ) {
 	} );
 }
 
+/**
+ * Close database
+ */
 function closeDatabase() {
 	if ( db ) {
 		db.close();
