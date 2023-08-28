@@ -520,4 +520,7 @@ class ActorMigrationBase {
 	}
 }
 
+/**
+ * @deprecated since 1.40
+ */
 class_alias( ActorMigrationBase::class, 'ActorMigrationBase' );

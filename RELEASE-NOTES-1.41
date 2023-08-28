@@ -586,6 +586,8 @@ because of Phabricator reports.
   - TitleArray -> MediaWiki\Title\TitleArray
   - TitleArrayFromResult -> MediaWiki\Title\TitleArrayFromResult
   - TitleFactory -> MediaWiki\Title\TitleFactory
+  - ActorMigration -> MediaWiki\User\ActorMigration
+  - ActorMigrationBase -> MediaWiki\User\ActorMigrationBase
   From 1.39:
   - ResourceLoader -> MediaWiki\ResourceLoader\ResourceLoader
   From 1.29:

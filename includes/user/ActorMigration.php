@@ -145,4 +145,7 @@ class ActorMigration extends ActorMigrationBase {
 
 }
 
+/**
+ * @deprecated since 1.40
+ */
 class_alias( ActorMigration::class, 'ActorMigration' );
