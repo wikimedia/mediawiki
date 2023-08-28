@@ -41,11 +41,8 @@ class ApiWatch extends ApiBase {
 	/** @var string Relative maximum expiry. */
 	private $maxDuration;
 
-	/** @var WatchlistManager */
-	protected $watchlistManager;
-
-	/** @var titleFormatter */
-	private $titleFormatter;
+	protected WatchlistManager $watchlistManager;
+	private TitleFormatter $titleFormatter;
 
 	public function __construct(
 		ApiMain $mainModule,
