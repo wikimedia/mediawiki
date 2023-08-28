@@ -33,9 +33,6 @@ use Wikimedia\ParamValidator\TypeDef\EnumDef;
 class ApiQuerySearch extends ApiQueryGeneratorBase {
 	use SearchApi;
 
-	/** @var array list of api allowed params */
-	private $allowedParams;
-
 	private TitleMatcher $titleMatcher;
 
 	/**
@@ -385,11 +382,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		if ( $this->allowedParams !== null ) {
-			return $this->allowedParams;
-		}
-
-		$this->allowedParams = $this->buildCommonApiParams() + [
+		$allowedParams = $this->buildCommonApiParams() + [
 			'what' => [
 				ParamValidator::PARAM_TYPE => [
 					'title',
@@ -437,21 +430,21 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 
 		// Generators only add info/properties if explicitly requested. T263841
 		if ( $this->isInGeneratorMode() ) {
-			$this->allowedParams['prop'][ParamValidator::PARAM_DEFAULT] = '';
-			$this->allowedParams['info'][ParamValidator::PARAM_DEFAULT] = '';
+			$allowedParams['prop'][ParamValidator::PARAM_DEFAULT] = '';
+			$allowedParams['info'][ParamValidator::PARAM_DEFAULT] = '';
 		}
 
 		// If we have more than one engine the list of available sorts is
 		// difficult to represent. For now don't expose it.
 		$alternatives = $this->searchEngineConfig->getSearchTypes();
 		if ( count( $alternatives ) == 1 ) {
-			$this->allowedParams['sort'] = [
+			$allowedParams['sort'] = [
 				ParamValidator::PARAM_DEFAULT => SearchEngine::DEFAULT_SORT,
 				ParamValidator::PARAM_TYPE => $this->searchEngineFactory->create()->getValidSorts(),
 			];
 		}
 
-		return $this->allowedParams;
+		return $allowedParams;
 	}
 
 	public function getSearchProfileParams() {
