@@ -622,6 +622,7 @@ because of Phabricator reports.
   - ConfiguredReadOnlyMode -> Wikimedia\Rdbms\ConfiguredReadOnlyMode
   - ReadOnlyMode -> Wikimedia\Rdbms\ReadOnlyMode
   - MediaWiki\Emptiable -> MediaWiki\Libs\Emptiable
+  - ProxyLookup -> MediaWiki\Request\ProxyLookup
 * The following methods, previously deprecated, now emit deprecation warnings:
   - ConfigFactory::getDefaultInstance(), deprecated since 1.27
   - AbstractContent::getNativeData(), deprecated since 1.33
