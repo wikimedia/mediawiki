@@ -1906,12 +1906,10 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$attribs = [
 			'oldid' => 1, // will be replaced by a real revision id
 			'opts' => [ 'format' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE ],
-			'envOptions' => [
-				// Ensure this is ucs2 so we have a ucs2 offsetType test since
-				// Parsoid's rt-testing script is node.js based and hence needs
-				// ucs2 offsets to function correctly!
-				'offsetType' => 'ucs2', // make sure this is looped through to data-parsoid attribute
-			]
+			// Ensure this is ucs2 so we have a ucs2 offsetType test since
+			// Parsoid's rt-testing script is node.js based and hence needs
+			// ucs2 offsets to function correctly!
+			'offsetType' => 'ucs2', // make sure this is looped through to data-parsoid attribute
 		];
 		yield 'should get from a title and revision (pagebundle)' => [
 			$attribs,
@@ -2090,12 +2088,15 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$page = $this->getExistingTestPage();
 		$pageConfig = $this->getPageConfig( $page );
 
-		$parserCache = $this->createNoOpMock( ParserCache::class, [ 'save', 'get' ] );
+		$parserCache = $this->createNoOpMock( ParserCache::class, [ 'save', 'get', 'makeParserOutputKey', 'getMetadata' ] );
 
 		// This is the critical assertion in this test case: the save() method should
 		// be called exactly once!
 		$parserCache->expects( $this->once() )->method( 'save' );
 		$parserCache->method( 'get' )->willReturn( false );
+		// These methods will be called by ParserOutputAccess:qa
+		$parserCache->expects( $this->atLeastOnce() )->method( 'makeParserOutputKey' );
+		$parserCache->expects( $this->atLeastOnce() )->method( 'getMetadata' );
 
 		$parserCacheFactory = $this->createNoOpMock(
 			ParserCacheFactory::class,

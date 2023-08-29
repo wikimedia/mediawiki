@@ -1,13 +1,14 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Hook\ParserLogLinterDataHook;
 use MediaWiki\Json\JsonCodec;
-use MediaWiki\MainConfigNames;
+use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
+use MediaWiki\Parser\Parsoid\ParsoidParser;
+use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
@@ -68,12 +69,11 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 * @return ParsoidOutputAccess
 	 * @throws Exception
 	 */
-	private function getParsoidOutputAccessWithCache(
+	private function resetServicesWithMockedParsoid(
 		$expectedParses,
 		$parsoidCacheConfig = [],
 		?BagOStuff $parserCacheBag = null
-	) {
-		$stats = new NullStatsdDataFactory();
+	): void {
 		$services = $this->getServiceContainer();
 
 		$parsoidCacheConfig += [
@@ -97,22 +97,41 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 			$services->getWikiPageFactory()
 		);
 
+		$mockParsoid = $this->newMockParsoid( $expectedParses );
+		$parsoidParser = new ParsoidParser(
+			$mockParsoid,
+			$services->getParsoidPageConfigFactory(),
+			$services->getLanguageConverterFactory(),
+			$services->getParserFactory(),
+			$services->getGlobalIdGenerator()
+		);
+
+		// Create a mock Parsoid factory that returns the ParsoidParser object
+		// with the mocked Parsoid object.
+		$mockParsoidParserFactory = $this->createNoOpMock( ParsoidParserFactory::class, [ 'create' ] );
+		$mockParsoidParserFactory->expects( $this->exactly( $expectedParses ) )
+			->method( 'create' )
+			->willReturn( $parsoidParser );
+
+		$this->setService( 'ParsoidParserFactory', $mockParsoidParserFactory );
+	}
+
+	/**
+	 * @return ParsoidOutputAccess
+	 */
+	private function getParsoidOutputAccessWithCache(): ParsoidOutputAccess {
+		$services = $this->getServiceContainer();
 		return new ParsoidOutputAccess(
 			new ServiceOptions(
 				ParsoidOutputAccess::CONSTRUCTOR_OPTIONS,
-				[
-					'ParsoidCacheConfig' => $parsoidCacheConfig,
-					'ParsoidWikiID' => 'MyWiki'
-				]
+				$services->getMainConfig(),
+				[ 'ParsoidWikiID' => 'MyWiki' ]
 			),
-			$parserCacheFactory,
+			$services->getParsoidParserFactory(),
+			$services->getParserOutputAccess(),
 			$services->getPageStore(),
 			$services->getRevisionLookup(),
-			$services->getGlobalIdGenerator(),
-			$stats,
-			$this->newMockParsoid( $expectedParses ),
 			$services->getParsoidSiteConfig(),
-			$services->getParsoidPageConfigFactory(),
 			$services->getContentHandlerFactory()
 		);
 	}
@@ -153,7 +172,8 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::getParserOutput
 	 */
 	public function testGetParserOutputThrowsIfRevisionNotFound() {
-		$access = $this->getParsoidOutputAccessWithCache( 0 );
+		$this->resetServicesWithMockedParsoid( 0 );
+		$access = $this->getParsoidOutputAccessWithCache();
 		$parserOptions = $this->getParserOptions();
 
 		$page = $this->getNonexistingTestPage( __METHOD__ );
@@ -168,7 +188,8 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	public function testGetParserOutputThrowsIfNotWikitext() {
 		$this->markTestSkipped( 'Broken by fix for T324711. Restore once we have T311728.' );
 
-		$access = $this->getParsoidOutputAccessWithCache( 0 );
+		$this->resetServicesWithMockedParsoid( 0 );
+		$access = $this->getParsoidOutputAccessWithCache();
 		$parserOptions = $this->getParserOptions();
 
 		$page = $this->getNonexistingTestPage( __METHOD__ );
@@ -190,7 +211,8 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::getParsoidRenderID
 	 */
 	public function testGetParserOutput() {
-		$access = $this->getParsoidOutputAccessWithCache( 1 );
+		$this->resetServicesWithMockedParsoid( 1 );
+		$access = $this->getParsoidOutputAccessWithCache();
 		$parserOptions = $this->getParserOptions();
 
 		$page = $this->getNonexistingTestPage( __METHOD__ );
@@ -223,10 +245,10 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 * in the parsoid parser cache.
 	 *
 	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::getParserOutput
-	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::getCachedParserOutputInternal
 	 */
 	public function testLatestRevisionIsCached() {
-		$access = $this->getParsoidOutputAccessWithCache( 1 );
+		$this->resetServicesWithMockedParsoid( 1 );
+		$access = $this->getParsoidOutputAccessWithCache();
 		$parserOptions = $this->getParserOptions();
 
 		$page = $this->getNonexistingTestPage( __METHOD__ );
@@ -259,7 +281,8 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::getParserOutput
 	 */
 	public function testLatestRevisionWithForceParse() {
-		$access = $this->getParsoidOutputAccessWithCache( 2 );
+		$this->resetServicesWithMockedParsoid( 2 );
+		$access = $this->getParsoidOutputAccessWithCache();
 		$parserOptions = $this->getParserOptions();
 
 		$page = $this->getNonexistingTestPage( __METHOD__ );
@@ -275,39 +298,10 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 			$page,
 			$parserOptions,
 			null,
-			ParsoidOutputAccess::OPT_FORCE_PARSE
+			ParserOutputAccess::OPT_FORCE_PARSE
 		);
 		$this->assertContainsHtml( self::MOCKED_HTML . ' of ' . self::WIKITEXT, $status );
 		$this->checkMetadata( $status );
-	}
-
-	/**
-	 * Tests that the ParserLogLinterData hook is triggered when the OPT_LOG_LINT_DATA
-	 * flag is set.
-	 *
-	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::getParserOutput
-	 */
-	public function testLatestRevisionWithLogLint() {
-		$this->overrideConfigValue( MainConfigNames::ParsoidSettings, [
-			'linting' => true
-		] );
-
-		$mockHandler = $this->createMock( ParserLogLinterDataHook::class );
-		$mockHandler->expects( $this->once() ) // this is the critical assertion in this test case!
-		->method( 'onParserLogLinterData' );
-
-		$this->setTemporaryHook(
-			'ParserLogLinterData',
-			$mockHandler
-		);
-
-		// Use the real ParsoidOutputAccess, so we use the real hook container.
-		$access = $this->getServiceContainer()->getParsoidOutputAccess();
-		$parserOptions = $this->getParserOptions();
-
-		$page = $this->getExistingTestPage( __METHOD__ );
-
-		$access->getParserOutput( $page, $parserOptions, null, ParsoidOutputAccess::OPT_LOG_LINT_DATA );
 	}
 
 	/**
@@ -317,7 +311,15 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::getParserOutput
 	 */
 	public function testLatestRevisionWithNoUpdateCache() {
-		$access = $this->getParsoidOutputAccessWithCache( 2 );
+		$cacheBag = $this->getMockBuilder( HashBagOStuff::class )
+			->onlyMethods( [ 'set', 'setMulti' ] )
+			->getMock();
+		$cacheBag->expects( $this->never() )->method( 'set' );
+		$cacheBag->expects( $this->never() )->method( 'setMulti' );
+
+		// ParserCache should not get anything stored in it.
+		$this->resetServicesWithMockedParsoid( 1, [], $cacheBag );
+		$access = $this->getParsoidOutputAccessWithCache();
 		$parserOptions = $this->getParserOptions();
 
 		$page = $this->getNonexistingTestPage( __METHOD__ );
@@ -327,14 +329,8 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 			$page,
 			$parserOptions,
 			null,
-			ParsoidOutputAccess::OPT_NO_UPDATE_CACHE
+			ParserOutputAccess::OPT_NO_UPDATE_CACHE
 		);
-		$this->assertContainsHtml( self::MOCKED_HTML . ' of ' . self::WIKITEXT, $status );
-		$this->checkMetadata( $status );
-
-		// Get the ParserOutput again, this should trigger a new parse
-		// since we suppressed caching above.
-		$status = $access->getParserOutput( $page, $parserOptions );
 		$this->assertContainsHtml( self::MOCKED_HTML . ' of ' . self::WIKITEXT, $status );
 		$this->checkMetadata( $status );
 	}
@@ -354,7 +350,8 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$cacheBag->expects( $this->never() )->method( 'setMulti' );
 
 		// Expect no calls to parsoid!
-		$access = $this->getParsoidOutputAccessWithCache( 0, [], $cacheBag );
+		$this->resetServicesWithMockedParsoid( 0, [], $cacheBag );
+		$access = $this->getParsoidOutputAccessWithCache();
 		$parserOptions = $this->getParserOptions();
 
 		$page = $this->getNonexistingTestPage( __METHOD__ );
@@ -376,6 +373,9 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$this->assertContainsHtml( 'Dummy output', $status );
 	}
 
+	/**
+	 * Unsupported functionality at this point
+	 */
 	public static function provideCacheThresholdData() {
 		return [
 			yield "fast parse" => [ 1, 2 ], // high threshold, no caching
@@ -390,13 +390,16 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$cacheThresholdTime,
 		$expectedCalls
 	) {
+		$this->markTestSkipped( 'Supported removed. Will be fixed by T346398.' );
+
 		$page = $this->getExistingTestPage( __METHOD__ );
 		$parsoidCacheConfig = [
 			'CacheThresholdTime' => $cacheThresholdTime
 		];
 		$parserOptions = $this->getParserOptions();
 
-		$access = $this->getParsoidOutputAccessWithCache( $expectedCalls, $parsoidCacheConfig );
+		$this->resetServicesWithMockedParsoid( $expectedCalls, $parsoidCacheConfig );
+		$access = $this->getParsoidOutputAccessWithCache();
 		$status = $access->getParserOutput( $page, $parserOptions );
 		$this->assertContainsHtml( self::MOCKED_HTML, $status );
 		$this->checkMetadata( $status );
@@ -407,7 +410,8 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testOldRevisionIsCached() {
-		$access = $this->getParsoidOutputAccessWithCache( 1 );
+		$this->resetServicesWithMockedParsoid( 1 );
+		$access = $this->getParsoidOutputAccessWithCache();
 		$parserOptions = $this->getParserOptions();
 
 		$page = $this->getNonexistingTestPage( __METHOD__ );
@@ -437,7 +441,8 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetParserOutputWithOldRevision() {
-		$access = $this->getParsoidOutputAccessWithCache( 2 );
+		$this->resetServicesWithMockedParsoid( 2 );
+		$access = $this->getParsoidOutputAccessWithCache();
 		$parserOptions = $this->getParserOptions();
 
 		$page = $this->getNonexistingTestPage( __METHOD__ );
@@ -483,20 +488,20 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 			} ],
 		] + $contentHandlers );
 
-		$access = $this->getParsoidOutputAccessWithCache( 0 );
+		$this->resetServicesWithMockedParsoid( 0 );
+		$access = $this->getParsoidOutputAccessWithCache();
 		$this->assertSame( $expected, $access->supportsContentModel( $model ) );
 	}
 
 	/**
-	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::parse
-	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::parseInternal
+	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::getParserOutput
 	 */
 	public function testParseWithPageRecordAndNoRevision() {
 		$pageRecord = $this->getExistingTestPage( __METHOD__ )->toPageRecord();
 		$pOpts = ParserOptions::newFromAnon();
 
 		$parsoidOutputAccess = $this->getServiceContainer()->getParsoidOutputAccess();
-		$status = $parsoidOutputAccess->parse( $pageRecord, $pOpts, self::ENV_OPTS, null );
+		$status = $parsoidOutputAccess->getParserOutput( $pageRecord, $pOpts, null );
 
 		$this->assertInstanceOf( Status::class, $status );
 		$this->assertTrue( $status->isOK() );
@@ -520,8 +525,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::parse
-	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::parseInternal
+	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::getParserOutput
 	 */
 	public function testParseWithPageRecordAndRevision() {
 		$page = $this->getExistingTestPage( __METHOD__ );
@@ -530,7 +534,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$revRecord = $page->getRevisionRecord();
 
 		$parsoidOutputAccess = $this->getServiceContainer()->getParsoidOutputAccess();
-		$status = $parsoidOutputAccess->parse( $pageRecord, $pOpts, self::ENV_OPTS, $revRecord );
+		$status = $parsoidOutputAccess->getParserOutput( $pageRecord, $pOpts, $revRecord );
 
 		$this->assertInstanceOf( Status::class, $status );
 		$this->assertTrue( $status->isOK() );
@@ -545,8 +549,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::parse
-	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::parseInternal
+	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::getParserOutput
 	 */
 	public function testParseWithPageIdentityAndRevisionId() {
 		$page = $this->getExistingTestPage( __METHOD__ );
@@ -554,7 +557,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$revId = $page->getLatest();
 
 		$parsoidOutputAccess = $this->getServiceContainer()->getParsoidOutputAccess();
-		$status = $parsoidOutputAccess->parse( $page->getTitle(), $pOpts, self::ENV_OPTS, $revId );
+		$status = $parsoidOutputAccess->getParserOutput( $page->getTitle(), $pOpts, $revId );
 
 		$this->assertInstanceOf( Status::class, $status );
 		$this->assertTrue( $status->isOK() );
@@ -569,8 +572,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::parse
-	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::parseInternal
+	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::parseUncacheable
 	 */
 	public function testParseWithNonExistingPageAndFakeRevision() {
 		$page = $this->getNonexistingTestPage( __METHOD__ );
@@ -586,7 +588,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$parsoidOutputAccess = $this->getServiceContainer()->getParsoidOutputAccess();
-		$status = $parsoidOutputAccess->parse( $page->getTitle(), $pOpts, self::ENV_OPTS, $revRecord );
+		$status = $parsoidOutputAccess->parseUncacheable( $page->getTitle(), $pOpts, $revRecord );
 
 		$this->assertInstanceOf( Status::class, $status );
 		$this->assertTrue( $status->isOK() );
@@ -602,7 +604,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::parse
+	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::parseUncacheable
 	 */
 	public function testParseDeletedRevision() {
 		$page = $this->getNonexistingTestPage( __METHOD__ );
@@ -620,7 +622,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$revRecord->setVisibility( RevisionRecord::DELETED_TEXT );
 
 		$parsoidOutputAccess = $this->getServiceContainer()->getParsoidOutputAccess();
-		$status = $parsoidOutputAccess->parse( $page->getTitle(), $pOpts, self::ENV_OPTS, $revRecord );
+		$status = $parsoidOutputAccess->parseUncacheable( $page->getTitle(), $pOpts, $revRecord );
 
 		$this->assertStatusError( 'parsoid-revision-access', $status );
 		$this->assertSame(
@@ -653,18 +655,24 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	/** @return Generator */
 	public function provideParserOptionsWithLanguageOverride() {
 		$parserOptions = $this->createMock( ParserOptions::class );
+		$parserOptions->method( 'optionsHash' )->willReturn( '' );
+		$parserOptions->method( 'getUseParsoid' )->willReturn( true );
 		$parserOptions->method( 'getTargetLanguage' )
 			->willReturn( null );
 		yield 'ParserOptions with no language' => [ $parserOptions, 'en' ];
 
 		$langCode = 'de';
 		$parserOptions = $this->createMock( ParserOptions::class );
+		$parserOptions->method( 'optionsHash' )->willReturn( '' );
+		$parserOptions->method( 'getUseParsoid' )->willReturn( true );
 		$parserOptions->method( 'getTargetLanguage' )
 			->willReturn( $this->getLanguageMock( $langCode ) );
 		yield 'ParserOptions for "de" language' => [ $parserOptions, $langCode ];
 
 		$langCode = 'ar';
 		$parserOptions = $this->createMock( ParserOptions::class );
+		$parserOptions->method( 'optionsHash' )->willReturn( '' );
+		$parserOptions->method( 'getUseParsoid' )->willReturn( true );
 		$parserOptions->method( 'getTargetLanguage' )
 			->willReturn( $this->getLanguageMock( $langCode ) );
 		yield 'ParserOptions for "ar" language' => [ $parserOptions, $langCode ];

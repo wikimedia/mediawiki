@@ -64,7 +64,7 @@ class ParsoidCachePrewarmJob extends Job {
 	 * @param array $params Additional options for the job. Known keys:
 	 * - causeAction: Indicate what action caused the job to be scheduled. Used for monitoring.
 	 * - options: Flags to be passed to ParsoidOutputAccess:getParserOutput.
-	 *   May be set to ParsoidOutputAccess::OPT_FORCE_PARSE to force a parsing even if there
+	 *   May be set to ParserOutputAccess::OPT_FORCE_PARSE to force a parsing even if there
 	 *   already is cached output.
 	 *
 	 * @return JobSpecification
@@ -135,12 +135,7 @@ class ParsoidCachePrewarmJob extends Job {
 		$options = $this->params['options'] ?? 0;
 
 		// getParserOutput() will write to ParserCache.
-		$status = $this->parsoidOutputAccess->getParserOutput(
-			$page,
-			$parserOpts,
-			$rev,
-			$options | ParsoidOutputAccess::OPT_LOG_LINT_DATA
-		);
+		$status = $this->parsoidOutputAccess->getParserOutput( $page, $parserOpts, $rev, $options );
 
 		if ( !$status->isOK() ) {
 			$this->logger->error( __METHOD__ . ': Parsoid error', [

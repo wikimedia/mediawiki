@@ -39,7 +39,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
-use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
+use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -1873,7 +1873,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		// Use OPT_FORCE_PARSE to avoid a useless cache lookup.
 		if ( $this->warmParsoidParserCache ) {
 			$cacheWarmingParams = $this->getCause();
-			$cacheWarmingParams['options'] = ParsoidOutputAccess::OPT_FORCE_PARSE;
+			$cacheWarmingParams['options'] = ParserOutputAccess::OPT_FORCE_PARSE;
 
 			$this->jobQueueGroup->lazyPush(
 				ParsoidCachePrewarmJob::newSpec(

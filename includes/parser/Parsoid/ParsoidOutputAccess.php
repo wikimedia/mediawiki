@@ -19,36 +19,25 @@
 
 namespace MediaWiki\Parser\Parsoid;
 
-use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
-use Liuggio\StatsdClient\Factory\StatsdDataFactory;
-use MediaWiki\Config\Config;
-use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageLookup;
 use MediaWiki\Page\PageRecord;
-use MediaWiki\Parser\ParserCacheFactory;
-use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
-use MediaWiki\Parser\RevisionOutputCache;
+use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MWUnknownContentModelException;
-use ParserCache;
 use ParserOptions;
 use ParserOutput;
-use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
-use Wikimedia\Parsoid\Parsoid;
-use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
  * MediaWiki service for getting Parsoid Output objects.
@@ -63,19 +52,16 @@ class ParsoidOutputAccess {
 	public const PARSOID_PARSER_CACHE_NAME = 'parsoid';
 
 	/**
-	 * @var string Key used to store the parsoid render ID in ParserOutput
+	 * @deprecated since 1.42 use ParserOutputAccess::OPT_NO_UPDATE_CACHE instead
+	 * Temporarily needed while we migrate extensions and other codebases
+	 * to use the ParserOutputAccess constant directly
 	 */
-	private const RENDER_ID_KEY = 'parsoid-render-id';
-
-	/** @var int Do not check the cache before parsing (force parse) */
-	public const OPT_FORCE_PARSE = 1;
+	public const OPT_NO_UPDATE_CACHE = ParserOutputAccess::OPT_NO_UPDATE_CACHE;
 
 	/**
-	 * @var int Do not update the cache after parsing.
-	 */
-	public const OPT_NO_UPDATE_CACHE = 2;
-
-	/**
+	 * @deprecated Parsoid will always lint at this point. This option
+	 * has no effect and will be removed once all callers are fixed.
+	 *
 	 * @var int Collect linter data for the ParserLogLinterData hook.
 	 */
 	public const OPT_LOG_LINT_DATA = 64;
@@ -85,32 +71,17 @@ class ParsoidOutputAccess {
 		'ParsoidWikiID'
 	];
 
-	/** @var RevisionOutputCache */
-	private $revisionOutputCache;
-
-	/** @var ParserCache */
-	private $parserCache;
-
-	/** @var GlobalIdGenerator */
-	private $globalIdGenerator;
-
-	/** @var StatsdDataFactory */
-	private $stats;
-
-	/** @var Config */
-	private $parsoidCacheConfig;
-
-	/** @var Parsoid */
-	private $parsoid;
-
-	/** @var PageConfigFactory */
-	private $parsoidPageConfigFactory;
+	/** @var ParsoidParserFactory */
+	private $parsoidParserFactory;
 
 	/** @var PageLookup */
 	private $pageLookup;
 
 	/** @var RevisionLookup */
 	private $revisionLookup;
+
+	/** @var ParserOutputAccess */
+	private $parserOutputAccess;
 
 	/** @var SiteConfig */
 	private $siteConfig;
@@ -126,41 +97,29 @@ class ParsoidOutputAccess {
 
 	/**
 	 * @param ServiceOptions $options
-	 * @param ParserCacheFactory $parserCacheFactory
+	 * @param ParsoidParserFactory $parsoidParserFactory
+	 * @param ParserOutputAccess $parserOutputAccess
 	 * @param PageLookup $pageLookup
 	 * @param RevisionLookup $revisionLookup
-	 * @param GlobalIdGenerator $globalIdGenerator
-	 * @param IBufferingStatsdDataFactory $stats
-	 * @param Parsoid $parsoid
 	 * @param SiteConfig $siteConfig
-	 * @param PageConfigFactory $parsoidPageConfigFactory
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
-		ParserCacheFactory $parserCacheFactory,
+		ParsoidParserFactory $parsoidParserFactory,
+		ParserOutputAccess $parserOutputAccess,
 		PageLookup $pageLookup,
 		RevisionLookup $revisionLookup,
-		GlobalIdGenerator $globalIdGenerator,
-		IBufferingStatsdDataFactory $stats,
-		Parsoid $parsoid,
 		SiteConfig $siteConfig,
-		PageConfigFactory $parsoidPageConfigFactory,
 		IContentHandlerFactory $contentHandlerFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
-		$this->parsoidCacheConfig = new HashConfig( $options->get( MainConfigNames::ParsoidCacheConfig ) );
-		$this->revisionOutputCache = $parserCacheFactory
-			->getRevisionOutputCache( self::PARSOID_PARSER_CACHE_NAME );
-		$this->parserCache = $parserCacheFactory->getParserCache( self::PARSOID_PARSER_CACHE_NAME );
+		$this->parsoidParserFactory = $parsoidParserFactory;
+		$this->parserOutputAccess = $parserOutputAccess;
 		$this->pageLookup = $pageLookup;
 		$this->revisionLookup = $revisionLookup;
-		$this->globalIdGenerator = $globalIdGenerator;
-		$this->stats = $stats;
-		$this->parsoid = $parsoid;
 		$this->siteConfig = $siteConfig;
-		$this->parsoidPageConfigFactory = $parsoidPageConfigFactory;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 
 		// NOTE: This is passed as the "prefix" option to parsoid, which it uses
@@ -197,6 +156,43 @@ class ParsoidOutputAccess {
 	}
 
 	/**
+	 * @internal
+	 *
+	 * @param ParserOutput $parserOutput
+	 *
+	 * @return ParsoidRenderID
+	 */
+	public function getParsoidRenderID( ParserOutput $parserOutput ): ParsoidRenderID {
+		// XXX: ParserOutput may be coming from the parser cache, so we need to be careful
+		// when we change how we store the render key in the ParserOutput object.
+		$renderId = $parserOutput->getParsoidRenderId();
+		if ( !$renderId ) {
+			throw new InvalidArgumentException( 'ParserOutput does not have a render ID' );
+		}
+
+		return ParsoidRenderID::newFromKey( $renderId );
+	}
+
+	private function handleUnsupportedContentModel( RevisionRecord $revision ): ?Status {
+		$mainSlot = $revision->getSlot( SlotRecord::MAIN );
+		$contentModel = $mainSlot->getModel();
+		if ( $this->supportsContentModel( $contentModel ) ) {
+			return null;
+		} else {
+			// This is a messy fix for T324711. The real solution is T311648.
+			// For now, just return dummy parser output.
+			return $this->makeDummyParserOutput( $contentModel );
+			// TODO: go back to throwing, once RESTbase no longer expects to get a parsoid rendering for
+			//any kind of content (T324711).
+			/*
+				// TODO: throw an internal exception here, convert to HttpError in HtmlOutputRendererHelper.
+				throw new HttpException( 'Parsoid does not support content model ' . $mainSlot->getModel(), 400 );
+			}
+			*/
+		}
+	}
+
+	/**
 	 * @param PageIdentity $page
 	 * @param ParserOptions $parserOpts
 	 * @param RevisionRecord|int|null $revision
@@ -211,133 +207,26 @@ class ParsoidOutputAccess {
 		int $options = 0
 	): Status {
 		[ $page, $revision ] = $this->resolveRevision( $page, $revision );
-		$isOld = $revision->getId() !== $page->getLatest();
-
-		$statsKey = $isOld ? 'ParsoidOutputAccess.Cache.revision' : 'ParsoidOutputAccess.Cache.parser';
-
-		if ( !( $options & self::OPT_FORCE_PARSE ) ) {
-			$parserOutput = $this->getCachedParserOutputInternal(
-				$page,
-				$parserOpts,
-				$revision,
-				$isOld,
-				$statsKey
-			);
-
-			if ( $parserOutput ) {
-				return Status::newGood( $parserOutput );
-			}
+		$status = $this->handleUnsupportedContentModel( $revision );
+		if ( $status ) {
+			return $status;
 		}
-
-		$parsoidOptions = [];
-
-		if ( $options & self::OPT_LOG_LINT_DATA ) {
-			$parsoidOptions += [
-				'logLinterData' => true
-			];
-		}
-
-		$mainSlot = $revision->getSlot( SlotRecord::MAIN );
-
-		$startTime = microtime( true );
-		$status = $this->parse( $page, $parserOpts, $parsoidOptions, $revision );
-		$time = microtime( true ) - $startTime;
-
-		if ( !$status->isOK() ) {
-			$this->stats->increment( $statsKey . '.save.notok' );
-		} elseif ( $options & self::OPT_NO_UPDATE_CACHE ) {
-			$this->stats->increment( $statsKey . '.save.disabled' );
-		} elseif ( !$this->supportsContentModel( $mainSlot->getModel() ) ) {
-			// TODO: We really want to cache for all supported content models.
-			// But supportsContentModels() lies, because of T324711.
-			// This causes us to render garbage output for all content models, which we shouldn't cache.
-			// NOTE: this will become irrelevant when we implement T311648.
-			$this->stats->increment( $statsKey . '.save.badmodel' );
-		} else {
-			if ( $time > $this->parsoidCacheConfig->get( 'CacheThresholdTime' ) ) {
-				$parserOutput = $status->getValue();
-				$now = $parserOutput->getCacheTime();
-
-				if ( $isOld ) {
-					$this->revisionOutputCache->save( $parserOutput, $revision, $parserOpts, $now );
-				} else {
-					$this->parserCache->save( $parserOutput, $page, $parserOpts, $now );
-				}
-				$this->stats->increment( $statsKey . '.save.ok' );
-			} else {
-				$this->stats->increment( $statsKey . '.save.skipfast' );
-			}
-		}
-
-		return $status;
-	}
-
-	/**
-	 * @param PageConfig $pageConfig
-	 * @param array $parsoidOptions
-	 *
-	 * @return Status
-	 */
-	private function parseInternal(
-		PageConfig $pageConfig,
-		array $parsoidOptions
-	): Status {
-		$defaultOptions = [
-			'pageBundle' => true,
-			'wrapSections' => true,
-			// Defaults to page title language unless the REST API
-			// sets a target language in ParserOptions which it does if:
-			// (a) a content-language header is passed in which is usually
-			//     a language variant conversion request
-			// (b) user language (for interface messages)
-			'htmlVariantLanguage' => $pageConfig->getPageLanguageBcp47(),
-			'outputContentVersion' => Parsoid::defaultHTMLVersion(),
-		];
 
 		try {
-			$startTime = microtime( true );
-			$parserOutput = new ParserOutput();
-			$pageBundle = $this->parsoid->wikitext2html(
-				$pageConfig,
-				$parsoidOptions + $defaultOptions,
-				$headers,
-				$parserOutput
+			// Since we know we are generating Parsoid output, explicitly
+			// call ParserOptions::setUseParsoid. This ensures that when
+			// we query the parser-cache, the right cache key is called.
+			// This is an optional transition step to using ParserOutputAccess.
+			$parserOpts->setUseParsoid();
+			$status = $this->parserOutputAccess->getParserOutput(
+				$page, $parserOpts, $revision, $options
 			);
-
-			$parserOutput = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle, $parserOutput );
-			$time = microtime( true ) - $startTime;
-			if ( $time > 3 ) {
-				LoggerFactory::getInstance( 'slow-parsoid' )
-					->info( 'Parsing {title} was slow, took {time} seconds', [
-						'time' => number_format( $time, 2 ),
-						'title' => $pageConfig->getTitle(),
-					] );
-			}
-			return Status::newGood( $parserOutput );
 		} catch ( ClientError $e ) {
-			return Status::newFatal( 'parsoid-client-error', $e->getMessage() );
+			$status = Status::newFatal( 'parsoid-client-error', $e->getMessage() );
 		} catch ( ResourceLimitExceededException $e ) {
-			return Status::newFatal( 'parsoid-resource-limit-exceeded', $e->getMessage() );
+			$status = Status::newFatal( 'parsoid-resource-limit-exceeded', $e->getMessage() );
 		}
-	}
-
-	/**
-	 * NOTE: This needs to be ParserOutput returned by ->getParserOutput()
-	 *   in this class.
-	 *
-	 * @param ParserOutput $parserOutput
-	 *
-	 * @return ParsoidRenderID
-	 */
-	public function getParsoidRenderID( ParserOutput $parserOutput ): ParsoidRenderID {
-		// XXX: ParserOutput may be coming from the parser cache, so we need to be careful
-		// when we change how we store the render key in the ParserOutput object.
-		$renderId = $parserOutput->getExtensionData( self::RENDER_ID_KEY );
-		if ( !$renderId ) {
-			throw new InvalidArgumentException( 'ParserOutput does not have a render ID' );
-		}
-
-		return ParsoidRenderID::newFromKey( $renderId );
+		return $status;
 	}
 
 	/**
@@ -353,58 +242,16 @@ class ParsoidOutputAccess {
 		$revision = null
 	): ?ParserOutput {
 		[ $page, $revision ] = $this->resolveRevision( $page, $revision );
-		$isOld = $revision->getId() !== $page->getLatest();
-
-		$statsKey = $isOld ? 'ParsoidOutputAccess.Cache.revision' : 'ParsoidOutputAccess.Cache.parser';
-
-		return $this->getCachedParserOutputInternal(
-			$page,
-			$parserOpts,
-			$revision,
-			$isOld,
-			$statsKey
-		);
-	}
-
-	/**
-	 * @param PageRecord $page
-	 * @param ParserOptions $parserOpts
-	 * @param RevisionRecord|null $revision
-	 * @param bool $isOld
-	 * @param string $statsKey
-	 *
-	 * @return ?ParserOutput
-	 */
-	protected function getCachedParserOutputInternal(
-		PageRecord $page,
-		ParserOptions $parserOpts,
-		?RevisionRecord $revision,
-		bool $isOld,
-		string $statsKey
-	): ?ParserOutput {
-		if ( $isOld ) {
-			$parserOutput = $this->revisionOutputCache->get( $revision, $parserOpts );
-		} else {
-			$parserOutput = $this->parserCache->get( $page, $parserOpts );
+		$mainSlot = $revision->getSlot( SlotRecord::MAIN );
+		$contentModel = $mainSlot->getModel();
+		if ( $this->supportsContentModel( $contentModel ) ) {
+			// Since we know Parsoid supports this content model, explicitly
+			// call ParserOptions::setUseParsoid. This ensures that when
+			// we query the parser-cache, the right cache key is called.
+			// This is an optional transition step to using ParserOutputAccess.
+			$parserOpts->setUseParsoid();
 		}
-
-		if ( $parserOutput ) {
-			// Ignore cached ParserOutput if it is incomplete,
-			// because it was stored by an old version of the code.
-			if ( !$parserOutput->getExtensionData( PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY )
-				|| !$parserOutput->getExtensionData( self::RENDER_ID_KEY )
-			) {
-				$parserOutput = null;
-			}
-		}
-
-		if ( $parserOutput ) {
-			$this->stats->increment( $statsKey . '.get.hit' );
-			return $parserOutput;
-		} else {
-			$this->stats->increment( $statsKey . '.get.miss' );
-			return null;
-		}
+		return $this->parserOutputAccess->getCachedParserOutput( $page, $parserOpts, $revision );
 	}
 
 	private function makeDummyParserOutput( string $contentModel ): Status {
@@ -414,7 +261,7 @@ class ParsoidOutputAccess {
 		// This is fast to generate so it's fine not to write this to parser cache.
 		$output->updateCacheExpiry( 0 );
 		// The render ID is required for rendering of dummy output: T311728.
-		$output->setExtensionData( self::RENDER_ID_KEY, '0/dummy-output' );
+		$output->setExtensionData( ParserOutput::PARSOID_RENDER_ID_KEY, '0/dummy-output' );
 		// Required in HtmlOutputRendererHelper::putHeaders when $forHtml
 		$output->setExtensionData(
 			PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY,
@@ -427,17 +274,18 @@ class ParsoidOutputAccess {
 	}
 
 	/**
+	 * This is to be called only for parsing posted wikitext that is actually
+	 * not part of any real revision.
+	 *
 	 * @param PageIdentity $page
 	 * @param ParserOptions $parserOpts
-	 * @param array $parsoidOptions
 	 * @param RevisionRecord|int|null $revision
 	 *
 	 * @return Status
 	 */
-	public function parse(
+	public function parseUncacheable(
 		PageIdentity $page,
 		ParserOptions $parserOpts,
-		array $parsoidOptions,
 		$revision
 	): Status {
 		// NOTE: If we have a RevisionRecord already, just use it, there is no need to resolve $page to
@@ -446,55 +294,33 @@ class ParsoidOutputAccess {
 			[ $page, $revision ] = $this->resolveRevision( $page, $revision );
 		}
 
-		try {
-			$mainSlot = $revision->getSlot( SlotRecord::MAIN );
-			$contentModel = $mainSlot->getModel();
-			if ( !$this->supportsContentModel( $contentModel ) ) {
-				// This is a messy fix for T324711. The real solution is T311648.
-				// For now, just return dummy parser output.
-				return $this->makeDummyParserOutput( $contentModel );
-
-				// TODO: go back to throwing, once RESTbase no longer expects to get a parsoid rendering for
-				//any kind of content (T324711).
-				/*
-					// TODO: throw an internal exception here, convert to HttpError in HtmlOutputRendererHelper.
-					throw new HttpException( 'Parsoid does not support content model ' . $mainSlot->getModel(), 400 );
-				}
-				*/
-			}
-
-			$pageConfig = $this->parsoidPageConfigFactory->create(
-				$page,
-				null,
-				$revision,
-				null,
-				$parserOpts->getTargetLanguage(),
-				true  // ensureAccessibleContent
-			);
-		} catch ( RevisionAccessException $e ) {
-			return Status::newFatal( 'parsoid-revision-access', $e->getMessage() );
+		// Enforce caller expectation
+		$revId = $revision->getId();
+		if ( $revId !== 0 && $revId !== null ) {
+			return Status::newFatal( 'parsoid-revision-access',
+				"parseUncacheable should not called for a real revision" );
 		}
 
-		$status = $this->parseInternal( $pageConfig, $parsoidOptions );
-
-		if ( !$status->isOK() ) {
+		$status = $this->handleUnsupportedContentModel( $revision );
+		if ( $status ) {
 			return $status;
 		}
 
-		$parserOutput = $status->getValue();
-
-		// TODO: when we make tighter integration with Parsoid, render ID should become
-		// a standard ParserOutput property. Nothing else needs it now, so don't generate
-		// it in ParserCache just yet.
-		$revId = $revision->getId();
-		$parsoidRenderId = new ParsoidRenderID( $revId, $this->globalIdGenerator->newUUIDv1() );
-		$parserOutput->setExtensionData( self::RENDER_ID_KEY, $parsoidRenderId->getKey() );
-
-		// XXX: ParserOutput should just always record the revision ID and timestamp
-		$now = wfTimestampNow();
-		$parserOutput->setCacheRevisionId( $revId );
-		$parserOutput->setCacheTime( $now );
-
+		try {
+			// Since we aren't caching this output, there is no need to
+			// call setUseParsoid() here.
+			$parser = $this->parsoidParserFactory->create();
+			$parserOutput = $this->parsoidParserFactory->create()->parseFakeRevision(
+				$revision, $page, $parserOpts );
+			$parserOutput->updateCacheExpiry( 0 ); // Ensure this isn't accidentally cached
+			$status = Status::newGood( $parserOutput );
+		} catch ( RevisionAccessException $e ) {
+			return Status::newFatal( 'parsoid-revision-access', $e->getMessage() );
+		} catch ( ClientError $e ) {
+			$status = Status::newFatal( 'parsoid-client-error', $e->getMessage() );
+		} catch ( ResourceLimitExceededException $e ) {
+			$status = Status::newFatal( 'parsoid-resource-limit-exceeded', $e->getMessage() );
+		}
 		return $status;
 	}
 
