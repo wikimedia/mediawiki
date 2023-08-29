@@ -1512,6 +1512,7 @@
 	"prefs-diffs": "Used in [[Special:Preferences]], tab \"Misc\".\n{{Identical|Diff}}",
 	"prefs-help-prefershttps": "Used as help text for the checkbox in [[Special:Preferences]].\n\nThe checkbox has the label {{msg-mw|Tog-prefershttps}}.\n\nSee example: [[mw:Special:Preferences]].",
 	"prefs-tabs-navigation-hint": "Hint message that explains the arrow key navigation for the tabs on [[Special:Preferences]] to screenreader users.",
+	"prefs-sections-navigation-hint": "Hint message that explains the keyboard navigation for the mobile version of [[Special:Preferences]] to screenreader users.",
 	"userrights": "Page title of [[Special:UserRights]].",
 	"userrights-summary": "{{doc-specialpagesummary|userrights}}",
 	"userrights-lookup-user": "Label text when managing user rights ([[Special:UserRights]])",

@@ -4,7 +4,7 @@
 ( function () {
 	var nav = require( './nav.js' );
 	$( function () {
-		nav.insertHints();
+		nav.insertHints( mw.msg( 'prefs-tabs-navigation-hint' ) );
 
 		var tabs = OO.ui.infuse( $( '.mw-prefs-tabs' ) );
 

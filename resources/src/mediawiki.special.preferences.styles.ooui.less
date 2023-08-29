@@ -48,12 +48,18 @@
 	}
 }
 
-/*
- * Hide, when not keyboard focussed.
- */
+// Preferences navigation hint
+.client-js .mw-navigation-hint {
+	overflow: hidden;
+}
+
+// Hide when not keyboard focused.
 .client-js .mw-navigation-hint:not( :focus ) {
 	height: 0;
-	overflow: hidden;
+}
+
+.client-js .mw-navigation-hint:focus {
+	margin: 10px 0 10px 0;
 }
 
 .oo-ui-panelLayout {
