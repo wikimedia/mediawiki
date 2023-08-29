@@ -509,7 +509,7 @@ class ApiQuery extends ApiBase {
 				'ContentLanguage',
 				'NamespaceInfo',
 				'InterwikiLookup',
-				'Parser',
+				'ParserFactory',
 				'MagicWordFactory',
 				'SpecialPageFactory',
 				'SkinFactory',

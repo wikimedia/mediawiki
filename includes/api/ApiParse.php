@@ -66,7 +66,7 @@ class ApiParse extends ApiBase {
 	private LinkBatchFactory $linkBatchFactory;
 	private LinkCache $linkCache;
 	private IContentHandlerFactory $contentHandlerFactory;
-	private Parser $parser;
+	private ParserFactory $parserFactory;
 	private WikiPageFactory $wikiPageFactory;
 	private ContentTransformer $contentTransformer;
 	private CommentFormatter $commentFormatter;
@@ -85,7 +85,7 @@ class ApiParse extends ApiBase {
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param LinkCache $linkCache
 	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param Parser $parser
+	 * @param ParserFactory $parserFactory
 	 * @param WikiPageFactory $wikiPageFactory
 	 * @param ContentRenderer $contentRenderer
 	 * @param ContentTransformer $contentTransformer
@@ -104,7 +104,7 @@ class ApiParse extends ApiBase {
 		LinkBatchFactory $linkBatchFactory,
 		LinkCache $linkCache,
 		IContentHandlerFactory $contentHandlerFactory,
-		Parser $parser,
+		ParserFactory $parserFactory,
 		WikiPageFactory $wikiPageFactory,
 		ContentRenderer $contentRenderer,
 		ContentTransformer $contentTransformer,
@@ -121,7 +121,7 @@ class ApiParse extends ApiBase {
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->linkCache = $linkCache;
 		$this->contentHandlerFactory = $contentHandlerFactory;
-		$this->parser = $parser;
+		$this->parserFactory = $parserFactory;
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->contentRenderer = $contentRenderer;
 		$this->contentTransformer = $contentTransformer;
@@ -701,9 +701,10 @@ class ApiParse extends ApiBase {
 				$this->dieWithError( 'apierror-parsetree-notwikitext', 'notwikitext' );
 			}
 
-			$this->parser->startExternalParse( $titleObj, $popts, Parser::OT_PREPROCESS );
+			$parser = $this->parserFactory->getInstance();
+			$parser->startExternalParse( $titleObj, $popts, Parser::OT_PREPROCESS );
 			// @phan-suppress-next-line PhanUndeclaredMethod
-			$xml = $this->parser->preprocessToDom( $this->content->getText() )->__toString();
+			$xml = $parser->preprocessToDom( $this->content->getText() )->__toString();
 			$result_array['parsetree'] = $xml;
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'parsetree';
 		}
@@ -871,7 +872,7 @@ class ApiParse extends ApiBase {
 			}
 			if ( $summary !== '' ) {
 				$summary = $this->msg( 'newsectionsummary' )
-					->rawParams( $this->parser->stripSectionName( $summary ) )
+					->rawParams( $this->parserFactory->getMainInstance()->stripSectionName( $summary ) )
 					->inContentLanguage()->text();
 			}
 		}

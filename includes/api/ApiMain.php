@@ -136,7 +136,7 @@ class ApiMain extends ApiBase {
 			'class' => ApiExpandTemplates::class,
 			'services' => [
 				'RevisionStore',
-				'Parser',
+				'ParserFactory',
 			]
 		],
 		'parse' => [
@@ -148,7 +148,7 @@ class ApiMain extends ApiBase {
 				'LinkBatchFactory',
 				'LinkCache',
 				'ContentHandlerFactory',
-				'Parser',
+				'ParserFactory',
 				'WikiPageFactory',
 				'ContentRenderer',
 				'ContentTransformer',
@@ -203,7 +203,7 @@ class ApiMain extends ApiBase {
 		'feedwatchlist' => [
 			'class' => ApiFeedWatchlist::class,
 			'services' => [
-				'Parser',
+				'ParserFactory',
 			]
 		],
 		'help' => [
