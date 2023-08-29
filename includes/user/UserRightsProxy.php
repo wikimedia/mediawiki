@@ -32,7 +32,7 @@ use Wikimedia\Rdbms\IDatabase;
 /**
  * Cut-down copy of User interface for local-interwiki-database
  * user rights manipulation.
- * @deprecated since 1.38, pass the correct domain to UserGroupManagerFactory instead.
+ * @deprecated since 1.38, pass the correct domain to UserGroupManagerFactory instead. Hard-deprecated since 1.41
  */
 class UserRightsProxy implements UserIdentity {
 	use WikiAwareEntityTrait;
@@ -72,10 +72,16 @@ class UserRightsProxy implements UserIdentity {
 	/**
 	 * Confirm the selected database name is a valid local interwiki database name.
 	 *
+	 * @deprecated Whole class is deprecated since 1.38. Hard-deprecated since 1.41
 	 * @param string $dbDomain Database name
 	 * @return bool
 	 */
 	public static function validDatabase( $dbDomain ) {
+		wfDeprecated( __METHOD__, '1.41' );
+		return self::validDatabaseInternal( $dbDomain );
+	}
+
+	private static function validDatabaseInternal( $dbDomain ) {
 		$localDatabases = MediaWikiServices::getInstance()->getMainConfig()
 			->get( MainConfigNames::LocalDatabases );
 		return in_array( $dbDomain, $localDatabases );
@@ -84,12 +90,14 @@ class UserRightsProxy implements UserIdentity {
 	/**
 	 * Same as User::whoIs()
 	 *
+	 * @deprecated Whole class is deprecated since 1.38. Hard-deprecated since 1.41
 	 * @param string $dbDomain Database name
 	 * @param int $id User ID
 	 * @param bool $ignoreInvalidDB If true, don't check if $dbDomain is in $wgLocalDatabases
 	 * @return string|false User name or false if the user doesn't exist
 	 */
 	public static function whoIs( $dbDomain, $id, $ignoreInvalidDB = false ) {
+		wfDeprecated( __METHOD__, '1.41' );
 		$user = self::newFromId( $dbDomain, $id, $ignoreInvalidDB );
 		if ( $user ) {
 			return $user->name;
@@ -101,24 +109,28 @@ class UserRightsProxy implements UserIdentity {
 	/**
 	 * Factory function; get a remote user entry by ID number.
 	 *
+	 * @deprecated Whole class is deprecated since 1.38. Hard-deprecated since 1.41
 	 * @param string $dbDomain Database name
 	 * @param int $id User ID
 	 * @param bool $ignoreInvalidDB If true, don't check if $dbDomain is in $wgLocalDatabases
 	 * @return UserRightsProxy|null If doesn't exist
 	 */
 	public static function newFromId( $dbDomain, $id, $ignoreInvalidDB = false ) {
+		wfDeprecated( __METHOD__, '1.41' );
 		return self::newFromLookup( $dbDomain, 'user_id', intval( $id ), $ignoreInvalidDB );
 	}
 
 	/**
 	 * Factory function; get a remote user entry by name.
 	 *
+	 * @deprecated Whole class is deprecated since 1.38. Hard-deprecated since 1.41
 	 * @param string $dbDomain Database name
 	 * @param string $name User name
 	 * @param bool $ignoreInvalidDB If true, don't check if $dbDomain is in $wgLocalDatabases
 	 * @return UserRightsProxy|null If doesn't exist
 	 */
 	public static function newFromName( $dbDomain, $name, $ignoreInvalidDB = false ) {
+		wfDeprecated( __METHOD__, '1.41' );
 		return self::newFromLookup( $dbDomain, 'user_name', $name, $ignoreInvalidDB );
 	}
 
@@ -138,12 +150,12 @@ class UserRightsProxy implements UserIdentity {
 		// but don't pass it to the UserRightsProxy,
 		// as user rights are normally not shared.
 		if ( $sharedDB && in_array( 'user', $sharedTables ) ) {
-			$userdb = self::getDB( $sharedDB, $ignoreInvalidDB );
+			$userdb = self::getDBInternal( $sharedDB, $ignoreInvalidDB );
 		} else {
-			$userdb = self::getDB( $dbDomain, $ignoreInvalidDB );
+			$userdb = self::getDBInternal( $dbDomain, $ignoreInvalidDB );
 		}
 
-		$db = self::getDB( $dbDomain, $ignoreInvalidDB );
+		$db = self::getDBInternal( $dbDomain, $ignoreInvalidDB );
 
 		if ( $db && $userdb ) {
 			$row = $userdb->newSelectQueryBuilder()
@@ -164,12 +176,18 @@ class UserRightsProxy implements UserIdentity {
 	 * Open a database connection to work on for the requested user.
 	 * This may be a new connection to another database for remote users.
 	 *
+	 * @deprecated Whole class is deprecated since 1.38. Hard-deprecated since 1.41
 	 * @param string $dbDomain
 	 * @param bool $ignoreInvalidDB If true, don't check if $dbDomain is in $wgLocalDatabases
 	 * @return IDatabase|null If invalid selection
 	 */
 	public static function getDB( $dbDomain, $ignoreInvalidDB = false ) {
-		if ( $ignoreInvalidDB || self::validDatabase( $dbDomain ) ) {
+		wfDeprecated( __METHOD__, '1.41' );
+		return self::getDBInternal( $dbDomain, $ignoreInvalidDB );
+	}
+
+	private static function getDBInternal( $dbDomain, $ignoreInvalidDB = false ) {
+		if ( $ignoreInvalidDB || self::validDatabaseInternal( $dbDomain ) ) {
 			if ( WikiMap::isCurrentWikiId( $dbDomain ) ) {
 				// Hmm... this shouldn't happen though. :)
 				return wfGetDB( DB_PRIMARY );
