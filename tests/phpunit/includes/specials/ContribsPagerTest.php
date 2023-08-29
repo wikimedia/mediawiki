@@ -178,16 +178,15 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideQueryableRanges
 	 */
 	public function testQueryableRanges( $ipRange ) {
-		$this->overrideConfigValue(
-			MainConfigNames::RangeContributionsCIDRLimit,
-			[
+		$config = new HashConfig( [
+			MainConfigNames::RangeContributionsCIDRLimit => [
 				'IPv4' => 16,
 				'IPv6' => 32,
 			]
-		);
+		] );
 
 		$this->assertTrue(
-			$this->pager->isQueryableRange( $ipRange ),
+			ContribsPager::isQueryableRange( $ipRange, $config ),
 			"$ipRange is a queryable IP range"
 		);
 	}
@@ -206,16 +205,15 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideUnqueryableRanges
 	 */
 	public function testUnqueryableRanges( $ipRange ) {
-		$this->overrideConfigValue(
-			MainConfigNames::RangeContributionsCIDRLimit,
-			[
+		$config = new HashConfig( [
+			MainConfigNames::RangeContributionsCIDRLimit => [
 				'IPv4' => 16,
 				'IPv6' => 32,
 			]
-		);
+		] );
 
 		$this->assertFalse(
-			$this->pager->isQueryableRange( $ipRange ),
+			ContribsPager::isQueryableRange( $ipRange, $config ),
 			"$ipRange is not a queryable IP range"
 		);
 	}

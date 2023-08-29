@@ -193,17 +193,8 @@ class SpecialContributions extends IncludableSpecialPage {
 		$this->opts['start'] = $request->getVal( 'start' );
 		$this->opts['end'] = $request->getVal( 'end' );
 
-		$id = 0;
-		if ( ExternalUserNames::isExternal( $target ) ) {
-			$userObj = $this->userFactory->newFromName( $target, UserRigorOptions::RIGOR_NONE );
-			if ( !$userObj ) {
-				$out->addHTML( $this->getForm( $this->opts ) );
-				return;
-			}
-
-			$out->addSubtitle( $this->contributionsSub( $userObj, $target ) );
-			$out->setPageTitle( $this->msg( 'contributions-title', $target )->escaped() );
-		} else {
+		$notExternal = !ExternalUserNames::isExternal( $target );
+		if ( $notExternal ) {
 			$nt = Title::makeTitleSafe( NS_USER, $target );
 			if ( !$nt ) {
 				$out->addHTML( $this->getForm( $this->opts ) );
@@ -213,29 +204,28 @@ class SpecialContributions extends IncludableSpecialPage {
 			if ( IPUtils::isValidRange( $target ) ) {
 				$target = IPUtils::sanitizeRange( $target );
 			}
-			$userObj = $this->userFactory->newFromName( $target, UserRigorOptions::RIGOR_NONE );
-			if ( !$userObj ) {
-				$out->addHTML( $this->getForm( $this->opts ) );
-				return;
-			}
-			$id = $userObj->getId();
+		}
 
-			$out->addSubtitle( $this->contributionsSub( $userObj, $target ) );
-			$out->setPageTitle( $this->msg( 'contributions-title', $target )->escaped() );
+		$userObj = $this->userFactory->newFromName( $target, UserRigorOptions::RIGOR_NONE );
+		if ( !$userObj ) {
+			$out->addHTML( $this->getForm( $this->opts ) );
+			return;
+		}
+		$out->addSubtitle( $this->contributionsSub( $userObj, $target ) );
+		$out->setPageTitle( $this->msg( 'contributions-title', $target )->escaped() );
 
-			# For IP ranges, we want the contributionsSub, but not the skin-dependent
-			# links under 'Tools', which may include irrelevant links like 'Logs'.
-			if ( !IPUtils::isValidRange( $target ) &&
-				( $this->userNameUtils->isIP( $target ) || $userObj->isRegistered() )
-			) {
-				// Don't add non-existent users, because hidden users
-				// that we add here will be removed later to pretend
-				// that they don't exist, and if users that actually don't
-				// exist are added here and then not removed, it exposes
-				// which users exist and are hidden vs. which actually don't
-				// exist. But, do set the relevant user for single IPs.
-				$this->getSkin()->setRelevantUser( $userObj );
-			}
+		# For IP ranges, we want the contributionsSub, but not the skin-dependent
+		# links under 'Tools', which may include irrelevant links like 'Logs'.
+		if ( $notExternal && !IPUtils::isValidRange( $target ) &&
+			( $this->userNameUtils->isIP( $target ) || $userObj->isRegistered() )
+		) {
+			// Don't add non-existent users, because hidden users
+			// that we add here will be removed later to pretend
+			// that they don't exist, and if users that actually don't
+			// exist are added here and then not removed, it exposes
+			// which users exist and are hidden vs. which actually don't
+			// exist. But, do set the relevant user for single IPs.
+			$this->getSkin()->setRelevantUser( $userObj );
 		}
 
 		$this->opts = ContribsPager::processDateFilter( $this->opts );
@@ -298,13 +288,15 @@ class SpecialContributions extends IncludableSpecialPage {
 		$this->addFeedLinks( $feedParams );
 
 		if ( $this->getHookRunner()->onSpecialContributionsBeforeMainOutput(
-			$id, $userObj, $this )
+			$notExternal ? $userObj->getId() : 0, $userObj, $this )
 		) {
 			if ( !$this->including() ) {
 				$out->addHTML( $this->getForm( $this->opts ) );
 			}
 			$pager = $this->getPager( $userObj );
-			if ( IPUtils::isValidRange( $target ) && !$pager->isQueryableRange( $target ) ) {
+			if ( IPUtils::isValidRange( $target ) &&
+				!ContribsPager::isQueryableRange( $target, $this->getConfig() )
+			) {
 				// Valid range, but outside CIDR limit.
 				$limits = $this->getConfig()->get( MainConfigNames::RangeContributionsCIDRLimit );
 				$limit = $limits[ IPUtils::isIPv4( $target ) ? 'IPv4' : 'IPv6' ];
@@ -355,7 +347,9 @@ class SpecialContributions extends IncludableSpecialPage {
 			$out->setPreventClickjacking( $pager->getPreventClickjacking() );
 
 			# Show the appropriate "footer" message - WHOIS tools, etc.
-			if ( IPUtils::isValidRange( $target ) && $pager->isQueryableRange( $target ) ) {
+			if ( IPUtils::isValidRange( $target ) &&
+				ContribsPager::isQueryableRange( $target, $this->getConfig() )
+			) {
 				$message = 'sp-contributions-footer-anon-range';
 			} elseif ( IPUtils::isIPAddress( $target ) ) {
 				$message = 'sp-contributions-footer-anon';
@@ -427,7 +421,7 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		// T211910. Don't show action links if a range is outside block limit
 		$showForIp = IPUtils::isValid( $userObj ) ||
-			( IPUtils::isValidRange( $userObj ) && $this->getPager( $userObj )->isQueryableRange( $userObj ) );
+			( IPUtils::isValidRange( $userObj ) && ContribsPager::isQueryableRange( $userObj, $this->getConfig() ) );
 
 		// T276306. if the user is hidden and the viewer cannot see hidden, pretend that it does not exist
 		$registeredAndVisible = $userObj->isRegistered() && ( !$userObj->isHidden()
