@@ -2206,11 +2206,12 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * Get the list of explicit group memberships this user has.
 	 * The implicit * and user groups are not included.
 	 *
-	 * @deprecated since 1.35 Use UserGroupManager::getUserGroups instead.
+	 * @deprecated since 1.35 Use UserGroupManager::getUserGroups instead. Hard-deprecated since 1.41
 	 *
 	 * @return string[] Array of internal group names (sorted since 1.33)
 	 */
 	public function getGroups() {
+		wfDeprecated( __METHOD__, '1.41' );
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
 			->getUserGroups( $this, $this->queryFlagsUsed );
@@ -2220,12 +2221,13 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * Get the list of explicit group memberships this user has, stored as
 	 * UserGroupMembership objects. Implicit groups are not included.
 	 *
-	 * @deprecated since 1.35 Use UserGroupManager::getUserGroupMemberships instead
+	 * @deprecated since 1.35 Use UserGroupManager::getUserGroupMemberships instead. Hard-deprecated since 1.41
 	 *
 	 * @return UserGroupMembership[] Associative array of (group name => UserGroupMembership object)
 	 * @since 1.29
 	 */
 	public function getGroupMemberships() {
+		wfDeprecated( __METHOD__, '1.41' );
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
 			->getUserGroupMemberships( $this, $this->queryFlagsUsed );
@@ -2247,7 +2249,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * expiry time. (If $expiry is omitted or null, the membership will be altered to
 	 * never expire.)
 	 *
-	 * @deprecated since 1.35 Use UserGroupManager::addUserToGroup instead
+	 * @deprecated since 1.35 Use UserGroupManager::addUserToGroup instead. Hard-deprecated since 1.41
 	 *
 	 * @param string $group Name of the group to add
 	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to
@@ -2255,6 +2257,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool
 	 */
 	public function addGroup( $group, $expiry = null ) {
+		wfDeprecated( __METHOD__, '1.41' );
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
 			->addUserToGroup( $this, $group, $expiry, true );
@@ -2264,12 +2267,13 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * Remove the user from the given group.
 	 * This takes immediate effect.
 	 *
-	 * @deprecated since 1.35 Use UserGroupManager::removeUserFromGroup instead.
+	 * @deprecated since 1.35 Use UserGroupManager::removeUserFromGroup instead. Hard-deprecated since 1.41
 	 *
 	 * @param string $group Name of the group to remove
 	 * @return bool
 	 */
 	public function removeGroup( $group ) {
+		wfDeprecated( __METHOD__, '1.41' );
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
 			->removeUserFromGroup( $this, $group );
@@ -3303,20 +3307,22 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * Return the set of defined explicit groups.
 	 * The implicit groups (by default *, 'user' and 'autoconfirmed')
 	 * are not included, as they are defined automatically, not in the database.
-	 * @deprecated since 1.35, use UserGroupManager::listAllGroups instead
+	 * @deprecated since 1.35, use UserGroupManager::listAllGroups instead. Hard-deprecated since 1.41
 	 * @return string[] internal group names
 	 */
 	public static function getAllGroups() {
+		wfDeprecated( __METHOD__, '1.41' );
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
 			->listAllGroups();
 	}
 
 	/**
-	 * @deprecated since 1.35, use UserGroupManager::listAllImplicitGroups() instead
+	 * @deprecated since 1.35, use UserGroupManager::listAllImplicitGroups() instead. Hard-deprecated since 1.41
 	 * @return string[] internal group names
 	 */
 	public static function getImplicitGroups() {
+		wfDeprecated( __METHOD__, '1.41' );
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
 			->listAllImplicitGroups();

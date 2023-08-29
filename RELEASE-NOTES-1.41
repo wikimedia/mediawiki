@@ -634,6 +634,9 @@ because of Phabricator reports.
   Use ::getDeprecationWarning() instead.
 * MediaWiki\Block\AbstractBlock::getReason(), deprecated since 1.35, now emits
   deprecation warnings. Use ::getReasonComment() instead.
+* User::getGroups(), ::addGroup(), ::removeGroup(), ::getGroupMemberships(),
+  ::getAllGroups(), ::getImplicitGroups(), deprecated since 1.35, now emit
+  deprecation warnings.
 * The global function wfReportTime(), deprecated since 1.40, now emits
   deprecation warnings. The SkinTemplate parameter 'reporttime' is deprecated.
 * The following classes are now namespaced; the old class names are left as

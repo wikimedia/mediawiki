@@ -230,11 +230,12 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	public function testBot() {
 		$user = $this->getTestUser( 'bot' )->getUser();
 
-		$this->assertSame( [ 'bot' ], $user->getGroups() );
-		$this->assertArrayHasKey( 'bot', $user->getGroupMemberships() );
+		$userGroupManager = $this->getServiceContainer()->getUserGroupManager();
+		$this->assertSame( [ 'bot' ], $userGroupManager->getUserGroups( $user ) );
+		$this->assertArrayHasKey( 'bot', $userGroupManager->getUserGroupMemberships( $user ) );
 		$this->assertTrue( $user->isBot() );
 
-		$this->assertArrayNotHasKey( 'bot', $this->user->getGroupMemberships() );
+		$this->assertArrayNotHasKey( 'bot', $userGroupManager->getUserGroupMemberships( $this->user ) );
 		$this->assertFalse( $this->user->isBot() );
 	}
 
@@ -1442,6 +1443,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::getGroups
 	 */
 	public function testGetGroups() {
+		$this->hideDeprecated( 'User::getGroups' );
+
 		$user = $this->getTestUser( [ 'a', 'b' ] )->getUser();
 		$this->assertArrayEquals( [ 'a', 'b' ], $user->getGroups() );
 	}
@@ -1450,6 +1453,9 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::addGroup
 	 */
 	public function testAddGroup() {
+		$this->hideDeprecated( 'User::getGroups' );
+		$this->hideDeprecated( 'User::addGroup' );
+
 		$user = $this->getTestUser()->getUser();
 		$this->assertSame( [], $user->getGroups() );
 
@@ -1474,6 +1480,9 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::removeGroup
 	 */
 	public function testRemoveGroup() {
+		$this->hideDeprecated( 'User::getGroups' );
+		$this->hideDeprecated( 'User::removeGroup' );
+
 		$user = $this->getTestUser( [ 'test', 'test3' ] )->getUser();
 
 		$this->assertTrue( $user->removeGroup( 'test' ) );
