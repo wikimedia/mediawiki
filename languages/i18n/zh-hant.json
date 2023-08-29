@@ -2685,7 +2685,7 @@
 	"contribute": "貢獻",
 	"contribsub2": "{{GENDER:$3|$1}}的貢獻（$2）",
 	"contributions-subtitle": "{{GENDER:$2|$1}}的貢獻",
-	"contributions-edit-count": "做出$2{{PLURAL:$2|次編輯}}的{{GENDER:$1|使用者}}。",
+	"contributions-edit-count": "做出$2{{PLURAL:$2|筆編輯}}的{{GENDER:$1|使用者}}。",
 	"contributions-account-creation-date": "帳號建立於$1。",
 	"contributions-userdoesnotexist": "使用者帳號「$1」尚未註冊。",
 	"negative-namespace-not-supported": "不支援帶有負值的命名空間。",

@@ -1556,6 +1556,8 @@
 	"apihelp-userrights-param-remove": "Supprimer l’utilisateur de ces groupes.",
 	"apihelp-userrights-param-reason": "Motif de la modification.",
 	"apihelp-userrights-param-tags": "Modifier les balises à appliquer à l’entrée dans le journal des droits utilisateur.",
+	"apihelp-userrights-param-watchuser": "Surveiller les pages utilisateur et discussion de l’utilisateur.",
+	"apihelp-userrights-param-watchlistexpiry": "Délai d’expiration de la liste de suivi. Omettre complètement  ce paramètre ou laisser l’expiration actuelle inchangée.",
 	"apihelp-userrights-example-user": "Ajouter l’utilisateur <kbd>FooBot</kbd> au groupe <kbd>bot</kbd> et le supprimer des groupes <kbd>sysop</kbd> et <kbd>bureaucrat</kbd>.",
 	"apihelp-userrights-example-userid": "Ajouter l’utilisateur d’ID <kbd>123</kbd> au groupe <kbd>bot</kbd>, et le supprimer des groupes <kbd>sysop</kbd> et <kbd>bureaucrat</kbd>.",
 	"apihelp-userrights-example-expiry": "Ajouter l'utilisateur <kbd>SometimeSysop</kbd> au groupe <kbd>sysop</kbd> pour 1 mois.",
