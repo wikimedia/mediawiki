@@ -602,6 +602,6 @@ trait DummyServicesTrait {
 					return $text;
 				}
 			);
-		return new CommentStore( $mockLang, MIGRATION_NEW );
+		return new CommentStore( $mockLang );
 	}
 }

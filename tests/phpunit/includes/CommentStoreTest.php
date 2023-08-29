@@ -30,10 +30,9 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 
 	/**
 	 * Create a store for a particular stage
-	 * @param int $stage
 	 * @return CommentStore
 	 */
-	private function makeStore( $stage ) {
+	private function makeStore() {
 		$lang = $this->createMock( Language::class );
 		$lang->method( 'truncateForDatabase' )->willReturnCallback( static function ( $str, $len ) {
 			return strlen( $str ) > $len ? substr( $str, 0, $len - 3 ) . '...' : $str;
@@ -41,163 +40,34 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 		$lang->method( 'truncateForVisual' )->willReturnCallback( static function ( $str, $len ) {
 			return mb_strlen( $str ) > $len ? mb_substr( $str, 0, $len - 3 ) . '...' : $str;
 		} );
-		return new CommentStore( $lang, $stage );
-	}
-
-	/**
-	 * @dataProvider provideConstructor
-	 * @param int $stage
-	 * @param string|null $exceptionMsg
-	 */
-	public function testConstructor( $stage, $exceptionMsg ) {
-		try {
-			$m = new CommentStore(
-				$this->createMock( Language::class ),
-				$stage
-			);
-			if ( $exceptionMsg !== null ) {
-				$this->fail( 'Expected exception not thrown' );
-			}
-			$this->assertInstanceOf( CommentStore::class, $m );
-		} catch ( InvalidArgumentException $ex ) {
-			$this->assertSame( $exceptionMsg, $ex->getMessage() );
-		}
-	}
-
-	public static function provideConstructor() {
-		return [
-			[ 0, '$stage must include a write mode' ],
-			[ SCHEMA_COMPAT_READ_OLD, '$stage must include a write mode' ],
-			[ SCHEMA_COMPAT_READ_NEW, '$stage must include a write mode' ],
-			[ SCHEMA_COMPAT_READ_BOTH, '$stage must include a write mode' ],
-
-			[ SCHEMA_COMPAT_WRITE_OLD, '$stage must include a read mode' ],
-			[ SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_READ_OLD, null ],
-			[ SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_READ_NEW, null ],
-			[ SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_READ_BOTH, null ],
-
-			[ SCHEMA_COMPAT_WRITE_NEW, '$stage must include a read mode' ],
-			[ SCHEMA_COMPAT_WRITE_NEW | SCHEMA_COMPAT_READ_OLD, null ],
-			[ SCHEMA_COMPAT_WRITE_NEW | SCHEMA_COMPAT_READ_NEW, null ],
-			[ SCHEMA_COMPAT_WRITE_NEW | SCHEMA_COMPAT_READ_BOTH, null ],
-
-			[ SCHEMA_COMPAT_WRITE_BOTH, '$stage must include a read mode' ],
-			[ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, null ],
-			[ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, null ],
-			[ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_BOTH, null ],
-		];
+		return new CommentStore( $lang );
 	}
 
 	/**
 	 * @dataProvider provideGetFields
-	 * @param int $stage
 	 * @param string $key
 	 * @param array $expect
 	 */
-	public function testGetFields( $stage, $key, $expect ) {
-		$store = $this->makeStore( $stage );
+	public function testGetFields( $key, $expect ) {
+		$store = $this->makeStore();
 		$result = $store->getFields( $key );
 		$this->assertEquals( $expect, $result );
 	}
 
 	public static function provideGetFields() {
 		return [
-			'Simple table, old' => [
-				MIGRATION_OLD, 'ipb_reason',
-				[ 'ipb_reason_text' => 'ipb_reason', 'ipb_reason_data' => 'NULL', 'ipb_reason_cid' => 'NULL' ],
-			],
-			'Simple table, write-both' => [
-				MIGRATION_WRITE_BOTH, 'ipb_reason',
-				[ 'ipb_reason_old' => 'ipb_reason', 'ipb_reason_id' => 'ipb_reason_id' ],
-			],
-			'Simple table, write-new' => [
-				MIGRATION_WRITE_NEW, 'ipb_reason',
-				[ 'ipb_reason_old' => 'ipb_reason', 'ipb_reason_id' => 'ipb_reason_id' ],
-			],
-			'Simple table, new' => [
-				MIGRATION_NEW, 'ipb_reason',
-				[ 'ipb_reason_id' => 'ipb_reason_id' ],
-			],
-			'Simple table, write-both/read-old' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'ipb_reason',
-				[ 'ipb_reason_text' => 'ipb_reason', 'ipb_reason_data' => 'NULL', 'ipb_reason_cid' => 'NULL' ],
-			],
-			'Simple table, write-both/read-new' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'ipb_reason',
+			'Simple table' => [
+				'ipb_reason',
 				[ 'ipb_reason_id' => 'ipb_reason_id' ],
 			],
 
-			'Revision, old' => [
-				MIGRATION_OLD, 'rev_comment',
-				[
-					'rev_comment_text' => 'rev_comment',
-					'rev_comment_data' => 'NULL',
-					'rev_comment_cid' => 'NULL',
-				],
-			],
-			'Revision, write-both' => [
-				MIGRATION_WRITE_BOTH, 'rev_comment',
-				[ 'rev_comment_old' => 'rev_comment', 'rev_comment_id' => 'rev_comment_id' ],
-			],
-			'Revision, write-new' => [
-				MIGRATION_WRITE_NEW, 'rev_comment',
-				[ 'rev_comment_old' => 'rev_comment', 'rev_comment_id' => 'rev_comment_id' ],
-			],
-			'Revision, new' => [
-				MIGRATION_NEW, 'rev_comment',
-				[ 'rev_comment_id' => 'rev_comment_id' ],
-			],
-			'Revision, write-both/read-old' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'rev_comment',
-				[
-					'rev_comment_text' => 'rev_comment',
-					'rev_comment_data' => 'NULL',
-					'rev_comment_cid' => 'NULL',
-				],
-			],
-			'Revision, write-both/read-new' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'rev_comment',
+			'Revision' => [
+				'rev_comment',
 				[ 'rev_comment_id' => 'rev_comment_id' ],
 			],
 
-			'Image, old' => [
-				MIGRATION_OLD, 'img_description',
-				[
-					'img_description_text' => 'img_description',
-					'img_description_data' => 'NULL',
-					'img_description_cid' => 'NULL',
-				],
-			],
-			'Image, write-both' => [
-				MIGRATION_WRITE_BOTH, 'img_description',
-				[
-					'img_description_old' => 'img_description',
-					'img_description_id' => 'img_description_id'
-				],
-			],
-			'Image, write-new' => [
-				MIGRATION_WRITE_NEW, 'img_description',
-				[
-					'img_description_old' => 'img_description',
-					'img_description_id' => 'img_description_id'
-				],
-			],
-			'Image, new' => [
-				MIGRATION_NEW, 'img_description',
-				[
-					'img_description_id' => 'img_description_id'
-				],
-			],
-			'Image, write-both/read-old' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'img_description',
-				[
-					'img_description_text' => 'img_description',
-					'img_description_data' => 'NULL',
-					'img_description_cid' => 'NULL',
-				],
-			],
-			'Image, write-both/read-new' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'img_description',
+			'Image' => [
+				'img_description',
 				[
 					'img_description_id' => 'img_description_id'
 				],
@@ -207,81 +77,19 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideGetJoin
-	 * @param int $stage
 	 * @param string $key
 	 * @param array $expect
 	 */
-	public function testGetJoin( $stage, $key, $expect ) {
-		$store = $this->makeStore( $stage );
+	public function testGetJoin( $key, $expect ) {
+		$store = $this->makeStore();
 		$result = $store->getJoin( $key );
 		$this->assertEquals( $expect, $result );
 	}
 
 	public static function provideGetJoin() {
 		return [
-			'Simple table, old' => [
-				MIGRATION_OLD, 'ipb_reason', [
-					'tables' => [],
-					'fields' => [
-						'ipb_reason_text' => 'ipb_reason',
-						'ipb_reason_data' => 'NULL',
-						'ipb_reason_cid' => 'NULL',
-					],
-					'joins' => [],
-				],
-			],
-			'Simple table, write-both' => [
-				MIGRATION_WRITE_BOTH, 'ipb_reason', [
-					'tables' => [ 'comment_ipb_reason' => 'comment' ],
-					'fields' => [
-						'ipb_reason_text' => 'COALESCE( comment_ipb_reason.comment_text, ipb_reason )',
-						'ipb_reason_data' => 'comment_ipb_reason.comment_data',
-						'ipb_reason_cid' => 'comment_ipb_reason.comment_id',
-					],
-					'joins' => [
-						'comment_ipb_reason' => [ 'LEFT JOIN', 'comment_ipb_reason.comment_id = ipb_reason_id' ],
-					],
-				],
-			],
-			'Simple table, write-new' => [
-				MIGRATION_WRITE_NEW, 'ipb_reason', [
-					'tables' => [ 'comment_ipb_reason' => 'comment' ],
-					'fields' => [
-						'ipb_reason_text' => 'COALESCE( comment_ipb_reason.comment_text, ipb_reason )',
-						'ipb_reason_data' => 'comment_ipb_reason.comment_data',
-						'ipb_reason_cid' => 'comment_ipb_reason.comment_id',
-					],
-					'joins' => [
-						'comment_ipb_reason' => [ 'LEFT JOIN', 'comment_ipb_reason.comment_id = ipb_reason_id' ],
-					],
-				],
-			],
-			'Simple table, new' => [
-				MIGRATION_NEW, 'ipb_reason', [
-					'tables' => [ 'comment_ipb_reason' => 'comment' ],
-					'fields' => [
-						'ipb_reason_text' => 'comment_ipb_reason.comment_text',
-						'ipb_reason_data' => 'comment_ipb_reason.comment_data',
-						'ipb_reason_cid' => 'comment_ipb_reason.comment_id',
-					],
-					'joins' => [
-						'comment_ipb_reason' => [ 'JOIN', 'comment_ipb_reason.comment_id = ipb_reason_id' ],
-					],
-				],
-			],
-			'Simple table, write-both/read-old' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'ipb_reason', [
-					'tables' => [],
-					'fields' => [
-						'ipb_reason_text' => 'ipb_reason',
-						'ipb_reason_data' => 'NULL',
-						'ipb_reason_cid' => 'NULL',
-					],
-					'joins' => [],
-				],
-			],
-			'Simple table, write-both/read-new' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'ipb_reason', [
+			'Simple table' => [
+				'ipb_reason', [
 					'tables' => [ 'comment_ipb_reason' => 'comment' ],
 					'fields' => [
 						'ipb_reason_text' => 'comment_ipb_reason.comment_text',
@@ -294,75 +102,8 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 				],
 			],
 
-			'Revision, old' => [
-				MIGRATION_OLD, 'rev_comment', [
-					'tables' => [],
-					'fields' => [
-						'rev_comment_text' => 'rev_comment',
-						'rev_comment_data' => 'NULL',
-						'rev_comment_cid' => 'NULL',
-					],
-					'joins' => [],
-				],
-			],
-			'Revision, write-both' => [
-				MIGRATION_WRITE_BOTH, 'rev_comment', [
-					'tables' => [
-						'comment_rev_comment' => 'comment',
-					],
-					'fields' => [
-						'rev_comment_text' => 'COALESCE( comment_rev_comment.comment_text, rev_comment )',
-						'rev_comment_data' => 'comment_rev_comment.comment_data',
-						'rev_comment_cid' => 'comment_rev_comment.comment_id',
-					],
-					'joins' => [
-						'comment_rev_comment' => [ 'LEFT JOIN', 'comment_rev_comment.comment_id = rev_comment_id' ],
-					],
-				],
-			],
-			'Revision, write-new' => [
-				MIGRATION_WRITE_NEW, 'rev_comment', [
-					'tables' => [
-						'comment_rev_comment' => 'comment',
-					],
-					'fields' => [
-						'rev_comment_text' => 'COALESCE( comment_rev_comment.comment_text, rev_comment )',
-						'rev_comment_data' => 'comment_rev_comment.comment_data',
-						'rev_comment_cid' => 'comment_rev_comment.comment_id',
-					],
-					'joins' => [
-						'comment_rev_comment' => [ 'LEFT JOIN', 'comment_rev_comment.comment_id = rev_comment_id' ],
-					],
-				],
-			],
-			'Revision, new' => [
-				MIGRATION_NEW, 'rev_comment', [
-					'tables' => [
-						'comment_rev_comment' => 'comment',
-					],
-					'fields' => [
-						'rev_comment_text' => 'comment_rev_comment.comment_text',
-						'rev_comment_data' => 'comment_rev_comment.comment_data',
-						'rev_comment_cid' => 'comment_rev_comment.comment_id',
-					],
-					'joins' => [
-						'comment_rev_comment' => [ 'JOIN', 'comment_rev_comment.comment_id = rev_comment_id' ],
-					],
-				],
-			],
-			'Revision, write-both/read-old' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'rev_comment', [
-					'tables' => [],
-					'fields' => [
-						'rev_comment_text' => 'rev_comment',
-						'rev_comment_data' => 'NULL',
-						'rev_comment_cid' => 'NULL',
-					],
-					'joins' => [],
-				],
-			],
-			'Revision, write-both/read-new' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'rev_comment', [
+			'Revision' => [
+				'rev_comment', [
 					'tables' => [
 						'comment_rev_comment' => 'comment',
 					],
@@ -377,81 +118,8 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 				],
 			],
 
-			'Image, old' => [
-				MIGRATION_OLD, 'img_description', [
-					'tables' => [],
-					'fields' => [
-						'img_description_text' => 'img_description',
-						'img_description_data' => 'NULL',
-						'img_description_cid' => 'NULL',
-					],
-					'joins' => [],
-				],
-			],
-			'Image, write-both' => [
-				MIGRATION_WRITE_BOTH, 'img_description', [
-					'tables' => [
-						'comment_img_description' => 'comment',
-					],
-					'fields' => [
-						'img_description_text' => 'COALESCE( comment_img_description.comment_text, img_description )',
-						'img_description_data' => 'comment_img_description.comment_data',
-						'img_description_cid' => 'comment_img_description.comment_id',
-					],
-					'joins' => [
-						'comment_img_description' => [ 'LEFT JOIN',
-							'comment_img_description.comment_id = img_description_id',
-						],
-					],
-				],
-			],
-			'Image, write-new' => [
-				MIGRATION_WRITE_NEW, 'img_description', [
-					'tables' => [
-						'comment_img_description' => 'comment',
-					],
-					'fields' => [
-						'img_description_text' => 'COALESCE( comment_img_description.comment_text, img_description )',
-						'img_description_data' => 'comment_img_description.comment_data',
-						'img_description_cid' => 'comment_img_description.comment_id',
-					],
-					'joins' => [
-						'comment_img_description' => [ 'LEFT JOIN',
-							'comment_img_description.comment_id = img_description_id',
-						],
-					],
-				],
-			],
-			'Image, new' => [
-				MIGRATION_NEW, 'img_description', [
-					'tables' => [
-						'comment_img_description' => 'comment',
-					],
-					'fields' => [
-						'img_description_text' => 'comment_img_description.comment_text',
-						'img_description_data' => 'comment_img_description.comment_data',
-						'img_description_cid' => 'comment_img_description.comment_id',
-					],
-					'joins' => [
-						'comment_img_description' => [ 'JOIN',
-							'comment_img_description.comment_id = img_description_id',
-						],
-					],
-				],
-			],
-			'Image, write-both/read-old' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'img_description', [
-					'tables' => [],
-					'fields' => [
-						'img_description_text' => 'img_description',
-						'img_description_data' => 'NULL',
-						'img_description_cid' => 'NULL',
-					],
-					'joins' => [],
-				],
-			],
-			'Image, write-both/read-new' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'img_description', [
+			'Image' => [
+				'img_description', [
 					'tables' => [
 						'comment_img_description' => 'comment',
 					],
@@ -495,83 +163,44 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	public function testInsertRoundTrip( $table, $key, $pk, $comment, $data, $expect ) {
 		static $id = 1;
 
-		$expectOld = [
-			'text' => $expect['text'],
-			'message' => new RawMessage( '$1', [ Message::plaintextParam( $expect['text'] ) ] ),
-			'data' => null,
-		];
+		$wstore = $this->makeStore();
 
-		$stages = [
-			MIGRATION_OLD => [ MIGRATION_OLD, MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW ],
-			MIGRATION_WRITE_BOTH => [ MIGRATION_OLD, MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW,
-				MIGRATION_NEW ],
-			MIGRATION_WRITE_NEW => [ MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW, MIGRATION_NEW ],
-			MIGRATION_NEW => [ MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW, MIGRATION_NEW ],
+		$fields = $wstore->insert( $this->db, $key, $comment, $data );
 
-			SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD => [
-				MIGRATION_OLD, SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD,
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, MIGRATION_NEW
-			],
-			SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW => [
-				MIGRATION_OLD, SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD,
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, MIGRATION_NEW
-			],
-		];
+		$this->assertArrayNotHasKey( $key, $fields, "old field" );
+		$this->assertArrayHasKey( "{$key}_id", $fields, "new field" );
 
-		foreach ( $stages as $writeStage => $possibleReadStages ) {
-			$wstore = $this->makeStore( $writeStage );
+		$this->db->insert( $table, [ $pk => ++$id ] + $fields, __METHOD__ );
 
-			$fields = $wstore->insert( $this->db, $key, $comment, $data );
+		$rstore = $this->makeStore();
 
-			if ( $writeStage & SCHEMA_COMPAT_WRITE_OLD ) {
-				$this->assertSame( $expect['text'], $fields[$key], "old field, stage=$writeStage" );
-			} else {
-				$this->assertArrayNotHasKey( $key, $fields, "old field, stage=$writeStage" );
-			}
-			if ( $writeStage & SCHEMA_COMPAT_WRITE_NEW ) {
-				$this->assertArrayHasKey( "{$key}_id", $fields, "new field, stage=$writeStage" );
-			} else {
-				$this->assertArrayNotHasKey( "{$key}_id", $fields, "new field, stage=$writeStage" );
-			}
+		$fieldRow = $this->db->selectRow(
+			$table,
+			$rstore->getFields( $key ),
+			[ $pk => $id ],
+			__METHOD__
+		);
 
-			$this->db->insert( $table, [ $pk => ++$id ] + $fields, __METHOD__ );
+		$queryInfo = $rstore->getJoin( $key );
+		$joinRow = $this->db->selectRow(
+			[ $table ] + $queryInfo['tables'],
+			$queryInfo['fields'],
+			[ $pk => $id ],
+			__METHOD__,
+			[],
+			$queryInfo['joins']
+		);
 
-			foreach ( $possibleReadStages as $readStage ) {
-				$rstore = $this->makeStore( $readStage );
-
-				$fieldRow = $this->db->selectRow(
-					$table,
-					$rstore->getFields( $key ),
-					[ $pk => $id ],
-					__METHOD__
-				);
-
-				$queryInfo = $rstore->getJoin( $key );
-				$joinRow = $this->db->selectRow(
-					[ $table ] + $queryInfo['tables'],
-					$queryInfo['fields'],
-					[ $pk => $id ],
-					__METHOD__,
-					[],
-					$queryInfo['joins']
-				);
-
-				$expectForCombination = (
-					( $writeStage & SCHEMA_COMPAT_WRITE_BOTH ) === SCHEMA_COMPAT_WRITE_OLD ||
-					( $readStage & SCHEMA_COMPAT_READ_BOTH ) === SCHEMA_COMPAT_READ_OLD
-				) ? $expectOld : $expect;
-				$this->assertComment(
-					$expectForCombination,
-					$rstore->getCommentLegacy( $this->db, $key, $fieldRow ),
-					"w=$writeStage, r=$readStage, from getFields()"
-				);
-				$this->assertComment(
-					$expectForCombination,
-					$rstore->getComment( $key, $joinRow ),
-					"w=$writeStage, r=$readStage, from getJoin()"
-				);
-			}
-		}
+		$this->assertComment(
+			$expect,
+			$rstore->getCommentLegacy( $this->db, $key, $fieldRow ),
+			"from getFields()"
+		);
+		$this->assertComment(
+			$expect,
+			$rstore->getComment( $key, $joinRow ),
+			"from getJoin()"
+		);
 	}
 
 	public static function provideInsertRoundTrip() {
@@ -629,14 +258,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	}
 
 	public function testGetCommentErrors() {
-		$store = $this->makeStore( MIGRATION_OLD );
-		// Ignore: Missing dummy_text and dummy_data fields
-		$res = @$store->getComment( 'dummy', [ 'dummy' => 'comment' ] );
-		$this->assertSame( '', $res->text );
-		$res = @$store->getComment( 'dummy', [ 'dummy' => 'comment' ], true );
-		$this->assertSame( 'comment', $res->text );
-
-		$store = $this->makeStore( MIGRATION_NEW );
+		$store = $this->makeStore();
 		try {
 			$store->getComment( 'dummy', [ 'dummy' => 'comment' ] );
 			$this->fail( 'Expected exception not thrown' );
@@ -657,7 +279,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 			);
 		}
 
-		$store = $this->makeStore( MIGRATION_NEW );
+		$store = $this->makeStore();
 		try {
 			$store->getComment( 'rev_comment', [ 'rev_comment' => 'comment' ] );
 			$this->fail( 'Expected exception not thrown' );
@@ -682,20 +304,18 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 
 	public function testInsertTruncation() {
 		$comment = str_repeat( '💣', 16400 );
-		$truncated1 = str_repeat( '💣', 63 ) . '...';
-		$truncated2 = str_repeat( '💣', CommentStore::COMMENT_CHARACTER_LIMIT - 3 ) . '...';
+		$truncated = str_repeat( '💣', CommentStore::COMMENT_CHARACTER_LIMIT - 3 ) . '...';
 
-		$store = $this->makeStore( MIGRATION_WRITE_BOTH );
+		$store = $this->makeStore();
 		$fields = $store->insert( $this->db, 'ipb_reason', $comment );
-		$this->assertSame( $truncated1, $fields['ipb_reason'] );
 		$stored = $this->db->selectField(
 			'comment', 'comment_text', [ 'comment_id' => $fields['ipb_reason_id'] ], __METHOD__
 		);
-		$this->assertSame( $truncated2, $stored );
+		$this->assertSame( $truncated, $stored );
 	}
 
 	public function testInsertTooMuchData() {
-		$store = $this->makeStore( MIGRATION_WRITE_BOTH );
+		$store = $this->makeStore();
 		$this->expectException( OverflowException::class );
 		$this->expectExceptionMessage( "Comment data is too long (65611 bytes, maximum is 65535)" );
 		$store->insert( $this->db, 'ipb_reason', 'foo', [

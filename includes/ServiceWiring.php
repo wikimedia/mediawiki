@@ -459,10 +459,7 @@ return [
 	},
 
 	'CommentStore' => static function ( MediaWikiServices $services ): CommentStore {
-		return new CommentStore(
-			$services->getContentLanguage(),
-			MIGRATION_NEW
-		);
+		return new CommentStore( $services->getContentLanguage() );
 	},
 
 	'ConfigFactory' => static function ( MediaWikiServices $services ): ConfigFactory {
