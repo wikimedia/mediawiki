@@ -4125,6 +4125,7 @@
 	"skin-action-undelete": "Ripristina",
 	"skin-action-delete": "Cancella",
 	"skin-action-move": "Sposta",
+	"parsoid-resource-limit-exceeded": "Limite delle risorse Parsoid superato: $1",
 	"newpages-showhide-bots": "$1 i bot",
 	"newpages-showhide-patrolled": "$1 le modifiche verificate",
 	"newpages-showhide-redirect": "reindirizzamenti $1",

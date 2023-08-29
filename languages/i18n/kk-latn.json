@@ -12,7 +12,8 @@
 			"TayfunEt.",
 			"Vlad5250",
 			"Zpizza",
-			"아라"
+			"아라",
+			"Zolgoyo"
 		]
 	},
 	"tog-underline": "Siltemeniñ astın sız:",
@@ -918,7 +919,7 @@
 	"enotif_lastvisited": "Soñğı kelip-ketwiñizden beri bolğan özgerister üşin $1 degendi qarañız.",
 	"enotif_lastdiff": "Osı özgeris üşin $1 degendi qarañız.",
 	"enotif_anon_editor": "tirkelgisiz qatıswşı $1",
-	"enotif_body": "Qadirli $WATCHINGUSERNAME,\n\n\n{{SITENAME}} jobasınıñ $PAGETITLE atawlı betti $PAGEEDITDATE kezinde $PAGEEDITOR degen $CHANGEDORCREATED, ağımdıq nusqası üşin $PAGETITLE_URL qarañız.\n\n$NEWPAGE\n\nÖñdewşi keltirgen qısqaşa mazmundaması: $PAGESUMMARY $PAGEMINOREDIT\n\nÖñdewşimen qatınasw:\ne-poşta: $PAGEEDITOR_EMAIL\nwïkï: $PAGEEDITOR_WIKI\n\nBılaýğı özgerister bolğanda da osı betke kelip-ketwiñizgenşe deýin eşqandaý basqa eskertw xattar jiberilmeýdi.\nSonımen qatar baqılaw tizimiñizdegi bet eskertpelik belgisin qaýta qoýıñız.\n\n             Sizdiñ dostıq {{SITENAME}} jobasınıñ eskertw qızmeti\n\n----\nBaqılaw tizimiñizdiñ baptawlırın özgertw üşin, mında kelip-ketiñiz:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nSın-pikir berw jäne bılaýğı järdem alw üşin:\n{{canonicalurl:{{{{ns:mediawiki}}:Helppage}}}}",
+	"enotif_body": "Qadirli $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nÖñdewşi keltirgen qısqaşa mazmundaması: $PAGESUMMARY $PAGEMINOREDIT\n\nÖñdewşimen qatınasw:\ne-poşta: $PAGEEDITOR_EMAIL\nwïkï: $PAGEEDITOR_WIKI\n\nBılaýğı özgerister bolğanda da osı betke kelip-ketwiñizgenşe deýin eşqandaý basqa eskertw xattar jiberilmeýdi.\nSonımen qatar baqılaw tizimiñizdegi bet eskertpelik belgisin qaýta qoýıñız.\n\n             Sizdiñ dostıq {{SITENAME}} jobasınıñ eskertw qızmeti\n\n----\nBaqılaw tizimiñizdiñ baptawlırın özgertw üşin, mında kelip-ketiñiz:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nSın-pikir berw jäne bılaýğı järdem alw üşin:\n{{canonicalurl:{{{{ns:mediawiki}}:Helppage}}}}",
 	"created": "bastadı",
 	"changed": "özgertti",
 	"deletepage-submit": "Betti joyw",

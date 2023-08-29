@@ -34,7 +34,8 @@
 			"Yyy",
 			"Zuiks",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Pasvītrot saites:",
@@ -1934,7 +1935,7 @@
 	"enotif_lastvisited": "Lai apskatītu visas izmaiņas kopš tava pēdējā apmeklējuma, apmeklē $1",
 	"enotif_lastdiff": "Lai apskatītu šo izmaiņu, skatīt $1",
 	"enotif_anon_editor": "anonīms dalībnieks $1",
-	"enotif_body": "$WATCHINGUSERNAME,\n\n\n{{grammar:ģenitīvs|{{SITENAME}}}} lapu $PAGETITLE $CHANGEDORCREATED $PAGEEDITOR, $PAGEEDITDATE, pašreizējā versja ir $PAGETITLE_URL.\n\n$NEWPAGE\n\nIzmaiņu kopsavilkums bija: $PAGESUMMARY $PAGEMINOREDIT\n\nSazināties ar attiecīgo lietotāju:\ne-pasts: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nJa šo uzraugāmo lapu izmainīs vēl, turpmāku paziņojumu par to nebūs, kamēr tu to neatvērsi.\nTu arī vari atstatīt visu uzraugāmo lapu paziņojumu statusus uzraugāmo lapu sarakstā.\n\n             {{grammar:ģenitīvs|{{SITENAME}}}} paziņojumu sistēma\n\n--\nLai izmainītu uzraugāmo lapu saraksta uzstādījumus:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nLai dzēstu lapu no uzraugāmo lapu saraksta:\n$UNWATCHURL\n\nPapildinformācija:\n$HELPPAGE",
+	"enotif_body": "$WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nIzmaiņu kopsavilkums bija: $PAGESUMMARY $PAGEMINOREDIT\n\nSazināties ar attiecīgo lietotāju:\ne-pasts: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nJa šo uzraugāmo lapu izmainīs vēl, turpmāku paziņojumu par to nebūs, kamēr tu to neatvērsi.\nTu arī vari atstatīt visu uzraugāmo lapu paziņojumu statusus uzraugāmo lapu sarakstā.\n\n{{grammar:ģenitīvs|{{SITENAME}}}} paziņojumu sistēma\n\n--\nLai izmainītu uzraugāmo lapu saraksta uzstādījumus:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nLai dzēstu lapu no uzraugāmo lapu saraksta:\n$UNWATCHURL\n\nPapildinformācija:\n$HELPPAGE",
 	"enotif_minoredit": "Šis ir maznozīmīgs labojums",
 	"created": "izveidoja",
 	"changed": "izmainīja",
