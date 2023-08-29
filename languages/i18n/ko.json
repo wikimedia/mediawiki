@@ -91,7 +91,9 @@
 			"아라",
 			"양념파닭",
 			"콩가루",
-			"Cerulean"
+			"Cerulean",
+			"Adreamy",
+			"Amire80"
 		]
 	},
 	"tog-underline": "링크에 밑줄 긋기:",
@@ -736,7 +738,7 @@
 	"anontalkpagetext": "----\n<em>여기는 계정을 만들지 않았거나 사용하고 있지 않은 익명 사용자를 위한 토론 문서입니다.</em> 익명 사용자를 구별하기 위해서는 숫자로 된 IP 주소를 사용해야만 합니다. IP 주소는 여러 사람이 공유할 수 있습니다. 자신과 관계없는 의견이 남겨져 있어 불쾌하다는 생각이 든다면 [[Special:CreateAccount|계정을 만들거나]] [[Special:UserLogin|로그인해서]] 다른 사용자들에게 줄 혼란을 줄일 수 있습니다.",
 	"noarticletext": "이 문서가 현재 존재하지 않습니다.\n이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|검색하거나]],\n이 문서에 관련된 <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 기록]을 확인하거나,\n문서를 직접 [{{fullurl:{{FULLPAGENAME}}|action=edit}} 생성]</span>할 수 있습니다.",
 	"noarticletext-nopermission": "이 문서가 현재 존재하지 않습니다.\n이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|검색하거나]], 이 문서에 관련된 <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 기록]을 확인할 수 있습니다.</span> 그러나 이 문서를 만들 수 있는 권한은 없습니다.",
-	"missing-revision-permission": "#$1 판은 삭제된 문서에 속합니다. [{{fullurl:{{#Special:Undelete}}|target=$3&timestamp=$2&diff=prev}} 내용을 볼 수] 있습니다. 상세 내용은 [{{fullurl:{{#Special:Log}}/delete|page=$3}} 삭제 기록]에서 볼 수 있습니다.",
+	"missing-revision-permission": "&#35;$1 판은 삭제된 문서에 속합니다. [{{fullurl:{{#Special:Undelete}}|target=$3&timestamp=$2&diff=prev}} 내용을 볼] 수 있습니다. 상세 내용은 [{{fullurl:{{#Special:Log}}/delete|page=$3}} 삭제 기록]에서 찾아볼 수 있습니다.",
 	"missing-revision": "\"{{FULLPAGENAME}}\"이라는 문서의 #$1판이 존재하지 않습니다.\n\n이 문제는 주로 삭제된 문서를 가리키는 오래된 문서 역사 링크로 인해 발생합니다.\n자세한 내용은 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 확인할 수 있습니다.",
 	"missing-revision-content": "\"$2\" 문서에서 #$1판 내용을 불러올 수 없습니다.",
 	"userpage-userdoesnotexist": "\"$1\" 사용자 계정은 등록되어 있지 않습니다.\n이 문서를 만들거나 편집하기 전에 계정이 존재하는지 확인해주세요.",

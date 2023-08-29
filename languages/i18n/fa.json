@@ -94,7 +94,8 @@
 			"Mskf1383",
 			"Af420",
 			"0PAWN0",
-			"Darknessswamp8"
+			"Darknessswamp8",
+			"Havadar-hvac"
 		]
 	},
 	"tog-underline": "خط کشیدن زیر پیوندها:",
@@ -3403,7 +3404,7 @@
 	"version-mediahandlers": "به‌دست‌گیرنده‌های رسانه‌ها",
 	"version-hooks": "قلاب‌ها",
 	"version-parser-extensiontags": "برچسب‌های افزونه تجزیه‌گر",
-	"version-parser-function-hooks": "قلاب‌های عملگر تجزیه‌گر",
+	"version-parser-function-hooks": "قلاب‌های تابع تجزیه‌گر",
 	"version-hook-name": "نام قلاب",
 	"version-hook-subscribedby": "وارد شده توسط",
 	"version-no-ext-name": "[بدون نام]",

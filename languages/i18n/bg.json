@@ -1547,7 +1547,7 @@
 	"rcfilters-filter-reviewstatus-auto-label": "Автоматично патрулирани",
 	"rcfilters-filtergroup-significance": "Значимост",
 	"rcfilters-filter-minor-label": "Малки промени",
-	"rcfilters-filter-minor-description": "Редакции, които не са отбелязани като малки промени.",
+	"rcfilters-filter-minor-description": "Редакции, които са отбелязани като малки промени.",
 	"rcfilters-filter-major-label": "Обикновени редакции",
 	"rcfilters-filter-major-description": "Редакции, които не са отбелязани като малки промени.",
 	"rcfilters-filtergroup-watchlist": "Страници от списъка за наблюдение",

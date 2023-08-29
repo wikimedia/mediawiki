@@ -1058,7 +1058,7 @@
 	"enotif_lastvisited": "Lehel $1 ommaq kõik päält suq perämäst käümist tettüq muutmisõq.",
 	"enotif_lastdiff": "Taa muutusõ nägemises kaeq: $1.",
 	"enotif_anon_editor": "nimeldä pruukja $1",
-	"enotif_body": "Hüä $WATCHINGUSERNAME,\n\n{{SITENAME}} lehte $PAGETITLE $CHANGEDORCREATED $PAGEEDITDATE $PAGEEDITOR, parhillast kujjo kaeq $PAGETITLE_URL.\n\n$NEWPAGE\n\nMuutja kokkovõtõq: $PAGESUMMARY $PAGEMINOREDIT\n\nKirodaq muutjalõ:\ne-post: $PAGEEDITOR_EMAIL\nviki: $PAGEEDITOR_WIKI\n\nInämb seo lehe kotsilõ teedäqandmiisi saadõta-i. Võit ka kõik su perräkaetavidõ lehti muutmisõ kuulutusõq ärq keeldäq.\n\n{{SITENAME}} teedäqandmiskõrraldus\n\nPerräkaemisnimekirä säädmiisi saat muutaq lehe pääl: {{canonicalurl:Special:Watchlist/edit}}\n\nAs'a kotsilõ mano kaiaq ja küssü saat lehe päält: $HELPPAGE",
+	"enotif_body": "Hüä $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nMuutja kokkovõtõq: $PAGESUMMARY $PAGEMINOREDIT\n\nKirodaq muutjalõ:\ne-post: $PAGEEDITOR_EMAIL\nviki: $PAGEEDITOR_WIKI\n\nInämb seo lehe kotsilõ teedäqandmiisi saadõta-i. Võit ka kõik su perräkaetavidõ lehti muutmisõ kuulutusõq ärq keeldäq.\n\n{{SITENAME}} teedäqandmiskõrraldus\n\nPerräkaemisnimekirä säädmiisi saat muutaq lehe pääl: {{canonicalurl:Special:Watchlist/edit}}\n\nAs'a kotsilõ mano kaiaq ja küssü saat lehe päält: $HELPPAGE",
 	"created": "lehe loonuq",
 	"changed": "lehte muutnuq",
 	"deletepage-submit": "Kistudaq lehekülg ärq",

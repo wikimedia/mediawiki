@@ -17,7 +17,8 @@
 			"Vipuser",
 			"Xiaomingyan",
 			"星海",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "下劃連結",
@@ -898,7 +899,7 @@
 	"enotif_lastvisited": "眵倷上回訪問後嗰全部改動請去$1。",
 	"enotif_lastdiff": "想眵改動請去$1。",
 	"enotif_anon_editor": "匿名用戶$1",
-	"enotif_body": "$WATCHINGUSERNAME先生/小姐倷好，\n\n$CHANGEDORCREATED{{SITENAME}}嗰 $PAGETITLE 頁面已經由$PAGEEDITOR到 $PAGEEDITDATE，請到 $PAGETITLE_URL眵吖目前嗰版本。\n\n$NEWPAGE\n編輯摘要: $PAGESUMMARY $PAGEMINOREDIT\n聯絡箇隻編輯人: mail: $PAGEEDITOR_EMAIL\n\n本站: $PAGEEDITOR_WIKI 今後伓會通知倷將來嗰改動，除非接到來到箇頁。倷也能設過倷全部監視頁嗰通知標記。\n\n{{SITENAME}}通知系統 – 會改卟倷嗰監視列表設置，請去 {{canonicalurl:{{#special:EditWatchlist}}}}\n\n回饋同到別嗰説明: $HELPPAGE",
+	"enotif_body": "$WATCHINGUSERNAME先生/小姐倷好，\n\n$PAGEINTRO $NEWPAGE\n\n編輯摘要: $PAGESUMMARY $PAGEMINOREDIT\n聯絡箇隻編輯人: mail: $PAGEEDITOR_EMAIL\n\n本站: $PAGEEDITOR_WIKI 今後伓會通知倷將來嗰改動，除非接到來到箇頁。倷也能設過倷全部監視頁嗰通知標記。\n\n{{SITENAME}}通知系統 – 會改卟倷嗰監視列表設置，請去 {{canonicalurl:{{#special:EditWatchlist}}}}\n\n回饋同到別嗰説明: $HELPPAGE",
 	"created": "建正嘞",
 	"changed": "改卟嘞",
 	"deletepage-submit": "刪卟頁面",
