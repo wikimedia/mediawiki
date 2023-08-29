@@ -78,32 +78,18 @@ function saveData( pageName, section, pageData ) {
 
 		// Add indexed fields.
 		pageData.pageName = pageName;
-		pageData.section = section;
+		pageData.section = section || '';
 		pageData.lastModified = Math.round( Date.now() / 1000 );
 
 		const transaction = db.transaction( objectStoreName, 'readwrite' );
 		const objectStore = transaction.objectStore( objectStoreName );
-		const key = [ pageName, section || '' ];
 
-		// See if there's an existing row.
-		const requestExisting = objectStore.get( key );
-		requestExisting.addEventListener( 'success', function () {
-			if ( requestExisting.result !== undefined ) {
-				// Existing record found, so delete it and then add.
-				const requestDelete = objectStore.delete( key );
-				requestDelete.addEventListener( 'success', function () {
-					const requestAdd = objectStore.add( pageData );
-					requestAdd.addEventListener( 'success', function ( event ) {
-						resolve( event );
-					} );
-				} );
-			} else {
-				// No existing record, so just add.
-				const requestAdd = objectStore.add( pageData );
-				requestAdd.addEventListener( 'success', function ( event ) {
-					resolve( event );
-				} );
-			}
+		const request = objectStore.put( pageData );
+		request.addEventListener( 'success', function ( event ) {
+			resolve( event );
+		} );
+		request.addEventListener( 'error', function ( event ) {
+			reject( 'Error saving data: ' + event.target.errorCode );
 		} );
 	} );
 }
