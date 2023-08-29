@@ -60,7 +60,10 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @return PageHTMLHandler
 	 */
 	private function newHandler( ?Parsoid $parsoid = null ): PageHTMLHandler {
-		return $this->newPageHtmlHandler( $parsoid );
+		if ( $parsoid ) {
+			$this->resetServicesWithMockedParsoid( $parsoid );
+		}
+		return $this->newPageHtmlHandler();
 	}
 
 	public function testExecuteWithHtml() {

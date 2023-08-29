@@ -7,13 +7,16 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use ParserFactory;
 use ParserOptions;
 use ParserOutput;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Parsoid;
+use Wikimedia\UUID\GlobalIdGenerator;
 use WikitextContent;
 
 /**
@@ -25,7 +28,6 @@ use WikitextContent;
  * @unstable since 1.41; see T236809 for plan.
  */
 class ParsoidParser /* eventually this will extend \Parser */ {
-
 	/** @var Parsoid */
 	private $parsoid;
 
@@ -38,22 +40,149 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 	/** @var ParserFactory */
 	private $legacyParserFactory;
 
+	/** @var GlobalIdGenerator */
+	private $globalIdGenerator;
+
 	/**
 	 * @param Parsoid $parsoid
 	 * @param PageConfigFactory $pageConfigFactory
 	 * @param LanguageConverterFactory $languageConverterFactory
 	 * @param ParserFactory $legacyParserFactory
+	 * @param GlobalIdGenerator $globalIdGenerator
 	 */
 	public function __construct(
 		Parsoid $parsoid,
 		PageConfigFactory $pageConfigFactory,
 		LanguageConverterFactory $languageConverterFactory,
-		ParserFactory $legacyParserFactory
+		ParserFactory $legacyParserFactory,
+		GlobalIdGenerator $globalIdGenerator
 	) {
 		$this->parsoid = $parsoid;
 		$this->pageConfigFactory = $pageConfigFactory;
 		$this->languageConverterFactory = $languageConverterFactory;
 		$this->legacyParserFactory = $legacyParserFactory;
+		$this->globalIdGenerator = $globalIdGenerator;
+	}
+
+	/**
+	 * API users expect a ParsoidRenderID value set in the parser output's extension data.
+	 * @param int $revId
+	 * @param ParserOutput $parserOutput
+	 */
+	private function setParsoidRenderID( int $revId, ParserOutput $parserOutput ): void {
+		$parserOutput->setParsoidRenderId(
+			new ParsoidRenderID( $revId, $this->globalIdGenerator->newUUIDv1() )
+		);
+
+		$now = wfTimestampNow();
+		$parserOutput->setCacheRevisionId( $revId );
+		$parserOutput->setCacheTime( $now );
+	}
+
+	/**
+	 * Internal helper to avoid code deuplication across two methods
+	 *
+	 * @param PageConfig $pageConfig
+	 * @param ParserOptions $options
+	 * @return ParserOutput
+	 */
+	private function genParserOutput(
+		PageConfig $pageConfig, ParserOptions $options
+	): ParserOutput {
+		$parserOutput = new ParserOutput();
+
+		// The enable/disable logic here matches that in Parser::internalParseHalfParsed(),
+		// although __NOCONTENTCONVERT__ is handled internal to Parsoid.
+		//
+		// TODO: It might be preferable to handle __NOCONTENTCONVERT__ here rather than
+		// by instpecting the DOM inside Parsoid. That will come in a separate patch.
+		$htmlVariantLanguage = null;
+		if ( !( $options->getDisableContentConversion() || $options->getInterfaceMessage() ) ) {
+			// NOTES (some of are TODOs for read views integration)
+			// 1. This html variant conversion is a pre-cache transform. HtmlOutputRendererHelper
+			//     has another variant conversion that is a post-cache transform based on the
+			//     'Accept-Language' header. If that header is set, there is really no reason to
+			//     do this conversion here. So, eventually, we are likely to either not pass in
+			//     the htmlVariantLanguage option below OR disable language conversion from the
+			//     wt2html path in Parsoid and this and the Accept-Language variant conversion
+			//     both would have to be handled as post-cache transforms.
+			//
+			// 2. Parser.php calls convert() which computes a preferred variant from the
+			//    target language. But, we cannot do that unconditionally here because REST API
+			//    requests specifcy the exact variant via the 'Content-Language' header.
+			//
+			//    For Parsoid page views, either the callers will have to compute the
+			//    preferred variant and set it in ParserOptions OR the REST API will have
+			//    to set some other flag indicating that the preferred variant should not
+			//    be computed. For now, I am adding a temporary hack, but this should be
+			//    replaced with something more sensible.
+			//
+			// 3. Additionally, Parsoid's callers will have to set targetLanguage in ParserOptiosn
+			//    to mimic the logic in Parser.php (missing right now).
+			$langCode = $pageConfig->getPageLanguageBcp47();
+			if ( $options->getRenderReason() === 'page-view' ) { // TEMPORARY HACK
+				$langFactory = MediaWikiServices::getInstance()->getLanguageFactory();
+				$lang = $langFactory->getLanguage( $langCode );
+				$langConv = $this->languageConverterFactory->getLanguageConverter( $lang );
+				$htmlVariantLanguage = $langFactory->getLanguage( $langConv->getPreferredVariant() );
+			} else {
+				$htmlVariantLanguage = $langCode;
+			}
+		}
+
+		// NOTE: This is useless until the time Parsoid uses the
+		// $options ParserOptions object. But if/when it does, this
+		// will ensure that we track used options correctly.
+		$options->registerWatcher( [ $parserOutput, 'recordOption' ] );
+
+		$defaultOptions = [
+			'pageBundle' => true,
+			'wrapSections' => true,
+			'logLinterData' => true,
+			'body_only' => false,
+			'htmlVariantLanguage' => $htmlVariantLanguage,
+			'offsetType' => 'byte',
+			'outputContentVersion' => Parsoid::defaultHTMLVersion()
+		];
+
+		// This can throw ClientError or ResourceLimitExceededException.
+		// Callers are responsible for figuring out how to handle them.
+		$pageBundle = $this->parsoid->wikitext2html(
+			$pageConfig,
+			$defaultOptions,
+			$headers,
+			$parserOutput );
+
+		$parserOutput = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle, $parserOutput );
+
+		// Register a watcher again because the $parserOuptut arg
+		// and $parserOutput return value above are different objects!
+		$options->registerWatcher( [ $parserOutput, 'recordOption' ] );
+
+		$revId = $pageConfig->getRevisionId();
+		if ( $revId !== null ) {
+			$this->setParsoidRenderID( $revId, $parserOutput );
+		}
+
+		// Copied from Parser.php::parse and should probably be abstracted
+		// into the parent base class (probably as part of T236809)
+		// Wrap non-interface parser output in a <div> so it can be targeted
+		// with CSS (T37247)
+		$class = $options->getWrapOutputClass();
+		if ( $class !== false && !$options->getInterfaceMessage() ) {
+			$parserOutput->addWrapperDivClass( $class );
+		}
+
+		$this->makeLimitReport( $options, $parserOutput );
+
+		// Record Parsoid version in extension data; this allows
+		// us to use the onRejectParserCacheValue hook to selectively
+		// expire "bad" generated content in the event of a rollback.
+		$parserOutput->setExtensionData(
+			'core:parsoid-version', Parsoid::version()
+		);
+
+		return $parserOutput;
 	}
 
 	/**
@@ -116,59 +245,38 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 			);
 		}
 
-		// FIXME: Right now, ParsoidOutputAccess uses $lang and does not compute a
-		// $preferredVariant for $lang. So, when switching over to ParserOutputAccess,
-		// we need to reconcile that difference.
-		//
-		// The REST interfaces will disable content conversion here
-		// via ParserOptions.  The enable/disable logic here matches
-		// that in Parser::internalParseHalfParsed(), although
-		// __NOCONTENTCONVERT__ is handled internal to Parsoid.
-		$preferredVariant = null;
-		if ( !( $options->getDisableContentConversion() || $options->getInterfaceMessage() ) ) {
-			$langFactory = MediaWikiServices::getInstance()->getLanguageFactory();
-			$lang = $langFactory->getLanguage( $pageConfig->getPageLanguageBcp47() );
-			$langConv = $this->languageConverterFactory->getLanguageConverter( $lang );
-			$preferredVariant = $langFactory->getLanguage( $langConv->getPreferredVariant() );
+		return $this->genParserOutput( $pageConfig, $options );
+	}
+
+	/**
+	 * @internal
+	 *
+	 * Convert custom wikitext (stored in main slot of the $fakeRev arg) to HTML.
+	 * Callers are expected NOT to stuff the result into ParserCache.
+	 *
+	 * @param RevisionRecord $fakeRev Revision to parse
+	 * @param PageReference $page
+	 * @param ParserOptions $options
+	 * @return ParserOutput
+	 * @unstable since 1.41
+	 */
+	public function parseFakeRevision(
+		RevisionRecord $fakeRev, PageReference $page, ParserOptions $options
+	): ParserOutput {
+		$title = Title::newFromPageReference( $page );
+		$lang = $options->getTargetLanguage();
+		if ( $lang === null && $options->getInterfaceMessage() ) {
+			$lang = $options->getUserLangObj();
 		}
-
-		$parserOutput = new ParserOutput();
-		// NOTE: This is useless until the time Parsoid uses the
-		// $options ParserOptions object. But if/when it does, this
-		// will ensure that we track used options correctly.
-		$options->registerWatcher( [ $parserOutput, 'recordOption' ] );
-
-		$pageBundle = $this->parsoid->wikitext2html( $pageConfig, [
-			'pageBundle' => true,
-			'wrapSections' => true,
-			'htmlVariantLanguage' => $preferredVariant,
-			'outputContentVersion' => Parsoid::defaultHTMLVersion(),
-			'logLinterData' => true
-		], $headers, $parserOutput );
-		$parserOutput = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle, $parserOutput );
-		// Register a watcher again because the $parserOuptut arg
-		// and $parserOutput return value above are different objects!
-		$options->registerWatcher( [ $parserOutput, 'recordOption' ] );
-
-		# Copied from Parser.php::parse and should probably be abstracted
-		# into the parent base class (probably as part of T236809)
-		# Wrap non-interface parser output in a <div> so it can be targeted
-		# with CSS (T37247)
-		$class = $options->getWrapOutputClass();
-		if ( $class !== false && !$options->getInterfaceMessage() ) {
-			$parserOutput->addWrapperDivClass( $class );
-		}
-
-		$this->makeLimitReport( $options, $parserOutput );
-
-		// Record Parsoid version in extension data; this allows
-		// us to use the onRejectParserCacheValue hook to selectively
-		// expire "bad" generated content in the event of a rollback.
-		$parserOutput->setExtensionData(
-			'core:parsoid-version', Parsoid::version()
+		$pageConfig = $this->pageConfigFactory->create(
+			$title,
+			$options->getUserIdentity(),
+			$fakeRev,
+			null, // unused
+			$lang // defaults to title page language if null
 		);
 
-		return $parserOutput;
+		return $this->genParserOutput( $pageConfig, $options );
 	}
 
 	/**

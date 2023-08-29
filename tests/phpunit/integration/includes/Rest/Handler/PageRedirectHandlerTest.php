@@ -48,9 +48,9 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 			case 'bare':
 				return $this->newPageSourceHandler();
 			case 'html':
-				return $this->newPageHtmlHandler( null, $request );
+				return $this->newPageHtmlHandler( $request );
 			case 'with_html':
-				return $this->newPageHtmlHandler( null, $request );
+				return $this->newPageHtmlHandler( $request );
 			case 'history':
 				return $this->newPageHistoryHandler();
 			case 'history_count':

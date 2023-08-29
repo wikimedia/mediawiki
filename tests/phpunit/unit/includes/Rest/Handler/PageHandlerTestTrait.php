@@ -8,6 +8,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
+use MediaWiki\Parser\Parsoid\ParsoidParser;
+use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Rest\Handler\Helper\HtmlMessageOutputHelper;
 use MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper;
 use MediaWiki\Rest\Handler\Helper\PageContentHelper;
@@ -61,11 +63,35 @@ trait PageHandlerTestTrait {
 	}
 
 	/**
-	 * @param Parsoid|MockObject|null $parsoid
-	 *
+	 * @param Parsoid|MockObject $mockParsoid
+	 */
+	public function resetServicesWithMockedParsoid( $mockParsoid ): void {
+		$services = $this->getServiceContainer();
+		$parsoidParser = new ParsoidParser(
+			$mockParsoid,
+			$services->getParsoidPageConfigFactory(),
+			$services->getLanguageConverterFactory(),
+			$services->getParserFactory(),
+			$services->getGlobalIdGenerator()
+		);
+
+		// Create a mock Parsoid factory that returns the ParsoidParser object
+		// with the mocked Parsoid object.
+		$mockParsoidParserFactory = $this->createNoOpMock( ParsoidParserFactory::class, [ 'create' ] );
+		$mockParsoidParserFactory->method( 'create' )->willReturn( $parsoidParser );
+
+		$this->setService( 'ParsoidParserFactory', $mockParsoidParserFactory );
+	}
+
+	/**
 	 * @return PageHTMLHandler
 	 */
-	public function newPageHtmlHandler( ?Parsoid $parsoid = null, ?RequestInterface $request = null ) {
+	public function newPageHtmlHandler( ?RequestInterface $request = null ) {
+		// ParserOutputAccess has a localCache which can return stale content.
+		// Resetting ensures that ParsoidCachePrewarmJob gets a fresh copy
+		// of ParserOutputAccess and ParsoidOutputAccess without these problems!
+		$this->resetServices();
+
 		$parserCacheFactoryOptions = new ServiceOptions( ParserCacheFactory::CONSTRUCTOR_OPTIONS, [
 			'CacheEpoch' => '20200202112233',
 			'OldRevisionParserCacheExpireTime' => 60 * 60,
@@ -97,17 +123,11 @@ trait PageHandlerTestTrait {
 				$services->getMainConfig(),
 				[ 'ParsoidWikiID' => 'MyWiki' ]
 			),
-			$parserCacheFactory,
+			$services->getParsoidParserFactory(),
+			$services->getParserOutputAccess(),
 			$services->getPageStore(),
 			$services->getRevisionLookup(),
-			$services->getGlobalIdGenerator(),
-			$services->getStatsdDataFactory(),
-			$parsoid ?? new Parsoid(
-				$services->get( 'ParsoidSiteConfig' ),
-				$services->get( 'ParsoidDataAccess' )
-			),
 			$services->getParsoidSiteConfig(),
-			$services->getParsoidPageConfigFactory(),
 			$services->getContentHandlerFactory()
 		);
 
