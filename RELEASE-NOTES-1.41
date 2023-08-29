@@ -625,6 +625,8 @@ because of Phabricator reports.
   and the old name is now deprecated.
 * The use of non-serializable arguments to ParserOutput::addWarningMsg() has
   been deprecated and will emit deprecation warnings.
+* Class UserRightsProxy, deprecated since 1.38, now emits
+  deprecation warnings from its factory functions.
 * MediaWiki\ResourceLoader\Module::getDeprecationInformation() is deprecated.
   Use ::getDeprecationWarning() instead.
 * MediaWiki\Block\AbstractBlock::getReason(), deprecated since 1.35, now emits

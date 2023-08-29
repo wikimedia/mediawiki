@@ -52,6 +52,8 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::validDatabase
 	 */
 	public function testValidDatabase() {
+		$this->hideDeprecated( 'UserRightsProxy::validDatabase' );
+
 		$this->assertTrue( UserRightsProxy::validDatabase( 'foowiki' ) );
 		$this->assertFalse( UserRightsProxy::validDatabase( 'barwiki' ) );
 	}
@@ -62,6 +64,8 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::getId
 	 */
 	public function testNewFromId() {
+		$this->hideDeprecated( 'UserRightsProxy::newFromId' );
+
 		$id = 12345;
 		$userRightsProxy = UserRightsProxy::newFromId( 'foowiki', $id );
 		$this->assertInstanceOf( UserRightsProxy::class, $userRightsProxy );
@@ -74,6 +78,8 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::getName
 	 */
 	public function testNewFromName() {
+		$this->hideDeprecated( 'UserRightsProxy::newFromName' );
+
 		$name = 'UserRightsProxyTest';
 		$userRightsProxy = UserRightsProxy::newFromName( 'foowiki', $name );
 		$this->assertInstanceOf( UserRightsProxy::class, $userRightsProxy );
@@ -85,6 +91,8 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::newFromLookup
 	 */
 	public function testInvalidDB() {
+		$this->hideDeprecated( 'UserRightsProxy::newFromName' );
+
 		$userRightsProxy = UserRightsProxy::newFromName( 'barwiki', 'test' );
 		$this->assertNull( $userRightsProxy );
 	}
@@ -93,6 +101,8 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::getUserPage
 	 */
 	public function testGetUserPage() {
+		$this->hideDeprecated( 'UserRightsProxy::newFromName' );
+
 		$userRightsProxy = UserRightsProxy::newFromName( 'foowiki', 'UserRightsProxyTest' );
 		$userPage = $userRightsProxy->getUserPage();
 		$this->assertSame( NS_USER, $userPage->getNamespace() );
@@ -103,6 +113,8 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::equals
 	 */
 	public function testEquals() {
+		$this->hideDeprecated( 'UserRightsProxy::newFromName' );
+
 		$userRightsProxy = UserRightsProxy::newFromName( 'foowiki', 'UserRightsProxyTest' );
 		$userRightsProxy2 = $this->createMock( UserRightsProxy::class );
 		$userRightsProxy2->method( 'getName' )->willReturn( 'UserRightsProxyTest@foowiki' );
@@ -113,6 +125,8 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::getWikiId
 	 */
 	public function testGetWikiId() {
+		$this->hideDeprecated( 'UserRightsProxy::newFromName' );
+
 		$userRightsProxy = UserRightsProxy::newFromName( 'foowiki', 'UserRightsProxyTest' );
 		$this->assertSame( 'foowiki', $userRightsProxy->getWikiId() );
 	}
@@ -122,6 +136,8 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::isRegistered
 	 */
 	public function testIsRegistered() {
+		$this->hideDeprecated( 'UserRightsProxy::newFromName' );
+
 		$userRightsProxy = UserRightsProxy::newFromName( 'foowiki', 'UserRightsProxyTest' );
 		$this->assertTrue( $userRightsProxy->isRegistered() );
 		$this->assertFalse( $userRightsProxy->isAnon() );
@@ -134,6 +150,8 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::removeGroup
 	 */
 	public function testGroupMethods() {
+		$this->hideDeprecated( 'UserRightsProxy::newFromName' );
+
 		$userGroupManagerMock = $this->createMock( UserGroupManager::class );
 		$userGroupManagerMock
 			->expects( $this->exactly( 2 ) )
@@ -186,6 +204,8 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::invalidateCache
 	 */
 	public function testOptions() {
+		$this->hideDeprecated( 'UserRightsProxy::newFromName' );
+
 		$key = 'foo';
 		$value = 'bar';
 
