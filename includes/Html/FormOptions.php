@@ -376,6 +376,11 @@ class FormOptions implements ArrayAccess {
 					break;
 				case self::ARR:
 					$value = $r->getArray( $name );
+
+					if ( $value !== null ) {
+						// Reject nested arrays (T344931)
+						$value = array_filter( $value, 'is_scalar' );
+					}
 					break;
 				default:
 					throw new MWException( 'Unsupported datatype' );
