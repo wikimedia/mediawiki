@@ -160,8 +160,3 @@ abstract class ResultWrapper implements IResultWrapper {
 		return $this->fieldNames;
 	}
 }
-
-/**
- * @deprecated since 1.29
- */
-class_alias( ResultWrapper::class, 'ResultWrapper' );

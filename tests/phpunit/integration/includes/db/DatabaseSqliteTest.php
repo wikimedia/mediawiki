@@ -4,6 +4,7 @@ use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseSqlite;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\Query;
 use Wikimedia\Rdbms\ResultWrapper;
 use Wikimedia\Rdbms\TransactionProfiler;

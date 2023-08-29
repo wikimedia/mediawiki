@@ -3628,13 +3628,3 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/* End of methods delegated to ReplicationReporter. */
 }
-
-/**
- * @deprecated since 1.28
- */
-class_alias( Database::class, 'DatabaseBase' );
-
-/**
- * @deprecated since 1.29
- */
-class_alias( Database::class, 'Database' );

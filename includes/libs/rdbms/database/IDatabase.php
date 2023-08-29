@@ -1125,8 +1125,3 @@ interface IDatabase extends IReadableDatabase {
 	 */
 	public function isReadOnly();
 }
-
-/**
- * @deprecated since 1.29
- */
-class_alias( IDatabase::class, 'IDatabase' );

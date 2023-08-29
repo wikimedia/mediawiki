@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 class FileBackendDBRepoWrapperTest extends MediaWikiIntegrationTestCase {
@@ -117,7 +118,7 @@ class FileBackendDBRepoWrapperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	protected function getMocks() {
-		$dbMock = $this->getMockBuilder( Wikimedia\Rdbms\IDatabase::class )
+		$dbMock = $this->getMockBuilder( IDatabase::class )
 			->disableOriginalClone()
 			->disableOriginalConstructor()
 			->getMock();

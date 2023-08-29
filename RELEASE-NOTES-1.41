@@ -386,6 +386,18 @@ because of Phabricator reports.
 * Title::getTouched() will now trigger an error if you pass it an instance of
   IDatabase rather than a READ_XXX constant. This legacy behaviour has been
   deprecated since 1.38.
+* The following old, deprecated aliases for classes in the RDBMS layer, have now
+  been removed:
+   - DBConnRef (use Wikimedia\Rdbms\DBConnRef)
+   - Database (use Wikimedia\Rdbms\Database)
+   - DatabaseBase (use Wikimedia\Rdbms\Database)
+   - DatabaseMysqlBase (use Wikimedia\Rdbms\DatabaseMysqlBase)
+   - DatabaseMysqli (use Wikimedia\Rdbms\DatabaseMysqlBase)
+   - DatabasePostgres (use Wikimedia\Rdbms\DatabasePostgres)
+   - DatabaseSqlite (use Wikimedia\Rdbms\DatabaseSqlite)
+   - IDatabase (use Wikimedia\Rdbms\IDatabase)
+   - FakeResultWrapper (use Wikimedia\Rdbms\FakeResultWrapper)
+   - ResultWrapper (use Wikimedia\Rdbms\ResultWrapper)
 * …
 
 === Deprecations in 1.41 ===

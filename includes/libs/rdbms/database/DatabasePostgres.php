@@ -1157,8 +1157,3 @@ __INDEXATTR__;
 		return [ self::ATTR_SCHEMAS_AS_TABLE_GROUPS => true ];
 	}
 }
-
-/**
- * @deprecated since 1.29
- */
-class_alias( DatabasePostgres::class, 'DatabasePostgres' );
