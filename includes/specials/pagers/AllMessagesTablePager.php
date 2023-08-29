@@ -40,11 +40,6 @@ use Wikimedia\Rdbms\IResultWrapper;
 class AllMessagesTablePager extends TablePager {
 
 	/**
-	 * @var string
-	 */
-	protected $langcode;
-
-	/**
 	 * @var bool
 	 */
 	protected $foreign;
@@ -106,7 +101,6 @@ class AllMessagesTablePager extends TablePager {
 			$languageFactory->getRawLanguage( $lang ) :
 			$contentLanguage;
 
-		$this->langcode = $this->lang->getCode();
 		$this->foreign = !$this->lang->equals( $contentLanguage );
 
 		$filter = $opts->getValue( 'filter' );
@@ -131,7 +125,7 @@ class AllMessagesTablePager extends TablePager {
 		// The suffix that may be needed for message names if we're in a
 		// different language (eg [[MediaWiki:Foo/fr]]: $suffix = '/fr'
 		if ( $this->foreign ) {
-			$this->suffix = '/' . $this->langcode;
+			$this->suffix = '/' . $this->lang->getCode();
 		} else {
 			$this->suffix = '';
 		}
@@ -225,7 +219,7 @@ class AllMessagesTablePager extends TablePager {
 		$messageNames = $this->getAllMessages( $order );
 		$statuses = self::getCustomisedStatuses(
 			$messageNames,
-			$this->langcode,
+			$this->lang->getCode(),
 			$this->foreign,
 			$this->getDatabase()
 		);
@@ -294,13 +288,14 @@ class AllMessagesTablePager extends TablePager {
 			case 'am_title':
 				$title = Title::makeTitle( NS_MEDIAWIKI, $value . $this->suffix );
 				$talk = Title::makeTitle( NS_MEDIAWIKI_TALK, $value . $this->suffix );
+				$message = $this->msg( $value )->inLanguage( $this->lang )->useDatabase( false )->plain();
 				$translation = Linker::makeExternalLink(
 					'https://translatewiki.net/w/i.php?' . wfArrayToCgi( [
 						'title' => 'Special:SearchTranslations',
 						'group' => 'mediawiki',
 						'grouppath' => 'mediawiki',
-						'language' => $this->getLanguage()->getCode(),
-						'query' => $value . ' ' . $this->msg( $value )->plain()
+						'language' => $this->lang->getCode(),
+						'query' => $value . ' ' . $message
 					] ),
 					$this->msg( 'allmessages-filter-translate' )->text()
 				);
