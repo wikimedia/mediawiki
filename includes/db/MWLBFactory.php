@@ -76,9 +76,9 @@ class MWLBFactory {
 	 */
 	private $readOnlyMode;
 	/**
-	 * @var BagOStuff
+	 * @var ChronologyProtector
 	 */
-	private $cpStash;
+	private $chronologyProtector;
 	/**
 	 * @var BagOStuff
 	 */
@@ -99,7 +99,7 @@ class MWLBFactory {
 	/**
 	 * @param ServiceOptions $options
 	 * @param ConfiguredReadOnlyMode $readOnlyMode
-	 * @param BagOStuff $cpStash
+	 * @param ChronologyProtector $chronologyProtector
 	 * @param BagOStuff $srvCache
 	 * @param WANObjectCache $wanCache
 	 * @param CriticalSectionProvider $csProvider
@@ -108,7 +108,7 @@ class MWLBFactory {
 	public function __construct(
 		ServiceOptions $options,
 		ConfiguredReadOnlyMode $readOnlyMode,
-		BagOStuff $cpStash,
+		ChronologyProtector $chronologyProtector,
 		BagOStuff $srvCache,
 		WANObjectCache $wanCache,
 		CriticalSectionProvider $csProvider,
@@ -116,7 +116,7 @@ class MWLBFactory {
 	) {
 		$this->options = $options;
 		$this->readOnlyMode = $readOnlyMode;
-		$this->cpStash = $cpStash;
+		$this->chronologyProtector = $chronologyProtector;
 		$this->srvCache = $srvCache;
 		$this->wanCache = $wanCache;
 		$this->csProvider = $csProvider;
@@ -211,7 +211,7 @@ class MWLBFactory {
 			$this->options->get( MainConfigNames::DBprefix )
 		);
 
-		$lbConf['cpStash'] = $this->cpStash;
+		$lbConf['chronologyProtector'] = $this->chronologyProtector;
 		$lbConf['srvCache'] = $this->srvCache;
 		$lbConf['wanCache'] = $this->wanCache;
 
@@ -418,29 +418,6 @@ class MWLBFactory {
 		Config $config,
 		IBufferingStatsdDataFactory $stats
 	): void {
-		// Use the global WebRequest singleton. The main reason for using this
-		// is to call WebRequest::getIP() which is non-trivial to reproduce statically
-		// because it needs $wgUsePrivateIPs, as well as ProxyLookup and HookRunner services.
-		// TODO: Create a static version of WebRequest::getIP that accepts these three
-		// as dependencies, and then call that here. The other uses of $req below can
-		// trivially use $_COOKIES, $_GET and $_SERVER instead.
-		$req = RequestContext::getMain()->getRequest();
-
-		// Set user IP/agent information for agent session consistency purposes
-		$reqStart = (int)( $_SERVER['REQUEST_TIME_FLOAT'] ?? time() );
-		$cpPosInfo = ChronologyProtector::getCPInfoFromCookieValue(
-			// The cookie has no prefix and is set by MediaWiki::preOutputCommit()
-			$req->getCookie( 'cpPosIndex', '' ),
-			// Mitigate broken client-side cookie expiration handling (T190082)
-			$reqStart - ChronologyProtector::POSITION_COOKIE_TTL
-		);
-		$lbFactory->setRequestInfo( [
-			'IPAddress' => $req->getIP(),
-			'UserAgent' => $req->getHeader( 'User-Agent' ),
-			'ChronologyPositionIndex' => $req->getInt( 'cpPosIndex', $cpPosInfo['index'] ),
-			'ChronologyClientId' => $cpPosInfo['clientId'] ?? null,
-		] );
-
 		if ( $config->get( 'CommandLineMode' ) ) {
 			// Disable buffering and delaying of DeferredUpdates and stats
 			// for maintenance scripts and PHPUnit tests.

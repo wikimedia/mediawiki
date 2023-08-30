@@ -528,6 +528,7 @@ return [
 				'WarmParsoidParserCache' => false,
 			],
 			'ChronologyProtectorStash' => null,
+			'ChronologyProtectorSecret' => '',
 			'ParserCacheExpireTime' => 86400,
 			'OldRevisionParserCacheExpireTime' => 3600,
 			'ObjectCacheSessionExpiry' => 3600,
@@ -2649,6 +2650,7 @@ return [
 				0 => 'string',
 				1 => 'null',
 			],
+			'ChronologyProtectorSecret' => 'string',
 			'PHPSessionHandling' => 'string',
 			'SuspiciousIpExpiry' => [
 				0 => 'integer',

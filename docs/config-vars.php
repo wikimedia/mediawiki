@@ -1501,6 +1501,12 @@ $wgParsoidCacheConfig = null;
 $wgChronologyProtectorStash = null;
 
 /**
+ * Config variable stub for the ChronologyProtectorSecret setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::ChronologyProtectorSecret
+ */
+$wgChronologyProtectorSecret = null;
+
+/**
  * Config variable stub for the ParserCacheExpireTime setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ParserCacheExpireTime
  */

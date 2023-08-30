@@ -35,6 +35,7 @@ For notes on 1.40.x and older releases, see HISTORY.
   EmailNotificationSecondaryAuthenticationProvider now require
   DBLoadBalancerFactory, not DBLoadBalancer, as a service.
 * $wgUseFileCache is no longer used for ResourceLoader module caching.
+* $wgLBFactoryConf['secret'] has been replaced by $wgChronologyProtectorSecret.
 * …
 
 ==== Removed configuration ====

@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Config\ServiceOptions;
+use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\LBFactorySimple;
@@ -36,7 +37,7 @@ class MWLBFactoryTest extends MediaWikiUnitTestCase {
 		return new MWLBFactory(
 			new ServiceOptions( [], [] ),
 			new ConfiguredReadOnlyMode( 'Test' ),
-			new EmptyBagOStuff(),
+			new ChronologyProtector(),
 			new EmptyBagOStuff(),
 			new WANObjectCache( [ 'cache' => new EmptyBagOStuff() ] ),
 			new CriticalSectionProvider( RequestTimeout::singleton(), 1, null, null ),

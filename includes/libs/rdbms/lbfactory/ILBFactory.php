@@ -405,17 +405,6 @@ interface ILBFactory extends IConnectionProvider {
 	public function appendShutdownCPIndexAsQuery( $url, $index );
 
 	/**
-	 * Inject HTTP request header/cookie information during setup of this instance
-	 *
-	 * @param array $info Map of fields, including:
-	 *   - IPAddress : IP address
-	 *   - UserAgent : User-Agent HTTP header
-	 *   - ChronologyProtection : cookie/header value specifying ChronologyProtector usage
-	 *   - ChronologyPositionIndex: timestamp used to get up-to-date DB positions for the agent
-	 */
-	public function setRequestInfo( array $info );
-
-	/**
 	 * Set the default timeout for replication wait checks
 	 *
 	 * @param int $seconds Timeout, in seconds

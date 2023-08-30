@@ -44,7 +44,7 @@ function wfLoadMain() {
 	$services = MediaWikiServices::getInstance();
 	// Disable ChronologyProtector so that we don't wait for unrelated MediaWiki
 	// writes when getting database connections for ResourceLoader. (T192611)
-	$services->getDBLoadBalancerFactory()->disableChronologyProtection();
+	$services->getChronologyProtector()->setEnabled( false );
 
 	$resourceLoader = $services->getResourceLoader();
 	$context = new Context( $resourceLoader, $wgRequest );

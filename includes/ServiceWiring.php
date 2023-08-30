@@ -214,6 +214,7 @@ use Wikimedia\Parsoid\Config\Api\SiteConfig as ApiSiteConfig;
 use Wikimedia\Parsoid\Config\DataAccess;
 use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Parsoid;
+use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 use Wikimedia\Rdbms\DatabaseFactory;
 use Wikimedia\Rdbms\ReadOnlyMode;
@@ -429,6 +430,51 @@ return [
 		);
 	},
 
+	'ChronologyProtector' => static function ( MediaWikiServices $services ): ChronologyProtector {
+		$mainConfig = $services->getMainConfig();
+		$cpStashType = $mainConfig->get( MainConfigNames::ChronologyProtectorStash );
+		$isMainCacheBad = ObjectCache::isDatabaseId( $mainConfig->get( MainConfigNames::MainCacheType ) );
+
+		if ( is_string( $cpStashType ) ) {
+			$cpStash = ObjectCache::getInstance( $cpStashType );
+		} elseif ( $isMainCacheBad ) {
+			$cpStash = new EmptyBagOStuff();
+		} else {
+			$cpStash = ObjectCache::getLocalClusterInstance();
+		}
+
+		$chronologyProtector = new ChronologyProtector(
+			$cpStash,
+			$mainConfig->get( MainConfigNames::ChronologyProtectorSecret ),
+			$mainConfig->get( 'CommandLineMode' ),
+			LoggerFactory::getInstance( 'rdbms' )
+		);
+
+		// Use the global WebRequest singleton. The main reason for using this
+		// is to call WebRequest::getIP() which is non-trivial to reproduce statically
+		// because it needs $wgUsePrivateIPs, as well as ProxyLookup and HookRunner services.
+		// TODO: Create a static version of WebRequest::getIP that accepts these three
+		// as dependencies, and then call that here. The other uses of $req below can
+		// trivially use $_COOKIES, $_GET and $_SERVER instead.
+		$req = RequestContext::getMain()->getRequest();
+
+		// Set user IP/agent information for agent session consistency purposes
+		$reqStart = (int)( $_SERVER['REQUEST_TIME_FLOAT'] ?? time() );
+		$cpPosInfo = ChronologyProtector::getCPInfoFromCookieValue(
+		// The cookie has no prefix and is set by MediaWiki::preOutputCommit()
+			$req->getCookie( 'cpPosIndex', '' ),
+			// Mitigate broken client-side cookie expiration handling (T190082)
+			$reqStart - ChronologyProtector::POSITION_COOKIE_TTL
+		);
+		$chronologyProtector->setRequestInfo( [
+			'IPAddress' => $req->getIP(),
+			'UserAgent' => $req->getHeader( 'User-Agent' ),
+			'ChronologyPositionIndex' => $req->getInt( 'cpPosIndex', $cpPosInfo['index'] ),
+			'ChronologyClientId' => $cpPosInfo['clientId'] ?? null,
+		] );
+		return $chronologyProtector;
+	},
+
 	'CollationFactory' => static function ( MediaWikiServices $services ): CollationFactory {
 		return new CollationFactory(
 			new ServiceOptions(
@@ -628,32 +674,21 @@ return [
 
 	'DBLoadBalancerFactoryConfigBuilder' => static function ( MediaWikiServices $services ): MWLBFactory {
 		$mainConfig = $services->getMainConfig();
-		$cpStashType = $mainConfig->get( MainConfigNames::ChronologyProtectorStash );
-		$cacheId = $mainConfig->get( MainConfigNames::MainCacheType );
-		$isMainCacheBad = ObjectCache::isDatabaseId( $cacheId );
-		if ( is_string( $cpStashType ) ) {
-			$cpStash = ObjectCache::getInstance( $cpStashType );
-		} elseif ( $isMainCacheBad ) {
-			$cpStash = new EmptyBagOStuff();
-		} else {
-			$cpStash = ObjectCache::getLocalClusterInstance();
-		}
-
-		if ( $isMainCacheBad ) {
+		if ( ObjectCache::isDatabaseId( $mainConfig->get( MainConfigNames::MainCacheType ) ) ) {
 			$wanCache = WANObjectCache::newEmpty();
 		} else {
 			$wanCache = $services->getMainWANObjectCache();
 		}
-
 		$srvCache = $services->getLocalServerObjectCache();
 		if ( $srvCache instanceof EmptyBagOStuff ) {
 			// Use process cache if no APCU or other local-server cache (e.g. on CLI)
 			$srvCache = new HashBagOStuff( [ 'maxKeys' => 100 ] );
 		}
+
 		return new MWLBFactory(
 			new ServiceOptions( MWLBFactory::APPLY_DEFAULT_CONFIG_OPTIONS, $services->getMainConfig() ),
 			$services->getConfiguredReadOnlyMode(),
-			$cpStash,
+			$services->getChronologyProtector(),
 			$srvCache,
 			$wanCache,
 			$services->getCriticalSectionProvider(),

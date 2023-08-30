@@ -202,6 +202,7 @@ use Wikimedia\NonSerializable\NonSerializableTrait;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Parsoid\Config\DataAccess;
 use Wikimedia\Parsoid\Config\SiteConfig;
+use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 use Wikimedia\Rdbms\DatabaseFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -892,6 +893,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getChangeTagsStore(): ChangeTagsStore {
 		return $this->getService( 'ChangeTagsStore' );
+	}
+
+	/**
+	 * @since 1.41
+	 * @return ChronologyProtector
+	 */
+	public function getChronologyProtector(): ChronologyProtector {
+		return $this->getService( 'ChronologyProtector' );
 	}
 
 	/**

@@ -2524,6 +2524,12 @@ config-schema:
             Valid options are the keys of {@link $wgObjectCaches}, e.g. CACHE_* constants.
             Defaults to {@link $wgMainCacheType} (in ServiceWiring.php).
             @since 1.36
+    ChronologyProtectorSecret:
+        default: ''
+        type: string
+        description: |-
+            Secret string for HMAC hashing in ChronologyProtector [optional]
+            @since 1.41
     ParserCacheExpireTime:
         default: 86400
         description: |-
