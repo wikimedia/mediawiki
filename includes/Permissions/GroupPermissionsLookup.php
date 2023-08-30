@@ -49,7 +49,7 @@ class GroupPermissionsLookup {
 	/** @var string[] */
 	private $groupInheritance;
 
-	/*
+	/**
 	 * @param ServiceOptions $options
 	 */
 	public function __construct( ServiceOptions $options ) {
