@@ -43,7 +43,8 @@
 			"Lookruk",
 			"Ekminarin",
 			"Kaoavi",
-			"Amire80"
+			"Amire80",
+			"RidJasper"
 		]
 	},
 	"tog-underline": "การขีดเส้นใต้ลิงก์:",
@@ -2576,7 +2577,7 @@
 	"ipb-hardblock": "บล็อกผู้ใช้ล็อกอินจากที่อยู่ไอพีนี้ด้วย",
 	"ipbcreateaccount": "การสร้างบัญชี",
 	"ipbemailban": "กำลังส่งอีเมล",
-	"ipbenableautoblock": "บล็อกเลขที่อยู่ไอพีล่าสุดที่ผู้ใช้นี้ใช้ ทั้งทุกเลขที่อยู่ไอพีที่ผู้นั้นพยายามใช้แก้ไขโดยอัตโนมัติ",
+	"ipbenableautoblock": "บล็อกเลขที่อยู่ไอพีล่าสุดที่ผู้ใช้นี้ใช้ ทั้งทุกเลขที่อยู่ไอพีที่ผู้นั้นพยายามใช้แก้ไขโดยอัตโนมัติ เป็นระยะเวลา $1",
 	"ipbsubmit": "บล็อกผู้ใช้นี้",
 	"ipbother": "เวลาอื่น:",
 	"ipboptions": "2 ชั่วโมง:2 hours,1 วัน:1 day,3 วัน:3 days,1 สัปดาห์:1 week,2 สัปดาห์:2 weeks,1 เดือน:1 month,3 เดือน:3 months,6 เดือน:6 months,1 ปี:1 year,ไม่มีกำหนด:infinite",
@@ -2587,8 +2588,8 @@
 	"ipb-confirm": "ยืนยันการบล็อก",
 	"ipb-sitewide": "ทั้งเว็บไซต์",
 	"ipb-partial": "บางส่วน",
-	"ipb-sitewide-help": "ทุกหน้าบนวิกิและการกระทำเพื่อมีส่วนร่วมอื่น ๆ ทั้งหมด",
-	"ipb-partial-help": "ระบุหน้าหรือเนมสเปซ",
+	"ipb-sitewide-help": "บล็อกการแก้ไขในทุกหน้าและทุกเนมสเปซ รวมถึงบล็อกการกระทำเริ่มต้น ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users ดูความช่วยเหลือ])",
+	"ipb-partial-help": "ให้คุณเลือกหน้าและเนมสเปซที่จะบล็อก ไม่บล็อกการกระทำเริ่มต้น แต่ให้คุณบล็อกการกระทำบางอย่าง",
 	"ipb-action-create": "การสร้างหน้าใหม่",
 	"ipb-action-move": "การเปลี่ยนชื่อหน้า",
 	"ipb-action-upload": "การอัปโหลดไฟล์",
@@ -3674,7 +3675,7 @@
 	"mediastatistics": "สถิติสื่อ",
 	"mediastatistics-summary": "สถิติเกี่ยวกับประเภทไฟล์ที่อัปโหลด ซึ่งรวมเฉพาะรุ่นล่าสุดของไฟล์นั้น \nไม่รวมไฟล์รุ่นเก่าหรือที่ถูกลบแล้ว",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 ไบต์}} ($2; $3%)",
-	"mediastatistics-bytespertype": "ขนาดไฟล์ทั้งหมดสำหรับส่วนนี้: {{PLURAL:$1|$1 ไบต์}} ($2; $3%)",
+	"mediastatistics-bytespertype": "ขนาดไฟล์ทั้งหมดสำหรับส่วนนี้: $4 ไฟล์ ($5%): $1 ไบต์ ($2; $3%)",
 	"mediastatistics-allbytes": "ขนาดไฟล์ทั้งหมดของทุกไฟล์: {{PLURAL:$1|$1 ไบต์}} ($2)",
 	"mediastatistics-table-mimetype": "ชนิด MIME",
 	"mediastatistics-table-extensions": "ส่วนขยายที่เป็นไปได้",
