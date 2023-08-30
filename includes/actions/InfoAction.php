@@ -159,16 +159,14 @@ class InfoAction extends FormlessAction {
 	 */
 	public static function invalidateCache( PageIdentity $page, $revid = null ) {
 		$services = MediaWikiServices::getInstance();
-		if ( !$revid ) {
+		if ( $revid === null ) {
 			$revision = $services->getRevisionLookup()
 				->getRevisionByTitle( $page, 0, IDBAccessObject::READ_LATEST );
-			$revid = $revision ? $revision->getId() : null;
+			$revid = $revision ? $revision->getId() : 0;
 		}
-		if ( $revid !== null ) {
-			$cache = $services->getMainWANObjectCache();
-			$key = self::getCacheKey( $cache, $page, $revid );
-			$cache->delete( $key );
-		}
+		$cache = $services->getMainWANObjectCache();
+		$key = self::getCacheKey( $cache, $page, $revid ?? 0 );
+		$cache->delete( $key );
 	}
 
 	/**
