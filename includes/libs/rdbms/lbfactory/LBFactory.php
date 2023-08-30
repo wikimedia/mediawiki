@@ -667,14 +667,13 @@ abstract class LBFactory implements ILBFactory {
 		$this->agent = $agent;
 	}
 
-	public function appendShutdownCPIndexAsQuery( $url, $index ) {
+	public function hasStreamingReplicaServers() {
 		foreach ( $this->getLBsForOwner() as $lb ) {
 			if ( $lb->hasStreamingReplicaServers() ) {
-				return strpos( $url, '?' ) === false
-					? "$url?cpPosIndex=$index" : "$url&cpPosIndex=$index";
+				return true;
 			}
 		}
-		return $url; // no primary/replica clusters touched
+		return false;
 	}
 
 	public function setRequestInfo( array $info ) {

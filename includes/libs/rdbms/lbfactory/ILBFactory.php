@@ -394,15 +394,12 @@ interface ILBFactory extends IConnectionProvider {
 	public function setAgentName( $agent );
 
 	/**
-	 * Append ?cpPosIndex parameter to a URL for ChronologyProtector purposes if needed
+	 * Whether it has streaming replica servers.
 	 *
-	 * Note that unlike cookies, this works across domains.
-	 *
-	 * @param string $url
-	 * @param int $index Write counter index
-	 * @return string
+	 * @since 1.41
+	 * @return bool
 	 */
-	public function appendShutdownCPIndexAsQuery( $url, $index );
+	public function hasStreamingReplicaServers();
 
 	/**
 	 * Set the default timeout for replication wait checks

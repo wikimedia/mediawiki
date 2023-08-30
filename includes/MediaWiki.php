@@ -750,11 +750,12 @@ class MediaWiki {
 
 			if ( $isCrossWikiRedirect ) {
 				if ( $output->getRedirect() ) {
-					$safeUrl = $lbFactory->appendShutdownCPIndexAsQuery(
-						$output->getRedirect(),
-						$cpIndex
-					);
-					$output->redirect( $safeUrl );
+					$url = $output->getRedirect();
+					if ( $lbFactory->hasStreamingReplicaServers() ) {
+						$url = strpos( $url, '?' ) === false
+							? "$url?cpPosIndex=$cpIndex" : "$url&cpPosIndex=$cpIndex";
+					}
+					$output->redirect( $url );
 				} else {
 					MWExceptionHandler::logException(
 						new LogicException( "No redirect; cannot append cpPosIndex parameter." ),
