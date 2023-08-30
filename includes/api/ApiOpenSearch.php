@@ -38,9 +38,6 @@ class ApiOpenSearch extends ApiBase {
 	private $format = null;
 	private $fm = null;
 
-	/** @var array list of api allowed params */
-	private $allowedParams = null;
-
 	private LinkBatchFactory $linkBatchFactory;
 	private UrlUtils $urlUtils;
 
@@ -75,13 +72,7 @@ class ApiOpenSearch extends ApiBase {
 	 */
 	protected function getFormat() {
 		if ( $this->format === null ) {
-			$params = $this->extractRequestParams();
-			$format = $params['format'];
-
-			$allowedParams = $this->getAllowedParams();
-			if ( !in_array( $format, $allowedParams['format'][ParamValidator::PARAM_TYPE] ) ) {
-				$format = $allowedParams['format'][ParamValidator::PARAM_DEFAULT];
-			}
+			$format = $this->getParameter( 'format' );
 
 			if ( str_ends_with( $format, 'fm' ) ) {
 				$this->format = substr( $format, 0, -2 );
@@ -301,10 +292,7 @@ class ApiOpenSearch extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		if ( $this->allowedParams !== null ) {
-			return $this->allowedParams;
-		}
-		$this->allowedParams = $this->buildCommonApiParams( false ) + [
+		$allowedParams = $this->buildCommonApiParams( false ) + [
 			'suggest' => [
 				ParamValidator::PARAM_DEFAULT => false,
 				// Deprecated since 1.35
@@ -323,11 +311,11 @@ class ApiOpenSearch extends ApiBase {
 		];
 
 		// Use open search specific default limit
-		$this->allowedParams['limit'][ParamValidator::PARAM_DEFAULT] = $this->getConfig()->get(
+		$allowedParams['limit'][ParamValidator::PARAM_DEFAULT] = $this->getConfig()->get(
 			MainConfigNames::OpenSearchDefaultLimit
 		);
 
-		return $this->allowedParams;
+		return $allowedParams;
 	}
 
 	public function getSearchProfileParams() {

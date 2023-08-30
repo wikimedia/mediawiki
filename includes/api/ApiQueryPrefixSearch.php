@@ -26,9 +26,6 @@
 class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 	use SearchApi;
 
-	/** @var array list of api allowed params */
-	private $allowedParams;
-
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
@@ -114,12 +111,7 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		if ( $this->allowedParams !== null ) {
-			return $this->allowedParams;
-		}
-		$this->allowedParams = $this->buildCommonApiParams();
-
-		return $this->allowedParams;
+		return $this->buildCommonApiParams();
 	}
 
 	public function getSearchProfileParams() {
