@@ -1306,6 +1306,7 @@
 	"prefs-diffs": "Versionsvergleich",
 	"prefs-help-prefershttps": "Diese Einstellung wird bei deiner nächsten Anmeldung wirksam.",
 	"prefs-tabs-navigation-hint": "Tipp: Du kannst die linke und rechte Pfeiltasten benutzen, um zwischen den Registerkarten in der Reiterliste zu navigieren.",
+	"prefs-sections-navigation-hint": "Tipp: Du kannst die Tasten Tab und Umschalt + Tab verwenden, um zwischen den Einstellungsabschnitten zu navigieren.",
 	"userrights": "Benutzerrechte",
 	"userrights-lookup-user": "Einen Benutzer auswählen",
 	"userrights-user-editname": "Benutzername:",

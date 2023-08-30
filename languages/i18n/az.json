@@ -2084,7 +2084,7 @@
 	"contribsub2": "{{GENDER:$3|$1}} ($2) adlı istifadəçinin fəaliyyəti",
 	"contributions-subtitle": "{{GENDER:$2|$1}} üçün",
 	"contributions-edit-count": "$2 redaktəsi olan istifadəçi.",
-	"contributions-account-creation-date": "Hesab $1 tarixində yaradılıb.",
+	"contributions-account-creation-date": "Hesabın yaradılma tarixi: $1",
 	"contributions-userdoesnotexist": "\"$1\" adlı istifadəçi qeydiyyatdan keçməyib.",
 	"nocontribs": "Bu kriteriyaya uyğun redaktələr tapılmadı",
 	"uctop": "hal-hazırkı",

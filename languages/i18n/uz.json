@@ -1939,6 +1939,7 @@
 	"table_pager_empty": "Natijalar topilmadi",
 	"autosumm-blank": "Sahifadagi barcha matn oʻchirib tashlandi",
 	"autoredircomment": "[[$1]]ga yoʻnaltirildi",
+	"autosumm-changed-redirect-target": "Yoʻnaltirish moʻljali [[$1]]dan [[$2]]ga oʻzgartirildi",
 	"autosumm-new": "„$1“ yozuvi orqali yangi sahifa yaratildi",
 	"autosumm-newblank": "Boʻsh sahifa yaratildi",
 	"size-bytes": "$1 bayt",
