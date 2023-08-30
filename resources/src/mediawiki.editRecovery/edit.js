@@ -8,7 +8,6 @@ const LoadNotification = require( './LoadNotification.js' );
 
 const inputFields = {};
 const fieldNamePrefix = 'field_';
-var hasLoaded = false;
 var originalData = {};
 var changeDebounceTimer = null;
 
@@ -21,10 +20,8 @@ const windowManager = OO.ui.getWindowManager();
 windowManager.addWindows( [ new mw.widgets.AbandonEditDialog() ] );
 
 function onLoadHandler( $editForm ) {
-	if ( hasLoaded ) {
-		return;
-	}
-	hasLoaded = true;
+	mw.hook( 'wikipage.editform' ).remove( onLoadHandler );
+
 	// Monitor all text-entry inputs for changes/typing.
 	const inputsToMonitorSelector = 'textarea, select, input:not([type="hidden"], [type="submit"])';
 	const $inputsToMonitor = $editForm.find( inputsToMonitorSelector );
