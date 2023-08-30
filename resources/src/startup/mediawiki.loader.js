@@ -1792,8 +1792,8 @@
 	 * @class mw.loader.store
 	 */
 
-	// Whether we have already triggered a timer for flushWrites
-	var hasPendingWrites = false;
+	var hasPendingFlush = false,
+		hasPendingWrites = false;
 
 	/**
 	 * Actually update the store
@@ -1802,31 +1802,36 @@
 	 * @private
 	 */
 	function flushWrites() {
-		// Remove anything from the in-memory store that came from previous page
-		// loads that no longer corresponds with current module names and versions.
-		store.prune();
 		// Process queued module names, serialise their contents to the in-memory store.
 		while ( store.queue.length ) {
 			store.set( store.queue.shift() );
 		}
 
-		try {
-			// Replacing the content of the module store might fail if the new
-			// contents would exceed the browser's localStorage size limit. To
-			// avoid clogging the browser with stale data, always remove the old
-			// value before attempting to set the new one.
-			localStorage.removeItem( store.key );
-			var data = JSON.stringify( store );
-			localStorage.setItem( store.key, data );
-		} catch ( e ) {
-			mw.trackError( 'resourceloader.exception', {
-				exception: e,
-				source: 'store-localstorage-update'
-			} );
+		// Optimization: Don't reserialize the entire store and rewrite localStorage,
+		// if no module was added or changed.
+		if ( hasPendingWrites ) {
+			// Remove anything from the in-memory store that came from previous page
+			// loads that no longer corresponds with current module names and versions.
+			store.prune();
+
+			try {
+				// Replacing the content of the module store might fail if the new
+				// contents would exceed the browser's localStorage size limit. To
+				// avoid clogging the browser with stale data, always remove the old
+				// value before attempting to set the new one.
+				localStorage.removeItem( store.key );
+				var data = JSON.stringify( store );
+				localStorage.setItem( store.key, data );
+			} catch ( e ) {
+				mw.trackError( 'resourceloader.exception', {
+					exception: e,
+					source: 'store-localstorage-update'
+				} );
+			}
 		}
 
 		// Let the next call to requestUpdate() create a new timer.
-		hasPendingWrites = false;
+		hasPendingFlush = hasPendingWrites = false;
 	}
 
 	// We use a local variable `store` so that its easier to access, but also need to set
@@ -2055,6 +2060,7 @@
 				);
 			}
 			this.items[ key ] = srcParts.join( '' );
+			hasPendingWrites = true;
 		},
 
 		/**
@@ -2120,9 +2126,8 @@
 			// The main purpose is to allow the current batch of load.php
 			// responses to complete before we do anything. This batch can
 			// trigger many hundreds of calls to requestUpdate().
-			if ( !hasPendingWrites ) {
-				hasPendingWrites = true;
-				setTimeout(
+			if ( !hasPendingFlush ) {
+				hasPendingFlush = setTimeout(
 					// Defer the actual write via requestIdleCallback
 					function () {
 						mw.requestIdleCallback( flushWrites );
