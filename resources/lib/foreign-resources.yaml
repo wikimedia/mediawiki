@@ -401,10 +401,10 @@ ooui:
   license: MIT
   homepage: https://www.mediawiki.org/wiki/OOUI
   authors: OOUI Team and other contributors
-  version: 0.47.5
+  version: 0.48.0
   type: tar
-  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.47.5.tgz
-  integrity: sha384-dRoluw0xt0U+s2yrziK23LyGVSS4kzIOo4HgmDjNzs2QCXGrEjpwasRiI0JnfOdZ
+  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.48.0.tgz
+  integrity: sha384-x44AQkm4O1Pmxqezkjpnwu/YjhAB+d0ToWB2HOTjCMSqrXH7BhESGf01LF+kuEKE
 
   dest:
     # Main stuff

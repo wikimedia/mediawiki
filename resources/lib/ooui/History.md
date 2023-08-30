@@ -1,4 +1,16 @@
 # OOUI Release History
+## v0.48.0 / 2023-08-30
+### Breaking changes
+* [BREAKING CHANGE] Raise jQuery requirement from v3.6.1 to v3.7.1 (James D. Forrester)
+
+### Features
+* ButtonInputWidget: Add support for 'formNoValidate' config option (Bartosz Dziewoński)
+* ToggleSwitchWidget: Add no-JS support (hmonroy)
+
+### Code
+* Fix aria-describedby on MultiSelectWidgets (WMDE-Fisch)
+* Include ToggleSwitch and ToggleSwitch widgets in core (hmonroy)
+
 ## v0.47.5 / 2023-07-19
 ### Code
 * ToggleSwitch: Display checked state correctly in RTL (Roan Kattouw)

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.47.5
+ * OOUI v0.48.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2023 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2023-07-19T21:37:43Z
+ * Date: 2023-08-30T19:13:51Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ),
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
@@ -268,7 +268,6 @@
   vertical-align: middle;
 }
 
-
 .oo-ui-toggleButtonWidget {
   margin-right: 0.5em;
 }
@@ -280,95 +279,6 @@
 }
 .oo-ui-toggleButtonWidget.oo-ui-widget-enabled.oo-ui-buttonElement-frameless.oo-ui-toggleWidget-on .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
   color: #000;
-}
-
-.oo-ui-toggleSwitchWidget {
-  position: relative;
-  display: inline-block;
-  vertical-align: middle;
-  overflow: hidden;
-  box-sizing: border-box;
-  transform: translateZ(0);
-  background-color: #ebebeb;
-  background-image: linear-gradient(to bottom, #ddd 0, #fafafa 100%);
-  width: 4em;
-  height: 2em;
-  margin-right: 0.5em;
-  border: 1px solid #ccc;
-  border-radius: 1em;
-  box-shadow: 0 0 0 #fff, inset 0 0.1em 0.2em #ddd;
-}
-.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled {
-  cursor: pointer;
-}
-.oo-ui-toggleSwitchWidget-grip {
-  position: absolute;
-  display: block;
-  box-sizing: border-box;
-}
-.oo-ui-toggleSwitchWidget:last-child {
-  margin-right: 0;
-}
-.oo-ui-toggleSwitchWidget.oo-ui-widget-disabled {
-  opacity: 0.5;
-}
-.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:hover,
-.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:hover .oo-ui-toggleSwitchWidget-grip {
-  border-color: #aaa;
-}
-.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:focus {
-  outline: 0;
-  border-color: #ace;
-  box-shadow: 0 0 2px 2px #ace;
-}
-.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:focus .oo-ui-toggleSwitchWidget-grip {
-  border-color: #ace;
-}
-.oo-ui-toggleSwitchWidget-grip {
-  background-color: #ebebeb;
-  background-image: linear-gradient(to bottom, #fafafa 0, #ddd 100%);
-  top: 0.25em;
-  left: 0.25em;
-  width: 1.5em;
-  height: 1.5em;
-  margin-top: -1px;
-  border: 1px solid #ccc;
-  border-radius: 1em;
-  box-shadow: 0 0.1em 0.25em rgba(0, 0, 0, 0.1);
-  transition-property: left, margin-left;
-  transition-duration: 250ms;
-}
-.oo-ui-toggleSwitchWidget-glow {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  border-radius: 1em;
-  box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.07);
-  transition-property: opacity;
-  transition-duration: 250ms;
-  background-color: #cde7f4;
-  background-image: linear-gradient(to bottom, #b0d9ee 0, #eaf4fa 100%);
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-.oo-ui-toggleWidget-off .oo-ui-toggleSwitchWidget-glow {
-  opacity: 0;
-}
-.oo-ui-toggleWidget-off .oo-ui-toggleSwitchWidget-grip {
-  left: 0.25em;
-  margin-left: 0;
-}
-.oo-ui-toggleWidget-on .oo-ui-toggleSwitchWidget-glow {
-  opacity: 1;
-}
-.oo-ui-toggleWidget-on .oo-ui-toggleSwitchWidget-grip {
-  left: 2.25em;
-  margin-left: -2px;
 }
 
 .oo-ui-selectFileWidget-dropTarget {

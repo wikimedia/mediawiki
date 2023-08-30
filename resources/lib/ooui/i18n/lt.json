@@ -5,7 +5,8 @@
 			"Audriusa",
 			"Eitvys200",
 			"Mantak111",
-			"Manvydasz"
+			"Manvydasz",
+			"Nokeoo"
 		]
 	},
 	"ooui-copytextlayout-copy": "Kopijuoti",
@@ -22,8 +23,13 @@
 	"ooui-dialog-process-dismiss": "Paslėpti",
 	"ooui-dialog-process-retry": "Bandykite dar kartą",
 	"ooui-dialog-process-continue": "Tęsti",
+	"ooui-combobox-button-label": "Perjungti parinktis",
 	"ooui-selectfile-button-select": "Pasirinkti failą",
+	"ooui-selectfile-button-select-multiple": "Pasirinkti failus",
 	"ooui-selectfile-not-supported": "Failų pasirinkimas nepalaikomas",
 	"ooui-selectfile-placeholder": "Nėra pasirinktų failų",
-	"ooui-selectfile-dragdrop-placeholder": "Atitempkite failą čia"
+	"ooui-selectfile-dragdrop-placeholder": "Atitempkite failą čia",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "Atitempkite failus čia",
+	"ooui-popup-widget-close-button-aria-label": "Uždaryti",
+	"ooui-field-help": "Pagalba"
 }

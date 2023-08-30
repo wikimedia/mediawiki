@@ -91,7 +91,7 @@ For notes on 1.40.x and older releases, see HISTORY.
 * Updated jQuery from v3.6.1 to v3.7.0.
 * Updated Mustache from 3.0.1 to 4.2.0.
 * Updated OOjs from 6.0.0 to 7.0.1.
-* Updated OOUI from v0.46.3 to v0.47.5.
+* Updated OOUI from v0.46.3 to v0.48.0.
 * Updated wikimedia/common-passwords from 0.4.0 to 0.5.0.
 * Updated wikimedia/composer-merge-plugin from 2.0.1 to 2.1.0.
 * Updated wikimedia/html-formatter from 3.0.1 to 4.0.3.

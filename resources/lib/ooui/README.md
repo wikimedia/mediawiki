@@ -78,6 +78,9 @@ We are always delighted when people contribute patches. To setup your developmen
 
 7. You can also copy the distribution files from the dist directory into your project.
 
+8. You can start a local web server by running `php -S localhost:80` in your root dir.
+
+9. You can navigate to http://localhost/tests/ to run the tests locally in your browser.
 
 We use [Gerrit](https://gerrit.wikimedia.org/) for code review, and [Phabricator](https://phabricator.wikimedia.org) to track issues. To contribute patches or join discussions all you need is a [developer account](https://wikitech.wikimedia.org/w/index.php?title=Special:CreateAccount&returnto=Help%3AGetting+Started).
 
