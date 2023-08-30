@@ -87,7 +87,7 @@
 
 		if ( config.showImages && config.imageUrl ) {
 			this.$icon
-				.addClass( 'mw-widget-titleOptionWidget-hasImage' )
+				.addClass( 'mw-widget-titleOptionWidget-hasImage mw-no-invert' )
 				.css( 'background-image', 'url(' + config.imageUrl + ')' );
 		}
 
