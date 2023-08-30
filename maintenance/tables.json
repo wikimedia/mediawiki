@@ -833,7 +833,7 @@
 			},
 			{
 				"name": "ir_value",
-				"comment": "The restriction id that corresponds to the type. Typically a Page ID or a Namespace ID.",
+				"comment": "The restriction id that corresponds to the type: page ID, namespace ID or BlockActionInfo ID.",
 				"type": "integer",
 				"options": { "notnull": true, "unsigned": true }
 			}
