@@ -287,14 +287,27 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 			[ 'GET', 'https://example.org/path?query=string' ],
 			[
 				'method' => 'GET',
-				'url' => 'https://example.com/path?query=another%20string'
+				'url' => 'https://example.com/path?query=another%20string',
+				'headers' => [
+					'header2' => 'value2'
+				]
 			],
 		];
 		$client = new MultiHttpClient( [
 			'localVirtualHosts' => [ 'example.org' ],
 			'localProxy' => 'http://localhost:1234',
+			'headers' => [
+				'header1' => 'value1'
+			]
 		] );
 		$func->invokeArgs( $client, [ &$reqs ] );
+		// Both requests have the default header added
+		$this->assertSame( 'value1', $reqs[0]['headers']['header1'] );
+		$this->assertSame( 'value1', $reqs[1]['headers']['header1'] );
+		// Only Req #1 has an additional header
+		$this->assertSame( 'value2', $reqs[1]['headers']['header2'] );
+		$this->assertArrayNotHasKey( 'header2', $reqs[0]['headers'] );
+
 		// Req #0 transformed to use reverse proxy
 		$this->assertSame( 'http://localhost:1234/path?query=string', $reqs[0]['url'] );
 		$this->assertSame( 'example.org', $reqs[0]['headers']['host'] );
