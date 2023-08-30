@@ -367,16 +367,18 @@ class UndeletePage {
 		if ( $textRestored || $filesRestored ) {
 			$logEntry = $this->addLogEntry( $this->page, $comment, $textRestored, $filesRestored );
 
-			$this->hookRunner->onPageUndeleteComplete(
-				$this->page,
-				$this->performer,
-				$comment,
-				$restoredRevision,
-				$logEntry,
-				$textRestored,
-				$pageCreated,
-				$restoredPageIds
-			);
+			if ( $textRestored ) {
+				$this->hookRunner->onPageUndeleteComplete(
+					$this->page,
+					$this->performer,
+					$comment,
+					$restoredRevision,
+					$logEntry,
+					$textRestored,
+					$pageCreated,
+					$restoredPageIds
+				);
+			}
 		}
 
 		if ( $talkRestored ) {
