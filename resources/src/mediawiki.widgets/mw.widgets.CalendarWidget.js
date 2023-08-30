@@ -16,6 +16,7 @@
 	 * @extends OO.ui.Widget
 	 * @mixins OO.ui.mixin.TabIndexedElement
 	 * @mixins OO.ui.mixin.FloatableElement
+	 * @mixins OO.ui.mixin.ClippableElement
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
@@ -38,7 +39,14 @@
 
 		// Mixin constructors
 		OO.ui.mixin.TabIndexedElement.call( this, $.extend( {}, config, { $tabIndexed: this.$element } ) );
+		OO.ui.mixin.ClippableElement.call( this, $.extend( { $clippable: this.$element }, config ) );
 		OO.ui.mixin.FloatableElement.call( this, config );
+
+		// Flipping implementation derived from MenuSelectWidget
+		// Initial vertical positions other than 'center' will result in
+		// the menu being flipped if there is not enough space in the container.
+		// Store the original position so we know what to reset to.
+		this.originalVerticalPosition = this.verticalPosition;
 
 		// Properties
 		this.lazyInitOnToggle = !!config.lazyInitOnToggle;
@@ -77,6 +85,7 @@
 	OO.inheritClass( mw.widgets.CalendarWidget, OO.ui.Widget );
 	OO.mixinClass( mw.widgets.CalendarWidget, OO.ui.mixin.TabIndexedElement );
 	OO.mixinClass( mw.widgets.CalendarWidget, OO.ui.mixin.FloatableElement );
+	OO.mixinClass( mw.widgets.CalendarWidget, OO.ui.mixin.ClippableElement );
 
 	/* Events */
 
@@ -87,6 +96,21 @@
 	 *
 	 * @param {string} date Day or month date, in the format 'YYYY-MM-DD' or 'YYYY-MM'
 	 */
+
+	/* Static properties */
+
+	/**
+	 * Positions to flip to if there isn't room in the container for the
+	 * menu in a specific direction.
+	 *
+	 * @property {Object.<string,string>}
+	 */
+	mw.widgets.CalendarWidget.static.flippedPositions = {
+		below: 'above',
+		above: 'below',
+		top: 'bottom',
+		bottom: 'top'
+	};
 
 	/* Methods */
 
@@ -589,17 +613,49 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.CalendarWidget.prototype.toggle = function ( visible ) {
+		visible = visible === undefined ? !this.visible : !!visible;
+		var change = visible !== this.isVisible();
 		if ( this.lazyInitOnToggle && visible ) {
 			this.lazyInitOnToggle = false;
 			this.buildHeaderButtons();
 			this.updateUI();
 		}
 
+		// Flipping implementation derived from MenuSelectWidget
+		if ( change && visible ) {
+			// Reset position before showing the popup again. It's possible we no longer need to flip
+			// (e.g. if the user scrolled).
+			this.setVerticalPosition( this.originalVerticalPosition );
+		}
+
 		// Parent method
 		mw.widgets.CalendarWidget.parent.prototype.toggle.call( this, visible );
 
-		if ( this.$floatableContainer ) {
-			this.togglePositioning( this.isVisible() );
+		if ( change ) {
+			this.togglePositioning( visible && !!this.$floatableContainer );
+			this.toggleClipping( visible );
+
+			// Flipping implementation derived from MenuSelectWidget
+			if (
+				( this.isClippedVertically() || this.isFloatableOutOfView() ) &&
+				this.originalVerticalPosition !== 'center'
+			) {
+				// If opening the menu in one direction causes it to be clipped, flip it
+				var originalHeight = this.$element.height();
+				this.setVerticalPosition(
+					this.constructor.static.flippedPositions[ this.originalVerticalPosition ]
+				);
+				if ( this.isClippedVertically() || this.isFloatableOutOfView() ) {
+					// If flipping also causes it to be clipped, open in whichever direction
+					// we have more space
+					var flippedHeight = this.$element.height();
+					if ( originalHeight > flippedHeight ) {
+						this.setVerticalPosition( this.originalVerticalPosition );
+					}
+				}
+			}
+			// Note that we do not flip the menu's opening direction if the clipping changes
+			// later (e.g. after the user scrolls), that seems like it would be annoying
 		}
 
 		return this;
