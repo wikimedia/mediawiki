@@ -70,7 +70,7 @@
 	"apihelp-changeauthenticationdata-summary": "שינוי נתוני אימות עבור המשתמש הנוכחי.",
 	"apihelp-changeauthenticationdata-example-password": "ניסיון לשנות את הסיסמה של המשתמש הנוכחי ל־<kbd>ExamplePassword</kbd>.",
 	"apihelp-changecontentmodel-summary": "שינוי מודל התוכן של דף",
-	"apihelp-changecontentmodel-param-title": "כותרת הדך שצריך לשנות את מודל התוכן שלו. לא יכול לשמש יחד עם <var>$1pageid</var>.",
+	"apihelp-changecontentmodel-param-title": "כותרת הדף שצריך לשנות את מודל התוכן שלו. לא יכול לשמש יחד עם <var>$1pageid</var>.",
 	"apihelp-changecontentmodel-param-pageid": "מזהה הדף של הדף שצריך לשנות את מודל התוכן שלו. לא יכול לשמש יחד עם <var>$1title</var>.",
 	"apihelp-changecontentmodel-param-summary": "תקציר עריכה וסיבה לרשומת יומן",
 	"apihelp-changecontentmodel-param-tags": "תגי שינוי שיחולו על רשומת היומן ועל העריכה.",
