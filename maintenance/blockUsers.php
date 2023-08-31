@@ -22,8 +22,6 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use MediaWiki\MediaWikiServices;
-
 class BlockUsers extends Maintenance {
 
 	public function __construct() {
@@ -140,8 +138,8 @@ class BlockUsers extends Maintenance {
 		}
 
 		# Handle each entry
-		$blockUserFactory = MediaWikiServices::getInstance()->getBlockUserFactory();
-		$unblockUserFactory = MediaWikiServices::getInstance()->getUnblockUserFactory();
+		$blockUserFactory = $this->getServiceContainer()->getBlockUserFactory();
+		$unblockUserFactory = $this->getServiceContainer()->getUnblockUserFactory();
 		$action = $unblocking ? "Unblocking" : "Blocking";
 		for ( $linenum = 1; !feof( $file ); $linenum++ ) {
 			$line = trim( fgets( $file ) );

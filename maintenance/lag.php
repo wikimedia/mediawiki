@@ -23,8 +23,6 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * Maintenance script to show database lag.
  *
@@ -38,7 +36,7 @@ class DatabaseLag extends Maintenance {
 	}
 
 	public function execute() {
-		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$lb = $this->getServiceContainer()->getDBLoadBalancer();
 		if ( $this->hasOption( 'r' ) ) {
 			$this->output( 'time     ' );
 

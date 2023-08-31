@@ -29,7 +29,6 @@ require_once __DIR__ . '/Maintenance.php';
 use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -132,7 +131,7 @@ class NamespaceDupes extends Maintenance {
 	 * @return bool
 	 */
 	private function checkAll( $options ) {
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$contLang = $this->getServiceContainer()->getContentLanguage();
 		$spaces = [];
 
 		// List interwikis first, so they'll be overridden
@@ -144,7 +143,7 @@ class NamespaceDupes extends Maintenance {
 
 		// Now pull in all canonical and alias namespaces...
 		foreach (
-			MediaWikiServices::getInstance()->getNamespaceInfo()->getCanonicalNamespaces()
+			$this->getServiceContainer()->getNamespaceInfo()->getCanonicalNamespaces()
 			as $ns => $name
 		) {
 			// This includes $wgExtraNamespaces
@@ -249,7 +248,7 @@ class NamespaceDupes extends Maintenance {
 	 * @return string[]
 	 */
 	private function getInterwikiList() {
-		$result = MediaWikiServices::getInstance()->getInterwikiLookup()->getAllPrefixes();
+		$result = $this->getServiceContainer()->getInterwikiLookup()->getAllPrefixes();
 		return array_column( $result, 'iw_prefix' );
 	}
 
@@ -373,7 +372,7 @@ class NamespaceDupes extends Maintenance {
 		$batchConds = [];
 		$fromField = "{$fieldPrefix}_from";
 		$batchSize = 500;
-		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
+		$linksMigration = $this->getServiceContainer()->getLinksMigration();
 		if ( isset( $linksMigration::$mapping[$table] ) ) {
 			$queryInfo = $linksMigration->getQueryInfo( $table );
 			[ $namespaceField, $titleField ] = $linksMigration->getTitleFields( $table );
@@ -531,7 +530,7 @@ class NamespaceDupes extends Maintenance {
 
 		if (
 			$options['move-talk'] &&
-			MediaWikiServices::getInstance()->getNamespaceInfo()->isSubject( $ns )
+			$this->getServiceContainer()->getNamespaceInfo()->isSubject( $ns )
 		) {
 			$checkNamespaces = [ NS_MAIN, NS_TALK ];
 		} else {
@@ -567,7 +566,7 @@ class NamespaceDupes extends Maintenance {
 			$dbk = "$name-" . $dbk;
 		}
 		$destNS = $ns;
-		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+		$nsInfo = $this->getServiceContainer()->getNamespaceInfo();
 		if ( $sourceNs == NS_TALK && $nsInfo->isSubject( $ns ) ) {
 			// This is an associated talk page moved with the --move-talk feature.
 			$destNS = $nsInfo->getTalk( $destNS );
@@ -664,7 +663,7 @@ class NamespaceDupes extends Maintenance {
 	 * @return bool
 	 */
 	private function canMerge( $id, LinkTarget $linkTarget, &$logStatus ) {
-		$revisionLookup = MediaWikiServices::getInstance()->getRevisionLookup();
+		$revisionLookup = $this->getServiceContainer()->getRevisionLookup();
 		$latestDest = $revisionLookup->getRevisionByTitle( $linkTarget, 0,
 			IDBAccessObject::READ_LATEST );
 		$latestSource = $revisionLookup->getRevisionByPageId( $id, 0,
@@ -694,7 +693,7 @@ class NamespaceDupes extends Maintenance {
 		// we are deliberately constructing an invalid title.
 		$sourceTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
 		$sourceTitle->resetArticleID( $id );
-		$wikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $sourceTitle );
+		$wikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $sourceTitle );
 		$wikiPage->loadPageData( WikiPage::READ_LATEST );
 
 		$destId = $newTitle->getArticleID();

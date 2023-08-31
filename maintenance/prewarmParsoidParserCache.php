@@ -1,5 +1,4 @@
 <?php
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageLookup;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
@@ -43,17 +42,17 @@ class PrewarmParsoidParserCache extends Maintenance {
 	}
 
 	private function getPageLookup(): PageLookup {
-		$this->pageLookup = MediaWikiServices::getInstance()->getPageStore();
+		$this->pageLookup = $this->getServiceContainer()->getPageStore();
 		return $this->pageLookup;
 	}
 
 	private function getRevisionLookup(): RevisionLookup {
-		$this->revisionLookup = MediaWikiServices::getInstance()->getRevisionLookup();
+		$this->revisionLookup = $this->getServiceContainer()->getRevisionLookup();
 		return $this->revisionLookup;
 	}
 
 	private function getParsoidOutputAccess(): ParsoidOutputAccess {
-		$this->parsoidOutputAccess = MediaWikiServices::getInstance()->getParsoidOutputAccess();
+		$this->parsoidOutputAccess = $this->getServiceContainer()->getParsoidOutputAccess();
 		return $this->parsoidOutputAccess;
 	}
 
@@ -87,7 +86,7 @@ class PrewarmParsoidParserCache extends Maintenance {
 	 * @return int The canonical index of the namespace
 	 */
 	private function normalizeNamespace( string $namespace ): int {
-		return MediaWikiServices::getInstance()->getNamespaceInfo()
+		return $this->getServiceContainer()->getNamespaceInfo()
 			->getCanonicalIndex( strtolower( $namespace ) );
 	}
 

@@ -22,7 +22,6 @@
  */
 
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
-use MediaWiki\MediaWikiServices;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -46,7 +45,7 @@ class CheckImages extends Maintenance {
 		$numImages = 0;
 		$numGood = 0;
 
-		$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
+		$repo = $this->getServiceContainer()->getRepoGroup()->getLocalRepo();
 		do {
 			$queryBuilder = FileSelectQueryBuilder::newForFile( $dbr );
 

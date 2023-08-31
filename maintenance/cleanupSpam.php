@@ -22,7 +22,6 @@
  */
 
 use MediaWiki\ExternalLinks\LinkFilter;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -58,7 +57,7 @@ class CleanupSpam extends Maintenance {
 			$this->fatalError( "Invalid username specified in 'spambot_username' message: $username" );
 		}
 		// Hack: Grant bot rights so we don't flood RecentChanges
-		MediaWikiServices::getInstance()->getUserGroupManager()->addUserToGroup( $user, 'bot' );
+		$this->getServiceContainer()->getUserGroupManager()->addUserToGroup( $user, 'bot' );
 		StubGlobalUser::setUser( $user );
 
 		$spec = $this->getArg( 0 );
@@ -150,7 +149,7 @@ class CleanupSpam extends Maintenance {
 
 		$this->output( $title->getPrefixedDBkey() . " ..." );
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$revLookup = $services->getRevisionLookup();
 		$rev = $revLookup->getRevisionByTitle( $title );
 		$currentRevId = $rev->getId();

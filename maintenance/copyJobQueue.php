@@ -21,7 +21,6 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\WikiMap\WikiMap;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -57,7 +56,7 @@ class CopyJobQueue extends Maintenance {
 		}
 
 		$types = ( $this->getOption( 'type' ) === 'all' )
-			? MediaWikiServices::getInstance()->getJobQueueGroup()->getQueueTypes()
+			? $this->getServiceContainer()->getJobQueueGroup()->getQueueTypes()
 			: [ $this->getOption( 'type' ) ];
 
 		$dbDomain = WikiMap::getCurrentWikiDbDomain()->getId();

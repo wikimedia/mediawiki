@@ -25,7 +25,6 @@
 require_once __DIR__ . '/../Maintenance.php';
 
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
@@ -79,14 +78,14 @@ class BenchmarkParse extends Maintenance {
 
 		$this->clearLinkCache = $this->hasOption( 'reset-linkcache' );
 		// Set as a member variable to avoid function calls when we're timing the parse
-		$this->linkCache = MediaWikiServices::getInstance()->getLinkCache();
+		$this->linkCache = $this->getServiceContainer()->getLinkCache();
 
 		$title = Title::newFromText( $this->getArg( 0 ) );
 		if ( !$title ) {
 			$this->fatalError( "Invalid title" );
 		}
 
-		$revLookup = MediaWikiServices::getInstance()->getRevisionLookup();
+		$revLookup = $this->getServiceContainer()->getRevisionLookup();
 		if ( $this->hasOption( 'page-time' ) ) {
 			$pageTimestamp = wfTimestamp( TS_MW, strtotime( $this->getOption( 'page-time' ) ) );
 			$id = $this->getRevIdForTime( $title, $pageTimestamp );
@@ -158,7 +157,7 @@ class BenchmarkParse extends Maintenance {
 	 */
 	private function runParser( RevisionRecord $revision ) {
 		$content = $revision->getContent( SlotRecord::MAIN );
-		$contentRenderer = MediaWikiServices::getInstance()->getContentRenderer();
+		$contentRenderer = $this->getServiceContainer()->getContentRenderer();
 		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable getId does not return null here
 		$contentRenderer->getParserOutput( $content, $revision->getPage(), $revision->getId() );
 		if ( $this->clearLinkCache ) {
@@ -190,7 +189,7 @@ class BenchmarkParse extends Maintenance {
 			$this->idCache[$pdbk] = $proposedId;
 		}
 		if ( $this->idCache[$pdbk] !== false ) {
-			$revLookup = MediaWikiServices::getInstance()->getRevisionLookup();
+			$revLookup = $this->getServiceContainer()->getRevisionLookup();
 			$revRecord = $revLookup->getRevisionById( $this->idCache[$pdbk] );
 		}
 

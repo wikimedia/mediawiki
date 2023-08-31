@@ -40,7 +40,6 @@
  * @file
  * @ingroup Maintenance ExternalStorage
  */
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 
@@ -190,7 +189,7 @@ class CompressOld extends Maintenance {
 
 		# Store in external storage if required
 		if ( $extdb !== '' ) {
-			$esFactory = MediaWikiServices::getInstance()->getExternalStoreFactory();
+			$esFactory = $this->getServiceContainer()->getExternalStoreFactory();
 			/** @var ExternalStoreDB $storeObj */
 			$storeObj = $esFactory->getStore( 'DB' );
 			$compress = $storeObj->store( $extdb, $compress );
@@ -234,12 +233,12 @@ class CompressOld extends Maintenance {
 
 		# Set up external storage
 		if ( $extdb != '' ) {
-			$esFactory = MediaWikiServices::getInstance()->getExternalStoreFactory();
+			$esFactory = $this->getServiceContainer()->getExternalStoreFactory();
 			/** @var ExternalStoreDB $storeObj */
 			$storeObj = $esFactory->getStore( 'DB' );
 		}
 
-		$blobStore = MediaWikiServices::getInstance()
+		$blobStore = $this->getServiceContainer()
 			->getBlobStoreFactory()
 			->newSqlBlobStore();
 
@@ -292,7 +291,7 @@ class CompressOld extends Maintenance {
 			$conds[] = "rev_timestamp<'" . $endDate . "'";
 		}
 
-		$slotRoleStore = MediaWikiServices::getInstance()->getSlotRoleStore();
+		$slotRoleStore = $this->getServiceContainer()->getSlotRoleStore();
 		$tables = [ 'revision', 'slots', 'content', 'text' ];
 		$conds = array_merge( [
 			'rev_id=slot_revision_id',

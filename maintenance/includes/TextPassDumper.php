@@ -28,7 +28,6 @@
 require_once __DIR__ . '/BackupDumper.php';
 require_once __DIR__ . '/../../includes/export/WikiExporter.php';
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Shell\Shell;
@@ -179,7 +178,7 @@ TEXT
 	 * @return BlobStore
 	 */
 	private function getBlobStore() {
-		return MediaWikiServices::getInstance()->getBlobStore();
+		return $this->getServiceContainer()->getBlobStore();
 	}
 
 	public function execute() {
@@ -263,7 +262,7 @@ TEXT
 		// individually retrying at different layers of code.
 
 		try {
-			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+			$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 			$this->lb = $lbFactory->newMainLB();
 		} catch ( Exception $e ) {
 			throw new RuntimeException( __METHOD__
@@ -553,7 +552,7 @@ TEXT
 	 */
 	private function exportTransform( $text, $model, $format = null ) {
 		try {
-			$contentHandler = MediaWikiServices::getInstance()
+			$contentHandler = $this->getServiceContainer()
 				->getContentHandlerFactory()
 				->getContentHandler( $model );
 		} catch ( MWException $ex ) {
@@ -751,7 +750,7 @@ TEXT
 			$text = $store->getBlob( $address );
 
 			$stripped = str_replace( "\r", "", $text );
-			$normalized = MediaWikiServices::getInstance()->getContentLanguage()
+			$normalized = $this->getServiceContainer()->getContentLanguage()
 				->normalize( $stripped );
 
 			return $normalized;
@@ -912,7 +911,7 @@ TEXT
 
 		// Do normalization in the dump thread...
 		$stripped = str_replace( "\r", "", $text );
-		$normalized = MediaWikiServices::getInstance()->getContentLanguage()->
+		$normalized = $this->getServiceContainer()->getContentLanguage()->
 			normalize( $stripped );
 
 		return $normalized;

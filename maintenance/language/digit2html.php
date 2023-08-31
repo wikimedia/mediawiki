@@ -47,7 +47,7 @@ class Digit2Html extends Maintenance {
 	}
 
 	public function execute() {
-		$languageNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
+		$languageNameUtils = $this->getServiceContainer()->getLanguageNameUtils();
 		foreach ( $this->mLangs as $code ) {
 			$filename = $languageNameUtils->getMessagesFileName( $code );
 			$this->output( "Loading language [$code] ..." );

@@ -21,7 +21,6 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -64,7 +63,7 @@ class FormatInstallDoc extends Maintenance {
 		$outText = InstallDocFormatter::format( $inText );
 
 		if ( $this->hasOption( 'html' ) ) {
-			$parser = MediaWikiServices::getInstance()->getParser();
+			$parser = $this->getServiceContainer()->getParser();
 			$opt = ParserOptions::newFromAnon();
 			$title = Title::newFromText( 'Text file' );
 			$out = $parser->parse( $outText, $title, $opt );

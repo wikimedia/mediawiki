@@ -43,7 +43,7 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
-		$this->lbFactory = MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$this->lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 		$this->setBatchSize( $this->getOption( 'batch-size', $this->getBatchSize() ) );
 
 		$dbr = $this->lbFactory->getMainLB()->getConnectionRef( DB_REPLICA );

@@ -24,8 +24,6 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use MediaWiki\MediaWikiServices;
-
 class EmptyUserGroup extends Maintenance {
 	public function __construct() {
 		parent::__construct();
@@ -36,7 +34,7 @@ class EmptyUserGroup extends Maintenance {
 
 	public function execute() {
 		$group = $this->getArg( 0 );
-		$userGroupManager = MediaWikiServices::getInstance()->getUserGroupManager();
+		$userGroupManager = $this->getServiceContainer()->getUserGroupManager();
 
 		$totalCount = 0;
 		$this->output( "Removing users from $group...\n" );

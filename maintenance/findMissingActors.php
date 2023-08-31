@@ -19,7 +19,6 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNameUtils;
@@ -93,7 +92,7 @@ class FindMissingActors extends Maintenance {
 		?LBFactory $lbFactory = null,
 		?ActorNormalization $actorNormalization = null
 	) {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 
 		$this->userFactory = $userFactory ?? $this->userFactory ?? $services->getUserFactory();
 		$this->userNameUtils = $userNameUtils ?? $this->userNameUtils ?? $services->getUserNameUtils();

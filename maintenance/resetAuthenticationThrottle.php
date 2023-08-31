@@ -24,7 +24,6 @@
 use MediaWiki\Auth\Throttler;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\IPUtils;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -101,7 +100,7 @@ class ResetAuthenticationThrottle extends Maintenance {
 			'cache' => ObjectCache::getLocalClusterInstance(),
 		] );
 		if ( $rawUsername !== null ) {
-			$usernames = MediaWikiServices::getInstance()->getAuthManager()
+			$usernames = $this->getServiceContainer()->getAuthManager()
 				->normalizeUsername( $rawUsername );
 			if ( !$usernames ) {
 				$this->fatalError( "Not a valid username: $rawUsername" );

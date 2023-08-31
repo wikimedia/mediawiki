@@ -25,7 +25,6 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 
 require_once __DIR__ . '/TableCleanup.php';
@@ -47,7 +46,7 @@ class TitleCleanup extends TableCleanup {
 	 */
 	protected function processRow( $row ) {
 		$display = Title::makeName( $row->page_namespace, $row->page_title );
-		$verified = MediaWikiServices::getInstance()->getContentLanguage()->normalize( $display );
+		$verified = $this->getServiceContainer()->getContentLanguage()->normalize( $display );
 		$title = Title::newFromText( $verified );
 
 		if ( $title !== null
@@ -159,7 +158,7 @@ class TitleCleanup extends TableCleanup {
 
 			# Namespace which no longer exists. Put the page in the main namespace
 			# since we don't have any idea of the old namespace name. See T70501.
-			if ( !MediaWikiServices::getInstance()->getNamespaceInfo()->exists( $ns ) ) {
+			if ( !$this->getServiceContainer()->getNamespaceInfo()->exists( $ns ) ) {
 				$ns = 0;
 			}
 
@@ -197,7 +196,7 @@ class TitleCleanup extends TableCleanup {
 				],
 				[ 'page_id' => $row->page_id ],
 				__METHOD__ );
-			MediaWikiServices::getInstance()->getLinkCache()->clear();
+			$this->getServiceContainer()->getLinkCache()->clear();
 		}
 	}
 }

@@ -21,7 +21,6 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 
@@ -52,7 +51,7 @@ class CheckBadRedirects extends Maintenance {
 		$this->output( "Found $count redirects.\n" .
 			"Checking for bad redirects:\n\n" );
 
-		$revLookup = MediaWikiServices::getInstance()->getRevisionLookup();
+		$revLookup = $this->getServiceContainer()->getRevisionLookup();
 		foreach ( $result as $row ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 			$revRecord = $revLookup->getRevisionById( $row->page_latest );

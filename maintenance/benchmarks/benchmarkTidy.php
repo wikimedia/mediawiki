@@ -19,8 +19,6 @@
  * @ingroup Benchmark
  */
 
-use MediaWiki\MediaWikiServices;
-
 require_once __DIR__ . '/../includes/Benchmarker.php';
 
 class BenchmarkTidy extends Benchmarker {
@@ -40,7 +38,7 @@ class BenchmarkTidy extends Benchmarker {
 	}
 
 	private function benchmark( $html ) {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$contLang = $services->getContentLanguage();
 		$tidy = $services->getTidy();
 		$times = [];

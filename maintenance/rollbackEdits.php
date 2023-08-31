@@ -22,7 +22,6 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ActorMigration;
 
@@ -52,7 +51,7 @@ class RollbackEdits extends Maintenance {
 
 	public function execute() {
 		$user = $this->getOption( 'user' );
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$userNameUtils = $services->getUserNameUtils();
 		$username = $userNameUtils->isIP( $user ) ? $user : $userNameUtils->getCanonical( $user );
 		if ( !$username ) {

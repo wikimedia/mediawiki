@@ -27,7 +27,6 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 
 /**
  * Maintenance script that removes unused preferences from the database.
@@ -80,7 +79,7 @@ class CleanupPreferences extends Maintenance {
 
 		// Remove unknown preferences. Special-case 'userjs-' as we can't control those names.
 		if ( $unknown ) {
-			$defaultUserOptions = MediaWikiServices::getInstance()->getUserOptionsLookup()->getDefaultOptions();
+			$defaultUserOptions = $this->getServiceContainer()->getUserOptionsLookup()->getDefaultOptions();
 			$where = [
 				'up_property NOT' . $dbr->buildLike( 'userjs-', $dbr->anyString() ),
 				'up_property NOT IN (' . $dbr->makeList( array_keys( $defaultUserOptions ) ) . ')',

@@ -20,7 +20,6 @@
  */
 
 use MediaWiki\Languages\LanguageNameUtils;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
 
@@ -49,7 +48,7 @@ class DeleteEqualMessages extends Maintenance {
 	 * @param array &$messageInfo
 	 */
 	protected function fetchMessageInfo( $langCode, array &$messageInfo ) {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$contLang = $services->getContentLanguage();
 		if ( $langCode ) {
 			$this->output( "\n... fetching message info for language: $langCode" );
@@ -118,7 +117,7 @@ class DeleteEqualMessages extends Maintenance {
 
 		$this->output( 'Checking for pages with default message...' );
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		// Load message information
 		if ( $langCode ) {
 			$langCodes = $services->getLanguageNameUtils()

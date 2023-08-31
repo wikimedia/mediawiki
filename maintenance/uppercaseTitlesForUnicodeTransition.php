@@ -22,7 +22,6 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IDatabase;
@@ -236,7 +235,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 	 */
 	private function getNamespaces() {
 		if ( $this->namespaces === null ) {
-			$nsinfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+			$nsinfo = $this->getServiceContainer()->getNamespaceInfo();
 			$this->namespaces = array_filter(
 				array_keys( $nsinfo->getCanonicalNamespaces() ),
 				static function ( $ns ) use ( $nsinfo ) {
@@ -312,7 +311,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 		if ( $this->isUserPage( $db, $newTitle->getNamespace(), $newTitle->getText() ) ) {
 			$munge = 'Target title\'s user exists';
 		} else {
-			$mpFactory = MediaWikiServices::getInstance()->getMovePageFactory();
+			$mpFactory = $this->getServiceContainer()->getMovePageFactory();
 			$status = $mpFactory->newMovePage( $oldTitle, $newTitle )->isValidMove();
 			if ( !$status->isOK() && (
 				$status->hasMessage( 'articleexists' ) || $status->hasMessage( 'redirectexists' ) ) ) {
@@ -393,7 +392,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 			return false;
 		}
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$mpFactory = $services->getMovePageFactory();
 		$movePage = $mpFactory->newMovePage( $oldTitle, $newTitle );
 		$status = $movePage->isValidMove();
@@ -592,7 +591,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 		$batchSize = $this->getBatchSize();
 		$namespaces = $this->getNamespaces();
 		$likes = $this->getLikeBatches( $db, $titleField );
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 
 		if ( is_int( $nsField ) ) {
 			$namespaces = array_intersect( $namespaces, [ $nsField ] );

@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 
 /**
@@ -106,7 +105,7 @@ class CLIParser extends Maintenance {
 	}
 
 	protected function initParser() {
-		$this->parser = MediaWikiServices::getInstance()->getParserFactory()->create();
+		$this->parser = $this->getServiceContainer()->getParserFactory()->create();
 	}
 
 	/**

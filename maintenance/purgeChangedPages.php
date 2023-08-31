@@ -23,7 +23,6 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -133,7 +132,7 @@ class PurgeChangedPages extends Maintenance {
 			}
 
 			// Send batch of purge requests out to CDN servers
-			$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+			$hcu = $this->getServiceContainer()->getHtmlCacheUpdater();
 			$hcu->purgeUrls( $urls, $hcu::PURGE_NAIVE );
 
 			if ( $this->hasOption( 'sleep-per-batch' ) ) {

@@ -28,8 +28,6 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\MediaWikiServices;
-
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -67,7 +65,7 @@ class DumpRenderer extends Maintenance {
 		}
 
 		$source = new ImportStreamSource( $this->getStdin() );
-		$importer = MediaWikiServices::getInstance()
+		$importer = $this->getServiceContainer()
 			->getWikiImporterFactory()
 			->getWikiImporter( $source );
 
@@ -114,7 +112,7 @@ class DumpRenderer extends Maintenance {
 		$options = ParserOptions::newFromUser( $user );
 
 		$content = $rev->getContent();
-		$contentRenderer = MediaWikiServices::getInstance()->getContentRenderer();
+		$contentRenderer = $this->getServiceContainer()->getContentRenderer();
 		$output = $contentRenderer->getParserOutput( $content, $title, null, $options );
 
 		file_put_contents( $filename,

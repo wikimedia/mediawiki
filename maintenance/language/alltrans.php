@@ -21,8 +21,6 @@
  * @ingroup MaintenanceLanguage
  */
 
-use MediaWiki\MediaWikiServices;
-
 require_once __DIR__ . '/../Maintenance.php';
 
 /**
@@ -39,7 +37,7 @@ class AllTrans extends Maintenance {
 	}
 
 	public function execute() {
-		$localisationCache = MediaWikiServices::getInstance()->getLocalisationCache();
+		$localisationCache = $this->getServiceContainer()->getLocalisationCache();
 		$englishMessages = $localisationCache->getItem( 'en', 'messages' );
 		foreach ( $englishMessages as $key => $_ ) {
 			$this->output( "$key\n" );

@@ -25,7 +25,6 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 
 /**
  * Maintenance script to update cached special pages.
@@ -45,7 +44,7 @@ class UpdateSpecialPages extends Maintenance {
 	public function execute() {
 		$dbw = $this->getDB( DB_PRIMARY );
 		$config = $this->getConfig();
-		$specialPageFactory = MediaWikiServices::getInstance()->getSpecialPageFactory();
+		$specialPageFactory = $this->getServiceContainer()->getSpecialPageFactory();
 
 		$this->doSpecialPageCacheUpdates( $dbw );
 
@@ -131,7 +130,7 @@ class UpdateSpecialPages extends Maintenance {
 	 * mysql connection to "go away"
 	 */
 	private function reopenAndWaitForReplicas() {
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 		$lb = $lbFactory->getMainLB();
 		if ( !$lb->pingAll() ) {
 			$this->output( "\n" );

@@ -18,8 +18,6 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
-
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -57,7 +55,7 @@ class ShowJobs extends Maintenance {
 		$stateFilter = $this->getOption( 'status', '' );
 		$stateLimit = (float)$this->getOption( 'limit', INF );
 
-		$group = MediaWikiServices::getInstance()->getJobQueueGroup();
+		$group = $this->getServiceContainer()->getJobQueueGroup();
 
 		$filteredTypes = $typeFilter
 			? [ $typeFilter ]

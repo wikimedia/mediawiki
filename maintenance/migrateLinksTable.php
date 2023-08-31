@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -115,7 +113,7 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 			$title = new TitleValue( (int)$ns, $titleString );
 			$this->output( "Starting backfill of $ns:$titleString " .
 				"title on pages between $lowPageId and $highPageId\n" );
-			$id = MediaWikiServices::getInstance()->getLinkTargetLookup()->acquireLinkTargetId( $title, $dbw );
+			$id = $this->getServiceContainer()->getLinkTargetLookup()->acquireLinkTargetId( $title, $dbw );
 			$conds = [
 				$targetColumn => null,
 				$mapping[$table]['ns'] => $ns,

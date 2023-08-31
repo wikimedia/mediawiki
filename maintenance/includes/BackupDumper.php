@@ -29,7 +29,6 @@ require_once __DIR__ . '/../Maintenance.php';
 require_once __DIR__ . '/../../includes/export/WikiExporter.php';
 
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -326,7 +325,7 @@ abstract class BackupDumper extends Maintenance {
 		$this->initProgress( $history );
 
 		$db = $this->backupDb();
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$exporter = $services->getWikiExporterFactory()->getWikiExporter(
 			$db,
 			$history,
@@ -402,7 +401,7 @@ abstract class BackupDumper extends Maintenance {
 			return $this->forcedDb;
 		}
 
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 		$this->lb = $lbFactory->newMainLB();
 		$db = $this->lb->getMaintenanceConnectionRef( DB_REPLICA, 'dump' );
 

@@ -28,7 +28,6 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
@@ -127,7 +126,7 @@ class UpdateSearchIndex extends Maintenance {
 	 */
 	private function updateSearchIndexForPage( int $pageId ) {
 		// Get current revision
-		$rev = MediaWikiServices::getInstance()
+		$rev = $this->getServiceContainer()
 			->getRevisionLookup()
 			->getRevisionByPageId( $pageId, 0, IDBAccessObject::READ_LATEST );
 		$title = null;

@@ -40,7 +40,7 @@ class PruneUnusedLinkTargetRows extends Maintenance {
 
 		$this->output( "Deleting unused linktarget rows...\n" );
 		$deleted = 0;
-		$linksMigration = \MediaWiki\MediaWikiServices::getInstance()->getLinksMigration();
+		$linksMigration = $this->getServiceContainer()->getLinksMigration();
 		while ( $ltCounter < $maxLtId ) {
 			$batchMaxLtId = min( $ltCounter + $this->getBatchSize(), $maxLtId ) + 1;
 			$this->output( "Checking lt_id between $ltCounter and $batchMaxLtId...\n" );

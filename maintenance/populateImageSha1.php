@@ -22,7 +22,6 @@
  */
 
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -128,7 +127,7 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 				$this->waitForReplication();
 			}
 
-			$file = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
+			$file = $this->getServiceContainer()->getRepoGroup()->getLocalRepo()
 				->newFile( $row->img_name );
 			if ( !$file ) {
 				continue;

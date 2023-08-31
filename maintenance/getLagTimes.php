@@ -23,7 +23,6 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\IPUtils;
 
 /**
@@ -39,7 +38,7 @@ class GetLagTimes extends Maintenance {
 	}
 
 	public function execute() {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$lbFactory = $services->getDBLoadBalancerFactory();
 		$stats = $services->getStatsdDataFactory();
 		$lbsByType = [

@@ -22,7 +22,6 @@
  */
 
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Title\Title;
 use Wikimedia\AtEase\AtEase;
@@ -54,7 +53,7 @@ class RebuildFileCache extends Maintenance {
 		$settingsBuilder->putConfigValue( MainConfigNames::UseFileCache, false );
 
 		// Avoid DB writes (like enotif/counters)
-		MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode()
+		$this->getServiceContainer()->getReadOnlyMode()
 			->setReason( 'Building cache' );
 
 		// Ensure no debug-specific logic ends up in the cache (must be after Setup.php)
@@ -106,7 +105,7 @@ class RebuildFileCache extends Maintenance {
 			// If 'all' isn't passed as an option, just fall back to previous behaviour
 			// of using content namespaces
 			$where['page_namespace'] =
-				MediaWikiServices::getInstance()->getNamespaceInfo()->getContentNamespaces();
+				$this->getServiceContainer()->getNamespaceInfo()->getContentNamespaces();
 		}
 
 		// Mock request (hack, no real client)

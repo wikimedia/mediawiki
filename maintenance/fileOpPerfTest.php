@@ -21,8 +21,6 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\MediaWikiServices;
-
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -43,7 +41,7 @@ class FileOpPerfTest extends Maintenance {
 	}
 
 	public function execute() {
-		$backendGroup = MediaWikiServices::getInstance()->getFileBackendGroup();
+		$backendGroup = $this->getServiceContainer()->getFileBackendGroup();
 		$backend = $backendGroup->get( $this->getOption( 'b1' ) );
 		$this->doPerfTest( $backend );
 

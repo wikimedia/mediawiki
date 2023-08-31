@@ -19,7 +19,6 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionArchiveRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -84,7 +83,7 @@ class FindBadBlobs extends Maintenance {
 		?LoadBalancer $loadBalancer = null,
 		?LBFactory $lbFactory = null
 	) {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 
 		$this->revisionStore = $revisionStore ?? $this->revisionStore ?? $services->getRevisionStore();
 		$this->blobStore = $blobStore ?? $this->blobStore ?? $services->getBlobStore();

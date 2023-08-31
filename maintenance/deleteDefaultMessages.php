@@ -24,7 +24,6 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ActorMigration;
@@ -44,7 +43,7 @@ class DeleteDefaultMessages extends Maintenance {
 	}
 
 	public function execute() {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 
 		$this->output( "Checking existence of old default messages..." );
 		$dbr = $this->getDB( DB_REPLICA );

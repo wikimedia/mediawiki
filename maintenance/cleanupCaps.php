@@ -29,7 +29,6 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 
 require_once __DIR__ . '/TableCleanup.php';
@@ -57,7 +56,7 @@ class CleanupCaps extends TableCleanup {
 		$this->namespace = intval( $this->getOption( 'namespace', 0 ) );
 
 		if (
-			MediaWikiServices::getInstance()->getNamespaceInfo()->
+			$this->getServiceContainer()->getNamespaceInfo()->
 				isCapitalized( $this->namespace )
 		) {
 			$this->output( "Will be moving pages to first letter capitalized titles" );
@@ -80,7 +79,7 @@ class CleanupCaps extends TableCleanup {
 		$current = Title::makeTitle( $row->page_namespace, $row->page_title );
 		$display = $current->getPrefixedText();
 		$lower = $row->page_title;
-		$upper = MediaWikiServices::getInstance()->getContentLanguage()->ucfirst( $row->page_title );
+		$upper = $this->getServiceContainer()->getContentLanguage()->ucfirst( $row->page_title );
 		if ( $upper == $lower ) {
 			$this->output( "\"$display\" already uppercase.\n" );
 
@@ -119,7 +118,7 @@ class CleanupCaps extends TableCleanup {
 		$current = Title::makeTitle( $row->page_namespace, $row->page_title );
 		$display = $current->getPrefixedText();
 		$upper = $row->page_title;
-		$lower = MediaWikiServices::getInstance()->getContentLanguage()->lcfirst( $row->page_title );
+		$lower = $this->getServiceContainer()->getContentLanguage()->lcfirst( $row->page_title );
 		if ( $upper == $lower ) {
 			$this->output( "\"$display\" already lowercase.\n" );
 
@@ -167,7 +166,7 @@ class CleanupCaps extends TableCleanup {
 			$this->output( "\"$display\" -> \"$targetDisplay\": DRY RUN, NOT MOVED\n" );
 			$ok = 'OK';
 		} else {
-			$mp = MediaWikiServices::getInstance()->getMovePageFactory()
+			$mp = $this->getServiceContainer()->getMovePageFactory()
 				->newMovePage( $current, $target );
 			$status = $mp->move( $this->user, $reason, $createRedirect );
 			$ok = $status->isOK() ? 'OK' : $status->getMessage( false, false, 'en' )->text();

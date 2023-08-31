@@ -32,7 +32,6 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
@@ -79,7 +78,7 @@ class ImageBuilder extends Maintenance {
 		$this->dbw = $this->getDB( DB_PRIMARY );
 		$this->dryrun = $this->hasOption( 'dry-run' );
 		if ( $this->dryrun ) {
-			MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode()
+			$this->getServiceContainer()->getReadOnlyMode()
 				->setReason( 'Dry run mode, image upgrades are suppressed' );
 		}
 
@@ -95,7 +94,7 @@ class ImageBuilder extends Maintenance {
 	 */
 	private function getRepo() {
 		if ( $this->repo === null ) {
-			$this->repo = MediaWikiServices::getInstance()->getRepoGroup()
+			$this->repo = $this->getServiceContainer()->getRepoGroup()
 				->newCustomLocalRepo( [
 					// make sure to update old, but compatible img_metadata fields.
 					'updateCompatibleMetadata' => true
@@ -219,7 +218,7 @@ class ImageBuilder extends Maintenance {
 
 	private function addMissingImage( $filename, $fullpath ) {
 		$timestamp = $this->dbw->timestamp( $this->getRepo()->getFileTimestamp( $fullpath ) );
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 
 		$altname = $services->getContentLanguage()->checkTitleEncoding( $filename );
 		if ( $altname != $filename ) {

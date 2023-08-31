@@ -27,7 +27,6 @@
  */
 
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IDatabase;
@@ -297,7 +296,7 @@ class GenerateSitemap extends Maintenance {
 	 * @return string
 	 */
 	private function guessPriority( $namespace ) {
-		return MediaWikiServices::getInstance()->getNamespaceInfo()->isSubject( $namespace )
+		return $this->getServiceContainer()->getNamespaceInfo()->isSubject( $namespace )
 			? $this->priorities[self::GS_MAIN]
 			: $this->priorities[self::GS_TALK];
 	}
@@ -337,7 +336,7 @@ class GenerateSitemap extends Maintenance {
 	 * Main loop
 	 */
 	public function main() {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$contLang = $services->getContentLanguage();
 		$langConverter = $services->getLanguageConverterFactory()->getLanguageConverter( $contLang );
 

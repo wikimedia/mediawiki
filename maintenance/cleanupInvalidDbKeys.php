@@ -23,7 +23,6 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 
@@ -139,7 +138,7 @@ TEXT
 		// the hypothesis that invalid rows will be old and in all likelihood
 		// unreferenced, we should be fine to do it like this.
 		$dbr = $this->getDB( DB_REPLICA, 'vslow' );
-		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
+		$linksMigration = $this->getServiceContainer()->getLinksMigration();
 		$joinConds = [];
 		$tables = [ $table ];
 		if ( isset( $linksMigration::$mapping[$table] ) ) {
@@ -205,7 +204,7 @@ TEXT
 			return;
 		}
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 
 		// Fix the bad data, using different logic for the various tables
 		$dbw = $this->getDB( DB_PRIMARY );
@@ -284,7 +283,7 @@ TEXT
 				// located. If the invalid rows don't go away after these jobs go through,
 				// they're probably being added by a buggy hook.
 				$this->outputStatus( "Queueing link update jobs for the pages in $idField...\n" );
-				$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
+				$linksMigration = $this->getServiceContainer()->getLinksMigration();
 				$wikiPageFactory = $services->getWikiPageFactory();
 				foreach ( $res as $row ) {
 					$wp = $wikiPageFactory->newFromID( $row->id );

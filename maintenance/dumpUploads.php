@@ -21,8 +21,6 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\MediaWikiServices;
-
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -114,7 +112,7 @@ By default, outputs relative paths against the parent directory of $wgUploadDire
 	}
 
 	private function outputItem( $name, $shared ) {
-		$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $name );
+		$file = $this->getServiceContainer()->getRepoGroup()->findFile( $name );
 		if ( $file && $this->filterItem( $file, $shared ) ) {
 			$filename = $file->getLocalRefPath();
 			$rel = wfRelativePath( $filename, $this->mBasePath );

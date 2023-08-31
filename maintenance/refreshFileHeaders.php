@@ -24,7 +24,6 @@
  */
 
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -54,7 +53,7 @@ class RefreshFileHeaders extends Maintenance {
 	}
 
 	public function execute() {
-		$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
+		$repo = $this->getServiceContainer()->getRepoGroup()->getLocalRepo();
 		$start = str_replace( ' ', '_', $this->getOption( 'start', '' ) ); // page on img_name
 		$end = str_replace( ' ', '_', $this->getOption( 'end', '' ) ); // page on img_name
 		// filter by img_media_type

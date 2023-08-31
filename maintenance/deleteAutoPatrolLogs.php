@@ -96,7 +96,7 @@ class DeleteAutoPatrolLogs extends Maintenance {
 	}
 
 	private function getRows( $fromId ) {
-		$lb = MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$lb = $this->getServiceContainer()->getDBLoadBalancer();
 		$dbr = $lb->getConnectionRef( DB_REPLICA );
 		$before = $this->getOption( 'before', false );
 
@@ -124,7 +124,7 @@ class DeleteAutoPatrolLogs extends Maintenance {
 	}
 
 	private function getRowsOld( $fromId ) {
-		$lb = MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$lb = $this->getServiceContainer()->getDBLoadBalancer();
 		$dbr = $lb->getConnectionRef( DB_REPLICA );
 		$batchSize = $this->getBatchSize();
 		$before = $this->getOption( 'before', false );
@@ -188,7 +188,7 @@ class DeleteAutoPatrolLogs extends Maintenance {
 	}
 
 	private function deleteRows( array $rows ) {
-		$lb = MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$lb = $this->getServiceContainer()->getDBLoadBalancer();
 		$dbw = $lb->getConnectionRef( DB_PRIMARY );
 
 		$dbw->delete(
