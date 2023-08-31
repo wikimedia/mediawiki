@@ -3128,6 +3128,7 @@
 	"pageinfo-redirects-name": "מספר ההפניות לדף זה",
 	"pageinfo-subpages-name": "מספר דפי המשנה של דף זה",
 	"pageinfo-subpages-value": "$1 ({{PLURAL:$2|הפניה אחת|$2 הפניות}}; {{PLURAL:$3|דף רגיל אחד|$3 דפים רגילים}})",
+	"pageinfo-subpages-value-unknown": "לא ידוע ($1)",
 	"pageinfo-firstuser": "{{GENDER:$1|יוצר|יוצרת}} הדף",
 	"pageinfo-firsttime": "תאריך יצירת הדף",
 	"pageinfo-lastuser": "{{GENDER:$1|העורך האחרון|העורכת האחרונה}}",

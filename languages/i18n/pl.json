@@ -1292,6 +1292,7 @@
 	"prefs-diffs": "Zmiany",
 	"prefs-help-prefershttps": "Ta opcja zacznie działać przy twoim następnym zalogowaniu.",
 	"prefs-tabs-navigation-hint": "Wskazówka: do poruszania się między zakładkami możesz użyć klawiszy strzałek w lewo i w prawo",
+	"prefs-sections-navigation-hint": "Wskazówka: Możesz skorzystać z klawiszy Tab oraz Shift + Tab, aby nawigować pomiędzy sekcjami preferencji.",
 	"userrights": "Uprawnienia użytkowników",
 	"userrights-lookup-user": "Wybierz użytkownika",
 	"userrights-user-editname": "Wprowadź nazwę użytkownika:",

@@ -364,6 +364,8 @@
 	"tags-source-manual": "由用戶與機械人手動套用",
 	"logentry-rights-rights": "$1已將{{GENDER:$6|$3}}的用戶組從$4{{GENDER:$2|變更}}為$5",
 	"logentry-managetags-activate": "$1{{GENDER:$2|已啟用}}標籤「$4」供用戶與機械人使用",
+	"logentry-tag-update-add-revision": "$1 對頁面 $3 的修訂 $4 新增{{PLURAL:$9|標籤|標籤}} $8。",
+	"logentry-tag-update-remove-revision": "$1 {{GENDER:$2|已移除}}頁面 $3 修訂 $4 的{{PLURAL:$9|標籤|標籤}} $8。",
 	"searchsuggest-search": "搜尋{{SITENAME}}",
 	"api-error-publishfailed": "內部錯誤：伺服器發佈暫存檔案失敗。",
 	"duration-days": "$1日",
@@ -373,7 +375,7 @@
 	"renameuser-linkoncontribs": "重新命名{{GENDER:$1|用戶}}",
 	"renameuserold": "目前的用戶名稱：",
 	"log-name-renameuser": "用戶名變更日誌",
-	"logentry-renameuser-renameuser": "「$1」已將用戶「$4」（已編輯 {{PLURAL:$6|$6 次}}）{{GENDER:$2|重新命名}}為「{{GENDER:$7|$5}}」",
+	"logentry-renameuser-renameuser": "$1 已將用戶「$4」（已編輯 {{PLURAL:$6|$6 次}}）{{GENDER:$2|重新命名}}為「{{GENDER:$7|$5}}」",
 	"action-renameuser": "重新命名用戶",
 	"right-renameuser": "重新命名用戶"
 }

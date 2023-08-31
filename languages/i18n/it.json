@@ -3209,6 +3209,7 @@
 	"pageinfo-redirects-name": "Numero di redirect a questa pagina",
 	"pageinfo-subpages-name": "Sottopagine di questa pagina",
 	"pageinfo-subpages-value": "$1 ($2 {{PLURAL:$2|redirect}}; $3 {{PLURAL:$3|non redirect}})",
+	"pageinfo-subpages-value-unknown": "Sconosciuto ($1)",
 	"pageinfo-firstuser": "{{GENDER:$1|Creatore|Creatrice}} della pagina",
 	"pageinfo-firsttime": "Data di creazione della pagina",
 	"pageinfo-lastuser": "{{GENDER:$1|Ultimo contributore|Ultima contributrice}}",

@@ -2788,6 +2788,7 @@
 	"pageinfo-redirects-name": "Zuel vun de Viruleedungen op dës Säit",
 	"pageinfo-subpages-name": "Ënnersäite vun dëser Säit",
 	"pageinfo-subpages-value": "$1 ($2 {{PLURAL:$2|Viruleedung|Viruleedungen}}; $3 {{PLURAL:$3|Ënnersäit|Ënnersäiten}})",
+	"pageinfo-subpages-value-unknown": "Onbekannt ($1)",
 	"pageinfo-firstuser": "1. Auteur vun der Säit",
 	"pageinfo-firsttime": "Datum vum Uleeë vun der Säit",
 	"pageinfo-lastuser": "Leschte Benotzer deen eppes geännert huet",
