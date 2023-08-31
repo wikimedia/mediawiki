@@ -932,6 +932,8 @@
 	"temp-user-banner-description": "The text on the banner that informs users that they are editing with a temporary arrount",
 	"temp-user-banner-tooltip-label": "Accessible label for the tooltip toggle.",
 	"temp-user-banner-tooltip-title": "The title of the tooltip that explains what a temporary account is.",
+	"temp-user-banner-tooltip-description-expiration-soon": "First paragraph of the temporary user expiration alert tooltip. Explains the temporary account expiration is scheduled in the near future.\n\nParameters:\n* $1 - the number of days until the temporary account will be expired",
+	"temp-user-banner-tooltip-description-expiration-soon-day": "First paragraph of the temporary user expiration alert tooltip. Explains the temporary account expiration is scheduled in less than one day.",
 	"temp-user-banner-tooltip-description-learn-more": "First paragraph of the temporary user banner tooltip. Explains what a temporary account is.",
 	"temp-user-banner-tooltip-description-login": "Second paragraph of the temporary user banner tooltip. Offers the option to log-in or create an account.",
 	"blankarticle": "Notice displayed once after the user tries to save an empty page.\n\nParameters:\n* $1 – The label of the save button – one of {{msg-mw|savearticle}} or {{msg-mw|savechanges}} on save-labelled wiki, or {{msg-mw|publishpage}} or {{msg-mw|publishchanges}} on publish-labelled wikis.",

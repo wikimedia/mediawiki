@@ -158,6 +158,10 @@ class TempUserCreator implements TempUserConfig {
 		return $this->config->getExpireAfterDays();
 	}
 
+	public function getNotifyBeforeExpirationDays(): ?int {
+		return $this->config->getNotifyBeforeExpirationDays();
+	}
+
 	/**
 	 * Acquire a new username and return it. Permanently reserve the ID in
 	 * the database.

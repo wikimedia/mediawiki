@@ -3882,6 +3882,8 @@ class OutputPage extends ContextSource {
 			$vars['wgUserEditCount'] = $user->getEditCount();
 			$userReg = $user->getRegistration();
 			$vars['wgUserRegistration'] = $userReg ? (int)wfTimestamp( TS_UNIX, $userReg ) * 1000 : null;
+			$userFirstReg = $services->getUserRegistrationLookup()->getFirstRegistration( $user );
+			$vars['wgUserFirstRegistration'] = $userFirstReg ? (int)wfTimestamp( TS_UNIX, $userFirstReg ) * 1000 : null;
 			// Get the revision ID of the oldest new message on the user's talk
 			// page. This can be used for constructing new message alerts on
 			// the client side.

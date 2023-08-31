@@ -2458,14 +2458,19 @@ return [
 		]
 	],
 	'mediawiki.tempUserBanner' => [
-		'scripts' => [
-			'resources/src/mediawiki.tempUserBanner/tempUserBanner.js',
+		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.tempUserBanner',
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.tempUserBanner",
+		'packageFiles' => [
+			'tempUserBanner.js',
+			[ 'name' => 'config.json', 'config' => [ MainConfigNames::AutoCreateTempUser ] ],
 		],
 		'dependencies' => [
 			'mediawiki.jqueryMsg',
 		],
 		'messages' => [
 			'temp-user-banner-tooltip-title',
+			'temp-user-banner-tooltip-description-expiration-soon',
+			'temp-user-banner-tooltip-description-expiration-soon-day',
 			'temp-user-banner-tooltip-description-learn-more',
 			'temp-user-banner-tooltip-description-login'
 		]

@@ -84,4 +84,14 @@ interface TempUserConfig {
 	 * @return int|null Null if temp accounts should never expire
 	 */
 	public function getExpireAfterDays(): ?int;
+
+	/**
+	 * How many days before expiration should temporary users be notified?
+	 *
+	 * @note expireTemporaryAccounts.php maintenance script needs to be periodically executed for
+	 * temp account expiry to work.
+	 * @since 1.42
+	 * @return int|null Null if temp accounts should never be notified before expiration
+	 */
+	public function getNotifyBeforeExpirationDays(): ?int;
 }
