@@ -343,14 +343,7 @@ abstract class ParsoidHandler extends Handler {
 		//       to reduce the usage of PageConfig in MW core.
 		$page = $this->getPageConfigToIdentity( $page );
 
-		$helper = new HtmlOutputRendererHelper(
-			$services->getParsoidOutputStash(),
-			$services->getStatsdDataFactory(),
-			$services->getParsoidOutputAccess(),
-			$services->getHtmlTransformFactory(),
-			$services->getContentHandlerFactory(),
-			$services->getLanguageFactory()
-		);
+		$helper = $services->getPageRestHelperFactory()->newHtmlOutputRendererHelper();
 
 		$user = RequestContext::getMain()->getUser();
 
