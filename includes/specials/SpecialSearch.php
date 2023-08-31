@@ -33,8 +33,6 @@ use MediaWiki\Search\SearchWidgets\BasicSearchResultSetWidget;
 use MediaWiki\Search\SearchWidgets\FullSearchResultWidget;
 use MediaWiki\Search\SearchWidgets\InterwikiSearchResultSetWidget;
 use MediaWiki\Search\SearchWidgets\InterwikiSearchResultWidget;
-use MediaWiki\Search\SearchWidgets\SimpleSearchResultSetWidget;
-use MediaWiki\Search\SearchWidgets\SimpleSearchResultWidget;
 use MediaWiki\Search\TitleMatcher;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
@@ -550,25 +548,14 @@ class SpecialSearch extends SpecialPage {
 			$this->userOptionsManager
 		);
 
-		// Default (null) on. Can be explicitly disabled.
-		if ( $engine->getFeatureData( 'enable-new-crossproject-page' ) !== false ) {
-			$sidebarResultWidget = new InterwikiSearchResultWidget( $this, $linkRenderer );
-			$sidebarResultsWidget = new InterwikiSearchResultSetWidget(
-				$this,
-				$sidebarResultWidget,
-				$linkRenderer,
-				$this->interwikiLookup,
-				$engine->getFeatureData( 'show-multimedia-search-results' )
-			);
-		} else {
-			$sidebarResultWidget = new SimpleSearchResultWidget( $this, $linkRenderer );
-			$sidebarResultsWidget = new SimpleSearchResultSetWidget(
-				$this,
-				$sidebarResultWidget,
-				$linkRenderer,
-				$this->interwikiLookup
-			);
-		}
+		$sidebarResultWidget = new InterwikiSearchResultWidget( $this, $linkRenderer );
+		$sidebarResultsWidget = new InterwikiSearchResultSetWidget(
+			$this,
+			$sidebarResultWidget,
+			$linkRenderer,
+			$this->interwikiLookup,
+			$engine->getFeatureData( 'show-multimedia-search-results' )
+		);
 
 		$widget = new BasicSearchResultSetWidget( $this, $mainResultWidget, $sidebarResultsWidget );
 
