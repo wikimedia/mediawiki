@@ -132,8 +132,14 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		$watchedItemStore->expects( $this->never() )
 			->method( 'resetAllNotificationTimestampsForUser' );
 
+		$talkPageNotificationManager = $this->createMock( TalkPageNotificationManager::class );
+		$talkPageNotificationManager->expects( $this->exactly( 2 ) )
+			->method( 'removeUserHasNewMessages' )
+			->with( $userIdentity );
+
 		$manager = $this->getManager( [
 			'watchedItemStore' => $watchedItemStore,
+			'talkPageNotificationManager' => $talkPageNotificationManager,
 			'userFactory' => $userFactory
 		] );
 

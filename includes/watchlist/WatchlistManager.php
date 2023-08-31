@@ -151,15 +151,17 @@ class WatchlistManager {
 			$performer = $this->userFactory->newFromUserIdentity( $performer );
 		}
 
-		if ( !$performer->isAllowed( 'editmywatchlist' ) ) {
-			// User isn't allowed to edit the watchlist
+		$user = $performer->getUser();
+
+		// NOTE: Has to be before `editmywatchlist` user right check, to ensure
+		// anonymous / temporary users have their talk page notifications cleared (T345031).
+		if ( !$this->isEnotifEnabled ) {
+			$this->talkPageNotificationManager->removeUserHasNewMessages( $user );
 			return;
 		}
 
-		$user = $performer->getUser();
-
-		if ( !$this->isEnotifEnabled ) {
-			$this->talkPageNotificationManager->removeUserHasNewMessages( $user );
+		if ( !$performer->isAllowed( 'editmywatchlist' ) ) {
+			// User isn't allowed to edit the watchlist
 			return;
 		}
 
@@ -201,11 +203,6 @@ class WatchlistManager {
 			$performer = $this->userFactory->newFromUserIdentity( $performer );
 		}
 
-		if ( !$performer->isAllowed( 'editmywatchlist' ) ) {
-			// User isn't allowed to edit the watchlist
-			return;
-		}
-
 		$userIdentity = $performer->getUser();
 		$userTalkPage = (
 			$title->getNamespace() === NS_USER_TALK &&
@@ -218,6 +215,9 @@ class WatchlistManager {
 			} elseif ( !$oldRev ) {
 				$oldRev = $this->revisionLookup->getRevisionById( $oldid );
 			}
+			// NOTE: Has to be called before isAllowed() check, to ensure users with no watchlist
+			// access (by default, temporary and anonymous users) can clear their talk page
+			// notification (T345031).
 			$this->talkPageNotificationManager->clearForPageView( $userIdentity, $oldRev );
 		}
 
@@ -227,6 +227,14 @@ class WatchlistManager {
 
 		if ( !$userIdentity->isRegistered() ) {
 			// Nothing else to do
+			return;
+		}
+
+		// NOTE: Has to be checked after the TalkPageNotificationManager::clearForPageView call, to
+		// ensure users with no watchlist access (by default, temporary and anonymous users) can
+		// clear their talk page notification (T345031).
+		if ( !$performer->isAllowed( 'editmywatchlist' ) ) {
+			// User isn't allowed to edit the watchlist
 			return;
 		}
 
