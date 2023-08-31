@@ -23,7 +23,7 @@ interface AuthManagerLoginAuthenticateAuditHook {
 	 * @param AuthenticationResponse $response Response in either a PASS or FAIL state
 	 * @param User|null $user User being authenticated against, or null if authentication
 	 *   failed before getting that far
-	 * @param string $username A guess at the username being authenticated, or null if we can't
+	 * @param string|null $username A guess at the username being authenticated, or null if we can't
 	 *   even determine that. When $user is not null, it can be in the form of
 	 *   <username>@<more info> (e.g. for bot passwords).
 	 * @param string[] $extraData Array (string => string) with extra information, intended to be
