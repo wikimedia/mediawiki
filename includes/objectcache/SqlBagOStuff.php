@@ -21,6 +21,7 @@
  * @ingroup Cache
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\Blob;
@@ -1674,7 +1675,9 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 */
 	private function getConnectionFromServerInfo( $shardIndex, array $server ) {
 		if ( !isset( $this->conns[$shardIndex] ) ) {
-			$dbFactory = MediaWikiServices::getInstance()->getDatabaseFactory();
+			$services = MediaWikiServices::getInstance();
+			$dbFactory = $services->getDatabaseFactory();
+			$sqlDump = $services->getMainConfig()->get( MainConfigNames::DebugDumpSql );
 			/** @var IMaintainableDatabase $conn Auto-commit connection to the server */
 			$conn = $dbFactory->create(
 				$server['type'],
@@ -1682,7 +1685,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 					$server,
 					[
 						// Make sure the handle uses autocommit mode
-						'flags' => ( $server['flags'] ?? 0 ) & ~IDatabase::DBO_TRX,
+						'flags' => ( $server['flags'] ?? $sqlDump ) & ~IDatabase::DBO_TRX,
 						'logger' => $this->logger,
 					]
 				)
