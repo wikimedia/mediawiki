@@ -157,6 +157,8 @@ because of Phabricator reports.
   Query object as argument instead of a raw SQL string.
 * Database::unionConditionPermutations(), unused, has been removed without
   deprecation.
+* SimpleSearchResultSetWidget and SimpleSearchResultWidget classes, deprecated
+  in 1.31, have been removed.
 * Database::factory(), deprecated in 1.39, has been removed.
 * Calling IDatabase::delete() or IDatabase::update() with empty conditions
   has been deprecated since 1.35. This now throws an error.
