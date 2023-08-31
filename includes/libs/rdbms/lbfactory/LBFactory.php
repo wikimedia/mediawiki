@@ -676,10 +676,6 @@ abstract class LBFactory implements ILBFactory {
 		return false;
 	}
 
-	public function setRequestInfo( array $info ) {
-		$this->chronologyProtector->setRequestInfo( $info );
-	}
-
 	public function setDefaultReplicationWaitTimeout( $seconds ) {
 		$old = $this->replicationWaitTimeout;
 		$this->replicationWaitTimeout = max( 1, (int)$seconds );
