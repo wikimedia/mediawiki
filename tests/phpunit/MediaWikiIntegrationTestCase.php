@@ -18,6 +18,7 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SiteStats\SiteStatsInit;
 use MediaWiki\Storage\PageUpdateStatus;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 use PHPUnit\Framework\TestResult;
@@ -42,6 +43,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	use MediaWikiCoversValidator;
 	use MediaWikiGroupValidator;
 	use MediaWikiTestCaseTrait;
+	use DummyServicesTrait;
 
 	/**
 	 * The original service locator. This is overridden during setUp().
@@ -74,7 +76,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 *
 	 * Test classes should generally use {@link getDb()} instead of this property
 	 *
-	 * @var Database
+	 * @var Database|null
 	 * @since 1.18
 	 */
 	protected $db;
@@ -518,8 +520,14 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		try {
 			$this->overrideMwServices();
 
-			$needsResetDB = false;
-			if ( !self::$dbSetup || self::needsDB() ) {
+			if ( !self::needsDB() ) {
+				$this->getServiceContainer()->disableStorage();
+				// ReadOnlyMode calls ILoadBalancer::getReadOnlyReason(), which would throw an exception. However,
+				// very few tests actually need a real ReadOnlyMode, and those are probably already using a mock,
+				// so override the service here.
+				$this->setService( 'ReadOnlyMode', $this->getDummyReadOnlyMode( false ) );
+				$this->db = null;
+			} else {
 				// Set up a DB connection for this test to use
 				$useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
 
@@ -533,9 +541,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 					self::setupAllTestDBs(
 						$this->db, self::dbPrefix(), $useTemporaryTables
 					);
-					if ( self::needsDB() ) {
-						$this->addCoreDBData();
-					}
+					$this->addCoreDBData();
 				}
 
 				// TODO: the DB setup should be done in setUpBeforeClass(), so the test DB
@@ -548,7 +554,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				}
 
 				$this->addDBData();
-				$needsResetDB = true;
 			}
 		} catch ( Throwable $e ) {
 			$result->stop();
@@ -564,7 +569,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$this->overriddenServices = [];
 			$this->temporaryHookHandlers = [];
 
-			if ( $needsResetDB ) {
+			if ( self::needsDB() ) {
 				$this->resetDB( $this->db, $this->tablesUsed );
 			}
 
@@ -2152,10 +2157,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			if ( array_intersect( $tablesUsed, $coreDBDataTables ) ) {
 				// Reset services that may contain information relating to the truncated tables
 				$this->overrideMwServices();
-				if ( self::needsDB() ) {
-					// Re-add core DB data that was deleted
-					$this->addCoreDBData();
-				}
+				// Re-add core DB data that was deleted
+				$this->addCoreDBData();
 			}
 		}
 	}
