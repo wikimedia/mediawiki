@@ -563,6 +563,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		$customContentHandler2->method( 'getSlotDiffRendererInternal' )
 			->willReturn( $customSlotDiffRenderer );
 		/** @var ContentHandler $customContentHandler2 */
+		$this->hideDeprecated( 'ContentHandler::getSlotDiffRendererInternal' );
 		$slotDiffRenderer = $customContentHandler2->getSlotDiffRenderer( RequestContext::getMain() );
 		$this->assertSame( $customSlotDiffRenderer, $slotDiffRenderer );
 	}
@@ -606,8 +607,11 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 				$slotDiffRenderer = $customSlotDiffRenderer2;
 			} );
 
+		$this->hideDeprecated( 'ContentHandler::getSlotDiffRendererInternal' );
 		$slotDiffRenderer = $customContentHandler->getSlotDiffRenderer( RequestContext::getMain() );
 		$this->assertSame( $customSlotDiffRenderer2, $slotDiffRenderer );
+
+		$this->hideDeprecated( 'ContentHandler::getSlotDiffRendererInternal' );
 		$slotDiffRenderer = $customContentHandler2->getSlotDiffRenderer( RequestContext::getMain() );
 		$this->assertSame( $customSlotDiffRenderer2, $slotDiffRenderer );
 	}

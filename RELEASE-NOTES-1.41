@@ -659,6 +659,7 @@ because of Phabricator reports.
   - ConfigFactory::getDefaultInstance(), deprecated since 1.27
   - AbstractContent::getNativeData(), deprecated since 1.33
   - TablePager::getBody(), deprecated since 1.24
+  - ContentHandler::getSlotDiffRendererInternal(), deprecated since 1.35
 * …
 
 === Other changes in 1.41 ===

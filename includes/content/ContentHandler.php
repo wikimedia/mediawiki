@@ -631,7 +631,8 @@ abstract class ContentHandler {
 
 	/**
 	 * Return the SlotDiffRenderer appropriate for this content handler.
-	 * @deprecated use getSlotDiffRendererWithOptions instead
+	 * @deprecated since 1.35; use getSlotDiffRendererWithOptions instead
+	 *   Emitting deprecation warnings since 1.41.
 	 * @param IContextSource $context
 	 * @return SlotDiffRenderer|null
 	 */
@@ -653,6 +654,7 @@ abstract class ContentHandler {
 		// `getSlotDiffRendererInternal` has been overridden by a class using the deprecated method.
 		// Options will not work so exit early!
 		if ( $internalRenderer !== null ) {
+			wfDeprecated( 'ContentHandler::getSlotDiffRendererInternal', '1.35' );
 			return $internalRenderer;
 		}
 		return $this->createTextSlotDiffRenderer( $options );
