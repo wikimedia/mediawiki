@@ -167,7 +167,6 @@ JAVASCRIPT
 
 		header( 'Content-Type: text/javascript; charset=utf-8' );
 		header( 'Cache-Control: private, no-cache, must-revalidate' );
-		header( 'Pragma: no-cache' );
 		echo $qunitConfig;
 		echo $code;
 	}

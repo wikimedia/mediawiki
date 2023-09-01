@@ -814,6 +814,8 @@ because of Phabricator reports.
 * ExternalLinksLookup::getExternalLinksForPage() now exists to centralize
   logic of looking up externallinks rows.
 * The update script no longer accepts the --skip-compat-checks option.
+* Use of the deprecated "Pragma: no-cache" HTTP response header on uncachable
+  responses has been removed in favour of "Cache-Control: no-cache" (T345420).
 * Type hints were added to:
    - The return value of WebRequest:: and DerivativeRequest::getSession()
    - The return value of WebRequest:: and DerivativeRequest::getIP()

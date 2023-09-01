@@ -2782,7 +2782,6 @@ class OutputPage extends ContextSource {
 			# the client from using its cache. We send a few other things just to make sure.
 			$response->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
 			$response->header( 'Cache-Control: no-cache, no-store, max-age=0, must-revalidate' );
-			$response->header( 'Pragma: no-cache' );
 		}
 	}
 

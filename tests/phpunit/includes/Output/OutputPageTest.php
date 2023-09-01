@@ -3088,7 +3088,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$headers = [
 			'Vary' => 'Accept-Encoding, Cookie',
 			'Cache-Control' => 'private, must-revalidate, max-age=0',
-			'Pragma' => false,
 			'Expires' => true,
 			'Last-Modified' => false,
 		];
@@ -3139,7 +3138,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 				],
 				[
 					'Cache-Control' => 'no-cache, no-store, max-age=0, must-revalidate',
-					'Pragma' => 'no-cache'
 				],
 			],
 			'Set last modified' => [

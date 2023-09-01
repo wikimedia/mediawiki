@@ -937,7 +937,6 @@ class ResourceLoader implements LoggerAwareInterface {
 		if ( $context->getDebug() ) {
 			// Do not cache debug responses
 			header( 'Cache-Control: private, no-cache, must-revalidate' );
-			header( 'Pragma: no-cache' );
 		} else {
 			// T132418: When a resource expires mid-way a browsing session, prefer to renew it in
 			// the background instead of blocking the next page load (eg. startup module, or CSS).

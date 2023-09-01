@@ -404,7 +404,6 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$this->getRequest()->response()->header(
 			'Cache-Control: no-cache, no-store, max-age=0, must-revalidate'
 		);
-		$this->getRequest()->response()->header( 'Pragma: no-cache' );
 
 		$key = $oimage->getStorageKey();
 		$path = $repo->getZonePath( 'deleted' ) . '/' . $repo->getDeletedHashPath( $key ) . $key;
