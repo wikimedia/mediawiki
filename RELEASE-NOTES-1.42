@@ -129,6 +129,15 @@ because of Phabricator reports.
   removed.
 * WikiPage::getPageIsRedirectField(), deprecated since 1.41, has been removed.
 * WikiPage::insertRedirect(), deprecated since 1.41, has been removed.
+* Several methods in PageArchive, all deprecated in 1.38, have been removed:
+  - ::listRevisions()
+  - ::getRevisionRecordByTimestamp()
+  - ::getArchivedRevisionRecord()
+  - ::getPreviousRevisionRecord()
+  - ::getLastRevisionId()
+  - ::isDeleted()
+  - ::getFileStatus()
+  - ::getRevisionStatus()
 * …
 
 === Deprecations in 1.42 ===
