@@ -73,6 +73,9 @@ For notes on 1.40.x and older releases, see HISTORY.
 * validation callbacks for HTMLForm fields can now return Status objects.
   HTMLForm::validate will convert good Status instances to true and Status
   instances to a string containing a list with the errors.
+* ?action=rollback, if successful, will fire core's postEdit JavaScript hook;
+  for now, we do *not* display a success message to the user via mw.notify(),
+  as the RollbackAction form's success page is already shown
 * …
 
 === External library changes in 1.41 ===

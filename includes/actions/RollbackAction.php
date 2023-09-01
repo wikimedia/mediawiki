@@ -240,6 +240,17 @@ class RollbackAction extends FormAction {
 				->params( $targetUser ? $targetUser->getName() : '' )
 				->parseAsBlock()
 		);
+		// Load the mediawiki.misc-authed-curate module, so that we can fire the JavaScript
+		// postEdit hook on a successful rollback.
+		$this->getOutput()->addModules( 'mediawiki.misc-authed-curate' );
+		// Export a success flag to the frontend, so that the mediawiki.misc-authed-curate
+		// ResourceLoader module can use this as an indicator to fire the postEdit hook.
+		$this->getOutput()->addJsConfigVars( [
+			'wgRollbackSuccess' => true,
+			// Don't show an edit confirmation with mw.notify(), the rollback success page
+			// is already a visual confirmation.
+			'wgPostEditConfirmationDisabled' => true,
+		] );
 
 		if ( $this->userOptionsLookup->getBoolOption( $user, 'watchrollback' ) ) {
 			$this->watchlistManager->addWatchIgnoringRights( $user, $this->getTitle() );
