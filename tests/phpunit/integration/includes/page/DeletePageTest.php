@@ -16,7 +16,6 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
-use PageArchive;
 use User;
 use Wikimedia\ScopedCallback;
 use WikiPage;
@@ -122,8 +121,8 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 			// in case of normal deletion.
 			return;
 		}
-		$archive = new PageArchive( $title, $this->getServiceContainer()->getMainConfig() );
-		$archivedRevs = $archive->listRevisions();
+		$lookup = $this->getServiceContainer()->getArchivedRevisionLookup();
+		$archivedRevs = $lookup->listRevisions( $title );
 		if ( !$archivedRevs || $archivedRevs->numRows() !== 1 ) {
 			$this->fail( 'Unexpected number of archived revisions' );
 		}
