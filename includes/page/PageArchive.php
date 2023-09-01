@@ -151,10 +151,11 @@ class PageArchive {
 	 * List the revisions of the given page. Returns result wrapper with
 	 * various archive table fields.
 	 *
-	 * @deprecated since 1.38 Use ArchivedRevisionLookup::listRevisions
+	 * @deprecated since 1.38, hard-deprecated since 1.41. Use ArchivedRevisionLookup::listRevisions
 	 * @return IResultWrapper
 	 */
 	public function listRevisions() {
+		wfDeprecated( __METHOD__, '1.38' );
 		$lookup = MediaWikiServices::getInstance()->getArchivedRevisionLookup();
 		return $lookup->listRevisions( $this->title );
 	}
@@ -184,11 +185,12 @@ class PageArchive {
 	 *
 	 * @internal only for use in SpecialUndelete
 	 *
-	 * @deprecated since 1.38 Use ArchivedRevisionLookup::getRevisionRecordByTimestamp
+	 * @deprecated since 1.38, hard-deprecated since 1.41. Use ArchivedRevisionLookup::getRevisionRecordByTimestamp
 	 * @param string $timestamp
 	 * @return RevisionRecord|null
 	 */
 	public function getRevisionRecordByTimestamp( $timestamp ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		$lookup = MediaWikiServices::getInstance()->getArchivedRevisionLookup();
 		return $lookup->getRevisionRecordByTimestamp( $this->title, $timestamp );
 	}
@@ -197,12 +199,13 @@ class PageArchive {
 	 * Return the archived revision with the given ID.
 	 *
 	 * @since 1.35
-	 * @deprecated since 1.38 Use ArchivedRevisionLookup::getArchivedRevisionRecord
+	 * @deprecated since 1.38, hard-deprecated since 1.41. Use ArchivedRevisionLookup::getArchivedRevisionRecord
 	 *
 	 * @param int $revId
 	 * @return RevisionRecord|null
 	 */
 	public function getArchivedRevisionRecord( int $revId ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		$lookup = MediaWikiServices::getInstance()->getArchivedRevisionLookup();
 		return $lookup->getArchivedRevisionRecord( $this->title, $revId );
 	}
@@ -215,12 +218,13 @@ class PageArchive {
 	 * unusual time issues.
 	 *
 	 * @since 1.35
-	 * @deprecated since 1.38 Use ArchivedRevisionLookup::getPreviousRevisionRecord
+	 * @deprecated since 1.38, hard-deprecated since 1.41. Use ArchivedRevisionLookup::getPreviousRevisionRecord
 	 *
 	 * @param string $timestamp
 	 * @return RevisionRecord|null Null when there is no previous revision
 	 */
 	public function getPreviousRevisionRecord( string $timestamp ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		$lookup = MediaWikiServices::getInstance()->getArchivedRevisionLookup();
 		return $lookup->getPreviousRevisionRecord( $this->title, $timestamp );
 	}
@@ -228,10 +232,11 @@ class PageArchive {
 	/**
 	 * Returns the ID of the latest deleted revision.
 	 *
-	 * @deprecated since 1.38 Use ArchivedRevisionLookup::getLastRevisionId
+	 * @deprecated since 1.38, hard-deprecated since 1.41. Use ArchivedRevisionLookup::getLastRevisionId
 	 * @return int|false The revision's ID, or false if there is no deleted revision.
 	 */
 	public function getLastRevisionId() {
+		wfDeprecated( __METHOD__, '1.38' );
 		$lookup = MediaWikiServices::getInstance()->getArchivedRevisionLookup();
 		return $lookup->getLastRevisionId( $this->title );
 	}
@@ -240,10 +245,11 @@ class PageArchive {
 	 * Quick check if any archived revisions are present for the page.
 	 * This says nothing about whether the page currently exists in the page table or not.
 	 *
-	 * @deprecated since 1.38 Use ArchivedRevisionLookup::hasArchivedRevisions
+	 * @deprecated since 1.38, hard-deprecated since 1.41. Use ArchivedRevisionLookup::hasArchivedRevisions
 	 * @return bool
 	 */
 	public function isDeleted() {
+		wfDeprecated( __METHOD__, '1.38' );
 		$lookup = MediaWikiServices::getInstance()->getArchivedRevisionLookup();
 		return $lookup->hasArchivedRevisions( $this->title );
 	}
@@ -311,7 +317,7 @@ class PageArchive {
 	}
 
 	/**
-	 * @deprecated since 1.38 The entrypoints in UndeletePage return a StatusValue
+	 * @deprecated since 1.38, hard-deprecated since 1.38. The entrypoints in UndeletePage return a StatusValue
 	 * @return Status|null
 	 */
 	public function getFileStatus() {
@@ -320,7 +326,7 @@ class PageArchive {
 	}
 
 	/**
-	 * @deprecated since 1.38 The entrypoints in UndeletePage return a StatusValue
+	 * @deprecated since 1.38, hard-deprecated since 1.38. The entrypoints in UndeletePage return a StatusValue
 	 * @return Status|null
 	 */
 	public function getRevisionStatus() {
