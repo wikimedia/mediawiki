@@ -37,6 +37,7 @@ use PoolWorkArticleViewCurrent;
 use PoolWorkArticleViewOld;
 use TitleFormatter;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\ILBFactory;
 
 /**
@@ -111,6 +112,7 @@ class ParserOutputAccess {
 
 	/** @var ILBFactory */
 	private $lbFactory;
+	private ChronologyProtector $chronologyProtector;
 
 	/** @var LoggerSpi */
 	private $loggerSpi;
@@ -127,6 +129,7 @@ class ParserOutputAccess {
 	 * @param RevisionRenderer $revisionRenderer
 	 * @param IBufferingStatsdDataFactory $statsDataFactory
 	 * @param ILBFactory $lbFactory
+	 * @param ChronologyProtector $chronologyProtector
 	 * @param LoggerSpi $loggerSpi
 	 * @param WikiPageFactory $wikiPageFactory
 	 * @param TitleFormatter $titleFormatter
@@ -137,6 +140,7 @@ class ParserOutputAccess {
 		RevisionRenderer $revisionRenderer,
 		IBufferingStatsdDataFactory $statsDataFactory,
 		ILBFactory $lbFactory,
+		ChronologyProtector $chronologyProtector,
 		LoggerSpi $loggerSpi,
 		WikiPageFactory $wikiPageFactory,
 		TitleFormatter $titleFormatter
@@ -146,6 +150,7 @@ class ParserOutputAccess {
 		$this->revisionRenderer = $revisionRenderer;
 		$this->statsDataFactory = $statsDataFactory;
 		$this->lbFactory = $lbFactory;
+		$this->chronologyProtector = $chronologyProtector;
 		$this->loggerSpi = $loggerSpi;
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->titleFormatter = $titleFormatter;
@@ -396,6 +401,7 @@ class ParserOutputAccess {
 					$this->revisionRenderer,
 					$primaryCache,
 					$this->lbFactory,
+					$this->chronologyProtector,
 					$this->loggerSpi,
 					$this->wikiPageFactory,
 					!( $options & self::OPT_NO_UPDATE_CACHE ),

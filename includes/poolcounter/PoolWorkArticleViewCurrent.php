@@ -25,6 +25,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Status\Status;
 use MediaWiki\Utils\MWTimestamp;
+use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\ILBFactory;
 
 /**
@@ -45,6 +46,7 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 	private $wikiPageFactory;
 	/** @var bool Whether it should trigger an opportunistic LinksUpdate or not */
 	private bool $triggerLinksUpdate;
+	private ChronologyProtector $chronologyProtector;
 
 	/**
 	 * @param string $workKey
@@ -54,6 +56,7 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 	 * @param RevisionRenderer $revisionRenderer
 	 * @param ParserCache $parserCache
 	 * @param ILBFactory $lbFactory
+	 * @param ChronologyProtector $chronologyProtector
 	 * @param LoggerSpi $loggerSpi
 	 * @param WikiPageFactory $wikiPageFactory
 	 * @param bool $cacheable Whether it should store the result in cache or not
@@ -67,6 +70,7 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 		RevisionRenderer $revisionRenderer,
 		ParserCache $parserCache,
 		ILBFactory $lbFactory,
+		ChronologyProtector $chronologyProtector,
 		LoggerSpi $loggerSpi,
 		WikiPageFactory $wikiPageFactory,
 		bool $cacheable = true,
@@ -84,6 +88,7 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 		$this->page = $page;
 		$this->parserCache = $parserCache;
 		$this->lbFactory = $lbFactory;
+		$this->chronologyProtector = $chronologyProtector;
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->cacheable = $cacheable;
 		$this->triggerLinksUpdate = $triggerLinksUpdate;
@@ -156,7 +161,7 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 			 * the save request, so there is a bias towards avoiding fast stale
 			 * responses of potentially several seconds.
 			 */
-			$lastWriteTime = $this->lbFactory->getChronologyProtectorTouched();
+			$lastWriteTime = $this->chronologyProtector->getTouched( $this->lbFactory->getMainLB() );
 			$cacheTime = MWTimestamp::convert( TS_UNIX, $parserOutput->getCacheTime() );
 			if ( $lastWriteTime && $cacheTime <= $lastWriteTime ) {
 				$logger->info(

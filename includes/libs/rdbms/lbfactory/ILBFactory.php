@@ -359,14 +359,6 @@ interface ILBFactory extends IConnectionProvider {
 	public function setWaitForReplicationListener( $name, callable $callback = null );
 
 	/**
-	 * Get the UNIX timestamp when the client last touched the DB, if they did so recently
-	 *
-	 * @param DatabaseDomain|string|false $domain Domain ID, or false for the current domain
-	 * @return float|false UNIX timestamp; false if not recent or on record
-	 */
-	public function getChronologyProtectorTouched( $domain = false );
-
-	/**
 	 * Disable the ChronologyProtector on all instantiated tracked load balancer instances
 	 *
 	 * This can be called at the start of special API entry points.

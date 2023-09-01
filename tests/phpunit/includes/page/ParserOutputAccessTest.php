@@ -172,6 +172,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 			$revRenderer,
 			new NullStatsdDataFactory(),
 			$this->getServiceContainer()->getDBLoadBalancerFactory(),
+			$this->getServiceContainer()->getChronologyProtector(),
 			$this->getLoggerSpi(),
 			$this->getServiceContainer()->getWikiPageFactory(),
 			$this->getServiceContainer()->getTitleFormatter()

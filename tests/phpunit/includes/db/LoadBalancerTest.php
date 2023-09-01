@@ -17,6 +17,8 @@
  *
  * @file
  */
+
+use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DBConnRef;
@@ -58,14 +60,19 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		global $wgDBname;
 
 		$called = false;
+		$chronologyProtector = $this->createMock( ChronologyProtector::class );
+		$chronologyProtector->method( 'getSessionPrimaryPos' )
+			->willReturnCallback(
+				static function () use ( &$called ) {
+					$called = true;
+				}
+			);
 		$lb = new LoadBalancer( [
 			// Simulate web request with DBO_TRX
 			'servers' => [ $this->makeServerConfig( DBO_TRX ) ],
 			'logger' => MediaWiki\Logger\LoggerFactory::getInstance( 'rdbms' ),
 			'localDomain' => new DatabaseDomain( $wgDBname, null, self::dbPrefix() ),
-			'chronologyCallback' => static function () use ( &$called ) {
-				$called = true;
-			},
+			'chronologyProtector' => $chronologyProtector,
 			'clusterName' => 'xyz'
 		] );
 
@@ -784,14 +791,12 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 
 	public function testClusterName() {
 		global $wgDBname;
-
+		$chronologyProtector = $this->createMock( ChronologyProtector::class );
 		$lb1 = new LoadBalancer( [
 			'servers' => [ $this->makeServerConfig() ],
 			'logger' => MediaWiki\Logger\LoggerFactory::getInstance( 'rdbms' ),
 			'localDomain' => new DatabaseDomain( $wgDBname, null, self::dbPrefix() ),
-			'chronologyCallback' => static function () use ( &$called ) {
-				$called = true;
-			},
+			'chronologyProtector' => $chronologyProtector,
 			'clusterName' => 'xx'
 		] );
 		$this->assertSame( 'xx', $lb1->getClusterName() );
@@ -800,9 +805,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 			'servers' => [ $this->makeServerConfig() ],
 			'logger' => MediaWiki\Logger\LoggerFactory::getInstance( 'rdbms' ),
 			'localDomain' => new DatabaseDomain( $wgDBname, null, self::dbPrefix() ),
-			'chronologyCallback' => static function () use ( &$called ) {
-				$called = true;
-			},
+			'chronologyProtector' => $chronologyProtector,
 			'clusterName' => null
 		] );
 		$this->assertSame( 'testhost', $lb2->getClusterName() );

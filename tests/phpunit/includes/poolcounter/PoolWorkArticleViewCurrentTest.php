@@ -4,7 +4,7 @@ use MediaWiki\Json\JsonCodec;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Status\Status;
 use Psr\Log\NullLogger;
-use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -37,17 +37,16 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 		}
 
 		$parserCache = $this->parserCache ?: $this->installParserCache();
-		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
-		$revisionRenderer = $this->getServiceContainer()->getRevisionRenderer();
 
 		return new PoolWorkArticleViewCurrent(
 			'test:' . $rev->getId(),
 			$page,
 			$rev,
 			$options,
-			$revisionRenderer,
+			$this->getServiceContainer()->getRevisionRenderer(),
 			$parserCache,
-			$lbFactory,
+			$this->getServiceContainer()->getDBLoadBalancerFactory(),
+			$this->getServiceContainer()->getChronologyProtector(),
 			$this->getLoggerSpi(),
 			$this->getServiceContainer()->getWikiPageFactory()
 		);
@@ -118,8 +117,8 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 		$lastWrite = 10;
 		$outdated = $lastWrite;
 
-		$lbFactory = $this->createNoOpMock( LBFactory::class, [ 'getChronologyProtectorTouched' ] );
-		$lbFactory->method( 'getChronologyProtectorTouched' )->willReturn( $lastWrite );
+		$chronologyProtector = $this->createNoOpMock( ChronologyProtector::class, [ 'getTouched' ] );
+		$chronologyProtector->method( 'getTouched' )->willReturn( $lastWrite );
 
 		$output = $this->createNoOpMock( ParserOutput::class, [ 'getCacheTime' ] );
 		$output->method( 'getCacheTime' )->willReturn( $outdated );
@@ -130,7 +129,7 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 			$this->createMock( WikiPage::class ),
 			$this->createMock( RevisionRecord::class )
 		);
-		TestingAccessWrapper::newFromObject( $work )->lbFactory = $lbFactory;
+		TestingAccessWrapper::newFromObject( $work )->chronologyProtector = $chronologyProtector;
 
 		$this->assertFalse( $work->fallback( true ) );
 
@@ -145,8 +144,8 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 		$lastWrite = 10;
 		$moreRecent = $lastWrite + 1;
 
-		$lbFactory = $this->createNoOpMock( LBFactory::class, [ 'getChronologyProtectorTouched' ] );
-		$lbFactory->method( 'getChronologyProtectorTouched' )->willReturn( $lastWrite );
+		$chronologyProtector = $this->createNoOpMock( ChronologyProtector::class, [ 'getTouched' ] );
+		$chronologyProtector->method( 'getTouched' )->willReturn( $lastWrite );
 
 		$output = $this->createNoOpMock( ParserOutput::class, [ 'getCacheTime' ] );
 		$output->method( 'getCacheTime' )->willReturn( $moreRecent );
@@ -157,7 +156,7 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 			$this->createMock( WikiPage::class ),
 			$this->createMock( RevisionRecord::class )
 		);
-		TestingAccessWrapper::newFromObject( $work )->lbFactory = $lbFactory;
+		TestingAccessWrapper::newFromObject( $work )->chronologyProtector = $chronologyProtector;
 
 		$status = $work->fallback( true );
 		$this->assertTrue( $status->isOK() );

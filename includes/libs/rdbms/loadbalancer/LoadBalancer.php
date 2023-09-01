@@ -41,8 +41,6 @@ use Wikimedia\ScopedCallback;
 class LoadBalancer implements ILoadBalancerForOwner {
 	/** @var ILoadMonitor */
 	private $loadMonitor;
-	/** @var callable|null Callback to run before the first connection attempt */
-	private $chronologyCallback;
 	/** @var BagOStuff */
 	private $srvCache;
 	/** @var WANObjectCache */
@@ -102,8 +100,9 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	private $connectionCounter = 0;
 	/** @var bool */
 	private $disabled = false;
+	private ?ChronologyProtector $chronologyProtector = null;
 	/** @var bool Whether the session consistency callback already executed */
-	private $chronologyCallbackTriggered = false;
+	private $chronologyProtectorCalled = false;
 
 	/** @var Database|null The last connection handle that caused a problem */
 	private $lastErrorConn;
@@ -207,8 +206,8 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		$this->trxProfiler = $params['trxProfiler'] ?? new TransactionProfiler();
 		$this->statsd = $params['statsdDataFactory'] ?? new NullStatsdDataFactory();
 
-		if ( isset( $params['chronologyCallback'] ) ) {
-			$this->chronologyCallback = $params['chronologyCallback'];
+		if ( isset( $params['chronologyProtector'] ) ) {
+			$this->chronologyProtector = $params['chronologyProtector'];
 		}
 
 		if ( isset( $params['roundStage'] ) ) {
@@ -526,7 +525,8 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		while ( count( $currentLoads ) ) {
 			if ( $this->waitForPos && $this->waitForPos->asOfTime() ) {
 				$this->logger->debug( __METHOD__ . ": session has replication position" );
-				// "chronologyCallback" sets "waitForPos" for session consistency.
+				// ChronologyProtector::getSessionPrimaryPos called in $this->loadSessionPrimaryPos()
+				// sets "waitForPos" for session consistency.
 				// This triggers doWait() after connect, so it's especially good to
 				// avoid lagged servers so as to avoid excessive delay in that method.
 				$ago = microtime( true ) - $this->waitForPos->asOfTime();
@@ -1139,9 +1139,9 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 * @see awaitSessionPrimaryPos()
 	 */
 	private function loadSessionPrimaryPos() {
-		if ( !$this->chronologyCallbackTriggered && $this->chronologyCallback ) {
-			$this->chronologyCallbackTriggered = true;
-			$pos = ( $this->chronologyCallback )( $this );
+		if ( !$this->chronologyProtectorCalled && $this->chronologyProtector ) {
+			$this->chronologyProtectorCalled = true;
+			$pos = $this->chronologyProtector->getSessionPrimaryPos( $this );
 			$this->logger->debug( __METHOD__ . ': executed chronology callback.' );
 			if ( $pos ) {
 				if ( !$this->waitForPos || $pos->hasReached( $this->waitForPos ) ) {
