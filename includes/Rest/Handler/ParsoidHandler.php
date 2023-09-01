@@ -42,6 +42,7 @@ use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseException;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SuppressedDataException;
 use MediaWiki\Title\Title;
@@ -95,6 +96,8 @@ abstract class ParsoidHandler extends Handler {
 	/** @var array */
 	private $requestAttributes;
 
+	private RevisionLookup $revisionLookup;
+
 	/**
 	 * @return static
 	 */
@@ -103,6 +106,7 @@ abstract class ParsoidHandler extends Handler {
 		// @phan-suppress-next-line PhanTypeInstantiateAbstractStatic
 		return new static(
 			$services->getMainConfig()->get( MainConfigNames::ParsoidSettings ),
+			$services->getRevisionLookup(),
 			$services->getParsoidSiteConfig(),
 			$services->getParsoidPageConfigFactory(),
 			$services->getParsoidDataAccess()
@@ -111,17 +115,20 @@ abstract class ParsoidHandler extends Handler {
 
 	/**
 	 * @param array $parsoidSettings
+	 * @param RevisionLookup $revisionLookup
 	 * @param SiteConfig $siteConfig
 	 * @param PageConfigFactory $pageConfigFactory
 	 * @param DataAccess $dataAccess
 	 */
 	public function __construct(
 		array $parsoidSettings,
+		RevisionLookup $revisionLookup,
 		SiteConfig $siteConfig,
 		PageConfigFactory $pageConfigFactory,
 		DataAccess $dataAccess
 	) {
 		$this->parsoidSettings = $parsoidSettings;
+		$this->revisionLookup = $revisionLookup;
 		$this->siteConfig = $siteConfig;
 		$this->pageConfigFactory = $pageConfigFactory;
 		$this->dataAccess = $dataAccess;
@@ -222,7 +229,6 @@ abstract class ParsoidHandler extends Handler {
 			);
 		}
 		$attribs = [
-			'titleMissing' => empty( $request->getPathParams()['title'] ),
 			'pageName' => $request->getPathParam( 'title' ) ?? '',
 			'oldid' => $request->getPathParam( 'revision' ),
 			// "body_only" flag to return just the body (instead of the entire HTML doc)
@@ -245,7 +251,6 @@ abstract class ParsoidHandler extends Handler {
 				$attribs['oldid'] = $opts['original']['revid'];
 			}
 			if ( isset( $opts['original']['title'] ) ) {
-				$attribs['titleMissing'] = false;
 				$attribs['pageName'] = $opts['original']['title'];
 			}
 		}
@@ -262,6 +267,14 @@ abstract class ParsoidHandler extends Handler {
 			$acceptLanguage = LanguageCode::normalizeNonstandardCodeAndWarn(
 				$acceptLanguage
 			);
+		}
+
+		// Init pageName if oldid is provided and is a valid revision
+		if ( empty( $attribs['pageName'] ) && $attribs['oldid'] ) {
+			$rev = $this->revisionLookup->getRevisionById( $attribs['oldid'] );
+			if ( $rev ) {
+				$attribs['pageName'] = $rev->getPage()->getDBkey();
+			}
 		}
 
 		$attribs['envOptions'] = [

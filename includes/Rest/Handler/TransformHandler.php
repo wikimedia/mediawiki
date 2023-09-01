@@ -24,7 +24,6 @@ use MediaWiki\Rest\Handler\Helper\ParsoidFormatHelper;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\Response;
 use Wikimedia\ParamValidator\ParamValidator;
-use Wikimedia\Parsoid\Parsoid;
 
 /**
  * Handler for transforming content given in the request.
@@ -122,7 +121,7 @@ class TransformHandler extends ParsoidHandler {
 				}
 			}
 			// Abort if no wikitext or title.
-			if ( $wikitext === null && $attribs['titleMissing'] ) {
+			if ( $wikitext === null && empty( $attribs['pageName'] ) ) {
 				throw new HttpException( 'No title or wikitext was provided.',
 					400 );
 			}

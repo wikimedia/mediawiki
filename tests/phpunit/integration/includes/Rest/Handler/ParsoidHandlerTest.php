@@ -26,6 +26,7 @@ use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Rest\RestTestTrait;
@@ -61,7 +62,6 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 	 * Default request attributes, see ParsoidHandler::getRequestAttributes()
 	 */
 	private const DEFAULT_ATTRIBS = [
-		'titleMissing' => false,
 		'pageName' => '',
 		'oldid' => null,
 		'body_only' => null,
@@ -113,6 +113,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$parsoidSettings += MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidSettings );
 
+		$revisionLookup = $this->getServiceContainer()->getRevisionLookup();
 		$dataAccess = $serviceOverrides['ParsoidDataAccess'] ?? $this->getServiceContainer()->getParsoidDataAccess();
 		$siteConfig = $serviceOverrides['ParsoidSiteConfig'] ?? $this->getServiceContainer()->getParsoidSiteConfig();
 		$pageConfigFactory = $serviceOverrides['ParsoidPageConfigFactory']
@@ -121,6 +122,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$handler = new class (
 			$this,
 			$parsoidSettings,
+			$revisionLookup,
 			$siteConfig,
 			$pageConfigFactory,
 			$dataAccess,
@@ -132,6 +134,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			public function __construct(
 				$testCase,
 				array $parsoidSettings,
+				RevisionLookup $revisionLookup,
 				SiteConfig $siteConfig,
 				PageConfigFactory $pageConfigFactory,
 				DataAccess $dataAccess,
@@ -139,6 +142,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			) {
 				parent::__construct(
 					$parsoidSettings,
+					$revisionLookup,
 					$siteConfig,
 					$pageConfigFactory,
 					$dataAccess
