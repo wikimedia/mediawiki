@@ -232,7 +232,7 @@ HTML;
 
 		header( "$protocol 500 MediaWiki configuration Error" );
 		// Don't cache error pages! They cause no end of trouble...
-		header( 'Cache-control: none' );
+		header( 'Cache-Control: no-cache' );
 		header( 'Pragma: no-cache' );
 	}
 
