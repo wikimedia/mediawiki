@@ -389,7 +389,7 @@ class Article implements Page {
 				if ( !$this->mRevisionRecord ) {
 					wfDebug( __METHOD__ . " failed to load revision, rev_id $oldid" );
 
-					$this->fetchResult = Status::newFatal( 'missing-revision', $oldid );
+					$this->fetchResult = Status::newFatal( $this->getMissingRevisionMsg( $oldid ) );
 					return null;
 				}
 			}
@@ -1542,22 +1542,7 @@ class Article implements Page {
 			$outputPage->addWikiTextAsContent( $text );
 		} else {
 			if ( $oldid ) {
-				// T251066: Try loading the revision from the archive table.
-				// Show link to view it if it exists and the user has permission to view it.
-				$revRecord = $this->archivedRevisionLookup->getArchivedRevisionRecord( $title, $oldid );
-				if ( $revRecord && $revRecord->userCan(
-					RevisionRecord::DELETED_TEXT,
-					$context->getAuthority()
-				) && $context->getAuthority()->isAllowedAny( 'deletedtext', 'undelete' ) ) {
-					$text = $context->msg(
-						'missing-revision-permission', $oldid,
-						$revRecord->getTimestamp(),
-						$title->getPrefixedDBkey()
-					)->plain();
-				} else {
-					$text = $context->msg( 'missing-revision', $oldid )->plain();
-				}
-
+				$text = $this->getMissingRevisionMsg( $oldid )->plain();
 			} elseif ( $context->getAuthority()->probablyCan( 'edit', $title ) ) {
 				$message = $isRegistered ? 'noarticletext' : 'noarticletextanon';
 				$text = $context->msg( $message )->plain();
@@ -2062,5 +2047,29 @@ class Article implements Page {
 	 */
 	public function getActionOverrides() {
 		return $this->mPage->getActionOverrides();
+	}
+
+	private function getMissingRevisionMsg( int $oldid ): Message {
+		// T251066: Try loading the revision from the archive table.
+		// Show link to view it if it exists and the user has permission to view it.
+		// (Ignore the given title, if any; look it up from the revision instead.)
+		$context = $this->getContext();
+		$revRecord = $this->archivedRevisionLookup->getArchivedRevisionRecord( null, $oldid );
+		if (
+			$revRecord &&
+			$revRecord->userCan(
+				RevisionRecord::DELETED_TEXT,
+				$context->getAuthority()
+			) &&
+			$context->getAuthority()->isAllowedAny( 'deletedtext', 'undelete' )
+		) {
+			return $context->msg(
+				'missing-revision-permission',
+				$oldid,
+				$revRecord->getTimestamp(),
+				Title::newFromPageIdentity( $revRecord->getPage() )->getPrefixedDBkey()
+			);
+		}
+		return $context->msg( 'missing-revision', $oldid );
 	}
 }
