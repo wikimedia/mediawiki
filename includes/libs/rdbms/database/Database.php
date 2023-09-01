@@ -1587,7 +1587,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function replace( $table, $uniqueKeys, $rows, $fname = __METHOD__ ) {
-		$identityKey = $this->platform->normalizeUpsertParams( $uniqueKeys, $rows );
+		$uniqueKey = $this->platform->normalizeUpsertParams( $uniqueKeys, $rows );
 		if ( !$rows ) {
 			return;
 		}
@@ -1599,7 +1599,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				// Delete any conflicting rows (including ones inserted from $rows)
 				$query = $this->platform->deleteSqlText(
 					$table,
-					[ $this->platform->makeKeyCollisionCondition( [ $row ], $identityKey ) ]
+					[ $this->platform->makeKeyCollisionCondition( [ $row ], $uniqueKey ) ]
 				);
 				$this->query( $query, $fname );
 				// Insert the new row
@@ -1618,11 +1618,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function upsert( $table, array $rows, $uniqueKeys, array $set, $fname = __METHOD__ ) {
-		$identityKey = $this->platform->normalizeUpsertParams( $uniqueKeys, $rows );
+		$uniqueKey = $this->platform->normalizeUpsertParams( $uniqueKeys, $rows );
 		if ( !$rows ) {
 			return true;
 		}
-		$this->platform->assertValidUpsertSetArray( $set, $identityKey, $rows );
+		$this->platform->assertValidUpsertSetArray( $set, $uniqueKey, $rows );
 
 		$encTable = $this->tableName( $table );
 		$sqlColumnAssignments = $this->makeList( $set, self::LIST_SET );
@@ -1648,7 +1648,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				);
 				$sqlConditions = $this->platform->makeKeyCollisionCondition(
 					[ $row ],
-					$identityKey
+					$uniqueKey
 				);
 				$query = new Query(
 					( $useWith ? "WITH __VALS ($sqlVals) AS (VALUES $sqlTuples) " : "" ) .

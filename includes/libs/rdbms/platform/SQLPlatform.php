@@ -1773,10 +1773,10 @@ class SQLPlatform implements ISQLPlatform {
 		if ( !$uniqueKeys ) {
 			throw new DBLanguageError( 'No unique key specified for upsert/replace' );
 		}
-		$identityKey = $this->normalizeUpsertKeys( $uniqueKeys );
-		$this->assertValidUpsertRowArray( $rows, $identityKey );
+		$uniqueKey = $this->normalizeUpsertKeys( $uniqueKeys );
+		$this->assertValidUpsertRowArray( $rows, $uniqueKey );
 
-		return $identityKey;
+		return $uniqueKey;
 	}
 
 	/**
@@ -1840,15 +1840,15 @@ class SQLPlatform implements ISQLPlatform {
 
 	/**
 	 * @param array<int,array> $rows Normalized list of rows to insert
-	 * @param string[] $identityKey Columns of the (unique) identity key to UPSERT upon
+	 * @param string[] $uniqueKey Columns of the unique key to UPSERT upon
 	 * @since 1.37
 	 */
-	final protected function assertValidUpsertRowArray( array $rows, array $identityKey ) {
+	final protected function assertValidUpsertRowArray( array $rows, array $uniqueKey ) {
 		foreach ( $rows as $row ) {
-			foreach ( $identityKey as $column ) {
+			foreach ( $uniqueKey as $column ) {
 				if ( !isset( $row[$column] ) ) {
 					throw new DBLanguageError(
-						"NULL/absent values for unique key (" . implode( ',', $identityKey ) . ")"
+						"NULL/absent values for unique key (" . implode( ',', $uniqueKey ) . ")"
 					);
 				}
 			}
@@ -1857,13 +1857,13 @@ class SQLPlatform implements ISQLPlatform {
 
 	/**
 	 * @param array $set Combined column/literal assignment map and SQL assignment list
-	 * @param string[] $identityKey Columns of the (unique) identity key to UPSERT upon
+	 * @param string[] $uniqueKey Columns of the unique key to UPSERT upon
 	 * @param array<int,array> $rows List of rows to upsert
 	 * @since 1.37
 	 */
 	final public function assertValidUpsertSetArray(
 		array $set,
-		array $identityKey,
+		array $uniqueKey,
 		array $rows
 	) {
 		if ( !$set ) {
@@ -1871,15 +1871,15 @@ class SQLPlatform implements ISQLPlatform {
 		}
 
 		// Sloppy callers might construct the SET array using the ROW array, leaving redundant
-		// column definitions for identity key columns. Detect this for backwards compatibility.
+		// column definitions for unique key columns. Detect this for backwards compatibility.
 		$soleRow = ( count( $rows ) == 1 ) ? reset( $rows ) : null;
-		// Disallow value changes for any columns in the identity key. This avoids additional
+		// Disallow value changes for any columns in the unique key. This avoids additional
 		// insertion order dependencies that are unwieldy and difficult to implement efficiently
 		// in PostgreSQL.
 		foreach ( $set as $k => $v ) {
 			if ( is_string( $k ) ) {
 				// Key is a column name and value is a literal (e.g. string, int, null, ...)
-				if ( in_array( $k, $identityKey, true ) ) {
+				if ( in_array( $k, $uniqueKey, true ) ) {
 					if ( $soleRow && array_key_exists( $k, $soleRow ) && $soleRow[$k] === $v ) {
 						$this->logger->warning(
 							__METHOD__ . " called with redundant assignment to column '$k'",
@@ -1890,15 +1890,15 @@ class SQLPlatform implements ISQLPlatform {
 						);
 					} else {
 						throw new DBLanguageError(
-							"Cannot reassign column '$k' since it belongs to identity key"
+							"Cannot reassign column '$k' since it belongs to the provided unique key"
 						);
 					}
 				}
 			} elseif ( preg_match( '/^([a-zA-Z0-9_]+)\s*=/', $v, $m ) ) {
 				// Value is of the form "<unquoted alphanumeric column> = <SQL expression>"
-				if ( in_array( $m[1], $identityKey, true ) ) {
+				if ( in_array( $m[1], $uniqueKey, true ) ) {
 					throw new DBLanguageError(
-						"Cannot reassign column '{$m[1]}' since it belongs to identity key"
+						"Cannot reassign column '{$m[1]}' since it belongs to the provided unique key"
 					);
 				}
 			}
