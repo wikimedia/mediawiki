@@ -1525,7 +1525,7 @@ class Article implements Page {
 				if ( $revRecord && $revRecord->userCan(
 					RevisionRecord::DELETED_TEXT,
 					$context->getAuthority()
-				) ) {
+				) && $context->getAuthority()->isAllowedAny( 'deletedtext', 'undelete' ) ) {
 					$text = $context->msg(
 						'missing-revision-permission', $oldid,
 						$revRecord->getTimestamp(),
