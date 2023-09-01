@@ -50,14 +50,6 @@ class CommentStoreBase {
 	 */
 	public const MAX_DATA_LENGTH = 65535;
 
-	/**
-	 * @var int One of the MIGRATION_* constants, or an appropriate combination
-	 *  of SCHEMA_COMPAT_* constants.
-	 * @todo Deprecate and remove once extensions seem unlikely to need to use
-	 *  it for migration anymore.
-	 */
-	private $stage;
-
 	/** @var array[] Cache for `self::getJoin()` */
 	private $joinCache = [];
 
@@ -67,19 +59,9 @@ class CommentStoreBase {
 	/**
 	 * @param Language $lang Language to use for comment truncation. Defaults
 	 *  to content language.
-	 * @param int $stage One of the MIGRATION_* constants, or an appropriate
-	 *  combination of SCHEMA_COMPAT_* constants.
 	 */
-	public function __construct( Language $lang, $stage ) {
-		if ( ( $stage & SCHEMA_COMPAT_WRITE_BOTH ) === 0 ) {
-			throw new InvalidArgumentException( '$stage must include a write mode' );
-		}
-		if ( ( $stage & SCHEMA_COMPAT_READ_BOTH ) === 0 ) {
-			throw new InvalidArgumentException( '$stage must include a read mode' );
-		}
-
+	public function __construct( Language $lang ) {
 		$this->lang = $lang;
-		$this->stage = $stage;
 	}
 
 	/**
@@ -99,19 +81,7 @@ class CommentStoreBase {
 	 *  fields are aliased, so `+` is safe to use.
 	 */
 	public function getFields( $key ) {
-		$fields = [];
-		if ( ( $this->stage & SCHEMA_COMPAT_READ_BOTH ) === SCHEMA_COMPAT_READ_OLD ) {
-			$fields["{$key}_text"] = $key;
-			$fields["{$key}_data"] = 'NULL';
-			$fields["{$key}_cid"] = 'NULL';
-		} else { // READ_BOTH or READ_NEW
-			if ( $this->stage & SCHEMA_COMPAT_READ_OLD ) {
-				$fields["{$key}_old"] = $key;
-			}
-
-			$fields["{$key}_id"] = "{$key}_id";
-		}
-		return $fields;
+		return [ "{$key}_id" => "{$key}_id" ];
 	}
 
 	/**
@@ -137,25 +107,13 @@ class CommentStoreBase {
 			$fields = [];
 			$joins = [];
 
-			if ( ( $this->stage & SCHEMA_COMPAT_READ_BOTH ) === SCHEMA_COMPAT_READ_OLD ) {
-				$fields["{$key}_text"] = $key;
-				$fields["{$key}_data"] = 'NULL';
-				$fields["{$key}_cid"] = 'NULL';
-			} else { // READ_BOTH or READ_NEW
-				$join = ( $this->stage & SCHEMA_COMPAT_READ_OLD ) ? 'LEFT JOIN' : 'JOIN';
+			$alias = "comment_$key";
+			$tables[$alias] = 'comment';
+			$joins[$alias] = [ 'JOIN', "{$alias}.comment_id = {$key}_id" ];
 
-				$alias = "comment_$key";
-				$tables[$alias] = 'comment';
-				$joins[$alias] = [ $join, "{$alias}.comment_id = {$key}_id" ];
-
-				if ( ( $this->stage & SCHEMA_COMPAT_READ_BOTH ) === SCHEMA_COMPAT_READ_NEW ) {
-					$fields["{$key}_text"] = "{$alias}.comment_text";
-				} else {
-					$fields["{$key}_text"] = "COALESCE( {$alias}.comment_text, $key )";
-				}
-				$fields["{$key}_data"] = "{$alias}.comment_data";
-				$fields["{$key}_cid"] = "{$alias}.comment_id";
-			}
+			$fields["{$key}_text"] = "{$alias}.comment_text";
+			$fields["{$key}_data"] = "{$alias}.comment_data";
+			$fields["{$key}_cid"] = "{$alias}.comment_id";
 
 			$this->joinCache[$key] = [
 				'tables' => $tables,
@@ -185,18 +143,6 @@ class CommentStoreBase {
 			$cid = $row["{$key}_cid"] ?? null;
 			$text = $row["{$key}_text"];
 			$data = $row["{$key}_data"];
-		} elseif ( ( $this->stage & SCHEMA_COMPAT_READ_BOTH ) === SCHEMA_COMPAT_READ_OLD ) {
-			$cid = null;
-			if ( $fallback && isset( $row[$key] ) ) {
-				wfLogWarning( "Using deprecated fallback handling for comment $key" );
-				$text = $row[$key];
-			} else {
-				wfLogWarning(
-					"Missing {$key}_text and {$key}_data fields in row with MIGRATION_OLD / READ_OLD"
-				);
-				$text = '';
-			}
-			$data = null;
 		} else {
 			$row2 = null;
 			if ( array_key_exists( "{$key}_id", $row ) ) {
@@ -225,12 +171,6 @@ class CommentStoreBase {
 				$cid = $row2->comment_id;
 				$text = $row2->comment_text;
 				$data = $row2->comment_data;
-			} elseif ( ( $this->stage & SCHEMA_COMPAT_READ_OLD ) &&
-				array_key_exists( "{$key}_old", $row )
-			) {
-				$cid = null;
-				$text = $row["{$key}_old"];
-				$data = null;
 			} else {
 				// @codeCoverageIgnoreStart
 				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $id is set when $row2 is okay
@@ -349,7 +289,7 @@ class CommentStoreBase {
 		# Truncate comment in a Unicode-sensitive manner
 		$comment->text = $this->lang->truncateForVisual( $comment->text, self::COMMENT_CHARACTER_LIMIT );
 
-		if ( ( $this->stage & SCHEMA_COMPAT_WRITE_NEW ) && !$comment->id ) {
+		if ( !$comment->id ) {
 			$dbData = $comment->data;
 			if ( !$comment->message instanceof RawMessage ) {
 				$dbData ??= [ '_null' => true ];
@@ -409,18 +349,8 @@ class CommentStoreBase {
 			// @codeCoverageIgnoreEnd
 		}
 
-		$fields = [];
 		$comment = $this->createComment( $dbw, $comment, $data );
-
-		if ( $this->stage & SCHEMA_COMPAT_WRITE_OLD ) {
-			$fields[$key] = $this->lang->truncateForDatabase( $comment->text, 255 );
-		}
-
-		if ( $this->stage & SCHEMA_COMPAT_WRITE_NEW ) {
-			$fields["{$key}_id"] = $comment->id;
-		}
-
-		return $fields;
+		return [ "{$key}_id" => $comment->id ];
 	}
 
 	/**
