@@ -41,10 +41,10 @@ use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
- * A DatabaseBlock (unlike a SystemBlock) is stored in the database, may
- * give rise to autoblocks and may be tracked with cookies. Such blocks
- * are more customizable than system blocks: they may be hardblocks, and
- * they may be sitewide or partial.
+ * A DatabaseBlock (unlike a SystemBlock) is stored in the database, may give
+ * rise to autoblocks and may be tracked with cookies. Such blocks* are more
+ * customizable than system blocks: they may be hard blocks, and they may be
+ * sitewide or partial.
  *
  * @since 1.34 Renamed from Block.
  */
@@ -109,7 +109,7 @@ class DatabaseBlock extends AbstractBlock {
 
 		$this->setExpiry( $this->getDBConnection( DB_REPLICA )->decodeExpiry( $options['expiry'] ) );
 
-		# Boolean settings
+		// Boolean settings
 		$this->mAuto = (bool)$options['auto'];
 		$this->isAutoblocking( (bool)$options['enableAutoblock'] );
 		$this->isSitewide( (bool)$options['sitewide'] );
@@ -123,9 +123,9 @@ class DatabaseBlock extends AbstractBlock {
 	}
 
 	/**
-	 * Load a block from the block id.
+	 * Load a block from the block ID.
 	 *
-	 * @param int $id id to search for
+	 * @param int $id ID to search for
 	 * @return DatabaseBlock|null
 	 */
 	public static function newFromID( $id ) {
@@ -156,9 +156,12 @@ class DatabaseBlock extends AbstractBlock {
 	 *
 	 * @since 1.31
 	 * @return array[] With three keys:
-	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()` or `SelectQueryBuilder::tables`
-	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()` or `SelectQueryBuilder::fields`
-	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()` or `SelectQueryBuilder::joinConds`
+	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
+	 *     or `SelectQueryBuilder::tables`
+	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
+	 *     or `SelectQueryBuilder::fields`
+	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 *     or `SelectQueryBuilder::joinConds`
 	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
 	public static function getQueryInfo() {
@@ -251,15 +254,15 @@ class DatabaseBlock extends AbstractBlock {
 			$conds = [ 'ipb_address' => [] ];
 		}
 
-		# Be aware that the != '' check is explicit, since empty values will be
-		# passed by some callers (T31116)
+		// Be aware that the != '' check is explicit, since empty values will be
+		// passed by some callers (T31116)
 		if ( $vagueTarget != '' ) {
 			[ $target, $type ] = MediaWikiServices::getInstance()
 				->getBlockUtils()
 				->parseBlockTarget( $vagueTarget );
 			switch ( $type ) {
 				case self::TYPE_USER:
-					# Slightly weird, but who are we to argue?
+					// Slightly weird, but who are we to argue?
 					$conds['ipb_address'][] = (string)$target;
 					$conds = $db->makeList( $conds, LIST_OR );
 					break;
@@ -299,12 +302,12 @@ class DatabaseBlock extends AbstractBlock {
 		foreach ( $res as $row ) {
 			$block = self::newFromRow( $row );
 
-			# Don't use expired blocks
+			// Don't use expired blocks
 			if ( $block->isExpired() ) {
 				continue;
 			}
 
-			# Don't use anon only blocks on users
+			// Don't use anon only blocks on users
 			if (
 				$specificType == self::TYPE_USER &&
 				!$block->isHardblock() &&
@@ -349,22 +352,22 @@ class DatabaseBlock extends AbstractBlock {
 			return $blocks[0];
 		}
 
-		# This result could contain a block on the user, a block on the IP, and a russian-doll
-		# set of rangeblocks.  We want to choose the most specific one, so keep a leader board.
+		// This result could contain a block on the user, a block on the IP, and a russian-doll
+		// set of range blocks.  We want to choose the most specific one, so keep a leader board.
 		$bestBlock = null;
 
-		# Lower will be better
+		// Lower will be better
 		$bestBlockScore = 100;
 		foreach ( $blocks as $block ) {
 			if ( $block->getType() == self::TYPE_RANGE ) {
-				# This is the number of bits that are allowed to vary in the block, give
-				# or take some floating point errors
+				// This is the number of bits that are allowed to vary in the block, give
+				// or take some floating point errors
 				$target = $block->getTargetName();
 				$max = IPUtils::isIPv6( $target ) ? 128 : 32;
 				[ , $bits ] = IPUtils::parseCIDR( $target );
 				$size = $max - $bits;
 
-				# Rank a range block covering a single IP equally with a single-IP block
+				// Rank a range block covering a single IP equally with a single-IP block
 				$score = self::TYPE_RANGE - 1 + ( $size / $max );
 
 			} else {
@@ -381,22 +384,20 @@ class DatabaseBlock extends AbstractBlock {
 	}
 
 	/**
-	 * Get a set of SQL conditions which will select rangeblocks encompassing a given range
+	 * Get a set of SQL conditions which will select range blocks encompassing a given range
 	 * @param string $start Hexadecimal IP representation
 	 * @param string|null $end Hexadecimal IP representation, or null to use $start = $end
 	 * @return string
 	 */
 	public static function getRangeCond( $start, $end = null ) {
-		# Per T16634, we want to include relevant active rangeblocks; for
-		# rangeblocks, we want to include larger ranges which enclose the given
-		# range. We know that all blocks must be smaller than $wgBlockCIDRLimit,
-		# so we can improve performance by filtering on a LIKE clause
+		// Per T16634, we want to include relevant active range blocks; for
+		// range blocks, we want to include larger ranges which enclose the given
+		// range. We know that all blocks must be smaller than $wgBlockCIDRLimit,
+		// so we can improve performance by filtering on a LIKE clause
 		$chunk = self::getIpFragment( $start );
 		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
 		$like = $dbr->buildLike( $chunk, $dbr->anyString() );
 
-		# Fairly hard to make a malicious SQL statement out of hex characters,
-		# but stranger things have happened...
 		$safeStart = $dbr->addQuotes( $start );
 		$safeEnd = $dbr->addQuotes( $end ?? $start );
 
@@ -412,7 +413,7 @@ class DatabaseBlock extends AbstractBlock {
 
 	/**
 	 * Get the component of an IP address which is certain to be the same between an IP
-	 * address and a rangeblock containing that IP address.
+	 * address and a range block containing that IP address.
 	 * @param string $hex Hexadecimal IP representation
 	 * @return string
 	 */
@@ -437,7 +438,7 @@ class DatabaseBlock extends AbstractBlock {
 		$this->mAuto = (bool)$row->ipb_auto;
 		$this->setHideName( (bool)$row->ipb_deleted );
 		$this->mId = (int)$row->ipb_id;
-		// Blocks with no parent id should have ipb_parent_block_id as null,
+		// Blocks with no parent ID should have ipb_parent_block_id as null,
 		// don't save that as 0 though, see T282890
 		$this->mParentBlockId = $row->ipb_parent_block_id ? (int)$row->ipb_parent_block_id : null;
 
@@ -549,7 +550,7 @@ class DatabaseBlock extends AbstractBlock {
 		wfDebug( "Checking the autoblock exemption list.." );
 
 		foreach ( $lines as $line ) {
-			# List items only
+			// List items only
 			if ( !str_starts_with( $line, '*' ) ) {
 				continue;
 			}
@@ -559,7 +560,7 @@ class DatabaseBlock extends AbstractBlock {
 
 			wfDebug( "Checking $ip against $wlEntry..." );
 
-			# Is the IP in this range?
+			// Is the IP in this range?
 			if ( IPUtils::isInRange( $ip, $wlEntry ) ) {
 				wfDebug( " IP $ip matches $wlEntry, not autoblocking" );
 				return true;
@@ -578,7 +579,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * @return int|false ID if an autoblock was inserted, false if not.
 	 */
 	public function doAutoblock( $autoblockIP ) {
-		# If autoblocks are disabled, go away.
+		// If autoblocks are disabled, go away.
 		if ( !$this->isAutoblocking() ) {
 			return false;
 		}
@@ -592,20 +593,20 @@ class DatabaseBlock extends AbstractBlock {
 		}
 		$target = (string)$target;
 
-		# Check if autoblock exempt.
+		// Check if autoblock exempt.
 		if ( self::isExemptedFromAutoblocks( $target ) ) {
 			return false;
 		}
 
-		# Allow hooks to cancel the autoblock.
+		// Allow hooks to cancel the autoblock.
 		if ( !( new HookRunner( $services->getHookContainer() ) )->onAbortAutoblock( $target, $this ) ) {
 			wfDebug( "Autoblock aborted by hook." );
 			return false;
 		}
 
-		# It's okay to autoblock. Go ahead and insert/update the block...
+		// It's okay to autoblock. Go ahead and insert/update the block...
 
-		# Do not add a *new* block if the IP is already blocked.
+		// Do not add a *new* block if the IP is already blocked.
 		$dbr = $this->getDBConnection( DB_REPLICA );
 
 		$blockQuery = self::getQueryInfo();
@@ -633,13 +634,13 @@ class DatabaseBlock extends AbstractBlock {
 		$ipblock = self::chooseMostSpecificBlock( $blocks );
 
 		if ( $ipblock ) {
-			# Check if the block is an autoblock and would exceed the user block
-			# if renewed. If so, do nothing, otherwise prolong the block time...
+			// Check if the block is an autoblock and would exceed the user block
+			// if renewed. If so, do nothing, otherwise prolong the block time...
 			if ( $ipblock->mAuto && // @todo Why not compare $ipblock->mExpiry?
 				$this->getExpiry() > self::getAutoblockExpiry( $ipblock->getTimestamp() )
 			) {
-				# Reset block timestamp to now and its expiry to
-				# $wgAutoblockExpiry in the future
+				// Reset block timestamp to now and its expiry to
+				// $wgAutoblockExpiry in the future
 				$ipblock->updateTimestamp();
 			}
 			return false;
@@ -649,7 +650,7 @@ class DatabaseBlock extends AbstractBlock {
 			throw new \RuntimeException( __METHOD__ . ': this block does not have a blocker' );
 		}
 
-		# Make a new block object with the desired properties.
+		// Make a new block object with the desired properties.
 		$autoblock = new DatabaseBlock( [ 'wiki' => $this->getWikiId() ] );
 		wfDebug( "Autoblocking {$this->getTargetName()}@" . $target );
 		$autoblock->setTarget( UserIdentityValue::newAnonymous( $target, $this->getWikiId() ) );
@@ -665,7 +666,7 @@ class DatabaseBlock extends AbstractBlock {
 		$autoblock->setTimestamp( $timestamp );
 		$autoblock->mAuto = true;
 		$autoblock->isCreateAccountBlocked( $this->isCreateAccountBlocked() );
-		# Continue suppressing the name if needed
+		// Continue suppressing the name if needed
 		$autoblock->setHideName( $this->getHideName() );
 		$autoblock->isUsertalkEditAllowed( $this->isUsertalkEditAllowed() );
 		$autoblock->mParentBlockId = $this->mId;
@@ -673,15 +674,15 @@ class DatabaseBlock extends AbstractBlock {
 		$autoblock->setRestrictions( $this->getRestrictions() );
 
 		if ( $this->getExpiry() == 'infinity' ) {
-			# Original block was indefinite, start an autoblock now
+			// Original block was indefinite, start an autoblock now
 			$autoblock->setExpiry( self::getAutoblockExpiry( $timestamp ) );
 		} else {
-			# If the user is already blocked with an expiry date, we don't
-			# want to pile on top of that.
+			// If the user is already blocked with an expiry date, we don't
+			// want to pile on top of that.
 			$autoblock->setExpiry( min( $this->getExpiry(), self::getAutoblockExpiry( $timestamp ) ) );
 		}
 
-		# Insert the block...
+		// Insert the block...
 		$status = $services->getDatabaseBlockStoreFactory()
 			->getDatabaseBlockStore( $this->getWikiId() )
 			->insertBlock( $autoblock );
@@ -810,14 +811,14 @@ class DatabaseBlock extends AbstractBlock {
 	}
 
 	/**
-	 * Get/set whether the block is a hardblock (affects logged-in users on a given IP/range)
+	 * Get/set whether the block is a hard block (affects logged-in users on a given IP/range)
 	 * @param bool|null $x
 	 * @return bool
 	 */
 	public function isHardblock( $x = null ): bool {
 		wfSetVar( $this->isHardblock, $x );
 
-		# You can't *not* hardblock a user
+		// All user blocks are hard blocks
 		return $this->getType() == self::TYPE_USER
 			? true
 			: $this->isHardblock;
@@ -830,8 +831,8 @@ class DatabaseBlock extends AbstractBlock {
 	public function isAutoblocking( $x = null ) {
 		wfSetVar( $this->isAutoblocking, $x );
 
-		# You can't put an autoblock on an IP or range as we don't have any history to
-		# look over to get more IPs from
+		// You can't put an autoblock on an IP or range as we don't have any history to
+		// look over to get more IPs from
 		return $this->getType() == self::TYPE_USER
 			? $this->isAutoblocking
 			: false;
@@ -854,7 +855,7 @@ class DatabaseBlock extends AbstractBlock {
 	}
 
 	/**
-	 * Get a timestamp of the expiry for autoblocks
+	 * Get the expiry timestamp for an autoblock created at the given time.
 	 *
 	 * @param string|int $timestamp
 	 * @return string
@@ -878,7 +879,8 @@ class DatabaseBlock extends AbstractBlock {
 
 	/**
 	 * Given a target and the target's type, get an existing block object if possible.
-	 * @param string|UserIdentity|int|null $specificTarget A block target, which may be one of several types:
+	 * @param string|UserIdentity|int|null $specificTarget A block target, which may be one of
+	 *   several types:
 	 *     * A user to block, in which case $target will be a User
 	 *     * An IP to block, in which case $target will be a User generated by using
 	 *       User::newFromName( $ip, false ) to turn off name validation
@@ -888,15 +890,19 @@ class DatabaseBlock extends AbstractBlock {
 	 *     Calling this with a user, IP address or range will not select autoblocks, and will
 	 *     only select a block where the targets match exactly (so looking for blocks on
 	 *     1.2.3.4 will not select 1.2.0.0/16 or even 1.2.3.4/32)
-	 * @param string|UserIdentity|int|null $vagueTarget As above, but we will search for *any* block which
-	 *     affects that target (so for an IP address, get ranges containing that IP; and also
-	 *     get any relevant autoblocks). Leave empty or blank to skip IP-based lookups.
+	 * @param string|UserIdentity|int|null $vagueTarget As above, but we will search for *any*
+	 *     block which affects that target (so for an IP address, get ranges containing that IP;
+	 *     and also get any relevant autoblocks). Leave empty or blank to skip IP-based lookups.
 	 * @param bool $fromPrimary Whether to use the DB_PRIMARY database
 	 * @return DatabaseBlock|null (null if no relevant block could be found). The target and type
 	 *     of the returned block will refer to the actual block which was found, which might
 	 *     not be the same as the target you gave if you used $vagueTarget!
 	 */
-	public static function newFromTarget( $specificTarget, $vagueTarget = null, $fromPrimary = false ) {
+	public static function newFromTarget(
+		$specificTarget,
+		$vagueTarget = null,
+		$fromPrimary = false
+	) {
 		$blocks = self::newListFromTarget( $specificTarget, $vagueTarget, $fromPrimary );
 		return self::chooseMostSpecificBlock( $blocks );
 	}
@@ -922,9 +928,9 @@ class DatabaseBlock extends AbstractBlock {
 			$block = self::newFromID( $target );
 			return $block ? [ $block ] : [];
 		} elseif ( $target === null && $vagueTarget == '' ) {
-			# We're not going to find anything useful here
-			# Be aware that the == '' check is explicit, since empty values will be
-			# passed by some callers (T31116)
+			// We're not going to find anything useful here
+			// Be aware that the == '' check is explicit, since empty values will be
+			// passed by some callers (T31116)
 			return [];
 		} elseif ( in_array(
 			$type,
@@ -954,20 +960,20 @@ class DatabaseBlock extends AbstractBlock {
 		$conds = [];
 		$proxyLookup = MediaWikiServices::getInstance()->getProxyLookup();
 		foreach ( array_unique( $ipChain ) as $ipaddr ) {
-			# Discard invalid IP addresses. Since XFF can be spoofed and we do not
-			# necessarily trust the header given to us, make sure that we are only
-			# checking for blocks on well-formatted IP addresses (IPv4 and IPv6).
-			# Do not treat private IP spaces as special as it may be desirable for wikis
-			# to block those IP ranges in order to stop misbehaving proxies that spoof XFF.
+			// Discard invalid IP addresses. Since XFF can be spoofed and we do not
+			// necessarily trust the header given to us, make sure that we are only
+			// checking for blocks on well-formatted IP addresses (IPv4 and IPv6).
+			// Do not treat private IP spaces as special as it may be desirable for wikis
+			// to block those IP ranges in order to stop misbehaving proxies that spoof XFF.
 			if ( !IPUtils::isValid( $ipaddr ) ) {
 				continue;
 			}
-			# Don't check trusted IPs (includes local CDNs which will be in every request)
+			// Don't check trusted IPs (includes local CDNs which will be in every request)
 			if ( $proxyLookup->isTrustedProxy( $ipaddr ) ) {
 				continue;
 			}
-			# Check both the original IP (to check against single blocks), as well as build
-			# the clause to check for rangeblocks for the given IP.
+			// Check both the original IP (to check against single blocks), as well as build
+			// the clause to check for range blocks for the given IP.
 			$conds['ipb_address'][] = $ipaddr;
 			$conds[] = self::getRangeCond( IPUtils::toHex( $ipaddr ) );
 		}
@@ -1034,7 +1040,7 @@ class DatabaseBlock extends AbstractBlock {
 	 */
 	public function getRestrictions() {
 		if ( $this->restrictions === null ) {
-			// If the block id has not been set, then do not attempt to load the
+			// If the block ID has not been set, then do not attempt to load the
 			// restrictions.
 			if ( !$this->mId ) {
 				return [];

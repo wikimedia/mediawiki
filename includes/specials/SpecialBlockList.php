@@ -99,17 +99,17 @@ class SpecialBlockList extends SpecialPage {
 		$action = $request->getText( 'action' );
 
 		if ( $action == 'unblock' || $action == 'submit' && $request->wasPosted() ) {
-			# B/C @since 1.18: Unblock interface is now at Special:Unblock
+			// B/C @since 1.18: Unblock interface is now at Special:Unblock
 			$title = $this->getSpecialPageFactory()->getTitleForAlias( 'Unblock/' . $this->target );
 			$out->redirect( $title->getFullURL() );
 
 			return;
 		}
 
-		# setup BlockListPager here to get the actual default Limit
+		// Setup BlockListPager here to get the actual default Limit
 		$pager = $this->getBlockListPager();
 
-		# Just show the block list
+		// Just show the block list
 		$fields = [
 			'Target' => [
 				'type' => 'user',
@@ -173,7 +173,7 @@ class SpecialBlockList extends SpecialPage {
 	protected function getBlockListPager() {
 		$conds = [];
 		$db = $this->getDB();
-		# Is the user allowed to see hidden blocks?
+		// Is the user allowed to see hidden blocks?
 		if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
 			$conds['ipb_deleted'] = 0;
 		}
@@ -207,7 +207,7 @@ class SpecialBlockList extends SpecialPage {
 			}
 		}
 
-		# Apply filters
+		// Apply filters
 		if ( in_array( 'userblocks', $this->options ) ) {
 			$conds['ipb_user'] = 0;
 		}
@@ -261,12 +261,12 @@ class SpecialBlockList extends SpecialPage {
 	protected function showList( BlockListPager $pager ) {
 		$out = $this->getOutput();
 
-		# Check for other blocks, i.e. global/tor blocks
+		// Check for other blocks, i.e. global/tor blocks
 		$otherBlockLink = [];
 		$this->getHookRunner()->onOtherBlockLogLink( $otherBlockLink, $this->target );
 
-		# Show additional header for the local block only when other blocks exists.
-		# Not necessary in a standard installation without such extensions enabled
+		// Show additional header for the local block only when other blocks exists.
+		// Not necessary in a standard installation without such extensions enabled
 		if ( count( $otherBlockLink ) ) {
 			$out->addHTML(
 				Html::element( 'h2', [], $this->msg( 'ipblocklist-localblock' )->text() ) . "\n"

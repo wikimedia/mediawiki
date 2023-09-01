@@ -144,7 +144,7 @@ class DatabaseBlockStore {
 					->select( 'ipb_id' )
 					->from( 'ipblocks' )
 					->where( $dbw->buildComparison( '<', [ 'ipb_expiry' => $dbw->timestamp() ] ) )
-					// Set a limit to avoid causing read-only mode (T301742)
+					// Set a limit to avoid causing replication lag (T301742)
 					->limit( $limit )
 					->caller( $fname )->fetchFieldValues();
 				if ( $ids ) {
@@ -160,7 +160,7 @@ class DatabaseBlockStore {
 	}
 
 	/**
-	 * Throws an exception if the given database connection does not match the
+	 * Throw an exception if the given database connection does not match the
 	 * given wiki ID.
 	 *
 	 * @param string|false $expectedWiki
@@ -189,10 +189,10 @@ class DatabaseBlockStore {
 	 * block (same name and options) already in the database.
 	 *
 	 * @param DatabaseBlock $block
-	 * @param IDatabase|null $database Database to use if not the same as the one in the load balancer.
-	 *                       Must connect to the wiki identified by $block->getBlocker->getWikiId().
-	 *                       @deprecated since 1.41, use DatabaseBlockStoreFactory to fetch a correct
-	 *                       DatabaseBlockStore instead.
+	 * @param IDatabase|null $database Database to use if not the same as the one in the load
+	 *   balancer. Must connect to the wiki identified by $block->getBlocker->getWikiId().
+	 *   Deprecated since 1.41, should be null. Use DatabaseBlockStoreFactory to fetch a
+	 *   DatabaseBlockStore with a database injected.
 	 * @return bool|array False on failure, assoc array on success:
 	 *      ('id' => block ID, 'autoIds' => array of autoblock IDs)
 	 */
@@ -335,7 +335,7 @@ class DatabaseBlockStore {
 		}
 
 		if ( $block->isAutoblocking() ) {
-			// update corresponding autoblock(s) (T50813)
+			// Update corresponding autoblock(s) (T50813)
 			$dbw->newUpdateQueryBuilder()
 				->update( 'ipblocks' )
 				->set( $this->getArrayForAutoblockUpdate( $block ) )
@@ -350,7 +350,7 @@ class DatabaseBlockStore {
 				);
 			}
 		} else {
-			// autoblock no longer required, delete corresponding autoblock(s)
+			// Autoblock no longer required, delete corresponding autoblock(s)
 			$ids = $dbw->newSelectQueryBuilder()
 				->select( 'ipb_id' )
 				->from( 'ipblocks' )
@@ -437,7 +437,8 @@ class DatabaseBlockStore {
 		if ( !$blocker ) {
 			throw new \RuntimeException( __METHOD__ . ': this block does not have a blocker' );
 		}
-		// DatabaseBlockStore supports inserting cross-wiki blocks by passing non-local IDatabase and blocker.
+		// DatabaseBlockStore supports inserting cross-wiki blocks by passing
+		// non-local IDatabase and blocker.
 		$blockerActor = $this->actorStoreFactory
 			->getActorStore( $dbw->getDomainID() )
 			->acquireActorId( $blocker, $dbw );
@@ -504,7 +505,7 @@ class DatabaseBlockStore {
 	}
 
 	/**
-	 * Handles retroactively autoblocking the last IP used by the user (if it is a user)
+	 * Handle retroactively autoblocking the last IP used by the user (if it is a user)
 	 * blocked by an auto block.
 	 *
 	 * @param DatabaseBlock $block

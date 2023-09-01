@@ -29,10 +29,9 @@ use MediaWiki\User\UserIdentity;
 /**
  * Block permissions
  *
- * This class is responsible for making sure a user has permission to block
+ * This class is responsible for making sure a user has permission to block.
  *
- * This class is usable for both blocking as well as
- * the unblocking process.
+ * This class is usable for both blocking and unblocking.
  *
  * @since 1.35
  */
@@ -76,7 +75,7 @@ class BlockPermissionChecker {
 	}
 
 	/**
-	 * Check base permission that apply to either block or unblock
+	 * Check the base permission that applies to either block or unblock
 	 *
 	 * @since 1.36
 	 * @param bool $checkHideuser
@@ -100,7 +99,7 @@ class BlockPermissionChecker {
 	/**
 	 * Checks block-related permissions (doesn't check any other permissions)
 	 *
-	 * T17810: Sitewide blocked admins should not be able to block/unblock
+	 * T17810: Site-wide blocked admins should not be able to block/unblock
 	 * others with one exception; they can block the user who blocked them,
 	 * to reduce advantage of a malicious account blocking all admins (T150826).
 	 *

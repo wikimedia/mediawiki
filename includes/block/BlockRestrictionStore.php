@@ -65,7 +65,7 @@ class BlockRestrictionStore {
 	}
 
 	/**
-	 * Retrieves the restrictions from the database by block id.
+	 * Retrieve the restrictions from the database by block ID.
 	 *
 	 * @since 1.33
 	 * @param int|int[] $blockId
@@ -88,7 +88,7 @@ class BlockRestrictionStore {
 	}
 
 	/**
-	 * Inserts the restrictions into the database.
+	 * Insert the restrictions into the database.
 	 *
 	 * @since 1.33
 	 * @param Restriction[] $restrictions
@@ -123,22 +123,22 @@ class BlockRestrictionStore {
 	}
 
 	/**
-	 * Updates the list of restrictions. This method does not allow removing all
+	 * Update the list of restrictions. This method does not allow removing all
 	 * of the restrictions. To do that, use ::deleteByBlockId().
 	 *
 	 * @since 1.33
 	 * @param Restriction[] $restrictions
-	 * @return bool
+	 * @return bool Whether all operations were successful
 	 */
 	public function update( array $restrictions ) {
 		$dbw = $this->dbProvider->getPrimaryDatabase( $this->wikiId );
 
 		$dbw->startAtomic( __METHOD__ );
 
-		// Organize the restrictions by blockid.
+		// Organize the restrictions by block ID.
 		$restrictionList = $this->restrictionsByBlockId( $restrictions );
 
-		// Load the existing restrictions and organize by block id. Any block ids
+		// Load the existing restrictions and organize by block ID. Any block IDs
 		// that were passed into this function will be used to load all of the
 		// existing restrictions. This list might be the same, or may be completely
 		// different.
@@ -158,12 +158,11 @@ class BlockRestrictionStore {
 		}
 
 		$result = true;
-		// Perform the actions on a per block-id basis.
+		// Perform the actions on a per block-ID basis.
 		foreach ( $restrictionList as $blockId => $blockRestrictions ) {
 			// Insert all of the restrictions first, ignoring ones that already exist.
 			$success = $this->insert( $blockRestrictions );
 
-			// Update the result. The first false is the result, otherwise, true.
 			$result = $success && $result;
 
 			$restrictionsToRemove = $this->restrictionsToRemove(
@@ -177,7 +176,6 @@ class BlockRestrictionStore {
 
 			$success = $this->delete( $restrictionsToRemove );
 
-			// Update the result. The first false is the result, otherwise, true.
 			$result = $success && $result;
 		}
 
@@ -187,12 +185,12 @@ class BlockRestrictionStore {
 	}
 
 	/**
-	 * Updates the list of restrictions by parent id.
+	 * Updates the list of restrictions by parent ID.
 	 *
 	 * @since 1.33
 	 * @param int $parentBlockId
 	 * @param Restriction[] $restrictions
-	 * @return bool
+	 * @return bool Whether all updates were successful
 	 */
 	public function updateByParentBlockId( $parentBlockId, array $restrictions ) {
 		$parentBlockId = (int)$parentBlockId;
@@ -220,7 +218,6 @@ class BlockRestrictionStore {
 		$result = true;
 		foreach ( $blockIds as $id ) {
 			$success = $this->update( $this->setBlockId( $id, $restrictions ) );
-			// Update the result. The first false is the result, otherwise, true.
 			$result = $success && $result;
 		}
 
@@ -271,9 +268,9 @@ class BlockRestrictionStore {
 	}
 
 	/**
-	 * Checks if two arrays of Restrictions are effectively equal. This is a loose
+	 * Check if two arrays of Restrictions are effectively equal. This is a loose
 	 * equality check as the restrictions do not have to contain the same block
-	 * ids.
+	 * IDs.
 	 *
 	 * @since 1.33
 	 * @param Restriction[] $a
@@ -370,7 +367,7 @@ class BlockRestrictionStore {
 
 	/**
 	 * Converts an array of restrictions to an associative array of restrictions
-	 * where the keys are the block ids.
+	 * where the keys are the block IDs.
 	 *
 	 * @param Restriction[] $restrictions
 	 * @return array
@@ -391,7 +388,7 @@ class BlockRestrictionStore {
 	}
 
 	/**
-	 * Convert an Result Wrapper to an array of restrictions.
+	 * Convert a result wrapper to an array of restrictions.
 	 *
 	 * @param IResultWrapper $result
 	 * @return Restriction[]

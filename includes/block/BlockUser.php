@@ -202,11 +202,11 @@ class BlockUser {
 	 *    - isHardBlock                 : Are named (non-temporary) users prevented from editing?
 	 *    - isAutoblocking              : Should this block spread to others to
 	 *                                    limit block evasion?
-	 *    - isUserTalkEditBlocked       : Is editing blocked user's own talkpage allowed?
+	 *    - isUserTalkEditBlocked       : Is editing blocked user's own talk page prevented?
 	 *    - isHideUser                  : Should blocked user's name be hidden (needs hideuser)?
 	 *    - isPartial                   : Is this block partial? This is ignored when
 	 *                                    blockRestrictions is not an empty array.
-	 * @param array $blockRestrictions
+	 * @param AbstractRestriction[] $blockRestrictions
 	 * @param string[] $tags Tags that should be assigned to the log entry
 	 */
 	public function __construct(
@@ -368,8 +368,8 @@ class BlockUser {
 	/**
 	 * Configure DatabaseBlock according to class properties
 	 *
-	 * @param DatabaseBlock|null $sourceBlock Copy any options from this block,
-	 *                                        null to construct a new one.
+	 * @param DatabaseBlock|null $sourceBlock Copy any options from this block.
+	 *   Null to construct a new one.
 	 *
 	 * @return DatabaseBlock
 	 */
@@ -412,12 +412,12 @@ class BlockUser {
 	}
 
 	/**
-	 * Places a block with checking permissions
+	 * Place a block, checking permissions
 	 *
 	 * @param bool $reblock Should this reblock?
 	 *
 	 * @return Status If the block is successful, the value of the returned
-	 * Status is an instance of a newly placed block.
+	 *   Status is an instance of a newly placed block.
 	 */
 	public function placeBlock( bool $reblock = false ): Status {
 		$priorBlock = DatabaseBlock::newFromTarget( $this->target, null, /*fromPrimary=*/true );
@@ -445,7 +445,6 @@ class BlockUser {
 		}
 
 		if ( $this->tags !== [] ) {
-			// TODO: Use DI, see T245964
 			$status = ChangeTags::canAddTagsAccompanyingChange(
 				$this->tags,
 				$this->performer
@@ -475,12 +474,12 @@ class BlockUser {
 	}
 
 	/**
-	 * Places a block without any sort of permissions checks.
+	 * Place a block without any sort of permissions checks.
 	 *
 	 * @param bool $reblock Should this reblock?
 	 *
 	 * @return Status If the block is successful, the value of the returned
-	 * Status is an instance of a newly placed block.
+	 *   Status is an instance of a newly placed block.
 	 */
 	public function placeBlockUnsafe( bool $reblock = false ): Status {
 		$status = $this->blockUtils->validateTarget( $this->target );

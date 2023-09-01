@@ -34,7 +34,7 @@ use Wikimedia\IPUtils;
  * Backend class for blocking utils
  *
  * This service should contain any methods that are useful
- * to more than one blocking-related class and doesn't fit any
+ * to more than one blocking-related class and don't fit any
  * other service.
  *
  * For now, this includes only

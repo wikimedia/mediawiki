@@ -34,7 +34,8 @@ use RequestContext;
 use User;
 
 /**
- * @note Extensions should not subclass this, as MediaWiki currently does not support custom block types.
+ * @note Extensions should not subclass this, as MediaWiki currently does not
+ *   support custom block types.
  * @since 1.34 Factored out from DatabaseBlock (previously Block).
  */
 abstract class AbstractBlock implements Block {
@@ -84,13 +85,16 @@ abstract class AbstractBlock implements Block {
 	 * Create a new block with specified parameters on a user, IP or IP range.
 	 *
 	 * @param array $options Parameters of the block, with supported options:
-	 *  - address: (string|UserIdentity) Target user name, user identity object, IP address or IP range
-	 *  - wiki: (string|false) The wiki the block has been issued in, self::LOCAL for the local wiki (since 1.38)
+	 *  - address: (string|UserIdentity) Target user name, user identity object,
+	 *    IP address or IP range
+	 *  - wiki: (string|false) The wiki the block has been issued in,
+	 *    self::LOCAL for the local wiki (since 1.38)
 	 *  - reason: (string|Message|CommentStoreComment) Reason for the block
 	 *  - timestamp: (string) The time at which the block comes into effect
 	 *  - hideName: (bool) Hide the target user name
-	 *  - anonOnly: (bool) Used if the target is an IP address. The block only applies to anon and
-	 *    temporary users using this IP address, and not to logged-in users.
+	 *  - anonOnly: (bool) Used if the target is an IP address. The block only
+	 *    applies to anon and temporary users using this IP address, and not to
+	 *    logged-in users.
 	 */
 	public function __construct( array $options = [] ) {
 		$defaults = [
@@ -187,7 +191,7 @@ abstract class AbstractBlock implements Block {
 	}
 
 	/**
-	 * Set whether ths block hides the target's username
+	 * Set whether the block hides the target's username
 	 *
 	 * @since 1.33
 	 * @param bool $hideName The block hides the username
@@ -249,12 +253,14 @@ abstract class AbstractBlock implements Block {
 	}
 
 	/**
-	 * Get/set whether the block is a hardblock (affects logged-in users on a given IP/range).
+	 * Get/set whether the block is a hard block (affects logged-in users on a
+	 * given IP/range).
 	 *
-	 * Note that temporary users are not considered logged-in here - they are always blocked
-	 * by IP-address blocks.
+	 * Note that temporary users are not considered logged-in here - they are
+	 * always blocked by IP-address blocks.
 	 *
-	 * Note that user blocks are always hardblocks, since the target is logged in by definition.
+	 * Note that user blocks are always hard blocks, since the target is logged
+	 * in by definition.
 	 *
 	 * @since 1.36 Moved up from DatabaseBlock
 	 * @param bool|null $x
@@ -269,10 +275,10 @@ abstract class AbstractBlock implements Block {
 	}
 
 	/**
-	 * Determine whether the block prevents a given right. A right
-	 * may be allowed or disallowed by default, or determined from a
-	 * property on the block object. For certain rights, the property
-	 * may be overridden according to global configs.
+	 * Determine whether the block prevents a given right. A right may be
+	 * allowed or disallowed by default, or determined from a property on the
+	 * block object. For certain rights, the property may be overridden
+	 * according to global configs.
 	 *
 	 * @since 1.33
 	 * @param string $right
@@ -425,7 +431,8 @@ abstract class AbstractBlock implements Block {
 	 * Get the key and parameters for the corresponding error message.
 	 *
 	 * @deprecated since 1.35 Use BlockErrorFormatter::getMessage instead, and
-	 *  build the array using Message::getKey and Message::getParams.Hard deprecated since 1.40.
+	 *  build the array using Message::getKey and Message::getParams. Hard
+	 *  deprecated since 1.40.
 	 * @since 1.22
 	 * @param IContextSource $context
 	 * @return array A message array: either a list of strings, the first of which
@@ -516,7 +523,7 @@ abstract class AbstractBlock implements Block {
 	 *
 	 * This check does not consider whether `$this->isUsertalkEditAllowed`
 	 * returns false, as the identity of the user making the hypothetical edit
-	 * isn't known here (particularly in the case of IP hardblocks, range
+	 * isn't known here (particularly in the case of IP hard blocks, range
 	 * blocks, and auto-blocks).
 	 *
 	 * @param Title $title
@@ -543,7 +550,7 @@ abstract class AbstractBlock implements Block {
 	 *
 	 * This check does not consider whether `$this->isUsertalkEditAllowed`
 	 * returns false, as the identity of the user making the hypothetical edit
-	 * isn't known here (particularly in the case of IP hardblocks, range
+	 * isn't known here (particularly in the case of IP hard blocks, range
 	 * blocks, and auto-blocks).
 	 *
 	 * @since 1.33

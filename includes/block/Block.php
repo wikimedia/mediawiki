@@ -29,6 +29,7 @@ use MediaWiki\User\UserIdentity;
  * Represents a block that may prevent users from performing specific operations.
  * The block may apply to a specific user, to a network address, network range,
  * or some other aspect of a web request.
+ *
  * The block may apply to the entire site, or may be limited to specific pages
  * or namespaces.
  *
@@ -101,7 +102,7 @@ interface Block extends WikiAwareEntity {
 
 	/**
 	 * Return the name of the block target as a string.
-	 * Depending on the type returned by get Type(), this could be a user name,
+	 * Depending on the type returned by getType(), this could be a user name,
 	 * an IP address or range, an internal ID, etc.
 	 *
 	 * @return string
@@ -109,7 +110,7 @@ interface Block extends WikiAwareEntity {
 	public function getTargetName(): string;
 
 	/**
-	 * Determines whether this block is blocking the given target (and only that target).
+	 * Determine whether this block is blocking the given target (and only that target).
 	 *
 	 * @param UserIdentity|string $target
 	 *
@@ -138,7 +139,7 @@ interface Block extends WikiAwareEntity {
 	public function getTimestamp(): string;
 
 	/**
-	 * Indicates that the block is a sitewide block. This means the user is
+	 * Get whether the block is a sitewide block. This means the user is
 	 * prohibited from editing any page on the site (other than their own talk
 	 * page).
 	 *
@@ -156,12 +157,12 @@ interface Block extends WikiAwareEntity {
 	public function isCreateAccountBlocked(): bool;
 
 	/**
-	 * Returns whether the block is a hardblock (affects logged-in users on a given IP/range).
+	 * Get whether the block is a hard block (affects logged-in users on a given IP/range).
 	 *
 	 * Note that temporary users are not considered logged-in here - they are always blocked
 	 * by IP-address blocks.
 	 *
-	 * Note that user blocks are always hardblocks, since the target is logged in by definition.
+	 * Note that user blocks are always hard blocks, since the target is logged in by definition.
 	 *
 	 * @return bool
 	 */
