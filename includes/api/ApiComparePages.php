@@ -21,6 +21,7 @@
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Transform\ContentTransformer;
+use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionArchiveRecord;
 use MediaWiki\Revision\RevisionRecord;
@@ -39,6 +40,7 @@ use Wikimedia\RequestTimeout\TimeoutException;
 class ApiComparePages extends ApiBase {
 
 	private RevisionStore $revisionStore;
+	private ArchivedRevisionLookup $archivedRevisionLookup;
 	private SlotRoleRegistry $slotRoleRegistry;
 
 	/** @var Title|null|false */
@@ -56,6 +58,7 @@ class ApiComparePages extends ApiBase {
 	 * @param ApiMain $mainModule
 	 * @param string $moduleName
 	 * @param RevisionStore $revisionStore
+	 * @param ArchivedRevisionLookup $archivedRevisionLookup
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param ContentTransformer $contentTransformer
@@ -67,6 +70,7 @@ class ApiComparePages extends ApiBase {
 		ApiMain $mainModule,
 		$moduleName,
 		RevisionStore $revisionStore,
+		ArchivedRevisionLookup $archivedRevisionLookup,
 		SlotRoleRegistry $slotRoleRegistry,
 		IContentHandlerFactory $contentHandlerFactory,
 		ContentTransformer $contentTransformer,
@@ -76,6 +80,7 @@ class ApiComparePages extends ApiBase {
 	) {
 		parent::__construct( $mainModule, $moduleName );
 		$this->revisionStore = $revisionStore;
+		$this->archivedRevisionLookup = $archivedRevisionLookup;
 		$this->slotRoleRegistry = $slotRoleRegistry;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->contentTransformer = $contentTransformer;
@@ -280,21 +285,7 @@ class ApiComparePages extends ApiBase {
 		$rev = $this->revisionStore->getRevisionById( $id );
 		if ( !$rev && $this->getAuthority()->isAllowedAny( 'deletedtext', 'undelete' ) ) {
 			// Try the 'archive' table
-			$arQuery = $this->revisionStore->getArchiveQueryInfo();
-			$row = $this->getDB()->selectRow(
-				$arQuery['tables'],
-				array_merge(
-					$arQuery['fields'],
-					[ 'ar_namespace', 'ar_title' ]
-				),
-				[ 'ar_rev_id' => $id ],
-				__METHOD__,
-				[],
-				$arQuery['joins']
-			);
-			if ( $row ) {
-				$rev = $this->revisionStore->newRevisionFromArchiveRow( $row );
-			}
+			$rev = $this->archivedRevisionLookup->getArchivedRevisionRecord( null, $id );
 		}
 		return $rev;
 	}

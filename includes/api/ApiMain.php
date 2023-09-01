@@ -225,6 +225,7 @@ class ApiMain extends ApiBase {
 			'class' => ApiComparePages::class,
 			'services' => [
 				'RevisionStore',
+				'ArchivedRevisionLookup',
 				'SlotRoleRegistry',
 				'ContentHandlerFactory',
 				'ContentTransformer',

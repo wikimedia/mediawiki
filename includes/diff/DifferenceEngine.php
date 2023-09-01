@@ -34,6 +34,7 @@ use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\BadRevisionException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -243,6 +244,8 @@ class DifferenceEngine extends ContextSource {
 	 */
 	private $revisionStore;
 
+	private ArchivedRevisionLookup $archivedRevisionLookup;
+
 	/** @var HookRunner */
 	private $hookRunner;
 
@@ -288,6 +291,7 @@ class DifferenceEngine extends ContextSource {
 		$this->linkRenderer = $services->getLinkRenderer();
 		$this->contentHandlerFactory = $services->getContentHandlerFactory();
 		$this->revisionStore = $services->getRevisionStore();
+		$this->archivedRevisionLookup = $services->getArchivedRevisionLookup();
 		$this->hookRunner = new HookRunner( $services->getHookContainer() );
 		$this->wikiPageFactory = $services->getWikiPageFactory();
 		$this->userOptionsLookup = $services->getUserOptionsLookup();
@@ -538,18 +542,9 @@ class DifferenceEngine extends ContextSource {
 	 */
 	public function deletedLink( $id ) {
 		if ( $this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
-			$arQuery = $this->revisionStore->getArchiveQueryInfo();
-			$row = $this->dbProvider->getReplicaDatabase()->selectRow(
-				$arQuery['tables'],
-				array_merge( $arQuery['fields'], [ 'ar_namespace', 'ar_title' ] ),
-				[ 'ar_rev_id' => $id ],
-				__METHOD__,
-				[],
-				$arQuery['joins']
-			);
-			if ( $row ) {
-				$revRecord = $this->revisionStore->newRevisionFromArchiveRow( $row );
-				$title = Title::makeTitleSafe( $row->ar_namespace, $row->ar_title );
+			$revRecord = $this->archivedRevisionLookup->getArchivedRevisionRecord( null, $id );
+			if ( $revRecord ) {
+				$title = Title::newFromPageIdentity( $revRecord->getPage() );
 
 				return SpecialPage::getTitleFor( 'Undelete' )->getFullURL( [
 					'target' => $title->getPrefixedText(),
