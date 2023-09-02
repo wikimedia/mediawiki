@@ -2,26 +2,20 @@
  * JavaScript for diff inline toggle
  */
 ( function () {
+	var $inlineToggleSwitch = $( '#mw-diffPage-inline-toggle-switch' );
+	// Return if inline switch is not displaying.
+	if ( !$inlineToggleSwitch.length ) {
+		return;
+	}
 	var $wikitextDiffContainer, $wikitextDiffHeader, $wikitextDiffBody,
 		$wikitextDiffBodyInline, $wikitextDiffBodyTable,
 		url = new URL( location.href ),
 		api = new mw.Api(),
-		$inlineLegendContainer = $( '.mw-diff-inline-legend' );
+		$inlineLegendContainer = $( '.mw-diff-inline-legend' ),
+		inlineToggleSwitch = OO.ui.ToggleSwitchWidget.static.infuse( $inlineToggleSwitch );
 
-	var initDiffType;
-	var $inlineButton = $( '#mw-diffPage-inline-button' );
-	if ( $inlineButton.length ) {
-		initDiffType = OO.ui.ButtonWidget.static.infuse( $inlineButton ).active ? 'inline' : 'table';
-	} else {
-		initDiffType = 'table';
-	}
-
-	var inlineToggleField = new mw.widgets.InlineToggleField( initDiffType ),
-		inlineToggleSwitch = inlineToggleField.inlineToggleSwitch;
-
-	$( '.mw-diffPage-inlineToggle-container' ).empty().append( inlineToggleField.$element );
-	inlineToggleField.on( 'change', onDiffTypeInlineChange );
-	inlineToggleField.on( 'disable', onDiffTypeInlineDisabled );
+	inlineToggleSwitch.on( 'change', onDiffTypeInlineChange );
+	inlineToggleSwitch.on( 'disable', onDiffTypeInlineDisabled );
 
 	$wikitextDiffContainer = $( 'table.diff[data-mw="interface"]' );
 	$wikitextDiffHeader = $wikitextDiffContainer.find( 'tr.diff-title' );

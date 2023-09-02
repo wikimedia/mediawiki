@@ -30,8 +30,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use OOUI\ButtonGroupWidget;
-use OOUI\ButtonWidget;
+use OOUI\ToggleSwitchWidget;
 
 /**
  * Renders a slot diff by doing a text diff on the native representation.
@@ -251,27 +250,21 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 		if ( $showDiffToggleSwitch ) {
 			$values = $context->getRequest()->getValues();
 			$isInlineDiffType = $this->format === 'inline';
-			unset( $values[ 'diff-type' ] );
+			$values[ 'diff-type' ] = $isInlineDiffType ? 'table' : 'inline';
 			unset( $values[ 'title' ] );
 			$parts[self::INLINE_SWITCHER_KEY] = Html::rawElement( 'div',
 				[ 'class' => 'mw-diffPage-inlineToggle-container' ],
-				// Will be replaced by a ButtonSelectWidget in JS
-				new ButtonGroupWidget( [
-					'items' => [
-						new ButtonWidget( [
-							'id' => 'mw-diffPage-inline-button',
-							'infusable' => true,
-							'active' => $isInlineDiffType,
-							'label' => $context->msg( 'diff-inline-format-label' )->plain(),
-							'href' => $newTitle->getLocalURL( $values ) . '&diff-type=inline'
-						] ),
-						new ButtonWidget( [
-							'active' => !$isInlineDiffType,
-							'label' => $context->msg( 'diff-table-format-label' )->plain(),
-							'href' => $newTitle->getLocalURL( $values ) . '&diff-type=table'
-						] )
+				new OOUI\FieldLayout(
+					new ToggleSwitchWidget( [
+						'id' => 'mw-diffPage-inline-toggle-switch',
+						'href' => $newTitle->getLocalURL( $values ),
+						'value' => $isInlineDiffType,
+						'infusable' => true
+					] ),
+					[
+						'label' => $context->msg( 'diff-inline-format-label' )->plain()
 					]
-				] )
+				),
 			);
 		}
 		// Add an empty placeholder for the legend is added when it's not in
