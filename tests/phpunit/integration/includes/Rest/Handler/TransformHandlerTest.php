@@ -127,12 +127,14 @@ class TransformHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValue( 'UsePigLatinVariant', true );
 		$parsoidSettings = MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidSettings );
 
+		$revisionLookup = $this->getServiceContainer()->getRevisionLookup();
 		$dataAccess = $this->getServiceContainer()->getParsoidDataAccess();
 		$siteConfig = $this->getServiceContainer()->getParsoidSiteConfig();
 		$pageConfigFactory = $this->getServiceContainer()->getParsoidPageConfigFactory();
 
 		$handler = new TransformHandler(
 			$parsoidSettings,
+			$revisionLookup,
 			$siteConfig,
 			$pageConfigFactory,
 			$dataAccess
