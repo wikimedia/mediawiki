@@ -435,7 +435,8 @@ class SpecialContributions extends IncludableSpecialPage {
 		$registeredAndVisible = $userObj->isRegistered() && ( !$userObj->isHidden()
 				|| $this->permissionManager->userHasRight( $this->getUser(), 'hideuser' ) );
 
-		if ( $talk && ( $registeredAndVisible || $showForIp ) ) {
+		$shouldShowLinks = $talk && ( $registeredAndVisible || $showForIp );
+		if ( $shouldShowLinks ) {
 			$tools = self::getUserLinks(
 				$this,
 				$userObj,
@@ -451,7 +452,8 @@ class SpecialContributions extends IncludableSpecialPage {
 			// Show a note if the user is blocked and display the last block log entry.
 			// Do not expose the autoblocks, since that may lead to a leak of accounts' IPs,
 			// and also this will display a totally irrelevant log entry as a current block.
-			if ( !$this->including() ) {
+			$shouldShowBlocks = !$this->including();
+			if ( $shouldShowBlocks ) {
 				// For IP ranges you must give DatabaseBlock::newFromTarget the CIDR string
 				// and not a user object.
 				if ( IPUtils::isValidRange( $userObj->getName() ) ) {
