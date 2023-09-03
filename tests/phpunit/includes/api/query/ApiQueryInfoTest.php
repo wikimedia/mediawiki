@@ -10,7 +10,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @group medium
  * @group Database
  *
- * @coversDefaultClass ApiQueryInfo
+ * @covers ApiQueryInfo
  */
 class ApiQueryInfoTest extends ApiTestCase {
 
@@ -28,12 +28,8 @@ class ApiQueryInfoTest extends ApiTestCase {
 		] );
 	}
 
-	/**
-	 * @covers ::execute
-	 * @covers ::extractPageInfo
-	 */
 	public function testExecute() {
-		// Mock time for a determinstic result, without cut off from dynamic "max duration"
+		// Mock time for a deterministic result, without cut off from dynamic "max duration"
 		ConvertibleTimestamp::setFakeTime( '2011-01-01T00:00:00Z' );
 
 		$page = $this->getExistingTestPage( 'Pluto' );
@@ -76,10 +72,6 @@ class ApiQueryInfoTest extends ApiTestCase {
 		$this->assertArrayNotHasKey( 'linkclasses', $info );
 	}
 
-	/**
-	 * @covers ::execute
-	 * @covers ::extractPageInfo
-	 */
 	public function testExecuteLinkClasses() {
 		$page = $this->getExistingTestPage( 'Pluto' );
 		$title = $page->getTitle();
@@ -101,10 +93,6 @@ class ApiQueryInfoTest extends ApiTestCase {
 		$this->assertEquals( [], $info['linkclasses'] );
 	}
 
-	/**
-	 * @covers ::execute
-	 * @covers ::extractPageInfo
-	 */
 	public function testExecuteEditActions() {
 		$page = $this->getExistingTestPage( 'Pluto' );
 		$title = $page->getTitle();
@@ -126,10 +114,6 @@ class ApiQueryInfoTest extends ApiTestCase {
 		$this->assertTrue( $info['actions']['edit'] );
 	}
 
-	/**
-	 * @covers ::execute
-	 * @covers ::extractPageInfo
-	 */
 	public function testExecuteEditActionsAutoCreate() {
 		$page = $this->getExistingTestPage( 'Pluto' );
 		$title = $page->getTitle();
@@ -212,10 +196,6 @@ class ApiQueryInfoTest extends ApiTestCase {
 		$this->assertFalse( $result );
 	}
 
-	/**
-	 * @covers ::execute
-	 * @covers ::extractPageInfo
-	 */
 	public function testExecuteEditActionsFull() {
 		$page = $this->getExistingTestPage( 'Pluto' );
 		$title = $page->getTitle();
@@ -239,10 +219,6 @@ class ApiQueryInfoTest extends ApiTestCase {
 		$this->assertSame( [], $info['actions']['edit'] );
 	}
 
-	/**
-	 * @covers ::execute
-	 * @covers ::extractPageInfo
-	 */
 	public function testExecuteEditActionsFullBlock() {
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
@@ -289,10 +265,6 @@ class ApiQueryInfoTest extends ApiTestCase {
 		$this->assertSame( $block->getId(), $info['actions']['edit'][0]['data']['blockinfo']['blockid'] );
 	}
 
-	/**
-	 * @covers ::execute
-	 * @covers ::extractPageInfo
-	 */
 	public function testAssociatedPage() {
 		$page = $this->getExistingTestPage( 'Demo' );
 		$title = $page->getTitle();
@@ -330,10 +302,6 @@ class ApiQueryInfoTest extends ApiTestCase {
 		);
 	}
 
-	/**
-	 * @covers ::execute
-	 * @covers ::extractPageInfo
-	 */
 	public function testDisplayTitle() {
 		[ $data ] = $this->doApiRequest( [
 			'action' => 'query',
