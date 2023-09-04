@@ -1,7 +1,5 @@
 <?php
 /**
- * Interface and manager for deferred updates.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -28,51 +26,70 @@ use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\ScopedCallback;
 
 /**
- * Class for managing the deferral of updates within the scope of a PHP script invocation
+ * Defer callable updates to run later in the PHP process
  *
- * In web request mode, deferred updates run at the end of request execution, after the main
- * database transaction round ends, and either before (PRESEND) or after (POSTSEND) the HTTP
- * response has been sent. If an update runs after the HTTP response is sent, it will not block
- * clients. Otherwise, the client will not see the response until the update finishes. Use the
- * PRESEND and POSTSEND class constants to specify when an update should run. POSTSEND is the
- * default for DeferredUpdates::addUpdate() and DeferredUpdates::addCallableUpdate(). An update
- * that might need to alter the HTTP response output must use PRESEND. The control flow with
- * regard to deferred updates during a typical state changing web request is as follows:
- *   - 1) Main transaction round starts
- *   - 2) Various writes to RBMS/file/blob stores and deferred updates enqueued
- *   - 3) Main transaction round ends
- *   - 4) PRESEND pending update queue is B1...BN
- *   - 5) B1 runs, resulting PRESEND updates iteratively run in FIFO order; likewise for B2..BN
- *   - 6) The web response is sent out to the client
- *   - 7) POSTSEND pending update queue is A1...AM
- *   - 8) A1 runs, resulting updates iteratively run in FIFO order; likewise for A2..AM
+ * This is a performance feature that enables MediaWiki to produce faster web responses.
+ * It allows you to postpone non-blocking work (e.g. work that does not change the web
+ * response) to after the HTTP response has been sent to the client (i.e. web browser).
  *
- * @see MediaWiki::restInPeace()
+ * Once the response is finalized and sent to the browser, the webserver process stays
+ * for a little while longer (detached from the web request) to run your POSTSEND tasks.
  *
- * In CLI mode, no distinction is made between PRESEND and POSTSEND deferred updates and all of
- * them will run during the following occasions:
- *   - a) During DeferredUpdates::addUpdate() if no LBFactory DB handles have writes pending
- *   - b) On commit of an LBFactory DB handle if no other such handles have writes pending
- *   - c) During an LBFactory::waitForReplication call if no LBFactory DBs have writes pending
- *   - d) When the queue is large and an LBFactory DB handle commits (EnqueueableDataUpdate only)
- *   - e) Upon the completion of Maintenance::execute() via Maintenance::shutdown()
+ * There is also a PRESEND option, which runs your task right before the finalized response
+ * is sent to the browser. This is for critical tasks that does need to block the response,
+ * but where you'd like to benefit from other DeferredUpdates features. Such as:
  *
- * @see MWLBFactory::applyGlobalState()
+ * - MergeableUpdate: batch updates from different components without coupling
+ *   or awareness of each other.
+ * - Automatic cancellation: pass a IDatabase object (for any wiki or database) to
+ *   DeferredUpdates::addCallableUpdate or AtomicSectionUpdate.
+ * - Reducing lock contention: if the response is likely to take several seconds
+ *   (e.g. uploading a large file to FileBackend, or saving an edit to a large article)
+ *   much of that work may overlap with a database transaction that is staying open for
+ *   the entire duration. By moving contentious writes out to a PRESEND update, these
+ *   get their own transaction (after the main one is committed), which give up some
+ *   atomicity for improved throughput.
  *
- * If DeferredUpdates::doUpdates() is currently running a deferred update, then the public
- * DeferredUpdates interface operates on the PRESEND/POSTSEND "sub"-queues that correspond to
- * the innermost in-progress deferred update. Otherwise, the public interface operates on the
- * PRESEND/POSTSEND "top"-queues. Affected methods include:
- *   - DeferredUpdates::addUpdate()
- *   - DeferredUpdates::addCallableUpdate()
- *   - DeferredUpdates::doUpdates()
- *   - DeferredUpdates::tryOpportunisticExecute()
- *   - DeferredUpdates::pendingUpdatesCount()
- *   - DeferredUpdates::getPendingUpdates()
- *   - DeferredUpdates::clearPendingUpdates()
+ * ## Expectation and comparison to job queue
  *
- * Updates that work through this system will be more likely to complete by the time the
- * client makes their next request after this request than with the JobQueue system.
+ * When scheduling a POSTSEND via the DeferredUpdates system you can generally expect
+ * it to complete well before the client makes their next request. Updates runs directly after
+ * the web response is sent, from the same process on the same server. This unlike the JobQueue,
+ * where jobs may need to wait in line for some minutes or hours.
+ *
+ * If your update fails, this failure is not known to the client and gets no retry. For updates
+ * that need re-tries for system consistency or data integrity, it is recommended to implement
+ * it as a job instead and use JobQueueGroup::lazyPush. This has the caveat of being delayed
+ * by default, the same as any other job.
+ *
+ * A hybrid solution is available via the EnqueueableDataUpdate interface. By implementing
+ * this interface, you can queue your update via the DeferredUpdates first, and if it fails,
+ * the system will automatically catch this and queue it as a job instead.
+ *
+ * ## How it works during web requests
+ *
+ * 1. Your request route is executed (e.g. Action or SpecialPage class, or API).
+ * 2. Output is finalized and main database transaction is committed.
+ * 3. PRESEND updates run via DeferredUpdates::doUpdates.
+ * 5. The web response is sent to the browser.
+ * 6. POSTSEND updates run via DeferredUpdates::doUpdates.
+ *
+ * @see MediaWiki::preOutputCommit
+ * @see MediaWiki::restInPeace
+ *
+ * ## How it works for Maintenance scripts
+ *
+ * In CLI mode, no distinction is made between PRESEND and POSTSEND deferred updates,
+ * and the queue is periodically executed throughout the process.
+ *
+ * @see DeferredUpdates::tryOpportunisticExecute
+ *
+ * ## How it works internally
+ *
+ * Each update is added via DeferredUpdates::addUpdate and stored in either the PRESEND or
+ * POSTSEND queue. If an update gets queued while another update is already running, then
+ * we store in a "sub"-queue associated with the current update. This allows nested updates
+ * to be completed before other updates, which improves ordering for process caching.
  *
  * @since 1.19
  */
@@ -133,11 +150,6 @@ class DeferredUpdates {
 		global $wgCommandLineMode;
 
 		self::getScopeStack()->current()->addUpdate( $update, $stage );
-		// If CLI mode is active and no RDBMs transaction round is in the way, then run all
-		// the pending updates now. This is needed for scripts that never, or rarely, use the
-		// RDBMs layer, but that do modify systems via deferred updates. This logic avoids
-		// excessive pending update queue sizes when long-running scripts never trigger the
-		// basic RDBMs hooks for running pending updates.
 		if ( $wgCommandLineMode ) {
 			self::tryOpportunisticExecute();
 		}
@@ -146,12 +158,10 @@ class DeferredUpdates {
 	/**
 	 * Add an update to the pending update queue that invokes the specified callback when run
 	 *
-	 * @see DeferredUpdates::addUpdate()
-	 * @see MWCallableUpdate::__construct()
-	 *
 	 * @param callable $callable
 	 * @param int $stage One of (DeferredUpdates::PRESEND, DeferredUpdates::POSTSEND)
-	 * @param IDatabase|IDatabase[]|null $dbw Abort if this DB is rolled back [optional]
+	 * @param IDatabase|IDatabase[]|null $dbw Cancel the update if a DB transaction
+	 *  is rolled back [optional]
 	 * @since 1.27 Added $stage parameter
 	 * @since 1.28 Added the $dbw parameter
 	 */
@@ -342,16 +352,35 @@ class DeferredUpdates {
 	}
 
 	/**
-	 * Consume and execute all pending updates unless an update is already
-	 * in progress or the ILBFactory service instance has "busy" DB handles
+	 * Consume and execute pending updates now if possible, instead of waiting.
 	 *
-	 * A DB handle is considered "busy" if it has an unfinished transaction that cannot safely
-	 * be flushed or the parent ILBFactory instance has an unfinished transaction round that
-	 * cannot safely be flushed. If the number of pending updates reaches BIG_QUEUE_SIZE and
-	 * there are still busy DB handles, then EnqueueableDataUpdate updates might be enqueued
-	 * as jobs. This avoids excessive memory use and risk of losing updates due to failures.
+	 * In web requests, updates are always deferred until the end of the request.
 	 *
-	 * Note that this method operates on updates from all stages and thus should not be called
+	 * In CLI mode, updates run earlier and more often. This is important for long-running
+	 * Maintenance scripts that would otherwise grow an excessively large queue, which increases
+	 * memory use, and risks losing all updates if the script ends early or crashes.
+	 *
+	 * The folllowing conditions are required for updates to run early in CLI mode:
+	 *
+	 * - No update is already in progress (ensure linear flow, recursion guard).
+	 * - LBFactory indicates that we don't have any "busy" database connections, i.e.
+	 *   there are no pending writes or otherwise active and uncommitted transactions,
+	 *   except if the transaction is empty and merely used for primary DB read queries,
+	 *   in which case the transaction (and its repeatable-read snapshot) can be safely flushed.
+	 *
+	 * How this works:
+	 *
+	 * - When a maintenance script commits a change or waits for replication, such as
+	 *   via. IConnectionProvider::commitAndWaitForReplication, then ILBFactory calls
+	 *   tryOpportunisticExecute(). This is injected via MWLBFactory::applyGlobalState.
+	 *
+	 * - For maintenance scripts that don't do much with the database, we also call
+	 *   tryOpportunisticExecute() after every addUpdate() call.
+	 *
+	 * - Upon the completion of Maintenance::execute() via Maintenance::shutdown(),
+	 *   any remaining updates are run.
+	 *
+	 * Note that this method runs both PRESEND and POSTSEND updates and thus should not be called
 	 * during web requests. It is only intended for long-running Maintenance scripts.
 	 *
 	 * @internal For use by Maintenance
@@ -458,11 +487,13 @@ class DeferredUpdates {
 	}
 
 	/**
-	 * Attempt to run an update with the appropriate transaction round state it expects
+	 * Attempt to run an update with the appropriate transaction round state if needed
 	 *
-	 * DeferredUpdate classes that wrap the execution of bundles of other DeferredUpdate
-	 * instances can use this method to run the updates. Any such wrapper class should
-	 * always use TRX_ROUND_ABSENT itself.
+	 * It is allowed for a DeferredUpdate to directly execute one or more other DeferredUpdate
+	 * instances without queueing them by calling this method. In that case, the outer update
+	 * must use TransactionRoundAwareUpdate::TRX_ROUND_ABSENT, e.g. by extending
+	 * TransactionRoundDefiningUpdate, so that this method can give each update its own
+	 * transaction round.
 	 *
 	 * @param DeferrableUpdate $update
 	 * @param ILBFactory $lbFactory
