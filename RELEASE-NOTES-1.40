@@ -9,6 +9,8 @@ THIS IS NOT A RELEASE YET
 * Updated jQuery from v3.6.1 to v3.7.1.
 * (T208477) $wgPrivilegedGroups – Users belonging in some of the listed groups
   will be audited more aggressively.
+* Added PrivilegedGroups attribute for extension.json / skin.json, which lets
+  you add any new user groups you define to wgPrivilegedGroups (see above).
 
 == MediaWiki 1.40.0 ==
 
