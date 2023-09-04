@@ -379,6 +379,9 @@ class Parser {
 	/** @var TidyDriverBase */
 	private $tidy;
 
+	/** @var WANObjectCache */
+	private $wanCache;
+
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
@@ -507,9 +510,10 @@ class Parser {
 
 		$this->tidy = $tidy;
 
+		$this->wanCache = $wanCache;
 		$this->mPreprocessor = new Preprocessor_Hash(
 			$this,
-			$wanCache,
+			$this->wanCache,
 			[
 				'cacheThreshold' => $svcOptions->get( MainConfigNames::PreprocessorCacheThreshold ),
 				'disableLangConversion' => $languageConverterFactory->isConversionDisabled(),
@@ -3824,8 +3828,8 @@ class Parser {
 		$wikiId = $title->getTransWikiID(); // remote wiki ID or false
 
 		$fname = __METHOD__;
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 
+		$cache = $this->wanCache;
 		$data = $cache->getWithSetCallback(
 			$cache->makeGlobalKey(
 				'interwiki-transclude',
