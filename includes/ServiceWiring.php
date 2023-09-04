@@ -2055,10 +2055,6 @@ return [
 		);
 	},
 
-	'StatsCache' => static function ( MediaWikiServices $services ): StatsCache {
-		return new StatsCache();
-	},
-
 	'StatsdDataFactory' => static function ( MediaWikiServices $services ): IBufferingStatsdDataFactory {
 		return new BufferingStatsdDataFactory(
 			rtrim( $services->getMainConfig()->get( MainConfigNames::StatsdMetricPrefix ), '.' )
@@ -2070,14 +2066,14 @@ return [
 		$format = \Wikimedia\Stats\OutputFormats::getFormatFromString(
 			$config->get( MainConfigNames::StatsFormat ) ?? 'null'
 		);
-		$cache = $services->getService( 'StatsCache' );
+		$cache = new StatsCache;
 		$emitter = \Wikimedia\Stats\OutputFormats::getNewEmitter(
 			$config->get( MainConfigNames::StatsPrefix ) ?? 'MediaWiki',
 			$cache,
 			\Wikimedia\Stats\OutputFormats::getNewFormatter( $format ),
 			$config->get( MainConfigNames::StatsTarget )
 		);
-		$factory = new StatsFactory( 'core', $cache, $emitter, LoggerFactory::getInstance( 'Stats' ) );
+		$factory = new StatsFactory( $cache, $emitter, LoggerFactory::getInstance( 'Stats' ) );
 		return $factory->withStatsdDataFactory( $services->getStatsdDataFactory() );
 	},
 

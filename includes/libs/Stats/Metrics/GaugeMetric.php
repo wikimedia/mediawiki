@@ -100,7 +100,7 @@ class GaugeMetric implements MetricInterface {
 	}
 
 	/** @inheritDoc */
-	public function withSampleRate( float $sampleRate ) {
+	public function setSampleRate( float $sampleRate ) {
 		try {
 			$this->baseMetric->setSampleRate( $sampleRate );
 		} catch ( IllegalOperationException | InvalidArgumentException $ex ) {
@@ -117,7 +117,7 @@ class GaugeMetric implements MetricInterface {
 	}
 
 	/** @inheritDoc */
-	public function withLabel( string $key, string $value ) {
+	public function setLabel( string $key, string $value ) {
 		try {
 			$this->baseMetric->addLabel( $key, $value );
 		} catch ( IllegalOperationException | InvalidArgumentException $ex ) {

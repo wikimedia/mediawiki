@@ -214,7 +214,6 @@ use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\Services\NoSuchServiceException;
 use Wikimedia\Services\SalvageableService;
 use Wikimedia\Services\ServiceContainer;
-use Wikimedia\Stats\StatsCache;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\UUID\GlobalIdGenerator;
 use Wikimedia\WRStats\WRStatsFactory;
@@ -1966,14 +1965,6 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getSpecialPageFactory(): SpecialPageFactory {
 		return $this->getService( 'SpecialPageFactory' );
-	}
-
-	/**
-	 * @since 1.41
-	 * @return StatsCache
-	 */
-	public function getStatsCache(): StatsCache {
-		return $this->getService( 'StatsCache' );
 	}
 
 	/**

@@ -29,7 +29,7 @@ use Wikimedia\Stats\Metrics\NullMetric;
 /**
  * Singleton cache for Metric instances.
  *
- * For reuse and collision avoidance.  Serves as the data source for Metric Renderers.
+ * For reuse and collision avoidance.  Serves as the data source for Metric Emitters.
  *
  * @author Cole White
  * @since 1.41
@@ -93,13 +93,17 @@ class StatsCache {
 	 * Get the metric formatted name.
 	 *
 	 * Takes the provided name and constructs a more specific name by combining
-	 * the service, component, and name options.
+	 * component and name.
 	 *
 	 * @param string $component
 	 * @param string $name
 	 * @return string
 	 */
 	private static function cacheKey( string $component, string $name ): string {
-		return implode( self::DELIMITER, [ $component, $name ] );
+		// mitigate collision of empty-component metric with a component metric
+		if ( $component !== '' ) {
+			return implode( self::DELIMITER, [ $component, $name ] );
+		}
+		return $name;
 	}
 }

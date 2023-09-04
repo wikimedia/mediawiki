@@ -33,10 +33,15 @@ class DogStatsdFormatter implements FormatterInterface {
 	/** @inheritDoc */
 	public function getFormattedSamples( string $prefix, MetricInterface $metric ): array {
 		$output = [];
-		foreach ( $metric->getSamples() as $sample ) {
 
+		// append component to prefix if set
+		if ( $metric->getComponent() !== '' ) {
+			$prefix .= ".{$metric->getComponent()}";
+		}
+
+		foreach ( $metric->getSamples() as $sample ) {
 			// dot-separate prefix, component, and name `prefix.component.name`
-			$stat = implode( '.', [ $prefix, $metric->getComponent(), $metric->getName() ] );
+			$stat = implode( '.', [ $prefix, $metric->getName() ] );
 
 			// merge value with separator `:42`
 			$value = ':' . $sample->getValue();
