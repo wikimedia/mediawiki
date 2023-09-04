@@ -41,7 +41,7 @@ use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Displays information about a page.
@@ -55,7 +55,7 @@ class InfoAction extends FormlessAction {
 	private LanguageNameUtils $languageNameUtils;
 	private LinkBatchFactory $linkBatchFactory;
 	private LinkRenderer $linkRenderer;
-	private ILoadBalancer $loadBalancer;
+	private IConnectionProvider $dbProvider;
 	private MagicWordFactory $magicWordFactory;
 	private NamespaceInfo $namespaceInfo;
 	private PageProps $pageProps;
@@ -74,7 +74,7 @@ class InfoAction extends FormlessAction {
 	 * @param LanguageNameUtils $languageNameUtils
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param LinkRenderer $linkRenderer
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param MagicWordFactory $magicWordFactory
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param PageProps $pageProps
@@ -93,7 +93,7 @@ class InfoAction extends FormlessAction {
 		LanguageNameUtils $languageNameUtils,
 		LinkBatchFactory $linkBatchFactory,
 		LinkRenderer $linkRenderer,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		MagicWordFactory $magicWordFactory,
 		NamespaceInfo $namespaceInfo,
 		PageProps $pageProps,
@@ -110,7 +110,7 @@ class InfoAction extends FormlessAction {
 		$this->languageNameUtils = $languageNameUtils;
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->linkRenderer = $linkRenderer;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->magicWordFactory = $magicWordFactory;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->pageProps = $pageProps;
@@ -918,7 +918,7 @@ class InfoAction extends FormlessAction {
 				$title = $page->getTitle();
 				$id = $title->getArticleID();
 
-				$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+				$dbr = $this->dbProvider->getReplicaDatabase();
 				$setOpts += Database::getCacheSetOptions( $dbr );
 
 				$field = 'rev_actor';
