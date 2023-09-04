@@ -477,19 +477,18 @@ class UserGroupManager implements IDBAccessObject {
 	}
 
 	/**
-	 * Returns the list of privileged groups $user belongs to.
-	 * Privileged groups are ones that can be abused in dangerous way.
+	 * Returns the list of privileged groups that $user belongs to.
+	 * Privileged groups are ones that can be abused in a dangerous way.
 	 *
 	 * Depending on how extensions extend this method, it might return values
-	 * that are not strictly user groups (ACL list names, etc). It is meant
-	 * for logging/auditing, not for passing to methods that expect group names.
+	 * that are not strictly user groups (ACL list names, etc.).
+	 * It is meant for logging/auditing, not for passing to methods that expect group names.
 	 *
 	 * @param UserIdentity $user
 	 * @param int $queryFlags
 	 * @param bool $recache Whether to avoid the cache
 	 * @return string[]
-	 * @since 1.36
-	 * @see User::isPrivileged()
+	 * @since 1.41 (also backported to 1.39.5 and 1.40.1)
 	 * @see $wgPrivilegedGroups
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/UserGetPrivilegedGroups
 	 */
