@@ -17,7 +17,9 @@
 			"Xuacu",
 			"לערי ריינהארט",
 			"아라",
-			"Amire80"
+			"Amire80",
+			"Fueyas",
+			"YoaR"
 		]
 	},
 	"tog-underline": "Sorrayar enllaces:",
@@ -219,7 +221,7 @@
 	"redirectedfrom": "(Redirixío dende $1)",
 	"redirectpagesub": "Páxina de redireición",
 	"redirectto": "Redirixe a:",
-	"lastmodifiedat": "La última edición d'esta páxina foi el $1, a les $2.",
+	"lastmodifiedat": "La última edición d'esta páxina foi'l $1, a les $2.",
 	"viewcount": "Esta páxina visitóse {{PLURAL:$1|una vegada|$1 vegaes}}.",
 	"protectedpage": "Páxina protexida",
 	"jumpto": "Saltar a:",
@@ -2924,7 +2926,7 @@
 	"anonymous": "{{PLURAL:$1|Usuariu anónimu|Usuarios anónimos}} de {{SITENAME}}",
 	"siteuser": "{{SITENAME}} usuariu $1",
 	"anonuser": "usuariu anónimu de {{SITENAME}} $1",
-	"lastmodifiedatby": "La última edición d'esta páxina foi el $1 a les $2, por $3.",
+	"lastmodifiedatby": "La última edición d'esta páxina foi'l $1 a les $2, por $3.",
 	"othercontribs": "Basao nel trabayu fechu por $1.",
 	"others": "otros",
 	"siteusers": "{{SITENAME}} {{PLURAL:$2|{{GENDER:$1|usuariu|usuaria}}|usuarios}} $1",
