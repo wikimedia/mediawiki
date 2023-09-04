@@ -316,7 +316,6 @@ class HistoryPager extends ReverseChronologicalPager {
 			return '';
 		}
 		$s = '';
-		# Add second buttons only if there is more than one rev
 		if ( $this->getNumRows() > 2 ) {
 			$s .= $this->buttons;
 		}
