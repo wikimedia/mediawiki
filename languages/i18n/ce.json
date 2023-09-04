@@ -15,6 +15,7 @@
 			"Sasan700",
 			"Vlad5250",
 			"Исмаил Садуев",
+			"Саид Мисарбиев",
 			"Умар",
 			"아라"
 		]
@@ -2158,6 +2159,8 @@
 	"contribute": "Къинхьегам",
 	"contribsub2": "{{GENDER:$3|$1}} ($2) къинхьегам",
 	"contributions-subtitle": "{{GENDER:$2|$1}}",
+	"contributions-edit-count": "{{GENDER:$1|Декъашхочун}} ду $2 {{PLURAL:$2|нисдар}}.",
+	"contributions-account-creation-date": "Аккаунт кхоьллина $1.",
 	"contributions-userdoesnotexist": "«$1» иштта аккаунт йац.",
 	"nocontribs": "Дехарца хийцамаш цакарий.",
 	"uctop": "карара",
