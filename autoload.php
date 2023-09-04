@@ -987,7 +987,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\CommentFormatter\\RowCommentIterator' => __DIR__ . '/includes/CommentFormatter/RowCommentIterator.php',
 	'MediaWiki\\CommentFormatter\\StringCommentIterator' => __DIR__ . '/includes/CommentFormatter/StringCommentIterator.php',
 	'MediaWiki\\CommentStore\\CommentStore' => __DIR__ . '/includes/CommentStore/CommentStore.php',
-	'MediaWiki\\CommentStore\\CommentStoreBase' => __DIR__ . '/includes/CommentStore/CommentStoreBase.php',
 	'MediaWiki\\CommentStore\\CommentStoreComment' => __DIR__ . '/includes/CommentStore/CommentStoreComment.php',
 	'MediaWiki\\Config\\ConfigRepository' => __DIR__ . '/includes/config/ConfigRepository.php',
 	'MediaWiki\\Config\\IterableConfig' => __DIR__ . '/includes/config/IterableConfig.php',
