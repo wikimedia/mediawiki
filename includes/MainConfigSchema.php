@@ -7880,6 +7880,23 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * List of groups which should be considered privileged (user accounts
+	 * belonging in these groups can be abused in dangerous ways).
+	 * This is used for some security checks, mainly logging.
+	 * @since 1.41
+	 * @see UserGroupManager::getUserPrivilegedGroups()
+	 */
+	public const PrivilegedGroups = [
+		'default' => [
+			'bureaucrat',
+			'interface-admin',
+			'suppress',
+			'sysop',
+		],
+		'type' => 'list',
+	];
+
+	/**
 	 * Permission keys revoked from users in each group.
 	 *
 	 * This acts the same way as $wgGroupPermissions above, except that

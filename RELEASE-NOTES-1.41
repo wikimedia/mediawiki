@@ -25,6 +25,8 @@ For notes on 1.40.x and older releases, see HISTORY.
 * …
 
 ==== New configuration ====
+* $wgPrivilegedGroups – Users belonging in some of the listed groups will be
+  audited more aggressively.
 * …
 
 ==== Changed configuration ====
