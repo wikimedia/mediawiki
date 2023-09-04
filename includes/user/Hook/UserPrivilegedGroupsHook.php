@@ -15,7 +15,7 @@ interface UserPrivilegedGroupsHook {
 	/**
 	 * This hook is called in UserGroupManager::getUserPrivilegedGroups().
 	 *
-	 * @since 1.41
+	 * @since 1.41 (also backported to 1.39.5 and 1.40.1)
 	 *
 	 * @param UserIdentity $userIdentity User identity to get groups for
 	 * @param string[] &$groups Current privileged groups
