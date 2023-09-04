@@ -140,7 +140,6 @@ class Parser {
 	public const OT_HTML = 1; # like parse()
 	public const OT_WIKI = 2; # like preSaveTransform()
 	public const OT_PREPROCESS = 3; # like preprocess()
-	public const OT_MSG = 3;
 	# like extractSections() - portions of the original are returned unchanged.
 	public const OT_PLAIN = 4;
 
