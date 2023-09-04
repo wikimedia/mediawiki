@@ -13,6 +13,9 @@
 	-webkit-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+}
+
+.mw-collapsible-toggle-default {
 	// stylelint-disable plugin/no-unsupported-browser-features
 	// This element is now a button, but it used to be a link, so keep link styles for now
 	// (until someone dares to try to change the design).
@@ -45,14 +48,14 @@
 	&:active .mw-collapsible-text {
 		color: @color-link--active;
 	}
-}
 
-.mw-collapsible-toggle-default::before {
-	content: '[';
-}
+	&::before {
+		content: '[';
+	}
 
-.mw-collapsible-toggle-default::after {
-	content: ']';
+	&::after {
+		content: ']';
+	}
 }
 
 .mw-customtoggle,
