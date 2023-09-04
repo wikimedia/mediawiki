@@ -381,7 +381,7 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 'quux', $status->getPermission() );
 	}
 
-	public function testIsDefinitlyAllowed() {
+	public function testIsDefinitelyAllowed() {
 		$authority = $this->newAuthority( [ 'permissions' => [ 'foo', 'bar' ] ] );
 
 		$this->assertTrue( $authority->isDefinitelyAllowed( 'foo' ) );
@@ -397,7 +397,7 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 'quux', $status->getPermission() );
 	}
 
-	public function testDefinitlyCan() {
+	public function testDefinitelyCan() {
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
 		$authority = $this->newAuthority( [ 'permissions' => [ 'foo', 'bar' ] ] );
 

@@ -359,7 +359,8 @@ class UserAuthority implements Authority {
 		if ( !$this->permissionManager->userHasRight( $this->actor, $action ) ) {
 			if ( $status ) {
 				$status->setPermission( $action );
-				$status->merge( $this->permissionManager->newFatalPermissionDeniedStatus( $action, $this->uiContext ) );
+				$status->merge( $this->permissionManager->newFatalPermissionDeniedStatus(
+					$action, $this->uiContext ) );
 			} else {
 				return false;
 			}

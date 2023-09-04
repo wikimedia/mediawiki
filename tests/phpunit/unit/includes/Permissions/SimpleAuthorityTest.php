@@ -72,7 +72,7 @@ class SimpleAuthorityTest extends MediaWikiUnitTestCase {
 		$this->assertStatusNotOK( $status );
 	}
 
-	public function testDefinitlyCan() {
+	public function testDefinitelyCan() {
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
 		$actor = new UserIdentityValue( 12, 'Test' );
 		$authority = new SimpleAuthority( $actor, [ 'foo', 'bar' ] );
