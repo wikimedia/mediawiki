@@ -924,7 +924,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		if ( $groups === [] ) {
 			return UserArrayFromResult::newFromIDs( [] );
 		}
-		$queryBuilder = wfGetDB( DB_REPLICA )->newSelectQueryBuilder()
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+		$queryBuilder = $dbr->newSelectQueryBuilder()
 			->select( 'ug_user' )
 			->distinct()
 			->from( 'user_groups' )
@@ -2668,7 +2669,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 				->loadUserOptions( $user, $user->queryFlagsUsed, $params['options'] );
 			unset( $params['options'] );
 		}
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
 
 		$noPass = PasswordFactory::newInvalidPassword()->toString();
 

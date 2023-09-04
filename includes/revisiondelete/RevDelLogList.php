@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -71,12 +72,13 @@ class RevDelLogList extends RevDelList {
 	}
 
 	public static function suggestTarget( $target, array $ids ) {
-		$result = wfGetDB( DB_REPLICA )->select( 'logging',
-			'log_type',
-			[ 'log_id' => $ids ],
-			__METHOD__,
-			[ 'DISTINCT' ]
-		);
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+		$result = $dbr->newSelectQueryBuilder()
+			->select( 'log_type' )
+			->distinct()
+			->from( 'logging' )
+			->where( [ 'log_id' => $ids ] )
+			->caller( __METHOD__ )->fetchResultSet();
 		if ( $result->numRows() == 1 ) {
 			// If there's only one type, the target can be set to include it.
 			return SpecialPage::getTitleFor( 'Log', $result->current()->log_type );

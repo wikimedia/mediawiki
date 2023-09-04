@@ -27,6 +27,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
@@ -225,7 +226,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 		}
 
 		// Load the page language from DB
-		$dbw ??= wfGetDB( DB_PRIMARY );
+		$dbw ??= MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
 		$oldLanguage = $dbw->selectField(
 			'page',
 			'page_lang',

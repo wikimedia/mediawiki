@@ -104,7 +104,7 @@ class FileDeleteForm {
 				}
 				$deletePage->setDeleteAssociatedTalk( true );
 			}
-			$dbw = wfGetDB( DB_PRIMARY );
+			$dbw = $services->getDBLoadBalancerFactory()->getPrimaryDatabase();
 			$dbw->startAtomic( __METHOD__, $dbw::ATOMIC_CANCELABLE );
 			// delete the associated article first
 			$deleteStatus = $deletePage

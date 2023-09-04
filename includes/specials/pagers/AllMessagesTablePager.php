@@ -25,6 +25,7 @@ use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -168,7 +169,7 @@ class AllMessagesTablePager extends TablePager {
 	) {
 		// FIXME: This function should be moved to Language:: or something.
 		// Fallback to global state, if not provided
-		$dbr ??= wfGetDB( DB_REPLICA );
+		$dbr ??= MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
 		$res = $dbr->newSelectQueryBuilder()
 			->select( [ 'page_namespace', 'page_title' ] )
 			->from( 'page' )
