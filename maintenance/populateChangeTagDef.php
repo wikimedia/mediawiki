@@ -161,18 +161,17 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 				$this->output( 'This row will be updated: ' . $row->ct_tag . $row->hitcount . "\n" );
 				continue;
 			}
-
-			$dbw->upsert(
-				'change_tag_def',
-				[
+			$dbw->newInsertQueryBuilder()
+				->insert( 'change_tag_def' )
+				->row( [
 					'ctd_name' => $row->ct_tag,
 					'ctd_user_defined' => 0,
 					'ctd_count' => $row->hitcount
-				],
-				'ctd_name',
-				[ 'ctd_count' => $row->hitcount ],
-				__METHOD__
-			);
+				] )
+				->onDuplicateKeyUpdate()
+				->uniqueIndexFields( [ 'ctd_name' ] )
+				->set( [ 'ctd_count' => $row->hitcount ] )
+				->caller( __METHOD__ )->execute();
 		}
 		$this->lbFactory->waitForReplication();
 	}

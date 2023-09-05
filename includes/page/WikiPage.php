@@ -1075,24 +1075,24 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 
 		if ( !$oldLatest || $oldLatest == $this->lockAndGetLatest() ) {
 			$truncatedFragment = mb_strcut( $rt->getFragment(), 0, 255 );
-			$dbw->upsert(
-				'redirect',
-				[
+			$dbw->newInsertQueryBuilder()
+				->insert( 'redirect' )
+				->row( [
 					'rd_from' => $this->getId(),
 					'rd_namespace' => $rt->getNamespace(),
 					'rd_title' => $rt->getDBkey(),
 					'rd_fragment' => $truncatedFragment,
 					'rd_interwiki' => $rt->getInterwiki(),
-				],
-				'rd_from',
-				[
+				] )
+				->onDuplicateKeyUpdate()
+				->uniqueIndexFields( [ 'rd_from' ] )
+				->set( [
 					'rd_namespace' => $rt->getNamespace(),
 					'rd_title' => $rt->getDBkey(),
 					'rd_fragment' => $truncatedFragment,
 					'rd_interwiki' => $rt->getInterwiki(),
-				],
-				__METHOD__
-			);
+				] )
+				->caller( __METHOD__ )->execute();
 			$success = true;
 		} else {
 			$success = false;
@@ -3024,22 +3024,20 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		}
 
 		if ( $missingAdded ) {
-			$insertRows = [];
+			$queryBuilder = $dbw->newInsertQueryBuilder()
+				->insert( 'category' )
+				->onDuplicateKeyUpdate()
+				->uniqueIndexFields( [ 'cat_title' ] )
+				->set( $addFields );
 			foreach ( $missingAdded as $cat ) {
-				$insertRows[] = [
+				$queryBuilder->row( [
 					'cat_title'   => $cat,
 					'cat_pages'   => 1,
 					'cat_subcats' => ( $type === 'subcat' ) ? 1 : 0,
 					'cat_files'   => ( $type === 'file' ) ? 1 : 0,
-				];
+				] );
 			}
-			$dbw->upsert(
-				'category',
-				$insertRows,
-				'cat_title',
-				$addFields,
-				__METHOD__
-			);
+			$queryBuilder->caller( __METHOD__ )->execute();
 		}
 
 		if ( $existingDeleted ) {

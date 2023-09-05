@@ -447,18 +447,13 @@ abstract class QueryPage extends SpecialPage {
 							->where( [ 'qc_type' => $this->getName() ] )
 							->caller( $fname )->execute();
 						// Update the querycache_info record for the page
-						$dbw->upsert(
-							'querycache_info',
-							[
-								'qci_type' => $this->getName(),
-								'qci_timestamp' => $dbw->timestamp(),
-							],
-							'qci_type',
-							[
-								'qci_timestamp' => $dbw->timestamp(),
-							],
-							$fname
-						);
+						$dbw->newInsertQueryBuilder()
+							->insert( 'querycache_info' )
+							->row( [ 'qci_type' => $this->getName(), 'qci_timestamp' => $dbw->timestamp() ] )
+							->onDuplicateKeyUpdate()
+							->uniqueIndexFields( [ 'qci_type' ] )
+							->set( [ 'qci_timestamp' => $dbw->timestamp() ] )
+							->caller( $fname )->execute();
 					}
 				);
 				// Save results into the querycache table on the primary DB

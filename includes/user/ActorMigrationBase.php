@@ -380,13 +380,13 @@ class ActorMigrationBase {
 							}
 							$set[$to] = $extra[$from];
 						}
-						$dbw->upsert(
-							$tempTableInfo['table'],
-							[ $tempTableInfo['pk'] => $pk ] + $set,
-							[ [ $tempTableInfo['pk'] ] ],
-							$set,
-							$func
-						);
+						$dbw->newInsertQueryBuilder()
+							->insert( $tempTableInfo['table'] )
+							->row( [ $tempTableInfo['pk'] => $pk ] + $set )
+							->onDuplicateKeyUpdate()
+							->uniqueIndexFields( [ $tempTableInfo['pk'] ] )
+							->set( $set )
+							->caller( $func )->execute();
 					};
 				}
 				if ( $this->writeStage & SCHEMA_COMPAT_WRITE_NEW ) {

@@ -198,14 +198,13 @@ class SiteStatsInit {
 					'ss_images' => $this->getShardedValue( $this->files ?? $this->files(), $shardCnt, $i ),
 				];
 				$row = [ 'ss_row_id' => $i ] + $set;
-
-				self::getDB( DB_PRIMARY )->upsert(
-					'site_stats',
-					$row,
-					'ss_row_id',
-					$set,
-					__METHOD__
-				);
+				self::getDB( DB_PRIMARY )->newInsertQueryBuilder()
+					->insert( 'site_stats' )
+					->row( $row )
+					->onDuplicateKeyUpdate()
+					->uniqueIndexFields( [ 'ss_row_id' ] )
+					->set( $set )
+					->caller( __METHOD__ )->execute();
 			}
 		} else {
 			$set = [
@@ -217,13 +216,13 @@ class SiteStatsInit {
 			];
 			$row = [ 'ss_row_id' => 1 ] + $set;
 
-			self::getDB( DB_PRIMARY )->upsert(
-				'site_stats',
-				$row,
-				'ss_row_id',
-				$set,
-				__METHOD__
-			);
+			self::getDB( DB_PRIMARY )->newInsertQueryBuilder()
+				->insert( 'site_stats' )
+				->row( $row )
+				->onDuplicateKeyUpdate()
+				->uniqueIndexFields( [ 'ss_row_id' ] )
+				->set( $set )
+				->caller( __METHOD__ )->execute();
 		}
 	}
 

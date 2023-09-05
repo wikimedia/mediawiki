@@ -104,15 +104,13 @@ class SqlModuleDependencyStore extends DependencyStore {
 		// @TODO: use a single query with VALUES()/aliases support in DB wrapper
 		// See https://dev.mysql.com/doc/refman/8.0/en/insert-on-duplicate.html
 		foreach ( $rows as $row ) {
-			$dbw->upsert(
-				'module_deps',
-				$row,
-				[ [ 'md_module', 'md_skin' ] ],
-				[
-					'md_deps' => $row['md_deps'],
-				],
-				__METHOD__
-			);
+			$dbw->newInsertQueryBuilder()
+				->insert( 'module_deps' )
+				->row( $row )
+				->onDuplicateKeyUpdate()
+				->uniqueIndexFields( [ 'md_module', 'md_skin' ] )
+				->set( [ 'md_deps' => $row['md_deps'] ] )
+				->caller( __METHOD__ )->execute();
 		}
 	}
 

@@ -6,6 +6,7 @@ use MediaWiki\MainConfigNames;
 use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\InsertQueryBuilder;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -115,7 +116,10 @@ class PingbackTest extends MediaWikiUnitTestCase {
 		//     - empty ($priorPing is false)
 		//     - has a ping from over a month ago ($piorPing)
 		// - cache lock and db lock are available
-		$database = $this->createNoOpMock( DBConnRef::class, [ 'selectField', 'lock', 'upsert', 'newSelectQueryBuilder' ] );
+		$database = $this->createNoOpMock(
+			DBConnRef::class,
+			[ 'selectField', 'lock', 'upsert', 'newSelectQueryBuilder', 'newInsertQueryBuilder' ]
+		);
 		$httpRequestFactory = $this->createNoOpMock( HttpRequestFactory::class, [ 'post' ] );
 
 		$database->expects( $this->once() )->method( 'selectField' )->willReturn( $priorPing );
@@ -126,6 +130,7 @@ class PingbackTest extends MediaWikiUnitTestCase {
 			->willReturn( true );
 		$database->expects( $this->once() )->method( 'upsert' );
 		$database->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn() => new SelectQueryBuilder( $database ) );
+		$database->method( 'newInsertQueryBuilder' )->willReturnCallback( static fn() => new InsertQueryBuilder( $database ) );
 
 		$pingback = $this->makePingback(
 			$database,
