@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Output\OutputPage;
+
 /**
  * @covers ErrorPageError
  * @author Addshore

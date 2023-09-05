@@ -11,6 +11,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\ParserOutputStringSets;

@@ -175,7 +175,7 @@ $cfg['globals_type_map'] = array_merge( $cfg['globals_type_map'], [
 	'wgLocalInterwikis' => 'string[]',
 	'wgDebugLogGroups' => 'string|false|array{destination:string,sample?:int,level:int}',
 	'wgCookiePrefix' => 'string|false',
-	'wgOut' => 'OutputPage',
+	'wgOut' => 'MediaWiki\Output\OutputPage',
 	'wgExtraNamespaces' => 'string[]',
 ] );
 

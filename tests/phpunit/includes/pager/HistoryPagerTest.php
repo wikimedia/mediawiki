@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Title\Title;

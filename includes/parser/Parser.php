@@ -36,6 +36,7 @@ use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\File\BadFileLookup;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;

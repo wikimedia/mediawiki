@@ -26,7 +26,7 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 	protected $linkRenderer;
 	/** @var InterwikiLookup */
 	protected $iwLookup;
-	/** @var \OutputPage */
+	/** @var \MediaWiki\Output\OutputPage */
 	protected $output;
 	/** @var bool */
 	protected $showMultimedia;

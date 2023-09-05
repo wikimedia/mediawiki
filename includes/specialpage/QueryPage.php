@@ -26,6 +26,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Specials\SpecialAncientPages;
 use MediaWiki\Specials\SpecialBrokenRedirects;
 use MediaWiki\Specials\SpecialDeadendPages;

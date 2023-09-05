@@ -20,9 +20,11 @@
  * @file
  */
 
-namespace MediaWiki;
+namespace MediaWiki\Output;
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 
 /**
  * @since 1.31
@@ -204,3 +206,8 @@ class OutputHandler {
 		}
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( OutputHandler::class, 'MediaWiki\\OutputHandler' );

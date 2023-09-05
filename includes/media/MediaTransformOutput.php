@@ -24,6 +24,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Output\StreamFile;
 use MediaWiki\Status\Status;
 
 /**

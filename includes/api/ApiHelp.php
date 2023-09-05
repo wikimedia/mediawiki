@@ -25,6 +25,7 @@ use MediaWiki\Html\HtmlHelper;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\ExtensionInfo;
 use Wikimedia\ParamValidator\ParamValidator;

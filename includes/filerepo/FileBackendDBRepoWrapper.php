@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Output\StreamFile;
 use Wikimedia\Rdbms\DBConnRef;
 
 /**

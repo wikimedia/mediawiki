@@ -23,7 +23,7 @@ use Config;
 use ConfigException;
 use InvalidArgumentException;
 use MediaWiki\MainConfigNames;
-use OutputPage;
+use MediaWiki\Output\OutputPage;
 use Wikimedia\Minify\CSSMin;
 
 /**

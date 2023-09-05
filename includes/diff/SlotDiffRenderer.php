@@ -20,6 +20,8 @@
  * @file
  * @ingroup DifferenceEngine
  */
+
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Title\Title;
 use Wikimedia\Assert\Assert;
 

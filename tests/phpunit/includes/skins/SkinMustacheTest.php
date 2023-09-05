@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Request\ContentSecurityPolicy;
 use MediaWiki\Title\Title;
 use PHPUnit\Framework\MockObject\MockObject;

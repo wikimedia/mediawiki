@@ -21,6 +21,7 @@
  * @ingroup DifferenceEngine
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Output\OutputPage;
 
 /**
  * B/C adapter for turning a DifferenceEngine into a SlotDiffRenderer.

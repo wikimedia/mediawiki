@@ -22,7 +22,7 @@
 
 namespace MediaWiki\Html;
 
-use OutputPage;
+use MediaWiki\Output\OutputPage;
 
 /**
  * Class for generating clickable toggle links for a list of checkboxes.

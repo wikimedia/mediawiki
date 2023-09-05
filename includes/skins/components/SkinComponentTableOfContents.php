@@ -18,8 +18,8 @@
 
 namespace MediaWiki\Skin;
 
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\ParserOutputFlags;
-use OutputPage;
 
 /**
  * @internal for use inside Skin and SkinTemplate classes only

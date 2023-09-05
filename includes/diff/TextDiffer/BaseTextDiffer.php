@@ -3,8 +3,8 @@
 namespace MediaWiki\Diff\TextDiffer;
 
 use MediaWiki\Html\Html;
+use MediaWiki\Output\OutputPage;
 use MessageLocalizer;
-use OutputPage;
 
 /**
  * The base class for specific implementations of TextDiffer, apart from

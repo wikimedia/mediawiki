@@ -28,6 +28,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Search\SearchWidgets\BasicSearchResultSetWidget;
 use MediaWiki\Search\SearchWidgets\FullSearchResultWidget;

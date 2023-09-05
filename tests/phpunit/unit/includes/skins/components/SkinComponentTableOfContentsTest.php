@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Skin\SkinComponentTableOfContents;
 use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\Parsoid\Core\TOCData;

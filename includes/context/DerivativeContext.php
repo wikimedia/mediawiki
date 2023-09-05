@@ -19,6 +19,7 @@
  * @file
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Title\Title;
 use Wikimedia\Assert\Assert;

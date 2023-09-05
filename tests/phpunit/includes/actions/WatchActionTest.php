@@ -2,6 +2,7 @@
 
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Status\Status;
 use MediaWiki\Tests\Unit\DummyServicesTrait;

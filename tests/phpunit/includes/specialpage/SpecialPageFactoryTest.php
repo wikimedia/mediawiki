@@ -2,6 +2,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\SpecialPage\SpecialPageFactory;

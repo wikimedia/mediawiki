@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Html\ListToggle;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Tests\Unit\FakeQqxMessageLocalizer;
 
 /**

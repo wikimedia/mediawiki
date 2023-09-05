@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\Title\Title;

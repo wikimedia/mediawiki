@@ -22,6 +22,7 @@ use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionStore;
