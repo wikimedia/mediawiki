@@ -262,13 +262,13 @@ class ImageHistoryList extends ContextSource {
 		// Uploading user
 		$row .= Html::openElement( 'td' );
 		// Hide deleted usernames
-		if ( $uploader && $local ) {
+		if ( $uploader ) {
 			$row .= Linker::userLink( $uploader->getId(), $uploader->getName() );
-			$row .= Html::rawElement( 'span', [ 'style' => 'white-space: nowrap;' ],
-				Linker::userToolLinks( $uploader->getId(), $uploader->getName() )
-			);
-		} elseif ( $uploader ) {
-			$row .= htmlspecialchars( $uploader->getName() );
+			if ( $local ) {
+				$row .= Html::rawElement( 'span', [ 'style' => 'white-space: nowrap;' ],
+					Linker::userToolLinks( $uploader->getId(), $uploader->getName() )
+				);
+			}
 		} else {
 			$row .= Html::element( 'span', [ 'class' => 'history-deleted' ],
 				$this->msg( 'rev-deleted-user' )->text()
