@@ -129,9 +129,10 @@ class HTMLTextField extends HTMLFormField {
 				$attribs['class'] = $class;
 			}
 		}
-		return Html::rawElement( 'div', [
-			'class' => 'cdx-text-input'
-		], Html::input( $this->mName, $value, $type, $attribs ) );
+		$inputHtml = Html::input( $this->mName, $value, $type, $attribs );
+		return $isCodexForm
+			? Html::rawElement( 'div', [ 'class' => 'cdx-text-input' ], $inputHtml )
+			: $inputHtml;
 	}
 
 	protected function getType( &$attribs ) {
