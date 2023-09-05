@@ -186,7 +186,8 @@ because of Phabricator reports.
 * TransactionProfiler::setSilenced() deprecated in 1.40, has been removed.
 * ILoadBalancer::closeConnection, unused, has been removed without deprecation.
 * ILoadBalancer::waitFor, unused, has been removed without deprecation.
-* ILBFactory::resolveDomainID, unused, has been removed without deprecation.
+* ILBFactory::resolveDomainID and ::getChronologyProtectorTouched, unused,
+  have been removed without deprecation.
 * The following methods have been moved from ILoadBalancer to
   ILoadBalancerForOwner:
   - ::redefineLocalDomain()

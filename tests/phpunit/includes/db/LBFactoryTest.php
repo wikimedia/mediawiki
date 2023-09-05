@@ -673,7 +673,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 
 		$lbFactory = $this->newLBFactoryMulti( [ 'chronologyProtector' => $chronologyProtector ] );
 		$mockWallClock += 1.0;
-		$touched = $lbFactory->getChronologyProtectorTouched();
+		$touched = $chronologyProtector->getTouched( $lbFactory->getMainLB() );
 		$this->assertEquals( $priorTime, $touched );
 	}
 

@@ -557,10 +557,6 @@ abstract class LBFactory implements ILBFactory {
 		return $waitSucceeded;
 	}
 
-	public function getChronologyProtectorTouched( $domain = false ) {
-		return $this->chronologyProtector->getTouched( $this->getMainLB( $domain ) );
-	}
-
 	public function disableChronologyProtection() {
 		$this->chronologyProtector->setEnabled( false );
 	}
@@ -593,11 +589,7 @@ abstract class LBFactory implements ILBFactory {
 			'cliMode' => $this->cliMode,
 			'agent' => $this->agent,
 			'defaultGroup' => $this->defaultGroup,
-			'chronologyCallback' => function ( ILoadBalancer $lb ) {
-				// Defer ChronologyProtector construction in case setRequestInfo() ends up
-				// being called later (but before the first connection attempt) (T192611)
-				return $this->chronologyProtector->getSessionPrimaryPos( $lb );
-			},
+			'chronologyProtector' => $this->chronologyProtector,
 			'roundStage' => $initStage,
 			'criticalSectionProvider' => $this->csProvider
 		];
