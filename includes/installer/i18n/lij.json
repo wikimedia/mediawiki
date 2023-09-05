@@ -99,6 +99,7 @@
 	"config-db-prefix": "Prefìsso tabélla da bànca dæti (no tratìn):",
 	"config-db-prefix-help": "Se ti t'æ de bezéugno de condivìdde 'na bànca dæti tra ciù wiki, ò tra MediaWiki e 'n'âtra aplicaçión web, ti ti pêu çèrne d'azónze 'n prefìsso a tùtti i nómmi de tabélla, pe evitâ conflìtti.\nNo dêuviâ di spàççi.\n\nDe sòlito 'sto cànpo chi o l'é lasciòu vêuo.",
 	"config-mysql-old": "O l'é necesâio MySQL $1 ò 'na versción sucesîva. Ti t'æ a $2.",
+	"config-mariadb-old": "O l'é necesâio MariaDB $1 ò 'na versción sucesîva. Ti t'æ a $2.",
 	"config-db-port": "Pòrta da bànca dæti:",
 	"config-db-schema": "Schêma pe MediaWiki (no tratìn):",
 	"config-db-schema-help": "Quésto schêma de sòlito o l'aniâ bén.\nDa cangiâ sôlo se ti t'ê segûo ch'o ségge da fâ.",
