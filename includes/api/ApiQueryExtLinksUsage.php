@@ -71,14 +71,8 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 
 		$this->addTables( [ 'externallinks', 'page' ] );
 		$this->addJoinConds( [ 'page' => [ 'JOIN', 'page_id=el_from' ] ] );
-		$migrationStage = $this->getConfig()->get( MainConfigNames::ExternalLinksSchemaMigrationStage );
-		if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
-			$fields = [ 'el_to' ];
-			$continueField = 'el_index_60';
-		} else {
-			$continueField = 'el_to_domain_index';
-			$fields = [ 'el_to_domain_index', 'el_to_path' ];
-		}
+		$continueField = 'el_to_domain_index';
+		$fields = [ 'el_to_domain_index', 'el_to_path' ];
 
 		$miser_ns = [];
 		if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
@@ -86,9 +80,6 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		} else {
 			$this->addWhereFld( 'page_namespace', $params['namespace'] );
 		}
-
-		$orderBy = [];
-
 		if ( $query !== null && $query !== '' ) {
 			// Normalize query to match the normalization applied for the externallinks table
 			$query = Parser::normalizeLinkUrl( $query );
@@ -101,33 +92,12 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 				$this->dieWithError( 'apierror-badquery' );
 			}
 			$this->addWhere( $conds );
-			if ( !isset( $conds[$continueField] ) ) {
-				$orderBy[] = $continueField;
-			}
 		} else {
-			$orderBy[] = $continueField;
 			if ( $protocol !== null ) {
 				$this->addWhere( $continueField . $db->buildLike( "$protocol", $db->anyString() ) );
-			} else {
-				// It is not possible to do so in the new schema
-				if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
-					// We're querying all protocols, filter out duplicate protocol-relative links
-					$this->addWhere(
-						$db->makeList( [
-							'el_to NOT' . $db->buildLike( '//', $db->anyString() ),
-							'el_index_60 ' . $db->buildLike( 'http://', $db->anyString() ),
-						], LIST_OR )
-					);
-				}
 			}
 		}
-
-		if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
-			$orderBy[] = 'el_id';
-		} else {
-			// READ NEW doesn't need this complex continuation
-			$orderBy = [ 'el_id' ];
-		}
+		$orderBy = [ 'el_id' ];
 
 		$this->addOption( 'ORDER BY', $orderBy );
 		$this->addFields( $orderBy ); // Make sure
@@ -196,11 +166,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 					ApiQueryBase::addTitleInfo( $vals, $title );
 				}
 				if ( $fld_url ) {
-					if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
-						$to = $row->el_to;
-					} else {
-						$to = LinkFilter::reverseIndexe( $row->el_to_domain_index ) . $row->el_to_path;
-					}
+					$to = LinkFilter::reverseIndexes( $row->el_to_domain_index ) . $row->el_to_path;
 					// expand protocol-relative urls
 					if ( $params['expandurl'] ) {
 						$to = (string)$this->urlUtils->expand( $to, PROTO_CANONICAL );

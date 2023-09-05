@@ -44,6 +44,8 @@ For notes on 1.40.x and older releases, see HISTORY.
 * $wgCommentTempTableSchemaMigrationStage – This temporary flag did let you
   control the migration stage for the temporary comment database table, from
   revision.
+* $wgExternalLinksSchemaMigrationStage – This temporary flag did let you
+  control the migration stage for the externallinks database table.
 * …
 
 === New user-facing features in 1.41 ===

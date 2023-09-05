@@ -20,8 +20,6 @@
 
 namespace MediaWiki\ExternalLinks;
 
-use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
@@ -39,27 +37,15 @@ class ExternalLinksLookup {
 	 * @return string[] array of external links
 	 */
 	public static function getExternalLinksForPage( int $pagId, IReadableDatabase $dbr, $fname ) {
-		$extlinkStage = MediaWikiServices::getInstance()->getMainConfig()->get(
-			MainConfigNames::ExternalLinksSchemaMigrationStage
-		);
-		if ( $extlinkStage & SCHEMA_COMPAT_READ_OLD ) {
-			return $dbr->newSelectQueryBuilder()
-				->select( 'el_to' )
-				->distinct()
-				->from( 'externallinks' )
-				->where( [ 'el_from' => $pagId ] )
-				->caller( $fname )->fetchFieldValues();
-		} else {
-			$links = [];
-			$res = $dbr->newSelectQueryBuilder()
-				->select( [ 'el_to_domain_index', 'el_to_path' ] )
-				->from( 'externallinks' )
-				->where( [ 'el_from' => $pagId ] )
-				->caller( $fname )->fetchResultSet();
-			foreach ( $res as $row ) {
-				$links[] = LinkFilter::reverseIndexe( $row->el_to_domain_index ) . $row->el_to_path;
-			}
-			return $links;
+		$links = [];
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'el_to_domain_index', 'el_to_path' ] )
+			->from( 'externallinks' )
+			->where( [ 'el_from' => $pagId ] )
+			->caller( $fname )->fetchResultSet();
+		foreach ( $res as $row ) {
+			$links[] = LinkFilter::reverseIndexes( $row->el_to_domain_index ) . $row->el_to_path;
 		}
+		return $links;
 	}
 }

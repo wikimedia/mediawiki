@@ -39,9 +39,6 @@ class LinksTableGroup {
 		],
 		'externallinks' => [
 			'class' => ExternalLinksTable::class,
-			'services' => [
-				'MainConfig'
-			],
 		],
 		'imagelinks' => [
 			'class' => ImageLinksTable::class

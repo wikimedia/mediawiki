@@ -385,7 +385,7 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 			'file://', # Non-default
 		] );
 
-		$index = LinkFilter::reverseIndexe( $url );
+		$index = LinkFilter::reverseIndexes( $url );
 		$this->assertEquals( $expected, $index, "LinkFilter::reverseIndexe(\"$url\")" );
 	}
 
@@ -478,89 +478,11 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideGetQueryConditions
 	 */
 	public function testGetQueryConditions( $query, $options, $expected ) {
-		$this->overrideConfigValue( MainConfigNames::ExternalLinksSchemaMigrationStage, SCHEMA_COMPAT_OLD );
 		$conds = LinkFilter::getQueryConditions( $query, $options );
 		$this->assertEquals( $expected, $conds );
 	}
 
 	public static function provideGetQueryConditions() {
-		return [
-			'Basic example' => [
-				'example.com',
-				[],
-				[
-					'el_index_60 LIKE \'http://com.example./%\' ESCAPE \'`\' ',
-					'el_index LIKE \'http://com.example./%\' ESCAPE \'`\' ',
-				],
-			],
-			'Basic example with path' => [
-				'example.com/foobar',
-				[],
-				[
-					'el_index_60 LIKE \'http://com.example./foobar%\' ESCAPE \'`\' ',
-					'el_index LIKE \'http://com.example./foobar%\' ESCAPE \'`\' ',
-				],
-			],
-			'Wildcard domain' => [
-				'*.example.com',
-				[],
-				[
-					'el_index_60 LIKE \'http://com.example.%\' ESCAPE \'`\' ',
-					'el_index LIKE \'http://com.example.%\' ESCAPE \'`\' ',
-				],
-			],
-			'Wildcard domain with path' => [
-				'*.example.com/foobar',
-				[],
-				[
-					'el_index_60 LIKE \'http://com.example.%\' ESCAPE \'`\' ',
-					'el_index LIKE \'http://com.example.%/foobar%\' ESCAPE \'`\' ',
-				],
-			],
-			'Wildcard domain with path, oneWildcard=true' => [
-				'*.example.com/foobar',
-				[ 'oneWildcard' => true ],
-				[
-					'el_index_60 LIKE \'http://com.example.%\' ESCAPE \'`\' ',
-					'el_index LIKE \'http://com.example.%\' ESCAPE \'`\' ',
-				],
-			],
-			'Constant prefix' => [
-				'example.com/blah/blah/blah/blah/blah/blah/blah/blah/blah/blah?foo=',
-				[],
-				[
-					'el_index_60' => 'http://com.example./blah/blah/blah/blah/blah/blah/blah/blah/',
-					'el_index LIKE ' .
-						'\'http://com.example./blah/blah/blah/blah/blah/blah/blah/blah/blah/blah?foo=%\' ' .
-						'ESCAPE \'`\' ',
-				],
-			],
-			'Bad protocol' => [
-				'test/',
-				[ 'protocol' => 'invalid://' ],
-				false
-			],
-			'Various options' => [
-				'example.com',
-				[ 'protocol' => 'https://' ],
-				[
-					'el_index_60 LIKE \'https://com.example./%\' ESCAPE \'`\' ',
-					'el_index LIKE \'https://com.example./%\' ESCAPE \'`\' ',
-				],
-			],
-		];
-	}
-
-	/**
-	 * @dataProvider provideGetQueryConditionsReadNew
-	 */
-	public function testGetQueryConditionsReadNew( $query, $options, $expected ) {
-		$this->overrideConfigValue( MainConfigNames::ExternalLinksSchemaMigrationStage, SCHEMA_COMPAT_NEW );
-		$conds = LinkFilter::getQueryConditions( $query, $options );
-		$this->assertEquals( $expected, $conds );
-	}
-
-	public static function provideGetQueryConditionsReadNew() {
 		return [
 			'Basic example' => [
 				'example.com',
@@ -638,7 +560,6 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideGetIndexedUrlsNonReversed
 	 */
 	public function testGetIndexedUrlsNonReversed( $urls, $expected ) {
-		$this->overrideConfigValue( MainConfigNames::ExternalLinksSchemaMigrationStage, SCHEMA_COMPAT_NEW );
 		$list = LinkFilter::getIndexedUrlsNonReversed( $urls );
 		$this->assertEquals( $expected, $list );
 	}
