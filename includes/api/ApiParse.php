@@ -28,6 +28,7 @@ use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\EditPage\EditPage;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserOutputFlags;

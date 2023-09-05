@@ -21,8 +21,14 @@
  * @file
  */
 
+namespace MediaWiki\Output;
+
+use FileBackend;
+use HTTPFileStreamer;
+use InvalidArgumentException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use UploadBase;
 
 /**
  * Functions related to the output of file content
@@ -48,7 +54,11 @@ class StreamFile {
 	 * @return bool Success
 	 */
 	public static function stream(
-		$fname, $headers = [], $sendErrors = true, $optHeaders = [], $flags = 0
+		$fname,
+		$headers = [],
+		$sendErrors = true,
+		$optHeaders = [],
+		$flags = 0
 	) {
 		if ( FileBackend::isStoragePath( $fname ) ) {
 			throw new InvalidArgumentException( __FUNCTION__ . " given storage path '$fname'." );
@@ -117,8 +127,10 @@ class StreamFile {
 			if ( UploadBase::checkFileExtensionList( $extList, $prohibitedFileExtensions ) ) {
 				return 'unknown/unknown';
 			}
-			if ( $checkFileExtensions && $strictFileExtensions
-				&& !UploadBase::checkFileExtensionList( $extList, $fileExtensions )
+			if (
+				$checkFileExtensions &&
+				$strictFileExtensions &&
+				!UploadBase::checkFileExtensionList( $extList, $fileExtensions )
 			) {
 				return 'unknown/unknown';
 			}
@@ -129,3 +141,8 @@ class StreamFile {
 		return $type;
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( StreamFile::class, 'StreamFile' );

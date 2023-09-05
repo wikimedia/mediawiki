@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\Output\OutputPage;
+
 /**
  * @covers BadTitleError
  * @author Addshore

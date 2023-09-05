@@ -20,6 +20,22 @@
  * @file
  */
 
+namespace MediaWiki\Output;
+
+use Article;
+use Config;
+use Content;
+use ContextSource;
+use CSSJanus;
+use Exception;
+use ExtensionRegistry;
+use File;
+use HtmlArmor;
+use IContextSource;
+use InvalidArgumentException;
+use JavaScriptContent;
+use LanguageCode;
+use LinkCache;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkTarget;
@@ -36,6 +52,21 @@ use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\MWTimestamp;
+use Message;
+use MWDebug;
+use MWException;
+use OOUI\Element;
+use OOUI\Theme;
+use Parser;
+use ParserOptions;
+use ParserOutput;
+use RequestContext;
+use Sanitizer;
+use Skin;
+use SpecialPage;
+use TextContent;
+use TitleValue;
+use WebRequest;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\Parsoid\Core\TOCData;
@@ -2299,7 +2330,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add the output of a QuickTemplate to the output buffer
 	 *
-	 * @param QuickTemplate &$template
+	 * @param \QuickTemplate &$template
 	 */
 	public function addTemplate( &$template ) {
 		$this->addHTML( $template->getHTML() );
@@ -3245,7 +3276,7 @@ class OutputPage extends ContextSource {
 	 *  or ResourceLoader available; this should ideally be to a page that provides similar
 	 *  functionality without requiring JavaScript
 	 * @param string|Message $msg Message key (string) for page text, or a Message object
-	 * @param string|string[]|MessageSpecifier $params Message parameters; ignored if $msg
+	 * @param string|string[]|\MessageSpecifier $params Message parameters; ignored if $msg
 	 *  is a Message object
 	 */
 	public function showPendingTakeover(
@@ -4638,8 +4669,8 @@ class OutputPage extends ContextSource {
 			$theme = $themes[$skinName] ?? $themes['default'];
 			// For example, 'OOUI\WikimediaUITheme'.
 			$themeClass = "OOUI\\{$theme}Theme";
-			OOUI\Theme::setSingleton( new $themeClass() );
-			OOUI\Element::setDefaultDir( $dir );
+			Theme::setSingleton( new $themeClass() );
+			Element::setDefaultDir( $dir );
 		}
 	}
 
@@ -4722,3 +4753,8 @@ class OutputPage extends ContextSource {
 		return WrappedStringList::join( "\n", $tail );
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( OutputPage::class, 'OutputPage' );

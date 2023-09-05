@@ -41,7 +41,7 @@ class ParserOutputStringSets {
 
 	/**
 	 * @var string ResourceLoader modules to load.
-	 * @see \OutputPage::addModules
+	 * @see \MediaWiki\Output\OutputPage::addModules
 	 * @see \ParserOutput::addModules
 	 * @see \ParserOutput::getModules
 	 */
@@ -49,7 +49,7 @@ class ParserOutputStringSets {
 
 	/**
 	 * @var string Style-only ResourceLoader modules to load.
-	 * @see \OutputPage::addModuleStyles
+	 * @see \MediaWiki\Output\OutputPage::addModuleStyles
 	 * @see \ParserOutput::addModuleStyles
 	 * @see \ParserOutput::getModuleStyles
 	 */

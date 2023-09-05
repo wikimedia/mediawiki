@@ -25,9 +25,9 @@ use ContentHandler;
 use IBufferingStatsdDataFactory;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Html\Html;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Title\Title;
 use MWUnknownContentModelException;
-use OutputPage;
 use User;
 
 /**

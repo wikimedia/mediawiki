@@ -28,6 +28,7 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Page\ProtectionForm;
 use MediaWiki\Page\WikiPageFactory;

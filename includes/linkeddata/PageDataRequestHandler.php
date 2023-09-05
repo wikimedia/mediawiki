@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use Wikimedia\Http\HttpAcceptNegotiator;

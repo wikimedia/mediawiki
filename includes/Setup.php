@@ -547,7 +547,7 @@ register_shutdown_function( static function () {
 $wgLang = new StubUserLang;
 
 /**
- * @var OutputPage $wgOut
+ * @var MediaWiki\Output\OutputPage $wgOut
  */
 $wgOut = RequestContext::getMain()->getOutput(); // BackCompat
 

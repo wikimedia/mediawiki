@@ -4,8 +4,8 @@ namespace MediaWiki\Hook;
 
 use Article;
 use MediaWiki;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Title\Title;
-use OutputPage;
 use User;
 use WebRequest;
 

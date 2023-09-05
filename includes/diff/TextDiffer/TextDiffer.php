@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Diff\TextDiffer;
 
-use OutputPage;
+use MediaWiki\Output\OutputPage;
 
 /**
  * An interface for parts of a diff page view which represent changes to text

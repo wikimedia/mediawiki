@@ -3,6 +3,7 @@
 use MediaWiki\Html\Html;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
@@ -2016,21 +2017,21 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	public function testParseAsContentNullTitle() {
 		$this->expectException( MWException::class );
-		$this->expectExceptionMessage( 'Empty $mTitle in OutputPage::parseInternal' );
+		$this->expectExceptionMessage( 'Empty $mTitle in MediaWiki\Output\OutputPage::parseInternal' );
 		$op = $this->newInstance( [], null, 'notitle' );
 		$op->parseAsContent( '' );
 	}
 
 	public function testParseAsInterfaceNullTitle() {
 		$this->expectException( MWException::class );
-		$this->expectExceptionMessage( 'Empty $mTitle in OutputPage::parseInternal' );
+		$this->expectExceptionMessage( 'Empty $mTitle in MediaWiki\Output\OutputPage::parseInternal' );
 		$op = $this->newInstance( [], null, 'notitle' );
 		$op->parseAsInterface( '' );
 	}
 
 	public function testParseInlineAsInterfaceNullTitle() {
 		$this->expectException( MWException::class );
-		$this->expectExceptionMessage( 'Empty $mTitle in OutputPage::parseInternal' );
+		$this->expectExceptionMessage( 'Empty $mTitle in MediaWiki\Output\OutputPage::parseInternal' );
 		$op = $this->newInstance( [], null, 'notitle' );
 		$op->parseInlineAsInterface( '' );
 	}

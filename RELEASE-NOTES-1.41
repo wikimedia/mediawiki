@@ -672,6 +672,9 @@ because of Phabricator reports.
   - MediaWiki\ExtensionInfo -> MediaWiki\Utils\ExtensionInfo
   - GitInfo -> MediaWiki\Utils\GitInfo
   - MWTimestamp -> MediaWiki\Utils\MWTimestamp
+  - OutputHandler -> MediaWiki\Output\OutputHandler
+  - OutputPage -> MediaWiki\Output\OutputPage
+  - StreamFile -> MediaWiki\Output\StreamFile
 * The following methods, previously deprecated, now emit deprecation warnings:
   - ConfigFactory::getDefaultInstance(), deprecated since 1.27
   - AbstractContent::getNativeData(), deprecated since 1.33

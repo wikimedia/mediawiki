@@ -4,8 +4,8 @@ namespace MediaWiki\Diff\TextDiffer;
 
 use DomainException;
 use Language;
+use MediaWiki\Output\OutputPage;
 use MessageLocalizer;
-use OutputPage;
 use UnexpectedValueException;
 
 /**

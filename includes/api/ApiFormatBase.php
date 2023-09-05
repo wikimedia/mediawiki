@@ -23,6 +23,7 @@
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Output\OutputPage;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
