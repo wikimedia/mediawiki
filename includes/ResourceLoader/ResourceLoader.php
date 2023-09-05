@@ -808,8 +808,7 @@ class ResourceLoader implements LoggerAwareInterface {
 				$this->sendSourceMapVersionMismatch( $versionHash );
 				return;
 			}
-			// Can't generate a source map for image or only=styles requests, or in
-			// debug mode
+			// No source maps for images, only=styles requests, or debug mode
 			if ( $context->getImage()
 				|| $context->getOnly() === 'styles'
 				|| $context->getDebug()
@@ -819,21 +818,18 @@ class ResourceLoader implements LoggerAwareInterface {
 				return;
 			}
 		}
-
-		// Generate a response
-		$response = $this->makeModuleResponse( $context, $modules, $missing );
-
-		// Determine the source map link URL while we still have an output buffer
+		// Emit source map header if supported (inverse of the above check)
 		if ( $this->config->get( MainConfigNames::ResourceLoaderEnableSourceMapLinks )
 			&& !$context->getImageObj()
 			&& !$context->isSourceMap()
 			&& $context->shouldIncludeScripts()
 			&& !$context->getDebug()
 		) {
-			$sourceMapLinkUrl = $this->getSourceMapUrl( $context, $versionHash );
-		} else {
-			$sourceMapLinkUrl = null;
+			$this->extraHeaders[] = 'SourceMap: ' . $this->getSourceMapUrl( $context, $versionHash );
 		}
+
+		// Generate a response
+		$response = $this->makeModuleResponse( $context, $modules, $missing );
 
 		// Capture any PHP warnings from the output buffer and append them to the
 		// error list if we're in debug mode.
@@ -866,12 +862,6 @@ class ResourceLoader implements LoggerAwareInterface {
 				// For styles we can still prepend
 				$response = $errorResponse . $response;
 			}
-		}
-
-		// Add source map link
-		if ( $sourceMapLinkUrl !== null ) {
-			$response = self::ensureNewline( $response );
-			$response .= "//# sourceMappingURL=$sourceMapLinkUrl";
 		}
 
 		// @phan-suppress-next-line SecurityCheck-XSS

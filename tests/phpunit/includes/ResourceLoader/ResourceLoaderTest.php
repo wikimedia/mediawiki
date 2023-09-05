@@ -1263,10 +1263,18 @@ mw.foo()
 mw.foo()
 mw.foo()
 mw.loader.state({"test1":"ready","test2":"ready"});
-//# sourceMappingURL=/load.php?lang=en&modules=test1%2Ctest2&only=scripts&sourcemap=1&version=pq39u
 JS
 	);
 		$rl->respond( $context );
+
+		$extraHeaders = TestingAccessWrapper::newFromObject( $rl )->extraHeaders;
+		$this->assertEquals(
+			[
+				'SourceMap: /load.php?lang=en&modules=test1%2Ctest2&only=scripts&sourcemap=1&version=pq39u'
+			],
+			$extraHeaders,
+			'Extra headers'
+		);
 	}
 
 	public function testMeasureResponseTime() {
