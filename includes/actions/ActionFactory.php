@@ -91,7 +91,7 @@ class ActionFactory {
 				'LanguageNameUtils',
 				'LinkBatchFactory',
 				'LinkRenderer',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'MagicWordFactory',
 				'NamespaceInfo',
 				'PageProps',
