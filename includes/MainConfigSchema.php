@@ -3255,7 +3255,7 @@ class MainConfigSchema {
 	 *   - 1.40: Added
 	 */
 	public const ExternalLinksSchemaMigrationStage = [
-		'default' => SCHEMA_COMPAT_READ_NEW | SCHEMA_COMPAT_WRITE_BOTH,
+		'default' => SCHEMA_COMPAT_READ_NEW | SCHEMA_COMPAT_WRITE_NEW,
 		'type' => 'integer',
 	];
 

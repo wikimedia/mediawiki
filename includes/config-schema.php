@@ -385,7 +385,7 @@ return [
 			'DatabaseReplicaLagCritical' => 30,
 			'MaxExecutionTimeForExpensiveQueries' => 0,
 			'TemplateLinksSchemaMigrationStage' => 768,
-			'ExternalLinksSchemaMigrationStage' => 769,
+			'ExternalLinksSchemaMigrationStage' => 768,
 			'ContentHandlers' => [
 				'wikitext' => [
 					'class' => 'WikitextContentHandler',
