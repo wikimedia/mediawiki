@@ -25,7 +25,6 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\User\ActorMigration;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -83,7 +82,7 @@ class RebuildRecentchanges extends Maintenance {
 	 */
 	private function rebuildRecentChangesTablePass1() {
 		$dbw = $this->getDB( DB_PRIMARY );
-		$commentStore = MediaWikiServices::getInstance()->getCommentStore();
+		$commentStore = $this->getServiceContainer()->getCommentStore();
 
 		if ( $this->hasOption( 'from' ) && $this->hasOption( 'to' ) ) {
 			$this->cutoffFrom = (int)wfTimestamp( TS_UNIX, $this->getOption( 'from' ) );
@@ -272,7 +271,7 @@ class RebuildRecentchanges extends Maintenance {
 		global $wgLogRestrictions, $wgFilterLogTypes;
 
 		$dbw = $this->getDB( DB_PRIMARY );
-		$commentStore = MediaWikiServices::getInstance()->getCommentStore();
+		$commentStore = $this->getServiceContainer()->getCommentStore();
 		$nonRCLogs = array_merge( array_keys( $wgLogRestrictions ),
 			array_keys( $wgFilterLogTypes ),
 			[ 'create' ] );
@@ -391,7 +390,7 @@ class RebuildRecentchanges extends Maintenance {
 		# may be lost at this point (aside from joining on the patrol log table entries).
 		$botgroups = [ 'bot' ];
 		$autopatrolgroups = ( $wgUseRCPatrol || $wgUseNPPatrol || $wgUseFilePatrol ) ?
-			MediaWikiServices::getInstance()->getGroupPermissionsLookup()
+			$this->getServiceContainer()->getGroupPermissionsLookup()
 			->getGroupsWithPermission( 'autopatrol' ) : [];
 
 		# Flag our recent bot edits
@@ -497,7 +496,7 @@ class RebuildRecentchanges extends Maintenance {
 
 		$this->output( "Deleting feed timestamps.\n" );
 
-		$wanCache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$wanCache = $this->getServiceContainer()->getMainWANObjectCache();
 		foreach ( $wgFeedClasses as $feed => $className ) {
 			$wanCache->delete( $wanCache->makeKey( 'rcfeed', $feed, 'timestamp' ) ); # Good enough for now.
 		}

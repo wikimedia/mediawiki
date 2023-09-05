@@ -2,8 +2,6 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * Purge the MessageBlobStore cache.
  *
@@ -14,7 +12,7 @@ use MediaWiki\MediaWikiServices;
  */
 class PurgeMessageBlobStore extends Maintenance {
 	public function execute() {
-		$blobStore = MediaWikiServices::getInstance()->getResourceLoader()->getMessageBlobStore();
+		$blobStore = $this->getServiceContainer()->getResourceLoader()->getMessageBlobStore();
 		$blobStore->clear();
 	}
 }

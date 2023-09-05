@@ -22,7 +22,6 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 
 require_once __DIR__ . '/../Maintenance.php';
@@ -60,7 +59,7 @@ class GeneratePhpCharToUpperMappings extends Maintenance {
 		$jsUpperChars = json_decode( $result->getStdout() );
 		'@phan-var string[] $jsUpperChars';
 
-		$contentLanguage = MediaWikiServices::getInstance()->getContentLanguage();
+		$contentLanguage = $this->getServiceContainer()->getContentLanguage();
 		for ( $i = 0; $i <= 0x10ffff; $i++ ) {
 			if ( $i >= 0xd800 && $i <= 0xdfff ) {
 				// Skip surrogate pairs

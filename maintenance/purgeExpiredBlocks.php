@@ -18,8 +18,6 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
-
 require_once __DIR__ . '/Maintenance.php';
 
 /*
@@ -39,7 +37,7 @@ class PurgeExpiredBlocks extends Maintenance {
 	public function execute() {
 		$this->output( "Purging expired blocks...\n" );
 
-		MediaWikiServices::getInstance()->getDatabaseBlockStore()->purgeExpiredBlocks();
+		$this->getServiceContainer()->getDatabaseBlockStore()->purgeExpiredBlocks();
 
 		$this->output( "Done purging expired blocks.\n" );
 	}

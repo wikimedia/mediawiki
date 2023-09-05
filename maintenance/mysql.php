@@ -23,7 +23,6 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 use Wikimedia\IPUtils;
 
@@ -61,7 +60,7 @@ class MysqlMaintenance extends Maintenance {
 
 	public function execute() {
 		$dbName = $this->getOption( 'wikidb', false );
-		$lbf = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbf = $this->getServiceContainer()->getDBLoadBalancerFactory();
 
 		// Pick LB
 		if ( $this->hasOption( 'cluster' ) ) {

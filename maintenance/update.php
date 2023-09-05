@@ -29,7 +29,6 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\DatabaseSqlite;
@@ -103,7 +102,7 @@ class UpdateMediaWiki extends Maintenance {
 		// T206765: We need to load the installer i18n files as some of errors come installer/updater code
 		$wgMessagesDirs['MediawikiInstaller'] = dirname( __DIR__ ) . '/includes/installer/i18n';
 
-		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
+		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 		// Set global language to ensure localised errors are in English (T22633)
 		RequestContext::getMain()->setLanguage( $lang );
 
@@ -114,7 +113,7 @@ class UpdateMediaWiki extends Maintenance {
 
 		$this->output( 'MediaWiki ' . MW_VERSION . " Updater\n\n" );
 
-		MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
+		$this->getServiceContainer()->getDBLoadBalancerFactory()->waitForReplication();
 
 		// Check external dependencies are up to date
 		if ( !$this->hasOption( 'skip-external-dependencies' ) ) {

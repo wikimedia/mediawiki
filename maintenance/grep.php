@@ -1,6 +1,5 @@
 <?php
 // phpcs:disable MediaWiki.Files.ClassMatchesFilename.NotMatch
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
@@ -37,7 +36,7 @@ class GrepPages extends Maintenance {
 	}
 
 	private function init() {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$this->contLang = $services->getContentLanguage();
 		$this->wikiPageFactory = $services->getWikiPageFactory();
 	}

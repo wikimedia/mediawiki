@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\RenameUser\RenameuserSQL;
 use MediaWiki\Status\Status;
@@ -56,7 +55,7 @@ class RenameUsersMatchingPattern extends Maintenance {
 	}
 
 	private function initServices() {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		if ( $services->getCentralIdLookupFactory()->getNonLocalLookup() ) {
 			$this->fatalError( "This script cannot be run when CentralAuth is enabled." );
 		}

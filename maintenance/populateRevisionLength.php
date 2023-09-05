@@ -21,7 +21,6 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -56,7 +55,7 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 			return false;
 		}
 
-		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$revisionStore = $this->getServiceContainer()->getRevisionStore();
 
 		$this->output( "Populating rev_len column\n" );
 		$rev = $this->doLenUpdates(
@@ -160,7 +159,7 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 	protected function upgradeRow( $row, $table, $idCol, $prefix ) {
 		$dbw = $this->getDB( DB_PRIMARY );
 
-		$revFactory = MediaWikiServices::getInstance()->getRevisionFactory();
+		$revFactory = $this->getServiceContainer()->getRevisionFactory();
 		if ( $table === 'archive' ) {
 			$revRecord = $revFactory->newRevisionFromArchiveRow( $row );
 		} else {

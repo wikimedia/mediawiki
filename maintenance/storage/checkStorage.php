@@ -21,7 +21,6 @@
  * @ingroup Maintenance ExternalStorage
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 
 require_once __DIR__ . '/../Maintenance.php';
@@ -101,7 +100,7 @@ class CheckStorage extends Maintenance {
 				->where( [ "slot_revision_id BETWEEN $chunkStart AND $chunkEnd" ] )
 				->caller( __METHOD__ )->fetchResultSet();
 			/** @var \MediaWiki\Storage\SqlBlobStore $blobStore */
-			$blobStore = MediaWikiServices::getInstance()->getBlobStore();
+			$blobStore = $this->getServiceContainer()->getBlobStore();
 			'@phan-var \MediaWiki\Storage\SqlBlobStore $blobStore';
 			foreach ( $res as $row ) {
 				$textId = $blobStore->getTextIdFromAddress( $row->content_address );
@@ -218,7 +217,7 @@ class CheckStorage extends Maintenance {
 			// Check external normal blobs for existence
 			if ( count( $externalNormalBlobs ) ) {
 				if ( $this->dbStore === null ) {
-					$esFactory = MediaWikiServices::getInstance()->getExternalStoreFactory();
+					$esFactory = $this->getServiceContainer()->getExternalStoreFactory();
 					$this->dbStore = $esFactory->getStore( 'DB' );
 				}
 				foreach ( $externalConcatBlobs as $cluster => $xBlobIds ) {
@@ -416,7 +415,7 @@ class CheckStorage extends Maintenance {
 		}
 
 		if ( $this->dbStore === null ) {
-			$esFactory = MediaWikiServices::getInstance()->getExternalStoreFactory();
+			$esFactory = $this->getServiceContainer()->getExternalStoreFactory();
 			$this->dbStore = $esFactory->getStore( 'DB' );
 		}
 
@@ -503,7 +502,7 @@ class CheckStorage extends Maintenance {
 		$dbw->ping();
 
 		$source = new ImportStreamSource( $file );
-		$importer = MediaWikiServices::getInstance()
+		$importer = $this->getServiceContainer()
 			->getWikiImporterFactory()
 			->getWikiImporter( $source );
 		$importer->setRevisionCallback( [ $this, 'importRevision' ] );
@@ -555,7 +554,7 @@ class CheckStorage extends Maintenance {
 			->where( [ 'slot_revision_id' => $id ] )
 			->caller( __METHOD__ )->fetchRow();
 
-		$blobStore = MediaWikiServices::getInstance()
+		$blobStore = $this->getServiceContainer()
 			->getBlobStoreFactory()
 			->newSqlBlobStore();
 		$oldId = $blobStore->getTextIdFromAddress( $res->content_address );

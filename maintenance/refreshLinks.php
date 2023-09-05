@@ -198,7 +198,7 @@ class RefreshLinks extends Maintenance {
 	 * @param int $id The page ID to check
 	 */
 	private function fixRedirect( $id ) {
-		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromID( $id );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromID( $id );
 
 		// In case the page just got deleted.
 		if ( $page === null ) {
@@ -418,7 +418,7 @@ class RefreshLinks extends Maintenance {
 	 * @return LinkTarget[]
 	 */
 	private function getPossibleCategories( $categoryKey ) {
-		$cats = MediaWikiServices::getInstance()->getTrackingCategories()->getTrackingCategories();
+		$cats = $this->getServiceContainer()->getTrackingCategories()->getTrackingCategories();
 		if ( isset( $cats[$categoryKey] ) ) {
 			return $cats[$categoryKey]['cats'];
 		}

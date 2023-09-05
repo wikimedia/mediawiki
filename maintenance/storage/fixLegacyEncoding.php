@@ -19,7 +19,6 @@
  * @ingroup Maintenance ExternalStorage
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\SqlBlobStore;
 
 require_once __DIR__ . '/moveToExternal.php';
@@ -42,7 +41,7 @@ class FixLegacyEncoding extends MoveToExternal {
 		if ( in_array( 'error', $flags ) ) {
 			return [ $text, $flags ];
 		}
-		$blobStore = MediaWikiServices::getInstance()->getBlobStore();
+		$blobStore = $this->getServiceContainer()->getBlobStore();
 		if ( in_array( 'external', $flags ) && $blobStore instanceof SqlBlobStore ) {
 			$text = $blobStore->expandBlob( $text, $flags );
 			// It will be put back in external storage again

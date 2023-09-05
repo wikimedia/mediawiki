@@ -46,7 +46,7 @@ class Version extends Maintenance {
 		}
 
 		global $IP;
-		$contentLang = \MediaWiki\MediaWikiServices::getInstance()->getContentLanguage();
+		$contentLang = $this->getServiceContainer()->getContentLanguage();
 
 		$version = MW_VERSION;
 		$strictVersion = substr( $version, 0, 4 );

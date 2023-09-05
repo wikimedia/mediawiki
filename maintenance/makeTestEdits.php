@@ -22,7 +22,6 @@
  */
 require_once __DIR__ . '/Maintenance.php';
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 
 /**
@@ -48,7 +47,7 @@ class MakeTestEdits extends Maintenance {
 
 		$count = $this->getOption( 'count' );
 		$namespace = (int)$this->getOption( 'namespace', 0 );
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$wikiPageFactory = $services->getWikiPageFactory();
 
 		for ( $i = 0; $i < $count; ++$i ) {

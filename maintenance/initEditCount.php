@@ -24,7 +24,6 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\User\ActorMigration;
 use MediaWiki\WikiMap\WikiMap;
 
@@ -48,7 +47,7 @@ class InitEditCount extends Maintenance {
 		} elseif ( $this->hasOption( 'quick' ) ) {
 			$backgroundMode = false;
 		} else {
-			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+			$lb = $this->getServiceContainer()->getDBLoadBalancer();
 			$backgroundMode = $lb->hasReplicaServers();
 		}
 

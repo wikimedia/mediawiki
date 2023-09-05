@@ -5,7 +5,6 @@
  * @see bug T75181
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableAccessException;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -20,7 +19,7 @@ class DeleteTag extends Maintenance {
 
 	public function execute() {
 		$dbw = $this->getDB( DB_PRIMARY );
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$defStore = $services->getChangeTagDefStore();
 		$lbFactory = $services->getDBLoadBalancerFactory();
 		$options = [ 'domain' => $lbFactory->getLocalDomainID() ];

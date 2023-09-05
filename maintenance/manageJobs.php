@@ -21,8 +21,6 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\MediaWikiServices;
-
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -43,7 +41,7 @@ class ManageJobs extends Maintenance {
 		$type = $this->getOption( 'type' );
 		$action = $this->getOption( 'action' );
 
-		$group = MediaWikiServices::getInstance()->getJobQueueGroup();
+		$group = $this->getServiceContainer()->getJobQueueGroup();
 		$queue = $group->get( $type );
 
 		if ( $action === 'delete' ) {

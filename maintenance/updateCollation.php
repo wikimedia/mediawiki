@@ -27,7 +27,6 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -113,7 +112,7 @@ TEXT
 	 * Get services and initialise member variables
 	 */
 	private function init() {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$this->namespaceInfo = $services->getNamespaceInfo();
 		$this->lbFactory = $services->getDBLoadBalancerFactory();
 

@@ -21,7 +21,6 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use Wikimedia\Diff\Diff;
 use Wikimedia\Diff\UnifiedDiffFormatter;
@@ -46,7 +45,7 @@ class CompareParserCache extends Maintenance {
 		$scanned = 0;
 		$withcache = 0;
 		$withdiff = 0;
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$parserCache = $services->getParserCache();
 		$renderer = $services->getRevisionRenderer();
 		$wikiPageFactory = $services->getWikiPageFactory();

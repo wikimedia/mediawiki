@@ -21,7 +21,6 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -142,8 +141,8 @@ class CleanupUsersWithNoId extends LoggedUpdateMaintenance {
 		$next = '1=1';
 		$countAssigned = 0;
 		$countPrefixed = 0;
-		$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
-		$userIdentityLookup = MediaWikiServices::getInstance()->getUserIdentityLookup();
+		$userNameUtils = $this->getServiceContainer()->getUserNameUtils();
+		$userIdentityLookup = $this->getServiceContainer()->getUserIdentityLookup();
 		while ( true ) {
 			// Fetch the rows needing update
 			$res = $dbw->newSelectQueryBuilder()

@@ -21,7 +21,6 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -70,7 +69,7 @@ class Protect extends Maintenance {
 			$this->fatalError( "Invalid title" );
 		}
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$restrictions = [];
 		foreach ( $services->getRestrictionStore()->listApplicableRestrictionTypes( $t ) as $type ) {
 			$restrictions[$type] = $protection;

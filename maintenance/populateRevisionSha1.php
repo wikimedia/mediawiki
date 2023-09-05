@@ -24,8 +24,6 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * Maintenance script that fills the rev_sha1 and ar_sha1 columns of revision
  * and archive tables for revisions created before MW 1.19.
@@ -55,7 +53,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			return false;
 		}
 
-		$revStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$revStore = $this->getServiceContainer()->getRevisionStore();
 
 		$this->output( "Populating rev_sha1 column\n" );
 		$rc = $this->doSha1Updates( $revStore, 'revision', 'rev_id',

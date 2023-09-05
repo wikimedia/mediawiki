@@ -21,7 +21,6 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -91,7 +90,7 @@ class PurgeParserCache extends Maintenance {
 
 		$this->output( "Deleting objects expiring before " . $humanDate . "\n" );
 
-		$pc = MediaWikiServices::getInstance()->getParserCache()->getCacheStorage();
+		$pc = $this->getServiceContainer()->getParserCache()->getCacheStorage();
 		$success = $pc->deleteObjectsExpiringBefore(
 			$timestamp,
 			[ $this, 'showProgressAndWait' ],

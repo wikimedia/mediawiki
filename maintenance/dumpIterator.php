@@ -27,7 +27,6 @@
  */
 
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Title\Title;
@@ -86,7 +85,7 @@ abstract class DumpIterator extends Maintenance {
 				. "Use - and provide it on stdin on the meantime." );
 		}
 
-		$importer = MediaWikiServices::getInstance()
+		$importer = $this->getServiceContainer()
 			->getWikiImporterFactory()
 			->getWikiImporter( $source );
 

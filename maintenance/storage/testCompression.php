@@ -21,7 +21,6 @@
  * @ingroup Maintenance ExternalStorage
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
@@ -40,7 +39,7 @@ class TestCompression extends Maintenance {
 	}
 
 	public function execute() {
-		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
+		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 		$title = Title::newFromText( $this->getArg( 0 ) );
 
 		if ( $this->hasOption( 'start' ) ) {
@@ -60,7 +59,7 @@ class TestCompression extends Maintenance {
 
 		$dbr = $this->getDB( DB_REPLICA );
 
-		$revStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$revStore = $this->getServiceContainer()->getRevisionStore();
 		$revQuery = $revStore->getQueryInfo( [ 'page' ] );
 		$res = $dbr->select(
 			$revQuery['tables'],

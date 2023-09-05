@@ -94,7 +94,7 @@ class MediaWikiShell extends Maintenance {
 
 		$this->setupLogging();
 
-		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onMaintenanceShellStart();
+		( new HookRunner( $this->getServiceContainer()->getHookContainer() ) )->onMaintenanceShellStart();
 
 		$shell->run();
 	}

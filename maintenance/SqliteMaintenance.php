@@ -21,7 +21,6 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -53,7 +52,7 @@ class SqliteMaintenance extends Maintenance {
 			return;
 		}
 
-		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$lb = $this->getServiceContainer()->getDBLoadBalancer();
 		$dbw = $lb->getMaintenanceConnectionRef( DB_PRIMARY );
 		if ( $dbw->getType() !== 'sqlite' ) {
 			$this->error( "This maintenance script requires a SQLite database.\n" );

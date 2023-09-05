@@ -28,7 +28,7 @@ class ImportSites extends Maintenance {
 	public function execute() {
 		$file = $this->getArg( 0 );
 
-		$siteStore = \MediaWiki\MediaWikiServices::getInstance()->getSiteStore();
+		$siteStore = $this->getServiceContainer()->getSiteStore();
 		$importer = new SiteImporter( $siteStore );
 		$importer->setExceptionCallback( [ $this, 'reportException' ] );
 

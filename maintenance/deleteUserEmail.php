@@ -24,7 +24,6 @@
  * @see https://phabricator.wikimedia.org/T290099
  * @ingroup Maintenance
  */
-use MediaWiki\MediaWikiServices;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -41,7 +40,7 @@ class DeleteUserEmail extends Maintenance {
 	}
 
 	public function execute() {
-		$userFactory = MediaWikiServices::getInstance()->getUserFactory();
+		$userFactory = $this->getServiceContainer()->getUserFactory();
 		$userName = $this->getArg( 0 );
 		if ( preg_match( '/^#\d+$/', $userName ) ) {
 			$user = $userFactory->newFromId( (int)substr( $userName, 1 ) );

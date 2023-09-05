@@ -103,7 +103,7 @@ class MWEval extends Maintenance {
 			$__historyFile = null;
 		}
 
-		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onMaintenanceShellStart();
+		( new HookRunner( $this->getServiceContainer()->getHookContainer() ) )->onMaintenanceShellStart();
 
 		$__e = null; // PHP exception
 		while ( ( $__line = Maintenance::readconsole() ) !== false ) {

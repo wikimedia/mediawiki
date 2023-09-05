@@ -21,7 +21,6 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
@@ -79,7 +78,7 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 	protected function handleRow( stdClass $row ) {
 		$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 		$this->output( "Processing {$title} ({$row->page_id})...\n" );
-		$rev = MediaWikiServices::getInstance()
+		$rev = $this->getServiceContainer()
 			->getRevisionLookup()
 			->getRevisionByTitle( $title );
 		$content = $rev->getContent( SlotRecord::MAIN, RevisionRecord::RAW );

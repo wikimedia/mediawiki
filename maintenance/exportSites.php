@@ -40,7 +40,7 @@ class ExportSites extends Maintenance {
 
 		$exporter = new SiteExporter( $handle );
 
-		$siteLookup = \MediaWiki\MediaWikiServices::getInstance()->getSiteLookup();
+		$siteLookup = $this->getServiceContainer()->getSiteLookup();
 		$exporter->exportSites( $siteLookup->getSites() );
 
 		fclose( $handle );

@@ -27,7 +27,6 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\DatabaseSqlite;
@@ -87,7 +86,7 @@ class RebuildTextIndex extends Maintenance {
 		$this->output( "Rebuilding index fields for {$count} pages...\n" );
 		$n = 0;
 
-		$revStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$revStore = $this->getServiceContainer()->getRevisionStore();
 		$revQuery = $revStore->getQueryInfo( [ 'page' ] );
 
 		while ( $n < $count ) {

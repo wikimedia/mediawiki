@@ -28,7 +28,6 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
 
@@ -82,7 +81,7 @@ class DeleteBatch extends Maintenance {
 			$this->fatalError( "Unable to read file, exiting" );
 		}
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$wikiPageFactory = $services->getWikiPageFactory();
 		$repoGroup = $services->getRepoGroup();
 

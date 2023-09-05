@@ -33,7 +33,6 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\ResourceLoader\MessageBlobStore;
 use MediaWiki\Settings\SettingsBuilder;
 
@@ -122,7 +121,7 @@ class RebuildLocalisationCache extends Maintenance {
 		}
 
 		// XXX Copy-pasted from ServiceWiring.php. Do we need a factory for this one caller?
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$lc = new LocalisationCacheBulkLoad(
 			new ServiceOptions(
 				LocalisationCache::CONSTRUCTOR_OPTIONS,

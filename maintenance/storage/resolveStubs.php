@@ -23,7 +23,6 @@
  */
 
 use MediaWiki\Maintenance\UndoLog;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\SqlBlobStore;
 
 require_once __DIR__ . '/../Maintenance.php';
@@ -57,7 +56,7 @@ class ResolveStubs extends Maintenance {
 		$numBlocks = intval( $maxID / $blockSize ) + 1;
 		$numResolved = 0;
 		$numTotal = 0;
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 
 		for ( $b = 0; $b < $numBlocks; $b++ ) {
 			$lbFactory->waitForReplication();

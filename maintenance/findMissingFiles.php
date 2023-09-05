@@ -18,8 +18,6 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
-
 require_once __DIR__ . '/Maintenance.php';
 
 class FindMissingFiles extends Maintenance {
@@ -36,7 +34,7 @@ class FindMissingFiles extends Maintenance {
 	public function execute() {
 		$lastName = $this->getOption( 'start', '' );
 
-		$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
+		$repo = $this->getServiceContainer()->getRepoGroup()->getLocalRepo();
 		$dbr = $repo->getReplicaDB();
 		$be = $repo->getBackend();
 		$batchSize = $this->getBatchSize();

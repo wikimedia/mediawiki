@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 
 require_once __DIR__ . '/../Maintenance.php';
 
@@ -48,7 +47,7 @@ class ImportExtensionMessages extends Maintenance {
 	}
 
 	private function init() {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$config = $services->getMainConfig();
 		$this->extensionDir = $config->get( MainConfigNames::ExtensionDirectory );
 	}

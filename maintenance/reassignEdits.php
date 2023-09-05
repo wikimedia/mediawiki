@@ -23,7 +23,6 @@
  * @license GPL-2.0-or-later
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\User\ActorMigration;
 use Wikimedia\IPUtils;
 
@@ -80,7 +79,7 @@ class ReassignEdits extends Maintenance {
 	private function doReassignEdits( &$from, &$to, $updateRC = false, $report = false ) {
 		$dbw = $this->getDB( DB_PRIMARY );
 		$this->beginTransaction( $dbw, __METHOD__ );
-		$actorNormalization = MediaWikiServices::getInstance()->getActorNormalization();
+		$actorNormalization = $this->getServiceContainer()->getActorNormalization();
 		$fromActorId = $actorNormalization->findActorId( $from, $dbw );
 
 		# Count things
@@ -184,7 +183,7 @@ class ReassignEdits extends Maintenance {
 	 * @return User
 	 */
 	private function initialiseUser( $username ) {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		if ( $services->getUserNameUtils()->isIP( $username ) ) {
 			$user = User::newFromName( $username, false );
 			$user->getActorId();

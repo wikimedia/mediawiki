@@ -23,7 +23,6 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\UndoLog;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\SqlBlobStore;
 use Wikimedia\AtEase\AtEase;
 
@@ -136,8 +135,8 @@ class MoveToExternal extends Maintenance {
 		$numBlocks = ceil( $count / $blockSize );
 		print "Moving text rows from {$this->minID} to {$this->maxID} to external storage\n";
 
-		$esFactory = MediaWikiServices::getInstance()->getExternalStoreFactory();
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$esFactory = $this->getServiceContainer()->getExternalStoreFactory();
+		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 		$extStore = $esFactory->getStore( $this->esType );
 		$numMoved = 0;
 		$stubIDs = [];
@@ -260,7 +259,7 @@ class MoveToExternal extends Maintenance {
 		}
 
 		$dbr = $this->getDB( DB_REPLICA );
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 		$this->output( "Resolving " . count( $stubIDs ) . " stubs\n" );
 		$numResolved = 0;
 		$numTotal = 0;

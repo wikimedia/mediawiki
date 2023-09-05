@@ -30,7 +30,6 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -269,7 +268,7 @@ class RefreshImageMetadata extends Maintenance {
 			$overrides['useSplitMetadata'] = true;
 		}
 
-		return MediaWikiServices::getInstance()->getRepoGroup()
+		return $this->getServiceContainer()->getRepoGroup()
 			->newCustomLocalRepo( $overrides );
 	}
 }

@@ -25,7 +25,6 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -97,7 +96,7 @@ class FixDoubleRedirects extends Maintenance {
 		$jobs = [];
 		$processedTitles = "\n";
 		$n = 0;
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		foreach ( $res as $row ) {
 			$titleA = Title::makeTitle( $row->pa_namespace, $row->pa_title );
 			$titleB = Title::makeTitle( $row->pb_namespace, $row->pb_title );
@@ -151,7 +150,7 @@ class FixDoubleRedirects extends Maintenance {
 
 	protected function queueJobs( $jobs, $dryrun = false ) {
 		$this->output( "Queuing batch of " . count( $jobs ) . " double redirects.\n" );
-		MediaWikiServices::getInstance()->getJobQueueGroup()->push( $dryrun ? [] : $jobs );
+		$this->getServiceContainer()->getJobQueueGroup()->push( $dryrun ? [] : $jobs );
 	}
 }
 

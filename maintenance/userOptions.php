@@ -24,7 +24,6 @@
  * @author Antoine Musso <hashar at free dot fr>
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
@@ -80,7 +79,7 @@ The new option is NOT validated.' );
 	 * List default options and their value
 	 */
 	private function listAvailableOptions() {
-		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+		$userOptionsLookup = $this->getServiceContainer()->getUserOptionsLookup();
 		$def = $userOptionsLookup->getDefaultOptions();
 		ksort( $def );
 		$maxOpt = 0;
@@ -99,7 +98,7 @@ The new option is NOT validated.' );
 		$option = $this->getArg( 0 );
 
 		$ret = [];
-		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+		$userOptionsLookup = $this->getServiceContainer()->getUserOptionsLookup();
 		$defaultOptions = $userOptionsLookup->getDefaultOptions();
 
 		// We list user by user_id from one of the replica DBs
@@ -168,7 +167,7 @@ WARN
 			);
 		}
 
-		$userOptionsManager = MediaWikiServices::getInstance()->getUserOptionsManager();
+		$userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();
 		$dbr = wfGetDB( DB_REPLICA );
 		$queryBuilderTemplate = new SelectQueryBuilder( $dbr );
 		$queryBuilderTemplate

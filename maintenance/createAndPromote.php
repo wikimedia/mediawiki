@@ -25,7 +25,6 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\WikiMap\WikiMap;
 
 /**
@@ -70,7 +69,7 @@ class CreateAndPromote extends Maintenance {
 		$password = $this->getArg( 1 );
 		$force = $this->hasOption( 'force' );
 		$inGroups = [];
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 
 		$user = $services->getUserFactory()->newFromName( $username );
 		if ( !is_object( $user ) ) {
@@ -137,7 +136,7 @@ class CreateAndPromote extends Maintenance {
 
 			// Create the user via AuthManager as there may be various side
 			// effects that are performed by the configured AuthManager chain.
-			$status = MediaWikiServices::getInstance()->getAuthManager()->autoCreateUser(
+			$status = $this->getServiceContainer()->getAuthManager()->autoCreateUser(
 				$user,
 				MediaWiki\Auth\AuthManager::AUTOCREATE_SOURCE_MAINT,
 				false

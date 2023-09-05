@@ -21,7 +21,6 @@
  * @ingroup Maintenance ExternalStorage
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 
 require_once __DIR__ . '/../Maintenance.php';
@@ -41,7 +40,7 @@ class DumpRev extends Maintenance {
 	public function execute() {
 		$id = (int)$this->getArg( 0 );
 
-		$lookup = MediaWikiServices::getInstance()->getRevisionLookup();
+		$lookup = $this->getServiceContainer()->getRevisionLookup();
 		$rev = $lookup->getRevisionById( $id );
 		if ( !$rev ) {
 			$this->fatalError( "Row not found" );
@@ -52,7 +51,7 @@ class DumpRev extends Maintenance {
 			$this->fatalError( "Text not found" );
 		}
 
-		$blobStore = MediaWikiServices::getInstance()->getBlobStore();
+		$blobStore = $this->getServiceContainer()->getBlobStore();
 		$slot = $rev->getSlot( SlotRecord::MAIN );
 		$text = $blobStore->getBlob( $slot->getAddress() );
 

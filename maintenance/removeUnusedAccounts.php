@@ -23,7 +23,6 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\User\ActorMigration;
 use MediaWiki\User\UserIdentity;
 
@@ -43,7 +42,7 @@ class RemoveUnusedAccounts extends Maintenance {
 	}
 
 	public function execute() {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$userFactory = $services->getUserFactory();
 		$userGroupManager = $services->getUserGroupManager();
 		$this->output( "Remove unused accounts\n\n" );

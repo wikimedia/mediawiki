@@ -21,7 +21,6 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Rdbms\DBConnectionError;
 
@@ -154,7 +153,7 @@ class TrackBlobs extends Maintenance {
 			$textClause,
 			'old_flags ' . $dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() ),
 		];
-		$slotRoleStore = MediaWikiServices::getInstance()->getSlotRoleStore();
+		$slotRoleStore = $this->getServiceContainer()->getSlotRoleStore();
 		$tables = [ 'revision', 'slots', 'content', 'text' ];
 		$conds = array_merge( [
 			'rev_id=slot_revision_id',
@@ -163,7 +162,7 @@ class TrackBlobs extends Maintenance {
 			'SUBSTRING(content_address, 1, 3)=' . $dbr->addQuotes( 'tt:' ),
 			'SUBSTRING(content_address, 4)=old_id',
 		], $conds );
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 
 		while ( true ) {
 			$res = $dbr->select( $tables,
@@ -235,7 +234,7 @@ class TrackBlobs extends Maintenance {
 			->caller( __METHOD__ )->fetchField();
 		$rowsInserted = 0;
 		$batchesDone = 0;
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 
 		echo "Finding orphan text...\n";
 
@@ -312,7 +311,7 @@ class TrackBlobs extends Maintenance {
 		}
 
 		$dbw = wfGetDB( DB_PRIMARY );
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 
 		foreach ( $this->clusters as $cluster ) {
 			echo "Searching for orphan blobs in $cluster...\n";

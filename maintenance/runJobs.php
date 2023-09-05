@@ -24,7 +24,6 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\Maintenance\ForkController;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
 
 /**
@@ -81,7 +80,7 @@ class RunJobs extends Maintenance {
 		$outputJSON = ( $this->getOption( 'result' ) === 'json' );
 		$wait = $this->hasOption( 'wait' );
 
-		$runner = MediaWikiServices::getInstance()->getJobRunner();
+		$runner = $this->getServiceContainer()->getJobRunner();
 		if ( !$outputJSON ) {
 			$runner->setDebugHandler( [ $this, 'debugInternal' ] );
 		}
