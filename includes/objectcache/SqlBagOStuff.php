@@ -1678,6 +1678,11 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			$services = MediaWikiServices::getInstance();
 			$dbFactory = $services->getDatabaseFactory();
 			$sqlDump = $services->getMainConfig()->get( MainConfigNames::DebugDumpSql );
+
+			$server['flags'] ??= 0;
+			if ( $sqlDump ) {
+				$server['flags'] |= DBO_DEBUG;
+			}
 			/** @var IMaintainableDatabase $conn Auto-commit connection to the server */
 			$conn = $dbFactory->create(
 				$server['type'],
@@ -1685,7 +1690,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 					$server,
 					[
 						// Make sure the handle uses autocommit mode
-						'flags' => ( $server['flags'] ?? $sqlDump ) & ~IDatabase::DBO_TRX,
+						'flags' => ( $server['flags'] ) & ~IDatabase::DBO_TRX,
 						'logger' => $this->logger,
 					]
 				)
