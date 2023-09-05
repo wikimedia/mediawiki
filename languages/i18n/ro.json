@@ -50,7 +50,9 @@
 			"NGC 54",
 			"Popetedenis",
 			"Dan Mihai Pitea",
-			"Matěj Suchánek"
+			"Matěj Suchánek",
+			"Alesaru",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Sublinierea legăturilor:",
@@ -3922,7 +3924,7 @@
 	"specialmute-error-invalid-user": "Numele de utilizator solicitat nu a putut fi găsit.",
 	"specialmute-email-footer": "Pentru a administra preferințele de e-mail pentru utilizatorul {{BIDI:$2}}, vă rugăm să vizitați <$1>.",
 	"specialmute-login-required": "Vă rugăm să vă autentificați pentru a vă modifica preferințele de blocare a notificărilor.",
-	"mute-preferences": "Amuțire {{GENDER:$1|utilizator|utilizatoare}}",
+	"mute-preferences": "Amuțire utilizator",
 	"revid": "versiunea $1",
 	"pageid": "ID pagină $1",
 	"interfaceadmin-info": "$1\n\nPermisiunile pentru editarea de CSS/JS/JSON global au fost recent separate de dreptul <code>editinterface</code>. Dacă nu înțelegeți de ce primiți această eroare, vedeți [[mw:MediaWiki_1.32/interface-admin]].",

@@ -3485,7 +3485,7 @@
 	"pageinfo-few-visiting-watchers": "Message displayed when there are fewer than 2 \"active\" watchers.",
 	"pageinfo-redirects-name": "Header of the row in the first table of the info action.\n\nFollowed by {{msg-mw|Pageinfo-redirects-value}}.\n\nUsed as link text. The link points to \"{{int:Whatlinkshere-title}}\" page ([[Special:WhatLinksHere]]).\n\nSee example: [{{canonicalurl:Main page|action=info}} Main page?action=info]",
 	"pageinfo-redirects-value": "{{Optional}}\nParameters:\n* $1 - the number of redirects to the page",
-	"pageinfo-subpages-name": "Header of the row in the first table of the info action.\n\nFollowed by {{msg-mw|Pageinfo-subpages-value}}.\n\nUsed as link text. The link points to the \"{{int:Prefixindex}}\" page ([[Special:PrefixIndex]]).\n\nSee example: [{{canonicalurl:Main page|action=info}} Main page?action=info]",
+	"pageinfo-subpages-name": "Header of the row in the first table of the info action.\n\nFollowed by {{msg-mw|Pageinfo-subpages-value}} or {{msg-mw|Pageinfo-subpages-value-unknown}}.\n\nUsed as link text. The link points to the \"{{int:Prefixindex}}\" page ([[Special:PrefixIndex]]).\n\nSee example: [{{canonicalurl:Main page|action=info}} Main page?action=info]",
 	"pageinfo-subpages-value": "Parameters:\n* $1 - the number of subpages of the page\n* $2 - the number of subpages of the page that are redirects\n* $3 - the number of subpages of the page that are not redirects",
 	"pageinfo-firstuser": "The user who created the page.",
 	"pageinfo-firsttime": "The date and time the page was created.",
