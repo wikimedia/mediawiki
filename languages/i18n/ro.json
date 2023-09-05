@@ -51,7 +51,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Matěj Suchánek",
-			"Amire80"
+			"Amire80",
+			"Alesaru"
 		]
 	},
 	"tog-underline": "Sublinierea legăturilor:",
@@ -3957,7 +3958,7 @@
 	"specialmute-error-no-options": "Funcțiile de dezactivare notificărilor nu sunt disponibile. Acest lucru se poate datora faptului că nu v-ați confirmat adresa de e-mail sau deoarece administratorul wiki a dezactivat funcțiile de e-mail sau lista de silențiere a adreselor de e-mail pentru acest wiki.",
 	"specialmute-email-footer": "Pentru a administra preferințele de e-mail pentru utilizatorul {{BIDI:$2}}, vă rugăm să vizitați <$1>.",
 	"specialmute-login-required": "Vă rugăm să vă autentificați pentru a vă modifica preferințele de blocare a notificărilor.",
-	"mute-preferences": "Amuțire {{GENDER:$1|utilizator|utilizatoare}}",
+	"mute-preferences": "Amuțire utilizator",
 	"revid": "versiunea $1",
 	"pageid": "ID pagină $1",
 	"rawhtml-notallowed": "Tagurile &lt;html&gt; nu pot fi folosite în afara paginilor normale.",

@@ -36,7 +36,8 @@
 			"아라",
 			"Base",
 			"Hakimi97",
-			"Amire80"
+			"Amire80",
+			"Lim Natee"
 		]
 	},
 	"tog-underline": "Garis bawah pautan:",
@@ -2354,6 +2355,7 @@
 	"enotif_minoredit": "Ini ialah suntingan kecil",
 	"created": "dicipta",
 	"changed": "diubah",
+	"deletepage-deletetalk": "Padamkan halaman perbincangan terkait",
 	"deletepage-submit": "Hapus laman",
 	"confirm": "Sahkan",
 	"excontent": "kandungan: '$1'",

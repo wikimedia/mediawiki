@@ -1935,6 +1935,7 @@
 	"exbeforeblank": "Silinmədən əvvəlki məzmun: '$1'",
 	"delete-confirm": "\"$1\" səhifəsini sil",
 	"delete-legend": "Sil",
+	"delete-talk-summary-prefix": "Əlaqəli səhifə ilə birlikdə bu səbəbə görə silindi: $1",
 	"historywarning": "'''Xəbərdarlıq:''' Silmək istədiyiniz səhifənin tarixçəsində qeyd olunmuş $1 {{PLURAL:$1|redaktə|redaktə}} var:",
 	"historyaction-submit": "Versiyaları göstər",
 	"confirmdeletetext": "Bu səhifə və ya fayl bütün tarixçəsi ilə birlikdə birdəfəlik silinəcək. Bunu [[{{MediaWiki:Policy-url}}|qaydalara]] uyğun etdiyinizi və əməliyyatın nəticələrini başa düşdüyünüzü təsdiq edin.",
