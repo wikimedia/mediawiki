@@ -1676,25 +1676,20 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	private function getConnectionFromServerInfo( $shardIndex, array $server ) {
 		if ( !isset( $this->conns[$shardIndex] ) ) {
 			$services = MediaWikiServices::getInstance();
-			$dbFactory = $services->getDatabaseFactory();
-			$sqlDump = $services->getMainConfig()->get( MainConfigNames::DebugDumpSql );
+			$debugSql = $services->getMainConfig()->get( MainConfigNames::DebugDumpSql );
 
 			$server['flags'] ??= 0;
-			if ( $sqlDump ) {
+			if ( $debugSql ) {
 				$server['flags'] |= DBO_DEBUG;
 			}
+			// Make sure this handle always uses autocommit mode, even if DBO_TRX is
+			// configured.
+			$server['flags'] &= ~DBO_TRX;
+			$server['logger'] = $this->logger;
+
 			/** @var IMaintainableDatabase $conn Auto-commit connection to the server */
-			$conn = $dbFactory->create(
-				$server['type'],
-				array_merge(
-					$server,
-					[
-						// Make sure the handle uses autocommit mode
-						'flags' => ( $server['flags'] ) & ~IDatabase::DBO_TRX,
-						'logger' => $this->logger,
-					]
-				)
-			);
+			$conn = $services->getDatabaseFactory()->create( $server['type'], $server );
+
 			// Automatically create the objectcache table for sqlite as needed
 			if ( $conn->getType() === 'sqlite' ) {
 				$this->initSqliteDatabase( $conn );
