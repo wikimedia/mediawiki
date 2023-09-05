@@ -1697,7 +1697,7 @@ class LocalFile extends File {
 	 * @stable to override
 	 * @param string $oldver
 	 * @param string $comment
-	 * @param string $pageText
+	 * @param string $pageText File description page text (only used for new uploads)
 	 * @param Authority $performer
 	 * @param array|false $props
 	 * @param string|false $timestamp Can be in any format accepted by ConvertibleTimestamp

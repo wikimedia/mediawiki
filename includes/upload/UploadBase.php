@@ -887,7 +887,7 @@ abstract class UploadBase {
 	 * if necessary and runs the UploadComplete hook.
 	 *
 	 * @param string $comment
-	 * @param string $pageText
+	 * @param string|false $pageText
 	 * @param bool $watch Whether the file page should be added to user's watchlist.
 	 *   (This doesn't check $user's permissions.)
 	 * @param User $user
@@ -917,7 +917,7 @@ abstract class UploadBase {
 		$status = $this->getLocalFile()->upload(
 			$this->mTempPath,
 			$comment,
-			$pageText,
+			$pageText !== false ? $pageText : '',
 			File::DELETE_SOURCE,
 			$props,
 			false,
