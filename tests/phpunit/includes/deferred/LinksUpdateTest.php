@@ -195,11 +195,11 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t,
 			$po,
 			'externallinks',
-			[ 'el_to', 'el_index' ],
+			[ 'el_to_domain_index', 'el_to_path' ],
 			'el_from = ' . self::$testingPageId,
 			[
-				[ 'http://testing.com/wiki/Bar', 'http://com.testing./wiki/Bar' ],
-				[ 'http://testing.com/wiki/Foo', 'http://com.testing./wiki/Foo' ],
+				[ 'http://com.testing.', '/wiki/Bar' ],
+				[ 'http://com.testing.', '/wiki/Foo' ],
 			]
 		);
 
@@ -216,11 +216,11 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t,
 			$po,
 			'externallinks',
-			[ 'el_to', 'el_index' ],
+			[ 'el_to_domain_index', 'el_to_path' ],
 			'el_from = ' . self::$testingPageId,
 			[
-				[ 'http://testing.com/wiki/Bar', 'http://com.testing./wiki/Bar' ],
-				[ 'http://testing.com/wiki/Baz', 'http://com.testing./wiki/Baz' ],
+				[ 'http://com.testing.', '/wiki/Bar' ],
+				[ 'http://com.testing.', '/wiki/Baz' ],
 			]
 		);
 
@@ -862,7 +862,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		/** @var ParserOutput $po */
 		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 		$po->addCategory( $s, $s );
-		$po->addExternalLink( $s );
+		$po->addExternalLink( 'https://foo.com' );
 		$po->addImage( $s );
 		$po->addInterwikiLink( new TitleValue( 0, $s, '', $s ) );
 		$po->addLanguageLink( "$s:$s" );

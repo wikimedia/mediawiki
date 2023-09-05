@@ -43,12 +43,6 @@ use Wikimedia\Rdbms\Platform\ISQLPlatform;
  */
 class LinkFilter {
 	/**
-	 * Increment this when makeIndexes output changes. It'll cause
-	 * maintenance/refreshExternallinksIndex.php to run from update.php.
-	 */
-	public const VERSION = 1;
-
-	/**
 	 * Check whether $content contains a link to $filterEntry
 	 *
 	 * @param Content $content Content to check
@@ -96,8 +90,6 @@ class LinkFilter {
 	 * @return string
 	 */
 	private static function indexifyHost( $host, $reverse = true ) {
-		// NOTE: If you change the output of this method, you'll probably have to increment self::VERSION!
-
 		// Canonicalize.
 		$host = rawurldecode( $host );
 		if ( $host !== '' ) {
@@ -187,8 +179,6 @@ class LinkFilter {
 	 *  Each entry is an array in form of <host,path>
 	 */
 	public static function makeIndexes( $url, $reverseDomain = true ) {
-		// NOTE: If you change the output of this method, you'll probably have to increment self::VERSION!
-
 		// NOTE: refreshExternallinksIndex.php assumes that only protocol-relative URLs return more
 		// than one index, and that the indexes for protocol-relative URLs only vary in the "http://"
 		// versus "https://" prefix. If you change that, you'll likely need to update

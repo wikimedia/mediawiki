@@ -201,11 +201,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeField', 'protected_titles', 'pt_reason_id', 'BIGINT', '' ],
 			[ 'dropDefault', 'protected_titles', 'pt_create_perm' ],
 			[ 'dropFkey', 'externallinks', 'el_from' ],
-			[ 'setDefault', 'externallinks', 'el_from', 0 ],
-			[ 'changeField', 'externallinks', 'el_index_60', 'TEXT', '' ],
 			[ 'renameIndex', 'externallinks', 'externallinks_from_to', 'el_from' ],
 			[ 'renameIndex', 'externallinks', 'externallinks_index', 'el_index' ],
-			[ 'addPgIndex', 'externallinks', 'el_to', '(el_to, el_from)' ],
 			[ 'dropSequence', 'ip_changes', 'ip_changes_ipc_rev_id_seq' ],
 			[ 'changeField', 'ip_changes', 'ipc_hex', 'TEXT', "ipc_hex::TEXT DEFAULT ''" ],
 			[ 'setDefault', 'ip_changes', 'ipc_rev_id', 0 ],
@@ -454,6 +451,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'runMaintenance', MigrateExternallinks::class, 'maintenance/migrateExternallinks.php' ],
 			[ 'modifyField', 'externallinks', 'el_to', 'patch-externallinks-el_to_default.sql' ],
 			[ 'addField', 'pagelinks', 'pl_target_id', 'patch-pagelinks-target_id.sql' ],
+			[ 'dropField', 'externallinks', 'el_to', 'patch-externallinks-drop-el_to.sql' ],
 		];
 	}
 

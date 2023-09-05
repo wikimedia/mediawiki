@@ -443,23 +443,12 @@ CREATE INDEX pt_timestamp ON protected_titles (pt_timestamp);
 CREATE TABLE externallinks (
   el_id SERIAL NOT NULL,
   el_from INT DEFAULT 0 NOT NULL,
-  el_to TEXT DEFAULT '',
-  el_index TEXT DEFAULT '',
-  el_index_60 TEXT DEFAULT '' NOT NULL,
   el_to_domain_index TEXT DEFAULT '' NOT NULL,
   el_to_path TEXT DEFAULT NULL,
   PRIMARY KEY(el_id)
 );
 
 CREATE INDEX el_from ON externallinks (el_from);
-
-CREATE INDEX el_to ON externallinks (el_to, el_from);
-
-CREATE INDEX el_index ON externallinks (el_index);
-
-CREATE INDEX el_index_60 ON externallinks (el_index_60, el_id);
-
-CREATE INDEX el_from_index_60 ON externallinks (el_from, el_index_60, el_id);
 
 CREATE INDEX el_to_domain_index_to_path ON externallinks (el_to_domain_index, el_to_path);
 

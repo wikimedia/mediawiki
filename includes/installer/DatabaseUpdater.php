@@ -89,7 +89,6 @@ abstract class DatabaseUpdater {
 		PopulateRevisionLength::class,
 		PopulateRevisionSha1::class,
 		PopulateImageSha1::class,
-		FixExtLinksProtocolRelative::class,
 		PopulateFilearchiveSha1::class,
 		PopulateBacklinkNamespace::class,
 		FixDefaultJsonContentPages::class,
@@ -97,7 +96,6 @@ abstract class DatabaseUpdater {
 		AddRFCandPMIDInterwiki::class,
 		PopulatePPSortKey::class,
 		PopulateIpChanges::class,
-		RefreshExternallinksIndex::class,
 	];
 
 	/**
