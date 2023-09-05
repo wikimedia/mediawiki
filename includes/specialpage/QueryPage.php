@@ -446,13 +446,6 @@ abstract class QueryPage extends SpecialPage {
 							->delete( 'querycache' )
 							->where( [ 'qc_type' => $this->getName() ] )
 							->caller( $fname )->execute();
-						// Save results into the querycache table on the primary DB
-						if ( count( $vals ) ) {
-							$dbw->newInsertQueryBuilder()
-								->insert( 'querycache' )
-								->rows( $vals )
-								->caller( $fname )->execute();
-						}
 						// Update the querycache_info record for the page
 						$dbw->upsert(
 							'querycache_info',
@@ -468,6 +461,15 @@ abstract class QueryPage extends SpecialPage {
 						);
 					}
 				);
+				// Save results into the querycache table on the primary DB
+				if ( count( $vals ) ) {
+					foreach ( array_chunk( $vals, 500 ) as $chunk ) {
+						$dbw->newInsertQueryBuilder()
+							->insert( 'querycache' )
+							->rows( $chunk )
+							->caller( $fname )->execute();
+					}
+				}
 			}
 		} catch ( DBError $e ) {
 			if ( !$ignoreErrors ) {
