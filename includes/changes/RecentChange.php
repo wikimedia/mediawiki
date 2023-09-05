@@ -761,7 +761,7 @@ class RecentChange implements Taggable {
 				$rc->save();
 			},
 			DeferredUpdates::POSTSEND,
-			wfGetDB( DB_PRIMARY )
+			MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase()
 		);
 
 		return $rc;
@@ -841,7 +841,7 @@ class RecentChange implements Taggable {
 				$rc->save();
 			},
 			DeferredUpdates::POSTSEND,
-			wfGetDB( DB_PRIMARY )
+			MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase()
 		);
 
 		return $rc;

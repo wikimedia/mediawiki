@@ -129,7 +129,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * @return DatabaseBlock|null
 	 */
 	public static function newFromID( $id ) {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
 		$blockQuery = self::getQueryInfo();
 		$res = $dbr->selectRow(
 			$blockQuery['tables'],
@@ -392,7 +392,7 @@ class DatabaseBlock extends AbstractBlock {
 		# range. We know that all blocks must be smaller than $wgBlockCIDRLimit,
 		# so we can improve performance by filtering on a LIKE clause
 		$chunk = self::getIpFragment( $start );
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
 		$like = $dbr->buildLike( $chunk, $dbr->anyString() );
 
 		# Fairly hard to make a malicious SQL statement out of hex characters,
@@ -537,7 +537,8 @@ class DatabaseBlock extends AbstractBlock {
 			$cache->makeKey( 'ip-autoblock', 'exemption' ),
 			$cache::TTL_DAY,
 			static function ( $curValue, &$ttl, array &$setOpts ) {
-				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
+				$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+				$setOpts += Database::getCacheSetOptions( $dbr );
 
 				return explode( "\n",
 					wfMessage( 'block-autoblock-exemptionlist' )->inContentLanguage()->plain()
@@ -976,9 +977,9 @@ class DatabaseBlock extends AbstractBlock {
 		}
 
 		if ( $fromPrimary ) {
-			$db = wfGetDB( DB_PRIMARY );
+			$db = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
 		} else {
-			$db = wfGetDB( DB_REPLICA );
+			$db = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
 		}
 		$conds = $db->makeList( $conds, LIST_OR );
 		if ( !$applySoftBlocks ) {

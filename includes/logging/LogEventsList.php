@@ -587,7 +587,7 @@ class LogEventsList extends ContextSource {
 
 		// @phan-suppress-next-line PhanImpossibleCondition
 		if ( $param['useMaster'] ) {
-			$pager->mDb = wfGetDB( DB_PRIMARY );
+			$pager->mDb = $services->getDBLoadBalancerFactory()->getPrimaryDatabase();
 		}
 		// @phan-suppress-next-line PhanImpossibleCondition
 		if ( isset( $param['offset'] ) ) { # Tell pager to ignore WebRequest offset

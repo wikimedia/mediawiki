@@ -2426,7 +2426,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		}
 
 		DeferredUpdates::addUpdate( new AtomicSectionUpdate(
-			wfGetDB( DB_PRIMARY ),
+			MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase(),
 			__METHOD__,
 			static function ( IDatabase $dbw, $fname ) {
 				$config = MediaWikiServices::getInstance()->getMainConfig();
@@ -2447,7 +2447,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		) );
 
 		DeferredUpdates::addUpdate( new AtomicSectionUpdate(
-			wfGetDB( DB_PRIMARY ),
+			MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase(),
 			__METHOD__,
 			static function ( IDatabase $dbw, $fname ) {
 				$dbw->newDeleteQueryBuilder()

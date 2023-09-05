@@ -21,6 +21,7 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IDatabase;
@@ -49,7 +50,7 @@ class RevisionDeleteUser {
 			return false;
 		}
 		if ( !$dbw instanceof IDatabase ) {
-			$dbw = wfGetDB( DB_PRIMARY );
+			$dbw = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
 		}
 
 		# To suppress, we OR the current bitfields with RevisionRecord::DELETED_USER

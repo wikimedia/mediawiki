@@ -190,7 +190,7 @@ class UserRightsProxy implements UserIdentity {
 		if ( $ignoreInvalidDB || self::validDatabaseInternal( $dbDomain ) ) {
 			if ( WikiMap::isCurrentWikiId( $dbDomain ) ) {
 				// Hmm... this shouldn't happen though. :)
-				return wfGetDB( DB_PRIMARY );
+				return MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
 			} else {
 				return wfGetDB( DB_PRIMARY, [], $dbDomain );
 			}

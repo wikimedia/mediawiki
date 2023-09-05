@@ -355,7 +355,7 @@ class LinkFilter {
 		}
 
 		$domainConditions = [];
-		$db = $options['db'] ?: wfGetDB( DB_REPLICA );
+		$db = $options['db'] ?: MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
 		foreach ( $options['protocol'] as $protocol ) {
 			$like = self::makeLikeArray( $filterEntry, $protocol );
 			if ( $like === false ) {
@@ -428,7 +428,7 @@ class LinkFilter {
 			array_pop( $trimmedLike );
 		}
 		$index = implode( '', $trimmedLike );
-		$db = $options['db'] ?: wfGetDB( DB_REPLICA );
+		$db = $options['db'] ?: MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
 
 		// Build the query
 		$l = strlen( $index );
@@ -493,7 +493,7 @@ class LinkFilter {
 	 * @return array|false Array to be passed to Database::buildLike() or false on error
 	 */
 	public static function makeLikeArray( $filterEntry, $protocol = 'http://' ) {
-		$db = wfGetDB( DB_REPLICA );
+		$db = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
 		$likeDomain = [];
 		$likePath = [];
 

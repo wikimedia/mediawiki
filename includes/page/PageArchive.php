@@ -87,7 +87,7 @@ class PageArchive {
 			return self::listPagesByPrefix( $term );
 		}
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
 		$condTitles = array_unique( array_map( static function ( Title $t ) {
 			return $t->getDBkey();
 		}, $results ) );
@@ -111,7 +111,7 @@ class PageArchive {
 	 * @return IResultWrapper|bool
 	 */
 	public static function listPagesByPrefix( $prefix ) {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
 
 		$title = Title::newFromText( $prefix );
 		if ( $title ) {

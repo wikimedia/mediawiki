@@ -58,7 +58,7 @@ abstract class UserArray implements Iterator {
 			// Database::select() doesn't like empty arrays
 			return new ArrayIterator( [] );
 		}
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
 		$res = User::newQueryBuilder( $dbr )
 			->where( [ 'user_id' => array_unique( $ids ) ] )
 			->caller( __METHOD__ )
@@ -82,7 +82,7 @@ abstract class UserArray implements Iterator {
 			// Database::select() doesn't like empty arrays
 			return new ArrayIterator( [] );
 		}
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
 		$res = User::newQueryBuilder( $dbr )
 			->where( [ 'user_name' => array_unique( $names ) ] )
 			->caller( __METHOD__ )
