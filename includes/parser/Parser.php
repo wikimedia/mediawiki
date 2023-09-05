@@ -6267,61 +6267,6 @@ class Parser {
 	}
 
 	/**
-	 * Strip/replaceVariables/unstrip for preprocessor regression testing
-	 *
-	 * Called in preprocessorFuzzTest.php maintenance script
-	 * with the help of TestingAccessWrapper to hide it from the public interface
-	 *
-	 * @param string $text
-	 * @param PageReference $page
-	 * @param ParserOptions $options
-	 * @param int $outputType
-	 *
-	 * @return string
-	 */
-	private function fuzzTestSrvus( $text, PageReference $page, ParserOptions $options,
-		$outputType = self::OT_HTML
-	) {
-		$magicScopeVariable = $this->lock();
-		$this->startParse( $page, $options, $outputType, true );
-
-		$text = $this->replaceVariables( $text );
-		$text = $this->mStripState->unstripBoth( $text );
-		$text = Sanitizer::internalRemoveHtmlTags( $text );
-		return $text;
-	}
-
-	/**
-	 * Strip/replaceVariables/unstrip for preprocessor regression testing
-	 *
-	 * Called in preprocessorFuzzTest.php maintenance script
-	 * with the help of TestingAccessWrapper to hide it from the public interface
-	 *
-	 * @param string $text
-	 * @param PageReference $page
-	 * @param ParserOptions $options
-	 * @return string
-	 */
-	private function fuzzTestPst( $text, PageReference $page, ParserOptions $options ) {
-		return $this->preSaveTransform( $text, $page, $options->getUserIdentity(), $options );
-	}
-
-	/**
-	 * Strip/replaceVariables/unstrip for preprocessor regression testing
-	 *
-	 * Called in preprocessorFuzzTest.php maintenance script
-	 * with the help of TestingAccessWrapper to hide it from the public interface
-	 *
-	 * @param string $text
-	 * @param PageReference $page
-	 * @param ParserOptions $options
-	 * @return string
-	 */
-	private function fuzzTestPreprocess( $text, PageReference $page, ParserOptions $options ) {
-		return $this->fuzzTestSrvus( $text, $page, $options, self::OT_PREPROCESS );
-	}
-
-	/**
 	 * Call a callback function on all regions of the given text that are not
 	 * inside strip markers, and replace those regions with the return value
 	 * of the callback. For example, with input:
