@@ -236,12 +236,6 @@ class LinkFilter {
 	 * @return string[]
 	 */
 	public static function getIndexedUrlsNonReversed( $urls ) {
-		$migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
-			MainConfigNames::ExternalLinksSchemaMigrationStage
-		);
-		if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
-			return $urls;
-		}
 		$newLinks = [];
 		foreach ( $urls as $url ) {
 			$indexes = self::makeIndexes( $url, false );
@@ -255,7 +249,7 @@ class LinkFilter {
 		return $newLinks;
 	}
 
-	public static function reverseIndexe( $domainIndex ) {
+	public static function reverseIndexes( $domainIndex ) {
 		$bits = wfParseUrl( $domainIndex );
 		if ( !$bits ) {
 			return '';
@@ -326,12 +320,6 @@ class LinkFilter {
 	 * @return array|false Query conditions (to be ANDed) or false on error.
 	 */
 	public static function getQueryConditions( $filterEntry, array $options = [] ) {
-		$migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
-			MainConfigNames::ExternalLinksSchemaMigrationStage
-		);
-		if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
-			return self::getQueryConditionsOld( $filterEntry, $options );
-		}
 		$options += [
 			'protocol' => [ 'http://', 'https://' ],
 			'oneWildcard' => false,
@@ -377,65 +365,6 @@ class LinkFilter {
 		return [
 			$db->makeList( $domainConditions, ISQLPlatform::LIST_OR ),
 			"el_to_path" . $db->buildLike( $index2, $db->anyString() ),
-		];
-	}
-
-	private static function getQueryConditionsOld( $filterEntry, array $options = [] ) {
-		$options += [
-			'protocol' => null,
-			'oneWildcard' => false,
-			'db' => null,
-		];
-		if ( $options['protocol'] === null ) {
-			$options['protocol'] = 'http://';
-		}
-
-		// First, get the like array
-		$like = self::makeLikeArray( $filterEntry, $options['protocol'] );
-		if ( $like === false ) {
-			return $like;
-		}
-
-		$like = array_merge( $like[0], $like[1] );
-		// Fix very specific case of domain having a wild card and path being empty
-		// leading to LIKE com.example.%/%
-		if (
-			$like[count( $like ) - 1] instanceof LikeMatch &&
-			$like[count( $like ) - 3] instanceof LikeMatch &&
-			$like[count( $like ) - 2] == '/'
-		) {
-			array_pop( $like );
-			// @phan-suppress-next-line PhanPluginDuplicateAdjacentStatement This will be removed soon
-			array_pop( $like );
-		}
-
-		// Get the constant prefix (i.e. everything up to the first wildcard)
-		$trimmedLike = self::keepOneWildcard( $like );
-		if ( $options['oneWildcard'] ) {
-			$like = $trimmedLike;
-		}
-		if ( $trimmedLike[count( $trimmedLike ) - 1] instanceof LikeMatch ) {
-			array_pop( $trimmedLike );
-		}
-		$index = implode( '', $trimmedLike );
-		$db = $options['db'] ?: MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
-
-		// Build the query
-		$l = strlen( $index );
-		if ( $l >= 60 ) {
-			// The constant prefix is larger than el_index_60, so we can use a
-			// constant comparison.
-			return [
-				"el_index_60" => substr( $index, 0, 60 ),
-				"el_index" . $db->buildLike( $like ),
-			];
-		}
-
-		// The constant prefix is smaller than el_index_60, so we use a LIKE
-		// for a prefix search.
-		return [
-			"el_index_60" . $db->buildLike( $index, $db->anyString() ),
-			"el_index" . $db->buildLike( $like ),
 		];
 	}
 

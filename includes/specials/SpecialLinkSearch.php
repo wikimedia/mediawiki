@@ -183,22 +183,12 @@ class SpecialLinkSearch extends QueryPage {
 
 	public function getQueryInfo() {
 		$dbr = $this->getDatabaseProvider()->getReplicaDatabase();
-		$migrationStage = $this->getConfig()->get( MainConfigNames::ExternalLinksSchemaMigrationStage );
 
-		$orderBy = [];
-		if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
-			$field = 'el_index_60';
-			$extraFields = [
-				'value' => 'el_index',
-				'url' => 'el_to'
-			];
-		} else {
-			$field = 'el_to_domain_index';
-			$extraFields = [
-				'urldomain' => 'el_to_domain_index',
-				'urlpath' => 'el_to_path'
-			];
-		}
+		$field = 'el_to_domain_index';
+		$extraFields = [
+			'urldomain' => 'el_to_domain_index',
+			'urlpath' => 'el_to_path'
+		];
 		if ( $this->mQuery === '*' && $this->mProt !== '' ) {
 			$this->mungedQuery = [
 				$field . $dbr->buildLike( $this->mProt, $dbr->anyString() ),
@@ -213,15 +203,8 @@ class SpecialLinkSearch extends QueryPage {
 				// Invalid query; return no results
 				return [ 'tables' => 'page', 'fields' => 'page_id', 'conds' => '0=1' ];
 			}
-			$orderBy[] = $field;
 		}
-
-		if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
-			$orderBy[] = 'el_id';
-		} else {
-			// READ NEW doesn't need this complex continuation
-			$orderBy = [ 'el_id' ];
-		}
+		$orderBy = [ 'el_id' ];
 
 		$retval = [
 			'tables' => [ 'page', 'externallinks' ],
@@ -263,12 +246,7 @@ class SpecialLinkSearch extends QueryPage {
 	public function formatResult( $skin, $result ) {
 		$title = new TitleValue( (int)$result->namespace, $result->title );
 		$pageLink = $this->getLinkRenderer()->makeLink( $title );
-		$migrationStage = $this->getConfig()->get( MainConfigNames::ExternalLinksSchemaMigrationStage );
-		if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
-			$url = $result->url;
-		} else {
-			$url = LinkFilter::reverseIndexe( $result->urldomain ) . $result->urlpath;
-		}
+		$url = LinkFilter::reverseIndexes( $result->urldomain ) . $result->urlpath;
 
 		$urlLink = Linker::makeExternalLink( $url, $url );
 

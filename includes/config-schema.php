@@ -385,7 +385,6 @@ return [
 			'DatabaseReplicaLagCritical' => 30,
 			'MaxExecutionTimeForExpensiveQueries' => 0,
 			'TemplateLinksSchemaMigrationStage' => 768,
-			'ExternalLinksSchemaMigrationStage' => 768,
 			'ContentHandlers' => [
 				'wikitext' => [
 					'class' => 'WikitextContentHandler',
@@ -2609,7 +2608,6 @@ return [
 			'LBFactoryConf' => 'object',
 			'LocalDatabases' => 'array',
 			'TemplateLinksSchemaMigrationStage' => 'integer',
-			'ExternalLinksSchemaMigrationStage' => 'integer',
 			'ContentHandlers' => 'object',
 			'NamespaceContentModels' => 'object',
 			'TextModelsToParse' => 'array',

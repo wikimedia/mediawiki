@@ -2,10 +2,7 @@
 
 namespace MediaWiki\Deferred\LinksUpdate;
 
-use Config;
-use MediaWiki\Config\ServiceOptions;
 use MediaWiki\ExternalLinks\LinkFilter;
-use MediaWiki\MainConfigNames;
 use ParserOutput;
 
 /**
@@ -16,31 +13,14 @@ use ParserOutput;
  * @since 1.38
  */
 class ExternalLinksTable extends LinksTable {
-	private const CONSTRUCTOR_OPTIONS = [
-		MainConfigNames::ExternalLinksSchemaMigrationStage,
-	];
-
 	private $newLinks = [];
 	private $existingLinks;
-	/** @var int */
-	private $migrationStage;
-
-	public function __construct( Config $config ) {
-		$options = new ServiceOptions( self::CONSTRUCTOR_OPTIONS, $config );
-		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-
-		$this->migrationStage = $options->get( MainConfigNames::ExternalLinksSchemaMigrationStage );
-	}
 
 	public function setParserOutput( ParserOutput $parserOutput ) {
-		if ( !( $this->migrationStage & SCHEMA_COMPAT_WRITE_OLD ) ) {
-			$links = LinkFilter::getIndexedUrlsNonReversed( array_keys( $parserOutput->getExternalLinks() ) );
-			foreach ( $links as $link ) {
-				$this->newLinks[$link] = true;
-			}
-			return;
+		$links = LinkFilter::getIndexedUrlsNonReversed( array_keys( $parserOutput->getExternalLinks() ) );
+		foreach ( $links as $link ) {
+			$this->newLinks[$link] = true;
 		}
-		$this->newLinks = $parserOutput->getExternalLinks();
 	}
 
 	protected function getTableName() {
@@ -52,10 +32,7 @@ class ExternalLinksTable extends LinksTable {
 	}
 
 	protected function getExistingFields() {
-		if ( !( $this->migrationStage & SCHEMA_COMPAT_WRITE_OLD ) ) {
-			return [ 'el_to_domain_index', 'el_to_path' ];
-		}
-		return [ 'el_to' ];
+		return [ 'el_to_domain_index', 'el_to_path' ];
 	}
 
 	/**
@@ -68,11 +45,7 @@ class ExternalLinksTable extends LinksTable {
 		if ( $this->existingLinks === null ) {
 			$this->existingLinks = [];
 			foreach ( $this->fetchExistingRows() as $row ) {
-				if ( !( $this->migrationStage & SCHEMA_COMPAT_WRITE_OLD ) ) {
-					$link = LinkFilter::reverseIndexe( $row->el_to_domain_index ) . $row->el_to_path;
-				} else {
-					$link = $row->el_to;
-				}
+				$link = LinkFilter::reverseIndexes( $row->el_to_domain_index ) . $row->el_to_path;
 				$this->existingLinks[$link] = true;
 			}
 		}
@@ -101,30 +74,20 @@ class ExternalLinksTable extends LinksTable {
 
 	protected function insertLink( $linkId ) {
 		foreach ( LinkFilter::makeIndexes( $linkId ) as $index ) {
-			$params = [];
-			if ( $this->migrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
-				$params['el_to'] = $linkId;
-				$params['el_index'] = implode( '', $index );
-				$params['el_index_60'] = substr( implode( '', $index ), 0, 60 );
-			}
-			if ( $this->migrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
-				$params['el_to_domain_index'] = substr( $index[0], 0, 255 );
-				$params['el_to_path'] = $index[1];
-			}
+			$params = [
+				'el_to_domain_index' => substr( $index[0], 0, 255 ),
+				'el_to_path' => $index[1],
+			];
 			$this->insertRow( $params );
 		}
 	}
 
 	protected function deleteLink( $linkId ) {
-		if ( !( $this->migrationStage & SCHEMA_COMPAT_WRITE_OLD ) ) {
-			foreach ( LinkFilter::makeIndexes( $linkId ) as $index ) {
-				$this->deleteRow( [
-					'el_to_domain_index' => substr( $index[0], 0, 255 ),
-					'el_to_path' => $index[1]
-				] );
-			}
-		} else {
-			$this->deleteRow( [ 'el_to' => $linkId ] );
+		foreach ( LinkFilter::makeIndexes( $linkId ) as $index ) {
+			$this->deleteRow( [
+				'el_to_domain_index' => substr( $index[0], 0, 255 ),
+				'el_to_path' => $index[1]
+			] );
 		}
 	}
 

@@ -21,7 +21,6 @@
  */
 
 use MediaWiki\ExternalLinks\LinkFilter;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Utils\UrlUtils;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -57,28 +56,15 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 
 		$query = $params['query'];
 		$protocol = LinkFilter::getProtocolPrefix( $params['protocol'] );
-		$migrationStage = $this->getConfig()->get( MainConfigNames::ExternalLinksSchemaMigrationStage );
 
 		$fields = [ 'el_from' ];
-		if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
-			$fields[] = 'el_to';
-			$continueField = 'el_index_60';
-		} else {
-			$fields[] = 'el_to_domain_index';
-			$fields[] = 'el_to_path';
-			$continueField = 'el_to_domain_index';
-		}
+		$fields[] = 'el_to_domain_index';
+		$fields[] = 'el_to_path';
+		$continueField = 'el_to_domain_index';
 		$this->addFields( $fields );
 
 		$this->addTables( 'externallinks' );
 		$this->addWhereFld( 'el_from', array_keys( $pages ) );
-
-		$orderBy = [];
-
-		// Don't order by el_from if it's constant in the WHERE clause
-		if ( count( $pages ) !== 1 ) {
-			$orderBy[] = 'el_from';
-		}
 
 		if ( $query !== null && $query !== '' ) {
 			// Normalize query to match the normalization applied for the externallinks table
@@ -93,32 +79,13 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 				$this->dieWithError( 'apierror-badquery' );
 			}
 			$this->addWhere( $conds );
-			if ( !isset( $conds[$continueField] ) ) {
-				$orderBy[] = $continueField;
-			}
 		} else {
-			$orderBy[] = $continueField;
-
 			if ( $protocol !== null ) {
 				$this->addWhere( $continueField . $db->buildLike( "$protocol", $db->anyString() ) );
-			} else {
-				// It is not possible to do so in the new schema
-				if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
-					// We're querying all protocols, filter out duplicate protocol-relative links
-					$this->addWhere( $db->makeList( [
-						'el_to NOT' . $db->buildLike( '//', $db->anyString() ),
-						'el_index_60 ' . $db->buildLike( 'http://', $db->anyString() ),
-					], LIST_OR ) );
-				}
 			}
 		}
 
-		if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
-			$orderBy[] = 'el_id';
-		} else {
-			// READ NEW doesn't need this complex continuation
-			$orderBy = [ 'el_id' ];
-		}
+		$orderBy = [ 'el_id' ];
 
 		$this->addOption( 'ORDER BY', $orderBy );
 		$this->addFields( $orderBy ); // Make sure
@@ -143,11 +110,7 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 				break;
 			}
 			$entry = [];
-			if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
-				$to = $row->el_to;
-			} else {
-				$to = LinkFilter::reverseIndexe( $row->el_to_domain_index ) . $row->el_to_path;
-			}
+			$to = LinkFilter::reverseIndexes( $row->el_to_domain_index ) . $row->el_to_path;
 			// expand protocol-relative urls
 			if ( $params['expandurl'] ) {
 				$to = (string)$this->urlUtils->expand( $to, PROTO_CANONICAL );
