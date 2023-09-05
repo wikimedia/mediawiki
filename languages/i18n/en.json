@@ -494,6 +494,7 @@
 	"nosuchusershort": "There is no user by the name \"$1\".\nCheck your spelling.",
 	"nouserspecified": "You have to specify a username.",
 	"login-userblocked": "This user is blocked. Login not allowed.",
+	"fatalpassworderror": "$1\n\nFor security reasons, you cannot log in with this password. Please [$2 request a password reset email].",
 	"wrongpassword": "Incorrect username or password entered.\nPlease try again.",
 	"wrongpasswordempty": "Password entered was blank.\nPlease try again.",
 	"passwordtooshort": "Passwords must be at least {{PLURAL:$1|1 character|$1 characters}}.",

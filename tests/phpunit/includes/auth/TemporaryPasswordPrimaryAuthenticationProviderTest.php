@@ -335,8 +335,12 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 			$ret->status
 		);
 		$this->assertEquals(
-			'arbitrary-failure',
+			'fatalpassworderror',
 			$ret->message->getKey()
+		);
+		$this->assertEquals(
+			'arbitrary-failure',
+			$ret->message->getParams()[0]->getKey()
 		);
 
 		// Successful auth

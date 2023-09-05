@@ -747,6 +747,7 @@
 	"nosuchusershort": "Displayed when trying to log in with a non-existent username.\n\nThis message is only shown when you can't create an account, otherwise the following message is displayed:\n* {{msg-mw|Nosuchusershort}}\n\nParameters:\n* $1 - username",
 	"nouserspecified": "Used as error message when username to fetch is not specified.",
 	"login-userblocked": "{{gender}}\nParameters:\n* $1 - (Optional) username, for GENDER support",
+	"fatalpassworderror": "Used as clarification when a password error blocks login.\n\nParameters:\n* $1 - the original error message (or bullet list of messages).\n* $2 - URL of the password reset form.",
 	"wrongpassword": "Used as error message when the provided password is wrong.\nThis message is used in html.\n{{Identical|Please try again}}",
 	"wrongpasswordempty": "Error message displayed when entering a blank password.\n{{Identical|Please try again}}",
 	"passwordtooshort": "This message is shown in [[Special:Preferences]] and [[Special:CreateAccount]].\n\nParameters:\n* $1 - the minimum number of characters in the password",
