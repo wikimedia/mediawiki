@@ -27,6 +27,8 @@ For notes on 1.40.x and older releases, see HISTORY.
 ==== New configuration ====
 * $wgPrivilegedGroups – Users belonging in some of the listed groups will be
   audited more aggressively.
+* $wgPageLinksSchemaMigrationStage – This temporary flag lets you control the
+  migration stage for converting the pagelinks database table into normal form.
 * …
 
 ==== Changed configuration ====

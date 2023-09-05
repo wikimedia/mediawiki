@@ -3243,6 +3243,22 @@ class MainConfigSchema {
 		'type' => 'integer',
 	];
 
+	/**
+	 * Pagelinks table schema migration stage, for normalizing pl_namespace and pl_title fields.
+	 *
+	 * Use the SCHEMA_COMPAT_XXX flags. Supported values:
+	 *
+	 *   - SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_READ_OLD
+	 *   - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
+	 *
+	 * History:
+	 *   - 1.41: Added
+	 */
+	public const PageLinksSchemaMigrationStage = [
+		'default' => SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_READ_OLD,
+		'type' => 'integer',
+	];
+
 	// endregion -- End of DB settings
 
 	/***************************************************************************/
