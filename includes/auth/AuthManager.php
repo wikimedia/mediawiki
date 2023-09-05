@@ -2305,6 +2305,7 @@ class AuthManager implements LoggerAwareInterface {
 			case self::ACTION_LOGIN:
 				$reqs[] = new RememberMeAuthenticationRequest(
 					$this->config->get( MainConfigNames::RememberMe ) );
+				$options['username'] = null; // Don't fill in the username below
 				break;
 
 			case self::ACTION_CREATE:
