@@ -4,7 +4,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\ResourceLoader\FilePath;
 
 /**
- * Load extension manifests and aggregate their contents.
+ * Load extension manifests and then aggregate their contents.
  *
  * @ingroup ExtensionRegistry
  * @newable since 1.39
@@ -153,7 +153,7 @@ class ExtensionProcessor implements Processor {
 	/**
 	 * Stuff that is going to be set to $GLOBALS
 	 *
-	 * Some keys are pre-set to arrays so we can += to them
+	 * Some keys are pre-set to arrays, so we can += to them
 	 *
 	 * @var array
 	 */
@@ -170,8 +170,9 @@ class ExtensionProcessor implements Processor {
 	protected $defines = [];
 
 	/**
-	 * Things to be called once registration of these extensions are done
-	 * keyed by the name of the extension that it belongs to
+	 * Things to be called once the registration of these extensions is done
+	 *
+	 * Keyed by the name of the extension that it belongs to
 	 *
 	 * @var callable[]
 	 */
@@ -208,7 +209,7 @@ class ExtensionProcessor implements Processor {
 	];
 
 	/**
-	 * Any thing else in the $info that hasn't
+	 * Anything else in the $info that hasn't
 	 * already been processed
 	 *
 	 * @var array
@@ -362,7 +363,7 @@ class ExtensionProcessor implements Processor {
 		}
 
 		$autoload = $this->getExtractedAutoloadInfo( $includeDev );
-		$info = [
+		return [
 			'globals' => $this->globals,
 			'defines' => $this->defines,
 			'callbacks' => $this->callbacks,
@@ -372,7 +373,6 @@ class ExtensionProcessor implements Processor {
 			'autoloaderClasses' => $autoload['classes'],
 			'autoloaderNS' => $autoload['namespaces'],
 		];
-		return $info;
 	}
 
 	public function getRequirements( array $info, $includeDev ) {
@@ -424,7 +424,7 @@ class ExtensionProcessor implements Processor {
 					);
 				} else {
 					// Prefer dev value, but these should be constant
-					// anyways (ext-* and ability-*)
+					// anyway (ext-* and ability-*)
 					$value = $dev['platform'][$pkey] ?? $req['platform'][$pkey];
 				}
 				$merged['platform'][$pkey] = $value;
@@ -833,7 +833,7 @@ class ExtensionProcessor implements Processor {
 	}
 
 	/**
-	 * Helper function to set a value to a specific global, if it isn't set already.
+	 * Helper function to set a value to a specific global config variable if it isn't set already.
 	 *
 	 * @param string $key The config key with the prefix and anything
 	 * @param mixed $value The value of the config
