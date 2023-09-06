@@ -78,6 +78,8 @@ class UserNameUtilsTest extends MediaWikiUnitTestCase {
 			'Reserved names cannot be used' => [ 'MediaWiki default', false ],
 			'Names can also be reserved via msg: ' => [ 'reserved-user', false ],
 			'User names with no issues can be used' => [ 'FooBar', true ],
+			'Reserved temp users' => [ '!Unregistered 1234', false ],
+			'Real temp users' => [ '*Unregistered 1234', true ],
 		];
 	}
 

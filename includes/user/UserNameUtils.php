@@ -209,6 +209,14 @@ class UserNameUtils implements UserRigorOptions {
 		if ( in_array( $name, $this->reservedUsernames, true ) ) {
 			return false;
 		}
+
+		// Check if the name is reserved by the temp user system (actual temp
+		// users are allowed). This is necessary to ensure that CentralAuth
+		// auto-creation will be denied (T342475).
+		if ( $this->isTempReserved( $name ) && !$this->isTemp( $name ) ) {
+			return false;
+		}
+
 		return true;
 	}
 
