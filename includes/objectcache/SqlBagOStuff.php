@@ -579,13 +579,13 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		if ( $this->multiPrimaryMode ) {
-			$db->upsert(
-				$ptable,
-				$rows,
-				[ [ 'keyname' ] ],
-				$this->buildMultiUpsertSetForOverwrite( $db, $mt ),
-				__METHOD__
-			);
+			$db->newInsertQueryBuilder()
+				->insert( $ptable )
+				->rows( $rows )
+				->onDuplicateKeyUpdate()
+				->uniqueIndexFields( [ 'keyname' ] )
+				->set( $this->buildMultiUpsertSetForOverwrite( $db, $mt ) )
+				->caller( __METHOD__ )->execute();
 		} else {
 			// T288998: use REPLACE, if possible, to avoid cluttering the binlogs
 			$db->replace( $ptable, 'keyname', $rows, __METHOD__ );
@@ -625,17 +625,15 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			// Tombstone keys in order to respect eventual consistency
 			$mt = $this->makeTimestampedModificationToken( $mtime, $db );
 			$expiry = $this->makeNewKeyExpiry( self::TOMB_EXPTIME, (int)$mtime );
-			$rows = [];
+			$queryBuilder = $db->newInsertQueryBuilder()
+				->insert( $ptable )
+				->onDuplicateKeyUpdate()
+				->uniqueIndexFields( [ 'keyname' ] )
+				->set( $this->buildMultiUpsertSetForOverwrite( $db, $mt ) );
 			foreach ( $argsByKey as $key => $arg ) {
-				$rows[] = $this->buildUpsertRow( $db, $key, self::TOMB_SERIAL, $expiry, $mt );
+				$queryBuilder->row( $this->buildUpsertRow( $db, $key, self::TOMB_SERIAL, $expiry, $mt ) );
 			}
-			$db->upsert(
-				$ptable,
-				$rows,
-				[ [ 'keyname' ] ],
-				$this->buildMultiUpsertSetForOverwrite( $db, $mt ),
-				__METHOD__
-			);
+			$queryBuilder->caller( __METHOD__ )->execute();
 		} else {
 			// Just purge the keys since there is only one primary (e.g. "source of truth")
 			$db->newDeleteQueryBuilder()
@@ -700,18 +698,19 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 			$serialValue = $this->getSerialized( $value, $key );
 			$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
-			$rows[] = $this->buildUpsertRow( $db, $key, $serialValue, $expiry, $mt );
-
 			$valueSizesByKey[$key] = [ strlen( $serialValue ), 0 ];
+			$rows[] = $this->buildUpsertRow( $db, $key, $serialValue, $expiry, $mt );
 		}
-
-		$db->upsert(
-			$ptable,
-			$rows,
-			[ [ 'keyname' ] ],
-			$this->buildMultiUpsertSetForOverwrite( $db, $mt ),
-			__METHOD__
-		);
+		if ( !$rows ) {
+			return;
+		}
+		$db->newInsertQueryBuilder()
+			->insert( $ptable )
+			->rows( $rows )
+			->onDuplicateKeyUpdate()
+			->uniqueIndexFields( [ 'keyname' ] )
+			->set( $this->buildMultiUpsertSetForOverwrite( $db, $mt ) )
+			->caller( __METHOD__ )->execute();
 
 		foreach ( $argsByKey as $key => $unused ) {
 			$resByKey[$key] = !isset( $existingByKey[$key] );
@@ -764,8 +763,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			$curTokensByKey[$row->keyname] = $this->getCasTokenFromRow( $db, $row );
 		}
 
-		$rows = [];
 		$nonMatchingByKey = [];
+		$rows = [];
 		foreach ( $argsByKey as $key => [ $value, $exptime, $casToken ] ) {
 			$curToken = $curTokensByKey[$key] ?? null;
 			if ( $curToken === null ) {
@@ -782,18 +781,20 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 			$serialValue = $this->getSerialized( $value, $key );
 			$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
-			$rows[] = $this->buildUpsertRow( $db, $key, $serialValue, $expiry, $mt );
-
 			$valueSizesByKey[$key] = [ strlen( $serialValue ), 0 ];
-		}
 
-		$db->upsert(
-			$ptable,
-			$rows,
-			[ [ 'keyname' ] ],
-			$this->buildMultiUpsertSetForOverwrite( $db, $mt ),
-			__METHOD__
-		);
+			$rows[] = $this->buildUpsertRow( $db, $key, $serialValue, $expiry, $mt );
+		}
+		if ( !$rows ) {
+			return;
+		}
+		$db->newInsertQueryBuilder()
+			->insert( $ptable )
+			->rows( $rows )
+			->onDuplicateKeyUpdate()
+			->uniqueIndexFields( [ 'keyname' ] )
+			->set( $this->buildMultiUpsertSetForOverwrite( $db, $mt ) )
+			->caller( __METHOD__ )->execute();
 
 		foreach ( $argsByKey as $key => $unused ) {
 			$resByKey[$key] = !isset( $nonMatchingByKey[$key] );
@@ -848,14 +849,16 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
 				$rows[] = $this->buildUpsertRow( $db, $key, $serialValue, $expiry, $mt );
 			}
-
-			$db->upsert(
-				$ptable,
-				$rows,
-				[ [ 'keyname' ] ],
-				$this->buildMultiUpsertSetForOverwrite( $db, $mt ),
-				__METHOD__
-			);
+			if ( !$rows ) {
+				return;
+			}
+			$db->newInsertQueryBuilder()
+				->insert( $ptable )
+				->rows( $rows )
+				->onDuplicateKeyUpdate()
+				->uniqueIndexFields( [ 'keyname' ] )
+				->set( $this->buildMultiUpsertSetForOverwrite( $db, $mt ) )
+				->caller( __METHOD__ )->execute();
 
 			foreach ( $argsByKey as $key => $unused ) {
 				$resByKey[$key] = isset( $existingKeys[$key] );
@@ -922,13 +925,13 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			// replication since the TTL for such keys is either indefinite or very short.
 			$atomic = $db->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 			try {
-				$db->upsert(
-					$ptable,
-					$this->buildUpsertRow( $db, $key, $init, $expiry, $mt ),
-					[ [ 'keyname' ] ],
-					$this->buildIncrUpsertSet( $db, $step, $init, $expiry, $mt, (int)$mtime ),
-					__METHOD__
-				);
+				$db->newInsertQueryBuilder()
+					->insert( $ptable )
+					->rows( $this->buildUpsertRow( $db, $key, $init, $expiry, $mt ) )
+					->onDuplicateKeyUpdate()
+					->uniqueIndexFields( [ 'keyname' ] )
+					->set( $this->buildIncrUpsertSet( $db, $step, $init, $expiry, $mt, (int)$mtime ) )
+					->caller( __METHOD__ )->execute();
 				$affectedCount = $db->affectedRows();
 				$row = $db->newSelectQueryBuilder()
 					->select( 'value' )
@@ -980,13 +983,13 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		foreach ( $argsByKey as $key => [ $step, $init, $exptime ] ) {
 			$mt = $this->makeTimestampedModificationToken( $mtime, $db );
 			$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
-			$db->upsert(
-				$ptable,
-				$this->buildUpsertRow( $db, $key, $init, $expiry, $mt ),
-				[ [ 'keyname' ] ],
-				$this->buildIncrUpsertSet( $db, $step, $init, $expiry, $mt, (int)$mtime ),
-				__METHOD__
-			);
+			$db->newInsertQueryBuilder()
+				->insert( $ptable )
+				->rows( $this->buildUpsertRow( $db, $key, $init, $expiry, $mt ) )
+				->onDuplicateKeyUpdate()
+				->uniqueIndexFields( [ 'keyname' ] )
+				->set( $this->buildIncrUpsertSet( $db, $step, $init, $expiry, $mt, (int)$mtime ) )
+				->caller( __METHOD__ )->execute();
 			if ( !$db->affectedRows() ) {
 				$this->logger->warning( __METHOD__ . ": failed to set new $key value" );
 			} else {

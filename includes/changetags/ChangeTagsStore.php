@@ -227,18 +227,17 @@ class ChangeTagsStore {
 	 */
 	public function defineTag( $tag ) {
 		$dbw = $this->dbProvider->getPrimaryDatabase();
-		$tagDef = [
-			'ctd_name' => $tag,
-			'ctd_user_defined' => 1,
-			'ctd_count' => 0
-		];
-		$dbw->upsert(
-			self::CHANGE_TAG_DEF,
-			$tagDef,
-			'ctd_name',
-			[ 'ctd_user_defined' => 1 ],
-			__METHOD__
-		);
+		$dbw->newInsertQueryBuilder()
+			->insert( self::CHANGE_TAG_DEF )
+			->row( [
+				'ctd_name' => $tag,
+				'ctd_user_defined' => 1,
+				'ctd_count' => 0
+			] )
+			->onDuplicateKeyUpdate()
+			->uniqueIndexFields( [ 'ctd_name' ] )
+			->set( [ 'ctd_user_defined' => 1 ] )
+			->caller( __METHOD__ )->execute();
 
 		// clear the memcache of defined tags
 		$this->purgeTagCacheAll();

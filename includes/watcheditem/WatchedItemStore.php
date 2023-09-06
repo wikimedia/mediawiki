@@ -1135,13 +1135,13 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		}, $wlIds );
 
 		// Insert into watchlist_expiry, updating the expiry for duplicate rows.
-		$dbw->upsert(
-			'watchlist_expiry',
-			$weRows,
-			'we_item',
-			[ 'we_expiry' => $expiry ],
-			__METHOD__
-		);
+		$dbw->newInsertQueryBuilder()
+			->insert( 'watchlist_expiry' )
+			->rows( $weRows )
+			->onDuplicateKeyUpdate()
+			->uniqueIndexFields( [ 'we_item' ] )
+			->set( [ 'we_expiry' => $expiry ] )
+			->caller( __METHOD__ )->execute();
 
 		return $dbw->affectedRows();
 	}

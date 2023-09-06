@@ -518,14 +518,13 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 				);
 			}
 		}
-
-		$dbw->upsert(
-			'actor',
-			[ 'actor_name' => $userName, 'actor_user' => $userId ],
-			[ [ 'actor_name' ] ],
-			[ 'actor_user' => $userId ],
-			__METHOD__
-		);
+		$dbw->newInsertQueryBuilder()
+			->insert( 'actor' )
+			->row( [ 'actor_name' => $userName, 'actor_user' => $userId ] )
+			->onDuplicateKeyUpdate()
+			->uniqueIndexFields( [ 'actor_name' ] )
+			->set( [ 'actor_user' => $userId ] )
+			->caller( __METHOD__ )->execute();
 		if ( !$dbw->affectedRows() ) {
 			throw new CannotCreateActorException(
 				'Failed to replace user for actor: ' .

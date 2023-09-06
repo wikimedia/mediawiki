@@ -59,19 +59,17 @@ class InitUserPreference extends Maintenance {
 		$processed = 0;
 		foreach ( $iterator as $batch ) {
 			foreach ( $batch as $row ) {
-				$dbw->upsert(
-					'user_properties',
-					[
+				$dbw->newInsertQueryBuilder()
+					->insert( 'user_properties' )
+					->row( [
 						'up_user' => $row->up_user,
 						'up_property' => $target,
 						'up_value' => $row->up_value,
-					],
-					[ [ 'up_user', 'up_property' ] ],
-					[
-						'up_value' => $row->up_value,
-					],
-					__METHOD__
-				);
+					] )
+					->onDuplicateKeyUpdate()
+					->uniqueIndexFields( [ 'up_user', 'up_property' ] )
+					->set( [ 'up_value' => $row->up_value ] )
+					->caller( __METHOD__ )->execute();
 
 				$processed += $dbw->affectedRows();
 			}

@@ -444,22 +444,22 @@ class Category {
 		} elseif ( $shouldExist ) {
 			# The category row doesn't exist but should, so create it. Use
 			# upsert in case of races.
-			$dbw->upsert(
-				'category',
-				[
+			$dbw->newInsertQueryBuilder()
+				->insert( 'category' )
+				->row( [
 					'cat_title' => $this->mName,
 					'cat_pages' => $result->pages,
 					'cat_subcats' => $result->subcats,
 					'cat_files' => $result->files
-				],
-				'cat_title',
-				[
+				] )
+				->onDuplicateKeyUpdate()
+				->uniqueIndexFields( [ 'cat_title' ] )
+				->set( [
 					'cat_pages' => $result->pages,
 					'cat_subcats' => $result->subcats,
-					'cat_files' => $result->files
-				],
-				__METHOD__
-			);
+					 'cat_files' => $result->files
+				] )
+				->caller( __METHOD__ )->execute();
 			// @todo: Should we update $this->mID here? Or not since Category
 			// objects tend to be short lived enough to not matter?
 		}
