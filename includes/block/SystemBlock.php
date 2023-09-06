@@ -31,7 +31,6 @@ use MediaWiki\User\UserIdentity;
  * autoblocks and are not tracked with cookies.
  *
  * @since 1.34
- * @deprecated since 1.40. GlobalBlocks are now added into CompositeBlocks via the GetUserBlock hook
  */
 class SystemBlock extends AbstractBlock {
 	/** @var string|null */
