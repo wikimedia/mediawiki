@@ -229,35 +229,14 @@ class DifferenceEngine extends ContextSource {
 	/** @var ManifoldTextDiffer|null */
 	private $textDiffer;
 
-	/**
-	 * @var LinkRenderer
-	 */
-	protected $linkRenderer;
-
-	/**
-	 * @var IContentHandlerFactory
-	 */
-	private $contentHandlerFactory;
-
-	/**
-	 * @var RevisionStore
-	 */
-	private $revisionStore;
-
+	protected LinkRenderer $linkRenderer;
+	private IContentHandlerFactory $contentHandlerFactory;
+	private RevisionStore $revisionStore;
 	private ArchivedRevisionLookup $archivedRevisionLookup;
-
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/** @var WikiPageFactory */
-	private $wikiPageFactory;
-
-	/** @var UserOptionsLookup */
-	private $userOptionsLookup;
-
-	/** @var CommentFormatter */
-	private $commentFormatter;
-
+	private HookRunner $hookRunner;
+	private WikiPageFactory $wikiPageFactory;
+	private UserOptionsLookup $userOptionsLookup;
+	private CommentFormatter $commentFormatter;
 	private IConnectionProvider $dbProvider;
 
 	/** @var Message[] */
