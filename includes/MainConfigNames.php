@@ -4431,12 +4431,6 @@ class MainConfigNames {
 	public const SpecialContributeSkinsEnabled = 'SpecialContributeSkinsEnabled';
 
 	/**
-	 * Name constant for the ShowDiffToggleSwitch setting, for use with Config::get()
-	 * @see MainConfigSchema::ShowDiffToggleSwitch
-	 */
-	public const ShowDiffToggleSwitch = 'ShowDiffToggleSwitch';
-
-	/**
 	 * Name constant for the EnableEditRecovery setting, for use with Config::get()
 	 * @see MainConfigSchema::EnableEditRecovery
 	 */

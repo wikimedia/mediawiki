@@ -2,7 +2,6 @@
 
 use MediaWiki\Diff\TextDiffer\ManifoldTextDiffer;
 use MediaWiki\Diff\TextDiffer\Wikidiff2TextDiffer;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Diff\TextDiffer\TextDifferData;
 use Wikimedia\Assert\ParameterTypeException;
 
@@ -196,7 +195,6 @@ class TextSlotDiffRendererTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetTablePrefix( $engine, $expectedPatterns ) {
 		OOUI\Theme::setSingleton( new OOUI\BlankTheme() );
-		$this->overrideConfigValue( MainConfigNames::ShowDiffToggleSwitch, true );
 
 		$slotDiffRenderer = $this->getTextSlotDiffRenderer( 'qqx' );
 		$slotDiffRenderer->setHookContainer( $this->createHookContainer() );
