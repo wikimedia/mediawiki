@@ -209,6 +209,7 @@
 	"index-category": "Indeksoidut sivut",
 	"noindex-category": "Indeksointikiellolliset sivut",
 	"broken-file-category": "Sivut, joissa on toimimattomia tiedostolinkkejä",
+	"categoryviewer-pagedlinks": "($1) ($2)",
 	"about": "Tietoja",
 	"article": "Sisältösivu",
 	"newwindow": "(avautuu uuteen ikkunaan)",

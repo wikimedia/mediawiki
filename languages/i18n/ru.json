@@ -182,7 +182,8 @@
 			"Colt browning",
 			"Fenixs-ru",
 			"Razno0",
-			"Tucvbif"
+			"Tucvbif",
+			"Света Поторочина"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -2433,7 +2434,7 @@
 	"usermessage-editor": "Системная доставка",
 	"watchlist": "Список наблюдения",
 	"mywatchlist": "Список наблюдения",
-	"watchlistfor2": "Для $1",
+	"watchlistfor2": "$1",
 	"nowatchlist": "Ваш список наблюдения пуст.",
 	"watchlistanontext": "Пожалуйста, войдите, чтобы просмотреть или отредактировать элементы в списке наблюдения.",
 	"watchnologin": "Нужно представиться системе",
