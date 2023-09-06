@@ -39,6 +39,7 @@ use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\Timestamp\TimestampException;
 
 /**
@@ -2219,11 +2220,13 @@ class ApiMain extends ApiBase {
 			],
 			'smaxage' => [
 				ParamValidator::PARAM_TYPE => 'integer',
-				ParamValidator::PARAM_DEFAULT => 0
+				ParamValidator::PARAM_DEFAULT => 0,
+				IntegerDef::PARAM_MIN => 0,
 			],
 			'maxage' => [
 				ParamValidator::PARAM_TYPE => 'integer',
-				ParamValidator::PARAM_DEFAULT => 0
+				ParamValidator::PARAM_DEFAULT => 0,
+				IntegerDef::PARAM_MIN => 0,
 			],
 			'assert' => [
 				ParamValidator::PARAM_TYPE => [ 'anon', 'user', 'bot' ]
