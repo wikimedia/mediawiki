@@ -714,8 +714,8 @@ class DatabaseBlock extends AbstractBlock {
 				->update( 'ipblocks' )
 				->set(
 					[
-					  'ipb_timestamp' => $dbw->timestamp( $this->getTimestamp() ),
-					  'ipb_expiry' => $dbw->timestamp( $this->getExpiry() ),
+						'ipb_timestamp' => $dbw->timestamp( $this->getTimestamp() ),
+						'ipb_expiry' => $dbw->timestamp( $this->getExpiry() ),
 					]
 				)
 				->where( [ 'ipb_id' => $this->getId( $this->getWikiId() ) ] )

@@ -525,9 +525,9 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 				return $text;
 			} );
 		$languageConverter->method( 'hasVariant' )
-		   ->willReturnCallback( static function ( $code ) {
-			   return true;
-		   } );
+			->willReturnCallback( static function ( $code ) {
+				return true;
+			} );
 		$languageConverterFactoryMock->method( 'getLanguageConverter' )
 			->willReturn( $languageConverter );
 
