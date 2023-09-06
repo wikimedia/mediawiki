@@ -20,8 +20,12 @@
 
 namespace MediaWiki\Tests\Unit\Permissions;
 
+use IContextSource;
 use InvalidArgumentException;
+use Language;
+use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\Block;
+use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Permissions\Authority;
@@ -30,9 +34,13 @@ use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Permissions\RateLimitSubject;
 use MediaWiki\Permissions\UserAuthority;
+use MediaWiki\Request\FauxRequest;
 use MediaWikiUnitTestCase;
+use Message;
 use PHPUnit\Framework\MockObject\MockObject;
+use StatusValue;
 use User;
+use WebRequest;
 
 /**
  * @covers \MediaWiki\Permissions\UserAuthority
@@ -72,7 +80,7 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 		/** @var PermissionManager|MockObject $permissionManager */
 		$permissionManager = $this->createNoOpMock(
 			PermissionManager::class,
-			[ 'userHasRight', 'userCan', 'getPermissionErrors', 'isBlockedFrom' ]
+			[ 'userHasRight', 'userCan', 'getPermissionErrors', 'isBlockedFrom', 'newFatalPermissionDeniedStatus' ]
 		);
 
 		$permissionManager->method( 'userHasRight' )->willReturnCallback(
@@ -105,6 +113,12 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 			}
 		);
 
+		$permissionManager->method( 'newFatalPermissionDeniedStatus' )->willReturnCallback(
+			static function ( $permission, $context ) use ( $permissionManager ) {
+				return StatusValue::newFatal( 'permissionserrors' );
+			}
+		);
+
 		$permissionManager->method( 'isBlockedFrom' )->willReturnCallback(
 			static function ( User $user, $page ) {
 				return $page->getDBkey() === 'Forbidden';
@@ -125,49 +139,83 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 		return $actor;
 	}
 
-	private function newAuthority( array $permissions, $limited = false, User $actor = null ): Authority {
-		/** @var PermissionManager|MockObject $permissionManager */
-		$permissionManager = $this->newPermissionsManager( $permissions );
-		$rateLimiter = $this->newRateLimiter( $limited );
+	private function newBlockErrorFormatter(): BlockErrorFormatter {
+		$blockErrorFormatter = $this->createNoOpMock( BlockErrorFormatter::class, [ 'getMessage' ] );
+		$blockErrorFormatter->method( 'getMessage' )->willReturn( new Message( 'blocked' ) );
+		return $blockErrorFormatter;
+	}
+
+	private function newContext(): IContextSource {
+		$language = $this->createNoOpMock( Language::class, [ 'getCode' ] );
+		$language->method( 'getCode' )->willReturn( 'en' );
+
+		$context = $this->createNoOpMock( IContextSource::class, [ 'getLanguage' ] );
+		$context->method( 'getLanguage' )->willReturn( $language );
+		return $context;
+	}
+
+	private function newRequest(): WebRequest {
+		$request = new FauxRequest();
+		$request->setIP( '1.2.3.4' );
+		return $request;
+	}
+
+	private function newAuthority( array $options = [] ): Authority {
+		$permissionManager = $options['permissionManager']
+			?? $this->newPermissionsManager( $options['permissions'] ?? [] );
+
+		$rateLimiter = $options['rateLimiter']
+			?? $this->newRateLimiter( $options['limited'] ?? false );
+
+		$blockErrorFormatter = $options['blockErrorFormatter']
+			?? $this->newBlockErrorFormatter();
+
 		return new UserAuthority(
-			$actor ?? $this->newUser(),
+			$options['actor'] ?? $this->newUser(),
+			$options['request'] ?? $this->newRequest(),
+			$options['context'] ?? $this->newContext(),
 			$permissionManager,
-			$rateLimiter
+			$rateLimiter,
+			$blockErrorFormatter
 		);
 	}
 
 	public function testGetUser() {
 		$user = $this->newUser();
-		$authority = $this->newAuthority( [], false, $user );
+		$authority = $this->newAuthority( [ 'actor' => $user ] );
 
 		$this->assertSame( $user, $authority->getUser() );
 	}
 
 	public function testGetUserBlockNotBlocked() {
-		$authority = $this->newAuthority( [] );
+		$authority = $this->newAuthority();
 		$this->assertNull( $authority->getBlock() );
 	}
 
 	public function testGetUserBlockWasBlocked() {
-		$block = $this->createNoOpMock( Block::class );
+		$block = $this->createNoOpMock( AbstractBlock::class );
 		$user = $this->newUser( $block );
 
-		$authority = $this->newAuthority( [], false, $user );
+		$authority = $this->newAuthority( [ 'actor' => $user ] );
 		$this->assertSame( $block, $authority->getBlock() );
 	}
 
 	public function testRateLimitApplies() {
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
-		$authority = $this->newAuthority( [ 'edit' ], true );
+		$authority = $this->newAuthority( [ 'permissions' => [ 'edit' ], 'limited' => true ] );
 
+		$this->assertTrue( $authority->isAllowed( 'edit' ) );
 		$this->assertTrue( $authority->probablyCan( 'edit', $target ) );
+
+		$this->assertFalse( $authority->isDefinitelyAllowed( 'edit' ) );
 		$this->assertFalse( $authority->definitelyCan( 'edit', $target ) );
+
 		$this->assertFalse( $authority->authorizeRead( 'edit', $target ) );
 		$this->assertFalse( $authority->authorizeWrite( 'edit', $target ) );
+		$this->assertFalse( $authority->authorizeAction( 'edit' ) );
 	}
 
 	public function testRateLimiterBypassedForReading() {
-		/** @var PermissionManager|MockObject $permissionManager */
 		$permissionManager = $this->newPermissionsManager( [ 'read' ] );
 
 		// Key assertion: limit() is not called.
@@ -179,11 +227,11 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 		$actor->method( 'getBlock' )->willReturn( null );
 		$actor->method( 'isNewbie' )->willReturn( false );
 
-		$authority = new UserAuthority(
-			$actor,
-			$permissionManager,
-			$rateLimiter
-		);
+		$authority = $this->newAuthority( [
+			'actor' => $actor,
+			'permissionManager' => $permissionManager,
+			'rateLimiter' => $rateLimiter
+		] );
 
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
 		$this->assertTrue( $authority->authorizeRead( 'read', $target ) );
@@ -205,11 +253,10 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 			->method( 'limit' )
 			->willReturn( false );
 
-		$authority = new UserAuthority(
-			$this->newUser(),
-			$permissionManager,
-			$rateLimiter
-		);
+		$authority = $this->newAuthority( [
+			'permissionManager' => $permissionManager,
+			'rateLimiter' => $rateLimiter
+		] );
 
 		// The rate limit cache is usually disabled during testing.
 		// Enable it so we can test it.
@@ -248,10 +295,10 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testBlockedUserCanRead() {
-		$block = $this->createNoOpMock( Block::class );
+		$block = $this->createNoOpMock( AbstractBlock::class );
 		$user = $this->newUser( $block );
 
-		$authority = $this->newAuthority( [ 'read', 'edit' ], false, $user );
+		$authority = $this->newAuthority( [ 'permissions' => [ 'read', 'edit' ], 'actor' => $user ] );
 
 		$status = PermissionStatus::newEmpty();
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
@@ -260,20 +307,35 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testBlockedUserCanNotWrite() {
-		$block = $this->createNoOpMock( Block::class );
+		$block = $this->createNoOpMock( AbstractBlock::class );
 		$user = $this->newUser( $block );
 
-		$authority = $this->newAuthority( [ 'read', 'edit' ], false, $user );
+		$authority = $this->newAuthority( [ 'permissions' => [ 'read', 'edit' ], 'actor' => $user ] );
 
 		$status = PermissionStatus::newEmpty();
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
-		$this->assertFalse( $authority->authorizeRead( 'edit', $target, $status ) );
+		$this->assertFalse( $authority->authorizeWrite( 'edit', $target, $status ) );
 		$this->assertStatusNotOK( $status );
+		$this->assertSame( 'edit', $status->getPermission() );
 		$this->assertSame( $block, $status->getBlock() );
 	}
 
+	public function testBlockedUserAction() {
+		$block = $this->createNoOpMock( AbstractBlock::class );
+		$user = $this->newUser( $block );
+
+		$authority = $this->newAuthority( [ 'permissions' => [ 'read', 'edit' ], 'actor' => $user ] );
+
+		$status = PermissionStatus::newEmpty();
+		$this->assertTrue( $authority->isAllowed( 'edit' ) );
+		$this->assertFalse( $authority->isDefinitelyAllowed( 'edit' ) );
+		$this->assertFalse( $authority->authorizeAction( 'edit', $status ) );
+		$this->assertStatusNotOK( $status );
+		$this->assertSame( 'edit', $status->getPermission() );
+	}
+
 	public function testPermissions() {
-		$authority = $this->newAuthority( [ 'foo', 'bar' ] );
+		$authority = $this->newAuthority( [ 'permissions' => [ 'foo', 'bar' ] ] );
 
 		$this->assertTrue( $authority->isAllowed( 'foo' ) );
 		$this->assertTrue( $authority->isAllowed( 'bar' ) );
@@ -286,9 +348,25 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 		$this->assertFalse( $authority->isAllowedAny( 'xyzzy', 'quux' ) );
 	}
 
+	public function testIsAllowed() {
+		$authority = $this->newAuthority( [ 'permissions' => [ 'foo', 'bar' ] ] );
+
+		$this->assertTrue( $authority->isAllowed( 'foo' ) );
+		$this->assertTrue( $authority->isAllowed( 'bar' ) );
+		$this->assertFalse( $authority->isAllowed( 'quux' ) );
+
+		$status = new PermissionStatus();
+		$authority->isAllowed( 'foo', $status );
+		$this->assertStatusOK( $status );
+
+		$authority->isAllowed( 'quux', $status );
+		$this->assertStatusNotOK( $status );
+		$this->assertSame( 'quux', $status->getPermission() );
+	}
+
 	public function testProbablyCan() {
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
-		$authority = $this->newAuthority( [ 'foo', 'bar' ] );
+		$authority = $this->newAuthority( [ 'permissions' => [ 'foo', 'bar' ] ] );
 
 		$this->assertTrue( $authority->probablyCan( 'foo', $target ) );
 		$this->assertTrue( $authority->probablyCan( 'bar', $target ) );
@@ -300,11 +378,28 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 
 		$authority->probablyCan( 'quux', $target, $status );
 		$this->assertStatusNotOK( $status );
+		$this->assertSame( 'quux', $status->getPermission() );
+	}
+
+	public function testIsDefinitlyAllowed() {
+		$authority = $this->newAuthority( [ 'permissions' => [ 'foo', 'bar' ] ] );
+
+		$this->assertTrue( $authority->isDefinitelyAllowed( 'foo' ) );
+		$this->assertTrue( $authority->isDefinitelyAllowed( 'bar' ) );
+		$this->assertFalse( $authority->isDefinitelyAllowed( 'quux' ) );
+
+		$status = new PermissionStatus();
+		$authority->isDefinitelyAllowed( 'foo', $status );
+		$this->assertStatusOK( $status );
+
+		$authority->isDefinitelyAllowed( 'quux', $status );
+		$this->assertStatusNotOK( $status );
+		$this->assertSame( 'quux', $status->getPermission() );
 	}
 
 	public function testDefinitlyCan() {
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
-		$authority = $this->newAuthority( [ 'foo', 'bar' ] );
+		$authority = $this->newAuthority( [ 'permissions' => [ 'foo', 'bar' ] ] );
 
 		$this->assertTrue( $authority->definitelyCan( 'foo', $target ) );
 		$this->assertTrue( $authority->definitelyCan( 'bar', $target ) );
@@ -316,11 +411,28 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 
 		$authority->definitelyCan( 'quux', $target, $status );
 		$this->assertStatusNotOK( $status );
+		$this->assertSame( 'quux', $status->getPermission() );
+	}
+
+	public function testAuthorize() {
+		$authority = $this->newAuthority( [ 'permissions' => [ 'foo', 'bar' ] ] );
+
+		$this->assertTrue( $authority->authorizeAction( 'foo' ) );
+		$this->assertTrue( $authority->authorizeAction( 'bar' ) );
+		$this->assertFalse( $authority->authorizeAction( 'quux' ) );
+
+		$status = new PermissionStatus();
+		$authority->authorizeAction( 'foo', $status );
+		$this->assertStatusOK( $status );
+
+		$authority->authorizeAction( 'quux', $status );
+		$this->assertStatusNotOK( $status );
+		$this->assertSame( 'quux', $status->getPermission() );
 	}
 
 	public function testAuthorizeRead() {
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
-		$authority = $this->newAuthority( [ 'foo', 'bar' ] );
+		$authority = $this->newAuthority( [ 'permissions' => [ 'foo', 'bar' ] ] );
 
 		$this->assertTrue( $authority->authorizeRead( 'foo', $target ) );
 		$this->assertTrue( $authority->authorizeRead( 'bar', $target ) );
@@ -336,7 +448,7 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 
 	public function testAuthorizeWrite() {
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
-		$authority = $this->newAuthority( [ 'foo', 'bar' ] );
+		$authority = $this->newAuthority( [ 'permissions' => [ 'foo', 'bar' ] ] );
 
 		$this->assertTrue( $authority->authorizeWrite( 'foo', $target ) );
 		$this->assertTrue( $authority->authorizeWrite( 'bar', $target ) );
@@ -351,14 +463,14 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testIsAllowedAnyThrowsOnEmptySet() {
-		$authority = $this->newAuthority( [ 'foo', 'bar' ] );
+		$authority = $this->newAuthority( [ 'permissions' => [ 'foo', 'bar' ] ] );
 
 		$this->expectException( InvalidArgumentException::class );
 		$authority->isAllowedAny();
 	}
 
 	public function testIsAllowedAllThrowsOnEmptySet() {
-		$authority = $this->newAuthority( [ 'foo', 'bar' ] );
+		$authority = $this->newAuthority( [ 'permissions' => [ 'foo', 'bar' ] ] );
 
 		$this->expectException( InvalidArgumentException::class );
 		$authority->isAllowedAll();
@@ -367,16 +479,16 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 	public function testGetBlock_none() {
 		$actor = $this->newUser();
 
-		$authority = $this->newAuthority( [ 'foo', 'bar' ], false, $actor );
+		$authority = $this->newAuthority( [ 'permissions' => [ 'foo', 'bar' ], 'actor' => $actor ] );
 
 		$this->assertNull( $authority->getBlock() );
 	}
 
 	public function testGetBlock_blocked() {
-		$block = $this->createNoOpMock( Block::class );
+		$block = $this->createNoOpMock( AbstractBlock::class );
 		$actor = $this->newUser( $block );
 
-		$authority = $this->newAuthority( [ 'foo', 'bar' ], false, $actor );
+		$authority = $this->newAuthority( [ 'permissions' => [ 'foo', 'bar' ], 'actor' => $actor ] );
 
 		$this->assertSame( $block, $authority->getBlock() );
 	}
@@ -387,10 +499,10 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 	 * are not wikitext escaped.
 	 */
 	public function testInternalCanWithPermissionStatusMessageFormatting() {
-		$block = $this->createNoOpMock( Block::class );
+		$block = $this->createNoOpMock( AbstractBlock::class );
 		$user = $this->newUser( $block );
 
-		$authority = $this->newAuthority( [ 'read', 'edit' ], true, $user );
+		$authority = $this->newAuthority( [ 'permissions' => [ 'foo', 'bar' ], 'actor' => $user, 'limited' => true ] );
 
 		$permissionStatus = PermissionStatus::newEmpty();
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
@@ -409,7 +521,8 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 
 		$errors = $permissionStatus->getErrors();
 
-		$message = $errors[1]['message'];
+		// The actual index is not relevant and depends on the implementation
+		$message = $errors[2]['message'];
 		$this->assertEquals( 'blockedtext-partial', $message->getKey() );
 		$this->assertArrayEquals(
 			self::FAKE_BLOCK_MESSAGE_PARAMS,

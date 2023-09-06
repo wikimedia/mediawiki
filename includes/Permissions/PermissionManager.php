@@ -20,6 +20,7 @@
 namespace MediaWiki\Permissions;
 
 use Article;
+use IContextSource;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Actions\ActionFactory;
@@ -45,9 +46,11 @@ use NamespaceInfo;
 use PermissionsError;
 use RequestContext;
 use SpecialPage;
+use StatusValue;
 use TitleFormatter;
 use User;
 use UserCache;
+use UserGroupMembership;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -734,7 +737,38 @@ class PermissionManager {
 
 		// TODO: it would be a good idea to replace the method below with something else like
 		// maybe callback injection
-		return User::newFatalPermissionDeniedStatus( $action )->getErrorsArray()[0];
+		$context = RequestContext::getMain();
+		$status = $this->newFatalPermissionDeniedStatus( $action, $context );
+		return $status->toLegacyErrorArray()[0];
+	}
+
+	/**
+	 * Factory function for fatal permission-denied errors
+	 *
+	 * @internal for use by UserAuthority
+	 *
+	 * @param string $permission User right required
+	 * @param IContextSource $context
+	 *
+	 * @return PermissionStatus
+	 */
+	public function newFatalPermissionDeniedStatus( $permission, IContextSource $context ): StatusValue {
+		$groups = [];
+		foreach ( $this->groupPermissionsLookup->getGroupsWithPermission( $permission ) as $group ) {
+			$groups[] = UserGroupMembership::getLinkWiki( $group, $context );
+		}
+
+		if ( $groups ) {
+			return PermissionStatus::newFatal(
+				'badaccess-groups',
+				Message::listParam( $groups, 'comma' ),
+				count( $groups )
+			);
+		}
+
+		$status = PermissionStatus::newFatal( 'badaccess-group0' );
+		$status->setPermission( $permission );
+		return $status;
 	}
 
 	/**

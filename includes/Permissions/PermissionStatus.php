@@ -20,8 +20,12 @@
 
 namespace MediaWiki\Permissions;
 
+use ErrorPageError;
 use MediaWiki\Block\Block;
+use PermissionsError;
 use StatusValue;
+use ThrottledError;
+use UserBlockedError;
 
 /**
  * A StatusValue for permission errors.
@@ -40,6 +44,9 @@ class PermissionStatus extends StatusValue {
 	/** @var bool */
 	private $rateLimitExceeded = false;
 
+	/** @var ?string */
+	private $permission = null;
+
 	/**
 	 * Returns the user block that contributed to permissions being denied,
 	 * if such a block was provided via setBlock().
@@ -53,6 +60,17 @@ class PermissionStatus extends StatusValue {
 	 */
 	public function getBlock(): ?Block {
 		return $this->block;
+	}
+
+	/**
+	 * Returns true when permissions were denied because the user is blocked.
+	 *
+	 * @since 1.41
+	 *
+	 * @return bool
+	 */
+	public function isBlocked(): bool {
+		return $this->block !== null;
 	}
 
 	/**
@@ -101,6 +119,58 @@ class PermissionStatus extends StatusValue {
 	 */
 	public function isRateLimitExceeded(): bool {
 		return $this->rateLimitExceeded;
+	}
+
+	/**
+	 * Sets the name of the permission that is being checked.
+	 *
+	 * @since 1.41
+	 * @internal
+	 * Will cause isRateLimited() to return true.
+	 */
+	public function setPermission( string $permission ) {
+		$this->permission = $permission;
+	}
+
+	/**
+	 * Returns the name of the permission that was being checked.
+	 *
+	 * @return string|null The permission, of known
+	 * @since 1.41
+	 */
+	public function getPermission(): ?string {
+		return $this->permission;
+	}
+
+	/**
+	 * Will throw an appropriate ErrorPageError if isOK() returns false.
+	 * If isOK() returns true, this method does nothing.
+	 *
+	 * This is a convenience method for use in user interaction code,
+	 * such as subclasses of SpecialPage.
+	 *
+	 * @unstable Introduced in 1.41, but unstable since the future of ErrorPageError is unclear (T281935).
+	 *
+	 * @throws ErrorPageError
+	 * @return void
+	 */
+	public function throwErrorPageError(): void {
+		if ( $this->isOK() ) {
+			return;
+		}
+
+		$block = $this->getBlock();
+		if ( $block ) {
+			throw new UserBlockedError( $block );
+		}
+
+		if ( $this->isRateLimitExceeded() ) {
+			throw new ThrottledError();
+		}
+
+		$messages = $this->getStatusArray( 'error' );
+
+		throw new PermissionsError( $this->permission, $messages );
 	}
 
 }

@@ -27,6 +27,7 @@ use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
@@ -445,7 +446,7 @@ class ChangeTags {
 		Authority $performer = null
 	) {
 		if ( $performer !== null ) {
-			if ( !$performer->isAllowed( 'changetags' ) ) {
+			if ( !$performer->isDefinitelyAllowed( 'changetags' ) ) {
 				return Status::newFatal( 'tags-update-no-permission' );
 			}
 
@@ -537,15 +538,15 @@ class ChangeTags {
 		}
 
 		// basic rate limiting
-		$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
-		if ( $user->pingLimiter( 'changetags' ) ) {
-			return Status::newFatal( 'actionthrottledtext' );
+		$status = PermissionStatus::newEmpty();
+		if ( !$performer->authorizeAction( 'changetags', $status ) ) {
+			return Status::wrap( $status );
 		}
 
 		// do it!
 		$changeTagStore = MediaWikiServices::getInstance()->getChangeTagsStore();
 		[ $tagsAdded, $tagsRemoved, $initialTags ] = $changeTagStore->updateTags( $tagsToAdd,
-			$tagsToRemove, $rc_id, $rev_id, $log_id, $params, null, $user );
+			$tagsToRemove, $rc_id, $rev_id, $log_id, $params, null, $performer->getUser() );
 		if ( !$tagsAdded && !$tagsRemoved ) {
 			// no-op, don't log it
 			return Status::newGood( (object)[

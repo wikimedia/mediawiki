@@ -2343,8 +2343,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		return $this->getThisAsAuthority()->isAllowedAll( ...$permissions );
 	}
 
-	public function isAllowed( string $permission ): bool {
-		return $this->getThisAsAuthority()->isAllowed( $permission );
+	public function isAllowed( string $permission, PermissionStatus $status = null ): bool {
+		return $this->getThisAsAuthority()->isAllowed( $permission, $status );
 	}
 
 	/**
@@ -3410,22 +3410,17 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * Factory function for fatal permission-denied errors
 	 *
 	 * @since 1.22
+	 * @deprecated since 1.41, use Authority::isAllowed instead.
+	 * Core code can also use PermissionManager::newFatalPermissionDeniedStatus.
+	 *
 	 * @param string $permission User right required
 	 * @return Status
 	 */
 	public static function newFatalPermissionDeniedStatus( $permission ) {
-		$groups = [];
-		foreach ( MediaWikiServices::getInstance()
-				->getGroupPermissionsLookup()
-				->getGroupsWithPermission( $permission ) as $group ) {
-			$groups[] = UserGroupMembership::getLinkWiki( $group, RequestContext::getMain() );
-		}
-
-		if ( $groups ) {
-			return Status::newFatal( 'badaccess-groups', Message::listParam( $groups, 'comma' ), count( $groups ) );
-		}
-
-		return Status::newFatal( 'badaccess-group0' );
+		return Status::wrap( MediaWikiServices::getInstance()->getPermissionManager()->newFatalPermissionDeniedStatus(
+			$permission,
+			RequestContext::getMain()
+		) );
 	}
 
 	/**
@@ -3497,6 +3492,30 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
+	 * @inheritDoc
+	 *
+	 * @since 1.41
+	 * @param string $action
+	 * @param PermissionStatus|null $status
+	 * @return bool
+	 */
+	public function isDefinitelyAllowed( string $action, PermissionStatus $status = null ): bool {
+		return $this->getThisAsAuthority()->isDefinitelyAllowed( $action, $status );
+	}
+
+	/**
+	 * @inheritDoc
+	 *
+	 * @since 1.41
+	 * @param string $action
+	 * @param PermissionStatus|null $status
+	 * @return bool
+	 */
+	public function authorizeAction( string $action, PermissionStatus $status = null ): bool {
+		return $this->getThisAsAuthority()->authorizeAction( $action, $status );
+	}
+
+	/**
 	 * @since 1.36
 	 * @param string $action
 	 * @param PageIdentity $target
@@ -3532,12 +3551,19 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			// When PermissionManager is refactored into Authority, we need
 			// to provide base implementation, based on just user groups/rights,
 			// and use it here.
+			$request = $this->getRequest();
+			$uiContext = RequestContext::getMain();
+
 			$this->mThisAsAuthority = new UserAuthority(
 				$this,
+				$request,
+				$uiContext,
 				MediaWikiServices::getInstance()->getPermissionManager(),
-				MediaWikiServices::getInstance()->getRateLimiter()
+				MediaWikiServices::getInstance()->getRateLimiter(),
+				MediaWikiServices::getInstance()->getBlockErrorFormatter()
 			);
 		}
+
 		return $this->mThisAsAuthority;
 	}
 

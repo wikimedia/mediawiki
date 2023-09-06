@@ -72,12 +72,20 @@ interface Authority {
 	/**
 	 * Checks whether this authority has the given permission in general.
 	 * For some permissions, exceptions may exist, both positive and negative, on a per-target basis.
+	 * This method offers a fast, lightweight check, but may produce false positives.
+	 * It is intended for determining which UI elements should be offered to the user.
+	 *
+	 * This method will not apply rate limit checks or evaluate user blocks.
 	 *
 	 * @param string $permission
+	 * @param PermissionStatus|null $status
 	 *
 	 * @return bool
+	 * @see isDefinitelyAllowed
+	 *
+	 * @see probablyCan
 	 */
-	public function isAllowed( string $permission ): bool;
+	public function isAllowed( string $permission, PermissionStatus $status = null ): bool;
 
 	/**
 	 * Checks whether this authority has any of the given permissions in general.
@@ -109,8 +117,12 @@ interface Authority {
 
 	/**
 	 * Checks whether this authority can probably perform the given action on the given target page.
-	 * This method offers a fast, lightweight check, and may produce false positives.
+	 * This method offers a fast, lightweight check, but may produce false positives.
 	 * It is intended for determining which UI elements should be offered to the user.
+	 * This method will not apply rate limit checks or evaluate user blocks.
+	 *
+	 * @see definitelyCan
+	 * @see isAllowed
 	 *
 	 * @param string $action
 	 * @param PageIdentity $target
@@ -132,6 +144,11 @@ interface Authority {
 	 * method may be used to determine whether the user should be presented with a warning and
 	 * a read-only view instead.
 	 *
+	 * This method may apply rate limit checks and evaluate user blocks.
+	 *
+	 * @see probablyCan
+	 * @see isDefinitelyAllowed
+	 *
 	 * @param string $action
 	 * @param PageIdentity $target
 	 * @param PermissionStatus|null $status aggregator for failures
@@ -141,6 +158,53 @@ interface Authority {
 	public function definitelyCan(
 		string $action,
 		PageIdentity $target,
+		PermissionStatus $status = null
+	): bool;
+
+	/**
+	 * Checks whether this authority is allowed to perform the given action.
+	 * This method performs a thorough check, but does not protect against race conditions.
+	 * It is intended to be used when a user is intending to perform an action, but has not
+	 * yet committed to it. For example, when a user visits their preferences page, this
+	 * method may be used to determine whether the user should have the option to change their
+	 * email address.
+	 *
+	 * This method may apply rate limit checks and evaluate user blocks.
+	 *
+	 * @since 1.41
+	 *
+	 * @see isAllowed
+	 * @see definitelyCan
+	 *
+	 * @param string $action
+	 * @param PermissionStatus|null $status aggregator for failures
+	 *
+	 * @return bool
+	 */
+	public function isDefinitelyAllowed(
+		string $action,
+		PermissionStatus $status = null
+	): bool;
+
+	/**
+	 * Authorize an action. This should be used immediately before performing the action.
+	 *
+	 * Calling this method may have non-trivial side-effects, such as incrementing a rate limit
+	 * counter.
+	 *
+	 * @since 1.41
+	 *
+	 * @see isDefinitelyAllowed
+	 * @see authorizeRead
+	 * @see authorizeWrite
+	 *
+	 * @param string $action
+	 * @param PermissionStatus|null $status aggregator for failures
+	 *
+	 * @return bool
+	 */
+	public function authorizeAction(
+		string $action,
 		PermissionStatus $status = null
 	): bool;
 
@@ -156,6 +220,10 @@ interface Authority {
 	 * @param PermissionStatus|null $status aggregator for failures
 	 *
 	 * @return bool
+	 * @see authorizeAction
+	 * @see authorizeWrite
+	 *
+	 * @see definitelyCan
 	 */
 	public function authorizeRead(
 		string $action,
@@ -175,6 +243,10 @@ interface Authority {
 	 * @param PermissionStatus|null $status aggregator for failures
 	 *
 	 * @return bool
+	 * @see authorizeAction
+	 * @see authorizeRead
+	 *
+	 * @see definitelyCan
 	 */
 	public function authorizeWrite(
 		string $action,
