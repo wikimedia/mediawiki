@@ -958,7 +958,7 @@ END
 	 */
 	public function testMakeModuleResponseExtraHeaders() {
 		$module = $this->getMockBuilder( ResourceLoaderTestModule::class )
-					   ->onlyMethods( [ 'getPreloadLinks', 'getName' ] )->getMock();
+			->onlyMethods( [ 'getPreloadLinks', 'getName' ] )->getMock();
 		$module->method( 'getPreloadLinks' )->willReturn( [
 			'https://example.org/script.js' => [ 'as' => 'script' ],
 		] );

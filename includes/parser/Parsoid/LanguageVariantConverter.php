@@ -114,7 +114,7 @@ class LanguageVariantConverter {
 	 * @param ?Bcp47Code $sourceVariant
 	 *
 	 * @return PageBundle The converted PageBundle, or the object passed in as
-	 * 	       $pageBundle if the conversion is not supported.
+	 *         $pageBundle if the conversion is not supported.
 	 * @throws HttpException
 	 */
 	public function convertPageBundleVariant(

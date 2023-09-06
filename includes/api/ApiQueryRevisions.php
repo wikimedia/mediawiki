@@ -250,15 +250,15 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 				$uqb = $db->newUnionQueryBuilder();
 				$uqb->add(
 					$db->newSelectQueryBuilder()
-					   ->select( [ 'id' => 'rev_id', 'ts' => 'rev_timestamp' ] )
-					   ->from( 'revision' )
-					   ->where( [ 'rev_id' => $revids ] )
+						->select( [ 'id' => 'rev_id', 'ts' => 'rev_timestamp' ] )
+						->from( 'revision' )
+						->where( [ 'rev_id' => $revids ] )
 				);
 				$uqb->add(
 					$db->newSelectQueryBuilder()
-					   ->select( [ 'id' => 'ar_rev_id', 'ts' => 'ar_timestamp' ] )
-					   ->from( 'archive' )
-					   ->where( [ 'ar_rev_id' => $revids ] )
+						->select( [ 'id' => 'ar_rev_id', 'ts' => 'ar_timestamp' ] )
+						->from( 'archive' )
+						->where( [ 'ar_rev_id' => $revids ] )
 				);
 				$res = $uqb->caller( __METHOD__ )->fetchResultSet();
 				foreach ( $res as $row ) {

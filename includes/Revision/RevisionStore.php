@@ -1929,7 +1929,7 @@ class RevisionStore
 	 *        from Article Id associated with the page, an InvalidArgumentException is thrown.
 	 *
 	 * @return StatusValue a status with a RevisionRecord[] of successfully fetched revisions
-	 * 					   and an array of errors for the revisions failed to fetch.
+	 *                     and an array of errors for the revisions failed to fetch.
 	 */
 	public function newRevisionsFromBatch(
 		$rows,

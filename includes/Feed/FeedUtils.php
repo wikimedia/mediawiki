@@ -141,8 +141,8 @@ class FeedUtils {
 	 * @param string $actiontext Text of the action; in case of log event
 	 * @return string
 	 */
-	public static function formatDiffRow2( $title, $oldid, $newid, $timestamp,
-										  $formattedComment, $actiontext = ''
+	public static function formatDiffRow2(
+		$title, $oldid, $newid, $timestamp, $formattedComment, $actiontext = ''
 	) {
 		$feedDiffCutoff = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::FeedDiffCutoff );
 
