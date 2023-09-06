@@ -1245,6 +1245,12 @@ class MainConfigNames {
 	public const TemplateLinksSchemaMigrationStage = 'TemplateLinksSchemaMigrationStage';
 
 	/**
+	 * Name constant for the PageLinksSchemaMigrationStage setting, for use with Config::get()
+	 * @see MainConfigSchema::PageLinksSchemaMigrationStage
+	 */
+	public const PageLinksSchemaMigrationStage = 'PageLinksSchemaMigrationStage';
+
+	/**
 	 * Name constant for the ContentHandlers setting, for use with Config::get()
 	 * @see MainConfigSchema::ContentHandlers
 	 */
