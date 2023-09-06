@@ -158,7 +158,7 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$this->assertNotNull(
-			$getContentForUser( static::getTestUser( [ 'suppress' ] )->getUser() ),
+			$getContentForUser( static::getTestUser( [ 'suppress', 'sysop' ] )->getUser() ),
 			"Archived content should be visible after the page was suppressed for an oversighter"
 		);
 	}

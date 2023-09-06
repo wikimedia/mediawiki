@@ -91,6 +91,8 @@ trait RevisionRecordTests {
 		$this->assertEquals( 1, $revision->getParentId() );
 	}
 
+	abstract protected function expectedDefaultFieldVisibility( $field ): bool;
+
 	private function provideAudienceCheckData( $field ) {
 		yield 'field accessible for oversighter (ALL)' => [
 			RevisionRecord::SUPPRESSED_ALL,
@@ -139,15 +141,15 @@ trait RevisionRecordTests {
 				? RevisionRecord::DELETED_USER
 				: RevisionRecord::DELETED_COMMENT,
 			[],
-			true,
-			true
+			$this->expectedDefaultFieldVisibility( $field ),
+			$this->expectedDefaultFieldVisibility( $field )
 		];
 
 		yield 'nothing suppressed' => [
 			0,
 			[],
-			true,
-			true
+			$this->expectedDefaultFieldVisibility( $field ),
+			$this->expectedDefaultFieldVisibility( $field )
 		];
 	}
 

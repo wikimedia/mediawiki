@@ -25,6 +25,10 @@ use Wikimedia\Assert\PreconditionException;
 class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 	use RevisionRecordTests;
 
+	protected function expectedDefaultFieldVisibility( $field ): bool {
+		return true;
+	}
+
 	/**
 	 * @param array $rowOverrides
 	 *
