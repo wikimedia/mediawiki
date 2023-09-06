@@ -111,32 +111,34 @@ class ArchivedRevisionLookup {
 	/**
 	 * Return the archived revision with the given ID.
 	 *
-	 * @param PageIdentity $page
+	 * @param PageIdentity|null $page
 	 * @param int $revId
 	 * @return RevisionRecord|null
 	 */
-	public function getArchivedRevisionRecord( PageIdentity $page, int $revId ): ?RevisionRecord {
+	public function getArchivedRevisionRecord( ?PageIdentity $page, int $revId ): ?RevisionRecord {
 		return $this->getRevisionByConditions( $page, [ 'ar_rev_id' => $revId ] );
 	}
 
 	/**
-	 * @param PageIdentity $page
+	 * @param PageIdentity|null $page
 	 * @param array $conditions
 	 * @param array $options
 	 *
 	 * @return RevisionRecord|null
 	 */
 	private function getRevisionByConditions(
-		PageIdentity $page,
+		?PageIdentity $page,
 		array $conditions,
 		array $options = []
 	): ?RevisionRecord {
 		$arQuery = $this->revisionStore->getArchiveQueryInfo();
 
-		$conditions += [
-			'ar_namespace' => $page->getNamespace(),
-			'ar_title' => $page->getDBkey(),
-		];
+		if ( $page ) {
+			$conditions += [
+				'ar_namespace' => $page->getNamespace(),
+				'ar_title' => $page->getDBkey(),
+			];
+		}
 
 		$row = $this->dbProvider->getReplicaDatabase()->selectRow(
 			$arQuery['tables'],
