@@ -85,8 +85,8 @@ class SpecialUnblock extends SpecialPage {
 		[ $this->target, $this->type ] = $this->getTargetAndType( $par, $this->getRequest() );
 		$this->block = DatabaseBlock::newFromTarget( $this->target );
 		if ( $this->target instanceof UserIdentity ) {
-			# Set the 'relevant user' in the skin, so it displays links like Contributions,
-			# User logs, UserRights, etc.
+			// Set the 'relevant user' in the skin, so it displays links like Contributions,
+			// User logs, UserRights, etc.
 			$this->getSkin()->setRelevantUser( $this->target );
 		}
 
@@ -259,10 +259,10 @@ class SpecialUnblock extends SpecialPage {
 			$type = $this->block->getType();
 			$targetName = $this->block->getTargetName();
 
-			# Autoblocks are logged as "autoblock #123 because the IP was recently used by
-			# User:Foo, and we've just got any block, auto or not, that applies to a target
-			# the user has specified.  Someone could be fishing to connect IPs to autoblocks,
-			# so don't show any distinction between unblocked IPs and autoblocked IPs
+			// Autoblocks are logged as "autoblock #123 because the IP was recently used by
+			// User:Foo, and we've just got any block, auto or not, that applies to a target
+			// the user has specified.  Someone could be fishing to connect IPs to autoblocks,
+			// so don't show any distinction between unblocked IPs and autoblocked IPs
 			if ( $type == DatabaseBlock::TYPE_AUTO && $this->type == DatabaseBlock::TYPE_IP ) {
 				$fields['Target']['default'] = $this->target;
 				unset( $fields['Name'] );
@@ -292,11 +292,11 @@ class SpecialUnblock extends SpecialPage {
 					case DatabaseBlock::TYPE_AUTO:
 						$fields['Name']['default'] = $this->block->getRedactedName();
 						$fields['Name']['raw'] = true;
-						# Don't expose the real target of the autoblock
+						// Don't expose the real target of the autoblock
 						$fields['Target']['default'] = "#{$this->target}";
 						break;
 				}
-				// target is hidden, so the reason is the first element
+				// Target is hidden, so the reason is the first element
 				$fields['Target']['autofocus'] = false;
 				$fields['Reason']['autofocus'] = true;
 			}
