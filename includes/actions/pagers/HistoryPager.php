@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -79,6 +80,9 @@ class HistoryPager extends ReverseChronologicalPager {
 	/** @var HookRunner */
 	private $hookRunner;
 
+	/** @var ChangeTagsStore */
+	private $changeTagsStore;
+
 	/**
 	 * @var RevisionRecord[] Revisions, with the key being their result offset
 	 */
@@ -101,6 +105,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @param WatchlistManager|null $watchlistManager
 	 * @param CommentFormatter|null $commentFormatter
 	 * @param HookContainer|null $hookContainer
+	 * @param ChangeTagsStore|null $changeTagsStore
 	 */
 	public function __construct(
 		HistoryAction $historyPage,
@@ -113,7 +118,8 @@ class HistoryPager extends ReverseChronologicalPager {
 		LinkBatchFactory $linkBatchFactory = null,
 		WatchlistManager $watchlistManager = null,
 		CommentFormatter $commentFormatter = null,
-		HookContainer $hookContainer = null
+		HookContainer $hookContainer = null,
+		ChangeTagsStore $changeTagsStore = null
 	) {
 		parent::__construct( $historyPage->getContext() );
 		$this->historyPage = $historyPage;
@@ -132,6 +138,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$this->notificationTimestamp = $this->getConfig()->get( MainConfigNames::ShowUpdatedMarker )
 			? $this->watchlistManager->getTitleNotificationTimestamp( $this->getUser(), $this->getTitle() )
 			: false;
+		$this->changeTagsStore = $changeTagsStore ?? $services->getChangeTagsStore();
 	}
 
 	// For hook compatibility...
@@ -148,18 +155,15 @@ class HistoryPager extends ReverseChronologicalPager {
 	}
 
 	public function getQueryInfo() {
-		$revQuery = $this->revisionStore->getQueryInfo( [ 'user' ] );
+		$queryBuilder = $this->revisionStore->newSelectQueryBuilder( $this->mDb )
+			->joinComment()
+			->joinUser()
+			->useIndex( [ 'revision' => 'rev_page_timestamp' ] )
+			->where( [ 'rev_page' => $this->getWikiPage()->getId() ] )
+			->andWhere( $this->conds );
 
-		$queryInfo = [
-			'tables' => $revQuery['tables'],
-			'fields' => $revQuery['fields'],
-			'conds' => array_merge(
-				[ 'rev_page' => $this->getWikiPage()->getId() ],
-				$this->conds ),
-			'options' => [ 'USE INDEX' => [ 'revision' => 'rev_page_timestamp' ] ],
-			'join_conds' => $revQuery['joins'],
-		];
-		ChangeTags::modifyDisplayQuery(
+		$queryInfo = $queryBuilder->getQueryInfo( 'join_conds' );
+		$this->changeTagsStore->modifyDisplayQuery(
 			$queryInfo['tables'],
 			$queryInfo['fields'],
 			$queryInfo['conds'],

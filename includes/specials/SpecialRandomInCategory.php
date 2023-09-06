@@ -25,6 +25,7 @@
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * Special page to direct the user to a random page
@@ -200,42 +201,36 @@ class SpecialRandomInCategory extends FormSpecialPage {
 	 * @param float|false $rand Random number between 0 and 1
 	 * @param int $offset Extra offset to fudge randomness
 	 * @param bool $up True to get the result above the random number, false for below
-	 * @return array Query information.
+	 * @return SelectQueryBuilder Query builder.
 	 * @note The $up parameter is supposed to counteract what would happen if there
 	 *   was a large gap in the distribution of cl_timestamp values. This way instead
 	 *   of things to the right of the gap being favoured, both sides of the gap
 	 *   are favoured.
 	 */
-	protected function getQueryInfo( $rand, $offset, $up ) {
+	protected function getQueryBuilder( $rand, $offset, $up ) {
 		$op = $up ? '>=' : '<=';
-		$dir = $up ? 'ASC' : 'DESC';
 		if ( !$this->category instanceof Title ) {
 			throw new BadMethodCallException( 'No category set' );
 		}
-		$qi = [
-			'tables' => [ 'categorylinks', 'page' ],
-			'fields' => [ 'page_title', 'page_namespace' ],
-			'conds' => array_merge( [
-				'cl_to' => $this->category->getDBkey(),
-			], $this->extra ),
-			'options' => [
-				'ORDER BY' => 'cl_timestamp ' . $dir,
-				'LIMIT' => 1,
-				'OFFSET' => $offset
-			],
-			'join_conds' => [
-				'page' => [ 'JOIN', 'cl_from = page_id' ]
-			]
-		];
-
 		$dbr = $this->dbProvider->getReplicaDatabase();
+		$queryBuilder = $dbr->newSelectQueryBuilder()
+			->select( [ 'page_title', 'page_namespace' ] )
+			->from( 'categorylinks' )
+			->join( 'page', null, 'cl_from = page_id' )
+			->where( [ 'cl_to' => $this->category->getDBkey() ] )
+			->andWhere( $this->extra )
+			->orderBy( 'cl_timestamp', $up ? SelectQueryBuilder::SORT_ASC : SelectQueryBuilder::SORT_DESC )
+			->limit( 1 )
+			->offset( $offset );
+
 		$minClTime = $this->getTimestampOffset( $rand );
 		if ( $minClTime ) {
-			$qi['conds'][] = 'cl_timestamp ' . $op . ' ' .
-				$dbr->addQuotes( $dbr->timestamp( $minClTime ) );
+			$queryBuilder->andWhere(
+				$dbr->buildComparison( $op, [ 'cl_timestamp' => $dbr->timestamp( $minClTime ) ] )
+			);
 		}
 
-		return $qi;
+		return $queryBuilder;
 	}
 
 	/**
@@ -288,19 +283,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 	 * @return stdClass|false Info for the title selected.
 	 */
 	private function selectRandomPageFromDB( $rand, $offset, $up, $fname = __METHOD__ ) {
-		$dbr = $this->dbProvider->getReplicaDatabase();
-
-		$query = $this->getQueryInfo( $rand, $offset, $up );
-		$res = $dbr->select(
-			$query['tables'],
-			$query['fields'],
-			$query['conds'],
-			$fname,
-			$query['options'],
-			$query['join_conds']
-		);
-
-		return $res->fetchObject();
+		return $this->getQueryBuilder( $rand, $offset, $up )->caller( $fname )->fetchRow();
 	}
 
 	protected function getGroupName() {
