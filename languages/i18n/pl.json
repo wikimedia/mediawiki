@@ -3186,6 +3186,7 @@
 	"pageinfo-redirects-name": "Liczba przekierowań do tej strony",
 	"pageinfo-subpages-name": "Liczba podstron tej strony",
 	"pageinfo-subpages-value": "$1 ($2 {{PLURAL:$2|przekierowanie|przekierowania|przekierowań}}; $3 {{PLURAL:$3|bez przekierowania|bez przekierowań|bez przekierowań}})",
+	"pageinfo-subpages-value-unknown": "Nieznana ($1)",
 	"pageinfo-firstuser": "{{GENDER:$1|Twórca|Twórczyni}} strony",
 	"pageinfo-firsttime": "Data utworzenia strony",
 	"pageinfo-lastuser": "{{GENDER:$1|Autor|Autorka}} ostatniej edycji",

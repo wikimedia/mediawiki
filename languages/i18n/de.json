@@ -582,6 +582,7 @@
 	"nosuchusershort": "Der Benutzername „$1“ ist nicht vorhanden. Bitte überprüfe die Schreibweise.",
 	"nouserspecified": "Bitte gib einen Benutzernamen an.",
 	"login-userblocked": "{{GENDER:$1|Dieser Benutzer|Diese Benutzerin}} ist gesperrt. Die Anmeldung ist nicht erlaubt.",
+	"fatalpassworderror": "$1\n\nAus Sicherheitsgründen kannst du dich mit diesem Passwort nicht anmelden. Bitte [$2 fordere eine E-Mail zum Zurücksetzen des Passworts an].",
 	"wrongpassword": "Der Benutzername oder das Passwort ist falsch. Bitte versuche es erneut.",
 	"wrongpasswordempty": "Es wurde kein Passwort eingegeben. Bitte versuche es erneut.",
 	"passwordtooshort": "Passwörter müssen mindestens {{PLURAL:$1|1 Zeichen|$1 Zeichen}} lang sein.",

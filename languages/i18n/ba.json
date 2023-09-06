@@ -1993,7 +1993,7 @@
 	"mimesearch": "MIME буйынса эҙләү",
 	"mimesearch-summary": "Был бит файлдарҙы MIME-төрҙәре аша фильтрлау мөмкинлеге бирә.\nЭҙләү форматы: эстәлек төрө/икенсе быуын төрө йөки эстәлек төрө/*, мәҫәлән, <code>image/jpeg</code>",
 	"mimetype": "MIME-төр:",
-	"download": "Тейәп алырға",
+	"download": "Йөкләп алырға",
 	"unwatchedpages": "Күҙәтелмәгән биттәр",
 	"listredirects": "Йүнәлтеүҙәр исемлеге",
 	"listduplicatedfiles": "Күсермәле файлдар исемлеге",

@@ -3069,6 +3069,7 @@
 	"pageinfo-redirects-name": "Тиде велыжыш колтымаш-влакын чотышт",
 	"pageinfo-subpages-name": "Тиде велыжын укш-влакше",
 	"pageinfo-subpages-value": "$1 ($2 {{PLURAL:$2|вес вере колтымаш}}; $3 {{PLURAL:$3|вес вере колтыдымо}})",
+	"pageinfo-subpages-value-unknown": "Палыдыме ($1)",
 	"pageinfo-firstuser": "Велыж {{GENDER:$1|ыштыше}}",
 	"pageinfo-firsttime": "Велыжым ыштыме кече",
 	"pageinfo-lastuser": "Пытартыш {{GENDER:$1|редактор}}",
