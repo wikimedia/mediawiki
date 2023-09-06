@@ -5908,7 +5908,7 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Whether to include source map URL comments in ResourceLoader responses
+	 * Whether to include a SourceMap header in ResourceLoader responses
 	 * for JavaScript modules.
 	 *
 	 * @since 1.41
