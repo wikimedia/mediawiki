@@ -11,9 +11,6 @@ use Wikimedia\TestingAccessWrapper;
  * @covers MultiHttpClient
  */
 class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
-	/** @var MultiHttpClient|MockObject */
-	protected $client;
-
 	/**
 	 * @param array $options
 	 * @return MultiHttpClient|MockObject
@@ -24,11 +21,6 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 			->onlyMethods( [ 'isCurlEnabled' ] )->getMock();
 		$client->method( 'isCurlEnabled' )->willReturn( false );
 		return $client;
-	}
-
-	protected function setUp(): void {
-		parent::setUp();
-		$this->client = $this->createClient( [] );
 	}
 
 	private function getHttpRequest( $statusValue, $statusCode, $headers = [] ) {
@@ -63,7 +55,7 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 		$httpRequest = $this->getHttpRequest( StatusValue::newGood( 200 ), 200 );
 		$this->setService( 'HttpRequestFactory', $this->mockHttpRequestFactory( $httpRequest ) );
 
-		[ $rcode, $rdesc, /* $rhdrs */, $rbody, $rerr ] = $this->client->run( [
+		[ $rcode, $rdesc, /* $rhdrs */, $rbody, $rerr ] = $this->createClient()->run( [
 			'method' => 'GET',
 			'url' => "http://example.test",
 		] );
@@ -80,7 +72,7 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 			StatusValue::newFatal( 'http-invalid-url', 'http://www.example.test' ), 0 );
 		$this->setService( 'HttpRequestFactory', $this->mockHttpRequestFactory( $httpRequest ) );
 
-		[ $rcode, $rdesc, /* $rhdrs */, $rbody, $rerr ] = $this->client->run( [
+		[ $rcode, $rdesc, /* $rhdrs */, $rbody, $rerr ] = $this->createClient()->run( [
 			'method' => 'GET',
 			'url' => "http://www.example.test",
 		] );
@@ -106,7 +98,7 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 				'url' => 'https://get.test',
 			],
 		];
-		$responses = $this->client->runMulti( $reqs );
+		$responses = $this->createClient()->runMulti( $reqs );
 		foreach ( $responses as $response ) {
 			[ $rcode, $rdesc, /* $rhdrs */, $rbody, $rerr ] = $response['response'];
 			$this->assertSame( 200, $rcode );
@@ -132,7 +124,7 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 				'url' => 'http://example.test/67890' ,
 			]
 		];
-		$responses = $this->client->runMulti( $reqs );
+		$responses = $this->createClient()->runMulti( $reqs );
 		foreach ( $responses as $response ) {
 			[ $rcode, $rdesc, /* $rhdrs */, $rbody, $rerr ] = $response['response'];
 			$this->assertSame( 404, $rcode );
@@ -161,7 +153,7 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 		$httpRequest = $this->getHttpRequest( StatusValue::newGood( 200 ), 200, $headers );
 		$this->setService( 'HttpRequestFactory', $this->mockHttpRequestFactory( $httpRequest ) );
 
-		[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $this->client->run( [
+		[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $this->createClient()->run( [
 			'method' => 'GET',
 			'url' => 'http://example.test',
 		] );
