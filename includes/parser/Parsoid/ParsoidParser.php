@@ -13,8 +13,6 @@ use ParserFactory;
 use ParserOptions;
 use ParserOutput;
 use Wikimedia\Assert\Assert;
-use Wikimedia\Parsoid\Config\DataAccess;
-use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Parsoid;
 use WikitextContent;
 
@@ -41,20 +39,18 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 	private $legacyParserFactory;
 
 	/**
-	 * @param SiteConfig $siteConfig
-	 * @param DataAccess $dataAccess
+	 * @param Parsoid $parsoid
 	 * @param PageConfigFactory $pageConfigFactory
 	 * @param LanguageConverterFactory $languageConverterFactory
 	 * @param ParserFactory $legacyParserFactory
 	 */
 	public function __construct(
-		SiteConfig $siteConfig,
-		DataAccess $dataAccess,
+		Parsoid $parsoid,
 		PageConfigFactory $pageConfigFactory,
 		LanguageConverterFactory $languageConverterFactory,
 		ParserFactory $legacyParserFactory
 	) {
-		$this->parsoid = new Parsoid( $siteConfig, $dataAccess );
+		$this->parsoid = $parsoid;
 		$this->pageConfigFactory = $pageConfigFactory;
 		$this->languageConverterFactory = $languageConverterFactory;
 		$this->legacyParserFactory = $legacyParserFactory;

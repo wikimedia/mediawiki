@@ -7,6 +7,7 @@ use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use ParserFactory;
 use Wikimedia\Parsoid\Config\DataAccess;
 use Wikimedia\Parsoid\Config\SiteConfig;
+use Wikimedia\Parsoid\Parsoid;
 
 /**
  * ParserFactory which uses a ParsoidParser.
@@ -67,8 +68,7 @@ class ParsoidParserFactory /* eventually this may extend \ParserFactory */ {
 	 */
 	public function create(): ParsoidParser {
 		return new ParsoidParser(
-			$this->siteConfig,
-			$this->dataAccess,
+			new Parsoid( $this->siteConfig, $this->dataAccess ),
 			$this->pageConfigFactory,
 			$this->languageConverterFactory,
 			$this->legacyParserFactory
