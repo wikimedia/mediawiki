@@ -422,8 +422,8 @@ class MultiHttpClient implements LoggerAwareInterface {
 
 		$headers = [];
 		foreach ( $req['headers'] as $name => $value ) {
-			if ( strpos( $name, ': ' ) ) {
-				throw new Exception( "Headers cannot have ':' in the name." );
+			if ( strpos( $name, ':' ) !== false ) {
+				throw new Exception( "Header name must not contain colon-space." );
 			}
 			$headers[] = $name . ': ' . trim( $value );
 		}

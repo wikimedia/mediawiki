@@ -303,6 +303,48 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'https://example.com/path?query=another%20string', $reqs[1]['url'] );
 	}
 
+	public static function provideHeader() {
+		// Invalid
+		yield 'colon space' => [ false, [ 'Foo: X' => 'Y' ] ];
+		yield 'colon' => [ false, [ 'Foo:bar' => 'X' ] ];
+		yield 'two colon' => [ false, [ 'Foo:bar:baz' => 'X' ] ];
+		yield 'trailing colon' => [ false, [ 'Foo:' => 'Y' ] ];
+		yield 'leading colon' => [ false, [ ':Foo' => 'Y' ] ];
+		// Valid
+		yield 'word' => [ true, [ 'Foo' => 'X' ] ];
+		yield 'dash' => [ true, [ 'Foo-baz' => 'X' ] ];
+	}
+
+	/**
+	 * @dataProvider provideHeader
+	 */
+	public function testNormalizeIllegalHeader( bool $valid, array $headers ) {
+		$class = new ReflectionClass( MultiHttpClient::class );
+		$func = $class->getMethod( 'getCurlHandle' );
+		$func->setAccessible( true );
+		$req = [
+			'method' => 'GET',
+			'url' => 'http://localhost:1234',
+			'query' => [],
+			'body' => '',
+			'headers' => $headers
+		];
+
+		if ( $valid ) {
+			$this->expectNotToPerformAssertions();
+		} else {
+			$this->expectException( Exception::class );
+			$this->expectExceptionMessage( 'Header name must not contain colon-space' );
+		}
+		$func->invokeArgs( new MultiHttpClient( [] ), [ &$req, [
+			'connTimeout' => 1,
+			'reqTimeout' => 1,
+		] ] );
+		// TODO: Factor out curl_multi_exec so can stub that,
+		// and then simply test the public runMulti() method here.
+		// Or move more logic to normalizeRequests and test that.
+	}
+
 	public function testGetCurlMulti() {
 		$cm = TestingAccessWrapper::newFromObject( new MultiHttpClient( [] ) );
 		$resource = $cm->getCurlMulti( [ 'usePipelining' => true ] );
