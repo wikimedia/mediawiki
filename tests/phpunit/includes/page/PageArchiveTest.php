@@ -108,16 +108,11 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 		$revisionStore = $this->getServiceContainer()->getRevisionStore();
 
 		// First make sure old revisions are archived
-		$dbr = wfGetDB( DB_REPLICA );
-		$arQuery = $revisionStore->getArchiveQueryInfo();
-		$row = $dbr->selectRow(
-			$arQuery['tables'],
-			$arQuery['fields'],
-			[ 'ar_rev_id' => $this->ipRev->getId() ],
-			__METHOD__,
-			[],
-			$arQuery['joins']
-		);
+		$dbr = $this->getDb();
+		$row = $revisionStore->newArchiveSelectQueryBuilder( $dbr )
+			->joinComment()
+			->where( [ 'ar_rev_id' => $this->ipRev->getId() ] )
+			->caller( __METHOD__ )->fetchRow();
 		$this->assertEquals( $this->ipEditor, $row->ar_user_text );
 
 		// Should not be in revision

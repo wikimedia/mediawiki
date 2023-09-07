@@ -489,19 +489,13 @@ class UndeletePage {
 		}
 
 		$revisionStore = $this->revisionStore;
-		$queryInfo = $revisionStore->getArchiveQueryInfo();
-		$queryInfo['tables'][] = 'revision';
-		$queryInfo['fields'][] = 'rev_id';
-		$queryInfo['joins']['revision'] = [ 'LEFT JOIN', 'ar_rev_id=rev_id' ];
-
-		$result = $dbw->select(
-			$queryInfo['tables'],
-			$queryInfo['fields'],
-			$oldWhere,
-			__METHOD__,
-			[ 'ORDER BY' => 'ar_timestamp' ],
-			$queryInfo['joins']
-		);
+		$result = $revisionStore->newArchiveSelectQueryBuilder( $dbw )
+			->joinComment()
+			->leftJoin( 'revision', null, 'ar_rev_id=rev_id' )
+			->field( 'rev_id' )
+			->where( $oldWhere )
+			->orderBy( 'ar_timestamp' )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		$rev_count = $result->numRows();
 		if ( !$rev_count ) {

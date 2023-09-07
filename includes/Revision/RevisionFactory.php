@@ -88,6 +88,7 @@ interface RevisionFactory extends IDBAccessObject {
 	 * a new RevisionArchiveRecord object.
 	 *
 	 * @since 1.37, since 1.31 on RevisionStore
+	 * @deprecated since 1.41 use RevisionStore::newArchiveSelectQueryBuilder() instead.
 	 *
 	 * @return array[] With three keys:
 	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()` or `SelectQueryBuilder::tables`
@@ -131,6 +132,17 @@ interface RevisionFactory extends IDBAccessObject {
 	 * @return RevisionSelectQueryBuilder
 	 */
 	public function newSelectQueryBuilder( IReadableDatabase $dbr ): RevisionSelectQueryBuilder;
+
+	/**
+	 * Return a SelectQueryBuilder to allow querying archive table
+	 *
+	 * @since 1.41
+	 *
+	 * @param IReadableDatabase $dbr A db object to do the query on.
+	 *
+	 * @return ArchiveSelectQueryBuilder
+	 */
+	public function newArchiveSelectQueryBuilder( IReadableDatabase $dbr ): ArchiveSelectQueryBuilder;
 
 	/**
 	 * Determine whether the parameter is a row containing all the fields

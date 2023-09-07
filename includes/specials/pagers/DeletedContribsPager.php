@@ -118,24 +118,23 @@ class DeletedContribsPager extends ReverseChronologicalPager {
 
 	public function getQueryInfo() {
 		$dbr = $this->getDatabase();
-		$userCond = [ 'actor_name' => $this->target ];
-		$conds = array_merge( $userCond, $this->getNamespaceCond() );
+		$queryBuilder = $this->revisionFactory->newArchiveSelectQueryBuilder( $dbr )
+			->joinComment()
+			->where( [ 'actor_name' => $this->target ] )
+			->andWhere( $this->getNamespaceCond() );
 		// Paranoia: avoid brute force searches (T19792)
 		if ( !$this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
-			$conds[] = $dbr->bitAnd( 'ar_deleted', RevisionRecord::DELETED_USER ) . ' = 0';
+			$queryBuilder->andWhere(
+				$dbr->bitAnd( 'ar_deleted', RevisionRecord::DELETED_USER ) . ' = 0'
+			);
 		} elseif ( !$this->getAuthority()->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
-			$conds[] = $dbr->bitAnd( 'ar_deleted', RevisionRecord::SUPPRESSED_USER ) .
-				' != ' . RevisionRecord::SUPPRESSED_USER;
+			$queryBuilder->andWhere(
+				$dbr->bitAnd( 'ar_deleted', RevisionRecord::SUPPRESSED_USER ) .
+				' != ' . RevisionRecord::SUPPRESSED_USER
+			);
 		}
 
-		$queryInfo = $this->revisionFactory->getArchiveQueryInfo();
-		$queryInfo['conds'] = $conds;
-		$queryInfo['options'] = [];
-
-		// rename the "joins" field to "join_conds" as expected by the base class.
-		$queryInfo['join_conds'] = $queryInfo['joins'];
-		unset( $queryInfo['joins'] );
-
+		$queryInfo = $queryBuilder->getQueryInfo( 'join_conds' );
 		ChangeTags::modifyDisplayQuery(
 			$queryInfo['tables'],
 			$queryInfo['fields'],

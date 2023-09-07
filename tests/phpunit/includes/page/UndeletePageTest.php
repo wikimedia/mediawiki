@@ -80,18 +80,13 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 		$revisionStore = $this->getServiceContainer()->getRevisionStore();
 
 		// First make sure old revisions are archived
-		$dbr = wfGetDB( DB_REPLICA );
-		$arQuery = $revisionStore->getArchiveQueryInfo();
+		$dbr = $this->getDb();
 
 		foreach ( [ 0, 1 ] as $key ) {
-			$row = $dbr->selectRow(
-				$arQuery['tables'],
-				$arQuery['fields'],
-				[ 'ar_rev_id' => $this->pages[$key]['revId'] ],
-				__METHOD__,
-				[],
-				$arQuery['joins']
-			);
+			$row = $revisionStore->newArchiveSelectQueryBuilder( $dbr )
+				->joinComment()
+				->where( [ 'ar_rev_id' => $this->pages[$key]['revId'] ] )
+				->caller( __METHOD__ )->fetchRow();
 			$this->assertEquals( $this->ipEditor, $row->ar_user_text );
 
 			// Should not be in revision

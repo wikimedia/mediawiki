@@ -2511,6 +2511,13 @@ class RevisionStore
 	}
 
 	/**
+	 * @inheritDoc
+	 */
+	public function newArchiveSelectQueryBuilder( IReadableDatabase $dbr ): ArchiveSelectQueryBuilder {
+		return new ArchiveSelectQueryBuilder( $dbr );
+	}
+
+	/**
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new SlotRecord.
 	 *
@@ -2616,6 +2623,7 @@ class RevisionStore
 	 * MCR migration note: this replaced Revision::getArchiveQueryInfo
 	 *
 	 * @since 1.31
+	 * @deprecated since 1.41 use RevisionStore::newArchiveSelectQueryBuilder() instead.
 	 *
 	 * @return array[] With three keys:
 	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()` or `SelectQueryBuilder::tables`
