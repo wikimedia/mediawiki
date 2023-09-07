@@ -134,31 +134,17 @@ class UserAuthority implements Authority {
 		$this->useLimitCache = $useLimitCache;
 	}
 
-	/**
-	 * @inheritDoc
-	 *
-	 * @return UserIdentity
-	 */
+	/** @inheritDoc */
 	public function getUser(): UserIdentity {
 		return $this->actor;
 	}
 
-	/**
-	 * @inheritDoc
-	 *
-	 * @return bool
-	 */
+	/** @inheritDoc */
 	public function isAllowed( string $permission, PermissionStatus $status = null ): bool {
 		return $this->internalAllowed( $permission, $status, false, null );
 	}
 
-	/**
-	 * @inheritDoc
-	 *
-	 * @param string ...$permissions
-	 *
-	 * @return bool
-	 */
+	/** @inheritDoc */
 	public function isAllowedAny( ...$permissions ): bool {
 		if ( !$permissions ) {
 			throw new InvalidArgumentException( 'At least one permission must be specified' );
@@ -173,13 +159,7 @@ class UserAuthority implements Authority {
 		return false;
 	}
 
-	/**
-	 * @inheritDoc
-	 *
-	 * @param string ...$permissions
-	 *
-	 * @return bool
-	 */
+	/** @inheritDoc */
 	public function isAllowedAll( ...$permissions ): bool {
 		if ( !$permissions ) {
 			throw new InvalidArgumentException( 'At least one permission must be specified' );
@@ -194,15 +174,7 @@ class UserAuthority implements Authority {
 		return true;
 	}
 
-	/**
-	 * @inheritDoc
-	 *
-	 * @param string $action
-	 * @param PageIdentity $target
-	 * @param PermissionStatus|null $status
-	 *
-	 * @return bool
-	 */
+	/** @inheritDoc */
 	public function probablyCan(
 		string $action,
 		PageIdentity $target,
@@ -217,15 +189,7 @@ class UserAuthority implements Authority {
 		);
 	}
 
-	/**
-	 * @inheritDoc
-	 *
-	 * @param string $action
-	 * @param PageIdentity $target
-	 * @param PermissionStatus|null $status
-	 *
-	 * @return bool
-	 */
+	/** @inheritDoc */
 	public function definitelyCan(
 		string $action,
 		PageIdentity $target,
@@ -243,27 +207,12 @@ class UserAuthority implements Authority {
 		);
 	}
 
-	/**
-	 * @inheritDoc
-	 *
-	 * @since 1.41
-	 * @param string $action
-	 * @param PermissionStatus|null $status
-	 * @return bool
-	 */
+	/** @inheritDoc */
 	public function isDefinitelyAllowed( string $action, PermissionStatus $status = null ): bool {
 		return $this->internalAllowed( $action, $status, 0, $this->actor->getBlock() );
 	}
 
-	/**
-	 * @inheritDoc
-	 *
-	 * @since 1.41
-	 * @param string $action
-	 * @param PermissionStatus|null $status
-	 *
-	 * @return bool
-	 */
+	/** @inheritDoc */
 	public function authorizeAction(
 		string $action,
 		PermissionStatus $status = null
@@ -273,15 +222,7 @@ class UserAuthority implements Authority {
 		return $this->internalAllowed( $action, $status, 1, $this->actor->getBlock() );
 	}
 
-	/**
-	 * @inheritDoc
-	 *
-	 * @param string $action
-	 * @param PageIdentity $target
-	 * @param PermissionStatus|null $status
-	 *
-	 * @return bool
-	 */
+	/** @inheritDoc */
 	public function authorizeRead(
 		string $action,
 		PageIdentity $target,
@@ -301,15 +242,7 @@ class UserAuthority implements Authority {
 		);
 	}
 
-	/**
-	 * @inheritDoc
-	 *
-	 * @param string $action
-	 * @param PageIdentity $target
-	 * @param PermissionStatus|null $status
-	 *
-	 * @return bool
-	 */
+	/** @inheritDoc */
 	public function authorizeWrite(
 		string $action,
 		PageIdentity $target,
@@ -516,15 +449,7 @@ class UserAuthority implements Authority {
 		return $isLimited;
 	}
 
-	/**
-	 * Returns any user block affecting the Authority.
-	 *
-	 * @param int $freshness
-	 *
-	 * @return ?Block
-	 * @since 1.37
-	 *
-	 */
+	/** @inheritDoc */
 	public function getBlock( int $freshness = self::READ_NORMAL ): ?Block {
 		// Cache block info, so we don't have to fetch it again unnecessarily.
 		if ( $this->userBlock === null || $freshness === self::READ_LATEST ) {
