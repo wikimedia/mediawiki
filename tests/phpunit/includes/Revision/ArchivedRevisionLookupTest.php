@@ -45,10 +45,6 @@ class ArchivedRevisionLookupTest extends MediaWikiIntegrationTestCase {
 	 */
 	protected $secondRev;
 
-	protected function addCoreDBData() {
-		// Blanked out to keep auto-increment values stable.
-	}
-
 	protected function setUp(): void {
 		parent::setUp();
 

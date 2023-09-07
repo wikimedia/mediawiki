@@ -1481,7 +1481,6 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			'attribs' => [ 'oldid' => 1, 'pageName' => 'Test', 'pagelanguage' => $en ],
 			'wikitext' => null,
 			'html2WtMode' => false,
-			'expectedWikitext' => 'UTContent',
 			'expectedPageLanguage' => $en,
 		];
 
@@ -1489,7 +1488,6 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			'attribs' => [ 'oldid' => 1, 'pageName' => 'Test', 'pagelanguage' => $en ],
 			'wikitext' => "=test=",
 			'html2WtMode' => false,
-			'expected wikitext' => '=test=',
 			'expected page language' => $en,
 		];
 
@@ -1497,7 +1495,6 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			'attribs' => [ 'oldid' => 1, 'pageName' => 'Test', 'pagelanguage' => null ],
 			'wikitext' => null,
 			'html2WtMode' => true,
-			'expected wikitext' => 'UTContent',
 			'expected page language' => $en,
 		];
 
@@ -1505,7 +1502,6 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			'attribs' => [ 'oldid' => 1, 'pageName' => 'Test', 'pagelanguage' => $ar ],
 			'wikitext' => "=header=",
 			'html2WtMode' => true,
-			'expected wikitext' => '=header=',
 			'expected page language' => $ar,
 		];
 
@@ -1513,7 +1509,6 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			'attribs' => [ 'oldid' => 1, 'pageName' => '', 'pagelanguage' => $de ],
 			'wikitext' => null,
 			'html2WtMode' => false,
-			'expected wikitext' => 'UTContent',
 			'expected page language' => $de,
 		];
 
@@ -1521,7 +1516,6 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			'attribs' => [ 'oldid' => 1, 'pageName' => '', 'pagelanguage' => null ],
 			'wikitext' => null,
 			false,
-			'expected wikitext' => 'UTContent',
 			'expected page language' => $en,
 		];
 	}
@@ -1533,13 +1527,15 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testTryToCreatePageConfig(
 		array $attribs,
-		$wikitext,
+		?string $wikitext,
 		$html2WtMode,
-		$expectedWikitext,
 		Language $expectedLanguage
 	) {
 		// Create a page, if needed, to test with oldid
-		$this->getExistingTestPage();
+		$origContent = 'Test content for ' . __METHOD__;
+		$page = $this->getNonexistingTestPage();
+		$this->editPage( $page, $origContent );
+		$expectedWikitext = $wikitext ?? $origContent;
 		$pageConfig = $this->newParsoidHandler()->tryToCreatePageConfig( $attribs, $wikitext, $html2WtMode );
 
 		$this->assertSame(

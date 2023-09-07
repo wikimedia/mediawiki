@@ -30,10 +30,6 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 		$this->tablesUsed[] = 'slot_roles';
 	}
 
-	protected function addCoreDBData() {
-		// The default implementation causes the slot_roles to already have content. Skip that.
-	}
-
 	private function populateTable( $values ) {
 		$insertValues = [];
 		foreach ( $values as $name ) {
