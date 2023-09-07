@@ -698,6 +698,7 @@ because of Phabricator reports.
   - OutputHandler -> MediaWiki\Output\OutputHandler
   - OutputPage -> MediaWiki\Output\OutputPage
   - StreamFile -> MediaWiki\Output\StreamFile
+  - SiteConfiguration -> MediaWiki\Config\SiteConfiguration
 * RevisionStore::getQueryInfo() and RevisionFactory::getQueryInfo() have been
   deprecated. Use ::newSelectQueryBuilder() instead.
 * The following methods, previously deprecated, now emit deprecation warnings:

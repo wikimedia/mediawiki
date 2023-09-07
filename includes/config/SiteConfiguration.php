@@ -18,8 +18,12 @@
  * @file
  */
 
+namespace MediaWiki\Config;
+
+use ConfigException;
 use MediaWiki\Shell\Shell;
 use MediaWiki\WikiMap\WikiMap;
+use RuntimeException;
 
 /**
  * Configuration holder, particularly for multi-wiki sites.
@@ -44,15 +48,15 @@ use MediaWiki\WikiMap\WikiMap;
  *
  * @code
  * $conf->settings = [
- *	'wgSomeSetting' => [
+ *    'wgSomeSetting' => [
  *
- *		# production:
- *		'de'     => false,
- *		'en'     => false,
+ *        # production:
+ *        'de'     => false,
+ *        'en'     => false,
  *
- *		# test:
- *		'beta    => true,
- *	],
+ *        # test:
+ *        'beta    => true,
+ *    ],
  * ];
  * @endcode
  *
@@ -63,13 +67,13 @@ use MediaWiki\WikiMap\WikiMap;
  *
  * @code
  * $conf->settings = [
- *	'wgSomeSetting' => [
+ *    'wgSomeSetting' => [
  *
- *		'default' => false,
+ *        'default' => false,
  *
- *		# Enable feature on test
- *		'beta'    => true,
- *	],
+ *        # Enable feature on test
+ *        'beta'    => true,
+ *    ],
  * ];
  * @endcode
  *
@@ -81,13 +85,13 @@ use MediaWiki\WikiMap\WikiMap;
  *
  * @code
  * $conf->settings = [
- *	'wgMergeSetting' = [
- *		# Value that will be shared among all wikis:
- *		'default' => [ NS_USER => true ],
+ *    'wgMergeSetting' = [
+ *        # Value that will be shared among all wikis:
+ *        'default' => [ NS_USER => true ],
  *
- *		# Leading '+' means merging the array of value with the defaults
- *		'+beta' => [ NS_HELP => true ],
- *	],
+ *        # Leading '+' means merging the array of value with the defaults
+ *        '+beta' => [ NS_HELP => true ],
+ *    ],
  * ];
  *
  * # Get configuration for the German site:
@@ -184,7 +188,11 @@ class SiteConfiguration {
 	 * @param array $wikiTags The tags assigned to the wiki.
 	 * @return mixed The value of the setting requested.
 	 */
-	public function get( $settingName, $wiki, $site = null, $params = [],
+	public function get(
+		$settingName,
+		$wiki,
+		$site = null,
+		$params = [],
 		$wikiTags = []
 	) {
 		$params = $this->mergeParams( $wiki, $site, $params, $wikiTags );
@@ -377,8 +385,13 @@ class SiteConfiguration {
 	 * @param array $params List of parameters. $.'key' is replaced by $value in all returned data.
 	 * @param array $wikiTags The tags assigned to the wiki.
 	 */
-	public function extractVar( $setting, $wiki, $site, &$var,
-		$params = [], $wikiTags = []
+	public function extractVar(
+		$setting,
+		$wiki,
+		$site,
+		&$var,
+		$params = [],
+		$wikiTags = []
 	) {
 		wfDeprecated( __METHOD__, '1.41' );
 		$value = $this->get( $setting, $wiki, $site, $params, $wikiTags );
@@ -397,8 +410,12 @@ class SiteConfiguration {
 	 * @param array $params List of parameters. $.'key' is replaced by $value in all returned data.
 	 * @param array $wikiTags The tags assigned to the wiki.
 	 */
-	public function extractGlobal( $setting, $wiki, $site = null,
-		$params = [], $wikiTags = []
+	public function extractGlobal(
+		$setting,
+		$wiki,
+		$site = null,
+		$params = [],
+		$wikiTags = []
 	) {
 		wfDeprecated( __METHOD__, '1.41' );
 		$params = $this->mergeParams( $wiki, $site, $params, $wikiTags );
@@ -439,7 +456,10 @@ class SiteConfiguration {
 	 * @param array $params List of parameters. $.'key' is replaced by $value in all returned data.
 	 * @param array $wikiTags The tags assigned to the wiki.
 	 */
-	public function extractAllGlobals( $wiki, $site = null, $params = [],
+	public function extractAllGlobals(
+		$wiki,
+		$site = null,
+		$params = [],
 		$wikiTags = []
 	) {
 		$params = $this->mergeParams( $wiki, $site, $params, $wikiTags );
@@ -523,7 +543,7 @@ class SiteConfiguration {
 		$ret['replacements'] = [];
 		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 		foreach ( $ret['params'] as $key => $value ) {
-			$ret['replacements'][ '$' . $key ] = $value;
+			$ret['replacements']['$' . $key] = $value;
 		}
 
 		return $ret;
@@ -584,8 +604,10 @@ class SiteConfiguration {
 			}
 		} else { // $wiki is a foreign wiki
 			if ( isset( $this->cfgCache[$wiki] ) ) {
-				$res = array_intersect_key( $this->cfgCache[$wiki],
-					array_fill_keys( $settings, true ) );
+				$res = array_intersect_key(
+					$this->cfgCache[$wiki],
+					array_fill_keys( $settings, true )
+				);
 				if ( count( $res ) == count( $settings ) ) {
 					return $multi ? $res : current( $res ); // cache hit
 				}
@@ -669,3 +691,8 @@ class SiteConfiguration {
 		}
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( SiteConfiguration::class, 'SiteConfiguration' );

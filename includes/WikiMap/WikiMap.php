@@ -52,6 +52,7 @@ class WikiMap {
 	 */
 	private static function getWikiReferenceFromWgConf( $wikiID ) {
 		global $wgConf;
+		'@phan-var \MediaWiki\Config\SiteConfiguration $wgConf';
 
 		$wgConf->loadFullData();
 

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Config\SiteConfiguration;
 use MediaWiki\MainConfigNames;
 use MediaWiki\WikiMap\WikiMap;
 use MediaWiki\WikiMap\WikiReference;

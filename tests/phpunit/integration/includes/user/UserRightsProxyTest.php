@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Tests\User;
 
+use MediaWiki\Config\SiteConfiguration;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
 use MediaWikiIntegrationTestCase;
-use SiteConfiguration;
 use UserRightsProxy;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\ILoadBalancer;

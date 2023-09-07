@@ -5,12 +5,12 @@ namespace MediaWiki\Tests\Integration\CommentFormatter;
 use LinkCacheTestTrait;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentParser;
+use MediaWiki\Config\SiteConfiguration;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\Title;
 use RepoGroup;
-use SiteConfiguration;
 
 /**
  * @group Database
