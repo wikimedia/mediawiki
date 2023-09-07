@@ -334,35 +334,63 @@ class ExtensionRegistry {
 	}
 
 	/**
+	 * Fandom change - start (@author ttomalak) - APCu
+	 * LAZY_LOADED_ATTRIBUTES might not be used very much, therefore we should add an option to
+	 * disable eager loading them in to the APCu, so we can save memory and entries as those keys
+	 * might contain big amount of data.
+	 *
 	 * Save data in the cache
 	 *
 	 * @param BagOStuff $cache
 	 * @param array $data
 	 */
 	protected function saveToCache( BagOStuff $cache, array $data ) {
+		global $wgDevelopmentWarnings, $wgCacheLazyAttributes;
+		if ( $data['warnings'] && $wgDevelopmentWarnings ) {
+			// If warnings were shown, don't cache it
+			return;
+		}
+
+		$mainKey = $this->makeCacheKey( $cache, 'main' );
+		$cache->set( $mainKey, $data, self::CACHE_EXPIRY );
+
+		if ( !$wgCacheLazyAttributes ) {
+			return;
+		}
+
+		// Cache lazy-loaded attributes separately
+		foreach ( self::LAZY_LOADED_ATTRIBUTES as $attrib ) {
+			$cache->set(
+				$this->makeCacheKey( $cache, 'lazy-attrib', $attrib ),
+				// Save empty array even if attribute don't have value, so it will not generate
+				// unnecessary readFromQueue on every load.php request, if SkinLessImportPaths is
+				// not used
+				$data['attributes'][$attrib] ?? [],
+				self::CACHE_EXPIRY
+			);
+		}
+	}
+
+	/**
+	 * Save lazy attributes in the cache
+	 *
+	 * @param BagOStuff $cache
+	 * @param array $data
+	 */
+	protected function saveLazyAttributesToCache( BagOStuff $cache, string $attrib, array $data ) {
 		global $wgDevelopmentWarnings;
 		if ( $data['warnings'] && $wgDevelopmentWarnings ) {
 			// If warnings were shown, don't cache it
 			return;
 		}
-		$lazy = [];
-		// Cache lazy-loaded attributes separately
-		foreach ( self::LAZY_LOADED_ATTRIBUTES as $attrib ) {
-			if ( isset( $data['attributes'][$attrib] ) ) {
-				$lazy[$attrib] = $data['attributes'][$attrib];
-				unset( $data['attributes'][$attrib] );
-			}
-		}
-		$mainKey = $this->makeCacheKey( $cache, 'main' );
-		$cache->set( $mainKey, $data, self::CACHE_EXPIRY );
-		foreach ( $lazy as $attrib => $value ) {
-			$cache->set(
-				$this->makeCacheKey( $cache, 'lazy-attrib', $attrib ),
-				$value,
-				self::CACHE_EXPIRY
-			);
-		}
+
+		$cache->set(
+			$this->makeCacheKey( $cache, 'lazy-attrib', $attrib ),
+			$data,
+			self::CACHE_EXPIRY
+		);
 	}
+	/** Fandom change - end */
 
 	/**
 	 * Get the current load queue. Not intended to be used
@@ -662,7 +690,9 @@ class ExtensionRegistry {
 
 		$result = $this->readFromQueue( $paths );
 		$data = $result['attributes'][$name] ?? [];
-		$this->saveToCache( $cache, $result );
+		/** Fandom change - start (@author ttomalak) - APCu */
+		$this->saveLazyAttributesToCache( $cache, $name, $data );
+		/** Fandom change - end */
 		$this->lazyAttributes[$name] = $data;
 
 		return $data;

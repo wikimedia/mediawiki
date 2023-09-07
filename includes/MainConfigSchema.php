@@ -3797,6 +3797,19 @@ class MainConfigSchema {
 		'type' => 'boolean',
 	];
 
+	/**
+	 * Whether to eagerly load lazy attributes from the extensions in to the LocalObject memory
+	 * on ExtensionRegistry initialisation.
+	 *
+	 * LazyAttributes might contains a lot of data, depending on particular use case eg.
+	 * QUnitTestModules, but usually for production, this will not be used and can be disabled.
+	 * Even when disabled those attributes will land in the cache if particular key will be
+	 * accessed for the first time @see \ExtensionRegistry::getLazyLoadedAttribute()
+	 */
+	public const CacheLazyAttributes = [
+		'default' => true,
+	];
+
 	// endregion -- end performance hacks
 
 	/***************************************************************************/
