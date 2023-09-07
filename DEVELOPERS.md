@@ -231,14 +231,14 @@ To install the EventLogging extension:
     git clone https://gerrit.wikimedia.org/r/mediawiki/extensions/EventLogging
     ```
 
-    Alternatively, if you need to extension repositories elsewhere on disk, mount each one as a overlapping volume in `docker-compose.override.yml`. The is comparable to a symlink, but those are not well-supported in Docker.
+    Alternatively, if you have extension repositories elsewhere on disk, mount each one as an overlapping volume in `docker-compose.override.yml`. This is comparable to a symlink, but those are not well-supported in Docker.
 
     ```yaml
    version: '3.7'
    services:
      mediawiki:
        volumes:
-         - ~/Code/Vector:/var/www/html/w/skins/vector:cached
+         - ~/Code/EventLogging:/var/www/html/w/extensions/EventLogging:cached
     ```
 
 2. Enable the extension, by adding the following to `LocalSettings.php`:
