@@ -64,7 +64,7 @@ class UltimateAuthorityTest extends MediaWikiUnitTestCase {
 		$this->assertStatusOK( $status );
 	}
 
-	public function testDefinitlyCan() {
+	public function testDefinitelyCan() {
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
 		$actor = new UserIdentityValue( 12, 'Test' );
 		$authority = new UltimateAuthority( $actor );

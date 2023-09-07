@@ -394,7 +394,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		if ( !$wgFullyInitialised && $this->mFrom === 'session' ) {
 			LoggerFactory::getInstance( 'session' )
 				->warning( 'User::loadFromSession called before the end of Setup.php', [
-					'exception' => new Exception( 'User::loadFromSession called before the end of Setup.php' ),
+					'exception' => new Exception(
+						'User::loadFromSession called before the end of Setup.php'
+					),
 				] );
 			$this->loadDefaults();
 			$this->mLoadedItems = $oldLoadedItems;
@@ -510,7 +512,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	protected function getCacheKey( WANObjectCache $cache ) {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
-		return $cache->makeGlobalKey( 'user', 'id', $lbFactory->getLocalDomainID(), $this->mId );
+		return $cache->makeGlobalKey( 'user', 'id',
+			$lbFactory->getLocalDomainID(), $this->mId );
 	}
 
 	/**
@@ -537,7 +540,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 					$data[$name] = $this->$name;
 				}
 
-				$ttl = $cache->adaptiveTTL( (int)wfTimestamp( TS_UNIX, $this->mTouched ), $ttl );
+				$ttl = $cache->adaptiveTTL(
+					(int)wfTimestamp( TS_UNIX, $this->mTouched ),
+					$ttl
+				);
 
 				if ( $wgFullyInitialised ) {
 					$groupMemberships = MediaWikiServices::getInstance()
@@ -694,7 +700,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @param int|null $userId User ID, if known
 	 * @param string|null $userName User name, if known
 	 * @param int|null $actorId Actor ID, if known
-	 * @param string|false $dbDomain remote wiki to which the User/Actor ID applies, or false if none
+	 * @param string|false $dbDomain remote wiki to which the User/Actor ID
+	 *   applies, or false if none
 	 * @return User
 	 */
 	public static function newFromAnyId( $userId, $userName, $actorId, $dbDomain = false ) {
@@ -864,7 +871,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			// If it's a reserved user that had an anonymous actor created for it at
 			// some point, we need special handling.
 			return self::insertNewUser( static function ( UserIdentity $actor, IDatabase $dbw ) {
-				return MediaWikiServices::getInstance()->getActorStore()->acquireSystemActorId( $actor, $dbw );
+				return MediaWikiServices::getInstance()->getActorStore()
+					->acquireSystemActorId( $actor, $dbw );
 			}, $name, [ 'token' => self::INVALID_TOKEN ] );
 		}
 
@@ -2207,7 +2215,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * Get the list of explicit group memberships this user has.
 	 * The implicit * and user groups are not included.
 	 *
-	 * @deprecated since 1.35 Use UserGroupManager::getUserGroups instead. Hard-deprecated since 1.41
+	 * @deprecated since 1.35 Use UserGroupManager::getUserGroups instead.
+	 *   Hard-deprecated since 1.41
 	 *
 	 * @return string[] Array of internal group names (sorted since 1.33)
 	 */
@@ -2222,7 +2231,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * Get the list of explicit group memberships this user has, stored as
 	 * UserGroupMembership objects. Implicit groups are not included.
 	 *
-	 * @deprecated since 1.35 Use UserGroupManager::getUserGroupMemberships instead. Hard-deprecated since 1.41
+	 * @deprecated since 1.35 Use UserGroupManager::getUserGroupMemberships instead.
+	 *   Hard-deprecated since 1.41
 	 *
 	 * @return UserGroupMembership[] Associative array of (group name => UserGroupMembership object)
 	 * @since 1.29
@@ -2250,7 +2260,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * expiry time. (If $expiry is omitted or null, the membership will be altered to
 	 * never expire.)
 	 *
-	 * @deprecated since 1.35 Use UserGroupManager::addUserToGroup instead. Hard-deprecated since 1.41
+	 * @deprecated since 1.35 Use UserGroupManager::addUserToGroup instead.
+	 *   Hard-deprecated since 1.41
 	 *
 	 * @param string $group Name of the group to add
 	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to
@@ -2268,7 +2279,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * Remove the user from the given group.
 	 * This takes immediate effect.
 	 *
-	 * @deprecated since 1.35 Use UserGroupManager::removeUserFromGroup instead. Hard-deprecated since 1.41
+	 * @deprecated since 1.35 Use UserGroupManager::removeUserFromGroup instead.
+	 *   Hard-deprecated since 1.41
 	 *
 	 * @param string $group Name of the group to remove
 	 * @return bool
@@ -2306,7 +2318,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 */
 	public function isBot() {
 		$userGroupManager = MediaWikiServices::getInstance()->getUserGroupManager();
-		if ( in_array( 'bot', $userGroupManager->getUserGroups( $this ) ) && $this->isAllowed( 'bot' ) ) {
+		if ( in_array( 'bot', $userGroupManager->getUserGroups( $this ) )
+			&& $this->isAllowed( 'bot' )
+		) {
 			return true;
 		}
 
@@ -2461,7 +2475,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			if ( !$session->canSetUser() ) {
 				LoggerFactory::getInstance( 'session' )
 					->warning( __METHOD__ .
-						": Cannot save user \"$this\" to a user \"{$session->getUser()}\"'s immutable session"
+						": Cannot save user \"$this\" to a user " .
+						"\"{$session->getUser()}\"'s immutable session"
 					);
 				return;
 			}
@@ -2702,7 +2717,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 				$newUser->mName = $fields['user_name'];
 				// Don't pass $this, since calling ::getId, ::getName might force ::load
 				// and this user might not be ready for the yet.
-				$newUser->mActorId = $insertActor( new UserIdentityValue( $newUser->mId, $newUser->mName ), $dbw );
+				$newUser->mActorId = $insertActor(
+					new UserIdentityValue( $newUser->mId, $newUser->mName ),
+					$dbw
+				);
 				// Load the user from primary DB to avoid replica lag
 				$newUser->load( self::READ_LATEST );
 			} else {
@@ -2856,7 +2874,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		# T15611: if the IP address the user is trying to create an account from is
 		# blocked with createaccount disabled, prevent new account creation there even
 		# when the user is logged in
-		if ( $this->mBlockedFromCreateAccount === false && !$this->isAllowed( 'ipblock-exempt' ) ) {
+		if ( $this->mBlockedFromCreateAccount === false
+			&& !$this->isAllowed( 'ipblock-exempt' )
+		) {
 			$this->mBlockedFromCreateAccount = DatabaseBlock::newFromTarget(
 				null, $this->getRequest()->getIP()
 			);
@@ -3258,8 +3278,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/**
 	 * Get the permissions associated with a given list of groups
 	 *
-	 * @deprecated since 1.34, hard-deprecated since 1.40, use GroupPermissionsLookup::getGroupPermissions() instead
-	 *    in 1.36+, or PermissionManager::getGroupPermissions() in 1.34 and 1.35
+	 * @deprecated since 1.34, hard-deprecated since 1.40, use
+	 *    GroupPermissionsLookup::getGroupPermissions() instead in 1.36+, or
+	 *    PermissionManager::getGroupPermissions() in 1.34 and 1.35.
 	 *
 	 * @param string[] $groups internal group names
 	 * @return string[] permission key names for given groups combined
@@ -3272,15 +3293,17 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/**
 	 * Get all the groups who have a given permission
 	 *
-	 * @deprecated since 1.34, hard-deprecated since 1.40, use GroupPermissionsLookup::getGroupsWithPermission() instead
-	 *    in 1.36+, or PermissionManager::getGroupsWithPermission() in 1.34 and 1.35
+	 * @deprecated since 1.34, hard-deprecated since 1.40, use
+	 *    GroupPermissionsLookup::getGroupsWithPermission() instead in 1.36+,
+	 *    or PermissionManager::getGroupsWithPermission() in 1.34 and 1.35.
 	 *
 	 * @param string $role Role to check
 	 * @return string[] internal group names with the given permission
 	 */
 	public static function getGroupsWithPermission( $role ) {
 		wfDeprecated( __METHOD__, '1.34' );
-		return MediaWikiServices::getInstance()->getGroupPermissionsLookup()->getGroupsWithPermission( $role );
+		return MediaWikiServices::getInstance()->getGroupPermissionsLookup()
+			->getGroupsWithPermission( $role );
 	}
 
 	/**
@@ -3290,8 +3313,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * PermissionManager::isEveryoneAllowed() instead. That properly checks if it's revoked
 	 * from anyone.
 	 *
-	 * @deprecated since 1.34, hard-deprecated since 1.40, use GroupPermissionsLookup::groupHasPermission() instead
-	 *    in 1.36+, or PermissionManager::groupHasPermission() in 1.34 and 1.35
+	 * @deprecated since 1.34, hard-deprecated since 1.40, use
+	 *    GroupPermissionsLookup::groupHasPermission() instead in 1.36+, or
+	 *    PermissionManager::groupHasPermission() in 1.34 and 1.35.
 	 *
 	 * @since 1.21
 	 * @param string $group Group to check
@@ -3308,7 +3332,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * Return the set of defined explicit groups.
 	 * The implicit groups (by default *, 'user' and 'autoconfirmed')
 	 * are not included, as they are defined automatically, not in the database.
-	 * @deprecated since 1.35, use UserGroupManager::listAllGroups instead. Hard-deprecated since 1.41
+	 * @deprecated since 1.35, use UserGroupManager::listAllGroups instead.
+	 *   Hard-deprecated since 1.41.
 	 * @return string[] internal group names
 	 */
 	public static function getAllGroups() {
@@ -3319,7 +3344,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
-	 * @deprecated since 1.35, use UserGroupManager::listAllImplicitGroups() instead. Hard-deprecated since 1.41
+	 * @deprecated since 1.35, use UserGroupManager::listAllImplicitGroups()
+	 *   instead. Hard-deprecated since 1.41.
 	 * @return string[] internal group names
 	 */
 	public static function getImplicitGroups() {
@@ -3347,9 +3373,12 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * a new user object.
 	 * @since 1.31
 	 * @return array[] With three keys:
-	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()` or `SelectQueryBuilder::tables`
-	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()` or `SelectQueryBuilder::fields`
-	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()` or `SelectQueryBuilder::joinConds`
+	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
+	 *     or `SelectQueryBuilder::tables`
+	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
+	 *     or `SelectQueryBuilder::fields`
+	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 *     or `SelectQueryBuilder::joinConds`
 	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
 	public static function getQueryInfo() {
@@ -3417,10 +3446,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return Status
 	 */
 	public static function newFatalPermissionDeniedStatus( $permission ) {
-		return Status::wrap( MediaWikiServices::getInstance()->getPermissionManager()->newFatalPermissionDeniedStatus(
-			$permission,
-			RequestContext::getMain()
-		) );
+		return Status::wrap( MediaWikiServices::getInstance()->getPermissionManager()
+			->newFatalPermissionDeniedStatus(
+				$permission,
+				RequestContext::getMain()
+			) );
 	}
 
 	/**
@@ -3476,7 +3506,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @param PermissionStatus|null $status
 	 * @return bool
 	 */
-	public function probablyCan( string $action, PageIdentity $target, PermissionStatus $status = null ): bool {
+	public function probablyCan(
+		string $action,
+		PageIdentity $target,
+		PermissionStatus $status = null
+	): bool {
 		return $this->getThisAsAuthority()->probablyCan( $action, $target, $status );
 	}
 
@@ -3487,7 +3521,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @param PermissionStatus|null $status
 	 * @return bool
 	 */
-	public function definitelyCan( string $action, PageIdentity $target, PermissionStatus $status = null ): bool {
+	public function definitelyCan(
+		string $action,
+		PageIdentity $target,
+		PermissionStatus $status = null
+	): bool {
 		return $this->getThisAsAuthority()->definitelyCan( $action, $target, $status );
 	}
 
@@ -3522,7 +3560,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @param PermissionStatus|null $status
 	 * @return bool
 	 */
-	public function authorizeRead( string $action, PageIdentity $target, PermissionStatus $status = null
+	public function authorizeRead(
+		string $action,
+		PageIdentity $target,
+		PermissionStatus $status = null
 	): bool {
 		return $this->getThisAsAuthority()->authorizeRead( $action, $target, $status );
 	}
@@ -3534,7 +3575,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @param PermissionStatus|null $status
 	 * @return bool
 	 */
-	public function authorizeWrite( string $action, PageIdentity $target, PermissionStatus $status = null ): bool {
+	public function authorizeWrite(
+		string $action, PageIdentity $target,
+		PermissionStatus $status = null
+	): bool {
 		return $this->getThisAsAuthority()->authorizeWrite( $action, $target, $status );
 	}
 
