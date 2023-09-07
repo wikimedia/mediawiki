@@ -98,7 +98,7 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 				->select( [ $mapping[$table]['ns'], $mapping[$table]['title'] ] )
 				->from( $table )
 				->where( [
-					$targetColumn => null,
+					$targetColumn => [ null, 0 ],
 					"$pageIdColumn BETWEEN $lowPageId AND $highPageId"
 				] )
 				->limit( 1 )
@@ -115,7 +115,7 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 				"title on pages between $lowPageId and $highPageId\n" );
 			$id = $this->getServiceContainer()->getLinkTargetLookup()->acquireLinkTargetId( $title, $dbw );
 			$conds = [
-				$targetColumn => null,
+				$targetColumn => [ null, 0 ],
 				$mapping[$table]['ns'] => $ns,
 				$mapping[$table]['title'] => $titleString,
 				"$pageIdColumn BETWEEN $lowPageId AND $highPageId"
