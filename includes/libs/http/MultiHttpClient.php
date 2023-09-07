@@ -84,6 +84,8 @@ class MultiHttpClient implements LoggerAwareInterface {
 	protected $userAgent = 'wikimedia/multi-http-client v1.0';
 	/** @var LoggerInterface */
 	protected $logger;
+	/** @var array */
+	protected array $headers = [];
 
 	// In PHP 7 due to https://bugs.php.net/bug.php?id=76480 the request/connect
 	// timeouts are periodically polled instead of being accurately respected.
@@ -108,6 +110,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - userAgent         : The User-Agent header value to send
 	 *   - logger            : a \Psr\Log\LoggerInterface instance for debug logging
 	 *   - caBundlePath      : path to specific Certificate Authority bundle (if any)
+	 *   - headers           : an array of default headers to send with every request
 	 * @throws Exception
 	 */
 	public function __construct( array $options ) {
@@ -120,7 +123,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 		static $opts = [
 			'connTimeout', 'maxConnTimeout', 'reqTimeout', 'maxReqTimeout',
 			'usePipelining', 'maxConnsPerHost', 'proxy', 'userAgent', 'logger',
-			'localProxy', 'localVirtualHosts',
+			'localProxy', 'localVirtualHosts', 'headers'
 		];
 		foreach ( $opts as $key ) {
 			if ( isset( $options[$key] ) ) {
@@ -342,7 +345,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	/**
 	 * @param array &$req HTTP request map
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-param array{url:string,proxy?:?string,query:mixed,method:string,body:string|resource,headers:string[],stream?:resource,flags:array} $req
+	 * @phan-param array{url:string,proxy?:?string,query:mixed,method:string,body:string|resource,headers:array<string,string>,stream?:resource,flags:array} $req
 	 * @param array $opts
 	 *   - connTimeout : default connection timeout
 	 *   - reqTimeout : default request timeout
@@ -546,7 +549,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 * @todo Remove dependency on MediaWikiServices: rewrite using Guzzle T202352
 	 * @param array $reqs Map of HTTP request arrays
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-param array<int,array{url:string,query:array,method:string,body:string,proxy?:?string,headers?:string[]}> $reqs
+	 * @phan-param array<int,array{url:string,query:array,method:string,body:string,headers:array<string,string>,proxy?:?string}> $reqs
 	 * @param array $opts
 	 *   - connTimeout     : connection timeout per request (seconds)
 	 *   - reqTimeout      : post-connection timeout per request (seconds)
@@ -578,6 +581,9 @@ class MultiHttpClient implements LoggerAwareInterface {
 			$httpRequest = MediaWikiServices::getInstance()->getHttpRequestFactory()->create(
 				$url, $reqOptions, __METHOD__ );
 			$httpRequest->setLogger( $this->logger );
+			foreach ( $req['headers'] as $header => $value ) {
+				$httpRequest->setHeader( $header, $value );
+			}
 			$sv = $httpRequest->execute()->getStatusValue();
 
 			$respHeaders = array_map(
@@ -624,6 +630,19 @@ class MultiHttpClient implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Normalize headers array
+	 * @param array $headers
+	 * @return array
+	 */
+	private function normalizeHeaders( array $headers ): array {
+		$normalized = [];
+		foreach ( $headers as $name => $value ) {
+			$normalized[strtolower( $name )] = $value;
+		}
+		return $normalized;
+	}
+
+	/**
 	 * Normalize request information
 	 *
 	 * @param array[] &$reqs the requests to normalize
@@ -654,13 +673,10 @@ class MultiHttpClient implements LoggerAwareInterface {
 				$this->useReverseProxy( $req, $this->localProxy );
 			}
 			$req['query'] ??= [];
-			$headers = []; // normalized headers
-			if ( isset( $req['headers'] ) ) {
-				foreach ( $req['headers'] as $name => $value ) {
-					$headers[strtolower( $name )] = $value;
-				}
-			}
-			$req['headers'] = $headers;
+			$req['headers'] = $this->normalizeHeaders(
+				array_merge( $this->headers, $req['headers'] ?? [] )
+			);
+
 			if ( !isset( $req['body'] ) ) {
 				$req['body'] = '';
 				$req['headers']['content-length'] = 0;
@@ -785,4 +801,5 @@ class MultiHttpClient implements LoggerAwareInterface {
 			curl_multi_close( $this->cmh );
 		}
 	}
+
 }
