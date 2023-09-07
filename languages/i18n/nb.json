@@ -519,6 +519,7 @@
 	"nosuchusershort": "Det finnes ingen bruker ved navn «$1». Kontroller stavemåten.",
 	"nouserspecified": "Du må oppgi et brukernavn.",
 	"login-userblocked": "Brukeren er blokkert. Innlogging er ikke tillatt.",
+	"fatalpassworderror": "$1\n\nAv sikkerhetshensyn kan du ikke logge inn med dette passordet. Vennligst [$2 be om et nytt passord på e-post].",
 	"wrongpassword": "Galt brukernavn eller passord oppgitt.\nPrøv igjen.",
 	"wrongpasswordempty": "Du oppga ikke noe passord. Prøv igjen.",
 	"passwordtooshort": "Passord må ha minst {{PLURAL:$1|ett tegn|$1 tegn}}.",

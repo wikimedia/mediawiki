@@ -654,6 +654,7 @@
 	"nosuchusershort": "Il n’y a pas de contributeur avec le nom « $1 ».\nVeuillez vérifier l’orthographe.",
 	"nouserspecified": "Vous devez saisir un nom d’utilisateur.",
 	"login-userblocked": "{{GENDER:$1|Cet utilisateur|Cette utilisatrice}} est bloqué{{GENDER:$1||e}}. La connexion n’est pas autorisée.",
+	"fatalpassworderror": "$1\n\nPour des raisons de sécurité, vous ne pouvez pas vous connecter avec ce mot de passe. Veuillez [$2 demander une réinitialisation de mot de passe par courriel].",
 	"wrongpassword": "Le nom d’utilisateur ou le mot de passe est incorrect.\nVeuillez essayer à nouveau.",
 	"wrongpasswordempty": "Vous n’avez saisi aucun mot de passe.\nVeuillez essayer à nouveau.",
 	"passwordtooshort": "Votre mot de passe doit comporter au moins $1 caractère{{PLURAL:$1||s}}.",

@@ -474,6 +474,7 @@
 	"nosuchusershort": "Non existe un usator con le nomine “$1”.\nVerifica le orthographia.",
 	"nouserspecified": "Tu debe specificar un nomine de usator.",
 	"login-userblocked": "Iste usator es blocate. Apertura de session non permittite.",
+	"fatalpassworderror": "$1\n\nPro rationes de securitate, non es possibile aperir session con iste contrasigno. Per favor [$2 requesta un message de e-mail pro reinitialisar le contrasigno].",
 	"wrongpassword": "Le contrasigno entrate es incorrecte. Per favor reproba.",
 	"wrongpasswordempty": "Tu non entrava un contrasigno. Per favor reprova.",
 	"passwordtooshort": "Le contrasignos debe continer al minus {{PLURAL:$1|1 character|$1 characteres}}.",

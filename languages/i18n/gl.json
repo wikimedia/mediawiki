@@ -491,6 +491,7 @@
 	"nosuchusershort": "Non existe ningún usuario chamado \"$1\".\nComprobe que escribiu ben o nome.",
 	"nouserspecified": "Cómpre sinalar un nome de usuario.",
 	"login-userblocked": "Este usuario está bloqueado. Non pode acceder.",
+	"fatalpassworderror": "$1 \n\nPor motivos de seguridade, non podes iniciar sesión con este contrasinal. Por favor, [$2 solicita un correo de restablecemento de contrasinal].",
 	"wrongpassword": "O nome de usuario ou o contrasinal escrito son incorrectos.\nPor favor, proba de novo.",
 	"wrongpasswordempty": "O campo do contrasinal estaba en branco.\nPor favor, téntao de novo.",
 	"passwordtooshort": "Os contrasinais deben conter, como mínimo, {{PLURAL:$1|1 carácter|$1 caracteres}}.",
