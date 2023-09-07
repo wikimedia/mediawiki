@@ -2571,6 +2571,7 @@ $wgAutoloadLocalClasses = [
 	'NumericUppercaseCollation' => __DIR__ . '/includes/collation/NumericUppercaseCollation.php',
 	'OOUIHTMLForm' => __DIR__ . '/includes/htmlform/OOUIHTMLForm.php',
 	'ObjectCache' => __DIR__ . '/includes/objectcache/ObjectCache.php',
+	'ObjectCacheFactory' => __DIR__ . '/includes/objectcache/ObjectCacheFactory.php',
 	'OldChangesList' => __DIR__ . '/includes/changes/OldChangesList.php',
 	'OldLocalFile' => __DIR__ . '/includes/filerepo/file/OldLocalFile.php',
 	'OldRevisionImporter' => __DIR__ . '/includes/import/OldRevisionImporter.php',

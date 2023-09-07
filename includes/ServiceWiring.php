@@ -1180,7 +1180,7 @@ return [
 	},
 
 	'LocalServerObjectCache' => static function ( MediaWikiServices $services ): BagOStuff {
-		return ObjectCache::makeLocalServerCache();
+		return $services->getObjectCacheFactory()->getInstance( CACHE_ACCEL );
 	},
 
 	'LockManagerGroupFactory' => static function ( MediaWikiServices $services ): LockManagerGroupFactory {
@@ -1206,14 +1206,7 @@ return [
 		$mainConfig = $services->getMainConfig();
 
 		$id = $mainConfig->get( MainConfigNames::MainStash );
-		$params = $mainConfig->get( MainConfigNames::ObjectCaches )[$id] ?? null;
-		if ( !$params ) {
-			throw new ConfigException(
-				"\$wgObjectCaches must have \"$id\" set (via \$wgMainStash)"
-			);
-		}
-
-		$store = ObjectCache::newFromParams( $params, $services );
+		$store = $services->getObjectCacheFactory()->getInstance( $id );
 		$store->getLogger()->debug( 'MainObjectStash using store {class}', [
 			'class' => get_class( $store )
 		] );
@@ -1294,15 +1287,7 @@ return [
 		$mainConfig = $services->getMainConfig();
 
 		$id = $mainConfig->get( MainConfigNames::MicroStashType );
-
-		$params = $mainConfig->get( MainConfigNames::ObjectCaches )[$id] ?? null;
-		if ( !$params ) {
-			throw new ConfigException(
-				"\$wgObjectCaches must have \"$id\" set (via \$wgMicroStashType)"
-			);
-		}
-
-		$store = ObjectCache::newFromParams( $params, $services );
+		$store = $services->getObjectCacheFactory()->getInstance( $id );
 
 		$store->getLogger()->debug( 'MicroStash using store {class}', [
 			'class' => get_class( $store )
@@ -1387,6 +1372,17 @@ return [
 			$services->getDBLoadBalancerFactory(),
 			$services->getMainWANObjectCache(),
 			LoggerFactory::getInstance( 'NameTableSqlStore' )
+		);
+	},
+
+	'ObjectCacheFactory' => static function ( MediaWikiServices $services ): ObjectCacheFactory {
+		return new ObjectCacheFactory(
+			new ServiceOptions(
+				ObjectCacheFactory::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			),
+			$services->getStatsFactory(),
+			LoggerFactory::getProvider()
 		);
 	},
 
@@ -2584,13 +2580,7 @@ return [
 	'_LocalClusterCache' => static function ( MediaWikiServices $services ): BagOStuff {
 		$mainConfig = $services->getMainConfig();
 		$id = $mainConfig->get( MainConfigNames::MainCacheType );
-		$params = $mainConfig->get( MainConfigNames::ObjectCaches )[$id] ?? null;
-		if ( !$params ) {
-			throw new ConfigException(
-				"\$wgObjectCaches must have \"$id\" set (via \$wgMainCacheType)"
-			);
-		}
-		return ObjectCache::newFromParams( $params, $services );
+		return $services->getObjectCacheFactory()->getInstance( $id );
 	},
 
 	'_MediaWikiTitleCodec' => static function ( MediaWikiServices $services ): MediaWikiTitleCodec {

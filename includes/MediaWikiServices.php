@@ -188,6 +188,7 @@ use MessageCache;
 use MimeAnalyzer;
 use MWLBFactory;
 use ObjectCache;
+use ObjectCacheFactory;
 use OldRevisionImporter;
 use ParserCache;
 use ParserFactory;
@@ -1459,6 +1460,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getNameTableStoreFactory(): NameTableStoreFactory {
 		return $this->getService( 'NameTableStoreFactory' );
+	}
+
+	/**
+	 * @since 1.42
+	 * @return ObjectCacheFactory
+	 */
+	public function getObjectCacheFactory(): ObjectCacheFactory {
+		return $this->getService( 'ObjectCacheFactory' );
 	}
 
 	/**

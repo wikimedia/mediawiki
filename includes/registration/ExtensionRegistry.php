@@ -244,9 +244,10 @@ class ExtensionRegistry {
 
 	private function getCache(): BagOStuff {
 		if ( !$this->cache ) {
+			global $wgCachePrefix;
 			// Can't call MediaWikiServices here, as we must not cause services
 			// to be instantiated before extensions have loaded.
-			return ObjectCache::makeLocalServerCache();
+			return ObjectCache::makeLocalServerCache( $wgCachePrefix );
 		}
 
 		return $this->cache;

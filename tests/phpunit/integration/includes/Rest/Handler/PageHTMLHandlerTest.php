@@ -43,6 +43,10 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		parent::setUp();
 
 		$this->parserCacheBagOStuff = new HashBagOStuff();
+		// Protect the ObjectCacheFactory from the service container reset,
+		// so the emulated parser cache persists between calls to executeHandler().
+		$objectCacheFactory = $this->getServiceContainer()->getObjectCacheFactory();
+		$this->setService( 'ObjectCacheFactory', $objectCacheFactory );
 	}
 
 	/**
@@ -53,7 +57,13 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	private function newHandler( ?Parsoid $parsoid = null ): PageHTMLHandler {
 		if ( $parsoid ) {
 			$this->resetServicesWithMockedParsoid( $parsoid );
+		} else {
+			// ParserOutputAccess has a localCache which can return stale content.
+			// Resetting ensures that ParsoidCachePrewarmJob gets a fresh copy
+			// of ParserOutputAccess and ParsoidOutputAccess without these problems!
+			$this->resetServices();
 		}
+
 		return $this->newPageHtmlHandler();
 	}
 

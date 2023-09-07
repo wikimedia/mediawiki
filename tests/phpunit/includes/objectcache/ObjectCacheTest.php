@@ -29,9 +29,8 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 		$defaults = [
 			CACHE_NONE => [ 'class' => EmptyBagOStuff::class ],
 			CACHE_DB => [ 'class' => SqlBagOStuff::class ],
-			CACHE_ANYTHING => [ 'factory' => 'ObjectCache::newAnything' ],
-			CACHE_ACCEL => [ 'factory' => 'ObjectCache::getLocalServerInstance' ],
 			'hash' => [ 'class' => HashBagOStuff::class ],
+			CACHE_ANYTHING => [ 'class' => HashBagOStuff::class ],
 		];
 		$this->overrideConfigValue( MainConfigNames::ObjectCaches, $arr + $defaults );
 		// Mock ACCEL with 'hash' as being installed.
@@ -42,7 +41,7 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 	public function testNewAnythingNothing() {
 		$this->assertInstanceOf(
 			SqlBagOStuff::class,
-			ObjectCache::newAnything( [] ),
+			ObjectCache::newAnything(),
 			'No available types. Fallback to DB'
 		);
 	}
@@ -52,7 +51,7 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertInstanceOf(
 			HashBagOStuff::class,
-			ObjectCache::newAnything( [] ),
+			ObjectCache::newAnything(),
 			'Use an available type (hash)'
 		);
 	}
@@ -62,7 +61,7 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertInstanceOf(
 			HashBagOStuff::class,
-			ObjectCache::newAnything( [] ),
+			ObjectCache::newAnything(),
 			'Use an available type (CACHE_ACCEL)'
 		);
 	}
@@ -74,7 +73,7 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertInstanceOf(
 			SqlBagOStuff::class,
-			ObjectCache::newAnything( [] ),
+			ObjectCache::newAnything(),
 			'Fallback to DB if available types fall back to Empty'
 		);
 	}
@@ -90,7 +89,7 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertInstanceOf(
 			EmptyBagOStuff::class,
-			ObjectCache::newAnything( [] ),
+			ObjectCache::newAnything(),
 			'Fallback to none if available types and DB are unavailable'
 		);
 	}
@@ -100,7 +99,7 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertInstanceOf(
 			EmptyBagOStuff::class,
-			ObjectCache::newAnything( [] ),
+			ObjectCache::newAnything(),
 			'No available types or DB. Fallback to none.'
 		);
 	}
