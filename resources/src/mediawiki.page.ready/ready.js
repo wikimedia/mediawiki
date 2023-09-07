@@ -1,8 +1,6 @@
 var checkboxShift = require( './checkboxShift.js' );
 var config = require( './config.json' );
-var createTeleportTarget = require( './teleportTarget.js' );
-
-var teleportTarget;
+var teleportTarget = require( './teleportTarget.js' );
 
 // Break out of framesets
 if ( mw.config.get( 'wgBreakFrames' ) ) {
@@ -208,7 +206,7 @@ $( function () {
 	} );
 	fixViewportForTabletDevices();
 
-	teleportTarget = createTeleportTarget();
+	teleportTarget.attach();
 } );
 
 /**
@@ -295,5 +293,5 @@ try {
 module.exports = {
 	loadSearchModule: loadSearchModule,
 	checkboxHack: require( './checkboxHack.js' ),
-	teleportTarget: teleportTarget
+	teleportTarget: teleportTarget.target
 };
