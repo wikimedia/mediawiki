@@ -131,23 +131,16 @@ class ArchivedRevisionLookup {
 		array $conditions,
 		array $options = []
 	): ?RevisionRecord {
-		$arQuery = $this->revisionStore->getArchiveQueryInfo();
+		$queryBuilder = $this->revisionStore->newArchiveSelectQueryBuilder( $this->dbProvider->getReplicaDatabase() )
+			->joinComment()
+			->where( $conditions )
+			->options( $options );
 
 		if ( $page ) {
-			$conditions += [
-				'ar_namespace' => $page->getNamespace(),
-				'ar_title' => $page->getDBkey(),
-			];
+			$queryBuilder->andWhere( [ 'ar_namespace' => $page->getNamespace(), 'ar_title' => $page->getDBkey() ] );
 		}
 
-		$row = $this->dbProvider->getReplicaDatabase()->selectRow(
-			$arQuery['tables'],
-			$arQuery['fields'],
-			$conditions,
-			__METHOD__,
-			$options,
-			$arQuery['joins']
-		);
+		$row = $queryBuilder->caller( __METHOD__ )->fetchRow();
 
 		if ( $row ) {
 			return $this->revisionStore->newRevisionFromArchiveRow( $row, 0, $page );

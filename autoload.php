@@ -1815,6 +1815,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Rest\\Validator\\ParamValidatorCallbacks' => __DIR__ . '/includes/Rest/Validator/ParamValidatorCallbacks.php',
 	'MediaWiki\\Rest\\Validator\\UnsupportedContentTypeBodyValidator' => __DIR__ . '/includes/Rest/Validator/UnsupportedContentTypeBodyValidator.php',
 	'MediaWiki\\Rest\\Validator\\Validator' => __DIR__ . '/includes/Rest/Validator/Validator.php',
+	'MediaWiki\\Revision\\ArchiveSelectQueryBuilder' => __DIR__ . '/includes/Revision/ArchiveSelectQueryBuilder.php',
 	'MediaWiki\\Revision\\ArchivedRevisionLookup' => __DIR__ . '/includes/Revision/ArchivedRevisionLookup.php',
 	'MediaWiki\\Revision\\BadRevisionException' => __DIR__ . '/includes/Revision/BadRevisionException.php',
 	'MediaWiki\\Revision\\ContributionsLookup' => __DIR__ . '/includes/Revision/ContributionsLookup.php',

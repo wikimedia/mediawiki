@@ -1300,12 +1300,10 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		)->getNewRevision();
 		$this->deletePage( $page );
 
-		$db = wfGetDB( DB_PRIMARY );
-		$arQuery = $store->getArchiveQueryInfo();
-		$res = $db->select(
-			$arQuery['tables'], $arQuery['fields'], [ 'ar_rev_id' => $orig->getId() ],
-			__METHOD__, [], $arQuery['joins']
-		);
+		$res = $store->newArchiveSelectQueryBuilder( $this->getDb() )
+			->joinComment()
+			->where( [ 'ar_rev_id' => $orig->getId() ] )
+			->caller( __METHOD__ )->fetchResultSet();
 		$this->assertIsObject( $res, 'query failed' );
 
 		$info = $store->getSlotsQueryInfo( [ 'content' ] );
@@ -1407,7 +1405,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromArchiveRow
 	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromArchiveRowAndSlots
-	 * @covers \MediaWiki\Revision\RevisionStore::getArchiveQueryInfo
+	 * @covers \MediaWiki\Revision\ArchiveSelectQueryBuilder
 	 */
 	public function testNewRevisionFromArchiveRow_getArchiveQueryInfo() {
 		$store = $this->getServiceContainer()->getRevisionStore();
@@ -1421,12 +1419,10 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		)->getNewRevision();
 		$this->deletePage( $page );
 
-		$db = wfGetDB( DB_PRIMARY );
-		$arQuery = $store->getArchiveQueryInfo();
-		$res = $db->select(
-			$arQuery['tables'], $arQuery['fields'], [ 'ar_rev_id' => $orig->getId() ],
-			__METHOD__, [], $arQuery['joins']
-		);
+		$res = $store->newArchiveSelectQueryBuilder( $this->getDb() )
+			->joinComment()
+			->where( [ 'ar_rev_id' => $orig->getId() ] )
+			->caller( __METHOD__ )->fetchResultSet();
 		$this->assertIsObject( $res, 'query failed' );
 
 		$row = $res->fetchObject();
@@ -1454,12 +1450,10 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		)->getNewRevision();
 		$this->deletePage( $page );
 
-		$db = wfGetDB( DB_PRIMARY );
-		$arQuery = $store->getArchiveQueryInfo();
-		$res = $db->select(
-			$arQuery['tables'], $arQuery['fields'], [ 'ar_rev_id' => $orig->getId() ],
-			__METHOD__, [], $arQuery['joins']
-		);
+		$res = $store->newArchiveSelectQueryBuilder( $this->getDb() )
+			->joinComment()
+			->where( [ 'ar_rev_id' => $orig->getId() ] )
+			->caller( __METHOD__ )->fetchResultSet();
 		$this->assertIsObject( $res, 'query failed' );
 
 		$row = $res->fetchObject();
@@ -1674,12 +1668,11 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		// re-create page, so we can later load revisions for it
 		$page->doUserEditContent( new WikitextContent( 'Two' ), $user, __METHOD__ );
 
-		$db = wfGetDB( DB_PRIMARY );
-		$arQuery = $store->getArchiveQueryInfo();
-		$row = $db->selectRow(
-			$arQuery['tables'], $arQuery['fields'], [ 'ar_rev_id' => $orig->getId() ],
-			__METHOD__, [], $arQuery['joins']
-		);
+		$db = $this->getDb();
+		$row = $store->newArchiveSelectQueryBuilder( $db )
+			->joinComment()
+			->where( [ 'ar_rev_id' => $orig->getId() ] )
+			->caller( __METHOD__ )->fetchRow();
 
 		$this->assertNotFalse( $row, 'query failed' );
 
@@ -2536,15 +2529,10 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 		$store = $this->getServiceContainer()->getRevisionStore();
 
-		$queryInfo = $store->getArchiveQueryInfo();
-		$rows = $this->getDb()->select(
-			$queryInfo['tables'],
-			$queryInfo['fields'],
-			[ 'ar_rev_id' => [ $revRecord1->getId(), $revRecord2->getId() ] ],
-			__METHOD__,
-			[],
-			$queryInfo['joins']
-		);
+		$rows = $store->newArchiveSelectQueryBuilder( $this->getDb() )
+			->joinComment()
+			->where( [ 'ar_rev_id' => [ $revRecord1->getId(), $revRecord2->getId() ] ] )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		$options['archive'] = true;
 		$rows = iterator_to_array( $rows );

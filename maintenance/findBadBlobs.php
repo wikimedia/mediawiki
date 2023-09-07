@@ -287,17 +287,13 @@ class FindBadBlobs extends Maintenance {
 	 * @return RevisionArchiveRecord[]
 	 */
 	private function loadArchiveByRevisionId( int $afterId, int $uptoId, $batchSize ) {
-		$db = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		$queryInfo = $this->revisionStore->getArchiveQueryInfo();
-		$rows = $db->newSelectQueryBuilder()
-			->select( $queryInfo['fields'] )
-			->tables( $queryInfo['tables'] )
+		$db = $this->lbFactory->getReplicaDatabase();
+		$rows = $this->revisionStore->newArchiveSelectQueryBuilder( $db )
+			->joinComment()
 			->where( [ "ar_rev_id > $afterId", "ar_rev_id <= $uptoId" ] )
-			->joinConds( $queryInfo['joins'] )
 			->orderBy( 'ar_rev_id' )
 			->limit( $batchSize )
-			->caller( __METHOD__ )
-			->fetchResultSet();
+			->caller( __METHOD__ )->fetchResultSet();
 		$result = $this->revisionStore->newRevisionsFromBatch(
 			$rows,
 			[ 'archive' => true, 'slots' => true ]
@@ -384,16 +380,10 @@ class FindBadBlobs extends Maintenance {
 
 		// if not all revisions were found, check the archive table.
 		if ( count( $revisions ) < count( $ids ) ) {
-			$archiveQueryInfo = $this->revisionStore->getArchiveQueryInfo();
-			$remainingIds = array_diff( $ids, array_keys( $revisions ) );
-
-			$rows = $db->newSelectQueryBuilder()
-				->select( $archiveQueryInfo['fields'] )
-				->tables( $archiveQueryInfo['tables'] )
-				->where( [ 'ar_rev_id' => $remainingIds ] )
-				->joinConds( $archiveQueryInfo['joins'] )
-				->caller( __METHOD__ )
-				->fetchResultSet();
+			$rows = $this->revisionStore->newArchiveSelectQueryBuilder( $db )
+				->joinComment()
+				->where( [ 'ar_rev_id' => array_diff( $ids, array_keys( $revisions ) ) ] )
+				->caller( __METHOD__ )->fetchResultSet();
 
 			$archiveResult = $this->revisionStore->newRevisionsFromBatch(
 				$rows,
