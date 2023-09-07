@@ -63,6 +63,9 @@ For notes on 1.40.x and older releases, see HISTORY.
 * MWHttpRequest will forward 'tracestate' and/or 'traceparent' headers when
   those are present in the original request and $wgAllowExternalReqID is set
   to true.
+* MultiHttpClient will send X-Request-Id header and additionally will forward
+  'tracestate' and/or 'traceparent' headers when those are present in the
+  original request and $wgAllowExternalReqID is set to true.
 * …
 
 === New developer features in 1.41 ===
@@ -88,6 +91,10 @@ For notes on 1.40.x and older releases, see HISTORY.
   as the RollbackAction form's success page is already shown
 * MultiHttpClient constructor will accept `headers` property which defines a
   set of headers attached to every request performed by the client.
+* New `Wikimedia/Http/TelemetryHeadersInterface` interface that provides a
+  telemetry information which could be attached to HTTP Requests
+* Wikimedia/Http/TelemetryHeadersInterface can be passed to MultiHttpClient
+  via 'telemetry' option.
 * …
 
 === External library changes in 1.41 ===

@@ -141,7 +141,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 				'connTimeout' => $params['connTimeout'] ?? self::DEFAULT_CONN_TIMEOUT,
 				'reqTimeout' => $params['reqTimeout'] ?? self::DEFAULT_REQ_TIMEOUT,
 			];
-			foreach ( [ 'caBundlePath', 'proxy' ] as $key ) {
+			foreach ( [ 'caBundlePath', 'proxy', 'telemetry' ] as $key ) {
 				if ( isset( $params[$key] ) ) {
 					$clientParams[$key] = $params[$key];
 				}

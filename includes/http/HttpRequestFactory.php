@@ -257,6 +257,7 @@ class HttpRequestFactory {
 			'logger' => $this->logger,
 			'localProxy' => $this->options->get( MainConfigNames::LocalHTTPProxy ),
 			'localVirtualHosts' => $this->options->get( MainConfigNames::LocalVirtualHosts ),
+			'telemetry' => Telemetry::getInstance(),
 		];
 		return new MultiHttpClient( $options );
 	}

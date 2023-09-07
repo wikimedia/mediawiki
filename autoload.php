@@ -2886,6 +2886,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\EventRelayer\\EventRelayerNull' => __DIR__ . '/includes/libs/eventrelayer/EventRelayerNull.php',
 	'Wikimedia\\Http\\HttpAcceptNegotiator' => __DIR__ . '/includes/libs/http/HttpAcceptNegotiator.php',
 	'Wikimedia\\Http\\HttpAcceptParser' => __DIR__ . '/includes/libs/http/HttpAcceptParser.php',
+	'Wikimedia\\Http\\TelemetryHeadersInterface' => __DIR__ . '/includes/libs/http/TelemetryHeadersInterface.php',
 	'Wikimedia\\LightweightObjectStore\\ExpirationAwareness' => __DIR__ . '/includes/libs/objectcache/utils/ExpirationAwareness.php',
 	'Wikimedia\\LightweightObjectStore\\StorageAwareness' => __DIR__ . '/includes/libs/objectcache/utils/StorageAwareness.php',
 	'Wikimedia\\Message\\DataMessageValue' => __DIR__ . '/includes/libs/Message/DataMessageValue.php',

@@ -3,6 +3,7 @@
 use MediaWiki\Status\Status;
 use PHPUnit\Framework\Constraint\IsType;
 use PHPUnit\Framework\MockObject\MockObject;
+use Wikimedia\Http\TelemetryHeadersInterface;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -356,6 +357,33 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 		// TODO: Factor out curl_multi_exec so can stub that,
 		// and then simply test the public runMulti() method here.
 		// Or move more logic to normalizeRequests and test that.
+	}
+
+	public function testForwardsTelemetryHeaders() {
+		$telemetry = $this->getMockBuilder( TelemetryHeadersInterface::class )
+			->getMock();
+		$telemetry->expects( $this->once() )
+			->method( 'getRequestHeaders' )
+			->willReturn( [ 'header1' => 'value1', 'header2' => 'value2' ] );
+
+		// TODO: Cannot use TestingAccessWrapper here because it doesn't
+		// support pass-by-reference (T287318)
+		$class = new ReflectionClass( MultiHttpClient::class );
+		$func = $class->getMethod( 'normalizeRequests' );
+		$func->setAccessible( true );
+		$reqs = [
+			[ 'GET', 'https://example.org/path?query=string' ],
+		];
+		$client = new MultiHttpClient( [
+			'localVirtualHosts' => [ 'example.org' ],
+			'localProxy' => 'http://localhost:1234',
+			'telemetry' => $telemetry
+		] );
+		$func->invokeArgs( $client, [ &$reqs ] );
+		$this->assertArrayHasKey( 'header1', $reqs[0]['headers'] );
+		$this->assertSame( 'value1', $reqs[0]['headers']['header1'] );
+		$this->assertArrayHasKey( 'header2', $reqs[0]['headers'] );
+		$this->assertSame( 'value2', $reqs[0]['headers']['header2'] );
 	}
 
 	public function testGetCurlMulti() {

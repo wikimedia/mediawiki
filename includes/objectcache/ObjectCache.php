@@ -21,6 +21,7 @@
  * @ingroup Cache
  */
 
+use MediaWiki\Http\Telemetry;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -221,6 +222,9 @@ class ObjectCache {
 				// one of these was configured without MultiWriteBagOStuff.
 				$params['caches'][$i] = self::newFromParams( $cacheInfo, $services );
 			}
+		}
+		if ( is_a( $class, RESTBagOStuff::class, true ) ) {
+			$params['telemetry'] = Telemetry::getInstance();
 		}
 
 		return new $class( $params );

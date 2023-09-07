@@ -64,6 +64,25 @@ class TelemetryTest extends MediaWikiUnitTestCase {
 		$this->assertNotEmpty( $sut->getRequestId() );
 	}
 
+	public function testGetRequestHeadersReturnsAllHeaders() {
+		$allSet = [ 'HTTP_TRACEPARENT' => 'value1', 'HTTP_TRACESTATE' => 'value2' ];
+		$sut = new Telemetry( $allSet, true );
+
+		$headers = $sut->getRequestHeaders();
+		$this->assertCount( 3, $headers );
+		$this->assertArrayHasKey( 'X-Request-Id', $headers );
+		$this->assertSame( 'value1', $headers['traceparent'] );
+		$this->assertSame( 'value2', $headers['tracestate'] );
+	}
+
+	public function testGetRequestHeadersDoesntReturnEmptyHeaders() {
+		$sut = new Telemetry( [], true );
+
+		$headers = $sut->getRequestHeaders();
+		$this->assertCount( 1, $headers );
+		$this->assertArrayHasKey( 'X-Request-Id', $headers );
+	}
+
 	public static function provideRequestHeaders() {
 		yield [
 			false,

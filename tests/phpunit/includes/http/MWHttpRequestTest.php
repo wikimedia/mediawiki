@@ -1,7 +1,7 @@
 <?php
 
-use MediaWiki\Http\Telemetry;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Http\TelemetryHeadersInterface;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -95,16 +95,14 @@ class MWHttpRequestTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testItInjectsTelemetryHeaders() {
-		$telemetry = $this->createMock( Telemetry::class );
+		$telemetry = $this->createMock( TelemetryHeadersInterface::class );
 		$telemetry->expects( $this->once() )
-			->method( 'getRequestId' )
-			->willReturn( 'request_identifier' );
-		$telemetry->expects( $this->once() )
-			->method( 'getTraceparent' )
-			->willReturn( 'traceparent_value' );
-		$telemetry->expects( $this->once() )
-			->method( 'getTracestate' )
-			->willReturn( 'tracestate_value' );
+			->method( 'getRequestHeaders' )
+			->willReturn( [
+				'X-Request-Id' => 'request_identifier',
+				'tracestate' => 'tracestate_value',
+				'traceparent' => 'traceparent_value',
+			] );
 
 		$httpRequest = $this->getMockForAbstractClass(
 			MWHttpRequest::class,

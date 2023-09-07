@@ -19,12 +19,14 @@
  */
 namespace MediaWiki\Http;
 
+use Wikimedia\Http\TelemetryHeadersInterface;
+
 /**
  * Service for handling telemetry data
  * @unstable
  * @since 1.41
  */
-class Telemetry {
+class Telemetry implements TelemetryHeadersInterface {
 
 	/**
 	 * @var Telemetry|null
@@ -126,4 +128,15 @@ class Telemetry {
 		return $this->allowExternalReqID ? $this->server['HTTP_TRACEPARENT'] ?? null : null;
 	}
 
+	/**
+	 * Return Telemetry data in form of request headers
+	 * @return array
+	 */
+	public function getRequestHeaders(): array {
+		return array_filter( [
+			'tracestate' => $this->getTracestate(),
+			'traceparent' => $this->getTraceparent(),
+			'X-Request-Id' => $this->getRequestId()
+		] );
+	}
 }
