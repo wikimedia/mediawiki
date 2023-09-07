@@ -17,6 +17,7 @@ use Wikimedia\Rdbms\DeleteQueryBuilder;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\ReplaceQueryBuilder;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Rdbms\UpdateQueryBuilder;
 use Wikimedia\TestingAccessWrapper;
@@ -37,12 +38,10 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function getMockDb() {
 		$mock = $this->createMock( DBConnRef::class );
-		$mock->method( 'newSelectQueryBuilder' )
-			->willReturn( new SelectQueryBuilder( $mock ), new SelectQueryBuilder( $mock ), new SelectQueryBuilder( $mock ) );
-		$mock->method( 'newUpdateQueryBuilder' )
-			->willReturn( new UpdateQueryBuilder( $mock ), new UpdateQueryBuilder( $mock ), new UpdateQueryBuilder( $mock ) );
-		$mock->method( 'newDeleteQueryBuilder' )
-			->willReturn( new DeleteQueryBuilder( $mock ), new DeleteQueryBuilder( $mock ), new DeleteQueryBuilder( $mock ) );
+		$mock->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn() => new SelectQueryBuilder( $mock ) );
+		$mock->method( 'newUpdateQueryBuilder' )->willReturnCallback( static fn() => new UpdateQueryBuilder( $mock ) );
+		$mock->method( 'newDeleteQueryBuilder' )->willReturnCallback( static fn() => new DeleteQueryBuilder( $mock ) );
+		$mock->method( 'newReplaceQueryBuilder' )->willReturnCallback( static fn() => new ReplaceQueryBuilder( $mock ) );
 		return $mock;
 	}
 

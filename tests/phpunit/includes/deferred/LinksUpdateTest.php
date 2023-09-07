@@ -50,19 +50,18 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			]
 		);
 
-		$dbw = wfGetDB( DB_PRIMARY );
-		$dbw->replace(
-			'interwiki',
-			'iw_prefix',
-			[
+		$this->getDb()->newReplaceQueryBuilder()
+			->replaceInto( 'interwiki' )
+			->uniqueIndexFields( [ 'iw_prefix' ] )
+			->row( [
 				'iw_prefix' => 'linksupdatetest',
 				'iw_url' => 'http://testing.com/wiki/$1',
 				'iw_api' => 'http://testing.com/w/api.php',
 				'iw_local' => 0,
 				'iw_trans' => 0,
 				'iw_wikiid' => 'linksupdatetest',
-			]
-		);
+			] )
+			->caller( __METHOD__ )->execute();
 		$this->overrideConfigValue( MainConfigNames::RCWatchCategoryMembership, true );
 	}
 

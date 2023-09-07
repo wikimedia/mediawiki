@@ -232,27 +232,17 @@ class PagePropsTest extends MediaWikiLangTestCase {
 	}
 
 	protected function setProperties( $pageID, $properties ) {
-		$rows = [];
+		$queryBuilder = $this->getDb()->newReplaceQueryBuilder()
+			->replaceInto( 'page_props' )
+			->uniqueIndexFields( [ 'pp_page', 'pp_propname' ] );
 		foreach ( $properties as $propertyName => $propertyValue ) {
-			$rows[] = [
+			$queryBuilder->row( [
 				'pp_page' => $pageID,
 				'pp_propname' => $propertyName,
 				'pp_value' => $propertyValue
-			];
+			] );
 		}
-
-		$dbw = wfGetDB( DB_PRIMARY );
-		$dbw->replace(
-			'page_props',
-			[
-				[
-					'pp_page',
-					'pp_propname'
-				]
-			],
-			$rows,
-			__METHOD__
-		);
+		$queryBuilder->caller( __METHOD__ )->execute();
 	}
 
 	protected function setProperty( $pageID, $propertyName, $propertyValue ) {

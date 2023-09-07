@@ -2301,17 +2301,18 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 
 			if ( $limit['create'] != '' ) {
 				$commentFields = $services->getCommentStore()->insert( $dbw, 'pt_reason', $reason );
-				$dbw->replace( 'protected_titles',
-					[ [ 'pt_namespace', 'pt_title' ] ],
-					[
+				$dbw->newReplaceQueryBuilder()
+					->table( 'protected_titles' )
+					->uniqueIndexFields( [ 'pt_namespace', 'pt_title' ] )
+					->rows( [
 						'pt_namespace' => $this->mTitle->getNamespace(),
 						'pt_title' => $this->mTitle->getDBkey(),
 						'pt_create_perm' => $limit['create'],
 						'pt_timestamp' => $dbw->timestamp(),
 						'pt_expiry' => $dbw->encodeExpiry( $expiry['create'] ),
 						'pt_user' => $user->getId(),
-					] + $commentFields, __METHOD__
-				);
+					] + $commentFields )
+					->caller( __METHOD__ )->execute();
 				$logParamsDetails[] = [
 					'type' => 'create',
 					'level' => $limit['create'],
