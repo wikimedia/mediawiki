@@ -25,9 +25,9 @@ namespace MediaWiki\Session;
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Request\WebRequest;
 use Psr\Log\LoggerInterface;
 use User;
-use WebRequest;
 
 /**
  * Manages data for an authenticated session

@@ -26,7 +26,6 @@
 namespace MediaWiki\Request;
 
 use MediaWiki\Session\Session;
-use WebRequest;
 
 /**
  * Similar to MediaWiki\Request\FauxRequest, but only fakes URL parameters and method

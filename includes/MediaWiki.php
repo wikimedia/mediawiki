@@ -28,6 +28,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Profiler\ProfilingContext;
 use MediaWiki\Request\DerivativeRequest;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Request\WebResponse;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;

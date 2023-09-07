@@ -29,8 +29,8 @@
 namespace MediaWiki\Html;
 
 use ArrayAccess;
+use MediaWiki\Request\WebRequest;
 use MWException;
-use WebRequest;
 
 /**
  * Helper class to keep track of options when mixing links and form elements.

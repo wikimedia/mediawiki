@@ -21,6 +21,7 @@
 use MediaWiki\Http\Telemetry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;

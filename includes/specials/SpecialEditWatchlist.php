@@ -43,6 +43,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserOutputFlags;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\Watchlist\WatchlistManager;
@@ -58,7 +59,6 @@ use UnlistedSpecialPage;
 use UserNotLoggedIn;
 use WatchedItemStore;
 use WatchedItemStoreInterface;
-use WebRequest;
 use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\Parsoid\Core\TOCData;
 

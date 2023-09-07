@@ -426,6 +426,8 @@ if ( $wgRequest->getCookie( 'UseDC', '' ) === 'master' ) {
 // Useful debug output
 ( static function () {
 	global $wgCommandLineMode, $wgRequest;
+	'@phan-var \MediaWiki\Request\WebRequest $wgRequest';
+
 	$logger = LoggerFactory::getInstance( 'wfDebug' );
 	if ( $wgCommandLineMode ) {
 		$self = $_SERVER['PHP_SELF'] ?? '';

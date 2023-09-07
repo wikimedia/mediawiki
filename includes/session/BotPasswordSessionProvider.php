@@ -26,8 +26,8 @@ namespace MediaWiki\Session;
 use BotPassword;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\GrantsInfo;
+use MediaWiki\Request\WebRequest;
 use User;
-use WebRequest;
 
 /**
  * Session provider for bot passwords

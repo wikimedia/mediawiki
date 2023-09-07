@@ -24,6 +24,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ProcOpenError;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Shell\Shell;
 use MediaWiki\StubObject\StubUserLang;
@@ -465,6 +466,8 @@ function wfAppendQuery( $url, $query ) {
 function wfGetUrlUtils(): UrlUtils {
 	global $wgServer, $wgCanonicalServer, $wgInternalServer, $wgRequest, $wgHttpsPort,
 		$wgUrlProtocols;
+
+	'@phan-var \MediaWiki\Request\WebRequest $wgRequest';
 
 	if ( MediaWikiServices::hasInstance() ) {
 		$services = MediaWikiServices::getInstance();

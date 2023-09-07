@@ -4,7 +4,7 @@ namespace MediaWiki\Hook;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 use MediaWiki\EditPage\EditPage;
-use WebRequest;
+use MediaWiki\Request\WebRequest;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

@@ -123,6 +123,7 @@ abstract class ChannelFeed extends FeedItem {
 	 */
 	private function contentType() {
 		global $wgRequest;
+		'@phan-var \MediaWiki\Request\WebRequest $wgRequest';
 
 		$ctype = $wgRequest->getVal( 'ctype', 'application/xml' );
 		$allowedctypes = [

@@ -23,6 +23,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
 
 /**

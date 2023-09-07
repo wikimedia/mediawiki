@@ -47,6 +47,7 @@ use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Request\ContentSecurityPolicy;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Session\SessionManager;
@@ -66,7 +67,6 @@ use Skin;
 use SpecialPage;
 use TextContent;
 use TitleValue;
-use WebRequest;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\Parsoid\Core\TOCData;
@@ -4521,6 +4521,7 @@ class OutputPage extends ContextSource {
 	 */
 	public static function transformCssMedia( $media ) {
 		global $wgRequest;
+		'@phan-var \MediaWiki\Request\WebRequest $wgRequest';
 
 		if ( $wgRequest->getBool( 'printable' ) ) {
 			// When browsing with printable=yes, apply "print" media styles

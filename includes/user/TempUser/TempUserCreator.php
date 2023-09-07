@@ -6,11 +6,11 @@ use ExtensionRegistry;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\Throttler;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\Session;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserRigorOptions;
 use UnexpectedValueException;
-use WebRequest;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**

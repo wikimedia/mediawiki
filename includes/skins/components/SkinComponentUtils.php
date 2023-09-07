@@ -3,9 +3,9 @@
 namespace MediaWiki\Skin;
 
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
 use SpecialPage;
-use WebRequest;
 
 class SkinComponentUtils {
 	/**

@@ -4,9 +4,9 @@ namespace MediaWiki\Hook;
 
 use MediaWiki;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
 use User;
-use WebRequest;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

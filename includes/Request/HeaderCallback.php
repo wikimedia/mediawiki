@@ -24,7 +24,7 @@ class HeaderCallback {
 		// request (ie. in all cases where the request might be performance-sensitive)
 		// it will have to be loaded at some point anyway.
 		// This can be removed once we require PHP 8.0+.
-		class_exists( \WebRequest::class );
+		class_exists( WebRequest::class );
 		class_exists( Telemetry::class );
 
 		header_register_callback( [ __CLASS__, 'callback' ] );
@@ -59,7 +59,7 @@ class HeaderCallback {
 				header( 'Cache-Control: private, max-age=0, s-maxage=0' );
 				\MediaWiki\Logger\LoggerFactory::getInstance( 'cache-cookies' )->warning(
 					'Cookies set on {url} with Cache-Control "{cache-control}"', [
-						'url' => \WebRequest::getGlobalRequestURL(),
+						'url' => WebRequest::getGlobalRequestURL(),
 						'set-cookie' => self::sanitizeSetCookie( $headers['set-cookie'] ),
 						'cache-control' => $cacheControl ?: '<not set>',
 					]
@@ -70,7 +70,7 @@ class HeaderCallback {
 		// Set the request ID on the response, so edge infrastructure can log it.
 		// FIXME this is not an ideal place to do it, but the most reliable for now.
 		if ( !isset( $headers['x-request-id'] ) ) {
-			header( 'X-Request-Id: ' . \WebRequest::getRequestId() );
+			header( 'X-Request-Id: ' . WebRequest::getRequestId() );
 		}
 
 		// Save a backtrace for logging in case it turns out that headers were sent prematurely

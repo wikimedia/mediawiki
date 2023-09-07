@@ -24,9 +24,9 @@
 namespace MediaWiki\Session;
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\User\UserRigorOptions;
 use User;
-use WebRequest;
 
 /**
  * A CookieSessionProvider persists sessions using cookies
@@ -328,7 +328,7 @@ class CookieSessionProvider extends SessionProvider {
 
 	/**
 	 * Fetch the user identity from cookies
-	 * @param \WebRequest $request
+	 * @param \MediaWiki\Request\WebRequest $request
 	 * @return array (string|null $id, string|null $username, string|null $token)
 	 */
 	protected function getUserInfoFromCookies( $request ) {
@@ -342,7 +342,7 @@ class CookieSessionProvider extends SessionProvider {
 
 	/**
 	 * Get a cookie. Contains an auth-specific hack.
-	 * @param \WebRequest $request
+	 * @param \MediaWiki\Request\WebRequest $request
 	 * @param string $key
 	 * @param string $prefix
 	 * @param mixed|null $default

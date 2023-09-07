@@ -24,6 +24,7 @@
 use MediaWiki\Html\Html;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
 
 /**
@@ -524,6 +525,7 @@ class WebInstaller extends Installer {
 	 */
 	public function getAcceptLanguage() {
 		global $wgLanguageCode, $wgRequest;
+		'@phan-var \MediaWiki\Request\WebRequest $wgRequest';
 
 		$mwLanguages = MediaWikiServices::getInstance()
 			->getLanguageNameUtils()

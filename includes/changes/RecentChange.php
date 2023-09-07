@@ -905,8 +905,11 @@ class RecentChange implements Taggable {
 	public static function newLogEntry( $timestamp,
 		$logPage, $user, $actionComment, $ip,
 		$type, $action, $target, $logComment, $params, $newId = 0, $actionCommentIRC = '',
-		$revId = 0, $isPatrollable = false, $forceBotFlag = null ) {
+		$revId = 0, $isPatrollable = false, $forceBotFlag = null
+	) {
 		global $wgRequest;
+		'@phan-var \MediaWiki\Request\WebRequest $wgRequest';
+
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		# # Get pageStatus for email notification
@@ -1228,6 +1231,8 @@ class RecentChange implements Taggable {
 
 	private static function checkIPAddress( $ip ) {
 		global $wgRequest;
+		'@phan-var \MediaWiki\Request\WebRequest $wgRequest';
+
 		if ( $ip ) {
 			if ( !IPUtils::isIPAddress( $ip ) ) {
 				throw new RuntimeException( "Attempt to write \"" . $ip .

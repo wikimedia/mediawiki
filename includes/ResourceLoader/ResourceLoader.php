@@ -42,6 +42,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Profiler\ProfilingContext;
 use MediaWiki\Request\HeaderCallback;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\WikiMap\WikiMap;
@@ -56,7 +57,6 @@ use RuntimeException;
 use stdClass;
 use Throwable;
 use UnexpectedValueException;
-use WebRequest;
 use Wikimedia\DependencyStore\DependencyStore;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\Minify\CSSMin;
@@ -864,7 +864,6 @@ class ResourceLoader implements LoggerAwareInterface {
 			}
 		}
 
-		// @phan-suppress-next-line SecurityCheck-XSS
 		echo $response;
 	}
 
@@ -1892,6 +1891,8 @@ MESSAGE;
 	public static function inDebugMode() {
 		if ( self::$debugMode === null ) {
 			global $wgRequest;
+			'@phan-var \MediaWiki\Request\WebRequest $wgRequest';
+
 			$resourceLoaderDebug = MediaWikiServices::getInstance()->getMainConfig()->get(
 				MainConfigNames::ResourceLoaderDebug );
 			$str = $wgRequest->getRawVal( 'debug',

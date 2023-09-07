@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Request\DerivativeRequest;
+use MediaWiki\Request\WebRequest;
 
 /**
  * @covers MediaWiki\Request\DerivativeRequest

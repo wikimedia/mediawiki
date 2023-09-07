@@ -46,6 +46,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
@@ -60,7 +61,6 @@ use OOUI\Widget;
 use SpecialPage;
 use TitleFormatter;
 use User;
-use WebRequest;
 use Wikimedia\IPUtils;
 use XmlSelect;
 

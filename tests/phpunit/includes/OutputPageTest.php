@@ -12,6 +12,7 @@ use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\ContentSecurityPolicy;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;

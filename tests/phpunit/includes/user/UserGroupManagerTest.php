@@ -27,6 +27,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Config\SiteConfiguration;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\SimpleAuthority;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\User\TempUser\RealTempUserConfig;
@@ -41,7 +42,6 @@ use PHPUnit\Framework\MockObject\Rule\InvokedCount;
 use RequestContext;
 use TestLogger;
 use User;
-use WebRequest;
 use Wikimedia\Assert\PreconditionException;
 
 /**
