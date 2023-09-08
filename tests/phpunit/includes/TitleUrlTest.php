@@ -42,12 +42,14 @@ class TitleUrlTest extends MediaWikiLangTestCase {
 		] );
 		$this->setService( 'InterwikiLookup', $interwikiLookup );
 
-		$this->clearHook( 'GetFullURL' );
-		$this->clearHook( 'GetLocalURL__Article' );
-		$this->clearHook( 'GetLocalURL__Internal' );
-		$this->clearHook( 'GetLocalURL' );
-		$this->clearHook( 'GetInternalURL' );
-		$this->clearHook( 'GetCanonicalURL' );
+		$this->clearHooks( [
+			'GetFullURL',
+			'GetLocalURL__Article',
+			'GetLocalURL__Internal',
+			'GetLocalURL',
+			'GetInternalURL',
+			'GetCanonicalURL',
+		] );
 	}
 
 	protected function tearDown(): void {
