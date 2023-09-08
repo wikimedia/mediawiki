@@ -833,13 +833,6 @@ class PermissionManager {
 		$short,
 		LinkTarget $page
 	): array {
-		if ( $action === 'edit'
-			&& $this->options->get( MainConfigNames::EmailConfirmToEdit )
-			&& !$user->isEmailConfirmed()
-		) {
-			$errors[] = [ 'confirmedittext' ];
-		}
-
 		$block = $this->getApplicableBlock(
 			$action,
 			$user,
@@ -1286,6 +1279,12 @@ class PermissionManager {
 				$errors[] = [ 'undelete-cantcreate' ];
 			}
 		} elseif ( $action === 'edit' ) {
+			if ( $this->options->get( MainConfigNames::EmailConfirmToEdit )
+				&& !$user->isEmailConfirmed()
+			) {
+				$errors[] = [ 'confirmedittext' ];
+			}
+
 			if ( !$title->exists() ) {
 				$errors = array_merge(
 					$errors,
