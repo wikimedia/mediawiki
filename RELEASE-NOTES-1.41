@@ -769,6 +769,9 @@ because of Phabricator reports.
   - ContentHandler::getSlotDiffRendererInternal(), deprecated since 1.35
 * WikiPage::doDeleteArticleBatched, deprecated in 1.37, now emits deprecation
   notices.
+* The legacy MediaWiki UI ResourceLoader modules, such as `mediawiki.ui`, are
+  all now emitting deprecation warnings in the JavaScript console. Please use
+  Codex CSS components instead.
 * …
 
 === Other changes in 1.41 ===

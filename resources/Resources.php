@@ -2456,7 +2456,7 @@ return [
 	/* MediaWiki UI */
 
 	'mediawiki.ui' => [
-		'deprecated' => 'Please use OOUI instead.',
+		'deprecated' => '[1.31] Please use Codex. See migration guidelines: https://w.wiki/7TAh',
 		'skinStyles' => [
 			'default' => [
 				'resources/src/mediawiki.ui/default.less',
@@ -2464,6 +2464,7 @@ return [
 		],
 	],
 	'mediawiki.ui.checkbox' => [
+		'deprecated' => '[1.41] Please use Codex. See migration guidelines: https://w.wiki/7TAh',
 		'skinStyles' => [
 			'default' => [
 				'resources/src/mediawiki.ui.checkbox/checkbox.less',
@@ -2471,6 +2472,7 @@ return [
 		],
 	],
 	'mediawiki.ui.radio' => [
+		'deprecated' => '[1.41] Please use Codex. See migration guidelines: https://w.wiki/7TAh',
 		'skinStyles' => [
 			'default' => [
 				'resources/src/mediawiki.ui.radio/radio.less',
@@ -2479,6 +2481,7 @@ return [
 	],
 	// Lightweight module for button styles
 	'mediawiki.ui.button' => [
+		'deprecated' => '[1.41] Please use Codex. See migration guidelines: https://w.wiki/7TAh',
 		'skinStyles' => [
 			'default' => [
 				'resources/src/mediawiki.ui.button/button.less',
@@ -2486,6 +2489,7 @@ return [
 		],
 	],
 	'mediawiki.ui.input' => [
+		'deprecated' => '[1.41] Please use Codex. See migration guidelines: https://w.wiki/7TAh',
 		'skinStyles' => [
 			'default' => [
 				'resources/src/mediawiki.ui.input/input.less',
@@ -2493,6 +2497,7 @@ return [
 		],
 	],
 	'mediawiki.ui.icon' => [
+		'deprecated' => '[1.41] Please use Codex. See migration guidelines: https://w.wiki/7TAh',
 		'skinStyles' => [
 			'default' => 'resources/src/mediawiki.ui.icon/icons-2.less',
 		],
