@@ -1076,7 +1076,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		if ( !$oldLatest || $oldLatest == $this->lockAndGetLatest() ) {
 			$truncatedFragment = mb_strcut( $rt->getFragment(), 0, 255 );
 			$dbw->newInsertQueryBuilder()
-				->insert( 'redirect' )
+				->insertInto( 'redirect' )
 				->row( [
 					'rd_from' => $this->getId(),
 					'rd_namespace' => $rt->getNamespace(),
@@ -1495,7 +1495,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		} else {
 			// This is not a redirect, remove row from redirect table
 			$dbw->newDeleteQueryBuilder()
-				->delete( 'redirect' )
+				->deleteFrom( 'redirect' )
 				->where( [ 'rd_from' => $this->getId() ] )
 				->caller( __METHOD__ )->execute();
 			$success = true;
@@ -2262,7 +2262,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 
 			if ( $existingProtectionIds ) {
 				$dbw->newDeleteQueryBuilder()
-					->delete( 'page_restrictions' )
+					->deleteFrom( 'page_restrictions' )
 					->where( [ 'pr_id' => $existingProtectionIds ] )
 					->caller( __METHOD__ )->execute();
 			}
@@ -2272,7 +2272,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 				if ( $restrictions != '' ) {
 					$cascadeValue = ( $cascade && $action == 'edit' ) ? 1 : 0;
 					$dbw->newInsertQueryBuilder()
-						->insert( 'page_restrictions' )
+						->insertInto( 'page_restrictions' )
 						->row( [
 							'pr_page' => $id,
 							'pr_type' => $action,
@@ -2319,7 +2319,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 				];
 			} else {
 				$dbw->newDeleteQueryBuilder()
-					->delete( 'protected_titles' )
+					->deleteFrom( 'protected_titles' )
 					->where( [
 						'pt_namespace' => $this->mTitle->getNamespace(),
 						'pt_title' => $this->mTitle->getDBkey()
@@ -3025,7 +3025,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 
 		if ( $missingAdded ) {
 			$queryBuilder = $dbw->newInsertQueryBuilder()
-				->insert( 'category' )
+				->insertInto( 'category' )
 				->onDuplicateKeyUpdate()
 				->uniqueIndexFields( [ 'cat_title' ] )
 				->set( $addFields );

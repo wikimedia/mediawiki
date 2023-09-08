@@ -153,7 +153,7 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 							->caller( $fname )->execute();
 					} else {
 						$dbw->newInsertQueryBuilder()
-							->insert( 'site_stats' )
+							->insertInto( 'site_stats' )
 							->row( array_merge( [ 'ss_row_id' => $shard ], $initValues ) )
 							->onDuplicateKeyUpdate()
 							->uniqueIndexFields( [ 'ss_row_id' ] )

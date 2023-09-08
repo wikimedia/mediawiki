@@ -108,7 +108,7 @@ class RecentChangesUpdateJob extends Job {
 			}
 			if ( $rcIds ) {
 				$dbw->newDeleteQueryBuilder()
-					->delete( 'recentchanges' )
+					->deleteFrom( 'recentchanges' )
 					->where( [ 'rc_id' => $rcIds ] )
 					->caller( __METHOD__ )->execute();
 				$hookRunner->onRecentChangesPurgeRows( $rows );
@@ -237,7 +237,7 @@ class RecentChangesUpdateJob extends Job {
 
 		// Rotate out users that have not edited in too long (according to old data set)
 		$dbw->newDeleteQueryBuilder()
-			->delete( 'querycachetwo' )
+			->deleteFrom( 'querycachetwo' )
 			->where( [
 				'qcc_type' => 'activeusers',
 				$dbw->buildComparison( '<', [ 'qcc_value' => $nowUnix - $days * 86400 ] ) // TS_UNIX

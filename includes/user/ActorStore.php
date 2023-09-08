@@ -415,7 +415,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		}
 
 		$dbw->newInsertQueryBuilder()
-			->insert( 'actor' )
+			->insertInto( 'actor' )
 			->ignore()
 			->row( [ 'actor_user' => $userId, 'actor_name' => $userName ] )
 			->caller( __METHOD__ )->execute();
@@ -461,7 +461,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 
 		try {
 			$dbw->newInsertQueryBuilder()
-				->insert( 'actor' )
+				->insertInto( 'actor' )
 				->row( [ 'actor_user' => $userId, 'actor_name' => $userName ] )
 				->caller( __METHOD__ )->execute();
 		} catch ( DBQueryError $e ) {
@@ -519,7 +519,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			}
 		}
 		$dbw->newInsertQueryBuilder()
-			->insert( 'actor' )
+			->insertInto( 'actor' )
 			->row( [ 'actor_name' => $userName, 'actor_user' => $userId ] )
 			->onDuplicateKeyUpdate()
 			->uniqueIndexFields( [ 'actor_name' ] )
@@ -564,7 +564,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			);
 		}
 		$dbw->newDeleteQueryBuilder()
-			->delete( 'actor' )
+			->deleteFrom( 'actor' )
 			->where( [ 'actor_name' => $normalizedName ] )
 			->caller( __METHOD__ )->execute();
 		if ( $dbw->affectedRows() !== 0 ) {

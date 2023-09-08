@@ -858,7 +858,7 @@ class ApiEditPageTest extends ApiTestCase {
 		// Make the middle revision disappear
 		$dbw = $this->getDb();
 		$dbw->newDeleteQueryBuilder()
-			->delete( 'revision' )
+			->deleteFrom( 'revision' )
 			->where( [ 'rev_id' => $revId2 ] )
 			->caller( __METHOD__ )->execute();
 		$dbw->newUpdateQueryBuilder()

@@ -166,7 +166,7 @@ class SiteStatsInit {
 		$exists = (bool)$dbw->selectField( 'site_stats', '1', [ 'ss_row_id' => 1 ], __METHOD__ );
 		if ( !$exists ) {
 			$dbw->newInsertQueryBuilder()
-				->insert( 'site_stats' )
+				->insertInto( 'site_stats' )
 				->ignore()
 				->row( [ 'ss_row_id' => 1 ] + array_fill_keys( SiteStats::selectFields(), 0 ) )
 				->caller( __METHOD__ )->execute();
@@ -199,7 +199,7 @@ class SiteStatsInit {
 				];
 				$row = [ 'ss_row_id' => $i ] + $set;
 				self::getDB( DB_PRIMARY )->newInsertQueryBuilder()
-					->insert( 'site_stats' )
+					->insertInto( 'site_stats' )
 					->row( $row )
 					->onDuplicateKeyUpdate()
 					->uniqueIndexFields( [ 'ss_row_id' ] )
@@ -217,7 +217,7 @@ class SiteStatsInit {
 			$row = [ 'ss_row_id' => 1 ] + $set;
 
 			self::getDB( DB_PRIMARY )->newInsertQueryBuilder()
-				->insert( 'site_stats' )
+				->insertInto( 'site_stats' )
 				->row( $row )
 				->onDuplicateKeyUpdate()
 				->uniqueIndexFields( [ 'ss_row_id' ] )

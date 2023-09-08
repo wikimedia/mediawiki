@@ -328,7 +328,7 @@ class CommentStore {
 				->caller( __METHOD__ )->fetchField();
 			if ( !$commentId ) {
 				$dbw->newInsertQueryBuilder()
-					->insert( 'comment' )
+					->insertInto( 'comment' )
 					->row( [ 'comment_hash' => $hash, 'comment_text' => $comment->text, 'comment_data' => $dbData ] )
 					->caller( __METHOD__ )->execute();
 				$commentId = $dbw->insertId();

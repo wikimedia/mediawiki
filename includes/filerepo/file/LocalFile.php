@@ -1755,7 +1755,7 @@ class LocalFile extends File {
 		$commentFields = $commentStore->insert( $dbw, 'img_description', $comment );
 		$actorFields = [ 'img_actor' => $actorId ];
 		$dbw->newInsertQueryBuilder()
-			->insert( 'image' )
+			->insertInto( 'image' )
 			->ignore()
 			->row( [
 				'img_name' => $this->getName(),

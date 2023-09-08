@@ -2439,7 +2439,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 				);
 				if ( $ids ) {
 					$dbw->newDeleteQueryBuilder()
-						->delete( 'page_restrictions' )
+						->deleteFrom( 'page_restrictions' )
 						->where( [ 'pr_id' => $ids ] )
 						->caller( $fname )->execute();
 				}
@@ -2451,7 +2451,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			__METHOD__,
 			static function ( IDatabase $dbw, $fname ) {
 				$dbw->newDeleteQueryBuilder()
-					->delete( 'protected_titles' )
+					->deleteFrom( 'protected_titles' )
 					->where( $dbw->buildComparison( '<', [ 'pt_expiry' => $dbw->timestamp() ] ) )
 					->caller( $fname )->execute();
 			}

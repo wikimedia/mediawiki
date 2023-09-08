@@ -734,7 +734,7 @@ class MovePage {
 				];
 			}
 			$dbw->newInsertQueryBuilder()
-				->insert( 'page_restrictions' )
+				->insertInto( 'page_restrictions' )
 				->ignore()
 				->rows( $rowsInsert )
 				->caller( __METHOD__ )->execute();

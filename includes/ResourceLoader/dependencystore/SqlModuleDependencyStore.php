@@ -105,7 +105,7 @@ class SqlModuleDependencyStore extends DependencyStore {
 		// See https://dev.mysql.com/doc/refman/8.0/en/insert-on-duplicate.html
 		foreach ( $rows as $row ) {
 			$dbw->newInsertQueryBuilder()
-				->insert( 'module_deps' )
+				->insertInto( 'module_deps' )
 				->row( $row )
 				->onDuplicateKeyUpdate()
 				->uniqueIndexFields( [ 'md_module', 'md_skin' ] )
@@ -134,7 +134,7 @@ class SqlModuleDependencyStore extends DependencyStore {
 
 		if ( $disjunctionConds ) {
 			$dbw->newDeleteQueryBuilder()
-				->delete( 'module_deps' )
+				->deleteFrom( 'module_deps' )
 				->where( $dbw->makeList( $disjunctionConds, $dbw::LIST_OR ) )
 				->caller( __METHOD__ )->execute();
 		}

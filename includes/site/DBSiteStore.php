@@ -189,7 +189,7 @@ class DBSiteStore implements SiteStore {
 					->caller( __METHOD__ )->execute();
 			} else {
 				$dbw->newInsertQueryBuilder()
-					->insert( 'sites' )
+					->insertInto( 'sites' )
 					->row( $fields )
 					->caller( __METHOD__ )->execute();
 				$rowId = $dbw->insertId();
@@ -204,14 +204,14 @@ class DBSiteStore implements SiteStore {
 
 		if ( $internalIds !== [] ) {
 			$dbw->newDeleteQueryBuilder()
-				->delete( 'site_identifiers' )
+				->deleteFrom( 'site_identifiers' )
 				->where( [ 'si_site' => $internalIds ] )
 				->caller( __METHOD__ )->execute();
 		}
 
 		foreach ( $localIds as $localId ) {
 			$dbw->newInsertQueryBuilder()
-				->insert( 'site_identifiers' )
+				->insertInto( 'site_identifiers' )
 				->row( [ 'si_site' => $localId[0], 'si_type' => $localId[1], 'si_key' => $localId[2] ] )
 				->caller( __METHOD__ )->execute();
 		}
@@ -242,11 +242,11 @@ class DBSiteStore implements SiteStore {
 
 		$dbw->startAtomic( __METHOD__ );
 		$dbw->newDeleteQueryBuilder()
-			->delete( 'sites' )
+			->deleteFrom( 'sites' )
 			->where( IDatabase::ALL_ROWS )
 			->caller( __METHOD__ )->execute();
 		$dbw->newDeleteQueryBuilder()
-			->delete( 'site_identifiers' )
+			->deleteFrom( 'site_identifiers' )
 			->where( IDatabase::ALL_ROWS )
 			->caller( __METHOD__ )->execute();
 		$dbw->endAtomic( __METHOD__ );

@@ -426,7 +426,7 @@ class OldLocalFile extends LocalFile {
 		$actorId = $services->getActorNormalization()
 			->acquireActorId( $user, $dbw );
 		$dbw->newInsertQueryBuilder()
-			->insert( 'oldimage' )
+			->insertInto( 'oldimage' )
 			->row( [
 				'oi_name' => $this->getName(),
 				'oi_archive_name' => $archiveName,

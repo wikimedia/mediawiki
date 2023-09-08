@@ -317,21 +317,21 @@ class LocalFileRestoreBatch {
 		// This is not ideal, which is why it's important to lock the image row.
 		if ( $insertCurrent ) {
 			$dbw->newInsertQueryBuilder()
-				->insert( 'image' )
+				->insertInto( 'image' )
 				->row( $insertCurrent )
 				->caller( __METHOD__ )->execute();
 		}
 
 		if ( $insertBatch ) {
 			$dbw->newInsertQueryBuilder()
-				->insert( 'oldimage' )
+				->insertInto( 'oldimage' )
 				->rows( $insertBatch )
 				->caller( __METHOD__ )->execute();
 		}
 
 		if ( $deleteIds ) {
 			$dbw->newDeleteQueryBuilder()
-				->delete( 'filearchive' )
+				->deleteFrom( 'filearchive' )
 				->where( [ 'fa_id' => $deleteIds ] )
 				->caller( __METHOD__ )->execute();
 		}

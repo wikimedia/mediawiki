@@ -628,7 +628,7 @@ class UndeletePage {
 
 		// Now that it's safely stored, take it out of the archive
 		$dbw->newDeleteQueryBuilder()
-			->delete( 'archive' )
+			->deleteFrom( 'archive' )
 			->where( $oldWhere )
 			->caller( __METHOD__ )->execute();
 

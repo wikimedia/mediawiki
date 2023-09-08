@@ -313,7 +313,7 @@ class UploadStash {
 		];
 
 		$dbw->newInsertQueryBuilder()
-			->insert( 'uploadstash' )
+			->insertInto( 'uploadstash' )
 			->row( $insertRow )
 			->caller( __METHOD__ )->execute();
 
@@ -346,7 +346,7 @@ class UploadStash {
 		wfDebug( __METHOD__ . ' clearing all rows for user ' . $this->user->getId() );
 		$dbw = $this->repo->getPrimaryDB();
 		$dbw->newDeleteQueryBuilder()
-			->delete( 'uploadstash' )
+			->deleteFrom( 'uploadstash' )
 			->where( [ 'us_user' => $this->user->getId() ] )
 			->caller( __METHOD__ )->execute();
 
@@ -412,7 +412,7 @@ class UploadStash {
 		$dbw = $this->repo->getPrimaryDB();
 
 		$dbw->newDeleteQueryBuilder()
-			->delete( 'uploadstash' )
+			->deleteFrom( 'uploadstash' )
 			->where( [ 'us_key' => $key ] )
 			->caller( __METHOD__ )->execute();
 

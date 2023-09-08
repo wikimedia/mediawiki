@@ -117,7 +117,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	public function store( $location, $data ) {
 		$dbw = $this->getPrimary( $location );
 		$dbw->newInsertQueryBuilder()
-			->insert( $this->getTable( $dbw, $location ) )
+			->insertInto( $this->getTable( $dbw, $location ) )
 			->row( [ 'blob_text' => $data ] )
 			->caller( __METHOD__ )->execute();
 		$id = $dbw->insertId();

@@ -32,11 +32,11 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 	private function emptyChangeTagsTables() {
 		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->newDeleteQueryBuilder()
-			->delete( 'change_tag' )
+			->deleteFrom( 'change_tag' )
 			->where( ISQLPlatform::ALL_ROWS )
 			->execute();
 		$dbw->newDeleteQueryBuilder()
-			->delete( 'change_tag_def' )
+			->deleteFrom( 'change_tag_def' )
 			->where( ISQLPlatform::ALL_ROWS )
 			->execute();
 	}

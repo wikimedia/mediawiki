@@ -93,12 +93,12 @@ class LCStoreDB implements LCStore {
 		$dbw->startAtomic( __METHOD__ );
 		try {
 			$dbw->newDeleteQueryBuilder()
-				->delete( 'l10n_cache' )
+				->deleteFrom( 'l10n_cache' )
 				->where( [ 'lc_lang' => $this->code ] )
 				->caller( __METHOD__ )->execute();
 			foreach ( array_chunk( $this->batch, 500 ) as $rows ) {
 				$dbw->newInsertQueryBuilder()
-					->insert( 'l10n_cache' )
+					->insertInto( 'l10n_cache' )
 					->rows( $rows )
 					->caller( __METHOD__ )->execute();
 			}

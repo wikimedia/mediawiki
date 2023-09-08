@@ -654,7 +654,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 
 		// Make sure we were actually hitting the WAN cache
 		$dbw->newDeleteQueryBuilder()
-			->delete( 'image' )
+			->deleteFrom( 'image' )
 			->where( [ 'img_name' => 'Random-11m.png' ] )
 			->caller( __METHOD__ )->execute();
 		$file->invalidateCache();

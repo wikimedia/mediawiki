@@ -117,7 +117,7 @@ class Pingback {
 		$dbw = $this->dbProvider->getPrimaryDatabase();
 		$timestamp = ConvertibleTimestamp::time();
 		$dbw->newInsertQueryBuilder()
-			->insert( 'updatelog' )
+			->insertInto( 'updatelog' )
 			->row( [ 'ul_key' => $this->key, 'ul_value' => $timestamp ] )
 			->onDuplicateKeyUpdate()
 			->uniqueIndexFields( [ 'ul_key' ] )
@@ -253,7 +253,7 @@ class Pingback {
 
 		$id = MWCryptRand::generateHex( 32 );
 		$dbw->newInsertQueryBuilder()
-			->insert( 'updatelog' )
+			->insertInto( 'updatelog' )
 			->row( [ 'ul_key' => 'PingBack', 'ul_value' => $id ] )
 			->caller( __METHOD__ )->execute();
 		return $id;

@@ -739,7 +739,7 @@ class RevisionStore
 	) {
 		if ( !$user->isRegistered() && IPUtils::isValid( $user->getName() ) ) {
 			$dbw->newInsertQueryBuilder()
-				->insert( 'ip_changes' )
+				->insertInto( 'ip_changes' )
 				->row( [
 					'ipc_rev_id'        => $revisionId,
 					'ipc_rev_timestamp' => $dbw->timestamp( $rev->getTimestamp() ),
@@ -782,7 +782,7 @@ class RevisionStore
 		$revisionRow += $actorFields;
 
 		$dbw->newInsertQueryBuilder()
-			->insert( 'revision' )
+			->insertInto( 'revision' )
 			->row( $revisionRow )
 			->caller( __METHOD__ )->execute();
 
@@ -826,7 +826,7 @@ class RevisionStore
 					);
 
 					$dbw->newDeleteQueryBuilder()
-						->delete( 'revision' )
+						->deleteFrom( 'revision' )
 						->where( [ 'rev_id' => $revisionRow['rev_id'] ] )
 						->caller( __METHOD__ )->execute();
 
@@ -861,7 +861,7 @@ class RevisionStore
 					// to avoid that.
 					$revisionRow['rev_id'] = $maxRevId + 1;
 					$dbw->newInsertQueryBuilder()
-						->insert( 'revision' )
+						->insertInto( 'revision' )
 						->row( $revisionRow )
 						->caller( __METHOD__ )->execute();
 				}
@@ -948,7 +948,7 @@ class RevisionStore
 	 */
 	private function insertSlotRowOn( SlotRecord $slot, IDatabase $dbw, $revisionId, $contentId ) {
 		$dbw->newInsertQueryBuilder()
-			->insert( 'slots' )
+			->insertInto( 'slots' )
 			->row( [
 				'slot_revision_id' => $revisionId,
 				'slot_role_id' => $this->slotRoleStore->acquireId( $slot->getRole() ),
@@ -968,7 +968,7 @@ class RevisionStore
 	 */
 	private function insertContentRowOn( SlotRecord $slot, IDatabase $dbw, $blobAddress ) {
 		$dbw->newInsertQueryBuilder()
-			->insert( 'content' )
+			->insertInto( 'content' )
 			->row( [
 				'content_size' => $slot->getSize(),
 				'content_sha1' => $slot->getSha1(),

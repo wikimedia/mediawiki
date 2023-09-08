@@ -860,7 +860,7 @@ class UserGroupManager implements IDBAccessObject {
 
 		$dbw->startAtomic( __METHOD__ );
 		$dbw->newInsertQueryBuilder()
-			->insert( 'user_groups' )
+			->insertInto( 'user_groups' )
 			->ignore()
 			->row( [
 				'ug_user' => $user->getId( $this->wikiId ),
@@ -987,7 +987,7 @@ class UserGroupManager implements IDBAccessObject {
 		$oldFormerGroups = $this->getUserFormerGroups( $user, self::READ_LATEST );
 		$dbw = $this->dbProvider->getPrimaryDatabase( $this->wikiId );
 		$dbw->newDeleteQueryBuilder()
-			->delete( 'user_groups' )
+			->deleteFrom( 'user_groups' )
 			->where( [ 'ug_user' => $user->getId( $this->wikiId ), 'ug_group' => $group ] )
 			->caller( __METHOD__ )->execute();
 
@@ -996,7 +996,7 @@ class UserGroupManager implements IDBAccessObject {
 		}
 		// Remember that the user was in this group
 		$dbw->newInsertQueryBuilder()
-			->insert( 'user_former_groups' )
+			->insertInto( 'user_former_groups' )
 			->ignore()
 			->row( [ 'ufg_user' => $user->getId( $this->wikiId ), 'ufg_group' => $group ] )
 			->caller( __METHOD__ )->execute();
@@ -1074,12 +1074,12 @@ class UserGroupManager implements IDBAccessObject {
 				}
 				// Delete the rows we're about to move
 				$dbw->newDeleteQueryBuilder()
-					->delete( 'user_groups' )
+					->deleteFrom( 'user_groups' )
 					->where( $dbw->makeList( $deleteCond, $dbw::LIST_OR ) )
 					->caller( __METHOD__ )->execute();
 				// Push the groups to user_former_groups
 				$dbw->newInsertQueryBuilder()
-					->insert( 'user_former_groups' )
+					->insertInto( 'user_former_groups' )
 					->ignore()
 					->rows( $insertData )
 					->caller( __METHOD__ )->execute();
