@@ -340,7 +340,7 @@ class ParserOutputAccess {
 
 		if ( !( $options & self::OPT_NO_UPDATE_CACHE ) && $revision && !$revision->getId() ) {
 			throw new InvalidArgumentException(
-				'The revision does not have a known ID. Use NO_CACHE.'
+				'The revision does not have a known ID. Use OPT_NO_CACHE.'
 			);
 		}
 
