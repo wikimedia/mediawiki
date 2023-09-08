@@ -634,7 +634,7 @@ class ApiPageSet extends ApiBase {
 
 			$values[] = $r;
 		}
-		if ( !empty( $values ) && $result ) {
+		if ( $values && $result ) {
 			ApiResult::setIndexedTagName( $values, 'r' );
 		}
 
@@ -667,7 +667,7 @@ class ApiPageSet extends ApiBase {
 				'to' => $titleStr
 			];
 		}
-		if ( !empty( $values ) && $result ) {
+		if ( $values && $result ) {
 			ApiResult::setIndexedTagName( $values, 'n' );
 		}
 
@@ -698,7 +698,7 @@ class ApiPageSet extends ApiBase {
 				'to' => $titleStr
 			];
 		}
-		if ( !empty( $values ) && $result ) {
+		if ( $values && $result ) {
 			ApiResult::setIndexedTagName( $values, 'c' );
 		}
 
@@ -735,7 +735,7 @@ class ApiPageSet extends ApiBase {
 			}
 			$values[] = $item;
 		}
-		if ( !empty( $values ) && $result ) {
+		if ( $values && $result ) {
 			ApiResult::setIndexedTagName( $values, 'i' );
 		}
 
@@ -848,7 +848,7 @@ class ApiPageSet extends ApiBase {
 				'missing' => true,
 			];
 		}
-		if ( !empty( $values ) && $result ) {
+		if ( $values && $result ) {
 			ApiResult::setIndexedTagName( $values, 'rev' );
 		}
 
@@ -1005,7 +1005,7 @@ class ApiPageSet extends ApiBase {
 		}
 
 		$res = null;
-		if ( !empty( $pageids ) ) {
+		if ( $pageids ) {
 			$db = $this->getDB();
 
 			// Get pageIDs data from the `page` table

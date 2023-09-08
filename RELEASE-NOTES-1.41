@@ -117,6 +117,7 @@ For notes on 1.40.x and older releases, see HISTORY.
 * …
 
 ===== Changed development-only external libraries =====
+* Updated mediawiki/mediawiki-phan-config from 0.12.1 to 0.13.0.
 * …
 
 ==== Removed external libraries ====

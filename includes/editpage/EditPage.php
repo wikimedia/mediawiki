@@ -4506,16 +4506,20 @@ class EditPage implements IEditObject {
 	public function spamPageWithContent( $match = false ) {
 		$this->textbox2 = $this->textbox1;
 
-		if ( is_array( $match ) ) {
-			$match = $this->context->getLanguage()->listToText( $match );
-		}
 		$out = $this->context->getOutput();
 		$out->prepareErrorPage( $this->context->msg( 'spamprotectiontitle' ) );
 
 		$spamText = $this->context->msg( 'spamprotectiontext' )->parseAsBlock();
+
 		if ( $match ) {
+			if ( is_array( $match ) ) {
+				$matchText = $this->context->getLanguage()->listToText( array_map( 'wfEscapeWikiText', $match ) );
+			} else {
+				$matchText = wfEscapeWikiText( $match );
+			}
+
 			$spamText .= $this->context->msg( 'spamprotectionmatch' )
-				->params( wfEscapeWikiText( $match ) )
+				->params( $matchText )
 				->parseAsBlock();
 		}
 		$out->addHTML( Html::rawElement(

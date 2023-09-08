@@ -285,7 +285,7 @@ class TemplateParser {
 	 *     );
 	 * @endcode
 	 * @param string $templateName The name of the template
-	 * @param-taint $templateName exec_misc
+	 * @param-taint $templateName exec_path
 	 * @param mixed $args
 	 * @param-taint $args none
 	 * @param array $scopes

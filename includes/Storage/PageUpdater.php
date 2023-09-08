@@ -1673,7 +1673,7 @@ class PageUpdater {
 		$allowedRoles = $this->getAllowedSlotRoles();
 
 		$forbidden = array_diff( $roles, $allowedRoles );
-		if ( !empty( $forbidden ) ) {
+		if ( $forbidden ) {
 			$status->error(
 				'edit-slots-cannot-add',
 				count( $forbidden ),
@@ -1710,7 +1710,7 @@ class PageUpdater {
 		$requiredRoles = $this->getRequiredSlotRoles();
 
 		$needed = array_diff( $roles, $requiredRoles );
-		if ( !empty( $needed ) ) {
+		if ( $needed ) {
 			$status->error(
 				'edit-slots-cannot-remove',
 				count( $needed ),
@@ -1727,7 +1727,7 @@ class PageUpdater {
 		$requiredRoles = $this->getRequiredSlotRoles();
 
 		$missing = array_diff( $requiredRoles, $roles );
-		if ( !empty( $missing ) ) {
+		if ( $missing ) {
 			$status->error(
 				'edit-slots-missing',
 				count( $missing ),

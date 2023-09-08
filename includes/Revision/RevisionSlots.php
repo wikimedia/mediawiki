@@ -196,7 +196,7 @@ class RevisionSlots {
 		$slots = $this->getPrimarySlots();
 		ksort( $slots );
 
-		if ( empty( $slots ) ) {
+		if ( !$slots ) {
 			return SlotRecord::base36Sha1( '' );
 		}
 
