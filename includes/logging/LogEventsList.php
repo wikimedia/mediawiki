@@ -123,7 +123,7 @@ class LogEventsList extends ContextSource {
 
 		// Add extra inputs if any
 		$extraInputsDescriptor = $this->getExtraInputsDesc( $type );
-		if ( !empty( $extraInputsDescriptor ) ) {
+		if ( $extraInputsDescriptor ) {
 			$formDescriptor[ 'extra' ] = $extraInputsDescriptor;
 		}
 

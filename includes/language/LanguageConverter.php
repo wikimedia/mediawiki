@@ -490,7 +490,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 		// See if some supported language variant is set in the
 		// HTTP header.
 		$languages = array_keys( $wgRequest->getAcceptLang() );
-		if ( empty( $languages ) ) {
+		if ( !$languages ) {
 			return null;
 		}
 

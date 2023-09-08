@@ -327,7 +327,7 @@ class DatabaseBlockStore {
 		$restrictions = $block->getRawRestrictions();
 		if ( $restrictions !== null ) {
 			// An empty array should remove all of the restrictions.
-			if ( empty( $restrictions ) ) {
+			if ( $restrictions === [] ) {
 				$result = $this->blockRestrictionStore->deleteByBlockId( $blockId );
 			} else {
 				$result = $this->blockRestrictionStore->update( $restrictions );

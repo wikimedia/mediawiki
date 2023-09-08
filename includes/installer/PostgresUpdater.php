@@ -914,7 +914,7 @@ END;
 
 	protected function checkIndex( $index, $should_be, $good_def ) {
 		$pu = $this->db->indexAttributes( $index );
-		if ( !empty( $pu ) && $pu != $should_be ) {
+		if ( $pu && $pu != $should_be ) {
 			$this->output( "Dropping obsolete version of index '$index'\n" );
 			$this->db->query( "DROP INDEX \"" . $index . "\"", __METHOD__ );
 			$pu = [];
@@ -922,7 +922,7 @@ END;
 			$this->output( "...no need to drop index '$index'\n" );
 		}
 
-		if ( empty( $pu ) ) {
+		if ( !$pu ) {
 			$this->output( "Creating index '$index'\n" );
 			$this->db->query( $good_def, __METHOD__ );
 		} else {

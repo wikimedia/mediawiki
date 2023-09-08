@@ -254,7 +254,7 @@ class WikitextContent extends TextContent {
 				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable getTitle does not return null here
 				$po = $contentRenderer->getParserOutput( $this, $title, null, null, false );
 				$links = $po->getLinks();
-				$hasLinks = !empty( $links );
+				$hasLinks = $links !== [];
 			}
 
 			return $hasLinks;

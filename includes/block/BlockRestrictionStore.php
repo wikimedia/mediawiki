@@ -144,7 +144,7 @@ class BlockRestrictionStore {
 		// different.
 		$existingList = [];
 		$blockIds = array_keys( $restrictionList );
-		if ( !empty( $blockIds ) ) {
+		if ( $blockIds ) {
 			$result = $dbw->newSelectQueryBuilder()
 				->select( [ 'ir_ipb_id', 'ir_type', 'ir_value' ] )
 				->forUpdate()
@@ -170,7 +170,7 @@ class BlockRestrictionStore {
 				$restrictions
 			);
 
-			if ( empty( $restrictionsToRemove ) ) {
+			if ( !$restrictionsToRemove ) {
 				continue;
 			}
 
@@ -208,7 +208,7 @@ class BlockRestrictionStore {
 		}
 
 		// If removing all of the restrictions, then just delete them all.
-		if ( empty( $restrictions ) ) {
+		if ( !$restrictions ) {
 			$blockIds = array_map( 'intval', $blockIds );
 			return $this->deleteByBlockId( $blockIds );
 		}

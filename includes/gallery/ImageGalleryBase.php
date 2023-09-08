@@ -344,7 +344,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @return bool
 	 */
 	public function isEmpty() {
-		return empty( $this->mImages );
+		return $this->mImages === [];
 	}
 
 	/**

@@ -167,7 +167,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 
 			$ext = trim( substr( $s, $i + 1 ) );
 
-			if ( empty( $ext ) ) {
+			if ( !$ext ) {
 				continue;
 			}
 
@@ -216,7 +216,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 
 			foreach ( $m as $mime ) {
 				$mime = trim( $mime );
-				if ( empty( $mime ) ) {
+				if ( !$mime ) {
 					continue;
 				}
 

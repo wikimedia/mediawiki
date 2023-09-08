@@ -183,7 +183,7 @@ class BaseMetric implements BaseMetricInterface {
 	}
 
 	private function hasSamples(): bool {
-		return !empty( $this->samples );
+		return $this->samples !== [];
 	}
 
 }

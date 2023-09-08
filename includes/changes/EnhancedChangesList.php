@@ -280,7 +280,7 @@ class EnhancedChangesList extends ChangesList {
 		$block = array_values( $block );
 		$filterClasses = array_values( $filterClasses );
 
-		if ( empty( $block ) || !$lines ) {
+		if ( !$block || !$lines ) {
 			// if we can't show anything, don't display this block altogether
 			return '';
 		}
@@ -482,7 +482,7 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string
 	 */
 	protected function getLogText( $block, $queryParams, $allLogs, $isnew, $namehidden ) {
-		if ( empty( $block ) ) {
+		if ( !$block ) {
 			return '';
 		}
 

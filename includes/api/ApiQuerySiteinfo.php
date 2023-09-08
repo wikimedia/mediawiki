@@ -242,7 +242,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$data['imagewhitelistenabled'] =
 				(bool)$config->get( MainConfigNames::EnableImageWhitelist );
 			$allowFrom = $config->get( MainConfigNames::AllowExternalImagesFrom );
-			$allowException = !empty( $allowFrom );
+			$allowException = (bool)$allowFrom;
 		}
 		if ( $allowException ) {
 			$data['externalimages'] = (array)$allowFrom;

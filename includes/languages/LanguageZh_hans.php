@@ -71,7 +71,7 @@ class LanguageZh_hans extends Language {
 	 * @return string
 	 */
 	public function formatDuration( $seconds, array $chosenIntervals = [] ) {
-		if ( empty( $chosenIntervals ) ) {
+		if ( !$chosenIntervals ) {
 			$chosenIntervals = [ 'centuries', 'years', 'days', 'hours', 'minutes', 'seconds' ];
 		}
 

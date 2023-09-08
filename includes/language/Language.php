@@ -2112,7 +2112,7 @@ class Language implements Bcp47Code {
 	 * @return int[]
 	 */
 	public function getDurationIntervals( $seconds, array $chosenIntervals = [] ) {
-		if ( empty( $chosenIntervals ) ) {
+		if ( !$chosenIntervals ) {
 			$chosenIntervals = [
 				'millennia',
 				'centuries',
@@ -2135,7 +2135,7 @@ class Language implements Bcp47Code {
 		foreach ( $intervals as $name => $length ) {
 			$value = floor( $seconds / $length );
 
-			if ( $value > 0 || ( $name == $smallestInterval && empty( $segments ) ) ) {
+			if ( $value > 0 || ( $name == $smallestInterval && !$segments ) ) {
 				$seconds -= $value * $length;
 				$segments[$name] = $value;
 			}
