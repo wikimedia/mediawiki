@@ -115,9 +115,9 @@ class SkinComponentMenu implements SkinComponent {
 			$id = Sanitizer::escapeIdForAttribute( "p-$name" );
 		}
 
-		$isEmptyContent = empty( $this->content );
-		$isEmptyAfterContent = empty( $this->htmlAfterContent );
-		$isEmptyBeforeContent = empty( $this->htmlBeforeContent );
+		$isEmptyContent = !$this->content;
+		$isEmptyAfterContent = !$this->htmlAfterContent;
+		$isEmptyBeforeContent = !$this->htmlBeforeContent;
 		$isEmptyItems = count( $this->items ) === 0;
 		$isEmptyPortlet = ( $isEmptyContent && $isEmptyAfterContent && $isEmptyBeforeContent && $isEmptyItems );
 		$data = [

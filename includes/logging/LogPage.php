@@ -390,7 +390,7 @@ class LogPage {
 	 * @return bool
 	 */
 	public function addRelations( $field, $values, $logid ) {
-		if ( !strlen( $field ) || empty( $values ) ) {
+		if ( !strlen( $field ) || !$values ) {
 			return false;
 		}
 

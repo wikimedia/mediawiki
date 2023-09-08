@@ -103,7 +103,7 @@ abstract class SearchIndexFieldDefinition implements SearchIndexField {
 	 * @return SearchIndexField|false New definition or false if not mergeable.
 	 */
 	public function merge( SearchIndexField $that ) {
-		if ( !empty( $this->mergeCallback ) ) {
+		if ( $this->mergeCallback ) {
 			return call_user_func( $this->mergeCallback, $this, $that );
 		}
 		// TODO: which definitions may be compatible?

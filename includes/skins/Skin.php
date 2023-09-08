@@ -1811,7 +1811,7 @@ abstract class Skin extends ContextSource {
 		if ( $name === 'default' ) {
 			// special case
 			$notice = $config->get( MainConfigNames::SiteNotice );
-			if ( empty( $notice ) ) {
+			if ( !$notice ) {
 				return false;
 			}
 		} else {

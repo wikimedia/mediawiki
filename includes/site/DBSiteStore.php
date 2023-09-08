@@ -148,7 +148,7 @@ class DBSiteStore implements SiteStore {
 	 * @return bool Success indicator
 	 */
 	public function saveSites( array $sites ) {
-		if ( empty( $sites ) ) {
+		if ( !$sites ) {
 			return true;
 		}
 

@@ -1827,7 +1827,7 @@ class FormatMetadata extends ContextSource {
 
 		// otherwise just return any one language
 		unset( $value['_type'] );
-		if ( !empty( $value ) ) {
+		if ( $value ) {
 			return reset( $value );
 		}
 

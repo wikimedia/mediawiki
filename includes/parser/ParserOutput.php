@@ -2287,10 +2287,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->mParseUsedOptions = self::mergeMap( $this->mParseUsedOptions, $source->mParseUsedOptions );
 
 		// TODO: maintain per-slot limit reports!
-		if ( empty( $this->mLimitReportData ) ) {
+		if ( !$this->mLimitReportData ) {
 			$this->mLimitReportData = $source->mLimitReportData;
 		}
-		if ( empty( $this->mLimitReportJSData ) ) {
+		if ( !$this->mLimitReportJSData ) {
 			$this->mLimitReportJSData = $source->mLimitReportJSData;
 		}
 	}

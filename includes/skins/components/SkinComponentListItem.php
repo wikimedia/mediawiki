@@ -138,7 +138,7 @@ class SkinComponentListItem implements SkinComponent {
 				$linkTemplateData = $linkComponent->getTemplateData();
 				$links[] = $linkTemplateData['html'];
 				unset( $linkTemplateData['html'] );
-				if ( !empty( $linkTemplateData ) ) {
+				if ( $linkTemplateData ) {
 					$linksArray[] = $linkTemplateData;
 				}
 			}
@@ -172,7 +172,7 @@ class SkinComponentListItem implements SkinComponent {
 			$html = $data['html'];
 			unset( $data['html'] );
 			// in the case of some links e.g. footer these may be HTML only so make sure not to add an empty object.
-			if ( !empty( $data ) ) {
+			if ( $data ) {
 				$linksArray[] = $data;
 			}
 		}

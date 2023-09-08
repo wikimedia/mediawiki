@@ -568,7 +568,7 @@ class EmailNotification {
 	 * @return Status|null
 	 */
 	private function sendImpersonal( $addresses ) {
-		if ( empty( $addresses ) ) {
+		if ( !$addresses ) {
 			return null;
 		}
 

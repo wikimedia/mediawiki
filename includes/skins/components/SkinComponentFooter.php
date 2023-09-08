@@ -145,7 +145,7 @@ class SkinComponentFooter implements SkinComponent {
 	private function formatFooterInfoData( array $data ): array {
 		$formattedData = [];
 		foreach ( $data as $key => $item ) {
-			if ( !empty( $item ) ) {
+			if ( $item ) {
 				$formattedData[ $key ] = [
 					'id' => 'footer-info-' . $key,
 					'html' => $item

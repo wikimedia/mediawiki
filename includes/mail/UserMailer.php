@@ -449,7 +449,7 @@ class UserMailer {
 	 */
 	public static function quotedPrintable( $string, $charset = '' ) {
 		// Probably incomplete; see RFC 2045
-		if ( empty( $charset ) ) {
+		if ( !$charset ) {
 			$charset = 'UTF-8';
 		}
 		$charset = strtoupper( $charset );
