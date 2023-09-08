@@ -617,7 +617,7 @@ class UndeletePage {
 			);
 
 			// This will also copy the revision to ip_changes if it was an IP edit.
-			$revisionStore->insertRevisionOn( $revision, $dbw );
+			$revision = $revisionStore->insertRevisionOn( $revision, $dbw );
 
 			$restoredRevCount++;
 
