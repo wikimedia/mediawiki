@@ -5,6 +5,6 @@
  * @ingroup Languages
  */
 
-$fallback = 'cbk, fa';
+$fallback = 'ckb, fa';
 
 $rtl = true;
