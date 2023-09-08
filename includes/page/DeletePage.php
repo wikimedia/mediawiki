@@ -646,7 +646,7 @@ class DeletePage {
 
 		// Now that it's safely backed up, delete it
 		$dbw->newDeleteQueryBuilder()
-			->delete( 'page' )
+			->deleteFrom( 'page' )
 			->where( [ 'page_id' => $id ] )
 			->caller( __METHOD__ )->execute();
 
@@ -806,18 +806,18 @@ class DeletePage {
 		if ( count( $revids ) > 0 ) {
 			// Copy them into the archive table
 			$dbw->newInsertQueryBuilder()
-				->insert( 'archive' )
+				->insertInto( 'archive' )
 				->rows( $rowsInsert )
 				->caller( __METHOD__ )->execute();
 
 			$dbw->newDeleteQueryBuilder()
-				->delete( 'revision' )
+				->deleteFrom( 'revision' )
 				->where( [ 'rev_id' => $revids ] )
 				->caller( __METHOD__ )->execute();
 			// Also delete records from ip_changes as applicable.
 			if ( count( $ipRevIds ) > 0 ) {
 				$dbw->newDeleteQueryBuilder()
-					->delete( 'ip_changes' )
+					->deleteFrom( 'ip_changes' )
 					->where( [ 'ipc_rev_id' => $ipRevIds ] )
 					->caller( __METHOD__ )->execute();
 			}

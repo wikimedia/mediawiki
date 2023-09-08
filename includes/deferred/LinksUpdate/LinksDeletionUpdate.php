@@ -92,13 +92,13 @@ class LinksDeletionUpdate extends LinksUpdate implements EnqueueableDataUpdate {
 
 		// Delete restrictions for the deleted page
 		$dbw->newDeleteQueryBuilder()
-			->delete( 'page_restrictions' )
+			->deleteFrom( 'page_restrictions' )
 			->where( [ 'pr_page' => $id ] )
 			->caller( __METHOD__ )->execute();
 
 		// Delete any redirect entry
 		$dbw->newDeleteQueryBuilder()
-			->delete( 'redirect' )
+			->deleteFrom( 'redirect' )
 			->where( [ 'rd_from' => $id ] )
 			->caller( __METHOD__ )->execute();
 
@@ -115,7 +115,7 @@ class LinksDeletionUpdate extends LinksUpdate implements EnqueueableDataUpdate {
 		$rcIdBatches = array_chunk( $rcIdsForPage, $batchSize );
 		foreach ( $rcIdBatches as $rcIdBatch ) {
 			$dbw->newDeleteQueryBuilder()
-				->delete( 'recentchanges' )
+				->deleteFrom( 'recentchanges' )
 				->where( [ 'rc_id' => $rcIdBatch ] )
 				->caller( __METHOD__ )->execute();
 			if ( count( $rcIdBatches ) > 1 ) {

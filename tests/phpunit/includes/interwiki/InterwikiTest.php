@@ -45,7 +45,7 @@ class InterwikiTest extends MediaWikiIntegrationTestCase {
 	private function populateDB( $iwrows ) {
 		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->newDeleteQueryBuilder()
-			->delete( 'interwiki' )
+			->deleteFrom( 'interwiki' )
 			->where( ISQLPlatform::ALL_ROWS )
 			->caller( __METHOD__ )->execute();
 		$dbw->insert( 'interwiki', array_values( $iwrows ), __METHOD__ );

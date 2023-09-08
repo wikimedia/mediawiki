@@ -381,7 +381,7 @@ class ActorMigrationBase {
 							$set[$to] = $extra[$from];
 						}
 						$dbw->newInsertQueryBuilder()
-							->insert( $tempTableInfo['table'] )
+							->insertInto( $tempTableInfo['table'] )
 							->row( [ $tempTableInfo['pk'] => $pk ] + $set )
 							->onDuplicateKeyUpdate()
 							->uniqueIndexFields( [ $tempTableInfo['pk'] ] )

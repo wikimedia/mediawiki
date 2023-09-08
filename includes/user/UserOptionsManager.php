@@ -466,7 +466,7 @@ class UserOptionsManager extends UserOptionsLookup {
 		// Do the DELETE
 		if ( $keysToDelete ) {
 			$dbw->newDeleteQueryBuilder()
-				->delete( 'user_properties' )
+				->deleteFrom( 'user_properties' )
 				->where( [ 'up_user' => $user->getId() ] )
 				->andWhere( [ 'up_property' => $keysToDelete ] )
 				->caller( __METHOD__ )->execute();
@@ -474,7 +474,7 @@ class UserOptionsManager extends UserOptionsLookup {
 		if ( $rowsToInsert ) {
 			// Insert the new preference rows
 			$dbw->newInsertQueryBuilder()
-				->insert( 'user_properties' )
+				->insertInto( 'user_properties' )
 				->ignore()
 				->rows( $rowsToInsert )
 				->caller( __METHOD__ )->execute();

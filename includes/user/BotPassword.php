@@ -353,7 +353,7 @@ class BotPassword implements IDBAccessObject {
 
 		$dbw = self::getDB( DB_PRIMARY );
 		$dbw->newDeleteQueryBuilder()
-			->delete( 'bot_passwords' )
+			->deleteFrom( 'bot_passwords' )
 			->where( [ 'bp_user' => $centralId ] )
 			->caller( __METHOD__ )->execute();
 		return (bool)$dbw->affectedRows();

@@ -27,14 +27,14 @@ class InsertQueryBuilderTest extends PHPUnit\Framework\TestCase {
 
 	public function testSimpleInsert() {
 		$this->iqb
-			->insert( 'a' )
+			->insertInto( 'a' )
 			->row( [ 'f' => 'g', 'd' => 'l' ] );
 		$this->assertSQL( "INSERT INTO a (f,d) VALUES ('g','l')", __METHOD__ );
 	}
 
 	public function testIgnore() {
 		$this->iqb
-			->insert( 'a' )
+			->insertInto( 'a' )
 			->ignore()
 			->row( [ 'f' => 'g', 'd' => 'l' ] );
 		$this->assertSQL( "INSERT IGNORE INTO a (f,d) VALUES ('g','l')", __METHOD__ );
@@ -42,7 +42,7 @@ class InsertQueryBuilderTest extends PHPUnit\Framework\TestCase {
 
 	public function testUpsert() {
 		$this->iqb
-			->insert( 'a' )
+			->insertInto( 'a' )
 			->row( [ 'f' => 'g', 'd' => 'l' ] )
 			->onDuplicateKeyUpdate()
 			->uniqueIndexFields( [ 'd' ] )
@@ -55,7 +55,7 @@ class InsertQueryBuilderTest extends PHPUnit\Framework\TestCase {
 
 	public function testUpsertWithStringKey() {
 		$this->iqb
-			->insert( 'a' )
+			->insertInto( 'a' )
 			->row( [ 'f' => 'g', 'd' => 'l' ] )
 			->onDuplicateKeyUpdate()
 			->uniqueIndexFields( 'd' )
@@ -68,7 +68,7 @@ class InsertQueryBuilderTest extends PHPUnit\Framework\TestCase {
 
 	public function testOption() {
 		$this->iqb
-			->insert( 't' )
+			->insertInto( 't' )
 			->row( [ 'f' => 'g' ] )
 			->option( 'IGNORE' );
 		$this->assertSQL( "INSERT IGNORE INTO t (f) VALUES ('g')", __METHOD__ );
@@ -76,21 +76,21 @@ class InsertQueryBuilderTest extends PHPUnit\Framework\TestCase {
 
 	public function testOptions() {
 		$this->iqb
-			->insert( 't' )
+			->insertInto( 't' )
 			->row( [ 'f' => 'g' ] )
 			->options( [ 'IGNORE' ] );
 		$this->assertSQL( "INSERT IGNORE INTO t (f) VALUES ('g')", __METHOD__ );
 	}
 
 	public function testExecute() {
-		$this->iqb->insert( 't' )->rows( [ 'a' => 'b' ] )->caller( __METHOD__ );
+		$this->iqb->insertInto( 't' )->rows( [ 'a' => 'b' ] )->caller( __METHOD__ );
 		$this->iqb->execute();
 		$this->assertEquals( "INSERT INTO t (a) VALUES ('b')", $this->db->getLastSqls() );
 	}
 
 	public function testGetQueryInfo() {
 		$this->iqb
-			->insert( 't' )
+			->insertInto( 't' )
 			->ignore()
 			->row( [ 'a' => 'b', 'd' => 'l' ] );
 		$this->assertEquals(
@@ -107,7 +107,7 @@ class InsertQueryBuilderTest extends PHPUnit\Framework\TestCase {
 
 	public function testGetQueryInfoUpsert() {
 		$this->iqb
-			->insert( 't' )
+			->insertInto( 't' )
 			->row( [ 'f' => 'g', 'd' => 'l' ] )
 			->onDuplicateKeyUpdate()
 			->uniqueIndexFields( [ 'd' ] )

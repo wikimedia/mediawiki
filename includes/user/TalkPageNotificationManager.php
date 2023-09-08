@@ -301,7 +301,7 @@ class TalkPageNotificationManager {
 		$dbw = $this->dbProvider->getPrimaryDatabase();
 		[ $field, $id ] = $this->getQueryFieldAndId( $user );
 		$dbw->newInsertQueryBuilder()
-			->insert( 'user_newtalk' )
+			->insertInto( 'user_newtalk' )
 			->ignore()
 			->row( [ $field => $id, 'user_last_timestamp' => $dbw->timestampOrNull( $ts ) ] )
 			->caller( __METHOD__ )->execute();
@@ -320,7 +320,7 @@ class TalkPageNotificationManager {
 		$dbw = $this->dbProvider->getPrimaryDatabase();
 		[ $field, $id ] = $this->getQueryFieldAndId( $user );
 		$dbw->newDeleteQueryBuilder()
-			->delete( 'user_newtalk' )
+			->deleteFrom( 'user_newtalk' )
 			->where( [ $field => $id ] )
 			->caller( __METHOD__ )->execute();
 		return (bool)$dbw->affectedRows();

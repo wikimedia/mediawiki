@@ -464,7 +464,7 @@ class RecentChange implements Taggable {
 
 		# Insert new row
 		$dbw->newInsertQueryBuilder()
-			->insert( 'recentchanges' )
+			->insertInto( 'recentchanges' )
 			->row( $row )
 			->caller( __METHOD__ )->execute();
 

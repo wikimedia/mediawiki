@@ -102,6 +102,16 @@ class DeleteQueryBuilder {
 	 * @param string $table The table name
 	 * @return $this
 	 */
+	public function deleteFrom( string $table ): DeleteQueryBuilder {
+		return $this->table( $table );
+	}
+
+	/**
+	 * Set table for the query. Alias for table().
+	 *
+	 * @param string $table The table name
+	 * @return $this
+	 */
 	public function delete( string $table ): DeleteQueryBuilder {
 		return $this->table( $table );
 	}

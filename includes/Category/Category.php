@@ -436,7 +436,7 @@ class Category {
 			} else {
 				# The category is empty and has no description page, delete it
 				$dbw->newDeleteQueryBuilder()
-					->delete( 'category' )
+					->deleteFrom( 'category' )
 					->where( [ 'cat_title' => $this->mName ] )
 					->caller( __METHOD__ )->execute();
 				$this->mID = false;
@@ -445,7 +445,7 @@ class Category {
 			# The category row doesn't exist but should, so create it. Use
 			# upsert in case of races.
 			$dbw->newInsertQueryBuilder()
-				->insert( 'category' )
+				->insertInto( 'category' )
 				->row( [
 					'cat_title' => $this->mName,
 					'cat_pages' => $result->pages,

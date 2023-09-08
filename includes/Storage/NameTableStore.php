@@ -403,7 +403,7 @@ class NameTableStore {
 				// If $dbw is a wrapper around the actual DB, we need to call the wrapper here,
 				// not the inner instance.
 				$dbw->newInsertQueryBuilder()
-					->insert( $this->table )
+					->insertInto( $this->table )
 					->ignore()
 					->row( $this->getFieldsToStore( $name ) )
 					->caller( $fname )->execute();
@@ -453,7 +453,7 @@ class NameTableStore {
 					// Try to insert a row with the ID we originally got.
 					// If that fails (because of a key conflict), we will just try to get another ID again later.
 					$dbw->newInsertQueryBuilder()
-						->insert( $this->table )
+						->insertInto( $this->table )
 						->row( $this->getFieldsToStore( $name, $id ) )
 						->caller( $fname )->execute();
 

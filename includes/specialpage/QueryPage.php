@@ -444,12 +444,12 @@ abstract class QueryPage extends SpecialPage {
 					function ( IDatabase $dbw, $fname ) use ( $vals ) {
 						// Clear out any old cached data
 						$dbw->newDeleteQueryBuilder()
-							->delete( 'querycache' )
+							->deleteFrom( 'querycache' )
 							->where( [ 'qc_type' => $this->getName() ] )
 							->caller( $fname )->execute();
 						// Update the querycache_info record for the page
 						$dbw->newInsertQueryBuilder()
-							->insert( 'querycache_info' )
+							->insertInto( 'querycache_info' )
 							->row( [ 'qci_type' => $this->getName(), 'qci_timestamp' => $dbw->timestamp() ] )
 							->onDuplicateKeyUpdate()
 							->uniqueIndexFields( [ 'qci_type' ] )
@@ -461,7 +461,7 @@ abstract class QueryPage extends SpecialPage {
 				if ( count( $vals ) ) {
 					foreach ( array_chunk( $vals, 500 ) as $chunk ) {
 						$dbw->newInsertQueryBuilder()
-							->insert( 'querycache' )
+							->insertInto( 'querycache' )
 							->rows( $chunk )
 							->caller( $fname )->execute();
 					}
@@ -497,7 +497,7 @@ abstract class QueryPage extends SpecialPage {
 		if ( $this->isCached() ) {
 			$dbw = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_PRIMARY );
 			$dbw->newDeleteQueryBuilder()
-				->delete( 'querycache' )
+				->deleteFrom( 'querycache' )
 				->where( [
 					'qc_type' => $this->getName(),
 					'qc_namespace' => $title->getNamespace(),
@@ -516,15 +516,15 @@ abstract class QueryPage extends SpecialPage {
 		$fname = static::class . '::' . __FUNCTION__;
 		$dbw = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_PRIMARY );
 		$dbw->newDeleteQueryBuilder()
-			->delete( 'querycache' )
+			->deleteFrom( 'querycache' )
 			->where( [ 'qc_type' => $this->getName() ] )
 			->caller( $fname )->execute();
 		$dbw->newDeleteQueryBuilder()
-			->delete( 'querycachetwo' )
+			->deleteFrom( 'querycachetwo' )
 			->where( [ 'qcc_type' => $this->getName() ] )
 			->caller( $fname )->execute();
 		$dbw->newDeleteQueryBuilder()
-			->delete( 'querycache_info' )
+			->deleteFrom( 'querycache_info' )
 			->where( [ 'qci_type' => $this->getName() ] )
 			->caller( $fname )->execute();
 	}

@@ -202,7 +202,7 @@ class RestrictionStore {
 
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		$dbw->newDeleteQueryBuilder()
-			->delete( 'protected_titles' )
+			->deleteFrom( 'protected_titles' )
 			->where( [ 'pt_namespace' => $page->getNamespace(), 'pt_title' => $page->getDBkey() ] )
 			->caller( __METHOD__ )->execute();
 		$this->cache[CacheKeyHelper::getKeyForPage( $page )]['create_protection'] = null;

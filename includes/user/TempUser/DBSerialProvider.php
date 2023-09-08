@@ -34,7 +34,7 @@ abstract class DBSerialProvider implements SerialProvider {
 		$table = $this->getTableName();
 		$dbw->startAtomic( __METHOD__ );
 		$dbw->newInsertQueryBuilder()
-			->insert( $table )
+			->insertInto( $table )
 			->row( [ 'uas_shard' => $shard, 'uas_value' => 1 ] )
 			->onDuplicateKeyUpdate()
 			->uniqueIndexFields( [ 'uas_shard' ] )

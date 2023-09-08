@@ -354,7 +354,7 @@ class SearchMySQL extends SearchDatabase {
 	 */
 	public function delete( $id, $title ) {
 		$this->dbProvider->getPrimaryDatabase()->newDeleteQueryBuilder()
-			->delete( 'searchindex' )
+			->deleteFrom( 'searchindex' )
 			->where( [ 'si_page' => $id ] )
 			->caller( __METHOD__ )->execute();
 	}

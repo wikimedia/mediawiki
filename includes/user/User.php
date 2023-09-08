@@ -2708,7 +2708,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			use ( $fields, $insertActor )
 		{
 			$dbw->newInsertQueryBuilder()
-				->insert( 'user' )
+				->insertInto( 'user' )
 				->ignore()
 				->row( $fields )
 				->caller( $fname )->execute();
@@ -2772,7 +2772,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		$status = $dbw->doAtomicSection( __METHOD__, function ( IDatabase $dbw, $fname ) {
 			$noPass = PasswordFactory::newInvalidPassword()->toString();
 			$dbw->newInsertQueryBuilder()
-				->insert( 'user' )
+				->insertInto( 'user' )
 				->ignore()
 				->row( [
 					'user_name' => $this->mName,

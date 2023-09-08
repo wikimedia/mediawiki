@@ -162,7 +162,7 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 				continue;
 			}
 			$dbw->newInsertQueryBuilder()
-				->insert( 'change_tag_def' )
+				->insertInto( 'change_tag_def' )
 				->row( [
 					'ctd_name' => $row->ct_tag,
 					'ctd_user_defined' => 0,

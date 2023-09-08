@@ -228,7 +228,7 @@ class ChangeTagsStore {
 	public function defineTag( $tag ) {
 		$dbw = $this->dbProvider->getPrimaryDatabase();
 		$dbw->newInsertQueryBuilder()
-			->insert( self::CHANGE_TAG_DEF )
+			->insertInto( self::CHANGE_TAG_DEF )
 			->row( [
 				'ctd_name' => $tag,
 				'ctd_user_defined' => 1,
@@ -261,7 +261,7 @@ class ChangeTagsStore {
 			->caller( __METHOD__ )->execute();
 
 		$dbw->newDeleteQueryBuilder()
-			->delete( self::CHANGE_TAG_DEF )
+			->deleteFrom( self::CHANGE_TAG_DEF )
 			->where( [ 'ctd_name' => $tag, 'ctd_count' => 0 ] )
 			->caller( __METHOD__ )->execute();
 
@@ -332,11 +332,11 @@ class ChangeTagsStore {
 
 		// delete from change_tag
 		$dbw->newDeleteQueryBuilder()
-			->delete( self::CHANGE_TAG )
+			->deleteFrom( self::CHANGE_TAG )
 			->where( [ 'ct_tag_id' => $tagId ] )
 			->caller( __METHOD__ )->execute();
 		$dbw->newDeleteQueryBuilder()
-			->delete( self::CHANGE_TAG_DEF )
+			->deleteFrom( self::CHANGE_TAG_DEF )
 			->where( [ 'ctd_name' => $tag ] )
 			->caller( __METHOD__ )->execute();
 		$dbw->endAtomic( __METHOD__ );
@@ -663,7 +663,7 @@ class ChangeTagsStore {
 			}
 
 			$dbw->newInsertQueryBuilder()
-				->insert( self::CHANGE_TAG )
+				->insertInto( self::CHANGE_TAG )
 				->ignore()
 				->rows( $tagsRows )
 				->caller( __METHOD__ )->execute();
@@ -682,7 +682,7 @@ class ChangeTagsStore {
 					]
 				);
 				$dbw->newDeleteQueryBuilder()
-					->delete( self::CHANGE_TAG )
+					->deleteFrom( self::CHANGE_TAG )
 					->where( $conds )
 					->caller( __METHOD__ )->execute();
 				if ( $dbw->affectedRows() ) {
@@ -695,7 +695,7 @@ class ChangeTagsStore {
 							->caller( $fname )->execute();
 
 						$dbw->newDeleteQueryBuilder()
-							->delete( self::CHANGE_TAG_DEF )
+							->deleteFrom( self::CHANGE_TAG_DEF )
 							->where( [ 'ctd_name' => $tag, 'ctd_count' => 0, 'ctd_user_defined' => 0 ] )
 							->caller( $fname )->execute();
 					}, $fname );

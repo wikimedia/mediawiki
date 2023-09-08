@@ -299,11 +299,11 @@ class SearchSqlite extends SearchDatabase {
 		// couldn't do it so far due to typelessness of FTS3 tables.
 		$dbw = $this->dbProvider->getPrimaryDatabase();
 		$dbw->newDeleteQueryBuilder()
-			->delete( 'searchindex' )
+			->deleteFrom( 'searchindex' )
 			->where( [ 'rowid' => $id ] )
 			->caller( __METHOD__ )->execute();
 		$dbw->newInsertQueryBuilder()
-			->insert( 'searchindex' )
+			->insertInto( 'searchindex' )
 			->row( [ 'rowid' => $id, 'si_title' => $title, 'si_text' => $text ] )
 			->caller( __METHOD__ )->execute();
 	}

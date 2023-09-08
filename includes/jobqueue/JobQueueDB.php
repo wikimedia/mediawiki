@@ -279,7 +279,7 @@ class JobQueueDB extends JobQueue {
 			// Insert the job rows in chunks to avoid replica DB lag...
 			foreach ( array_chunk( $rows, 50 ) as $rowBatch ) {
 				$dbw->newInsertQueryBuilder()
-					->insert( 'job' )
+					->insertInto( 'job' )
 					->rows( $rowBatch )
 					->caller( $method )->execute();
 			}
@@ -518,7 +518,7 @@ class JobQueueDB extends JobQueue {
 		try {
 			// Delete a row with a single DELETE without holding row locks over RTTs...
 			$dbw->newDeleteQueryBuilder()
-				->delete( 'job' )
+				->deleteFrom( 'job' )
 				->where( [ 'job_cmd' => $this->type, 'job_id' => $id ] )
 				->caller( __METHOD__ )->execute();
 
@@ -563,7 +563,7 @@ class JobQueueDB extends JobQueue {
 		$scope = $this->getScopedNoTrxFlag( $dbw );
 		try {
 			$dbw->newDeleteQueryBuilder()
-				->delete( 'job' )
+				->deleteFrom( 'job' )
 				->where( [ 'job_cmd' => $this->type ] )
 				->caller( __METHOD__ )->execute();
 		} catch ( DBError $e ) {
@@ -787,7 +787,7 @@ class JobQueueDB extends JobQueue {
 			);
 			if ( count( $ids ) ) {
 				$dbw->newDeleteQueryBuilder()
-					->delete( 'job' )
+					->deleteFrom( 'job' )
 					->where( [ 'job_id' => $ids ] )
 					->caller( __METHOD__ )->execute();
 				$affected = $dbw->affectedRows();

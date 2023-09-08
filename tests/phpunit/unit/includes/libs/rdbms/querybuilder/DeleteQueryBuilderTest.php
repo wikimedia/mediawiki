@@ -39,7 +39,7 @@ class DeleteQueryBuilderTest extends PHPUnit\Framework\TestCase {
 
 	public function testConflictingConds() {
 		$this->dqb
-			->delete( '1' )
+			->deleteFrom( '1' )
 			->where( [ 'k' => 'v1' ] )
 			->andWhere( [ 'k' => 'v2' ] );
 		$this->assertSQL( 'DELETE FROM 1 WHERE k = \'v1\' AND (k = \'v2\')', __METHOD__ );
@@ -53,14 +53,14 @@ class DeleteQueryBuilderTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testExecute() {
-		$this->dqb->delete( 't' )->where( 'c' )->caller( __METHOD__ );
+		$this->dqb->deleteFrom( 't' )->where( 'c' )->caller( __METHOD__ );
 		$this->dqb->execute();
 		$this->assertEquals( 'DELETE FROM t WHERE (c)', $this->db->getLastSqls() );
 	}
 
 	public function testGetQueryInfo() {
 		$this->dqb
-			->delete( 't' )
+			->deleteFrom( 't' )
 			->where( [ 'a' => 'b' ] );
 		$this->assertEquals(
 			[

@@ -232,7 +232,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 		$dbw = $this->getDBConnection( DB_PRIMARY );
 
 		$dbw->newInsertQueryBuilder()
-			->insert( 'text' )
+			->insertInto( 'text' )
 			->row( [ 'old_text' => $data, 'old_flags' => $flags ] )
 			->caller( __METHOD__ )->execute();
 

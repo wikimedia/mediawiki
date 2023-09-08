@@ -239,7 +239,7 @@ class BotPasswordStore implements IDBAccessObject {
 
 		$dbw = $this->getDatabase( DB_PRIMARY );
 		$dbw->newInsertQueryBuilder()
-			->insert( 'bot_passwords' )
+			->insertInto( 'bot_passwords' )
 			->ignore()
 			->row( [
 				'bp_user' => $botPassword->getUserCentralId(),
@@ -345,7 +345,7 @@ class BotPasswordStore implements IDBAccessObject {
 	public function deleteBotPassword( BotPassword $botPassword ): bool {
 		$dbw = $this->getDatabase( DB_PRIMARY );
 		$dbw->newDeleteQueryBuilder()
-			->delete( 'bot_passwords' )
+			->deleteFrom( 'bot_passwords' )
 			->where( [ 'bp_user' => $botPassword->getUserCentralId() ] )
 			->andWhere( [ 'bp_app_id' => $botPassword->getAppId() ] )
 			->caller( __METHOD__ )->execute();
@@ -402,7 +402,7 @@ class BotPasswordStore implements IDBAccessObject {
 
 		$dbw = $this->getDatabase( DB_PRIMARY );
 		$dbw->newDeleteQueryBuilder()
-			->delete( 'bot_passwords' )
+			->deleteFrom( 'bot_passwords' )
 			->where( [ 'bp_user' => $centralId ] )
 			->caller( __METHOD__ )->execute();
 		return (bool)$dbw->affectedRows();

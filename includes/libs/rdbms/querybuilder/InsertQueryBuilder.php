@@ -137,6 +137,16 @@ class InsertQueryBuilder {
 	 * @param string $table The table name
 	 * @return $this
 	 */
+	public function insertInto( string $table ) {
+		return $this->table( $table );
+	}
+
+	/**
+	 * Set table for the query. Alias for table().
+	 *
+	 * @param string $table The table name
+	 * @return $this
+	 */
 	public function insert( string $table ) {
 		return $this->table( $table );
 	}

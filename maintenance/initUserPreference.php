@@ -60,7 +60,7 @@ class InitUserPreference extends Maintenance {
 		foreach ( $iterator as $batch ) {
 			foreach ( $batch as $row ) {
 				$dbw->newInsertQueryBuilder()
-					->insert( 'user_properties' )
+					->insertInto( 'user_properties' )
 					->row( [
 						'up_user' => $row->up_user,
 						'up_property' => $target,

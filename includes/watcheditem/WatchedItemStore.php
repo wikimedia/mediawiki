@@ -317,19 +317,19 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			if ( $wlIds ) {
 				// Delete rows from both the watchlist and watchlist_expiry tables.
 				$dbw->newDeleteQueryBuilder()
-					->delete( 'watchlist' )
+					->deleteFrom( 'watchlist' )
 					->where( [ 'wl_id' => $wlIds ] )
 					->caller( __METHOD__ )->execute();
 
 				$dbw->newDeleteQueryBuilder()
-					->delete( 'watchlist_expiry' )
+					->deleteFrom( 'watchlist_expiry' )
 					->where( [ 'we_item' => $wlIds ] )
 					->caller( __METHOD__ )->execute();
 			}
 			$this->lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
 		} else {
 			$dbw->newDeleteQueryBuilder()
-				->delete( 'watchlist' )
+				->deleteFrom( 'watchlist' )
 				->where( [ 'wl_user' => $user->getId() ] )
 				->caller( __METHOD__ )->execute();
 		}
@@ -520,14 +520,14 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 				if ( $wlIds ) {
 					// Delete rows from both the watchlist and watchlist_expiry tables.
 					$dbw->newDeleteQueryBuilder()
-						->delete( 'watchlist' )
+						->deleteFrom( 'watchlist' )
 						->where( [ 'wl_id' => $wlIds ] )
 						->caller( __METHOD__ )->execute();
 					$affectedRows += $dbw->affectedRows();
 
 					if ( $this->expiryEnabled ) {
 						$dbw->newDeleteQueryBuilder()
-							->delete( 'watchlist_expiry' )
+							->deleteFrom( 'watchlist_expiry' )
 							->where( [ 'we_item' => $wlIds ] )
 							->caller( __METHOD__ )->execute();
 						$affectedRows += $dbw->affectedRows();
@@ -1136,7 +1136,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 		// Insert into watchlist_expiry, updating the expiry for duplicate rows.
 		$dbw->newInsertQueryBuilder()
-			->insert( 'watchlist_expiry' )
+			->insertInto( 'watchlist_expiry' )
 			->rows( $weRows )
 			->onDuplicateKeyUpdate()
 			->uniqueIndexFields( [ 'we_item' ] )
@@ -1797,11 +1797,11 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		if ( count( $toDelete ) > 0 ) {
 			// Delete them from the watchlist and watchlist_expiry table.
 			$dbw->newDeleteQueryBuilder()
-				->delete( 'watchlist' )
+				->deleteFrom( 'watchlist' )
 				->where( [ 'wl_id' => $toDelete ] )
 				->caller( __METHOD__ )->execute();
 			$dbw->newDeleteQueryBuilder()
-				->delete( 'watchlist_expiry' )
+				->deleteFrom( 'watchlist_expiry' )
 				->where( [ 'we_item' => $toDelete ] )
 				->caller( __METHOD__ )->execute();
 		}
@@ -1821,7 +1821,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 				->fetchFieldValues();
 			if ( count( $expiryToDelete ) > 0 ) {
 				$dbw->newDeleteQueryBuilder()
-					->delete( 'watchlist_expiry' )
+					->deleteFrom( 'watchlist_expiry' )
 					->where( [ 'we_item' => $expiryToDelete ] )
 					->caller( __METHOD__ )->execute();
 			}

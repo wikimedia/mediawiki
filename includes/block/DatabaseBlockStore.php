@@ -151,7 +151,7 @@ class DatabaseBlockStore {
 					$ids = array_map( 'intval', $ids );
 					$store->deleteByBlockId( $ids );
 					$dbw->newDeleteQueryBuilder()
-						->delete( 'ipblocks' )
+						->deleteFrom( 'ipblocks' )
 						->where( [ 'ipb_id' => $ids ] )
 						->caller( $fname )->execute();
 				}
@@ -222,7 +222,7 @@ class DatabaseBlockStore {
 		$row = $this->getArrayForDatabaseBlock( $block, $dbw );
 
 		$dbw->newInsertQueryBuilder()
-			->insert( 'ipblocks' )
+			->insertInto( 'ipblocks' )
 			->ignore()
 			->row( $row )
 			->caller( __METHOD__ )->execute();
@@ -250,12 +250,12 @@ class DatabaseBlockStore {
 			if ( $ids ) {
 				$ids = array_map( 'intval', $ids );
 				$dbw->newDeleteQueryBuilder()
-					->delete( 'ipblocks' )
+					->deleteFrom( 'ipblocks' )
 					->where( [ 'ipb_id' => $ids ] )
 					->caller( __METHOD__ )->execute();
 				$this->blockRestrictionStore->deleteByBlockId( $ids );
 				$dbw->newInsertQueryBuilder()
-					->insert( 'ipblocks' )
+					->insertInto( 'ipblocks' )
 					->ignore()
 					->row( $row )
 					->caller( __METHOD__ )->execute();
@@ -360,7 +360,7 @@ class DatabaseBlockStore {
 				$ids = array_map( 'intval', $ids );
 				$this->blockRestrictionStore->deleteByBlockId( $ids );
 				$dbw->newDeleteQueryBuilder()
-					->delete( 'ipblocks' )
+					->deleteFrom( 'ipblocks' )
 					->where( [ 'ipb_id' => $ids ] )
 					->caller( __METHOD__ )->execute();
 			}
@@ -407,7 +407,7 @@ class DatabaseBlockStore {
 
 		$this->blockRestrictionStore->deleteByBlockId( $ids );
 		$dbw->newDeleteQueryBuilder()
-			->delete( 'ipblocks' )
+			->deleteFrom( 'ipblocks' )
 			->where( [ 'ipb_id' => $ids ] )
 			->caller( __METHOD__ )->execute();
 

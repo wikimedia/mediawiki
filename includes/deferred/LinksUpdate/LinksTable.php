@@ -459,7 +459,7 @@ abstract class LinksTable {
 		$deleteBatches = array_chunk( $this->rowsToDelete, $batchSize );
 		foreach ( $deleteBatches as $chunk ) {
 			$db->newDeleteQueryBuilder()
-				->delete( $table )
+				->deleteFrom( $table )
 				->where( $db->factorConds( $chunk ) )
 				->caller( __METHOD__ )->execute();
 			if ( count( $deleteBatches ) > 1 ) {
@@ -471,7 +471,7 @@ abstract class LinksTable {
 		foreach ( $insertBatches as $insertBatch ) {
 			$db->newInsertQueryBuilder()
 				->options( $this->getInsertOptions() )
-				->insert( $table )
+				->insertInto( $table )
 				->rows( $insertBatch )
 				->caller( __METHOD__ )->execute();
 			if ( count( $insertBatches ) > 1 ) {
