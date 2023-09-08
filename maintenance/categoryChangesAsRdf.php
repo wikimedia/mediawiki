@@ -177,11 +177,11 @@ SPARQLD;
 	 * @return string SPARQL query
 	 */
 	private function getCategoriesUpdate( IReadableDatabase $dbr, $deleteUrls, $pages, $mark ) {
-		if ( empty( $deleteUrls ) ) {
+		if ( !$deleteUrls ) {
 			return "";
 		}
 
-		if ( !empty( $pages ) ) {
+		if ( $pages ) {
 			$this->writeParentCategories( $dbr, $pages );
 		}
 
@@ -514,7 +514,7 @@ SPARQL;
 				$this->processed[$row->rc_cur_id] = true;
 			}
 
-			if ( empty( $pages ) ) {
+			if ( !$pages ) {
 				continue;
 			}
 
@@ -543,7 +543,7 @@ SPARQL;
 				$this->processed[$row->rc_cur_id] = true;
 			}
 
-			if ( empty( $pages ) ) {
+			if ( !$pages ) {
 				continue;
 			}
 

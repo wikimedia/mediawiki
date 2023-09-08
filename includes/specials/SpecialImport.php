@@ -363,11 +363,11 @@ class SpecialImport extends SpecialPage {
 			$htmlForm->setSubmitTextMsg( 'uploadbtn' );
 			$htmlForm->prepareForm()->displayForm( false );
 
-		} elseif ( empty( $this->importSources ) ) {
+		} elseif ( !$this->importSources ) {
 			$out->addWikiMsg( 'importnosources' );
 		}
 
-		if ( $this->permManager->userHasRight( $user, 'import' ) && !empty( $this->importSources ) ) {
+		if ( $this->permManager->userHasRight( $user, 'import' ) && $this->importSources ) {
 
 			$projects = [];
 			$needSubprojectField = false;

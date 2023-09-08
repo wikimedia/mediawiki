@@ -315,7 +315,7 @@ class SpecialListGroupRights extends SpecialPage {
 			}
 		}
 
-		if ( empty( $r ) ) {
+		if ( !$r ) {
 			return '';
 		} else {
 			return '<ul><li>' . implode( "</li>\n<li>", $r ) . '</li></ul>';

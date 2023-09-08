@@ -60,7 +60,7 @@ class SkinComponentTableOfContents implements SkinComponent {
 				$data[] = $section->toLegacy() + [
 					'array-sections' => $childSections,
 					'is-top-level-section' => $toclevel === 1,
-					'is-parent-section' => !empty( $childSections )
+					'is-parent-section' => $childSections !== []
 				];
 			}
 		}

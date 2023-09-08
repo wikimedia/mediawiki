@@ -116,7 +116,7 @@ class SpecialLog extends SpecialPage {
 
 		// Set date values
 		$dateString = $this->getRequest()->getVal( 'wpdate' );
-		if ( !empty( $dateString ) ) {
+		if ( $dateString ) {
 			try {
 				$dateStamp = MWTimestamp::getInstance( $dateString . ' 00:00:00' );
 			} catch ( TimestampException $e ) {

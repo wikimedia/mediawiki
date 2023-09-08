@@ -80,7 +80,7 @@ TEXT
 			'format' => 'json'
 		] );
 
-		if ( !empty( $this->source ) ) {
+		if ( $this->source ) {
 			$url = rtrim( $this->source, '?' ) . '?' . $url;
 		}
 

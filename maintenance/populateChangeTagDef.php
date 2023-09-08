@@ -83,7 +83,7 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 				->caller( __METHOD__ )->fetchFieldValues();
 		}
 
-		if ( empty( $userTags ) ) {
+		if ( !$userTags ) {
 			$this->output( "No user defined tags to set, moving on...\n" );
 			return;
 		}

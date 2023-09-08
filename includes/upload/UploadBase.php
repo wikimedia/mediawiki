@@ -308,7 +308,7 @@ abstract class UploadBase {
 	 * @return bool
 	 */
 	public function isEmptyFile() {
-		return empty( $this->mFileSize );
+		return !$this->mFileSize;
 	}
 
 	/**

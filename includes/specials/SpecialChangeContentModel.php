@@ -149,7 +149,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		];
 		if ( $this->title ) {
 			$options = $this->getOptionsForTitle( $this->title );
-			if ( empty( $options ) ) {
+			if ( !$options ) {
 				throw new ErrorPageError(
 					'changecontentmodel-emptymodels-title',
 					'changecontentmodel-emptymodels-text',

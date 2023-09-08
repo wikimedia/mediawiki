@@ -51,7 +51,7 @@ class SpecialApiHelp extends UnlistedSpecialPage {
 	}
 
 	public function execute( $par ) {
-		if ( empty( $par ) ) {
+		if ( !$par ) {
 			$par = 'main';
 		}
 

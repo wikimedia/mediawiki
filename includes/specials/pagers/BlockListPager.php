@@ -382,7 +382,7 @@ class BlockListPager extends TablePager {
 			}
 		}
 
-		if ( empty( $items ) ) {
+		if ( !$items ) {
 			return '';
 		}
 

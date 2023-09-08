@@ -195,7 +195,7 @@ class UploadFromUrl extends UploadBase {
 
 		$url = $request->getVal( 'wpUploadFileURL' );
 
-		return !empty( $url )
+		return $url
 			&& MediaWikiServices::getInstance()
 				->getPermissionManager()
 				->userHasRight( $user, 'upload_by_url' );

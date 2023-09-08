@@ -679,7 +679,7 @@ class SpecialUserRights extends SpecialPage {
 	 * @return string
 	 */
 	public function makeGroupNameList( $ids ) {
-		if ( empty( $ids ) ) {
+		if ( !$ids ) {
 			return $this->msg( 'rightsnone' )->inContentLanguage()->text();
 		} else {
 			return implode( ', ', $ids );

@@ -138,7 +138,7 @@ class SparqlClient {
 	 * @throws SparqlException
 	 */
 	public function query( $sparql, $rawData = false ) {
-		if ( empty( $this->endpoint ) ) {
+		if ( !$this->endpoint ) {
 			throw new SparqlException( 'Endpoint URL can not be empty' );
 		}
 		$queryData = [ "query" => $sparql, "format" => "json" ];

@@ -80,7 +80,7 @@ TEXT
 				->from( 'revision' )
 				->caller( __METHOD__ )->fetchField();
 
-		if ( empty( $end ) ) {
+		if ( !$end ) {
 			$this->output( "No revisions found, aborting.\n" );
 			return true;
 		}

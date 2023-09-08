@@ -1642,7 +1642,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			}
 		}
 
-		if ( empty( $values ) ) {
+		if ( !$values ) {
 			return;
 		}
 
