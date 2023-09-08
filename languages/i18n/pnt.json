@@ -641,8 +641,6 @@
 	"unwatching": "'κ ωριάζω...",
 	"enotif_impersonal_salutation": "{{SITENAME}} χρήστες",
 	"enotif_anon_editor": "ανώνυμον χρήστες $1",
-	"created": "έντον",
-	"changed": "ελλάγεν",
 	"deletepage-submit": "Σβήσον τη σελίδαν",
 	"delete-confirm": "Σβήσον \"$1\"",
 	"delete-legend": "Σβήσεμαν",

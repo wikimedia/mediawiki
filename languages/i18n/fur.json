@@ -921,8 +921,6 @@
 	"enotif_reset": "Segne dutis lis pagjinis come visitadis",
 	"enotif_impersonal_salutation": "Utent di {{SITENAME}}",
 	"enotif_anon_editor": "utent anonim $1",
-	"created": "creade",
-	"changed": "cambiade",
 	"deletepage-submit": "Elimine pagjine",
 	"confirm": "Conferme",
 	"excontent": "il contignût al jere: '$1'",

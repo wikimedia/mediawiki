@@ -1436,8 +1436,6 @@
 	"unwatching": "解除監控……",
 	"enotif_reset": "標記所有頁面為造訪過",
 	"enotif_body_intro_deleted": "{{SITENAME}}頁面$1已於$PAGEEDITDATE被$2{{GENDER:$2|刪除}}，請見<$3>。",
-	"created": "建立哉",
-	"changed": "改變哉",
 	"deletepage-submit": "刪脫頁面",
 	"confirm": "確認",
 	"excontentauthor": "內容是：「$1」，唯一貢獻者是「[[Special:Contributions/$2|$2]]」（[[User talk:$2|講張]]）",

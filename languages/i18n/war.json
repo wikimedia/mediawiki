@@ -1514,8 +1514,6 @@
 	"enotif_subject_restored": "An {{SITENAME}} pakli nga $1 in {{GENDER:$2|ginbalik}} ni $2",
 	"enotif_subject_changed": "{{SITENAME}} page $1 has been {{GENDER:$2|ginbal-iw}} by $2",
 	"enotif_anon_editor": "waray magpakilala nga gumaramit $1",
-	"created": "nahimo",
-	"changed": "naliwanan",
 	"deletepage-submit": "Igpara an pakli",
 	"confirm": "Kompirma",
 	"excontent": "An sulod in: ''$1''",

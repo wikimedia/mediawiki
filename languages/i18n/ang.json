@@ -865,8 +865,6 @@
 	"enotif_lastvisited": "Gif þu wille seon seon þa andwendunga þa gelumpon æfter þinre niwostan socne, seoh $1.",
 	"enotif_lastdiff": "Seoh $1 to seonne þas andwendunge.",
 	"enotif_anon_editor": "uncuð brucend $1",
-	"created": "ȝescapen",
-	"changed": "hƿorfen",
 	"deletepage-submit": "Forleos tramet",
 	"excontent": "innung wæs: \"$1\"",
 	"excontentauthor": "innung wæs: '$1' (and se ana forðiend wæs \"[[Special:Contributions/$2|$2]]\")",

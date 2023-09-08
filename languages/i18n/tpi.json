@@ -451,8 +451,6 @@
 	"enotif_reset": "Makim olgeta pes olsem mi lukim pinis",
 	"enotif_impersonal_salutation": "yusa long {{SITENAME}}",
 	"enotif_anon_editor": "IP yusa $1",
-	"created": "i kirapim",
-	"changed": "i senisim",
 	"deletepage-submit": "Rausim dispela pes",
 	"delete-confirm": "Rausim $1",
 	"delete-legend": "Rausim",

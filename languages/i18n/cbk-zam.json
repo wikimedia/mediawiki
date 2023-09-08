@@ -111,8 +111,6 @@
 	"categories": "Maga categoria",
 	"categoriespagetext": "El maga siguiente {{PLURAL:$1|categoria tiene|categoria tiene}} maga pagina o medio de comunicacion.\n\nEl maga [[Special:UnusedCategories|categoria sin usando]] jendeh ta abuya aqui.\n\nPor favor mira tambien el maga [[Special:WantedCategories|categoria requeridas]].",
 	"watch": "Vicia",
-	"created": "creao",
-	"changed": "cambiao",
 	"actioncomplete": "Completo el accion",
 	"tool-link-contributions": "Maga contribuciones del usuario",
 	"blockip": "Usuario prohibido",

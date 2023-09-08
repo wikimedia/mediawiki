@@ -623,8 +623,6 @@
 	"enotif_impersonal_salutation": "{{SITENAME}} mošumiši",
 	"enotif_lastvisited": "Lebelela  $1 go bona diphetogo ka moka gotloga ge go tsena la mafelelo.",
 	"enotif_lastdiff": "Bona $1 go nyakorela phetogo ye.",
-	"created": "tlhodilwe",
-	"changed": "fetotšwe",
 	"deletepage-submit": "Phumula letlakala",
 	"excontent": "mateng ebe e le: '$1'",
 	"delete-legend": "Phumula",

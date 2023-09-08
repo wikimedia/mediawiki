@@ -2223,8 +2223,6 @@
 	"enotif_temp_editor": "tímabundinn notanda $1",
 	"enotif_body": "Kæri $WATCHINGUSERNAME,\n\n$PAGEINTRO\n$NEWPAGE\n\n$PAGEEDITOR skildi eftir eftirfarandi breytingarágrip: $PAGESUMMARY $PAGEMINOREDIT\n\nTil þess að hafa samband við $PAGEEDITOR, smelltu á $PAGEEDITOR_WIKI eða sentu tölvupóst á $PAGEEDITOR_EMAIL\n\nAthugaðu að frekari aðgerðir á $PAGETITLE leiða\nekki af sér fleiri tilkynningar fyrr en þú hefur heimsótt síðuna á meðan þú ert skráð/ur inn. Þú getur einnig endursett tilkynningar fyrir allar þær síður sem þú fylgist með.\n\nKveðja,\n{{SITENAME}}\n\n--\n\nTil þess að breyta stillingum um hvenær þú færð sendar tilkynningar, smelltu á:\n\n{{canonicalurl:{{#special:Preferences}}}}\n\n\nTil þess að hætta að fylgjast með „$PAGETITLE”, smelltu á:\n\n$UNWATCHURL\n\nFrekari hjálp er að finna á $HELPPAGE.",
 	"enotif_minoredit": "Þetta er minniháttar breyting",
-	"created": "búin til",
-	"changed": "breytt",
 	"deletepage-deletetalk": "Eyða meðfylgjandi spjallsíðu",
 	"deletepage-submit": "Eyða",
 	"confirm": "Staðfesta",

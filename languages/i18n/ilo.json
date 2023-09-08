@@ -2131,8 +2131,6 @@
 	"enotif_anon_editor": "di am-ammo nga agar-aramat $1",
 	"enotif_body": "Nadungngo a $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nPakabuklan ti mannurat: $PAGESUMMARY $PAGEMINOREDIT\n\nKontaken ti mannurat:\nsurat: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nAwanton dagiti sabali a pakaammo iti kaso ti adu pay a panagtigtignay malaksid no sarungkaram datoy a panid bayat a nakastrekka. Mabalinmo pay nga isaad manen dagiti wagayway ti pakaammo para kadagiti amin a bambantayam a panid idiay listaan ti bambantayam.\n\nTi mannakigayyem a sistema ti panagpaammo ti {{SITENAME}} \n\n--\nTi panagsukat ti kasasaad ti esurat a pagpa-ammom, sarungkaram ti\n{{canonicalurl:{{#special:Preferences}}}}\n\nTi panagsukat kadagiti kasasaad ti listaan ti bambantayam, sarungkaram ti\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nTi panagikkat ti panid kadagiti listaan ti bambantayam, sarungkaram ti\n$UNWATCHURL\n\nTi makunkunam ken no masapulmo pay ti tulong:\n$HELPPAGE",
 	"enotif_minoredit": "Daytoy ket bassit a panagurnos",
-	"created": "naaramid",
-	"changed": "nasukatan",
 	"deletepage-submit": "Ikkaten ti panid",
 	"confirm": "Pasingkedan",
 	"excontent": "ti linaon idi ket: '$1'",

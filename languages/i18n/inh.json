@@ -1008,7 +1008,6 @@
 	"enotif_lastvisited": "Эггара тӀехьара хьо цу оагӀонга хьажачул тӀехьагӀа мел хиннача хувцамашка хьажа укхаза:\n$1",
 	"enotif_lastdiff": "Цу хувцамага хьажа укхаза:\n$1",
 	"enotif_body": "Ди дика хилда хьа, $WATCHINGUSERNAME!\n\n$PAGEINTRO $NEWPAGE\n\nХувцамах лаьца лоацца: $PAGESUMMARY $PAGEMINOREDIT\n\nХувцам баьчунга язде:\nэл. пошт: $PAGEEDITOR_EMAIL\nвики: $PAGEEDITOR_WIKI\n\nХьай аккаунтаца ер оагӀув Ӏа хьацаелле, тӀехьагӀа цу тӀа кхы а хувцамаш дича хьога хоам хьатӀабоагӀаргбац. Иштта, хьай безам бале, хьа Ӏа зем беш мел йолча оагӀонех лаьца хоам хьатӀаухаргбоацаш хоам беш йола опци дӀайоае йиш я хьа.\n\n{{grammar:genitive|{{SITENAME}}}} проекта хоам бу система\n\n--\nХоамбара оттамаш хувцар\n{{canonicalurl:{{#special:Preferences}}}}\n\nХьа зем-мугӀама оттамаш хувцар\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nХьа зем-мугӀама чура оагӀонаш дӀаяха\n$UNWATCHURL\n\nБувзами новкъостали\n$HELPPAGE",
-	"changed": "хийцай",
 	"deletepage-submit": "ДIаяккха оагIув",
 	"confirm": "Бакъде",
 	"excontent": "чудар: «$1»",

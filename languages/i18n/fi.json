@@ -2436,8 +2436,6 @@
 	"enotif_temp_editor": "väliaikainen käyttäjä $1",
 	"enotif_body": "$WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nMuokkaajan yhteenveto: $PAGESUMMARY $PAGEMINOREDIT\n\nOta yhteyttä muokkaajaan:\nsähköposti: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nUusia ilmoituksia tästä sivusta ei tule kunnes vierailet sivulla sisään kirjautuneena. Voit myös nollata ilmoitukset kaikille tarkkailemillesi sivuille tarkkailulistallasi.\n\n             {{GRAMMAR:genitive|{{SITENAME}}}} ilmoitusjärjestelmä\n\n--\nVoit muuttaa sähköpostimuistutusten asetuksia osoitteessa:\n{{canonicalurl:{{#special:Preferences}}}}\n\nVoit muuttaa tarkkailulistasi asetuksia osoitteessa:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nVoit poistaa sivun tarkkailulistalta osoitteessa:\n$UNWATCHURL\n\nPalaute ja lisäapu osoitteessa:\n$HELPPAGE",
 	"enotif_minoredit": "Tämä on pieni muutos",
-	"created": "luonut",
-	"changed": "muuttanut",
 	"deletepage-deletetalk": "Poista liittyvä keskustelusivu",
 	"deletepage-submit": "Poista sivu",
 	"confirm": "Toteuta",

@@ -463,8 +463,6 @@
 	"watching": "Hateke...",
 	"unwatching": "La hateke...",
 	"enotif_impersonal_salutation": "Uza-na'in {{SITENAME}} nian",
-	"created": "kria ona",
-	"changed": "muda ona",
 	"deletepage-submit": "Halakon pájina",
 	"excontent": "testu iha pájina: '$1'",
 	"excontentauthor": "testu iha pájina: '$1' (no ema ida de'it ne'ebé kontribui '[[Special:Contributions/$2|$2]]')",

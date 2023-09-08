@@ -1795,8 +1795,6 @@
 	"enotif_anon_editor": "анонімный хоснователь $1",
 	"enotif_body": "Честованый хоснователю $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nЗгорнутя едітованя: $PAGESUMMARY $PAGEMINOREDIT\n\nХоснователя, котрый зміну учінив, можете контактовати:\nімейлом: $PAGEEDITOR_EMAIL\nна вікі: $PAGEEDITOR_WIKI\n\nПокы сторінку не навщівите, не будуть вам заганяны далшы повідомлїня о змінах той сторінкы. Тыж собі можете вынуловати признакы у своїм списку слїдованых сторінок.\n\n\tПоздравує вас ваш посылач голошіня {{grammar:2sg|{{SITENAME}}}}\n\n--\nЗмінити наштелёваня імейловых повідомлїнь можете на\n{{canonicalurl:{{#special:Preferences}}}}\n\nНаштелёваня слїдованых сторінок можете змінити на\n{{canonicalurl:Special:Watchlist/edit}}\n\nСторінку можете зо своїх слїдованых вышмарити на\n$UNWATCHURL\n\nПорада і контакт:\n$HELPPAGE",
 	"enotif_minoredit": "Тото є мала зміна",
-	"created": "створена",
-	"changed": "змінена",
 	"deletepage-submit": "Стерти сторунку",
 	"confirm": "Потверджіня",
 	"excontent": "обсяг быв: „$1“",

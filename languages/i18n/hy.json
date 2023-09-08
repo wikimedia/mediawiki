@@ -1509,8 +1509,6 @@
 	"enotif_anon_editor": "անանուն մասնակից $1",
 	"enotif_body": "Հարգելի $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nԽմբագրման ամփոփում. $PAGESUMMARY $PAGEMINOREDIT\n\nԿապվել խմբագրողի հետ.\nէլ-փոստ՝ $PAGEEDITOR_EMAIL\nվիքի՝ $PAGEEDITOR_WIKI\n\nՀետագա տեղեկացումներ այս էջի փոփոխումների մասին չեն լինի, մինչև որ չայցելեք այն։ Դուք կարող եք նաև փոփոխել տեղեկացման դրոշները ձեր կողմից հսկվող բոլոր էջերի համար ձեր հսկացանկում։\n\n             {{grammar:genitive|{{SITENAME}}}} տեղեկացման ծառայություն\n\n--\nՁեր հսկացանկի նախընտրությունները փոխելու համար այցելեք՝\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nՀետադարձ կապ և օգնություն՝\n$HELPPAGE",
 	"enotif_minoredit": "Սա չնչին խմբագրում է",
-	"created": "ստեղծված է",
-	"changed": "փոփոխված է",
 	"deletepage-submit": "Ջնջել էջը",
 	"confirm": "Հաստատել",
 	"excontent": "բովանդակությունը սա էր՝ «$1»",

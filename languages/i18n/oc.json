@@ -2116,8 +2116,6 @@
 	"enotif_lastdiff": "Consultatz $1 per veire aquesta modificacion.",
 	"enotif_anon_editor": "utilizaire anonim $1",
 	"enotif_body": "Car $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nResumit del contributor :\n$PAGESUMMARY $PAGEMINOREDIT\n\nContactatz aqueste contributor :\ncorrièl : $PAGEEDITOR_EMAIL\nwiki : $PAGEEDITOR_WIKI\n\nI aurà pas d’autras notificacions en cas de cambiaments ulteriors, levat se visitatz aquela pagina un còp connectat. Podètz tanben reïnicializar las bandièras de notificacion per totas las paginas de vòstra lista de seguiment.\n\nVòstre sistèma de notificacion de {{SITENAME}}\n\n--\nPour modificar los paramètres de notificacion per corrièl, visitatz {{canonicalurl:{{#special:Preferences}}}}\n\nPer modificar los paramètres de vòstra lista de seguiment, visitatz\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nPer suprimir la pagina de vòstra lista de seguiment, visitatz\n$UNWATCHURL\n\nRetorn e assisténcia :\n$HELPPAGE",
-	"created": "creada",
-	"changed": "modificada",
 	"deletepage-submit": "Suprimir la pagina",
 	"confirm": "Confirmar",
 	"excontent": "contenent '$1'",

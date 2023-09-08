@@ -709,8 +709,6 @@
 	"enotif_impersonal_salutation": "{{SITENAME}} ymmydeyr",
 	"enotif_anon_editor": "ymmydeyr $1 neuenmyssit",
 	"enotif_body": "$WATCHINGUSERNAME veen,\n\n$PAGEINTRO $NEWPAGE\n\nGiare-choontey yn reagheyder: $PAGESUMMARY $PAGEMINOREDIT\n\nCur fys er y reagheyder:\npost: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nCha bee fograghyn elley er caghlaaghyn elley agh my jigys shiu dys y duillag shen ynrican.\nFoddee shiu aajeshaghey bratteeyn ny fograghyn ry hoi dagh duillag er dty rolley arrey.\n\n             Dty chorys fograghyn caarjoil ec {{SITENAME}}\n\n--\n\nDys toshiaghtyn fys post-y y chaghlaa, cur keayrt er\n{{canonicalurl:{{#special:Preferences}}}}\n\nDys toshiaghtyn dty rolley arrey y chaghlaa, cur keayrt er\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nDys scryssey duillag ass dty rolley arrey, cur keayrt er\n$UNWATCHURL\n\nAaveaghey as cooney s'odjey:\n$HELPPAGE",
-	"created": "crooit",
-	"changed": "ceaghlit",
 	"deletepage-submit": "Scryss y duillag",
 	"confirm": "Feeraghey",
 	"excontent": "v'eh ny chummal na: '$1'",
