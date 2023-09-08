@@ -4,39 +4,30 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Request\ProxyLookup;
 
 /**
+ * @covers WebRequest
+ *
  * @group WebRequest
  */
 class WebRequestTest extends MediaWikiIntegrationTestCase {
+	private const INTERNAL_SERVER = 'http://wiki.site';
 
 	/** @var string */
 	private $oldServer;
-
-	/** @var string */
-	private $oldWgRequest;
-
-	/** @var string */
-	private $oldWgServer;
 
 	protected function setUp(): void {
 		parent::setUp();
 
 		$this->oldServer = $_SERVER;
-		$this->oldWgRequest = $GLOBALS['wgRequest'];
-		$this->oldWgServer = $GLOBALS['wgServer'];
 	}
 
 	protected function tearDown(): void {
 		$_SERVER = $this->oldServer;
-		$GLOBALS['wgRequest'] = $this->oldWgRequest;
-		$GLOBALS['wgServer'] = $this->oldWgServer;
 
 		parent::tearDown();
 	}
 
 	/**
 	 * @dataProvider provideDetectServer
-	 * @covers WebRequest::detectServer
-	 * @covers WebRequest::detectProtocol
 	 */
 	public function testDetectServer( $expected, $input, $description ) {
 		$this->setServerVars( $input );
@@ -161,9 +152,6 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 		return $req;
 	}
 
-	/**
-	 * @covers WebRequest::getElapsedTime
-	 */
 	public function testGetElapsedTime() {
 		$now = microtime( true ) - 10.0;
 		$req = $this->mockWebRequest( [], [ 'requestTime' => $now ] );
@@ -172,11 +160,6 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 		$this->assertEqualsWithDelta( 10.0, $req->getElapsedTime(), 60.0 );
 	}
 
-	/**
-	 * @covers WebRequest::getVal
-	 * @covers WebRequest::getGPCVal
-	 * @covers WebRequest::normalizeUnicode
-	 */
 	public function testGetValNormal() {
 		// Assert that WebRequest normalises GPC data using UtfNormal\Validator
 		$input = "a \x00 null";
@@ -187,21 +170,14 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [ $normal, $normal ], $req->getArray( 'y' ) );
 	}
 
-	/**
-	 * @covers WebRequest::getVal
-	 * @covers WebRequest::getGPCVal
-	 */
 	public function testGetVal() {
 		$req = $this->mockWebRequest( [ 'x' => 'Value', 'y' => [ 'a' ], 'crlf' => "A\r\nb" ] );
 		$this->assertSame( 'Value', $req->getVal( 'x' ), 'Simple value' );
-		$this->assertSame( null, $req->getVal( 'z' ), 'Not found' );
-		$this->assertSame( null, $req->getVal( 'y' ), 'Array is ignored' );
+		$this->assertNull( $req->getVal( 'z' ), 'Not found' );
+		$this->assertNull( $req->getVal( 'y' ), 'Array is ignored' );
 		$this->assertSame( "A\r\nb", $req->getVal( 'crlf' ), 'CRLF' );
 	}
 
-	/**
-	 * @covers WebRequest::getRawVal
-	 */
 	public function testGetRawVal() {
 		$req = $this->mockWebRequest( [
 			'x' => 'Value',
@@ -209,34 +185,25 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 			'crlf' => "A\r\nb"
 		] );
 		$this->assertSame( 'Value', $req->getRawVal( 'x' ) );
-		$this->assertSame( null, $req->getRawVal( 'z' ), 'Not found' );
-		$this->assertSame( null, $req->getRawVal( 'y' ), 'Array is ignored' );
+		$this->assertNull( $req->getRawVal( 'z' ), 'Not found' );
+		$this->assertNull( $req->getRawVal( 'y' ), 'Array is ignored' );
 		$this->assertSame( "A\r\nb", $req->getRawVal( 'crlf' ), 'CRLF' );
 	}
 
-	/**
-	 * @covers WebRequest::getArray
-	 */
 	public function testGetArray() {
 		$req = $this->mockWebRequest( [ 'x' => 'Value', 'y' => [ 'a', 'b' ] ] );
 		$this->assertSame( [ 'Value' ], $req->getArray( 'x' ), 'Value becomes array' );
-		$this->assertSame( null, $req->getArray( 'z' ), 'Not found' );
+		$this->assertNull( $req->getArray( 'z' ), 'Not found' );
 		$this->assertSame( [ 'a', 'b' ], $req->getArray( 'y' ) );
 	}
 
-	/**
-	 * @covers WebRequest::getIntArray
-	 */
 	public function testGetIntArray() {
 		$req = $this->mockWebRequest( [ 'x' => [ 'Value' ], 'y' => [ '0', '4.2', '-2' ] ] );
 		$this->assertSame( [ 0 ], $req->getIntArray( 'x' ), 'Text becomes 0' );
-		$this->assertSame( null, $req->getIntArray( 'z' ), 'Not found' );
+		$this->assertNull( $req->getIntArray( 'z' ), 'Not found' );
 		$this->assertSame( [ 0, 4, -2 ], $req->getIntArray( 'y' ) );
 	}
 
-	/**
-	 * @covers WebRequest::getInt
-	 */
 	public function testGetInt() {
 		$req = $this->mockWebRequest( [
 			'x' => 'Value',
@@ -253,9 +220,6 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( -2, $req->getInt( 'neg' ) );
 	}
 
-	/**
-	 * @covers WebRequest::getIntOrNull
-	 */
 	public function testGetIntOrNull() {
 		$req = $this->mockWebRequest( [
 			'x' => 'Value',
@@ -264,17 +228,14 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 			'answer' => '4.2',
 			'neg' => '-2',
 		] );
-		$this->assertSame( null, $req->getIntOrNull( 'x' ), 'Text' );
-		$this->assertSame( null, $req->getIntOrNull( 'y' ), 'Array' );
-		$this->assertSame( null, $req->getIntOrNull( 'z' ), 'Not found' );
+		$this->assertNull( $req->getIntOrNull( 'x' ), 'Text' );
+		$this->assertNull( $req->getIntOrNull( 'y' ), 'Array' );
+		$this->assertNull( $req->getIntOrNull( 'z' ), 'Not found' );
 		$this->assertSame( 0, $req->getIntOrNull( 'zero' ) );
 		$this->assertSame( 4, $req->getIntOrNull( 'answer' ) );
 		$this->assertSame( -2, $req->getIntOrNull( 'neg' ) );
 	}
 
-	/**
-	 * @covers WebRequest::getFloat
-	 */
 	public function testGetFloat() {
 		$req = $this->mockWebRequest( [
 			'x' => 'Value',
@@ -291,9 +252,6 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( -2.0, $req->getFloat( 'neg' ) );
 	}
 
-	/**
-	 * @covers WebRequest::getBool
-	 */
 	public function testGetBool() {
 		$req = $this->mockWebRequest( [
 			'x' => 'Value',
@@ -302,12 +260,12 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 			'f' => 'false',
 			't' => 'true',
 		] );
-		$this->assertSame( true, $req->getBool( 'x' ), 'Text' );
-		$this->assertSame( false, $req->getBool( 'y' ), 'Array' );
-		$this->assertSame( false, $req->getBool( 'z' ), 'Not found' );
-		$this->assertSame( false, $req->getBool( 'zero' ) );
-		$this->assertSame( true, $req->getBool( 'f' ) );
-		$this->assertSame( true, $req->getBool( 't' ) );
+		$this->assertTrue( $req->getBool( 'x' ), 'Text' );
+		$this->assertFalse( $req->getBool( 'y' ), 'Array' );
+		$this->assertFalse( $req->getBool( 'z' ), 'Not found' );
+		$this->assertFalse( $req->getBool( 'zero' ) );
+		$this->assertTrue( $req->getBool( 'f' ) );
+		$this->assertTrue( $req->getBool( 't' ) );
 	}
 
 	public static function provideFuzzyBool() {
@@ -327,43 +285,30 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideFuzzyBool
-	 * @covers WebRequest::getFuzzyBool
 	 */
 	public function testGetFuzzyBool( $value, $expected, $message = null ) {
 		$req = $this->mockWebRequest( [ 'x' => $value ] );
 		$this->assertSame( $expected, $req->getFuzzyBool( 'x' ), $message ?: "Value: '$value'" );
 	}
 
-	/**
-	 * @covers WebRequest::getFuzzyBool
-	 */
 	public function testGetFuzzyBoolDefault() {
 		$req = $this->mockWebRequest();
-		$this->assertSame( false, $req->getFuzzyBool( 'z' ), 'Not found' );
+		$this->assertFalse( $req->getFuzzyBool( 'z' ), 'Not found' );
 	}
 
-	/**
-	 * @covers WebRequest::getCheck
-	 */
 	public function testGetCheck() {
 		$req = $this->mockWebRequest( [ 'x' => 'Value', 'zero' => '0' ] );
-		$this->assertSame( false, $req->getCheck( 'z' ), 'Not found' );
-		$this->assertSame( true, $req->getCheck( 'x' ), 'Text' );
-		$this->assertSame( true, $req->getCheck( 'zero' ) );
+		$this->assertFalse( $req->getCheck( 'z' ), 'Not found' );
+		$this->assertTrue( $req->getCheck( 'x' ), 'Text' );
+		$this->assertTrue( $req->getCheck( 'zero' ) );
 	}
 
-	/**
-	 * @covers WebRequest::getText
-	 */
 	public function testGetText() {
 		// Avoid MediaWiki\Request\FauxRequest (overrides getText)
 		$req = $this->mockWebRequest( [ 'crlf' => "Va\r\nlue" ] );
 		$this->assertSame( "Va\nlue", $req->getText( 'crlf' ), 'CR stripped' );
 	}
 
-	/**
-	 * @covers WebRequest::getValues
-	 */
 	public function testGetValues() {
 		$values = [ 'x' => 'Value', 'y' => '' ];
 		$req = $this->mockWebRequest( $values );
@@ -371,21 +316,14 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [ 'x' => 'Value' ], $req->getValues( 'x' ), 'Specific keys' );
 	}
 
-	/**
-	 * @covers WebRequest::getValueNames
-	 */
 	public function testGetValueNames() {
 		$req = $this->mockWebRequest( [ 'x' => 'Value', 'y' => '' ] );
 		$this->assertSame( [ 'x', 'y' ], $req->getValueNames() );
 		$this->assertSame( [ 'x' ], $req->getValueNames( [ 'y' ] ), 'Exclude keys' );
 	}
 
-	/**
-	 * @covers WebRequest
-	 */
 	public function testGetFullRequestURL() {
-		// Stub this for wfGetServerUrl()
-		$GLOBALS['wgServer'] = '//wiki.test';
+		$this->overrideConfigValue( MainConfigNames::Server, '//wiki.test' );
 		$req = $this->getMockBuilder( WebRequest::class )
 			->onlyMethods( [ 'getRequestURL', 'getProtocol' ] )
 			->getMock();
@@ -400,7 +338,6 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideGetIP
-	 * @covers WebRequest::getIP
 	 */
 	public function testGetIP( $expected, $input, $cdn, $xffList, $private, $description ) {
 		$this->setServerVars( $input );
@@ -587,9 +524,6 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @covers WebRequest::getIP
-	 */
 	public function testGetIpLackOfRemoteAddrThrowAnException() {
 		// ensure that local install state doesn't interfere with test
 		$this->overrideConfigValues( [
@@ -645,7 +579,6 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideLanguageData
-	 * @covers WebRequest::getAcceptLang
 	 */
 	public function testAcceptLang( $acceptLanguageHeader, array $expectedLanguages, $description ) {
 		$this->setServerVars( [ 'HTTP_ACCEPT_LANGUAGE' => $acceptLanguageHeader ] );
@@ -653,9 +586,6 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expectedLanguages, $request->getAcceptLang(), $description );
 	}
 
-	/**
-	 * @covers WebRequest::getHeader
-	 */
 	public function testGetHeaderCanYieldSpecialCgiHeaders() {
 		$contentType = 'application/json; charset=utf-8';
 		$contentLength = '4711';
@@ -671,9 +601,6 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $request->getHeader( 'Content-Md5' ), $contentMd5 );
 	}
 
-	/**
-	 * @covers WebRequest::getHeader
-	 */
 	public function testGetHeaderKeyIsCaseInsensitive() {
 		$cacheControl = 'private, must-revalidate, max-age=0';
 		$this->setServerVars( [ 'HTTP_CACHE_CONTROL' => $cacheControl ] );
@@ -693,11 +620,8 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 		$_SERVER = $vars;
 	}
 
-	private const INTERNAL_SERVER = 'http://wiki.site';
-
 	/**
 	 * @dataProvider provideMatchURLForCDN
-	 * @covers WebRequest::matchURLForCDN
 	 */
 	public function testMatchURLForCDN( $url, $cdnUrls, $matchOrder, $expected ) {
 		$this->setServerVars( [ 'REQUEST_URI' => $url ] );
