@@ -26,8 +26,8 @@ use MediaWiki\JobQueue\JobQueueGroupFactory;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
 use Psr\Log\LoggerInterface;
-use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 use Wikimedia\Rdbms\ILBFactory;
+use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
  * Factory service for UserGroupManager instances. This allows UserGroupManager to be created for
@@ -39,8 +39,8 @@ class UserGroupManagerFactory {
 	/** @var ServiceOptions */
 	private $options;
 
-	/** @var ConfiguredReadOnlyMode */
-	private $configuredReadOnlyMode;
+	/** @var ReadOnlyMode */
+	private $readOnlyMode;
 
 	/** @var ILBFactory */
 	private $dbLoadBalancerFactory;
@@ -68,7 +68,7 @@ class UserGroupManagerFactory {
 
 	/**
 	 * @param ServiceOptions $options
-	 * @param ConfiguredReadOnlyMode $configuredReadOnlyMode
+	 * @param ReadOnlyMode $readOnlyMode
 	 * @param ILBFactory $dbLoadBalancerFactory
 	 * @param HookContainer $hookContainer
 	 * @param UserEditTracker $userEditTracker
@@ -80,7 +80,7 @@ class UserGroupManagerFactory {
 	 */
 	public function __construct(
 		ServiceOptions $options,
-		ConfiguredReadOnlyMode $configuredReadOnlyMode,
+		ReadOnlyMode $readOnlyMode,
 		ILBFactory $dbLoadBalancerFactory,
 		HookContainer $hookContainer,
 		UserEditTracker $userEditTracker,
@@ -91,7 +91,7 @@ class UserGroupManagerFactory {
 		array $clearCacheCallbacks = []
 	) {
 		$this->options = $options;
-		$this->configuredReadOnlyMode = $configuredReadOnlyMode;
+		$this->readOnlyMode = $readOnlyMode;
 		$this->dbLoadBalancerFactory = $dbLoadBalancerFactory;
 		$this->hookContainer = $hookContainer;
 		$this->userEditTracker = $userEditTracker;
@@ -114,7 +114,7 @@ class UserGroupManagerFactory {
 		// TODO: Once UserRightsProxy is removed, cache the instance per wiki.
 		return new UserGroupManager(
 			$this->options,
-			$this->configuredReadOnlyMode,
+			$this->readOnlyMode,
 			$this->dbLoadBalancerFactory,
 			$this->hookContainer,
 			$this->userEditTracker,

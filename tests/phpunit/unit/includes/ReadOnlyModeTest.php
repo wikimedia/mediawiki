@@ -1,6 +1,8 @@
 <?php
 
 use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
+use Wikimedia\Rdbms\ILBFactory;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
@@ -121,18 +123,21 @@ class ReadOnlyModeTest extends MediaWikiUnitTestCase {
 		$rom = new ConfiguredReadOnlyMode( $params['confMessage'], $this->createFile( $params ) );
 
 		if ( $makeLB ) {
-			$lb = $this->createLB( $params );
+			$lb = $this->createLBF( $params );
 			$rom = new ReadOnlyMode( $rom, $lb );
 		}
 
 		return $rom;
 	}
 
-	private function createLB( $params ) {
-		$lb = $this->createMock( \Wikimedia\Rdbms\LoadBalancer::class );
+	private function createLBF( $params ) {
+		$lb = $this->createMock( ILoadBalancer::class );
 		$lb->method( 'getReadOnlyReason' )
 			->willReturn( $params['lbMessage'] );
-		return $lb;
+		$lbf = $this->createMock( ILBFactory::class );
+		$lbf->method( 'getMainLB' )
+		   ->willReturn( $lb );
+		return $lbf;
 	}
 
 	private function createFile( $params ) {

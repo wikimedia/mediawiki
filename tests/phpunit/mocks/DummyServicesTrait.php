@@ -53,6 +53,7 @@ use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
+use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\Services\NoSuchServiceException;
@@ -437,9 +438,11 @@ trait DummyServicesTrait {
 		}
 		$loadBalancer = $this->createMock( ILoadBalancer::class );
 		$loadBalancer->method( 'getReadOnlyReason' )->willReturn( false );
+		$lbFactory = $this->createMock( ILBFactory::class );
+		$lbFactory->method( 'getMainLB' )->willReturn( $loadBalancer );
 		return new ReadOnlyMode(
 			new ConfiguredReadOnlyMode( $startingReason, null ),
-			$loadBalancer
+			$lbFactory
 		);
 	}
 

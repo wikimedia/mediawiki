@@ -624,7 +624,7 @@ return [
 			$services->getCommentStore(),
 			$services->getHookContainer(),
 			$services->getDBLoadBalancerFactory(),
-			$services->getConfiguredReadOnlyMode(),
+			$services->getReadOnlyMode(),
 			$services->getUserFactory()
 		);
 	},
@@ -1696,7 +1696,7 @@ return [
 	'ReadOnlyMode' => static function ( MediaWikiServices $services ): ReadOnlyMode {
 		return new ReadOnlyMode(
 			$services->getConfiguredReadOnlyMode(),
-			$services->getDBLoadBalancer()
+			$services->getDBLoadBalancerFactory()
 		);
 	},
 
@@ -2239,7 +2239,7 @@ return [
 			new ServiceOptions(
 				UserGroupManager::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
 			),
-			$services->getConfiguredReadOnlyMode(),
+			$services->getReadOnlyMode(),
 			$services->getDBLoadBalancerFactory(),
 			$services->getHookContainer(),
 			$services->getUserEditTracker(),

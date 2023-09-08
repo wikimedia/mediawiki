@@ -26,7 +26,6 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\UserFactory;
 use Psr\Log\LoggerInterface;
-use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
@@ -62,8 +61,8 @@ class DatabaseBlockStoreFactory {
 	/** @var LBFactory */
 	private $loadBalancerFactory;
 
-	/** @var ConfiguredReadOnlyMode */
-	private $configuredReadOnlyMode;
+	/** @var ReadOnlyMode */
+	private $readOnlyMode;
 
 	/** @var UserFactory */
 	private $userFactory;
@@ -79,7 +78,7 @@ class DatabaseBlockStoreFactory {
 	 * @param CommentStore $commentStore
 	 * @param HookContainer $hookContainer
 	 * @param LBFactory $loadBalancerFactory
-	 * @param ConfiguredReadOnlyMode $configuredReadOnlyMode
+	 * @param ReadOnlyMode $readOnlyMode
 	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
@@ -90,7 +89,7 @@ class DatabaseBlockStoreFactory {
 		CommentStore $commentStore,
 		HookContainer $hookContainer,
 		LBFactory $loadBalancerFactory,
-		ConfiguredReadOnlyMode $configuredReadOnlyMode,
+		ReadOnlyMode $readOnlyMode,
 		UserFactory $userFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -102,7 +101,7 @@ class DatabaseBlockStoreFactory {
 		$this->commentStore = $commentStore;
 		$this->hookContainer = $hookContainer;
 		$this->loadBalancerFactory = $loadBalancerFactory;
-		$this->configuredReadOnlyMode = $configuredReadOnlyMode;
+		$this->readOnlyMode = $readOnlyMode;
 		$this->userFactory = $userFactory;
 	}
 
@@ -117,7 +116,6 @@ class DatabaseBlockStoreFactory {
 
 		$storeCacheKey = $wikiId === DatabaseBlock::LOCAL ? 'LOCAL' : 'crosswikistore-' . $wikiId;
 		if ( !isset( $this->storeCache[$storeCacheKey] ) ) {
-			$loadBalancer = $this->loadBalancerFactory->getMainLB( $wikiId );
 			$this->storeCache[$storeCacheKey] = new DatabaseBlockStore(
 				$this->options,
 				$this->logger,
@@ -125,8 +123,8 @@ class DatabaseBlockStoreFactory {
 				$this->blockRestrictionStoreFactory->getBlockRestrictionStore( $wikiId ),
 				$this->commentStore,
 				$this->hookContainer,
-				$loadBalancer,
-				new ReadOnlyMode( $this->configuredReadOnlyMode, $loadBalancer ),
+				$this->loadBalancerFactory->getMainLB( $wikiId ),
+				$this->readOnlyMode,
 				$this->userFactory,
 				$wikiId
 			);
