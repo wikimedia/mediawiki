@@ -61,18 +61,17 @@ class AddRFCandPMIDInterwiki extends LoggedUpdateMaintenance {
 
 		// Old pre-1.28 default value, or not set at all
 		if ( $rfc === false || $rfc === 'http://www.rfc-editor.org/rfc/rfc$1.txt' ) {
-			$dbw->replace(
-				'interwiki',
-				[ [ 'iw_prefix' ] ],
-				[
+			$dbw->newReplaceQueryBuilder()
+				->replaceInto( 'interwiki' )
+				->uniqueIndexFields( [ 'iw_prefix' ] )
+				->rows( [
 					'iw_prefix' => 'rfc',
 					'iw_url' => 'https://tools.ietf.org/html/rfc$1',
 					'iw_api' => '',
 					'iw_wikiid' => '',
 					'iw_local' => 0,
-				],
-				__METHOD__
-			);
+				] )
+				->caller( __METHOD__ )->execute();
 		}
 
 		$dbw->insert(

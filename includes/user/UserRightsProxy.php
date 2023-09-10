@@ -288,20 +288,17 @@ class UserRightsProxy implements UserIdentity {
 	}
 
 	public function saveSettings() {
-		$rows = [];
+		$queryBuilder = $this->db->newReplaceQueryBuilder()
+			->replaceInto( 'user_properties' )
+			->uniqueIndexFields( [ 'up_user', 'up_property' ] );
 		foreach ( $this->newOptions as $option => $value ) {
-			$rows[] = [
+			$queryBuilder->row( [
 				'up_user' => $this->id,
 				'up_property' => $option,
 				'up_value' => $value,
-			];
+			] );
 		}
-		$this->db->replace(
-			'user_properties',
-			[ [ 'up_user', 'up_property' ] ],
-			$rows,
-			__METHOD__
-		);
+		$queryBuilder->caller( __METHOD__ )->execute();
 		$this->invalidateCache();
 	}
 

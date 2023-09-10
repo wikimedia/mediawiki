@@ -588,7 +588,11 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				->caller( __METHOD__ )->execute();
 		} else {
 			// T288998: use REPLACE, if possible, to avoid cluttering the binlogs
-			$db->replace( $ptable, 'keyname', $rows, __METHOD__ );
+			$db->newReplaceQueryBuilder()
+				->replaceInto( $ptable )
+				->rows( $rows )
+				->uniqueIndexFields( [ 'keyname' ] )
+				->caller( __METHOD__ )->execute();
 		}
 
 		foreach ( $argsByKey as $key => $unused ) {

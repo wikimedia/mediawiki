@@ -1649,12 +1649,11 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		// Perform a replace on the watchlist table rows.
 		// Note that multi-row replace is very efficient for MySQL but may be inefficient for
 		// some other DBMSes, mostly due to poor simulation by us.
-		$dbw->replace(
-			'watchlist',
-			[ [ 'wl_user', 'wl_namespace', 'wl_title' ] ],
-			$values,
-			__METHOD__
-		);
+		$dbw->newReplaceQueryBuilder()
+			->replaceInto( 'watchlist' )
+			->uniqueIndexFields( [ 'wl_user', 'wl_namespace', 'wl_title' ] )
+			->rows( $values )
+			->caller( __METHOD__ )->execute();
 
 		if ( $this->expiryEnabled ) {
 			$this->updateExpiriesAfterMove( $dbw, $expiries, $newNamespace, $newDBkey );
@@ -1728,12 +1727,11 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 				// Batch the insertions.
 				$batches = array_chunk( $expiryData, $this->updateRowsPerQuery );
 				foreach ( $batches as $toInsert ) {
-					$dbw->replace(
-						'watchlist_expiry',
-						'we_item',
-						$toInsert,
-						$method
-					);
+					$dbw->newReplaceQueryBuilder()
+						->replaceInto( 'watchlist_expiry' )
+						->uniqueIndexFields( [ 'we_item' ] )
+						->rows( $toInsert )
+						->caller( $method )->execute();
 				}
 			},
 			DeferredUpdates::POSTSEND,

@@ -3006,6 +3006,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\QueryBuilderFromRawSql' => __DIR__ . '/includes/libs/rdbms/database/QueryBuilderFromRawSql.php',
 	'Wikimedia\\Rdbms\\QueryStatus' => __DIR__ . '/includes/libs/rdbms/database/utils/QueryStatus.php',
 	'Wikimedia\\Rdbms\\ReadOnlyMode' => __DIR__ . '/includes/libs/rdbms/ReadOnlyMode.php',
+	'Wikimedia\\Rdbms\\ReplaceQueryBuilder' => __DIR__ . '/includes/libs/rdbms/querybuilder/ReplaceQueryBuilder.php',
 	'Wikimedia\\Rdbms\\Replication\\MysqlReplicationReporter' => __DIR__ . '/includes/libs/rdbms/database/replication/MysqlReplicationReporter.php',
 	'Wikimedia\\Rdbms\\Replication\\ReplicationReporter' => __DIR__ . '/includes/libs/rdbms/database/replication/ReplicationReporter.php',
 	'Wikimedia\\Rdbms\\ResultWrapper' => __DIR__ . '/includes/libs/rdbms/database/resultwrapper/ResultWrapper.php',

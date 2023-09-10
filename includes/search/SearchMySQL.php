@@ -318,16 +318,15 @@ class SearchMySQL extends SearchDatabase {
 	 * @param string $text
 	 */
 	public function update( $id, $title, $text ) {
-		$this->dbProvider->getPrimaryDatabase()->replace(
-			'searchindex',
-			'si_page',
-			[
+		$this->dbProvider->getPrimaryDatabase()->newReplaceQueryBuilder()
+			->replaceInto( 'searchindex' )
+			->uniqueIndexFields( [ 'si_page' ] )
+			->rows( [
 				'si_page' => $id,
 				'si_title' => $this->normalizeText( $title ),
-				'si_text' => $this->normalizeText( $text )
-			],
-			__METHOD__
-		);
+				 'si_text' => $this->normalizeText( $text )
+			] )
+			->caller( __METHOD__ )->execute();
 	}
 
 	/**
