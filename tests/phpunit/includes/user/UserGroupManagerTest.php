@@ -92,7 +92,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 				],
 				$services->getMainConfig()
 			),
-			$services->getConfiguredReadOnlyMode(),
+			$services->getReadOnlyMode(),
 			$services->getDBLoadBalancerFactory(),
 			$services->getHookContainer(),
 			$userEditTrackerOverride ?? $services->getUserEditTracker(),

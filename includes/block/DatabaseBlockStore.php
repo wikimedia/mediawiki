@@ -128,7 +128,7 @@ class DatabaseBlockStore {
 	 * @internal only public for use in DatabaseBlock
 	 */
 	public function purgeExpiredBlocks() {
-		if ( $this->readOnlyMode->isReadOnly() ) {
+		if ( $this->readOnlyMode->isReadOnly( $this->wikiId ) ) {
 			return;
 		}
 
@@ -383,7 +383,7 @@ class DatabaseBlockStore {
 	 * @return bool whether it was deleted
 	 */
 	public function deleteBlock( DatabaseBlock $block ): bool {
-		if ( $this->readOnlyMode->isReadOnly() ) {
+		if ( $this->readOnlyMode->isReadOnly( $this->wikiId ) ) {
 			return false;
 		}
 

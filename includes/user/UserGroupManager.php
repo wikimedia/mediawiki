@@ -41,7 +41,6 @@ use UserGroupExpiryJob;
 use UserGroupMembership;
 use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
-use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -156,7 +155,7 @@ class UserGroupManager implements IDBAccessObject {
 
 	/**
 	 * @param ServiceOptions $options
-	 * @param ConfiguredReadOnlyMode $configuredReadOnlyMode
+	 * @param ReadOnlyMode $readOnlyMode
 	 * @param ILBFactory $lbFactory
 	 * @param HookContainer $hookContainer
 	 * @param UserEditTracker $userEditTracker
@@ -169,7 +168,7 @@ class UserGroupManager implements IDBAccessObject {
 	 */
 	public function __construct(
 		ServiceOptions $options,
-		ConfiguredReadOnlyMode $configuredReadOnlyMode,
+		ReadOnlyMode $readOnlyMode,
 		ILBFactory $lbFactory,
 		HookContainer $hookContainer,
 		UserEditTracker $userEditTracker,
@@ -190,8 +189,7 @@ class UserGroupManager implements IDBAccessObject {
 		$this->jobQueueGroup = $jobQueueGroup;
 		$this->logger = $logger;
 		$this->tempUserConfig = $tempUserConfig;
-		// Can't inject ReadOnlyMode service, this can be a foreign wiki (T343917)
-		$this->readOnlyMode = new ReadOnlyMode( $configuredReadOnlyMode, $lbFactory->getMainLB( $wikiId ) );
+		$this->readOnlyMode = $readOnlyMode;
 		$this->clearCacheCallbacks = $clearCacheCallbacks;
 		$this->wikiId = $wikiId;
 	}
@@ -691,7 +689,7 @@ class UserGroupManager implements IDBAccessObject {
 		);
 
 		if (
-			$this->readOnlyMode->isReadOnly() ||
+			$this->readOnlyMode->isReadOnly( $this->wikiId ) ||
 			!$user->isRegistered() ||
 			$this->tempUserConfig->isTempName( $user->getName() )
 		) {
@@ -824,7 +822,7 @@ class UserGroupManager implements IDBAccessObject {
 		bool $allowUpdate = false
 	): bool {
 		$user->assertWiki( $this->wikiId );
-		if ( $this->readOnlyMode->isReadOnly() ) {
+		if ( $this->readOnlyMode->isReadOnly( $this->wikiId ) ) {
 			return false;
 		}
 
@@ -972,7 +970,7 @@ class UserGroupManager implements IDBAccessObject {
 			}
 		}
 
-		if ( $this->readOnlyMode->isReadOnly() ) {
+		if ( $this->readOnlyMode->isReadOnly( $this->wikiId ) ) {
 			return false;
 		}
 
@@ -1038,7 +1036,7 @@ class UserGroupManager implements IDBAccessObject {
 	 *  readonly), the number of rows purged (might be 0) otherwise
 	 */
 	public function purgeExpired() {
-		if ( $this->readOnlyMode->isReadOnly() ) {
+		if ( $this->readOnlyMode->isReadOnly( $this->wikiId ) ) {
 			return false;
 		}
 

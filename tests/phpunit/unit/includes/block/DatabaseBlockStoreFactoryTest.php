@@ -14,9 +14,9 @@ use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\UserFactory;
 use MediaWikiUnitTestCase;
 use Psr\Log\LoggerInterface;
-use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
  * @covers \MediaWiki\Block\DatabaseBlockStoreFactory
@@ -51,7 +51,7 @@ class DatabaseBlockStoreFactoryTest extends MediaWikiUnitTestCase {
 			$this->createMock( CommentStore::class ),
 			$this->createMock( HookContainer::class ),
 			$lbFactory,
-			$this->createMock( ConfiguredReadOnlyMode::class ),
+			$this->createMock( ReadOnlyMode::class ),
 			$this->createMock( UserFactory::class )
 		);
 

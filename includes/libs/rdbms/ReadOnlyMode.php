@@ -13,21 +13,27 @@ class ReadOnlyMode {
 	/** @var ConfiguredReadOnlyMode */
 	private $configuredReadOnly;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var ILBFactory */
+	private $lbFactory;
 
-	public function __construct( ConfiguredReadOnlyMode $cro, ILoadBalancer $loadBalancer ) {
+	/**
+	 * @internal For ServiceWiring only
+	 * @param ConfiguredReadOnlyMode $cro
+	 * @param ILBFactory $lbFactory
+	 */
+	public function __construct( ConfiguredReadOnlyMode $cro, ILBFactory $lbFactory ) {
 		$this->configuredReadOnly = $cro;
-		$this->loadBalancer = $loadBalancer;
+		$this->lbFactory = $lbFactory;
 	}
 
 	/**
 	 * Check whether the site is in read-only mode.
 	 *
+	 * @param string|false $domain Domain ID, or false for the current domain
 	 * @return bool
 	 */
-	public function isReadOnly(): bool {
-		return $this->getReason() !== false;
+	public function isReadOnly( $domain = false ): bool {
+		return $this->getReason( $domain ) !== false;
 	}
 
 	/**
@@ -38,14 +44,15 @@ class ReadOnlyMode {
 	 *
 	 * Calling this may result in database connection.
 	 *
+	 * @param string|false $domain Domain ID, or false for the current domain
 	 * @return string|false String when in read-only mode; false otherwise
 	 */
-	public function getReason() {
+	public function getReason( $domain = false ) {
 		$reason = $this->configuredReadOnly->getReason();
 		if ( $reason !== false ) {
 			return $reason;
 		}
-		$reason = $this->loadBalancer->getReadOnlyReason();
+		$reason = $this->lbFactory->getMainLB( $domain )->getReadOnlyReason();
 		return $reason ?? false;
 	}
 
