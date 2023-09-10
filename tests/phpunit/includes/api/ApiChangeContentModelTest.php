@@ -296,7 +296,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 
 		$data = $this->doApiRequestWithToken( [
 			'action' => 'changecontentmodel',
-			'summary' => __METHOD__,
+			// no 'summary', should be optional
 			'title' => 'ExistingPage',
 			'model' => 'wikitext',
 			'tags' => 'api edit content model tag',
