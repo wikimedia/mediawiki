@@ -1827,7 +1827,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		$update->setCause( $causeAction, $causeAgent );
 
 		if ( $options['defer'] === false ) {
-			DeferredUpdates::attemptUpdate( $update, $this->loadbalancerFactory );
+			DeferredUpdates::attemptUpdate( $update );
 		} else {
 			DeferredUpdates::addUpdate( $update, $options['defer'] );
 		}
