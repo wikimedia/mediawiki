@@ -66,7 +66,10 @@ class ApiParamValidator {
 		'raw' => [ 'class' => StringDef::class ],
 		'string' => [ 'class' => StringDef::class ],
 		'submodule' => [ 'class' => SubmoduleDef::class ],
-		'tags' => [ 'class' => TagsDef::class ],
+		'tags' => [
+			'class' => TagsDef::class,
+			'services' => [ 'ChangeTagsStore' ],
+		],
 		'text' => [ 'class' => StringDef::class ],
 		'timestamp' => [
 			'class' => TimestampDef::class,
