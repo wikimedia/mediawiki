@@ -60,6 +60,7 @@
 	"apihelp-stashedit-param-text": "Садржај странице.",
 	"apihelp-unblock-summary": "Деблокирање корисника.",
 	"apihelp-userrights-param-user": "Корисник.",
+	"api-format-title": "Медијавики API резултат",
 	"api-format-prettyprint-header": "Ово је HTML верзија исписа за формат $1. HTML је добар за дебаговање, али није погодан за употребу апликације.\n\nОдредити параметар <var>format</var> да би се променио формат излаза. Да би се видела не-HTML верзија исписа формата $1, користити <kbd>format=$2</kbd>.\n\nПогледајте [[mw:Special:MyLanguage/API|комплетну документацију]] или [[Special:ApiHelp/main|помоћ око API-ја]] за више информација.",
 	"api-format-prettyprint-header-only-html": "Ово је HTML верзија исписа намењена за дебаговање и није погодна за употребу апликације.\n\nПогледајте [[mw:Special:MyLanguage/API|комплетну документацију]] или [[Special:ApiHelp/main|помоћ око API-ја]] за више информација.",
 	"api-login-fail-aborted": "Аутентификација захтева корисничку интеракцију, коју не подржава <kbd>action=login</kbd>. Да би се могли пријавити са <kbd>action=login</kbd>, погледајте [[Special:BotPasswords]]. Да би сте наставили користити пријаву преко главног налога, погледајте <kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd>.",
