@@ -95,6 +95,10 @@ class InsertQueryBuilder {
 	 *   - table: The table name to be passed to Database::insert()
 	 *   - rows: The rows to be inserted
 	 *   - options: The query options
+	 *   - upsert: Whether it's insert or upsert
+	 *   - uniqueIndexFields: Fields of the unique index
+	 *   - set: The set array
+	 *   - caller: The caller signature
 	 *
 	 * @return $this
 	 */
@@ -116,6 +120,9 @@ class InsertQueryBuilder {
 		}
 		if ( isset( $info['set'] ) ) {
 			$this->set( (array)$info['set'] );
+		}
+		if ( isset( $info['caller'] ) ) {
+			$this->caller( $info['caller'] );
 		}
 		return $this;
 	}
@@ -205,7 +212,8 @@ class InsertQueryBuilder {
 	 * @return $this
 	 */
 	public function row( array $row ) {
-		return $this->rows( [ $row ] );
+		$this->rows[] = $row;
+		return $this;
 	}
 
 	/**
@@ -337,9 +345,13 @@ class InsertQueryBuilder {
 	 *   - table: The table name
 	 *   - rows: The rows array
 	 *   - options: The query options
+	 *   - upsert: Whether it's insert or upsert
+	 *   - uniqueIndexFields: Fields of the unique index
+	 *   - set: The set array
+	 *   - caller: The caller signature
 	 */
 	public function getQueryInfo() {
-		return [
+		$info = [
 			'table' => $this->table,
 			'rows' => $this->rows,
 			'upsert' => $this->upsert,
@@ -347,5 +359,9 @@ class InsertQueryBuilder {
 			'uniqueIndexFields' => $this->uniqueIndexFields,
 			'options' => $this->options,
 		];
+		if ( $this->caller !== __CLASS__ ) {
+			$info['caller'] = $this->caller;
+		}
+		return $info;
 	}
 }

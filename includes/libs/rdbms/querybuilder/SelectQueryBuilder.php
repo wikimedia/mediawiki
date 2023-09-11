@@ -14,7 +14,7 @@ namespace Wikimedia\Rdbms;
  * Note that the methods in this class are not stable to override.
  * This class may be extended to create query builders for specific database
  * tables, such {@link \MediaWiki\Page\PageSelectQueryBuilder}, whilst still
- * provoding the same fluent interface for adding arbitrary additional
+ * providing the same fluent interface for adding arbitrary additional
  * conditions and such.
  *
  * @since 1.35
@@ -104,6 +104,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 *   - join_conds: The join conditions
 	 *   - joins: Alias for join_conds. If both joins and join_conds are
 	 *     specified, the values will be merged.
+	 *   - caller: The caller signature
 	 *
 	 * @return $this
 	 */
@@ -125,6 +126,9 @@ class SelectQueryBuilder extends JoinGroupBase {
 		}
 		if ( isset( $info['joins'] ) ) {
 			$this->joinConds( (array)$info['joins'] );
+		}
+		if ( isset( $info['caller'] ) ) {
+			$this->caller( $info['caller'] );
 		}
 		return $this;
 	}
@@ -830,6 +834,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 *   - join_conds: The join conditions. This can also be given a different
 	 *     name by passing a $joinsName parameter, since some legacy code uses
 	 *     the name "joins".
+	 *   - caller: The caller signature
 	 */
 	public function getQueryInfo( $joinsName = 'join_conds' ) {
 		$info = [
@@ -838,6 +843,9 @@ class SelectQueryBuilder extends JoinGroupBase {
 			'conds' => $this->conds,
 			'options' => $this->options,
 		];
+		if ( $this->caller !== __CLASS__ ) {
+			$info['caller'] = $this->caller;
+		}
 		$info[ $joinsName ] = $this->joinConds;
 		return $info;
 	}

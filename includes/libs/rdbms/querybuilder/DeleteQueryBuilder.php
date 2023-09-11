@@ -72,6 +72,7 @@ class DeleteQueryBuilder {
 	 * @param array $info Associative array of query info, with keys:
 	 *   - table: The table name to be passed to IDatabase::delete()
 	 *   - conds: The conditions
+	 *   - caller: The caller signature
 	 *
 	 * @return $this
 	 */
@@ -81,6 +82,9 @@ class DeleteQueryBuilder {
 		}
 		if ( isset( $info['conds'] ) ) {
 			$this->where( $info['conds'] );
+		}
+		if ( isset( $info['caller'] ) ) {
+			$this->caller( $info['caller'] );
 		}
 		return $this;
 	}
@@ -225,11 +229,16 @@ class DeleteQueryBuilder {
 	 * @return array The query info array, with keys:
 	 *   - table: The table name
 	 *   - conds: The conditions
+	 *   - caller: The caller signature
 	 */
 	public function getQueryInfo(): array {
-		return [
+		$info = [
 			'table' => $this->table,
 			'conds' => $this->conds,
 		];
+		if ( $this->caller !== __CLASS__ ) {
+			$info['caller'] = $this->caller;
+		}
+		return $info;
 	}
 }

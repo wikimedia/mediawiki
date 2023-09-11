@@ -116,13 +116,15 @@ class UpdateQueryBuilderTest extends PHPUnit\Framework\TestCase {
 			->ignore()
 			->set( [ 'f' => 'g' ] )
 			->andSet( [ 'd' => 'l' ] )
-			->where( [ 'a' => 'b' ] );
+			->where( [ 'a' => 'b' ] )
+			->caller( 'foo' );
 		$this->assertEquals(
 			[
 				'table' => 't' ,
 				'set' => [ 'f' => 'g', 'd' => 'l' ],
 				'conds' => [ 'a' => 'b' ],
 				'options' => [ 'IGNORE' ],
+				'caller' => 'foo',
 			],
 			$this->uqb->getQueryInfo() );
 	}

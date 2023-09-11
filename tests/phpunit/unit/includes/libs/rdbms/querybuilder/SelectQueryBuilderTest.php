@@ -556,14 +556,16 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 			->from( 't' )
 			->conds( [ 'a' => 'b' ] )
 			->join( 'u', 'u', 'tt=uu' )
-			->limit( 1 );
+			->limit( 1 )
+			->caller( 'foo' );
 		$this->assertEquals(
 			[
 				'tables' => [ 't', 'u' => 'u' ],
 				'fields' => [ 'f' ],
 				'conds' => [ 'a' => 'b' ],
 				'options' => [ 'LIMIT' => 1 ],
-				'join_conds' => [ 'u' => [ 'JOIN', 'tt=uu' ] ]
+				'join_conds' => [ 'u' => [ 'JOIN', 'tt=uu' ] ],
+				'caller' => 'foo',
 			],
 			$this->sqb->getQueryInfo() );
 	}
@@ -587,14 +589,16 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 			->from( 't' )
 			->conds( [ 'a' => 'b' ] )
 			->join( 'u', 'u', 'tt=uu' )
-			->limit( 1 );
+			->limit( 1 )
+			->caller( 'foo' );
 		$this->assertEquals(
 			[
 				'tables' => [ 't', 'u' => 'u' ],
 				'fields' => [ 'f' ],
 				'conds' => [ 'a' => 'b' ],
 				'options' => [ 'LIMIT' => 1 ],
-				'joins' => [ 'u' => [ 'JOIN', 'tt=uu' ] ]
+				'joins' => [ 'u' => [ 'JOIN', 'tt=uu' ] ],
+				'caller' => 'foo',
 			],
 			$this->sqb->getQueryInfo( 'joins' ) );
 	}

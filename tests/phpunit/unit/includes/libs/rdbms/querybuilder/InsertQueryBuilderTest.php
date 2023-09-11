@@ -92,7 +92,8 @@ class InsertQueryBuilderTest extends PHPUnit\Framework\TestCase {
 		$this->iqb
 			->insertInto( 't' )
 			->ignore()
-			->row( [ 'a' => 'b', 'd' => 'l' ] );
+			->row( [ 'a' => 'b', 'd' => 'l' ] )
+			->caller( 'foo' );
 		$this->assertEquals(
 			[
 				'table' => 't' ,
@@ -101,6 +102,7 @@ class InsertQueryBuilderTest extends PHPUnit\Framework\TestCase {
 				'upsert' => false,
 				'set' => [],
 				'uniqueIndexFields' => [],
+				'caller' => 'foo',
 			],
 			$this->iqb->getQueryInfo() );
 	}
@@ -111,7 +113,8 @@ class InsertQueryBuilderTest extends PHPUnit\Framework\TestCase {
 			->row( [ 'f' => 'g', 'd' => 'l' ] )
 			->onDuplicateKeyUpdate()
 			->uniqueIndexFields( [ 'd' ] )
-			->set( [ 'f' => 'm' ] );
+			->set( [ 'f' => 'm' ] )
+			->caller( 'foo' );
 		$this->assertEquals(
 			[
 				'table' => 't' ,
@@ -120,6 +123,7 @@ class InsertQueryBuilderTest extends PHPUnit\Framework\TestCase {
 				'set' => [ 'f' => 'm' ],
 				'uniqueIndexFields' => [ 'd' ],
 				'options' => [],
+				'caller' => 'foo'
 			],
 			$this->iqb->getQueryInfo() );
 	}
