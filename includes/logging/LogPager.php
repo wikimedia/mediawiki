@@ -430,24 +430,18 @@ class LogPager extends ReverseChronologicalPager {
 		return [ [ 'log_timestamp', 'log_id' ] ];
 	}
 
-	protected function getStartBody() {
-		# Do a link batch query
-		if ( $this->getNumRows() > 0 ) {
-			$lb = $this->linkBatchFactory->newLinkBatch();
-			foreach ( $this->mResult as $row ) {
-				$lb->add( $row->log_namespace, $row->log_title );
-				$lb->add( NS_USER, $row->log_user_text );
-				$lb->add( NS_USER_TALK, $row->log_user_text );
-				$formatter = LogFormatter::newFromRow( $row );
-				foreach ( $formatter->getPreloadTitles() as $title ) {
-					$lb->addObj( $title );
-				}
+	protected function doBatchLookups() {
+		$lb = $this->linkBatchFactory->newLinkBatch();
+		foreach ( $this->mResult as $row ) {
+			$lb->add( $row->log_namespace, $row->log_title );
+			$lb->add( NS_USER, $row->log_user_text );
+			$lb->add( NS_USER_TALK, $row->log_user_text );
+			$formatter = LogFormatter::newFromRow( $row );
+			foreach ( $formatter->getPreloadTitles() as $title ) {
+				$lb->addObj( $title );
 			}
-			$lb->execute();
-			$this->mResult->seek( 0 );
 		}
-
-		return '';
+		$lb->execute();
 	}
 
 	public function formatRow( $row ) {

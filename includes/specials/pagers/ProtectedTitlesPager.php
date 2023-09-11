@@ -79,8 +79,7 @@ class ProtectedTitlesPager extends AlphabeticPager {
 		$this->linkBatchFactory = $linkBatchFactory;
 	}
 
-	protected function getStartBody() {
-		# Do a link batch query
+	protected function doBatchLookups() {
 		$this->mResult->seek( 0 );
 		$lb = $this->linkBatchFactory->newLinkBatch();
 
@@ -89,8 +88,6 @@ class ProtectedTitlesPager extends AlphabeticPager {
 		}
 
 		$lb->execute();
-
-		return '';
 	}
 
 	/**

@@ -204,8 +204,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		return $this->mForm->formatRow( $row );
 	}
 
-	protected function getStartBody() {
-		# Do a batch existence check on pages
+	protected function doBatchLookups() {
 		$linkBatch = $this->linkBatchFactory->newLinkBatch();
 		foreach ( $this->mResult as $row ) {
 			$linkBatch->add( NS_USER, $row->rc_user_text );
@@ -213,7 +212,9 @@ class NewPagesPager extends ReverseChronologicalPager {
 			$linkBatch->add( $row->page_namespace, $row->page_title );
 		}
 		$linkBatch->execute();
+	}
 
+	protected function getStartBody() {
 		return '<ul>';
 	}
 
