@@ -1891,7 +1891,6 @@ MESSAGE;
 	public static function inDebugMode() {
 		if ( self::$debugMode === null ) {
 			global $wgRequest;
-			'@phan-var \MediaWiki\Request\WebRequest $wgRequest';
 
 			$resourceLoaderDebug = MediaWikiServices::getInstance()->getMainConfig()->get(
 				MainConfigNames::ResourceLoaderDebug );

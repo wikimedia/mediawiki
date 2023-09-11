@@ -467,8 +467,6 @@ function wfGetUrlUtils(): UrlUtils {
 	global $wgServer, $wgCanonicalServer, $wgInternalServer, $wgRequest, $wgHttpsPort,
 		$wgUrlProtocols;
 
-	'@phan-var \MediaWiki\Request\WebRequest $wgRequest';
-
 	if ( MediaWikiServices::hasInstance() ) {
 		$services = MediaWikiServices::getInstance();
 		if ( $services->hasService( 'UrlUtils' ) ) {

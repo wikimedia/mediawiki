@@ -4521,7 +4521,6 @@ class OutputPage extends ContextSource {
 	 */
 	public static function transformCssMedia( $media ) {
 		global $wgRequest;
-		'@phan-var \MediaWiki\Request\WebRequest $wgRequest';
 
 		if ( $wgRequest->getBool( 'printable' ) ) {
 			// When browsing with printable=yes, apply "print" media styles

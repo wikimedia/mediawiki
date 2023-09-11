@@ -511,7 +511,6 @@ TXT;
 	 */
 	public static function getURL() {
 		global $wgRequest;
-		'@phan-var \MediaWiki\Request\WebRequest $wgRequest';
 
 		if ( !isset( $wgRequest ) || $wgRequest instanceof FauxRequest ) {
 			return false;

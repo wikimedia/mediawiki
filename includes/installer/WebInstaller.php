@@ -525,7 +525,6 @@ class WebInstaller extends Installer {
 	 */
 	public function getAcceptLanguage() {
 		global $wgLanguageCode, $wgRequest;
-		'@phan-var \MediaWiki\Request\WebRequest $wgRequest';
 
 		$mwLanguages = MediaWikiServices::getInstance()
 			->getLanguageNameUtils()

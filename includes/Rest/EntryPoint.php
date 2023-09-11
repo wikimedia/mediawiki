@@ -99,7 +99,6 @@ class EntryPoint {
 	public static function main() {
 		// URL safety checks
 		global $wgRequest;
-		'@phan-var \MediaWiki\Request\WebRequest $wgRequest';
 
 		$context = RequestContext::getMain();
 

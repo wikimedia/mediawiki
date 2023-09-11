@@ -908,7 +908,6 @@ class RecentChange implements Taggable {
 		$revId = 0, $isPatrollable = false, $forceBotFlag = null
 	) {
 		global $wgRequest;
-		'@phan-var \MediaWiki\Request\WebRequest $wgRequest';
 
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
@@ -1231,7 +1230,6 @@ class RecentChange implements Taggable {
 
 	private static function checkIPAddress( $ip ) {
 		global $wgRequest;
-		'@phan-var \MediaWiki\Request\WebRequest $wgRequest';
 
 		if ( $ip ) {
 			if ( !IPUtils::isIPAddress( $ip ) ) {

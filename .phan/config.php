@@ -157,7 +157,7 @@ $cfg['ignore_undeclared_variables_in_global_scope'] = true;
 // remove them from here as well, so phan complains when something tries to use them.
 $cfg['globals_type_map'] = array_merge( $cfg['globals_type_map'], [
 	'IP' => 'string',
-	'wgTitle' => 'MediaWiki\Title\Title',
+	'wgTitle' => \MediaWiki\Title\Title::class,
 	'wgGalleryOptions' => 'array',
 	'wgDummyLanguageCodes' => 'string[]',
 	'wgNamespaceProtection' => 'array<int,string|string[]>',
@@ -175,8 +175,9 @@ $cfg['globals_type_map'] = array_merge( $cfg['globals_type_map'], [
 	'wgLocalInterwikis' => 'string[]',
 	'wgDebugLogGroups' => 'string|false|array{destination:string,sample?:int,level:int}',
 	'wgCookiePrefix' => 'string|false',
-	'wgOut' => 'MediaWiki\Output\OutputPage',
+	'wgOut' => \MediaWiki\Output\OutputPage::class,
 	'wgExtraNamespaces' => 'string[]',
+	'wgRequest' => \MediaWiki\Request\WebRequest::class,
 ] );
 
 // Include a local config file if it exists
