@@ -372,9 +372,8 @@ class WikitextContentHandler extends TextContentHandler {
 			$parserOutput->addLink( $redir );
 			if ( $cpoParams->getGenerateHtml() ) {
 				$redirTarget = $content->getRedirectTarget();
-				$parserOutput->setText(
-					Article::getRedirectHeaderHtml( $title->getPageLanguage(), $redirTarget, false ) .
-					$parserOutput->getRawText()
+				$parserOutput->setRedirectHeader(
+					Article::getRedirectHeaderHtml( $title->getPageLanguage(), $redirTarget, false )
 				);
 				$parserOutput->addModuleStyles( [ 'mediawiki.action.view.redirectPage' ] );
 			} else {

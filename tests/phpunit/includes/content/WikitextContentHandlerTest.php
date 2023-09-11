@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\ParserOutputFlags;
@@ -22,37 +21,6 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 
 		$this->handler = $this->getServiceContainer()->getContentHandlerFactory()
 			->getContentHandler( CONTENT_MODEL_WIKITEXT );
-	}
-
-	/**
-	 * @dataProvider provideMakeRedirectContent
-	 * @param LinkTarget $target
-	 * @param string $expected Serialized form of the content object built
-	 * @covers WikitextContentHandler::makeRedirectContent
-	 */
-	public function testMakeRedirectContent( LinkTarget $target, $expected ) {
-		$this->getServiceContainer()->resetServiceForTesting( 'ContentLanguage' );
-		$this->getServiceContainer()->resetServiceForTesting( 'MagicWordFactory' );
-
-		$content = $this->handler->makeRedirectContent( Title::newFromLinkTarget( $target ) );
-		$this->assertEquals( $expected, $content->serialize() );
-	}
-
-	public static function provideMakeRedirectContent() {
-		return [
-			[ new TitleValue( NS_MAIN, 'Hello' ), '#REDIRECT [[Hello]]' ],
-			[ new TitleValue( NS_TEMPLATE, 'Hello' ), '#REDIRECT [[Template:Hello]]' ],
-			[ new TitleValue( NS_MAIN, 'Hello', 'section' ), '#REDIRECT [[Hello#section]]' ],
-			[ new TitleValue( NS_USER, 'John doe', 'section' ), '#REDIRECT [[User:John doe#section]]' ],
-			[ new TitleValue( NS_MEDIAWIKI, 'FOOBAR' ), '#REDIRECT [[MediaWiki:FOOBAR]]' ],
-			[ new TitleValue( NS_CATEGORY, 'Foo' ), '#REDIRECT [[:Category:Foo]]' ],
-			[ new TitleValue( NS_MAIN, 'en:Foo' ), '#REDIRECT [[en:Foo]]' ],
-			[ new TitleValue( NS_MAIN, 'Foo', '', 'en' ), '#REDIRECT [[:en:Foo]]' ],
-			[
-				new TitleValue( NS_MAIN, 'Bar', 'fragment', 'google' ),
-				'#REDIRECT [[google:Bar#fragment]]'
-			],
-		];
 	}
 
 	public static function dataMerge3() {

@@ -435,6 +435,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			$text = preg_replace( '!</body>\s*</html>\s*$!', '', $text, 1 );
 		}
 
+		$redirectHeader = $this->getRedirectHeader();
+		if ( $redirectHeader ) {
+			$text = $redirectHeader . $text;
+		}
+
 		if ( $options['includeDebugInfo'] ) {
 			$text .= $this->renderDebugInfo();
 		}
@@ -1463,6 +1468,27 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
+	 * Return an HTML prefix to be applied on redirect pages, or null
+	 * if this is not a redirect.
+	 * @return ?string HTML to prepend to redirect pages, or null
+	 * @internal
+	 */
+	public function getRedirectHeader(): ?string {
+		return $this->getExtensionData( 'core:redirect-header' );
+	}
+
+	/**
+	 * Set an HTML prefix to be applied on redirect pages.
+	 * @param string $html HTML to prepend to redirect pages
+	 */
+	public function setRedirectHeader( string $html ): void {
+		$this->setExtensionData( 'core:redirect-header', $html );
+	}
+
+	/**
+	 *
+	 *
+	 * /**
 	 * Attach a flag to the output so that it can be checked later to handle special cases
 	 *
 	 * @param string $flag
