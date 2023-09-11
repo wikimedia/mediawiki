@@ -26,13 +26,9 @@ namespace MediaWiki\Specials;
 use HTMLForm;
 use HTMLSelectNamespace;
 use MediaWiki\Cache\LinkBatchFactory;
-use MediaWiki\Html\Html;
-use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Pager\ProtectedTitlesPager;
 use MediaWiki\SpecialPage\SpecialPage;
-use MediaWiki\Title\Title;
-use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -73,7 +69,8 @@ class SpecialProtectedTitles extends SpecialPage {
 		$NS = $request->getIntOrNull( 'namespace' );
 
 		$pager = new ProtectedTitlesPager(
-			$this,
+			$this->getContext(),
+			$this->getLinkRenderer(),
 			$this->linkBatchFactory,
 			$this->dbProvider,
 			[],
@@ -95,51 +92,6 @@ class SpecialProtectedTitles extends SpecialPage {
 		} else {
 			$this->getOutput()->addWikiMsg( 'protectedtitlesempty' );
 		}
-	}
-
-	/**
-	 * Callback function to output a restriction
-	 *
-	 * @param stdClass $row Database row
-	 * @return string
-	 */
-	public function formatRow( $row ) {
-		$title = Title::makeTitleSafe( $row->pt_namespace, $row->pt_title );
-		if ( !$title ) {
-			return Html::rawElement(
-				'li',
-				[],
-				Html::element(
-					'span',
-					[ 'class' => 'mw-invalidtitle' ],
-					Linker::getInvalidTitleDescription(
-						$this->getContext(),
-						$row->pt_namespace,
-						$row->pt_title
-					)
-				)
-			) . "\n";
-		}
-
-		$link = $this->getLinkRenderer()->makeLink( $title );
-		// Messages: restriction-level-sysop, restriction-level-autoconfirmed
-		$description = $this->msg( 'restriction-level-' . $row->pt_create_perm )->escaped();
-		$lang = $this->getLanguage();
-		$expiry = strlen( $row->pt_expiry ) ?
-			$lang->formatExpiry( $row->pt_expiry, TS_MW ) :
-			'infinity';
-
-		if ( $expiry !== 'infinity' ) {
-			$user = $this->getUser();
-			$description .= $this->msg( 'comma-separator' )->escaped() . $this->msg(
-				'protect-expiring-local',
-				$lang->userTimeAndDate( $expiry, $user ),
-				$lang->userDate( $expiry, $user ),
-				$lang->userTime( $expiry, $user )
-			)->escaped();
-		}
-
-		return '<li>' . $lang->specialList( $link, $description ) . "</li>\n";
 	}
 
 	/**
