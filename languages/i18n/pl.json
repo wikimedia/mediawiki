@@ -570,6 +570,7 @@
 	"nosuchusershort": "Brak użytkownika o nazwie „$1”.\nSprawdź poprawność pisowni.",
 	"nouserspecified": "Musisz podać nazwę użytkownika.",
 	"login-userblocked": "Ten użytkownik jest zablokowany. Zalogowanie się jest niemożliwe.",
+	"fatalpassworderror": "$1\n\nZe względów bezpieczeństwa logowanie za pomocą tego hasła nie jest możliwe. Prosimy [$2 wysłać prośbę o zresetowanie hasła].",
 	"wrongpassword": "Podany login lub hasło są nieprawidłowe. Spróbuj jeszcze raz.",
 	"wrongpasswordempty": "Wprowadzone hasło jest puste. Spróbuj ponownie.",
 	"passwordtooshort": "Hasło musi mieć co najmniej $1 {{PLURAL:$1|znak|znaki|znaków}}.",

@@ -1747,8 +1747,6 @@
 	"minoreditletter": "ط",
 	"newpageletter": "ج‌",
 	"boteditletter": "ب",
-	"unpatrolledletter": "!",
-	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|بايت|بايت}} بعد التغيير",
 	"newsectionsummary": "/* $1 */ قسم جديد",
 	"rc-old-title": "تم إنشاؤها في الأصل باسم «$1»",

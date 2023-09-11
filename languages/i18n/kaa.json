@@ -592,6 +592,8 @@
 	"noarticletext-nopermission": "Bul bette házirshe tekst joq.\nSiz [[Special:Search/{{PAGENAME}}|bet basın basqa betlerden qıdırıwıńiz]] múmkin yamasa <span class=\" plainlinks\" >[{{fullurl:{{#Special:Log}}|page= {{FULLPAGENAMEE}}}} tiyisli jurnallardı izleń], biraq sizde bul bettiń jaratılıwına ruxsat joq.",
 	"userpage-userdoesnotexist": "\"$1\" paydalanıwshı akkauntı bul Wikide registraciya qılınbaǵan. Bul betti jaratqıńız yamasa ózgertkińiz kelse tekserip kóriń.",
 	"userpage-userdoesnotexist-view": "\"$1\" paydalanıwshı akkauntı bul Wikide dizimnen ótpegen.",
+	"userjsyoucanpreview": "'''Aqıl-keńes:''' Jańa JavaScript faylın saqlaw aldınan «{{int:showpreview}}» túymesin qollanıńız.",
+	"userjspreview": "<strong>Esińizde tutıń: Siz ózińizdiń paydalanıwshı JavaScriptińizdi tek ǵana sınap kórip atırsız.\nOl ele járiyalanbadı! </strong>",
 	"sitejspreview": "<strong>Bul JavaScript kodınıń aldın ala kórinisi ekenligin este tutıń.\nOl ele járiyalanbadı!</strong>",
 	"updated": "(Jańalanǵan)",
 	"note": "<strong>Eskertiw:</strong>",

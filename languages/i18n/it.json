@@ -2404,7 +2404,7 @@
 	"emailuser": "Invia una email all'utente",
 	"emailuser-title-target": "Invia una email a questo {{GENDER:$1|utente}}",
 	"emailuser-title-notarget": "Invia una email a un utente",
-	"emailpagetext": "Usare il modulo sottostante per inviare un messaggio e-mail all'{{GENDER:$1|utente}} indicato. L'indirizzo specificato nelle [[Special:Preferences|preferenze]] del mittente apparirà nel campo \"Da:\" del messaggio per consentire al destinatario di rispondere direttamente.",
+	"emailpagetext": "Usa il modulo sottostante per inviare un messaggio email all'{{GENDER:$1|utente}} indicato. L'indirizzo specificato nelle [[Special:Preferences|preferenze]] del mittente apparirà nel campo \"Da:\" del messaggio per consentire al destinatario di rispondere direttamente.",
 	"defemailsubject": "Messaggio da {{SITENAME}} dall'utente \"$1\"",
 	"usermaildisabled": "E-mail utente disabilitata",
 	"usermaildisabledtext": "Non è possibile inviare e-mail ad altri utenti su questo wiki",
