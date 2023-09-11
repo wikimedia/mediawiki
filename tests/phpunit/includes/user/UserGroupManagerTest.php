@@ -314,7 +314,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testAddUserToGroupReadonly() {
 		$user = $this->getTestUser()->getUser();
-		$this->getServiceContainer()->getConfiguredReadOnlyMode()->setReason( 'TEST' );
+		$this->getServiceContainer()->getReadOnlyMode()->setReason( 'TEST' );
 		$manager = $this->getManager();
 		$this->assertFalse( $manager->addUserToGroup( $user, 'test' ) );
 		$this->assertNotContains( 'test', $manager->getUserGroups( $user ) );
@@ -480,7 +480,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testRemoveUserFromGroupReadOnly() {
 		$user = $this->getTestUser( [ 'test' ] )->getUser();
-		$this->getServiceContainer()->getConfiguredReadOnlyMode()->setReason( 'TEST' );
+		$this->getServiceContainer()->getReadOnlyMode()->setReason( 'TEST' );
 		$manager = $this->getManager();
 		$this->assertFalse( $manager->removeUserFromGroup( $user, 'test' ) );
 		$this->assertContains( 'test', $manager->getUserGroups( $user ) );
@@ -535,7 +535,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\User\UserGroupManager::purgeExpired
 	 */
 	public function testPurgeExpiredReadOnly() {
-		$this->getServiceContainer()->getConfiguredReadOnlyMode()->setReason( 'TEST' );
+		$this->getServiceContainer()->getReadOnlyMode()->setReason( 'TEST' );
 		$manager = $this->getManager();
 		$this->assertFalse( $manager->purgeExpired() );
 	}
@@ -1094,7 +1094,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	public function testAddUserToAutopromoteOnceGroupsReadOnly() {
 		$manager = $this->getManager();
 		$user = $this->getTestUser()->getUser();
-		$this->getServiceContainer()->getConfiguredReadOnlyMode()->setReason( 'TEST' );
+		$this->getServiceContainer()->getReadOnlyMode()->setReason( 'TEST' );
 		$this->assertSame( [], $manager->addUserToAutopromoteOnceGroups( $user, 'TEST' ) );
 	}
 

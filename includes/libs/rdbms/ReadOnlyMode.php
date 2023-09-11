@@ -57,6 +57,24 @@ class ReadOnlyMode {
 	}
 
 	/**
+	 * @since 1.41
+	 * @return string|false String when site is configured to be in read-only mode; false otherwise
+	 */
+	public function getConfiguredReason() {
+		return $this->configuredReadOnly->getReason();
+	}
+
+	/**
+	 * Check whether the site is configured to be in read-only mode.
+	 *
+	 * @since 1.41
+	 * @return bool
+	 */
+	public function isConfiguredReadOnly() {
+		return $this->configuredReadOnly->getReason() !== false;
+	}
+
+	/**
 	 * Override the read-only mode, which will apply for the remainder of the
 	 * request or until a service reset.
 	 *
@@ -65,6 +83,7 @@ class ReadOnlyMode {
 	public function setReason( $msg ): void {
 		$this->configuredReadOnly->setReason( $msg );
 	}
+
 }
 
 /**

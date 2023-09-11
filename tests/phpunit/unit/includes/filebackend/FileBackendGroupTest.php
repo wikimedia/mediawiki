@@ -4,7 +4,6 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
-use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 
 /**
  * @coversDefaultClass FileBackendGroup
@@ -70,7 +69,7 @@ class FileBackendGroupTest extends MediaWikiUnitTestCase {
 	/**
 	 * @param array $options Dictionary to use as a source for ServiceOptions before defaults, plus
 	 *   the following options are available to override other arguments:
-	 *     * 'configuredROMode'
+	 *     * 'readOnlyMode'
 	 *     * 'lmgFactory'
 	 *     * 'mimeAnalyzer'
 	 *     * 'tmpFileFactory'
@@ -80,7 +79,7 @@ class FileBackendGroupTest extends MediaWikiUnitTestCase {
 		return new FileBackendGroup(
 			new ServiceOptions(
 				FileBackendGroup::CONSTRUCTOR_OPTIONS, $options, self::getDefaultOptions() ),
-			$options['configuredROMode'] ?? new ConfiguredReadOnlyMode( false ),
+			$this->getDummyReadOnlyMode( $options['readOnlyMode'] ?? false ),
 			$this->getLocalServerCache(),
 			$this->getWANObjectCache(),
 			$options['mimeAnalyzer'] ?? $this->createNoOpMock( MimeAnalyzer::class ),

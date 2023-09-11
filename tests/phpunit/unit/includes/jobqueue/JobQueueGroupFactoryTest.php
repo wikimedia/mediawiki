@@ -3,7 +3,7 @@
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\JobQueue\JobQueueGroupFactory;
 use MediaWiki\MainConfigNames;
-use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
+use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
@@ -21,7 +21,7 @@ class JobQueueGroupFactoryTest extends MediaWikiUnitTestCase {
 					MainConfigNames::JobTypesExcludedFromDefaultQueue => []
 				] )
 			),
-			$this->createMock( ConfiguredReadOnlyMode::class ),
+			$this->createMock( ReadOnlyMode::class ),
 			$this->createMock( IBufferingStatsdDataFactory::class ),
 			$this->createMock( WANObjectCache::class ),
 			$this->createMock( GlobalIdGenerator::class )
