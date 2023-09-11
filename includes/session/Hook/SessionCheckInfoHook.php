@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Session\Hook;
 
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\SessionInfo;
-use WebRequest;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

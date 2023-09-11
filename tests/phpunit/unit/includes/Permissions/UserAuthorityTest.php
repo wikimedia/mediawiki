@@ -35,12 +35,12 @@ use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Permissions\RateLimitSubject;
 use MediaWiki\Permissions\UserAuthority;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Request\WebRequest;
 use MediaWikiUnitTestCase;
 use Message;
 use PHPUnit\Framework\MockObject\MockObject;
 use StatusValue;
 use User;
-use WebRequest;
 
 /**
  * @covers \MediaWiki\Permissions\UserAuthority

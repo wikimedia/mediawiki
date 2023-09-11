@@ -6,12 +6,12 @@ use Article;
 use DerivativeContext;
 use ErrorPageError;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 use RequestContext;
 use RollbackAction;
 use User;
-use WebRequest;
 
 /**
  * @covers RollbackAction

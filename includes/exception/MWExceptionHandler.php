@@ -22,6 +22,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Request\WebRequest;
 use Psr\Log\LogLevel;
 use Wikimedia\NormalizedException\INormalizedException;
 use Wikimedia\Rdbms\DBError;
@@ -510,6 +511,8 @@ TXT;
 	 */
 	public static function getURL() {
 		global $wgRequest;
+		'@phan-var \MediaWiki\Request\WebRequest $wgRequest';
+
 		if ( !isset( $wgRequest ) || $wgRequest instanceof FauxRequest ) {
 			return false;
 		}

@@ -24,7 +24,7 @@
 namespace MediaWiki\Session;
 
 use MediaWiki\MainConfigNames;
-use WebRequest;
+use MediaWiki\Request\WebRequest;
 
 /**
  * An ImmutableSessionProviderWithCookie doesn't persist the user, but

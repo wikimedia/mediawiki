@@ -24,7 +24,6 @@ namespace MediaWiki\Request;
 
 use MediaWiki\MediaWikiServices;
 use Sanitizer;
-use WebRequest;
 
 // The point of this class is to be a wrapper around super globals
 // phpcs:disable MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals

@@ -699,6 +699,7 @@ because of Phabricator reports.
   - OutputPage -> MediaWiki\Output\OutputPage
   - StreamFile -> MediaWiki\Output\StreamFile
   - SiteConfiguration -> MediaWiki\Config\SiteConfiguration
+  - WebRequest -> MediaWiki\Request\WebRequest
 * RevisionStore::getQueryInfo() and RevisionFactory::getQueryInfo() have been
   deprecated. Use ::newSelectQueryBuilder() instead.
 * Following methods in rdbms library have been made internal:

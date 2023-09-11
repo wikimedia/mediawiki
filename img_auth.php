@@ -41,6 +41,7 @@
 
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\TemplateParser;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
 
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );

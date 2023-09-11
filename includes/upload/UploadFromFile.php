@@ -21,6 +21,7 @@
  * @ingroup Upload
  */
 
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Request\WebRequestUpload;
 
 /**

@@ -2,6 +2,7 @@
 
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
 
 /**

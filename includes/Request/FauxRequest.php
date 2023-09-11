@@ -31,7 +31,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
 use MWException;
-use WebRequest;
 
 /**
  * WebRequest clone which takes values from a provided array.

@@ -23,19 +23,18 @@
  * @file
  */
 
+namespace MediaWiki\Request;
+
+use FatalError;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Http\Telemetry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Request\FauxRequest;
-use MediaWiki\Request\FauxResponse;
-use MediaWiki\Request\PathRouter;
-use MediaWiki\Request\WebRequestUpload;
-use MediaWiki\Request\WebResponse;
 use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\User\UserIdentity;
+use MWException;
 use Wikimedia\IPUtils;
 
 // The point of this class is to be a wrapper around super globals
@@ -621,9 +620,7 @@ class WebRequest {
 	 */
 	public function getIntOrNull( $name ) {
 		$val = $this->getRawVal( $name );
-		return is_numeric( $val )
-			? intval( $val )
-			: null;
+		return is_numeric( $val ) ? intval( $val ) : null;
 	}
 
 	/**
@@ -926,9 +923,11 @@ class WebRequest {
 			}
 		} else {
 			// This shouldn't happen!
-			throw new MWException( "Web server doesn't provide either " .
+			throw new MWException(
+				"Web server doesn't provide either " .
 				"REQUEST_URI, HTTP_X_ORIGINAL_URL or SCRIPT_NAME. Report details " .
-				"of your web server configuration to https://phabricator.wikimedia.org/" );
+				"of your web server configuration to https://phabricator.wikimedia.org/"
+			);
 		}
 		// User-agents should not send a fragment with the URI, but
 		// if they do, and the web server passes it on to us, we
@@ -1463,3 +1462,8 @@ class WebRequest {
 		return false;
 	}
 }
+
+/**
+ * @deprecated since 1.41
+ */
+class_alias( WebRequest::class, 'WebRequest' );

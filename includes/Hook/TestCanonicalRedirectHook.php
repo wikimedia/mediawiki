@@ -3,8 +3,8 @@
 namespace MediaWiki\Hook;
 
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
-use WebRequest;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Html\Html;
+use MediaWiki\Request\WebRequest;
 
 /**
  * Double field with a dropdown list constructed from a system message in the format

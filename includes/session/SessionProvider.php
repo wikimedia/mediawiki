@@ -28,10 +28,10 @@ use Language;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\User\UserNameUtils;
 use Psr\Log\LoggerInterface;
 use User;
-use WebRequest;
 
 /**
  * A SessionProvider provides SessionInfo and support for Session

@@ -2,6 +2,7 @@
 
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Request\WebRequest;
 
 /**
  * A checkbox matrix

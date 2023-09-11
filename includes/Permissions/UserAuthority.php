@@ -27,10 +27,10 @@ use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\User\UserIdentity;
 use TitleValue;
 use User;
-use WebRequest;
 use Wikimedia\Assert\Assert;
 use Wikimedia\DebugInfo\DebugInfoTrait;
 

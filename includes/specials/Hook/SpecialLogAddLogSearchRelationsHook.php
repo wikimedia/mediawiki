@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use WebRequest;
+use MediaWiki\Request\WebRequest;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

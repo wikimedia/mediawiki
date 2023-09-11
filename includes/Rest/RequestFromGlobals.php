@@ -33,7 +33,7 @@ class RequestFromGlobals extends RequestBase {
 
 	public function getUri() {
 		if ( $this->uri === null ) {
-			$requestUrl = \WebRequest::getGlobalRequestURL();
+			$requestUrl = \MediaWiki\Request\WebRequest::getGlobalRequestURL();
 
 			try {
 				$uriInstance = new Uri( $requestUrl );

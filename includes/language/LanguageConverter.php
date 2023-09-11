@@ -421,6 +421,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 */
 	public function getURLVariant() {
 		global $wgRequest;
+		'@phan-var \MediaWiki\Request\WebRequest $wgRequest';
 
 		if ( $this->mURLVariant ) {
 			return $this->mURLVariant;
@@ -482,6 +483,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 */
 	protected function getHeaderVariant() {
 		global $wgRequest;
+		'@phan-var \MediaWiki\Request\WebRequest $wgRequest';
 
 		if ( $this->mHeaderVariant ) {
 			return $this->mHeaderVariant;
@@ -1052,6 +1054,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 		}
 
 		global $wgRequest;
+		'@phan-var \MediaWiki\Request\WebRequest $wgRequest';
+
 		$isredir = $wgRequest->getText( 'redirect', 'yes' );
 		$action = $wgRequest->getText( 'action' );
 		if ( $action == 'edit' && $wgRequest->getBool( 'redlink' ) ) {

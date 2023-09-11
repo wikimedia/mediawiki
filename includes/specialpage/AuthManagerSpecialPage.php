@@ -6,6 +6,7 @@ use MediaWiki\Auth\AuthManager;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Request\DerivativeRequest;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\Token;
 use MediaWiki\Status\Status;
 

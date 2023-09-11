@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Html\Html;
+use MediaWiki\Request\WebRequest;
 
 /**
  * MediaWiki exception

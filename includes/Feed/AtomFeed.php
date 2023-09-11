@@ -85,6 +85,7 @@ class AtomFeed extends ChannelFeed {
 	 */
 	private function getSelfUrl() {
 		global $wgRequest;
+		'@phan-var \MediaWiki\Request\WebRequest $wgRequest';
 		return htmlspecialchars( $wgRequest->getFullRequestURL() );
 	}
 

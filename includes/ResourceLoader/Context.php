@@ -26,6 +26,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserRigorOptions;
 use Message;
@@ -33,7 +34,6 @@ use MessageLocalizer;
 use MessageSpecifier;
 use Psr\Log\LoggerInterface;
 use User;
-use WebRequest;
 
 /**
  * Context object that contains information about the state of a specific

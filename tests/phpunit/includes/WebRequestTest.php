@@ -2,6 +2,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\ProxyLookup;
+use MediaWiki\Request\WebRequest;
 
 /**
  * @covers WebRequest

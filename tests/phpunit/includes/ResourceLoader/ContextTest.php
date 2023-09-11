@@ -6,12 +6,12 @@ use EmptyResourceLoader;
 use HashConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWikiCoversValidator;
 use Message;
 use User;
-use WebRequest;
 
 /**
  * See also:
