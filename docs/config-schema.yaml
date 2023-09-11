@@ -5254,9 +5254,30 @@ config-schema:
     AvailableRights:
         default: []
         type: array
+        items:
+            type: string
         description: |-
             A list of available rights, in addition to the ones defined by the core.
+            Rights in this list are denied unless explicitly granted, typically
+            using GroupPermissions.
             For extensions only.
+            @see self::GroupPermissions
+            @see self::ImplicitRights
+    ImplicitRights:
+        default: []
+        type: array
+        items:
+            type: string
+        description: |-
+            A list of implicit rights, in addition to the ones defined by the core.
+            Rights in this list are granted implicitly to all users, but rate limits
+            may apply to them.
+            Extensions that define rate limits should add the corresponding right to
+            either ImplicitRights or AvailableRights, depending on whether the right
+            should be granted to everyone.
+            @since 1.41
+            @see self::RateLimits
+            @see self::AvailableRights
     DeleteRevisionsLimit:
         default: 0
         description: |-
@@ -5430,6 +5451,7 @@ config-schema:
                     'user' => [ x, y ],
             ];
             ```
+            @see self::ImplicitRights
             @warning Requires that $wgMainCacheType is set to something persistent
     RateLimitsExcludedIPs:
         default: []

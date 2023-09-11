@@ -85,6 +85,8 @@ class PermissionManager {
 		MainConfigNames::NamespaceProtection,
 		MainConfigNames::RestrictionLevels,
 		MainConfigNames::DeleteRevisionsLimit,
+		MainConfigNames::RateLimits,
+		MainConfigNames::ImplicitRights,
 	];
 
 	/** @var ServiceOptions */
@@ -107,6 +109,9 @@ class PermissionManager {
 
 	/** @var string[]|null Cached results of getAllPermissions() */
 	private $allRights;
+
+	/** @var string[]|null Cached results of getImplicitRights() */
+	private $implicitRights;
 
 	/** @var BlockErrorFormatter */
 	private $blockErrorFormatter;
@@ -145,7 +150,7 @@ class PermissionManager {
 	private $cachedRights = [];
 
 	/**
-	 * Array of Strings Core rights.
+	 * Array of core rights.
 	 * Each of these should have a corresponding message of the form
 	 * "right-$right".
 	 * @showinitializer
@@ -233,6 +238,23 @@ class PermissionManager {
 		'viewmywatchlist',
 		'viewsuppressed',
 		'writeapi',
+	];
+
+	/**
+	 * List of implicit rights.
+	 * These should not have a corresponding message of the form
+	 * "right-$right".
+	 * @showinitializer
+	 */
+	private const IMPLICIT_RIGHTS = [
+		'renderfile',
+		'renderfile-nonstandard',
+		'stashedit',
+		'stashbasehtml',
+		'mailpassword',
+		'changeemail',
+		'confirmemail',
+		'linkpurge',
 	];
 
 	/**
@@ -1453,7 +1475,8 @@ class PermissionManager {
 		}
 		// Use strict parameter to avoid matching numeric 0 accidentally inserted
 		// by misconfiguration: 0 == 'foo'
-		return in_array( $action, $this->getUserPermissions( $user ), true );
+		return in_array( $action, $this->getImplicitRights(), true )
+			|| in_array( $action, $this->getUserPermissions( $user ), true );
 	}
 
 	/**
@@ -1675,7 +1698,10 @@ class PermissionManager {
 	}
 
 	/**
-	 * Get a list of all available permissions.
+	 * Get a list of all permissions that can be managed through group permissions.
+	 * This does not include implicit rights which are granted to all users automatically.
+	 *
+	 * @see getImplicitRights()
 	 *
 	 * @since 1.34
 	 * @return string[] Array of permission names
@@ -1693,6 +1719,29 @@ class PermissionManager {
 			$this->hookRunner->onUserGetAllRights( $this->allRights );
 		}
 		return $this->allRights;
+	}
+
+	/**
+	 * Get a list of implicit rights.
+	 *
+	 * Rights in this list should be granted to all users implicitly.
+	 *
+	 * Implicit rights are defined to allow rate limits to be imposed
+	 * on permissions
+	 *
+	 * @since 1.41
+	 * @return string[] Array of permission names
+	 */
+	public function getImplicitRights(): array {
+		if ( $this->implicitRights === null ) {
+			$rights = array_unique( array_merge(
+				self::IMPLICIT_RIGHTS,
+				$this->options->get( MainConfigNames::ImplicitRights )
+			) );
+
+			$this->implicitRights = array_diff( $rights, $this->getAllPermissions() );
+		}
+		return $this->implicitRights;
 	}
 
 	/**

@@ -256,6 +256,7 @@ class ExtensionProcessor implements Processor {
 		$this->extractSkins( $dir, $info );
 		$this->extractSkinImportPaths( $dir, $info );
 		$this->extractNamespaces( $info );
+		$this->extractImplicitRights( $info );
 		$this->extractResourceLoaderModules( $dir, $info );
 		if ( isset( $info['ServiceWiringFiles'] ) ) {
 			$this->extractPathBasedGlobal(
@@ -703,6 +704,30 @@ class ExtensionProcessor implements Processor {
 				}
 				$this->globals['wgValidSkinNames'][$skinKey] = $data;
 			}
+		}
+	}
+
+	/**
+	 * Extract any user rights that should be granted implicitly.
+	 *
+	 * @param array $info
+	 */
+	protected function extractImplicitRights( array $info ) {
+		// Rate limits are only configurable for rights that are either in wgImplicitRights
+		// or in wgAvailableRights. Extensions that define rate limits should not have to
+		// explicitly add them to wgImplicitRights as well, we can do that automatically.
+
+		if ( isset( $info['RateLimits'] ) ) {
+			$rights = array_keys( $info['RateLimits'] );
+
+			if ( isset( $info['AvailableRights'] ) ) {
+				$rights = array_diff( $rights, $info['AvailableRights'] );
+			}
+
+			$this->globals['wgImplicitRights'] = array_merge(
+				$this->globals['wgImplicitRights'] ?? [],
+				$rights
+			);
 		}
 	}
 

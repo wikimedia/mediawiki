@@ -47,6 +47,8 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 			MainConfigNames::NamespaceProtection => [ NS_MEDIAWIKI => 'editinterface' ],
 			MainConfigNames::RestrictionLevels => [ '', 'autoconfirmed', 'sysop' ],
 			MainConfigNames::DeleteRevisionsLimit => false,
+			MainConfigNames::RateLimits => [],
+			MainConfigNames::ImplicitRights => [],
 		];
 		$config = $overrideConfig + $baseConfig;
 
