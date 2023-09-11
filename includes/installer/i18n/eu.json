@@ -7,7 +7,8 @@
 			"Sator",
 			"Subi",
 			"Xabier Armendaritz",
-			"පසිඳු කාවින්ද"
+			"පසිඳු කාවින්ද",
+			"Atzerritik"
 		]
 	},
 	"config-desc": "MediaWiki instalatzailea",
@@ -272,7 +273,7 @@
 	"config-install-sysop": "Administratzaile kontua sortzen",
 	"config-install-subscribe-fail": "Ezin izan da mediawiki-announce -ra harpidetu[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL ez dago instalatuta eta <code> allow_url_fopen </ code> ez dago erabilgarri.",
-	"config-install-mainpage": "Sortzen orri nagusia eduki estandarrarekin",
+	"config-install-mainpage": "Orri nagusia sortzen  eduki estandarrarekin",
 	"config-install-mainpage-exists": "Orri nagusia dagoeneko existitzen da, hurrengora saltatzen",
 	"config-install-extension-tables": "Taulak sortzen aktibatutako luzapenentzako.",
 	"config-install-mainpage-failed": "Orri nagusia ezin izan da txertatu: $1",

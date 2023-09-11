@@ -41,7 +41,8 @@
 			"Huseyn",
 			"NMW03",
 			"Turkmen",
-			"Patriot Kor"
+			"Patriot Kor",
+			"IBAnk"
 		]
 	},
 	"tog-underline": "Keçidlərin altını xətlə:",
@@ -1861,7 +1862,7 @@
 	"watchlist": "İzləmə siyahısı",
 	"mywatchlist": "İzləmə siyahısı",
 	"watchlistfor2": "$1 $2 üçün",
-	"nowatchlist": "İzləmə siyahınız böşdur.",
+	"nowatchlist": "İzləmə siyahınız boşdur.",
 	"watchlistanontext": "Lütfən, izlədiyiniz səhifələri görmək və ya redaktə etmək üçün sistemə daxil olun.",
 	"watchnologin": "Daxil olmamısınız",
 	"addwatch": "İzləmə siyahısına əlavə et",
