@@ -23,7 +23,6 @@
 
 namespace MediaWiki\Specials;
 
-use ChangeTags;
 use HtmlArmor;
 use HTMLForm;
 use MediaWiki\Cache\LinkBatchFactory;
@@ -34,21 +33,15 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Feed\FeedItem;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
-use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Pager\NewPagesPager;
 use MediaWiki\Permissions\GroupPermissionsLookup;
-use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionLookup;
-use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\SpecialPage\IncludableSpecialPage;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
-use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserOptionsLookup;
-use Sanitizer;
-use stdClass;
 
 /**
  * A special page that list newly created pages
@@ -390,169 +383,20 @@ class SpecialNewPages extends IncludableSpecialPage {
 		$out->addModuleStyles( 'mediawiki.special' );
 	}
 
-	/**
-	 * @param stdClass $result Result row from recent changes
-	 * @param Title $title
-	 * @return RevisionRecord
-	 */
-	protected function revisionFromRcResult( stdClass $result, Title $title ): RevisionRecord {
-		$revRecord = new MutableRevisionRecord( $title );
-		$revRecord->setComment(
-			$this->commentStore->getComment( 'rc_comment', $result )
-		);
-		$revRecord->setVisibility( (int)$result->rc_deleted );
-
-		$user = new UserIdentityValue(
-			(int)$result->rc_user,
-			$result->rc_user_text
-		);
-		$revRecord->setUser( $user );
-
-		return $revRecord;
-	}
-
-	/**
-	 * Format a row, providing the timestamp, links to the page/history,
-	 * size, user links, and a comment
-	 *
-	 * @param stdClass $result Result row
-	 * @return string
-	 */
-	public function formatRow( $result ) {
-		$title = Title::newFromRow( $result );
-
-		// Revision deletion works on revisions,
-		// so cast our recent change row to a revision row.
-		$revRecord = $this->revisionFromRcResult( $result, $title );
-
-		$classes = [];
-		$attribs = [ 'data-mw-revid' => $result->rev_id ];
-
-		$lang = $this->getLanguage();
-		$dm = $lang->getDirMark();
-
-		$spanTime = Html::element( 'span', [ 'class' => 'mw-newpages-time' ],
-			$lang->userTimeAndDate( $result->rc_timestamp, $this->getUser() )
-		);
-		$linkRenderer = $this->getLinkRenderer();
-		$time = $linkRenderer->makeKnownLink(
-			$title,
-			new HtmlArmor( $spanTime ),
-			[],
-			[ 'oldid' => $result->rc_this_oldid ]
-		);
-
-		$query = $title->isRedirect() ? [ 'redirect' => 'no' ] : [];
-
-		$plink = $linkRenderer->makeKnownLink(
-			$title,
-			null,
-			[ 'class' => 'mw-newpages-pagename' ],
-			$query
-		);
-		$linkArr = [];
-		$linkArr[] = $linkRenderer->makeKnownLink(
-			$title,
-			$this->msg( 'hist' )->text(),
-			[ 'class' => 'mw-newpages-history' ],
-			[ 'action' => 'history' ]
-		);
-		if ( $this->contentHandlerFactory->getContentHandler( $title->getContentModel() )
-			->supportsDirectEditing()
-		) {
-			$linkArr[] = $linkRenderer->makeKnownLink(
-				$title,
-				$this->msg( 'editlink' )->text(),
-				[ 'class' => 'mw-newpages-edit' ],
-				[ 'action' => 'edit' ]
-			);
-		}
-		$links = $this->msg( 'parentheses' )->rawParams( $this->getLanguage()
-			->pipeList( $linkArr ) )->escaped();
-
-		$length = Html::rawElement(
-			'span',
-			[ 'class' => 'mw-newpages-length' ],
-			$this->msg( 'brackets' )->rawParams(
-				$this->msg( 'nbytes' )->numParams( $result->length )->escaped()
-			)->escaped()
-		);
-
-		$ulink = Linker::revUserTools( $revRecord );
-		$comment = $this->commentFormatter->formatRevision( $revRecord, $this->getAuthority() );
-
-		if ( $this->patrollable( $result ) ) {
-			$classes[] = 'not-patrolled';
-		}
-
-		# Add a class for zero byte pages
-		if ( $result->length == 0 ) {
-			$classes[] = 'mw-newpages-zero-byte-page';
-		}
-
-		# Tags, if any.
-		if ( isset( $result->ts_tags ) ) {
-			[ $tagDisplay, $newClasses ] = ChangeTags::formatSummaryRow(
-				$result->ts_tags,
-				'newpages',
-				$this->getContext()
-			);
-			$classes = array_merge( $classes, $newClasses );
-		} else {
-			$tagDisplay = '';
-		}
-
-		# Display the old title if the namespace/title has been changed
-		$oldTitleText = '';
-		$oldTitle = Title::makeTitle( $result->rc_namespace, $result->rc_title );
-
-		if ( !$title->equals( $oldTitle ) ) {
-			$oldTitleText = $oldTitle->getPrefixedText();
-			$oldTitleText = Html::rawElement(
-				'span',
-				[ 'class' => 'mw-newpages-oldtitle' ],
-				$this->msg( 'rc-old-title' )->params( $oldTitleText )->escaped()
-			);
-		}
-
-		$ret = "{$time} {$dm}{$plink} {$links} {$dm}{$length} {$dm}{$ulink} {$comment} "
-			. "{$tagDisplay} {$oldTitleText}";
-
-		// Let extensions add data
-		$this->getHookRunner()->onNewPagesLineEnding(
-			$this, $ret, $result, $classes, $attribs );
-		$attribs = array_filter( $attribs,
-			[ Sanitizer::class, 'isReservedDataAttribute' ],
-			ARRAY_FILTER_USE_KEY
-		);
-
-		if ( $classes ) {
-			$attribs['class'] = $classes;
-		}
-
-		return Html::rawElement( 'li', $attribs, $ret ) . "\n";
-	}
-
 	private function getNewPagesPager() {
 		return new NewPagesPager(
-			$this,
+			$this->getContext(),
+			$this->getLinkRenderer(),
 			$this->groupPermissionsLookup,
 			$this->getHookContainer(),
 			$this->linkBatchFactory,
 			$this->namespaceInfo,
+			$this->changeTagsStore,
+			$this->commentStore,
+			$this->commentFormatter,
+			$this->contentHandlerFactory,
 			$this->opts,
-			$this->changeTagsStore
 		);
-	}
-
-	/**
-	 * Should a specific result row provide "patrollable" links?
-	 *
-	 * @param stdClass $result Result row
-	 * @return bool
-	 */
-	protected function patrollable( $result ) {
-		return ( $this->getUser()->useNPPatrol() && !$result->rc_patrolled );
 	}
 
 	/**

@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use MediaWiki\Specials\SpecialNewPages;
+use MediaWiki\Pager\NewPagesPager;
 use stdClass;
 
 /**
@@ -18,7 +18,7 @@ interface NewPagesLineEndingHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param SpecialNewPages $page
+	 * @param NewPagesPager $pager
 	 * @param string &$ret the HTML line
 	 * @param stdClass $row The database row for this page (the recentchanges record and a few extras
 	 *   - see NewPagesPager::getQueryInfo)
@@ -28,5 +28,5 @@ interface NewPagesLineEndingHook {
 	 *   (see Sanitizer::isReservedDataAttribute).
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
-	public function onNewPagesLineEnding( $page, &$ret, $row, &$classes, &$attribs );
+	public function onNewPagesLineEnding( $pager, &$ret, $row, &$classes, &$attribs );
 }
