@@ -48,7 +48,7 @@ class UpdateQueryBuilder {
 	protected $db;
 
 	/**
-	 * Only for use in subclasses. To create a SelectQueryBuilder instance,
+	 * Only for use in subclasses. To create a UpdateQueryBuilder instance,
 	 * use `$db->newUpdateQueryBuilder()` instead.
 	 *
 	 * @param IDatabase $db
@@ -86,6 +86,7 @@ class UpdateQueryBuilder {
 	 *   - set: The set conditions
 	 *   - conds: The conditions
 	 *   - options: The query options
+	 *   - caller: The caller signature.
 	 *
 	 * @return $this
 	 */
@@ -101,6 +102,9 @@ class UpdateQueryBuilder {
 		}
 		if ( isset( $info['options'] ) ) {
 			$this->options( (array)$info['options'] );
+		}
+		if ( isset( $info['caller'] ) ) {
+			$this->caller( $info['caller'] );
 		}
 		return $this;
 	}
@@ -232,8 +236,8 @@ class UpdateQueryBuilder {
 	}
 
 	/**
-	 * Add conditions to the query. The supplied conditions will be appended
-	 * to the existing conditions, separated by AND.
+	 * Add SET part to the query. It takes an array containing arrays of column names map to
+	 * the set values.
 	 *
 	 * @param string|array $set
 	 *
@@ -329,13 +333,18 @@ class UpdateQueryBuilder {
 	 *   - set: The set array
 	 *   - conds: The conditions
 	 *   - options: The query options
+	 *   - caller: The caller signature
 	 */
 	public function getQueryInfo() {
-		return [
+		$info = [
 			'table' => $this->table,
 			'set' => $this->set,
 			'conds' => $this->conds,
 			'options' => $this->options,
 		];
+		if ( $this->caller !== __CLASS__ ) {
+			$info['caller'] = $this->caller;
+		}
+		return $info;
 	}
 }

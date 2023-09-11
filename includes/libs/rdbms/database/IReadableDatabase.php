@@ -161,6 +161,8 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * New callers should use {@link newSelectQueryBuilder} with {@link SelectQueryBuilder::fetchField}
 	 * instead, which is more readable and less error-prone.
 	 *
+	 * @internal callers outside of rdbms library should use SelectQueryBuilder instead.
+	 *
 	 * @param string|array $table Table name. {@see select} for details.
 	 * @param string|array $var The field name to select. This must be a valid SQL fragment: do not
 	 *  use unvalidated user input. Can be an array, but must contain exactly 1 element then.
@@ -183,6 +185,8 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 *
 	 * New callers should use {@link newSelectQueryBuilder} with {@link SelectQueryBuilder::fetchFieldValues}
 	 * instead, which is more readable and less error-prone.
+	 *
+	 * @internal callers outside of rdbms library should use SelectQueryBuilder instead.
 	 *
 	 * @param string|array $table Table name. {@see select} for details.
 	 * @param string $var The field name to select. This must be a valid SQL
@@ -380,6 +384,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 *
 	 *    [ 'page' => [ 'LEFT JOIN', 'page_latest=rev_id' ] ]
 	 *
+	 * @internal
 	 * @return IResultWrapper Resulting rows
 	 * @throws DBError If an error occurs, {@see query}
 	 */
@@ -402,6 +407,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * New callers should use {@link newSelectQueryBuilder} with {@link SelectQueryBuilder::fetchRow}
 	 * instead, which is more readable and less error-prone.
 	 *
+	 * @internal
 	 * @param string|array $table Table name
 	 * @param string|array $vars Field names
 	 * @param string|array $conds Conditions
@@ -436,6 +442,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * New callers should use {@link newSelectQueryBuilder} with {@link SelectQueryBuilder::estimateRowCount}
 	 * instead, which is more readable and less error-prone.
 	 *
+	 * @internal
 	 * @param string|string[] $tables Table name(s)
 	 * @param string $var Column for which NULL values are not counted [default "*"]
 	 * @param array|string $conds Filters on the table
@@ -461,6 +468,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 *
 	 * @since 1.27 Added $join_conds parameter
 	 *
+	 * @internal
 	 * @param string|string[] $tables Table name(s)
 	 * @param string $var Column for which NULL values are not counted [default "*"]
 	 * @param array|string $conds Filters on the table

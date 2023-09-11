@@ -145,6 +145,8 @@ interface IDatabase extends IReadableDatabase {
 	/**
 	 * Get properties passed down from the server info array of the load balancer
 	 *
+	 * @internal should not be called outside of rdbms library.
+	 *
 	 * @param string|null $name The entry of the info array to get, or null to get the whole array
 	 * @return array|mixed|null
 	 */
@@ -154,6 +156,8 @@ interface IDatabase extends IReadableDatabase {
 	 * Set the entire array or a particular key of the managing load balancer info array
 	 *
 	 * Keys matching the IDatabase::LB_* constants are also used internally by subclasses
+	 *
+	 * @internal should not be called outside of rdbms library.
 	 *
 	 * @param array|string $nameOrArray The new array or the name of a key to set
 	 * @param array|mixed|null $value If $nameOrArray is a string, the new key value (null to unset)
@@ -349,6 +353,8 @@ interface IDatabase extends IReadableDatabase {
 	 * This operation will be seen by affectedRows()/insertId() as one query statement,
 	 * regardless of how many statements are actually sent by the class implementation.
 	 *
+	 * @internal callers outside of rdbms library should use InsertQueryBuilder instead.
+	 *
 	 * @param string $table Table name
 	 * @param array|array[] $rows Row(s) to insert, as either:
 	 *   - A string-keyed map of (column name => value) defining a new row. Values are
@@ -372,6 +378,8 @@ interface IDatabase extends IReadableDatabase {
 	 *
 	 * This operation will be seen by affectedRows()/insertId() as one query statement,
 	 * regardless of how many statements are actually sent by the class implementation.
+	 *
+	 * @internal callers outside of rdbms library should use UpdateQueryBuilder instead.
 	 *
 	 * @param string $table Table name
 	 * @param array $set Combination map/list where each string-keyed entry maps a column
@@ -432,6 +440,8 @@ interface IDatabase extends IReadableDatabase {
 	 * This operation will be seen by affectedRows()/insertId() as one query statement,
 	 * regardless of how many statements are actually sent by the class implementation.
 	 *
+	 * @internal callers outside of rdbms library should use ReplaceQueryBuilder instead.
+	 *
 	 * @param string $table The table name
 	 * @param string|string[]|string[][] $uniqueKeys Column name or non-empty list of column
 	 *   name lists that define all applicable unique keys on the table. There must only be
@@ -460,7 +470,7 @@ interface IDatabase extends IReadableDatabase {
 	 * This operation will be seen by affectedRows()/insertId() as one query statement,
 	 * regardless of how many statements are actually sent by the class implementation.
 	 *
-	 * @see IDatabase::buildExcludedValue()
+	 * @internal callers outside of rdbms library should use InsertQueryBuilder instead.
 	 *
 	 * @param string $table Table name
 	 * @param array|array[] $rows Row(s) to insert, in the form of either:
@@ -528,6 +538,8 @@ interface IDatabase extends IReadableDatabase {
 	 *
 	 * This operation will be seen by affectedRows()/insertId() as one query statement,
 	 * regardless of how many statements are actually sent by the class implementation.
+	 *
+	 * @internal callers outside of rdbms library should use DeleteQueryBuilder instead.
 	 *
 	 * @param string $table Table name
 	 * @param string|array $conds Array of conditions. See $conds in IDatabase::select()

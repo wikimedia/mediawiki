@@ -323,6 +323,9 @@ interface ISQLPlatform {
 	 *
 	 * This is used for providing overload point for other DB abstractions
 	 * not compatible with the MySQL syntax.
+	 *
+	 * @internal callers outside of rdbms library should use UnionQueryBuilder instead.
+	 *
 	 * @param array $sqls SQL statements to combine
 	 * @param bool $all Either {@link IDatabase::UNION_ALL} or {@link IDatabase::UNION_DISTINCT}
 	 * @param array $options Query options

@@ -695,6 +695,21 @@ because of Phabricator reports.
   - StreamFile -> MediaWiki\Output\StreamFile
 * RevisionStore::getQueryInfo() and RevisionFactory::getQueryInfo() have been
   deprecated. Use ::newSelectQueryBuilder() instead.
+* Following methods in rdbms library have been made internal:
+  - IDatabase::getLBInfo()
+  - IDatabase::setLBInfo()
+  - IDatabase::insert() Use InsertQueryBuilder instead.
+  - IDatabase::update() Use UpdateQueryBuilder instead.
+  - IDatabase::replace() Use ReplaceQueryBuilder instead.
+  - IDatabase::upsert() Use InsertQueryBuilder instead.
+  - IDatabase::delete() Use DeleteQueryBuilder instead.
+  - IReadableDatabase::selectField() Use SelectQueryBuilder instead.
+  - IReadableDatabase::selectFieldValues() Use SelectQueryBuilder instead.
+  - IReadableDatabase::select() Use SelectQueryBuilder instead.
+  - IReadableDatabase::selectRow() Use SelectQueryBuilder instead.
+  - IReadableDatabase::estimateRowCount() Use SelectQueryBuilder instead.
+  - IReadableDatabase::selectRowCount() Use SelectQueryBuilder instead.
+  - ISQLPlatform::unionQueries() Use UnionQueryBuilder instead.
 * The following methods, previously deprecated, now emit deprecation warnings:
   - ConfigFactory::getDefaultInstance(), deprecated since 1.27
   - AbstractContent::getNativeData(), deprecated since 1.33

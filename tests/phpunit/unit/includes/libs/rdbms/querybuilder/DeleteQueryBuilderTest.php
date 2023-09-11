@@ -61,11 +61,13 @@ class DeleteQueryBuilderTest extends PHPUnit\Framework\TestCase {
 	public function testGetQueryInfo() {
 		$this->dqb
 			->deleteFrom( 't' )
-			->where( [ 'a' => 'b' ] );
+			->where( [ 'a' => 'b' ] )
+			->caller( 'foo' );
 		$this->assertEquals(
 			[
 				'table' => 't' ,
 				'conds' => [ 'a' => 'b' ],
+				'caller' => 'foo',
 			],
 			$this->dqb->getQueryInfo() );
 	}

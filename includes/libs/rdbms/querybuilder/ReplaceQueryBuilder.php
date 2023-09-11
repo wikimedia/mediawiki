@@ -43,7 +43,7 @@ class ReplaceQueryBuilder {
 	protected $db;
 
 	/**
-	 * Only for use in subclasses. To create a InsertQueryBuilder instance,
+	 * Only for use in subclasses. To create a ReplaceQueryBuilder instance,
 	 * use `$db->newReplaceQueryBuilder()` instead.
 	 *
 	 * @param IDatabase $db
@@ -77,9 +77,10 @@ class ReplaceQueryBuilder {
 	 * The parameters must be formatted as required by Database::replace.
 	 *
 	 * @param array $info Associative array of query info, with keys:
-	 *   - table: The table name to be passed to Database::insert()
+	 *   - table: The table name to be passed to Database::replace()
 	 *   - rows: The rows to be inserted
 	 *   - options: The query options
+	 *   - caller: The caller signature
 	 *
 	 * @return $this
 	 */
@@ -100,7 +101,7 @@ class ReplaceQueryBuilder {
 	}
 
 	/**
-	 * Manually set the table name to be passed to IDatabase::insert()
+	 * Manually set the table name to be passed to IDatabase::replace()
 	 *
 	 * @param string $table The table name
 	 * @return $this
@@ -175,7 +176,7 @@ class ReplaceQueryBuilder {
 	}
 
 	/**
-	 * Run the constructed INSERT query and return the result.
+	 * Run the constructed REPLACE query and return the result.
 	 */
 	public function execute() {
 		if ( !$this->rows ) {
@@ -195,19 +196,23 @@ class ReplaceQueryBuilder {
 
 	/**
 	 * Get an associative array describing the query in terms of its raw parameters to
-	 * Database::insert(). This can be used to interface with legacy code.
+	 * Database::replace(). This can be used to interface with legacy code.
 	 *
 	 * @return array The query info array, with keys:
 	 *   - table: The table name
 	 *   - rows: The rows array
 	 *   - options: The query options
+	 *   - caller: The caller signature
 	 */
 	public function getQueryInfo() {
-		return [
+		$info = [
 			'table' => $this->table,
 			'rows' => $this->rows,
 			'uniqueIndexFields' => $this->uniqueIndexFields,
-			'caller' => $this->caller,
 		];
+		if ( $this->caller !== __CLASS__ ) {
+			$info['caller'] = $this->caller;
+		}
+		return $info;
 	}
 }
