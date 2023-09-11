@@ -21,7 +21,6 @@
  * @ingroup Cache
  */
 
-use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\Blob;
@@ -1682,20 +1681,14 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 */
 	private function getConnectionFromServerInfo( $shardIndex, array $server ) {
 		if ( !isset( $this->conns[$shardIndex] ) ) {
-			$services = MediaWikiServices::getInstance();
-			$debugSql = $services->getMainConfig()->get( MainConfigNames::DebugDumpSql );
-
-			$server['flags'] ??= 0;
-			if ( $debugSql ) {
-				$server['flags'] |= DBO_DEBUG;
-			}
+			$server['logger'] = $this->logger;
 			// Make sure this handle always uses autocommit mode, even if DBO_TRX is
 			// configured.
 			$server['flags'] &= ~DBO_TRX;
-			$server['logger'] = $this->logger;
 
 			/** @var IMaintainableDatabase $conn Auto-commit connection to the server */
-			$conn = $services->getDatabaseFactory()->create( $server['type'], $server );
+			$conn = MediaWikiServices::getInstance()->getDatabaseFactory()
+				->create( $server['type'], $server );
 
 			// Automatically create the objectcache table for sqlite as needed
 			if ( $conn->getType() === 'sqlite' ) {

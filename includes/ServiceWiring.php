@@ -631,7 +631,9 @@ return [
 	},
 
 	'DatabaseFactory' => static function ( MediaWikiServices $services ): DatabaseFactory {
-		return new DatabaseFactory();
+		return new DatabaseFactory(
+			[ 'debugSql' => $services->getMainConfig()->get( MainConfigNames::DebugDumpSql ) ]
+		);
 	},
 
 	'DateFormatterFactory' => static function ( MediaWikiServices $services ): DateFormatterFactory {

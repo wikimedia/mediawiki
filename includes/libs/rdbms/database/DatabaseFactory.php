@@ -45,6 +45,8 @@ class DatabaseFactory {
 	private $csProvider;
 	/** @var bool Whether this PHP instance is for a CLI script */
 	private $cliMode;
+	/** @var bool Log SQL queries in debug toolbar if set to true */
+	private $debugDumpSql;
 
 	public function __construct( array $params = [] ) {
 		$this->agent = $params['agent'] ?? '';
@@ -54,6 +56,7 @@ class DatabaseFactory {
 		$this->csProvider = $params['criticalSectionProvider'] ?? null;
 		$this->profiler = $params['profiler'] ?? null;
 		$this->cliMode = $params['cliMode'] ?? ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
+		$this->debugDumpSql = $params['debugDumpSql'] ?? false;
 	}
 
 	/**
@@ -132,9 +135,14 @@ class DatabaseFactory {
 				},
 			];
 
+			$params['flags'] ??= 0;
+			if ( $this->debugDumpSql ) {
+				$params['flags'] |= DBO_DEBUG;
+			}
+
 			$overrides = [
 				// Participate in transaction rounds if $server does not specify otherwise
-				'flags' => $this->initConnFlags( $params['flags'] ?? 0 ),
+				'flags' => $this->initConnFlags( $params['flags'] ),
 				'cliMode' => $this->cliMode,
 				'agent' => $this->agent,
 				'profiler' => $this->profiler,
