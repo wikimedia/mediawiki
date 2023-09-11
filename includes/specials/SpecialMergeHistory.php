@@ -23,23 +23,18 @@
 
 namespace MediaWiki\Specials;
 
-use ChangeTags;
 use HTMLForm;
 use LogEventsList;
 use LogPage;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
-use MediaWiki\Html\Html;
-use MediaWiki\Linker\Linker;
 use MediaWiki\Page\MergeHistoryFactory;
 use MediaWiki\Pager\MergeHistoryPager;
-use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IConnectionProvider;
-use Xml;
 
 /**
  * Special page allowing users with the appropriate permissions to
@@ -80,9 +75,6 @@ class SpecialMergeHistory extends SpecialPage {
 
 	/** @var Title|null */
 	protected $mDestObj;
-
-	/** @var int[] */
-	public $prevId;
 
 	private MergeHistoryFactory $mergeHistoryFactory;
 	private LinkBatchFactory $linkBatchFactory;
@@ -254,13 +246,16 @@ class SpecialMergeHistory extends SpecialPage {
 	private function showHistory() {
 		# List all stored revisions
 		$revisions = new MergeHistoryPager(
-			$this,
+			$this->getContext(),
+			$this->getLinkRenderer(),
 			$this->linkBatchFactory,
 			$this->dbProvider,
 			$this->revisionStore,
+			$this->commentFormatter,
 			[],
 			$this->mTargetObj,
-			$this->mDestObj
+			$this->mDestObj,
+			$this->mTimestamp
 		);
 		$haveRevisions = $revisions->getNumRows() > 0;
 
@@ -346,65 +341,6 @@ class SpecialMergeHistory extends SpecialPage {
 		LogEventsList::showLogExtract( $out, 'merge', $this->mTargetObj );
 
 		return true;
-	}
-
-	public function formatRevisionRow( $row ) {
-		$revRecord = $this->revisionStore->newRevisionFromRow( $row );
-
-		$linkRenderer = $this->getLinkRenderer();
-
-		$stxt = '';
-		$last = $this->msg( 'last' )->escaped();
-
-		$ts = wfTimestamp( TS_MW, $row->rev_timestamp );
-		$checkBox = Xml::radio( 'mergepoint', $ts, ( $this->mTimestamp === $ts ) );
-
-		$user = $this->getUser();
-
-		$pageLink = $linkRenderer->makeKnownLink(
-			$revRecord->getPageAsLinkTarget(),
-			$this->getLanguage()->userTimeAndDate( $ts, $user ),
-			[],
-			[ 'oldid' => $revRecord->getId() ]
-		);
-		if ( $revRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
-			$class = Linker::getRevisionDeletedClass( $revRecord );
-			$pageLink = '<span class=" ' . $class . '">' . $pageLink . '</span>';
-		}
-
-		# Last link
-		if ( !$revRecord->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() ) ) {
-			$last = $this->msg( 'last' )->escaped();
-		} elseif ( isset( $this->prevId[$row->rev_id] ) ) {
-			$last = $linkRenderer->makeKnownLink(
-				$revRecord->getPageAsLinkTarget(),
-				$this->msg( 'last' )->text(),
-				[],
-				[
-					'diff' => $row->rev_id,
-					'oldid' => $this->prevId[$row->rev_id]
-				]
-			);
-		}
-
-		$userLink = Linker::revUserTools( $revRecord );
-
-		$size = $row->rev_len;
-		if ( $size !== null ) {
-			$stxt = Linker::formatRevisionSize( $size );
-		}
-		$comment = $this->commentFormatter->formatRevision( $revRecord, $user );
-
-		// Tags, if any.
-		[ $tagSummary, $classes ] = ChangeTags::formatSummaryRow(
-			$row->ts_tags,
-			'mergehistory',
-			$this->getContext()
-		);
-
-		return Html::rawElement( 'li', $classes,
-			$this->msg( 'mergehistory-revisionrow' )
-				->rawParams( $checkBox, $last, $pageLink, $userLink, $stxt, $comment, $tagSummary )->escaped() );
 	}
 
 	/**
