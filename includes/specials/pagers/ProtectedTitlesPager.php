@@ -44,8 +44,7 @@ class ProtectedTitlesPager extends AlphabeticPager {
 	/** @var int|null */
 	private $namespace;
 
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
+	private LinkBatchFactory $linkBatchFactory;
 
 	/**
 	 * @param SpecialProtectedtitles $form

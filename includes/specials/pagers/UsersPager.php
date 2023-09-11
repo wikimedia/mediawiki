@@ -68,17 +68,10 @@ class UsersPager extends AlphabeticPager {
 	/** @var string */
 	protected $requestedUser;
 
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var UserGroupManager */
-	private $userGroupManager;
-
-	/** @var UserIdentityLookup */
-	private $userIdentityLookup;
+	private HookRunner $hookRunner;
+	private LinkBatchFactory $linkBatchFactory;
+	private UserGroupManager $userGroupManager;
+	private UserIdentityLookup $userIdentityLookup;
 
 	/**
 	 * @param IContextSource $context

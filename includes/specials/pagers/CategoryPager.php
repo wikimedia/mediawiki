@@ -30,8 +30,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class CategoryPager extends AlphabeticPager {
 
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
+	private LinkBatchFactory $linkBatchFactory;
 
 	/**
 	 * @param IContextSource $context

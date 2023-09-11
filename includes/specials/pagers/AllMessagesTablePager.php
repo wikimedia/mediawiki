@@ -65,8 +65,7 @@ class AllMessagesTablePager extends TablePager {
 	 */
 	public $custom;
 
-	/** @var LocalisationCache */
-	private $localisationCache;
+	private LocalisationCache $localisationCache;
 
 	/**
 	 * @param IContextSource $context

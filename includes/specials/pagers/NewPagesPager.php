@@ -43,17 +43,10 @@ class NewPagesPager extends ReverseChronologicalPager {
 	 */
 	protected $mForm;
 
-	/** @var GroupPermissionsLookup */
-	private $groupPermissionsLookup;
-
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
+	private GroupPermissionsLookup $groupPermissionsLookup;
+	private HookRunner $hookRunner;
+	private LinkBatchFactory $linkBatchFactory;
+	private NamespaceInfo $namespaceInfo;
 	private ChangeTagsStore $changeTagsStore;
 
 	/**

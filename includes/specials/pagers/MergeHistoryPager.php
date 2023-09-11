@@ -44,11 +44,8 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 	/** @var int */
 	private $maxTimestamp;
 
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var RevisionStore */
-	private $revisionStore;
+	private LinkBatchFactory $linkBatchFactory;
+	private RevisionStore $revisionStore;
 
 	/**
 	 * @param SpecialMergeHistory $form

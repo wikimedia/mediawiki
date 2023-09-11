@@ -61,17 +61,10 @@ class DeletedContribsPager extends ReverseChronologicalPager {
 	/** @var RevisionRecord[] Cached revisions by ID */
 	private $revisions = [];
 
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/** @var RevisionFactory */
-	private $revisionFactory;
-
-	/** @var CommentFormatter */
-	private $commentFormatter;
-
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
+	private HookRunner $hookRunner;
+	private RevisionFactory $revisionFactory;
+	private CommentFormatter $commentFormatter;
+	private LinkBatchFactory $linkBatchFactory;
 
 	/**
 	 * @param IContextSource $context

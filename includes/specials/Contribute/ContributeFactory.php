@@ -12,15 +12,8 @@ use SpecialPage;
 
 class ContributeFactory {
 
-	/**
-	 * @var MessageLocalizer
-	 */
-	private $localizer;
-
-	/**
-	 * @var HookRunner
-	 */
-	private $hookRunner;
+	private MessageLocalizer $localizer;
+	private HookRunner $hookRunner;
 
 	/**
 	 * @param MessageLocalizer $localizer

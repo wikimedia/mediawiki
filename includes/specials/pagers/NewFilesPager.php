@@ -41,11 +41,8 @@ class NewFilesPager extends RangeChronologicalPager {
 	 */
 	protected $opts;
 
-	/** @var GroupPermissionsLookup */
-	private $groupPermissionsLookup;
-
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
+	private GroupPermissionsLookup $groupPermissionsLookup;
+	private LinkBatchFactory $linkBatchFactory;
 
 	/**
 	 * @param IContextSource $context

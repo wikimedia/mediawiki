@@ -52,14 +52,11 @@ class ImageListPager extends TablePager {
 	protected $mShowAll = false;
 	/** @var string */
 	protected $mTableName = 'image';
-	/** @var CommentStore */
-	private $commentStore;
-	/** @var LocalRepo */
-	private $localRepo;
-	/** @var UserCache */
-	private $userCache;
-	/** @var CommentFormatter */
-	private $commentFormatter;
+
+	private CommentStore $commentStore;
+	private LocalRepo $localRepo;
+	private UserCache $userCache;
+	private CommentFormatter $commentFormatter;
 
 	/**
 	 * The unique sort fields for the sort options for unique paginate

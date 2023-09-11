@@ -54,26 +54,13 @@ class BlockListPager extends TablePager {
 	 */
 	protected $restrictions = [];
 
-	/** @var BlockActionInfo */
-	private $blockActionInfo;
-
-	/** @var BlockRestrictionStore */
-	private $blockRestrictionStore;
-
-	/** @var BlockUtils */
-	private $blockUtils;
-
-	/** @var CommentStore */
-	private $commentStore;
-
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var RowCommentFormatter */
-	private $rowCommentFormatter;
-
-	/** @var SpecialPageFactory */
-	private $specialPageFactory;
+	private BlockActionInfo $blockActionInfo;
+	private BlockRestrictionStore $blockRestrictionStore;
+	private BlockUtils $blockUtils;
+	private CommentStore $commentStore;
+	private LinkBatchFactory $linkBatchFactory;
+	private RowCommentFormatter $rowCommentFormatter;
+	private SpecialPageFactory $specialPageFactory;
 
 	/** @var string[] */
 	private $formattedComments = [];

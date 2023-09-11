@@ -120,25 +120,12 @@ class ContribsPager extends RangeChronologicalPager {
 	/** @var UserIdentity */
 	private $targetUser;
 
-	/**
-	 * @var TemplateParser
-	 */
-	private $templateParser;
-
-	/** @var CommentFormatter */
-	private $commentFormatter;
-
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
-
-	/** @var RevisionStore */
-	private $revisionStore;
+	private TemplateParser $templateParser;
+	private CommentFormatter $commentFormatter;
+	private HookRunner $hookRunner;
+	private LinkBatchFactory $linkBatchFactory;
+	private NamespaceInfo $namespaceInfo;
+	private RevisionStore $revisionStore;
 
 	/** @var string[] */
 	private $formattedComments = [];

@@ -33,17 +33,10 @@ class ProtectedPagesPager extends TablePager {
 	public $mConds;
 	private $type, $level, $namespace, $sizetype, $size, $indefonly, $cascadeonly, $noredirect;
 
-	/** @var CommentStore */
-	private $commentStore;
-
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var UserCache */
-	private $userCache;
-
-	/** @var RowCommentFormatter */
-	private $rowCommentFormatter;
+	private CommentStore $commentStore;
+	private LinkBatchFactory $linkBatchFactory;
+	private UserCache $userCache;
+	private RowCommentFormatter $rowCommentFormatter;
 
 	/** @var string[] */
 	private $formattedComments = [];

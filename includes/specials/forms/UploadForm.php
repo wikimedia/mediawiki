@@ -51,17 +51,10 @@ class UploadForm extends HTMLForm {
 	/** @var array */
 	protected $mMaxUploadSize = [];
 
-	/** @var LocalRepo */
-	private $localRepo;
-
-	/** @var Language */
-	private $contentLanguage;
-
-	/** @var NamespaceInfo */
-	private $nsInfo;
-
-	/** @var HookRunner */
-	private $hookRunner;
+	private LocalRepo $localRepo;
+	private Language $contentLanguage;
+	private NamespaceInfo $nsInfo;
+	private HookRunner $hookRunner;
 
 	/**
 	 * @param array $options

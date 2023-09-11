@@ -65,23 +65,12 @@ class HistoryPager extends ReverseChronologicalPager {
 	/** @var string|null|false */
 	private $notificationTimestamp;
 
-	/** @var RevisionStore */
-	private $revisionStore;
-
-	/** @var WatchlistManager */
-	private $watchlistManager;
-
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var CommentFormatter */
-	private $commentFormatter;
-
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/** @var ChangeTagsStore */
-	private $changeTagsStore;
+	private RevisionStore $revisionStore;
+	private WatchlistManager $watchlistManager;
+	private LinkBatchFactory $linkBatchFactory;
+	private CommentFormatter $commentFormatter;
+	private HookRunner $hookRunner;
+	private ChangeTagsStore $changeTagsStore;
 
 	/**
 	 * @var RevisionRecord[] Revisions, with the key being their result offset
