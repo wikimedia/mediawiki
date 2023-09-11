@@ -721,7 +721,7 @@ class PermissionManager {
 
 		$whitelistReadRegexp = $this->options->get( MainConfigNames::WhitelistReadRegexp );
 		if ( !$allowed && is_array( $whitelistReadRegexp )
-			&& !empty( $whitelistReadRegexp )
+			&& $whitelistReadRegexp
 		) {
 			$name = $title->getPrefixedText();
 			// Check for regex whitelisting

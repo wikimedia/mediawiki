@@ -53,6 +53,7 @@ class ParserTestParserHook {
 	 * @return string
 	 * @suppress PhanUndeclaredProperty static_tag_buf is deliberately dynamic
 	 * @suppress SecurityCheck-XSS
+	 * @suppress UnusedSuppression
 	 */
 	public static function staticTagHook( $in, $argv, $parser ) {
 		if ( !count( $argv ) ) {

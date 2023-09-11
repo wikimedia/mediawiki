@@ -292,10 +292,10 @@ class SpecialRedirect extends FormSpecialPage {
 			'label-message' => 'redirect-value'
 		];
 		// set the defaults according to the parsed subpage path
-		if ( !empty( $this->mType ) ) {
+		if ( $this->mType ) {
 			$a['type']['default'] = $this->mType;
 		}
-		if ( !empty( $this->mValue ) ) {
+		if ( $this->mValue ) {
 			$a['value']['default'] = $this->mValue;
 		}
 

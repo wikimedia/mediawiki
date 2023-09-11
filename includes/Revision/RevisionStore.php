@@ -1997,7 +1997,7 @@ class RevisionStore
 			$rowsByRevId[$row->$revIdField] = $row;
 		}
 
-		if ( empty( $rowsByRevId ) ) {
+		if ( !$rowsByRevId ) {
 			$result->setResult( true, [] );
 			return $result;
 		}
@@ -2010,7 +2010,7 @@ class RevisionStore
 				: $this->getArticleId( $page );
 
 			$titlesByPageKey[$pageKey] = $page;
-		} elseif ( !empty( $pageIdsToFetchTitles ) ) {
+		} elseif ( $pageIdsToFetchTitles ) {
 			// Note: when we fetch titles by ID, the page key is also the ID.
 			// We should never get here if $archiveMode is true.
 			Assert::invariant( !$archiveMode, 'Titles are not loaded by ID in archive mode.' );
@@ -2164,7 +2164,7 @@ class RevisionStore
 
 		// Nothing to do.
 		// Note that $rowsOrIds may not be "empty" even if $revIds is, e.g. if it's a ResultWrapper.
-		if ( empty( $revIds ) ) {
+		if ( !$revIds ) {
 			$result->setResult( true, [] );
 			return $result;
 		}
@@ -3251,7 +3251,7 @@ class RevisionStore
 		// optimization as edge cases exist when there are revisions between
 		//a revision and it's parent. See T185167 for more details.
 		if ( $old && $new && $new->getId( $this->wikiId ) === $old->getId( $this->wikiId ) ) {
-			if ( empty( $options ) ) {
+			if ( !$options ) {
 				return [];
 			} elseif ( $performer ) {
 				return [ $new->getUser( RevisionRecord::FOR_THIS_USER, $performer ) ];
