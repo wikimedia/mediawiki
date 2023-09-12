@@ -596,8 +596,6 @@ because of Phabricator reports.
 * VirtualRESTService class is deprecated in 1.41 and as a replacement
   we can use MultiHttpClient.
 * JobSpecification::toSerializableArray() now emits deprecation warnings.
-* EditPage::UNICODE_CHECK is deprecated, use UnicodeConstraint::VALID_UNICODE
-  instead.
 * The following skin methods were deprecated:
   - Skin::makeSpecialUrl (use Title or Special class instead)
   - Skin::makeSpecialUrlSubpage (use Title or Special class instead)
