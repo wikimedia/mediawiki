@@ -149,7 +149,6 @@ class EditPage implements IEditObject {
 
 	/**
 	 * Used for Unicode support checks
-	 * @deprecated since 1.41 Use UnicodeConstraint::VALID_UNICODE instead.
 	 */
 	public const UNICODE_CHECK = UnicodeConstraint::VALID_UNICODE;
 
