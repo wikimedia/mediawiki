@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Specials\SpecialUserRights;
 
@@ -8,7 +9,7 @@ use MediaWiki\Specials\SpecialUserRights;
  * @covers \MediaWiki\Specials\SpecialUserRights
  */
 class SpecialUserRightsTest extends SpecialPageTestBase {
-	protected $tablesUsed = [ 'user' ];
+	protected $tablesUsed = [ 'user', 'logging' ];
 
 	/**
 	 * @inheritDoc
@@ -112,5 +113,73 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 			$this->assertSame( 'bot', $ugm->getGroup() );
 			$this->assertSame( $expiry, $ugm->getExpiry() );
 		}
+	}
+
+	private function getExternalDBname(): ?string {
+		$availableDatabases = array_diff(
+			$this->getConfVar( MainConfigNames::LocalDatabases ),
+			[ WikiMap::getCurrentWikiDbDomain()->getDatabase() ]
+		);
+
+		if ( $availableDatabases === [] ) {
+			return null;
+		}
+
+		// sort to ensure results are deterministic
+		sort( $availableDatabases );
+		return $availableDatabases[0];
+	}
+
+	public function testInterwikiRightsChange() {
+		$externalDBname = $this->getExternalDBname();
+		if ( $externalDBname === null ) {
+			$this->markTestSkipped( 'No external database is available' );
+		}
+
+		// FIXME: This should not depend on WikiAdmin user existence
+		// NOTE: This is here, as in WMF's CI setup, WikiAdmin is the only user
+		// guaranteed to exist on the other wiki.
+		$localUser = $this->getServiceContainer()->getUserFactory()->newFromName( 'WikiAdmin' );
+
+		$externalUsername = $localUser->getName() . '@' . $externalDBname;
+
+		// FIXME: This should benefit from $tablesUsed; until this is possible, purge user_groups on
+		// the other wiki.
+		$externalDbw = $this->getServiceContainer()
+			->getDBLoadBalancerFactory()
+			->getPrimaryDatabase( $externalDBname );
+		$externalDbw->truncate( 'user_groups', __METHOD__ );
+
+		// ensure using SpecialUserRights with external usernames doesn't throw (T342747, T342322)
+		$performer = $this->getTestUser( [ 'bureaucrat' ] );
+		$request = new FauxRequest( [
+			'saveusergroups' => true,
+			'conflictcheck-originalgroups' => '',
+			'wpGroup-sysop' => true,
+			'wpExpiry-sysop' => 'existing',
+			'wpEditToken' => $performer->getUser()->getEditToken( $externalUsername ),
+		], true );
+		[ $html, ] = $this->executeSpecialPage(
+			$externalUsername,
+			$request,
+			null,
+			$performer->getAuthority()
+		);
+		$this->assertSame( 1, $request->getSession()->get( 'specialUserrightsSaveSuccess' ) );
+		// ensure logging is done with the right username (T344391)
+		$this->assertSame(
+			1,
+			(int)$this->getDb()->newSelectQueryBuilder()
+				->select( [ 'cnt' => 'COUNT(*)' ] )
+				->from( 'logging' )
+				->where( [
+					'log_type' => 'rights',
+					'log_action' => 'rights',
+					'log_namespace' => NS_USER,
+					'log_title' => $externalUsername,
+				] )
+				->caller( __METHOD__ )
+				->fetchField()
+		);
 	}
 }
