@@ -76,7 +76,7 @@
 	"apihelp-changecontentmodel-param-tags": "תגי שינוי שיחולו על רשומת היומן ועל העריכה.",
 	"apihelp-changecontentmodel-param-model": "מודל התוכן של התוכן החדש.",
 	"apihelp-changecontentmodel-param-bot": "סימון שינוי מודל התוכן עם דגל בוט.",
-	"apihelp-changecontentmodel-example": "שינוי הדף הראשי כך שיהיה במודל התוכן <code>text</code>",
+	"apihelp-changecontentmodel-example": "שינוי העמוד הראשי כך שיהיה במודל התוכן <code>text</code>",
 	"apihelp-checktoken-summary": "בדיקת התקינות של האסימון מ־<kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd>.",
 	"apihelp-checktoken-param-type": "סוג האסימון שבבדיקה.",
 	"apihelp-checktoken-param-token": "איזה אסימון לבדוק.",
