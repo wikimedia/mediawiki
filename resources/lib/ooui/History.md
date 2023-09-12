@@ -1,4 +1,14 @@
 # OOUI Release History
+
+## v0.48.1 / 2023-09-12
+
+### Features
+* Make the search input of a SelectFileInputWidget un-focusable (Ed Sanders)
+
+### Code
+* Add Tag::resetElementId() (Tim Starling)
+* PopupButtonWidget: Replace .getElementId() reimplementation (Thiemo Kreuz)
+
 ## v0.48.0 / 2023-08-30
 ### Breaking changes
 * [BREAKING CHANGE] Raise jQuery requirement from v3.6.1 to v3.7.1 (James D. Forrester)

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.48.0
+ * OOUI v0.48.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2023 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2023-08-30T19:13:40Z
+ * Date: 2023-09-12T23:28:04Z
  */
 ( function ( OO ) {
 
@@ -6691,30 +6691,18 @@ OO.ui.PopupButtonWidget = function OoUiPopupButtonWidget( config ) {
 		click: 'onAction'
 	} );
 
-	// Set up id for use in aria-describedby and aria-owns
-	var buttonId = this.$element.attr( 'id' );
-	if ( buttonId === undefined ) {
-		buttonId = OO.ui.generateElementId();
-		this.$element.attr( 'id', buttonId );
-	}
-	var popupId = this.popup.$element.attr( 'id' );
-	if ( popupId === undefined ) {
-		popupId = OO.ui.generateElementId();
-		this.popup.$element.attr( 'id', popupId );
-	}
-
 	// Initialization
 	this.$element
 		.addClass( 'oo-ui-popupButtonWidget' )
 		.attr( {
 			'aria-haspopup': 'dialog',
-			'aria-owns': popupId
+			'aria-owns': this.popup.getElementId()
 		} );
 	this.popup.$element
 		.addClass( 'oo-ui-popupButtonWidget-popup' )
 		.attr( {
 			role: 'dialog',
-			'aria-describedby': buttonId
+			'aria-describedby': this.getElementId()
 		} )
 		.toggleClass( 'oo-ui-popupButtonWidget-framed-popup', this.isFramed() )
 		.toggleClass( 'oo-ui-popupButtonWidget-frameless-popup', !this.isFramed() );
@@ -14142,7 +14130,9 @@ OO.ui.SelectFileInputWidget = function OoUiSelectFileInputWidget( config ) {
 		// Pass an empty collection so that .focus() always does nothing
 		$tabIndexed: $( [] )
 	} ).setIcon( config.icon );
-	// Set tabindex manually on $input as $tabIndexed has been overridden
+	// Set tabindex manually on $input as $tabIndexed has been overridden.
+	// Prevents field from becoming focused while tabbing.
+	// We will also set the disabled attribute on $input, but that is done in #setDisabled.
 	this.info.$input.attr( 'tabindex', -1 );
 	// This indicator serves as the only way to clear the file, so it must be keyboard-accessible
 	this.info.$indicator.attr( 'tabindex', 0 );
@@ -14359,6 +14349,11 @@ OO.ui.SelectFileInputWidget.prototype.setDisabled = function ( disabled ) {
 
 	this.selectButton.setDisabled( disabled );
 	this.info.setDisabled( disabled );
+
+	// Always make the input element disabled, so that it can't be found and focused,
+	// e.g. by OO.ui.findFocusable.
+	// The SearchInputWidget can otherwise be enabled normally.
+	this.info.$input.attr( 'disabled', true );
 
 	return this;
 };
