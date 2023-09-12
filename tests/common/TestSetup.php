@@ -1,6 +1,10 @@
 <?php
 
+use MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider;
+use MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider;
+use MediaWiki\Logger\LegacySpi;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Session\CookieSessionProvider;
 
 /**
  * Common code for test environment initialisation and teardown
@@ -75,7 +79,7 @@ class TestSetup {
 		// Note that MediaWikiLoggerPHPUnitTestListener may wrap this in
 		// a MediaWiki\Logger\LogCapturingSpi at run-time.
 		$wgMWLoggerDefaultSpi = [
-			'class' => \MediaWiki\Logger\LegacySpi::class,
+			'class' => LegacySpi::class,
 		];
 
 		$wgUseDatabaseMessages = false; # Set for future resets
@@ -95,7 +99,7 @@ class TestSetup {
 		// cookies to show up in a MediaWiki\Request\FauxRequest somewhere.
 		$wgSessionProviders = [
 			[
-				'class' => MediaWiki\Session\CookieSessionProvider::class,
+				'class' => CookieSessionProvider::class,
 				'args' => [ [
 					'priority' => 30,
 				] ],
@@ -110,7 +114,7 @@ class TestSetup {
 			'preauth' => [],
 			'primaryauth' => [
 				[
-					'class' => MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider::class,
+					'class' => TemporaryPasswordPrimaryAuthenticationProvider::class,
 					'services' => [
 						'DBLoadBalancerFactory',
 						'UserOptionsLookup',
@@ -120,7 +124,7 @@ class TestSetup {
 					] ],
 				],
 				[
-					'class' => MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider::class,
+					'class' => LocalPasswordPrimaryAuthenticationProvider::class,
 					'services' => [
 						'DBLoadBalancerFactory',
 					],
@@ -165,7 +169,7 @@ class TestSetup {
 		];
 
 		// Import $GLOBALS into local scope for the file.
-		// Modifications to these from te required file automatically affect the real global.
+		// Modifications to these from the required file automatically affect the real global.
 		foreach ( $GLOBALS as $key => $_ ) {
 			$ignore[$key] = true;
 			// phpcs:ignore MediaWiki.VariableAnalysis.UnusedGlobalVariables,MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix
@@ -179,7 +183,7 @@ class TestSetup {
 		global $wgAutoloadClasses;
 		// $wgWikimediaJenkinsCI is not a config variable and is therefore not made explicitly global
 		// in Setup.php when checking wgScopeTest. Do that here instead, as the variable might be
-		// read in extension before the code below is executed (T341731).
+		// read in an extension before the code below is executed (T341731).
 		global $wgWikimediaJenkinsCI;
 		// phpcs:enable MediaWiki.VariableAnalysis.UnusedGlobalVariables
 
@@ -196,7 +200,7 @@ class TestSetup {
 	}
 
 	/**
-	 * Verifies that composer.lock is up to date, unless this check is disabled.
+	 * Verifies that the composer.lock file is up-to-date, unless this check is disabled.
 	 */
 	public static function maybeCheckComposerLockUpToDate(): void {
 		if ( !getenv( 'MW_SKIP_EXTERNAL_DEPENDENCIES' ) ) {
