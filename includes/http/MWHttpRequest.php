@@ -18,7 +18,6 @@
  * @file
  */
 
-use MediaWiki\Http\Telemetry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
@@ -26,6 +25,7 @@ use MediaWiki\Status\Status;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Wikimedia\Http\TelemetryHeadersInterface;
 
 /**
  * This wrapper class will call out to curl (if available) or fallback
@@ -208,18 +208,12 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	/**
 	 * Add Telemetry information to the request
 	 *
-	 * @param Telemetry $telemetry
+	 * @param TelemetryHeadersInterface $telemetry
 	 * @return void
 	 */
-	public function addTelemetry( Telemetry $telemetry ): void {
-		$this->setHeader( 'X-Request-Id', $telemetry->getRequestId() );
-		$tracestate = $telemetry->getTracestate();
-		if ( $tracestate !== null ) {
-			$this->setHeader( 'tracestate', $tracestate );
-		}
-		$traceparent = $telemetry->getTraceparent();
-		if ( $traceparent !== null ) {
-			$this->setHeader( 'traceparent', $traceparent );
+	public function addTelemetry( TelemetryHeadersInterface $telemetry ): void {
+		foreach ( $telemetry->getRequestHeaders() as $header => $value ) {
+			$this->setHeader( $header, $value );
 		}
 	}
 

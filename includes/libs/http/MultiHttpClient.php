@@ -24,6 +24,7 @@ use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Wikimedia\Http\TelemetryHeadersInterface;
 
 /**
  * Class to handle multiple HTTP requests
@@ -81,7 +82,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	/** @var string[] */
 	protected $localVirtualHosts = [];
 	/** @var string */
-	protected $userAgent = 'wikimedia/multi-http-client v1.0';
+	protected $userAgent = 'wikimedia/multi-http-client v1.1';
 	/** @var LoggerInterface */
 	protected $logger;
 	/** @var array */
@@ -91,6 +92,8 @@ class MultiHttpClient implements LoggerAwareInterface {
 	// timeouts are periodically polled instead of being accurately respected.
 	// The select timeout is set to the minimum timeout multiplied by this factor.
 	private const TIMEOUT_ACCURACY_FACTOR = 0.1;
+
+	private ?TelemetryHeadersInterface $telemetry = null;
 
 	/**
 	 * Since 1.35, callers should use HttpRequestFactory::createMultiClient() to get
@@ -111,6 +114,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - logger            : a \Psr\Log\LoggerInterface instance for debug logging
 	 *   - caBundlePath      : path to specific Certificate Authority bundle (if any)
 	 *   - headers           : an array of default headers to send with every request
+	 *   - telemetry         : a \Wikimedia\Http\RequestTelemetry instance to track telemetry data
 	 * @throws Exception
 	 */
 	public function __construct( array $options ) {
@@ -123,7 +127,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 		static $opts = [
 			'connTimeout', 'maxConnTimeout', 'reqTimeout', 'maxReqTimeout',
 			'usePipelining', 'maxConnsPerHost', 'proxy', 'userAgent', 'logger',
-			'localProxy', 'localVirtualHosts', 'headers'
+			'localProxy', 'localVirtualHosts', 'headers', 'telemetry'
 		];
 		foreach ( $opts as $key ) {
 			if ( isset( $options[$key] ) ) {
@@ -674,7 +678,11 @@ class MultiHttpClient implements LoggerAwareInterface {
 			}
 			$req['query'] ??= [];
 			$req['headers'] = $this->normalizeHeaders(
-				array_merge( $this->headers, $req['headers'] ?? [] )
+				array_merge(
+					$this->headers,
+					$this->telemetry ? $this->telemetry->getRequestHeaders() : [],
+					$req['headers'] ?? []
+				)
 			);
 
 			if ( !isset( $req['body'] ) ) {
