@@ -11,7 +11,7 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	private const NAME = 'foobar';
 	private const RESULT = "hello world!\n";
-	private const DIR = __DIR__ . '/../../data/templates';
+	private const DIR = __DIR__ . '/../../../data/templates';
 	private const SECRET_KEY = 'foo';
 
 	protected function setUp(): void {

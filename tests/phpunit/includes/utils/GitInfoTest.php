@@ -46,7 +46,7 @@ class GitInfoTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->overrideConfigValue( MainConfigNames::GitInfoCacheDirectory, __DIR__ . '/../data/gitinfo' );
+		$this->overrideConfigValue( MainConfigNames::GitInfoCacheDirectory, __DIR__ . '/../../data/gitinfo' );
 	}
 
 	protected function assertValidGitInfo( GitInfo $gitInfo ) {
@@ -64,7 +64,7 @@ class GitInfoTest extends MediaWikiIntegrationTestCase {
 		global $IP;
 
 		$this->assertValidGitInfo( new GitInfo( "$IP/testValidJsonData" ) );
-		$this->assertValidGitInfo( new GitInfo( __DIR__ . "/../data/gitinfo/extension" ) );
+		$this->assertValidGitInfo( new GitInfo( __DIR__ . "/../../data/gitinfo/extension" ) );
 	}
 
 	public function testMissingJsonData() {
