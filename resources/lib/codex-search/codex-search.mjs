@@ -1511,6 +1511,7 @@ function $n(e, t, n, a, s, r) {
       type: e.inputType,
       "aria-describedby": e.descriptionId,
       disabled: e.computedDisabled,
+      size: "1",
       onInput: t[1] || (t[1] = (...i) => e.onInput && e.onInput(...i)),
       onChange: t[2] || (t[2] = (...i) => e.onChange && e.onChange(...i)),
       onFocus: t[3] || (t[3] = (...i) => e.onFocus && e.onFocus(...i)),
