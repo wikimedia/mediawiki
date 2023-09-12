@@ -533,7 +533,16 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 		foreach ( $shardIndexesAffected as $shardIndex ) {
 			try {
-				$this->occasionallyGarbageCollect( $shardIndex );
+				if (
+					// Random purging is enabled
+					$this->purgePeriod &&
+					// Only purge on one in every $this->purgePeriod writes
+					mt_rand( 0, $this->purgePeriod - 1 ) == 0 &&
+					// Avoid repeating the delete within a few seconds
+					( $this->getCurrentTime() - $this->lastGarbageCollect ) > self::GC_DELAY_SEC
+				) {
+					$this->garbageCollect( $shardIndex );
+				}
 			} catch ( DBError $e ) {
 				$this->handleDBError( $e, $shardIndex );
 			}
@@ -1321,35 +1330,26 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 * @param int $shardIndex
 	 * @throws DBError
 	 */
-	private function occasionallyGarbageCollect( $shardIndex ) {
-		if (
-			// Random purging is enabled
-			$this->purgePeriod &&
-			// Only purge on one in every $this->purgePeriod writes
-			mt_rand( 0, $this->purgePeriod - 1 ) == 0 &&
-			// Avoid repeating the delete within a few seconds
-			( $this->getCurrentTime() - $this->lastGarbageCollect ) > self::GC_DELAY_SEC
-		) {
-			// set right away, avoid queuing duplicate async callbacks
+	private function garbageCollect( $shardIndex ) {
+		// set right away, avoid queuing duplicate async callbacks
+		$this->lastGarbageCollect = $this->getCurrentTime();
+
+		$garbageCollector = function () use ( $shardIndex ) {
+			$db = $this->getConnection( $shardIndex );
+			/** @noinspection PhpUnusedLocalVariableInspection */
+			$silenceScope = $this->silenceTransactionProfiler();
+			$this->deleteServerObjectsExpiringBefore(
+				$db,
+				(int)$this->getCurrentTime(),
+				$this->purgeLimit
+			);
 			$this->lastGarbageCollect = $this->getCurrentTime();
+		};
 
-			$garbageCollector = function () use ( $shardIndex ) {
-				$db = $this->getConnection( $shardIndex );
-				/** @noinspection PhpUnusedLocalVariableInspection */
-				$silenceScope = $this->silenceTransactionProfiler();
-				$this->deleteServerObjectsExpiringBefore(
-					$db,
-					(int)$this->getCurrentTime(),
-					$this->purgeLimit
-				);
-				$this->lastGarbageCollect = $this->getCurrentTime();
-			};
-
-			if ( $this->asyncHandler ) {
-				( $this->asyncHandler )( $garbageCollector );
-			} else {
-				$garbageCollector();
-			}
+		if ( $this->asyncHandler ) {
+			( $this->asyncHandler )( $garbageCollector );
+		} else {
+			$garbageCollector();
 		}
 	}
 
@@ -1368,7 +1368,19 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 		if ( $tag !== null ) {
 			// Purge one server only, to support concurrent purging in large wiki farms (T282761).
-			$shardIndexes = [ $this->getShardServerIndexForTag( $tag ) ];
+			$shardIndexes = [];
+			if ( !$this->serverTags ) {
+				throw new InvalidArgumentException( "Given a tag but no tags are configured" );
+			}
+			foreach ( $this->serverTags as $serverShardIndex => $serverTag ) {
+				if ( $tag === $serverTag ) {
+					$shardIndexes[] = $serverShardIndex;
+					break;
+				}
+			}
+			if ( !$shardIndexes ) {
+				throw new InvalidArgumentException( "Unknown server tag: $tag" );
+			}
 		} else {
 			$shardIndexes = $this->getShardServerIndexes();
 			shuffle( $shardIndexes );
@@ -1709,47 +1721,30 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 */
 	private function handleDBError( DBError $exception, $shardIndex ) {
 		if ( !$this->useLB && $exception instanceof DBConnectionError ) {
-			$this->markServerDown( $exception, $shardIndex );
-		}
-		$this->setAndLogDBError( $exception );
-	}
+			unset( $this->conns[$shardIndex] ); // bug T103435
 
-	/**
-	 * @param DBError $e
-	 */
-	private function setAndLogDBError( DBError $e ) {
-		$this->logger->error( "DBError: {$e->getMessage()}", [ 'exception' => $e ] );
-		if ( $e instanceof DBConnectionError ) {
+			$now = $this->getCurrentTime();
+			if ( isset( $this->connFailureTimes[$shardIndex] ) ) {
+				if ( $now - $this->connFailureTimes[$shardIndex] >= 60 ) {
+					unset( $this->connFailureTimes[$shardIndex] );
+					unset( $this->connFailureErrors[$shardIndex] );
+				} else {
+					$this->logger->debug( __METHOD__ . ": Server #$shardIndex already down" );
+					return;
+				}
+			}
+			$this->logger->info( __METHOD__ . ": Server #$shardIndex down until " . ( $now + 60 ) );
+			$this->connFailureTimes[$shardIndex] = $now;
+			$this->connFailureErrors[$shardIndex] = $exception;
+		}
+		$this->logger->error( "DBError: {$exception->getMessage()}", [ 'exception' => $exception ] );
+		if ( $exception instanceof DBConnectionError ) {
 			$this->setLastError( self::ERR_UNREACHABLE );
 			$this->logger->warning( __METHOD__ . ": ignoring connection error" );
 		} else {
 			$this->setLastError( self::ERR_UNEXPECTED );
 			$this->logger->warning( __METHOD__ . ": ignoring query error" );
 		}
-	}
-
-	/**
-	 * Mark a server down due to a DBConnectionError exception
-	 *
-	 * @param DBError $exception
-	 * @param int $shardIndex Server index
-	 */
-	private function markServerDown( DBError $exception, $shardIndex ) {
-		unset( $this->conns[$shardIndex] ); // bug T103435
-
-		$now = $this->getCurrentTime();
-		if ( isset( $this->connFailureTimes[$shardIndex] ) ) {
-			if ( $now - $this->connFailureTimes[$shardIndex] >= 60 ) {
-				unset( $this->connFailureTimes[$shardIndex] );
-				unset( $this->connFailureErrors[$shardIndex] );
-			} else {
-				$this->logger->debug( __METHOD__ . ": Server #$shardIndex already down" );
-				return;
-			}
-		}
-		$this->logger->info( __METHOD__ . ": Server #$shardIndex down until " . ( $now + 60 ) );
-		$this->connFailureTimes[$shardIndex] = $now;
-		$this->connFailureErrors[$shardIndex] = $exception;
 	}
 
 	/**
@@ -1823,23 +1818,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		return $shardIndexes;
-	}
-
-	/**
-	 * @param string $tag
-	 * @return int Server index for use with ::getConnection()
-	 * @throws InvalidArgumentException If tag is unknown
-	 */
-	private function getShardServerIndexForTag( string $tag ) {
-		if ( !$this->serverTags ) {
-			throw new InvalidArgumentException( "Given a tag but no tags are configured" );
-		}
-		foreach ( $this->serverTags as $serverShardIndex => $serverTag ) {
-			if ( $tag === $serverTag ) {
-				return $serverShardIndex;
-			}
-		}
-		throw new InvalidArgumentException( "Unknown server tag: $tag" );
 	}
 
 	/**
