@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Registration;
 use Exception;
 use ExtensionRegistry;
 use LogicException;
+use MediaWiki\Settings\SettingsBuilder;
 use MediaWikiUnitTestCase;
 use MWException;
 use Wikimedia\ScopedCallback;
@@ -33,6 +34,15 @@ class ExtensionRegistryTest extends MediaWikiUnitTestCase {
 		parent::tearDown();
 	}
 
+	private function getRegistry(): ExtensionRegistry {
+		$registry = new ExtensionRegistry();
+		// Mock the global SettingsBuilder dependencies, as this is a unit test. And because SettingsBuilder
+		// has a reverse dependency on the global ExtensionRegistry instance, it would throw an exception
+		// because access to the global ExtensionRegistry instance is forbidden in unit tests.
+		$registry->setSettingsBuilder( $this->createMock( SettingsBuilder::class ) );
+		return $registry;
+	}
+
 	private function setGlobal( $key, $value ) {
 		if ( isset( $GLOBALS[$key] ) ) {
 			$this->restoreGlobals[$key] = $GLOBALS[$key];
@@ -46,7 +56,7 @@ class ExtensionRegistryTest extends MediaWikiUnitTestCase {
 	public function testQueue_invalid() {
 		$this->setGlobal( 'wgExtensionInfoMTime', false );
 
-		$registry = new ExtensionRegistry();
+		$registry = $this->getRegistry();
 		$path = __DIR__ . '/doesnotexist.json';
 		$this->expectException( Exception::class );
 		$this->expectExceptionMessage( "file $path" );
@@ -54,7 +64,7 @@ class ExtensionRegistryTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testQueue() {
-		$registry = new ExtensionRegistry();
+		$registry = $this->getRegistry();
 		$path = "{$this->dataDir}/good.json";
 		$registry->queue( $path );
 		$this->assertArrayHasKey(
@@ -66,13 +76,13 @@ class ExtensionRegistryTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testLoadFromQueue_empty() {
-		$registry = new ExtensionRegistry();
+		$registry = $this->getRegistry();
 		$registry->loadFromQueue();
 		$this->assertSame( [], $registry->getAllThings() );
 	}
 
 	public function testLoadFromQueue_late() {
-		$registry = new ExtensionRegistry();
+		$registry = $this->getRegistry();
 		$registry->finish();
 		$registry->queue( "{$this->dataDir}/good.json" );
 		$this->expectException( MWException::class );
@@ -82,7 +92,7 @@ class ExtensionRegistryTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testLoadFromQueue() {
-		$registry = new ExtensionRegistry();
+		$registry = $this->getRegistry();
 		$registry->queue( "{$this->dataDir}/good.json" );
 		$registry->loadFromQueue();
 		$this->assertArrayHasKey( 'FooBar', $registry->getAllThings() );
@@ -93,7 +103,7 @@ class ExtensionRegistryTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testLoadFromQueueWithConstraintWithVersion() {
-		$registry = new ExtensionRegistry();
+		$registry = $this->getRegistry();
 		$registry->queue( "{$this->dataDir}/good_with_version.json" );
 		$registry->loadFromQueue();
 		$this->assertTrue( $registry->isLoaded( 'FooBar', '>= 1.2.0' ) );
@@ -101,7 +111,7 @@ class ExtensionRegistryTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testLoadFromQueueWithConstraintWithoutVersion() {
-		$registry = new ExtensionRegistry();
+		$registry = $this->getRegistry();
 		$registry->queue( "{$this->dataDir}/good.json" );
 		$registry->loadFromQueue();
 		$this->expectException( LogicException::class );
@@ -109,7 +119,7 @@ class ExtensionRegistryTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testReadFromQueue_nonexistent() {
-		$registry = new ExtensionRegistry();
+		$registry = $this->getRegistry();
 		$this->expectError();
 		$registry->readFromQueue( [
 			__DIR__ . '/doesnotexist.json' => 1
@@ -118,7 +128,7 @@ class ExtensionRegistryTest extends MediaWikiUnitTestCase {
 
 	public function testExportExtractedDataNamespaceAlreadyDefined() {
 		define( 'FOO_VALUE', 123 ); // Emulates overriding a namespace set in LocalSettings.php
-		$registry = new ExtensionRegistry();
+		$registry = $this->getRegistry();
 		$info = [ 'defines' => [ 'FOO_VALUE' => 456 ], 'globals' => [] ];
 		$this->expectException( Exception::class );
 		$this->expectExceptionMessage(
@@ -151,7 +161,7 @@ class ExtensionRegistryTest extends MediaWikiUnitTestCase {
 			'attributes' => [],
 			'autoloaderPaths' => []
 		];
-		$registry = new ExtensionRegistry();
+		$registry = $this->getRegistry();
 		TestingAccessWrapper::newFromObject( $registry )->exportExtractedData( $info );
 		foreach ( $expected as $name => $value ) {
 			$this->assertArrayHasKey( $name, $GLOBALS, $desc );
@@ -453,7 +463,7 @@ class ExtensionRegistryTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testSetAttributeForTest() {
-		$registry = new ExtensionRegistry();
+		$registry = $this->getRegistry();
 		$registry->queue( "{$this->dataDir}/good.json" );
 		$registry->loadFromQueue();
 		// Check that it worked
@@ -467,7 +477,7 @@ class ExtensionRegistryTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testSetAttributeForTestDuplicate() {
-		$registry = new ExtensionRegistry();
+		$registry = $this->getRegistry();
 		$reset1 = $registry->setAttributeForTest( 'foo', [ 'val1' ] );
 		$this->expectException( Exception::class );
 		$this->expectExceptionMessage( "The attribute 'foo' has already been overridden" );
@@ -476,7 +486,7 @@ class ExtensionRegistryTest extends MediaWikiUnitTestCase {
 
 	public function testGetLazyLoadedAttribute() {
 		$registry = TestingAccessWrapper::newFromObject(
-			new ExtensionRegistry()
+			$this->getRegistry()
 		);
 		// Verify the registry is absolutely empty
 		$this->assertSame( [], $registry->getLazyLoadedAttribute( 'FooBarBaz' ) );
