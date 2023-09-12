@@ -121,7 +121,8 @@
 			"İnternion",
 			"לערי ריינהארט",
 			"아라",
-			"MrSchipunov"
+			"MrSchipunov",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çizme:",
@@ -1571,7 +1572,7 @@
 	"rcfilters-days-title": "Son günler",
 	"rcfilters-hours-title": "Son saatler",
 	"rcfilters-days-show-days": "$1 gün",
-	"rcfilters-days-show-hours": "$1 saat",
+	"rcfilters-days-show-hours": "$1 {{PLURAL:$1|saat}}",
 	"rcfilters-highlighted-filters-list": "Vurgulanan: $1",
 	"rcfilters-quickfilters": "Kaydedilmiş süzgeçler",
 	"rcfilters-quickfilters-placeholder-title": "Henüz hiçbir süzgeç kaydedilmedi",
@@ -3241,7 +3242,7 @@
 	"hours-abbrev": "$1 sa",
 	"seconds": "{{PLURAL:$1|$1 saniye}}",
 	"minutes": "$1 dakika",
-	"hours": "$1 saat",
+	"hours": "{{PLURAL:$1|$1 saat}}",
 	"days": "$1 gün",
 	"weeks": "$1 hafta",
 	"months": "$1 ay",
@@ -3820,7 +3821,7 @@
 	"api-error-unknownerror": "Bilinmeyen hata: \"$1\".",
 	"duration-seconds": "$1 saniye",
 	"duration-minutes": "$1 dakika",
-	"duration-hours": "$1 saat",
+	"duration-hours": "$1 {{PLURAL:$1|saat}}",
 	"duration-days": "$1 gün",
 	"duration-weeks": "$1 hafta",
 	"duration-years": "$1 yıl",

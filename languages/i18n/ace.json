@@ -19,7 +19,8 @@
 			"Rachmat04",
 			"Sayed Muddasir",
 			"Si Gam Acèh",
-			"아라"
+			"아라",
+			"SevenEagleX"
 		]
 	},
 	"tog-underline": "Bôh garéh yup peunawôt:",
@@ -46,7 +47,7 @@
 	"tog-enotifrevealaddr": "Peuleumah alamat surat-e lôn bak neubrithèë surat-e",
 	"tog-shownumberswatching": "Peuleumah jumeulah ureueng kalon",
 	"tog-oldsig": "Tanda jaroe Droeneuh nyang ka na:",
-	"tog-fancysig": "Peujeuet tanda jaroe sibagoe naseukah wiki (hana peunawôt keudroe)",
+	"tog-fancysig": "Peujeuet tanda jaroe sibagoe naseukah wiki (hana peunawôt keudroe keu laman ureueng ngui droe)",
 	"tog-uselivepreview": "Ngui peuleumah hasé langsông",
 	"tog-forceeditsummary": "Peuingat lôn meunyo plôk neuringkaih neuandam mantöng soh",
 	"tog-watchlisthideown": "Peusöm nyang lôn peusaneut nibak dapeuta keunalön",
@@ -501,6 +502,7 @@
 	"noarticletext": "Hana naseukah jinoe lam ôn nyoe.\nDroeneuh jeuet [[Special:Search/{{PAGENAME}}|neuseutöt nan ôn nyoe]] bak ôn-ôn nyang laén, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} neuseutöt log nyang na hubôngan], atawa [{{fullurl:{{FULLPAGENAME}}|action=edit}} neupeugöt ôn nyoë]</span>.",
 	"noarticletext-nopermission": "Hana asoë bak ôn nyoë jinoë.\nDroëneuh jeuët [[Special:Search/{{PAGENAME}}|neumita keu nan ôn nyoë]] bak ôn-ôn la'én,\natawa <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} neumita log nyang na meuhubông]</span>, tapi Droëneuh hana idin keu neupeugöt ôn nyoë",
 	"userpage-userdoesnotexist-view": "Ureueng ngui \"$1\" hana teudapeuta.",
+	"clearyourcache": "<strong>Ceunatat:</strong> Lheueh geukeubah, droeneuh mungkén peureulèe neuliwat cache browser web keu neukalon nyang meuubah.\n* <strong>Firefox/Safari:</strong> Teugön ngön theun <em>Shift</em> sira neuteugön <em>Reload</em>, atawa teugön <em>Ctrl-F5</em> atawa <em>Ctrl-R</em> (<em>⌘-R</em> di Mac)\n* <strong>Google Chrome:</strong> Teugön <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> di Mac)\n* <strong>Internet Explorer / Edge:</strong> Theun <em>Ctrl</em> sira neuteugon <em>Refresh</em>, atawa teugön <em>Ctrl-F5</em>.\n* <strong>Opera:</strong> Teugon <em>Ctrl-F5</em>.",
 	"updated": "(Seubarô)",
 	"note": "'''Hareutoë:'''",
 	"previewnote": "'''Beu neuingat meunyo laman nyoë goh lom neukeubah!'''",
