@@ -503,6 +503,7 @@
 	"nosuchusershort": "Nėra jokio naudotojo, pavadinto „$1“. Patikrinkite rašybą.",
 	"nouserspecified": "Jums reikia nurodyti naudotojo vardą.",
 	"login-userblocked": "Šis naudotojas yra užblokuotas. Prisijungti neleidžiama.",
+	"fatalpassworderror": "$1 \n\nSaugumo sumetimais negalite prisijungti naudodami šį slaptažodį. Prašome [$2 prašyti slaptažodžio nustatymo iš naujo el. laiško].",
 	"wrongpassword": "Įvestas neteisingas vartotojo vardas ar slaptažodis. Pamėginkite dar kartą.",
 	"wrongpasswordempty": "Įvestas slaptažodis yra tuščias. Pamėginkite vėl.",
 	"passwordtooshort": "Slaptažodžiai turi būti bent $1 {{PLURAL:$1|simbolio|simbolių|simbolių}} ilgio.",
