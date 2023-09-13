@@ -604,6 +604,9 @@ because of Phabricator reports.
   LocalisationCache or MessageCache as appropriate.
 * VirtualRESTService class is deprecated in 1.41 and as a replacement
   we can use MultiHttpClient.
+* MediaWikiServices::getConfiguredReadOnlyMode() is deprecated. Use
+  ::getReadOnlyMode() instead. ReadOnlyMode::getConfiguredReason()
+  and ::isConfiguredReadOnly() has been added to support that.
 * JobSpecification::toSerializableArray() now emits deprecation warnings.
 * The following skin methods were deprecated:
   - Skin::makeSpecialUrl (use Title or Special class instead)

@@ -18,7 +18,7 @@
  * @file
  */
 
-use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
+use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
@@ -37,7 +37,7 @@ class JobQueueGroup {
 
 	/** @var string Wiki domain ID */
 	protected $domain;
-	/** @var ConfiguredReadOnlyMode Read only mode */
+	/** @var ReadOnlyMode Read only mode */
 	protected $readOnlyMode;
 	/** @var array|null */
 	private $localJobClasses;
@@ -66,7 +66,7 @@ class JobQueueGroup {
 	 * @internal Use MediaWikiServices::getJobQueueGroupFactory
 	 *
 	 * @param string $domain Wiki domain ID
-	 * @param ConfiguredReadOnlyMode $readOnlyMode Read-only mode
+	 * @param ReadOnlyMode $readOnlyMode Read-only mode
 	 * @param array|null $localJobClasses
 	 * @param array $jobTypeConfiguration
 	 * @param array $jobTypesExcludedFromDefaultQueue
@@ -76,7 +76,7 @@ class JobQueueGroup {
 	 */
 	public function __construct(
 		$domain,
-		ConfiguredReadOnlyMode $readOnlyMode,
+		ReadOnlyMode $readOnlyMode,
 		?array $localJobClasses,
 		array $jobTypeConfiguration,
 		array $jobTypesExcludedFromDefaultQueue,
@@ -105,7 +105,7 @@ class JobQueueGroup {
 		$conf = [ 'domain' => $this->domain, 'type' => $type ];
 		$conf += $this->jobTypeConfiguration[$type] ?? $this->jobTypeConfiguration['default'];
 		if ( !isset( $conf['readOnlyReason'] ) ) {
-			$conf['readOnlyReason'] = $this->readOnlyMode->getReason();
+			$conf['readOnlyReason'] = $this->readOnlyMode->getConfiguredReason();
 		}
 
 		$conf['stats'] = $this->statsdDataFactory;

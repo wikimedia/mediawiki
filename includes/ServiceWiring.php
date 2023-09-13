@@ -687,7 +687,10 @@ return [
 
 		return new MWLBFactory(
 			new ServiceOptions( MWLBFactory::APPLY_DEFAULT_CONFIG_OPTIONS, $services->getMainConfig() ),
-			$services->getConfiguredReadOnlyMode(),
+			new ConfiguredReadOnlyMode(
+				$mainConfig->get( MainConfigNames::ReadOnly ),
+				$mainConfig->get( MainConfigNames::ReadOnlyFile )
+			),
 			$services->getChronologyProtector(),
 			$srvCache,
 			$wanCache,
@@ -765,7 +768,7 @@ return [
 		return new FileBackendGroup(
 			new ServiceOptions( FileBackendGroup::CONSTRUCTOR_OPTIONS, $mainConfig,
 				[ 'fallbackWikiId' => $fallbackWikiId ] ),
-			$services->getConfiguredReadOnlyMode(),
+			$services->getReadOnlyMode(),
 			$cache,
 			$services->getMainWANObjectCache(),
 			$services->getMimeAnalyzer(),
@@ -927,7 +930,7 @@ return [
 	'JobQueueGroupFactory' => static function ( MediaWikiServices $services ): JobQueueGroupFactory {
 		return new JobQueueGroupFactory(
 			new ServiceOptions( JobQueueGroupFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
-			$services->getConfiguredReadOnlyMode(),
+			$services->getReadOnlyMode(),
 			$services->getStatsdDataFactory(),
 			$services->getMainWANObjectCache(),
 			$services->getGlobalIdGenerator()
@@ -1700,7 +1703,10 @@ return [
 
 	'ReadOnlyMode' => static function ( MediaWikiServices $services ): ReadOnlyMode {
 		return new ReadOnlyMode(
-			$services->getConfiguredReadOnlyMode(),
+			new ConfiguredReadOnlyMode(
+				$services->getMainConfig()->get( MainConfigNames::ReadOnly ),
+				$services->getMainConfig()->get( MainConfigNames::ReadOnlyFile )
+			),
 			$services->getDBLoadBalancerFactory()
 		);
 	},

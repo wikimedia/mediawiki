@@ -15,7 +15,9 @@ use Wikimedia\Services\SalvageableService;
  * that storage isn't disabled on the original instance.
  */
 class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
-	private $deprecatedServices = [];
+	private $deprecatedServices = [
+		'ConfiguredReadOnlyMode',
+	];
 
 	public static $mockServiceWiring = [];
 

@@ -27,7 +27,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\WikiMap\WikiMap;
 use WANObjectCache;
-use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
+use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
@@ -53,7 +53,7 @@ class JobQueueGroupFactory {
 	/** @var ServiceOptions */
 	private $options;
 
-	/** @var ConfiguredReadOnlyMode */
+	/** @var ReadOnlyMode */
 	private $readOnlyMode;
 
 	/** @var IBufferingStatsdDataFactory */
@@ -67,14 +67,14 @@ class JobQueueGroupFactory {
 
 	/**
 	 * @param ServiceOptions $options
-	 * @param ConfiguredReadOnlyMode $readOnlyMode
+	 * @param ReadOnlyMode $readOnlyMode
 	 * @param IBufferingStatsdDataFactory $statsdDataFactory
 	 * @param WANObjectCache $wanCache
 	 * @param GlobalIdGenerator $globalIdGenerator
 	 */
 	public function __construct(
 		ServiceOptions $options,
-		ConfiguredReadOnlyMode $readOnlyMode,
+		ReadOnlyMode $readOnlyMode,
 		IBufferingStatsdDataFactory $statsdDataFactory,
 		WANObjectCache $wanCache,
 		GlobalIdGenerator $globalIdGenerator

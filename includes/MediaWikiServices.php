@@ -959,6 +959,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.29
+	 * @deprecated since 1.41 use ::getReadOnlyMode() instead
 	 * @return ConfiguredReadOnlyMode
 	 */
 	public function getConfiguredReadOnlyMode(): ConfiguredReadOnlyMode {
