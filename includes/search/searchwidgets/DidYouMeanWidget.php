@@ -4,7 +4,7 @@ namespace MediaWiki\Search\SearchWidgets;
 
 use ISearchResultSet;
 use MediaWiki\Html\Html;
-use SpecialSearch;
+use MediaWiki\Specials\SpecialSearch;
 
 /**
  * Renders a suggested search for the user, or tells the user

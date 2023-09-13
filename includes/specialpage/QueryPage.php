@@ -46,6 +46,7 @@ use MediaWiki\Specials\SpecialMostLinked;
 use MediaWiki\Specials\SpecialMostLinkedCategories;
 use MediaWiki\Specials\SpecialMostLinkedTemplates;
 use MediaWiki\Specials\SpecialMostRevisions;
+use MediaWiki\Specials\SpecialShortPages;
 use MediaWiki\Specials\SpecialWantedFiles;
 use MediaWiki\Specials\SpecialWantedPages;
 use Wikimedia\Rdbms\DBError;

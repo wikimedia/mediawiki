@@ -136,6 +136,10 @@ use MediaWiki\Specials\SpecialRenameUser;
 use MediaWiki\Specials\SpecialResetTokens;
 use MediaWiki\Specials\SpecialRevisionDelete;
 use MediaWiki\Specials\SpecialRunJobs;
+use MediaWiki\Specials\SpecialSearch;
+use MediaWiki\Specials\SpecialShortPages;
+use MediaWiki\Specials\SpecialSpecialPages;
+use MediaWiki\Specials\SpecialStatistics;
 use MediaWiki\Specials\SpecialUserRights;
 use MediaWiki\Specials\SpecialWantedFiles;
 use MediaWiki\Specials\SpecialWantedPages;
@@ -268,7 +272,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Shortpages' => [
-			'class' => \SpecialShortPages::class,
+			'class' => SpecialShortPages::class,
 			'services' => [
 				// Same as for Longpages
 				'NamespaceInfo',
@@ -776,7 +780,7 @@ class SpecialPageFactory {
 			'class' => SpecialApiSandbox::class,
 		],
 		'Statistics' => [
-			'class' => \SpecialStatistics::class,
+			'class' => SpecialStatistics::class,
 			'services' => [
 				'UserGroupManager',
 			]
@@ -1149,7 +1153,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Specialpages' => [
-			'class' => \SpecialSpecialpages::class,
+			'class' => SpecialSpecialPages::class,
 		],
 		'PageData' => [
 			'class' => SpecialPageData::class,
@@ -1251,7 +1255,7 @@ class SpecialPageFactory {
 
 			if ( !$this->options->get( MainConfigNames::DisableInternalSearch ) ) {
 				$this->list['Search'] = [
-					'class' => \SpecialSearch::class,
+					'class' => SpecialSearch::class,
 					'services' => [
 						'SearchEngineConfig',
 						'SearchEngineFactory',

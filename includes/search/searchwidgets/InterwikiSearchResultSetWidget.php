@@ -6,9 +6,9 @@ use ISearchResultSet;
 use MediaWiki\Html\Html;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Specials\SpecialSearch;
 use MediaWiki\Title\Title;
 use OOUI;
-use SpecialSearch;
 
 /**
  * Renders one or more ISearchResultSets into a sidebar grouped by

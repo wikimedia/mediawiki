@@ -21,11 +21,17 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SiteStats\SiteStats;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserGroupManager;
+use Sanitizer;
+use SpecialPage;
+use UserGroupMembership;
+use Xml;
 
 /**
  * Special page lists various statistics, including the contents of
@@ -310,3 +316,9 @@ class SpecialStatistics extends SpecialPage {
 		return 'wiki';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialStatistics::class, 'SpecialStatistics' );

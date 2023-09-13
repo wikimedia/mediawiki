@@ -7,10 +7,10 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Specials\SpecialSearch;
 use MediaWiki\Widget\SearchInputWidget;
 use NamespaceInfo;
 use SearchEngineConfig;
-use SpecialSearch;
 use Xml;
 
 class SearchFormWidget {

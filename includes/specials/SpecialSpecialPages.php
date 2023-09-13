@@ -21,8 +21,13 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
 use MediaWiki\Html\Html;
 use MediaWiki\Parser\ParserOutputFlags;
+use Parser;
+use ParserOutput;
+use UnlistedSpecialPage;
 use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\Parsoid\Core\TOCData;
 
@@ -31,7 +36,7 @@ use Wikimedia\Parsoid\Core\TOCData;
  *
  * @ingroup SpecialPage
  */
-class SpecialSpecialpages extends UnlistedSpecialPage {
+class SpecialSpecialPages extends UnlistedSpecialPage {
 
 	public function __construct() {
 		parent::__construct( 'Specialpages' );
@@ -201,3 +206,9 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 		}
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialSpecialPages::class, 'SpecialSpecialpages' );

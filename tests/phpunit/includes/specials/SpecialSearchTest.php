@@ -5,6 +5,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Search\TitleMatcher;
+use MediaWiki\Specials\SpecialSearch;
 use MediaWiki\Title\Title;
 
 /**

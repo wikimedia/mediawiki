@@ -23,6 +23,10 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use DeferredUpdates;
+use ISearchResultSet;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Html\Html;
 use MediaWiki\Interwiki\InterwikiLookup;
@@ -32,14 +36,24 @@ use MediaWiki\Output\OutputPage;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Search\SearchWidgets\BasicSearchResultSetWidget;
+use MediaWiki\Search\SearchWidgets\DidYouMeanWidget;
 use MediaWiki\Search\SearchWidgets\FullSearchResultWidget;
 use MediaWiki\Search\SearchWidgets\InterwikiSearchResultSetWidget;
 use MediaWiki\Search\SearchWidgets\InterwikiSearchResultWidget;
+use MediaWiki\Search\SearchWidgets\SearchFormWidget;
 use MediaWiki\Search\TitleMatcher;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserOptionsManager;
+use Message;
+use NamespaceInfo;
+use RepoGroup;
+use SearchEngine;
+use SearchEngineConfig;
+use SearchEngineFactory;
+use SpecialPage;
 use Wikimedia\Rdbms\ReadOnlyMode;
+use Xml;
 
 /**
  * implements Special:Search - Run text & title search and display the output
@@ -390,7 +404,7 @@ class SpecialSearch extends SpecialPage {
 
 		$out = $this->getOutput();
 		$widgetOptions = $this->getConfig()->get( MainConfigNames::SpecialSearchFormOptions );
-		$formWidget = new MediaWiki\Search\SearchWidgets\SearchFormWidget(
+		$formWidget = new SearchFormWidget(
 			$this,
 			$this->searchConfig,
 			$this->getHookContainer(),
@@ -481,7 +495,7 @@ class SpecialSearch extends SpecialPage {
 
 		// did you mean... suggestions
 		if ( $textMatches ) {
-			$dymWidget = new MediaWiki\Search\SearchWidgets\DidYouMeanWidget( $this );
+			$dymWidget = new DidYouMeanWidget( $this );
 			$out->addHTML( $dymWidget->render( $term, $textMatches ) );
 		}
 
@@ -911,3 +925,9 @@ class SpecialSearch extends SpecialPage {
 		return 'pages';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialSearch::class, 'SpecialSearch' );

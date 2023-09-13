@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Specials\SpecialShortPages;
 
 /**
  * Test class for SpecialShortPages class

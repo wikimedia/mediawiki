@@ -577,6 +577,10 @@ because of Phabricator reports.
   - SpecialResetTokens
   - SpecialRevisionDelete
   - SpecialRunJobs
+  - SpecialSearch
+  - SpecialShortPages
+  - SpecialSpecialPages (and capitalisation corrected)
+  - SpecialStatistics
 * Various mediawiki.ui variables have been deprecated in favor of
   'mediawiki.skin.variables.less' Codex design tokens featuring replacements.
 * Hook handlers must now be specified either as a PHP callable, or as a PHP
