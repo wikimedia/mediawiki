@@ -339,7 +339,7 @@ abstract class ParsoidHandler extends Handler {
 	/**
 	 * @param array $attribs
 	 * @param ?string $source
-	 * @param PageConfig $page
+	 * @param PageIdentity $page
 	 * @param ?int $revId
 	 *
 	 * @return HtmlOutputRendererHelper
@@ -347,14 +347,10 @@ abstract class ParsoidHandler extends Handler {
 	private function getHtmlOutputRendererHelper(
 		array $attribs,
 		?string $source,
-		PageConfig $page,
+		PageIdentity $page,
 		?int $revId
 	): HtmlOutputRendererHelper {
 		$services = MediaWikiServices::getInstance();
-
-		// TODO: This method (and wt2html) should take a PageIdentity + revId,
-		//       to reduce the usage of PageConfig in MW core.
-		$page = $this->getPageConfigToIdentity( $page );
 
 		$helper = $services->getPageRestHelperFactory()->newHtmlOutputRendererHelper();
 
@@ -411,7 +407,7 @@ abstract class ParsoidHandler extends Handler {
 		// Support PageConfig for backwards compatibility.
 		// We should leave it to lower level code to create it.
 		if ( $page instanceof PageConfig ) {
-			$page = $this->getPageConfigToIdentity( $page );
+			$page = $this->pageConfigToPageIdentity( $page );
 		}
 
 		$helper = $services->getPageRestHelperFactory()->newHtmlInputTransformHelper(
@@ -857,10 +853,12 @@ abstract class ParsoidHandler extends Handler {
 		$metrics = $this->metrics;
 		$timing = Timing::start( $metrics );
 
+		// TODO: This method should take a PageIdentity + revId,
+		//       to reduce the usage of PageConfig in MW core.
 		$helper = $this->getHtmlOutputRendererHelper(
 			$attribs,
 			$wikitext,
-			$pageConfig,
+			$this->pageConfigToPageIdentity( $pageConfig ),
 			$pageConfig->getRevisionId()
 		);
 
@@ -875,7 +873,7 @@ abstract class ParsoidHandler extends Handler {
 			!empty( $this->parsoidSettings['devAPI'] ) &&
 			( $request->getQueryParams()['follow_redirects'] ?? false )
 		) {
-			$page = $this->getPageConfigToIdentity( $pageConfig );
+			$page = $this->pageConfigToPageIdentity( $pageConfig );
 			$redirectLookup = MediaWikiServices::getInstance()->getRedirectLookup();
 			$redirectTarget = $redirectLookup->getRedirectTarget( $page );
 			if ( $redirectTarget ) {
@@ -1267,7 +1265,7 @@ abstract class ParsoidHandler extends Handler {
 	 * @return ProperPageIdentity
 	 * @throws HttpException
 	 */
-	private function getPageConfigToIdentity( PageConfig $page ): ProperPageIdentity {
+	private function pageConfigToPageIdentity( PageConfig $page ): ProperPageIdentity {
 		$services = MediaWikiServices::getInstance();
 
 		$title = $page->getTitle();
