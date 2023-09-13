@@ -419,7 +419,11 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		// Make sure the DB connection has all the test data
 		$this->copyTestData( $this->db, $db );
 
-		$value = $db->selectField( 'objectcache', 'value', [ 'keyname' => __METHOD__ ], __METHOD__ );
+		$value = $db->newSelectQueryBuilder()
+			->select( 'value' )
+			->from( 'objectcache' )
+			->where( [ 'keyname' => __METHOD__ ] )
+			->caller( __METHOD__ )->fetchField();
 		$this->assertSame( 'TEST', $value, 'Copied Data' );
 
 		$lb->closeAll( __METHOD__ );
