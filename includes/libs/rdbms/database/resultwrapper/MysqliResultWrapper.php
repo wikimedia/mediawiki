@@ -82,7 +82,7 @@ class MysqliResultWrapper extends ResultWrapper {
 	 *
 	 * @param string $fieldName
 	 * @return bool|MySQLField
-	 * @internal For DatabaseMysqlBase::fieldInfo() only
+	 * @internal For DatabaseMySQL::fieldInfo() only
 	 *
 	 */
 	public function getInternalFieldInfo( $fieldName ) {
