@@ -1,5 +1,8 @@
 <?php
 
+namespace MediaWiki\Specials;
+
+use Language;
 use MediaWiki\Html\Html;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Permissions\PermissionManager;
@@ -10,13 +13,16 @@ use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
+use SpecialPage;
+use UserBlockedError;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Xml;
 
 /**
  * Special page that allows authorised users to rename
  * user accounts
  */
-class SpecialRenameuser extends SpecialPage {
+class SpecialRenameUser extends SpecialPage {
 	private IConnectionProvider $dbConns;
 	private Language $contentLanguage;
 	private MovePageFactory $movePageFactory;
@@ -514,3 +520,9 @@ class SpecialRenameuser extends SpecialPage {
 		return 'users';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialRenameUser::class, 'SpecialRenameuser' );

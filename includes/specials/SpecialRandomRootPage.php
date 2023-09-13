@@ -1,7 +1,5 @@
 <?php
 
-use Wikimedia\Rdbms\IConnectionProvider;
-
 /**
  * Implements Special:Randomrootpage
  *
@@ -26,6 +24,11 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use NamespaceInfo;
+use Wikimedia\Rdbms\IConnectionProvider;
+
 class SpecialRandomRootPage extends SpecialRandomPage {
 
 	/**
@@ -47,3 +50,9 @@ class SpecialRandomRootPage extends SpecialRandomPage {
 		return false;
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialRandomRootPage::class, 'SpecialRandomRootPage' );

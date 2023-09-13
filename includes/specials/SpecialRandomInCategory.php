@@ -22,8 +22,14 @@
  * @author Brian Wolff
  */
 
+namespace MediaWiki\Specials;
+
+use BadMethodCallException;
+use FormSpecialPage;
+use HTMLForm;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
+use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
@@ -290,3 +296,9 @@ class SpecialRandomInCategory extends FormSpecialPage {
 		return 'redirects';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialRandomInCategory::class, 'SpecialRandomInCategory' );

@@ -22,8 +22,12 @@
  * @author Rob Church <robchur@gmail.com>, Ilmari Karonen
  */
 
+namespace MediaWiki\Specials;
+
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
+use NamespaceInfo;
+use SpecialPage;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -237,3 +241,9 @@ class SpecialRandomPage extends SpecialPage {
  * @deprecated since 1.37
  */
 class_alias( SpecialRandomPage::class, 'RandomPage' );
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialRandomPage::class, 'SpecialRandomPage' );

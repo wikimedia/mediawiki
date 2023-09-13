@@ -21,7 +21,15 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use DeferredUpdates;
+use FormatJson;
+use HttpStatus;
+use JobRunner;
 use MediaWiki\MainConfigNames;
+use TransactionRoundDefiningUpdate;
+use UnlistedSpecialPage;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
@@ -140,3 +148,9 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 		return hash_hmac( 'sha1', wfArrayToCgi( $query ), $secretKey );
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialRunJobs::class, 'SpecialRunJobs' );

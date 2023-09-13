@@ -30,6 +30,7 @@ use MediaWiki\Profiler\ProfilingContext;
 use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Request\WebResponse;
+use MediaWiki\Specials\SpecialRunJobs;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 use Psr\Log\LoggerInterface;

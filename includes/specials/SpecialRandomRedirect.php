@@ -22,6 +22,9 @@
  * @author Rob Church <robchur@gmail.com>, Ilmari Karonen
  */
 
+namespace MediaWiki\Specials;
+
+use NamespaceInfo;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -44,3 +47,9 @@ class SpecialRandomRedirect extends SpecialRandomPage {
 		$this->isRedir = true;
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialRandomRedirect::class, 'SpecialRandomRedirect' );

@@ -21,6 +21,15 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use ChangesList;
+use ChangesListBooleanFilter;
+use ChangesListSpecialPage;
+use ChangesListStringOptionsFilterGroup;
+use ChangeTags;
+use HtmlArmor;
+use IContextSource;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
@@ -28,9 +37,16 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Utils\MWTimestamp;
+use MessageCache;
+use OOUI\ButtonWidget;
+use OOUI\HtmlSnippet;
+use RecentChange;
+use TitleValue;
+use WatchedItemStoreInterface;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
+use Xml;
 
 /**
  * A special page that lists last changes made to the wiki
@@ -741,9 +757,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 					' mw-recentchanges-toplinks-collapsed' : '';
 
 				$this->getOutput()->enableOOUI();
-				$contentTitle = new OOUI\ButtonWidget( [
+				$contentTitle = new ButtonWidget( [
 					'classes' => [ 'mw-recentchanges-toplinks-title' ],
-					'label' => new OOUI\HtmlSnippet( $this->msg( 'rcfilters-other-review-tools' )->parse() ),
+					'label' => new HtmlSnippet( $this->msg( 'rcfilters-other-review-tools' )->parse() ),
 					'framed' => false,
 					'indicator' => $collapsedState !== 'expanded' ? 'down' : 'up',
 					'flags' => [ 'progressive' ],
@@ -1057,3 +1073,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialRecentChanges::class, 'SpecialRecentChanges' );

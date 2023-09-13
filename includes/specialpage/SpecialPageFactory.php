@@ -124,6 +124,18 @@ use MediaWiki\Specials\SpecialProtectedPages;
 use MediaWiki\Specials\SpecialProtectedTitles;
 use MediaWiki\Specials\SpecialProtectPage;
 use MediaWiki\Specials\SpecialPurge;
+use MediaWiki\Specials\SpecialRandomInCategory;
+use MediaWiki\Specials\SpecialRandomPage;
+use MediaWiki\Specials\SpecialRandomRedirect;
+use MediaWiki\Specials\SpecialRandomRootPage;
+use MediaWiki\Specials\SpecialRecentChanges;
+use MediaWiki\Specials\SpecialRecentChangesLinked;
+use MediaWiki\Specials\SpecialRedirect;
+use MediaWiki\Specials\SpecialRemoveCredentials;
+use MediaWiki\Specials\SpecialRenameUser;
+use MediaWiki\Specials\SpecialResetTokens;
+use MediaWiki\Specials\SpecialRevisionDelete;
+use MediaWiki\Specials\SpecialRunJobs;
 use MediaWiki\Specials\SpecialUserRights;
 use MediaWiki\Specials\SpecialWantedFiles;
 use MediaWiki\Specials\SpecialWantedPages;
@@ -441,7 +453,7 @@ class SpecialPageFactory {
 			]
 		],
 		'RemoveCredentials' => [
-			'class' => \SpecialRemoveCredentials::class,
+			'class' => SpecialRemoveCredentials::class,
 			'services' => [
 				'AuthManager',
 			]
@@ -545,7 +557,7 @@ class SpecialPageFactory {
 			]
 		],
 		'ResetTokens' => [
-			'class' => \SpecialResetTokens::class,
+			'class' => SpecialResetTokens::class,
 		],
 		'Contributions' => [
 			'class' => SpecialContributions::class,
@@ -666,7 +678,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Recentchanges' => [
-			'class' => \SpecialRecentChanges::class,
+			'class' => SpecialRecentChanges::class,
 			'services' => [
 				'WatchedItemStore',
 				'MessageCache',
@@ -675,7 +687,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Recentchangeslinked' => [
-			'class' => \SpecialRecentChangesLinked::class,
+			'class' => SpecialRecentChangesLinked::class,
 			'services' => [
 				'WatchedItemStore',
 				'MessageCache',
@@ -803,27 +815,27 @@ class SpecialPageFactory {
 			]
 		],
 		'Randompage' => [
-			'class' => \SpecialRandomPage::class,
+			'class' => SpecialRandomPage::class,
 			'services' => [
 				'DBLoadBalancerFactory',
 				'NamespaceInfo',
 			]
 		],
 		'RandomInCategory' => [
-			'class' => \SpecialRandomInCategory::class,
+			'class' => SpecialRandomInCategory::class,
 			'services' => [
 				'DBLoadBalancerFactory',
 			]
 		],
 		'Randomredirect' => [
-			'class' => \SpecialRandomRedirect::class,
+			'class' => SpecialRandomRedirect::class,
 			'services' => [
 				'DBLoadBalancerFactory',
 				'NamespaceInfo',
 			]
 		],
 		'Randomrootpage' => [
-			'class' => \SpecialRandomRootPage::class,
+			'class' => SpecialRandomRootPage::class,
 			'services' => [
 				'DBLoadBalancerFactory',
 				'NamespaceInfo',
@@ -1103,14 +1115,14 @@ class SpecialPageFactory {
 			'class' => SpecialPermanentLink::class,
 		],
 		'Redirect' => [
-			'class' => \SpecialRedirect::class,
+			'class' => SpecialRedirect::class,
 			'services' => [
 				'RepoGroup',
 				'UserFactory',
 			]
 		],
 		'Renameuser' => [
-			'class' => \SpecialRenameuser::class,
+			'class' => SpecialRenameUser::class,
 			'services' => [
 				'DBLoadBalancerFactory',
 				'ContentLanguage',
@@ -1123,14 +1135,14 @@ class SpecialPageFactory {
 			]
 		],
 		'Revisiondelete' => [
-			'class' => \SpecialRevisionDelete::class,
+			'class' => SpecialRevisionDelete::class,
 			'services' => [
 				'PermissionManager',
 				'RepoGroup',
 			],
 		],
 		'RunJobs' => [
-			'class' => \SpecialRunJobs::class,
+			'class' => SpecialRunJobs::class,
 			'services' => [
 				'JobRunner',
 				'ReadOnlyMode',
