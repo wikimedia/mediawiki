@@ -21,11 +21,20 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use HTMLForm;
+use HTMLMultiSelectField;
+use HTMLSelectNamespace;
+use HTMLSizeFilterField;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\RestrictionStore;
+use ProtectedPagesPager;
+use SpecialPage;
+use UserCache;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -33,7 +42,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
  *
  * @ingroup SpecialPage
  */
-class SpecialProtectedpages extends SpecialPage {
+class SpecialProtectedPages extends SpecialPage {
 	protected $IdLevel = 'level';
 	protected $IdType = 'type';
 
@@ -230,3 +239,9 @@ class SpecialProtectedpages extends SpecialPage {
 		return 'maintenance';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialProtectedPages::class, 'SpecialProtectedpages' );

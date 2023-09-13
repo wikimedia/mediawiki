@@ -21,6 +21,12 @@
  * @ingroup SpecialPage
  * @author DannyS712
  */
+
+namespace MediaWiki\Specials;
+
+use SearchEngineFactory;
+use SpecialRedirectWithAction;
+
 class SpecialPageHistory extends SpecialRedirectWithAction {
 
 	/**
@@ -36,3 +42,9 @@ class SpecialPageHistory extends SpecialRedirectWithAction {
 	// specialpagehistory-page
 	// specialpagehistory-submit
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialPageHistory::class, 'SpecialPageHistory' );

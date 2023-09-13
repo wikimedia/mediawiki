@@ -550,6 +550,20 @@ because of Phabricator reports.
   - SpecialNewFiles
   - SpecialNewPages (and capitalisation corrected)
   - SpecialNewSection
+  - SpecialPageData
+  - SpecialPageHistory
+  - SpecialPageInfo
+  - SpecialPageLanguage
+  - SpecialPagesWithProp
+  - SpecialPasswordPolicies
+  - SpecialPasswordReset
+  - SpecialPermanentLink
+  - SpecialPreferences
+  - SpecialPrefixIndex (and capitalisation corrected)
+  - SpecialProtectedPages (and capitalisation corrected)
+  - SpecialProtectedTitles (and capitalisation corrected)
+  - SpecialProtectPage
+  - SpecialPurge
 * Various mediawiki.ui variables have been deprecated in favor of
   'mediawiki.skin.variables.less' Codex design tokens featuring replacements.
 * Hook handlers must now be specified either as a PHP callable, or as a PHP

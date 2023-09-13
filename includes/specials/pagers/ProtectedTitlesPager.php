@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Specials\SpecialProtectedTitles;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IConnectionProvider;
 
@@ -47,7 +48,7 @@ class ProtectedTitlesPager extends AlphabeticPager {
 	private LinkBatchFactory $linkBatchFactory;
 
 	/**
-	 * @param SpecialProtectedtitles $form
+	 * @param SpecialProtectedTitles $form
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param IConnectionProvider $dbProvider
 	 * @param array $conds
@@ -58,7 +59,7 @@ class ProtectedTitlesPager extends AlphabeticPager {
 	 * @param int|null $size
 	 */
 	public function __construct(
-		SpecialProtectedtitles $form,
+		SpecialProtectedTitles $form,
 		LinkBatchFactory $linkBatchFactory,
 		IConnectionProvider $dbProvider,
 		$conds,

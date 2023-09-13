@@ -21,8 +21,12 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use HTMLCheckField;
+use HTMLForm;
+use LinkCache;
 use MediaWiki\Html\Html;
-use MediaWiki\Specials\SpecialAllPages;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IConnectionProvider;
 
@@ -31,7 +35,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
  *
  * @ingroup SpecialPage
  */
-class SpecialPrefixindex extends SpecialAllPages {
+class SpecialPrefixIndex extends SpecialAllPages {
 
 	/**
 	 * Whether to remove the searched prefix from the displayed link. Useful
@@ -295,3 +299,9 @@ class SpecialPrefixindex extends SpecialAllPages {
 		return 'pages';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialPrefixIndex::class, 'SpecialPrefixindex' );

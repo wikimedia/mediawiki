@@ -22,8 +22,14 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use HTMLForm;
 use MediaWiki\Html\Html;
 use MediaWiki\Title\Title;
+use QueryPage;
+use Skin;
+use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -280,3 +286,9 @@ class SpecialPagesWithProp extends QueryPage {
 		return 'pages';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialPagesWithProp::class, 'SpecialPagesWithProp' );

@@ -21,8 +21,16 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use ErrorPageError;
+use FormSpecialPage;
+use HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Status\Status;
+use PasswordReset;
+use ThrottledError;
+use User;
 
 /**
  * Special page for requesting a password reset email.
@@ -199,3 +207,9 @@ class SpecialPasswordReset extends FormSpecialPage {
 		return 'login';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialPasswordReset::class, 'SpecialPasswordReset' );

@@ -20,6 +20,12 @@
  * @file
  */
 
+namespace MediaWiki\Specials;
+
+use HttpError;
+use PageDataRequestHandler;
+use SpecialPage;
+
 /**
  * Special page to act as an endpoint for accessing raw page data.
  * The web server should generally be configured to make this accessible via a canonical URL/URI,
@@ -104,3 +110,9 @@ class SpecialPageData extends SpecialPage {
 	}
 
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialPageData::class, 'SpecialPageData' );

@@ -21,6 +21,11 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use SearchEngineFactory;
+use SpecialRedirectWithAction;
+
 /**
  * @author Zabe
  *
@@ -41,3 +46,9 @@ class SpecialProtectPage extends SpecialRedirectWithAction {
 	// specialprotectpage-page
 	// specialprotectpage-submit
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialProtectPage::class, 'SpecialProtectPage' );

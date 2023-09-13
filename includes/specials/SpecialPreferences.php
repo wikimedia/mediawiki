@@ -21,10 +21,18 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use HTMLForm;
+use IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\User\UserOptionsManager;
+use PermissionsError;
+use PreferencesFormOOUI;
+use SpecialPage;
+use User;
 
 /**
  * A special page that allows users to change their preferences
@@ -188,3 +196,9 @@ class SpecialPreferences extends SpecialPage {
 		return 'login';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialPreferences::class, 'SpecialPreferences' );

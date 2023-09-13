@@ -2,6 +2,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Specials\SpecialMyLanguage;
+use MediaWiki\Specials\SpecialPageLanguage;
 use MediaWiki\Title\Title;
 
 /**

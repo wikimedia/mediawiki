@@ -21,11 +21,18 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use HTMLForm;
+use HTMLSelectNamespace;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
+use ProtectedTitlesPager;
+use SpecialPage;
+use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -33,7 +40,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
  *
  * @ingroup SpecialPage
  */
-class SpecialProtectedtitles extends SpecialPage {
+class SpecialProtectedTitles extends SpecialPage {
 	protected $IdLevel = 'level';
 	protected $IdType = 'type';
 
@@ -191,3 +198,9 @@ class SpecialProtectedtitles extends SpecialPage {
 		return 'maintenance';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialProtectedTitles::class, 'SpecialProtectedtitles' );

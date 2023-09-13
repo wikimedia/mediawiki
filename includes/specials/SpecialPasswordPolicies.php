@@ -21,10 +21,17 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserGroupManager;
+use Sanitizer;
+use SpecialPage;
+use UserGroupMembership;
+use UserPasswordPolicy;
+use Xml;
 
 /**
  * This special page lists the defined password policies for user groups.
@@ -183,3 +190,9 @@ class SpecialPasswordPolicies extends SpecialPage {
 		return 'users';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialPasswordPolicies::class, 'SpecialPasswordPolicies' );

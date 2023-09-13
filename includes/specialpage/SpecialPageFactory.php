@@ -110,6 +110,20 @@ use MediaWiki\Specials\SpecialMyLanguage;
 use MediaWiki\Specials\SpecialNewFiles;
 use MediaWiki\Specials\SpecialNewPages;
 use MediaWiki\Specials\SpecialNewSection;
+use MediaWiki\Specials\SpecialPageData;
+use MediaWiki\Specials\SpecialPageHistory;
+use MediaWiki\Specials\SpecialPageInfo;
+use MediaWiki\Specials\SpecialPageLanguage;
+use MediaWiki\Specials\SpecialPagesWithProp;
+use MediaWiki\Specials\SpecialPasswordPolicies;
+use MediaWiki\Specials\SpecialPasswordReset;
+use MediaWiki\Specials\SpecialPermanentLink;
+use MediaWiki\Specials\SpecialPreferences;
+use MediaWiki\Specials\SpecialPrefixIndex;
+use MediaWiki\Specials\SpecialProtectedPages;
+use MediaWiki\Specials\SpecialProtectedTitles;
+use MediaWiki\Specials\SpecialProtectPage;
+use MediaWiki\Specials\SpecialPurge;
 use MediaWiki\Specials\SpecialUserRights;
 use MediaWiki\Specials\SpecialWantedFiles;
 use MediaWiki\Specials\SpecialWantedPages;
@@ -224,7 +238,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Protectedpages' => [
-			'class' => \SpecialProtectedpages::class,
+			'class' => SpecialProtectedPages::class,
 			'services' => [
 				'LinkBatchFactory',
 				'DBLoadBalancerFactory',
@@ -235,7 +249,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Protectedtitles' => [
-			'class' => \SpecialProtectedtitles::class,
+			'class' => SpecialProtectedTitles::class,
 			'services' => [
 				'LinkBatchFactory',
 				'DBLoadBalancerFactory',
@@ -356,7 +370,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Prefixindex' => [
-			'class' => \SpecialPrefixindex::class,
+			'class' => SpecialPrefixIndex::class,
 			'services' => [
 				'DBLoadBalancerFactory',
 				'LinkCache',
@@ -379,7 +393,7 @@ class SpecialPageFactory {
 			]
 		],
 		'PagesWithProp' => [
-			'class' => \SpecialPagesWithProp::class,
+			'class' => SpecialPagesWithProp::class,
 			'services' => [
 				'DBLoadBalancerFactory',
 			]
@@ -504,7 +518,7 @@ class SpecialPageFactory {
 			]
 		],
 		'PasswordReset' => [
-			'class' => \SpecialPasswordReset::class,
+			'class' => SpecialPasswordReset::class,
 			'services' => [
 				'PasswordReset'
 			]
@@ -524,7 +538,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Preferences' => [
-			'class' => \SpecialPreferences::class,
+			'class' => SpecialPreferences::class,
 			'services' => [
 				'PreferencesFactory',
 				'UserOptionsManager',
@@ -602,7 +616,7 @@ class SpecialPageFactory {
 			]
 		],
 		'PasswordPolicies' => [
-			'class' => \SpecialPasswordPolicies::class,
+			'class' => SpecialPasswordPolicies::class,
 			'services' => [
 				'UserGroupManager',
 			]
@@ -1050,25 +1064,25 @@ class SpecialPageFactory {
 			'class' => SpecialMytalk::class,
 		],
 		'PageHistory' => [
-			'class' => \SpecialPageHistory::class,
+			'class' => SpecialPageHistory::class,
 			'services' => [
 				'SearchEngineFactory',
 			]
 		],
 		'PageInfo' => [
-			'class' => \SpecialPageInfo::class,
+			'class' => SpecialPageInfo::class,
 			'services' => [
 				'SearchEngineFactory',
 			]
 		],
 		'ProtectPage' => [
-			'class' => \SpecialProtectPage::class,
+			'class' => SpecialProtectPage::class,
 			'services' => [
 				'SearchEngineFactory',
 			]
 		],
 		'Purge' => [
-			'class' => \SpecialPurge::class,
+			'class' => SpecialPurge::class,
 			'services' => [
 				'SearchEngineFactory',
 			]
@@ -1086,7 +1100,7 @@ class SpecialPageFactory {
 			]
 		],
 		'PermanentLink' => [
-			'class' => \SpecialPermanentLink::class,
+			'class' => SpecialPermanentLink::class,
 		],
 		'Redirect' => [
 			'class' => \SpecialRedirect::class,
@@ -1126,7 +1140,7 @@ class SpecialPageFactory {
 			'class' => \SpecialSpecialpages::class,
 		],
 		'PageData' => [
-			'class' => \SpecialPageData::class,
+			'class' => SpecialPageData::class,
 		],
 		'Contribute' => [
 			'class' => SpecialContribute::class,
@@ -1286,7 +1300,7 @@ class SpecialPageFactory {
 
 			if ( $this->options->get( MainConfigNames::PageLanguageUseDB ) ) {
 				$this->list['PageLanguage'] = [
-					'class' => \SpecialPageLanguage::class,
+					'class' => SpecialPageLanguage::class,
 					'services' => [
 						'ContentHandlerFactory',
 						'LanguageNameUtils',

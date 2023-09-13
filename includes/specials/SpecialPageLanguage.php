@@ -23,6 +23,16 @@
  * @since 1.24
  */
 
+namespace MediaWiki\Specials;
+
+use ApiMessage;
+use FormSpecialPage;
+use HTMLForm;
+use IContextSource;
+use LogEventsList;
+use LogPage;
+use MalformedTitleException;
+use ManualLogEntry;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Languages\LanguageNameUtils;
@@ -31,8 +41,10 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
+use SearchEngineFactory;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
+use Xml;
 
 /**
  * Special page for changing the content language of a page
@@ -330,3 +342,9 @@ class SpecialPageLanguage extends FormSpecialPage {
 		return 'pagetools';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialPageLanguage::class, 'SpecialPageLanguage' );

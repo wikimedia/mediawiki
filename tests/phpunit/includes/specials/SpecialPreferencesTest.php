@@ -7,6 +7,7 @@
  */
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Specials\SpecialPreferences;
 use MediaWiki\User\UserOptionsManager;
 
 /**
