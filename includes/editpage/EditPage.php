@@ -3795,7 +3795,7 @@ class EditPage implements IEditObject {
 		// (if it's a valid option) rather than the current value for watchlistExpiry.
 		// See also above in $this->importFormData().
 		$expiryFromRequest = null;
-		if ( $this->preview || $this->diff ) {
+		if ( $this->preview || $this->diff || $this->isConflict ) {
 			$expiryFromRequest = $this->getContext()->getRequest()->getText( 'wpWatchlistExpiry' );
 		}
 
