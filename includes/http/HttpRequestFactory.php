@@ -293,6 +293,11 @@ class HttpRequestFactory {
 		if ( !isset( $config['headers']['User-Agent'] ) ) {
 			$config['headers']['User-Agent'] = $this->getUserAgent();
 		}
+		if ( $this->telemetry ) {
+			$config['headers'] = array_merge(
+				$this->telemetry->getRequestHeaders(), $config['headers']
+			);
+		}
 
 		return new Client( $config );
 	}

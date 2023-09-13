@@ -267,4 +267,39 @@ class HttpRequestFactoryTest extends MediaWikiIntegrationTestCase {
 			$client->getConfig( 'timeout' )
 		);
 	}
+
+	public function testCreateGuzzleClientRespectsTelemetry() {
+		$mockTelemetry = $this->getMockBuilder( \MediaWiki\Http\Telemetry::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$mockTelemetry->expects( $this->once() )
+			->method( 'getRequestHeaders' )
+			->willReturn( [
+				'X-Request-Id' => 'nice_hash'
+			] );
+
+		$factory = new HttpRequestFactory(
+			new ServiceOptions( HttpRequestFactory::CONSTRUCTOR_OPTIONS, [
+				MainConfigNames::HTTPTimeout => 1,
+				MainConfigNames::HTTPConnectTimeout => 1,
+				MainConfigNames::HTTPMaxTimeout => INF,
+				MainConfigNames::HTTPMaxConnectTimeout => INF,
+				MainConfigNames::LocalVirtualHosts => [],
+				MainConfigNames::LocalHTTPProxy => false,
+			] ),
+			new NullLogger(),
+			$mockTelemetry
+		);
+
+		$client = $factory->createGuzzleClient(
+			[
+				'timeout' => $createOptions['timeout'] ?? null,
+				'connect_timeout' => $createOptions['connectTimeout'] ?? null,
+				'maxTimeout' => $createOptions['maxTimeout'] ?? null,
+				'maxConnectTimeout' => $createOptions['maxConnectTimeout'] ?? null
+			]
+		);
+		$headers = $client->getConfig( 'headers' );
+		$this->assertSame( 'nice_hash', $headers['X-Request-Id'] );
+	}
 }
