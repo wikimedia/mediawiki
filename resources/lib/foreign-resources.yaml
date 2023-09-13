@@ -443,6 +443,9 @@ pako:
     pako_deflate.es5.js:
       src: https://raw.githubusercontent.com/nodeca/pako/2.0.4/dist/pako_deflate.es5.js
       integrity: sha384-msHzmf3Olqx90vEgQHrbqpn7Kx6Tv0L5VXKPQoq+yDnkrvKwzlufduA/rLk1suNV
+    pako_deflate.es5.min.js:
+      src: https://raw.githubusercontent.com/nodeca/pako/2.0.4/dist/pako_deflate.es5.min.js
+      integrity: sha384-pf3n4cvQTsHiADofGl9lD5qWFRGmwV+T/M/nzv8ep3YbDDJVo9Fov/rQ8JHuH74J
     README.md:
       src: https://raw.githubusercontent.com/nodeca/pako/2.0.4/README.md
       integrity: sha384-mQ9cShSJ6yG8JTPL7LkbnfUnTmc7LA2hnBMSNfb5X7xk6pTFzVTurK9gcSMgJu3B
