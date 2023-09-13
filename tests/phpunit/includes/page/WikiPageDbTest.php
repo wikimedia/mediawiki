@@ -14,7 +14,6 @@ use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\MWTimestamp;
 use PHPUnit\Framework\Assert;
-use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -609,98 +608,6 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			$archivedRev->getContent( SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER, $user ),
 			"Archived content should be null after the page was suppressed even for a sysop"
 		);
-	}
-
-	/**
-	 * @covers WikiPage::doDeleteUpdates
-	 */
-	public function testDoDeleteUpdates() {
-		$this->overrideConfigValues( [
-			MainConfigNames::RCWatchCategoryMembership => false,
-		] );
-
-		$this->hideDeprecated( 'WikiPage::doDeleteUpdates' );
-		$user = $this->getTestUser()->getUserIdentity();
-		$page = $this->createPage(
-			__METHOD__,
-			"[[original text]] foo",
-			CONTENT_MODEL_WIKITEXT
-		);
-		$id = $page->getId();
-		$page->loadPageData(); // make sure the current revision is cached.
-
-		// Similar to MovePage logic
-		wfGetDB( DB_PRIMARY )->delete( 'page', [ 'page_id' => $id ], __METHOD__ );
-		$page->doDeleteUpdates(
-			$page->getId(),
-			$page->getContent(),
-			$page->getRevisionRecord(),
-			$user
-		);
-
-		// Run the job queue
-		$this->runJobs();
-
-		# ------------------------
-		$dbr = wfGetDB( DB_REPLICA );
-		$res = $dbr->select( 'pagelinks', '*', [ 'pl_from' => $id ] );
-		$n = $res->numRows();
-		$res->free();
-
-		$this->assertSame( 0, $n, 'pagelinks should contain no more links from the page' );
-	}
-
-	/**
-	 * @param string $name
-	 *
-	 * @return ContentHandler
-	 */
-	protected function defineMockContentModelForUpdateTesting( $name ) {
-		/** @var ContentHandler|MockObject $handler */
-		$handler = $this->getMockBuilder( TextContentHandler::class )
-			->setConstructorArgs( [ $name ] )
-			->onlyMethods(
-				[ 'getSecondaryDataUpdates', 'unserializeContent' ]
-			)
-			->getMock();
-
-		$dataUpdate = new MWCallableUpdate( 'time', "$name data update" );
-
-		$handler->method( 'getSecondaryDataUpdates' )->willReturn( [ $dataUpdate ] );
-		$handler->method( 'unserializeContent' )->willReturnCallback(
-			function ( $text ) use ( $handler ) {
-				return $this->createMockContent( $handler, $text );
-			}
-		);
-
-		$this->mergeMwGlobalArrayValue(
-			'wgContentHandlers', [
-				$name => static function () use ( $handler ){
-					return $handler;
-				}
-			]
-		);
-
-		return $handler;
-	}
-
-	/**
-	 * @param ContentHandler $handler
-	 * @param string $text
-	 *
-	 * @return Content
-	 */
-	protected function createMockContent( ContentHandler $handler, $text ) {
-		/** @var Content|MockObject $content */
-		$content = $this->getMockBuilder( TextContent::class )
-			->setConstructorArgs( [ $text ] )
-			->onlyMethods( [ 'getModel', 'getContentHandler' ] )
-			->getMock();
-
-		$content->method( 'getModel' )->willReturn( $handler->getModelID() );
-		$content->method( 'getContentHandler' )->willReturn( $handler );
-
-		return $content;
 	}
 
 	/**

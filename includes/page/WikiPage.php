@@ -50,7 +50,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArray;
 use MediaWiki\User\ActorMigration;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Assert\Assert;
@@ -2646,6 +2645,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$reason, $suppress, UserIdentity $deleter, $tags,
 		$logsubtype, $immediate = false, $webRequestId = null
 	) {
+		wfDeprecated( __METHOD__, '1.37' );
 		$services = MediaWikiServices::getInstance();
 		$deletePage = $services->getDeletePageFactory()->newDeletePage(
 			$this,
@@ -2689,44 +2689,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			__METHOD__,
 			[ 'FOR UPDATE' ]
 		);
-	}
-
-	/**
-	 * Do some database updates after deletion
-	 *
-	 * @deprecated since 1.37 With no replacement.
-	 *
-	 * @param int $id The page_id value of the page being deleted
-	 * @param Content|null $content Page content to be used when determining
-	 *   the required updates. This may be needed because $this->getContent()
-	 *   may already return null when the page proper was deleted.
-	 * @param RevisionRecord|null $revRecord The current page revision at the time of
-	 *   deletion, used when determining the required updates. This may be needed because
-	 *   $this->getRevisionRecord() may already return null when the page proper was deleted.
-	 * @param UserIdentity|null $user The user that caused the deletion
-	 */
-	public function doDeleteUpdates(
-		$id,
-		Content $content = null,
-		RevisionRecord $revRecord = null,
-		UserIdentity $user = null
-	) {
-		wfDeprecated( __METHOD__, '1.37' );
-		if ( !$revRecord ) {
-			throw new BadMethodCallException( __METHOD__ . ' now requires a RevisionRecord' );
-		}
-		if ( $id !== $this->getId() ) {
-			throw new InvalidArgumentException( 'Mismatching page ID' );
-		}
-
-		$user ??= new UserIdentityValue( 0, 'unknown' );
-		$services = MediaWikiServices::getInstance();
-		$deletePage = $services->getDeletePageFactory()->newDeletePage(
-			$this,
-			$services->getUserFactory()->newFromUserIdentity( $user )
-		);
-
-		$deletePage->doDeleteUpdates( $this, $revRecord );
 	}
 
 	/**

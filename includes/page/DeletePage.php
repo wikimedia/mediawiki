@@ -827,7 +827,6 @@ class DeletePage {
 	}
 
 	/**
-	 * @private Public for BC only
 	 * Do some database updates after deletion
 	 *
 	 * @param WikiPage $page
@@ -835,7 +834,7 @@ class DeletePage {
 	 *   deletion, used when determining the required updates. This may be needed because
 	 *   $page->getRevisionRecord() may already return null when the page proper was deleted.
 	 */
-	public function doDeleteUpdates( WikiPage $page, RevisionRecord $revRecord ): void {
+	private function doDeleteUpdates( WikiPage $page, RevisionRecord $revRecord ): void {
 		try {
 			$countable = $page->isCountable();
 		} catch ( TimeoutException $e ) {
@@ -897,7 +896,6 @@ class DeletePage {
 	}
 
 	/**
-	 * @private Public for BC only
 	 * Returns a list of updates to be performed when the page is deleted. The
 	 * updates should remove any information about this page from secondary data
 	 * stores such as links tables.
@@ -906,7 +904,7 @@ class DeletePage {
 	 * @param RevisionRecord $rev The revision being deleted.
 	 * @return DeferrableUpdate[]
 	 */
-	public function getDeletionUpdates( WikiPage $page, RevisionRecord $rev ): array {
+	private function getDeletionUpdates( WikiPage $page, RevisionRecord $rev ): array {
 		if ( $this->isDeletePageUnitTest ) {
 			// Hack: LinksDeletionUpdate reads from the global state in the constructor
 			return [];
