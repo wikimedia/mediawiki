@@ -32,6 +32,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\Specials\SpecialUpload;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**

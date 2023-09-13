@@ -21,6 +21,9 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use ImageQueryPage;
 use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\IConnectionProvider;
 
@@ -96,3 +99,9 @@ class SpecialUnusedImages extends ImageQueryPage {
 		return 'maintenance';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialUnusedImages::class, 'SpecialUnusedImages' );

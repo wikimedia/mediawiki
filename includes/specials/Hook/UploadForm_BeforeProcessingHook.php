@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use SpecialUpload;
+use MediaWiki\Specials\SpecialUpload;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 /**

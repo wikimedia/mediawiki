@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use SpecialUpload;
+use MediaWiki\Specials\SpecialUpload;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

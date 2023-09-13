@@ -583,6 +583,22 @@ because of Phabricator reports.
   - SpecialStatistics
   - SpecialTags
   - SpecialTrackingCategories
+  - SpecialUnblock
+  - SpecialUncategorizedCategories
+  - SpecialUncategorizedImages
+  - SpecialUncategorizedPages
+  - SpecialUncategorizedTemplates
+  - SpecialUndelete
+  - SpecialUnlinkAccounts
+  - SpecialUnlockdb
+  - SpecialUnusedCategories
+  - SpecialUnusedImages
+  - SpecialUnusedTemplates
+  - SpecialUnwatchedPages
+  - SpecialUpload
+  - SpecialUploadStash
+  - SpecialUserLogin
+  - SpecialUserLogout
 * Various mediawiki.ui variables have been deprecated in favor of
   'mediawiki.skin.variables.less' Codex design tokens featuring replacements.
 * Hook handlers must now be specified either as a PHP callable, or as a PHP

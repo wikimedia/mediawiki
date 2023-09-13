@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Specials\SpecialUpload;
 
 class SpecialUploadTest extends MediaWikiIntegrationTestCase {
 	/**

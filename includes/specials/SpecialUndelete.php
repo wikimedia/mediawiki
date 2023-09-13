@@ -21,6 +21,17 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use ArchivedFile;
+use ChangesList;
+use ChangeTags;
+use ErrorPageError;
+use File;
+use LinkBatch;
+use LocalRepo;
+use LogEventsList;
+use LogPage;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
@@ -43,8 +54,18 @@ use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserOptionsLookup;
+use Message;
+use PageArchive;
+use PermissionsError;
+use RepoGroup;
+use SearchEngineFactory;
+use SpecialPage;
+use TextContent;
+use User;
+use UserBlockedError;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IResultWrapper;
+use Xml;
 
 /**
  * Special page allowing users with the appropriate permissions to view
@@ -386,22 +407,22 @@ class SpecialUndelete extends SpecialPage {
 		$out->enableOOUI();
 
 		$fields = [];
-		$fields[] = new OOUI\ActionFieldLayout(
-			new OOUI\TextInputWidget( [
+		$fields[] = new \OOUI\ActionFieldLayout(
+			new \OOUI\TextInputWidget( [
 				'name' => 'prefix',
 				'inputId' => 'prefix',
 				'infusable' => true,
 				'value' => $this->mSearchPrefix,
 				'autofocus' => true,
 			] ),
-			new OOUI\ButtonInputWidget( [
+			new \OOUI\ButtonInputWidget( [
 				'label' => $this->msg( 'undelete-search-submit' )->text(),
 				'flags' => [ 'primary', 'progressive' ],
 				'inputId' => 'searchUndelete',
 				'type' => 'submit',
 			] ),
 			[
-				'label' => new OOUI\HtmlSnippet(
+				'label' => new \OOUI\HtmlSnippet(
 					$this->msg(
 						$fuzzySearch ? 'undelete-search-full' : 'undelete-search-prefix'
 					)->parse()
@@ -410,26 +431,26 @@ class SpecialUndelete extends SpecialPage {
 			]
 		);
 
-		$fieldset = new OOUI\FieldsetLayout( [
+		$fieldset = new \OOUI\FieldsetLayout( [
 			'label' => $this->msg( 'undelete-search-box' )->text(),
 			'items' => $fields,
 		] );
 
-		$form = new OOUI\FormLayout( [
+		$form = new \OOUI\FormLayout( [
 			'method' => 'get',
 			'action' => wfScript(),
 		] );
 
 		$form->appendContent(
 			$fieldset,
-			new OOUI\HtmlSnippet(
+			new \OOUI\HtmlSnippet(
 				Html::hidden( 'title', $this->getPageTitle()->getPrefixedDBkey() ) .
 				Html::hidden( 'fuzzy', $fuzzySearch )
 			)
 		);
 
 		$out->addHTML(
-			new OOUI\PanelLayout( [
+			new \OOUI\PanelLayout( [
 				'expanded' => false,
 				'padded' => true,
 				'framed' => true,
@@ -681,7 +702,7 @@ class SpecialUndelete extends SpecialPage {
 				'rows' => 25
 			], $content->getText() . "\n" );
 
-			$buttonFields[] = new OOUI\ButtonInputWidget( [
+			$buttonFields[] = new \OOUI\ButtonInputWidget( [
 				'type' => 'submit',
 				'name' => 'preview',
 				'label' => $this->msg( 'showpreview' )->text()
@@ -690,7 +711,7 @@ class SpecialUndelete extends SpecialPage {
 			$sourceView = '';
 		}
 
-		$buttonFields[] = new OOUI\ButtonInputWidget( [
+		$buttonFields[] = new \OOUI\ButtonInputWidget( [
 			'name' => 'diff',
 			'type' => 'submit',
 			'label' => $this->msg( 'showdiff' )->text()
@@ -715,9 +736,9 @@ class SpecialUndelete extends SpecialPage {
 					'type' => 'hidden',
 					'name' => 'wpEditToken',
 					'value' => $user->getEditToken() ] ) .
-				new OOUI\FieldLayout(
-					new OOUI\Widget( [
-						'content' => new OOUI\HorizontalLayout( [
+				new \OOUI\FieldLayout(
+					new \OOUI\Widget( [
+						'content' => new \OOUI\HorizontalLayout( [
 							'items' => $buttonFields
 						] )
 					] )
@@ -1022,7 +1043,7 @@ class SpecialUndelete extends SpecialPage {
 
 			$action = $this->getPageTitle()->getLocalURL( [ 'action' => 'submit' ] );
 			# Start the form here
-			$form = new OOUI\FormLayout( [
+			$form = new \OOUI\FormLayout( [
 				'method' => 'post',
 				'action' => $action,
 				'id' => 'undelete',
@@ -1042,12 +1063,12 @@ class SpecialUndelete extends SpecialPage {
 
 		if ( $this->mAllowed && ( $haveRevisions || $haveFiles ) ) {
 			$fields = [];
-			$fields[] = new OOUI\Layout( [
-				'content' => new OOUI\HtmlSnippet( $this->msg( 'undeleteextrahelp' )->parseAsBlock() )
+			$fields[] = new \OOUI\Layout( [
+				'content' => new \OOUI\HtmlSnippet( $this->msg( 'undeleteextrahelp' )->parseAsBlock() )
 			] );
 
-			$fields[] = new OOUI\FieldLayout(
-				new OOUI\TextInputWidget( [
+			$fields[] = new \OOUI\FieldLayout(
+				new \OOUI\TextInputWidget( [
 					'name' => 'wpComment',
 					'inputId' => 'wpComment',
 					'infusable' => true,
@@ -1065,8 +1086,8 @@ class SpecialUndelete extends SpecialPage {
 			);
 
 			if ( $this->permissionManager->userHasRight( $this->getUser(), 'suppressrevision' ) ) {
-				$fields[] = new OOUI\FieldLayout(
-					new OOUI\CheckboxInputWidget( [
+				$fields[] = new \OOUI\FieldLayout(
+					new \OOUI\CheckboxInputWidget( [
 						'name' => 'wpUnsuppress',
 						'inputId' => 'mw-undelete-unsuppress',
 						'value' => '1',
@@ -1083,8 +1104,8 @@ class SpecialUndelete extends SpecialPage {
 				$this->getContext()->getAuthority()
 			);
 			if ( $undelPage->canProbablyUndeleteAssociatedTalk()->isGood() ) {
-				$fields[] = new OOUI\FieldLayout(
-					new OOUI\CheckboxInputWidget( [
+				$fields[] = new \OOUI\FieldLayout(
+					new \OOUI\CheckboxInputWidget( [
 						'name' => 'undeletetalk',
 						'inputId' => 'mw-undelete-undeletetalk',
 						'selected' => false,
@@ -1096,11 +1117,11 @@ class SpecialUndelete extends SpecialPage {
 				);
 			}
 
-			$fields[] = new OOUI\FieldLayout(
-				new OOUI\Widget( [
-					'content' => new OOUI\HorizontalLayout( [
+			$fields[] = new \OOUI\FieldLayout(
+				new \OOUI\Widget( [
+					'content' => new \OOUI\HorizontalLayout( [
 						'items' => [
-							new OOUI\ButtonInputWidget( [
+							new \OOUI\ButtonInputWidget( [
 								'name' => 'restore',
 								'inputId' => 'mw-undelete-submit',
 								'value' => '1',
@@ -1108,7 +1129,7 @@ class SpecialUndelete extends SpecialPage {
 								'flags' => [ 'primary', 'progressive' ],
 								'type' => 'submit',
 							] ),
-							new OOUI\ButtonInputWidget( [
+							new \OOUI\ButtonInputWidget( [
 								'name' => 'invert',
 								'inputId' => 'mw-undelete-invert',
 								'value' => '1',
@@ -1119,7 +1140,7 @@ class SpecialUndelete extends SpecialPage {
 				] )
 			);
 
-			$fieldset = new OOUI\FieldsetLayout( [
+			$fieldset = new \OOUI\FieldsetLayout( [
 				'label' => $this->msg( 'undelete-fieldset-title' )->text(),
 				'id' => 'mw-undelete-table',
 				'items' => $fields,
@@ -1127,13 +1148,13 @@ class SpecialUndelete extends SpecialPage {
 
 			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable form is set, when used here
 			$form->appendContent(
-				new OOUI\PanelLayout( [
+				new \OOUI\PanelLayout( [
 					'expanded' => false,
 					'padded' => true,
 					'framed' => true,
 					'content' => $fieldset,
 				] ),
-				new OOUI\HtmlSnippet(
+				new \OOUI\HtmlSnippet(
 					Html::hidden( 'target', $this->mTarget ) .
 					Html::hidden( 'wpEditToken', $this->getUser()->getEditToken() )
 				)
@@ -1192,7 +1213,7 @@ class SpecialUndelete extends SpecialPage {
 			$history .= $misc;
 
 			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable form is set, when used here
-			$form->appendContent( new OOUI\HtmlSnippet( $history ) );
+			$form->appendContent( new \OOUI\HtmlSnippet( $history ) );
 			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable form is set, when used here
 			$out->addHTML( (string)$form );
 		} else {
@@ -1558,3 +1579,9 @@ class SpecialUndelete extends SpecialPage {
 		return 'pagetools';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialUndelete::class, 'SpecialUndelete' );

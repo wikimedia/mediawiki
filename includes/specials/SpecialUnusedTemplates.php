@@ -24,8 +24,14 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
+namespace MediaWiki\Specials;
+
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Title\Title;
+use QueryPage;
+use Skin;
+use SpecialPage;
+use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -131,3 +137,9 @@ class SpecialUnusedTemplates extends QueryPage {
 		return 'maintenance';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialUnusedTemplates::class, 'SpecialUnusedTemplates' );

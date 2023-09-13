@@ -21,9 +21,14 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Title\Title;
+use NamespaceInfo;
+use Skin;
+use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -114,3 +119,9 @@ class SpecialUncategorizedCategories extends SpecialUncategorizedPages {
 		return $this->getLinkRenderer()->makeKnownLink( $title, $text );
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialUncategorizedCategories::class, 'SpecialUncategorizedCategories' );

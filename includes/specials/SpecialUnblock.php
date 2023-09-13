@@ -21,6 +21,10 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use HtmlForm;
+use LogEventsList;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\UnblockUserFactory;
@@ -30,6 +34,8 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Watchlist\WatchlistManager;
+use SpecialPage;
+use TitleValue;
 use Wikimedia\IPUtils;
 
 /**
@@ -339,3 +345,9 @@ class SpecialUnblock extends SpecialPage {
 		return 'users';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialUnblock::class, 'SpecialUnblock' );

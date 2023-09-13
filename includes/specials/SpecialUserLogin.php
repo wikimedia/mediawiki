@@ -21,9 +21,15 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use LoginHelper;
+use LoginSignupSpecialPage;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use SpecialPage;
+use StatusValue;
 
 /**
  * Implements Special:UserLogin
@@ -170,3 +176,9 @@ class SpecialUserLogin extends LoginSignupSpecialPage {
 		] );
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialUserLogin::class, 'SpecialUserLogin' );

@@ -22,6 +22,17 @@
  * @ingroup Upload
  */
 
+namespace MediaWiki\Specials;
+
+use BitmapHandler;
+use ChangeTags;
+use Config;
+use ErrorPageError;
+use HTMLForm;
+use ImageGalleryBase;
+use LocalFile;
+use LocalRepo;
+use LogEventsList;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
@@ -31,6 +42,16 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
+use NamespaceInfo;
+use PermissionsError;
+use RepoGroup;
+use SpecialPage;
+use UnexpectedValueException;
+use UploadBase;
+use UploadForm;
+use UploadFromStash;
+use User;
+use UserBlockedError;
 
 /**
  * Form for handling uploads and special page.
@@ -860,3 +881,9 @@ class SpecialUpload extends SpecialPage {
 		return $bitmapHandler->autoRotateEnabled();
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialUpload::class, 'SpecialUpload' );

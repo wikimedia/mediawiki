@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Language\RawMessage;
+use MediaWiki\Specials\SpecialUncategorizedCategories;
 
 /**
  * Tests for Special:UncategorizedCategories

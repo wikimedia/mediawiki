@@ -21,8 +21,13 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Title\Title;
+use QueryPage;
+use Skin;
+use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -105,3 +110,9 @@ class SpecialUnusedCategories extends QueryPage {
 		$this->executeLBFromResultWrapper( $res );
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialUnusedCategories::class, 'SpecialUnusedCategories' );

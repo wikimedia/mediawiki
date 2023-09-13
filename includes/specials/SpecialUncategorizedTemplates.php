@@ -22,8 +22,11 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
+namespace MediaWiki\Specials;
+
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
+use NamespaceInfo;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -56,3 +59,9 @@ class SpecialUncategorizedTemplates extends SpecialUncategorizedPages {
 		$this->requestedNamespace = NS_TEMPLATE;
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialUncategorizedTemplates::class, 'SpecialUncategorizedTemplates' );

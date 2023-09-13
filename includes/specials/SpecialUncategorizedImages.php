@@ -22,6 +22,9 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
+namespace MediaWiki\Specials;
+
+use ImageQueryPage;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -86,3 +89,9 @@ class SpecialUncategorizedImages extends ImageQueryPage {
 		return 'maintenance';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialUncategorizedImages::class, 'SpecialUncategorizedImages' );

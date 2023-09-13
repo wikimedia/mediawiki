@@ -35,6 +35,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Specials\SpecialUpload;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
 

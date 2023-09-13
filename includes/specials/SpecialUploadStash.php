@@ -20,11 +20,27 @@
  * @file
  */
 
+namespace MediaWiki\Specials;
+
+use Exception;
+use File;
+use HTMLForm;
+use HttpError;
+use LocalRepo;
 use MediaWiki\Html\Html;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Status\Status;
 use MediaWiki\Utils\UrlUtils;
+use MWException;
+use MWExceptionHandler;
+use RepoGroup;
+use SpecialUploadStashTooLargeException;
+use UnlistedSpecialPage;
+use UnregisteredLocalFile;
+use UploadStash;
+use UploadStashBadPathException;
+use UploadStashFileNotFoundException;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
@@ -451,3 +467,9 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		}
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialUploadStash::class, 'SpecialUploadStash' );

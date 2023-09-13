@@ -142,6 +142,22 @@ use MediaWiki\Specials\SpecialSpecialPages;
 use MediaWiki\Specials\SpecialStatistics;
 use MediaWiki\Specials\SpecialTags;
 use MediaWiki\Specials\SpecialTrackingCategories;
+use MediaWiki\Specials\SpecialUnblock;
+use MediaWiki\Specials\SpecialUncategorizedCategories;
+use MediaWiki\Specials\SpecialUncategorizedImages;
+use MediaWiki\Specials\SpecialUncategorizedPages;
+use MediaWiki\Specials\SpecialUncategorizedTemplates;
+use MediaWiki\Specials\SpecialUndelete;
+use MediaWiki\Specials\SpecialUnlinkAccounts;
+use MediaWiki\Specials\SpecialUnlockdb;
+use MediaWiki\Specials\SpecialUnusedCategories;
+use MediaWiki\Specials\SpecialUnusedImages;
+use MediaWiki\Specials\SpecialUnusedTemplates;
+use MediaWiki\Specials\SpecialUnwatchedPages;
+use MediaWiki\Specials\SpecialUpload;
+use MediaWiki\Specials\SpecialUploadStash;
+use MediaWiki\Specials\SpecialUserLogin;
+use MediaWiki\Specials\SpecialUserLogout;
 use MediaWiki\Specials\SpecialUserRights;
 use MediaWiki\Specials\SpecialWantedFiles;
 use MediaWiki\Specials\SpecialWantedPages;
@@ -283,7 +299,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Uncategorizedcategories' => [
-			'class' => \SpecialUncategorizedCategories::class,
+			'class' => SpecialUncategorizedCategories::class,
 			'services' => [
 				// Same as for SpecialUncategorizedPages and SpecialUncategorizedTemplates
 				'NamespaceInfo',
@@ -293,13 +309,13 @@ class SpecialPageFactory {
 			]
 		],
 		'Uncategorizedimages' => [
-			'class' => \SpecialUncategorizedImages::class,
+			'class' => SpecialUncategorizedImages::class,
 			'services' => [
 				'DBLoadBalancerFactory',
 			]
 		],
 		'Uncategorizedpages' => [
-			'class' => \SpecialUncategorizedPages::class,
+			'class' => SpecialUncategorizedPages::class,
 			'services' => [
 				// Same as for SpecialUncategorizedCategories and SpecialUncategorizedTemplates
 				'NamespaceInfo',
@@ -309,7 +325,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Uncategorizedtemplates' => [
-			'class' => \SpecialUncategorizedTemplates::class,
+			'class' => SpecialUncategorizedTemplates::class,
 			'services' => [
 				// Same as for SpecialUncategorizedCategories and SpecialUncategorizedPages
 				'NamespaceInfo',
@@ -319,27 +335,27 @@ class SpecialPageFactory {
 			]
 		],
 		'Unusedcategories' => [
-			'class' => \SpecialUnusedCategories::class,
+			'class' => SpecialUnusedCategories::class,
 			'services' => [
 				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
 			]
 		],
 		'Unusedimages' => [
-			'class' => \SpecialUnusedImages::class,
+			'class' => SpecialUnusedImages::class,
 			'services' => [
 				'DBLoadBalancerFactory',
 			]
 		],
 		'Unusedtemplates' => [
-			'class' => \SpecialUnusedTemplates::class,
+			'class' => SpecialUnusedTemplates::class,
 			'services' => [
 				'DBLoadBalancerFactory',
 				'LinksMigration',
 			]
 		],
 		'Unwatchedpages' => [
-			'class' => \SpecialUnwatchedPages::class,
+			'class' => SpecialUnwatchedPages::class,
 			'services' => [
 				'LinkBatchFactory',
 				'DBLoadBalancerFactory',
@@ -426,13 +442,13 @@ class SpecialPageFactory {
 
 		// Authentication
 		'Userlogin' => [
-			'class' => \SpecialUserLogin::class,
+			'class' => SpecialUserLogin::class,
 			'services' => [
 				'AuthManager',
 			]
 		],
 		'Userlogout' => [
-			'class' => \SpecialUserLogout::class,
+			'class' => SpecialUserLogout::class,
 		],
 		'CreateAccount' => [
 			'class' => SpecialCreateAccount::class,
@@ -447,7 +463,7 @@ class SpecialPageFactory {
 			]
 		],
 		'UnlinkAccounts' => [
-			'class' => \SpecialUnlinkAccounts::class,
+			'class' => SpecialUnlinkAccounts::class,
 			'services' => [
 				'AuthManager',
 			]
@@ -489,7 +505,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Unblock' => [
-			'class' => \SpecialUnblock::class,
+			'class' => SpecialUnblock::class,
 			'services' => [
 				'UnblockUserFactory',
 				'BlockUtils',
@@ -754,7 +770,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Upload' => [
-			'class' => \SpecialUpload::class,
+			'class' => SpecialUpload::class,
 			'services' => [
 				'RepoGroup',
 				'UserOptionsLookup',
@@ -762,7 +778,7 @@ class SpecialPageFactory {
 			]
 		],
 		'UploadStash' => [
-			'class' => \SpecialUploadStash::class,
+			'class' => SpecialUploadStash::class,
 			'services' => [
 				'RepoGroup',
 				'HttpRequestFactory',
@@ -808,7 +824,7 @@ class SpecialPageFactory {
 			'class' => SpecialLockdb::class,
 		],
 		'Unlockdb' => [
-			'class' => \SpecialUnlockdb::class,
+			'class' => SpecialUnlockdb::class,
 		],
 
 		// Redirecting special pages
@@ -934,7 +950,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Undelete' => [
-			'class' => \SpecialUndelete::class,
+			'class' => SpecialUndelete::class,
 			'services' => [
 				'PermissionManager',
 				'RevisionStore',

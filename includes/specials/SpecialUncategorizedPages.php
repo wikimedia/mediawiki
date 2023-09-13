@@ -21,8 +21,12 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
+use NamespaceInfo;
+use PageQueryPage;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -111,3 +115,9 @@ class SpecialUncategorizedPages extends PageQueryPage {
 		return 'maintenance';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialUncategorizedPages::class, 'SpecialUncategorizedPages' );

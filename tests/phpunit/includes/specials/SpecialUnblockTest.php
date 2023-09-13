@@ -3,6 +3,8 @@
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Specials\SpecialUnblock;
+use MediaWiki\Title\Title;
 use Wikimedia\TestingAccessWrapper;
 
 /**
