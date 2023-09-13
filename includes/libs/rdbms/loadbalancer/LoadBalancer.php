@@ -68,8 +68,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	private $serverInfo;
 	/** @var array[] Map of (group => server index => weight) */
 	private $groupLoads;
-	/** @var array The LoadMonitor configuration */
-	private $loadMonitorConfig;
 	/** @var string|null Default query group to use with getConnection() */
 	private $defaultGroup;
 
@@ -188,9 +186,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			$this->readOnlyReason = $params['readOnlyReason'];
 		}
 
-		$this->loadMonitorConfig = $params['loadMonitor'] ?? [ 'class' => 'LoadMonitorNull' ];
-		$this->loadMonitorConfig += [ 'lagWarnThreshold' => self::MAX_LAG_DEFAULT ];
-
 		$this->srvCache = $params['srvCache'] ?? new EmptyBagOStuff();
 		$this->wanCache = $params['wanCache'] ?? WANObjectCache::newEmpty();
 
@@ -205,6 +200,22 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		$this->clusterName = $params['clusterName'] ?? null;
 		$this->trxProfiler = $params['trxProfiler'] ?? new TransactionProfiler();
 		$this->statsd = $params['statsdDataFactory'] ?? new NullStatsdDataFactory();
+
+		// Set up LoadMonitor
+		$loadMonitorConfig = $params['loadMonitor'] ?? [ 'class' => 'LoadMonitorNull' ];
+		$loadMonitorConfig += [ 'lagWarnThreshold' => self::MAX_LAG_DEFAULT ];
+		$compat = [
+			'LoadMonitor' => LoadMonitor::class,
+			'LoadMonitorNull' => LoadMonitorNull::class
+		];
+		$class = $loadMonitorConfig['class'];
+		if ( isset( $compat[$class] ) ) {
+			$class = $compat[$class];
+		}
+		$this->loadMonitor = new $class(
+			$this, $this->srvCache, $this->wanCache, $loadMonitorConfig );
+		$this->loadMonitor->setLogger( $this->logger );
+		$this->loadMonitor->setStatsdDataFactory( $this->statsd );
 
 		if ( isset( $params['chronologyProtector'] ) ) {
 			$this->chronologyProtector = $params['chronologyProtector'];
@@ -368,32 +379,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	/**
-	 * Get a LoadMonitor instance
-	 *
-	 * @return ILoadMonitor
-	 */
-	private function getLoadMonitor() {
-		if ( !isset( $this->loadMonitor ) ) {
-			$compat = [
-				'LoadMonitor' => LoadMonitor::class,
-				'LoadMonitorNull' => LoadMonitorNull::class
-			];
-
-			$class = $this->loadMonitorConfig['class'];
-			if ( isset( $compat[$class] ) ) {
-				$class = $compat[$class];
-			}
-
-			$this->loadMonitor = new $class(
-				$this, $this->srvCache, $this->wanCache, $this->loadMonitorConfig );
-			$this->loadMonitor->setLogger( $this->logger );
-			$this->loadMonitor->setStatsdDataFactory( $this->statsd );
-		}
-
-		return $this->loadMonitor;
-	}
-
-	/**
 	 * @param array $loads
 	 * @param int|float $maxLag Restrict the maximum allowed lag to this many seconds, or INF for no max
 	 * @return int|string|false
@@ -467,7 +452,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 		// Scale the configured load ratios according to each server's load/state.
 		// This can sometimes trigger server connections due to cache regeneration.
-		$this->getLoadMonitor()->scaleLoads( $loads );
+		$this->loadMonitor->scaleLoads( $loads );
 
 		// Pick a server, accounting for weight, load, lag, and session consistency
 		$i = $this->pickReaderIndex( $loads );
@@ -1888,7 +1873,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			return [ ServerInfo::WRITER_INDEX => 0 ]; // no replication = no lag
 		}
 		[ $indexesWithLag, $knownLagTimes ] = $this->serverInfo->getLagTimes();
-		return $this->getLoadMonitor()->getLagTimes( $indexesWithLag ) + $knownLagTimes;
+		return $this->loadMonitor->getLagTimes( $indexesWithLag ) + $knownLagTimes;
 	}
 
 	public function waitForPrimaryPos( IDatabase $conn ) {
