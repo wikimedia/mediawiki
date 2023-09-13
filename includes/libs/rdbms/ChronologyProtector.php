@@ -169,24 +169,17 @@ class ChronologyProtector implements LoggerAwareInterface {
 	private $wallClockOverride;
 
 	/**
-	 * Whether we are assuming a semi-deterministic clientId.
+	 * Whether a clientId is new during this request.
 	 *
-	 * This is set to true on the majority of requests where a clientId wasn't set
-	 * in a cookie or query param, i.e. when there were no recent writes in this
-	 * browsing session. This is a temporary flag to determine whether and why
-	 * a client might receive a clientId but then not send it back to the server
-	 * on subsequent requests (i.e. due to cross-domain browser restrictions that
-	 * we may have not known about as part of Multi-DC prep in T91820, or due to
-	 * bot frameworks that may be ignoring cookies).
-	 *
-	 * We then use this flag to log a warning in lazyStartup() if there were in
-	 * fact stored positions found under the assumed clientId.
+	 * If the clientId wasn't passed by the incoming request, lazyStartup()
+	 * can skip fetching position data, and thus LoadBalancer can skip
+	 * its IDatabase::primaryPosWait() call.
 	 *
 	 * See also: <https://phabricator.wikimedia.org/T314434>
 	 *
 	 * @var bool
 	 */
-	private $hasImplicitClientId = false;
+	private $hasNewClientId = false;
 
 	/** Seconds to store position write index cookies (safely less than POSITION_STORE_TTL) */
 	public const POSITION_COOKIE_TTL = 10;
@@ -241,15 +234,10 @@ class ChronologyProtector implements LoggerAwareInterface {
 			$this->logger->debug( 'Cannot use ChronologyProtector with EmptyBagOStuff' );
 		}
 
-		$this->logger->debug(
-			__METHOD__ . ': request info ' .
-			json_encode( $this->requestInfo, JSON_PRETTY_PRINT )
-		);
-
 		if ( isset( $client['clientId'] ) ) {
 			$this->clientId = $client['clientId'];
 		} else {
-			$this->hasImplicitClientId = true;
+			$this->hasNewClientId = true;
 			$this->clientId = ( $this->secret != '' )
 				? hash_hmac( 'md5', $client['ip'] . "\n" . $client['agent'], $this->secret )
 				: md5( $client['ip'] . "\n" . $client['agent'] );
@@ -318,9 +306,9 @@ class ChronologyProtector implements LoggerAwareInterface {
 
 		$pos = $this->getStartupSessionPositions()[$primaryName] ?? null;
 		if ( $pos instanceof DBPrimaryPos ) {
-			$this->logger->debug( __METHOD__ . ": $cluster ($primaryName) position is '$pos'" );
+			$this->logger->debug( "ChronologyProtector will wait for '$pos' on $cluster ($primaryName)'" );
 		} else {
-			$this->logger->debug( __METHOD__ . ": $cluster ($primaryName) has no position" );
+			$this->logger->debug( "ChronologyProtector skips wait on $cluster ($primaryName)" );
 		}
 
 		return $pos;
@@ -381,7 +369,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 		}
 
 		if ( !$this->shutdownTimestampsByCluster ) {
-			$this->logger->debug( __METHOD__ . ": no primary positions/timestamps to save" );
+			$this->logger->debug( __METHOD__ . ": no primary positions data to save" );
 
 			return [];
 		}
@@ -408,18 +396,13 @@ class ChronologyProtector implements LoggerAwareInterface {
 		$clusterList = implode( ', ', array_keys( $this->shutdownTimestampsByCluster ) );
 
 		if ( $ok ) {
+			$this->logger->debug( "ChronologyProtector saved position data for $clusterList" );
 			$bouncedPositions = [];
-			$this->logger->debug(
-				__METHOD__ . ": saved primary positions/timestamp for DB cluster(s) $clusterList"
-			);
-
 		} else {
-			$clientPosIndex = null; // nothing saved
+			// Maybe position store is down
+			$this->logger->warning( "ChronologyProtector failed to save position data for $clusterList" );
+			$clientPosIndex = null;
 			$bouncedPositions = $this->shutdownPositionsByPrimary;
-			// Raced out too many times or stash is down
-			$this->logger->warning(
-				__METHOD__ . ": failed to save primary positions for DB cluster(s) $clusterList"
-			);
 		}
 
 		return $bouncedPositions;
@@ -493,7 +476,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 
 		// There wasn't a client id in the cookie so we built one
 		// There is no point in looking it up.
-		if ( $this->hasImplicitClientId ) {
+		if ( $this->hasNewClientId ) {
 			$this->startupPositionsByPrimary = [];
 			$this->startupTimestampsByCluster = [];
 			return;
