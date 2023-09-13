@@ -988,4 +988,13 @@ class ApiParseTest extends ApiTestCase {
 		$this->assertArrayHasKey( 'wikitext', $res[0]['parse'] );
 	}
 
+	public function testShouldCastNumericImageLinksToString(): void {
+		$res = $this->doApiRequest( [
+			'action' => 'parse',
+			'title' => __CLASS__,
+			'prop' => 'images',
+			'text' => '[[File:1]]',
+		] );
+		$this->assertSame( [ '1' ], $res[0]['parse']['images'] );
+	}
 }

@@ -582,7 +582,12 @@ class ApiParse extends ApiBase {
 			$result_array['templates'] = $this->formatLinks( $p_result->getTemplates() );
 		}
 		if ( isset( $prop['images'] ) ) {
-			$result_array['images'] = array_keys( $p_result->getImages() );
+			// Cast image links to string since PHP coerces numeric string array keys to numbers
+			// (T346265).
+			$result_array['images'] = array_map(
+				fn ( $link ) => (string)$link,
+				array_keys( $p_result->getImages() )
+			);
 		}
 		if ( isset( $prop['externallinks'] ) ) {
 			$result_array['externallinks'] = array_keys( $p_result->getExternalLinks() );
