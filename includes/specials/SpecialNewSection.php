@@ -1,6 +1,11 @@
 <?php
 
+namespace MediaWiki\Specials;
+
+use HTMLForm;
 use MediaWiki\Title\Title;
+use RedirectSpecialPage;
+use SearchEngineFactory;
 
 /**
  * Redirect from Special:NewSection/$1 to index.php?title=$1&action=edit&section=new.
@@ -103,3 +108,9 @@ class SpecialNewSection extends RedirectSpecialPage {
 		return 'redirects';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialNewSection::class, 'SpecialNewSection' );

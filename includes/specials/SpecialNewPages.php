@@ -21,6 +21,12 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use ChangeTags;
+use HtmlArmor;
+use HTMLForm;
+use IncludableSpecialPage;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentFormatter\CommentFormatter;
@@ -39,13 +45,17 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserOptionsLookup;
+use NamespaceInfo;
+use NewPagesPager;
+use Sanitizer;
+use stdClass;
 
 /**
  * A special page that list newly created pages
  *
  * @ingroup SpecialPage
  */
-class SpecialNewpages extends IncludableSpecialPage {
+class SpecialNewPages extends IncludableSpecialPage {
 	/**
 	 * @var FormOptions
 	 */
@@ -650,3 +660,9 @@ class SpecialNewpages extends IncludableSpecialPage {
 		return 60 * 5;
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialNewPages::class, 'SpecialNewpages' );

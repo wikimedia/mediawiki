@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use SpecialNewpages;
+use MediaWiki\Specials\SpecialNewPages;
 use stdClass;
 
 /**

@@ -21,11 +21,20 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use DerivativeContext;
+use HTMLForm;
+use HTMLUserTextField;
+use IContextSource;
+use IncludableSpecialPage;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Request\DerivativeRequest;
+use MimeAnalyzer;
+use NewFilesPager;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 class SpecialNewFiles extends IncludableSpecialPage {
@@ -245,3 +254,9 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		}
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialNewFiles::class, 'SpecialNewFiles' );

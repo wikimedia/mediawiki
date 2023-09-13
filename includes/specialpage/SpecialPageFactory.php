@@ -107,6 +107,9 @@ use MediaWiki\Specials\SpecialMostRevisions;
 use MediaWiki\Specials\SpecialMovePage;
 use MediaWiki\Specials\SpecialMute;
 use MediaWiki\Specials\SpecialMyLanguage;
+use MediaWiki\Specials\SpecialNewFiles;
+use MediaWiki\Specials\SpecialNewPages;
+use MediaWiki\Specials\SpecialNewSection;
 use MediaWiki\Specials\SpecialUserRights;
 use MediaWiki\Specials\SpecialWantedFiles;
 use MediaWiki\Specials\SpecialWantedPages;
@@ -607,7 +610,7 @@ class SpecialPageFactory {
 
 		// Recent changes and logs
 		'Newimages' => [
-			'class' => \SpecialNewFiles::class,
+			'class' => SpecialNewFiles::class,
 			'services' => [
 				'MimeAnalyzer',
 				'GroupPermissionsLookup',
@@ -635,7 +638,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Newpages' => [
-			'class' => \SpecialNewpages::class,
+			'class' => SpecialNewPages::class,
 			'services' => [
 				'LinkBatchFactory',
 				'CommentStore',
@@ -1077,7 +1080,7 @@ class SpecialPageFactory {
 			'class' => SpecialAllMyUploads::class,
 		],
 		'NewSection' => [
-			'class' => \SpecialNewSection::class,
+			'class' => SpecialNewSection::class,
 			'services' => [
 				'SearchEngineFactory',
 			]

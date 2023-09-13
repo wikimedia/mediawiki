@@ -266,6 +266,7 @@ class SpecialMute extends FormSpecialPage {
 		return MultiUsernameFilter::splitIds( $muteList );
 	}
 }
+
 /**
  * Retain the old class name for backwards compatibility.
  * @deprecated since 1.41

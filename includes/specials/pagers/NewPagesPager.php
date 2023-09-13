@@ -25,10 +25,11 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Permissions\GroupPermissionsLookup;
+use MediaWiki\Specials\SpecialNewPages;
 use MediaWiki\Title\Title;
 
 /**
- * @internal For use by SpecialNewpages
+ * @internal For use by SpecialNewPages
  * @ingroup Pager
  */
 class NewPagesPager extends ReverseChronologicalPager {
@@ -39,7 +40,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 	protected $opts;
 
 	/**
-	 * @var SpecialNewpages
+	 * @var SpecialNewPages
 	 */
 	protected $mForm;
 
@@ -50,7 +51,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 	private ChangeTagsStore $changeTagsStore;
 
 	/**
-	 * @param SpecialNewpages $form
+	 * @param SpecialNewPages $form
 	 * @param GroupPermissionsLookup $groupPermissionsLookup
 	 * @param HookContainer $hookContainer
 	 * @param LinkBatchFactory $linkBatchFactory
@@ -58,7 +59,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 	 * @param FormOptions $opts
 	 */
 	public function __construct(
-		SpecialNewpages $form,
+		SpecialNewPages $form,
 		GroupPermissionsLookup $groupPermissionsLookup,
 		HookContainer $hookContainer,
 		LinkBatchFactory $linkBatchFactory,
