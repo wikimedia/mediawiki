@@ -10,7 +10,13 @@
 	"paramvalidator-help-default": "기본값: $1",
 	"paramvalidator-help-default-empty": "기본값: (빈 값)",
 	"paramvalidator-help-deprecated": "이 변수는 구식입니다.",
+	"paramvalidator-help-multi-max": "값의 최대 수는 {{PLURAL:$1|$1}}(더 높은 제한이 허용된 클라이언트의 경우 {{PLURAL:$2|$2}})입니다.",
 	"paramvalidator-help-multi-max-simple": "값의 최대 수는 {{PLURAL:$1|$1}}입니다.",
 	"paramvalidator-help-multi-all": "모든 값을 지정하려면, <kbd>$1</kbd>를 사용하십시오.",
-	"paramvalidator-help-required": "이 변수는 필수입니다."
+	"paramvalidator-help-required": "이 변수는 필수입니다.",
+	"paramvalidator-help-type-integer": "유형: {{PLURAL:$1|1=정수|2=정수 목록}}",
+	"paramvalidator-help-type-limit": "유형: 정수 또는 \"max\"",
+	"paramvalidator-help-type-number-minmax": "{{PLURAL:$1|1=값|2=값들}}은 $2와 $3 사이여야 합니다.",
+	"paramvalidator-help-type-number-min": "{{PLURAL:$1|1=값|2=값들}}은 $2 이상이어야 합니다.",
+	"paramvalidator-help-type-upload": "여러 부분/폼 데이터를 사용한 파일 업로드로 게시되어야 합니다."
 }
