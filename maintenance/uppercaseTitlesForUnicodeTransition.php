@@ -287,12 +287,11 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 		[ $base ] = explode( '/', $title, 2 );
 		if ( !isset( $this->seenUsers[$base] ) ) {
 			// Can't use User directly because it might uppercase the name
-			$this->seenUsers[$base] = (bool)$db->selectField(
-				'user',
-				'user_id',
-				[ 'user_name' => strtr( $base, '_', ' ' ) ],
-				__METHOD__
-			);
+			$this->seenUsers[$base] = (bool)$db->newSelectQueryBuilder()
+				->select( 'user_id' )
+				->from( 'user' )
+				->where( [ 'user_name' => strtr( $base, '_', ' ' ) ] )
+				->caller( __METHOD__ )->fetchField();
 		}
 		return $this->seenUsers[$base];
 	}
@@ -473,14 +472,12 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 	 * @return string|null Deletion reason, or null if it shouldn't be deleted
 	 */
 	private function shouldDelete( IReadableDatabase $db, Title $oldTitle, Title $newTitle ) {
-		$oldRow = $db->selectRow(
-			[ 'page', 'redirect' ],
-			[ 'ns' => 'rd_namespace', 'title' => 'rd_title' ],
-			[ 'page_namespace' => $oldTitle->getNamespace(), 'page_title' => $oldTitle->getDBkey() ],
-			__METHOD__,
-			[],
-			[ 'redirect' => [ 'JOIN', 'rd_from = page_id' ] ]
-		);
+		$oldRow = $db->newSelectQueryBuilder()
+			->select( [ 'ns' => 'rd_namespace', 'title' => 'rd_title' ] )
+			->from( 'page' )
+			->join( 'redirect', null, 'rd_from = page_id' )
+			->where( [ 'page_namespace' => $oldTitle->getNamespace(), 'page_title' => $oldTitle->getDBkey() ] )
+			->caller( __METHOD__ )->fetchRow();
 		if ( !$oldRow ) {
 			// Not a redirect
 			return null;
@@ -492,14 +489,12 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 			return $this->reason . ", and found that [[{$oldTitle->getPrefixedText()}]] is "
 				. "already a redirect to [[{$newTitle->getPrefixedText()}]]";
 		} else {
-			$newRow = $db->selectRow(
-				[ 'page', 'redirect' ],
-				[ 'ns' => 'rd_namespace', 'title' => 'rd_title' ],
-				[ 'page_namespace' => $newTitle->getNamespace(), 'page_title' => $newTitle->getDBkey() ],
-				__METHOD__,
-				[],
-				[ 'redirect' => [ 'JOIN', 'rd_from = page_id' ] ]
-			);
+			$newRow = $db->newSelectQueryBuilder()
+				->select( [ 'ns' => 'rd_namespace', 'title' => 'rd_title' ] )
+				->from( 'page' )
+				->join( 'redirect', null, 'rd_from = page_id' )
+				->where( [ 'page_namespace' => $newTitle->getNamespace(), 'page_title' => $newTitle->getDBkey() ] )
+				->caller( __METHOD__ )->fetchRow();
 			if ( $newRow && $oldRow->ns === $newRow->ns && $oldRow->title === $newRow->title ) {
 				$nt = Title::makeTitle( $newRow->ns, $newRow->title );
 				return $this->reason . ", and found that [[{$oldTitle->getPrefixedText()}]] and "
@@ -610,13 +605,13 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 			foreach ( $likes as $like ) {
 				$cont = [];
 				do {
-					$res = $db->select(
-						$table,
-						$selectFields,
-						[ "$nsField = $ns", $like, $db->buildComparison( '>', $cont ) ],
-						__METHOD__,
-						[ 'ORDER BY' => array_merge( [ $titleField ], $pkFields ), 'LIMIT' => $batchSize ]
-					);
+					$res = $db->newSelectQueryBuilder()
+						->select( $selectFields )
+						->from( $table )
+						->where( [ "$nsField = $ns", $like, $db->buildComparison( '>', $cont ) ] )
+						->orderBy( array_merge( [ $titleField ], $pkFields ) )
+						->limit( $batchSize )
+						->caller( __METHOD__ )->fetchResultSet();
 					$cont = [];
 					foreach ( $res as $row ) {
 						$cont = [];
@@ -676,13 +671,14 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 		foreach ( $this->getLikeBatches( $db, 'user_name' ) as $like ) {
 			$cont = [];
 			while ( true ) {
-				$rows = $db->select(
-					'user',
-					[ 'user_id', 'user_name' ],
-					array_merge( [ $like ], $cont ),
-					__METHOD__,
-					[ 'ORDER BY' => 'user_name', 'LIMIT' => $batchSize ]
-				);
+				$rows = $db->newSelectQueryBuilder()
+					->select( [ 'user_id', 'user_name' ] )
+					->from( 'user' )
+					->where( $like )
+					->andWhere( $cont )
+					->orderBy( 'user_name' )
+					->limit( $batchSize )
+					->caller( __METHOD__ )->fetchResultSet();
 
 				if ( !$rows->numRows() ) {
 					break;
