@@ -1352,12 +1352,6 @@ class EditPage implements IEditObject {
 			);
 		}
 
-		/**
-		 * @todo Check if the desired model is allowed in this namespace, and if
-		 *   a transition from the page's current model to the new model is
-		 *   allowed.
-		 */
-
 		// Allow extensions to modify form data
 		$this->getHookRunner()->onEditPage__importFormData( $this, $request );
 	}
