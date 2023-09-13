@@ -80,9 +80,10 @@ class PreloadedContentBuilder {
 			$content = $this->getDefaultContent( $page );
 		}
 		if ( $content === null ) {
-			// Custom preload text for new sections
-			$defaultPreload = $section === 'new' ? 'MediaWiki:addsection-preload' : '';
-			$preload = $preload ?: $defaultPreload;
+			if ( ( $preload === null || $preload === '' ) && $section === 'new' ) {
+				// Custom preload text for new sections
+				$preload = 'MediaWiki:addsection-preload';
+			}
 			$content = $this->getPreloadedContentFromParams( $page, $performer, $preload, $preloadParams );
 		}
 		$title = Title::newFromPageIdentity( $page );
@@ -127,14 +128,14 @@ class PreloadedContentBuilder {
 	 *
 	 * @param ProperPageIdentity $contextPage
 	 * @param Authority $performer
-	 * @param string $preload Representing the title to preload from.
+	 * @param string|null $preload Representing the title to preload from.
 	 * @param string[] $preloadParams Parameters to use (interface-message style) in the preloaded text
 	 * @return Content
 	 */
 	private function getPreloadedContentFromParams(
 		ProperPageIdentity $contextPage,
 		Authority $performer,
-		string $preload,
+		?string $preload,
 		array $preloadParams
 	): Content {
 		$contextTitle = Title::newFromPageIdentity( $contextPage );
@@ -142,7 +143,7 @@ class PreloadedContentBuilder {
 		$handler = $this->contentHandlerFactory->getContentHandler( $contentModel );
 
 		// T297725: Don't trick users into making edits to e.g. .js subpages
-		if ( !$handler->supportsPreloadContent() || $preload === '' ) {
+		if ( !$handler->supportsPreloadContent() || $preload === null || $preload === '' ) {
 			return $handler->makeEmptyContent();
 		}
 
