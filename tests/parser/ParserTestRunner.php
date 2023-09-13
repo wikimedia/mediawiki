@@ -2300,6 +2300,9 @@ class ParserTestRunner {
 			@$wrapper->reloadTables();
 		};
 
+		// Reset OOUI auto-increment IDs (T345515)
+		OOUI\Tag::resetElementId();
+
 		$teardown[] = $this->executeSetupSnippets( $setup );
 
 		return $this->createTeardownObject( $teardown, $nextTeardown );
