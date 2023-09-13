@@ -1559,7 +1559,7 @@
 	"rcfilters-filter-user-experience-level-newcomer-label": "Новодојденци",
 	"rcfilters-filter-user-experience-level-newcomer-description": "Зачленети уредници со помалку од 10 уредувања и 4 дена активност.",
 	"rcfilters-filter-user-experience-level-learner-label": "Ученици",
-	"rcfilters-filter-user-experience-level-learner-description": "Зачленети уредници чие искуство е некаде мешу „новодојденци“ и „искусни корисници“.",
+	"rcfilters-filter-user-experience-level-learner-description": "Зачленети уредници чие искуство е некаде меѓу „новодојденци“ и „искусни корисници“.",
 	"rcfilters-filter-user-experience-level-experienced-label": "Искусни корисници",
 	"rcfilters-filter-user-experience-level-experienced-description": "Зачленети уредници со повеќе од 500 уредувања и 30 дена активност.",
 	"rcfilters-filtergroup-automated": "Автоматизирани придонеси",

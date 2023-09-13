@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Albinomamba",
+			"André Costa (WMSE)",
 			"Bengtsson96",
 			"Boom",
 			"Jenniesarina",
@@ -27,7 +28,7 @@
 	"apihelp-main-param-format": "Formatet för utdata.",
 	"apihelp-main-param-smaxage": "Ange headervärdet <code>s-maxage</code> till så här många sekunder. Fel cachelagras aldrig.",
 	"apihelp-main-param-maxage": "Ange headervärdet <code>max-age</code> till så här många sekunder. Fel cachelagras aldrig.",
-	"apihelp-main-param-assert": "Bekräfta att användaren är inloggad om satt till <kbd>user</kbd>, eller har bot-användarrättigheter om satt till <kbd>bot</kbd>.",
+	"apihelp-main-param-assert": "Bekräfta att användaren är inloggad om satt till <kbd>user</kbd>, <em>inte</em> inloggad om satt till <kbd>anon</kbd>,eller har bot-användarrättigheten om satt till <kbd>bot</kbd>.",
 	"apihelp-main-param-assertuser": "Verifiera att den nuvarande användaren är den namngivne användaren.",
 	"apihelp-main-param-requestid": "Alla värde som anges här kommer att inkluderas i svaret. Kan användas för att särskilja förfrågningar.",
 	"apihelp-main-param-servedby": "Inkludera det värdnamn som besvarade förfrågan i resultatet.",

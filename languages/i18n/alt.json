@@ -16,7 +16,7 @@
 			"아라"
 		]
 	},
-	"tog-underline": "Тайантыны чийе тартары:",
+	"tog-underline": "Тайантыларды чийе тартары:",
 	"tog-hideminor": "Калганчы солынтыларда оок тӱзедӱлерди јажырар",
 	"tog-hidepatrolled": "Калганчы солынтылырда кӧрӱп салганын јажырар",
 	"tog-newpageshidepatrolled": "Јаҥы бӱктердиҥ тизиминеҥ ширтеп салганын јажырар",
@@ -127,7 +127,7 @@
 	"hidden-categories": "{{PLURAL:$1|Јажырган категория|Јажырган категориялар}}",
 	"hidden-category-category": "Јажырган категориялар",
 	"category-subcat-count": "{{PLURAL:$2|Бу категорияда јаҥыс мындый субкатегория бар.|Бу категорияныҥ ичинде {{PLURAL:$1|$1 субкатегория}} кӧргӱзилген, бастыра јаба $2.}}",
-	"category-subcat-count-limited": "Бу категорияныҥ ичинде {{PLURAL:$1|$1 алды категория}} бар.",
+	"category-subcat-count-limited": "Бу категорияныҥ ичинде мындый {{PLURAL:$1|$1 кош категория}} бар.",
 	"category-article-count": "{{PLURAL:$2|Бу категорияда јаҥыс мындый бӱк бар.|Бу категорияныҥ ичинде {{PLURAL:$1|бир бӱк|$1 бӱк}} бар, бастыра јаба $2.}}",
 	"category-article-count-limited": "Бу категорияда {{PLURAL:$1|бӱк}} бар.",
 	"category-file-count": "{{PLURAL:$2|Бу категорияныҥ ичинде јаҥыс файл.|Бу категорияда {{PLURAL:$1|файл}}, $2 бастыра јаба.}}",
@@ -996,7 +996,7 @@
 	"searchprofile-everything-tooltip": "Бастыра бӱктердеҥ бедрер (ол тоодо шӱӱжӱниҥ бӱктеринде)",
 	"searchprofile-advanced-tooltip": "Уулап салган аттардыҥ телкеминеҥ бедрер",
 	"search-result-size": "$1 ({{PLURAL:$2|1 сӧс}})",
-	"search-result-category-size": "{{PLURAL:$1|1 кирет}} ({{PLURAL:$2|1 алды категория}}, {{PLURAL:$3|1 файл}})",
+	"search-result-category-size": "{{PLURAL:$1|1 кирет}} ({{PLURAL:$2|1 кош категория}}, {{PLURAL:$3|1 файл}})",
 	"search-redirect": "(Аткарылган мынаҥ $1)",
 	"search-section": "(бӧлӱк $1)",
 	"search-category": "(категория $1)",

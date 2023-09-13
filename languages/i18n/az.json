@@ -2930,6 +2930,7 @@
 	"passwordpolicies-group": "Qrup",
 	"passwordpolicies-policies": "Siyasət",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "Şifrə, standart parolların müəyyən bir siyahısına uyğun gəlmir",
+	"userlogout-continue": "Çıxmaq istədiyinizdən əminsiniz?",
 	"paramvalidator-help-type-user-subtype-name": "istifadəçi adı:",
 	"changeslist-nocomment": "Redaktənin izahı yoxdur",
 	"skin-view-create-local": "Lokal izah əlavə et",
