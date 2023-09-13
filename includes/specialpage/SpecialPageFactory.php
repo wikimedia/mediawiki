@@ -140,6 +140,8 @@ use MediaWiki\Specials\SpecialSearch;
 use MediaWiki\Specials\SpecialShortPages;
 use MediaWiki\Specials\SpecialSpecialPages;
 use MediaWiki\Specials\SpecialStatistics;
+use MediaWiki\Specials\SpecialTags;
+use MediaWiki\Specials\SpecialTrackingCategories;
 use MediaWiki\Specials\SpecialUserRights;
 use MediaWiki\Specials\SpecialWantedFiles;
 use MediaWiki\Specials\SpecialWantedPages;
@@ -415,7 +417,7 @@ class SpecialPageFactory {
 			]
 		],
 		'TrackingCategories' => [
-			'class' => \SpecialTrackingCategories::class,
+			'class' => SpecialTrackingCategories::class,
 			'services' => [
 				'LinkBatchFactory',
 				'TrackingCategories',
@@ -701,7 +703,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Tags' => [
-			'class' => \SpecialTags::class,
+			'class' => SpecialTags::class,
 			'services' => [
 				'ChangeTagsStore',
 			]

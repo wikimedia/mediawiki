@@ -3,7 +3,7 @@
 namespace MediaWiki\Hook;
 
 use MediaWiki\Linker\LinkTarget;
-use SpecialTrackingCategories;
+use MediaWiki\Specials\SpecialTrackingCategories;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 /**

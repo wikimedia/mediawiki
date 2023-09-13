@@ -21,9 +21,12 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Html\Html;
+use SpecialPage;
 
 /**
  * A special page that displays list of tracking categories
@@ -150,3 +153,9 @@ class SpecialTrackingCategories extends SpecialPage {
 		return 'pages';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialTrackingCategories::class, 'SpecialTrackingCategories' );

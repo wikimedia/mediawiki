@@ -21,9 +21,16 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use ChangeTags;
+use HTMLForm;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\MainConfigNames;
+use PermissionsError;
+use SpecialPage;
+use Xml;
 
 /**
  * A special page that lists tags for edits
@@ -492,3 +499,9 @@ class SpecialTags extends SpecialPage {
 		return 'changes';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialTags::class, 'SpecialTags' );
