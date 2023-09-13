@@ -393,22 +393,16 @@ abstract class ParsoidHandler extends Handler {
 	/**
 	 * @param array $attribs
 	 * @param string $html
-	 * @param PageConfig|PageIdentity $page
+	 * @param PageIdentity $page
 	 *
 	 * @return HtmlInputTransformHelper
 	 */
 	protected function getHtmlInputTransformHelper(
 		array $attribs,
 		string $html,
-		$page
+		PageIdentity $page
 	): HtmlInputTransformHelper {
 		$services = MediaWikiServices::getInstance();
-
-		// Support PageConfig for backwards compatibility.
-		// We should leave it to lower level code to create it.
-		if ( $page instanceof PageConfig ) {
-			$page = $this->pageConfigToPageIdentity( $page );
-		}
 
 		$helper = $services->getPageRestHelperFactory()->newHtmlInputTransformHelper(
 			$attribs['envOptions']

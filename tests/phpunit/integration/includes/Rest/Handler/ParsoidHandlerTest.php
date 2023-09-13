@@ -174,7 +174,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			protected function getHtmlInputTransformHelper(
 				array $attribs,
 				string $html,
-				$page
+				PageIdentity $page
 			): HtmlInputTransformHelper {
 				if ( isset( $this->overrides['getHtmlInputHelper'] ) ) {
 					return $this->overrides['getHtmlInputHelper']();
