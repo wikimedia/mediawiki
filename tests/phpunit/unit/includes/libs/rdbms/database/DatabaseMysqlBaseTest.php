@@ -25,7 +25,7 @@
 
 use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
 use Wikimedia\Rdbms\DatabaseDomain;
-use Wikimedia\Rdbms\DatabaseMysqlBase;
+use Wikimedia\Rdbms\DatabaseMySQL;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -35,14 +35,14 @@ use Wikimedia\Rdbms\Replication\MysqlReplicationReporter;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \Wikimedia\Rdbms\DatabaseMysqlBase
+ * @covers \Wikimedia\Rdbms\DatabaseMySQL
  */
 class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
 	private function getMockForViews(): IMaintainableDatabase {
-		$db = $this->getMockBuilder( DatabaseMysqlBase::class )
+		$db = $this->getMockBuilder( DatabaseMySQL::class )
 			->disableOriginalConstructor()
 			->onlyMethods( [ 'query', 'getDBname' ] )
 			->getMock();
@@ -288,7 +288,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @dataProvider provideGtidData
 	 * @covers \Wikimedia\Rdbms\MySQLPrimaryPos
-	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase
+	 * @covers \Wikimedia\Rdbms\DatabaseMySQL
 	 */
 	public function testServerGtidTable( $gtable, $rBLtable, $mBLtable, $rGTIDs, $mGTIDs ) {
 		$db = $this->getMockBuilder( IDatabase::class )
@@ -321,7 +321,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		$replicationReporter->method( 'getServerId' )->willReturn( 1 );
 		$replicationReporter->method( 'getServerUUID' )->willReturn( '2E11FA47-71CA-11E1-9E33-C80AA9429562' );
 
-		/** @var DatabaseMysqlBase $replicationReporter */
+		/** @var DatabaseMySQL $replicationReporter */
 		if ( is_array( $rGTIDs ) ) {
 			$this->assertEquals( $rGTIDs, $replicationReporter->getReplicaPos( $db )->getGTIDs() );
 		} else {
@@ -458,7 +458,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testBuildIntegerCast() {
-		$db = $this->createPartialMock( DatabaseMysqlBase::class, [] );
+		$db = $this->createPartialMock( DatabaseMySQL::class, [] );
 		TestingAccessWrapper::newFromObject( $db )->platform = new MySQLPlatform( new AddQuoterMock() );
 
 		/** @var IDatabase $db */
@@ -489,7 +489,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	 * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform
 	 */
 	public function testNormalizeJoinTypeSqb() {
-		$db = $this->createPartialMock( DatabaseMysqlBase::class, [] );
+		$db = $this->createPartialMock( DatabaseMySQL::class, [] );
 
 		TestingAccessWrapper::newFromObject( $db )->currentDomain =
 			new DatabaseDomain( null, null, '' );
@@ -510,11 +510,11 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @covers \Wikimedia\Rdbms\Database
-	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase
+	 * @covers \Wikimedia\Rdbms\DatabaseMySQL
 	 * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform
 	 */
 	public function testIndexAliases() {
-		$db = $this->getMockBuilder( DatabaseMysqlBase::class )
+		$db = $this->getMockBuilder( DatabaseMySQL::class )
 			->disableOriginalConstructor()
 			->onlyMethods( [ 'strencode', 'dbSchema', 'tablePrefix' ] )
 			->getMock();
@@ -552,7 +552,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	 * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform
 	 */
 	public function testTableAliases() {
-		$db = $this->getMockBuilder( DatabaseMysqlBase::class )
+		$db = $this->getMockBuilder( DatabaseMySQL::class )
 			->disableOriginalConstructor()
 			->onlyMethods( [ 'strencode', 'dbSchema', 'tablePrefix' ] )
 			->getMock();
@@ -585,12 +585,12 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase
+	 * @covers \Wikimedia\Rdbms\DatabaseMySQL
 	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform
 	 * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform
 	 */
 	public function testMaxExecutionTime() {
-		$db = $this->getMockBuilder( DatabaseMysqlBase::class )
+		$db = $this->getMockBuilder( DatabaseMySQL::class )
 			->disableOriginalConstructor()
 			->onlyMethods( [ 'getServerVersion', 'dbSchema', 'tablePrefix' ] )
 			->getMock();
@@ -614,11 +614,11 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @covers \Wikimedia\Rdbms\Database
-	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase
+	 * @covers \Wikimedia\Rdbms\DatabaseMySQL
 	 */
 	public function testStreamStatementEnd() {
-		/** @var DatabaseMysqlBase $db */
-		$db = $this->getMockForAbstractClass( DatabaseMysqlBase::class, [], '', false );
+		/** @var DatabaseMySQL $db */
+		$db = $this->getMockForAbstractClass( DatabaseMySQL::class, [], '', false );
 		$sql = '';
 
 		$newLine = "delimiter\n!! ?";

@@ -26,7 +26,7 @@
  *
  * @ingroup Installer
  * @since 1.17
- * @property Wikimedia\Rdbms\DatabaseMysqlBase $db
+ * @property Wikimedia\Rdbms\DatabaseMySQL $db
  */
 class MysqlUpdater extends DatabaseUpdater {
 	protected function getCoreUpdateList() {
