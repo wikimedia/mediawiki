@@ -1428,11 +1428,13 @@ return [
 	/* MediaWiki Language */
 
 	'mediawiki.language' => [
+		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.language',
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.language",
 		'scripts' => [
-			'resources/src/mediawiki.language/mediawiki.language.init.js',
-			'resources/src/mediawiki.language/mediawiki.language.js',
-			'resources/src/mediawiki.language/mediawiki.language.numbers.js',
-			'resources/src/mediawiki.language/mediawiki.language.fallback.js',
+			'mediawiki.language.init.js',
+			'mediawiki.language.js',
+			'mediawiki.language.numbers.js',
+			'mediawiki.language.fallback.js',
 			[
 				'name' => 'mediawiki.language.config.js',
 				'callback' => static function ( Context $context, Config $config ) {
@@ -1447,16 +1449,16 @@ return [
 			],
 		],
 		'languageScripts' => [
-			'bs' => 'resources/src/mediawiki.language/languages/bs.js',
-			'dsb' => 'resources/src/mediawiki.language/languages/dsb.js',
-			'fi' => 'resources/src/mediawiki.language/languages/fi.js',
-			'ga' => 'resources/src/mediawiki.language/languages/ga.js',
-			'hsb' => 'resources/src/mediawiki.language/languages/hsb.js',
-			'hu' => 'resources/src/mediawiki.language/languages/hu.js',
-			'hy' => 'resources/src/mediawiki.language/languages/hy.js',
-			'la' => 'resources/src/mediawiki.language/languages/la.js',
-			'os' => 'resources/src/mediawiki.language/languages/os.js',
-			'sl' => 'resources/src/mediawiki.language/languages/sl.js',
+			'bs' => 'languages/bs.js',
+			'dsb' => 'languages/dsb.js',
+			'fi' => 'languages/fi.js',
+			'ga' => 'languages/ga.js',
+			'hsb' => 'languages/hsb.js',
+			'hu' => 'languages/hu.js',
+			'hy' => 'languages/hy.js',
+			'la' => 'languages/la.js',
+			'os' => 'languages/os.js',
+			'sl' => 'languages/sl.js',
 		],
 		'dependencies' => [
 			'mediawiki.cldr',
@@ -1520,7 +1522,7 @@ return [
 	],
 
 	'mediawiki.language.months' => [
-		'scripts' => 'resources/src/mediawiki.language/mediawiki.language.months.js',
+		'scripts' => 'resources/src/mediawiki.language.months/months.js',
 		'dependencies' => 'mediawiki.language',
 		'messages' => array_merge(
 			Language::MONTH_MESSAGES,
@@ -1530,10 +1532,10 @@ return [
 	],
 
 	'mediawiki.language.names' => [
-		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.language',
-		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.language",
+		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.language.names',
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.language.names",
 		'packageFiles' => [
-			'mediawiki.language.names.js',
+			'names.js',
 			[ 'name' => 'names.json', 'callback' => static function ( Context $context ) {
 				return MediaWikiServices::getInstance()
 					->getLanguageNameUtils()
@@ -1544,10 +1546,10 @@ return [
 	],
 
 	'mediawiki.language.specialCharacters' => [
-		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.language',
-		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.language",
+		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.language.specialCharacters',
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.language.specialCharacters",
 		'packageFiles' => [
-			'mediawiki.language.specialCharacters.js',
+			'specialCharacters.js',
 			'specialcharacters.json'
 		],
 		'dependencies' => 'mediawiki.language',
