@@ -228,9 +228,15 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 
 		// Only set the option if the value isn't the default!
 		if ( $outputContentVersion !== Parsoid::defaultHTMLVersion() ) {
-			// See Parsoid::wikitext2html
-			$this->parsoidOptions['outputContentVersion'] = $outputContentVersion;
-			$this->isCacheable = false;
+			throw new HttpException( "Unsupported profile version: $version", 406 );
+
+			// TODO: (T347426) At some later point, we may reintroduce support for
+			// non-default content versions as part of work on the content
+			// negotiatiation protocol.
+			//
+			// // See Parsoid::wikitext2html
+			// $this->parsoidOptions['outputContentVersion'] = $outputContentVersion;
+			// $this->isCacheable = false;
 		}
 	}
 
@@ -245,8 +251,15 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		// Only set the option if the value isn't the default (see Wikimedia\Parsoid\Config\Env)!
 		// See Parsoid::wikitext2html for possible values.
 		if ( $offsetType !== 'byte' ) {
-			$this->parsoidOptions['offsetType'] = $offsetType;
-			$this->isCacheable = false;
+			// (T347426) If there is a real use case for this, we might support
+			// this. But, it requires us to be able to run a Parsoid htm2html
+			// transform on the output doc. The current transformation in
+			// Parsoid\ContentUtils has dependencies on Parsoid env, Siteconfig
+			// and page source which makes it not possible to be run directly.
+			throw new HttpException( "Unsupported offset type: $offsetType", 406 );
+
+			// $this->parsoidOptions['offsetType'] = $offsetType;
+			// $this->isCacheable = false;
 		}
 	}
 

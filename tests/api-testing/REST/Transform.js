@@ -266,7 +266,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should prefer higher quality (html)', function ( done ) {
+		// T347426: Support for non-default major HTML versions has been disabled
+		it.skip( 'should prefer higher quality (html)', function ( done ) {
 			const contentVersion = '999.0.0';
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/' )
@@ -383,7 +384,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should accept requests for content version 999.x (html)', function ( done ) {
+		// T347426: Support for non-default major HTML versions has been disabled
+		it.skip( 'should accept requests for content version 999.x (html)', function ( done ) {
 			const contentVersion = '999.0.0';
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/' )
