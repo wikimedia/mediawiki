@@ -1656,10 +1656,10 @@ return [
 		]
 	],
 	'mediawiki.page.watch.ajax' => [
-		'localBasePath' => MW_INSTALL_PATH . '/resources/src',
-		'remoteBasePath' => "$wgResourceBasePath/resources/src",
+		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.page.watch.ajax',
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.page.watch.ajax",
 		'packageFiles' => [
-			'mediawiki.page.watch.ajax.js',
+			'watch-ajax.js',
 			[ 'name' => 'config.json', 'config' => [ MainConfigNames::WatchlistExpiry ] ],
 		],
 		'dependencies' => [
