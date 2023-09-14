@@ -21,8 +21,13 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use FormSpecialPage;
+use HTMLForm;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
+use SpecialPage;
 
 /**
  * Let users reset tokens like the watchlist token.
@@ -162,3 +167,9 @@ class SpecialResetTokens extends FormSpecialPage {
 		return (bool)$this->getTokensList();
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialResetTokens::class, 'SpecialResetTokens' );

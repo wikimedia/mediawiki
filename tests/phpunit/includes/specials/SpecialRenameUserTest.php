@@ -1,14 +1,16 @@
 <?php
 
+use MediaWiki\Specials\SpecialRenameUser;
+
 /**
  * @group Database
- * @covers SpecialRenameuser
+ * @covers \MediaWiki\Specials\SpecialRenameUser
  * @covers \MediaWiki\RenameUser\RenameuserSQL
  */
-class SpecialRenameuserTest extends SpecialPageTestBase {
+class SpecialRenameUserTest extends SpecialPageTestBase {
 	protected function newSpecialPage() {
 		$services = $this->getServiceContainer();
-		return new SpecialRenameuser(
+		return new SpecialRenameUser(
 			$services->getDBLoadBalancerFactory(),
 			$services->getContentLanguage(),
 			$services->getMovePageFactory(),

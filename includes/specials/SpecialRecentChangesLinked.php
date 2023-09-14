@@ -21,14 +21,21 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserOptionsLookup;
+use MessageCache;
+use RecentChange;
+use SearchEngineFactory;
+use WatchedItemStoreInterface;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Rdbms\Subquery;
+use Xml;
 
 /**
  * This is to display changes made to all articles linked in an article.
@@ -372,3 +379,9 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		}
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialRecentChangesLinked::class, 'SpecialRecentChangesLinked' );

@@ -564,6 +564,19 @@ because of Phabricator reports.
   - SpecialProtectedTitles (and capitalisation corrected)
   - SpecialProtectPage
   - SpecialPurge
+  - SpecialRandomInCategory
+  - SpecialRandom
+  - SpecialRandomRedirect
+  - SpecialRandomRootPage
+  - SpecialRecentChanges
+  - SpecialRecentChangesLinked
+  - SpecialRedirect
+  - SpecialRedirectToSpecial
+  - SpecialRemoveCredentials
+  - SpecialRenameUser (and capitalisation corrected)
+  - SpecialResetTokens
+  - SpecialRevisionDelete
+  - SpecialRunJobs
 * Various mediawiki.ui variables have been deprecated in favor of
   'mediawiki.skin.variables.less' Codex design tokens featuring replacements.
 * Hook handlers must now be specified either as a PHP callable, or as a PHP

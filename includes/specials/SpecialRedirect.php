@@ -21,9 +21,16 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use FormSpecialPage;
+use HTMLForm;
+use MalformedTitleException;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;
+use PermissionsError;
+use RepoGroup;
 
 /**
  * A special page that redirects to: the user for a numeric user id,
@@ -350,3 +357,9 @@ class SpecialRedirect extends FormSpecialPage {
 		return 'redirects';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialRedirect::class, 'SpecialRedirect' );

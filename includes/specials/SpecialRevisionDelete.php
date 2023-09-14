@@ -21,12 +21,28 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use ErrorPageError;
+use File;
+use HTMLForm;
+use LogEventsList;
+use LogPage;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Html\Html;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
+use MWException;
+use PermissionsError;
+use RepoGroup;
+use RevDelList;
+use RevisionDeleter;
+use SpecialPage;
+use UnlistedSpecialPage;
+use UserBlockedError;
+use Xml;
 
 /**
  * Special page allowing users with the appropriate permissions to view
@@ -742,3 +758,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		return 'pagetools';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialRevisionDelete::class, 'SpecialRevisionDelete' );
