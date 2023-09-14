@@ -500,6 +500,9 @@ because of Phabricator reports.
   for new projects.
 * Title::getBrokenLinksFrom() has been deprecated.
 * ReplicatedBagOStuff has been deprecated since 1.42.
+* The third argument to ContentRenderer::getParserOutput() now accepts a
+  RevisionRecord or WikiRevision; passing an integer revision id has been
+  deprecated and emits a warning.
 * ParserOutput::setLanguageLinks() has been deprecated.
 * ApiQueryBlockInfoTrait::addBlockInfoToQuery() will emit deprecation warnings
   and will soon stop working due to schema changes. Instead use

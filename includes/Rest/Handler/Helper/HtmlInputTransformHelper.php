@@ -635,7 +635,7 @@ class HtmlInputTransformHelper {
 					return null;
 				}
 
-				$cachedRenderID = $this->parsoidOutputAccess->getParsoidRenderID( $parserOutput );
+				$cachedRenderID = ParsoidRenderID::newFromParserOutput( $parserOutput );
 				if ( $cachedRenderID->getKey() !== $renderID->getKey() ) {
 					$this->stats->increment( 'html_input_transform.original_html.given.as_renderid.' .
 						'stash_miss_pc_fallback.not_found.mismatch' );

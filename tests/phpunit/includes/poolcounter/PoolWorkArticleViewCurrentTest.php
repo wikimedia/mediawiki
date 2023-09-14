@@ -63,7 +63,8 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 			$this->getServiceContainer()->getStatsdDataFactory(),
 			new NullLogger(),
 			$this->getServiceContainer()->getTitleFactory(),
-			$this->getServiceContainer()->getWikiPageFactory()
+			$this->getServiceContainer()->getWikiPageFactory(),
+			$this->getServiceContainer()->getGlobalIdGenerator()
 		);
 
 		return $this->parserCache;

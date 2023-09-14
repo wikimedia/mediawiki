@@ -24,6 +24,7 @@ use Psr\Log\NullLogger;
 use TestLogger;
 use WANObjectCache;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
  * @covers \MediaWiki\Parser\RevisionOutputCache
@@ -74,6 +75,8 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 		$expiry = 3600,
 		$epoch = '19900220000000'
 	): RevisionOutputCache {
+		$globalIdGenerator = $this->createMock( GlobalIdGenerator::class );
+		$globalIdGenerator->method( 'newUUIDv1' )->willReturn( 'uuid-uuid' );
 		return new RevisionOutputCache(
 			'test',
 			new WANObjectCache( [ 'cache' => $storage ?: new HashBagOStuff() ] ),
@@ -81,7 +84,8 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 			$epoch,
 			new JsonCodec(),
 			new NullStatsdDataFactory(),
-			$logger ?: new NullLogger()
+			$logger ?: new NullLogger(),
+			$globalIdGenerator
 		);
 	}
 

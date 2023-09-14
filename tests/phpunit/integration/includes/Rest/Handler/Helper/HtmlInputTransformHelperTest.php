@@ -1078,7 +1078,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		$popt = ParserOptions::newFromAnon();
 		$pout = $access->getParserOutput( $page, $popt )->getValue();
 
-		$key = $access->getParsoidRenderID( $pout );
+		$key = ParsoidRenderID::newFromParserOutput( $pout )->getKey();
 		$html = $pout->getRawText();
 
 		// Load the original data based on the ETag

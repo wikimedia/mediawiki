@@ -31,6 +31,7 @@ use MediaWiki\Parser\ParserCacheMetadata;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Title\TitleFactory;
 use Psr\Log\LoggerInterface;
+use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
  * Cache for ParserOutput objects corresponding to the latest page revisions.
@@ -118,6 +119,8 @@ class ParserCache {
 
 	private ?ParserCacheFilter $filter = null;
 
+	private GlobalIdGenerator $globalIdGenerator;
+
 	/**
 	 * @var BagOStuff small in-process cache to store metadata.
 	 * It's needed multiple times during the request, for example
@@ -141,6 +144,7 @@ class ParserCache {
 	 * @param LoggerInterface $logger
 	 * @param TitleFactory $titleFactory
 	 * @param WikiPageFactory $wikiPageFactory
+	 * @param GlobalIdGenerator $globalIdGenerator
 	 */
 	public function __construct(
 		string $name,
@@ -151,7 +155,8 @@ class ParserCache {
 		IBufferingStatsdDataFactory $stats,
 		LoggerInterface $logger,
 		TitleFactory $titleFactory,
-		WikiPageFactory $wikiPageFactory
+		WikiPageFactory $wikiPageFactory,
+		GlobalIdGenerator $globalIdGenerator
 	) {
 		$this->name = $name;
 		$this->cache = $cache;
@@ -162,6 +167,7 @@ class ParserCache {
 		$this->logger = $logger;
 		$this->titleFactory = $titleFactory;
 		$this->wikiPageFactory = $wikiPageFactory;
+		$this->globalIdGenerator = $globalIdGenerator;
 		$this->metadataProcCache = new HashBagOStuff( [ 'maxKeys' => 2 ] );
 	}
 
@@ -410,6 +416,9 @@ class ParserCache {
 		$revId = null
 	) {
 		$page->assertWiki( PageRecord::LOCAL );
+		// T350538: Eventually we'll warn if the $cacheTime and $revId
+		// parameters are non-null here, since we *should* be getting
+		// them from the ParserOutput.
 
 		if ( !$parserOutput->hasText() ) {
 			throw new InvalidArgumentException( 'Attempt to cache a ParserOutput with no text set!' );
@@ -450,9 +459,23 @@ class ParserCache {
 			return;
 		}
 
-		$cacheTime = $cacheTime ?: wfTimestampNow();
-		$revId = $revId ?: $page->getLatest( PageRecord::LOCAL );
+		// Ensure cache properties are set in the ParserOutput
+		// T350538: These should be turned into assertions that the
+		// properties are already present.
+		if ( $cacheTime ) {
+			$parserOutput->setCacheTime( $cacheTime );
+		} else {
+			$cacheTime = $parserOutput->getCacheTime();
+		}
 
+		if ( $revId ) {
+			$parserOutput->setCacheRevisionId( $revId );
+		} elseif ( $parserOutput->getCacheRevisionId() ) {
+			$revId = $parserOutput->getCacheRevisionId();
+		} else {
+			$revId = $page->getLatest( PageRecord::LOCAL );
+			$parserOutput->setCacheRevisionId( $revId );
+		}
 		if ( !$revId ) {
 			$this->logger->debug(
 				'Parser output cannot be saved if the revision ID is not known',
@@ -462,14 +485,16 @@ class ParserCache {
 			return;
 		}
 
+		if ( !$parserOutput->getRenderId() ) {
+			$parserOutput->setRenderId( $this->globalIdGenerator->newUUIDv1() );
+		}
+
+		// Transfer cache properties to the cache metadata
 		$metadata = new CacheTime;
 		$metadata->recordOptions( $parserOutput->getUsedOptions() );
 		$metadata->updateCacheExpiry( $expire );
-
 		$metadata->setCacheTime( $cacheTime );
-		$parserOutput->setCacheTime( $cacheTime );
 		$metadata->setCacheRevisionId( $revId );
-		$parserOutput->setCacheRevisionId( $revId );
 
 		$parserOutputKey = $this->makeParserOutputKey(
 			$page,

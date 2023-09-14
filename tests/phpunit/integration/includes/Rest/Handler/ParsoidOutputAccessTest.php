@@ -8,6 +8,7 @@ use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
+use MediaWiki\Parser\Parsoid\ParsoidRenderID;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
@@ -186,7 +187,6 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 * Tests that getParserOutput() will return output.
 	 *
 	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::getParserOutput
-	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::getParsoidRenderID
 	 */
 	public function testGetParserOutput() {
 		$this->resetServicesWithMockedParsoid( 1 );
@@ -201,8 +201,8 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 		$output = $status->getValue();
 
-		// check that getParsoidRenderID() doesn't throw
-		$this->assertNotNull( $access->getParsoidRenderID( $output ) );
+		// check that ParsoidRenderID::newFromParserOutput()  doesn't throw
+		$this->assertNotNull( ParsoidRenderID::newFromParserOutput( $output ) );
 
 		// Ensure that we can still create a valid instance of PageBundle from the ParserOutput
 		$pageBundle = PageBundleParserOutputConverter::pageBundleFromParserOutput( $output );
@@ -340,7 +340,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 		/** @var ParserOutput $parserOutput */
 		$parserOutput = $status->getValue();
-		$this->assertSame( '0/dummy-output', $parserOutput->getExtensionData( 'parsoid-render-id' ) );
+		$this->assertSame( '0/dummy-output', ParsoidRenderID::newFromParserOutput( $parserOutput )->getKey() );
 
 		$expTime = $parserOutput->getCacheExpiry();
 		$this->assertSame( 0, $expTime );
@@ -406,9 +406,9 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$this->assertContainsHtml( self::MOCKED_HTML . ' of ' . self::WIKITEXT, $status1 );
 		$this->checkMetadata( $status1 );
 
-		// check that getParsoidRenderID() doesn't throw
+		// check that ParsoidRenderID::newFromParserOutput() doesn't throw
 		$output1 = $status1->getValue();
-		$this->assertNotNull( $access->getParsoidRenderID( $output1 ) );
+		$this->assertNotNull( ParsoidRenderID::newFromParserOutput( $output1 ) );
 	}
 
 	public static function provideSupportsContentModels() {
@@ -452,7 +452,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		/** @var ParserOutput $parserOutput */
 		$parserOutput = $status->getValue();
 		$this->assertStringContainsString( __METHOD__, $parserOutput->getRawText() );
-		$this->assertNotEmpty( $parserOutput->getExtensionData( 'parsoid-render-id' ) );
+		$this->assertNotEmpty( $parserOutput->getRenderId() );
 		$this->assertNotEmpty( $parserOutput->getCacheRevisionId() );
 		$this->assertNotEmpty( $parserOutput->getCacheTime() );
 	}
@@ -485,7 +485,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		/** @var ParserOutput $parserOutput */
 		$parserOutput = $status->getValue();
 		$this->assertStringContainsString( __METHOD__, $parserOutput->getRawText() );
-		$this->assertNotEmpty( $parserOutput->getExtensionData( 'parsoid-render-id' ) );
+		$this->assertNotEmpty( $parserOutput->getRenderId() );
 		$this->assertNotEmpty( $parserOutput->getCacheRevisionId() );
 		$this->assertNotEmpty( $parserOutput->getCacheTime() );
 	}
@@ -508,7 +508,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		/** @var ParserOutput $parserOutput */
 		$parserOutput = $status->getValue();
 		$this->assertStringContainsString( __METHOD__, $parserOutput->getRawText() );
-		$this->assertNotEmpty( $parserOutput->getExtensionData( 'parsoid-render-id' ) );
+		$this->assertNotEmpty( $parserOutput->getRenderId() );
 		$this->assertNotEmpty( $parserOutput->getCacheRevisionId() );
 		$this->assertNotEmpty( $parserOutput->getCacheTime() );
 	}
@@ -539,7 +539,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		/** @var ParserOutput $parserOutput */
 		$parserOutput = $status->getValue();
 		$this->assertStringContainsString( __METHOD__, $parserOutput->getRawText() );
-		$this->assertNotEmpty( $parserOutput->getExtensionData( 'parsoid-render-id' ) );
+		$this->assertNotEmpty( $parserOutput->getRenderId() );
 		// The revision ID is set to 0, so that's what is in the cache.
 		$this->assertSame( 0, $parserOutput->getCacheRevisionId() );
 		$this->assertNotEmpty( $parserOutput->getCacheTime() );

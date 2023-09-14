@@ -19,7 +19,6 @@
 
 namespace MediaWiki\Parser\Parsoid;
 
-use InvalidArgumentException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MainConfigNames;
@@ -125,24 +124,6 @@ class ParsoidOutputAccess {
 		return $this->siteConfig->getContentModelHandler( $model ) !== null;
 	}
 
-	/**
-	 * @internal
-	 *
-	 * @param ParserOutput $parserOutput
-	 *
-	 * @return ParsoidRenderID
-	 */
-	public function getParsoidRenderID( ParserOutput $parserOutput ): ParsoidRenderID {
-		// XXX: ParserOutput may be coming from the parser cache, so we need to be careful
-		// when we change how we store the render key in the ParserOutput object.
-		$renderId = $parserOutput->getParsoidRenderId();
-		if ( !$renderId ) {
-			throw new InvalidArgumentException( 'ParserOutput does not have a render ID' );
-		}
-
-		return ParsoidRenderID::newFromKey( $renderId );
-	}
-
 	private function handleUnsupportedContentModel( RevisionRecord $revision ): ?Status {
 		$mainSlot = $revision->getSlot( SlotRecord::MAIN );
 		$contentModel = $mainSlot->getModel();
@@ -238,7 +219,11 @@ class ParsoidOutputAccess {
 		// This is fast to generate so it's fine not to write this to parser cache.
 		$output->updateCacheExpiry( 0 );
 		// The render ID is required for rendering of dummy output: T311728.
-		$output->setExtensionData( ParserOutput::PARSOID_RENDER_ID_KEY, '0/dummy-output' );
+		$ts = wfTimestampNow();
+		$output->setCacheTime( $ts );
+		$output->setRenderId( 'dummy-output' );
+		$output->setCacheRevisionId( 0 );
+		$output->setTimestamp( $ts );
 		// Required in HtmlOutputRendererHelper::putHeaders when $forHtml
 		$output->setExtensionData(
 			PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY,

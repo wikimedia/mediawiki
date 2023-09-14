@@ -17,6 +17,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
+use MediaWiki\Parser\Parsoid\ParsoidRenderID;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\RevisionRecord;
@@ -1333,8 +1334,9 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertGreaterThan( $rev->getTimestamp(), $parsoidCached->getCacheTime() );
 		$this->assertSame( $rev->getId(), $parsoidCached->getCacheRevisionId() );
 
-		// Check that getParsoidRenderID() doesn't throw, so we know that $parsoidCached is valid.
-		$this->getServiceContainer()->getParsoidOutputAccess()->getParsoidRenderID( $parsoidCached );
+		// Check that ParsoidRenderID::newFromParserOutput() doesn't throw,
+		// so we know that $parsoidCached is valid.
+		ParsoidRenderID::newFromParserOutput( $parsoidCached );
 
 		// The cached ParserOutput should not use the revision timestamp
 		// Create nwe ParserOptions object since we setUseParsoid() above

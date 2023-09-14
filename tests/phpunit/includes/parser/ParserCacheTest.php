@@ -28,6 +28,7 @@ use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
 use TestLogger;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\UUID\GlobalIdGenerator;
 use WikiPage;
 
 /**
@@ -90,6 +91,8 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 			$wikiPageFactory = $this->createMock( WikiPageFactory::class );
 			$wikiPageFactory->method( 'newFromTitle' )->willReturn( $wikiPageMock );
 		}
+		$globalIdGenerator = $this->createMock( GlobalIdGenerator::class );
+		$globalIdGenerator->method( 'newUUIDv1' )->willReturn( 'uuid-uuid' );
 		return new ParserCache(
 			'test',
 			$storage ?: new HashBagOStuff(),
@@ -99,7 +102,8 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 			new NullStatsdDataFactory(),
 			$logger ?: new NullLogger(),
 			$this->createMock( TitleFactory::class ),
-			$wikiPageFactory
+			$wikiPageFactory,
+			$globalIdGenerator
 		);
 	}
 
@@ -124,6 +128,10 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 			$parserOutput->recordOption( $option );
 		}
 		$parserOutput->updateCacheExpiry( 4242 );
+		$parserOutput->setRenderId( 'dummy-render-id' );
+		$parserOutput->setCacheRevisionId( 0 );
+		// ParserOutput::getCacheTime() also sets it as a side effect
+		$parserOutput->setTimestamp( $parserOutput->getCacheTime() );
 		return $parserOutput;
 	}
 
@@ -683,6 +691,8 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		$wikiPageMock->method( 'getContentModel' )->willReturn( CONTENT_MODEL_WIKITEXT );
 		$wikiPageFactory = $this->createMock( WikiPageFactory::class );
 		$wikiPageFactory->method( 'newFromTitle' )->willReturn( $wikiPageMock );
+		$globalIdGenerator = $this->createMock( GlobalIdGenerator::class );
+		$globalIdGenerator->method( 'newUUIDv1' )->willReturn( 'uuid-uuid' );
 		$cache = $this->getMockBuilder( ParserCache::class )
 			->setConstructorArgs( [
 				'test',
@@ -693,7 +703,8 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 				new NullStatsdDataFactory(),
 				new NullLogger(),
 				$this->createMock( TitleFactory::class ),
-				$wikiPageFactory
+				$wikiPageFactory,
+				$globalIdGenerator
 			] )
 			->onlyMethods( [ 'convertForCache' ] )
 			->getMock();

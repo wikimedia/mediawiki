@@ -992,6 +992,43 @@ EOF
 			'getUsedOptions' => [ 'Foo', 'Bar', 'Zoo' ],
 		] ];
 
+		// cache time
+		$someTime = "20240207202040";
+		$someLaterTime = "20240207202112";
+		$a = new ParserOutput();
+		$a->setCacheTime( $someTime );
+		$b = new ParserOutput();
+		yield 'only left cache time' => [ $a, $b, [ 'getCacheTime' => $someTime ] ];
+
+		$a = new ParserOutput();
+		$b = new ParserOutput();
+		$b->setCacheTime( $someTime );
+		yield 'only right cache time' => [ $a, $b, [ 'getCacheTime' => $someTime ] ];
+
+		$a = new ParserOutput();
+		$b = new ParserOutput();
+		$a->setCacheTime( $someLaterTime );
+		$b->setCacheTime( $someTime );
+		yield 'left has later cache time' => [ $a, $b, [ 'getCacheTime' => $someLaterTime ] ];
+
+		$a = new ParserOutput();
+		$b = new ParserOutput();
+		$a->setCacheTime( $someTime );
+		$b->setCacheTime( $someLaterTime );
+		yield 'right has later cache time' => [ $a, $b, [ 'getCacheTime' => $someLaterTime ] ];
+
+		$a = new ParserOutput();
+		$b = new ParserOutput();
+		$a->setCacheTime( -1 );
+		$b->setCacheTime( $someTime );
+		yield 'left is uncacheable' => [ $a, $b, [ 'getCacheTime' => "-1" ] ];
+
+		$a = new ParserOutput();
+		$b = new ParserOutput();
+		$a->setCacheTime( $someTime );
+		$b->setCacheTime( -1 );
+		yield 'right is uncacheable' => [ $a, $b, [ 'getCacheTime' => "-1" ] ];
+
 		// timestamp ------------
 		$a = new ParserOutput();
 		$a->setTimestamp( '20180101000011' );
@@ -1103,6 +1140,7 @@ EOF
 	 * @param array $expected
 	 */
 	public function testMergeInternalMetaDataFrom( ParserOutput $a, ParserOutput $b, $expected ) {
+		$this->filterDeprecated( '/^CacheTime::setCacheTime called with -1 as an argument/' );
 		$a->mergeInternalMetaDataFrom( $b );
 
 		$this->assertFieldValues( $a, $expected );
@@ -1319,5 +1357,48 @@ EOF
 		$this->assertEquals( [ 'foo.com', 'bar.com' ], $po->getExtraCSPScriptSrcs() );
 		$this->assertEquals( [ 'baz.com' ], $po->getExtraCSPDefaultSrcs() );
 		$this->assertEquals( [ 'fred.com', 'xyzzy.com' ], $po->getExtraCSPStyleSrcs() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Parser\ParserOutput::getCacheTime()
+	 * @covers \MediaWiki\Parser\ParserOutput::setCacheTime()
+	 */
+	public function testCacheTime() {
+		$po = new ParserOutput();
+
+		// Should not have a cache time yet
+		$this->assertFalse( $po->hasCacheTime() );
+		// But calling ::get assigns a cache time
+		$po->getCacheTime();
+		$this->assertTrue( $po->hasCacheTime() );
+		// Reset cache time
+		$po->setCacheTime( "20240207202040" );
+		$this->assertSame( "20240207202040", $po->getCacheTime() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Parser\ParserOutput::getRenderId()
+	 * @covers \MediaWiki\Parser\ParserOutput::setRenderId()
+	 */
+	public function testRenderId() {
+		$po = new ParserOutput();
+
+		// Should be null when unset
+		$this->assertNull( $po->getRenderId() );
+
+		// Sanity check for setter and getter
+		$po->setRenderId( "TestRenderId" );
+		$this->assertEquals( "TestRenderId", $po->getRenderId() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Parser\ParserOutput::getRenderId()
+	 */
+	public function testRenderIdBackCompat() {
+		$po = new ParserOutput();
+
+		// Parser cache used to contain extension data under a different name
+		$po->setExtensionData( 'parsoid-render-id', "1234/LegacyRenderId" );
+		$this->assertEquals( "LegacyRenderId", $po->getRenderId() );
 	}
 }

@@ -81,7 +81,8 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 			new NullStatsdDataFactory(),
 			new NullLogger(),
 			$this->getServiceContainer()->getTitleFactory(),
-			$this->getServiceContainer()->getWikiPageFactory()
+			$this->getServiceContainer()->getWikiPageFactory(),
+			$this->getServiceContainer()->getGlobalIdGenerator()
 		);
 
 		return $parserCache;
@@ -96,7 +97,8 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 			'19900220000000',
 			new JsonCodec(),
 			new NullStatsdDataFactory(),
-			new NullLogger()
+			new NullLogger(),
+			$this->getServiceContainer()->getGlobalIdGenerator()
 		);
 
 		return $revisionOutputCache;

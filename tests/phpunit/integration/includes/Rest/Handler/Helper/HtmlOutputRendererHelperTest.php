@@ -83,10 +83,6 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		return $count === null ? $this->any() : $this->exactly( $count );
 	}
 
-	public function getParsoidRenderID( ParserOutput $pout ) {
-		return new ParsoidRenderID( $pout->getCacheRevisionId(), $pout->getCacheTime() );
-	}
-
 	/**
 	 * @param LoggerInterface|null $logger
 	 *
@@ -106,7 +102,6 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$expectedCalls = [
 			'getParserOutput' => null,
 			'parseUncacheable' => null,
-			'getParsoidRenderID' => null
 		];
 
 		$parsoid = $this->createNoOpMock( ParsoidOutputAccess::class, array_keys( $expectedCalls ) );
@@ -128,9 +123,6 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 				return Status::newGood( $pout );
 			} );
 
-		$parsoid->method( 'getParsoidRenderID' )
-			->willReturnCallback( [ $this, 'getParsoidRenderID' ] );
-
 		$parsoid->expects( $this->exactlyOrAny( $expectedCalls[ 'parseUncacheable' ] ) )
 			->method( 'parseUncacheable' )
 			->willReturnCallback( function (
@@ -150,10 +142,6 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 
 				return Status::newGood( $pout );
 			} );
-
-		$parsoid->expects( $this->exactlyOrAny( $expectedCalls[ 'getParsoidRenderID' ] ) )
-			->method( 'getParsoidRenderID' )
-			->willReturnCallback( [ $this, 'getParsoidRenderID' ] );
 
 		return $parsoid;
 	}
@@ -186,19 +174,27 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		PageIdentity $page,
 		string $version = null
 	): ParserOutput {
+		static $counter = 0;
 		$lang = $parserOpts->getTargetLanguage();
 		$lang = $lang ? $lang->getCode() : 'en';
 		$version ??= Parsoid::defaultHTMLVersion();
 
 		$html = "<!DOCTYPE html><html lang=\"$lang\"><body><div id='t3s7'>$html</div></body></html>";
 
+		$revTimestamp = null;
 		if ( $rev instanceof RevisionRecord ) {
+			$revTimestamp = $rev->getTimestamp();
 			$rev = $rev->getId();
 		}
 
 		$pout = new ParserOutput( $html );
 		$pout->setCacheRevisionId( $rev ?: $page->getLatest() );
 		$pout->setCacheTime( wfTimestampNow() ); // will use fake time
+		if ( $revTimestamp ) {
+			$pout->setTimestamp( $revTimestamp );
+		}
+		// We test that UUIDs are unique, so make a cheap unique UUID
+		$pout->setRenderId( 'bogus-uuid-' . strval( $counter++ ) );
 		$pout->setExtensionData( PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY, [
 			'parsoid' => [ 'ids' => [
 				't3s7' => [ 'dsr' => [ 0, 0, 0, 0 ] ],
@@ -570,7 +566,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		// put HTML into the cache
 		$pout = $helper->getHtml();
 
-		$renderId = $this->getParsoidRenderID( $pout );
+		$renderId = ParsoidRenderID::newFromParserOutput( $pout );
 		$lastModified = $pout->getCacheTime();
 
 		if ( $rev ) {
@@ -629,8 +625,6 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 				$pout = $this->makeParserOutput( $parserOpts, $html, $rev, $page );
 				return Status::newGood( $pout );
 			} );
-		$poa->method( 'getParsoidRenderID' )
-			->willReturnCallback( [ $this, 'getParsoidRenderID' ] );
 
 		$helper = $this->newHelper( null, $poa );
 		$helper->init( $fakePage, self::PARAM_DEFAULTS, $this->newAuthority() );
@@ -639,7 +633,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertNull( $helper->getRevisionId() );
 
 		$pout = $helper->getHtml();
-		$renderId = $this->getParsoidRenderID( $pout );
+		$renderId = ParsoidRenderID::newFromParserOutput( $pout );
 		$lastModified = $pout->getCacheTime();
 
 		$this->assertStringContainsString( $renderId->getKey(), $helper->getETag() );
@@ -942,8 +936,6 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 				$pout = $this->makeParserOutput( $parserOpts, $html, $revision, $page );
 				return Status::newGood( $pout );
 			} );
-		$poa->method( 'getParsoidRenderID' )
-			->willReturnCallback( [ $this, 'getParsoidRenderID' ] );
 
 		$helper = $this->newHelper( null, $poa );
 
@@ -1133,7 +1125,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 
 		$output = $helper->getHtml();
 		$this->assertStringContainsString( 'Dummy output', $output->getText() );
-		$this->assertSame( '0/dummy-output', $output->getExtensionData( 'parsoid-render-id' ) );
+		$this->assertSame( '0/dummy-output', ParsoidRenderID::newFromParserOutput( $output )->getKey() );
 	}
 
 	/**
