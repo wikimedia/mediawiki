@@ -2095,6 +2095,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Specials\\SpecialUserLogin' => __DIR__ . '/includes/specials/SpecialUserLogin.php',
 	'MediaWiki\\Specials\\SpecialUserLogout' => __DIR__ . '/includes/specials/SpecialUserLogout.php',
 	'MediaWiki\\Specials\\SpecialUserRights' => __DIR__ . '/includes/specials/SpecialUserRights.php',
+	'MediaWiki\\Specials\\SpecialVersion' => __DIR__ . '/includes/specials/SpecialVersion.php',
 	'MediaWiki\\Specials\\SpecialWantedFiles' => __DIR__ . '/includes/specials/SpecialWantedFiles.php',
 	'MediaWiki\\Specials\\SpecialWantedPages' => __DIR__ . '/includes/specials/SpecialWantedPages.php',
 	'MediaWiki\\Status\\Status' => __DIR__ . '/includes/Status/Status.php',

@@ -159,6 +159,7 @@ use MediaWiki\Specials\SpecialUploadStash;
 use MediaWiki\Specials\SpecialUserLogin;
 use MediaWiki\Specials\SpecialUserLogout;
 use MediaWiki\Specials\SpecialUserRights;
+use MediaWiki\Specials\SpecialVersion;
 use MediaWiki\Specials\SpecialWantedFiles;
 use MediaWiki\Specials\SpecialWantedPages;
 use MediaWiki\Title\Title;
@@ -813,7 +814,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Version' => [
-			'class' => \SpecialVersion::class,
+			'class' => SpecialVersion::class,
 			'services' => [
 				'ParserFactory',
 				'UrlUtils',

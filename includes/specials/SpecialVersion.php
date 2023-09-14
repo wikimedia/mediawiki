@@ -23,6 +23,14 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use Closure;
+use ComposerInstalled;
+use Config;
+use ExtensionRegistry;
+use HtmlArmor;
+use Language;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\RawMessage;
@@ -34,6 +42,13 @@ use MediaWiki\Utils\ExtensionInfo;
 use MediaWiki\Utils\GitInfo;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\Utils\UrlUtils;
+use Message;
+use ObjectCache;
+use Parser;
+use ParserFactory;
+use ParserOutput;
+use Sanitizer;
+use SpecialPage;
 use Symfony\Component\Yaml\Yaml;
 use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\Parsoid\Core\TOCData;
@@ -1448,3 +1463,9 @@ class SpecialVersion extends SpecialPage {
 		return 'wiki';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialVersion::class, 'SpecialVersion' );

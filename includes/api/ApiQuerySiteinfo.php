@@ -30,6 +30,7 @@ use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\ResourceLoader\SkinModule;
 use MediaWiki\SiteStats\SiteStats;
 use MediaWiki\SpecialPage\SpecialPageFactory;
+use MediaWiki\Specials\SpecialVersion;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserOptionsLookup;

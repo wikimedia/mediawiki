@@ -28,6 +28,7 @@ require_once __DIR__ . '/../../maintenance/Maintenance.php';
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
+use MediaWiki\Specials\SpecialVersion;
 use MediaWiki\Tests\AnsiTermColorer;
 use MediaWiki\Tests\DummyTermColorer;
 use Wikimedia\Parsoid\Utils\ScriptUtils;

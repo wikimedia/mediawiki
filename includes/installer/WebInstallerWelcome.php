@@ -19,6 +19,8 @@
  * @ingroup Installer
  */
 
+use MediaWiki\Specials\SpecialVersion;
+
 class WebInstallerWelcome extends WebInstallerPage {
 
 	/**

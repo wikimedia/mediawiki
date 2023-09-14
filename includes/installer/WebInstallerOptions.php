@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Html\Html;
+use MediaWiki\Specials\SpecialVersion;
 use Wikimedia\IPUtils;
 
 class WebInstallerOptions extends WebInstallerPage {
