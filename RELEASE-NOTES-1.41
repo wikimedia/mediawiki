@@ -924,6 +924,8 @@ because of Phabricator reports.
   Codex CSS components instead.
 * SpecialBlock::getTargetAndType(), deprecated since 1.36, now emits deprecation
   warnings.
+* Calling SpecialRandomPage::__construct without services as parameters is
+  deprecated and emit deprecation warnings.
 * …
 
 === Other changes in 1.41 ===

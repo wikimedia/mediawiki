@@ -51,6 +51,9 @@ class SpecialRandomPage extends SpecialPage {
 		NamespaceInfo $nsInfo = null
 	) {
 		parent::__construct( is_string( $dbProvider ) ? $dbProvider : 'Randompage' );
+		if ( !$dbProvider instanceof IConnectionProvider || !$nsInfo ) {
+			wfDeprecated( __METHOD__ . ' without injected services', '1.41' );
+		}
 		// This class is extended and therefor fallback to global state - T265308
 		$services = MediaWikiServices::getInstance();
 		$this->dbProvider = $dbProvider instanceof IConnectionProvider
