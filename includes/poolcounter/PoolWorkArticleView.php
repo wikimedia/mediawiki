@@ -91,7 +91,8 @@ class PoolWorkArticleView extends PoolCounterWork {
 		// Timing hack
 		if ( $time > 3 ) {
 			// TODO: Use Parser's logger (once it has one)
-			$logger = $this->loggerSpi->getLogger( 'slow-parse' );
+			$channel = $this->parserOptions->getUseParsoid() ? 'slow-parsoid' : 'slow-parse';
+			$logger = $this->loggerSpi->getLogger( $channel );
 			$logger->info( 'Parsing {title} was slow, took {time} seconds', [
 				'time' => number_format( $time, 2 ),
 				'title' => (string)$this->revision->getPageAsLinkTarget(),
