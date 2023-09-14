@@ -528,8 +528,12 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 
 		/** @var IDatabase $db */
 		$db->setIndexAliases( [ 'a_b_idx' => 'a_c_idx' ] );
-		$sql = $db->selectSQLText(
-			'zend', 'field', [ 'a' => 'x' ], __METHOD__, [ 'USE INDEX' => 'a_b_idx' ] );
+		$sql = $db->newSelectQueryBuilder()
+			->select( 'field' )
+			->from( 'zend' )
+			->where( [ 'a' => 'x' ] )
+			->useIndex( 'a_b_idx' )
+			->caller( __METHOD__ )->getSQL();
 
 		$this->assertSameSql(
 			"SELECT  field  FROM `zend` FORCE INDEX (a_c_idx)    WHERE a = 'x'  ",
@@ -537,8 +541,12 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		);
 
 		$db->setIndexAliases( [] );
-		$sql = $db->selectSQLText(
-			'zend', 'field', [ 'a' => 'x' ], __METHOD__, [ 'USE INDEX' => 'a_b_idx' ] );
+		$sql = $db->newSelectQueryBuilder()
+			->select( 'field' )
+			->from( 'zend' )
+			->where( [ 'a' => 'x' ] )
+			->useIndex( 'a_b_idx' )
+			->caller( __METHOD__ )->getSQL();
 
 		$this->assertSameSql(
 			"SELECT  field  FROM `zend` FORCE INDEX (a_b_idx)    WHERE a = 'x'",
@@ -568,7 +576,11 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		$db->setTableAliases( [
 			'meow' => [ 'dbname' => 'feline', 'schema' => null, 'prefix' => 'cat_' ]
 		] );
-		$sql = $db->selectSQLText( 'meow', 'field', [ 'a' => 'x' ], __METHOD__ );
+		$sql = $db->newSelectQueryBuilder()
+			->select( 'field' )
+			->from( 'meow' )
+			->where( [ 'a' => 'x' ] )
+			->caller( __METHOD__ )->getSQL();
 
 		$this->assertSameSql(
 			"SELECT  field  FROM `feline`.`cat_meow`    WHERE a = 'x'  ",
@@ -576,7 +588,11 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		);
 
 		$db->setTableAliases( [] );
-		$sql = $db->selectSQLText( 'meow', 'field', [ 'a' => 'x' ], __METHOD__ );
+		$sql = $db->newSelectQueryBuilder()
+			->select( 'field' )
+			->from( 'meow' )
+			->where( [ 'a' => 'x' ] )
+			->caller( __METHOD__ )->getSQL();
 
 		$this->assertSameSql(
 			"SELECT  field  FROM `meow`    WHERE a = 'x'  ",

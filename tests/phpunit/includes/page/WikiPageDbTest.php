@@ -249,7 +249,11 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		// TODO: test various options; needs temporary hooks
 
 		$dbr = wfGetDB( DB_REPLICA );
-		$res = $dbr->select( 'pagelinks', '*', [ 'pl_from' => $page->getId() ] );
+		$res = $dbr->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'pagelinks' )
+			->where( [ 'pl_from' => $page->getId() ] )
+			->fetchResultSet();
 		$n = $res->numRows();
 		$res->free();
 
@@ -321,7 +325,11 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 		# ------------------------
 		$dbr = wfGetDB( DB_REPLICA );
-		$res = $dbr->select( 'pagelinks', '*', [ 'pl_from' => $id ] );
+		$res = $dbr->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'pagelinks' )
+			->where( [ 'pl_from' => $id ] )
+			->fetchResultSet();
 		$n = $res->numRows();
 		$res->free();
 
@@ -384,7 +392,11 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 		# ------------------------
 		$dbr = wfGetDB( DB_REPLICA );
-		$res = $dbr->select( 'pagelinks', '*', [ 'pl_from' => $id ] );
+		$res = $dbr->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'pagelinks' )
+			->where( [ 'pl_from' => $id ] )
+			->fetchResultSet();
 		$n = $res->numRows();
 		$res->free();
 
@@ -503,7 +515,11 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 		# ------------------------
 		$dbr = wfGetDB( DB_REPLICA );
-		$res = $dbr->select( 'pagelinks', '*', [ 'pl_from' => $id ] );
+		$res = $dbr->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'pagelinks' )
+			->where( [ 'pl_from' => $id ] )
+			->fetchResultSet();
 		$n = $res->numRows();
 		$res->free();
 
