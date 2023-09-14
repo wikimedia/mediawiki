@@ -45,9 +45,6 @@ class LanguageVariantConverter {
 	/** @var SiteConfig */
 	private $siteConfig;
 
-	/** @var TitleFactory */
-	private $titleFactory;
-
 	/** @var LanguageConverterFactory */
 	private $languageConverterFactory;
 
@@ -58,7 +55,7 @@ class LanguageVariantConverter {
 	 * Page language override from the Content-Language header.
 	 * @var ?Bcp47Code
 	 */
-	private $pageLanguageOverride;
+	private $pageLanguageOverride = null;
 
 	/** @var bool */
 	private $isFallbackLanguageConverterEnabled = true;
@@ -78,11 +75,9 @@ class LanguageVariantConverter {
 		$this->parsoid = $parsoid;
 		$this->parsoidSettings = $parsoidSettings;
 		$this->siteConfig = $siteConfig;
-		$this->titleFactory = $titleFactory;
-		$this->pageTitle = $this->titleFactory->newFromPageIdentity( $this->pageIdentity );
+		$this->pageTitle = $titleFactory->newFromPageIdentity( $this->pageIdentity );
 		$this->languageConverterFactory = $languageConverterFactory;
 		$this->languageFactory = $languageFactory;
-		$this->pageLanguageOverride = null;
 	}
 
 	/**

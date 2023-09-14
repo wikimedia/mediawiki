@@ -149,7 +149,8 @@ trait PageHandlerTestTrait {
 					$responseFactory,
 					$this->newRouter( 'https://example.test/api' ),
 					'/test/{title}',
-					$request
+					$request,
+					$services->getLanguageConverterFactory()
 				)
 			);
 

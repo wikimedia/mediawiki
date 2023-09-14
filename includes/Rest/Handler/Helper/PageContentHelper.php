@@ -328,23 +328,31 @@ class PageContentHelper {
 	}
 
 	/**
-	 * @throws LocalizedHttpException if the content is not accessible
+	 * @throws LocalizedHttpException if access is not allowed
 	 */
-	public function checkAccess() {
+	public function checkAccessPermission() {
 		$titleText = $this->getTitleText() ?? '';
-
-		if ( !$this->hasContent() ) {
-			throw new LocalizedHttpException(
-				MessageValue::new( 'rest-nonexistent-title' )->plaintextParams( $titleText ),
-				404
-			);
-		}
 
 		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Validated by hasContent
 		if ( !$this->isAccessible() || !$this->authority->authorizeRead( 'read', $this->getPageIdentity() ) ) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-permission-denied-title' )->plaintextParams( $titleText ),
 				403
+			);
+		}
+	}
+
+	/**
+	 * @throws LocalizedHttpException if no content is available
+	 */
+	public function checkHasContent() {
+		$titleText = $this->getTitleText() ?? '';
+
+		if ( !$this->hasContent() ) {
+			// needs to check if it's possibly a variant title
+			throw new LocalizedHttpException(
+				MessageValue::new( 'rest-nonexistent-title' )->plaintextParams( $titleText ),
+				404
 			);
 		}
 
@@ -355,6 +363,14 @@ class PageContentHelper {
 				404
 			);
 		}
+	}
+
+	/**
+	 * @throws LocalizedHttpException if the content is not accessible
+	 */
+	public function checkAccess() {
+		$this->checkAccessPermission();
+		$this->checkHasContent();
 	}
 
 }

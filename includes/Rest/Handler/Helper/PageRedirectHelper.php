@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Rest\Handler\Helper;
 
-use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\RedirectStore;
@@ -19,16 +19,14 @@ use TitleFormatter;
  * @since 1.41
  */
 class PageRedirectHelper {
-
 	private RedirectStore $redirectStore;
 	private TitleFormatter $titleFormatter;
 	private ResponseFactory $responseFactory;
 	private Router $router;
 	private string $path;
 	private RequestInterface $request;
-
+	private LanguageConverterFactory $languageConverterFactory;
 	private bool $followWikiRedirects = false;
-
 	private string $titleParamName = 'title';
 
 	public function __construct(
@@ -37,7 +35,8 @@ class PageRedirectHelper {
 		ResponseFactory $responseFactory,
 		Router $router,
 		string $path,
-		RequestInterface $request
+		RequestInterface $request,
+		LanguageConverterFactory $languageConverterFactory
 	) {
 		$this->redirectStore = $redirectStore;
 		$this->titleFormatter = $titleFormatter;
@@ -45,14 +44,7 @@ class PageRedirectHelper {
 		$this->router = $router;
 		$this->path = $path;
 		$this->request = $request;
-	}
-
-	/**
-	 * Sets the name of the path parameter that represents the page title.
-	 * @param string $titleParamName
-	 */
-	public function setTitleParamName( string $titleParamName ): void {
-		$this->titleParamName = $titleParamName;
+		$this->languageConverterFactory = $languageConverterFactory;
 	}
 
 	/**
@@ -117,7 +109,57 @@ class PageRedirectHelper {
 	}
 
 	/**
-	 * @param string|LinkTarget|PageReference $title
+	 * Check if a page with a variant title exists and create a Temporary Redirect Response
+	 * if needed.
+	 *
+	 * @param PageIdentity $page
+	 * @param string|null $titleAsRequested
+	 *
+	 * @return Response|null
+	 */
+	private function createVariantRedirectResponseIfNeeded(
+		PageIdentity $page, ?string $titleAsRequested
+	): ?Response {
+		if ( $page->exists() ) {
+			// If the page exists, there is no need to generate a redirect.
+			return null;
+		}
+
+		$redirectTargetUrl = $this->getVariantRedirectTargetUrl(
+			$page,
+			$titleAsRequested
+		);
+
+		if ( $redirectTargetUrl === null ) {
+			return null;
+		}
+
+		return $this->responseFactory->createTemporaryRedirect( $redirectTargetUrl );
+	}
+
+	/**
+	 * @param PageIdentity $page
+	 * @param string $titleAsRequested
+	 *
+	 * @return string|null
+	 */
+	private function getVariantRedirectTargetUrl(
+		PageIdentity $page, string $titleAsRequested
+	): ?string {
+		$variantPage = null;
+		if ( $this->hasVariants() ) {
+			$variantPage = $this->findVariantPage( $titleAsRequested, $page );
+		}
+
+		if ( !$variantPage ) {
+			return null;
+		}
+
+		return $this->getTargetUrl( $variantPage );
+	}
+
+	/**
+	 * @param string|PageReference $title
 	 * @return string
 	 */
 	public function getTargetUrl( $title ): string {
@@ -133,7 +175,9 @@ class PageRedirectHelper {
 	}
 
 	/**
-	 * Use this function for endpoints that check for both normalizations and wiki redirects
+	 * Use this function for endpoints that check for both
+	 * normalizations and wiki redirects.
+	 *
 	 * @param PageIdentity $page
 	 * @param string|null $titleAsRequested
 	 * @return Response|null
@@ -153,6 +197,12 @@ class PageRedirectHelper {
 		}
 
 		if ( $this->followWikiRedirects ) {
+			$variantRedirectResponse = $this->createVariantRedirectResponseIfNeeded( $page, $titleAsRequested );
+
+			if ( $variantRedirectResponse !== null ) {
+				return $variantRedirectResponse;
+			}
+
 			$wikiRedirectResponse = $this->createWikiRedirectResponseIfNeeded( $page );
 
 			if ( $wikiRedirectResponse !== null ) {
@@ -161,5 +211,29 @@ class PageRedirectHelper {
 		}
 
 		return null;
+	}
+
+	private function hasVariants(): bool {
+		return $this->languageConverterFactory->getLanguageConverter()->hasVariants();
+	}
+
+	/**
+	 * @param string $titleAsRequested
+	 * @param PageReference $page
+	 *
+	 * @return ?PageReference
+	 */
+	private function findVariantPage( string $titleAsRequested, PageReference $page ): ?PageReference {
+		$originalPage = $page;
+		$languageConverter = $this->languageConverterFactory->getLanguageConverter();
+		// @phan-suppress-next-line PhanTypeMismatchArgumentSuperType
+		$languageConverter->findVariantLink( $titleAsRequested, $page, true );
+
+		if ( $page === $originalPage ) {
+			// No variant link found, $page was not updated.
+			return null;
+		}
+
+		return $page;
 	}
 }

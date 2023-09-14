@@ -1331,7 +1331,8 @@ return [
 			$services->getHtmlTransformFactory(),
 			$services->getContentHandlerFactory(),
 			$services->getLanguageFactory(),
-			$services->getRedirectStore()
+			$services->getRedirectStore(),
+			$services->getLanguageConverterFactory()
 		);
 	},
 
