@@ -1,5 +1,6 @@
 /* User login and signup forms */
 @import 'mediawiki.skin.variables.less';
+@import 'mediawiki.mixins.less';
 
 @defaultFormWidth: 290px;
 
@@ -101,4 +102,10 @@ section.mw-form-header {
 .mw-userlogin-rememberme,
 .mw-htmlform-field-HTMLTextField {
 	margin: 0 0 15px;
+}
+
+.cdx-message .mw-userLogin-icon {
+	&--user-temporary {
+		.cdx-mixin-css-icon(@cdx-icon-user-temporary);
+	}
 }
