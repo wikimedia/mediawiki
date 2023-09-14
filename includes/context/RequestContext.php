@@ -769,4 +769,12 @@ class RequestContext implements IContextSource, MutableContext {
 
 		return $context;
 	}
+
+	/** @return never */
+	public function __clone() {
+		throw new LogicException(
+			__CLASS__ . ' should not be cloned, use DerivativeContext instead.'
+		);
+	}
+
 }
