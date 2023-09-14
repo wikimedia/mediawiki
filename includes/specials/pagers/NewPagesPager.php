@@ -24,6 +24,7 @@ use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\FormOptions;
+use MediaWiki\Pager\ReverseChronologicalPager;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Specials\SpecialNewPages;
 use MediaWiki\Title\Title;

@@ -31,6 +31,7 @@ use MediaWiki\Html\ListToggle;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Pager\ReverseChronologicalPager;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Watchlist\WatchlistManager;

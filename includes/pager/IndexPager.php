@@ -18,11 +18,17 @@
  * @file
  */
 
+namespace MediaWiki\Pager;
+
+use ContextSource;
+use HtmlArmor;
+use IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Navigation\PagerNavigationBuilder;
 use MediaWiki\Request\WebRequest;
+use stdClass;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -959,3 +965,9 @@ abstract class IndexPager extends ContextSource implements Pager {
 		return $this->linkRenderer;
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( IndexPager::class, 'IndexPager' );

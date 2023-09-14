@@ -22,6 +22,7 @@
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Pager\RangeChronologicalPager;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IConnectionProvider;

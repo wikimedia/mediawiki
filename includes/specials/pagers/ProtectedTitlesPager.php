@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Pager\AlphabeticPager;
 use MediaWiki\Specials\SpecialProtectedTitles;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IConnectionProvider;

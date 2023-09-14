@@ -21,6 +21,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Pager\ReverseChronologicalPager;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Specials\SpecialMergeHistory;
 use Wikimedia\Rdbms\IConnectionProvider;

@@ -608,6 +608,14 @@ because of Phabricator reports.
   - SpecialWatchlist
   - SpecialWhatLinksHere
   - SpecialWithoutInterwiki
+* The core pager classes are now namespaced under MediaWiki\Pager; the old
+  class names are now deprecated aliases:
+  - AlphabeticPager
+  - IndexPager
+  - Pager
+  - RangeChronologicalPager
+  - ReverseChronologicalPager
+  - TablePager
 * Various mediawiki.ui variables have been deprecated in favor of
   'mediawiki.skin.variables.less' Codex design tokens featuring replacements.
 * Hook handlers must now be specified either as a PHP callable, or as a PHP
