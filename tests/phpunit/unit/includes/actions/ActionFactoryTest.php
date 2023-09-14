@@ -51,17 +51,62 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::getAction
+	 * @covers ::getActionInfo
 	 */
-	public function testGetAction_simple() {
-		// Cases for undefined and disabled
-		$context = $this->createMock( IContextSource::class );
+	public function testGetActionInfo() {
 		$article = $this->getArticle();
+		$theAction = $this->createMock( Action::class );
+		$theAction->method( 'getName' )->willReturn( 'test' );
+		$theAction->method( 'getRestriction' )->willReturn( 'testing' );
+		$theAction->method( 'needsReadRights' )->willReturn( true );
+		$theAction->method( 'requiresWrite' )->willReturn( true );
+		$theAction->method( 'requiresUnblock' )->willReturn( true );
+
 		$factory = $this->getFactory( [
 			'actions' => [
+				'view' => $theAction,
 				'disabled' => false,
 			]
 		] );
+
+		$info = $factory->getActionInfo( 'view', $article );
+		$this->assertIsObject( $info );
+
+		$this->assertSame( 'test', $info->getName() );
+		$this->assertSame( 'testing', $info->getRestriction() );
+		$this->assertTrue( $info->needsReadRights() );
+		$this->assertTrue( $info->requiresWrite() );
+		$this->assertTrue( $info->requiresUnblock() );
+
+		$this->assertNull(
+			$factory->getActionInfo( 'missing', $article ),
+			'No ActionInfo should be returned for an unknown action'
+		);
+		$this->assertNull(
+			$factory->getActionInfo( 'disabled', $article ),
+			'No ActionInfo should be returned for a disabled action'
+		);
+	}
+
+	/**
+	 * @covers ::getAction
+	 */
+	public function testGetAction_simple() {
+		$context = $this->createMock( IContextSource::class );
+		$article = $this->getArticle();
+		$theAction = $this->createMock( Action::class );
+
+		$factory = $this->getFactory( [
+			'actions' => [
+				'known' => $theAction,
+				'disabled' => false,
+			]
+		] );
+		$this->assertSame(
+			$theAction,
+			$factory->getAction( 'known', $article, $context ),
+			'The `known` action is known'
+		);
 		$this->assertNull(
 			$factory->getAction( 'missing', $article, $context ),
 			'The `missing` action is not defined'

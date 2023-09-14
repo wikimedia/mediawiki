@@ -29,8 +29,11 @@ use McrRestoreAction;
 use McrUndoAction;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Title\Title;
 use Psr\Log\LoggerInterface;
 use RawAction;
+use RequestContext;
 use RevertAction;
 use RollbackAction;
 use UnwatchAction;
@@ -217,13 +220,13 @@ class ActionFactory {
 	 * taking into account Article-specific overrides
 	 *
 	 * @param string $actionName
-	 * @param Article $article
+	 * @param Article|PageIdentity $article The target on which the action is to be performed.
 	 * @param IContextSource $context
 	 * @return Action|false|null False if the action is disabled, null if not recognized
 	 */
 	public function getAction(
 		string $actionName,
-		Article $article,
+		$article,
 		IContextSource $context
 	) {
 		// Normalize to lowercase
@@ -233,6 +236,13 @@ class ActionFactory {
 		if ( $spec === false ) {
 			// The action is disabled
 			return $spec;
+		}
+
+		if ( !$article instanceof Article ) {
+			$article = Article::newFromTitle(
+				Title::newFromPageIdentity( $article ),
+				$context
+			);
 		}
 
 		// Check action overrides even for nonexistent actions, so that actions
@@ -288,6 +298,45 @@ class ActionFactory {
 		);
 		$actionObj->setHookContainer( $this->hookContainer );
 		return $actionObj;
+	}
+
+	/**
+	 * Returns an object containing information about the given action, or null if the action is not
+	 * known. Currently, this will also return null if the action is known but disabled. This may
+	 * change in the future.
+	 *
+	 * @param string $name
+	 * @param Article|PageIdentity|null $target The target on which the action is to be performed,
+	 *     if known. This is used to apply page-specific action overrides.
+	 *
+	 * @return ?ActionInfo
+	 * @since 1.41
+	 */
+	public function getActionInfo( string $name, $target = null ): ?ActionInfo {
+		$context = RequestContext::getMain();
+
+		if ( !$target ) {
+			$target = Title::newMainPage();
+		}
+
+		// TODO: In the future, this information should be taken directly from the action spec,
+		// without the need to instantiate an action object. However, action overrides will have
+		// to be taken into account if a target is given. (T346036)
+		$actionObj = $this->getAction( $name, $target, $context );
+
+		// TODO: When we no longer need to instantiate the action in order to determine the info,
+		// we will be able to return info for disabled actions as well.
+		if ( !$actionObj ) {
+			return null;
+		}
+
+		return new ActionInfo( [
+			'name' => $actionObj->getName(),
+			'restriction' => $actionObj->getRestriction(),
+			'needsReadRights' => $actionObj->needsReadRights(),
+			'requiresWrite' => $actionObj->requiresWrite(),
+			'requiresUnblock' => $actionObj->requiresUnblock(),
+		] );
 	}
 
 	/**

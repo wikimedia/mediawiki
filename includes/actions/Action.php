@@ -280,6 +280,10 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * Get the permission required to perform this action.  Often, but not always,
 	 * the same as the action name
+	 *
+	 * Implementations of this methods must always return the same value, regardless
+	 * of parameters passed to the constructor or system state.
+	 *
 	 * @since 1.17
 	 * @stable to override
 	 *
@@ -291,6 +295,10 @@ abstract class Action implements MessageLocalizer {
 
 	/**
 	 * Indicates whether this action requires read rights
+	 *
+	 * Implementations of this methods must always return the same value, regardless
+	 * of parameters passed to the constructor or system state.
+	 *
 	 * @since 1.38
 	 * @stable to override
 	 * @return bool
@@ -349,6 +357,10 @@ abstract class Action implements MessageLocalizer {
 
 	/**
 	 * Whether this action requires the wiki not to be locked
+	 *
+	 * Implementations of this methods must always return the same value, regardless
+	 * of parameters passed to the constructor or system state.
+	 *
 	 * @since 1.17
 	 * @stable to override
 	 *
@@ -359,7 +371,11 @@ abstract class Action implements MessageLocalizer {
 	}
 
 	/**
-	 * Whether this action can still be executed by a blocked user
+	 * Whether this action can still be executed by a blocked user.
+	 *
+	 * Implementations of this methods must always return the same value, regardless
+	 * of parameters passed to the constructor or system state.
+	 *
 	 * @since 1.17
 	 * @stable to override
 	 *

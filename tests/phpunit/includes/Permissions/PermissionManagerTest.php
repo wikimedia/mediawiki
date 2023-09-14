@@ -750,6 +750,10 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			->willReturn( 'test' );
 		$tester->method( 'requiresUnblock' )
 			->willReturn( false );
+		$tester->method( 'requiresWrite' )
+			->willReturn( false );
+		$tester->method( 'needsReadRights' )
+			->willReturn( false );
 
 		$this->overrideConfigValues( [
 			MainConfigNames::Actions => [

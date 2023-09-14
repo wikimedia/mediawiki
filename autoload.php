@@ -850,6 +850,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWikiTitleCodec' => __DIR__ . '/includes/title/MediaWikiTitleCodec.php',
 	'MediaWikiVersionFetcher' => __DIR__ . '/includes/composer/MediaWikiVersionFetcher.php',
 	'MediaWiki\\Actions\\ActionFactory' => __DIR__ . '/includes/actions/ActionFactory.php',
+	'MediaWiki\\Actions\\ActionInfo' => __DIR__ . '/includes/actions/ActionInfo.php',
 	'MediaWiki\\Actions\\FileDeleteAction' => __DIR__ . '/includes/actions/FileDeleteAction.php',
 	'MediaWiki\\Actions\\Hook\\GetActionNameHook' => __DIR__ . '/includes/actions/Hook/GetActionNameHook.php',
 	'MediaWiki\\Api\\ApiHookRunner' => __DIR__ . '/includes/api/ApiHookRunner.php',
