@@ -8,6 +8,11 @@ describe( 'Page Source', () => {
 	const variantPage = utils.title( 'PageSourceVariant' );
 	const fallbackVariantPage = 'MediaWiki:Tog-underline/kk-latn';
 
+	// Create a page (or "agepay") for the pig latin variant test.
+	const agepayHash = utils.title( '' ).replace( /\d/g, 'x' ).toLowerCase(); // only lower-case letters.
+	const agepay = 'Page' + agepayHash; // will not exist
+	const atinlayAgepay = 'Age' + agepayHash + 'pay'; // will exist
+
 	const redirectPage = utils.title( 'Redirect ' );
 	const redirectedPage = redirectPage.replace( 'Redirect', 'Redirected' );
 
@@ -19,6 +24,7 @@ describe( 'Page Source', () => {
 	before( async () => {
 		mindy = await action.mindy();
 		await anon.edit( page, { text: baseEditText } );
+		await anon.edit( atinlayAgepay, { text: baseEditText } );
 
 		// Setup page with redirects
 		await anon.edit( redirectPage, { text: `Original name is ${redirectPage}` } );
@@ -110,9 +116,9 @@ describe( 'Page Source', () => {
 			assert.nestedPropertyVal( body, 'key', utils.dbkey( page ) );
 			assert.match( body.html_url, new RegExp( `/page/${encodeURIComponent( pageWithSpaces )}/html$` ) );
 		} );
-		it( 'Should return 404 error for non-existent page', async () => {
-			const dummyPageTitle = utils.title( 'DummyPage_' );
-			const { status } = await client.get( `/page/${dummyPageTitle}/bare` );
+		it( 'Should return 404 error for non-existent page, even if a variant exists', async () => {
+			const agepayDbkey = utils.dbkey( agepay );
+			const { status } = await client.get( `/page/${agepayDbkey}/bare` );
 			assert.deepEqual( status, 404 );
 		} );
 		it( 'Should have appropriate response headers', async () => {
@@ -156,10 +162,24 @@ describe( 'Page Source', () => {
 			assert.deepEqual( status, 307, text );
 		} );
 
-		it( 'Bypass redirects with query param redirect=no', async () => {
+		it( 'Variant redirects should return temporary redirect (307)', async () => {
+			const agepayDbkey = utils.dbkey( agepay );
+			const atinlayAgepayDbkey = utils.dbkey( atinlayAgepay );
+			const { status, text, headers } = await client.get( `/page/${agepayDbkey}/html` );
+			assert.deepEqual( status, 307, text );
+			assert.include( headers.location, atinlayAgepayDbkey );
+		} );
+
+		it( 'Bypass wiki redirects with query param redirect=no', async () => {
 			const redirectPageDbkey = utils.dbkey( redirectPage );
 			const { status, text } = await client.get( `/page/${redirectPageDbkey}/html`, { redirect: 'no' } );
 			assert.deepEqual( status, 200, text );
+		} );
+
+		it( 'Bypass variant redirects with query param redirect=no', async () => {
+			const agepayDbkey = utils.dbkey( agepay );
+			const { status } = await client.get( `/page/${agepayDbkey}/html`, { redirect: 'no' } );
+			assert.deepEqual( status, 404 );
 		} );
 
 		it( 'Should successfully return page HTML', async () => {
