@@ -4375,6 +4375,13 @@ config-schema:
         default: local
         type: string
         description: 'Central ID lookup provider to use by default'
+    UserRegistrationProviders:
+        default:
+            local: { class: MediaWiki\User\Registration\LocalUserRegistrationProvider, services: [UserFactory] }
+        type: object
+        description: |-
+            User registration timestamp provider classes
+            @since 1.41
     PasswordPolicy:
         default:
             policies: { bureaucrat: { MinimalPasswordLength: 10, MinimumPasswordLengthToLogin: 1 }, sysop: { MinimalPasswordLength: 10, MinimumPasswordLengthToLogin: 1 }, interface-admin: { MinimalPasswordLength: 10, MinimumPasswordLengthToLogin: 1 }, bot: { MinimalPasswordLength: 10, MinimumPasswordLengthToLogin: 1 }, default: { MinimalPasswordLength: { value: 8, suggestChangeOnLogin: true }, PasswordCannotBeSubstringInUsername: { value: true, suggestChangeOnLogin: true }, PasswordCannotMatchDefaults: { value: true, suggestChangeOnLogin: true }, MaximalPasswordLength: { value: 4096, suggestChangeOnLogin: true }, PasswordNotInCommonList: { value: true, suggestChangeOnLogin: true } } }

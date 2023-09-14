@@ -95,6 +95,9 @@ For notes on 1.40.x and older releases, see HISTORY.
   telemetry information which could be attached to HTTP Requests
 * Wikimedia/Http/TelemetryHeadersInterface can be passed to MultiHttpClient
   via 'telemetry' option.
+* UserRegistrationLookup adds support for multiple kinds of registration dates
+  Extensions providing support for wiki-farm can use this to provide a global
+  registration date (across all wikis), for example.
 * …
 
 === External library changes in 1.41 ===

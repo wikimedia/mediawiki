@@ -2508,6 +2508,12 @@ $wgCentralIdLookupProviders = null;
 $wgCentralIdLookupProvider = null;
 
 /**
+ * Config variable stub for the UserRegistrationProviders setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::UserRegistrationProviders
+ */
+$wgUserRegistrationProviders = null;
+
+/**
  * Config variable stub for the PasswordPolicy setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::PasswordPolicy
  */
