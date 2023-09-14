@@ -2043,6 +2043,7 @@
 	"tag-filter": "[[Special:Tags|Teg]] filtri:",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Teg|Teg}}]]: $2",
 	"tag-mw-new-redirect": "Taza baǵdarlawshı qoyıldı",
+	"tag-mw-changed-redirect-target": "Baǵdarlawshı nıshana ózgertildi",
 	"tag-mw-undo": "Biykarlaw",
 	"tag-mw-manual-revert": "Qolda qaytarıw",
 	"tag-mw-reverted": "Qaytarıldı",
