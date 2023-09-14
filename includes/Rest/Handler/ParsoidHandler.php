@@ -559,7 +559,7 @@ abstract class ParsoidHandler extends Handler {
 	protected function tryToCreatePageConfig(
 		array $attribs, ?string $wikitextOverride = null, bool $html2WtMode = false
 	): PageConfig {
-		$revision = $attribs['oldid'];
+		$revId = $attribs['oldid'];
 		$pagelanguageOverride = $attribs['pagelanguage'];
 		$title = $attribs['pageName'];
 
@@ -576,8 +576,8 @@ abstract class ParsoidHandler extends Handler {
 			// Create a mutable revision record point to the same revision
 			// and set to the desired wikitext.
 			$revisionRecord = new MutableRevisionRecord( $title );
-			if ( $revision !== null ) {
-				$revisionRecord->setId( $revision );
+			if ( $revId !== null ) {
+				$revisionRecord->setId( $revId );
 			}
 			$revisionRecord->setSlot(
 				SlotRecord::newUnsaved(
@@ -587,7 +587,7 @@ abstract class ParsoidHandler extends Handler {
 			);
 		}
 
-		$hasOldId = ( $revision !== null );
+		$hasOldId = ( $revId !== null );
 		$ensureAccessibleContent = !$html2WtMode || $hasOldId;
 
 		try {
@@ -598,7 +598,7 @@ abstract class ParsoidHandler extends Handler {
 			// corner cases; see PageConfigFactory::create() for more.
 			// @phan-suppress-next-line PhanUndeclaredMethod method defined in subtype
 			$pageConfig = $this->pageConfigFactory->create(
-				$title, $user, $revisionRecord ?? $revision, null, $pagelanguageOverride,
+				$title, $user, $revisionRecord ?? $revId, null, $pagelanguageOverride,
 				$this->parsoidSettings, $ensureAccessibleContent
 			);
 		} catch ( SuppressedDataException $e ) {
