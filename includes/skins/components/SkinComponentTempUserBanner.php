@@ -78,7 +78,8 @@ class SkinComponentTempUserBanner implements SkinComponent {
 				HTML::rawElement( 'button', [
 					'id' => 'mw-temp-user-banner-tooltip-button',
 					'class' => 'mw-temp-user-banner-tooltip-summary cdx-button '
-						. 'cdx-button--icon-only cdx-button--weight-quiet'
+						. 'cdx-button--icon-only cdx-button--weight-quiet',
+					'aria-label' => $this->localizer->msg( 'temp-user-banner-tooltip-label' )
 					],
 					HTML::element( 'span', [ 'class' => 'mw-temp-user-banner-tooltip-icon ' ] )
 				)

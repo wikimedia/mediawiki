@@ -666,6 +666,7 @@
 	"showdiff": "Show changes",
 	"tempuser-helppage": "mw:Special:MyLanguage/Help:Temporary_accounts",
 	"temp-user-banner-description": "You are using a temporary account",
+	"temp-user-banner-tooltip-label": "More information on temporary accounts",
 	"temp-user-banner-tooltip-title": "Temporary account",
 	"temp-user-banner-tooltip-description-learn-more": "This temporary account was created after an edit was made without an account on this browser and device. [[mw:Help:Temporary_accounts|Learn more]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Log in]] or [[Special:CreateAccount|create an account]] to get credit for future edits and access other features.",

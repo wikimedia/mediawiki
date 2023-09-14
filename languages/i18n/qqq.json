@@ -919,6 +919,7 @@
 	"showdiff": "Button below the edit page. See also {{msg-mw|Showpreview}} and {{msg-mw|Savearticle}} for the other buttons.\n\nSee also:\n* {{msg-mw|Showdiff}}\n* {{msg-mw|Accesskey-diff}}\n* {{msg-mw|Tooltip-diff}}\n{{Identical|Show change}}",
 	"tempuser-helppage": "{{notranslate}}\nDefines a link to the documentation page for temporary accounts.",
 	"temp-user-banner-description": "The text on the banner that informs users that they are editing with a temporary arrount",
+	"temp-user-banner-tooltip-label": "Accessible label for the tooltip toggle.",
 	"temp-user-banner-tooltip-title": "The title of the tooltip that explains what a temporary account is.",
 	"temp-user-banner-tooltip-description-learn-more": "First paragraph of the temporary user banner tooltip. Explains what a temporary account is.",
 	"temp-user-banner-tooltip-description-login": "Second paragraph of the temporary user banner tooltip. Offers the option to log-in or create an account.",
