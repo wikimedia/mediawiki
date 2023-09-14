@@ -542,11 +542,12 @@ abstract class ContentHandler {
 	 * @stable to override
 	 * @since 1.21
 	 *
-	 * @return array<string,class-string|callable|false|Action> An array mapping action names
+	 * @return array<string,class-string|callable|false|Action|array> An array mapping action names
 	 *  (typically "view", "edit", "history" etc.) to a specification according to
 	 *  {@see ActionFactory::getActionSpec}. Can be the full qualified class name of an Action
 	 *  class, a callable taking ( Article $article, IContextSource $context ) as parameters and
-	 *  returning an Action object, false to disable an action, or an actual Action object.
+	 *  returning an Action object, false to disable an action, an actual Action object,
+	 *  or an ObjectFactory specification array (can have 'class', 'services', etc.).
 	 *  An empty array in this default implementation.
 	 *
 	 * @see Action::factory
