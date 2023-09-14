@@ -4,7 +4,6 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Hook\ParserLogLinterDataHook;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MainConfigSchema;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
@@ -103,9 +102,6 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 				ParsoidOutputAccess::CONSTRUCTOR_OPTIONS,
 				[
 					'ParsoidCacheConfig' => $parsoidCacheConfig,
-					'ParsoidSettings' => MainConfigSchema::getDefaultValue(
-						MainConfigNames::ParsoidSettings
-					),
 					'ParsoidWikiID' => 'MyWiki'
 				]
 			),

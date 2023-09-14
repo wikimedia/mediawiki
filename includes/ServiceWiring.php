@@ -210,8 +210,6 @@ use Wikimedia\DependencyStore\SqlModuleDependencyStore;
 use Wikimedia\EventRelayer\EventRelayerGroup;
 use Wikimedia\Message\IMessageFormatterFactory;
 use Wikimedia\ObjectFactory\ObjectFactory;
-use Wikimedia\Parsoid\Config\Api\DataAccess as ApiDataAccess;
-use Wikimedia\Parsoid\Config\Api\SiteConfig as ApiSiteConfig;
 use Wikimedia\Parsoid\Config\DataAccess;
 use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Parsoid;
@@ -1473,10 +1471,6 @@ return [
 
 	'ParsoidDataAccess' => static function ( MediaWikiServices $services ): DataAccess {
 		$mainConfig = $services->getMainConfig();
-		$parsoidSettings = $mainConfig->get( MainConfigNames::ParsoidSettings );
-		if ( !empty( $parsoidSettings['debugApi'] ) ) {
-			return ApiDataAccess::fromSettings( $parsoidSettings );
-		}
 		return new MWDataAccess(
 			new ServiceOptions( MWDataAccess::CONSTRUCTOR_OPTIONS, $mainConfig ),
 			$services->getRepoGroup(),
@@ -1544,9 +1538,6 @@ return [
 	'ParsoidSiteConfig' => static function ( MediaWikiServices $services ): SiteConfig {
 		$mainConfig = $services->getMainConfig();
 		$parsoidSettings = $mainConfig->get( MainConfigNames::ParsoidSettings );
-		if ( !empty( $parsoidSettings['debugApi'] ) ) {
-			return ApiSiteConfig::fromSettings( $parsoidSettings );
-		}
 		return new MWSiteConfig(
 			new ServiceOptions( MWSiteConfig::CONSTRUCTOR_OPTIONS, $mainConfig ),
 			$parsoidSettings,

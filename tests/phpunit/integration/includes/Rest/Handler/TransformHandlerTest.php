@@ -2,8 +2,6 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
-use MediaWiki\MainConfigNames;
-use MediaWiki\MainConfigSchema;
 use MediaWiki\Rest\Handler\Helper\ParsoidFormatHelper;
 use MediaWiki\Rest\Handler\TransformHandler;
 use MediaWiki\Rest\RequestData;
@@ -125,7 +123,6 @@ class TransformHandlerTest extends MediaWikiIntegrationTestCase {
 		$expectedHeaders = []
 	) {
 		$this->overrideConfigValue( 'UsePigLatinVariant', true );
-		$parsoidSettings = MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidSettings );
 
 		$revisionLookup = $this->getServiceContainer()->getRevisionLookup();
 		$dataAccess = $this->getServiceContainer()->getParsoidDataAccess();
@@ -133,7 +130,6 @@ class TransformHandlerTest extends MediaWikiIntegrationTestCase {
 		$pageConfigFactory = $this->getServiceContainer()->getParsoidPageConfigFactory();
 
 		$handler = new TransformHandler(
-			$parsoidSettings,
 			$revisionLookup,
 			$siteConfig,
 			$pageConfigFactory,
