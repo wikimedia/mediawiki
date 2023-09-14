@@ -52,7 +52,6 @@ use OOUIHTMLForm;
 use Parser;
 use ParserOutput;
 use SpecialPage;
-use SpecialWatchlist;
 use TitleParser;
 use TitleValue;
 use UnlistedSpecialPage;

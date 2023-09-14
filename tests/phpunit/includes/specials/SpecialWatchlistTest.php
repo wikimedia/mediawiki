@@ -3,6 +3,7 @@
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Specials\SpecialWatchlist;
 use Wikimedia\TestingAccessWrapper;
 
 /**

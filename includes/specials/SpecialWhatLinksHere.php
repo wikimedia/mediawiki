@@ -20,6 +20,10 @@
  * @file
  */
 
+namespace MediaWiki\Specials;
+
+use FormSpecialPage;
+use HTMLForm;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Html\FormOptions;
@@ -28,9 +32,13 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Navigation\PagerNavigationBuilder;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
+use Message;
+use NamespaceInfo;
+use SearchEngineFactory;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Xml;
 
 /**
  * Implements Special:Whatlinkshere
@@ -745,3 +753,9 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 		return 'pagetools';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialWhatLinksHere::class, 'SpecialWhatLinksHere' );

@@ -23,9 +23,16 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use HtmlArmor;
+use ILanguageConverter;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Title\Title;
+use Skin;
+use stdClass;
+use WantedQueryPage;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -144,3 +151,9 @@ class SpecialWantedCategories extends WantedQueryPage {
 		return 'maintenance';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialWantedCategories::class, 'SpecialWantedCategories' );

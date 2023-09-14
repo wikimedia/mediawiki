@@ -26,8 +26,11 @@
  * @author Danny B.
  */
 
+namespace MediaWiki\Specials;
+
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Linker\LinksMigration;
+use WantedQueryPage;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -82,3 +85,9 @@ class SpecialWantedTemplates extends WantedQueryPage {
 		return 'maintenance';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialWantedTemplates::class, 'SpecialWantedTemplates' );

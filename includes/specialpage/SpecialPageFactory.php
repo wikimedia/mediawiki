@@ -160,8 +160,13 @@ use MediaWiki\Specials\SpecialUserLogin;
 use MediaWiki\Specials\SpecialUserLogout;
 use MediaWiki\Specials\SpecialUserRights;
 use MediaWiki\Specials\SpecialVersion;
+use MediaWiki\Specials\SpecialWantedCategories;
 use MediaWiki\Specials\SpecialWantedFiles;
 use MediaWiki\Specials\SpecialWantedPages;
+use MediaWiki\Specials\SpecialWantedTemplates;
+use MediaWiki\Specials\SpecialWatchlist;
+use MediaWiki\Specials\SpecialWhatLinksHere;
+use MediaWiki\Specials\SpecialWithoutInterwiki;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use Profiler;
@@ -264,7 +269,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Withoutinterwiki' => [
-			'class' => \SpecialWithoutInterwiki::class,
+			'class' => SpecialWithoutInterwiki::class,
 			'services' => [
 				'NamespaceInfo',
 				'DBLoadBalancerFactory',
@@ -364,7 +369,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Wantedcategories' => [
-			'class' => \SpecialWantedCategories::class,
+			'class' => SpecialWantedCategories::class,
 			'services' => [
 				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
@@ -387,7 +392,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Wantedtemplates' => [
-			'class' => \SpecialWantedTemplates::class,
+			'class' => SpecialWantedTemplates::class,
 			'services' => [
 				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
@@ -678,7 +683,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Watchlist' => [
-			'class' => \SpecialWatchlist::class,
+			'class' => SpecialWatchlist::class,
 			'services' => [
 				'WatchedItemStore',
 				'WatchlistManager',
@@ -970,7 +975,7 @@ class SpecialPageFactory {
 			],
 		],
 		'Whatlinkshere' => [
-			'class' => \SpecialWhatLinksHere::class,
+			'class' => SpecialWhatLinksHere::class,
 			'services' => [
 				'DBLoadBalancerFactory',
 				'LinkBatchFactory',

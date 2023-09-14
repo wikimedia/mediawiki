@@ -21,18 +21,34 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Specials;
+
+use ChangesList;
+use ChangesListBooleanFilterGroup;
+use ChangesListSpecialPage;
+use ChangesListStringOptionsFilterGroup;
+use EnhancedChangesList;
+use IContextSource;
+use LogPage;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\DerivativeRequest;
-use MediaWiki\Specials\SpecialEditWatchlist;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
+use RecentChange;
+use SpecialPage;
+use TitleValue;
+use UserNotLoggedIn;
+use WatchedItem;
+use WatchedItemStoreInterface;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
+use Xml;
+use XmlSelect;
 
 /**
  * A special page that lists last changes made to the wiki,
@@ -1012,3 +1028,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialWatchlist::class, 'SpecialWatchlist' );

@@ -474,8 +474,8 @@ because of Phabricator reports.
 * (T178356) The es6-polyfills module is deprecated and is now a no-op.
 * SerializedValueContainer::newUnified() is unused and now emits deprecation
   warnings.
-* The following classes are now namespaced under MediaWiki\Specials; the old
-  class names are now deprecated aliases:
+* All remaining special pages have been namespaced under MediaWiki\Specials; the
+  old class names are now deprecated aliases:
   - SpecialActiveUsers
   - SpecialAllMessages
   - SpecialAllMyUploads (under MediaWiki\Specials\Redirects)
@@ -600,6 +600,11 @@ because of Phabricator reports.
   - SpecialUserLogin
   - SpecialUserLogout
   - SpecialVersion
+  - SpecialWantedCategories
+  - SpecialWantedTemplates
+  - SpecialWatchlist
+  - SpecialWhatLinksHere
+  - SpecialWithoutInterwiki
 * Various mediawiki.ui variables have been deprecated in favor of
   'mediawiki.skin.variables.less' Codex design tokens featuring replacements.
 * Hook handlers must now be specified either as a PHP callable, or as a PHP
