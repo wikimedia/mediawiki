@@ -39,9 +39,6 @@ class LanguageVariantConverter {
 	/** @var Parsoid */
 	private $parsoid;
 
-	/** @var array */
-	private $parsoidSettings;
-
 	/** @var SiteConfig */
 	private $siteConfig;
 
@@ -64,7 +61,6 @@ class LanguageVariantConverter {
 		PageIdentity $pageIdentity,
 		PageConfigFactory $pageConfigFactory,
 		Parsoid $parsoid,
-		array $parsoidSettings,
 		SiteConfig $siteConfig,
 		TitleFactory $titleFactory,
 		LanguageConverterFactory $languageConverterFactory,
@@ -73,7 +69,6 @@ class LanguageVariantConverter {
 		$this->pageConfigFactory = $pageConfigFactory;
 		$this->pageIdentity = $pageIdentity;
 		$this->parsoid = $parsoid;
-		$this->parsoidSettings = $parsoidSettings;
 		$this->siteConfig = $siteConfig;
 		$this->pageTitle = $titleFactory->newFromPageIdentity( $this->pageIdentity );
 		$this->languageConverterFactory = $languageConverterFactory;
@@ -215,8 +210,7 @@ class LanguageVariantConverter {
 				null,
 				null,
 				null,
-				$pageLanguage,
-				$this->parsoidSettings
+				$pageLanguage
 			);
 
 			if ( $sourceVariant ) {

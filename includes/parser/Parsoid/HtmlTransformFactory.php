@@ -103,7 +103,6 @@ class HtmlTransformFactory {
 			$page,
 			$this->configFactory,
 			$this->parsoid,
-			$this->parsoidSettings,
 			$this->siteConfig,
 			$this->titleFactory,
 			$this->languageConverterFactory,

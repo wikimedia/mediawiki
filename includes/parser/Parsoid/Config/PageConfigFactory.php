@@ -32,8 +32,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use ParserOptions;
 use Wikimedia\Bcp47Code\Bcp47Code;
-use Wikimedia\Parsoid\Config\Api\PageConfig as ApiPageConfig;
-use WikitextContent;
 
 /**
  * Helper class used by MediaWiki to create Parsoid PageConfig objects.
@@ -81,7 +79,6 @@ class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
 	 * @param int|RevisionRecord|null $revision Revision id or a revision record
 	 * @param ?string $unused
 	 * @param ?Bcp47Code $pageLanguageOverride
-	 * @param ?array $parsoidSettings Used to enable the debug API if requested
 	 * @param bool $ensureAccessibleContent If true, ensures that we can get content
 	 *   from the newly constructed pageConfig's RevisionRecord and throws a
 	 *   RevisionAccessException if not.
@@ -94,35 +91,12 @@ class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
 		$revision = null,
 		?string $unused = null, /* Added to mollify CI with cross-repo uses */
 		?Bcp47Code $pageLanguageOverride = null,
-		?array $parsoidSettings = null,
 		bool $ensureAccessibleContent = false
 	): \Wikimedia\Parsoid\Config\PageConfig {
 		$title = Title::newFromPageIdentity( $pageId );
 
 		if ( $unused !== null ) {
 			wfDeprecated( __METHOD__ . ' with non-null 4th arg', '1.40' );
-		}
-
-		if ( !empty( $parsoidSettings['debugApi'] ) ) {
-			if ( $revision === null ) {
-				throw new \InvalidArgumentException(
-					"Revision not provided. Cannot lookup revision via debug API." );
-			}
-
-			$content = $revision->getContent( SlotRecord::MAIN );
-			if ( $content instanceof WikitextContent ) {
-				$wtContent = $content->getText();
-				return ApiPageConfig::fromSettings( $parsoidSettings, [
-					"title" => $title->getPrefixedText(),
-					"pageContent" => $wtContent,
-					"pageLanguage" => $pageLanguageOverride, # ?Bcp47Code
-					"revid" => $revision->getId(),
-					"loadData" => true,
-				] );
-			} else {
-				throw new \UnexpectedValueException(
-					"Non-wikitext content models not supported by debug API" );
-			}
 		}
 
 		if ( $revision === null ) {

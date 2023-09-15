@@ -82,7 +82,6 @@ class ParsoidOutputAccess {
 
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::ParsoidCacheConfig,
-		MainConfigNames::ParsoidSettings,
 		'ParsoidWikiID'
 	];
 
@@ -470,7 +469,6 @@ class ParsoidOutputAccess {
 				$revision,
 				null,
 				$parserOpts->getTargetLanguage(),
-				$this->options->get( MainConfigNames::ParsoidSettings ),
 				true  // ensureAccessibleContent
 			);
 		} catch ( RevisionAccessException $e ) {

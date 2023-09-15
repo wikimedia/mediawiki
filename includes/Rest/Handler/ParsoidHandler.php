@@ -75,9 +75,6 @@ abstract class ParsoidHandler extends Handler {
 	// TODO content negotiation (routes.js routes.acceptable)
 	// TODO handle MaxConcurrentCallsError (pool counter?)
 
-	/** @var array Parsoid-specific settings array from $config */
-	private $parsoidSettings;
-
 	/** @var SiteConfig */
 	protected $siteConfig;
 
@@ -105,7 +102,6 @@ abstract class ParsoidHandler extends Handler {
 		$services = MediaWikiServices::getInstance();
 		// @phan-suppress-next-line PhanTypeInstantiateAbstractStatic
 		return new static(
-			$services->getMainConfig()->get( MainConfigNames::ParsoidSettings ),
 			$services->getRevisionLookup(),
 			$services->getParsoidSiteConfig(),
 			$services->getParsoidPageConfigFactory(),
@@ -114,20 +110,17 @@ abstract class ParsoidHandler extends Handler {
 	}
 
 	/**
-	 * @param array $parsoidSettings
 	 * @param RevisionLookup $revisionLookup
 	 * @param SiteConfig $siteConfig
 	 * @param PageConfigFactory $pageConfigFactory
 	 * @param DataAccess $dataAccess
 	 */
 	public function __construct(
-		array $parsoidSettings,
 		RevisionLookup $revisionLookup,
 		SiteConfig $siteConfig,
 		PageConfigFactory $pageConfigFactory,
 		DataAccess $dataAccess
 	) {
-		$this->parsoidSettings = $parsoidSettings;
 		$this->revisionLookup = $revisionLookup;
 		$this->siteConfig = $siteConfig;
 		$this->pageConfigFactory = $pageConfigFactory;
@@ -328,7 +321,7 @@ abstract class ParsoidHandler extends Handler {
 
 		// TODO: Remove assertDomainIsCorrect() once we no longer need to support the {domain}
 		//       parameter for the endpoints exposed by the parsoid extension.
-		if ( empty( $this->parsoidSettings['debugApi'] ) && $attribs['envOptions']['domain'] !== null ) {
+		if ( $attribs['envOptions']['domain'] !== null ) {
 			$this->assertDomainIsCorrect( $attribs['envOptions']['domain'] );
 		}
 
@@ -599,7 +592,7 @@ abstract class ParsoidHandler extends Handler {
 			// @phan-suppress-next-line PhanUndeclaredMethod method defined in subtype
 			$pageConfig = $this->pageConfigFactory->create(
 				$title, $user, $revisionRecord ?? $revId, null, $pagelanguageOverride,
-				$this->parsoidSettings, $ensureAccessibleContent
+				$ensureAccessibleContent
 			);
 		} catch ( SuppressedDataException $e ) {
 			throw new HttpException( $e->getMessage(), 403 );
@@ -861,22 +854,6 @@ abstract class ParsoidHandler extends Handler {
 			//       the ParserCache takes a lot of disk space, and we need to have fine grained control
 			//       over when we write to it, so we can avoid running out of disc space.
 			$helper->setUseParserCache( true, false );
-		}
-
-		if (
-			!empty( $this->parsoidSettings['devAPI'] ) &&
-			( $request->getQueryParams()['follow_redirects'] ?? false )
-		) {
-			$page = $this->pageConfigToPageIdentity( $pageConfig );
-			$redirectLookup = MediaWikiServices::getInstance()->getRedirectLookup();
-			$redirectTarget = $redirectLookup->getRedirectTarget( $page );
-			if ( $redirectTarget ) {
-				$this->followWikiRedirect(
-					$redirectTarget,
-					$attribs['envOptions']['domain'],
-					$format
-				);
-			}
 		}
 
 		$needsPageBundle = ( $format === ParsoidFormatHelper::FORMAT_PAGEBUNDLE );

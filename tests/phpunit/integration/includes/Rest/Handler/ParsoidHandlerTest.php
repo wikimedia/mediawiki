@@ -8,8 +8,6 @@ use Generator;
 use JavaScriptContent;
 use Language;
 use LanguageCode;
-use MediaWiki\MainConfigNames;
-use MediaWiki\MainConfigSchema;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
@@ -108,10 +106,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function newParsoidHandler( $methodOverrides = [], $serviceOverrides = [] ): ParsoidHandler {
-		$parsoidSettings = [];
 		$method = 'POST';
-
-		$parsoidSettings += MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidSettings );
 
 		$revisionLookup = $this->getServiceContainer()->getRevisionLookup();
 		$dataAccess = $serviceOverrides['ParsoidDataAccess'] ?? $this->getServiceContainer()->getParsoidDataAccess();
@@ -121,7 +116,6 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$handler = new class (
 			$this,
-			$parsoidSettings,
 			$revisionLookup,
 			$siteConfig,
 			$pageConfigFactory,
@@ -133,7 +127,6 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 			public function __construct(
 				$testCase,
-				array $parsoidSettings,
 				RevisionLookup $revisionLookup,
 				SiteConfig $siteConfig,
 				PageConfigFactory $pageConfigFactory,
@@ -141,7 +134,6 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 				array $overrides
 			) {
 				parent::__construct(
-					$parsoidSettings,
 					$revisionLookup,
 					$siteConfig,
 					$pageConfigFactory,

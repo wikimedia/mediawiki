@@ -317,8 +317,7 @@ class HtmlToContentTransform {
 					null,
 					$revision,
 					null,
-					$this->contentLanguage,
-					$this->parsoidSettings
+					$this->contentLanguage
 				);
 			} catch ( RevisionAccessException $exception ) {
 				// TODO: Throw a different exception, this class should not know

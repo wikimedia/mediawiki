@@ -3,8 +3,6 @@
 namespace MediaWiki\Parser\Parsoid;
 
 use Language;
-use MediaWiki\MainConfigNames;
-use MediaWiki\MainConfigSchema;
 use MediaWiki\Page\PageIdentity;
 use MediaWikiIntegrationTestCase;
 use ParserOutput;
@@ -263,7 +261,6 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 			$pageIdentity,
 			$this->getServiceContainer()->getParsoidPageConfigFactory(),
 			$this->getServiceContainer()->getService( '_Parsoid' ),
-			MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidSettings ),
 			$this->getServiceContainer()->getParsoidSiteConfig(),
 			$this->getServiceContainer()->getTitleFactory(),
 			$this->getServiceContainer()->getLanguageConverterFactory(),
