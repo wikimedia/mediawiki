@@ -29,7 +29,9 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\MagicWord;
+use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleFactory;
 
 /**
  * Content object for wiki text pages.
@@ -147,14 +149,28 @@ class WikitextContent extends TextContent {
 	 *
 	 * @since 1.23
 	 *
+	 * @param TitleFactory|null $titleFactory used to parse redirect titles
+	 * @param MagicWordFactory|null $magicWordFactory The magic word factory to use
+	 *   to identify redirects.
 	 * @return array List of two elements: Title|null and string.
 	 */
-	public function getRedirectTargetAndText() {
+	public function getRedirectTargetAndText(
+		TitleFactory $titleFactory = null,
+		MagicWordFactory $magicWordFactory = null
+	) {
 		if ( $this->redirectTargetAndText !== null ) {
 			return $this->redirectTargetAndText;
 		}
+		if ( $titleFactory === null ) {
+			// This will eventually be deprecated.
+			$titleFactory = MediaWikiServices::getInstance()->getTitleFactory();
+		}
+		if ( $magicWordFactory === null ) {
+			// This will eventually be deprecated.
+			$magicWordFactory = MediaWikiServices::getInstance()->getMagicWordFactory();
+		}
 
-		$redir = MediaWikiServices::getInstance()->getMagicWordFactory()->get( 'redirect' );
+		$redir = $magicWordFactory->get( 'redirect' );
 		$text = ltrim( $this->getText() );
 		if ( $redir->matchStartAndRemove( $text ) ) {
 			// Extract the first link and see if it's usable
@@ -168,7 +184,7 @@ class WikitextContent extends TextContent {
 					// Match behavior of inline link parsing here;
 					$m[1] = rawurldecode( ltrim( $m[1], ':' ) );
 				}
-				$title = Title::newFromText( $m[1] );
+				$title = $titleFactory->newFromText( $m[1] );
 				// If the title is a redirect to bad special pages or is invalid, return null
 				if ( !$title instanceof Title || !$title->isValidRedirectTarget() ) {
 					$this->redirectTargetAndText = [ null, $this->getText() ];
@@ -192,7 +208,10 @@ class WikitextContent extends TextContent {
 	 * @see Content::getRedirectTarget
 	 */
 	public function getRedirectTarget() {
-		[ $title, ] = $this->getRedirectTargetAndText();
+		[ $title, ] = $this->getRedirectTargetAndText(
+			MediaWikiServices::getInstance()->getTitleFactory(),
+			MediaWikiServices::getInstance()->getMagicWordFactory()
+		);
 
 		return $title;
 	}

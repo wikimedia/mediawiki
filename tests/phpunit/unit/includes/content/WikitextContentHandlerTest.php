@@ -2,9 +2,11 @@
 
 namespace MediaWiki\Tests\Unit;
 
+use Language;
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Parser\MagicWord;
 use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
@@ -13,6 +15,7 @@ use MediaWiki\Revision\SlotRenderingProvider;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWikiUnitTestCase;
+use MockTitleTrait;
 use MWException;
 use Parser;
 use ParserFactory;
@@ -30,6 +33,7 @@ use WikitextContentHandler;
  * @coversDefaultClass \WikitextContentHandler
  */
 class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
+	use MockTitleTrait;
 
 	private function newWikitextContentHandler( $overrides = [] ): WikitextContentHandler {
 		return new WikitextContentHandler(
@@ -142,11 +146,13 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 	 * @covers ::fillParserOutput
 	 * @dataProvider provideFillParserOutput
 	 */
-	public function testFillParserOutput( $useParsoid = true ) {
+	public function testFillParserOutput( $useParsoid = true, $testRedirect = false ) {
 		$parserOptions = $this->createMock( ParserOptions::class );
 		$parserOptions
 			->method( 'getUseParsoid' )
 			->willReturn( $useParsoid );
+
+		$parserOutput = $this->createMock( ParserOutput::class );
 
 		// This is the core of the test: if the useParsoid option is NOT
 		// present, we expect ParserFactory->getInstance()->parse()
@@ -154,7 +160,8 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 		$parser = $this->createMock( Parser::class );
 		$parser
 			->expects( $useParsoid ? $this->never() : $this->once() )
-			->method( 'parse' );
+			->method( 'parse' )
+			->willReturn( $parserOutput );
 		$parserFactory = $this->createMock( ParserFactory::class );
 		$parserFactory
 			->expects( $useParsoid ? $this->never() : $this->once() )
@@ -167,31 +174,55 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 		$parsoidParser = $this->createMock( ParsoidParser::class );
 		$parsoidParser
 			->expects( $useParsoid ? $this->once() : $this->never() )
-			->method( 'parse' );
+			->method( 'parse' )
+			->willReturn( $parserOutput );
 		$parsoidParserFactory = $this->createMock( ParsoidParserFactory::class );
 		$parsoidParserFactory
 			->expects( $useParsoid ? $this->once() : $this->never() )
 			->method( 'create' )
 			->willReturn( $parsoidParser );
 
-		// Set up the rest of the mocks
-		$content = $this->createMock( WikitextContent::class );
-		$content
-			->method( 'getRedirectTargetAndText' )
-			->willReturn( [ false, '* Hello, world!' ] );
-		$content
-			->method( 'getPreSaveTransformFlags' )
-			->willReturn( [] );
+		$linkRenderer = $this->createMock( LinkRenderer::class );
+		// For a redirect test, we expect LinkRenderer::makeRedirectHeader() to
+		// be called once, and ParserOutput::setRedirectHeader() to be called
+		// with whatever it returns.
+		$linkRenderer
+			->expects( $testRedirect ? $this->once() : $this->never() )
+			->method( 'makeRedirectHeader' )
+			->willReturn( 'ABCDEFG' );
+		$parserOutput
+			->expects( $testRedirect ? $this->once() : $this->never() )
+			->method( 'setRedirectHeader' )
+			->with( 'ABCDEFG' );
 
-		$title = $this->createMock( Title::class );
+		// Set up the rest of the mocks
+		$magicWordRedirect = $this->createMock( MagicWord::class );
+		$magicWordRedirect
+			->method( 'getSynonym' )
+			->willReturnMap( [ [ 0, '#REDIRECT' ] ] );
+		$magicWordRedirect
+			->method( 'matchStartAndRemove' )
+			->willReturnCallback( static function ( string &$text ) {
+				$text = '[[SomeTitle]]';
+				return true;
+			} );
+		$magicWordFactory = $this->createMock( MagicWordFactory::class );
+		$magicWordFactory
+			->method( 'get' )
+			->willReturnMap( [ [ 'redirect', $magicWordRedirect ] ] );
+
+		$title = $this->makeMockTitle( 'SomeTitle', [
+			'language' => $this->createMock( Language::class ),
+		] );
 		$titleFactory = $this->createMock( TitleFactory::class );
 		$titleFactory
 			->method( 'newFromPageReference' )
 			->willReturn( $title );
+		$titleFactory
+			->method( 'newFromText' )
+			->willReturnMap( [ [ 'SomeTitle', NS_MAIN, $title ] ] );
 
 		$cpoParams = new ContentParseParams( $title, 42, $parserOptions );
-
-		$parserOutput = $this->createMock( ParserOutput::class );
 
 		// The method we'd like to test, fillParserOutput, is protected;
 		// make it public
@@ -201,9 +232,23 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 
 		$handler = $this->newWikitextContentHandler( [
 			TitleFactory::class => $titleFactory,
+			LinkRenderer::class => $linkRenderer,
+			MagicWordFactory::class => $magicWordFactory,
 			ParserFactory::class => $parserFactory,
 			ParsoidParserFactory::class => $parsoidParserFactory,
 		] );
+
+		if ( $testRedirect ) {
+			$content = $handler->makeRedirectContent( $title );
+		} else {
+			$content = $this->createMock( WikitextContent::class );
+			$content
+				->method( 'getRedirectTargetAndText' )
+				->willReturn( [ false, '* Hello, world!' ] );
+			$content
+				->method( 'getPreSaveTransformFlags' )
+				->willReturn( [] );
+		}
 
 		// Okay, invoke fillParserOutput() and verify that the assertions
 		// above about the parse() invocations are correct.
@@ -211,6 +256,11 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 	}
 
 	public static function provideFillParserOutput() {
-		return [ [ false ], [ true ] ];
+		return [
+			[ false, false ],
+			[ false, true ],
+			[ true, false ],
+			[ true, true ],
+		];
 	}
 }

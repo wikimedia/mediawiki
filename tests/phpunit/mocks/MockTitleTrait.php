@@ -26,6 +26,7 @@ trait MockTitleTrait {
 	 *        - language: Language
 	 *        - contentModel: string
 	 *        - revision: int
+	 *        - validRedirect: bool
 	 *
 	 * @return Title|MockObject
 	 */
@@ -66,6 +67,7 @@ trait MockTitleTrait {
 		$title->method( 'getInterwiki' )->willReturn( $props['interwiki'] ?? '' );
 		$title->method( 'exists' )->willReturn( $id > 0 );
 		$title->method( 'isRedirect' )->willReturn( $props['redirect'] ?? false );
+		$title->method( 'isValidRedirectTarget' )->willReturn( $props['validRedirect'] ?? true );
 		$title->method( 'getTouched' )->willReturn( $id ? '20200101223344' : false );
 
 		// TODO getPageLanguage should return a Language object, 'qqx' is a string
