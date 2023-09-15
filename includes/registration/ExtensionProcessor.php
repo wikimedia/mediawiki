@@ -63,7 +63,8 @@ class ExtensionProcessor implements Processor {
 		MainConfigNames::ResourceLoaderSources,
 		MainConfigNames::RevokePermissions,
 		MainConfigNames::SessionProviders,
-		MainConfigNames::SpecialPages
+		MainConfigNames::SpecialPages,
+		MainConfigNames::UserRegistrationProviders,
 	];
 
 	/**
