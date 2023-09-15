@@ -951,6 +951,8 @@ because of Phabricator reports.
 * The legacy MediaWiki UI ResourceLoader modules, such as `mediawiki.ui`, are
   all now emitting deprecation warnings in the JavaScript console. Please use
   Codex CSS components instead.
+* Article::getRedirectHeaderHtml() has been deprecated, use
+  LinkRenderer::makeRedirectHeader() instead.
 * SpecialBlock::getTargetAndType(), deprecated since 1.36, now emits deprecation
   warnings.
 * Calling SpecialRandomPage::__construct without services as parameters is

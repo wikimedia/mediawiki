@@ -21,6 +21,7 @@
 namespace MediaWiki\Linker;
 
 use HtmlArmor;
+use Language;
 use LinkCache;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
@@ -324,6 +325,54 @@ class LinkRenderer {
 		$text ??= $this->getLinkText( $target );
 
 		return $this->buildAElement( $target, $text, $attribs, false );
+	}
+
+	/**
+	 * Return the HTML for the top of a redirect page
+	 *
+	 * Chances are you should just be using the ParserOutput from
+	 * WikitextContent::getParserOutput (which will have this header added
+	 * automatically) instead of calling this for redirects.
+	 *
+	 * If creating your own redirect-alike, please use return value of
+	 * this method to set the 'core:redirect-header' extension data field
+	 * in your ParserOutput, rather than concatenating HTML directly.
+	 * See WikitextContentHandler::fillParserOutput().
+	 *
+	 * @since 1.41
+	 * @param Language $lang
+	 * @param Title $target Destination to redirect
+	 * @param bool $forceKnown Should the image be shown as a bluelink regardless of existence?
+	 * @return string Containing HTML with redirect link
+	 */
+	public function makeRedirectHeader( Language $lang, Title $target, bool $forceKnown = false ) {
+		$html = '<ul class="redirectText">';
+		if ( $forceKnown ) {
+			$link = $this->makeKnownLink(
+				$target,
+				$target->getFullText(),
+				[],
+				// Make sure wiki page redirects are not followed
+				$target->isRedirect() ? [ 'redirect' => 'no' ] : []
+			);
+		} else {
+			$link = $this->makeLink(
+				$target,
+				$target->getFullText(),
+				[],
+				// Make sure wiki page redirects are not followed
+				$target->isRedirect() ? [ 'redirect' => 'no' ] : []
+			);
+		}
+
+		$redirectToText = wfMessage( 'redirectto' )->inLanguage( $lang )->escaped();
+
+		return Html::rawElement(
+			'div', [ 'class' => 'redirectMsg' ],
+			Html::rawElement( 'p', [], $redirectToText ) .
+			Html::rawElement( 'ul', [ 'class' => 'redirectText' ],
+							 Html::rawElement( 'li', [], $link ) )
+		);
 	}
 
 	/**

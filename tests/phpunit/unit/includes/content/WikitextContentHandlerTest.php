@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Unit;
 
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
@@ -37,6 +38,7 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 			$overrides[ParserFactory::class] ?? $this->createMock( ParserFactory::class ),
 			$overrides[GlobalIdGenerator::class] ?? $this->createMock( GlobalIdGenerator::class ),
 			$overrides[LanguageNameUtils::class] ?? $this->createMock( LanguageNameUtils::class ),
+			$overrides[LinkRenderer::class] ?? $this->createMock( LinkRenderer::class ),
 			$overrides[MagicWordFactory::class] ?? $this->createMock( MagicWordFactory::class ),
 			$overrides[ParsoidParserFactory::class] ?? $this->createMock( ParsoidParserFactory::class )
 		);
