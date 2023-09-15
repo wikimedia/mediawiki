@@ -2,9 +2,9 @@
  * JavaScript for diff inline toggle
  */
 ( function () {
-	var $inlineToggleSwitch = $( '#mw-diffPage-inline-toggle-switch' );
+	var $inlineToggleSwitchLayout = $( '#mw-diffPage-inline-toggle-switch-layout' );
 	// Return if inline switch is not displaying.
-	if ( !$inlineToggleSwitch.length ) {
+	if ( !$inlineToggleSwitchLayout.length ) {
 		return;
 	}
 	var $wikitextDiffContainer, $wikitextDiffHeader, $wikitextDiffBody,
@@ -12,7 +12,8 @@
 		url = new URL( location.href ),
 		api = new mw.Api(),
 		$inlineLegendContainer = $( '.mw-diff-inline-legend' ),
-		inlineToggleSwitch = OO.ui.ToggleSwitchWidget.static.infuse( $inlineToggleSwitch );
+		inlineToggleSwitchLayout = OO.ui.FieldLayout.static.infuse( $inlineToggleSwitchLayout ),
+		inlineToggleSwitch = inlineToggleSwitchLayout.getField();
 
 	inlineToggleSwitch.on( 'change', onDiffTypeInlineChange );
 	inlineToggleSwitch.on( 'disable', onDiffTypeInlineDisabled );

@@ -255,11 +255,12 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 					new ToggleSwitchWidget( [
 						'id' => 'mw-diffPage-inline-toggle-switch',
 						'href' => $newTitle->getLocalURL( $values ),
-						'value' => $isInlineDiffType,
-						'infusable' => true
+						'value' => $isInlineDiffType
 					] ),
 					[
-						'label' => $context->msg( 'diff-inline-format-label' )->plain()
+						'id' => 'mw-diffPage-inline-toggle-switch-layout',
+						'label' => $context->msg( 'diff-inline-format-label' )->plain(),
+						'infusable' => true
 					]
 				),
 			);
