@@ -269,19 +269,17 @@ class LinkerTest extends MediaWikiLangTestCase {
 		$conf = new SiteConfiguration();
 		$conf->settings = [
 			'wgServer' => [
-				'enwiki' => '//en.example.org',
-				'dewiki' => '//de.example.org',
+				'foowiki' => '//foo.example.org',
 			],
 			'wgArticlePath' => [
-				'enwiki' => '/w/$1',
-				'dewiki' => '/w/$1',
+				'foowiki' => '/foo/$1',
 			],
 		];
 		$conf->suffixes = [ 'wiki' ];
 		$this->setMwGlobals( 'wgConf', $conf );
 
 		$this->overrideConfigValues( [
-			MainConfigNames::Script => '/wiki/index.php',
+			MainConfigNames::Script => '/w/index.php',
 			MainConfigNames::ArticlePath => '/wiki/$1',
 			MainConfigNames::CapitalLinks => true,
 			// TODO: update tests when the default changes
@@ -300,7 +298,6 @@ class LinkerTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideCasesForFormatComment() {
-		$wikiId = 'enwiki'; // $wgConf has a fake entry for this
 		return [
 			// Linker::formatComment
 			[
@@ -412,17 +409,17 @@ class LinkerTest extends MediaWikiLangTestCase {
 				false, false
 			],
 			[
-				'<span dir="auto"><span class="autocomment"><a class="external" rel="nofollow" href="//en.example.org/w/Special:BlankPage#autocomment">→‎autocomment</a></span></span>',
+				'<span dir="auto"><span class="autocomment"><a class="external" rel="nofollow" href="//foo.example.org/foo/Special:BlankPage#autocomment">→‎autocomment</a></span></span>',
 				"/* autocomment */",
-				false, false, $wikiId
+				false, false, 'foowiki'
 			],
 			// Linker::formatLinksInComment
 			[
-				'abc <a href="/wiki/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">link</a> def',
+				'abc <a href="/w/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">link</a> def',
 				"abc [[link]] def",
 			],
 			[
-				'abc <a href="/wiki/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">text</a> def',
+				'abc <a href="/w/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">text</a> def',
 				"abc [[link|text]] def",
 			],
 			[
@@ -430,7 +427,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 				"abc [[Special:BlankPage|]] def",
 			],
 			[
-				'abc <a href="/wiki/index.php?title=%C4%84%C5%9B%C5%BC&amp;action=edit&amp;redlink=1" class="new" title="Ąśż (page does not exist)">ąśż</a> def',
+				'abc <a href="/w/index.php?title=%C4%84%C5%9B%C5%BC&amp;action=edit&amp;redlink=1" class="new" title="Ąśż (page does not exist)">ąśż</a> def',
 				"abc [[%C4%85%C5%9B%C5%BC]] def",
 			],
 			[
@@ -438,11 +435,11 @@ class LinkerTest extends MediaWikiLangTestCase {
 				"abc [[#section]] def",
 			],
 			[
-				'abc <a href="/wiki/index.php?title=/subpage&amp;action=edit&amp;redlink=1" class="new" title="/subpage (page does not exist)">/subpage</a> def',
+				'abc <a href="/w/index.php?title=/subpage&amp;action=edit&amp;redlink=1" class="new" title="/subpage (page does not exist)">/subpage</a> def',
 				"abc [[/subpage]] def",
 			],
 			[
-				'abc <a href="/wiki/index.php?title=%22evil!%22&amp;action=edit&amp;redlink=1" class="new" title="&quot;evil!&quot; (page does not exist)">&quot;evil!&quot;</a> def',
+				'abc <a href="/w/index.php?title=%22evil!%22&amp;action=edit&amp;redlink=1" class="new" title="&quot;evil!&quot; (page does not exist)">&quot;evil!&quot;</a> def',
 				"abc [[\"evil!\"]] def",
 			],
 			[
@@ -454,17 +451,17 @@ class LinkerTest extends MediaWikiLangTestCase {
 				"abc [[|]] def",
 			],
 			[
-				'abc <a href="/wiki/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">link</a> def',
+				'abc <a href="/w/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">link</a> def',
 				"abc [[link]] def",
 				false, false
 			],
 			[
-				'abc <a class="external" rel="nofollow" href="//en.example.org/w/Link">link</a> def',
+				'abc <a class="external" rel="nofollow" href="//foo.example.org/foo/Link">link</a> def',
 				"abc [[link]] def",
-				false, false, $wikiId
+				false, false, 'foowiki'
 			],
 			[
-				'<a href="/wiki/index.php?title=Special:Upload&amp;wpDestFile=LinkerTest.jpg" class="new" title="LinkerTest.jpg">Media:LinkerTest.jpg</a>',
+				'<a href="/w/index.php?title=Special:Upload&amp;wpDestFile=LinkerTest.jpg" class="new" title="LinkerTest.jpg">Media:LinkerTest.jpg</a>',
 				'[[Media:LinkerTest.jpg]]'
 			],
 			[
@@ -472,7 +469,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 				'[[:Special:BlankPage]]'
 			],
 			[
-				'<a href="/wiki/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">linktrail</a>...',
+				'<a href="/w/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">linktrail</a>...',
 				'[[link]]trail...'
 			]
 		];
@@ -490,16 +487,16 @@ class LinkerTest extends MediaWikiLangTestCase {
 		$conf = new SiteConfiguration();
 		$conf->settings = [
 			'wgServer' => [
-				'enwiki' => '//en.example.org'
+				'foowiki' => '//foo.example.org'
 			],
 			'wgArticlePath' => [
-				'enwiki' => '/w/$1',
+				'foowiki' => '/foo/$1',
 			],
 		];
 		$conf->suffixes = [ 'wiki' ];
 		$this->setMwGlobals( 'wgConf', $conf );
 		$this->overrideConfigValues( [
-			MainConfigNames::Script => '/wiki/index.php',
+			MainConfigNames::Script => '/w/index.php',
 			MainConfigNames::ArticlePath => '/wiki/$1',
 			MainConfigNames::CapitalLinks => true,
 		] );
@@ -599,19 +596,19 @@ class LinkerTest extends MediaWikiLangTestCase {
 				null,
 			],
 			[
-				'<a class="external" rel="nofollow" href="//en.example.org/w/Foo%27bar">Foo\'bar</a>',
+				'<a class="external" rel="nofollow" href="//foo.example.org/foo/Foo%27bar">Foo\'bar</a>',
 				"[[Foo'bar]]",
-				'enwiki',
+				'foowiki',
 			],
 			[
-				'foo bar <a class="external" rel="nofollow" href="//en.example.org/w/Special:BlankPage">Special:BlankPage</a>',
+				'foo bar <a class="external" rel="nofollow" href="//foo.example.org/foo/Special:BlankPage">Special:BlankPage</a>',
 				'foo bar [[Special:BlankPage]]',
-				'enwiki',
+				'foowiki',
 			],
 			[
-				'foo bar <a class="external" rel="nofollow" href="//en.example.org/w/File:Example">Image:Example</a>',
+				'foo bar <a class="external" rel="nofollow" href="//foo.example.org/foo/File:Example">Image:Example</a>',
 				'foo bar [[Image:Example]]',
-				'enwiki',
+				'foowiki',
 			],
 		];
 		// phpcs:enable
@@ -665,16 +662,16 @@ class LinkerTest extends MediaWikiLangTestCase {
 		$conf = new SiteConfiguration();
 		$conf->settings = [
 			'wgServer' => [
-				'enwiki' => '//en.example.org'
+				'foowiki' => '//foo.example.org'
 			],
 			'wgArticlePath' => [
-				'enwiki' => '/w/$1',
+				'foowiki' => '/foo/$1',
 			],
 		];
 		$conf->suffixes = [ 'wiki' ];
 		$this->setMwGlobals( 'wgConf', $conf );
 		$this->overrideConfigValues( [
-			MainConfigNames::Script => '/wiki/index.php',
+			MainConfigNames::Script => '/w/index.php',
 			MainConfigNames::ArticlePath => '/wiki/$1',
 			MainConfigNames::CapitalLinks => true,
 		] );
@@ -701,7 +698,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 				'[[Special:BlankPage]]'
 			],
 			'Page does not exist link' => [
-				' <span class="comment">(<a href="/wiki/index.php?title=Test&amp;action=edit&amp;redlink=1" class="new" title="Test (page does not exist)">Test</a>)</span>',
+				' <span class="comment">(<a href="/w/index.php?title=Test&amp;action=edit&amp;redlink=1" class="new" title="Test (page does not exist)">Test</a>)</span>',
 				'[[Test]]'
 			],
 			'Link to other page section' => [
@@ -716,17 +713,17 @@ class LinkerTest extends MediaWikiLangTestCase {
 				true
 			],
 			'Given wikiId' => [
-				' <span class="comment">(<a class="external" rel="nofollow" href="//en.example.org/w/Test">Test</a>)</span>',
+				' <span class="comment">(<a class="external" rel="nofollow" href="//foo.example.org/foo/Test">Test</a>)</span>',
 				'[[Test]]',
 				null, false,
-				'enwiki'
+				'foowiki'
 			],
 			'Section link to external wiki page' => [
-				' <span class="comment">(<a class="external" rel="nofollow" href="//en.example.org/w/Special:BlankPage#Test">#Test</a>)</span>',
+				' <span class="comment">(<a class="external" rel="nofollow" href="//foo.example.org/foo/Special:BlankPage#Test">#Test</a>)</span>',
 				'[[#Test]]',
 				Title::makeTitle( NS_SPECIAL, 'BlankPage' ),
 				false,
-				'enwiki'
+				'foowiki'
 			],
 		];
 	}

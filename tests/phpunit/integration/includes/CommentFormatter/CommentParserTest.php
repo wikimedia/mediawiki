@@ -66,10 +66,10 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 		$conf = new SiteConfiguration();
 		$conf->settings = [
 			'wgServer' => [
-				'enwiki' => '//en.example.org'
+				'foowiki' => '//foo.example.org'
 			],
 			'wgArticlePath' => [
-				'enwiki' => '/w/$1',
+				'foowiki' => '/foo/$1',
 			],
 		];
 		$conf->suffixes = [ 'wiki' ];
@@ -83,7 +83,6 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideFormatComment() {
-		$wikiId = 'enwiki'; // $wgConf has a fake entry for this
 		return [
 			// MediaWiki\CommentFormatter\CommentFormatter::format
 			[
@@ -195,9 +194,9 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 				false, false
 			],
 			[
-				'<span dir="auto"><span class="autocomment"><a class="external" rel="nofollow" href="//en.example.org/w/Special:BlankPage#autocomment">→‎autocomment</a></span></span>',
+				'<span dir="auto"><span class="autocomment"><a class="external" rel="nofollow" href="//foo.example.org/foo/Special:BlankPage#autocomment">→‎autocomment</a></span></span>',
 				"/* autocomment */",
-				false, false, $wikiId
+				false, false, 'foowiki'
 			],
 			// MediaWiki\CommentFormatter\CommentParser::doWikiLinks
 			[
@@ -242,9 +241,9 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 				false, false
 			],
 			[
-				'abc <a class="external" rel="nofollow" href="//en.example.org/w/Link">link</a> def',
+				'abc <a class="external" rel="nofollow" href="//foo.example.org/foo/Link">link</a> def',
 				"abc [[link]] def",
-				false, false, $wikiId
+				false, false, 'foowiki'
 			],
 			[
 				'<a href="/w/index.php?title=Special:Upload&amp;wpDestFile=LinkerTest.jpg" class="new" title="LinkerTest.jpg">Media:LinkerTest.jpg</a>',
@@ -285,12 +284,10 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 		$conf = new SiteConfiguration();
 		$conf->settings = [
 			'wgServer' => [
-				'enwiki' => '//en.example.org',
-				'dewiki' => '//de.example.org',
+				'foowiki' => '//foo.example.org',
 			],
 			'wgArticlePath' => [
-				'enwiki' => '/w/$1',
-				'dewiki' => '/w/$1',
+				'foowiki' => '/foo/$1',
 			],
 		];
 		$conf->suffixes = [ 'wiki' ];
@@ -346,24 +343,24 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 				null,
 			],
 			[
-				'<a class="external" rel="nofollow" href="//en.example.org/w/Foo%27bar">Foo&#039;bar</a>',
+				'<a class="external" rel="nofollow" href="//foo.example.org/foo/Foo%27bar">Foo&#039;bar</a>',
 				"[[Foo'bar]]",
-				'enwiki',
+				'foowiki',
 			],
 			[
-				'<a class="external" rel="nofollow" href="//en.example.org/w/Foo$100bar">Foo$100bar</a>',
+				'<a class="external" rel="nofollow" href="//foo.example.org/foo/Foo$100bar">Foo$100bar</a>',
 				'[[Foo$100bar]]',
-				'enwiki',
+				'foowiki',
 			],
 			[
-				'foo bar <a class="external" rel="nofollow" href="//en.example.org/w/Special:BlankPage">Special:BlankPage</a>',
+				'foo bar <a class="external" rel="nofollow" href="//foo.example.org/foo/Special:BlankPage">Special:BlankPage</a>',
 				'foo bar [[Special:BlankPage]]',
-				'enwiki',
+				'foowiki',
 			],
 			[
-				'foo bar <a class="external" rel="nofollow" href="//en.example.org/w/File:Example">Image:Example</a>',
+				'foo bar <a class="external" rel="nofollow" href="//foo.example.org/foo/File:Example">Image:Example</a>',
 				'foo bar [[Image:Example]]',
-				'enwiki',
+				'foowiki',
 			],
 		];
 		// phpcs:enable
