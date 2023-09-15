@@ -490,7 +490,7 @@ class Language implements Bcp47Code {
 	 */
 	public function getFormattedNsText( $index ) {
 		$ns = $this->getNsText( $index );
-		return strtr( (string)$ns, '_', ' ' );
+		return $ns === false ? '' : strtr( $ns, '_', ' ' );
 	}
 
 	/**
