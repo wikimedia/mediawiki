@@ -23,7 +23,6 @@
 
 namespace MediaWiki\Specials;
 
-use DeletedContribsPager;
 use HTMLForm;
 use LogEventsList;
 use MediaWiki\Block\DatabaseBlock;
@@ -31,6 +30,7 @@ use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Pager\DeletedContribsPager;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionFactory;
 use MediaWiki\User\UserFactory;

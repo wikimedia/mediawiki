@@ -19,6 +19,11 @@
  * @ingroup Pager
  */
 
+namespace MediaWiki\Pager;
+
+use IContextSource;
+use Language;
+use LocalisationCache;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\Languages\LanguageFactory;
@@ -26,13 +31,15 @@ use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Pager\IndexPager;
-use MediaWiki\Pager\TablePager;
 use MediaWiki\Title\Title;
+use Sanitizer;
+use SpecialPage;
+use stdClass;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
+use Xml;
 
 /**
  * Use TablePager for prettified output. We have to pretend that we're
@@ -409,3 +416,9 @@ class AllMessagesTablePager extends TablePager {
 	}
 
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( AllMessagesTablePager::class, 'AllMessagesTablePager' );

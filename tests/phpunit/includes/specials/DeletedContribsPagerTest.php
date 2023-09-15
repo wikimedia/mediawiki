@@ -4,6 +4,7 @@ use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Pager\DeletedContribsPager;
 use MediaWiki\Revision\RevisionStore;
 
 /**

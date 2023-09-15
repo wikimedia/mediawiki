@@ -23,13 +23,13 @@
 
 namespace MediaWiki\Specials;
 
-use AllMessagesTablePager;
 use HTMLForm;
 use LocalisationCache;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Pager\AllMessagesTablePager;
 use SpecialPage;
 use Wikimedia\Rdbms\IConnectionProvider;
 

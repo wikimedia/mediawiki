@@ -19,6 +19,11 @@
  * @ingroup Pager
  */
 
+namespace MediaWiki\Pager;
+
+use ChangesList;
+use ChangeTags;
+use IContextSource;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\HookContainer\HookContainer;
@@ -26,10 +31,12 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\Pager\ReverseChronologicalPager;
 use MediaWiki\Revision\RevisionFactory;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
+use Sanitizer;
+use SpecialPage;
+use stdClass;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -431,3 +438,9 @@ class DeletedContribsPager extends ReverseChronologicalPager {
 		return [ $ret, $classes ];
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( DeletedContribsPager::class, 'DeletedContribsPager' );

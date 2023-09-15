@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use DeletedContribsPager;
+use MediaWiki\Pager\DeletedContribsPager;
 use stdClass;
 
 /**

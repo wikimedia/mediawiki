@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Pager\ImageListPager;
+
 /**
  * Test class for ImageListPagerTest class.
  *

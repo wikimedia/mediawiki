@@ -19,9 +19,11 @@
  * @ingroup Pager
  */
 
+namespace MediaWiki\Pager;
+
+use ChangeTags;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Page\PageIdentity;
-use MediaWiki\Pager\ReverseChronologicalPager;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Specials\SpecialMergeHistory;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -159,3 +161,9 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		return [ [ 'rev_timestamp', 'rev_id' ] ];
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( MergeHistoryPager::class, 'MergeHistoryPager' );

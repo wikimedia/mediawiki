@@ -19,18 +19,27 @@
  * @ingroup Pager
  */
 
+namespace MediaWiki\Pager;
+
+use HTMLForm;
+use IContextSource;
+use LocalRepo;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Pager\IndexPager;
-use MediaWiki\Pager\TablePager;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserNameUtils;
+use MWException;
+use RepoGroup;
+use SpecialPage;
+use User;
+use UserCache;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IResultWrapper;
+use Xml;
 
 /**
  * @ingroup Pager
@@ -615,3 +624,9 @@ class ImageListPager extends TablePager {
 		return SpecialPage::getTitleFor( 'Listfiles' );
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( ImageListPager::class, 'ImageListPager' );

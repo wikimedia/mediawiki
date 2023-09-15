@@ -19,12 +19,19 @@
  * @ingroup Pager
  */
 
+namespace MediaWiki\Pager;
+
+use ExternalUserNames;
+use IContextSource;
+use ImageGalleryBase;
+use ImageGalleryClassNotFoundException;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\Pager\RangeChronologicalPager;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Title\Title;
+use RecentChange;
+use TitleValue;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -214,3 +221,9 @@ class NewFilesPager extends RangeChronologicalPager {
 		return '';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( NewFilesPager::class, 'NewFilesPager' );
