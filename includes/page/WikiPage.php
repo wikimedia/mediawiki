@@ -118,11 +118,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	private $mIsNew = false;
 
 	/**
-	 * @var bool
-	 */
-	private $mIsRedirect = false;
-
-	/**
 	 * @var int|false False means "not loaded"
 	 * @note for access by subclasses only
 	 */
@@ -296,7 +291,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$this->mLinksUpdated = '19700101000000';
 		$this->mTimestamp = '';
 		$this->mIsNew = false;
-		$this->mIsRedirect = false;
 		$this->mLatest = false;
 		// T59026: do not clear $this->derivedDataUpdater since getDerivedDataUpdater() already
 		// checks the requested rev ID and content against the cached one. For most
@@ -512,7 +506,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 				: MWTimestamp::convert( TS_MW, $data->page_links_updated );
 			$this->mPageIsRedirectField = (bool)$data->page_is_redirect;
 			$this->mIsNew = (bool)( $data->page_is_new ?? 0 );
-			$this->mIsRedirect = (bool)( $data->page_is_redirect ?? 0 );
 			$this->mLatest = intval( $data->page_latest );
 			// T39225: $latest may no longer match the cached latest RevisionRecord object.
 			// Double-check the ID of any cached latest RevisionRecord object for consistency.
@@ -577,11 +570,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @return bool
 	 */
 	public function isRedirect() {
-		if ( !$this->mDataLoaded ) {
-			$this->loadPageData();
-		}
-
-		return $this->mIsRedirect;
+		return $this->getRedirectTarget() !== null;
 	}
 
 	/**
@@ -1474,7 +1463,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			$this->mHasRedirectTarget = null;
 			$this->mPageIsRedirectField = (bool)$rt;
 			$this->mIsNew = $isNew;
-			$this->mIsRedirect = $isRedirect;
 
 			// Update the LinkCache.
 			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
@@ -3261,7 +3249,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 				'page_title' => $this->mTitle->getDBkey(),
 				'page_latest' => $this->mLatest,
 				'page_is_new' => $this->mIsNew ? 1 : 0,
-				'page_is_redirect' => $this->mIsRedirect ? 1 : 0,
+				'page_is_redirect' => $this->mPageIsRedirectField ? 1 : 0,
 				'page_touched' => $this->getTouched(),
 				'page_lang' => $this->getLanguage()
 			],
