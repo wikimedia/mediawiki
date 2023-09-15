@@ -24,11 +24,11 @@
 namespace MediaWiki\Specials;
 
 use LoginHelper;
-use LoginSignupSpecialPage;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
-use SpecialPage;
+use MediaWiki\SpecialPage\LoginSignupSpecialPage;
+use MediaWiki\SpecialPage\SpecialPage;
 use StatusValue;
 
 /**

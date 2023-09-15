@@ -25,7 +25,6 @@ namespace MediaWiki\Specials;
 
 use ChangesList;
 use ChangesListBooleanFilter;
-use ChangesListSpecialPage;
 use ChangesListStringOptionsFilterGroup;
 use ChangeTags;
 use HtmlArmor;
@@ -35,6 +34,7 @@ use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\SpecialPage\ChangesListSpecialPage;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Utils\MWTimestamp;
 use MessageCache;

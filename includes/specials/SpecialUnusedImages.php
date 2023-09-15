@@ -23,8 +23,8 @@
 
 namespace MediaWiki\Specials;
 
-use ImageQueryPage;
 use MediaWiki\MainConfigNames;
+use MediaWiki\SpecialPage\ImageQueryPage;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

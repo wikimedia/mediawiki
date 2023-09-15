@@ -24,9 +24,9 @@
 namespace MediaWiki\Specials;
 
 use ErrorPageError;
-use LoginSignupSpecialPage;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\SpecialPage\LoginSignupSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use StatusValue;

@@ -26,6 +26,7 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\SpecialVersion;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\ExtensionInfo;

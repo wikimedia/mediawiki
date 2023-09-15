@@ -21,6 +21,13 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\SpecialPage;
+
+use Config;
+use ErrorPageError;
+use IContextSource;
+use ILanguageConverter;
+use Language;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -31,8 +38,19 @@ use MediaWiki\Navigation\PagerNavigationBuilder;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;
-use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\Title;
+use Message;
+use MessageLocalizer;
+use MessageSpecifier;
+use MWCryptRand;
+use PermissionsError;
+use ReadOnlyError;
+use RequestContext;
+use SearchEngineFactory;
+use Skin;
+use TitleValue;
+use User;
+use UserNotLoggedIn;
 
 /**
  * Parent class for all special pages.
@@ -1209,3 +1227,9 @@ class SpecialPage implements MessageLocalizer {
 		return $this->specialPageFactory;
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( SpecialPage::class, 'SpecialPage' );

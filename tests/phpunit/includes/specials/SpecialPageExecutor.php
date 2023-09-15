@@ -5,6 +5,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\FauxResponse;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\SpecialPage\SpecialPage;
 
 /**
  * @author Addshore

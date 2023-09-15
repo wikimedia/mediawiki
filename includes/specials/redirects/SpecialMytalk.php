@@ -26,8 +26,8 @@
 
 namespace MediaWiki\Specials\Redirects;
 
+use MediaWiki\SpecialPage\RedirectSpecialArticle;
 use MediaWiki\Title\Title;
-use RedirectSpecialArticle;
 
 /**
  * Special page pointing to current user's talk page.

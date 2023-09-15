@@ -29,6 +29,7 @@ use HTMLForm;
 use IContextSource;
 use MediaWiki\Mail\EmailUserFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNamePrefixSearch;
@@ -37,7 +38,6 @@ use MediaWiki\User\UserOptionsLookup;
 use Message;
 use PermissionsError;
 use ThrottledError;
-use UnlistedSpecialPage;
 use User;
 use UserBlockedError;
 

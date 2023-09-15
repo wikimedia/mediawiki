@@ -27,6 +27,7 @@ use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
@@ -34,7 +35,6 @@ use MediaWiki\User\UserIdentity;
 use MessageLocalizer;
 use ParserFactory;
 use ParserOptions;
-use SpecialPage;
 use Wikimedia\Parsoid\Parsoid;
 use WikitextContent;
 

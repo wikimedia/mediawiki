@@ -30,7 +30,7 @@ use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Pager\AllMessagesTablePager;
-use SpecialPage;
+use MediaWiki\SpecialPage\SpecialPage;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

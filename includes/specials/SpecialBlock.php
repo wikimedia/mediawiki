@@ -24,7 +24,6 @@
 namespace MediaWiki\Specials;
 
 use ErrorPageError;
-use FormSpecialPage;
 use HtmlArmor;
 use HTMLForm;
 use IContextSource;
@@ -47,6 +46,8 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\SpecialPage\FormSpecialPage;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
@@ -58,7 +59,6 @@ use OOUI\FieldLayout;
 use OOUI\HtmlSnippet;
 use OOUI\LabelWidget;
 use OOUI\Widget;
-use SpecialPage;
 use TitleFormatter;
 use User;
 use Wikimedia\IPUtils;

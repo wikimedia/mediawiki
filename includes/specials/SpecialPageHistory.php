@@ -24,8 +24,8 @@
 
 namespace MediaWiki\Specials;
 
+use MediaWiki\SpecialPage\SpecialRedirectWithAction;
 use SearchEngineFactory;
-use SpecialRedirectWithAction;
 
 class SpecialPageHistory extends SpecialRedirectWithAction {
 

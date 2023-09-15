@@ -32,10 +32,10 @@ use ImportReporter;
 use ImportStreamSource;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use PermissionsError;
 use ReadOnlyError;
-use SpecialPage;
 use UnexpectedValueException;
 use WikiImporterFactory;
 

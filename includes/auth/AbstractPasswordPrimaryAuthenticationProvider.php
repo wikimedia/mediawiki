@@ -22,10 +22,10 @@
 namespace MediaWiki\Auth;
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use Password;
 use PasswordFactory;
-use SpecialPage;
 use Wikimedia\Assert\Assert;
 
 /**

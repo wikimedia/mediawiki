@@ -28,8 +28,8 @@ use HTMLForm;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\MainConfigNames;
+use MediaWiki\SpecialPage\SpecialPage;
 use PermissionsError;
-use SpecialPage;
 use Xml;
 
 /**

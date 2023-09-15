@@ -25,8 +25,8 @@
 namespace MediaWiki\Specials;
 
 use HTMLForm;
+use MediaWiki\SpecialPage\RedirectSpecialPage;
 use MediaWiki\Title\Title;
-use RedirectSpecialPage;
 
 /**
  * Redirect from Special:Diff/### to index.php?diff=### and

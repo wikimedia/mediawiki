@@ -24,7 +24,7 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Auth\PasswordAuthenticationRequest;
-use SpecialRedirectToSpecial;
+use MediaWiki\SpecialPage\SpecialRedirectToSpecial;
 
 /**
  * Let users recover their password.

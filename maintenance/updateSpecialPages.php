@@ -25,6 +25,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\SpecialPage\QueryPage;
 
 /**
  * Maintenance script to update cached special pages.

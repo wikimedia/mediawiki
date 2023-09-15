@@ -23,7 +23,7 @@ namespace MediaWiki\Permissions;
 use Language;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Linker\LinkRenderer;
-use SpecialPage;
+use MediaWiki\SpecialPage\SpecialPage;
 
 /**
  * This separate service is needed because the ::getGrantsLink method requires a LinkRenderer

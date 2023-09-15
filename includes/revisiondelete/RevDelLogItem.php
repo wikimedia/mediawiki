@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 
 /**

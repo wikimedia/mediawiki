@@ -30,8 +30,8 @@ use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Pager\ProtectedTitlesPager;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
-use SpecialPage;
 use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 

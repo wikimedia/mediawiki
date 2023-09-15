@@ -27,9 +27,9 @@ namespace MediaWiki\Specials;
 use HTMLForm;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\SpecialPage\PageQueryPage;
 use MediaWiki\Title\Title;
 use NamespaceInfo;
-use PageQueryPage;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

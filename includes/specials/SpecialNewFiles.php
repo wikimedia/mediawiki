@@ -27,13 +27,13 @@ use DerivativeContext;
 use HTMLForm;
 use HTMLUserTextField;
 use IContextSource;
-use IncludableSpecialPage;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\Pager\NewFilesPager;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Request\DerivativeRequest;
+use MediaWiki\SpecialPage\IncludableSpecialPage;
 use MimeAnalyzer;
 use Wikimedia\Rdbms\IConnectionProvider;
 

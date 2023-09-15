@@ -42,6 +42,7 @@ use MediaWiki\Search\SearchWidgets\InterwikiSearchResultSetWidget;
 use MediaWiki\Search\SearchWidgets\InterwikiSearchResultWidget;
 use MediaWiki\Search\SearchWidgets\SearchFormWidget;
 use MediaWiki\Search\TitleMatcher;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserOptionsManager;
@@ -51,7 +52,6 @@ use RepoGroup;
 use SearchEngine;
 use SearchEngineConfig;
 use SearchEngineFactory;
-use SpecialPage;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Xml;
 

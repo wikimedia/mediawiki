@@ -26,7 +26,7 @@ namespace MediaWiki\Specials;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\GrantsLocalization;
-use SpecialPage;
+use MediaWiki\SpecialPage\SpecialPage;
 use User;
 
 /**

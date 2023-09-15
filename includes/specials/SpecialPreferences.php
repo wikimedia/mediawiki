@@ -28,10 +28,10 @@ use IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\PreferencesFactory;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\UserOptionsManager;
 use PermissionsError;
 use PreferencesFormOOUI;
-use SpecialPage;
 use User;
 
 /**

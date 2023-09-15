@@ -21,6 +21,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionFactory;
+use MediaWiki\SpecialPage\SpecialPage;
 
 /**
  * Item class for a archive table row

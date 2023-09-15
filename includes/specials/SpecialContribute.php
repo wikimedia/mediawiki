@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Specials;
 
-use IncludableSpecialPage;
 use MediaWiki\Html\TemplateParser;
+use MediaWiki\SpecialPage\IncludableSpecialPage;
 use MediaWiki\Specials\Contribute\ContributeFactory;
 
 /**

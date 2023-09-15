@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Specials;
 
-use AuthManagerSpecialPage;
 use ErrorPageError;
 use HTMLForm;
 use LogicException;
@@ -10,6 +9,7 @@ use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\MainConfigNames;
+use MediaWiki\SpecialPage\AuthManagerSpecialPage;
 use StatusValue;
 
 /**

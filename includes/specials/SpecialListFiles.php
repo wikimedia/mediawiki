@@ -23,10 +23,10 @@
 
 namespace MediaWiki\Specials;
 
-use IncludableSpecialPage;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Pager\ImageListPager;
+use MediaWiki\SpecialPage\IncludableSpecialPage;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserRigorOptions;

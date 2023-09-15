@@ -2,7 +2,7 @@
 
 namespace MediaWiki\SpecialPage\Hook;
 
-use ChangesListSpecialPage;
+use MediaWiki\SpecialPage\ChangesListSpecialPage;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

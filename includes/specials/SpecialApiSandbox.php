@@ -23,7 +23,7 @@
 
 namespace MediaWiki\Specials;
 
-use SpecialPage;
+use MediaWiki\SpecialPage\SpecialPage;
 
 /**
  * @ingroup SpecialPage

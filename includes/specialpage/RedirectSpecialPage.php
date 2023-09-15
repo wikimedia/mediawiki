@@ -21,6 +21,9 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\SpecialPage;
+
+use LogicException;
 use MediaWiki\Title\Title;
 
 /**
@@ -119,3 +122,9 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 		throw new LogicException( "RedirectSpecialPage $class doesn't redirect!" );
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( RedirectSpecialPage::class, 'RedirectSpecialPage' );

@@ -10251,7 +10251,7 @@ class MainConfigSchema {
 	 * List of Days options to list in the Special:Recentchanges and
 	 * Special:Recentchangeslinked pages.
 	 *
-	 * @see \ChangesListSpecialPage::getLinkDays
+	 * @see \MediaWiki\SpecialPage\ChangesListSpecialPage::getLinkDays
 	 */
 	public const RCLinkDays = [
 		'default' => [ 1, 3, 7, 14, 30 ],

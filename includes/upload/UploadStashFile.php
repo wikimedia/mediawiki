@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\SpecialPage\SpecialPage;
+
 /**
  * @ingroup Upload
  */

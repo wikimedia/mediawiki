@@ -632,6 +632,24 @@ because of Phabricator reports.
   - ReverseChronologicalPager
   - TablePager
   - UsersPager
+* All remaining special page helper classes have been namespaced under
+  MediaWiki\SpecialPage; the old class names are now deprecated aliases:
+  - AuthManagerSpecialPage
+  - ChangesListSpecialPage
+  - DisabledSpecialPage
+  - FormSpecialPage
+  - ImageQueryPage
+  - IncludableSpecialPage
+  - LoginSignupSpecialPage
+  - PageQueryPage
+  - QueryPage
+  - RedirectSpecialArticle
+  - RedirectSpecialPage
+  - SpecialPage
+  - SpecialRedirectToSpecial
+  - SpecialRedirectWithAction
+  - UnlistedSpecialPage
+  - WantedQueryPage
 * Various mediawiki.ui variables have been deprecated in favor of
   'mediawiki.skin.variables.less' Codex design tokens featuring replacements.
 * Hook handlers must now be specified either as a PHP callable, or as a PHP

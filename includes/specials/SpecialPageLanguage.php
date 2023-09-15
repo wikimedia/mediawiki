@@ -26,7 +26,6 @@
 namespace MediaWiki\Specials;
 
 use ApiMessage;
-use FormSpecialPage;
 use HTMLForm;
 use IContextSource;
 use LogEventsList;
@@ -39,6 +38,7 @@ use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use SearchEngineFactory;

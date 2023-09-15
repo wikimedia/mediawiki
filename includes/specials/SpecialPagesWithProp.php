@@ -26,8 +26,8 @@ namespace MediaWiki\Specials;
 
 use HTMLForm;
 use MediaWiki\Html\Html;
+use MediaWiki\SpecialPage\QueryPage;
 use MediaWiki\Title\Title;
-use QueryPage;
 use Skin;
 use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;

@@ -2,6 +2,7 @@
 
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\SpecialPage\SpecialPage;
 
 /**
  * Base class for testing special pages.

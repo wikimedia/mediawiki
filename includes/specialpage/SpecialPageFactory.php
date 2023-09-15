@@ -171,7 +171,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use Profiler;
 use RequestContext;
-use SpecialPage;
 use User;
 use Wikimedia\DebugInfo\DebugInfoTrait;
 use Wikimedia\ObjectFactory\ObjectFactory;

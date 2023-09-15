@@ -27,7 +27,7 @@
 
 namespace MediaWiki\Specials\Redirects;
 
-use SpecialRedirectToSpecial;
+use MediaWiki\SpecialPage\SpecialRedirectToSpecial;
 
 /**
  * Redirect page: Special:ListAdmins --> Special:ListUsers/sysop.

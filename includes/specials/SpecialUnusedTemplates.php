@@ -27,10 +27,10 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Linker\LinksMigration;
+use MediaWiki\SpecialPage\QueryPage;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
-use QueryPage;
 use Skin;
-use SpecialPage;
 use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 

@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Specials;
 
-use AuthManagerSpecialPage;
 use ErrorPageError;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\SpecialPage\AuthManagerSpecialPage;
 use MediaWiki\Status\Status;
 use StatusValue;
 

@@ -29,8 +29,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\ResourceLoader;
+use MediaWiki\SpecialPage\SpecialPage;
 use MultiConfig;
-use SpecialPage;
 
 /**
  * @ingroup SpecialPage

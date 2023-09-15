@@ -3,9 +3,9 @@
 namespace MediaWiki\Tests\Integration\Permissions;
 
 use MediaWiki\Permissions\GrantsLocalization;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWikiIntegrationTestCase;
 use Message;
-use SpecialPage;
 
 /**
  * @author Zabe

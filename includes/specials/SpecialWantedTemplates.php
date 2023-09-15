@@ -30,7 +30,7 @@ namespace MediaWiki\Specials;
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Linker\LinksMigration;
-use WantedQueryPage;
+use MediaWiki\SpecialPage\WantedQueryPage;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

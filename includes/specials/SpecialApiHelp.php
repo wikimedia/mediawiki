@@ -27,8 +27,8 @@ use ApiHelp;
 use ApiMain;
 use ApiUsageException;
 use MediaWiki\Html\Html;
+use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\Utils\UrlUtils;
-use UnlistedSpecialPage;
 
 /**
  * Special page to redirect to API help pages, for situations where linking to

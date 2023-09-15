@@ -24,7 +24,7 @@
 
 namespace MediaWiki\Specials;
 
-use ImageQueryPage;
+use MediaWiki\SpecialPage\ImageQueryPage;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
