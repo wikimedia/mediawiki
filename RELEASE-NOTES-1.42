@@ -127,6 +127,8 @@ because of Phabricator reports.
 * The global function wfReportTime(), deprecated since 1.40, has been removed.
 * The skin template parameter 'reporttime', deprecated since 1.41, has been
   removed.
+* WikiPage::getPageIsRedirectField(), deprecated since 1.41, has been removed.
+* WikiPage::insertRedirect(), deprecated since 1.41, has been removed.
 * …
 
 === Deprecations in 1.42 ===

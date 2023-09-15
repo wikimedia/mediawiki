@@ -568,24 +568,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	}
 
 	/**
-	 * Get the value of the page_is_redirect field in the DB. This is probably
-	 * not what you want. Use WikiPage::isRedirect() to test if the page is a
-	 * redirect. Use Title::isRedirect() for a fast check for the purposes of
-	 * linking to a page.
-	 *
-	 * @deprecated since 1.41
-	 * @since 1.36
-	 * @return bool
-	 */
-	public function getPageIsRedirectField() {
-		wfDeprecated( __METHOD__, '1.41' );
-		if ( !$this->mDataLoaded ) {
-			$this->loadPageData();
-		}
-		return $this->mPageIsRedirectField;
-	}
-
-	/**
 	 * Tests if the page is new (only has one revision).
 	 * May produce false negatives for some old pages.
 	 *
@@ -1043,38 +1025,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			return $title;
 		}
 		return null;
-	}
-
-	/**
-	 * Insert an entry for this page into the redirect table if the content is a redirect
-	 *
-	 * The database update will be deferred via DeferredUpdates
-	 *
-	 * Don't call this function directly unless you know what you're doing.
-	 *
-	 * @deprecated since 1.41
-	 * @return Title|null Title object or null if not a redirect
-	 */
-	public function insertRedirect() {
-		wfDeprecated( __METHOD__, '1.41' );
-
-		$content = $this->getContent();
-		$retval = $content ? $content->getRedirectTarget() : null;
-		if ( !$retval ) {
-			return null;
-		}
-
-		// Update the DB post-send if the page has not cached since now
-		$latest = $this->getLatest();
-		DeferredUpdates::addCallableUpdate(
-			function () use ( $retval, $latest ) {
-				$this->insertRedirectEntry( $retval, $latest );
-			},
-			DeferredUpdates::POSTSEND,
-			wfGetDB( DB_PRIMARY )
-		);
-
-		return $retval;
 	}
 
 	/**
