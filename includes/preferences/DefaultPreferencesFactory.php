@@ -975,32 +975,42 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		$allowUserCss = $this->options->get( MainConfigNames::AllowUserCss );
 		$allowUserJs = $this->options->get( MainConfigNames::AllowUserJs );
+		$safeMode = $this->userOptionsManager->getOption( $user, 'forcesafemode' );
 		// Create links to user CSS/JS pages for all skins.
 		// This code is basically copied from generateSkinOptions().
 		// @todo Refactor this and the similar code in generateSkinOptions().
 		if ( $allowUserCss || $allowUserJs ) {
-			$linkTools = [];
-			$userName = $user->getName();
+			if ( $safeMode ) {
+				$defaultPreferences['customcssjs-safemode'] = [
+					'type' => 'info',
+					'raw' => true,
+					'default' => Html::warningBox( $context->msg( 'prefs-custom-cssjs-safemode' )->parse() ),
+					'section' => 'rendering/skin',
+				];
+			} else {
+				$linkTools = [];
+				$userName = $user->getName();
 
-			if ( $allowUserCss ) {
-				$cssPage = Title::makeTitleSafe( NS_USER, $userName . '/common.css' );
-				$cssLinkText = $context->msg( 'prefs-custom-css' )->text();
-				$linkTools[] = $this->linkRenderer->makeLink( $cssPage, $cssLinkText );
+				if ( $allowUserCss ) {
+					$cssPage = Title::makeTitleSafe( NS_USER, $userName . '/common.css' );
+					$cssLinkText = $context->msg( 'prefs-custom-css' )->text();
+					$linkTools[] = $this->linkRenderer->makeLink( $cssPage, $cssLinkText );
+				}
+
+				if ( $allowUserJs ) {
+					$jsPage = Title::makeTitleSafe( NS_USER, $userName . '/common.js' );
+					$jsLinkText = $context->msg( 'prefs-custom-js' )->text();
+					$linkTools[] = $this->linkRenderer->makeLink( $jsPage, $jsLinkText );
+				}
+
+				$defaultPreferences['commoncssjs'] = [
+					'type' => 'info',
+					'raw' => true,
+					'default' => $context->getLanguage()->pipeList( $linkTools ),
+					'label-message' => 'prefs-common-config',
+					'section' => 'rendering/skin',
+				];
 			}
-
-			if ( $allowUserJs ) {
-				$jsPage = Title::makeTitleSafe( NS_USER, $userName . '/common.js' );
-				$jsLinkText = $context->msg( 'prefs-custom-js' )->text();
-				$linkTools[] = $this->linkRenderer->makeLink( $jsPage, $jsLinkText );
-			}
-
-			$defaultPreferences['commoncssjs'] = [
-				'type' => 'info',
-				'raw' => true,
-				'default' => $context->getLanguage()->pipeList( $linkTools ),
-				'label-message' => 'prefs-common-config',
-				'section' => 'rendering/skin',
-			];
 		}
 	}
 
@@ -1145,6 +1155,13 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				'label-message' => 'tog-showrollbackconfirmation',
 			];
 		}
+
+		$defaultPreferences['forcesafemode'] = [
+			'type' => 'toggle',
+			'section' => 'rendering/advancedrendering',
+			'label-message' => 'tog-forcesafemode',
+			'help-message' => 'prefs-help-forcesafemode'
+		];
 	}
 
 	/**
@@ -1658,6 +1675,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$defaultSkin = $this->options->get( MainConfigNames::DefaultSkin );
 		$allowUserCss = $this->options->get( MainConfigNames::AllowUserCss );
 		$allowUserJs = $this->options->get( MainConfigNames::AllowUserJs );
+		$safeMode = $this->userOptionsManager->getOption( $user, 'forcesafemode' );
 		$foundDefault = false;
 		foreach ( $validSkinNames as $skinkey => $sn ) {
 			$linkTools = [];
@@ -1678,18 +1696,20 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			$mplink = htmlspecialchars( $mptitle->getLocalURL( [ 'useskin' => $skinkey ] ) );
 			$linkTools[] = "<a target='_blank' href=\"$mplink\">$previewtext</a>";
 
-			// Create links to user CSS/JS pages
-			// @todo Refactor this and the similar code in skinPreferences().
-			if ( $allowUserCss ) {
-				$cssPage = Title::makeTitleSafe( NS_USER, $user->getName() . '/' . $skinkey . '.css' );
-				$cssLinkText = $context->msg( 'prefs-custom-css' )->text();
-				$linkTools[] = $this->linkRenderer->makeLink( $cssPage, $cssLinkText );
-			}
+			if ( !$safeMode ) {
+				// Create links to user CSS/JS pages
+				// @todo Refactor this and the similar code in skinPreferences().
+				if ( $allowUserCss ) {
+					$cssPage = Title::makeTitleSafe( NS_USER, $user->getName() . '/' . $skinkey . '.css' );
+					$cssLinkText = $context->msg( 'prefs-custom-css' )->text();
+					$linkTools[] = $this->linkRenderer->makeLink( $cssPage, $cssLinkText );
+				}
 
-			if ( $allowUserJs ) {
-				$jsPage = Title::makeTitleSafe( NS_USER, $user->getName() . '/' . $skinkey . '.js' );
-				$jsLinkText = $context->msg( 'prefs-custom-js' )->text();
-				$linkTools[] = $this->linkRenderer->makeLink( $jsPage, $jsLinkText );
+				if ( $allowUserJs ) {
+					$jsPage = Title::makeTitleSafe( NS_USER, $user->getName() . '/' . $skinkey . '.js' );
+					$jsLinkText = $context->msg( 'prefs-custom-js' )->text();
+					$linkTools[] = $this->linkRenderer->makeLink( $jsPage, $jsLinkText );
+				}
 			}
 
 			$display = $sn . ' ' . $context->msg( 'parentheses' )
