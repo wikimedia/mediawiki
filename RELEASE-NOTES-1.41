@@ -814,6 +814,7 @@ because of Phabricator reports.
 * WikiPage::doDeleteArticleBatched, deprecated in 1.37, now emits deprecation
   notices.
 * WikiPage::getPageIsRedirectField() is now deprecated.
+* WikiPage::insertRedirect() is now deprecated.
 * The legacy MediaWiki UI ResourceLoader modules, such as `mediawiki.ui`, are
   all now emitting deprecation warnings in the JavaScript console. Please use
   Codex CSS components instead.

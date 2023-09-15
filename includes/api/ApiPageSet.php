@@ -27,7 +27,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
-use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\Title;
@@ -167,7 +166,6 @@ class ApiPageSet extends ApiBase {
 	private TitleFactory $titleFactory;
 	private ILanguageConverter $languageConverter;
 	private SpecialPageFactory $specialPageFactory;
-	private WikiPageFactory $wikiPageFactory;
 
 	/**
 	 * Add all items from $values into the result
@@ -221,7 +219,6 @@ class ApiPageSet extends ApiBase {
 		$this->languageConverter = $services->getLanguageConverterFactory()
 			->getLanguageConverter( $this->contentLanguage );
 		$this->specialPageFactory = $services->getSpecialPageFactory();
-		$this->wikiPageFactory = $services->getWikiPageFactory();
 	}
 
 	/**
@@ -1270,28 +1267,6 @@ class ApiPageSet extends ApiBase {
 					$titlesToResolve[] = $to;
 				}
 				$this->mRedirectTitles[$from] = $to;
-			}
-
-			if ( $this->mPendingRedirectIDs ) {
-				// We found pages that aren't in the redirect table
-				// Add them
-				foreach ( $this->mPendingRedirectIDs as $id => $title ) {
-					$page = $this->wikiPageFactory->newFromTitle( $title );
-					$rt = $page->insertRedirect();
-					if ( !$rt ) {
-						// What the hell. Let's just ignore this
-						continue;
-					}
-					if ( $rt->isExternal() ) {
-						$this->mInterwikiTitles[$rt->getPrefixedText()] = $rt->getInterwiki();
-					} elseif ( !isset( $this->mAllPages[$rt->getNamespace()][$rt->getDBkey()] ) ) {
-						$titlesToResolve[] = $rt;
-					}
-					$from = $title->getPrefixedText();
-					$this->mResolvedRedirectTitles[$from] = $title;
-					$this->mRedirectTitles[$from] = $rt;
-					unset( $this->mPendingRedirectIDs[$id] );
-				}
 			}
 		}
 
