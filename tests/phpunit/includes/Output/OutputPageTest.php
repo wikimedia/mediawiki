@@ -2736,7 +2736,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideTransformFilePath() {
-		$baseDir = dirname( __DIR__ ) . '/data/media';
+		$baseDir = dirname( __DIR__ ) . '/../data/media';
 		return [
 			// File that matches basePath, and exists. Hash found and appended.
 			[
@@ -3021,7 +3021,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 						'1x' => '/w/test.jpg',
 					],
 					MainConfigNames::UploadPath => '/w/images',
-					MainConfigNames::BaseDirectory => dirname( __DIR__ ) . '/data/media'
+					MainConfigNames::BaseDirectory => dirname( __DIR__ ) . '/../data/media'
 				],
 				'Link: </w/test.jpg?edcf2>;rel=preload;as=image',
 			],
