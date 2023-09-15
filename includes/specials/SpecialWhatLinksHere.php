@@ -222,10 +222,7 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 			'rd_namespace' => $target->getNamespace(),
 			'rd_title' => $target->getDBkey(),
 		];
-		$conds['pagelinks'] = [
-			'pl_namespace' => $target->getNamespace(),
-			'pl_title' => $target->getDBkey(),
-		];
+		$conds['pagelinks'] = $this->linksMigration->getLinksConditions( 'pagelinks', $target );
 		$conds['templatelinks'] = $this->linksMigration->getLinksConditions( 'templatelinks', $target );
 		$conds['imagelinks'] = [
 			'il_to' => $target->getDBkey(),
