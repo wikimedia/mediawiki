@@ -590,10 +590,12 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * redirect. Use Title::isRedirect() for a fast check for the purposes of
 	 * linking to a page.
 	 *
+	 * @deprecated since 1.41
 	 * @since 1.36
 	 * @return bool
 	 */
 	public function getPageIsRedirectField() {
+		wfDeprecated( __METHOD__, '1.41' );
 		if ( !$this->mDataLoaded ) {
 			$this->loadPageData();
 		}
@@ -987,8 +989,13 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		if ( $this->mRedirectTarget !== null ) {
 			return $this->mRedirectTarget;
 		}
-
-		if ( $this->mHasRedirectTarget === false || !$this->getPageIsRedirectField() ) {
+		if ( $this->mHasRedirectTarget === false ) {
+			return null;
+		}
+		if ( !$this->mDataLoaded ) {
+			$this->loadPageData();
+		}
+		if ( !$this->mPageIsRedirectField ) {
 			return null;
 		}
 
