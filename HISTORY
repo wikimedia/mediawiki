@@ -5411,7 +5411,7 @@ For notes on 1.34.x and older releases, see HISTORY.
   $wgCdnServersNoPurge, or $wgCdnMaxAge instead.
 * $wgDisableCounters — This, deprecated in 1.25, was removed. The feature that
   it controlled was already removed in 1.26, but the variable remained existent
-  with a value of `false` for backward-compatibility.
+  with a value of `true` for backward-compatibility.
 * $wgMaxGeneratedPPNodeCount — This setting was removed. It only affected
   Preprocessor_DOM, which was deprecated in 1.34 and removed in this release.
 * $wgFixArabicUnicode and $wgFixMalayalamUnicode — These, deprecated in 1.33,
