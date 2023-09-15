@@ -24,7 +24,7 @@ use BagOStuff;
 use FormatJson;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Class allowing easy storage and retrieval of EditResults associated with revisions.
@@ -49,8 +49,8 @@ class EditResultCache {
 	/** @var BagOStuff */
 	private $mainObjectStash;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var ServiceOptions */
 	private $options;
@@ -58,18 +58,18 @@ class EditResultCache {
 	/**
 	 * @param BagOStuff $mainObjectStash Main object stash, see
 	 *  MediaWikiServices::getMainObjectStash()
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param ServiceOptions $options
 	 */
 	public function __construct(
 		BagOStuff $mainObjectStash,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		ServiceOptions $options
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
 		$this->mainObjectStash = $mainObjectStash;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->options = $options;
 	}
 
@@ -105,8 +105,7 @@ class EditResultCache {
 
 		// not found in stash, try change tags
 		if ( !$result ) {
-			$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-			$result = $dbr->newSelectQueryBuilder()
+			$result = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
 				->select( 'ct_params' )
 				->from( 'change_tag' )
 				->join( 'change_tag_def', null, 'ctd_id = ct_tag_id' )

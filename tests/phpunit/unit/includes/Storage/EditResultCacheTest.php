@@ -9,8 +9,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\EditResultCache;
 use MediaWikiUnitTestCase;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
@@ -58,7 +58,7 @@ class EditResultCacheTest extends MediaWikiUnitTestCase {
 
 		$erCache = new EditResultCache(
 			$mainStash,
-			$this->createNoOpMock( ILoadBalancer::class ),
+			$this->createNoOpMock( IConnectionProvider::class ),
 			new ServiceOptions(
 				EditResultCache::CONSTRUCTOR_OPTIONS,
 				[ MainConfigNames::RCMaxAge => BagOStuff::TTL_MONTH ]
@@ -86,7 +86,7 @@ class EditResultCacheTest extends MediaWikiUnitTestCase {
 
 		$erCache = new EditResultCache(
 			$mainStash,
-			$this->createNoOpMock( ILoadBalancer::class ),
+			$this->createNoOpMock( IConnectionProvider::class ),
 			new ServiceOptions(
 				EditResultCache::CONSTRUCTOR_OPTIONS,
 				[ MainConfigNames::RCMaxAge => BagOStuff::TTL_MONTH ]
@@ -117,14 +117,14 @@ class EditResultCacheTest extends MediaWikiUnitTestCase {
 			->method( 'selectField' )
 			->willReturn( FormatJson::encode( $editResult ) );
 		$dbr->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn() => new SelectQueryBuilder( $dbr ) );
-		$loadBalancer = $this->createMock( ILoadBalancer::class );
-		$loadBalancer->expects( $this->once() )
-			->method( 'getConnectionRef' )
+		$dbProvider = $this->createMock( IConnectionProvider::class );
+		$dbProvider->expects( $this->once() )
+			->method( 'getReplicaDatabase' )
 			->willReturn( $dbr );
 
 		$erCache = new EditResultCache(
 			$mainStash,
-			$loadBalancer,
+			$dbProvider,
 			new ServiceOptions(
 				EditResultCache::CONSTRUCTOR_OPTIONS,
 				[ MainConfigNames::RCMaxAge => BagOStuff::TTL_MONTH ]
@@ -153,14 +153,14 @@ class EditResultCacheTest extends MediaWikiUnitTestCase {
 			->method( 'selectField' )
 			->willReturn( false );
 		$dbr->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn() => new SelectQueryBuilder( $dbr ) );
-		$loadBalancer = $this->createMock( ILoadBalancer::class );
-		$loadBalancer->expects( $this->once() )
-			->method( 'getConnectionRef' )
+		$dbProvider = $this->createMock( IConnectionProvider::class );
+		$dbProvider->expects( $this->once() )
+			->method( 'getReplicaDatabase' )
 			->willReturn( $dbr );
 
 		$erCache = new EditResultCache(
 			$mainStash,
-			$loadBalancer,
+			$dbProvider,
 			new ServiceOptions(
 				EditResultCache::CONSTRUCTOR_OPTIONS,
 				[ MainConfigNames::RCMaxAge => BagOStuff::TTL_MONTH ]

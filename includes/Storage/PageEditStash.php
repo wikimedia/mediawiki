@@ -36,7 +36,7 @@ use MediaWiki\User\UserIdentity;
 use ParserOutput;
 use Psr\Log\LoggerInterface;
 use stdClass;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\ScopedCallback;
 use WikiPage;
 
@@ -54,8 +54,8 @@ use WikiPage;
 class PageEditStash {
 	/** @var BagOStuff */
 	private $cache;
-	/** @var ILoadBalancer */
-	private $lb;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 	/** @var LoggerInterface */
 	private $logger;
 	/** @var StatsdDataFactoryInterface */
@@ -88,7 +88,7 @@ class PageEditStash {
 
 	/**
 	 * @param BagOStuff $cache
-	 * @param ILoadBalancer $lb
+	 * @param IConnectionProvider $dbProvider
 	 * @param LoggerInterface $logger
 	 * @param StatsdDataFactoryInterface $stats
 	 * @param UserEditTracker $userEditTracker
@@ -99,7 +99,7 @@ class PageEditStash {
 	 */
 	public function __construct(
 		BagOStuff $cache,
-		ILoadBalancer $lb,
+		IConnectionProvider $dbProvider,
 		LoggerInterface $logger,
 		StatsdDataFactoryInterface $stats,
 		UserEditTracker $userEditTracker,
@@ -109,7 +109,7 @@ class PageEditStash {
 		$initiator
 	) {
 		$this->cache = $cache;
-		$this->lb = $lb;
+		$this->dbProvider = $dbProvider;
 		$this->logger = $logger;
 		$this->stats = $stats;
 		$this->userEditTracker = $userEditTracker;
@@ -145,7 +145,7 @@ class PageEditStash {
 		// the stash request finishes parsing. For the lock acquisition below, there is not much
 		// need to duplicate parsing of the same content/user/summary bundle, so try to avoid
 		// blocking at all here.
-		$dbw = $this->lb->getConnectionRef( DB_PRIMARY );
+		$dbw = $this->dbProvider->getPrimaryDatabase();
 		if ( !$dbw->lock( $key, $fname, 0 ) ) {
 			// De-duplicate requests on the same key
 			return self::ERROR_BUSY;
@@ -367,7 +367,7 @@ class PageEditStash {
 			$start = microtime( true );
 			// We ignore user aborts and keep parsing. Block on any prior parsing
 			// so as to use its results and make use of the time spent parsing.
-			$dbw = $this->lb->getConnection( DB_PRIMARY );
+			$dbw = $this->dbProvider->getPrimaryDatabase();
 			if ( $dbw->lock( $key, __METHOD__, 30 ) ) {
 				$editInfo = $this->getStashValue( $key );
 				$dbw->unlock( $key, __METHOD__ );
@@ -411,9 +411,7 @@ class PageEditStash {
 	 * @return string|null TS_MW timestamp or null
 	 */
 	private function lastEditTime( UserIdentity $user ) {
-		$db = $this->lb->getConnectionRef( DB_REPLICA );
-
-		$time = $db->newSelectQueryBuilder()
+		$time = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
 			->select( 'MAX(rc_timestamp)' )
 			->from( 'recentchanges' )
 			->join( 'actor', null, 'actor_id=rc_actor' )

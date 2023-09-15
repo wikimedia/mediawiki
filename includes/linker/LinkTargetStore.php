@@ -26,8 +26,8 @@ use RuntimeException;
 use stdClass;
 use TitleValue;
 use WANObjectCache;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Service for retrieving and storing link targets.
@@ -36,8 +36,8 @@ use Wikimedia\Rdbms\ILoadBalancer;
  */
 class LinkTargetStore implements LinkTargetLookup {
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var BagOStuff */
 	private $localCache;
@@ -52,16 +52,16 @@ class LinkTargetStore implements LinkTargetLookup {
 	private $byTitleCache;
 
 	/**
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param BagOStuff $localCache
 	 * @param WANObjectCache $WanObjectCache
 	 */
 	public function __construct(
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		BagOStuff $localCache,
 		WANObjectCache $WanObjectCache
 	) {
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->localCache = $localCache;
 		$this->wanObjectCache = $WanObjectCache;
 		$this->byIdCache = [];
@@ -99,7 +99,7 @@ class LinkTargetStore implements LinkTargetLookup {
 			return $this->byIdCache[$linkTargetId];
 		}
 
-		$value = $this->loadBalancer->getConnectionRef( DB_REPLICA )->newSelectQueryBuilder()
+		$value = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
 			->caller( __METHOD__ )
 			->table( 'linktarget' )
 			->conds( [ 'lt_id' => $linkTargetId ] )
@@ -194,7 +194,7 @@ class LinkTargetStore implements LinkTargetLookup {
 		LinkTarget $linkTarget,
 		array $queryOptions = []
 	): ?int {
-		$row = $this->loadBalancer->getConnectionRef( DB_PRIMARY )->selectRow(
+		$row = $this->dbProvider->getPrimaryDatabase()->selectRow(
 			'linktarget',
 			[ 'lt_id', 'lt_namespace', 'lt_title' ],
 			[
@@ -250,7 +250,7 @@ class LinkTargetStore implements LinkTargetLookup {
 					),
 					WANObjectCache::TTL_DAY,
 					function () use ( $linkTarget, $fname ) {
-						$row = $this->loadBalancer->getConnectionRef( DB_REPLICA )->selectRow(
+						$row = $this->dbProvider->getReplicaDatabase()->selectRow(
 							'linktarget',
 							[ 'lt_id', 'lt_namespace', 'lt_title' ],
 							[
