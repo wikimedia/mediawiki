@@ -100,7 +100,6 @@ class SpecialLinkSearch extends QueryPage {
 		}
 
 		$target2 = Parser::normalizeLinkUrl( $target );
-		// Get protocol, default is http://
 		$protocol = null;
 		$bits = $this->urlUtils->parse( $target );
 		if ( isset( $bits['scheme'] ) && isset( $bits['delimiter'] ) ) {
