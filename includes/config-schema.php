@@ -847,6 +847,14 @@ return [
 				],
 			],
 			'CentralIdLookupProvider' => 'local',
+			'UserRegistrationProviders' => [
+				'local' => [
+					'class' => 'MediaWiki\\User\\Registration\\LocalUserRegistrationProvider',
+					'services' => [
+						0 => 'UserFactory',
+					],
+				],
+			],
 			'PasswordPolicy' => [
 				'policies' => [
 					'bureaucrat' => [
@@ -2727,6 +2735,7 @@ return [
 			'RevertedTagMaxDepth' => 'integer',
 			'CentralIdLookupProviders' => 'object',
 			'CentralIdLookupProvider' => 'string',
+			'UserRegistrationProviders' => 'object',
 			'PasswordPolicy' => 'object',
 			'AuthManagerConfig' => [
 				0 => 'object',
