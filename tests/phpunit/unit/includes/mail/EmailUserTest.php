@@ -162,7 +162,7 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 			$this->expectDeprecationAndContinue( '/Use of EmailUserPermissionsErrors hook/' );
 		}
 		$emailUser = $this->getEmailUser( $performerUser, null, null, $userFactory, $configOverrides, $hooks );
-		$this->assertEquals( $expected, $emailUser->authorizeSend( 'some-token' ) );
+		$this->assertEquals( $expected, $emailUser->authorizeSend() );
 	}
 
 	/**

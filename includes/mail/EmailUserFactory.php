@@ -34,7 +34,6 @@ use Wikimedia\Message\ITextFormatter;
  * Factory for EmailUser objects.
  *
  * @since 1.41
- * @unstable
  */
 class EmailUserFactory {
 	/** @var ServiceOptions */

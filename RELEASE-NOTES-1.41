@@ -952,6 +952,15 @@ because of Phabricator reports.
   - ISQLPlatform::unionQueries() Use UnionQueryBuilder instead.
 * The core Wikimedia\Rdbms\DatabaseMysqlBase class has been renamed to reflect
   the earlier merger of Mysqli into it; it's now Wikimedia\Rdbms\DatabaseMySQL.
+* The following methods in SpecialEmailUser have been deprecated:
+  - SpecialEmailUser::validateTarget(), use EmailUser::validateTarget()
+  - SpecialEmailUser::getPermissionsError(), use EmailUser::canSend() or
+    EmailUser::authorizeSend()
+  - SpecialEmailUser::submit(), use EmailUser::sendEmailUnsafe()
+* User::isBlockedFromEmailuser() has been deprecated. EmailUser::canSend()
+  checks blocks amongst other things. If you only need this check, use
+  User::getBlock()->appliesToRight( 'sendemail' ).
+* User::canSendEmail() has been deprecated. Use EmailUser::canSend() instead.
 * The following methods, previously deprecated, now emit deprecation warnings:
   - ConfigFactory::getDefaultInstance(), deprecated since 1.27
   - AbstractContent::getNativeData(), deprecated since 1.33

@@ -2883,7 +2883,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/**
 	 * Get whether the user is blocked from using Special:Emailuser.
 	 * @return bool
-	 * @todo Deprecate in favour of EmailUser when that's no longer unstable
+	 * @deprecated since 1.41 EmailUser::canSend checks blocks amongst other things. If you only need this
+	 * check, use ::getBlock()->appliesToRight( 'sendemail' ).
 	 */
 	public function isBlockedFromEmailuser() {
 		$this->getBlockedStatus();
@@ -3192,16 +3193,15 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
-	 * @todo Deprecate this method once EmailUser is no longer unstable.
 	 * Is this user allowed to send e-mails within limits of current
 	 * site configuration?
+	 * @deprecated since 1.41 Use EmailUser::canSend() instead.
 	 * @return bool
 	 */
 	public function canSendEmail() {
 		$permError = MediaWikiServices::getInstance()->getEmailUserFactory()
 			->newEmailUser( $this->getThisAsAuthority() )
-			// XXX Pass an empty edit token, nobody is using it anyway.
-			->canSend( '' );
+			->canSend();
 		return $permError->isGood();
 	}
 

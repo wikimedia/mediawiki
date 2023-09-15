@@ -43,7 +43,6 @@ use Wikimedia\Message\MessageValue;
  * Command for sending emails to users. This class is stateless and can be used for multiple sends.
  *
  * @since 1.40
- * @unstable
  */
 class EmailUser {
 	/**
@@ -76,6 +75,9 @@ class EmailUser {
 
 	/** @var Authority */
 	private Authority $sender;
+
+	/** @var string Temporary property to support the deprecated EmailUserPermissionsErrors hook */
+	private string $editToken = '';
 
 	/**
 	 * @param ServiceOptions $options
@@ -162,14 +164,10 @@ class EmailUser {
 	/**
 	 * Checks whether email sending is allowed.
 	 *
-	 * @internal This method should only be used by SpecialEmailUser.
-	 * This could change when the $editToken parameter is removed.
-	 *
-	 * @param string $editToken
 	 * @return StatusValue For BC, the StatusValue's value can be set to a string representing
 	 * a message key to use with ErrorPageError. Only SpecialEmailUser should rely on this.
 	 */
-	public function canSend( string $editToken ): StatusValue {
+	public function canSend(): StatusValue {
 		if (
 			!$this->options->get( MainConfigNames::EnableEmail ) ||
 			!$this->options->get( MainConfigNames::EnableUserEmail )
@@ -194,7 +192,7 @@ class EmailUser {
 
 		// TODO Remove deprecated hooks
 		$this->hookRunner->onUserCanSendEmail( $user, $hookErr );
-		$this->hookRunner->onEmailUserPermissionsErrors( $user, $editToken, $hookErr );
+		$this->hookRunner->onEmailUserPermissionsErrors( $user, $this->editToken, $hookErr );
 		if ( is_array( $hookErr ) ) {
 			// SpamBlacklist uses null for the third element, and there might be more handlers not using an array.
 			$msgParamsArray = is_array( $hookErr[2] ) ? $hookErr[2] : [];
@@ -209,15 +207,11 @@ class EmailUser {
 	/**
 	 * Authorize the email sending, checking permissions etc.
 	 *
-	 * @internal This method should only be used by SpecialEmailUser.
-	 * This could change when the $editToken parameter is removed.
-	 *
-	 * @param string $editToken
 	 * @return StatusValue For BC, the StatusValue's value can be set to a string representing
 	 * a message key to use with ErrorPageError. Only SpecialEmailUser should rely on this.
 	 */
-	public function authorizeSend( string $editToken ): StatusValue {
-		$status = $this->canSend( $editToken );
+	public function authorizeSend(): StatusValue {
+		$status = $this->canSend();
 		if ( !$status->isOK() ) {
 			return $status;
 		}
@@ -427,6 +421,14 @@ class EmailUser {
 			return "Ceci n'est pas une URL";
 		}
 		return SpecialPage::getTitleFor( 'Mute', $targetName )->getCanonicalURL();
+	}
+
+	/**
+	 * @internal Only for BC with SpecialEmailUser
+	 * @param string $token
+	 */
+	public function setEditToken( string $token ): void {
+		$this->editToken = $token;
 	}
 
 }
