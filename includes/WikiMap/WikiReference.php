@@ -26,9 +26,12 @@ namespace MediaWiki\WikiMap;
  * Reference to a locally-hosted wiki
  */
 class WikiReference {
-	private $mCanonicalServer; ///< canonical server URL, e.g. 'https://www.mediawiki.org'
-	private $mServer; ///< server URL, may be protocol-relative, e.g. '//www.mediawiki.org'
-	private $mPath; ///< path, '/wiki/$1'
+	// wgCanonicalServer, e.g. 'https://www.mediawiki.org'
+	private $mCanonicalServer;
+	// wgServer, may be protocol-relative, e.g. '//www.mediawiki.org'
+	private $mServer;
+	// wgArticlepath, e.g. '/wiki/$1'
+	private $mPath;
 
 	/**
 	 * @param string $canonicalServer
