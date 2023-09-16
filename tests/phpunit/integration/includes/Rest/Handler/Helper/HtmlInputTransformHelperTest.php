@@ -4,7 +4,7 @@ namespace MediaWiki\Tests\Rest\Handler\Helper;
 
 use BufferingStatsdDataFactory;
 use Exception;
-use Liuggio\StatsdClient\Factory\StatsdDataFactory;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
 use MediaWiki\Edit\SelserContext;
 use MediaWiki\MainConfigNames;
@@ -79,13 +79,13 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param array $transformMethodOverrides
-	 * @param StatsdDataFactory|null $stats
+	 * @param StatsdDataFactoryInterface|null $stats
 	 *
 	 * @return HtmlInputTransformHelper
 	 * @throws Exception
 	 */
 	private function newHelper(
-		$transformMethodOverrides = [], StatsdDataFactory $stats = null
+		$transformMethodOverrides = [], StatsdDataFactoryInterface $stats = null
 	): HtmlInputTransformHelper {
 		// TODO: $cache = $cache ?: new EmptyBagOStuff();
 		// TODO: $stash = new SimpleParsoidOutputStash( $cache, 1 );
