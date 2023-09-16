@@ -150,13 +150,7 @@ class UserAuthority implements Authority {
 			throw new InvalidArgumentException( 'At least one permission must be specified' );
 		}
 
-		foreach ( $permissions as $perm ) {
-			if ( $this->isAllowed( $perm ) ) {
-				return true;
-			}
-		}
-
-		return false;
+		return $this->permissionManager->userHasAnyRight( $this->actor, ...$permissions );
 	}
 
 	/** @inheritDoc */
@@ -165,13 +159,7 @@ class UserAuthority implements Authority {
 			throw new InvalidArgumentException( 'At least one permission must be specified' );
 		}
 
-		foreach ( $permissions as $perm ) {
-			if ( !$this->isAllowed( $perm ) ) {
-				return false;
-			}
-		}
-
-		return true;
+		return $this->permissionManager->userHasAllRights( $this->actor, ...$permissions );
 	}
 
 	/** @inheritDoc */
