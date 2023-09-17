@@ -86,7 +86,7 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 		foreach ( $refObject->getProperties() as $prop ) {
 			$prop->setAccessible( true );
 			foreach ( $args as $idx => $mockTest ) {
-				if ( $prop->getValue( $parser ) === $mockTest ) {
+				if ( $prop->isInitialized( $parser ) && $prop->getValue( $parser ) === $mockTest ) {
 					unset( $args[$idx] );
 				}
 			}
