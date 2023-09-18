@@ -5,7 +5,7 @@ namespace MediaWiki\ParamValidator\TypeDef;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
-use TitleValue;
+use MediaWiki\Title\TitleValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\SimpleCallbacks;
 

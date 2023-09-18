@@ -3,6 +3,7 @@
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTargetLookup;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Title\TitleValue;
 
 /**
  * @covers MediaWiki\Linker\LinksMigration

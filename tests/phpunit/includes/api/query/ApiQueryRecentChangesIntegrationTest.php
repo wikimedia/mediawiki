@@ -2,6 +2,7 @@
 
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Title\TitleValue;
 
 /**
  * @group API

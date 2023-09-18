@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Title\TitleValue;
 use Wikimedia\AtEase\AtEase;
 
 class MWDebugTest extends MediaWikiIntegrationTestCase {

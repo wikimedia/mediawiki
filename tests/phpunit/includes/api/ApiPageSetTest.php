@@ -7,6 +7,7 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleValue;
 use Wikimedia\TestingAccessWrapper;
 
 /**

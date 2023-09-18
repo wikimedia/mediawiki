@@ -21,6 +21,7 @@ use MediaWiki\Search\Entity\SearchResultThumbnail;
 use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Status\Status;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserOptionsLookup;
 use MockSearchResultSet;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -31,7 +32,6 @@ use SearchResultSet;
 use SearchSuggestion;
 use SearchSuggestionSet;
 use TitleFormatter;
-use TitleValue;
 use Wikimedia\Message\MessageValue;
 
 /**

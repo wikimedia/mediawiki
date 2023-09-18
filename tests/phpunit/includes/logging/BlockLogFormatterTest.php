@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Title\TitleValue;
+
 /**
  * @covers BlockLogFormatter
  */

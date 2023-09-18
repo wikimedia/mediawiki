@@ -5,8 +5,8 @@ namespace MediaWiki\Tests\Unit\CommentFormatter;
 use MediaWiki\CommentFormatter\CommentBatch;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentFormatter\CommentItem;
+use MediaWiki\Title\TitleValue;
 use MediaWikiUnitTestCase;
-use TitleValue;
 
 /**
  * Trivial unit test with the universe mocked.

@@ -25,6 +25,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Title\TitleValue;
 
 /**
  * This is a utility class for dealing with namespaces that encodes all the "magic" behaviors of

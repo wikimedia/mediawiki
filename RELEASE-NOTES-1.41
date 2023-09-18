@@ -650,6 +650,9 @@ because of Phabricator reports.
   - SpecialRedirectWithAction
   - UnlistedSpecialPage
   - WantedQueryPage
+* Some title-related classes have been namespaced under MediaWiki\Title; the old
+  class names are now deprecated aliases:
+  - TitleValue
 * Various mediawiki.ui variables have been deprecated in favor of
   'mediawiki.skin.variables.less' Codex design tokens featuring replacements.
 * Hook handlers must now be specified either as a PHP callable, or as a PHP

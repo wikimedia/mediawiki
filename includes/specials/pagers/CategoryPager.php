@@ -27,7 +27,7 @@ use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Title\Title;
-use TitleValue;
+use MediaWiki\Title\TitleValue;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Title\TitleValue;
+
 /**
  * @group API
  * @group Database
