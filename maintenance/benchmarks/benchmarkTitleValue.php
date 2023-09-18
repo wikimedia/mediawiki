@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
 
 require_once __DIR__ . '/../includes/Benchmarker.php';

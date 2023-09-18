@@ -27,6 +27,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\ProperPageIdentity;
+use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Assert\Assert;

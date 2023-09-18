@@ -16,7 +16,7 @@ use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Revision\RevisionLookup;
-use TitleFormatter;
+use MediaWiki\Title\TitleFormatter;
 
 /**
  * @since 1.40 Factory for helper objects designed for sharing logic between REST handlers that deal with page content.

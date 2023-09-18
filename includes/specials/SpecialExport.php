@@ -33,7 +33,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
-use TitleFormatter;
+use MediaWiki\Title\TitleFormatter;
 use WikiExporter;
 use Wikimedia\Rdbms\IConnectionProvider;
 
