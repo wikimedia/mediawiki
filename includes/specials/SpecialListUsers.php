@@ -27,10 +27,10 @@
 
 namespace MediaWiki\Specials;
 
-use IncludableSpecialPage;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\Html;
 use MediaWiki\Pager\UsersPager;
+use MediaWiki\SpecialPage\IncludableSpecialPage;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentityLookup;
 use Wikimedia\Rdbms\IConnectionProvider;

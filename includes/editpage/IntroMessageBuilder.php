@@ -14,6 +14,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\Title;
 use MediaWiki\User\TempUser\TempUserCreator;
@@ -25,7 +26,6 @@ use NamespaceInfo;
 use RepoGroup;
 use Skin;
 use SkinFactory;
-use SpecialPage;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**

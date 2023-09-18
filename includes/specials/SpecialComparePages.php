@@ -31,8 +31,8 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
-use SpecialPage;
 
 /**
  * Implements Special:ComparePages

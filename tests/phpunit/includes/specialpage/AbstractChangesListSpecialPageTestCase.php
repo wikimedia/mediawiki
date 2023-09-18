@@ -4,6 +4,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\SpecialPage\ChangesListSpecialPage;
 
 /**
  * Abstract base class for shared logic when testing ChangesListSpecialPage

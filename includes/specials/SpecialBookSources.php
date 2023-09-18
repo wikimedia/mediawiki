@@ -27,8 +27,8 @@ use HTMLForm;
 use MediaWiki\Html\Html;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\TitleFactory;
-use SpecialPage;
 use TextContent;
 use UnexpectedValueException;
 

@@ -23,10 +23,10 @@ namespace MediaWiki\Specials;
 
 use CentralIdLookup;
 use ErrorPageError;
-use FormSpecialPage;
 use HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Preferences\MultiUsernameFilter;
+use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityUtils;

@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\SpecialPage\SpecialPage;
+
 /**
  * Redirect a user to the login page
  *

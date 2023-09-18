@@ -43,6 +43,7 @@ use MediaWiki\ResourceLoader\UserModule;
 use MediaWiki\ResourceLoader\UserOptionsModule;
 use MediaWiki\ResourceLoader\UserStylesModule;
 use MediaWiki\ResourceLoader\WikiModule;
+use MediaWiki\SpecialPage\ChangesListSpecialPage;
 use MediaWiki\Title\Title;
 
 if ( !defined( 'MEDIAWIKI' ) ) {

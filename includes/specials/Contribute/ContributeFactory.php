@@ -3,12 +3,12 @@
 namespace MediaWiki\Specials\Contribute;
 
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\Contribute\Card\ContributeCard;
 use MediaWiki\Specials\Contribute\Card\ContributeCardActionLink;
 use MediaWiki\User\UserIdentity;
 use MessageLocalizer;
 use Skin;
-use SpecialPage;
 
 class ContributeFactory {
 

@@ -23,9 +23,9 @@
 
 namespace MediaWiki\Specials;
 
+use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\User\UserFactory;
 use Profiler;
-use UnlistedSpecialPage;
 use Wikimedia\ScopedCallback;
 
 /**

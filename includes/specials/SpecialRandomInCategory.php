@@ -25,8 +25,8 @@
 namespace MediaWiki\Specials;
 
 use BadMethodCallException;
-use FormSpecialPage;
 use HTMLForm;
+use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use stdClass;

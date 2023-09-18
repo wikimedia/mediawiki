@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Html\FormOptions;
+use MediaWiki\SpecialPage\ChangesListSpecialPage;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\TestingAccessWrapper;

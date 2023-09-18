@@ -2,6 +2,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\SpecialPage\ChangesListSpecialPage;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\TestingAccessWrapper;

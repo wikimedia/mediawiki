@@ -23,7 +23,7 @@
 
 namespace MediaWiki\Specials;
 
-use UnlistedSpecialPage;
+use MediaWiki\SpecialPage\UnlistedSpecialPage;
 
 /**
  * Special page designed for basic benchmarking of

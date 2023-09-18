@@ -4,8 +4,8 @@ namespace MediaWiki\Skin;
 
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
-use SpecialPage;
 
 class SkinComponentUtils {
 	/**

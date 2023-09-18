@@ -7,6 +7,8 @@
  * @author Antoine Musso
  */
 
+use MediaWiki\SpecialPage\QueryPage;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\SpecialLinkSearch;
 use Wikimedia\Rdbms\ResultWrapper;
 

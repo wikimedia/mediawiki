@@ -28,8 +28,8 @@ use FormatJson;
 use HttpStatus;
 use JobRunner;
 use MediaWiki\MainConfigNames;
+use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use TransactionRoundDefiningUpdate;
-use UnlistedSpecialPage;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**

@@ -21,8 +21,13 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\SpecialPage;
+
+use ImageGalleryBase;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Title\Title;
+use Skin;
+use stdClass;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -96,3 +101,9 @@ abstract class ImageQueryPage extends QueryPage {
 		return '';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( ImageQueryPage::class, 'ImageQueryPage' );

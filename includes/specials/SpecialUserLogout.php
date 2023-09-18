@@ -24,13 +24,13 @@
 namespace MediaWiki\Specials;
 
 use ErrorPageError;
-use FormSpecialPage;
 use HTMLForm;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\SpecialPage\FormSpecialPage;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MWException;
 use PermissionsError;
-use SpecialPage;
 use ThrottledError;
 
 /**

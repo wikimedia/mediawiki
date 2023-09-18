@@ -23,10 +23,10 @@
 
 namespace MediaWiki\Specials;
 
+use MediaWiki\SpecialPage\RedirectSpecialPage;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
-use RedirectSpecialPage;
 use SearchEngineFactory;
-use SpecialPage;
 
 /**
  * A special page that redirects to the URL of a given file

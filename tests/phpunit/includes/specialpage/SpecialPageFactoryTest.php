@@ -5,6 +5,7 @@ use MediaWiki\MainConfigSchema;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Specials\SpecialAllPages;
 use MediaWiki\Title\Title;

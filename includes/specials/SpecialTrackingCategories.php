@@ -26,7 +26,7 @@ namespace MediaWiki\Specials;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Html\Html;
-use SpecialPage;
+use MediaWiki\SpecialPage\SpecialPage;
 
 /**
  * A special page that displays list of tracking categories

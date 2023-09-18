@@ -32,6 +32,8 @@ use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Html\Html;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MWException;
@@ -39,8 +41,6 @@ use PermissionsError;
 use RepoGroup;
 use RevDelList;
 use RevisionDeleter;
-use SpecialPage;
-use UnlistedSpecialPage;
 use UserBlockedError;
 use Xml;
 

@@ -26,9 +26,9 @@
 
 namespace MediaWiki\Specials\Redirects;
 
+use MediaWiki\SpecialPage\RedirectSpecialPage;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
-use RedirectSpecialPage;
-use SpecialPage;
 
 /**
  * Special page pointing to current user's contributions.

@@ -23,8 +23,8 @@
 
 namespace MediaWiki\Specials;
 
+use MediaWiki\SpecialPage\SpecialRedirectWithAction;
 use SearchEngineFactory;
-use SpecialRedirectWithAction;
 
 /**
  * @author Zabe

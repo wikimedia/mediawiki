@@ -25,9 +25,9 @@ namespace MediaWiki\Specials;
 
 use MediaWiki\Html\Html;
 use MediaWiki\Parser\ParserOutputFlags;
+use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use Parser;
 use ParserOutput;
-use UnlistedSpecialPage;
 use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\Parsoid\Core\TOCData;
 

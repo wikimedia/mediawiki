@@ -21,8 +21,14 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\SpecialPage;
+
+use DerivativeContext;
+use HTMLForm;
 use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\Status\Status;
+use User;
+use UserBlockedError;
 
 /**
  * Special page which uses an HTMLForm to handle processing.  This is mostly a
@@ -318,3 +324,9 @@ abstract class FormSpecialPage extends SpecialPage {
 		$this->reauthPostData = $data;
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( FormSpecialPage::class, 'FormSpecialPage' );

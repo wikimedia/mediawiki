@@ -25,8 +25,8 @@ namespace MediaWiki\Specials;
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\SpecialPage\PageQueryPage;
 use NamespaceInfo;
-use PageQueryPage;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

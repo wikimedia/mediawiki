@@ -3,8 +3,8 @@
 namespace MediaWiki\Specials;
 
 use HTMLForm;
+use MediaWiki\SpecialPage\RedirectSpecialPage;
 use MediaWiki\Title\Title;
-use RedirectSpecialPage;
 use SearchEngineFactory;
 
 /**

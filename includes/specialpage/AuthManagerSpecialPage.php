@@ -1,5 +1,13 @@
 <?php
 
+namespace MediaWiki\SpecialPage;
+
+use DerivativeContext;
+use ErrorPageError;
+use HTMLForm;
+use HTMLInfoField;
+use InvalidArgumentException;
+use LogicException;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
@@ -9,6 +17,9 @@ use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\Token;
 use MediaWiki\Status\Status;
+use MWCryptRand;
+use StatusValue;
+use UnexpectedValueException;
 
 /**
  * A special page subclass for authentication-related special pages. It generates a form from
@@ -846,3 +857,9 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 		return array_filter( $defaultFormDescriptor + $formDescriptor );
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( AuthManagerSpecialPage::class, 'AuthManagerSpecialPage' );

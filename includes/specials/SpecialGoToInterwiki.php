@@ -23,8 +23,8 @@
 
 namespace MediaWiki\Specials;
 
+use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\Title\Title;
-use UnlistedSpecialPage;
 
 /**
  * Landing page for non-local interwiki links.

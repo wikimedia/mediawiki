@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\SpecialPage\SpecialPage;
 
 /**
  * Mark a revision as patrolled on a page

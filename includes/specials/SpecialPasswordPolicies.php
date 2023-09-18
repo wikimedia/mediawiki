@@ -25,10 +25,10 @@ namespace MediaWiki\Specials;
 
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserGroupManager;
 use Sanitizer;
-use SpecialPage;
 use UserGroupMembership;
 use UserPasswordPolicy;
 use Xml;

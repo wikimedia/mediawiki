@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Specials;
 
-use AuthManagerSpecialPage;
 use LogicException;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
@@ -11,6 +10,7 @@ use MediaWiki\Auth\PasswordAuthenticationRequest;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\SpecialPage\AuthManagerSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use Message;

@@ -22,6 +22,7 @@
 use MediaWiki\Feed\ChannelFeed;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\DerivativeRequest;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -105,7 +106,7 @@ class ApiFeedRecentChanges extends ApiBase {
 		if ( $rc === null ) {
 			throw new RuntimeException( __METHOD__ . ' not able to instance special page ' . $specialPageName );
 		}
-		'@phan-var ChangesListSpecialPage $rc';
+		'@phan-var \MediaWiki\SpecialPage\ChangesListSpecialPage $rc';
 		$rc->setContext( $context );
 		$rows = $rc->getRows();
 

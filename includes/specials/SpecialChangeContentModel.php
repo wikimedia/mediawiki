@@ -4,7 +4,6 @@ namespace MediaWiki\Specials;
 
 use ContentHandler;
 use ErrorPageError;
-use FormSpecialPage;
 use HTMLForm;
 use LogEventsList;
 use LogPage;
@@ -17,6 +16,7 @@ use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use SearchEngineFactory;

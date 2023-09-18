@@ -21,6 +21,15 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\SpecialPage;
+
+use DerivativeContext;
+use ErrorPageError;
+use Exception;
+use FatalError;
+use HTMLForm;
+use LogicException;
+use LoginHelper;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
@@ -33,6 +42,15 @@ use MediaWiki\Session\SessionManager;
 use MediaWiki\Status\Status;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
+use Message;
+use MWException;
+use PermissionsError;
+use ReadOnlyError;
+use RequestContext;
+use Sanitizer;
+use Skin;
+use StatusValue;
+use User;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -1271,3 +1289,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$this->addTabIndex( $formDescriptor );
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( LoginSignupSpecialPage::class, 'LoginSignupSpecialPage' );

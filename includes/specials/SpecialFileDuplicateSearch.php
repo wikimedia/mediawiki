@@ -31,10 +31,10 @@ use ILanguageConverter;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\Linker;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use RepoGroup;
 use SearchEngineFactory;
-use SpecialPage;
 
 /**
  * Searches the database for files of the requested hash, comparing this with the

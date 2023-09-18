@@ -23,8 +23,8 @@
 namespace MediaWiki\Specials;
 
 use HttpError;
+use MediaWiki\SpecialPage\SpecialPage;
 use PageDataRequestHandler;
-use SpecialPage;
 
 /**
  * Special page to act as an endpoint for accessing raw page data.

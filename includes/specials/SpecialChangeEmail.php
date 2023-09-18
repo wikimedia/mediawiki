@@ -24,11 +24,11 @@
 namespace MediaWiki\Specials;
 
 use ErrorPageError;
-use FormSpecialPage;
 use HTMLForm;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Html\Html;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use PermissionsError;

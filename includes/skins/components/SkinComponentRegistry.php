@@ -18,8 +18,8 @@
 
 namespace MediaWiki\Skin;
 
+use MediaWiki\SpecialPage\SpecialPage;
 use RuntimeException;
-use SpecialPage;
 
 /**
  * @internal for use inside Skin and SkinTemplate classes only

@@ -18,13 +18,26 @@
  * @file
  */
 
+namespace MediaWiki\SpecialPage;
+
+use ChangesListBooleanFilter;
+use ChangesListBooleanFilterGroup;
+use ChangesListFilterGroup;
+use ChangesListStringOptionsFilterGroup;
+use ChangeTags;
+use FormatJson;
+use IContextSource;
+use LogFormatter;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\User\UserIdentity;
+use MWExceptionHandler;
 use OOUI\IconWidget;
+use RecentChange;
+use Sanitizer;
 use Wikimedia\Rdbms\DBQueryTimeoutError;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
@@ -1981,3 +1994,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		return array_unique( $namespaces );
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( ChangesListSpecialPage::class, 'ChangesListSpecialPage' );

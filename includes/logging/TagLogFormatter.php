@@ -16,6 +16,8 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+use MediaWiki\SpecialPage\SpecialPage;
+
 /**
  * This class formats tag log entries.
  *

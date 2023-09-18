@@ -23,11 +23,11 @@
 
 namespace MediaWiki\Specials;
 
-use FormSpecialPage;
 use HTMLForm;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
-use SpecialPage;
+use MediaWiki\SpecialPage\FormSpecialPage;
+use MediaWiki\SpecialPage\SpecialPage;
 
 /**
  * Let users reset tokens like the watchlist token.

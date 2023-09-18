@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\SpecialPage\SpecialPage;
 
 /**
  * This class formats delete log entries.
