@@ -374,9 +374,13 @@ because of Phabricator reports.
   been removed:
   - ::addTrackingCategory()
   - ::addWarning()
+  - ::getProperties()
+  - ::getProperty()
   - ::hasDynamicContent()
   - ::hideNewSection()
   - ::preventClickjacking()
+  - ::setProperty()
+  - ::unsetProperty()
 * OutputPage::allowClickjacking() and ::preventClickjacking(), deprecated
   since 1.38, have been removed.
 * ResourceFileCache has been removed without deprecation. There were no known
