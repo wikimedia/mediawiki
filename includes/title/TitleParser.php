@@ -21,6 +21,8 @@
  * @author Daniel Kinzler
  */
 
+use MediaWiki\Title\TitleValue;
+
 /**
  * A title parser service for %MediaWiki.
  *

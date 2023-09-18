@@ -12,9 +12,9 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Tests\Unit\CommentFormatter\CommentFormatterTestUtils;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
-use TitleValue;
 
 /**
  * Trivial comment formatting with a mocked parser. Can't be a unit test because

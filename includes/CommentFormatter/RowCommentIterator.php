@@ -5,7 +5,7 @@ namespace MediaWiki\CommentFormatter;
 use ArrayIterator;
 use IteratorIterator;
 use MediaWiki\CommentStore\CommentStore;
-use TitleValue;
+use MediaWiki\Title\TitleValue;
 use Traversable;
 
 /**

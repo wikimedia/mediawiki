@@ -7,6 +7,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleValue;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

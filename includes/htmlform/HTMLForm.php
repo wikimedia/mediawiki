@@ -29,6 +29,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleValue;
 
 /**
  * Object handling generic submission, CSRF protection, layout and

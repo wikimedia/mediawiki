@@ -2,6 +2,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\Title\TitleValue;
+
 /**
  * Maintenance script that populates normalization column in links tables.
  *

@@ -15,13 +15,13 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleValue;
 use MediaWiki\WikiMap\WikiMap;
 use NamespaceInfo;
 use Parser;
 use RepoGroup;
 use StringUtils;
 use TitleParser;
-use TitleValue;
 
 /**
  * The text processing backend for CommentFormatter.

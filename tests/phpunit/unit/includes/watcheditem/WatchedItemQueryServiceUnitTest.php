@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserOptionsLookup;
 use PHPUnit\Framework\MockObject\MockObject;

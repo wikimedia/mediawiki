@@ -39,6 +39,7 @@ use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleValue;
 use Message;
 use MessageLocalizer;
 use MessageSpecifier;
@@ -48,7 +49,6 @@ use ReadOnlyError;
 use RequestContext;
 use SearchEngineFactory;
 use Skin;
-use TitleValue;
 use User;
 use UserNotLoggedIn;
 

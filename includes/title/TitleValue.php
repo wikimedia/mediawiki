@@ -20,6 +20,10 @@
  * @file
  * @author Daniel Kinzler
  */
+
+namespace MediaWiki\Title;
+
+use InvalidArgumentException;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageReference;
 use Wikimedia\Assert\Assert;
@@ -262,3 +266,9 @@ class TitleValue implements LinkTarget {
 			&& ( $other->getFragment() === $this->getFragment() );
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( TitleValue::class, 'TitleValue' );

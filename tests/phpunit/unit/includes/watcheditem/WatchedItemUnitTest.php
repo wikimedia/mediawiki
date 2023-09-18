@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 

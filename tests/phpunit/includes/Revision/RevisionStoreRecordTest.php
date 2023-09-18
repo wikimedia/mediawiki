@@ -11,12 +11,12 @@ use MediaWiki\Revision\RevisionSlots;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use stdClass;
 use TextContent;
-use TitleValue;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Timestamp\TimestampException;
 

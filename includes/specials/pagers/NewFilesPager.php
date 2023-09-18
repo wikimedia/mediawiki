@@ -30,8 +30,8 @@ use MediaWiki\Html\FormOptions;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleValue;
 use RecentChange;
-use TitleValue;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

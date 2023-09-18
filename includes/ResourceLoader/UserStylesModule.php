@@ -24,7 +24,7 @@ namespace MediaWiki\ResourceLoader;
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use TitleValue;
+use MediaWiki\Title\TitleValue;
 
 /**
  * Module for user customizations styles.
