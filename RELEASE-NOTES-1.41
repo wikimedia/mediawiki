@@ -50,6 +50,9 @@ For notes on 1.40.x and older releases, see HISTORY.
   revision.
 * $wgExternalLinksSchemaMigrationStage – This temporary flag did let you
   control the migration stage for the externallinks database table.
+* $wgParserOutputHooks - This array interacted with
+  ParserOutput::addOutputHook(), which has been deprecated since 1.38 and was
+  removed in this release.
 * …
 
 === New user-facing features in 1.41 ===
@@ -372,8 +375,10 @@ because of Phabricator reports.
   has beed removed. Use Language::formatNumNoSeparators instead.
 * The following methods in the ParserOutput class, deprecated since 1.38, have
   been removed:
+  - ::addOutputHook()
   - ::addTrackingCategory()
   - ::addWarning()
+  - ::getOutputHooks()
   - ::getProperties()
   - ::getProperty()
   - ::hasDynamicContent()

@@ -3880,12 +3880,6 @@ $wgMessagesDirs = null;
 $wgExtensionEntryPointListFiles = null;
 
 /**
- * Config variable stub for the ParserOutputHooks setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::ParserOutputHooks
- */
-$wgParserOutputHooks = null;
-
-/**
  * Config variable stub for the EnableParserLimitReporting setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::EnableParserLimitReporting
  */

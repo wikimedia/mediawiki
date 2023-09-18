@@ -2218,16 +2218,6 @@ class OutputPage extends ContextSource {
 			$this->mImageTimeKeys[$dbk] = $data;
 		}
 
-		// Hooks registered in the object
-		// Deprecated! See T292321; should be done in the OutputPageParserOutput
-		// hook instead.
-		$parserOutputHooks = $this->getConfig()->get( MainConfigNames::ParserOutputHooks );
-		foreach ( $parserOutput->getOutputHooks() as [ $hookName, $data ] ) {
-			if ( isset( $parserOutputHooks[$hookName] ) ) {
-				$parserOutputHooks[$hookName]( $this, $parserOutput, $data );
-			}
-		}
-
 		// Enable OOUI if requested via ParserOutput
 		if ( $parserOutput->getEnableOOUI() ) {
 			$this->enableOOUI();

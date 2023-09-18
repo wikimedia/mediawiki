@@ -3895,12 +3895,6 @@ class MainConfigNames {
 	public const ExtensionEntryPointListFiles = 'ExtensionEntryPointListFiles';
 
 	/**
-	 * Name constant for the ParserOutputHooks setting, for use with Config::get()
-	 * @see MainConfigSchema::ParserOutputHooks
-	 */
-	public const ParserOutputHooks = 'ParserOutputHooks';
-
-	/**
 	 * Name constant for the EnableParserLimitReporting setting, for use with Config::get()
 	 * @see MainConfigSchema::EnableParserLimitReporting
 	 */

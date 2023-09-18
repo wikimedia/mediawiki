@@ -954,28 +954,6 @@ EOF
 	}
 
 	public function provideMergeInternalMetaDataFrom() {
-		// hooks
-		$a = new ParserOutput();
-
-		$this->hideDeprecated( 'ParserOutput::addOutputHook' );
-		$a->addOutputHook( 'foo', 'X' );
-		$a->addOutputHook( 'bar' );
-
-		$b = new ParserOutput();
-
-		$b->addOutputHook( 'foo', 'Y' );
-		$b->addOutputHook( 'bar' );
-		$b->addOutputHook( 'zoo' );
-
-		yield 'hooks' => [ $a, $b, [
-			'getOutputHooks' => [
-				[ 'foo', 'X' ],
-				[ 'bar', false ],
-				[ 'foo', 'Y' ],
-				[ 'zoo', false ],
-			],
-		] ];
-
 		// flags & co
 		$a = new ParserOutput();
 

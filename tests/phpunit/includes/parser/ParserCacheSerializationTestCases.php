@@ -230,7 +230,6 @@ abstract class ParserCacheSerializationTestCases {
 		$parserOutputWithMetadata->addModules( [ 'module1' ] );
 		$parserOutputWithMetadata->addModuleStyles( [ 'module_style1' ] );
 		$parserOutputWithMetadata->setJsConfigVar( 'key1', 'value1' );
-		$parserOutputWithMetadata->addOutputHook( 'hook1', self::MOCK_EXT_DATA );
 		$parserOutputWithMetadata->addWarningMsg( 'rawmessage', 'warning1' );
 		$parserOutputWithMetadata->setIndexPolicy( 'noindex' );
 		$parserOutputWithMetadata->setTOCHTML( 'tochtml1' );
@@ -301,7 +300,6 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertArrayEquals( [], $object->getModules() );
 					$testCase->assertArrayEquals( [], $object->getModuleStyles() );
 					$testCase->assertArrayEquals( [], $object->getJsConfigVars() );
-					$testCase->assertArrayEquals( [], $object->getOutputHooks() );
 					$testCase->assertArrayEquals( [], $object->getWarnings() );
 					$testCase->assertSame( '', $object->getIndexPolicy() );
 					$testCase->assertSame( '', $object->getTOCHTML() );
@@ -414,7 +412,6 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertArrayEquals( [ 'module1' ], $object->getModules() );
 					$testCase->assertArrayEquals( [ 'module_style1' ], $object->getModuleStyles() );
 					$testCase->assertArrayEquals( [ 'key1' => 'value1' ], $object->getJsConfigVars() );
-					$testCase->assertArrayEquals( [ [ 'hook1', self::MOCK_EXT_DATA ] ], $object->getOutputHooks() );
 					$testCase->assertArrayEquals( [ 'warning1' ], $object->getWarnings() );
 					$testCase->assertSame( 'noindex', $object->getIndexPolicy() );
 					$testCase->assertSame( 'tochtml1', $object->getTOCHTML() );
