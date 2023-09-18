@@ -192,6 +192,7 @@ class HistoryAction extends FormlessAction {
 		$out->addModules( 'mediawiki.action.history' );
 		$out->addModuleStyles( [
 			'mediawiki.interface.helpers.styles',
+			'codex-search-styles',
 			'mediawiki.action.history.styles',
 			'mediawiki.special.changeslist',
 		] );
