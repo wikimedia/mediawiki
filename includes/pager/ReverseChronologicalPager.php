@@ -18,6 +18,9 @@
  * @file
  */
 
+namespace MediaWiki\Pager;
+
+use DateTime;
 use MediaWiki\Html\Html;
 use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Timestamp\TimestampException;
@@ -331,3 +334,9 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		return [ $tables, $fields, $conds, $fname, $options, $join_conds ];
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( ReverseChronologicalPager::class, 'ReverseChronologicalPager' );

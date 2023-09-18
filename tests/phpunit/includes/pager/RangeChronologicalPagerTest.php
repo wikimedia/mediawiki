@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Pager\RangeChronologicalPager;
+
 /**
  * Test class for RangeChronologicalPagerTest logic.
  *
