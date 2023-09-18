@@ -26,7 +26,7 @@ use MapCacheLRU;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArray;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Gives access to properties of a page.
@@ -38,8 +38,8 @@ class PageProps {
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** Cache parameters */
 	private const CACHE_TTL = 10; // integer; TTL in seconds
@@ -50,14 +50,14 @@ class PageProps {
 
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
-		ILoadBalancer $loadBalancer
+		IConnectionProvider $dbProvider
 	) {
 		$this->linkBatchFactory = $linkBatchFactory;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->cache = new MapCacheLRU( self::CACHE_SIZE );
 	}
 
@@ -115,7 +115,7 @@ class PageProps {
 		}
 
 		if ( $queryIDs ) {
-			$queryBuilder = $this->loadBalancer->getConnectionRef( DB_REPLICA )->newSelectQueryBuilder();
+			$queryBuilder = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder();
 			$queryBuilder->select( [ 'pp_page', 'pp_propname', 'pp_value' ] )
 				->from( 'page_props' )
 				->where( [ 'pp_page' => $queryIDs, 'pp_propname' => $propertyNames ] )
@@ -165,7 +165,7 @@ class PageProps {
 		}
 
 		if ( $queryIDs != [] ) {
-			$queryBuilder = $this->loadBalancer->getConnectionRef( DB_REPLICA )->newSelectQueryBuilder();
+			$queryBuilder = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder();
 			$queryBuilder->select( [ 'pp_page', 'pp_propname', 'pp_value' ] )
 				->from( 'page_props' )
 				->where( [ 'pp_page' => $queryIDs ] )

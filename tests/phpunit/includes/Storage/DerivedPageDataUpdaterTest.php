@@ -1247,7 +1247,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$services = $this->getServiceContainer();
 		$editResultCache = new EditResultCache(
 			$services->getMainObjectStash(),
-			$services->getDBLoadBalancer(),
+			$services->getDBLoadBalancerFactory(),
 			new ServiceOptions(
 				EditResultCache::CONSTRUCTOR_OPTIONS,
 				[ 'RCMaxAge' => BagOStuff::TTL_MONTH ]

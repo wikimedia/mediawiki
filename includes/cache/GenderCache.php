@@ -23,7 +23,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Caches user genders when needed to use correct namespace aliases.
@@ -40,19 +40,19 @@ class GenderCache {
 	/** @var NamespaceInfo */
 	private $nsInfo;
 
-	/** @var ILoadBalancer|null */
-	private $loadBalancer;
+	/** @var IConnectionProvider|null */
+	private $dbProvider;
 
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
 	public function __construct(
 		NamespaceInfo $nsInfo = null,
-		ILoadBalancer $loadBalancer = null,
+		IConnectionProvider $dbProvider = null,
 		UserOptionsLookup $userOptionsLookup = null
 	) {
 		$this->nsInfo = $nsInfo ?? MediaWikiServices::getInstance()->getNamespaceInfo();
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->userOptionsLookup = $userOptionsLookup ?? MediaWikiServices::getInstance()->getUserOptionsLookup();
 	}
 
@@ -157,13 +157,13 @@ class GenderCache {
 			return;
 		}
 
-		// Only query database, when load balancer is provided by service wiring
+		// Only query database, when db provider is provided by service wiring
 		// This maybe not happen when running as part of the installer
-		if ( $this->loadBalancer === null ) {
+		if ( $this->dbProvider === null ) {
 			return;
 		}
 
-		$queryBuilder = $this->loadBalancer->getConnection( DB_REPLICA )->newSelectQueryBuilder()
+		$queryBuilder = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
 			->select( [ 'user_name', 'up_value' ] )
 			->from( 'user' )
 			->leftJoin( 'user_properties', null, [ 'user_id = up_user', 'up_property' => 'gender' ] )

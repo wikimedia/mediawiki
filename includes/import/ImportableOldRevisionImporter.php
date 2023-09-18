@@ -10,7 +10,7 @@ use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;
 use Psr\Log\LoggerInterface;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
@@ -29,9 +29,9 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 	private $doUpdates;
 
 	/**
-	 * @var ILoadBalancer
+	 * @var IConnectionProvider
 	 */
-	private $loadBalancer;
+	private $dbProvider;
 
 	/**
 	 * @var RevisionStore
@@ -57,7 +57,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 	/**
 	 * @param bool $doUpdates
 	 * @param LoggerInterface $logger
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param RevisionStore $revisionStore
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param WikiPageFactory|null $wikiPageFactory
@@ -67,7 +67,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 	public function __construct(
 		$doUpdates,
 		LoggerInterface $logger,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		RevisionStore $revisionStore,
 		SlotRoleRegistry $slotRoleRegistry,
 		WikiPageFactory $wikiPageFactory = null,
@@ -76,7 +76,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 	) {
 		$this->doUpdates = $doUpdates;
 		$this->logger = $logger;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->revisionStore = $revisionStore;
 		$this->slotRoleRegistry = $slotRoleRegistry;
 
@@ -89,7 +89,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 
 	/** @inheritDoc */
 	public function import( ImportableOldRevision $importableRevision, $doUpdates = true ) {
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
+		$dbw = $this->dbProvider->getPrimaryDatabase();
 
 		# Sneak a single revision into place
 		$user = $importableRevision->getUserObj() ?: $this->userFactory->newFromName( $importableRevision->getUser() );
