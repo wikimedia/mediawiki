@@ -183,6 +183,7 @@ use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\Title\TitleFormatter;
+use MediaWiki\Title\TitleParser;
 use MediaWiki\User\ActorMigration;
 use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\ActorStore;

@@ -2187,6 +2187,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Title\\TitleArrayFromResult' => __DIR__ . '/includes/title/TitleArrayFromResult.php',
 	'MediaWiki\\Title\\TitleFactory' => __DIR__ . '/includes/title/TitleFactory.php',
 	'MediaWiki\\Title\\TitleFormatter' => __DIR__ . '/includes/title/TitleFormatter.php',
+	'MediaWiki\\Title\\TitleParser' => __DIR__ . '/includes/title/TitleParser.php',
 	'MediaWiki\\Title\\TitleValue' => __DIR__ . '/includes/title/TitleValue.php',
 	'MediaWiki\\User\\ActorCache' => __DIR__ . '/includes/user/ActorCache.php',
 	'MediaWiki\\User\\ActorMigration' => __DIR__ . '/includes/user/ActorMigration.php',

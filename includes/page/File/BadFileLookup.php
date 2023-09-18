@@ -7,8 +7,8 @@ use MalformedTitleException;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Title\TitleParser;
 use RepoGroup;
-use TitleParser;
 
 class BadFileLookup {
 	/** @var callable Returns contents of bad file list (see comment for isBadFile()) */
