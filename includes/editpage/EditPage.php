@@ -372,9 +372,6 @@ class EditPage implements IEditObject {
 	 */
 	private $parentRevId = 0;
 
-	/** @var string */
-	private $editintro = '';
-
 	/** @var int|null */
 	private $scrolltop = null;
 
@@ -1360,10 +1357,6 @@ class EditPage implements IEditObject {
 		 *   a transition from the page's current model to the new model is
 		 *   allowed.
 		 */
-
-		$this->editintro = $request->getText( 'editintro',
-			// Custom edit intro for new sections
-			$this->section === 'new' ? 'MediaWiki:addsection-editintro' : '' );
 
 		// Allow extensions to modify form data
 		$this->getHookRunner()->onEditPage__importFormData( $this, $request );
@@ -2870,7 +2863,8 @@ class EditPage implements IEditObject {
 					[ 'title' => true, 'returnto' => true, 'returntoquery' => true ]
 				)
 			),
-			!$this->firsttime
+			!$this->firsttime,
+			$this->section !== '' ? $this->section : null
 		);
 
 		foreach ( $messages as $noticeName => $message ) {

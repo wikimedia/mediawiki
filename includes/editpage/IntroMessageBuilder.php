@@ -123,6 +123,7 @@ class IntroMessageBuilder {
 	 * @param string|null $editIntro
 	 * @param string|null $returnToQuery
 	 * @param bool $preview
+	 * @param string|null $section
 	 * @return array<string,string> Ordered map of identifiers to message HTML
 	 */
 	public function getIntroMessages(
@@ -134,7 +135,8 @@ class IntroMessageBuilder {
 		Authority $performer,
 		?string $editIntro,
 		?string $returnToQuery,
-		bool $preview
+		bool $preview,
+		?string $section = null
 	): array {
 		$title = Title::newFromPageIdentity( $page );
 		$messages = new IntroMessageList( $frames, $skip );
@@ -145,7 +147,7 @@ class IntroMessageBuilder {
 			$this->addCodeEditingIntro( $messages, $localizer, $title, $performer );
 			$this->addSharedRepoHint( $messages, $localizer, $page );
 			$this->addUserWarnings( $messages, $localizer, $title, $performer );
-			$this->addEditIntro( $messages, $localizer, $page, $performer, $editIntro );
+			$this->addEditIntro( $messages, $localizer, $page, $performer, $editIntro, $section );
 			$this->addRecreateWarning( $messages, $localizer, $page );
 		}
 
@@ -369,9 +371,14 @@ class IntroMessageBuilder {
 		MessageLocalizer $localizer,
 		ProperPageIdentity $page,
 		Authority $performer,
-		?string $editIntro
+		?string $editIntro,
+		?string $section
 	): void {
-		if ( $editIntro ) {
+		if ( ( $editIntro === null || $editIntro === '' ) && $section === 'new' ) {
+			// Custom edit intro for new sections
+			$editIntro = 'MediaWiki:addsection-editintro';
+		}
+		if ( $editIntro !== null && $editIntro !== '' ) {
 			$introTitle = Title::newFromText( $editIntro );
 
 			// (T334855) Use SpecialMyLanguage redirect so that nonexistent translated pages can
