@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"BaRaN6161 TURK",
 			"Chechenka",
 			"Comp1089",
@@ -1896,7 +1897,7 @@
 	"listusers-noresult": "Декъашхой цакарий.",
 	"listusers-blocked": "(блоктоьхна)",
 	"activeusers": "Жигара декъашхойн могӀам",
-	"activeusers-intro": "Лахахь гойтуш бу  {{PLURAL:$1|1=тӀаьхьара $1 динахь|тӀаьхьара $1 деношкахь}} хийцамаш бина декъашхой.",
+	"activeusers-intro": "Лахахь гойтуш бу {{PLURAL:$1|1=тӀаьхьара $1 динахь|тӀаьхьара $1 деношкахь}} хийцамаш бина декъашхой.",
 	"activeusers-count": "{{PLURAL:$3|1=тӀаьхьарчу $3 динахь|тӀаьхьара $3 деношкахь}} $1 {{PLURAL:$1|1=нисдар|нисдарш}} дина",
 	"activeusers-from": "Гучé баха декъашхой, болалуш болу тӀера:",
 	"activeusers-groups": "Тобан йукъабогӀу декъашхой гайта:",
@@ -3243,6 +3244,7 @@
 	"newpages-showhide-patrolled": "$1 теллина нисдарш",
 	"newpages-showhide-redirect": "$1 дIасахьажоргаш",
 	"newpages-showhide-registered": "$1 дӀайазбелларш",
+	"blockedtext-include-details-queries": "Дехар до, хӀара берриге хаамаш билгалбаха муьлхачу хьайн кхайкхамашкахь.",
 	"renameuser": "Декъашхочун цӀе хийца",
 	"renameuser-linkoncontribs": "декъашхочун цӀе хийца",
 	"renameuser-linkoncontribs-text": "ЦӀе хийца хӀокху декъашхочун",

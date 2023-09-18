@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Albinomamba",
+			"Amire80",
 			"André Costa (WMSE)",
 			"Bengtsson96",
 			"Boom",
@@ -107,7 +108,7 @@
 	"apihelp-edit-param-notminor": "Markera inte denna redigering som en mindre redigering även om användarinställningen \"{{int:tog-minordefault}}\" är inställd.",
 	"apihelp-edit-param-bot": "Markera denna redigering som en robotredigering.",
 	"apihelp-edit-param-basetimestamp": "Tidsstämpel för grundversionen, används för att upptäcka redigeringskonflikter. Kan erhållas genom [[Special:ApiHelp/query+revisions|action=query&prop=revisions&rvprop=timestamp]].",
-	"apihelp-edit-param-starttimestamp": "Tidsstämpel för när redigeringsprocessen började, används för att upptäcka redigeringskonflikter. Ett lämpligt värde kan erhållas via  <var>[[Special:ApiHelp/main|curtimestamp]]</var> när redigeringsprocessen startas (t.ex. när sidans innehåll laddas för redigering).",
+	"apihelp-edit-param-starttimestamp": "Tidsstämpel för när redigeringsprocessen började, används för att upptäcka redigeringskonflikter. Ett lämpligt värde kan erhållas via <var>[[Special:ApiHelp/main|curtimestamp]]</var> när redigeringsprocessen startas (t.ex. när sidans innehåll laddas för redigering).",
 	"apihelp-edit-param-recreate": "Ignorera felmeddelande om sidan har blivit raderad under tiden.",
 	"apihelp-edit-param-createonly": "Redigera inte sidan om den redan finns.",
 	"apihelp-edit-param-nocreate": "Kasta ett fel om sidan inte finns.",
@@ -200,7 +201,7 @@
 	"apihelp-imagerotate-example-simple": "Rotera <kbd>File:Example.png</kbd> med <kbd>90</kbd> grader",
 	"apihelp-imagerotate-example-generator": "Rotera alla bilder i <kbd>Category:Flip</kbd> med <kbd>180</kbd> grader.",
 	"apihelp-import-summary": "Importer en sida från en annan wiki eller från en XML-fil.",
-	"apihelp-import-extended-description": "Notera att HTTP POST måste bli gjord som en fil uppladdning (d.v.s med multipart/form-data) när man skickar en fil för  <var>xml</var> parametern.",
+	"apihelp-import-extended-description": "Notera att HTTP POST måste bli gjord som en fil uppladdning (d.v.s med multipart/form-data) när man skickar en fil för <var>xml</var> parametern.",
 	"apihelp-import-param-summary": "Sammanfattning för importering av loggpost.",
 	"apihelp-import-param-xml": "Uppladdad XML-fil.",
 	"apihelp-import-param-interwikisource": "För interwiki-importer: wiki som du vill importera från.",

@@ -192,7 +192,7 @@
 	"savearticle": "Tɔ̈ɔ̈u apam",
 	"showpreview": "Nyooth këkoŋtiŋ",
 	"showdiff": "Nyoothë käcëwaar",
-	"anoneditwarning": "<strong>Nyïïn:</strong> Yin akɛ̈cë ŋaanythïn.  IP de tëcieŋdu abë tïc tënë jäŋ ëbɛ̈n të gɛ̈t yïn ke waar käŋ. Të <strong>[$1 bɛk yïn ɣöt]</strong> tëdɛ̈ <strong>[$2 të ciɛk yïn cinakuɛ̈n]</strong>, ka kä gɔ̈tke ku kä waarke (ku kä kɔ̈k nɔŋ kony ayɛ) aabï ke gät rinëduluuiku.",
+	"anoneditwarning": "<strong>Nyïïn:</strong> Yin akɛ̈cë ŋaanythïn. IP de tëcieŋdu abë tïc tënë jäŋ ëbɛ̈n të gɛ̈t yïn ke waar käŋ. Të <strong>[$1 bɛk yïn ɣöt]</strong> tëdɛ̈ <strong>[$2 të ciɛk yïn cinakuɛ̈n]</strong>, ka kä gɔ̈tke ku kä waarke (ku kä kɔ̈k nɔŋ kony ayɛ) aabï ke gät rinëduluuiku.",
 	"loginreqlink": "ŋaanythïn",
 	"newarticletext": "Yïn acë anuët lɔ apam liu buɔɔthcök.\nTë wïc yin ba apam kënë cak, ka jɔk ba gɔ̈t në akeer  tɔ̈ piinyic (tïŋ [$1 apamëkuɔny] të wic yin ba wëlëŋïc yök).\nTë tɔ̈ yïn ëtɛ̈n ke kɛ̈ce ŋuun, kayï tuany gakyeethany de <strong>ciëën</strong> në akuenarekwëldu-yic.",
 	"noarticletext": "Amɛn, acïn gɔ̈t tɔ̈ ee apam thiöökë-yic.\nYïn alëu ba [[Special:Search/{{PAGENAME}}|wɛ̈tnhom thiööke göör]] në apam kɔ̈kiic,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} göör cökthɛɛr nɔŋkaariic],\nnadëk [{{fullurl:{{FULLPAGENAME}}|action=edit}} cak apamë]</span>.",

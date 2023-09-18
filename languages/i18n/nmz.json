@@ -209,7 +209,7 @@
 	"preview": "Nyan saa",
 	"showpreview": "Werii noogrb",
 	"showdiff": "Werii lagiib",
-	"anoneditwarning": "<strong>Mug-byen:</strong> ba' jib l'nin. Kaʋ lagi ɦii, baweena ba'ɦa  nyan b'IP. Ka-b<strong>[$1 jihb nin]</strong> la <strong>[$2 goor b'hidr]</strong>, ' lagiib ba l'san b'hidr noɦn faam.",
+	"anoneditwarning": "<strong>Mug-byen:</strong> ba' jib l'nin. Kaʋ lagi ɦii, baweena ba'ɦa nyan b'IP. Ka-b<strong>[$1 jihb nin]</strong> la <strong>[$2 goor b'hidr]</strong>, ' lagiib ba l'san b'hidr noɦn faam.",
 	"blockedtext": "<strong>Votre compte d’utilisateur ou votre adresse IP a été bloqué.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n* {{int:blockedtext-start-time|$8}}\n* {{int:blockedtext-expiration-time|$6}}\n* {{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nVous ne pouvez utiliser la fonction « {{int:emailuser}} » que si une adresse de courriel valide est spécifiée dans vos [[Special:Preferences|préférences]] et que si cette fonctionnalité ne vous a pas été bloquée.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"loginreqlink": "jib l'nin",
 	"newarticletext": "Wadga b'tahgd kee kpah kan saa.\nKa-b bona b'hɛkaa,hoor ʋadgun(nyan[$1 wadga tɔrgm] tɔrgm boolm).\nKalbana bah loh na b'dan nah, lee kilkn ŋmɛɛtgm<strong>kaan</strong> Takŋa jugun.",

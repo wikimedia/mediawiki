@@ -547,7 +547,7 @@
 	"cannotchangeemail": "Kontaj retpoŝtadresoj ne povas esti ŝanĝitaj en ĉi tiu vikio.",
 	"emaildisabled": "Ĉi tiu paĝaro ne povas sendi retmesaĝojn.",
 	"accountcreated": "Konto kreita",
-	"accountcreatedtext": "La uzanto-konto por [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|diskuto]])  estas kreita.",
+	"accountcreatedtext": "La uzanto-konto por [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|diskuto]]) estas kreita.",
 	"createaccount-title": "Konto-kreado por {{SITENAME}}",
 	"createaccount-text": "Iu kreis konton por via retpoŝta adreso en {{SITENAME}} ($4) nomata \"$2\", kun pasvorto \"$3\". Vi ensalutu kaj ŝanĝu vian pasvorton nun.\n\nVi povas ignori ĉi tiun mesaĝon, se ĉi tiu konto estis kreita erare.",
 	"login-throttled": "Vi ĵus tro ofte provis ensaluti.\nBonvolu ĝisatendi $1 antaŭ reprovi.",

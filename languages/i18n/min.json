@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Af420",
+			"Amire80",
 			"Amjad Khan",
 			"Ardzun",
 			"Baloch Khan",
@@ -1301,7 +1302,7 @@
 	"action-editcontentmodel": "manyuntiang model konten sabuah laman",
 	"action-managechangetags": "buek jo matikan tag",
 	"action-applychangetags": "terapkan tag basamoan jo parubahan Sanak",
-	"action-changetags": "Tambah jo apuih arbitrari pado tiok-tiok  revisi jo entri log",
+	"action-changetags": "Tambah jo apuih arbitrari pado tiok-tiok revisi jo entri log",
 	"action-deletechangetags": "apuih tag dari basisdata",
 	"action-purge": "apuih singgahan laman ko",
 	"action-apihighlimits": "manggunoan bateh labiah tinggi dalam kueri API",

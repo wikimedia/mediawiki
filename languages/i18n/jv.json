@@ -835,6 +835,7 @@
 	"diff-multi-manyusers": "({{PLURAL:$1|Siji révisi langsung|$1 révisi langsung}} déning {{PLURAL:$2|naraguna|naraguna}} $2 ora katuduhaké)",
 	"diff-paragraph-moved-tonew": "Paragraf wis ingalih. Klik saperlu lumpat menyang pernah anyar.",
 	"diff-paragraph-moved-toold": "Paragraf wis ingalih. Klik saperlu lumpat menyang pernah lawas.",
+	"diff-inline-format-label": "Salarik",
 	"difference-missing-revision": "{{PLURAL:$2|Sak pambenahan|$2 pambenahan}} saka prabédan iki ($1) {{PLURAL:$2|ora tinemu|ora tinemu}}.\n\nIki biasané kasebab pranala prabedan kang wis ora kanggo saka kaca isi wis dibusak.\nRinciané bisa tinemu ing [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log busak].",
 	"searchresults": "Kasiling golèk",
 	"search-filter-title-prefix": "Mung golèk kaca kang sesirahé kawiwitan \"$1\"",

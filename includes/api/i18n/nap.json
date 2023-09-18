@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"C.R.",
 			"Chelin",
 			"Ruthven"
@@ -16,7 +17,7 @@
 	"apihelp-main-param-requestid": "Qualunque valore dato ccà se mpizzasse dint'a risposta. Se putess'ausà pe' puté distinguere richieste.",
 	"apihelp-main-param-servedby": "Include 'o risultato 'e nomme d' 'o host ca servette 'a richiesta.",
 	"apihelp-main-param-curtimestamp": "Azzecca dint' 'o risultato 'o timestamp 'e mo.",
-	"apihelp-main-param-origin": "Quanno se trasesse a ll'API ausanno richieste 'e cross-dominio AJAX (CORS), mpustate chesto a 'o dominio origgenale. Chesto s'avess'azzeccà dint'a qualonca richiesta 'e pre-volo, e picciò avess'a ffà parte d' 'a richiesta d'URI (nun fosse 'o cuorpo POST). Chesto s'avess'azzeccà  a uno 'e ll'origgene dint' 'o cap'ê paggena <code>Origin</code> pricisamente, picciò s'avessa mpustà coccosa tipo <kbd>https://en.wikipedia.org</kbd> o <kbd>https://meta.wikimedia.org</kbd>. Si stu parammetro nun s'azzeccasse cu 'o cap'ê paggena <code>Origin</code>, allora na risposta 403 se turnasse. Si stu parammetro s'azzeccasse c' 'o cap'ê paggena <code>Origin</code> e ll'origgene fosse dint' 'a lista janca, allora nu cap'ê paggena <code>Access-Control-Allow-Origin</code> fosse mpustato.",
+	"apihelp-main-param-origin": "Quanno se trasesse a ll'API ausanno richieste 'e cross-dominio AJAX (CORS), mpustate chesto a 'o dominio origgenale. Chesto s'avess'azzeccà dint'a qualonca richiesta 'e pre-volo, e picciò avess'a ffà parte d' 'a richiesta d'URI (nun fosse 'o cuorpo POST). Chesto s'avess'azzeccà a uno 'e ll'origgene dint' 'o cap'ê paggena <code>Origin</code> pricisamente, picciò s'avessa mpustà coccosa tipo <kbd>https://en.wikipedia.org</kbd> o <kbd>https://meta.wikimedia.org</kbd>. Si stu parammetro nun s'azzeccasse cu 'o cap'ê paggena <code>Origin</code>, allora na risposta 403 se turnasse. Si stu parammetro s'azzeccasse c' 'o cap'ê paggena <code>Origin</code> e ll'origgene fosse dint' 'a lista janca, allora nu cap'ê paggena <code>Access-Control-Allow-Origin</code> fosse mpustato.",
 	"apihelp-block-summary": "Fremma n'utente.",
 	"apihelp-block-param-user": "Nomme utente, indirizzo IP o range IP 'a bluccà.",
 	"apihelp-block-param-reason": "Mutive p' 'o blocco.",

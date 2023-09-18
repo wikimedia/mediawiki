@@ -761,6 +761,7 @@
 	"showpreview": "Visualizza anteprima",
 	"showdiff": "Mostra modifiche",
 	"temp-user-banner-description": "Stai utilizzando un'utenza temporanea",
+	"temp-user-banner-tooltip-label": "Ulteriori informazioni sulle utenze temporanee",
 	"temp-user-banner-tooltip-title": "Utenza temporanea",
 	"temp-user-banner-tooltip-description-learn-more": "Questo utente temporaneo è stato creato dopo che è stata apportata una modifica senza un'utenza su questo browser e dispositivo. [[mw:Help:Temporary_accounts|Ulteriori informazioni]].",
 	"blankarticle": "<strong>Attenzione:</strong> la pagina che stai creando è vuota.\nCliccando nuovamente su \"$1\", la pagina sarà creata senza alcun contenuto.",

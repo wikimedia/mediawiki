@@ -3,6 +3,7 @@
 		"authors": [
 			"Adriendelucca",
 			"Als-Holder",
+			"Amire80",
 			"Base",
 			"Candalua",
 			"DannyS712",
@@ -1985,7 +1986,7 @@
 	"apihelp-no-such-module": "N'eo ket bet kavet ar vodulenn \"$1\".",
 	"apisandbox": "Poull-traezh API",
 	"apisandbox-jsonly": "Rekis eo JavaScript evit implijout poull-traezh an API.",
-	"apisandbox-intro": "Grit gant ar bajenn-mañ evit amprouiñ <strong>servij Web API MediaWiki</strong>.\nKit da deuler ur sell war [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page teuliadur an API] evit gouzout hiroc'h war an doare da embreger API. Da skouer :\n[https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query klask pajennoù a zo ur  ger-alc'hwez roet enno]. Dibabit un oberiadenn bennak evit gwelet skouerioù all.\n\nNotit mat : daoust m’eo ar bajenn-mañ ur poull-traezh, an oberiadennoù a rit amañ a c'hall kemmañ ar wiki.",
+	"apisandbox-intro": "Grit gant ar bajenn-mañ evit amprouiñ <strong>servij Web API MediaWiki</strong>.\nKit da deuler ur sell war [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page teuliadur an API] evit gouzout hiroc'h war an doare da embreger API. Da skouer :\n[https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query klask pajennoù a zo ur ger-alc'hwez roet enno]. Dibabit un oberiadenn bennak evit gwelet skouerioù all.\n\nNotit mat : daoust m’eo ar bajenn-mañ ur poull-traezh, an oberiadennoù a rit amañ a c'hall kemmañ ar wiki.",
 	"apisandbox-submit": "Sevel ar goulenn",
 	"apisandbox-reset": "Riñsañ",
 	"apisandbox-retry": "Klask en-dro",

@@ -1921,7 +1921,7 @@
 	"watchlistnotwatchable": "Sahypany görüp bolmaýar.",
 	"addwatch": "Gözegçilik sanawyna goşuň",
 	"updatewatchlist": "Gözegçilik sanawyny täzeläň",
-	"addedwatchtext": "[[:$1]]  atly sahypa [[Special:Watchlist|gözegçilik sanawyňyza]] goşuldy.\n\nGeljekde, bu sahypada we degişli çekişme sahypasynda ediljek üýtgeşmeler şu ýerde sanawlanjakdyr.\n\nAňsatlyk bilen saýlap almak üçin bolsa, [[Special:RecentChanges|soňky üýtgeşmeleriň sanawynda]] '''goýy''' harp bilen görkeziljekdir.",
+	"addedwatchtext": "[[:$1]] atly sahypa [[Special:Watchlist|gözegçilik sanawyňyza]] goşuldy.\n\nGeljekde, bu sahypada we degişli çekişme sahypasynda ediljek üýtgeşmeler şu ýerde sanawlanjakdyr.\n\nAňsatlyk bilen saýlap almak üçin bolsa, [[Special:RecentChanges|soňky üýtgeşmeleriň sanawynda]] '''goýy''' harp bilen görkeziljekdir.",
 	"addedwatchexpiry-options-label": "Gözegçilik sanawynyň möhleti:",
 	"removewatch": "Gözegçilik sanawyndan aýyryň",
 	"removedwatchtext": "\"[[:$1]]\" sahypasy [[Special:Watchlist|gözegçilik sanawyňyzdan]] aýyryldy.",

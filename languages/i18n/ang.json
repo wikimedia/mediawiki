@@ -869,7 +869,7 @@
 	"excontent": "innung wæs: \"$1\"",
 	"excontentauthor": "innung wæs: '$1' (and se ana forðiend wæs \"[[Special:Contributions/$2|$2]]\")",
 	"historywarning": "<strong>Warnung:</strong> Se tramet þe þu wilt forleosan hafaþ stær $1 {{PLURAL:$1|fadunge|fadunga}}:",
-	"actioncomplete": "Dæd  is fulfyled",
+	"actioncomplete": "Dæd is fulfyled",
 	"dellogpage": "Forleosunge tidgewrit",
 	"deletionlog": "forleosunge tidgewrit",
 	"deletecomment": "Racu:",

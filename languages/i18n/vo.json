@@ -1193,7 +1193,7 @@
 	"watchlistanontext": "$1 ad logön u redakön lienis galädaliseda olik",
 	"watchnologin": "No enunädon oki",
 	"addwatch": "Peläükön lä galädalised",
-	"addedwatchtext": "Pad: \"[[:$1]]\" peläükon lä [[Special:Watchlist|galädalised]] olik.\nVotükams fütürik pada at, äsi bespikapada onik, polisedons us, e pad popenon '''me tonats dagik'''  in [[Special:RecentChanges|lised votükamas nulik]] ad fasilükön tuvi ona.\n\nIf vilol poso moükön padi de galädalised olik, välolös lä on knopi: „negalädön“.",
+	"addedwatchtext": "Pad: \"[[:$1]]\" peläükon lä [[Special:Watchlist|galädalised]] olik.\nVotükams fütürik pada at, äsi bespikapada onik, polisedons us, e pad popenon '''me tonats dagik''' in [[Special:RecentChanges|lised votükamas nulik]] ad fasilükön tuvi ona.\n\nIf vilol poso moükön padi de galädalised olik, välolös lä on knopi: „negalädön“.",
 	"removewatch": "Pemoükön de galädalised",
 	"removedwatchtext": "Pad: „[[:$1]]“ pemoükon se [[Special:Watchlist|galädalised olik]].",
 	"watch": "Galädön",

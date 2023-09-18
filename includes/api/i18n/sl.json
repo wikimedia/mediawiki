@@ -331,6 +331,8 @@
 	"api-help-flag-deprecated": "Ta modul je opuščen.",
 	"api-help-flag-readrights": "Ta modul zahteva pravice branja.",
 	"api-help-flag-mustbeposted": "Ta modul sprejema samo zahtevke POST.",
+	"api-help-parameters": "{{PLURAL:$1|Specifični parameter|Specifični parametri}}:",
+	"api-help-parameters-note": "Na voljo so tudi drugi splošni parametri.",
 	"api-help-param-deprecated": "Opuščeno.",
 	"api-help-datatypes-header": "Vrste podatkov",
 	"api-help-datatype-expiry": "Vrednosti časa preteka so lahko relativne (npr. <kbd>5 months</kbd> ali <kbd>2 weeks</kbd> ) ali absolutne (npr. <kbd>2014-09-18T12:34:56Z</kbd>). Če ne želite določiti časa preteka, uporabite <kbd>infinite</kbd> , <kbd>indefinite</kbd>, <kbd>infinity</kbd> ali <kbd>never</kbd>.",

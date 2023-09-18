@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Fitoschido",
 			"Guillermo2149",
 			"Hugo.arg",
@@ -573,8 +574,8 @@
 	"allpages": "Opaite kuatiarogue",
 	"nextpage": "Kuatia rogue upeigua($1)",
 	"prevpage": "Kuatia rogue mboyvegua ($1)",
-	"allpagesfrom": "Ehechauka kuatia rogue oñepyrũva:   -pe",
-	"allpagesto": "Ehechauka kuatia rogue opáva:  -pe",
+	"allpagesfrom": "Ehechauka kuatia rogue oñepyrũva: -pe",
+	"allpagesto": "Ehechauka kuatia rogue opáva: -pe",
 	"allarticles": "Opa kuatia rogue",
 	"allinnamespace": "Opa kuatia rogue (pa'ũ $1)",
 	"allpagessubmit": "Hechauka",

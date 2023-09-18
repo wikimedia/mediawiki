@@ -80,7 +80,7 @@
 	"api-help-license": "Лиценца: [[$1|$2]]",
 	"api-help-license-noname": "Лиценца: [[$1|Види везу]]",
 	"api-help-license-unknown": "Лиценца: <span class=\"apihelp-unknown\">непозната</span>",
-	"api-help-parameters": "{{PLURAL:$1|Параметри}}:",
+	"api-help-parameters": "{{PLURAL:$1|Специфични параметри}}:",
 	"api-help-datatypes-header": "Типови података",
 	"api-help-templatedparams-header": "Параметри шаблона",
 	"api-help-param-default-empty": "Подразумевано: <span class=\"apihelp-empty\">(нема)</span>",
