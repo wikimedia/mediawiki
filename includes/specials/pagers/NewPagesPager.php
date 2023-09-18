@@ -28,8 +28,8 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Specials\SpecialNewPages;
+use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
-use NamespaceInfo;
 use RecentChange;
 
 /**

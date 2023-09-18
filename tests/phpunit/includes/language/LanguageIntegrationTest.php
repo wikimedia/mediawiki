@@ -8,6 +8,7 @@ use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\TestingAccessWrapper;
 

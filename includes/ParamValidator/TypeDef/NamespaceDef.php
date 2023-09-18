@@ -3,7 +3,7 @@
 namespace MediaWiki\ParamValidator\TypeDef;
 
 use ApiResult;
-use NamespaceInfo;
+use MediaWiki\Title\NamespaceInfo;
 use Wikimedia\ParamValidator\Callbacks;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;

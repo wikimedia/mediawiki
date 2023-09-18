@@ -5,6 +5,7 @@
  */
 
 use MediaWiki\MainConfigSchema;
+use MediaWiki\Title\NamespaceInfo;
 use Wikimedia\AtEase\AtEase;
 
 // For backwards compatibility, the value of wgLogos is copied to wgLogo.

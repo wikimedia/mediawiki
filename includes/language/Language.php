@@ -40,6 +40,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\MagicWord;
 use MediaWiki\Specials\SpecialBlock;
+use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserTimeCorrection;
 use MediaWiki\Utils\MWTimestamp;

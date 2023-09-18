@@ -28,8 +28,8 @@ use HTMLForm;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\SpecialPage\PageQueryPage;
+use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
-use NamespaceInfo;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

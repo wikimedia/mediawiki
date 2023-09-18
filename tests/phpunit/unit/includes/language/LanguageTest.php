@@ -3,6 +3,7 @@
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Title\NamespaceInfo;
 
 /**
  * @coversDefaultClass Language

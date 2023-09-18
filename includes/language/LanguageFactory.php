@@ -31,7 +31,7 @@ use MapCacheLRU;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
-use NamespaceInfo;
+use MediaWiki\Title\NamespaceInfo;
 use Wikimedia\Bcp47Code\Bcp47Code;
 
 /**

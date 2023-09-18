@@ -25,8 +25,8 @@ namespace MediaWiki\Specials;
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
-use NamespaceInfo;
 use Skin;
 use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;

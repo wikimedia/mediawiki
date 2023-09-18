@@ -13,7 +13,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
-use NamespaceInfo;
+use MediaWiki\Title\NamespaceInfo;
 use NullStatsdDataFactory;
 use stdClass;
 use TitleParser;

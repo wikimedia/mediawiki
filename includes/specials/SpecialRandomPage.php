@@ -26,8 +26,8 @@ namespace MediaWiki\Specials;
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
-use NamespaceInfo;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

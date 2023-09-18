@@ -27,7 +27,7 @@ use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\SpecialPage\PageQueryPage;
-use NamespaceInfo;
+use MediaWiki\Title\NamespaceInfo;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

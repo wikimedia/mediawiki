@@ -7,7 +7,7 @@ use LinkCache;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRenderer;
-use NamespaceInfo;
+use MediaWiki\Title\NamespaceInfo;
 use RepoGroup;
 use TitleParser;
 

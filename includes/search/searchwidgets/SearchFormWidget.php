@@ -8,8 +8,8 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Specials\SpecialSearch;
+use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Widget\SearchInputWidget;
-use NamespaceInfo;
 use SearchEngineConfig;
 use Xml;
 

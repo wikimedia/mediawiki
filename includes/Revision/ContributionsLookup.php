@@ -11,9 +11,9 @@ use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Pager\ContribsPager;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\User\UserIdentity;
 use Message;
-use NamespaceInfo;
 use RequestContext;
 use Wikimedia\Rdbms\IConnectionProvider;
 

@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 

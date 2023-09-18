@@ -10,8 +10,8 @@ use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Title\NamespaceInfo;
 use MediaWikiUnitTestCase;
-use NamespaceInfo;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 
 /**

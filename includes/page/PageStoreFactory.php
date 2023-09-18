@@ -6,7 +6,7 @@ use LinkCache;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\DAO\WikiAwareEntity;
-use NamespaceInfo;
+use MediaWiki\Title\NamespaceInfo;
 use TitleParser;
 use Wikimedia\Rdbms\ILBFactory;
 

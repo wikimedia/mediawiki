@@ -24,7 +24,7 @@
 
 namespace MediaWiki\Specials;
 
-use NamespaceInfo;
+use MediaWiki\Title\NamespaceInfo;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

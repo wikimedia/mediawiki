@@ -37,7 +37,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Status\Status;
 use MediaWiki\Storage\PageUpdaterFactory;
-use NamespaceInfo;
+use MediaWiki\Title\NamespaceInfo;
 use Psr\Log\LoggerInterface;
 use ReadOnlyError;
 use RepoGroup;

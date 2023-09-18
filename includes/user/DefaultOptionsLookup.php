@@ -26,7 +26,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
-use NamespaceInfo;
+use MediaWiki\Title\NamespaceInfo;
 use Skin;
 use Wikimedia\Assert\Assert;
 

@@ -31,6 +31,7 @@ use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\SpecialPage\RedirectSpecialArticle;
 use MediaWiki\SpecialPage\SpecialPageFactory;
+use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use Wikimedia\ParamValidator\ParamValidator;

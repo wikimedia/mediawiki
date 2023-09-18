@@ -28,8 +28,8 @@ use ILanguageConverter;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\SpecialPage\QueryPage;
+use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
-use NamespaceInfo;
 use Skin;
 use Wikimedia\Rdbms\IConnectionProvider;
 

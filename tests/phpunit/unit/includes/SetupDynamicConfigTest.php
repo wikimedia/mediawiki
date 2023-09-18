@@ -8,6 +8,7 @@ use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\DynamicDefaultValues;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Settings\Source\ReflectionSchemaSource;
+use MediaWiki\Title\NamespaceInfo;
 
 class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 	/** @var string */
