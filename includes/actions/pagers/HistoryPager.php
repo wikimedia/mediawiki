@@ -21,6 +21,12 @@
  * @ingroup Actions
  */
 
+namespace MediaWiki\Pager;
+
+use ChangesList;
+use ChangeTags;
+use HistoryAction;
+use HtmlArmor;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentFormatter\CommentFormatter;
@@ -31,10 +37,14 @@ use MediaWiki\Html\ListToggle;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Pager\ReverseChronologicalPager;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Watchlist\WatchlistManager;
+use PagerTools;
+use Sanitizer;
+use SpecialPage;
+use stdClass;
+use Xml;
 
 /**
  * @ingroup Pager
@@ -642,3 +652,9 @@ class HistoryPager extends ReverseChronologicalPager {
 	}
 
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( HistoryPager::class, 'HistoryPager' );

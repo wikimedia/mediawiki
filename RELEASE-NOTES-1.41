@@ -623,6 +623,7 @@ because of Phabricator reports.
 * The core pager classes are now namespaced under MediaWiki\Pager; the old
   class names are now deprecated aliases:
   - AlphabeticPager
+  - HistoryPager
   - IndexPager
   - Pager
   - RangeChronologicalPager

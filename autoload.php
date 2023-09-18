@@ -1615,6 +1615,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Page\\UndeletePageFactory' => __DIR__ . '/includes/page/UndeletePageFactory.php',
 	'MediaWiki\\Page\\WikiPageFactory' => __DIR__ . '/includes/page/WikiPageFactory.php',
 	'MediaWiki\\Pager\\AlphabeticPager' => __DIR__ . '/includes/pager/AlphabeticPager.php',
+	'MediaWiki\\Pager\\HistoryPager' => __DIR__ . '/includes/actions/pagers/HistoryPager.php',
 	'MediaWiki\\Pager\\IndexPager' => __DIR__ . '/includes/pager/IndexPager.php',
 	'MediaWiki\\Pager\\Pager' => __DIR__ . '/includes/pager/Pager.php',
 	'MediaWiki\\Pager\\RangeChronologicalPager' => __DIR__ . '/includes/pager/RangeChronologicalPager.php',
