@@ -139,9 +139,17 @@
 	border-style: solid;
 	border-width: 1px 1px 1px 4px;
 	border-radius: 0.33em;
+}
 
+.diff-addedline,
+.diff-deletedline,
+.diff-context,
+.mw-diff-inline-added,
+.mw-diff-inline-deleted,
+.mw-diff-inline-changed,
+.mw-diff-inline-context {
 	// Allow editfont to be set on container while only
-	// affect wikitext content.
+	// affecting wikitext content.
 	// These classes match mw-editfont-*
 	.diff-editfont-monospace & {
 		font-family: monospace, monospace;
