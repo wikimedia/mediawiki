@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Block;
 
-use DeprecationHelper;
 use IContextSource;
 use InvalidArgumentException;
 use MediaWiki\CommentStore\CommentStoreComment;
@@ -39,20 +38,19 @@ use User;
  * @since 1.34 Factored out from DatabaseBlock (previously Block).
  */
 abstract class AbstractBlock implements Block {
-	use DeprecationHelper;
 	use WikiAwareEntityTrait;
 
 	/** @var CommentStoreComment */
 	protected $reason;
 
 	/** @var string */
-	protected $mTimestamp = '';
+	protected $timestamp = '';
 
 	/** @var string */
-	protected $mExpiry = '';
+	protected $expiry = '';
 
 	/** @var bool */
-	protected $mBlockEmail = false;
+	protected $blockEmail = false;
 
 	/** @var bool */
 	protected $allowUsertalk = false;
@@ -61,7 +59,7 @@ abstract class AbstractBlock implements Block {
 	protected $blockCreateAccount = false;
 
 	/** @var bool */
-	protected $mHideName = false;
+	protected $hideName = false;
 
 	/** @var bool */
 	protected $isHardblock;
@@ -114,11 +112,6 @@ abstract class AbstractBlock implements Block {
 		$this->setTimestamp( wfTimestamp( TS_MW, $options['timestamp'] ) );
 		$this->setHideName( (bool)$options['hideName'] );
 		$this->isHardblock( !$options['anonOnly'] );
-
-		// hard deprecated since 1.39
-		$this->deprecatePublicProperty( 'mExpiry', '1.34', __CLASS__ );
-		$this->deprecatePublicProperty( 'mHideName', '1.34', __CLASS__ );
-		$this->deprecatePublicProperty( 'mTimestamp', '1.34', __CLASS__ );
 	}
 
 	/**
@@ -187,7 +180,7 @@ abstract class AbstractBlock implements Block {
 	 * @return bool The block hides the username
 	 */
 	public function getHideName() {
-		return $this->mHideName;
+		return $this->hideName;
 	}
 
 	/**
@@ -197,7 +190,7 @@ abstract class AbstractBlock implements Block {
 	 * @param bool $hideName The block hides the username
 	 */
 	public function setHideName( $hideName ) {
-		$this->mHideName = $hideName;
+		$this->hideName = $hideName;
 	}
 
 	/**
@@ -236,7 +229,7 @@ abstract class AbstractBlock implements Block {
 	 * @return bool Value of the property
 	 */
 	public function isEmailBlocked( $x = null ) {
-		return wfSetVar( $this->mBlockEmail, $x );
+		return wfSetVar( $this->blockEmail, $x );
 	}
 
 	/**
@@ -364,7 +357,7 @@ abstract class AbstractBlock implements Block {
 	 * @return string
 	 */
 	public function getExpiry(): string {
-		return $this->mExpiry;
+		return $this->expiry;
 	}
 
 	/**
@@ -375,7 +368,7 @@ abstract class AbstractBlock implements Block {
 	 */
 	public function setExpiry( $expiry ) {
 		// Force string so getExpiry() return typehint doesn't break things
-		$this->mExpiry = (string)$expiry;
+		$this->expiry = (string)$expiry;
 	}
 
 	/**
@@ -385,7 +378,7 @@ abstract class AbstractBlock implements Block {
 	 * @return string
 	 */
 	public function getTimestamp(): string {
-		return $this->mTimestamp;
+		return $this->timestamp;
 	}
 
 	/**
@@ -396,7 +389,7 @@ abstract class AbstractBlock implements Block {
 	 */
 	public function setTimestamp( $timestamp ) {
 		// Force string so getTimestamp() return typehint doesn't break things
-		$this->mTimestamp = (string)$timestamp;
+		$this->timestamp = (string)$timestamp;
 	}
 
 	/**

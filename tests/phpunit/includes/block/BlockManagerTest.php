@@ -533,10 +533,13 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		$request = new FauxRequest();
 		$response = $request->response();
 
-		$blockManager = $this->getBlockManager( [
-			MainConfigNames::SecretKey => '',
-			MainConfigNames::CookieSetOnIpBlock => true,
-		] );
+		/** @var BlockManager $blockManager */
+		$blockManager = TestingAccessWrapper::newFromObject(
+			$this->getBlockManager( [
+				MainConfigNames::SecretKey => '',
+				MainConfigNames::CookieSetOnIpBlock => true,
+			] )
+		);
 
 		$now = wfTimestamp();
 
@@ -707,9 +710,9 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideGetIdFromCookieValue
 	 */
 	public function testGetIdFromCookieValue( $options, $expected ) {
-		$blockManager = $this->getBlockManager( [
-			MainConfigNames::SecretKey => $options['secretKey']
-		] );
+		/** @var BlockManager $blockManager */
+		$blockManager = TestingAccessWrapper::newFromObject(
+			$this->getBlockManager( [ MainConfigNames::SecretKey => $options['secretKey'] ] ) );
 		$this->assertEquals(
 			$expected,
 			$blockManager->getIdFromCookieValue( $options['cookieValue'] )
@@ -752,9 +755,10 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideGetCookieValue
 	 */
 	public function testGetCookieValue( $options, $expected ) {
-		$blockManager = $this->getBlockManager( [
+		/** @var BlockManager $blockManager */
+		$blockManager = TestingAccessWrapper::newFromObject( $this->getBlockManager( [
 			MainConfigNames::SecretKey => $options['secretKey']
-		] );
+		] ) );
 
 		$block = $this->getMockBuilder( DatabaseBlock::class )
 			->onlyMethods( [ 'getId' ] )
