@@ -40,7 +40,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Watchlist\WatchlistManager;
-use PagerTools;
 use Sanitizer;
 use SpecialPage;
 use stdClass;

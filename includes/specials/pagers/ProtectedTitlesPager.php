@@ -19,8 +19,9 @@
  * @ingroup Pager
  */
 
+namespace MediaWiki\Pager;
+
 use MediaWiki\Cache\LinkBatchFactory;
-use MediaWiki\Pager\AlphabeticPager;
 use MediaWiki\Specials\SpecialProtectedTitles;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -130,3 +131,9 @@ class ProtectedTitlesPager extends AlphabeticPager {
 		return [ [ 'pt_timestamp', 'pt_namespace', 'pt_title' ] ];
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( ProtectedTitlesPager::class, 'ProtectedTitlesPager' );

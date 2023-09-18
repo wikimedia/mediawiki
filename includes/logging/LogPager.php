@@ -23,11 +23,17 @@
  * @file
  */
 
+namespace MediaWiki\Pager;
+
+use ChangeTags;
+use DatabaseLogEntry;
+use LogEventsList;
+use LogFormatter;
+use LogPage;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
-use MediaWiki\Pager\ReverseChronologicalPager;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ActorNormalization;
 
@@ -533,3 +539,9 @@ class LogPager extends ReverseChronologicalPager {
 		}
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( LogPager::class, 'LogPager' );

@@ -19,15 +19,18 @@
  * @ingroup Pager
  */
 
+namespace MediaWiki\Pager;
+
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\FormOptions;
-use MediaWiki\Pager\ReverseChronologicalPager;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Specials\SpecialNewPages;
 use MediaWiki\Title\Title;
+use NamespaceInfo;
+use RecentChange;
 
 /**
  * @internal For use by SpecialNewPages
@@ -217,3 +220,9 @@ class NewPagesPager extends ReverseChronologicalPager {
 		return '</ul>';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( NewPagesPager::class, 'NewPagesPager' );

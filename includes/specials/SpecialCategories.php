@@ -23,9 +23,9 @@
 
 namespace MediaWiki\Specials;
 
-use CategoryPager;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\Html;
+use MediaWiki\Pager\CategoryPager;
 use SpecialPage;
 use Wikimedia\Rdbms\IConnectionProvider;
 

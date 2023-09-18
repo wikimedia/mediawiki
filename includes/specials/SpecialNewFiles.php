@@ -31,10 +31,10 @@ use IncludableSpecialPage;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
+use MediaWiki\Pager\NewFilesPager;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Request\DerivativeRequest;
 use MimeAnalyzer;
-use NewFilesPager;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 class SpecialNewFiles extends IncludableSpecialPage {

@@ -1,5 +1,8 @@
 <?php
 
+namespace MediaWiki\Pager;
+
+use IContextSource;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
@@ -107,3 +110,9 @@ class PagerTools {
 		return $s2;
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( PagerTools::class, 'PagerTools' );

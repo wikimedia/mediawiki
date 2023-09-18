@@ -19,11 +19,15 @@
  * @ingroup Pager
  */
 
+namespace MediaWiki\Pager;
+
+use HTMLForm;
+use IContextSource;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\Pager\AlphabeticPager;
 use MediaWiki\Title\Title;
+use TitleValue;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -124,3 +128,9 @@ class CategoryPager extends AlphabeticPager {
 	}
 
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( CategoryPager::class, 'CategoryPager' );

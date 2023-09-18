@@ -19,6 +19,9 @@
  * @ingroup Pager
  */
 
+namespace MediaWiki\Pager;
+
+use IContextSource;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Html\FormOptions;
@@ -300,3 +303,9 @@ class ActiveUsersPager extends UsersPager {
 	}
 
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( ActiveUsersPager::class, 'ActiveUsersPager' );

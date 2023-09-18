@@ -23,12 +23,12 @@
 
 namespace MediaWiki\Specials;
 
-use ActiveUsersPager;
 use HTMLForm;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Pager\ActiveUsersPager;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentityLookup;
 use SpecialPage;

@@ -30,9 +30,9 @@ namespace MediaWiki\Specials;
 use IncludableSpecialPage;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\Html;
+use MediaWiki\Pager\UsersPager;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentityLookup;
-use UsersPager;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

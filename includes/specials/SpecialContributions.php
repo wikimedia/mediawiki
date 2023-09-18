@@ -23,7 +23,6 @@
 
 namespace MediaWiki\Specials;
 
-use ContribsPager;
 use ExternalUserNames;
 use HTMLForm;
 use HTMLMultiSelectField;
@@ -36,6 +35,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Pager\ContribsPager;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Specials\Contribute\ContributeFactory;

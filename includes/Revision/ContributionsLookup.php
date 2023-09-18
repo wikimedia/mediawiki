@@ -3,12 +3,12 @@
 namespace MediaWiki\Revision;
 
 use ChangeTags;
-use ContribsPager;
 use IContextSource;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRendererFactory;
+use MediaWiki\Pager\ContribsPager;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\User\UserIdentity;

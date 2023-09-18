@@ -19,6 +19,16 @@
  * @ingroup Pager
  */
 
+namespace MediaWiki\Pager;
+
+use ChangesList;
+use ChangeTags;
+use Config;
+use DateTime;
+use HtmlArmor;
+use IContextSource;
+use InvalidArgumentException;
+use MapCacheLRU;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\HookContainer\HookContainer;
@@ -29,13 +39,14 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Pager\RangeChronologicalPager;
-use MediaWiki\Pager\ReverseChronologicalPager;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserRigorOptions;
+use NamespaceInfo;
+use Sanitizer;
+use stdClass;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -931,3 +942,9 @@ class ContribsPager extends RangeChronologicalPager {
 		return $opts;
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( ContribsPager::class, 'ContribsPager' );

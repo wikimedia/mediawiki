@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use UsersPager;
+use MediaWiki\Pager\UsersPager;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

@@ -23,19 +23,28 @@
  * @ingroup Pager
  */
 
+namespace MediaWiki\Pager;
+
+use HTMLForm;
+use HTMLHiddenField;
+use HTMLInfoField;
+use HTMLSelectField;
+use HTMLSubmitField;
+use HTMLUserTextField;
+use IContextSource;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Pager\AlphabeticPager;
-use MediaWiki\Pager\IndexPager;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
+use stdClass;
+use UserGroupMembership;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -490,3 +499,9 @@ class UsersPager extends AlphabeticPager {
 		return UserGroupMembership::getLinkHTML( $group, $this->getContext(), $username );
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( UsersPager::class, 'UsersPager' );
