@@ -23,7 +23,7 @@
 
 namespace MediaWiki\Specials;
 
-use HtmlForm;
+use HTMLForm;
 use LogEventsList;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
