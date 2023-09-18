@@ -22,7 +22,6 @@
 namespace MediaWiki\Block;
 
 use ChangeTags;
-use MalformedTitleException;
 use ManualLogEntry;
 use MediaWiki\Block\Restriction\AbstractRestriction;
 use MediaWiki\Block\Restriction\ActionRestriction;
@@ -34,6 +33,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Status\Status;
+use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\TempUser\TempUserConfig;

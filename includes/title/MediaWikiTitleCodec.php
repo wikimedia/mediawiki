@@ -21,14 +21,17 @@
  * @author Daniel Kinzler
  */
 
+namespace MediaWiki\Title;
+
+use GenderCache;
+use InvalidArgumentException;
+use Language;
+use LogicException;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageReference;
-use MediaWiki\Title\NamespaceInfo;
-use MediaWiki\Title\Title;
-use MediaWiki\Title\TitleFormatter;
-use MediaWiki\Title\TitleParser;
-use MediaWiki\Title\TitleValue;
+use Message;
+use Sanitizer;
 use Wikimedia\IPUtils;
 
 /**
@@ -388,7 +391,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 		);
 		$dbkey = trim( $dbkey, '_' );
 
-		if ( strpos( $dbkey, UtfNormal\Constants::UTF8_REPLACEMENT ) !== false ) {
+		if ( strpos( $dbkey, \UtfNormal\Constants::UTF8_REPLACEMENT ) !== false ) {
 			# Contained illegal UTF-8 sequences or forbidden Unicode chars.
 			$exception = ( $this->createMalformedTitleException )( 'title-invalid-utf8', $text );
 			throw $exception;
@@ -616,3 +619,9 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 		return $rxTc;
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( MediaWikiTitleCodec::class, 'MediaWikiTitleCodec' );

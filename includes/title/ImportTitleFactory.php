@@ -18,7 +18,7 @@
  * @file
  */
 
-use MediaWiki\Title\Title;
+namespace MediaWiki\Title;
 
 /**
  * Represents an object that can convert page titles on a foreign wiki
@@ -35,3 +35,9 @@ interface ImportTitleFactory {
 	 */
 	public function createTitleFromForeignTitle( ForeignTitle $foreignTitle );
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( ImportTitleFactory::class, 'ImportTitleFactory' );

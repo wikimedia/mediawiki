@@ -19,6 +19,8 @@
  * @author This, that and the other
  */
 
+use MediaWiki\Title\ForeignTitle;
+use MediaWiki\Title\NamespaceImportTitleFactory;
 use MediaWiki\Title\Title;
 
 /**

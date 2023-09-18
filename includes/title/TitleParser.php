@@ -23,8 +23,6 @@
 
 namespace MediaWiki\Title;
 
-use MalformedTitleException;
-
 /**
  * A title parser service for %MediaWiki.
  *

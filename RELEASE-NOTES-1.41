@@ -662,9 +662,19 @@ because of Phabricator reports.
   - SpecialRedirectWithAction
   - UnlistedSpecialPage
   - WantedQueryPage
-* Some title-related classes have been namespaced under MediaWiki\Title; the old
-  class names are now deprecated aliases:
+* All remaining title-related classes have been namespaced under MediaWiki\Title
+  and the old class names are now deprecated aliases:
+  - ForeignTitle
+  - ForeignTitleFactory
+  - ImportTitleFactory
+  - MalformedTitleException
+  - MediaWikiTitleCodec
+  - NaiveForeignTitleFactory
+  - NaiveImportTitleFactory
+  - NamespaceAwareForeignTitleFactory
+  - NamespaceImportTitleFactory
   - NamespaceInfo
+  - SubpageImportTitleFactory
   - TitleFormatter
   - TitleParser
   - TitleValue

@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Rest\Handler;
 
-use MalformedTitleException;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageLookup;
@@ -11,6 +10,7 @@ use MediaWiki\Rest\Handler\Helper\PageRestHelperFactory;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
+use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleParser;
 use Wikimedia\Message\MessageValue;

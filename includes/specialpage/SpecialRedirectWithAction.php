@@ -3,9 +3,9 @@
 namespace MediaWiki\SpecialPage;
 
 use HTMLForm;
-use MalformedTitleException;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
+use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
 use SearchEngineFactory;
 

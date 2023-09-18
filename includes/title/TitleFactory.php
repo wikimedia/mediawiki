@@ -22,7 +22,6 @@
 
 namespace MediaWiki\Title;
 
-use MalformedTitleException;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;

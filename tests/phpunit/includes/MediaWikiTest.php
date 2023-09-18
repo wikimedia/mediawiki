@@ -5,6 +5,7 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Request\WebResponse;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
 use Wikimedia\TestingAccessWrapper;
 

@@ -24,11 +24,11 @@ namespace MediaWiki\User;
 
 use InvalidArgumentException;
 use Language;
-use MalformedTitleException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\TitleParser;
 use MediaWiki\User\TempUser\TempUserConfig;
 use Psr\Log\LoggerInterface;

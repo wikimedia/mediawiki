@@ -20,6 +20,8 @@
  */
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Title\ForeignTitle;
+use MediaWiki\Title\NaiveImportTitleFactory;
 use MediaWiki\Title\Title;
 
 /**

@@ -22,6 +22,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
 use Wikimedia\Http\HttpAcceptNegotiator;
 use Wikimedia\Http\HttpAcceptParser;

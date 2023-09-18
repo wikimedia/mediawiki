@@ -19,6 +19,8 @@
  * @author This, that and the other
  */
 
+use MediaWiki\Title\ForeignTitle;
+
 /**
  * @covers ForeignTitle
  *
