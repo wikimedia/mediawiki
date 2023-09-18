@@ -944,6 +944,8 @@ because of Phabricator reports.
   - AbstractContent::getNativeData(), deprecated since 1.33
   - TablePager::getBody(), deprecated since 1.24
   - ContentHandler::getSlotDiffRendererInternal(), deprecated since 1.35
+* WikitextContent::getRedirectTargetAndText has been deprecated, use
+  WikitextContentHandler::extractRedirectTargetAndText instead.
 * WikiPage::doDeleteArticleBatched, deprecated in 1.37, now emits deprecation
   warnings.
 * WikiPage::getPageIsRedirectField() is now deprecated.

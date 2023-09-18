@@ -29,9 +29,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\MagicWord;
-use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Title\Title;
-use MediaWiki\Title\TitleFactory;
 
 /**
  * Content object for wiki text pages.
@@ -40,7 +38,6 @@ use MediaWiki\Title\TitleFactory;
  * @ingroup Content
  */
 class WikitextContent extends TextContent {
-	private $redirectTargetAndText = null;
 
 	/**
 	 * @var string[] flags set by PST
@@ -145,59 +142,18 @@ class WikitextContent extends TextContent {
 	/**
 	 * Extract the redirect target and the remaining text on the page.
 	 *
-	 * @note migrated here from Title::newFromRedirectInternal()
-	 *
 	 * @since 1.23
+	 * @deprecated since 1.41, use WikitextContentHandler::getRedirectTargetAndText
 	 *
-	 * @param TitleFactory|null $titleFactory used to parse redirect titles
-	 * @param MagicWordFactory|null $magicWordFactory The magic word factory to use
-	 *   to identify redirects.
 	 * @return array List of two elements: Title|null and string.
 	 */
-	public function getRedirectTargetAndText(
-		TitleFactory $titleFactory = null,
-		MagicWordFactory $magicWordFactory = null
-	) {
-		if ( $this->redirectTargetAndText !== null ) {
-			return $this->redirectTargetAndText;
-		}
-		if ( $titleFactory === null ) {
-			// This will eventually be deprecated.
-			$titleFactory = MediaWikiServices::getInstance()->getTitleFactory();
-		}
-		if ( $magicWordFactory === null ) {
-			// This will eventually be deprecated.
-			$magicWordFactory = MediaWikiServices::getInstance()->getMagicWordFactory();
-		}
+	public function getRedirectTargetAndText() {
+		wfDeprecated( __METHOD__, '1.41' );
 
-		$redir = $magicWordFactory->get( 'redirect' );
-		$text = ltrim( $this->getText() );
-		if ( $redir->matchStartAndRemove( $text ) ) {
-			// Extract the first link and see if it's usable
-			// Ensure that it really does come directly after #REDIRECT
-			// Some older redirects included a colon, so don't freak about that!
-			$m = [];
-			if ( preg_match( '!^\s*:?\s*\[{2}(.*?)(?:\|.*?)?\]{2}\s*!', $text, $m ) ) {
-				// Strip preceding colon used to "escape" categories, etc.
-				// and URL-decode links
-				if ( strpos( $m[1], '%' ) !== false ) {
-					// Match behavior of inline link parsing here;
-					$m[1] = rawurldecode( ltrim( $m[1], ':' ) );
-				}
-				$title = $titleFactory->newFromText( $m[1] );
-				// If the title is a redirect to bad special pages or is invalid, return null
-				if ( !$title instanceof Title || !$title->isValidRedirectTarget() ) {
-					$this->redirectTargetAndText = [ null, $this->getText() ];
-					return $this->redirectTargetAndText;
-				}
+		$handler = $this->getContentHandler();
+		[ $target, $content ] = $handler->extractRedirectTargetAndText( $this );
 
-				$this->redirectTargetAndText = [ $title, substr( $text, strlen( $m[0] ) ) ];
-				return $this->redirectTargetAndText;
-			}
-		}
-
-		$this->redirectTargetAndText = [ null, $this->getText() ];
-		return $this->redirectTargetAndText;
+		return [ Title::castFromLinkTarget( $target ), $content->getText() ];
 	}
 
 	/**
@@ -208,12 +164,13 @@ class WikitextContent extends TextContent {
 	 * @see Content::getRedirectTarget
 	 */
 	public function getRedirectTarget() {
-		[ $title, ] = $this->getRedirectTargetAndText(
-			MediaWikiServices::getInstance()->getTitleFactory(),
-			MediaWikiServices::getInstance()->getMagicWordFactory()
-		);
+		// TODO: The redirect target should be injected on construction.
+		//       But that only works if the object is created by WikitextContentHandler.
 
-		return $title;
+		$handler = $this->getContentHandler();
+		[ $target, ] = $handler->extractRedirectTargetAndText( $this );
+
+		return Title::castFromLinkTarget( $target );
 	}
 
 	/**
@@ -326,5 +283,11 @@ class WikitextContent extends TextContent {
 	 */
 	public function getPreSaveTransformFlags() {
 		return $this->preSaveTransformFlags;
+	}
+
+	public function getContentHandler(): WikitextContentHandler {
+		$handler = parent::getContentHandler();
+		'@phan-var WikitextContentHandler $handler';
+		return $handler;
 	}
 }

@@ -202,9 +202,13 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 			->willReturnMap( [ [ 0, '#REDIRECT' ] ] );
 		$magicWordRedirect
 			->method( 'matchStartAndRemove' )
-			->willReturnCallback( static function ( string &$text ) {
-				$text = '[[SomeTitle]]';
-				return true;
+			->willReturnCallback( static function ( string &$text ) use ( $testRedirect ) {
+				if ( $testRedirect ) {
+					$text = '[[SomeTitle]]';
+					return true;
+				} else {
+					return false;
+				}
 			} );
 		$magicWordFactory = $this->createMock( MagicWordFactory::class );
 		$magicWordFactory
@@ -241,13 +245,7 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 		if ( $testRedirect ) {
 			$content = $handler->makeRedirectContent( $title );
 		} else {
-			$content = $this->createMock( WikitextContent::class );
-			$content
-				->method( 'getRedirectTargetAndText' )
-				->willReturn( [ false, '* Hello, world!' ] );
-			$content
-				->method( 'getPreSaveTransformFlags' )
-				->willReturn( [] );
+			$content = new WikitextContent( '* Hello, world!' );
 		}
 
 		// Okay, invoke fillParserOutput() and verify that the assertions
