@@ -243,11 +243,11 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		if ( !$tags ) {
 			return;
 		}
-		$actualTags = wfGetDB( DB_REPLICA )->selectFieldValues(
-			'change_tag',
-			'ct_tag_id',
-			[ 'ct_log_id' => $logId ]
-		);
+		$actualTags = $this->getDb()->newSelectQueryBuilder()
+			->select( 'ct_tag_id' )
+			->from( 'change_tag' )
+			->where( [ 'ct_log_id' => $logId ] )
+			->fetchFieldValues();
 		$changeTagDefStore = $this->getServiceContainer()->getChangeTagDefStore();
 		$expectedTags = array_map( [ $changeTagDefStore, 'acquireId' ], $tags );
 		$this->assertArrayEquals( $expectedTags, array_map( 'intval', $actualTags ) );
@@ -292,15 +292,11 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 			$this->assertTrue( $deletePage->deletionsWereScheduled()[DeletePage::PAGE_BASE] );
 			$this->assertNull( $deletePage->getSuccessfulDeletionsIDs()[DeletePage::PAGE_BASE] );
 			$this->runJobs();
-			$logID = wfGetDB( DB_REPLICA )->selectField(
-				'logging',
-				'log_id',
-				[
-					'log_type' => $suppress ? 'suppress' : 'delete',
-					'log_namespace' => $page->getNamespace(),
-					'log_title' => $page->getDBkey()
-				]
-			);
+			$logID = $this->getDb()->newSelectQueryBuilder()
+				->select( 'log_id' )
+				->from( 'logging' )
+				->where( [ 'log_type' => $suppress ? 'suppress' : 'delete', 'log_namespace' => $page->getNamespace(), 'log_title' => $page->getDBkey() ] )
+				->fetchField();
 			$this->assertNotFalse( $logID, 'Should have a log ID now' );
 			$logID = (int)$logID;
 			// Clear caches.

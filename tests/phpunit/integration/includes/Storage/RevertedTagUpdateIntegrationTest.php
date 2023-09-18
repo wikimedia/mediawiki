@@ -397,16 +397,12 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 			);
 
 			// do basic checks for the ct_params field
-			$extraParams = $dbw->selectField(
-				[ 'change_tag', 'change_tag_def' ],
-				'ct_params',
-				[
-					'ct_rev_id' => $revisionId,
-					'ct_tag_id = ctd_id',
-					'ctd_name' => 'mw-reverted'
-				],
-				__METHOD__
-			);
+			$extraParams = $dbw->newSelectQueryBuilder()
+				->select( 'ct_params' )
+				->from( 'change_tag' )
+				->join( 'change_tag_def', null, 'ct_tag_id = ctd_id' )
+				->where( [ 'ct_rev_id' => $revisionId, 'ctd_name' => 'mw-reverted' ] )
+				->caller( __METHOD__ )->fetchField();
 			$this->assertNotEmpty( $extraParams, 'change_tag.ct_params' );
 			$this->assertJson( $extraParams, 'change_tag.ct_params' );
 			$parsedParams = FormatJson::decode( $extraParams, true );

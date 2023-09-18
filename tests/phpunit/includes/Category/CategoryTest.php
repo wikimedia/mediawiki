@@ -118,12 +118,11 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	public function testNewFromRow_notFoundWithoutTitle() {
 		$dbw = wfGetDB( DB_PRIMARY );
 
-		$row = $dbw->selectRow(
-			'category',
-			[ 'cat_id', 'cat_title', 'cat_pages', 'cat_subcats', 'cat_files' ],
-			[ 'cat_id' => 1 ],
-			__METHOD__
-		);
+		$row = $dbw->newSelectQueryBuilder()
+			->select( [ 'cat_id', 'cat_title', 'cat_pages', 'cat_subcats', 'cat_files' ] )
+			->from( 'category' )
+			->where( [ 'cat_id' => 1 ] )
+			->caller( __METHOD__ )->fetchRow();
 		$row->cat_title = null;
 
 		$this->assertFalse( Category::newFromRow( $row ) );
@@ -132,12 +131,11 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	public function testNewFromRow_notFoundWithTitle() {
 		$dbw = wfGetDB( DB_PRIMARY );
 
-		$row = $dbw->selectRow(
-			'category',
-			[ 'cat_id', 'cat_title', 'cat_pages', 'cat_subcats', 'cat_files' ],
-			[ 'cat_id' => 1 ],
-			__METHOD__
-		);
+		$row = $dbw->newSelectQueryBuilder()
+			->select( [ 'cat_id', 'cat_title', 'cat_pages', 'cat_subcats', 'cat_files' ] )
+			->from( 'category' )
+			->where( [ 'cat_id' => 1 ] )
+			->caller( __METHOD__ )->fetchRow();
 		$row->cat_title = null;
 
 		$category = Category::newFromRow(

@@ -261,35 +261,31 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 
 		$this->maintenance->execute();
 
-		$remainingLogs = wfGetDB( DB_REPLICA )->select(
-			[ 'logging' ],
-			[ 'log_type', 'log_action', 'log_actor' ],
-			[],
-			__METHOD__,
-			[ 'ORDER BY' => 'log_id' ]
-		);
+		$remainingLogs = $this->getDb()->newSelectQueryBuilder()
+			->select( [ 'log_type', 'log_action', 'log_actor' ] )
+			->from( 'logging' )
+			->orderBy( 'log_id' )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		$this->assertEquals( $expected, iterator_to_array( $remainingLogs, false ) );
 	}
 
 	public function testFromId() {
-		$fromId = wfGetDB( DB_REPLICA )->selectField(
-			'logging',
-			'log_id',
-			[ 'log_params' => 'nanana' ]
-		);
+		$fromId = $this->getDb()->newSelectQueryBuilder()
+			->select( 'log_id' )
+			->from( 'logging' )
+			->where( [ 'log_params' => 'nanana' ] )
+			->fetchField();
 
 		$this->maintenance->loadWithArgv( [ '--sleep', '0', '--from-id', strval( $fromId ), '-q' ] );
 
 		$this->maintenance->execute();
 
-		$remainingLogs = wfGetDB( DB_REPLICA )->select(
-			[ 'logging' ],
-			[ 'log_type', 'log_action', 'log_actor' ],
-			[],
-			__METHOD__,
-			[ 'ORDER BY' => 'log_id' ]
-		);
+		$remainingLogs = $this->getDb()->newSelectQueryBuilder()
+			->select( [ 'log_type', 'log_action', 'log_actor' ] )
+			->from( 'logging' )
+			->orderBy( 'log_id' )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		$deleted = [
 			'log_type' => 'patrol',
