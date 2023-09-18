@@ -13,7 +13,7 @@ use MediaWiki\Page\PageReferenceValue;
  */
 class TrackingCategoriesTest extends MediaWikiLangTestCase {
 	/**
-	 * @covers ParserOutput::addTrackingCategory
+	 * @covers TrackingCategories::addTrackingCategory
 	 */
 	public function testAddTrackingCategory() {
 		$services = $this->getServiceContainer();

@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\MainConfigNames;
-use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\ParserOutputStringSets;
 use MediaWiki\Tests\Parser\ParserCacheSerializationTestCases;
 use MediaWiki\Title\Title;
@@ -1283,30 +1282,5 @@ EOF
 		$this->assertEquals( [ 'foo.com', 'bar.com' ], $po->getExtraCSPScriptSrcs() );
 		$this->assertEquals( [ 'baz.com' ], $po->getExtraCSPDefaultSrcs() );
 		$this->assertEquals( [ 'fred.com', 'xyzzy.com' ], $po->getExtraCSPStyleSrcs() );
-	}
-
-	/**
-	 * @covers ParserOutput::addTrackingCategory
-	 */
-	public function testAddTrackingCategory() {
-		$this->hideDeprecated( 'ParserOutput::addTrackingCategory' );
-
-		$po = new ParserOutput;
-		$po->setPageProperty( 'defaultsort', 'foobar' );
-
-		$page = PageReferenceValue::localReference( NS_USER, 'Testing' );
-
-		$po->addTrackingCategory( 'index-category', $page ); // from CORE_TRACKING_CATEGORIES
-		$po->addTrackingCategory( 'sitenotice', $page ); // should be "-", which is ignored
-		$po->addTrackingCategory( 'brackets-start', $page ); // invalid text
-		// TODO: assert proper handling of non-existing messages
-
-		$expected = wfMessage( 'index-category' )
-			->page( $page )
-			->inContentLanguage()
-			->text();
-
-		$expected = strtr( $expected, ' ', '_' );
-		$this->assertSame( [ $expected => 'foobar' ], $po->getCategories() );
 	}
 }
