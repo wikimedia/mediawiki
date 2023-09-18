@@ -1,6 +1,10 @@
 <?php
 
+use MediaWiki\Content\Renderer\ContentParseParams;
+use MediaWiki\Interwiki\ClassicInterwikiLookup;
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Title\Title;
 
 /**
  * @group ContentHandler
@@ -8,6 +12,33 @@ use MediaWiki\MainConfigNames;
  *        ^--- needed, because we do need the database to test link updates
  */
 class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegrationTest {
+	protected function setUp(): void {
+		parent::setUp();
+
+		// Set up temporary interwiki links for 'en' and 'google'
+		$defaults = [
+			'iw_local' => 0,
+			'iw_api' => '/w/api.php',
+			'iw_url' => ''
+		];
+		$this->overrideConfigValue(
+			MainConfigNames::InterwikiCache,
+			ClassicInterwikiLookup::buildCdbHash( [
+				[
+					'iw_prefix' => 'en',
+					'iw_url' => 'https://en.wikipedia.org/wiki/$1',
+					'iw_wikiid' => 'enwiki',
+				] + $defaults,
+				[
+					'iw_prefix' => 'google',
+					'iw_url' => 'https://google.com/?q=$1',
+					'iw_wikiid' => 'google',
+				] + $defaults,
+			] )
+		);
+		$this->getServiceContainer()->resetServiceForTesting( 'InterwikiLookup' );
+	}
+
 	public static function provideGetParserOutput() {
 		yield 'Basic render' => [
 			'title' => 'WikitextContentTest_testGetParserOutput',
@@ -153,5 +184,51 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 		parent::testGetParserOutput(
 			$title, $model, $text, $expectedHtml, $expectedFields, $parserOptions
 		);
+	}
+
+	/**
+	 * @dataProvider provideMakeRedirectContent
+	 * @param LinkTarget $target
+	 * @param string $expectedWT Serialized wikitext form of the content object built
+	 * @param string $expectedTarget Expected target string in the HTML redirect
+	 * @covers WikitextContentHandler::makeRedirectContent
+	 * @covers WikitextContentHandler::getParserOutput
+	 */
+	public function testMakeRedirectContent( LinkTarget $target, string $expectedWT, string $expectedTarget ) {
+		$this->getServiceContainer()->resetServiceForTesting( 'ContentLanguage' );
+		$this->getServiceContainer()->resetServiceForTesting( 'MagicWordFactory' );
+
+		$handler = $this->getServiceContainer()->getContentHandlerFactory()
+			->getContentHandler( CONTENT_MODEL_WIKITEXT );
+		$content = $handler->makeRedirectContent( Title::newFromLinkTarget( $target ) );
+		$this->assertEquals( $expectedWT, $content->serialize() );
+
+		// Check that an appropriate redirect header was added to the
+		// ParserOutput
+		$parserOutput = $handler->getParserOutput(
+			$content,
+			new ContentParseParams( Title::newMainPage() )
+		);
+		$actual = $parserOutput->getText();
+		$this->assertStringContainsString( '<div class="redirectMsg">', $actual );
+		$this->assertMatchesRegularExpression( '!<a[^<>]+>' . $expectedTarget . '</a>!', $actual );
+	}
+
+	public static function provideMakeRedirectContent() {
+		return [
+			[ new TitleValue( NS_MAIN, 'Hello' ), '#REDIRECT [[Hello]]', 'Hello' ],
+			[ new TitleValue( NS_TEMPLATE, 'Hello' ), '#REDIRECT [[Template:Hello]]', 'Template:Hello' ],
+			[ new TitleValue( NS_MAIN, 'Hello', 'section' ), '#REDIRECT [[Hello#section]]', 'Hello#section' ],
+			[ new TitleValue( NS_USER, 'John doe', 'section' ), '#REDIRECT [[User:John doe#section]]', 'User:John doe#section' ],
+			[ new TitleValue( NS_MEDIAWIKI, 'FOOBAR' ), '#REDIRECT [[MediaWiki:FOOBAR]]', 'MediaWiki:FOOBAR' ],
+			[ new TitleValue( NS_CATEGORY, 'Foo' ), '#REDIRECT [[:Category:Foo]]', 'Category:Foo' ],
+			[ new TitleValue( NS_MAIN, 'en:Foo' ), '#REDIRECT [[en:Foo]]', 'en:Foo' ],
+			[ new TitleValue( NS_MAIN, 'Foo', '', 'en' ), '#REDIRECT [[:en:Foo]]', 'en:Foo' ],
+			[
+				new TitleValue( NS_MAIN, 'Bar', 'fragment', 'google' ),
+				'#REDIRECT [[google:Bar#fragment]]',
+				'google:Bar#fragment'
+			],
+		];
 	}
 }
