@@ -498,15 +498,16 @@ var util = {
 
 	/**
 	 * Creates a detached portlet Element in the skin with no elements.
-	 * The caller must add the portlet to the desired location and add elements
-	 * to it using mw.util.addPortletLink.
 	 *
-	 * @event util.addPortlet
 	 * @param {string} id of the new portlet.
 	 * @param {string} [label] of the new portlet.
-	 * @return {HTMLElement}
+	 * @param {string} [before] selector of the element preceding the new portlet. If not passed
+	 *  the caller is responsible for appending the element to the DOM before using addPortletLink.
+	 * @return {HTMLElement|null} will be null if it was not possible to create an portlet with
+	 *  the required information e.g. the selector given in before parameter could not be resolved
+	 *  to an existing element in the page.
 	 */
-	addPortlet: function ( id, label ) {
+	addPortlet: function ( id, label, before ) {
 		const portlet = document.createElement( 'div' );
 		// These classes should be kept in sync with includes/skins/components/SkinComponentMenu.php.
 		// eslint-disable-next-line mediawiki/class-doc
@@ -524,7 +525,29 @@ var util = {
 		const list = document.createElement( 'ul' );
 		listWrapper.appendChild( list );
 		portlet.appendChild( listWrapper );
-		mw.hook( 'util.addPortlet' ).fire( portlet );
+		if ( before ) {
+			var referenceNode;
+			try {
+				referenceNode = document.querySelector( before );
+			} catch ( e ) {
+				// CSS selector not supported by browser.
+			}
+			if ( referenceNode ) {
+				const parentNode = referenceNode.parentNode;
+				parentNode.insertBefore( portlet, referenceNode );
+			} else {
+				return null;
+			}
+		}
+		/**
+		 * @event util.addPortlet
+		 *
+		 * Fires when a portlet is successfully created.
+		 *
+		 * @param {HTMLElement} portlet the portlet that was created.
+		 * @param {string|null} before the css selector used to append to the DOM.
+		 */
+		mw.hook( 'util.addPortlet' ).fire( portlet, before );
 		return portlet;
 	},
 	/**

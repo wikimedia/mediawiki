@@ -275,6 +275,32 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 			} );
 	}
 
+	QUnit.test( 'addPortlet does not append to DOM if no `before` is provided', function ( assert ) {
+		$( '#qunit-fixture' ).html(
+			'<div class="portlet" id="p-toolbox"></div>'
+		);
+		const portlet = util.addPortlet( 'test', 'Hello' );
+		assert.true( portlet !== null, 'A portlet node is returned.' );
+		assert.true( portlet.parentNode === null, 'Portlet has no parent node' );
+	} );
+
+	QUnit.test( 'addPortlet returns null if bad selector given', function ( assert ) {
+		$( '#qunit-fixture' ).html(
+			'<div class="portlet" id="p-toolbox"></div>'
+		);
+		const portlet = util.addPortlet( 'test', 'Hello', '#?saasp-toolbox' );
+		assert.true( portlet === null, 'No portlet created.' );
+	} );
+
+	QUnit.test( 'addPortlet appends to DOM if before provided', function ( assert ) {
+		$( '#qunit-fixture' ).html(
+			'<div class="portlet" id="p-toolbox"></div>'
+		);
+		const portlet = util.addPortlet( 'test', 'Hello', '#p-toolbox' );
+		assert.true( !!portlet, 'A portlet node is returned.' );
+		assert.true( portlet.parentNode !== null, 'It is appended to the DOM' );
+	} );
+
 	QUnit.test( 'addPortletLink (Vector list)', function ( assert ) {
 		var link;
 
