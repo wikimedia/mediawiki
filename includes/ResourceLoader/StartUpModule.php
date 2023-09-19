@@ -358,17 +358,15 @@ class StartUpModule extends Module {
 
 	/**
 	 * @param Context $context
-	 * @return string|array JavaScript code
+	 * @return string JavaScript code
 	 */
-	public function getScript( Context $context ) {
+	public function getScript( Context $context ): string {
 		global $IP;
 		$conf = $this->getConfig();
 
 		if ( $context->getOnly() !== 'scripts' ) {
 			return '/* Requires only=scripts */';
 		}
-
-		$enableJsProfiler = $conf->get( MainConfigNames::ResourceLoaderEnableJSProfiler );
 
 		$startupCode = file_get_contents( "$IP/resources/src/startup/startup.js" );
 
@@ -407,27 +405,23 @@ class StartUpModule extends Module {
 			'$VARS.sourceMapLinks' => $context->encodeJson(
 				$conf->get( MainConfigNames::ResourceLoaderEnableSourceMapLinks )
 			),
-
-			// When profiling is enabled, insert the calls.
-			// When disabled (the default), insert nothing.
-			'$CODE.profileExecuteStart();' => $enableJsProfiler
-				? 'mw.loader.profiler.onExecuteStart( module );'
-				: '',
-			'$CODE.profileExecuteEnd();' => $enableJsProfiler
-				? 'mw.loader.profiler.onExecuteEnd( module );'
-				: '',
-			'$CODE.profileScriptStart();' => $enableJsProfiler
-				? 'mw.loader.profiler.onScriptStart( module );'
-				: '',
-			'$CODE.profileScriptEnd();' => $enableJsProfiler
-				? 'mw.loader.profiler.onScriptEnd( module );'
-				: '',
-
-			// Debug stubs
-			'$CODE.consoleLog();' => $context->getDebug()
-				? 'console.log.apply( console, arguments );'
-				: '',
 		];
+		$profilerStubs = [
+			'$CODE.profileExecuteStart();' => 'mw.loader.profiler.onExecuteStart( module );',
+			'$CODE.profileExecuteEnd();' => 'mw.loader.profiler.onExecuteEnd( module );',
+			'$CODE.profileScriptStart();' => 'mw.loader.profiler.onScriptStart( module );',
+			'$CODE.profileScriptEnd();' => 'mw.loader.profiler.onScriptEnd( module );',
+		];
+		$debugStubs = [
+			'$CODE.consoleLog();' => 'console.log.apply( console, arguments );',
+		];
+		// When profiling is enabled, insert the calls. When disabled (by default), insert nothing.
+		$mwLoaderPairs += $conf->get( MainConfigNames::ResourceLoaderEnableJSProfiler )
+			? $profilerStubs
+			: array_fill_keys( array_keys( $profilerStubs ), '' );
+		$mwLoaderPairs += $context->getDebug()
+			? $debugStubs
+			: array_fill_keys( array_keys( $debugStubs ), '' );
 		$mwLoaderCode = strtr( $mwLoaderCode, $mwLoaderPairs );
 
 		// Perform string replacements for startup.js
@@ -438,18 +432,7 @@ class StartUpModule extends Module {
 		];
 		$startupCode = strtr( $startupCode, $pairs );
 
-		return [
-			'plainScripts' => [
-				[
-					'virtualFilePath' => new FilePath(
-						'resources/src/startup/startup.js',
-						MW_INSTALL_PATH,
-						$conf->get( MainConfigNames::ResourceBasePath )
-					),
-					'content' => $startupCode,
-				],
-			],
-		];
+		return $startupCode;
 	}
 
 	/**
