@@ -3,6 +3,7 @@
 use MediaWiki\Html\Html;
 use MediaWiki\Html\TemplateParser;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;

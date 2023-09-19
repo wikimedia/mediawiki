@@ -1,6 +1,7 @@
 <?php
 
 use HtmlFormatter\HtmlFormatter;
+use MediaWiki\Parser\Sanitizer;
 
 /**
  * Class allowing to explore structure of parsed wikitext.

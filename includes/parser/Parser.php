@@ -43,6 +43,7 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\MagicWordArray;
 use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Parser\ParserOutputFlags;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\RevisionAccessException;

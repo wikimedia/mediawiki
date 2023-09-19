@@ -4,9 +4,9 @@ namespace MediaWiki\Skin;
 
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
+use MediaWiki\Parser\Sanitizer;
 use Message;
 use MessageLocalizer;
-use Sanitizer;
 
 /**
  * @internal for use inside Skin and SkinTemplate classes only

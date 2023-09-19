@@ -15,6 +15,7 @@ use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\ParserOutputStringSets;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Title\Title;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;

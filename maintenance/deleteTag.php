@@ -5,6 +5,7 @@
  * @see bug T75181
  */
 
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Storage\NameTableAccessException;
 
 require_once __DIR__ . '/Maintenance.php';

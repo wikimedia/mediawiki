@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\Title;
 

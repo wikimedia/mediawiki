@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Parser\Sanitizer;
 
 require_once __DIR__ . '/../includes/Benchmarker.php';
 

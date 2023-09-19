@@ -23,6 +23,7 @@
 
 use MediaWiki\Installer\InstallException;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
 

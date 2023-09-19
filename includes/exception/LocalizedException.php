@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Parser\Sanitizer;
+
 /**
  * Basic localized exception.
  *

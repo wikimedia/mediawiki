@@ -19,7 +19,7 @@ use Wikimedia\Parsoid\ParserTests\TestMode as ParserTestMode;
  * @covers BlockLevelPass
  * @covers CoreParserFunctions
  * @covers CoreTagHooks
- * @covers Sanitizer
+ * @covers MediaWiki\Parser\Sanitizer
  * @covers Preprocessor
  * @covers Preprocessor_Hash
  * @covers DateFormatter

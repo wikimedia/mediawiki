@@ -1667,6 +1667,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Parser\\RemexRemoveTagHandler' => __DIR__ . '/includes/parser/RemexRemoveTagHandler.php',
 	'MediaWiki\\Parser\\RemexStripTagHandler' => __DIR__ . '/includes/parser/RemexStripTagHandler.php',
 	'MediaWiki\\Parser\\RevisionOutputCache' => __DIR__ . '/includes/parser/RevisionOutputCache.php',
+	'MediaWiki\\Parser\\Sanitizer' => __DIR__ . '/includes/parser/Sanitizer.php',
 	'MediaWiki\\Permissions\\Authority' => __DIR__ . '/includes/Permissions/Authority.php',
 	'MediaWiki\\Permissions\\GrantsInfo' => __DIR__ . '/includes/Permissions/GrantsInfo.php',
 	'MediaWiki\\Permissions\\GrantsLocalization' => __DIR__ . '/includes/Permissions/GrantsLocalization.php',

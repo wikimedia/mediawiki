@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Parser\Sanitizer;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -330,7 +331,7 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 	 * @covers Sanitizer::escapeIdReferenceList
 	 */
 	public function testEscapeIdReferenceList( $referenceList, $id1, $id2 ) {
-		$this->hideDeprecated( 'Sanitizer::escapeIdReferenceList' );
+		$this->hideDeprecated( Sanitizer::class . '::escapeIdReferenceList' );
 		$this->assertEquals(
 			Sanitizer::escapeIdReferenceList( $referenceList ),
 			Sanitizer::escapeIdForAttribute( $id1 )

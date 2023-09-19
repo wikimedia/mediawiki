@@ -25,12 +25,12 @@ namespace MediaWiki\Specials;
 
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\SiteStats\SiteStats;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupMembership;
-use Sanitizer;
 use Xml;
 
 /**

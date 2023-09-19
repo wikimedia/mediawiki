@@ -28,12 +28,12 @@ use HTMLForm;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Html\Html;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use PermissionsError;
-use Sanitizer;
 
 /**
  * Let users change their email address.

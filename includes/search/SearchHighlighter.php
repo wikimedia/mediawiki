@@ -23,6 +23,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\Sanitizer;
 
 /**
  * Highlight bits of wikitext

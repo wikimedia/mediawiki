@@ -25,6 +25,7 @@ namespace MediaWiki\Specials;
 
 use HTMLForm;
 use MediaWiki\Language\RawMessage;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\Status\Status;
@@ -33,7 +34,6 @@ use MediaWiki\User\UserFactory;
 use PermissionsError;
 use Profiler;
 use ReadOnlyError;
-use Sanitizer;
 use UserNotLoggedIn;
 use Wikimedia\ScopedCallback;
 

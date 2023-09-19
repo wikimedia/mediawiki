@@ -698,6 +698,8 @@ because of Phabricator reports.
   - UserRightsProxy
   - CentralIdLookup (under MediaWiki\User\CentralId)
   - LocalIdLookup (under MediaWiki\User\CentralId)
+* The Sanitizer class is now namespaced under MediaWiki\Parser, with the former
+  class name left as a deprecated alias.
 * Various mediawiki.ui variables have been deprecated in favor of
   'mediawiki.skin.variables.less' Codex design tokens featuring replacements.
 * Hook handlers must now be specified either as a PHP callable, or as a PHP

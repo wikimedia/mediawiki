@@ -23,6 +23,7 @@ namespace MediaWiki\Auth;
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\User\User;
 use StatusValue;
 
@@ -82,7 +83,7 @@ class UserDataAuthenticationRequest extends AuthenticationRequest {
 	 */
 	public function populateUser( $user ) {
 		if ( $this->email !== null && $this->email !== '' ) {
-			if ( !\Sanitizer::validateEmail( $this->email ) ) {
+			if ( !Sanitizer::validateEmail( $this->email ) ) {
 				return StatusValue::newFatal( 'invalidemailaddress' );
 			}
 			$user->setEmail( $this->email );

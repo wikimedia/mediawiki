@@ -19,6 +19,7 @@
  * @ingroup Testing
  */
 
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Shell\Shell;
 use MediaWiki\Tests\AnsiTermColorer;
 use MediaWiki\Tests\DummyTermColorer;

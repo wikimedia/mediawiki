@@ -27,11 +27,11 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
-use Sanitizer;
 use Wikimedia\Assert\Assert;
 
 /**

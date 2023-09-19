@@ -28,6 +28,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Profiler\ProfilingContext;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Parser\Sanitizer;
+
 /**
  * @group Parser
  * @covers MWTidy

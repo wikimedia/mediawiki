@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tidy;
 
-use Sanitizer;
+use MediaWiki\Parser\Sanitizer;
 use Wikimedia\RemexHtml\HTMLData;
 use Wikimedia\RemexHtml\Serializer\HtmlFormatter;
 use Wikimedia\RemexHtml\Serializer\SerializerNode;

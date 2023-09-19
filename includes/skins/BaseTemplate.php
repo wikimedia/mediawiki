@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Html\Html;
+use MediaWiki\Parser\Sanitizer;
 use Wikimedia\WrappedString;
 use Wikimedia\WrappedStringList;
 

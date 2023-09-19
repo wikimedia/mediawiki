@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Parser\Sanitizer;
+
 /**
  * @newable
  * @ingroup Upload

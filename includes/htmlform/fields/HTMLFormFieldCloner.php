@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Html\Html;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Request\DerivativeRequest;
 
 /**

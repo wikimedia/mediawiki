@@ -30,8 +30,8 @@ use LogicException;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Parser\Sanitizer;
 use Message;
-use Sanitizer;
 use Wikimedia\IPUtils;
 
 /**

@@ -27,6 +27,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Parser\ParserOutputFlags;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SiteStats\SiteStats;

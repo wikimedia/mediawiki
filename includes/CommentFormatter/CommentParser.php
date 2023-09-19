@@ -13,6 +13,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
@@ -172,7 +173,7 @@ class CommentParser {
 		$comment = strtr( $comment, "\n\x1b", "  " );
 		// Allow HTML entities (for T15815)
 		if ( !$unsafe ) {
-			$comment = \Sanitizer::escapeHtmlAllowEntities( $comment );
+			$comment = Sanitizer::escapeHtmlAllowEntities( $comment );
 		}
 		if ( $enableSectionLinks ) {
 			$comment = $this->doSectionLinks( $comment, $selfLinkTarget, $samePage, $wikiId );

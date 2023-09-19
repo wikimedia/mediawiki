@@ -37,11 +37,11 @@ use MediaWiki\Html\ListToggle;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Watchlist\WatchlistManager;
-use Sanitizer;
 use stdClass;
 use Xml;
 

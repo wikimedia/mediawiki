@@ -35,6 +35,7 @@ use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
@@ -42,7 +43,6 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 use RecentChange;
-use Sanitizer;
 use stdClass;
 
 /**

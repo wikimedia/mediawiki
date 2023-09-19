@@ -22,9 +22,9 @@ namespace MediaWiki\EditPage;
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
-use Sanitizer;
 
 /**
  * Helps EditPage build textboxes

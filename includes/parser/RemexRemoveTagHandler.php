@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Parser;
 
-use Sanitizer;
 use Wikimedia\RemexHtml\Tokenizer\Attributes;
 use Wikimedia\RemexHtml\Tokenizer\PlainAttributes;
 use Wikimedia\RemexHtml\Tokenizer\RelayTokenHandler;

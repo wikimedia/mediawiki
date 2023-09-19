@@ -25,6 +25,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Request\WebRequest;

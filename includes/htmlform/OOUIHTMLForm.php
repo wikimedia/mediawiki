@@ -23,6 +23,7 @@
 
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Status\Status;
 
 /**
