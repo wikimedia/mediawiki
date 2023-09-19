@@ -422,8 +422,7 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * @internal only public for use in User::saveSettings
 	 */
 	public function saveOptionsInternal( UserIdentity $user, IDatabase $dbw ): bool {
-		$isTempUser = $this->userNameUtils->isTemp( $user->getName() );
-		if ( !$user->isRegistered() || $isTempUser ) {
+		if ( !$user->isRegistered() || $this->userNameUtils->isTemp( $user->getName() ) ) {
 			throw new InvalidArgumentException( __METHOD__ . ' was called on anon or temporary user' );
 		}
 
@@ -607,8 +606,7 @@ class UserOptionsManager extends UserOptionsLookup {
 	): array {
 		$userKey = $this->getCacheKey( $user );
 		$defaultOptions = $this->defaultOptionsLookup->getDefaultOptions();
-		$isTempUser = $this->userNameUtils->isTemp( $user->getName() );
-		if ( !$user->isRegistered() || $isTempUser ) {
+		if ( !$user->isRegistered() || $this->userNameUtils->isTemp( $user->getName() ) ) {
 			// For unlogged-in users, load language/variant options from request.
 			// There's no need to do it for logged-in users: they can set preferences,
 			// and handling of page content is done by $pageLang->getPreferredVariant() and such,
@@ -665,8 +663,7 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * @return string
 	 */
 	private function getCacheKey( UserIdentity $user ): string {
-		$isTempUser = $this->userNameUtils->isTemp( $user->getName() );
-		if ( !$user->isRegistered() || $isTempUser ) {
+		if ( !$user->isRegistered() || $this->userNameUtils->isTemp( $user->getName() ) ) {
 			return 'anon';
 		} else {
 			return "u:{$user->getId()}";
@@ -689,8 +686,7 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * @return bool
 	 */
 	private function canUseCachedValues( UserIdentity $user, int $queryFlags ): bool {
-		$isTempUser = $this->userNameUtils->isTemp( $user->getName() );
-		if ( !$user->isRegistered() || $isTempUser ) {
+		if ( !$user->isRegistered() || $this->userNameUtils->isTemp( $user->getName() ) ) {
 			// Anon & temp users don't have options stored in the database,
 			// so $queryFlags are ignored.
 			return true;
