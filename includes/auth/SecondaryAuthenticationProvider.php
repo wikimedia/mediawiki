@@ -23,8 +23,8 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\User\User;
 use StatusValue;
-use User;
 
 /**
  * A secondary provider mostly acts when the submitted authentication data has

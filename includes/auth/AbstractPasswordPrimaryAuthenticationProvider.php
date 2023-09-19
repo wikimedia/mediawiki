@@ -24,6 +24,7 @@ namespace MediaWiki\Auth;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
+use MediaWiki\User\User;
 use Password;
 use PasswordFactory;
 use Wikimedia\Assert\Assert;
@@ -108,7 +109,7 @@ abstract class AbstractPasswordPrimaryAuthenticationProvider
 	 * @return Status
 	 */
 	protected function checkPasswordValidity( $username, $password ) {
-		return \User::newFromName( $username )->checkPasswordValidity( $password );
+		return User::newFromName( $username )->checkPasswordValidity( $password );
 	}
 
 	/**
@@ -186,7 +187,7 @@ abstract class AbstractPasswordPrimaryAuthenticationProvider
 
 		// Give extensions a chance to force an expiration
 		$this->getHookRunner()->onResetPasswordExpiration(
-			\User::newFromName( $username ), $expires );
+			User::newFromName( $username ), $expires );
 
 		return $expires;
 	}

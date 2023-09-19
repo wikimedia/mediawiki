@@ -8,8 +8,8 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MessageLocalizer;
-use User;
 
 class SkinComponentCopyright implements SkinComponent {
 	/** @var Config */

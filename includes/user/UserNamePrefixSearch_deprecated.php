@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\User;
 
 // phpcs:disable MediaWiki.Files.ClassMatchesFilename.NotMatch
 /**

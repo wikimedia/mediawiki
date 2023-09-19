@@ -22,8 +22,8 @@
 namespace MediaWiki\Auth;
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\User\User;
 use MediaWiki\User\UserRigorOptions;
-use User;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

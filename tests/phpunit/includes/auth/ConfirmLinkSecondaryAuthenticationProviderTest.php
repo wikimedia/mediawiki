@@ -5,8 +5,8 @@ namespace MediaWiki\Auth;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWiki\User\User;
 use MediaWiki\User\UserNameUtils;
-use User;
 use Wikimedia\TestingAccessWrapper;
 
 /**

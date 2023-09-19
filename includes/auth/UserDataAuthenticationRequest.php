@@ -23,8 +23,8 @@ namespace MediaWiki\Auth;
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\User;
 use StatusValue;
-use User;
 
 /**
  * This represents additional user data requested on the account creation form

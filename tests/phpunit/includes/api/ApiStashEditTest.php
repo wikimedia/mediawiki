@@ -3,6 +3,7 @@
 use MediaWiki\MainConfigNames;
 use MediaWiki\Storage\PageEditStash;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserRigorOptions;
 use Psr\Log\NullLogger;

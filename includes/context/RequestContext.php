@@ -33,6 +33,7 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\IPUtils;

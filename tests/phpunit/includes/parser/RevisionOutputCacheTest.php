@@ -12,6 +12,7 @@ use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Tests\Json\JsonUnserializableSuperClass;
+use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
 use NullStatsdDataFactory;
@@ -21,7 +22,6 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
 use TestLogger;
-use User;
 use WANObjectCache;
 use Wikimedia\TestingAccessWrapper;
 

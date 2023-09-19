@@ -27,8 +27,8 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Html\Html;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MWUnknownContentModelException;
-use User;
 
 /**
  * Helper for displaying edit conflicts in text content models to users

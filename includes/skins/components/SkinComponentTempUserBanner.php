@@ -3,8 +3,8 @@
 namespace MediaWiki\Skin;
 
 use MediaWiki\Html\Html;
+use MediaWiki\User\User;
 use MessageLocalizer;
-use User;
 
 /**
  * @internal for use inside Skin and SkinTemplate classes only

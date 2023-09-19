@@ -7,9 +7,9 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
+use MediaWiki\User\User;
 use PHPUnit\Framework\MockObject\MockObject;
 use RequestContext;
-use User;
 use Wikimedia\TestingAccessWrapper;
 
 /**

@@ -3,11 +3,11 @@
 namespace MediaWiki\Session;
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
 use TestLogger;
-use User;
 use Wikimedia\TestingAccessWrapper;
 
 /**

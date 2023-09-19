@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\User;
 
 /**
  * Job that updates a user's preferences.

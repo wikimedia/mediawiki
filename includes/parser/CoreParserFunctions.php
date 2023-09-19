@@ -32,6 +32,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SiteStats\SiteStats;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use Wikimedia\RemexHtml\Tokenizer\Attributes;
 use Wikimedia\RemexHtml\Tokenizer\PlainAttributes;
 

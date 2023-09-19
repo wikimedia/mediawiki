@@ -38,6 +38,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Specials\SpecialUpload;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 
 class ImportImages extends Maintenance {
 

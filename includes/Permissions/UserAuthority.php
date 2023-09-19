@@ -29,8 +29,8 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\TitleValue;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
-use User;
 use Wikimedia\Assert\Assert;
 use Wikimedia\DebugInfo\DebugInfoTrait;
 

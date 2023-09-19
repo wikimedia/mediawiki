@@ -6,6 +6,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Status\Status;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWiki\User\User;
 use MediaWiki\User\UserNameUtils;
 use StatusValue;
 use Wikimedia\TestingAccessWrapper;
@@ -614,7 +615,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 	}
 
 	public function testTestForAccountCreation() {
-		$user = \User::newFromName( 'foo' );
+		$user = User::newFromName( 'foo' );
 		$req = new PasswordAuthenticationRequest();
 		$req->action = AuthManager::ACTION_CREATE;
 		$req->username = 'Foo';
@@ -662,7 +663,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 	}
 
 	public function testAccountCreation() {
-		$user = \User::newFromName( 'Foo' );
+		$user = User::newFromName( 'Foo' );
 
 		$req = new PasswordAuthenticationRequest();
 		$req->action = AuthManager::ACTION_CREATE;

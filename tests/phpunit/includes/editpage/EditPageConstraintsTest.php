@@ -6,6 +6,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**

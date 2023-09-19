@@ -11,12 +11,12 @@ use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Title\Title;
 use MediaWiki\User\TempUser\TempUserCreator;
+use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use MockMessageLocalizer;
 use RepoGroup;
-use User;
 
 /**
  * @covers \MediaWiki\EditPage\IntroMessageBuilder

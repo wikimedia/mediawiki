@@ -2,6 +2,7 @@
 
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Specials\SpecialContribute;
+use MediaWiki\User\User;
 
 /**
  * @author MAbualruz

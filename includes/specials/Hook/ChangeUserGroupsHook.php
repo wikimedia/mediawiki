@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Hook;
 
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
-use User;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

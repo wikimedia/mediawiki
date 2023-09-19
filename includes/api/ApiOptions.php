@@ -24,6 +24,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Preferences\PreferencesFactory;
+use MediaWiki\User\User;
 use MediaWiki\User\UserOptionsManager;
 use Wikimedia\ParamValidator\ParamValidator;
 

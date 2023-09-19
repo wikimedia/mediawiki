@@ -31,9 +31,9 @@ use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\User\UserGroupManager;
 use Sanitizer;
-use User;
 use UserGroupMembership;
 use Xml;
 

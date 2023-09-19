@@ -2,6 +2,7 @@
 
 use MediaWiki\Title\ForeignTitle;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 
 /**
  * Test class for Import methods.

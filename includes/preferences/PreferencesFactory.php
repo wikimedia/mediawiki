@@ -22,8 +22,8 @@ namespace MediaWiki\Preferences;
 
 use HTMLForm;
 use IContextSource;
+use MediaWiki\User\User;
 use PreferencesFormOOUI;
-use User;
 
 /**
  * A PreferencesFactory is a MediaWiki service that provides the definitions of preferences for a

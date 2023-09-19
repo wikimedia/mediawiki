@@ -32,6 +32,7 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\User\User;
 
 /**
  * A simple method to retrieve the plain source of an article,

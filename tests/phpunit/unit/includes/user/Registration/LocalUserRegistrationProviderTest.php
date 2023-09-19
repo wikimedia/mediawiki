@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\User\Registration;
 
 use MediaWiki\User\Registration\LocalUserRegistrationProvider;
+use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
@@ -14,7 +15,7 @@ class LocalUserRegistrationProviderTest extends MediaWikiUnitTestCase {
 
 	public function testFetchRegistration() {
 		$userIdentity = new UserIdentityValue( 123, 'Admin' );
-		$userMock = $this->createMock( \User::class );
+		$userMock = $this->createMock( User::class );
 		$userMock->expects( $this->once() )
 			->method( 'getRegistration' )
 			->willReturn( '20200102000000' );

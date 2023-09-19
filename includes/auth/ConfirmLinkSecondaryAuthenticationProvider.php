@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Auth;
 
-use User;
+use MediaWiki\User\User;
 
 /**
  * Links third-party authentication to the user's account

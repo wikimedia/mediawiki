@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\User;
 use Psr\Log\LoggerInterface;
 
 /**

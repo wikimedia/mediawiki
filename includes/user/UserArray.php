@@ -22,6 +22,7 @@
 
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\User;
 use Wikimedia\Rdbms\IResultWrapper;
 
 abstract class UserArray implements Iterator {

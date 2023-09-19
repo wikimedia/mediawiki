@@ -15,8 +15,8 @@ use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
-use User;
 use Wikimedia\ScopedCallback;
 use WikiPage;
 

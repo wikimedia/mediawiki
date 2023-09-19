@@ -36,6 +36,7 @@ use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Specials\SpecialVersion;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\User\UserRigorOptions;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;

@@ -23,6 +23,7 @@ use MediaWiki\Installer\Pingback;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\User\UserRigorOptions;
 
 class WebInstallerName extends WebInstallerPage {

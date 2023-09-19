@@ -12,12 +12,14 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\TestingAccessWrapper;
 
 /**
+ * @coversDefaultClass User
  * @group Database
  */
 class UserTest extends MediaWikiIntegrationTestCase {
@@ -106,7 +108,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::getGroupPermissions
 	 */
 	public function testGroupPermissions() {
-		$this->hideDeprecated( 'User::getGroupPermissions' );
+		$this->hideDeprecated( 'MediaWiki\User\User::getGroupPermissions' );
 		$rights = User::getGroupPermissions( [ 'unittesters' ] );
 		$this->assertContains( 'runtest', $rights );
 		$this->assertNotContains( 'writetest', $rights );
@@ -124,7 +126,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::getGroupPermissions
 	 */
 	public function testRevokePermissions() {
-		$this->hideDeprecated( 'User::getGroupPermissions' );
+		$this->hideDeprecated( 'MediaWiki\User\User::getGroupPermissions' );
 		$rights = User::getGroupPermissions( [ 'unittesters', 'formertesters' ] );
 		$this->assertNotContains( 'runtest', $rights );
 		$this->assertNotContains( 'writetest', $rights );
@@ -137,7 +139,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::getGroupsWithPermission
 	 */
 	public function testGetGroupsWithPermission( array $expected, $right ) {
-		$this->hideDeprecated( 'User::getGroupsWithPermission' );
+		$this->hideDeprecated( 'MediaWiki\User\User::getGroupsWithPermission' );
 		$result = User::getGroupsWithPermission( $right );
 		$this->assertArrayEquals( $expected, $result );
 	}
@@ -1444,7 +1446,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::getGroups
 	 */
 	public function testGetGroups() {
-		$this->hideDeprecated( 'User::getGroups' );
+		$this->hideDeprecated( 'MediaWiki\User\User::getGroups' );
 
 		$user = $this->getTestUser( [ 'a', 'b' ] )->getUser();
 		$this->assertArrayEquals( [ 'a', 'b' ], $user->getGroups() );
@@ -1454,8 +1456,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::addGroup
 	 */
 	public function testAddGroup() {
-		$this->hideDeprecated( 'User::getGroups' );
-		$this->hideDeprecated( 'User::addGroup' );
+		$this->hideDeprecated( 'MediaWiki\User\User::getGroups' );
+		$this->hideDeprecated( 'MediaWiki\User\User::addGroup' );
 
 		$user = $this->getTestUser()->getUser();
 		$this->assertSame( [], $user->getGroups() );
@@ -1481,8 +1483,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::removeGroup
 	 */
 	public function testRemoveGroup() {
-		$this->hideDeprecated( 'User::getGroups' );
-		$this->hideDeprecated( 'User::removeGroup' );
+		$this->hideDeprecated( 'MediaWiki\User\User::getGroups' );
+		$this->hideDeprecated( 'MediaWiki\User\User::removeGroup' );
 
 		$user = $this->getTestUser( [ 'test', 'test3' ] )->getUser();
 

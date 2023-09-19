@@ -31,6 +31,7 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\User\TempUser\RealTempUserConfig;
+use MediaWiki\User\User;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
@@ -41,7 +42,6 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Rule\InvokedCount;
 use RequestContext;
 use TestLogger;
-use User;
 use Wikimedia\Assert\PreconditionException;
 
 /**

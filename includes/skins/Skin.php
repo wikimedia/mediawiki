@@ -38,6 +38,7 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\SpecialEmailUser;
 use MediaWiki\Specials\SpecialUserRights;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\WikiMap\WikiMap;

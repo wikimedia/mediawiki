@@ -2,6 +2,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 
 class ContentTransformerTest extends MediaWikiIntegrationTestCase {
 

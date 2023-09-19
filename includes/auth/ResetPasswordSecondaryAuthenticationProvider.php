@@ -21,6 +21,8 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\User\User;
+
 /**
  * Reset the local password, if signalled via $this->manager->setAuthenticationSessionData()
  *
@@ -58,11 +60,11 @@ class ResetPasswordSecondaryAuthenticationProvider extends AbstractSecondaryAuth
 
 	/**
 	 * Try to reset the password
-	 * @param \User $user
+	 * @param User $user
 	 * @param AuthenticationRequest[] $reqs
 	 * @return AuthenticationResponse
 	 */
-	protected function tryReset( \User $user, array $reqs ) {
+	protected function tryReset( User $user, array $reqs ) {
 		$data = $this->manager->getAuthenticationSessionData( 'reset-pass' );
 		if ( !$data ) {
 			return AuthenticationResponse::newAbstain();

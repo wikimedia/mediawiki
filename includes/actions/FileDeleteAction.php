@@ -31,9 +31,9 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\File\FileDeleteForm;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use OldLocalFile;
 use PermissionsError;
-use User;
 
 /**
  * Handle file deletion

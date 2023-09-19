@@ -17,6 +17,7 @@ use MediaWiki\Session\TestUtils;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;

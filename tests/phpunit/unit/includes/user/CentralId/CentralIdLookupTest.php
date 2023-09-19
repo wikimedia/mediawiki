@@ -7,11 +7,11 @@ use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
-use User;
 use Wikimedia\TestingAccessWrapper;
 
 /**

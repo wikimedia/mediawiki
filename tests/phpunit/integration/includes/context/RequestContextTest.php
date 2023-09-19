@@ -11,12 +11,12 @@ use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Title\Title;
 use MediaWiki\User\StaticUserOptionsLookup;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use RequestContext;
 use Skin;
 use SkinFallback;
-use User;
 
 /**
  * @covers RequestContext

@@ -3,6 +3,7 @@
 use MediaWiki\MainConfigNames;
 use MediaWiki\Session\BotPasswordSessionProvider;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\User\User;
 use Wikimedia\TestingAccessWrapper;
 
 /**

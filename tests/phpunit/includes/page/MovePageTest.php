@@ -10,6 +10,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Rest\Handler\MediaTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 

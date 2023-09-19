@@ -24,8 +24,8 @@
 namespace MediaWiki\Session;
 
 use MediaWiki\Request\WebRequest;
+use MediaWiki\User\User;
 use Psr\Log\LoggerAwareInterface;
-use User;
 
 /**
  * This exists to make IDEs happy, so they don't see the

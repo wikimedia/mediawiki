@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\User\User;
+
 /**
  * @group API
  * @group Database

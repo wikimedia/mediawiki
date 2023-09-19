@@ -14,6 +14,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use Wikimedia\TestingAccessWrapper;
 
 /**

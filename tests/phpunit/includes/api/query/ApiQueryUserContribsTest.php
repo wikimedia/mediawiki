@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Title\TitleValue;
+use MediaWiki\User\User;
 use MediaWiki\User\UserRigorOptions;
 
 /**

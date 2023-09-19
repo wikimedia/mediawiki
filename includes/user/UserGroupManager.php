@@ -36,7 +36,6 @@ use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\WikiMap\WikiMap;
 use Psr\Log\LoggerInterface;
 use Sanitizer;
-use User;
 use UserGroupExpiryJob;
 use UserGroupMembership;
 use Wikimedia\Assert\Assert;

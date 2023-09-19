@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\User\User;
+
 /**
  * Form to edit user preferences.
  *

@@ -23,6 +23,7 @@ namespace MediaWiki\Auth;
 
 use BagOStuff;
 use MediaWiki\MainConfigNames;
+use MediaWiki\User\User;
 
 /**
  * A pre-authentication provider to throttle authentication actions.
@@ -157,7 +158,7 @@ class ThrottlePreAuthenticationProvider extends AbstractPreAuthenticationProvide
 	}
 
 	/**
-	 * @param null|\User $user
+	 * @param null|User $user
 	 * @param AuthenticationResponse $response
 	 */
 	public function postAuthentication( $user, AuthenticationResponse $response ) {

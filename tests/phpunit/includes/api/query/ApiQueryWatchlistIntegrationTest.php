@@ -4,6 +4,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\TitleValue;
+use MediaWiki\User\User;
 
 /**
  * @group medium

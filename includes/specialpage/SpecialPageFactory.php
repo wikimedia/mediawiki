@@ -169,9 +169,9 @@ use MediaWiki\Specials\SpecialWhatLinksHere;
 use MediaWiki\Specials\SpecialWithoutInterwiki;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
+use MediaWiki\User\User;
 use Profiler;
 use RequestContext;
-use User;
 use Wikimedia\DebugInfo\DebugInfoTrait;
 use Wikimedia\ObjectFactory\ObjectFactory;
 

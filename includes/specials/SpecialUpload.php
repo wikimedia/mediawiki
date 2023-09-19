@@ -42,6 +42,7 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
 use PermissionsError;
@@ -50,7 +51,6 @@ use UnexpectedValueException;
 use UploadBase;
 use UploadForm;
 use UploadFromStash;
-use User;
 use UserBlockedError;
 
 /**

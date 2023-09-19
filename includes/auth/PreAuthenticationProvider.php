@@ -23,8 +23,8 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\User\User;
 use StatusValue;
-use User;
 
 /**
  * A pre-authentication provider can prevent authentication early on.

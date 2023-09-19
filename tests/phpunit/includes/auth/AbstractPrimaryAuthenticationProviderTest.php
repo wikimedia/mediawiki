@@ -4,7 +4,7 @@ namespace MediaWiki\Auth;
 
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
-use User;
+use MediaWiki\User\User;
 
 /**
  * @group AuthManager
@@ -102,7 +102,7 @@ class AbstractPrimaryAuthenticationProviderTest extends \MediaWikiIntegrationTes
 		$msg1 = "{$class}::beginPrimaryAccountLink $msg";
 		$msg2 = "{$class}::continuePrimaryAccountLink is not implemented.";
 
-		$user = \User::newFromName( 'Whatever' );
+		$user = User::newFromName( 'Whatever' );
 
 		try {
 			$provider->beginPrimaryAccountLink( $user, [] );

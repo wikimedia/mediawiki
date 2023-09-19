@@ -27,6 +27,7 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\BotPasswordSessionProvider;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Status\Status;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IDatabase;
 

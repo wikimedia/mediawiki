@@ -6,6 +6,7 @@ use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWiki\User\User;
 use Psr\Log\NullLogger;
 
 /**

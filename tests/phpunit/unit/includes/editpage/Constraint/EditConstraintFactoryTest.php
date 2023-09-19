@@ -32,6 +32,7 @@ use MediaWiki\Logger\Spi;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\ReadOnlyMode;
 

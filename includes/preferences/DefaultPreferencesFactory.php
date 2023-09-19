@@ -46,6 +46,7 @@ use MediaWiki\Specials\SpecialWatchlist;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserOptionsManager;
@@ -61,7 +62,6 @@ use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
 use SkinFactory;
 use UnexpectedValueException;
-use User;
 use UserGroupMembership;
 use Xml;
 

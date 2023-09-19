@@ -34,7 +34,6 @@ use MWRestrictions;
 use Password;
 use PasswordFactory;
 use StatusValue;
-use User;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LBFactory;
 

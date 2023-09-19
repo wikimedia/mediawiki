@@ -5,6 +5,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
 
 /**

@@ -15,6 +15,7 @@ use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Tests\Json\JsonUnserializableSuperClass;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
+use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
 use NullStatsdDataFactory;
@@ -25,7 +26,6 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
 use TestLogger;
-use User;
 use Wikimedia\TestingAccessWrapper;
 use WikiPage;
 

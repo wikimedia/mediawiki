@@ -4445,7 +4445,7 @@ config-schema:
             receives the flag value (or values if it's an array).
             @since 1.26
             @see \PasswordPolicyChecks
-            @see \User::checkPasswordValidity()
+            @see \MediaWiki\User\User::checkPasswordValidity()
     AuthManagerConfig:
         default: null
         type:
@@ -4684,7 +4684,7 @@ config-schema:
         description: |-
             Array of usernames which may not be registered or logged in from
             Maintenance scripts can still use these
-            @see \User::MAINTENANCE_SCRIPT_USER
+            @see \MediaWiki\User\User::MAINTENANCE_SCRIPT_USER
     DefaultUserOptions:
         default:
             ccmeonemails: 0

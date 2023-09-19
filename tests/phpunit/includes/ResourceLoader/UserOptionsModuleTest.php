@@ -4,8 +4,8 @@ namespace MediaWiki\Tests\ResourceLoader;
 
 use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\UserOptionsModule;
+use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
-use User;
 
 /**
  * @covers \MediaWiki\ResourceLoader\UserOptionsModule

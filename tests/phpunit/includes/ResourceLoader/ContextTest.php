@@ -9,9 +9,9 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\ResourceLoader;
+use MediaWiki\User\User;
 use MediaWikiCoversValidator;
 use Message;
-use User;
 
 /**
  * See also:

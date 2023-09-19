@@ -31,6 +31,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Search\TitleMatcher;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 
 /**
  * Contain a class for special pages

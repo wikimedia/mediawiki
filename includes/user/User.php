@@ -20,6 +20,18 @@
  * @file
  */
 
+namespace MediaWiki\User;
+
+use AllowDynamicProperties;
+use ArrayIterator;
+use DBAccessObjectUtils;
+use Exception;
+use ExternalUserNames;
+use FatalError;
+use IDBAccessObject;
+use InvalidArgumentException;
+use LoggedOutEditToken;
+use MailAddress;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Block\AbstractBlock;
@@ -40,12 +52,26 @@ use MediaWiki\Permissions\RateLimitSubject;
 use MediaWiki\Permissions\UserAuthority;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\Session\Token;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use MediaWiki\User\UserFactory;
-use MediaWiki\User\UserIdentity;
-use MediaWiki\User\UserIdentityValue;
-use MediaWiki\User\UserRigorOptions;
+use MWCryptHash;
+use MWCryptRand;
+use MWException;
+use MWExceptionHandler;
+use PasswordFactory;
+use RequestContext;
+use RuntimeException;
+use Sanitizer;
+use stdClass;
+use UnexpectedValueException;
+use UserArray;
+use UserArrayFromResult;
+use UserCache;
+use UserGroupMembership;
+use UserMailer;
+use UserPasswordPolicy;
+use WANObjectCache;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\DebugInfo\DebugInfoTrait;
@@ -2955,7 +2981,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @deprecated since 1.37. Use CsrfTokenSet::getToken instead
 	 * @param string|string[] $salt Optional function-specific data for hashing
 	 * @param WebRequest|null $request WebRequest object to use, or null to use the global request
-	 * @return MediaWiki\Session\Token The new edit token
+	 * @return Token The new edit token
 	 */
 	public function getEditTokenObject( $salt = '', $request = null ) {
 		if ( $this->isAnon() ) {
@@ -3650,3 +3676,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		return $this->isRegistered() && !$this->isTemp();
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( User::class, 'User' );

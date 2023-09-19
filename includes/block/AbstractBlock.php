@@ -28,10 +28,10 @@ use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use Message;
 use RequestContext;
-use User;
 
 /**
  * @note Extensions should not subclass this, as MediaWiki currently does not

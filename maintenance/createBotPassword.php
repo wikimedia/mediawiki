@@ -22,6 +22,8 @@
  * @author Alex Dean <wikimedia@mostlyalex.com>
  */
 
+use MediaWiki\User\User;
+
 require_once __DIR__ . '/Maintenance.php';
 
 class CreateBotPassword extends Maintenance {

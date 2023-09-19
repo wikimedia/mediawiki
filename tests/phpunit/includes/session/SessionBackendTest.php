@@ -4,8 +4,8 @@ namespace MediaWiki\Session;
 
 use Config;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
-use User;
 use Wikimedia\TestingAccessWrapper;
 
 /**

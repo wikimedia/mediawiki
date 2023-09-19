@@ -27,7 +27,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\SpecialPage\SpecialPage;
-use User;
+use MediaWiki\User\User;
 
 /**
  * This special page lists all defined rights grants and the associated rights.

@@ -3,6 +3,7 @@
 namespace MediaWiki\Session;
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\User\User;
 use MediaWiki\User\UserNameUtils;
 use MediaWikiIntegrationTestCase;
 use TestLogger;
@@ -48,7 +49,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$provider->setHookContainer( $hookContainer );
 		$this->assertSame( $hookContainer, $priv->getHookContainer() );
 
-		$provider->invalidateSessionsForUser( new \User );
+		$provider->invalidateSessionsForUser( new User );
 
 		$this->assertSame( [], $provider->getVaryHeaders() );
 		$this->assertSame( [], $provider->getVaryCookies() );

@@ -8,11 +8,11 @@ use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\ActorStore;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserSelectQueryBuilder;
 use stdClass;
-use User;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Rdbms\IDatabase;
 

@@ -29,9 +29,9 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\User\User;
 use MediaWiki\User\UserNameUtils;
 use Psr\Log\LoggerInterface;
-use User;
 
 /**
  * A SessionProvider provides SessionInfo and support for Session

@@ -4,7 +4,7 @@ namespace MediaWiki\Hook;
 
 use EmailNotification;
 use MediaWiki\Title\Title;
-use User;
+use MediaWiki\User\User;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

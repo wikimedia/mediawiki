@@ -15,13 +15,13 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\TestUtils;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiLangTestCase;
 use Message;
 use RequestContext;
 use stdClass;
 use TestAllServiceOptionsUsed;
-use User;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 

@@ -27,7 +27,7 @@ use DerivativeContext;
 use HTMLForm;
 use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\Status\Status;
-use User;
+use MediaWiki\User\User;
 use UserBlockedError;
 
 /**

@@ -32,9 +32,9 @@ use MediaWiki\Output\OutputPage;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use RequestContext;
 use TextContent;
-use User;
 use UtfNormal;
 
 /**

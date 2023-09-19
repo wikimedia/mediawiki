@@ -9,6 +9,7 @@ use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Revision\ContributionsLookup;
 use MediaWiki\Revision\ContributionsSegment;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use Message;
@@ -28,7 +29,7 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	private static $storedRevisions;
 
 	/**
-	 * @var \User
+	 * @var User
 	 */
 	private static $testUser;
 

@@ -31,9 +31,9 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use PermissionsError;
 use Sanitizer;
-use User;
 
 /**
  * Let users change their email address.

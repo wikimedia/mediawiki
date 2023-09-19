@@ -21,6 +21,7 @@ use MediaWiki\SiteStats\SiteStatsInit;
 use MediaWiki\Storage\PageUpdateStatus;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;

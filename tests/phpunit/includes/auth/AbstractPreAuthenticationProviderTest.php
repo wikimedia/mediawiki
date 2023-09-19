@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Auth;
 
-use User;
+use MediaWiki\User\User;
 
 /**
  * @group AuthManager

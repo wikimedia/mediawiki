@@ -43,6 +43,7 @@ use MediaWiki\Specials\Contribute\ContributeFactory;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
@@ -52,7 +53,6 @@ use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserRigorOptions;
 use MWException;
 use PoolCounterWorkViaCallback;
-use User;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 

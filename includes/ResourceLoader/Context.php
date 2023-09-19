@@ -27,13 +27,13 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserRigorOptions;
 use Message;
 use MessageLocalizer;
 use MessageSpecifier;
 use Psr\Log\LoggerInterface;
-use User;
 
 /**
  * Context object that contains information about the state of a specific

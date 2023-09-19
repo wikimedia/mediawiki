@@ -23,10 +23,10 @@
 
 namespace MediaWiki\Tests\Unit;
 
+use MediaWiki\User\User;
 use MediaWikiUnitTestCase;
 use PasswordPolicyChecks;
 use PHPUnit\Framework\MockObject\MockObject;
-use User;
 
 /**
  * Split from \PasswordPolicyChecksTest integration tests

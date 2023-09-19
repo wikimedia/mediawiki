@@ -25,6 +25,7 @@
 
 use MediaWiki\Api\ApiHookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\User;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**

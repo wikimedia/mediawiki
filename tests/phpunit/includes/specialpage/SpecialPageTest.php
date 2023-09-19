@@ -3,6 +3,7 @@
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 
 /**
  * @covers SpecialPage

@@ -25,8 +25,8 @@ namespace MediaWiki\Session;
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\User\User;
 use MediaWiki\User\UserRigorOptions;
-use User;
 
 /**
  * A CookieSessionProvider persists sessions using cookies

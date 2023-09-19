@@ -24,6 +24,7 @@
 use MediaWiki\Installer\InstallException;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
+use MediaWiki\User\User;
 
 /**
  * Class for the core installer command line interface.

@@ -23,9 +23,9 @@ namespace MediaWiki\ResourceLoader;
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserRigorOptions;
-use User;
 
 /**
  * A mutable version of Context.

@@ -7,6 +7,7 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Search\TitleMatcher;
 use MediaWiki\Specials\SpecialSearch;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 
 /**
  * Test class for SpecialSearch class

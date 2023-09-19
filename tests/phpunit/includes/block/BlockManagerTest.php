@@ -8,6 +8,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\FauxResponse;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\User\User;
 use Psr\Log\NullLogger;
 use Wikimedia\TestingAccessWrapper;
 

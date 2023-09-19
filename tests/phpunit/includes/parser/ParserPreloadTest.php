@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 
 /**
  * Basic tests for Parser::getPreloadText

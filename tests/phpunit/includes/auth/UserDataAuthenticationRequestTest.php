@@ -3,6 +3,7 @@
 namespace MediaWiki\Auth;
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\User\User;
 
 /**
  * @group AuthManager
@@ -26,7 +27,7 @@ class UserDataAuthenticationRequestTest extends AuthenticationRequestTestCase {
 	 * @param \StatusValue $expect Expected return
 	 */
 	public function testPopulateUser( $email, $realname, $expect ) {
-		$user = new \User();
+		$user = new User();
 		$user->setEmail( 'default@example.com' );
 		$user->setRealName( 'Fake Name' );
 

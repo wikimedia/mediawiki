@@ -52,6 +52,7 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
@@ -60,7 +61,6 @@ use OOUI\FieldLayout;
 use OOUI\HtmlSnippet;
 use OOUI\LabelWidget;
 use OOUI\Widget;
-use User;
 use Wikimedia\IPUtils;
 use XmlSelect;
 

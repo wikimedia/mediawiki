@@ -20,6 +20,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Storage\EditResult;
+use MediaWiki\User\User;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**

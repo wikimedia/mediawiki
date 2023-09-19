@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Session;
 
+use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
-use User;
 
 /**
  * @group Session

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
 
 class MailAddressTest extends MediaWikiIntegrationTestCase {

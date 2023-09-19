@@ -25,6 +25,7 @@ use MediaWiki\Maintenance\MaintenanceParameters;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Shell\Shell;
+use MediaWiki\User\User;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 

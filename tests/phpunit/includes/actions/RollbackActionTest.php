@@ -8,10 +8,10 @@ use ErrorPageError;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 use RequestContext;
 use RollbackAction;
-use User;
 
 /**
  * @covers RollbackAction

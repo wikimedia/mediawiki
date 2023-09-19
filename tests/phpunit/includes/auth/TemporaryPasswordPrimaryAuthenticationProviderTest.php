@@ -6,6 +6,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Status\Status;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWiki\User\User;
 use MediaWiki\User\UserNameUtils;
 use PasswordFactory;
 use StatusValue;
@@ -672,7 +673,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 	}
 
 	public function testTestForAccountCreation() {
-		$user = \User::newFromName( 'foo' );
+		$user = User::newFromName( 'foo' );
 		$req = new TemporaryPasswordAuthenticationRequest();
 		$req->username = 'Foo';
 		$req->password = 'Bar';
@@ -704,7 +705,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 	public function testAccountCreation() {
 		$resetMailer = $this->hookMailer();
 
-		$user = \User::newFromName( 'Foo' );
+		$user = User::newFromName( 'Foo' );
 
 		$req = new TemporaryPasswordAuthenticationRequest();
 		$reqs = [ TemporaryPasswordAuthenticationRequest::class => $req ];
@@ -762,7 +763,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 	}
 
 	public function testAccountCreationEmail() {
-		$creator = \User::newFromName( 'Foo' );
+		$creator = User::newFromName( 'Foo' );
 
 		$user = self::getMutableTestUser()->getUser();
 		$user->setEmail( '' );

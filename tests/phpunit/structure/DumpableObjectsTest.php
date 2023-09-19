@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\User\User;
+
 /**
  * Integration test for T277618.
  *

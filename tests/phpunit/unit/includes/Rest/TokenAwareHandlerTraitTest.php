@@ -8,8 +8,8 @@ use MediaWiki\Rest\TokenAwareHandlerTrait;
 use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionProvider;
 use MediaWiki\Session\Token;
+use MediaWiki\User\User;
 use MediaWikiUnitTestCase;
-use User;
 
 /**
  * @covers \MediaWiki\Rest\TokenAwareHandlerTrait

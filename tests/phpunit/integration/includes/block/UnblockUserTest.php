@@ -5,8 +5,8 @@ namespace MediaWiki\Tests\Block;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
-use User;
 
 /**
  * @group Blocking

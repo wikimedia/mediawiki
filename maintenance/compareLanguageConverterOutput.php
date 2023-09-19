@@ -24,6 +24,7 @@
 use MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Diff\ArrayDiffFormatter;
 use Wikimedia\Diff\ComplexityException;

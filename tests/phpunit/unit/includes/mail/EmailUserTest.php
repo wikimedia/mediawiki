@@ -11,12 +11,12 @@ use MediaWiki\Mail\EmailUser;
 use MediaWiki\Mail\IEmailer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWikiUnitTestCase;
 use RuntimeException;
 use StatusValue;
-use User;
 use Wikimedia\Message\IMessageFormatterFactory;
 use Wikimedia\Message\ITextFormatter;
 

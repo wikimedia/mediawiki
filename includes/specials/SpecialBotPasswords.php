@@ -36,10 +36,10 @@ use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Status\Status;
+use MediaWiki\User\User;
 use PasswordError;
 use PasswordFactory;
 use Psr\Log\LoggerInterface;
-use User;
 
 /**
  * Let users manage bot passwords

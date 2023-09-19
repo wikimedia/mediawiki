@@ -6,8 +6,8 @@ use IContextSource;
 use Language;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use Parser;
-use User;
 
 /**
  * @since 1.18

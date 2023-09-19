@@ -2,6 +2,7 @@
 
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use Wikimedia\Parsoid\ParserTests\Test as ParserTest;
 use Wikimedia\ScopedCallback;
 

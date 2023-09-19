@@ -23,8 +23,8 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\User\User;
 use StatusValue;
-use User;
 
 /**
  * A primary authentication provider is responsible for associating the submitted

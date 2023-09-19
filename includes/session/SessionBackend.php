@@ -29,8 +29,8 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\User\User;
 use Psr\Log\LoggerInterface;
-use User;
 use Wikimedia\AtEase\AtEase;
 
 /**

@@ -28,7 +28,6 @@ use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\User\TempUser\TempUserConfig;
 use Psr\Log\LoggerInterface;
 use stdClass;
-use User;
 use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\DBQueryError;

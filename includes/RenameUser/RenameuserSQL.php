@@ -12,10 +12,10 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Specials\SpecialLog;
 use MediaWiki\Title\TitleFactory;
+use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use Psr\Log\LoggerInterface;
 use RenameUserJob;
-use User;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**

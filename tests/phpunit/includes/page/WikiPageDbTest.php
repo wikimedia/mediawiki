@@ -12,6 +12,7 @@ use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
 use PHPUnit\Framework\Assert;
 use Wikimedia\TestingAccessWrapper;

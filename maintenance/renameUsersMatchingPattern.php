@@ -5,6 +5,7 @@ use MediaWiki\RenameUser\RenameuserSQL;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\TempUser\Pattern;
+use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 
 require_once __DIR__ . '/Maintenance.php';

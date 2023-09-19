@@ -27,6 +27,7 @@ use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 
 /**
  * Fix any double redirects after moving a page.

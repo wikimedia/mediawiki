@@ -2,6 +2,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 
 /**
  * Tests for MediaWiki api.php?action=delete.

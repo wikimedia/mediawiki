@@ -3,6 +3,7 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequestUpload;
 use MediaWiki\Status\Status;
+use MediaWiki\User\User;
 
 /**
  * Backend for uploading files from chunks.

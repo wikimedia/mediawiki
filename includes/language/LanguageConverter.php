@@ -34,6 +34,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 
 /**
  * Base class for multi-variant language conversion.

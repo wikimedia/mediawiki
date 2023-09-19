@@ -3,7 +3,7 @@
 namespace MediaWiki\ChangeTags\Hook;
 
 use MediaWiki\Status\Status;
-use User;
+use MediaWiki\User\User;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

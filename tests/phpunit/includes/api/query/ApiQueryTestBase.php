@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\User\User;
 use PHPUnit\Framework\ExpectationFailedException;
 use SebastianBergmann\Comparator\ComparisonFailure;
 

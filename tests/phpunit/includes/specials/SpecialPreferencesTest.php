@@ -8,6 +8,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Specials\SpecialPreferences;
+use MediaWiki\User\User;
 use MediaWiki\User\UserOptionsManager;
 
 /**

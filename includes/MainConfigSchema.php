@@ -6925,7 +6925,7 @@ class MainConfigSchema {
 	 *
 	 * @since 1.26
 	 * @see \PasswordPolicyChecks
-	 * @see \User::checkPasswordValidity()
+	 * @see \MediaWiki\User\User::checkPasswordValidity()
 	 */
 	public const PasswordPolicy = [
 		'default' => [
@@ -7373,7 +7373,7 @@ class MainConfigSchema {
 	 * Array of usernames which may not be registered or logged in from
 	 * Maintenance scripts can still use these
 	 *
-	 * @see \User::MAINTENANCE_SCRIPT_USER
+	 * @see \MediaWiki\User\User::MAINTENANCE_SCRIPT_USER
 	 */
 	public const ReservedUsernames = [
 		'default' => [

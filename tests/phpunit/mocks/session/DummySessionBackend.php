@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Session;
 
-use User;
+use MediaWiki\User\User;
 
 /**
  * Dummy session backend

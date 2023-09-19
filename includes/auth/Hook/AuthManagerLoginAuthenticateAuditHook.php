@@ -3,7 +3,7 @@
 namespace MediaWiki\Auth\Hook;
 
 use MediaWiki\Auth\AuthenticationResponse;
-use User;
+use MediaWiki\User\User;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

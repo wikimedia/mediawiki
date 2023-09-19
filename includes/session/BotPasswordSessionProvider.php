@@ -27,7 +27,7 @@ use BotPassword;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Request\WebRequest;
-use User;
+use MediaWiki\User\User;
 
 /**
  * Session provider for bot passwords

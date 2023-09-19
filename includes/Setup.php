@@ -68,6 +68,7 @@ use MediaWiki\Settings\WikiFarmSettingsLoader;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use Psr\Log\LoggerInterface;
 use Wikimedia\RequestTimeout\RequestTimeout;
 

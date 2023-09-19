@@ -2259,6 +2259,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\User\\TempUser\\SerialProvider' => __DIR__ . '/includes/user/TempUser/SerialProvider.php',
 	'MediaWiki\\User\\TempUser\\TempUserConfig' => __DIR__ . '/includes/user/TempUser/TempUserConfig.php',
 	'MediaWiki\\User\\TempUser\\TempUserCreator' => __DIR__ . '/includes/user/TempUser/TempUserCreator.php',
+	'MediaWiki\\User\\User' => __DIR__ . '/includes/user/User.php',
 	'MediaWiki\\User\\UserEditTracker' => __DIR__ . '/includes/user/UserEditTracker.php',
 	'MediaWiki\\User\\UserFactory' => __DIR__ . '/includes/user/UserFactory.php',
 	'MediaWiki\\User\\UserGroupManager' => __DIR__ . '/includes/user/UserGroupManager.php',

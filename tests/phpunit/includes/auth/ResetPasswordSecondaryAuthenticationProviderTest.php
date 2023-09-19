@@ -6,8 +6,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\BotPasswordStore;
+use MediaWiki\User\User;
 use MediaWiki\User\UserNameUtils;
-use User;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -41,7 +41,7 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiIntegra
 
 	public function testBasics() {
 		$user = $this->createMock( User::class );
-		$user2 = new \User;
+		$user2 = new User;
 		$obj = new \stdClass;
 		$reqs = [ new \stdClass ];
 
@@ -65,7 +65,7 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiIntegra
 
 	public function testTryReset() {
 		$username = 'TestTryReset';
-		$user = \User::newFromName( $username );
+		$user = User::newFromName( $username );
 
 		$provider = $this->getMockBuilder(
 			ResetPasswordSecondaryAuthenticationProvider::class

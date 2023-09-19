@@ -25,6 +25,7 @@ require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
+use MediaWiki\User\User;
 
 /**
  * Maintenance script that resets user email.

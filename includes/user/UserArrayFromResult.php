@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\User\User;
 use Wikimedia\Rdbms\IResultWrapper;
 
 class UserArrayFromResult extends UserArray implements Countable {

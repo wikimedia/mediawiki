@@ -24,9 +24,9 @@ use Language;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MessageLocalizer;
 use Skin;
-use User;
 use WikiPage;
 
 /**

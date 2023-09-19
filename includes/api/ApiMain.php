@@ -35,6 +35,7 @@ use MediaWiki\Request\WebRequestUpload;
 use MediaWiki\Rest\HeaderParser\Origin;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\StubObject\StubGlobalUser;
+use MediaWiki\User\User;
 use MediaWiki\User\UserRigorOptions;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\WikiMap\WikiMap;

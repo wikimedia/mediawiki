@@ -2,8 +2,8 @@
 
 namespace MediaWiki\User\Hook;
 
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
-use User;
 use UserGroupMembership;
 
 /**

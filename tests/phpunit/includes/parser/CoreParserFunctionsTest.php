@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Language\RawMessage;
+use MediaWiki\User\User;
 
 /**
  * @group Database

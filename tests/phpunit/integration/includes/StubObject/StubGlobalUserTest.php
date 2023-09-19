@@ -21,6 +21,7 @@
 
 // phpcs:disable MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgUser
 use MediaWiki\StubObject\StubGlobalUser;
+use MediaWiki\User\User;
 
 /**
  * Tests the MediaWiki\StubObject\StubGlobalUser, including magic support for __get() and __set()

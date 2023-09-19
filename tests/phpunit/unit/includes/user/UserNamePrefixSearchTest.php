@@ -4,10 +4,10 @@ namespace MediaWiki\Tests\User;
 
 use InvalidArgumentException;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWiki\User\User;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWikiUnitTestCase;
-use User;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\SelectQueryBuilder;

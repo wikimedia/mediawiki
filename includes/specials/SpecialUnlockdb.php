@@ -28,7 +28,7 @@ use HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Status\Status;
-use User;
+use MediaWiki\User\User;
 use Wikimedia\AtEase\AtEase;
 
 /**

@@ -22,6 +22,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\User\User;
+
 class BlockUsers extends Maintenance {
 
 	public function __construct() {

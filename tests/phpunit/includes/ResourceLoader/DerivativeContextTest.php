@@ -7,10 +7,10 @@ use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\DerivativeContext;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWikiIntegrationTestCase;
 use ResourceLoaderTestCase;
-use User;
 
 /**
  * @group ResourceLoader

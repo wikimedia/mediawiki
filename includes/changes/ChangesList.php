@@ -35,6 +35,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
 use OOUI\IconWidget;
 use Wikimedia\Rdbms\IResultWrapper;

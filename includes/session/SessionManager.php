@@ -33,11 +33,11 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\User\User;
 use MediaWiki\User\UserNameUtils;
 use MWException;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
-use User;
 
 /**
  * This serves as the entry point to the MediaWiki session handling system.
@@ -442,7 +442,7 @@ class SessionManager implements SessionManagerInterface {
 	 * The intention is that the named account will never again be usable for
 	 * normal login (i.e. there is no way to undo the prevention of access).
 	 *
-	 * @internal For use from \User::newSystemUser only
+	 * @internal For use from \MediaWiki\User\User::newSystemUser only
 	 * @param string $username
 	 */
 	public function preventSessionsForUser( $username ) {

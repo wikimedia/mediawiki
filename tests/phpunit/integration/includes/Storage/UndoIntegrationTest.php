@@ -11,9 +11,9 @@ use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 use RequestContext;
-use User;
 use WikiPage;
 use WikitextContent;
 

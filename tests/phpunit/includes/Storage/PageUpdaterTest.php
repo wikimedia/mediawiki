@@ -15,13 +15,13 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWikiIntegrationTestCase;
 use Message;
 use ParserOptions;
 use RecentChange;
 use TextContent;
-use User;
 use WikiPage;
 use WikitextContent;
 

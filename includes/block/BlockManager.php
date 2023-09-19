@@ -28,13 +28,13 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Request\WebResponse;
+use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityUtils;
 use Message;
 use MWCryptHash;
 use Psr\Log\LoggerInterface;
-use User;
 use Wikimedia\IPSet;
 use Wikimedia\IPUtils;
 

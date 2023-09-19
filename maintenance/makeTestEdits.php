@@ -23,6 +23,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 
 /**
  * Make test edits for a user to populate a test wiki

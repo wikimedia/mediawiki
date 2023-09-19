@@ -30,11 +30,11 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserTimeCorrection;
 use Message;
 use RequestContext;
-use User;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**

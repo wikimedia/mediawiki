@@ -36,6 +36,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\MagicWord;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 
 /**
  * Base implementation for content objects.

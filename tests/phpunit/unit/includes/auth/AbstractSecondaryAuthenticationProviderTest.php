@@ -6,6 +6,7 @@ use MediaWiki\Auth\AbstractSecondaryAuthenticationProvider;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\User\User;
 
 /**
  * @group AuthManager
@@ -13,7 +14,7 @@ use MediaWiki\Auth\AuthManager;
  */
 class AbstractSecondaryAuthenticationProviderTest extends \MediaWikiUnitTestCase {
 	public function testAbstractSecondaryAuthenticationProvider() {
-		$user = $this->createMock( \User::class );
+		$user = $this->createMock( User::class );
 
 		$provider = $this->getMockForAbstractClass( AbstractSecondaryAuthenticationProvider::class );
 

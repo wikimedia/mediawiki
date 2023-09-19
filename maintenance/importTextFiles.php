@@ -23,6 +23,7 @@
 
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 
 require_once __DIR__ . '/Maintenance.php';
 

@@ -27,6 +27,7 @@ require_once __DIR__ . '/Maintenance.php';
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ActorMigration;
+use MediaWiki\User\User;
 
 /**
  * Maintenance script that deletes all pages in the MediaWiki namespace

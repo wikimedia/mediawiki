@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Session;
 
+use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\LogLevel;
-use User;
 use Wikimedia\TestingAccessWrapper;
 
 /**

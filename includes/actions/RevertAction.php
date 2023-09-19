@@ -26,6 +26,7 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Status\Status;
+use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
 
 /**

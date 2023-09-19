@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Status\Status;
+use MediaWiki\User\User;
 
 /**
  * @group Database

@@ -42,6 +42,7 @@ use MediaWiki\Session\SessionManager;
 use MediaWiki\Status\Status;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use Message;
 use MWException;
 use PermissionsError;
@@ -50,7 +51,6 @@ use RequestContext;
 use Sanitizer;
 use Skin;
 use StatusValue;
-use User;
 use Wikimedia\ScopedCallback;
 
 /**

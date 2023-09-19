@@ -4,9 +4,9 @@ namespace MediaWiki\Auth;
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
+use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MultiConfig;
-use User;
 use Wikimedia\TestingAccessWrapper;
 
 /**

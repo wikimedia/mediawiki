@@ -22,6 +22,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Status\Status;
+use MediaWiki\User\User;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 

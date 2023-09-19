@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 
 /**
  * @since 1.31

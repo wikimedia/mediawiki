@@ -3,7 +3,7 @@
 namespace MediaWiki\Page\Hook;
 
 use MediaWiki\Status\Status;
-use User;
+use MediaWiki\User\User;
 use WikiPage;
 
 /**

@@ -28,6 +28,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 
 /**
  * Job to update link tables for rerendered wiki pages.

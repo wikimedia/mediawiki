@@ -22,6 +22,7 @@
 
 use MediaWiki\Specials\SpecialEmailUser;
 use MediaWiki\Status\Status;
+use MediaWiki\User\User;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**

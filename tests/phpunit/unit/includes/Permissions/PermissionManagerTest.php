@@ -16,10 +16,10 @@ use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\User\TempUser\RealTempUserConfig;
+use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWikiUnitTestCase;
-use User;
 use UserCache;
 use Wikimedia\TestingAccessWrapper;
 

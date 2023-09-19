@@ -24,8 +24,8 @@
 namespace MediaWiki\Session;
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\User;
 use MediaWiki\User\UserRigorOptions;
-use User;
 
 /**
  * Object holding data about a session's user

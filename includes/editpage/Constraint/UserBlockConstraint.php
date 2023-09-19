@@ -22,8 +22,8 @@ namespace MediaWiki\EditPage\Constraint;
 
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\User\User;
 use StatusValue;
-use User;
 
 /**
  * Verify user permissions:

@@ -29,10 +29,10 @@ use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\User\User;
 use MediaWiki\User\UserOptionsManager;
 use PermissionsError;
 use PreferencesFormOOUI;
-use User;
 
 /**
  * A special page that allows users to change their preferences
