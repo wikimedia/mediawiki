@@ -29,7 +29,7 @@ class SpecialContribute extends IncludableSpecialPage {
 		$this->outputHeader();
 
 		$out = $this->getOutput();
-		$out->setPageTitle( $this->msg( 'contribute-title', $this->getUser()->getName() )->escaped() );
+		$out->setPageTitleMsg( $this->msg( 'contribute-title', $this->getUser()->getName() ) );
 		$out->addModuleStyles( [
 			'mediawiki.special'
 		] );
