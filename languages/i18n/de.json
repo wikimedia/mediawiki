@@ -172,7 +172,7 @@
 	"tog-prefershttps": "Immer eine sichere Verbindung benutzen, solange ich angemeldet bin",
 	"tog-showrollbackconfirmation": "Bei Klick auf „kommentarlos zurücksetzen“ eine Sicherheitsabfrage anzeigen",
 	"tog-requireemail": "E-Mail zum Zurücksetzen des Passworts nur senden, wenn sowohl die E-Mail-Adresse als auch der Benutzername angegeben wurden.",
-	"tog-forcesafemode": "Immer den [[mw:Manual:Safemode|sicheren Modus]] aktivieren",
+	"tog-forcesafemode": "Immer den [[mw:Manual:Safemode|abgesicherten Modus]] aktivieren",
 	"underline-always": "immer",
 	"underline-never": "nie",
 	"underline-default": "abhängig von der Benutzeroberfläche oder Browsereinstellung",

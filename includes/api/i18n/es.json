@@ -1460,7 +1460,7 @@
 	"api-help-license": "Licencia: [[$1|$2]]",
 	"api-help-license-noname": "Licencia: [[$1|Ver enlace]]",
 	"api-help-license-unknown": "Licencia: <span class=\"apihelp-unknown\">desconocida</span>",
-	"api-help-parameters": "{{PLURAL:$1|Parámetro|Parámetros}}:",
+	"api-help-parameters": "{{PLURAL:$1|Parámetro específico|Parámetros específicos}}:",
 	"api-help-param-deprecated": "En desuso.",
 	"api-help-param-internal": "Interno.",
 	"api-help-datatypes-header": "Tipos de datos",

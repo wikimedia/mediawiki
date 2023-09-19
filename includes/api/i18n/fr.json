@@ -1633,6 +1633,7 @@
 	"api-help-license-noname": "Licence : [[$1|Voir le lien]]",
 	"api-help-license-unknown": "Licence : <span class=\"apihelp-unknown\">inconnue</span>",
 	"api-help-parameters": "Paramètre{{PLURAL:$1||s}} :",
+	"api-help-parameters-note": "D'autres paramètres généraux sont disponibles.",
 	"api-help-param-deprecated": "Obsolète.",
 	"api-help-param-deprecated-label": "obsolète",
 	"api-help-param-internal": "Interne.",
