@@ -14,6 +14,7 @@
 	"rest-nonexistent-revision": "Den angivna sidversionen ($1) finns inte",
 	"rest-nonexistent-user": "Den angivna användaren ($1) finns inte",
 	"rest-invalid-user": "Det angivna användarnamnet ($1) är ogiltigt",
+	"rest-unsupported-content-type": "Innehållstyp som inte stöds: $1",
 	"rest-permission-denied-anon": "Inte tillgänglig för anonyma användare",
 	"rest-permission-denied-title": "Användaren har inte behörighet att läsa titeln ($1)",
 	"rest-permission-denied-revision": "Användaren har inte åtkomst till den begärda sidversionen ($1).",
@@ -38,11 +39,14 @@
 	"rest-bad-json-body": "Dåligt innehåll i begäran, måste var ett JSON-objekt.",
 	"rest-json-body-parse-error": "Misslyckades att tolka innehållet i begäran som JSON: $1",
 	"rest-missing-body-field": "Det obligatoriskt fältet \"$1\" saknas från innehållet i begäran.",
+	"rest-extraneous-body-fields": "Främmande fält hittades i förfrågans innehåll: $1",
 	"rest-bad-content-model": "Dålig innehållsmodell: $1",
 	"rest-update-cannot-create-page": "Sidan \"$1\" kan inte skapas eftersom den redan finns. För att uppdatera den befintliga sidan behöver du ange grundversionens ID i strukturen under nyckeln \"latest\" inuti innehållet i begäran.",
 	"rest-extraneous-csrf-token": "Främmande CSRF-nyckel hittades. CSRF-nycklar får inte användas tillsammans med autentiseringsmekaniker som OAuth som inte är säker mot CSRF-attacker.",
 	"rest-cannot-load-file": "Filen för titeln \"$1\" kan inte läsas in.",
 	"rest-cross-origin-anon-write": "Anonyma skrivbegäran från andra webbplatser tillåts inte",
 	"rest-requires-safe-against-csrf": "Denna slutpunkt kräver en CSRF-säker sessionsleverantör.",
-	"rest-badtoken": "Den angivna CSRF-nyckeln är ogiltig."
+	"rest-badtoken": "Den angivna CSRF-nyckeln är ogiltig.",
+	"rest-badtoken-missing": "Parametern <var>token</var> krävs om inte en CSRF-säker autentiseringsmetod används.",
+	"rest-badtoken-nosession": "CSRF-fel - ingen session."
 }
