@@ -93,7 +93,7 @@
 	"nstab-main": "Pagina",
 	"nstab-category": "Categoria",
 	"mainpage-nstab": "El primero pagina",
-	"acct_creation_throttle_hit": "Ya crea ya {{PLURAL:$1|un cuenta registro|$1 maga cuenta registro}} el maga visita de este wiki usando el de uste direccion de IP  en el ultimo dia. Entonces, ya sobra ya na maximo numero que ta puede permiti el sistema para crea cuenta. Por causa de este razon, no puede mas crea nuevo cuenta usando el de uste direccion de IP este maga tiempo.",
+	"acct_creation_throttle_hit": "Ya crea ya {{PLURAL:$1|un cuenta registro|$1 maga cuenta registro}} el maga visita de este wiki usando el de uste direccion de IP en el ultimo dia. Entonces, ya sobra ya na maximo numero que ta puede permiti el sistema para crea cuenta. Por causa de este razon, no puede mas crea nuevo cuenta usando el de uste direccion de IP este maga tiempo.",
 	"accountcreated": "El cuenta registro del usuario es creando",
 	"accountcreatedtext": "Creao ya el cuenta registro por usuario $1.",
 	"changepassword": "Cambia con el contraseña",

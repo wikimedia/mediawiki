@@ -1818,7 +1818,7 @@
 	"uploadscripted": "此檔案包含可能會被網頁瀏覽器錯誤執行的 HTML 或 Script。",
 	"upload-scripted-pi-callback": "無法上傳包含 XML-stylesheet 處理命令的檔案。",
 	"upload-scripted-dtd": "無法上傳內含非標準 DTD 宣告的 SVG 檔案。",
-	"uploaded-script-svg": "於已上傳的 SVG 檔案中找到可程式的腳本標籤 \"$1\"。",
+	"uploaded-script-svg": "於已上傳的 SVG 檔案中找到可編寫腳本的標籤 \"$1\"。",
 	"uploaded-hostile-svg": "於已上傳的 SVG 檔案的樣式標籤中找到不安全的 CSS。",
 	"uploaded-event-handler-on-svg": "不允許在 SVG 檔案設定 event-handler 屬性 <code>$1=\"$2\"</code>。",
 	"uploaded-href-attribute-svg": "<a> 元素僅可用來連結（href）內嵌檔案（data:）、超文本傳輸協定（http://）、超文本傳輸安全協定（https://），或是片段（#，相同文件）目標。對於其它像是 <image> 元素僅允許內嵌檔案和片段。嘗試當匯出您的 SVG 時嵌入圖片。找尋<code>&lt;$1 $2=\"$3\"&gt;</code>.",

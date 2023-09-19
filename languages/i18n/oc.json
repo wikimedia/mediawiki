@@ -1309,7 +1309,7 @@
 	"action-editcontentmodel": "Editar lo modèl de contengut d'una pagina",
 	"action-managechangetags": "Crear e (des)activar d'etiquetas",
 	"action-applychangetags": "Aplicar las etiquetas amb los vòstres cambiaments",
-	"action-changetags": "Apondre e suprimir arbitràriament d'etiquetas  a las revisions individualas e a las entradas de jornal.",
+	"action-changetags": "Apondre e suprimir arbitràriament d'etiquetas a las revisions individualas e a las entradas de jornal.",
 	"action-deletechangetags": "Suprimir d'etiquetas dempuèi la basa de donadas",
 	"action-purge": "purgar aquesta pagina",
 	"nchanges": "$1 {{PLURAL:$1|cambiament|cambiaments}}",

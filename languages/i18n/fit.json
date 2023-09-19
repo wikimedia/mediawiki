@@ -7,7 +7,8 @@
 			"Palmtree222",
 			"Pxos",
 			"Pyscowicz",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Linkitten alleviivaus:",
@@ -2070,7 +2071,7 @@
 	"allinnamespace": "Kaikki sivut nimiavaruuessa $1",
 	"allpagessubmit": "Hae",
 	"allpagesprefix": "Sivut, jokka alkavat prefiksilä:",
-	"allpagesbadtitle": "Annettu sivun nimi oli kelvoton tai siinä oli etuliite, joka tarkoittaa toista wikiprujektia tai toisenkielistä wikiä.\nSivun nimessä on voinu olla yksi tai usseempia merkkejä, jokka  ole sallittuja sivun nimessä.",
+	"allpagesbadtitle": "Annettu sivun nimi oli kelvoton tai siinä oli etuliite, joka tarkoittaa toista wikiprujektia tai toisenkielistä wikiä.\nSivun nimessä on voinu olla yksi tai usseempia merkkejä, jokka ole sallittuja sivun nimessä.",
 	"allpages-bad-ns": "{{GRAMMAR:inessive|{{SITENAME}}}} ei ole nimiavaruutta ”$1”.",
 	"allpages-hide-redirects": "Piilota ohjaukset",
 	"categories": "Katekuurit",

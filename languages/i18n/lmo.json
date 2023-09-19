@@ -2091,7 +2091,7 @@
 	"apihelp-no-such-module": "El modol \"$1\" l'è stad minga trovad..",
 	"apisandbox": "Pagina de proeuva API",
 	"apisandbox-jsonly": "A gh'è de besogn del Javascript per doprà la pagina de proeuva API.",
-	"apisandbox-intro": "Dovra questa pagina chì per sperimentà i <strong>web service API  MediaWiki</strong>.\nPer savénn pussee de l'utilizzazion de API, varda la [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page|documentazzion API]]. Esempi: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query ricerca d'on titolo dona pagina che la corrispond a ona certa parolla ciav]. Scerniss foeura un'azzion per vedé pussee de esempi. \n\nNota che, anca se questa pagina chì la serviss de provà, i azzion che te feet i podarissen fàgh di cambiament al wiki.",
+	"apisandbox-intro": "Dovra questa pagina chì per sperimentà i <strong>web service API MediaWiki</strong>.\nPer savénn pussee de l'utilizzazion de API, varda la [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page|documentazzion API]]. Esempi: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query ricerca d'on titolo dona pagina che la corrispond a ona certa parolla ciav]. Scerniss foeura un'azzion per vedé pussee de esempi. \n\nNota che, anca se questa pagina chì la serviss de provà, i azzion che te feet i podarissen fàgh di cambiament al wiki.",
 	"apisandbox-submit": "Fà la richiesta",
 	"apisandbox-reset": "Neta",
 	"apisandbox-retry": "Proeuva an'mò",

@@ -1128,7 +1128,7 @@
 	"action-suppressionlog": "seall an loga prìobhaideach seo",
 	"action-block": "bac an cleachdaiche seo o dheasachadh",
 	"action-protect": "atharraich leibheil dìon na duilleige seo",
-	"action-rollback": "roilig na h-atharraichean leis a' chleachdaiche mu dheireadh air duilleag sònraichte a  air ais gu luath",
+	"action-rollback": "roilig na h-atharraichean leis a' chleachdaiche mu dheireadh air duilleag sònraichte a air ais gu luath",
 	"action-import": "ion-phortaich duilleagan o uicidh eile",
 	"action-importupload": "ion-phortaich duilleagan o luchdadh suas faidhle",
 	"action-patrol": "cuir comharra freiceadain ri deasachaidhean càich",

@@ -4,13 +4,14 @@
 			"Jojit fb",
 			"LR Guanzon",
 			"Leeheonjin",
-			"Macofe"
+			"Macofe",
+			"Amire80"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Mga Kasulatan]]\n* [[mw:Special:MyLanguage/API:FAQ|Mga Katanungan]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Listahan ng mga Liham]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Mga API ng Anunsyo]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Mga Bug & Kahilingan]\n</div>\n<strong>Katayuan:</strong> Lahat ng mga tampok na ipinapakita sa pahinang ito ay dapat na gumagana, ngunit ang API ay nasa aktibong pagbuo pa, at maaaring magbago ng kahit anong oras. Mag-subscribe sa [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ the mediawiki-api-announce listahan ng mga liham] para sa abiso ng mga update.\n\n<strong>Mga kahilingan sa mga kamalian:</strong> Kapag ang mga kahilingan sa mga kamalian ay ipinadala sa API, mayroong isang HTTP header na maipapadala na may susing \"MediaWiki-API-Error\" at ang parehong halaga ng ulo at ng kodigo ng kamalian na ipinapadala pabalik ay maitatakda sa parehas na halaga. Para sa karagdagang impormasyon, tingnan ang [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Mga kamalian at babala]].\n\n<strong>Pagsubok:</strong> Para sa madaling pagsubok ng mga kahilingan sa API, tingnan ang [[Special:ApiSandbox]].",
 	"apihelp-main-param-action": "Aling kilos ang gagawin.",
 	"apihelp-main-param-format": "Ang format ng kalalabasan.",
-	"apihelp-main-param-maxlag": "Ang pinakamataas na pagkahuli ay magagamit kapag ang MediaWiki ay nakalagay sa isang database na kinopya ng isang kumpol. Para magligtas ng mga kilos na nagdadahilan sa mas marami pang pagkahuli, ang parametrong ito ay maaaring gawin na ang kliyente ay maghintay hanggang ang pagkahuli ay mas kaunti sa tinukoy na halaga. Kung sakaling magkakaroon ng maraming pagkahuli, ang kodigo ng pagkakamaling <samp>maxlag</samp> ay ibabalik na may mensaheng katulad ng <samp>Naghihintay sa  $host: $lag segundong nahuli</samp>.<br />Tingnan ang [[mw:Special:MyLanguage/Manual:Maxlag_parameter|Manual: Maxlag parameter]] para sa karagdagang impormasyon.",
+	"apihelp-main-param-maxlag": "Ang pinakamataas na pagkahuli ay magagamit kapag ang MediaWiki ay nakalagay sa isang database na kinopya ng isang kumpol. Para magligtas ng mga kilos na nagdadahilan sa mas marami pang pagkahuli, ang parametrong ito ay maaaring gawin na ang kliyente ay maghintay hanggang ang pagkahuli ay mas kaunti sa tinukoy na halaga. Kung sakaling magkakaroon ng maraming pagkahuli, ang kodigo ng pagkakamaling <samp>maxlag</samp> ay ibabalik na may mensaheng katulad ng <samp>Naghihintay sa $host: $lag segundong nahuli</samp>.<br />Tingnan ang [[mw:Special:MyLanguage/Manual:Maxlag_parameter|Manual: Maxlag parameter]] para sa karagdagang impormasyon.",
 	"apihelp-feedrecentchanges-example-simple": "Ipakit ang mga kamakailangang pagbabago.",
 	"apihelp-feedrecentchanges-example-30days": "Ipakita ang mga huling pagbabago sa loob para sa 30 araw.",
 	"apihelp-help-example-main": "Tulong para sa pangunahing modulo.",

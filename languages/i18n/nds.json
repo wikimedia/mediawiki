@@ -1699,7 +1699,7 @@
 	"common.css": "/** CSS-Kood hier binnen warrt för all Stilvörlagen (Skins) inbunnen */",
 	"anonymous": "{{PLURAL:$1|Anonym Bruker|Anonyme Brukers}} vun {{SITENAME}}",
 	"siteuser": "{{SITENAME}}-Bruker $1",
-	"anonuser": "{{SITENAME}} anonym  Bruker user $1",
+	"anonuser": "{{SITENAME}} anonym Bruker user $1",
 	"lastmodifiedatby": "Disse Siet weer dat letzte Maal $2, $1 vun $3 ännert.",
 	"othercontribs": "Grünnt op Arbeid vun $1.",
 	"others": "annere",

@@ -5,11 +5,12 @@
 			"Balajijagadesh",
 			"ElangoRamanujam",
 			"Info-farmer",
-			"கலைவாணன்"
+			"கலைவாணன்",
+			"Amire80"
 		]
 	},
 	"apihelp-main-param-action": "எச்செயலை செயற்படுத்த",
-	"apihelp-main-param-format": "பெற விரும்பும்  கோப்பு வடிவம்",
+	"apihelp-main-param-format": "பெற விரும்பும் கோப்பு வடிவம்",
 	"apihelp-main-param-requestid": "இங்கு கொடுக்கப்படும் மதிப்பானது, விளைவில் இணையும். கோரிக்கைகளை வேறுபடுத்தப் பயன்படலாம்.",
 	"apihelp-block-param-reason": "தடைக்கான காரணம்.",
 	"apihelp-block-param-nocreate": "கணக்குகள் தொடங்குவதைத் தடு.",

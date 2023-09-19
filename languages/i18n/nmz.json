@@ -209,7 +209,7 @@
 	"preview": "Nyan saa",
 	"showpreview": "Werii noogrb",
 	"showdiff": "Werii lagiib",
-	"anoneditwarning": "<strong>Mug-byen:</strong> ba' jib l'nin. Kaʋ lagi ɦii, baweena ba'ɦa  nyan b'IP. Ka-b<strong>[$1 jihb nin]</strong> la <strong>[$2 goor b'hidr]</strong>, ' lagiib ba l'san b'hidr noɦn faam.",
+	"anoneditwarning": "<strong>Mug-byen:</strong> ba' jib l'nin. Kaʋ lagi ɦii, baweena ba'ɦa nyan b'IP. Ka-b<strong>[$1 jihb nin]</strong> la <strong>[$2 goor b'hidr]</strong>, ' lagiib ba l'san b'hidr noɦn faam.",
 	"blockedtext": "<strong>B'hidr la b' IP adrɛsŋu ba' kewmn <strong> \n\nkewmii ba na $1 hera_b.\n l'bar-n <em>$2</em> ka'\n\n* kewmii baɦdgm: $8\n* kewmii diɦm: $6\n* kewm kalaŋa : $7\n\nBa-b be b'gbam $1 la bii jemb [[{{MediaWiki:Grouppage-sysop}}|ŋmɛɛɦeedtba]] na sɔgiiga.\nBa'-b bee b'zaŋ takŋa ke na « {{int:emailuser}} » ka l' ba na b' tolgm gwɛɛt ba' bebeer [[Special:Preferences|préférences]] la' welee bebeer tolgm gwɛɛtii ba' kan.\nB' IP adrɛɛŋu ba na $3 n b' kewm hidr nni nº $5.\nBiir jugun gwɛɛt biɦ b' wɛɛt gbamb man.",
 	"loginreqlink": "jib l'nin",
 	"newarticletext": "Wadga b'tahgd kee kpah kan saa.\nKa-b bona b'hɛkaa,hoor ʋadgun(nyan[$1 wadga tɔrgm] tɔrgm boolm).\nKalbana bah loh na b'dan nah, lee kilkn ŋmɛɛtgm<strong>kaan</strong> Takŋa jugun.",

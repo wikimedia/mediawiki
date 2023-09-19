@@ -2846,7 +2846,7 @@
 	"allmessagesname": "ჯოხო",
 	"allmessagesdefault": "გინაფაშ სტანდარტულ ტექსტი",
 	"allmessagescurrent": "მიმალი ტექსტი",
-	"allmessagestext": "თენა რე სისტემურ გინაფეფიშ ერკებული „MediaWiki\" ჯოხოეფიშ ოფირჩას.\nქორთხინთ გენშართით  [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation ლოკალიზაციაშ ემაჭარალ] ხასჷლაშა [https://translatewiki.net translatewiki.net] პროექტიშა, ქუგონებჷნა MediaWiki ლოკალიზაციაშა თქვან თიაშ მიშაღალა-და.",
+	"allmessagestext": "თენა რე სისტემურ გინაფეფიშ ერკებული „MediaWiki\" ჯოხოეფიშ ოფირჩას.\nქორთხინთ გენშართით [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation ლოკალიზაციაშ ემაჭარალ] ხასჷლაშა [https://translatewiki.net translatewiki.net] პროექტიშა, ქუგონებჷნა MediaWiki ლოკალიზაციაშა თქვან თიაშ მიშაღალა-და.",
 	"allmessages-not-supported-database": "ათე ხასჷლაშ გჷმორინაფა ვეშილებე, თიშ გეშა, ნამჷ-და\n<strong>$wgUseDatabaseMessages</strong> გოთიშილი რე.",
 	"allmessages-filter-legend": "ტკიბირი",
 	"allmessages-filter": "ტკიბირი თირუეფიშ სტატუსით:",

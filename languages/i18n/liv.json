@@ -364,7 +364,7 @@
 	"watchlist": "Iļ-vaņtlimiz nimkēra",
 	"mywatchlist": "Min iļ-vaņtlimiz nimkēra",
 	"watchlistfor2": "Kȭlbatijiz $1 ($2) pierāst",
-	"addedwatchtext": "Lēḑ \"[[:$1]]\" um sin [[Special:Watchlist|iļ-vaņtlimiz nimkērrõz]] jūrõ pandõd. Jeddõpēḑõn tulbõd mõitõkst sīe līed pǟl ja sīenkõks sidtõd nõvpidāmiz-līed pǟl sugõbõd iļ-vaņtlimiz nimkērrõz  āt [[Special:RecentChanges|perrizt mõitõkst līed pǟl]]  kēratõd  '''razīz''' kēraks.",
+	"addedwatchtext": "Lēḑ \"[[:$1]]\" um sin [[Special:Watchlist|iļ-vaņtlimiz nimkērrõz]] jūrõ pandõd. Jeddõpēḑõn tulbõd mõitõkst sīe līed pǟl ja sīenkõks sidtõd nõvpidāmiz-līed pǟl sugõbõd iļ-vaņtlimiz nimkērrõz āt [[Special:RecentChanges|perrizt mõitõkst līed pǟl]] kēratõd '''razīz''' kēraks.",
 	"removedwatchtext": "Lēḑ \"[[:$1]]\" um [[Special:Watchlist|iļ-vaņtlimiz nimkērast]] jarā viedtõd.",
 	"watch": "Vaņțõl iļ sīe",
 	"watchthispage": "Vaņ iļ siedā līedpūoltõ",
