@@ -86,12 +86,12 @@ class MediaLinksHandler extends SimpleHandler {
 
 		// @todo: add continuation if too many links are found
 		$results = $this->getDbResults( $page->getId() );
-		if ( count( $results ) > self::MAX_NUM_LINKS ) {
+		if ( count( $results ) > $this->getMaxNumLinks() ) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-media-too-many-links' )
 					->plaintextParams( $title )
-					->numParams( self::MAX_NUM_LINKS ),
-				500
+					->numParams( $this->getMaxNumLinks() ),
+				400
 			);
 		}
 		$response = $this->processDbResults( $results );
@@ -108,7 +108,7 @@ class MediaLinksHandler extends SimpleHandler {
 			->from( 'imagelinks' )
 			->where( [ 'il_from' => $pageId ] )
 			->orderBy( 'il_to' )
-			->limit( self::MAX_NUM_LINKS + 1 )
+			->limit( $this->getMaxNumLinks() + 1 )
 			->caller( __METHOD__ )->fetchFieldValues();
 	}
 
@@ -192,5 +192,14 @@ class MediaLinksHandler extends SimpleHandler {
 	 */
 	protected function hasRepresentation() {
 		return (bool)$this->getPage();
+	}
+
+	/**
+	 * For testing
+	 *
+	 * @unstable
+	 */
+	protected function getMaxNumLinks(): int {
+		return self::MAX_NUM_LINKS;
 	}
 }
