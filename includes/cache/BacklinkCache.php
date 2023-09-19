@@ -257,11 +257,6 @@ class BacklinkCache {
 
 		switch ( $table ) {
 			case 'pagelinks':
-				$queryBuilder->where( [
-					"{$prefix}_namespace" => $this->page->getNamespace(),
-					"{$prefix}_title" => $this->page->getDBkey(),
-				] );
-				break;
 			case 'templatelinks':
 				$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
 				$queryBuilder->where(
