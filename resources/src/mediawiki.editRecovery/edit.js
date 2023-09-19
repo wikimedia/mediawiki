@@ -111,8 +111,9 @@ function loadData( pageData ) {
 			// Other OOUI widgets.
 			field.setValue( pageData[ fieldNamePrefix + fieldName ], field );
 		} else if ( field.nodeName === 'TEXTAREA' ) {
-			// Text areas.
+			// Textareas (also reset caret location to top).
 			$field.textSelection( 'setContents', pageData[ fieldNamePrefix + fieldName ] );
+			$field.textSelection( 'setSelection' );
 		} else {
 			// Anything else.
 			field.value = pageData[ fieldNamePrefix + fieldName ];
