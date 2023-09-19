@@ -117,22 +117,26 @@ class Parser {
 	public const SFH_OBJECT_ARGS = 2;
 
 	# Constants needed for external link processing
-	# Everything except bracket, space, or control characters
-	# \p{Zs} is unicode 'separator, space' category. It covers the space 0x20
-	# as well as U+3000 is IDEOGRAPHIC SPACE for T21052
-	# \x{FFFD} is the Unicode replacement character, which the HTML5 spec
-	# uses to replace invalid HTML characters.
+	/**
+	 * Everything except bracket, space, or control characters.
+	 * \p{Zs} is unicode 'separator, space' category. It covers the space 0x20
+	 * as well as U+3000 is IDEOGRAPHIC SPACE for T21052.
+	 * \x{FFFD} is the Unicode replacement character, which the HTML5 spec
+	 * uses to replace invalid HTML characters.
+	 */
 	public const EXT_LINK_URL_CLASS = '[^][<>"\\x00-\\x20\\x7F\p{Zs}\x{FFFD}]';
-	# Simplified expression to match an IPv4 or IPv6 address, or
-	# at least one character of a host name (embeds EXT_LINK_URL_CLASS)
+	/**
+	 * Simplified expression to match an IPv4 or IPv6 address, or
+	 * at least one character of a host name (embeds Parser::EXT_LINK_URL_CLASS)
+	 */
 	// phpcs:ignore Generic.Files.LineLength
 	private const EXT_LINK_ADDR = '(?:[0-9.]+|\\[(?i:[0-9a-f:.]+)\\]|[^][<>"\\x00-\\x20\\x7F\p{Zs}\x{FFFD}])';
-	# RegExp to make image URLs (embeds IPv6 part of EXT_LINK_ADDR)
+	/** RegExp to make image URLs (embeds IPv6 part of Parser::EXT_LINK_ADDR) */
 	// phpcs:ignore Generic.Files.LineLength
 	private const EXT_IMAGE_REGEX = '/^(http:\/\/|https:\/\/)((?:\\[(?i:[0-9a-f:.]+)\\])?[^][<>"\\x00-\\x20\\x7F\p{Zs}\x{FFFD}]+)
 		\\/([A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF]+)\\.((?i)gif|png|jpg|jpeg)$/Sxu';
 
-	# Regular expression for a non-newline space
+	/** Regular expression for a non-newline space */
 	private const SPACE_NOT_NL = '(?:\t|&nbsp;|&\#0*160;|&\#[Xx]0*[Aa]0;|\p{Zs})';
 
 	/**
@@ -142,11 +146,16 @@ class Parser {
 	public const PTD_FOR_INCLUSION = Preprocessor::DOM_FOR_INCLUSION;
 
 	# Allowed values for $this->mOutputType
-	# Parameter to startExternalParse().
-	public const OT_HTML = 1; # like parse()
-	public const OT_WIKI = 2; # like preSaveTransform()
-	public const OT_PREPROCESS = 3; # like preprocess()
-	# like extractSections() - portions of the original are returned unchanged.
+	/** Output type: like Parser::parse() */
+	public const OT_HTML = 1;
+	/** Output type: like Parser::preSaveTransform() */
+	public const OT_WIKI = 2;
+	/** Output type: like Parser::preprocess() */
+	public const OT_PREPROCESS = 3;
+	/**
+	 * Output type: like Parser::extractSections() - portions of the
+	 * original are returned unchanged.
+	 */
 	public const OT_PLAIN = 4;
 
 	/**
@@ -195,88 +204,57 @@ class Parser {
 	private const TOC_PLACEHOLDER_REGEX = '/<meta\\b[^>]*\\bproperty\\s*=\\s*"mw:PageProp\\/toc"[^>]*\\/>/';
 
 	# Persistent:
-	private $mTagHooks = [];
-	private $mFunctionHooks = [];
-	private $mFunctionSynonyms = [ 0 => [], 1 => [] ];
-	private $mStripList = [];
-	private $mVarCache = [];
-	private $mImageParams = [];
-	private $mImageParamsMagicArray = [];
+	/** @var array<string,callable> */
+	private array $mTagHooks = [];
+	/** @var array<string,array{0:callable,1:int}> */
+	private array $mFunctionHooks = [];
+	/** @var array<int,array<string,string>> */
+	private array $mFunctionSynonyms = [ 0 => [], 1 => [] ];
+	/** @var string[] */
+	private array $mStripList = [];
+	/** @var array<string,string> */
+	private array $mVarCache = [];
+	/** @var array<string,array<string,string[]>> */
+	private array $mImageParams = [];
+	/** @var array<string,MagicWordArray> */
+	private array $mImageParamsMagicArray = [];
 	/** @deprecated since 1.35 */
 	public $mMarkerIndex = 0;
 
 	# Initialised by initializeVariables()
-
-	/**
-	 * @var MagicWordArray
-	 */
-	private $mVariables;
-
-	/**
-	 * @var MagicWordArray
-	 */
-	private $mSubstWords;
+	private MagicWordArray $mVariables;
+	private MagicWordArray $mSubstWords;
 
 	# Initialised in constructor
-	private $mExtLinkBracketedRegex;
-
-	/**
-	 * Initialized in constructor
-	 *
-	 * @var UrlUtils
-	 */
-	private $urlUtils;
-
-	# Initialized in constructor
-	/**
-	 * @var Preprocessor
-	 */
-	private $mPreprocessor;
+	private string $mExtLinkBracketedRegex;
+	private UrlUtils $urlUtils;
+	private Preprocessor $mPreprocessor;
 
 	# Cleared with clearState():
-	/**
-	 * @var ParserOutput
-	 */
-	private $mOutput;
-	private $mAutonumber;
-
-	/**
-	 * @var StripState
-	 */
-	private $mStripState;
-
-	/**
-	 * @var LinkHolderArray
-	 */
-	private $mLinkHolders;
-
-	/**
-	 * @var int
-	 */
-	private $mLinkID;
-	private $mIncludeSizes;
+	private ParserOutput $mOutput;
+	private int $mAutonumber = 0;
+	private StripState $mStripState;
+	private LinkHolderArray $mLinkHolders;
+	private int $mLinkID = 0;
+	private array $mIncludeSizes;
 	/** @deprecated since 1.35 */
 	public $mPPNodeCount;
 	/** @deprecated since 1.35 */
 	public $mHighestExpansionDepth;
-	private $mTplRedirCache;
+	private array $mTplRedirCache;
 	/** @internal */
-	public $mHeadings;
+	public array $mHeadings;
+	/** @var array<string,string> */
+	private array $mDoubleUnderscores;
 	/**
-	 * @var array<string,string>
+	 * Number of expensive parser function calls
+	 * @deprecated since 1.35
 	 */
-	private $mDoubleUnderscores;
-	/** @deprecated since 1.35 */
-	public $mExpensiveFunctionCount; # number of expensive parser function calls
-	private $mShowToc;
-	private $mForceTocPosition;
-	/** @var array */
-	private $mTplDomCache;
-
-	/**
-	 * @var UserIdentity|null
-	 */
-	private $mUser;
+	public $mExpensiveFunctionCount;
+	private bool $mShowToc;
+	private bool $mForceTocPosition;
+	private array $mTplDomCache;
+	private ?UserIdentity $mUser;
 
 	# Temporary
 	# These are variables reset at least once per parse regardless of $clearState
@@ -288,39 +266,48 @@ class Parser {
 	public $mOptions;
 
 	/**
+	 * Title context, used for self-link rendering and similar things
+	 *
 	 * Since 1.34, leaving `mTitle` uninitialized or setting `mTitle` to
 	 * `null` is deprecated.
 	 *
 	 * @var Title|null
-	 * @deprecated since 1.35, use Parser::getTitle()
+	 * @deprecated since 1.35, use Parser::getPage()
 	 */
-	public $mTitle;        # Title context, used for self-link rendering and similar things
-	private $mOutputType;   # Output type, one of the OT_xxx constants
-	/** @deprecated since 1.35 */
-	public $ot;            # Shortcut alias, see setOutputType()
-	private $mRevisionId;   # ID to display in {{REVISIONID}} tags
-	private $mRevisionTimestamp; # The timestamp of the specified revision ID
-	private $mRevisionUser; # User to display in {{REVISIONUSER}} tag
-	private $mRevisionSize; # Size to display in {{REVISIONSIZE}} variable
-	private $mInputSize = false; # For {{PAGESIZE}} on current page.
+	public $mTitle;
+	/** Output type, one of the OT_xxx constants */
+	private int $mOutputType;
+	/**
+	 * Shortcut alias, see Parser::setOutputType()
+	 * @deprecated since 1.35
+	 */
+	public $ot;
+	/** ID to display in {{REVISIONID}} tags */
+	private ?int $mRevisionId = null;
+	/** The timestamp of the specified revision ID */
+	private ?string $mRevisionTimestamp = null;
+	/** User to display in {{REVISIONUSER}} tag */
+	private ?string $mRevisionUser = null;
+	/** Size to display in {{REVISIONSIZE}} variable */
+	private ?int $mRevisionSize = null;
+	/** @var int|false For {{PAGESIZE}} on current page */
+	private $mInputSize = false;
 
-	/** @var RevisionRecord|null */
-	private $mRevisionRecordObject;
+	private ?RevisionRecord $mRevisionRecordObject = null;
 
 	/**
-	 * @var array Array with the language name of each language link (i.e. the
+	 * Array with the language name of each language link (i.e. the
 	 * interwiki prefix) in the key, value arbitrary. Used to avoid sending
 	 * duplicate language links to the ParserOutput.
 	 */
-	private $mLangLinkLanguages;
+	private array $mLangLinkLanguages;
 
 	/**
-	 * @var MapCacheLRU|null
-	 * @since 1.24
-	 *
 	 * A cache of the current revisions of titles. Keys are $title->getPrefixedDbKey()
+	 *
+	 * @since 1.24
 	 */
-	private $currentRevisionCache;
+	private ?MapCacheLRU $currentRevisionCache = null;
 
 	/**
 	 * @var bool|string Recursive call protection.
@@ -328,82 +315,35 @@ class Parser {
 	 */
 	private $mInParse = false;
 
-	/** @var SectionProfiler */
-	private $mProfiler;
+	private SectionProfiler $mProfiler;
+	private ?LinkRenderer $mLinkRenderer = null;
 
-	/**
-	 * @var LinkRenderer
-	 */
-	private $mLinkRenderer;
-
-	/** @var MagicWordFactory */
-	private $magicWordFactory;
-
-	/** @var Language */
-	private $contLang;
-
-	/** @var LanguageConverterFactory */
-	private $languageConverterFactory;
-
-	/** @var ParserFactory */
-	private $factory;
-
-	/** @var SpecialPageFactory */
-	private $specialPageFactory;
-
-	/** @var TitleFormatter */
-	private $titleFormatter;
-
+	private MagicWordFactory $magicWordFactory;
+	private Language $contLang;
+	private LanguageConverterFactory $languageConverterFactory;
+	private ParserFactory $factory;
+	private SpecialPageFactory $specialPageFactory;
+	private TitleFormatter $titleFormatter;
 	/**
 	 * This is called $svcOptions instead of $options like elsewhere to avoid confusion with
 	 * $mOptions, which is public and widely used, and also with the local variable $options used
 	 * for ParserOptions throughout this file.
-	 *
-	 * @var ServiceOptions
 	 */
-	private $svcOptions;
-
-	/** @var LinkRendererFactory */
-	private $linkRendererFactory;
-
-	/** @var NamespaceInfo */
-	private $nsInfo;
-
-	/** @var LoggerInterface */
-	private $logger;
-
-	/** @var BadFileLookup */
-	private $badFileLookup;
-
-	/** @var HookContainer */
-	private $hookContainer;
-
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/** @var TidyDriverBase */
-	private $tidy;
-
-	/** @var WANObjectCache */
-	private $wanCache;
-
-	/** @var UserOptionsLookup */
-	private $userOptionsLookup;
-
-	/** @var UserFactory */
-	private $userFactory;
-
-	/** @var HttpRequestFactory */
-	private $httpRequestFactory;
-
-	/** @var TrackingCategories */
-	private $trackingCategories;
-
-	/** @var SignatureValidatorFactory */
-	private $signatureValidatorFactory;
-
-	/** @var UserNameUtils */
-	private $userNameUtils;
+	private ServiceOptions $svcOptions;
+	private LinkRendererFactory $linkRendererFactory;
+	private NamespaceInfo $nsInfo;
+	private LoggerInterface $logger;
+	private BadFileLookup $badFileLookup;
+	private HookContainer $hookContainer;
+	private HookRunner $hookRunner;
+	private TidyDriverBase $tidy;
+	private WANObjectCache $wanCache;
+	private UserOptionsLookup $userOptionsLookup;
+	private UserFactory $userFactory;
+	private HttpRequestFactory $httpRequestFactory;
+	private TrackingCategories $trackingCategories;
+	private SignatureValidatorFactory $signatureValidatorFactory;
+	private UserNameUtils $userNameUtils;
 
 	/**
 	 * @internal For use by ServiceWiring
@@ -552,6 +492,7 @@ class Parser {
 	 * Reduce memory usage to reduce the impact of circular references
 	 */
 	public function __destruct() {
+		// @phan-suppress-next-line PhanRedundantCondition Typed property not set in constructor, may be uninitialized
 		if ( isset( $this->mLinkHolders ) ) {
 			// @phan-suppress-next-line PhanTypeObjectUnsetDeclaredProperty
 			unset( $this->mLinkHolders );
@@ -4826,7 +4767,7 @@ class Parser {
 	 *
 	 * @param ?PageReference $page
 	 * @param ParserOptions $options
-	 * @param int $outputType
+	 * @param int $outputType One of the Parser::OT_… constants
 	 * @param bool $clearState
 	 * @param int|null $revId
 	 * @since 1.3
