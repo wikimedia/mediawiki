@@ -20,9 +20,9 @@
 
 namespace MediaWiki\Preferences;
 
-use CentralIdLookup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\User\CentralId\CentralIdLookup;
 
 class MultiUsernameFilter implements Filter {
 	/**

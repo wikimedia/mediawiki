@@ -23,10 +23,10 @@
 
 namespace MediaWiki\Session;
 
-use BotPassword;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\User\BotPassword;
 use MediaWiki\User\User;
 
 /**

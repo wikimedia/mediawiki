@@ -22,13 +22,12 @@
 
 namespace MediaWiki\User;
 
-use BotPassword;
-use CentralIdLookup;
 use DBAccessObjectUtils;
 use FormatJson;
 use IDBAccessObject;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
+use MediaWiki\User\CentralId\CentralIdLookup;
 use MWCryptRand;
 use MWRestrictions;
 use Password;

@@ -37,7 +37,6 @@ use MediaWiki\WikiMap\WikiMap;
 use Psr\Log\LoggerInterface;
 use Sanitizer;
 use UserGroupExpiryJob;
-use UserGroupMembership;
 use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;

@@ -46,6 +46,7 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\SubpageImportTitleFactory;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
+use MediaWiki\User\ExternalUserNames;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\NormalizedException\NormalizedException;
 

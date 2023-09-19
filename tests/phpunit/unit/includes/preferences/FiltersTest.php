@@ -21,6 +21,7 @@
 use MediaWiki\Preferences\IntvalFilter;
 use MediaWiki\Preferences\MultiUsernameFilter;
 use MediaWiki\Preferences\TimezoneFilter;
+use MediaWiki\User\CentralId\CentralIdLookup;
 
 /**
  * @group Preferences

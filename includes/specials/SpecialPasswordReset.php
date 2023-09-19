@@ -28,8 +28,8 @@ use HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Status\Status;
+use MediaWiki\User\PasswordReset;
 use MediaWiki\User\User;
-use PasswordReset;
 use ThrottledError;
 
 /**

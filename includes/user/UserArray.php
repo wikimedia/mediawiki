@@ -20,9 +20,12 @@
  * @file
  */
 
+namespace MediaWiki\User;
+
+use ArrayIterator;
+use Iterator;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\User\User;
 use Wikimedia\Rdbms\IResultWrapper;
 
 abstract class UserArray implements Iterator {
@@ -101,3 +104,9 @@ abstract class UserArray implements Iterator {
 	 */
 	abstract public function key(): int;
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( UserArray::class, 'UserArray' );

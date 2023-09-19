@@ -20,6 +20,10 @@
  * @file
  */
 
+namespace MediaWiki\User\CentralId;
+
+use Config;
+use DBAccessObjectUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\WikiMap\WikiMap;
@@ -140,3 +144,9 @@ class LocalIdLookup extends CentralIdLookup {
 		return $nameToId;
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( LocalIdLookup::class, 'LocalIdLookup' );

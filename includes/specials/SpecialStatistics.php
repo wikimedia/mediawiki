@@ -29,8 +29,8 @@ use MediaWiki\SiteStats\SiteStats;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserGroupManager;
+use MediaWiki\User\UserGroupMembership;
 use Sanitizer;
-use UserGroupMembership;
 use Xml;
 
 /**

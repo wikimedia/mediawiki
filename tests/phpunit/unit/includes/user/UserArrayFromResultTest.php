@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\User\UserArrayFromResult;
+
 /**
  * @author Addshore
  * @covers UserArrayFromResult

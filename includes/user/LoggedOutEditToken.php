@@ -21,6 +21,8 @@
  * @ingroup Session
  */
 
+namespace MediaWiki\User;
+
 use MediaWiki\Session\Token;
 
 /**
@@ -51,3 +53,9 @@ class LoggedOutEditToken extends Token {
 		return $userToken === self::SUFFIX;
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( LoggedOutEditToken::class, 'LoggedOutEditToken' );

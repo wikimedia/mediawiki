@@ -50,6 +50,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArray;
 use MediaWiki\User\ActorMigration;
 use MediaWiki\User\User;
+use MediaWiki\User\UserArrayFromResult;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\WikiMap\WikiMap;

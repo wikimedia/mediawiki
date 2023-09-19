@@ -3,6 +3,8 @@
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\User\CentralId\CentralIdLookup;
+use MediaWiki\User\CentralId\LocalIdLookup;
 use MediaWiki\User\UserIdentityValue;
 
 /**

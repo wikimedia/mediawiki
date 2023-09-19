@@ -18,6 +18,13 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+namespace MediaWiki\User;
+
+use Config;
+use DBAccessObjectUtils;
+use FormatJson;
+use IDBAccessObject;
+use InvalidPassword;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\Throttler;
 use MediaWiki\HookContainer\HookRunner;
@@ -27,8 +34,13 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\BotPasswordSessionProvider;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Status\Status;
-use MediaWiki\User\User;
-use MediaWiki\User\UserIdentity;
+use MWRestrictions;
+use ObjectCache;
+use Password;
+use PasswordError;
+use PasswordFactory;
+use stdClass;
+use UnexpectedValueException;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -516,3 +528,9 @@ class BotPassword implements IDBAccessObject {
 		return $status;
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( BotPassword::class, 'BotPassword' );

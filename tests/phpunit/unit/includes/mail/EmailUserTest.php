@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Unit\Mail;
 
-use CentralIdLookup;
 use Generator;
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Config\ServiceOptions;
@@ -11,6 +10,7 @@ use MediaWiki\Mail\EmailUser;
 use MediaWiki\Mail\IEmailer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserOptionsLookup;

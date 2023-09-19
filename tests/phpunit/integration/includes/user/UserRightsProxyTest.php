@@ -6,8 +6,8 @@ use MediaWiki\Config\SiteConfiguration;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
+use MediaWiki\User\UserRightsProxy;
 use MediaWikiIntegrationTestCase;
-use UserRightsProxy;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
@@ -54,7 +54,7 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::validDatabase
 	 */
 	public function testValidDatabase() {
-		$this->hideDeprecated( 'UserRightsProxy::validDatabase' );
+		$this->hideDeprecated( 'MediaWiki\User\UserRightsProxy::validDatabase' );
 
 		$this->assertTrue( UserRightsProxy::validDatabase( 'foowiki' ) );
 		$this->assertFalse( UserRightsProxy::validDatabase( 'barwiki' ) );
@@ -66,7 +66,7 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::getId
 	 */
 	public function testNewFromId() {
-		$this->hideDeprecated( 'UserRightsProxy::newFromId' );
+		$this->hideDeprecated( 'MediaWiki\User\UserRightsProxy::newFromId' );
 
 		$id = 12345;
 		$userRightsProxy = UserRightsProxy::newFromId( 'foowiki', $id );
@@ -80,7 +80,7 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::getName
 	 */
 	public function testNewFromName() {
-		$this->hideDeprecated( 'UserRightsProxy::newFromName' );
+		$this->hideDeprecated( 'MediaWiki\User\UserRightsProxy::newFromName' );
 
 		$name = 'UserRightsProxyTest';
 		$userRightsProxy = UserRightsProxy::newFromName( 'foowiki', $name );
@@ -93,7 +93,7 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::newFromLookup
 	 */
 	public function testInvalidDB() {
-		$this->hideDeprecated( 'UserRightsProxy::newFromName' );
+		$this->hideDeprecated( 'MediaWiki\User\UserRightsProxy::newFromName' );
 
 		$userRightsProxy = UserRightsProxy::newFromName( 'barwiki', 'test' );
 		$this->assertNull( $userRightsProxy );
@@ -103,7 +103,7 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::getUserPage
 	 */
 	public function testGetUserPage() {
-		$this->hideDeprecated( 'UserRightsProxy::newFromName' );
+		$this->hideDeprecated( 'MediaWiki\User\UserRightsProxy::newFromName' );
 
 		$userRightsProxy = UserRightsProxy::newFromName( 'foowiki', 'UserRightsProxyTest' );
 		$userPage = $userRightsProxy->getUserPage();
@@ -115,7 +115,7 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::equals
 	 */
 	public function testEquals() {
-		$this->hideDeprecated( 'UserRightsProxy::newFromName' );
+		$this->hideDeprecated( 'MediaWiki\User\UserRightsProxy::newFromName' );
 
 		$userRightsProxy = UserRightsProxy::newFromName( 'foowiki', 'UserRightsProxyTest' );
 		$userRightsProxy2 = $this->createMock( UserRightsProxy::class );
@@ -127,7 +127,7 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::getWikiId
 	 */
 	public function testGetWikiId() {
-		$this->hideDeprecated( 'UserRightsProxy::newFromName' );
+		$this->hideDeprecated( 'MediaWiki\User\UserRightsProxy::newFromName' );
 
 		$userRightsProxy = UserRightsProxy::newFromName( 'foowiki', 'UserRightsProxyTest' );
 		$this->assertSame( 'foowiki', $userRightsProxy->getWikiId() );
@@ -138,7 +138,7 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::isRegistered
 	 */
 	public function testIsRegistered() {
-		$this->hideDeprecated( 'UserRightsProxy::newFromName' );
+		$this->hideDeprecated( 'MediaWiki\User\UserRightsProxy::newFromName' );
 
 		$userRightsProxy = UserRightsProxy::newFromName( 'foowiki', 'UserRightsProxyTest' );
 		$this->assertTrue( $userRightsProxy->isRegistered() );
@@ -152,7 +152,7 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::removeGroup
 	 */
 	public function testGroupMethods() {
-		$this->hideDeprecated( 'UserRightsProxy::newFromName' );
+		$this->hideDeprecated( 'MediaWiki\User\UserRightsProxy::newFromName' );
 
 		$userGroupManagerMock = $this->createMock( UserGroupManager::class );
 		$userGroupManagerMock
@@ -206,7 +206,7 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::invalidateCache
 	 */
 	public function testOptions() {
-		$this->hideDeprecated( 'UserRightsProxy::newFromName' );
+		$this->hideDeprecated( 'MediaWiki\User\UserRightsProxy::newFromName' );
 
 		$key = 'foo';
 		$value = 'bar';

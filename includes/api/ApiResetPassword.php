@@ -23,6 +23,7 @@
 use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Status\Status;
+use MediaWiki\User\PasswordReset;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**

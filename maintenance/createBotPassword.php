@@ -22,6 +22,7 @@
  * @author Alex Dean <wikimedia@mostlyalex.com>
  */
 
+use MediaWiki\User\BotPassword;
 use MediaWiki\User\User;
 
 require_once __DIR__ . '/Maintenance.php';

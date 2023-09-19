@@ -20,19 +20,24 @@
  * @file
  */
 
+namespace MediaWiki\User;
+
+use DeferredUpdates;
+use LogicException;
+use MapCacheLRU;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\TemporaryPasswordAuthenticationRequest;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
-use MediaWiki\User\User;
-use MediaWiki\User\UserFactory;
-use MediaWiki\User\UserNameUtils;
-use MediaWiki\User\UserOptionsLookup;
+use Message;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
+use Sanitizer;
+use SendPasswordResetEmailUpdate;
+use StatusValue;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -378,3 +383,9 @@ class PasswordReset implements LoggerAwareInterface {
 	}
 
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( PasswordReset::class, 'PasswordReset' );

@@ -839,7 +839,7 @@ return [
 			'RevertedTagMaxDepth' => 15,
 			'CentralIdLookupProviders' => [
 				'local' => [
-					'class' => 'LocalIdLookup',
+					'class' => 'MediaWiki\\User\\CentralId\\LocalIdLookup',
 					'services' => [
 						0 => 'MainConfig',
 						1 => 'DBLoadBalancerFactory',

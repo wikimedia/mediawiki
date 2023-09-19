@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\User\BotPassword;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**

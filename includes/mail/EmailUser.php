@@ -21,7 +21,6 @@
 namespace MediaWiki\Mail;
 
 use BadMethodCallException;
-use CentralIdLookup;
 use MailAddress;
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Config\ServiceOptions;
@@ -33,6 +32,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Preferences\MultiUsernameFilter;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserOptionsLookup;

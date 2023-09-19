@@ -2,9 +2,9 @@
 
 namespace MediaWiki\ParamValidator\TypeDef;
 
-use ExternalUserNames;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\TitleParser;
+use MediaWiki\User\ExternalUserNames;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;

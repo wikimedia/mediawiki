@@ -3,8 +3,8 @@
 namespace MediaWiki\User\Hook;
 
 use MediaWiki\User\User;
+use MediaWiki\User\UserGroupMembership;
 use MediaWiki\User\UserIdentity;
-use UserGroupMembership;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

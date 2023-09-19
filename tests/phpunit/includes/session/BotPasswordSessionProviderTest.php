@@ -3,6 +3,7 @@
 namespace MediaWiki\Session;
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\User\BotPassword;
 use MediaWikiIntegrationTestCase;
 use MultiConfig;
 use Psr\Log\LogLevel;
@@ -211,7 +212,7 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 			->onlyMethods( [ 'getIP' ] )->getMock();
 		$request->method( 'getIP' )
 			->willReturn( '127.0.0.1' );
-		$bp = \BotPassword::newFromUser( $user, 'BotPasswordSessionProvider' );
+		$bp = BotPassword::newFromUser( $user, 'BotPasswordSessionProvider' );
 
 		$session = $provider->newSessionForRequest( $user, $bp, $request );
 		$this->assertInstanceOf( Session::class, $session );
@@ -239,7 +240,7 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 			->onlyMethods( [ 'getIP' ] )->getMock();
 		$request->method( 'getIP' )
 			->willReturn( '127.0.0.1' );
-		$bp = \BotPassword::newFromUser( $user, 'BotPasswordSessionProvider' );
+		$bp = BotPassword::newFromUser( $user, 'BotPasswordSessionProvider' );
 
 		$data = [
 			'provider' => $provider,

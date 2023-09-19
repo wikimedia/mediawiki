@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Rest;
 
-use LoggedOutEditToken;
 use LogicException;
 use MediaWiki\Session\Session;
+use MediaWiki\User\LoggedOutEditToken;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;

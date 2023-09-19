@@ -2,6 +2,7 @@
 
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\Title;
+use MediaWiki\User\ExternalUserNames;
 
 /**
  * @covers ExternalUserNames

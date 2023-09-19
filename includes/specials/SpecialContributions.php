@@ -23,7 +23,6 @@
 
 namespace MediaWiki\Specials;
 
-use ExternalUserNames;
 use HTMLForm;
 use HTMLMultiSelectField;
 use LogEventsList;
@@ -43,6 +42,7 @@ use MediaWiki\Specials\Contribute\ContributeFactory;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
+use MediaWiki\User\ExternalUserNames;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;

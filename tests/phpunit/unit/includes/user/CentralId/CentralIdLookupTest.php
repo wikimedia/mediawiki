@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Tests\User\CentralId;
 
-use CentralIdLookup;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;

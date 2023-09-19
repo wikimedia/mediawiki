@@ -24,7 +24,6 @@ namespace MediaWiki\Linker;
 
 use ContextSource;
 use DerivativeContext;
-use ExternalUserNames;
 use File;
 use HtmlArmor;
 use IContextSource;
@@ -41,6 +40,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
+use MediaWiki\User\ExternalUserNames;
 use MediaWiki\User\User;
 use Message;
 use MessageLocalizer;

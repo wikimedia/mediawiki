@@ -20,11 +20,13 @@
  * @file
  */
 
+namespace MediaWiki\User;
+
+use IDBAccessObject;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
-use MediaWiki\User\UserRigorOptions;
 
 /**
  * Class to parse and build external user names
@@ -172,3 +174,9 @@ class ExternalUserNames {
 	}
 
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( ExternalUserNames::class, 'ExternalUserNames' );

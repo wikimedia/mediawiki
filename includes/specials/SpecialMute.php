@@ -21,12 +21,12 @@
 
 namespace MediaWiki\Specials;
 
-use CentralIdLookup;
 use ErrorPageError;
 use HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Preferences\MultiUsernameFilter;
 use MediaWiki\SpecialPage\FormSpecialPage;
+use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;

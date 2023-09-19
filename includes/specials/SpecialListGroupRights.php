@@ -33,8 +33,8 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserGroupManager;
+use MediaWiki\User\UserGroupMembership;
 use Sanitizer;
-use UserGroupMembership;
 use Xml;
 
 /**

@@ -20,9 +20,7 @@
 
 namespace MediaWiki\User\CentralId;
 
-use CentralIdLookup;
 use InvalidArgumentException;
-use LocalIdLookup;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserIdentityLookup;

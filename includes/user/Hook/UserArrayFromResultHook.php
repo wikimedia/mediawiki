@@ -2,7 +2,7 @@
 
 namespace MediaWiki\User\Hook;
 
-use UserArrayFromResult;
+use MediaWiki\User\UserArrayFromResult;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**

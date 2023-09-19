@@ -21,7 +21,6 @@
 namespace MediaWiki;
 
 use BagOStuff;
-use CentralIdLookup;
 use Config;
 use ConfigFactory;
 use CryptHKDF;
@@ -156,7 +155,9 @@ use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\BotPasswordStore;
+use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\CentralId\CentralIdLookupFactory;
+use MediaWiki\User\PasswordReset;
 use MediaWiki\User\Registration\UserRegistrationLookup;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\TempUser\RealTempUserConfig;
@@ -182,7 +183,6 @@ use Parser;
 use ParserCache;
 use ParserFactory;
 use PasswordFactory;
-use PasswordReset;
 use RepoGroup;
 use SearchEngine;
 use SearchEngineConfig;

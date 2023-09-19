@@ -21,7 +21,6 @@
 
 namespace MediaWiki\Pager;
 
-use ExternalUserNames;
 use IContextSource;
 use ImageGalleryBase;
 use ImageGalleryClassNotFoundException;
@@ -31,6 +30,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
+use MediaWiki\User\ExternalUserNames;
 use RecentChange;
 use Wikimedia\Rdbms\IConnectionProvider;
 

@@ -39,6 +39,7 @@ use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
+use MediaWiki\User\UserGroupMembership;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
@@ -46,7 +47,6 @@ use MediaWiki\Watchlist\WatchlistManager;
 use MediaWiki\WikiMap\WikiMap;
 use PermissionsError;
 use UserBlockedError;
-use UserGroupMembership;
 use Xml;
 use XmlSelect;
 

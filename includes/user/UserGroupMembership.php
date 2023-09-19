@@ -20,9 +20,14 @@
  * @file
  */
 
+namespace MediaWiki\User;
+
+use IContextSource;
+use InvalidArgumentException;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
-use MediaWiki\User\UserIdentity;
+use Message;
+use RequestContext;
 
 /**
  * Represents a "user group membership" -- a specific instance of a user belonging
@@ -299,3 +304,9 @@ class UserGroupMembership {
 	}
 
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( UserGroupMembership::class, 'UserGroupMembership' );

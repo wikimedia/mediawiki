@@ -20,6 +20,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\User\UserGroupMembership;
 
 /**
  * Show an error when a user tries to do something they do not have the necessary

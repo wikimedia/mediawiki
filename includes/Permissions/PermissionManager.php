@@ -42,6 +42,7 @@ use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
+use MediaWiki\User\UserGroupMembership;
 use MediaWiki\User\UserIdentity;
 use Message;
 use MessageSpecifier;
@@ -49,7 +50,6 @@ use PermissionsError;
 use RequestContext;
 use StatusValue;
 use UserCache;
-use UserGroupMembership;
 use Wikimedia\ScopedCallback;
 
 /**

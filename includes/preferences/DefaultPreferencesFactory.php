@@ -48,6 +48,7 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserGroupManager;
+use MediaWiki\User\UserGroupMembership;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserOptionsManager;
 use MediaWiki\User\UserTimeCorrection;
@@ -62,7 +63,6 @@ use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
 use SkinFactory;
 use UnexpectedValueException;
-use UserGroupMembership;
 use Xml;
 
 /**

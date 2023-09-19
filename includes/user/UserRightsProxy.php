@@ -20,12 +20,13 @@
  * @file
  */
 
+namespace MediaWiki\User;
+
+use IDBAccessObject;
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
-use MediaWiki\User\UserGroupManager;
-use MediaWiki\User\UserIdentity;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -338,3 +339,9 @@ class UserRightsProxy implements UserIdentity {
 		return $this->dbDomain;
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( UserRightsProxy::class, 'UserRightsProxy' );

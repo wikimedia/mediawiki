@@ -20,8 +20,8 @@
 
 namespace MediaWiki\Session;
 
-use LoggedOutEditToken;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\User\LoggedOutEditToken;
 
 /**
  * Stores and matches CSRF tokens belonging to a given session user.

@@ -23,8 +23,6 @@
 
 namespace MediaWiki\Specials;
 
-use BotPassword;
-use CentralIdLookup;
 use ErrorPageError;
 use HTMLForm;
 use HTMLRestrictionsField;
@@ -36,6 +34,8 @@ use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Status\Status;
+use MediaWiki\User\BotPassword;
+use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\User;
 use PasswordError;
 use PasswordFactory;

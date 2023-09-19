@@ -22,7 +22,6 @@ namespace MediaWiki\User;
 
 use CannotCreateActorException;
 use DBAccessObjectUtils;
-use ExternalUserNames;
 use InvalidArgumentException;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\User\TempUser\TempUserConfig;

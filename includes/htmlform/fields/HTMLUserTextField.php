@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\ExternalUserNames;
 use MediaWiki\Widget\UserInputWidget;
 use Wikimedia\IPUtils;
 

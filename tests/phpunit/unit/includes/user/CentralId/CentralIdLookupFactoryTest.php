@@ -2,14 +2,14 @@
 
 namespace MediaWiki\Tests\User\CentralId;
 
-use CentralIdLookup;
 use HashConfig;
 use InvalidArgumentException;
-use LocalIdLookup;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\CentralId\CentralIdLookupFactory;
+use MediaWiki\User\CentralId\LocalIdLookup;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWikiUnitTestCase;
 use Wikimedia\Rdbms\IConnectionProvider;

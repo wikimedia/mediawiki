@@ -20,11 +20,17 @@
  * @file
  */
 
+namespace MediaWiki\User\CentralId;
+
+use IDBAccessObject;
+use InvalidArgumentException;
+use LogicException;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
+use Throwable;
 
 /**
  * The CentralIdLookup service allows for connecting local users with
@@ -296,3 +302,9 @@ abstract class CentralIdLookup implements IDBAccessObject {
 	}
 
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( CentralIdLookup::class, 'CentralIdLookup' );
