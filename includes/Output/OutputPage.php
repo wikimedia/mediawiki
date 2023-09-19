@@ -1127,15 +1127,44 @@ class OutputPage extends ContextSource {
 	 * tags that were escaped in \<h1\> will still be escaped in \<title\>, and
 	 * good tags like \<i\> will be dropped entirely.
 	 *
-	 * @param string|Message $name
+	 * @param string|Message $name The page title, either as HTML string or
+	 *   as a message which will be formatted with FORMAT_TEXT to yield HTML.
+	 *   Passing a Message is deprecated, since 1.41; please use
+	 *   ::setPageTitleMsg() for that case instead.
 	 * @param-taint $name tainted
 	 * Phan-taint-check gets very confused by $name being either a string or a Message
 	 */
 	public function setPageTitle( $name ) {
 		if ( $name instanceof Message ) {
+			// T343849: passing a Message is deprecated and a warning will
+			// eventually be emitted here.
 			$name = $name->setContext( $this->getContext() )->text();
 		}
+		$this->setPageTitleInternal( $name );
+	}
 
+	/**
+	 * "Page title" means the contents of \<h1\>. This message takes a
+	 * Message, which will be formatted with FORMAT_ESCAPED to yield
+	 * HTML.  Raw parameters to the message may contain some HTML
+	 * tags; see ::setPageTitle() and Sanitizer::removeSomeTags() for
+	 * details.  This function automatically sets \<title\> to the
+	 * same content as \<h1\> but with all tags removed. Bad tags from
+	 * "raw" parameters that were escaped in \<h1\> will still be
+	 * escaped in \<title\>, and good tags like \<i\> will be dropped
+	 * entirely.
+	 *
+	 * @param Message $msg The page title, as a message which will be
+	 *   formatted with FORMAT_ESCAPED to yield HTML.
+	 * @since 1.41
+	 */
+	public function setPageTitleMsg( Message $msg ): void {
+		$this->setPageTitleInternal(
+			$msg->setContext( $this->getContext() )->escaped()
+		);
+	}
+
+	private function setPageTitleInternal( string $name ): void {
 		# change "<script>foo&bar</script>" to "&lt;script&gt;foo&amp;bar&lt;/script&gt;"
 		# but leave "<i>foobar</i>" alone
 		$nameWithTags = Sanitizer::removeSomeTags( $name );

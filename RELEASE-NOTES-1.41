@@ -829,6 +829,8 @@ because of Phabricator reports.
   deprecation warnings from its factory functions.
 * MediaWiki\ResourceLoader\Module::getDeprecationInformation() is deprecated.
   Use ::getDeprecationWarning() instead.
+* Passing a Message to OutputPage::setPageTitle() is deprecated.
+  Use ::setPageTitleMsg() instead (which escapes HTML metacharacters).
 * MediaWiki\Block\AbstractBlock::getReason(), deprecated since 1.35, now emits
   deprecation warnings. Use ::getReasonComment() instead.
 * User::getGroups(), ::addGroup(), ::removeGroup(), ::getGroupMemberships(),
