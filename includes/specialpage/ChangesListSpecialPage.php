@@ -642,7 +642,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		}
 
 		// Enable OOUI and module for the clock icon.
-		if ( $this->getConfig()->get( MainConfigNames::WatchlistExpiry ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::WatchlistExpiry ) && !$this->including() ) {
 			$this->getOutput()->enableOOUI();
 			$this->getOutput()->addModules( 'mediawiki.special.changeslist.watchlistexpiry' );
 		}
@@ -1699,7 +1699,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$context->msg( 'recentchanges-label-plusminus' )->text()
 		) . "\n";
 		// Watchlist expiry clock icon.
-		if ( $context->getConfig()->get( MainConfigNames::WatchlistExpiry ) ) {
+		if ( $context->getConfig()->get( MainConfigNames::WatchlistExpiry ) && !$this->including() ) {
 			$widget = new IconWidget( [
 				'icon' => 'clock',
 				'classes' => [ 'mw-changesList-watchlistExpiry' ],
