@@ -8,8 +8,8 @@ use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Title\NamespaceInfo;
+use MediaWiki\Title\TitleParser;
 use RepoGroup;
-use TitleParser;
 
 /**
  * @internal

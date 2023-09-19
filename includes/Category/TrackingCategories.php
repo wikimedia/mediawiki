@@ -28,9 +28,9 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleParser;
 use ParserOutput;
 use Psr\Log\LoggerInterface;
-use TitleParser;
 
 /**
  * This class performs some operations related to tracking categories, such as

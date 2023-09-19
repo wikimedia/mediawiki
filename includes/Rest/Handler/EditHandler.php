@@ -14,7 +14,7 @@ use MediaWiki\Rest\TokenAwareHandlerTrait;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\TitleFormatter;
-use TitleParser;
+use MediaWiki\Title\TitleParser;
 use Wikimedia\Message\MessageValue;
 
 /**

@@ -27,6 +27,7 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
+use MediaWiki\Title\TitleParser;
 use MediaWiki\Title\TitleValue;
 use Wikimedia\IPUtils;
 

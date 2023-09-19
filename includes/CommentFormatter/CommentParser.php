@@ -16,12 +16,12 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleParser;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\WikiMap\WikiMap;
 use Parser;
 use RepoGroup;
 use StringUtils;
-use TitleParser;
 
 /**
  * The text processing backend for CommentFormatter.

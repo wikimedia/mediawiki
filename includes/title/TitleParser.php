@@ -21,7 +21,9 @@
  * @author Daniel Kinzler
  */
 
-use MediaWiki\Title\TitleValue;
+namespace MediaWiki\Title;
+
+use MalformedTitleException;
 
 /**
  * A title parser service for %MediaWiki.
@@ -58,3 +60,9 @@ interface TitleParser {
 	 */
 	public function makeTitleValueSafe( $namespace, $text, $fragment = '', $interwiki = '' );
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( TitleParser::class, 'TitleParser' );

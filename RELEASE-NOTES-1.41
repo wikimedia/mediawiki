@@ -666,6 +666,7 @@ because of Phabricator reports.
   class names are now deprecated aliases:
   - NamespaceInfo
   - TitleFormatter
+  - TitleParser
   - TitleValue
 * Various mediawiki.ui variables have been deprecated in favor of
   'mediawiki.skin.variables.less' Codex design tokens featuring replacements.
