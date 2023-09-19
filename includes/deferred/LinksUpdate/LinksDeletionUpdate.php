@@ -104,12 +104,11 @@ class LinksDeletionUpdate extends LinksUpdate implements EnqueueableDataUpdate {
 
 		// Find recentchanges entries to clean up...
 		// Select RC IDs just by curid, and not by title (see T307865 and T140960)
-		$rcIdsForPage = $dbw->selectFieldValues(
-			'recentchanges',
-			'rc_id',
-			[ 'rc_type != ' . RC_LOG, 'rc_cur_id' => $id ],
-			__METHOD__
-		);
+		$rcIdsForPage = $dbw->newSelectQueryBuilder()
+			->select( 'rc_id' )
+			->from( 'recentchanges' )
+			->where( [ 'rc_type != ' . RC_LOG, 'rc_cur_id' => $id ] )
+			->caller( __METHOD__ )->fetchFieldValues();
 
 		// T98706: delete by PK to avoid lock contention with RC delete log insertions
 		$rcIdBatches = array_chunk( $rcIdsForPage, $batchSize );

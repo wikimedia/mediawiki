@@ -24,6 +24,7 @@ use ChangeTags;
 use MediaWiki\Page\PageIdentity;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * @since 1.38
@@ -212,14 +213,12 @@ class ArchivedRevisionLookup {
 	 * @return int|false The revision's ID, or false if there is no deleted revision.
 	 */
 	public function getLastRevisionId( PageIdentity $page ) {
-		$revId = $this->dbProvider->getReplicaDatabase()->selectField(
-			'archive',
-			'ar_rev_id',
-			[ 'ar_namespace' => $page->getNamespace(),
-				'ar_title' => $page->getDBkey() ],
-			__METHOD__,
-			[ 'ORDER BY' => [ 'ar_timestamp DESC', 'ar_id DESC' ] ]
-		);
+		$revId = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
+			->select( 'ar_rev_id' )
+			->from( 'archive' )
+			->where( [ 'ar_namespace' => $page->getNamespace(), 'ar_title' => $page->getDBkey() ] )
+			->orderBy( [ 'ar_timestamp', 'ar_id' ], SelectQueryBuilder::SORT_DESC )
+			->caller( __METHOD__ )->fetchField();
 
 		return $revId ? intval( $revId ) : false;
 	}

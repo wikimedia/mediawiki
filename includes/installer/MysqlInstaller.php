@@ -608,8 +608,11 @@ class MysqlInstaller extends DatabaseInstaller {
 	 */
 	private function userDefinitelyExists( $host, $user ) {
 		try {
-			$res = $this->db->selectRow( 'mysql.user', [ 'Host', 'User' ],
-				[ 'Host' => $host, 'User' => $user ], __METHOD__ );
+			$res = $this->db->newSelectQueryBuilder()
+				->select( [ 'Host', 'User' ] )
+				->from( 'mysql.user' )
+				->where( [ 'Host' => $host, 'User' => $user ] )
+				->caller( __METHOD__ )->fetchRow();
 
 			return (bool)$res;
 		} catch ( DBQueryError $dqe ) {

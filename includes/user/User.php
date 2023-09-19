@@ -430,16 +430,17 @@ class User implements Authority, UserIdentity, UserEmailContact {
 				}
 
 				[ $index, $options ] = DBAccessObjectUtils::getDBOptions( $flags );
-				$row = wfGetDB( $index )->selectRow(
-					'actor',
-					[ 'actor_id', 'actor_user', 'actor_name' ],
-					$this->mFrom === 'name'
-						// make sure to use normalized form of IP for anonymous users
-						? [ 'actor_name' => IPUtils::sanitizeIP( $this->mName ) ]
-						: [ 'actor_id' => $this->mActorId ],
-					__METHOD__,
-					$options
-				);
+				$queryBuilder = wfGetDB( $index )->newSelectQueryBuilder()
+					->select( [ 'actor_id', 'actor_user', 'actor_name' ] )
+					->from( 'actor' )
+					->options( $options );
+				if ( $this->mFrom === 'name' ) {
+					// make sure to use normalized form of IP for anonymous users
+					$queryBuilder->where( [ 'actor_name' => IPUtils::sanitizeIP( $this->mName ) ] );
+				} else {
+					$queryBuilder->where( [ 'actor_id' => $this->mActorId ] );
+				}
+				$row = $queryBuilder->caller( __METHOD__ )->fetchRow();
 
 				if ( !$row ) {
 					// Ugh.

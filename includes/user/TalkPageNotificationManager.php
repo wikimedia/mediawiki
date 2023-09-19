@@ -226,12 +226,11 @@ class TalkPageNotificationManager {
 
 		[ $field, $id ] = $this->getQueryFieldAndId( $user );
 		// Get the "last viewed rev" timestamp from the oldest message notification
-		$timestamp = $this->dbProvider->getReplicaDatabase()->selectField(
-			'user_newtalk',
-			'MIN(user_last_timestamp)',
-			[ $field => $id ],
-			__METHOD__
-		);
+		$timestamp = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
+			->select( 'MIN(user_last_timestamp)' )
+			->from( 'user_newtalk' )
+			->where( [ $field => $id ] )
+			->caller( __METHOD__ )->fetchField();
 		if ( $timestamp ) {
 			// TODO: Now that User::setNewTalk() was removed, it should be possible to
 			// cache *not* having a new message as well (if $timestamp is null).
@@ -266,12 +265,11 @@ class TalkPageNotificationManager {
 	 */
 	private function dbCheckNewUserMessages( UserIdentity $user ): bool {
 		[ $field, $id ] = $this->getQueryFieldAndId( $user );
-		$ok = $this->dbProvider->getReplicaDatabase()->selectField(
-			'user_newtalk',
-			$field,
-			[ $field => $id ],
-			__METHOD__
-		);
+		$ok = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
+			->select( $field )
+			->from( 'user_newtalk' )
+			->where( [ $field => $id ] )
+			->caller( __METHOD__ )->fetchField();
 		return (bool)$ok;
 	}
 

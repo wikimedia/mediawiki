@@ -239,12 +239,11 @@ class SpecialPageLanguage extends FormSpecialPage {
 
 		// Load the page language from DB
 		$dbw ??= MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
-		$oldLanguage = $dbw->selectField(
-			'page',
-			'page_lang',
-			[ 'page_id' => $pageId ],
-			__METHOD__
-		);
+		$oldLanguage = $dbw->newSelectQueryBuilder()
+			->select( 'page_lang' )
+			->from( 'page' )
+			->where( [ 'page_id' => $pageId ] )
+			->caller( __METHOD__ )->fetchField();
 
 		// Check if user wants to use the default language
 		if ( $newLanguage === 'default' ) {

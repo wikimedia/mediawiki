@@ -750,12 +750,11 @@ class MovePage {
 			}
 
 			// reread inserted pr_ids for log relation
-			$logRelationsValues = $dbw->selectFieldValues(
-				'page_restrictions',
-				'pr_id',
-				[ 'pr_page' => $redirid ],
-				__METHOD__
-			);
+			$logRelationsValues = $dbw->newSelectQueryBuilder()
+				->select( 'pr_id' )
+				->from( 'page_restrictions' )
+				->where( [ 'pr_page' => $redirid ] )
+				->caller( __METHOD__ )->fetchFieldValues();
 
 			// Update the protection log
 			$logEntry = new ManualLogEntry( 'protect', 'move_prot' );

@@ -104,15 +104,11 @@ class ForeignDBFile extends LocalFile {
 			return false;
 		}
 
-		$touched = $this->repo->getReplicaDB()->selectField(
-			'page',
-			'page_touched',
-			[
-				'page_namespace' => NS_FILE,
-				'page_title' => $this->title->getDBkey()
-			],
-			__METHOD__
-		);
+		$touched = $this->repo->getReplicaDB()->newSelectQueryBuilder()
+			->select( 'page_touched' )
+			->from( 'page' )
+			->where( [ 'page_namespace' => NS_FILE, 'page_title' => $this->title->getDBkey() ] )
+			->caller( __METHOD__ )->fetchField();
 		if ( $touched === false ) {
 			return false; // no description page
 		}

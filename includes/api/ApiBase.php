@@ -1394,15 +1394,10 @@ abstract class ApiBase extends ContextSource {
 			if ( isset( self::$filterIDsCache[$table][$field] ) ) {
 				$row = self::$filterIDsCache[$table][$field];
 			} else {
-				$row = $this->getDB()->selectRow(
-					$table,
-					[
-						'min_id' => "MIN($field)",
-						'max_id' => "MAX($field)",
-					],
-					'',
-					__METHOD__
-				);
+				$row = $this->getDB()->newSelectQueryBuilder()
+					->select( [ 'min_id' => "MIN($field)", 'max_id' => "MAX($field)" ] )
+					->from( $table )
+					->caller( __METHOD__ )->fetchRow();
 				self::$filterIDsCache[$table][$field] = $row;
 			}
 			$min = min( $min, $row->min_id );

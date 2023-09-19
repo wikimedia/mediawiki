@@ -2462,11 +2462,12 @@ class LocalFile extends File {
 		// itself gets it from elsewhere. To avoid repeating the DB lookups in such a case, we
 		// need to differentiate between null (uninitialized) and false (failed to load).
 		if ( $this->descriptionTouched === null ) {
-			$cond = [
-				'page_namespace' => $this->title->getNamespace(),
-				'page_title' => $this->title->getDBkey()
-			];
-			$touched = $this->repo->getReplicaDB()->selectField( 'page', 'page_touched', $cond, __METHOD__ );
+			$touched = $this->repo->getReplicaDB()->newSelectQueryBuilder()
+				->select( 'page_touched' )
+				->from( 'page' )
+				->where( [ 'page_namespace' => $this->title->getNamespace() ] )
+				->andWhere( [ 'page_title' => $this->title->getDBkey() ] )
+				->caller( __METHOD__ )->fetchField();
 			$this->descriptionTouched = $touched ? wfTimestamp( TS_MW, $touched ) : false;
 		}
 

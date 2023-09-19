@@ -127,19 +127,18 @@ class UserCache {
 		// Lookup basic info for users not yet loaded...
 		if ( count( $usersToQuery ) ) {
 			$dbr = $this->dbProvider->getReplicaDatabase();
-			$tables = [ 'user', 'actor' ];
-			$conds = [ 'user_id' => $usersToQuery ];
-			$fields = [ 'user_name', 'user_real_name', 'user_registration', 'user_id', 'actor_id' ];
-			$joinConds = [
-				'actor' => [ 'JOIN', 'actor_user = user_id' ],
-			];
+			$queryBuilder = $dbr->newSelectQueryBuilder()
+				->select( [ 'user_name', 'user_real_name', 'user_registration', 'user_id', 'actor_id' ] )
+				->from( 'user' )
+				->join( 'actor', null, 'actor_user = user_id' )
+				->where( [ 'user_id' => $usersToQuery ] );
 
 			$comment = __METHOD__;
 			if ( strval( $caller ) !== '' ) {
 				$comment .= "/$caller";
 			}
 
-			$res = $dbr->select( $tables, $fields, $conds, $comment, [], $joinConds );
+			$res = $queryBuilder->caller( $comment )->fetchResultSet();
 			foreach ( $res as $row ) { // load each user into cache
 				$userId = (int)$row->user_id;
 				$this->cache[$userId]['name'] = $row->user_name;
