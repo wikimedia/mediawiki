@@ -3,7 +3,7 @@
 namespace MediaWiki\ParamValidator\TypeDef;
 
 use ExternalUserNames;
-use MalformedTitleException;
+use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\TitleParser;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;

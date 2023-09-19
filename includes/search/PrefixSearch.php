@@ -22,6 +22,7 @@
 
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\MediaWikiTitleCodec;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArray;
 

@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use ForeignTitle;
+use MediaWiki\Title\ForeignTitle;
 use MediaWiki\Title\Title;
 
 /**

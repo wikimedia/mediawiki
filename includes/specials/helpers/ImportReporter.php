@@ -24,6 +24,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Status\Status;
+use MediaWiki\Title\ForeignTitle;
 
 /**
  * Reporting callback

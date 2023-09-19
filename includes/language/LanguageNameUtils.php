@@ -27,7 +27,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
-use MediaWikiTitleCodec;
+use MediaWiki\Title\MediaWikiTitleCodec;
 use MWException;
 
 /**

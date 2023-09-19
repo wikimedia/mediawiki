@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Title\ForeignTitle;
+use MediaWiki\Title\Title;
+
 /**
  * Test class for Import methods.
  *

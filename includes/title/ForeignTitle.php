@@ -21,6 +21,10 @@
  * @author This, that and the other
  */
 
+namespace MediaWiki\Title;
+
+use MWException;
+
 /**
  * A simple, immutable structure to hold the title of a page on a foreign
  * MediaWiki installation.
@@ -115,3 +119,9 @@ class ForeignTitle {
 		return $name;
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( ForeignTitle::class, 'ForeignTitle' );

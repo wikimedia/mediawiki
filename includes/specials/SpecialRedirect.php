@@ -24,9 +24,9 @@
 namespace MediaWiki\Specials;
 
 use HTMLForm;
-use MalformedTitleException;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Status\Status;
+use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;
 use PermissionsError;
