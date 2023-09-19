@@ -48,6 +48,8 @@ function onLoadHandler( $editForm ) {
 	const pageName = mw.config.get( 'wgPageName' );
 	const section = inputFields.wpSection.value || null;
 	storage.openDatabase().then( function () {
+		// Check for, and delete, any expired data.
+		storage.deleteExpiredData();
 		storage.loadData( pageName, section ).then( onLoadData );
 	} );
 
