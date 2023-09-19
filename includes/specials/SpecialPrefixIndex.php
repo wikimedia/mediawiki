@@ -85,9 +85,11 @@ class SpecialPrefixIndex extends SpecialAllPages {
 		$this->stripPrefix = $request->getBool( 'stripprefix', $this->stripPrefix );
 
 		$namespaces = $this->getContentLanguage()->getNamespaces();
-		$out->setPageTitle(
+		$out->setPageTitleMsg(
 			( $namespace > 0 && array_key_exists( $namespace, $namespaces ) )
-				? $this->msg( 'prefixindex-namespace', str_replace( '_', ' ', $namespaces[$namespace] ) )
+				? $this->msg( 'prefixindex-namespace' )->plaintextParams(
+					str_replace( '_', ' ', $namespaces[$namespace] )
+				)
 				: $this->msg( 'prefixindex' )
 		);
 

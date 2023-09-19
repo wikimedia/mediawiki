@@ -1041,7 +1041,7 @@ class SpecialBlock extends FormSpecialPage {
 	 */
 	public function onSuccess() {
 		$out = $this->getOutput();
-		$out->setPageTitle( $this->msg( 'blockipsuccesssub' ) );
+		$out->setPageTitleMsg( $this->msg( 'blockipsuccesssub' ) );
 		$out->addWikiMsg( 'blockipsuccesstext', wfEscapeWikiText( $this->target ) );
 	}
 

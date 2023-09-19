@@ -248,7 +248,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 
 	public function onSuccess() {
 		$out = $this->getOutput();
-		$out->setPageTitle( $this->msg( 'changecontentmodel-success-title' ) );
+		$out->setPageTitleMsg( $this->msg( 'changecontentmodel-success-title' ) );
 		$out->addWikiMsg( 'changecontentmodel-success-text', $this->title );
 	}
 

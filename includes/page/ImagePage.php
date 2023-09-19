@@ -1049,7 +1049,7 @@ EOT
 	 */
 	public function showError( $description ) {
 		$out = $this->getContext()->getOutput();
-		$out->setPageTitle( $this->getContext()->msg( 'internalerror' ) );
+		$out->setPageTitleMsg( $this->getContext()->msg( 'internalerror' ) );
 		$out->setRobotPolicy( 'noindex,nofollow' );
 		$out->setArticleRelated( false );
 		$out->disableClientCache();

@@ -133,7 +133,9 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 		$this->getSkin()->setRelevantTitle( $this->target );
 
 		$out = $this->getOutput();
-		$out->setPageTitle( $this->msg( 'whatlinkshere-title', $this->target->getPrefixedText() ) );
+		$out->setPageTitleMsg(
+			$this->msg( 'whatlinkshere-title' )->plaintextParams( $this->target->getPrefixedText() )
+		);
 		$out->addBacklinkSubtitle( $this->target );
 
 		[ $offsetNamespace, $offsetPageID, $dir ] = $this->parseOffsetAndDir( $opts );

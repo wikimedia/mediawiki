@@ -149,7 +149,9 @@ class DeleteAction extends FormAction {
 			$request->wasPosted() ? WikiPage::READ_LATEST : WikiPage::READ_NORMAL
 		);
 		if ( !$article->getPage()->exists() ) {
-			$outputPage->setPageTitle( $context->msg( 'cannotdelete-title', $title->getPrefixedText() ) );
+			$outputPage->setPageTitleMsg(
+				$context->msg( 'cannotdelete-title' )->plaintextParams( $title->getPrefixedText() )
+			);
 			$outputPage->wrapWikiMsg( "<div class=\"error mw-error-cannotdelete\">\n$1\n</div>",
 				[ 'cannotdelete', wfEscapeWikiText( $title->getPrefixedText() ) ]
 			);
@@ -181,7 +183,7 @@ class DeleteAction extends FormAction {
 			->deleteIfAllowed( $this->getDeleteReason() );
 
 		if ( $status->isOK() ) {
-			$outputPage->setPageTitle( $this->msg( 'actioncomplete' ) );
+			$outputPage->setPageTitleMsg( $this->msg( 'actioncomplete' ) );
 			$outputPage->setRobotPolicy( 'noindex,nofollow' );
 
 			if ( !$status->isGood() ) {
@@ -210,7 +212,9 @@ class DeleteAction extends FormAction {
 			}
 			$outputPage->returnToMain();
 		} else {
-			$outputPage->setPageTitle( $this->msg( 'cannotdelete-title', $this->getTitle()->getPrefixedText() ) );
+			$outputPage->setPageTitleMsg(
+				$this->msg( 'cannotdelete-title' )->plaintextParams( $this->getTitle()->getPrefixedText() )
+			);
 
 			$outputPage->wrapWikiTextAsInterface(
 				'error mw-error-cannotdelete',

@@ -93,7 +93,7 @@ class SpecialListFiles extends IncludableSpecialPage {
 		}
 
 		if ( $userName ) {
-			$pageTitle = $this->msg( 'listfiles_subpage', $userName );
+			$pageTitle = $this->msg( 'listfiles_subpage' )->plaintextParams( $userName );
 		} else {
 			$pageTitle = $this->msg( 'listfiles' );
 		}
@@ -114,7 +114,7 @@ class SpecialListFiles extends IncludableSpecialPage {
 		);
 
 		$out = $this->getOutput();
-		$out->setPageTitle( $pageTitle );
+		$out->setPageTitleMsg( $pageTitle );
 		$out->addModuleStyles( 'mediawiki.special' );
 		if ( $this->including() ) {
 			$out->addParserOutputContent( $pager->getBodyOutput() );

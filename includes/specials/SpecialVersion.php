@@ -188,12 +188,12 @@ class SpecialVersion extends SpecialPage {
 					}
 				}
 
-				$out->setPageTitle( $this->msg( 'version-credits-title', $extName ) );
+				$out->setPageTitleMsg( $this->msg( 'version-credits-title' )->plaintextParams( $extName ) );
 				$out->addWikiTextAsInterface( $wikiText );
 				break;
 
 			case 'license':
-				$out->setPageTitle( $this->msg( 'version-license-title', $extName ) );
+				$out->setPageTitleMsg( $this->msg( 'version-license-title' )->plaintextParams( $extName ) );
 
 				$licenseFound = false;
 

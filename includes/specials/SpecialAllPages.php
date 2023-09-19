@@ -100,9 +100,9 @@ class SpecialAllPages extends IncludableSpecialPage {
 
 		$namespaces = $this->getLanguage()->getNamespaces();
 
-		$out->setPageTitle(
+		$out->setPageTitleMsg(
 			( $namespace > 0 && array_key_exists( $namespace, $namespaces ) ) ?
-				$this->msg( 'allinnamespace', str_replace( '_', ' ', $namespaces[$namespace] ) ) :
+				$this->msg( 'allinnamespace' )->plaintextParams( str_replace( '_', ' ', $namespaces[$namespace] ) ) :
 				$this->msg( 'allarticles' )
 		);
 		$out->addModuleStyles( 'mediawiki.special' );

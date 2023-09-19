@@ -267,7 +267,7 @@ abstract class ApiFormatBase extends ApiBase {
 
 			$out->setRobotPolicy( 'noindex,nofollow' );
 			$out->addModuleStyles( 'mediawiki.apipretty' );
-			$out->setPageTitle( $context->msg( 'api-format-title' ) );
+			$out->setPageTitleMsg( $context->msg( 'api-format-title' ) );
 
 			if ( !$this->getIsWrappedHtml() ) {
 				// When the format without suffix 'fm' is defined, there is a non-html version

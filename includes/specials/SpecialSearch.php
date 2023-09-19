@@ -662,7 +662,7 @@ class SpecialSearch extends SpecialPage {
 		$this->addHelpLink( 'Help:Searching' );
 
 		if ( strval( $term ) !== '' ) {
-			$out->setPageTitle( $this->msg( 'searchresults' ) );
+			$out->setPageTitleMsg( $this->msg( 'searchresults' ) );
 			$out->setHTMLTitle( $this->msg( 'pagetitle' )
 				->plaintextParams( $this->msg( 'searchresults-title' )->plaintextParams( $term )->text() )
 				->inContentLanguage()->text()
