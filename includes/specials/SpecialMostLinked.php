@@ -30,6 +30,7 @@ namespace MediaWiki\Specials;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
+use MediaWiki\Linker\LinksMigration;
 use MediaWiki\SpecialPage\QueryPage;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
@@ -46,17 +47,22 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class SpecialMostLinked extends QueryPage {
 
+	private LinksMigration $linksMigration;
+
 	/**
 	 * @param IConnectionProvider $dbProvider
 	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param LinksMigration $linksMigration
 	 */
 	public function __construct(
 		IConnectionProvider $dbProvider,
-		LinkBatchFactory $linkBatchFactory
+		LinkBatchFactory $linkBatchFactory,
+		LinksMigration $linksMigration
 	) {
 		parent::__construct( 'Mostlinked' );
 		$this->setDatabaseProvider( $dbProvider );
 		$this->setLinkBatchFactory( $linkBatchFactory );
+		$this->linksMigration = $linksMigration;
 	}
 
 	public function isExpensive() {
@@ -68,30 +74,27 @@ class SpecialMostLinked extends QueryPage {
 	}
 
 	public function getQueryInfo() {
+		$tableFields = $this->linksMigration->getTitleFields( 'pagelinks' );
+		$fields = [
+			'namespace' => $tableFields[0],
+			'title' => $tableFields[1],
+		];
+		$queryInfo = $this->linksMigration->getQueryInfo( 'pagelinks' );
 		return [
-			'tables' => [ 'pagelinks', 'page' ],
-			'fields' => [
-				'namespace' => 'pl_namespace',
-				'title' => 'pl_title',
-				'value' => 'COUNT(*)',
-				'page_namespace'
-			],
+			'tables' => array_merge( $queryInfo['tables'], [ 'page' ] ),
+			'fields' => array_merge( [ 'value' => 'COUNT(*)', 'page_namespace' ], $fields ),
 			'options' => [
 				'HAVING' => 'COUNT(*) > 1',
-				'GROUP BY' => [
-					'pl_namespace', 'pl_title',
-					'page_namespace'
-				]
+				'GROUP BY' => array_merge( $tableFields, [ 'page_namespace' ] )
 			],
-			'join_conds' => [
+			'join_conds' => array_merge( $queryInfo['joins'], [
 				'page' => [
 					'LEFT JOIN',
 					[
-						'page_namespace = pl_namespace',
-						'page_title = pl_title'
+						'page_namespace = ' . $fields['namespace'],
+						'page_title = ' . $fields['title']
 					]
-				]
-			]
+				] ] )
 		];
 	}
 
