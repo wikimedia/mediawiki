@@ -494,7 +494,11 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		$newpass = 'NewTempPassword';
 
 		$dbw = wfGetDB( DB_PRIMARY );
-		$oldHash = $dbw->selectField( 'user', 'user_newpassword', [ 'user_name' => $user ] );
+		$oldHash = $dbw->newSelectQueryBuilder()
+			->select( 'user_newpassword' )
+			->from( 'user' )
+			->where( [ 'user_name' => $user ] )
+			->fetchField();
 		$cb = new ScopedCallback( static function () use ( $dbw, $user, $oldHash ) {
 			$dbw->newUpdateQueryBuilder()
 				->update( 'user' )

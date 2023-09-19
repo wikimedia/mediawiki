@@ -2266,7 +2266,11 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 
 		// We're testing with $wgNewUserLog = false, so assert that it worked
 		$dbw = wfGetDB( DB_PRIMARY );
-		$maxLogId = $dbw->selectField( 'logging', 'MAX(log_id)', [ 'log_type' => 'newusers' ] );
+		$maxLogId = $dbw->newSelectQueryBuilder()
+			->select( 'MAX(log_id)' )
+			->from( 'logging' )
+			->where( [ 'log_type' => 'newusers' ] )
+			->fetchField();
 
 		$first = true;
 		$created = false;
@@ -2537,7 +2541,11 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->config->set( MainConfigNames::NewUserLog, true );
 
 		$dbw = wfGetDB( DB_PRIMARY );
-		$maxLogId = $dbw->selectField( 'logging', 'MAX(log_id)', [ 'log_type' => 'newusers' ] );
+		$maxLogId = $dbw->newSelectQueryBuilder()
+			->select( 'MAX(log_id)' )
+			->from( 'logging' )
+			->where( [ 'log_type' => 'newusers' ] )
+			->fetchField();
 
 		$userReq = new UsernameAuthenticationRequest;
 		$userReq->username = $username;
@@ -3022,7 +3030,11 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$logger->clearBuffer();
 
 		$dbw = wfGetDB( DB_PRIMARY );
-		$maxLogId = $dbw->selectField( 'logging', 'MAX(log_id)', [ 'log_type' => 'newusers' ] );
+		$maxLogId = $dbw->newSelectQueryBuilder()
+			->select( 'MAX(log_id)' )
+			->from( 'logging' )
+			->where( [ 'log_type' => 'newusers' ] )
+			->fetchField();
 		$session->clear();
 		$username = self::usernameForCreation();
 		$user = \User::newFromName( $username );

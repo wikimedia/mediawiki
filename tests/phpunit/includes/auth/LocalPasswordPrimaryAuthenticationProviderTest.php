@@ -170,12 +170,11 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$user = $this->getMutableTestUser()->getUser();
 		$userName = $user->getName();
 		$dbw = wfGetDB( DB_PRIMARY );
-		$row = $dbw->selectRow(
-			'user',
-			'*',
-			[ 'user_name' => $userName ],
-			__METHOD__
-		);
+		$row = $dbw->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'user' )
+			->where( [ 'user_name' => $userName ] )
+			->caller( __METHOD__ )->fetchRow();
 
 		$this->manager->removeAuthenticationSessionData( null );
 		$row->user_password_expires = wfTimestamp( TS_MW, time() + 200 );
@@ -504,7 +503,11 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$newpass = 'NewPassword';
 
 		$dbw = wfGetDB( DB_PRIMARY );
-		$oldExpiry = $dbw->selectField( 'user', 'user_password_expires', [ 'user_name' => $cuser ] );
+		$oldExpiry = $dbw->newSelectQueryBuilder()
+			->select( 'user_password_expires' )
+			->from( 'user' )
+			->where( [ 'user_name' => $cuser ] )
+			->fetchField();
 
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [
 			'ResetPasswordExpiration' => [ static function ( $user, &$expires ) {

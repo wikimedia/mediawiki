@@ -699,11 +699,12 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 
 		// @todo: This is not at all safe or sensible. It just blindly assumes
 		// nothing in $conds depends on any other tables.
-		$result = wfGetDB( DB_PRIMARY )->select(
-			'user',
-			'user_name',
-			array_filter( $conds ) + [ 'user_email' => 'ut' ]
-		);
+		$result = $this->getDb()->newSelectQueryBuilder()
+			->select( 'user_name' )
+			->from( 'user' )
+			->where( array_filter( $conds ) )
+			->andWhere( [ 'user_email' => 'ut' ] )
+			->fetchResultSet();
 
 		$usernames = [];
 		foreach ( $result as $row ) {

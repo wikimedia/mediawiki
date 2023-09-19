@@ -135,12 +135,11 @@ class TestUser {
 		}
 
 		$dbw = wfGetDB( DB_PRIMARY );
-		$row = $dbw->selectRow(
-			'user',
-			[ 'user_password' ],
-			[ 'user_id' => $user->getId() ],
-			__METHOD__
-		);
+		$row = $dbw->newSelectQueryBuilder()
+			->select( [ 'user_password' ] )
+			->from( 'user' )
+			->where( [ 'user_id' => $user->getId() ] )
+			->caller( __METHOD__ )->fetchRow();
 		if ( !$row ) {
 			throw new RuntimeException( "Passed User has an ID but is not in the database?" );
 		}
