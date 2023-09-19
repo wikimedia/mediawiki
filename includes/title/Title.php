@@ -62,7 +62,6 @@ use RequestContext;
 use RuntimeException;
 use Sanitizer;
 use stdClass;
-use TitleFormatter;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Rdbms\IDatabase;

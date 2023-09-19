@@ -13,6 +13,7 @@ use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleFormatter;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Utils\UrlUtils;
 

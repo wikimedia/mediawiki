@@ -29,9 +29,9 @@ use MediaWiki\Html\Html;
 use MediaWiki\Page\PageReference;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
 use Sanitizer;
-use TitleFormatter;
 use Wikimedia\Assert\Assert;
 
 /**

@@ -21,6 +21,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\StubObject\StubUserLang;
+use MediaWiki\Title\TitleFormatter;
 
 /**
  * A trivial language converter.

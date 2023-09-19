@@ -10,7 +10,7 @@ use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
-use TitleFormatter;
+use MediaWiki\Title\TitleFormatter;
 
 /**
  * Helper class for handling page redirects, for use with REST Handlers that provide access

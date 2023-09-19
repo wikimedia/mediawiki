@@ -24,7 +24,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Title\TitleFactory;
-use TitleFormatter;
+use MediaWiki\Title\TitleFormatter;
 
 class MultiTitleFilter implements Filter {
 

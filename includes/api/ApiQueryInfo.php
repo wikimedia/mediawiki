@@ -35,6 +35,7 @@ use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
+use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\Utils\UrlUtils;

@@ -30,8 +30,8 @@ use LinkCache;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Title\TitleFormatter;
 use Psr\Log\LoggerInterface;
-use TitleFormatter;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

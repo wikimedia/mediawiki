@@ -43,8 +43,8 @@ use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Watchlist\WatchlistManager;
-use TitleFormatter;
 use Xml;
 use XmlSelect;
 

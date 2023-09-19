@@ -10,7 +10,7 @@ use MediaWiki\Rest\Handler\Helper\PageRestHelperFactory;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
-use TitleFormatter;
+use MediaWiki\Title\TitleFormatter;
 use Wikimedia\Assert\Assert;
 
 /**

@@ -20,6 +20,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Title\TitleFormatter;
 
 /**
  * API interface for page purging

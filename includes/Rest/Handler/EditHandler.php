@@ -13,7 +13,7 @@ use MediaWiki\Rest\Response;
 use MediaWiki\Rest\TokenAwareHandlerTrait;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
-use TitleFormatter;
+use MediaWiki\Title\TitleFormatter;
 use TitleParser;
 use Wikimedia\Message\MessageValue;
 

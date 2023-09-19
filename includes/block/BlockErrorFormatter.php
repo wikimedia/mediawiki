@@ -25,10 +25,10 @@ use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Title\TitleFormatter;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityUtils;
 use Message;
-use TitleFormatter;
 
 /**
  * A service class for getting formatted information about a block.
