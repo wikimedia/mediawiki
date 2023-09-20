@@ -84,6 +84,10 @@ function onLoadData( pageData ) {
 			field.addEventListener( 'change', fieldChangeHandler );
 		}
 	} );
+	// Also add handlers for when the window is closed or hidden. Saving the data at these points is not guaranteed to
+	// work, but it often does and the save operation is atomic so there's no harm in trying.
+	window.addEventListener( 'beforeunload', saveFormData );
+	window.addEventListener( 'visibilitychange', saveFormData );
 
 	/**
 	 * Fired after EditRecovery has loaded any recovery data, added event handlers, etc.
@@ -121,9 +125,9 @@ function loadData( pageData ) {
 	} );
 }
 
-function fieldChangeHandler( event ) {
+function fieldChangeHandler() {
 	clearTimeout( changeDebounceTimer );
-	changeDebounceTimer = setTimeout( saveFormData, debounceTime, event );
+	changeDebounceTimer = setTimeout( saveFormData, debounceTime );
 }
 
 function saveFormData() {
