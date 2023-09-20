@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Sagan",
 			"Батыр Комдошев"
 		]
 	},
@@ -63,8 +64,8 @@
 	"exif-gpsdestdistance-m": "Мильдер",
 	"exif-dc-rights": "Аргалар",
 	"exif-iimcategory-spo": "Спорт",
-	"exif-usepanoramaviewer-true": "Эйе",
+	"exif-usepanoramaviewer-true": "Ийе",
 	"exif-usepanoramaviewer-false": "Јок",
-	"exif-exposurelockused-true": "Эйе",
+	"exif-exposurelockused-true": "Ийе",
 	"exif-exposurelockused-false": "Јок"
 }

@@ -2877,7 +2877,7 @@
 	"ipb-confirmhideuser": "Estás a punto de bloquear un usuario con la opción de supresión activada. Esto suprimirá el nombre de usuario en todas las listas y entradas de registro. ¿Estás seguro de que deseas proceder?",
 	"ipb-confirmaction": "Si estás seguro de querer hacerlo, por favor, marca el campo «{{int:ipb-confirm}}» que hay al final.",
 	"ipb-edit-dropdown": "Editar razones de bloqueo",
-	"ipb-unblock-addr": "Desbloquear $1",
+	"ipb-unblock-addr": "Desbloquear a $1",
 	"ipb-unblock": "Desbloquear un usuario o una IP",
 	"ipb-blocklist": "Ver bloqueos vigentes",
 	"ipb-blocklist-contribs": "Contribuciones de {{GENDER:$1|$1}}",
