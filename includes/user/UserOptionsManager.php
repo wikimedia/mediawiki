@@ -51,6 +51,9 @@ class UserOptionsManager extends UserOptionsLookup {
 		MainConfigNames::LocalTZoffset,
 	];
 
+	/**
+	 * @since 1.39.5, 1.40
+	 */
 	public const MAX_BYTES_OPTION_VALUE = 65530;
 
 	/** @var ServiceOptions */
