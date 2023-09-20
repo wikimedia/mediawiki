@@ -34,6 +34,7 @@
 # - `file`: For a plain file.
 # - `multi-file`: For multiple plain files.
 # - `tar`: For a tarball archive (file may be compressed).
+# - `zip`: For a zipped archive (file may be compressed).
 # - `doc-only`: For documenting that a package is used, without managing it
 #
 # ### Shared fields

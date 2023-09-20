@@ -182,7 +182,8 @@ class ForeignResourceManager {
 
 			switch ( $info['type'] ) {
 				case 'tar':
-					$this->handleTypeTar( $moduleName, $destDir, $info );
+				case 'zip':
+					$this->handleTypeTar( $moduleName, $destDir, $info, $info['type'] );
 					break;
 				case 'file':
 					$this->handleTypeFile( $moduleName, $destDir, $info );
@@ -369,15 +370,16 @@ class ForeignResourceManager {
 	 * @param string $moduleName
 	 * @param string $destDir
 	 * @param array $info
+	 * @param string $fileType
 	 */
-	private function handleTypeTar( $moduleName, $destDir, array $info ) {
+	private function handleTypeTar( $moduleName, $destDir, array $info, string $fileType ) {
 		$info += [ 'src' => null, 'integrity' => null, 'dest' => null ];
 		if ( $info['src'] === null ) {
 			throw new Exception( "Module '$moduleName' must have a 'src' key." );
 		}
 		// Download the resource to a temporary file and open it
 		$data = $this->fetch( $info['src'], $info['integrity'], $moduleName );
-		$tmpFile = "{$this->tmpParentDir}/$moduleName.tar";
+		$tmpFile = "{$this->tmpParentDir}/$moduleName." . $fileType;
 		$this->verbose( "... writing '$moduleName' src to $tmpFile\n" );
 		file_put_contents( $tmpFile, $data );
 		$p = new PharData( $tmpFile );
