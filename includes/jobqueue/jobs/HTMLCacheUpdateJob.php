@@ -158,15 +158,14 @@ class HTMLCacheUpdateJob extends Job {
 			}
 		}
 		// Get the list of affected pages (races only mean something else did the purge)
-		$titleArray = TitleArray::newFromResult( $dbw->select(
-			'page',
-			array_merge(
-				[ 'page_namespace', 'page_title' ],
-				$config->get( MainConfigNames::PageLanguageUseDB ) ? [ 'page_lang' ] : []
-			),
-			[ 'page_id' => $pageIds, 'page_touched' => $dbw->timestamp( $newTouchedUnix ) ],
-			__METHOD__
-		) );
+		$queryBuilder = $dbw->newSelectQueryBuilder()
+			->select( [ 'page_namespace', 'page_title' ] )
+			->from( 'page' )
+			->where( [ 'page_id' => $pageIds, 'page_touched' => $dbw->timestamp( $newTouchedUnix ) ] );
+		if ( $config->get( MainConfigNames::PageLanguageUseDB ) ) {
+			$queryBuilder->field( 'page_lang' );
+		}
+		$titleArray = TitleArray::newFromResult( $queryBuilder->caller( __METHOD__ )->fetchResultSet() );
 
 		// Update CDN and file caches
 		$htmlCache = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
