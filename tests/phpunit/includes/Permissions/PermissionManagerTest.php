@@ -489,7 +489,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
 
-		// Check that user is blocked or unblocked from specific actions
+		// Check that user is blocked or unblocked from specific actions using getPermissionErrors
 		foreach ( $expected as $action => $blocked ) {
 			$expectedErrorCount = $blocked ? 1 : 0;
 			$this->assertCount(
@@ -499,6 +499,19 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 					$user,
 					$this->title
 				)
+			);
+		}
+
+		// Check that user is blocked or unblocked from specific actions using getApplicableBlock
+		foreach ( $expected as $action => $blocked ) {
+			$this->assertSame(
+				$blocked,
+				$permissionManager->getApplicableBlock(
+					$action,
+					$user,
+					PermissionManager::RIGOR_FULL,
+					$this->title
+				) !== null
 			);
 		}
 

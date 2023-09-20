@@ -26,6 +26,7 @@ use Language;
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockErrorFormatter;
+use MediaWiki\Block\SystemBlock;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Permissions\Authority;
@@ -80,7 +81,16 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 		/** @var PermissionManager|MockObject $permissionManager */
 		$permissionManager = $this->createNoOpMock(
 			PermissionManager::class,
-			[ 'userHasRight', 'userHasAnyRight', 'userHasAllRights', 'userCan', 'getPermissionErrors', 'isBlockedFrom', 'newFatalPermissionDeniedStatus' ]
+			[
+				'userHasRight',
+				'userHasAnyRight',
+				'userHasAllRights',
+				'userCan',
+				'getPermissionErrors',
+				'isBlockedFrom',
+				'getApplicableBlock',
+				'newFatalPermissionDeniedStatus',
+			]
 		);
 
 		$permissionManager->method( 'userHasRight' )->willReturnCallback(
@@ -128,6 +138,20 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 		$permissionManager->method( 'newFatalPermissionDeniedStatus' )->willReturnCallback(
 			static function ( $permission, $context ) use ( $permissionManager ) {
 				return StatusValue::newFatal( 'permissionserrors' );
+			}
+		);
+
+		$permissionManager->method( 'getApplicableBlock' )->willReturnCallback(
+			static function ( $action, User $user, $rigor, $page ) {
+				if ( $page && $page->getDBkey() === 'Forbidden' ) {
+					return new SystemBlock();
+				}
+
+				if ( $action === 'blocked' ) {
+					return new SystemBlock();
+				}
+
+				return null;
 			}
 		);
 
@@ -310,7 +334,9 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 		$block = $this->createNoOpMock( AbstractBlock::class );
 		$user = $this->newUser( $block );
 
-		$authority = $this->newAuthority( [ 'permissions' => [ 'read', 'edit' ], 'actor' => $user ] );
+		$authority = $this->newAuthority(
+			[ 'permissions' => [ 'read', 'edit' ], 'actor' => $user ]
+		);
 
 		$status = PermissionStatus::newEmpty();
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
@@ -322,7 +348,9 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 		$block = $this->createNoOpMock( AbstractBlock::class );
 		$user = $this->newUser( $block );
 
-		$authority = $this->newAuthority( [ 'permissions' => [ 'read', 'edit' ], 'actor' => $user ] );
+		$authority = $this->newAuthority(
+			[ 'permissions' => [ 'read', 'edit' ], 'actor' => $user ]
+		);
 
 		$status = PermissionStatus::newEmpty();
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
@@ -336,14 +364,16 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 		$block = $this->createNoOpMock( AbstractBlock::class );
 		$user = $this->newUser( $block );
 
-		$authority = $this->newAuthority( [ 'permissions' => [ 'read', 'edit' ], 'actor' => $user ] );
+		$authority = $this->newAuthority(
+			[ 'permissions' => [ 'read', 'blocked' ], 'actor' => $user ]
+		);
 
 		$status = PermissionStatus::newEmpty();
-		$this->assertTrue( $authority->isAllowed( 'edit' ) );
-		$this->assertFalse( $authority->isDefinitelyAllowed( 'edit' ) );
-		$this->assertFalse( $authority->authorizeAction( 'edit', $status ) );
+		$this->assertTrue( $authority->isAllowed( 'blocked' ) );
+		$this->assertFalse( $authority->isDefinitelyAllowed( 'blocked' ) );
+		$this->assertFalse( $authority->authorizeAction( 'blocked', $status ) );
 		$this->assertStatusNotOK( $status );
-		$this->assertSame( 'edit', $status->getPermission() );
+		$this->assertSame( 'blocked', $status->getPermission() );
 	}
 
 	public function testPermissions() {

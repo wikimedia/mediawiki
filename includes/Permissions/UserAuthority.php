@@ -22,7 +22,6 @@ namespace MediaWiki\Permissions;
 
 use IContextSource;
 use InvalidArgumentException;
-use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Linker\LinkTarget;
@@ -197,7 +196,8 @@ class UserAuthority implements Authority {
 
 	/** @inheritDoc */
 	public function isDefinitelyAllowed( string $action, PermissionStatus $status = null ): bool {
-		return $this->internalAllowed( $action, $status, 0, $this->actor->getBlock() );
+		$userBlock = $this->getApplicableBlock( PermissionManager::RIGOR_FULL, $action );
+		return $this->internalAllowed( $action, $status, 0, $userBlock );
 	}
 
 	/** @inheritDoc */
@@ -207,7 +207,14 @@ class UserAuthority implements Authority {
 	): bool {
 		// Any side-effects can be added here.
 
-		return $this->internalAllowed( $action, $status, 1, $this->actor->getBlock() );
+		$userBlock = $this->getApplicableBlock( PermissionManager::RIGOR_SECURE, $action );
+
+		return $this->internalAllowed(
+			$action,
+			$status,
+			1,
+			$userBlock
+		);
 	}
 
 	/** @inheritDoc */
@@ -257,7 +264,7 @@ class UserAuthority implements Authority {
 	 * @param PermissionStatus|null $status
 	 * @param int|false $limitRate False means no check, 0 means check only,
 	 *        1 means check and increment
-	 * @param ?AbstractBlock $userBlock
+	 * @param ?Block $userBlock
 	 *
 	 * @return bool
 	 */
@@ -265,7 +272,7 @@ class UserAuthority implements Authority {
 		string $action,
 		?PermissionStatus $status,
 		$limitRate,
-		?AbstractBlock $userBlock
+		?Block $userBlock
 	): bool {
 		if ( $status ) {
 			Assert::precondition(
@@ -274,36 +281,34 @@ class UserAuthority implements Authority {
 			);
 		}
 
-		// Note that we do not use RIGOR_SECURE to avoid hitting the primary
-		// database for read operations. RIGOR_FULL performs the same checks,
-		// but is subject to replication lag.
 		if ( !$this->permissionManager->userHasRight( $this->actor, $action ) ) {
-			if ( $status ) {
-				$status->setPermission( $action );
-				$status->merge( $this->permissionManager->newFatalPermissionDeniedStatus(
-					$action, $this->uiContext ) );
-			} else {
+			if ( !$status ) {
 				return false;
 			}
+
+			$status->setPermission( $action );
+			$status->merge(
+				$this->permissionManager->newFatalPermissionDeniedStatus(
+					$action,
+					$this->uiContext
+				)
+			);
 		}
 
 		if ( $userBlock ) {
-			// FIXME: Not all actions are blocked, see Action::requiresUnblock.
-			//        Factor logic out of PermissionManager::checkUserBlock.
-			//        But the Action is bound to a page, and we don't have one here.
-
-			if ( $status ) {
-				$msg = $this->blockErrorFormatter->getMessage(
-					$userBlock,
-					$this->actor,
-					$this->uiContext->getLanguage(),
-					$this->request->getIP()
-				);
-				$status->fatal( $msg );
-				$status->setPermission( $action );
-			} else {
+			if ( !$status ) {
 				return false;
 			}
+
+			$message = $this->blockErrorFormatter->getMessage(
+				$userBlock,
+				$this->actor,
+				$this->uiContext->getLanguage(),
+				$this->request->getIP()
+			);
+
+			$status->setPermission( $action );
+			$status->fatal( $message );
 		}
 
 		// Check and bump the rate limit.
@@ -449,6 +454,21 @@ class UserAuthority implements Authority {
 
 		// if we remembered "false", return null
 		return $this->userBlock ?: null;
+	}
+
+	private function getApplicableBlock(
+		string $rigor,
+		string $action,
+		?PageIdentity $target = null
+	): ?Block {
+		// NOTE: We follow the parameter order of internalCan here.
+		//       It doesn't match the one in PermissionManager.
+		return $this->permissionManager->getApplicableBlock(
+			$action,
+			$this->actor,
+			$rigor,
+			$target
+		);
 	}
 
 	public function isRegistered(): bool {
