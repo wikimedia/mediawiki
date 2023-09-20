@@ -334,13 +334,24 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 	}
 
 	protected function getExamplesMessages() {
-		return [
-			'action=query&prop=deletedrevisions&titles=Main%20Page|Talk:Main%20Page&' .
-				'drvslots=main&drvprop=user|comment|content'
-				=> 'apihelp-query+deletedrevisions-example-titles',
+		$title = Title::newMainPage();
+		$talkTitle = $title->getTalkPageIfDefined();
+		$examples = [];
+
+		if ( $talkTitle ) {
+			$title = rawurlencode( $title->getPrefixedText() );
+			$talkTitle = rawurlencode( $talkTitle->getPrefixedText() );
+			$examples = [
+				"action=query&prop=deletedrevisions&titles={$title}|{$talkTitle}&" .
+					'drvslots=*&drvprop=user|comment|content'
+					=> 'apihelp-query+deletedrevisions-example-titles',
+			];
+		}
+
+		return array_merge( $examples, [
 			'action=query&prop=deletedrevisions&revids=123456'
 				=> 'apihelp-query+deletedrevisions-example-revids',
-		];
+		] );
 	}
 
 	public function getHelpUrls() {
