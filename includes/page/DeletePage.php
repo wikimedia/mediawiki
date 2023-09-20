@@ -629,15 +629,15 @@ class DeletePage {
 		// in the job queue to avoid simultaneous deletion operations would add overhead.
 		// Number of archived revisions cannot be known beforehand, because edits can be made
 		// while deletion operations are being processed, changing the number of archivals.
-		$archivedRevisionCount = $dbw->selectRowCount(
-			'archive',
-			'*',
-			[
+		$archivedRevisionCount = $dbw->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'archive' )
+			->where( [
 				'ar_namespace' => $title->getNamespace(),
 				'ar_title' => $title->getDBkey(),
 				'ar_page_id' => $id
-			], __METHOD__
-		);
+			] )
+			->caller( __METHOD__ )->fetchRowCount();
 
 		// Clone the title and wikiPage, so we have the information we need when
 		// we log and run the ArticleDeleteComplete hook.

@@ -167,13 +167,12 @@ class MergeHistory {
 	 * @return int
 	 */
 	public function getRevisionCount() {
-		$count = $this->dbw->selectRowCount(
-			'revision',
-			'1',
-			[ 'rev_page' => $this->source->getId(), $this->getTimeWhere() ],
-			__METHOD__,
-			[ 'LIMIT' => self::REVISION_LIMIT + 1 ]
-		);
+		$count = $this->dbw->newSelectQueryBuilder()
+			->select( '1' )
+			->from( 'revision' )
+			->where( [ 'rev_page' => $this->source->getId(), $this->getTimeWhere() ] )
+			->limit( self::REVISION_LIMIT + 1 )
+			->caller( __METHOD__ )->fetchRowCount();
 
 		return $count;
 	}
@@ -546,12 +545,11 @@ class MergeHistory {
 	 */
 	private function initTimestampLimits() {
 		// Max timestamp should be min of destination page
-		$firstDestTimestamp = $this->dbw->selectField(
-			'revision',
-			'MIN(rev_timestamp)',
-			[ 'rev_page' => $this->dest->getId() ],
-			__METHOD__
-		);
+		$firstDestTimestamp = $this->dbw->newSelectQueryBuilder()
+			->select( 'MIN(rev_timestamp)' )
+			->from( 'revision' )
+			->where( [ 'rev_page' => $this->dest->getId() ] )
+			->caller( __METHOD__ )->fetchField();
 		$this->maxTimestamp = new MWTimestamp( $firstDestTimestamp );
 
 		// Get the timestamp pivot condition
@@ -560,16 +558,14 @@ class MergeHistory {
 				// If we have a requested timestamp, use the
 				// latest revision up to that point as the insertion point
 				$mwTimestamp = new MWTimestamp( $this->timestamp );
-				$lastWorkingTimestamp = $this->dbw->selectField(
-					'revision',
-					'MAX(rev_timestamp)',
-					[
-						'rev_timestamp <= ' .
-							$this->dbw->addQuotes( $this->dbw->timestamp( $mwTimestamp ) ),
+				$lastWorkingTimestamp = $this->dbw->newSelectQueryBuilder()
+					->select( 'MAX(rev_timestamp)' )
+					->from( 'revision' )
+					->where( [
+						'rev_timestamp <= ' . $this->dbw->addQuotes( $this->dbw->timestamp( $mwTimestamp ) ),
 						'rev_page' => $this->source->getId()
-					],
-					__METHOD__
-				);
+					] )
+					->caller( __METHOD__ )->fetchField();
 				$mwLastWorkingTimestamp = new MWTimestamp( $lastWorkingTimestamp );
 
 				$timeInsert = $mwLastWorkingTimestamp;
@@ -579,14 +575,12 @@ class MergeHistory {
 				// beginning of destination page history
 
 				// Get the latest timestamp of the source
-				$lastSourceTimestamp = $this->dbw->selectField(
-					[ 'page', 'revision' ],
-					'rev_timestamp',
-					[ 'page_id' => $this->source->getId(),
-						'page_latest = rev_id'
-					],
-					__METHOD__
-				);
+				$lastSourceTimestamp = $this->dbw->newSelectQueryBuilder()
+					->select( 'rev_timestamp' )
+					->from( 'page' )
+					->join( 'revision', null, 'page_latest = rev_id' )
+					->where( [ 'page_id' => $this->source->getId() ] )
+					->caller( __METHOD__ )->fetchField();
 				$lasttimestamp = new MWTimestamp( $lastSourceTimestamp );
 
 				$timeInsert = $this->maxTimestamp;

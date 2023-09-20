@@ -47,6 +47,7 @@ use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ReadOnlyMode;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * Backend logic for performing a page rollback action.
@@ -282,24 +283,14 @@ class RollbackPage {
 
 		$dbw = $this->dbProvider->getPrimaryDatabase();
 
-		// TODO: move this query to RevisionSelectQueryBuilder when it's available
 		// Get the last edit not by this person...
 		// Note: these may not be public values
 		$actorWhere = $this->actorMigration->getWhere( $dbw, 'rev_user', $currentEditor );
-		$targetRevisionRow = $dbw->selectRow(
-			[ 'revision' ] + $actorWhere['tables'],
-			[ 'rev_id', 'rev_timestamp', 'rev_deleted' ],
-			[
-				'rev_page' => $currentRevision->getPageId(),
-				'NOT(' . $actorWhere['conds'] . ')',
-			],
-			__METHOD__,
-			[
-				'USE INDEX' => [ 'revision' => 'rev_page_timestamp' ],
-				'ORDER BY' => [ 'rev_timestamp DESC', 'rev_id DESC' ]
-			],
-			$actorWhere['joins']
-		);
+		$queryBuilder = $this->revisionStore->newSelectQueryBuilder( $dbw )
+			->where( [ 'rev_page' => $currentRevision->getPageId(), 'NOT(' . $actorWhere['conds'] . ')' ] )
+			->useIndex( [ 'revision' => 'rev_page_timestamp' ] )
+			->orderBy( [ 'rev_timestamp', 'rev_id' ], SelectQueryBuilder::SORT_DESC );
+		$targetRevisionRow = $queryBuilder->caller( __METHOD__ )->fetchRow();
 
 		if ( $targetRevisionRow === false ) {
 			// No one else ever edited this page

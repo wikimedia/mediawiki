@@ -69,7 +69,11 @@ class RevisionDeleteUser {
 		$userTitle = Title::makeTitleSafe( NS_USER, $name );
 		$userDbKey = $userTitle->getDBkey();
 
-		$actorId = $dbw->selectField( 'actor', 'actor_id', [ 'actor_name' => $name ], __METHOD__ );
+		$actorId = $dbw->newSelectQueryBuilder()
+			->select( 'actor_id' )
+			->from( 'actor' )
+			->where( [ 'actor_name' => $name ] )
+			->caller( __METHOD__ )->fetchField();
 		if ( $actorId ) {
 			# Hide name from live edits
 			$dbw->newUpdateQueryBuilder()

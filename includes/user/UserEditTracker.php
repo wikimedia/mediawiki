@@ -72,12 +72,11 @@ class UserEditTracker {
 			return $this->userEditCountCache[ $cacheKey ];
 		}
 
-		$count = $this->dbProvider->getReplicaDatabase()->selectField(
-			'user',
-			'user_editcount',
-			[ 'user_id' => $userId ],
-			__METHOD__
-		);
+		$count = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
+			->select( 'user_editcount' )
+			->from( 'user' )
+			->where( [ 'user_id' => $userId ] )
+			->caller( __METHOD__ )->fetchField();
 
 		if ( $count === null ) {
 			// it has not been initialized. do so.

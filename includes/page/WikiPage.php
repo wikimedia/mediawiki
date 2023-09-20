@@ -965,8 +965,11 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			} else {
 				// NOTE: keep in sync with RevisionRenderer::getLinkCount
 				// NOTE: keep in sync with DerivedPageDataUpdater::isCountable
-				$hasLinks = (bool)wfGetDB( DB_REPLICA )->selectField( 'pagelinks', '1',
-					[ 'pl_from' => $this->getId() ], __METHOD__ );
+				$hasLinks = (bool)wfGetDB( DB_REPLICA )->newSelectQueryBuilder()
+					->select( '1' )
+					->from( 'pagelinks' )
+					->where( [ 'pl_from' => $this->getId() ] )
+					->caller( __METHOD__ )->fetchField();
 			}
 		}
 
@@ -2685,19 +2688,18 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @since 1.27
 	 */
 	public function lockAndGetLatest() {
-		return (int)wfGetDB( DB_PRIMARY )->selectField(
-			'page',
-			'page_latest',
-			[
+		return (int)wfGetDB( DB_PRIMARY )->newSelectQueryBuilder()
+			->select( 'page_latest' )
+			->forUpdate()
+			->from( 'page' )
+			->where( [
 				'page_id' => $this->getId(),
 				// Typically page_id is enough, but some code might try to do
 				// updates assuming the title is the same, so verify that
 				'page_namespace' => $this->getTitle()->getNamespace(),
 				'page_title' => $this->getTitle()->getDBkey()
-			],
-			__METHOD__,
-			[ 'FOR UPDATE' ]
-		);
+			] )
+			->caller( __METHOD__ )->fetchField();
 	}
 
 	/**

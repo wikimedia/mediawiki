@@ -658,15 +658,18 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 		}
 		# Check if it exists already
 		// @todo FIXME: Use original log ID (better for backups)
-		$prior = (bool)$dbw->selectField( 'logging', '1',
-			[ 'log_type' => $this->getType(),
+		$prior = (bool)$dbw->newSelectQueryBuilder()
+			->select( '1' )
+			->from( 'logging' )
+			->where( [
+				'log_type' => $this->getType(),
 				'log_action' => $this->getAction(),
 				'log_timestamp' => $dbw->timestamp( $this->timestamp ),
 				'log_namespace' => $this->getTitle()->getNamespace(),
 				'log_title' => $this->getTitle()->getDBkey(),
-				'log_params' => $this->params ],
-			__METHOD__
-		);
+				'log_params' => $this->params
+			] )
+			->caller( __METHOD__ )->fetchField();
 		// @todo FIXME: This could fail slightly for multiple matches :P
 		if ( $prior ) {
 			wfDebug( __METHOD__

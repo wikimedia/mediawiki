@@ -587,12 +587,12 @@ class MessageCache implements LoggerAwareInterface {
 		}
 
 		// Set the stubs for oversized software-defined messages in the main cache map
-		$res = $dbr->select(
-			'page',
-			[ 'page_title', 'page_latest' ],
-			array_merge( $conds, [ 'page_len > ' . intval( $this->maxEntrySize ) ] ),
-			__METHOD__ . "($code)-big"
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'page_title', 'page_latest' ] )
+			->from( 'page' )
+			->where( $conds )
+			->andWhere( [ 'page_len > ' . intval( $this->maxEntrySize ) ] )
+			->caller( __METHOD__ . "($code)-big" )->fetchResultSet();
 		foreach ( $res as $row ) {
 			// Include entries/stubs for all keys in $mostused in adaptive mode
 			if ( $this->adaptive || $this->isMainCacheable( $row->page_title ) ) {

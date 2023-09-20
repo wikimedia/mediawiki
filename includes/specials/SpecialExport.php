@@ -456,13 +456,13 @@ class SpecialExport extends SpecialPage {
 		$name = $title->getDBkey();
 
 		$dbr = $this->dbProvider->getReplicaDatabase();
-		$res = $dbr->select(
-			[ 'page', 'categorylinks' ],
-			[ 'page_namespace', 'page_title' ],
-			[ 'cl_from=page_id', 'cl_to' => $name ],
-			__METHOD__,
-			[ 'LIMIT' => $maxPages ]
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'page_namespace', 'page_title' ] )
+			->from( 'page' )
+			->join( 'categorylinks', null, 'cl_from=page_id' )
+			->where( [ 'cl_to' => $name ] )
+			->limit( $maxPages )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		$pages = [];
 
@@ -481,13 +481,12 @@ class SpecialExport extends SpecialPage {
 		$maxPages = $this->getConfig()->get( MainConfigNames::ExportPagelistLimit );
 
 		$dbr = $this->dbProvider->getReplicaDatabase();
-		$res = $dbr->select(
-			'page',
-			[ 'page_namespace', 'page_title' ],
-			[ 'page_namespace' => $nsindex ],
-			__METHOD__,
-			[ 'LIMIT' => $maxPages ]
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'page_namespace', 'page_title' ] )
+			->from( 'page' )
+			->where( [ 'page_namespace' => $nsindex ] )
+			->limit( $maxPages )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		$pages = [];
 

@@ -118,14 +118,17 @@ class LocalFileRestoreBatch {
 
 		$status = $this->file->repo->newGood();
 
-		$exists = (bool)$dbw->selectField( 'image', '1',
-			[ 'img_name' => $this->file->getName() ],
-			__METHOD__,
-			// The acquireFileLock() should already prevent changes, but this still may need
-			// to bypass any transaction snapshot. However, if we started the
-			// trx (which we probably did) then snapshot is post-lock and up-to-date.
-			$ownTrx ? [] : [ 'LOCK IN SHARE MODE' ]
-		);
+		$queryBuilder = $dbw->newSelectQueryBuilder()
+			->select( '1' )
+			->from( 'image' )
+			->where( [ 'img_name' => $this->file->getName() ] );
+		// The acquireFileLock() should already prevent changes, but this still may need
+		// to bypass any transaction snapshot. However, if we started the
+		// trx (which we probably did) then snapshot is post-lock and up-to-date.
+		if ( !$ownTrx ) {
+			$queryBuilder->lockInShareMode();
+		}
+		$exists = (bool)$queryBuilder->caller( __METHOD__ )->fetchField();
 
 		// Fetch all or selected archived revisions for the file,
 		// sorted from the most recent to the oldest.

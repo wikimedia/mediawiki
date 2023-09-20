@@ -17,6 +17,7 @@ use MediaWiki\User\UserFactory;
 use Psr\Log\LoggerInterface;
 use RenameUserJob;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * Class which performs the actual renaming of users
@@ -251,7 +252,7 @@ class RenameuserSQL {
 
 		// Do immediate re-attribution table updates...
 		foreach ( $this->tables as $table => $fieldSet ) {
-			list( $nameCol, $userCol ) = $fieldSet;
+			[ $nameCol, $userCol ] = $fieldSet;
 			$dbw->newUpdateQueryBuilder()
 				->update( $table )
 				->set( [ $nameCol => $this->new ] )
@@ -273,12 +274,12 @@ class RenameuserSQL {
 			$userIDC = $params[self::UID_COL]; // some *_user column
 			$timestampC = $params[self::TIME_COL]; // some *_timestamp column
 
-			$res = $dbw->select( $table,
-				[ $timestampC ],
-				[ $userTextC => $this->old, $userIDC => $this->uid ],
-				__METHOD__,
-				[ 'ORDER BY' => "$timestampC ASC" ]
-			);
+			$res = $dbw->newSelectQueryBuilder()
+				->select( [ $timestampC ] )
+				->from( $table )
+				->where( [ $userTextC => $this->old, $userIDC => $this->uid ] )
+				->orderBy( $timestampC, SelectQueryBuilder::SORT_ASC )
+				->caller( __METHOD__ )->fetchResultSet();
 
 			$jobParams = [];
 			$jobParams['table'] = $table;
@@ -373,12 +374,11 @@ class RenameuserSQL {
 	 * @return int Returns 0 if no row was found
 	 */
 	private function lockUserAndGetId( $name ) {
-		return (int)$this->loadBalancer->getConnection( DB_PRIMARY )->selectField(
-			'user',
-			'user_id',
-			[ 'user_name' => $name ],
-			__METHOD__,
-			[ 'FOR UPDATE' ]
-		);
+		return (int)$this->loadBalancer->getConnection( DB_PRIMARY )->newSelectQueryBuilder()
+			->select( 'user_id' )
+			->forUpdate()
+			->from( 'user' )
+			->where( [ 'user_name' => $name ] )
+			->caller( __METHOD__ )->fetchField();
 	}
 }

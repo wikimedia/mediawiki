@@ -390,13 +390,12 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 			DBAccessObjectUtils::getDBOptions( $queryFlags );
 		// Text data is immutable; check replica DBs first.
 		$dbConnection = $this->getDBConnection( $index );
-		$rows = $dbConnection->select(
-			'text',
-			[ 'old_id', 'old_text', 'old_flags' ],
-			[ 'old_id' => $textIds ],
-			__METHOD__,
-			$options
-		);
+		$rows = $dbConnection->newSelectQueryBuilder()
+			->select( [ 'old_id', 'old_text', 'old_flags' ] )
+			->from( 'text' )
+			->where( [ 'old_id' => $textIds ] )
+			->options( $options )
+			->caller( __METHOD__ )->fetchResultSet();
 		$numRows = 0;
 		if ( $rows instanceof IResultWrapper ) {
 			$numRows = $rows->numRows();
@@ -411,13 +410,12 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 			}
 			$missingTextIds = array_diff( $textIds, $fetchedTextIds );
 			$dbConnection = $this->getDBConnection( $fallbackIndex );
-			$rowsFromFallback = $dbConnection->select(
-				'text',
-				[ 'old_id', 'old_text', 'old_flags' ],
-				[ 'old_id' => $missingTextIds ],
-				__METHOD__,
-				$fallbackOptions
-			);
+			$rowsFromFallback = $dbConnection->newSelectQueryBuilder()
+				->select( [ 'old_id', 'old_text', 'old_flags' ] )
+				->from( 'text' )
+				->where( [ 'old_id' => $missingTextIds ] )
+				->options( $fallbackOptions )
+				->caller( __METHOD__ )->fetchResultSet();
 			$appendIterator = new AppendIterator();
 			$appendIterator->append( $rows );
 			$appendIterator->append( $rowsFromFallback );

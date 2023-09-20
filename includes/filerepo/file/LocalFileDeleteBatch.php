@@ -91,11 +91,11 @@ class LocalFileDeleteBatch {
 		$archiveNames = [];
 
 		$dbw = $this->file->repo->getPrimaryDB();
-		$result = $dbw->select( 'oldimage',
-			[ 'oi_archive_name' ],
-			[ 'oi_name' => $this->file->getName() ],
-			__METHOD__
-		);
+		$result = $dbw->newSelectQueryBuilder()
+			->select( [ 'oi_archive_name' ] )
+			->from( 'oldimage' )
+			->where( [ 'oi_name' => $this->file->getName() ] )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		foreach ( $result as $row ) {
 			$this->addOld( $row->oi_archive_name );
