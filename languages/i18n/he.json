@@ -1161,7 +1161,7 @@
 	"prefs-custom-css": "קובץ CSS מותאם אישית",
 	"prefs-custom-json": "קובץ JSON מותאם אישית",
 	"prefs-custom-js": "קובץ JavaScript מותאם אישית",
-	"prefs-custom-cssjs-safemode": "דפי CSS ודפי JavaScript מותאמים אישית אינם זמינים כעת מכיוון ש הופעל מצב הבטוח. נא [[#mw-input-wpforcesafemode|לכבות את המצב הבטוח]] כדי להשתמש בדפי CSS ובדפי JavaScript מותאמים אישית.",
+	"prefs-custom-cssjs-safemode": "דפי CSS ודפי JavaScript מותאמים אישית אינם זמינים כעת מכיוון שהופעל המצב הבטוח. נא [[#mw-input-wpforcesafemode|לכבות את המצב הבטוח]] כדי להשתמש בדפי CSS ובדפי JavaScript מותאמים אישית.",
 	"prefs-common-config": "קובצי CSS/JSON/JavaScript משותפים לכל העיצובים:",
 	"prefs-reset-intro": "באפשרותך להשתמש בדף הזה כדי לאפס את ההעדפות שלך להגדרות ברירת המחדל של האתר.\nלא ניתן לבטל את זה.",
 	"prefs-reset-confirm": "כן, אני רוצה לאפס את ההעדפות שלי.",
