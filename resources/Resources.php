@@ -686,6 +686,8 @@ return [
 	'mediawiki.api' => [
 		'scripts' => [
 			'resources/src/mediawiki.api/index.js',
+			'resources/src/mediawiki.api/AbortablePromise.js',
+			'resources/src/mediawiki.api/AbortController.js',
 			'resources/src/mediawiki.api/rest.js',
 			'resources/src/mediawiki.api/category.js',
 			'resources/src/mediawiki.api/edit.js',

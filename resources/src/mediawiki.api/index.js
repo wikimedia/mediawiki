@@ -133,6 +133,9 @@
 	// Keyed by ajax url and symbolic name for the individual request
 	let promises = createTokenCache();
 
+	// Unique private object for use by makeAbortablePromise()
+	const ABORTED_BY_ABORTABLE_PROMISE = new Error( 'ABORTED_BY_ABORTABLE_PROMISE' );
+
 	mw.Api.prototype = {
 		/**
 		 * Abort all unfinished requests issued by this Api object.
@@ -152,7 +155,7 @@
 		 *
 		 * @param {Object} parameters
 		 * @param {Object} [ajaxOptions]
-		 * @return {jQuery.Promise}
+		 * @return {mw.Api~AbortablePromise}
 		 */
 		get: function ( parameters, ajaxOptions ) {
 			ajaxOptions = ajaxOptions || {};
@@ -165,7 +168,7 @@
 		 *
 		 * @param {Object} parameters
 		 * @param {Object} [ajaxOptions]
-		 * @return {jQuery.Promise}
+		 * @return {mw.Api~AbortablePromise}
 		 */
 		post: function ( parameters, ajaxOptions ) {
 			ajaxOptions = ajaxOptions || {};
@@ -207,8 +210,11 @@
 		 * @param {Object} parameters Parameters to the API. See also {@link mw.Api.Options}
 		 * @param {Object} [ajaxOptions] Parameters to pass to jQuery.ajax. See also
 		 *   {@link mw.Api.Options}
-		 * @return {jQuery.Promise} A promise that settles when the API response is processed.
+		 * @param {AbortSignal} [ajaxOptions.signal] Signal which can be used to abort the request.
+		 *   See {@link mw.Api~AbortController} for an example. (since 1.44)
+		 * @return {mw.Api~AbortablePromise} A promise that settles when the API response is processed.
 		 *   Has an 'abort' method which can be used to abort the request.
+		 *   See {@link mw.Api~AbortablePromise} for an example.
 		 *
 		 *   - On success, resolves to `( result, jqXHR )` where `result` is the parsed API response.
 		 *   - On an API error, rejects with `( code, result, result, jqXHR )` where `code` is the
@@ -235,6 +241,16 @@
 
 			parameters = Object.assign( {}, this.defaults.parameters, parameters );
 			ajaxOptions = Object.assign( {}, this.defaults.ajax, ajaxOptions );
+
+			if ( ajaxOptions.signal && ajaxOptions.signal.aborted ) {
+				if ( ajaxOptions.signal.reason !== ABORTED_BY_ABORTABLE_PROMISE ) {
+					apiDeferred.reject( ajaxOptions.signal.reason, ajaxOptions.signal.reason );
+				} else {
+					// Fake aborted promise
+					apiDeferred.reject( 'http', { textStatus: 'abort', exception: 'abort' } );
+				}
+				return apiDeferred.promise( { abort: function () {} } );
+			}
 
 			let token;
 			// Ensure that token parameter is last (per [[mw:API:Edit#Token]]).
@@ -285,8 +301,8 @@
 
 			// Make the AJAX request
 			const xhr = $.ajax( ajaxOptions )
-				// If AJAX fails, reject API call with error code 'http'
-				// and the details in the second argument.
+				// If AJAX fails, or is aborted by the abortable promise's .abort() method,
+				// reject API call with error code 'http' and the details in the second argument.
 				.fail( ( jqXHR, textStatus, exception ) => {
 					apiDeferred.reject( 'http', {
 						xhr: jqXHR,
@@ -321,12 +337,79 @@
 			xhr.always( () => {
 				this.requests[ requestIndex ] = null;
 			} );
+
+			if ( ajaxOptions.signal ) {
+				ajaxOptions.signal.addEventListener( 'abort', () => {
+					// If aborted by the abortable promise's .abort() method, skip this, so that the promise
+					// gets rejected with the legacy values (see the code in `fail( … )` above).
+					if ( ajaxOptions.signal.reason !== ABORTED_BY_ABORTABLE_PROMISE ) {
+						apiDeferred.reject( ajaxOptions.signal.reason, ajaxOptions.signal.reason );
+					}
+					// Cancel the HTTP request (which will reject the promise if we skipped the case above)
+					xhr.abort();
+				} );
+			}
+
 			// Return the Promise
 			return apiDeferred.promise( { abort: xhr.abort } ).fail( ( code, details ) => {
-				if ( !( code === 'http' && details && details.textStatus === 'abort' ) ) {
+				if ( !(
+					( code === 'http' && details && details.textStatus === 'abort' ) ||
+					( details instanceof DOMException && details.name === 'AbortError' )
+				) ) {
 					mw.log( 'mw.Api error: ', code, details );
 				}
 			} );
+		},
+
+		/**
+		 * Helper for adding support for abortable promises in mw.Api methods.
+		 *
+		 * This methods does three things:
+		 * - Returns an object with an `abort` method that can be used as a base for
+		 *   an {@link mw.Api~AbortablePromise}.
+		 * - Updates the provided `ajaxOptions` with a `signal` that will be triggered by said method.
+		 * - If the `ajaxOptions` already had a `signal`, forwards evens from it to the new one.
+		 *
+		 * This ensures that both the signal provided in `ajaxOptions` (if any) and the
+		 * `abort` method on the returned object can cancel the HTTP requests.
+		 * It's only needed when supporting the old-style `promise.abort()` method.
+		 *
+		 * @since 1.44
+		 * @param {Object} ajaxOptions Options object to modify (will set `ajaxOptions.signal`)
+		 * @return {Object} Base object for {@link mw.Api~AbortablePromise}
+		 *
+		 * @example <caption>API method only supporting AbortController</caption>
+		 * mw.Api.prototype.getWhatever = function ( params, ajaxOptions ) {
+		 *   return this.get( Object.assign( { foo: 'bar' }, params ), ajaxOptions )
+		 *     .then( ... );
+		 * }
+		 *
+		 * @example <caption>API method supporting promise.abort() method too</caption>
+		 * mw.Api.prototype.getWhatever = function ( params, ajaxOptions ) {
+		 *   ajaxOptions = ajaxOptions || {};
+		 *   const abortable = this.makeAbortablePromise( ajaxOptions );
+		 *   return this.get( Object.assign( { foo: 'bar' }, params ), ajaxOptions )
+		 *     .then( ... )
+		 *     .promise( abortable );
+		 * }
+		 */
+		makeAbortablePromise: function ( ajaxOptions ) {
+			const abort = new mw.Api.AbortController();
+			if ( ajaxOptions.signal ) {
+				// Support: Safari < 17.4
+				// TODO Use `AbortSignal.any( [ abort.signal, ajaxOptions.signal ] )` when supported
+				if ( ajaxOptions.signal.aborted ) {
+					abort.abort( ajaxOptions.signal.reason );
+				} else {
+					ajaxOptions.signal.addEventListener( 'abort', () => {
+						abort.abort( ajaxOptions.signal.reason );
+					} );
+				}
+			}
+			ajaxOptions.signal = abort.signal;
+			return {
+				abort: () => abort.abort( ABORTED_BY_ABORTABLE_PROMISE )
+			};
 		},
 
 		/**
@@ -344,57 +427,39 @@
 		 * @param {string} tokenType The name of the token, like options or edit.
 		 * @param {Object} params API parameters
 		 * @param {Object} [ajaxOptions]
-		 * @return {jQuery.Promise} See [post()]{@link mw.Api#post}
+		 * @return {mw.Api~AbortablePromise} See [post()]{@link mw.Api#post}
 		 * @since 1.22
 		 */
 		postWithToken: function ( tokenType, params, ajaxOptions ) {
 			const assertParams = {
-					assert: params.assert,
-					assertuser: params.assertuser
-				},
-				abortedPromise = $.Deferred().reject( 'http',
-					{ textStatus: 'abort', exception: 'abort' } ).promise();
-			let abortable,
-				aborted;
+				assert: params.assert,
+				assertuser: params.assertuser
+			};
 
+			ajaxOptions = ajaxOptions || {};
+			const abortable = this.makeAbortablePromise( ajaxOptions );
+
+			// We don't want to abort token requests, since they're shared, so don't pass
+			// the abortable `ajaxOptions` here.
 			return this.getToken( tokenType, assertParams ).then( ( token ) => {
 				params.token = token;
-				// Request was aborted while token request was running, but we
-				// don't want to unnecessarily abort token requests, so abort
-				// a fake request instead
-				if ( aborted ) {
-					return abortedPromise;
-				}
-
-				return ( abortable = this.post( params, ajaxOptions ) ).catch(
-					// Error handler
-					( code, ...args ) => {
-						if ( code === 'badtoken' ) {
-							this.badToken( tokenType );
-							// Try again, once
-							params.token = undefined;
-							abortable = null;
-							return this.getToken( tokenType, assertParams ).then( ( t ) => {
-								params.token = t;
-								if ( aborted ) {
-									return abortedPromise;
-								}
-
-								return ( abortable = this.post( params, ajaxOptions ) );
-							} );
-						}
-
-						// Let caller handle the error code
-						return $.Deferred().reject( code, ...args );
+				// This call will return immediately if the abort was triggered
+				// while the token request was running.
+				return this.post( params, ajaxOptions ).catch( ( code, ...args ) => {
+					if ( code === 'badtoken' ) {
+						this.badToken( tokenType );
+						// Try again, once
+						params.token = undefined;
+						return this.getToken( tokenType, assertParams ).then( ( t ) => {
+							params.token = t;
+							return this.post( params, ajaxOptions );
+						} );
 					}
-				);
-			} ).promise( { abort: () => {
-				if ( abortable ) {
-					abortable.abort();
-				} else {
-					aborted = true;
-				}
-			} } );
+
+					// Let caller handle the error code
+					return $.Deferred().reject( code, ...args );
+				} );
+			} ).promise( abortable );
 		},
 
 		/**
@@ -404,9 +469,10 @@
 		 * @param {string} type Token type
 		 * @param {Object|string} [additionalParams] Additional parameters for the API (since 1.35).
 		 *   When given a string, it's treated as the 'assert' parameter (since 1.25).
-		 * @return {jQuery.Promise<string>} Received token.
+		 * @param {Object} [ajaxOptions] See {@link mw.Api#ajax} (since 1.44)
+		 * @return {mw.Api~AbortablePromise<string>} Received token.
 		 */
-		getToken: function ( type, additionalParams ) {
+		getToken: function ( type, additionalParams, ajaxOptions ) {
 			type = mapLegacyToken( type );
 			if ( typeof additionalParams === 'string' ) {
 				additionalParams = { assert: additionalParams };
@@ -432,7 +498,7 @@
 					action: 'query',
 					meta: 'tokens',
 					type: type
-				}, additionalParams ) );
+				}, additionalParams ), ajaxOptions );
 				promise = apiPromise
 					.then( ( res ) => {
 						if ( !res.query ) {
@@ -514,6 +580,14 @@
 			) {
 				// The server failed so horribly that it did not set a HTTP error status
 				return $( '<div>' ).append( mw.message( 'api-clientside-error-invalidresponse' ).parseDom() );
+
+			} else if ( data instanceof DOMException && data.name === 'TimeoutError' ) {
+				// The request was cancelled by using AbortSignal.timeout
+				return $( '<div>' ).append( mw.message( 'api-clientside-error-timeout' ).parseDom() );
+
+			} else if ( data instanceof DOMException && data.name === 'AbortError' ) {
+				// The request was cancelled by using AbortController#abort
+				return $( '<div>' ).append( mw.message( 'api-clientside-error-aborted' ).parseDom() );
 
 			} else if ( data.xhr ) {
 				if ( data.textStatus === 'timeout' ) {

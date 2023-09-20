@@ -13,14 +13,13 @@
 				lgname: username,
 				lgpassword: password
 			};
+			const ajaxOptions = {};
+			const abortable = this.makeAbortablePromise( ajaxOptions );
 
-			const apiPromise = this.post( params );
-
-			let innerPromise;
-			return apiPromise
+			return this.post( params, ajaxOptions )
 				.then( ( data ) => {
 					params.lgtoken = data.login.token;
-					innerPromise = this.post( params )
+					return this.post( params, ajaxOptions )
 						.then( ( response ) => {
 							let code;
 							if ( response.login.result !== 'Success' ) {
@@ -30,16 +29,8 @@
 							}
 							return response;
 						} );
-					return innerPromise;
 				} )
-				.promise( {
-					abort: function () {
-						apiPromise.abort();
-						if ( innerPromise ) {
-							innerPromise.abort();
-						}
-					}
-				} );
+				.promise( abortable );
 		}
 	} );
 
