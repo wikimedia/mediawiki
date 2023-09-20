@@ -47,22 +47,6 @@ function escapeIdInternal( str, mode ) {
 }
 
 /**
- * Takes a string (str) and returns string repeated count times
- *
- * @ignore
- * @param {string} str String to be repeated
- * @param {number} count Number of times to repeat string
- * @return {string} String repeated count times
- */
-function repeatString( str, count ) {
-	var repeatedString = '';
-	for ( var i = 0; i < count; i++ ) {
-		repeatedString += str;
-	}
-	return repeatedString;
-}
-
-/**
  * Utility library provided by the `mediawiki.util` module.
  *
  * @class mw.util
@@ -1022,9 +1006,8 @@ var util = {
 				extra = ':';
 				pad = 8;
 			}
-			ip = ip.replace( '::',
-				repeatString( repeatStr, pad - ( ip.split( ':' ).length - 1 ) ) + extra
-			);
+			var count = pad - ( ip.split( ':' ).length - 1 );
+			ip = ip.replace( '::', repeatStr.repeat( count ) + extra );
 		}
 		return ip.replace( /(^|:)0+(([0-9A-Fa-f]{1,4}))/g, '$1$2' );
 	},
