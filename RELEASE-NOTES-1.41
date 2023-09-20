@@ -501,221 +501,253 @@ because of Phabricator reports.
 * (T178356) The es6-polyfills module is deprecated and is now a no-op.
 * SerializedValueContainer::newUnified() is unused and now emits deprecation
   warnings.
-* All remaining special pages have been namespaced under MediaWiki\Specials; the
-  old class names are now deprecated aliases:
-  - SpecialActiveUsers
-  - SpecialAllMessages
-  - SpecialAllMyUploads (under MediaWiki\Specials\Redirects)
-  - SpecialAncientPages
-  - SpecialApiHelp
-  - SpecialApiSandbox
-  - SpecialAutoblockList
-  - SpecialBlankpage
-  - SpecialBlock
-  - SpecialBlockList
-  - SpecialBookSources
-  - SpecialBotPasswords
-  - SpecialBrokenRedirects
-  - SpecialCategories
-  - SpecialChangeContentModel
-  - SpecialChangeCredentials
-  - SpecialChangeEmail
-  - SpecialChangePassword
-  - SpecialComparePages
-  - SpecialConfirmEmail
-  - SpecialContribute
-  - SpecialContributions
-  - SpecialCreateAccount
-  - SpecialDeadendPages
-  - SpecialDeletePage
-  - SpecialDeletedContributions
-  - SpecialDiff
-  - SpecialDoubleRedirects
-  - SpecialEditPage
-  - SpecialEditTags
-  - SpecialEditWatchlist
-  - SpecialEmailInvalidate
-  - SpecialEmailUser
-  - SpecialExpandTemplates
-  - SpecialExport
-  - SpecialFewestRevisions
-  - SpecialFileDuplicateSearch
-  - SpecialFilepath
-  - SpecialGoToInterwiki
-  - SpecialImport
-  - SpecialJavaScriptTest
-  - SpecialLinkAccounts
-  - SpecialLinkSearch
-  - SpecialListAdmins (under MediaWiki\Specials\Redirects)
-  - SpecialListBots (under MediaWiki\Specials\Redirects)
-  - SpecialListDuplicatedFiles
-  - SpecialListFiles
-  - SpecialListGrants
-  - SpecialListGroupRights
-  - SpecialListRedirects
-  - SpecialListUsers
-  - SpecialLockdb
-  - SpecialLog
-  - SpecialLonelyPages
-  - SpecialLongPages
-  - SpecialMIMESearch
-  - SpecialMediaStatistics
-  - SpecialMergeHistory
-  - SpecialMostCategories
-  - SpecialMostInterwikis
-  - SpecialMostLinked
-  - SpecialMostLinkedCategories
-  - SpecialMostLinkedTemplates
-  - SpecialMostRevisions
-  - SpecialMute
-  - SpecialMyLanguage
-  - SpecialMycontributions (under MediaWiki\Specials\Redirects)
-  - SpecialMylog (under MediaWiki\Specials\Redirects)
-  - SpecialMypage (under MediaWiki\Specials\Redirects)
-  - SpecialMytalk (under MediaWiki\Specials\Redirects)
-  - SpecialMyuploads (under MediaWiki\Specials\Redirects)
-  - SpecialNewFiles
-  - SpecialNewPages (and capitalisation corrected)
-  - SpecialNewSection
-  - SpecialPageData
-  - SpecialPageHistory
-  - SpecialPageInfo
-  - SpecialPageLanguage
-  - SpecialPagesWithProp
-  - SpecialPasswordPolicies
-  - SpecialPasswordReset
-  - SpecialPermanentLink
-  - SpecialPreferences
-  - SpecialPrefixIndex (and capitalisation corrected)
-  - SpecialProtectedPages (and capitalisation corrected)
-  - SpecialProtectedTitles (and capitalisation corrected)
-  - SpecialProtectPage
-  - SpecialPurge
-  - SpecialRandomInCategory
-  - SpecialRandom
-  - SpecialRandomRedirect
-  - SpecialRandomRootPage
-  - SpecialRecentChanges
-  - SpecialRecentChangesLinked
-  - SpecialRedirect
-  - SpecialRedirectToSpecial
-  - SpecialRemoveCredentials
-  - SpecialRenameUser (and capitalisation corrected)
-  - SpecialResetTokens
-  - SpecialRevisionDelete
-  - SpecialRunJobs
-  - SpecialSearch
-  - SpecialShortPages
-  - SpecialSpecialPages (and capitalisation corrected)
-  - SpecialStatistics
-  - SpecialTags
-  - SpecialTrackingCategories
-  - SpecialUnblock
-  - SpecialUncategorizedCategories
-  - SpecialUncategorizedImages
-  - SpecialUncategorizedPages
-  - SpecialUncategorizedTemplates
-  - SpecialUndelete
-  - SpecialUnlinkAccounts
-  - SpecialUnlockdb
-  - SpecialUnusedCategories
-  - SpecialUnusedImages
-  - SpecialUnusedTemplates
-  - SpecialUnwatchedPages
-  - SpecialUpload
-  - SpecialUploadStash
-  - SpecialUserLogin
-  - SpecialUserLogout
-  - SpecialVersion
-  - SpecialWantedCategories
-  - SpecialWantedTemplates
-  - SpecialWatchlist
-  - SpecialWhatLinksHere
-  - SpecialWithoutInterwiki
-* The core pager classes are now namespaced under MediaWiki\Pager; the old
-  class names are now deprecated aliases:
-  - ActiveUsersPager
-  - AllMessagesTablePager
-  - AlphabeticPager
-  - BlockListPager
-  - CategoryPager
-  - ContribsPager
-  - DeletedContribsPager
-  - HistoryPager
-  - ImageListPager
-  - IndexPager
-  - LogPager
-  - MergeHistoryPager
-  - NewFilesPager
-  - NewPagesPager
-  - Pager
-  - PagerTools
-  - ProtectedPagesPager
-  - ProtectedTitlesPager
-  - RangeChronologicalPager
-  - ReverseChronologicalPager
-  - TablePager
-  - UsersPager
-* All remaining special page helper classes have been namespaced under
-  MediaWiki\SpecialPage; the old class names are now deprecated aliases:
-  - AuthManagerSpecialPage
-  - ChangesListSpecialPage
-  - DisabledSpecialPage
-  - FormSpecialPage
-  - ImageQueryPage
-  - IncludableSpecialPage
-  - LoginSignupSpecialPage
-  - PageQueryPage
-  - QueryPage
-  - RedirectSpecialArticle
-  - RedirectSpecialPage
-  - SpecialPage
-  - SpecialRedirectToSpecial
-  - SpecialRedirectWithAction
-  - UnlistedSpecialPage
-  - WantedQueryPage
-* All remaining title-related classes have been namespaced under MediaWiki\Title
-  and the old class names are now deprecated aliases:
-  - ForeignTitle
-  - ForeignTitleFactory
-  - ImportTitleFactory
-  - MalformedTitleException
-  - MediaWikiTitleCodec
-  - NaiveForeignTitleFactory
-  - NaiveImportTitleFactory
-  - NamespaceAwareForeignTitleFactory
-  - NamespaceImportTitleFactory
-  - NamespaceInfo
-  - SubpageImportTitleFactory
-  - TitleFormatter
-  - TitleParser
-  - TitleValue
-* All remaining user-related classes have been namespaced under MediaWiki\User,
-  with the old class names are now deprecated aliases:
-  - BotPassword
-  - ExternalUserNames
-  - LoggedOutEditToken
-  - PasswordReset
-  - User
-  - UserArray
-  - UserArrayFromResult
-  - UserGroupMembership
-  - UserRightsProxy
-  - CentralIdLookup (under MediaWiki\User\CentralId)
-  - LocalIdLookup (under MediaWiki\User\CentralId)
-* The Sanitizer class is now namespaced under MediaWiki\Parser, with the former
-  class name left as a deprecated alias.
-* All remaining config-related classes have been moved to the MediaWiki\Config
-  namespace, with the old class names are now deprecated aliases:
-  - Config
-  - ConfigException
-  - ConfigFactory
-  - EtcdConfig
-  - EtcdConfigParseError
-  - GlobalVarConfig
-  - HashConfig
-  - MultiConfig
-  - MutableConfig
+* (T166010) All PHP code in MediaWiki is slowly being moved to be in a class
+  namespace as appropriate, so that we can use PSR-4 auto-loading, which will
+  speed up general code loading of MediaWiki. The old global namespace class
+  names are being left behind as deprecated aliases.
+
+  In this release of MediaWiki, 1455 classes now have a namespace and 1179 do
+  not yet (55% done, up from 47% in MediaWiki 1.40.0). The following have newly
+  been moved:
+  - MediaWiki\Config:
+    - Config
+    - ConfigException
+    - ConfigFactory
+    - EtcdConfig
+    - EtcdConfigParseError
+    - GlobalVarConfig
+    - HashConfig
+    - MultiConfig
+    - MutableConfig
+    - SiteConfiguration
+  - MediaWiki\EventRelayer:
+    - EventRelayer
+    - EventRelayerNull
+    - EventRelayerGroup
+  - MediaWiki\Installer:
+    - Pingback
+  - MediaWiki\Libs:
+    - Emptiable
+  - MediaWiki\Output:
+    - OutputPage
+    - OutputHandler
+    - StreamFile
+  - MediaWiki\Pager:
+    - ActiveUsersPager
+    - AllMessagesTablePager
+    - AlphabeticPager
+    - BlockListPager
+    - CategoryPager
+    - ContribsPager
+    - DeletedContribsPager
+    - HistoryPager
+    - ImageListPager
+    - IndexPager
+    - LogPager
+    - MergeHistoryPager
+    - NewFilesPager
+    - NewPagesPager
+    - Pager
+    - PagerTools
+    - ProtectedPagesPager
+    - ProtectedTitlesPager
+    - RangeChronologicalPager
+    - ReverseChronologicalPager
+    - TablePager
+    - UsersPager
+  - MediaWiki\Parser:
+    - Sanitizer
+  - MediaWiki\Request:
+    - ProxyLookup
+    - WebRequest
+  - MediaWiki\SiteStats:
+    - SiteStats
+    - SiteStatsInit
+  - MediaWiki\Specials:
+    - SpecialActiveUsers
+    - SpecialAllMessages
+    - SpecialAncientPages
+    - SpecialApiHelp
+    - SpecialApiSandbox
+    - SpecialAutoblockList
+    - SpecialBlankpage
+    - SpecialBlock
+    - SpecialBlockList
+    - SpecialBookSources
+    - SpecialBotPasswords
+    - SpecialBrokenRedirects
+    - SpecialCategories
+    - SpecialChangeContentModel
+    - SpecialChangeCredentials
+    - SpecialChangeEmail
+    - SpecialChangePassword
+    - SpecialComparePages
+    - SpecialConfirmEmail
+    - SpecialContribute
+    - SpecialContributions
+    - SpecialCreateAccount
+    - SpecialDeadendPages
+    - SpecialDeletePage
+    - SpecialDeletedContributions
+    - SpecialDiff
+    - SpecialDoubleRedirects
+    - SpecialEditPage
+    - SpecialEditTags
+    - SpecialEditWatchlist
+    - SpecialEmailInvalidate
+    - SpecialEmailUser
+    - SpecialExpandTemplates
+    - SpecialExport
+    - SpecialFewestRevisions
+    - SpecialFileDuplicateSearch
+    - SpecialFilepath
+    - SpecialGoToInterwiki
+    - SpecialImport
+    - SpecialJavaScriptTest
+    - SpecialLinkAccounts
+    - SpecialLinkSearch
+    - SpecialListDuplicatedFiles
+    - SpecialListFiles
+    - SpecialListGrants
+    - SpecialListGroupRights
+    - SpecialListRedirects
+    - SpecialListUsers
+    - SpecialLockdb
+    - SpecialLog
+    - SpecialLonelyPages
+    - SpecialLongPages
+    - SpecialMIMESearch
+    - SpecialMediaStatistics
+    - SpecialMergeHistory
+    - SpecialMostCategories
+    - SpecialMostInterwikis
+    - SpecialMostLinked
+    - SpecialMostLinkedCategories
+    - SpecialMostLinkedTemplates
+    - SpecialMostRevisions
+    - SpecialMute
+    - SpecialMyLanguage
+    - SpecialNewFiles
+    - SpecialNewPages (and capitalisation corrected)
+    - SpecialNewSection
+    - SpecialPageData
+    - SpecialPageHistory
+    - SpecialPageInfo
+    - SpecialPageLanguage
+    - SpecialPagesWithProp
+    - SpecialPasswordPolicies
+    - SpecialPasswordReset
+    - SpecialPermanentLink
+    - SpecialPreferences
+    - SpecialPrefixIndex (and capitalisation corrected)
+    - SpecialProtectedPages (and capitalisation corrected)
+    - SpecialProtectedTitles (and capitalisation corrected)
+    - SpecialProtectPage
+    - SpecialPurge
+    - SpecialRandomInCategory
+    - SpecialRandom
+    - SpecialRandomRedirect
+    - SpecialRandomRootPage
+    - SpecialRecentChanges
+    - SpecialRecentChangesLinked
+    - SpecialRedirect
+    - SpecialRedirectToSpecial
+    - SpecialRemoveCredentials
+    - SpecialRenameUser (and capitalisation corrected)
+    - SpecialResetTokens
+    - SpecialRevisionDelete
+    - SpecialRunJobs
+    - SpecialSearch
+    - SpecialShortPages
+    - SpecialSpecialPages (and capitalisation corrected)
+    - SpecialStatistics
+    - SpecialTags
+    - SpecialTrackingCategories
+    - SpecialUnblock
+    - SpecialUncategorizedCategories
+    - SpecialUncategorizedImages
+    - SpecialUncategorizedPages
+    - SpecialUncategorizedTemplates
+    - SpecialUndelete
+    - SpecialUnlinkAccounts
+    - SpecialUnlockdb
+    - SpecialUnusedCategories
+    - SpecialUnusedImages
+    - SpecialUnusedTemplates
+    - SpecialUnwatchedPages
+    - SpecialUpload
+    - SpecialUploadStash
+    - SpecialUserLogin
+    - SpecialUserLogout
+    - SpecialVersion
+    - SpecialWantedCategories
+    - SpecialWantedTemplates
+    - SpecialWatchlist
+    - SpecialWhatLinksHere
+    - SpecialWithoutInterwiki
+  - MediaWiki\Specials\Redirects:
+    - SpecialAllMyUploads
+    - SpecialListAdmins
+    - SpecialListBots
+    - SpecialMycontributions
+    - SpecialMylog
+    - SpecialMypage
+    - SpecialMytalk
+    - SpecialMyuploads
+  - MediaWiki\SpecialPage:
+    - AuthManagerSpecialPage
+    - ChangesListSpecialPage
+    - DisabledSpecialPage
+    - FormSpecialPage
+    - ImageQueryPage
+    - IncludableSpecialPage
+    - LoginSignupSpecialPage
+    - PageQueryPage
+    - QueryPage
+    - RedirectSpecialArticle
+    - RedirectSpecialPage
+    - SpecialPage
+    - SpecialRedirectToSpecial
+    - SpecialRedirectWithAction
+    - UnlistedSpecialPage
+    - WantedQueryPage
+  - MediaWiki\Status:
+    - Status
+  - MediaWiki\Title:
+    - ForeignTitle
+    - ForeignTitleFactory
+    - ImportTitleFactory
+    - MalformedTitleException
+    - MediaWikiTitleCodec
+    - NaiveForeignTitleFactory
+    - NaiveImportTitleFactory
+    - NamespaceAwareForeignTitleFactory
+    - NamespaceImportTitleFactory
+    - NamespaceInfo
+    - SubpageImportTitleFactory
+    - TitleFormatter
+    - TitleParser
+    - TitleValue
+  - MediaWiki\User:
+    - BotPassword
+    - ExternalUserNames
+    - LoggedOutEditToken
+    - PasswordReset
+    - User
+    - UserArray
+    - UserArrayFromResult
+    - UserGroupMembership
+    - UserRightsProxy
+  - MediaWiki\User\CentralId:
+    - CentralIdLookup
+    - LocalIdLookup
+  - MediaWiki\Utils:
+    - MWTimestamp
+    - GitInfo
+    - ExtensionInfo (previously under MediaWiki\ExtensionInfo)
+  - Wikimedia\Rdbms:
+    - ConfiguredReadOnlyMode
+    - ReadOnlyMode
 * Various mediawiki.ui variables have been deprecated in favor of
   'mediawiki.skin.variables.less' Codex design tokens featuring replacements.
 * Hook handlers must now be specified either as a PHP callable, or as a PHP
@@ -730,7 +762,6 @@ because of Phabricator reports.
   `composer phpunit:entrypoint` command.
 * The jquery.cookie ResourceLoader module has been merged into the existing
   mediawiki.cookie module; jquery.cookie remains but is deprecated.
-* The Pingback class has been moved into the MediaWiki\Installer namespace.
 * Passing a database to DatabaseBlockStore::insertBlock() is deprecated.
   DatabaseBlockStoreFactory should be used to fetch a correct
   DatabaseBlockStore instead.
@@ -883,27 +914,6 @@ because of Phabricator reports.
   deprecation warnings.
 * The global function wfReportTime(), deprecated since 1.40, now emits
   deprecation warnings. The SkinTemplate parameter 'reporttime' is deprecated.
-* The following classes are now namespaced; the old class names are left as
-  deprecated aliases:
-  - Status -> MediaWiki\Status\Status
-  - StatusValue -> MediaWiki\Status\StatusValue
-  - EventRelayer -> Wikimedia\EventRelayer\EventRelayer
-  - EventRelayerNull -> Wikimedia\EventRelayer\EventRelayerNull
-  - EventRelayerGroup -> Wikimedia\EventRelayer\EventRelayerGroup
-  - ConfiguredReadOnlyMode -> Wikimedia\Rdbms\ConfiguredReadOnlyMode
-  - ReadOnlyMode -> Wikimedia\Rdbms\ReadOnlyMode
-  - MediaWiki\Emptiable -> MediaWiki\Libs\Emptiable
-  - ProxyLookup -> MediaWiki\Request\ProxyLookup
-  - SiteStats -> MediaWiki\SiteStats\SiteStats
-  - SiteStatsInit -> MediaWiki\SiteStats\SiteStatsInit
-  - MediaWiki\ExtensionInfo -> MediaWiki\Utils\ExtensionInfo
-  - GitInfo -> MediaWiki\Utils\GitInfo
-  - MWTimestamp -> MediaWiki\Utils\MWTimestamp
-  - OutputHandler -> MediaWiki\Output\OutputHandler
-  - OutputPage -> MediaWiki\Output\OutputPage
-  - StreamFile -> MediaWiki\Output\StreamFile
-  - SiteConfiguration -> MediaWiki\Config\SiteConfiguration
-  - WebRequest -> MediaWiki\Request\WebRequest
 * RevisionStore::getQueryInfo() and RevisionFactory::getQueryInfo() have been
   deprecated. Use ::newSelectQueryBuilder() instead.
 * Following methods in rdbms library have been made internal:
