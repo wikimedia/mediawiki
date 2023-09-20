@@ -478,6 +478,9 @@ because of Phabricator reports.
    - ResultWrapper (use Wikimedia\Rdbms\ResultWrapper)
 * $CHANGEDORCREATED argument of 'enotif_body' message was removed.
   It wasn't used in the default messages since 1.21.
+* The AbstractBlock and DatabaseBlock public properties mExpiry, mHideName,
+  mTimestamp, mAuto and mParentBlockId, deprecated since 1.34, have been
+  removed.
 * WikiPage::doDeleteUpdates() and ::getDeletionUpdates(), deprecated in 1.37,
   have been removed.
 * …
@@ -889,11 +892,13 @@ because of Phabricator reports.
   - TablePager::getBody(), deprecated since 1.24
   - ContentHandler::getSlotDiffRendererInternal(), deprecated since 1.35
 * WikiPage::doDeleteArticleBatched, deprecated in 1.37, now emits deprecation
-  notices.
+  warnings.
 * WikiPage::getPageIsRedirectField() is now deprecated.
 * The legacy MediaWiki UI ResourceLoader modules, such as `mediawiki.ui`, are
   all now emitting deprecation warnings in the JavaScript console. Please use
   Codex CSS components instead.
+* SpecialBlock::getTargetAndType(), deprecated since 1.36, now emits deprecation
+  warnings.
 * …
 
 === Other changes in 1.41 ===

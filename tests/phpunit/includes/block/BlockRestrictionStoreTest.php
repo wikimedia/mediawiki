@@ -153,7 +153,6 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 		$pageBar = $this->getExistingTestPage( 'Bar' );
 
 		$restrictions = [
-			(object)[],
 			new PageRestriction( $block->getId(), $pageFoo->getId() ),
 			new PageRestriction( $block->getId(), $pageBar->getId() ),
 			new NamespaceRestriction( $block->getId(), NS_USER )
@@ -161,13 +160,6 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 
 		$result = $this->blockRestrictionStore->insert( $restrictions );
 		$this->assertTrue( $result );
-
-		$restrictions = [
-			(object)[],
-		];
-
-		$result = $this->blockRestrictionStore->insert( $restrictions );
-		$this->assertFalse( $result );
 
 		$result = $this->blockRestrictionStore->insert( [] );
 		$this->assertFalse( $result );
@@ -191,7 +183,6 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 			] );
 
 		$restrictions = [
-			(object)[],
 			new PageRestriction( $block->getId(), $pageFoo->getId() ),
 			new PageRestriction( $block->getId(), $pageBar->getId() ),
 			new NamespaceRestriction( $block->getId(), NS_USER ),
@@ -219,7 +210,6 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 		] );
 
 		$this->blockRestrictionStore->update( [
-			(object)[],
 			new PageRestriction( $block->getId(), $pageBar->getId() ),
 			new NamespaceRestriction( $block->getId(), NS_USER ),
 		] );
@@ -419,9 +409,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
 		$this->assertCount( 1, $restrictions );
 
-		$result = $this->blockRestrictionStore->delete(
-			array_merge( $restrictions, [ (object)[] ] )
-		);
+		$result = $this->blockRestrictionStore->delete( $restrictions );
 		$this->assertTrue( $result );
 
 		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
@@ -464,11 +452,9 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 		return [
 			[
 				[
-					(object)[],
 					new PageRestriction( 1, 1 ),
 				],
 				[
-					(object)[],
 					new PageRestriction( 1, 2 )
 				],
 				false,
@@ -527,15 +513,14 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 	 */
 	public function testSetBlockId() {
 		$restrictions = [
-			(object)[],
 			new PageRestriction( 1, 1 ),
 			new PageRestriction( 1, 2 ),
 			new NamespaceRestriction( 1, NS_USER ),
 		];
 
+		$this->assertSame( 1, $restrictions[0]->getBlockId() );
 		$this->assertSame( 1, $restrictions[1]->getBlockId() );
 		$this->assertSame( 1, $restrictions[2]->getBlockId() );
-		$this->assertSame( 1, $restrictions[3]->getBlockId() );
 
 		$result = $this->blockRestrictionStore->setBlockId( 2, $restrictions );
 

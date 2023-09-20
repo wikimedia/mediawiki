@@ -866,12 +866,13 @@ class SpecialBlockTest extends SpecialPageTestBase {
 
 	/**
 	 * @dataProvider provideGetTargetAndType
-	 * @covers ::getTargetAndType
+	 * @covers ::getTargetAndTypeInternal
 	 */
 	public function testGetTargetAndType( $par, $requestData, $expectedTarget ) {
 		$request = $requestData ? new FauxRequest( $requestData ) : null;
-		$page = $this->newSpecialPage();
-		[ $target, $type ] = $page->getTargetAndType( $par, $request );
+		/** @var SpecialBlock $page */
+		$page = TestingAccessWrapper::newFromObject( $this->newSpecialPage() );
+		[ $target, $type ] = $page->getTargetAndTypeInternal( $par, $request );
 		$this->assertSame( $expectedTarget, $target );
 	}
 

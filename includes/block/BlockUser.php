@@ -167,7 +167,7 @@ class BlockUser {
 	 * even within this class. If you want to determine whether the block will be partial,
 	 * use $this->isPartial().
 	 */
-	private $isPartialRaw = false;
+	private $isPartialRaw;
 
 	/** @var AbstractRestriction[] */
 	private $blockRestrictions = [];
@@ -277,14 +277,7 @@ class BlockUser {
 			}
 		}
 
-		// This needs to be called after $this->blockRestrictions is set, as
-		// $this->isPartial() makes use of it.
-		if (
-			isset( $blockOptions['isPartial'] ) &&
-			!$this->isPartial()
-		) {
-			$this->isPartialRaw = $blockOptions['isPartial'];
-		}
+		$this->isPartialRaw = !empty( $blockOptions['isPartial'] ) && !$blockRestrictions;
 
 		if (
 			!$this->isPartial() ||
@@ -688,7 +681,7 @@ class BlockUser {
 		if ( $this->isPartial() ) {
 			$pageRestrictions = $this->getPageRestrictions();
 			$namespaceRestrictions = $this->getNamespaceRestrictions();
-			$actionRestriction = $this->getActionRestrictions();
+			$actionRestrictions = $this->getActionRestrictions();
 
 			if ( count( $pageRestrictions ) > 0 ) {
 				$logParams['7::restrictions']['pages'] = $pageRestrictions;
@@ -696,8 +689,8 @@ class BlockUser {
 			if ( count( $namespaceRestrictions ) > 0 ) {
 				$logParams['7::restrictions']['namespaces'] = $namespaceRestrictions;
 			}
-			if ( count( $actionRestriction ) ) {
-				$logParams['7::restrictions']['actions'] = $actionRestriction;
+			if ( count( $actionRestrictions ) ) {
+				$logParams['7::restrictions']['actions'] = $actionRestrictions;
 			}
 		}
 		return $logParams;

@@ -34,15 +34,6 @@ use Wikimedia\Rdbms\IResultWrapper;
 class BlockRestrictionStore {
 
 	/**
-	 * Map of all of the restriction types.
-	 */
-	private const TYPES_MAP = [
-		PageRestriction::TYPE_ID => PageRestriction::class,
-		NamespaceRestriction::TYPE_ID => NamespaceRestriction::class,
-		ActionRestriction::TYPE_ID => ActionRestriction::class,
-	];
-
-	/**
 	 * @var IConnectionProvider
 	 */
 	private $dbProvider;
@@ -101,14 +92,7 @@ class BlockRestrictionStore {
 
 		$rows = [];
 		foreach ( $restrictions as $restriction ) {
-			if ( !$restriction instanceof Restriction ) {
-				continue;
-			}
 			$rows[] = $restriction->toRow();
-		}
-
-		if ( !$rows ) {
-			return false;
 		}
 
 		$dbw = $this->dbProvider->getPrimaryDatabase( $this->wikiId );
@@ -236,10 +220,6 @@ class BlockRestrictionStore {
 	public function delete( array $restrictions ) {
 		$dbw = $this->dbProvider->getPrimaryDatabase( $this->wikiId );
 		foreach ( $restrictions as $restriction ) {
-			if ( !$restriction instanceof Restriction ) {
-				continue;
-			}
-
 			$dbw->newDeleteQueryBuilder()
 				->deleteFrom( 'ipblocks_restrictions' )
 				// The restriction row is made up of a compound primary key. Therefore,
@@ -278,16 +258,6 @@ class BlockRestrictionStore {
 	 * @return bool
 	 */
 	public function equals( array $a, array $b ) {
-		$filter = static function ( $restriction ) {
-			return $restriction instanceof Restriction;
-		};
-
-		// Ensure that every item in the array is a Restriction. This prevents a
-		// fatal error from calling Restriction::getHash if something in the array
-		// is not a restriction.
-		$a = array_filter( $a, $filter );
-		$b = array_filter( $b, $filter );
-
 		$aCount = count( $a );
 		$bCount = count( $b );
 
@@ -301,7 +271,7 @@ class BlockRestrictionStore {
 			return true;
 		}
 
-		$hasher = static function ( $r ) {
+		$hasher = static function ( Restriction $r ) {
 			return $r->getHash();
 		};
 
@@ -326,10 +296,6 @@ class BlockRestrictionStore {
 		$blockRestrictions = [];
 
 		foreach ( $restrictions as $restriction ) {
-			if ( !$restriction instanceof Restriction ) {
-				continue;
-			}
-
 			// Clone the restriction so any references to the current restriction are
 			// not suddenly changed to a different blockId.
 			$restriction = clone $restriction;
@@ -350,19 +316,14 @@ class BlockRestrictionStore {
 	 * @return array
 	 */
 	private function restrictionsToRemove( array $existing, array $new ) {
-		return array_filter( $existing, static function ( $e ) use ( $new ) {
-			foreach ( $new as $restriction ) {
-				if ( !$restriction instanceof Restriction ) {
-					continue;
-				}
-
-				if ( $restriction->equals( $e ) ) {
-					return false;
-				}
-			}
-
-			return true;
-		} );
+		$restrictionsByHash = [];
+		foreach ( $existing as $restriction ) {
+			$restrictionsByHash[$restriction->getHash()] = $restriction;
+		}
+		foreach ( $new as $restriction ) {
+			unset( $restrictionsByHash[$restriction->getHash()] );
+		}
+		return array_values( $restrictionsByHash );
 	}
 
 	/**
@@ -376,11 +337,6 @@ class BlockRestrictionStore {
 		$blockRestrictions = [];
 
 		foreach ( $restrictions as $restriction ) {
-			// Ensure that all of the items in the array are restrictions.
-			if ( !$restriction instanceof Restriction ) {
-				continue;
-			}
-
 			$blockRestrictions[$restriction->getBlockId()][] = $restriction;
 		}
 
@@ -415,11 +371,15 @@ class BlockRestrictionStore {
 	 * @return Restriction|null
 	 */
 	private function rowToRestriction( stdClass $row ) {
-		if ( array_key_exists( (int)$row->ir_type, self::TYPES_MAP ) ) {
-			$class = self::TYPES_MAP[ (int)$row->ir_type ];
-			return call_user_func( [ $class, 'newFromRow' ], $row );
+		switch ( (int)$row->ir_type ) {
+			case PageRestriction::TYPE_ID:
+				return PageRestriction::newFromRow( $row );
+			case NamespaceRestriction::TYPE_ID:
+				return NamespaceRestriction::newFromRow( $row );
+			case ActionRestriction::TYPE_ID:
+				return ActionRestriction::newFromRow( $row );
+			default:
+				return null;
 		}
-
-		return null;
 	}
 }

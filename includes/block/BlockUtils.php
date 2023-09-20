@@ -134,7 +134,9 @@ class BlockUtils {
 			return [ $userFromDB, AbstractBlock::TYPE_USER ];
 		}
 
-		// TODO: figure out if it makes sense to have users that do not exist in the DB here
+		// Wrap the invalid user in a UserIdentityValue.
+		// This allows validateTarget() to return a "nosuchusershort" message,
+		// which is needed for Special:Block.
 		$canonicalName = $this->userNameUtils->getCanonical( $target );
 		if ( $canonicalName ) {
 			return [

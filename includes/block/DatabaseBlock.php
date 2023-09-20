@@ -50,13 +50,13 @@ use Wikimedia\Rdbms\IDatabase;
  */
 class DatabaseBlock extends AbstractBlock {
 	/** @var bool */
-	private $mAuto;
+	private $auto;
 
 	/** @var int|null */
-	private $mParentBlockId = null;
+	private $parentBlockId = null;
 
 	/** @var int */
-	private $mId;
+	private $id;
 
 	/** @var bool */
 	private $isAutoblocking;
@@ -110,16 +110,12 @@ class DatabaseBlock extends AbstractBlock {
 		$this->setExpiry( $this->getDBConnection( DB_REPLICA )->decodeExpiry( $options['expiry'] ) );
 
 		// Boolean settings
-		$this->mAuto = (bool)$options['auto'];
+		$this->auto = (bool)$options['auto'];
 		$this->isAutoblocking( (bool)$options['enableAutoblock'] );
 		$this->isSitewide( (bool)$options['sitewide'] );
 		$this->isEmailBlocked( (bool)$options['blockEmail'] );
 		$this->isCreateAccountBlocked( (bool)$options['createAccount'] );
 		$this->isUsertalkEditAllowed( (bool)$options['allowUsertalk'] );
-
-		// hard deprecated since 1.39
-		$this->deprecatePublicProperty( 'mAuto', '1.34', __CLASS__ );
-		$this->deprecatePublicProperty( 'mParentBlockId', '1.34', __CLASS__ );
 	}
 
 	/**
@@ -207,7 +203,7 @@ class DatabaseBlock extends AbstractBlock {
 		return (
 			(string)$this->target == (string)$block->target
 			&& $this->type == $block->type
-			&& $this->mAuto == $block->mAuto
+			&& $this->auto == $block->auto
 			&& $this->isHardblock() == $block->isHardblock()
 			&& $this->isCreateAccountBlocked() == $block->isCreateAccountBlocked()
 			&& $this->getExpiry() == $block->getExpiry()
@@ -329,7 +325,7 @@ class DatabaseBlock extends AbstractBlock {
 
 		// Only add autoblocks that aren't duplicates
 		foreach ( $autoBlocks as $block ) {
-			if ( !in_array( $block->mParentBlockId, $blockIds ) ) {
+			if ( !in_array( $block->parentBlockId, $blockIds ) ) {
 				$blocks[] = $block;
 			}
 		}
@@ -435,12 +431,12 @@ class DatabaseBlock extends AbstractBlock {
 		$this->setTarget( $row->ipb_address );
 
 		$this->setTimestamp( wfTimestamp( TS_MW, $row->ipb_timestamp ) );
-		$this->mAuto = (bool)$row->ipb_auto;
+		$this->auto = (bool)$row->ipb_auto;
 		$this->setHideName( (bool)$row->ipb_deleted );
-		$this->mId = (int)$row->ipb_id;
+		$this->id = (int)$row->ipb_id;
 		// Blocks with no parent ID should have ipb_parent_block_id as null,
 		// don't save that as 0 though, see T282890
-		$this->mParentBlockId = $row->ipb_parent_block_id ? (int)$row->ipb_parent_block_id : null;
+		$this->parentBlockId = $row->ipb_parent_block_id ? (int)$row->ipb_parent_block_id : null;
 
 		$services = MediaWikiServices::getInstance();
 		$this->setBlocker( $services->getActorNormalization()
@@ -636,9 +632,7 @@ class DatabaseBlock extends AbstractBlock {
 		if ( $ipblock ) {
 			// Check if the block is an autoblock and would exceed the user block
 			// if renewed. If so, do nothing, otherwise prolong the block time...
-			if ( $ipblock->mAuto && // @todo Why not compare $ipblock->mExpiry?
-				$this->getExpiry() > self::getAutoblockExpiry( $ipblock->getTimestamp() )
-			) {
+			if ( $ipblock->auto && $this->getExpiry() > $ipblock->getExpiry() ) {
 				// Reset block timestamp to now and its expiry to
 				// $wgAutoblockExpiry in the future
 				$ipblock->updateTimestamp();
@@ -664,12 +658,12 @@ class DatabaseBlock extends AbstractBlock {
 		);
 		$timestamp = wfTimestampNow();
 		$autoblock->setTimestamp( $timestamp );
-		$autoblock->mAuto = true;
+		$autoblock->auto = true;
 		$autoblock->isCreateAccountBlocked( $this->isCreateAccountBlocked() );
 		// Continue suppressing the name if needed
 		$autoblock->setHideName( $this->getHideName() );
 		$autoblock->isUsertalkEditAllowed( $this->isUsertalkEditAllowed() );
-		$autoblock->mParentBlockId = $this->mId;
+		$autoblock->parentBlockId = $this->id;
 		$autoblock->isSitewide( $this->isSitewide() );
 		$autoblock->setRestrictions( $this->getRestrictions() );
 
@@ -697,7 +691,7 @@ class DatabaseBlock extends AbstractBlock {
 	 */
 	public function isExpired() {
 		$timestamp = wfTimestampNow();
-		wfDebug( __METHOD__ . " checking current " . $timestamp . " vs $this->mExpiry" );
+		wfDebug( __METHOD__ . " checking current " . $timestamp . " vs $this->expiry" );
 
 		return $this->getExpiry() && $timestamp > $this->getExpiry();
 	}
@@ -706,7 +700,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * Update the timestamp on autoblocks.
 	 */
 	public function updateTimestamp() {
-		if ( $this->mAuto ) {
+		if ( $this->auto ) {
 			$this->setTimestamp( wfTimestamp() );
 			$this->setExpiry( self::getAutoblockExpiry( $this->getTimestamp() ) );
 
@@ -777,7 +771,7 @@ class DatabaseBlock extends AbstractBlock {
 	 */
 	public function getId( $wikiId = self::LOCAL ): ?int {
 		$this->assertWiki( $wikiId );
-		return $this->mId;
+		return $this->id;
 	}
 
 	/**
@@ -788,7 +782,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * @return self
 	 */
 	public function setId( $blockId ) {
-		$this->mId = (int)$blockId;
+		$this->id = (int)$blockId;
 
 		if ( is_array( $this->restrictions ) ) {
 			$this->restrictions = $this->getBlockRestrictionStore()->setBlockId(
@@ -807,7 +801,7 @@ class DatabaseBlock extends AbstractBlock {
 		// Sanity: this shouldn't have been 0, because when it was set in
 		// initFromRow() we converted 0 to null, in case the object was serialized
 		// and then unserialized, force 0 back to null, see T282890
-		return $this->mParentBlockId ?: null;
+		return $this->parentBlockId ?: null;
 	}
 
 	/**
@@ -843,11 +837,11 @@ class DatabaseBlock extends AbstractBlock {
 	 * @return string Text is escaped
 	 */
 	public function getRedactedName() {
-		if ( $this->mAuto ) {
+		if ( $this->auto ) {
 			return Html::element(
 				'span',
 				[ 'class' => 'mw-autoblockid' ],
-				wfMessage( 'autoblockid', $this->mId )->text()
+				wfMessage( 'autoblockid', $this->id )->text()
 			);
 		} else {
 			return htmlspecialchars( $this->getTargetName() );
@@ -1019,7 +1013,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * autoblock, we have to check the mAuto property instead.
 	 */
 	public function getType(): ?int {
-		return $this->mAuto
+		return $this->auto
 			? self::TYPE_AUTO
 			: parent::getType();
 	}
@@ -1042,10 +1036,10 @@ class DatabaseBlock extends AbstractBlock {
 		if ( $this->restrictions === null ) {
 			// If the block ID has not been set, then do not attempt to load the
 			// restrictions.
-			if ( !$this->mId ) {
+			if ( !$this->id ) {
 				return [];
 			}
-			$this->restrictions = $this->getBlockRestrictionStore()->loadByBlockId( $this->mId );
+			$this->restrictions = $this->getBlockRestrictionStore()->loadByBlockId( $this->id );
 		}
 
 		return $this->restrictions;
@@ -1067,10 +1061,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * @return self
 	 */
 	public function setRestrictions( array $restrictions ) {
-		$this->restrictions = array_filter( $restrictions, static function ( $restriction ) {
-			return $restriction instanceof Restriction;
-		} );
-
+		$this->restrictions = $restrictions;
 		return $this;
 	}
 
