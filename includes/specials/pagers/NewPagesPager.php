@@ -21,13 +21,13 @@
 
 namespace MediaWiki\Pager;
 
+use ChangesList;
 use ChangeTags;
 use HtmlArmor;
 use IContextSource;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\ChangeTags\ChangeTagsStore;
-use MediaWiki\CommentFormatter\CommentFormatter;
-use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -56,13 +56,15 @@ class NewPagesPager extends ReverseChronologicalPager {
 	 */
 	protected $opts;
 
+	/** @var string[] */
+	private $formattedComments = [];
+
 	private GroupPermissionsLookup $groupPermissionsLookup;
 	private HookRunner $hookRunner;
 	private LinkBatchFactory $linkBatchFactory;
 	private NamespaceInfo $namespaceInfo;
 	private ChangeTagsStore $changeTagsStore;
-	private CommentStore $commentStore;
-	private CommentFormatter $commentFormatter;
+	private RowCommentFormatter $rowCommentFormatter;
 	private IContentHandlerFactory $contentHandlerFactory;
 
 	/**
@@ -73,8 +75,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param ChangeTagsStore $changeTagsStore
-	 * @param CommentStore $commentStore
-	 * @param CommentFormatter $commentFormatter
+	 * @param RowCommentFormatter $rowCommentFormatter
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param FormOptions $opts
 	 */
@@ -86,8 +87,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		LinkBatchFactory $linkBatchFactory,
 		NamespaceInfo $namespaceInfo,
 		ChangeTagsStore $changeTagsStore,
-		CommentStore $commentStore,
-		CommentFormatter $commentFormatter,
+		RowCommentFormatter $rowCommentFormatter,
 		IContentHandlerFactory $contentHandlerFactory,
 		FormOptions $opts
 	) {
@@ -97,8 +97,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->changeTagsStore = $changeTagsStore;
-		$this->commentStore = $commentStore;
-		$this->commentFormatter = $commentFormatter;
+		$this->rowCommentFormatter = $rowCommentFormatter;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->opts = $opts;
 	}
@@ -281,7 +280,19 @@ class NewPagesPager extends ReverseChronologicalPager {
 		);
 
 		$ulink = Linker::revUserTools( $revRecord );
-		$comment = $this->commentFormatter->formatRevision( $revRecord, $this->getAuthority() );
+		$rc = RecentChange::newFromRow( $row );
+		if ( ChangesList::userCan( $rc, RevisionRecord::DELETED_COMMENT, $this->getAuthority() ) ) {
+			$comment = $this->formattedComments[$rc->mAttribs['rc_id']];
+		} else {
+			$comment = '<span class="comment">' . $this->msg( 'rev-deleted-comment' )->escaped() . '</span>';
+		}
+		if ( ChangesList::isDeleted( $rc, RevisionRecord::DELETED_COMMENT ) ) {
+			$deletedClass = 'history-deleted';
+			if ( ChangesList::isDeleted( $rc, RevisionRecord::DELETED_RESTRICTED ) ) {
+				$deletedClass .= ' mw-history-suppressed';
+			}
+			$comment = '<span class="' . $deletedClass . ' comment">' . $comment . '</span>';
+		}
 
 		if ( $this->getUser()->useNPPatrol() && !$row->rc_patrolled ) {
 			$classes[] = 'not-patrolled';
@@ -342,9 +353,6 @@ class NewPagesPager extends ReverseChronologicalPager {
 	 */
 	protected function revisionFromRcResult( stdClass $result, Title $title ): RevisionRecord {
 		$revRecord = new MutableRevisionRecord( $title );
-		$revRecord->setComment(
-			$this->commentStore->getComment( 'rc_comment', $result )
-		);
 		$revRecord->setVisibility( (int)$result->rc_deleted );
 
 		$user = new UserIdentityValue(
@@ -364,6 +372,10 @@ class NewPagesPager extends ReverseChronologicalPager {
 			$linkBatch->add( $row->page_namespace, $row->page_title );
 		}
 		$linkBatch->execute();
+
+		$this->formattedComments = $this->rowCommentFormatter->formatRows(
+			$this->mResult, 'rc_comment', null, null, 'rc_id', true
+		);
 	}
 
 	protected function getStartBody() {
