@@ -109,6 +109,7 @@ class UrlUtilsTest extends MediaWikiUnitTestCase {
 			'https://',
 			'file://',
 			'mailto:',
+			'news:',
 		] ] );
 		$actual = $urlUtils->parse( $url );
 		if ( $expected ) {

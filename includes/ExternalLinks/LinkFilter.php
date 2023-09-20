@@ -189,6 +189,14 @@ class LinkFilter {
 			return [];
 		}
 
+		// URI RFC identifies the email/server part of mailto or news protocol as 'path',
+		// while we want to match the email's domain or news server the same way we are
+		// matching hosts for other URLs.
+		if ( in_array( $bits['scheme'], [ 'mailto', 'news' ] ) ) {
+			$bits['host'] = $bits['path'];
+			$bits['path'] = '';
+		}
+
 		// Reverse the labels in the hostname, convert to lower case, unless it's an IP.
 		// For emails turn it into "domain.reversed@localpart"
 		if ( $bits['scheme'] == 'mailto' ) {
@@ -258,7 +266,7 @@ class LinkFilter {
 		// Reverse the labels in the hostname, convert to lower case, unless it's an IP.
 		// For emails turn it into "domain.reversed@localpart"
 		if ( $bits['scheme'] == 'mailto' ) {
-			$mailparts = explode( '@', $bits['host'], 2 );
+			$mailparts = explode( '@', $bits['path'], 2 );
 			if ( count( $mailparts ) === 2 ) {
 				$domainpart = rtrim( self::reverseDomain( $mailparts[0] ), '.' );
 			} else {
@@ -431,6 +439,14 @@ class LinkFilter {
 		$bits = wfParseUrl( $target );
 		if ( !$bits ) {
 			return false;
+		}
+
+		// URI RFC identifies the email/server part of mailto or news protocol as 'path',
+		// while we want to match the email's domain or news server the same way we are
+		// matching hosts for other URLs.
+		if ( in_array( $bits['scheme'], [ 'mailto', 'news' ] ) ) {
+			$bits['host'] = $bits['path'];
+			$bits['path'] = '';
 		}
 
 		$subdomains = false;
