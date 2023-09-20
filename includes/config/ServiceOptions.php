@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Config;
 
-use Config;
 use InvalidArgumentException;
 use Wikimedia\Assert\Assert;
 

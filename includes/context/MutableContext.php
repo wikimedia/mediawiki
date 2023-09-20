@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Config\Config;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;

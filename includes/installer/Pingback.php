@@ -21,8 +21,8 @@
 namespace MediaWiki\Installer;
 
 use BagOStuff;
-use Config;
 use FormatJson;
+use MediaWiki\Config\Config;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\MainConfigNames;
 use MWCryptRand;

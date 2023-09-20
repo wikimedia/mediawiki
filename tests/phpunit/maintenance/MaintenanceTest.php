@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
-use Config;
-use HashConfig;
 use Maintenance;
+use MediaWiki\Config\Config;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\Assert;
 use Wikimedia\TestingAccessWrapper;

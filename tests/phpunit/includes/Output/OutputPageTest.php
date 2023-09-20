@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Config\HashConfig;
+use MediaWiki\Config\MultiConfig;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Languages\LanguageConverterFactory;

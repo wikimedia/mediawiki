@@ -22,8 +22,8 @@
 
 namespace MediaWiki\User\CentralId;
 
-use Config;
 use DBAccessObjectUtils;
+use MediaWiki\Config\Config;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\WikiMap\WikiMap;

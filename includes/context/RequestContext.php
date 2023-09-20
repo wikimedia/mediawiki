@@ -22,6 +22,7 @@
  * @file
  */
 
+use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;

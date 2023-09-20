@@ -20,8 +20,8 @@
 
 namespace MediaWiki\Linker;
 
-use Config;
 use InvalidArgumentException;
+use MediaWiki\Config\Config;
 use MediaWiki\MainConfigNames;
 
 /**

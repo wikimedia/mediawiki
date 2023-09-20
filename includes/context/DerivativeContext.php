@@ -18,6 +18,8 @@
  * @author Daniel Friesen
  * @file
  */
+
+use MediaWiki\Config\Config;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\Authority;

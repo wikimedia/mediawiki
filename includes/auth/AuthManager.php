@@ -23,9 +23,9 @@
 
 namespace MediaWiki\Auth;
 
-use Config;
 use Language;
 use MediaWiki\Block\BlockManager;
+use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageConverterFactory;

@@ -23,10 +23,10 @@
 
 namespace MediaWiki\Specials;
 
-use Config;
 use ErrorPageError;
 use HTMLForm;
 use IContextSource;
+use MediaWiki\Config\Config;
 use MediaWiki\Mail\EmailUserFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;

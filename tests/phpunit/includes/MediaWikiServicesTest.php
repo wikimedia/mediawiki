@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Config\Config;
+use MediaWiki\Config\GlobalVarConfig;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\Hook\MediaWikiServicesHook;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;

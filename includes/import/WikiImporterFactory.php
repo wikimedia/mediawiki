@@ -19,6 +19,7 @@
  * @author Zabe
  */
 
+use MediaWiki\Config\Config;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Page\WikiPageFactory;

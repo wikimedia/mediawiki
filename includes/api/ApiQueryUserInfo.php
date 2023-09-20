@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Config\Config;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionStatus;

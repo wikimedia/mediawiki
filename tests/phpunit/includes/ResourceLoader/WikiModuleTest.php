@@ -2,14 +2,14 @@
 
 namespace MediaWiki\Tests\ResourceLoader;
 
-use Config;
 use Content;
 use CssContent;
 use EmptyResourceLoader;
-use HashConfig;
 use JavaScriptContent;
 use JavaScriptContentHandler;
 use LinkCacheTestTrait;
+use MediaWiki\Config\Config;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;

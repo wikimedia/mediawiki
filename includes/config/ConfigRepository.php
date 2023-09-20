@@ -22,8 +22,6 @@
 
 namespace MediaWiki\Config;
 
-use ConfigException;
-use ConfigFactory;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Services\SalvageableService;
 

@@ -5,7 +5,7 @@ namespace MediaWiki\Tests\Storage;
 use ChangeTags;
 use DeferredUpdates;
 use FormatJson;
-use HashConfig;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use RecentChange;

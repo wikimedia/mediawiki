@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Auth;
 
-use HashConfig;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
@@ -23,7 +23,7 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 	public function testConstructor() {
 		$provider = new CheckBlocksSecondaryAuthenticationProvider();
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
-		$config = new \HashConfig( [
+		$config = new HashConfig( [
 			MainConfigNames::BlockDisablesLogin => false
 		] );
 		$this->initProvider( $provider, $config );
@@ -33,7 +33,7 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			[ 'blockDisablesLogin' => true ]
 		);
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
-		$config = new \HashConfig( [
+		$config = new HashConfig( [
 			MainConfigNames::BlockDisablesLogin => false
 		] );
 		$this->initProvider( $provider, $config );

@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Session;
 
+use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\NullLogger;
@@ -17,7 +18,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 	use SessionProviderTestTrait;
 
 	private function getProvider( $name, $prefix = null, $forceHTTPS = false, $logger = null ) {
-		$config = new \HashConfig();
+		$config = new HashConfig();
 		$config->set( MainConfigNames::CookiePrefix, 'wgCookiePrefix' );
 		$config->set( MainConfigNames::ForceHTTPS, $forceHTTPS );
 

@@ -1,7 +1,11 @@
 <?php
 
+use MediaWiki\Config\ConfigException;
+use MediaWiki\Config\HashConfig;
+use MediaWiki\Config\MultiConfig;
+
 /**
- * @covers MultiConfig
+ * @covers \MediaWiki\Config\MultiConfig
  */
 class MultiConfigTest extends \MediaWikiUnitTestCase {
 

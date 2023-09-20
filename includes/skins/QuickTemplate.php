@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MediaWikiServices;
 

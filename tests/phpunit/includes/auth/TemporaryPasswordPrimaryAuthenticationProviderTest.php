@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\Config\HashConfig;
+use MediaWiki\Config\MultiConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Status\Status;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
@@ -40,11 +42,11 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 	protected function getProvider( $params = [] ) {
 		$mwServices = $this->getServiceContainer();
 		if ( !$this->config ) {
-			$this->config = new \HashConfig( [
+			$this->config = new HashConfig( [
 				MainConfigNames::EnableEmail
 			] );
 		}
-		$config = new \MultiConfig( [
+		$config = new MultiConfig( [
 			$this->config,
 			$mwServices->getMainConfig()
 		] );

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Config\Config;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;

@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\CommentFormatter\CommentFormatter;
+use MediaWiki\Config\ConfigException;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;

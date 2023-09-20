@@ -23,7 +23,7 @@
 
 namespace MediaWiki\Request;
 
-use Config;
+use MediaWiki\Config\Config;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 

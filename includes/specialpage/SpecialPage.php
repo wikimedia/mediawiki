@@ -23,12 +23,12 @@
 
 namespace MediaWiki\SpecialPage;
 
-use Config;
 use ErrorPageError;
 use IContextSource;
 use ILanguageConverter;
 use Language;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;

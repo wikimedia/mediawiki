@@ -1,4 +1,6 @@
 <?php
+
+use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Skin\SkinComponentSearch;
 

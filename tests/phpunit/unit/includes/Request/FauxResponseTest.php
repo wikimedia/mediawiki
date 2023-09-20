@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxResponse;
 

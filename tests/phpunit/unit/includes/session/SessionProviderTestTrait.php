@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Session;
 
-use Config;
-use HashConfig;
+use MediaWiki\Config\Config;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\User\UserNameUtils;
 use Psr\Log\LoggerInterface;

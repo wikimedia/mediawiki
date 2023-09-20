@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Auth;
 
-use HashConfig;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\User\User;

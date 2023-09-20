@@ -22,7 +22,6 @@ namespace MediaWiki\EditPage;
 
 use Article;
 use CategoryPage;
-use Config;
 use Content;
 use ContentHandler;
 use DeferredUpdates;
@@ -36,6 +35,7 @@ use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Config\Config;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\Constraint\AccidentalRecreationConstraint;
 use MediaWiki\EditPage\Constraint\AutoSummaryMissingSummaryConstraint;

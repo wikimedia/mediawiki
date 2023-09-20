@@ -23,8 +23,8 @@
 
 namespace MediaWiki\Session;
 
-use Config;
 use Language;
+use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;

@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
@@ -40,7 +41,7 @@ class EmailNotificationSecondaryAuthenticationProviderTest extends \MediaWikiInt
 	}
 
 	public function testConstructor() {
-		$config = new \HashConfig( [
+		$config = new HashConfig( [
 			MainConfigNames::EnableEmail => true,
 			MainConfigNames::EmailAuthentication => true,
 		] );
@@ -95,7 +96,7 @@ class EmailNotificationSecondaryAuthenticationProviderTest extends \MediaWikiInt
 		$userNameUtils = $this->createNoOpMock( UserNameUtils::class );
 		$authManager = new AuthManager(
 			new \MediaWiki\Request\FauxRequest(),
-			new \HashConfig(),
+			new HashConfig(),
 			$this->getDummyObjectFactory(),
 			$hookContainer,
 			$mwServices->getReadOnlyMode(),

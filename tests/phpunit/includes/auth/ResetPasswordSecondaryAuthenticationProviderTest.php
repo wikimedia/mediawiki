@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
@@ -84,7 +85,7 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiIntegra
 				$this->assertSame( $username, $req->username );
 				$req->done = true;
 			} );
-		$config = new \HashConfig( [
+		$config = new HashConfig( [
 			MainConfigNames::AuthManagerConfig => [
 				'preauth' => [],
 				'primaryauth' => [],

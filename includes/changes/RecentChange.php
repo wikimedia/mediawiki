@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\ChangeTags\Taggable;
+use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\User\Registration;
 
-use ConfigException;
+use MediaWiki\Config\ConfigException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\Registration\IUserRegistrationProvider;
 use MediaWiki\User\Registration\UserRegistrationLookup;

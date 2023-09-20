@@ -1,9 +1,11 @@
 <?php
 
+use MediaWiki\Config\ConfigException;
+use MediaWiki\Config\EtcdConfig;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers EtcdConfig
+ * @covers \MediaWiki\Config\EtcdConfig
  */
 class EtcdConfigTest extends MediaWikiUnitTestCase {
 
@@ -552,7 +554,7 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers EtcdConfigParseError
+	 * @covers \MediaWiki\Config\EtcdConfigParseError
 	 * @dataProvider provideFetchFromServer
 	 */
 	public function testFetchFromServer( array $httpResponse, array $expected ) {

@@ -6,6 +6,7 @@
  * Represents files in a repository.
  */
 
+use MediaWiki\Config\ConfigException;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;

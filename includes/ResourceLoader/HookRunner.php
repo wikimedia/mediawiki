@@ -2,7 +2,7 @@
 
 namespace MediaWiki\ResourceLoader;
 
-use Config;
+use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookContainer;
 
 /**

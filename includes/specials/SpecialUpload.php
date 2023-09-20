@@ -26,13 +26,13 @@ namespace MediaWiki\Specials;
 
 use BitmapHandler;
 use ChangeTags;
-use Config;
 use ErrorPageError;
 use HTMLForm;
 use ImageGalleryBase;
 use LocalFile;
 use LocalRepo;
 use LogEventsList;
+use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;

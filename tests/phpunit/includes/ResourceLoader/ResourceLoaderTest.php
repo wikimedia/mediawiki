@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Tests\ResourceLoader;
 
-use Config;
 use EmptyResourceLoader;
 use Exception;
 use ExtensionRegistry;
-use HashConfig;
 use InvalidArgumentException;
+use MediaWiki\Config\Config;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\Html\HtmlJsCode;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;

@@ -2,7 +2,8 @@
 
 namespace MediaWiki\Session;
 
-use Config;
+use MediaWiki\Config\Config;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
@@ -48,7 +49,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 	 */
 	protected function getBackend( User $user = null, $id = null ) {
 		if ( !$this->config ) {
-			$this->config = new \HashConfig();
+			$this->config = new HashConfig();
 			$this->manager = null;
 		}
 		if ( !$this->store ) {

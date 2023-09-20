@@ -19,9 +19,9 @@
  */
 namespace MediaWiki\ResourceLoader;
 
-use Config;
-use ConfigException;
 use InvalidArgumentException;
+use MediaWiki\Config\Config;
+use MediaWiki\Config\ConfigException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Output\OutputPage;
 use Wikimedia\Minify\CSSMin;

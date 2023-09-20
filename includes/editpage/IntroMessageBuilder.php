@@ -2,9 +2,9 @@
 
 namespace MediaWiki\EditPage;
 
-use Config;
 use LogEventsList;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Config\Config;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Linker\LinkRenderer;

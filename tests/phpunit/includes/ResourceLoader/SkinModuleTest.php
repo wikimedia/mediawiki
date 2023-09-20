@@ -3,8 +3,8 @@
 namespace MediaWiki\Tests\ResourceLoader;
 
 use Generator;
-use HashConfig;
 use InvalidArgumentException;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\FilePath;

@@ -21,7 +21,7 @@
 
 namespace MediaWiki\Auth;
 
-use Config;
+use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\User\UserNameUtils;

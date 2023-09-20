@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\Unit\Auth;
 
-use HashConfig;
 use MediaWiki\Auth\AbstractAuthenticationProvider;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\User\UserNameUtils;
 use Psr\Log\LoggerInterface;

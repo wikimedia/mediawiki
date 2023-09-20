@@ -3,10 +3,10 @@
 namespace MediaWiki\Tests\Integration\Context;
 
 use DerivativeContext;
-use HashConfig;
 use IContextSource;
 use Language;
 use MediaWiki\Actions\ActionFactory;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\FauxRequest;

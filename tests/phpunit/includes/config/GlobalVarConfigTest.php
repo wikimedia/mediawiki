@@ -1,7 +1,10 @@
 <?php
 
+use MediaWiki\Config\ConfigException;
+use MediaWiki\Config\GlobalVarConfig;
+
 /**
- * @covers GlobalVarConfig
+ * @covers \MediaWiki\Config\GlobalVarConfig
  */
 class GlobalVarConfigTest extends MediaWikiIntegrationTestCase {
 

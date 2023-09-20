@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Rest;
 
-use Config;
 use ExtensionRegistry;
 use IContextSource;
 use MediaWiki;
+use MediaWiki\Config\Config;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

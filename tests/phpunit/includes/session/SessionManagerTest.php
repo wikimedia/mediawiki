@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Session;
 
+use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\LoggerInterface;
@@ -16,7 +17,7 @@ use Wikimedia\TestingAccessWrapper;
 class SessionManagerTest extends MediaWikiIntegrationTestCase {
 	use SessionProviderTestTrait;
 
-	/** @var \HashConfig */
+	/** @var HashConfig */
 	private $config;
 
 	/** @var \TestLogger */
@@ -29,7 +30,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$this->store = new TestBagOStuff();
 		$cacheType = $this->setMainCache( $this->store );
 
-		$this->config = new \HashConfig( [
+		$this->config = new HashConfig( [
 			MainConfigNames::LanguageCode => 'en',
 			MainConfigNames::SessionCacheType => $cacheType,
 			MainConfigNames::ObjectCacheSessionExpiry => 100,

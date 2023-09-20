@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Rest\Handler;
 
-use Config;
 use InvalidArgumentException;
 use ISearchResultSet;
 use MediaWiki\Cache\CacheKeyHelper;
+use MediaWiki\Config\Config;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageStore;

@@ -20,13 +20,13 @@
 
 namespace MediaWiki\User;
 
-use Config;
 use DBAccessObjectUtils;
 use FormatJson;
 use IDBAccessObject;
 use InvalidPassword;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\Throttler;
+use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

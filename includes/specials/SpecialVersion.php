@@ -27,10 +27,10 @@ namespace MediaWiki\Specials;
 
 use Closure;
 use ComposerInstalled;
-use Config;
 use ExtensionRegistry;
 use HtmlArmor;
 use Language;
+use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\RawMessage;

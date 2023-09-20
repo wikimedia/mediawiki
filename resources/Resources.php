@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;

@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Auth;
 
-use Config;
 use Exception;
 use Language;
 use MediaWiki\Auth\Hook\AuthManagerLoginAuthenticateAuditHook;
@@ -11,6 +10,8 @@ use MediaWiki\Auth\Hook\SecuritySensitiveOperationStatusHook;
 use MediaWiki\Auth\Hook\UserLoggedInHook;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Config\Config;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
@@ -209,7 +210,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	protected function initializeManager( $regen = false ) {
 		// TODO clean this up, don't need to re fetch the services each time
 		if ( $regen || !$this->config ) {
-			$this->config = new \HashConfig();
+			$this->config = new HashConfig();
 		}
 		if ( $regen || !$this->request ) {
 			$this->request = new \MediaWiki\Request\FauxRequest();
@@ -310,7 +311,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	 */
 	protected function getMockSessionProvider( $canChangeUser = null, array $methods = [] ) {
 		if ( !$this->config ) {
-			$this->config = new \HashConfig();
+			$this->config = new HashConfig();
 			$this->initializeConfig();
 		}
 		$this->config->set( MainConfigNames::ObjectCacheSessionExpiry, 100 );

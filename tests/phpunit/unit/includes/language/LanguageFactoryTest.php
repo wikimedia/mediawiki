@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Languages;
 
-use HashConfig;
 use LocalisationCache;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Languages\LanguageConverterFactory;

@@ -4,7 +4,7 @@ namespace MediaWiki\Tests\Rest\Handler;
 
 use ApiUsageException;
 use FormatJson;
-use HashConfig;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\MagicWordFactory;

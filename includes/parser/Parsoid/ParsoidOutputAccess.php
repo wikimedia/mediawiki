@@ -19,11 +19,11 @@
 
 namespace MediaWiki\Parser\Parsoid;
 
-use Config;
-use HashConfig;
 use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
+use MediaWiki\Config\Config;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Logger\LoggerFactory;

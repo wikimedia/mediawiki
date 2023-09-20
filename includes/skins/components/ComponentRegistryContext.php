@@ -18,7 +18,7 @@
 
 namespace MediaWiki\Skin;
 
-use Config;
+use MediaWiki\Config\Config;
 use MediaWiki\Title\Title;
 
 /**

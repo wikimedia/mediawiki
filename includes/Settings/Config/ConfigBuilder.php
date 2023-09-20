@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Settings\Config;
 
-use Config;
+use MediaWiki\Config\Config;
 use MediaWiki\Settings\SettingsBuilderException;
 
 /**

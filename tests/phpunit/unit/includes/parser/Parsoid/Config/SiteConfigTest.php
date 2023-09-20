@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\Unit\Parser\Parsoid\Config;
 
-use HashConfig;
 use ILanguageConverter;
 use Language;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Languages\LanguageConverterFactory;

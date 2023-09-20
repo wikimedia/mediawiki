@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Config\HashConfig;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTargetLookup;
 use MediaWiki\MainConfigNames;

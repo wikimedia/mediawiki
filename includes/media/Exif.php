@@ -25,6 +25,7 @@
  * @file
  */
 
+use MediaWiki\Config\ConfigException;
 use Wikimedia\AtEase\AtEase;
 
 /**

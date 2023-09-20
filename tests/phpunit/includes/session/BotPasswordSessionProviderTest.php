@@ -2,10 +2,11 @@
 
 namespace MediaWiki\Session;
 
+use MediaWiki\Config\HashConfig;
+use MediaWiki\Config\MultiConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\BotPassword;
 use MediaWikiIntegrationTestCase;
-use MultiConfig;
 use Psr\Log\LogLevel;
 use Wikimedia\TestingAccessWrapper;
 
@@ -35,7 +36,7 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 
 		$configHash = json_encode( [ $name, $prefix, $isApiRequest ] );
 		if ( !$this->config || $this->configHash !== $configHash ) {
-			$this->config = new \HashConfig( [
+			$this->config = new HashConfig( [
 				MainConfigNames::CookiePrefix => 'wgCookiePrefix',
 				MainConfigNames::EnableBotPasswords => true,
 				MainConfigNames::BotPasswordsDatabase => false,

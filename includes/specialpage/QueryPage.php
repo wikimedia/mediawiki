@@ -23,9 +23,9 @@
 
 namespace MediaWiki\SpecialPage;
 
-use Config;
 use Exception;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;

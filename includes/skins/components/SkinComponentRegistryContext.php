@@ -18,9 +18,9 @@
 
 namespace MediaWiki\Skin;
 
-use Config;
 use IContextSource;
 use Language;
+use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Title\Title;

@@ -1,5 +1,9 @@
 <?php
 
+use MediaWiki\Config\Config;
+use MediaWiki\Config\ConfigFactory;
+use MediaWiki\Config\HashConfig;
+use MediaWiki\Config\MultiConfig;
 use MediaWiki\HookContainer\FauxGlobalHookArray;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;

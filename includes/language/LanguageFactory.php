@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Languages;
 
-use Config;
 use InvalidArgumentException;
 use Language;
 use LanguageCode;
@@ -28,6 +27,7 @@ use LanguageConverter;
 use LocalisationCache;
 use LogicException;
 use MapCacheLRU;
+use MediaWiki\Config\Config;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;

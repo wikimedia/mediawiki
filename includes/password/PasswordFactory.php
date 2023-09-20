@@ -22,6 +22,7 @@
 
 declare( strict_types = 1 );
 
+use MediaWiki\Config\Config;
 use MediaWiki\MainConfigNames;
 use Wikimedia\ObjectFactory\ObjectFactory;
 

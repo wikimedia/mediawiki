@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Skin;
 
-use Config;
 use HtmlArmor;
+use MediaWiki\Config\Config;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

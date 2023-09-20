@@ -3,7 +3,7 @@
 namespace MediaWiki\Tests\ResourceLoader;
 
 use EmptyResourceLoader;
-use HashConfig;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;

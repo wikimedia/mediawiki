@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Config;
+
 /**
  * Accesses configuration settings from $GLOBALS
  *
@@ -73,3 +75,9 @@ class GlobalVarConfig implements Config {
 		return isset( $GLOBALS[$var] ) || array_key_exists( $var, $GLOBALS );
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( GlobalVarConfig::class, 'GlobalVarConfig' );

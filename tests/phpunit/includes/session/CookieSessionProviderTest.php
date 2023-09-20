@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Session;
 
+use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
@@ -19,7 +20,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 	use SessionProviderTestTrait;
 
 	private function getConfig() {
-		return new \HashConfig( [
+		return new HashConfig( [
 			MainConfigNames::CookiePrefix => 'CookiePrefix',
 			MainConfigNames::CookiePath => 'CookiePath',
 			MainConfigNames::CookieDomain => 'CookieDomain',

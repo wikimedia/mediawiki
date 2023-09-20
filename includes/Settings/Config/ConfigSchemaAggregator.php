@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Settings\Config;
 
-use Config;
 use JsonSchema\Constraints\Constraint;
 use JsonSchema\Validator;
+use MediaWiki\Config\Config;
 use MediaWiki\Settings\DynamicDefaultValues;
 use MediaWiki\Settings\SettingsBuilderException;
 use MediaWiki\Settings\Source\JsonSchemaTrait;

@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\User\CentralId;
 
-use HashConfig;
 use InvalidArgumentException;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\DummyServicesTrait;

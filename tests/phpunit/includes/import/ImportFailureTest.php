@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Config\HashConfig;
+
 /**
  * Import failure test.
  *

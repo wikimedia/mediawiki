@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
-use HashConfig;
 use InvalidArgumentException;
 use Language;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;

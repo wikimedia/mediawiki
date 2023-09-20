@@ -21,7 +21,11 @@
  * @file
  */
 
+namespace MediaWiki\Config;
+
+use InvalidArgumentException;
 use MediaWiki\MediaWikiServices;
+use UnexpectedValueException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Services\SalvageableService;
 
@@ -158,3 +162,9 @@ class ConfigFactory implements SalvageableService {
 	}
 
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( ConfigFactory::class, 'ConfigFactory' );

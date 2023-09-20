@@ -23,14 +23,14 @@
 
 namespace MediaWiki\Specials;
 
-use HashConfig;
+use MediaWiki\Config\HashConfig;
+use MediaWiki\Config\MultiConfig;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\SpecialPage\SpecialPage;
-use MultiConfig;
 
 /**
  * @ingroup SpecialPage

@@ -4,7 +4,7 @@ namespace MediaWiki\Tests\EditPage;
 
 use File;
 use FileRepo;
-use HashConfig;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\EditPage\IntroMessageBuilder;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\ProperPageIdentity;

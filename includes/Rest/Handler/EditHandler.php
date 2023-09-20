@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Rest\Handler;
 
-use Config;
 use IApiMessage;
+use MediaWiki\Config\Config;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\WebResponse;

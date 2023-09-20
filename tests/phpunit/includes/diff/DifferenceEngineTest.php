@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\SimpleAuthority;

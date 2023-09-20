@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Config;
 
-use ConfigException;
 use MediaWiki\Shell\Shell;
 use MediaWiki\WikiMap\WikiMap;
 use RuntimeException;

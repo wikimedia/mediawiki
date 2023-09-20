@@ -21,15 +21,12 @@
 namespace MediaWiki;
 
 use BagOStuff;
-use Config;
-use ConfigFactory;
 use CryptHKDF;
 use DateFormatterFactory;
 use ExternalStoreAccess;
 use ExternalStoreFactory;
 use FileBackendGroup;
 use GenderCache;
-use GlobalVarConfig;
 use HtmlCacheUpdater;
 use IBufferingStatsdDataFactory;
 use JobQueueGroup;
@@ -62,7 +59,10 @@ use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentFormatter\CommentParserFactory;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\Config\Config;
+use MediaWiki\Config\ConfigFactory;
 use MediaWiki\Config\ConfigRepository;
+use MediaWiki\Config\GlobalVarConfig;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;

@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Session;
 
+use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\User;
 use MediaWiki\User\UserNameUtils;
@@ -25,7 +26,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 
 		$manager = new SessionManager();
 		$logger = new TestLogger();
-		$config = new \HashConfig();
+		$config = new HashConfig();
 		$hookContainer = $this->createHookContainer();
 		$userNameUtils = $this->createNoOpMock( UserNameUtils::class );
 
@@ -164,7 +165,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testHashToSessionId() {
-		$config = new \HashConfig( [
+		$config = new HashConfig( [
 			MainConfigNames::SecretKey => 'Shhh!',
 		] );
 

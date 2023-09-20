@@ -1,5 +1,11 @@
 <?php
 
+use MediaWiki\Config\Config;
+use MediaWiki\Config\ConfigException;
+use MediaWiki\Config\ConfigFactory;
+use MediaWiki\Config\GlobalVarConfig;
+use MediaWiki\Config\HashConfig;
+
 /**
  * @covers ConfigFactory
  */

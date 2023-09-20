@@ -21,11 +21,12 @@
 
 namespace MediaWiki\Parser\Parsoid\Config;
 
-use Config;
 use Language;
 use LanguageCode;
 use LanguageConverter;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use MediaWiki\Config\Config;
+use MediaWiki\Config\MutableConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Languages\LanguageConverterFactory;
@@ -41,7 +42,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Utils\UrlUtils;
 use MediaWiki\WikiMap\WikiMap;
-use MutableConfig;
 use MWException;
 use ParserFactory;
 use ParserOutput;

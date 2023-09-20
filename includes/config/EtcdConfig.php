@@ -18,8 +18,15 @@
  * @file
  */
 
+namespace MediaWiki\Config;
+
+use BagOStuff;
+use DnsSrvDiscoverer;
+use HashBagOStuff;
+use MultiHttpClient;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use Wikimedia\IPUtils;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\WaitConditionLoop;
@@ -116,7 +123,7 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 			$this->srvCache = ObjectFactory::getObjectFromSpec( $params['cache'] );
 		}
 
-		$this->logger = new Psr\Log\NullLogger();
+		$this->logger = new NullLogger();
 		$this->http = new MultiHttpClient( [
 			'connTimeout' => $this->timeout,
 			'reqTimeout' => $this->timeout,
@@ -356,3 +363,9 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 		return json_decode( $string, true );
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( EtcdConfig::class, 'EtcdConfig' );

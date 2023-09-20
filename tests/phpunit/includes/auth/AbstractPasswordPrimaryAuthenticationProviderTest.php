@@ -2,11 +2,12 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\Config\HashConfig;
+use MediaWiki\Config\MultiConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
-use MultiConfig;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -59,7 +60,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 
 	public function testGetNewPasswordExpiry() {
 		$userName = 'TestGetNewPasswordExpiry';
-		$config = new \HashConfig;
+		$config = new HashConfig;
 		$provider = $this->getMockForAbstractClass(
 			AbstractPasswordPrimaryAuthenticationProvider::class
 		);
@@ -131,7 +132,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 	}
 
 	public function testSetPasswordResetFlag() {
-		$config = new \HashConfig( [
+		$config = new HashConfig( [
 			MainConfigNames::InvalidPasswordReset => true,
 		] );
 

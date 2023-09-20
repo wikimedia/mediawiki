@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Config\HashConfig;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Tests\Maintenance\DumpAsserter;
 use MediaWiki\Title\Title;

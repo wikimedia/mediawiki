@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Unit\Settings\Config;
 
-use HashConfig;
 use InvalidArgumentException;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\Settings\Config\ConfigSchemaAggregator;
 use MediaWiki\Settings\Config\MergeStrategy;
 use MediaWiki\Settings\SettingsBuilderException;

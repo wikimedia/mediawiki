@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Config\HashConfig;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Installer\Pingback;
 use MediaWiki\MainConfigNames;

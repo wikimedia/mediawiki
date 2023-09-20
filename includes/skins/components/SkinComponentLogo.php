@@ -18,8 +18,8 @@
 
 namespace MediaWiki\Skin;
 
-use Config;
 use Language;
+use MediaWiki\Config\Config;
 use MediaWiki\ResourceLoader as RL;
 
 /**

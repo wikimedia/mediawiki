@@ -3,7 +3,7 @@
 namespace MediaWiki\Tests\Rest\Handler;
 
 use ApiUsageException;
-use HashConfig;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\Handler\CreationHandler;
 use MediaWiki\Rest\LocalizedHttpException;

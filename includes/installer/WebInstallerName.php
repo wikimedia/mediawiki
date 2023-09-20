@@ -19,6 +19,7 @@
  * @ingroup Installer
  */
 
+use MediaWiki\Config\HashConfig;
 use MediaWiki\Installer\Pingback;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

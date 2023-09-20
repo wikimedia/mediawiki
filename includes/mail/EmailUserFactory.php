@@ -20,7 +20,7 @@
 
 namespace MediaWiki\Mail;
 
-use Config;
+use MediaWiki\Config\Config;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Permissions\Authority;

@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
@@ -237,7 +238,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			->willReturnCallback( static function ( $req ) use ( &$done ) {
 				$done[$req->id] = true;
 			} );
-		$config = new \HashConfig( [
+		$config = new HashConfig( [
 			MainConfigNames::AuthManagerConfig => [
 				'preauth' => [],
 				'primaryauth' => [],

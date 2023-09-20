@@ -1,7 +1,9 @@
 <?php
 
+use MediaWiki\Config\ConfigException;
+
 /**
- * @covers HashConfig
+ * @covers \MediaWiki\Config\HashConfig
  */
 class HashConfigTest extends \MediaWikiUnitTestCase {
 

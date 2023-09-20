@@ -3,9 +3,9 @@
 namespace MediaWiki\Settings;
 
 use BagOStuff;
-use Config;
 use ExtensionRegistry;
-use HashConfig;
+use MediaWiki\Config\Config;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\IterableConfig;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;

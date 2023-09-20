@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Skin;
 
-use Config;
+use MediaWiki\Config\Config;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;

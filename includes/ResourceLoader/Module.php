@@ -22,11 +22,11 @@
 
 namespace MediaWiki\ResourceLoader;
 
-use Config;
 use Exception;
 use FileContentsHasher;
 use JSParser;
 use LogicException;
+use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

@@ -25,8 +25,8 @@ namespace MediaWiki\Session;
 
 use BagOStuff;
 use CachedBagOStuff;
-use Config;
 use LogicException;
+use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;

@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Config\Config;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;

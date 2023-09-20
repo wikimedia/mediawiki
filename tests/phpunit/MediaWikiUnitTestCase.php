@@ -19,6 +19,7 @@
  * @ingroup Testing
  */
 
+use MediaWiki\Config\ConfigException;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logger\NullSpi;
 use MediaWiki\MediaWikiServices;

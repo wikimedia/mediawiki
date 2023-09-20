@@ -23,7 +23,6 @@
 namespace MediaWiki\Output;
 
 use Article;
-use Config;
 use Content;
 use ContextSource;
 use CSSJanus;
@@ -36,6 +35,7 @@ use InvalidArgumentException;
 use JavaScriptContent;
 use LanguageCode;
 use LinkCache;
+use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkTarget;

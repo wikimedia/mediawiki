@@ -23,7 +23,6 @@ namespace MediaWiki\Pager;
 
 use ChangesList;
 use ChangeTags;
-use Config;
 use DateTime;
 use HtmlArmor;
 use IContextSource;
@@ -31,6 +30,7 @@ use InvalidArgumentException;
 use MapCacheLRU;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
+use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
