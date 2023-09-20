@@ -74,8 +74,8 @@ interface AuthenticationProvider {
 	 *    - ACTION_CHANGE: The user having data changed.
 	 *    - ACTION_REMOVE: The user having data removed.
 	 *    If you leave the username property of the returned requests empty, this
-	 *    will automatically be copied there (except for ACTION_CREATE where it
-	 *    wouldn't really make sense).
+	 *    will automatically be copied there (except for ACTION_CREATE and
+	 *    ACTION_LOGIN).
 	 * @return AuthenticationRequest[]
 	 */
 	public function getAuthenticationRequests( $action, array $options );
