@@ -1891,7 +1891,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		// CLDR in English
 		$this->assertTrue( $languageNameUtils->isKnownLanguageTag( 'pal' ) );
 
-		$this->assertSame( 'allemand', $languageNameUtils->fetchLanguageName( 'de', 'fr' ) );
+		$this->assertSame( 'allemand', $languageNameUtils->getLanguageName( 'de', 'fr' ) );
 	}
 
 	/**
