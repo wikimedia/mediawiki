@@ -695,6 +695,8 @@ class SpecialPageFactory {
 				'WatchlistManager',
 				'UserOptionsLookup',
 				'ChangeTagsStore',
+				'UserIdentityUtils',
+				'TempUserConfig',
 			]
 		],
 		'Newpages' => [
@@ -717,6 +719,8 @@ class SpecialPageFactory {
 				'MessageCache',
 				'UserOptionsLookup',
 				'ChangeTagsStore',
+				'UserIdentityUtils',
+				'TempUserConfig',
 			]
 		],
 		'Recentchangeslinked' => [
@@ -727,6 +731,8 @@ class SpecialPageFactory {
 				'UserOptionsLookup',
 				'SearchEngineFactory',
 				'ChangeTagsStore',
+				'UserIdentityUtils',
+				'TempUserConfig',
 			]
 		],
 		'Tags' => [

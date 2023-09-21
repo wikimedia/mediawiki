@@ -36,6 +36,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\ChangesListSpecialPage;
 use MediaWiki\Title\TitleValue;
+use MediaWiki\User\TempUser\TempUserConfig;
+use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Utils\MWTimestamp;
 use MessageCache;
@@ -68,16 +70,27 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @param WatchedItemStoreInterface|null $watchedItemStore
 	 * @param MessageCache|null $messageCache
 	 * @param UserOptionsLookup|null $userOptionsLookup
+	 * @param ChangeTagsStore|null $changeTagsStore
+	 * @param UserIdentityUtils|null $userIdentityUtils
+	 * @param TempUserConfig|null $tempUserConfig
 	 */
 	public function __construct(
 		WatchedItemStoreInterface $watchedItemStore = null,
 		MessageCache $messageCache = null,
 		UserOptionsLookup $userOptionsLookup = null,
-		ChangeTagsStore $changeTagsStore = null
+		ChangeTagsStore $changeTagsStore = null,
+		UserIdentityUtils $userIdentityUtils = null,
+		TempUserConfig $tempUserConfig = null
 	) {
-		parent::__construct( 'Recentchanges', '' );
 		// This class is extended and therefor fallback to global state - T265310
 		$services = MediaWikiServices::getInstance();
+
+		parent::__construct(
+			'Recentchanges',
+			'',
+			$userIdentityUtils ?? $services->getUserIdentityUtils(),
+			$tempUserConfig ?? $services->getTempUserConfig()
+		);
 		$this->watchedItemStore = $watchedItemStore ?? $services->getWatchedItemStore();
 		$this->messageCache = $messageCache ?? $services->getMessageCache();
 		$this->userOptionsLookup = $userOptionsLookup ?? $services->getUserOptionsLookup();

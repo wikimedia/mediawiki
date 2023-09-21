@@ -1622,6 +1622,7 @@
 	"rcfilters-filter-user-experience-level-registered-description": "Logged-in editors.",
 	"rcfilters-filter-user-experience-level-unregistered-label": "Unregistered",
 	"rcfilters-filter-user-experience-level-unregistered-description": "Editors who aren't logged-in.",
+	"rcfilters-filter-user-experience-level-unregistered-description-temp": "Editors who aren't logged-in and editors who are using temporary accounts.",
 	"rcfilters-filter-user-experience-level-newcomer-label": "Newcomers",
 	"rcfilters-filter-user-experience-level-newcomer-description": "Registered editors who have fewer than 10 edits or 4 days of activity.",
 	"rcfilters-filter-user-experience-level-learner-label": "Learners",

@@ -34,7 +34,9 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\ResourceLoader as RL;
+use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityUtils;
 use MWExceptionHandler;
 use OOUI\IconWidget;
 use RecentChange;
@@ -57,6 +59,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 	/** @var FormOptions */
 	protected $rcOptions;
+
+	protected UserIdentityUtils $userIdentityUtils;
+	protected TempUserConfig $tempUserConfig;
 
 	// Order of both groups and filters is significant; first is top-most priority,
 	// descending from there.
@@ -96,8 +101,22 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 */
 	protected $filterGroups = [];
 
-	public function __construct( $name, $restriction ) {
+	/**
+	 * @param string $name
+	 * @param string $restriction
+	 * @param UserIdentityUtils $userIdentityUtils
+	 * @param TempUserConfig $tempUserConfig
+	 */
+	public function __construct(
+		$name,
+		$restriction,
+		UserIdentityUtils $userIdentityUtils,
+		TempUserConfig $tempUserConfig
+	) {
 		parent::__construct( $name, $restriction );
+
+		$this->userIdentityUtils = $userIdentityUtils;
+		$this->tempUserConfig = $tempUserConfig;
 
 		$nonRevisionTypes = [ RC_LOG ];
 		$this->getHookRunner()->onSpecialWatchlistGetNonRevisionTypes( $nonRevisionTypes );
@@ -149,10 +168,12 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 					[
 						'name' => 'unregistered',
 						'label' => 'rcfilters-filter-user-experience-level-unregistered-label',
-						'description' => 'rcfilters-filter-user-experience-level-unregistered-description',
+						'description' => $this->tempUserConfig->isEnabled() ?
+							'rcfilters-filter-user-experience-level-unregistered-description-temp' :
+							'rcfilters-filter-user-experience-level-unregistered-description',
 						'cssClassSuffix' => 'user-unregistered',
-						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
-							return !$rc->getAttribute( 'rc_user' );
+						'isRowApplicableCallable' => function ( IContextSource $ctx, RecentChange $rc ) {
+							return !$this->userIdentityUtils->isNamed( $rc->getPerformerIdentity() );
 						}
 					],
 					[
@@ -160,8 +181,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'label' => 'rcfilters-filter-user-experience-level-registered-label',
 						'description' => 'rcfilters-filter-user-experience-level-registered-description',
 						'cssClassSuffix' => 'user-registered',
-						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
-							return $rc->getAttribute( 'rc_user' );
+						'isRowApplicableCallable' => function ( IContextSource $ctx, RecentChange $rc ) {
+							return $this->userIdentityUtils->isNamed( $rc->getPerformerIdentity() );
 						}
 					],
 					[
@@ -1803,12 +1824,27 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			!in_array( 'unregistered', $selectedExpLevels )
 		) {
 			$conds[] = 'actor_user IS NOT NULL';
+			if ( $this->tempUserConfig->isEnabled() ) {
+				$conds[] = 'actor_name NOT ' . $this->tempUserConfig->getMatchPattern()
+						->buildLike( $dbr );
+			}
 			$join_conds['recentchanges_actor'] = [ 'JOIN', 'actor_id=rc_actor' ];
 			return;
 		}
 
 		if ( $selectedExpLevels === [ 'unregistered' ] ) {
-			$conds['actor_user'] = null;
+			if ( $this->tempUserConfig->isEnabled() ) {
+				$conds[] = $dbr->makeList(
+					[
+						'actor_user' => null,
+						'actor_name ' . $this->tempUserConfig->getMatchPattern()
+							->buildLike( $dbr )
+					],
+					IReadableDatabase::LIST_OR
+				);
+			} else {
+				$conds['actor_user'] = null;
+			}
 			$join_conds['recentchanges_actor'] = [ 'JOIN', 'actor_id=rc_actor' ];
 			return;
 		}
@@ -1852,7 +1888,18 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 		if ( in_array( 'unregistered', $selectedExpLevels ) ) {
 			$selectedExpLevels = array_diff( $selectedExpLevels, [ 'unregistered' ] );
-			$conditions['actor_user'] = null;
+			if ( $this->tempUserConfig->isEnabled() ) {
+				$conditions[] = $dbr->makeList(
+					[
+						'actor_user' => null,
+						'actor_name ' . $this->tempUserConfig->getMatchPattern()
+							->buildLike( $dbr )
+					],
+					IReadableDatabase::LIST_OR
+				);
+			} else {
+				$conditions['actor_user'] = null;
+			}
 			$join_conds['recentchanges_actor'] = [ 'JOIN', 'actor_id=rc_actor' ];
 		}
 
@@ -1876,6 +1923,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$conditions[] = $aboveNewcomer;
 		} elseif ( $selectedExpLevels === [ 'experienced', 'learner', 'newcomer' ] ) {
 			$conditions[] = 'actor_user IS NOT NULL';
+			if ( $this->tempUserConfig->isEnabled() ) {
+				$conditions[] = 'actor_name ' . $this->tempUserConfig->getMatchPattern()
+						->buildLike( $dbr );
+			}
 			$join_conds['recentchanges_actor'] = [ 'JOIN', 'actor_id=rc_actor' ];
 		}
 

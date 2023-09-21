@@ -22,7 +22,10 @@ class SpecialRecentChangesTest extends AbstractChangesListSpecialPageTestCase {
 		return new SpecialRecentChanges(
 			$this->getServiceContainer()->getWatchedItemStore(),
 			$this->getServiceContainer()->getMessageCache(),
-			$this->getServiceContainer()->getUserOptionsLookup()
+			$this->getServiceContainer()->getUserOptionsLookup(),
+			$this->getServiceContainer()->getChangeTagsStore(),
+			$this->getServiceContainer()->getUserIdentityUtils(),
+			$this->getServiceContainer()->getTempUserConfig()
 		);
 	}
 
