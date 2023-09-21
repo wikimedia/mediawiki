@@ -1,3 +1,12 @@
+
+## 2.3.0 / 2023-09-21
+
+* Refactor waitForModuleState and saveScreenshot to async/await. (T337463)
+* Upgrade mwbot from 2.0.0 to 2.1.3.
+* Delete automationProtocol setting.
+* Revert "Skip wikitext-specific tests if NS isn't wikitext". (T303737)
+* Revert "Default to larger window size". (T317879)
+
 ## 2.2.0 / 2022-07-29
 
 * selenium: Default to larger window size (T314115)
