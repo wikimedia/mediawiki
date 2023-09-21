@@ -483,6 +483,8 @@ because of Phabricator reports.
   removed.
 * WikiPage::doDeleteUpdates() and ::getDeletionUpdates(), deprecated in 1.37,
   have been removed.
+* The User public properties mOptions, mBlock, mBlockedby and mHideName,
+  deprecated since 1.35, were removed.
 * …
 
 === Deprecations in 1.41 ===
