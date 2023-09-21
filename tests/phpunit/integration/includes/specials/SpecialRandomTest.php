@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers SpecialRandomPage
+ * @covers \MediaWiki\Specials\SpecialRandomPage
  */
 class SpecialRandomTest extends MediaWikiIntegrationTestCase {
 
@@ -45,6 +45,7 @@ class SpecialRandomTest extends MediaWikiIntegrationTestCase {
 			[ 'hElP', [ NS_HELP ] ],
 			[ 'Project,', [ NS_PROJECT, NS_MAIN ] ],
 			[ 'Project,Help,User_talk', [ NS_PROJECT, NS_HELP, NS_USER_TALK ] ],
+			[ '|invalid|,|namespaces|', $wgContentNamespaces ],
 		];
 	}
 }
