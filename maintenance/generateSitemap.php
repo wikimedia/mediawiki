@@ -262,15 +262,12 @@ class GenerateSitemap extends Maintenance {
 			return;
 		}
 
-		$res = $this->dbr->select( 'page',
-			[ 'page_namespace' ],
-			[],
-			__METHOD__,
-			[
-				'GROUP BY' => 'page_namespace',
-				'ORDER BY' => 'page_namespace',
-			]
-		);
+		$res = $this->dbr->newSelectQueryBuilder()
+			->select( [ 'page_namespace' ] )
+			->from( 'page' )
+			->groupBy( 'page_namespace' )
+			->orderBy( 'page_namespace' )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		foreach ( $res as $row ) {
 			$this->namespaces[] = $row->page_namespace;
@@ -308,28 +305,12 @@ class GenerateSitemap extends Maintenance {
 	 * @return IResultWrapper
 	 */
 	private function getPageRes( $namespace ) {
-		return $this->dbr->select(
-			[ 'page', 'page_props' ],
-			[
-				'page_namespace',
-				'page_title',
-				'page_touched',
-				'page_is_redirect',
-				'pp_propname',
-			],
-			[ 'page_namespace' => $namespace ],
-			__METHOD__,
-			[],
-			[
-				'page_props' => [
-					'LEFT JOIN',
-					[
-						'page_id = pp_page',
-						'pp_propname' => 'noindex'
-					]
-				]
-			]
-		);
+		return $this->dbr->newSelectQueryBuilder()
+			->select( [ 'page_namespace', 'page_title', 'page_touched', 'page_is_redirect', 'pp_propname' ] )
+			->from( 'page' )
+			->leftJoin( 'page_props', null, [ 'page_id = pp_page', 'pp_propname' => 'noindex' ] )
+			->where( [ 'page_namespace' => $namespace ] )
+			->caller( __METHOD__ )->fetchResultSet();
 	}
 
 	/**

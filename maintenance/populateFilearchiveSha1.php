@@ -47,7 +47,6 @@ class PopulateFilearchiveSha1 extends LoggedUpdateMaintenance {
 		$startTime = microtime( true );
 		$dbw = $this->getDB( DB_PRIMARY );
 		$table = 'filearchive';
-		$conds = [ 'fa_sha1' => '', 'fa_storage_key IS NOT NULL' ];
 
 		if ( !$dbw->fieldExists( $table, 'fa_sha1', __METHOD__ ) ) {
 			$this->output( "fa_sha1 column does not exist\n\n", true );
@@ -56,19 +55,21 @@ class PopulateFilearchiveSha1 extends LoggedUpdateMaintenance {
 		}
 
 		$this->output( "Populating fa_sha1 field from fa_storage_key\n" );
-		$endId = $dbw->selectField( $table, 'MAX(fa_id)', '', __METHOD__ );
+		$endId = $dbw->newSelectQueryBuilder()
+			->select( 'MAX(fa_id)' )
+			->from( $table )
+			->caller( __METHOD__ )->fetchField();
 
 		$batchSize = $this->getBatchSize();
 		$done = 0;
 
 		do {
-			$res = $dbw->select(
-				$table,
-				[ 'fa_id', 'fa_storage_key' ],
-				$conds,
-				__METHOD__,
-				[ 'LIMIT' => $batchSize ]
-			);
+			$res = $dbw->newSelectQueryBuilder()
+				->select( [ 'fa_id', 'fa_storage_key' ] )
+				->from( $table )
+				->where( [ 'fa_sha1' => '', 'fa_storage_key IS NOT NULL' ] )
+				->limit( $batchSize )
+				->caller( __METHOD__ )->fetchResultSet();
 
 			$i = 0;
 			foreach ( $res as $row ) {

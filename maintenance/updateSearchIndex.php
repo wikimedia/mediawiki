@@ -99,19 +99,15 @@ class UpdateSearchIndex extends Maintenance {
 		$start = $dbw->timestamp( $start );
 		$end = $dbw->timestamp( $end );
 
-		$res = $dbw->select(
-			[ 'recentchanges', 'page' ],
-			'rc_cur_id',
-			[
+		$res = $dbw->newSelectQueryBuilder()
+			->select( 'rc_cur_id' )
+			->from( 'recentchanges' )
+			->join( 'page', null, 'rc_cur_id=page_id AND rc_this_oldid=page_latest' )
+			->where( [
 				'rc_type != ' . $dbw->addQuotes( RC_LOG ),
 				'rc_timestamp BETWEEN ' . $dbw->addQuotes( $start ) . ' AND ' . $dbw->addQuotes( $end )
-			],
-			__METHOD__,
-			[],
-			[
-				'page' => [ 'JOIN', 'rc_cur_id=page_id AND rc_this_oldid=page_latest' ]
-			]
-		);
+			] )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		foreach ( $res as $row ) {
 			$this->updateSearchIndexForPage( (int)$row->rc_cur_id );

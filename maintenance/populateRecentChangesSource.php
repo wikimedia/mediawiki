@@ -46,13 +46,19 @@ class PopulateRecentChangesSource extends LoggedUpdateMaintenance {
 			$this->error( 'rc_source field in recentchanges table does not exist.' );
 		}
 
-		$start = $dbw->selectField( 'recentchanges', 'MIN(rc_id)', '', __METHOD__ );
+		$start = $dbw->newSelectQueryBuilder()
+			->select( 'MIN(rc_id)' )
+			->from( 'recentchanges' )
+			->caller( __METHOD__ )->fetchField();
 		if ( !$start ) {
 			$this->output( "Nothing to do.\n" );
 
 			return true;
 		}
-		$end = $dbw->selectField( 'recentchanges', 'MAX(rc_id)', '', __METHOD__ );
+		$end = $dbw->newSelectQueryBuilder()
+			->select( 'MAX(rc_id)' )
+			->from( 'recentchanges' )
+			->caller( __METHOD__ )->fetchField();
 		$end += $batchSize - 1;
 		$blockStart = $start;
 		$blockEnd = $start + $batchSize - 1;

@@ -43,10 +43,16 @@ class MigrateUserGroup extends Maintenance {
 		$newGroup = $this->getArg( 1 );
 		$dbw = $this->getDB( DB_PRIMARY );
 		$batchSize = $this->getBatchSize();
-		$start = $dbw->selectField( 'user_groups', 'MIN(ug_user)',
-			[ 'ug_group' => $oldGroup ], __FUNCTION__ );
-		$end = $dbw->selectField( 'user_groups', 'MAX(ug_user)',
-			[ 'ug_group' => $oldGroup ], __FUNCTION__ );
+		$start = $dbw->newSelectQueryBuilder()
+			->select( 'MIN(ug_user)' )
+			->from( 'user_groups' )
+			->where( [ 'ug_group' => $oldGroup ] )
+			->caller( __FUNCTION__ )->fetchField();
+		$end = $dbw->newSelectQueryBuilder()
+			->select( 'MAX(ug_user)' )
+			->from( 'user_groups' )
+			->where( [ 'ug_group' => $oldGroup ] )
+			->caller( __FUNCTION__ )->fetchField();
 		if ( $start === null ) {
 			$this->fatalError( "Nothing to do - no users in the '$oldGroup' group" );
 		}
@@ -84,11 +90,14 @@ class MigrateUserGroup extends Maintenance {
 			if ( $affected > 0 ) {
 				// XXX: This also invalidates cache of unaffected users that
 				// were in the new group and not in the group.
-				$res = $dbw->select( 'user_groups', 'ug_user',
-					[ 'ug_group' => $newGroup,
-						"ug_user BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd ],
-					__METHOD__
-				);
+				$res = $dbw->newSelectQueryBuilder()
+					->select( 'ug_user' )
+					->from( 'user_groups' )
+					->where( [
+						'ug_group' => $newGroup,
+						"ug_user BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd
+					] )
+					->caller( __METHOD__ )->fetchResultSet();
 				if ( $res !== false ) {
 					foreach ( $res as $row ) {
 						$user = User::newFromId( $row->ug_user );

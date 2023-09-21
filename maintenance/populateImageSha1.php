@@ -72,12 +72,11 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 		$t = -microtime( true );
 		$dbw = $this->getDB( DB_PRIMARY );
 		if ( $file != '' ) {
-			$res = $dbw->select(
-				'image',
-				[ 'img_name' ],
-				[ 'img_name' => $file ],
-				__METHOD__
-			);
+			$res = $dbw->newSelectQueryBuilder()
+				->select( [ 'img_name' ] )
+				->from( 'image' )
+				->where( [ 'img_name' => $file ] )
+				->caller( __METHOD__ )->fetchResultSet();
 			if ( !$res ) {
 				$this->fatalError( "No such file: $file" );
 			}
@@ -94,10 +93,17 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 				$this->output( "Populating img_sha1 field\n" );
 			}
 			if ( $this->hasOption( 'multiversiononly' ) ) {
-				$res = $dbw->select( 'oldimage',
-					[ 'img_name' => 'DISTINCT(oi_name)' ], $conds, __METHOD__ );
+				$res = $dbw->newSelectQueryBuilder()
+					->select( [ 'img_name' => 'DISTINCT(oi_name)' ] )
+					->from( 'oldimage' )
+					->where( $conds )
+					->caller( __METHOD__ )->fetchResultSet();
 			} else {
-				$res = $dbw->select( 'image', [ 'img_name' ], $conds, __METHOD__ );
+				$res = $dbw->newSelectQueryBuilder()
+					->select( [ 'img_name' ] )
+					->from( 'image' )
+					->where( $conds )
+					->caller( __METHOD__ )->fetchResultSet();
 			}
 		}
 

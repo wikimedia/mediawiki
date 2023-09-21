@@ -33,9 +33,13 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 	public function execute() {
 		$db = $this->getDB( DB_PRIMARY );
 		$key = $this->getUpdateKey();
+		$queryBuilder = $db->newSelectQueryBuilder()
+			->select( '1' )
+			->from( 'updatelog' )
+			->where( [ 'ul_key' => $key ] );
 
 		if ( !$this->hasOption( 'force' )
-			&& $db->selectRow( 'updatelog', '1', [ 'ul_key' => $key ], __METHOD__ )
+			&& $queryBuilder->caller( __METHOD__ )->fetchRow()
 		) {
 			$this->output( "..." . $this->updateSkippedMessage() . "\n" );
 

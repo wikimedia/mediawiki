@@ -984,7 +984,11 @@ abstract class Maintenance {
 		# Get "active" text records via the content table
 		$cur = [];
 		$this->output( 'Searching for active text records via contents table...' );
-		$res = $dbw->select( 'content', 'content_address', [], __METHOD__, [ 'DISTINCT' ] );
+		$res = $dbw->newSelectQueryBuilder()
+			->select( 'content_address' )
+			->distinct()
+			->from( 'content' )
+			->caller( __METHOD__ )->fetchResultSet();
 		$blobStore = $this->getServiceContainer()->getBlobStore();
 		foreach ( $res as $row ) {
 			// @phan-suppress-next-line PhanUndeclaredMethod
@@ -997,8 +1001,12 @@ abstract class Maintenance {
 
 		# Get the IDs of all text records not in these sets
 		$this->output( 'Searching for inactive text records...' );
-		$cond = 'old_id NOT IN ( ' . $dbw->makeList( $cur ) . ' )';
-		$res = $dbw->select( 'text', 'old_id', [ $cond ], __METHOD__, [ 'DISTINCT' ] );
+		$res = $dbw->newSelectQueryBuilder()
+			->select( 'old_id' )
+			->distinct()
+			->from( 'text' )
+			->where( [ 'old_id NOT IN ( ' . $dbw->makeList( $cur ) . ' )' ] )
+			->caller( __METHOD__ )->fetchResultSet();
 		$old = [];
 		foreach ( $res as $row ) {
 			$old[] = $row->old_id;

@@ -104,12 +104,11 @@ TEXT
 		$dbw = $this->getDB( DB_PRIMARY );
 
 		if ( !$force ) {
-			$row = $dbw->selectRow(
-				'updatelog',
-				'1',
-				[ 'ul_key' => 'populate interwiki' ],
-				__METHOD__
-			);
+			$row = $dbw->newSelectQueryBuilder()
+				->select( '1' )
+				->from( 'updatelog' )
+				->where( [ 'ul_key' => 'populate interwiki' ] )
+				->caller( __METHOD__ )->fetchRow();
 
 			if ( $row ) {
 				$this->output( "Interwiki table already populated.  Use php " .
@@ -123,12 +122,11 @@ TEXT
 		foreach ( $data as $d ) {
 			$prefix = $d['prefix'];
 
-			$row = $dbw->selectRow(
-				'interwiki',
-				'1',
-				[ 'iw_prefix' => $prefix ],
-				__METHOD__
-			);
+			$row = $dbw->newSelectQueryBuilder()
+				->select( '1' )
+				->from( 'interwiki' )
+				->where( [ 'iw_prefix' => $prefix ] )
+				->caller( __METHOD__ )->fetchRow();
 
 			if ( !$row ) {
 				$dbw->insert(

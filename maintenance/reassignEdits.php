@@ -96,23 +96,21 @@ class ReassignEdits extends Maintenance {
 		$this->output( "found {$revisionRows}.\n" );
 
 		$this->output( "Checking deleted edits..." );
-		$archiveRows = $dbw->selectRowCount(
-			[ 'archive' ],
-			'*',
-			[ 'ar_actor' => $fromActorId ],
-			__METHOD__
-		);
+		$archiveRows = $dbw->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'archive' )
+			->where( [ 'ar_actor' => $fromActorId ] )
+			->caller( __METHOD__ )->fetchRowCount();
 		$this->output( "found {$archiveRows}.\n" );
 
 		# Don't count recent changes if we're not supposed to
 		if ( $updateRC ) {
 			$this->output( "Checking recent changes..." );
-			$recentChangesRows = $dbw->selectRowCount(
-				[ 'recentchanges' ],
-				'*',
-				[ 'rc_actor' => $fromActorId ],
-				__METHOD__
-			);
+			$recentChangesRows = $dbw->newSelectQueryBuilder()
+				->select( '*' )
+				->from( 'recentchanges' )
+				->where( [ 'rc_actor' => $fromActorId ] )
+				->caller( __METHOD__ )->fetchRowCount();
 			$this->output( "found {$recentChangesRows}.\n" );
 		} else {
 			$recentChangesRows = 0;

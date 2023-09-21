@@ -45,24 +45,20 @@ class PopulatePPSortKey extends LoggedUpdateMaintenance {
 
 		$this->output( "Populating page_props.pp_sortkey...\n" );
 		while ( true ) {
-			$conditions = [ 'pp_sortkey' => null ];
+			$queryBuilder = $dbw->newSelectQueryBuilder()
+				->select( [ 'pp_propname', 'pp_page', 'pp_sortkey', 'pp_value' ] )
+				->from( 'page_props' )
+				->where( [ 'pp_sortkey' => null ] )
+				->orderBy( [ 'pp_page', 'pp_propname' ] )
+				->limit( $this->getBatchSize() );
 			if ( $lastPageValue !== 0 ) {
-				$conditions[] = $dbw->buildComparison( '>', [
+				$queryBuilder->andWhere( $dbw->buildComparison( '>', [
 					'pp_page' => $lastPageValue,
 					'pp_propname' => $lastProp,
-				] );
+				] ) );
 			}
 
-			$res = $dbw->select(
-				'page_props',
-				[ 'pp_propname', 'pp_page', 'pp_sortkey', 'pp_value' ],
-				$conditions,
-				__METHOD__,
-				[
-					'ORDER BY' => [ 'pp_page', 'pp_propname' ],
-					'LIMIT' => $this->getBatchSize()
-				]
-			);
+			$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 
 			if ( $res->numRows() === 0 ) {
 				break;

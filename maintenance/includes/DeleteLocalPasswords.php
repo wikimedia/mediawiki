@@ -168,18 +168,13 @@ ERROR
 		$dbw = $this->getDB( DB_PRIMARY );
 		do {
 			$this->output( "\t ... querying from '$lastUsername'\n" );
-			$users = $dbw->selectFieldValues(
-				'user',
-				'user_name',
-				[
-					'user_name > ' . $dbw->addQuotes( $lastUsername ),
-				],
-				__METHOD__,
-				[
-					'LIMIT' => $this->getBatchSize(),
-					'ORDER BY' => 'user_name ASC',
-				]
-			);
+			$users = $dbw->newSelectQueryBuilder()
+				->select( 'user_name' )
+				->from( 'user' )
+				->where( [ 'user_name > ' . $dbw->addQuotes( $lastUsername ) ] )
+				->orderBy( 'user_name ASC' )
+				->limit( $this->getBatchSize() )
+				->caller( __METHOD__ )->fetchFieldValues();
 			if ( $users ) {
 				yield $users;
 				$lastUsername = end( $users );

@@ -538,18 +538,14 @@ class NamespaceDupes extends Maintenance {
 			$checkNamespaces = NS_MAIN;
 		}
 
-		return $dbw->select( 'page',
-			[
-				'page_id',
-				'page_title',
-				'page_namespace',
-			],
-			[
+		return $dbw->newSelectQueryBuilder()
+			->select( [ 'page_id', 'page_title', 'page_namespace' ] )
+			->from( 'page' )
+			->where( [
 				'page_namespace' => $checkNamespaces,
 				'page_title' . $dbw->buildLike( "$name:", $dbw->anyString() ),
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )->fetchResultSet();
 	}
 
 	/**
