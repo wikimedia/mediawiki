@@ -89,10 +89,10 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	public function getDescription() {
 		$target = self::getTarget( $this->mTarget, $this->getUser() );
 		if ( !$target instanceof User ) {
-			return $this->msg( 'emailuser-title-notarget' )->text();
+			return $this->msg( 'emailuser-title-notarget' );
 		}
 
-		return $this->msg( 'emailuser-title-target', $target->getName() )->text();
+		return $this->msg( 'emailuser-title-target', $target->getName() );
 	}
 
 	protected function getFormFields() {

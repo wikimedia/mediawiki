@@ -135,7 +135,7 @@ class SpecialMute extends FormSpecialPage {
 	 * @inheritDoc
 	 */
 	public function getDescription() {
-		return $this->msg( 'specialmute' )->text();
+		return $this->msg( 'specialmute' );
 	}
 
 	/**

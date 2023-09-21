@@ -87,7 +87,7 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 	}
 
 	public function getDescription() {
-		return $this->msg( 'createaccount' )->text();
+		return $this->msg( 'createaccount' );
 	}
 
 	protected function isSignup() {

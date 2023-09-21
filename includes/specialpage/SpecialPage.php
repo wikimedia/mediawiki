@@ -31,6 +31,7 @@ use MediaWiki\Auth\AuthManager;
 use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Language\RawMessage;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -65,7 +66,8 @@ use UserNotLoggedIn;
 class SpecialPage implements MessageLocalizer {
 	/**
 	 * @var string The canonical name of this special page
-	 * Also used for the default <h1> heading, @see getDescription()
+	 * Also used as the message key for the default <h1> heading,
+	 * @see getDescription()
 	 */
 	protected $mName;
 
@@ -693,7 +695,13 @@ class SpecialPage implements MessageLocalizer {
 		$out = $this->getOutput();
 		$out->setArticleRelated( false );
 		$out->setRobotPolicy( $this->getRobotPolicy() );
-		$out->setPageTitle( $this->getDescription() );
+		$title = $this->getDescription();
+		if ( is_string( $title ) ) {
+			// T343849: returning a string from ::getDescription() is deprecated
+			// and we'll emit a warning here in a future release.
+			$title = ( new RawMessage( '$1' ) )->rawParams( $title );
+		}
+		$out->setPageTitleMsg( $title );
 		if ( $this->getConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere ) ) {
 			$out->addModuleStyles( [
 				'mediawiki.ui.input',
@@ -799,12 +807,14 @@ class SpecialPage implements MessageLocalizer {
 	 * Derived classes can override this, but usually it is easier to keep the
 	 * default behavior.
 	 *
+	 * Returning a string from this method has been deprecated since 1.41.
+	 *
 	 * @stable to override
 	 *
-	 * @return string
+	 * @return string|Message
 	 */
 	public function getDescription() {
-		return $this->msg( strtolower( $this->mName ) )->text();
+		return $this->msg( strtolower( $this->mName ) );
 	}
 
 	/**

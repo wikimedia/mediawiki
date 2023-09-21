@@ -497,7 +497,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	}
 
 	public function getDescription() {
-		return $this->msg( 'tags-edit-title' )->text();
+		return $this->msg( 'tags-edit-title' );
 	}
 
 	protected function getGroupName() {

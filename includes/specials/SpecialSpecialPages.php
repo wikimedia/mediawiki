@@ -24,6 +24,7 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Html\Html;
+use MediaWiki\Language\RawMessage;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use Parser;
@@ -72,7 +73,13 @@ class SpecialSpecialPages extends UnlistedSpecialPage {
 		/** @var SpecialPage $page */
 		foreach ( $pages as $page ) {
 			$group = $page->getFinalGroupName();
-			$groups[$group][$page->getDescription()] = [
+			$desc = $page->getDescription();
+			if ( is_string( $desc ) ) {
+				// T343849: returning a string from ::getDescription() is
+				// deprecated and we'll emit a warning here in a future release.
+				$desc = ( new RawMessage( '$1' ) )->rawParams( $desc );
+			}
+			$groups[$group][$desc->text()] = [
 				$page->getPageTitle(),
 				$page->isRestricted(),
 				$page->isCached()
