@@ -26,7 +26,6 @@ use HashBagOStuff;
 use MultiHttpClient;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
-use Psr\Log\NullLogger;
 use Wikimedia\IPUtils;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\WaitConditionLoop;
@@ -43,8 +42,6 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 	private $srvCache;
 	/** @var array */
 	private $procCache;
-	/** @var LoggerInterface */
-	private $logger;
 	/** @var DnsSrvDiscoverer */
 	private $dsd;
 
@@ -123,18 +120,18 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 			$this->srvCache = ObjectFactory::getObjectFromSpec( $params['cache'] );
 		}
 
-		$this->logger = new NullLogger();
 		$this->http = new MultiHttpClient( [
 			'connTimeout' => $this->timeout,
 			'reqTimeout' => $this->timeout,
-			'logger' => $this->logger
 		] );
 		$this->dsd = new DnsSrvDiscoverer( $this->service, 'tcp', $this->host );
 	}
 
+	/**
+	 * @deprecated since 1.41 No longer used and did not work in practice
+	 */
 	public function setLogger( LoggerInterface $logger ) {
-		$this->logger = $logger;
-		$this->http->setLogger( $logger );
+		trigger_error( __METHOD__ . ' is deprecated since 1.41', E_USER_DEPRECATED );
 	}
 
 	public function has( $name ) {
@@ -181,8 +178,6 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 				// Check if the values are in cache yet...
 				$data = $this->srvCache->get( $key );
 				if ( is_array( $data ) && $data['expires'] > $now ) {
-					$this->logger->debug( "Found up-to-date etcd configuration cache." );
-
 					return WaitConditionLoop::CONDITION_REACHED;
 				}
 
@@ -204,11 +199,9 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 							];
 							$this->srvCache->set( $key, $data, BagOStuff::TTL_INDEFINITE );
 
-							$this->logger->info( "Refreshed stale etcd configuration cache." );
-
 							return WaitConditionLoop::CONDITION_REACHED;
 						} else {
-							$this->logger->error( "Failed to fetch configuration: $error" );
+							trigger_error( "EtcdConfig failed to fetch data: $error", E_USER_WARNING );
 							if ( !$etcdResponse['retry'] ) {
 								// Fail fast since the error is likely to keep happening
 								return WaitConditionLoop::CONDITION_FAILED;
@@ -217,10 +210,12 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 					} finally {
 						$this->srvCache->unlock( $key ); // release mutex
 					}
+				} else {
+					$error = 'lost lock';
 				}
 
 				if ( is_array( $data ) ) {
-					$this->logger->info( "Using stale etcd configuration cache." );
+					trigger_error( "EtcdConfig using stale data: $error", E_USER_NOTICE );
 
 					return WaitConditionLoop::CONDITION_REACHED;
 				}

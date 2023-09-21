@@ -194,7 +194,7 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 			->willReturn( self::createEtcdResponse( [ 'error' => 'Fake error', ] ) );
 
 		$this->expectException( ConfigException::class );
-		$mock->get( 'key' );
+		@$mock->get( 'key' );
 	}
 
 	public function testLoadCacheMissWithoutLock() {
@@ -324,10 +324,10 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 		$mock->expects( $this->once() )->method( 'fetchAllFromEtcd' )
 			->willReturn( self::createEtcdResponse( [ 'error' => 'Fake failure', 'retry' => true ] ) );
 
-		$this->assertSame( 'from-cache-expired', $mock->get( 'known' ) );
+		$this->assertSame( 'from-cache-expired', @$mock->get( 'known' ) );
 	}
 
-	public function testLoadCacheExpiredNoLock() {
+	public function createConfigMockWithNoLock() {
 		// Create cache mock
 		$cache = $this->getMockBuilder( HashBagOStuff::class )
 			->onlyMethods( [ 'get', 'lock' ] )
@@ -348,8 +348,21 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 			'cache' => $cache,
 		] );
 		$mock->expects( $this->never() )->method( 'fetchAllFromEtcd' );
+		return $mock;
+	}
 
-		$this->assertSame( 'from-cache-expired', $mock->get( 'known' ) );
+	public function testLoadCacheExpiredNoLock() {
+		$mock = $this->createConfigMockWithNoLock();
+
+		$this->assertSame( 'from-cache-expired', @$mock->get( 'known' ) );
+	}
+
+	public function testLoadCacheExpiredNoLockWarning() {
+		$mock = $this->createConfigMockWithNoLock();
+
+		$this->expectNotice();
+		$this->expectNoticeMessage( 'using stale data: lost lock' );
+		$mock->get( 'known' );
 	}
 
 	public static function provideFetchFromServer() {
