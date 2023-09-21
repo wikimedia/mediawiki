@@ -523,8 +523,6 @@ class SkinTemplate extends Skin {
 			}
 		}
 
-		$this->getHookRunner()->onPersonalUrls( $personal_urls, $title, $this );
-
 		return $personal_urls;
 	}
 

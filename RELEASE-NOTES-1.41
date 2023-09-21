@@ -301,6 +301,7 @@ because of Phabricator reports.
   deprecation.
 * SkinTemplateNavigation and SkinTemplateNavigation::SpecialPage hooks,
   deprecated in 1.39, have been removed.
+* The PersonalUrls hook, deprecated in 1.39, has been removed.
 * OutputPage::getCSPNonce(), soft deprecated in 1.35, now emits deprecation
   warnings.
 * Support of the third parameter of LogEventsListGetExtraInputs hook,
