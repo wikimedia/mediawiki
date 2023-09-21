@@ -107,7 +107,7 @@ class DeleteAction extends FormAction {
 
 	protected function getPageTitle() {
 		$title = $this->getTitle();
-		return $this->msg( 'delete-confirm', $title->getPrefixedText() );
+		return $this->msg( 'delete-confirm' )->plaintextParams( $title->getPrefixedText() );
 	}
 
 	public function getRestriction() {

@@ -65,7 +65,7 @@ class HistoryAction extends FormlessAction {
 	}
 
 	protected function getPageTitle() {
-		return $this->msg( 'history-title', $this->getTitle()->getPrefixedText() )->text();
+		return $this->msg( 'history-title' )->plaintextParams( $this->getTitle()->getPrefixedText() );
 	}
 
 	protected function getDescription() {
