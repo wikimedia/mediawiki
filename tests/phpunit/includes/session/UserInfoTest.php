@@ -8,7 +8,7 @@ use MediaWikiIntegrationTestCase;
 /**
  * @group Session
  * @group Database
- * @covers MediaWiki\Session\UserInfo
+ * @covers \MediaWiki\Session\UserInfo
  */
 class UserInfoTest extends MediaWikiIntegrationTestCase {
 
@@ -26,7 +26,10 @@ class UserInfoTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testNewFromId() {
-		$id = wfGetDB( DB_PRIMARY )->selectField( 'user', 'MAX(user_id)' ) + 1;
+		$id = $this->getDb()->newSelectQueryBuilder()
+			->select( 'MAX(user_id)' )
+			->from( 'user' )
+			->fetchField() + 1;
 		try {
 			UserInfo::newFromId( $id );
 			$this->fail( 'Expected exception not thrown' );

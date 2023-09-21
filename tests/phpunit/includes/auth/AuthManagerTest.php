@@ -531,7 +531,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 					} ),
 					/* $timeSinceAuth*/ $mutableSession
 						? $this->equalToWithDelta( 500, 2 )
-						: $this->equalTo( -1 )
+						: -1
 				)
 				->willReturnCallback( static function ( &$v ) use ( $hook ) {
 					$v = $hook;
@@ -2285,7 +2285,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 						$this->callback( static function ( $user ) use ( $username ) {
 							return $user->getName() === $username;
 						} ),
-						$this->equalTo( false )
+						false
 					);
 				$expectLog[] = [ LogLevel::INFO, "Creating user {user} during account creation" ];
 			} else {
@@ -2383,8 +2383,11 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 
 		$this->assertSame(
 			$maxLogId,
-			$dbw->selectField( 'logging', 'MAX(log_id)', [ 'log_type' => 'newusers' ] )
-		);
+			$dbw->newSelectQueryBuilder()
+				->select( 'MAX(log_id)' )
+				->from( 'logging' )
+				->where( [ 'log_type' => 'newusers' ] )
+				->fetchField() );
 	}
 
 	public function provideAccountCreation() {
@@ -2636,7 +2639,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 
 		$mocks['pre']->expects( $this->exactly( 13 ) )->method( 'testUserForCreation' )
 			->with( $callback, $callback2 )
-			->will( $this->onConsecutiveCalls(
+			->willReturnOnConsecutiveCalls(
 				$ok, $ok, $ok, // For testing permissions
 				StatusValue::newFatal( 'fail-in-pre' ), $good, $good,
 				$good, // backoff test
@@ -2644,7 +2647,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 				$good, // addToDatabase throws test
 				$good, // addToDatabase exists test
 				$good, $good, $good // success
-			) );
+			);
 
 		$mocks['primary']->method( 'accountCreationType' )
 			->willReturn( PrimaryAuthenticationProvider::TYPE_CREATE );
@@ -2652,27 +2655,27 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			->willReturn( true );
 		$mocks['primary']->expects( $this->exactly( 9 ) )->method( 'testUserForCreation' )
 			->with( $callback, $callback2 )
-			->will( $this->onConsecutiveCalls(
+			->willReturnOnConsecutiveCalls(
 				StatusValue::newFatal( 'fail-in-primary' ), $good,
 				$good, // backoff test
 				$good, // addToDatabase fails test
 				$good, // addToDatabase throws test
 				$good, // addToDatabase exists test
 				$good, $good, $good
-			) );
+			);
 		$mocks['primary']->expects( $this->exactly( 3 ) )->method( 'autoCreatedAccount' )
 			->with( $callback, $callback2 );
 
 		$mocks['secondary']->expects( $this->exactly( 8 ) )->method( 'testUserForCreation' )
 			->with( $callback, $callback2 )
-			->will( $this->onConsecutiveCalls(
+			->willReturnOnConsecutiveCalls(
 				StatusValue::newFatal( 'fail-in-secondary' ),
 				$good, // backoff test
 				$good, // addToDatabase fails test
 				$good, // addToDatabase throws test
 				$good, // addToDatabase exists test
 				$good, $good, $good
-			) );
+			);
 		$mocks['secondary']->expects( $this->exactly( 3 ) )->method( 'autoCreatedAccount' )
 			->with( $callback, $callback2 );
 
@@ -2967,7 +2970,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$user = $this->getMockBuilder( User::class )
 			->onlyMethods( [ 'addToDatabase' ] )->getMock();
 		$user->expects( $this->once() )->method( 'addToDatabase' )
-			->will( $this->throwException( new \Exception( 'Excepted' ) ) );
+			->willThrowException( new \Exception( 'Excepted' ) );
 		$user->setName( $username );
 		try {
 			$this->manager->autoCreateUser( $user, AuthManager::AUTOCREATE_SOURCE_SESSION, true, true );
@@ -3053,8 +3056,11 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$logger->clearBuffer();
 		$this->assertSame(
 			$maxLogId,
-			$dbw->selectField( 'logging', 'MAX(log_id)', [ 'log_type' => 'newusers' ] )
-		);
+			$dbw->newSelectQueryBuilder()
+				->select( 'MAX(log_id)' )
+				->from( 'logging' )
+				->where( [ 'log_type' => 'newusers' ] )
+				->fetchField() );
 
 		$this->config->set( MainConfigNames::NewUserLog, true );
 		$session->clear();

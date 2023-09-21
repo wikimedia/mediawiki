@@ -651,11 +651,11 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 		$existingPage = $this->getExistingTestPage();
 		$pageStore = $this->getPageStore();
 
-		$row = $this->db->selectRow(
-			'page',
-			$pageStore->getSelectFields(),
-			[ 'page_id' => $existingPage->getId() ]
-		);
+		$row = $this->db->newSelectQueryBuilder()
+			->select( $pageStore->getSelectFields() )
+			->from( 'page' )
+			->where( [ 'page_id' => $existingPage->getId() ] )
+			->fetchRow();
 
 		$rec = $pageStore->newPageRecordFromRow( $row );
 		$this->assertSamePage( $existingPage, $rec );

@@ -92,7 +92,11 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$page = $wikiPageFactory->newFromTitle( $title );
 		$updater = $page->newPageUpdater( $user );
 
-		$oldStats = $this->db->selectRow( 'site_stats', '*', '1=1' );
+		$oldStats = $this->db->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'site_stats' )
+			->where( '1=1' )
+			->fetchRow();
 
 		$this->assertFalse( $updater->wasCommitted(), 'wasCommitted' );
 
@@ -168,7 +172,11 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $rc, 'RecentChange' );
 
 		// check site stats - this asserts that derived data updates where run.
-		$stats = $this->db->selectRow( 'site_stats', '*', '1=1' );
+		$stats = $this->db->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'site_stats' )
+			->where( '1=1' )
+			->fetchRow();
 		$this->assertSame( $oldStats->ss_total_pages + 1, (int)$stats->ss_total_pages );
 		$this->assertSame( $oldStats->ss_total_edits + 1, (int)$stats->ss_total_edits );
 
@@ -203,7 +211,11 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$updater = $page->newPageUpdater( $user );
 
-		$oldStats = $this->db->selectRow( 'site_stats', '*', '1=1' );
+		$oldStats = $this->db->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'site_stats' )
+			->where( '1=1' )
+			->fetchRow();
 
 		$updater->setOriginalRevisionId( 7 );
 
@@ -300,7 +312,11 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		);
 
 		// check site stats - this asserts that derived data updates where run.
-		$stats = $this->db->selectRow( 'site_stats', '*', '1=1' );
+		$stats = $this->db->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'site_stats' )
+			->where( '1=1' )
+			->fetchRow();
 		$this->assertNotNull( $stats, 'site_stats' );
 		$this->assertSame( $oldStats->ss_total_pages + 0, (int)$stats->ss_total_pages );
 		$this->assertSame( $oldStats->ss_total_edits + 2, (int)$stats->ss_total_edits );

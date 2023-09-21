@@ -149,20 +149,13 @@ class ApiDeleteTest extends ApiTestCase {
 		$this->assertFalse( $title->exists( Title::READ_LATEST ) );
 
 		$dbw = wfGetDB( DB_PRIMARY );
-		$this->assertSame( 'custom tag', $dbw->selectField(
-			[ 'change_tag', 'logging', 'change_tag_def' ],
-			'ctd_name',
-			[
-				'log_namespace' => $title->getNamespace(),
-				'log_title' => $title->getDBkey(),
-			],
-			__METHOD__,
-			[],
-			[
-				'change_tag' => [ 'JOIN', 'ct_log_id = log_id' ],
-				'change_tag_def' => [ 'JOIN', 'ctd_id = ct_tag_id' ]
-			]
-		) );
+		$this->assertSame( 'custom tag', $dbw->newSelectQueryBuilder()
+			->select( 'ctd_name' )
+			->from( 'logging' )
+			->join( 'change_tag', null, 'ct_log_id = log_id' )
+			->join( 'change_tag_def', null, 'ctd_id = ct_tag_id' )
+			->where( [ 'log_namespace' => $title->getNamespace(), 'log_title' => $title->getDBkey(), ] )
+			->caller( __METHOD__ )->fetchField() );
 	}
 
 	public function testDeleteWithoutTagPermission() {

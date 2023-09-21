@@ -123,17 +123,13 @@ class ApiUnblockTest extends ApiTestCase {
 		$this->doUnblock( [ 'tags' => 'custom tag' ] );
 
 		$dbw = wfGetDB( DB_PRIMARY );
-		$this->assertSame( 1, (int)$dbw->selectField(
-			[ 'change_tag', 'logging', 'change_tag_def' ],
-			'COUNT(*)',
-			[ 'log_type' => 'block', 'ctd_name' => 'custom tag' ],
-			__METHOD__,
-			[],
-			[
-				'change_tag' => [ 'JOIN', 'ct_log_id = log_id' ],
-				'change_tag_def' => [ 'JOIN', 'ctd_id = ct_tag_id' ],
-			]
-		) );
+		$this->assertSame( 1, (int)$dbw->newSelectQueryBuilder()
+			->select( 'COUNT(*)' )
+			->from( 'logging' )
+			->join( 'change_tag', null, 'ct_log_id = log_id' )
+			->join( 'change_tag_def', null, 'ctd_id = ct_tag_id' )
+			->where( [ 'log_type' => 'block', 'ctd_name' => 'custom tag' ] )
+			->caller( __METHOD__ )->fetchField() );
 	}
 
 	public function testUnblockWithProhibitedTag() {

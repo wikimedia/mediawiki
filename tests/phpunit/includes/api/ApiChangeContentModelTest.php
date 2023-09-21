@@ -324,12 +324,11 @@ class ApiChangeContentModelTest extends ApiTestCase {
 		$dbw = wfGetDB( DB_PRIMARY );
 		$this->assertSame(
 			'4',
-			$dbw->selectField(
-				[ 'change_tag_def' ],
-				'ctd_count',
-				[ 'ctd_name' => 'api edit content model tag' ],
-				__METHOD__
-			),
+			$dbw->newSelectQueryBuilder()
+				->select( 'ctd_count' )
+				->from( 'change_tag_def' )
+				->where( [ 'ctd_name' => 'api edit content model tag' ] )
+				->caller( __METHOD__ )->fetchField(),
 			'There should be four uses of the `api edit content model tag` tag, '
 				. 'two for the two revisions and two for the two log entries'
 		);

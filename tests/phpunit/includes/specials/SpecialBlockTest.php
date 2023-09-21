@@ -389,12 +389,11 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertSame( [], $block->getRestrictions() );
 
 		// Ensure that there are no restrictions where the blockId is 0.
-		$count = $this->db->selectRowCount(
-			'ipblocks_restrictions',
-			'*',
-			[ 'ir_ipb_id' => 0 ],
-			__METHOD__
-		);
+		$count = $this->db->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'ipblocks_restrictions' )
+			->where( [ 'ir_ipb_id' => 0 ] )
+			->caller( __METHOD__ )->fetchRowCount();
 		$this->assertSame( 0, $count );
 	}
 

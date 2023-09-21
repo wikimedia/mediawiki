@@ -376,16 +376,16 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	 * @param bool $expected Whether to expect to find any rows
 	 */
 	private function assertPurgeWorked( int $blockId, bool $expected ): void {
-		$blockRows = (bool)$this->db->select(
-			'ipblocks',
-			'ipb_id',
-			[ 'ipb_id' => $blockId ]
-		)->numRows();
-		$blockRestrictionsRows = (bool)$this->db->select(
-			'ipblocks_restrictions',
-			'ir_ipb_id',
-			[ 'ir_ipb_id' => $blockId ]
-		)->numRows();
+		$blockRows = (bool)$this->db->newSelectQueryBuilder()
+			->select( 'ipb_id' )
+			->from( 'ipblocks' )
+			->where( [ 'ipb_id' => $blockId ] )
+			->fetchResultSet()->numRows();
+		$blockRestrictionsRows = (bool)$this->db->newSelectQueryBuilder()
+			->select( 'ir_ipb_id' )
+			->from( 'ipblocks_restrictions' )
+			->where( [ 'ir_ipb_id' => $blockId ] )
+			->fetchResultSet()->numRows();
 
 		$this->assertSame( $expected, $blockRows );
 		$this->assertSame( $expected, $blockRestrictionsRows );

@@ -600,7 +600,11 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			$expectExpiry,
 			wfTimestampOrNull(
 				TS_MW,
-				$dbw->selectField( 'user', 'user_password_expires', [ 'user_name' => $cuser ] )
+				$dbw->newSelectQueryBuilder()
+					->select( 'user_password_expires' )
+					->from( 'user' )
+					->where( [ 'user_name' => $cuser ] )
+					->fetchField()
 			)
 		);
 	}
