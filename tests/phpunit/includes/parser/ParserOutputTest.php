@@ -882,7 +882,7 @@ EOF
 				'ru' => [ 'Kittens_RU' => 1, 'Dragons_RU' => 1, ],
 				'fr' => [ 'Kittens_FR' => 1 ],
 			],
-			'getCategories' => [ 'Foo' => 'X', 'Bar' => 'Y' ],
+			'getCategoryMap' => [ 'Foo' => 'X', 'Bar' => 'Y' ],
 			'getImages' => [ 'Billy.jpg' => 1, 'Puff.jpg' => 1 ],
 			'getFileSearchOptions' => [
 				'Billy.jpg' => [ 'time' => '20180101000013', 'sha1' => 'DEAD' ],

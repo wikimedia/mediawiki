@@ -2161,7 +2161,7 @@ class OutputPage extends ContextSource {
 		// function between $parserOutput and $this->metadata.
 		$this->mLanguageLinks =
 			array_merge( $this->mLanguageLinks, $parserOutput->getLanguageLinks() );
-		$this->addCategoryLinks( $parserOutput->getCategories() );
+		$this->addCategoryLinks( $parserOutput->getCategoryMap() );
 
 		// Parser-generated indicators get wrapped like other parser output.
 		$wrapClass = $parserOutput->getWrapperDivClass();

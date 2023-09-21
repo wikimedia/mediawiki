@@ -149,13 +149,14 @@ class ApiExpandTemplates extends ApiBase {
 			} else {
 				$p_output = $parser->getOutput();
 				if ( isset( $prop['categories'] ) ) {
-					$categories = $p_output->getCategories();
+					$categories = $p_output->getCategoryNames();
 					if ( $categories ) {
 						$categories_result = [];
-						foreach ( $categories as $category => $sortkey ) {
-							$entry = [];
-							$entry['sortkey'] = $sortkey;
-							ApiResult::setContentValue( $entry, 'category', (string)$category );
+						foreach ( $categories as $category ) {
+							$entry = [
+								'sortkey' => $p_output->getCategorySortKey( $category ),
+							];
+							ApiResult::setContentValue( $entry, 'category', $category );
 							$categories_result[] = $entry;
 						}
 						ApiResult::setIndexedTagName( $categories_result, 'category' );

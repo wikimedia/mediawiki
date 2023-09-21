@@ -447,8 +447,8 @@ class LinkHolderArray {
 		// rebuild the categories in original order (if there are replacements)
 		if ( $varCategories !== [] ) {
 			$newCats = [];
-			$originalCats = $output->getCategories();
-			foreach ( $originalCats as $cat => $sortkey ) {
+			foreach ( $output->getCategoryNames() as $cat ) {
+				$sortkey = $output->getCategorySortKey( $cat );
 				// make the replacement
 				$newCats[$varCategories[$cat] ?? $cat] = $sortkey;
 			}

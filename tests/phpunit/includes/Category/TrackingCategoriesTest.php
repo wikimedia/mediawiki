@@ -43,6 +43,6 @@ class TrackingCategoriesTest extends MediaWikiLangTestCase {
 			->text();
 
 		$expected = strtr( $expected, ' ', '_' );
-		$this->assertSame( [ $expected => 'foobar' ], $po->getCategories() );
+		$this->assertSame( [ $expected => 'foobar' ], $po->getCategoryMap() );
 	}
 }

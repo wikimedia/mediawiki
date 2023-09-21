@@ -104,14 +104,14 @@ class CategoryLinksTable extends TitleLinksTable {
 		$this->newLinks = [];
 		$sourceTitle = Title::castFromPageIdentity( $this->getSourcePage() );
 		$sortKeyInputs = [];
-		foreach ( $parserOutput->getCategories() as $name => $sortKeyPrefix ) {
-			// Fix the type of numeric strings
-			$name = (string)$name;
+		foreach ( $parserOutput->getCategoryNames() as $name ) {
+			$sortKey = $parserOutput->getCategorySortKey( $name );
+			'@phan-var string $sortKey'; // sort key will never be null
 
 			// If the sort key is longer then 255 bytes, it is truncated by DB,
 			// and then doesn't match when comparing existing vs current
 			// categories, causing T27254.
-			$sortKeyPrefix = mb_strcut( $sortKeyPrefix, 0, 255 );
+			$sortKeyPrefix = mb_strcut( $sortKey, 0, 255 );
 
 			$targetTitle = Title::makeTitle( NS_CATEGORY, $name );
 			$this->languageConverter->findVariantLink( $name, $targetTitle, true );

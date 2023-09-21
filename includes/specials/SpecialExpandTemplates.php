@@ -284,7 +284,7 @@ class SpecialExpandTemplates extends SpecialPage {
 		] ) );
 		$out->addParserOutputContent( $pout, [ 'enableSectionEditLinks' => false ] );
 		$out->addHTML( Html::closeElement( 'div' ) );
-		$out->setCategoryLinks( $pout->getCategories() );
+		$out->setCategoryLinks( $pout->getCategoryMap() );
 	}
 
 	protected function getGroupName() {
