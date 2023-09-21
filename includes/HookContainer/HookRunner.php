@@ -336,7 +336,6 @@ class HookRunner implements
 	\MediaWiki\Hook\SkinSubPageSubtitleHook,
 	\MediaWiki\Hook\SkinTemplateGetLanguageLinkHook,
 	\MediaWiki\Hook\SkinTemplateNavigation__UniversalHook,
-	\MediaWiki\Hook\PersonalUrlsHook,
 	\MediaWiki\Hook\SoftwareInfoHook,
 	\MediaWiki\Hook\SpecialBlockModifyFormFieldsHook,
 	\MediaWiki\Hook\SpecialContributionsBeforeMainOutputHook,
@@ -3071,14 +3070,6 @@ class HookRunner implements
 		return $this->container->run(
 			'PerformRetroactiveAutoblock',
 			[ $block, &$blockIds ]
-		);
-	}
-
-	public function onPersonalUrls( &$personal_urls, &$title, $skin ): void {
-		$this->container->run(
-			'PersonalUrls',
-			[ &$personal_urls, &$title, $skin ],
-			[ 'abortable' => false ]
 		);
 	}
 
