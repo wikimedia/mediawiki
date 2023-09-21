@@ -129,16 +129,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	private const VERSION = 17;
 
 	/**
-	 * @since 1.27
-	 */
-	public const CHECK_USER_RIGHTS = true;
-
-	/**
-	 * @since 1.27
-	 */
-	public const IGNORE_USER_RIGHTS = false;
-
-	/**
 	 * Username used for various maintenance scripts.
 	 * @since 1.37
 	 */

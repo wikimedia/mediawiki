@@ -500,6 +500,8 @@ because of Phabricator reports.
   have been removed.
 * The User public properties mOptions, mBlock, mBlockedby and mHideName,
   deprecated since 1.35, were removed.
+* User::CHECK_USER_RIGHTS and User::IGNORE_USER_RIGHTS were removed. They were
+  flags passed to methods which were previously removed.
 * …
 
 === Deprecations in 1.41 ===
