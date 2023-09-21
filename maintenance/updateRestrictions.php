@@ -54,7 +54,10 @@ class UpdateRestrictions extends Maintenance {
 
 		$encodedExpiry = $dbw->getInfinity();
 
-		$maxPageId = $dbw->selectField( 'page', 'MAX(page_id)', '', __METHOD__ );
+		$maxPageId = $dbw->newSelectQueryBuilder()
+			->select( 'MAX(page_id)' )
+			->from( 'page' )
+			->caller( __METHOD__ )->fetchField();
 		$escapedEmptyBlobValue = $dbw->addQuotes( '' );
 
 		$batchMinPageId = 0;
@@ -64,16 +67,15 @@ class UpdateRestrictions extends Maintenance {
 
 			$this->output( "...processing page IDs from $batchMinPageId to $batchMaxPageId.\n" );
 
-			$res = $dbw->select(
-				'page',
-				[ 'page_id', 'page_restrictions' ],
-				[
+			$res = $dbw->newSelectQueryBuilder()
+				->select( [ 'page_id', 'page_restrictions' ] )
+				->from( 'page' )
+				->where( [
 					"page_restrictions != $escapedEmptyBlobValue",
 					'page_id > ' . $dbw->addQuotes( $batchMinPageId ),
 					'page_id <= ' . $dbw->addQuotes( $batchMaxPageId ),
-				],
-				__METHOD__
-			);
+				] )
+				->caller( __METHOD__ )->fetchResultSet();
 
 			// No pages have legacy protection settings in the current batch
 			if ( !$res->numRows() ) {

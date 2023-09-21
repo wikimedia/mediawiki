@@ -74,12 +74,14 @@ class MigrateFileRepoLayout extends Maintenance {
 		$batch = [];
 		$lastName = '';
 		do {
-			$res = $dbw->select( 'image',
-				[ 'img_name', 'img_sha1' ],
-				array_merge( [ 'img_name > ' . $dbw->addQuotes( $lastName ) ], $conds ),
-				__METHOD__,
-				[ 'LIMIT' => $batchSize, 'ORDER BY' => 'img_name' ]
-			);
+			$res = $dbw->newSelectQueryBuilder()
+				->select( [ 'img_name', 'img_sha1' ] )
+				->from( 'image' )
+				->where( 'img_name > ' . $dbw->addQuotes( $lastName ) )
+				->andWhere( $conds )
+				->orderBy( 'img_name' )
+				->limit( $batchSize )
+				->caller( __METHOD__ )->fetchResultSet();
 
 			foreach ( $res as $row ) {
 				$lastName = $row->img_name;
@@ -165,11 +167,14 @@ class MigrateFileRepoLayout extends Maintenance {
 		$batch = [];
 		$lastId = 0;
 		do {
-			$res = $dbw->select( 'filearchive', [ 'fa_storage_key', 'fa_id', 'fa_name' ],
-				array_merge( [ 'fa_id > ' . $dbw->addQuotes( $lastId ) ], $conds ),
-				__METHOD__,
-				[ 'LIMIT' => $batchSize, 'ORDER BY' => 'fa_id' ]
-			);
+			$res = $dbw->newSelectQueryBuilder()
+				->select( [ 'fa_storage_key', 'fa_id', 'fa_name' ] )
+				->from( 'filearchive' )
+				->where( 'fa_id > ' . $dbw->addQuotes( $lastId ) )
+				->andWhere( $conds )
+				->orderBy( 'fa_id' )
+				->limit( $batchSize )
+				->caller( __METHOD__ )->fetchResultSet();
 
 			foreach ( $res as $row ) {
 				$lastId = $row->fa_id;

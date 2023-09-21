@@ -165,11 +165,6 @@ TEXT
 		} else {
 			$orderBy = 'cl_collation, cl_to, cl_type, cl_from';
 		}
-		$options = [
-			'LIMIT' => $batchSize,
-			'ORDER BY' => $orderBy,
-			'STRAIGHT_JOIN' // per T58041
-		];
 
 		$collationConds = [];
 		if ( !$this->force && !$this->targetTable ) {
@@ -189,12 +184,11 @@ TEXT
 			);
 			// Improve estimate if feasible
 			if ( $count < 1000000 ) {
-				$count = $this->dbr->selectField(
-					'categorylinks',
-					'COUNT(*)',
-					$collationConds,
-					__METHOD__
-				);
+				$count = $this->dbr->newSelectQueryBuilder()
+					->select( 'COUNT(*)' )
+					->from( 'categorylinks' )
+					->where( $collationConds )
+					->caller( __METHOD__ )->fetchField();
 			}
 			if ( $count == 0 ) {
 				$this->output( "Collations up-to-date.\n" );
@@ -218,17 +212,20 @@ TEXT
 			} else {
 				$clType = 'cl_type';
 			}
-			$res = $this->dbw->select(
-				[ 'categorylinks', 'page' ],
-				[
+			$res = $this->dbw->newSelectQueryBuilder()
+				->select( [
 					'cl_from', 'cl_to', 'cl_sortkey_prefix', 'cl_collation',
 					'cl_sortkey', $clType, 'cl_timestamp',
 					'page_namespace', 'page_title'
-				],
-				array_merge( $collationConds, $batchConds, [ 'cl_from = page_id' ] ),
-				__METHOD__,
-				$options
-			);
+				] )
+				->from( 'categorylinks' )
+				// per T58041
+				->straightJoin( 'page', null, 'cl_from = page_id' )
+				->where( $collationConds )
+				->andWhere( $batchConds )
+				->limit( $batchSize )
+				->orderBy( $orderBy )
+				->caller( __METHOD__ )->fetchResultSet();
 			$this->output( " processing..." );
 
 			if ( $res->numRows() ) {

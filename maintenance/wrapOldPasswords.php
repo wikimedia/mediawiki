@@ -77,19 +77,14 @@ class WrapOldPasswords extends Maintenance {
 				$this->beginTransaction( $dbw, __METHOD__ );
 			}
 
-			$res = $dbw->select( 'user',
-				[ 'user_id', 'user_name', 'user_password' ],
-				[
-					'user_id > ' . $dbw->addQuotes( $minUserId ),
-					$typeCond
-				],
-				__METHOD__,
-				[
-					'ORDER BY' => 'user_id',
-					'LIMIT' => $this->getBatchSize(),
-					'LOCK IN SHARE MODE',
-				]
-			);
+			$res = $dbw->newSelectQueryBuilder()
+				->select( [ 'user_id', 'user_name', 'user_password' ] )
+				->lockInShareMode()
+				->from( 'user' )
+				->where( [ 'user_id > ' . $dbw->addQuotes( $minUserId ), $typeCond ] )
+				->orderBy( 'user_id' )
+				->limit( $this->getBatchSize() )
+				->caller( __METHOD__ )->fetchResultSet();
 
 			/** @var User[] $updateUsers */
 			$updateUsers = [];

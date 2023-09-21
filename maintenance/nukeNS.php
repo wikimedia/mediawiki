@@ -59,7 +59,11 @@ class NukeNS extends Maintenance {
 		$dbw = $this->getDB( DB_PRIMARY );
 		$this->beginTransaction( $dbw, __METHOD__ );
 
-		$res = $dbw->select( 'page', 'page_title', [ 'page_namespace' => $ns ], __METHOD__ );
+		$res = $dbw->newSelectQueryBuilder()
+			->select( 'page_title' )
+			->from( 'page' )
+			->where( [ 'page_namespace' => $ns ] )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		$n_deleted = 0;
 
@@ -69,12 +73,11 @@ class NukeNS extends Maintenance {
 			$id = $title->getArticleID();
 
 			// Get corresponding revisions
-			$revs = $dbw->selectFieldValues(
-				'revision',
-				'rev_id',
-				[ 'rev_page' => $id ],
-				__METHOD__
-			);
+			$revs = $dbw->newSelectQueryBuilder()
+				->select( 'rev_id' )
+				->from( 'revision' )
+				->where( [ 'rev_page' => $id ] )
+				->caller( __METHOD__ )->fetchFieldValues();
 			$count = count( $revs );
 
 			// skip anything that looks modified (i.e. multiple revs)
@@ -105,7 +108,10 @@ class NukeNS extends Maintenance {
 
 			# update statistics - better to decrement existing count, or just count
 			# the page table?
-			$pages = $dbw->selectField( 'site_stats', 'ss_total_pages', [], __METHOD__ );
+			$pages = $dbw->newSelectQueryBuilder()
+				->select( 'ss_total_pages' )
+				->from( 'site_stats' )
+				->caller( __METHOD__ )->fetchField();
 			$pages -= $n_deleted;
 			$dbw->update(
 				'site_stats',

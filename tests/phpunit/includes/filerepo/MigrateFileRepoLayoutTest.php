@@ -3,6 +3,7 @@
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * @covers MigrateFileRepoLayout
@@ -45,6 +46,7 @@ class MigrateFileRepoLayoutTest extends MediaWikiIntegrationTestCase {
 				new FakeResultWrapper( [] ), // image
 				new FakeResultWrapper( [] ) // filearchive
 			) );
+		$dbMock->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $dbMock ) );
 
 		$repoMock = $this->getMockBuilder( LocalRepo::class )
 			->onlyMethods( [ 'getPrimaryDB', 'getReplicaDB' ] )

@@ -329,16 +329,20 @@ class TrackBlobs extends Maintenance {
 			$startId = 0;
 			$batchesDone = 0;
 			$actualBlobs = gmp_init( 0 );
-			$endId = (int)$extDB->selectField( $table, 'MAX(blob_id)', '', __METHOD__ );
+			$endId = (int)$extDB->newSelectQueryBuilder()
+				->select( 'MAX(blob_id)' )
+				->from( $table )
+				->caller( __METHOD__ )->fetchField();
 
 			// Build a bitmap of actual blob rows
 			while ( true ) {
-				$res = $extDB->select( $table,
-					[ 'blob_id' ],
-					[ 'blob_id > ' . $extDB->addQuotes( $startId ) ],
-					__METHOD__,
-					[ 'LIMIT' => $this->batchSize, 'ORDER BY' => 'blob_id' ]
-				);
+				$res = $extDB->newSelectQueryBuilder()
+					->select( [ 'blob_id' ] )
+					->from( $table )
+					->where( [ 'blob_id > ' . $extDB->addQuotes( $startId ) ] )
+					->orderBy( 'blob_id' )
+					->limit( $this->batchSize )
+					->caller( __METHOD__ )->fetchResultSet();
 
 				if ( !$res->numRows() ) {
 					break;

@@ -59,33 +59,27 @@ class FixDoubleRedirects extends Maintenance {
 		$dbr = $this->getDB( DB_REPLICA );
 
 		// See also SpecialDoubleRedirects
-		$tables = [
-			'redirect',
-			'pa' => 'page',
-			'pb' => 'page',
-		];
-		$fields = [
-			'pa.page_namespace AS pa_namespace',
-			'pa.page_title AS pa_title',
-			'pb.page_namespace AS pb_namespace',
-			'pb.page_title AS pb_title',
-		];
-		$conds = [
-			'rd_from = pa.page_id',
-			'rd_namespace = pb.page_namespace',
-			'rd_title = pb.page_title',
+		// TODO: support batch querying
+		$queryBuilder = $dbr->newSelectQueryBuilder()
+			->select( [
+				'pa.page_namespace AS pa_namespace',
+				'pa.page_title AS pa_title',
+				'pb.page_namespace AS pb_namespace',
+				'pb.page_title AS pb_title',
+			] )
+			->from( 'redirect' )
+			->join( 'page', 'pa', 'rd_from = pa.page_id' )
+			->join( 'page', 'pb', [ 'rd_namespace = pb.page_namespace', 'rd_title = pb.page_title' ] )
 			// T42352
-			'rd_interwiki' => [ null, '' ],
-			'pb.page_is_redirect' => 1,
-		];
+			->where( [ 'rd_interwiki' => [ null, '' ], 'pb.page_is_redirect' => 1 ] );
 
 		if ( $title != null ) {
-			$conds['pb.page_namespace'] = $title->getNamespace();
-			$conds['pb.page_title'] = $title->getDBkey();
+			$queryBuilder->andWhere( [
+				'pb.page_namespace' => $title->getNamespace(),
+				'pb.page_title' => $title->getDBkey()
+			] );
 		}
-		// TODO: support batch querying
-
-		$res = $dbr->select( $tables, $fields, $conds, __METHOD__ );
+		$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 
 		if ( !$res->numRows() ) {
 			$this->output( "No double redirects found.\n" );

@@ -60,12 +60,11 @@ class OrphanStats extends Maintenance {
 
 		foreach ( $res as $row ) {
 			$extDB = $this->getExternalDB( DB_REPLICA, $row->bo_cluster );
-			$blobRow = $extDB->selectRow(
-				'blobs',
-				'*',
-				[ 'blob_id' => $row->bo_blob_id ],
-				__METHOD__
-			);
+			$blobRow = $extDB->newSelectQueryBuilder()
+				->select( '*' )
+				->from( 'blobs' )
+				->where( [ 'blob_id' => $row->bo_blob_id ] )
+				->caller( __METHOD__ )->fetchRow();
 
 			$num++;
 			$size = strlen( $blobRow->blob_text );

@@ -660,17 +660,13 @@ class RecompressTracked {
 		$trx = new CgzCopyTransaction( $this, $this->orphanBlobClass );
 
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$res = wfGetDB( DB_REPLICA )->select(
-			[ 'text', 'blob_tracking' ],
-			[ 'old_id', 'old_text', 'old_flags' ],
-			[
-				'old_id' => $textIds,
-				'bt_text_id=old_id',
-				'bt_moved' => 0,
-			],
-			__METHOD__,
-			[ 'DISTINCT' ]
-		);
+		$res = wfGetDB( DB_REPLICA )->newSelectQueryBuilder()
+			->select( [ 'old_id', 'old_text', 'old_flags' ] )
+			->distinct()
+			->from( 'text' )
+			->join( 'blob_tracking', null, 'bt_text_id=old_id' )
+			->where( [ 'old_id' => $textIds, 'bt_moved' => 0 ] )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		foreach ( $res as $row ) {
 			$text = $this->blobStore->expandBlob( $row->old_text, $row->old_flags );

@@ -224,11 +224,11 @@ class CheckStorage extends Maintenance {
 					$blobIds = array_keys( $xBlobIds );
 					$extDb = $this->dbStore->getReplica( $cluster );
 					$blobsTable = $this->dbStore->getTable( $extDb );
-					$res = $extDb->select( $blobsTable,
-						[ 'blob_id' ],
-						[ 'blob_id' => $blobIds ],
-						__METHOD__
-					);
+					$res = $extDb->newSelectQueryBuilder()
+						->select( [ 'blob_id' ] )
+						->from( $blobsTable )
+						->where( [ 'blob_id' => $blobIds ] )
+						->caller( __METHOD__ )->fetchResultSet();
 					foreach ( $res as $row ) {
 						unset( $xBlobIds[$row->blob_id] );
 					}
@@ -424,11 +424,11 @@ class CheckStorage extends Maintenance {
 			$extDb = $this->dbStore->getReplica( $cluster );
 			$blobsTable = $this->dbStore->getTable( $extDb );
 			$headerLength = strlen( self::CONCAT_HEADER );
-			$res = $extDb->select( $blobsTable,
-				[ 'blob_id', "LEFT(blob_text, $headerLength) AS header" ],
-				[ 'blob_id' => $blobIds ],
-				__METHOD__
-			);
+			$res = $extDb->newSelectQueryBuilder()
+				->select( [ 'blob_id', "LEFT(blob_text, $headerLength) AS header" ] )
+				->from( $blobsTable )
+				->where( [ 'blob_id' => $blobIds ] )
+				->caller( __METHOD__ )->fetchResultSet();
 			foreach ( $res as $row ) {
 				if ( strcasecmp( $row->header, self::CONCAT_HEADER ) ) {
 					$this->addError(

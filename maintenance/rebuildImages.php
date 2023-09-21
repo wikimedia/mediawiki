@@ -151,7 +151,10 @@ class ImageBuilder extends Maintenance {
 	}
 
 	private function buildTable( $table, $queryInfo, $callback ) {
-		$count = $this->dbw->selectField( $table, 'count(*)', '', __METHOD__ );
+		$count = $this->dbw->newSelectQueryBuilder()
+			->select( 'count(*)' )
+			->from( $table )
+			->caller( __METHOD__ )->fetchField();
 		$this->init( $count, $table );
 		$this->output( "Processing $table...\n" );
 
@@ -207,10 +210,11 @@ class ImageBuilder extends Maintenance {
 
 	public function checkMissingImage( $fullpath ) {
 		$filename = wfBaseName( $fullpath );
-		$row = $this->dbw->selectRow( 'image',
-			[ 'img_name' ],
-			[ 'img_name' => $filename ],
-			__METHOD__ );
+		$row = $this->dbw->newSelectQueryBuilder()
+			->select( [ 'img_name' ] )
+			->from( 'image' )
+			->where( [ 'img_name' => $filename ] )
+			->caller( __METHOD__ )->fetchRow();
 
 		if ( !$row ) {
 			// file not registered
