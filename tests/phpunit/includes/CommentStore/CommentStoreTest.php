@@ -174,12 +174,11 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 
 		$rstore = $this->makeStore();
 
-		$fieldRow = $this->db->selectRow(
-			$table,
-			$rstore->getFields( $key ),
-			[ $pk => $id ],
-			__METHOD__
-		);
+		$fieldRow = $this->db->newSelectQueryBuilder()
+			->select( $rstore->getFields( $key ) )
+			->from( $table )
+			->where( [ $pk => $id ] )
+			->caller( __METHOD__ )->fetchRow();
 
 		$queryInfo = $rstore->getJoin( $key );
 		$joinRow = $this->db->selectRow(
@@ -308,9 +307,11 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 
 		$store = $this->makeStore();
 		$fields = $store->insert( $this->db, 'ipb_reason', $comment );
-		$stored = $this->db->selectField(
-			'comment', 'comment_text', [ 'comment_id' => $fields['ipb_reason_id'] ], __METHOD__
-		);
+		$stored = $this->db->newSelectQueryBuilder()
+			->select( 'comment_text' )
+			->from( 'comment' )
+			->where( [ 'comment_id' => $fields['ipb_reason_id'] ] )
+			->caller( __METHOD__ )->fetchField();
 		$this->assertSame( $truncated, $stored );
 	}
 

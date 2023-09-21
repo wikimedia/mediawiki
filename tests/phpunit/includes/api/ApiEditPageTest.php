@@ -1536,14 +1536,12 @@ class ApiEditPageTest extends ApiTestCase {
 			'tags' => 'custom tag',
 		] )[0]['edit']['newrevid'];
 
-		$this->assertSame( 'custom tag', $this->getDb()->selectField(
-			[ 'change_tag', 'change_tag_def' ],
-			'ctd_name',
-			[ 'ct_rev_id' => $revId ],
-			__METHOD__,
-			[ 'change_tag_def' => [ 'JOIN', 'ctd_id = ct_tag_id' ] ]
-			)
-		);
+		$this->assertSame( 'custom tag', $this->getDb()->newSelectQueryBuilder()
+			->select( 'ctd_name' )
+			->from( 'change_tag' )
+			->join( 'change_tag_def', null, 'ctd_id = ct_tag_id' )
+			->where( [ 'ct_rev_id' => $revId ] )
+			->caller( __METHOD__ )->fetchField() );
 	}
 
 	public function testEditWithoutTagPermission() {

@@ -105,12 +105,12 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	public function testNewFromRow_found() {
 		$dbw = wfGetDB( DB_PRIMARY );
 
-		$category = Category::newFromRow( $dbw->selectRow(
-			'category',
-			[ 'cat_id', 'cat_title', 'cat_pages', 'cat_subcats', 'cat_files' ],
-			[ 'cat_id' => 1 ],
-			__METHOD__
-		) );
+		$category = Category::newFromRow( $dbw->newSelectQueryBuilder()
+			->select( [ 'cat_id', 'cat_title', 'cat_pages', 'cat_subcats', 'cat_files' ] )
+			->from( 'category' )
+			->where( [ 'cat_id' => 1 ] )
+			->caller( __METHOD__ )->fetchRow()
+		);
 
 		$this->assertSame( '1', $category->getID() );
 	}

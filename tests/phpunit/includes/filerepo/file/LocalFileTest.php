@@ -962,8 +962,12 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$file->load();
 		$file->maybeUpgradeRow();
 
-		$metadata = $dbw->decodeBlob( $dbw->selectField( 'image', 'img_metadata',
-			[ 'img_name' => 'Test.pdf' ], __METHOD__ ) );
+		$metadata = $dbw->decodeBlob( $dbw->newSelectQueryBuilder()
+			->select( 'img_metadata' )
+			->from( 'image' )
+			->where( [ 'img_name' => 'Test.pdf' ] )
+			->caller( __METHOD__ )->fetchField()
+		);
 		$this->assertStringMatchesFormat( $expected, $metadata );
 	}
 
@@ -1016,8 +1020,12 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$file = new LocalFile( $title, $repo );
 		$file->load();
 		$file->maybeUpgradeRow();
-		$metadata = $dbw->decodeBlob( $dbw->selectField( 'image', 'img_metadata',
-			[ 'img_name' => 'Png-native-test.png' ] ) );
+		$metadata = $dbw->decodeBlob( $dbw->newSelectQueryBuilder()
+			->select( 'img_metadata' )
+			->from( 'image' )
+			->where( [ 'img_name' => 'Png-native-test.png' ] )
+			->fetchField()
+		);
 		// Just confirm that it looks like JSON with real metadata
 		$this->assertStringStartsWith( '{"data":{"frameCount":0,', $metadata );
 

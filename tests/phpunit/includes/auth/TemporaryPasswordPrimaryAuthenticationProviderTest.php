@@ -565,7 +565,11 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 				'new password should pass'
 			);
 			$this->assertNotNull(
-				$dbw->selectField( 'user', 'user_newpass_time', [ 'user_name' => $user ] )
+				$dbw->newSelectQueryBuilder()
+					->select( 'user_newpass_time' )
+					->from( 'user' )
+					->where( [ 'user_name' => $user ] )
+					->fetchField()
 			);
 		} else {
 			$this->assertEquals(
@@ -579,7 +583,11 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 				'new password should fail'
 			);
 			$this->assertNull(
-				$dbw->selectField( 'user', 'user_newpass_time', [ 'user_name' => $user ] )
+				$dbw->newSelectQueryBuilder()
+					->select( 'user_newpass_time' )
+					->from( 'user' )
+					->where( [ 'user_name' => $user ] )
+					->fetchField()
 			);
 		}
 	}

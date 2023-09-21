@@ -18,7 +18,11 @@ class DatabaseIntegrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testUnknownTableCorruptsResults() {
-		$res = $this->db->select( 'page', '*', [ 'page_id' => 1 ] );
+		$res = $this->db->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'page' )
+			->where( [ 'page_id' => 1 ] )
+			->fetchResultSet();
 		$this->assertFalse( $this->db->tableExists( 'foobarbaz' ) );
 		$this->assertIsInt( $res->numRows() );
 	}

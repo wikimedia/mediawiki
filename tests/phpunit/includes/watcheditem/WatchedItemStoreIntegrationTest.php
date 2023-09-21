@@ -422,20 +422,29 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 			[ 'we_item' => '100001', 'we_expiry' => $this->db->timestamp( '30300101000000' ) ],
 		];
 		$this->db->insert( 'watchlist_expiry', $orphanRows, __METHOD__ );
-		$initialRowCount = $this->db->selectRowCount( 'watchlist_expiry', '*', [], __METHOD__ );
+		$initialRowCount = $this->db->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'watchlist_expiry' )
+			->caller( __METHOD__ )->fetchRowCount();
 
 		// Make sure the orphans aren't removed if it's not requested.
 		$store->removeExpired( 10, false );
 		$this->assertSame(
 			$initialRowCount,
-			$this->db->selectRowCount( 'watchlist_expiry', '*', [], __METHOD__ )
+			$this->db->newSelectQueryBuilder()
+				->select( '*' )
+				->from( 'watchlist_expiry' )
+				->caller( __METHOD__ )->fetchRowCount()
 		);
 
 		// Make sure they are removed when requested.
 		$store->removeExpired( 10, true );
 		$this->assertSame(
 			$initialRowCount - 2,
-			$this->db->selectRowCount( 'watchlist_expiry', '*', [], __METHOD__ )
+			$this->db->newSelectQueryBuilder()
+				->select( '*' )
+				->from( 'watchlist_expiry' )
+				->caller( __METHOD__ )->fetchRowCount()
 		);
 	}
 }

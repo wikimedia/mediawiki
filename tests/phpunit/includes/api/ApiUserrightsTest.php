@@ -218,18 +218,13 @@ class ApiUserrightsTest extends ApiTestCase {
 		$dbr = wfGetDB( DB_REPLICA );
 		$this->assertSame(
 			'custom tag',
-			$dbr->selectField(
-				[ 'change_tag', 'logging', 'change_tag_def' ],
-				'ctd_name',
-				[
-					'ct_log_id = log_id',
-					'log_namespace' => NS_USER,
-					'log_title' => strtr( $user->getName(), ' ', '_' )
-				],
-				__METHOD__,
-				[ 'change_tag_def' => [ 'JOIN', 'ctd_id = ct_tag_id' ] ]
-			)
-		);
+			$dbr->newSelectQueryBuilder()
+				->select( 'ctd_name' )
+				->from( 'logging' )
+				->join( 'change_tag', null, 'ct_log_id = log_id' )
+				->join( 'change_tag_def', null, 'ctd_id = ct_tag_id' )
+				->where( [ 'log_namespace' => NS_USER, 'log_title' => strtr( $user->getName(), ' ', '_' ) ] )
+				->caller( __METHOD__ )->fetchField() );
 	}
 
 	public function testWithoutTagPermission() {

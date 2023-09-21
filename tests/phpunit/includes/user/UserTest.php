@@ -770,9 +770,11 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$user->saveSettings();
 		$this->assertSame(
 			$user->getName(),
-			$this->db->selectField(
-				'actor', 'actor_name', [ 'actor_id' => $user->getActorId() ], __METHOD__
-			),
+			$this->db->newSelectQueryBuilder()
+				->select( 'actor_name' )
+				->from( 'actor' )
+				->where( [ 'actor_id' => $user->getActorId() ] )
+				->caller( __METHOD__ )->fetchField(),
 			'User::saveSettings updates actor table for name change'
 		);
 

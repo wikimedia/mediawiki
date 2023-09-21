@@ -435,14 +435,11 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			// as long as no garbage is written to the database.
 		}
 
-		$row = $this->db->selectRow(
-			'page',
-			'*',
-			[
-				'page_namespace' => $title->getNamespace(),
-				'page_title' => $title->getDBkey()
-			]
-		);
+		$row = $this->db->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'page' )
+			->where( [ 'page_namespace' => $title->getNamespace(), 'page_title' => $title->getDBkey() ] )
+			->fetchRow();
 
 		$this->assertFalse( $row );
 	}
@@ -1547,11 +1544,19 @@ more stuff
 			] ] );
 
 		// Check the page_random field has been filled
-		$pageRandom = $this->db->selectField( 'page', 'page_random', $condition );
+		$pageRandom = $this->db->newSelectQueryBuilder()
+			->select( 'page_random' )
+			->from( 'page' )
+			->where( $condition )
+			->fetchField();
 		$this->assertTrue( (float)$pageRandom < 1 && (float)$pageRandom > 0 );
 
 		// Assert the touched timestamp in the DB is roughly when we inserted the page
-		$pageTouched = $this->db->selectField( 'page', 'page_touched', $condition );
+		$pageTouched = $this->db->newSelectQueryBuilder()
+			->select( 'page_touched' )
+			->from( 'page' )
+			->where( $condition )
+			->fetchField();
 		$this->assertTrue(
 			wfTimestamp( TS_UNIX, $startTimeStamp )
 			<= wfTimestamp( TS_UNIX, $pageTouched )
@@ -2037,7 +2042,11 @@ more stuff
 	public function testGetTouched() {
 		$page = $this->createPage( __METHOD__, 'whatever' );
 
-		$touched = $this->db->selectField( 'page', 'page_touched', [ 'page_id' => $page->getId() ] );
+		$touched = $this->db->newSelectQueryBuilder()
+			->select( 'page_touched' )
+			->from( 'page' )
+			->where( [ 'page_id' => $page->getId() ] )
+			->fetchField();
 		$touched = MWTimestamp::convert( TS_MW, $touched );
 
 		// Internal cache of the touched time was set after the page was created

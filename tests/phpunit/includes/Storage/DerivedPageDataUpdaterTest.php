@@ -1090,7 +1090,11 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$rev = $this->createRevision( $page, 'first', $content );
 		$pageId = $page->getId();
 
-		$oldStats = $this->db->selectRow( 'site_stats', '*', '1=1' );
+		$oldStats = $this->db->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'site_stats' )
+			->where( '1=1' )
+			->fetchRow();
 		$this->db->delete( 'pagelinks', '*' );
 
 		$pcache = $this->getServiceContainer()->getParserCache();
@@ -1105,13 +1109,12 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$updater->doUpdates();
 
 		// links table update
-		$pageLinks = $this->db->select(
-			'pagelinks',
-			'*',
-			[ 'pl_from' => $pageId ],
-			__METHOD__,
-			[ 'ORDER BY' => [ 'pl_namespace', 'pl_title' ] ]
-		);
+		$pageLinks = $this->db->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'pagelinks' )
+			->where( [ 'pl_from' => $pageId ] )
+			->orderBy( [ 'pl_namespace', 'pl_title' ] )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		$pageLinksRow = $pageLinks->fetchObject();
 		$this->assertIsObject( $pageLinksRow );
@@ -1127,7 +1130,11 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $updater->getCanonicalParserOutput(), $cached );
 
 		// site stats
-		$stats = $this->db->selectRow( 'site_stats', '*', '1=1' );
+		$stats = $this->db->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'site_stats' )
+			->where( '1=1' )
+			->fetchRow();
 		$this->assertSame( $oldStats->ss_total_pages + 1, (int)$stats->ss_total_pages );
 		$this->assertSame( $oldStats->ss_total_edits + 1, (int)$stats->ss_total_edits );
 		$this->assertSame( $oldStats->ss_good_articles + 1, (int)$stats->ss_good_articles );
