@@ -2398,6 +2398,8 @@
 	"mycontris": "Bidrag",
 	"anoncontribs": "Bidrag",
 	"contribsub2": "For {{GENDER:$3|$1}} ($2)",
+	"contributions-edit-count": "En {{GENDER:$1|bruger}} med $2 {{PLURAL:$2|redigering|redigeringer}}.",
+	"contributions-account-creation-date": "Kontoen blev oprettet $1.",
 	"contributions-userdoesnotexist": "Brugerkontoen \"$1\" er ikke registreret.",
 	"nocontribs": "Ingen ændringer er fundet som opfylder disse kriterier.",
 	"uctop": "nuværende",
