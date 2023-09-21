@@ -311,15 +311,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 				->getPermissionManager()
 				->getUserPermissions( $this );
 			return $copy;
-		} elseif ( $name === 'mOptions' ) {
-			wfDeprecated( 'User::$mOptions', '1.35' );
-			$options = MediaWikiServices::getInstance()->getUserOptionsLookup()->getOptions( $this );
-			return $options;
-		} elseif ( in_array( $name, [ 'mBlock', 'mBlockedby', 'mHideName' ] ) ) {
-			// hard deprecated since 1.39
-			wfDeprecated( "User::\$$name", '1.35' );
-			$value = $this->$name;
-			return $value;
 		} elseif ( !property_exists( $this, $name ) ) {
 			// T227688 - do not break $u->foo['bar'] = 1
 			wfLogWarning( 'tried to get non-existent property' );
@@ -342,17 +333,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 				$this,
 				$value ?? []
 			);
-		} elseif ( $name === 'mOptions' ) {
-			wfDeprecated( 'User::$mOptions', '1.35' );
-			$userOptionsManager = MediaWikiServices::getInstance()->getUserOptionsManager();
-			$userOptionsManager->clearUserOptionsCache( $this );
-			foreach ( $value as $key => $val ) {
-				$userOptionsManager->setOption( $this, $key, $val );
-			}
-		} elseif ( in_array( $name, [ 'mBlock', 'mBlockedby', 'mHideName' ] ) ) {
-			// hard deprecated since 1.39
-			wfDeprecated( "User::\$$name", '1.35' );
-			$this->$name = $value;
 		} elseif ( !property_exists( $this, $name ) ) {
 			$this->$name = $value;
 		} else {
