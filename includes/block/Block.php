@@ -168,4 +168,11 @@ interface Block extends WikiAwareEntity {
 	 */
 	public function isHardblock(): bool;
 
+	/**
+	 * Convert a block to an array of blocks. If the block is a composite
+	 * block, return the array of original blocks. Otherwise, return [$this].
+	 *
+	 * @return Block[]
+	 */
+	public function toArray(): array;
 }

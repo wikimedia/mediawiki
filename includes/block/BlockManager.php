@@ -588,19 +588,13 @@ class BlockManager {
 		$isAnon = $user->isAnon();
 
 		if ( $block ) {
-			if ( $block instanceof CompositeBlock ) {
+			foreach ( $block->toArray() as $originalBlock ) {
 				// TODO: Improve on simply tracking the first trackable block (T225654)
-				foreach ( $block->getOriginalBlocks() as $originalBlock ) {
-					if ( $this->shouldTrackBlockWithCookie( $originalBlock, $isAnon ) ) {
-						'@phan-var DatabaseBlock $originalBlock';
-						$this->setBlockCookie( $originalBlock, $response );
-						return;
-					}
-				}
-			} else {
-				if ( $this->shouldTrackBlockWithCookie( $block, $isAnon ) ) {
-					'@phan-var DatabaseBlock $block';
-					$this->setBlockCookie( $block, $response );
+				if ( $originalBlock instanceof DatabaseBlock
+					&& $this->shouldTrackBlockWithCookie( $originalBlock, $isAnon )
+				) {
+					$this->setBlockCookie( $originalBlock, $response );
+					return;
 				}
 			}
 		}
@@ -634,25 +628,22 @@ class BlockManager {
 	/**
 	 * Check if the block should be tracked with a cookie.
 	 *
-	 * @param AbstractBlock $block
+	 * @param DatabaseBlock $block
 	 * @param bool $isAnon The user is logged out
 	 * @return bool The block should be tracked with a cookie
 	 */
-	private function shouldTrackBlockWithCookie( AbstractBlock $block, $isAnon ) {
-		if ( $block instanceof DatabaseBlock ) {
-			switch ( $block->getType() ) {
-				case DatabaseBlock::TYPE_IP:
-				case DatabaseBlock::TYPE_RANGE:
-					return $isAnon && $this->options->get( MainConfigNames::CookieSetOnIpBlock );
-				case DatabaseBlock::TYPE_USER:
-					return !$isAnon &&
-						$this->options->get( MainConfigNames::CookieSetOnAutoblock ) &&
-						$block->isAutoblocking();
-				default:
-					return false;
-			}
+	private function shouldTrackBlockWithCookie( DatabaseBlock $block, $isAnon ) {
+		switch ( $block->getType() ) {
+			case DatabaseBlock::TYPE_IP:
+			case DatabaseBlock::TYPE_RANGE:
+				return $isAnon && $this->options->get( MainConfigNames::CookieSetOnIpBlock );
+			case DatabaseBlock::TYPE_USER:
+				return !$isAnon &&
+					$this->options->get( MainConfigNames::CookieSetOnAutoblock ) &&
+					$block->isAutoblocking();
+			default:
+				return false;
 		}
-		return false;
 	}
 
 	/**
