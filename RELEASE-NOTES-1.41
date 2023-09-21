@@ -192,7 +192,7 @@ because of Phabricator reports.
 * Calling IDatabase::delete() or IDatabase::update() with empty conditions
   has been deprecated since 1.35. This now throws an error.
 * Maintenance::shutdown() has been moved over into the MaintenanceRunner class
-  without deprecation. Use MaintenanceRunner::shutdown() instead.
+  without deprecation.
 * The following DatabasePostgres methods were unused and have been removed:
   - ::currentSequenceValue()
   - ::triggerExists()
