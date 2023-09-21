@@ -1178,7 +1178,7 @@ class LocalisationCache {
 		// The 'MessagesDirs' config setting is used in LocalisationCache::getMessagesDirs().
 		// We use the key 'wgMessagesDirs' for historical reasons.
 		$deps['wgMessagesDirs'] = new MainConfigDependency( MainConfigNames::MessagesDirs );
-		$deps['version'] = new ConstantDependency( 'LocalisationCache::VERSION' );
+		$deps['version'] = new ConstantDependency( self::class . '::VERSION' );
 
 		# Add dependencies to the cache entry
 		$allData['deps'] = $deps;
