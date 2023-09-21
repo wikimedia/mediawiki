@@ -91,7 +91,9 @@
 			"Underbaaar",
 			"Yunbj",
 			"Bluehill",
-			"Cerulean"
+			"Cerulean",
+			"Adreamy",
+			"Amire80"
 		]
 	},
 	"tog-underline": "링크에 밑줄 긋기:",
@@ -357,9 +359,10 @@
 	"feed-invalid": "잘못된 구독 피드 방식입니다.",
 	"feed-unavailable": "피드 배달을 사용할 수 없습니다",
 	"site-rss-feed": "$1 RSS 피드",
-	"site-atom-feed": "$1 Atom 피드",
+	"site-atom-feed": "$1 아톰 피드",
 	"page-rss-feed": "\"$1\" RSS 피드",
-	"page-atom-feed": "\"$1\" Atom 피드",
+	"page-atom-feed": "\"$1\" 아톰 피드",
+	"feed-atom": "아톰",
 	"red-link-title": "$1 (없는 문서)",
 	"sort-descending": "내림차순 정렬",
 	"sort-ascending": "오름차순 정렬",
@@ -2981,7 +2984,7 @@
 	"tooltip-t-whatlinkshere": "여기를 가리키는 모든 위키 문서의 목록",
 	"tooltip-t-recentchangeslinked": "이 문서에서 링크한 문서의 최근 바뀜",
 	"tooltip-feed-rss": "이 문서의 RSS 피드",
-	"tooltip-feed-atom": "이 문서의 Atom 피드",
+	"tooltip-feed-atom": "이 문서의 아톰 피드",
 	"tooltip-t-contributions": "{{GENDER:$1|이 사용자}}의 기여 목록",
 	"tooltip-t-emailuser": "{{GENDER:$1|이 사용자}}에게 이메일 보내기",
 	"tooltip-t-info": "이 문서에 대한 자세한 정보",

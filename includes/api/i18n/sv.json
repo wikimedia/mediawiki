@@ -19,7 +19,8 @@
 			"Victorsa",
 			"WikiPhoenix",
 			"Sabelöga",
-			"Yupik"
+			"Yupik",
+			"André Costa (WMSE)"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Dokumentation]]\n* [[mw:Special:MyLanguage/API:FAQ|Vanliga frågor]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Sändlista]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-nyheter]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Buggar och begäran]\n</div>\n<strong>Status:</strong> Alla funktioner som visas på denna sida bör fungera, men API:et är fortfarande under utveckling och kan ändras när som helst. Prenumerera på [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ sändlistan mediawiki-api-announce] för uppdateringsaviseringar.\n\n<strong>Felaktiga begäran:</strong> När felaktiga begäran skickas till API:et kommer en HTTP-header skickas med nyckeln \"MediaWiki-API-Error\" och sedan kommer både värdet i headern och felkoden som skickades tillbaka anges som samma värde. För mer information se [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Fel och varningar]].\n\n<p class=\"mw-apisandbox-link\"><strong>Testning:</strong> För enkelt testning av API-begäran, se [[Special:ApiSandbox]].</p>",
@@ -27,7 +28,7 @@
 	"apihelp-main-param-format": "Formatet för utdata.",
 	"apihelp-main-param-smaxage": "Ange headervärdet <code>s-maxage</code> till så här många sekunder. Fel cachelagras aldrig.",
 	"apihelp-main-param-maxage": "Ange headervärdet <code>max-age</code> till så här många sekunder. Fel cachelagras aldrig.",
-	"apihelp-main-param-assert": "Bekräfta att användaren är inloggad om satt till <kbd>user</kbd>, eller har bot-användarrättigheter om satt till <kbd>bot</kbd>.",
+	"apihelp-main-param-assert": "Bekräfta att användaren är inloggad om satt till <kbd>user</kbd>, <em>inte</em> inloggad om satt till <kbd>anon</kbd>,eller har bot-användarrättigheten om satt till <kbd>bot</kbd>.",
 	"apihelp-main-param-assertuser": "Verifiera att den nuvarande användaren är den namngivne användaren.",
 	"apihelp-main-param-requestid": "Alla värde som anges här kommer att inkluderas i svaret. Kan användas för att särskilja förfrågningar.",
 	"apihelp-main-param-servedby": "Inkludera det värdnamn som besvarade förfrågan i resultatet.",
