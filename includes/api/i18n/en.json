@@ -1113,7 +1113,7 @@
 
 	"apihelp-query+pageprops-summary": "Get various page properties defined in the page content.",
 	"apihelp-query+pageprops-param-prop": "Only list these page properties (<kbd>[[Special:ApiHelp/query+pagepropnames|action=query&list=pagepropnames]]</kbd> returns page property names in use). Useful for checking whether pages use a certain page property.",
-	"apihelp-query+pageprops-example-simple": "Get properties for the pages  <kbd>{{MediaWiki:Mainpage}}</kbd> and <kbd>MediaWiki</kbd>.",
+	"apihelp-query+pageprops-example-simple": "Get properties for the pages <kbd>{{MediaWiki:Mainpage}}</kbd> and <kbd>MediaWiki</kbd>.",
 
 	"apihelp-query+pageswithprop-summary": "List all pages using a given page property.",
 	"apihelp-query+pageswithprop-param-propname": "Page property for which to enumerate pages (<kbd>[[Special:ApiHelp/query+pagepropnames|action=query&list=pagepropnames]]</kbd> returns page property names in use).",
