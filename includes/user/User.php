@@ -3279,59 +3279,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
-	 * Get the permissions associated with a given list of groups
-	 *
-	 * @deprecated since 1.34, hard-deprecated since 1.40, use
-	 *    GroupPermissionsLookup::getGroupPermissions() instead in 1.36+, or
-	 *    PermissionManager::getGroupPermissions() in 1.34 and 1.35.
-	 *
-	 * @param string[] $groups internal group names
-	 * @return string[] permission key names for given groups combined
-	 */
-	public static function getGroupPermissions( $groups ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return MediaWikiServices::getInstance()->getGroupPermissionsLookup()->getGroupPermissions( $groups );
-	}
-
-	/**
-	 * Get all the groups who have a given permission
-	 *
-	 * @deprecated since 1.34, hard-deprecated since 1.40, use
-	 *    GroupPermissionsLookup::getGroupsWithPermission() instead in 1.36+,
-	 *    or PermissionManager::getGroupsWithPermission() in 1.34 and 1.35.
-	 *
-	 * @param string $role Role to check
-	 * @return string[] internal group names with the given permission
-	 */
-	public static function getGroupsWithPermission( $role ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return MediaWikiServices::getInstance()->getGroupPermissionsLookup()
-			->getGroupsWithPermission( $role );
-	}
-
-	/**
-	 * Check, if the given group has the given permission
-	 *
-	 * If you're wanting to check whether all users have a permission, use
-	 * PermissionManager::isEveryoneAllowed() instead. That properly checks if it's revoked
-	 * from anyone.
-	 *
-	 * @deprecated since 1.34, hard-deprecated since 1.40, use
-	 *    GroupPermissionsLookup::groupHasPermission() instead in 1.36+, or
-	 *    PermissionManager::groupHasPermission() in 1.34 and 1.35.
-	 *
-	 * @since 1.21
-	 * @param string $group Group to check
-	 * @param string $role Role to check
-	 * @return bool
-	 */
-	public static function groupHasPermission( $group, $role ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return MediaWikiServices::getInstance()->getGroupPermissionsLookup()
-			->groupHasPermission( $group, $role );
-	}
-
-	/**
 	 * Return the set of defined explicit groups.
 	 * The implicit groups (by default *, 'user' and 'autoconfirmed')
 	 * are not included, as they are defined automatically, not in the database.

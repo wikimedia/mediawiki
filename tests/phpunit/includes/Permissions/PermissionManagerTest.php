@@ -1022,67 +1022,6 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$this->assertNotContains( 'nukeworld', $rights );
 	}
 
-	public function testGroupPermissions() {
-		$this->hideDeprecated( 'MediaWiki\\Permissions\\PermissionManager::getGroupPermissions' );
-		$rights = $this->getServiceContainer()->getPermissionManager()
-			->getGroupPermissions( [ 'unittesters' ] );
-		$this->assertContains( 'runtest', $rights );
-		$this->assertNotContains( 'writetest', $rights );
-		$this->assertNotContains( 'modifytest', $rights );
-		$this->assertNotContains( 'nukeworld', $rights );
-
-		$rights = $this->getServiceContainer()->getPermissionManager()
-			->getGroupPermissions( [ 'unittesters', 'testwriters' ] );
-		$this->assertContains( 'runtest', $rights );
-		$this->assertContains( 'writetest', $rights );
-		$this->assertContains( 'modifytest', $rights );
-		$this->assertNotContains( 'nukeworld', $rights );
-	}
-
-	public function testRevokePermissions() {
-		$this->hideDeprecated( 'MediaWiki\\Permissions\\PermissionManager::getGroupPermissions' );
-		$rights = $this->getServiceContainer()->getPermissionManager()
-			->getGroupPermissions( [ 'unittesters', 'formertesters' ] );
-		$this->assertNotContains( 'runtest', $rights );
-		$this->assertNotContains( 'writetest', $rights );
-		$this->assertNotContains( 'modifytest', $rights );
-		$this->assertNotContains( 'nukeworld', $rights );
-	}
-
-	/**
-	 * @dataProvider provideGetGroupsWithPermission
-	 */
-	public function testGetGroupsWithPermission( $expected, $right ) {
-		$this->hideDeprecated( 'MediaWiki\\Permissions\\PermissionManager::getGroupsWithPermission' );
-		$result = $this->getServiceContainer()->getPermissionManager()
-			->getGroupsWithPermission( $right );
-		sort( $result );
-		sort( $expected );
-
-		$this->assertEquals( $expected, $result, "Groups with permission $right" );
-	}
-
-	public static function provideGetGroupsWithPermission() {
-		return [
-			[
-				[ 'unittesters', 'testwriters' ],
-				'test'
-			],
-			[
-				[ 'unittesters' ],
-				'runtest'
-			],
-			[
-				[ 'testwriters' ],
-				'writetest'
-			],
-			[
-				[ 'testwriters' ],
-				'modifytest'
-			],
-		];
-	}
-
 	public function testUserHasRight() {
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
 
@@ -1121,23 +1060,6 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			''
 		);
 		$this->assertTrue( $result, 'empty action should always be granted' );
-	}
-
-	public function testGroupHasPermission() {
-		$this->hideDeprecated( 'MediaWiki\\Permissions\\PermissionManager::groupHasPermission' );
-		$permissionManager = $this->getServiceContainer()->getPermissionManager();
-
-		$result = $permissionManager->groupHasPermission(
-			'unittesters',
-			'test'
-		);
-		$this->assertTrue( $result );
-
-		$result = $permissionManager->groupHasPermission(
-			'formertesters',
-			'runtest'
-		);
-		$this->assertFalse( $result );
 	}
 
 	public function testIsEveryoneAllowed() {
