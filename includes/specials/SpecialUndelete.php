@@ -26,6 +26,7 @@ namespace MediaWiki\Specials;
 use ArchivedFile;
 use ChangesList;
 use ChangeTags;
+use DerivativeContext;
 use ErrorPageError;
 use File;
 use LinkBatch;
@@ -761,7 +762,7 @@ class SpecialUndelete extends SpecialPage {
 	) {
 		$currentTitle = Title::newFromLinkTarget( $currentRevRecord->getPageAsLinkTarget() );
 
-		$diffContext = clone $this->getContext();
+		$diffContext = new DerivativeContext( $this->getContext() );
 		$diffContext->setTitle( $currentTitle );
 		$diffContext->setWikiPage( $this->wikiPageFactory->newFromTitle( $currentTitle ) );
 
