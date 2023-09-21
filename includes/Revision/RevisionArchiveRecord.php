@@ -165,6 +165,47 @@ class RevisionArchiveRecord extends RevisionRecord {
 		return parent::getTimestamp();
 	}
 
+	public function userCan( $field, Authority $performer ) {
+		// This revision belongs to a deleted page, so check the relevant permissions as well. (T345777)
+
+		// Viewing the content requires either 'deletedtext' or 'undelete' (for legacy reasons)
+		if (
+			$field === self::DELETED_TEXT &&
+			!$performer->authorizeRead( 'deletedtext', $this->getPage() ) &&
+			!$performer->authorizeRead( 'undelete', $this->getPage() )
+		) {
+			return false;
+		}
+
+		// Viewing the edit summary requires 'deletedhistory'
+		if (
+			$field === self::DELETED_COMMENT &&
+			!$performer->authorizeRead( 'deletedhistory', $this->getPage() )
+		) {
+			return false;
+		}
+
+		// Other fields of revisions of deleted pages are public, per T232389 (unless revision-deleted)
+
+		return parent::userCan( $field, $performer );
+	}
+
+	public function audienceCan( $field, $audience, Authority $performer = null ) {
+		// This revision belongs to a deleted page, so check the relevant permissions as well. (T345777)
+		// See userCan().
+		if (
+			$audience == self::FOR_PUBLIC &&
+			( $field === self::DELETED_TEXT || $field === self::DELETED_COMMENT )
+		) {
+			// TODO: Should this use PermissionManager::isEveryoneAllowed() or something?
+			// But RevisionRecord::audienceCan() doesn't do that either…
+			return false;
+		}
+
+		// This calls userCan(), which checks the user's permissions
+		return parent::audienceCan( $field, $audience, $performer );
+	}
+
 	/**
 	 * @see RevisionStore::isComplete
 	 *

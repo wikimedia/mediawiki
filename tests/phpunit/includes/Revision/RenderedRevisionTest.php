@@ -291,7 +291,8 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 			$rev,
 			$options,
 			$this->contentRenderer,
-			$this->combinerCallback
+			$this->combinerCallback,
+			RevisionRecord::RAW
 		);
 
 		$this->assertFalse( $rr->isContentDeleted(), 'isContentDeleted' );

@@ -263,9 +263,9 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			$this->assertEquals( $r1->getParentId(), $r2->getParentId() );
 		}
 
-		$this->assertEquals( $r1->getUser()->getName(), $r2->getUser()->getName() );
-		$this->assertEquals( $r1->getUser()->getId(), $r2->getUser()->getId() );
-		$this->assertEquals( $r1->getComment(), $r2->getComment() );
+		$this->assertEquals( $r1->getUser( RevisionRecord::RAW )->getName(), $r2->getUser( RevisionRecord::RAW )->getName() );
+		$this->assertEquals( $r1->getUser( RevisionRecord::RAW )->getId(), $r2->getUser( RevisionRecord::RAW )->getId() );
+		$this->assertEquals( $r1->getComment( RevisionRecord::RAW ), $r2->getComment( RevisionRecord::RAW ) );
 		$this->assertEquals( $r1->getTimestamp(), $r2->getTimestamp() );
 		$this->assertEquals( $r1->getVisibility(), $r2->getVisibility() );
 		$this->assertEquals( $r1->getSha1(), $r2->getSha1() );
@@ -275,8 +275,8 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $r1->getWikiId(), $r2->getWikiId() );
 		$this->assertEquals( $r1->isMinor(), $r2->isMinor() );
 		foreach ( $r1->getSlotRoles() as $role ) {
-			$this->assertSlotRecordsEqual( $r1->getSlot( $role ), $r2->getSlot( $role ) );
-			$this->assertTrue( $r1->getContent( $role )->equals( $r2->getContent( $role ) ) );
+			$this->assertSlotRecordsEqual( $r1->getSlot( $role, RevisionRecord::RAW ), $r2->getSlot( $role, RevisionRecord::RAW ) );
+			$this->assertTrue( $r1->getContent( $role, RevisionRecord::RAW )->equals( $r2->getContent( $role, RevisionRecord::RAW ) ) );
 		}
 		foreach ( [
 			RevisionRecord::DELETED_TEXT,
@@ -302,11 +302,11 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 	protected function assertRevisionCompleteness( RevisionRecord $r ) {
 		$this->assertTrue( $r->hasSlot( SlotRecord::MAIN ) );
-		$this->assertInstanceOf( SlotRecord::class, $r->getSlot( SlotRecord::MAIN ) );
-		$this->assertInstanceOf( Content::class, $r->getContent( SlotRecord::MAIN ) );
+		$this->assertInstanceOf( SlotRecord::class, $r->getSlot( SlotRecord::MAIN, RevisionRecord::RAW ) );
+		$this->assertInstanceOf( Content::class, $r->getContent( SlotRecord::MAIN, RevisionRecord::RAW ) );
 
 		foreach ( $r->getSlotRoles() as $role ) {
-			$this->assertSlotCompleteness( $r, $r->getSlot( $role ) );
+			$this->assertSlotCompleteness( $r, $r->getSlot( $role, RevisionRecord::RAW ) );
 		}
 	}
 
@@ -1334,7 +1334,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			iterator_to_array( $slotRows )
 		);
 		$this->assertRevisionRecordsEqual( $orig, $storeRecord );
-		$this->assertSame( $text, $storeRecord->getContent( SlotRecord::MAIN )->serialize() );
+		$this->assertSame( $text, $storeRecord->getContent( SlotRecord::MAIN, RevisionRecord::RAW )->serialize() );
 	}
 
 	public static function provideNewRevisionFromArchiveRowAndSlotsTitles() {
@@ -1364,7 +1364,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$this->assertRevisionRecordsEqual( $orig, $storeRecord );
-		$this->assertSame( $text, $storeRecord->getContent( SlotRecord::MAIN )->serialize() );
+		$this->assertSame( $text, $storeRecord->getContent( SlotRecord::MAIN, RevisionRecord::RAW )->serialize() );
 	}
 
 	public static function provideNewRevisionFromArchiveRowAndSlotsInArray() {
@@ -1399,7 +1399,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$this->assertRevisionRecordsEqual( $orig, $storeRecord );
-		$this->assertSame( $text, $storeRecord->getContent( SlotRecord::MAIN )->serialize() );
+		$this->assertSame( $text, $storeRecord->getContent( SlotRecord::MAIN, RevisionRecord::RAW )->serialize() );
 	}
 
 	/**
@@ -1430,7 +1430,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$storeRecord = $store->newRevisionFromArchiveRow( $row );
 
 		$this->assertRevisionRecordsEqual( $orig, $storeRecord );
-		$this->assertSame( $text, $storeRecord->getContent( SlotRecord::MAIN )->serialize() );
+		$this->assertSame( $text, $storeRecord->getContent( SlotRecord::MAIN, RevisionRecord::RAW )->serialize() );
 	}
 
 	/**
@@ -1461,7 +1461,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$storeRecord = $store->newRevisionFromArchiveRow( $row );
 
 		$this->assertRevisionRecordsEqual( $orig, $storeRecord );
-		$this->assertSame( $text, $storeRecord->getContent( SlotRecord::MAIN )->serialize() );
+		$this->assertSame( $text, $storeRecord->getContent( SlotRecord::MAIN, RevisionRecord::RAW )->serialize() );
 	}
 
 	/**
@@ -1690,7 +1690,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$this->assertRevisionRecordsEqual( $record, $restored );
 
 		// does the new revision use the original slot?
-		$recMain = $record->getSlot( SlotRecord::MAIN );
+		$recMain = $record->getSlot( SlotRecord::MAIN, RevisionRecord::RAW );
 		$restMain = $restored->getSlot( SlotRecord::MAIN );
 		$this->assertSame( $recMain->getAddress(), $restMain->getAddress() );
 		$this->assertSame( $recMain->getContentId(), $restMain->getContentId() );
@@ -2546,13 +2546,13 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$this->assertRevisionRecordsEqual( $revRecord1, $records[$revRecord1->getId()] );
 		$this->assertRevisionRecordsEqual( $revRecord2, $records[$revRecord2->getId()] );
 
-		$content1 = $records[$revRecord1->getId()]->getContent( SlotRecord::MAIN );
+		$content1 = $records[$revRecord1->getId()]->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
 		$this->assertInstanceOf( TextContent::class, $content1 );
 		$this->assertSame(
 			$text1,
 			$content1->getText()
 		);
-		$content2 = $records[$revRecord2->getId()]->getContent( SlotRecord::MAIN );
+		$content2 = $records[$revRecord2->getId()]->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
 		$this->assertInstanceOf( TextContent::class, $content2 );
 		$this->assertSame(
 			$text2,

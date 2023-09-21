@@ -19,6 +19,10 @@ use MediaWikiUnitTestCase;
 class RevisionStoreRecordTest extends MediaWikiUnitTestCase {
 	use RevisionRecordTests;
 
+	protected function expectedDefaultFieldVisibility( $field ): bool {
+		return true;
+	}
+
 	/**
 	 * @param array $rowOverrides
 	 *

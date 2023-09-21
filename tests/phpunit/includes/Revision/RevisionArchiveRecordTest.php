@@ -146,7 +146,8 @@ class RevisionArchiveRecordTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertTrue( $page->isSamePageAs( $rec->getPage() ), 'getPage' );
 		$this->assertSame( $user, $rec->getUser( RevisionRecord::RAW ), 'getUser' );
-		$this->assertSame( $comment, $rec->getComment(), 'getComment' );
+		$this->assertSame( null, $rec->getComment(), 'getComment (public)' );
+		$this->assertSame( $comment, $rec->getComment( RevisionRecord::RAW ), 'getComment (raw)' );
 
 		$this->assertSame( $slots->getSlotRoles(), $rec->getSlotRoles(), 'getSlotRoles' );
 		$this->assertSame( $wikiId, $rec->getWikiId(), 'getWikiId' );
