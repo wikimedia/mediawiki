@@ -4,7 +4,7 @@ use MediaWiki\Specials\SpecialConfirmEmail;
 use MediaWiki\User\UserFactory;
 
 /**
- * @covers SpecialConfirmEmail
+ * @covers \MediaWiki\Specials\SpecialConfirmEmail
  * @group Database
  */
 class SpecialConfirmEmailTest extends SpecialPageTestBase {

@@ -7,7 +7,7 @@ use MediaWiki\Title\Title;
 
 /**
  * @group Database
- * @covers MediaWiki\Specials\SpecialMyLanguage
+ * @covers \MediaWiki\Specials\SpecialMyLanguage
  */
 class SpecialMyLanguageTest extends MediaWikiIntegrationTestCase {
 	public function addDBDataOnce() {
@@ -47,7 +47,7 @@ class SpecialMyLanguageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Specials\SpecialMyLanguage::findTitle
+	 * @covers \MediaWiki\Specials\SpecialMyLanguage::findTitle
 	 * @dataProvider provideFindTitle
 	 * @param string $expected
 	 * @param string $subpage
@@ -112,7 +112,7 @@ class SpecialMyLanguageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Specials\SpecialMyLanguage::findTitleForTransclusion
+	 * @covers \MediaWiki\Specials\SpecialMyLanguage::findTitleForTransclusion
 	 * @dataProvider provideFindTitleForTransclusion
 	 * @param string $expected
 	 * @param string $subpage

@@ -11,7 +11,7 @@ use MediaWiki\Specials\SpecialUncategorizedCategories;
 class SpecialUncategorizedCategoriesTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideTestGetQueryInfoData
-	 * @covers SpecialUncategorizedCategories::getQueryInfo
+	 * @covers \MediaWiki\Specials\SpecialUncategorizedCategories::getQueryInfo
 	 */
 	public function testGetQueryInfo( $msgContent, $expected ) {
 		$msg = new RawMessage( $msgContent );

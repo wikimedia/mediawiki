@@ -3,7 +3,7 @@
 use MediaWiki\Specials\SpecialCreateAccount;
 
 /**
- * @covers MediaWiki\Specials\SpecialCreateAccount
+ * @covers \MediaWiki\Specials\SpecialCreateAccount
  */
 class SpecialCreateAccountTest extends SpecialPageTestBase {
 	/**

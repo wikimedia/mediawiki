@@ -1,9 +1,11 @@
 <?php
 
+use MediaWiki\Specials\SpecialRandomPage;
+
 /**
  * @covers \MediaWiki\Specials\SpecialRandomPage
  */
-class SpecialRandomTest extends MediaWikiIntegrationTestCase {
+class SpecialRandomPageTest extends MediaWikiIntegrationTestCase {
 
 	/** @var RandomPage */
 	private $page;

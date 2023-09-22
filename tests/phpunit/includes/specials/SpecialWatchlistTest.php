@@ -11,7 +11,7 @@ use Wikimedia\TestingAccessWrapper;
  *
  * @group Database
  *
- * @covers SpecialWatchlist
+ * @covers \MediaWiki\Specials\SpecialWatchlist
  */
 class SpecialWatchlistTest extends SpecialPageTestBase {
 	protected function setUp(): void {
