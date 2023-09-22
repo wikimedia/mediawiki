@@ -30,23 +30,17 @@
 	}
 
 	/**
-	 * Toggle the DOM containers according to the format selected.
+	 * Handler for inlineToggleSwitch onChange event
 	 *
 	 * @param {boolean} isInline
 	 */
 	function onDiffTypeInlineChange( isInline ) {
-		$inlineLegendContainer.toggleClass( 'oo-ui-element-hidden', !isInline );
-		if ( typeof $wikitextDiffBodyInline !== 'undefined' ) {
-			$wikitextDiffBodyInline.toggleClass( 'oo-ui-element-hidden', !isInline );
-		}
-
-		if ( typeof $wikitextDiffBodyTable !== 'undefined' ) {
-			$wikitextDiffBodyTable.toggleClass( 'oo-ui-element-hidden', isInline );
-		}
 
 		if ( ( isInline && typeof $wikitextDiffBodyInline === 'undefined' ) ||
 			( !isInline && typeof $wikitextDiffBodyTable === 'undefined' ) ) {
 			fetchDiff( isInline );
+		} else {
+			toggleDiffTypeVisibility( isInline );
 		}
 
 		api.saveOption( 'diff-type', isInline ? 'inline' : 'table' )
@@ -56,6 +50,22 @@
 					switchQueryParams( isInline );
 				}
 			} );
+	}
+
+	/**
+	 * Toggle legend and the DOM containers according to the format selected.
+	 *
+	 * @param {boolean} isInline
+	 */
+	function toggleDiffTypeVisibility( isInline ) {
+		$inlineLegendContainer.toggleClass( 'oo-ui-element-hidden', !isInline );
+		if ( typeof $wikitextDiffBodyInline !== 'undefined' ) {
+			$wikitextDiffBodyInline.toggleClass( 'oo-ui-element-hidden', !isInline );
+		}
+
+		if ( typeof $wikitextDiffBodyTable !== 'undefined' ) {
+			$wikitextDiffBodyTable.toggleClass( 'oo-ui-element-hidden', isInline );
+		}
 	}
 
 	/**
@@ -129,6 +139,9 @@
 			} else {
 				$wikitextDiffBodyTable = $( diffData.compare[ '*' ] );
 			}
+
+			toggleDiffTypeVisibility( inlineToggleSwitch.getValue() );
+
 			$wikitextDiffBody.last().after( isInline ? $wikitextDiffBodyInline : $wikitextDiffBodyTable );
 			$wikitextDiffBody = $wikitextDiffContainer.find( 'tr' ).not( $wikitextDiffHeader );
 			/**
