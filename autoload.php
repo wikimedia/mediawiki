@@ -509,6 +509,7 @@ $wgAutoloadLocalClasses = [
 	'FindOrphanedFiles' => __DIR__ . '/maintenance/findOrphanedFiles.php',
 	'FixDefaultJsonContentPages' => __DIR__ . '/maintenance/fixDefaultJsonContentPages.php',
 	'FixDoubleRedirects' => __DIR__ . '/maintenance/fixDoubleRedirects.php',
+	'FixInconsistentRedirects' => __DIR__ . '/maintenance/fixInconsistentRedirects.php',
 	'FixLegacyEncoding' => __DIR__ . '/maintenance/storage/fixLegacyEncoding.php',
 	'FixMergeHistoryCorruption' => __DIR__ . '/maintenance/fixMergeHistoryCorruption.php',
 	'FixTimestamps' => __DIR__ . '/maintenance/fixTimestamps.php',

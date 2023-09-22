@@ -170,7 +170,7 @@ class RefreshLinks extends Maintenance {
 				if ( $verbose ) {
 					$this->output( "Refreshing links for page ID {$row->page_id}\n" );
 				}
-				$this->fixRedirect( $row->page_id );
+				self::fixRedirect( $this, $row->page_id );
 				if ( !$redirectsOnly ) {
 					self::fixLinksFromArticle( $row->page_id );
 				}
@@ -195,10 +195,12 @@ class RefreshLinks extends Maintenance {
 	 * entry in the "redirect" table points to the correct page and not to an
 	 * invalid one.
 	 *
+	 * @internal
+	 * @param Maintenance $maint
 	 * @param int $id The page ID to check
 	 */
-	private function fixRedirect( $id ) {
-		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromID( $id );
+	public static function fixRedirect( Maintenance $maint, $id ) {
+		$page = $maint->getServiceContainer()->getWikiPageFactory()->newFromID( $id );
 
 		// In case the page just got deleted.
 		if ( $page === null ) {
@@ -211,7 +213,7 @@ class RefreshLinks extends Maintenance {
 			$rt = $content->getRedirectTarget();
 		}
 
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $maint->getDB( DB_PRIMARY );
 		if ( $rt === null ) {
 			// The page is not a redirect
 			// Delete any redirect table entry for it
