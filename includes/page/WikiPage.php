@@ -100,14 +100,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	private $mPageIsRedirectField = false;
 
 	/**
-	 * Boolean if the redirect status is definitively known.
-	 * If this is true, getRedirectTarget() must return non-null.
-	 *
-	 * @var bool|null
-	 */
-	private $mHasRedirectTarget = null;
-
-	/**
 	 * The cache of the redirect target
 	 *
 	 * @var Title|null
@@ -285,7 +277,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	protected function clearCacheFields() {
 		$this->mId = null;
 		$this->mRedirectTarget = null; // Title object if set
-		$this->mHasRedirectTarget = null;
 		$this->mPageIsRedirectField = false;
 		$this->mLastRevision = null; // Latest revision
 		$this->mTouched = '19700101000000';
@@ -982,9 +973,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		if ( $this->mRedirectTarget !== null ) {
 			return $this->mRedirectTarget;
 		}
-		if ( $this->mHasRedirectTarget === false ) {
-			return null;
-		}
 		if ( !$this->mDataLoaded ) {
 			$this->loadPageData();
 		}
@@ -1003,7 +991,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		if ( !$row ) {
 			// Incomplete database migration from 2008 due to database corruption (T346290).
 			$this->mRedirectTarget = null;
-			$this->mHasRedirectTarget = false;
 			return $this->mRedirectTarget;
 		}
 
@@ -1012,7 +999,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			// We could still return the title from this row, but let's not do it, as these rows
 			// should be dropped when these fields are made NOT NULL in a future database migration.
 			$this->mRedirectTarget = null;
-			$this->mHasRedirectTarget = false;
 			return $this->mRedirectTarget;
 		}
 
@@ -1033,7 +1019,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			$namespace, $row->rd_title,
 			$row->rd_fragment, $row->rd_interwiki
 		);
-		$this->mHasRedirectTarget = $this->mRedirectTarget !== null;
 		return $this->mRedirectTarget;
 	}
 
@@ -1465,7 +1450,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			$this->updateRedirectOn( $dbw, $rt, $lastRevIsRedirect );
 			$this->setLastEdit( $revision );
 			$this->mRedirectTarget = null;
-			$this->mHasRedirectTarget = null;
 			$this->mPageIsRedirectField = (bool)$rt;
 			$this->mIsNew = $isNew;
 
