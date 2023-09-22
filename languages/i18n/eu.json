@@ -967,7 +967,7 @@
 	"showhideselectedversions": "Erakutsi/ezkutatu aukeratutako berrikuspenak",
 	"editundo": "desegin",
 	"diff-empty": "(Ez dago alderik)",
-	"diff-multi-sameuser": "(Erabiltzaile berak tartean egindako {{PLURAL:$1|ekarpen bat ez da|$1 ekarpen ez dira}} erakusten)",
+	"diff-multi-sameuser": "( {{PLURAL:$1| Tarteko berrikuspen bat| $1 bitarteko berrikuspen}} ez da {{GENDER:$3| erabiltzailea}} erakusten)",
 	"diff-multi-otherusers": "({{PLURAL:$2|Beste erabiltzaile batek|$2 erabiltzailek}} tartean egindako {{PLURAL:$1|berrikusketa bat ez da erakusten|$1 berrikusketa ez dira erakusten}})",
 	"diff-multi-manyusers": "({{PLURAL:$2|Erabiltzaile batek|$2 erabiltzailek}} baino gehiagok tartean egindako {{PLURAL:$1|berrikusketa bat ez da erakusten|$1 berrikusketa ez dira erakusten}})",
 	"diff-paragraph-moved-tonew": "Paragrafoa mugitu da. Klika ezazu, beste kokaleku batera jauzi egiteko.",

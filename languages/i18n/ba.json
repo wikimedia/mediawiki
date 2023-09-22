@@ -3347,7 +3347,7 @@
 	"version-ext-colheader-description": "Тасуирлама",
 	"version-ext-colheader-credits": "Автор",
 	"version-license-title": "$1 өсөн лицензия",
-	"version-license-not-found": "Был киңәйтеү өсөн лицензия тураһында ентекле мәғлүмәт юҡ",
+	"version-license-not-found": "Был киңәйтеү өсөн лицензия тураһында ентекле мәғлүмәт юҡ.",
 	"version-credits-title": "$1 авторҙар исемлеге",
 	"version-credits-not-found": "Был ҡушымта өсөн  авторҙар тураһында мәғлүмәт юҡ",
 	"version-poweredby-credits": "Был вики '''[https://www.mediawiki.org/ MediaWiki]''' нигеҙендә эшләй, copyright © 2001-$1 $2.",
