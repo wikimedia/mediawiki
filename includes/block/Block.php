@@ -172,6 +172,7 @@ interface Block extends WikiAwareEntity {
 	 * Convert a block to an array of blocks. If the block is a composite
 	 * block, return the array of original blocks. Otherwise, return [$this].
 	 *
+	 * @since 1.41
 	 * @return Block[]
 	 */
 	public function toArray(): array;
