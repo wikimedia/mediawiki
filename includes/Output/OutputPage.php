@@ -2965,15 +2965,23 @@ class OutputPage extends ContextSource {
 	 * indexing, clear the current text and redirect, set the page's title
 	 * and optionally a custom HTML title (content of the "<title>" tag).
 	 *
-	 * @param string|Message $pageTitle Will be passed directly to setPageTitle()
+	 * @param string|Message|null $pageTitle Will be passed directly to setPageTitle()
 	 * @param string|Message|false $htmlTitle Will be passed directly to setHTMLTitle();
 	 *                   optional, if not passed the "<title>" attribute will be
 	 *                   based on $pageTitle
+	 * @note Explicitly passing $pageTitle or $htmlTitle has been deprecated
+	 *   since 1.41; use ::setPageTitleMsg() and ::setHTMLTitle() instead.
 	 */
-	public function prepareErrorPage( $pageTitle, $htmlTitle = false ) {
-		$this->setPageTitle( $pageTitle );
-		if ( $htmlTitle !== false ) {
-			$this->setHTMLTitle( $htmlTitle );
+	public function prepareErrorPage( $pageTitle = null, $htmlTitle = false ) {
+		if ( $pageTitle !== null || $htmlTitle !== null ) {
+			// Passing explicit arguments is deprecated and will in the future
+			// emit a deprecation warning.
+			if ( $pageTitle !== null ) {
+				$this->setPageTitle( $pageTitle );
+			}
+			if ( $htmlTitle !== false ) {
+				$this->setHTMLTitle( $htmlTitle );
+			}
 		}
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
@@ -3006,7 +3014,8 @@ class OutputPage extends ContextSource {
 			$title = $this->msg( $title );
 		}
 
-		$this->prepareErrorPage( $title );
+		$this->prepareErrorPage();
+		$this->setPageTitleMsg( $title );
 
 		if ( $msg instanceof Message ) {
 			if ( $params !== [] ) {
@@ -3091,7 +3100,8 @@ class OutputPage extends ContextSource {
 				$query
 			);
 
-			$this->prepareErrorPage( $this->msg( 'loginreqtitle' ) );
+			$this->prepareErrorPage();
+			$this->setPageTitleMsg( $this->msg( 'loginreqtitle' ) );
 			$this->addHTML( $this->msg( $msg )->rawParams( $loginLink )->params( $loginUrl )->parse() );
 
 			# Don't return to a page the user can't read otherwise
@@ -3100,7 +3110,8 @@ class OutputPage extends ContextSource {
 				$this->returnToMain( null, $displayReturnto );
 			}
 		} else {
-			$this->prepareErrorPage( $this->msg( 'permissionserrors' ) );
+			$this->prepareErrorPage();
+			$this->setPageTitleMsg( $this->msg( 'permissionserrors' ) );
 			$this->addWikiTextAsInterface( $this->formatPermissionsErrorMessage( $errors, $action ) );
 		}
 	}
@@ -3112,7 +3123,10 @@ class OutputPage extends ContextSource {
 	 * @param mixed $version The version of MediaWiki needed to use the page
 	 */
 	public function versionRequired( $version ) {
-		$this->prepareErrorPage( $this->msg( 'versionrequired', $version ) );
+		$this->prepareErrorPage();
+		$this->setPageTitleMsg(
+			$this->msg( 'versionrequired' )->plaintextParams( $version )
+		);
 
 		$this->addWikiMsg( 'versionrequiredtext', $version );
 		$this->returnToMain();
@@ -3201,7 +3215,8 @@ class OutputPage extends ContextSource {
 	 * @param string $message Error to output. Must be escaped for HTML.
 	 */
 	public function showFatalError( $message ) {
-		$this->prepareErrorPage( $this->msg( 'internalerror' ) );
+		$this->prepareErrorPage();
+		$this->setPageTitleMsg( $this->msg( 'internalerror' ) );
 
 		$this->addHTML( $message );
 	}

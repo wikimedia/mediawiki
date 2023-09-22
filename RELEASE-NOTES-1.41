@@ -869,6 +869,9 @@ because of Phabricator reports.
   Use ::getDeprecationWarning() instead.
 * Passing a Message to OutputPage::setPageTitle() is deprecated.
   Use ::setPageTitleMsg() instead (which escapes HTML metacharacters).
+* Passing arguments to OutputPage::prepareErrorPage() is deprecated.
+  Use explicit calls to OutputPage::setPageTitleMsg() and ::setHTMLTitle()
+  instead.
 * Returning a string from Action::getPageTitle() is deprecated;
   return a Message instead, which will be formatted using FORMAT_ESCAPED.
 * Returning a string from SpecialPage::getDescription() is deprecated;

@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Html\Html;
+use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
@@ -37,7 +38,7 @@ class MWExceptionRenderer {
 	public const AS_PRETTY = 2; // show as HTML
 
 	/**
-	 * Whether to print exceptino details.
+	 * Whether to print exception details.
 	 *
 	 * The default is configured by $wgShowExceptionDetails.
 	 * May be changed at runtime via MWExceptionRenderer::setShowExceptionDetails().
@@ -174,7 +175,8 @@ class MWExceptionRenderer {
 	private static function reportHTML( Throwable $e ) {
 		if ( self::useOutputPage( $e ) ) {
 			$out = RequestContext::getMain()->getOutput();
-			$out->prepareErrorPage( self::getExceptionTitle( $e ) );
+			$out->prepareErrorPage();
+			$out->setPageTitleMsg( self::getExceptionTitle( $e ) );
 
 			// Show any custom GUI message before the details
 			$customMessage = self::getCustomMessage( $e );
@@ -239,7 +241,7 @@ class MWExceptionRenderer {
 	}
 
 	/**
-	 * Get a message from i18n
+	 * Get a message string from i18n
 	 *
 	 * @param string $key Message name
 	 * @param string $fallback Default message if the message cache can't be
@@ -247,17 +249,30 @@ class MWExceptionRenderer {
 	 * @param mixed ...$params To pass to wfMessage()
 	 * @return string Message with arguments replaced
 	 */
-	private static function msg( $key, $fallback, ...$params ) {
+	public static function msg( $key, $fallback, ...$params ) {
+		// NOTE: Keep logic in sync with MWException::msg
+		$res = self::msgObj( $key, $fallback, ...$params )->text();
+		return strtr( $res, [
+			'{{SITENAME}}' => 'MediaWiki',
+		] );
+	}
+
+	/** Get a Message object from i18n.
+	 *
+	 * @param string $key Message name
+	 * @param string $fallback Default message if the message cache can't be
+	 *                  called by the exception
+	 * @param mixed ...$params To pass to wfMessage()
+	 * @return Message|RawMessage
+	 */
+	private static function msgObj( string $key, string $fallback, ...$params ): Message {
 		// NOTE: Keep logic in sync with MWException::msg.
 		try {
-			$res = wfMessage( $key, ...$params )->text();
+			$res = wfMessage( $key, ...$params );
 		} catch ( Exception $e ) {
 			// Fallback to static message text and generic sitename.
 			// Avoid live config as this must work before Setup/MediaWikiServices finish.
-			$res = wfMsgReplaceArgs( $fallback, $params );
-			$res = strtr( $res, [
-				'{{SITENAME}}' => 'MediaWiki',
-			] );
+			$res = new RawMessage( $fallback, $params );
 		}
 		return $res;
 	}
@@ -289,19 +304,21 @@ class MWExceptionRenderer {
 	 * Get the page title to be used for a given exception.
 	 *
 	 * @param Throwable $e
-	 * @return string
+	 * @return Message
 	 */
-	private static function getExceptionTitle( Throwable $e ) {
+	private static function getExceptionTitle( Throwable $e ): Message {
 		if ( $e instanceof MWException ) {
-			return $e->getPageTitle();
+			return ( new RawMessage( '$1' ) )->plaintextParams(
+				$e->getPageTitle() /* convert string title to Message */
+			);
 		} elseif ( $e instanceof DBReadOnlyError ) {
-			return self::msg( 'readonly', 'Database is locked' );
+			return self::msgObj( 'readonly', 'Database is locked' );
 		} elseif ( $e instanceof DBExpectedError ) {
-			return self::msg( 'databaseerror', 'Database error' );
+			return self::msgObj( 'databaseerror', 'Database error' );
 		} elseif ( $e instanceof RequestTimeoutException ) {
-			return self::msg( 'timeouterror', 'Request timeout' );
+			return self::msgObj( 'timeouterror', 'Request timeout' );
 		} else {
-			return self::msg( 'internalerror', 'Internal error' );
+			return self::msgObj( 'internalerror', 'Internal error' );
 		}
 	}
 

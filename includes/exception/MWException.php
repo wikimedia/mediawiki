@@ -172,7 +172,8 @@ class MWException extends Exception {
 	public function reportHTML() {
 		global $wgOut;
 		if ( $this->useOutputPage() ) {
-			$wgOut->prepareErrorPage( $this->getPageTitle() );
+			$wgOut->prepareErrorPage();
+			$wgOut->setPageTitle( $this->getPageTitle() );
 			// Manually set the html title, since sometimes
 			// {{SITENAME}} does not get replaced for exceptions
 			// happening inside message rendering.
