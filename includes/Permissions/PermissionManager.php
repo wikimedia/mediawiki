@@ -1620,50 +1620,6 @@ class PermissionManager {
 	}
 
 	/**
-	 * Check, if the given group has the given permission
-	 *
-	 * If you're wanting to check whether all users have a permission, use
-	 * PermissionManager::isEveryoneAllowed() instead. That properly checks if it's revoked
-	 * from anyone.
-	 *
-	 * @since 1.34
-	 * @deprecated since 1.36, hard-deprecated since 1.40. Use GroupPermissionsLookup instead.
-	 * @param string $group Group to check
-	 * @param string $role Role to check
-	 * @return bool
-	 */
-	public function groupHasPermission( $group, $role ): bool {
-		wfDeprecated( __METHOD__, '1.36' );
-		return $this->groupPermissionsLookup->groupHasPermission( $group, $role );
-	}
-
-	/**
-	 * Get the permissions associated with a given list of groups
-	 *
-	 * @since 1.34
-	 * @deprecated since 1.36, hard-deprecated since 1.40. Use GroupPermissionsLookup instead.
-	 * @param string[] $groups internal group names
-	 * @return string[] permission key names for given groups combined
-	 */
-	public function getGroupPermissions( $groups ): array {
-		wfDeprecated( __METHOD__, '1.36' );
-		return $this->groupPermissionsLookup->getGroupPermissions( $groups );
-	}
-
-	/**
-	 * Get all the groups who have a given permission
-	 *
-	 * @since 1.34
-	 * @deprecated since 1.36, hard-deprecated since 1.40. use GroupPermissionsLookup instead.
-	 * @param string $role Role to check
-	 * @return string[] internal group names with the given permission
-	 */
-	public function getGroupsWithPermission( $role ): array {
-		wfDeprecated( __METHOD__, '1.36' );
-		return $this->groupPermissionsLookup->getGroupsWithPermission( $role );
-	}
-
-	/**
 	 * Check if all users may be assumed to have the given permission
 	 *
 	 * We generally assume so if the right is granted to '*' and isn't revoked

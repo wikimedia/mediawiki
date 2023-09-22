@@ -469,6 +469,12 @@ because of Phabricator reports.
 * Title::getTouched() will now trigger an error if you pass it an instance of
   IDatabase rather than a READ_XXX constant. This legacy behaviour has been
   deprecated since 1.38.
+* User::getGroupPermissions(), getGroupsWithPermission() & groupHasPermission(),
+  all of which were deprecated since 1.34, have been removed. Instead, use the
+  GroupPermissionsLookup service.
+* Similarly, PermissionManager::getGroupPermissions(), getGroupsWithPermission()
+  & groupHasPermission(), all of which were deprecated since 1.36, have also
+  been removed. Instead, use the GroupPermissionsLookup service.
 * The following old, deprecated aliases for classes in the RDBMS layer, have now
   been removed:
    - DBConnRef (use Wikimedia\Rdbms\DBConnRef)

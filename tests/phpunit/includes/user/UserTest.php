@@ -105,67 +105,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers User::getGroupPermissions
-	 */
-	public function testGroupPermissions() {
-		$this->hideDeprecated( 'MediaWiki\User\User::getGroupPermissions' );
-		$rights = User::getGroupPermissions( [ 'unittesters' ] );
-		$this->assertContains( 'runtest', $rights );
-		$this->assertNotContains( 'writetest', $rights );
-		$this->assertNotContains( 'modifytest', $rights );
-		$this->assertNotContains( 'nukeworld', $rights );
-
-		$rights = User::getGroupPermissions( [ 'unittesters', 'testwriters' ] );
-		$this->assertContains( 'runtest', $rights );
-		$this->assertContains( 'writetest', $rights );
-		$this->assertContains( 'modifytest', $rights );
-		$this->assertNotContains( 'nukeworld', $rights );
-	}
-
-	/**
-	 * @covers User::getGroupPermissions
-	 */
-	public function testRevokePermissions() {
-		$this->hideDeprecated( 'MediaWiki\User\User::getGroupPermissions' );
-		$rights = User::getGroupPermissions( [ 'unittesters', 'formertesters' ] );
-		$this->assertNotContains( 'runtest', $rights );
-		$this->assertNotContains( 'writetest', $rights );
-		$this->assertNotContains( 'modifytest', $rights );
-		$this->assertNotContains( 'nukeworld', $rights );
-	}
-
-	/**
-	 * @dataProvider provideGetGroupsWithPermission
-	 * @covers User::getGroupsWithPermission
-	 */
-	public function testGetGroupsWithPermission( array $expected, $right ) {
-		$this->hideDeprecated( 'MediaWiki\User\User::getGroupsWithPermission' );
-		$result = User::getGroupsWithPermission( $right );
-		$this->assertArrayEquals( $expected, $result );
-	}
-
-	public static function provideGetGroupsWithPermission() {
-		return [
-			[
-				[ 'unittesters', 'testwriters' ],
-				'test'
-			],
-			[
-				[ 'unittesters' ],
-				'runtest'
-			],
-			[
-				[ 'testwriters' ],
-				'writetest'
-			],
-			[
-				[ 'testwriters' ],
-				'modifytest'
-			],
-		];
-	}
-
-	/**
 	 * @covers User::isAllowedAny
 	 * @covers User::isAllowedAll
 	 * @covers User::isAllowed
