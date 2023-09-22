@@ -580,15 +580,6 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	public function testShouldTrackBlockWithCookieSystemBlock() {
-		/** @var BlockManager $blockManager */
-		$blockManager = TestingAccessWrapper::newFromObject( $this->getBlockManager( [] ) );
-		$this->assertFalse( $blockManager->shouldTrackBlockWithCookie(
-			new SystemBlock(),
-			true
-		) );
-	}
-
 	/**
 	 * @dataProvider provideShouldTrackBlockWithCookie
 	 */

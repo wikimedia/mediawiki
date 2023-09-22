@@ -108,6 +108,10 @@ class CompositeBlock extends AbstractBlock {
 		return $this->originalBlocks;
 	}
 
+	public function toArray(): array {
+		return $this->originalBlocks;
+	}
+
 	/**
 	 * @inheritDoc
 	 */
