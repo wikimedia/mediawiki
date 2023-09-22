@@ -984,7 +984,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * If this page is a redirect, get its target
 	 *
 	 * The target will be fetched from the redirect table if possible.
-	 * If this page doesn't have an entry there, call insertRedirect()
 	 *
 	 * @deprecated since 1.38 Use RedirectLookup::getRedirectTarget() instead.
 	 *
@@ -1012,30 +1011,39 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			->where( [ 'rd_from' => $this->getId() ] )
 			->caller( __METHOD__ )->fetchRow();
 
-		// rd_fragment and rd_interwiki were added later, populate them if empty
-		if ( $row && $row->rd_fragment !== null && $row->rd_interwiki !== null ) {
-			// (T203942) We can't redirect to Media namespace because it's virtual.
-			// We don't want to modify Title objects farther down the
-			// line. So, let's fix this here by changing to File namespace.
-			if ( $row->rd_namespace == NS_MEDIA ) {
-				$namespace = NS_FILE;
-			} else {
-				$namespace = $row->rd_namespace;
-			}
-			// T261347: be defensive when fetching data from the redirect table.
-			// Use Title::makeTitleSafe(), and if that returns null, ignore the
-			// row. In an ideal world, the DB would be cleaned up after a
-			// namespace change, but nobody could be bothered to do that.
-			$this->mRedirectTarget = Title::makeTitleSafe(
-				$namespace, $row->rd_title,
-				$row->rd_fragment, $row->rd_interwiki
-			);
-			$this->mHasRedirectTarget = $this->mRedirectTarget !== null;
+		if ( !$row ) {
+			// Incomplete database migration from 2008 due to database corruption (T346290).
+			$this->mRedirectTarget = null;
+			$this->mHasRedirectTarget = false;
 			return $this->mRedirectTarget;
 		}
 
-		// This page doesn't have an entry in the redirect table
-		$this->mRedirectTarget = $this->insertRedirect();
+		if ( $row->rd_fragment === null && $row->rd_interwiki === null ) {
+			// Incomplete database migration from 2011 due to database corruption (T346290).
+			// We could still return the title from this row, but let's not do it, as these rows
+			// should be dropped when these fields are made NOT NULL in a future database migration.
+			$this->mRedirectTarget = null;
+			$this->mHasRedirectTarget = false;
+			return $this->mRedirectTarget;
+		}
+
+		// (T203942) We can't redirect to Media namespace because it's virtual.
+		// We don't want to modify Title objects farther down the
+		// line. So, let's fix this here by changing to File namespace.
+		if ( $row->rd_namespace == NS_MEDIA ) {
+			$namespace = NS_FILE;
+		} else {
+			$namespace = $row->rd_namespace;
+		}
+
+		// T261347: be defensive when fetching data from the redirect table.
+		// Use Title::makeTitleSafe(), and if that returns null, ignore the
+		// row. In an ideal world, the DB would be cleaned up after a
+		// namespace change, but nobody could be bothered to do that.
+		$this->mRedirectTarget = Title::makeTitleSafe(
+			$namespace, $row->rd_title,
+			$row->rd_fragment, $row->rd_interwiki
+		);
 		$this->mHasRedirectTarget = $this->mRedirectTarget !== null;
 		return $this->mRedirectTarget;
 	}
@@ -1046,9 +1054,13 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * The database update will be deferred via DeferredUpdates
 	 *
 	 * Don't call this function directly unless you know what you're doing.
+	 *
+	 * @deprecated since 1.41
 	 * @return Title|null Title object or null if not a redirect
 	 */
 	public function insertRedirect() {
+		wfDeprecated( __METHOD__, '1.41' );
+
 		$content = $this->getContent();
 		$retval = $content ? $content->getRedirectTarget() : null;
 		if ( !$retval ) {
