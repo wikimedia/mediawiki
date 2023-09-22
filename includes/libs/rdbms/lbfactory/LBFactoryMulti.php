@@ -370,15 +370,22 @@ class LBFactoryMulti extends LBFactory {
 		}
 
 		foreach ( $this->mainLBs as $lb ) {
-			$groupLoads = $conf['groupLoadsBySection'][$lb->getClusterName()];
-			$groupLoads[ILoadBalancer::GROUP_GENERIC] = $conf['sectionLoads'][$lb->getClusterName()] ?? [];
-			$config = [ 'servers' => $this->makeServerConfigArrays( $conf['serverTemplate'] ?? [], $groupLoads ) ];
+			// Approximate what LBFactoryMulti::__construct does (T346365)
+			$groupLoads = $conf['groupLoadsBySection'][$lb->getClusterName()] ?? [];
+			$groupLoads[ILoadBalancer::GROUP_GENERIC] = $conf['sectionLoads'][$lb->getClusterName()];
+			$config = [
+				'servers' => $this->makeServerConfigArrays( $conf['serverTemplate'] ?? [], $groupLoads )
+			];
 			$lb->reconfigure( $config );
 
 		}
 		foreach ( $this->externalLBs as $lb ) {
-			$groupLoads = [ ILoadBalancer::GROUP_GENERIC => $conf['externalLoads'][$lb->getClusterName()] ];
-			$config = [ 'servers' => $this->makeServerConfigArrays( $conf['serverTemplate'] ?? [], $groupLoads ) ];
+			$groupLoads = [
+				ILoadBalancer::GROUP_GENERIC => $conf['externalLoads'][$lb->getClusterName()]
+			];
+			$config = [
+				'servers' => $this->makeServerConfigArrays( $conf['serverTemplate'] ?? [], $groupLoads )
+			];
 			$lb->reconfigure( $config );
 		}
 	}
