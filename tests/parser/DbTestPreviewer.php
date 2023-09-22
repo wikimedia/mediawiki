@@ -55,7 +55,10 @@ class DbTestPreviewer extends TestRecorder {
 			$this->prevRun = false;
 		} else {
 			// We'll make comparisons against the previous run later...
-			$this->prevRun = $this->db->selectField( 'testrun', 'MAX(tr_id)' );
+			$this->prevRun = $this->db->newSelectQueryBuilder()
+				->select( 'MAX(tr_id)' )
+				->from( 'testrun' )
+				->fetchField();
 		}
 
 		$this->results = [];
@@ -83,8 +86,11 @@ class DbTestPreviewer extends TestRecorder {
 
 			$prevResults = [];
 
-			$res = $this->db->select( 'testitem', [ 'ti_name', 'ti_success' ],
-				[ 'ti_run' => $this->prevRun ], __METHOD__ );
+			$res = $this->db->newSelectQueryBuilder()
+				->select( [ 'ti_name', 'ti_success' ] )
+				->from( 'testitem' )
+				->where( [ 'ti_run' => $this->prevRun ] )
+				->caller( __METHOD__ )->fetchResultSet();
 			$filter = $this->filter;
 
 			foreach ( $res as $row ) {
@@ -128,7 +134,6 @@ class DbTestPreviewer extends TestRecorder {
 					printf( "\n%4d %s\n", $count, $label );
 
 					foreach ( $breakdown[$code] as $differing_test_name => $statusInfo ) {
-						// @phan-suppress-next-line SecurityCheck-XSS CLI tool
 						print "      * $differing_test_name  [$statusInfo]\n";
 					}
 				}
@@ -151,14 +156,16 @@ class DbTestPreviewer extends TestRecorder {
 	private function getTestStatusInfo( $testname, $after ) {
 		// If we're looking at a test that has just been removed, then say when it first appeared.
 		if ( $after == 'n' ) {
-			$changedRun = $this->db->selectField( 'testitem',
-				'MIN(ti_run)',
-				[ 'ti_name' => $testname ],
-				__METHOD__ );
-			$appear = $this->db->selectRow( 'testrun',
-				[ 'tr_date', 'tr_mw_version' ],
-				[ 'tr_id' => $changedRun ],
-				__METHOD__ );
+			$changedRun = $this->db->newSelectQueryBuilder()
+				->select( 'MIN(ti_run)' )
+				->from( 'testitem' )
+				->where( [ 'ti_name' => $testname ] )
+				->caller( __METHOD__ )->fetchField();
+			$appear = $this->db->newSelectQueryBuilder()
+				->select( [ 'tr_date', 'tr_mw_version' ] )
+				->from( 'testrun' )
+				->where( [ 'tr_id' => $changedRun ] )
+				->caller( __METHOD__ )->fetchRow();
 
 			return "First recorded appearance: "
 				. date( "d-M-Y H:i:s", strtotime( $appear->tr_date ) )
@@ -175,7 +182,11 @@ class DbTestPreviewer extends TestRecorder {
 			$conds[] = "ti_run != " . $this->db->addQuotes( $this->curRun );
 		}
 
-		$changedRun = $this->db->selectField( 'testitem', 'MAX(ti_run)', $conds, __METHOD__ );
+		$changedRun = $this->db->newSelectQueryBuilder()
+			->select( 'MAX(ti_run)' )
+			->from( 'testitem' )
+			->where( $conds )
+			->caller( __METHOD__ )->fetchField();
 
 		// If no record of ever having had a different result.
 		if ( $changedRun === null ) {
@@ -189,16 +200,18 @@ class DbTestPreviewer extends TestRecorder {
 		// Otherwise, we're looking at a test whose status has changed.
 		// (i.e. it used to work, but now doesn't; or used to fail, but is now fixed.)
 		// In this situation, give as much info as we can as to when it changed status.
-		$pre = $this->db->selectRow( 'testrun',
-			[ 'tr_date', 'tr_mw_version' ],
-			[ 'tr_id' => $changedRun ],
-			__METHOD__ );
-		$post = $this->db->selectRow( 'testrun',
-			[ 'tr_date', 'tr_mw_version' ],
-			[ "tr_id > " . $this->db->addQuotes( $changedRun ) ],
-			__METHOD__,
-			[ "LIMIT" => 1, "ORDER BY" => 'tr_id' ]
-		);
+		$pre = $this->db->newSelectQueryBuilder()
+			->select( [ 'tr_date', 'tr_mw_version' ] )
+			->from( 'testrun' )
+			->where( [ 'tr_id' => $changedRun ] )
+			->caller( __METHOD__ )->fetchRow();
+		$post = $this->db->newSelectQueryBuilder()
+			->select( [ 'tr_date', 'tr_mw_version' ] )
+			->from( 'testrun' )
+			->where( [ "tr_id > " . $this->db->addQuotes( $changedRun ) ] )
+			->orderBy( 'tr_id' )
+			->limit( 1 )
+			->caller( __METHOD__ )->fetchRow();
 
 		if ( $post ) {
 			$postDate = date( "d-M-Y H:i:s", strtotime( $post->tr_date ) ) . ", {$post->tr_mw_version}";
