@@ -328,7 +328,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 			->get( 'key', true, 'x-xss' );
 		if ( $expectXssMessage ) {
 			$this->assertSame(
-				"<script>alert('key')</script>\"><script>alert('key')</script><x y=\"",
+				"<script>alert('key')</script>\"><script>alert('key')</script><x y=\"(\$*)",
 				$message
 			);
 		} else {

@@ -1226,7 +1226,7 @@ class MessageCache implements LoggerAwareInterface {
 		) {
 			$xssViaInnerHtml = "<script>alert('$lckey')</script>";
 			$xssViaAttribute = '">' . $xssViaInnerHtml . '<x y="';
-			return $xssViaInnerHtml . $xssViaAttribute;
+			return $xssViaInnerHtml . $xssViaAttribute . '($*)';
 		}
 
 		// Check the localisation cache

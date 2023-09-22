@@ -982,7 +982,7 @@ class Message implements MessageSpecifier, Serializable {
 			return '⧼' . htmlspecialchars( $this->key ) . '⧽';
 		}
 
-		if ( $this->getLanguage()->getCode() === 'qqx' ) {
+		if ( in_array( $this->getLanguage()->getCode(), [ 'qqx', 'x-xss' ] ) ) {
 			# Insert a list of alternative message keys for &uselang=qqx.
 			if ( $string === '($*)' ) {
 				$keylist = implode( ' / ', $this->keysToTry );
