@@ -20,8 +20,6 @@
 
 use MediaWiki\Html\Html;
 use MediaWiki\Parser\Sanitizer;
-use Wikimedia\WrappedString;
-use Wikimedia\WrappedStringList;
 
 /**
  * Extended QuickTemplate with additional MediaWiki-specific helper methods.
@@ -379,35 +377,5 @@ abstract class BaseTemplate extends QuickTemplate {
 		}
 		$out .= "</div>\n";
 		return $out;
-	}
-
-	/**
-	 * Output getTrail
-	 * @deprecated 1.39
-	 */
-	protected function printTrail() {
-		wfDeprecated( __METHOD__, '1.39' );
-		echo $this->getTrail();
-	}
-
-	/**
-	 * Get the basic end-page trail including bottomscripts, reporttime, and
-	 * debug stuff. This should be called right before outputting the closing
-	 * body and html tags.
-	 *
-	 * @return string|WrappedStringList HTML
-	 * @since 1.29
-	 * @deprecated 1.39
-	 */
-	public function getTrail() {
-		wfDeprecated( __METHOD__, '1.39' );
-		$skin = $this->getSkin();
-		$options = $skin->getOptions();
-
-		return $options['bodyOnly'] ? '' : WrappedString::join( "\n", [
-			MWDebug::getDebugHTML( $skin->getContext() ),
-			$this->get( 'bottomscripts' ),
-			$this->get( 'reporttime' )
-		] );
 	}
 }
