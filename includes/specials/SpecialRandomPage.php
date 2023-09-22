@@ -125,7 +125,9 @@ class SpecialRandomPage extends SpecialPage {
 					// Remove duplicate values, and re-index array
 					$nsList = array_unique( $nsList );
 					$nsList = array_values( $nsList );
-					$this->namespaces = $nsList;
+					if ( $nsList !== [] ) {
+						$this->namespaces = $nsList;
+					}
 				}
 			} else {
 				// Note, that the case of $par being something
