@@ -351,7 +351,9 @@
 								"debugScripts": {
 									"type": [ "string", "array" ],
 									"description": "Scripts to include in debug contexts",
-									"items": { "$ref": "#/definitions/resourceLoaderFileInfo" }
+									"items": {
+										"$ref": "#/definitions/resourceLoaderFileInfo"
+									}
 								},
 								"dependencies": {
 									"type": [ "string", "array" ],
@@ -426,7 +428,9 @@
 								"packageFiles": {
 									"type": [ "string", "array" ],
 									"description": "Package files that can be require()d",
-									"items": { "$ref": "#/definitions/resourceLoaderFileInfo" }
+									"items": {
+										"$ref": "#/definitions/resourceLoaderFileInfo"
+									}
 								},
 								"es6": {
 									"type": "boolean",
