@@ -48,7 +48,6 @@
 		<exclude-pattern>*/maintenance/language/date-formats\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/mysql\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/parse\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/preprocessorFuzzTest\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/rebuildImages\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/renderDump\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/shell\.php</exclude-pattern>
@@ -91,7 +90,6 @@
 		<exclude-pattern>*/maintenance/dumpIterator\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/findDeprecated\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/storage/recompressTracked\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/preprocessorFuzzTest\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/language/StatOutputs\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/language/generateCollationData\.php</exclude-pattern>
 		<!-- We don't care that much about violations in tests -->
