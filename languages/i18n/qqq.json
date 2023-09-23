@@ -3299,6 +3299,7 @@
 	"allmessagescurrent": "The header for the upper row of each column in the table of [[Special:AllMessages]].",
 	"allmessagestext": "Summary displayed at the top of [[Special:AllMessages]].",
 	"allmessages-not-supported-database": "This message is displayed on [[Special:AllMessages]] on wikis were the configuration variable $wgUseDatabaseMessages is disabled. It means that the MediaWiki namespace is not used.",
+	"allmessages-unknown-language": "This message is displayed on [[Special:AllMessages]] if the parameter lang contains an unknown language code.",
 	"allmessages-filter-legend": "Used in [[Special:AllMessages]].\n\n{{Identical|Filter}}",
 	"allmessages-filter": "Option used in [[Special:AllMessages]].",
 	"allmessages-filter-unmodified": "Used in [[Special:AllMessages]].",

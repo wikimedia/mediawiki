@@ -27,7 +27,6 @@ use LocalisationCache;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\Languages\LanguageFactory;
-use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
@@ -80,7 +79,6 @@ class AllMessagesTablePager extends TablePager {
 	 * @param IContextSource $context
 	 * @param Language $contentLanguage
 	 * @param LanguageFactory $languageFactory
-	 * @param LanguageNameUtils $languageNameUtils
 	 * @param LinkRenderer $linkRenderer
 	 * @param IConnectionProvider $dbProvider
 	 * @param LocalisationCache $localisationCache
@@ -90,7 +88,6 @@ class AllMessagesTablePager extends TablePager {
 		IContextSource $context,
 		Language $contentLanguage,
 		LanguageFactory $languageFactory,
-		LanguageNameUtils $languageNameUtils,
 		LinkRenderer $linkRenderer,
 		IConnectionProvider $dbProvider,
 		LocalisationCache $localisationCache,
@@ -105,10 +102,7 @@ class AllMessagesTablePager extends TablePager {
 		// FIXME: Why does this need to be set to DIR_DESCENDING to produce ascending ordering?
 		$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
 
-		$lang = $opts->getValue( 'lang' );
-		$this->lang = $languageNameUtils->isKnownLanguageTag( $lang ) ?
-			$languageFactory->getRawLanguage( $lang ) :
-			$contentLanguage;
+		$this->lang = $languageFactory->getRawLanguage( $opts->getValue( 'lang' ) );
 
 		$this->foreign = !$this->lang->equals( $contentLanguage );
 
