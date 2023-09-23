@@ -362,7 +362,8 @@ class SpecialMovePage extends UnlistedSpecialPage {
 				->select( '1' )
 				->from( 'redirect' )
 				->where( [ 'rd_namespace' => $this->oldTitle->getNamespace() ] )
-				->andWhere( [ 'rd_title' => $this->oldTitle->getDBkey() ] );
+				->andWhere( [ 'rd_title' => $this->oldTitle->getDBkey() ] )
+				->andWhere( [ 'rd_interwiki' => [ '', null ] ] );
 
 			$hasRedirects = (bool)$queryBuilder->caller( __METHOD__ )->fetchField();
 		} else {
