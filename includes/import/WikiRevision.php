@@ -28,7 +28,9 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
+use MediaWiki\User\ExternalUserNames;
 use MediaWiki\User\User;
+use MediaWiki\User\UserIdentityValue;
 
 /**
  * Represents a revision, log entry or upload during the import process.
@@ -648,7 +650,13 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	public function importLogItem() {
 		$dbw = wfGetDB( DB_PRIMARY );
 
-		$user = $this->getUserObj() ?: User::newFromName( $this->getUser(), false );
+		$userName = $this->getUser();
+		if ( ExternalUserNames::isExternal( $userName ) ) {
+			// Use newAnonymous() since the user name is already prefixed.
+			$user = UserIdentityValue::newAnonymous( $userName );
+		} else {
+			$user = $this->getUserObj() ?: User::newFromName( $userName, false );
+		}
 
 		# @todo FIXME: This will not record autoblocks
 		if ( !$this->getTitle() ) {
