@@ -7,7 +7,7 @@
 	"--builtin-classes": true,
 	"--processes": "0",
 	"--warnings-exit-nonzero": true,
-	"--external": "Blob,File,FileList,HTMLBodyElement,HTMLDocument,HTMLElement,HTMLHtmlElement,HTMLIFrameElement,HTMLInputElement,HTMLStyleElement,IdleDeadline,KeyboardEvent,MouseEvent,Node,Set,URL,URLSearchParams,Window,XMLDocument",
+	"--external": "Blob,File,FileList,HTMLBodyElement,HTMLDocument,HTMLElement,HTMLHtmlElement,HTMLInputElement,HTMLStyleElement,IdleDeadline,KeyboardEvent,MouseEvent,Node,Set,URL,URLSearchParams,Window",
 	"--output": "docs/js",
 	"--exclude": [
 		"resources/src/codex",
