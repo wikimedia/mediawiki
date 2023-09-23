@@ -102,7 +102,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 			'option' => '--schema',
 			'expectedFile' => MW_INSTALL_PATH . '/includes/config-schema.php',
 		];
-		yield 'includes/config-vars.php' => [
+		yield 'docs/config-vars.php' => [
 			'option' => '--vars',
 			'expectedFile' => MW_INSTALL_PATH . '/docs/config-vars.php',
 		];

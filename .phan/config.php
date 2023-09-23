@@ -130,8 +130,6 @@ $cfg['exclude_analysis_directory_list'] = [
 	'vendor/',
 	'.phan/',
 	'tests/phpunit/',
-	// Generated documentation stub for configuration variables.
-	'includes/config-vars.php',
 	// The referenced classes are not available in vendor, only when
 	// included from composer.
 	'includes/composer/',

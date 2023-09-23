@@ -15,7 +15,7 @@ define( 'MW_USE_CONFIG_SCHEMA_CLASS', 1 );
 /**
  * Maintenance script that generates configuration schema files:
  * - includes/MainConfigNames.php: name constants for config settings
- * - includes/config-vars.php: dummy variable declarations for config settings
+ * - docs/config-vars.php: dummy variable declarations for config settings
  * - includes/config-schema.php: an optimized config schema for use by Setup.php
  * - docs/config-schema.yaml: a JSON Schema of the config settings
  *
