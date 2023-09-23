@@ -113,6 +113,7 @@ class CommentStore {
 	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()` or `SelectQueryBuilder::joinConds`
 	 *  All tables, fields, and joins are aliased, so `+` is safe to use.
 	 * @phan-return array{tables:string[],fields:string[],joins:array}
+	 * @return-taint none
 	 */
 	public function getJoin( $key ) {
 		if ( !array_key_exists( $key, $this->joinCache ) ) {
@@ -354,6 +355,7 @@ class CommentStore {
 	 * @param string|Message|CommentStoreComment|null $comment As for `self::createComment()`
 	 * @param array|null $data As for `self::createComment()`
 	 * @return array Fields for the insert or update
+	 * @return-taint none
 	 */
 	public function insert( IDatabase $dbw, $key, $comment = null, $data = null ) {
 		if ( $comment === null ) {

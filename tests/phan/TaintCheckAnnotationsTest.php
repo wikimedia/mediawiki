@@ -641,7 +641,7 @@ class TaintCheckAnnotationsTest {
 
 		echo $linkRenderer->makeBrokenLink( $unsafeTarget );// Safe
 		echo $linkRenderer->makeBrokenLink( $target, $_GET['a'] );// Safe
-		$linkRenderer->makeBrokenLink( $target, htmlspecialchars( '' ) );// @xxx-phan-suppress-current-line SecurityCheck-DoubleEscaped
+		$linkRenderer->makeBrokenLink( $target, htmlspecialchars( '' ) );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
 		echo $linkRenderer->makeBrokenLink( $target, '', $_GET['a'] );// Safe
 		echo $linkRenderer->makeBrokenLink( $target, '', [], $_GET['a'] );// Safe
 		htmlspecialchars( $linkRenderer->makeBrokenLink( $target ) );// @phan-suppress-current-line SecurityCheck-DoubleEscaped

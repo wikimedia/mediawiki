@@ -38,6 +38,7 @@ class HtmlArmor {
 	 * @stable to call
 	 *
 	 * @param string|null $value
+	 * @param-taint $value exec_html
 	 */
 	public function __construct( $value ) {
 		$this->value = $value;
