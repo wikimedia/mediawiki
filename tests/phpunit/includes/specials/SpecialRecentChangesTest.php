@@ -2,6 +2,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Specials\SpecialRecentChanges;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
 use Wikimedia\TestingAccessWrapper;
@@ -11,10 +12,10 @@ use Wikimedia\TestingAccessWrapper;
  *
  * @group Database
  *
- * @covers SpecialRecentChanges
- * @covers ChangesListSpecialPage
+ * @covers \MediaWiki\Specials\SpecialRecentChanges
+ * @covers \MediaWiki\SpecialPage\ChangesListSpecialPage
  */
-class SpecialRecentchangesTest extends AbstractChangesListSpecialPageTestCase {
+class SpecialRecentChangesTest extends AbstractChangesListSpecialPageTestCase {
 	use MockAuthorityTrait;
 
 	protected function getPage(): SpecialRecentChanges {

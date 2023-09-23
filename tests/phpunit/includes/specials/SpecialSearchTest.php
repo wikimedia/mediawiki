@@ -36,7 +36,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers SpecialSearch::load
+	 * @covers \MediaWiki\Specials\SpecialSearch::load
 	 */
 	public function testAlternativeBackend() {
 		$this->overrideConfigValue( MainConfigNames::SearchTypeAlternatives, [ 'MockSearchEngine' ] );
@@ -56,8 +56,8 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers SpecialSearch::load
-	 * @covers SpecialSearch::showResults
+	 * @covers \MediaWiki\Specials\SpecialSearch::load
+	 * @covers \MediaWiki\Specials\SpecialSearch::showResults
 	 */
 	public function testValidateSortOrder() {
 		$ctx = new RequestContext();
@@ -77,7 +77,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers SpecialSearch::load
+	 * @covers \MediaWiki\Specials\SpecialSearch::load
 	 * @dataProvider provideSearchOptionsTests
 	 * @param array $requested Request parameters. For example:
 	 *   [ 'ns5' => true, 'ns6' => true ]. Null to use default options.
@@ -182,7 +182,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Verify we do not expand search term in <title> on search result page
 	 * https://gerrit.wikimedia.org/r/4841
-	 * @covers SpecialSearch::setupPage
+	 * @covers \MediaWiki\Specials\SpecialSearch::setupPage
 	 */
 	public function testSearchTermIsNotExpanded() {
 		// T303046
@@ -260,7 +260,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideRewriteQueryWithSuggestion
-	 * @covers SpecialSearch::showResults
+	 * @covers \MediaWiki\Specials\SpecialSearch::showResults
 	 */
 	public function testRewriteQueryWithSuggestion(
 		$message,
@@ -320,7 +320,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideLimitPreference
-	 * @covers SpecialSearch::showResults
+	 * @covers \MediaWiki\Specials\SpecialSearch::showResults
 	 */
 	public function testLimitPreference(
 		$optionValue,
@@ -389,7 +389,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers SpecialSearch::execute
+	 * @covers \MediaWiki\Specials\SpecialSearch::execute
 	 */
 	public function testSubPageRedirect() {
 		$this->overrideConfigValue( MainConfigNames::Script, '/w/index.php' );
@@ -410,7 +410,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 	 * If the 'search-match-redirect' user pref is false, then SpecialSearch::goResult() should
 	 * return null
 	 *
-	 * @covers SpecialSearch::goResult
+	 * @covers \MediaWiki\Specials\SpecialSearch::goResult
 	 */
 	public function testGoResult_userPrefRedirectOn() {
 		$context = new RequestContext;
@@ -431,7 +431,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 	 * If the 'search-match-redirect' user pref is true, then SpecialSearch::goResult() should
 	 * NOT return null if there is a near match found for the search term
 	 *
-	 * @covers SpecialSearch::goResult
+	 * @covers \MediaWiki\Specials\SpecialSearch::goResult
 	 */
 	public function testGoResult_userPrefRedirectOff() {
 		// mock the search engine so it returns a near match for an arbitrary search term
@@ -485,7 +485,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers SpecialSearch::showResults
+	 * @covers \MediaWiki\Specials\SpecialSearch::showResults
 	 */
 	public function test_create_link_not_shown_if_variant_link_is_known() {
 		$searchTerm = "Test create link not shown if variant link is known";

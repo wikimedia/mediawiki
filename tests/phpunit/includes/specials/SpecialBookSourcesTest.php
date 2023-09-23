@@ -2,7 +2,7 @@
 
 use MediaWiki\Specials\SpecialBookSources;
 
-class SpecialBooksourcesTest extends SpecialPageTestBase {
+class SpecialBookSourcesTest extends SpecialPageTestBase {
 	public static function provideISBNs() {
 		return [
 			[ '978-0-300-14424-6', true ],
@@ -30,7 +30,7 @@ class SpecialBooksourcesTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers MediaWiki\Specials\SpecialBookSources::isValidISBN
+	 * @covers \MediaWiki\Specials\SpecialBookSources::isValidISBN
 	 * @dataProvider provideISBNs
 	 */
 	public function testIsValidISBN( $isbn, $isValid ) {
@@ -46,7 +46,7 @@ class SpecialBooksourcesTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers MediaWiki\Specials\SpecialBookSources::execute
+	 * @covers \MediaWiki\Specials\SpecialBookSources::execute
 	 */
 	public function testExecute() {
 		$this->setService( 'TitleFactory', $this->createMock( TitleFactory::class ) );

@@ -6,7 +6,7 @@ use MediaWiki\Request\FauxResponse;
 use MediaWiki\Specials\SpecialPageData;
 
 /**
- * @covers SpecialPageData
+ * @covers \MediaWiki\Specials\SpecialPageData
  * @group Database
  * @group SpecialPage
  *

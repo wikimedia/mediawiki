@@ -6,7 +6,7 @@ use MediaWiki\Title\Title;
 
 /**
  * @group Database
- * @covers MediaWiki\Specials\SpecialMIMESearch
+ * @covers \MediaWiki\Specials\SpecialMIMESearch
  */
 class SpecialMIMESearchTest extends MediaWikiIntegrationTestCase {
 

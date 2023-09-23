@@ -15,7 +15,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Blocking
  * @group Database
- * @coversDefaultClass MediaWiki\Specials\SpecialBlock
+ * @coversDefaultClass \MediaWiki\Specials\SpecialBlock
  */
 class SpecialBlockTest extends SpecialPageTestBase {
 	/**
@@ -41,7 +41,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers ::getFormFields()
+	 * @covers ::getFormFields
 	 */
 	public function testGetFormFields() {
 		$this->overrideConfigValues( [
@@ -68,7 +68,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers ::getFormFields()
+	 * @covers ::getFormFields
 	 */
 	public function testGetFormFieldsActionRestrictionDisabled() {
 		$this->overrideConfigValue( MainConfigNames::EnablePartialActionBlocks, false );
@@ -79,7 +79,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers ::maybeAlterFormDefaults()
+	 * @covers ::maybeAlterFormDefaults
 	 */
 	public function testMaybeAlterFormDefaults() {
 		$this->overrideConfigValue( MainConfigNames::BlockAllowsUTEdit, true );
@@ -105,7 +105,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers ::maybeAlterFormDefaults()
+	 * @covers ::maybeAlterFormDefaults
 	 */
 	public function testMaybeAlterFormDefaultsPartial() {
 		$this->overrideConfigValue( MainConfigNames::EnablePartialActionBlocks, true );
@@ -156,7 +156,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers ::processForm()
+	 * @covers ::processForm
 	 */
 	public function testProcessForm() {
 		$badActor = $this->getTestUser()->getUserIdentity();
@@ -191,7 +191,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers ::processForm()
+	 * @covers ::processForm
 	 */
 	public function testProcessFormExisting() {
 		$badActor = $this->getTestUser()->getUser();
@@ -239,7 +239,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers ::processForm()
+	 * @covers ::processForm
 	 */
 	public function testProcessFormRestrictions() {
 		$this->overrideConfigValue( MainConfigNames::EnablePartialActionBlocks, true );
@@ -295,7 +295,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers ::processForm()
+	 * @covers ::processForm
 	 */
 	public function testProcessFormRestrictionsChange() {
 		$badActor = $this->getTestUser()->getUser();
@@ -399,7 +399,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 
 	/**
 	 * @dataProvider provideProcessFormUserTalkEditFlag
-	 * @covers ::processForm()
+	 * @covers ::processForm
 	 */
 	public function testProcessFormUserTalkEditFlag( $options, $expected ) {
 		$this->overrideConfigValue( MainConfigNames::BlockAllowsUTEdit, $options['configAllowsUserTalkEdit'] );
@@ -506,7 +506,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 
 	/**
 	 * @dataProvider provideProcessFormErrors
-	 * @covers ::processForm()
+	 * @covers ::processForm
 	 */
 	public function testProcessFormErrors( $data, $expected, $options = [] ) {
 		$this->overrideConfigValue( MainConfigNames::BlockAllowsUTEdit, true );
@@ -613,7 +613,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 
 	/**
 	 * @dataProvider provideProcessFormErrorsReblock
-	 * @covers ::processForm()
+	 * @covers ::processForm
 	 */
 	public function testProcessFormErrorsReblock( $data, $permissions, $expected ) {
 		$this->overrideConfigValue( MainConfigNames::BlockAllowsUTEdit, true );
@@ -695,7 +695,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 
 	/**
 	 * @dataProvider provideProcessFormErrorsHideUser
-	 * @covers ::processForm()
+	 * @covers ::processForm
 	 */
 	public function testProcessFormErrorsHideUser( $data, $permissions, $expected ) {
 		$performer = $this->getTestSysop()->getUser();
@@ -755,7 +755,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers ::processForm()
+	 * @covers ::processForm
 	 */
 	public function testProcessFormErrorsHideUserProlific() {
 		$this->overrideConfigValue( MainConfigNames::HideUserContribLimit, 0 );

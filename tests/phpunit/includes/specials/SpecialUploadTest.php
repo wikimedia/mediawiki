@@ -5,7 +5,7 @@ use MediaWiki\Specials\SpecialUpload;
 
 class SpecialUploadTest extends MediaWikiIntegrationTestCase {
 	/**
-	 * @covers SpecialUpload::getInitialPageText
+	 * @covers \MediaWiki\Specials\SpecialUpload::getInitialPageText
 	 * @dataProvider provideGetInitialPageText
 	 */
 	public function testGetInitialPageText( $expected, $inputParams ) {

@@ -14,7 +14,7 @@ class SpecialShortPagesTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideGetQueryInfoRespectsContentNs
-	 * @covers SpecialShortPages::getQueryInfo()
+	 * @covers \MediaWiki\Specials\SpecialShortPages::getQueryInfo
 	 */
 	public function testGetQueryInfoRespectsContentNS( $contentNS, $blacklistNS, $expectedNS ) {
 		$this->overrideConfigValues( [

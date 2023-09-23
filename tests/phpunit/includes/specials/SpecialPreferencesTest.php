@@ -15,7 +15,7 @@ use MediaWiki\User\UserOptionsManager;
  * @group Preferences
  * @group Database
  *
- * @covers SpecialPreferences
+ * @covers \MediaWiki\Specials\SpecialPreferences
  */
 class SpecialPreferencesTest extends SpecialPageTestBase {
 	/**
