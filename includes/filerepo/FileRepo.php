@@ -1449,8 +1449,7 @@ class FileRepo {
 		$this->backend->preloadFileStat( [ 'srcs' => $paths ] );
 
 		$result = [];
-		foreach ( $files as $key => $file ) {
-			$path = $this->resolveToStoragePathIfVirtual( $file );
+		foreach ( $paths as $key => $path ) {
 			$result[$key] = $this->backend->fileExists( [ 'src' => $path ] );
 		}
 
