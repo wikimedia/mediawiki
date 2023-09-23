@@ -146,9 +146,10 @@ $cfg['exclude_analysis_directory_list'] = [
 	'includes/PHPVersionCheck.php',
 ];
 
-// Do not use aliases in core.
-// Use the correct name, because we don't need backward compatibility
-$cfg['enable_class_alias_support'] = false;
+// TODO: Ideally we'd disable this in core, given we don't need backwards compatibility here and aliases
+// should not be used. However, that would have unwanted side effects such as being unable to test
+// taint-check (T321806).
+$cfg['enable_class_alias_support'] = true;
 
 $cfg['ignore_undeclared_variables_in_global_scope'] = true;
 // @todo It'd be great if we could just make phan read these from config-schema.php, to avoid
