@@ -301,6 +301,14 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 					'nonredirects'
 				]
 			],
+			'filterlanglinks' => [
+				ParamValidator::PARAM_TYPE => [
+					'withlanglinks',
+					'withoutlanglinks',
+					'all'
+				],
+				ParamValidator::PARAM_DEFAULT => 'all'
+			],
 			'minsize' => [
 				ParamValidator::PARAM_TYPE => 'integer',
 			],
@@ -324,6 +332,15 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 					'all'
 				],
 			],
+			'prexpiry' => [
+				ParamValidator::PARAM_TYPE => [
+					'indefinite',
+					'definite',
+					'all'
+				],
+				ParamValidator::PARAM_DEFAULT => 'all',
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+			],
 			'limit' => [
 				ParamValidator::PARAM_DEFAULT => 10,
 				ParamValidator::PARAM_TYPE => 'limit',
@@ -337,23 +354,6 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 					'ascending',
 					'descending'
 				]
-			],
-			'filterlanglinks' => [
-				ParamValidator::PARAM_TYPE => [
-					'withlanglinks',
-					'withoutlanglinks',
-					'all'
-				],
-				ParamValidator::PARAM_DEFAULT => 'all'
-			],
-			'prexpiry' => [
-				ParamValidator::PARAM_TYPE => [
-					'indefinite',
-					'definite',
-					'all'
-				],
-				ParamValidator::PARAM_DEFAULT => 'all',
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
 		];
 
