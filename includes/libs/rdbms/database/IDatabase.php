@@ -273,10 +273,12 @@ interface IDatabase extends IReadableDatabase {
 	 * Methods like startAtomic(), endAtomic(), and cancelAtomic() can be used instead.
 	 *
 	 * @param string|Query $sql Single-statement SQL query
+	 * @param-taint $sql exec_sql
 	 * @param string $fname Caller name; used for profiling/SHOW PROCESSLIST comments
 	 * @param int $flags Bit field of IDatabase::QUERY_* constants.
 	 * @return bool|IResultWrapper True for a successful write query, IResultWrapper object
 	 *     for a successful read query, or false on failure if QUERY_SILENCE_ERRORS is set.
+	 * @return-taint tainted
 	 * @throws DBQueryError If the query is issued, fails, and QUERY_SILENCE_ERRORS is not set.
 	 * @throws DBExpectedError If the query is not, and cannot, be issued yet (non-DBQueryError)
 	 * @throws DBError If the query is inherently not allowed (non-DBExpectedError)
@@ -356,19 +358,24 @@ interface IDatabase extends IReadableDatabase {
 	 * @internal callers outside of rdbms library should use InsertQueryBuilder instead.
 	 *
 	 * @param string $table Table name
+	 * @param-taint $table exec_sql
 	 * @param array|array[] $rows Row(s) to insert, as either:
 	 *   - A string-keyed map of (column name => value) defining a new row. Values are
 	 *     treated as literals and quoted appropriately; null is interpreted as NULL.
 	 *   - An integer-keyed list of such string-keyed maps, defining a list of new rows.
 	 *     The keys in each map must be identical to each other and in the same order.
 	 *     The rows must not collide with each other.
+	 * @param-taint $rows exec_sql_numkey - NOTE: This does not work when inserting multiple rows (T290563)
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
+	 * @param-taint $fname exec_sql
 	 * @param string|array $options Combination map/list where each string-keyed entry maps
 	 *   a non-boolean option to the option parameters and each integer-keyed value is the
 	 *   name of a boolean option. Supported options are:
 	 *     - IGNORE: Boolean: skip insertion of rows that would cause unique key conflicts.
 	 *       IDatabase::affectedRows() can be used to determine how many rows were inserted.
+	 * @param-taint $options exec_sql
 	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
+	 * @return-taint none
 	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function insert( $table, $rows, $fname = __METHOD__, $options = [] );
@@ -382,6 +389,7 @@ interface IDatabase extends IReadableDatabase {
 	 * @internal callers outside of rdbms library should use UpdateQueryBuilder instead.
 	 *
 	 * @param string $table Table name
+	 * @param-taint $table exec_sql
 	 * @param array $set Combination map/list where each string-keyed entry maps a column
 	 *   to a literal assigned value and each integer-keyed value is a SQL expression in the
 	 *   format of a column assignment within UPDATE...SET. The (column => value) entries are
@@ -389,17 +397,22 @@ interface IDatabase extends IReadableDatabase {
 	 *   assignment format is useful for updates like "column = column + X". All assignments
 	 *   have no defined execution order, so they should not depend on each other. Do not
 	 *   modify AUTOINCREMENT or UUID columns in assignments.
+	 * @param-taint $set exec_sql_numkey
 	 * @param array|string $conds Condition in the format of IDatabase::select() conditions.
 	 *   In order to prevent possible performance or replication issues or damaging a data
 	 *   accidentally, an empty condition for 'update' queries isn't allowed.
 	 *   IDatabase::ALL_ROWS should be passed explicitly in order to update all rows.
+	 * @param-taint $conds exec_sql_numkey
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
+	 * @param-taint $fname exec_sql
 	 * @param string|array $options Combination map/list where each string-keyed entry maps
 	 *   a non-boolean option to the option parameters and each integer-keyed value is the
 	 *   name of a boolean option. Supported options are:
 	 *     - IGNORE: Boolean: skip update of rows that would cause unique key conflicts.
 	 *       IDatabase::affectedRows() can be used to determine how many rows were updated.
+	 * @param-taint $options none
 	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
+	 * @return-taint none
 	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function update( $table, $set, $conds, $fname = __METHOD__, $options = [] );
@@ -542,12 +555,16 @@ interface IDatabase extends IReadableDatabase {
 	 * @internal callers outside of rdbms library should use DeleteQueryBuilder instead.
 	 *
 	 * @param string $table Table name
+	 * @param-taint $table exec_sql
 	 * @param string|array $conds Array of conditions. See $conds in IDatabase::select()
 	 *   In order to prevent possible performance or replication issues or damaging a data
 	 *   accidentally, an empty condition for 'delete' queries isn't allowed.
 	 *   IDatabase::ALL_ROWS should be passed explicitly in order to delete all rows.
+	 * @param-taint $conds exec_sql_numkey
 	 * @param string $fname Name of the calling function
+	 * @param-taint $fname exec_sql
 	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
+	 * @return-taint none
 	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function delete( $table, $conds, $fname = __METHOD__ );

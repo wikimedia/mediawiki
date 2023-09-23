@@ -164,14 +164,21 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * @internal callers outside of rdbms library should use SelectQueryBuilder instead.
 	 *
 	 * @param string|array $table Table name. {@see select} for details.
+	 * @param-taint $table exec_sql
 	 * @param string|array $var The field name to select. This must be a valid SQL fragment: do not
 	 *  use unvalidated user input. Can be an array, but must contain exactly 1 element then.
 	 *  {@see select} for details.
+	 * @param-taint $var exec_sql
 	 * @param string|array $cond The condition array. {@see select} for details.
+	 * @param-taint $cond exec_sql_numkey
 	 * @param string $fname The function name of the caller.
+	 * @param-taint $fname exec_sql
 	 * @param string|array $options The query options. {@see select} for details.
+	 * @param-taint $options none This is special-cased in MediaWikiSecurityCheckPlugin
 	 * @param string|array $join_conds The query join conditions. {@see select} for details.
+	 * @param-taint $join_conds none This is special-cased in MediaWikiSecurityCheckPlugin
 	 * @return mixed|false The value from the field, or false if nothing was found
+	 * @return-taint tainted
 	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function selectField(
@@ -189,14 +196,21 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * @internal callers outside of rdbms library should use SelectQueryBuilder instead.
 	 *
 	 * @param string|array $table Table name. {@see select} for details.
+	 * @param-taint $table exec_sql
 	 * @param string $var The field name to select. This must be a valid SQL
 	 *   fragment: do not use unvalidated user input.
+	 * @param-taint $var exec_sql
 	 * @param string|array $cond The condition array. {@see select} for details.
+	 * @param-taint $cond exec_sql_numkey
 	 * @param string $fname The function name of the caller.
+	 * @param-taint $fname exec_sql
 	 * @param string|array $options The query options. {@see select} for details.
+	 * @param-taint $options none This is special-cased in MediaWikiSecurityCheckPlugin
 	 * @param string|array $join_conds The query join conditions. {@see select} for details.
+	 * @param-taint $join_conds none This is special-cased in MediaWikiSecurityCheckPlugin
 	 *
 	 * @return array The values from the field in the order they were returned from the DB
+	 * @return-taint tainted
 	 * @throws DBError If an error occurs, {@see query}
 	 * @since 1.25
 	 */
@@ -211,6 +225,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * instead, which is more readable and less error-prone.
 	 *
 	 * @param string|array $table Table name(s)
+	 * @param-taint $table exec_sql
 	 *
 	 * May be either an array of table names, or a single string holding a table
 	 * name. If an array is given, table aliases can be specified, for example:
@@ -246,6 +261,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * not have characters outside of the Basic multilingual plane.
 	 *
 	 * @param string|array $vars Field name(s)
+	 * @param-taint $vars exec_sql
 	 *
 	 * May be either a field name or an array of field names. The field names
 	 * can be complete fragments of SQL, for direct inclusion into the SELECT
@@ -261,6 +277,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * Untrusted user input must not be passed to this parameter.
 	 *
 	 * @param string|array $conds
+	 * @param-taint $conds exec_sql_numkey
 	 *
 	 * May be either a string containing a single condition, or an array of
 	 * conditions. If an array is given, the conditions constructed from each
@@ -304,8 +321,10 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 *     'actor' => [ 'JOIN', 'rev_actor = actor_id' ],
 	 *
 	 * @param string $fname Caller function name
+	 * @param-taint $fname exec_sql
 	 *
 	 * @param string|array $options Query options
+	 * @param-taint $options none This is special-cased in MediaWikiSecurityCheckPlugin
 	 *
 	 * Optional: Array of query options. Boolean options are specified by
 	 * including them in the array as a string value with a numeric key, for
@@ -371,6 +390,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 *    - SQL_CALC_FOUND_ROWS
 	 *
 	 * @param string|array $join_conds Join conditions
+	 * @param-taint $join_conds none This is special-cased in MediaWikiSecurityCheckPlugin
 	 *
 	 * Optional associative array of table-specific join conditions.
 	 * Simple conditions can also be specified in the regular $conds,
@@ -386,6 +406,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 *
 	 * @internal
 	 * @return IResultWrapper Resulting rows
+	 * @return-taint tainted
 	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function select(
@@ -409,12 +430,19 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 *
 	 * @internal
 	 * @param string|array $table Table name
+	 * @param-taint $table exec_sql
 	 * @param string|array $vars Field names
+	 * @param-taint $vars exec_sql
 	 * @param string|array $conds Conditions
+	 * @param-taint $conds exec_sql_numkey
 	 * @param string $fname Caller function name
+	 * @param-taint $fname exec_sql
 	 * @param string|array $options Query options
+	 * @param-taint $options none This is special-cased in MediaWikiSecurityCheckPlugin
 	 * @param array|string $join_conds Join conditions
+	 * @param-taint $join_conds none This is special-cased in MediaWikiSecurityCheckPlugin
 	 * @return stdClass|false
+	 * @return-taint tainted
 	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function selectRow(
@@ -470,12 +498,19 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 *
 	 * @internal
 	 * @param string|string[] $tables Table name(s)
+	 * @param-taint $tables exec_sql
 	 * @param string $var Column for which NULL values are not counted [default "*"]
+	 * @param-taint $var exec_sql
 	 * @param array|string $conds Filters on the table
+	 * @param-taint $conds exec_sql_numkey
 	 * @param string $fname Function name for profiling
+	 * @param-taint $fname exec_sql
 	 * @param array $options Options for select
+	 * @param-taint $options none This is special-cased in MediaWikiSecurityCheckPlugin
 	 * @param array $join_conds Join conditions (since 1.27)
+	 * @param-taint $join_conds none This is special-cased in MediaWikiSecurityCheckPlugin
 	 * @return int Row count
+	 * @return-taint none
 	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function selectRowCount(

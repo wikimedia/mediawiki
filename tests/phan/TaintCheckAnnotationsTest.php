@@ -130,7 +130,7 @@ class TaintCheckAnnotationsTest {
 		$db->selectRowCount( $_GET['a'], '' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		$db->selectRowCount( '', $_GET['a'] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		$db->selectRowCount( '', '', [ $_GET['a'] ] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
-		echo $db->selectRowCount( 'safe', 'safe' ); // @phan-suppress-current-line SecurityCheck-XSS
+		echo $db->selectRowCount( 'safe', 'safe' ); // Safe
 
 		$db->selectRow( $_GET['a'], '', [] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		$db->selectRow( '', $_GET['a'], [] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
@@ -196,7 +196,7 @@ class TaintCheckAnnotationsTest {
 		$db->selectRowCount( $_GET['a'], '' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		$db->selectRowCount( '', $_GET['a'] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		$db->selectRowCount( '', '', [ $_GET['a'] ] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
-		echo $db->selectRowCount( 'safe', 'safe' ); // @phan-suppress-current-line SecurityCheck-XSS
+		echo $db->selectRowCount( 'safe', 'safe' ); // Safe
 
 		$db->selectRow( $_GET['a'], '', [] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		$db->selectRow( '', $_GET['a'], [] ); // @phan-suppress-current-line SecurityCheck-SQLInjection

@@ -95,7 +95,9 @@ interface ISQLPlatform {
 	 * Depending on the database this will either be `backticks` or "double quotes"
 	 *
 	 * @param string $s
+	 * @param-taint $s escapes_sql NOTE: this is subpar, as addIdentifierQuotes isn't always the right type of escaping.
 	 * @return string
+	 * @return-taint none
 	 * @since 1.33
 	 */
 	public function addIdentifierQuotes( $s );
@@ -176,14 +178,17 @@ interface ISQLPlatform {
 	 * This would set $sql to "rev_page = '$id' AND (rev_minor = 1 OR rev_len < 500)"
 	 *
 	 * @param array $a Containing the data
+	 * @param-taint $a escapes_sql - Note, this is also special-cased in MediaWikiSecurityCheckPlugin
 	 * @param int $mode IDatabase class constant:
 	 *    - IDatabase::LIST_COMMA: Comma separated, no field names
 	 *    - IDatabase::LIST_AND:   ANDed WHERE clause (without the WHERE).
 	 *    - IDatabase::LIST_OR:    ORed WHERE clause (without the WHERE)
 	 *    - IDatabase::LIST_SET:   Comma separated with field names, like a SET clause
 	 *    - IDatabase::LIST_NAMES: Comma separated field names
+	 * @param-taint $mode none
 	 * @throws DBError If an error occurs, {@see IDatabase::query}
 	 * @return string
+	 * @return-taint none
 	 */
 	public function makeList( array $a, $mode = self::LIST_COMMA );
 
@@ -292,8 +297,11 @@ interface ISQLPlatform {
 	 *
 	 * @since 1.16 in IDatabase, moved to ISQLPlatform in 1.39
 	 * @param array[]|string|LikeMatch $param
+	 * @param-taint $param escapes_sql
 	 * @param string|LikeMatch ...$params
+	 * @param-taint ...$params escapes_sql
 	 * @return string Fully built LIKE statement
+	 * @return-taint none
 	 */
 	public function buildLike( $param, ...$params );
 
@@ -493,12 +501,19 @@ interface ISQLPlatform {
 	 * @see IDatabase::select()
 	 *
 	 * @param string|array $table Table name(s)
+	 * @param-taint $table exec_sql
 	 * @param string|array $vars Field names
+	 * @param-taint $vars exec_sql
 	 * @param string|array $conds Conditions
+	 * @param-taint $conds exec_sql_numkey
 	 * @param string $fname Caller function name
+	 * @param-taint $fname exec_sql
 	 * @param string|array $options Query options
+	 * @param-taint $options none This is special-cased in MediaWikiSecurityCheckPlugin
 	 * @param string|array $join_conds Join conditions
+	 * @param-taint $join_conds none This is special-cased in MediaWikiSecurityCheckPlugin
 	 * @return string SQL query string
+	 * @return-taint onlysafefor_sql
 	 */
 	public function selectSQLText(
 		$table,
