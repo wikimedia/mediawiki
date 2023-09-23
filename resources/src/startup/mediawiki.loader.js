@@ -1818,10 +1818,15 @@
 				// Replacing the content of the module store might fail if the new
 				// contents would exceed the browser's localStorage size limit. To
 				// avoid clogging the browser with stale data, always remove the old
-				// value before attempting to set the new one.
+				// value before attempting to store a new one.
 				localStorage.removeItem( store.key );
-				var data = JSON.stringify( store );
-				localStorage.setItem( store.key, data );
+				localStorage.setItem( store.key, JSON.stringify( {
+					items: store.items,
+					vary: store.vary,
+					// Store with 1e7 ms accuracy (1e4 seconds, or ~ 2.7 hours),
+					// which is enough for the purpose of expiring after ~ 30 days.
+					asOf: Math.ceil( Date.now() / 1e7 )
+				} ) );
 			} catch ( e ) {
 				mw.trackError( 'resourceloader.exception', {
 					exception: e,
@@ -1850,21 +1855,6 @@
 
 		// Cache hit stats
 		stats: { hits: 0, misses: 0, expired: 0, failed: 0 },
-
-		/**
-		 * Construct a JSON-serializable object representing the content of the store.
-		 *
-		 * @return {Object} Module store contents.
-		 */
-		toJSON: function () {
-			return {
-				items: store.items,
-				vary: store.vary,
-				// Store with 1e7 ms accuracy (1e4 seconds, or ~ 2.7 hours),
-				// which is enough for the purpose of expiring after ~ 30 days.
-				asOf: Math.ceil( Date.now() / 1e7 )
-			};
-		},
 
 		/**
 		 * The localStorage key for the entire module store. The key references
