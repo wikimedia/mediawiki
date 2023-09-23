@@ -29,6 +29,7 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\TitleValue;
 use Shellbox\Command\UnboxedResult;
 use Shellbox\Shellbox;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 die( 'This file should never be loaded' );
 
@@ -323,6 +324,34 @@ class TaintCheckAnnotationsTest {
 		$quoted = $db->addQuotes( $_GET['a'] );
 		echo $quoted;// @phan-suppress-current-line SecurityCheck-XSS
 		$db->query( $quoted );// Safe
+	}
+
+	function testSelectQueryBuilder( SelectQueryBuilder $sqb ) {
+		$sqb->table( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$sqb->table( '', $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$sqb->tables( [ $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$sqb->from( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$sqb->from( '', $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+
+		$sqb->fields( [ $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$sqb->select( [ $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$sqb->field( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$sqb->field( '', $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+
+		$sqb->where( [ $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$sqb->where( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$sqb->where( [ 'foo' => $_GET['a'] ] );// Safe
+		$sqb->andWhere( [ $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$sqb->andWhere( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$sqb->andWhere( [ 'foo' => $_GET['a'] ] );// Safe
+		$sqb->conds( [ $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$sqb->conds( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$sqb->conds( [ 'foo' => $_GET['a'] ] );// Safe
+
+		echo $sqb->fetchResultSet();// @phan-suppress-current-line SecurityCheck-XSS
+		echo $sqb->fetchField();// @phan-suppress-current-line SecurityCheck-XSS
+		echo $sqb->fetchFieldValues();// @phan-suppress-current-line SecurityCheck-XSS
+		echo $sqb->fetchRow();// @phan-suppress-current-line SecurityCheck-XSS
 	}
 
 	function testMessage( Message $msg ) {

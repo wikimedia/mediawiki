@@ -23,7 +23,9 @@ abstract class JoinGroupBase {
 	 *   this is a string, it is the table name. If it is a JoinGroup created
 	 *   by SelectQueryBuilder::newJoinGroup(), the group will be added. If it
 	 *   is a SelectQueryBuilder, a table subquery will be added.
+	 * @param-taint $table exec_sql
 	 * @param string|null $alias The table alias, or null for no alias
+	 * @param-taint $alias exec_sql
 	 * @return $this
 	 */
 	public function table( $table, $alias = null ) {
