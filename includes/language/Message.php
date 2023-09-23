@@ -541,6 +541,7 @@ class Message implements MessageSpecifier, Serializable {
 	 *
 	 * @param mixed ...$params Raw parameters as strings, or a single argument that is
 	 * an array of raw parameters.
+	 * @param-taint ...$params html,exec_html
 	 *
 	 * @return self $this
 	 */
@@ -1020,13 +1021,14 @@ class Message implements MessageSpecifier, Serializable {
 	}
 
 	/**
-	 * Magic method implementation of the above (for PHP >= 5.2.0), so we can do, eg:
+	 * Magic method implementation of the above, so we can do, eg:
 	 *     $foo = new Message( $key );
 	 *     $string = "<abbr>$foo</abbr>";
 	 *
 	 * @since 1.18
 	 *
 	 * @return string
+	 * @return-taint escaped
 	 */
 	public function __toString() {
 		return $this->format( self::FORMAT_PARSE );
@@ -1038,6 +1040,7 @@ class Message implements MessageSpecifier, Serializable {
 	 * @since 1.17
 	 *
 	 * @return string Parsed HTML.
+	 * @return-taint escaped
 	 */
 	public function parse() {
 		return $this->format( self::FORMAT_PARSE );
@@ -1050,6 +1053,7 @@ class Message implements MessageSpecifier, Serializable {
 	 * @since 1.17
 	 *
 	 * @return string Unescaped message text.
+	 * @return-taint tainted
 	 */
 	public function text() {
 		return $this->format( self::FORMAT_TEXT );
@@ -1061,6 +1065,7 @@ class Message implements MessageSpecifier, Serializable {
 	 * @since 1.17
 	 *
 	 * @return string Unescaped untransformed message text.
+	 * @return-taint tainted
 	 */
 	public function plain() {
 		return $this->format( self::FORMAT_PLAIN );
@@ -1072,6 +1077,7 @@ class Message implements MessageSpecifier, Serializable {
 	 * @since 1.17
 	 *
 	 * @return string HTML
+	 * @return-taint escaped
 	 */
 	public function parseAsBlock() {
 		return $this->format( self::FORMAT_BLOCK_PARSE );
@@ -1084,6 +1090,7 @@ class Message implements MessageSpecifier, Serializable {
 	 * @since 1.17
 	 *
 	 * @return string HTML escaped message text.
+	 * @return-taint escaped
 	 */
 	public function escaped() {
 		return $this->format( self::FORMAT_ESCAPED );

@@ -337,7 +337,7 @@ class TaintCheckAnnotationsTest {
 		echo $msg->__toString(); // Safe
 		htmlspecialchars( $msg->__toString() );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
 		$msg->rawParams( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
-		echo $msg->rawParams( '' );// @phan-suppress-current-line SecurityCheck-XSS
+		echo $msg->rawParams( '' );// Safe
 		shell_exec( $msg->rawParams( '' ) );// Safe
 	}
 
@@ -406,6 +406,13 @@ class TaintCheckAnnotationsTest {
 		echo Html::element( '', [], $_GET['a'] );// Safe
 		echo Html::element( '', [], '' );// Safe
 		htmlspecialchars( Html::element( '', [], '' ) );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
+
+		echo Html::encodeJsVar( $_GET['a'] );// Safe
+		echo Html::encodeJsVar( htmlspecialchars( '' ) );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
+
+		echo Html::encodeJsCall( $_GET['a'], [] );// @phan-suppress-current-line SecurityCheck-XSS
+		echo Html::encodeJsCall( '', $_GET['a'] );// Safe
+		echo Html::encodeJsCall( '', [ htmlspecialchars( '' ) ] );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
 	}
 
 	/**

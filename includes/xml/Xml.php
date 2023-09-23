@@ -38,10 +38,14 @@ class Xml {
 	 * characters (<, >, &) are escaped but illegals are not touched.
 	 *
 	 * @param string $element Element name
+	 * @param-taint $element tainted
 	 * @param array|null $attribs Name=>value pairs. Values will be escaped.
+	 * @param-taint $attribs escapes_html
 	 * @param string|null $contents Null to make an open tag only; '' for a contentless closed tag (default)
+	 * @param-taint $contents escapes_html
 	 * @param bool $allowShortTag Whether '' in $contents will result in a contentless closed tag
 	 * @return string
+	 * @return-taint escaped
 	 */
 	public static function element( $element, $attribs = null, $contents = '',
 		$allowShortTag = true
@@ -126,9 +130,13 @@ class Xml {
 	 * content you have is already valid xml.
 	 *
 	 * @param string $element Element name
+	 * @param-taint $element tainted
 	 * @param array|null $attribs Array of attributes
+	 * @param-taint $attribs escapes_html
 	 * @param string $contents Content of the element
+	 * @param-taint $contents tainted
 	 * @return string
+	 * @return-taint escaped
 	 */
 	public static function tags( $element, $attribs, $contents ) {
 		return self::openElement( $element, $attribs ) . $contents . "</$element>";
@@ -668,8 +676,10 @@ class Xml {
 	 *       for a proper JSON parser, just call FormatJson::encode() directly.
 	 *
 	 * @param mixed $value The value being encoded. Can be any type except a resource.
+	 * @param-taint $value escapes_html
 	 * @param bool $pretty If true, add non-significant whitespace to improve readability.
 	 * @return string|false String if successful; false upon failure
+	 * @return-taint none
 	 * @deprecated since 1.41, use {@link Html::encodeJsVar()} instead
 	 */
 	public static function encodeJsVar( $value, $pretty = false ) {
@@ -683,9 +693,12 @@ class Xml {
 	 * @since 1.17
 	 * @param string $name The name of the function to call, or a JavaScript expression
 	 *    which evaluates to a function object which is called.
+	 * @param-taint $name tainted
 	 * @param array $args The arguments to pass to the function.
+	 * @param-taint $args escapes_html
 	 * @param bool $pretty If true, add non-significant whitespace to improve readability.
 	 * @return string|false String if successful; false upon failure
+	 * @return-taint none
 	 * @deprecated since 1.41, use {@link Html::encodeJsCall()} instead
 	 */
 	public static function encodeJsCall( $name, $args, $pretty = false ) {
