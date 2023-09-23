@@ -858,7 +858,9 @@ class Sanitizer {
 	/**
 	 * Encode an attribute value for HTML output.
 	 * @param string $text
+	 * @param-taint $text escapes_html
 	 * @return string HTML-encoded text fragment
+	 * @return-taint escaped
 	 */
 	public static function encodeAttribute( $text ) {
 		$encValue = htmlspecialchars( $text, ENT_QUOTES );
@@ -900,7 +902,9 @@ class Sanitizer {
 	 * Encode an attribute value for HTML tags, with extra armoring
 	 * against further wiki processing.
 	 * @param string $text
+	 * @param-taint $text escapes_html
 	 * @return string HTML-encoded text fragment
+	 * @return-taint escaped
 	 */
 	public static function safeEncodeAttribute( $text ) {
 		$encValue = self::encodeAttribute( $text );
@@ -1122,7 +1126,9 @@ class Sanitizer {
 	 * This allows (generally harmless) entities like &#160; to survive.
 	 *
 	 * @param string $html HTML to escape
+	 * @param-taint $html escapes_htmlnoent
 	 * @return string Escaped input
+	 * @return-taint escaped
 	 */
 	public static function escapeHtmlAllowEntities( $html ) {
 		$html = self::decodeCharReferences( $html );

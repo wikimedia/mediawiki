@@ -38,7 +38,16 @@ use Wikimedia\Rdbms\IConnectionProvider;
 class ProtectedPagesPager extends TablePager {
 
 	public $mConds;
-	private $type, $level, $namespace, $sizetype, $size, $indefonly, $cascadeonly, $noredirect;
+	private $type;
+	private $level;
+	/** @var int|null */
+	private $namespace;
+	private $sizetype;
+	/** @var int */
+	private $size;
+	private $indefonly;
+	private $cascadeonly;
+	private $noredirect;
 
 	private CommentStore $commentStore;
 	private LinkBatchFactory $linkBatchFactory;
@@ -59,9 +68,9 @@ class ProtectedPagesPager extends TablePager {
 	 * @param array $conds
 	 * @param string $type
 	 * @param string $level
-	 * @param int $namespace
+	 * @param int|null $namespace
 	 * @param string $sizetype
-	 * @param int $size
+	 * @param int|null $size
 	 * @param bool $indefonly
 	 * @param bool $cascadeonly
 	 * @param bool $noredirect

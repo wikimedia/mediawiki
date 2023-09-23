@@ -116,11 +116,8 @@ class SpecialProtectedPages extends SpecialPage {
 		);
 
 		$this->getOutput()->addHTML( $this->showOptions(
-			$ns,
 			$type,
 			$level,
-			$sizetype,
-			$size,
 			$filters
 		) );
 
@@ -133,18 +130,13 @@ class SpecialProtectedPages extends SpecialPage {
 	}
 
 	/**
-	 * @param int $namespace
 	 * @param string $type Restriction type
 	 * @param string $level Restriction level
-	 * @param string $sizetype "min" or "max"
-	 * @param int $size
 	 * @param array $filters Filters set for the pager: indefOnly,
 	 *   cascadeOnly, noRedirect
 	 * @return string Input form
 	 */
-	protected function showOptions( $namespace, $type, $level, $sizetype,
-		$size, $filters
-	) {
+	protected function showOptions( $type, $level, $filters ) {
 		$formDescriptor = [
 			'namespace' => [
 				'class' => HTMLSelectNamespace::class,
