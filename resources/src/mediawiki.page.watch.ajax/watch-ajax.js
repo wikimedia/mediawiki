@@ -105,12 +105,8 @@
 			// * tooltip-ca-unwatch-expiring-hours
 			.attr( 'title', mw.msg( 'tooltip-ca-' + tooltipAction, daysLeftExpiry ) )
 			.updateTooltipAccessKeys()
-			.attr( 'href', mw.util.getUrl( pageTitle, { action: action } ) );
-		if ( watchExpiry !== null ) {
-			$link.attr( 'data-mw-expiry', watchExpiry );
-		} else {
-			$link.removeAttr( 'data-mw-expiry' );
-		}
+			.attr( 'href', mw.util.getUrl( pageTitle, { action: action } ) )
+			.attr( 'data-mw-expiry', watchExpiry );
 
 		$li.toggleClass( 'mw-watchlink-temp', expiry !== null && expiry !== 'infinity' );
 
