@@ -301,6 +301,8 @@ because of Phabricator reports.
 * ChangeTags::addTagsAccompanyingChangeWithChecks() and
   ChangeTags::undefineTag() unused everywhere, have been removed without
   deprecation.
+* Usage of MediaWiki::preOutputCommit() with the $postCommitWork arg has been
+  dropped. It's no longer used.
 * SkinTemplateNavigation and SkinTemplateNavigation::SpecialPage hooks,
   deprecated in 1.39, have been removed.
 * The PersonalUrls hook, deprecated in 1.39, has been removed.
