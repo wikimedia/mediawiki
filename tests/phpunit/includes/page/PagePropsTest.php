@@ -6,29 +6,14 @@ use Wikimedia\Rdbms\FakeResultWrapper;
 
 /**
  * @covers PageProps
- *
  * @group Database
- *	^--- tell jenkins this test needs the database
- *
  * @group medium
- *	^--- tell phpunit that these test cases may take longer than 2 seconds.
  */
 class PagePropsTest extends MediaWikiLangTestCase {
 
-	/**
-	 * @var Title
-	 */
-	private $title1;
-
-	/**
-	 * @var Title
-	 */
-	private $title2;
-
-	/**
-	 * @var array
-	 */
-	private $expectedProperties;
+	private ?array $expectedProperties = null;
+	private Title $title1;
+	private Title $title2;
 
 	protected function setUp(): void {
 		parent::setUp();
