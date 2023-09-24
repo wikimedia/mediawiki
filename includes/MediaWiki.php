@@ -1291,7 +1291,7 @@ class MediaWiki {
 			$url = $special->getPageTitle()->getCanonicalURL( $query );
 			$req = (
 				"POST $url HTTP/1.1\r\n" .
-				"Host: {$info['host']}\r\n" .
+				"Host: $host\r\n" .
 				"Connection: Close\r\n" .
 				"Content-Length: 0\r\n\r\n"
 			);
