@@ -690,15 +690,10 @@ class MediaWiki {
 	 * client can receive a response (in case DB commit fails) and thus also before
 	 * the response can trigger a subsequent related request by the client
 	 *
-	 * If there is a significant amount of content to flush, it can be done in $postCommitWork
-	 *
 	 * @param IContextSource $context
-	 * @param callable|null $postCommitWork Unused as of MediaWiki 1.39
 	 * @since 1.27
 	 */
-	public static function preOutputCommit(
-		IContextSource $context, $postCommitWork = null
-	) {
+	public static function preOutputCommit( IContextSource $context ) {
 		$config = $context->getConfig();
 		$request = $context->getRequest();
 		$output = $context->getOutput();
