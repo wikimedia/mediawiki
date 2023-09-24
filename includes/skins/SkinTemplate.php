@@ -904,6 +904,7 @@ class SkinTemplate extends Skin {
 		$services = MediaWikiServices::getInstance();
 		$watchlistManager = $services->getWatchlistManager();
 		$watchIcon = $watchlistManager->isWatched( $performer, $title ) ? 'unStar' : 'star';
+		$watchExpiry = null;
 		// Modify tooltip and add class identifying the page is temporarily watched, if applicable.
 		if ( $this->getConfig()->get( MainConfigNames::WatchlistExpiry ) &&
 			$watchlistManager->isTempWatched( $performer, $title )
@@ -914,6 +915,7 @@ class SkinTemplate extends Skin {
 			$watchStore = $services->getWatchedItemStore();
 			$watchedItem = $watchStore->getWatchedItem( $performer->getUser(), $title );
 			$diffInDays = $watchedItem->getExpiryInDays();
+			$watchExpiry = $watchedItem->getExpiry( TS_ISO_8601 );
 			if ( $diffInDays ) {
 				$msgParams = [ $diffInDays ];
 				// Resolves to tooltip-ca-unwatch-expiring message
@@ -936,6 +938,7 @@ class SkinTemplate extends Skin {
 			// module will look for to make sure it's a trusted link
 			'data' => [
 				'mw' => 'interface',
+				'mw-expiry' => $watchExpiry,
 			],
 		];
 	}

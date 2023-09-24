@@ -58,6 +58,7 @@
 
 		var tooltipAction = action;
 		var daysLeftExpiry = null;
+		var watchExpiry = null;
 		// Checking to see what if the expiry is set or indefinite to display the correct message
 		if ( isWatchlistExpiryEnabled && action === 'unwatch' ) {
 			if ( expiry === 'infinity' ) {
@@ -76,6 +77,7 @@
 					// Resolves to tooltip-ca-unwatch-expiring-hours message
 					tooltipAction = 'unwatch-expiring-hours';
 				}
+				watchExpiry = expiryDate.toISOString();
 			}
 		}
 
@@ -104,6 +106,11 @@
 			.attr( 'title', mw.msg( 'tooltip-ca-' + tooltipAction, daysLeftExpiry ) )
 			.updateTooltipAccessKeys()
 			.attr( 'href', mw.util.getUrl( pageTitle, { action: action } ) );
+		if ( watchExpiry !== null ) {
+			$link.attr( 'data-mw-expiry', watchExpiry );
+		} else {
+			$link.removeAttr( 'data-mw-expiry' );
+		}
 
 		$li.toggleClass( 'mw-watchlink-temp', expiry !== null && expiry !== 'infinity' );
 
