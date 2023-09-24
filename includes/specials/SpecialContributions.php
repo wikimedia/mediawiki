@@ -523,10 +523,11 @@ class SpecialContributions extends IncludableSpecialPage {
 
 			$accountCreationDate = $userObj->getRegistration();
 			if ( $accountCreationDate ) {
+				$date = $this->getLanguage()->date( $accountCreationDate, true );
 				$userInfo .= $this->msg( 'word-separator' )
 					->escaped();
 				$userInfo .= $this->msg( 'contributions-account-creation-date' )
-					->dateParams( $accountCreationDate )
+					->plaintextParams( $date )
 					->escaped();
 			}
 
