@@ -1,7 +1,5 @@
 <?php
 /**
- * Access to properties of a page.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -32,21 +30,17 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * Gives access to properties of a page.
  *
  * @since 1.27
+ * @ingroup Page
  */
 class PageProps {
+	/* TTL in seconds */
+	private const CACHE_TTL = 10;
+	/* max cached pages */
+	private const CACHE_SIZE = 100;
 
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** Cache parameters */
-	private const CACHE_TTL = 10; // integer; TTL in seconds
-	private const CACHE_SIZE = 100; // integer; max cached pages
-
-	/** @var MapCacheLRU */
-	private $cache;
+	private LinkBatchFactory $linkBatchFactory;
+	private IConnectionProvider $dbProvider;
+	private MapCacheLRU $cache;
 
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory
@@ -72,22 +66,27 @@ class PageProps {
 	}
 
 	/**
-	 * Given one or more Titles and one or more names of properties,
-	 * returns an associative array mapping page ID to property value.
+	 * Fetch one or more properties for one or more Titles.
+	 *
+	 * Returns an associative array mapping page ID to property value.
+	 *
+	 * If a single Title is provided without an array, the output will still
+	 * be returned as an array by page ID.
+	 *
 	 * Pages in the provided set of Titles that do not have a value for
-	 * the given properties will not appear in the returned array. If a
-	 * single Title is provided, it does not need to be passed in an array,
-	 * but an array will always be returned. If a single property name is
-	 * provided, it does not need to be passed in an array. In that case,
-	 * an associative array mapping page ID to property value will be
-	 * returned; otherwise, an associative array mapping page ID to
-	 * an associative array mapping property name to property value will be
-	 * returned. An empty array will be returned if no matching properties
-	 * were found.
+	 * any of the properties will not appear in the returned array.
+	 *
+	 * If a single property name is requested, it does not need to be passed
+	 * in as an array. In that case, the return array will map directly from
+	 * page ID to property value. Otherwise, a multi-dimensional array is
+	 * returned keyed by page ID, then property name, to property value.
+	 *
+	 * An empty array will be returned if no matching properties were found.
 	 *
 	 * @param iterable<PageIdentity>|PageIdentity $titles
 	 * @param string[]|string $propertyNames
-	 * @return array associative array mapping page ID to property value
+	 * @return array<int,string|array<string,string>> Keyed by page ID and property name
+	 *  to property value
 	 */
 	public function getProperties( $titles, $propertyNames ) {
 		if ( is_array( $propertyNames ) ) {
@@ -139,17 +138,21 @@ class PageProps {
 	}
 
 	/**
-	 * Get all page property values.
-	 * Given one or more Titles, returns an associative array mapping page
-	 * ID to an associative array mapping property names to property
-	 * values. Pages in the provided set of Titles that do not have any
-	 * properties will not appear in the returned array. If a single Title
-	 * is provided, it does not need to be passed in an array, but an array
-	 * will always be returned. An empty array will be returned if no
-	 * matching properties were found.
+	 * Get all page properties of one or more page titles.
+	 *
+	 * Given one or more Titles, returns an array keyed by page ID to another
+	 * array from property names to property values.
+	 *
+	 * If a single Title is provided without an array, the output will still
+	 * be returned as an array by page ID.
+	 *
+	 * Pages in the provided set of Titles that do have no page properties,
+	 * will not get a page ID key in the returned array.
+	 *
+	 * An empty array will be returned if none of the titles have any page properties.
 	 *
 	 * @param iterable<PageIdentity>|PageIdentity $titles
-	 * @return array associative array mapping page ID to property value array
+	 * @return array<int,array<string,string>> Keyed by page ID and property name to property value
 	 */
 	public function getAllProperties( $titles ) {
 		$values = [];
