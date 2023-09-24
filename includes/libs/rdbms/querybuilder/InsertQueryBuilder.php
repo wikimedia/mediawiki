@@ -131,6 +131,7 @@ class InsertQueryBuilder {
 	 * Manually set the table name to be passed to IDatabase::insert()
 	 *
 	 * @param string $table The table name
+	 * @param-taint $table exec_sql
 	 * @return $this
 	 */
 	public function table( $table ) {
@@ -142,6 +143,7 @@ class InsertQueryBuilder {
 	 * Set table for the query. Alias for table().
 	 *
 	 * @param string $table The table name
+	 * @param-taint $table exec_sql
 	 * @return $this
 	 */
 	public function insertInto( string $table ) {
@@ -152,6 +154,7 @@ class InsertQueryBuilder {
 	 * Set table for the query. Alias for table().
 	 *
 	 * @param string $table The table name
+	 * @param-taint $table exec_sql
 	 * @return $this
 	 */
 	public function insert( string $table ) {
@@ -258,6 +261,7 @@ class InsertQueryBuilder {
 	 * the set values.
 	 *
 	 * @param string|array $set
+	 * @param-taint $set exec_sql_numkey
 	 *
 	 * Combination map/list where each string-keyed entry maps a column
 	 * to a literal assigned value and each integer-keyed value is a SQL expression in the
@@ -293,6 +297,7 @@ class InsertQueryBuilder {
 	 * Add set values to the query. Alias for set().
 	 *
 	 * @param string|array $set
+	 * @param-taint $set exec_sql_numkey
 	 * @return $this
 	 */
 	public function andSet( $set ) {
@@ -303,6 +308,7 @@ class InsertQueryBuilder {
 	 * Set the method name to be included in an SQL comment.
 	 *
 	 * @param string $fname
+	 * @param-taint $fname exec_sql
 	 * @return $this
 	 */
 	public function caller( $fname ) {
