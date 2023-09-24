@@ -31,12 +31,11 @@ use StatusValue;
  *
  * Useful for maintaining JSON that can be viewed and edited directly by users.
  *
+ * @stable to extend
+ * @since 1.24
+ * @ingroup Content
  * @author Ori Livneh <ori@wikimedia.org>
  * @author Kunal Mehta <legoktm@gmail.com>
- *
- * @since 1.24
- * @stable to extend
- * @ingroup Content
  */
 class JsonContentHandler extends CodeContentHandler {
 

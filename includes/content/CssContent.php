@@ -1,7 +1,5 @@
 <?php
 /**
- * Content object for CSS pages.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -17,12 +15,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @since 1.21
- *
  * @file
- * @ingroup Content
- *
- * @author Daniel Kinzler
  */
 
 namespace MediaWiki\Content;
@@ -33,7 +26,9 @@ use MediaWiki\Title\Title;
  * Content object for CSS pages.
  *
  * @newable
+ * @since 1.21
  * @ingroup Content
+ * @author Daniel Kinzler
  */
 class CssContent extends TextContent {
 

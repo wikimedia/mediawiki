@@ -1,7 +1,5 @@
 <?php
 /**
- * Base content handler class for flat text contents.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -17,10 +15,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @since 1.21
- *
  * @file
- * @ingroup Content
  */
 
 namespace MediaWiki\Content;
@@ -39,6 +34,7 @@ use WikiPage;
 /**
  * Base content handler implementation for flat text contents.
  *
+ * @since 1.21
  * @ingroup Content
  */
 class TextContentHandler extends ContentHandler {
@@ -74,7 +70,6 @@ class TextContentHandler extends ContentHandler {
 	 * @param Content $oldContent The page's previous content.
 	 * @param Content $myContent One of the page's conflicting contents.
 	 * @param Content $yourContent One of the page's conflicting contents.
-	 *
 	 * @return Content|false
 	 */
 	public function merge3( Content $oldContent, Content $myContent, Content $yourContent ) {

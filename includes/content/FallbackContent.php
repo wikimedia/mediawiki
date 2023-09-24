@@ -1,7 +1,5 @@
 <?php
 /**
- * Content object implementation for representing unknown content.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -17,12 +15,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @since 1.36 (As UnknownContent in 1.34)
- *
  * @file
- * @ingroup Content
- *
- * @author Daniel Kinzler
  */
 
 namespace MediaWiki\Content;
@@ -35,7 +28,9 @@ namespace MediaWiki\Content;
  *
  * FallbackContent instances are immutable.
  *
+ * @since 1.36 (As UnknownContent in 1.34)
  * @ingroup Content
+ * @author Daniel Kinzler
  */
 class FallbackContent extends AbstractContent {
 

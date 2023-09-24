@@ -4,6 +4,9 @@ namespace MediaWiki\Content;
 
 use MWUnknownContentModelException;
 
+/**
+ * @ingroup Content
+ */
 interface IContentHandlerFactory {
 
 	/**

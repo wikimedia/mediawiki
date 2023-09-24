@@ -886,9 +886,15 @@ class WikiPage implements Stringable, Page, PageRecord {
 	}
 
 	/**
-	 * Determine whether a page would be suitable for being counted as an
-	 * article in the site_stats table based on the title & its content
+	 * Whether the page may count towards the the site's number of "articles".
 	 *
+	 * This is tracked in the `site_stats` table, and calculated based on the
+	 * namespace, page metadata, and content.
+	 *
+	 * @see $wgArticleCountMethod
+	 * @see SlotRoleHandler::supportsArticleCount
+	 * @see Content::isCountable
+	 * @see WikitextContent::isCountable
 	 * @param PreparedEdit|PreparedUpdate|false $editInfo (false):
 	 *   An object returned by prepareTextForEdit() or getCurrentUpdate() respectively;
 	 *   If false is given, the current database state will be used.

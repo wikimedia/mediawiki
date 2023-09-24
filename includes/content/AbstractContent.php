@@ -1,8 +1,5 @@
 <?php
 /**
- * A content object represents page content, e.g. the text to show on a page.
- * Content objects have no knowledge about how they relate to Wiki pages.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,11 +15,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @since 1.21
- *
  * @file
- * @ingroup Content
- *
  * @author Daniel Kinzler
  */
 
@@ -36,38 +29,31 @@ use MediaWiki\Title\Title;
 use MWException;
 
 /**
- * Base implementation for content objects.
+ * Base class for all Content objects. Refer to Content for more information.
  *
  * @stable to extend
- *
+ * @since 1.21
  * @ingroup Content
  */
 abstract class AbstractContent implements Content {
 	/**
-	 * Name of the content model this Content object represents.
-	 * Use with CONTENT_MODEL_XXX constants
-	 *
-	 * @since 1.21
-	 *
 	 * @var string
+	 * @since 1.21
 	 */
 	protected $model_id;
 
 	/**
 	 * @stable to call
-	 *
-	 * @param string|null $modelId
-	 *
 	 * @since 1.21
+	 * @param string|null $modelId One of the CONTENT_MODEL_XXX constants.
 	 */
 	public function __construct( $modelId = null ) {
 		$this->model_id = $modelId;
 	}
 
 	/**
-	 * @since 1.21
-	 *
 	 * @see Content::getModel
+	 * @since 1.21
 	 * @return string
 	 */
 	public function getModel() {
@@ -75,27 +61,23 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
+	 * Helper for subclasses
+	 *
 	 * @since 1.21
-	 *
 	 * @param string $modelId The model to check
-	 *
-	 * @throws MWException If the provided ID is not the ID of the content model supported by this
-	 * Content object.
+	 * @throws MWException If the provided model ID differs from this Content object
 	 */
 	protected function checkModelID( $modelId ) {
 		if ( $modelId !== $this->model_id ) {
 			throw new MWException(
-				"Bad content model: " .
-				"expected {$this->model_id} " .
-				"but got $modelId."
+				"Bad content model: expected {$this->model_id} but got $modelId."
 			);
 		}
 	}
 
 	/**
-	 * @since 1.21
-	 *
 	 * @see Content::getContentHandler
+	 * @since 1.21
 	 * @return ContentHandler
 	 */
 	public function getContentHandler() {
@@ -107,9 +89,8 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * @since 1.21
-	 *
 	 * @see Content::getDefaultFormat
+	 * @since 1.21
 	 * @return string
 	 */
 	public function getDefaultFormat() {
@@ -117,9 +98,8 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * @since 1.21
-	 *
 	 * @see Content::getSupportedFormats
+	 * @since 1.21
 	 * @return string[]
 	 */
 	public function getSupportedFormats() {
@@ -127,13 +107,10 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * @since 1.21
-	 *
-	 * @param string $format
-	 *
-	 * @return bool
-	 *
 	 * @see Content::isSupportedFormat
+	 * @since 1.21
+	 * @param string $format
+	 * @return bool
 	 */
 	public function isSupportedFormat( $format ) {
 		if ( !$format ) {
@@ -144,11 +121,11 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
+	 * Helper for subclasses.
+	 *
 	 * @since 1.21
-	 *
 	 * @param string $format The serialization format to check.
-	 *
-	 * @throws MWException If the format is not supported by this content handler.
+	 * @throws MWException If the format is not supported by this Content object
 	 */
 	protected function checkFormat( $format ) {
 		if ( !$this->isSupportedFormat( $format ) ) {
@@ -161,35 +138,22 @@ abstract class AbstractContent implements Content {
 
 	/**
 	 * @stable to override
-	 * @since 1.21
-	 *
-	 * @param string|null $format
-	 *
-	 * @return string
-	 *
 	 * @see Content::serialize
+	 * @since 1.21
+	 * @param string|null $format
+	 * @return string
 	 */
 	public function serialize( $format = null ) {
 		return $this->getContentHandler()->serializeContent( $this, $format );
 	}
 
 	/**
-	 * Returns native representation of the data. Interpretation depends on
-	 * the data model used, as given by getDataModel().
-	 *
+	 * @see Content::getNativeData
 	 * @stable to override
+	 * @deprecated since 1.33 Use TextContent::getText() instead.
+	 *  For other content models, use specialized getters.
 	 * @since 1.21
-	 *
-	 * @deprecated since 1.33. Use getText() for TextContent instances.
-	 *             For other content models, use specialized getters.
-	 *             Emitting deprecation warnings since 1.41.
-	 *
-	 * @return mixed The native representation of the content. Could be a
-	 *    string, a nested array structure, an object, a binary blob...
-	 *    anything, really.
-	 * @throws LogicException
-	 *
-	 * @note Caller must be aware of content model!
+	 * @return mixed
 	 */
 	public function getNativeData() {
 		wfDeprecated( __METHOD__, '1.33' );
@@ -197,51 +161,31 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
+	 * @see Content::isEmpty
 	 * @stable to override
 	 * @since 1.21
-	 *
 	 * @return bool
-	 *
-	 * @see Content::isEmpty
 	 */
 	public function isEmpty() {
 		return $this->getSize() === 0;
 	}
 
 	/**
-	 * Subclasses may override this to implement (light weight) validation.
-	 *
+	 * @see Content::isValid
 	 * @stable to override
 	 * @since 1.21
-	 *
-	 * @return bool Always true.
-	 *
-	 * @see Content::isValid
+	 * @return bool
 	 */
 	public function isValid() {
 		return true;
 	}
 
 	/**
-	 * Decides whether two Content objects are equal.
-	 * Two Content objects MUST not be considered equal if they do not share the same content model.
-	 * Two Content objects that are equal SHOULD have the same serialization.
-	 *
-	 * This default implementation relies on equalsInternal() to determine whether the
-	 * Content objects are logically equivalent. Subclasses that need to implement a custom
-	 * equality check should consider overriding equalsInternal(). Subclasses that override
-	 * equals() itself MUST make sure that the implementation returns false for $that === null,
-	 * and true for $that === this. It MUST also return false if $that does not have the same
-	 * content model.
-	 *
+	 * @see Content::equals
 	 * @stable to override
 	 * @since 1.21
-	 *
 	 * @param Content|null $that
-	 *
 	 * @return bool
-	 *
-	 * @see Content::equals
 	 */
 	public function equals( ?Content $that = null ) {
 		if ( $that === null ) {
@@ -265,22 +209,21 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * Checks whether $that is logically equal to this Content object.
+	 * Helper for AbstractContent::equals.
 	 *
-	 * This method can be overwritten by subclasses that need to implement custom
-	 * equality checks.
+	 * @note Do not call this method directly, call Content::equals() instead.
 	 *
-	 * This default implementation checks whether the serializations
-	 * of $this and $that are the same: $this->serialize() === $that->serialize()
+	 * This method can be overwritten by subclasses that only need to implement custom
+	 * equality checks, with the rest of the Content::equals contract taken care of by
+	 * AbstractContent::equals.
 	 *
-	 * Implementors can assume that $that is an instance of the same class
-	 * as the present Content object, as long as equalsInternal() is only called
-	 * by the standard implementation of equals().
+	 * This default implementation compares Content::serialize of each object.
 	 *
-	 * @note Do not call this method directly, call equals() instead.
+	 * If you override this method, you can safely assume that $that is an instance of the same
+	 * class as the current Content object. This is ensured by AbstractContent::equals.
 	 *
+	 * @see Content::equals
 	 * @stable to override
-	 *
 	 * @param Content $that
 	 * @return bool
 	 */
@@ -291,23 +234,19 @@ abstract class AbstractContent implements Content {
 	/**
 	 * Subclasses that implement redirects should override this.
 	 *
+	 * @see Content::getRedirectTarget
 	 * @stable to override
 	 * @since 1.21
-	 *
 	 * @return Title|null
-	 *
-	 * @see Content::getRedirectTarget
 	 */
 	public function getRedirectTarget() {
 		return null;
 	}
 
 	/**
-	 * @since 1.21
-	 *
-	 * @return bool
-	 *
 	 * @see Content::isRedirect
+	 * @since 1.21
+	 * @return bool
 	 */
 	public function isRedirect() {
 		return $this->getRedirectTarget() !== null;
@@ -318,13 +257,11 @@ abstract class AbstractContent implements Content {
 	 * Subclasses that implement redirects should override this.
 	 *
 	 * @stable to override
+	 * @see Content::updateRedirect
 	 * @since 1.21
-	 *
 	 * @param Title $target
-	 *
 	 * @return Content $this
 	 *
-	 * @see Content::updateRedirect
 	 */
 	public function updateRedirect( Title $target ) {
 		return $this;
@@ -332,12 +269,10 @@ abstract class AbstractContent implements Content {
 
 	/**
 	 * @stable to override
+	 * @see Content::getSection
 	 * @since 1.21
-	 *
 	 * @param string|int $sectionId
 	 * @return null
-	 *
-	 * @see Content::getSection
 	 */
 	public function getSection( $sectionId ) {
 		return null;
@@ -345,14 +280,13 @@ abstract class AbstractContent implements Content {
 
 	/**
 	 * @stable to override
+	 * @see Content::replaceSection
 	 * @since 1.21
-	 *
 	 * @param string|int|null|false $sectionId
 	 * @param Content $with
 	 * @param string $sectionTitle
 	 * @return null
 	 *
-	 * @see Content::replaceSection
 	 */
 	public function replaceSection( $sectionId, Content $with, $sectionTitle = '' ) {
 		return null;
@@ -360,12 +294,10 @@ abstract class AbstractContent implements Content {
 
 	/**
 	 * @stable to override
+	 * @see Content::addSectionHeader
 	 * @since 1.21
-	 *
 	 * @param string $header
 	 * @return Content $this
-	 *
-	 * @see Content::addSectionHeader
 	 */
 	public function addSectionHeader( $header ) {
 		return $this;
@@ -376,13 +308,10 @@ abstract class AbstractContent implements Content {
 	 * this to supply matching logic.
 	 *
 	 * @stable to override
-	 * @since 1.21
-	 *
-	 * @param MagicWord $word
-	 *
-	 * @return bool Always false.
-	 *
 	 * @see Content::matchMagicWord
+	 * @since 1.21
+	 * @param MagicWord $word
+	 * @return bool
 	 */
 	public function matchMagicWord( MagicWord $word ) {
 		return false;
@@ -393,13 +322,10 @@ abstract class AbstractContent implements Content {
 	 * Subclasses may override this to implement conversion for "their" content model.
 	 *
 	 * @stable to override
-	 *
+	 * @see Content::convert()
 	 * @param string $toModel
 	 * @param string $lossy
-	 *
 	 * @return Content|false
-	 *
-	 * @see Content::convert()
 	 */
 	public function convert( $toModel, $lossy = '' ) {
 		if ( $this->getModel() === $toModel ) {

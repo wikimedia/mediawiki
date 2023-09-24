@@ -1,8 +1,5 @@
 <?php
-
 /**
- * Base class for content handling.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,12 +15,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @since 1.21
- *
  * @file
- * @ingroup Content
- *
- * @author Daniel Kinzler
  */
 
 namespace MediaWiki\Content;
@@ -71,6 +63,8 @@ use Wikimedia\ScopedCallback;
 use WikiPage;
 
 /**
+ * Base class for content handling.
+ *
  * A content handler knows how do deal with a specific type of content on a wiki
  * page. Content is stored in the database in a serialized form (using a
  * serialization format a.k.a. MIME type) and is unserialized into its native
@@ -88,8 +82,9 @@ use WikiPage;
  * the future.
  *
  * @stable to extend
- *
+ * @since 1.21
  * @ingroup Content
+ * @author Daniel Kinzler
  */
 abstract class ContentHandler {
 	use ProtectedHookAccessorTrait;
@@ -406,7 +401,6 @@ abstract class ContentHandler {
 	 *
 	 * @stable to override
 	 * @since 1.21
-	 *
 	 * @return Content
 	 */
 	abstract public function makeEmptyContent();
@@ -438,7 +432,6 @@ abstract class ContentHandler {
 	 * ContentHandler can handle. Use with the CONTENT_MODEL_XXX constants.
 	 *
 	 * @since 1.21
-	 *
 	 * @return string The model ID
 	 */
 	public function getModelID() {
@@ -447,11 +440,8 @@ abstract class ContentHandler {
 
 	/**
 	 * @since 1.21
-	 *
 	 * @param string $model_id The model to check
-	 *
-	 * @throws MWException If the model ID is not the ID of the content model supported by this
-	 * ContentHandler.
+	 * @throws MWException If the provided model ID differs from this ContentHandler
 	 */
 	protected function checkModelID( $model_id ) {
 		if ( $model_id !== $this->mModelID ) {
@@ -468,7 +458,6 @@ abstract class ContentHandler {
 	 *
 	 * @stable to override
 	 * @since 1.21
-	 *
 	 * @return string[] List of serialization formats as MIME type like strings
 	 */
 	public function getSupportedFormats() {
@@ -484,7 +473,6 @@ abstract class ContentHandler {
 	 *
 	 * @stable to override
 	 * @since 1.21
-	 *
 	 * @return string The name of the default serialization format as a MIME type
 	 */
 	public function getDefaultFormat() {
