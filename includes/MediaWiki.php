@@ -1263,7 +1263,7 @@ class MediaWiki {
 			$query, $this->config->get( MainConfigNames::SecretKey ) );
 
 		$errno = $errstr = null;
-		$info = wfParseUrl( $this->config->get( MainConfigNames::CanonicalServer ) );
+		$info = $services->getUrlUtils()->parse( $this->config->get( MainConfigNames::CanonicalServer ) );
 		$host = $info ? $info['host'] : null;
 		$port = 80;
 		if ( isset( $info['scheme'] ) && $info['scheme'] == 'https' ) {
