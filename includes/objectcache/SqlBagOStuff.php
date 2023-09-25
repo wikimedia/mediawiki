@@ -1353,7 +1353,11 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		}
 	}
 
+	/**
+	 * @deprecated since 1.41, use deleteObjectsExpiringBefore() instead
+	 */
 	public function expireAll() {
+		wfDeprecated( __METHOD__, '1.41' );
 		$this->deleteObjectsExpiringBefore( (int)$this->getCurrentTime() );
 	}
 
