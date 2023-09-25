@@ -1530,9 +1530,13 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	/**
 	 * Delete content of shard tables in every server.
 	 * Return true if the operation is successful, false otherwise.
+	 *
+	 * @deprecated since 1.41, unused.
+	 *
 	 * @return bool
 	 */
 	public function deleteAll() {
+		wfDeprecated( __METHOD__, '1.41' );
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$silenceScope = $this->silenceTransactionProfiler();
 		foreach ( $this->getShardServerIndexes() as $shardIndex ) {
