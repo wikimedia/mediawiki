@@ -504,6 +504,18 @@
 	};
 
 	/**
+	 * Set the date that is shown in the calendar, but not the selected date.
+	 *
+	 * @param {Object} mom Moment object
+	 */
+	mw.widgets.CalendarWidget.prototype.setMoment = function ( mom ) {
+		if ( mom.isValid() ) {
+			this.moment = mom;
+			this.updateUI();
+		}
+	};
+
+	/**
 	 * Reset the user interface of this widget to reflect selected date.
 	 */
 	mw.widgets.CalendarWidget.prototype.resetUI = function () {
