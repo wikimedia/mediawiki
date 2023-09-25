@@ -1393,7 +1393,7 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Get an error message for inclusion in a diff body (as a table row).
 	 *
-	 * @param string $errorText The text of the error
+	 * @param string $errorText The HTML of the error
 	 * @return string
 	 */
 	protected function getSlotError( $errorText ) {
@@ -1401,7 +1401,7 @@ class DifferenceEngine extends ContextSource {
 		$columnCount = $this->mOldRevisionRecord ? 4 : 2;
 		$userLang = $this->getLanguage()->getHtmlCode();
 		return Html::rawElement( 'tr', [ 'class' => 'mw-diff-slot-error', 'lang' => $userLang ],
-			Html::element( 'td', [ 'colspan' => $columnCount ], $errorText ) );
+			Html::rawElement( 'td', [ 'colspan' => $columnCount ], $errorText ) );
 	}
 
 	/**

@@ -415,6 +415,7 @@ abstract class DatabaseInstaller {
 	 * Perform database upgrades
 	 *
 	 * @return bool
+	 * @suppress SecurityCheck-XSS Escaping provided by $this->outputHandler
 	 */
 	public function doUpgrade() {
 		$this->setupSchemaVars();

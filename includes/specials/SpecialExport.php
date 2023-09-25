@@ -74,7 +74,6 @@ class SpecialExport extends SpecialPage {
 		$this->outputHeader();
 		$config = $this->getConfig();
 
-		// Set some variables
 		$this->curonly = true;
 		$this->doExport = false;
 		$request = $this->getRequest();
@@ -533,11 +532,11 @@ class SpecialExport extends SpecialPage {
 
 	/**
 	 * Validate link depth setting, if available.
-	 * @param int $depth
+	 * @param int|null $depth
 	 * @return int
 	 */
 	protected function validateLinkDepth( $depth ) {
-		if ( $depth < 0 ) {
+		if ( $depth === null || $depth < 0 ) {
 			return 0;
 		}
 

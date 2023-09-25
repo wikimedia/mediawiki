@@ -765,6 +765,7 @@ class SpecialVersion extends SpecialPage {
 					)
 				)
 				. Html::element( 'td', [ 'dir' => 'auto' ], $info['version'] )
+				// @phan-suppress-next-line SecurityCheck-DoubleEscaped See FIXME in listToText
 				. Html::element( 'td', [ 'dir' => 'auto' ], $this->listToText( $info['licenses'] ) )
 				. Html::element( 'td', [ 'lang' => 'en', 'dir' => 'ltr' ], $info['description'] )
 				. Html::rawElement( 'td', [], $authors )
@@ -840,6 +841,7 @@ class SpecialVersion extends SpecialPage {
 				. Html::element( 'td', [ 'dir' => 'auto' ], $info['version'] )
 				. Html::element( 'td', [ 'dir' => 'auto' ], $info['license'] )
 				. Html::element( 'td', [ 'dir' => 'auto' ], $info['authors'] ?? '—' )
+				// @phan-suppress-next-line SecurityCheck-DoubleEscaped See FIXME in listToText
 				. Html::element( 'td', [ 'dir' => 'auto' ], $this->listToText( $info['source'] ) )
 				. Html::closeElement( 'tr' );
 		}
@@ -1185,6 +1187,7 @@ class SpecialVersion extends SpecialPage {
 
 			$ret[] = Html::openElement( 'tr' );
 			$ret[] = Html::element( 'td', [], $name );
+			// @phan-suppress-next-line SecurityCheck-DoubleEscaped See FIXME in listToText
 			$ret[] = Html::element( 'td', [], $this->listToText( $handlers ) );
 			$ret[] = Html::closeElement( 'tr' );
 		}
@@ -1336,6 +1339,8 @@ class SpecialVersion extends SpecialPage {
 	 * @param array $list List of elements to display
 	 * @param bool $sort Whether to sort the items in $list
 	 * @return string
+	 * @fixme This method does not handle escaping consistently. Language::listToText expects all list elements to be
+	 * already escaped. However, self::arrayToString escapes some elements, but not others.
 	 */
 	private function listToText( array $list, bool $sort = true ): string {
 		if ( !$list ) {
@@ -1356,6 +1361,7 @@ class SpecialVersion extends SpecialPage {
 	 * @param mixed $list Will convert an array to string if given and return
 	 *   the parameter unaltered otherwise
 	 * @return mixed
+	 * @fixme This should handle escaping more consistently, see FIXME in listToText
 	 */
 	public static function arrayToString( $list ) {
 		if ( is_array( $list ) && count( $list ) == 1 ) {

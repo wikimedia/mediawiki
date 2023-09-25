@@ -864,6 +864,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			}
 		}
 
+		// @phan-suppress-next-line SecurityCheck-XSS
 		echo $response;
 	}
 

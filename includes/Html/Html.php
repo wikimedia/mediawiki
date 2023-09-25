@@ -225,12 +225,16 @@ class Html {
 	 * content model.
 	 *
 	 * @param string $element The element's name, e.g., 'a'
+	 * @param-taint $element tainted
 	 * @param array $attribs Associative array of attributes, e.g., [
 	 *   'href' => 'https://www.mediawiki.org/' ]. See expandAttributes() for
 	 *   further documentation.
+	 * @param-taint $attribs escapes_html
 	 * @param string $contents The raw HTML contents of the element: *not*
 	 *   escaped!
+	 * @param-taint $contents tainted
 	 * @return string Raw HTML
+	 * @return-taint escaped
 	 */
 	public static function rawElement( $element, $attribs = [], $contents = '' ) {
 		$start = self::openElement( $element, $attribs );
@@ -246,12 +250,16 @@ class Html {
 	 * Xml::element()).
 	 *
 	 * @param string $element Name of the element, e.g., 'a'
+	 * @param-taint $element tainted
 	 * @param array $attribs Associative array of attributes, e.g., [
 	 *   'href' => 'https://www.mediawiki.org/' ]. See expandAttributes() for
 	 *   further documentation.
+	 * @param-taint $attribs escapes_html
 	 * @param string $contents
+	 * @param-taint $contents escapes_html
 	 *
 	 * @return string
+	 * @return-taint escaped
 	 */
 	public static function element( $element, $attribs = [], $contents = '' ) {
 		return self::rawElement(

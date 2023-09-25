@@ -435,6 +435,7 @@ class WebRequest {
 	 * @param string $name
 	 * @param mixed $default
 	 * @return mixed
+	 * @return-taint tainted
 	 */
 	private function getGPCVal( $arr, $name, $default ) {
 		# PHP is so nice to not touch input data, except sometimes:
@@ -473,6 +474,7 @@ class WebRequest {
 	 * @param string $name
 	 * @param string|null $default
 	 * @return string|null The value, or $default if none set
+	 * @return-taint tainted
 	 */
 	public function getRawVal( $name, $default = null ) {
 		$name = strtr( $name, '.', '_' ); // See comment in self::getGPCVal()
@@ -500,6 +502,7 @@ class WebRequest {
 	 * @param string $name
 	 * @param string|null $default
 	 * @return string|null The input value, or $default if none set
+	 * @return-taint tainted
 	 */
 	public function getVal( $name, $default = null ) {
 		$val = $this->getGPCVal( $this->data, $name, $default );
@@ -525,6 +528,7 @@ class WebRequest {
 	 * @param string $name
 	 * @param string $default
 	 * @return string The normalized input value, or $default if none set
+	 * @return-taint tainted
 	 */
 	public function getText( $name, $default = '' ) {
 		$val = $this->getVal( $name, $default );
@@ -568,6 +572,7 @@ class WebRequest {
 	 * @param string $name
 	 * @param array|null $default Optional default (or null)
 	 * @return array|null
+	 * @return-taint tainted
 	 */
 	public function getArray( $name, $default = null ) {
 		$val = $this->getGPCVal( $this->data, $name, $default );
@@ -587,6 +592,7 @@ class WebRequest {
 	 * @param string $name
 	 * @param array|null $default Option default (or null)
 	 * @return int[]|null
+	 * @return-taint none
 	 */
 	public function getIntArray( $name, $default = null ) {
 		$val = $this->getArray( $name, $default );
@@ -605,7 +611,7 @@ class WebRequest {
 	 * @param int $default
 	 * @return int
 	 */
-	public function getInt( $name, $default = 0 ) {
+	public function getInt( $name, $default = 0 ): int {
 		// @phan-suppress-next-line PhanTypeMismatchArgument getRawVal does not return null here
 		return intval( $this->getRawVal( $name, $default ) );
 	}
@@ -618,7 +624,7 @@ class WebRequest {
 	 * @param string $name
 	 * @return int|null
 	 */
-	public function getIntOrNull( $name ) {
+	public function getIntOrNull( $name ): ?int {
 		$val = $this->getRawVal( $name );
 		return is_numeric( $val ) ? intval( $val ) : null;
 	}
@@ -633,7 +639,7 @@ class WebRequest {
 	 * @param float $default
 	 * @return float
 	 */
-	public function getFloat( $name, $default = 0.0 ) {
+	public function getFloat( $name, $default = 0.0 ): float {
 		// @phan-suppress-next-line PhanTypeMismatchArgument getRawVal does not return null here
 		return floatval( $this->getRawVal( $name, $default ) );
 	}
@@ -647,7 +653,7 @@ class WebRequest {
 	 * @param bool $default
 	 * @return bool
 	 */
-	public function getBool( $name, $default = false ) {
+	public function getBool( $name, $default = false ): bool {
 		// @phan-suppress-next-line PhanTypeMismatchArgument getRawVal does not return null here
 		return (bool)$this->getRawVal( $name, $default );
 	}
@@ -661,7 +667,7 @@ class WebRequest {
 	 * @param bool $default
 	 * @return bool
 	 */
-	public function getFuzzyBool( $name, $default = false ) {
+	public function getFuzzyBool( $name, $default = false ): bool {
 		return $this->getBool( $name, $default )
 			&& strcasecmp( $this->getRawVal( $name ), 'false' ) !== 0;
 	}
@@ -674,7 +680,7 @@ class WebRequest {
 	 * @param string $name
 	 * @return bool
 	 */
-	public function getCheck( $name ) {
+	public function getCheck( $name ): bool {
 		# Checkboxes and buttons are only present when clicked
 		# Presence connotes truth, absence false
 		return $this->getRawVal( $name, null ) !== null;
@@ -686,6 +692,7 @@ class WebRequest {
 	 *
 	 * @param string ...$names If no arguments are given, returns all input values
 	 * @return array
+	 * @return-taint tainted
 	 */
 	public function getValues( ...$names ) {
 		if ( $names === [] ) {
@@ -707,6 +714,7 @@ class WebRequest {
 	 *
 	 * @param array $exclude
 	 * @return array
+	 * @return-taint tainted
 	 */
 	public function getValueNames( $exclude = [] ) {
 		return array_diff( array_keys( $this->getValues() ), $exclude );
@@ -718,6 +726,7 @@ class WebRequest {
 	 *
 	 * @codeCoverageIgnore
 	 * @return (string|string[])[] Might contain arrays in case there was a `&param[]=…` parameter
+	 * @return-taint tainted
 	 */
 	public function getQueryValues() {
 		return $this->queryAndPathParams;
@@ -754,6 +763,7 @@ class WebRequest {
 	 *
 	 * @codeCoverageIgnore
 	 * @return string
+	 * @return-taint tainted
 	 */
 	public function getRawQueryString() {
 		return $_SERVER['QUERY_STRING'];
@@ -764,6 +774,7 @@ class WebRequest {
 	 * know exactly what was sent, e.g. for an OAuth signature over the elements.
 	 *
 	 * @return string
+	 * @return-taint tainted
 	 */
 	public function getRawPostString() {
 		if ( !$this->wasPosted() ) {
@@ -778,6 +789,7 @@ class WebRequest {
 	 * does not work with enctype="multipart/form-data".
 	 *
 	 * @return string
+	 * @return-taint tainted
 	 */
 	public function getRawInput() {
 		static $input = null;
@@ -857,6 +869,7 @@ class WebRequest {
 	 * @param string|null $prefix A prefix to use for the cookie name, if not $wgCookiePrefix
 	 * @param mixed|null $default What to return if the value isn't found
 	 * @return mixed Cookie value or $default if the cookie not set
+	 * @return-taint tainted
 	 */
 	public function getCookie( $key, $prefix = null, $default = null ) {
 		if ( $prefix === null ) {
@@ -905,6 +918,7 @@ class WebRequest {
 	 *
 	 * @throws MWException
 	 * @return string
+	 * @return-taint tainted
 	 */
 	public static function getGlobalRequestURL() {
 		// This method is called on fatal errors; it should not depend on anything complex.
@@ -953,6 +967,7 @@ class WebRequest {
 	 *
 	 * @throws MWException
 	 * @return string
+	 * @return-taint tainted
 	 */
 	public function getRequestURL() {
 		return self::getGlobalRequestURL();
@@ -967,6 +982,7 @@ class WebRequest {
 	 * qualified URL with the protocol of this request object.
 	 *
 	 * @return string
+	 * @return-taint tainted
 	 */
 	public function getFullRequestURL() {
 		// Pass an explicit PROTO constant instead of PROTO_CURRENT so that we
@@ -1112,6 +1128,7 @@ class WebRequest {
 	 * Get an array containing all request headers
 	 *
 	 * @return string[] Mapping header name to its value
+	 * @return-taint tainted
 	 */
 	public function getAllHeaders() {
 		$this->initHeaders();
@@ -1129,6 +1146,7 @@ class WebRequest {
 	 * @return string|string[]|false False if header is unset; otherwise the
 	 *  header value(s) as either a string (the default) or an array, if
 	 *  WebRequest::GETHEADER_LIST flag was set.
+	 * @return-taint tainted
 	 */
 	public function getHeader( $name, $flags = 0 ) {
 		$this->initHeaders();
@@ -1175,6 +1193,7 @@ class WebRequest {
 	 *
 	 * Earlier languages in the list are preferred as per the RFC 23282 extension to HTTP/1.1,
 	 * at <https://tools.ietf.org/html/rfc3282>.
+	 * @return-taint tainted
 	 */
 	public function getAcceptLang() {
 		// Modified version of code found at

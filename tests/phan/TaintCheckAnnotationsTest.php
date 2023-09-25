@@ -392,17 +392,17 @@ class TaintCheckAnnotationsTest {
 	}
 
 	function testHtml() {
-		echo Html::rawElement( $_GET['a'] );// @xxx-phan-suppress-current-line SecurityCheck-XSS
-		Html::rawElement( '', [ htmlspecialchars( '' ) ] );// @xxx-phan-suppress-current-line SecurityCheck-DoubleEscaped
+		echo Html::rawElement( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
+		Html::rawElement( '', [ htmlspecialchars( '' ) ] );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
 		echo Html::rawElement( '', $_GET['a'] );// Safe
 		echo Html::rawElement( '', [], $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
 		echo Html::rawElement( '', [], '' );// Safe
 		htmlspecialchars( Html::rawElement( '', [], '' ) );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
 
-		echo Html::element( $_GET['a'] );// @xxx-phan-suppress-current-line SecurityCheck-XSS
-		Html::element( '', [ htmlspecialchars( '' ) ] );// @xxx-phan-suppress-current-line SecurityCheck-DoubleEscaped
+		echo Html::element( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
+		Html::element( '', [ htmlspecialchars( '' ) ] );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
 		echo Html::element( '', $_GET['a'] );// Safe
-		echo Html::element( '', [], htmlspecialchars( '' ) );// @xxx-phan-suppress-current-line SecurityCheck-DoubleEscaped
+		echo Html::element( '', [], htmlspecialchars( '' ) );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
 		echo Html::element( '', [], $_GET['a'] );// Safe
 		echo Html::element( '', [], '' );// Safe
 		htmlspecialchars( Html::element( '', [], '' ) );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
@@ -412,17 +412,17 @@ class TaintCheckAnnotationsTest {
 	 * Non-namespaced alias of the Html class.
 	 */
 	function testHtmlAlias() {
-		echo \Html::rawElement( $_GET['a'] );// @xxx-phan-suppress-current-line SecurityCheck-XSS
-		\Html::rawElement( '', [ htmlspecialchars( '' ) ] );// @xxx-phan-suppress-current-line SecurityCheck-DoubleEscaped
+		echo \Html::rawElement( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
+		\Html::rawElement( '', [ htmlspecialchars( '' ) ] );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
 		echo \Html::rawElement( '', $_GET['a'] );// Safe
 		echo \Html::rawElement( '', [], $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
 		echo \Html::rawElement( '', [], '' );// Safe
 		htmlspecialchars( \Html::rawElement( '', [], '' ) );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
 
-		echo \Html::element( $_GET['a'] );// @xxx-phan-suppress-current-line SecurityCheck-XSS
-		\Html::element( '', [ htmlspecialchars( '' ) ] );// @xxx-phan-suppress-current-line SecurityCheck-DoubleEscaped
+		echo \Html::element( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
+		\Html::element( '', [ htmlspecialchars( '' ) ] );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
 		echo \Html::element( '', $_GET['a'] );// Safe
-		echo \Html::element( '', [], htmlspecialchars( '' ) );// @xxx-phan-suppress-current-line SecurityCheck-DoubleEscaped
+		echo \Html::element( '', [], htmlspecialchars( '' ) );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
 		echo \Html::element( '', [], $_GET['a'] );// Safe
 		echo \Html::element( '', [], '' );// Safe
 		htmlspecialchars( \Html::element( '', [], '' ) );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
@@ -457,38 +457,38 @@ class TaintCheckAnnotationsTest {
 	}
 
 	function testOutputPage( \MediaWiki\Output\OutputPage $out ) {
-		$out->addHeadItem( $_GET['a'], '' );// @xxx-phan-suppress-current-line SecurityCheck-XSS
+		$out->addHeadItem( $_GET['a'], '' );// @phan-suppress-current-line SecurityCheck-XSS
 		$out->addHeadItem( '', $_GET['a'] );// Safe (?)
 
 		$out->addHTML( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
 
 		$out->prependHTML( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
 
-		$out->addInlineStyle( $_GET['a'] );// @xxx-phan-suppress-current-line SecurityCheck-XSS
+		$out->addInlineStyle( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
 	}
 
 	/**
 	 * Non-namespaced alias of the OutputPage class.
 	 */
 	function testOutputPageAlias( \OutputPage $out ) {
-		$out->addHeadItem( $_GET['a'], '' );// @xxx-phan-suppress-current-line SecurityCheck-XSS
+		$out->addHeadItem( $_GET['a'], '' );// @phan-suppress-current-line SecurityCheck-XSS
 		$out->addHeadItem( '', $_GET['a'] );// Safe (?)
 
 		$out->addHTML( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
 
 		$out->prependHTML( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
 
-		$out->addInlineStyle( $_GET['a'] );// @xxx-phan-suppress-current-line SecurityCheck-XSS
+		$out->addInlineStyle( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
 	}
 
 	function testSanitizer() {
 		echo Sanitizer::escapeHtmlAllowEntities( $_GET['a'] );// Safe
-		shell_exec( Sanitizer::escapeHtmlAllowEntities( $_GET['a'] ) );// @xxx-phan-suppress-current-line SecurityCheck-ShellInjection
+		shell_exec( Sanitizer::escapeHtmlAllowEntities( $_GET['a'] ) );// @phan-suppress-current-line SecurityCheck-ShellInjection
 		htmlspecialchars( Sanitizer::escapeHtmlAllowEntities( '' ) );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
 
 		echo Sanitizer::safeEncodeAttribute( $_GET['a'] );// Safe
 		Sanitizer::safeEncodeAttribute( htmlspecialchars( '' ) );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
-		htmlspecialchars( Sanitizer::safeEncodeAttribute( '' ) );// @xxx-phan-suppress-current-line SecurityCheck-DoubleEscaped
+		htmlspecialchars( Sanitizer::safeEncodeAttribute( '' ) );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
 
 		echo Sanitizer::encodeAttribute( $_GET['a'] );// Safe
 		Sanitizer::encodeAttribute( htmlspecialchars( '' ) );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
@@ -500,12 +500,12 @@ class TaintCheckAnnotationsTest {
 	 */
 	function testSanitizerAlias() {
 		echo \Sanitizer::escapeHtmlAllowEntities( $_GET['a'] );// Safe
-		shell_exec( \Sanitizer::escapeHtmlAllowEntities( $_GET['a'] ) );// @xxx-phan-suppress-current-line SecurityCheck-ShellInjection
+		shell_exec( \Sanitizer::escapeHtmlAllowEntities( $_GET['a'] ) );// @phan-suppress-current-line SecurityCheck-ShellInjection
 		htmlspecialchars( \Sanitizer::escapeHtmlAllowEntities( '' ) );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
 
 		echo \Sanitizer::safeEncodeAttribute( $_GET['a'] );// Safe
 		\Sanitizer::safeEncodeAttribute( htmlspecialchars( '' ) );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
-		htmlspecialchars( \Sanitizer::safeEncodeAttribute( '' ) );// @xxx-phan-suppress-current-line SecurityCheck-DoubleEscaped
+		htmlspecialchars( \Sanitizer::safeEncodeAttribute( '' ) );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
 
 		echo \Sanitizer::encodeAttribute( $_GET['a'] );// Safe
 		\Sanitizer::encodeAttribute( htmlspecialchars( '' ) );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
@@ -514,11 +514,11 @@ class TaintCheckAnnotationsTest {
 
 	function testWebRequest( WebRequest $req ) {
 		// @phan-suppress-next-line PhanAccessMethodPrivate
-		echo $req->getGPCVal( [], '', '' );// @xxx-phan-suppress-current-line SecurityCheck-XSS
+		echo $req->getGPCVal( [], '', '' );// @phan-suppress-current-line SecurityCheck-XSS
 		echo $req->getRawVal( '' );// @phan-suppress-current-line SecurityCheck-XSS
 		echo $req->getVal( '' );// @phan-suppress-current-line SecurityCheck-XSS
 		echo $req->getArray( '' );// @phan-suppress-current-line SecurityCheck-XSS
-		// XXX echo $req->getIntArray( '' );// Safe
+		echo $req->getIntArray( '' );// Safe
 		echo $req->getInt( '' );// Safe
 		echo $req->getIntOrNull( '' );// Safe
 		echo $req->getFloat( '' );// Safe
@@ -530,15 +530,15 @@ class TaintCheckAnnotationsTest {
 		echo $req->getValueNames( [] );// @phan-suppress-current-line SecurityCheck-XSS
 		echo $req->getQueryValues();// @phan-suppress-current-line SecurityCheck-XSS
 		echo $req->getRawQueryString();// @phan-suppress-current-line SecurityCheck-XSS
-		echo $req->getRawPostString();// @xxx-phan-suppress-current-line SecurityCheck-XSS
-		echo $req->getRawInput();// @xxx-phan-suppress-current-line SecurityCheck-XSS
+		echo $req->getRawPostString();// @phan-suppress-current-line SecurityCheck-XSS
+		echo $req->getRawInput();// @phan-suppress-current-line SecurityCheck-XSS
 		echo $req->getCookie( '' );// @phan-suppress-current-line SecurityCheck-XSS
 		echo WebRequest::getGlobalRequestURL();// @phan-suppress-current-line SecurityCheck-XSS
 		echo $req->getRequestURL();// @phan-suppress-current-line SecurityCheck-XSS
 		echo $req->getFullRequestURL();// @phan-suppress-current-line SecurityCheck-XSS
-		echo $req->getAllHeaders();// @xxx-phan-suppress-current-line SecurityCheck-XSS
-		echo $req->getHeader( '' );// @xxx-phan-suppress-current-line SecurityCheck-XSS
-		echo $req->getAcceptLang();// @xxx-phan-suppress-current-line SecurityCheck-XSS
+		echo $req->getAllHeaders();// @phan-suppress-current-line SecurityCheck-XSS
+		echo $req->getHeader( '' );// @phan-suppress-current-line SecurityCheck-XSS
+		echo $req->getAcceptLang();// @phan-suppress-current-line SecurityCheck-XSS
 	}
 
 	/**
@@ -546,11 +546,11 @@ class TaintCheckAnnotationsTest {
 	 */
 	function testWebRequestAlias( \WebRequest $req ) {
 		// @phan-suppress-next-line PhanAccessMethodPrivate
-		echo $req->getGPCVal( [], '', '' );// @xxx-phan-suppress-current-line SecurityCheck-XSS
+		echo $req->getGPCVal( [], '', '' );// @phan-suppress-current-line SecurityCheck-XSS
 		echo $req->getRawVal( '' );// @phan-suppress-current-line SecurityCheck-XSS
 		echo $req->getVal( '' );// @phan-suppress-current-line SecurityCheck-XSS
 		echo $req->getArray( '' );// @phan-suppress-current-line SecurityCheck-XSS
-		// XXX echo $req->getIntArray( '' );// Safe
+		echo $req->getIntArray( '' );// Safe
 		echo $req->getInt( '' );// Safe
 		echo $req->getIntOrNull( '' );// Safe
 		echo $req->getFloat( '' );// Safe
@@ -562,15 +562,15 @@ class TaintCheckAnnotationsTest {
 		echo $req->getValueNames( [] );// @phan-suppress-current-line SecurityCheck-XSS
 		echo $req->getQueryValues();// @phan-suppress-current-line SecurityCheck-XSS
 		echo $req->getRawQueryString();// @phan-suppress-current-line SecurityCheck-XSS
-		echo $req->getRawPostString();// @xxx-phan-suppress-current-line SecurityCheck-XSS
-		echo $req->getRawInput();// @xxx-phan-suppress-current-line SecurityCheck-XSS
+		echo $req->getRawPostString();// @phan-suppress-current-line SecurityCheck-XSS
+		echo $req->getRawInput();// @phan-suppress-current-line SecurityCheck-XSS
 		echo $req->getCookie( '' );// @phan-suppress-current-line SecurityCheck-XSS
 		echo WebRequest::getGlobalRequestURL();// @phan-suppress-current-line SecurityCheck-XSS
 		echo $req->getRequestURL();// @phan-suppress-current-line SecurityCheck-XSS
 		echo $req->getFullRequestURL();// @phan-suppress-current-line SecurityCheck-XSS
-		echo $req->getAllHeaders();// @xxx-phan-suppress-current-line SecurityCheck-XSS
-		echo $req->getHeader( '' );// @xxx-phan-suppress-current-line SecurityCheck-XSS
-		echo $req->getAcceptLang();// @xxx-phan-suppress-current-line SecurityCheck-XSS
+		echo $req->getAllHeaders();// @phan-suppress-current-line SecurityCheck-XSS
+		echo $req->getHeader( '' );// @phan-suppress-current-line SecurityCheck-XSS
+		echo $req->getAcceptLang();// @phan-suppress-current-line SecurityCheck-XSS
 	}
 
 	function testCommentStore( CommentStore $store, \Wikimedia\Rdbms\IDatabase $db ) {

@@ -766,6 +766,7 @@ class OutputPage extends ContextSource {
 	 * This would be your very LAST fallback.
 	 *
 	 * @param string $name Item name
+	 * @param-taint $name exec_html
 	 * @param string $value Raw HTML
 	 */
 	public function addHeadItem( $name, $value ) {
@@ -1843,6 +1844,7 @@ class OutputPage extends ContextSource {
 	 * Prepend $text to the body HTML
 	 *
 	 * @param string $text HTML
+	 * @param-taint $text exec_html
 	 */
 	public function prependHTML( $text ) {
 		$this->mBodytext = $text . $this->mBodytext;
@@ -1852,6 +1854,7 @@ class OutputPage extends ContextSource {
 	 * Append $text to the body HTML
 	 *
 	 * @param string $text HTML
+	 * @param-taint $text exec_html
 	 */
 	public function addHTML( $text ) {
 		$this->mBodytext .= $text;
@@ -4346,6 +4349,7 @@ class OutputPage extends ContextSource {
 	 * Internal use only. Use OutputPage::addModuleStyles() if possible.
 	 *
 	 * @param mixed $style_css Inline CSS
+	 * @param-taint $style_css exec_html
 	 * @param string $flip Set to 'flip' to flip the CSS if needed
 	 */
 	public function addInlineStyle( $style_css, $flip = 'noflip' ) {
