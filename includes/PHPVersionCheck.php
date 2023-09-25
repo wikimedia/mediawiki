@@ -104,7 +104,7 @@ class PHPVersionCheck {
 		if ( count( $knownBad ) ) {
 			$versionString .= ' (and not ' . implode( ', ', array_values( $knownBad ) ) . ')';
 
-			foreach ( $knownBad as $task => $range ) {
+			foreach ( $knownBad as $range ) {
 				// As we don't have composer at this point, we have to do our own version range checking.
 				if ( strpos( $range, '-' ) ) {
 					$passes = $passes && !(
