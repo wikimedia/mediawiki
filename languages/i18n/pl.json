@@ -2969,6 +2969,7 @@
 	"allmessagescurrent": "Tekst obecny",
 	"allmessagestext": "Lista wszystkich komunikatów systemowych dostępnych w przestrzeni nazw MediaWiki.\nOdwiedź [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation Tłumaczenie MediaWiki] oraz [https://translatewiki.net translatewiki.net], jeśli chcesz uczestniczyć w tłumaczeniu oprogramowania MediaWiki.",
 	"allmessages-not-supported-database": "Ta strona nie może być użyta, ponieważ zmienna '''$wgUseDatabaseMessages''' jest wyłączona.",
+	"allmessages-unknown-language": "Nie rozpoznano kodu języka <code>$1</code>.",
 	"allmessages-filter-legend": "Filtr",
 	"allmessages-filter": "Filtrowanie według stanu modyfikacji:",
 	"allmessages-filter-unmodified": "Niezmodyfikowane",

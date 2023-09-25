@@ -3,6 +3,7 @@
 		"authors": [
 			"Als-Chlämens",
 			"Als-Holder",
+			"Amire80",
 			"DannyS712",
 			"Fitoschido",
 			"Geitost",
@@ -574,7 +575,7 @@
 	"previewerrortext": "Es het e Fähler ’gä bim Versuech, e Vorschou vo dynen Änderige z zeige.",
 	"blockedtitle": "Benutzer isch gsperrt.",
 	"blockedtext": "<strong>Dyy Benutzername oder Dyyni IP-Adräss isch gsperrt wore.</strong>\n\nD Sperrig isch vu $1 uusgfiert wore.\nAs Grund isch ''$2'' aagee wore.\n\n* Aafang vu dr Sperrig: $8\n* Ändi vu dr Sperrig: $6\n* Sperrig betrifft: $7\n\nDu chasch $1 oder e andere [[{{MediaWiki:Grouppage-sysop}}|Ammann]] kontaktiere go dischpetiere iber die Sperrig.\nDu chasch d „{{int:emailuser}}“-Funktion bruche, wänn e giltigi E-Mail-Adräss in Dyyne [[Special:Preferences|Benutzerkonto-Yystellige]] yydrait isch, oder solang die Funktion fir Di nit gsperrt isch.\nDyy aktuälli IP-Adräss isch $3, un d Sperr-ID isch #$5.\nBitte fieg in jedi Aafrog, wu du stellsch, alli Information yy.",
-	"autoblockedtext": "Dyyni IP-Adräss isch automatisch gsperrt wore, wel si vu me andere Benutzer brucht woren isch, wu dur $1 gsperrt woren isch.\nAs Grund isch aagee wore:\n\n:''$2''\n\n* Aafang vu dr Sperri: $8\n* Änd vu dr Sperri: $6\n* Sperre betrifft: $7\n\nDu chasch $1 oder ein vu dr andre [[{{MediaWiki:Grouppage-sysop}}|Ammanne]] kontaktiere, zum iber die Sperri z diskutiere.\n\nDu chasch d „E-Mail an dää Benutzer“-Funktion nit nutze, solange kei giltigi E-Mail-Adräss in Dyne  [[Special:Preferences|Benutzerkonto-Yystellige]] yytrait isch oder die Funktion fir di gsperrt woren isch.\n\nDyy aktuäll IP-Adräss isch $3, un d Sperr-ID isch $5.\nBitte fieg alli Informatione jedere Aafrog zue, wu Du stellsch.",
+	"autoblockedtext": "Dyyni IP-Adräss isch automatisch gsperrt wore, wel si vu me andere Benutzer brucht woren isch, wu dur $1 gsperrt woren isch.\nAs Grund isch aagee wore:\n\n:''$2''\n\n* Aafang vu dr Sperri: $8\n* Änd vu dr Sperri: $6\n* Sperre betrifft: $7\n\nDu chasch $1 oder ein vu dr andre [[{{MediaWiki:Grouppage-sysop}}|Ammanne]] kontaktiere, zum iber die Sperri z diskutiere.\n\nDu chasch d „E-Mail an dää Benutzer“-Funktion nit nutze, solange kei giltigi E-Mail-Adräss in Dyne [[Special:Preferences|Benutzerkonto-Yystellige]] yytrait isch oder die Funktion fir di gsperrt woren isch.\n\nDyy aktuäll IP-Adräss isch $3, un d Sperr-ID isch $5.\nBitte fieg alli Informatione jedere Aafrog zue, wu Du stellsch.",
 	"blockednoreason": "kei Begrindig aagee",
 	"whitelistedittext": "Du muesch Di $1 zum Artikel bearbeite.",
 	"confirmedittext": "Si mien Ihri E-Mail-Adräss zerscht bstätige, voreb Si Syte chenne ändere. Bitte setze Si in [[Special:Preferences|Ihre Iistellige]] Ihri E-Mail-Adräss yy un len Si si priefe.",

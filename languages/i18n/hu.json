@@ -2885,6 +2885,7 @@
 	"allmessagescurrent": "Jelenlegi szöveg",
 	"allmessagestext": "Ezen a lapon a MediaWiki-névtérben elérhető rendszerüzenetek listája látható.\nHa részt szeretnél venni a MediaWiki fordításában, látogass el a [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation], valamint a [https://translatewiki.net translatewiki.net] oldalra.",
 	"allmessages-not-supported-database": "A '''''{{ns:special}}:Allmessages''''' lap nem használható, mert a '''$wgUseDatabaseMessages''' ki van kapcsolva.",
+	"allmessages-unknown-language": "Ismeretlen nyelvkód <code>$1</code>",
 	"allmessages-filter-legend": "Elemek szűrése",
 	"allmessages-filter": "Módosítás állapota:",
 	"allmessages-filter-unmodified": "nem módosított",

@@ -2953,6 +2953,7 @@
 	"allmessagescurrent": "Nuvarande text",
 	"allmessagestext": "Detta är en lista över alla systemmeddelanden i namnrymden MediaWiki.\nBesök [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] eller [https://translatewiki.net translatewiki.net] om du vill bidra till översättningen av MediaWiki.",
 	"allmessages-not-supported-database": "Den här sidan kan inte användas eftersom '''$wgUseDatabaseMessages''' är avstängd.",
+	"allmessages-unknown-language": "Språkkoden <code>$1</code> är okänd.",
 	"allmessages-filter-legend": "Filtrera",
 	"allmessages-filter": "Filtrera efter anpassningsgrad:",
 	"allmessages-filter-unmodified": "Ej modifierad",

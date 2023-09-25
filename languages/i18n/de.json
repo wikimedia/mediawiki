@@ -2987,6 +2987,7 @@
 	"allmessagescurrent": "Aktueller Text",
 	"allmessagestext": "Dies ist eine Liste der MediaWiki-Systemtexte.\nGehe auf [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki-Lokalisierung] und [https://translatewiki.net translatewiki.net], wenn du dich an der Übersetzung von MediaWiki beteiligen möchtest.",
 	"allmessages-not-supported-database": "Diese Spezialseite steht nicht zur Verfügung, da sie über den Parameter <strong>$wgUseDatabaseMessages</strong> deaktiviert wurde.",
+	"allmessages-unknown-language": "Der Sprachcode <code>$1</code> ist unbekannt.",
 	"allmessages-filter-legend": "Filter",
 	"allmessages-filter": "Filter für angepassten Zustand:",
 	"allmessages-filter-unmodified": "Unverändert",

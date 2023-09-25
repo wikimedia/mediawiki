@@ -2594,6 +2594,7 @@
 	"allmessagescurrent": "Aktuellen Text",
 	"allmessagestext": "Dëst ass eng Lëscht vun alle '''Messagen am MediaWiki:Nummraum, déi vun der MediaWiki-Software benotzt ginn.\nBesicht wgl. [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisatioun] an [https://translatewiki.net translatewiki.net] wann Dir wëllt bei de MediaWiki Iwwersetzunge matschaffen.",
 	"allmessages-not-supported-database": "Dës Säit kann net benotzt gi well '''$wgUseDatabaseMessages''' ausgeschalt ass.",
+	"allmessages-unknown-language": "De Sproochcode <code>$1</code> ass onbekannt.",
 	"allmessages-filter-legend": "Filter",
 	"allmessages-filter": "Filter nom ugepassten Zoustand:",
 	"allmessages-filter-unmodified": "Net geännert",

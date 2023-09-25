@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			")8",
+			"Amire80",
 			"Chabi1",
 			"Dcljr",
 			"Dentonius",
@@ -399,7 +400,7 @@
 	"summary-preview": "Somari priivyuu",
 	"blockedtitle": "Yuuza blak",
 	"blockedtext": "'''Yu yuuza niem ar IP ajres get blak.'''\n\nDi blak mek bai $1.\nDi riizn dehn gi a ''$2''.\n\n* Taat a blak: $8\n* Expairi a blak: $6\n* Intendid blakii: $7\n\nYu kiahn kantak $1 ar aneda [[{{MediaWiki:Grouppage-sysop}}|adminischrieta]] fi diskos di blak.\nYu kyaahn yuuz di 'e-miel dis yuuza' fiicha anles a valid e-miel ajress spesifai ina yu [[Special:Preferences|akount prefransdem]] ahn yu no  blak frahn yuuzi.\nYu korant IP ajress a $3, ahn di blak ID a #$5.\nBegyu inkluud aal abov ditiel ina eni kwieri yu mek.",
-	"autoblockedtext": "Yu IP ajres aatamatikali blak bikaa iyuuz bai aneda yuuza, uu get blak bai $1.\nDi riizn dehn gi a dis:\n\n:''$2''\n\n* Taat a blak: $8\n* Expairi a blak: $6\n* Intendid blakii: $7\n\nYu kiahn kantak $1 ar wan a dieda [[{{MediaWiki:Grouppage-sysop}}|adminischrieta]] fi diskos di blak.\n\nNuot se yu kyaahn yuuz di \"e-miel dis yuuza\" fiicha anles yu gat a valid e-miel ajress rejista ina yu [[Special:Preferences|yuuza prefransdem]] ahn yu no  blak frahn yuuzi.\n\nYu korant IP ajress a $3, ahn di blak ID a #$5.\nBegyu inkluud aal abov ditiel ina eni kwieri yu mek.",
+	"autoblockedtext": "Yu IP ajres aatamatikali blak bikaa iyuuz bai aneda yuuza, uu get blak bai $1.\nDi riizn dehn gi a dis:\n\n:''$2''\n\n* Taat a blak: $8\n* Expairi a blak: $6\n* Intendid blakii: $7\n\nYu kiahn kantak $1 ar wan a dieda [[{{MediaWiki:Grouppage-sysop}}|adminischrieta]] fi diskos di blak.\n\nNuot se yu kyaahn yuuz di \"e-miel dis yuuza\" fiicha anles yu gat a valid e-miel ajress rejista ina yu [[Special:Preferences|yuuza prefransdem]] ahn yu no blak frahn yuuzi.\n\nYu korant IP ajress a $3, ahn di blak ID a #$5.\nBegyu inkluud aal abov ditiel ina eni kwieri yu mek.",
 	"blockednoreason": "no riizn no gi",
 	"whitelistedittext": "Yu afi $1 fi edit piej",
 	"confirmedittext": "Yu mos kanfoerm yu e-miel ajres bifuo yu edit piej.\nBegyu set ahn validiet yu e-miel ajres chruu yu [[Special:Preferences|yuuza prefransdem]].",

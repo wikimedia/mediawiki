@@ -2995,6 +2995,7 @@
 	"allmessagescurrent": "目前的訊息文字",
 	"allmessagestext": "此處列出所有在MediaWiki命名空間中系統訊息。若您想為MediaWiki的在地化貢獻翻譯，請參考[https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki在地化]與[https://translatewiki.net translatewiki.net]。",
 	"allmessages-not-supported-database": "已停用 <strong>$wgUseDatabaseMessages</strong> 設定，無法使用此頁面。",
+	"allmessages-unknown-language": "語言代碼<code>$1</code>未知。",
 	"allmessages-filter-legend": "篩選",
 	"allmessages-filter": "依修改狀況搜尋：",
 	"allmessages-filter-unmodified": "未修改",

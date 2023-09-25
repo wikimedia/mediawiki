@@ -2887,6 +2887,7 @@
 	"allmessagescurrent": "Trenutno besedilo sporočila",
 	"allmessagestext": "Navedena so sistemska sporočila, ki so dostopna v imenskem prostoru MediaWiki.\nZa lokalizacijo in prevajanje obiščite [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki] in [https://translatewiki.net translatewiki.net] ter tako prispevajte k splošnemu prevodu programja.",
 	"allmessages-not-supported-database": "Te strani ni mogoče uporabljati, ker je '''$wgUseDatabaseMessages''' izključeno.",
+	"allmessages-unknown-language": "Jezikovna oznaka <code>$1</code> je neznana.",
 	"allmessages-filter-legend": "Filter",
 	"allmessages-filter": "Filtriraj po stanju prilagoditve:",
 	"allmessages-filter-unmodified": "Nespremenjeno",

@@ -2873,6 +2873,7 @@
 	"allmessagescurrent": "Texto actual",
 	"allmessagestext": "Isto es un lista de messages de systema disponibile in le spatio de nomines MediaWiki.\nPer favor visita [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] e [https://translatewiki.net translatewiki.net] si tu desira contribuer al localisation general de MediaWiki.",
 	"allmessages-not-supported-database": "Iste pagina non pote esser usate proque <strong>$wgUseDatabaseMessages</strong> ha essite disactivate.",
+	"allmessages-unknown-language": "Le codice de lingua <code>$1</code> es incognite.",
 	"allmessages-filter-legend": "Filtro",
 	"allmessages-filter": "Filtrar per stato de personalisation:",
 	"allmessages-filter-unmodified": "Non modificate",

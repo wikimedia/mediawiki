@@ -2835,7 +2835,7 @@
 	"empty-username": "(kullanıcı adı yok)",
 	"contribslink": "katkılar",
 	"emaillink": "e-posta gönder",
-	"autoblocker": "Otomatik olarak engellendiniz çünkü yakın zamanda IP adresiniz \"[[User:$1|$1]]\" kullanıcısı tarafından  kullanılmıştır. $1 adlı kullanıcının engellenmesi için verilen sebep: \"$2\"",
+	"autoblocker": "Otomatik olarak engellendiniz çünkü yakın zamanda IP adresiniz \"[[User:$1|$1]]\" kullanıcısı tarafından kullanılmıştır. $1 adlı kullanıcının engellenmesi için verilen sebep: \"$2\"",
 	"blocklogpage": "Engelleme günlüğü",
 	"blocklog-showlog": "Bu {{GENDER:$1|kullanıcı}} daha önceden engellenmiş.\nEngelleme günlüğü kaynak için aşağıda sağlanmıştır:",
 	"blocklog-showsuppresslog": "Bu {{GENDER:$1|kullanıcı}} daha önceden engellenmiş ve gizlenmiş.\nGizleme günlüğü referans için aşağıda sağlanmıştır:",
