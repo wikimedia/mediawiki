@@ -287,9 +287,10 @@
 	 * @private
 	 */
 	mw.widgets.DateInputWidget.prototype.onTextInputChange = function () {
-		var mom,
+		var
 			widget = this,
 			value = this.textInput.getValue(),
+			mom = moment( value, this.getInputFormat() ),
 			valid = this.isValidDate( value );
 		this.inTextInput++;
 
@@ -298,7 +299,6 @@
 			widget.setValue( '' );
 		} else if ( valid ) {
 			// Well-formed date value, parse and set it
-			mom = moment( value, widget.getInputFormat() );
 			// Use English locale to avoid number formatting
 			widget.setValue( mom.locale( 'en' ).format( widget.getInternalFormat() ) );
 		} else {
@@ -308,7 +308,7 @@
 			// right for weird formats. So limit this trick to only when we're using the default
 			// 'inputFormat', which is the same as the internal format, 'YYYY-MM-DD'.
 			if ( widget.getInputFormat() === widget.getInternalFormat() ) {
-				widget.calendar.setDate( widget.textInput.getValue() );
+				widget.calendar.setMoment( mom );
 			}
 		}
 		widget.inTextInput--;
