@@ -3764,7 +3764,7 @@ config-schema:
             invalidation of the contents of the module store by incrementing this value.
             @since 1.23
     ResourceLoaderEnableSourceMapLinks:
-        default: false
+        default: true
         description: |-
             Whether to include a SourceMap header in ResourceLoader responses
             for JavaScript modules.

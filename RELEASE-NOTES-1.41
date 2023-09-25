@@ -31,6 +31,8 @@ For notes on 1.40.x and older releases, see HISTORY.
   migration stage for converting the pagelinks database table into normal form.
 * $wgExternalLinksDomainGaps – Can be used by large wikis to optimize certain
   external link queries.
+* $wgResourceLoaderEnableSourceMapLinks - Add a SourceMap header to
+  ResourceLoader responses for JavaScript modules (T47514).
 * …
 
 ==== Changed configuration ====
