@@ -1358,7 +1358,8 @@ more stuff
 			? Title::newFromText( $redirectTitle )
 			: $redirectTitle;
 
-		$success = $page->updateRedirectOn( $this->db, $redirectTitle, $lastRevIsRedirect );
+		$success = TestingAccessWrapper::newFromObject( $page )
+			->updateRedirectOn( $this->db, $redirectTitle, $lastRevIsRedirect );
 		$this->assertSame( $expectedSuccess, $success, 'Success assertion' );
 		/**
 		 * updateRedirectOn explicitly updates the redirect table (and not the page table).

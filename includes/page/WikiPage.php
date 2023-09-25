@@ -1473,9 +1473,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @param null|bool $lastRevIsRedirect If given, will optimize adding and
 	 *   removing rows in redirect table.
 	 * @return bool True on success, false on failure
-	 * @internal
 	 */
-	public function updateRedirectOn( $dbw, $redirectTitle, $lastRevIsRedirect = null ) {
+	private function updateRedirectOn( $dbw, $redirectTitle, $lastRevIsRedirect = null ) {
 		// Always update redirects (target link might have changed)
 		// Update/Insert if we don't know if the last revision was a redirect or not
 		// Delete if changing from redirect to non-redirect
