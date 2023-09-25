@@ -190,7 +190,9 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * Add a single table to the SELECT query. Alias for table().
 	 *
 	 * @param string $table The table name
+	 * @param-taint $table exec_sql
 	 * @param string|null $alias The table alias, or null for no alias
+	 * @param-taint $alias exec_sql
 	 * @return $this
 	 */
 	public function from( $table, $alias = null ) {
@@ -201,6 +203,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * Add multiple tables. It's recommended to use join() and leftJoin() instead in new code.
 	 *
 	 * @param string[] $tables
+	 * @param-taint $tables exec_sql
 	 * @return $this
 	 */
 	public function tables( $tables ) {
@@ -222,6 +225,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * @see IReadableDatabase::select()
 	 *
 	 * @param string|string[] $fields
+	 * @param-taint $fields exec_sql
 	 * @return $this
 	 */
 	public function fields( $fields ) {
@@ -237,6 +241,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * Add a field or an array of fields to the query. Alias for fields().
 	 *
 	 * @param string|string[] $fields
+	 * @param-taint $fields exec_sql
 	 * @return $this
 	 */
 	public function select( $fields ) {
@@ -248,7 +253,9 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * an SQL fragment. It is unsafe to pass user input to this function.
 	 *
 	 * @param string $field
+	 * @param-taint $field exec_sql
 	 * @param string|null $alias
+	 * @param-taint $alias exec_sql
 	 * @return $this
 	 */
 	public function field( $field, $alias = null ) {
@@ -275,6 +282,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * to the existing conditions, separated by AND.
 	 *
 	 * @param string|array $conds
+	 * @param-taint $conds exec_sql_numkey
 	 *
 	 * May be either a string containing a single condition, or an array of
 	 * conditions. If an array is given, the conditions constructed from each
@@ -330,6 +338,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * Add conditions to the query. Alias for where().
 	 *
 	 * @param string|array $conds
+	 * @param-taint $conds exec_sql_numkey
 	 * @return $this
 	 */
 	public function andWhere( $conds ) {
@@ -340,6 +349,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * Add conditions to the query. Alias for where().
 	 *
 	 * @param string|array $conds
+	 * @param-taint $conds exec_sql_numkey
 	 * @return $this
 	 */
 	public function conds( $conds ) {
@@ -690,6 +700,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * Run the constructed SELECT query and return all results.
 	 *
 	 * @return IResultWrapper
+	 * @return-taint tainted
 	 */
 	public function fetchResultSet() {
 		return $this->db->select( $this->tables, $this->fields, $this->conds, $this->caller,
@@ -702,6 +713,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * has been added to the builder.
 	 *
 	 * @return mixed
+	 * @return-taint tainted
 	 */
 	public function fetchField() {
 		if ( count( $this->fields ) !== 1 ) {
@@ -719,6 +731,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * be called when only one field has been added to the builder.
 	 *
 	 * @return array
+	 * @return-taint tainted
 	 */
 	public function fetchFieldValues() {
 		if ( count( $this->fields ) !== 1 ) {
@@ -735,6 +748,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * there were no results, return false.
 	 *
 	 * @return \stdClass|false
+	 * @return-taint tainted
 	 */
 	public function fetchRow() {
 		return $this->db->selectRow( $this->tables, $this->fields, $this->conds, $this->caller,
