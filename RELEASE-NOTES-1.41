@@ -502,6 +502,7 @@ because of Phabricator reports.
   deprecated since 1.35, were removed.
 * User::CHECK_USER_RIGHTS and User::IGNORE_USER_RIGHTS were removed. They were
   flags passed to methods which were previously removed.
+* All public properties of LinksUpdate, deprecated in 1.38, were removed.
 * …
 
 === Deprecations in 1.41 ===
