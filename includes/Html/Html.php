@@ -764,9 +764,10 @@ class Html {
 	 * @param string $html of contents of box
 	 * @param string|array $className corresponding to box
 	 * @param string $heading (optional)
+	 * @param string $iconClassName (optional) corresponding to box icon
 	 * @return string of HTML representing a box.
 	 */
-	private static function messageBox( $html, $className, $heading = '' ) {
+	private static function messageBox( $html, $className, $heading = '', $iconClassName = '' ) {
 		if ( $heading !== '' ) {
 			$html = self::element( 'h2', [], $heading ) . $html;
 		}
@@ -784,7 +785,10 @@ class Html {
 			$className .= ' ' . implode( ' ', $coreClasses );
 		}
 		return self::rawElement( 'div', [ 'class' => $className ],
-			self::element( 'span', [ 'class' => 'cdx-message__icon' ] ) .
+			self::element( 'span', [ 'class' => [
+				'cdx-message__icon',
+				$iconClassName
+			] ] ) .
 			self::rawElement( 'div', [
 				'class' => 'cdx-message__content'
 			], $html )
@@ -796,12 +800,16 @@ class Html {
 	 * @since 1.38
 	 * @param string $html of contents of notice
 	 * @param string|array $className corresponding to notice
+	 * @param string $heading (optional)
+	 * @param string|array $iconClassName (optional) corresponding to notice icon
 	 * @return string of HTML representing the notice
 	 */
-	public static function noticeBox( $html, $className ) {
+	public static function noticeBox( $html, $className, $heading = '', $iconClassName = '' ) {
 		return self::messageBox( $html, [
 			'mw-message-box-notice',
-			'cdx-message--notice', $className ] );
+			'cdx-message--notice',
+			$className
+		], $heading, $iconClassName );
 	}
 
 	/**
