@@ -214,10 +214,6 @@ class RollbackPage {
 			$permissionStatus->fatal( 'readonlytext' );
 		}
 
-		$user = $this->userFactory->newFromAuthority( $this->performer );
-		if ( $user->pingLimiter( 'rollback' ) || $user->pingLimiter() ) {
-			$permissionStatus->fatal( 'actionthrottledtext' );
-		}
 		return $permissionStatus;
 	}
 
