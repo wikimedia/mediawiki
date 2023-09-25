@@ -288,7 +288,7 @@ EOF
 		$importer->setUsernamePrefix( 'Xxx', $assign );
 		$importer->doImport();
 
-		$db = wfGetDB( DB_PRIMARY );
+		$db = $this->getDb();
 		$row = $services->getRevisionStore()->newSelectQueryBuilder( $db )
 			->where( [ 'rev_timestamp' => $db->timestamp( "201601010{$n}0000" ) ] )
 			->caller( __METHOD__ )->fetchRow();

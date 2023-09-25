@@ -94,7 +94,7 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 		$rev->setContent( SlotRecord::MAIN, new TextContent( 'Lorem Ipsum' ) );
 		$rev->setComment( CommentStoreComment::newUnsavedComment( 'just a test' ) );
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 		$this->ipRev = $revisionStore->insertRevisionOn( $rev, $dbw );
 
 		$this->deletePage( $page, '', $user );

@@ -215,10 +215,9 @@ class ApiUserrightsTest extends ApiTestCase {
 
 		$this->doSuccessfulRightsChange( 'sysop', [ 'tags' => 'custom tag' ], $user );
 
-		$dbr = wfGetDB( DB_REPLICA );
 		$this->assertSame(
 			'custom tag',
-			$dbr->newSelectQueryBuilder()
+			$this->getDb()->newSelectQueryBuilder()
 				->select( 'ctd_name' )
 				->from( 'logging' )
 				->join( 'change_tag', null, 'ct_log_id = log_id' )

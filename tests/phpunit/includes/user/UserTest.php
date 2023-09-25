@@ -619,7 +619,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::ExperiencedUserMemberSince => 30,
 		] );
 
-		$db = wfGetDB( DB_PRIMARY );
+		$db = $this->getDb();
 		$row = User::newQueryBuilder( $db )
 			->where( [ 'user_id' => $this->user->getId() ] )
 			->caller( __METHOD__ )

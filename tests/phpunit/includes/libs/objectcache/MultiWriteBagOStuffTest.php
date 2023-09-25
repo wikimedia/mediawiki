@@ -59,7 +59,7 @@ class MultiWriteBagOStuffTest extends MediaWikiIntegrationTestCase {
 		};
 
 		// XXX: DeferredUpdates bound to transactions in CLI mode
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 		$dbw->begin();
 		$this->cache->merge( $key, $func );
 
@@ -88,7 +88,7 @@ class MultiWriteBagOStuffTest extends MediaWikiIntegrationTestCase {
 
 		$key = 'keyB';
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 		$dbw->begin();
 		$cache->merge( $key, $func );
 
@@ -106,7 +106,7 @@ class MultiWriteBagOStuffTest extends MediaWikiIntegrationTestCase {
 		$expectValue = clone $value;
 
 		// XXX: DeferredUpdates bound to transactions in CLI mode
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 		$dbw->begin();
 		$this->cache->set( $key, $value );
 

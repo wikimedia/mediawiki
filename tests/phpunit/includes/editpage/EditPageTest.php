@@ -75,7 +75,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 	}
 
 	protected function forceRevisionDate( WikiPage $page, $timestamp ) {
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 
 		$dbw->newUpdateQueryBuilder()
 			->update( 'revision' )
@@ -337,7 +337,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 			}
 		);
 
-		wfGetDB( DB_PRIMARY )->begin( __METHOD__ );
+		$this->getDb()->begin( __METHOD__ );
 
 		$edit = [ 'wpTextbox1' => $editText ];
 		if ( $ignoreBlank ) {
@@ -351,7 +351,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 		$page2 = $this->assertEdit(
 			$pageTitle2, null, $user, $edit, $expectedCode, $expectedText, $desc );
 
-		wfGetDB( DB_PRIMARY )->commit( __METHOD__ );
+		$this->getDb()->commit( __METHOD__ );
 
 		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount(), 'No deferred updates' );
 
@@ -497,7 +497,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 			}
 		);
 
-		wfGetDB( DB_PRIMARY )->begin( __METHOD__ );
+		$this->getDb()->begin( __METHOD__ );
 
 		$text = "two";
 		$edit = [
@@ -519,7 +519,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 			EditPage::AS_SUCCESS_UPDATE, $text,
 			"expected successful update with given text" );
 
-		wfGetDB( DB_PRIMARY )->commit( __METHOD__ );
+		$this->getDb()->commit( __METHOD__ );
 
 		$this->assertGreaterThan( 0, $checkIds[0], "First event rev ID set" );
 		$this->assertGreaterThan( 0, $checkIds[1], "Second edit hook rev ID set" );

@@ -30,7 +30,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function emptyChangeTagsTables() {
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 		$dbw->newDeleteQueryBuilder()
 			->deleteFrom( 'change_tag' )
 			->where( ISQLPlatform::ALL_ROWS )
@@ -65,7 +65,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		ChangeTags::updateTags( [ 'foo', 'bar', '0' ], [], $rcId );
 		// HACK resolve deferred group concats (see comment in provideModifyDisplayQuery)
 		if ( isset( $modifiedQuery['fields']['ts_tags'] ) ) {
-			$modifiedQuery['fields']['ts_tags'] = wfGetDB( DB_REPLICA )
+			$modifiedQuery['fields']['ts_tags'] = $this->getDb()
 				->buildGroupConcatField( ...$modifiedQuery['fields']['ts_tags'] );
 		}
 		if ( isset( $modifiedQuery['exception'] ) ) {

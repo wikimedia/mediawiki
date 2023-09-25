@@ -122,8 +122,7 @@ class ApiUnblockTest extends ApiTestCase {
 
 		$this->doUnblock( [ 'tags' => 'custom tag' ] );
 
-		$dbw = wfGetDB( DB_PRIMARY );
-		$this->assertSame( 1, (int)$dbw->newSelectQueryBuilder()
+		$this->assertSame( 1, (int)$this->getDb()->newSelectQueryBuilder()
 			->select( 'COUNT(*)' )
 			->from( 'logging' )
 			->join( 'change_tag', null, 'ct_log_id = log_id' )

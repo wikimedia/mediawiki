@@ -21,10 +21,9 @@ class ReverseChronologicalPagerTest extends MediaWikiIntegrationTestCase {
 	public function testGetDateCond( $params, $expected ) {
 		$pager = $this->getMockForAbstractClass( ReverseChronologicalPager::class );
 		$pagerWrapper = TestingAccessWrapper::newFromObject( $pager );
-		$db = wfGetDB( DB_PRIMARY );
 
 		$pager->getDateCond( ...$params );
-		$this->assertEquals( $pagerWrapper->endOffset, $db->timestamp( $expected ) );
+		$this->assertEquals( $pagerWrapper->endOffset, $this->getDb()->timestamp( $expected ) );
 	}
 
 	/**
@@ -70,7 +69,7 @@ class ReverseChronologicalPagerTest extends MediaWikiIntegrationTestCase {
 		$pager = $this->getMockForAbstractClass( ReverseChronologicalPager::class );
 		$pagerWrapper = TestingAccessWrapper::newFromObject( $pager );
 		$timestamp = MWTimestamp::getInstance();
-		$db = wfGetDB( DB_PRIMARY );
+		$db = $this->getDb();
 
 		$currYear = $timestamp->format( 'Y' );
 		$currMonth = $timestamp->format( 'n' );

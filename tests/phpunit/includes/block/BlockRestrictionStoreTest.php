@@ -214,8 +214,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 			new NamespaceRestriction( $block->getId(), NS_USER ),
 		] );
 
-		$db = wfGetDB( DB_REPLICA );
-		$result = $db->newSelectQueryBuilder()
+		$result = $this->getDb()->newSelectQueryBuilder()
 			->select( [ '*' ] )
 			->from( 'ipblocks_restrictions' )
 			->where( [ 'ir_ipb_id' => $block->getId() ] )
@@ -240,8 +239,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 			new PageRestriction( $block->getId(), $page->getId() ),
 		] );
 
-		$db = wfGetDB( DB_REPLICA );
-		$result = $db->newSelectQueryBuilder()
+		$result = $this->getDb()->newSelectQueryBuilder()
 			->select( [ '*' ] )
 			->from( 'ipblocks_restrictions' )
 			->where( [ 'ir_ipb_id' => $block->getId() ] )
@@ -263,8 +261,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 
 		$this->blockRestrictionStore->update( [] );
 
-		$db = wfGetDB( DB_REPLICA );
-		$result = $db->newSelectQueryBuilder()
+		$result = $this->getDb()->newSelectQueryBuilder()
 			->select( [ '*' ] )
 			->from( 'ipblocks_restrictions' )
 			->where( [ 'ir_ipb_id' => $block->getId() ] )
@@ -289,8 +286,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 			new PageRestriction( $block->getId(), $page->getId() ),
 		] );
 
-		$db = wfGetDB( DB_REPLICA );
-		$result = $db->newSelectQueryBuilder()
+		$result = $this->getDb()->newSelectQueryBuilder()
 			->select( [ '*' ] )
 			->from( 'ipblocks_restrictions' )
 			->where( [ 'ir_ipb_id' => $block->getId() ] )

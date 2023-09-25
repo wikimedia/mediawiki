@@ -410,7 +410,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$rev = $this->getRevisionRecordFromDetailsArray( $revDetails );
 
 		$store = $this->getServiceContainer()->getRevisionStore();
-		$return = $store->insertRevisionOn( $rev, wfGetDB( DB_PRIMARY ) );
+		$return = $store->insertRevisionOn( $rev, $this->getDb() );
 
 		// is the new revision correct?
 		$this->assertRevisionCompleteness( $return );
@@ -511,14 +511,14 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 		// Insert the first revision
 		$revOne = $this->getRevisionRecordFromDetailsArray( $revDetails );
-		$firstReturn = $store->insertRevisionOn( $revOne, wfGetDB( DB_PRIMARY ) );
+		$firstReturn = $store->insertRevisionOn( $revOne, $this->getDb() );
 		$this->assertLinkTargetsEqual( $title, $firstReturn->getPageAsLinkTarget() );
 		$this->assertRevisionRecordsEqual( $revOne, $firstReturn );
 
 		// Insert a second revision inheriting the same blob address
 		$revDetails['slot'] = SlotRecord::newInherited( $firstReturn->getSlot( SlotRecord::MAIN ) );
 		$revTwo = $this->getRevisionRecordFromDetailsArray( $revDetails );
-		$secondReturn = $store->insertRevisionOn( $revTwo, wfGetDB( DB_PRIMARY ) );
+		$secondReturn = $store->insertRevisionOn( $revTwo, $this->getDb() );
 		$this->assertLinkTargetsEqual( $title, $secondReturn->getPageAsLinkTarget() );
 		$this->assertRevisionRecordsEqual( $revTwo, $secondReturn );
 
@@ -614,7 +614,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$this->expectException( get_class( $exception ) );
 		$this->expectExceptionMessage( $exception->getMessage() );
 		$this->expectExceptionCode( $exception->getCode() );
-		$store->insertRevisionOn( $rev, wfGetDB( DB_PRIMARY ) );
+		$store->insertRevisionOn( $rev, $this->getDb() );
 	}
 
 	public static function provideNewNullRevision() {
@@ -667,12 +667,12 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$baseRev = $this->getRevisionRecordFromDetailsArray( $revDetails );
 		$store = $this->getServiceContainer()->getRevisionStore();
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 		$baseRev = $store->insertRevisionOn( $baseRev, $dbw );
 		$page->updateRevisionOn( $dbw, $baseRev, $page->getLatest() );
 
 		$record = $store->newNullRevision(
-			wfGetDB( DB_PRIMARY ),
+			$this->getDb(),
 			$title,
 			$comment,
 			$minor,
@@ -707,7 +707,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	public function testNewNullRevision_nonExistingTitle() {
 		$store = $this->getServiceContainer()->getRevisionStore();
 		$record = $store->newNullRevision(
-			wfGetDB( DB_PRIMARY ),
+			$this->getDb(),
 			Title::newFromText( __METHOD__ . '.iDontExist!' ),
 			CommentStoreComment::newUnsavedComment( __METHOD__ . ' comment' ),
 			false,
@@ -1894,17 +1894,17 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame(
 			0,
-			$store->countRevisionsByPageId( wfGetDB( DB_PRIMARY ), $page->getId() )
+			$store->countRevisionsByPageId( $this->getDb(), $page->getId() )
 		);
 		$page->doUserEditContent( new WikitextContent( 'a' ), $user, 'a' );
 		$this->assertSame(
 			1,
-			$store->countRevisionsByPageId( wfGetDB( DB_PRIMARY ), $page->getId() )
+			$store->countRevisionsByPageId( $this->getDb(), $page->getId() )
 		);
 		$page->doUserEditContent( new WikitextContent( 'b' ), $user, 'b' );
 		$this->assertSame(
 			2,
-			$store->countRevisionsByPageId( wfGetDB( DB_PRIMARY ), $page->getId() )
+			$store->countRevisionsByPageId( $this->getDb(), $page->getId() )
 		);
 	}
 
@@ -1918,17 +1918,17 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame(
 			0,
-			$store->countRevisionsByTitle( wfGetDB( DB_PRIMARY ), $page->getTitle() )
+			$store->countRevisionsByTitle( $this->getDb(), $page->getTitle() )
 		);
 		$page->doUserEditContent( new WikitextContent( 'a' ), $user, 'a' );
 		$this->assertSame(
 			1,
-			$store->countRevisionsByTitle( wfGetDB( DB_PRIMARY ), $page->getTitle() )
+			$store->countRevisionsByTitle( $this->getDb(), $page->getTitle() )
 		);
 		$page->doUserEditContent( new WikitextContent( 'b' ), $user, 'b' );
 		$this->assertSame(
 			2,
-			$store->countRevisionsByTitle( wfGetDB( DB_PRIMARY ), $page->getTitle() )
+			$store->countRevisionsByTitle( $this->getDb(), $page->getTitle() )
 		);
 	}
 
@@ -1946,7 +1946,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 		$store = $this->getServiceContainer()->getRevisionStore();
 		$result = $store->userWasLastToEdit(
-			wfGetDB( DB_PRIMARY ),
+			$this->getDb(),
 			$page->getId(),
 			$sysop->getId(),
 			'20160101010101'
@@ -1969,7 +1969,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 		$store = $this->getServiceContainer()->getRevisionStore();
 		$result = $store->userWasLastToEdit(
-			wfGetDB( DB_PRIMARY ),
+			$this->getDb(),
 			$page->getId(),
 			$sysop->getId(),
 			$startTime

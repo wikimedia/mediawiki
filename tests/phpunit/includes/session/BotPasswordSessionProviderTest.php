@@ -82,7 +82,7 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 			->getLookup( 'local' )
 			->centralIdFromName( $sysop->getName() );
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 		$dbw->newDeleteQueryBuilder()
 			->deleteFrom( 'bot_passwords' )
 			->where( [ 'bp_user' => $userId, 'bp_app_id' => 'BotPasswordSessionProvider' ] )

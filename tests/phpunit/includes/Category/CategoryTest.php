@@ -103,9 +103,7 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testNewFromRow_found() {
-		$dbw = wfGetDB( DB_PRIMARY );
-
-		$category = Category::newFromRow( $dbw->newSelectQueryBuilder()
+		$category = Category::newFromRow( $this->getDb()->newSelectQueryBuilder()
 			->select( [ 'cat_id', 'cat_title', 'cat_pages', 'cat_subcats', 'cat_files' ] )
 			->from( 'category' )
 			->where( [ 'cat_id' => 1 ] )
@@ -116,9 +114,7 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testNewFromRow_notFoundWithoutTitle() {
-		$dbw = wfGetDB( DB_PRIMARY );
-
-		$row = $dbw->newSelectQueryBuilder()
+		$row = $this->getDb()->newSelectQueryBuilder()
 			->select( [ 'cat_id', 'cat_title', 'cat_pages', 'cat_subcats', 'cat_files' ] )
 			->from( 'category' )
 			->where( [ 'cat_id' => 1 ] )
@@ -129,9 +125,7 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testNewFromRow_notFoundWithTitle() {
-		$dbw = wfGetDB( DB_PRIMARY );
-
-		$row = $dbw->newSelectQueryBuilder()
+		$row = $this->getDb()->newSelectQueryBuilder()
 			->select( [ 'cat_id', 'cat_title', 'cat_pages', 'cat_subcats', 'cat_files' ] )
 			->from( 'category' )
 			->where( [ 'cat_id' => 1 ] )

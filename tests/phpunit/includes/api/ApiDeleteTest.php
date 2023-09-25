@@ -148,8 +148,7 @@ class ApiDeleteTest extends ApiTestCase {
 
 		$this->assertFalse( $title->exists( Title::READ_LATEST ) );
 
-		$dbw = wfGetDB( DB_PRIMARY );
-		$this->assertSame( 'custom tag', $dbw->newSelectQueryBuilder()
+		$this->assertSame( 'custom tag', $this->getDb()->newSelectQueryBuilder()
 			->select( 'ctd_name' )
 			->from( 'logging' )
 			->join( 'change_tag', null, 'ct_log_id = log_id' )

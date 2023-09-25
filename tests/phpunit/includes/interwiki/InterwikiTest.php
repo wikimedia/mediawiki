@@ -43,7 +43,7 @@ class InterwikiTest extends MediaWikiIntegrationTestCase {
 	//// tests for static data access methods below ///////////////////////////////////////////////
 
 	private function populateDB( $iwrows ) {
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 		$dbw->newDeleteQueryBuilder()
 			->deleteFrom( 'interwiki' )
 			->where( ISQLPlatform::ALL_ROWS )

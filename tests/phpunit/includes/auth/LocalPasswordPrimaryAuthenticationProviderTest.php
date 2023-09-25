@@ -126,7 +126,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 	public function testTestUserCanAuthenticate() {
 		$user = $this->getMutableTestUser()->getUser();
 		$userName = $user->getName();
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 
 		$provider = $this->getProvider();
 
@@ -172,8 +172,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 
 		$user = $this->getMutableTestUser()->getUser();
 		$userName = $user->getName();
-		$dbw = wfGetDB( DB_PRIMARY );
-		$row = $dbw->newSelectQueryBuilder()
+		$row = $this->getDb()->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'user' )
 			->where( [ 'user_name' => $userName ] )
@@ -233,7 +232,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$testUser = $this->getMutableTestUser();
 		$userName = $testUser->getUser()->getName();
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 		$id = $testUser->getUser()->getId();
 
 		$req = new PasswordAuthenticationRequest();
@@ -505,7 +504,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$oldpass = $testUser->getPassword();
 		$newpass = 'NewPassword';
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 		$oldExpiry = $dbw->newSelectQueryBuilder()
 			->select( 'user_password_expires' )
 			->from( 'user' )
