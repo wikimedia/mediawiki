@@ -3431,9 +3431,12 @@ class OutputPage extends ContextSource {
 			$this->rlExemptStyleModules = $exemptGroups;
 
 			$config = $this->getConfig();
+			// Client preferences are controlled by the skin and specific to unregistered
+			// users. See mw.user.clientPrefs for details on how this works and how to
+			// handle registered users.
 			$clientPrefEnabled = (
 				$this->getSkin()->getOptions()['clientPrefEnabled'] &&
-				!$this->getUser()->isRegistered()
+				!$this->getUser()->isNamed()
 			);
 			$clientPrefCookiePrefix = $config->get( MainConfigNames::CookiePrefix );
 
