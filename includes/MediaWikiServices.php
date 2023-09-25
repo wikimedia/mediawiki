@@ -82,6 +82,7 @@ use MediaWiki\Interwiki\NullInterwikiLookup;
 use MediaWiki\JobQueue\JobFactory;
 use MediaWiki\JobQueue\JobQueueGroupFactory;
 use MediaWiki\Json\JsonCodec;
+use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageFallback;
@@ -1157,6 +1158,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getFileBackendGroup(): FileBackendGroup {
 		return $this->getService( 'FileBackendGroup' );
+	}
+
+	/**
+	 * @since 1.41
+	 * @return FormatterFactory
+	 */
+	public function getFormatterFactory(): FormatterFactory {
+		return $this->getService( 'FormatterFactory' );
 	}
 
 	/**

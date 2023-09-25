@@ -460,6 +460,7 @@ class SpecialPageFactory {
 			'class' => SpecialCreateAccount::class,
 			'services' => [
 				'AuthManager',
+				'FormatterFactory',
 			]
 		],
 		'LinkAccounts' => [

@@ -22,19 +22,15 @@
 
 namespace MediaWiki\Status;
 
-use ApiMessage;
-use ApiRawMessage;
+use IContextSource;
 use Language;
-use MediaWiki\Language\RawMessage;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\StubObject\StubUserLang;
 use Message;
 use MessageLocalizer;
-use MessageSpecifier;
-use ParserOutput;
+use RequestContext;
 use RuntimeException;
 use StatusValue;
-use UnexpectedValueException;
 
 /**
  * Generic operation result class
@@ -61,6 +57,8 @@ class Status extends StatusValue {
 
 	/** @var MessageLocalizer|null */
 	protected $messageLocalizer;
+
+	private ?StatusFormatter $formatter = null;
 
 	/**
 	 * Succinct helper method to wrap a StatusValue
@@ -135,9 +133,29 @@ class Status extends StatusValue {
 	 *   unserialization); it is the caller's responsibility to set the localizer again
 	 *   if needed.
 	 * @param MessageLocalizer $messageLocalizer
+	 *
+	 * @deprecated since 1.42, use FormatterFactory::getStatusFormatter instead.
 	 */
 	public function setMessageLocalizer( MessageLocalizer $messageLocalizer ) {
+		// TODO: hard deprecate after switching callers to StatusFormatter
 		$this->messageLocalizer = $messageLocalizer;
+		$this->formatter = null;
+	}
+
+	private function getFormatter(): StatusFormatter {
+		if ( !$this->formatter ) {
+			$context = RequestContext::getMain();
+
+			// HACK: only works for IContextSource objects.
+			if ( $this->messageLocalizer && $this->messageLocalizer instanceof IContextSource ) {
+				$context = $this->messageLocalizer;
+			}
+
+			$formatterFactory = MediaWikiServices::getInstance()->getFormatterFactory();
+			$this->formatter = $formatterFactory->getStatusFormatter( $context );
+		}
+
+		return $this->formatter;
 	}
 
 	/**
@@ -158,9 +176,15 @@ class Status extends StatusValue {
 		'@phan-var Status $warningsOnlyStatus';
 
 		if ( $this->messageLocalizer ) {
-			$errorsOnlyStatus->setMessageLocalizer( $this->messageLocalizer );
-			$warningsOnlyStatus->setMessageLocalizer( $this->messageLocalizer );
+			$errorsOnlyStatus->setMessageLocalizer = $this->messageLocalizer;
+			$warningsOnlyStatus->setMessageLocalizer = $this->messageLocalizer;
 		}
+
+		if ( $this->formatter ) {
+			$errorsOnlyStatus->formatter = $this->formatter;
+			$warningsOnlyStatus->formatter = $this->formatter;
+		}
+
 		$errorsOnlyStatus->cleanCallback = $warningsOnlyStatus->cleanCallback = $this->cleanCallback;
 
 		return [ $errorsOnlyStatus, $warningsOnlyStatus ];
@@ -176,22 +200,9 @@ class Status extends StatusValue {
 	}
 
 	/**
-	 * @param array $params
-	 * @return array
-	 */
-	protected function cleanParams( array $params ) {
-		if ( !$this->cleanCallback ) {
-			return $params;
-		}
-		$cleanParams = [];
-		foreach ( $params as $i => $param ) {
-			$cleanParams[$i] = call_user_func( $this->cleanCallback, $param );
-		}
-		return $cleanParams;
-	}
-
-	/**
 	 * Get the error list as a wikitext formatted list
+	 *
+	 * @deprecated since 1.42, use StatusFormatter instead.
 	 *
 	 * @param string|false $shortContext A short enclosing context message name, to
 	 *        be used when there is a single error
@@ -200,41 +211,12 @@ class Status extends StatusValue {
 	 * @return string
 	 */
 	public function getWikiText( $shortContext = false, $longContext = false, $lang = null ) {
-		$rawErrors = $this->getErrors();
-		if ( count( $rawErrors ) === 0 ) {
-			if ( $this->isOK() ) {
-				$this->fatal(
-					'internalerror_info',
-					__METHOD__ . " called for a good result, this is incorrect\n"
-				);
-			} else {
-				$this->fatal(
-					'internalerror_info',
-					__METHOD__ . ": Invalid result object: no error text but not OK\n"
-				);
-			}
-			$rawErrors = $this->getErrors(); // just added a fatal
-		}
-		if ( count( $rawErrors ) === 1 ) {
-			$s = $this->getErrorMessage( $rawErrors[0], $lang )->plain();
-			if ( $shortContext ) {
-				$s = $this->msgInLang( $shortContext, $lang, $s )->plain();
-			} elseif ( $longContext ) {
-				$s = $this->msgInLang( $longContext, $lang, "* $s\n" )->plain();
-			}
-		} else {
-			$errors = $this->getErrorMessageArray( $rawErrors, $lang );
-			foreach ( $errors as &$error ) {
-				$error = $error->plain();
-			}
-			$s = '* ' . implode( "\n* ", $errors ) . "\n";
-			if ( $longContext ) {
-				$s = $this->msgInLang( $longContext, $lang, $s )->plain();
-			} elseif ( $shortContext ) {
-				$s = $this->msgInLang( $shortContext, $lang, "\n$s\n" )->plain();
-			}
-		}
-		return $s;
+		return $this->getFormatter()->getWikiText( $this, [
+			'shortContext' => $shortContext,
+			'longContext' => $longContext,
+			'lang' => $lang,
+			'cleanCallback' => $this->cleanCallback
+		] );
 	}
 
 	/**
@@ -252,53 +234,20 @@ class Status extends StatusValue {
 	 *
 	 * If both parameters are missing, and there is only one error, no bullet will be added.
 	 *
+	 * @deprecated since 1.42, use StatusFormatter instead.
+	 *
 	 * @param string|string[]|false $shortContext A message name or an array of message names.
 	 * @param string|string[]|false $longContext A message name or an array of message names.
 	 * @param string|Language|StubUserLang|null $lang Language to use for processing messages
 	 * @return Message
 	 */
 	public function getMessage( $shortContext = false, $longContext = false, $lang = null ) {
-		$rawErrors = $this->getErrors();
-		if ( count( $rawErrors ) === 0 ) {
-			if ( $this->isOK() ) {
-				$this->fatal(
-					'internalerror_info',
-					__METHOD__ . " called for a good result, this is incorrect\n"
-				);
-			} else {
-				$this->fatal(
-					'internalerror_info',
-					__METHOD__ . ": Invalid result object: no error text but not OK\n"
-				);
-			}
-			$rawErrors = $this->getErrors(); // just added a fatal
-		}
-		if ( count( $rawErrors ) === 1 ) {
-			$s = $this->getErrorMessage( $rawErrors[0], $lang );
-			if ( $shortContext ) {
-				$s = $this->msgInLang( $shortContext, $lang, $s );
-			} elseif ( $longContext ) {
-				$wrapper = new RawMessage( "* \$1\n" );
-				$wrapper->params( $s )->parse();
-				$s = $this->msgInLang( $longContext, $lang, $wrapper );
-			}
-		} else {
-			$msgs = $this->getErrorMessageArray( $rawErrors, $lang );
-			$msgCount = count( $msgs );
-
-			$s = new RawMessage( '* $' . implode( "\n* \$", range( 1, $msgCount ) ) );
-			$s->params( $msgs )->parse();
-
-			if ( $longContext ) {
-				$s = $this->msgInLang( $longContext, $lang, $s );
-			} elseif ( $shortContext ) {
-				$wrapper = new RawMessage( "\n\$1\n", [ $s ] );
-				$wrapper->parse();
-				$s = $this->msgInLang( $shortContext, $lang, $wrapper );
-			}
-		}
-
-		return $s;
+		return $this->getFormatter()->getMessage( $this, [
+			'shortContext' => $shortContext,
+			'longContext' => $longContext,
+			'lang' => $lang,
+			'cleanCallback' => $this->cleanCallback
+		] );
 	}
 
 	/**
@@ -306,100 +255,19 @@ class Status extends StatusValue {
 	 * getWikiText( false, false, 'en' ), but message parameters will be extracted into the
 	 * context array with parameter names 'parameter1' etc. when possible.
 	 *
+	 * @deprecated since 1.42, use StatusFormatter instead.
+	 *
 	 * @return array A pair of (message, context) suitable for passing to a PSR-3 logger.
 	 * @phan-return array{0:string,1:(int|float|string)[]}
 	 */
 	public function getPsr3MessageAndContext(): array {
-		if ( count( $this->errors ) === 1 ) {
-			// identical to getMessage( false, false, 'en' ) when there's just one error
-			$message = $this->getErrorMessage( $this->errors[0], 'en' );
-
-			$text = null;
-			if ( in_array( get_class( $message ), [ Message::class, ApiMessage::class ], true ) ) {
-				// Fall back to getWikiText for rawmessage, which is just a placeholder for non-translated text.
-				// Turning the entire message into a context parameter wouldn't be useful.
-				if ( $message->getKey() === 'rawmessage' ) {
-					return [ $this->getWikiText( false, false, 'en' ), [] ];
-				}
-				// $1,$2... will be left as-is when no parameters are provided.
-				$text = $this->msgInLang( $message->getKey(), 'en' )->plain();
-			} elseif ( in_array( get_class( $message ), [ RawMessage::class, ApiRawMessage::class ], true ) ) {
-				$text = $message->getKey();
-			} else {
-				// Unknown Message subclass, we can't be sure how it marks parameters. Fall back to getWikiText.
-				return [ $this->getWikiText( false, false, 'en' ), [] ];
-			}
-
-			$context = [];
-			$i = 1;
-			foreach ( $message->getParams() as $param ) {
-				if ( is_array( $param ) && count( $param ) === 1 ) {
-					// probably Message::numParam() or similar
-					$param = reset( $param );
-				}
-				if ( is_int( $param ) || is_float( $param ) || is_string( $param ) ) {
-					$context["parameter$i"] = $param;
-				} else {
-					// Parameter is not of a safe type, fall back to getWikiText.
-					return [ $this->getWikiText( false, false, 'en' ), [] ];
-				}
-
-				$text = str_replace( "\$$i", "{parameter$i}", $text );
-
-				$i++;
-			}
-
-			return [ $text, $context ];
-		}
-		// Parameters cannot be easily extracted, fall back to getWikiText,
-		return [ $this->getWikiText( false, false, 'en' ), [] ];
-	}
-
-	/**
-	 * Return the message for a single error
-	 *
-	 * The code string can be used a message key with per-language versions.
-	 * If $error is an array, the "params" field is a list of parameters for the message.
-	 *
-	 * @param array|string $error Code string or (key: code string, params: string[]) map
-	 * @param string|Language|StubUserLang|null $lang Language to use for processing messages
-	 * @return Message
-	 */
-	protected function getErrorMessage( $error, $lang = null ) {
-		if ( is_array( $error ) ) {
-			if ( isset( $error['message'] ) && $error['message'] instanceof Message ) {
-				// Apply context from MessageLocalizer even if we have a Message object already
-				$msg = $this->msg( $error['message'] );
-			} elseif ( isset( $error['message'] ) && isset( $error['params'] ) ) {
-				$msg = $this->msg(
-					$error['message'],
-					array_map( static function ( $param ) {
-						return is_string( $param ) ? wfEscapeWikiText( $param ) : $param;
-					}, $this->cleanParams( $error['params'] ) )
-				);
-			} else {
-				$msgName = array_shift( $error );
-				$msg = $this->msg(
-					$msgName,
-					array_map( static function ( $param ) {
-						return is_string( $param ) ? wfEscapeWikiText( $param ) : $param;
-					}, $this->cleanParams( $error ) )
-				);
-			}
-		} elseif ( is_string( $error ) ) {
-			$msg = $this->msg( $error );
-		} else {
-			throw new UnexpectedValueException( 'Got ' . get_class( $error ) . ' for key.' );
-		}
-
-		if ( $lang ) {
-			$msg->inLanguage( $lang );
-		}
-		return $msg;
+		return $this->getFormatter()->getPsr3MessageAndContext( $this );
 	}
 
 	/**
 	 * Get the error message as HTML. This is done by parsing the wikitext error message
+	 * @deprecated since 1.42, use StatusFormatter instead.
+	 *
 	 * @param string|false $shortContext A short enclosing context message name, to
 	 *        be used when there is a single error
 	 * @param string|false $longContext A long enclosing context message name, for a list
@@ -407,24 +275,12 @@ class Status extends StatusValue {
 	 * @return string
 	 */
 	public function getHTML( $shortContext = false, $longContext = false, $lang = null ) {
-		$text = $this->getWikiText( $shortContext, $longContext, $lang );
-		$out = MediaWikiServices::getInstance()->getMessageCache()
-			->parse( $text, null, true, true, $lang );
-		return $out instanceof ParserOutput
-			? $out->getText( [ 'enableSectionEditLinks' => false ] )
-			: $out;
-	}
-
-	/**
-	 * Return an array with a Message object for each error.
-	 * @param array $errors
-	 * @param string|Language|StubUserLang|null $lang Language to use for processing messages
-	 * @return Message[]
-	 */
-	protected function getErrorMessageArray( $errors, $lang = null ) {
-		return array_map( function ( $e ) use ( $lang ) {
-			return $this->getErrorMessage( $e, $lang );
-		}, $errors );
+		return $this->getFormatter()->getHTML( $this, [
+			'shortContext' => $shortContext,
+			'longContext' => $longContext,
+			'lang' => $lang,
+			'cleanCallback' => $this->cleanCallback
+		] );
 	}
 
 	/**
@@ -454,11 +310,12 @@ class Status extends StatusValue {
 	 * serialized and we're going to clear it in __wakeup anyway.
 	 * Don't save the localizer, because it can be pretty much anything. Restoring it is
 	 * the caller's responsibility (otherwise it will just fall back to the global request context).
+	 * Same for the formatter, which is likely to contain a localizer.
 	 * @return array
 	 */
 	public function __sleep() {
 		$keys = array_keys( get_object_vars( $this ) );
-		return array_diff( $keys, [ 'cleanCallback', 'messageLocalizer' ] );
+		return array_diff( $keys, [ 'cleanCallback', 'messageLocalizer', 'formatter' ] );
 	}
 
 	/**
@@ -467,34 +324,9 @@ class Status extends StatusValue {
 	public function __wakeup() {
 		$this->cleanCallback = false;
 		$this->messageLocalizer = null;
+		$this->formatter = null;
 	}
 
-	/**
-	 * @param string|MessageSpecifier $key
-	 * @param string|string[] ...$params
-	 * @return Message
-	 */
-	private function msg( $key, ...$params ): Message {
-		if ( $this->messageLocalizer ) {
-			return $this->messageLocalizer->msg( $key, ...$params );
-		} else {
-			return wfMessage( $key, ...$params );
-		}
-	}
-
-	/**
-	 * @param string|MessageSpecifier $key
-	 * @param string|Language|StubUserLang|null $lang
-	 * @param mixed ...$params
-	 * @return Message
-	 */
-	private function msgInLang( $key, $lang, ...$params ): Message {
-		$msg = $this->msg( $key, ...$params );
-		if ( $lang ) {
-			$msg->inLanguage( $lang );
-		}
-		return $msg;
-	}
 }
 
 /**

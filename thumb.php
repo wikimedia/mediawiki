@@ -359,10 +359,16 @@ function wfStreamThumb( array $params ) {
 	if ( !wfThumbIsStandard( $img, $params )
 		&& !$authority->authorizeAction( 'renderfile-nonstandard', $status )
 	) {
-		wfThumbError( 429, Status::wrap( $status )->getHTML() );
+		$statusFormatter = $services->getFormatterFactory()
+			->getStatusFormatter( RequestContext::getMain() );
+
+		wfThumbError( 429, $statusFormatter->getHTML( $status ) );
 		return;
 	} elseif ( !$authority->authorizeAction( 'renderfile', $status ) ) {
-		wfThumbError( 429, Status::wrap( $status )->getHTML() );
+		$statusFormatter = $services->getFormatterFactory()
+			->getStatusFormatter( RequestContext::getMain() );
+
+		wfThumbError( 429, $statusFormatter->getHTML( $status ) );
 		return;
 	}
 

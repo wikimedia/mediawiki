@@ -12,7 +12,8 @@ class SpecialCreateAccountTest extends SpecialPageTestBase {
 	protected function newSpecialPage() {
 		$services = $this->getServiceContainer();
 		return new SpecialCreateAccount(
-			$services->getAuthManager()
+			$services->getAuthManager(),
+			$services->getFormatterFactory()
 		);
 	}
 
