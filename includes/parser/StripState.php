@@ -82,8 +82,11 @@ class StripState {
 
 	/**
 	 * @param string $type
+	 * @param-taint $type none
 	 * @param string $marker
+	 * @param-taint $marker none
 	 * @param string|Closure $value
+	 * @param-taint $value exec_html
 	 */
 	protected function addItem( $type, $marker, $value ) {
 		if ( !preg_match( $this->regex, $marker, $m ) ) {

@@ -157,11 +157,17 @@ class Linker {
 	 * @deprecated since 1.28, use MediaWiki\Linker\LinkRenderer instead
 	 * @see Linker::link
 	 * @param LinkTarget $target
+	 * @param-taint $target none
 	 * @param string|null $html
+	 * @param-taint $html exec_html
 	 * @param array $customAttribs
+	 * @param-taint $customAttribs none
 	 * @param array $query
+	 * @param-taint $query none
 	 * @param string|array $options
+	 * @param-taint $options none
 	 * @return string
+	 * @return-taint escaped
 	 */
 	public static function linkKnown(
 		$target, $html = null, $customAttribs = [],
