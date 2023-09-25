@@ -62,7 +62,9 @@
 			"아라",
 			"Javiero",
 			"McDutchie",
-			"Spenĉjo"
+			"Spenĉjo",
+			"Saturnow",
+			"נדב ס"
 		]
 	},
 	"tog-underline": "Substrekado de ligiloj:",
@@ -546,7 +548,7 @@
 	"cannotchangeemail": "Kontaj retpoŝtadresoj ne povas esti ŝanĝitaj en ĉi tiu vikio.",
 	"emaildisabled": "Ĉi tiu paĝaro ne povas sendi retmesaĝojn.",
 	"accountcreated": "Konto kreita",
-	"accountcreatedtext": "La uzanto-konto por [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|diskuto]])  estas kreita.",
+	"accountcreatedtext": "La uzanto-konto por [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|diskuto]]) estas kreita.",
 	"createaccount-title": "Konto-kreado por {{SITENAME}}",
 	"createaccount-text": "Iu kreis konton por via retpoŝta adreso en {{SITENAME}} ($4) nomata \"$2\", kun pasvorto \"$3\". Vi ensalutu kaj ŝanĝu vian pasvorton nun.\n\nVi povas ignori ĉi tiun mesaĝon, se ĉi tiu konto estis kreita erare.",
 	"login-throttled": "Vi ĵus tro ofte provis ensaluti.\nBonvolu ĝisatendi $1 antaŭ reprovi.",
@@ -1822,7 +1824,7 @@
 	"uploadstash-badtoken": "Malsukcesis tiu ago, eble pro tio ke viaj ensalutiloj eksvalidiĝis. Bonvolu reprovi.",
 	"uploadstash-errclear": "Malsukcesis la forigo de la dosieroj.",
 	"uploadstash-refresh": "Aktualigi la dosierliston.",
-	"uploadstash-thumbnail": "Vidi bildeton",
+	"uploadstash-thumbnail": "vidi bildeton",
 	"uploadstash-exception": "Ne eblas alŝuti en kaŝkonservejon ($1): \"$2\".",
 	"uploadstash-bad-path": "Vojo ne ekzistas.",
 	"uploadstash-bad-path-invalid": "Vojo ne estas valida.",

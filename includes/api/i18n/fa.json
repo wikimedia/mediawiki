@@ -18,7 +18,8 @@
 			"Sahehco",
 			"Signal89",
 			"Jeeputer",
-			"Beginneruser"
+			"Beginneruser",
+			"Amire80"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|مستندات]]\n* [[mw:API:FAQ|پرسش‌های متداول]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api فهرست پست الکترونیکی]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce اعلانات رابط برنامه‌نویسی کاربردی]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R ایرادها و درخواست‌ها]\n</div>\n\n<strong>وضعیت:</strong> تمام ویژگی‌هایی که در این صفحه نمایش یافته‌اند باید کار بکنند، ولی رابط برنامه‌نویسی کاربردی کماکان در حال توسعه است، و ممکن است در هر زمان تغییر بکند. به عضویت [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ فهرست پست الکترونیکی mediawiki-api-announce] در بیایید تا از تغییرات باخبر شوید.\n\n<strong>درخواست‌های معیوب:</strong> وقتی درخواست‌های معیوب به رابط برنامه‌نویسی کاربردی فرستاده شوند، یک سرایند اچ‌تی‌تی‌پی با کلید «MediaWiki-API-Erorr» فرستاده می‌شود و بعد هم مقدار سرایند و هم کد خطای بازگردانده شده  هر دو به یک مقدار نسبت داده می‌شوند. برای اطلاعات بیشتر [[mw:API:Errors_and_warnings|API: Errors and warnings]] را ببینید.\n\n<strong>آزمایش:</strong> برای انجام درخواست‌های API آزمایشی [[Special:ApiSandbox]] را ببینید.",
@@ -345,7 +346,7 @@
 	"apihelp-query+imageinfo-paramvalue-prop-parsedcomment": "تجزیهٔ خلاصهٔ نسخه. در صورتی که نسخهٔ مرتبط با خلاصه حذف شده‌باشد، یک ویژگی <samp>commenthidden</samp> برگردانده خواهد شد.",
 	"apihelp-query+imageinfo-paramvalue-prop-size": "اندازهٔ تصویر به بایت و ارتفاع، عرض و شمار صفحه‌های تصویر (در صورت وجود) را اضافه می‌کند.",
 	"apihelp-query+imageinfo-paramvalue-prop-dimensions": "نام مستعار برای size",
-	"apihelp-query+imageinfo-paramvalue-prop-sha1": "افزودن  SHA-1 hash برای پرونده",
+	"apihelp-query+imageinfo-paramvalue-prop-sha1": "افزودن SHA-1 hash برای پرونده",
 	"apihelp-query+imageinfo-paramvalue-prop-mime": "افزودن نوع MIME برای پرونده",
 	"apihelp-query+imageinfo-param-end": "زمان توقف فهرست کردن.",
 	"apihelp-query+imageinfo-param-urlheight": "مشابه $1urlwidth.",

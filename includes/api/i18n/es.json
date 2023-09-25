@@ -53,7 +53,9 @@
 			"JDíaz32",
 			"MarcoAurelio",
 			"Pierpao",
-			"Superzerocool"
+			"Superzerocool",
+			"Amire80",
+			"No se"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentación]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de correo]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Anuncios API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Errores y peticiones]\n</div>\n<strong>Estado:</strong> La API de MediaWiki es una interfaz madura y estable que se mejora y prueba activamente. Aunque tratamos de evitarlo, es posible que ocasionalmente debamos hacer cambios importantes. Suscríbete a la [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ lista de correo mediawiki-api-announce] para recibir avisos de actualizaciones.\n\n<strong>Solicitudes erróneas:</strong> Cuando se envían solicitudes erróneas a la API, se enviará un encabezado HTTP con la clave «MediaWiki-API-Error» y, luego, el valor del encabezado y el código de error devuelto se establecerán en el mismo valor. Para obtener más información, consulta [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errores y advertencias]].\n\n<p class=\"mw-apisandbox-link\"><strong>Pruebas:</strong> Para facilitar la comprobación de las solicitudes de API, consulta [[Special:ApiSandbox]].</p>",
@@ -621,7 +623,7 @@
 	"apihelp-query+allusers-param-attachedwiki": "Con <kbd>$1prop=centralids</kbd>, indicar también si el usuario está conectado con la wiki identificado por el ID.",
 	"apihelp-query+allusers-example-y": "Listar usuarios que empiecen por <kbd>Y</kbd>.",
 	"apihelp-query+authmanagerinfo-summary": "Recuperar información sobre el estado de autenticación actual.",
-	"apihelp-query+authmanagerinfo-param-securitysensitiveoperation": "Compruebe si el estado de autenticación actual del usuario es suficiente para la operación  sensible-seguridad especificada.",
+	"apihelp-query+authmanagerinfo-param-securitysensitiveoperation": "Compruebe si el estado de autenticación actual del usuario es suficiente para la operación sensible-seguridad especificada.",
 	"apihelp-query+authmanagerinfo-param-requestsfor": "Obtener información sobre las peticiones de autentificación requeridas para la acción de autentificación especificada.",
 	"apihelp-query+authmanagerinfo-example-login": "Captura de las solicitudes que puede ser utilizadas al comienzo de inicio de sesión.",
 	"apihelp-query+authmanagerinfo-example-login-merged": "Obtener las peticiones que podrían utilizarse al empezar un inicio de sesión, con los campos de formulario integrados.",

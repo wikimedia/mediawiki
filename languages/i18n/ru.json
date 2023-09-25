@@ -3864,7 +3864,7 @@
 	"api-clientside-error-timeout": "Сервер не ответил за ожидаемое время.",
 	"api-clientside-error-aborted": "Запрос был прерван.",
 	"api-clientside-error-invalidresponse": "Неверный ответ от сервера.",
-	"api-error-badtoken": "Внутренняя ошибка:  некорректный токен.",
+	"api-error-badtoken": "Внутренняя ошибка: некорректный токен.",
 	"api-error-emptypage": "Не допускается создание новых пустых страниц.",
 	"api-error-publishfailed": "Внутренняя ошибка: сервер не смог опубликовать временный файл.",
 	"api-error-stashfailed": "Внутренняя ошибка: сервер не смог сохранить временный файл.",

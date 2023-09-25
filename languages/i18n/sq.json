@@ -1984,7 +1984,7 @@
 	"watchlistanontext": "Ju lutemi kyçuni për të parë ose redaktuar njësitë në listën tuaj mbikëqyrëse.",
 	"watchnologin": "Nuk keni hyrë brënda",
 	"addwatch": "Shto tek lista mbikqyrëse",
-	"addedwatchtext": "\"[[:$1]]\"  dhe faqja e saj e diskutimit i është shtuar [[Special:Watchlist|listës tuaj të mbikëqyrjes]].",
+	"addedwatchtext": "\"[[:$1]]\" dhe faqja e saj e diskutimit i është shtuar [[Special:Watchlist|listës tuaj të mbikëqyrjes]].",
 	"addedwatchtext-talk": "\"[[:$1]]\" dhe faqja e saj e ndërlidhur janë shtuar [[Special:Watchlist|listës tuaj të mbikëqyrjes]].",
 	"addedwatchtext-short": "Faqja \"$1\" i është shtuar listës tuaj të mbikëqyrjes.",
 	"removewatch": "Largo nga lista mbikqyrëse",

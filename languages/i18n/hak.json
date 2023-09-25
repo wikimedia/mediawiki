@@ -990,7 +990,7 @@
 	"nowatchlist": "汝嘅監視列表係空嘅。",
 	"watchlistanontext": "請$1來查看或編寫汝嘅監視列表。",
 	"watchnologin": "還吂登入",
-	"addedwatchtext": "Hong-mien \"[[:$1]]\" yí-kîn pûn kâ-ngi̍p to ngì-ke [[Special:Watchlist|Kam-sṳ chhîn-tân]] chûng. Chiông-lòi yû-kôan chhṳ́ hong-mien khi̍p khì-thâ thó-lun-hong ke ngim-hò siû-cháng chiông-voi chhai hong-mien lie̍t-chhut, song-chhiá hàn-voi chhai [[Special:RecentChanges|Chui-khiûn ke kiên-kói]] chûng ke '''chhû-thí''' hìn-sṳt lie̍t-chhut. Kó-yèn  ngì heu-lòi sióng chhiùng hong-mien kam-sṳ chhîn-tân chûng chhîn-chhù, hí-khó tiám-kit thô-hòng thiàu-chûng \"thìn-chṳ́ kam-sṳ\" ke lièn-kiet。",
+	"addedwatchtext": "Hong-mien \"[[:$1]]\" yí-kîn pûn kâ-ngi̍p to ngì-ke [[Special:Watchlist|Kam-sṳ chhîn-tân]] chûng. Chiông-lòi yû-kôan chhṳ́ hong-mien khi̍p khì-thâ thó-lun-hong ke ngim-hò siû-cháng chiông-voi chhai hong-mien lie̍t-chhut, song-chhiá hàn-voi chhai [[Special:RecentChanges|Chui-khiûn ke kiên-kói]] chûng ke '''chhû-thí''' hìn-sṳt lie̍t-chhut. Kó-yèn ngì heu-lòi sióng chhiùng hong-mien kam-sṳ chhîn-tân chûng chhîn-chhù, hí-khó tiám-kit thô-hòng thiàu-chûng \"thìn-chṳ́ kam-sṳ\" ke lièn-kiet。",
 	"removedwatchtext": "Vùn-chông \"[[:$1]]\" yí-kîn chhiùng Ngì kekam-sṳ lie̍t-péu mien-chûng yì-chhù.",
 	"watch": "Kâm-sṳ",
 	"watchthispage": "監視本頁",

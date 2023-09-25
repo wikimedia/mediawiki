@@ -10,7 +10,8 @@
 			"KATRINE1992",
 			"KATRINE1993",
 			"NikosLikomitros",
-			"Sarri.greek"
+			"Sarri.greek",
+			"Amire80"
 		]
 	},
 	"apihelp-main-summary": "",
@@ -120,6 +121,6 @@
 	"api-help-templatedparams-header": "Προτυποποιημένες παράμετροι",
 	"api-help-param-type-limit": "Τύπος: ακέραιος ή <kbd>max</kbd>",
 	"apierror-invalidmethod": "Μη έγκυρη μέθοδος HTTP. Μπορείτε να χρησιμοποιήσετε τα GET ή POST.",
-	"apierror-maxbytes": "Η παράμετρος  <var>$1</var> δεν μπορεί αν είναι μακρύτερη (μεγαλύτερη) από $2 {{PLURAL:$2|byte|bytes}}",
+	"apierror-maxbytes": "Η παράμετρος <var>$1</var> δεν μπορεί αν είναι μακρύτερη (μεγαλύτερη) από $2 {{PLURAL:$2|byte|bytes}}",
 	"apierror-maxchars": "Η παράμετρος <var>$1</var> δεν μπορεί να ξεπερνά τα $2 σε αριθμό{{PLURAL:$2|character|characters}} χαρακτήρων"
 }

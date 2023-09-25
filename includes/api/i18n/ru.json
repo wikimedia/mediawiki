@@ -55,7 +55,8 @@
 			"Tanzun",
 			"Fenixs-ru",
 			"Deltaspace",
-			"BerryAVGN"
+			"BerryAVGN",
+			"Amire80"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Документация]]\n* [[mw:Special:MyLanguage/API:FAQ|ЧаВО]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Почтовая рассылка]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Новости API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Ошибки и запросы]\n</div>\n<strong>Статус:</strong> MediaWiki API — зрелый и стабильный интерфейс, активно поддерживаемый и улучшаемый. Мы стараемся избегать ломающих изменений, однако изредка они могут быть необходимы. Подпишитесь на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ почтовую рассылку mediawiki-api-announce], чтобы быть в курсе обновлений.\n\n<strong>Ошибочные запросы:</strong> Если API получает запрос с ошибкой, вернётся заголовок HTTP с ключом «MediaWiki-API-Error», после чего значение заголовка и код ошибки будут отправлены обратно и установлены в то же значение. Более подробную информацию см. [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Ошибки и предупреждения]].\n\n<p class=\"mw-apisandbox-link\"><strong>Тестирование:</strong> для удобства тестирования API-запросов, см. [[Special:ApiSandbox]].</p>",
@@ -400,7 +401,7 @@
 	"apihelp-parse-paramvalue-prop-revid": "Добавляет идентификатор версии распарсенной страницы.",
 	"apihelp-parse-paramvalue-prop-displaytitle": "Добавляет название распарсенного вики-текста.",
 	"apihelp-parse-paramvalue-prop-headitems": "Возвращает элементы, которые следует поместить в <code>&lt;head&gt;</code> страницы.",
-	"apihelp-parse-paramvalue-prop-headhtml": "Возвращает распарсенный тип документа, начальный  <code>&lt;html&gt;</code>, элемент <code>&lt;head&gt;</code> и открывающий <code>&lt;body&gt;</code>.",
+	"apihelp-parse-paramvalue-prop-headhtml": "Возвращает распарсенный тип документа, начальный <code>&lt;html&gt;</code>, элемент <code>&lt;head&gt;</code> и открывающий <code>&lt;body&gt;</code>.",
 	"apihelp-parse-paramvalue-prop-modules": "Возвращает использованные на странице модули ResourceLoader. Для загрузки, используйте <code>mw.loader.using()</code>. Одновременно с <kbd>modules</kbd> должно быть запрошено либо <kbd>jsconfigvars</kbd>, либо <kbd>encodedjsconfigvars</kbd>.",
 	"apihelp-parse-paramvalue-prop-jsconfigvars": "Возвращает переменные JavaScript с данными настроек для этой страницы. Для их применения используйте <code>mw.config.set()</code>.",
 	"apihelp-parse-paramvalue-prop-encodedjsconfigvars": "Возвращает переменные JavaScript с данными настроек для этой страницы в виде JSON-строки.",
@@ -1486,7 +1487,7 @@
 	"apihelp-watch-example-unwatch": "Не следить за страницей <kbd>Main Page</kbd>.",
 	"apihelp-watch-example-generator": "Следить за первым несколькими страницами основного пространства имён.",
 	"apihelp-format-example-generic": "Вернуть результат запроса в формате $1.",
-	"apihelp-format-param-wrappedhtml": "Вернуть хорошо читаемый HTML со связанными модулями ResourceLoader  в виде объекта JSON.",
+	"apihelp-format-param-wrappedhtml": "Вернуть хорошо читаемый HTML со связанными модулями ResourceLoader в виде объекта JSON.",
 	"apihelp-json-summary": "Выводить данные в формате JSON.",
 	"apihelp-json-param-callback": "Если задано, оборачивает вывод в вызов данной функции. Из соображении безопасности, вся пользовательская информация будет удалена.",
 	"apihelp-json-param-utf8": "Если задано, кодирует большинство (но не все) не-ASCII символов в UTF-8 вместо замены их на шестнадцатеричные коды. Применяется по умолчанию, когда <var>formatversion</var> не равно <kbd>1</kbd>.",
@@ -1738,7 +1739,7 @@
 	"apierror-revdel-needtarget": "Для этого типа RevDel требуется указание целевого названия страницы.",
 	"apierror-revdel-paramneeded": "Как минимум одно значение требуется в <var>hide</var> и/или <var>show</var>.",
 	"apierror-revisions-badid": "Не было найдено версий по параметру <var>$1</var>.",
-	"apierror-revisions-norevids": "Параметр <var>revids</var> не может быть использован с настройками списка  (<var>$1limit</var>, <var>$1startid</var>, <var>$1endid</var>, <kbd>$1dir=newer</kbd>, <var>$1user</var>, <var>$1excludeuser</var>, <var>$1start</var> и <var>$1end</var>).",
+	"apierror-revisions-norevids": "Параметр <var>revids</var> не может быть использован с настройками списка (<var>$1limit</var>, <var>$1startid</var>, <var>$1endid</var>, <kbd>$1dir=newer</kbd>, <var>$1user</var>, <var>$1excludeuser</var>, <var>$1start</var> и <var>$1end</var>).",
 	"apierror-revisions-singlepage": "Параметры <var>titles</var> и <var>pageids</var> и генераторы используются для обработки множества страниц, но параметры <var>$1limit</var>, <var>$1startid</var>, <var>$1endid</var>, <kbd>$1dir=newer</kbd>, <var>$1user</var>, <var>$1excludeuser</var>, <var>$1start</var> и <var>$1end</var> могут быть применены только к одной странице.",
 	"apierror-revwrongpage": "r$1 не является версией $2.",
 	"apierror-searchdisabled": "Поисковый параметр <var>$1</var> отключён.",

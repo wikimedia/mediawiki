@@ -2180,7 +2180,7 @@
 	"api-clientside-error-timeout": "An server waray magbaton ha sulod han ginpapamulat nga oras.",
 	"api-error-badtoken": "Sayop ha sulod: Maraot nga token.",
 	"api-error-emptypage": "Naghihimo hin bag-o, diri gintutugotan an waray sulod nga mga pakli.",
-	"api-error-stashfailed": "Sayop ha sulod:  An serbidor in waray makatipig han temporaryo nga paypay.",
+	"api-error-stashfailed": "Sayop ha sulod: An serbidor in waray makatipig han temporaryo nga paypay.",
 	"api-error-unknown-warning": "Waray kasabti nga pahimatngon: \"$1\".",
 	"api-error-unknownerror": "Waray kasabti nga sayop: \"$1\".",
 	"duration-seconds": "$1 {{PLURAL:$1|segundo|mga segundo}}",

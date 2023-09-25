@@ -22,7 +22,8 @@
 			"아라",
 			"Cryptex nap",
 			"ScrabberEax",
-			"Finizio"
+			"Finizio",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Sottolinia 'e jonte:",
@@ -2485,7 +2486,7 @@
 	"movepage-moved": "<strong>\"$1\" è stata spustata int' 'a \"$2\"</strong>",
 	"movepage-moved-redirect": "Nu redirezionamiento è stato criato.",
 	"movepage-moved-noredirect": "'A criazione o lu redirezionamiento è stato luvato.",
-	"articleexists": "Na paggena cu chisto nomme asiste già, o pure 'o nomme scegliuto nun è buono.  Scegliere n'ato titulo.",
+	"articleexists": "Na paggena cu chisto nomme asiste già, o pure 'o nomme scegliuto nun è buono. Scegliere n'ato titulo.",
 	"cantmove-titleprotected": "Nun putite spustà 'a paggena a stu pizzo pecchè 'o titolo nuovo è stato prutetto 'a criazione",
 	"movetalk": "Muove 'a paggena 'e chiacchiera suoccia a chesta",
 	"move-subpages": "Mòve 'e sottopàggene (nfin' 'a $1)",

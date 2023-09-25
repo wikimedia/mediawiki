@@ -4,12 +4,13 @@
 			"Leeheonjin",
 			"Macofe",
 			"Jojit fb",
-			"LR Guanzon"
+			"LR Guanzon",
+			"Amire80"
 		]
 	},
 	"apihelp-main-param-action": "Aling kilos ang gagawin.",
 	"apihelp-main-param-format": "Ang format ng kalalabasan.",
-	"apihelp-main-param-maxlag": "Ang pinakamataas na pagkahuli ay magagamit kapag ang MediaWiki ay nakalagay sa isang database na kinopya ng isang kumpol. Para magligtas ng mga kilos na nagdadahilan sa mas marami pang pagkahuli, ang parametrong ito ay maaaring gawin na ang kliyente ay maghintay hanggang ang pagkahuli ay mas kaunti sa tinukoy na halaga. Kung sakaling magkakaroon ng maraming pagkahuli, ang kodigo ng pagkakamaling <samp>maxlag</samp> ay ibabalik na may mensaheng katulad ng <samp>Naghihintay sa  $host: $lag segundong nahuli</samp>.<br />Tingnan ang [[mw:Special:MyLanguage/Manual:Maxlag_parameter|Manual: Maxlag parameter]] para sa karagdagang impormasyon.",
+	"apihelp-main-param-maxlag": "Ang pinakamataas na pagkahuli ay magagamit kapag ang MediaWiki ay nakalagay sa isang database na kinopya ng isang kumpol. Para magligtas ng mga kilos na nagdadahilan sa mas marami pang pagkahuli, ang parametrong ito ay maaaring gawin na ang kliyente ay maghintay hanggang ang pagkahuli ay mas kaunti sa tinukoy na halaga. Kung sakaling magkakaroon ng maraming pagkahuli, ang kodigo ng pagkakamaling <samp>maxlag</samp> ay ibabalik na may mensaheng katulad ng <samp>Naghihintay sa $host: $lag segundong nahuli</samp>.<br />Tingnan ang [[mw:Special:MyLanguage/Manual:Maxlag_parameter|Manual: Maxlag parameter]] para sa karagdagang impormasyon.",
 	"apihelp-feedrecentchanges-example-simple": "Ipakit ang mga kamakailangang pagbabago.",
 	"apihelp-feedrecentchanges-example-30days": "Ipakita ang mga huling pagbabago sa loob para sa 30 araw.",
 	"apihelp-help-example-main": "Tulong para sa pangunahing modulo.",
