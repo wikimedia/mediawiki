@@ -16,7 +16,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"MuratTheTurkish",
-			"1233qwer1234qwer4"
+			"1233qwer1234qwer4",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Dun de Lengks ongerschtriische:",
@@ -1869,7 +1870,7 @@
 	"watchnologin": "Nit enjelogg",
 	"addwatch": "En de Oppaßleß don",
 	"addedwatchtext": "Di Sigg „[[:$1]]“ un dä ier Klaafsigg sin jäz en Dinge [[Special:Watchlist|Oppaßleß]].",
-	"addedwatchtext-short": "De Sigg  „$1“ es en Ding Oppaßleß openumme.",
+	"addedwatchtext-short": "De Sigg „$1“ es en Ding Oppaßleß openumme.",
 	"removewatch": "Us de Oppaßleß nämme",
 	"removedwatchtext": "Di Sigg „[[:$1]]“ n di Klaafsigg derzoh sin jäz us Dinge [[Special:Watchlist|Oppaßless]] erusjenomme.",
 	"removedwatchtext-short": "De Sigg  „$1“ es uß Dinge Oppaßleß eruß jenumme.",

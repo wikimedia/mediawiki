@@ -75,7 +75,8 @@
 			"Vfc",
 			"1233qwer1234qwer4",
 			"Rbndev",
-			"Salvemm el lombard"
+			"Salvemm el lombard",
+			"Robertgarrigos"
 		]
 	},
 	"tog-underline": "Subratlla els enllaços:",
@@ -2325,7 +2326,7 @@
 	"addedwatchexpiryhours-talk": "S'han afegit «[[:$1]]» i la seva pàgina associada a la vostra [[Special:Watchlist|llista de seguiment]] durant unes hores.",
 	"addedwatchexpirytext": "\"[[:$1]]\" i la seva pàgina de discussió s'ha afegit a la vostra [[Special:Watchlist|llista de seguiment]] per $2.",
 	"addedwatchexpirytext-talk": "«[[:$1]]» i la seva pàgina associada han estat afegides a la vostra [[Special:Watchlist|llista de seguiment]] per $2.",
-	"addedwatchindefinitelytext": "\"[[:$1]]\"  i la seva pàgina de discussió s'han afegit a la vostra [[Special:Watchlist|llista de seguiment]] permanentment.",
+	"addedwatchindefinitelytext": "\"[[:$1]]\" i la seva pàgina de discussió s'han afegit a la vostra [[Special:Watchlist|llista de seguiment]] permanentment.",
 	"addedwatchindefinitelytext-talk": "S'han afegit «[[:$1]]» i la seva pàgina associada a la vostra [[Special:Watchlist|llista de seguiment]] permanentment.",
 	"removewatch": "Treu de la llista de seguiment",
 	"removedwatchtext": "S'ha tret «[[:$1]]» i la seva pàgina de discussió de la vostra [[Special:Watchlist|llista de seguiment]].",

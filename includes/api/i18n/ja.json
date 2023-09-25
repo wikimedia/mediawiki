@@ -23,7 +23,8 @@
 			"Marine-Blue",
 			"MathXplore",
 			"Yamagata Yusuke",
-			"Kokage si"
+			"Kokage si",
+			"Amire80"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|説明文書]]\n* [[mw:Special:MyLanguage/API:FAQ|よくある質問]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api メーリングリスト]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API 告知]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R バグの報告とリクエスト]\n</div>\n<strong>状態:</strong> MediaWiki APIは、積極的にサポートされ、改善された成熟した安定したインターフェースです。避けようとはしていますが、時には壊れた変更が加えられるかもしれません。更新の通知を受け取るには、[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce メーリングリスト]に参加してください。\n\n<strong>誤ったリクエスト:</strong> 誤ったリクエストが API に送られた場合、\"MediaWiki-API-Error\" HTTP ヘッダーが送信され、そのヘッダーの値と送り返されるエラーコードは同じ値にセットされます。より詳しい情報は [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]] を参照してください。\n\n<p class=\"mw-apisandbox-link\"><strong>テスト:</strong> API のリクエストのテストは、[[Special:ApiSandbox]]で簡単に行えます。</p>",
@@ -835,7 +836,7 @@
 	"apihelp-query+recentchanges-paramvalue-prop-sizes": "バイト単位の新旧のページの長さを追加します。",
 	"apihelp-query+recentchanges-paramvalue-prop-redirect": "編集されたページが転送ページである場合、印を付けます。",
 	"apihelp-query+recentchanges-paramvalue-prop-patrolled": "巡回可能な編集について、巡回済みかどうか印を付けます。",
-	"apihelp-query+recentchanges-paramvalue-prop-loginfo": "記録項目に記録の情報 (記録ID,  記録タイプなど) を追加します。",
+	"apihelp-query+recentchanges-paramvalue-prop-loginfo": "記録項目に記録の情報 (記録ID, 記録タイプなど) を追加します。",
 	"apihelp-query+recentchanges-paramvalue-prop-tags": "エントリのタグを一覧表示します。",
 	"apihelp-query+recentchanges-param-token": "代わりに <kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd> を使用してください。",
 	"apihelp-query+recentchanges-param-limit": "返す変更の総数。",

@@ -20,7 +20,8 @@
 			"WikiPhoenix",
 			"Sabelöga",
 			"Yupik",
-			"André Costa (WMSE)"
+			"André Costa (WMSE)",
+			"Amire80"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Dokumentation]]\n* [[mw:Special:MyLanguage/API:FAQ|Vanliga frågor]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Sändlista]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-nyheter]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Buggar och begäran]\n</div>\n<strong>Status:</strong> Alla funktioner som visas på denna sida bör fungera, men API:et är fortfarande under utveckling och kan ändras när som helst. Prenumerera på [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ sändlistan mediawiki-api-announce] för uppdateringsaviseringar.\n\n<strong>Felaktiga begäran:</strong> När felaktiga begäran skickas till API:et kommer en HTTP-header skickas med nyckeln \"MediaWiki-API-Error\" och sedan kommer både värdet i headern och felkoden som skickades tillbaka anges som samma värde. För mer information se [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Fel och varningar]].\n\n<p class=\"mw-apisandbox-link\"><strong>Testning:</strong> För enkelt testning av API-begäran, se [[Special:ApiSandbox]].</p>",
@@ -107,7 +108,7 @@
 	"apihelp-edit-param-notminor": "Markera inte denna redigering som en mindre redigering även om användarinställningen \"{{int:tog-minordefault}}\" är inställd.",
 	"apihelp-edit-param-bot": "Markera denna redigering som en robotredigering.",
 	"apihelp-edit-param-basetimestamp": "Tidsstämpel för grundversionen, används för att upptäcka redigeringskonflikter. Kan erhållas genom [[Special:ApiHelp/query+revisions|action=query&prop=revisions&rvprop=timestamp]].",
-	"apihelp-edit-param-starttimestamp": "Tidsstämpel för när redigeringsprocessen började, används för att upptäcka redigeringskonflikter. Ett lämpligt värde kan erhållas via  <var>[[Special:ApiHelp/main|curtimestamp]]</var> när redigeringsprocessen startas (t.ex. när sidans innehåll laddas för redigering).",
+	"apihelp-edit-param-starttimestamp": "Tidsstämpel för när redigeringsprocessen började, används för att upptäcka redigeringskonflikter. Ett lämpligt värde kan erhållas via <var>[[Special:ApiHelp/main|curtimestamp]]</var> när redigeringsprocessen startas (t.ex. när sidans innehåll laddas för redigering).",
 	"apihelp-edit-param-recreate": "Ignorera felmeddelande om sidan har blivit raderad under tiden.",
 	"apihelp-edit-param-createonly": "Redigera inte sidan om den redan finns.",
 	"apihelp-edit-param-nocreate": "Kasta ett fel om sidan inte finns.",
@@ -200,7 +201,7 @@
 	"apihelp-imagerotate-example-simple": "Rotera <kbd>File:Example.png</kbd> med <kbd>90</kbd> grader",
 	"apihelp-imagerotate-example-generator": "Rotera alla bilder i <kbd>Category:Flip</kbd> med <kbd>180</kbd> grader.",
 	"apihelp-import-summary": "Importer en sida från en annan wiki eller från en XML-fil.",
-	"apihelp-import-extended-description": "Notera att HTTP POST måste bli gjord som en fil uppladdning (d.v.s med multipart/form-data) när man skickar en fil för  <var>xml</var> parametern.",
+	"apihelp-import-extended-description": "Notera att HTTP POST måste bli gjord som en fil uppladdning (d.v.s med multipart/form-data) när man skickar en fil för <var>xml</var> parametern.",
 	"apihelp-import-param-summary": "Sammanfattning för importering av loggpost.",
 	"apihelp-import-param-xml": "Uppladdad XML-fil.",
 	"apihelp-import-param-interwikisource": "För interwiki-importer: wiki som du vill importera från.",
