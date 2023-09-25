@@ -1216,7 +1216,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Hook\\FileUploadHook' => __DIR__ . '/includes/filerepo/Hook/FileUploadHook.php',
 	'MediaWiki\\Hook\\FormatAutocommentsHook' => __DIR__ . '/includes/Hook/FormatAutocommentsHook.php',
 	'MediaWiki\\Hook\\GalleryGetModesHook' => __DIR__ . '/includes/gallery/Hook/GalleryGetModesHook.php',
-	'MediaWiki\\Hook\\GetBlockErrorMessageKey' => __DIR__ . '/includes/Hook/GetBlockErrorMessageKeyHook.php',
 	'MediaWiki\\Hook\\GetBlockErrorMessageKeyHook' => __DIR__ . '/includes/Hook/GetBlockErrorMessageKeyHook.php',
 	'MediaWiki\\Hook\\GetCacheVaryCookiesHook' => __DIR__ . '/includes/Hook/GetCacheVaryCookiesHook.php',
 	'MediaWiki\\Hook\\GetCanonicalURLHook' => __DIR__ . '/includes/Hook/GetCanonicalURLHook.php',

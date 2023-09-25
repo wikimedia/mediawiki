@@ -25,9 +25,3 @@ interface GetBlockErrorMessageKeyHook {
 	 */
 	public function onGetBlockErrorMessageKey( Block $block, string &$key );
 }
-
-/**
- * Retain the old class name for backwards compatibility.
- * @deprecated since 1.40
- */
-class_alias( GetBlockErrorMessageKeyHook::class, 'MediaWiki\Hook\GetBlockErrorMessageKey' );
