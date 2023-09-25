@@ -1161,8 +1161,10 @@ class Html {
 	 *
 	 * @since 1.41 (previously on {@link Xml})
 	 * @param mixed $value The value being encoded. Can be any type except a resource.
+	 * @param-taint $value escapes_html
 	 * @param bool $pretty If true, add non-significant whitespace to improve readability.
 	 * @return string|false String if successful; false upon failure
+	 * @return-taint none
 	 */
 	public static function encodeJsVar( $value, $pretty = false ) {
 		if ( $value instanceof HtmlJsCode ) {
@@ -1178,9 +1180,12 @@ class Html {
 	 * @since 1.41 (previously on {@link Xml} since 1.17)
 	 * @param string $name The name of the function to call, or a JavaScript expression
 	 *    which evaluates to a function object which is called.
+	 * @param-taint $name tainted
 	 * @param array $args The arguments to pass to the function.
+	 * @param-taint $args escapes_html
 	 * @param bool $pretty If true, add non-significant whitespace to improve readability.
 	 * @return string|false String if successful; false upon failure
+	 * @return-taint none
 	 */
 	public static function encodeJsCall( $name, $args, $pretty = false ) {
 		$encodedArgs = self::encodeJsList( $args, $pretty );
