@@ -148,7 +148,13 @@ class SpecialDeletedContributions extends SpecialPage {
 
 			return;
 		}
-		$this->getSkin()->setRelevantUser( $userObj );
+		// Only set valid local user as the relevant user (T344886)
+		// Uses the same condition as the SpecialContributions class did
+		if ( !IPUtils::isValidRange( $target ) &&
+			( $this->userNameUtils->isIP( $target ) || $userObj->isRegistered() )
+		) {
+			$this->getSkin()->setRelevantUser( $userObj );
+		}
 
 		$target = $userObj->getName();
 
