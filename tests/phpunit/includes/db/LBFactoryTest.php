@@ -395,7 +395,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 	public function testNiceDomains() {
 		global $wgDBname;
 
-		if ( wfGetDB( DB_PRIMARY )->databasesAreIndependent() ) {
+		if ( $this->getDb()->databasesAreIndependent() ) {
 			self::markTestSkipped( "Skipping tests about selecting DBs: not applicable" );
 			return;
 		}
@@ -474,7 +474,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 	public function testTrickyDomain() {
 		global $wgDBname;
 
-		if ( wfGetDB( DB_PRIMARY )->databasesAreIndependent() ) {
+		if ( $this->getDb()->databasesAreIndependent() ) {
 			self::markTestSkipped( "Skipping tests about selecting DBs: not applicable" );
 			return;
 		}
@@ -538,7 +538,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testInvalidSelectDB() {
-		if ( wfGetDB( DB_PRIMARY )->databasesAreIndependent() ) {
+		if ( $this->getDb()->databasesAreIndependent() ) {
 			$this->markTestSkipped( "Not applicable per databasesAreIndependent()" );
 		}
 
@@ -602,7 +602,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 	public function testRedefineLocalDomain() {
 		global $wgDBname;
 
-		if ( wfGetDB( DB_PRIMARY )->databasesAreIndependent() ) {
+		if ( $this->getDb()->databasesAreIndependent() ) {
 			self::markTestSkipped( "Skipping tests about selecting DBs: not applicable" );
 			return;
 		}

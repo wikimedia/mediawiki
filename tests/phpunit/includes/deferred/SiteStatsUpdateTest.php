@@ -26,7 +26,7 @@ class SiteStatsUpdateTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testDoUpdate() {
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 		$statsInit = new SiteStatsInit( $dbw );
 		$statsInit->refresh();
 

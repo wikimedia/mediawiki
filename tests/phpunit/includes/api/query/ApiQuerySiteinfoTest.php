@@ -156,15 +156,15 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function testSpecialPageAliases() {
-		$this->assertCount(
-			count( $this->getServiceContainer()->getSpecialPageFactory()->getNames() ),
+		$this->assertSameSize(
+			$this->getServiceContainer()->getSpecialPageFactory()->getNames(),
 			$this->doQuery( 'specialpagealiases' )
 		);
 	}
 
 	public function testMagicWords() {
-		$this->assertCount(
-			count( $this->getServiceContainer()->getContentLanguage()->getMagicWords() ),
+		$this->assertSameSize(
+			$this->getServiceContainer()->getContentLanguage()->getMagicWords(),
 			$this->doQuery( 'magicwords' )
 		);
 	}
@@ -181,8 +181,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 			MainConfigNames::ScriptPath => '/w',
 		] );
 
-		$dbw = wfGetDB( DB_PRIMARY );
-		$dbw->insert(
+		$this->getDb()->insert(
 			'interwiki',
 			[
 				[

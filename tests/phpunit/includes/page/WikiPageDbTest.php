@@ -249,8 +249,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 		// TODO: test various options; needs temporary hooks
 
-		$dbr = wfGetDB( DB_REPLICA );
-		$res = $dbr->newSelectQueryBuilder()
+		$res = $this->getDb()->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'pagelinks' )
 			->where( [ 'pl_from' => $page->getId() ] )
@@ -325,8 +324,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $page->exists(), "WikiPage object should indicate that the page now exists" );
 
 		# ------------------------
-		$dbr = wfGetDB( DB_REPLICA );
-		$res = $dbr->newSelectQueryBuilder()
+		$res = $this->getDb()->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'pagelinks' )
 			->where( [ 'pl_from' => $id ] )
@@ -392,8 +390,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->assertStringNotContainsString( '~~~~', $newText, 'PST must substitute signature.' );
 
 		# ------------------------
-		$dbr = wfGetDB( DB_REPLICA );
-		$res = $dbr->newSelectQueryBuilder()
+		$res = $this->getDb()->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'pagelinks' )
 			->where( [ 'pl_from' => $id ] )
@@ -512,8 +509,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->runJobs();
 
 		# ------------------------
-		$dbr = wfGetDB( DB_REPLICA );
-		$res = $dbr->newSelectQueryBuilder()
+		$res = $this->getDb()->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'pagelinks' )
 			->where( [ 'pl_from' => $id ] )
@@ -1967,7 +1963,7 @@ more stuff
 		$title = Title::makeTitleSafe( NS_MAIN, 'A new redirect' );
 		$this->assertFalse( $title->isRedirect() );
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 		$store = $this->getServiceContainer()->getRevisionStore();
 		$page = $this->newPage( $title );
 		$page->insertOn( $dbw );

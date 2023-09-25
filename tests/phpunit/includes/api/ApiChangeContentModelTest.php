@@ -321,10 +321,9 @@ class ApiChangeContentModelTest extends ApiTestCase {
 			'Second revision should come after the first'
 		);
 
-		$dbw = wfGetDB( DB_PRIMARY );
 		$this->assertSame(
 			'4',
-			$dbw->newSelectQueryBuilder()
+			$this->getDb()->newSelectQueryBuilder()
 				->select( 'ctd_count' )
 				->from( 'change_tag_def' )
 				->where( [ 'ctd_name' => 'api edit content model tag' ] )

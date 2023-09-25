@@ -112,7 +112,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		$uckey = $this->getServiceContainer()->getContentLanguage()->ucfirst( $message );
 		$oldText = $messageCache->get( $message ); // "Ausführen"
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 		$dbw->startAtomic( __METHOD__ ); // simulate request and block deferred updates
 		$messageCache->replace( $uckey, 'Allez!' );
 		$this->assertEquals( 'Allez!',
@@ -194,7 +194,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	public function testNoDBAccessContentLanguage() {
 		global $wgLanguageCode;
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->getDb();
 
 		$messageCache = $this->getServiceContainer()->getMessageCache();
 		$messageCache->getMsgFromNamespace( 'allpages', $wgLanguageCode );
@@ -210,7 +210,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	}
 
 	public function testNoDBAccessNonContentLanguage() {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->getDb();
 
 		$messageCache = $this->getServiceContainer()->getMessageCache();
 		$messageCache->getMsgFromNamespace( 'allpages/nl', 'nl' );

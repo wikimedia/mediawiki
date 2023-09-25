@@ -170,7 +170,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 	public function testTestUserCanAuthenticate() {
 		$user = self::getMutableTestUser()->getUser();
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 		$config = $this->getServiceContainer()->getMainConfig();
 		// A is unsalted MD5 (thus fast) ... we don't care about security here, this is test only
 		$passwordFactory = new PasswordFactory( $config->get( MainConfigNames::PasswordConfig ), 'A' );
@@ -276,7 +276,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 
 		$password = 'TemporaryPassword';
 		$hash = ':A:' . md5( $password );
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 		$dbw->newUpdateQueryBuilder()
 			->update( 'user' )
 			->set( [ 'user_newpassword' => $hash, 'user_newpass_time' => $dbw->timestamp( time() - 10 ) ] )
@@ -496,7 +496,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		$oldpass = 'OldTempPassword';
 		$newpass = 'NewTempPassword';
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 		$oldHash = $dbw->newSelectQueryBuilder()
 			->select( 'user_newpassword' )
 			->from( 'user' )
@@ -603,7 +603,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 	public function testProviderChangeAuthenticationDataEmail() {
 		$user = self::getMutableTestUser()->getUser();
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 		$dbw->newUpdateQueryBuilder()
 			->update( 'user' )
 			->set( [ 'user_newpass_time' => $dbw->timestamp( time() - 5 * 3600 ) ] )

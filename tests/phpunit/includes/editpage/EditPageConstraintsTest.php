@@ -89,7 +89,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 			$page->doUserEditContent( $content, $user, "base text for test" );
 
 			// Set the latest timestamp back a while
-			$dbw = wfGetDB( DB_PRIMARY );
+			$dbw = $this->getDb();
 			$dbw->newUpdateQueryBuilder()
 				->update( 'revision' )
 				->set( [ 'rev_timestamp' => $dbw->timestamp( '20120101000000' ) ] )
@@ -167,7 +167,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		// Set the time of the deletion to be a specific time, so we can be sure to start the
 		// edit before it. Since the constraint will query for the most recent timestamp,
 		// update *all* deletion logs for the page to the same timestamp (1 January 2020)
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 		$dbw->newUpdateQueryBuilder()
 			->update( 'logging' )
 			->set( [ 'log_timestamp' => $dbw->timestamp( '20200101000000' ) ] )

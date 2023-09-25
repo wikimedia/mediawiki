@@ -828,8 +828,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		$this->setTransactionTicket( $update );
 		$update->doUpdate();
 
-		$dbw = wfGetDB( DB_PRIMARY );
-		$time1 = $dbw->lastDoneWrites();
+		$time1 = $this->getDb()->lastDoneWrites();
 		$this->assertGreaterThan( 0, $time1 );
 
 		$update = new class( $t, $po ) extends LinksUpdate {
@@ -839,7 +838,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		};
 		$update->setStrictTestMode();
 		$update->doUpdate();
-		$time2 = wfGetDB( DB_PRIMARY )->lastDoneWrites();
+		$time2 = $this->getDb()->lastDoneWrites();
 		$this->assertSame( $time1, $time2 );
 	}
 

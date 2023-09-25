@@ -104,8 +104,7 @@ class ArchivedRevisionLookupTest extends MediaWikiIntegrationTestCase {
 		$rev->setContent( SlotRecord::MAIN, $newContent );
 		$rev->setComment( CommentStoreComment::newUnsavedComment( 'just a test' ) );
 
-		$dbw = wfGetDB( DB_PRIMARY );
-		$this->secondRev = $revisionStore->insertRevisionOn( $rev, $dbw );
+		$this->secondRev = $revisionStore->insertRevisionOn( $rev, $this->getDb() );
 
 		// Delete the page
 		$timestamp += 10;

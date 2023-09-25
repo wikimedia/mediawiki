@@ -135,8 +135,7 @@ class ApiParseTest extends ApiTestCase {
 	 * Set up an interwiki entry for testing.
 	 */
 	protected function setupInterwiki() {
-		$dbw = wfGetDB( DB_PRIMARY );
-		$dbw->insert(
+		$this->getDb()->insert(
 			'interwiki',
 			[
 				'iw_prefix' => 'madeuplanguage',

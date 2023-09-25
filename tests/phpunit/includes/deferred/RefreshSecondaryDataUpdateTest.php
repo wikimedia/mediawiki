@@ -45,7 +45,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 		$revision->method( 'getId' )
 			->willReturn( 42 );
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 
 		$dbw->startAtomic( __METHOD__ );
 
@@ -123,7 +123,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 		$revision->method( 'getId' )
 			->willReturn( 42 );
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 		$dbw->startAtomic( __METHOD__ );
 		$goodCalls = 0;
 

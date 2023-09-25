@@ -561,7 +561,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 			] )
 		);
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 		$norm = $services->getActorNormalization();
 		$user = $this->getTestSysop()->getUserIdentity();
 		$actorId = $norm->acquireActorId( $user, $dbw );
@@ -916,7 +916,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideReserializeMetadata
 	 */
 	public function testReserializeMetadata( $input, $expected ) {
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 		$services = $this->getServiceContainer();
 		$norm = $services->getActorNormalization();
 		$user = $this->getTestSysop()->getUserIdentity();
@@ -990,7 +990,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 				'containerPaths' => [ 'test-public' => __DIR__ . '/../../../data/media' ]
 			] )
 		] );
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 		$services = $this->getServiceContainer();
 		$norm = $services->getActorNormalization();
 		$user = $this->getTestSysop()->getUserIdentity();
