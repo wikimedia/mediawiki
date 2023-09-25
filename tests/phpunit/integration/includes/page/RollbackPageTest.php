@@ -430,19 +430,9 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 			->setSummary( 'TESTING' )
 			->rollbackIfAllowed();
 		$this->assertStatusGood( $rollbackResult );
-		$logQuery = DatabaseLogEntry::getSelectQueryData();
-		$logRow = $this->db->selectRow(
-			$logQuery['tables'],
-			$logQuery['fields'],
-			[
-				'log_namespace' => NS_MAIN,
-				'log_title' => __METHOD__,
-				'log_type' => 'contentmodel'
-			],
-			__METHOD__,
-			[],
-			$logQuery['join_conds']
-		);
+		$logRow = DatabaseLogEntry::newSelectQueryBuilder( $this->db )
+			->where( [ 'log_namespace' => NS_MAIN, 'log_title' => __METHOD__, 'log_type' => 'contentmodel' ] )
+			->caller( __METHOD__ )->fetchRow();
 		$this->assertNotNull( $logRow );
 		$this->assertSame( $admin->getUser()->getName(), $logRow->user_name );
 		$this->assertSame( 'TESTING', $logRow->log_comment_text );

@@ -1525,6 +1525,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Logger\\Monolog\\WikiProcessor' => __DIR__ . '/includes/debug/logger/monolog/WikiProcessor.php',
 	'MediaWiki\\Logger\\NullSpi' => __DIR__ . '/includes/debug/logger/NullSpi.php',
 	'MediaWiki\\Logger\\Spi' => __DIR__ . '/includes/debug/logger/Spi.php',
+	'MediaWiki\\Logging\\LoggingSelectQueryBuilder' => __DIR__ . '/includes/logging/LoggingSelectQueryBuilder.php',
 	'MediaWiki\\Mail\\EmailUser' => __DIR__ . '/includes/mail/EmailUser.php',
 	'MediaWiki\\Mail\\EmailUserFactory' => __DIR__ . '/includes/mail/EmailUserFactory.php',
 	'MediaWiki\\Mail\\Emailer' => __DIR__ . '/includes/mail/Emailer.php',

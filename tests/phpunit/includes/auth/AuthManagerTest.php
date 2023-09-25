@@ -235,7 +235,8 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 				$this->getServiceContainer()->getUserIdentityUtils(),
 				LoggerFactory::getInstance( 'BlockManager' ),
 				$this->getServiceContainer()->getHookContainer()
-			) extends BlockManager {
+			) extends BlockManager
+{
 				protected function checkHost( $hostname ) {
 					return '127.0.0.1';
 				}
@@ -2565,18 +2566,9 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->assertNotEquals( 0, $user->getId() );
 		$this->assertNotEquals( $creator->getId(), $user->getId() );
 
-		$data = \DatabaseLogEntry::getSelectQueryData();
-		$rows = iterator_to_array( $dbw->select(
-			$data['tables'],
-			$data['fields'],
-			[
-				'log_id > ' . (int)$maxLogId,
-				'log_type' => 'newusers'
-			] + $data['conds'],
-			__METHOD__,
-			$data['options'],
-			$data['join_conds']
-		) );
+		$queryBuilder = \DatabaseLogEntry::newSelectQueryBuilder( $dbw )
+			->where( [ 'log_id > ' . (int)$maxLogId, 'log_type' => 'newusers' ] );
+		$rows = iterator_to_array( $queryBuilder->caller( __METHOD__ )->fetchResultSet() );
 		$this->assertCount( 1, $rows );
 		$entry = \DatabaseLogEntry::newFromRow( reset( $rows ) );
 
@@ -3070,18 +3062,9 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->assertEquals( Status::newGood(), $ret );
 		$logger->clearBuffer();
 
-		$data = \DatabaseLogEntry::getSelectQueryData();
-		$rows = iterator_to_array( $dbw->select(
-			$data['tables'],
-			$data['fields'],
-			[
-				'log_id > ' . (int)$maxLogId,
-				'log_type' => 'newusers'
-			] + $data['conds'],
-			__METHOD__,
-			$data['options'],
-			$data['join_conds']
-		) );
+		$queryBuilder = \DatabaseLogEntry::newSelectQueryBuilder( $dbw )
+			->where( [ 'log_id > ' . (int)$maxLogId, 'log_type' => 'newusers' ] );
+		$rows = iterator_to_array( $queryBuilder->caller( __METHOD__ )->fetchResultSet() );
 		$this->assertCount( 1, $rows );
 		$entry = \DatabaseLogEntry::newFromRow( reset( $rows ) );
 

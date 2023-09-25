@@ -24,10 +24,12 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Logging\LoggingSelectQueryBuilder;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * A value class to process existing log entries. In other words, this class caches a log
@@ -47,6 +49,8 @@ class DatabaseLogEntry extends LogEntryBase {
 	 * Since 1.34, log_user and log_user_text have not been present in the
 	 * database, but they continue to be available in query results as
 	 * aliases.
+	 *
+	 * @deprecated since 1.41 use ::newSelectQueryBuilder() instead
 	 *
 	 * @return array
 	 */
@@ -87,6 +91,10 @@ class DatabaseLogEntry extends LogEntryBase {
 		];
 	}
 
+	public static function newSelectQueryBuilder( IReadableDatabase $db ) {
+		return new LoggingSelectQueryBuilder( $db );
+	}
+
 	/**
 	 * Constructs new LogEntry from database result row.
 	 * Supports rows from both logging and recentchanges table.
@@ -111,16 +119,9 @@ class DatabaseLogEntry extends LogEntryBase {
 	 * @return DatabaseLogEntry|null
 	 */
 	public static function newFromId( $id, IDatabase $db ) {
-		$queryInfo = self::getSelectQueryData();
-		$queryInfo['conds'] += [ 'log_id' => $id ];
-		$row = $db->selectRow(
-			$queryInfo['tables'],
-			$queryInfo['fields'],
-			$queryInfo['conds'],
-			__METHOD__,
-			$queryInfo['options'],
-			$queryInfo['join_conds']
-		);
+		$row = self::newSelectQueryBuilder( $db )
+			->where( [ 'log_id' => $id ] )
+			->caller( __METHOD__ )->fetchRow();
 		if ( !$row ) {
 			return null;
 		}

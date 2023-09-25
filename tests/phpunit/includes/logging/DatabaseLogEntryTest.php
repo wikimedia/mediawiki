@@ -68,9 +68,9 @@ class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
 		$newTables = [
 			'tables' => [
 				'logging',
-				'user',
 				'comment_log_comment' => 'comment',
-				'logging_actor' => 'actor'
+				'logging_actor' => 'actor',
+				'user' => 'user',
 			],
 			'fields' => [
 				'log_id',
