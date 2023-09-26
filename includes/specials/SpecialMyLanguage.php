@@ -31,8 +31,8 @@ use MediaWiki\SpecialPage\RedirectSpecialArticle;
 use MediaWiki\Title\Title;
 
 /**
- * Unlisted special page just to redirect the user to the translated version of
- * a page, if it exists.
+ * Unlisted special page which redirects the user to the appropriate translated version of
+ * a page if it exists.
  *
  * Usage: [[Special:MyLanguage/Page name|link text]]
  *
@@ -74,7 +74,9 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 	}
 
 	/**
-	 * Find a title. This may return the base page, e.g. if the UI and
+	 * Find a title.
+	 *
+	 * This may return the base page, e.g. if the UI and
 	 * content language are the same.
 	 *
 	 * Examples, assuming the UI language is fi and the content language
@@ -92,7 +94,7 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 
 	/**
 	 * Find a title for transclusion. This avoids returning the base
-	 * page, if a suitable alternative exists.
+	 * page if a suitable alternative exists.
 	 *
 	 * Examples, assuming the UI language is fi and the content language
 	 * is en:
@@ -117,7 +119,7 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 	 * @return Title|null
 	 */
 	private function findTitleInternal( $subpage, $forTransclusion ) {
-		// base = title without language code suffix
+		// base = title without the language code suffix
 		// provided = the title as it was given
 		$base = $provided = null;
 		if ( $subpage !== null ) {
@@ -156,7 +158,7 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 			return $base;
 		}
 
-		// Check for a subpage in current UI language
+		// Check for a subpage in the current UI language
 		$proposed = $base->getSubpage( $uiLang->getCode() );
 		if ( $proposed && $proposed->exists() ) {
 			if ( $fragment !== '' ) {
