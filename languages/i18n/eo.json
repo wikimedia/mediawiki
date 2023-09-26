@@ -64,7 +64,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Saturnow",
-			"נדב ס"
+			"נדב ס",
+			"Lepticed"
 		]
 	},
 	"tog-underline": "Substrekado de ligiloj:",
@@ -1853,7 +1854,7 @@
 	"uploadstash-badtoken": "Malsukcesis tiu ago, eble pro tio ke viaj ensalutiloj eksvalidiĝis. Bonvolu reprovi.",
 	"uploadstash-errclear": "Malsukcesis la forigo de la dosieroj.",
 	"uploadstash-refresh": "Aktualigi la dosierliston.",
-	"uploadstash-thumbnail": "Vidi bildeton",
+	"uploadstash-thumbnail": "vidi bildeton",
 	"uploadstash-exception": "Ne eblas alŝuti en kaŝkonservejon ($1): \"$2\".",
 	"uploadstash-bad-path": "Vojo ne ekzistas.",
 	"uploadstash-bad-path-invalid": "Vojo ne estas valida.",
@@ -3967,7 +3968,7 @@
 	"authprovider-confirmlink-failed": "Ligado de konto ne plene sukcesis: $1",
 	"authprovider-confirmlink-ok-help": "Kontinui post montrado de mesaĝoj pri malsukceso de ligado.",
 	"authprovider-resetpass-skip-label": "Preterpasi",
-	"authprovider-resetpass-skip-help": "Preterpasi  pasvortan reensignadon.",
+	"authprovider-resetpass-skip-help": "Preterpasi pasvortan reensignadon.",
 	"authform-nosession-login": "La aŭtentikagdo sukcesis, sed via retumilo ne povas \"memori\" ensalutitadon.\n\n$1",
 	"authform-nosession-signup": "La konto estis kreita, sed via retumilo ne povas \"memori\" ensalutitadon.\n\n$1",
 	"authform-newtoken": "Mankanta ĵetono. $1",

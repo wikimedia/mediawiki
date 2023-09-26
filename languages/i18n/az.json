@@ -1939,7 +1939,7 @@
 	"delete-talk-summary-prefix": "Əlaqəli səhifə ilə birlikdə bu səbəbə görə silindi: $1",
 	"historywarning": "'''Xəbərdarlıq:''' Silmək istədiyiniz səhifənin tarixçəsində qeyd olunmuş $1 {{PLURAL:$1|redaktə|redaktə}} var:",
 	"historyaction-submit": "Versiyaları göstər",
-	"confirmdeletetext": "Bu səhifə və ya fayl bütün tarixçəsi ilə birlikdə birdəfəlik silinəcək. Bunu [[{{MediaWiki:Policy-url}}|qaydalara]] uyğun etdiyinizi və əməliyyatın nəticələrini başa düşdüyünüzü təsdiq edin.",
+	"confirmdeletetext": "Siz səhifəni bütün tarixçəsi ilə birlikdə silmək üzrəsiniz.\nLütfən, bunu etmək niyyətində olduğunuzu, nəticələrini başa düşdüyünüzü və bunu [[{{MediaWiki:Policy-url}}|qaydalara]] uyğun olaraq etdiyinizi təsdiq edin",
 	"actioncomplete": "Əməliyyat yerinə yetirildi",
 	"actionfailed": "Əməliyyat yerinə yetirilmədi",
 	"deletedtext": "\"$1\" silindi.\nSonuncu silinmələrə bax: $2.",

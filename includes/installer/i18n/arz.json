@@ -5,6 +5,14 @@
 			"Meno25"
 		]
 	},
+	"config-desc": "مثبت برمجيات ميدياويكى",
+	"config-title": "تثبيت ميدياويكى $1",
+	"config-information": "معلومات",
+	"config-localsettings-upgrade": "<code>LocalSettings.php</code> تم كشف ملف.\nلترقية التنصيب ده، رجاء دخل قيمة <code>$wgUpgradeKey</code> فى الصندوق تحت.\nهاتلاقيه فى <code>LocalSettings.php</code>.",
+	"config-localsettings-cli-upgrade": "<code>LocalSettings.php</code> تم كشف ملف.\nلترقية التنصيب ده، رجاء فعل <code>update.php</code> بدله",
+	"config-localsettings-key": "مفتاح تحديث:",
+	"config-localsettings-badkey": "مفتاح الترقية اللي قدمته مش صحيح.",
+	"config-upgrade-key-missing": "تم اكتشاف تثبيت موجود لـ MediaWiki.\nعلشان تحديث التنصيب ده، الرجاء حط السطر اللى تحت  <code>LocalSettings.php</code>  بتاعك:\n\n$1",
 	"config-your-language": "اللغه بتاعتك:",
 	"config-your-language-help": " إختار لغة البرنامج بتاعتك:",
 	"config-wiki-language": " ويكى لانجواج :",
